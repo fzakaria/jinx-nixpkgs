@@ -40,39 +40,39 @@ export default nix.lambda((args) => (() => {
   const isLinux = nix.thunk(() => nix.attr(from, "isLinux"));
   const mkOneUp = (opt) => (f) => nix.app(nix.sel(lib, "mkOverride"), nix.thunk(() => nix.sub(nix.sel(opt, "highestPrio"), 1n)), nix.thunk(() => nix.app(f, nix.thunk(() => nix.sel(opt, "value")))));
   const requiredFeaturesModuleType = nix.thunk(() => ({
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     freeformType: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "bool")))),
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       devnet: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(types, "bool")),
           default: nix.thunk(() => (nix.asBool(!nix.eq(containers, {})) && nix.asBool(!nix.eq(nodes, {})))),
           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalMD"), "`true` if both VMs and containers are present.")),
           description: "This heuristic setting that assumes that the majority of tests requires VMs and containers\nto communicate over network. To support such tests, adding \"/dev/net\" to `nix.settings.extra-sandbox-paths` is necessary.\n\nOverride this to `false` if the heuristic is wrong in some cases.\n",
         })))),
       "nixos-test": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.sel(types, "bool")),
           default: true,
           description: "Standard requirement for NixOS integration tests",
         })))),
       "uid-range": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.sel(types, "bool")),
           default: nix.thunk(() => !nix.eq(containers, {})),
           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalMD"), "`true` if containers are present.")),
           description: "Containers use systemd-nspawn, which requires pid 0 inside of the sandbox. `uid-range` enables that.",
         })))),
       kvm: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => nix.sel(types, "bool")),
           default: nix.thunk(() => (nix.asBool(isLinux) && nix.asBool(!nix.eq(nodes, {})))),
           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalMD"), "`true` if built to run on Linux and any virtual machines are specified.")),
           description: "Whether Linux KVM virtualization is required when running this test. Can be disabled to allow emulated execution.",
         })))),
       "apple-virt": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           type: nix.thunk(() => nix.sel(types, "bool")),
           default: isDarwin,
           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalMD"), "`true` if built to run on Darwin.")),
@@ -81,51 +81,51 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       requiredFeatures: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           description: "Builder features that are required for running this test.",
           example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  cuda = true;\n  devnet = mkForce false;\n}\n")),
           type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), requiredFeaturesModuleType)),
           default: nix.thunk(() => ({})),
         })))),
       passthru: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "raw")))),
           description: "Attributes to add to the returned derivations,\nwhich are not necessarily part of the build.\n\nThis is a bit like doing `drv // { myAttr = true; }` (which would be lost by `overrideAttrs`).\nIt does not change the actual derivation, but adds the attribute nonetheless, so that\nconsumers of what would be `drv` have more information.\n",
         })))),
       enableDebugHook: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), ""), {
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "Halt test execution after any test fail and provide the possibility to\nhook into the sandbox to connect with either the test driver via\n`telnet localhost 4444` or with the VMs via SSH and vsocks (see also\n`sshBackdoor.enable`).\n",
       })),
       rawTestDerivation: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           type: nix.thunk(() => nix.sel(types, "package")),
           description: "Unfiltered version of `test`, for troubleshooting the test framework and `testBuildFailure` in the test framework's test suite.\nThis is not intended for general use. Use `test` instead.\n",
           internal: true,
         })))),
       rawTestDerivationArg: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           type: nix.thunk(() => nix.app(nix.sel(types, "functionTo"), nix.thunk(() => nix.sel(types, "raw")))),
           description: "Argument passed to `mkDerivation` to create the `rawTestDerivation`.\n",
         })))),
       test: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           type: nix.thunk(() => nix.sel(types, "package")),
           description: "Derivation that runs the test as its \"build\" process.\n\nThis implies that NixOS tests run isolated from the network, making them\nmore dependable.\n",
         })))),
     })),
     imports: nix.thunk(() => [nix.path(here, "../../modules/misc/assertions.nix")]),
     config: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       rawTestDerivation: nix.thunk(() => nix.app(nix.sel(hostPkgs, "stdenv", "mkDerivation"), nix.thunk(() => nix.sel(config, "rawTestDerivationArg")))),
       rawTestDerivationArg: (finalAttrs) => (() => {
         nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => (!nix.asBool(nix.sel(config, "sshBackdoor", "enable")) || nix.asBool(isLinux))), "The SSH backdoor is not supported for macOS host systems!"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/lib/testing/run.nix:144:7");
         nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => (!nix.asBool(nix.sel(config, "enableDebugHook")) || nix.asBool(isLinux))), "The debugging hook is not supported for macOS host systems!"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/lib/testing/run.nix:148:7");
         return {
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           name: nix.thunk(() => (() => {
             const from_1 = nix.thunk(() => nix.sel(config, "driverConfiguration"));
             const containers_1 = nix.thunk(() => nix.attr(from_1, "containers"));
@@ -158,21 +158,21 @@ ${nix.sel(config, "driver")}/bin/nixos-test-driver \\
         };
       })(),
       test: nix.thunk(() => nix.app(nix.sel(lib, "lazyDerivation"), nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           derivation: nix.thunk(() => nix.app(nix.sel(lib, "asserts", "checkAssertWarn"), nix.thunk(() => nix.sel(config, "assertions")), nix.thunk(() => nix.sel(config, "warnings")), nix.thunk(() => nix.sel(config, "rawTestDerivation")))),
           passthru: nix.thunk(() => nix.attr(config, "passthru")),
           meta: nix.thunk(() => nix.attr(config, "meta")),
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         config: config,
         options: options,
         test: nix.thunk(() => nix.sel(config, "test")),
         overrideTestDerivation: (f) => nix.app(nix.sel(config, "passthru", "extend"), nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             modules: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 rawTestDerivationArg: nix.thunk(() => nix.app(mkOneUp, nix.thunk(() => nix.sel(options, "rawTestDerivationArg")), nix.thunk(() => nix.app(nix.sel(lib, "extends"), nix.thunk(() => nix.app(nix.sel(lib, "toExtension"), f)))))),
               })),
             ]),

@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
   const version = "9.31";
   const description = "Clone of the well-known terminal emulator rxvt";
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: pname,
       exec: "urxvt",
       icon: "utilities-terminal",
@@ -65,16 +65,16 @@ export default nix.lambda((args) => (() => {
         const extraPrefix = "";
         const name_1 = name;
         const sha256_1 = sha256;
-        return { __proto__: pos$2, url, extraPrefix, name: name_1, sha256: sha256_1 };
+        return { [nix.POS]: pos$2, url, extraPrefix, name: name_1, sha256: sha256_1 };
       })()));
   })(), formals$2);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       name: nix.thunk(() => nix.str`${pname}-unwrapped-${version}`),
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://dist.schmorp.de/rxvt-unicode/Attic/rxvt-unicode-${version}.tar.bz2`),
           sha256: "qqE/y8FJ/g8/OR+TMnlYD3Spb9MS1u0GuP8DwtRmcug=",
         })))),
@@ -83,14 +83,14 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "terminfo"]),
       patches: nix.thunk(() => nix.concat((nix.asBool(emojiSupport) ? [
         nix.thunk(() => nix.app(fetchPatchFromAUR, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "enable-wide-glyphs.patch",
             package: "rxvt-unicode-truecolor-wide-glyphs",
             rev: "69701a09c2c206233952b84bc966407f6774f1dc",
             sha256: "0jfcj0ahky4dxdfrhqvh1v83mblhf5nak56dk1vq3bhyifdg7ffq",
           })))),
         nix.thunk(() => nix.app(fetchPatchFromAUR, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "improve-font-rendering.patch",
             package: "rxvt-unicode-truecolor-wide-glyphs",
             rev: "69701a09c2c206233952b84bc966407f6774f1dc",
@@ -99,14 +99,14 @@ export default nix.lambda((args) => (() => {
       ] : [nix.path(here, "./patches/9.06-font-width.patch")]), nix.concat([
         nix.path(here, "./patches/256-color-resources.patch"),
         nix.thunk(() => nix.app(fetchPatchFromAUR, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: "7-bit-queries.patch",
             package: "rxvt-unicode-truecolor-wide-glyphs",
             rev: "61ed186890a2bf37585e4704a095be61e6504ac6",
             sha256: "1xpv6g3bhxq5gp40k3rp8yjp4xrw7dr2g9sfkdmj0gi3rr0myx46",
           })))),
       ], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(perlSupport) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(perl, "version")), "5.38")))), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             name: "perl538-locale-c.patch",
             url: "https://github.com/exg/rxvt-unicode/commit/16634bc8dd5fc4af62faf899687dfa8f27768d15.patch",
             excludes: nix.thunk(() => ["Changes"]),
@@ -120,7 +120,7 @@ export default nix.lambda((args) => (() => {
         "CXXFLAGS=-std=c++17",
       ], nix.app(nix.sel(lib, "optional"), emojiSupport, "--enable-wide-glyphs"))),
       env: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lfontconfig", "-lXrender", "-lpthread"]))),
         CFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [nix.thunk(() => nix.str`-I${nix.sel(freetype, "dev")}/include/freetype2`)]))),
       })),
@@ -134,14 +134,14 @@ echo "$terminfo" >> $out/nix-support/propagated-user-env-packages
 cp -r ${desktopItem}/share/applications/ $out/share/
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         tests: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           test: nix.thunk(() => nix.sel(nixosTests, "terminal-emulators", "urxvt")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         description: description,
         homepage: "http://software.schmorp.de/pkg/rxvt-unicode.html",
         downloadPage: "http://dist.schmorp.de/rxvt-unicode/Attic/",

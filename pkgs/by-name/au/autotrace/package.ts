@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "autotrace";
       const version = "0.31.10";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "autotrace",
           repo: "autotrace",
           tag: version,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [autoreconfHook, gettext, intltool, pkg_config]);
       const buildInputs = nix.thunk(() => [glib, imagemagick, libpng, pstoedit]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/autotrace/autotrace",
         description: "Utility for converting bitmap into vector graphics",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
         mainProgram: "autotrace",
       }));
-      return { __proto__: pos$3, pname, version, src, nativeBuildInputs, buildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

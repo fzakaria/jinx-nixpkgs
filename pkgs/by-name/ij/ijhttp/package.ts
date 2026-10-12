@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ijhttp",
       version: "261.25134.95",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.jetbrains.com/resources/intellij/http-client/${nix.sel(finalAttrs, "version")}/intellij-http-client.zip`),
           hash: "sha256-RlbpweLHmPvn/Xjtj8EkvAceu0bgJ3DhmKViaJ2jLJ0=",
         })))),
@@ -36,7 +36,7 @@ makeWrapper $out/lib/ijhttp $out/bin/ijhttp \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Run HTTP requests from a terminal, e.g. for HTTP request testing",
         homepage: "https://www.jetbrains.com/help/idea/http-client-cli.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

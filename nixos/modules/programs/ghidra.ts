@@ -22,33 +22,33 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "ghidra"));
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       programs: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         ghidra: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Ghidra, a software reverse engineering (SRE) suite of tools")),
           gdb: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: true,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Whether to add to gdbinit the python modules required to make Ghidra's debugger work.\n",
             })))),
-          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "ghidra", nix.thunk(() => ({ __proto__: pos$2, example: "ghidra-bin" })))),
+          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "ghidra", nix.thunk(() => ({ [nix.POS]: pos$2, example: "ghidra-bin" })))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         environment: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "gdb")), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               "gdb/gdbinit.d/ghidra-modules.gdb": nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 text: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "python3", "pkgs")), null);
                   return nix.str`python
@@ -65,7 +65,7 @@ end
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "govanify"))];

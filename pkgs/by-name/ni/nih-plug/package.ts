@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0-unstable-2026-05-10";
       const __structuredAttrs = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "robbert-vdh",
           repo: "nih-plug",
           rev: "f36931f7af4646065488a9845d8f8c2f95252c23",
@@ -73,7 +73,7 @@ runHook postBuild
       const doCheck = false;
       const installPhase = "runHook preInstall\n\ninstall -d \"$out/lib/clap\" \"$out/lib/vst3\"\n\n# CLAP plugins are single `.clap` shared objects.\nfind target/bundled -maxdepth 1 -type f -name '*.clap' \\\n  -exec install -Dm644 -t \"$out/lib/clap\" {} +\n\n# VST3 plugins are directory bundles. On Linux the layout is\n# `Foo.vst3/Contents/<arch>-linux/Foo.so`.\nfor vst3 in target/bundled/*.vst3; do\n  [ -e \"$vst3\" ] || continue\n  cp -r \"$vst3\" \"$out/lib/vst3/\"\ndone\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of CLAP and VST3 audio plugins built with the NIH-plug framework",
         longDescription: "Builds the upstream NIH-plug plugin collection: Buffr Glitch (a MIDI-\ntriggered buffer-repeat effect), Crisp (high-frequency excitement\ninspired by Polarity's Fake Distortion), Loudness War Winner\n(digital saturation/clipper), Puberty Simulator (octave-down with\nformant artefacts), Safety Limiter (hearing-protection  tool that cuts\nto Morse-code SOS on clip), Soft Vacuum (oversampled port of Airwindows'\nHard Vacuum) and Spectral Compressor (FFT-based dynamics processor).\n\nOutputs install to `$out/lib/clap` and `$out/lib/vst3`. Hosts that\nhonour `CLAP_PATH` / `VST3_PATH` will pick them up automatically when\nthe package is in the user's profile; otherwise symlink them into\n`~/.clap` and `~/.vst3` (or `~/.local/share/{clap,vst3}`).\n\nThe NIH-plug framework itself is in upstream-declared maintenance mode;\na community fork at codeberg.org/BillyDM/nih-plug is the active\nsuccessor for new framework development. These plugin binaries continue\nto be developed in the upstream repository.\n\nCrossover and Diopser are part of the upstream repository but\nunconditionally require nightly Rust (std::simd) and are not built here.\n",
         homepage: "https://github.com/robbert-vdh/nih-plug",
@@ -92,7 +92,7 @@ runHook postBuild
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         __structuredAttrs,

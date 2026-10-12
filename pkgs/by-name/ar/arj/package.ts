@@ -17,17 +17,17 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(gccStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "arj",
       version: "3.10.22",
       debianrev: "28",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://deb.debian.org/debian/pool/main/a/arj/arj_${nix.sel(finalAttrs, "version")}.orig.tar.gz`),
           hash: "sha256-WJ5Mm8zIZp57bY1vzWTgH2osIf4QqtVqgzBOzDuWp9s=",
         })))),
       versionPatch: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`http://deb.debian.org/debian/pool/main/a/arj/arj_${nix.sel(finalAttrs, "version")}-${nix.sel(finalAttrs, "debianrev")}.debian.tar.xz`),
           hash: "sha256-rmu5RSZ6OHGT093PShzkvC3ktm/U6smta6pmn9D7Jfw=",
         })))),
@@ -42,13 +42,13 @@ for fname in debian/patches/*.patch
   done
 `)),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=implicit-function-declaration"]))),
       })),
       preAutoreconf: "cd gnu\n",
       postConfigure: "cd ..\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Open-source implementation of the world-famous ARJ archiver",
         longDescription: "This version of ARJ has been created with an intent to preserve maximum\ncompatibility and retain the feature set of the original ARJ archiver as\nprovided by ARJ Software, Inc.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

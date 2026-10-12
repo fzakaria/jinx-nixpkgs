@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const torch = nix.arg($, "torch");
   const torchaudio = nix.arg($, "torchaudio");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "silero-vad",
       version: "6.2.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "snakers4",
           repo: "silero-vad",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["silero_vad"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Silero VAD: pre-trained enterprise-grade Voice Activity Detector",
         changelog: nix.thunk(() => nix.str`https://github.com/snakers4/silero-vad/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         homepage: "https://github.com/snakers4/silero-vad",

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.17";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "python-rope",
           repo: "pylsp-rope",
           tag: version,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["pylsp_rope"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extended refactoring capabilities for Python LSP Server using Rope",
         homepage: "https://github.com/python-rope/pylsp-rope",
         changelog: nix.thunk(() => nix.str`https://github.com/python-rope/pylsp-rope/releases/tag/${version}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

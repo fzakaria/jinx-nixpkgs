@@ -15,22 +15,22 @@ export default nix.lambda((args) => (() => {
   const clangStdenv = nix.arg($, "clangStdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "juledoc",
       version: "0.0.0-unstable-2026-04-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "julelang",
           repo: "juledoc",
           rev: "8504254a30d04a403c1b3ac788b62491233421e5",
           hash: "sha256-L8Oh2u35hraJYHimxJbBqro7iVh1a7MbVuqtujgb7c8=",
         })))),
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(julec, "hook"))]),
-      env: nix.thunk(() => ({ __proto__: pos$2, JULE_OUT_NAME: "juledoc" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, JULE_OUT_NAME: "juledoc" })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(julec, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Official documentation generator for the Jule programming language",
         homepage: "https://manual.jule.dev/tools/juledoc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

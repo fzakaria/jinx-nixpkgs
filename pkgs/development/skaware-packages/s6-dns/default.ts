@@ -11,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const skawarePackages = nix.arg($, "skawarePackages");
   const skalibs = nix.arg($, "skalibs");
   return nix.app(nix.sel(skawarePackages, "buildPackage"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "s6-dns",
       version: "2.4.1.3",
       sha256: "sha256-+enetGSMVQeoSFVINkvRxW2r2jlLye4tfxy7FqA2zXY=",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Suite of DNS client programs and libraries for Unix systems",
       })),
       outputs: nix.thunk(() => ["bin", "lib", "dev", "doc", "out"]),

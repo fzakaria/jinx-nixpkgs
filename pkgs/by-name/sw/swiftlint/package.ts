@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const sources = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./sources.json")));
   const platform = nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported platform: ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)), "platforms", nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "swiftlint",
       version: nix.thunk(() => nix.attr(sources, "version")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/realm/SwiftLint/releases/download/${nix.sel(finalAttrs, "version")}/${nix.sel(platform, "filename")}`),
           hash: nix.thunk(() => nix.attr(platform, "hash")),
         })))),
@@ -46,12 +46,12 @@ runHook postInstall
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           lint: nix.thunk(() => nix.app(runCommand, "swiftlint-test-lint", nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
             })), nix.thunk(() => nix.str`printf "class test{}\\n\\nvar a = 1" > test.swift
 swiftlint lint ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")), "--disable-sourcekit")} test.swift > output.txt 2>&1 || true
@@ -64,7 +64,7 @@ touch $out
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Tool to enforce Swift style and conventions",
         homepage: "https://realm.github.io/SwiftLint/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

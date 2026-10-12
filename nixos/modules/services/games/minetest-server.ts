@@ -44,7 +44,7 @@ ${value}
 `;
   })();
   const toConf = (values) => nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value) => nix.sel({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         bool: nix.thunk(() => nix.str`${name} = ${nix.builtins.toString(value)}
 `),
         int: nix.thunk(() => nix.str`${name} = ${nix.builtins.toString(value)}
@@ -66,57 +66,57 @@ ${nix.app(toConf, value)}}
     nix.thunk(() => nix.builtins.toFile("minetest.conf", nix.thunk(() => nix.app(toConf, nix.thunk(() => nix.sel(cfg, "config")))))),
   ]), nix.concat(nix.app(flag, nix.thunk(() => nix.sel(cfg, "gameId")), "gameid"), nix.concat(nix.app(flag, nix.thunk(() => nix.sel(cfg, "world")), "world"), nix.concat(nix.app(flag, nix.thunk(() => nix.sel(cfg, "logPath")), "logfile"), nix.concat(nix.app(flag, nix.thunk(() => nix.sel(cfg, "port")), "port"), nix.sel(cfg, "extraArgs"))))))));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         "minetest-server": nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "If enabled, starts a Minetest Server.",
             })))),
           gameId: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "Id of the game to use. To list available games run\n`minetestserver --gameid list`.\n\nIf only one game exists, this option can be null.\n",
             })))),
           world: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "Name of the world to use. To list available worlds run\n`minetestserver --world list`.\n\nIf only one world exists, this option can be null.\n",
             })))),
           configPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "Path to the config to use.\n\nIf set to null, the config of the running user will be used:\n`~/.minetest/minetest.conf`.\n",
             })))),
           config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "anything")))),
               default: nix.thunk(() => ({})),
               description: "Settings to add to the minetest config file.\n\nThis option is ignored if `configPath` is set.\n",
             })))),
           logPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "Path to logfile for logging.\n\nIf set to null, logging will be output to stdout which means\nall output will be caught by systemd.\n",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "port")))),
               default: null,
               description: "Port number to bind to.\n\nIf set to null, the default 30000 will be used.\n",
             })))),
           extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "Additional command line flags to pass to the minetest executable.\n",
@@ -125,13 +125,13 @@ ${nix.app(toConf, value)}}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         users: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           users: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             minetest: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "Minetest Server Service user",
               home: "/var/lib/minetest",
               createHome: true,
@@ -140,24 +140,24 @@ ${nix.app(toConf, value)}}
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             minetest: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "minetest")),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           services: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             "minetest-server": nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               description: "Minetest Server Service",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 Restart: "always",
                 User: "minetest",
                 Group: "minetest",

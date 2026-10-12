@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "uutils-login",
       version: "0-unstable-2026-04-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "uutils",
           repo: "login",
           rev: "2ac4e1518bd743f45b89e8db146d77feb14da197",
@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-zgKNU24HJFT/DISWflKNN9R88cioLxBNdL8eexCRAOE=",
       cargoBuildFlags: nix.thunk(() => ["--workspace"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Rust reimplemtation of the login project",
         homepage: "https://github.com/uutils/login",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

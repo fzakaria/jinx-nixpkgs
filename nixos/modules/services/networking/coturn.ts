@@ -90,98 +90,98 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
 ${nix.sel(cfg, "extraConfig")}
 `)));
   return {
-    __proto__: pos$46,
+    [nix.POS]: pos$46,
     options: nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       services: nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         coturn: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "coturn TURN server")),
           "listening-port": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 3478n,
               description: "TURN listener port for UDP and TCP.\nNote: actually, TLS and DTLS sessions can connect to the\n\"plain\" TCP and UDP port(s), too - if allowed by configuration.\n",
             })))),
           "tls-listening-port": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 5349n,
               description: "TURN listener port for TLS.\nNote: actually, \"plain\" TCP and UDP sessions can connect to the TLS and\nDTLS port(s), too - if allowed by configuration. The TURN server\n\"automatically\" recognizes the type of traffic. Actually, two listening\nendpoints (the \"plain\" one and the \"tls\" one) are equivalent in terms of\nfunctionality; but we keep both endpoints to satisfy the RFC 5766 specs.\nFor secure TCP connections, we currently support SSL version 3 and\nTLS version 1.0, 1.1 and 1.2.\nFor secure UDP connections, we support DTLS version 1.\n",
             })))),
           "alt-listening-port": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: nix.thunk(() => nix.add(nix.sel(cfg, "listening-port"), 1n)),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "listening-port + 1")),
               description: "Alternative listening port for UDP and TCP listeners;\ndefault (or zero) value means \"listening port plus one\".\nThis is needed for RFC 5780 support\n(STUN extension specs, NAT behavior discovery). The TURN Server\nsupports RFC 5780 only if it is started with more than one\nlistening IP address of the same family (IPv4 or IPv6).\nRFC 5780 is supported only by UDP protocol, other protocols\nare listening to that endpoint only for \"symmetry\".\n",
             })))),
           "alt-tls-listening-port": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: nix.thunk(() => nix.add(nix.sel(cfg, "tls-listening-port"), 1n)),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "tls-listening-port + 1")),
               description: "Alternative listening port for TLS and DTLS protocols.\n",
             })))),
           "listening-ips": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["203.0.113.42", "2001:DB8::42"]),
               description: "Listener IP addresses of relay server.\nIf no IP(s) specified in the config file or in the command line options,\nthen all IPv4 and IPv6 system IPs will be used for listening.\n",
             })))),
           "relay-ips": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["203.0.113.42", "2001:DB8::42"]),
               description: "Relay address (the local IP address that will be used to relay the\npackets to the peer).\nMultiple relay addresses may be used.\nThe same IP(s) can be used as both listening IP(s) and relay IP(s).\n\nIf no relay IP(s) specified, then the turnserver will apply the default\npolicy: it will decide itself which relay addresses to be used, and it\nwill always be using the client socket IP address as the relay IP address\nof the TURN session (if the requested relay address family is the same\nas the family of the client socket).\n",
             })))),
           "min-port": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 49152n,
               description: "Lower bound of UDP relay endpoints\n",
             })))),
           "max-port": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 65535n,
               description: "Upper bound of UDP relay endpoints\n",
             })))),
           "lt-cred-mech": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Use long-term credential mechanism.\n",
             })))),
           "no-auth": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "This option is opposite to lt-cred-mech.\n(TURN Server with no-auth option allows anonymous access).\nIf neither option is defined, and no users are defined,\nthen no-auth is default. If at least one user is defined,\nin this file or in command line or in usersdb file, then\nlt-cred-mech is default.\n",
             })))),
           "use-auth-secret": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "TURN REST API flag.\nFlag that sets a special authorization option that is based upon authentication secret.\nThis feature can be used with the long-term authentication mechanism, only.\nThis feature purpose is to support \"TURN Server REST API\", see\n\"TURN REST API\" link in the project's page\n<https://github.com/coturn/coturn/>\n\nThis option is used with timestamp:\n\nusercombo -> \"timestamp:userid\"\nturn user -> usercombo\nturn password -> base64(hmac(secret key, usercombo))\n\nThis allows TURN credentials to be accounted for a specific user id.\nIf you don't have a suitable id, the timestamp alone can be used.\nThis option is just turning on secret-based authentication.\nThe actual value of the secret is defined either by option static-auth-secret,\nor can be found in the turn_secret table in the database.\n",
             })))),
           "static-auth-secret": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "'Static' authentication secret value (a string) for TURN REST API only.\nIf not set, then the turn server\nwill try to use the 'dynamic' value in turn_secret table\nin user database (if present). The database-stored  value can be changed on-the-fly\nby a separate program, so this is why that other mode is 'dynamic'.\n",
             })))),
           "static-auth-secret-file": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "Path to the file containing the static authentication secret.\n",
             })))),
           realm: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: nix.thunk(() => nix.sel(config, "networking", "hostName")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.networking.hostName")),
@@ -189,93 +189,93 @@ ${nix.sel(cfg, "extraConfig")}
               description: "The default realm to be used for the users when no explicit\norigin/realm relationship was found in the database, or if the TURN\nserver is not using any database (just the commands-line settings\nand the userdb file). Must be used with long-term credentials\nmechanism or with TURN REST API.\n",
             })))),
           cert: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               example: "/var/lib/acme/example.com/fullchain.pem",
               description: "Certificate file in PEM format.\n",
             })))),
           pkey: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               example: "/var/lib/acme/example.com/key.pem",
               description: "Private key file in PEM format.\n",
             })))),
           "dh-file": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "Use custom DH TLS key, stored in PEM format in the file.\n",
             })))),
           "secure-stun": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Require authentication of the STUN Binding request.\nBy default, the clients are allowed anonymous access to the STUN Binding functionality.\n",
             })))),
           "no-cli": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Turn OFF the CLI support.\n",
             })))),
           "cli-ip": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "127.0.0.1",
               description: "Local system IP address to be used for CLI server endpoint.\n",
             })))),
           "cli-port": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 5766n,
               description: "CLI server port.\n",
             })))),
           "cli-password": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "CLI access password.\nFor the security reasons, it is recommended to use the encrypted\nfor of the password (see the -P command in the turnadmin utility).\n",
             })))),
           "no-udp": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Disable UDP client listener",
             })))),
           "no-tcp": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Disable TCP client listener",
             })))),
           "no-tls": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Disable TLS client listener",
             })))),
           "no-dtls": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Disable DTLS client listener",
             })))),
           "no-udp-relay": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Disable UDP relay endpoints",
             })))),
           "no-tcp-relay": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Disable TCP relay endpoints",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Additional configuration options",
@@ -285,51 +285,51 @@ ${nix.sel(cfg, "extraConfig")}
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, "static-auth-secret"), null)) || nix.asBool(nix.eq(nix.sel(cfg, "static-auth-secret-file"), null)))),
                 message: "static-auth-secret and static-auth-secret-file cannot be set at the same time",
               })),
             ]),
           })),
           nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             users: nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               users: nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 turnserver: nix.thunk(() => ({
-                  __proto__: pos$35,
+                  [nix.POS]: pos$35,
                   uid: nix.thunk(() => nix.sel(config, "ids", "uids", "turnserver")),
                   group: "turnserver",
                   description: "coturn TURN server user",
                 })),
               })),
               groups: nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 turnserver: nix.thunk(() => ({
-                  __proto__: pos$37,
+                  [nix.POS]: pos$37,
                   gid: nix.thunk(() => nix.sel(config, "ids", "gids", "turnserver")),
                   members: nix.thunk(() => ["turnserver"]),
                 })),
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               services: nix.thunk(() => ({
-                __proto__: pos$43,
+                [nix.POS]: pos$43,
                 coturn: nix.thunk(() => (() => {
                   const runConfig = "/run/coturn/turnserver.cfg";
                   return {
-                    __proto__: pos$42,
+                    [nix.POS]: pos$42,
                     description: "coturn TURN server",
                     after: nix.thunk(() => ["network-online.target"]),
                     wants: nix.thunk(() => ["network-online.target"]),
                     wantedBy: nix.thunk(() => ["multi-user.target"]),
                     unitConfig: nix.thunk(() => ({
-                      __proto__: pos$40,
+                      [nix.POS]: pos$40,
                       Documentation: "man:coturn(1) man:turnadmin(1) man:turnserver(1)",
                     })),
                     preStart: nix.thunk(() => nix.str`cat ${configFile} > ${runConfig}
@@ -380,7 +380,7 @@ chmod 640 ${runConfig}
                       const SystemCallFilter = nix.thunk(() => ["@system-service", "~@privileged @resources"]);
                       const UMask = "0077";
                       return {
-                        __proto__: pos$41,
+                        [nix.POS]: pos$41,
                         Type,
                         ExecStart,
                         User,

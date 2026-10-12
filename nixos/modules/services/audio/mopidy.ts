@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({}))));
   const mopidyConf = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "mopidy.conf", nix.thunk(() => nix.sel(cfg, "settings"))));
   const mopidyEnv = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.str`mopidy-with-extensions-${nix.sel(pkgs, "mopidy", "version")}`),
       ignoreCollisions: true,
       paths: nix.thunk(() => nix.app(nix.sel(lib, "closePropagation"), nix.thunk(() => nix.sel(cfg, "extensionPackages")))),
@@ -55,42 +55,42 @@ export default nix.lambda((args) => (() => {
 `),
     }))));
   return {
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "mopidy", "configuration"]), "Use RFC42-style services.mopidy.settings instead.\n")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         mopidy: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Mopidy, a music player daemon")),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: "/var/lib/mopidy",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "The directory where Mopidy stores its state.\n",
             })))),
           extensionPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: [],
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ pkgs.mopidy-spotify ]")),
               description: "Mopidy extensions that should be loaded by the service.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.attr(settingsFormat, "type")),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$5,
-                mpd: nix.thunk(() => ({ __proto__: pos$4, enabled: true, hostname: "::" })),
+                [nix.POS]: pos$5,
+                mpd: nix.thunk(() => ({ [nix.POS]: pos$4, enabled: true, hostname: "::" })),
               })),
               description: "The configuration that Mopidy should use.\nSee the upstream documentation <https://docs.mopidy.com/stable/config/> for details.\n",
             })))),
           extraConfigFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: [],
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "Extra config file read by Mopidy when the service starts.\nLater files in the list overrides earlier configuration.\n",
@@ -99,41 +99,41 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             settings: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               "10-mopidy": nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "dataDir"), nix.thunk(() => ({
-                  __proto__: pos$12,
-                  d: nix.thunk(() => ({ __proto__: pos$11, user: "mopidy", group: "mopidy" })),
+                  [nix.POS]: pos$12,
+                  d: nix.thunk(() => ({ [nix.POS]: pos$11, user: "mopidy", group: "mopidy" })),
                 }))],
               ])),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             mopidy: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network-online.target", "sound.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               description: "mopidy music player daemon",
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 ExecStart: nix.thunk(() => nix.str`${mopidyEnv}/bin/mopidy --config ${nix.app(nix.sel(lib, "concatStringsSep"), ":", nix.thunk(() => nix.concat([mopidyConf], nix.sel(cfg, "extraConfigFiles"))))}`),
                 Restart: "on-failure",
                 User: "mopidy",
               })),
             })),
             "mopidy-scan": nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "mopidy local files scanner",
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 ExecStart: nix.thunk(() => nix.str`${mopidyEnv}/bin/mopidy --config ${nix.app(nix.sel(lib, "concatStringsSep"), ":", nix.thunk(() => nix.concat([mopidyConf], nix.sel(cfg, "extraConfigFiles"))))} local scan`),
                 User: "mopidy",
                 Type: "oneshot",
@@ -142,11 +142,11 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           users: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             mopidy: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               uid: uid,
               group: "mopidy",
               extraGroups: nix.thunk(() => ["audio"]),
@@ -155,8 +155,8 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$24,
-            mopidy: nix.thunk(() => ({ __proto__: pos$23, gid: gid })),
+            [nix.POS]: pos$24,
+            mopidy: nix.thunk(() => ({ [nix.POS]: pos$23, gid: gid })),
           })),
         })),
       })))),

@@ -14,22 +14,22 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const config = nix.arg($, "config");
   return {
-    __proto__: pos$6,
-    class: nix.thunk(() => ({ __proto__: pos$1, just: "data" })),
+    [nix.POS]: pos$6,
+    class: nix.thunk(() => ({ [nix.POS]: pos$1, just: "data" })),
     a: "one",
     b: "two",
     meta: "meta",
     _module: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       args: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         result: nix.thunk(() => (() => {
           const r = nix.thunk(() => nix.builtins.removeAttrs(config, nix.thunk(() => ["_module"])));
           return nix.builtins.trace(nix.thunk(() => nix.builtins.deepSeq(r, r)), nix.thunk(() => nix.eq(r, {
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               a: "one",
               b: "two",
-              class: nix.thunk(() => ({ __proto__: pos$2, just: "data" })),
+              class: nix.thunk(() => ({ [nix.POS]: pos$2, just: "data" })),
               meta: "meta",
             })));
         })()),

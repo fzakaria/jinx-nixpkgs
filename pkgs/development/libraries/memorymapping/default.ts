@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "memorymapping",
       version: "unstable-2014-02-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NimbusKit",
           repo: "memorymapping",
           rev: "fc285afe13cb9d56a40c647b8ed6d6bd40636af7",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\n$CC -c src/fmemopen.c\n$AR rcs libmemorymapping.a fmemopen.o\nsed -e '1i#include <stdio.h>' -i src/fmemopen.h\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ninstall -D libmemorymapping.a \"$out\"/lib/libmemorymapping.a\ninstall -D src/fmemopen.h \"$out\"/include/fmemopen.h\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://nimbuskit.github.io/memorymapping/",
         description: "fmemopen for Mac OS and iOS",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

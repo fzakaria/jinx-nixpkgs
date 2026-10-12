@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
     const description = nix.argOr($_1, "description", () => "");
     const deps = nix.argOr($_1, "deps", () => []);
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: name,
           nativeBuildInputs: nix.thunk(() => [python3]),
           buildCommand: nix.thunk(() => nix.str`mkdir -p $out/{lib,share}
@@ -33,7 +33,7 @@ find -L ${nix.app(nix.sel(lib, "concatStringsSep"), " ", deps)} -type f -name '*
 # Note that this currently ignores any license provided in plain text (e.g. "LICENSE.txt")
 python ${nix.path(here, "./extract-licenses-from-nupkgs.py")} $out/lib > $out/share/licenses
 `),
-          meta: nix.thunk(() => ({ __proto__: pos$1, description: description })),
+          meta: nix.thunk(() => ({ [nix.POS]: pos$1, description: description })),
         })), nix.thunk(() => nix.builtins.removeAttrs(args_2, nix.thunk(() => ["name", "description", "deps"]))))));
   })(), formals$2);
 })(), formals$1);

@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "urdf-viz",
       version: "0.46.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openrr",
           repo: "urdf-viz",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       cargoLock: nix.thunk(() => (() => {
         const fixupLockFile = (path) => nix.builtins.readFile(path);
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           lockFileContents: nix.thunk(() => nix.app(fixupLockFile, nix.path(here, "./Cargo.lock"))),
         };
       })()),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       ]),
       runtimeDependencies: nix.thunk(() => [libGL, libx11, libxcursor, libxrandr, libxinerama, libxi]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Visualizer for URDF and XACRO files",
         homepage: "https://github.com/openrr/urdf-viz",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

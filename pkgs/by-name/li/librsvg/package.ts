@@ -58,18 +58,18 @@ export default nix.lambda((args) => (() => {
   const vips = nix.arg($, "vips");
   const xfwm4 = nix.arg($, "xfwm4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "librsvg",
       version: "2.62.3",
       outputs: nix.thunk(() => nix.concat(["out", "dev"], nix.app(nix.sel(lib, "optionals"), withIntrospection, nix.thunk(() => ["devdoc"])))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/librsvg/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/librsvg-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-frRJsnIqdoAhNW9m3+4yAsIptU7U5qcM5AwJDpf/FvI=",
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.path(here, "./librsvg-libpixbufloader-install-names.patch")]))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           name: nix.thunk(() => nix.str`librsvg-deps-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-9ubfIl9R2BdcAWn7i050KBbb4cMdlakvrKdnjpZCQjA=",
@@ -99,7 +99,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isi686"))))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         PKG_CONFIG_GDK_PIXBUF_2_0_GDK_PIXBUF_QUERY_LOADERS: nix.thunk(() => nix.app(nix.sel(buildPackages, "writeShellScript"), "gdk-pixbuf-loader-loaders-wrapped", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "hostPlatform", "emulatorAvailable"), buildPackages)), nix.thunk(() => nix.app(nix.sel(stdenv, "hostPlatform", "emulator"), buildPackages)))} ${nix.app(nix.sel(lib, "getDev"), gdk_pixbuf)}/bin/gdk-pixbuf-query-loaders
 `))),
       })),
@@ -132,11 +132,11 @@ mv $GDK_PIXBUF/loaders.cache.tmp $GDK_PIXBUF/loaders.cache
       })()),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withIntrospection, "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         updateScript: nix.thunk(() => (() => {
-          const updateSource = nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$4, packageName: "librsvg" }))));
+          const updateSource = nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$4, packageName: "librsvg" }))));
           const updateLockfile = nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             command: nix.thunk(() => [
               "sh",
               "-c",
@@ -149,7 +149,7 @@ update-source-version librsvg --ignore-same-version --source-key=cargoDeps.vendo
           return nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [updateSource, updateLockfile]));
         })()),
         tests: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           gegl: gegl,
           gimp: gimp,
           imagemagick: imagemagick,
@@ -157,11 +157,11 @@ update-source-version librsvg --ignore-same-version --source-key=cargoDeps.vendo
           vips: vips,
           efl: nix.thunk(() => nix.attr(enlightenment, "efl")),
           xfwm4: xfwm4,
-          ffmpeg: nix.thunk(() => nix.app(nix.sel(ffmpeg, "override"), nix.thunk(() => ({ __proto__: pos$6, withSvg: true })))),
+          ffmpeg: nix.thunk(() => nix.app(nix.sel(ffmpeg, "override"), nix.thunk(() => ({ [nix.POS]: pos$6, withSvg: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Small library to render SVG images to Cairo surfaces",
         homepage: "https://gitlab.gnome.org/GNOME/librsvg",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),

@@ -67,38 +67,38 @@ exec ${nix.sel(cfg, "askPassword")} "$@"
     })()), "\n"));
   const knownHostsFiles = nix.thunk(() => nix.concat(["/etc/ssh/ssh_known_hosts"], nix.builtins.map(nix.thunk(() => nix.sel(pkgs, "copyPathToStore")), nix.thunk(() => nix.sel(cfg, "knownHostsFiles")))));
   return {
-    __proto__: pos$45,
+    [nix.POS]: pos$45,
     options: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       programs: nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         ssh: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           enableAskPassword: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: nix.thunk(() => nix.sel(config, "services", "xserver", "enable")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.xserver.enable")),
               description: "Whether to configure SSH_ASKPASS in the environment.",
             })))),
           "systemd-ssh-proxy": nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Whether to enable systemd's ssh proxy plugin.\nSee {manpage}`systemd-ssh-proxy(1)`.\n",
               })))),
           })),
           askPassword: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: nix.thunk(() => nix.str`${nix.sel(pkgs, "x11_ssh_askpass")}/libexec/x11-ssh-askpass`),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${pkgs.x11_ssh_askpass}/libexec/x11-ssh-askpass\"")),
               description: "Program used by SSH to ask for passwords.",
             })))),
           forwardX11: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "bool")));
@@ -107,45 +107,45 @@ exec ${nix.sel(cfg, "askPassword")} "$@"
               description: "Whether to request X11 forwarding on outgoing connections by default.\nIf set to null, the option is not set at all.\nThis is useful for running graphical programs on the remote machine and have them display to your local X11 server.\nHistorically, this value has depended on the value used by the local sshd daemon, but there really isn't a relation between the two.\nNote: there are some security risks to forwarding an X11 connection.\nNixOS's X server is built with the SECURITY extension, which prevents some obvious attacks.\nTo enable or disable forwarding on a per-connection basis, see the -X and -x options to ssh.\nThe -Y option to ssh enables trusted forwarding, which bypasses the SECURITY extension.\n",
             })))),
           setXAuthLocation: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Whether to set the path to {command}`xauth` for X11-forwarded connections.\nThis causes a dependency on X11 packages.\n",
             })))),
           pubkeyAcceptedKeyTypes: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["ssh-ed25519", "ssh-rsa"]),
               description: "Specifies the key lib.types that will be used for public key authentication.\n",
             })))),
           hostKeyAlgorithms: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["ssh-ed25519", "ssh-rsa"]),
               description: "Specifies the host key algorithms that the client wants to use in order of preference.\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Extra configuration text prepended to {file}`ssh_config`. Other generated\noptions will be added after a `Host *` pattern.\nSee {manpage}`ssh_config(5)`\nfor help.\n",
             })))),
           startAgent: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to start the OpenSSH agent when you log in.  The OpenSSH agent\nremembers private keys for you so that you don't have to type in\npassphrases every time you make an SSH connection.  Use\n{command}`ssh-add` to add a key to the agent.\n",
             })))),
           agentTimeout: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               example: "1h",
               description: "How long to keep the private keys in memory. Use null to keep them forever.\n",
             })))),
           agentPKCS11Whitelist: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${pkgs.opensc}/lib/opensc-pkcs11.so\"")),
@@ -153,7 +153,7 @@ exec ${nix.sel(cfg, "askPassword")} "$@"
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "openssh", nix.thunk(() => ({})))),
           knownHosts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.lambda((args_1) => (() => {
                     const $_1 = nix.formals(args_1, formals$2);
@@ -161,37 +161,37 @@ exec ${nix.sel(cfg, "askPassword")} "$@"
                     const config_1 = nix.arg($_1, "config");
                     const options = nix.arg($_1, "options");
                     return {
-                      __proto__: pos$19,
+                      [nix.POS]: pos$19,
                       options: nix.thunk(() => ({
-                        __proto__: pos$18,
+                        [nix.POS]: pos$18,
                         certAuthority: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$13,
+                            [nix.POS]: pos$13,
                             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                             default: false,
                             description: "This public key is an SSH certificate authority, rather than an\nindividual host's key.\n",
                           })))),
                         hostNames: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$14,
+                            [nix.POS]: pos$14,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                             default: nix.thunk(() => nix.concat([name], nix.sel(config_1, "extraHostNames"))),
                             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`[ ${name} ] ++ config.${nix.sel(options, "extraHostNames")}`))),
                             description: "A list of host names and/or IP numbers used for accessing\nthe host's ssh service. This list includes the name of the\ncontaining `knownHosts` attribute by default\nfor convenience. If you wish to configure multiple host keys\nfor the same host use multiple `knownHosts`\nentries with different attribute names and the same\n`hostNames` list.\n",
                           })))),
                         extraHostNames: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$15,
+                            [nix.POS]: pos$15,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                             default: [],
                             description: "A list of additional host names and/or IP numbers used for\naccessing the host's ssh service. This list is ignored if\n`hostNames` is set explicitly.\n",
                           })))),
                         publicKey: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$16,
+                            [nix.POS]: pos$16,
                             default: null,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                             example: "ecdsa-sha2-nistp521 AAAAE2VjZHN...UEPg==",
                             description: "The public key data for the host. You can fetch a public key\nfrom a running SSH server with the {command}`ssh-keyscan`\ncommand. The public key should not include any host names, only\nthe key type and the key itself.\n",
                           })))),
                         publicKeyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$17,
+                            [nix.POS]: pos$17,
                             default: null,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                             description: "The path to the public key file for the host. The public\nkey file is read at build time and saved in the Nix store.\nYou can fetch a public key file from a running SSH server\nwith the {command}`ssh-keyscan` command. The content\nof the file should follow the same format as described for\nthe `publicKey` option. Only a single key\nis supported. If a host has multiple keys, use\n{option}`programs.ssh.knownHostsFiles` instead.\n",
@@ -203,7 +203,7 @@ exec ${nix.sel(cfg, "askPassword")} "$@"
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  myhost = {\n    extraHostNames = [ \"myhost.mydomain.com\" \"10.10.1.4\" ];\n    publicKeyFile = ./pubkeys/myhost_ssh_host_dsa_key.pub;\n  };\n  \"myhost2.net\".publicKey = \"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILIRuJ8p1Fi+m6WkHV0KWnRfpM1WxoW8XAS+XvsSKsTK\";\n  \"myhost2.net/dsa\" = {\n    hostNames = [ \"myhost2.net\" ];\n    publicKeyFile = ./pubkeys/myhost2_ssh_host_dsa_key.pub;\n  };\n}\n")),
             })))),
           knownHostsFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               default: [],
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -213,21 +213,21 @@ exec ${nix.sel(cfg, "askPassword")} "$@"
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[\n  ./known_hosts\n  (writeText \"github.keys\" ''\n    github.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCj7ndNxQowgcQnjshcLrqPEiiphnt+VTTvDP6mHBL9j1aNUkY4Ue1gvwnGLVlOhGeYrnZaMgRK6+PKCUXaDbC7qtbW8gIkhL7aGCsOr/C56SJMy/BCZfxd1nWzAOxSDPgVsmerOBYfNqltV9/hWCqBywINIR+5dIg6JTJ72pcEpEjcYgXkE2YEFXV1JHnsKgbLWNlhScqb2UmyRkQyytRLtL+38TGxkxCflmO+5Z8CSSNY7GidjMIZ7Q4zMjA2n1nGrlTDkzwDCsw+wqFPGQA179cnfGWOWRVruj16z6XyvxvjJwbz0wQZ75XK5tKSb7FNyeIEs4TT4jk+S4dhPeAUC5y+bDYirYgM4GC7uEnztnZyaVWQ7B381AK4Qdrwt51ZqExKbQpTUNn+EjqoTwvqNj4kqx5QUCI0ThS/YkOxJCXmPUWZbhjpCg56i+2aB6CmK2JGhn57K5mj0MNdBXA4/WnwH6XoPWJzK5Nyu2zB3nAZp+S5hpQs+p1vN1/wsjk=\n    github.com ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=\n    github.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl\n  '')\n]\n")),
             })))),
           kexAlgorithms: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))))),
               default: null,
               example: nix.thunk(() => ["curve25519-sha256@libssh.org", "diffie-hellman-group-exchange-sha256"]),
               description: "Specifies the available KEX (Key Exchange) algorithms.\n",
             })))),
           ciphers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))))),
               default: null,
               example: nix.thunk(() => ["chacha20-poly1305@openssh.com", "aes256-gcm@openssh.com"]),
               description: "Specifies the ciphers allowed and their order of preference.\n",
             })))),
           macs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))))),
               default: null,
               example: nix.thunk(() => ["hmac-sha2-512-etm@openssh.com", "hmac-sha1"]),
@@ -237,59 +237,59 @@ exec ${nix.sel(cfg, "askPassword")} "$@"
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$44,
+      [nix.POS]: pos$44,
       programs: nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         ssh: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           setXAuthLocation: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(config, "services", "xserver", "enable")) || nix.asBool(nix.eq(nix.sel(config, "programs", "ssh", "forwardX11"), true)))) || nix.asBool(nix.sel(config, "services", "openssh", "settings", "X11Forwarding")))))),
         })),
       })),
       assertions: nix.thunk(() => nix.concat([
         nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           assertion: nix.thunk(() => (!nix.asBool(nix.eq(nix.sel(cfg, "forwardX11"), true)) || nix.asBool(nix.sel(cfg, "setXAuthLocation")))),
           message: "cannot enable X11 forwarding without setting XAuth location",
         })),
       ], nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "mapAttrsToList")), nix.thunk(() => nix.sel(cfg, "knownHosts")), (name) => (data) => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           assertion: nix.thunk(() => (nix.asBool((nix.asBool(nix.eq(nix.sel(data, "publicKey"), null)) && nix.asBool(!nix.eq(nix.sel(data, "publicKeyFile"), null)))) || nix.asBool((nix.asBool(!nix.eq(nix.sel(data, "publicKey"), null)) && nix.asBool(nix.eq(nix.sel(data, "publicKeyFile"), null)))))),
           message: nix.thunk(() => nix.str`knownHost ${name} must contain either a publicKey or publicKeyFile`),
         })))),
       environment: nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         corePackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         etc: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           "ssh/ssh_config": nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             text: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "extraConfig"), "")), nix.thunk(() => nix.sel(cfg, "extraConfig"))), nix.concat(["# Generated options from other settings\nHost *\n"], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "systemd-ssh-proxy", "enable")), nix.thunk(() => nix.str`# See systemd-ssh-proxy(1)
 Include ${nix.sel(config, "systemd", "package")}/lib/systemd/ssh_config.d/20-systemd-ssh-proxy.conf
 `)), nix.concat([
                 nix.thunk(() => nix.str`GlobalKnownHostsFile ${nix.builtins.concatStringsSep(" ", knownHostsFiles)}`),
               ], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(config, "networking", "enableIPv6"))), "AddressFamily inet"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "setXAuthLocation")), nix.thunk(() => nix.str`XAuthLocation ${nix.sel(pkgs, "xauth")}/bin/xauth`)), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "forwardX11"), null)), nix.thunk(() => nix.str`ForwardX11 ${nix.app(nix.sel(lib, "boolToYesNo"), nix.thunk(() => nix.sel(cfg, "forwardX11")))}`)), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "pubkeyAcceptedKeyTypes"), [])), nix.thunk(() => nix.str`PubkeyAcceptedKeyTypes ${nix.builtins.concatStringsSep(",", nix.thunk(() => nix.sel(cfg, "pubkeyAcceptedKeyTypes")))}`)), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "hostKeyAlgorithms"), [])), nix.thunk(() => nix.str`HostKeyAlgorithms ${nix.builtins.concatStringsSep(",", nix.thunk(() => nix.sel(cfg, "hostKeyAlgorithms")))}`)), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "kexAlgorithms"), null)), nix.thunk(() => nix.str`KexAlgorithms ${nix.builtins.concatStringsSep(",", nix.thunk(() => nix.sel(cfg, "kexAlgorithms")))}`)), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "ciphers"), null)), nix.thunk(() => nix.str`Ciphers ${nix.builtins.concatStringsSep(",", nix.thunk(() => nix.sel(cfg, "ciphers")))}`)), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "macs"), null)), nix.thunk(() => nix.str`MACs ${nix.builtins.concatStringsSep(",", nix.thunk(() => nix.sel(cfg, "macs")))}`)))))))))))))))),
           })),
-          "ssh/ssh_known_hosts": nix.thunk(() => ({ __proto__: pos$33, text: knownHostsText })),
+          "ssh/ssh_known_hosts": nix.thunk(() => ({ [nix.POS]: pos$33, text: knownHostsText })),
         })),
         extraInit: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "startAgent")), "if [ -z \"$SSH_AUTH_SOCK\" -a -n \"$XDG_RUNTIME_DIR\" ]; then\n  export SSH_AUTH_SOCK=\"$XDG_RUNTIME_DIR/ssh-agent\"\nfi\n")),
         variables: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           SSH_ASKPASS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "enableAskPassword")), nix.thunk(() => nix.sel(cfg, "askPassword")))),
         })),
       })),
       systemd: nix.thunk(() => ({
-        __proto__: pos$43,
+        [nix.POS]: pos$43,
         user: nix.thunk(() => ({
-          __proto__: pos$42,
+          [nix.POS]: pos$42,
           services: nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             "ssh-agent": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "startAgent")), nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 description: "SSH Agent",
                 wantedBy: nix.thunk(() => ["default.target"]),
-                unitConfig: nix.thunk(() => ({ __proto__: pos$37, ConditionUser: "!@system" })),
+                unitConfig: nix.thunk(() => ({ [nix.POS]: pos$37, ConditionUser: "!@system" })),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$38,
+                  [nix.POS]: pos$38,
                   ExecStartPre: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/rm -f %t/ssh-agent`),
                   ExecStart: nix.thunk(() => nix.add(nix.add(nix.add(nix.str`${nix.sel(cfg, "package")}/bin/ssh-agent `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "agentTimeout"), null)), nix.thunk(() => nix.str`-t ${nix.sel(cfg, "agentTimeout")} `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "agentPKCS11Whitelist"), null)), nix.thunk(() => nix.str`-P ${nix.sel(cfg, "agentPKCS11Whitelist")} `))), "-a %t/ssh-agent")),
                   StandardOutput: "null",
@@ -298,7 +298,7 @@ Include ${nix.sel(config, "systemd", "package")}/lib/systemd/ssh_config.d/20-sys
                   SuccessExitStatus: "0 2",
                 })),
                 environment: nix.thunk(() => ({
-                  __proto__: pos$39,
+                  [nix.POS]: pos$39,
                   SSH_ASKPASS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "enableAskPassword")), askPasswordWrapper)),
                   DISPLAY: "fake",
                 })),

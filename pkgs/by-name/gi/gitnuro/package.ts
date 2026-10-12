@@ -21,20 +21,20 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const libGL = nix.arg($, "libGL");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "gitnuro",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/JetpackDuba/Gitnuro/releases/download/v${nix.sel(finalAttrs, "version")}/Gitnuro-linux-x86_64-${nix.sel(finalAttrs, "version")}.jar`),
           hash: "sha256-EoBjw98O5gO2wTO34KMiFeteryYapZC83MUfIqxtbmQ=",
         } : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-linux")) ? {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/JetpackDuba/Gitnuro/releases/download/v${nix.sel(finalAttrs, "version")}/Gitnuro-linux-arm_aarch64-${nix.sel(finalAttrs, "version")}.jar`),
           hash: "sha256-oAmCapu9xFS1LMasj21q39Q/4yjLh6MZx79tC8Yjlec=",
         } : nix.builtins.throw(nix.thunk(() => nix.str`Unsupported architecture: ${nix.sel(stdenv, "hostPlatform", "system")}`))))))),
       icon: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: "https://raw.githubusercontent.com/JetpackDuba/Gitnuro/4cfc45069c176f807d9bfb1a7cba410257078d3c/icons/logo.svg",
           hash: "sha256-QGJcWTSJesIpDArOWiS3Kn1iznzeMFzvqS+CuNXh3as=",
         })))),
@@ -52,7 +52,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "Gitnuro",
             exec: "gitnuro",
             icon: "com.jetpackduba.Gitnuro",
@@ -62,7 +62,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "FOSS Git multiplatform client based on Compose and JGit",
         homepage: "https://gitnuro.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

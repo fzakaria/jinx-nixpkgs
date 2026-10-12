@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libvfn",
       version: "5.1.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SamsungDS",
           repo: "libvfn",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonBool"), "profiling", false)),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Zero-dependency library for interacting with PCIe-based NVMe devices from user-space",
         longDescription: "libvfn is a zero-dependency library for interacting with PCIe-based NVMe\ndevices from user-space using the Linux kernel vfio-pci driver. The core\nof the library is excessively low-level and aims to allow controller\nverification and testing teams to interact with the NVMe device at the\nregister and queue level.\n",
         homepage: "https://github.com/SamsungDS/libvfn",

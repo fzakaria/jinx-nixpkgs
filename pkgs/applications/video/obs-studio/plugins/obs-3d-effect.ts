@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "obs-3d-effect";
       const version = "0.1.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "exeldro",
           repo: "obs-3d-effect",
           rev: version,
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(obs_studio, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Plugin for OBS Studio adding 3D effect filter",
         homepage: "https://github.com/exeldro/obs-3d-effect",
         maintainers: nix.thunk(() => (() => {
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libksba = nix.arg($, "libksba");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ntbtls",
       version: "0.3.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnupg/ntbtls/ntbtls-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-vfy5kCSs7JxsS5mK1juzkh30z+5KdyrWwMoyTbvysHw=",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([libgcrypt, libgpg_error, libksba, zlib], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), gettext))),
       postInstall: "moveToOutput \"bin/ntbtls-config\" $dev\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tiny TLS 1.2 only implementation",
         mainProgram: "ntbtls-config",
         homepage: "https://www.gnupg.org/software/ntbtls/",

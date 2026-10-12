@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ipbus-uhal",
       version: "2.8.16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ipbus",
           repo: "ipbus-software",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\nmkdir -p $out/{bin,include}\nmake Set=uhal install prefix=$out/bin includedir=$out/include\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Software which pairs with ipbus-firmware",
         longDescription: "Software that provide a reliable high-performance\ncontrol link for particle-physics or other electronics,\nby implementing a simple A32/D32 control protocol\nfor reading and modifying memory-mapped resources\nwithin FPGA-based hardware devices.\n",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.83.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "grpcio_reflection",
           version: version,
           hash: "sha256-wzlT8urhMTqx0sK2oc7G3a6+Z2PaGyYxmAeS2XkuYjM=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["grpc_reflection"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Standard Protobuf Reflection Service for gRPC",
         homepage: "https://pypi.org/project/grpcio-reflection",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

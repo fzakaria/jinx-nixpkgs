@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.24";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fox-it",
           repo: "dissect.util",
           tag: version,
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["dissect.util"]);
       const disabledTests = nix.thunk(() => ["test_cpio_formats"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Dissect module implementing various utility functions for the other Dissect modules",
         homepage: "https://github.com/fox-it/dissect.util",
         changelog: nix.thunk(() => nix.str`https://github.com/fox-it/dissect.util/releases/tag/${nix.sel(src, "tag")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "dump-nskeyedarchiver",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

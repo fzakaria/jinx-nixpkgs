@@ -8,14 +8,14 @@ const pos$3 = nix.positions(here + "/dependencies.nix", [["deps", 11, 7], ["brok
 
 export default nix.thunk(() => (() => {
   const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({
-      __proto__: pos$2,
-      config: nix.thunk(() => ({ __proto__: pos$1, allowAliases: false })),
+      [nix.POS]: pos$2,
+      config: nix.thunk(() => ({ [nix.POS]: pos$1, allowAliases: false })),
     }))));
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
   const getDeps = (_) => (pkg) => (() => {
     const pname = nix.thunk(() => nix.selOr(pkg, () => null, "pname"));
     return {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       deps: nix.thunk(() => nix.builtins.filter((x) => (nix.asBool(!nix.eq(x, null)) && nix.asBool(!nix.eq(x, pname))), nix.thunk(() => nix.builtins.map((x) => nix.selOr(x, () => null, "pname"), nix.thunk(() => nix.selOr(pkg, () => [], "propagatedBuildInputs")))))),
       broken: nix.thunk(() => nix.eq(nix.selOr(pkg, () => [null], "meta", "hydraPlatforms"), [])),
     };

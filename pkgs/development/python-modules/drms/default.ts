@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_doctestplus = nix.arg($, "pytest-doctestplus");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "drms",
       version: "0.9.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sunpy",
           repo: "drms",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["docs/tutorial.rst"]),
       pythonImportsCheck: nix.thunk(() => ["drms"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Access HMI, AIA and MDI data with Python",
         homepage: "https://github.com/sunpy/drms",
         changelog: nix.thunk(() => nix.str`https://github.com/sunpy/drms/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.rst`),

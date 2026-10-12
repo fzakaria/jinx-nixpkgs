@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jcrobak",
           repo: "parquet-python",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "unittest-aliases.patch",
             url: "https://github.com/jcrobak/parquet-python/commit/746bebd1e84d8945a3491e1ae5e44102ff534592.patch",
             hash: "sha256-4awxlzman/YMfOz1WYNR+mVn1ixGku9sqlaMJ1QITYs=",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["test/test_read_support.py"]);
       const pythonImportsCheck = nix.thunk(() => ["parquet"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python implementation of the parquet columnar file format",
         homepage: "https://github.com/jcrobak/parquet-python",
         changelog: nix.thunk(() => nix.str`https://github.com/jcrobak/parquet-python/releases/tag/${nix.sel(src, "tag")}`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "parquet",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

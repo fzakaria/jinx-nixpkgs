@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const perlPackages = nix.arg($, "perlPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "stow",
       version: "2.4.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/stow/stow-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-DYWoUTZ355I2l7zkLNuzPStXr5FaveHQZx566Asu8LQ=",
         })))),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       })()),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for managing the installation of multiple software packages in the same run-time directory tree",
         longDescription: "GNU Stow is a symlink farm manager which takes distinct packages\nof software and/or data located in separate directories on the\nfilesystem, and makes them appear to be installed in the same\nplace. For example, /usr/local/bin could contain symlinks to\nfiles within /usr/local/stow/emacs/bin, /usr/local/stow/perl/bin\netc., and likewise recursively for any other subdirectories such\nas .../share, .../man, and so on.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

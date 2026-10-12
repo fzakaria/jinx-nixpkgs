@@ -38,21 +38,21 @@ export default nix.lambda((args) => (() => {
   const version = "6.7.90.0-2026-01";
   const system = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system"));
   const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://download3.ebz.epson.net/dsc/f/03/00/17/08/06/1babf9876ebb16956420a601b92ee28b57cd7db7/epsonscan2-6.7.80.0-1.src.tar.gz",
       hash: "sha256-SHNpnVyoFTwLu3drlL8MFKj/NCKy5U0UDqP08f7u1R4=",
     }))));
   const bundle = nix.thunk(() => nix.selOr({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "x86_64-linux": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: nix.thunk(() => nix.str`${pname}-bundle`),
         url: "https://download3.ebz.epson.net/dsc/f/03/00/17/08/12/9f3fec0ae80aa5c36f5170377ebcc38c93251e23/epsonscan2-bundle-6.7.80.0.x86_64.deb.tar.gz",
         hash: "sha256-Smjp2PRcsNN9nP3W++HmKOw85zZj20zEIFEEVSO8lDo=",
       })))),
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${system}`)), nix.key(nix.str`${system}`)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: pname,
       src: src,
       version: version,
@@ -60,14 +60,14 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./build.patch"),
         nix.path(here, "./gcc15.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/flathub/net.epson.epsonscan2/raw/f9eb99109e63dbed907f46e36f435e46d7c01aad/patches/0002-Fix-crash.patch",
             hash: "sha256-Al5DkVnCBNoMtex4G3Zm7uZwTvnWGAjOk5xh/U9WyNU=",
           })))),
         nix.path(here, "./xdg-open.patch"),
         nix.path(here, "./fix-oob-container-access.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://github.com/flathub/net.epson.epsonscan2/raw/f9eb99109e63dbed907f46e36f435e46d7c01aad/patches/0005-Added-missing-headers.patch",
             hash: "sha256-YJjCI8UNzLciSq9IfcHxiF4isFGM9A5Hn7Kxao/+lpQ=",
           })))),
@@ -97,7 +97,7 @@ cp -r usr/* $out
 `)))),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), withGui, nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               name: "epsonscan2",
               exec: "epsonscan2",
               icon: "epsonscan2",
@@ -108,7 +108,7 @@ cp -r usr/* $out
             })))),
         ]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: description,
         mainProgram: "epsonscan2",
         longDescription: "The Epson Scan 2 scanner driver, including optional non-free plugins such\nas OCR and network scanning.\n\nTo use the SANE backend:\n```nix\n{\n  hardware.sane.extraBackends = [ pkgs.epsonscan2 ];\n}\n```\n\nOverrides can be used to customise this package. For example, to enable\nnon-free plugins and disable the Epson GUI:\n```nix\npkgs.epsonscan2.override {\n  withNonFreePlugins = true;\n  withGui = false;\n}\n```\n",

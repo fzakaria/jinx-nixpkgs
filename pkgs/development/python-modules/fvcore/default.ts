@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
   const torch = nix.arg($, "torch");
   const pname = "fvcore";
   const version = "0.1.5.post20221221";
-  const optional_dependencies = nix.thunk(() => ({ __proto__: pos$1, all: nix.thunk(() => [shapely]) }));
+  const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$1, all: nix.thunk(() => [shapely]) }));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           hash: "sha256-8vsLuQVyrmUcEceOIEk+0ZsiQFUKfku7LW3oe90DeGA=",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["fvcore"]),
       "optional-dependencies": optional_dependencies,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Collection of common code that's shared among different research projects in FAIR computer vision team",
         homepage: "https://github.com/facebookresearch/fvcore",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

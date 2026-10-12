@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const symlinkJoin = nix.arg($, "symlinkJoin");
   const extraPackages = nix.argOr($, "extraPackages", () => []);
   return (nix.asBool(nix.eq(extraPackages, [])) ? nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       version: nix.thunk(() => nix.attr(zellij_unwrapped, "version")),
       meta: nix.thunk(() => nix.attr(zellij_unwrapped, "meta")),
       pname: "zellij",
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       paths: nix.thunk(() => [zellij_unwrapped]),
     }))) : nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: nix.thunk(() => nix.attr(zellij_unwrapped, "version")),
       meta: nix.thunk(() => nix.attr(zellij_unwrapped, "meta")),
       pname: "zellij",

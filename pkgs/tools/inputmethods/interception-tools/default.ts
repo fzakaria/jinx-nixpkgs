@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "interception-tools";
       const version = "0.6.8";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "interception/linux",
           repo: "tools",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [
         nix.path(here, "./interception-tools-udevmon-path-fix.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "Bump-CMake-minimum-version-to-3.10",
             url: "https://gitlab.com/interception/linux/tools/-/commit/110c9b39b54eae9acd16fa6d64539ce9886b5684.patch",
             hash: "sha256-vLm7LvXh/pGA12gUpt9vt2XTWFqkdjQFOyRzaDRghHI=",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [cmake, pkg_config]);
       const buildInputs = nix.thunk(() => [libevdev, udev, yaml_cpp, boost]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Minimal composable infrastructure on top of libudev and libevdev",
         homepage: "https://gitlab.com/interception/linux/tools",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/interception/linux/tools/-/tags/v${version}`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

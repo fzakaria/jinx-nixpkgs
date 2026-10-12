@@ -40,52 +40,52 @@ log-level = "${nix.sel(cfg, "logLevel")}"
 watch = ${nix.app(nix.sel(lib, "boolToString"), nix.thunk(() => nix.sel(cfg, "watch")))}
 `);
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         confd: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "confd, a service to manage local application configuration files using templates and data from etcd/consul/redis/zookeeper")),
           backend: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               description: "Confd config storage backend to use.",
               default: "etcd",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["etcd", "consul", "redis", "zookeeper"]))),
             })))),
           interval: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               description: "Confd check interval.",
               default: 10n,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
             })))),
           nodes: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               description: "Confd list of nodes to connect to.",
               default: nix.thunk(() => ["http://127.0.0.1:2379"]),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             })))),
           watch: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               description: "Confd, whether to watch etcd config for changes.",
               default: true,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             })))),
           prefix: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               description: "The string to prefix to keys.",
               default: "/",
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
             })))),
           logLevel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               description: "Confd log level.",
               default: "info",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["info", "debug"]))),
             })))),
           confDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               description: "The path to the confd configs.",
               default: "/etc/confd",
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
@@ -95,35 +95,35 @@ watch = ${nix.app(nix.sel(lib, "boolToString"), nix.thunk(() => nix.sel(cfg, "wa
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             confd: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "Confd Service.",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/confd`),
               })),
             })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           etc: nix.thunk(() => ({
-            __proto__: pos$16,
-            "confd/confd.toml": nix.thunk(() => ({ __proto__: pos$15, text: confdConfig })),
+            [nix.POS]: pos$16,
+            "confd/confd.toml": nix.thunk(() => ({ [nix.POS]: pos$15, text: confdConfig })),
           })),
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           etcd: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "backend"), "etcd")), nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)))),
           })),
         })),

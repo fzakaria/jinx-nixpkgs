@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "uchecker",
       version: "0.1.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cloudlinux",
           repo: "kcare-uchecker",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "switch-poetry-core.patch",
             url: "https://github.com/cloudlinux/kcare-uchecker/commit/d7d5ab75efa6a355b3dd3190c1edbaba8110c885.patch",
             hash: "sha256-YPPw6M7MGN8nguAvAwjmz0VEYm0RD98ZkoVIq9SP3sA=",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       })()),
       pythonImportsCheck: nix.thunk(() => ["uchecker"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simple tool to detect outdated shared libraries",
         homepage: "https://github.com/cloudlinux/kcare-uchecker",
         changelog: nix.thunk(() => nix.str`https://github.com/cloudlinux/kcare-uchecker/releases/tag/v${nix.sel(finalAttrs, "version")}`),

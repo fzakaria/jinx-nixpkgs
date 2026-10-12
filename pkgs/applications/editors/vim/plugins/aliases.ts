@@ -12,7 +12,7 @@ export default (lib) => (final) => (prev) => (() => {
   return nix.app(mapAliases, nix.thunk(() => (() => {
       const w = nix.withScope(prev, null);
       return nix.update({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         "blueballs-neovim": nix.thunk(() => nix.app(nix.builtins.throw, "'vimPlugins.blueballs-neovim' has been removed")),
         "cmp-tabnine": nix.thunk(() => nix.app(nix.builtins.throw, "'vimPlugins.cmp-tabnine' has been removed, as tabnine has been dropped")),
         "coc-go": nix.thunk(() => nix.app(nix.builtins.throw, "'vimPlugins.coc-go' was removed, as it was unmaintained")),

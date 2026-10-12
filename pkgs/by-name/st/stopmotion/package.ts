@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libarchive = nix.arg($, "libarchive");
   const libxml2 = nix.arg($, "libxml2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "0.9.0",
       pname: "stopmotion",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://invent.kde.org/multimedia/stopmotion",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-RsFqvAmTJBVg32bnY2eA9jWWnuHgv66rZiWMqa6sviw=",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         libxml2,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Create stop-motion animation movies",
         homepage: "http://linuxstopmotion.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(lib, "makeOverridable"), (src) => (() => {
       const srcStr = nix.thunk(() => nix.builtins.toString(src));
       const gitHashFile = nix.thunk(() => nix.app(runCommand, "put-in-git", nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           nativeBuildInputs: nix.thunk(() => [git]),
           dummy: nix.thunk(() => nix.builtins.currentTime),
           preferLocalBuild: true,
@@ -34,7 +34,7 @@ mv $DOT_GIT/index-user $DOT_GIT/index # restore index
 `)));
       const gitHash = nix.thunk(() => nix.builtins.readFile(gitHashFile));
       const nixPath = nix.thunk(() => nix.app(runCommand, "put-in-nix", nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           nativeBuildInputs: nix.thunk(() => [git]),
           preferLocalBuild: true,
         })), nix.thunk(() => nix.str`mkdir $out

@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.19.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Rogdham",
           repo: "pyzstd",
           tag: version,
@@ -41,7 +41,7 @@ ln -s ${nix.sel(zstd_c, "src")}/LICENSE zstd
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["pyzstd"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python bindings to Zstandard (zstd) compression library",
         homepage: "https://pyzstd.readthedocs.io",
         changelog: nix.thunk(() => nix.str`https://github.com/Rogdham/pyzstd/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -56,7 +56,7 @@ ln -s ${nix.sel(zstd_c, "src")}/LICENSE zstd
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

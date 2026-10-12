@@ -12,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const php = nix.arg($, "php");
   return nix.app(buildPecl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "parallel",
       version: "1.2.6",
       hash: "sha256-tFQUbRxEb7gJlec0447akrngkJ0UZqojz5QNfXqvDcA=",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Parallel concurrency API",
         broken: nix.thunk(() => !nix.asBool(nix.sel(php, "ztsSupport"))),
         homepage: "https://pecl.php.net/package/parallel",

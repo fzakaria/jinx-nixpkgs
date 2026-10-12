@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const tqdm = nix.arg($, "tqdm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rebiber",
       version: "1.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "yuchenlin",
           repo: "rebiber",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [bibtexparser, requests, tqdm]),
       pythonImportsCheck: nix.thunk(() => ["rebiber"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple tool to update bib entries with their official information (e.g., DBLP or the ACL anthology)",
         homepage: "https://github.com/yuchenlin/rebiber",
         license: nix.thunk(() => (() => {

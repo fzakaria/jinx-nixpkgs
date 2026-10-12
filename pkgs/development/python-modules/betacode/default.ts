@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const isPy3k = nix.arg($, "isPy3k");
   const lib = nix.arg($, "lib");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "betacode",
       version: "1.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-TKYetG25qcvnbyvWAfGlouYDLSg0MnPOsPlWUrLCUR4=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [pygtrie]),
       pythonImportsCheck: nix.thunk(() => ["betacode"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/matgrioni/betacode",
         description: "Small python package to flexibly convert from betacode to unicode and back",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

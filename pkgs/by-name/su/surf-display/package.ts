@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "surf-display";
       const version = "unstable-2022-10-07";
       const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://code.it-zukunft-schule.de/cgit/surf-display",
           rev: "ad0bd30642f8334d42bb08ea5c1b9dd03fccc4d1",
           hash: "sha256-wiyFh1te3afASIODn0cA5QXcqnrP/8Bk6hBAZYbKJQQ=",
@@ -56,9 +56,9 @@ wrapProgram $out/bin/surf-display \\
    --prefix PATH ':' ${nix.app(nix.sel(lib, "makeBinPath"), buildInputs)}
 `);
       const makeFlags = nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]);
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, providedSessions: nix.thunk(() => ["surf-display"]) }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, providedSessions: nix.thunk(() => ["surf-display"]) }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Kiosk browser session manager based on the surf browser",
         mainProgram: "surf-display",
         homepage: "https://code.it-zukunft-schule.de/cgit/surf-display/",
@@ -67,7 +67,7 @@ wrapProgram $out/bin/surf-display \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

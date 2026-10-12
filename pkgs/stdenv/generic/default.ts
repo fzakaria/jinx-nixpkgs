@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
       const defaultBuildInputs = extraBuildInputs;
       const stdenv = nix.thunk(() => nix.app(stdenv_overridable, argsStdenv));
       return nix.update(nix.app(nix.builtins.derivation, nix.thunk(() => nix.attrsDyn({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: name,
           pname: pname,
           version: version,
@@ -100,20 +100,20 @@ export default nix.lambda((args) => (() => {
           [(nix.asBool(nix.sel(buildPlatform, "isDarwin")) ? "__sandboxProfile" : null), stdenvSandboxProfile],
           [(nix.asBool(nix.sel(buildPlatform, "isDarwin")) ? "__impureHostDeps" : null), __stdenvImpureHostDeps],
         ]))), nix.update({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         meta: nix.thunk(() => (() => {
           const pos = nix.thunk(() => nix.builtins.unsafeGetAttrPos("name", argsStdenv));
           return {
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             description: "The default build environment for Unix packages in Nixpkgs",
             platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
             position: nix.thunk(() => nix.str`${nix.sel(pos, "file")}:${nix.builtins.toString(nix.thunk(() => nix.sel(pos, "line")))}`),
             teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "stdenv"))]),
             license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             identifiers: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               cpeParts: nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 part: "a",
                 vendor: "nixos",
                 product: nix.thunk(() => nix.sel(argsStdenv, "name")),
@@ -130,7 +130,7 @@ export default nix.lambda((args) => (() => {
         __extraImpureHostDeps: __extraImpureHostDeps,
         extraSandboxProfile: extraSandboxProfile,
       }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name_1) => (value) => nix.app(nix.sel(lib, "warn"), nix.thunk(() => nix.str`stdenv.${name_1} is deprecated, use stdenv.hostPlatform.${name_1} instead`), value), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             isDarwin: nix.thunk(() => nix.attr(hostPlatform, "isDarwin")),
             isLinux: nix.thunk(() => nix.attr(hostPlatform, "isLinux")),
             isSunOS: nix.thunk(() => nix.attr(hostPlatform, "isSunOS")),
@@ -148,7 +148,7 @@ export default nix.lambda((args) => (() => {
             isMips: nix.thunk(() => nix.attr(hostPlatform, "isMips")),
             isBigEndian: nix.thunk(() => nix.attr(hostPlatform, "isBigEndian")),
           }))))), nix.update({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         system: nix.thunk(() => nix.attr(hostPlatform, "system")),
         mkDerivation: nix.thunk(() => nix.app(mkDerivationFromStdenv, stdenv)),
         fetchurlBoot: fetchurlBoot,
@@ -157,12 +157,12 @@ export default nix.lambda((args) => (() => {
         hasCC: hasCC,
         shellDryRun: nix.thunk(() => nix.str`${nix.sel(stdenv, "shell")} -n -O extglob`),
         tests: nix.thunk(() => ({
-          __proto__: pos$9,
-          inputDerivationRequiredSystemFeatures: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../tests/inputDerivationRequiredSystemFeatures.nix")), nix.thunk(() => ({ __proto__: pos$7, lib: lib, stdenv: stdenv })))),
-          succeedOnFailure: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../tests/succeedOnFailure.nix")), nix.thunk(() => ({ __proto__: pos$8, stdenv: stdenv })))),
+          [nix.POS]: pos$9,
+          inputDerivationRequiredSystemFeatures: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../tests/inputDerivationRequiredSystemFeatures.nix")), nix.thunk(() => ({ [nix.POS]: pos$7, lib: lib, stdenv: stdenv })))),
+          succeedOnFailure: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../tests/succeedOnFailure.nix")), nix.thunk(() => ({ [nix.POS]: pos$8, stdenv: stdenv })))),
         })),
         passthru: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           tests: nix.thunk(() => nix.app(nix.sel(lib, "warn"), "Use `stdenv.tests` instead. `passthru` is a `mkDerivation` detail.", nix.thunk(() => nix.sel(stdenv, "tests")))),
         })),
       }, extraAttrs))));

@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const enableCmdline = nix.argOr($, "enableCmdline", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isNone")));
   const enableMath = nix.argOr($, "enableMath", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "jerryscript",
       version: "3.0.0",
       outputs: nix.thunk(() => ["out", "lib", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jerryscript-project",
           repo: "jerryscript",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_SHARED_LIBS", nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))))),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-literal-range")),
       })),
       nativeCheckInputs: nix.thunk(() => [python3]),
@@ -57,11 +57,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       postInstallCheck: "echo 'print(\"Hello\" + \" \" + \"World!\")' | \\\n\"$out/bin/jerry\" - | \\\ncmp - <(echo \"Hello World!\")\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               versionCheck: true,
             })))),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Lightweight JavaScript engine for resource-constrained devices",
         homepage: "https://jerryscript.net/",
         downloadPage: "https://github.com/jerryscript-project/jerryscript/",

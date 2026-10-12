@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
     const nativeBuildInputs$ = nix.thunk(() => nix.concat([octave, writeRequiredOctavePackagesHook], nativeBuildInputs));
     const attrs$ = nix.thunk(() => nix.builtins.removeAttrs(attrs, nix.thunk(() => ["nativeBuildInputs", "nativeOctavePkgTestInputs", "passthru", "env"])));
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => nix.update({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         packageName: nix.thunk(() => nix.str`${fullLibName}`),
         name: nix.thunk(() => nix.str`${nix.sel(octave, "pname")}-${nix.sel(octave, "version")}-${fullLibName}`),
         isOctavePackage: true,
-        env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), { __proto__: pos$1, OCTAVE_HISTFILE: "/dev/null" })),
+        env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), { [nix.POS]: pos$1, OCTAVE_HISTFILE: "/dev/null" })),
         src: src,
         dontPatch: dontPatch,
         patches: patches,
@@ -72,21 +72,21 @@ runHook postBuild
 `),
         dontInstall: true,
         passthru: nix.thunk(() => nix.update({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           updateScript: nix.thunk(() => [
             nix.path(here, "../../../../maintainers/scripts/update-octave-packages"),
             nix.thunk(() => nix.sel(nix.builtins.unsafeGetAttrPos("pname", nix.thunk(() => nix.sel(octave, "pkgs", nix.key(nix.sel(attrs, "pname"))))), "file")),
           ]),
         }, nix.update(passthru, {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           tests: nix.thunk(() => nix.update({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             testOctaveBuildEnv: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(octave, "withPackages"), (os) => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]), "overrideAttrs"), (old) => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "name")}-pkg-install`),
               }))),
             testOctavePkgTests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./run-pkg-test.nix"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 nativeOctavePkgTestInputs: nativeOctavePkgTestInputs,
                 octavePkgTestEnv: octavePkgTestEnv,
               })), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),

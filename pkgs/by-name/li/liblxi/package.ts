@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const avahi = nix.arg($, "avahi");
   const libxml2 = nix.arg($, "libxml2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "liblxi",
       version: "1.22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lxi-tools",
           repo: "liblxi",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, cmake, pkg_config, rpcsvc_proto]),
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [libtirpc, avahi])), [libxml2])),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for communicating with LXI compatible instruments",
         longDescription: "liblxi is an open source software library which offers a simple\nAPI for communicating with LXI compatible instruments.\nThe API allows applications to easily discover instruments\non networks and communicate SCPI commands.\n",
         homepage: "https://lxi-tools.github.io/",

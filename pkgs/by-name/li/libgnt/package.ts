@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const buildDocs = nix.argOr($, "buildDocs", () => true);
   const mesonEmulatorHook = nix.arg($, "mesonEmulatorHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libgnt",
       version: "2.14.4-dev",
       outputs: nix.thunk(() => nix.concat(["out", "dev"], nix.app(nix.sel(lib, "optional"), buildDocs, "devdoc"))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/pidgin/libgnt-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-GVkzqacx01dXkbiBulzArSpxXh6cTCPMqqKhfhZMluw=",
         })))),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonBool"), "python2", false)),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Ncurses toolkit for creating text-mode graphical user interfaces",
         homepage: "https://keep.imfreedom.org/libgnt/libgnt/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const relpathToArg = (relpath) => nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.str`${src}/${relpath}`));
   const testFileList = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.builtins.map(relpathToArg, files))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: nix.thunk(() => nix.sel(src, "version")),
       pname: "sage-tests",
       src: src,
@@ -40,7 +40,7 @@ mkdir -p "$out/bin"
 # Like a symlink, but make sure that $0 points to the original.
 makeWrapper "${sage_with_env}/bin/sage" "$out/bin/sage"
 `),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ __proto__: pos$1, LC_ALL: "en_US.UTF-8" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$1, LC_ALL: "en_US.UTF-8" })))),
       __darwinAllowLocalNetworking: true,
       doInstallCheck: true,
       installCheckPhase: nix.thunk(() => nix.str`export HOME="$TMPDIR/sage-home"

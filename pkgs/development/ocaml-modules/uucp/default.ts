@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const uunf = nix.arg($, "uunf");
   const uucd = nix.arg($, "uucd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}`),
       pname: "uucp",
       version: "18.0.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://erratique.ch/software/uucp/releases/uucp-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-ut7cfFg6entCN2O625f5/UuWmQa5NFyFQifDje1jI/w=",
         })))),
@@ -48,7 +48,7 @@ runHook postCheck
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OCaml library providing efficient access to a selection of character properties of the Unicode character database",
         homepage: "https://erratique.ch/software/uucp",
         platforms: nix.thunk(() => nix.attr(from, "platforms")),

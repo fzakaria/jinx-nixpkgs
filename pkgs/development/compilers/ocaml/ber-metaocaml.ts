@@ -29,16 +29,16 @@ export default nix.lambda((args) => (() => {
       const pname = "ber-metaocaml";
       const version = metaocamlPatch;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://caml.inria.fr/pub/distrib/ocaml-${baseOcamlBranch}/ocaml-${baseOcamlVersion}.tar.gz`),
           sha256: "sha256-IsHdneIb9Dti0ZCQQftfrWSJBSJ79pVQpqa+8x5lTzg=",
         }))));
       const metaocaml = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://okmij.org/ftp/ML/ber-metaocaml-${metaocamlPatch}.tar.gz`),
           sha256: "sha256-zN4C+ZKpPyT87U9wba8D475K6NWOotSYdd67D+1LSlI=",
         }))));
-      const x11env = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({ __proto__: pos$3, name: "x11env", paths: x11deps }))));
+      const x11env = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({ [nix.POS]: pos$3, name: "x11env", paths: x11deps }))));
       const x11lib = nix.thunk(() => nix.str`${x11env}/lib`);
       const x11inc = nix.thunk(() => nix.str`${x11env}/include`);
       const prefixKey = "-prefix ";
@@ -68,9 +68,9 @@ make test-compile
 make test-native
 cd ..
 `);
-      const passthru = nix.thunk(() => ({ __proto__: pos$4, nativeCompilers: true }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, nativeCompilers: true }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Multi-Stage Programming extension for OCaml",
         homepage: "https://okmij.org/ftp/ML/MetaOCaml.html",
         license: nix.thunk(() => (() => {
@@ -93,7 +93,7 @@ cd ..
         longDescription: "A simple extension of OCaml with the primitive type of code values, and\nthree basic multi-stage expression forms: Brackets, Escape, and Run.\n",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

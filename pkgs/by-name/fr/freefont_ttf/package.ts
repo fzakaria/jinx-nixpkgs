@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
       const pname = "freefont-ttf";
       const version = "20120503";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/freefont/freefont-ttf-${version}.zip`),
           hash: "sha256-K3kVHGcDTxQ7N7XqSdwRObriVkBoBYPKHbyYrYvm7VU=",
         }))));
       const installPhase = "runHook preInstall\n\nmkdir -p $out/share/fonts/truetype\nmv *.ttf $out/share/fonts/truetype\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GNU Free UCS Outline Fonts",
         longDescription: "The GNU Freefont project aims to provide a set of free outline\n(PostScript Type0, TrueType, OpenType...) fonts covering the ISO\n10646/Unicode UCS (Universal Character Set).\n",
         homepage: "https://www.gnu.org/software/freefont/",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         maintainers: [],
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

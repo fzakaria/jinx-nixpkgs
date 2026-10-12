@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const statsEndpoint = "https://graphite-prod-01-eu-west-0.grafana.net/graphite/metrics,https://stats.centrifugal.dev/usage";
   const statsToken = nix.thunk(() => nix.add("425599:eyJrIjoi", "OWJhMTcyZGNjN2FkYjEzM2E1OTQwZjIyMTU3MTBjMjUyYzAyZWE2MSIsIm4iOiJVc2FnZSBTdGF0cyIsImlkIjo2NDUzOTN9"));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "centrifugo",
       version: "6.9.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "centrifugal",
           repo: "centrifugo",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,13 +42,13 @@ export default nix.lambda((args) => (() => {
       ]),
       excludedPackages: nix.thunk(() => ["./internal/gen/api"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           centrifugo: nix.thunk(() => nix.attr(nixosTests, "centrifugo")),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: centrifugo,
               command: "centrifugo version",
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Scalable real-time messaging server",
         homepage: "https://centrifugal.dev",
         changelog: nix.thunk(() => nix.str`https://github.com/centrifugal/centrifugo/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.41.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eventlet",
           repo: "eventlet",
           tag: version,
@@ -54,7 +54,7 @@ export EVENTLET_IMPORT_VERSION_ONLY=0
       ]);
       const pythonImportsCheck = nix.thunk(() => ["eventlet"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/eventlet/eventlet/blob/${nix.sel(src, "tag")}/NEWS`),
         description: "Concurrent networking library for Python",
         homepage: "https://github.com/eventlet/eventlet/",
@@ -65,7 +65,7 @@ export EVENTLET_IMPORT_VERSION_ONLY=0
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

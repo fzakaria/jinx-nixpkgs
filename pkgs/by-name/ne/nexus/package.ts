@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "nexus";
       const version = "3.70.1-02";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.sonatype.com/nexus/3/nexus-${version}-unix.tar.gz`),
           hash: "sha256-oBappm8WRcgyD5HWqJKPbMHjlwCUo9y5+FtB2Kq1PCE=",
         }))));
@@ -45,11 +45,11 @@ wrapProgram $out/bin/nexus \\
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, nexus: nix.thunk(() => nix.attr(nixosTests, "nexus")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, nexus: nix.thunk(() => nix.attr(nixosTests, "nexus")) })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Repository manager for binary software components",
         homepage: "https://www.sonatype.com/products/sonatype-nexus-oss",
         sourceProvenance: nix.thunk(() => (() => {
@@ -70,7 +70,7 @@ runHook postInstall
         maintainers: [],
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

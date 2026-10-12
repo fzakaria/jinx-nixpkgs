@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   nix.assert_(nix.app(nix.sel(lib, "elem"), precision, nix.thunk(() => ["single", "double", "long-double", "quad-precision"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ff/fftw/package.nix:15:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: nix.thunk(() => nix.str`fftw-${precision}`),
       version: "3.3.11",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://fftw.org/fftw-${nix.sel(finalAttrs, "version")}.tar.gz`),
             nix.thunk(() => nix.str`ftp://ftp.fftw.org/pub/fftw/fftw-${nix.sel(finalAttrs, "version")}.tar.gz`),
@@ -52,15 +52,15 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       nativeCheckInputs: nix.thunk(() => [perl]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/FFTW/fftw3/blob/fftw-${nix.sel(finalAttrs, "version")}/NEWS`),
         description: "Fastest Fourier Transform in the West library",
         homepage: "https://www.fftw.org/",
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
         pkgConfigModules: nix.thunk(() => [
           nix.thunk(() => nix.sel({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             single: "fftw3f",
             double: "fftw3",
             "long-double": "fftw3l",

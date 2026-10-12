@@ -14,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(buildWasmBindgenCli, nix.thunk(() => (() => {
       const src = nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "wasm-bindgen-cli",
           version: "0.2.114",
           hash: "sha256-xrCym+rFY6EUQFWyWl6OPA+LtftpUAE5pIaElAIVqW0=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: src,
           pname: nix.thunk(() => nix.attr(src, "pname")),
           version: nix.thunk(() => nix.attr(src, "version")),
           hash: "sha256-Z8+dUXPQq7S+Q7DWNr2Y9d8GMuEdSnq00quUR0wDNPM=",
         }))));
-      return { __proto__: pos$3, src, cargoDeps };
+      return { [nix.POS]: pos$3, src, cargoDeps };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

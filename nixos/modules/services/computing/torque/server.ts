@@ -30,32 +30,32 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "torque", "server"));
   const torque = nix.thunk(() => nix.sel(pkgs, "torque"));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         torque: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           server: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "torque server")),
           })),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         environment: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "torque"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             "torque-server-init": nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               path: nix.thunk(() => (() => {
                 const w = nix.withScope(pkgs, null);
                 return [
@@ -80,22 +80,22 @@ rm -f $tmpsetup
 kill $(pgrep pbs_server) 2>/dev/null
 kill $(pgrep trqauthd) 2>/dev/null
 `),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$6, Type: "oneshot", RemainAfterExit: true })),
-              unitConfig: nix.thunk(() => ({ __proto__: pos$7, ConditionPathExists: "!/var/spool/torque" })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$6, Type: "oneshot", RemainAfterExit: true })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$7, ConditionPathExists: "!/var/spool/torque" })),
             })),
             trqauthd: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               path: nix.thunk(() => [torque]),
               requires: nix.thunk(() => ["torque-server-init.service"]),
               after: nix.thunk(() => ["torque-server-init.service"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 Type: "forking",
                 ExecStart: nix.thunk(() => nix.str`${torque}/bin/trqauthd`),
               })),
             })),
             "torque-server": nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               documentation: nix.thunk(() => ["man:pbs_server(8)"]),
               path: nix.thunk(() => [torque]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -104,7 +104,7 @@ kill $(pgrep trqauthd) 2>/dev/null
               requires: nix.thunk(() => ["torque-server-init.service"]),
               after: nix.thunk(() => ["torque-server-init.service", "network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 Type: "forking",
                 ExecStart: nix.thunk(() => nix.str`${torque}/bin/pbs_server`),
                 ExecStop: nix.thunk(() => nix.str`${torque}/bin/qterm`),
@@ -112,13 +112,13 @@ kill $(pgrep trqauthd) 2>/dev/null
               })),
             })),
             "torque-scheduler": nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               documentation: nix.thunk(() => ["man:pbs_sched(8)"]),
               path: nix.thunk(() => [torque]),
               requires: nix.thunk(() => ["torque-server-init.service"]),
               after: nix.thunk(() => ["torque-server-init.service"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 Type: "forking",
                 ExecStart: nix.thunk(() => nix.str`${torque}/bin/pbs_sched`),
                 PIDFile: "/var/spool/torque/sched_priv/sched.lock",

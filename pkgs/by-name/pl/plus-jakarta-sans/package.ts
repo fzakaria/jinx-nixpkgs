@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "plus-jakarta-sans",
       version: "2.7.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/tokotype/PlusJakartaSans/releases/download/${nix.sel(finalAttrs, "version")}/PlusJakartaSans-${nix.sel(finalAttrs, "version")}.zip`),
           stripRoot: false,
           hash: "sha256-+ghkQ4/wxou3FB68ceCwBeGrSCaHJhb16MybvN6mCSc=",
         })))),
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/fonts/truetype\ncp PlusJakartaSans-$version/*/PlusJakartaSans*.ttf $out/share/fonts/truetype\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.tokotype.com/custom-fonts/plusjakarta",
         description: "Typeface designed for Jakarta 'City of collaboration' program in 2020",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

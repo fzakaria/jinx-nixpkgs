@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const gix = nix.thunk(() => nix.str`${nix.app(nix.sel(stdenv, "hostPlatform", "emulator"), buildPackages)} $out/bin/gix`);
   const ein = nix.thunk(() => nix.str`${nix.app(nix.sel(stdenv, "hostPlatform", "emulator"), buildPackages)} $out/bin/ein`);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gitoxide",
       version: "0.59.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GitoxideLabs",
           repo: "gitoxide",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,9 +47,9 @@ installShellCompletion --cmd ein \\
   --fish <(${ein} completions --shell fish) \\
   --zsh <(${ein} completions --shell zsh)
 `))),
-      env: nix.thunk(() => ({ __proto__: pos$2, OPENSSL_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: 1n })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Command-line application for interacting with git repositories",
         homepage: "https://github.com/GitoxideLabs/gitoxide",
         changelog: nix.thunk(() => nix.str`https://github.com/GitoxideLabs/gitoxide/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

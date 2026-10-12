@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "xfce4-dockbarx-plugin";
       const version = "0.7.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xuzhen",
           repo: "xfce4-dockbarx-plugin",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "# We execute the wrapped xfce4-panel-plug directly.\n# Since argv is used for g_free() we also need to shift the indexes.\nsubstituteInPlace src/xfce_panel_plugin.c \\\n  --replace '\"python3\",' \"\" \\\n  --replace \"g_free(argv[3]);\" \"g_free(argv[2]);\" \\\n  --replace \"g_free(argv[5]);\" \"g_free(argv[4]);\"\n\npatchShebangs src/xfce4-dockbarx-plug.py\n";
       const postFixup = "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\nchmod +x $out/share/dockbarx/xfce4-panel-plug\nwrapPythonProgramsIn \"$out/share/dockbarx\" \"$out ${pythonPath[*]}\"\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/xuzhen/xfce4-dockbarx-plugin",
         description: "Plugins to embed DockbarX into xfce4-panel",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "xfce"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

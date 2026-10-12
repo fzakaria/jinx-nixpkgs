@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const zig_0_15 = nix.arg($, "zig_0_15");
   const zig = zig_0_15;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "superhtml",
       version: "0.6.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kristoff-it",
           repo: "superhtml",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       postConfigure: nix.thunk(() => nix.str`ln -s ${nix.app(callPackage, nix.path(here, "./deps.nix"), nix.thunk(() => ({})))} $ZIG_GLOBAL_CACHE_DIR/p
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "HTML Language Server and Templating Language Library",
         homepage: "https://github.com/kristoff-it/superhtml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

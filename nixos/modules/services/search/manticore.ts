@@ -36,29 +36,29 @@ export default nix.lambda((args) => (() => {
     return (attrsOfAttrs) => (() => {
       const mkSection = (sectName) => (sectValues) => nix.add(nix.add(nix.str`${sectName} {
 `, nix.app(nix.sel(lib, "generators", "toKeyValue"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           mkKeyValue: mkKeyValue,
           listsAsDuplicateKeys: listsAsDuplicateKeys,
         })), sectValues)), "}");
       return nix.app(nix.sel(lib, "concatMapAttrsStringSep"), "\n", mkSection, attrsOfAttrs);
     })();
   })(), formals$2);
-  const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "manticore.conf", nix.thunk(() => nix.app(toSphinx, nix.thunk(() => ({ __proto__: pos$2, mkKeyValue: (k) => (v) => nix.str`  ${k} = ${v}` })), nix.thunk(() => nix.sel(cfg, "settings"))))));
+  const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "manticore.conf", nix.thunk(() => nix.app(toSphinx, nix.thunk(() => ({ [nix.POS]: pos$2, mkKeyValue: (k) => (v) => nix.str`  ${k} = ${v}` })), nix.thunk(() => nix.sel(cfg, "settings"))))));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         manticore: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Manticoresearch")),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 searchd: nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   listen: nix.thunk(() => ["127.0.0.1:9312", "127.0.0.1:9306:mysql", "127.0.0.1:9308:http"]),
                   log: "/var/log/manticore/searchd.log",
                   query_log: "/var/log/manticore/query.log",
@@ -67,25 +67,25 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               description: "Configuration for Manticoresearch. See\n<https://manual.manticoresearch.com/Server%20settings>\nfor more information.\n",
-              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({ __proto__: pos$5, freeformType: nix.thunk(() => nix.sel(format, "type")) })))),
+              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({ [nix.POS]: pos$5, freeformType: nix.thunk(() => nix.sel(format, "type")) })))),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  searchd = {\n      listen = [\n        \"127.0.0.1:9312\"\n        \"127.0.0.1:9306:mysql\"\n        \"127.0.0.1:9308:http\"\n      ];\n      log = \"/var/log/manticore/searchd.log\";\n      query_log = \"/var/log/manticore/query.log\";\n      pid_file = \"/run/manticore/searchd.pid\";\n      data_dir = \"/var/lib/manticore\";\n  };\n}\n")),
             })))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "manticoresearch"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             manticore: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => nix.update({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 ExecStart: nix.thunk(() => [
                   "",
                   nix.thunk(() => nix.str`${nix.sel(pkgs, "manticoresearch")}/bin/searchd --config ${configFile}`),
@@ -119,7 +119,7 @@ export default nix.lambda((args) => (() => {
                 UMask: "0066",
                 ProtectHostname: true,
               }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "settings", "searchd", "pid_file"), null)), nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   PIDFile: nix.thunk(() => nix.sel(cfg, "settings", "searchd", "pid_file")),
                 }))))),
             })),
@@ -127,7 +127,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "onny"))];

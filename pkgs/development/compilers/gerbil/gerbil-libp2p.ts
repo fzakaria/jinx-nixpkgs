@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     pname: "gerbil-libp2p",
     version: "unstable-2022-02-03",
     "git-version": "15b3246",
@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
     "gerbil-package": "vyzo",
     buildInputs: [],
     "pre-src": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       fun: fetchFromGitHub,
       owner: "vyzo",
       repo: "gerbil-libp2p",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       sha256: "059lydp7d6pjgrd4pdnqq2zffzlba62ch102f01rgzf9aps3c8lz",
     })),
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       description: "Gerbil libp2p: use libp2p from Gerbil",
       homepage: "https://github.com/vyzo/gerbil-libp2p",
       license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

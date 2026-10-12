@@ -20,21 +20,21 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const concatStringsSep = nix.thunk(() => nix.attr(lib, "concatStringsSep"));
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     port: 9299n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       v2rayEndpoint: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "127.0.0.1:54321",
           description: "v2ray grpc api endpoint\n",
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "prometheus-v2ray-exporter")}/bin/v2ray-exporter \\
   --v2ray-endpoint ${nix.sel(cfg, "v2rayEndpoint")} \\
   --listen ${nix.sel(cfg, "listenAddress")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))} \\

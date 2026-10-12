@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.10.8";
       const outputs = nix.thunk(() => nix.concat(["out", "dev", "installedTests"], nix.app(nix.sel(lib, "optional"), withIntrospection, "devdoc")));
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/json-glib/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/json-glib-${version}.tar.xz`),
           hash: "sha256-VcXBQaVkJFuPj752mGY8h6RaczPCosVvBvgRq3OyEt0=",
         }))));
@@ -52,15 +52,15 @@ export default nix.lambda((args) => (() => {
       const doCheck = true;
       const postFixup = "# Move developer documentation to devdoc output.\n# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nif [[ -d \"$out/share/doc\" ]]; then\n    find -L \"$out/share/doc\" -type f -regex '.*\\.devhelp2?' -print0 \\\n      | while IFS= read -r -d '' file; do\n        moveToOutput \"$(dirname \"${file/\"$out/\"/}\")\" \"$devdoc\"\n    done\nfi\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           installedTests: nix.thunk(() => nix.sel(nixosTests, "installed-tests", "json-glib")),
         })),
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$3, packageName: pname, versionPolicy: "odd-unstable" })))),
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: pname, versionPolicy: "odd-unstable" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Library providing (de)serialization support for the JavaScript Object Notation (JSON) format",
         homepage: "https://gitlab.gnome.org/GNOME/json-glib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         outputs,

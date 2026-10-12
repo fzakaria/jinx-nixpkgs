@@ -24,15 +24,15 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         rpcbind: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable `rpcbind`, an ONC RPC directory service\nnotably used by NFS and NIS, and which can be queried\nusing the {manpage}`rpcinfo(1)` command. `rpcbind` is a replacement for\n`portmap`.\n",
@@ -42,18 +42,18 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "rpcbind", "enable")), nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             environment: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "rpcbind"))]),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "rpcbind"))]),
               services: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 rpcbind: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   wants: nix.thunk(() => ["systemd-tmpfiles-setup.service"]),
                   after: nix.thunk(() => ["systemd-tmpfiles-setup.service"]),
@@ -62,13 +62,13 @@ export default nix.lambda((args) => (() => {
             })),
           })))),
         nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           users: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             users: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               rpc: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 enable: nix.thunk(() => nix.sel(config, "services", "rpcbind", "enable")),
                 group: "nogroup",
                 uid: nix.thunk(() => nix.sel(config, "ids", "uids", "rpc")),

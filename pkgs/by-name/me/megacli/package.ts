@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "megacli";
       const version = "8.07.14";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://docs.broadcom.com/docs-and-downloads/raid-controllers/raid-controllers-common-files/${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["-"]), version)}_MegaCLI.zip`),
           sha256: "1sdn58fbmd3fj4nzbajq3gcyw71ilgdh45r5p4sa6xmb7np55cfr",
         }))));
@@ -47,7 +47,7 @@ ln -s $out/opt/MegaRAID/MegaCli/MegaCli64 $out/bin/MegaCli64
 eval fixupPhase
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI program for LSI MegaRAID cards, which also works with some Dell PERC RAID cards",
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
@@ -58,7 +58,7 @@ eval fixupPhase
         mainProgram: "MegaCli64",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

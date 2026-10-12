@@ -11,10 +11,10 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   return {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     wrong1: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({})))),
     nest: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       wrong2: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({})))),
     })),
   };

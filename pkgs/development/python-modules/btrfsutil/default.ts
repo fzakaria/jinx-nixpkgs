@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const libuuid = nix.arg($, "libuuid");
   const zlib = nix.arg($, "zlib");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "btrfsutil",
       version: nix.thunk(() => nix.attr(btrfs_progs, "version")),
       src: nix.thunk(() => nix.attr(btrfs_progs, "src")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["btrfsutil"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Library for managing Btrfs filesystems",
         homepage: "https://btrfs.readthedocs.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

@@ -16,22 +16,22 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const sqlint = nix.arg($, "sqlint");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sqlint",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["sqlint"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "sqlint")),
         tests: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           help: nix.thunk(() => nix.app(runCommand, "sqlint-help-test", nix.thunk(() => ({})), nix.thunk(() => nix.str`${sqlint}/bin/sqlint --help
 touch $out
 `))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simple SQL linter",
         homepage: "https://github.com/purcell/sqlint",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

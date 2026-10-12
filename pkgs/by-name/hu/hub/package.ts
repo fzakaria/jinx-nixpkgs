@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const unixtools = nix.arg($, "unixtools");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "hub",
       version: "2.14.2-unstable-2022-12-01",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mislav",
           repo: "hub",
           rev: "38bcd4ae469e5f53f01901340b715c7658ab417a",
@@ -37,12 +37,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/mislav/hub/commit/439b7699e79471fc789929bcdea2f30bd719963e.patch",
             hash: "sha256-pR/OkGa2ICR4n1pLNx8E2UTtLeDwFtXxeeTB94KFjC4=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/mislav/hub/commit/64b291006f208fc7db1d5be96ff7db5535f1d853.patch",
             hash: "sha256-jGFFIvSKEIpTQY0Wz63cqciUk25MzPHv5Z1ox8l7wmo=",
           })))),
@@ -72,11 +72,11 @@ wrapProgram $out/bin/hub \\
       __darwinAllowLocalNetworking: true,
       nativeCheckInputs: nix.thunk(() => [git]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        tests: nix.thunk(() => ({ __proto__: pos$4, hub: nix.thunk(() => nix.attr(nixosTests, "hub")) })),
+        [nix.POS]: pos$5,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$4, hub: nix.thunk(() => nix.attr(nixosTests, "hub")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Command-line wrapper for git that makes you better at GitHub",
         homepage: "https://hub.github.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const version = "14.0.5";
   const nameApp = "JProfiler";
   const meta = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     description: "Java profiler for deep JVM analysis",
     longDescription: "JProfiler bridges high-level analytics and low-level JVM data,\ndelivering unmatched insights to solve your toughest performance\nproblems, memory leaks, threading issues, and higher-level problems in\ntechnologies like JDBC, JPA, and more.\n",
     homepage: "https://www.ej-technologies.com/products/jprofiler/overview.html",
@@ -35,17 +35,17 @@ export default nix.lambda((args) => (() => {
     maintainers: [],
   }));
   const src = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`https://download.ej-technologies.com/jprofiler/jprofiler_linux_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}.tar.gz`),
       hash: "sha256-S7e2WurDJ0ePzpMg0YK94Mn0eHfb8/jNmf0kYts2Y0M=",
     }))) : nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: nix.thunk(() => nix.str`https://download-gcdn.ej-technologies.com/jprofiler/jprofiler_macos_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}.dmg`),
       hash: "sha256-HPGh+dRfLuQprpgnu8oFboHUB1xvFqPblJcowqgZ5KA=",
     })))));
   const desktopItems = nix.thunk(() => [
     nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         name: pname,
         exec: pname,
         icon: pname,
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       })))),
   ]);
   const linux = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: version,
       src: src,
@@ -81,12 +81,12 @@ install -Dm644 "./.install4j/i4j_extf_7_1u09tly_16qtnph.png" \\
 runHook postInstall
 `),
       meta: nix.thunk(() => nix.update(meta, {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       })),
     }))));
   const darwin = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: pname,
       version: version,
       src: src,
@@ -102,7 +102,7 @@ makeWrapper $out/Applications/${nameApp}.app/Contents/MacOS/JavaApplicationStub 
 runHook postInstall
 `),
       meta: nix.thunk(() => nix.update(meta, {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
       })),
     }))));

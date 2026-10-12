@@ -16,24 +16,24 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     name: "phylactery",
     nodes: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           services: nix.thunk(() => ({
-            __proto__: pos$2,
-            phylactery: nix.thunk(() => ({ __proto__: pos$1, enable: true, port: 8080n, library: "/tmp" })),
+            [nix.POS]: pos$2,
+            phylactery: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true, port: 8080n, library: "/tmp" })),
           })),
         };
       })(), formals$2),
     })),
     testScript: "start_all()\nmachine.wait_for_unit('phylactery')\nmachine.wait_for_open_port(8080)\nmachine.wait_until_succeeds('curl localhost:8080')\n",
     meta: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "McSinyx"))];

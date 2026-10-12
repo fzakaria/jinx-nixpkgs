@@ -12,23 +12,23 @@ export default nix.thunk(() => (() => {
   const pname = "brave";
   const version = "1.97.56";
   const archives = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/brave/brave-browser/releases/download/v${version}/brave-browser_${version}_arm64.deb`),
       sha256: "19d78ac52c1956c7d254a4ca3bb24f91d2f4a47e6fb6b1dcc5b43681818a5d3b",
     })),
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`https://github.com/brave/brave-browser/releases/download/v${version}/brave-browser_${version}_amd64.deb`),
       sha256: "30e4cb89db380567e6fcdaab7110a17d6250517e22860c6bdb02eadf8993b669",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: nix.thunk(() => nix.str`https://github.com/brave/brave-browser/releases/download/v${version}/Brave-Browser-arm64.dmg`),
       sha256: "3da1fb6e8b369c9dd1152afdf4d3cb24cb3c6215fabc520f8bff7cbb87f08587",
     })),
   }));
-  return { __proto__: pos$5, pname, version, archives };
+  return { [nix.POS]: pos$5, pname, version, archives };
 })());
 //# sourceMappingURL=brave.ts.map

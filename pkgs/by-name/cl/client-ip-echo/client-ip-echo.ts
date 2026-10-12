@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const network = nix.arg($, "network");
   const lib = nix.arg($, "lib");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "client-ip-echo",
       version: "0.1.0.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jerith666",
           repo: "client-ip-echo",
           rev: "e81db98d04c13966b2ec114e01f82487962055a7",

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const buildExamples = nix.argOr($, "buildExamples", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.7.1",
       pname: "nanoflann",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jlblancoc",
           repo: "nanoflann",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkTarget: "test",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/jlblancoc/nanoflann",
         description: "Header only C++ library for approximate nearest neighbor search",
         longDescription: "nanoflann is a C++11 header-only library for building KD-Trees of datasets\nwith different topologies: R2, R3 (point clouds), SO(2) and SO(3) (2D and\n3D rotation groups). No support for approximate NN is provided. nanoflann\ndoes not require compiling or installing. You just need to #include\n<nanoflann.hpp> in your code.\n\nThis library is a fork of the flann library by Marius Muja and David\nG. Lowe, and born as a child project of MRPT. Following the original\nlicense terms, nanoflann is distributed under the BSD license. Please, for\nbugs use the issues button or fork and open a pull request.\n",

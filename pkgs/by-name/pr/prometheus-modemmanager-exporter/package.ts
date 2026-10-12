@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "modemmanager-exporter";
       const version = "0.2.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mdlayher",
           repo: "modemmanager_exporter",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -27,17 +27,17 @@ export default nix.lambda((args) => (() => {
         }))));
       const vendorHash = "sha256-wGCRpFnt9bxc5Ygg6H1kI9sXB4mVFBdLeaahAFtvNbg=";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
           return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           modemmanager: nix.thunk(() => nix.attr(from, "modemmanager")),
         };
         })()),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/mdlayher/modemmanager_exporter",
         description: "Prometheus exporter for ModemManager and its devices",
         mainProgram: "modemmanager_exporter",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "mdlayher"))];
         })()),
       }));
-      return { __proto__: pos$5, pname, version, src, vendorHash, passthru, meta };
+      return { [nix.POS]: pos$5, pname, version, src, vendorHash, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

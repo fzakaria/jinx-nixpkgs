@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nlopt = nix.arg($, "nlopt");
   const boost = nix.arg($, "boost");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "4.12.0",
       pname: "libnest2d",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Ultimaker",
           repo: "libnest2d",
           rev: "31391fd173249ad9b906390058e13b09238fadc8",
@@ -31,10 +31,10 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace {,examples/}CMakeLists.txt \\\n  --replace \"set(CMAKE_CXX_STANDARD 11)\" \"set(CMAKE_CXX_STANDARD 14)\"\nsubstituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 3.1)\" \"cmake_minimum_required(VERSION 3.10)\"\n\n",
       propagatedBuildInputs: nix.thunk(() => [clipper, nlopt, boost]),
       nativeBuildInputs: nix.thunk(() => [cmake]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CLIPPER_PATH: nix.thunk(() => nix.sel(clipper, "out")) })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CLIPPER_PATH: nix.thunk(() => nix.sel(clipper, "out")) })),
       cmakeFlags: nix.thunk(() => ["-DLIBNEST2D_HEADER_ONLY=OFF"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "2D irregular bin packaging and nesting library written in modern C++",
         homepage: "https://github.com/Ultimaker/libnest2d",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

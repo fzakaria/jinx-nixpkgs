@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const espeak_ng = nix.arg($, "espeak-ng");
   const onnxruntime = nix.arg($, "onnxruntime");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "piper-phonemize",
       version: "2023.11.14-4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rhasspy",
           repo: "piper-phonemize",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [espeak_ng, onnxruntime]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C++ library for converting text to phonemes for Piper",
         homepage: "https://github.com/rhasspy/piper-phonemize",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const radicle_node = nix.arg($, "radicle-node");
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "radicle-tui",
       version: "0.7.0",
       src: nix.thunk(() => nix.app(fetchFromRadicle, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           seed: "seed.radicle.dev",
           repo: "z39mP9rQAaGmERfUMPULfPUi473tY",
           tag: nix.thunk(() => nix.str`releases/${nix.sel(finalAttrs, "version")}`),
@@ -46,9 +46,9 @@ export default nix.lambda((args) => (() => {
 $out/bin/rad-tui --version --no-forward | grep -F 'rad-tui ${nix.sel(finalAttrs, "version")}'
 runHook postInstallCheck
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Radicle terminal user interface",
         homepage: "https://radicle.network/nodes/seed.radicle.dev/rad:z39mP9rQAaGmERfUMPULfPUi473tY",
         changelog: "https://radicle.network/nodes/seed.radicle.dev/rad:z39mP9rQAaGmERfUMPULfPUi473tY/tree/CHANGELOG.md",

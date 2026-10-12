@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const jre_headless = nix.arg($, "jre_headless");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xmlbeans",
       version: "5.3.0-20241203",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://web.archive.org/web/20250404194918/https://dlcdn.apache.org/poi/xmlbeans/release/bin/apache-xmlbeans-bin-5.3.0-20241203.zip",
           hash: "sha256-AeV+s0VfBgb0YbsY6dNJeqcsguZhDmjuyqXT/415a3k=",
           stripRoot: false,
@@ -37,7 +37,7 @@ done
 `),
       installPhase: "runHook preInstall\n\nmkdir -p $out\nchmod +x bin/*\ncp -r bin/ lib/ $out/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Java library for accessing XML by binding it to Java types",
         homepage: "https://xmlbeans.apache.org/",
         downloadPage: "https://dlcdn.apache.org/poi/xmlbeans/release/bin/",

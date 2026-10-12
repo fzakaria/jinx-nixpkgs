@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "clang-root";
       const version = "20-20260616-01";
       const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://github.com/root-project/llvm-project",
           tag: nix.thunk(() => nix.str`ROOT-llvm${version}`),
           hash: "sha256-WRgM1vuK2vQ5CC/QkKnLtq6d61rfo1bCV9fIxPYWKiU=",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DC_INCLUDE_DIRS=${nix.sel(apple_sdk, "sdkroot")}/usr/include`),
       ] : nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "cc", "libc"), null)), nix.thunk(() => nix.str`-DC_INCLUDE_DIRS=${nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(stdenv, "cc", "libc")))}/include`)))));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         version,
         src,

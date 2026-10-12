@@ -25,19 +25,19 @@ export default nix.thunk(() => (() => {
   const ntpIP = "192.0.2.1";
   const dnsIP = "127.0.0.1";
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     name: "systemd-timesyncd-nscd-dnssec",
     nodes: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       machine: nix.lambda((args) => (() => {
         const $ = nix.formals(args, formals$1);
         const lib = nix.arg($, "lib");
         return {
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             tinydns: nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               enable: true,
               ip: dnsIP,
               data: nix.thunk(() => nix.str`.ntp:${dnsIP}
@@ -45,31 +45,31 @@ export default nix.thunk(() => (() => {
 `),
             })),
             resolved: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$3,
-                Resolve: nix.thunk(() => ({ __proto__: pos$2, DNSSEC: true })),
+                [nix.POS]: pos$3,
+                Resolve: nix.thunk(() => ({ [nix.POS]: pos$2, DNSSEC: true })),
               })),
             })),
             timesyncd: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), true)),
               servers: nix.thunk(() => [ntpHostname]),
               settings: nix.thunk(() => ({
-                __proto__: pos$6,
-                Time: nix.thunk(() => ({ __proto__: pos$5, FallbackNTP: ntpHostname })),
+                [nix.POS]: pos$6,
+                Time: nix.thunk(() => ({ [nix.POS]: pos$5, FallbackNTP: ntpHostname })),
               })),
             })),
           })),
-          networking: nix.thunk(() => ({ __proto__: pos$9, nameservers: nix.thunk(() => [dnsIP]) })),
+          networking: nix.thunk(() => ({ [nix.POS]: pos$9, nameservers: nix.thunk(() => [dnsIP]) })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             services: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               "systemd-timesyncd": nix.thunk(() => ({
-                __proto__: pos$11,
-                environment: nix.thunk(() => ({ __proto__: pos$10, SYSTEMD_LOG_LEVEL: "debug" })),
+                [nix.POS]: pos$11,
+                environment: nix.thunk(() => ({ [nix.POS]: pos$10, SYSTEMD_LOG_LEVEL: "debug" })),
               })),
             })),
           })),

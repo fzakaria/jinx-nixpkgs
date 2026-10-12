@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const lua_language_server = nix.arg($, "lua-language-server");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "lua-language-server",
       version: "3.19.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "luals",
           repo: "lua-language-server",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [ninja, makeWrapper]),
       buildInputs: nix.thunk(() => nix.concat([fmt, libbfd, libunwind], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [rsync])))),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_LDFLAGS: "-lfmt" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-lfmt" })),
       postPatch: nix.thunk(() => nix.add("# filewatch tests are failing on darwin\n# this feature is not used in lua-language-server\nsubstituteInPlace 3rd/bee.lua/test/test.lua \\\n  --replace-fail 'require \"test_filewatch\"' \"\"\n\n# use nixpkgs fmt library\nfor d in 3rd/bee.lua 3rd/luamake/bee.lua\ndo\n  rm -r $d/3rd/fmt/*\n  touch $d/3rd/fmt/format.cc\n  substituteInPlace $d/bee/nonstd/format.h $d/bee/nonstd/print.h \\\n    --replace-fail \"include <3rd/fmt/fmt\" \"include <fmt\"\ndone\n\n# flaky tests on linux\n# https://github.com/LuaLS/lua-language-server/issues/2926\nsubstituteInPlace test/tclient/init.lua \\\n  --replace-fail \"require 'tclient.tests.load-relative-library'\" \"\"\n\npushd 3rd/luamake\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.add("sed -i compile/ninja/macos.ninja \\\n  -e '/c++/s,$cc,clang++,' \\\n  -e '/test.lua/s,= .*,= true,' \\\n  -e '/ldl/s,$cc,clang++,'\nsed -i scripts/compiler/gcc.lua \\\n  -e '/cxx_/s,$cc,clang++,'\n", "substituteInPlace compile/ninja/macos.ninja \\\n  --replace-fail \"ditto\" \"rsync -a\"\n\nsubstituteInPlace scripts/writer.lua \\\n  --replace-fail \"ditto\" \"rsync -a\"\n"))))),
       ninjaFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`-fcompile/ninja/${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "macos" : "linux")}.ninja`),
@@ -50,10 +50,10 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           smoke: nix.thunk(() => nix.app(runCommand, "lua-language-server-smoke-test", nix.thunk(() => ({})), nix.thunk(() => nix.str`export XDG_CACHE_HOME=$(mktemp -d)
 
 INIT_REQUEST='{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"processId":null,"rootUri":"file:///tmp","workspaceFolders":[{"uri":"file:///tmp","name":"test"}],"capabilities":{}}}'
@@ -72,7 +72,7 @@ touch $out
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Language server that offers Lua language support",
         homepage: "https://github.com/luals/lua-language-server",
         changelog: nix.thunk(() => nix.str`https://github.com/LuaLS/lua-language-server/blob/${nix.sel(finalAttrs, "version")}/changelog.md`),

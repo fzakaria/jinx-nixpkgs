@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const cmdliner = nix.arg($, "cmdliner");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ca-certs-nss",
       version: "3.129-1",
       minimalOCamlVersion: "4.13",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/ca-certs-nss/releases/download/v${nix.sel(finalAttrs, "version")}/ca-certs-nss-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-ann6i152EHfGzYgft4syqB8lKk7fnHwAJwe6a7XnRFk=",
         })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "X.509 trust anchors extracted from Mozilla's NSS",
         homepage: "https://github.com/mirage/ca-certs-nss",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const ounit = nix.arg($, "ounit");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mlbdd",
       version: "0.7.3",
       minimalOCamlVersion: "4.04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "arlencox",
           repo: "mlbdd",
           rev: "v0.7.3",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [ounit]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/arlencox/mlbdd",
         description: "Not-quite-so-simple Binary Decision Diagrams implementation for OCaml",
         maintainers: nix.thunk(() => (() => {

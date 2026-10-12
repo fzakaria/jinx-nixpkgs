@@ -30,19 +30,19 @@ export default nix.lambda((args) => (() => {
   const utils = nix.arg($, "utils");
   const cfg = nix.thunk(() => nix.sel(config, "services", "scx"));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         scx: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), null), {
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             description: "Whether to enable SCX service, a daemon to run schedulers from userspace.\n\n::: {.note}\nThis service requires a kernel with the Sched-ext feature.\nGenerally, kernel version 6.12 and later are supported.\n:::\n",
           })),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
               default: nix.thunk(() => nix.sel(pkgs, "scx", "full")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.scx.full")),
@@ -50,14 +50,14 @@ export default nix.lambda((args) => (() => {
               description: "`scx` package to use. `scx.full`, which includes all schedulers, is the default.\nYou may choose a minimal package, such as `pkgs.scx.rustscheds`.\n\n::: {.note}\nOverriding this does not change the default scheduler; you should set `services.scx.scheduler` for it.\n:::\n",
             })))),
           scheduler: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => nix.sel(cfg, "package", "schedulers")))),
               default: "scx_rustland",
               example: "scx_bpfland",
               description: "Which scheduler to use. See [SCX documentation](https://github.com/sched-ext/scx/tree/main/scheds)\nfor details on each scheduler and guidance on selecting the most suitable one.\n",
             })))),
           extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["--verbose", "--slice-us 5000"]),
@@ -67,30 +67,30 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         environment: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             scx: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "SCX scheduler daemon",
-              unitConfig: nix.thunk(() => ({ __proto__: pos$9, ConditionPathIsDirectory: "/sys/kernel/sched_ext" })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$9, ConditionPathIsDirectory: "/sys/kernel/sched_ext" })),
               startLimitIntervalSec: 30n,
               startLimitBurst: 2n,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 Type: "simple",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "runtimeShell")} -c 'exec ${nix.sel(cfg, "package")}/bin/\${SCX_SCHEDULER_OVERRIDE:-$SCX_SCHEDULER} \${SCX_FLAGS_OVERRIDE:-$SCX_FLAGS}'
 `),
                 Restart: "on-failure",
               })),
               environment: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 SCX_SCHEDULER: nix.thunk(() => nix.sel(cfg, "scheduler")),
                 SCX_FLAGS: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.sel(cfg, "extraArgs")))),
               })),
@@ -100,7 +100,7 @@ export default nix.lambda((args) => (() => {
         })),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             assertion: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "kernel", "version")), "6.12")),
             message: "SCX is only supported on kernel version >= 6.12.",
           })),
@@ -109,7 +109,7 @@ export default nix.lambda((args) => (() => {
     meta: nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "scx", "full", "meta"));
       return {
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
       buildDocsInSandbox: false,
     };

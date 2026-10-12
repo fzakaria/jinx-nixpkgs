@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zsh-history-substring-search",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zsh-users",
           repo: "zsh-history-substring-search",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       installPhase: "install -D zsh-history-substring-search.plugin.zsh \\\n  \"$out/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh\"\ninstall -D zsh-history-substring-search.zsh \\\n  \"$out/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh\"\nln -s $out/share/zsh/plugins/zsh-history-substring-search \\\n  $out/share/zsh-history-substring-search\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fish shell history-substring-search for Zsh",
         homepage: "https://github.com/zsh-users/zsh-history-substring-search",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

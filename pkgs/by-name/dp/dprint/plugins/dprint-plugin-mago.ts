@@ -10,11 +10,11 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const mkDprintPlugin = nix.arg($, "mkDprintPlugin");
   return nix.app(mkDprintPlugin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       description: "Mago (PHP) wrapper plugin",
       hash: "sha256-QnQ82e+AGqVCJQiMqYOxGl9vDwnqTCu6aFRwOK39QTM=",
       initConfig: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         configExcludes: [],
         configKey: "mago",
         fileExtensions: nix.thunk(() => ["php"]),

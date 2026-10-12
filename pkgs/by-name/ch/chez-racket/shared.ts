@@ -22,10 +22,10 @@ export default (args) => nix.lambda((args_1) => (() => {
   const zlib = nix.arg($, "zlib");
   const lz4 = nix.arg($, "lz4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(args, {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "8.3-unstable-2021-12-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "racket",
           repo: "ChezScheme",
           rev: "8846c96b08561f05a937d5ecfe4edc96cc99be39",
@@ -40,11 +40,11 @@ export LZ4="$(find ${nix.sel(lz4, "lib")}/lib -type f | sort | head -n1)"
       buildInputs: nix.thunk(() => [libiconv, libx11, lz4, ncurses, zlib]),
       enableParallelBuilding: true,
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), "-Wno-error=format-truncation")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fork of Chez Scheme for Racket",
         homepage: "https://github.com/racket/ChezScheme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libao = nix.arg($, "libao");
   const libmpcdec = nix.arg($, "libmpcdec");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mpc123",
       version: "0.2.4",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "salsa.debian.org",
           owner: "debian",
           repo: "mpc123",
@@ -32,10 +32,10 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [gettext]),
       buildInputs: nix.thunk(() => [gettext, libao, libmpcdec]),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`)]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fcommon" })),
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/bin\"\ncp -v mpc123 \"$out/bin\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Musepack (.mpc) audio player",
         homepage: "https://github.com/bucciarati/mpc123",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -30,23 +30,23 @@ export default nix.lambda((args) => (() => {
   const makeSetupHook = nix.arg($, "makeSetupHook");
   const buildTests = nix.argOr($, "buildTests", () => nix.eq(nix.sel(stdenv, "hostPlatform", "parsed", "cpu", "bits"), nix.sel(stdenv, "buildPlatform", "parsed", "cpu", "bits")));
   const setupHook = nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "pybind11-setup-hook",
       substitutions: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         pythonInterpreter: nix.thunk(() => nix.sel(python, "pythonOnBuildForHost", "interpreter")),
         pythonIncludeDir: nix.thunk(() => nix.str`${python}/include/${nix.sel(python, "libPrefix")}`),
         pythonSitePackages: nix.thunk(() => nix.str`${python}/${nix.sel(python, "sitePackages")}`),
       })),
-      meta: nix.thunk(() => ({ __proto__: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
     })), nix.path(here, "./setup-hook.sh")));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "pybind11",
       version: "3.0.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "pybind",
           repo: "pybind11",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -72,12 +72,12 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`ln -s $out/${nix.sel(python, "sitePackages")}/pybind11/{include,share} $out/
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
-        "scikit-build-core-no-tests": nix.thunk(() => nix.app(nix.sel(scikit_build_core, "overridePythonAttrs"), nix.thunk(() => ({ __proto__: pos$5, doCheck: false })))),
+        [nix.POS]: pos$6,
+        "scikit-build-core-no-tests": nix.thunk(() => nix.app(nix.sel(scikit_build_core, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$5, doCheck: false })))),
       })),
       hardeningDisable: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), "fortify")),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://github.com/pybind/pybind11",
         changelog: nix.thunk(() => nix.str`https://github.com/pybind/pybind11/blob/${nix.sel(finalAttrs, "src", "tag")}/docs/changelog.md`),
         description: "Seamless operability between C++11 and Python",

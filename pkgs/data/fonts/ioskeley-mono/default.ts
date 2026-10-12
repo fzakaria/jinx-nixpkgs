@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
       return nix.str`ioskeley-mono${vPart}${nfPart}`;
     })());
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: pname,
         version: version,
         src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://github.com/ahatem/IoskeleyMono/releases/download/${version}/${fileName}`),
             stripRoot: false,
             hash: hash,
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         sourceRoot: nix.thunk(() => (nix.asBool(isNF) ? nix.str`source/${width}` : nix.str`source/${width}/${hintDir}`)),
         nativeBuildInputs: nix.thunk(() => [installFonts]),
         meta: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           homepage: "https://github.com/ahatem/IoskeleyMono",
           description: nix.thunk(() => nix.str`Iosevka configuration mimicking Berkeley Mono, ${width} width${(nix.asBool(!nix.eq(variant, "")) ? nix.str`, ${variant} variant` : "")}${(nix.asBool(isNF) ? ", Nerd Font patched" : "")}${(nix.asBool(!nix.asBool(hinted)) ? ", unhinted" : "")}`),
           license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
@@ -62,35 +62,35 @@ export default nix.lambda((args) => (() => {
       })));
   })(), formals$2);
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     standard: nix.thunk(() => nix.app(mkFont, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         hash: "sha256-1WGAPwbfSG3fpssUTnHCTVI8eKNHSHWHdfdq4JUQ9ls=",
       })))),
     term: nix.thunk(() => nix.app(mkFont, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         variant: "Term",
         hash: "sha256-Ei6cRAMC9C62X8coHsTMvfPZfloiUp+A4HeT89df3pk=",
       })))),
     "term-nf": nix.thunk(() => nix.app(mkFont, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         variant: "Term",
         isNF: true,
         hash: "sha256-joAhNADErBErDqTrNelJ0ulGZCN/OUZ1SMYyU++7l6U=",
       })))),
     nl: nix.thunk(() => nix.app(mkFont, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         variant: "NL",
         hash: "sha256-3zqO7W23Zcdz7L8cO0A8oAH0PQqYUNwKiKnAmN/Ja8s=",
       })))),
     "nl-nf": nix.thunk(() => nix.app(mkFont, nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         variant: "NL",
         isNF: true,
         hash: "sha256-3eTVqMlLx/AF3aoTbQ68Qzhr5nQzWIKt4HWZZsH2yE0=",
       })))),
     nf: nix.thunk(() => nix.app(mkFont, nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         isNF: true,
         hash: "sha256-b0mqhLeDT+uYPYiOKB+cxc5M1TtFkICKAmlcmW3IjDg=",
       })))),

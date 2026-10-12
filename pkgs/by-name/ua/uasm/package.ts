@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const uasm = nix.arg($, "uasm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "uasm",
       version: "2.57",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Terraspace",
           repo: "UASM",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}r`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       makefile: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "Makefile-OSX-Clang-64.mak" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows")) ? "Makefile-DOS-GCC.mak" : "Makefile-Linux-GCC-64.mak"))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-std=c99",
             "-Wno-incompatible-pointer-types",
@@ -55,11 +55,11 @@ substituteInPlace Makefile-Linux-GCC-64.mak \\
   --replace-fail "CC = gcc" "CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: uasm,
               command: "uasm -h",
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -67,7 +67,7 @@ substituteInPlace Makefile-Linux-GCC-64.mak \\
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://www.terraspace.co.uk/uasm.html",
         description: "Free MASM-compatible assembler based on JWasm",
         mainProgram: "uasm",

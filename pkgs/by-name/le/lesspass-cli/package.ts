@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pexpect = nix.thunk(() => nix.attr(from, "pexpect"));
   const repo = "lesspass";
   return nix.app(buildPythonApplication, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lesspass-cli",
       version: "9.1.9",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: repo,
           repo: repo,
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "mv lesspass lesspass.hidden  # ensure we're testing against *installed* package\n\n# some tests are designed to run against code in the source directory - adapt to run against\n# *installed* code\nsubstituteInPlace tests/test_functional.py tests/test_interaction.py \\\n  --replace-fail \"lesspass/core.py\" \"-m lesspass.core\"\n",
       pythonImportsCheck: nix.thunk(() => ["lesspass"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Stateless password manager",
         mainProgram: "lesspass",
         homepage: "https://lesspass.com",

@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const setuptools_scm = nix.arg($, "setuptools-scm");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fast-histogram",
       version: "0.14",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "astrofrog",
           repo: "fast-histogram",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["fast_histogram"]),
       disabledTests: nix.thunk(() => ["test_1d_compare_with_numpy"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fast 1D and 2D histogram functions in Python",
         homepage: "https://github.com/astrofrog/fast-histogram",
         changelog: nix.thunk(() => nix.str`https://github.com/astrofrog/fast-histogram/blob/v${nix.sel(finalAttrs, "version")}/CHANGES.md`),

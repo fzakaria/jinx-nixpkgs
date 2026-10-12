@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const pname = "dockutil";
   const version = "3.1.3";
   const meta = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     description: "Tool for managing dock items",
     homepage: "https://github.com/kcrawford/dockutil",
     license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -39,12 +39,12 @@ export default nix.lambda((args) => (() => {
     platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
   }));
   const buildFromSource = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       meta: meta,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "kcrawford",
           repo: "dockutil",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -59,11 +59,11 @@ runHook postInstall
 `),
     })));
   const installBinary = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           url: nix.thunk(() => nix.str`https://github.com/kcrawford/dockutil/releases/download/${nix.sel(finalAttrs, "version")}/dockutil-${nix.sel(finalAttrs, "version")}.pkg`),
           hash: "sha256-9g24Jz/oDXxIJFiL7bU4pTh2dcORftsAENq59S0/JYI=",
         })))),
@@ -74,7 +74,7 @@ runHook postInstall
       unpackPhase: "7z x $src\nbsdtar -xf Payload~\n",
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ninstall -Dm755 usr/local/bin/dockutil -t $out/bin\nrunHook postInstall\n",
       meta: nix.thunk(() => nix.update(meta, {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
       })),
     })));

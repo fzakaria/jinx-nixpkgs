@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const lrzsz = nix.arg($, "lrzsz");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "moserial",
       version: "3.0.21",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           owner: "GNOME",
           repo: "moserial",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
 )
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Clean, friendly gtk-based serial terminal for the gnome desktop",
         homepage: "https://gitlab.gnome.org/GNOME/moserial",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

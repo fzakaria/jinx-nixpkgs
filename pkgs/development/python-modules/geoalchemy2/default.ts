@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.18.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "geoalchemy",
           repo: "geoalchemy2",
           tag: version,
@@ -51,9 +51,9 @@ export default nix.lambda((args) => (() => {
         "tests/test_pickle.py",
       ]);
       const pythonImportsCheck = nix.thunk(() => ["geoalchemy2"]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, shapely: nix.thunk(() => [shapely]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, shapely: nix.thunk(() => [shapely]) }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Toolkit for working with spatial databases",
         homepage: "https://geoalchemy-2.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/geoalchemy/geoalchemy2/releases/tag/${nix.sel(src, "tag")}`),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

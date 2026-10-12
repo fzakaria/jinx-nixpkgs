@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vmlinux-to-elf",
       version: "0-unstable-2024-07-20",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "marin-m",
           repo: "vmlinux-to-elf",
           rev: "da14e789596d493f305688e221e9e34ebf63cbb8",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/marin-m/vmlinux-to-elf",
         description: "Converts a vmlinux/vmlinuz/bzImage/zImage kernel image to an ELF file",
         mainProgram: "vmlinux-to-elf",

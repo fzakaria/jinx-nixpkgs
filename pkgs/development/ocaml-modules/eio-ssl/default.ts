@@ -17,22 +17,22 @@ export default nix.lambda((args) => (() => {
   const eio = nix.arg($, "eio");
   const ssl = nix.arg($, "ssl");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "eio-ssl",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/anmonteiro/eio-ssl/releases/download/${nix.sel(finalAttrs, "version")}/eio-ssl-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-m4CiUQtXVSMfLthbDsAftpiOsr24I5IGiU1vv7Rz8go=",
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(eio, "version")), "1.4")), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/anmonteiro/eio-ssl/commit/8cf6bccd2c272445d1dc93eb1d65e965f95646d4.patch",
             hash: "sha256-NnwWDhr5H70EFVK+1/qbIA+srJHjxSvtWvakBXnrZMI=",
           })))))),
       propagatedBuildInputs: nix.thunk(() => [eio, ssl]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/anmonteiro/eio-ssl",
         description: "OpenSSL binding to EIO",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

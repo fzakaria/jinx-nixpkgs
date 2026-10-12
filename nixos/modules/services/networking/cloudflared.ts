@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "cloudflared"));
   const certificateFile = nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       type: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
         return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -73,9 +73,9 @@ export default nix.lambda((args) => (() => {
       default: null,
     }))));
   const originRequest = nix.thunk(() => ({
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     connectTimeout: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         type: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
           return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
         description: "Timeout for establishing a new TCP connection to your origin server. This excludes the time taken to establish TLS, which is controlled by [tlsTimeout](https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/configuration/local-management/ingress/#tlstimeout).\n",
       })))),
     tlsTimeout: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         type: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
           return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -95,7 +95,7 @@ export default nix.lambda((args) => (() => {
         description: "Timeout for completing a TLS handshake to your origin server, if you have chosen to connect Tunnel to an HTTPS server.\n",
       })))),
     tcpKeepAlive: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         type: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
           return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -105,7 +105,7 @@ export default nix.lambda((args) => (() => {
         description: "The timeout after which a TCP keepalive packet is sent on a connection between Tunnel and the origin server.\n",
       })))),
     noHappyEyeballs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         type: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
           return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "bool")));
@@ -115,7 +115,7 @@ export default nix.lambda((args) => (() => {
         description: "Disable the “happy eyeballs” algorithm for IPv4/IPv6 fallback if your local network has misconfigured one of the protocols.\n",
       })))),
     keepAliveConnections: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         type: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
           return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "int")));
@@ -125,7 +125,7 @@ export default nix.lambda((args) => (() => {
         description: "Maximum number of idle keepalive connections between Tunnel and your origin. This does not restrict the total number of concurrent connections.\n",
       })))),
     keepAliveTimeout: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         type: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
           return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -135,7 +135,7 @@ export default nix.lambda((args) => (() => {
         description: "Timeout after which an idle keepalive connection can be discarded.\n",
       })))),
     httpHostHeader: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         type: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
           return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -145,7 +145,7 @@ export default nix.lambda((args) => (() => {
         description: "Sets the HTTP `Host` header on requests sent to the local service.\n",
       })))),
     originServerName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         type: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
           return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -155,7 +155,7 @@ export default nix.lambda((args) => (() => {
         description: "Hostname that `cloudflared` should expect from your origin server certificate.\n",
       })))),
     caPool: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         type: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
           return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "str")), nix.thunk(() => nix.lookup(w, "path")))));
@@ -165,7 +165,7 @@ export default nix.lambda((args) => (() => {
         description: "Path to the certificate authority (CA) for the certificate of your origin. This option should be used only if your certificate is not signed by Cloudflare.\n",
       })))),
     noTLSVerify: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         type: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
           return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "bool")));
@@ -175,7 +175,7 @@ export default nix.lambda((args) => (() => {
         description: "Disables TLS verification of the certificate presented by your origin. Will allow any certificate from the origin to be accepted.\n",
       })))),
     disableChunkedEncoding: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         type: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
           return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "bool")));
@@ -185,7 +185,7 @@ export default nix.lambda((args) => (() => {
         description: "Disables chunked transfer encoding. Useful if you are running a WSGI server.\n",
       })))),
     proxyAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         type: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
           return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -195,7 +195,7 @@ export default nix.lambda((args) => (() => {
         description: "`cloudflared` starts a proxy server to translate HTTP traffic into TCP when proxying, for example, SSH or RDP. This configures the listen address for that proxy.\n",
       })))),
     proxyPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         type: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
           return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "int")));
@@ -205,7 +205,7 @@ export default nix.lambda((args) => (() => {
         description: "`cloudflared` starts a proxy server to translate HTTP traffic into TCP when proxying, for example, SSH or RDP. This configures the listen port for that proxy. If set to zero, an unused port will randomly be chosen.\n",
       })))),
     proxyType: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         type: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
           return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "enum"), nix.thunk(() => ["", "socks"]))));
@@ -216,41 +216,41 @@ export default nix.lambda((args) => (() => {
       })))),
   }));
   return {
-    __proto__: pos$51,
+    [nix.POS]: pos$51,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "cloudflared", "user"]), "Cloudflared now uses a dynamic user, and this option no longer has any effect.\n\nIf the user is still necessary, please define it manually using users.users.cloudflared.\n")),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "cloudflared", "group"]), "Cloudflared now uses a dynamic user, and this option no longer has any effect.\n\nIf the group is still necessary, please define it manually using users.groups.cloudflared.\n")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$38,
+      [nix.POS]: pos$38,
       services: nix.thunk(() => ({
-        __proto__: pos$37,
+        [nix.POS]: pos$37,
         cloudflared: nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           certificateFile: certificateFile,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Cloudflare Tunnel client daemon (formerly Argo Tunnel)")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "cloudflared", nix.thunk(() => ({})))),
           tunnels: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               description: "Cloudflare tunnels.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.lambda((args_1) => (() => {
                     const $_1 = nix.formals(args_1, formals$2);
                     const name = nix.arg($_1, "name");
                     return {
-                      __proto__: pos$30,
+                      [nix.POS]: pos$30,
                       options: nix.thunk(() => ({
-                        __proto__: pos$29,
+                        [nix.POS]: pos$29,
                         certificateFile: certificateFile,
                         originRequest: originRequest,
                         credentialsFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$17,
+                            [nix.POS]: pos$17,
                             type: nix.thunk(() => nix.sel(lib, "types", "path")),
                             description: "Credential file.\n\nSee [Credentials file](https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/install-and-setup/tunnel-useful-terms/#credentials-file).\n",
                           })))),
                         "warp-routing": nix.thunk(() => ({
-                          __proto__: pos$19,
+                          [nix.POS]: pos$19,
                           enabled: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$18,
+                              [nix.POS]: pos$18,
                               type: nix.thunk(() => (() => {
                                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "bool")));
@@ -260,39 +260,39 @@ export default nix.lambda((args) => (() => {
                             })))),
                         })),
                         edgeIPVersion: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$20,
+                            [nix.POS]: pos$20,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["auto", "4", "6"]))),
                             default: "4",
                             description: "Specifies the IP address version (IPv4 or IPv6) used to establish a connection between `cloudflared` and the Cloudflare global network.\n\nThe value `auto` relies on the host operating system to determine which IP version to select. The first IP version returned from the DNS resolution of the region lookup will be used as the primary set. In dual IPv6 and IPv4 network setups, `cloudflared` will separate the IP versions into two address sets that will be used to fallback in connectivity failure scenarios.\n\nSee [Tunnel run parameters](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/configure-tunnels/cloudflared-parameters/run-parameters/#edge-ip-version).\n",
                             example: "auto",
                           })))),
                         protocol: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$21,
+                            [nix.POS]: pos$21,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["auto", "http2", "quic"]))),
                             default: "auto",
                             description: "Specifies the protocol used to establish a connection between `cloudflared` and the Cloudflare global network.\n\nThe value `auto` lets `cloudflared` choose the protocol (currently QUIC, falling back to HTTP/2).\nSet to `http2` to work around QUIC/UDP connectivity issues, such as restrictive firewalls, broken UDP path MTU, or QUIC interop bugs.\nSet to `quic` to force QUIC.\n\nSee [Tunnel run parameters](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/configure-tunnels/cloudflared-parameters/run-parameters/#protocol).\n",
                             example: "http2",
                           })))),
                         default: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$22,
+                            [nix.POS]: pos$22,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             description: "Catch-all service if no ingress matches.\n\nSee `service`.\n",
                             example: "http_status:404",
                           })))),
                         ingress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$28,
+                            [nix.POS]: pos$28,
                             type: nix.thunk(() => (() => {
                               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                               return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "str")), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.lambda((args_2) => (() => {
                                       const $_2 = nix.formals(args_2, formals$3);
                                       const hostname = nix.arg($_2, "hostname");
                                       return {
-                                        __proto__: pos$26,
+                                        [nix.POS]: pos$26,
                                         options: nix.thunk(() => ({
-                                          __proto__: pos$25,
+                                          [nix.POS]: pos$25,
                                           originRequest: originRequest,
                                           service: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                              __proto__: pos$23,
+                                              [nix.POS]: pos$23,
                                               type: nix.thunk(() => (() => {
                                                 const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), w);
                                                 return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -302,7 +302,7 @@ export default nix.lambda((args) => (() => {
                                               example: "http://localhost:80, tcp://localhost:8000, unix:/home/production/echo.sock, hello_world or http_status:404",
                                             })))),
                                           path: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                              __proto__: pos$24,
+                                              [nix.POS]: pos$24,
                                               type: nix.thunk(() => (() => {
                                                 const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), w);
                                                 return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -318,7 +318,7 @@ export default nix.lambda((args) => (() => {
                             default: nix.thunk(() => ({})),
                             description: "Ingress rules.\n\nSee [Ingress rules](https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/configuration/local-management/ingress/).\n",
                             example: nix.thunk(() => ({
-                              __proto__: pos$27,
+                              [nix.POS]: pos$27,
                               "*.domain.com": "http://localhost:80",
                               "*.anotherone.com": "http://localhost:80",
                             })),
@@ -328,13 +328,13 @@ export default nix.lambda((args) => (() => {
                   })(), formals$2))))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 "00000000-0000-0000-0000-000000000000": nix.thunk(() => ({
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   credentialsFile: "/tmp/test",
                   ingress: nix.thunk(() => ({
-                    __proto__: pos$32,
-                    "*.domain1.com": nix.thunk(() => ({ __proto__: pos$31, service: "http://localhost:80" })),
+                    [nix.POS]: pos$32,
+                    "*.domain1.com": nix.thunk(() => ({ [nix.POS]: pos$31, service: "http://localhost:80" })),
                   })),
                   default: "http_status:404",
                 })),
@@ -344,15 +344,15 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$49,
+        [nix.POS]: pos$49,
         systemd: nix.thunk(() => ({
-          __proto__: pos$48,
+          [nix.POS]: pos$48,
           targets: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (name) => (tunnel) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`cloudflared-tunnel-${name}`), nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 description: nix.thunk(() => nix.str`Cloudflare tunnel '${name}' target`),
                 requires: nix.thunk(() => [nix.thunk(() => nix.str`cloudflared-tunnel-${name}.service`)]),
                 after: nix.thunk(() => [nix.thunk(() => nix.str`cloudflared-tunnel-${name}.service`)]),
-                unitConfig: nix.thunk(() => ({ __proto__: pos$39, StopWhenUnneeded: true })),
+                unitConfig: nix.thunk(() => ({ [nix.POS]: pos$39, StopWhenUnneeded: true })),
               }))), nix.thunk(() => nix.sel(config, "services", "cloudflared", "tunnels")))),
           services: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (name) => (tunnel) => (() => {
               const filterConfig = nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "filterAttrsRecursive"), (_) => (v) => !nix.asBool(nix.builtins.elem(v, nix.thunk(() => [null, [], nix.thunk(() => ({}))])))));
@@ -361,28 +361,28 @@ export default nix.lambda((args) => (() => {
               const ingressesSet = nix.thunk(() => nix.app(filterIngressSet, nix.thunk(() => nix.sel(tunnel, "ingress"))));
               const ingressesStr = nix.thunk(() => nix.app(filterIngressStr, nix.thunk(() => nix.sel(tunnel, "ingress"))));
               const fullConfig = nix.thunk(() => nix.app(filterConfig, nix.thunk(() => ({
-                  __proto__: pos$44,
+                  [nix.POS]: pos$44,
                   tunnel: name,
                   "credentials-file": nix.thunk(() => nix.str`/run/credentials/cloudflared-tunnel-${name}.service/credentials.json`),
                   "warp-routing": nix.thunk(() => nix.app(filterConfig, nix.thunk(() => nix.sel(tunnel, "warp-routing")))),
                   originRequest: nix.thunk(() => nix.app(filterConfig, nix.thunk(() => nix.sel(tunnel, "originRequest")))),
-                  ingress: nix.thunk(() => nix.concat(nix.builtins.map((key) => nix.update({ __proto__: pos$41, hostname: key }, nix.app(nix.sel(lib, "getAttr"), key, nix.thunk(() => nix.app(filterConfig, nix.thunk(() => nix.app(filterConfig, ingressesSet)))))), nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), ingressesSet))), nix.concat(nix.builtins.map((key) => ({
-                      __proto__: pos$42,
+                  ingress: nix.thunk(() => nix.concat(nix.builtins.map((key) => nix.update({ [nix.POS]: pos$41, hostname: key }, nix.app(nix.sel(lib, "getAttr"), key, nix.thunk(() => nix.app(filterConfig, nix.thunk(() => nix.app(filterConfig, ingressesSet)))))), nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), ingressesSet))), nix.concat(nix.builtins.map((key) => ({
+                      [nix.POS]: pos$42,
                       hostname: key,
                       service: nix.thunk(() => nix.app(nix.sel(lib, "getAttr"), key, ingressesStr)),
                     }), nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), ingressesStr))), [
-                    nix.thunk(() => ({ __proto__: pos$43, service: nix.thunk(() => nix.sel(tunnel, "default")) })),
+                    nix.thunk(() => ({ [nix.POS]: pos$43, service: nix.thunk(() => nix.sel(tunnel, "default")) })),
                   ]))),
                 }))));
               const mkConfigFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "cloudflared.yml", nix.thunk(() => nix.builtins.toJSON(fullConfig))));
               const certFile = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(tunnel, "certificateFile"), null)) ? nix.sel(tunnel, "certificateFile") : nix.sel(cfg, "certificateFile")));
               return nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`cloudflared-tunnel-${name}`), nix.thunk(() => ({
-                  __proto__: pos$47,
+                  [nix.POS]: pos$47,
                   after: nix.thunk(() => ["network.target", "network-online.target"]),
                   wants: nix.thunk(() => ["network.target", "network-online.target"]),
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$45,
+                    [nix.POS]: pos$45,
                     RuntimeDirectory: nix.thunk(() => nix.str`cloudflared-tunnel-${name}`),
                     RuntimeDirectoryMode: "0400",
                     LoadCredential: nix.thunk(() => nix.concat([
@@ -393,7 +393,7 @@ export default nix.lambda((args) => (() => {
                     DynamicUser: true,
                   })),
                   environment: nix.thunk(() => ({
-                    __proto__: pos$46,
+                    [nix.POS]: pos$46,
                     TUNNEL_ORIGIN_CERT: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(certFile, null)), "%d/cert.pem")),
                     TUNNEL_EDGE_IP_VERSION: nix.thunk(() => nix.sel(tunnel, "edgeIPVersion")),
                     TUNNEL_TRANSPORT_PROTOCOL: nix.thunk(() => nix.sel(tunnel, "protocol")),
@@ -403,7 +403,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$50,
+      [nix.POS]: pos$50,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

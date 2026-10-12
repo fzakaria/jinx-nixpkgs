@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fira-sans",
       version: "4.301",
       outputs: nix.thunk(() => ["out", "webfont"]),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://carrois.com/downloads/Fira/Download_Folder_FiraSans_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.zip`),
           hash: "sha256-WBt3oqPK7ACqMhilYkyFx9Ek2ugwdCDFZN+8HLRnGRs",
           stripRoot: false,
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "rm -r \"__MACOSX\"\n",
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://carrois.com/fira/",
         description: "Sans-serif font for Firefox OS",
         longDescription: "Fira Sans is a sans-serif font designed by Erik Spiekermann,\nRalph du Carrois, Anja Meiners and Botio Nikoltchev of Carrois\nType Design for Mozilla Firefox OS.  It is closely related to\nSpiekermann's FF Meta typeface.  Available in Two, Four, Eight,\nHair, Thin, Ultra Light, Extra Light, Light, Book, Regular,\nMedium, Semi Bold, Bold, Extra Bold, Heavy weights with\ncorresponding italic versions.\n",

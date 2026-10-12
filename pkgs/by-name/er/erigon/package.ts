@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "erigon",
       version: "3.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "erigontech",
           repo: "erigon",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,9 +33,9 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["cmd/erigon", "cmd/evm", "cmd/rpcdaemon", "cmd/rlpdump"]),
       tags: nix.thunk(() => ["nosqlite", "noboltdb", "nosilkworm"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex", "^v?(\\d+\\.\\d+\\.\\d+)$"]),
           })))),
       })),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/erigon`),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/erigontech/erigon/",
         description: "Erigon is an implementation of Ethereum (execution layer with embeddable consensus layer), on the efficiency frontier.",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

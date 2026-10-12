@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libpng = nix.arg($, "libpng");
   const giflib = nix.arg($, "giflib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "meh",
       version: "0.3-unstable-2018-10-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jhawthorn",
           repo: "meh",
           rev: "69f653a1f16d11b12e5b600e808a740898f3223e",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libxext, libx11, libjpeg, libpng, giflib]),
       patches: nix.thunk(() => [nix.path(here, "./gif.patch")]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Minimal image viewer using raw XLib",
         homepage: "https://www.johnhawthorn.com/meh/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

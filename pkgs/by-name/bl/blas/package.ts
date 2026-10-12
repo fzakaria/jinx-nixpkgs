@@ -173,20 +173,20 @@ export default nix.lambda((args) => (() => {
   const version = "3";
   const canonicalExtension = nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))))) ? nix.str`${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}.${version}` : nix.selOr(stdenv, () => ".a", "hostPlatform", "extensions", "sharedLibrary")));
   const blasImplementation = nix.thunk(() => nix.app(nix.sel(lib, "getName"), blasProvider));
-  const blasProvider$ = nix.thunk(() => (nix.asBool(nix.eq(blasImplementation, "mkl")) ? nix.force(blasProvider) : nix.app(nix.sel(blasProvider, "override"), nix.thunk(() => ({ __proto__: pos$1, blas64: isILP64 })))));
+  const blasProvider$ = nix.thunk(() => (nix.asBool(nix.eq(blasImplementation, "mkl")) ? nix.force(blasProvider) : nix.app(nix.sel(blasProvider, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, blas64: isILP64 })))));
   nix.assert_((!nix.asBool(isILP64) || nix.asBool((nix.asBool(nix.eq(blasImplementation, "mkl")) || nix.asBool(nix.sel(blasProvider$, "blas64"))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/bl/blas/package.nix:179:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "blas",
       version: version,
       outputs: nix.thunk(() => ["out", "dev"]),
       propagatedNativeBuildInputs: nix.thunk(() => [checkPhaseThreadLimitHook]),
       meta: nix.thunk(() => nix.update(nix.selOr(blasProvider$, () => ({}), "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getName"), blasProvider)} with just the BLAS C and FORTRAN ABI`),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         isILP64: isILP64,
         provider: blasProvider$,
         implementation: blasImplementation,

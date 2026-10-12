@@ -12,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const runCommandLocal = nix.arg($, "runCommandLocal");
   return nix.app(runCommandLocal, "install-shell-files--install-completion-output", nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       outputs: nix.thunk(() => ["out", "bin"]),
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       })),
     })), "echo foo > foo\n\ninstallShellCompletion --bash foo\n\n# assert it didn't go into $out\n[[ ! -f $out/share/bash-completion/completions/foo ]]\n\ncmp foo ${!outputBin:?}/share/bash-completion/completions/foo\n\ntouch $out\n");

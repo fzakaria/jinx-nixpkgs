@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
     const rev = nix.argOr($_1, "rev", () => nix.str`v${version}`);
     const hash = nix.arg($_1, "hash");
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: "sdbus-cpp",
         version: version,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "kistler-group",
             repo: "sdbus-cpp",
             rev: rev,
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version")), "2.0.0")) ? "BUILD_CODE_GEN" : "SDBUSCPP_BUILD_CODEGEN")), true)),
         ]),
         meta: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           homepage: "https://github.com/Kistler-Group/sdbus-cpp",
           changelog: nix.thunk(() => nix.str`https://github.com/Kistler-Group/sdbus-cpp/blob/v${version}/ChangeLog`),
           description: "High-level C++ D-Bus library designed to provide easy-to-use yet powerful API",
@@ -58,14 +58,14 @@ export default nix.lambda((args) => (() => {
       }));
   })(), formals$2);
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     "sdbus-cpp": nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         version: "1.5.0",
         hash: "sha256-oO8QNffwNI245AEPdutOGqxj4qyusZYK3bZWLh2Lcag=",
       })))),
     "sdbus-cpp_2": nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         version: "2.2.1",
         hash: "sha256-uC31StWk3qATPyshX7MkwrxEcBASeIv4e5/jtgzZzMQ=",
       })))),

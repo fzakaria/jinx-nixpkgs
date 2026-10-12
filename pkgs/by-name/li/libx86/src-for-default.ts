@@ -10,6 +10,6 @@ export default nix.thunk(() => (() => {
   const hash = "0j6h6bc02c6qi0q7c1ncraz4d1hkm5936r35rfsp4x1jrc233wav";
   const url = nix.thunk(() => nix.str`http://www.codon.org.uk/~mjg59/libx86/downloads/libx86-${version}.tar.gz`);
   const advertisedUrl = nix.thunk(() => nix.str`http://www.codon.org.uk/~mjg59/libx86/downloads/libx86-${version}.tar.gz`);
-  return { __proto__: pos$1, pname, version, hash, url, advertisedUrl };
+  return { [nix.POS]: pos$1, pname, version, hash, url, advertisedUrl };
 })());
 //# sourceMappingURL=src-for-default.ts.map

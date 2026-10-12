@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "django_haystack",
           version: version,
           hash: "sha256-Eianyc4T4efq2KyD9uh7/vSZbxRu0klx/eeJYRWxxTA=",
@@ -38,12 +38,12 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const buildInputs = nix.thunk(() => [django]);
       const dependencies = nix.thunk(() => [packaging]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, elasticsearch: nix.thunk(() => [elasticsearch]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, elasticsearch: nix.thunk(() => [elasticsearch]) }));
       const doCheck = nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
       const nativeCheckInputs = nix.thunk(() => nix.concat([geopy, pysolr, python_dateutil, requests, whoosh], nix.sel(optional_dependencies, "elasticsearch")));
       const checkPhase = "runHook preCheck\npython test_haystack/run_tests.py\nrunHook postCheck\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Pluggable search for Django",
         homepage: "http://haystacksearch.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/django-haystack/django-haystack/releases/tag/v${version}`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pkgsBuildBuild = nix.arg($, "pkgsBuildBuild");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vim-zellij-navigator",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hiasr",
           repo: "vim-zellij-navigator",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-AbfgDhQEbm5qULw2HHxG5EMCYdML4VhHxJaAqP2g3u0=",
       depsBuildBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "buildPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(pkgsBuildBuild, "stdenv", "cc")), libiconv]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Seamless navigation between Zellij panes and Vim splits",
         homepage: "https://github.com/hiasr/vim-zellij-navigator",
         changelog: nix.thunk(() => nix.str`https://github.com/hiasr/vim-zellij-navigator/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

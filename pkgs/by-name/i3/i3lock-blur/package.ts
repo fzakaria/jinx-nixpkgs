@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "i3lock-blur";
       const version = "2.10";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "karulont",
           repo: "i3lock-blur",
           tag: version,
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fno-common.patch",
             url: "https://github.com/karulont/i3lock-blur/commit/ec8fe0e7f7d78bf445602ed517efd5c324bb32f7.patch",
             hash: "sha256-0hXUr+ZEB1tpI3xw80/hGzKyeGuna4CQmEvK6t0VBqU=",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const buildInputs = nix.thunk(() => nix.concat(nix.sel(oldAttrs, "buildInputs"), [libGL]));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Improved screenlocker based upon XCB and PAM with background blurring filter",
         homepage: "https://github.com/karulont/i3lock-blur/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
-      return { __proto__: pos$4, pname, version, src, patches, buildInputs, meta };
+      return { [nix.POS]: pos$4, pname, version, src, patches, buildInputs, meta };
     })());
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

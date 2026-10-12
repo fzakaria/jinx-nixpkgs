@@ -46,51 +46,51 @@ export default nix.lambda((args) => (() => {
   const system = nix.thunk(() => nix.attr(from, "system"));
   const pnpm = pnpm_11;
   const platformIds = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "x86_64-linux": "linux",
     "aarch64-linux": "linux-arm64",
     "aarch64-darwin": "darwin-arm64",
   }));
   const platformId = nix.thunk(() => nix.selOr(platformIds, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported platform: ${system}`)), nix.key(nix.force(system))));
   const pandocArchives = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     linux: "pandoc-linux-amd64.zip",
     "linux-arm64": "pandoc-linux-arm64.zip",
     "darwin-arm64": "pandoc-darwin-arm64.zip",
   }));
   const pandocArchive = nix.thunk(() => nix.sel(pandocArchives, nix.key(nix.force(platformId))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       pname: "siyuan",
       version: "3.8.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "siyuan-note",
           repo: "siyuan",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-MzsfeAWApHLDt4+aC9/O+5Dl8OD8p0l+/8tb2ZZyTos=",
         })))),
       kernel: nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-kernel`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/kernel`),
           vendorHash: "sha256-x8saxKDLeZdEbTBjNXnOBU9zkliZXm6D92Mom8CUCbs=",
           patches: nix.thunk(() => [
             nix.thunk(() => nix.app(replaceVars, nix.path(here, "./set-pandoc-path.patch"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 pandoc_path: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), pandoc)),
               })))),
           ]),
           modPostBuild: "chmod +w vendor/github.com/88250/gulu\nsubstituteInPlace vendor/github.com/88250/gulu/file.go \\\n    --replace-fail \"os.Chmod(dest, sourceinfo.Mode())\" \"os.Chmod(dest, 0644)\"\n",
           ldflags: nix.thunk(() => ["-s", "-X 'github.com/siyuan-note/siyuan/kernel/util.Mode=prod'"]),
           tags: nix.thunk(() => ["fts5", "sqlcipher"]),
-          env: nix.thunk(() => ({ __proto__: pos$5, CGO_ENABLED: "1" })),
+          env: nix.thunk(() => ({ [nix.POS]: pos$5, CGO_ENABLED: "1" })),
           doCheck: false,
         })))),
       nativeBuildInputs: nix.thunk(() => nix.concat([nodejs, pnpmConfigHook, pnpm, zip], nix.concat(nix.app(nix.sel(lib, "optionals"), isLinux, nix.thunk(() => [pnpmBuildHook, makeWrapper, copyDesktopItems])), nix.app(nix.sel(lib, "optionals"), isDarwin, nix.thunk(() => [nix.thunk(() => nix.sel(darwin, "autoSignDarwinBinariesHook"))]))))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -100,7 +100,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-ACWwXIwuiLp/e+1dwlClzAi8ZC6oEQc3ETFK/WvVnGk=",
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/app`),
-      env: nix.thunk(() => ({ __proto__: pos$8, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$8, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       postConfigure: nix.thunk(() => nix.str`# Remove the prebuilt pandoc archives; we provide our own built from the
 # Nix pandoc binary below, and keep pandoc-resources for the kernel.
 rm -f pandoc/pandoc-*.zip
@@ -160,7 +160,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), electron)} $out/bin/siyuan \\
 install -Dm644 src/assets/icon.svg $out/share/icons/hicolor/scalable/apps/siyuan.svg
 `))), "runHook postInstall\n")),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optional"), isLinux, nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             name: "siyuan",
             desktopName: "SiYuan",
             comment: "Refactor your thinking",
@@ -169,16 +169,16 @@ install -Dm644 src/assets/icon.svg $out/share/icons/hicolor/scalable/apps/siyuan
             categories: nix.thunk(() => ["Utility"]),
           })))))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         kernel: nix.thunk(() => nix.sel(finalAttrs, "kernel")),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             extraArgs: nix.thunk(() => ["--version-regex", "^v(\\d+\\.\\d+\\.\\d+)$", "--subpackage=kernel"]),
           })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           kernel: nix.thunk(() => nix.app(nix.sel(finalAttrs, "kernel", "overrideAttrs"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-kernel-test`),
               doCheck: true,
               checkPhase: "runHook preCheck\ngo test -vet=off -tags=fts5,sqlcipher ./...\nrunHook postCheck\n",
@@ -187,7 +187,7 @@ install -Dm644 src/assets/icon.svg $out/share/icons/hicolor/scalable/apps/siyuan
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         description: "Privacy-first personal knowledge management system that supports complete offline usage, as well as end-to-end encrypted data sync",
         homepage: "https://b3log.org/siyuan/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

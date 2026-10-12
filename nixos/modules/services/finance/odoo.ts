@@ -54,22 +54,22 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(config, "system"));
   const stateVersion = nix.thunk(() => nix.attr(from, "stateVersion"));
   return {
-    __proto__: pos$40,
+    [nix.POS]: pos$40,
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         odoo: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "odoo, an open source ERP and CRM system")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
               description: "Which package to use for the Odoo instance.",
               relatedPackages: nix.thunk(() => ["odoo17", "odoo18", "odoo19"]),
             })))),
           addons: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "package")));
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
             })))),
           autoInit: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "automatically initialize the DB")),
           autoInitExtraFlags: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -90,21 +90,21 @@ export default nix.lambda((args) => (() => {
               description: "Extra flags passed to odoo when run for the first time by autoInit",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   options: nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     options: nix.thunk(() => ({
-                      __proto__: pos$6,
+                      [nix.POS]: pos$6,
                       workers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
                           default: 0n,
                           description: "Values above 0 will enable the multi-processing HTTP server, this should be set for production setups. This needs to be set to >0 for real-time connections in the discuss app. For configuration recommendations see <https://www.odoo.com/documentation/19.0/administration/on_premise/deploy.html#builtin-server>",
                         })))),
                       proxy_mode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$5,
+                          [nix.POS]: pos$5,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: nix.thunk(() => !nix.eq(nix.sel(cfg, "domain"), null)),
                           defaultText: "services.odoo.domain != null",
@@ -119,7 +119,7 @@ export default nix.lambda((args) => (() => {
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "options = {\n  db_user = \"odoo\";\n  db_password=\"odoo\";\n};\n")),
             })))),
           domain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -133,31 +133,31 @@ export default nix.lambda((args) => (() => {
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => (() => {
         const cfgFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "odoo.cfg", nix.thunk(() => nix.sel(cfg, "settings"))));
         return {
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           services: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "domain"), null)), nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 upstreams: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   odoo: nix.thunk(() => ({
-                    __proto__: pos$15,
-                    servers: nix.thunk(() => ({ __proto__: pos$14, "127.0.0.1:8069": nix.thunk(() => ({})) })),
+                    [nix.POS]: pos$15,
+                    servers: nix.thunk(() => ({ [nix.POS]: pos$14, "127.0.0.1:8069": nix.thunk(() => ({})) })),
                   })),
                   odoochat: nix.thunk(() => ({
-                    __proto__: pos$17,
-                    servers: nix.thunk(() => ({ __proto__: pos$16, "127.0.0.1:8072": nix.thunk(() => ({})) })),
+                    [nix.POS]: pos$17,
+                    servers: nix.thunk(() => ({ [nix.POS]: pos$16, "127.0.0.1:8072": nix.thunk(() => ({})) })),
                   })),
                 })),
                 virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                   [nix.str`${nix.sel(cfg, "domain")}`, nix.thunk(() => ({
-                    __proto__: pos$22,
+                    [nix.POS]: pos$22,
                     extraConfig: "proxy_read_timeout 720s;\nproxy_connect_timeout 720s;\nproxy_send_timeout 720s;\n\nproxy_set_header X-Forwarded-Host $host;\nproxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\nproxy_set_header X-Forwarded-Proto $scheme;\nproxy_set_header X-Real-IP $remote_addr;\n",
                     locations: nix.thunk(() => ({
-                      __proto__: pos$21,
-                      "/websocket": nix.thunk(() => ({ __proto__: pos$19, proxyPass: "http://odoochat" })),
+                      [nix.POS]: pos$21,
+                      "/websocket": nix.thunk(() => ({ [nix.POS]: pos$19, proxyPass: "http://odoochat" })),
                       "/": nix.thunk(() => ({
-                        __proto__: pos$20,
+                        [nix.POS]: pos$20,
                         proxyPass: "http://odoo",
                         extraConfig: "proxy_redirect off;\n",
                       })),
@@ -166,49 +166,49 @@ export default nix.lambda((args) => (() => {
                 ])),
               })))),
             odoo: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               package: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => (nix.asBool(nix.has(pkgs, "odoo")) ? nix.builtins.throw("The `pkgs.odoo`-attribute has been removed. If it's supposed to be the default\nodoo defined in an overlay, please set `services.odoo.package` to\n`pkgs.odoo`.\n") : (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), stateVersion, "25.05")) ? nix.sel(pkgs, "odoo18") : (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), stateVersion, "25.11")) ? nix.sel(pkgs, "odoo18") : nix.sel(pkgs, "odoo19"))))))),
               settings: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 options: nix.thunk(() => nix.update({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   data_dir: "/var/lib/private/odoo/data",
                   list_db: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
                 }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "addons"), [])), nix.thunk(() => ({
-                    __proto__: pos$25,
+                    [nix.POS]: pos$25,
                     addons_path: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), ",", nix.thunk(() => nix.sel(lib, "escapeShellArg")), nix.thunk(() => nix.sel(cfg, "addons")))),
                   }))))),
               })),
             })),
             postgresql: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               enable: true,
               ensureDatabases: nix.thunk(() => ["odoo"]),
               ensureUsers: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$28, name: "odoo", ensureDBOwnership: true })),
+                nix.thunk(() => ({ [nix.POS]: pos$28, name: "odoo", ensureDBOwnership: true })),
               ]),
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             users: nix.thunk(() => ({
-              __proto__: pos$32,
-              odoo: nix.thunk(() => ({ __proto__: pos$31, isSystemUser: true, group: "odoo" })),
+              [nix.POS]: pos$32,
+              odoo: nix.thunk(() => ({ [nix.POS]: pos$31, isSystemUser: true, group: "odoo" })),
             })),
-            groups: nix.thunk(() => ({ __proto__: pos$33, odoo: nix.thunk(() => ({})) })),
+            groups: nix.thunk(() => ({ [nix.POS]: pos$33, odoo: nix.thunk(() => ({})) })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             services: nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               odoo: nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 after: nix.thunk(() => ["network.target", "postgresql.target"]),
                 path: nix.thunk(() => [nix.thunk(() => nix.sel(config, "services", "postgresql", "package"))]),
                 requires: nix.thunk(() => ["postgresql.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$35,
+                  [nix.POS]: pos$35,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/odoo`),
                   ExecStartPre: nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScript"), "odoo-start-pre.sh", nix.thunk(() => nix.add(nix.add("set -euo pipefail\n\ncd \"$STATE_DIRECTORY\"\n\n# Auto-migrate old deployments\nif [[ -d .local/share/Odoo ]]; then\n  echo \"pre-start: migrating state directory from $STATE_DIRECTORY/.local/share/Odoo to $STATE_DIRECTORY/data\"\n  mv .local/share/Odoo ./data\n  rmdir .local/share\n  rmdir .local\nfi\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "autoInit")), nix.thunk(() => nix.str`echo "pre-start: auto-init"
 INITIALIZED="${nix.sel(cfg, "settings", "options", "data_dir")}/.odoo.initialized"

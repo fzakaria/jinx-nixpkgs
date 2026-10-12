@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const script = nix.arg($_1, "script");
       nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => (nix.asBool(!nix.eq(expectedArray, null)) || nix.asBool(!nix.eq(expectedMap, null)))), "testEqualArrayOrMap: at least one of 'expectedArray' or 'expectedMap' must be provided"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/testers/testEqualArrayOrMap/default.nix:15:3");
       return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           __structuredAttrs: true,
           strictDeps: true,
           name: name,

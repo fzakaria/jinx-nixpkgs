@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const version = "1.5.2";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "firezone",
       repo: "firezone",
       tag: nix.thunk(() => nix.str`gui-client-${version}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       const version_1 = version;
       const src_1 = src;
       const pnpmDeps = nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version_1,
           pnpm: pnpm_10,
@@ -64,12 +64,12 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-770+06rpf/P9hOFLgEWc0/BKjIxHyCWB2E3tqdEskAA=",
         }))));
       const pnpmRoot = "rust/gui-client";
-      const env = nix.thunk(() => ({ __proto__: pos$3, GITHUB_SHA: version_1 }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$3, GITHUB_SHA: version_1 }));
       const nativeBuildInputs = nix.thunk(() => [pnpmConfigHook, pnpm_10, nodejs]);
       const buildPhase = "runHook preBuild\n\ncd $pnpmRoot\nnode ./node_modules/flowbite-react/dist/cli/bin.js patch\nnode --max_old_space_size=1024000 ./node_modules/vite/bin/vite.js build\n\nrunHook postBuild\n";
       const installPhase = "runHook preInstall\n\ncp -r dist $out\n\nrunHook postInstall\n";
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version: version_1,
         src: src_1,
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
       const cargoHash = "sha256-LHHaklGIMuDuZwikXiQzLPbmkUbPyYR04UBQTBxq2ps=";
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src_1, "name")}/rust`);
       const buildAndTestSubdir = "gui-client";
-      const env = nix.thunk(() => ({ __proto__: pos$5, RUSTFLAGS: "--cfg system_certs" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$5, RUSTFLAGS: "--cfg system_certs" }));
       const nativeBuildInputs = nix.thunk(() => [
         nix.thunk(() => nix.sel(cargo_tauri, "hook")),
         pkg_config,
@@ -115,7 +115,7 @@ substituteInPlace gui-client/src-tauri/tauri.conf.json \\
       const doCheck = false;
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: "firezone-client-gui-deep-link",
             exec: "firezone-client-gui open-deep-link %U",
             icon: "firezone-client-gui",
@@ -132,15 +132,15 @@ substituteInPlace gui-client/src-tauri/tauri.conf.json \\
 )
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         frontend: frontend,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             extraArgs: nix.thunk(() => ["--version-regex", "gui-client-(.*)"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "GUI client for the Firezone zero-trust access platform",
         homepage: "https://github.com/firezone/firezone",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -155,7 +155,7 @@ substituteInPlace gui-client/src-tauri/tauri.conf.json \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         pname,
         version: version_1,
         src: src_1,

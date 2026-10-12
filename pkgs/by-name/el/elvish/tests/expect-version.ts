@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const elvish = nix.arg($, "elvish");
   const replaceVars = nix.arg($, "replaceVars");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "elvish-simple-test",
       version: nix.thunk(() => nix.attr(elvish, "version")),
       nativeBuildInputs: nix.thunk(() => [elvish]),
       dontInstall: true,
-      buildCommand: nix.thunk(() => nix.str`elvish ${nix.app(replaceVars, nix.path(here, "./expect-version.elv"), nix.thunk(() => ({ __proto__: pos$1, version: nix.thunk(() => nix.attr(elvish, "version")) })))}
+      buildCommand: nix.thunk(() => nix.str`elvish ${nix.app(replaceVars, nix.path(here, "./expect-version.elv"), nix.thunk(() => ({ [nix.POS]: pos$1, version: nix.thunk(() => nix.attr(elvish, "version")) })))}
 
 touch $out
 `),
-      meta: nix.thunk(() => ({ __proto__: pos$2, timeout: 10n })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$2, timeout: 10n })),
     })));
 })(), formals$1);
 //# sourceMappingURL=expect-version.ts.map

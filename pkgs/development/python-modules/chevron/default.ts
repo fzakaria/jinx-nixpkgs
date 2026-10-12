@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const python = nix.arg($, "python");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "chevron",
       version: "0.14.0-unstable-2021-03-21",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "noahmorrison",
           repo: "chevron",
           rev: "5e1c12827b7fc3db30cb3b24cae9a7ee3092822b",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: nix.thunk(() => nix.str`${nix.sel(python, "interpreter")} test_spec.py
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/noahmorrison/chevron",
         description: "Python implementation of the mustache templating language",
         mainProgram: "chevron",

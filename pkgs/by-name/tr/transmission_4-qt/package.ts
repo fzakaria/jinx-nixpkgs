@@ -8,6 +8,6 @@ const pos$1 = nix.positions(here + "/package.nix", [["enableQt", 3, 27]]);
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const transmission_4 = nix.arg($, "transmission_4");
-  return nix.app(nix.sel(transmission_4, "override"), nix.thunk(() => ({ __proto__: pos$1, enableQt: true })));
+  return nix.app(nix.sel(transmission_4, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableQt: true })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

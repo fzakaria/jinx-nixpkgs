@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.8.1";
       const pname = "cd-hit";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "weizhongli",
           repo: "cdhit",
           rev: nix.thunk(() => nix.str`V${version}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const preInstall = "mkdir -p $out/bin";
       const postFixup = "wrapProgram $out/bin/FET.pl --prefix PERL5LIB : $PERL5LIB\nwrapProgram $out/bin/plot_2d.pl --prefix PERL5LIB : $PERL5LIB\nwrapProgram $out/bin/clstr_list_sort.pl --prefix PERL5LIB : $PERL5LIB\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Clustering and comparing protein or nucleotide sequences",
         homepage: "http://weizhongli-lab.org/cd-hit/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         pname,
         src,

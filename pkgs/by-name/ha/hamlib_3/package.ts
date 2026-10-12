@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const python3 = python311;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hamlib",
       version: "3.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/hamlib/hamlib-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "10788mgrhbc57zpzakcxv5aqnr2819pcshml6fbh8zvnkja562y9",
         })))),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`CC_FOR_BUILD=${nix.sel(stdenv, "cc", "targetPrefix")}cc`),
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), perlBindings, nix.thunk(() => ["--with-perl-binding"])), nix.concat(nix.app(nix.sel(lib, "optionals"), tclBindings, nix.thunk(() => ["--with-tcl-binding", nix.thunk(() => nix.str`--with-tcl=${tcl}/lib/`)])), nix.app(nix.sel(lib, "optionals"), pythonBindings, nix.thunk(() => ["--with-python-binding"])))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Runtime library to control radio transceivers and receivers",
         longDescription: "Hamlib provides a standardized programming interface that applications\ncan use to send the appropriate commands to a radio.\n\nAlso included in the package is a simple radio control program 'rigctl',\nwhich lets one control a radio transceiver or receiver, either from\ncommand line interface or in a text-oriented interactive interface.\n",
         license: nix.thunk(() => (() => {

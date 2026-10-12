@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const veilid = nix.arg($, "veilid");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "veilid",
       version: "0.5.7",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "veilid",
           repo: "veilid",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,20 +37,20 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-a48+kCpsYjql+IGf3l0t4RXkthbc2mxqu9zCaeRPaR4=",
       nativeBuildInputs: nix.thunk(() => [capnproto, cmake, protobuf]),
       cargoBuildFlags: nix.thunk(() => ["--workspace"]),
-      env: nix.thunk(() => ({ __proto__: pos$2, RUSTFLAGS: "--cfg tokio_unstable" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTFLAGS: "--cfg tokio_unstable" })),
       doCheck: false,
       outputs: nix.thunk(() => ["out", "lib", "dev"]),
       postInstall: "moveToOutput \"lib\" \"$lib\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$3, "rev-prefix": "v" })))),
+        [nix.POS]: pos$6,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v" })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
-          "veilid-version": nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$4, package: veilid })))),
+          [nix.POS]: pos$5,
+          "veilid-version": nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$4, package: veilid })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Open-source, peer-to-peer, mobile-first, networked application framework",
         mainProgram: "veilid-server",
         homepage: "https://veilid.com",

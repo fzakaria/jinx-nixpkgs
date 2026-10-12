@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const systemdLibs = nix.arg($, "systemdLibs");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "youki",
       version: "0.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "youki-dev",
           repo: "youki",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       cargoTestFlags: nix.thunk(() => ["-p", "youki"]),
       cargoHash: "sha256-v4yyEhJ5Gm0Z9Zs8CQiU+EKgRujeCqKfxt2C4OPdF5M=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Container runtime written in Rust",
         homepage: "https://youki-dev.github.io/youki/",
         changelog: nix.thunk(() => nix.str`https://github.com/youki-dev/youki/releases/tag/v${nix.sel(finalAttrs, "version")}`),

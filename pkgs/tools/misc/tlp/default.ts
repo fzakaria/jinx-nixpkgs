@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const networkmanager = nix.arg($, "networkmanager");
   const tlp_pd = nix.arg($, "tlp-pd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "tlp",
       version: "1.10.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linrunner",
           repo: "TLP",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -114,11 +114,11 @@ rm -rf $out/share/metainfo
       strictDeps: true,
       __structuredAttrs: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, "tlp-pd": tlp_pd })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, "tlp-pd": tlp_pd })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Advanced Power Management for Linux",
         homepage: "https://linrunner.de/en/tlp/docs/tlp-linux-advanced-power-management.html",
         changelog: nix.thunk(() => nix.str`https://github.com/linrunner/TLP/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

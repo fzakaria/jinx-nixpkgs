@@ -42,25 +42,25 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "displayManager", "lemurs"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "displayManager", "lemurs", "vt"]), "The VT is now fixed to VT1.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         displayManager: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           lemurs: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), ""), {
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               description: "Whether to enable lemurs, a customizable TUI display/login manager.\n\n::: {.note}\nFor Wayland compositors, your user must be in the \"seat\" group.\n:::\n",
             })),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "lemurs", nix.thunk(() => ({})))),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(settingsFormat, "type")),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  do_log = true;\n}\n")),
@@ -71,22 +71,22 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             assertion: nix.thunk(() => !nix.asBool(nix.sel(config, "services", "displayManager", "autoLogin", "enable"))),
             message: "lemurs doesn't support auto login.\n",
           })),
         ]),
         security: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           pam: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             services: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               lemurs: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 unixAuth: true,
                 startSession: true,
                 setLoginUid: false,
@@ -96,43 +96,43 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           dbus: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
-          seatd: nix.thunk(() => ({ __proto__: pos$14, enable: true })),
-          xserver: nix.thunk(() => ({ __proto__: pos$15, display: null })),
+          seatd: nix.thunk(() => ({ [nix.POS]: pos$14, enable: true })),
+          xserver: nix.thunk(() => ({ [nix.POS]: pos$15, display: null })),
           displayManager: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             enable: true,
             generic: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               enable: true,
               execCmd: nix.thunk(() => nix.str`exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} --config ${nix.app(nix.sel(settingsFormat, "generate"), "config.toml", nix.thunk(() => nix.sel(cfg, "settings")))}`),
             })),
             lemurs: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               settings: nix.thunk(() => (() => {
                 const desktops = nix.thunk(() => nix.sel(config, "services", "displayManager", "sessionData", "desktops"));
                 return {
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   tty: 1n,
                   system_shell: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`${nix.sel(pkgs, "bash")}/bin/bash`))),
                   initial_path: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/run/current-system/sw/bin")),
                   x11: nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     xauth_path: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`${nix.sel(pkgs, "xauth")}/bin/xauth`))),
                     xserver_path: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`${nix.sel(pkgs, "xorg-server")}/bin/X`))),
                     xsessions_path: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`${desktops}/share/xsessions`))),
                     xsetup_path: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(config, "services", "displayManager", "sessionData", "wrapper")))),
                   })),
                   wayland: nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     wayland_sessions_path: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`${desktops}/share/wayland-sessions`))),
                   })),
                 };
@@ -141,18 +141,18 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           services: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             "display-manager": nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               unitConfig: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 Wants: nix.thunk(() => ["systemd-user-sessions.service"]),
                 After: nix.thunk(() => ["systemd-user-sessions.service", "plymouth-quit-wait.service"]),
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 Type: "idle",
                 StandardInput: "tty",
                 TTYPath: "/dev/tty1",
@@ -166,7 +166,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

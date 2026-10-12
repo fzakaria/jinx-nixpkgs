@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   const splitVersion = nix.thunk(() => nix.attr(lib, "splitVersion"));
   const toInt = nix.thunk(() => nix.attr(lib, "toInt"));
-  const platforms = nix.thunk(() => ({ __proto__: pos$1, "x86_64-linux": "linux" }));
+  const platforms = nix.thunk(() => ({ [nix.POS]: pos$1, "x86_64-linux": "linux" }));
   const dfVersionTuple = nix.thunk(() => nix.app(splitVersion, dfVersion));
   const dfVersionBaseIndex = nix.thunk(() => (() => {
     const x = nix.thunk(() => nix.sub(nix.builtins.length(dfVersionTuple), 2n));
@@ -53,11 +53,11 @@ export default nix.lambda((args) => (() => {
   const url = nix.thunk(() => (nix.asBool(nix.app(hasAttr, dfPlatform, nix.thunk(() => nix.sel(game, "urls")))) ? nix.app(getAttr, dfPlatform, nix.thunk(() => nix.sel(game, "urls"))) : nix.builtins.throw(nix.thunk(() => nix.str`Unsupported dfPlatform: ${dfPlatform}`))));
   const exe = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? (nix.asBool(nix.ge(baseVersion, 50n)) ? "dwarfort" : "libs/Dwarf_Fortress") : "dwarfort.exe"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "dwarf-fortress",
       version: dfVersion,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.attr(url, "url")),
           hash: nix.thunk(() => nix.sel(url, "outputHash")),
         })))),
@@ -121,20 +121,20 @@ install_name_tool \\
 trap recompute_hash EXIT
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         baseVersion: baseVersion,
         patchVersion: patchVersion,
         dfVersion: dfVersion,
         exe: exe,
         updateScript: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           command: nix.thunk(() => [nix.path(here, "./update.rb")]),
           attrPath: "dwarf-fortress-packages",
           supportedFeatures: nix.thunk(() => ["commit"]),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Single-player fantasy game with a randomly generated adventure world",
         homepage: "https://www.bay12games.com/dwarves/",
         license: nix.thunk(() => nix.sel(licenses, "unfreeRedistributable")),

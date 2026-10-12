@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const pytest_xdist = nix.arg($, "pytest-xdist");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "django-oauth-toolkit",
       version: "3.4.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jazzband",
           repo: "django-oauth-toolkit",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       ]),
       disabledTests: nix.thunk(() => ["test_response_when_auth_server_response_return_404"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OAuth2 goodies for the Djangonauts",
         homepage: "https://github.com/jazzband/django-oauth-toolkit",
         changelog: nix.thunk(() => nix.str`https://github.com/jazzband/django-oauth-toolkit/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

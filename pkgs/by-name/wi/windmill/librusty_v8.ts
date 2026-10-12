@@ -10,10 +10,10 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const fetchLibrustyV8 = nix.arg($, "fetchLibrustyV8");
   return nix.app(fetchLibrustyV8, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "130.0.7",
       shas: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         "x86_64-linux": "0pdp6h7vbjvq5l9lh25qilmp6xrxg7mj8m263h44f0lv9swnqix6",
         "aarch64-linux": "0nli54vqcrfh9nkz7ma7230k0xmhcrk0jmfbyxcp3rxybarygvxy",
       })),

@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const qtbase = nix.arg($, "qtbase");
   const qtwebsockets = nix.arg($, "qtwebsockets");
   return nix.app(qtModule, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "qtwebglplugin",
       propagatedBuildInputs: nix.thunk(() => [qtbase, qtwebsockets]),
     })));

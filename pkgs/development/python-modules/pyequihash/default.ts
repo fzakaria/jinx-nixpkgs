@@ -38,7 +38,7 @@ runHook postCheck
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(equihash, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),
@@ -46,7 +46,7 @@ runHook postCheck
       };
       })());
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         pyproject,
         version,

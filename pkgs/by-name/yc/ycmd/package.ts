@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const llvmPackages = nix.arg($, "llvmPackages");
   const fixDarwinDylibNames = nix.arg($, "fixDarwinDylibNames");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ycmd",
       version: "0-unstable-2025-10-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ycm-core",
           repo: "ycmd",
           rev: "7895484ad55e0cbd0686e882891d59661f183476",
@@ -88,7 +88,7 @@ ln -sf ${typescript_5} $TARGET
 `)))),
       postFixup: "substituteInPlace $out/lib/ycmd/ycmd/__main__.py \\\n  --replace __file__ \"'$out/lib/ycmd/ycmd/__main__.py'\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Code-completion and comprehension server",
         longDescription: "Note if YouCompleteMe Vim plugin complains with;\n\n> ImportError: Python version mismatch: module was compiled for Python 3.13, but the interpreter version is incompatible: 3.10.18\n\n...  then set something similar to following in `programs.vim.extraConfig`;\n\n    let g:ycm_server_python_interpreter = \"${python3.interpreter}\"\n",
         mainProgram: "ycmd",

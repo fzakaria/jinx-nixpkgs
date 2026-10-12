@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fishtape = nix.arg($, "fishtape");
   const jq = nix.arg($, "jq");
   return nix.app(buildFishPlugin, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "done",
       version: "1.21.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "franciscolourenco",
           repo: "done",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       checkPlugins: nix.thunk(() => [fishtape]),
       checkPhase: "fishtape test/done.fish\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Automatically receive notifications when long processes finish",
         homepage: "https://github.com/franciscolourenco/done",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

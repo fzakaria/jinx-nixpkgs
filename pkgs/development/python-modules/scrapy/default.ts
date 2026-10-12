@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.17.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "scrapy",
           repo: "scrapy",
           tag: version,
@@ -96,7 +96,7 @@ export default nix.lambda((args) => (() => {
         testfixtures,
         uvloop,
       ]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, LC_ALL: "en_US.UTF-8" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, LC_ALL: "en_US.UTF-8" }));
       const pytestFlags = nix.thunk(() => ["-Wignore::DeprecationWarning"]);
       const disabledTestPaths = nix.thunk(() => nix.concat([
         "tests/test_utils_display.py",
@@ -141,7 +141,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["scrapy"]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "High-level web crawling and web scraping framework",
         mainProgram: "scrapy",
         longDescription: "Scrapy is a fast high-level web crawling and web scraping framework, used to crawl\nwebsites and extract structured data from their pages. It can be used for a wide\nrange of purposes, from data mining to monitoring and automated testing.\n",
@@ -154,7 +154,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "flashbench-unstable",
       version: "2020-01-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bradfa",
           repo: "flashbench",
           rev: "d783b1bd2443812c6deadc31b081f043e43e4c1a",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\ninstall -d -m755 $out/bin $out/share/doc/flashbench\ninstall -v -m755 flashbench $out/bin\ninstall -v -m755 erase $out/bin/flashbench-erase\ninstall -v -m644 README $out/share/doc/flashbench\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Testing tool for flash based memory devices",
         homepage: "https://github.com/bradfa/flashbench",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

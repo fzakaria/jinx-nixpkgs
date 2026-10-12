@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mtd-utils";
       const version = "2.3.1";
       const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "git://git.infradead.org/mtd-utils.git",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-+2wHGgwWzjj3DRbU82MLvrwB7AtgMg+7m+0MwPE4V1o=",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const outputs = nix.thunk(() => ["out", "dev"]);
       const postInstall = "mkdir -p $dev/lib\nmv *.a $dev/lib/\nmv include $dev/\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tools for MTD filesystems",
         downloadPage: "https://git.infradead.org/mtd-utils.git",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

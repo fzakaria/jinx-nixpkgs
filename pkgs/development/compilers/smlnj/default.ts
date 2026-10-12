@@ -24,25 +24,25 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const version = "2026.2";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "smlnj",
       repo: "smlnj",
       tag: nix.thunk(() => nix.str`v${version}`),
       fetchSubmodules: true,
       hash: "sha256-1oiDdiGZvg8Dlz3InFLjOilvBTShuTFHz91Xmc1onMA=",
     }))));
-  const llvm = nix.thunk(() => nix.app(callPackage, nix.path(here, "./llvm.nix"), nix.thunk(() => ({ __proto__: pos$2, src: src, version: version }))));
+  const llvm = nix.thunk(() => nix.app(callPackage, nix.path(here, "./llvm.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, src: src, version: version }))));
   const bootFile = nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isUnix")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))) ? nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: nix.thunk(() => nix.str`https://smlnj.cs.uchicago.edu/dist/working/${version}/boot.amd64-unix.tgz`),
       hash: "sha256-ug2Busk6aYeqEGh923ZG8c3xw1Cjmct2Fxv7K44cjOs=",
     }))) : (nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isUnix")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))) ? nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       url: nix.thunk(() => nix.str`https://smlnj.cs.uchicago.edu/dist/working/${version}/boot.arm64-unix.tgz`),
       hash: "sha256-UQ8GxaabgJ3QoH6hlnWCNSsxyR73H2VdKsbsgt376k0=",
     }))) : nix.builtins.throw(nix.thunk(() => nix.str`Unsupported host platform: ${nix.sel(stdenv, "hostPlatform", "config")}`)))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "smlnj",
       src: src,
       version: version,
@@ -68,9 +68,9 @@ runHook postBuild
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "@SMLversion",
       doInstallCheck: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$5, llvm: llvm })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, llvm: llvm })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Standard ML of New Jersey, a Standard ML compiler",
         homepage: "https://smlnj.org",
         downloadPage: nix.thunk(() => nix.str`https://smlnj.org/dist/working/${version}/install.html`),

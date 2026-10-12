@@ -20,14 +20,14 @@ export default nix.lambda((args) => (() => {
   const withProcps = nix.argOr($, "withProcps", () => false);
   const procps = nix.arg($, "procps");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libsnark",
       version: "20140603-unstable-2024-02-23",
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([openssl, boost, gmp], nix.app(nix.sel(lib, "optional"), withProcps, procps))),
       cmakeFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withProcps)), nix.thunk(() => ["-DWITH_PROCPS=OFF"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) || nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86"))))), nix.thunk(() => ["-DWITH_SUPERCOP=OFF"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86"))), nix.thunk(() => ["-DCURVE=ALT_BN128"]))))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "scipr-lab",
           repo: "libsnark",
           rev: "6c705e3135f585c222813654caedc86520fda1f6",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: "substituteInPlace {,depends/{libff,libfqfft}/}CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.8)\" \"cmake_minimum_required(VERSION 3.10)\"\nsubstituteInPlace depends/gtest/{,googlemock/,googletest/}CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.6.4)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: withProcps,
         description: "C++ library for zkSNARKs",
         homepage: "https://github.com/scipr-lab/libsnark",

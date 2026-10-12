@@ -29,17 +29,17 @@ export default nix.lambda((args) => (() => {
   const json = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(json, "generate"), "config.json", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         xmrig: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "XMRig Mining Software")),
-          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "xmrig", nix.thunk(() => ({ __proto__: pos$1, example: "xmrig-mo" })))),
+          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "xmrig", nix.thunk(() => ({ [nix.POS]: pos$1, example: "xmrig-mo" })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.sel(json, "type")),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  autosave = true;\n  cpu = true;\n  opencl = false;\n  cuda = false;\n  pools = [\n    {\n      url = \"pool.supportxmr.com:443\";\n      user = \"your-wallet\";\n      keepalive = true;\n      tls = true;\n    }\n  ]\n}\n")),
@@ -49,25 +49,25 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         hardware: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           cpu: nix.thunk(() => ({
-            __proto__: pos$8,
-            x86: nix.thunk(() => ({ __proto__: pos$7, msr: nix.thunk(() => ({ __proto__: pos$6, enable: true })) })),
+            [nix.POS]: pos$8,
+            x86: nix.thunk(() => ({ [nix.POS]: pos$7, msr: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })) })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             xmrig: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               description: "XMRig Mining Software Service",
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 ExecStartPre: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} --config=${configFile} --dry-run`),
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} --config=${configFile}`),
                 DynamicUser: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "ratsclub"))];

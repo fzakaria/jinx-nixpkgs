@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const libsForQt5 = nix.arg($, "libsForQt5");
   const libGLU = nix.arg($, "libGLU");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "qxmledit",
       version: "0.9.17",
       outputs: nix.thunk(() => ["out", "doc"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lbellonda",
           repo: "qxmledit",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "export QXMLEDIT_INST_DATA_DIR=\"$out/share/data\"\nexport QXMLEDIT_INST_TRANSLATIONS_DIR=\"$out/share/i18n\"\nexport QXMLEDIT_INST_INCLUDE_DIR=\"$out/include\"\nexport QXMLEDIT_INST_DIR=\"$out/bin\"\nexport QXMLEDIT_INST_LIB_DIR=\"$out/lib\"\nexport QXMLEDIT_INST_DOC_DIR=\"$doc\"\n",
       dontWrapQtApps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Simple XML editor based on qt libraries",
         homepage: "https://sourceforge.net/projects/qxmledit",

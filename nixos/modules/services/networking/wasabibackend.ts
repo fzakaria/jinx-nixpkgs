@@ -51,108 +51,108 @@ export default nix.lambda((args) => (() => {
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const confOptions = nix.thunk(() => nix.update({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     BitcoinRpcConnectionString: nix.thunk(() => nix.str`${nix.sel(cfg, "rpc", "user")}:${nix.sel(cfg, "rpc", "password")}`),
   }, nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.eq(nix.sel(cfg, "network"), "mainnet")), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       Network: "Main",
       MainNetBitcoinP2pEndPoint: nix.thunk(() => nix.str`${nix.sel(cfg, "endpoint", "ip")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "endpoint", "port")))}`),
       MainNetBitcoinCoreRpcEndPoint: nix.thunk(() => nix.str`${nix.sel(cfg, "rpc", "ip")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "rpc", "port")))}`),
     }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.eq(nix.sel(cfg, "network"), "testnet")), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       Network: "TestNet",
       TestNetBitcoinP2pEndPoint: nix.thunk(() => nix.str`${nix.sel(cfg, "endpoint", "ip")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "endpoint", "port")))}`),
       TestNetBitcoinCoreRpcEndPoint: nix.thunk(() => nix.str`${nix.sel(cfg, "rpc", "ip")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "rpc", "port")))}`),
     }))), nix.app(optionalAttrs, nix.thunk(() => nix.eq(nix.sel(cfg, "network"), "regtest")), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       Network: "RegTest",
       RegTestBitcoinP2pEndPoint: nix.thunk(() => nix.str`${nix.sel(cfg, "endpoint", "ip")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "endpoint", "port")))}`),
       RegTestBitcoinCoreRpcEndPoint: nix.thunk(() => nix.str`${nix.sel(cfg, "rpc", "ip")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "rpc", "port")))}`),
     })))))));
   const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "wasabibackend.conf", nix.thunk(() => nix.builtins.toJSON(confOptions))));
   return {
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     options: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       services: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         wasabibackend: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Wasabi backend service")),
           dataDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(types, "path")),
               default: "/var/lib/wasabibackend",
               description: "The data directory for the Wasabi backend node.",
             })))),
           customConfigFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               default: null,
               description: "Defines the path to a custom configuration file that is copied to the user's directory. Overrides any config options.",
             })))),
           network: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["mainnet", "testnet", "regtest"]))),
               default: "mainnet",
               description: "The network to use for the Wasabi backend service.",
             })))),
           endpoint: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             ip: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "127.0.0.1",
                 description: "IP address for P2P connection to bitcoind.",
               })))),
             port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(types, "port")),
                 default: 8333n,
                 description: "Port for P2P connection to bitcoind.",
               })))),
           })),
           rpc: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             ip: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "127.0.0.1",
                 description: "IP address for RPC connection to bitcoind.",
               })))),
             port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.sel(types, "port")),
                 default: 8332n,
                 description: "Port for RPC connection to bitcoind.",
               })))),
             user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "bitcoin",
                 description: "RPC user for the bitcoin endpoint.",
               })))),
             password: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "password",
                 description: "RPC password for the bitcoin endpoint. Warning: this is stored in cleartext in the Nix store! Use `configFile` or `passwordFile` if needed.",
               })))),
             passwordFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                 default: null,
                 description: "File that contains the password of the RPC user.",
               })))),
           })),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "wasabibackend",
               description: "The user as which to run the wasabibackend node.",
             })))),
           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: nix.thunk(() => nix.sel(cfg, "user")),
               defaultText: nix.thunk(() => nix.app(literalExpression, nix.thunk(() => nix.str`config.${nix.sel(opt, "user")}`))),
@@ -162,25 +162,25 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         systemd: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d '${nix.sel(cfg, "dataDir")}' 0770 '${nix.sel(cfg, "user")}' '${nix.sel(cfg, "group")}' - -`),
             ]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             wasabibackend: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               description: "wasabibackend server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target"]),
               environment: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 DOTNET_PRINT_TELEMETRY_MESSAGE: "false",
                 DOTNET_CLI_TELEMETRY_OPTOUT: "true",
               })),
@@ -195,7 +195,7 @@ mv $CONFIGTMP ${nix.sel(cfg, "dataDir")}/.walletwasabi/backend/Config.json
 chmod ug+w ${nix.sel(cfg, "dataDir")}/.walletwasabi/backend/Config.json
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "wasabibackend")}/bin/WasabiBackend`),
@@ -205,10 +205,10 @@ chmod ug+w ${nix.sel(cfg, "dataDir")}/.walletwasabi/backend/Config.json
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.sel(cfg, "user"), nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               name: nix.thunk(() => nix.sel(cfg, "user")),
               group: nix.thunk(() => nix.sel(cfg, "group")),
               description: "wasabibackend daemon user",

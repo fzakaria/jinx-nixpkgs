@@ -30,13 +30,13 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-wcQd5j74y7d0xFeWlwlhceZj95ixUmv5upnv/6Rl1ew=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python RAML parser",
         mainProgram: "ramlfications",
         homepage: "https://ramlfications.readthedocs.org",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [mock, pytest, pytest_mock, pytest_server_fixtures, pytest_localserver]);
       const propagatedBuildInputs = nix.thunk(() => [termcolor, click, markdown2, six, jsonref, pyyaml, xmltodict, attrs]);
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

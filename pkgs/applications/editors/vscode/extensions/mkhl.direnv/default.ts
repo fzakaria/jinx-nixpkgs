@@ -15,9 +15,9 @@ export default nix.lambda((args) => (() => {
   const moreutils = nix.arg($, "moreutils");
   const direnv = nix.arg($, "direnv");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         publisher: "mkhl",
         name: "direnv",
         version: "0.17.0",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
 jq -e '.contributes.configuration.properties."direnv.path.executable".default = "${nix.app(nix.sel(lib, "getExe"), direnv)}"' package.json | sponge package.json
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "direnv support for Visual Studio Code",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd0")),
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=mkhl.direnv",

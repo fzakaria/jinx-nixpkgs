@@ -23,20 +23,20 @@ export default nix.lambda((args) => (() => {
       const pname = "BigPEmu";
       const version = "1.221";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.richwhitehouse.com/jaguar/builds/BigPEmu_Linux64_v${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), version)}.tar.gz`),
           hash: "sha256-wP9hDyHV9VwBxATvmR2J92mls7iTyFcMAzvO9EEh7lc=",
         }))));
       const installPhase = "mkdir -p $out/bin\ntar -xvf $src -C $out/bin --strip-components=1\n";
-      return { __proto__: pos$2, pname, version, src, installPhase };
+      return { [nix.POS]: pos$2, pname, version, src, installPhase };
     })())));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "bigpemu",
       version: nix.thunk(() => nix.sel(bigpemu_unwrapped, "version")),
       targetPkgs: (pkgs) => [glui, libGL, libGLU, SDL2],
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Atari Jaguar Emulator (BigPEmu) by Richard Whitehouse",
         homepage: "https://www.richwhitehouse.com/jaguar/index.php",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       })),
       runScript: nix.thunk(() => nix.str`${bigpemu_unwrapped}/bin/bigpemu`),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         unwrapped: bigpemu_unwrapped,
         updateScript: nix.path(here, "./update.sh"),
       })),

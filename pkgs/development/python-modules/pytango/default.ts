@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
   const opentelemetry_exporter_otlp_proto_grpc = nix.arg($, "opentelemetry-exporter-otlp-proto-grpc");
   const opentelemetry_exporter_otlp_proto_http = nix.arg($, "opentelemetry-exporter-otlp-proto-http");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pytango",
       version: "10.3.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-uFEJFeT4WbK5d1sjZBqy4tVpM8niDYnxMj7g1Vw88Ec=",
@@ -59,9 +59,9 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, ninja]),
       dependencies: nix.thunk(() => [typing_extensions, numpy, psutil, docstring_parser, packaging]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "optional-dependencies": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           telemetry: nix.thunk(() => [
             opentelemetry_api,
             opentelemetry_sdk,
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["tango"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python bindings for the cppTango library, part of the Tango Distributed Control System toolkit",
         homepage: "https://www.tango-controls.org/",
         changelog: "https://gitlab.com/tango-controls/pytango/-/releases",

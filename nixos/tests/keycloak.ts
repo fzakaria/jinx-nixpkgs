@@ -33,42 +33,42 @@ export default nix.thunk(() => (() => {
       const initialAdminPassword = "h4Iho\"JFn't2>iQIR9";
       const adminPasswordFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "admin-password", nix.thunk(() => nix.str`${initialAdminPassword}`)));
       return {
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         name: "keycloak",
         meta: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
           return {
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "talyz"))]),
           };
         })()),
         nodes: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           keycloak: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const config = nix.arg($_1, "config");
             return {
-              __proto__: pos$11,
-              virtualisation: nix.thunk(() => ({ __proto__: pos$2, memorySize: 2047n })),
+              [nix.POS]: pos$11,
+              virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, memorySize: 2047n })),
               security: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 pki: nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   certificateFiles: nix.thunk(() => [nix.thunk(() => nix.sel(certs, "ca", "cert"))]),
                 })),
               })),
               networking: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 extraHosts: nix.thunk(() => nix.str`127.0.0.1 ${nix.sel(certs, "domain")}
 `),
               })),
               services: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 keycloak: nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   enable: true,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     hostname: nix.thunk(() => nix.sel(certs, "domain")),
                     "metrics-enabled": true,
                   })),
@@ -76,7 +76,7 @@ export default nix.thunk(() => (() => {
                   sslCertificate: nix.thunk(() => nix.str`${nix.sel(certs, nix.key(nix.sel(certs, "domain")), "cert")}`),
                   sslCertificateKey: nix.thunk(() => nix.str`${nix.sel(certs, nix.key(nix.sel(certs, "domain")), "key")}`),
                   database: nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     type: databaseType,
                     username: "bogus",
                     name: "also bogus",
@@ -89,7 +89,7 @@ export default nix.thunk(() => (() => {
                 })),
               })),
               environment: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 systemPackages: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(pkgs, null);
                   return [
@@ -103,13 +103,13 @@ export default nix.thunk(() => (() => {
         })),
         testScript: nix.thunk(() => (() => {
           const client = nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             clientId: "test-client",
             name: "test-client",
             redirectUris: nix.thunk(() => ["urn:ietf:wg:oauth:2.0:oob"]),
           }));
           const user = nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             firstName: "Chuck",
             lastName: "Testa",
             username: "chuck.testa",
@@ -117,16 +117,16 @@ export default nix.thunk(() => (() => {
           }));
           const password = "password1234";
           const realm = nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             enabled: true,
             realm: "test-realm",
             clients: nix.thunk(() => [client]),
             users: nix.thunk(() => [
               nix.thunk(() => nix.update(user, {
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 enabled: true,
                 credentials: nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$15, type: "password", temporary: false, value: password })),
+                  nix.thunk(() => ({ [nix.POS]: pos$15, type: "password", temporary: false, value: password })),
                 ]),
               })),
             ]),
@@ -209,7 +209,7 @@ keycloak.succeed(
       };
     })(), formals$1));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     postgres: nix.thunk(() => nix.app(keycloakTest, "postgresql")),
     mariadb: nix.thunk(() => nix.app(keycloakTest, "mariadb")),
     mysql: nix.thunk(() => nix.app(keycloakTest, "mysql")),

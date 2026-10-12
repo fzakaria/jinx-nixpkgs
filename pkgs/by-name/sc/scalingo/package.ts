@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "scalingo";
       const version = "1.49.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "scalingo",
           repo: "cli",
           rev: version,
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [installShellFiles]);
       const postInstall = "rm $out/bin/dists\ninstallShellCompletion --cmd scalingo \\\n --bash cmd/autocomplete/scripts/scalingo_complete.bash \\\n --zsh cmd/autocomplete/scripts/scalingo_complete.zsh\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command line client for the Scalingo PaaS",
         mainProgram: "scalingo",
         homepage: "https://doc.scalingo.com/platform/cli/start",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

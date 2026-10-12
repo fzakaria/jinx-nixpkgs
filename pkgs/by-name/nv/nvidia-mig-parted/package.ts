@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nvidia-mig-parted",
       version: "0.15.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NVIDIA",
           repo: "mig-parted",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       excludedPackages: nix.thunk(() => ["cmd/nvidia-mig-manager", "deployments/devel"]),
       ldflags: nix.thunk(() => ["-extldflags=-Wl,-z,lazy"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MIG Partition Editor for NVIDIA GPUs",
         homepage: "https://github.com/nvidia/mig-parted",
         changelog: nix.thunk(() => nix.str`https://github.com/NVIDIA/mig-parted/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

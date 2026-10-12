@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromCodeberg = nix.arg($, "fetchFromCodeberg");
   const buildGoModule = nix.arg($, "buildGoModule");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "common-proxies",
       version: "3.2.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "UnifiedPush",
           repo: "common-proxies",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-qIfca8ebt6+i27X2Gt0m39cmddA5ucbxQmQUyQoItd0=",
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Set of rewrite proxies and gateways for UnifiedPush",
         homepage: "https://codeberg.org/UnifiedPush/common-proxies",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const lcms2 = nix.arg($, "lcms2");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pngquant",
       version: "3.0.3",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kornelski",
           repo: "pngquant",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postInstall: "install -Dpm0444 pngquant.1 $man/share/man/man1/pngquant.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://pngquant.org/",
         description: "Tool to convert 24/32-bit RGBA PNGs to 8-bit palette with alpha channel preserved",
         changelog: nix.thunk(() => nix.str`https://github.com/kornelski/pngquant/raw/${nix.sel(finalAttrs, "version")}/CHANGELOG`),

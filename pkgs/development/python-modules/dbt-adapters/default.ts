@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.22.10";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "dbt_adapters",
           version: version,
           hash: "sha256-KPyp+cLzEHBs4CyPew8pftyhTWvZeteSiqxVr0zily8=",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Set of adapter protocols and base functionality that supports integration with dbt-core",
         homepage: "https://github.com/dbt-labs/dbt-adapters",
         changelog: "https://github.com/dbt-labs/dbt-adapters/blob/main/dbt-adapters/CHANGELOG.md",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

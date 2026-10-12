@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     scopeFunction: (scope) => ({
-      __proto__: pos$3,
-      boehmgc: nix.thunk(() => nix.app(nix.sel(regular, "boehmgc", "override"), nix.thunk(() => ({ __proto__: pos$1, enableLargeConfig: true, initialMarkStackSize: 1048576n })))),
+      [nix.POS]: pos$3,
+      boehmgc: nix.thunk(() => nix.app(nix.sel(regular, "boehmgc", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableLargeConfig: true, initialMarkStackSize: 1048576n })))),
       "aws-sdk-cpp": nix.thunk(() => nix.app(nix.sel(regular, "aws-sdk-cpp", "override"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           apis: nix.thunk(() => ["identity-management", "s3", "transfer"]),
           customMemoryManagement: false,
           requiredSystemFeatures: [],

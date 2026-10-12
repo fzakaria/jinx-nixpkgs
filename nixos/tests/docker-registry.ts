@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     name: "docker-registry",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "ironpinguin")),
           nix.thunk(() => nix.lookup(w, "cafkafk")),
@@ -36,15 +36,15 @@ export default nix.lambda((args) => (() => {
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       registry: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           services: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             dockerRegistry: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               enable: true,
               enableDelete: true,
               port: 8080n,
@@ -58,11 +58,11 @@ export default nix.lambda((args) => (() => {
       client1: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             docker: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               enable: true,
               extraOptions: "--insecure-registry registry:8080",
             })),
@@ -72,11 +72,11 @@ export default nix.lambda((args) => (() => {
       client2: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$4);
         return {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             docker: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               enable: true,
               extraOptions: "--insecure-registry registry:8080",
             })),

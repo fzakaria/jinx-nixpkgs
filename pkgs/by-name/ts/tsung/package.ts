@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const perlPackages = nix.arg($, "perlPackages");
   const gnuplot = nix.arg($, "gnuplot");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tsung",
       version: "1.8.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://tsung.erlang-projects.org/dist/tsung-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-kehkMCYBfj0AiKZxD7EcT2F0d+gm6+TF/lhqpjFH/JI=",
         })))),
@@ -47,7 +47,7 @@ wrapProgram $out/bin/tsung_stats.pl \\
     --set PERL5LIB "${nix.app(nix.sel(perlPackages, "makePerlPath"), nix.thunk(() => [nix.thunk(() => nix.sel(perlPackages, "TemplateToolkit"))]))}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://tsung.erlang-projects.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/processone/tsung/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "High-performance benchmark framework for various protocols including HTTP, XMPP, LDAP, etc",

@@ -34,9 +34,9 @@ export default nix.lambda((args) => (() => {
   const applyPatches = nix.arg($, "applyPatches");
   const version = "6.4.4.10685";
   const src = nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Radarr",
           repo: "Radarr",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -46,14 +46,14 @@ export default nix.lambda((args) => (() => {
     }))));
   const rid = nix.thunk(() => nix.app(nix.sel(dotnetCorePackages, "systemToDotnetRid"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "system"))));
   return nix.app(buildDotnetModule, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "radarr",
       version: version,
       src: src,
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [nodejs, yarn, prefetch_yarn_deps, fixup_yarn_lock]),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           yarnLock: nix.thunk(() => nix.str`${src}/yarn.lock`),
           hash: "sha256-irAOf0hbhiCet1Xid4oms5bIgtujJlvzNIlxQZU4LwQ=",
         })))),
@@ -113,10 +113,10 @@ export default nix.lambda((args) => (() => {
           "NzbDrone.Core.Test.NotificationTests.TraktServiceFixture.should_format_audio_channels_to_one_decimal_when_adding_collection_movie",
         ])))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
-        tests: nix.thunk(() => ({ __proto__: pos$4, radarr: nix.thunk(() => nix.attr(nixosTests, "radarr")) })),
+        [nix.POS]: pos$6,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$4, radarr: nix.thunk(() => nix.attr(nixosTests, "radarr")) })),
         updateScript: nix.thunk(() => nix.app(nix.sel(writers, "writePython3"), "radarr-updater", nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             libraries: nix.thunk(() => (() => {
               const w = nix.withScope(python3Packages, null);
               return [nix.thunk(() => nix.lookup(w, "requests"))];
@@ -131,7 +131,7 @@ export default nix.lambda((args) => (() => {
           })), nix.path(here, "./update.py"))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Usenet/BitTorrent movie downloader",
         homepage: "https://radarr.video",
         changelog: nix.thunk(() => nix.str`https://github.com/Radarr/Radarr/releases/tag/v${version}`),

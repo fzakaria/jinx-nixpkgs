@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const vulkan_loader = nix.arg($, "vulkan-loader");
   const includeSettings = nix.argOr($, "includeSettings", () => true);
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "libcosmic-app-hook",
       propagatedBuildInputs: nix.thunk(() => [makeBinaryWrapper, pkg_config]),
       depsTargetTargetPropagated: nix.thunk(() => (() => {
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         return nix.concat([libGL, libxkbcommon, libx11, libxcursor, libxi, libxcb], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [wayland, vulkan_loader])));
       })()),
       substitutions: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         fallbackXdgDirs: nix.thunk(() => (() => {
           const fallbackThemes = nix.thunk(() => nix.app(runCommand, "cosmic-fallback-themes", nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir -p $out/share
 ln -s ${nix.selOr(targetPackages, () => nix.force(cosmic_settings), "cosmic-settings")}/share/cosmic $out/share/cosmic
@@ -49,7 +49,7 @@ ln -s ${nix.selOr(targetPackages, () => nix.force(cosmic_settings), "cosmic-sett
         cargoLinkLibs: nix.thunk(() => nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.concat(["EGL", "xkbcommon", "X11", "X11-xcb", "Xcursor", "Xi", "xcb"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ["wayland-client", "wayland-egl", "vulkan"])))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Setup hook for configuring and wrapping applications based on libcosmic",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "cosmic"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

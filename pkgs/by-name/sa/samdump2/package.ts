@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "samdump2",
       version: "3.0.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/ophcrack/samdump2/${nix.sel(finalAttrs, "version")}/samdump2-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-YCZZrzDFZXUPoBZQ4KIj0mNVtd+Y8vvDDjpsWT7U5SY=",
         })))),
@@ -34,27 +34,27 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openssl]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://salsa.debian.org/pkg-security-team/samdump2/-/raw/b4c9f14f5a1925106e7c62c9967d430c1104df0c/debian/patches/10_ftbfs_link.patch",
             hash: "sha256-TGzxi44dDAispG+rK/kYYMzKjt10p+ZyfVDWKG+Gw/s=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://salsa.debian.org/pkg-security-team/samdump2/-/raw/b4c9f14f5a1925106e7c62c9967d430c1104df0c/debian/patches/20_compiler_flags.patch",
             hash: "sha256-VdDiNAQhlauAB4Ws/pvWMJY2rMKr3qhyVGX2GoxaagI=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://salsa.debian.org/pkg-security-team/samdump2/-/raw/b4c9f14f5a1925106e7c62c9967d430c1104df0c/debian/patches/30_install_infos.patch",
             hash: "sha256-Y7kdU+ywUYFm2VySGFa0QE1OvzoTa0eFSWp0VFmY5iM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://salsa.debian.org/pkg-security-team/samdump2/-/raw/b4c9f14f5a1925106e7c62c9967d430c1104df0c/debian/patches/40_manpage_formatting.patch",
             hash: "sha256-L4BjtiGk91nTKZdr0SXbaxkD2mzmkU3UJlc4TZfXS4Y=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             url: "https://salsa.debian.org/pkg-security-team/samdump2/-/raw/b4c9f14f5a1925106e7c62c9967d430c1104df0c/debian/patches/50_openssl.patch",
             hash: "sha256-pdLOSt7kX9uPg4wDVstxh3NC/DboQCP+5/wCjuJmruY=",
           })))),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace Makefile \\\n  --replace \" -o root -g root\" \"\"\n",
       makeFlags: nix.thunk(() => ["PREFIX=$(out)", "CC=cc"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Dump password hashes from a Windows NT/2k/XP installation",
         mainProgram: "samdump2",
         homepage: "https://sourceforge.net/projects/ophcrack/files/samdump2",

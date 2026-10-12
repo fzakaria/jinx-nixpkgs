@@ -24,16 +24,16 @@ export default nix.lambda((args) => (() => {
       const pname = "gcc-arm-embedded";
       const version = "13.3.rel1";
       const platform = nix.thunk(() => nix.selOr({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         "aarch64-darwin": "darwin-arm64",
         "aarch64-linux": "aarch64",
         "x86_64-linux": "x86_64",
       }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://developer.arm.com/-/media/Files/downloads/gnu/${version}/binrel/arm-gnu-toolchain-${version}-${platform}-arm-none-eabi.tar.xz`),
           sha256: nix.thunk(() => nix.selOr({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "aarch64-darwin": "fb6921db95d345dc7e5e487dd43b745e3a5b4d5c0c7ca4f707347148760317b4",
             "aarch64-linux": "c8824bffd057afce2259f7618254e840715f33523a3d4e4294f471208f976764",
             "x86_64-linux": "95c011cee430e64dd6087c75c800f04b9c49832cc1000127a92a97f9c8d83af4",
@@ -67,7 +67,7 @@ done
 done
 `))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Pre-built GNU toolchain from ARM Cortex-M & Cortex-R processors",
         homepage: "https://developer.arm.com/open-source/gnu-toolchain/gnu-rm",
         license: nix.thunk(() => (() => {
@@ -95,7 +95,7 @@ done
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         platform,

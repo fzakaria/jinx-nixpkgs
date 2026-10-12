@@ -77,9 +77,9 @@ export default nix.lambda((args) => (() => {
   const python = nix.thunk(() => nix.attr(from, "python"));
   const environment = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (value) => (nix.asBool(nix.eq(value, true)) ? "True" : (nix.asBool(nix.eq(value, false)) ? "False" : nix.builtins.toString(value))), nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$62,
+    [nix.POS]: pos$62,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -89,43 +89,43 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       services: nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         glitchtip: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "GlitchTip")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "glitchtip", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "The user account under which GlitchTip runs.",
               default: "glitchtip",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "The group under which GlitchTip runs.",
               default: "glitchtip",
             })))),
           stateDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "State directory of glitchtip.",
               default: "/var/lib/glitchtip",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "Configuration of GlitchTip. See <https://glitchtip.com/documentation/install#configuration> for more information and required settings.\n",
               default: nix.thunk(() => ({})),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  DEBUG = 0;\n  DEBUG_TOOLBAR = 0;\n  DATABASE_URL = lib.mkIf config.services.glitchtip.database.createLocally \"postgresql://@/glitchtip\";\n  GLITCHTIP_DOMAIN = lib.mkIf config.services.glitchtip.nginx.createLocally \"https://${config.services.glitchtip.nginx.domain}\";\n  GLITCHTIP_VERSION = config.services.glitchtip.package.version;\n  GRANIAN_HOST = \"127.0.0.1\";\n  GRANIAN_PORT = 8000;\n  GRANIAN_STATIC_PATH_MOUNT = \"${config.services.glitchtip.package}/lib/glitchtip/static\";\n  GRANIAN_WORKERS = 1;\n  PYTHONUNBUFFERED = 1;\n  REDIS_URL = lib.mkIf config.services.glitchtip.redis.createLocally \"unix://${config.services.redis.servers.glitchtip.unixSocket}\";\n}\n")),
               example: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 GLITCHTIP_DOMAIN: "https://glitchtip.example.com",
                 DATABASE_URL: "postgres://postgres:postgres@postgres/postgres",
               })),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   freeformType: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                     return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -135,40 +135,40 @@ export default nix.lambda((args) => (() => {
                         ]))));
                   })()),
                   options: nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     GLITCHTIP_DOMAIN: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         description: "The URL under which GlitchTip is externally reachable.",
                         example: "https://glitchtip.example.com",
                         default: null,
                       })))),
                     GLITCHTIP_ENABLE_MCP: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         description: "Whether to enable the MCP api.",
                         default: false,
                       })))),
                     GRANIAN_WORKERS: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: nix.thunk(() => nix.sel(lib, "types", "ints", "positive")),
                         description: "Number of granian workers to start",
                         default: 1n,
                       })))),
                     ENABLE_OBSERVABILITY_API: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         description: "Whether to enable the Prometheus metrics endpoint.",
                         default: false,
                       })))),
                     ENABLE_USER_REGISTRATION: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         description: "When true, any user will be able to register. When false, user self-signup is disabled after the first user is registered. Subsequent users must be created by a superuser on the backend and organization invitations may only be sent to existing users.\n",
                         default: false,
                       })))),
                     ENABLE_ORGANIZATION_CREATION: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         description: "When false, only superusers will be able to create new organizations after the first. When true, any user can create a new organization.\n",
                         default: false,
@@ -177,40 +177,40 @@ export default nix.lambda((args) => (() => {
                 })))),
             })))),
           environmentFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: [],
               example: nix.thunk(() => ["/run/secrets/glitchtip.env"]),
               description: "Files to load environment variables from in addition to [](#opt-services.glitchtip.settings).\nThis is useful to avoid putting secrets into the nix store.\nSee <https://glitchtip.com/documentation/install#configuration> for more information.\n",
             })))),
           database: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             createLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Whether to enable and configure a local PostgreSQL database server.",
               })))),
           })),
           nginx: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             createLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to enable and configure a local Nginx server.",
               })))),
             domain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 example: "glitchtip.example.com",
                 description: "Domain under which GlitchTip will be reachable.\nIn contrast to `settings.GLITCHTIP_DOMAIN` this option has no protocol.\nIt will also set `settings.GLITCHTIP_DOMAIN` with the `https://` protocol.\n",
               })))),
           })),
           redis: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             createLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Whether to enable and configure a local Redis instance.",
@@ -226,13 +226,13 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "glitchtip", "gunicorn", "extraArgs"]), "GlitchTip 6 migrated away from gunicorn. Please check the upstream docs how to handle your usecase now.")),
     ]),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$61,
+        [nix.POS]: pos$61,
         services: nix.thunk(() => ({
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           glitchtip: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             settings: nix.thunk(() => nix.update({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               DEBUG: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 0n)),
               DEBUG_TOOLBAR: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 0n)),
               GLITCHTIP_VERSION: nix.thunk(() => nix.sel(pkg, "version")),
@@ -242,56 +242,56 @@ export default nix.lambda((args) => (() => {
               GRANIAN_WORKERS: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 1n)),
               PYTHONPATH: nix.thunk(() => nix.str`${nix.app(nix.sel(python, "pkgs", "makePythonPath"), nix.thunk(() => nix.sel(pkg, "propagatedBuildInputs")))}:${pkg}/lib/glitchtip`),
               PYTHONUNBUFFERED: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 1n)),
-            }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ({ __proto__: pos$27, DATABASE_URL: "postgresql://@/glitchtip" }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "nginx", "createLocally")), nix.thunk(() => ({
-                __proto__: pos$28,
+            }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ({ [nix.POS]: pos$27, DATABASE_URL: "postgresql://@/glitchtip" }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "nginx", "createLocally")), nix.thunk(() => ({
+                [nix.POS]: pos$28,
                 GLITCHTIP_DOMAIN: nix.thunk(() => nix.str`https://${nix.sel(cfg, "nginx", "domain")}`),
               }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "redis", "createLocally")), nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 REDIS_URL: nix.thunk(() => nix.str`unix://${nix.sel(config, "services", "redis", "servers", "glitchtip", "unixSocket")}`),
               }))))))),
           })),
           nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "nginx", "createLocally")), nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               enable: true,
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "nginx", "domain"), nix.thunk(() => ({
-                  __proto__: pos$34,
+                  [nix.POS]: pos$34,
                   forceSSL: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                   locations: nix.thunk(() => ({
-                    __proto__: pos$33,
+                    [nix.POS]: pos$33,
                     "/": nix.thunk(() => ({
-                      __proto__: pos$31,
+                      [nix.POS]: pos$31,
                       proxyPass: nix.thunk(() => nix.str`http://${nix.sel(cfg, "settings", "GRANIAN_HOST")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "settings", "GRANIAN_PORT")))}`),
                     })),
-                    "/static/": nix.thunk(() => ({ __proto__: pos$32, root: nix.thunk(() => nix.str`${pkg}/lib/glitchtip`) })),
+                    "/static/": nix.thunk(() => ({ [nix.POS]: pos$32, root: nix.thunk(() => nix.str`${pkg}/lib/glitchtip`) })),
                   })),
                 }))],
               ])),
             })))),
           postgresql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               enable: true,
               ensureDatabases: nix.thunk(() => ["glitchtip"]),
               ensureUsers: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$36, name: "glitchtip", ensureDBOwnership: true })),
+                nix.thunk(() => ({ [nix.POS]: pos$36, name: "glitchtip", ensureDBOwnership: true })),
               ]),
             })))),
           redis: nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             servers: nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               glitchtip: nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 enable: nix.thunk(() => nix.sel(cfg, "redis", "createLocally")),
               })),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$55,
+          [nix.POS]: pos$55,
           services: nix.thunk(() => (() => {
             const commonService = nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               requires: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), "postgresql.target"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "redis", "createLocally")), "redis-glitchtip.service"))),
@@ -299,7 +299,7 @@ export default nix.lambda((args) => (() => {
               environment: environment,
             }));
             const commonServiceConfig = nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               User: nix.thunk(() => nix.sel(cfg, "user")),
               Group: nix.thunk(() => nix.sel(cfg, "group")),
               RuntimeDirectory: "glitchtip",
@@ -338,15 +338,15 @@ export default nix.lambda((args) => (() => {
               UMask: "0077",
             }));
             return {
-              __proto__: pos$50,
+              [nix.POS]: pos$50,
               glitchtip: nix.thunk(() => nix.update(commonService, {
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 description: "GlitchTip",
-                environment: nix.thunk(() => nix.update(environment, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "settings", "ENABLE_OBSERVABILITY_API")) && nix.asBool(nix.gt(nix.sel(cfg, "settings", "WORKERS"), 1n)))), nix.thunk(() => ({ __proto__: pos$44, PROMETHEUS_MULTIPROC_DIR: "/tmp/prometheus_multiproc" }))))),
+                environment: nix.thunk(() => nix.update(environment, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "settings", "ENABLE_OBSERVABILITY_API")) && nix.asBool(nix.gt(nix.sel(cfg, "settings", "WORKERS"), 1n)))), nix.thunk(() => ({ [nix.POS]: pos$44, PROMETHEUS_MULTIPROC_DIR: "/tmp/prometheus_multiproc" }))))),
                 bindsTo: nix.thunk(() => ["glitchtip-worker.service"]),
                 before: nix.thunk(() => ["glitchtip-worker.service"]),
                 serviceConfig: nix.thunk(() => nix.update(commonServiceConfig, {
-                  __proto__: pos$45,
+                  [nix.POS]: pos$45,
                   ExecStartPre: nix.thunk(() => [
                     nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), pkg)} migrate`),
                     nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), pkg)} createcachetable`),
@@ -363,25 +363,25 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               "glitchtip-worker": nix.thunk(() => nix.update(commonService, {
-                __proto__: pos$49,
+                [nix.POS]: pos$49,
                 description: "GlitchTip Job Runner",
-                environment: nix.thunk(() => nix.update(environment, { __proto__: pos$47, IS_WORKER: "1" })),
+                environment: nix.thunk(() => nix.update(environment, { [nix.POS]: pos$47, IS_WORKER: "1" })),
                 serviceConfig: nix.thunk(() => nix.update(commonServiceConfig, {
-                  __proto__: pos$48,
+                  [nix.POS]: pos$48,
                   ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), pkg)} runworker --scheduler`),
                 })),
               })),
             };
           })()),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$54,
+            [nix.POS]: pos$54,
             settings: nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               glitchtip: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${nix.sel(cfg, "stateDir")}/uploads`, nix.thunk(() => ({
-                  __proto__: pos$52,
+                  [nix.POS]: pos$52,
                   d: nix.thunk(() => ({
-                    __proto__: pos$51,
+                    [nix.POS]: pos$51,
                     user: nix.thunk(() => nix.attr(cfg, "user")),
                     group: nix.thunk(() => nix.attr(cfg, "group")),
                   })),
@@ -391,20 +391,20 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$59,
+          [nix.POS]: pos$59,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "glitchtip")), nix.thunk(() => ({
-              __proto__: pos$57,
+              [nix.POS]: pos$57,
               glitchtip: nix.thunk(() => ({
-                __proto__: pos$56,
+                [nix.POS]: pos$56,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 extraGroups: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "redis", "createLocally")), nix.thunk(() => ["redis-glitchtip"]))),
                 isSystemUser: true,
               })),
             })))),
-          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "glitchtip")), nix.thunk(() => ({ __proto__: pos$58, glitchtip: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "glitchtip")), nix.thunk(() => ({ [nix.POS]: pos$58, glitchtip: nix.thunk(() => ({})) })))),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$60,
+          [nix.POS]: pos$60,
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScriptBin"), "glitchtip-manage", nix.thunk(() => nix.str`set -o allexport
 ${nix.app(nix.sel(lib, "toShellVars"), environment)}

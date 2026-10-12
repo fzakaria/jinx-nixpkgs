@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const melpaBuild = nix.arg($, "melpaBuild");
   return nix.app(melpaBuild, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "icicles",
       version: "0-unstable-2024-10-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "emacsmirror",
           repo: "icicles",
           rev: "1c817db03aa32ef92d99661abc5e83da3188ab56",
           hash: "sha256-pH4FQuAnYf8eNiwiLl+OOOxzdecrncay6TcHjNG16sk=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://emacswiki.org/emacs/Icicles",
         description: "Emacs library that enhances minibuffer completion",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
   const typer = nix.arg($, "typer");
   const tzlocal = nix.arg($, "tzlocal");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pyicloud",
       version: "2.6.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "timlaing",
           repo: "pyicloud",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -59,12 +59,12 @@ export default nix.lambda((args) => (() => {
         tzlocal,
       ]),
       pythonRelaxDeps: nix.thunk(() => ["tzlocal"]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, cli: nix.thunk(() => [rich, typer]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, cli: nix.thunk(() => [rich, typer]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytest_mock, pytest_socket, pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
       pythonImportsCheck: nix.thunk(() => ["pyicloud"]),
       disabledTests: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.12")), nix.thunk(() => ["test_storage"]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Module to interact with iCloud webservices",
         mainProgram: "icloud",
         homepage: "https://github.com/timlaing/pyicloud",

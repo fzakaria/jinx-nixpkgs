@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.20.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "thuml",
           repo: "depyf",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -43,14 +43,14 @@ export default nix.lambda((args) => (() => {
       const doCheck = nix.thunk(() => !nix.asBool(nix.app(pythonAtLeast, "3.13")));
       const pythonImportsCheck = nix.thunk(() => ["depyf"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Decompile python functions, from bytecode to source code",
         homepage: "https://github.com/thuml/depyf",
         changelog: nix.thunk(() => nix.str`https://github.com/thuml/depyf/releases/tag/v${version}`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

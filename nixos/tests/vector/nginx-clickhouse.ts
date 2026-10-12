@@ -40,41 +40,41 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     name: "vector-nginx-clickhouse",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "lib", "maintainers", "happysalada"))]),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$28,
+      [nix.POS]: pos$28,
       clickhouse: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$13,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$2, memorySize: 4096n })),
+          [nix.POS]: pos$13,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, memorySize: 4096n })),
           networking: nix.thunk(() => ({
-            __proto__: pos$4,
-            firewall: nix.thunk(() => ({ __proto__: pos$3, allowedTCPPorts: nix.thunk(() => [6000n]) })),
+            [nix.POS]: pos$4,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$3, allowedTCPPorts: nix.thunk(() => [6000n]) })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$12,
-            clickhouse: nix.thunk(() => ({ __proto__: pos$5, enable: true })),
+            [nix.POS]: pos$12,
+            clickhouse: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
             vector: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 sources: nix.thunk(() => ({
-                  __proto__: pos$7,
-                  vector_source: nix.thunk(() => ({ __proto__: pos$6, type: "vector", address: "[::]:6000" })),
+                  [nix.POS]: pos$7,
+                  vector_source: nix.thunk(() => ({ [nix.POS]: pos$6, type: "vector", address: "[::]:6000" })),
                 })),
                 sinks: nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   clickhouse: nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     type: "clickhouse",
                     inputs: nix.thunk(() => ["vector_source"]),
                     endpoint: "http://localhost:8123",
@@ -93,32 +93,32 @@ export default nix.lambda((args) => (() => {
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           services: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             nginx: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               enable: true,
-              virtualHosts: nix.thunk(() => ({ __proto__: pos$14, localhost: nix.thunk(() => ({})) })),
+              virtualHosts: nix.thunk(() => ({ [nix.POS]: pos$14, localhost: nix.thunk(() => ({})) })),
             })),
             vector: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 sources: nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   nginx_logs: nix.thunk(() => ({
-                    __proto__: pos$16,
+                    [nix.POS]: pos$16,
                     type: "file",
                     include: nix.thunk(() => ["/var/log/nginx/access.log"]),
                     read_from: "end",
                   })),
                 })),
                 sinks: nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   vector_sink: nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     type: "vector",
                     inputs: nix.thunk(() => ["nginx_logs"]),
                     address: "clickhouse:6000",
@@ -128,12 +128,12 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             services: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               vector: nix.thunk(() => ({
-                __proto__: pos$24,
-                serviceConfig: nix.thunk(() => ({ __proto__: pos$23, SupplementaryGroups: nix.thunk(() => ["nginx"]) })),
+                [nix.POS]: pos$24,
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$23, SupplementaryGroups: nix.thunk(() => ["nginx"]) })),
               })),
             })),
           })),

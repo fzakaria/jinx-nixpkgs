@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "md4c",
       version: "0.5.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mity",
           repo: "md4c",
           rev: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/mity/md4c",
         description: "Markdown parser made in C",
         longDescription: "MD4C is Markdown parser implementation in C, with the following features:\n\n- Compliance: Generally, MD4C aims to be compliant to the latest version\n  of CommonMark specification. Currently, we are fully compliant to\n  CommonMark 0.30.\n- Extensions: MD4C supports some commonly requested and accepted\n  extensions. See below.\n- Performance: MD4C is very fast.\n- Compactness: MD4C parser is implemented in one source file and one\n  header file. There are no dependencies other than standard C library.\n- Embedding: MD4C parser is easy to reuse in other projects, its API is\n  very straightforward: There is actually just one function, md_parse().\n- Push model: MD4C parses the complete document and calls few callback\n  functions provided by the application to inform it about a start/end of\n  every block, a start/end of every span, and with any textual contents.\n- Portability: MD4C builds and works on Windows and POSIX-compliant\n  OSes. (It should be simple to make it run also on most other platforms,\n  at least as long as the platform provides C standard library, including\n  a heap memory management.)\n- Encoding: MD4C by default expects UTF-8 encoding of the input\n  document. But it can be compiled to recognize ASCII-only control\n  characters (i.e. to disable all Unicode-specific code), or (on Windows)\n  to expect UTF-16 (i.e. what is on Windows commonly called just\n  \"Unicode\"). See more details below.\n- Permissive license: MD4C is available under the MIT license.\n",

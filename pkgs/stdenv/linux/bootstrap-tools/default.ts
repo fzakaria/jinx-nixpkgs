@@ -17,17 +17,17 @@ export default nix.lambda((args) => (() => {
   const bootstrapFiles = nix.arg($, "bootstrapFiles");
   const isFromBootstrapFiles = nix.argOr($, "isFromBootstrapFiles", () => false);
   const maybeDenoteProvenance = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), isFromBootstrapFiles, nix.thunk(() => ({
-      __proto__: pos$2,
-      passthru: nix.thunk(() => ({ __proto__: pos$1, isFromBootstrapFiles: isFromBootstrapFiles })),
+      [nix.POS]: pos$2,
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, isFromBootstrapFiles: isFromBootstrapFiles })),
     }))));
   const maybeContentAddressed = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "contentAddressedByDefault")), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       __contentAddressed: true,
       outputHashAlgo: "sha256",
       outputHashMode: "recursive",
     }))));
   const args_1 = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     system: system,
     bootstrapFiles: bootstrapFiles,
     extraAttrs: maybeContentAddressed,

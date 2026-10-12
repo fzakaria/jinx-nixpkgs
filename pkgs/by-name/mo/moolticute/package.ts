@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "moolticute";
       const version = "1.03.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mooltipass",
           repo: "moolticute",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const qmakeFlags = nix.thunk(() => ["../Moolticute.pro"]);
       const preInstall = "mkdir -p $udev/lib/udev/rules.d\nsed -n '/^UDEV_RULE==\"\\$(cat <<-EOF$/,/^EOF$/p' ../data/moolticute.sh |\n    sed '1d;$d' > $udev/lib/udev/rules.d/50-mooltipass.rules\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GUI app and daemon to work with Mooltipass device via USB",
         longDescription: "To install udev rules, add `services.udev.packages = [ pkgs.moolticute.udev ]`\ninto `nixos/configuration.nix`.\n",
         homepage: "https://github.com/mooltipass/moolticute",
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

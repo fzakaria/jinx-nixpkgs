@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const bcftools = nix.arg($, "bcftools");
   const htslib = nix.arg($, "htslib");
   const ssshtest = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "ryanlayer",
       repo: "ssshtest",
       rev: "d21f7f928a167fca6e2eb31616673444d15e6fd0",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.2.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "ACEnglish",
           repo: "truvari",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -74,7 +74,7 @@ bash repo_utils/truvari_ssshtests.sh
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Structural variant comparison tool for VCFs",
         homepage: "https://github.com/ACEnglish/truvari",
         changelog: nix.thunk(() => nix.str`https://github.com/ACEnglish/truvari/releases/tag/${nix.sel(src, "rev")}`),
@@ -86,7 +86,7 @@ runHook postCheck
         longDescription: "Truvari is a benchmarking tool for comparison sets of SVs.\nIt can calculate the recall, precision, and f-measure of a\nvcf from a given structural variant caller. The tool\nis created by Spiral Genetics.\n",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

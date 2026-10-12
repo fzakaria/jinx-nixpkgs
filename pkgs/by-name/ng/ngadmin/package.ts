@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const enableEmu = nix.argOr($, "enableEmu", () => true);
   const enableSpy = nix.argOr($, "enableSpy", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ngadmin",
       version: "unstable-2020-10-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Alkorin",
           repo: "ngadmin",
           rev: "5bf8650ce6d465b8cb1e570548819f0cefe9a87d",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       configureFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withReadline)), "--without-readline"), nix.concat(nix.app(nix.sel(lib, "optional"), enableEmu, "--enable-emu"), nix.app(nix.sel(lib, "optional"), enableSpy, "--enable-spy")))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Netgear switch (NSDP) administration tool",
         homepage: "https://www.netgeek.ovh/wiki/projets:ngadmin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

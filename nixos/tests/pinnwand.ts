@@ -23,29 +23,29 @@ export default nix.lambda((args) => (() => {
   const port = 8000n;
   const baseUrl = nix.thunk(() => nix.str`http://server:${nix.builtins.toString(port)}`);
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     name: "pinnwand",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "hexa"))]),
       };
     })()),
     containers: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           networking: nix.thunk(() => ({
-            __proto__: pos$3,
-            firewall: nix.thunk(() => ({ __proto__: pos$2, allowedTCPPorts: nix.thunk(() => [port]) })),
+            [nix.POS]: pos$3,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$2, allowedTCPPorts: nix.thunk(() => [port]) })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$5,
-            pinnwand: nix.thunk(() => ({ __proto__: pos$4, enable: true, port: port })),
+            [nix.POS]: pos$5,
+            pinnwand: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true, port: port })),
           })),
         };
       })(), formals$2),
@@ -53,13 +53,13 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           environment: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs_1, "steck")),
               nix.thunk(() => nix.app(nix.sel(pkgs_1, "writers", "writePython3Bin"), "setup-steck.py", nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   libraries: nix.thunk(() => (() => {
                     const w_1 = nix.withScope(nix.thunk(() => nix.sel(pkgs_1, "python3", "pkgs")), null);
                     return [

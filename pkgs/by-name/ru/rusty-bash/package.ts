@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "rusty-bash",
       version: "1.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "shellgei",
           repo: "rusty_bash",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,10 +27,10 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: nix.thunk(() => nix.str`cp ${nix.path(here, "./Cargo.lock")} ./Cargo.lock
 `),
-      cargoLock: nix.thunk(() => ({ __proto__: pos$2, lockFile: nix.path(here, "./Cargo.lock") })),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, shellPath: "/bin/sush" })),
+      cargoLock: nix.thunk(() => ({ [nix.POS]: pos$2, lockFile: nix.path(here, "./Cargo.lock") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, shellPath: "/bin/sush" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Bash written with Rust, a.k.a. sushi shell",
         homepage: "https://github.com/shellgei/rusty_bash",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

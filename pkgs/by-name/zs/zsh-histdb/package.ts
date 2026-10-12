@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const zsh = nix.arg($, "zsh");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zsh-histdb",
       version: "0-unstable-2024-04-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "larkery",
           repo: "zsh-histdb",
           rev: "90a6c104d0fcc0410d665e148fa7da28c49684eb",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [zsh]),
       installPhase: "runHook preInstall\n\ninstall -Dt $out/share/zsh-histdb/ \\\n  sqlite-history.zsh histdb-interactive.zsh histdb-{merge,migrate}\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "History database for Zsh, based on SQLite",
         homepage: "https://github.com/larkery/zsh-histdb",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -28,21 +28,21 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "drbd"));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         drbd: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Whether to enable support for DRBD, the Distributed Replicated\nBlock Device.\n",
             })))),
           config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: "",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               description: "Contents of the {file}`drbd.conf` configuration file.\n",
@@ -51,41 +51,41 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         environment: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "drbd"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             "drbd.conf": nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "drbd.conf", nix.thunk(() => nix.sel(cfg, "config")))),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           udev: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "drbd"))]),
           })),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           kernelModules: nix.thunk(() => ["drbd"]),
           extraModprobeConfig: "options drbd usermode_helper=/run/current-system/sw/bin/drbdadm\n",
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             drbd: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               after: nix.thunk(() => ["systemd-udev.settle.service", "network.target"]),
               wants: nix.thunk(() => ["systemd-udev.settle.service"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "drbd")}/bin/drbdadm up all`),
                 ExecStop: nix.thunk(() => nix.str`${nix.sel(pkgs, "drbd")}/bin/drbdadm down all`),
               })),

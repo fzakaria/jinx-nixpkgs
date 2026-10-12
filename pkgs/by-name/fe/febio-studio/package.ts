@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const withModelRepo = nix.argOr($, "withModelRepo", () => true);
   const withCadFeatures = nix.argOr($, "withCadFeatures", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "febio-studio",
       version: "2.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "febiosoftware",
           repo: "FEBioStudio",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./cmake-install.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/febiosoftware/FEBioStudio/commit/15524d958a6f5ef81ccee58b4efa1ea25de91543.patch",
             hash: "sha256-LRToK1/RQC+bLXgroDTQOV6H8pI+IZ38Y0nsl/Fz1WE=",
           })))),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, ninja, nix.thunk(() => nix.sel(qt6Packages, "wrapQtAppsHook"))]),
       buildInputs: nix.thunk(() => nix.concat([zlib, libGLU, glew, nix.thunk(() => nix.sel(qt6Packages, "qtbase")), febio], nix.concat(nix.app(nix.sel(lib, "optionals"), sshSupport, nix.thunk(() => [openssl, libssh])), nix.concat(nix.app(nix.sel(lib, "optional"), tetgenSupport, tetgen), nix.concat(nix.app(nix.sel(lib, "optional"), ffmpegSupport, ffmpeg), nix.app(nix.sel(lib, "optional"), dicomSupport, dcmtk)))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "FEBio Suite Solver",
         mainProgram: "FEBioStudio",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

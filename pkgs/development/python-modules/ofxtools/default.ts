@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.5";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "csingley",
           repo: "ofxtools",
           rev: version,
@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const preCheck = "export HOME=$(mktemp -d)\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/csingley/ofxtools",
         description: "Library for working with Open Financial Exchange (OFX) formatted data used by financial institutions",
         mainProgram: "ofxget",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

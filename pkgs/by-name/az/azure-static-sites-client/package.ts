@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const versions = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./versions.json")));
   const flavor = nix.thunk(() => nix.app(nix.sel(lib, "head"), nix.thunk(() => nix.app(nix.sel(lib, "filter"), (x) => nix.eq(nix.sel(x, "version"), versionFlavor), versions))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: nix.thunk(() => nix.str`StaticSitesClient-${versionFlavor}`),
       version: nix.thunk(() => nix.sel(flavor, "buildId")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.sel(flavor, "files", "linux-x64", "url")),
           sha256: nix.thunk(() => nix.sel(flavor, "files", "linux-x64", "sha")),
         })))),
@@ -65,12 +65,12 @@ runHook postInstall
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\n$out/bin/StaticSitesClient version\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), nix.thunk(() => nix.builtins.map((x) => nix.sel(x, "version"), versions)), (versionFlavor_1) => nix.app(nix.sel(azure_static_sites_client, "override"), nix.thunk(() => ({ __proto__: pos$2, versionFlavor: versionFlavor_1 }))))),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), nix.thunk(() => nix.builtins.map((x) => nix.sel(x, "version"), versions)), (versionFlavor_1) => nix.app(nix.sel(azure_static_sites_client, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, versionFlavor: versionFlavor_1 }))))),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Azure static sites client",
         homepage: "https://github.com/Azure/static-web-apps-cli",
         sourceProvenance: nix.thunk(() => (() => {

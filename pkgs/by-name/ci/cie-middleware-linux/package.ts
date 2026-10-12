@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
   const pname = "cie-middleware-linux";
   const version = "1.5.9";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "M0rf30",
       repo: "cie-middleware-linux",
       tag: version,
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
   const gradle = gradle_8;
   const libraries = nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [ghostscript])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       src: src,
       version: version,
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [cryptopp, fontconfig, podofo0, openssl, pcsclite, curl, libxml2]),
       postPatch: "# substitute the cieid command with this $out/bin/cieid\nsubstituteInPlace libs/pkcs11/src/CSP/AbilitaCIE.cpp \\\n  --replace 'file = \"cieid\"' 'file = \"'$out'/bin/cieid\"'\n",
       preConfigure: "pushd libs",
-      mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, data: nix.path(here, "./deps.json") })))),
+      mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, data: nix.path(here, "./deps.json") })))),
       gradleFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`-Dorg.gradle.java.home=${jre}`),
         "--build-file",
@@ -81,7 +81,7 @@ install -Dm644 LICENSE "$out/share/licenses/cieid/LICENSE"
 `),
       preGradleUpdate: "cd ../..",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/M0Rf30/cie-middleware-linux",
         description: "Middleware for the Italian Electronic Identity Card (CIE)",
         longDescription: "Software for the usage of the Italian Electronic Identity Card (CIE).\nAccess to PA services, signing and verification of documents\n\nWarning: this is an unofficial fork because the original software, as\ndistributed by the Italian government, is essentially lacking a build\nsystem and is in violation of the license of the PoDoFo library.\n",

@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
     const passthru = nix.argOr($_1, "passthru", () => ({}));
     const meta = nix.argOr($_1, "meta", () => ({}));
     return {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       patches: patches,
       strictDeps: strictDeps,
       doCheck: doCheck,
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       installPhase: nix.thunk(() => nix.selOr(args_2, () => "runHook preInstall\n\nrunHook postInstall\n", "installPhase")),
       installCheckPhase: nix.thunk(() => nix.selOr(args_2, () => "runHook preInstallCheck\n\nrunHook postInstallCheck\n", "installCheckPhase")),
       composerVendor: nix.thunk(() => nix.selOr(args_2, () => nix.app(nix.sel(php_1, "mkComposerVendor"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             vendorHash: nix.thunk(() => nix.attr(finalAttrs, "vendorHash")),
@@ -74,17 +74,17 @@ export default nix.lambda((args) => (() => {
             dontCheckForBrokenSymlinks: dontCheckForBrokenSymlinks,
           }))), "composerVendor")),
       passthru: nix.thunk(() => nix.update(passthru, {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.selOr(args_2, () => (nix.asBool(nix.eq(composerLock, null)) ? nix.app(nix_update_script, nix.thunk(() => ({}))) : null), "passthru", "updateScript")),
       })),
       meta: nix.thunk(() => nix.update(meta, {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         platforms: nix.thunk(() => nix.selOr(meta, () => nix.sel(lib, "platforms", "all"), "platforms")),
       })),
     };
   })(), formals$2);
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       constructDrv: nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")),
       extendDrvArgs: buildComposerProjectOverride,
     })));

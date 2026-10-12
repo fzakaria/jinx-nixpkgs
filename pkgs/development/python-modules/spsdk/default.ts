@@ -53,13 +53,13 @@ export default nix.lambda((args) => (() => {
   const voluptuous = nix.arg($, "voluptuous");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "spsdk",
       version: "3.11.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nxp-mcuxpresso",
           repo: "spsdk",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -132,7 +132,7 @@ export default nix.lambda((args) => (() => {
         "test_keys_generation_ec",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/nxp-mcuxpresso/spsdk/blob/${nix.sel(finalAttrs, "src", "tag")}/docs/release_notes.rst`),
         description: "NXP Secure Provisioning SDK",
         homepage: "https://github.com/nxp-mcuxpresso/spsdk",

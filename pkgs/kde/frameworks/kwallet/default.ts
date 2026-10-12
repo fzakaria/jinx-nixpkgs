@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const libsecret = nix.arg($, "libsecret");
   const kdoctools = nix.arg($, "kdoctools");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kwallet",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),
       extraBuildInputs: nix.thunk(() => [gpgmepp, libgcrypt, libsecret, kdoctools]),

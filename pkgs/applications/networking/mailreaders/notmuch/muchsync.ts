@@ -23,20 +23,20 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const version = "7";
       const pname = "muchsync";
-      const passthru = nix.thunk(() => ({ __proto__: pos$1, version: version }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$1, version: version }));
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://www.muchsync.org/src/${pname}-${version}.tar.gz`),
           hash: "sha256-+D4vb80O9IE0df3cjTkoVoZlTaX0FWWh6ams14Gjvqw=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [pkg_config]);
       const buildInputs = nix.thunk(() => [notmuch, openssl, sqlite, xapian, zlib]);
       const env = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         XAPIAN_CONFIG: nix.thunk(() => nix.str`${xapian}/bin/xapian-config`),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Synchronize maildirs and notmuch databases",
         mainProgram: "muchsync",
         homepage: "http://www.muchsync.org/",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         version,
         pname,
         passthru,

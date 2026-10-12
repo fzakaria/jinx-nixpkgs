@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const checkOutput = nix.arg($, "checkOutput");
   const static$ = nix.arg($, "static");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "cpptrace-findpackage-integration-test",
       src: src,
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(cpptrace, "override"), nix.thunk(() => ({ __proto__: pos$1, static: static$ })))),
+        nix.thunk(() => nix.app(nix.sel(cpptrace, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, static: static$ })))),
       ]),
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ninstall main $out/bin\nrunHook postInstall\n",
       doInstallCheck: true,

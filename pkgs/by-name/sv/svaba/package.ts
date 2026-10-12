@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "1.1.0",
       pname: "svaba",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "walaj",
           repo: "svaba",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,10 +30,10 @@ export default nix.lambda((args) => (() => {
         })))),
       buildInputs: nix.thunk(() => [zlib, bzip2, xz]),
       postPatch: "# Fix gcc-13 build failure due to missing includes\nsed -e '1i #include <cstdint>' -i \\\n  SeqLib/src/non_api/Histogram.h \\\n  src/svaba/Histogram.h\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fcommon" })),
       installPhase: "runHook preInstall\ninstall -Dm555 src/svaba/svaba $out/bin/svaba\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))),
         description: "Structural variant and INDEL caller for DNA sequencing data, using genome-wide local assembly",
         mainProgram: "svaba",

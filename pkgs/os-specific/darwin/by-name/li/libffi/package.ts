@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const doCheck = nix.argOr($, "doCheck", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")));
   const python3_with_macholib = nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (pkgs) => [nix.thunk(() => nix.sel(pkgs, "macholib"))]));
   return nix.app(mkAppleDerivation, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       releaseName: "libffi",
       outputs: nix.thunk(() => ["out", "dev", "man", "info"]),
       patches: nix.thunk(() => [
@@ -46,15 +46,15 @@ export default nix.lambda((args) => (() => {
       doCheck: doCheck,
       nativeCheckInputs: nix.thunk(() => [dejagnu]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
           "check-trampolines-dylib": nix.thunk(() => nix.app(runCommand, "check-trampolines-dylib", nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               nativeBuildInputs: nix.thunk(() => [dyld, python3_with_macholib]),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
               meta: nix.thunk(() => (() => {
                 const from = nix.thunk(() => nix.sel(finalAttrs, "meta"));
                 return {
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 description: "Test whether the libffi trampoline was built correctly and works on Darwin.",
                 license: nix.thunk(() => nix.attr(from, "license")),
                 platforms: nix.thunk(() => nix.attr(from, "platforms")),
@@ -78,7 +78,7 @@ touch "$out"
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Foreign function call interface library",
         longDescription: "The libffi library provides a portable, high level programming\ninterface to various calling conventions.  This allows a\nprogrammer to call any function specified by a call interface\ndescription at run-time.\n\nFFI stands for Foreign Function Interface.  A foreign function\ninterface is the popular name for the interface that allows code\nwritten in one language to call code written in another\nlanguage.  The libffi library really only provides the lowest,\nmachine dependent layer of a fully featured foreign function\ninterface.  A layer must exist above libffi that handles type\nconversions for values passed between the two languages.\n",
         homepage: "https://github.com/apple-oss-distributions/libffi/",

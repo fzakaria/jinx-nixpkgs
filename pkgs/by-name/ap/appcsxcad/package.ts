@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const cgal = nix.arg($, "cgal");
   const boost = nix.arg($, "boost");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "appcsxcad",
       version: "0.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "thliebig",
           repo: "AppCSXCAD",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,13 +38,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "update-minimum-cmake-required.patch",
             url: "https://github.com/thliebig/AppCSXCAD/commit/9585207eb08195c3f1c47dc9d6a80b563a3272e0.patch",
             hash: "sha256-2+C3cqQMU3UL12h0f7EdBZVqeJVSPhDVbMOcqbOY0gg=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "remove-cmp0020-policy.patch",
             url: "https://github.com/thliebig/AppCSXCAD/commit/688c07cd847f463a2a42f01d41751374b4f787c8.patch",
             hash: "sha256-pa6imzrUoVA3Ebc4UGPACJ6qjYiHOjB5aQ9FN/CUpVM=",
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postFixup: "rm $out/bin/AppCSXCAD.sh\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Minimal Application using the QCSXCAD library",
         mainProgram: "AppCSXCAD",
         homepage: "https://github.com/thliebig/AppCSXCAD",

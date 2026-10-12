@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "astropy",
           repo: "extension-helpers",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const enabledTestPaths = nix.thunk(() => ["extension_helpers/tests"]);
       const disabledTests = nix.thunk(() => ["test_write_if_different", "test_limited_api_invalid_abi"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Helpers to assist with building Python packages with compiled C/Cython extensions",
         homepage: "https://github.com/astropy/extension-helpers",
         changelog: nix.thunk(() => nix.str`https://github.com/astropy/extension-helpers/blob/${nix.sel(src, "tag")}/CHANGES.md`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

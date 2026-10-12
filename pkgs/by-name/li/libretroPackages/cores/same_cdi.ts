@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const libx11 = nix.arg($, "libx11");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       core: "same_cdi",
       version: "0-unstable-2026-03-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libretro",
           repo: "same_cdi",
           rev: "2184aa6d87a31fb6c64534b9b7b2d26e36bae757",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "Fixes_compilation_errors_as_per_issue_9.patch",
             url: "https://github.com/libretro/same_cdi/commit/bf3212315546cdd514118a4f3ea764fd9c401091.patch?full_index=1",
             hash: "sha256-1vrMxnRtEWUt+6I/4PSfCPDIUAGKkXFd2UVr9473ngo=",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       extraNativeBuildInputs: nix.thunk(() => [python3]),
       extraBuildInputs: nix.thunk(() => [alsa_lib, libGL, libGLU, portaudio, libx11]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "SAME_CDI is a libretro core to play CD-i games",
         homepage: "https://github.com/libretro/same_cdi",
         license: nix.thunk(() => (() => {

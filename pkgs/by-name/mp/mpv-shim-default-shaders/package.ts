@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mpv-shim-default-shaders";
       const version = "3.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "iwalton3",
           repo: "default-shader-pack",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
 cp -r shaders *.json $out/share/${pname}
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/iwalton3/default-shader-pack",
         description: "Preconfigured set of MPV shaders and configurations for MPV Shim media clients",
         license: nix.thunk(() => (() => {
@@ -42,7 +42,7 @@ cp -r shaders *.json $out/share/${pname}
           return [nix.thunk(() => nix.lookup(w_1, "devusb"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -63,13 +63,13 @@ export default nix.lambda((args) => (() => {
       const pname = "saleae-logic";
       const version = "1.2.18";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`saleae-logic-${version}-64bit.zip`),
           url: nix.thunk(() => nix.str`https://downloads.saleae.com/logic/${version}/Logic%20${version}%20(64-bit).zip`),
           sha256: "0lhair2vsg8sjvzicvfcjfmvy30q7i01xj4z02iqh7pgzpb025h8",
         }))));
       const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "saleae-logic",
           exec: "saleae-logic",
           icon: "",
@@ -119,7 +119,7 @@ mkdir -p "$out/etc/udev/rules.d"
 cp Drivers/99-SaleaeLogic.rules "$out/etc/udev/rules.d/"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Software for Saleae logic analyzers",
         homepage: "https://www.saleae.com/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -131,7 +131,7 @@ cp Drivers/99-SaleaeLogic.rules "$out/etc/udev/rules.d/"
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "bjornfor"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

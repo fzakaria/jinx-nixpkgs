@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
       const pname = "chain-desktop-wallet";
       const version = "1.5.1";
       const src = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               url: nix.thunk(() => nix.str`https://github.com/crypto-com/chain-desktop-wallet/releases/download/v${version}/Crypto.com-DeFi-Desktop-Wallet-${version}.AppImage`),
               hash: "sha256-dXJMU6abg31ZyETKl5Hh6fxn1Gd1FbSHGJh1z0R7XPM=",
             })))),
@@ -34,7 +34,7 @@ substituteInPlace $out/share/applications/chain-desktop-wallet.desktop \\
   --replace-fail "Exec=AppRun --no-sandbox %U" "Exec=chain-desktop-wallet %U"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Crypto.org Chain desktop wallet (Beta)",
         homepage: "https://github.com/crypto-com/chain-desktop-wallet",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -45,7 +45,7 @@ substituteInPlace $out/share/applications/chain-desktop-wallet.desktop \\
         platforms: nix.thunk(() => ["x86_64-linux"]),
         mainProgram: "chain-desktop-wallet",
       }));
-      return { __proto__: pos$4, pname, version, src, extraInstallCommands, meta };
+      return { [nix.POS]: pos$4, pname, version, src, extraInstallCommands, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

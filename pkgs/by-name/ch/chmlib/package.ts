@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "chmlib",
       version: "0.40a",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jedwing",
           repo: "CHMLib",
           rev: "2bef8d063ec7d88a8de6fd9f0513ea42ac0fa21f",
@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
       })),
       configureFlags: nix.thunk(() => ["--enable-examples", "--enable-devel", "CFLAGS=-std=gnu17"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://www.jedrea.com/chmlib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2")),
         description: "Library for dealing with Microsoft ITSS/CHM format files",

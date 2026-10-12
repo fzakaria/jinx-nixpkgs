@@ -25,37 +25,37 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "services", "displayManager", "generic"));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "displayManager", "preStart"]), nix.thunk(() => ["services", "displayManager", "generic", "preStart"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "displayManager", "execCmd"]), nix.thunk(() => ["services", "displayManager", "generic", "execCmd"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "displayManager", "environment"]), nix.thunk(() => ["services", "displayManager", "generic", "environment"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         displayManager: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           generic: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "generic display manager integration - deprecated")),
             preStart: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.sel(lib, "types", "lines")),
                 default: "",
                 example: "rm -f /var/log/my-display-manager.log",
                 description: "Script executed before the display manager is started.",
               })))),
             execCmd: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${pkgs.lightdm}/bin/lightdm\"")),
                 description: "Command to start the display manager.",
               })))),
             environment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "unspecified")));
@@ -68,20 +68,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enable")) || nix.asBool(!nix.eq(nix.sel(cfg, "execCmd"), null)))), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         warnings: nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "enable"))), "Enabling display-manager.service implicitly due to `services.displayManager.generic.execCmd` being set; this will be removed eventually.\nPlease set `services.displayManager.generic.enable` explicitly, or switch your display manager to use upstream systemd units (preferred).\n")),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$9,
-          displayManager: nix.thunk(() => ({ __proto__: pos$8, enable: true })),
+          [nix.POS]: pos$9,
+          displayManager: nix.thunk(() => ({ [nix.POS]: pos$8, enable: true })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             "display-manager": nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "Display Manager",
               after: nix.thunk(() => [
                 "acpid.service",
@@ -97,7 +97,7 @@ export default nix.lambda((args) => (() => {
               startLimitIntervalSec: 30n,
               startLimitBurst: 3n,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 Restart: "always",
                 RestartSec: "200ms",
                 SyslogIdentifier: "display-manager",

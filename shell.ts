@@ -25,19 +25,19 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`using revision (${revision}) from ${branch}.`),
           "You may experience some differences to CI.",
         ])))));
-    return nix.app(withWarning, nix.builtins.fetchTarball, nix.thunk(() => ({ __proto__: pos$1, url: url, sha256: hash })));
+    return nix.app(withWarning, nix.builtins.fetchTarball, nix.thunk(() => ({ [nix.POS]: pos$1, url: url, sha256: hash })));
   })() : null));
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ci")), nix.thunk(() => ({ __proto__: pos$2, nixpkgs: nixpkgs, system: system }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ci")), nix.thunk(() => ({ [nix.POS]: pos$2, nixpkgs: nixpkgs, system: system }))));
   const pkgs = nix.thunk(() => nix.attr(from, "pkgs"));
   const fmt = nix.thunk(() => nix.attr(from, "fmt"));
-  const curPkgs = nix.thunk(() => nix.builtins.removeAttrs(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./.")), nix.thunk(() => ({ __proto__: pos$3, system: system })))), nix.thunk(() => ["_type"])));
+  const curPkgs = nix.thunk(() => nix.builtins.removeAttrs(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./.")), nix.thunk(() => ({ [nix.POS]: pos$3, system: system })))), nix.thunk(() => ["_type"])));
   return nix.update(curPkgs, nix.update(nix.app(nix.sel(pkgs, "mkShellNoCC"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       packages: nix.thunk(() => [
         nix.thunk(() => nix.sel(pkgs, "nixpkgs-reviewFull")),
         nix.thunk(() => nix.sel(pkgs, "gh")),
         nix.thunk(() => nix.sel(fmt, "pkg")),
       ]),
-    }))), { __proto__: pos$5, formatter: nix.thunk(() => nix.sel(fmt, "pkg")) }));
+    }))), { [nix.POS]: pos$5, formatter: nix.thunk(() => nix.sel(fmt, "pkg")) }));
 })(), formals$1);
 //# sourceMappingURL=shell.ts.map

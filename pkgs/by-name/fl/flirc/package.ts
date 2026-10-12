@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const readline = nix.arg($, "readline");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "flirc",
       version: "3.27.19",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://web.archive.org/web/20260826023719if_/http://apt.flirc.tv/arch/x86_64/flirc.latest.x86_64.tar.gz",
           hash: "sha256-oQCplncTkcpxnclyh0wqe2veoWEtIeSnEeDgN8Qi9fY=",
         })))),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
 install -D ${nix.path(here, "./99-flirc.rules")} $out/lib/udev/rules.d/99-flirc.rules
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://flirc.tv/more/flirc-usb",
         description: "Use any Remote with your Media Center",
         maintainers: nix.thunk(() => (() => {

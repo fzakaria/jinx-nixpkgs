@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const bashInteractive = nix.arg($, "bashInteractive");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bash-completion",
       version: "2.18.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/scop/bash-completion/releases/download/${nix.sel(finalAttrs, "version")}/bash-completion-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-iLz4UST3f3Ty8vi80WrEOC2AeoJ+3nQqZJQMcRauoz8=",
         })))),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
 `),
       prePatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "sed -i -e 's/readlink -f/readlink/g' bash_completion completions/*\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/scop/bash-completion",
         description: "Programmable completion for the bash shell",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

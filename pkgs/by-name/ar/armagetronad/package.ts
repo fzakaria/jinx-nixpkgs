@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
   const unstableVersionMajor = "0.4";
   const srcs = nix.thunk(() => (() => {
     const fetchArmagetron = (rev) => (hash) => nix.app(fetchFromGitLab, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         owner: "armagetronad",
         repo: "armagetronad",
         rev: rev,
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         const rev = nix.thunk(() => nix.str`v${version}`);
         const hash = "sha256-xoUb0AAhaiAYA88Sn5/CfofMjGkYDLsCPVKwzHGz1XA=";
         return (dedicatedServer_1) => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           version: version,
           src: nix.thunk(() => nix.app(fetchArmagetron, rev, hash)),
           extraBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(dedicatedServer_1)), nix.thunk(() => [libGL, libGLU, libx11, libpng, SDL, SDL_image, SDL_mixer]))),
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
         const rev = "16da4a669d4c4d269132a903228918c2a8b87b08";
         const hash = "sha256-nTTJwxnTYP3kBxSMNpcYaKfMVGF6U/pYa2r10d8YdCE=";
         return (dedicatedServer_1) => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.str`${unstableVersionMajor}-${nix.app(nix.sel(lib, "substring"), 0n, 8n, rev)}`),
           src: nix.thunk(() => nix.app(fetchArmagetron, rev, hash)),
           extraBuildInputs: nix.thunk(() => nix.concat([protobuf, boost], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(dedicatedServer_1)), nix.thunk(() => [glew, ftgl, freetype, libGL, libGLU, libx11, SDL2, SDL2_image, SDL2_mixer])))),
@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
         const rev = "b74df624eae13e919b4b04f9b18043bce9d04431";
         const hash = "sha256-tjEcgyYxaGgHiIH8y9xYM7HEpgZa7DEWIVqK8r0dmaY=";
         return (dedicatedServer_1) => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.str`${latestVersionMajor}-sty+ct+ap-${nix.app(nix.sel(lib, "substring"), 0n, 8n, rev)}`),
           src: nix.thunk(() => nix.app(fetchArmagetron, rev, hash)),
           extraBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(dedicatedServer_1)), nix.thunk(() => [libGL, libGLU, libx11, libpng, SDL, SDL_image, SDL_mixer]))),
@@ -101,7 +101,7 @@ export default nix.lambda((args) => (() => {
     const minorVersionPart = (parts) => (sep) => (expectedSize) => (nix.asBool(nix.gt(nix.app(nix.sel(lib, "length"), parts), expectedSize)) ? nix.add(sep, nix.app(nix.sel(lib, "concatStringsSep"), sep, nix.thunk(() => nix.app(nix.sel(lib, "lists", "drop"), expectedSize, parts)))) : "");
     const minorVersion = nix.thunk(() => nix.add(nix.add(nix.app(minorVersionPart, splitVersion, ".", 2n), nix.app(minorVersionPart, versionParts, "-", 1n)), "-nixpkgs"));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         pname: mainProgram,
         version: nix.thunk(() => nix.attr(resolvedParams, "version")),
         src: nix.thunk(() => nix.attr(resolvedParams, "src")),
@@ -128,7 +128,7 @@ echo "Bootstrapping version: $(<major_version)$(<minor_version)" >&2
           "--disable-sysinstall",
         ], nix.concat(nix.app(nix.sel(lib, "optional"), dedicatedServer_1, "--enable-dedicated"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(dedicatedServer_1)), "--enable-music")))),
         buildInputs: nix.thunk(() => nix.concat([
-          nix.thunk(() => nix.app(nix.sel(libxml2, "override"), nix.thunk(() => ({ __proto__: pos$5, enableHttp: true })))),
+          nix.thunk(() => nix.app(nix.sel(libxml2, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, enableHttp: true })))),
           curl,
         ], nix.selOr(resolvedParams, () => [], "extraBuildInputs"))),
         nativeBuildInputs: nix.thunk(() => nix.concat([autoconf, automake, gnum4, pkg_config, which, python3], nix.selOr(resolvedParams, () => [], "extraNativeBuildInputs"))),
@@ -160,18 +160,18 @@ else
 fi
 `),
         passthru: nix.thunk(() => (nix.asBool(dedicatedServer_1) ? {} : (nix.asBool(!nix.eq(nix.sel(resolvedParams, "version"), nix.sel(nix.app(nix.sel(srcs, nix.key(latestVersionMajor)), dedicatedServer_1), "version"))) ? {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           dedicated: nix.thunk(() => nix.app(mkArmagetron, fn, true)),
         } : nix.update(nix.app(nix.sel(lib, "mapAttrs"), (name) => (value) => nix.app(mkArmagetron, value, dedicatedServer_1), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (name) => (value) => !nix.eq(nix.sel(nix.app(value, dedicatedServer_1), "version"), nix.sel(nix.app(nix.sel(srcs, nix.key(latestVersionMajor)), dedicatedServer_1), "version")), srcs))), {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           dedicated: nix.thunk(() => nix.app(mkArmagetron, fn, true)),
           tests: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             armagetronad: nix.thunk(() => nix.sel(nixosTests, "armagetronad")),
           })),
         })))),
         meta: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           mainProgram: mainProgram,
           homepage: "https://www.armagetronad.org",
           description: "Multiplayer networked arcade racing game in 3D similar to Tron",

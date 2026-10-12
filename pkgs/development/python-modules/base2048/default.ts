@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ionite34",
           repo: "base2048",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-OXlfycJB1IrW2Zq0xPDGjjwCdRTWtX/ixPGWcd+YjAg=",
         }))));
-      const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "importCargoLock"), nix.thunk(() => ({ __proto__: pos$2, lockFile: nix.path(here, "./Cargo.lock") }))));
+      const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "importCargoLock"), nix.thunk(() => ({ [nix.POS]: pos$2, lockFile: nix.path(here, "./Cargo.lock") }))));
       const postPatch = nix.thunk(() => nix.str`ln -s ${nix.path(here, "./Cargo.lock")} Cargo.lock
 `);
       const nativeBuildInputs = nix.thunk(() => [
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
         rustc,
       ]);
       const buildInputs = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv])));
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$3, fuzz: nix.thunk(() => [frelatage]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$3, fuzz: nix.thunk(() => [frelatage]) }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["base2048"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Binary encoding with base-2048 in Python with Rust",
         homepage: "https://github.com/ionite34/base2048",
         changelog: nix.thunk(() => nix.str`https://github.com/ionite34/base2048/releases/tag/v${version}`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const tcpip = nix.arg($, "tcpip");
   const metrics = nix.arg($, "metrics");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "dns-stub",
       version: nix.thunk(() => nix.attr(dns, "version")),
       src: nix.thunk(() => nix.attr(dns, "src")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         metrics,
       ]),
       doCheck: true,
-      meta: nix.thunk(() => nix.update(nix.sel(dns, "meta"), { __proto__: pos$1, description: "DNS stub resolver" })),
+      meta: nix.thunk(() => nix.update(nix.sel(dns, "meta"), { [nix.POS]: pos$1, description: "DNS stub resolver" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=stub.ts.map

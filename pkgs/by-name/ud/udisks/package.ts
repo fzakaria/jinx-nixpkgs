@@ -53,11 +53,11 @@ export default nix.lambda((args) => (() => {
   const libiscsi = nix.arg($, "libiscsi");
   const libconfig = nix.arg($, "libconfig");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "udisks",
       version: "2.11.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "storaged-project",
           repo: "udisks",
           tag: nix.thunk(() => nix.str`udisks-${nix.sel(finalAttrs, "version")}`),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => nix.concat(["out", "man", "dev"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), "devdoc"))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             false: nix.thunk(() => nix.str`${coreutils}/bin/false`),
             mdadm: nix.thunk(() => nix.str`${mdadm}/bin/mdadm`),
             sed: nix.thunk(() => nix.str`${gnused}/bin/sed`),
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
             true: nix.thunk(() => nix.str`${coreutils}/bin/true`),
           })))),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./force-path.patch"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             path: nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [
                 btrfs_progs,
                 coreutils,
@@ -141,12 +141,12 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         libblockdev: libblockdev,
-        tests: nix.thunk(() => ({ __proto__: pos$4, vm: nix.thunk(() => nix.sel(nixosTests, "udisks2")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$4, vm: nix.thunk(() => nix.sel(nixosTests, "udisks2")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Daemon, tools and libraries to access and manipulate disks, storage devices and technologies",
         homepage: "https://www.freedesktop.org/wiki/Software/udisks/",
         license: nix.thunk(() => (() => {

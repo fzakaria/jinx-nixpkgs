@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const dbus = nix.arg($, "dbus");
   const metaCommon = nix.argOr($, "metaCommon", () => ({}));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`WinBox_Linux-${nix.sel(finalAttrs, "version")}.zip`),
           url: nix.thunk(() => nix.str`https://download.mikrotik.com/routeros/winbox/${nix.sel(finalAttrs, "version")}/WinBox_Linux.zip`),
           hash: hash,
@@ -71,7 +71,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "winbox",
             desktopName: "WinBox",
             comment: "GUI administration for Mikrotik RouterOS",
@@ -81,11 +81,11 @@ runHook postInstall
           })))),
       ]),
       migrationScript: nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name: "winbox-migrate",
           text: "XDG_DATA_HOME=${XDG_DATA_HOME:-$HOME/.local/share}\ntargetFile=\"$XDG_DATA_HOME/MikroTik/WinBox/Addresses.cdb\"\n\nif [ -f \"$targetFile\" ]; then\n  echo \"NixOS: WinBox 4 data already present at $(dirname \"$targetFile\"). Skipping automatic migration.\"\n  exit 0\nfi\n\n# cover both wine prefix variants\n# latter was used until https://github.com/NixOS/nixpkgs/pull/329626 was merged on 2024/07/24\nwinePrefixes=(\n  \"${WINEPREFIX:-$HOME/.wine}\"\n  \"${WINBOX_HOME:-$XDG_DATA_HOME/winbox}/wine\"\n)\nsourceFilePathSuffix=\"drive_c/users/$USER/AppData/Roaming/Mikrotik/Winbox/Addresses.cdb\"\nselectedSourceFile=\"\"\n\nfor prefix in \"${winePrefixes[@]}\"\ndo\n  echo \"NixOS: Probing WinBox 3 data path at $prefix...\"\n  if [ -f \"$prefix/$sourceFilePathSuffix\" ]; then\n    selectedSourceFile=\"$prefix/$sourceFilePathSuffix\"\n    break\n  fi\ndone\n\nif [ -z \"$selectedSourceFile\" ]; then\n  echo \"NixOS: WinBox 3 data not found. Skipping automatic migration.\"\n  exit 0\nfi\n\necho \"NixOS: Automatically migrating WinBox 3 data...\"\ninstall -Dvm644 \"$selectedSourceFile\" \"$targetFile\"\n",
         })))),
-      meta: nix.thunk(() => nix.update(metaCommon, { __proto__: pos$4, platforms: nix.thunk(() => ["x86_64-linux"]) })),
+      meta: nix.thunk(() => nix.update(metaCommon, { [nix.POS]: pos$4, platforms: nix.thunk(() => ["x86_64-linux"]) })),
     }));
 })(), formals$1);
 //# sourceMappingURL=build-from-zip.ts.map

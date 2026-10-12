@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const gettext = nix.arg($, "gettext");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "folder-color-switcher",
       version: "1.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linuxmint",
           repo: "folder-color-switcher",
           rev: "856f6f27dfa48ee1ac8d7ec40333e3f892458067",
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace usr/share/nemo-python/extensions/nemo-folder-color-switcher.py \\\n  --replace \"/usr/share/locale\" \"$out/share/locale\" \\\n  --replace \"/usr/share/folder-color-switcher/colors.d\" \"/run/current-system/sw/share/folder-color-switcher/colors.d\" \\\n  --replace \"/usr/share/folder-color-switcher/color.svg\" \"$out/share/folder-color-switcher/color.svg\"\n\nsubstituteInPlace usr/share/caja-python/extensions/caja-folder-color-switcher.py \\\n  --replace \"/usr/share/folder-color-switcher/colors.d\" \"/run/current-system/sw/share/folder-color-switcher/colors.d\"\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out\nmv usr/share $out\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         nemoPythonExtensionDeps: nix.thunk(() => [nix.thunk(() => nix.sel(python3, "pkgs", "pycairo"))]),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/linuxmint/folder-color-switcher",
         description: "Change folder colors for Nemo and Caja",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

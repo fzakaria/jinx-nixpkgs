@@ -14,9 +14,9 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const chickenEggs = nix.arg($, "chickenEggs");
   return nix.app(eggDerivation, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "corngood",
           repo: "egg2nix",
           rev: "chicken-5",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Generate nix-expression from CHICKEN scheme eggs",
         mainProgram: "egg2nix",
         homepage: "https://github.com/the-kenny/egg2nix",

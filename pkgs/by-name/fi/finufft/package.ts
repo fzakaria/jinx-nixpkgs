@@ -29,34 +29,34 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const cudaSupport = nix.argOr($, "cudaSupport", () => nix.sel(config, "cudaSupport"));
   const findfftwSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "egpbos",
       repo: "findFFTW",
       rev: "d449ea0bcbf94a4a1c3dbb2108aa57609a4967ff",
       hash: "sha256-JM3DL43b3dlcazEW2bmJUH+XrIDbE54xwD5fRqnntUI=",
     }))));
   const xsimdSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "xtensor-stack",
       repo: "xsimd",
       rev: "6842624fc8adafd7168a999e7150b384411da448",
       hash: "sha256-M6b2RDptZW5JwlVYNI4GEL6UI2Q+4sdhYBF/wP5wxeQ=",
     }))));
   const ccclSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       owner: "NVIDIA",
       repo: "cccl",
       tag: "v3.0.2",
       hash: "sha256-sC9TpvhhFJRmZv25/l5L8jKq/wlAKLxf4C6O/a1xw/M=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "finufft",
       version: "2.5.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "flatironinstitute",
           repo: "finufft",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.sel(cudaPackages, "libcufft")),
           nix.thunk(() => nix.sel(cudaPackages, "cccl")),
         ]))))),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), cudaSupport, nix.thunk(() => ({ __proto__: pos$5, NVCC_THREADS: 2n })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), cudaSupport, nix.thunk(() => ({ [nix.POS]: pos$5, NVCC_THREADS: 2n })))),
       cmakeFlags: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CPM_SOURCE_CACHE", nix.thunk(() => nix.str`${cpm_cmake}/share`))),
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CPM_DOWNLOAD_VERSION", nix.thunk(() => nix.sel(cpm_cmake, "version")))),
@@ -84,16 +84,16 @@ export default nix.lambda((args) => (() => {
         ])))),
       doCheck: nix.thunk(() => !nix.asBool(cudaSupport)),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         gpuCheck: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             requiredSystemFeatures: nix.thunk(() => ["cuda"]),
             doCheck: true,
           })))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Non-uniform fast Fourier transform library of types 1, 2, 3 in dimensions 1, 2, 3 on the CPU or GPU",
         homepage: "https://finufft.readthedocs.io/en/latest/index.html",
         downloadPage: "https://github.com/flatironinstitute/finufft",

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mp4fpsmod",
       version: "0.27-unstable-2023-12-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nu774",
           repo: "mp4fpsmod",
           rev: "e2dd065012f4d2c7e42d4acdefee2ffdc50d3d86",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tiny mp4 time code editor",
         longDescription: "Tiny mp4 time code editor. You can use this for changing fps,\ndelaying audio tracks, executing DTS compression, extracting\ntime codes of mp4.\n",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

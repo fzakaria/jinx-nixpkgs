@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const litellm = nix.thunk(() => nix.sel(python3Packages, "litellm"));
   return nix.app(nix.sel(python3Packages, "toPythonApplication"), nix.thunk(() => nix.app(nix.sel(litellm, "overridePythonAttrs"), (oldAttrs) => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         dependencies: nix.thunk(() => nix.concat(nix.selOr(oldAttrs, () => [], "dependencies"), nix.concat(nix.sel(litellm, "optional-dependencies", "proxy"), nix.concat(nix.sel(litellm, "optional-dependencies", "extra_proxy"), nix.sel(litellm, "optional-dependencies", "proxy-runtime"))))),
       }))));
 })(), formals$1);

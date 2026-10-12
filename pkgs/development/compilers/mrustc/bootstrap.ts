@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const mrustcTargetVersion = "1.90";
   const rustcVersion = "1.90.0";
   const rustcSrc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://static.rust-lang.org/dist/rustc-${rustcVersion}-src.tar.gz`),
       hash: "sha256-eZqfnLpO1TUeBxBIvPa1VgdV2QCWSN7zOkB91JYfm34=",
     }))));
@@ -106,7 +106,7 @@ runHook postInstall
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(src, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "Minimal build of Rust",
         longDescription: "A minimal build of Rust, built from source using mrustc.\nThis is useful for bootstrapping the main Rust compiler without\nan initial binary toolchain download.\n",
@@ -128,7 +128,7 @@ runHook postInstall
       };
       })());
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

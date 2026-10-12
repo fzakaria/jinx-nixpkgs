@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.10.70";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "construct",
           repo: "construct",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,14 +36,14 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [setuptools]);
       const propagatedBuildInputs = nix.thunk(() => [lz4]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         extras: nix.thunk(() => [arrow, cloudpickle, cryptography, numpy, ruamel_yaml]),
       }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["construct"]);
       const disabledTests = nix.thunk(() => nix.concat(["test_benchmarks"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_multiprocessing"]))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Powerful declarative parser (and builder) for binary data",
         homepage: "https://construct.readthedocs.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/construct/construct/releases/tag/v${version}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

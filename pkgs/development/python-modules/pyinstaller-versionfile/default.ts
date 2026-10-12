@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const pyyaml = nix.arg($, "pyyaml");
   const poetry_core = nix.arg($, "poetry-core");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pyinstaller-versionfile",
       version: "3.1.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DudeNr33",
           repo: "pyinstaller-versionfile",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [poetry_core]),
       dependencies: nix.thunk(() => [packaging, jinja2, pyyaml]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Create a windows version-file from a simple YAML file that can be used by PyInstaller",
         mainProgram: "create-version-file",
         changelog: nix.thunk(() => nix.str`https://github.com/DudeNr33/pyinstaller-versionfile/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

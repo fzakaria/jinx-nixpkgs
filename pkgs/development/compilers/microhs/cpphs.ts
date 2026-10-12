@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const args$ = nix.thunk(() => nix.app(args_1, finalAttrs));
       return nix.update(args$, {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         pname: "microhs-cpphs",
         nativeBuildInputs: nix.thunk(() => [hugs]),
         makeFlags: nix.thunk(() => ["USECPPHS=$(TMP)/cpphs-boot"]),

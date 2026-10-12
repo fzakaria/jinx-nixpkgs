@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libhx",
       version: "5.4",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           owner: "jengelh",
           repo: "libhx",
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://inai.de/projects/libhx/",
         longDescription: "libHX is a C library (with some C++ bindings available) that provides data structures\nand functions commonly needed, such as maps, deques, linked lists, string formatting\nand autoresizing, option and config file parsing, type checking casts and more.\n",
         changelog: "https://codeberg.org/jengelh/libhx/src/branch/master/doc/changelog.rst",

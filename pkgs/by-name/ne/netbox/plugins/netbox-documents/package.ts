@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const python = nix.arg($, "python");
   const netbox = nix.arg($, "netbox");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       __structuredAttrs: true,
       pname: "netbox-documents",
       version: "0.8.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jasonyates",
           repo: "netbox-documents",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,9 +37,9 @@ export default nix.lambda((args) => (() => {
 `),
       dontUsePythonImportsCheck: nix.thunk(() => !nix.eq(nix.sel(python, "pythonVersion"), nix.sel(netbox, "python", "pythonVersion"))),
       pythonImportsCheck: nix.thunk(() => ["netbox_documents"]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, pluginName: "netbox_documents" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, pluginName: "netbox_documents" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Plugin designed to faciliate the storage of site, circuit, device type and device specific documents within NetBox",
         homepage: "https://github.com/jasonyates/netbox-documents",
         changelog: nix.thunk(() => nix.str`https://github.com/jasonyates/netbox-documents/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

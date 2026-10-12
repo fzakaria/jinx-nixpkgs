@@ -43,7 +43,7 @@ substituteAllInPlace $out/bin/bisq2-webcam-app
 runHook postInstall
 `);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         version: version_1,
         pname,
         src,

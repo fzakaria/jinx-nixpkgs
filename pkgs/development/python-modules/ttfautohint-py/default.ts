@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fonttools",
           repo: "ttfautohint-py",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,13 +34,13 @@ export default nix.lambda((args) => (() => {
       const postPatch = nix.thunk(() => nix.str`substituteInPlace src/python/ttfautohint/__init__.py \\
   --replace-fail '_exe_full_path = None' '_exe_full_path = "${nix.app(nix.sel(lib, "getExe"), ttfautohint)}"'
 `);
-      const env = nix.thunk(() => ({ __proto__: pos$2, TTFAUTOHINTPY_BUNDLE_DLL: false }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, TTFAUTOHINTPY_BUNDLE_DLL: false }));
       const build_system = nix.thunk(() => [setuptools, setuptools_scm, distutils]);
       const buildInputs = nix.thunk(() => [ttfautohint]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, fonttools]);
       const pythonImportsCheck = nix.thunk(() => ["ttfautohint"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python wrapper for ttfautohint, a free auto-hinter for TrueType fonts",
         homepage: "https://github.com/fonttools/ttfautohint-py",
         changelog: nix.thunk(() => nix.str`https://github.com/fonttools/ttfautohint-py/releases/tag/${nix.sel(src, "tag")}`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const tag = "v0.2609.0";
       const subPackages = nix.thunk(() => ["cmd/mautrix-meta", "cmd/mautrix-instagram"]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mautrix",
           repo: "meta",
           tag: tag,
@@ -35,16 +35,16 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-Eh+2TLSnOmhteWPzzUQIgOI380UNNV38fvTjb+qYDDM=";
       const ldflags = nix.thunk(() => ["-s", "-w", "-X", nix.thunk(() => nix.str`main.Tag=${tag}`)]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "mautrix-meta-postgres": nix.thunk(() => nix.attr(nixosTests, "mautrix-meta-postgres")),
           "mautrix-meta-sqlite": nix.thunk(() => nix.attr(nixosTests, "mautrix-meta-sqlite")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/mautrix/meta",
         description: "Matrix-Meta puppeting bridge",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "mautrix-meta",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         tag,

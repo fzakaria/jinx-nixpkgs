@@ -29,22 +29,22 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const mainPort = 4200n;
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     name: "prefect",
     nodes: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           services: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             prefect: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               enable: true,
               workerPools: nix.thunk(() => ({
-                __proto__: pos$2,
-                default: nix.thunk(() => ({ __proto__: pos$1, installPolicy: "never" })),
+                [nix.POS]: pos$2,
+                default: nix.thunk(() => ({ [nix.POS]: pos$1, installPolicy: "never" })),
               })),
             })),
           })),
@@ -54,34 +54,34 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             prefect: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               enable: true,
               database: "postgres",
               databaseUser: "prefect",
               databasePasswordFile: "/etc/prefect-db-password",
             })),
             postgresql: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               enable: true,
               initialScript: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "prefect-init.sql", "CREATE ROLE prefect LOGIN PASSWORD 'hunter2';\nCREATE DATABASE prefect OWNER prefect;\n")),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             etc: nix.thunk(() => ({
-              __proto__: pos$10,
-              "prefect-db-password": nix.thunk(() => ({ __proto__: pos$9, text: "PREFECT_SERVER_DATABASE_PASSWORD=hunter2\n" })),
+              [nix.POS]: pos$10,
+              "prefect-db-password": nix.thunk(() => ({ [nix.POS]: pos$9, text: "PREFECT_SERVER_DATABASE_PASSWORD=hunter2\n" })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             services: nix.thunk(() => ({
-              __proto__: pos$13,
-              "prefect-server": nix.thunk(() => ({ __proto__: pos$12, after: nix.thunk(() => ["postgresql.service"]) })),
+              [nix.POS]: pos$13,
+              "prefect-server": nix.thunk(() => ({ [nix.POS]: pos$12, after: nix.thunk(() => ["postgresql.service"]) })),
             })),
           })),
         };
@@ -115,7 +115,7 @@ with subtest("server talks to postgres rather than falling back to sqlite"):
     )
 `),
     meta: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "happysalada"))];

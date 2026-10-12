@@ -19,19 +19,19 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "2ef363cdd6f4f0193ce62257486027e36884570f6140bbde51de72df321b77f1",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [pillow, mock]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/azaghal/pydenticon",
         description: "Library for generating identicons. Port of Sigil (https://github.com/cupcake/sigil) with enhancements",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd0")),
       }));
-      return { __proto__: pos$3, pname, version, format, src, propagatedBuildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, propagatedBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -25,21 +25,21 @@ export default nix.lambda((args) => (() => {
   const libadwaita = nix.arg($, "libadwaita");
   const version = "1.2.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "ezratweaver",
       repo: "adw-bluetooth",
       tag: version,
       hash: "sha256-UQg2pEmRfTOt6QKdiL1Z86SeGYJ/zZ4XM09l7F/4+UU=",
     }))));
   const daemon = nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "adw-bluetooth-daemon",
       version: version,
       src: nix.thunk(() => nix.add(src, "/daemon")),
       vendorHash: "sha256-7tiSwNhq6e4LEh4lUkfh2i4tEdWWL6TxQpYYwYKsfog=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "adw-bluetooth",
       version: version,
       src: src,
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
 ln -s ${daemon}/bin/daemon $out/libexec/adw-bluetooth-daemon
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GNOME Inspired LibAdwaita Bluetooth Applet",
         homepage: "https://github.com/ezratweaver/adw-bluetooth",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

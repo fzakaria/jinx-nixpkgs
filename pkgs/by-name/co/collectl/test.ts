@@ -12,9 +12,9 @@ export default nix.lambda((args) => (() => {
   const collectl = nix.arg($, "collectl");
   const coreutils = nix.arg($, "coreutils");
   return nix.app(runCommand, "collectl-test", nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       nativeBuildInputs: nix.thunk(() => [collectl, coreutils]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, timeout: 60n })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 60n })),
     })), nix.thunk(() => nix.str`# Test basic functionality - limit to 5 seconds to avoid hanging
 timeout 5s collectl -c1 >/dev/null || true
 

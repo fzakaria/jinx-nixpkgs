@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
   const cuda_bindings = nix.arg($, "cuda-bindings");
   const cudaVersion = nix.thunk(() => nix.sel(cudaPackages, "cudaMajorMinorVersion"));
   const cudaLibPaths = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     libcuda: nix.thunk(() => (nix.asBool(nix.selOr(cudaPackages, () => false, "cuda_compat", "meta", "available")) ? nix.sel(cudaPackages, "cuda_compat") : nix.sel(addDriverRunpath, "driverLink"))),
     libcudart: nix.thunk(() => nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart")))),
     libcudla: nix.thunk(() => (nix.asBool(nix.selOr(cudaPackages, () => false, "libcudla", "meta", "available")) ? nix.str`${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(cudaPackages, "libcudla")))}/lib/libcudla.so` : "libcudla.so")),
@@ -48,9 +48,9 @@ export default nix.lambda((args) => (() => {
     libnvvm: nix.thunk(() => (nix.asBool(nix.app(cudaOlder, "13.0")) ? nix.str`${nix.sel(cudaPackages, "cuda_nvcc")}/nvvm` : nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(cudaPackages, "libnvvm"))))),
   }));
   const versionSpecificAttrs = nix.thunk(() => (() => {
-    const args_1 = nix.thunk(() => ({ __proto__: pos$2, replaceVars: replaceVars, cudaLibPaths: cudaLibPaths }));
+    const args_1 = nix.thunk(() => ({ [nix.POS]: pos$2, replaceVars: replaceVars, cudaLibPaths: cudaLibPaths }));
     return nix.selOr({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       "12.9": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./12_9.nix")), args_1)),
       "13.0": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./13_0.nix")), args_1)),
       "13.1": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./13_1.nix")), args_1)),
@@ -62,13 +62,13 @@ export default nix.lambda((args) => (() => {
   const cudaOlder = nix.thunk(() => nix.attr(cudaPackages, "cudaOlder"));
   const cudaAtLeast = nix.thunk(() => nix.attr(cudaPackages, "cudaAtLeast"));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "cuda-bindings",
       version: nix.thunk(() => nix.attr(versionSpecificAttrs, "version")),
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "NVIDIA",
           repo: "cuda-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -90,10 +90,10 @@ substituteInPlace cuda/bindings/_bindings/cydriver.pyx.in \\
       preBuild: "export CUDA_PYTHON_PARALLEL_LEVEL=$NIX_BUILD_CORES\n",
       "build-system": nix.thunk(() => nix.concat([cython, setuptools, setuptools_scm], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(cudaAtLeast, "13.3")), nix.thunk(() => [cuda_pathfinder])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(cudaOlder, "13.4")), nix.thunk(() => [pyclibrary]))))),
       env: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         NIX_CFLAGS_COMPILE: "-DCYTHON_COMPRESS_STRINGS=0",
         CUDA_HOME: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "cuda-redist",
             paths: nix.thunk(() => (() => {
               const w = nix.withScope(cudaPackages, null);
@@ -124,15 +124,15 @@ substituteInPlace cuda/bindings/_bindings/cydriver.pyx.in \\
       disabledTests: nix.thunk(() => nix.selOr(versionSpecificAttrs, () => [], "disabledTests")),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         gpuCheck: nix.thunk(() => nix.app(nix.sel(cuda_bindings, "overridePythonAttrs"), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             requiredSystemFeatures: nix.thunk(() => ["cuda"]),
             doCheck: true,
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Standard set of low-level interfaces, providing access to the CUDA host APIs from Python",
         homepage: "https://github.com/NVIDIA/cuda-python/tree/main/cuda_bindings",
         changelog: nix.thunk(() => nix.str`https://nvidia.github.io/cuda-python/cuda-bindings/latest/release/${nix.sel(finalAttrs, "version")}-notes.html`),

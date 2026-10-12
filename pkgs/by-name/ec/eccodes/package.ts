@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "eccodes";
       const version = "2.48.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://confluence.ecmwf.int/download/attachments/45757960/eccodes-${version}-Source.tar.gz`),
           hash: "sha256-Yuj6XKE30TgYml/dbVsiBcicwmM44/Qoaro9ibScn5o=",
         }))));
@@ -64,7 +64,7 @@ substituteInPlace cmake/ecbuild_install_project.cmake \\
         "eccodes_t_(definitions|calendar|unit_tests|md5|uerra|grib_2nd_order_numValues|julian)",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://confluence.ecmwf.int/display/ECC/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: [],
@@ -72,7 +72,7 @@ substituteInPlace cmake/ecbuild_install_project.cmake \\
         description: "ECMWF library for reading and writing GRIB, BUFR and GTS abbreviated header",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

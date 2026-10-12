@@ -34,12 +34,12 @@ export default nix.lambda((args) => (() => {
   const pytest_xdist = nix.arg($, "pytest-xdist");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nibabel",
       version: "5.4.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nipy",
           repo: "nibabel",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatch_vcs, hatchling]),
       dependencies: nix.thunk(() => nix.concat([numpy, packaging], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonOlder, "3.12")), nix.thunk(() => [importlib_resources])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonOlder, "3.13")), nix.thunk(() => [typing_extensions]))))),
       "optional-dependencies": nix.thunk(() => nix.app(nix.sel(lib, "fix"), (self) => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           all: nix.thunk(() => nix.concat(nix.sel(self, "dicomfs"), nix.concat(nix.sel(self, "indexed_gzip"), nix.concat(nix.sel(self, "minc2"), nix.concat(nix.sel(self, "spm"), nix.sel(self, "zstd")))))),
           dicom: nix.thunk(() => [pydicom]),
           dicomfs: nix.thunk(() => nix.concat([pillow], nix.sel(self, "dicom"))),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
       ], nix.sel(finalAttrs, "passthru", "optional-dependencies", "all"))),
       pythonImportsCheck: nix.thunk(() => ["nibabel"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://nipy.org/nibabel",
         changelog: nix.thunk(() => nix.str`https://github.com/nipy/nibabel/blob/${nix.sel(finalAttrs, "version")}/Changelog`),
         description: "Access a multitude of neuroimaging data formats",

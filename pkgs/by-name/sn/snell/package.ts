@@ -21,17 +21,17 @@ export default nix.lambda((args) => (() => {
   const writeShellScript = nix.arg($, "writeShellScript");
   const nix_update = nix.arg($, "nix-update");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "snell-server",
       version: "5.0.1",
       src: nix.thunk(() => (() => {
         const selectSystem = (attrs) => nix.sel(attrs, nix.key(nix.sel(stdenv, "hostPlatform", "system")));
-        const arch = nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({ __proto__: pos$1, "x86_64-linux": "amd64", "aarch64-linux": "aarch64" }))));
+        const arch = nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({ [nix.POS]: pos$1, "x86_64-linux": "amd64", "aarch64-linux": "aarch64" }))));
         return nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: nix.thunk(() => nix.str`https://dl.nssurge.com/snell/snell-server-v${nix.sel(finalAttrs, "version")}-linux-${arch}.zip`),
             hash: nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 "x86_64-linux": "sha256-J2kRVJRC0GhxLMarg7Ucdk8uvzTsKbFHePEflPjwsHU=",
                 "aarch64-linux": "sha256-UT+Rd6TEMYL/+xfqGxGN/tiSBvN8ntDrkCBj4PuMRwg=",
               })))),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nupx -d snell-server\ninstall -Dm755 snell-server $out/bin/snell-server\n\nrunHook postInstall\n",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-snell-server", nix.thunk(() => nix.str`latestVersion=$(curl --fail --silent https://kb.nssurge.com/surge-knowledge-base/release-notes/snell | grep -oE 'snell-server-v[0-9]+\\.[0-9]+\\.[0-9]+' | sed 's/snell-server-v//' | sort -V | tail -n1)
 if [[ "$latestVersion" == "$UPDATE_NIX_OLD_VERSION" ]]; then exit 0; fi
 ${nix.app(nix.sel(lib, "getExe"), nix_update)} pkgsCross.gnu64.snell --version "$latestVersion"
@@ -52,7 +52,7 @@ ${nix.app(nix.sel(lib, "getExe"), nix_update)} pkgsCross.aarch64-multiplatform.s
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Lean encrypted proxy protocol",
         homepage: "https://kb.nssurge.com/surge-knowledge-base/release-notes/snell",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

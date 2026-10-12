@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const useMpi = nix.argOr($, "useMpi", () => false);
   const mpi = nix.arg($, "mpi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.str`RAxML${nix.app(nix.sel(lib, "optionalString"), useMpi, "-mpi")}`),
       version: "8.2.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stamatak",
           repo: "standard-RAxML",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), useMpi, nix.thunk(() => [mpi]))),
       buildPhase: nix.thunk(() => (nix.asBool(useMpi) ? "make -f Makefile.MPI.gcc\n" : "make -f Makefile.SSE3.PTHREADS.gcc\n")),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), "-std=gnu17")),
       })),
       installPhase: nix.thunk(() => (nix.asBool(useMpi) ? "mkdir -p $out/bin && cp raxmlHPC-MPI $out/bin\n" : "mkdir -p $out/bin && cp raxmlHPC-PTHREADS-SSE3 $out/bin\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool for Phylogenetic Analysis and Post-Analysis of Large Phylogenies",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
         homepage: "https://sco.h-its.org/exelixis/web/software/raxml/",

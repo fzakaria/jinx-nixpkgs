@@ -33,21 +33,21 @@ export default nix.lambda((args) => (() => {
   const url = nix.thunk(() => nix.attr(from, "url"));
   const sha256 = nix.thunk(() => nix.attr(from, "sha256"));
   const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: url,
       sha256: sha256,
       extension: "zip",
       stripRoot: false,
     }))));
-  const soapDeps = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(maven, "override"), nix.thunk(() => ({ __proto__: pos$2, jdk_headless: jre }))), "buildMavenPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+  const soapDeps = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(maven, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, jdk_headless: jre }))), "buildMavenPackage"), nix.thunk(() => ({
+      [nix.POS]: pos$3,
       pname: "anyk-soap-deps",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(nix.sel(lib, "sources", "sourceFilesBySuffices"), nix.path(here, "./."), nix.thunk(() => ["pom.xml"]))),
       mvnHash: "sha256-6pezqcTIPR5NYFQUmLZ5Y3TOd+XRcB/eRmNSAEoBmls=",
       installPhase: "mkdir -p $out/share/java\ncp target/lib/*.jar $out/share/java/\n",
     }))));
-  const anykSoapPatch = nix.thunk(() => nix.app(runCommandLocal, "anyk-patch", nix.thunk(() => ({ __proto__: pos$4, nativeBuildInputs: nix.thunk(() => [unzip]) })), nix.thunk(() => nix.str`mkdir $out
+  const anykSoapPatch = nix.thunk(() => nix.app(runCommandLocal, "anyk-patch", nix.thunk(() => ({ [nix.POS]: pos$4, nativeBuildInputs: nix.thunk(() => [unzip]) })), nix.thunk(() => nix.str`mkdir $out
 cd $out
 unzip ${src}/application/abevjava.jar \\
   hu/piller/enykp/niszws/ClientStubBuilder.class
@@ -85,7 +85,7 @@ fi
 exec ${jre}/bin/java -Dswing.systemlaf=javax.swing.plaf.metal.MetalLookAndFeel $SCALING_PROP "$@"
 `)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "anyk",
       version: version,
       src: src,
@@ -94,7 +94,7 @@ exec ${jre}/bin/java -Dswing.systemlaf=javax.swing.plaf.metal.MetalLookAndFeel $
       nativeBuildInputs: nix.thunk(() => [makeWrapper, copyDesktopItems]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             desktopName: "ÁNYK",
             name: "anyk",
             exec: "anyk",
@@ -121,7 +121,7 @@ install -D $out/opt/abevjava.png $out/share/icons/hicolor/32x32/apps/anyk.png
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Tool for filling forms for the Hungarian government",
         longDescription: "Official tool for filling Hungarian government forms.\n\nUse `anyk-java` to install form templates/help files like this: `anyk-java -jar NAV_IGAZOL.jar`\n",
         homepage: "https://nav.gov.hu/nyomtatvanyok/letoltesek/nyomtatvanykitolto_programok/nyomtatvany_apeh/keretprogramok/javakitolto",

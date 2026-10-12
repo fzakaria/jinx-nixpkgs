@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
       const domain = "prometheus_sensor";
       const version = "1.3.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mweinelt",
           repo: "ha-prometheus-sensor",
           tag: version,
           hash: "sha256-o/bGSqD6b0o3f/b/al+eGg/LqwrWi1deB53NOTNkb8Q=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/mweinelt/ha-prometheus-sensor/blob/${version}/CHANGELOG.md`),
         description: "Import prometheus query results into Home Assistant",
         homepage: "https://github.com/mweinelt/ha-prometheus-sensor",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })()),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
-      return { __proto__: pos$3, owner, domain, version, src, meta };
+      return { [nix.POS]: pos$3, owner, domain, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

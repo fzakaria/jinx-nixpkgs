@@ -23,26 +23,26 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "boot", "tmp"));
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["boot", "cleanTmpDir"]), nix.thunk(() => ["boot", "tmp", "cleanOnBoot"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["boot", "tmpOnTmpfs"]), nix.thunk(() => ["boot", "tmp", "useTmpfs"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["boot", "tmpOnTmpfsSize"]), nix.thunk(() => ["boot", "tmp", "tmpfsSize"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       boot: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tmp: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           cleanOnBoot: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to delete all files in {file}`/tmp` during boot.\n",
             })))),
           tmpfsSize: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "oneOf"), nix.thunk(() => [
                   nix.thunk(() => nix.sel(lib, "types", "str")),
                   nix.thunk(() => nix.sel(lib, "types", "ints", "positive")),
@@ -51,14 +51,14 @@ export default nix.lambda((args) => (() => {
               description: "Size of tmpfs in percentage.\nPercentage is defined by systemd.\n",
             })))),
           tmpfsHugeMemoryPages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["never", "always", "within_size", "advise"]))),
               default: "never",
               example: "within_size",
               description: "- `never`        - Do not allocate huge memory pages. This is the default.\n- `always`       - Attempt to allocate huge memory page every time a new page is needed.\n- `within_size`  - Only allocate huge memory pages if it will be fully within i_size. Also respect madvise(2) hints. Recommended.\n- `advise`       - Only allocate huge memory pages if requested with madvise(2).\n",
             })))),
           useTmpfs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to mount a tmpfs on {file}`/tmp` during boot.\n\n::: {.note}\nLarge Nix builds can fail if the mounted tmpfs is not large enough.\nIn such a case either increase the tmpfsSize or disable this option.\n:::\n",
@@ -67,17 +67,17 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       systemd: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         mounts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "useTmpfs")), nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               what: "tmpfs",
               where: "/tmp",
               type: "tmpfs",
               mountConfig: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 Options: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ",", nix.thunk(() => [
                     "mode=1777",
                     "strictatime",
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
             })),
           ]))),
         tmpfiles: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           rules: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "cleanOnBoot")), "D! /tmp 1777 root root")),
         })),
       })),

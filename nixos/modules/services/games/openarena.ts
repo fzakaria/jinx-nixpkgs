@@ -29,23 +29,23 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "openarena"));
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         openarena: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(mkEnableOption, "OpenArena game server")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "openarena", nix.thunk(() => ({})))),
           openPorts: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Whether to open firewall ports for OpenArena",
             })))),
           extraFlags: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: [],
               description: "Extra flags to pass to {command}`oa_ded`",
@@ -59,22 +59,22 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         networking: nix.thunk(() => ({
-          __proto__: pos$7,
-          firewall: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "openPorts")), nix.thunk(() => ({ __proto__: pos$6, allowedUDPPorts: nix.thunk(() => [27960n]) })))),
+          [nix.POS]: pos$7,
+          firewall: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "openPorts")), nix.thunk(() => ({ [nix.POS]: pos$6, allowedUDPPorts: nix.thunk(() => [27960n]) })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             openarena: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "OpenArena",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 DynamicUser: true,
                 StateDirectory: "openarena",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/oa_ded +set fs_basepath ${nix.sel(cfg, "package")}/share/openarena +set fs_homepath /var/lib/openarena ${nix.app(concatStringsSep, " ", nix.thunk(() => nix.sel(cfg, "extraFlags")))}`),

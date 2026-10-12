@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const buildVST3 = nix.argOr($, "buildVST3", () => true);
   const buildLV2 = nix.argOr($, "buildLV2", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sirial",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tiagolr",
           repo: "sirial",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`-DCMAKE_OSX_ARCHITECTURES=${nix.sel(stdenv, "hostPlatform", "darwinArch")}`),
         ])))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-ffat-lto-objects"]))))),
       })),
       installPhase: nix.thunk(() => nix.str`runHook preInstall
@@ -76,7 +76,7 @@ popd
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Rhythmic delay with 16 serial delay lines for intricate patterns",
         homepage: "https://github.com/tiagolr/sirial",
         changelog: nix.thunk(() => nix.str`https://github.com/tiagolr/sirial/releases/tag/v${nix.sel(finalAttrs, "version")}`),

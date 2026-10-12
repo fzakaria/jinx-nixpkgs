@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const openjdk = nix.arg($, "openjdk");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "android-studio-tools",
       version: "15859902",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://dl.google.com/android/repository/commandlinetools-linux-15859902_latest.zip",
           hash: "sha256-tCbccw7qa7ncHGyWPWjwQOpaisN3QMRYXRpK7WtyjWY=",
         })))),
@@ -39,7 +39,7 @@ done
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Android Studio CLI Tools",
         homepage: "https://developer.android.com/studio",
         downloadPage: "https://developer.android.com/studio",

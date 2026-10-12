@@ -79,10 +79,10 @@ export default nix.lambda((args) => (() => {
       const internal = nix.argOr($_1, "internal", () => null);
       const visible = nix.argOr($_1, "visible", () => null);
       const readOnly = nix.argOr($_1, "readOnly", () => null);
-      return nix.update(attrs, { __proto__: pos$1, _type: "option" });
+      return nix.update(attrs, { [nix.POS]: pos$1, _type: "option" });
     })(), formals$2);
     const mkEnableOption = (name) => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         default: false,
         example: true,
         description: nix.thunk(() => nix.str`Whether to enable ${name}.`),
@@ -100,30 +100,30 @@ export default nix.lambda((args) => (() => {
       const defaultText = nix.thunk(() => nix.app(showAttrPath, default$_1));
       const defaultValue = nix.thunk(() => nix.app(attrByPath, default$_1, nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`${defaultText} cannot be found in ${pkgsText}`))), pkgs));
       const defaults = nix.thunk(() => (nix.asBool(!nix.eq(default$, null)) ? {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         default: defaultValue,
         defaultText: nix.thunk(() => nix.app(literalExpression, nix.thunk(() => nix.str`${pkgsText}.${defaultText}`))),
-      } : nix.app(optionalAttrs, nullable, nix.thunk(() => ({ __proto__: pos$4, default: null })))));
+      } : nix.app(optionalAttrs, nullable, nix.thunk(() => ({ [nix.POS]: pos$4, default: null })))));
       return nix.app(mkOption, nix.thunk(() => nix.update(defaults, nix.update({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           description: nix.thunk(() => nix.add(nix.add(nix.str`The ${name$} package to use.`, (nix.asBool(nix.eq(extraDescription, "")) ? "" : " ")), extraDescription)),
           type: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
             return nix.app((nix.asBool(nullable) ? nix.force(nix.lookup(w, "nullOr")) : nix.sel(lib, "id")), nix.thunk(() => nix.lookup(w, "package")));
           })()),
         }, nix.app(optionalAttrs, nix.thunk(() => !nix.eq(example, null)), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             example: nix.thunk(() => nix.app(literalExpression, nix.thunk(() => (nix.asBool(nix.app(isList, example)) ? nix.str`${pkgsText}.${nix.app(showAttrPath, example)}` : nix.force(example))))),
           })))))));
     })(), formals$3);
     const mkSinkUndeclaredOptions = (attrs) => nix.app(mkOption, nix.thunk(() => nix.update({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         internal: true,
         visible: false,
         default: false,
         description: "Sink for option definitions.",
         type: nix.thunk(() => nix.app(mkOptionType, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             name: "sink",
             check: (x) => true,
             merge: (loc) => (defs) => false,
@@ -134,7 +134,7 @@ export default nix.lambda((args) => (() => {
       const list = nix.thunk(() => nix.app(getValues, defs));
       return (nix.asBool(nix.eq(nix.app(length, list), 1n)) ? nix.app(head, list) : (nix.asBool(nix.app(all, isFunction, list)) ? (x) => nix.app(mergeDefaultOption, loc, nix.thunk(() => nix.builtins.map((f) => nix.app(f, x), list))) : (nix.asBool(nix.app(all, isList, list)) ? nix.app(concatLists, list) : (nix.asBool(nix.app(all, isAttrs, list)) ? nix.app(foldl$, nix.thunk(() => nix.sel(lib, "mergeAttrs")), nix.thunk(() => ({})), list) : (nix.asBool(nix.app(all, isBool, list)) ? nix.app(foldl$, nix.thunk(() => nix.sel(lib, "or")), false, list) : (nix.asBool(nix.app(all, isString, list)) ? nix.app(nix.sel(lib, "concatStrings"), list) : (nix.asBool((nix.asBool(nix.app(all, isInt, list)) && nix.asBool(nix.app(all, (x) => nix.eq(x, nix.app(head, list)), list)))) ? nix.app(head, list) : nix.builtins.throw(nix.thunk(() => nix.str`Cannot merge definitions of \`${nix.app(showOption, loc)}'. Definition values:${nix.app(showDefs, defs)}`)))))))));
     })();
-    const mergeOneOption = nix.thunk(() => nix.app(mergeUniqueOption, nix.thunk(() => ({ __proto__: pos$9, message: "" }))));
+    const mergeOneOption = nix.thunk(() => nix.app(mergeUniqueOption, nix.thunk(() => ({ [nix.POS]: pos$9, message: "" }))));
     const mergeUniqueOption = nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$4);
       const message = nix.arg($_1, "message");
@@ -156,7 +156,7 @@ ${prioritySuggestion}`)) : nix.force(first)), nix.thunk(() => nix.app(head, defs
         const name = nix.thunk(() => nix.app(showOption, nix.thunk(() => nix.sel(opt, "loc"))));
         const visible = nix.thunk(() => nix.selOr(opt, () => true, "visible"));
         const docOption = nix.thunk(() => nix.update({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           loc: nix.thunk(() => nix.sel(opt, "loc")),
           name: name,
           description: nix.thunk(() => nix.selOr(opt, () => null, "description")),
@@ -166,13 +166,13 @@ ${prioritySuggestion}`)) : nix.force(first)), nix.thunk(() => nix.app(head, defs
           readOnly: nix.thunk(() => nix.selOr(opt, () => false, "readOnly")),
           type: nix.thunk(() => nix.selOr(opt, () => "unspecified", "type", "description")),
         }, nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(opt, "example")), nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             example: nix.thunk(() => nix.builtins.addErrorContext(nix.thunk(() => nix.str`while evaluating the example of option \`${name}\``), nix.thunk(() => nix.app(renderOptionValue, nix.thunk(() => nix.sel(opt, "example")))))),
           }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => (nix.asBool((nix.asBool(nix.has(opt, "defaultText")) || nix.asBool(nix.has(opt, "default")))) || nix.asBool((nix.asBool(nix.has(nix.selOr(nix.selOr(opt, () => ({}), "type"), () => ({}), "emptyValue"), "value")) && nix.asBool(nix.eq(nix.selOr(nix.selOr(opt, () => ({}), "type"), () => null, "getSubModules"), null)))))), nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             default: nix.thunk(() => nix.builtins.addErrorContext(nix.thunk(() => nix.str`while evaluating the ${(nix.asBool(nix.has(opt, "defaultText")) ? "defaultText" : "default value")} of option \`${name}\``), nix.thunk(() => nix.app(renderOptionValue, nix.thunk(() => nix.selOr(opt, () => nix.selOr(opt, () => nix.sel(opt, "type", "emptyValue", "value"), "default"), "defaultText")))))),
           }))), nix.app(optionalAttrs, nix.thunk(() => (nix.asBool(nix.has(opt, "relatedPackages")) && nix.asBool(!nix.eq(nix.sel(opt, "relatedPackages"), null)))), nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             relatedPackages: nix.thunk(() => nix.attr(opt, "relatedPackages")),
           })))))));
         const subOptions = nix.thunk(() => (() => {
@@ -183,19 +183,19 @@ ${prioritySuggestion}`)) : nix.force(first)), nix.thunk(() => nix.app(head, defs
         return nix.concat([docOption], nix.app(optionals, subOptionsVisible, subOptions));
       })(), nix.thunk(() => nix.app(collect, isOption, options)));
     const scrubOptionValue = (x) => (nix.asBool(nix.app(isDerivation, x)) ? {
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       type: "derivation",
       drvPath: nix.thunk(() => nix.sel(x, "name")),
       outPath: nix.thunk(() => nix.sel(x, "name")),
       name: nix.thunk(() => nix.sel(x, "name")),
     } : (nix.asBool(nix.app(isList, x)) ? nix.builtins.map(scrubOptionValue, x) : (nix.asBool(nix.app(isAttrs, x)) ? nix.app(mapAttrs, (n) => (v) => nix.app(scrubOptionValue, v), nix.thunk(() => nix.builtins.removeAttrs(x, nix.thunk(() => ["_args"])))) : nix.force(x))));
-    const renderOptionValue = (v) => (nix.asBool((nix.asBool(nix.has(v, "_type")) && nix.asBool(nix.has(v, "text")))) ? nix.force(v) : nix.app(literalExpression, nix.thunk(() => nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({ __proto__: pos$15, multiline: true, allowPrettyValues: true })), v))));
-    const literalExpression = (text) => (nix.asBool(!nix.asBool(nix.app(isString, text))) ? nix.builtins.throw("literalExpression expects a string.") : { __proto__: pos$16, _type: "literalExpression", text: text });
+    const renderOptionValue = (v) => (nix.asBool((nix.asBool(nix.has(v, "_type")) && nix.asBool(nix.has(v, "text")))) ? nix.force(v) : nix.app(literalExpression, nix.thunk(() => nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({ [nix.POS]: pos$15, multiline: true, allowPrettyValues: true })), v))));
+    const literalExpression = (text) => (nix.asBool(!nix.asBool(nix.app(isString, text))) ? nix.builtins.throw("literalExpression expects a string.") : { [nix.POS]: pos$16, _type: "literalExpression", text: text });
     const literalCode = (languageTag) => (text) => nix.app(nix.sel(lib, "literalMD"), nix.thunk(() => nix.str`\`\`\`${languageTag}
 ${text}
 \`\`\`
 `));
-    const literalMD = (text) => (nix.asBool(!nix.asBool(nix.app(isString, text))) ? nix.builtins.throw("literalMD expects a string.") : { __proto__: pos$17, _type: "literalMD", text: text });
+    const literalMD = (text) => (nix.asBool(!nix.asBool(nix.app(isString, text))) ? nix.builtins.throw("literalMD expects a string.") : { [nix.POS]: pos$17, _type: "literalMD", text: text });
     const showOption = (parts) => (() => {
       const isNamedPlaceholder = nix.thunk(() => nix.app(nix.builtins.match, "<(.*)>"));
       const escapeOptionPart = (part) => (nix.asBool((nix.asBool(nix.eq(part, "*")) || nix.asBool(!nix.eq(nix.app(isNamedPlaceholder, part), null)))) ? nix.force(part) : nix.app(nix.sel(lib, "strings", "escapeNixIdentifier"), part));
@@ -203,7 +203,7 @@ ${text}
     })();
     const showFiles = (files) => nix.app(concatStringsSep, " and ", nix.thunk(() => nix.builtins.map((f) => nix.str`\`${f}'`, files)));
     const showDefs = (defs) => nix.app(concatMapStrings, (def) => (() => {
-        const prettyEval = nix.thunk(() => nix.builtins.tryEval(nix.thunk(() => nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({})), nix.thunk(() => nix.app(nix.sel(lib, "generators", "withRecursion"), nix.thunk(() => ({ __proto__: pos$18, depthLimit: 10n, throwOnDepthLimit: false })), nix.thunk(() => nix.sel(def, "value"))))))));
+        const prettyEval = nix.thunk(() => nix.builtins.tryEval(nix.thunk(() => nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({})), nix.thunk(() => nix.app(nix.sel(lib, "generators", "withRecursion"), nix.thunk(() => ({ [nix.POS]: pos$18, depthLimit: 10n, throwOnDepthLimit: false })), nix.thunk(() => nix.sel(def, "value"))))))));
         const lines = nix.thunk(() => nix.app(filter, (v) => !nix.asBool(nix.app(isList, v)), nix.thunk(() => nix.builtins.split("\n", nix.thunk(() => nix.sel(prettyEval, "value"))))));
         const value = nix.thunk(() => nix.app(concatStringsSep, "\n    ", nix.thunk(() => nix.concat(nix.app(take, 5n, lines), nix.app(optional, nix.thunk(() => nix.gt(nix.app(length, lines), 5n)), "...")))));
         const result = nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(prettyEval, "success"))) ? "" : (nix.asBool(nix.gt(nix.app(length, lines), 1n)) ? nix.add(":\n    ", value) : nix.add(": ", value))));
@@ -215,7 +215,7 @@ ${nix.app(concatMapStringsSep, "\n", (defFile) => nix.str`  - ${defFile}`, nix.t
 `;
     const unknownModule = "<unknown-file>";
     return {
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       isOption,
       mkOption,
       mkEnableOption,

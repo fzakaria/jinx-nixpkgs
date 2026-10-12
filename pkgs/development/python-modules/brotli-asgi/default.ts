@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const mypy = nix.arg($, "mypy");
   const brotlipy = nix.arg($, "brotlipy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "brotli-asgi",
       version: "1.6.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fullonic",
           repo: "brotli-asgi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["brotli_asgi"]),
       nativeCheckInputs: nix.thunk(() => [httpx, requests, mypy, brotlipy]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Compression AGSI middleware using brotli",
         homepage: "https://github.com/fullonic/brotli-asgi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

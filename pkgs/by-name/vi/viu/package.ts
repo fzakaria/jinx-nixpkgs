@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libsixel = nix.arg($, "libsixel");
   const withSixel = nix.argOr($, "withSixel", () => false);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "viu",
       version: "1.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "atanunq",
           repo: "viu",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildFeatures: nix.thunk(() => nix.app(nix.sel(lib, "optional"), withSixel, "sixel")),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), withSixel, libsixel)),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command-line application to view images from the terminal written in Rust",
         homepage: "https://github.com/atanunq/viu",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

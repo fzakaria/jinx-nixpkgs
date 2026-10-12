@@ -12,8 +12,8 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "enable")), nix.thunk(() => ({
-      __proto__: pos$3,
-      attrsOfSub: nix.thunk(() => ({ __proto__: pos$2, foo: nix.thunk(() => ({ __proto__: pos$1, enable: true })) })),
+      [nix.POS]: pos$3,
+      attrsOfSub: nix.thunk(() => ({ [nix.POS]: pos$2, foo: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })) })),
     })));
 })(), formals$1);
 //# sourceMappingURL=define-if-attrsOfSub-foo-enable.ts.map

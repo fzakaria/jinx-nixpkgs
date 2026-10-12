@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "loopwm",
       version: "1.4.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/MrKai77/Loop/releases/download/${nix.sel(finalAttrs, "version")}/Loop.zip`),
           hash: "sha256-UU6X+qs4Q837ixhZuRMzcEY5oaLOWA5PaE117+AH04Y=",
         })))),
@@ -30,9 +30,9 @@ export default nix.lambda((args) => (() => {
       dontConfigure: true,
       dontBuild: true,
       installPhase: "runHook preInstall\nmkdir -p $out/{Applications,bin}\ncp -r Loop.app $out/Applications\nmakeWrapper $out/Applications/Loop.app/Contents/MacOS/Loop $out/bin/loopwm \\\n  --set LOOP_SKIP_UPDATE_CHECK 1\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "macOS Window management made elegant",
         homepage: "https://github.com/MrKai77/Loop",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

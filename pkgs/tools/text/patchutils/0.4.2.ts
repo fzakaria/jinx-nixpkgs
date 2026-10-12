@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const python3 = nix.arg($, "python3");
   return nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => nix.update(args_1, {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       version: "0.4.2",
       sha256: "sha256-iHWwll/jPeYriQ9s15O+f6/kGk5VLtv2QfH+1eu/Re0=",
       extraBuildInputs: nix.thunk(() => [python3]),

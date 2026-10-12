@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const xorgproto = nix.arg($, "xorgproto");
   const xorg_server = nix.arg($, "xorg-server");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xf86-video-openchrome",
       version: "0.6.225",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://anongit.freedesktop.org/git/openchrome/xf86-video-openchrome.git",
           rev: "ab03de703b91c7e0fd3e4d1ca06ad5add7f077a1",
           hash: "sha256-Aa0Mhb6miSakAEZKCZ5/+n9oyCp4y4srq9ljRNqP7F4=",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         xorg_server,
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [udev])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "VIA Technologies UniChrome and Chrome9 IGP video driver for the Xorg X server",
         longDescription: "OpenChrome DDX is an open source implementation of X.Org Server DDX (Device Dependent X)\ngraphics device driver for VIA Technologies UniChrome and Chrome9 IGPs. (Integrated Graphics\nProcessor) OpenChrome DDX handles only 2D and video acceleration.\n",
         homepage: "http://www.freedesktop.org/wiki/Openchrome",

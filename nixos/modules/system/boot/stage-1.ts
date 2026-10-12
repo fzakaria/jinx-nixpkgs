@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
   const modulesClosure = nix.thunk(() => nix.app(nix.sel(pkgs, "makeModulesClosure"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(config, "boot", "initrd"));
       return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       rootModules: nix.thunk(() => nix.concat(nix.sel(config, "boot", "initrd", "availableKernelModules"), nix.sel(config, "boot", "initrd", "kernelModules"))),
       kernel: nix.thunk(() => nix.sel(config, "system", "modulesTree")),
       firmware: nix.thunk(() => nix.sel(config, "hardware", "firmware")),
@@ -133,7 +133,7 @@ while [ \${#left[@]} -ne 0 ]; do
 done
 `)));
   const extraUtils = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "extra-utils", nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       nativeBuildInputs: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "buildPackages")), w);
         return [
@@ -253,7 +253,7 @@ set +x
 fi
 `)));
   const linkUnits = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "link-units", nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       allowedReferences: nix.thunk(() => [extraUtils]),
       preferLocalBuild: true,
     })), nix.thunk(() => nix.add(nix.str`mkdir -p $out
@@ -264,7 +264,7 @@ cp -v ${udev}/lib/systemd/network/*.link $out/
       return nix.app(nix.lookup(w, "concatMapStringsSep"), "\n", (file) => nix.str`cp -v ${file} $out/`, files);
     })()))));
   const udevRules = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "udev-rules", nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       allowedReferences: nix.thunk(() => [extraUtils]),
       preferLocalBuild: true,
     })), nix.thunk(() => nix.str`mkdir -p $out
@@ -304,7 +304,7 @@ substituteInPlace $out/60-persistent-storage.rules \\
   --replace ID_CDROM_MEDIA_TRACK_COUNT_DATA ID_CDROM_MEDIA
 `)));
   const bootStage1 = nix.thunk(() => nix.app(nix.sel(pkgs, "replaceVarsWith"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       src: nix.path(here, "./stage-1-init.sh"),
       isExecutable: true,
       postInstall: nix.thunk(() => nix.str`echo checking syntax
@@ -319,7 +319,7 @@ ${nix.sel(pkgs, "buildPackages", "busybox")}/bin/ash -n $target
         const from_2 = nix.thunk(() => nix.sel(config, "system", "build"));
         const from_3 = nix.thunk(() => nix.sel(config, "boot", "initrd"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         shell: nix.thunk(() => nix.str`${extraUtils}/bin/ash`),
         linkUnits: linkUnits,
         udevRules: udevRules,
@@ -356,38 +356,38 @@ ${(nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isBigEndian")) ? "echo -n
   const initialRamdisk = nix.thunk(() => nix.app(nix.sel(pkgs, "makeInitrd"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(config, "boot", "initrd"));
       return {
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       name: nix.thunk(() => nix.str`initrd-${kernel_name}`),
       compressor: nix.thunk(() => nix.attr(from, "compressor")),
       compressorArgs: nix.thunk(() => nix.attr(from, "compressorArgs")),
       prepend: nix.thunk(() => nix.attr(from, "prepend")),
       contents: nix.thunk(() => nix.concat([
-        nix.thunk(() => ({ __proto__: pos$7, object: bootStage1, symlink: "/init" })),
+        nix.thunk(() => ({ [nix.POS]: pos$7, object: bootStage1, symlink: "/init" })),
         nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           object: nix.thunk(() => nix.str`${modulesClosure}/lib`),
           symlink: "/lib",
         })),
         nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           object: nix.thunk(() => nix.str`${nix.sel(pkgs, "kmod-blacklist-ubuntu")}/modprobe.conf`),
           symlink: "/etc/modprobe.d/ubuntu.conf",
         })),
         nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           object: nix.thunk(() => nix.sel(config, "environment", "etc", "modprobe.d/nixos.conf", "source")),
           symlink: "/etc/modprobe.d/nixos.conf",
         })),
         nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           object: nix.thunk(() => nix.sel(pkgs, "kmod-debian-aliases")),
           symlink: "/etc/modprobe.d/debian.conf",
         })),
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(config, "services", "multipath", "enable")), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             object: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "multipath.conf", nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 src: nix.thunk(() => nix.sel(config, "environment", "etc", "multipath.conf", "text")),
                 preferLocalBuild: true,
               })), nix.thunk(() => nix.str`target=$out
@@ -398,7 +398,7 @@ substituteInPlace $out \\
             symlink: "/etc/multipath.conf",
           })),
         ])), nix.app(nix.sel(lib, "mapAttrsToList"), (symlink) => (options_1) => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           symlink: symlink,
           object: nix.thunk(() => nix.sel(options_1, "source")),
         }), nix.thunk(() => nix.sel(config, "boot", "initrd", "extraFiles")))))),
@@ -448,36 +448,36 @@ cp -a ${source$} "$tmp/.initrd-secrets/${dest}"
 `));
   })());
   return {
-    __proto__: pos$58,
+    [nix.POS]: pos$58,
     options: nix.thunk(() => ({
-      __proto__: pos$48,
+      [nix.POS]: pos$48,
       boot: nix.thunk(() => ({
-        __proto__: pos$43,
+        [nix.POS]: pos$43,
         resumeDevice: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             default: "",
             example: "/dev/sda3",
             description: "Device for manual resume attempt during boot. This should be used primarily\nif you want to resume from file. If left empty, the swap partitions are used.\nSpecify here the device where the file resides.\nYou should also use {var}`boot.kernelParams` to specify\n`«resume_offset»`.\n",
           })))),
         initrd: nix.thunk(() => ({
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: nix.thunk(() => !nix.asBool(nix.sel(config, "boot", "isContainer"))),
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "!config.boot.isContainer")),
               description: "Whether to enable the NixOS initial RAM disk (initrd). This may be\nneeded to perform some initialisation tasks (like mounting\nnetwork/encrypted file systems) before continuing the boot process.\n",
             })))),
           extraFiles: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                    __proto__: pos$20,
+                    [nix.POS]: pos$20,
                     options: nix.thunk(() => ({
-                      __proto__: pos$19,
+                      [nix.POS]: pos$19,
                       source: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$18,
+                          [nix.POS]: pos$18,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")),
                           description: "The object to make available inside the initrd.",
                         })))),
@@ -486,82 +486,82 @@ cp -a ${source$} "$tmp/.initrd-secrets/${dest}"
               description: "Extra files to link and copy in to the initrd.\n",
             })))),
           prepend: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               default: [],
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               description: "Other initrd files to prepend to the final initrd we are building.\n",
             })))),
           extraFirmwarePaths: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               default: [],
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               description: "Other firmware files (relative to `\"${config.hardware.firmware}/lib/firmware\"`) to include in the final initrd we are building.\n",
             })))),
           checkJournalingFS: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               default: true,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               description: "Whether to run {command}`fsck` on journaling filesystems such as ext3.\n",
             })))),
           preLVMCommands: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               default: "",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               description: "Shell commands to be executed immediately before LVM discovery.\n",
             })))),
           preDeviceCommands: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               default: "",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               description: "Shell commands to be executed before udev is started to create\ndevice nodes.\n",
             })))),
           postDeviceCommands: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               default: "",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               description: "Shell commands to be executed immediately after stage 1 of the\nboot has loaded kernel modules and created device nodes in\n{file}`/dev`.\n",
             })))),
           postResumeCommands: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               default: "",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               description: "Shell commands to be executed immediately after attempting to resume.\n",
             })))),
           postMountCommands: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               default: "",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               description: "Shell commands to be executed immediately after the stage 1\nfilesystems have been mounted.\n",
             })))),
           preFailCommands: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               default: "",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               description: "Shell commands to be executed before the failure prompt is shown.\n",
             })))),
           extraUtilsCommands: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               internal: true,
               default: "",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               description: "Shell commands to be executed in the builder of the\nextra-utils derivation.  This can be used to provide\nadditional utilities in the initial ramdisk.\n",
             })))),
           extraUtilsCommandsTest: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               internal: true,
               default: "",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               description: "Shell commands to be executed in the builder of the\nextra-utils derivation after patchelf has done its\njob.  This can be used to test additional utilities\ncopied in extraUtilsCommands.\n",
             })))),
           extraUdevRulesCommands: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               internal: true,
               default: "",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               description: "Shell commands to be executed in the builder of the\nudev-rules derivation.  This can be used to add\nadditional udev rules in the initial ramdisk.\n",
             })))),
           compressor: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               default: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "kernel", "version")), "5.9")) ? "zstd" : "gzip")),
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalMD"), "`zstd` if the kernel supports it (5.9+), `gzip` if not")),
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "either"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "functionTo"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))))),
@@ -569,13 +569,13 @@ cp -a ${source$} "$tmp/.initrd-secrets/${dest}"
               example: "xz",
             })))),
           compressorArgs: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))))),
               description: "Arguments to pass to the compressor for the initrd image, or null to use the compressor's defaults.",
             })))),
           secrets: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))))),
               description: "Secrets to append to the initrd. The attribute name is the\npath the secret should have inside the initrd, the value\nis the path it should be copied from (or null for the same\npath inside and out).\n\nNote that `nixos-rebuild switch` will generate the initrd\nalso for past generations, so if secrets are moved or deleted\nyou will also have to garbage collect the generations that\nuse those secrets.\n",
@@ -584,7 +584,7 @@ cp -a ${source$} "$tmp/.initrd-secrets/${dest}"
           supportedFilesystems: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(options, "boot", "supportedFilesystems"));
               return {
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.attr(from, "example")),
               type: nix.thunk(() => nix.attr(from, "type")),
@@ -592,13 +592,13 @@ cp -a ${source$} "$tmp/.initrd-secrets/${dest}"
             };
             })()))),
           verbose: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               default: true,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               description: "Verbosity of the initrd. Please note that disabling verbosity removes\nonly the mandatory messages generated by the NixOS scripts. For a\ncompletely silent boot, you might also want to set the two following\nconfiguration options:\n\n- `boot.consoleLogLevel = 0;`\n- `boot.kernelParams = [ \"quiet\" \"udev.log_level=3\" ];`\n",
             })))),
           stage1Greeting: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: nix.thunk(() => nix.str`<<< ${nix.sel(config, "system", "nixos", "distroName")} Stage 1 >>>`),
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "\"<<< ${config.system.nixos.distroName} Stage 1 >>>\"")),
@@ -606,9 +606,9 @@ cp -a ${source$} "$tmp/.initrd-secrets/${dest}"
             })))),
         })),
         loader: nix.thunk(() => ({
-          __proto__: pos$42,
+          [nix.POS]: pos$42,
           supportsInitrdSecrets: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               internal: true,
               default: false,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
@@ -617,15 +617,15 @@ cp -a ${source$} "$tmp/.initrd-secrets/${dest}"
         })),
       })),
       fileSystems: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$47,
+          [nix.POS]: pos$47,
           type: nix.thunk(() => (() => {
             const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), w);
             return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$46,
+                  [nix.POS]: pos$46,
                   options: nix.thunk(() => ({
-                    __proto__: pos$45,
+                    [nix.POS]: pos$45,
                     neededForBoot: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$44,
+                        [nix.POS]: pos$44,
                         default: false,
                         type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "bool")),
                         description: nix.thunk(() => nix.str`If set, this file system will be mounted in the initial ramdisk.
@@ -640,16 +640,16 @@ ${nix.app(nix.lookup(w_1, "concatStringsSep"), ", ", nix.thunk(() => nix.app(nix
         })))),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(config, "boot", "initrd", "enable")), nix.thunk(() => ({
-        __proto__: pos$57,
+        [nix.POS]: pos$57,
         warnings: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable"))), "Scripted initrd is deprecated and scheduled for removal in 26.11. See the NixOS 26.05 release notes.\n")),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$49,
+            [nix.POS]: pos$49,
             assertion: nix.thunk(() => (!nix.asBool(!nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable"))) || nix.asBool(nix.app(nix.lookup(w, "any"), (fs) => nix.eq(nix.sel(fs, "mountPoint"), "/"), fileSystems)))),
             message: "The ‘fileSystems’ option does not specify your root file system.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             assertion: nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(config, "boot"));
               const resumeDevice = nix.thunk(() => nix.attr(from, "resumeDevice"));
@@ -658,22 +658,22 @@ ${nix.app(nix.lookup(w_1, "concatStringsSep"), ", ", nix.thunk(() => nix.app(nix
             message: nix.thunk(() => nix.add("boot.resumeDevice has to be an absolute path.", " Old \"x:y\" style is no longer supported.")),
           })),
           nix.thunk(() => ({
-            __proto__: pos$51,
+            [nix.POS]: pos$51,
             assertion: nix.thunk(() => (!nix.asBool(!nix.asBool(nix.sel(config, "boot", "loader", "supportsInitrdSecrets"))) || nix.asBool(nix.app(nix.lookup(w, "all"), (source) => (nix.asBool(nix.app(nix.sel(nix.builtins, "isPath"), source)) || nix.asBool((nix.asBool(nix.app(nix.sel(nix.builtins, "isString"), source)) && nix.asBool(nix.app(nix.lookup(w, "hasPrefix"), nix.thunk(() => nix.sel(nix.builtins, "storeDir")), source))))), nix.thunk(() => nix.app(nix.lookup(w, "attrValues"), nix.thunk(() => nix.sel(config, "boot", "initrd", "secrets")))))))),
             message: "boot.initrd.secrets values must be unquoted paths when\nusing a bootloader that doesn't natively support initrd\nsecrets, e.g.:\n\n  boot.initrd.secrets = {\n    \"/etc/secret\" = /path/to/secret;\n  };\n\nNote that this will result in all secrets being stored\nworld-readable in the Nix store!\n",
           })),
         ]),
         system: nix.thunk(() => ({
-          __proto__: pos$54,
+          [nix.POS]: pos$54,
           build: nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$52,
+                [nix.POS]: pos$52,
                 bootStage1: bootStage1,
                 initialRamdiskSecretAppender: initialRamdiskSecretAppender,
                 extraUtils: extraUtils,
                 modulesClosure: modulesClosure,
               })),
-              nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable"))), nix.thunk(() => ({ __proto__: pos$53, initialRamdisk: initialRamdisk })))),
+              nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable"))), nix.thunk(() => ({ [nix.POS]: pos$53, initialRamdisk: initialRamdisk })))),
             ]))),
           requiredKernelConfig: nix.thunk(() => (() => {
             const w_1 = nix.withScope(nix.thunk(() => nix.sel(config, "lib", "kernelConfig")), w);
@@ -684,9 +684,9 @@ ${nix.app(nix.lookup(w_1, "concatStringsSep"), ", ", nix.thunk(() => nix.app(nix
           })()),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$56,
+          [nix.POS]: pos$56,
           initrd: nix.thunk(() => ({
-            __proto__: pos$55,
+            [nix.POS]: pos$55,
             supportedFilesystems: nix.thunk(() => nix.app(nix.builtins.map, (fs) => nix.sel(fs, "fsType"), fileSystems)),
           })),
         })),

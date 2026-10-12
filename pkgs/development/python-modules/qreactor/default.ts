@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const qtpy = nix.arg($, "qtpy");
   const pyqt6 = nix.arg($, "pyqt6");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "qreactor-unstable",
       version: "0.6.1",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "frmdstryr",
           repo: "qt-reactor",
           rev: "364b3f561fb0d4d3938404d869baa4db7a982bf0",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pyqt6]),
       pythonImportsCheck: nix.thunk(() => ["qreactor"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/frmdstryr/qt-reactor",
         description: "Twisted and PyQt5/qtpy eventloop integration base",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

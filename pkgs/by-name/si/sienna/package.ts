@@ -22,18 +22,18 @@ export default nix.lambda((args) => (() => {
       const pname = "sienna";
       const version = "1.0d";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/SimonLarsen/sienna/releases/download/v${version}/sienna-${version}.love`),
           hash: "sha256-1bFjhN7jL/PMYMJH1ete6uyHTYsTGgoP60sf/sJTLlU=",
         }))));
       const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "http://tangramgames.dk/img/thumb/sienna.png",
           hash: "sha256-1grwCi1sKelqEH58pO0rTSnqG7JOfVByNKu2NCbMAos=",
         }))));
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "sienna",
             exec: "sienna",
             icon: icon,
@@ -55,7 +55,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), love)} $out/bin/sienna --add-flags
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Fast-paced one button platformer",
         mainProgram: "sienna",
         homepage: "https://tangramgames.dk/games/sienna",
@@ -64,7 +64,7 @@ runHook postInstall
         maintainers: [],
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

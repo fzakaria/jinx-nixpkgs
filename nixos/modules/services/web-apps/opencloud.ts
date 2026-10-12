@@ -62,19 +62,19 @@ export default nix.lambda((args) => (() => {
   const defaultGroup = defaultUser;
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$47,
+    [nix.POS]: pos$47,
     options: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       services: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         opencloud: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "OpenCloud")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "opencloud", nix.thunk(() => ({})))),
           webPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, nix.thunk(() => ["opencloud", "web"]), nix.thunk(() => ({})))),
           idpWebPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, nix.thunk(() => ["opencloud", "idp-web"]), nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: defaultUser,
               example: "mycloud",
@@ -84,7 +84,7 @@ directory is [](#opt-services.opencloud.stateDir).
 `),
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: defaultGroup,
               example: "mycloud",
@@ -93,83 +93,83 @@ By default, a group named \`${defaultGroup}\` will be created.
 `),
             })))),
           address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "127.0.0.1",
               description: "Web server bind address.",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 9200n,
               description: "Web server port.",
             })))),
           url: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "https://localhost:9200",
               example: "https://cloud.example.com",
               description: "Web interface root public URL, including scheme and port (if non-default).",
             })))),
           stateDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: "/var/lib/opencloud",
               type: nix.thunk(() => nix.sel(types, "str")),
               description: "OpenCloud data directory.",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(settingsFormat, "type")))),
               default: nix.thunk(() => ({})),
               description: "Additional YAML configuration for OpenCloud services.\n\nEvery item in this attrset will be mapped to a .yaml file in /etc/opencloud.\n\nThe possible config options are currently not well documented, see source code:\nhttps://github.com/opencloud-eu/opencloud/blob/main/pkg/config/config.go\n",
               example: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 proxy: nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   auto_provision_accounts: true,
-                  oidc: nix.thunk(() => ({ __proto__: pos$7, rewrite_well_known: true })),
+                  oidc: nix.thunk(() => ({ [nix.POS]: pos$7, rewrite_well_known: true })),
                   role_assignment: nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     driver: "oidc",
-                    oidc_role_mapper: nix.thunk(() => ({ __proto__: pos$8, role_claim: "opencloud_roles" })),
+                    oidc_role_mapper: nix.thunk(() => ({ [nix.POS]: pos$8, role_claim: "opencloud_roles" })),
                   })),
                 })),
                 web: nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   web: nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     config: nix.thunk(() => ({
-                      __proto__: pos$12,
-                      oidc: nix.thunk(() => ({ __proto__: pos$11, scope: "openid profile email opencloud_roles" })),
+                      [nix.POS]: pos$12,
+                      oidc: nix.thunk(() => ({ [nix.POS]: pos$11, scope: "openid profile email opencloud_roles" })),
                     })),
                   })),
                 })),
               })),
             })))),
           environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               default: null,
               example: "/run/keys/opencloud.env",
               description: "An environment file as defined in {manpage}`systemd.exec(5)`.\n\nUse this to inject secrets, e.g. database or auth credentials out of band.\n\nConfiguration provided here will override `settings` and `environment`.\n",
             })))),
           environment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "str")))),
-              default: nix.thunk(() => ({ __proto__: pos$18, OC_INSECURE: "true" })),
+              default: nix.thunk(() => ({ [nix.POS]: pos$18, OC_INSECURE: "true" })),
               description: "Extra environment variables to set for the service.\n\nUse this to set configuration that may affect multiple microservices.\n\nSet `OC_INSECURE = \"false\"` if you want OpenCloud to terminate TLS.\n\nConfiguration provided here will override `settings`.\n",
-              example: nix.thunk(() => ({ __proto__: pos$19, OC_INSECURE: "false", OC_LOG_LEVEL: "error" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$19, OC_INSECURE: "false", OC_LOG_LEVEL: "error" })),
             })))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$45,
+        [nix.POS]: pos$45,
         users: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [defaultUser, nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), defaultUser)), nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 home: nix.thunk(() => nix.sel(cfg, "stateDir")),
                 isSystemUser: true,
@@ -180,10 +180,10 @@ By default, a group named \`${defaultGroup}\` will be created.
           groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), defaultGroup)), nix.thunk(() => nix.attrsDyn({}, [[nix.force(defaultGroup), nix.thunk(() => ({}))]])))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           services: nix.thunk(() => (() => {
             const environment = nix.thunk(() => nix.update({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               PROXY_HTTP_ADDR: nix.thunk(() => nix.str`${nix.sel(cfg, "address")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}`),
               OC_URL: nix.thunk(() => nix.sel(cfg, "url")),
               OC_BASE_DATA_PATH: nix.thunk(() => nix.sel(cfg, "stateDir")),
@@ -192,7 +192,7 @@ By default, a group named \`${defaultGroup}\` will be created.
               OC_CONFIG_DIR: "/etc/opencloud",
             }, nix.sel(cfg, "environment")));
             const commonServiceConfig = nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               EnvironmentFile: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "environmentFile"), null)), nix.thunk(() => nix.sel(cfg, "environmentFile")))),
               MemoryDenyWriteExecute: true,
               NoNewPrivileges: true,
@@ -212,15 +212,15 @@ By default, a group named \`${defaultGroup}\` will be created.
               SystemCallArchitectures: "native",
             }));
             return {
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               "opencloud-init-config": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.selOr(cfg, () => ({}), "settings", "opencloud"), {})), nix.thunk(() => ({
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   description: "Provision initial OpenCloud config",
                   before: nix.thunk(() => ["opencloud.service"]),
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   environment: environment,
                   serviceConfig: nix.thunk(() => nix.update({
-                    __proto__: pos$28,
+                    [nix.POS]: pos$28,
                     Type: "oneshot",
                     ReadWritePaths: nix.thunk(() => ["/etc/opencloud"]),
                   }, commonServiceConfig)),
@@ -235,13 +235,13 @@ fi
 `),
                 })))),
               opencloud: nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 description: "OpenCloud - a secure and private way to store, access, and share your files",
                 after: nix.thunk(() => ["network.target"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 environment: environment,
                 serviceConfig: nix.thunk(() => nix.update({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   Type: "simple",
                   ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} server`),
                   WorkingDirectory: nix.thunk(() => nix.sel(cfg, "stateDir")),
@@ -255,23 +255,23 @@ fi
             };
           })()),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             settings: nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               "10-opencloud": nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "stateDir"), nix.thunk(() => ({
-                  __proto__: pos$34,
+                  [nix.POS]: pos$34,
                   d: nix.thunk(() => ({
-                    __proto__: pos$33,
+                    [nix.POS]: pos$33,
                     user: nix.thunk(() => nix.attr(cfg, "user")),
                     group: nix.thunk(() => nix.attr(cfg, "group")),
                     mode: "0750",
                   })),
                 }))],
                 [nix.str`${nix.sel(cfg, "stateDir")}/idm`, nix.thunk(() => ({
-                  __proto__: pos$36,
+                  [nix.POS]: pos$36,
                   d: nix.thunk(() => ({
-                    __proto__: pos$35,
+                    [nix.POS]: pos$35,
                     user: nix.thunk(() => nix.attr(cfg, "user")),
                     group: nix.thunk(() => nix.attr(cfg, "group")),
                     mode: "0750",
@@ -282,22 +282,22 @@ fi
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$44,
+          [nix.POS]: pos$44,
           etc: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mapAttrs'"), (name) => (value) => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               name: nix.thunk(() => nix.str`opencloud/${name}.yaml`),
               value: nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 source: nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), nix.thunk(() => nix.str`${name}.yaml`), value)),
               })),
             }), nix.thunk(() => nix.sel(cfg, "settings"))), {
-            __proto__: pos$43,
-            "opencloud/.keep": nix.thunk(() => ({ __proto__: pos$42, text: "" })),
+            [nix.POS]: pos$43,
+            "opencloud/.keep": nix.thunk(() => ({ [nix.POS]: pos$42, text: "" })),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$46,
+      [nix.POS]: pos$46,
       doc: nix.path(here, "./opencloud.md"),
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

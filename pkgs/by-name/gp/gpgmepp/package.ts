@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "gpgmepp",
       version: "2.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnupg/gpgmepp/gpgmepp-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-ZlHF9/gBVD1bZ2cZ35/sgFOwpvWrpAuYyg0r7hETbzA=",
         })))),
@@ -37,18 +37,18 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       propagatedBuildInputs: nix.thunk(() => [gpgme, libgpg_error]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               versionCheck: true,
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://dev.gnupg.org/source/gpgmepp/browse/master/NEWS;gpgmepp-${nix.sel(finalAttrs, "version")}?as=remarkup`),
         description: "C++ bindings/wrapper for GPGME",
         homepage: "https://dev.gnupg.org/source/gpgmepp",

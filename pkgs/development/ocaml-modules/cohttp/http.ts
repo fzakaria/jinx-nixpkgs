@@ -11,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const cohttp = nix.arg($, "cohttp");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "http",
       version: nix.thunk(() => nix.attr(cohttp, "version")),
       src: nix.thunk(() => nix.attr(cohttp, "src")),
       minimalOCamlVersion: "5.1",
       meta: nix.thunk(() => nix.update(nix.sel(cohttp, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "CoHTTP implementation using the Lwt concurrency library",
       })),
     })));

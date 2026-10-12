@@ -33,15 +33,15 @@ export default nix.lambda((args) => (() => {
   const privkey = nix.thunk(() => nix.str`${keydir}/private.key`);
   const pubkey = nix.thunk(() => nix.str`${keydir}/public.key`);
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         "dkimproxy-out": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: nix.thunk(() => nix.str`Whether to enable dkimproxy_out.
@@ -51,19 +51,19 @@ ${keydir}.
 `),
             })))),
           listen: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               example: "127.0.0.1:10027",
               description: "Address:port DKIMproxy should listen on.",
             })))),
           relay: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               example: "127.0.0.1:10028",
               description: "Address:port DKIMproxy should forward mail to.",
             })))),
           domains: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -72,7 +72,7 @@ ${keydir}.
               description: "List of domains DKIMproxy can sign for.",
             })))),
           selector: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               example: "selector1",
               description: nix.thunk(() => nix.str`The selector to use for DKIM key identification.
@@ -84,7 +84,7 @@ in ${pubkey}: "v=DKIM1; t=s; p=[THE PUBLIC KEY]".
 `),
             })))),
           keySize: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 2048n,
               description: "Size of the RSA key to use to sign outgoing emails. Note that the\nmaximum mandatorily verified as per RFC6376 is 2048.\n",
@@ -104,14 +104,14 @@ signature dkim(c=relaxed/relaxed)
 keyfile ${privkey}
 `)));
       return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           users: nix.thunk(() => ({
-            __proto__: pos$13,
-            groups: nix.thunk(() => ({ __proto__: pos$10, "dkimproxy-out": nix.thunk(() => ({})) })),
+            [nix.POS]: pos$13,
+            groups: nix.thunk(() => ({ [nix.POS]: pos$10, "dkimproxy-out": nix.thunk(() => ({})) })),
             users: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               "dkimproxy-out": nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 description: "DKIMproxy_out daemon",
                 group: "dkimproxy-out",
                 isSystemUser: true,
@@ -119,11 +119,11 @@ keyfile ${privkey}
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             services: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               "dkimproxy-out": nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 description: "DKIMproxy_out",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 preStart: nix.thunk(() => nix.str`if [ ! -d "${keydir}" ]; then
@@ -135,7 +135,7 @@ keyfile ${privkey}
 fi
 `),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "dkimproxy")}/bin/dkimproxy.out --conf_file=${configfile}`),
                   User: "dkimproxy-out",
                   PermissionsStartOnly: true,

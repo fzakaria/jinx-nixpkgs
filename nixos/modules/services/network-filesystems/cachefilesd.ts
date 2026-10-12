@@ -31,27 +31,27 @@ export default nix.lambda((args) => (() => {
 ${nix.sel(cfg, "extraConfig")}
 `)));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         cachefilesd: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable cachefilesd network filesystems caching daemon.",
             })))),
           cacheDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/var/cache/fscache",
               description: "Directory to contain filesystem cache.",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               example: "brun 10%",
@@ -61,18 +61,18 @@ ${nix.sel(cfg, "extraConfig")}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$16,
-        boot: nix.thunk(() => ({ __proto__: pos$7, kernelModules: nix.thunk(() => ["cachefiles"]) })),
+        [nix.POS]: pos$16,
+        boot: nix.thunk(() => ({ [nix.POS]: pos$7, kernelModules: nix.thunk(() => ["cachefiles"]) })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             cachefilesd: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "Local network file caching management daemon",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 Type: "exec",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "cachefilesd")}/bin/cachefilesd -n -f ${cfgFile}`),
                 Restart: "on-failure",
@@ -81,13 +81,13 @@ ${nix.sel(cfg, "extraConfig")}
             })),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             settings: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               "10-cachefilesd": nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "cacheDir"), nix.thunk(() => ({
-                  __proto__: pos$12,
-                  d: nix.thunk(() => ({ __proto__: pos$11, user: "root", group: "root", mode: "0700" })),
+                  [nix.POS]: pos$12,
+                  d: nix.thunk(() => ({ [nix.POS]: pos$11, user: "root", group: "root", mode: "0700" })),
                 }))],
               ])),
             })),

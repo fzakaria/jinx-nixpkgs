@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const installFonts = nix.arg($, "installFonts");
   const p7zip = nix.arg($, "p7zip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rounded-mgenplus",
       version: "20150602",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://osdn/users/8/8598/${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}.7z`),
           hash: "sha256-7OpnZJc9k5NiOPHAbtJGMQvsMg9j81DCvbfo0f7uJcw=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [installFonts, p7zip]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Japanese font based on Rounded M+ and Noto Sans Japanese",
         homepage: "http://jikasei.me/font/rounded-mgenplus/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

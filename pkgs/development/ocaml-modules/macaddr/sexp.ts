@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const macaddr_cstruct = nix.arg($, "macaddr-cstruct");
   const ounit2 = nix.arg($, "ounit2");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "macaddr-sexp",
       version: nix.thunk(() => nix.attr(macaddr, "version")),
       src: nix.thunk(() => nix.attr(macaddr, "src")),
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [macaddr_cstruct, ounit2]),
       doCheck: true,
       meta: nix.thunk(() => nix.update(nix.sel(macaddr, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Library for manipulation of MAC address representations using sexp",
       })),
     })));

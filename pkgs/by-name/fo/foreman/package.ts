@@ -12,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const ruby = nix.arg($, "ruby");
   return nix.app(bundlerEnv, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       ruby: ruby,
       pname: "foreman",
       gemdir: nix.path(here, "./."),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Process manager for applications with multiple components",
         homepage: "https://github.com/ddollar/foreman",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

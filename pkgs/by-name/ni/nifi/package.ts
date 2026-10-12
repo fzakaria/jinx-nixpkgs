@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const jdk11 = nix.arg($, "jdk11");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "nifi",
       version: "1.28.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://apache/nifi/${nix.sel(finalAttrs, "version")}/nifi-${nix.sel(finalAttrs, "version")}-bin.zip`),
           hash: "sha256-YFQIV2/B+8/fBmrWPs7Q3FkqaIxBqNBP0BIkIm4M7Zo=",
         })))),
@@ -42,11 +42,11 @@ substituteInPlace $out/bin/nifi-env.sh \\
   --replace-fail "#export JAVA_HOME=/usr/java/jdk1.8.0/" "export JAVA_HOME=${jdk11}"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, nifi: nix.thunk(() => nix.sel(nixosTests, "nifi")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, nifi: nix.thunk(() => nix.sel(nixosTests, "nifi")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Easy to use, powerful, and reliable system to process and distribute data",
         longDescription: "Apache NiFi supports powerful and scalable directed graphs of data routing,\ntransformation, and system mediation logic.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

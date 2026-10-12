@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const codeParserBindings = nix.thunk(() => nix.app(callPackage, nix.path(here, "./code-parser.nix"), nix.thunk(() => ({}))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gitlab-elasticsearch-indexer",
       version: "5.14.14",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gitlab-org",
           repo: "gitlab-elasticsearch-indexer",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [icu]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CGO_LDFLAGS: nix.thunk(() => nix.str`-L${codeParserBindings}/lib`),
         CGO_CFLAGS: nix.thunk(() => nix.str`-I${codeParserBindings}/include`),
       })),
@@ -53,9 +53,9 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`-skip=^${nix.builtins.concatStringsSep("$|^", skippedTests)}$`),
         ];
       })()),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, codeParserBindings: codeParserBindings })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, codeParserBindings: codeParserBindings })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Indexes Git repositories into Elasticsearch for GitLab",
         homepage: "https://gitlab.com/gitlab-org/gitlab-elasticsearch-indexer",

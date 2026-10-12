@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const gnused = nix.arg($, "gnused");
   const jre = nix.thunk(() => nix.app(nix.sel(jre_minimal, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       modules: nix.thunk(() => ["java.base", "java.logging", "java.xml", "jdk.crypto.ec"]),
       jdk: jdk_headless,
     }))));
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lemminx";
       const version = "0.31.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "eclipse-lemminx",
           repo: "lemminx",
           tag: version,
@@ -65,11 +65,11 @@ runHook postInstall
 `);
       const nativeBuildInputs = nix.thunk(() => [makeWrapper]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => (() => {
           const pkgFile = nix.thunk(() => nix.builtins.toString(nix.path(here, "./package.nix")));
           return nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 name: nix.thunk(() => nix.str`update-${pname}`),
                 runtimeInputs: nix.thunk(() => [curl, common_updater_scripts, jq, gnused]),
                 text: nix.thunk(() => nix.str`if [ -z "\${GITHUB_TOKEN:-}" ]; then
@@ -97,7 +97,7 @@ sed -i "0,/mvnHash *= *\\"[^\\"]*\\"/{s#mvnHash = \\"[^\\"]*\\"#mvnHash = \\"$NE
         })()),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "XML Language Server",
         mainProgram: "lemminx",
         homepage: "https://github.com/eclipse-lemminx/lemminx",
@@ -108,7 +108,7 @@ sed -i "0,/mvnHash *= *\\"[^\\"]*\\"/{s#mvnHash = \\"[^\\"]*\\"#mvnHash = \\"$NE
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

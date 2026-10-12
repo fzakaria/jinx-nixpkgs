@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-acUcJM5ghUKezpYTncDADQTZa6NMyteG6Yu7GFPbuLs=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest_asyncio, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["aiopulse"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python Rollease Acmeda Automate Pulse hub protocol implementation",
         longDescription: "The Rollease Acmeda Pulse Hub is a WiFi hub that communicates with\nRollease Acmeda Automate roller blinds via a proprietary RF protocol.\nThis module communicates over a local area network using a proprietary\nbinary protocol to issues commands to the Pulse Hub.\n",
         homepage: "https://github.com/atmurray/aiopulse",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

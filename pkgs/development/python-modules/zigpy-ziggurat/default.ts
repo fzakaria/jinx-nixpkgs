@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const zigpy = nix.arg($, "zigpy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zigpy-ziggurat",
       version: "1.1.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zigpy",
           repo: "zigpy-ziggurat",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["zigpy_ziggurat"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Zigpy radio library for communicating with the Ziggurat stack",
         homepage: "https://github.com/zigpy/zigpy-ziggurat",
         changelog: nix.thunk(() => nix.str`https://github.com/zigpy/zigpy-ziggurat/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

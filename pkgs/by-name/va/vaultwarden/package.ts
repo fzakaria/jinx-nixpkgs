@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const webvault = nix.thunk(() => nix.app(callPackage, nix.path(here, "./webvault.nix"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "vaultwarden",
       version: "1.37.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dani-garcia",
           repo: "vaultwarden",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,20 +38,20 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-xnqJwz0n/Ru+/lisbeUTeVXXT63E6c+91qSkAtl9tMw=",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         VW_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([openssl], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv])), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(dbBackend, "mysql")), libmysqlclient), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(dbBackend, "postgresql")), libpq), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(dbBackend, "sqlite_system")), sqlite)))))),
       buildFeatures: dbBackend,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         webvault: webvault,
         tests: nix.thunk(() => nix.sel(nixosTests, "vaultwarden")),
         updateScript: nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Unofficial Bitwarden compatible server written in Rust",
         homepage: "https://github.com/dani-garcia/vaultwarden",
         changelog: nix.thunk(() => nix.str`https://github.com/dani-garcia/vaultwarden/releases/tag/${nix.sel(finalAttrs, "version")}`),

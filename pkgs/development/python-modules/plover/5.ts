@@ -51,13 +51,13 @@ export default nix.lambda((args) => (() => {
   const pyside_tools_uic = nix.thunk(() => nix.app(nix.sel(buildPackages, "writeShellScriptBin"), "pyside6-uic", nix.thunk(() => nix.str`exec ${nix.sel(buildPackages, "qt6", "qtbase")}/libexec/uic -g python "$@"
 `)));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       __structuredAttrs: true,
       pname: "plover",
       version: "5.4.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "opensteno",
           repo: "plover",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -92,7 +92,7 @@ substituteInPlace plover_build_utils/setup.py \\
         xkbcommon,
         python_xlib,
       ], nix.concat(nix.sel(readme_renderer, "optional-dependencies", "md"), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [evdev])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [appnope, pyobjc_core, pyobjc_framework_Cocoa, pyobjc_framework_Quartz])))))),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, "gui-qt": nix.thunk(() => [pyside6]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, "gui-qt": nix.thunk(() => [pyside6]) })),
       nativeBuildInputs: nix.thunk(() => [wrapQtAppsHook]),
       buildInputs: nix.thunk(() => [qtbase, qtsvg]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, versionCheckHook, pytest_qt, mock]),
@@ -102,7 +102,7 @@ substituteInPlace plover_build_utils/setup.py \\
       dontWrapQtApps: true,
       pythonImportsCheck: nix.thunk(() => ["plover"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "OpenSteno Plover stenography software",
         homepage: "https://www.openstenoproject.org/plover/",
         mainProgram: "plover",

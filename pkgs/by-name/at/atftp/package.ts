@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const readline = nix.arg($, "readline");
   const tcp_wrappers = nix.arg($, "tcp_wrappers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "atftp",
       version: "0.8.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/atftp/atftp-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-lsvb0vFmFcicnbNr6bMG3hdtmhwD3LjLd3Ylv+BovCs=",
         })))),
@@ -34,10 +34,10 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, makeWrapper]),
       buildInputs: nix.thunk(() => [gcc, pcre2, readline, tcp_wrappers]),
       nativeCheckInputs: nix.thunk(() => [perl, ps]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu89" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu89" })),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Advanced tftp tools",
         changelog: nix.thunk(() => nix.str`https://sourceforge.net/p/atftp/code/ci/v${nix.sel(finalAttrs, "version")}/tree/Changelog`),
         homepage: "https://sourceforge.net/projects/atftp/",

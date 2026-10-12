@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "cfitsio",
       version: "4.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "HEASARC",
           repo: "cfitsio",
           tag: nix.thunk(() => nix.str`cfitsio-${nix.sel(finalAttrs, "version")}`),
@@ -35,21 +35,21 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [bzip2, curl, zlib]),
       cmakeFlags: nix.thunk(() => ["-DUSE_PTHREADS=ON", "-DTESTS=ON", "-DUTILS=ON", "-DUSE_BZIP2=ON"]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isFreeBSD")), nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-D__BSD_VISIBLE=1" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isFreeBSD")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-D__BSD_VISIBLE=1" })))),
       hardeningDisable: nix.thunk(() => ["format"]),
       doCheck: true,
       doInstallCheck: true,
       installCheckPhase: "./TestProg > testprog.lis\ndiff -s testprog.lis ../testprog.out\ncmp testprog.fit ../testprog.std\n",
       postInstall: "rm \"$out/bin/cookbook\"\nrmdir \"$out/bin\"\nrm \"$bin/bin/smem\" \"$bin/bin/speed\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             "rev-prefix": nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-`),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://heasarc.gsfc.nasa.gov/docs/software/fitsio/",
         description: "Library for reading and writing FITS data files",
         longDescription: "CFITSIO is a library of C and Fortran subroutines for reading and\nwriting data files in FITS (Flexible Image Transport System) data\nformat.  CFITSIO provides simple high-level routines for reading and\nwriting FITS files that insulate the programmer from the internal\ncomplexities of the FITS format.  CFITSIO also provides many\nadvanced features for manipulating and filtering the information in\nFITS files.\n",

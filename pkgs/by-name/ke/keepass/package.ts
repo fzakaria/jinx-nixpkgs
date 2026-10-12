@@ -48,11 +48,11 @@ export default nix.lambda((args) => (() => {
     return nix.app(writeText, "load-paths.patch", nix.thunk(() => nix.app(replaceStrings, nix.thunk(() => ["$OUTPUT_LC$", "$DO_LOADS$"]), nix.thunk(() => [outputLc, loads]), patchTemplate)));
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "keepass",
       version: "2.61.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/keepass/KeePass-${nix.sel(finalAttrs, "version")}-Source.zip`),
           hash: "sha256-cRvZ7HB2ZhZ4Rp5Ruuh23rrAegjDLxscazuP5edhwTo=",
         })))),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [icoutils]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             xsel: nix.thunk(() => nix.str`${xsel}/bin/xsel`),
             xprop: nix.thunk(() => nix.str`${xprop}/bin/xprop`),
             xdotool: nix.thunk(() => nix.str`${xdotool}/bin/xdotool`),
@@ -111,7 +111,7 @@ ${nix.path(here, "./extractWinRscIconsToStdFreeDesktopDir.sh")} \\
 runHook postInstall
 `),
       desktopItem: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name: "keepass",
           exec: "keepass",
           comment: "Password manager",
@@ -122,7 +122,7 @@ runHook postInstall
           mimeTypes: nix.thunk(() => ["application/x-keepass2"]),
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "GUI password manager with strong cryptography",
         homepage: "http://www.keepass.info/",
         maintainers: nix.thunk(() => (() => {

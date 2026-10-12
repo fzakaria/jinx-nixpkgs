@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const dejagnu = nix.arg($, "dejagnu");
   return nix.app(nix.sel(tcl, "mkTclDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "expect",
       version: "6.0a2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tcltk-depot",
           repo: "expect",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-build-time-run-tcl.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             tcl: nix.thunk(() => nix.str`${nix.sel(buildPackages, "tcl")}/bin/tclsh`),
           })))),
         nix.path(here, "./freebsd-unversioned.patch"),
@@ -51,11 +51,11 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostP
       tclRequiresCheck: nix.thunk(() => ["Expect"]),
       outputs: nix.thunk(() => ["out", "dev"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, dejagnu: dejagnu })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, dejagnu: dejagnu })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Tool for automating interactive applications",
         homepage: "https://expect.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),

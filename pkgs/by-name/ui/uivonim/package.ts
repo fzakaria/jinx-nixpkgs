@@ -19,14 +19,14 @@ export default nix.lambda((args) => (() => {
       const pname = "uivonim";
       const version = "0.29.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "smolck",
           repo: "uivonim",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-TcsKjRwiCTRQLxolRuJ7nRTGxFC0V2Q8LQC5p9iXaaY=",
         }))));
       const npmDepsHash = "sha256-jWLvsN6BCxTWn/Lc0fSz0VJIUiFNN8ptSYMeWlWsHXc=";
-      const env = nix.thunk(() => ({ __proto__: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: 1n }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: 1n }));
       const npmFlags = nix.thunk(() => ["--ignore-scripts"]);
       const npmBuildScript = "build:prod";
       const nativeBuildInputs = nix.thunk(() => [makeWrapper]);
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
   --add-flags $out/lib/node_modules/uivonim/build/main/main.js
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/smolck/uivonim",
         description: "Cross-platform GUI for neovim based on electron",
         maintainers: [],
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "uivonim",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

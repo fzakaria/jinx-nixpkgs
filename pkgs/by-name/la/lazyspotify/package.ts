@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const go_librespot = nix.argOr($, "go-librespot", () => nix.app(callPackage, nix.path(here, "./go-librespot.nix"), nix.thunk(() => ({}))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lazyspotify",
       version: "0.5.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dubeyKartikay",
           repo: "lazyspotify",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Terminal Spotify client for macOS and Linux",
         homepage: "https://dubeykartikay.github.io/lazyspotify/",
         changelog: nix.thunk(() => nix.str`https://github.com/dubeyKartikay/lazyspotify/releases/tag/v${nix.sel(finalAttrs, "version")}`),

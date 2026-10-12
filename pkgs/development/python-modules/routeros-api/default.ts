@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.21.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "socialwifi",
           repo: "routeros-api",
           tag: version,
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [mock, tox]);
       const pythonImportsCheck = nix.thunk(() => ["routeros_api"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python API to RouterBoard devices produced by MikroTik",
         homepage: "https://github.com/socialwifi/RouterOS-api",
         changelog: nix.thunk(() => nix.str`https://github.com/socialwifi/RouterOS-api/blob/${version}/CHANGELOG.md`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

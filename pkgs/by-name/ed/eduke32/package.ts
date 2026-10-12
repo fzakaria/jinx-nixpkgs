@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const swWrapper = "voidsw-wrapper";
   const furyWrapper = "fury-wrapper";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "eduke32",
       version: "0-unstable-2026-08-07",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "voidpoint.io",
           owner: "terminx",
           repo: "eduke32",
@@ -68,7 +68,7 @@ done
       preConfigure: "appendToVar makeFlags \"VC_REV=$(cat VC_REV)\"\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "eduke32",
             icon: "eduke32",
             exec: nix.thunk(() => nix.str`${wrapper}`),
@@ -78,7 +78,7 @@ done
             categories: nix.thunk(() => ["Game"]),
           })))),
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "voidsw",
             icon: "voidsw",
             exec: nix.thunk(() => nix.str`${swWrapper}`),
@@ -88,7 +88,7 @@ done
             categories: nix.thunk(() => ["Game"]),
           })))),
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "fury",
             icon: "fury",
             exec: nix.thunk(() => nix.str`${furyWrapper}`),
@@ -116,11 +116,11 @@ install -Dm644 ./source/sw/rsrc/game_icon.svg $out/share/icons/hicolor/scalable/
 gm convert "./source/duke3d/rsrc/fury/game_icon.ico[4]" $out/share/icons/hicolor/scalable/apps/fury.png
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications/EDuke32.app/Contents/MacOS\nmkdir -p $out/Applications/Mapster32.app/Contents/MacOS\nmkdir -p $out/Applications/VoidSW.app/Contents/MacOS\nmkdir -p $out/Applications/Wangulator.app/Contents/MacOS\n\ncp -r platform/Apple/bundles/EDuke32.app/* $out/Applications/EDuke32.app/\ncp -r platform/Apple/bundles/Mapster32.app/* $out/Applications/Mapster32.app/\ncp -r platform/Apple/bundles/VoidSW.app/* $out/Applications/VoidSW.app/\ncp -r platform/Apple/bundles/Wangulator.app/* $out/Applications/Wangulator.app/\n\nln -sf $out/bin/eduke32 $out/Applications/EDuke32.app/Contents/MacOS/eduke32\nln -sf $out/bin/mapster32 $out/Applications/Mapster32.app/Contents/MacOS/mapster32\nln -sf $out/bin/voidsw $out/Applications/VoidSW.app/Contents/MacOS/voidsw\nln -sf $out/bin/wangulator $out/Applications/Wangulator.app/Contents/MacOS/wangulator\n")), "runHook postInstall\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$5, hardcodeZeroVersion: true })))),
+        [nix.POS]: pos$6,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$5, hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Enhanced port of Duke Nukem 3D for various platforms",
         homepage: "https://eduke32.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "9.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "django_cleanup",
           version: version,
           hash: "sha256-u5+1YKr2KVnIHjH6QIhcNrvVhU1aohuQ3yx+S6YzUx4=",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [django]);
       const pythonImportsCheck = nix.thunk(() => ["django_cleanup"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Automatically deletes old file for FileField and ImageField. It also deletes files on models instance deletion",
         homepage: "https://github.com/un1t/django-cleanup",
         changelog: nix.thunk(() => nix.str`https://github.com/un1t/django-cleanup/blob/${version}/CHANGELOG.md`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

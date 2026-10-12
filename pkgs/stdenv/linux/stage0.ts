@@ -33,15 +33,15 @@ export default nix.lambda((args) => (() => {
     return nix.app(nix.sel(lib, "warnIfNot"), versionOk, nix.thunk(() => nix.str`stdenv stage0: minimal-bootstrap.${nix.sel(bootPackage, "pname")} ${nix.sel(bootPackage, "version")} is newer than pkgs.${nix.sel(topPackage, "pname")} ${nix.sel(topPackage, "version")}`), versionOk);
   })();
   return (nix.asBool(minbootSupported) ? (() => {
-    const callPackage = nix.thunk(() => nix.app(nix.sel(lib, "callPackageWith"), nix.thunk(() => ({ __proto__: pos$1, lib: lib, config: config }))));
+    const callPackage = nix.thunk(() => nix.app(nix.sel(lib, "callPackageWith"), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib, config: config }))));
     const minimal_bootstrap = nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../os-specific/linux/minimal-bootstrap")), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           buildPlatform: localSystem,
           hostPlatform: localSystem,
           lib: lib,
           config: config,
           fetchurl: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../build-support/fetchurl/boot.nix")), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               system: localSystem,
               rewriteURL: nix.thunk(() => nix.attr(config, "rewriteURL")),
             })))),
@@ -51,18 +51,18 @@ export default nix.lambda((args) => (() => {
     const libcPackage = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(localSystem, "libc"), "glibc")) ? nix.sel(minimal_bootstrap, "glibc") : (nix.asBool(nix.eq(nix.sel(localSystem, "libc"), "musl")) ? nix.sel(minimal_bootstrap, "musl-static") : nix.builtins.throw(nix.thunk(() => nix.str`Can't bootstrap on ${nix.sel(localSystem, "config")}`)))));
     nix.assert_(nix.selOr(minimal_bootstrap, () => false, "bash-static", "passthru", "isFromMinBootstrap"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/stdenv/linux/stage0.nix:52:3");
     return {
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       "minimal-bootstrap": minimal_bootstrap,
       isMinimalBootstrap: true,
       dummyStdenv: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         name: "bootstrap-stage0",
         overrides: (self) => (super$) => nix.attrsDyn({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           ccWrapperStdenv: nix.thunk(() => nix.sel(self, "stdenv")),
           "gcc-unwrapped": compilerPackage,
           binutils: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../build-support/bintools-wrapper")), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               name: "bootstrap-stage0-binutils-wrapper",
               nativeTools: false,
               nativeLibc: false,
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
           gnugrep: nix.thunk(() => nix.sel(minimal_bootstrap, "gnugrep-static")),
         }, [
           [nix.sel(localSystem, "libc"), nix.thunk(() => nix.app(nix.sel(self, "stdenv", "mkDerivation"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               pname: nix.thunk(() => nix.str`bootstrap-stage0-${nix.sel(localSystem, "libc")}`),
               strictDeps: true,
               version: "minimal-bootstrap",
@@ -89,7 +89,7 @@ ln -s ${libcPackage}/lib $out/lib
 ln -s ${libcPackage}/include $out/include
 `),
               __structuredAttrs: true,
-              passthru: nix.thunk(() => ({ __proto__: pos$5, isFromBootstrapFiles: true })),
+              passthru: nix.thunk(() => ({ [nix.POS]: pos$5, isFromBootstrapFiles: true })),
             }))))],
         ]),
       })),
@@ -123,7 +123,7 @@ ln -s ${libcPackage}/include $out/include
     };
   })() : (() => {
     const bootstrapTools = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./bootstrap-tools")), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         libc: nix.thunk(() => nix.attr(localSystem, "libc")),
         system: nix.thunk(() => nix.attr(localSystem, "system")),
         lib: lib,
@@ -133,18 +133,18 @@ ln -s ${libcPackage}/include $out/include
       }))));
     nix.assert_(nix.selOr(bootstrapTools, () => false, "passthru", "isFromBootstrapFiles"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/stdenv/linux/stage0.nix:157:3");
     return {
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       bootstrapTools: bootstrapTools,
       isMinimalBootstrap: false,
       dummyStdenv: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         name: "bootstrap-stage0",
         overrides: (self) => (super$) => nix.attrsDyn({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           ccWrapperStdenv: nix.thunk(() => nix.sel(self, "stdenv")),
           "gcc-unwrapped": bootstrapTools,
           binutils: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../build-support/bintools-wrapper")), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               name: "bootstrap-stage0-binutils-wrapper",
               nativeTools: false,
               nativeLibc: false,
@@ -161,7 +161,7 @@ ln -s ${libcPackage}/include $out/include
           gnugrep: bootstrapTools,
         }, [
           [nix.sel(localSystem, "libc"), nix.thunk(() => nix.app(nix.sel(self, "stdenv", "mkDerivation"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               pname: nix.thunk(() => nix.str`bootstrap-stage0-${nix.sel(localSystem, "libc")}`),
               strictDeps: true,
               version: "bootstrap-tools",
@@ -172,7 +172,7 @@ ln -s ${bootstrapTools}/lib $out/lib
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(nix.sel(localSystem, "libc"), "musl")), nix.thunk(() => nix.str`ln -s ${bootstrapTools}/include-libc $out/include
 `)))),
               __structuredAttrs: true,
-              passthru: nix.thunk(() => ({ __proto__: pos$12, isFromBootstrapFiles: true })),
+              passthru: nix.thunk(() => ({ [nix.POS]: pos$12, isFromBootstrapFiles: true })),
             }))))],
         ]),
       })),

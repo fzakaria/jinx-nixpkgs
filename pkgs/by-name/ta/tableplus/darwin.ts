@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const _7zz = nix.arg($, "_7zz");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tableplus",
       version: "662",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://files.tableplus.com/macos/${nix.sel(finalAttrs, "version")}/TablePlus.dmg`),
           hash: "sha256-VR0sSTZfRjjv+p4DcYciKBJG5DHIwj4KLhTHPGRsSX0=",
         })))),
@@ -34,7 +34,7 @@ ln -s "$out/Applications/TablePlus.app/Contents/MacOS/TablePlus" "$out/bin/${nix
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Database management made easy",
         homepage: "https://tableplus.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

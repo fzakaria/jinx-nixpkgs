@@ -43,10 +43,10 @@ export default nix.lambda((args) => (() => {
   const customInterval = 5n;
   const user = "alice";
   return {
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     name: "immichframe",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -57,27 +57,27 @@ export default nix.lambda((args) => (() => {
     })),
     enableOCR: true,
     nodes: nix.thunk(() => ({
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs = nix.arg($_1, "pkgs");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           imports: nix.thunk(() => [
             nix.path(here, "../common/user-account.nix"),
             nix.path(here, "../common/x11.nix"),
           ]),
-          virtualisation: nix.thunk(() => ({ __proto__: pos$2, memorySize: 4096n, cores: 2n })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, memorySize: 4096n, cores: 2n })),
           hardware: nix.thunk(() => ({
-            __proto__: pos$4,
-            graphics: nix.thunk(() => ({ __proto__: pos$3, enable: true })),
+            [nix.POS]: pos$4,
+            graphics: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             variables: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               XAUTHORITY: nix.thunk(() => nix.str`/home/${user}/.Xauthority`),
             })),
             systemPackages: nix.thunk(() => (() => {
@@ -91,51 +91,51 @@ export default nix.lambda((args) => (() => {
             })()),
           })),
           "test-support": nix.thunk(() => ({
-            __proto__: pos$9,
-            displayManager: nix.thunk(() => ({ __proto__: pos$8, auto: nix.thunk(() => ({ __proto__: pos$7, user: user })) })),
+            [nix.POS]: pos$9,
+            displayManager: nix.thunk(() => ({ [nix.POS]: pos$8, auto: nix.thunk(() => ({ [nix.POS]: pos$7, user: user })) })),
           })),
           fonts: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "liberation_ttf"))]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             immich: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               enable: true,
               port: 2283n,
               openFirewall: true,
-              "machine-learning": nix.thunk(() => ({ __proto__: pos$11, enable: false })),
+              "machine-learning": nix.thunk(() => ({ [nix.POS]: pos$11, enable: false })),
               settings: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 backup: nix.thunk(() => ({
-                  __proto__: pos$13,
-                  database: nix.thunk(() => ({ __proto__: pos$12, enabled: false })),
+                  [nix.POS]: pos$13,
+                  database: nix.thunk(() => ({ [nix.POS]: pos$12, enabled: false })),
                 })),
-                machineLearning: nix.thunk(() => ({ __proto__: pos$14, enabled: false })),
-                map: nix.thunk(() => ({ __proto__: pos$15, enabled: false })),
-                reverseGeocoding: nix.thunk(() => ({ __proto__: pos$16, enabled: false })),
+                machineLearning: nix.thunk(() => ({ [nix.POS]: pos$14, enabled: false })),
+                map: nix.thunk(() => ({ [nix.POS]: pos$15, enabled: false })),
+                reverseGeocoding: nix.thunk(() => ({ [nix.POS]: pos$16, enabled: false })),
                 metadata: nix.thunk(() => ({
-                  __proto__: pos$18,
-                  faces: nix.thunk(() => ({ __proto__: pos$17, import: false })),
+                  [nix.POS]: pos$18,
+                  faces: nix.thunk(() => ({ [nix.POS]: pos$17, import: false })),
                 })),
-                newVersionCheck: nix.thunk(() => ({ __proto__: pos$19, enabled: false })),
+                newVersionCheck: nix.thunk(() => ({ [nix.POS]: pos$19, enabled: false })),
                 notifications: nix.thunk(() => ({
-                  __proto__: pos$21,
-                  smtp: nix.thunk(() => ({ __proto__: pos$20, enabled: false })),
+                  [nix.POS]: pos$21,
+                  smtp: nix.thunk(() => ({ [nix.POS]: pos$20, enabled: false })),
                 })),
               })),
             })),
             immichframe: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               enable: true,
               port: 8002n,
               settings: nix.thunk(() => ({
-                __proto__: pos$26,
-                General: nix.thunk(() => ({ __proto__: pos$24, Interval: customInterval })),
+                [nix.POS]: pos$26,
+                General: nix.thunk(() => ({ [nix.POS]: pos$24, Interval: customInterval })),
                 Accounts: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$25,
+                    [nix.POS]: pos$25,
                     ImmichServerUrl: nix.thunk(() => nix.str`http://localhost:${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "immich", "port")))}`),
                     ApiKeyFile: apiKeyFile,
                   })),

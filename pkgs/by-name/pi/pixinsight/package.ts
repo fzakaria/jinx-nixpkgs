@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const deployPath = "$HOME/.local/share/pixinsight";
   const storePathFile = nix.thunk(() => nix.str`${deployPath}/opt/PixInsight/.store-path`);
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.attr(pixinsight, "pname")),
       version: nix.thunk(() => nix.attr(pixinsight, "version")),
       targetPkgs: (pkgs) => (() => {
@@ -98,11 +98,11 @@ fi
 `))),
       extraBwrapArgs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), enableUpdates, nix.thunk(() => [nix.thunk(() => nix.str`--bind "${deployPath}"/opt /opt`)])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(enableUpdates)), nix.thunk(() => [nix.thunk(() => nix.str`--ro-bind "${pixinsight}"/opt /opt`)])))),
       runScript: "/opt/PixInsight/bin/PixInsight.sh",
-      passthru: nix.thunk(() => ({ __proto__: pos$1, unwrapped: pixinsight })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, unwrapped: pixinsight })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(pixinsight, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),

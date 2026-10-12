@@ -53,68 +53,68 @@ export default nix.lambda((args) => (() => {
   const actualWHIPPort = nix.thunk(() => nix.app(normalisePort, 8080n, nix.thunk(() => nix.sel(cfg, "settings", "whip_port"))));
   const isLocallyDistributed = nix.thunk(() => nix.sel(config, "services", "livekit", "enable"));
   return {
-    __proto__: pos$34,
+    [nix.POS]: pos$34,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "k900"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       services: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         livekit: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           ingress: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the livekit ingress service")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "livekit-ingress", nix.thunk(() => ({})))),
             openFirewall: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               rtc: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                   default: false,
                   description: "Open WebRTC ports in the firewall.",
                 })))),
               rtmp: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                   default: false,
                   description: "Open RTMP port in the firewall.",
                 })))),
               whip: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                   default: false,
                   description: "Open WHIP port in the firewall.",
                 })))),
             })),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     freeformType: nix.thunk(() => nix.sel(format, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$14,
+                      [nix.POS]: pos$14,
                       rtmp_port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           type: optionalPort,
                           default: 1935n,
                           description: "TCP port for RTMP connections. -1 to disable",
                         })))),
                       whip_port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$7,
+                          [nix.POS]: pos$7,
                           type: optionalPort,
                           default: 8080n,
                           description: "TCP port for WHIP connections. -1 to disable",
                         })))),
                       redis: nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$8,
+                            [nix.POS]: pos$8,
                             type: nix.thunk(() => (() => {
                               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                               return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -126,21 +126,21 @@ export default nix.lambda((args) => (() => {
                           })))),
                       })),
                       rtc_config: nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         port_range_start: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$10,
+                            [nix.POS]: pos$10,
                             type: nix.thunk(() => nix.sel(lib, "types", "port")),
                             default: 50000n,
                             description: "Start of UDP port range for WebRTC",
                           })))),
                         port_range_end: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$11,
+                            [nix.POS]: pos$11,
                             type: nix.thunk(() => nix.sel(lib, "types", "port")),
                             default: 51000n,
                             description: "End of UDP port range for WebRTC",
                           })))),
                         use_external_ip: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$12,
+                            [nix.POS]: pos$12,
                             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                             default: false,
                             description: "When set to true, attempts to discover the host's public IP via STUN.\nThis is useful for cloud environments such as AWS & Google where hosts have an internal IP that maps to an external one.\n",
@@ -151,13 +151,13 @@ export default nix.lambda((args) => (() => {
                 default: nix.thunk(() => ({})),
                 description: "LiveKit Ingress configuration.\n\nSee <https://github.com/livekit/ingress?tab=readme-ov-file#config> for possible options.\n",
                 example: nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   prometheus_port: 9039n,
-                  cpu_cost: nix.thunk(() => ({ __proto__: pos$16, rtmp_cpu_cost: 3.0, whip_cpu_cost: 1.0 })),
+                  cpu_cost: nix.thunk(() => ({ [nix.POS]: pos$16, rtmp_cpu_cost: 3.0, whip_cpu_cost: 1.0 })),
                 })),
               })))),
             environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
                 description: "Environment file as defined in {manpage}`systemd.exec(5)` passed to the service.\n\nUse this to specify `LIVEKIT_API_KEY` and `LIVEKIT_API_SECRET`.\n",
@@ -167,30 +167,30 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "openFirewall", "rtmp")) || nix.asBool(!nix.eq(actualRTMPPort, null)))),
             message: "services.livekit-ingress: configured to open RTMP port, but the RTMP service is disabled",
           })),
           nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "openFirewall", "whip")) || nix.asBool(!nix.eq(actualWHIPPort, null)))),
             message: "services.livekit-ingress: configured to open WHIP port, but the WHIP service is disabled",
           })),
         ]),
         networking: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           firewall: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall", "rtmp")), nix.thunk(() => [actualRTMPPort]))),
                 nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall", "whip")), nix.thunk(() => [actualWHIPPort]))),
               ]))),
             allowedUDPPortRanges: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall", "rtc")), nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   from: nix.thunk(() => nix.sel(cfg, "settings", "rtc_config", "port_range_start")),
                   to: nix.thunk(() => nix.sel(cfg, "settings", "rtc_config", "port_range_end")),
                 })),
@@ -198,18 +198,18 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           services: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             "livekit-ingress": nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               description: "LiveKit Ingress server",
               documentation: nix.thunk(() => ["https://docs.livekit.io/home/self-hosting/ingress/"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 ExecStart: nix.thunk(() => nix.app(nix.sel(utils, "escapeSystemdExecArgs"), nix.thunk(() => [
                     nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))),
                     nix.thunk(() => nix.str`--config=${nix.app(nix.sel(format, "generate"), "ingress.yaml", settings)}`),

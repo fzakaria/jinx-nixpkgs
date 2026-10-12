@@ -49,13 +49,13 @@ export default nix.lambda((args) => (() => {
   const nix_update = nix.arg($, "nix-update");
   const callPackage = nix.arg($, "callPackage");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "spacy",
       version: "3.8.16",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "explosion",
           repo: "spaCy",
           tag: nix.thunk(() => nix.str`release-v${nix.sel(finalAttrs, "version")}`),
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
         weasel,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         transformers: nix.thunk(() => [spacy_transformers]),
         lookups: nix.thunk(() => [spacy_lookups_data]),
       })),
@@ -103,7 +103,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["test_overfitting_IO_with_ner"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_tok2vec_frozen_overfitting"]))))),
       pythonImportsCheck: nix.thunk(() => ["spacy"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-spacy", nix.thunk(() => nix.str`#!${nix.sel(stdenv, "shell")}
 set -eou pipefail
 PATH=${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [git, nix$, nix_update]))}
@@ -114,13 +114,13 @@ nix-update python3Packages.spacy --version-regex 'release-v([0-9.]+)'
 echo | nix-shell maintainers/scripts/update.nix --argstr package python3Packages.spacy-models.en_core_web_sm
 `))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           annotation: nix.thunk(() => nix.app(callPackage, nix.path(here, "./annotation-test"), nix.thunk(() => ({})))),
         })),
       })),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Industrial-strength Natural Language Processing (NLP)",
         homepage: "https://github.com/explosion/spaCy",
         changelog: nix.thunk(() => nix.str`https://github.com/explosion/spaCy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

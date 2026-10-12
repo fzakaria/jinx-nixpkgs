@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const coq_hammer_tactics = nix.arg($, "coq-hammer-tactics");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: version,
       pname: "coq-hammer",
       owner: nix.thunk(() => nix.attr(coq_hammer_tactics, "owner")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         coq_hammer_tactics,
       ]),
       meta: nix.thunk(() => nix.update(nix.sel(coq_hammer_tactics, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "General-purpose automated reasoning hammer tool for Coq",
       })),
     })));

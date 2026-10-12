@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lint-staged";
       const version = "17.6.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lint-staged",
           repo: "lint-staged",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -34,14 +34,14 @@ export default nix.lambda((args) => (() => {
   '"version": "${version}"'
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: lint_staged })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: lint_staged })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Run linters on git staged files",
         longDescription: "Run linters against staged git files and don't let 💩 slip into your code base!\n",
         homepage: nix.thunk(() => nix.sel(src, "meta", "homepage")),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "lint-staged",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

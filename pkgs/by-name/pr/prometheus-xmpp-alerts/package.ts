@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jelmer",
           repo: "prometheus-xmpp-alerts",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -51,9 +51,9 @@ export default nix.lambda((args) => (() => {
       })());
       const pythonImportsCheck = nix.thunk(() => ["prometheus_xmpp"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           binaryWorks: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-binary-test`), nix.thunk(() => ({})), nix.thunk(() => nix.str`# Running with --help to avoid it erroring due to a missing config file
 ${prometheus_xmpp_alerts}/bin/prometheus-xmpp-alerts --help | tee $out
 grep "usage: prometheus-xmpp-alerts" $out
@@ -61,7 +61,7 @@ grep "usage: prometheus-xmpp-alerts" $out
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "XMPP Web hook for Prometheus",
         mainProgram: "prometheus-xmpp-alerts",
         homepage: "https://github.com/jelmer/prometheus-xmpp-alerts",
@@ -72,7 +72,7 @@ grep "usage: prometheus-xmpp-alerts" $out
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

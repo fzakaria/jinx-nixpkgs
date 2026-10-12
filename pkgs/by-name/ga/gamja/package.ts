@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gamja";
       const version = "1.0.0-beta.11";
       const src = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "emersion",
           repo: "gamja",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +33,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(gamjaConfig, n
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple IRC web client",
         homepage: "https://codeberg.org/emersion/gamja",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -45,7 +45,7 @@ runHook postInstall
           ];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, npmDepsHash, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, npmDepsHash, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

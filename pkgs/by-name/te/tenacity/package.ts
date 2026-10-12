@@ -57,11 +57,11 @@ export default nix.lambda((args) => (() => {
   const libxkbcommon = nix.arg($, "libxkbcommon");
   const util_linux = nix.arg($, "util-linux");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tenacity",
       version: "1.3.4",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tenacityteam",
           repo: "tenacity",
           fetchSubmodules: true,
@@ -97,7 +97,7 @@ rm -r $out/lib
 `))),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "wrapProgram \"$out/bin/tenacity\" \\\n  --suffix AUDACITY_PATH : \"$out/share/tenacity\" \\\n  --suffix AUDACITY_MODULES_PATH : \"$out/lib/tenacity/modules\" \\\n  --prefix LD_LIBRARY_PATH : \"$out/lib/tenacity\" \\\n  --prefix XDG_DATA_DIRS : \"$out/share:$GSETTINGS_SCHEMAS_PATH\"\n")),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
               "-lavcodec",
               "-lavdevice",
@@ -151,7 +151,7 @@ rm -r $out/lib
         ])))),
       cmakeFlags: nix.thunk(() => ["-DCMAKE_SKIP_BUILD_RPATH=ON", "-DVCPKG=OFF"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Sound editor with graphical UI",
         mainProgram: "tenacity",
         homepage: "https://tenacityaudio.org/",

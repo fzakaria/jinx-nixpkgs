@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const pytest_xdist = nix.arg($, "pytest-xdist");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dask-glm",
       version: "0.4.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dask",
           repo: "dask-glm",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_xdist, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["dask_glm"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Generalized Linear Models with Dask",
         homepage: "https://github.com/dask/dask-glm/",
         changelog: nix.thunk(() => nix.str`https://github.com/dask/dask-glm/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

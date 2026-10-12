@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.5.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Nitrokey",
           repo: "nitrokey-app2",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const postInstall = "install -Dm755 meta/com.nitrokey.nitrokey-app2.desktop $out/share/applications/com.nitrokey.nitrokey-app2.desktop\ninstall -Dm755 meta/nk-app2.png $out/share/icons/hicolor/128x128/apps/com.nitrokey.nitrokey-app2.png\n";
       const preFixup = "makeWrapperArgs+=(\"${qtWrapperArgs[@]}\")\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "This application allows to manage Nitrokey 3 devices",
         homepage: "https://github.com/Nitrokey/nitrokey-app2",
         changelog: nix.thunk(() => nix.str`https://github.com/Nitrokey/nitrokey-app2/releases/tag/${nix.sel(src, "tag")}`),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "nitrokeyapp",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

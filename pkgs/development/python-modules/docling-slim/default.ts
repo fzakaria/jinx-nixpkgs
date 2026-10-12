@@ -70,13 +70,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "docling-slim",
       version: "2.118.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "docling-project",
           repo: "docling",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -137,7 +137,7 @@ export default nix.lambda((args) => (() => {
         const standard = nix.thunk(() => nix.concat(cli, nix.concat(extract_core, nix.concat(feat_chunking, nix.concat(feat_ocr_rapidocr, nix.concat(format_email, nix.concat(format_latex, nix.concat(format_office, nix.concat(format_pdf, nix.concat(format_web, nix.concat(models_local, service_client)))))))))));
         const all = nix.thunk(() => nix.concat(standard, nix.concat(feat_ocr_easyocr, nix.concat(feat_ocr_mac, nix.concat(feat_ocr_tesserocr, nix.concat(format_audio, nix.concat(format_html_render, nix.concat(format_xml_jats, nix.concat(format_xml_uspto, nix.concat(format_xml_xbrl, nix.concat(models_onnxruntime, nix.concat(models_remote, models_vlm_inline))))))))))));
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           cli,
           "convert-core": convert_core,
           "extract-core": extract_core,
@@ -250,7 +250,7 @@ export default nix.lambda((args) => (() => {
         "tests/test_e2e_ocr_conversion.py",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Modular version of the Docling package",
         homepage: "https://github.com/docling-project/docling",
         changelog: nix.thunk(() => nix.str`https://github.com/docling-project/docling/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

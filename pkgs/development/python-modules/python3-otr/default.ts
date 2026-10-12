@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const gmpy2 = nix.arg($, "gmpy2");
   const python3_application = nix.arg($, "python3-application");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "python3-otr",
       version: "2.1.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AGProjects",
           repo: "python3-otr",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "runHook preCheck\n\npython3 test.py\n\nrunHook postCheck\n",
       pythonImportsCheck: nix.thunk(() => ["otr"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Off-The-Record Messaging protocol implementation for Python",
         homepage: "https://github.com/AGProjects/python3-otr",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

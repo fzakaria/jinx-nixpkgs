@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const version = "3.8.1.88030";
   const updateScript = nix.path(here, "./update.sh");
   const meta = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     description: "JetBrains Toolbox",
     homepage: "https://www.jetbrains.com/toolbox-app",
     license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -62,37 +62,37 @@ export default nix.lambda((args) => (() => {
     return (attrs) => nix.selOr(attrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported CPU: ${nix.sel(cpu, "name")}`)), nix.key(nix.sel(cpu, "name")));
   })());
   const sourceForVersion = (version_1) => (() => {
-    const archSuffix = nix.thunk(() => nix.app(selectCpu, nix.thunk(() => ({ __proto__: pos$2, x86_64: "", aarch64: "-arm64" }))));
+    const archSuffix = nix.thunk(() => nix.app(selectCpu, nix.thunk(() => ({ [nix.POS]: pos$2, x86_64: "", aarch64: "-arm64" }))));
     const hash = nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "x86_64-linux": "sha256-OsuSgC22E2hurQCEnev8GA8hQWLaxg6hclPYHm8crWc=",
         "aarch64-linux": "sha256-Ut6gmKh5mSTe+s4RFCVamv606sOJ5WBMfwHAvYBbc6I=",
         "aarch64-darwin": "sha256-Lwe3gWiRNHbNrk6hwfp0uwdaS8twxZioXeCZeFpunHM=",
       }))));
     return nix.app(selectKernel, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         linux: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: nix.thunk(() => nix.str`https://download-cdn.jetbrains.com/toolbox/jetbrains-toolbox-${version_1}${archSuffix}.tar.gz`),
             hash: hash,
           })))),
         darwin: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: nix.thunk(() => nix.str`https://download-cdn.jetbrains.com/toolbox/jetbrains-toolbox-${version_1}${archSuffix}.dmg`),
             hash: hash,
           })))),
       })));
   })();
   return nix.app(selectKernel, nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       linux: nix.thunk(() => (() => {
         const src = nix.thunk(() => nix.app(sourceForVersion, version));
         return nix.app(buildFHSEnv, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             pname: pname,
             version: version,
             meta: meta,
-            passthru: nix.thunk(() => ({ __proto__: pos$7, src: src, updateScript: updateScript })),
+            passthru: nix.thunk(() => ({ [nix.POS]: pos$7, src: src, updateScript: updateScript })),
             multiPkgs: (pkgs) => (() => {
               const w = nix.withScope(pkgs, null);
               return nix.concat([
@@ -107,7 +107,7 @@ install -Dm0644 ${src}/bin/toolbox-tray-color.png $out/share/icons/hicolor/32x32
           })));
       })()),
       darwin: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           pname: pname,
           version: version,
           meta: meta,
@@ -115,7 +115,7 @@ install -Dm0644 ${src}/bin/toolbox-tray-color.png $out/share/icons/hicolor/32x32
           nativeBuildInputs: nix.thunk(() => [undmg]),
           sourceRoot: "JetBrains Toolbox.app",
           installPhase: "runHook preInstall\n\nmkdir -p $out/Applications $out/bin\ncp -r . $out/Applications/\"JetBrains Toolbox.app\"\nln -s $out/Applications/\"JetBrains Toolbox.app\"/Contents/MacOS/jetbrains-toolbox $out/bin/jetbrains-toolbox\n\nrunHook postInstall\n",
-          passthru: nix.thunk(() => ({ __proto__: pos$9, updateScript: updateScript })),
+          passthru: nix.thunk(() => ({ [nix.POS]: pos$9, updateScript: updateScript })),
         }))),
     })));
 })(), formals$1);

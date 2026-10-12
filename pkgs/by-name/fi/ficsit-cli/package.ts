@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.1";
       const commit = "5dc8bdbaf6e8d9b1bcd2895e389d9d072d454e15";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "satisfactorymodding",
           repo: "ficsit-cli",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const vendorHash = "sha256-3YqOwjCuXF48jsGjwv4mHMoGaiPDgxjzZTcrPAtA7I0=";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI tool for managing Satisfactory mods",
         homepage: "https://github.com/satisfactorymodding/ficsit-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "ficsit-cli",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         commit,

@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.12";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SasView",
           repo: "sasmodels",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       const pythonRemoveDeps = nix.thunk(() => ["tccbox"]);
       const dependencies = nix.thunk(() => [numpy, scipy]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         full: nix.thunk(() => [docutils, bumps, matplotlib, columnize]),
         server: nix.thunk(() => [bumps]),
         opencl: nix.thunk(() => [pyopencl]),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook, writableTmpDirAsHomeHook], nix.sel(optional_dependencies, "full")));
       const pythonImportsCheck = nix.thunk(() => ["sasmodels"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library of small angle scattering models",
         homepage: "https://github.com/SasView/sasmodels",
         changelog: nix.thunk(() => nix.str`https://github.com/SasView/sasmodels/blob/${nix.sel(src, "tag")}/CHANGES.rst`),
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

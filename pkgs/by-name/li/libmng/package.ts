@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libjpeg = nix.arg($, "libjpeg");
   const lcms2 = nix.arg($, "lcms2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libmng",
       version: "2.0.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/libmng/libmng-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "1lvxnpds0vcf0lil6ia2036ghqlbl740c4d2sz0q5g6l93fjyija",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       outputMan: "devdoc",
       propagatedBuildInputs: nix.thunk(() => [zlib, libpng, libjpeg, lcms2]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Reference library for reading, displaying, writing and examining Multiple-Image Network Graphics",
         homepage: "http://www.libmng.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

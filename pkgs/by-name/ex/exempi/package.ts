@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "exempi";
       const version = "2.6.6";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://libopenraw.freedesktop.org/download/exempi-${version}.tar.bz2`),
           sha256: "sha256-dRO35Cw72QpY132TjGDS6Hxo+BZG58uLEtcf4zQ5HG8=",
         }))));
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const dontDisableStatic = doCheck;
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Implementation of XMP (Adobe's Extensible Metadata Platform)",
         mainProgram: "exempi",
         homepage: "https://libopenraw.freedesktop.org/exempi/",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

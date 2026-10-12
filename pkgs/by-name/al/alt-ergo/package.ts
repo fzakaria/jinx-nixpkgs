@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pname = "alt-ergo";
   const version = "2.6.3";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/OCamlPro/alt-ergo/releases/download/v${version}/alt-ergo-${version}.tbz`),
       hash: "sha256-SsK12K5sVKEaDMNJ7HahU6qVcnv1fvnLMwmnBqf7G/o=",
     }))));
   const alt_ergo_lib = nix.thunk(() => nix.app(nix.sel(ocamlPackages, "buildDunePackage"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "alt-ergo-lib",
       version: version,
       src: src,
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       })()),
     }))));
   const alt_ergo_parsers = nix.thunk(() => nix.app(nix.sel(ocamlPackages, "buildDunePackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "alt-ergo-parsers",
       version: version,
       src: src,
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       })())),
     }))));
   return nix.app(nix.sel(ocamlPackages, "buildDunePackage"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       src: src,
@@ -80,7 +80,7 @@ mv $bin/lib/alt-ergo $out/lib/ocaml/${nix.sel(ocamlPackages, "ocaml", "version")
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "High-performance theorem prover and SMT solver",
         homepage: "https://alt-ergo.ocamlpro.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ocamlpro_nc")),

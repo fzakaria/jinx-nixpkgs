@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const delta = nix.arg($, "delta");
   const withDelta = nix.argOr($, "withDelta", () => true);
   return nix.app(buildBatExtrasPkg, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "batdiff",
       dependencies: nix.thunk(() => nix.concat([less, coreutils, gitMinimal], nix.app(nix.sel(lib, "optional"), withDelta, delta))),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Diff a file against the current git index, or display the diff between two files",
       })),
     })));

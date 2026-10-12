@@ -54,11 +54,11 @@ export default nix.lambda((args) => (() => {
   const libmaxminddb = nix.arg($, "libmaxminddb");
   const enableWCCP = nix.argOr($, "enableWCCP", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "trafficserver",
       version: "9.2.11",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://apache/trafficserver/trafficserver-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-WFABr7+JsUbQagLFK0OXZ20t4QCuYrozeaV4fKO/c2s=",
         })))),
@@ -114,14 +114,14 @@ runHook postInstallCheck
       doInstallCheck: true,
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           trafficserver: nix.thunk(() => nix.attr(nixosTests, "trafficserver")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://trafficserver.apache.org",
         changelog: nix.thunk(() => nix.str`https://raw.githubusercontent.com/apache/trafficserver/${nix.sel(finalAttrs, "version")}/CHANGELOG-${nix.sel(finalAttrs, "version")}`),
         description: "Fast, scalable, and extensible HTTP caching proxy server",

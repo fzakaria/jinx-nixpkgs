@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "flask-api",
           repo: "flask-api",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/flask-api/flask-api/commit/9c998897f67d8aa959dc3005d7d22f36568b6938.patch",
             hash: "sha256-vaCZ4gVlfQXyeksA44ydkjz2FxODHt3gTTP+ukJwEGY=",
           })))),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [flask]);
       const nativeCheckInputs = nix.thunk(() => [markdown, pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/flask-api/flask-api",
         changelog: nix.thunk(() => nix.str`https://github.com/flask-api/flask-api/releases/tag/v${version}`),
         description: "Browsable web APIs for Flask",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

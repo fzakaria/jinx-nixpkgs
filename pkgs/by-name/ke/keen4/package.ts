@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const writeShellApplication = nix.arg($, "writeShellApplication");
   const zip = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "keen4.zip",
       url: "https://archive.org/download/msdos_Commander_Keen_4_-_Secret_of_the_Oracle_1991/Commander_Keen_4_-_Secret_of_the_Oracle_1991.zip",
       hash: "sha256-vVfBQArNH1JPUxM5suMe8NK54a+NAMnDhLKxVUOzUgA=",
     }))));
   return nix.app(writeShellApplication, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "keen4",
       runtimeInputs: nix.thunk(() => [dosbox]),
       text: nix.thunk(() => nix.str`mkdir -p "\${HOME:-.}/.keen4"
@@ -32,7 +32,7 @@ trap 'find . -type l -delete' EXIT
 dosbox ./KEEN4E.EXE -fullscreen -exit
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Commander Keen Episode 4: Secret of the Oracle",
         homepage: "https://web.archive.org/web/20141013080934/http://www.3drealms.com/keen4/index.html",
         downloadPage: "https://archive.org/details/msdos_Commander_Keen_4_-_Secret_of_the_Oracle_1991",

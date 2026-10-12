@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const util_linux = nix.arg($, "util-linux");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "alps",
       version: "1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "migadu",
           repo: "alps",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,9 +49,9 @@ cp -r ${nix.sel(finalAttrs, "passthru", "frontend")} frontend/dist
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "-version",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         frontend: nix.thunk(() => nix.app(buildNpmPackage, (finalAttrs$) => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-frontend`),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -60,10 +60,10 @@ cp -r ${nix.sel(finalAttrs, "passthru", "frontend")} frontend/dist
             postPatch: "rm -r dist\n",
             installPhase: "runHook preInstall\n\nmkdir -p \"$out\"\ncp -r dist/. \"$out\"\n\nrunHook postInstall\n",
           }))),
-        tests: nix.thunk(() => ({ __proto__: pos$3, alps: nix.thunk(() => nix.attr(nixosTests, "alps")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, alps: nix.thunk(() => nix.attr(nixosTests, "alps")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Simple and extensible webmail",
         homepage: "https://github.com/migadu/alps",
         downloadPage: "https://github.com/migadu/alps/releases",

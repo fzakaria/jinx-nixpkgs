@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const junixsocket_common = nix.arg($, "junixsocket-common");
   const junixsocket_native_common = nix.arg($, "junixsocket-native-common");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "postgresql-jdbc",
       version: "42.7.7",
       src: nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           artifactId: "postgresql",
           groupId: "org.postgresql",
           hash: "sha256-FXlj1grmbWB+CUZujAzfgIfpyyDQFZiZ/8qWvKJShGA=",
@@ -32,7 +32,7 @@ ln -s ${junixsocket_native_common}/share/java/* $out/share/java/
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://jdbc.postgresql.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/pgjdbc/pgjdbc/releases/tag/REL${nix.sel(finalAttrs, "version")}`),
         description: "JDBC driver for PostgreSQL allowing Java programs to connect to a PostgreSQL database",

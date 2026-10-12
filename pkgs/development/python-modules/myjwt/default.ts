@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const requests_mock = nix.arg($, "requests-mock");
   const requests = nix.arg($, "requests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "myjwt",
       version: "2.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tyki6",
           repo: "MyJWT",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_mock, pytestCheckHook, requests_mock]),
       pythonImportsCheck: nix.thunk(() => ["myjwt"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI tool for testing vulnerabilities of JSON Web Tokens (JWT)",
         homepage: "https://github.com/tyki6/MyJWT",
         changelog: nix.thunk(() => nix.str`https://github.com/tyki6/MyJWT/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

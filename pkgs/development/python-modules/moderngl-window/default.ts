@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "moderngl",
           repo: "moderngl_window",
           tag: version,
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [moderngl, numpy, pillow, pyglet, pyglm]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         trimesh: nix.thunk(() => [trimesh, scipy]),
         glfw: nix.thunk(() => [glfw]),
         pygame: nix.thunk(() => [pygame]),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(mesa, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Cross platform helper library for ModernGL making window creation and resource loading simple",
         homepage: "https://github.com/moderngl/moderngl-window",
         changelog: nix.thunk(() => nix.str`https://github.com/moderngl/moderngl-window/blob/${version}/CHANGELOG.md`),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

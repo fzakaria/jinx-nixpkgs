@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const rev = "082e21b0b6dd7ff7c96d65b2ca2c632f4fd8df75";
   const phome = "$out/lib/Celeste";
   return nix.app(buildDotnetModule, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "EverestAPI",
           repo: "Everest",
           rev: rev,
@@ -53,7 +53,7 @@ autoPatchelf lib-ext/piton/piton-linux_x64
               nix.thunk(() => nix.lookup(w, "sdk_8_0")),
             ])));
           return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           packages: nix.thunk(() => nix.attr(from, "packages")),
           targetPackages: nix.thunk(() => nix.attr(from, "targetPackages")),
         };
@@ -84,9 +84,9 @@ cp ${phome}/piton-runtime.yaml ${phome}/EverestSplash
       dontStrip: true,
       dontPatchShebangs: true,
       dontAutoPatchelf: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Celeste mod loader (don't install; use celestegame instead)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {

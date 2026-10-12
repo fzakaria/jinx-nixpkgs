@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "binning",
       version: "0.0.0",
       minimalOCamlVersion: "4.08",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/pveber/binning/releases/download/v${nix.sel(finalAttrs, "version")}/binning-v${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-eG+xctsbc7lQ5pFOUtJ8rjNW/06gygwLADq7yc8Yf/c=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Datastructure to accumulate values in bins",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cecill-b")),
         homepage: "https://github.com/pveber/binning/",

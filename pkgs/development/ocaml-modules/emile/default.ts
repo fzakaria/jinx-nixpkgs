@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const cmdliner = nix.arg($, "cmdliner");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "emile",
       version: "1.1",
       minimalOCamlVersion: "4.08",
       duneVersion: "3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/dinosaure/emile/releases/download/v${nix.sel(finalAttrs, "version")}/emile-v${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256:0r1141makr0b900aby1gn0fccjv1qcqgyxib3bzq8fxmjqwjan8p",
         })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Parser of email address according RFC822",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/dinosaure/emile",

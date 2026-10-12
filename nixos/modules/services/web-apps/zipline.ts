@@ -36,28 +36,28 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "zipline"));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "defelo"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         zipline: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Zipline")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "zipline", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               description: "Configuration of Zipline. See <https://zipline.diced.sh/docs/config> for more information.\n",
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 DATABASE_URL: "postgres://postgres:postgres@postgres/postgres",
                 CORE_SECRET: "changethis",
                 CORE_HOSTNAME: "0.0.0.0",
@@ -66,29 +66,29 @@ export default nix.lambda((args) => (() => {
                 DATASOURCE_LOCAL_DIRECTORY: "/var/lib/zipline/uploads",
               })),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   freeformType: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                     return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [nix.thunk(() => nix.lookup(w, "str")), nix.thunk(() => nix.lookup(w, "int"))]))));
                   })()),
                   options: nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     CORE_HOSTNAME: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         description: "The hostname to listen on.",
                         default: "127.0.0.1",
                         example: "0.0.0.0",
                       })))),
                     CORE_PORT: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         type: nix.thunk(() => nix.sel(lib, "types", "port")),
                         description: "The port to listen on.",
                         default: 3000n,
                         example: 8000n,
                       })))),
                     CORE_TEMP_DIRECTORY: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: nix.thunk(() => nix.sel(lib, "types", "path")),
                         description: "The temporary directory to use for file uploads.",
                         defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${config.services.zipline.settings.DATASOURCE_LOCAL_DIRECTORY}/.tmp\"\n")),
@@ -97,16 +97,16 @@ export default nix.lambda((args) => (() => {
                 })))),
             })))),
           environmentFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: [],
               example: nix.thunk(() => ["/run/secrets/zipline.env"]),
               description: "Files to load environment variables from (in addition to [](#opt-services.zipline.settings)). This is useful to avoid putting secrets into the nix store. See <https://zipline.diced.sh/docs/config> for more information.\n",
             })))),
           database: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             createLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Whether to enable and configure a local PostgreSQL database server.\n",
@@ -116,13 +116,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         services: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           zipline: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             settings: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               DATABASE_URL: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), "postgresql://zipline@localhost/zipline?host=/run/postgresql")),
               DATASOURCE_TYPE: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "local")),
               DATASOURCE_LOCAL_DIRECTORY: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/var/lib/zipline/uploads")),
@@ -130,25 +130,25 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           postgresql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               enable: true,
-              ensureUsers: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => ({ __proto__: pos$17, name: "zipline", ensureDBOwnership: true })))),
+              ensureUsers: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => ({ [nix.POS]: pos$17, name: "zipline", ensureDBOwnership: true })))),
               ensureDatabases: nix.thunk(() => ["zipline"]),
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           services: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             zipline: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => nix.concat(["network-online.target"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), "postgresql.target"))),
               requires: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), "postgresql.target")),
               environment: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (value) => nix.builtins.toString(value), nix.thunk(() => nix.sel(cfg, "settings")))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 User: "zipline",
                 Group: "zipline",
                 DynamicUser: true,

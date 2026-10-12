@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const xdotool = nix.arg($, "xdotool");
   const release = "20220825";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "keynav",
       version: nix.thunk(() => nix.str`0.${release}.0`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jordansissel",
           repo: "keynav",
           rev: "28a1ba9a045c62a9d2bc5c3474a66d96c8bf5c32",
@@ -54,7 +54,7 @@ echo >>VERSION REVISION=0
 `),
       installPhase: "mkdir -p $out/bin $out/share/keynav/doc\ncp keynav $out/bin\ncp keynavrc $out/share/keynav/doc\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Generate X11 mouse clicks from keyboard",
         homepage: "https://www.semicomplete.com/projects/keynav/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

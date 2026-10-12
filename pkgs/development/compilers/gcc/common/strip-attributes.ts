@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const langJit = nix.arg($, "langJit");
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     stripDebugList: nix.thunk(() => ["bin", "libexec"]),
     stripDebugListTarget: nix.thunk(() => [nix.thunk(() => nix.sel(stdenv, "targetPlatform", "config"))]),
     preFixup: nix.thunk(() => nix.add(nix.add(nix.str`# Populate most delicated lib/ part of stripDebugList{,Target}

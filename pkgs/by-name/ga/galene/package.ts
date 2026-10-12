@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "galene",
       version: "1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jech",
           repo: "galene",
           tag: nix.thunk(() => nix.str`galene-${nix.sel(finalAttrs, "version")}`),
@@ -34,18 +34,18 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "static"]),
       postInstall: "mkdir $static\ncp -r ./static $static\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           vm: nix.thunk(() => nix.sel(nixosTests, "galene", "basic")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version-regex=galene-(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Videoconferencing server that is easy to deploy, written in Go",
         homepage: "https://github.com/jech/galene",
         changelog: nix.thunk(() => nix.str`https://github.com/jech/galene/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES`),

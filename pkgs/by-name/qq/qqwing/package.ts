@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const automake = nix.arg($, "automake");
   const libtool = nix.arg($, "libtool");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "qqwing",
       version: "1.3.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stephenostermiller",
           repo: "qqwing",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildFlags: nix.thunk(() => ["cppcompile"]),
       postPatch: "patchShebangs --build build/src-first-comment.pl build/src_neaten.pl\n\nsubstituteInPlace build/cpp_configure.sh \\\n  --replace-fail \"./configure\" \"./configure $configureFlags\"\nsubstituteInPlace build/cpp_install.sh \\\n  --replace-fail \"sudo \" \"\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://qqwing.com",
         description: "Sudoku generating and solving software",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

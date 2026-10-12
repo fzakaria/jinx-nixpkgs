@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libmd = nix.arg($, "libmd");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libbsd",
       version: "0.12.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://libbsd.freedesktop.org/releases/libbsd-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-uIzJFj0MZSqvOamZkdl03bocOpcR248bWDivKhRzEBQ=",
         })))),
@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [libmd]),
       patches: nix.thunk(() => [nix.path(here, "./darwin-enable-strtonum.patch")]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, url: "https://gitlab.freedesktop.org/libbsd/libbsd.git" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, url: "https://gitlab.freedesktop.org/libbsd/libbsd.git" })))),
       })),
       configureFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "bintools", "isLLVM")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "bintools", "version")), "17")))), nix.thunk(() => ["LDFLAGS=-Wl,--undefined-version"]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Common functions found on BSD systems",
         homepage: "https://libbsd.freedesktop.org/",
         license: nix.thunk(() => (() => {

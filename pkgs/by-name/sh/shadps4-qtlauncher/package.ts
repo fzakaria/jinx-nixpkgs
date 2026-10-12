@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const shadps4 = nix.arg($, "shadps4");
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "shadps4-qtlauncher",
       version: "0-unstable-2026-08-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "shadps4-emu",
           repo: "shadps4-qtlauncher",
           rev: "a30486c3e0a17460c44cf1caf15559c6f3331e57",
@@ -56,7 +56,7 @@ substituteInPlace src/qt_gui/gui_settings.cpp \\
 substituteInPlace src/qt_gui/version_dialog.cpp \\
   --replace-fail "@shadps4-qt@" "$out"
 `),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_LDFLAGS: "-lzstd" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-lzstd" })),
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config, nix.thunk(() => nix.sel(qt6, "wrapQtAppsHook"))]),
       buildInputs: nix.thunk(() => [
         fmt,
@@ -81,7 +81,7 @@ substitute ${nix.path(here, "./qt_ui.ini")} $out/share/qt_ui.ini \\
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(shadps4, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         downloadPage: nix.thunk(() => nix.attr(from, "downloadPage")),
         donationPage: nix.thunk(() => nix.attr(from, "donationPage")),

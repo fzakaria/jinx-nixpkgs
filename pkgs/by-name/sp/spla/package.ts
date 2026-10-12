@@ -23,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const gpuBackend = nix.argOr($, "gpuBackend", () => (nix.asBool(nix.sel(config, "cudaSupport")) ? "cuda" : (nix.asBool(nix.sel(config, "rocmSupport")) ? "rocm" : "none")));
   nix.assert_(nix.builtins.elem(gpuBackend, nix.thunk(() => ["none", "cuda", "rocm"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/sp/spla/package.nix:23:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "spla",
       version: "1.6.1",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eth-cscs",
           repo: "spla",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(gpuBackend, "cuda")), "-DSPLA_GPU_BACKEND=CUDA"), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(gpuBackend, "rocm")), nix.thunk(() => ["-DSPLA_GPU_BACKEND=ROCM"]))))),
       preFixup: "substituteInPlace $out/lib/cmake/SPLA/SPLASharedTargets-release.cmake \\\n  --replace-fail \"\\${_IMPORT_PREFIX}\" \"$out\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Specialized Parallel Linear Algebra, providing distributed GEMM functionality for specific matrix distributions with optional GPU acceleration",
         homepage: "https://github.com/eth-cscs/spla",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

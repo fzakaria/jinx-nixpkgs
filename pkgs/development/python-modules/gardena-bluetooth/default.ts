@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const tzlocal = nix.arg($, "tzlocal");
   const uv_dynamic_versioning = nix.arg($, "uv-dynamic-versioning");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gardena-bluetooth",
       version: "2.10.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "elupus",
           repo: "gardena-bluetooth",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [hatchling, uv_dynamic_versioning]),
       dependencies: nix.thunk(() => [bleak, bleak_retry_connector, tzlocal]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, cli: nix.thunk(() => [asyncclick]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, cli: nix.thunk(() => [asyncclick]) })),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, pytest_asyncio]),
       pythonImportsCheck: nix.thunk(() => ["gardena_bluetooth"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Module for interacting with Gardena Bluetooth",
         homepage: "https://github.com/elupus/gardena-bluetooth",
         changelog: nix.thunk(() => nix.str`https://github.com/elupus/gardena-bluetooth/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

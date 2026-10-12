@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "taskserver",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://www.taskwarrior.org/download/taskd-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1d110q9vw8g5syzihxymik7hd27z1592wkpz55kya6lphzk8i13v",
         })))),
@@ -53,14 +53,14 @@ substituteInPlace CMakeLists.txt \\
       buildInputs: nix.thunk(() => [libuuid, gnutls]),
       nativeBuildInputs: nix.thunk(() => [cmake, makeWrapper]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           taskserver: nix.thunk(() => nix.attr(nixosTests, "taskserver")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Server for synchronising Taskwarrior 2 clients",
         homepage: "https://taskwarrior.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.tails.boum.org",
           owner: "tails",
           repo: "onioncircuits",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       })());
       const postInstall = "mkdir -p $out/etc/apparmor.d\n\ncp apparmor/usr.bin.onioncircuits $out/etc/apparmor.d\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://tails.boum.org",
         description: "GTK application to display Tor circuits and streams",
         mainProgram: "onioncircuits",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

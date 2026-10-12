@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const withSki = nix.argOr($, "withSki", () => true);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "menyoki",
       version: "1.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "orhun",
           repo: "menyoki",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       checkFlags: nix.thunk(() => ["--skip=record::fps::tests::test_fps"]),
       postInstall: "installManPage man/*\ninstallShellCompletion completions/menyoki.{bash,fish,zsh}\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Screen{shot,cast} and perform ImageOps on the command line",
         homepage: "https://menyoki.cli.rs/",
         changelog: nix.thunk(() => nix.str`https://github.com/orhun/menyoki/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

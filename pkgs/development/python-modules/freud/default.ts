@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const sympy = nix.arg($, "sympy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "freud",
       version: "3.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "glotzerlab",
           repo: "freud",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_ld", "test_multiple_l", "test_qlmi", "test_query_point_ne_points"]),
       pythonImportsCheck: nix.thunk(() => ["freud"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Powerful, efficient particle trajectory analysis in scientific Python",
         homepage: "https://github.com/glotzerlab/freud",
         changelog: nix.thunk(() => nix.str`https://github.com/glotzerlab/freud/blob/${nix.sel(finalAttrs, "src", "tag")}/ChangeLog.md`),

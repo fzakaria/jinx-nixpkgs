@@ -21,23 +21,23 @@ export default nix.lambda((args) => (() => {
       const namespace = "plugin.video.youtube";
       const version = "7.4.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "anxdpanic",
           repo: "plugin.video.youtube",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-epDKZhITQAv3bpS7CGN2Rj35/AamyZo5yzhkfu72ipw=",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [requests, inputstream_adaptive, inputstreamhelper]);
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, pythonPath: "resources/lib" }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, pythonPath: "resources/lib" }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/anxdpanic/plugin.video.youtube",
         description: "YouTube is one of the biggest video-sharing websites of the world",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "kodi"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         namespace,
         version,

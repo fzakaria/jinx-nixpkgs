@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "music-discord-rpc",
       version: "0.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "patryk-ku",
           repo: "music-discord-rpc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [dbus, openssl]),
       postInstall: "mkdir --parents $out/etc/systemd/user\nsubstitute music-discord-rpc.service $out/etc/systemd/user/music-discord-rpc.service \\\n  --replace-fail /usr/bin/music-discord-rpc $out/bin/music-discord-rpc\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cross-platform Discord rich presence for music with album cover and progress bar support",
         homepage: "https://github.com/patryk-ku/music-discord-rpc",
         changelog: nix.thunk(() => nix.str`https://github.com/patryk-ku/music-discord-rpc/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

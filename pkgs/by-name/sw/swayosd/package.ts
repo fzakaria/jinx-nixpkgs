@@ -34,14 +34,14 @@ export default nix.lambda((args) => (() => {
       const pname = "swayosd";
       const version = "0.3.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ErikReider",
           repo: "SwayOSD",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-jlwJw7PZCdJAGhB9/exAO95io1/0DiCTCR83u/yRpqI=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
 `);
       const doInstallCheck = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GTK based on screen display for keyboard shortcuts",
         homepage: "https://github.com/ErikReider/SwayOSD",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

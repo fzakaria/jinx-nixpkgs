@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const psq = nix.arg($, "psq");
   const uutf = nix.arg($, "uutf");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cascade",
       version: "0-unstable-2026-06-26",
       minimalOCamlVersion: "5.2",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "samoht",
           repo: "cascade",
           rev: "434c07be7ec1a63213a234946d57937e4d080feb",
@@ -38,12 +38,12 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [lambdasoup, memtrace]),
       nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(mdx, "bin"))]),
       checkInputs: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(mdx, "override"), nix.thunk(() => ({ __proto__: pos$2, logs: logs })))),
+        nix.thunk(() => nix.app(nix.sel(mdx, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, logs: logs })))),
         alcobar,
       ]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CSS generation and manipulation library for OCaml",
         homepage: "https://github.com/samoht/cascade",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

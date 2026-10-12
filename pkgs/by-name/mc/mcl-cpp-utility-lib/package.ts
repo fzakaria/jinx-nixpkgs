@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const fmt = nix.arg($, "fmt");
   const catch2_3 = nix.arg($, "catch2_3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mcl-cpp-utility-lib",
       version: "0.1.14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "azahar-emu",
           repo: "mcl",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkPhase: "tests/mcl-tests\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of C++20 utilities which is common to a number of merry's projects",
         homepage: "https://github.com/azahar-emu/mcl",
         maintainers: nix.thunk(() => (() => {

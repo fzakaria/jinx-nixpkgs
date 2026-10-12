@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "go-rice",
       version: "1.0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GeertJohan",
           repo: "go.rice",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-KTT5Ld0Uyyfkhk29KuQuZoGG8UTz1E5Q7fUoSy7iKxM=",
       subPackages: nix.thunk(() => [".", "rice"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Go package that makes working with resources such as html, js, css, images, templates very easy",
         homepage: "https://github.com/GeertJohan/go.rice",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

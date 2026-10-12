@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const ocl_icd = nix.arg($, "ocl-icd");
   const vectcl = nix.arg($, "vectcl");
   return nix.app(mkTclDerivation, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tcl-opencl",
       version: "0.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ray2501",
           repo: "tcl-opencl",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-vectcl=${vectcl}/lib/vectcl${nix.sel(vectcl, "version")}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/ray2501/tcl-opencl",
         description: "Tcl extension for OpenCL",
         maintainers: nix.thunk(() => (() => {

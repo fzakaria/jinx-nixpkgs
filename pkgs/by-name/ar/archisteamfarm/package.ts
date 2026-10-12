@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "archisteamfarm";
       const version = "6.3.10.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "JustArchiNET",
           repo: "ArchiSteamFarm",
           tag: version,
@@ -53,12 +53,12 @@ export default nix.lambda((args) => (() => {
       const postInstall = nix.thunk(() => nix.add(nix.add("buildPlugin() {\n  echo \"Publishing plugin $1\"\n  dotnet publish $1 -p:ContinuousIntegrationBuild=true -p:Deterministic=true \\\n    --output $out/lib/ArchiSteamFarm/plugins/$1 --configuration Release \\\n    --no-restore --no-build --runtime $dotnetRuntimeIds \\\n    $dotnetFlags $dotnetInstallFlags\n}\n\n", nix.app(nix.sel(lib, "concatMapStrings"), (p) => nix.str`buildPlugin ${p}
 `, plugins)), "\nchmod +x $out/lib/ArchiSteamFarm/ArchiSteamFarm.dll\nwrapDotnetProgram $out/lib/ArchiSteamFarm/ArchiSteamFarm.dll $out/bin/ArchiSteamFarm\nsubstituteInPlace $out/bin/ArchiSteamFarm \\\n  --replace-fail \"exec \" \"exec dotnet \"\n"));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.path(here, "./update.sh"),
         ui: nix.thunk(() => nix.app(callPackage, nix.path(here, "./web-ui"), nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Application with primary purpose of idling Steam cards from multiple accounts simultaneously",
         changelog: nix.thunk(() => nix.str`https://github.com/JustArchiNET/ArchiSteamFarm/releases/tag/${nix.sel(src, "tag")}`),
         homepage: "https://github.com/JustArchiNET/ArchiSteamFarm",
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

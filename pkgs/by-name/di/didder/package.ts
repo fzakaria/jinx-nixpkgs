@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const pandoc = nix.arg($, "pandoc");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "didder",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "makew0rld",
           repo: "didder",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       postBuild: "make man\n",
       postInstall: "mkdir -p $out/share/man/man1\ngzip -c didder.1 > $out/share/man/man1/didder.1.gz\n",
       meta: nix.thunk(() => nix.update(nix.sel(finalAttrs, "src", "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extensive, fast, and accurate command-line image dithering tool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
         mainProgram: "didder",

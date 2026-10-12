@@ -46,33 +46,33 @@ export default nix.lambda((args) => (() => {
   const boolToString = nix.thunk(() => nix.attr(lib, "boolToString"));
   const optionalAttrs = nix.thunk(() => nix.attr(lib, "optionalAttrs"));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     options: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       services: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         wastebin: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Wastebin, a pastebin service")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "wastebin", nix.thunk(() => ({})))),
           stateDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(types, "path")),
               default: "/var/lib/wastebin",
               description: "State directory of the daemon.",
             })))),
           secretFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               default: null,
               example: "/run/secrets/wastebin.env",
               description: "Path to file containing sensitive environment variables.\nSome variables that can be considered secrets are:\n\n- WASTEBIN_PASSWORD_SALT:\n  salt used to hash user passwords used for encrypting pastes.\n\n- WASTEBIN_SIGNING_KEY:\n  sets the key to sign cookies. If not set, a random key will be\n  generated which means cookies will become invalid after restarts and\n  paste creators will not be able to delete their pastes anymore.\n",
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "Additional configuration for wastebin, see\n<https://github.com/matze/wastebin#usage> for supported values.\nFor secrets use secretFile option instead.\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   freeformType: nix.thunk(() => (() => {
                     const w = nix.withScope(types, null);
                     return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -82,52 +82,52 @@ export default nix.lambda((args) => (() => {
                         ]))));
                   })()),
                   options: nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     WASTEBIN_ADDRESS_PORT: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: "0.0.0.0:8088",
                         description: "Address and port to bind to",
                       })))),
                     WASTEBIN_BASE_URL: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         default: "http://localhost",
                         example: "https://myhost.tld",
                         type: nix.thunk(() => nix.sel(types, "str")),
                         description: "Base URL for the QR code display. If not set, the user agent's Host\nheader field is used as an approximation.\n",
                       })))),
                     WASTEBIN_CACHE_SIZE: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         default: 128n,
                         type: nix.thunk(() => nix.sel(types, "int")),
                         description: "Number of rendered syntax highlight items to cache. Can be disabled by setting to 0.",
                       })))),
                     WASTEBIN_DATABASE_PATH: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         default: "/var/lib/wastebin/sqlite3.db",
                         type: nix.thunk(() => nix.sel(types, "str")),
                         description: "Path to the sqlite3 database file. If not set, an in-memory database is used.",
                       })))),
                     WASTEBIN_HTTP_TIMEOUT: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         default: 5n,
                         type: nix.thunk(() => nix.sel(types, "int")),
                         description: "Maximum number of seconds a request can be processed until wastebin responds with 408",
                       })))),
                     WASTEBIN_MAX_BODY_SIZE: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         default: 1048576n,
                         type: nix.thunk(() => nix.sel(types, "int")),
                         description: "Number of bytes to accept for POST requests",
                       })))),
                     WASTEBIN_TITLE: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         default: "wastebin",
                         type: nix.thunk(() => nix.sel(types, "str")),
                         description: "Overrides the HTML page title",
                       })))),
                     RUST_LOG: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         default: "info",
                         type: nix.thunk(() => nix.sel(types, "str")),
                         description: "Influences logging. Besides the typical trace, debug, info etc.\nkeys, you can also set the tower_http key to some log level to get\nadditional information request and response logs.\n",
@@ -135,24 +135,24 @@ export default nix.lambda((args) => (() => {
                   })),
                 })))),
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$13, WASTEBIN_TITLE: "My awesome pastebin" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$13, WASTEBIN_TITLE: "My awesome pastebin" })),
             })))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         systemd: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           services: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             wastebin: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: nix.thunk(() => nix.app(mapAttrs, (_) => (v) => (nix.asBool(nix.app(isBool, v)) ? nix.app(boolToString, v) : nix.builtins.toString(v)), nix.thunk(() => nix.sel(cfg, "settings")))),
               serviceConfig: nix.thunk(() => nix.update({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 DevicePolicy: "closed",
                 DynamicUser: true,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))}`),
@@ -175,7 +175,7 @@ export default nix.lambda((args) => (() => {
                 StateDirectory: nix.thunk(() => nix.builtins.baseNameOf(nix.thunk(() => nix.sel(cfg, "stateDir")))),
                 ReadWritePaths: nix.thunk(() => nix.sel(cfg, "stateDir")),
               }, nix.app(optionalAttrs, nix.thunk(() => !nix.eq(nix.sel(cfg, "secretFile"), null)), nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   EnvironmentFile: nix.thunk(() => nix.sel(cfg, "secretFile")),
                 }))))),
             })),
@@ -183,7 +183,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "pinpox"))];

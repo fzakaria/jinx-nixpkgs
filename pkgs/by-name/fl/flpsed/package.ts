@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fltk_1_3 = nix.arg($, "fltk_1_3");
   const ghostscript = nix.arg($, "ghostscript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "flpsed",
       version: "0.7.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.flpsed.org/flpsed-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0vngqxanykicabhfdznisv82k5ypkxwg0s93ms9ribvhpm8vf2xp",
         })))),
@@ -34,7 +34,7 @@ sed -e '/exec_gs/ {n; s|"gs"|"${nix.app(nix.sel(lib, "getBin"), ghostscript)}/bi
         nix.thunk(() => nix.str`FLTKCONFIG=${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.app(nix.sel(lib, "getDev"), fltk_1_3)), "fltk-config")}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "WYSIWYG PostScript annotator",
         homepage: "https://flpsed.org/flpsed.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

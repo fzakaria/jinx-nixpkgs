@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         const name = nix.thunk(() => nix.selOr(attrs, () => nix.str`${nix.sel(attrs, "pname")}-${nix.sel(attrs, "version")}`, "name"));
         const pkgConfigMajorVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(gimp_1, "version"))));
         return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             prePhases: nix.thunk(() => ["extraLib"]),
             extraLib: nix.thunk(() => nix.str`installScripts(){
   mkdir -p $out/${nix.sel(gimp_1, "targetScriptDir")}/${name};
@@ -74,7 +74,7 @@ installPlugin() {
 }
 `),
           }, nix.update(attrs, {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: nix.thunk(() => nix.str`${nix.sel(gimp_1, "pname")}-plugin-${name}`),
             buildInputs: nix.thunk(() => nix.concat([gimp_1, nix.thunk(() => nix.sel(gimp_1, "gtk")), glib], nix.selOr(attrs, () => [], "buildInputs"))),
             nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config, intltool], nix.selOr(attrs, () => [], "nativeBuildInputs"))),
@@ -89,7 +89,7 @@ installPlugin() {
         const attrs = args_1;
         const src = nix.arg($_1, "src");
         return nix.app(pluginDerivation, nix.thunk(() => nix.update({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             prePhases: nix.thunk(() => ["extraLib"]),
             dontUnpack: true,
             installPhase: nix.thunk(() => nix.str`runHook preInstall
@@ -99,13 +99,13 @@ runHook postInstall
           }, attrs)));
       })(), formals$2);
       return {
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         gimp: gimpArg,
         bimp: nix.thunk(() => nix.app(pluginDerivation, nix.thunk(() => (() => {
             const pname = "bimp";
             const version = "2.6";
             const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 owner: "alessandrofrancesconi",
                 repo: "gimp-plugin-bimp",
                 rev: nix.thunk(() => nix.str`v${version}`),
@@ -113,7 +113,7 @@ runHook postInstall
               }))));
             const patches = nix.thunk(() => [
               nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   url: "https://github.com/alessandrofrancesconi/gimp-plugin-bimp/commit/098edb5f70a151a3f377478fd6e0d08ed56b8ef7.patch",
                   sha256: "2Afx9fmdn6ztbsll2f2j7mfffMWYWyr4BuBy9ySV6vM=",
                 })))),
@@ -126,7 +126,7 @@ runHook postInstall
               return [nix.thunk(() => nix.lookup(w, "which"))];
             })());
             const env = nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
             }));
             const installFlags = nix.thunk(() => [
@@ -134,7 +134,7 @@ runHook postInstall
             ]);
             const installTargets = nix.thunk(() => ["install-admin"]);
             const meta = nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               broken: nix.thunk(() => !nix.eq(nix.sel(gimp_1, "apiVersion"), "2.0")),
               description: "Batch Image Manipulation Plugin for GIMP",
               homepage: "https://github.com/alessandrofrancesconi/gimp-plugin-bimp",
@@ -142,7 +142,7 @@ runHook postInstall
               maintainers: [],
             }));
             return {
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               pname,
               version,
               src,
@@ -156,11 +156,11 @@ runHook postInstall
             };
           })()))),
         farbfeld: nix.thunk(() => nix.app(pluginDerivation, nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             pname: "farbfeld",
             version: "0-unstable-2019-08-12",
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 owner: "ids1024",
                 repo: "gimp-farbfeld",
                 rev: "5feacebf61448bd3c550dda03cd08130fddc5af4",
@@ -168,7 +168,7 @@ runHook postInstall
               })))),
             installPhase: "installPlugin farbfeld\n",
             meta: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               broken: nix.thunk(() => !nix.eq(nix.sel(gimp_1, "apiVersion"), "2.0")),
               description: "Gimp plug-in for the farbfeld image format",
               homepage: "https://github.com/ids1024/gimp-farbfeld",
@@ -183,7 +183,7 @@ runHook postInstall
             const pname = "fourier";
             const version = "0.4.3";
             const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 url: nix.thunk(() => nix.str`https://www.lprp.fr/files/old-web/soft/gimp/${pname}-${version}.tar.gz`),
                 sha256: "0mf7f8vaqs2madx832x3kcxw3hv3w3wampvzvaps1mkf2kvrjbsn",
               }))));
@@ -194,14 +194,14 @@ runHook postInstall
             const postPatch = "substituteInPlace Makefile --replace '$(GCC)' '$(CC)'\n\n# The tarball contains a prebuilt binary.\nmake clean\n";
             const installPhase = "runHook preInstall\n\ninstallPlugin fourier\n\nrunHook postInstall\n";
             const meta = nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               broken: nix.thunk(() => !nix.eq(nix.sel(gimp_1, "apiVersion"), "2.0")),
               description: "GIMP plug-in to do the fourier transform",
               homepage: "https://people.via.ecp.fr/~remi/soft/gimp/gimp_plugin_en.php3#fourier",
               license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
             }));
             return {
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               pname,
               version,
               src,
@@ -229,21 +229,21 @@ runHook postInstall
               nix.thunk(() => nix.str`GIMP_LIBDIR=${nix.builtins.placeholder("out")}/${nix.sel(gimp_1, "targetLibDir")}`),
             ]);
             const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 owner: "bootchk",
                 repo: "resynthesizer",
                 tag: nix.thunk(() => nix.str`v${version}`),
                 hash: "sha256-/Py5R1RxiftTR0z++mQzgTn/J9v4p8efuGZSfhe6FfA=",
               }))));
             const meta = nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               broken: nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(gimp_1, "version")), "3")),
               description: "Suite of gimp plugins for texture synthesis",
               homepage: "https://github.com/bootchk/resynthesizer",
               license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
             }));
             return {
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               pname,
               version,
               buildInputs,
@@ -254,11 +254,11 @@ runHook postInstall
             };
           })()))),
         texturize: nix.thunk(() => nix.app(pluginDerivation, nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             pname: "texturize",
             version: "2.2-unstable-2021-12-03",
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 owner: "lmanul",
                 repo: "gimp-texturize",
                 rev: "9ceff0d411cda018108e5477320669b8d00d811e",
@@ -273,24 +273,24 @@ runHook postInstall
               ];
             })()),
             meta: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               broken: nix.thunk(() => !nix.eq(nix.sel(gimp_1, "apiVersion"), "2.0")),
               homepage: "https://github.com/lmanul/gimp-texturize",
             })),
           })))),
         waveletSharpen: nix.thunk(() => nix.app(pluginDerivation, nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             pname: "wavelet-sharpen",
             version: "0.1.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 url: "https://github.com/pixlsus/registry.gimp.org_static/raw/master/registry.gimp.org/files/wavelet-sharpen-0.1.2.tar.gz",
                 sha256: "0vql1k67i21g5ivaa1jh56rg427m0icrkpryrhg75nscpirfxxqw",
               })))),
-            env: nix.thunk(() => ({ __proto__: pos$22, NIX_CFLAGS_COMPILE: "-fcommon", NIX_LDFLAGS: "-lm" })),
+            env: nix.thunk(() => ({ [nix.POS]: pos$22, NIX_CFLAGS_COMPILE: "-fcommon", NIX_LDFLAGS: "-lm" })),
             installPhase: "installPlugin src/wavelet-sharpen",
             meta: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               broken: nix.thunk(() => !nix.eq(nix.sel(gimp_1, "apiVersion"), "2.0")),
             })),
           })))),
@@ -302,7 +302,7 @@ runHook postInstall
               return [nix.thunk(() => nix.lookup(w, "liblqr1"))];
             })());
             const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 owner: "carlobaldassi",
                 repo: "gimp-lqr-plugin",
                 rev: nix.thunk(() => nix.str`v${version}`),
@@ -310,30 +310,30 @@ runHook postInstall
               }))));
             const patches = nix.thunk(() => [
               nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   name: "fno-common.patch",
                   url: "https://github.com/carlobaldassi/gimp-lqr-plugin/commit/ae3464a82e1395fc577cc94999bdc7c4a7bb35f1.patch",
                   sha256: "EdjZWM6U1bhUmsOnLA8iJ4SFKuAXHIfNPzxZqel+JrY=",
                 })))),
             ]);
             const meta = nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               broken: nix.thunk(() => !nix.eq(nix.sel(gimp_1, "apiVersion"), "2.0")),
               homepage: "https://github.com/carlobaldassi/gimp-lqr-plugin",
             }));
-            return { __proto__: pos$28, pname, version, buildInputs, src, patches, meta };
+            return { [nix.POS]: pos$28, pname, version, buildInputs, src, patches, meta };
           })()))),
         gmic: nix.thunk(() => nix.app(nix.sel(pkgs, "gmic-qt", "override"), nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             variant: "gimp",
             gimp: nix.thunk(() => nix.attr(self, "gimp")),
           })))),
         gimplensfun: nix.thunk(() => nix.app(pluginDerivation, nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             version: "0.2.4-unstable-2018-10-21",
             pname: "gimplensfun",
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 owner: "seebk",
                 repo: "GIMP-Lensfun",
                 rev: "1c5a5c1534b5faf098b7441f8840d22835592f17",
@@ -348,7 +348,7 @@ runHook postInstall
             })()),
             installPhase: "\n      installPlugin gimp-lensfun\n    ",
             meta: nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               broken: nix.thunk(() => !nix.eq(nix.sel(gimp_1, "apiVersion"), "2.0")),
               description: "GIMP plugin to correct lens distortion using the lensfun library and database",
               homepage: "http://lensfun.sebastiankraft.net/",
@@ -357,11 +357,11 @@ runHook postInstall
             })),
           })))),
         lightning: nix.thunk(() => nix.app(scriptDerivation, nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             pname: "Lightning",
             version: "0-unstable-2017-08-25",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 url: "https://github.com/pixlsus/registry.gimp.org_static/raw/master/registry.gimp.org/files/Lightning.scm",
                 sha256: "c14a8f4f709695ede3f77348728a25b3f3ded420da60f3f8de3944b7eae98a49",
               })))),

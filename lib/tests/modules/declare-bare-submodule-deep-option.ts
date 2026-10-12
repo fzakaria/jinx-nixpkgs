@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       "bare-submodule": nix.thunk(() => ({
-        __proto__: pos$2,
-        deep: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ __proto__: pos$1, type: nix.thunk(() => nix.sel(types, "int")), default: 2n })))),
+        [nix.POS]: pos$2,
+        deep: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$1, type: nix.thunk(() => nix.sel(types, "int")), default: 2n })))),
       })),
     })),
   };

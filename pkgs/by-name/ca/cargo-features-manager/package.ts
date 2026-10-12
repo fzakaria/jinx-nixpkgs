@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromTangled = nix.arg($, "fetchFromTangled");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cargo-features-manager",
       version: "0.12.0",
       src: nix.thunk(() => nix.app(fetchFromTangled, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           did: "did:plc:ecwggpjedavt2waazmc4nuft",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-bfBSnC2qk19w6G81NdplPuiZvS1PRUNjCP8ozwuoTac=",
         })))),
       cargoHash: "sha256-MwfeVPmS4KE1vJ9aEUXZpT+AbPaOP8Rs65vSFarKal0=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "TUI-like cli tool to manage the features of your rust-projects dependencies",
         homepage: "https://tangled.org/tobinio.dev/cargo-features-manager",
         changelog: nix.thunk(() => nix.str`https://tangled.org/tobinio.dev/cargo-features-manager/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

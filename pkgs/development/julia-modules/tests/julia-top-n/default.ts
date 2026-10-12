@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const unliftio = nix.arg($, "unliftio");
   const yaml = nix.arg($, "yaml");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "julia-top-n",
       version: "0.1.0.0",
       src: nix.thunk(() => nix.app(nix.sel(lib, "fileset", "toSource"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           root: nix.path(here, "./."),
           fileset: nix.thunk(() => nix.app(nix.sel(lib, "fileset", "unions"), nix.thunk(() => [
               nix.path(here, "./app"),

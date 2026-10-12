@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "besu",
       version: "24.1.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://hyperledger.jfrog.io/artifactory/besu-binaries/besu/${nix.sel(finalAttrs, "version")}/besu-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-CC24z0+2dSeqDddX5dJUs7SX9QJ8Iyh/nAp0pqdDvwg=",
         })))),
@@ -42,19 +42,19 @@ wrapProgram $out/bin/besu \\
   --suffix ${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "DYLD_LIBRARY_PATH" : "LD_LIBRARY_PATH")} : ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => nix.sel(finalAttrs, "buildInputs")))}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
             })))),
           jemalloc: nix.thunk(() => nix.app(runCommand, "besu-test-jemalloc", nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
               meta: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 platforms: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "platforms")), null);
                   return nix.force(nix.lookup(w, "linux"));
@@ -67,7 +67,7 @@ mkdir $out
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Enterprise-grade Java-based, Apache 2.0 licensed Ethereum client",
         homepage: "https://www.hyperledger.org/projects/besu",
         changelog: nix.thunk(() => nix.str`https://github.com/besu-eth/besu/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

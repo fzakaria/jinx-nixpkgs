@@ -22,16 +22,16 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const coreutils = nix.arg($, "coreutils");
   const hashes = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "0.9.10": "sha256-DYRuQmIhQu0CNEboBAtHOr/NnWxoXecuPMSR/UQ/VIQ=",
     "0.9.11": "sha256-a0TjHYzwbkRQyvr9Sj/DqjgLBnE1Z8kjsTQxTfGqLjE=",
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "libfaketime",
       version: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "0.9.10" : "0.9.11")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "wolfcw",
           repo: "libfaketime",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,25 +40,25 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "doc", "man"]),
       patches: nix.thunk(() => nix.concat([nix.path(here, "./nix-store-date.patch")], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               url: "https://github.com/wolfcw/libfaketime/commit/dbe865dfdba0145d993d70b7fd4ec88b2f47554b.patch",
               hash: "sha256-pn9MInefa4ZKuOorGEpi/sDQOQamCakjdYOkFSNA2VQ=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               name: "libfaketime-silence-unused-variable-warning.patch",
               url: "https://github.com/wolfcw/libfaketime/commit/712733e5f01e45372f3160cfdbcfd91520cb093d.patch",
               hash: "sha256-Gu13gFhgvkncj8aowAnSRbHbUCctF5sakbX4uRwdy+A=",
             })))),
         ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               name: "0001-libfaketime.c-wrap-timespec_get-in-TIME_UTC-macro.patch",
               url: "https://github.com/wolfcw/libfaketime/commit/e0e6b79568d36a8fd2b3c41f7214769221182128.patch",
               sha256: "sha256-KwwP76v0DXNW73p/YBvwUOPdKMAcVdbQSKexD/uFOYo=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               name: "LFS64.patch",
               url: "https://github.com/wolfcw/libfaketime/commit/f32986867addc9d22b0fab29c1c927f079d44ac1.patch",
               hash: "sha256-fIXuxxcV9J2IcgwcwSrMo4maObkH9WYv1DC/wdtbq/g=",
@@ -72,7 +72,7 @@ substituteInPlace src/faketime.c \\
   --replace-fail @DATE_CMD@ ${nix.app(nix.sel(lib, "getExe'"), coreutils, "date")}
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         PREFIX: nix.thunk(() => nix.builtins.placeholder("out")),
         LIBDIRNAME: "/lib",
         CFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ["-Wno-error=cast-function-type", "-Wno-error=format-truncation"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLoongArch64")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isRiscV64")))), nix.thunk(() => ["-DFORCE_PTHREAD_NONVER"])))))),
@@ -83,7 +83,7 @@ substituteInPlace src/faketime.c \\
       strictDeps: true,
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Report faked system time to programs without having to change the system-wide time",
         homepage: "https://github.com/wolfcw/libfaketime/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

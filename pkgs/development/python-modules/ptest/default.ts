@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KarlGong",
           repo: "ptest",
           tag: nix.thunk(() => nix.str`${version}-release`),
@@ -31,21 +31,21 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["ptest"]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex", "(.*)-release"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Test classes and test cases using decorators, execute test cases by command line, and get clear reports",
         homepage: "https://pypi.org/project/ptest/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         mainProgram: "ptest",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

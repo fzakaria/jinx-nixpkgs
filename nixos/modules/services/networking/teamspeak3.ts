@@ -47,90 +47,90 @@ export default nix.lambda((args) => (() => {
   const user = "teamspeak";
   const group = "teamspeak";
   return {
-    __proto__: pos$32,
+    [nix.POS]: pos$32,
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         teamspeak3: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether to run the Teamspeak3 voice communication server daemon.\n",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               default: "/var/lib/teamspeak3-server",
               description: "Directory to store TS3 database and other state/data files.\n",
             })))),
           logPath: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               default: "/var/log/teamspeak3-server/",
               description: "Directory to store log files in.\n",
             })))),
           voiceIP: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: null,
               example: "[::]",
               description: "IP on which the server instance will listen for incoming voice connections. Defaults to any IP.\n",
             })))),
           defaultVoicePort: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               default: 9987n,
               description: "Default UDP port for clients to connect to virtual servers - used for first virtual server, subsequent ones will open on incrementing port numbers by default.\n",
             })))),
           fileTransferIP: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: null,
               example: "[::]",
               description: "IP on which the server instance will listen for incoming file transfer connections. Defaults to any IP.\n",
             })))),
           fileTransferPort: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               default: 30033n,
               description: "TCP port opened for file transfers.\n",
             })))),
           queryIP: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: null,
               example: "0.0.0.0",
               description: "IP on which the server instance will listen for incoming ServerQuery connections. Defaults to any IP.\n",
             })))),
           queryPort: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               default: 10011n,
               description: "TCP port opened for ServerQuery connections using the raw telnet protocol.\n",
             })))),
           querySshPort: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               default: 10022n,
               description: "TCP port opened for ServerQuery connections using the SSH protocol.\n",
             })))),
           queryHttpPort: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               default: 10080n,
               description: "TCP port opened for ServerQuery connections using the HTTP protocol.\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Open ports in the firewall for the TeamSpeak3 server.",
             })))),
           openFirewallServerQuery: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Open ports in the firewall for the TeamSpeak3 serverquery (administration) system. Requires openFirewall.",
@@ -139,13 +139,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         users: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           users: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             teamspeak: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               description: "Teamspeak3 voice communication server daemon",
               group: group,
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "teamspeak")),
@@ -154,30 +154,30 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             teamspeak: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "teamspeak")),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d '${nix.sel(cfg, "logPath")}' - ${user} ${group} - -`),
             ]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             "teamspeak3-server": nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               description: "Teamspeak3 voice communication server daemon",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 ExecStart: nix.thunk(() => nix.str`${ts3}/bin/ts3server \\
   dbsqlpath=${ts3}/lib/teamspeak/sql/ \\
   logpath=${nix.sel(cfg, "logPath")} \\
@@ -202,9 +202,9 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           firewall: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               allowedTCPPorts: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(cfg, "fileTransferPort"))], nix.app(nix.builtins.map, (port) => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewallServerQuery")), port), nix.thunk(() => [
                   nix.thunk(() => nix.sel(cfg, "queryPort")),
                   nix.thunk(() => nix.sel(cfg, "querySshPort")),
@@ -212,7 +212,7 @@ export default nix.lambda((args) => (() => {
                 ])))),
               allowedUDPPortRanges: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   from: nix.thunk(() => nix.sel(cfg, "defaultVoicePort")),
                   to: nix.thunk(() => nix.add(nix.sel(cfg, "defaultVoicePort"), 10n)),
                 })),
@@ -221,7 +221,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$31,
+      [nix.POS]: pos$31,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_1, "arobyn"))];

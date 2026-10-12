@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const libarchive = nix.arg($, "libarchive");
   const libzip = nix.arg($, "libzip");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ark",
       extraBuildInputs: nix.thunk(() => [
         libarchive,
-        nix.thunk(() => nix.app(nix.sel(libzip, "override"), nix.thunk(() => ({ __proto__: pos$1, withOpenssl: true })))),
+        nix.thunk(() => nix.app(nix.sel(libzip, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withOpenssl: true })))),
       ]),
-      meta: nix.thunk(() => ({ __proto__: pos$2, mainProgram: "ark" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$2, mainProgram: "ark" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -13,19 +13,19 @@ export default nix.lambda((args) => (() => {
   const buildRedist = nix.arg($, "buildRedist");
   const lib = nix.arg($, "lib");
   return nix.app(buildRedist, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       redistName: "nppplus",
       pname: "libnpp_plus",
       outputs: nix.thunk(() => ["out", "dev", "include", "lib", "static", "stubs"]),
       platformAssertions: nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           message: nix.thunk(() => nix.add(nix.str`NPP+ releases since 0.10.0 (found ${nix.sel(finalAttrs, "version")})`, nix.str` support CUDA compute capabilities 7.5 and newer (found ${nix.builtins.toJSON(nix.thunk(() => nix.sel(backendStdenv, "cudaCapabilities")))})`)),
           assertion: nix.thunk(() => (!nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(finalAttrs, "version")), "0.10")) || nix.asBool(nix.app(nix.sel(lib, "all"), nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "versionAtLeast")), "7.5")), nix.thunk(() => nix.sel(backendStdenv, "cudaCapabilities")))))),
         })),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C++ support for interfacing with the NVIDIA Performance Primitives (NPP) library",
         longDescription: "NPP is a library of over 5,000 primitives for image and signal processing that lets you easily perform tasks\nsuch as color conversion, image compression, filtering, thresholding, and image manipulation.\n",
         homepage: "https://developer.nvidia.com/npp",

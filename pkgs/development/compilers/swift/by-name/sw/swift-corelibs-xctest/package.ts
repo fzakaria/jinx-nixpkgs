@@ -24,19 +24,19 @@ export default nix.lambda((args) => (() => {
   const swift_sources = nix.arg($, "swift_sources");
   const minTriple = nix.thunk(() => nix.app(nix.sel(lib, "replaceString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "darwinMinVersion")), "10.12", nix.thunk(() => nix.sel(stdenv, "hostPlatform", "swift", "triple"))));
   const swift = nix.thunk(() => nix.app(nix.sel(swift_minimal, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       "swift-corelibs-libdispatch": swift_corelibs_libdispatch,
       "swift-foundation": swift_foundation,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "swift-corelibs-xctest",
       version: swift_release,
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(swift_sources, "swift-corelibs-xctest"));
           return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "swiftlang",
           repo: "swift-corelibs-xctest",
           tag: nix.thunk(() => nix.str`swift-${nix.sel(finalAttrs, "version")}-RELEASE`),
@@ -65,7 +65,7 @@ moveToOutput lib/swift/${nix.sel(stdenv, "hostPlatform", "swift", "platform")} "
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "install_name_tool \"${!outputLib}/lib/$dylib_name\" \\\n  -change \"$dylib_path/$dylib_name\" \"${!outputLib}/lib/$dylib_name\"\n"))),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Framework for writing unit tests in Swift",
         homepage: "https://github.com/swiftlang/swift-corelibs-xctest",
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "darwin"), nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "windows")))),

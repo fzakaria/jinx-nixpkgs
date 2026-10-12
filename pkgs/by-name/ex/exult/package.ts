@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const enableTools = nix.argOr($, "enableTools", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "exult",
       version: "1.12.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "exult",
           repo: "exult",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["NIX_DESTDIR=$(out)"]),
       configureFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(enableTools)), "--disable-tools")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Recreation of Ultima VII for modern operating systems",
         longDescription: "Ultima VII, an RPG from the early 1990's, still has a huge following. But,\nbeing a DOS game with a very nonstandard memory manager, it is difficult\nto run it on the latest computers. Exult is a project that created an\nUltima VII game engine that runs on modern operating systems, capable of\nusing the data and graphics files that come with the game. Exult aims to\nlet those people who own Ultima VII play the game on modern hardware, in\nas close to (or perhaps even surpassing) its original splendor as is\npossible.\n",
         homepage: "http://exult.info",

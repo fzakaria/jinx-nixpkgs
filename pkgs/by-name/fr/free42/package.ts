@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "free42",
       version: "3.3.12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://thomasokken.com/free42/upstream/free42-nologo-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-Ybr5IwqYBIXGWcLBM2drKuN2NDBta299X/3hvzvGPeU=",
         })))),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       dontConfigure: true,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "free42bin",
             desktopName: "Free42Bin",
             genericName: "Calculator",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
             categories: nix.thunk(() => ["Utility", "Calculator"]),
           })))),
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "free42dec",
             desktopName: "Free42Dec",
             genericName: "Calculator",
@@ -71,14 +71,14 @@ wrapProgram $out/bin/free42bin \\
   "\${gappsWrapperArgs[@]}"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             extraArgs: nix.thunk(() => ["--url=https://codeberg.org/thomasokken/free42"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://thomasokken.com/free42/",
         changelog: "https://thomasokken.com/free42/history.html",
         description: "Software clone of the HP-42S calculator",

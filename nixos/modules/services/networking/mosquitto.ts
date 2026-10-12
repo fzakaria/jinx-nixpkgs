@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "mosquitto"));
   const pluginLibDir = nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(cfg, "package")))}/lib`);
-  const str = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "types", "strMatching"), "[^\r\n]*"), { __proto__: pos$1, description: "single-line string" }));
+  const str = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "types", "strMatching"), "[^\r\n]*"), { [nix.POS]: pos$1, description: "single-line string" }));
   const path = nix.thunk(() => nix.app(nix.sel(lib, "types", "addCheck"), nix.thunk(() => nix.sel(lib, "types", "path")), (p) => nix.app(nix.sel(str, "check"), nix.thunk(() => nix.str`${p}`))));
   const configKey = nix.thunk(() => nix.app(nix.sel(lib, "types", "strMatching"), "[^\r\n\t ]+"));
   const optionType = nix.thunk(() => (() => {
@@ -93,11 +93,11 @@ export default nix.lambda((args) => (() => {
         path,
         nix.thunk(() => nix.lookup(w, "bool")),
         nix.thunk(() => nix.lookup(w, "int")),
-      ])), { __proto__: pos$2, description: "string, path, bool, or integer" });
+      ])), { [nix.POS]: pos$2, description: "string, path, bool, or integer" });
   })());
   const optionToString = (v) => (nix.asBool(nix.app(nix.sel(lib, "isBool"), v)) ? nix.app(nix.sel(lib, "boolToString"), v) : (nix.asBool(nix.app(nix.sel(path, "check"), v)) ? nix.str`${v}` : nix.builtins.toString(v)));
   const assertKeysValid = (prefix) => (valid) => (config_1) => nix.app(nix.sel(lib, "mapAttrsToList"), (n) => (_) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       assertion: nix.thunk(() => nix.has(valid, nix.key(nix.force(n)))),
       message: nix.thunk(() => nix.str`Invalid config key ${prefix}.${n}.`),
     }), config_1);
@@ -109,37 +109,37 @@ export default nix.lambda((args) => (() => {
   const userOptions = nix.thunk(() => (() => {
     const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
     return nix.app(nix.lookup(w_1, "submodule"), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         options: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           password: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.lookup(w_1, "uniq"), nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), str)))),
               default: null,
               description: "Specifies the (clear text) password for the MQTT User.\n",
             })))),
           passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.lookup(w_1, "uniq"), nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), path)))),
               example: "/path/to/file",
               default: null,
               description: "Specifies the path to a file containing the\nclear text password for the MQTT user.\nThe file is securely passed to mosquitto by\nleveraging systemd credentials. No special\npermissions need to be set on this file.\n",
             })))),
           hashedPassword: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.lookup(w_1, "uniq"), nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), str)))),
               default: null,
               description: "Specifies the hashed password for the MQTT User.\nTo generate hashed password install the `mosquitto`\npackage and use `mosquitto_passwd`, then extract\nthe second field (after the `:`) from the generated\nfile.\n",
             })))),
           hashedPasswordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.lookup(w_1, "uniq"), nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), path)))),
               example: "/path/to/file",
               default: null,
               description: "Specifies the path to a file containing the\nhashed password for the MQTT user.\nTo generate hashed password install the `mosquitto`\npackage and use `mosquitto_passwd`, then remove the\n`username:` prefix from the generated file.\nThe file is securely passed to mosquitto by\nleveraging systemd credentials. No special\npermissions need to be set on this file.\n",
             })))),
           acl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), str)),
               example: nix.thunk(() => ["read A/B", "readwrite A/#"]),
               default: [],
@@ -149,11 +149,11 @@ export default nix.lambda((args) => (() => {
       })));
   })());
   const userAsserts = (prefix) => (users) => nix.concat(nix.app(nix.sel(lib, "mapAttrsToList"), (n) => (_) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       assertion: nix.thunk(() => !nix.eq(nix.builtins.match("[^:\r\n]+", n), null)),
       message: nix.thunk(() => nix.str`Invalid user name ${n} in ${prefix}`),
     }), users), nix.app(nix.sel(lib, "mapAttrsToList"), (n) => (u) => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       assertion: nix.thunk(() => nix.le(nix.app(nix.sel(lib, "count"), (s) => !nix.eq(s, null), nix.thunk(() => [
           nix.thunk(() => nix.sel(u, "password")),
           nix.thunk(() => nix.sel(u, "passwordFile")),
@@ -168,7 +168,7 @@ export default nix.lambda((args) => (() => {
   const toScopedUsers = (listenerScope_1) => (users) => nix.app(nix.sel(lib, "pipe"), users, nix.thunk(() => [
       nix.thunk(() => nix.sel(lib, "attrNames")),
       nix.thunk(() => nix.app(nix.sel(lib, "imap0"), (index) => (user) => nix.app(nix.sel(lib, "nameValuePair"), user, nix.thunk(() => nix.update(nix.sel(users, nix.key(nix.force(user))), {
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             scope: nix.thunk(() => nix.app(userScope, listenerScope_1, index)),
           }))))),
       nix.thunk(() => nix.sel(lib, "listToAttrs")),
@@ -218,22 +218,22 @@ addFile() {
   const authPluginOptions = nix.thunk(() => (() => {
     const w_2 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
     return nix.app(nix.lookup(w_2, "submodule"), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         options: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           plugin: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: path,
               description: "Plugin path to load, should be a `.so` file.\n",
             })))),
           denySpecialChars: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.lookup(w_2, "bool")),
               description: "Automatically disallow all clients using `#`\nor `+` in their name/id.\n",
               default: true,
             })))),
           options: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.app(nix.lookup(w_2, "attrsOf"), optionType)),
               description: "Options for the plugin. Each key turns into a `plugin_opt_*`\nline in the config.\n",
               default: nix.thunk(() => ({})),
@@ -242,16 +242,16 @@ addFile() {
       })));
   })());
   const authAsserts = (prefix) => (auth) => nix.app(nix.sel(lib, "mapAttrsToList"), (n) => (_) => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       assertion: nix.thunk(() => nix.app(nix.sel(configKey, "check"), n)),
       message: nix.thunk(() => nix.str`Invalid auth plugin key ${prefix}.${n}`),
     }), auth);
   const formatAuthPlugin = (plugin) => nix.concat([
     nix.thunk(() => nix.str`plugin ${nix.sel(plugin, "plugin")}`),
     nix.thunk(() => nix.str`auth_plugin_deny_special_chars ${nix.app(optionToString, nix.thunk(() => nix.sel(plugin, "denySpecialChars")))}`),
-  ], nix.app(formatFreeform, nix.thunk(() => ({ __proto__: pos$20, prefix: "plugin_opt_" })), nix.thunk(() => nix.sel(plugin, "options"))));
+  ], nix.app(formatFreeform, nix.thunk(() => ({ [nix.POS]: pos$20, prefix: "plugin_opt_" })), nix.thunk(() => nix.sel(plugin, "options"))));
   const freeformListenerKeys = nix.thunk(() => ({
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     accept_protocol_versions: 1n,
     allow_anonymous: 1n,
     allow_zero_length_clientid: 1n,
@@ -292,34 +292,34 @@ addFile() {
   const listenerOptions = nix.thunk(() => (() => {
     const w_3 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
     return nix.app(nix.lookup(w_3, "submodule"), nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         options: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: nix.thunk(() => nix.lookup(w_3, "port")),
               description: "Port to listen on. Must be set to 0 to listen on a unix domain socket.\n",
               default: 1883n,
             })))),
           address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               type: nix.thunk(() => nix.app(nix.lookup(w_3, "nullOr"), str)),
               description: "Address to listen on. Listen on `0.0.0.0`/`::`\nwhen unset.\n",
               default: null,
             })))),
           authPlugins: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               type: nix.thunk(() => nix.app(nix.lookup(w_3, "listOf"), authPluginOptions)),
               description: "Authentication plugin to attach to this listener.\nRefer to the [mosquitto.conf documentation](https://mosquitto.org/man/mosquitto-conf-5.html)\nfor details on authentication plugins.\n",
               default: [],
             })))),
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               type: nix.thunk(() => nix.app(nix.lookup(w_3, "attrsOf"), userOptions)),
               example: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 john: nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   password: "123456",
                   acl: nix.thunk(() => ["readwrite john/#"]),
                 })),
@@ -328,22 +328,22 @@ addFile() {
               default: nix.thunk(() => ({})),
             })))),
           omitPasswordAuth: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               type: nix.thunk(() => nix.lookup(w_3, "bool")),
               description: "Omits password checking, allowing anyone to log in with any user name unless\nother mandatory authentication methods (eg TLS client certificates) are configured.\n",
               default: false,
             })))),
           acl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               type: nix.thunk(() => nix.app(nix.lookup(w_3, "listOf"), str)),
               description: "Additional ACL items to prepend to the generated ACL file.\n",
               example: nix.thunk(() => ["pattern read #", "topic readwrite anon/report/#"]),
               default: [],
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               type: nix.thunk(() => nix.app(nix.lookup(w_3, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   freeformType: nix.thunk(() => nix.app(nix.lookup(w_3, "attrsOf"), optionType)),
                 })))),
               description: "Additional settings for this listener.\n",
@@ -367,7 +367,7 @@ addFile() {
       nix.thunk(() => nix.str`plugin_opt_password_file ${nix.sel(cfg, "dataDir")}/passwd-${nix.builtins.toString(idx)}`),
     ])), nix.app(nix.sel(lib, "concatMap"), formatAuthPlugin, nix.thunk(() => nix.sel(listener, "authPlugins")))))));
   const freeformBridgeKeys = nix.thunk(() => ({
-    __proto__: pos$34,
+    [nix.POS]: pos$34,
     bridge_alpn: 1n,
     bridge_attempt_unsubscribe: 1n,
     bridge_bind_address: 1n,
@@ -409,22 +409,22 @@ addFile() {
   const bridgeOptions = nix.thunk(() => (() => {
     const w_4 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
     return nix.app(nix.lookup(w_4, "submodule"), nix.thunk(() => ({
-        __proto__: pos$44,
+        [nix.POS]: pos$44,
         options: nix.thunk(() => ({
-          __proto__: pos$43,
+          [nix.POS]: pos$43,
           addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               type: nix.thunk(() => nix.app(nix.lookup(w_4, "listOf"), nix.thunk(() => nix.app(nix.lookup(w_4, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$38,
+                    [nix.POS]: pos$38,
                     options: nix.thunk(() => ({
-                      __proto__: pos$37,
+                      [nix.POS]: pos$37,
                       address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$35,
+                          [nix.POS]: pos$35,
                           type: str,
                           description: "Address of the remote MQTT broker.\n",
                         })))),
                       port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$36,
+                          [nix.POS]: pos$36,
                           type: nix.thunk(() => nix.lookup(w_4, "port")),
                           description: "Port of the remote MQTT broker.\n",
                           default: 1883n,
@@ -435,16 +435,16 @@ addFile() {
               description: "Remote endpoints for the bridge.\n",
             })))),
           topics: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               type: nix.thunk(() => nix.app(nix.lookup(w_4, "listOf"), str)),
               description: "Topic patterns to be shared between the two brokers.\nRefer to the [\nmosquitto.conf documentation](https://mosquitto.org/man/mosquitto-conf-5.html) for details on the format.\n",
               default: [],
               example: nix.thunk(() => ["# both 2 local/topic/ remote/topic/"]),
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               type: nix.thunk(() => nix.app(nix.lookup(w_4, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$41,
+                  [nix.POS]: pos$41,
                   freeformType: nix.thunk(() => nix.app(nix.lookup(w_4, "attrsOf"), optionType)),
                 })))),
               description: "Additional settings for this bridge.\n",
@@ -455,7 +455,7 @@ addFile() {
   })());
   const bridgeAsserts = (prefix) => (bridge) => nix.concat(nix.app(assertKeysValid, nix.thunk(() => nix.str`${prefix}.settings`), freeformBridgeKeys, nix.thunk(() => nix.sel(bridge, "settings"))), [
     nix.thunk(() => ({
-      __proto__: pos$45,
+      [nix.POS]: pos$45,
       assertion: nix.thunk(() => nix.gt(nix.app(nix.sel(lib, "length"), nix.thunk(() => nix.sel(bridge, "addresses"))), 0n)),
       message: nix.thunk(() => nix.str`Bridge ${prefix} needs remote broker addresses`),
     })),
@@ -465,7 +465,7 @@ addFile() {
     nix.thunk(() => nix.str`addresses ${nix.app(nix.sel(lib, "concatMapStringsSep"), " ", (a) => nix.str`${nix.sel(a, "address")}:${nix.builtins.toString(nix.thunk(() => nix.sel(a, "port")))}`, nix.thunk(() => nix.sel(bridge, "addresses")))}`),
   ], nix.concat(nix.builtins.map((t) => nix.str`topic ${t}`, nix.thunk(() => nix.sel(bridge, "topics"))), nix.app(formatFreeform, nix.thunk(() => ({})), nix.thunk(() => nix.sel(bridge, "settings")))));
   const freeformGlobalKeys = nix.thunk(() => ({
-    __proto__: pos$46,
+    [nix.POS]: pos$46,
     allow_duplicate_messages: 1n,
     autosave_interval: 1n,
     autosave_on_changes: 1n,
@@ -501,35 +501,35 @@ addFile() {
   const globalOptions = nix.thunk(() => (() => {
     const w_5 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
     return {
-      __proto__: pos$56,
+      [nix.POS]: pos$56,
       enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the MQTT Mosquitto broker")),
       package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "mosquitto", nix.thunk(() => ({})))),
       bridges: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$47,
+          [nix.POS]: pos$47,
           type: nix.thunk(() => nix.app(nix.lookup(w_5, "attrsOf"), bridgeOptions)),
           default: nix.thunk(() => ({})),
           description: "Bridges to build to other MQTT brokers.\n",
         })))),
       listeners: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$48,
+          [nix.POS]: pos$48,
           type: nix.thunk(() => nix.app(nix.lookup(w_5, "listOf"), listenerOptions)),
           default: [],
           description: "Listeners to configure on this broker.\n",
         })))),
       includeDirs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$49,
+          [nix.POS]: pos$49,
           type: nix.thunk(() => nix.app(nix.lookup(w_5, "listOf"), path)),
           description: "Directories to be scanned for further config files to include.\nDirectories will processed in the order given,\n`*.conf` files in the directory will be\nread in case-sensitive alphabetical order.\n",
           default: [],
         })))),
       logDest: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$50,
+          [nix.POS]: pos$50,
           type: nix.thunk(() => nix.app(nix.lookup(w_5, "listOf"), nix.thunk(() => nix.app(nix.lookup(w_5, "either"), path, nix.thunk(() => nix.app(nix.lookup(w_5, "enum"), nix.thunk(() => ["stdout", "stderr", "syslog", "topic", "dlt"]))))))),
           description: "Destinations to send log messages to.\n",
           default: nix.thunk(() => ["stderr"]),
         })))),
       logType: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$51,
+          [nix.POS]: pos$51,
           type: nix.thunk(() => nix.app(nix.lookup(w_5, "listOf"), nix.thunk(() => nix.app(nix.lookup(w_5, "enum"), nix.thunk(() => [
                 "debug",
                 "error",
@@ -546,21 +546,21 @@ addFile() {
           default: [],
         })))),
       persistence: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$52,
+          [nix.POS]: pos$52,
           type: nix.thunk(() => nix.lookup(w_5, "bool")),
           description: "Enable persistent storage of subscriptions and messages.\n",
           default: true,
         })))),
       dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$53,
+          [nix.POS]: pos$53,
           default: "/var/lib/mosquitto",
           type: nix.thunk(() => nix.sel(lib, "types", "path")),
           description: "The data directory.\n",
         })))),
       settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$55,
+          [nix.POS]: pos$55,
           type: nix.thunk(() => nix.app(nix.lookup(w_5, "submodule"), nix.thunk(() => ({
-              __proto__: pos$54,
+              [nix.POS]: pos$54,
               freeformType: nix.thunk(() => nix.app(nix.lookup(w_5, "attrsOf"), optionType)),
             })))),
           description: "Global configuration options for the mosquitto broker.\n",
@@ -570,7 +570,7 @@ addFile() {
   })());
   const globalAsserts = (prefix) => (cfg_1) => nix.app(nix.sel(lib, "flatten"), nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$57,
+        [nix.POS]: pos$57,
         assertion: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(cfg_1, "package", "version")), "2.1")),
         message: nix.thunk(() => nix.str`${prefix}.package must be at least version 2.1, since the generated
 configuration relies on the acl-file and password-file plugins.
@@ -586,26 +586,26 @@ configuration relies on the acl-file and password-file plugins.
   ], nix.concat(nix.builtins.map((d) => (nix.asBool(nix.app(nix.sel(path, "check"), d)) ? nix.str`log_dest file ${d}` : nix.str`log_dest ${d}`), nix.thunk(() => nix.sel(cfg_1, "logDest"))), nix.concat(nix.builtins.map((t) => nix.str`log_type ${t}`, nix.thunk(() => nix.sel(cfg_1, "logType"))), nix.concat(nix.app(formatFreeform, nix.thunk(() => ({})), nix.thunk(() => nix.sel(cfg_1, "settings"))), nix.concat(nix.app(nix.sel(lib, "concatLists"), nix.thunk(() => nix.app(nix.sel(lib, "imap0"), formatListener, nix.thunk(() => nix.sel(cfg_1, "listeners"))))), nix.concat(nix.app(nix.sel(lib, "concatLists"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), formatBridge, nix.thunk(() => nix.sel(cfg_1, "bridges"))))), nix.builtins.map((d) => nix.str`include_dir ${d}`, nix.thunk(() => nix.sel(cfg_1, "includeDirs")))))))));
   const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "mosquitto.conf", nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(formatGlobal, cfg))))));
   return {
-    __proto__: pos$71,
+    [nix.POS]: pos$71,
     options: nix.thunk(() => ({
-      __proto__: pos$59,
-      services: nix.thunk(() => ({ __proto__: pos$58, mosquitto: globalOptions })),
+      [nix.POS]: pos$59,
+      services: nix.thunk(() => ({ [nix.POS]: pos$58, mosquitto: globalOptions })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$69,
+        [nix.POS]: pos$69,
         assertions: nix.thunk(() => nix.app(globalAsserts, "services.mosquitto", cfg)),
         systemd: nix.thunk(() => ({
-          __proto__: pos$63,
+          [nix.POS]: pos$63,
           services: nix.thunk(() => ({
-            __proto__: pos$62,
+            [nix.POS]: pos$62,
             mosquitto: nix.thunk(() => ({
-              __proto__: pos$61,
+              [nix.POS]: pos$61,
               description: "Mosquitto MQTT Broker Daemon",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$60,
+                [nix.POS]: pos$60,
                 Type: "notify",
                 NotifyAccess: "main",
                 User: "mosquitto",
@@ -676,11 +676,11 @@ install -m 0700 ${nix.app(makeACLFile, idx, listener)} ${nix.sel(cfg, "dataDir")
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$68,
+          [nix.POS]: pos$68,
           users: nix.thunk(() => ({
-            __proto__: pos$65,
+            [nix.POS]: pos$65,
             mosquitto: nix.thunk(() => ({
-              __proto__: pos$64,
+              [nix.POS]: pos$64,
               description: "Mosquitto MQTT Broker Daemon owner",
               group: "mosquitto",
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "mosquitto")),
@@ -689,15 +689,15 @@ install -m 0700 ${nix.app(makeACLFile, idx, listener)} ${nix.sel(cfg, "dataDir")
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$67,
+            [nix.POS]: pos$67,
             mosquitto: nix.thunk(() => ({
-              __proto__: pos$66,
+              [nix.POS]: pos$66,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "mosquitto")),
             })),
           })),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$70, maintainers: [], doc: nix.path(here, "./mosquitto.md") })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$70, maintainers: [], doc: nix.path(here, "./mosquitto.md") })),
   };
 })(), formals$1);
 //# sourceMappingURL=mosquitto.ts.map

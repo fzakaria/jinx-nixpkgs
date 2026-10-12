@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const coercer = nix.arg($, "coercer");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "adcskiller",
       version: "0-unstable-2024-05-19",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "grimlockx",
           repo: "ADCSKiller",
           rev: "d74bfea91f24a09df74262998d60f213609b45c6",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       })()),
       installPhase: "runHook preInstall\n\ninstall -vD $pname.py $out/bin/$pname\n\nsubstituteInPlace $out/bin/$pname --replace-fail '\"Coercer\"' '\"coercer\"'\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python-based tool designed to automate the process of discovering and exploiting Active Directory Certificate Services (ADCS) vulnerabilities",
         homepage: "https://github.com/grimlockx/ADCSKiller",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

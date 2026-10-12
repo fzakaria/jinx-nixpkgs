@@ -55,19 +55,19 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const authKey = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "auth-key", "1234ABCD"));
   const cfsslConfig = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "config.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         auth_keys: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           my_key: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: "standard",
             key: nix.thunk(() => nix.str`file:${authKey}`),
           })),
         })),
         signing: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           default: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             expiry: "168h",
             auth_key: "my_key",
             usages: nix.thunk(() => ["digital signature"]),
@@ -80,12 +80,12 @@ export default nix.lambda((args) => (() => {
     const service = nix.argOr($_1, "service", () => null);
     const action = nix.arg($_1, "action");
     return {
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       action: action,
       authority: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         file: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           group: "nginx",
           owner: "nginx",
           path: nix.thunk(() => nix.str`/var/ssl/${host}-ca.pem`),
@@ -96,25 +96,25 @@ export default nix.lambda((args) => (() => {
         auth_key_file: nix.thunk(() => nix.builtins.toString(authKey)),
       })),
       certificate: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         group: "nginx",
         owner: "nginx",
         path: nix.thunk(() => nix.str`/var/ssl/${host}-cert.pem`),
       })),
       private_key: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         group: "nginx",
         mode: "0600",
         owner: "nginx",
         path: nix.thunk(() => nix.str`/var/ssl/${host}-key.pem`),
       })),
       request: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         CN: host,
         hosts: nix.thunk(() => [host, nix.thunk(() => nix.str`www.${host}`)]),
-        key: nix.thunk(() => ({ __proto__: pos$10, algo: "rsa", size: 2048n })),
+        key: nix.thunk(() => ({ [nix.POS]: pos$10, algo: "rsa", size: 2048n })),
         names: nix.thunk(() => [
-          nix.thunk(() => ({ __proto__: pos$11, C: "US", L: "San Francisco", O: "Example, LLC", ST: "CA" })),
+          nix.thunk(() => ({ [nix.POS]: pos$11, C: "US", L: "San Francisco", O: "Example, LLC", ST: "CA" })),
         ]),
       })),
       service: service,
@@ -126,21 +126,21 @@ export default nix.lambda((args) => (() => {
     const specs = nix.arg($_1, "specs");
     const testScript = nix.arg($_1, "testScript");
     return nix.app(runTest, nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         name: nix.thunk(() => nix.add("certmgr-", svcManager)),
         nodes: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           machine: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$4);
             const config = nix.arg($_2, "config");
             const lib = nix.arg($_2, "lib");
             const pkgs_1 = nix.arg($_2, "pkgs");
             return {
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               networking: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 firewall: nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   allowedTCPPorts: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(config, "services")), null);
                     return [
@@ -152,18 +152,18 @@ export default nix.lambda((args) => (() => {
                 extraHosts: "127.0.0.1 imp.example.org decl.example.org",
               })),
               services: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 cfssl: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   enable: true,
                   configFile: nix.thunk(() => nix.builtins.toString(cfsslConfig)),
                 })),
                 nginx: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   enable: true,
                   virtualHosts: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => nix.builtins.map((host) => nix.attrsDyn({}, [
                         [nix.force(host), nix.thunk(() => ({
-                          __proto__: pos$17,
+                          [nix.POS]: pos$17,
                           sslCertificate: nix.thunk(() => nix.str`/var/ssl/${host}-cert.pem`),
                           sslCertificateKey: nix.thunk(() => nix.str`/var/ssl/${host}-key.pem`),
                           extraConfig: "ssl_protocols TLSv1 TLSv1.1 TLSv1.2;\n",
@@ -173,22 +173,22 @@ export default nix.lambda((args) => (() => {
                         }))],
                       ]), nix.thunk(() => ["imp.example.org", "decl.example.org"]))))),
                 })),
-                certmgr: nix.thunk(() => ({ __proto__: pos$19, enable: true, svcManager: svcManager, specs: specs })),
+                certmgr: nix.thunk(() => ({ [nix.POS]: pos$19, enable: true, svcManager: svcManager, specs: specs })),
               })),
               systemd: nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 services: nix.thunk(() => ({
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   cfssl: nix.thunk(() => ({
-                    __proto__: pos$21,
+                    [nix.POS]: pos$21,
                     after: nix.thunk(() => ["cfssl-init.service", "network.target"]),
                   })),
                   "cfssl-init": nix.thunk(() => ({
-                    __proto__: pos$26,
+                    [nix.POS]: pos$26,
                     description: "Initialize the cfssl CA",
                     wantedBy: nix.thunk(() => ["multi-user.target"]),
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$22,
+                      [nix.POS]: pos$22,
                       User: "cfssl",
                       Type: "oneshot",
                       WorkingDirectory: nix.thunk(() => nix.sel(config, "services", "cfssl", "dataDir")),
@@ -196,12 +196,12 @@ export default nix.lambda((args) => (() => {
                       StateDirectoryMode: 700n,
                     })),
                     script: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "cfssl")}/bin/cfssl genkey -initca ${nix.app(nix.sel(pkgs_1, "writeText"), "ca.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-                          __proto__: pos$25,
+                          [nix.POS]: pos$25,
                           hosts: nix.thunk(() => ["ca.example.com"]),
-                          key: nix.thunk(() => ({ __proto__: pos$23, algo: "rsa", size: 4096n })),
+                          key: nix.thunk(() => ({ [nix.POS]: pos$23, algo: "rsa", size: 4096n })),
                           names: nix.thunk(() => [
                             nix.thunk(() => ({
-                              __proto__: pos$24,
+                              [nix.POS]: pos$24,
                               C: "US",
                               L: "San Francisco",
                               O: "Internet Widgets, LLC",
@@ -213,12 +213,12 @@ export default nix.lambda((args) => (() => {
 `),
                   })),
                   nginx: nix.thunk(() => ({
-                    __proto__: pos$27,
+                    [nix.POS]: pos$27,
                     wantedBy: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
                   })),
-                  certmgr: nix.thunk(() => ({ __proto__: pos$28, after: nix.thunk(() => ["cfssl.service"]) })),
+                  certmgr: nix.thunk(() => ({ [nix.POS]: pos$28, after: nix.thunk(() => ["cfssl.service"]) })),
                 })),
-                tmpfiles: nix.thunk(() => ({ __proto__: pos$30, rules: nix.thunk(() => ["d /var/ssl 777 root root"]) })),
+                tmpfiles: nix.thunk(() => ({ [nix.POS]: pos$30, rules: nix.thunk(() => ["d /var/ssl 777 root root"]) })),
               })),
             };
           })(), formals$4),
@@ -227,20 +227,20 @@ export default nix.lambda((args) => (() => {
       })));
   })(), formals$3);
   return {
-    __proto__: pos$42,
+    [nix.POS]: pos$42,
     systemd: nix.thunk(() => nix.app(mkCertmgrTest, nix.thunk(() => ({
-        __proto__: pos$38,
+        [nix.POS]: pos$38,
         svcManager: "systemd",
         specs: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           decl: nix.thunk(() => nix.app(mkSpec, nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               host: "decl.example.org",
               service: "nginx",
               action: "restart",
             })))),
           imp: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "test.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.app(mkSpec, nix.thunk(() => ({
-                    __proto__: pos$36,
+                    [nix.POS]: pos$36,
                     host: "imp.example.org",
                     service: "nginx",
                     action: "restart",
@@ -249,12 +249,12 @@ export default nix.lambda((args) => (() => {
         testScript: "machine.wait_for_unit(\"cfssl.service\")\nmachine.wait_until_succeeds(\"ls /var/ssl/decl.example.org-ca.pem\")\nmachine.wait_until_succeeds(\"ls /var/ssl/decl.example.org-key.pem\")\nmachine.wait_until_succeeds(\"ls /var/ssl/decl.example.org-cert.pem\")\nmachine.wait_until_succeeds(\"ls /var/ssl/imp.example.org-ca.pem\")\nmachine.wait_until_succeeds(\"ls /var/ssl/imp.example.org-key.pem\")\nmachine.wait_until_succeeds(\"ls /var/ssl/imp.example.org-cert.pem\")\nmachine.wait_for_unit(\"nginx.service\")\nassert 1 < int(machine.succeed('journalctl -u nginx | grep \"Starting Nginx\" | wc -l'))\nmachine.succeed(\"curl --cacert /var/ssl/imp.example.org-ca.pem https://imp.example.org\")\nmachine.succeed(\n    \"curl --cacert /var/ssl/decl.example.org-ca.pem https://decl.example.org\"\n)\n",
       })))),
     command: nix.thunk(() => nix.app(mkCertmgrTest, nix.thunk(() => ({
-        __proto__: pos$41,
+        [nix.POS]: pos$41,
         svcManager: "command",
         specs: nix.thunk(() => ({
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           test: nix.thunk(() => nix.app(mkSpec, nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               host: "command.example.org",
               action: "touch /tmp/command.executed",
             })))),

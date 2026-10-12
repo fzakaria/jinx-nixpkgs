@@ -25,48 +25,48 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     name: "cinnamon",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "cinnamon", "members")),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           services: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             xserver: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               enable: true,
               desktopManager: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 cinnamon: nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   enable: true,
                   sessionPath: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gpaste"))]),
                 })),
               })),
               displayManager: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 lightdm: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   greeters: nix.thunk(() => ({
-                    __proto__: pos$5,
-                    slick: nix.thunk(() => ({ __proto__: pos$4, extraConfig: "enable-hidpi = on\n" })),
+                    [nix.POS]: pos$5,
+                    slick: nix.thunk(() => ({ [nix.POS]: pos$4, extraConfig: "enable-hidpi = on\n" })),
                   })),
                 })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             cinnamon: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               excludePackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gnome-text-editor"))]),
             })),
           })),

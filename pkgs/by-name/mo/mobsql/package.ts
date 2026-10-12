@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromSourcehut = nix.arg($, "fetchFromSourcehut");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mobsql",
       version: "0.10.0",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~mil",
           repo: "mobsql",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\ngo build -o $GOPATH/bin/mobsql\\\n  -tags=sqlite_math_functions,libsqlite3 cli/*.go\nrunHook postBuild\n",
       checkPhase: "runHook preCheck\nHOME=$TMPDIR go test -tags=sqlite_math_functions,libsqlite3 ./...\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GTFS to SQLite import utility",
         longDescription: "Mobsql is a Go library and command-line application\nwhich facilitates loading one or multiple Mobility Database\nsource GTFS feed archives into a SQLite database.\nIts internal SQLite schema mirrors GTFS's spec but adds a feed_id field\nto each table (thus allowing multiple feeds to be loaded\nto the database simultaneously).\n",
         homepage: "https://git.sr.ht/~mil/mobsql",

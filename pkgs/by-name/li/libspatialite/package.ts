@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libspatialite",
       version: "5.1.0",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.gaia-gis.it/gaia-sins/libspatialite-sources/libspatialite-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Q74t00na/+AW3RQAxdEShYKMIv6jXKUQnyHz7VBgUIA=",
         })))),
@@ -48,14 +48,14 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       preCheck: "export LD_LIBRARY_PATH=$(pwd)/src/.libs\nexport DYLD_LIBRARY_PATH=$(pwd)/src/.libs\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Extensible spatial index library in C++",
         homepage: "https://www.gaia-gis.it/fossil/libspatialite",
         license: nix.thunk(() => (() => {

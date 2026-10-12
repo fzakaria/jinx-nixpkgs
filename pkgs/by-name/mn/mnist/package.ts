@@ -17,30 +17,30 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchurl = nix.arg($, "fetchurl");
   const srcs = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     "train-images": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: "http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz",
         sha256: "029na81z5a1c9l1a8472dgshami6f2iixs3m2ji6ym6cffzwl3s4",
       })))),
     "train-labels": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: "http://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz",
         sha256: "0p152200wwx0w65sqb65grb3v8ncjp230aykmvbbx2sm19556lim",
       })))),
     "test-images": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         url: "http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz",
         sha256: "1rn4vfigaxn2ms24bf4jwzzflgp3hvz0gksvb8j7j70w19xjqhld",
       })))),
     "test-labels": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         url: "http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz",
         sha256: "1imf0i194ndjxzxdx87zlgn728xx3p1qhq1ssbmnvv005vwn1bpp",
       })))),
   }));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "mnist",
       version: "2018-11-16",
       installPhase: nix.thunk(() => nix.str`mkdir -p $out
@@ -51,7 +51,7 @@ ln -s "${nix.sel(srcs, "test-labels")}" "$out/${nix.sel(srcs, "test-labels", "na
 `),
       dontUnpack: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Large database of handwritten digits",
         longDescription: "The MNIST database (Modified National Institute of Standards and\nTechnology database) is a large database of handwritten digits that is\ncommonly used for training various image processing systems.\n",
         homepage: "http://yann.lecun.com/exdb/mnist/index.html",

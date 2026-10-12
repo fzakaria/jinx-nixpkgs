@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "sha256-OvBwtgdGfBwWT0nVsMqr6Kx42+2SmNcDqNv530BS0X4=",
@@ -33,7 +33,7 @@ sed -i -e "s|find_library=None|find_library=lambda _:\\"$libusb\\"|" usb/backend
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["usb"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python USB access module (wraps libusb 1.0)",
         homepage: "https://pyusb.github.io/pyusb/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -43,7 +43,7 @@ sed -i -e "s|find_library=None|find_library=lambda _:\\"$libusb\\"|" usb/backend
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

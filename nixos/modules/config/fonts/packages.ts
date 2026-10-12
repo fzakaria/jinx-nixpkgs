@@ -18,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "fonts"));
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["fonts", "enableCoreFonts"]), "Use fonts.packages = [ pkgs.corefonts ]; instead.")),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["fonts", "enableDefaultFonts"]), nix.thunk(() => ["fonts", "enableDefaultPackages"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["fonts", "fonts"]), nix.thunk(() => ["fonts", "packages"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       fonts: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         packages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
               return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "path")));
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
             description: "List of primary font packages.",
           })))),
         enableDefaultPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             default: false,
             description: "Enable a basic set of fonts providing several styles\nand families and reasonable coverage of Unicode.\n",
@@ -47,9 +47,9 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       fonts: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         packages: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableDefaultPackages")), nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [

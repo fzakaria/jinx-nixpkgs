@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "flake-edit",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "a-kenji",
           repo: "flake-edit",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-6RxjQI1gUprJvaj8rAsJ1LbCSbis8AVjKIEN41uRflw=",
       nativeBuildInputs: nix.thunk(() => [installShellFiles, pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
-      env: nix.thunk(() => ({ __proto__: pos$2, ASSET_DIR: "target/assets" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, ASSET_DIR: "target/assets" })),
       postInstall: "installManPage target/assets/flake-edit.1\n\ninstallShellCompletion --bash --name flake-edit.bash target/assets/flake-edit.bash\ninstallShellCompletion --fish --name flake-edit.fish target/assets/flake-edit.fish\ninstallShellCompletion --zsh --name _flake-edit target/assets/_flake-edit\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Edit your flake inputs with ease",
         homepage: "https://github.com/a-kenji/flake-edit",
         changelog: nix.thunk(() => nix.str`https://github.com/a-kenji/flake-edit/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

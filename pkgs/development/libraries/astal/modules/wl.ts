@@ -11,10 +11,10 @@ export default nix.lambda((args) => (() => {
   const buildAstalModule = nix.arg($, "buildAstalModule");
   const wl_vapi_gen = nix.arg($, "wl-vapi-gen");
   return nix.app(buildAstalModule, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "wl",
       nativeBuildInputs: nix.thunk(() => [wl_vapi_gen]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, description: "Central wayland connection manager" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, description: "Central wayland connection manager" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=wl.ts.map

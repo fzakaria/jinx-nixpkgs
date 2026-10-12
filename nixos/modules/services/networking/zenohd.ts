@@ -44,23 +44,23 @@ export default nix.lambda((args) => (() => {
   const json = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   const cfg = nix.thunk(() => nix.sel(config, "services", "zenohd"));
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         zenohd: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Zenoh daemon.")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "zenoh", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               description: "Config options for `zenoh.json5` configuration file.\n\nSee <https://github.com/eclipse-zenoh/zenoh/blob/main/DEFAULT_CONFIG.json5>\nfor more information.\n",
               default: nix.thunk(() => ({})),
-              type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({ __proto__: pos$1, freeformType: nix.thunk(() => nix.sel(json, "type")) })))),
+              type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({ [nix.POS]: pos$1, freeformType: nix.thunk(() => nix.sel(json, "type")) })))),
             })))),
           plugins: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               description: "Plugin packages to add to zenohd search paths.",
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ pkgs.zenoh-plugin-mqtt ]\n")),
             })))),
           backends: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               description: "Storage backend packages to add to zenohd search paths.",
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
@@ -80,13 +80,13 @@ export default nix.lambda((args) => (() => {
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ pkgs.zenoh-backend-rocksdb ]\n")),
             })))),
           home: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               description: "Base directory for zenohd related files defined via ZENOH_HOME.",
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "/var/lib/zenoh",
             })))),
           env: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               description: "Set environment variables consumed by zenohd and its plugins.\n",
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
@@ -95,7 +95,7 @@ export default nix.lambda((args) => (() => {
               default: nix.thunk(() => ({})),
             })))),
           extraOptions: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               description: "Extra command line options for zenohd.",
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
@@ -107,21 +107,21 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             zenohd: nix.thunk(() => (() => {
               const cfgFile = nix.thunk(() => nix.app(nix.sel(json, "generate"), "zenohd.json", nix.thunk(() => nix.sel(cfg, "settings"))));
               return {
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 wants: nix.thunk(() => ["network-online.target"]),
                 after: nix.thunk(() => ["network-online.target"]),
                 environment: nix.thunk(() => nix.sel(cfg, "env")),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   Type: "simple",
                   User: "zenohd",
                   Group: "zenohd",
@@ -131,41 +131,41 @@ export default nix.lambda((args) => (() => {
             })()),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             rules: nix.thunk(() => [nix.thunk(() => nix.str`d ${nix.sel(cfg, "home")} 750 zenohd zenohd -`)]),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           users: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             zenohd: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               description: "Zenoh daemon user",
               group: "zenohd",
               isSystemUser: true,
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$18, zenohd: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$18, zenohd: nix.thunk(() => ({})) })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           zenohd: nix.thunk(() => ({
-            __proto__: pos$25,
-            env: nix.thunk(() => ({ __proto__: pos$20, ZENOH_HOME: nix.thunk(() => nix.sel(cfg, "home")) })),
+            [nix.POS]: pos$25,
+            env: nix.thunk(() => ({ [nix.POS]: pos$20, ZENOH_HOME: nix.thunk(() => nix.sel(cfg, "home")) })),
             settings: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               plugins_loading: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 enabled: nix.thunk(() => nix.app(mkDefault, true)),
                 search_dirs: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.concat(nix.builtins.map((x) => nix.str`${nix.app(nix.sel(lib, "getLib"), x)}/lib`, nix.thunk(() => nix.sel(cfg, "plugins"))), [
                     nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(cfg, "package")))}/lib`),
                   ])))),
               })),
               plugins: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 storage_manager: nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   backend_search_dirs: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.builtins.map((x) => nix.str`${nix.app(nix.sel(lib, "getLib"), x)}/lib`, nix.thunk(() => nix.sel(cfg, "backends")))))),
                 })),
               })),

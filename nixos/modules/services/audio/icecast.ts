@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
 </icecast>
 `)));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["services", "icecast", "logDir"]), "The log directory is now managed by systemd's LogsDirectory= directive.\n")),
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["services", "icecast", "user"]), "The service now runs under the dynamically allocated `icecast` user.\n")),
@@ -66,50 +66,50 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(mkRenamedOptionModule, nix.thunk(() => ["services", "icecast", "extraConf"]), nix.thunk(() => ["services", "icecast", "extraConfig"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         icecast: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Icecast server")),
           hostname: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "DNS name or IP address that will be used for the stream directory lookups or possibly the playlist generation if a Host header is not provided.",
               default: nix.thunk(() => nix.sel(config, "networking", "domain")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.networking.domain")),
             })))),
           admin: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "Username used for all administration functions.",
                 default: "admin",
               })))),
             password: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "Password used for all administration functions.",
               })))),
           })),
           listen: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 description: "TCP port that will be used to accept client connections.",
                 default: 8000n,
               })))),
             address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "Address Icecast will listen on.",
                 default: "::",
               })))),
           })),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Extra configuration added to {file}`icecast.xml` inside the `<icecast>` element.\n",
@@ -118,18 +118,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             icecast: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               after: nix.thunk(() => ["network.target"]),
               description: "Icecast Network Audio Streaming Server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 Type: "simple",
                 DynamicUser: true,
                 ExecStart: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [

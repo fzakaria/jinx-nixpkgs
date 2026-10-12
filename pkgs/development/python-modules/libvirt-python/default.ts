@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "12.8.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libvirt",
           repo: "libvirt-python",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,14 +38,14 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["libvirt"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://libvirt.org/python.html",
         description: "Libvirt Python bindings",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "fpletz"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

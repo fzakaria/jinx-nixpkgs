@@ -42,22 +42,22 @@ export default nix.lambda((args) => (() => {
   const vte = nix.arg($, "vte");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "virt-viewer",
       version: "11.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://releases.pagure.org/virt-viewer/virt-viewer-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-pD+iMlxMHHelyMmAZaww7wURohrJjlkPIjQIabrZq9A=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitlab.com/virt-viewer/virt-viewer/-/commit/98d9f202ef768f22ae21b5c43a080a1aa64a7107.patch",
             sha256: "sha256-3AbnkbhWOh0aNjUkmVoSV/9jFQtvTllOr7plnkntb2o=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://gitlab.com/virt-viewer/virt-viewer/-/commit/a634fa8d9fbc59b093f2f07110b2c867f622599d.patch",
             hash: "sha256-xNwpuVwYajlfQUbT6aDrTBqwa61Je8EhD0C9+PL/qx0=",
           })))),
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       postPatch: "patchShebangs build-aux/post_install.py\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://virt-manager.org/",
         description: "Viewer for remote virtual machines",
         maintainers: nix.thunk(() => (() => {
@@ -108,8 +108,8 @@ export default nix.lambda((args) => (() => {
         mainProgram: "virt-viewer",
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
-        updateInfo: nix.thunk(() => ({ __proto__: pos$5, downloadPage: "https://virt-manager.org/download.html" })),
+        [nix.POS]: pos$6,
+        updateInfo: nix.thunk(() => ({ [nix.POS]: pos$5, downloadPage: "https://virt-manager.org/download.html" })),
       })),
     }));
 })(), formals$1);

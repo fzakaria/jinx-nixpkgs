@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const minc_tools = nix.arg($, "minc_tools");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "minc-widgets",
       version: "1.0.0-unstable-2016-04-20",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BIC-MNI",
           repo: "minc-widgets",
           rev: "f08b643894c81a1a2e0fbfe595a17a42ba8906db",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "cmake4-fix.patch",
             url: "https://github.com/BIC-MNI/minc-widgets/commit/9f5bc1996d2f9b4702efdb010834e2c7f1e3fbf1.patch",
             hash: "sha256-qqMKbxQS+HTRQaOP2DH/m8Z3DqoCMGLFp1AEKaQ6l5s=",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/BIC-MNI/minc-widgets",
         description: "Collection of Perl and shell scripts for processing MINC files",
         maintainers: nix.thunk(() => (() => {

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const pango = nix.arg($, "pango");
   const gtk3 = nix.arg($, "gtk3");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "myxer",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Aurailus",
           repo: "myxer",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "install -Dm644 Myxer.desktop $out/share/applications/Myxer.desktop\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Modern Volume Mixer for PulseAudio",
         homepage: "https://github.com/Aurailus/Myxer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

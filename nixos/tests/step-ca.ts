@@ -71,45 +71,45 @@ ${nix.sel(pkgs, "step-cli")}/bin/step certificate create "Example Root CA" $out/
 ${nix.sel(pkgs, "step-cli")}/bin/step certificate create "Example Intermediate CA 1" $out/intermediate_ca.crt $out/intermediate_ca.key --password-file=$out/intermediate-password-file --ca-password-file=$out/root-password-file --profile intermediate-ca --ca $out/root_ca.crt --ca-key $out/root_ca.key
 `)));
     return {
-      __proto__: pos$52,
+      [nix.POS]: pos$52,
       name: "step-ca",
       nodes: nix.thunk(() => ({
-        __proto__: pos$51,
+        [nix.POS]: pos$51,
         caserver: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const config = nix.arg($_1, "config");
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             environment: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               etc: nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 "password-file": nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   source: nix.thunk(() => nix.str`${test_certificates}/intermediate-password-file`),
                 })),
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               "step-ca": nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 enable: true,
                 address: "[::]",
                 port: 8443n,
                 openFirewall: true,
                 intermediatePasswordFile: nix.thunk(() => nix.str`/etc/${nix.sel(config, "environment", "etc", "password-file", "target")}`),
                 settings: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   dnsNames: nix.thunk(() => ["caserver"]),
                   root: nix.thunk(() => nix.str`${test_certificates}/root_ca.crt`),
                   crt: nix.thunk(() => nix.str`${test_certificates}/intermediate_ca.crt`),
                   key: nix.thunk(() => nix.str`${test_certificates}/intermediate_ca.key`),
-                  db: nix.thunk(() => ({ __proto__: pos$4, type: "badger", dataSource: "/var/lib/step-ca/db" })),
+                  db: nix.thunk(() => ({ [nix.POS]: pos$4, type: "badger", dataSource: "/var/lib/step-ca/db" })),
                   authority: nix.thunk(() => ({
-                    __proto__: pos$6,
-                    provisioners: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$5, type: "ACME", name: "acme" }))]),
+                    [nix.POS]: pos$6,
+                    provisioners: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$5, type: "ACME", name: "acme" }))]),
                   })),
                 })),
               })),
@@ -121,35 +121,35 @@ ${nix.sel(pkgs, "step-cli")}/bin/step certificate create "Example Intermediate C
           const config = nix.arg($_1, "config");
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             security: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               acme: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 defaults: nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   server: "https://caserver:8443/acme/acme/directory",
                   email: "root@example.org",
                 })),
                 acceptTerms: true,
               })),
               pki: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 certificateFiles: nix.thunk(() => [nix.thunk(() => nix.str`${test_certificates}/root_ca.crt`)]),
               })),
             })),
             networking: nix.thunk(() => ({
-              __proto__: pos$16,
-              firewall: nix.thunk(() => ({ __proto__: pos$15, allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
+              [nix.POS]: pos$16,
+              firewall: nix.thunk(() => ({ [nix.POS]: pos$15, allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               nginx: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 enable: true,
                 virtualHosts: nix.thunk(() => ({
-                  __proto__: pos$18,
-                  caclient: nix.thunk(() => ({ __proto__: pos$17, forceSSL: true, enableACME: true })),
+                  [nix.POS]: pos$18,
+                  caclient: nix.thunk(() => ({ [nix.POS]: pos$17, forceSSL: true, enableACME: true })),
                 })),
               })),
             })),
@@ -160,27 +160,27 @@ ${nix.sel(pkgs, "step-cli")}/bin/step certificate create "Example Intermediate C
           const config = nix.arg($_1, "config");
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             security: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               pki: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 certificateFiles: nix.thunk(() => [nix.thunk(() => nix.str`${test_certificates}/root_ca.crt`)]),
               })),
             })),
             networking: nix.thunk(() => ({
-              __proto__: pos$25,
-              firewall: nix.thunk(() => ({ __proto__: pos$24, allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
+              [nix.POS]: pos$25,
+              firewall: nix.thunk(() => ({ [nix.POS]: pos$24, allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               caddy: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 enable: true,
                 virtualHosts: nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   caclientcaddy: nix.thunk(() => ({
-                    __proto__: pos$26,
+                    [nix.POS]: pos$26,
                     extraConfig: "respond \"Welcome to Caddy!\"\n\ntls caddy@example.org {\n  ca https://caserver:8443/acme/acme/directory\n}\n",
                   })),
                 })),
@@ -193,45 +193,45 @@ ${nix.sel(pkgs, "step-cli")}/bin/step certificate create "Example Intermediate C
           const config = nix.arg($_1, "config");
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             security: nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               acme: nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 acceptTerms: true,
                 defaults: nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   server: "https://caserver:8443/acme/acme/directory",
                   email: "root@example.org",
                 })),
               })),
               pki: nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 certificateFiles: nix.thunk(() => [nix.thunk(() => nix.str`${test_certificates}/root_ca.crt`)]),
               })),
             })),
             networking: nix.thunk(() => ({
-              __proto__: pos$36,
-              firewall: nix.thunk(() => ({ __proto__: pos$35, allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
+              [nix.POS]: pos$36,
+              firewall: nix.thunk(() => ({ [nix.POS]: pos$35, allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               h2o: nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 enable: true,
                 hosts: nix.thunk(() => ({
-                  __proto__: pos$44,
+                  [nix.POS]: pos$44,
                   caclienth2o: nix.thunk(() => ({
-                    __proto__: pos$43,
-                    tls: nix.thunk(() => ({ __proto__: pos$37, policy: "force" })),
-                    acme: nix.thunk(() => ({ __proto__: pos$38, enable: true })),
+                    [nix.POS]: pos$43,
+                    tls: nix.thunk(() => ({ [nix.POS]: pos$37, policy: "force" })),
+                    acme: nix.thunk(() => ({ [nix.POS]: pos$38, enable: true })),
                     settings: nix.thunk(() => ({
-                      __proto__: pos$42,
+                      [nix.POS]: pos$42,
                       paths: nix.thunk(() => ({
-                        __proto__: pos$41,
+                        [nix.POS]: pos$41,
                         "/": nix.thunk(() => ({
-                          __proto__: pos$40,
-                          "file.file": nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs_1, "writeTextFile"), nix.thunk(() => ({ __proto__: pos$39, name: "h2o_welcome.txt", text: "Welcome to H2O!" })))}`),
+                          [nix.POS]: pos$40,
+                          "file.file": nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs_1, "writeTextFile"), nix.thunk(() => ({ [nix.POS]: pos$39, name: "h2o_welcome.txt", text: "Welcome to H2O!" })))}`),
                         })),
                       })),
                     })),
@@ -246,11 +246,11 @@ ${nix.sel(pkgs, "step-cli")}/bin/step certificate create "Example Intermediate C
           const config = nix.arg($_1, "config");
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             security: nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               pki: nix.thunk(() => ({
-                __proto__: pos$48,
+                [nix.POS]: pos$48,
                 certificateFiles: nix.thunk(() => [nix.thunk(() => nix.str`${test_certificates}/root_ca.crt`)]),
               })),
             })),

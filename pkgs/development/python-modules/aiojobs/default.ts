@@ -23,20 +23,20 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aio-libs",
           repo: "aiojobs",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-MgGUmDG0b0V/k+mCeiVRnBxa+ChK3URnGv6P8QP7RzQ=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [setuptools]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, aiohttp: nix.thunk(() => [aiohttp]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, aiohttp: nix.thunk(() => [aiohttp]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook, pytest_aiohttp, pytest_cov_stub], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["aiojobs"]);
       const disabledTests = nix.thunk(() => ["test_scheduler_must_be_created_within_running_loop"]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Jobs scheduler for managing background task (asyncio)",
         homepage: "https://github.com/aio-libs/aiojobs",
         changelog: nix.thunk(() => nix.str`https://github.com/aio-libs/aiojobs/blob/${nix.sel(src, "tag")}/CHANGES.rst`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const anki_utils = nix.arg($, "anki-utils");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(anki_utils, "buildAnkiAddon"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "puppy-reinforcement",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "glutanimate",
           repo: "puppy-reinforcement",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/src/puppy_reinforcement`),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Encourage learners with pictures of cute puppies",
         longDescription: nix.thunk(() => nix.str`The options to configure this add-on can be found [here](https://github.com/glutanimate/puppy-reinforcement/blob/v${nix.sel(finalAttrs, "version")}/src/puppy_reinforcement/config.md).
 Extra images can also be added with \`userFiles\`.

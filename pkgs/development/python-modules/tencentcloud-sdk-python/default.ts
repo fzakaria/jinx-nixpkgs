@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tencentcloud-sdk-python",
       version: "3.1.187",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TencentCloud",
           repo: "tencentcloud-sdk-python",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         "test_sts_credential_with_set_endpoint",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tencent Cloud API 3.0 SDK for Python",
         homepage: "https://github.com/TencentCloud/tencentcloud-sdk-python",
         changelog: nix.thunk(() => nix.str`https://github.com/TencentCloud/tencentcloud-sdk-python/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

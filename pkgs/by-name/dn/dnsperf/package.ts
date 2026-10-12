@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dnsperf",
       version: "2.16.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DNS-OARC",
           repo: "dnsperf",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,14 +36,14 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: "https://gitlab.alpinelinux.org/alpine/aports/-/raw/5bd92b8f86a0bf15dddf8fa180adf14344d6cc15/testing/dnsperf/musl-perf_strerror_r.patch",
               hash: "sha256-yTJHXkti/xSklmVfAV45lEsOiHy7oL1phImNTNtcPkM=",
             })))),
         ]))),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tools for DNS benchmaring",
         homepage: "https://www.dns-oarc.net/tools/dnsperf",
         changelog: nix.thunk(() => nix.str`https://github.com/DNS-OARC/dnsperf/releases/tag/v${nix.sel(finalAttrs, "version")}`),

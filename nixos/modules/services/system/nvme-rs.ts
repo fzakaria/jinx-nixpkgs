@@ -50,68 +50,68 @@ export default nix.lambda((args) => (() => {
   const opt = nix.thunk(() => nix.sel(options, "services", "nvme-rs"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$35,
+    [nix.POS]: pos$35,
     options: nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       services: nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         "nvme-rs": nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "nvme-rs, a monitoring service")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "nvme-rs", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$21,
+                    [nix.POS]: pos$21,
                     check_interval_secs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$1,
+                        [nix.POS]: pos$1,
                         type: nix.thunk(() => nix.sel(types, "int")),
                         default: 3600n,
                         description: "Check interval in seconds",
                         example: 86400n,
                       })))),
                     thresholds: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                            __proto__: pos$9,
+                            [nix.POS]: pos$9,
                             freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                             options: nix.thunk(() => ({
-                              __proto__: pos$8,
+                              [nix.POS]: pos$8,
                               temp_warning: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$2,
+                                  [nix.POS]: pos$2,
                                   type: nix.thunk(() => nix.sel(types, "int")),
                                   default: 55n,
                                   description: "Temperature warning threshold (°C)",
                                 })))),
                               temp_critical: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$3,
+                                  [nix.POS]: pos$3,
                                   type: nix.thunk(() => nix.sel(types, "int")),
                                   default: 65n,
                                   description: "Temperature critical threshold (°C)",
                                 })))),
                               wear_warning: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$4,
+                                  [nix.POS]: pos$4,
                                   type: nix.thunk(() => nix.sel(types, "int")),
                                   default: 20n,
                                   description: "Wear warning threshold (%)",
                                 })))),
                               wear_critical: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$5,
+                                  [nix.POS]: pos$5,
                                   type: nix.thunk(() => nix.sel(types, "int")),
                                   default: 50n,
                                   description: "Wear critical threshold (%)",
                                 })))),
                               spare_warning: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$6,
+                                  [nix.POS]: pos$6,
                                   type: nix.thunk(() => nix.sel(types, "int")),
                                   default: 50n,
                                   description: "Available spare warning threshold (%)",
                                 })))),
                               error_threshold: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$7,
+                                  [nix.POS]: pos$7,
                                   type: nix.thunk(() => nix.sel(types, "int")),
                                   default: 100n,
                                   description: "Error count warning threshold",
@@ -122,51 +122,51 @@ export default nix.lambda((args) => (() => {
                         description: "Threshold configuration for NVMe monitoring",
                       })))),
                     email: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$20,
+                        [nix.POS]: pos$20,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                              __proto__: pos$19,
+                              [nix.POS]: pos$19,
                               freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                               options: nix.thunk(() => ({
-                                __proto__: pos$18,
+                                [nix.POS]: pos$18,
                                 smtp_server: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                    __proto__: pos$11,
+                                    [nix.POS]: pos$11,
                                     type: nix.thunk(() => nix.sel(types, "str")),
                                     default: "smtp.gmail.com",
                                     description: "SMTP server address",
                                     example: "mail.example.com",
                                   })))),
                                 smtp_port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                    __proto__: pos$12,
+                                    [nix.POS]: pos$12,
                                     type: nix.thunk(() => nix.sel(types, "port")),
                                     default: 587n,
                                     description: "SMTP server port",
                                   })))),
                                 smtp_username: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                    __proto__: pos$13,
+                                    [nix.POS]: pos$13,
                                     type: nix.thunk(() => nix.sel(types, "str")),
                                     description: "SMTP username",
                                     example: "your-email@gmail.com",
                                   })))),
                                 smtp_password_file: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                    __proto__: pos$14,
+                                    [nix.POS]: pos$14,
                                     type: nix.thunk(() => nix.sel(types, "path")),
                                     description: "File containing SMTP password",
                                     example: "/run/secrets/smtp-password",
                                   })))),
                                 from: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                    __proto__: pos$15,
+                                    [nix.POS]: pos$15,
                                     type: nix.thunk(() => nix.sel(types, "str")),
                                     description: "Sender email address",
                                     example: "nvme-monitor@example.com",
                                   })))),
                                 to: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                    __proto__: pos$16,
+                                    [nix.POS]: pos$16,
                                     type: nix.thunk(() => nix.sel(types, "str")),
                                     description: "Recipient email address",
                                     example: "admin@example.com",
                                   })))),
                                 use_tls: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                    __proto__: pos$17,
+                                    [nix.POS]: pos$17,
                                     type: nix.thunk(() => nix.sel(types, "bool")),
                                     default: true,
                                     description: "Use TLS for SMTP connection",
@@ -185,20 +185,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         services: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           "nvme-rs": nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             settings: nix.thunk(() => nix.sel(opt, "settings", "default")),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           services: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             "nvme-rs": nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               description: "NVMe health monitoring service",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -206,7 +206,7 @@ export default nix.lambda((args) => (() => {
                 const settingsWithoutNull = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "settings", "email"), null)) ? nix.app(nix.sel(lib, "removeAttrs"), nix.thunk(() => nix.sel(cfg, "settings")), nix.thunk(() => ["email"])) : nix.sel(cfg, "settings")));
                 const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "nvme-rs.toml", settingsWithoutNull));
                 return {
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => [
                       nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))}`),
                       "daemon",
@@ -248,7 +248,7 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
       })))),

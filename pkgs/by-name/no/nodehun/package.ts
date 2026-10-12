@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nodehun",
       version: "3.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Wulf",
           repo: "nodehun",
           rev: "03c9dcf1fcd965031a68553ccaf6487d1fe87f79",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       postInstallCheck: "# Smoke check: require() works\nexport NODE_PATH=$out/lib/node_modules\necho 'require(\"nodehun\")' | node -\n",
       disallowedReferences: nix.thunk(() => [nodejs]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Hunspell binding for NodeJS that exposes as much of Hunspell as possible and also adds new features",
         homepage: "https://github.com/Wulf/nodehun",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

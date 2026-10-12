@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const login = nix.arg($, "login");
   const wrappedLogin = nix.argOr($, "wrappedLogin", () => null);
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "libexec/getty",
       postPatch: nix.thunk(() => nix.str`sed -E -i -e "s|/usr/bin/login|${(nix.asBool(!nix.eq(wrappedLogin, null)) ? nix.force(wrappedLogin) : nix.str`${login}/bin/login`)}|g" $BSDSRCDIR/libexec/getty/*.h
 `),

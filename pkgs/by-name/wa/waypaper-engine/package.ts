@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
   const pnpm = pnpm_11;
   const version = "3.1.1";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "0bCdian",
       repo: "Waypaper-Engine",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-MnxxHJ6ff13N2ABqr/29uTxBbgmm1hySROVCwXEYCc0=",
     }))));
   const backend = nix.thunk(() => nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "waypaper-daemon",
       version: version,
       src: src,
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       ldflags: nix.thunk(() => ["-s", nix.thunk(() => nix.str`-X main.version=${version}`)]),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "waypaper-engine",
       version: version,
       src: src,
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpmConfigHook, pnpm, makeWrapper, gitMinimal]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -80,9 +80,9 @@ git apply ${nix.path(here, "./0001-fix-null-strings.patch")}
 makeWrapper ${nix.sel(finalAttrs, "passthru", "backend")}/bin/daemon $out/bin/waypaper-daemon \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [awww, feh]))}
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$4, backend: backend })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, backend: backend })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Wallpaper setter GUI with playlist functionality for Wayland and X11",
         longDescription: "Waypaper Engine is a wallpaper manager with playlist support, advanced filters, multiple backend support, and Wallhaven integration.\n",
         homepage: "https://github.com/0bCdian/Waypaper-Engine",

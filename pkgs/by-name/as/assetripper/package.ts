@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const dotnetCorePackages = nix.arg($, "dotnetCorePackages");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "assetripper",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AssetRipper",
           repo: "AssetRipper",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,11 +45,11 @@ export default nix.lambda((args) => (() => {
       "dotnet-sdk": nix.thunk(() => nix.sel(dotnetCorePackages, "sdk_10_0")),
       "dotnet-runtime": nix.thunk(() => nix.sel(finalAttrs, "dotnet-sdk", "aspnetcore")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool for extracting assets from Unity serialized files and asset bundles",
         homepage: "https://github.com/AssetRipper/AssetRipper",
         changelog: nix.thunk(() => nix.str`https://github.com/AssetRipper/AssetRipper/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

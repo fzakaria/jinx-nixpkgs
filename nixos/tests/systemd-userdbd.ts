@@ -22,34 +22,34 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     name: "systemd-userdbd",
     nodes: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           services: nix.thunk(() => ({
-            __proto__: pos$2,
-            userdbd: nix.thunk(() => ({ __proto__: pos$1, enable: true })),
+            [nix.POS]: pos$2,
+            userdbd: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             users: nix.thunk(() => ({
-              __proto__: pos$4,
-              "test-user-nss": nix.thunk(() => ({ __proto__: pos$3, isNormalUser: true })),
+              [nix.POS]: pos$4,
+              "test-user-nss": nix.thunk(() => ({ [nix.POS]: pos$3, isNormalUser: true })),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             etc: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               "userdb/test-user-dropin.user": nix.thunk(() => ({
-                __proto__: pos$7,
-                text: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ __proto__: pos$6, userName: "test-user-dropin" })))),
+                [nix.POS]: pos$7,
+                text: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$6, userName: "test-user-dropin" })))),
               })),
             })),
             systemPackages: nix.thunk(() => (() => {

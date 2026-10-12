@@ -41,82 +41,82 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "p2pool"));
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         p2pool: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Monero P2Pool node daemon")),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/var/lib/p2pool",
               description: "The directory where p2pool stores its data files.\n",
             })))),
           sidechain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["mini", "nano"]))))),
               default: null,
               description: "Which sidechain to mine on. (null for Main, \"mini\" or \"nano\" for the Mini and Nano chains.)\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "p2pool", nix.thunk(() => ({})))),
           host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "127.0.0.1",
               description: "The IP address of your Monero node.\n",
             })))),
           logLevel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "ints", "between"), 0n, 6n)),
               default: 2n,
               description: "Log level for the P2Pool node. (Between 0 - 6)\n",
             })))),
           rpcPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 18081n,
               description: "Monero daemon RPC API port.\n",
             })))),
           zmqPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 18083n,
               description: "Monero daemon ZMQ pub port.\n",
             })))),
           socks5: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "connecting to a SOCKS5 proxy for outgoing connections")),
             ip: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "127.0.0.1",
                 description: "IP address of the SOCKS5 proxy to connect to.\n",
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 9050n,
                 description: "The port number of the SOCKS5 proxy.\n",
               })))),
           })),
           walletAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "",
               description: "The Monero wallet address used for mining payouts.\nIt's recommended to store your wallet address in an environment file to avoid it being saved in the nix store.\nSee [](#opt-services.p2pool.environmentFile) for more details.\n",
             })))),
           extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["--out-peers 12", "--in-peers 8"]),
               description: "List of extra command-line arguments to be passed to the P2Pool daemon.\n",
             })))),
           environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               example: "/var/lib/p2pool/p2pool.env",
@@ -126,18 +126,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         assertions: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "walletAddress"), "")),
             message: "A wallet address must be specified.\nIt's recommended to set `services.p2pool.walletAddress` to an environment variable of your choosing and provide\na filepath to `services.p2pool.environmentFile` with the corresponding variable and value.\n",
           })))),
         users: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           users: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             p2pool: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               isSystemUser: true,
               group: "p2pool",
               description: "P2Pool node user",
@@ -145,17 +145,17 @@ export default nix.lambda((args) => (() => {
               createHome: true,
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$19, p2pool: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$19, p2pool: nix.thunk(() => ({})) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           sockets: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             p2pool: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               description: "P2Pool Command Socket",
               socketConfig: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 SocketUser: "p2pool",
                 SocketGroup: "p2pool",
                 ListenFIFO: "/run/p2pool/p2pool.control",
@@ -166,9 +166,9 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             p2pool: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               description: "P2Pool node",
               after: nix.thunk(() => ["network.target", "system-modules-load.target"]),
               wants: nix.thunk(() => ["network.target", "system-modules-load.target"]),
@@ -182,7 +182,7 @@ export default nix.lambda((args) => (() => {
 --socks5 ${nix.sel(cfg, "socks5", "ip")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "socks5", "port")))}`))}`), nix.str`${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "walletAddress"), "")), nix.thunk(() => nix.str` \\
 --wallet ${nix.sel(cfg, "walletAddress")}`))}`), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "extraArgs"), [])), nix.thunk(() => nix.app(nix.sel(lib, "strings", "concatStringsSep"), " \\\n", nix.thunk(() => nix.sel(cfg, "extraArgs"))))))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 Type: "exec",
                 User: "p2pool",
                 Group: "p2pool",
@@ -251,7 +251,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

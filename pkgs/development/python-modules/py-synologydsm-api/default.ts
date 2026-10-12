@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.10.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mib1185",
           repo: "py-synologydsm-api",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest_asyncio, pytestCheckHook, syrupy]);
       const pythonImportsCheck = nix.thunk(() => ["synology_dsm"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python API for Synology DSM",
         mainProgram: "synologydsm-api",
         homepage: "https://github.com/mib1185/py-synologydsm-api",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

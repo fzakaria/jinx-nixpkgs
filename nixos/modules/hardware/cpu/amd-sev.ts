@@ -34,22 +34,22 @@ export default nix.lambda((args) => (() => {
   const cfgSev = nix.thunk(() => nix.sel(config, "hardware", "cpu", "amd", "sev"));
   const cfgSevGuest = nix.thunk(() => nix.sel(config, "hardware", "cpu", "amd", "sevGuest"));
   const optionsFor = (device) => (group) => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), nix.thunk(() => nix.str`access to the AMD ${device} device`))),
     user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: nix.thunk(() => nix.str`Owner to assign to the ${device} device.`),
         type: nix.thunk(() => nix.sel(lib, "types", "str")),
         default: "root",
       })))),
     group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: nix.thunk(() => nix.str`Group to assign to the ${device} device.`),
         type: nix.thunk(() => nix.sel(lib, "types", "str")),
         default: group,
       })))),
     mode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: nix.thunk(() => nix.str`Mode to set for the ${device} device.`),
         type: nix.thunk(() => nix.sel(lib, "types", "str")),
         default: "0660",
@@ -57,15 +57,15 @@ export default nix.lambda((args) => (() => {
   });
   const w = nix.withScope(lib, null);
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       hardware: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         cpu: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           amd: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             sev: nix.thunk(() => nix.app(optionsFor, "SEV", "sev")),
             sevGuest: nix.thunk(() => nix.app(optionsFor, "SEV guest", "sev-guest")),
           })),
@@ -74,28 +74,28 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfgSev, "enable")), nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 assertion: nix.thunk(() => nix.app(nix.sel(lib, "hasAttr"), nix.thunk(() => nix.sel(cfgSev, "user")), nix.thunk(() => nix.sel(config, "users", "users")))),
                 message: "Given user does not exist",
               })),
               nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfgSev, "group"), nix.sel(options, "hardware", "cpu", "amd", "sev", "group", "default"))) || nix.asBool(nix.app(nix.sel(lib, "hasAttr"), nix.thunk(() => nix.sel(cfgSev, "group")), nix.thunk(() => nix.sel(config, "users", "groups")))))),
                 message: "Given group does not exist",
               })),
             ]),
-            boot: nix.thunk(() => ({ __proto__: pos$11, extraModprobeConfig: "options kvm_amd sev=1\n" })),
+            boot: nix.thunk(() => ({ [nix.POS]: pos$11, extraModprobeConfig: "options kvm_amd sev=1\n" })),
             users: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfgSev, "group"), nix.sel(options, "hardware", "cpu", "amd", "sev", "group", "default"))), nix.thunk(() => nix.attrsDyn({}, [[nix.str`${nix.sel(cfgSev, "group")}`, nix.thunk(() => ({}))]])))),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               udev: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 extraRules: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(cfgSev, w);
                   return nix.str`KERNEL=="sev", OWNER="${nix.lookup(w_1, "user")}", GROUP="${nix.lookup(w_1, "group")}", MODE="${nix.lookup(w_1, "mode")}"
@@ -105,27 +105,27 @@ export default nix.lambda((args) => (() => {
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfgSevGuest, "enable")), nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 assertion: nix.thunk(() => nix.app(nix.sel(lib, "hasAttr"), nix.thunk(() => nix.sel(cfgSevGuest, "user")), nix.thunk(() => nix.sel(config, "users", "users")))),
                 message: "Given user does not exist",
               })),
               nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfgSevGuest, "group"), nix.sel(options, "hardware", "cpu", "amd", "sevGuest", "group", "default"))) || nix.asBool(nix.app(nix.sel(lib, "hasAttr"), nix.thunk(() => nix.sel(cfgSevGuest, "group")), nix.thunk(() => nix.sel(config, "users", "groups")))))),
                 message: "Given group does not exist",
               })),
             ]),
             users: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfgSevGuest, "group"), nix.sel(options, "hardware", "cpu", "amd", "sevGuest", "group", "default"))), nix.thunk(() => nix.attrsDyn({}, [[nix.str`${nix.sel(cfgSevGuest, "group")}`, nix.thunk(() => ({}))]])))),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               udev: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 extraRules: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(cfgSevGuest, w);
                   return nix.str`KERNEL=="sev-guest", OWNER="${nix.lookup(w_1, "user")}", GROUP="${nix.lookup(w_1, "group")}", MODE="${nix.lookup(w_1, "mode")}"

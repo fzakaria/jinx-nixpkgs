@@ -24,27 +24,27 @@ export default nix.lambda((args) => (() => {
   const mkEnableOption = nix.thunk(() => nix.attr(lib, "mkEnableOption"));
   const mkIf = nix.thunk(() => nix.attr(lib, "mkIf"));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       hardware: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "hid-fanatecff": nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(mkEnableOption, "hid-fanatecff, a Linux kernel driver that aims to add support for Fanatec devices")),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$7,
-        boot: nix.thunk(() => ({ __proto__: pos$4, extraModulePackages: nix.thunk(() => [hid_fanatecff]) })),
+        [nix.POS]: pos$7,
+        boot: nix.thunk(() => ({ [nix.POS]: pos$4, extraModulePackages: nix.thunk(() => [hid_fanatecff]) })),
         services: nix.thunk(() => ({
-          __proto__: pos$6,
-          udev: nix.thunk(() => ({ __proto__: pos$5, packages: nix.thunk(() => [hid_fanatecff]) })),
+          [nix.POS]: pos$6,
+          udev: nix.thunk(() => ({ [nix.POS]: pos$5, packages: nix.thunk(() => [hid_fanatecff]) })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(maintainers, null);
         return [nix.thunk(() => nix.lookup(w, "rake5k"))];

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mediamate",
       version: "3.8.2_316",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/Wouter01/MediaMate-Releases/releases/download/v${nix.sel(finalAttrs, "version")}/MediaMate_v${nix.app(nix.sel(lib, "strings", "replaceStrings"), nix.thunk(() => ["_"]), nix.thunk(() => ["-"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.zip`),
           hash: "sha256-O+V7x0AJBgsPL7clEpQYvvE38/0IxyN8J4tptxCmgo0=",
         })))),
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [unzip]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications\ncp -r *.app $out/Applications\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "New, fresh visuals for changing your volume, brightness and now playing media",
         homepage: "https://wouter01.github.io/MediaMate/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

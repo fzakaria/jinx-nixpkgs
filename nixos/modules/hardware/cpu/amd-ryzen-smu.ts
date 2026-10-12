@@ -23,17 +23,17 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "hardware", "cpu", "amd", "ryzen-smu"));
   const ryzen_smu = nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "ryzen-smu"));
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       hardware: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         cpu: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           amd: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "ryzen-smu": nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               enable: nix.thunk(() => nix.app(mkEnableOption, "ryzen_smu, a linux kernel driver that exposes access to the SMU (System Management Unit) for certain AMD Ryzen Processors.\n\nWARNING: Damage cause by use of your AMD processor outside of official AMD specifications or outside of factory settings are not covered under any AMD product warranty and may not be covered by your board or system manufacturer's warranty\n")),
             })),
           })),
@@ -41,16 +41,16 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         boot: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           kernelModules: nix.thunk(() => ["ryzen-smu"]),
           extraModulePackages: nix.thunk(() => [ryzen_smu]),
         })),
-        environment: nix.thunk(() => ({ __proto__: pos$7, systemPackages: nix.thunk(() => [ryzen_smu]) })),
+        environment: nix.thunk(() => ({ [nix.POS]: pos$7, systemPackages: nix.thunk(() => [ryzen_smu]) })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

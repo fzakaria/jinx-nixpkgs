@@ -22,21 +22,21 @@ export default nix.lambda((args) => (() => {
   const facterLib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib.nix")), lib));
   const cfg = nix.thunk(() => nix.sel(config, "hardware", "facter", "detected", "graphics", "amd"));
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       hardware: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         facter: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           detected: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             graphics: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               amd: nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "Enable the AMD Graphics module"), {
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   default: nix.thunk(() => nix.builtins.elem("amdgpu", nix.thunk(() => nix.app(nix.sel(facterLib, "collectDrivers"), nix.thunk(() => nix.selOr(config, () => [], "hardware", "facter", "report", "hardware", "graphics_card")))))),
                   defaultText: "hardware dependent",
                 })),
@@ -47,10 +47,10 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(config, "hardware", "facter", "enable")) && nix.asBool(nix.sel(cfg, "enable")))), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         services: nix.thunk(() => ({
-          __proto__: pos$9,
-          xserver: nix.thunk(() => ({ __proto__: pos$8, videoDrivers: nix.thunk(() => ["modesetting"]) })),
+          [nix.POS]: pos$9,
+          xserver: nix.thunk(() => ({ [nix.POS]: pos$8, videoDrivers: nix.thunk(() => ["modesetting"]) })),
         })),
       })))),
   };

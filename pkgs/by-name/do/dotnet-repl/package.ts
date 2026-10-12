@@ -12,14 +12,14 @@ export default nix.lambda((args) => (() => {
   const buildDotnetGlobalTool = nix.arg($, "buildDotnetGlobalTool");
   const dotnetCorePackages = nix.arg($, "dotnetCorePackages");
   return nix.app(buildDotnetGlobalTool, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "dotnet-repl",
       version: "0.3.250",
       "dotnet-sdk": nix.thunk(() => nix.sel(dotnetCorePackages, "sdk_9_0")),
       "dotnet-runtime": nix.thunk(() => nix.sel(dotnetCorePackages, "runtime_9_0")),
       nugetHash: "sha256-Tja6kIr9nHMrFY76vdFvS3ig2Tfrjus8mJb+2OC8fnk=",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Polyglot REPL built on .NET Interactive",
         homepage: "https://github.com/jonsequitur/dotnet-repl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

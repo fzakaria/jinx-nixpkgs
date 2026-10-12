@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
     const baseName = nix.thunk(() => nix.app(nix.sel(lib, "getName"), name));
     const override = nix.thunk(() => (nix.asBool(nix.builtins.hasAttr(baseName, overrides)) ? nix.builtins.getAttr(baseName, overrides) : {}));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name: nix.thunk(() => nix.str`chicken-${name}`),
         propagatedBuildInputs: buildInputs,
         nativeBuildInputs: nix.thunk(() => [makeWrapper]),
         buildInputs: nix.thunk(() => [chicken]),
         env: nix.thunk(() => nix.update({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           CSC_OPTIONS: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", cscOptions)),
           CHICKEN_REPOSITORY: libPath,
           CHICKEN_INSTALL_PREFIX: "$out",
@@ -55,7 +55,7 @@ runHook postInstall
 `),
         meta: nix.thunk(() => nix.update((() => {
           const from = nix.thunk(() => nix.sel(chicken, "meta"));
-          return { __proto__: pos$2, platforms: nix.thunk(() => nix.attr(from, "platforms")) };
+          return { [nix.POS]: pos$2, platforms: nix.thunk(() => nix.attr(from, "platforms")) };
         })(), nix.selOr(args_2, () => ({}), "meta"))),
       }, nix.update(nix.builtins.removeAttrs(args_2, nix.thunk(() => ["name", "buildInputs", "meta"])), override))));
   })(), formals$2);

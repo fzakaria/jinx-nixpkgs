@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const numpy = nix.arg($, "numpy");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "opensimplex",
       version: "0.4.5.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromForgejo, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "code.larus.se",
           owner: "lmas",
           repo: "opensimplex",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["tests/test_opensimplex.py"]),
       pythonImportsCheck: nix.thunk(() => ["opensimplex"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OpenSimplex Noise functions for 2D, 3D and 4D",
         longDescription: "OpenSimplex noise is an n-dimensional gradient noise function that was\ndeveloped in order to overcome the patent-related issues surrounding\nSimplex noise, while continuing to also avoid the visually-significant\ndirectional artifacts characteristic of Perlin noise.\n",
         homepage: "https://github.com/lmas/opensimplex",

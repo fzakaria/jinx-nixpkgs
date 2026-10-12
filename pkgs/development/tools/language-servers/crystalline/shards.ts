@@ -9,27 +9,27 @@ const pos$4 = nix.positions(here + "/shards.nix", [["url", 18, 5], ["rev", 19, 5
 const pos$5 = nix.positions(here + "/shards.nix", [["bisect", 2, 3], ["lsp", 7, 3], ["priority-queue", 12, 3], ["sentry", 17, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$5,
+  [nix.POS]: pos$5,
   bisect: nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     url: "https://github.com/spider-gazelle/bisect.git",
     rev: "v1.2.1",
     sha256: "1ddz7fag1l65m6g0vw6xa96yv00rdwjj2z69k26rvyz37qk9ccqg",
   })),
   lsp: nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     url: "https://github.com/elbywan/crystal-lsp.git",
     rev: "v0.1.2",
     sha256: "0knw8xaq3ssyb34w77a390j79m4w6bks5hlwr8m8fci2gq9a0r6z",
   })),
   "priority-queue": nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     url: "https://github.com/spider-gazelle/priority-queue.git",
     rev: "v1.0.1",
     sha256: "1rkppd8win4yalxcvsxikqcq6sw0npdqjajqbj57m78bzlxpyjv6",
   })),
   sentry: nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     url: "https://github.com/samueleaton/sentry.git",
     rev: "e448ce83486f99ef016c311e10ec0cac805cded3",
     sha256: "13yp7805xpd605jpfpb3srqb0psy25w7n6x9mpkcyvzhqmpnpfyq",

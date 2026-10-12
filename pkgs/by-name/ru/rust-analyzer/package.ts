@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.argOr($, "version", () => nix.sel(rust_analyzer_unwrapped, "version"));
   const rustSrc = nix.argOr($, "rustSrc", () => nix.sel(rustPlatform, "rustLibSrc"));
   return nix.app(runCommand, nix.thunk(() => nix.str`${pname}-${version}`), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.attr(rust_analyzer_unwrapped, "src")),

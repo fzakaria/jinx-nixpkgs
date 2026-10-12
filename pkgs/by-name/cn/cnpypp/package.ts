@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libzip = nix.arg($, "libzip");
   const range_v3 = nix.arg($, "range-v3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cnpypp",
       version: "0-unstable-2025-06-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mreininghaus",
           repo: "cnpypp",
           rev: "c6cd4e2078e4f39e862720b66fb211c45577c510",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       checkPhase: "runHook preCheck\n\n./example1\n./example2\n./example_c\n./range_example\n./range_zip_example\n./npz_speedtest\n\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C++17 library that allows to read and write NumPy data files",
         homepage: "https://github.com/mreininghaus/cnpypp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

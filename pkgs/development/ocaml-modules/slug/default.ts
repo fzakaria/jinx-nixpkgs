@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.1";
       const duneVersion = "3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "thangngoc89",
           repo: "ocaml-slug",
           rev: version,
@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
       const doCheck = true;
       const checkInputs = nix.thunk(() => [alcotest]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Url safe slug generator for OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "niols"))]),
         homepage: "https://github.com/thangngoc89/ocaml-slug",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         duneVersion,

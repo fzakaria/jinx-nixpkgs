@@ -38,59 +38,59 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "hound"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   const houndConfigFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "hound-config.json",
       text: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.sel(cfg, "settings")))),
       checkPhase: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/houndd -check-config -conf $out
 `),
     }))));
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "hound", "extraGroups"]), "Use users.users.hound.extraGroups instead")),
       nix.thunk(() => nix.app(nix.sel(lib, "mkChangedOptionModule"), nix.thunk(() => ["services", "hound", "config"]), nix.thunk(() => ["services", "hound", "settings"]), (config_1) => nix.builtins.fromJSON(nix.thunk(() => nix.sel(config_1, "services", "hound", "config"))))),
     ]),
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "SuperSandro2000"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         hound: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "hound")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "hound", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: "hound",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "User the hound daemon should execute under.\n",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: "hound",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Group the hound daemon should execute under.\n",
             })))),
           home: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: "/var/lib/hound",
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "The path to use as hound's $HOME.\nIf the default user \"hound\" is configured then this is the home of the \"hound\" user.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(settingsFormat, "type")),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  max-concurrent-indexers = 2;\n  repos.nixpkgs.url = \"https://www.github.com/NixOS/nixpkgs.git\";\n}\n")),
               description: "The full configuration of the Hound daemon.\nSee the upstream documentation <https://github.com/hound-search/hound/blob/main/docs/config-options.md> for details.\n\n:::{.note}\nThe `dbpath` should be an absolute path to a writable directory.\n:::.com/hound-search/hound/blob/main/docs/config-options.md>.\n",
             })))),
           listen: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "0.0.0.0:6080",
               example: ":6080",
@@ -100,14 +100,14 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         users: nix.thunk(() => ({
-          __proto__: pos$14,
-          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "hound")), nix.thunk(() => ({ __proto__: pos$11, hound: nix.thunk(() => ({})) })))),
+          [nix.POS]: pos$14,
+          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "hound")), nix.thunk(() => ({ [nix.POS]: pos$11, hound: nix.thunk(() => ({})) })))),
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "hound")), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               hound: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 description: "Hound code search",
                 createHome: true,
                 isSystemUser: true,
@@ -117,34 +117,34 @@ export default nix.lambda((args) => (() => {
             })))),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           etc: nix.thunk(() => ({
-            __proto__: pos$16,
-            "hound/config.json": nix.thunk(() => ({ __proto__: pos$15, source: houndConfigFile })),
+            [nix.POS]: pos$16,
+            "hound/config.json": nix.thunk(() => ({ [nix.POS]: pos$15, source: houndConfigFile })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           hound: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             settings: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               dbpath: nix.thunk(() => nix.str`${nix.sel(config, "services", "hound", "home")}/data`),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           services: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             hound: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               description: "Hound Code Search",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               restartTriggers: nix.thunk(() => [houndConfigFile]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
                 WorkingDirectory: nix.thunk(() => nix.sel(cfg, "home")),

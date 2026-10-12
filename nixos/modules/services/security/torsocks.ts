@@ -39,7 +39,7 @@ ${nix.app(optionalNullStr, nix.thunk(() => nix.sel(cfg, "socks5Password")), nix.
 AllowInbound ${(nix.asBool(nix.sel(cfg, "allowInbound")) ? "1" : "0")}
 `;
   const wrapTorsocks = (name) => (server) => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: name,
       text: nix.thunk(() => nix.str`#!${nix.sel(pkgs, "runtimeShell")}
 TORSOCKS_CONF_FILE=${nix.app(nix.sel(pkgs, "writeText"), "torsocks.conf", nix.thunk(() => nix.app(configFile, server)))} ${nix.sel(pkgs, "torsocks")}/bin/torsocks "$@"
@@ -48,57 +48,57 @@ TORSOCKS_CONF_FILE=${nix.app(nix.sel(pkgs, "writeText"), "torsocks.conf", nix.th
       destination: nix.thunk(() => nix.str`/bin/${name}`),
     })));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         tor: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           torsocks: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to build `/etc/tor/torsocks.conf`\ncontaining the specified global torsocks configuration.\n",
               })))),
             server: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "127.0.0.1:9050",
                 example: "192.168.0.20:1234",
                 description: "IP/Port of the Tor SOCKS server. Currently, hostnames are\nNOT supported by torsocks.\n",
               })))),
             fasterServer: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "127.0.0.1:9063",
                 example: "192.168.0.20:1234",
                 description: "IP/Port of the Tor SOCKS server for torsocks-faster wrapper suitable for HTTP.\nCurrently, hostnames are NOT supported by torsocks.\n",
               })))),
             onionAddrRange: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "127.42.42.0/24",
                 description: "Tor hidden sites do not have real IP addresses. This\nspecifies what range of IP addresses will be handed to the\napplication as \"cookies\" for .onion names.  Of course, you\nshould pick a block of addresses which you aren't going to\never need to actually connect to. This is similar to the\nMapAddress feature of the main tor daemon.\n",
               })))),
             socks5Username: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 example: "bob",
                 description: "SOCKS5 username. The `TORSOCKS_USERNAME`\nenvironment variable overrides this option if it is set.\n",
               })))),
             socks5Password: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 example: "sekret",
                 description: "SOCKS5 password. The `TORSOCKS_PASSWORD`\nenvironment variable overrides this option if it is set.\n",
               })))),
             allowInbound: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Set Torsocks to accept inbound connections. If set to\n`true`, listen() and accept() will be\nallowed to be used with non localhost address.\n",
@@ -108,17 +108,17 @@ TORSOCKS_CONF_FILE=${nix.app(nix.sel(pkgs, "writeText"), "torsocks.conf", nix.th
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         environment: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.sel(pkgs, "torsocks")),
             nix.thunk(() => nix.app(wrapTorsocks, "torsocks-faster", nix.thunk(() => nix.sel(cfg, "fasterServer")))),
           ]),
           etc: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             "tor/torsocks.conf": nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "torsocks.conf", nix.thunk(() => nix.app(configFile, nix.thunk(() => nix.sel(cfg, "server")))))),
             })),
           })),

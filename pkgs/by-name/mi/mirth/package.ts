@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mirth",
       version: "0-unstable-2026-05-28",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~typeswitch",
           repo: "mirth",
           rev: "b180112a547cb803e3bf5720a0bb08f8bffa9742",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ninstall -d \"$lib/lib/mirth\" \"$doc/share/doc/mirth/tutorial\" \\\n  \"$examples/share/mirth/examples\" \"$vim\"\n\ncp -Tr lib \"$lib/lib/mirth\"\ncp -Tr examples \"$examples/share/mirth/examples\"\ncp -Tr tutorial \"$doc/share/doc/mirth/tutorial\"\ncp -Tr tools/mirth-vim  \"$vim\"\n\nbin/mirth2 src/main.mth --docs \"$doc/share/doc/mirth\" -c\ninstall -Dm644 LICENSE README.md -t \"$doc/share/doc/mirth\"\n\n# stages 0–2 aren’t needed anymore\ninstall -Dm755 bin/mirth3 \"$bin/bin/mirthc\"\n\nrunHook postInstall\n",
       postFixup: "makeBinaryWrapper \"$bin/bin/mirthc\" \"$out/bin/mirthc\" \\\n  --add-flags \"-P $lib/lib/mirth\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Concatenative functional programming language with strong static linear types",
         longDescription: "Mirth is inspired by Forth, Joy, Haskell, Lisp, and monoidal category theory.\nMirth compiles to C99.\n",
         homepage: "https://git.sr.ht/~typeswitch/mirth",

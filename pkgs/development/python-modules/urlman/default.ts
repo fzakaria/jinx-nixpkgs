@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.3";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "andrewgodwin",
           repo: "urlman",
           rev: version,
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["urlman"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Django URL pattern helpers",
         homepage: "https://github.com/andrewgodwin/urlman",
         changelog: nix.thunk(() => nix.str`https://github.com/andrewgodwin/urlman/blob/${nix.sel(src, "rev")}/CHANGELOG`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

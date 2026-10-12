@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const libxcrypt_legacy = nix.arg($, "libxcrypt-legacy");
   const removeReferencesTo = nix.arg($, "removeReferencesTo");
-  const perl$ = nix.thunk(() => nix.app(nix.sel(perl, "override"), nix.thunk(() => ({ __proto__: pos$1, libxcrypt: libxcrypt_legacy }))));
+  const perl$ = nix.thunk(() => nix.app(nix.sel(perl, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, libxcrypt: libxcrypt_legacy }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "proftpd",
       version: "1.3.9d",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "proftpd",
           repo: "proftpd",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "patchShebangs $out/bin\n\n# This causes a cyclic dependency between $out and $dev, but for\n# no good reason: `--enable-dso` is disabled, so this isn't functional\n# and even then we'd need special support for building custom proftpd\n# modules since installing stuff into the store later on\n# doesn't work anyways.\nrm $out/bin/prxs\n\n# Remove unneeded directories:\n# * var doesn't make sense in the store\n# * share/locale is not used\n# * libexec seems to be needed for custom modules\n#   only which is not supported by this package.\nrm -r $out/{var,share,libexec}\n",
       postFixup: "# Strip away configure flags from proftpd that point to $dev.\nremove-references-to -t $dev $out/bin/*\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://www.proftpd.org/",
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.sel(lib, "maintainers", "leona")),

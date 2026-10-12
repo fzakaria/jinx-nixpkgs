@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libxslt = nix.arg($, "libxslt");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "telepathy-idle",
       version: "0.2.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://telepathy.freedesktop.org/releases/telepathy-idle/telepathy-idle-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-g4fiXl+wtMvnAeXcCS1mbWUQuDP9Pn5GLpFw027DwV8=",
         })))),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
   --prefix GIO_EXTRA_MODULES : "${nix.app(nix.sel(lib, "makeSearchPath"), "lib/gio/modules", nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "getLib"), dconf)), glib_networking]))}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "IRC connection manager for the Telepathy framework",
         homepage: "https://telepathy.freedesktop.org/components/telepathy-idle/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

@@ -12,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const runCommandLocal = nix.arg($, "runCommandLocal");
   return nix.app(runCommandLocal, "install-shell-files--install-completion-fifo", nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       })),
     })), "installShellCompletion \\\n  --bash --name foo.bash <(echo foo) \\\n  --zsh --name _foo <(echo bar) \\\n  --fish --name foo.fish <(echo baz) \\\n  --nushell --name foo.nu <(echo bucks)\n\n[[ $(<$out/share/bash-completion/completions/foo.bash) == foo ]] || { echo \"foo.bash comparison failed\"; exit 1; }\n[[ $(<$out/share/zsh/site-functions/_foo) == bar ]] || { echo \"_foo comparison failed\"; exit 1; }\n[[ $(<$out/share/fish/vendor_completions.d/foo.fish) == baz ]] || { echo \"foo.fish comparison failed\"; exit 1; }\n[[ $(<$out/share/nushell/vendor/autoload/foo.nu) == bucks ]] || { echo \"foo.nu comparison failed\"; exit 1; }\n");

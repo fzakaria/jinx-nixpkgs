@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const libgit2 = nix.arg($, "libgit2");
   const version = nix.arg($, "version");
   return nix.app(mkMesonLibrary, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "nix-fetchers",
       version: version,
       workDir: nix.path(here, "./."),
       buildInputs: nix.thunk(() => [libgit2]),
       propagatedBuildInputs: nix.thunk(() => [nix_store, nix_util, nlohmann_json]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "unix"), nix.sel(lib, "platforms", "windows"))),
       })),
     }));

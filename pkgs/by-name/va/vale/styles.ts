@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
     const name = nix.arg($_1, "name");
     const stylePath = nix.argOr($_1, "stylePath", () => nix.force(name));
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => nix.update({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: nix.thunk(() => nix.str`vale-style-${nix.app(nix.sel(lib, "toLower"), name)}`),
         dontConfigure: true,
         dontBuild: true,
@@ -57,11 +57,11 @@ cp -R ${stylePath} "$out/share/vale/styles/${name}"
 runHook postInstall
 `),
         passthru: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         })),
         meta: nix.thunk(() => nix.update({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -71,120 +71,120 @@ runHook postInstall
       }, nix.builtins.removeAttrs(args_2, nix.thunk(() => ["meta", "name"])))));
   })(), formals$2);
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     alex: nix.thunk(() => nix.app(buildStyle, nix.thunk(() => (() => {
         const name = "alex";
         const version = "0.2.3";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             owner: "errata-ai",
             repo: "alex",
             rev: nix.thunk(() => nix.str`v${version}`),
             hash: "sha256-p0CQg6ZLusSKr57SugwlnoDEoPNVY3UIM8rHHxOL2l0=",
           }))));
         const meta = nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           description: "Vale-compatible implementation of the guidelines enforced by the alex linter",
           homepage: "https://github.com/errata-ai/alex",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         }));
-        return { __proto__: pos$6, name, version, src, meta };
+        return { [nix.POS]: pos$6, name, version, src, meta };
       })()))),
     google: nix.thunk(() => nix.app(buildStyle, nix.thunk(() => (() => {
         const name = "Google";
         const version = "0.7.1";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             owner: "errata-ai",
             repo: "Google",
             rev: nix.thunk(() => nix.str`v${version}`),
             hash: "sha256-fGhbLgi3HQF8iKnUBgxPFlctQr8ebZfmYEksxyv0reQ=",
           }))));
         const meta = nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           description: "Vale-compatible implementation of the Google Developer Documentation Style Guide",
           homepage: "https://github.com/errata-ai/Google",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         }));
-        return { __proto__: pos$9, name, version, src, meta };
+        return { [nix.POS]: pos$9, name, version, src, meta };
       })()))),
     joblint: nix.thunk(() => nix.app(buildStyle, nix.thunk(() => (() => {
         const name = "Joblint";
         const version = "0.4.1";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             owner: "errata-ai",
             repo: "Joblint",
             rev: nix.thunk(() => nix.str`v${version}`),
             hash: "sha256-zRz5ThOg5RLTZj3dYPe0PDvOF5DjO31lduSpi2Us87U=",
           }))));
         const meta = nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           description: "Vale-compatible implementation of the Joblint linter",
           homepage: "https://github.com/errata-ai/Joblint",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         }));
-        return { __proto__: pos$12, name, version, src, meta };
+        return { [nix.POS]: pos$12, name, version, src, meta };
       })()))),
     microsoft: nix.thunk(() => nix.app(buildStyle, nix.thunk(() => (() => {
         const name = "Microsoft";
         const version = "0.15.1";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             owner: "errata-ai",
             repo: "Microsoft",
             rev: nix.thunk(() => nix.str`v${version}`),
             hash: "sha256-MycWukXoeTZzGAcoNODzt592VHWgjnMXZdNPoQWDC18=",
           }))));
         const meta = nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           description: "Vale-compatible implementation of the Microsoft Writing Style Guide",
           homepage: "https://github.com/errata-ai/Microsoft",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         }));
-        return { __proto__: pos$15, name, version, src, meta };
+        return { [nix.POS]: pos$15, name, version, src, meta };
       })()))),
     proselint: nix.thunk(() => nix.app(buildStyle, nix.thunk(() => (() => {
         const name = "proselint";
         const version = "0.3.4";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             owner: "errata-ai",
             repo: "proselint",
             rev: nix.thunk(() => nix.str`v${version}`),
             hash: "sha256-ryKJDX1JrvDWVKLC5qQGctweDf74yuwEXxl/IqumM4s=",
           }))));
         const meta = nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           description: "Vale-compatible implementation of Python's proselint linter",
           homepage: "https://github.com/errata-ai/proselint",
           license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         }));
-        return { __proto__: pos$18, name, version, src, meta };
+        return { [nix.POS]: pos$18, name, version, src, meta };
       })()))),
     readability: nix.thunk(() => nix.app(buildStyle, nix.thunk(() => (() => {
         const name = "Readability";
         const version = "0.2.0";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             owner: "errata-ai",
             repo: "readability",
             rev: nix.thunk(() => nix.str`v${version}`),
             hash: "sha256-3IGEt42ifvv3kSunDsHu7dJov7Y2AWUDIob2luIu2ak=",
           }))));
         const meta = nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           description: "Vale-compatible implementations of many popular \"readability\" metrics",
           homepage: "https://github.com/errata-ai/readability",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         }));
-        return { __proto__: pos$21, name, version, src, meta };
+        return { [nix.POS]: pos$21, name, version, src, meta };
       })()))),
     redhat: nix.thunk(() => nix.app(buildStyle, nix.thunk(() => (() => {
         const name = "RedHat";
         const version = "680";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             owner: "redhat-documentation",
             repo: "vale-at-red-hat",
             rev: nix.thunk(() => nix.str`v${version}`),
@@ -192,30 +192,30 @@ runHook postInstall
           }))));
         const stylePath = ".vale/styles/RedHat";
         const meta = nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           description: "Vale-compatible implementation of the Red Hat documentation style guide",
           homepage: "https://github.com/redhat-documentation/vale-at-red-hat",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         }));
-        return { __proto__: pos$24, name, version, src, stylePath, meta };
+        return { [nix.POS]: pos$24, name, version, src, stylePath, meta };
       })()))),
     "write-good": nix.thunk(() => nix.app(buildStyle, nix.thunk(() => (() => {
         const name = "write-good";
         const version = "0.4.1";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             owner: "errata-ai",
             repo: "write-good",
             rev: nix.thunk(() => nix.str`v${version}`),
             hash: "sha256-W/eHlXklAVlAnY8nLPi/SIKsg8UUnH8UkH99BDo5yKk=",
           }))));
         const meta = nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           description: "Vale-compatible implementation of the write-good linter",
           homepage: "https://github.com/errata-ai/write-good",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         }));
-        return { __proto__: pos$27, name, version, src, meta };
+        return { [nix.POS]: pos$27, name, version, src, meta };
       })()))),
   };
 })(), formals$1);

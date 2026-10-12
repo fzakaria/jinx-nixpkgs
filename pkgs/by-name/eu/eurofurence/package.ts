@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "eurofurence",
       version: "2000-04-21",
       srcs: nix.thunk(() => nix.builtins.map(nix.lambda((args_1) => (() => {
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
           const url = nix.arg($_1, "url");
           const hash = nix.arg($_1, "hash");
           return nix.app(fetchzip, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               name: nix.thunk(() => nix.builtins.baseNameOf(url)),
               stripRoot: false,
               url: url,
@@ -35,27 +35,27 @@ export default nix.lambda((args) => (() => {
             })));
         })(), formals$2), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://web.archive.org/web/20200131023120/http://eurofurence.net/eurof_tt.zip",
             hash: "sha256-Al4tT2/qV9/K5le/OctybxgPcNMVDJi0OPr2EUBk8cE=",
           })),
           nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://web.archive.org/web/20200130083325/http://eurofurence.net/eurofctt.zip",
             hash: "sha256-ZF0Neysp0+TQgNAN+2IrfR/7dn043rSq6S3NHJ3gLUI=",
           })),
           nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://web.archive.org/web/20200206093756/http://eurofurence.net/monof_tt.zip",
             hash: "sha256-Kvcsp/0LzHhwPudP1qWLxhaiJ5/su1k7FBuV9XPKIGs=",
           })),
           nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://web.archive.org/web/20200206171841/http://eurofurence.net/pagebxtt.zip",
             hash: "sha256-CvKhzvxSQqdEHihQBfCSu1QgjzKn38DWaONdz5BpM4M=",
           })),
           nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             url: "https://web.archive.org/web/20190812003003/http://eurofurence.net/unifurtt.zip",
             hash: "sha256-n9xnzJi8wvK6oCVQUQnQ1X9jW6WgyMKKIiDsT4j2Aas=",
           })),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       dontUnpack: true,
       installPhase: "runHook preInstall\nfor src in $srcs; do\n  install -D $src/*.ttf -t $out/share/fonts/truetype\n  install -D $src/*.txt -t $out/share/doc/$name\ndone\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://web.archive.org/web/20200131023120/http://eurofurence.net/eurofurence.html",
         description: "Family of geometric rounded sans serif fonts",
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),

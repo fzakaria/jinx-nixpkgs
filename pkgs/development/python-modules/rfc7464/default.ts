@@ -19,14 +19,14 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const disabled = nix.thunk(() => nix.app(pythonAtLeast, "3.12"));
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "1hcn6h38qplfcmq392cs58r01k16k202bqyap4br02376pr4ik7a",
           extension: "zip",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/moshez/rfc7464",
         description: "RFC 7464 is a proposed standard for streaming JSON documents",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "shlevy"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, format, disabled, src, meta };
+      return { [nix.POS]: pos$3, pname, version, format, disabled, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

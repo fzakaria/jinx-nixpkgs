@@ -64,12 +64,12 @@ export default nix.lambda((args) => (() => {
     return (nix.asBool(nix.eq(acceleration, "metal")) || nix.asBool((nix.asBool((nix.asBool(nix.sel(hostPlatform, "isDarwin")) && nix.asBool(nix.sel(hostPlatform, "isAarch64")))) && nix.asBool(nix.eq(acceleration, null)))));
   })());
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "mistral-rs",
       version: "0.9.4",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "EricLBuehler",
           repo: "mistral.rs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -93,12 +93,12 @@ export default nix.lambda((args) => (() => {
         ])), nix.app(nix.sel(lib, "optionals"), mklSupport, nix.thunk(() => [mkl]))))),
       buildFeatures: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), cudaSupport, nix.thunk(() => ["cuda"])), nix.concat(nix.app(nix.sel(lib, "optionals"), mklSupport, nix.thunk(() => ["mkl"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(hostPlatform, "isDarwin")) && nix.asBool(metalSupport))), nix.thunk(() => ["metal"]))))),
       env: nix.thunk(() => nix.update({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         MISTRALRS_METAL_PRECOMPILE: 0n,
         SWAGGER_UI_DOWNLOAD_URL: nix.thunk(() => (() => {
           const swaggerUiVersion = "5.17.14";
           const swaggerUi = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: nix.thunk(() => nix.str`https://github.com/swagger-api/swagger-ui/archive/refs/tags/v${swaggerUiVersion}.zip`),
               hash: "sha256-SBJE0IEgl7Efuu73n3HZQrFxYX+cn5UU5jrL4T5xzNw=",
             }))));
@@ -106,7 +106,7 @@ export default nix.lambda((args) => (() => {
         })()),
         RUSTONIG_SYSTEM_LIBONIG: true,
       }, nix.app(nix.sel(lib, "optionalAttrs"), cudaSupport, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           CUDA_COMPUTE_CAP: cudaCapability$,
           CUDA_TOOLKIT_ROOT_DIR: nix.thunk(() => nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart")))),
         }))))),
@@ -141,17 +141,17 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: nix.thunk(() => !nix.asBool(cudaSupport)),
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         tests: nix.thunk(() => ({
-          __proto__: pos$8,
-          withMkl: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(hostPlatform, "isLinux")) && nix.asBool(nix.sel(hostPlatform, "isx86_64")))), nix.thunk(() => nix.app(nix.sel(mistral_rs, "override"), nix.thunk(() => ({ __proto__: pos$5, acceleration: "mkl" })))))),
-          withCuda: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(hostPlatform, "isLinux")), nix.thunk(() => nix.app(nix.sel(mistral_rs, "override"), nix.thunk(() => ({ __proto__: pos$6, acceleration: "cuda" })))))),
-          withMetal: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(hostPlatform, "isDarwin")) && nix.asBool(nix.sel(hostPlatform, "isAarch64")))), nix.thunk(() => nix.app(nix.sel(mistral_rs, "override"), nix.thunk(() => ({ __proto__: pos$7, acceleration: "metal" })))))),
+          [nix.POS]: pos$8,
+          withMkl: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(hostPlatform, "isLinux")) && nix.asBool(nix.sel(hostPlatform, "isx86_64")))), nix.thunk(() => nix.app(nix.sel(mistral_rs, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, acceleration: "mkl" })))))),
+          withCuda: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(hostPlatform, "isLinux")), nix.thunk(() => nix.app(nix.sel(mistral_rs, "override"), nix.thunk(() => ({ [nix.POS]: pos$6, acceleration: "cuda" })))))),
+          withMetal: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(hostPlatform, "isDarwin")) && nix.asBool(nix.sel(hostPlatform, "isAarch64")))), nix.thunk(() => nix.app(nix.sel(mistral_rs, "override"), nix.thunk(() => ({ [nix.POS]: pos$7, acceleration: "metal" })))))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "Blazingly fast LLM inference",
         homepage: "https://github.com/EricLBuehler/mistral.rs",
         changelog: nix.thunk(() => nix.str`https://github.com/EricLBuehler/mistral.rs/releases/tag/v${nix.sel(finalAttrs, "version")}`),

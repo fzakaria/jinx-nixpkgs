@@ -14,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const contrib = nix.arg($, "contrib");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "http4idris",
       version: "2018-01-16",
       idrisDeps: nix.thunk(() => [contrib]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "A1kmm",
           repo: "http4idris",
           rev: "f44ffd2a15628869c7aadf241e3c9b1ee7b40941",
           sha256: "16bs7rxbsq7m7jm96zkqiq8hj68l907m8xgmjrcxzl158qvzhw1w",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Experimental HTTP framework for Idris",
         homepage: "https://github.com/A1kmm/http4idris",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

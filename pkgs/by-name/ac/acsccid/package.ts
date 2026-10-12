@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const libusb1 = nix.arg($, "libusb1");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.1.13",
       pname: "acsccid",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/acsccid/acsccid-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-ixmroQPsA8RIudG1YsgyL40v83zyHUy4sM9SLF84XJ8=",
         })))),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       postPatch: "substituteInPlace src/Makefile.in \\\n  --replace-fail '$(INSTALL_UDEV_RULE_FILE)' \"\"\npatchShebangs src/convert_version.pl\npatchShebangs src/create_Info_plist.pl\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PC/SC driver for Linux/Mac OS X and it supports ACS CCID smart card readers",
         longDescription: "acsccid is a PC/SC driver for Linux/Mac OS X and it supports ACS CCID smart card\nreaders. This library provides a PC/SC IFD handler implementation and\ncommunicates with the readers through the PC/SC Lite resource manager (pcscd).\n\nacsccid is based on ccid. See CCID free software driver for more\ninformation:\nhttps://ccid.apdu.fr/\n\nIt can be enabled in /etc/nixos/configuration.nix by adding:\n  services.pcscd.enable = true;\n  services.pcscd.plugins = [ pkgs.acsccid ];\n",
         homepage: "http://acsccid.sourceforge.net",

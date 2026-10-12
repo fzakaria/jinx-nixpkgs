@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libdmtx = nix.arg($, "libdmtx");
   const imagemagick = nix.arg($, "imagemagick");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dmtx-utils",
       version: "0.7.6-unstable-2023-09-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dmtx",
           repo: "dmtx-utils",
           rev: "057faa00143c152e8e21c29a36137f771614daed",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => [libdmtx, imagemagick]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Data matrix command-line utilities",
         homepage: "https://github.com/dmtx/dmtx-utils",
         changelog: nix.thunk(() => nix.str`https://github.com/dmtx/dmtx-utils/blob/v${nix.sel(finalAttrs, "version")}/ChangeLog`),

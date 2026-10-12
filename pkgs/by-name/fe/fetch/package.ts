@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const fastfetch = nix.arg($, "fastfetch");
   const pciutils = nix.arg($, "pciutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fetch",
       version: "2.3.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "areofyl",
           repo: "fetch",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
 --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [fastfetch, pciutils]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Animated 3D fetch tool that renders your distro logo as a spinning bas-relief",
         homepage: "https://github.com/areofyl/fetch",
         changelog: nix.thunk(() => nix.str`https://github.com/areofyl/fetch/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

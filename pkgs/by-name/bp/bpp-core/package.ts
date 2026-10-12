@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "bpp-core",
       version: "2.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BioPP",
           repo: "bpp-core",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/BioPP/bpp-core/commit/d450e8033b06e80dff9c2236fb7ce1f3ced5dcbb.patch",
             hash: "sha256-9t68mrK7KNs5BxljKMaA+XskCcKDNv8DNCVUYunoNdw=",
           })))),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       postFixup: "substituteInPlace $out/lib/cmake/bpp-core/bpp-core-targets.cmake  \\\n  --replace-fail 'set(_IMPORT_PREFIX' '#set(_IMPORT_PREFIX'\n",
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/BioPP/bpp-core",
         changelog: "https://github.com/BioPP/bpp-core/blob/master/ChangeLog",
         description: "C++ bioinformatics libraries and tools",

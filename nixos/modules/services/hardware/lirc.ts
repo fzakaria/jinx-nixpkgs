@@ -37,27 +37,27 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "lirc"));
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         lirc: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the LIRC daemon, to receive and send infrared signals")),
           options: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               example: "[lircd]\nnodaemon = False\n",
               description: "LIRC default options described in man:lircd(8) ({file}`lirc_options.conf`)",
             })))),
           configs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "lines")))),
               description: "Configurations for lircd to load, see man:lircd.conf(5) for details ({file}`lircd.conf`)",
             })))),
           extraArguments: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "Extra arguments to lircd.",
@@ -66,29 +66,29 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         environment: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           etc: nix.thunk(() => ({
-            __proto__: pos$8,
-            "lirc/lirc_options.conf": nix.thunk(() => ({ __proto__: pos$7, text: nix.thunk(() => nix.sel(cfg, "options")) })),
+            [nix.POS]: pos$8,
+            "lirc/lirc_options.conf": nix.thunk(() => ({ [nix.POS]: pos$7, text: nix.thunk(() => nix.sel(cfg, "options")) })),
           })),
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "lirc"))]),
         })),
         passthru: nix.thunk(() => ({
-          __proto__: pos$11,
-          lirc: nix.thunk(() => ({ __proto__: pos$10, socket: "/run/lirc/lircd" })),
+          [nix.POS]: pos$11,
+          lirc: nix.thunk(() => ({ [nix.POS]: pos$10, socket: "/run/lirc/lircd" })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           sockets: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             lircd: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "LIRC daemon socket",
               wantedBy: nix.thunk(() => ["sockets.target"]),
               socketConfig: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 ListenStream: nix.thunk(() => nix.sel(config, "passthru", "lirc", "socket")),
                 SocketUser: "lirc",
                 SocketMode: "0660",
@@ -96,16 +96,16 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             lircd: nix.thunk(() => (() => {
               const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "lircd.conf", nix.thunk(() => nix.builtins.concatStringsSep("\n", nix.thunk(() => nix.sel(cfg, "configs"))))));
               return {
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 description: "LIRC daemon service",
                 after: nix.thunk(() => ["network.target"]),
-                unitConfig: nix.thunk(() => ({ __proto__: pos$15, Documentation: nix.thunk(() => ["man:lircd(8)"]) })),
+                unitConfig: nix.thunk(() => ({ [nix.POS]: pos$15, Documentation: nix.thunk(() => ["man:lircd(8)"]) })),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   RuntimeDirectory: nix.thunk(() => ["lirc", "lirc/lock"]),
                   RuntimeDirectoryPreserve: true,
                   PermissionsStartOnly: true,
@@ -123,20 +123,20 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           users: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             lirc: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "lirc")),
               group: "lirc",
               description: "LIRC user for lircd",
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             lirc: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "lirc")),
             })),
           })),

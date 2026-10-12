@@ -33,40 +33,40 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   const daemonSettingsFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "daemon.json", nix.thunk(() => nix.sel(cfg, "daemon", "settings"))));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         docker: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           rootless: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "This option enables docker in a rootless mode, a daemon that manages\nlinux containers. To interact with the daemon, one needs to set\n{command}`DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock`.\n",
               })))),
             setSocketVariable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Point {command}`DOCKER_HOST` to rootless Docker instance for\nnormal users by default.\n",
               })))),
             daemon: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   type: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   default: nix.thunk(() => ({})),
-                  example: nix.thunk(() => ({ __proto__: pos$3, ipv6: true, "fixed-cidr-v6": "fd00::/80" })),
+                  example: nix.thunk(() => ({ [nix.POS]: pos$3, ipv6: true, "fixed-cidr-v6": "fd00::/80" })),
                   description: "Configuration for docker daemon. The attributes are serialized to JSON used as daemon.conf.\nSee <https://docs.docker.com/engine/reference/commandline/dockerd/#daemon-configuration-file>\n",
                 })))),
             })),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "docker", nix.thunk(() => ({})))),
             extraPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
                 default: [],
                 description: "Extra packages to add to PATH for the docker daemon process.\n",
@@ -76,32 +76,32 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         environment: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           extraInit: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "setSocketVariable")), "if [ -z \"$DOCKER_HOST\" -a -n \"$XDG_RUNTIME_DIR\" ]; then\n  export DOCKER_HOST=\"unix://$XDG_RUNTIME_DIR/docker.sock\"\nfi\n")),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           user: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             services: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               docker: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 wantedBy: nix.thunk(() => ["default.target"]),
                 description: "Docker Application Container Engine (Rootless)",
                 path: nix.thunk(() => nix.concat(["/run/wrappers"], nix.sel(cfg, "extraPackages"))),
                 environment: proxy_env,
                 unitConfig: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   ConditionUser: "!root",
                   StartLimitInterval: "60s",
                   StartLimitBurst: 3n,
                 })),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   Type: "notify",
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/dockerd-rootless --config-file=${daemonSettingsFile}`),
                   ExecReload: nix.thunk(() => nix.str`${nix.sel(pkgs, "procps")}/bin/kill -s HUP $MAINPID`),

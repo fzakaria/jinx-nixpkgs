@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const jre = nix.arg($, "jre");
   return nix.app(nix.sel(maven, "buildMavenPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kotlin-interactive-shell",
       version: "0.5.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Kotlin",
           repo: "kotlin-interactive-shell",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), jre)} $out/bin/ki \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Kotlin Language Interactive Shell",
         longDescription: "The shell is an extensible implementation of Kotlin REPL with a rich set of features including:\n- Syntax highlight\n- Type inference command\n- Downloading dependencies in runtime using Maven coordinates\n- List declared symbols\n",
         homepage: "https://github.com/Kotlin/kotlin-interactive-shell",

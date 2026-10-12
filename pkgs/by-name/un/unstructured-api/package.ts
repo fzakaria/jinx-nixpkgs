@@ -152,11 +152,11 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(d, "averaged-perceptron-tagger")),
     ]));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "unstructured-api",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Unstructured-IO",
           repo: "unstructured-api",
           rev: version,
@@ -176,11 +176,11 @@ makeWrapper ${pythonEnv}/bin/uvicorn $out/bin/unstructured-api \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Open-source toolkit designed to make it easy to prepare unstructured data like PDFs, HTML and Word Documents for downstream data science tasks",
         homepage: "https://github.com/Unstructured-IO/unstructured-api",
         changelog: nix.thunk(() => nix.str`https://github.com/Unstructured-IO/unstructured-api/releases/tag/${version}`),

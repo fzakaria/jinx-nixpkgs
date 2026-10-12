@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const taler_merchant = nix.arg($, "taler-merchant");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "taler-challenger",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git-www.taler.net/challenger.git",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-oomrqpA/V2sNTRzFbHS7rnZdTIs8w+SRYsa9AYDFn5o=",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
   --replace-fail "/bin/bash" "${runtimeShell}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OAuth 2.0-based authentication service that validates user can receive messages at a certain address",
         homepage: "https://git-www.taler.net/challenger.git",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

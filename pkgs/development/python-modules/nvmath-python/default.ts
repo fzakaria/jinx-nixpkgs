@@ -24,16 +24,16 @@ export default nix.lambda((args) => (() => {
   const numpy = nix.arg($, "numpy");
   const cudaSupport = nix.argOr($, "cudaSupport", () => nix.sel(config, "cudaSupport"));
   return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       stdenv: nix.thunk(() => nix.sel(cudaPackages_13_1, "backendStdenv")),
     })), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nvmath-python",
       version: "1.0.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "NVIDIA",
           repo: "nvmath-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(cudaPackages_13_1, "cuda_cudart"))]),
       pythonImportsCheck: nix.thunk(() => ["nvmath"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "NVIDIA Math Libraries for the Python Ecosystem",
         homepage: "https://pypi.org/project/nvmath-python",
         license: nix.thunk(() => (() => {

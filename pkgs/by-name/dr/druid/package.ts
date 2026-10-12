@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   const forEach = nix.thunk(() => nix.attr(lib, "forEach"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "apache-druid",
       version: "37.0.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://apache/druid/${nix.sel(finalAttrs, "version")}/apache-druid-${nix.sel(finalAttrs, "version")}-bin.tar.gz`),
           hash: "sha256-xeYCvm70NWQ79fWCcTU5JXmMgYwj15qsB3ZjOMnKDdA=",
         })))),
@@ -54,14 +54,14 @@ ${nix.sel(finalAttrs, "loadJars")}
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => nix.app(nix.sel(nixosTests, "druid", "default", "passthru", "override"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             druidPackage: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Apache Druid: a high performance real-time analytics database",
         homepage: "https://github.com/apache/druid",
         license: nix.thunk(() => nix.sel(licenses, "asl20")),

@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "2026.8.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fsspec",
           repo: "sshfs",
           tag: version,
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const dependencies = nix.thunk(() => [asyncssh, fsspec]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         bcrypt: nix.thunk(() => nix.concat([asyncssh], nix.sel(asyncssh, "optional-dependencies", "bcrypt"))),
         fido2: nix.thunk(() => nix.concat([asyncssh], nix.sel(asyncssh, "optional-dependencies", "fido2"))),
         gssapi: nix.thunk(() => nix.concat([asyncssh], nix.sel(asyncssh, "optional-dependencies", "gssapi"))),
@@ -50,14 +50,14 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => nix.concat(["test_config_expansions"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_checksum"]))));
       const pythonImportsCheck = nix.thunk(() => ["sshfs"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "SSH/SFTP implementation for fsspec",
         homepage: "https://github.com/fsspec/sshfs/",
         changelog: nix.thunk(() => nix.str`https://github.com/fsspec/sshfs/releases/tag/${nix.sel(src, "tag")}`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

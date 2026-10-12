@@ -16,23 +16,23 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const replaceVars = nix.arg($, "replaceVars");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libelfin",
       version: "0.3-unstable-2024-03-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aclements",
           repo: "libelfin",
           rev: "e0172767b79b76373044118ef0272b49b02a0894",
           hash: "sha256-xb5/DM2XOFM/w71OwRC/sCRqOSQvxVL1SS2zj2+dD/U=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-Don-t-detect-package-version-with-Git.patch"), nix.thunk(() => ({ __proto__: pos$2, version: nix.thunk(() => nix.attr(finalAttrs, "version")) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-Don-t-detect-package-version-with-Git.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, version: nix.thunk(() => nix.attr(finalAttrs, "version")) })))),
       ]),
       nativeBuildInputs: nix.thunk(() => [python3]),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/aclements/libelfin/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         description: "C++11 ELF/DWARF parser",

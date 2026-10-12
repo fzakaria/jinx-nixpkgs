@@ -24,17 +24,17 @@ export default nix.lambda((args) => (() => {
   const fetchPnpmDeps = nix.arg($, "fetchPnpmDeps");
   const pnpmConfigHook = nix.arg($, "pnpmConfigHook");
   const testers = nix.arg($, "testers");
-  const pnpm = nix.thunk(() => nix.app(nix.sel(pnpm_10, "override"), nix.thunk(() => ({ __proto__: pos$1, "nodejs-slim": nodejs_slim_22 }))));
+  const pnpm = nix.thunk(() => nix.app(nix.sel(pnpm_10, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, "nodejs-slim": nodejs_slim_22 }))));
   const version = "1.16.4";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "umputun",
       repo: "remark42",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-VCFpN/8GRziD7sKVw7jK33llo0AGqygW4ghHZxrluJc=",
     }))));
   const remark42_web = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "remark42-web",
       version: version,
       src: src,
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/frontend`),
       nativeBuildInputs: nix.thunk(() => [nodejs_slim_22, pnpm, pnpmConfigHook]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out/web\ncp -r \"apps/remark42/public/.\" $out/web/\n\nrunHook postInstall\n",
     })));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "remark42",
       version: version,
       src: src,
@@ -69,11 +69,11 @@ cp -r ${remark42_web}/web/. app/cmd/web/
       ldflags: nix.thunk(() => ["-s", "-w", "-X", nix.thunk(() => nix.str`main.revision=v${version}`)]),
       postInstall: "mv \"$out/bin/app\" \"$out/bin/remark42\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "remark42 --help",
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -81,7 +81,7 @@ cp -r ${remark42_web}/web/. app/cmd/web/
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Self-hosted comment engine that embeds a statically built frontend",
         homepage: "https://remark42.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

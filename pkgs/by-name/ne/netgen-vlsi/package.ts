@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const m4 = nix.arg($, "m4");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "netgen",
       version: "1.5.323",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "RTimothyEdwards",
           repo: "netgen",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [m4]),
       buildInputs: nix.thunk(() => [tcl, tk]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu89" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu89" })),
       configureFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`--with-tcl=${nix.app(nix.sel(lib, "getLib"), tcl)}/lib`),
         nix.thunk(() => nix.str`--with-tk=${nix.app(nix.sel(lib, "getLib"), tk)}/lib`),
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`sed -i "1s|#!/bin/bash|#!${nix.sel(stdenv, "shell")}|" $out/bin/netgen
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "LVS tool for VLSI circuit netlists",
         mainProgram: "netgen",
         homepage: "https://github.com/RTimothyEdwards/netgen",

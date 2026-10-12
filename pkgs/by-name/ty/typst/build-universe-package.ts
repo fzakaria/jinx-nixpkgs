@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const typstPackages = nix.arg($, "typstPackages");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       inheritFunctionArgs: false,
       constructDrv: buildTypstPackage,
       excludeDrvArgNames: nix.thunk(() => ["description", "hash", "license", "homepage", "typstDeps"]),
@@ -31,16 +31,16 @@ export default nix.lambda((args) => (() => {
         const homepage = nix.argOr($_1, "homepage", () => null);
         const typstDeps = nix.argOr($_1, "typstDeps", () => []);
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               hash: hash,
               url: nix.thunk(() => nix.str`https://packages.typst.org/preview/${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}.tar.gz`),
               stripRoot: false,
             })))),
           typstDeps: nix.thunk(() => nix.builtins.filter((x) => !nix.eq(x, null), nix.thunk(() => nix.app(nix.sel(lib, "map"), (d) => nix.app(nix.sel(lib, "attrsets", "attrByPath"), nix.thunk(() => [d]), null, typstPackages), typstDeps)))),
           meta: nix.thunk(() => nix.update({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             description: description,
             maintainers: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
             })()),
             license: nix.thunk(() => nix.app(nix.sel(lib, "map"), nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "getAttr")), nix.thunk(() => nix.sel(lib, "licensesSpdx")))), license)),
             hydraPlatforms: [],
-          }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(homepage, null)), nix.thunk(() => ({ __proto__: pos$3, homepage: homepage }))))),
+          }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(homepage, null)), nix.thunk(() => ({ [nix.POS]: pos$3, homepage: homepage }))))),
         };
       })(), formals$2),
     })));

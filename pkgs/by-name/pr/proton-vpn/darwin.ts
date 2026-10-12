@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const xmlstarlet = nix.arg($, "xmlstarlet");
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "proton-vpn",
       version: "6.5.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://protonvpn.com/download/macos/${nix.sel(finalAttrs, "version")}/ProtonVPN_mac_v${nix.sel(finalAttrs, "version")}.dmg`),
           hash: "sha256-1QpJ8UxQsO+K1oqJ/JaF1WmbotT5LLTDQxcpG0JUNfg=",
         })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [_7zz]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications\ncp -R ./ProtonVPN/ProtonVPN.app $out/Applications\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeShellScript, "proton-vpn-update-script", nix.thunk(() => nix.str`set -euo pipefail
 export PATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [curl, xmlstarlet, common_updater_scripts, coreutils]))}"
 
@@ -47,7 +47,7 @@ update-source-version proton-vpn "$version" --file=./pkgs/by-name/pr/proton-vpn/
 `))),
       })),
       meta: nix.thunk(() => nix.update(meta, {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         platforms: nix.thunk(() => ["aarch64-darwin"]),
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);

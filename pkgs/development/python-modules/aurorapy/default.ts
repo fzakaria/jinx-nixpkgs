@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const six = nix.arg($, "six");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aurorapy",
       version: "0.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "energievalsabbia",
           repo: "aurorapy",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +39,7 @@ sed -i "/from past.builtins import map/d" aurorapy/client.py
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, six]),
       pythonImportsCheck: nix.thunk(() => ["aurorapy"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Implementation of the communication protocol for Power-One Aurora inverters",
         homepage: "https://gitlab.com/energievalsabbia/aurorapy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

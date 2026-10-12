@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gokrazy",
       version: "0-unstable-2026-09-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gokrazy",
           repo: "tools",
           rev: "64f7f697dfff1a24457b00cd93ca5c30c866f34e",
@@ -36,12 +36,12 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["cmd/gok"]),
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       postInstall: "installShellCompletion --cmd gok \\\n  --bash <($out/bin/gok completion bash) \\\n  --fish <($out/bin/gok completion fish) \\\n  --zsh <($out/bin/gok completion zsh)\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Turn your Go program(s) into an appliance running on the Raspberry Pi 3, Pi 4, Pi 5, Pi Zero 2 W, or amd64 PCs",
         homepage: "https://github.com/gokrazy/gokrazy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

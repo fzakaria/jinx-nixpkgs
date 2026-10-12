@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "psql2csv";
       const version = "0.12";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fphilipe",
           repo: "psql2csv",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +40,7 @@ runHook postInstall
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(postgresql, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to run a PostreSQL query and output the result as CSV",
         homepage: "https://github.com/fphilipe/psql2csv",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -50,7 +50,7 @@ runHook postInstall
       };
       })());
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

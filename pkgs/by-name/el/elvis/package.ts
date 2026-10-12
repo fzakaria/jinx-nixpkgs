@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "elvis",
       version: "2.2_0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`http://www.the-little-red-haired-girl.org/pub/elvis/elvis-${nix.sel(finalAttrs, "version")}.tar.gz`),
             nix.thunk(() => nix.str`http://www.the-little-red-haired-girl.org/pub/elvis/old/elvis-${nix.sel(finalAttrs, "version")}.tar.gz`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "0000-resolve-stdio-getline-naming-conflict.patch",
             url: "https://github.com/mbert/elvis/commit/076cf4ad5cc993be0c6195ec0d5d57e5ad8ac1eb.patch",
             hash: "sha256-DCo2caiyE8zV5ss3O1AXy7oNlJ5AzFxdTeBx2Wtg83s=",
@@ -61,7 +61,7 @@ cp doc/* $out/share/doc/elvis-${nix.sel(finalAttrs, "version")}/
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://elvis.the-little-red-haired-girl.org/",
         description: "Vi clone for Unix and other operating systems",
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),

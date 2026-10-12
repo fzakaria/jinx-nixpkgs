@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "no-plagiarism",
           repo: "pymorphy3",
           tag: version,
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [dawg2_python, pymorphy3_dicts_ru, pymorphy3_dicts_uk]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, CLI: nix.thunk(() => [click]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, CLI: nix.thunk(() => [click]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["pymorphy3"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Morphological analyzer/inflection engine for Russian and Ukrainian",
         mainProgram: "pymorphy",
         homepage: "https://github.com/no-plagiarism/pymorphy3",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

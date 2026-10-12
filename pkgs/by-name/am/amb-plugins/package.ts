@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const ladspa_header = nix.arg($, "ladspa-header");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "amb-plugins",
       version: "0.8.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://kokkinizita.linuxaudio.org/linuxaudio/downloads/AMB-plugins-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "0x4blm4visjqj0ndqr0cg776v3b7lvplpc8cgi9n51llhavn0jpl",
         })))),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       patchPhase: "sed -i 's@/usr/bin/install@install@g' Makefile\nsed -i 's@/bin/rm@rm@g' Makefile\nsed -i 's@/usr/lib/ladspa@$(out)/lib/ladspa@g' Makefile\nsed -i 's@g++@$(CXX)@g' Makefile\n",
       preInstall: "mkdir -p $out/lib/ladspa",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Set of ambisonics ladspa plugins",
         longDescription: "Mono and stereo to B-format panning, horizontal rotator, square, hexagon and cube decoders.\n",
         version: nix.thunk(() => nix.sel(finalAttrs, "version")),

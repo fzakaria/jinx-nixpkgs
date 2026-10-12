@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hash-identifier",
       version: "1.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kalilinux",
           repo: "packages/hash-identifier",
           rev: nix.thunk(() => nix.str`kali/${nix.sel(finalAttrs, "version")}+git20180314-0kali1`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       pyproject: false,
       installPhase: "install -Dm0775 hash-id.py $out/bin/hash-identifier\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Identify the different types of hashes used to encrypt data and especially passwords",
         homepage: "https://github.com/blackploit/hash-identifier",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

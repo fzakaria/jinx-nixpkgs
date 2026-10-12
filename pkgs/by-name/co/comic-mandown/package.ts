@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const withGUI = nix.argOr($, "withGUI", () => true);
   const mandown$ = nix.thunk(() => nix.app(nix.sel(python3Packages, "mandown", "overridePythonAttrs"), (prev) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       dependencies: nix.thunk(() => nix.concat(nix.sel(prev, "dependencies"), nix.app(nix.sel(lib, "optionals"), withGUI, nix.thunk(() => nix.sel(prev, "optional-dependencies", "gui"))))),
     })));
   const mandownApp = nix.thunk(() => nix.app(nix.sel(python3Packages, "toPythonApplication"), mandown$));
   return nix.update(mandownApp, {
-    __proto__: pos$3,
-    meta: nix.thunk(() => nix.update(nix.sel(mandownApp, "meta"), { __proto__: pos$2, mainProgram: "mandown" })),
+    [nix.POS]: pos$3,
+    meta: nix.thunk(() => nix.update(nix.sel(mandownApp, "meta"), { [nix.POS]: pos$2, mainProgram: "mandown" })),
   });
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

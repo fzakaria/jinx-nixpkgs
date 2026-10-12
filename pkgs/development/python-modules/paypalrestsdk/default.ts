@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.13.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-2sI2SSqawSYKdgAUouVqs4sJ2BQylbXollRTWbYf7dY=",
@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["paypalrestsdk"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python APIs to create, process and manage payment",
         homepage: "https://github.com/paypal/PayPal-Python-SDK",
         changelog: "https://github.com/paypal/PayPal-Python-SDK/blob/master/CHANGELOG.md",
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             shortName: "paypalSdk",
             fullName: "PayPal SDK License",
             url: "https://github.com/paypal/PayPal-Python-SDK/blob/master/LICENSE",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -26,14 +26,14 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const version = "0.2.4";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "Yuki-bun",
       repo: "kenjutu",
       tag: nix.thunk(() => nix.str`kjn/v${version}`),
       hash: "sha256-Ogf8B/h8RZozeZH20YPFs7+3kBWduRuNOkwiKpj+8Hc=",
     }))));
   const kjn_rust = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kenjutu-kjn",
       version: version,
       src: src,
@@ -49,13 +49,13 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/kjn --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [jujutsu]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         mainProgram: "kjn",
       })),
     }))));
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "kenjutu-nvim",
       version: version,
       src: src,
@@ -64,12 +64,12 @@ export default nix.lambda((args) => (() => {
 ln -s ${nix.app(nix.sel(lib, "getExe"), kjn_rust)} $out/bin/kjn
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$4, attrPath: "vimPlugins.kenjutu-nvim.kjn-rust" })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, attrPath: "vimPlugins.kenjutu-nvim.kjn-rust" })))),
         "kjn-rust": kjn_rust,
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         changelog: nix.thunk(() => nix.str`https://github.com/Yuki-bun/kenjutu/releases/tag/${nix.sel(src, "tag")}`),
         description: "Track your code review progress hunk-by-hunk through history rewrites for jj users",
         homepage: "https://github.com/Yuki-bun/kenjutu/",

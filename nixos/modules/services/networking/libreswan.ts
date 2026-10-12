@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
   const libexec = nix.thunk(() => nix.str`${nix.sel(pkgs, "libreswan")}/libexec/ipsec`);
   const ipsec = nix.thunk(() => nix.str`${nix.sel(pkgs, "libreswan")}/sbin/ipsec`);
   const trim = (chars) => (str) => (() => {
-    const nonchars = nix.thunk(() => nix.app(nix.sel(lib, "filter"), (x) => !nix.asBool(nix.app(nix.sel(lib, "elem"), nix.thunk(() => nix.sel(x, "value")), chars)), nix.thunk(() => nix.app(nix.sel(lib, "imap0"), (i) => (v) => ({ __proto__: pos$1, ind: i, value: v }), nix.thunk(() => nix.app(nix.sel(lib, "stringToCharacters"), str))))));
+    const nonchars = nix.thunk(() => nix.app(nix.sel(lib, "filter"), (x) => !nix.asBool(nix.app(nix.sel(lib, "elem"), nix.thunk(() => nix.sel(x, "value")), chars)), nix.thunk(() => nix.app(nix.sel(lib, "imap0"), (i) => (v) => ({ [nix.POS]: pos$1, ind: i, value: v }), nix.thunk(() => nix.app(nix.sel(lib, "stringToCharacters"), str))))));
     return nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nonchars, [])), nix.thunk(() => nix.app(nix.sel(lib, "substring"), nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "head"), nonchars), "ind")), nix.thunk(() => nix.app(nix.sel(lib, "add"), 1n, nix.thunk(() => nix.app(nix.sel(lib, "sub"), nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "last"), nonchars), "ind")), nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "head"), nonchars), "ind")))))), str)));
   })();
   const indent = (str) => nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), (s) => ["  ", nix.thunk(() => nix.app(trim, nix.thunk(() => [" ", "\t"]), s)), "\n"], nix.thunk(() => nix.app(nix.sel(lib, "splitString"), "\n", str)))));
@@ -49,45 +49,45 @@ ${configText}
 ${connectionText}
 `)));
   const policyFiles = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (name) => (text) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: nix.thunk(() => nix.str`ipsec.d/policies/${name}`),
       value: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), nix.thunk(() => nix.str`ipsec-policy-${name}`), text)),
       })),
     }), nix.thunk(() => nix.sel(cfg, "policies"))));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         libreswan: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Libreswan IPsec service")),
           configSetup: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "protostack=netkey\nvirtual_private=%v4:10.0.0.0/8,%v4:192.168.0.0/16,%v4:172.16.0.0/12,%v4:25.0.0.0/8,%v4:100.64.0.0/10,%v6:fd00::/8,%v6:fe80::/10\n",
               example: "secretsfile=/root/ipsec.secrets\nprotostack=netkey\nvirtual_private=%v4:10.0.0.0/8,%v4:192.168.0.0/16,%v4:172.16.0.0/12,%v4:25.0.0.0/8,%v4:100.64.0.0/10,%v6:fd00::/8,%v6:fe80::/10\n",
               description: "Options to go in the 'config setup' section of the Libreswan IPsec configuration",
             })))),
           connections: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "lines")))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{ myconnection = ''\n    auto=add\n    left=%defaultroute\n    leftid=@user\n\n    right=my.vpn.com\n\n    ikev2=no\n    ikelifetime=8h\n  '';\n}\n")),
               description: "A set of connections to define for the Libreswan IPsec service",
             })))),
           policies: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "lines")))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{ private-or-clear = ''\n    # Attempt opportunistic IPsec for the entire Internet\n    0.0.0.0/0\n    ::/0\n  '';\n}\n")),
               description: "A set of policies to apply to the IPsec connections.\n\n::: {.note}\nThe policy name must match the one of connection it needs to apply to.\n:::\n",
             })))),
           disableRedirects: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to disable send and accept redirects for all network interfaces.\nSee the Libreswan [\nFAQ](https://libreswan.org/wiki/FAQ#Why_is_it_recommended_to_disable_send_redirects_in_.2Fproc.2Fsys.2Fnet_.3F) page for why this is recommended.\n",
@@ -96,42 +96,42 @@ ${connectionText}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         environment: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.sel(pkgs, "libreswan")),
             nix.thunk(() => nix.sel(pkgs, "iproute2")),
           ]),
           etc: nix.thunk(() => nix.update({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             "ipsec.secrets": nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               text: nix.thunk(() => nix.str`include ${nix.sel(pkgs, "libreswan")}/etc/ipsec.secrets
 `),
             })),
             "ipsec.conf": nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               source: nix.thunk(() => nix.str`${nix.sel(pkgs, "libreswan")}/etc/ipsec.conf`),
             })),
-            "ipsec.d/01-nixos.conf": nix.thunk(() => ({ __proto__: pos$13, source: configFile })),
+            "ipsec.d/01-nixos.conf": nix.thunk(() => ({ [nix.POS]: pos$13, source: configFile })),
           }, policyFiles)),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libreswan"))]),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libreswan"))]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             ipsec: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               restartTriggers: nix.thunk(() => nix.concat([configFile], nix.app(nix.sel(lib, "mapAttrsToList"), (n) => (v) => nix.sel(v, "source"), policyFiles))),
               preStart: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "disableRedirects")), "# Disable send/receive redirects\necho 0 | tee /proc/sys/net/ipv4/conf/*/send_redirects\necho 0 | tee /proc/sys/net/ipv{4,6}/conf/*/accept_redirects\n")),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$17, StateDirectory: "ipsec/nss", StateDirectoryMode: 700n })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$17, StateDirectory: "ipsec/nss", StateDirectoryMode: 700n })),
             })),
           })),
         })),

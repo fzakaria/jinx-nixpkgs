@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const sbom4files = nix.arg($, "sbom4files");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sbom4python",
       version: "0.12.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "anthonyharrison",
           repo: "sbom4python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [versionCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["sbom4python"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/anthonyharrison/sbom4python/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Tool to generate a SBOM (Software Bill of Materials) for an installed Python module",
         homepage: "https://github.com/anthonyharrison/sbom4python",

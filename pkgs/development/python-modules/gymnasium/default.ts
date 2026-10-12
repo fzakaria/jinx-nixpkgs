@@ -38,13 +38,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const scipy = nix.arg($, "scipy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gymnasium",
       version: "1.4.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Farama-Foundation",
           repo: "gymnasium",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [cloudpickle, farama_notifications, numpy, typing_extensions]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         atari: nix.thunk(() => [ale_py]),
         box2d: nix.thunk(() => [pybox2d, pygame_ce]),
         "classic-control": nix.thunk(() => [pygame_ce]),
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "export SDL_VIDEODRIVER=dummy\n",
       disabledTests: nix.thunk(() => ["test_render_mode"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Standard API for reinforcement learning and a diverse set of reference environments (formerly Gym)",
         homepage: "https://github.com/Farama-Foundation/Gymnasium",
         changelog: nix.thunk(() => nix.str`https://github.com/Farama-Foundation/Gymnasium/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "ferm"));
   const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "ferm.conf",
       text: nix.thunk(() => nix.sel(cfg, "config")),
       preferLocalBuild: true,
@@ -33,21 +33,21 @@ ${nix.sel(cfg, "package")}/bin/ferm --noexec $out
 `),
     }))));
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         ferm: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Whether to enable Ferm Firewall.\n*Warning*: Enabling this service WILL disable the existing NixOS\nfirewall! Default firewall rules provided by packages are not\nconsidered at the moment.\n",
             })))),
           config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               description: "Verbatim ferm.conf configuration.",
               default: "",
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalMD"), "empty firewall, allows any traffic")),
@@ -58,14 +58,14 @@ ${nix.sel(cfg, "package")}/bin/ferm --noexec $out
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         systemd: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           services: nix.thunk(() => ({
-            __proto__: pos$10,
-            firewall: nix.thunk(() => ({ __proto__: pos$7, enable: false })),
+            [nix.POS]: pos$10,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$7, enable: false })),
             ferm: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "Ferm Firewall",
               after: nix.thunk(() => ["ipset.target"]),
               before: nix.thunk(() => ["network-pre.target"]),
@@ -73,7 +73,7 @@ ${nix.sel(cfg, "package")}/bin/ferm --noexec $out
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               reloadIfChanged: true,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 Type: "oneshot",
                 RemainAfterExit: "yes",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/ferm ${configFile}`),

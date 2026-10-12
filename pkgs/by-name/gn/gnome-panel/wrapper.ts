@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const panelModulePackages = nix.argOr($, "panelModulePackages", () => []);
   const selectedPanelModulePackages = nix.thunk(() => nix.concat([gnome_panel, gnome_flashback], panelModulePackages));
   const panelModulesEnv = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "gnome-panel-modules-env",
       paths: selectedPanelModulePackages,
       pathsToLink: nix.thunk(() => ["/lib/gnome-panel/modules"]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.str`${nix.sel(gnome_panel, "pname")}-with-modules`),
       version: nix.thunk(() => nix.attr(gnome_panel, "version")),
       nativeBuildInputs: nix.thunk(() => [glib, wrapGAppsHook3]),
@@ -53,7 +53,7 @@ substitute ${gnome_panel}/share/systemd/user/gnome-panel.service \\
 runHook postInstall
 `),
       preFixup: "gappsWrapperArgs+=(\n  --set NIX_GNOME_PANEL_MODULESDIR \"$out/lib/gnome-panel/modules\"\n)\n",
-      meta: nix.thunk(() => nix.update(nix.sel(gnome_panel, "meta"), { __proto__: pos$2, outputsToInstall: nix.thunk(() => ["out"]) })),
+      meta: nix.thunk(() => nix.update(nix.sel(gnome_panel, "meta"), { [nix.POS]: pos$2, outputsToInstall: nix.thunk(() => ["out"]) })),
     })));
 })(), formals$1);
 //# sourceMappingURL=wrapper.ts.map

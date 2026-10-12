@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const chafa = nix.arg($, "chafa");
   const wofi = nix.arg($, "wofi");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cliphist",
       version: "0.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sentriz",
           repo: "cliphist",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,12 +48,12 @@ substituteInPlace contrib/cliphist-wofi-img \\
 `),
       postInstall: "cp ./contrib/cliphist-{fuzzel-img,fzf,fzf-sixel,rofi,rofi-img,wofi-img} $out/bin/\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       buildInputs: nix.thunk(() => [bash]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Wayland clipboard manager",
         homepage: "https://github.com/sentriz/cliphist",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

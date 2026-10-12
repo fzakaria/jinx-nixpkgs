@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const eigen = nix.arg($, "eigen");
   const numpy = nix.arg($, "numpy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "eigenpy",
       version: "3.13.0",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stack-of-tasks",
           repo: "eigenpy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         "-DBUILD_TESTING_SCIPY=ON",
       ])),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         FONTCONFIG_FILE: nix.thunk(() => nix.str`${nix.sel(fontconfig, "out")}/etc/fonts/fonts.conf`),
       })),
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(jrl_cmakemodules, "docsNativeBuildInputs"), [scipy])),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       preInstallCheck: "make test\n",
       pythonImportsCheck: nix.thunk(() => ["eigenpy"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Bindings between Numpy and Eigen using Boost.Python",
         homepage: "https://github.com/stack-of-tasks/eigenpy",
         changelog: nix.thunk(() => nix.str`https://github.com/stack-of-tasks/eigenpy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

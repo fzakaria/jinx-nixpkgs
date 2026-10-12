@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.14.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "googleapis",
           repo: "python-error-reporting",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "# prevent google directory from shadowing google imports\nrm -r google\n";
       const pythonImportsCheck = nix.thunk(() => ["google.cloud.error_reporting", "google.cloud.errorreporting_v1beta1"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Stackdriver Error Reporting API client library",
         homepage: "https://github.com/googleapis/python-error-reporting",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/python-error-reporting/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "sarahec"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

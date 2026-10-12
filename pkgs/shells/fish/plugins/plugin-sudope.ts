@@ -15,22 +15,22 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(buildFishPlugin, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "plugin-sudope",
       version: "0-unstable-2025-09-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "oh-my-fish",
           repo: "plugin-sudope",
           rev: "4ad91e49329811939c3a09221a95e620c3964b17",
           hash: "sha256-OsgThGY/tGF/XBQFyXTY9qYf50B01wEH93lqWEAxZPY=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fish plugin to quickly put 'sudo' in your command",
         homepage: "https://github.com/oh-my-fish/plugin-sudope",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

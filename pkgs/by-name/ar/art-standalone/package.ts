@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const binutils = nix.arg($, "binutils");
   const vixl = nix.arg($, "vixl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "art-standalone",
       version: "0-unstable-2026-08-03",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "android_translation_layer",
           repo: "art_standalone",
           rev: "66a5d9079b159e9c5819bfeef4a6fff6a5f32719",
@@ -80,7 +80,7 @@ substituteInPlace build/core/config.mk build/core/main.mk \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [binutils]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Art and dependencies with modifications to make it work on Linux",
         homepage: "https://gitlab.com/android_translation_layer/art_standalone",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ltex-ls-plus";
       const version = "18.7.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ltex-plus/ltex-ls-plus/releases/download/${version}/ltex-ls-plus-${version}.tar.gz`),
           sha256: "sha256-z15a7ilSVw43QMB4YO8qQ8mS6GkxQkaZhdMrIYh6xlg=",
         }))));
@@ -42,7 +42,7 @@ runHook postInstall
         const licenses = nix.thunk(() => nix.attr(lib, "licenses"));
         const maintainers = nix.thunk(() => nix.attr(lib, "maintainers"));
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           homepage: "https://ltex-plus.github.io/ltex-plus/",
           description: "LSP language server for LanguageTool",
           license: nix.thunk(() => nix.sel(licenses, "mpl20")),
@@ -51,7 +51,7 @@ runHook postInstall
           platforms: nix.thunk(() => nix.sel(jre_headless, "meta", "platforms")),
         };
       })());
-      return { __proto__: pos$3, pname, version, src, nativeBuildInputs, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

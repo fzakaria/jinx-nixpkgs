@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const installFonts = nix.arg($, "installFonts");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "line-awesome",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/${nix.sel(finalAttrs, "version")}/line-awesome-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "07qkz8s1wjh5xwqlq1b4lpihr1zah3kh6bnqvfwvncld8l9wjqfk",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "webfont"]),
       nativeBuildInputs: nix.thunk(() => [unzip, installFonts]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Replace Font Awesome with modern line icons",
         longDescription: "This package includes only the TTF, WOFF and WOFF2 fonts. For full CSS etc. see the project website.\n",
         homepage: "https://icons8.com/line-awesome",

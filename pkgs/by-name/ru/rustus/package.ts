@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const rdkafka = nix.arg($, "rdkafka");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "rustus",
       version: "1.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "s3rius",
           repo: "rustus",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoPatches: nix.thunk(() => [nix.path(here, "./bump-mobc.patch")]),
       cargoHash: "sha256-FyuUdskTEGiBs7qC7cv1u8d4BCZ2IEOduhAe3m4IDV0=",
-      env: nix.thunk(() => ({ __proto__: pos$2, OPENSSL_NO_VENDOR: 1n, CARGO_FEATURE_DYNAMIC_LINKING: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: 1n, CARGO_FEATURE_DYNAMIC_LINKING: 1n })),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [openssl, rdkafka]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       checkFlags: nix.thunk(() => [
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         "--skip=notifiers::impls::file_notifier::tests::success",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "TUS protocol implementation in Rust",
         mainProgram: "rustus",
         homepage: "https://s3rius.github.io/rustus/",

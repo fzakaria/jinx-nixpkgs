@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(ps, "jinja2")),
     ]));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: nix.thunk(() => nix.builtins.readFile(nix.thunk(() => nix.add(nix.sel(aflplusplus, "src"), "/nyx_mode/PACKER_VERSION")))),
       pname: "nyx-packer",
       src: nix.thunk(() => nix.sel(aflplusplus, "src")),
@@ -96,7 +96,7 @@ runHook postInstall
 `),
       postFixup: "# packer binaries are meant to run inside the vm\nfind \"$out/packer/linux_x86_64-userspace/bin64\" -type f \\\n  -exec patchelf --set-interpreter /lib64/ld-linux-x86-64.so.2 {} \\;\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: "https://github.com/nyx-fuzz/packer",
         description: "image packer for Nyx VMs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pname = "astromenace";
       const version = "1.4.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "viewizard",
           repo: "astromenace",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -43,12 +43,12 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://src.fedoraproject.org/rpms/astromenace/raw/5e6bc02d115a53007dc47ef8223d8eaa25607588/f/astromenace-gcc13.patch",
             hash: "sha256-pkmTVR86vS+KCICxAp+d7upNWVnSNxwdKmxnbtqIvgU=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "cmake-4.patch",
             url: "https://github.com/viewizard/astromenace/commit/eb42ddb1e86a3e67787bfd5e33ff2afdd6307142.patch",
             hash: "sha256-TQVcnDrKBFvcyYhWeeEQSRjuirtJ7wYFQV+f3bHikdA=",
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const installPhase = "runHook preInstall\nmkdir -p $out/share/astromenace\ninstall -Dm644 gamedata.vfs $out/share/astromenace/gamedata.vfs\ninstall -Dm755 astromenace $out/bin/astromenace\nwrapProgram $out/bin/astromenace \\\n  --add-flags \"--dir=$out/share/astromenace\"\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Hardcore 3D space shooter with spaceship upgrade possibilities",
         homepage: "https://www.viewizard.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

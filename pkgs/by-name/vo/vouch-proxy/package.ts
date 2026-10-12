@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vouch-proxy",
       version: "0.48.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vouch",
           repo: "vouch-proxy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "export VOUCH_ROOT=$PWD\n",
       checkFlags: nix.thunk(() => ["-skip=TestClaimsHMAC"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/vouch/vouch-proxy",
         description: "SSO and OAuth / OIDC login solution for NGINX using the auth_request module",
         changelog: nix.thunk(() => nix.str`https://github.com/vouch/vouch-proxy/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

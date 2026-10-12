@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "interactsh",
       version: "1.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "projectdiscovery",
           repo: "interactsh",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["cmd/interactsh-client", "cmd/interactsh-server"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Out of bounds interaction gathering server and client library",
         longDescription: "Interactsh is an Open-Source Solution for Out of band Data Extraction,\nA tool designed to detect bugs that cause external interactions,\nFor example - Blind SQLi, Blind CMDi, SSRF, etc.\n",
         homepage: "https://github.com/projectdiscovery/interactsh",

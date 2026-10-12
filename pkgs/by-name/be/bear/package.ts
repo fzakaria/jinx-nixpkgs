@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const lld = nix.arg($, "lld");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bear",
       version: "4.0.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rizsotto",
           repo: "bear",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "# wrapper should not end up on path\ninstall -d $out/libexec/bear\nmv $out/bin/wrapper $out/libexec/bear/wrapper\n\ninstallManPage man/bear.1\n",
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool that generates a compilation database for clang tooling",
         mainProgram: "bear",
         longDescription: "Note: the bear command is very useful to generate compilation commands\ne.g. for YouCompleteMe.  You just enter your development nix-shell\nand run `bear make`.  It's not perfect, but it gets a long way.\n",

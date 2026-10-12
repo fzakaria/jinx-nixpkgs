@@ -18,17 +18,17 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform"));
   const isDarwin = nix.thunk(() => nix.attr(from, "isDarwin"));
   const system = nix.thunk(() => nix.attr(from, "system"));
-  const sources = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")), nix.thunk(() => ({ __proto__: pos$1, fetchurl: fetchurl, fetchzip: fetchzip }))));
+  const sources = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, fetchurl: fetchurl, fetchzip: fetchzip }))));
   return nix.app(callPackage, nix.thunk(() => (nix.asBool(isDarwin) ? nix.path(here, "./darwin.nix") : nix.path(here, "./linux.nix"))), nix.thunk(() => (() => {
       const from_1 = nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${system}`)), nix.key(nix.force(system))));
       return {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fastmail-desktop",
       version: nix.thunk(() => nix.attr(from_1, "version")),
       src: nix.thunk(() => nix.attr(from_1, "src")),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Dedicated desktop app for Fastmail",
         homepage: "https://www.fastmail.com/blog/desktop-app/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

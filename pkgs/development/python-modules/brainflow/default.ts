@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const python = nix.arg($, "python");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: nix.thunk(() => nix.attr(brainflow, "pname")),
       version: nix.thunk(() => nix.attr(brainflow, "version")),
       src: nix.thunk(() => nix.attr(brainflow, "src")),

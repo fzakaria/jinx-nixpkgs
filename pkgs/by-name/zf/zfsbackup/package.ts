@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "unstable-2022-09-23";
       const rev = "a30f1a44bcae5f64cfb36a12926242a968a759c6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "someone1",
           repo: "zfsbackup-go",
           rev: rev,
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const ldflags = nix.thunk(() => ["-w", "-s"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Backup ZFS snapshots to cloud storage such as Google, Amazon, Azure, etc",
         homepage: "https://github.com/someone1/zfsbackup-go",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "zfsbackup-go",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         rev,

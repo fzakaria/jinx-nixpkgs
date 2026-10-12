@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.24.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "python-injector",
           repo: "injector",
           tag: version,
@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_cov_stub]);
       const pythonImportsCheck = nix.thunk(() => ["injector"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python dependency injection framework, inspired by Guice",
         homepage: "https://github.com/alecthomas/injector",
         maintainers: [],
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

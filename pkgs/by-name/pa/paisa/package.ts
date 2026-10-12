@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
   const pango = nix.arg($, "pango");
   const pixman = nix.arg($, "pixman");
   const nixosTests = nix.arg($, "nixosTests");
-  const buildNpmPackage$ = nix.thunk(() => nix.app(nix.sel(buildNpmPackage, "override"), nix.thunk(() => ({ __proto__: pos$1, nodejs: nodejs_22 }))));
+  const buildNpmPackage$ = nix.thunk(() => nix.app(nix.sel(buildNpmPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, nodejs: nodejs_22 }))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "paisa",
       version: "0.7.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "ananthakumaran",
           repo: "paisa",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["."]),
       vendorHash: "sha256-5jrxI+zSKbopGs5GmGVyqQcMHNZJbCsiFEH/LPXWxpk=",
       frontend: nix.thunk(() => nix.app(buildNpmPackage$, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: "paisa-frontend",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
           ]),
           postBuild: "mkdir -p $out/web/\ncp -r web/static $out/web/\n",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$4, CGO_ENABLED: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$4, CGO_ENABLED: 1n })),
       doCheck: true,
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
@@ -72,12 +72,12 @@ export default nix.lambda((args) => (() => {
       preBuild: nix.thunk(() => nix.str`cp -r ${nix.sel(finalAttrs, "frontend")}/web/static ./web
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         frontend: nix.thunk(() => nix.attr(finalAttrs, "frontend")),
-        tests: nix.thunk(() => ({ __proto__: pos$5, paisa: nix.thunk(() => nix.attr(nixosTests, "paisa")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$5, paisa: nix.thunk(() => nix.attr(nixosTests, "paisa")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://paisa.fyi/",
         changelog: nix.thunk(() => nix.str`https://github.com/ananthakumaran/paisa/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Personal finance manager, building on top of the ledger double entry accounting tool",

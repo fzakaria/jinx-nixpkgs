@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
   const version = "3.3.5";
   const pyproject = true;
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "psycopg",
       repo: "psycopg",
       tag: version,
@@ -52,13 +52,13 @@ export default nix.lambda((args) => (() => {
     }))));
   const patches = nix.thunk(() => [
     nix.thunk(() => nix.app(replaceVars, nix.path(here, "./ctypes.patch"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         libpq: nix.thunk(() => nix.str`${libpq}/lib/libpq${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
         libc: nix.thunk(() => nix.str`${nix.sel(stdenv, "cc", "libc")}/lib/libc.so.6`),
       })))),
   ]);
   const baseMeta = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     changelog: nix.thunk(() => nix.str`https://github.com/psycopg/psycopg/blob/${version}/docs/news.rst#current-release`),
     homepage: "https://github.com/psycopg/psycopg",
     license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
     })()),
   }));
   const psycopg_c = nix.thunk(() => nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: nix.thunk(() => nix.str`${pname}-c`),
       version: version,
       pyproject: pyproject,
@@ -81,10 +81,10 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`nuke-refs $out/${nix.sel(python, "sitePackages")}/psycopg_c/{pq.c,_psycopg.c}
 `),
       doCheck: false,
-      meta: nix.thunk(() => nix.update(baseMeta, { __proto__: pos$4, description: "C optimisation distribution for Psycopg" })),
+      meta: nix.thunk(() => nix.update(baseMeta, { [nix.POS]: pos$4, description: "C optimisation distribution for Psycopg" })),
     }))));
   const psycopg_pool = nix.thunk(() => nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: nix.thunk(() => nix.str`${pname}-pool`),
       version: version,
       pyproject: pyproject,
@@ -95,7 +95,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [typing_extensions]),
       dontCheckPythonMetadata: true,
       doCheck: false,
-      meta: nix.thunk(() => nix.update(baseMeta, { __proto__: pos$6, description: "Connection Pool for Psycopg" })),
+      meta: nix.thunk(() => nix.update(baseMeta, { [nix.POS]: pos$6, description: "Connection Pool for Psycopg" })),
     }))));
   return nix.app(buildPythonPackage, nix.thunk(() => (() => {
       const pname_1 = pname;
@@ -111,15 +111,15 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [psycopg_c, typing_extensions]);
       const pythonImportsCheck = nix.thunk(() => ["psycopg", "psycopg_c", "psycopg_pool"]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         c: nix.thunk(() => [psycopg_c]),
         pool: nix.thunk(() => [psycopg_pool]),
       }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([anyio, pproxy, pytestCheckHook, postgresql], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), postgresqlTestHook), nix.concat(nix.sel(optional_dependencies, "c"), nix.sel(optional_dependencies, "pool")))));
       const env = nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         LIBPQ_DOCS_FILE: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             url: "https://raw.githubusercontent.com/postgres/postgres/496a1dc44bf1261053da9b3f7e430769754298b4/doc/src/sgml/libpq.sgml",
             hash: "sha256-JwtCngkoi9pb0pqIdNgukY8GbG5pUDZvrGAHZqjFOw4",
           })))),
@@ -144,10 +144,10 @@ export default nix.lambda((args) => (() => {
       const pytestFlags = nix.thunk(() => ["-ocache_dir=.cache"]);
       const disabledTestMarks = nix.thunk(() => ["refcount", "timing", "flakey", "slow"]);
       const postCheck = "cd psycopg\n";
-      const passthru = nix.thunk(() => ({ __proto__: pos$11, c: psycopg_c, pool: psycopg_pool }));
-      const meta = nix.thunk(() => nix.update(baseMeta, { __proto__: pos$12, description: "PostgreSQL database adapter for Python" }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$11, c: psycopg_c, pool: psycopg_pool }));
+      const meta = nix.thunk(() => nix.update(baseMeta, { [nix.POS]: pos$12, description: "PostgreSQL database adapter for Python" }));
       return {
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         pname: pname_1,
         version: version_1,
         pyproject: pyproject_1,

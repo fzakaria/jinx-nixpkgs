@@ -54,95 +54,95 @@ Option "TapButton3" "${nix.app(nix.sel(nix.builtins, "elemAt"), nix.thunk(() => 
   const pkg = nix.thunk(() => nix.sel(pkgs, "xf86-input-synaptics"));
   const etcFile = "X11/xorg.conf.d/70-synaptics.conf";
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     options: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       services: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         xserver: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           synaptics: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: false,
                 description: "Whether to enable touchpad support. Deprecated: Consider services.libinput.enable.",
               })))),
             dev: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 default: null,
                 example: "/dev/input/event0",
                 description: "Path for touchpad device.  Set to null to apply to any\nauto-detected touchpad.\n",
               })))),
             accelFactor: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 default: "0.001",
                 description: "Cursor acceleration (how fast speed increases from minSpeed to maxSpeed).",
               })))),
             minSpeed: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 default: "0.6",
                 description: "Cursor speed factor for precision finger motion.",
               })))),
             maxSpeed: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 default: "1.0",
                 description: "Cursor speed factor for highest-speed finger motion.",
               })))),
             scrollDelta: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")))),
                 default: null,
                 example: 75n,
                 description: "Move distance of the finger for a scroll event.",
               })))),
             twoFingerScroll: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: false,
                 description: "Whether to enable two-finger drag-scrolling. Overridden by horizTwoFingerScroll and vertTwoFingerScroll.",
               })))),
             horizTwoFingerScroll: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: nix.thunk(() => nix.sel(cfg, "twoFingerScroll")),
                 defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), nix.thunk(() => nix.str`config.${nix.sel(opt, "twoFingerScroll")}`))),
                 description: "Whether to enable horizontal two-finger drag-scrolling.",
               })))),
             vertTwoFingerScroll: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: nix.thunk(() => nix.sel(cfg, "twoFingerScroll")),
                 defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), nix.thunk(() => nix.str`config.${nix.sel(opt, "twoFingerScroll")}`))),
                 description: "Whether to enable vertical two-finger drag-scrolling.",
               })))),
             horizEdgeScroll: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: nix.thunk(() => !nix.asBool(nix.sel(cfg, "horizTwoFingerScroll"))),
                 defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), nix.thunk(() => nix.str`! config.${nix.sel(opt, "horizTwoFingerScroll")}`))),
                 description: "Whether to enable horizontal edge drag-scrolling.",
               })))),
             vertEdgeScroll: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: nix.thunk(() => !nix.asBool(nix.sel(cfg, "vertTwoFingerScroll"))),
                 defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), nix.thunk(() => nix.str`! config.${nix.sel(opt, "vertTwoFingerScroll")}`))),
                 description: "Whether to enable vertical edge drag-scrolling.",
               })))),
             tapButtons: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: true,
                 description: "Whether to enable tap buttons.",
               })))),
             buttonsMap: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")))),
                 default: nix.thunk(() => [1n, 2n, 3n]),
                 example: nix.thunk(() => [1n, 3n, 2n]),
@@ -150,7 +150,7 @@ Option "TapButton3" "${nix.app(nix.sel(nix.builtins, "elemAt"), nix.thunk(() => 
                 apply: nix.thunk(() => nix.app(nix.builtins.map, nix.builtins.toString)),
               })))),
             fingersMap: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")))),
                 default: nix.thunk(() => [1n, 2n, 3n]),
                 example: nix.thunk(() => [1n, 3n, 2n]),
@@ -158,33 +158,33 @@ Option "TapButton3" "${nix.app(nix.sel(nix.builtins, "elemAt"), nix.thunk(() => 
                 apply: nix.thunk(() => nix.app(nix.builtins.map, nix.builtins.toString)),
               })))),
             palmDetect: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: false,
                 description: "Whether to enable palm detection (hardware support required)",
               })))),
             palmMinWidth: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")))),
                 default: null,
                 example: 5n,
                 description: "Minimum finger width at which touch is considered a palm",
               })))),
             palmMinZ: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")))),
                 default: null,
                 example: 20n,
                 description: "Minimum finger pressure at which touch is considered a palm",
               })))),
             horizontalScroll: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: true,
                 description: "Whether to enable horizontal scrolling (on touchpad)",
               })))),
             additionalOptions: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "",
                 example: "Option \"RTCornerButton\" \"2\"\nOption \"RBCornerButton\" \"3\"\n",
@@ -195,11 +195,11 @@ Option "TapButton3" "${nix.app(nix.sel(nix.builtins, "elemAt"), nix.thunk(() => 
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         services: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           xserver: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             modules: nix.thunk(() => [nix.thunk(() => nix.sel(pkg, "out"))]),
             config: nix.thunk(() => nix.str`# Automatically enable the synaptics driver for all touchpads.
 Section "InputClass"
@@ -229,10 +229,10 @@ EndSection
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           etc: nix.thunk(() => nix.attrsDyn({}, [
             [etcFile, nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               source: nix.thunk(() => nix.str`${nix.sel(pkg, "out")}/share/X11/xorg.conf.d/70-synaptics.conf`),
             }))],
           ])),
@@ -240,7 +240,7 @@ EndSection
         })),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             assertion: nix.thunk(() => !nix.asBool(nix.sel(config, "services", "libinput", "enable"))),
             message: "Synaptics and libinput are incompatible, you cannot enable both.",
           })),

@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "Paver",
           version: version,
           hash: "sha256-0+ZJiIFIWrdQ7+QMUniYKpNDvGJ+E3sRrc7WJ3GTCMc=",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         "paver/tests/test_tasks.py",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python-based build/distribution/deployment scripting tool",
         mainProgram: "paver",
         homepage: "https://github.com/paver/paver",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

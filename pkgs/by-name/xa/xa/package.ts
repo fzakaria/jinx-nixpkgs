@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xa",
       version: "2.4.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://www.floodgap.com/retrotech/xa/dists/xa-${nix.sel(finalAttrs, "version")}.tar.gz`),
             nix.thunk(() => nix.str`https://www.floodgap.com/retrotech/xa/dists/unsupported/xa-${nix.sel(finalAttrs, "version")}.tar.gz`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       enableParallelChecking: false,
       preCheck: "patchShebangs tests\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.floodgap.com/retrotech/xa/",
         description: "Andre Fachat's open-source 6502 cross assembler",
         longDescription: "xa is a high-speed, two-pass portable cross-assembler. It understands\nmnemonics and generates code for NMOS 6502s (such as 6502A, 6504, 6507,\n6510, 7501, 8500, 8501, 8502 ...), CMOS 6502s (65C02 and Rockwell R65C02)\nand the 65816.\n\nKey amongst its features:\n\n- C-like preprocessor (and understands cpp for additional feature support)\n- rich expression syntax and pseudo-op vocabulary\n- multiple character sets\n- binary linking\n- supports o65 relocatable objects with a full linker and relocation\n  suite, as well as \"bare\" plain binary object files\n- block structure for label scoping\n",

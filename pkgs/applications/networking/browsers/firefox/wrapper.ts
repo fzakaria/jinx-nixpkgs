@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   return (browser_) => (() => {
     const isDarwin = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin"));
-    const browser = nix.thunk(() => (nix.asBool(isDarwin) ? nix.app(nix.sel(browser_, "overrideAttrs"), (oldAttrs) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.selOr(oldAttrs, () => false, "dontFixup")), nix.thunk(() => ({ __proto__: pos$1, dontFixup: false })))) : nix.force(browser_)));
+    const browser = nix.thunk(() => (nix.asBool(isDarwin) ? nix.app(nix.sel(browser_, "overrideAttrs"), (oldAttrs) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.selOr(oldAttrs, () => false, "dontFixup")), nix.thunk(() => ({ [nix.POS]: pos$1, dontFixup: false })))) : nix.force(browser_)));
     const wrapper = nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const applicationName = nix.argOr($_1, "applicationName", () => nix.selOr(browser, () => nix.app(nix.sel(lib, "getName"), browser), "binaryName"));
@@ -126,28 +126,28 @@ export default nix.lambda((args) => (() => {
       const nameArray = nix.thunk(() => nix.builtins.map((a) => nix.sel(a, "name"), nix.thunk(() => nix.app(nix.sel(lib, "optionals"), usesNixExtensions, nixExtensions))));
       const extensions = nix.thunk(() => (nix.asBool(!nix.eq(nameArray, nix.app(nix.sel(lib, "unique"), nameArray))) ? nix.builtins.throw("Firefox addon name needs to be unique") : (nix.asBool((nix.asBool(nix.sel(browser, "enableAddonSigning")) || nix.asBool(!nix.asBool(nix.sel(browser, "enableAddonSideload"))))) ? nix.builtins.throw("Nix addons are only supported with signature enforcement disabled and addon sideloading enabled (eg. LibreWolf)") : nix.builtins.map((a) => (nix.asBool(!nix.asBool(nix.builtins.hasAttr("extid", a))) ? nix.builtins.throw("nixExtensions has an invalid entry. Missing extid attribute. Please use fetchFirefoxAddon") : nix.force(a)), nix.thunk(() => nix.app(nix.sel(lib, "optionals"), usesNixExtensions, nixExtensions))))));
       const enterprisePolicies = nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         policies: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), usesNixExtensions, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             ExtensionSettings: nix.thunk(() => nix.update({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               "*": nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 blocked_install_message: "You can't have manual extension mixed with nix extensions",
                 installation_mode: "blocked",
               })),
             }, nix.app(nix.sel(lib, "foldr"), (e) => (ret) => nix.update(ret, nix.attrsDyn({}, [
-                [nix.str`${nix.sel(e, "extid")}`, nix.thunk(() => ({ __proto__: pos$4, installation_mode: "allowed" }))],
+                [nix.str`${nix.sel(e, "extid")}`, nix.thunk(() => ({ [nix.POS]: pos$4, installation_mode: "allowed" }))],
               ])), nix.thunk(() => ({})), extensions))),
             Extensions: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               Install: nix.thunk(() => nix.app(nix.sel(lib, "foldr"), (e) => (ret) => nix.concat(ret, [
                   nix.thunk(() => nix.str`${nix.sel(e, "outPath")}/${nix.sel(e, "extid")}.xpi`),
                 ]), [], extensions)),
             })),
           }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), withPCSC, nix.thunk(() => ({
-            __proto__: pos$8,
-            SecurityDevices: nix.thunk(() => ({ __proto__: pos$7, "OpenSC PKCS#11 Module": "opensc-pkcs11.so" })),
+            [nix.POS]: pos$8,
+            SecurityDevices: nix.thunk(() => ({ [nix.POS]: pos$7, "OpenSC PKCS#11 Module": "opensc-pkcs11.so" })),
           }))), extraPolicies))),
       }));
       const mozillaCfg = nix.thunk(() => nix.str`// First line must be a comment
@@ -159,13 +159,13 @@ export default nix.lambda((args) => (() => {
 ${nix.app(nix.sel(lib, "optionalString"), usesNixExtensions, "lockPref(\"xpinstall.signatures.required\", false);")}
 `);
       return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           __structuredAttrs: true,
           strictDeps: true,
           pname: pname,
           version: version,
           desktopItem: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => nix.update({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               name: launcherName,
               exec: nix.thunk(() => nix.str`${launcherName} --name ${wmClass} %U`),
               icon: icon,
@@ -174,7 +174,7 @@ ${nix.app(nix.sel(lib, "optionalString"), usesNixExtensions, "lockPref(\"xpinsta
               startupWMClass: wmClass,
               terminal: false,
             }, (nix.asBool(nix.app(nix.sel(lib, "strings", "hasPrefix"), "thunderbird", libName)) ? {
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               genericName: "Email Client",
               comment: "Read and write e-mails or RSS feeds, or manage tasks on calendars.",
               categories: nix.thunk(() => ["Network", "Chat", "Email", "Feed", "GTK", "News"]),
@@ -191,15 +191,15 @@ ${nix.app(nix.sel(lib, "optionalString"), usesNixExtensions, "lockPref(\"xpinsta
               ]),
               mimeTypes: nix.thunk(() => ["message/rfc822", "x-scheme-handler/mailto", "text/calendar", "text/x-vcard"]),
               actions: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 "profile-manager-window": nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   name: "Profile Manager",
                   exec: nix.thunk(() => nix.str`${launcherName} --ProfileManager`),
                 })),
               })),
             } : {
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               genericName: "Web Browser",
               categories: nix.thunk(() => ["Network", "WebBrowser"]),
               mimeTypes: nix.thunk(() => [
@@ -211,19 +211,19 @@ ${nix.app(nix.sel(lib, "optionalString"), usesNixExtensions, "lockPref(\"xpinsta
                 "x-scheme-handler/https",
               ]),
               actions: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 "new-window": nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   name: "New Window",
                   exec: nix.thunk(() => nix.str`${launcherName} --new-window %U`),
                 })),
                 "new-private-window": nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   name: "New Private Window",
                   exec: nix.thunk(() => nix.str`${launcherName} --private-window %U`),
                 })),
                 "profile-manager-window": nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   name: "Profile Manager",
                   exec: nix.thunk(() => nix.str`${launcherName} --ProfileManager`),
                 })),
@@ -473,10 +473,10 @@ mkdir -p "$libDir/distribution/extensions"
           preferLocalBuild: true,
           libs: nix.thunk(() => nix.add(nix.add(nix.app(nix.sel(lib, "makeLibraryPath"), libs), ":"), nix.app(nix.sel(lib, "makeSearchPathOutput"), "lib", "lib64", libs))),
           gtk_modules: nix.thunk(() => nix.builtins.map((x) => nix.add(x, nix.sel(x, "gtkModule")), gtk_modules)),
-          passthru: nix.thunk(() => ({ __proto__: pos$19, unwrapped: browser })),
+          passthru: nix.thunk(() => ({ [nix.POS]: pos$19, unwrapped: browser })),
           disallowedRequisites: nix.thunk(() => [nix.thunk(() => nix.sel(stdenv, "cc"))]),
           meta: nix.thunk(() => nix.update(nix.sel(browser, "meta"), {
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             mainProgram: launcherName,
             hydraPlatforms: [],
             priority: nix.thunk(() => nix.sub(nix.selOr(browser, () => nix.sel(lib, "meta", "defaultPriority"), "meta", "priority"), 1n)),

@@ -44,131 +44,131 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$35,
+    [nix.POS]: pos$35,
     options: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       hardware: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         trackpoint: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Enable sensitivity and speed configuration for trackpoints.\n",
             })))),
           sensitivity: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: 128n,
               example: 255n,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               description: "Trackpoint sensitivity.\n",
             })))),
           inertia: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: 6n,
               example: 10n,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               description: "Negative inertia factor. High values cause the cursor to snap backward when the trackpoint is released.\n",
             })))),
           reach: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: 10n,
               example: 20n,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               description: "Backup range for z-axis press.\n",
             })))),
           draghys: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: 255n,
               example: 200n,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               description: "The drag hysteresis controls how hard it is to drag with z-axis pressed.\n",
             })))),
           mindrag: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: 20n,
               example: 30n,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               description: "Minimum amount of force needed to trigger dragging.\n",
             })))),
           speed: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: 97n,
               example: 255n,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               description: "Speed of the trackpoint cursor.\n",
             })))),
           thresh: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               default: 8n,
               example: 10n,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               description: "Minimum value for z-axis force required to trigger a press or release, relative to the running average.\n",
             })))),
           upthresh: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               default: 255n,
               example: 250n,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               description: "The offset from the running average required to generate a select (click) on z-axis on release.\n",
             })))),
           ztime: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               default: 38n,
               example: 50n,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               description: "This attribute determines how sharp a press has to be in order to be recognized.\n",
             })))),
           jenks: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               default: 135n,
               example: 100n,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               description: "Minimum curvature in degrees required to generate a double click without a release.\n",
             })))),
           skipback: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               default: false,
               example: true,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "When the skipback bit is set, backup cursor movement during releases from drags will be suppressed. The default value for this bit is 0.\n",
             })))),
           ext_dev: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               default: true,
               example: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Disable or enable external pointing device.\n",
             })))),
           press_to_select: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               default: false,
               example: true,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Setting this to true will enable the Press to Select functions like tapping the control stick to simulate a left click, and setting false will disable it.\n",
             })))),
           drift_time: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               default: 5n,
               example: 100n,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               description: "This parameter controls the period of time to test for a 'hands off' condition (i.e. when no force is applied) before a drift (noise) calibration occurs.\n\nIBM Trackpoints have a feature to compensate for drift by recalibrating themselves periodically. By default, if for 0.5 seconds there is no change in position, it's used as the new zero. This duration is too low. Often, the calibration happens when the trackpoint is in fact being used.\n",
             })))),
           emulateWheel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Enable scrolling while holding the middle mouse button.\n",
             })))),
           fakeButtons: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Switch to \"bare\" PS/2 mouse support in case Trackpoint buttons are not recognized\nproperly. This can happen for example on models like the L430, T450, T450s, on\nwhich the Trackpoint buttons are actually a part of the Synaptics touchpad.\n",
             })))),
           device: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               default: "TPPS/2 IBM TrackPoint",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "The device name of the trackpoint. You can check with xinput.\nSome newer devices (example x1c6) use \"TPPS/2 Elan TrackPoint\".\n",
@@ -181,11 +181,11 @@ export default nix.lambda((args) => (() => {
       const boolToStr = (val) => (nix.asBool(val) ? "1" : "0");
       return nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               services: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 udev: nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   extraRules: nix.thunk(() => nix.builtins.concatStringsSep(", ", nix.thunk(() => [
                       "ACTION==\"add|change\"",
                       "SUBSYSTEM==\"input\"",
@@ -208,17 +208,17 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               systemd: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 services: nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   trackpoint: nix.thunk(() => ({
-                    __proto__: pos$26,
+                    [nix.POS]: pos$26,
                     wantedBy: nix.thunk(() => ["sysinit.target"]),
                     before: nix.thunk(() => ["sysinit.target", "shutdown.target"]),
                     conflicts: nix.thunk(() => ["shutdown.target"]),
-                    unitConfig: nix.thunk(() => ({ __proto__: pos$24, DefaultDependencies: false })),
+                    unitConfig: nix.thunk(() => ({ [nix.POS]: pos$24, DefaultDependencies: false })),
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$25,
+                      [nix.POS]: pos$25,
                       Type: "oneshot",
                       RemainAfterExit: true,
                       ExecStart: nix.thunk(() => nix.str`${nix.sel(config, "systemd", "package")}/bin/udevadm trigger --attr-match=name="${nix.sel(cfg, "device")}"
@@ -229,11 +229,11 @@ export default nix.lambda((args) => (() => {
               })),
             })))),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "emulateWheel")), nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               services: nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 xserver: nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   inputClassSections: nix.thunk(() => [
                     nix.thunk(() => nix.str`Identifier "Trackpoint Wheel Emulation"
 MatchProduct "${(nix.asBool(nix.sel(cfg, "fakeButtons")) ? "PS/2 Generic Mouse" : nix.str`ETPS/2 Elantech TrackPoint|Elantech PS/2 TrackPoint|TPPS/2 IBM TrackPoint|DualPoint Stick|Synaptics Inc. Composite TouchPad / TrackPoint|ThinkPad USB Keyboard with TrackPoint|USB Trackpoint pointing device|Composite TouchPad / TrackPoint|${nix.sel(cfg, "device")}`)}"
@@ -249,8 +249,8 @@ Option "YAxisMapping" "4 5"
               })),
             })))),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "fakeButtons")), nix.thunk(() => ({
-              __proto__: pos$34,
-              boot: nix.thunk(() => ({ __proto__: pos$33, extraModprobeConfig: "options psmouse proto=bare" })),
+              [nix.POS]: pos$34,
+              boot: nix.thunk(() => ({ [nix.POS]: pos$33, extraModprobeConfig: "options psmouse proto=bare" })),
             })))),
         ]));
     })()),

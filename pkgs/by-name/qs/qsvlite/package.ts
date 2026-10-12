@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const qsv = nix.arg($, "qsv");
   return nix.app(nix.sel(qsv, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       buildFeatures: nix.thunk(() => ["lite"]),
       mainProgram: "qsvlite",
     })));

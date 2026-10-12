@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const dejagnu = nix.arg($, "dejagnu");
   const elfutils = nix.arg($, "elfutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ltrace",
       version: "0.7.91",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://src.fedoraproject.org/repo/pkgs/ltrace/ltrace-0.7.91.tar.bz2/9db3bdee7cf3e11c87d8cc7673d4d25b/ltrace-0.7.91.tar.bz2",
           sha256: "sha256-HqellbKh2ZDHxslXl7SSIXtpjV1sodtgVwh8hgTC3Dc=",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [dejagnu]),
       prePatch: nix.thunk(() => (() => {
         const fedora = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://src.fedoraproject.org/rpms/ltrace.git",
             rev: "00f430ccbebdbd13bdd4d7ee6303b091cf005542",
             sha256: "sha256-FBGEgmaslu7xrJtZ2WsYwu9Cw1ZQrWRV1+Eu9qLXO4s=",
@@ -50,7 +50,7 @@ patches="$fedorapatches $patches"
         nix.path(here, "./testsuite-newfstatat.patch"),
         nix.path(here, "./sysdeps-x86.patch"),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/gentoo/gentoo/raw/a2eb7e103ec985ff90f59e722e0a8a43373972a2/dev-debug/ltrace/files/ltrace-0.7.3-print-test-pie.patch",
             hash: "sha256-QRsUoN3WLzfiY5GDPwVYXtJPFMJt6rcc6eE96SAtI6Q=",
           })))),
@@ -69,7 +69,7 @@ RUNTESTFLAGS="--host=${nix.sel(stdenv, "hostPlatform", "config")} \\
   make check
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Library call tracer",
         mainProgram: "ltrace",
         homepage: "https://www.ltrace.org/",

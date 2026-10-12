@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const lwt = nix.arg($, "lwt");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mirage-runtime",
       version: "4.10.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/mirage/releases/download/v${nix.sel(finalAttrs, "version")}/mirage-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256:4184cbc7e51b0dcdcf4345c98818c34129ff42879ef091e54849faa57b29d397",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/mirage/mirage",
         description: "Base MirageOS runtime library, part of every MirageOS unikernel",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

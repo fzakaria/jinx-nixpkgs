@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_django = nix.arg($, "pytest-django");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "django-crossdomainmedia",
       version: "0.0.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stefanw",
           repo: "django-crossdomainmedia",
           rev: "45af45a82e2630d99381758c7660fe9bdad06d2d",
@@ -32,10 +32,10 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [django]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, pytest_django]),
-      env: nix.thunk(() => ({ __proto__: pos$2, DJANGO_SETTINGS_MODULE: "tests.settings" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, DJANGO_SETTINGS_MODULE: "tests.settings" })),
       enabledTestPaths: nix.thunk(() => ["tests/tests.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Django application to retrieve user's IP address",
         homepage: "https://github.com/stefanw/django-crossdomainmedia",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

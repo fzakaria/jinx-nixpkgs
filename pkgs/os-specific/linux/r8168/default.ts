@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "r8168";
       const version = "8.057.00";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mtorromeo",
           repo: "r8168",
           rev: version,
@@ -39,7 +39,7 @@ find . -name '*.ko' -exec cp --parents '{}' ${modDestDir} \\;
 find ${modDestDir} -name '*.ko' -exec xz -f '{}' \\;
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Realtek r8168 driver",
         longDescription: "A kernel module for Realtek 8168 network cards.\nIf you want to use this driver, you might need to blacklist the r8169 driver\nby adding \"r8169\" to boot.blacklistedKernelModules.\n",
         homepage: "https://github.com/mtorromeo/r8168",
@@ -48,7 +48,7 @@ find ${modDestDir} -name '*.ko' -exec xz -f '{}' \\;
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name,
         pname,
         version,

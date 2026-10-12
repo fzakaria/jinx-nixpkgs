@@ -15,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const tcl = nix.arg($, "tcl");
   return nix.app(mkTclDerivation, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lexec",
       version: "0-unstable-2020-03-11",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://chiselapp.com/user/pooryorick/repository/lexec/tarball/3880618cfe/unnamed-3880618cfe.tar.gz",
           hash: "sha256-MHsVcCPjdNn1ca6GFP4jWlDk7zioD0VSEh1CImud4fc=",
         })))),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Implementation of Tcl TIP 424 \"Improving [exec]\" as a separate package",
         homepage: "https://chiselapp.com/user/pooryorick/repository/lexec/index",
         license: nix.thunk(() => nix.sel(lib, "licenses", "tcltk")),

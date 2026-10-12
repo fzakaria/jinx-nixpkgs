@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pallets",
           repo: "pallets-sphinx-themes",
           tag: version,
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [packaging, sphinx, sphinx_notfound_page]);
       const pythonImportsCheck = nix.thunk(() => ["pallets_sphinx_themes"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/pallets/pallets-sphinx-themes",
         description: "Sphinx theme for Pallets projects",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

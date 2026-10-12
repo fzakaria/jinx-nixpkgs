@@ -15,15 +15,15 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const buildGraalvmNativeImage = nix.arg($, "buildGraalvmNativeImage");
   return nix.app(buildGraalvmNativeImage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "certificate-ripper",
       version: "2.7.1",
       src: nix.thunk(() => nix.app(nix.sel(maven, "buildMavenPackage"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: "certificate-ripper-jar",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               owner: "Hakky54",
               repo: "certificate-ripper",
               tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })))),
       extraNativeImageBuildArgs: nix.thunk(() => ["--no-fallback", "-H:EnableURLProtocols=https", "-H:EnableURLProtocols=http"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/Hakky54/certificate-ripper/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "CLI tool to extract server certificates",
         homepage: "https://github.com/Hakky54/certificate-ripper",

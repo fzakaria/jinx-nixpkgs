@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const softhsm = nix.arg($, "softhsm");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "esptool",
       version: "5.4.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "espressif",
           repo: "esptool",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ substituteInPlace test/test_espsecure_hsm.py \\
       "optional-dependencies": nix.thunk(() => (() => {
         const w_2 = nix.withScope(python3Packages, null);
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           hsm: nix.thunk(() => [nix.thunk(() => nix.lookup(w_2, "python-pkcs11"))]),
         };
       })()),
@@ -83,7 +83,7 @@ substituteInPlace test/test_espsecure_hsm.py \\
       ]),
       preCheck: "export SOFTHSM2_CONF=$(mktemp)\necho \"directories.tokendir = $(mktemp -d)\" > \"$SOFTHSM2_CONF\"\n./ci/setup_softhsm2.sh\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/espressif/esptool/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "ESP8266 and ESP32 serial bootloader utility",
         homepage: "https://github.com/espressif/esptool",

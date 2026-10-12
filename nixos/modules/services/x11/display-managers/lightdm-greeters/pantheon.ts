@@ -36,27 +36,27 @@ export default nix.lambda((args) => (() => {
   const ldmcfg = nix.thunk(() => nix.sel(dmcfg, "lightdm"));
   const cfg = nix.thunk(() => nix.sel(ldmcfg, "greeters", "pantheon"));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "pantheon"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         xserver: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           displayManager: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             lightdm: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               greeters: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 pantheon: nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                      __proto__: pos$2,
+                      [nix.POS]: pos$2,
                       type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                       default: false,
                       description: "Whether to enable elementary-greeter as the lightdm greeter.\n",
@@ -69,21 +69,21 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(ldmcfg, "enable")) && nix.asBool(nix.sel(cfg, "enable")))), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         services: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           xserver: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             displayManager: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               lightdm: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 greeters: nix.thunk(() => ({
-                  __proto__: pos$11,
-                  gtk: nix.thunk(() => ({ __proto__: pos$10, enable: false })),
+                  [nix.POS]: pos$11,
+                  gtk: nix.thunk(() => ({ [nix.POS]: pos$10, enable: false })),
                 })),
                 greeter: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     package: nix.thunk(() => nix.sel(pkgs, "pantheon", "elementary-greeter", "xgreeters")),
                     name: "io.elementary.greeter",
                   })))),
@@ -93,15 +93,15 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           etc: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             "lightdm/io.elementary.greeter.conf": nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               source: nix.thunk(() => nix.str`${nix.sel(pkgs, "pantheon", "elementary-greeter")}/etc/lightdm/io.elementary.greeter.conf`),
             })),
             "wingpanel.d/io.elementary.greeter.allowed": nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               source: nix.thunk(() => nix.str`${nix.sel(pkgs, "pantheon", "elementary-default-settings")}/etc/wingpanel.d/io.elementary.greeter.allowed`),
             })),
           })),

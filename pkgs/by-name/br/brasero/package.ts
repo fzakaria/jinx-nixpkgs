@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const binPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [cdrtools])));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "brasero",
       paths: nix.thunk(() => [brasero_unwrapped]),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),

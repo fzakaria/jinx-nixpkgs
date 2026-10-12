@@ -28,24 +28,24 @@ export default nix.lambda((args) => (() => {
   const mkPackageOption = nix.thunk(() => nix.attr(lib, "mkPackageOption"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "Dev380"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         nohang: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(mkEnableOption, "nohang, a daemon that keeps system responsiveness when Linux is out of memory")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "nohang", nix.thunk(() => ({})))),
           configPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(types, "either"), nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["basic", "desktop"]))), nix.thunk(() => nix.sel(types, "path")))),
               default: "desktop",
               example: nix.thunk(() => nix.app(literalExpression, "./my-nohang-config.conf")),
@@ -55,19 +55,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         systemd: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           services: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             nohang: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               description: "Sophisticated low memory handler",
               documentation: nix.thunk(() => ["man:nohang(8)", "https://github.com/hakavlad/nohang"]),
               after: nix.thunk(() => ["sysinit.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 ExecStart: nix.thunk(() => nix.add(nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} --monitor --config `, (nix.asBool(nix.eq(nix.sel(cfg, "configPath"), "basic")) ? nix.str`${nix.sel(cfg, "package")}/etc/nohang/nohang.conf` : (nix.asBool(nix.eq(nix.sel(cfg, "configPath"), "desktop")) ? nix.str`${nix.sel(cfg, "package")}/etc/nohang/nohang-desktop.conf` : nix.sel(cfg, "configPath"))))),
                 Slice: "hostcritical.slice",
                 SyslogIdentifier: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "configPath"), "basic")) ? "nohang" : (nix.asBool(nix.eq(nix.sel(cfg, "configPath"), "desktop")) ? "nohang-desktop" : "nohang-custom-config"))),

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.8.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "geduldig",
           repo: "TwitterAPI",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["TwitterAPI"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python wrapper for Twitter's REST and Streaming APIs",
         homepage: "https://github.com/geduldig/TwitterAPI",
         changelog: nix.thunk(() => nix.str`https://github.com/geduldig/TwitterAPI/blob/v${version}/CHANGE.log`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

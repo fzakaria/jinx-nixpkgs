@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.46.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eakmanrq",
           repo: "sqlframe",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools_scm]);
       const dependencies = nix.thunk(() => [more_itertools, prettytable, sqlglot, typing_extensions]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         bigquery: nix.thunk(() => nix.concat([google_cloud_bigquery, google_cloud_bigquery_storage], nix.sel(google_cloud_bigquery, "optional-dependencies", "pandas"))),
         duckdb: nix.thunk(() => [duckdb, pandas]),
         openai: nix.thunk(() => [openai]),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_activate_bigquery_default_dataset", "test_unquoted_identifiers"]);
       const disabledTestPaths = nix.thunk(() => ["tests/integration/", "tests/unit/*/test_activate.py"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Turning PySpark Into a Universal DataFrame API",
         homepage: "https://github.com/eakmanrq/sqlframe",
         changelog: nix.thunk(() => nix.str`https://github.com/eakmanrq/sqlframe/releases/tag/${nix.sel(src, "tag")}`),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

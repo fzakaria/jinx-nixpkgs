@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const testresources = nix.arg($, "testresources");
   const testtools = nix.arg($, "testtools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "testrepository",
       version: "0.0.22",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "testing-cabal",
           repo: "testrepository",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: nix.thunk(() => nix.str`${nix.sel(python, "interpreter")} ./testr
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Database of test results which can be used as part of developer workflow",
         homepage: "https://github.com/testing-cabal/testrepository",
         changelog: nix.thunk(() => nix.str`https://github.com/testing-cabal/testrepository/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

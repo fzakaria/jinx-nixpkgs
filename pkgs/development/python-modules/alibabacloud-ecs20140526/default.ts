@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "alibabacloud-ecs20140526",
       version: "7.11.6",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "alibabacloud_ecs20140526",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-kOoCcXt9VAiRdOypuMS3rVQkcy/sBjc7VDiNXhPBZCo=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["alibabacloud_ecs20140526"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Alibaba Cloud Elastic Compute Service (20140526) SDK Library for Python",
         homepage: "https://pypi.org/project/alibabacloud-ecs20140526/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

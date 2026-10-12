@@ -39,46 +39,46 @@ Include=${nix.app(nix.lookup(w, "concatStringsSep"), ",", nix.thunk(() => nix.se
 Exclude=${nix.app(nix.lookup(w, "concatStringsSep"), ",", nix.thunk(() => nix.sel(cfg, "portList", "exclude")))}
 `)));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         ostinato: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Ostinato agent-controller (Drone)")),
           port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               default: 7878n,
               description: "Port to listen on.\n",
             })))),
           rateAccuracy: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["High", "Low"]))),
               default: "High",
               description: "To ensure that the actual transmit rate is as close as possible to\nthe configured transmit rate, Drone runs a busy-wait loop.\nWhile this provides the maximum accuracy possible, the CPU\nutilization is 100% while the transmit is on. You can however,\nsacrifice the accuracy to reduce the CPU load.\n",
             })))),
           rpcServer: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             address: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "0.0.0.0",
                 description: "By default, the Drone RPC server will listen on all interfaces and\nlocal IPv4 addresses for incoming connections from clients.  Specify\na single IPv4 or IPv6 address if you want to restrict that.\nTo listen on any IPv6 address, use ::\n",
               })))),
           })),
           portList: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             include: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 default: [],
                 example: nix.thunk(() => ["eth*", "lo*"]),
                 description: "For a port to pass the filter and appear on the port list managed\nby drone, it be allowed by this include list.\n",
               })))),
             exclude: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 default: [],
                 example: nix.thunk(() => ["usbmon*", "eth0"]),
@@ -89,14 +89,14 @@ Exclude=${nix.app(nix.lookup(w, "concatStringsSep"), ",", nix.thunk(() => nix.se
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
-        environment: nix.thunk(() => ({ __proto__: pos$11, systemPackages: nix.thunk(() => [pkg]) })),
+        [nix.POS]: pos$15,
+        environment: nix.thunk(() => ({ [nix.POS]: pos$11, systemPackages: nix.thunk(() => [pkg]) })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             drone: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "Ostinato agent-controller",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               script: nix.thunk(() => nix.str`${pkg}/bin/drone ${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "port")))} ${configFile}

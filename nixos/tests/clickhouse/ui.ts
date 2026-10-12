@@ -26,22 +26,22 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const package$ = nix.arg($, "package");
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     name: "clickhouse-ui",
     nodes: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       browser: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$4,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$1, memorySize: nix.thunk(() => nix.mul(1024n, 2n)) })),
+          [nix.POS]: pos$4,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, memorySize: nix.thunk(() => nix.mul(1024n, 2n)) })),
           environment: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             systemPackages: nix.thunk(() => (() => {
               const clickhouseSeleniumScript = nix.thunk(() => nix.app(nix.sel(pkgs_1, "writers", "writePython3Bin"), "clickhouse-selenium-script", nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   libraries: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(pkgs_1, "python3Packages")), null);
                     return [nix.thunk(() => nix.lookup(w, "selenium"))];
@@ -128,24 +128,24 @@ driver.close()
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           networking: nix.thunk(() => ({
-            __proto__: pos$6,
-            firewall: nix.thunk(() => ({ __proto__: pos$5, allowedTCPPorts: nix.thunk(() => [8123n, 9000n]) })),
+            [nix.POS]: pos$6,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$5, allowedTCPPorts: nix.thunk(() => [8123n, 9000n]) })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             etc: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               "clickhouse-server/config.d/listen.xml": nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 text: "<clickhouse>\n  <listen_host>::</listen_host>\n</clickhouse>\n",
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$11,
-            clickhouse: nix.thunk(() => ({ __proto__: pos$10, enable: true, package: package$ })),
+            [nix.POS]: pos$11,
+            clickhouse: nix.thunk(() => ({ [nix.POS]: pos$10, enable: true, package: package$ })),
           })),
         };
       })(), formals$3),

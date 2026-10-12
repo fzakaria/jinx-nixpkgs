@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const libExt = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary"));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lspce-module",
       version: "1.1.0-unstable-2024-12-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zbelial",
           repo: "lspce",
           rev: "45f84ce102bb34e44c39e5f437107ba786973d6f",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`mv --verbose $out/lib/liblspce_module${libExt} $out/lib/lspce-module${libExt}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/zbelial/lspce",
         description: "LSP Client for Emacs implemented as a module using Rust",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

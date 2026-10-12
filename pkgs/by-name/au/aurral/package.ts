@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const matcherPython = nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "beets"))]));
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "aurral",
       version: "2.10.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lklynet",
           repo: "aurral",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,12 +56,12 @@ substituteInPlace .tests/honker/background-worker-recovery.test.js \\
       npmDepsHash: "sha256-8GmWzjja+SYIkJa+VqkA0nmY10B/bjq7i2RR8qZBofo=",
       nodejs: nodejs_26,
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         AURRAL_MATCHER_PYTHON: nix.thunk(() => nix.str`${matcherPython}/bin/python`),
         VITE_APP_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
         LD_LIBRARY_PATH: nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [sqlite]))),
         FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             fontDirectories: nix.thunk(() => [noto_fonts_color_emoji, dejavu_fonts]),
           })))),
       })),
@@ -103,12 +103,12 @@ EOL
 chmod +x $out/bin/aurral
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => nix.sel(nixosTests, "aurral")),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Aurral is the Lidarr companion for self-hosted music discovery",
         mainProgram: "aurral",
         homepage: "https://aurral.org",

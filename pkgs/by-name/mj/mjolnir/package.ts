@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "mjolnir",
       version: "1.12.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "matrix-org",
           repo: "mjolnir",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [nix.path(here, "./001-disable-nsfwprotection.patch")]),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: "sha256-M4gsuzSxKOIDPL4J2HnveRDjviB0RPBmLVYBlTVz788=",
         })))),
@@ -50,11 +50,11 @@ makeWrapper ${nodejs_22}/bin/node "$out/bin/mjolnir" \\
   --add-flags "$out/lib/node_modules/mjolnir/lib/index.js"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, mjolnir: nix.thunk(() => nix.attr(nixosTests, "mjolnir")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, mjolnir: nix.thunk(() => nix.attr(nixosTests, "mjolnir")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Moderation tool for Matrix",
         homepage: "https://github.com/matrix-org/mjolnir",
         longDescription: "As an all-in-one moderation tool, it can protect your server from\nmalicious invites, spam messages, and whatever else you don't want.\nIn addition to server-level protection, Mjolnir is great for communities\nwanting to protect their rooms without having to use their personal\naccounts for moderation.\n\nThe bot by default includes support for bans, redactions, anti-spam,\nserver ACLs, room directory changes, room alias transfers, account\ndeactivation, room shutdown, and more.\n\nA Synapse module is also available to apply the same rulesets the bot\nuses across an entire homeserver.\n",

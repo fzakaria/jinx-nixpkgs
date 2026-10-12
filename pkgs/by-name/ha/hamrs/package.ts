@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const pname = "hamrs";
   const version = "1.0.7";
   const meta = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     description: "Simple, portable logger tailored for activities like Parks on the Air, Field Day, and more",
     homepage: "https://hamrs.app/",
     license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -30,6 +30,6 @@ export default nix.lambda((args) => (() => {
     mainProgram: "hamrs",
     sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
   }));
-  return (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")) ? nix.app(callPackage, nix.path(here, "./darwin.nix"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, meta: meta }))) : nix.app(callPackage, nix.path(here, "./linux.nix"), nix.thunk(() => ({ __proto__: pos$3, pname: pname, version: version, meta: meta }))));
+  return (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")) ? nix.app(callPackage, nix.path(here, "./darwin.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, meta: meta }))) : nix.app(callPackage, nix.path(here, "./linux.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, pname: pname, version: version, meta: meta }))));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

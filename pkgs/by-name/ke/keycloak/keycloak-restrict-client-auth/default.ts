@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(maven, "buildMavenPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "keycloak-restrict-client-auth",
       version: "26.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sventorben",
           repo: "keycloak-restrict-client-auth",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       installPhase: "runHook preInstall\ninstall -Dm444 -t \"$out\" target/keycloak-restrict-client-auth.jar\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/sventorben/keycloak-restrict-client-auth",
         changelog: nix.thunk(() => nix.str`https://github.com/sventorben/keycloak-restrict-client-auth/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Keycloak authenticator to restrict authorization on clients",

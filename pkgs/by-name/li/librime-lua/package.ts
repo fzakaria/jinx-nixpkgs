@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const lua = nix.arg($, "lua");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "librime-lua",
       version: "0-unstable-2026-08-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hchunhui",
           repo: "librime-lua",
           rev: "ad1e4a6c98abf634dd34242a747f9b1d5d069fbe",
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [lua]),
       installPhase: "runHook preInstall\n\nmkdir $out\ncp --archive --verbose src/ $out\ninstall --mode=644 --verbose --target-directory=$out CMakeLists.txt  LICENSE  README.md\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, hardcodeZeroVersion: true })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Extending RIME with Lua scripts",
         homepage: "https://github.com/hchunhui/librime-lua",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

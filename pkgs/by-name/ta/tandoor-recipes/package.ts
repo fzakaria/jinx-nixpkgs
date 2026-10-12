@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const python3 = nix.arg($, "python3");
   const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      __proto__: pos$2,
-      packageOverrides: (final) => (prev) => ({ __proto__: pos$1, django: nix.thunk(() => nix.sel(final, "django_5")) }),
+      [nix.POS]: pos$2,
+      packageOverrides: (final) => (prev) => ({ [nix.POS]: pos$1, django: nix.thunk(() => nix.sel(final, "django_5")) }),
     }))));
   const common = nix.thunk(() => nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({}))));
   const frontend = nix.thunk(() => nix.app(callPackage, nix.path(here, "./frontend.nix"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(python, "pkgs", "buildPythonPackage"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "tandoor-recipes",
       version: nix.thunk(() => nix.attr(common, "version")),
       src: nix.thunk(() => nix.attr(common, "src")),
@@ -137,19 +137,19 @@ runHook postBuild
         "test_delete",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         frontend: frontend,
         python: python,
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "tandoor-recipes": nix.thunk(() => nix.attr(nixosTests, "tandoor-recipes")),
           "tandoor-recipes-script-name": nix.thunk(() => nix.attr(nixosTests, "tandoor-recipes-script-name")),
           "tandoor-recipes-media": nix.thunk(() => nix.attr(nixosTests, "tandoor-recipes-media")),
         })),
       })),
       meta: nix.thunk(() => nix.update(nix.sel(common, "meta"), {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Application for managing recipes, planning meals, building shopping lists\nand much much more!\n",
         mainProgram: "tandoor-recipes",
       })),

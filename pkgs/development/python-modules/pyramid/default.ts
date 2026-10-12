@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const zope_interface = nix.arg($, "zope-interface");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pyramid",
       version: "2.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Pylons",
           repo: "pyramid",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [webtest, zope_component, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["pyramid"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python web framework",
         homepage: "https://trypyramid.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/Pylons/pyramid/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.rst`),

@@ -17,19 +17,19 @@ export default nix.lambda((args) => (() => {
   const meta = nix.arg($, "meta");
   const passthru = nix.arg($, "passthru");
   const src = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/4ian/GDevelop/releases/download/v${version}/GDevelop-5-${version}.AppImage`),
       hash: "sha256-fvCh4GVWH37mn7tpnTXMs8J0/8o03bg1H1Zw2JtpK3k=",
     }))) : nix.builtins.throw(nix.thunk(() => nix.str`${pname}-${version} is not supported on ${nix.sel(stdenv, "hostPlatform", "system")}`))));
   const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: pname,
       version: version,
       src: src,
       postExtract: "substituteInPlace $out/gdevelop.desktop --replace-fail 'Exec=AppRun --no-sandbox %U' 'Exec=gdevelop'\n",
     }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       src: src,

@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const nativeContextSupport = nix.argOr($, "nativeContextSupport", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   const vaapiSupport = nix.argOr($, "vaapiSupport", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "virglrenderer",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "virgl",
           repo: "virglrenderer",
@@ -59,11 +59,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonOption"), "drm-renderers", nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nativeContextSupport, nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ",", nix.thunk(() => nix.concat(["amdgpu-experimental", "asahi"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch32"))), nix.thunk(() => ["msm"])))))))))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Virtual 3D GPU for use inside QEMU virtual machines",
         homepage: "https://docs.mesa3d.org/drivers/virgl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

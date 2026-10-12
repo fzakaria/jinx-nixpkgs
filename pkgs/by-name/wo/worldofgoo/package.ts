@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const libvorbis = nix.arg($, "libvorbis");
   const arch = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "system"), "x86_64-linux")) ? "x86_64" : "x86"));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       desktopName: "World of Goo",
       genericName: "World of Goo",
       categories: nix.thunk(() => ["Game"]),
@@ -38,7 +38,7 @@ You can do this by using "nix-prefetch-url file://$PWD/${pname}.Linux.${version}
 in the directory where you saved it.
 `);
       const src = nix.thunk(() => nix.app(requireFile, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           message: helpMsg,
           name: "WorldOfGoo.Linux.1.53.sh",
           sha256: "175e4b0499a765f1564942da4bd65029f8aae1de8231749c56bec672187d53ee",
@@ -71,7 +71,7 @@ patchelf --interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" --set-rpath $
 `);
       const dontStrip = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Physics based puzzle game",
         longDescription: "World of Goo is a physics based puzzle / construction game. The millions of Goo\nBalls who live in the beautiful World of Goo don't know that they are in a\ngame, or that they are extremely delicious.\n",
         homepage: "https://worldofgoo.com",
@@ -84,7 +84,7 @@ patchelf --interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" --set-rpath $
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         helpMsg,

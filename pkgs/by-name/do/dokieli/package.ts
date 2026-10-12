@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const yarn_berry_4 = nix.arg($, "yarn-berry_4");
   const yarn_berry = yarn_berry_4;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "dokieli",
       version: "0-unstable-2026-08-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dokieli",
           repo: "dokieli",
           rev: "c23e80e4fe54a2ad20f36a9f21a0987f5e3e4505",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })))),
       missingHashes: nix.path(here, "./missing-hashes.json"),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           hash: "sha256-AqmUWgVDksQeBKcC8mpq1xgQ5NcHTjX/YSgm9J+feBs=",
@@ -54,10 +54,10 @@ export default nix.lambda((args) => (() => {
   --chdir $out
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScriptSrc: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
         updateScriptDeps: nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "update-dokieli-berry-deps",
             runtimeInputs: nix.thunk(() => [nix$, nix.thunk(() => nix.sel(yarn_berry, "yarn-berry-fetcher"))]),
             text: nix.thunk(() => nix.app(nix.sel(lib, "strings", "readFile"), nix.path(here, "./updateDeps.sh"))),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
           ]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Clientside editor for decentralised article publishing, annotations and social interactions",
         homepage: "https://github.com/dokieli/dokieli",
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "AND"), nix.thunk(() => [

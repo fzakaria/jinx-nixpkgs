@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const libxext = nix.arg($, "libxext");
   const libdockapp = nix.arg($, "libdockapp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wmcube",
       version: nix.thunk(() => nix.attr(dockapps_sources, "version")),
       src: nix.thunk(() => nix.attr(dockapps_sources, "src")),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/wmcube/wmcube`),
       buildInputs: nix.thunk(() => [libx11, libxext, libxpm, libdockapp]),
-      env: nix.thunk(() => ({ __proto__: pos$1, NIX_CFLAGS_COMPILE: "-std=gnu89" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$1, NIX_CFLAGS_COMPILE: "-std=gnu89" })),
       preBuild: nix.thunk(() => nix.str`    makeFlagsArray=(
       CC="${nix.sel(stdenv, "cc", "targetPrefix")}cc"
       PREFIX="${nix.builtins.placeholder("out")}"
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       preInstall: nix.thunk(() => nix.str`mkdir -pv $out/{bin,doc/wmcube-${nix.sel(finalAttrs, "version")},share/wmcube,man/man1}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "System monitor for Windowmaker",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         maintainers: [],

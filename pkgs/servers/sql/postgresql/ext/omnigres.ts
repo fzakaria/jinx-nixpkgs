@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const pgWithExtensions = nix.thunk(() => nix.app(nix.sel(postgresql, "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "plpython3"))]));
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "omnigres",
       version: "0-unstable-2025-09-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "omnigres",
           repo: "omnigres",
           rev: "247383198a95d045df0d97ece5a81adffb5c08e8",
@@ -57,19 +57,19 @@ export default nix.lambda((args) => (() => {
       preInstall: "patchShebangs script_omni*\nmkdir -p $out/lib/\nmkdir -p $out/share/postgresql/extension/\n",
       installTargets: nix.thunk(() => ["install_extensions"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           extension: nix.thunk(() => nix.app(postgresqlTestExtension, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               finalPackage: nix.thunk(() => nix.attr(finalAttrs, "finalPackage")),
               sql: "-- https://docs.omnigres.org/omni_id/identity_type/#usage\nCREATE EXTENSION omni_id;\n\nSELECT identity_type('user_id');\n",
             })))),
         })),
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$4, hardcodeZeroVersion: true })))),
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Postgres as a Business Operating System",
         homepage: "https://docs.omnigres.org",
         maintainers: nix.thunk(() => (() => {

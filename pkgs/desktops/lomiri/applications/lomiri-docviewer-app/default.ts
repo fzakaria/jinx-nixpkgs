@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const qtsystems = nix.arg($, "qtsystems");
   const wrapQtAppsHook = nix.arg($, "wrapQtAppsHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "lomiri-docviewer-app",
       version: "3.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ubports",
           repo: "development/apps/lomiri-docviewer-app",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -65,15 +65,15 @@ substituteInPlace data/CMakeLists.txt \\
       doCheck: false,
       postInstall: "mkdir -p $out/share/lomiri-app-launch/splash\n\nln -s $out/share/{lomiri-docviewer-app/docviewer-app-splash.svg,lomiri-app-launch/splash/lomiri-docviewer-app.svg}\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           vm: nix.thunk(() => nix.sel(nixosTests, "lomiri-docviewer-app")),
         })),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$3, "rev-prefix": "v" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Document Viewer application for Ubuntu Touch devices",
         homepage: "https://gitlab.com/ubports/development/apps/lomiri-docviewer-app",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/apps/lomiri-docviewer-app/-/blob/v${nix.sel(finalAttrs, "version")}/ChangeLog`),

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ntttcp",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "microsoft",
           repo: "ntttcp-for-linux",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/microsoft/ntttcp-for-linux/commit/e18597c05e3d4b439849ce0e149cb701ff5a36c2.patch",
             hash: "sha256-FOgjKseMDL1O1f+lgmmreGus4YRTZMwIJinh/7MT2Xk=",
           })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "cd src",
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ncp ntttcp $out/bin\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Linux network throughput multiple-thread benchmark tool",
         homepage: "https://github.com/microsoft/ntttcp-for-linux",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

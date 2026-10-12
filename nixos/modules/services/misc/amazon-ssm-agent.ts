@@ -40,39 +40,39 @@ case "$1" in
 esac
 `)));
   const sudoRule = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     users: nix.thunk(() => ["ssm-user"]),
     commands: nix.thunk(() => [
-      nix.thunk(() => ({ __proto__: pos$1, command: "ALL", options: nix.thunk(() => ["NOPASSWD"]) })),
+      nix.thunk(() => ({ [nix.POS]: pos$1, command: "ALL", options: nix.thunk(() => ["NOPASSWD"]) })),
     ]),
   }));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "ssm-agent", "enable"]), nix.thunk(() => ["services", "amazon-ssm-agent", "enable"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "ssm-agent", "package"]), nix.thunk(() => ["services", "amazon-ssm-agent", "package"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "amazon-ssm-agent": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Amazon SSM agent")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "amazon-ssm-agent", nix.thunk(() => ({})))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         systemd: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           services: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             "amazon-ssm-agent": nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(cfg, "package", "meta"));
               return {
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               description: nix.thunk(() => nix.attr(from, "description")),
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target"]),
@@ -84,7 +84,7 @@ esac
                 "/run/current-system/sw",
               ]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/amazon-ssm-agent`),
                 KillMode: "process",
                 Restart: "always",
@@ -96,28 +96,28 @@ esac
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$12,
-          sudo: nix.thunk(() => ({ __proto__: pos$10, extraRules: nix.thunk(() => [sudoRule]) })),
-          "sudo-rs": nix.thunk(() => ({ __proto__: pos$11, extraRules: nix.thunk(() => [sudoRule]) })),
+          [nix.POS]: pos$12,
+          sudo: nix.thunk(() => ({ [nix.POS]: pos$10, extraRules: nix.thunk(() => [sudoRule]) })),
+          "sudo-rs": nix.thunk(() => ({ [nix.POS]: pos$11, extraRules: nix.thunk(() => [sudoRule]) })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$16,
-          groups: nix.thunk(() => ({ __proto__: pos$13, "ssm-user": nix.thunk(() => ({})) })),
+          [nix.POS]: pos$16,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$13, "ssm-user": nix.thunk(() => ({})) })),
           users: nix.thunk(() => ({
-            __proto__: pos$15,
-            "ssm-user": nix.thunk(() => ({ __proto__: pos$14, isNormalUser: true, group: "ssm-user" })),
+            [nix.POS]: pos$15,
+            "ssm-user": nix.thunk(() => ({ [nix.POS]: pos$14, isNormalUser: true, group: "ssm-user" })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           etc: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             "amazon/ssm/seelog.xml": nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/etc/amazon/ssm/seelog.xml.template`),
             })),
             "amazon/ssm/amazon-ssm-agent.json": nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/etc/amazon/ssm/amazon-ssm-agent.json.template`),
             })),
           })),

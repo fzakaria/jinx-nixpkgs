@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const syslinux = nix.arg($, "syslinux");
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isEfi")), "gnu-efi may only be built for EFI platforms"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/gn/gnu-efi/package.nix:13:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gnu-efi",
       version: "4.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ncroxon",
           repo: "gnu-efi",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "substituteInPlace Make.defaults \\\n  --replace \"-Werror\" \"\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, "fwupd-efi": fwupd_efi, syslinux: syslinux })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, "fwupd-efi": fwupd_efi, syslinux: syslinux })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "GNU EFI development toolchain",
         homepage: "https://github.com/ncroxon/gnu-efi",
         license: nix.thunk(() => (() => {

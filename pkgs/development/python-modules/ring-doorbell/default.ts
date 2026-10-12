@@ -31,19 +31,19 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const websockets = nix.arg($, "websockets");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ring-doorbell",
       version: "0.9.14",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "ring_doorbell",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-M99nwMuo0OziuJpNzuZgK69HtE+/wbOgheij1UwBaRc=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "replace-async-timeout-with-asyncio.timeout.patch",
             url: "https://github.com/python-ring-doorbell/python-ring-doorbell/commit/771243153921ec2cfb5f103b08ed08cccbe2e760.patch",
             excludes: nix.thunk(() => [".github/workflows/ci.yml", "uv.lock"]),
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["ring_doorbell"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library to communicate with Ring Door Bell",
         homepage: "https://github.com/tchellomello/python-ring-doorbell",
         changelog: nix.thunk(() => nix.str`https://github.com/tchellomello/python-ring-doorbell/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libwmf = nix.arg($, "libwmf");
   const libxml2 = nix.arg($, "libxml2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libvisio2svg",
       version: "0.5.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kakwa",
           repo: "libvisio2svg",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libxml2, freetype, librevenge, libvisio, libwmf, libemf2svg]),
       cmakeFlags: nix.thunk(() => ["-DCMAKE_SKIP_BUILD_RPATH=ON", "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library and tools to convert Microsoft Visio documents (VSS and VSD) to SVG",
         homepage: "https://github.com/kakwa/libvisio2svg",
         maintainers: nix.thunk(() => (() => {

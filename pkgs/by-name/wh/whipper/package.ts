@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const whipper = nix.arg($, "whipper");
   const bins = nix.thunk(() => [libcdio_paranoia, cdrdao, flac, sox, util_linux]);
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "whipper",
       version: "0.10.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "whipper-team",
           repo: "whipper",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/whipper-team/whipper/commit/3ce5964dfe8be1e625c3e3b091360dd0bc34a384.patch",
             sha256: "0n9dmib884y8syvypsg88j0h71iy42n1qsrh0am8pwna63sl15ah",
           })))),
@@ -91,18 +91,18 @@ export default nix.lambda((args) => (() => {
       preCheck: "# disable tests that require internet access\n# https://github.com/JoeLametta/whipper/issues/291\nsubstituteInPlace whipper/test/test_common_accurip.py \\\n  --replace \"test_AccurateRipResponse\" \"dont_test_AccurateRipResponse\"\nexport HOME=$TMPDIR\n",
       postInstall: "installManPage man/*.1\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: whipper,
               command: "HOME=$TMPDIR whipper --version",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://github.com/whipper-team/whipper",
         description: "CD ripper aiming for accuracy over speed",
         maintainers: nix.thunk(() => (() => {

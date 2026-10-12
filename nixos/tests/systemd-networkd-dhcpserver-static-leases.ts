@@ -44,92 +44,92 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$36,
+    [nix.POS]: pos$36,
     name: "systemd-networkd-dhcpserver-static-leases",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "veehaitch"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$35,
+      [nix.POS]: pos$35,
       router: nix.thunk(() => ({
-        __proto__: pos$14,
-        virtualisation: nix.thunk(() => ({ __proto__: pos$2, vlans: nix.thunk(() => [1n]) })),
+        [nix.POS]: pos$14,
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, vlans: nix.thunk(() => [1n]) })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           services: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             "systemd-networkd": nix.thunk(() => ({
-              __proto__: pos$4,
-              environment: nix.thunk(() => ({ __proto__: pos$3, SYSTEMD_LOG_LEVEL: "debug" })),
+              [nix.POS]: pos$4,
+              environment: nix.thunk(() => ({ [nix.POS]: pos$3, SYSTEMD_LOG_LEVEL: "debug" })),
             })),
           })),
           network: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             networks: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               "01-eth1": nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 name: "eth1",
-                networkConfig: nix.thunk(() => ({ __proto__: pos$6, DHCPServer: true, Address: "10.0.0.1/24" })),
+                networkConfig: nix.thunk(() => ({ [nix.POS]: pos$6, DHCPServer: true, Address: "10.0.0.1/24" })),
                 dhcpServerStaticLeases: nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$7, MACAddress: "02:de:ad:be:ef:01", Address: "10.0.0.10" })),
+                  nix.thunk(() => ({ [nix.POS]: pos$7, MACAddress: "02:de:ad:be:ef:01", Address: "10.0.0.10" })),
                 ]),
               })),
             })),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           useNetworkd: true,
           useDHCP: false,
-          firewall: nix.thunk(() => ({ __proto__: pos$12, enable: false })),
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$12, enable: false })),
         })),
       })),
       client: nix.thunk(() => ({
-        __proto__: pos$34,
-        virtualisation: nix.thunk(() => ({ __proto__: pos$15, vlans: nix.thunk(() => [1n]) })),
+        [nix.POS]: pos$34,
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$15, vlans: nix.thunk(() => [1n]) })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           services: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             "systemd-networkd": nix.thunk(() => ({
-              __proto__: pos$17,
-              environment: nix.thunk(() => ({ __proto__: pos$16, SYSTEMD_LOG_LEVEL: "debug" })),
+              [nix.POS]: pos$17,
+              environment: nix.thunk(() => ({ [nix.POS]: pos$16, SYSTEMD_LOG_LEVEL: "debug" })),
             })),
           })),
           network: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             enable: true,
             links: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               "10-eth1": nix.thunk(() => ({
-                __proto__: pos$21,
-                matchConfig: nix.thunk(() => ({ __proto__: pos$19, OriginalName: "eth1" })),
-                linkConfig: nix.thunk(() => ({ __proto__: pos$20, MACAddress: "02:de:ad:be:ef:01" })),
+                [nix.POS]: pos$21,
+                matchConfig: nix.thunk(() => ({ [nix.POS]: pos$19, OriginalName: "eth1" })),
+                linkConfig: nix.thunk(() => ({ [nix.POS]: pos$20, MACAddress: "02:de:ad:be:ef:01" })),
               })),
             })),
             networks: nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               "40-eth1": nix.thunk(() => ({
-                __proto__: pos$27,
-                matchConfig: nix.thunk(() => ({ __proto__: pos$23, Name: "eth1" })),
-                networkConfig: nix.thunk(() => ({ __proto__: pos$24, DHCP: "ipv4", IPv6AcceptRA: false })),
-                dhcpV4Config: nix.thunk(() => ({ __proto__: pos$25, ClientIdentifier: "mac" })),
-                linkConfig: nix.thunk(() => ({ __proto__: pos$26, RequiredForOnline: "routable" })),
+                [nix.POS]: pos$27,
+                matchConfig: nix.thunk(() => ({ [nix.POS]: pos$23, Name: "eth1" })),
+                networkConfig: nix.thunk(() => ({ [nix.POS]: pos$24, DHCP: "ipv4", IPv6AcceptRA: false })),
+                dhcpV4Config: nix.thunk(() => ({ [nix.POS]: pos$25, ClientIdentifier: "mac" })),
+                linkConfig: nix.thunk(() => ({ [nix.POS]: pos$26, RequiredForOnline: "routable" })),
               })),
             })),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           useDHCP: false,
-          firewall: nix.thunk(() => ({ __proto__: pos$31, enable: false })),
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$31, enable: false })),
           interfaces: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             eth1: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ({})))),
           })),
         })),

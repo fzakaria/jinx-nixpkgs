@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const disabled = isPyPy;
       const outputs = nix.thunk(() => ["out", "doc"]);
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-He2xx6HYVSxKYETGscQaUuao4tFEr4PsysdYB2sbfBU=",
@@ -47,11 +47,11 @@ substituteInPlace setup.py \\
       const sphinxRoot = "doc/src";
       const doCheck = false;
       const nativeCheckInputs = nix.thunk(() => [postgresql, postgresqlTestHook]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, PGDATABASE: "psycopg2_test" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PGDATABASE: "psycopg2_test" }));
       const pythonImportsCheck = nix.thunk(() => ["psycopg2"]);
       const disallowedReferences = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => [nix.thunk(() => nix.sel(buildPackages, "libpq"))])));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "PostgreSQL database adapter for the Python programming language",
         homepage: "https://www.psycopg.org",
         license: nix.thunk(() => (() => {
@@ -64,7 +64,7 @@ substituteInPlace setup.py \\
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "go-camo";
       const version = "2.7.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cactus",
           repo: "go-camo",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
       const postInstall = "installManPage build/man/*\n";
       const preCheck = "# requires network access\nrm pkg/camo/proxy_{,filter_}test.go\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "go-camo": nix.thunk(() => nix.attr(nixosTests, "go-camo")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Camo server is a special type of image proxy that proxies non-secure images over SSL/TLS",
         homepage: "https://github.com/cactus/go-camo",
         changelog: nix.thunk(() => nix.str`https://github.com/cactus/go-camo/releases/tag/v${version}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

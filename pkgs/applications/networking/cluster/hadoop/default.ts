@@ -55,21 +55,21 @@ export default nix.lambda((args) => (() => {
     const jdk = nix.arg($_1, "jdk");
     const tests = nix.arg($_1, "tests");
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: pname,
         jdk: nix.thunk(() => nix.selOr(platformAttrs, () => nix.force(jdk), nix.key(nix.sel(stdenv, "system")), "jdk")),
         version: nix.thunk(() => nix.selOr(platformAttrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "system")}`)), nix.key(nix.sel(stdenv, "system")), "version")),
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.selOr(platformAttrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "system")}`)), nix.key(nix.sel(stdenv, "system"))));
             return {
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.add(nix.add(nix.add(nix.str`mirror://apache/hadoop/common/hadoop-${nix.sel(finalAttrs, "version")}/hadoop-${nix.sel(finalAttrs, "version")}`, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "hasAttr"), "variant", nix.thunk(() => nix.sel(platformAttrs, nix.key(nix.sel(stdenv, "system")))))), nix.thunk(() => nix.str`-${nix.sel(platformAttrs, nix.key(nix.sel(stdenv, "system")), "variant")}`))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), "-aarch64")), ".tar.gz")),
             hash: nix.thunk(() => nix.attr(from, "hash")),
           };
           })()))),
         doCheck: true,
         containerExecutor: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? nix.app(callPackage, nix.path(here, "./containerExecutor.nix"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             platformAttrs: platformAttrs,
           }))) : "")),
@@ -120,9 +120,9 @@ done
 `), nix.app(nix.sel(lib, "optionalString"), sparkSupport, nix.thunk(() => nix.str`# Add the spark shuffle service jar to YARN
 cp ${nix.sel(spark, "src")}/yarn/spark-${nix.sel(spark, "version")}-yarn-shuffle.jar $out/share/hadoop/yarn/
 `)))),
-        passthru: nix.thunk(() => ({ __proto__: pos$3, tests: tests })),
+        passthru: nix.thunk(() => ({ [nix.POS]: pos$3, tests: tests })),
         meta: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           homepage: "https://hadoop.apache.org/",
           description: "Framework for distributed processing of large data sets across clusters of computers",
           license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -140,20 +140,20 @@ cp ${nix.sel(spark, "src")}/yarn/spark-${nix.sel(spark, "version")}-yarn-shuffle
       }));
   })(), formals$2);
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     hadoop_3_4: nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname: "hadoop",
         platformAttrs: nix.thunk(() => (() => {
           const x86_64_linux = nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             version: "3.4.2",
             hash: "sha256-YySoP+EeUXiQQ2/G2AvIKVBu0lLL4kZXUrkSIJAN+4M=",
             srcHash: "sha256-AkZjpHk57S3pYiZambxgRHR7PD51HSI4H1HHW9ICah4=",
             variant: "lean",
           }));
           const aarch64_linux = nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             version: "3.4.0",
             hash: "sha256-QWxzKtNyw/AzcHMv0v7kj91pw1HO7VAN9MHO84caFk8=",
             srcHash: "sha256-viDF3LdRCZHqFycOYfN7nUQBPHiMCIjmu7jgIAaaK9E=",
@@ -161,7 +161,7 @@ cp ${nix.sel(spark, "src")}/yarn/spark-${nix.sel(spark, "version")}-yarn-shuffle
           }));
           const aarch64_darwin = aarch64_linux;
           return {
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             "x86_64-linux": x86_64_linux,
             "aarch64-linux": aarch64_linux,
             "aarch64-darwin": aarch64_darwin,
@@ -171,22 +171,22 @@ cp ${nix.sel(spark, "src")}/yarn/spark-${nix.sel(spark, "version")}-yarn-shuffle
         tests: nix.thunk(() => nix.sel(nixosTests, "hadoop")),
       })))),
     hadoop_3_3: nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         pname: "hadoop",
         platformAttrs: nix.thunk(() => (() => {
           const x86_64_linux = nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             version: "3.3.6",
             hash: "sha256-9RlQWcDUECrap//xf3sqhd+Qa8tuGZSHFjGfmXhkGgQ=",
             srcHash: "sha256-4OEsVhBNV9CJ+PN4FgCduUCVA9/el5yezSCZ6ko3+bU=",
           }));
           const aarch64_linux = nix.thunk(() => nix.update(x86_64_linux, {
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             hash: "sha256-5Lv2uA72BJEva5v2yncyPe5gKNCNOPNsoHffVt6KXQ0=",
           }));
           const aarch64_darwin = aarch64_linux;
           return {
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             "x86_64-linux": x86_64_linux,
             "aarch64-linux": aarch64_linux,
             "aarch64-darwin": aarch64_darwin,
@@ -196,12 +196,12 @@ cp ${nix.sel(spark, "src")}/yarn/spark-${nix.sel(spark, "version")}-yarn-shuffle
         tests: nix.thunk(() => nix.sel(nixosTests, "hadoop_3_3")),
       })))),
     hadoop2: nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         pname: "hadoop",
         platformAttrs: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           "x86_64-linux": nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             version: "2.10.2",
             hash: "sha256-xhA4zxqIRGNhIeBnJO9dLKf/gx/Bq+uIyyZwsIafEyo=",
             srcHash: "sha256-ucxCyXiJo8aL6aNMhZgKEbn8sGKOoMPVREbMGSfSdAI=",

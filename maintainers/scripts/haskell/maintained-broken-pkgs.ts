@@ -14,7 +14,7 @@ export default nix.thunk(() => (() => {
   const transitiveBrokenPkgs = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (v) => (nix.asBool(!nix.asBool(nix.sel(nix.builtins.tryEval(nix.thunk(() => nix.selOr(v, () => null, "outPath"))), "success"))) && nix.asBool(!nix.asBool(nix.sel(v, "meta", "broken")))), maintainedPkgs));
   const infoList = (pkgs) => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (drv) => nix.str`${name} ${nix.sel(nix.builtins.elemAt(nix.thunk(() => nix.sel(drv, "meta", "maintainers")), 0n), "github")}`, pkgs)));
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     report: nix.thunk(() => nix.str`BROKEN:
 ${nix.app(infoList, brokenPkgs)}
 

@@ -22,15 +22,15 @@ export default nix.lambda((args) => (() => {
   const system = nix.thunk(() => nix.attr(from, "system"));
   const throwSystem = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)));
   const sha256 = nix.thunk(() => nix.selOr({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "x86_64-linux": "139nlr191bsinx6ixpi2glcr03lsnzq7b0438h3245napsnjpx6p",
   }, () => nix.force(throwSystem), nix.key(nix.str`${system}`)));
-  const arch = nix.thunk(() => nix.selOr({ __proto__: pos$2, "x86_64-linux": "amd64" }, () => nix.force(throwSystem), nix.key(nix.str`${system}`)));
+  const arch = nix.thunk(() => nix.selOr({ [nix.POS]: pos$2, "x86_64-linux": "amd64" }, () => nix.force(throwSystem), nix.key(nix.str`${system}`)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "terra-station";
       const version = "1.2.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://github.com/terra-money/station-desktop/releases/download/v${version}/Terra.Station_${version}_${arch}.deb`),
           sha256: sha256,
         }))));
@@ -60,7 +60,7 @@ runHook postInstall
   --add-flags $out/share/${pname}/resources/app.aasar
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Terra station is the official wallet of the Terra blockchain",
         homepage: "https://station.money/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
@@ -70,7 +70,7 @@ runHook postInstall
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

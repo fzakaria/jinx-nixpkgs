@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const rust_jemalloc_sys = nix.arg($, "rust-jemalloc-sys");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       __structuredAttrs: true,
       pname: "porxie",
       version: "0.3.5",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Blooym",
           repo: "porxie",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,12 +34,12 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [rust_jemalloc_sys]),
       checkFlags: nix.thunk(() => ["--skip=identity_service::tests::resolve_and_cache"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isLinux")), nix.thunk(() => ({ __proto__: pos$2, porxie: nix.thunk(() => nix.sel(nixosTests, "porxie")) })))),
+        tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isLinux")), nix.thunk(() => ({ [nix.POS]: pos$2, porxie: nix.thunk(() => nix.sel(nixosTests, "porxie")) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Porxie, an ATProto blob proxy for secure content delivery",
         homepage: "https://codeberg.org/Blooym/porxie",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

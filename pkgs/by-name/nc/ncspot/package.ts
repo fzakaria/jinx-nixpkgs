@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
   const withShareSelection = nix.argOr($, "withShareSelection", () => false);
   const withTermion = nix.argOr($, "withTermion", () => false);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ncspot",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hrkfdn",
           repo: "ncspot",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config], nix.app(nix.sel(lib, "optional"), withClipboard, python3))),
       buildInputs: nix.thunk(() => nix.concat([ncurses], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), openssl), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(withALSA) || nix.asBool(withRodio))), alsa_lib), nix.concat(nix.app(nix.sel(lib, "optional"), withClipboard, libxcb), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(withMPRIS) || nix.asBool(withNotify))), dbus), nix.concat(nix.app(nix.sel(lib, "optional"), withNcurses, ncurses), nix.concat(nix.app(nix.sel(lib, "optional"), withPortAudio, portaudio), nix.app(nix.sel(lib, "optional"), withPulseAudio, libpulseaudio))))))))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-DNCURSES_UNCTRL_H_incl")),
       })),
       buildNoDefaultFeatures: true,
@@ -64,11 +64,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Cross-platform ncurses Spotify client written in Rust, inspired by ncmpc and the likes",
         homepage: "https://github.com/hrkfdn/ncspot",
         changelog: nix.thunk(() => nix.str`https://github.com/hrkfdn/ncspot/releases/tag/v${nix.sel(finalAttrs, "version")}`),

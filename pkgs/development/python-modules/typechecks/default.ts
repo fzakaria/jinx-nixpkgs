@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "typechecks",
       version: "unstable-2023-07-13",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openvax",
           repo: "typechecks",
           rev: "5340b4e8a2f419b3a7aa816a5b19e2e0a6ce0679",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       pythonImportsCheck: nix.thunk(() => ["typechecks"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Type checking helpers for Python",
         homepage: "https://github.com/openvax/typechecks",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

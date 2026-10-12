@@ -31,23 +31,23 @@ export default nix.lambda((args) => (() => {
   const version = "0.3.32";
   const url_base = nix.thunk(() => nix.str`https://github.com/alexmercerind2/harmonoid-releases/releases/download/v${version}`);
   const url = nix.thunk(() => nix.selOr({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "x86_64-linux": nix.thunk(() => nix.str`${url_base}/harmonoid-linux-x86_64.tar.gz`),
     "aarch64-linux": nix.thunk(() => nix.str`${url_base}/harmonoid-linux-aarch64.tar.gz`),
     "aarch64-darwin": nix.thunk(() => nix.str`${url_base}/harmonoid-macos-universal.dmg`),
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`${nix.sel(stdenv, "hostPlatform", "system")} is an unsupported platform`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const hash = nix.thunk(() => nix.sel({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     "x86_64-linux": "sha256-ICnghYC25CLf5kzB6tUC/ocKI+J5HA7zyK9dEkLOWWE=",
     "aarch64-linux": "sha256-j9Pveq7iULBUVF7ochHWS9VynlJlk14m3KLRyAcNKiA=",
     "aarch64-darwin": "sha256-BrhumTPD7SjK9LRUp5giy5h7LdSrhQyVUXE1Crr0LXI=",
   }, nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "harmonoid",
       version: version,
-      src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ __proto__: pos$3, url: url, hash: hash })))),
-      passthru: nix.thunk(() => ({ __proto__: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$3, url: url, hash: hash })))),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
       nativeBuildInputs: nix.thunk(() => nix.concat([makeWrapper], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [autoPatchelfHook])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [undmg]))))),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [cairo, gdk_pixbuf, gtk3, libz, pango, harfbuzz, atkmm, libcxx]))),
       installPhase: nix.thunk(() => nix.add(nix.add(nix.add("runHook preInstall\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`mkdir -p $out
@@ -57,7 +57,7 @@ cp -r share $out
 wrapProgram $out/bin/harmonoid --prefix LD_LIBRARY_PATH : $out/share/harmonoid/lib:${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [mpv_unwrapped]))}
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications\ncp -r . $out/Applications/Harmonoid.app\n")), "runHook postInstall\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Plays & manages your music library",
         homepage: "https://harmonoid.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/harmonoid/harmonoid/releases/tag/v${nix.sel(finalAttrs, "version")}`),
@@ -67,7 +67,7 @@ wrapProgram $out/bin/harmonoid --prefix LD_LIBRARY_PATH : $out/share/harmonoid/l
         })()),
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux", "aarch64-darwin"]),
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             shortName: "polyFormStrict100",
             fullName: "PolyForm Strict License 1.0.0",
             url: "https://polyformproject.org/licenses/strict/1.0.0/",

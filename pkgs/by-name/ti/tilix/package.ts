@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const appstream = nix.arg($, "appstream");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "tilix",
       version: "1.9.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gnunn1",
           repo: "tilix",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -55,14 +55,14 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [dbus, gettext, dconf, gsettings_desktop_schemas, gtkd, libsecret, libunwind]),
       postPatch: "chmod +x meson_post_install.py\npatchShebangs meson_post_install.py\n# https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=tilix\nsubstituteInPlace source/gx/tilix/{prefeditor/prefdialog.d,terminal/terminal.d} \\\n  --replace-fail \"(Align.\" \"(GtkAlign.\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           test: nix.thunk(() => nix.sel(nixosTests, "terminal-emulators", "tilix")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Tiling terminal emulator following the Gnome Human Interface Guidelines",
         homepage: "https://gnunn1.github.io/tilix-web",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

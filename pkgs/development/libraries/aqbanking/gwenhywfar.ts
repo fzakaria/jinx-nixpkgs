@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gwenhywfar";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.aquamaniac.de/rdm/attachments/download/${releaseId}/gwenhywfar-${version_1}.tar.gz`),
           hash: hash,
         }))));
@@ -71,7 +71,7 @@ sed -i -e '/^gwenhywfar_plugindir=/s,/\\\${GWENHYWFAR_SO_EFFECTIVE},,' \\
       ]);
       const dontWrapQtApps = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OS abstraction functions used by aqbanking and related tools",
         homepage: "https://www.aquamaniac.de/rdm/projects/gwenhywfar",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
@@ -79,7 +79,7 @@ sed -i -e '/^gwenhywfar_plugindir=/s,/\\\${GWENHYWFAR_SO_EFFECTIVE},,' \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version: version_1,
         src,

@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
     const pname = "mobilizon";
     const version = "5.2.4";
     const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         domain: "framagit.org",
         owner: "kaihuri",
         repo: pname,
@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
         hash: "sha256-qsyuk3RnJXXG7ZYgtZlGvY3Wtq9aLKCrFiG/9nONUPw=",
       }))));
     const patches = nix.thunk(() => [nix.path(here, "./json_polyfill.patch")]);
-    return { __proto__: pos$2, pname, version, src, patches };
+    return { [nix.POS]: pos$2, pname, version, src, patches };
   })();
 })(), formals$1);
 //# sourceMappingURL=common.ts.map

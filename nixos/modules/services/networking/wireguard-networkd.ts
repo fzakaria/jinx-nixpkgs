@@ -79,15 +79,15 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.builtins.map, (peer) => nix.str`${nix.app(presharedKeyCredential, interfaceName, peer)}:${nix.sel(peer, "presharedKeyFile")}`)),
     ])));
   const generateNetdev = (name) => (interface$) => nix.app(nameValuePair, nix.thunk(() => nix.str`40-${name}`), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       netdevConfig: nix.thunk(() => nix.app(removeNulls, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           Kind: "wireguard",
           Name: name,
           MTUBytes: nix.thunk(() => nix.sel(interface$, "mtu")),
         })))),
       wireguardConfig: nix.thunk(() => nix.app(removeNulls, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           PrivateKey: nix.thunk(() => nix.str`@${nix.app(privateKeyCredential, name)}`),
           ListenPort: nix.thunk(() => nix.sel(interface$, "listenPort")),
           FirewallMark: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(interface$, "fwMark"), null)) ? null : nix.app(fwMarkFromHexOrNum, nix.thunk(() => nix.sel(interface$, "fwMark"))))),
@@ -97,7 +97,7 @@ export default nix.lambda((args) => (() => {
       wireguardPeers: nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.app(generateWireguardPeer, name)), nix.thunk(() => nix.sel(interface$, "peers")))),
     })));
   const generateWireguardPeer = (interfaceName) => (peer) => nix.app(removeNulls, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       PublicKey: nix.thunk(() => nix.sel(peer, "publicKey")),
       PresharedKey: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(peer, "presharedKeyFile"), null)) ? null : nix.str`@${nix.app(presharedKeyCredential, interfaceName, peer)}`)),
       AllowedIPs: nix.thunk(() => nix.sel(peer, "allowedIPs")),
@@ -105,25 +105,25 @@ export default nix.lambda((args) => (() => {
       PersistentKeepalive: nix.thunk(() => nix.sel(peer, "persistentKeepalive")),
     })));
   const generateNetwork = (name) => (interface$) => nix.app(nameValuePair, nix.thunk(() => nix.str`40-${name}`), nix.thunk(() => ({
-      __proto__: pos$6,
-      matchConfig: nix.thunk(() => ({ __proto__: pos$5, Name: name })),
+      [nix.POS]: pos$6,
+      matchConfig: nix.thunk(() => ({ [nix.POS]: pos$5, Name: name })),
       address: nix.thunk(() => nix.sel(interface$, "ips")),
     })));
   const cfg = nix.thunk(() => nix.sel(config, "networking", "wireguard"));
   const refreshEnabledInterfaces = nix.thunk(() => nix.app(filterAttrs, (name) => (interface$) => !nix.eq(nix.sel(interface$, "dynamicEndpointRefreshSeconds"), 0n), nix.thunk(() => nix.sel(cfg, "interfaces"))));
   const generateRefreshTimer = (name) => (interface$) => nix.app(nameValuePair, nix.thunk(() => nix.str`wireguard-dynamic-refresh-${name}`), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       partOf: nix.thunk(() => [nix.thunk(() => nix.str`wireguard-dynamic-refresh-${name}.service`)]),
       wantedBy: nix.thunk(() => ["timers.target"]),
       description: nix.thunk(() => nix.str`Wireguard dynamic endpoint refresh (${name}) timer`),
       timerConfig: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         OnBootSec: nix.thunk(() => nix.sel(interface$, "dynamicEndpointRefreshSeconds")),
         OnUnitInactiveSec: nix.thunk(() => nix.sel(interface$, "dynamicEndpointRefreshSeconds")),
       })),
     })));
   const generateRefreshService = (name) => (interface$) => nix.app(nameValuePair, nix.thunk(() => nix.str`wireguard-dynamic-refresh-${name}`), nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       description: nix.thunk(() => nix.str`Wireguard dynamic endpoint refresh (${name})`),
       after: nix.thunk(() => ["network-online.target"]),
       wants: nix.thunk(() => ["network-online.target"]),
@@ -138,21 +138,21 @@ export default nix.lambda((args) => (() => {
 networkctl reload
 `),
     })));
-  const generateRefreshNetdevMode = (name) => (interface$) => nix.app(nameValuePair, nix.thunk(() => nix.str`systemd/network/40-${name}.netdev`), nix.thunk(() => ({ __proto__: pos$10, mode: "0444" })));
+  const generateRefreshNetdevMode = (name) => (interface$) => nix.app(nameValuePair, nix.thunk(() => nix.str`systemd/network/40-${name}.netdev`), nix.thunk(() => ({ [nix.POS]: pos$10, mode: "0444" })));
   return {
-    __proto__: pos$36,
+    [nix.POS]: pos$36,
     meta: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "majiir"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       networking: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         wireguard: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           useNetworkd: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               default: nix.thunk(() => nix.sel(config, "networking", "useNetworkd")),
               defaultText: nix.thunk(() => nix.app(literalExpression, "config.networking.useNetworkd")),
               type: nix.thunk(() => nix.sel(types, "bool")),
@@ -162,98 +162,98 @@ networkctl reload
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(nix.sel(cfg, "enable")) && nix.asBool(nix.sel(cfg, "useNetworkd")))), nix.thunk(() => ({
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         assertions: nix.thunk(() => nix.app(concatLists, nix.thunk(() => nix.app(flip, mapAttrsToList, nix.thunk(() => nix.sel(cfg, "interfaces")), (name) => (interface$) => nix.concat([
               nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 assertion: nix.thunk(() => nix.eq(nix.sel(interface$, "privateKey"), null)),
                 message: nix.thunk(() => nix.str`networking.wireguard.interfaces.${name}.privateKey cannot be used with networkd. Use privateKeyFile instead.`),
               })),
               nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 assertion: nix.thunk(() => !nix.asBool(nix.sel(interface$, "generatePrivateKeyFile"))),
                 message: nix.thunk(() => nix.str`networking.wireguard.interfaces.${name}.generatePrivateKeyFile cannot be used with networkd.`),
               })),
               nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 assertion: nix.thunk(() => nix.eq(nix.sel(interface$, "preSetup"), "")),
                 message: nix.thunk(() => nix.str`networking.wireguard.interfaces.${name}.preSetup cannot be used with networkd.`),
               })),
               nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 assertion: nix.thunk(() => nix.eq(nix.sel(interface$, "postSetup"), "")),
                 message: nix.thunk(() => nix.str`networking.wireguard.interfaces.${name}.postSetup cannot be used with networkd.`),
               })),
               nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 assertion: nix.thunk(() => nix.eq(nix.sel(interface$, "preShutdown"), "")),
                 message: nix.thunk(() => nix.str`networking.wireguard.interfaces.${name}.preShutdown cannot be used with networkd.`),
               })),
               nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 assertion: nix.thunk(() => nix.eq(nix.sel(interface$, "postShutdown"), "")),
                 message: nix.thunk(() => nix.str`networking.wireguard.interfaces.${name}.postShutdown cannot be used with networkd.`),
               })),
               nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 assertion: nix.thunk(() => nix.eq(nix.sel(interface$, "socketNamespace"), null)),
                 message: nix.thunk(() => nix.str`networking.wireguard.interfaces.${name}.socketNamespace cannot be used with networkd.`),
               })),
               nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 assertion: nix.thunk(() => nix.eq(nix.sel(interface$, "interfaceNamespace"), null)),
                 message: nix.thunk(() => nix.str`networking.wireguard.interfaces.${name}.interfaceNamespace cannot be used with networkd.`),
               })),
               nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 assertion: nix.thunk(() => nix.eq(nix.sel(interface$, "type"), "wireguard")),
                 message: nix.thunk(() => nix.str`networking.wireguard.interfaces.${name}.type value must be "wireguard" when used with networkd.`),
               })),
             ], nix.concat(nix.app(flip, concatMap, nix.thunk(() => nix.sel(interface$, "ips")), (ip) => [
                 nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   assertion: nix.thunk(() => nix.app(hasInfix, "/", ip)),
                   message: nix.thunk(() => nix.str`networking.wireguard.interfaces.${name}.ips value "${ip}" requires a subnet (e.g. 192.0.2.1/32) with networkd.`),
                 })),
               ]), nix.app(flip, concatMap, nix.thunk(() => nix.sel(interface$, "peers")), (peer) => [
                 nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   assertion: nix.thunk(() => nix.eq(nix.sel(peer, "presharedKey"), null)),
                   message: nix.thunk(() => nix.str`networking.wireguard.interfaces.${name}.peers[].presharedKey cannot be used with networkd. Use presharedKeyFile instead.`),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   assertion: nix.thunk(() => nix.eq(nix.sel(peer, "dynamicEndpointRefreshSeconds"), null)),
                   message: nix.thunk(() => nix.str`networking.wireguard.interfaces.${name}.peers[].dynamicEndpointRefreshSeconds cannot be used with networkd. Use networking.wireguard.interfaces.${name}.dynamicEndpointRefreshSeconds instead.`),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   assertion: nix.thunk(() => nix.eq(nix.sel(peer, "dynamicEndpointRefreshRestartSeconds"), null)),
                   message: nix.thunk(() => nix.str`networking.wireguard.interfaces.${name}.peers[].dynamicEndpointRefreshRestartSeconds cannot be used with networkd.`),
                 })),
               ]))))))),
         systemd: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           network: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             enable: true,
             netdevs: nix.thunk(() => nix.app(mapAttrs$, generateNetdev, nix.thunk(() => nix.sel(cfg, "interfaces")))),
             networks: nix.thunk(() => nix.app(mapAttrs$, generateNetwork, nix.thunk(() => nix.sel(cfg, "interfaces")))),
           })),
           timers: nix.thunk(() => nix.app(mapAttrs$, generateRefreshTimer, refreshEnabledInterfaces)),
           services: nix.thunk(() => nix.update(nix.app(mapAttrs$, generateRefreshService, refreshEnabledInterfaces), {
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             "systemd-networkd": nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 LoadCredential: nix.thunk(() => nix.app(flatten, nix.thunk(() => nix.app(mapAttrsToList, interfaceCredentials, nix.thunk(() => nix.sel(cfg, "interfaces")))))),
               })),
             })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           etc: nix.thunk(() => nix.app(mapAttrs$, generateRefreshNetdevMode, refreshEnabledInterfaces)),
         })),
       })))),

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "23.1.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ludeeus",
           repo: "pyaftership",
           tag: version,
@@ -36,7 +36,7 @@ substituteInPlace setup.py \\
 `);
       const pythonImportsCheck = nix.thunk(() => ["pyaftership"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python wrapper package for the AfterShip API",
         homepage: "https://github.com/ludeeus/pyaftership",
         changelog: nix.thunk(() => nix.str`https://github.com/ludeeus/pyaftership/releases/tag/${version}`),
@@ -47,7 +47,7 @@ substituteInPlace setup.py \\
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

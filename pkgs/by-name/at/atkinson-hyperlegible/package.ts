@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "atkinson-hyperlegible",
       version: "0-unstable-2021-04-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "googlefonts",
           repo: "atkinson-hyperlegible",
           rev: "1cb311624b2ddf88e9e37873999d165a8cd28b46",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\ninstall -Dm644 -t $out/share/fonts/opentype fonts/otf/*\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Typeface designed to offer greater legibility and readability for low vision readers",
         homepage: "https://brailleinstitute.org/freefont",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

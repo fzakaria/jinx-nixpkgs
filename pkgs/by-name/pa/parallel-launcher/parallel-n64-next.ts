@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libretro = nix.arg($, "libretro");
   const reformatVersion = (v) => nix.str`v${nix.app(nix.sel(lib, "versions", "majorMinor"), v)}-${nix.app(nix.sel(lib, "versions", "patch"), v)}`;
   return nix.app(nix.sel(libretro, "mkLibretroCore"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       core: "parallel-n64-next",
       version: "2.28.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "parallel-launcher",
           repo: "parallel-n64",
           tag: nix.thunk(() => nix.app(reformatVersion, nix.thunk(() => nix.sel(finalAttrs, "version")))),
@@ -42,16 +42,16 @@ export default nix.lambda((args) => (() => {
         "SYSTEM_ZLIB=1",
         nix.thunk(() => nix.str`ARCH=${nix.sel(stdenv, "hostPlatform", "parsed", "cpu", "name")}`),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), "sed -i -e '1 i\\CPUFLAGS += -DARM_FIX -DNO_ASM -DARM_ASM -DDONT_WANT_ARM_OPTIMIZATIONS -DARM64' Makefile \\\n&& sed -i -e 's,CPUFLAGS  :=,,g' Makefile\n")),
       preInstall: nix.thunk(() => (() => {
         const suffix = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary"));
         return nix.str`mv parallel_n64_libretro${suffix} parallel_n64_next_libretro${suffix}
 `;
       })()),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.thunk(() => ({})) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.thunk(() => ({})) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Fork of libretro's parallel-n64 core designed to be used with Parallel Launcher",
         homepage: "https://gitlab.com/parallel-launcher/parallel-n64",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

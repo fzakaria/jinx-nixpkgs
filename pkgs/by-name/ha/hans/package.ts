@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const net_tools = nix.arg($, "net-tools");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hans",
       version: "1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           sha256: "sha256-r6IDs8Seys94LBNnedcfVX5aW8x//ZN0Yh/DGTg8niA=",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           repo: "hans",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       installPhase: "install -D -m0755 hans $out/bin/hans\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tunnel IPv4 over ICMP",
         longDescription: "Hans makes it possible to tunnel IPv4 through ICMP echo packets, so you\ncould call it a ping tunnel. This can be useful when you find yourself in\nthe situation that your Internet access is firewalled, but pings are\nallowed.\n",
         homepage: "https://code.gerade.org/hans/",

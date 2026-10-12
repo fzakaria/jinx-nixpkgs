@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const libraw1394 = nix.arg($, "libraw1394");
   const libusb1 = nix.arg($, "libusb1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libdc1394",
       version: "2.2.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/libdc1394/libdc1394-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-U3zreN087ycaGD9KF2GR0c7PhfAlUg5r03WLDhnmYJ8=",
         })))),
       hardeningDisable: nix.thunk(() => ["trivialautovarinit"]),
       buildInputs: nix.thunk(() => nix.concat([libusb1], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), libraw1394))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Capture and control API for IIDC compliant cameras",
         homepage: "https://sourceforge.net/projects/libdc1394/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

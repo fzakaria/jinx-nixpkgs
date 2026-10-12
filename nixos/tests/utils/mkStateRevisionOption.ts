@@ -24,28 +24,28 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const utils = nix.arg($_1, "utils");
       return {
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         options: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           stateRevision1: nix.thunk(() => nix.app(nix.sel(utils, "mkStateRevisionOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               descriptionName: "...",
-              migrations: nix.thunk(() => ({ __proto__: pos$1, "27.05": "..." })),
+              migrations: nix.thunk(() => ({ [nix.POS]: pos$1, "27.05": "..." })),
             })))),
           stateRevision2: nix.thunk(() => nix.app(nix.sel(utils, "mkStateRevisionOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               descriptionName: "...",
-              migrations: nix.thunk(() => ({ __proto__: pos$3, "26.11": "..." })),
+              migrations: nix.thunk(() => ({ [nix.POS]: pos$3, "26.11": "..." })),
             })))),
           stateRevision3: nix.thunk(() => nix.app(nix.sel(utils, "mkStateRevisionOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               descriptionName: "...",
-              migrations: nix.thunk(() => ({ __proto__: pos$5, "24.05": "...", "27.05": "..." })),
+              migrations: nix.thunk(() => ({ [nix.POS]: pos$5, "24.05": "...", "27.05": "..." })),
             })))),
         })),
         config: nix.thunk(() => ({
-          __proto__: pos$9,
-          system: nix.thunk(() => ({ __proto__: pos$8, stateVersion: "26.11" })),
+          [nix.POS]: pos$9,
+          system: nix.thunk(() => ({ [nix.POS]: pos$8, stateVersion: "26.11" })),
         })),
       };
     })(), formals$2)));
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
   nix.assert_(nix.eq(nix.sel(config, "stateRevision1"), 0n), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/tests/utils/mkStateRevisionOption.nix:35:1");
   nix.assert_(nix.eq(nix.sel(config, "stateRevision2"), 1n), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/tests/utils/mkStateRevisionOption.nix:36:1");
   nix.assert_(nix.eq(nix.sel(config, "stateRevision3"), 1n), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/tests/utils/mkStateRevisionOption.nix:37:1");
-  nix.assert_(nix.eq(nix.sel(options, "stateRevision1", "migrations"), { __proto__: pos$11, "27.05": "..." }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/tests/utils/mkStateRevisionOption.nix:38:1");
+  nix.assert_(nix.eq(nix.sel(options, "stateRevision1", "migrations"), { [nix.POS]: pos$11, "27.05": "..." }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/tests/utils/mkStateRevisionOption.nix:38:1");
   return nix.force(emptyFile);
 })(), formals$1);
 //# sourceMappingURL=mkStateRevisionOption.ts.map

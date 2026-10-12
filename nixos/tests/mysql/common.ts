@@ -12,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     mariadbPackages: nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (n) => (_) => nix.app(nix.sel(lib, "hasPrefix"), "mariadb", n), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../pkgs/servers/sql/mariadb")), pkgs)))),
-    mysqlPackages: nix.thunk(() => ({ __proto__: pos$1, mysql84: nix.thunk(() => nix.attr(pkgs, "mysql84")) })),
+    mysqlPackages: nix.thunk(() => ({ [nix.POS]: pos$1, mysql84: nix.thunk(() => nix.attr(pkgs, "mysql84")) })),
     perconaPackages: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       "percona-server_8_4": nix.thunk(() => nix.attr(pkgs, "percona-server_8_4")),
     })),
     mkTestName: (pkg) => nix.str`${nix.builtins.replaceStrings(nix.thunk(() => ["-"]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(pkg, "pname")))}_${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(pkg, "version")))))}`,

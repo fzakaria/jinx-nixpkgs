@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.str`crawl${nix.app(nix.sel(lib, "optionalString"), tileMode, "-tiles")}`);
       const version = "0.34.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "crawl",
           repo: "crawl",
           rev: version,
@@ -74,7 +74,7 @@ mkdir -p $out/xdg-data
       const postInstall = nix.thunk(() => nix.add(nix.add(nix.app(nix.sel(lib, "optionalString"), tileMode, "mv $out/bin/crawl $out/bin/crawl-tiles\necho \"Exec=crawl-tiles\" >> $out/xdg-data/org.develz.Crawl_tiles.desktop\necho \"Icon=crawl\" >> $out/xdg-data/org.develz.Crawl_tiles.desktop\ninstall -Dm444 $out/xdg-data/org.develz.Crawl_tiles.desktop -t $out/share/applications\ninstall -Dm444 $out/xdg-data/org.develz.Crawl_tiles.appdata.xml -t $out/share/metainfo\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(tileMode)), "echo \"Exec=crawl\" >> $out/xdg-data/org.develz.Crawl_console.desktop\necho \"Icon=crawl\" >> $out/xdg-data/org.develz.Crawl_console.desktop\ninstall -Dm444 $out/xdg-data/org.develz.Crawl_console.desktop -t $out/share/applications\ninstall -Dm444 $out/xdg-data/org.develz.Crawl_console.appdata.xml -t $out/share/metainfo\n")), "install -Dm444 dat/tiles/stone_soup_icon-512x512.png $out/share/icons/hicolor/512x512/apps/crawl.png"));
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open-source, single-player, role-playing roguelike game",
         homepage: "http://crawl.develz.org/",
         longDescription: "Dungeon Crawl: Stone Soup, an open-source, single-player, role-playing\nroguelike game of exploration and treasure-hunting in dungeons filled\nwith dangerous and unfriendly monsters in a quest to rescue the\nmystifyingly fabulous Orb of Zot.\n",
@@ -93,7 +93,7 @@ mkdir -p $out/xdg-data
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

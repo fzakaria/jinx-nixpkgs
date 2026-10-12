@@ -11,9 +11,9 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const vengi_tools = nix.arg($, "vengi-tools");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "vengi-tools-test-voxconvert-roundtrip",
-      meta: nix.thunk(() => ({ __proto__: pos$1, timeout: 10n })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 10n })),
       buildCommand: nix.thunk(() => nix.str`${vengi_tools}/bin/vengi-voxconvert --input ${nix.sel(vengi_tools, "src")}/data/tests/chr_knight.qb --output chr_knight.vox
 ${vengi_tools}/bin/vengi-voxconvert --input chr_knight.vox --output chr_knight.qb
 ${vengi_tools}/bin/vengi-voxconvert --input chr_knight.qb --output chr_knight1.vox

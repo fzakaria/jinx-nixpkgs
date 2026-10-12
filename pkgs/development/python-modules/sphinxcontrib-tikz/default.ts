@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.20";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-LuO9H5yi80nAgjpPNQfZHEEOf5a+IPBR/vevFmXzQco=",
@@ -40,14 +40,14 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["sphinxcontrib.tikz"]);
       const pythonNamespaces = nix.thunk(() => ["sphinxcontrib"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "TikZ extension for Sphinx",
         homepage: "https://bitbucket.org/philexander/tikz",
         maintainers: [],
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

@@ -21,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "foxglove-cli",
       version: "1.0.33",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "foxglove",
           repo: "foxglove-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-Ec1kG04fFb+YXHogjVI4QUXFDxY7EaifJM/XNhYj/lQ=",
         })))),
       vendorHash: "sha256-IXmkO7WIvy4ETMMHHJF6hS8ACRat/vnoiqaXyhw8u+M=",
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       tags: nix.thunk(() => ["netgo"]),
       ldflags: nix.thunk(() => [
         "-s",
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
 `;
         })()))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       doInstallCheck: true,
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "version",
       versionCheckKeepEnvironment: nix.thunk(() => ["HOME"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/foxglove/foxglove-cli/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Interact with the Foxglove platform",
         downloadPage: "https://github.com/foxglove/foxglove-cli",

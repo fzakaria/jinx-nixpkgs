@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.11.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dipy",
           repo: "dipy",
           tag: version,
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         "dipy.nn",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://dipy.org/",
         description: "Diffusion imaging toolkit for Python",
         changelog: nix.thunk(() => nix.str`https://github.com/dipy/dipy/blob/${version}/Changelog`),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

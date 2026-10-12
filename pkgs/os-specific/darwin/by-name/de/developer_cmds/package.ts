@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const shell_cmds = nix.arg($, "shell_cmds");
   return nix.app(mkAppleDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       releaseName: "developer_cmds",
       outputs: nix.thunk(() => ["out", "man"]),
       xcodeHash: "sha256-25SDn9+SzEZJPQQJaDxsxWKeUetNHhzliLfzD9BtyyI=",
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`HOST_PATH='${nix.app(nix.sel(lib, "getBin"), shell_cmds)}/bin' patchShebangs --host "$out/bin"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Developer commands for Darwin",
         license: nix.thunk(() => [
           nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

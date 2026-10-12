@@ -16,29 +16,29 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchpatch2 = nix.arg($, "fetchpatch2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "acct",
       version: "6.6.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/acct/acct-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0gv6m8giazshvgpvwbng98chpas09myyfw1zr2y7hqxib0mvy5ac",
         })))),
       doCheck: true,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://src.fedoraproject.org/rpms/psacct/raw/rawhide/f/psacct-6.6.4-sprintf-buffer-overflow.patch",
             hash: "sha256-l74tLIuhpXj+dIA7uAY9L0qMjQ2SbDdc+vjHMyVouFc=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://salsa.debian.org/abower/acct/-/raw/7aeb2192d729bcd4583a75765add28c65a7fcf47/debian/patches/Fix-FTBFS-with-C23.patch",
             hash: "sha256-q1LtmhYopgSWIzIoONbKjgigIBU+LPvSvtUM3iL36c0=",
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "GNU Accounting Utilities, login and process accounting utilities",
         longDescription: "The GNU Accounting Utilities provide login and process accounting\nutilities for GNU/Linux and other systems.  It is a set of utilities\nwhich reports and summarizes data about user connect times and process\nexecution statistics.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

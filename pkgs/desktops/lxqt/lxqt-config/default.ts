@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const xkeyboard_config = nix.arg($, "xkeyboard_config");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "lxqt-config",
       version: "2.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lxqt",
           repo: "lxqt-config",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -75,11 +75,11 @@ substituteInPlace lxqt-config-input/keyboardlayoutconfig.h \\
             '${xkeyboard_config}/share/X11/xkb/rules/base.lst'
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/lxqt/lxqt-config",
         description: "Tools to configure LXQt and the underlying operating system",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

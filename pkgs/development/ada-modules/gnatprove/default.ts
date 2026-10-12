@@ -34,25 +34,25 @@ export default nix.lambda((args) => (() => {
   const gpr2 = nix.arg($, "gpr2");
   const gnat_version = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(gnat, "version"))));
   const gpr2_24_2_next = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(gpr2, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       gpr2kbdir: nix.thunk(() => nix.str`${gprbuild}/share/gprconfig`),
     }))), "overrideAttrs"), (old) => (() => {
       const version = "24.2.0-next";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "AdaCore",
           repo: "gpr",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-Tp+N9VLKjVWs1VRPYE0mQY3rl4E5iGb8xDoNatEYBg4=",
         }))));
-      return { __proto__: pos$3, version, src };
+      return { [nix.POS]: pos$3, version, src };
     })()));
   const fetchSpark2014 = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const rev = nix.arg($_1, "rev");
     const hash = nix.arg($_1, "hash");
     return nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         owner: "AdaCore",
         repo: "spark2014",
         fetchSubmodules: true,
@@ -61,20 +61,20 @@ export default nix.lambda((args) => (() => {
       })));
   })(), formals$2);
   const spark2014 = nix.thunk(() => ({
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     "12": nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       src: nix.thunk(() => nix.app(fetchSpark2014, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           rev: "ab34e07080a769b63beacc141707b5885c49d375",
           hash: "sha256-7pe3eWitpxmqzjW6qEIEuN0qr2IR+kJ7Ssc9pTBcCD8=",
         })))),
       commit_date: "2022-05-25",
     })),
     "13": nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       src: nix.thunk(() => nix.app(fetchSpark2014, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           rev: "12db22e854defa9d1c993ef904af1e72330a68ca",
           hash: "sha256-mZWP9yF1O4knCiXx8CqolnS+93bM+hTQy40cd0HZmwI=",
         })))),
@@ -84,9 +84,9 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     "14": nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       src: nix.thunk(() => nix.app(fetchSpark2014, nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           rev: "ce5fad038790d5dc18f9b5345dc604f1ccf45b06",
           hash: "sha256-WprJJIe/GpcdabzR2xC2dAV7kIYdNTaTpNYoR3UYTVo=",
         })))),
@@ -98,9 +98,9 @@ export default nix.lambda((args) => (() => {
       commit_date: "2024-01-11",
     })),
     "15": nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       src: nix.thunk(() => nix.app(fetchSpark2014, nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           rev: "22bf1510e0829ba74f9d8d686badb65c7365ee91",
           hash: "sha256-KjAWMgMT3Tp/s/DQ20ZZajty9Zrv8aPFocwgv5LkjSw=",
         })))),
@@ -113,7 +113,7 @@ export default nix.lambda((args) => (() => {
   }));
   const thisSpark = nix.thunk(() => nix.selOr(spark2014, () => nix.builtins.throw(nix.thunk(() => nix.str`GNATprove depends on a specific GNAT version and can't be built using GNAT ${gnat_version}.`)), nix.key(nix.force(gnat_version))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       pname: "gnatprove",
       version: nix.thunk(() => nix.str`fsf-${gnat_version}_${nix.sel(thisSpark, "commit_date")}`),
       src: nix.thunk(() => nix.sel(thisSpark, "src")),
@@ -149,7 +149,7 @@ mv gcc-*/gcc/ada gnat2why/gnat_src
       configurePhase: "runHook preConfigure\nmake setup\nrunHook postConfigure\n",
       installPhase: "runHook preInstall\nmake install-all\ncp -a ./install/. $out\nmkdir $out/share/gpr\nln -s $out/lib/gnat/* $out/share/gpr/\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         description: "Software development technology specifically designed for engineering high-reliability applications",
         homepage: "https://github.com/AdaCore/spark2014",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "jiegec"))]),

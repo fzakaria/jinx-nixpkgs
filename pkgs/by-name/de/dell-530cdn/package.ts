@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const cpio = nix.arg($, "cpio");
   const version = "1.3-1";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`http://downloads.dell.com/printer/Dell-5130cdn-Color-Laser-${version}.noarch.rpm`),
       sha256: "0pj32sj6jcdnpa5v75af0hnvx4z0ky0m1k2522cfdx4cb1r2lna9",
     }))));
-  return nix.app(runCommand, nix.thunk(() => nix.str`Dell-5130cdn-Color-Laser-${version}`), nix.thunk(() => ({ __proto__: pos$2, pname: "dell-5130cdn-color-laser", version: version })), nix.thunk(() => nix.str`mkdir -p usr/share/cups/model
+  return nix.app(runCommand, nix.thunk(() => nix.str`Dell-5130cdn-Color-Laser-${version}`), nix.thunk(() => ({ [nix.POS]: pos$2, pname: "dell-5130cdn-color-laser", version: version })), nix.thunk(() => nix.str`mkdir -p usr/share/cups/model
 ${rpm}/bin/rpm2cpio ${src} | ${cpio}/bin/cpio -i
 mkdir -p $out/share/ppd
 mv usr/share/cups/model/Dell $out/share/ppd

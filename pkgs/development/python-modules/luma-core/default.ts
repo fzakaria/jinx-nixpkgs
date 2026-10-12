@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "luma-core";
       const version = "2.6.0";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "luma_core",
           version: version,
           hash: "sha256-PdtnP5aZoUjTzP7imFRRsB3dS06ma2WpZkzjaAbPQRw=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const dependencies = nix.thunk(() => nix.concat([pillow, smbus2, cbor2], nix.sel(optional_dependencies, "complete")));
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         gpio: nix.thunk(() => [rpi_gpio]),
         spi: nix.thunk(() => [spidev]),
         ftdi: nix.thunk(() => [pyftdi]),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Pillow-compatible drawing canvas library for SBCs",
         longDescription: "A component library providing a Pillow-compatible drawing canvas,\nand other functionality to support drawing primitives and text-rendering\ncapabilities for small displays on the Raspberry Pi and other single\nboard computers.\n",
         homepage: "https://luma-core.readthedocs.io/",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

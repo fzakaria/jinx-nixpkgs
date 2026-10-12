@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const minizinc = nix.arg($, "minizinc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "minizinc-simple-test",
       nativeBuildInputs: nix.thunk(() => [minizinc]),
       dontInstall: true,
@@ -20,7 +20,7 @@ minizinc --solver gecode ${nix.path(here, "./aust.mzn")} | tee $out/aust.log
 minizinc --solver gecode ${nix.path(here, "./nqueens.mzn")} | tee $out/nqueens.log
 minizinc --solver cbc ${nix.path(here, "./loan.mzn")} ${nix.path(here, "./loan1.dzn")} | tee $out/loan.log
 `),
-      meta: nix.thunk(() => ({ __proto__: pos$1, timeout: 10n })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 10n })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

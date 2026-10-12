@@ -17,16 +17,16 @@ export default nix.lambda((args) => (() => {
   const cargo = nix.arg($, "cargo");
   const cargo_auditable = nix.arg($, "cargo-auditable");
   return (nix.asBool(nix.sel(cargo_auditable, "meta", "broken")) ? nix.force(cargo) : nix.app(runCommand, nix.thunk(() => nix.str`auditable-${nix.sel(cargo, "name")}`), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper]),
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
-        tests: nix.thunk(() => nix.app(runCommand, "rust-audit-info-test", nix.thunk(() => ({ __proto__: pos$1, nativeBuildInputs: nix.thunk(() => [rust_audit_info]) })), nix.thunk(() => nix.str`rust-audit-info ${nix.app(nix.sel(lib, "getBin"), rust_audit_info)}/bin/rust-audit-info > $out
+        [nix.POS]: pos$2,
+        tests: nix.thunk(() => nix.app(runCommand, "rust-audit-info-test", nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [rust_audit_info]) })), nix.thunk(() => nix.str`rust-audit-info ${nix.app(nix.sel(lib, "getBin"), rust_audit_info)}/bin/rust-audit-info > $out
 `))),
       })),
       __structuredAttrs: true,
-      meta: nix.thunk(() => nix.update(nix.sel(cargo_auditable, "meta"), { __proto__: pos$3, mainProgram: "cargo" })),
+      meta: nix.thunk(() => nix.update(nix.sel(cargo_auditable, "meta"), { [nix.POS]: pos$3, mainProgram: "cargo" })),
     })), nix.thunk(() => nix.str`mkdir -p $out/bin
 makeWrapper ${cargo}/bin/cargo $out/bin/cargo \\
   --set CARGO_AUDITABLE_IGNORE_UNSUPPORTED 1 \\

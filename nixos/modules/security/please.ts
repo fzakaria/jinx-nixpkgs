@@ -41,29 +41,29 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "security", "please"));
   const ini = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       security: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         please: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "please, a Sudo clone which allows a users to execute a command or edit a\nfile as another user\n")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "please", nix.thunk(() => ({})))),
           wheelNeedsPassword: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether users of the `wheel` group must provide a password to run\ncommands or edit files with {command}`please` and\n{command}`pleaseedit` respectively.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(ini, "type")),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 jim_run_any_as_root: nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   name: "jim",
                   type: "run",
                   target: "root",
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
                   require_pass: false,
                 })),
                 jim_edit_etc_hosts_as_root: nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   name: "jim",
                   type: "edit",
                   target: "root",
@@ -86,24 +86,24 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         security: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           wrappers: nix.thunk(() => (() => {
             const owner = "root";
             const group = "root";
             const setuid = true;
             return {
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               please: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/please`),
                 owner: owner,
                 group: group,
                 setuid: setuid,
               })),
               pleaseedit: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/pleaseedit`),
                 owner: owner,
                 group: group,
@@ -112,10 +112,10 @@ export default nix.lambda((args) => (() => {
             };
           })()),
           please: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             settings: nix.thunk(() => (() => {
               const wheel_run_as_any = nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: "run",
                 group: true,
                 name: "wheel",
@@ -123,38 +123,38 @@ export default nix.lambda((args) => (() => {
                 rule: ".*",
                 require_pass: nix.thunk(() => nix.sel(cfg, "wheelNeedsPassword")),
               }));
-              const wheel_edit_as_any = nix.thunk(() => nix.update(wheel_run_as_any, { __proto__: pos$13, type: "edit" }));
-              const wheel_list_as_any = nix.thunk(() => nix.update(wheel_run_as_any, { __proto__: pos$14, type: "list" }));
-              return { __proto__: pos$15, wheel_run_as_any, wheel_edit_as_any, wheel_list_as_any };
+              const wheel_edit_as_any = nix.thunk(() => nix.update(wheel_run_as_any, { [nix.POS]: pos$13, type: "edit" }));
+              const wheel_list_as_any = nix.thunk(() => nix.update(wheel_run_as_any, { [nix.POS]: pos$14, type: "list" }));
+              return { [nix.POS]: pos$15, wheel_run_as_any, wheel_edit_as_any, wheel_list_as_any };
             })()),
           })),
           pam: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             services: nix.thunk(() => ({
-              __proto__: pos$18,
-              please: nix.thunk(() => ({ __proto__: pos$17, sshAgentAuth: true, usshAuth: true })),
+              [nix.POS]: pos$18,
+              please: nix.thunk(() => ({ [nix.POS]: pos$17, sshAgentAuth: true, usshAuth: true })),
             })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             "please.ini": nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               source: nix.thunk(() => nix.app(nix.sel(ini, "generate"), "please.ini", nix.thunk(() => nix.update(nix.sel(cfg, "settings"), (() => {
                   const root_run_as_any = nix.thunk(() => ({
-                    __proto__: pos$21,
+                    [nix.POS]: pos$21,
                     type: "run",
                     name: "root",
                     target: ".*",
                     rule: ".*",
                     require_pass: false,
                   }));
-                  const root_edit_as_any = nix.thunk(() => nix.update(root_run_as_any, { __proto__: pos$22, type: "edit" }));
-                  const root_list_as_any = nix.thunk(() => nix.update(root_run_as_any, { __proto__: pos$23, type: "list" }));
-                  return { __proto__: pos$24, root_run_as_any, root_edit_as_any, root_list_as_any };
+                  const root_edit_as_any = nix.thunk(() => nix.update(root_run_as_any, { [nix.POS]: pos$22, type: "edit" }));
+                  const root_list_as_any = nix.thunk(() => nix.update(root_run_as_any, { [nix.POS]: pos$23, type: "list" }));
+                  return { [nix.POS]: pos$24, root_run_as_any, root_edit_as_any, root_list_as_any };
                 })())))),
             })),
           })),

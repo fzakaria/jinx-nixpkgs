@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const cargo_geiger = nix.arg($, "cargo-geiger");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "cargo-geiger",
       version: "0.13.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "geiger-rs",
           repo: "cargo-geiger",
           tag: nix.thunk(() => nix.str`cargo-geiger-${nix.sel(finalAttrs, "version")}`),
@@ -54,14 +54,14 @@ export default nix.lambda((args) => (() => {
         "--skip=test_package_update_readme::case_5",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: cargo_geiger })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: cargo_geiger })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Detects usage of unsafe Rust in a Rust crate and its dependencies",
         longDescription: "A cargo plugin that detects the usage of unsafe Rust in a Rust crate and\nits dependencies. It provides information to aid auditing and guide\ndependency selection but it can not help you decide when and why unsafe\ncode is appropriate.\n",
         homepage: "https://github.com/geiger-rs/cargo-geiger",

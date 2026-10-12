@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchPypi = nix.arg($, "fetchPypi");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "onionprobe",
       version: "1.4.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           sha256: "sha256-RcEsiYKeNEQil0qp1WzGU9HiCi8iXnPuGK65lcpHor4=",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tooling for onion service monitoring",
         homepage: "https://onionservices.torproject.org/apps/web/onionprobe/",
         changelog: nix.thunk(() => nix.str`https://gitlab.torproject.org/tpo/onion-services/onionprobe/-/blob/${nix.sel(finalAttrs, "version")}/docs/changelog.md`),

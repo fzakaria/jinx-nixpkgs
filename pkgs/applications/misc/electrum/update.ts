@@ -23,17 +23,17 @@ export default nix.lambda((args) => (() => {
   const downloadPageUrl = "https://download.electrum.org";
   const signingKeys = nix.thunk(() => nix.app(nix.sel(lib, "lists", "map"), fetchurl, nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: "https://github.com/spesmilo/electrum/raw/master/pubkeys/Emzy.asc",
         hash: "sha256-QG0cM6AKlSKFacVlhcso/xvrooUdF7oqoppyezt0hjE=",
       })),
       nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: "https://github.com/spesmilo/electrum/raw/master/pubkeys/ThomasV.asc",
         hash: "sha256-37ApVZlI+2EevxQIKXVKVpktt1Ls3UbWq4dfio2ORdo=",
       })),
       nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         url: "https://github.com/spesmilo/electrum/raw/master/pubkeys/sombernight_releasekey.asc",
         hash: "sha256-GgdPJ9TB5hh5SPCcTZURfqXkrU4qwl0dCci52V/wpdQ=",
       })),

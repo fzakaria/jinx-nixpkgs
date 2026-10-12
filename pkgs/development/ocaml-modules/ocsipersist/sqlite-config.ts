@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const ocsigen_server = nix.arg($, "ocsigen_server");
   const xml_light = nix.arg($, "xml-light");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "ocsipersist-sqlite-config",
       version: nix.thunk(() => nix.attr(ocsipersist_sqlite, "version")),
       src: nix.thunk(() => nix.attr(ocsipersist_sqlite, "src")),
       propagatedBuildInputs: nix.thunk(() => [findlib, ocsipersist_sqlite, ocsigen_server, xml_light]),
       meta: nix.thunk(() => nix.update(nix.sel(ocsipersist_sqlite, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Ocsigen Server configuration file extension for ocsipersist-sqlite",
       })),
     })));

@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "font-smc-uroob",
       version: "20241013",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://smc.org.in/downloads/fonts/uroob/uroob.zip",
           hash: "sha256-IJcKD3cDRMA7G7foKtXtJxOrv6OeOujkq9+uGo+R/dY=",
           stripRoot: false,
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nfind . -name \"*.otf\" -exec install -Dm644 {} -t \"$out/share/fonts/opentype\" \\;\nfind . -name \"*.ttf\" -exec install -Dm644 {} -t \"$out/share/fonts/truetype\" \\;\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Uroob is a Malayalam heading style font designed by Hussain K H. Maintained by SMC",
         homepage: "https://smc.org.in/fonts/uroob",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

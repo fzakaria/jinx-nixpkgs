@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const texinfo = nix.arg($, "texinfo");
   const lzip = nix.arg($, "lzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lzlib",
       version: "1.16",
       outputs: nix.thunk(() => ["out", "info"]),
       nativeBuildInputs: nix.thunk(() => [texinfo, lzip]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://savannah/lzip/lzlib/lzlib-${nix.sel(finalAttrs, "version")}.tar.lz`),
           hash: "sha256-zSqW+8aF9+PcMrnw5eNARqd+PBD8/r5i+ZUeMX0KjPQ=",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       configureFlags: nix.thunk(() => ["--enable-shared"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.nongnu.org/lzip/lzlib.html",
         description: "Data compression library providing in-memory LZMA compression and decompression functions, including integrity checking of the decompressed data",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

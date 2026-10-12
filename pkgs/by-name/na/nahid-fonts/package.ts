@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "nahid-fonts";
       const version = "0.3.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rastikerdar",
           repo: "nahid-font",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -24,14 +24,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const installPhase = "runHook preInstall\n\nfind . -name '*.ttf' -exec install -m444 -Dt $out/share/fonts/nahid-fonts {} \\;\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/rastikerdar/nahid-font",
         description: "Persian (Farsi) Font - قلم (فونت) فارسی ناهید",
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         maintainers: [],
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

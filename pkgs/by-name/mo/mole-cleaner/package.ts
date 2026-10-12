@@ -39,11 +39,11 @@ done
 exec ${nix.app(nix.sel(lib, "getExe'"), coreutils, "du")} "\${args[@]}"
 `)));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mole-cleaner",
       version: "1.46.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tw93",
           repo: "Mole",
           tag: nix.thunk(() => nix.str`V${nix.sel(finalAttrs, "version")}`),
@@ -97,11 +97,11 @@ runHook postCheck
       versionCheckProgramArg: "--version",
       installCheckPhase: "runHook preInstallCheck\n$out/bin/mo --help > /dev/null\ntest -w \"$HOME\"\ntest ! -e $out/bin/mole\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version-regex=^V(.*)$"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version-regex=^V(.*)$"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "CLI tool for cleaning and optimizing macOS systems",
         homepage: "https://github.com/tw93/Mole",
         changelog: nix.thunk(() => nix.str`https://github.com/tw93/Mole/releases/tag/V${nix.sel(finalAttrs, "version")}`),

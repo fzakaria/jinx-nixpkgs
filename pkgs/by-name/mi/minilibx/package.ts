@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libxext = nix.arg($, "libxext");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "minilibx",
       version: "0-unstable-2026-06-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "42Paris",
           repo: "minilibx-linux",
           rev: "f07d00f07c5c652223f505b526f84dab73cf2598",
@@ -36,16 +36,16 @@ export default nix.lambda((args) => (() => {
       makefile: "Makefile.mk",
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`)]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), "-std=gnu17")),
       })),
       installPhase: "runHook preInstall\n\nmkdir -p $out/{include,lib}\ncp mlx*.h $out/include\ncp libmlx*.a $out/lib\ninstallManPage man/man*/*\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Simple X-Window (X11R6) programming API in C",
         homepage: "https://github.com/42Paris/minilibx-linux",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

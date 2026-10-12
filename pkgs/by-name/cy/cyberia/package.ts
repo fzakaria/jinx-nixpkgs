@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const alsa_lib = nix.arg($, "alsa-lib");
   const libappindicator = nix.arg($, "libappindicator");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cyberia",
       version: "0.2.8",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromForgejo, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "git.gay",
           owner: "zutyosh",
           repo: "Cyberia",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       buildAndTestSubdir: nix.thunk(() => nix.sel(finalAttrs, "cargoRoot")),
       cargoHash: "sha256-ghdZyJt/hE+r/D+FqyLrUNSvVDZf+FRv463K33XrNbs=",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-npm-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-aZsQHb1Hj7dmz/04E6KJ5AMKKTcN+4fSK8phwDg2YAU=",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [wrapGAppsHook4])))),
       buildInputs: nix.thunk(() => nix.concat([dbus, gtk3], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [glib_networking, webkitgtk_4_1, alsa_lib, libappindicator])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "VRCX style client for Resonite",
         homepage: "https://git.gay/zutyosh/Cyberia",
         changelog: nix.thunk(() => nix.str`https://git.gay/zutyosh/Cyberia/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -21,21 +21,21 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.2-1-g2673e8d";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`Thann-install_freedesktop-${version}.tar.gz`),
           url: "https://github.com/thann/install_freedesktop/tarball/2673e8da4a67bee0ffc52a0ea381a541b4becdd4",
           hash: "sha256-O08G0iMGsF1DSyliXOHTIsOxDdJPBabNLXRhz5osDUk=",
         }))));
       const doCheck = false;
-      return { __proto__: pos$2, pname, version, format, src, doCheck };
+      return { [nix.POS]: pos$2, pname, version, format, src, doCheck };
     })())));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "play-with-mpv",
       version: "unstable-2021-04-02",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "thann",
           repo: "play-with-mpv",
           rev: "07a9c1dd57d9e16538991b13fd3e2ed54d6e3a2d",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [youtube_dl]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Chrome extension and python server that allows you to play videos in webpages with MPV instead",
         homepage: "https://github.com/Thann/play-with-mpv",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

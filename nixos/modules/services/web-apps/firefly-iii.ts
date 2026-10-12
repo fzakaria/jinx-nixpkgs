@@ -83,7 +83,7 @@ ${artisan} route:cache
 ${artisan} config:cache
 `)));
   const commonServiceConfig = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     Type: "oneshot",
     User: user,
     Group: group,
@@ -117,50 +117,50 @@ ${artisan} config:cache
     PrivateUsers: true,
   }));
   return {
-    __proto__: pos$51,
+    [nix.POS]: pos$51,
     options: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       services: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         "firefly-iii": nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Firefly III: A free and open source personal finance manager")),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: defaultUser,
               description: "User account under which firefly-iii runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: defaultGroup,
               description: "Group under which firefly-iii runs.\nWhile this also changes which group has access to the phpfpm socket,\nchanging {option}`services.firefly-iii.poolConfig.\"listen.group\"`\nis preferred.\n",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/firefly-iii",
               description: "The place where firefly-iii stores its state.\n",
             })))),
           package: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "firefly-iii", nix.thunk(() => ({}))), nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
-              apply: (firefly_iii) => nix.app(nix.sel(firefly_iii, "override"), (prev) => ({ __proto__: pos$5, dataDir: nix.thunk(() => nix.sel(cfg, "dataDir")) })),
+              [nix.POS]: pos$6,
+              apply: (firefly_iii) => nix.app(nix.sel(firefly_iii, "override"), (prev) => ({ [nix.POS]: pos$5, dataDir: nix.thunk(() => nix.sel(cfg, "dataDir")) })),
             }))))),
           enableNginx: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable nginx or not. If enabled, an nginx virtual host will\nbe created for access to firefly-iii. If not enabled, then you may use\n`${config.services.firefly-iii.package}` as your document root in\nwhichever webserver you wish to setup.\n",
             })))),
           virtualHost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "localhost",
               description: "The hostname at which you wish firefly-iii to be served. If you have\nenabled nginx using `services.firefly-iii.enableNginx` then this will\nbe used.\n",
             })))),
           poolConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "oneOf"), nix.thunk(() => [
                     nix.thunk(() => nix.sel(lib, "types", "str")),
                     nix.thunk(() => nix.sel(lib, "types", "int")),
@@ -171,54 +171,54 @@ ${artisan} config:cache
               description: "Options for the Firefly III PHP pool. See the documentation on <literal>php-fpm.conf</literal>\nfor details on configuration directives.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               default: nix.thunk(() => ({})),
               description: "Options for firefly-iii configuration. Refer to\n<https://github.com/firefly-iii/firefly-iii/blob/main/.env.example> for\ndetails on supported values. All <option>_FILE values supported by\nupstream are supported here.\n\nAPP_URL will be the same as `services.firefly-iii.virtualHost` if the\nformer is unset in `services.firefly-iii.settings`.\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  APP_ENV = \"production\";\n  APP_KEY_FILE = \"/var/secrets/firefly-iii-app-key.txt\";\n  SITE_OWNER = \"mail@example.com\";\n  DB_CONNECTION = \"mysql\";\n  DB_HOST = \"db\";\n  DB_PORT = 3306;\n  DB_DATABASE = \"firefly\";\n  DB_USERNAME = \"firefly\";\n  DB_PASSWORD_FILE = \"/var/secrets/firefly-iii-mysql-password.txt\";\n}\n")),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   freeformType: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "oneOf"), nix.thunk(() => [
                         nix.thunk(() => nix.sel(lib, "types", "str")),
                         nix.thunk(() => nix.sel(lib, "types", "int")),
                         nix.thunk(() => nix.sel(lib, "types", "bool")),
                       ]))))),
                   options: nix.thunk(() => ({
-                    __proto__: pos$16,
+                    [nix.POS]: pos$16,
                     DB_CONNECTION: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["sqlite", "pgsql", "mysql"]))),
                         default: "sqlite",
                         example: "pgsql",
                         description: "The type of database you wish to use. Can be one of \"sqlite\",\n\"mysql\" or \"pgsql\".\n",
                       })))),
                     APP_ENV: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["local", "production", "testing"]))),
                         default: "local",
                         example: "production",
                         description: "The app environment. It is recommended to keep this at \"local\".\nPossible values are \"local\", \"production\" and \"testing\"\n",
                       })))),
                     DB_PORT: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "int")))),
                         default: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "settings", "DB_CONNECTION"), "pgsql")) ? 5432n : (nix.asBool(nix.eq(nix.sel(cfg, "settings", "DB_CONNECTION"), "mysql")) ? 3306n : null))),
                         defaultText: "`null` if DB_CONNECTION is \"sqlite\", `3306` if \"mysql\", `5432` if \"pgsql\"\n",
                         description: "The port your database is listening at. sqlite does not require\nthis value to be filled.\n",
                       })))),
                     DB_HOST: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "settings", "DB_CONNECTION"), "pgsql")) ? "/run/postgresql" : "localhost")),
                         defaultText: "\"localhost\" if DB_CONNECTION is \"sqlite\" or \"mysql\", \"/run/postgresql\" if \"pgsql\".\n",
                         description: "The machine which hosts your database. This is left at the\ndefault value for \"mysql\" because we use the \"DB_SOCKET\" option\nto connect to a unix socket instead. \"pgsql\" requires that the\nunix socket location be specified here instead of at \"DB_SOCKET\".\nThis option does not affect \"sqlite\".\n",
                       })))),
                     APP_KEY_FILE: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$14,
+                        [nix.POS]: pos$14,
                         type: nix.thunk(() => nix.sel(lib, "types", "path")),
                         description: "The path to your appkey. The file should contain a 32 character\nrandom app key. This may be set using `echo \"base64:$(head -c 32\n/dev/urandom | base64)\" > /path/to/key-file`.\n",
                       })))),
                     APP_URL: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$15,
+                        [nix.POS]: pos$15,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "virtualHost"), "localhost")) ? nix.str`http://${nix.sel(cfg, "virtualHost")}` : nix.str`https://${nix.sel(cfg, "virtualHost")}`)),
                         defaultText: "http(s)://${config.services.firefly-iii.virtualHost}\n",
@@ -231,21 +231,21 @@ ${artisan} config:cache
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$50,
+        [nix.POS]: pos$50,
         services: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           phpfpm: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             pools: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               "firefly-iii": nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 user: user,
                 group: group,
                 phpPackage: nix.thunk(() => nix.sel(cfg, "package", "phpPackage")),
                 phpOptions: "log_errors = on\n",
                 settings: nix.thunk(() => nix.update({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   "listen.mode": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "0660")),
                   "listen.owner": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enableNginx")) ? nix.sel(config, "services", "nginx", "user") : nix.force(user))))),
                   "listen.group": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enableNginx")) ? nix.sel(config, "services", "nginx", "group") : nix.force(group))))),
@@ -260,25 +260,25 @@ ${artisan} config:cache
             })),
           })),
           nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableNginx")), nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               enable: true,
               recommendedTlsSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
               recommendedOptimisation: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
               recommendedGzipSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "virtualHost"), nix.thunk(() => ({
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   root: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/public`),
                   locations: nix.thunk(() => ({
-                    __proto__: pos$28,
+                    [nix.POS]: pos$28,
                     "/": nix.thunk(() => ({
-                      __proto__: pos$26,
+                      [nix.POS]: pos$26,
                       tryFiles: "$uri $uri/ /index.php?$query_string",
                       index: "index.php",
                       extraConfig: "sendfile off;\n",
                     })),
                     "~ \\.php$": nix.thunk(() => ({
-                      __proto__: pos$27,
+                      [nix.POS]: pos$27,
                       extraConfig: nix.thunk(() => nix.str`include ${nix.sel(config, "services", "nginx", "package")}/conf/fastcgi_params ;
 fastcgi_param SCRIPT_FILENAME $request_filename;
 fastcgi_param modHeadersAvailable true; #Avoid sending the security headers twice
@@ -291,37 +291,37 @@ fastcgi_pass unix:${nix.sel(config, "services", "phpfpm", "pools", "firefly-iii"
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$47,
+          [nix.POS]: pos$47,
           services: nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             "firefly-iii-setup": nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               after: nix.thunk(() => ["postgresql.target", "mysql.service"]),
               requiredBy: nix.thunk(() => ["phpfpm-firefly-iii.service"]),
               before: nix.thunk(() => ["phpfpm-firefly-iii.service"]),
-              serviceConfig: nix.thunk(() => nix.update({ __proto__: pos$32, ExecStart: firefly_iii_maintenance, RemainAfterExit: true }, commonServiceConfig)),
-              unitConfig: nix.thunk(() => ({ __proto__: pos$33, JoinsNamespaceOf: "phpfpm-firefly-iii.service" })),
+              serviceConfig: nix.thunk(() => nix.update({ [nix.POS]: pos$32, ExecStart: firefly_iii_maintenance, RemainAfterExit: true }, commonServiceConfig)),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$33, JoinsNamespaceOf: "phpfpm-firefly-iii.service" })),
               restartTriggers: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
               partOf: nix.thunk(() => ["phpfpm-firefly-iii.service"]),
             })),
             "firefly-iii-cron": nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               after: nix.thunk(() => ["firefly-iii-setup.service", "postgresql.target", "mysql.service"]),
               wants: nix.thunk(() => ["firefly-iii-setup.service"]),
               description: "Daily Firefly III cron job",
               serviceConfig: nix.thunk(() => nix.update({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 ExecStart: nix.thunk(() => nix.str`${artisan} firefly-iii:cron`),
               }, commonServiceConfig)),
             })),
           })),
           timers: nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             "firefly-iii-cron": nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               description: "Trigger Firefly Cron",
               timerConfig: nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 OnCalendar: "Daily",
                 RandomizedDelaySec: "1800s",
                 Persistent: true,
@@ -331,9 +331,9 @@ fastcgi_pass unix:${nix.sel(config, "services", "phpfpm", "pools", "firefly-iii"
             })),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             settings: nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               "10-firefly-iii": nix.thunk(() => nix.update(nix.app(nix.sel(lib, "attrsets", "genAttrs"), nix.thunk(() => [
                   nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/storage`),
                   nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/storage/app`),
@@ -347,22 +347,22 @@ fastcgi_pass unix:${nix.sel(config, "services", "phpfpm", "pools", "firefly-iii"
                   nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/storage/upload`),
                   nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/cache`),
                 ]), (n) => ({
-                  __proto__: pos$42,
-                  d: nix.thunk(() => ({ __proto__: pos$41, group: group, mode: "0700", user: user })),
+                  [nix.POS]: pos$42,
+                  d: nix.thunk(() => ({ [nix.POS]: pos$41, group: group, mode: "0700", user: user })),
                 })), nix.attrsDyn({}, [
                 [nix.str`${nix.sel(cfg, "dataDir")}`, nix.thunk(() => ({
-                  __proto__: pos$44,
-                  d: nix.thunk(() => ({ __proto__: pos$43, group: group, mode: "0710", user: user })),
+                  [nix.POS]: pos$44,
+                  d: nix.thunk(() => ({ [nix.POS]: pos$43, group: group, mode: "0710", user: user })),
                 }))],
               ]))),
             })),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$49,
+          [nix.POS]: pos$49,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(user, defaultUser)), nix.thunk(() => nix.attrsDyn({}, [
               [defaultUser, nix.thunk(() => ({
-                __proto__: pos$48,
+                [nix.POS]: pos$48,
                 description: "Firefly-iii service user",
                 group: group,
                 isSystemUser: true,

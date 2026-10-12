@@ -12,14 +12,14 @@ export default nix.lambda((args) => (() => {
   const mirage_block = nix.arg($, "mirage-block");
   const logs = nix.arg($, "logs");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "mirage-block-combinators",
       version: nix.thunk(() => nix.attr(mirage_block, "version")),
       src: nix.thunk(() => nix.attr(mirage_block, "src")),
       duneVersion: "3",
       propagatedBuildInputs: nix.thunk(() => [mirage_block, logs]),
       meta: nix.thunk(() => nix.update(nix.sel(mirage_block, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Block signatures and implementations for MirageOS using Lwt",
         longDescription: "This repo contains generic operations over Mirage `BLOCK` devices.\nThis package is specialised to the Lwt concurrency library for IO.\n",
       })),

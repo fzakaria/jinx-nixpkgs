@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.3.0";
       const outputs = nix.thunk(() => ["out", "dev"]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/qwt/qwt-${version}.tar.bz2`),
           sha256: "sha256-3LCFiWwoquxVGMvAjA7itOYK2nrJKdgmOfYYmFGmEpo=",
         }))));
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const qmakeFlags = nix.thunk(() => [nix.thunk(() => nix.str`-after doc.path=$out/share/doc/qwt-${version}`)]);
       const dontWrapQtApps = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Qt widgets for technical applications",
         homepage: "http://qwt.sourceforge.net/",
         license: nix.thunk(() => (() => {
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "bjornfor"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         outputs,

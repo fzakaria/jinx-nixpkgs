@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "fcitx5-unikey";
       const version = "5.1.12";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fcitx",
           repo: "fcitx5-unikey",
           rev: version,
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [qtbase, fcitx5, fcitx5_qt]);
       const dontWrapQtApps = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unikey engine support for Fcitx5",
         homepage: "https://github.com/fcitx/fcitx5-unikey",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

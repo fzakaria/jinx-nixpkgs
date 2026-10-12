@@ -36,18 +36,18 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "john",
       version: "1.9.0-Jumbo-1-unstable-2026-08-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openwall",
           repo: "john",
           rev: "9a336d800a091bec9650c29282485145f31c9ffc",
           hash: "sha256-6UM2C1nyo6a/3fjgRjWE+4foaUf/SNrjDrVoGGL+XIA=",
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), withOpenCL, nix.thunk(() => [
-          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./opencl.patch"), nix.thunk(() => ({ __proto__: pos$2, ocl_icd: ocl_icd })))),
+          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./opencl.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, ocl_icd: ocl_icd })))),
         ]))),
       postPatch: "sed -ri -e '\n  s!^(#define\\s+CFG_[A-Z]+_NAME\\s+).*/!\\1\"'\"$out\"'/etc/john/!\n  /^#define\\s+JOHN_SYSTEMWIDE/s!/usr!'\"$out\"'!\n' src/params.h\nsed -ri -e '/^\\.include/ {\n  s!\\$JOHN!'\"$out\"'/etc/john!\n  s!^(\\.include\\s*)<([^./]+\\.conf)>!\\1\"'\"$out\"'/etc/john/\\2\"!\n}' run/*.conf\n",
       preConfigure: nix.thunk(() => nix.add("cd src\n# Makefile.in depends on AS and LD being set to CC, which is set by default in configure.ac.\n# This ensures we override the environment variables set in cc-wrapper/setup-hook.sh\nexport AS=$CC\nexport LD=$CC\n", nix.app(nix.sel(lib, "optionalString"), withOpenCL, "python ./opencl_generate_dynamic_loader.py  # Update opencl_dynamic_loader.c\n"))),
@@ -102,11 +102,11 @@ for i in $out/bin/*.pl; do
 done
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$3, tagFormat: "[0-9].*" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, tagFormat: "[0-9].*" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "John the Ripper password cracker",
         license: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus"))], nix.app(nix.sel(lib, "optionals"), enableUnfree, nix.thunk(() => [nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable"))])))),
         homepage: "https://github.com/openwall/john/",

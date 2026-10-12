@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4b";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "umlaeute",
           repo: "pyftgl",
           tag: version,
@@ -41,13 +41,13 @@ export default nix.lambda((args) => (() => {
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "export NIX_CFLAGS_COMPILE+=\" -L$SDKROOT/System/Library/Frameworks/OpenGL.framework/Versions/Current/Libraries\"\n")));
       const buildInputs = nix.thunk(() => [boost, freetype, ftgl, libGLU, libGL]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python bindings for FTGL (FreeType for OpenGL)",
         homepage: "https://github.com/umlaeute/pyftgl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

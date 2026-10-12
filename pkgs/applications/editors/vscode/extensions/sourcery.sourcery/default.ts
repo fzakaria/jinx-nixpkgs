@@ -21,31 +21,31 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(stdenv, "hostPlatform"));
   const system = nix.thunk(() => nix.attr(from, "system"));
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         platformTable: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "x86_64-linux": nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             arch: "linux-x64",
             hash: "sha256-zaMrQ0/w/gz3WW8/tVPBCPNAUookGs5yHLWjR3drZNE=",
           })),
           "aarch64-darwin": nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             arch: "darwin-arm64",
             hash: "sha256-fyfFyiuYwbtqChzTlfZ8E72ikQWOrlTAo7m9l9U/Eb8=",
           })),
         })),
       })),
-      mktplcRef: nix.thunk(() => nix.update({ __proto__: pos$5, name: "sourcery", publisher: "sourcery", version: "1.44.0" }, nix.selOr(finalAttrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported platform ${system}`)), "passthru", "platformTable", nix.key(nix.force(system))))),
+      mktplcRef: nix.thunk(() => nix.update({ [nix.POS]: pos$5, name: "sourcery", publisher: "sourcery", version: "1.44.0" }, nix.selOr(finalAttrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported platform ${system}`)), "passthru", "platformTable", nix.key(nix.force(system))))),
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [autoPatchelfHook]))),
       buildInputs: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(stdenv, "cc", "cc")))),
         zlib,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         changelog: "https://sourcery.ai/changelog/",
         description: "VSCode extension for Sourcery, an AI-powered code review and pair programming tool for Python",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=sourcery.sourcery",

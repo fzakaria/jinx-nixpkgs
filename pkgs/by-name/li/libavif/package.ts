@@ -30,19 +30,19 @@ export default nix.lambda((args) => (() => {
   const gdkPixbufModuleDir = nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/${nix.sel(gdk_pixbuf, "moduleDir")}`);
   const gdkPixbufModuleFile = nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/${nix.sel(gdk_pixbuf, "binaryDir")}/avif-loaders.cache`);
   const libargparse = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "kmurray",
       repo: "libargparse",
       rev: "ee74d1b53bd680748af14e737378de57e2a0a954",
       hash: "sha256-8RzKNjnX+Bpr6keck5xQL1NdfqMGNLLOUfB+zz5Iac8=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libavif",
       version: "1.4.2",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "AOMediaCodec",
           repo: "libavif",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -68,7 +68,7 @@ ln -s ${libargparse} ext/libargparse
       buildInputs: nix.thunk(() => [gdk_pixbuf, gtest, zlib, libpng, libjpeg, libwebp, libxml2]),
       propagatedBuildInputs: nix.thunk(() => [dav1d, libaom, libyuv]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         PKG_CONFIG_GDK_PIXBUF_2_0_GDK_PIXBUF_MODULEDIR: gdkPixbufModuleDir,
       })),
       doCheck: true,
@@ -81,7 +81,7 @@ makeWrapper ${gdk_pixbuf}/bin/gdk-pixbuf-thumbnailer "$out/libexec/gdk-pixbuf-th
 `)))),
       postFixup: "substituteInPlace $dev/lib/cmake/libavif/libavif-config.cmake \\\n  --replace-fail \"_IMPORT_PREFIX \\\"$out\\\"\" \"_IMPORT_PREFIX \\\"$dev\\\"\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "C implementation of the AV1 Image File Format",
         longDescription: "Libavif aims to be a friendly, portable C implementation of the\nAV1 Image File Format. It is a work-in-progress, but can already\nencode and decode all AOM supported YUV formats and bit depths\n(with alpha). It also features an encoder and a decoder\n(avifenc/avifdec).\n",
         homepage: "https://github.com/AOMediaCodec/libavif",

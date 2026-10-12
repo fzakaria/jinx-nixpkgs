@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libraw1394",
       version: "2.1.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://kernel/linux/libs/ieee1394/libraw1394-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0z5md84941ky5l7afayx2z6j0sk0mildxbjajq6niznd44ky7i6x",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library providing direct access to the IEEE 1394 bus through the Linux 1394 subsystem's raw1394 user space interface",
         homepage: "https://ieee1394.wiki.kernel.org/index.php/Libraries#libraw1394",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

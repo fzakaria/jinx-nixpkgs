@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const bashInteractive = nix.arg($, "bashInteractive");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nix-fast-build",
       version: "2.0.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Mic92",
           repo: "nix-fast-build",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -55,11 +55,11 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["nix_fast_build"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Speed-up your Nix evaluation and building process by running them in parallel",
         homepage: "https://github.com/Mic92/nix-fast-build",
         changelog: nix.thunk(() => nix.str`https://github.com/Mic92/nix-fast-build/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -26,26 +26,26 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const hashes = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "x86_64-linux": "sha256-qJy0OAB167IJOBA7yY7GMyf76r5Dpx8Fdd2yhaBR6rQ=",
     "aarch64-linux": "sha256-ajxF31L/MnIrsz5NLGb5kg4oS5o63roXr8/Oo600bv8=",
     "aarch64-darwin": "sha256-lH5ogmxisS3i+gulsKZ6lTkRojISA8BPfAmCzPwPFpQ=",
   }));
   const platformName = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     "x86_64-linux": "linux-amd64",
     "aarch64-linux": "linux-arm64",
     "aarch64-darwin": "darwin",
   }));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "docker-sbx",
       version: "0.47.0",
       src: nix.thunk(() => (() => {
         const throwPlat = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported platform ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)));
         const p = nix.thunk(() => nix.selOr(platformName, () => nix.force(throwPlat), nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system"))));
         return nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: nix.thunk(() => nix.str`https://github.com/docker/sbx-releases/releases/download/v${nix.sel(finalAttrs, "version")}/DockerSandboxes-${p}.tar.gz`),
             hash: nix.thunk(() => nix.selOr(hashes, () => nix.force(throwPlat), nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system")))),
           })));
@@ -71,9 +71,9 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv
 
 runHook postInstall
 ` : "runHook preInstall\n\nmkdir -pv $out/Applications $out/bin\ncp -rv Sbx.app $out/Applications\nln -sv $out/Applications/Sbx.app/Contents/MacOS/{sbx,llmman} $out/bin\n\ninstallShellCompletion \\\n  --bash --name sbx.bash Sbx.app/Contents/Resources/completions/bash/sbx \\\n  --zsh  --name _sbx     Sbx.app/Contents/Resources/completions/zsh/_sbx \\\n  --fish --name sbx.fish Sbx.app/Contents/Resources/completions/fish/sbx.fish\n\nrunHook postInstall\n")),
-      passthru: nix.thunk(() => ({ __proto__: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Safe environments for agents",
         longDescription: "Docker Sandboxes provides sandboxes with controlled access to your\nfilesystem, network, and tools. This means your agents can work\nautonomously without putting your machine or data at risk.\n",
         homepage: "https://docs.docker.com/reference/cli/sbx/",

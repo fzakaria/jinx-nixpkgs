@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(maven, "buildMavenPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "jol",
       version: "0.17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OpenJDK",
           repo: "jol",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,13 +39,13 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe'"), jre_minimal, "java")} $out/bin/jo
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(jre_minimal, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Java Object Layout (JOL)",
         longDescription: "JOL (Java Object Layout) is the tiny toolbox to analyze object layout in JVMs.\nThese tools are using Unsafe, JVMTI, and Serviceability Agent (SA) heavily to decode the actual object layout, footprint, and references.\nThis makes JOL much more accurate than other tools relying on heap dumps, specification assumptions, etc.\n",
         homepage: "https://openjdk.org/projects/code-tools/jol/",

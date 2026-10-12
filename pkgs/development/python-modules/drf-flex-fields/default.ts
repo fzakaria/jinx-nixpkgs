@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rsinger86",
           repo: "drf-flex-fields",
           tag: version,
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [django, djangorestframework, pytestCheckHook, pytest_django]);
       const preCheck = "export DJANGO_SETTINGS_MODULE=tests.settings\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/rsinger86/drf-flex-fields/releases/tag/${nix.sel(src, "tag")}`),
         description: "Dynamically set fields and expand nested resources in Django REST Framework serializers",
         homepage: "https://github.com/rsinger86/drf-flex-fields",
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

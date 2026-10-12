@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const pname = "oh-my-git";
       const version = "0.6.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "git-learning-game",
           repo: "oh-my-git",
           rev: version,
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "oh-my-git",
             exec: "oh-my-git",
             icon: "oh-my-git",
@@ -113,7 +113,7 @@ runHook postInstall
 `);
       const runtimeDependencies = nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.sel(lib, "getLib")), nix.thunk(() => [alsa_lib, libpulseaudio, udev])));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://ohmygit.org/",
         description: "Interactive Git learning game",
         mainProgram: "oh-my-git",
@@ -125,7 +125,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const python = nix.arg($, "python");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.attr(edlib, "pname")),
       src: nix.thunk(() => nix.attr(edlib, "src")),
       version: nix.thunk(() => nix.attr(edlib, "version")),
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(edlib, "src", "name")}/bindings/python`),
       preBuild: nix.thunk(() => nix.str`ln -s ${nix.sel(edlib, "src")}/edlib .
 `),
-      env: nix.thunk(() => ({ __proto__: pos$1, EDLIB_OMIT_README_RST: 1n, EDLIB_USE_CYTHON: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$1, EDLIB_OMIT_README_RST: 1n, EDLIB_USE_CYTHON: 1n })),
       "build-system": nix.thunk(() => [setuptools, cython]),
       buildInputs: nix.thunk(() => [edlib]),
       checkPhase: nix.thunk(() => nix.str`runHook preCheck

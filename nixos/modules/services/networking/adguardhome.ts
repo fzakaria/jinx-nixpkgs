@@ -49,79 +49,79 @@ export default nix.lambda((args) => (() => {
       "--config /var/lib/AdGuardHome/AdGuardHome.yaml",
     ], nix.sel(cfg, "extraArgs")))));
   const settings = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "settings"), null)) ? nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.sel(cfg, "settings")), nix.thunk(() => (nix.asBool(nix.lt(nix.sel(cfg, "settings", "schema_version"), 23n)) ? {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       bind_host: nix.thunk(() => nix.sel(cfg, "host")),
       bind_port: nix.thunk(() => nix.sel(cfg, "port")),
     } : {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       http: nix.thunk(() => nix.update(nix.selOr(cfg, () => ({}), "settings", "http"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         address: nix.thunk(() => nix.str`${nix.sel(cfg, "host")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}`),
       })),
     }))) : null));
   const configFile = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(settingsFormat, "generate"), "AdGuardHome.yaml", settings), "overrideAttrs"), (_) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       checkPhase: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/AdGuardHome -c $out --check-config`),
     })));
   return {
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     options: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       services: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         adguardhome: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
           return {
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "AdGuard Home network-wide ad blocker")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.lookup(w, "package")),
                 default: nix.thunk(() => nix.sel(pkgs, "adguardhome")),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.adguardhome")),
                 description: "The package that runs adguardhome.\n",
               })))),
             openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 default: false,
                 type: nix.thunk(() => nix.lookup(w, "bool")),
                 description: "Open ports in the firewall for the AdGuard Home web interface. Does not\nopen the port needed to access the DNS resolver.\n",
               })))),
             allowDHCP: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 default: nix.thunk(() => nix.selOr(settings, () => false, "dhcp", "enabled")),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.adguardhome.settings.dhcp.enabled or false")),
                 type: nix.thunk(() => nix.lookup(w, "bool")),
                 description: "Allows AdGuard Home to open raw sockets (`CAP_NET_RAW`), which is\nrequired for the integrated DHCP server.\n\nThe default enables this conditionally if the declarative configuration\nenables the integrated DHCP server. Manually setting this option is only\nrequired for non-declarative setups.\n",
               })))),
             mutableSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 default: true,
                 type: nix.thunk(() => nix.lookup(w, "bool")),
                 description: "Allow changes made on the AdGuard Home web interface to persist between\nservice restarts.\n",
               })))),
             host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 default: "0.0.0.0",
                 type: nix.thunk(() => nix.lookup(w, "str")),
                 description: "Host address to bind HTTP server to.\n",
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 default: 3000n,
                 type: nix.thunk(() => nix.lookup(w, "port")),
                 description: "Port to serve HTTP pages on.\n",
               })))),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 default: null,
                 type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                      __proto__: pos$13,
+                      [nix.POS]: pos$13,
                       freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                       options: nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         schema_version: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$11,
+                            [nix.POS]: pos$11,
                             default: nix.thunk(() => nix.sel(cfg, "package", "schema_version")),
                             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "cfg.package.schema_version")),
                             type: nix.thunk(() => nix.lookup(w, "int")),
@@ -132,7 +132,7 @@ export default nix.lambda((args) => (() => {
                 description: "AdGuard Home configuration. Refer to\n<https://github.com/AdguardTeam/AdGuardHome/wiki/Configuration#configuration-file>\nfor details on supported values.\n\n::: {.note}\nOn start and if {option}`mutableSettings` is `true`,\nthese options are merged into the configuration file on start, taking\nprecedence over configuration changes made on the web interface.\n\nSet this to `null` (default) for a non-declarative configuration without any\nNix-supplied values.\nDeclarative configurations are supplied with a default `schema_version`, and `http.address`.\n:::\n",
               })))),
             extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 default: [],
                 type: nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))),
                 description: "Extra command line parameters to be passed to the adguardhome binary.\n",
@@ -142,39 +142,39 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, "settings"), null)) || nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "hasAttrByPath"), nix.thunk(() => ["bind_host"]), nix.thunk(() => nix.sel(cfg, "settings"))))))),
             message: "AdGuard option `settings.bind_host' has been superseded by `services.adguardhome.host'",
           })),
           nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, "settings"), null)) || nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "hasAttrByPath"), nix.thunk(() => ["bind_port"]), nix.thunk(() => nix.sel(cfg, "settings"))))))),
             message: "AdGuard option `settings.bind_port' has been superseded by `services.adguardhome.port'",
           })),
           nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             assertion: nix.thunk(() => (!nix.asBool(!nix.eq(settings, null)) || nix.asBool((nix.asBool(nix.sel(cfg, "mutableSettings")) || nix.asBool(nix.app(nix.sel(lib, "hasAttrByPath"), nix.thunk(() => ["dns", "bootstrap_dns"]), settings)))))),
             message: "AdGuard setting dns.bootstrap_dns needs to be configured for a minimal working configuration",
           })),
           nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             assertion: nix.thunk(() => (!nix.asBool(!nix.eq(settings, null)) || nix.asBool((nix.asBool(nix.sel(cfg, "mutableSettings")) || nix.asBool((nix.asBool(nix.app(nix.sel(lib, "hasAttrByPath"), nix.thunk(() => ["dns", "bootstrap_dns"]), settings)) && nix.asBool(nix.app(nix.sel(lib, "isList"), nix.thunk(() => nix.sel(settings, "dns", "bootstrap_dns")))))))))),
             message: "AdGuard setting dns.bootstrap_dns needs to be a list",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           services: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             adguardhome: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               description: "AdGuard Home: Network-level blocker",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
-              unitConfig: nix.thunk(() => ({ __proto__: pos$23, StartLimitIntervalSec: 5n, StartLimitBurst: 10n })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$23, StartLimitIntervalSec: 5n, StartLimitBurst: 10n })),
               preStart: nix.thunk(() => (() => {
                 const installFresh = nix.thunk(() => nix.str`cp --force "${configFile}" "$STATE_DIRECTORY/AdGuardHome.yaml"
 chmod 600 "$STATE_DIRECTORY/AdGuardHome.yaml"
@@ -195,7 +195,7 @@ fi
 ` : nix.force(installFresh))));
               })()),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 DynamicUser: true,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} ${args_1}`),
                 CapabilityBoundingSet: nix.thunk(() => nix.concat(["CAP_NET_BIND_SERVICE"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "allowDHCP")), nix.thunk(() => ["CAP_NET_RAW"])))),
@@ -230,9 +230,9 @@ fi
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           firewall: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]))),
           })),
         })),

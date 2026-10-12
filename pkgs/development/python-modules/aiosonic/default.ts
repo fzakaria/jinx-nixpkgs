@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const uvicorn = nix.arg($, "uvicorn");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aiosonic",
       version: "0.31.1",
       pyproject: true,
       __darwinAllowLocalNetworking: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sonic182",
           repo: "aiosonic",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -108,7 +108,7 @@ export default nix.lambda((args) => (() => {
         ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_proxy_request"])))),
       disabledTestPaths: nix.thunk(() => ["tests/test_sse.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python asyncio http client",
         homepage: "https://github.com/sonic182/aiosonic",
         changelog: nix.thunk(() => nix.str`https://github.com/sonic182/aiosonic/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const mpi4py = nix.arg($, "mpi4py");
   const mpich = nix.arg($, "mpich");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "mpi4py",
       version: "4.1.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "mpi4py",
           owner: "mpi4py",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest, mpiCheckPhaseHook]),
       __darwinAllowLocalNetworking: true,
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         MPI4PY_TEST_SPAWN: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(mpi, "pname"), "openmpi")) ? 0n : 1n)),
       })),
       disabledTests: nix.thunk(() => nix.concat([], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_dynproc.TestDPM.testJoin"])))),
@@ -58,15 +58,15 @@ mpiexec -n 2 python test/main.py -v -f -e spawn${nix.app(nix.sel(lib, "concatMap
 runHook postCheck
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         mpi: mpi,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          mpich: nix.thunk(() => nix.app(nix.sel(mpi4py, "override"), nix.thunk(() => ({ __proto__: pos$3, mpi: mpich })))),
+          [nix.POS]: pos$4,
+          mpich: nix.thunk(() => nix.app(nix.sel(mpi4py, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, mpi: mpich })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Python bindings for the Message Passing Interface standard",
         homepage: "https://github.com/mpi4py/mpi4py",
         changelog: nix.thunk(() => nix.str`https://github.com/mpi4py/mpi4py/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.rst`),

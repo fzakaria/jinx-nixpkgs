@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.3.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nephila",
           repo: "django-app-helper",
           tag: version,
@@ -42,14 +42,14 @@ export default nix.lambda((args) => (() => {
 `);
       const pythonImportsCheck = nix.thunk(() => ["app_helper"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          runTests: nix.thunk(() => nix.app(nix.sel(django_app_helper, "overrideAttrs"), (_) => ({ __proto__: pos$2, doCheck: true }))),
+          [nix.POS]: pos$3,
+          runTests: nix.thunk(() => nix.app(nix.sel(django_app_helper, "overrideAttrs"), (_) => ({ [nix.POS]: pos$2, doCheck: true }))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Helper for Django applications development",
         homepage: "https://django-app-helper.readthedocs.io",
         changelog: nix.thunk(() => nix.str`https://github.com/nephila/django-app-helper/releases/tag/${nix.sel(src, "tag")}`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "onny"))]),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

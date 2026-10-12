@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
   const enableGeoLocation = nix.argOr($, "enableGeoLocation", () => true);
   const enableSystemd = nix.argOr($, "enableSystemd", () => true);
   const libglnxSrc = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       domain: "gitlab.gnome.org",
       owner: "GNOME",
       repo: "libglnx",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-U6+vIU/wxnGGg07FJElQijbV0+jUswdG/lfzhw4wQy0=",
     }))));
   const gvdbSrc = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       domain: "gitlab.gnome.org",
       owner: "GNOME",
       repo: "gvdb",
@@ -64,13 +64,13 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-FQPctq+fj6du0sBawaJxtO0PRO0KIHHhdA2jh24Yacw=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "xdg-desktop-portal",
       version: "1.22.1",
       outputs: nix.thunk(() => ["out", "installedTests"]),
       separateDebugInfo: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "flatpak",
           repo: "xdg-desktop-portal",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -78,11 +78,11 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-icon-validation.patch"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             storeDir: nix.thunk(() => nix.attr(nix.builtins, "storeDir")),
           })))),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-sound-validation.patch"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             storeDir: nix.thunk(() => nix.attr(nix.builtins, "storeDir")),
           })))),
         nix.path(here, "./installed-tests-path.patch"),
@@ -153,9 +153,9 @@ export LD_PRELOAD=${nix.app(nix.sel(lib, "getLib"), umockdev)}/lib/libumockdev-p
 `))),
       preFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(finalAttrs, "finalPackage", "doCheck"))), "mkdir $installedTests\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           installedTests: nix.thunk(() => nix.sel(nixosTests, "installed-tests", "xdg-desktop-portal")),
           "validate-icon": nix.thunk(() => nix.app(runCommand, "test-icon-validation", nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/libexec/xdg-desktop-portal-validate-icon --ruleset=desktop --sandbox --path=${nix.sel(finalAttrs, "src")}/doc/website/favicon.svg > "$out"
 grep format=svg "$out"
@@ -163,7 +163,7 @@ grep format=svg "$out"
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Desktop integration portals for sandboxed apps",
         homepage: "https://flatpak.github.io/xdg-desktop-portal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),

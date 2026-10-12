@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const boost186 = nix.arg($, "boost186");
   const glibc = nix.arg($, "glibc");
-  const boost$ = nix.thunk(() => nix.app(nix.sel(boost186, "override"), nix.thunk(() => ({ __proto__: pos$1, enableShared: false }))));
+  const boost$ = nix.thunk(() => nix.app(nix.sel(boost186, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableShared: false }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "autodock-vina",
       version: "1.2.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "ccsb-scripps",
           repo: "autodock-vina",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,9 +36,9 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`BOOST_INCLUDE=${nix.app(nix.sel(lib, "getDev"), boost$)}/include`),
       ]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 vina vina_split -t $out/bin/\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$3, boost: boost$ })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, boost: boost$ })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "One of the fastest and most widely used open-source docking engines",
         homepage: "https://vina.scripps.edu/",
         changelog: nix.thunk(() => nix.str`https://github.com/ccsb-scripps/AutoDock-Vina/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const pythonAtLeast = nix.arg($, "pythonAtLeast");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "xnd",
       version: nix.thunk(() => nix.attr(libxnd, "version")),
       src: nix.thunk(() => nix.attr(libxnd, "src")),

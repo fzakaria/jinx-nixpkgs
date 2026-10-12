@@ -41,18 +41,18 @@ export default nix.lambda((args) => (() => {
   const glew = nix.arg($, "glew");
   const clientExecutable = "TaterClient-DDNet";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "taterclient-ddnet",
       version: "10.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TaterClient",
           repo: "TClient",
           tag: nix.thunk(() => nix.str`V${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-QlLxY1k9S9mvRJ0LL7/jpBfIn638eEEnQQ6tKvT/MJY=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -98,7 +98,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CLIENT_EXECUTABLE", clientExecutable)),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         DDNET_GIT_SHORTREV_HASH: "6b4118bf0ec86822dea43cc3e97b0645",
       })),
       doCheck: false,
@@ -114,7 +114,7 @@ substituteInPlace $out/share/applications/taterclient-ddnet.desktop \\
   --replace-fail "Comment=Launch DDNet" "Comment=Launch ${clientExecutable}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Modification of DDNet teeworlds client",
         homepage: "https://github.com/sjrc6/taterclient-ddnet",
         changelog: "https://github.com/sjrc6/taterclient-ddnet/releases",

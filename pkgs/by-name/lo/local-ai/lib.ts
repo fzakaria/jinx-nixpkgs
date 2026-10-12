@@ -16,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const writeText = nix.arg($, "writeText");
   const linkFarmFromDrvs = nix.arg($, "linkFarmFromDrvs");
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     genModels: (configs) => (() => {
       const name = nix.thunk(() => nix.app(nix.sel(lib, "strings", "sanitizeDerivationName"), nix.thunk(() => nix.builtins.concatStringsSep("_", nix.thunk(() => nix.concat(["local-ai-models"], nix.builtins.attrNames(configs)))))));
       const genModelFiles = (name_1) => (config) => (() => {
         const templateName = (type) => nix.add(nix.add(name_1, "_"), type);
-        const config$ = nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), config, nix.thunk(() => nix.update({ __proto__: pos$1, name: name_1 }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "isDerivation"), nix.thunk(() => nix.sel(config, "parameters", "model")))), nix.thunk(() => ({
-              __proto__: pos$3,
+        const config$ = nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), config, nix.thunk(() => nix.update({ [nix.POS]: pos$1, name: name_1 }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "isDerivation"), nix.thunk(() => nix.sel(config, "parameters", "model")))), nix.thunk(() => ({
+              [nix.POS]: pos$3,
               parameters: nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 model: nix.thunk(() => nix.sel(config, "parameters", "model", "name")),
               })),
             }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(config, "template")), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               template: nix.thunk(() => nix.builtins.mapAttrs((n) => (_) => nix.app(templateName, n), nix.thunk(() => nix.sel(config, "template")))),
             }))))))));
         return nix.concat([

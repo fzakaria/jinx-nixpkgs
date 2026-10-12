@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-Jk9b/DnXKfGsrVTHYKwE+oog1BhPS1BdnDM9LgMlN3A=",
@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const enabledTestPaths = nix.thunk(() => ["py2bitTest/test.py"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/deeptools/py2bit",
         description: "File access to 2bit files",
         longDescription: "A python extension, written in C, for quick access to 2bit files. The extension uses lib2bit for file access.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

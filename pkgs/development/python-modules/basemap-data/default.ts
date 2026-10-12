@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const basemap = nix.arg($, "basemap");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "basemap-data",
       pyproject: true,
       version: nix.thunk(() => nix.attr(basemap, "version")),
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["mpl_toolkits.basemap_data"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: "https://matplotlib.org/basemap/",
         description: "Data assets for matplotlib basemap",
         license: nix.thunk(() => (() => {

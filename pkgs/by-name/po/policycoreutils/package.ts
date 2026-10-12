@@ -21,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const libxcrypt = nix.arg($, "libxcrypt");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "policycoreutils",
       version: "3.11",
       se_url: nix.thunk(() => nix.attr(libsepol, "se_url")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "se_url")}/${nix.sel(finalAttrs, "version")}/policycoreutils-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-BU5B7AOXMaXua3l6jguNbjRu4dCpusLyUttIwj+aixs=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "CVE-2026-19079.patch",
             url: "https://github.com/SELinuxProject/selinux/commit/a556538c2d5d2583273e025b45c02651fef47679.patch",
             stripLen: 1n,
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libsepol, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "SELinux policy core utilities",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

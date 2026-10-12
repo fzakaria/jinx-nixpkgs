@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     condaPatchelfLibs: nix.thunk(() => nix.builtins.map((p) => nix.selOr(p, () => nix.force(p), "lib"), nix.thunk(() => (() => {
         const w = nix.withScope(pkgs, null);
         return [

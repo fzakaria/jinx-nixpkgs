@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const six = nix.arg($, "six");
   const ssdeep = nix.arg($, "ssdeep");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ssdeep",
       version: "3.4.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DinoTools",
           repo: "python-ssdeep",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace setup.py \\\n  --replace '\"pytest-runner\"' \"\"\n",
       pythonImportsCheck: nix.thunk(() => ["ssdeep"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python wrapper for the ssdeep library",
         homepage: "https://github.com/DinoTools/python-ssdeep",
         changelog: nix.thunk(() => nix.str`https://github.com/DinoTools/python-ssdeep/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.rst`),

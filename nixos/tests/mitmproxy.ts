@@ -23,29 +23,29 @@ cat ${nix.path(here, "./common/acme/server/ca.key.pem")} >> $out
 cat ${nix.path(here, "./common/acme/server/ca.cert.pem")} >> $out
 `)));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     name: "mitmproxy",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "ngi", "members")),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           security: nix.thunk(() => ({
-            __proto__: pos$3,
-            pki: nix.thunk(() => ({ __proto__: pos$2, certificateFiles: nix.thunk(() => [caCert]) })),
+            [nix.POS]: pos$3,
+            pki: nix.thunk(() => ({ [nix.POS]: pos$2, certificateFiles: nix.thunk(() => [caCert]) })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$5,
-            getty: nix.thunk(() => ({ __proto__: pos$4, autologinUser: "root" })),
+            [nix.POS]: pos$5,
+            getty: nix.thunk(() => ({ [nix.POS]: pos$4, autologinUser: "root" })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             systemPackages: nix.thunk(() => (() => {
               const counter = nix.thunk(() => nix.app(nix.sel(pkgs_1, "writers", "writePython3Bin"), "counter", nix.thunk(() => ({})), "from http.server import BaseHTTPRequestHandler, HTTPServer\n\ncounter = 0\n\n\nclass HTTPRequestHandler(BaseHTTPRequestHandler):\n    def do_POST(self):\n        match self.path:\n            case \"/counter\":\n                global counter\n                counter += 1\n                self.send_response(204)\n                self.end_headers()\n            case _:\n                self.send_response(404)\n                self.end_headers()\n\n    def do_GET(self):\n        match self.path:\n            case \"/counter\":\n                self.send_response(200)\n                self.send_header(\"Content-type\", \"text/plain\")\n                self.end_headers()\n                _ = self.wfile.write(str(counter).encode())\n            case \"/old\":\n                self.send_response(200)\n                self.send_header(\"Content-type\", \"text/plain\")\n                self.end_headers()\n                _ = self.wfile.write(\"fail\".encode())\n            case \"/new\":\n                self.send_response(200)\n                self.send_header(\"Content-type\", \"text/plain\")\n                self.end_headers()\n                _ = self.wfile.write(\"success\".encode())\n            case _:\n                self.send_response(404)\n                self.end_headers()\n\n\nserver_address = (\"\", 8000)\nserver = HTTPServer(server_address, HTTPRequestHandler)\nserver.serve_forever()\n"));
               return [

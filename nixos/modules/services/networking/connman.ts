@@ -46,25 +46,25 @@ ${nix.sel(cfg, "extraConfig")}
 `)));
   const enableIwd = nix.thunk(() => nix.eq(nix.sel(cfg, "wifi", "backend"), "iwd"));
   return {
-    __proto__: pos$29,
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    [nix.POS]: pos$29,
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["networking", "connman"]), nix.thunk(() => ["services", "connman"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         connman: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to use ConnMan for managing your network connections.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
               description: "The connman package / build flavor",
               default: nix.thunk(() => nix.sel(pkgs, "connman")),
@@ -72,34 +72,34 @@ ${nix.sel(cfg, "extraConfig")}
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.connmanFull")),
             })))),
           enableVPN: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to enable ConnMan VPN service.\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Configuration lines appended to the generated connman configuration file.\n",
             })))),
           networkInterfaceBlacklist: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => ["vmnet", "vboxnet", "virbr", "ifb", "ve"]),
               description: "Default blacklisted interfaces, this includes NixOS containers interfaces (ve).\n",
             })))),
           wifi: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             backend: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["wpa_supplicant", "iwd"]))),
                 default: "wpa_supplicant",
                 description: "Specify the Wi-Fi backend used.\nCurrently supported are {option}`wpa_supplicant` or {option}`iwd`.\n",
               })))),
           })),
           extraFlags: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["--nodnsproxy"]),
@@ -109,35 +109,35 @@ ${nix.sel(cfg, "extraConfig")}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             assertion: nix.thunk(() => !nix.asBool(nix.sel(config, "networking", "useDHCP"))),
             message: "You can not use services.connman with networking.useDHCP",
           })),
           nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             assertion: nix.thunk(() => !nix.asBool(nix.sel(config, "networking", "networkmanager", "enable"))),
             message: "You can not use services.connman with networking.networkmanager",
           })),
         ]),
         environment: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           services: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             connman: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               description: "Connection service",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => nix.app(nix.sel(lib, "optional"), enableIwd, "iwd.service")),
               requires: nix.thunk(() => nix.app(nix.sel(lib, "optional"), enableIwd, "iwd.service")),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 Type: "dbus",
                 BusName: "net.connman",
                 Restart: "on-failure",
@@ -150,12 +150,12 @@ ${nix.sel(cfg, "extraConfig")}
               })),
             })),
             "connman-vpn": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableVPN")), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 description: "ConnMan VPN service",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 before: nix.thunk(() => ["connman.service"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   Type: "dbus",
                   BusName: "net.connman.vpn",
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/sbin/connman-vpnd -n`),
@@ -163,10 +163,10 @@ ${nix.sel(cfg, "extraConfig")}
                 })),
               })))),
             "net-connman-vpn": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableVPN")), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 description: "D-BUS Service",
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   Name: "net.connman.vpn",
                   before: nix.thunk(() => ["connman.service"]),
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/sbin/connman-vpnd -n`),
@@ -177,16 +177,16 @@ ${nix.sel(cfg, "extraConfig")}
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           useDHCP: false,
           wireless: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(enableIwd)), true)),
             dbusControlled: true,
             autoDetectInterfaces: false,
-            iwd: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), enableIwd, nix.thunk(() => ({ __proto__: pos$24, enable: true })))),
+            iwd: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), enableIwd, nix.thunk(() => ({ [nix.POS]: pos$24, enable: true })))),
           })),
-          networkmanager: nix.thunk(() => ({ __proto__: pos$26, enable: false })),
+          networkmanager: nix.thunk(() => ({ [nix.POS]: pos$26, enable: false })),
         })),
       })))),
   };

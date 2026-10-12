@@ -15,22 +15,22 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(melpaBuild, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "eglot-x",
       version: "0-unstable-2026-02-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nemethf",
           repo: "eglot-x",
           rev: "46bca93291727454dd92567e761a1e2ab5622590",
           hash: "sha256-c8NzzK7SOYYDB803Osp3TOymrmwC07+dcvbI4waAfco=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/nemethf/eglot-x",
         description: "Protocol extensions for Eglot",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

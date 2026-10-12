@@ -36,49 +36,49 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "mesonlsp",
       version: "5.0.4",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "JCWasmx86",
           repo: "mesonlsp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-j8J/IREXYwH6KP9KlUTAfLpNN3n7yJSxoh8fqcvQ2P8=",
         })))),
       mesonSubprojects: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         ada: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             owner: "ada-url",
             repo: "ada",
             rev: "v2.7.4",
             hash: "sha256-V5LwL03x7/a9Lvg1gPvgGipo7IICU7xyO2D3GqP6Lbw=",
           })))),
         muon: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             owner: "JCWasmx86",
             repo: "muon",
             rev: "cea0b8e6c2874d1f2ce4057a17bd37090f619b6b",
             hash: "sha256-MM47mdMKpQBykWeL1aSufH/BYfy+uAWVJLWWMhXolsE=",
           })))),
         sha256: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             owner: "amosnier",
             repo: "sha-2",
             rev: "49265c656f9b370da660531db8cc6bf0a2e110a6",
             hash: "sha256-X9M/ZATYXUiE4oGorPBnsdaKnKaObarnMRh6QEfkBls=",
           })))),
         "tree-sitter-ini": nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             owner: "JCWasmx86",
             repo: "tree-sitter-ini",
             rev: "848b6269f7039739aebd169fbd3d5e6e34bef661",
             hash: "sha256-Lmlp20gxwfkWMbk81pBwfS7nc3ZBcMfjPzFB2ozhhLk=",
           })))),
         "tree-sitter-meson": nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             owner: "JCWasmx86",
             repo: "tree-sitter-meson",
             rev: "09665faff74548820c10d77dd8738cd76d488572",
@@ -125,11 +125,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs src/libtypenamespace\n",
       mesonCheckFlags: nix.thunk(() => ["--print-errorlogs"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Unofficial, unendorsed language server for Meson written in C++",
         homepage: "https://github.com/JCWasmx86/mesonlsp",
         changelog: nix.thunk(() => nix.str`https://github.com/JCWasmx86/mesonlsp/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const pythonEnv = nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), pythonDeps));
   const checkPythonEnv = nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (ps) => nix.concat(nix.app(pythonDeps, ps), [nix.thunk(() => nix.sel(ps, "xmlschema"))])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sby",
       version: "0.69",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "YosysHQ",
           repo: "sby",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -69,11 +69,11 @@ substituteInPlace sbysrc/sby_autotune.py \\
       doCheck: true,
       checkPhase: "runHook preCheck\nmake test\nrunHook postCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "SymbiYosys, a front-end for Yosys-based formal verification flows",
         homepage: "https://symbiyosys.readthedocs.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

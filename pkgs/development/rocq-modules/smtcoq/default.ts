@@ -33,56 +33,56 @@ export default nix.lambda((args) => (() => {
   const trakt = nix.arg($, "trakt");
   const version = nix.argOr($, "version", () => null);
   const derivation = nix.thunk(() => nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       pname: "smtcoq",
       owner: "smtcoq",
       "opam-name": "rocq-smtcoq",
       release: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         "SMTCoq-2.3+8.20": nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           hash: "sha256-ScWtdwSpFBf/PryPuvI/SkhgqWyYhcX3FCOqoXNho7Q=",
         })),
         "SMTCoq-2.2+8.19": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           hash: "sha256-9Wv8AXRRyOHG/cjA/V9tSK55R/bofDMLTkDpuwYWkks=",
         })),
         "SMTCoq-2.2+8.18": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           hash: "sha256-1iJAruI5Qn9nTZcUDjk8t/1Q+eFkYLOe9Ee0DmK03w8=",
         })),
         "SMTCoq-2.2+8.17": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           hash: "sha256-kaodsyVUl1+QQagzoBTIjxbdD4X3IaaH0x2AsVUL+Z0=",
         })),
         "SMTCoq-2.2+8.16": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           hash: "sha256-Hwm8IFlw97YiOY6H63HyJlwIXvQHr9lqc1+PgTnBtkw=",
         })),
         "SMTCoq-2.2+8.15": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           hash: "sha256-+GYOasJ32KJyOfqJlTtFmsJ2exd6gdueKwHdeMPErTo=",
         })),
         "SMTCoq-2.2+8.14": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           hash: "sha256-jqnF33E/4CqR1HSrLmUmLVCKslw9h3bbWi4YFmFYrhY=",
         })),
         "SMTCoq-2.2+8.13": nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           hash: "sha256-AVpKU/SLaLYnCnx6GOEPGJjwbRrp28Fs5O50kJqdclI=",
         })),
         "SMTCoq-2.1+8.16": nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           rev: "4996c00b455bfe98400e96c954839ceea93efdf7",
           hash: "sha256-k53e+frUjwq+ZZKbbOKd/EfVC40QeAzB2nCsGkCKnHA=",
         })),
         "SMTCoq-2.1+8.14": nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           rev: "e11d9b424b0113f32265bcef0ddc962361da4dae",
           hash: "sha256-4a01/CRHUon2OfpagAnMaEVkBFipPX3MCVmSFS1Bnt4=",
         })),
         "SMTCoq-2.1+8.13": nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           rev: "d02269c43739f4559d83873563ca00daad9faaf1",
           hash: "sha256-VZetGghdr5uJWDwZWSlhYScoNEoRHIbwqwJKSQyfKKg=",
         })),
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
       releaseRev: (v) => nix.force(v),
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (case$_1) => (out) => ({ __proto__: pos$13, case: case$_1, out: out });
+        const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$13, case: case$_1, out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => nix.app(case$, nix.thunk(() => nix.app(nix.lookup(w, "isEq"), "8.20")), nix.thunk(() => nix.str`SMTCoq-2.3+${nix.sel(coq, "coq-version")}`))),
@@ -114,9 +114,9 @@ export default nix.lambda((args) => (() => {
         const w_2 = nix.withScope(nix.thunk(() => nix.sel(coq, "ocamlPackages")), null);
         return [nix.thunk(() => nix.lookup(w_2, "ocamlbuild"))];
       })())),
-      passthru: nix.thunk(() => ({ __proto__: pos$14, cvc5: cvc5 })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$14, cvc5: cvc5 })),
       meta: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         description: "Communication between Coq and SAT/SMT solvers",
         maintainers: nix.thunk(() => (() => {
           const w_3 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -127,7 +127,7 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   const patched_derivation1 = nix.thunk(() => nix.app(nix.sel(derivation, "overrideAttrs"), (o) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(o, "version"), null)) && nix.asBool((nix.asBool(nix.eq(nix.sel(o, "version"), "dev")) || nix.asBool(nix.app(nix.sel(lib, "versions", "isGt"), "SMTCoq-2.3+8.20", nix.thunk(() => nix.sel(o, "version")))))))), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         propagatedBuildInputs: nix.thunk(() => nix.concat(nix.sel(o, "propagatedBuildInputs"), [trakt])),
       })))));
   return nix.force(patched_derivation1);

@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const version = nix.thunk(() => nix.sel(aeron, "version"));
   const sbeAll_1_31_1 = nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       groupId: "uk.co.real-logic",
       version: "1.31.1",
       artifactId: "sbe-all",
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
     }))));
   const sbeAll = sbeAll_1_31_1;
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "aeron-cpp",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "aeron-io",
           repo: "aeron",
           tag: version,
@@ -76,7 +76,7 @@ runHook postBuild
       installPhase: "runHook preInstall\n\nmkdir --parents \"$out\"\ncp --archive --verbose --target-directory=\"$out\" install/*\n\nrunHook postInstall\n",
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "for lib in $out/lib/*.dylib; do\n  install_name_tool -change \"@rpath/$(basename $lib)\" \"$lib\" \"$out/bin/aeronmd\"\ndone\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Aeron Messaging C++ Library",
         homepage: "https://aeron.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -10,19 +10,19 @@ const pos$5 = nix.positions(here + "/filebrowser.nix", [["machine", 4, 9]]);
 const pos$6 = nix.positions(here + "/filebrowser.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 15, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$6,
+  [nix.POS]: pos$6,
   name: "filebrowser",
   nodes: nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     machine: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         filebrowser: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: true,
           settings: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             address: "localhost",
             port: 8080n,
             database: "/var/lib/filebrowser/filebrowser.db",

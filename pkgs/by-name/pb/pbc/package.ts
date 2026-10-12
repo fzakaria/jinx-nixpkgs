@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const flex = nix.arg($, "flex");
   const bison = nix.arg($, "bison");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pbc",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://crypto.stanford.edu/pbc/files/${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-GCdaNnKDB3uv419EMgBJnjsZxKN1SVPaKhsvDWtZItw=",
         })))),
@@ -29,9 +29,9 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gmp]),
       nativeBuildInputs: nix.thunk(() => [bison, flex]),
       strictDeps: true,
-      env: nix.thunk(() => ({ __proto__: pos$2, LEX: "flex", LEXLIB: "-lfl", ac_cv_lib_fl_yywrap: "yes" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, LEX: "flex", LEXLIB: "-lfl", ac_cv_lib_fl_yywrap: "yes" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Pairing-based cryptography library by Stanford",
         homepage: "https://crypto.stanford.edu/pbc/",
         license: nix.thunk(() => (() => {

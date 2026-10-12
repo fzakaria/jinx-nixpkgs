@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
   const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kicad-base",
       version: nix.thunk(() => (nix.asBool(stable) ? nix.force(kicadVersion) : nix.builtins.substring(0n, 10n, nix.thunk(() => nix.sel(finalAttrs, "src", "rev"))))),
       src: kicadSrc,
@@ -108,7 +108,7 @@ substituteInPlace cmake/CreateGitVersionHeader.cmake \\
         unixodbc,
         opencascade_occt,
         protobuf_29,
-        nix.thunk(() => nix.app(nix.sel(nng, "override"), nix.thunk(() => ({ __proto__: pos$1, mbedtlsSupport: false })))),
+        nix.thunk(() => nix.app(nix.sel(nng, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, mbedtlsSupport: false })))),
       ], nix.concat(nix.app(optionals, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libspnav])), nix.concat(nix.app(optionals, withScripting, nix.thunk(() => [wxPython])), nix.concat(nix.app(optionals, withNgspice, nix.thunk(() => [libngspice])), nix.app(optionals, debug, nix.thunk(() => [valgrind]))))))),
       doInstallCheck: nix.thunk(() => !nix.asBool(debug)),
       installCheckTarget: "test",
@@ -126,7 +126,7 @@ substituteInPlace cmake/CreateGitVersionHeader.cmake \\
       ]),
       dontStrip: debug,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Just the built source without the libraries",
         longDescription: "Just the build products, the libraries are passed via an env var in the wrapper, default.nix\n",
         homepage: "https://www.kicad.org/",

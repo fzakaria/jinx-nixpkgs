@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "secretive",
       version: "3.0.4",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/maxgoedjen/secretive/releases/download/v${nix.sel(finalAttrs, "version")}/Secretive.zip`),
           hash: "sha256-dZqcYnEHaeUN92lYIlGcv3qXPEIKY5z1LLJiSyeY2BM=",
           stripRoot: false,
         })))),
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications\"\ncp -R Secretive.app \"$out/Applications/\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Store SSH keys in the Secure Enclave",
         homepage: "https://github.com/maxgoedjen/secretive",
         changelog: nix.thunk(() => nix.str`https://github.com/maxgoedjen/secretive/releases/tag/v${nix.sel(finalAttrs, "version")}`),

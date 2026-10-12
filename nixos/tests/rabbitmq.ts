@@ -21,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const configKeyPath = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "fake-config-key", "hOjWzSEn2Z7cHzKOcf6i183O2NdjurSuoMDIIv01"));
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     name: "rabbitmq",
     nodes: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       machine: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         services: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           rabbitmq: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             enable: true,
-            managementPlugin: nix.thunk(() => ({ __proto__: pos$1, enable: true })),
+            managementPlugin: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
             config: nix.thunk(() => nix.str`[ { rabbit
   , [ {default_user, <<"alice">>}
     , { default_pass
@@ -53,19 +53,19 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           services: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             rabbitmq: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 Restart: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "no")),
               })),
             })),
           })),
         })),
-        virtualisation: nix.thunk(() => ({ __proto__: pos$8, diskSize: 1024n })),
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$8, diskSize: 1024n })),
       })),
     })),
     testScript: nix.thunk(() => nix.str`machine.start()

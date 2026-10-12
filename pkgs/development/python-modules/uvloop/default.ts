@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.22.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MagicStack",
           repo: "uvloop",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "rm -rf vendor\n\nsubstituteInPlace setup.py \\\n  --replace-fail \"use_system_libuv = False\" \"use_system_libuv = True\"\n";
       const build_system = nix.thunk(() => [cython, setuptools_80]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         LIBUV_CONFIGURE_HOST: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "config")),
       }));
       const buildInputs = nix.thunk(() => [libuv]);
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["uvloop", "uvloop.loop"]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/MagicStack/uvloop/releases/tag/${nix.sel(src, "tag")}`),
         description: "Fast implementation of asyncio event loop on top of libuv",
         homepage: "https://github.com/MagicStack/uvloop",
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const scons = nix.arg($, "scons");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hammer",
       version: "nightly_20220416",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.special-circumstanc.es",
           owner: "hammer",
           repo: "hammer",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, scons]),
       buildInputs: nix.thunk(() => [glib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bit-oriented parser combinator library",
         longDescription: "Hammer is a parsing library. Like many modern parsing libraries, it\nprovides a parser combinator interface for writing grammars as inline\ndomain-specific languages, but Hammer also provides a variety of parsing\nbackends. It's also bit-oriented rather than character-oriented, making it\nideal for parsing binary data such as images, network packets, audio, and\nexecutables.\n",
         homepage: "https://gitlab.special-circumstanc.es/hammer/hammer",

@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "llama-cpp"));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "llama-cpp", "host"]), nix.thunk(() => ["services", "llama-cpp", "settings", "host"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "llama-cpp", "port"]), nix.thunk(() => ["services", "llama-cpp", "settings", "port"]))),
@@ -41,29 +41,29 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "llama-cpp", "extraFlags"]), "Use `services.llama-cpp.settings` instead")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         "llama-cpp": nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "llama.cpp HTTP server")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "llama-cpp", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   freeformType: nix.thunk(() => nix.sel(lib, "types", "attrs")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$1,
+                        [nix.POS]: pos$1,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "127.0.0.1",
                         example: "0.0.0.0",
                         description: "IP address on which the server should listen on.\n",
                       })))),
                     port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$2,
+                        [nix.POS]: pos$2,
                         type: nix.thunk(() => nix.sel(lib, "types", "port")),
                         default: 8080n,
                         example: 1337n,
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
                 })))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 host: "0.0.0.0",
                 port: 1337n,
                 model: "/mnt/llms/Foo3.6-27B-UD-Q4_K_XL.gguf",
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
               description: "Command-line arguments for `llama-server`.\n\nSee <https://github.com/ggml-org/llama.cpp/blob/master/tools/server/README.md>\nfor the full list of options.\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Open ports in the firewall for the server.\n",
@@ -99,23 +99,23 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             "llama-cpp": nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "llama.cpp HTTP server",
               wants: nix.thunk(() => ["network.target"]),
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 ExecStart: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
                     nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "llama-server")),
                     nix.thunk(() => nix.app(nix.sel(lib, "cli", "toCommandLine"), (optionName) => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         option: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), "-", optionName)) ? nix.force(optionName) : (nix.asBool(nix.gt(nix.builtins.stringLength(optionName), 1n)) ? nix.str`--${optionName}` : nix.str`-${optionName}`))),
                         sep: " ",
                         explicitBool: false,
@@ -162,15 +162,15 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           firewall: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => nix.sel(cfg, "settings", "port")))),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

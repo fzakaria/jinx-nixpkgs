@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const libexif = nix.arg($, "libexif");
   const conf = nix.argOr($, "conf", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sxiv",
       version: "26",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xyb3rt",
           repo: "sxiv",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
       postInstall: "install -Dt $out/share/applications sxiv.desktop\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple X Image Viewer",
         homepage: "https://github.com/xyb3rt/sxiv",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

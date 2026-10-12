@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "xsstrike",
       version: "3.1.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "s0md3v",
           repo: "XSStrike",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/s0md3v/XSStrike/commit/101ad7d789583e3aa99461e864377b0683d4f29c.patch",
             hash: "sha256-5ONL5nUyi/tEiINnVmmWbQd1vY8zNqS0ryFf/6k+7Lc=",
           })))),
@@ -62,11 +62,11 @@ substituteInPlace xsstrike.py \\
       doInstallCheck: true,
       versionCheckProgramArg: nix.thunk(() => ["-h"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Advanced XSS scanner",
         homepage: "https://github.com/s0md3v/XSStrike",
         changelog: nix.thunk(() => nix.str`https://github.com/s0md3v/XSStrike/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

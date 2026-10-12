@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libzip = nix.arg($, "libzip");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "vgm2x",
       version: "0-unstable-2024-12-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vampirefrog",
           repo: "vgm2x",
           rev: "ae37e3a8a2d563733c89e00597a18b5deac80b4f",
@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
       buildFlags: nix.thunk(() => [nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`)]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 vgm2x $out/bin/vgm2x\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "VGM file extraction tools",
         homepage: "https://github.com/vampirefrog/vgm2x",

@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
       const version = "153.4.0esr";
       const applicationName = "Firefox ESR";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://mozilla/firefox/releases/${version}/source/firefox-${version}.source.tar.xz`),
           sha512: "79e1f2a0f8c4d156c80b8f4c580aa944600d49cc811f961a3eca251113241638991fda94ccb74a44df9030f643586c41686861333288f13793e621a262a1b131",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://www.firefox.com/en-US/firefox/${nix.app(nix.sel(lib, "removeSuffix"), "esr", version)}/releasenotes/`),
         description: "Web browser built from Firefox source tree",
         homepage: "http://www.mozilla.com/en-US/firefox/",
@@ -43,9 +43,9 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
         mainProgram: "firefox",
         identifiers: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           cpeParts: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             product: "firefox",
             sw_edition: "esr",
             update: "*",
@@ -53,24 +53,24 @@ export default nix.lambda((args) => (() => {
             version: nix.thunk(() => nix.app(nix.sel(lib, "removeSuffix"), "esr", version)),
           })),
           purlParts: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: "generic",
             spec: nix.thunk(() => nix.str`firefox@${nix.app(nix.sel(lib, "removeSuffix"), "esr", version)}`),
           })),
         })),
       }));
       const tests = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         "firefox-esr-153": nix.thunk(() => nix.attr(nixosTests, "firefox-esr-153")),
       }));
       const updateScript = nix.thunk(() => nix.app(callPackage, nix.path(here, "../update.nix"), nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           attrPath: "firefox-esr-153-unwrapped",
           versionPrefix: "153",
           versionSuffix: "esr",
         }))));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version,
         applicationName,

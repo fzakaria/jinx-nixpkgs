@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const wagtail = nix.arg($, "wagtail");
   const wagtail_factories = nix.arg($, "wagtail-factories");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "wagtail-factories-tests",
       pyproject: false,
       src: nix.thunk(() => nix.attr(wagtail_factories, "src")),

@@ -26,7 +26,7 @@ echo "Now calling npush"
 exec "${npush}/bin/npush"
 `)));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "run-npush",
       version: nix.thunk(() => nix.attr(npush, "version")),
       paths: nix.thunk(() => [npush, runScript]),

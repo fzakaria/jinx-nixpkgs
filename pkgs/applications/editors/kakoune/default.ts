@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kakoune-unwrapped",
       version: "2026.05.21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "kakoune",
           owner: "mawww",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       installCheckPhase: "$out/bin/kak -ui json -e \"kill 0\"\n",
       postInstall: "# make share/kak/autoload a directory, so we can use symlinkJoin with plugins\ncd \"$out/share/kak\"\nautoload_target=$(readlink autoload)\nrm autoload\nmkdir autoload\nln -s --relative \"$autoload_target\" autoload\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://kakoune.org/",
         description: "Vim inspired text editor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),

@@ -29,23 +29,23 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "image"));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     imports: nix.thunk(() => [
       nix.path(here, "./disk-size-option.nix"),
       nix.path(here, "../image/file-options.nix"),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       image: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         format: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             description: "Format of the disk image to generate: raw or qcow2",
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["raw", "qcow2"]))),
             default: "qcow2",
           })))),
         efiSupport: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             description: "Whether the disk image should support EFI boot or legacy boot",
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             default: true,
@@ -53,45 +53,45 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       boot: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         loader: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           grub: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "efiSupport"))), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOptionDefault"), true)),
               devices: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ["/dev/vda"]))),
             })))),
           "systemd-boot": nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(cfg, "efiSupport")))),
           })),
         })),
         growPartition: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
       })),
       fileSystems: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         "/": nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           device: "/dev/disk/by-label/nixos",
           autoResize: true,
           fsType: "ext4",
         })),
-        "/boot": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "efiSupport")), nix.thunk(() => ({ __proto__: pos$10, device: "/dev/disk/by-label/ESP", fsType: "vfat" })))),
+        "/boot": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "efiSupport")), nix.thunk(() => ({ [nix.POS]: pos$10, device: "/dev/disk/by-label/ESP", fsType: "vfat" })))),
       })),
       system: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         nixos: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           tags: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(cfg, "format"))], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "efiSupport")), nix.thunk(() => ["efi"])))),
         })),
         build: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           image: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/make-disk-image.nix")), nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(config, "virtualisation"));
               return {
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               lib: lib,
               config: config,
               pkgs: pkgs,
@@ -104,7 +104,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       image: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         extension: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "format"), "raw")) ? "img" : nix.sel(cfg, "format"))),
       })),
     })),

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const bc = nix.arg($, "bc");
   const bspwm = nix.arg($, "bspwm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bsp-layout",
       version: "0.0.10-unstable-2022-06-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "phenax",
           repo: "bsp-layout",
           rev: "9d60fc271454ea1bfca598575207a06d8d172d3e",
@@ -37,7 +37,7 @@ do
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Manage layouts in bspwm",
         longDescription: "bsp-layout is a dynamic layout manager for bspwm, written in bash.\nIt provides layout options to fit most workflows.\n",
         homepage: "https://github.com/phenax/bsp-layout",

@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
       const pname = "steam-rom-manager";
       const version = "2.5.44";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/SteamGridDB/steam-rom-manager/releases/download/v${version}/Steam-ROM-Manager-${version}.AppImage`),
           sha256: "sha256-/Lc23aKts1qu2Sgs5xoEX7Nx9O0i53xY8woQoyItZME=",
         }))));
       const extraInstallCommands = nix.thunk(() => (() => {
-        const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+        const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
         return nix.str`install -m 444 -D ${appimageContents}/steam-rom-manager.desktop -t $out/share/applications
 substituteInPlace $out/share/applications/steam-rom-manager.desktop \\
   --replace 'Exec=AppRun' 'Exec=steam-rom-manager'
@@ -30,7 +30,7 @@ cp -r ${appimageContents}/usr/share/icons $out/share
 `;
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "App for managing ROMs in Steam",
         homepage: "https://github.com/SteamGridDB/steam-rom-manager",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -41,7 +41,7 @@ cp -r ${appimageContents}/usr/share/icons $out/share
         platforms: nix.thunk(() => ["x86_64-linux"]),
         mainProgram: "steam-rom-manager",
       }));
-      return { __proto__: pos$4, pname, version, src, extraInstallCommands, meta };
+      return { [nix.POS]: pos$4, pname, version, src, extraInstallCommands, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(hostPkgs, "stdenv"));
   const hostPlatform = nix.thunk(() => nix.attr(from, "hostPlatform"));
   const guestSystem = nix.thunk(() => (nix.asBool(nix.sel(hostPlatform, "isLinux")) ? nix.sel(hostPlatform, "system") : (() => {
-    const hostToGuest = nix.thunk(() => ({ __proto__: pos$1, "aarch64-darwin": "aarch64-linux" }));
+    const hostToGuest = nix.thunk(() => ({ [nix.POS]: pos$1, "aarch64-darwin": "aarch64-linux" }));
     const supportedHosts = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ", ", nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), hostToGuest))));
     const message = nix.thunk(() => nix.str`NixOS Test: don't know which VM guest system to pair with VM host system: ${nix.sel(hostPlatform, "system")}. Perhaps you intended to run the tests on a Linux host, or one of the following systems that may run NixOS tests: ${supportedHosts}`);
     return nix.selOr(hostToGuest, () => nix.builtins.throw(message), nix.key(nix.sel(hostPlatform, "system")));
@@ -95,7 +95,7 @@ export default nix.lambda((args) => (() => {
   const baseOS = (extraBaseModules) => nix.app(nix.builtins.import(nix.path(here, "../eval-config.nix")), nix.thunk(() => (() => {
       const from_1 = nix.thunk(() => nix.sel(config, "node"));
       return {
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       lib: lib,
       system: null,
       specialArgs: nix.thunk(() => nix.attr(from_1, "specialArgs")),
@@ -103,12 +103,12 @@ export default nix.lambda((args) => (() => {
       baseModules: nix.thunk(() => nix.concat(nix.builtins.import(nix.path(here, "../../modules/module-list.nix")), nix.concat([
         nix.path(here, "./nixos-test-base.nix"),
         nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           key: "nodes",
           _module: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             args: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               containers: nix.thunk(() => nix.attr(config, "containers")),
               nodes: nix.thunk(() => nix.sel(config, "nodesCompat")),
             })),
@@ -118,11 +118,11 @@ export default nix.lambda((args) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const options_1 = nix.arg($_1, "options");
           return {
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             key: "nodes.nix-pkgs",
             config: nix.thunk(() => nix.app(optionalAttrs, nix.thunk(() => !nix.asBool(nix.sel(config, "node", "pkgsReadOnly"))), nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.asBool(nix.sel(options_1, "nixpkgs", "pkgs", "isDefined"))), nix.thunk(() => ({
-                  __proto__: pos$6,
-                  nixpkgs: nix.thunk(() => ({ __proto__: pos$5, system: guestSystem })),
+                  [nix.POS]: pos$6,
+                  nixpkgs: nix.thunk(() => ({ [nix.POS]: pos$5, system: guestSystem })),
                 })))))),
           };
         })(), formals$2),
@@ -135,19 +135,19 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(testModuleArgs, "config", "extraBaseNodeModules")),
       nix.thunk(() => nix.sel(config, "nodeDefaults")),
       nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         key: "base-qemu",
         virtualisation: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           qemu: nix.thunk(() => (() => {
             const from_1 = nix.thunk(() => nix.sel(testModuleArgs, "config", "qemu"));
             return {
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             package: nix.thunk(() => nix.attr(from_1, "package")),
             forceAccel: nix.thunk(() => nix.attr(from_1, "forceAccel")),
           };
           })()),
-          host: nix.thunk(() => ({ __proto__: pos$10, pkgs: hostPkgs })),
+          host: nix.thunk(() => ({ [nix.POS]: pos$10, pkgs: hostPkgs })),
         })),
       })),
     ])));
@@ -158,34 +158,34 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           key: "base-nspawn",
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             openssh: nix.thunk(() => ({
-              __proto__: pos$14,
-              settings: nix.thunk(() => ({ __proto__: pos$13, UsePAM: false })),
+              [nix.POS]: pos$14,
+              settings: nix.thunk(() => ({ [nix.POS]: pos$13, UsePAM: false })),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             useDHCP: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
           })),
           documentation: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             info: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
             })),
           })),
           security: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             pam: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               services: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 login: nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   text: nix.thunk(() => nix.str`auth sufficient ${nix.sel(pkgs, "linux-pam")}/lib/security/pam_permit.so
 account sufficient ${nix.sel(pkgs, "linux-pam")}/lib/security/pam_permit.so
 password sufficient ${nix.sel(pkgs, "linux-pam")}/lib/security/pam_permit.so
@@ -200,16 +200,16 @@ session sufficient ${nix.sel(pkgs, "linux-pam")}/lib/security/pam_permit.so
     ])));
   const mkOneUp = (opt) => (f) => nix.app(nix.sel(lib, "mkOverride"), nix.thunk(() => nix.sub(nix.sel(opt, "highestPrio"), 1n)), nix.thunk(() => nix.app(f, nix.thunk(() => nix.sel(opt, "value")))));
   return {
-    __proto__: pos$61,
+    [nix.POS]: pos$61,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["sshBackdoor", "vsockOffset"]), "The option `sshBackdoor.vsockOffset` has been removed from the testing framework.\nThe functionality provided by it is not needed anymore.\n")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$42,
+      [nix.POS]: pos$42,
       sshBackdoor: nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             default: nix.thunk(() => nix.sel(config, "enableDebugHook")),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.enableDebugHook")),
             type: nix.thunk(() => nix.sel(types, "bool")),
@@ -217,59 +217,59 @@ session sufficient ${nix.sel(pkgs, "linux-pam")}/lib/security/pam_permit.so
           })))),
       })),
       node: nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         type: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             type: nix.thunk(() => nix.sel(types, "raw")),
             default: nix.thunk(() => nix.sel(baseQemuOS, "type")),
             internal: true,
           })))),
         pkgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             description: "The Nixpkgs to use for the nodes and containers.\n\nSetting this will make the `nixpkgs.*` options read-only, to avoid mistakenly testing with a Nixpkgs configuration that diverges from regular use.\n",
             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "pkgs")))),
             default: null,
             defaultText: nix.thunk(() => nix.app(literalMD, "`null`, so construct `pkgs` according to the `nixpkgs.*` options as usual.\n")),
           })))),
         pkgsReadOnly: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             description: "Whether to make the `nixpkgs.*` options read-only. This is only relevant when [`node.pkgs`](#test-opt-node.pkgs) is set.\n\nSet this to `false` when any of the [`nodes`](#test-opt-nodes) or [{option}`containers`](#test-opt-containers) need to configure any of the `nixpkgs.*` options. This will slow down evaluation of your test a bit.\n",
             type: nix.thunk(() => nix.sel(types, "bool")),
             default: nix.thunk(() => !nix.eq(nix.sel(config, "node", "pkgs"), null)),
             defaultText: nix.thunk(() => nix.app(literalExpression, "node.pkgs != null")),
           })))),
         specialArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "raw")))),
             default: nix.thunk(() => ({})),
             description: "An attribute set of arbitrary values that will be made available as module arguments during the resolution of module `imports`.\n\nNote that it is not possible to override these from within the NixOS configurations. If you argument is not relevant to `imports`, consider setting {option}`defaults._module.args.<name>` instead.\n",
           })))),
       })),
       nodes: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(config, "node", "type")))),
           default: nix.thunk(() => ({})),
           visible: "shallow",
           description: "An attribute set of NixOS configuration modules representing QEMU vms that can be started during a test.\n\nThe configurations are augmented by the [`defaults`](#test-opt-defaults) option.\n\nThey are assigned network addresses according to the `nixos/lib/testing/network.nix` module.\n\nA few special options are available, that aren't in a plain NixOS configuration. See [Configuring virtual machines](#ssec-nixos-test-qemu-vms)\n",
         })))),
       container: nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         type: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             type: nix.thunk(() => nix.sel(types, "raw")),
             default: nix.thunk(() => nix.sel(baseNspawnOS, "type")),
             internal: true,
           })))),
       })),
       containers: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(config, "container", "type")))),
           default: nix.thunk(() => ({})),
           visible: "shallow",
           description: "An attribute set of NixOS configuration modules representing systemd-nspawn containers that can be started during a test.\n\nThe configurations are augmented by the [`defaults`](#test-opt-defaults) option.\n\nThey are assigned network addresses according to the `nixos/lib/testing/network.nix` module.\n\nA few special options are available, that aren't in a plain NixOS configuration. See [Configuring containers](#ssec-nixos-test-nspawn-containers)\n",
         })))),
       allMachines: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           readOnly: true,
           internal: true,
           description: "Basically a merge of [{option}`nodes`](#test-opt-nodes) and [{option}`containers`](#test-opt-containers).\n\nThis ensures that there are no name collisions between nodes and containers.\n",
@@ -279,57 +279,57 @@ session sufficient ${nix.sel(pkgs, "linux-pam")}/lib/security/pam_permit.so
           })()),
         })))),
       defaults: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           description: "NixOS configuration that is applied to all [{option}`nodes`](#test-opt-nodes) and [{option}`containers`](#test-opt-containers).\n",
           type: nix.thunk(() => nix.sel(types, "deferredModule")),
           default: nix.thunk(() => ({})),
         })))),
       nodeDefaults: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           description: "NixOS configuration that is applied to all [{option}`nodes`](#test-opt-nodes).\n",
           type: nix.thunk(() => nix.sel(types, "deferredModule")),
           default: nix.thunk(() => ({})),
         })))),
       containerDefaults: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           description: "NixOS configuration that is applied to all [{option}`containers`](#test-opt-containers).\n",
           type: nix.thunk(() => nix.sel(types, "deferredModule")),
           default: nix.thunk(() => ({})),
         })))),
       extraBaseModules: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           description: "NixOS configuration that, like [{option}`defaults`](#test-opt-defaults), is applied to all [{option}`nodes`](#test-opt-nodes) and [{option}`containers`](#test-opt-containers) and can not be undone with [`specialisation.<name>.inheritParentConfig`](https://search.nixos.org/options?show=specialisation.%3Cname%3E.inheritParentConfig&from=0&size=50&sort=relevance&type=packages&query=specialisation).\n",
           type: nix.thunk(() => nix.sel(types, "deferredModule")),
           default: nix.thunk(() => ({})),
         })))),
       extraBaseNodeModules: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           description: "NixOS configuration that, like [{option}`defaults`](#test-opt-defaults), is applied to all [{option}`nodes`](#test-opt-nodes) and can not be undone with [`specialisation.<name>.inheritParentConfig`](https://search.nixos.org/options?show=specialisation.%3Cname%3E.inheritParentConfig&from=0&size=50&sort=relevance&type=packages&query=specialisation).\n",
           type: nix.thunk(() => nix.sel(types, "deferredModule")),
           default: nix.thunk(() => ({})),
         })))),
       nodesCompat: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           internal: true,
           description: "Basically `_module.args.nodes`, but with backcompat and warnings added.\n\nThis will go away.\n",
         })))),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$60,
+      [nix.POS]: pos$60,
       _module: nix.thunk(() => ({
-        __proto__: pos$44,
+        [nix.POS]: pos$44,
         args: nix.thunk(() => ({
-          __proto__: pos$43,
+          [nix.POS]: pos$43,
           containers: nix.thunk(() => nix.sel(config, "containers")),
           nodes: nix.thunk(() => nix.sel(config, "nodesCompat")),
         })),
       })),
       nodesCompat: nix.thunk(() => nix.app(mapAttrs, (name) => (config_1) => nix.update(config_1, {
-          __proto__: pos$45,
+          [nix.POS]: pos$45,
           config: nix.thunk(() => nix.app(nix.sel(lib, "warnIf"), nix.thunk(() => nix.app(nix.sel(lib, "oldestSupportedReleaseIsAtLeast"), 2211n)), nix.thunk(() => nix.str`Module argument \`nodes.${name}.config\` is deprecated. Use \`nodes.${name}\` instead.`), config_1)),
         }), nix.thunk(() => nix.sel(config, "nodes")))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$49,
+        [nix.POS]: pos$49,
         nodes: nix.thunk(() => nix.sel(config, "nodesCompat")),
         containers: nix.thunk(() => nix.sel(config, "containers")),
         extendNixOS: nix.lambda((args_1) => (() => {
@@ -337,13 +337,13 @@ session sufficient ${nix.sel(pkgs, "linux-pam")}/lib/security/pam_permit.so
           const module = nix.arg($_1, "module");
           const specialArgs = nix.argOr($_1, "specialArgs", () => ({}));
           return nix.app(nix.sel(config, "passthru", "extend"), nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               modules: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$47,
+                  [nix.POS]: pos$47,
                   extraBaseModules: module,
                   node: nix.thunk(() => ({
-                    __proto__: pos$46,
+                    [nix.POS]: pos$46,
                     specialArgs: nix.thunk(() => nix.app(mkOneUp, nix.thunk(() => nix.sel(options, "node", "specialArgs")), (_) => nix.force(specialArgs))),
                   })),
                 })),
@@ -353,27 +353,27 @@ session sufficient ${nix.sel(pkgs, "linux-pam")}/lib/security/pam_permit.so
       })),
       defaults: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
           nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(config, "node", "pkgsReadOnly")), nix.thunk(() => ({
-              __proto__: pos$51,
-              nixpkgs: nix.thunk(() => ({ __proto__: pos$50, pkgs: nix.thunk(() => nix.sel(config, "node", "pkgs")) })),
+              [nix.POS]: pos$51,
+              nixpkgs: nix.thunk(() => ({ [nix.POS]: pos$50, pkgs: nix.thunk(() => nix.sel(config, "node", "pkgs")) })),
               imports: nix.thunk(() => [nix.path(here, "../../modules/misc/nixpkgs/read-only.nix")]),
             })))),
           nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(config, "sshBackdoor", "enable")), nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               services: nix.thunk(() => ({
-                __proto__: pos$54,
+                [nix.POS]: pos$54,
                 openssh: nix.thunk(() => ({
-                  __proto__: pos$53,
+                  [nix.POS]: pos$53,
                   enable: true,
-                  settings: nix.thunk(() => ({ __proto__: pos$52, PermitRootLogin: "yes", PermitEmptyPasswords: "yes" })),
+                  settings: nix.thunk(() => ({ [nix.POS]: pos$52, PermitRootLogin: "yes", PermitEmptyPasswords: "yes" })),
                 })),
               })),
               security: nix.thunk(() => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 pam: nix.thunk(() => ({
-                  __proto__: pos$57,
+                  [nix.POS]: pos$57,
                   services: nix.thunk(() => ({
-                    __proto__: pos$56,
-                    sshd: nix.thunk(() => ({ __proto__: pos$55, allowNullPassword: true })),
+                    [nix.POS]: pos$56,
+                    sshd: nix.thunk(() => ({ [nix.POS]: pos$55, allowNullPassword: true })),
                   })),
                 })),
               })),

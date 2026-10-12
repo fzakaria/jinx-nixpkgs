@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.5.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "djangorestframework_simplejwt",
           version: version,
           hash: "sha256-5yxVcvUdeAMCEojiBXr8vQPxf+EdSECW9ApGCrx26H8=",
@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [setuptools_scm]);
       const propagatedBuildInputs = nix.thunk(() => [django, djangorestframework, pyjwt]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "python-jose": nix.thunk(() => [python_jose]),
         crypto: nix.thunk(() => [cryptography]),
       }));
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["rest_framework_simplejwt"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "JSON Web Token authentication plugin for Django REST Framework",
         homepage: "https://github.com/davesque/django-rest-framework-simplejwt",
         changelog: nix.thunk(() => nix.str`https://github.com/jazzband/djangorestframework-simplejwt/blob/v${version}/CHANGELOG.md`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

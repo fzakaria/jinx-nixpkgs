@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pname = "amber-lang";
       const version = "0.6.0-alpha";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "amber-lang",
           repo: "amber",
           tag: version,
@@ -55,14 +55,14 @@ substituteInPlace src/tests/cli.rs \\
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const doInstallCheck = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=unstable"]) })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=unstable"]) })))),
         tests: nix.thunk(() => (() => {
-          const testHelloWorld = (type) => (pkg) => nix.app(runCommand, nix.thunk(() => nix.str`amber-lang-test-eval-hello-world-${type}`), nix.thunk(() => ({ __proto__: pos$3, nativeBuildInputs: nix.thunk(() => [amber_lang, pkg]) })), nix.thunk(() => nix.str`diff -U3 --color=auto <(amber eval --target ${type} 'echo("Hello, World")') <(echo 'Hello, World')
+          const testHelloWorld = (type) => (pkg) => nix.app(runCommand, nix.thunk(() => nix.str`amber-lang-test-eval-hello-world-${type}`), nix.thunk(() => ({ [nix.POS]: pos$3, nativeBuildInputs: nix.thunk(() => [amber_lang, pkg]) })), nix.thunk(() => nix.str`diff -U3 --color=auto <(amber eval --target ${type} 'echo("Hello, World")') <(echo 'Hello, World')
 touch $out
 `));
           return {
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             "eval-hello-world-bash": nix.thunk(() => nix.app(testHelloWorld, "bash", bash)),
             "eval-hello-world-bash-3_2": nix.thunk(() => nix.app(testHelloWorld, "bash-3.2", bash)),
             "eval-hello-world-ksh": nix.thunk(() => nix.app(testHelloWorld, "ksh", ksh)),
@@ -71,7 +71,7 @@ touch $out
         })()),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Programming language compiled to bash",
         homepage: "https://amber-lang.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),
@@ -86,7 +86,7 @@ touch $out
         })()),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

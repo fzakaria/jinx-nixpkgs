@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cachefilesd",
       version: "0.10.10",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://people.redhat.com/dhowells/fscache/cachefilesd-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "00hsw4cdlm13wijlygp8f0aq6gxdp0skbxs9r2vh5ggs3s2hj0qd",
         })))),
       installFlags: nix.thunk(() => ["ETCDIR=$(out)/etc", "SBINDIR=$(out)/sbin", "MANDIR=$(out)/share/man"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Local network file caching management daemon",
         mainProgram: "cachefilesd",
         homepage: "https://people.redhat.com/dhowells/fscache/",

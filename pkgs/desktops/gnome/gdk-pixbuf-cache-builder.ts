@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const extraLoaders = nix.arg($_1, "extraLoaders");
     const loaderPackages = nix.thunk(() => nix.concat([gdk_pixbuf], extraLoaders));
-    return nix.app(runCommand, "gdk-pixbuf-loaders.cache", nix.thunk(() => ({ __proto__: pos$1, preferLocalBuild: true })), nix.thunk(() => nix.str`(
+    return nix.app(runCommand, "gdk-pixbuf-loaders.cache", nix.thunk(() => ({ [nix.POS]: pos$1, preferLocalBuild: true })), nix.thunk(() => nix.str`(
   for package in ${nix.app(nix.sel(lib, "escapeShellArgs"), loaderPackages)}; do
     module_dir="$package/${nix.sel(gdk_pixbuf, "moduleDir")}"
     if [[ ! -d "$module_dir" ]]; then

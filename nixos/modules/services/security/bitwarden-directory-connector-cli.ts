@@ -74,35 +74,35 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "bitwarden-directory-connector-cli"));
   return {
-    __proto__: pos$60,
+    [nix.POS]: pos$60,
     options: nix.thunk(() => ({
-      __proto__: pos$47,
+      [nix.POS]: pos$47,
       services: nix.thunk(() => ({
-        __proto__: pos$46,
+        [nix.POS]: pos$46,
         "bitwarden-directory-connector-cli": nix.thunk(() => ({
-          __proto__: pos$45,
+          [nix.POS]: pos$45,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Bitwarden Directory Connector")),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "bitwarden-directory-connector-cli", nix.thunk(() => ({})))),
           domain: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "The domain the Bitwarden/Vaultwarden is accessible on.",
               example: "https://vaultwarden.example.com",
             })))),
           user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "User to run the program.",
               default: "bwdc",
             })))),
           interval: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "*:0,15,30,45",
               description: "The interval when to run the connector. This uses systemd's OnCalendar syntax.",
             })))),
           ldap: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               description: "Options to configure the LDAP connection.\nIf you used the desktop application to test the configuration you can find the settings by searching for `ldap` in `~/.config/Bitwarden\\ Directory\\ Connector/data.json`.\n",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.lambda((args_1) => (() => {
@@ -110,65 +110,65 @@ export default nix.lambda((args) => (() => {
                   const config_1 = nix.arg($_1, "config");
                   const options = nix.arg($_1, "options");
                   return {
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     freeformType: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))), "type")))),
                     config: nix.thunk(() => ({
-                      __proto__: pos$4,
+                      [nix.POS]: pos$4,
                       finalJSON: nix.thunk(() => nix.app(nix.sel(nix.builtins, "toJSON"), nix.thunk(() => nix.app(nix.builtins.removeAttrs, config_1, nix.thunk(() => nix.app(nix.lookup(w, "filter"), (x) => (nix.asBool(nix.eq(x, "finalJSON")) || nix.asBool(!nix.asBool(nix.selOr(options, () => false, nix.key(nix.force(x)), "isDefined")))), nix.thunk(() => nix.app(nix.lookup(w, "attrNames"), options)))))))),
                     })),
                     options: nix.thunk(() => ({
-                      __proto__: pos$14,
+                      [nix.POS]: pos$14,
                       finalJSON: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$5,
+                          [nix.POS]: pos$5,
                           type: nix.thunk(() => nix.sel(nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))), "type")),
                           internal: true,
                           readOnly: true,
                           visible: false,
                         })))),
                       ssl: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                           default: false,
                           description: "Whether to use TLS.",
                         })))),
                       startTls: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$7,
+                          [nix.POS]: pos$7,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                           default: false,
                           description: "Whether to use STARTTLS.",
                         })))),
                       hostname: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                           description: "The host the LDAP is accessible on.",
                           example: "ldap.example.com",
                         })))),
                       port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
                           default: 389n,
                           description: "Port LDAP is accessible on.",
                         })))),
                       ad: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                           default: false,
                           description: "Whether the LDAP Server is an Active Directory.",
                         })))),
                       pagedSearch: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$11,
+                          [nix.POS]: pos$11,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                           default: false,
                           description: "Whether the LDAP server paginates search results.",
                         })))),
                       rootPath: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$12,
+                          [nix.POS]: pos$12,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                           description: "Root path for LDAP.",
                           example: "dc=example,dc=com",
                         })))),
                       username: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$13,
+                          [nix.POS]: pos$13,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                           description: "The user to authenticate as.",
                           example: "cn=admin,dc=example,dc=com",
@@ -178,7 +178,7 @@ export default nix.lambda((args) => (() => {
                 })(), formals$2))),
             })))),
           sync: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               description: "Options to configure what gets synced.\nIf you used the desktop application to test the configuration you can find the settings by searching for `sync` in `~/.config/Bitwarden\\ Directory\\ Connector/data.json`.\n",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.lambda((args_1) => (() => {
@@ -186,126 +186,126 @@ export default nix.lambda((args) => (() => {
                   const config_1 = nix.arg($_1, "config");
                   const options = nix.arg($_1, "options");
                   return {
-                    __proto__: pos$38,
+                    [nix.POS]: pos$38,
                     freeformType: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))), "type")))),
                     config: nix.thunk(() => ({
-                      __proto__: pos$17,
+                      [nix.POS]: pos$17,
                       finalJSON: nix.thunk(() => nix.app(nix.sel(nix.builtins, "toJSON"), nix.thunk(() => nix.app(nix.builtins.removeAttrs, config_1, nix.thunk(() => nix.app(nix.lookup(w, "filter"), (x) => (nix.asBool(nix.eq(x, "finalJSON")) || nix.asBool(!nix.asBool(nix.selOr(options, () => false, nix.key(nix.force(x)), "isDefined")))), nix.thunk(() => nix.app(nix.lookup(w, "attrNames"), options)))))))),
                     })),
                     options: nix.thunk(() => ({
-                      __proto__: pos$37,
+                      [nix.POS]: pos$37,
                       finalJSON: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$18,
+                          [nix.POS]: pos$18,
                           type: nix.thunk(() => nix.sel(nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))), "type")),
                           internal: true,
                           readOnly: true,
                           visible: false,
                         })))),
                       removeDisabled: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$19,
+                          [nix.POS]: pos$19,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                           default: true,
                           description: "Remove users from bitwarden groups if no longer in the ldap group.",
                         })))),
                       overwriteExisting: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$20,
+                          [nix.POS]: pos$20,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                           default: false,
                           description: "Remove and re-add users/groups, See <https://bitwarden.com/help/user-group-filters/#overwriting-syncs> for more details.",
                         })))),
                       largeImport: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$21,
+                          [nix.POS]: pos$21,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                           default: false,
                           description: "Enable if you are syncing more than 2000 users/groups.",
                         })))),
                       memberAttribute: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$22,
+                          [nix.POS]: pos$22,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                           description: "Attribute that lists members in a LDAP group.",
                           example: "uniqueMember",
                         })))),
                       creationDateAttribute: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$23,
+                          [nix.POS]: pos$23,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                           description: "Attribute that lists a user's creation date.",
                           example: "whenCreated",
                         })))),
                       useEmailPrefixSuffix: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$24,
+                          [nix.POS]: pos$24,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                           default: false,
                           description: "If a user has no email address, combine a username prefix with a suffix value to form an email.",
                         })))),
                       emailPrefixAttribute: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$25,
+                          [nix.POS]: pos$25,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                           description: "The attribute that contains the users username.",
                           example: "accountName",
                         })))),
                       emailSuffix: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$26,
+                          [nix.POS]: pos$26,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                           description: "Suffix for the email, normally @example.com.",
                           example: "@example.com",
                         })))),
                       users: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$27,
+                          [nix.POS]: pos$27,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                           default: false,
                           description: "Sync users.",
                         })))),
                       userPath: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$28,
+                          [nix.POS]: pos$28,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                           description: "User directory, relative to root.",
                           default: "ou=users",
                         })))),
                       userObjectClass: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$29,
+                          [nix.POS]: pos$29,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                           description: "Class that users must have.",
                           default: "inetOrgPerson",
                         })))),
                       userEmailAttribute: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$30,
+                          [nix.POS]: pos$30,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                           description: "Attribute for a users email.",
                           default: "mail",
                         })))),
                       userFilter: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$31,
+                          [nix.POS]: pos$31,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                           description: "LDAP filter for users.",
                           example: "(memberOf=cn=sales,ou=groups,dc=example,dc=com)",
                           default: "",
                         })))),
                       groups: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$32,
+                          [nix.POS]: pos$32,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                           default: false,
                           description: "Whether to sync ldap groups into BitWarden.",
                         })))),
                       groupPath: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$33,
+                          [nix.POS]: pos$33,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                           description: "Group directory, relative to root.",
                           default: "ou=groups",
                         })))),
                       groupObjectClass: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$34,
+                          [nix.POS]: pos$34,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                           description: "A class that groups will have.",
                           default: "groupOfNames",
                         })))),
                       groupNameAttribute: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$35,
+                          [nix.POS]: pos$35,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                           description: "Attribute for a name of group.",
                           default: "cn",
                         })))),
                       groupFilter: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$36,
+                          [nix.POS]: pos$36,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                           description: "LDAP filter for groups.",
                           example: "(cn=sales)",
@@ -316,21 +316,21 @@ export default nix.lambda((args) => (() => {
                 })(), formals$3))),
             })))),
           secrets: nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             ldap: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 description: "Path to file that contains LDAP password for user in {option}`ldap.username",
               })))),
             bitwarden: nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               client_path_id: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$41,
+                  [nix.POS]: pos$41,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                   description: "Path to file that contains Client ID.",
                 })))),
               client_path_secret: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$42,
+                  [nix.POS]: pos$42,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                   description: "Path to file that contains Client Secret.",
                 })))),
@@ -340,30 +340,30 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$58,
+        [nix.POS]: pos$58,
         users: nix.thunk(() => ({
-          __proto__: pos$49,
+          [nix.POS]: pos$49,
           groups: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${nix.sel(cfg, "user")}`, nix.thunk(() => ({}))]])),
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.str`${nix.sel(cfg, "user")}`, nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               isSystemUser: true,
               group: nix.thunk(() => nix.sel(cfg, "user")),
             }))],
           ])),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$57,
+          [nix.POS]: pos$57,
           timers: nix.thunk(() => ({
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             "bitwarden-directory-connector-cli": nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               description: "Sync timer for Bitwarden Directory Connector",
               wantedBy: nix.thunk(() => ["timers.target"]),
               after: nix.thunk(() => ["network-online.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               timerConfig: nix.thunk(() => ({
-                __proto__: pos$50,
+                [nix.POS]: pos$50,
                 OnCalendar: nix.thunk(() => nix.sel(cfg, "interval")),
                 Unit: "bitwarden-directory-connector-cli.service",
                 Persistent: true,
@@ -371,13 +371,13 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$56,
+            [nix.POS]: pos$56,
             "bitwarden-directory-connector-cli": nix.thunk(() => ({
-              __proto__: pos$55,
+              [nix.POS]: pos$55,
               description: "Main process for Bitwarden Directory Connector",
               path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "jq"))]),
               environment: nix.thunk(() => ({
-                __proto__: pos$53,
+                [nix.POS]: pos$53,
                 BITWARDENCLI_CONNECTOR_APPDATA_DIR: "/tmp",
                 BITWARDENCLI_CONNECTOR_PLAINTEXT_SECRETS: "true",
               })),
@@ -412,7 +412,7 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} con
 ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} config ldap.password --secretfile ${nix.sel(cfg, "secrets", "ldap")}
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$54,
+                [nix.POS]: pos$54,
                 Type: "oneshot",
                 User: nix.thunk(() => nix.str`${nix.sel(cfg, "user")}`),
                 PrivateTmp: true,
@@ -423,7 +423,7 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} con
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$59,
+      [nix.POS]: pos$59,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_1, "Silver-Golden"))];

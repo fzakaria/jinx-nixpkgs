@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "grafana-to-ntfy",
       version: "2026.9.16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kittyandrew",
           repo: "grafana-to-ntfy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,15 +30,15 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-UFZ8vLlIzQLmNWbap22l5KBh4DwGDiPPz35iFNhnoUc=",
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "grafana-to-ntfy": nix.thunk(() => nix.sel(nixosTests, "grafana-to-ntfy")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Bridge to forward Grafana and Prometheus Alertmanager alerts to ntfy.sh",
         homepage: "https://github.com/kittyandrew/grafana-to-ntfy",
         changelog: nix.thunk(() => nix.str`https://github.com/kittyandrew/grafana-to-ntfy/releases/tag/v${nix.sel(finalAttrs, "version")}`),

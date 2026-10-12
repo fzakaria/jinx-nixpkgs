@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ktx-tools",
       version: "4.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KhronosGroup",
           repo: "KTX-Software",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "patchShebangs .\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "KTX (Khronos Texture) Library and Tools",
         longDescription: "KTX (Khronos Texture) is a lightweight container for textures for OpenGL®,\nVulkan® and other GPU APIs. KTX files contain all the parameters needed\nfor texture loading. A single file can contain anything from a simple\nbase-level 2D texture through to a cubemap array texture with mipmaps.\n\nThis software package contains:\n  - libktx: a small library of functions for writing and reading KTX\n    files, and instantiating OpenGL®, OpenGL ES™️ and Vulkan® textures\n    from them.\n  - ktx2check: a tool for validating KTX Version 2 format files.\n  - ktx2ktx2: a tool for converting a KTX Version 1 file to a KTX Version\n    2 file.\n  - ktxinfo: a tool to display information about a KTX file in human\n    readable form.\n  - ktxsc: a tool to supercompress a KTX Version 2 file that contains\n    uncompressed images.\n  - toktx: a tool to create KTX files from PNG, Netpbm or JPEG format\n    images. It supports mipmap generation, encoding to Basis Universal\n    formats and Zstd supercompression.\n",
         homepage: "https://github.com/KhronosGroup/KTX-Software",

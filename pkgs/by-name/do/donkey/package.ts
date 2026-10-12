@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "donkey",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "donkey",
           repo: "donkey",
           rev: nix.thunk(() => nix.str`tags/release/${nix.sel(finalAttrs, "version")}`),
@@ -36,17 +36,17 @@ export INSTALL_PROGRAM="${coreutils}/bin/install -m 555"
 export INSTALL_DATA="${coreutils}/bin/install -m 444"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Alternative for S/KEY's 'key' command",
         longDescription: "Donkey is an alternative for S/KEY's \"key\" command.  The new feature that\nthe original key doesn't have is print an entry for skeykeys as\nfollows;\n\n    kazu 0099 al02004          115d83956f1089b6  Apr 26,1995 22:13:27\n\nThis means that donkey is also an alternative for \"keyinit\".  Since the\nentry is printed to stdout (not to /etc/skeykeys), you can easily send\nit to a remote operator by e-mail (with a PGP signature or something).\nSo, it is possible to initiate S/KEY without logging in from the console of\nthe host.\n\nThe name \"Donkey\" is an acronym of \"Don't Key\".\n",
         homepage: "https://devel.ringlet.net/security/donkey",

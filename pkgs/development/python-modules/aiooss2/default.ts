@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.11";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "karajan1001",
           repo: "aiooss2",
           tag: version,
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         "tests/unit/test_adapter.py",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for aliyun OSS (Object Storage Service)",
         homepage: "https://github.com/karajan1001/aiooss2",
         changelog: nix.thunk(() => nix.str`https://github.com/karajan1001/aiooss2/blob/${version}/CHANGES.txt`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "peplin",
           repo: "pygatt",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       const pythonRemoveDeps = nix.thunk(() => ["enum-compat"]);
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [pyserial]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, GATTTOOL: nix.thunk(() => [pexpect]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, GATTTOOL: nix.thunk(() => [pexpect]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([mock, pytestCheckHook], nix.sel(optional_dependencies, "GATTTOOL")));
       const pythonImportsCheck = nix.thunk(() => ["pygatt"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python wrapper the BGAPI for accessing Bluetooth LE Devices",
         homepage: "https://github.com/peplin/pygatt",
         changelog: nix.thunk(() => nix.str`https://github.com/peplin/pygatt/blob/v${version}/CHANGELOG.rst`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const lv2 = nix.arg($, "lv2");
   const zita_resampler = nix.arg($, "zita-resampler");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tamgamp.lv2",
       version: "0-unstable-2020-06-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sadko4u",
           repo: "tamgamp.lv2",
           rev: "426da74142fcb6b7687a35b2b1dda3392e171b92",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/sadko4u/tamgamp.lv2",
         description: "Guitar amplifier simulator",
         longDescription: "Tamgamp (Pronouncement: \"Damage Amp\") is an LV2 guitar amp simulator that provides two plugins:\n\n - Tamgamp - a plugin based on Guitarix DK Builder simulated chains.\n - TamgampGX - a plugin based on tuned Guitarix internal amplifiers implementation.\n\nThe reference to the original Guitarix project: https://guitarix.org/\n\nIt simulates the set of the following guitar amplifiers:\n\n- Fender Princeton Reverb-amp AA1164 (without reverb module)\n- Fender Twin Reverb-Amp AA769 (Normal channel, bright off)\n- Fender Twin Reverb-Amp AA769 (Vibrato channel, bright on)\n- Marshall JCM-800 High-gain input\n- Marshall JCM-800 Low-gain input\n- Mesa/Boogie DC3 preamplifier (lead channel)\n- Mesa/Boogie DC3 preamplifier (rhythm channel)\n- Mesa Dual Rectifier preamplifier (orange channel, less gain)\n- Mesa Dual Rectifier preamplifier (red channel, more gain)\n- Peavey 5150II crunch channel\n- Peavey 5150II lead channel\n- VOX AC-30 Brilliant channel\n- VOX AC-30 normal channel\n",

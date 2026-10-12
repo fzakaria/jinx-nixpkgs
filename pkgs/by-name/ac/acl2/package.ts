@@ -33,16 +33,16 @@ export default nix.lambda((args) => (() => {
   const z3 = nix.arg($, "z3");
   const python3 = nix.arg($, "python3");
   const certifyBooks = nix.argOr($, "certifyBooks", () => true);
-  const sbcl$ = nix.thunk(() => nix.app(nix.sel(args_1, "sbcl", "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$1, disableImmobileSpace: true }))));
-  const sbcl_1 = nix.thunk(() => nix.app(runCommandLocal, nix.thunk(() => nix.sel(args_1, "sbcl", "name")), nix.thunk(() => ({ __proto__: pos$2, nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`makeWrapper ${sbcl$}/bin/sbcl $out/bin/sbcl \\
+  const sbcl$ = nix.thunk(() => nix.app(nix.sel(args_1, "sbcl", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$1, disableImmobileSpace: true }))));
+  const sbcl_1 = nix.thunk(() => nix.app(runCommandLocal, nix.thunk(() => nix.sel(args_1, "sbcl", "name")), nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`makeWrapper ${sbcl$}/bin/sbcl $out/bin/sbcl \\
   --add-flags "--dynamic-space-size 2000"
 `)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "acl2",
       version: "8.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "acl2-devel",
           repo: "acl2-devel",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,12 +51,12 @@ export default nix.lambda((args) => (() => {
       libipasir: nix.thunk(() => nix.app(callPackage, nix.path(here, "./libipasirglucose4"), nix.thunk(() => ({})))),
       patches: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/acl2/acl2/commit/be39e7835f1c68008c17188d2f65eeaef61632fa.patch",
             hash: "sha256-pZ/r0vlyJz7ymYfrVtHDxsLdw0M/MJStBH42ZLO7Fs4=",
           })))),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-path-changes-for-nix.patch"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             libipasir: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "libipasir")}/lib/${nix.sel(finalAttrs, "libipasir", "libname")}`),
             libssl: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), openssl)}/lib/libssl${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
             libcrypto: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), openssl)}/lib/libcrypto${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
       certifyBooksPhase: "# Certify the community books\npushd $out/share/acl2/books\nmakeFlags=\"ACL2=$out/share/acl2/saved_acl2\"\nbuildFlags=\"all\"\nbuildPhase\n\n# Clean up some stuff to save space\nfind -name '*@useless-runes.lsp' -execdir rm {} +  # saves ~1GB of space\nfind -name '*.cert.out' -execdir gzip {} +         # saves ~400MB of space\n\npopd\n",
       removeBooksPhase: "# Delete the community books\nrm -rf $out/share/acl2/books\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Interpreter and prover for a Lisp dialect",
         mainProgram: "acl2",
         longDescription: nix.thunk(() => nix.add("ACL2 is a logic and programming language in which you can model computer\nsystems, together with a tool to help you prove properties of those\nmodels. \"ACL2\" denotes \"A Computational Logic for Applicative Common\nLisp\".\n\nACL2 is part of the Boyer-Moore family of provers, for which its authors\nhave received the 2005 ACM Software System Award.\n\nThis package installs the main ACL2 executable acl2, as well as the\nbuild tools cert.pl and clean.pl, renamed to acl2-cert and\nacl2-clean.\n\n", (nix.asBool(certifyBooks) ? "The community books are also included and certified with the `make\neverything` target.\n" : "The community books are not included in this package.\n"))),

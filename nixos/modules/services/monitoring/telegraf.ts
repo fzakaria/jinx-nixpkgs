@@ -37,47 +37,47 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "config.toml", nix.thunk(() => nix.sel(cfg, "extraConfig"))));
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     meta: nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "telegraf", "meta"));
       return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
     };
     })()),
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         telegraf: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "telegraf server")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "telegraf", nix.thunk(() => ({})))),
           environmentFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: [],
               example: nix.thunk(() => ["/run/keys/telegraf.env"]),
               description: "File to load as environment file. Environment variables from this file\nwill be interpolated into the config file using envsubst with this\nsyntax: `$ENVIRONMENT` or `${VARIABLE}`.\nThis is useful to avoid putting secrets into the nix store.\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               default: nix.thunk(() => ({})),
               description: "Extra configuration options for telegraf",
               type: nix.thunk(() => nix.sel(settingsFormat, "type")),
               example: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 outputs: nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   influxdb: nix.thunk(() => ({
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     urls: nix.thunk(() => ["http://localhost:8086"]),
                     database: "telegraf",
                   })),
                 })),
                 inputs: nix.thunk(() => ({
-                  __proto__: pos$6,
-                  statsd: nix.thunk(() => ({ __proto__: pos$5, service_address: ":8125", delete_timings: true })),
+                  [nix.POS]: pos$6,
+                  statsd: nix.thunk(() => ({ [nix.POS]: pos$5, service_address: ":8125", delete_timings: true })),
                 })),
               })),
             })))),
@@ -85,33 +85,33 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "telegraf", "enable")), nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         services: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           telegraf: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             extraConfig: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               inputs: nix.thunk(() => ({})),
               outputs: nix.thunk(() => ({})),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           services: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             telegraf: nix.thunk(() => (() => {
               const finalConfigFile = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(config, "services", "telegraf", "environmentFiles"), [])) ? nix.force(configFile) : "/var/run/telegraf/config.toml"));
               return {
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 description: "Telegraf Agent",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 wants: nix.thunk(() => ["network-online.target"]),
                 after: nix.thunk(() => ["network-online.target"]),
                 path: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.has(nix.sel(config, "services", "telegraf", "extraConfig", "inputs"), "procstat")), nix.thunk(() => nix.sel(pkgs, "procps"))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.has(nix.sel(config, "services", "telegraf", "extraConfig", "inputs"), "ping")), nix.thunk(() => nix.sel(pkgs, "iputils"))))),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   EnvironmentFile: nix.thunk(() => nix.sel(config, "services", "telegraf", "environmentFiles")),
                   ExecStartPre: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(config, "services", "telegraf", "environmentFiles"), [])), nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScript"), "pre-start", nix.thunk(() => nix.str`umask 077
 ${nix.sel(pkgs, "envsubst")}/bin/envsubst -i "${configFile}" > /var/run/telegraf/config.toml
@@ -129,17 +129,17 @@ ${nix.sel(pkgs, "envsubst")}/bin/envsubst -i "${configFile}" > /var/run/telegraf
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           users: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             telegraf: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "telegraf")),
               group: "telegraf",
               description: "telegraf daemon user",
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$21, telegraf: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$21, telegraf: nix.thunk(() => ({})) })),
         })),
       })))),
   };

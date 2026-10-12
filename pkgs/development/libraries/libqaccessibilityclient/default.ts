@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libqaccessibilityclient";
       const version = "0.6.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://kde/stable/libqaccessibilityclient/libqaccessibilityclient-${version}.tar.xz`),
           hash: "sha256-TFDESGItycUEHtENp9h7Pk5xzLSdSDGoSSEdQjxfXTM=",
         }))));
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const outputs = nix.thunk(() => ["out", "dev"]);
       const dontWrapQtApps = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Accessibility tools helper library, used e.g. by screen readers",
         homepage: "https://github.com/KDE/libqaccessibilityclient",
         maintainers: nix.thunk(() => (() => {
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

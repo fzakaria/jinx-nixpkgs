@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "kio-extras-kf5";
       const version = "24.02.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://kde/stable/release-service/${version}/src/kio-extras-kf5-${version}.tar.xz`),
           hash: "sha256-qar1jzuALINBu6HOuVBU+RUFnqRH9Z/8e5M8ynGxKsk=",
         }))));
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
       })());
       const meta = nix.thunk(() => nix.sel(kio_extras, "meta"));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         version,
         src,

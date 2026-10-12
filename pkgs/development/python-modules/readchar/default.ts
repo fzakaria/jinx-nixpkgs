@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pexpect = nix.arg($, "pexpect");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "readchar",
       version: "4.2.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "magmax",
           repo: nix.thunk(() => nix.str`python-${nix.sel(finalAttrs, "pname")}`),
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ substituteInPlace tests/linux/conftest.py \\
       pythonImportsCheck: nix.thunk(() => ["readchar"]),
       nativeCheckInputs: nix.thunk(() => [pytest_cov_stub, pytestCheckHook, pexpect]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library to read characters and key strokes",
         homepage: "https://github.com/magmax/python-readchar",
         changelog: nix.thunk(() => nix.str`https://github.com/magmax/python-readchar/releases/tag/v${nix.sel(finalAttrs, "version")}`),

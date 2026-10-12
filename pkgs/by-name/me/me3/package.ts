@@ -22,9 +22,9 @@ export default nix.lambda((args) => (() => {
   const steam = nix.arg($, "steam");
   const symlinkJoin = nix.arg($, "symlinkJoin");
   const version = "0.13.0";
-  const steam_run = nix.thunk(() => nix.sel(nix.app(nix.sel(steam, "override"), nix.thunk(() => ({ __proto__: pos$1, privateTmp: false }))), "run-free"));
+  const steam_run = nix.thunk(() => nix.sel(nix.app(nix.sel(steam, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, privateTmp: false }))), "run-free"));
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "garyttierney",
       repo: "me3",
       tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
     }))));
   const cargoHash = "sha256-e6tytA15kY58efmG3mIgZpTTa11Ijwl8u+NIBdYmha8=";
   const me3_cli = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), (final) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       cargoHash: cargoHash,
       version: version,
       src: src,
       pname: "me3-cli",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./steam-run.patch"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             steamRun: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), steam_run)),
           })))),
       ]),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "install -Dm444 distribution/linux/me3-launch.desktop \\\n  $out/share/applications/me3-launch.desktop\ninstall -Dm444 distribution/linux/me3.xml \\\n  $out/share/mime/packages/me3.xml\ninstall -Dm444 distribution/assets/me3.png \\\n  $out/share/icons/hicolor/128x128/apps/me3.png\n",
     })));
   const me3_windows = nix.thunk(() => nix.app(nix.sel(pkgsCross, "mingwW64", "rustPlatform", "buildRustPackage"), (final) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       cargoHash: cargoHash,
       version: version,
       src: src,
@@ -60,14 +60,14 @@ export default nix.lambda((args) => (() => {
       postInstall: "rm -r $out/lib\n",
     })));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       version: version,
       pname: "me3",
       paths: nix.thunk(() => [me3_cli, me3_windows]),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       postBuild: "wrapProgram $out/bin/me3 \\\n  --set WINEPATH $out/bin \\\n  --add-flags \"--windows-binaries-dir $out/bin\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Framework for modding and instrumenting games.",
         homepage: "https://github.com/garyttierney/me3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.21.0";
       const buildVersion = "221118";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.supermicro.com/wftp/utility/IPMIView/Linux/IPMIView_${version}_build.${buildVersion}_bundleJRE_Linux_x64.tar.gz`),
           hash: "sha256-ZN0vadGbjGj9U2wPqvHLjS9fsk3DNCbXoNvzUfnn8IM=",
         }))));
@@ -55,7 +55,7 @@ runHook postBuild
           const desktopName = name;
           const genericName = "Supermicro BMC manager";
           const categories = nix.thunk(() => ["Network"]);
-          return { __proto__: pos$2, name, exec, desktopName, genericName, categories };
+          return { [nix.POS]: pos$2, name, exec, desktopName, genericName, categories };
         })())));
       const installPhase = nix.thunk(() => nix.str`runHook preInstall
 
@@ -80,7 +80,7 @@ makeWrapper $out/jre/bin/java $out/bin/IPMIView \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
           return [
@@ -97,7 +97,7 @@ runHook postInstall
         mainProgram: "IPMIView",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         buildVersion,

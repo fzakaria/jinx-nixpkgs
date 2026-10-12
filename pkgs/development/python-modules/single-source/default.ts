@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rabbit72",
           repo: "single-source",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [toml, pytest_mock, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["single_source"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Access to the project version in Python code for PEP 621-style projects",
         homepage: "https://github.com/rabbit72/single-source",
         changelog: nix.thunk(() => nix.str`https://github.com/rabbit72/single-source/releases/tag/v${version}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

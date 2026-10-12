@@ -33,13 +33,13 @@ export default nix.lambda((args) => (() => {
   const nlohmann_json = nix.arg($, "nlohmann_json");
   const pyStrokeVer = "20250329";
   const pyStroke = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`http://download.fcitx-im.org/data/py_stroke-${pyStrokeVer}.tar.gz`),
       hash: "sha256-wafKciXTYUq4M1P8gnUDAGqYBEd2IBj1N2BCXXtTA6Y=",
     }))));
   const pyTableVer = "20121124";
   const pyTable = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`http://download.fcitx-im.org/data/py_table-${pyTableVer}.tar.gz`),
       hash: "sha256-QhRqyX3mwT1V+eme2HORX0xmc56cEVMqNFVrrfl5LAQ=",
     }))));
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const pname = "fcitx5-chinese-addons";
       const version = "5.1.14";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "fcitx",
           repo: pname,
           rev: version,
@@ -77,7 +77,7 @@ ln -s ${pyTable} modules/pinyinhelper/$(stripHash ${pyTable})
       ], nix.app(nix.sel(lib, "optional"), luaSupport, fcitx5_lua)));
       const dontWrapQtApps = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Addons related to Chinese, including IME previous bundled inside fcitx4",
         mainProgram: "scel2org5",
         homepage: "https://github.com/fcitx/fcitx5-chinese-addons",
@@ -95,7 +95,7 @@ ln -s ${pyTable} modules/pinyinhelper/$(stripHash ${pyTable})
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

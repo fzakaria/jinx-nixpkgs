@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
       const pname = "gsl";
       const version = "2.1.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/octave/${pname}-${version}.tar.gz`),
           sha256: "1lvfxbqmw8h1nlrxmvrl6j4xffmbzxfhdpxz3vrc6lg2g4jwaa6h",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [gsl]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gnu-octave.github.io/packages/gsl/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         maintainers: nix.thunk(() => (() => {
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         description: "Octave bindings to the GNU Scientific Library",
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
-      return { __proto__: pos$3, pname, version, src, propagatedBuildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, propagatedBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

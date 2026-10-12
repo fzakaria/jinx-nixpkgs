@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const nvme_cli = nix.arg($, "nvme-cli");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "google-guest-configs",
       version: "20211116.00",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GoogleCloudPlatform",
           repo: "guest-configs",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,7 +48,7 @@ patch -p1 < ./fix-paths.patch
       doInstallCheck: true,
       installPhase: "mkdir -p $out/{bin,etc,lib}\ncp -r src/etc/{modprobe.d,sysctl.d} $out/etc\ncp -r src/lib/udev $out/lib\ncp -r src/sbin/* $out/bin\ncp -r src/usr/bin/* $out/bin\n\nfor i in $out/bin/* $out/lib/udev/google_nvme_id; do\n  wrapProgram \"$i\" \\\n    --prefix \"PATH\" \":\" \"$binDeps\"\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/GoogleCloudPlatform/guest-configs",
         description: "Linux Guest Environment for Google Compute Engine",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

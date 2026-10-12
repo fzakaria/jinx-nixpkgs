@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.24";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "click_odoo_contrib",
           version: version,
           hash: "sha256-fOBMQ8tLdawozwSp02g5NnAqKciu6TuTJrn4tFacX7s=",
@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [setuptools_scm]);
       const propagatedBuildInputs = nix.thunk(() => [click_odoo, manifestoo_core]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const pythonImportsCheck = nix.thunk(() => ["click_odoo_contrib"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Collection of community-maintained scripts for Odoo maintenance",
         homepage: "https://github.com/acsone/click-odoo-contrib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -40,12 +40,12 @@ export default nix.lambda((args) => (() => {
   const isAarch64Darwin = nix.thunk(() => (nix.asBool(isDarwin) && nix.asBool(isAarch64)));
   const isAarch64Linux = nix.thunk(() => (nix.asBool(isLinux) && nix.asBool(isAarch64)));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "torchao",
       version: "0.18.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pytorch",
           repo: "ao",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,14 +53,14 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), isAarch64Darwin, nix.thunk(() => [
           nix.path(here, "./use-system-cpuinfo.patch"),
-          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./use-llvm-openmp.patch"), nix.thunk(() => ({ __proto__: pos$2, openmp: nix.thunk(() => nix.attr(llvmPackages, "openmp")) })))),
+          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./use-llvm-openmp.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, openmp: nix.thunk(() => nix.attr(llvmPackages, "openmp")) })))),
         ]))),
       "build-system": nix.thunk(() => [setuptools]),
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), isAarch64Darwin, nix.thunk(() => [cmake]))),
       dontUseCmakeConfigure: true,
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), isAarch64Darwin, nix.thunk(() => [cpuinfo]))),
       dependencies: nix.thunk(() => [torch]),
-      env: nix.thunk(() => ({ __proto__: pos$3, USE_SYSTEM_LIBS: true, VERSION_SUFFIX: "" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, USE_SYSTEM_LIBS: true, VERSION_SUFFIX: "" })),
       preCheck: "rm -rf torchao\n",
       pythonImportsCheck: nix.thunk(() => ["torchao"]),
       nativeCheckInputs: nix.thunk(() => [
@@ -237,7 +237,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "PyTorch native quantization and sparsity for training and inference",
         homepage: "https://github.com/pytorch/ao",
         changelog: nix.thunk(() => nix.str`https://github.com/pytorch/ao/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

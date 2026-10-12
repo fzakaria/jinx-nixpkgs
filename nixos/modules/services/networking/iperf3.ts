@@ -34,94 +34,94 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "iperf3"));
   const api = nix.thunk(() => ({
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "iperf3 network throughput testing server")),
     package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "iperf3", nix.thunk(() => ({})))),
     port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
         default: 5201n,
         description: "Server port to listen on for iperf3 client requests.",
       })))),
     affinity: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "ints", "unsigned")))),
         default: null,
         description: "CPU affinity for the process.",
       })))),
     bind: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
         default: null,
         description: "Bind to the specific interface associated with the given address.",
       })))),
     openFirewall: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
         default: false,
         description: "Open ports in the firewall for iperf3.",
       })))),
     verbose: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
         default: false,
         description: "Give more detailed output.",
       })))),
     forceFlush: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
         default: false,
         description: "Force flushing output at every interval.",
       })))),
     debug: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
         default: false,
         description: "Emit debugging output.",
       })))),
     rsaPrivateKey: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
         default: null,
         description: "Path to the RSA private key (not password-protected) used to decrypt authentication credentials from the client.",
       })))),
     authorizedUsersFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
         default: null,
         description: "Path to the configuration file containing authorized users credentials to run iperf tests.",
       })))),
     extraFlags: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
         default: [],
         description: "Extra flags to pass to iperf3(1).",
       })))),
   }));
   const imp = nix.thunk(() => ({
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     networking: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       firewall: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]),
         })))),
     })),
     systemd: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       services: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         iperf3: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           description: "iperf3 daemon",
           unitConfig: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             Documentation: "man:iperf3(1) https://iperf.fr/iperf-doc.php",
           })),
           wantedBy: nix.thunk(() => ["multi-user.target"]),
           after: nix.thunk(() => ["network.target"]),
           serviceConfig: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             Restart: "on-failure",
             RestartSec: 2n,
             DynamicUser: true,
@@ -146,10 +146,10 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     options: nix.thunk(() => ({
-      __proto__: pos$21,
-      services: nix.thunk(() => ({ __proto__: pos$20, iperf3: api })),
+      [nix.POS]: pos$21,
+      services: nix.thunk(() => ({ [nix.POS]: pos$20, iperf3: api })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), imp)),
   };

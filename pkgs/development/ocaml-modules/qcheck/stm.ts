@@ -11,14 +11,14 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const qcheck_multicoretests_util = nix.arg($, "qcheck-multicoretests-util");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "qcheck-stm",
       src: nix.thunk(() => nix.attr(qcheck_multicoretests_util, "src")),
       version: nix.thunk(() => nix.attr(qcheck_multicoretests_util, "version")),
       propagatedBuildInputs: nix.thunk(() => [qcheck_multicoretests_util]),
       doCheck: true,
       meta: nix.thunk(() => nix.update(nix.sel(qcheck_multicoretests_util, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "State-machine testing library for sequential and parallel model-based tests",
       })),
     })));

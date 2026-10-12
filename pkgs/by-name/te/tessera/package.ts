@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const jre = nix.arg($, "jre");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tessera",
       version: "0.10.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://oss.sonatype.org/service/local/repositories/releases/content/com/jpmorgan/quorum/tessera-app/${nix.sel(finalAttrs, "version")}/tessera-app-${nix.sel(finalAttrs, "version")}-app.jar`),
           sha256: "1zn8w7q0q5man0407kb82lw4mlvyiy9whq2f6izf2b5415f9s0m4",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       installPhase: nix.thunk(() => nix.str`makeWrapper ${jre}/bin/java $out/bin/tessera --add-flags "-jar $src"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Enterprise Implementation of Quorum's transaction manager",
         homepage: "https://github.com/jpmorganchase/tessera",
         sourceProvenance: nix.thunk(() => (() => {

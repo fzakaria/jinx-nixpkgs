@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const objfw = nix.arg($, "objfw");
   const writeTextDir = nix.arg($, "writeTextDir");
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "objfw",
       version: "1.5.7",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "git.nil.im",
           owner: "ObjFW",
           repo: "ObjFW",
@@ -39,20 +39,20 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--without-tls"]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "build-hello-world": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./test-build-and-run.nix")), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               clangStdenv: clangStdenv,
               objfw: objfw,
               writeTextDir: writeTextDir,
             })))),
         })),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$4, "rev-suffix": "-release" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, "rev-suffix": "-release" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Portable framework for the Objective-C language",
         homepage: "https://objfw.nil.im",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

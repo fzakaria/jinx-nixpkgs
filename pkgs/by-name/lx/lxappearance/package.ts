@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const docbook_xsl = nix.arg($, "docbook_xsl");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "lxappearance",
       version: "0.6.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lxde",
           repo: "lxappearance",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,12 +37,12 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libx11, gtk3]),
       patches: nix.thunk(() => [nix.path(here, "./lxappearance-0.6.3-xdg.system.data.dirs.patch")]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         XSLTPROC: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), libxslt, "xsltproc")),
       })),
       configureFlags: nix.thunk(() => ["--enable-gtk3"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Lightweight program for configuring the theme and fonts of gtk applications",
         mainProgram: "lxappearance",
         homepage: "https://lxde.org/",

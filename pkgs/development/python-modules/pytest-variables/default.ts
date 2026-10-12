@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pytest-dev",
           repo: "pytest-variables",
           tag: version,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatch_vcs, hatchling]);
       const buildInput = nix.thunk(() => [pytest]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         hjson: nix.thunk(() => [hjson]),
         toml: nix.thunk(() => [toml]),
         yaml: nix.thunk(() => [pyyaml]),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["pytest_variables"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Plugin for providing variables to pytest tests/fixtures",
         homepage: "https://github.com/pytest-dev/pytest-variables",
         changelog: nix.thunk(() => nix.str`https://github.com/pytest-dev/pytest-variables/blob/${nix.sel(src, "rev")}/CHANGES.rst`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

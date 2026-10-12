@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tuxclocker-plugins-with-unfree";
       const name = nix.thunk(() => nix.str`${pname}-${version}`);
       const paths = nix.thunk(() => [tuxclocker_nvidia_plugin, tuxclocker_plugins]);
-      return { __proto__: pos$1, version, meta, pname, name, paths };
+      return { [nix.POS]: pos$1, version, meta, pname, name, paths };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

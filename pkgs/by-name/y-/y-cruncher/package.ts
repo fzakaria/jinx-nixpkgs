@@ -16,22 +16,22 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "y-cruncher",
       version: "0.8.7.9547",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/Mysticial/y-cruncher/releases/download/v${nix.sel(finalAttrs, "version")}/y-cruncher.v${nix.sel(finalAttrs, "version")}-static.tar.xz`),
           hash: "sha256-4i/zRPQnY1INIzHxntYXfzp8eKxb1GLpwGDDgmcYFJA=",
         })))),
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 y-cruncher -t $out/lib/y-cruncher/\ninstall -Dm755 Binaries/*~* -t $out/lib/y-cruncher/Binaries/\ninstall -Dm644 Binaries/Digits/*.txt -t $out/lib/y-cruncher/Binaries/Digits/\ninstall -Dm644 Custom\\ Formulas/*.cfg -t $out/lib/y-cruncher/Custom\\ Formulas/\nmakeWrapper $out/lib/y-cruncher/y-cruncher $out/bin/y-cruncher\n\ninstall -Dm644 \"Command Lines.txt\" -t $out/share/doc/y-cruncher/\ninstall -Dm644 \"Read Me.txt\" -t $out/share/doc/y-cruncher/\ninstall -Dm644 \"Username.txt\" -t $out/share/doc/y-cruncher/\ninstall -Dm644 Binaries/*.txt -t $out/share/doc/y-cruncher/\ninstall -Dm644 Custom\\ Formulas/#README.txt -t $out/share/doc/y-cruncher/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Compute Pi and other constants to billions of digits",
         longDescription: "How fast can your computer compute Pi?\n\ny-cruncher is a program that can compute Pi and other constants\nto trillions of digits.\n\nIt is the first of its kind that is multi-threaded and scalable\nto multi-core systems. Ever since its launch in 2009, it has\nbecome a common benchmarking and stress-testing application for\noverclockers and hardware enthusiasts.\n\ny-cruncher has been used to set several world records for the\nmost digits of Pi ever computed.\n",
         homepage: "https://www.numberworld.org/y-cruncher/",

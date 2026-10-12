@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const libsodium = nix.arg($, "libsodium");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "prime-server",
       version: "0.13.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kevinkreiser",
           repo: "prime_server",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,17 +38,17 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libsodium]),
       propagatedBuildInputs: nix.thunk(() => [curl, czmq, zeromq]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           simple: nix.thunk(() => nix.app(runCommand, "prime-server-test", nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage")), curl]),
             })), "prime_serverd tcp://127.0.0.1:8001 1 0 &\npid=$!\ntrap 'kill $pid' EXIT\n\ntest \"$(curl -fsS --retry 30 --retry-delay 1 --retry-connrefused 'http://127.0.0.1:8001/is_prime?possible_prime=17')\" = 17\n\ntouch \"$out\"\n")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Non-blocking (web)server API for distributed computing and SOA based on zeromq",
         homepage: "https://github.com/kevinkreiser/prime_server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

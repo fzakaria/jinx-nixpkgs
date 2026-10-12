@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const version = "26.1.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pypa",
           repo: "pip",
           tag: version,
@@ -62,15 +62,15 @@ export default nix.lambda((args) => (() => {
       ]);
       const postInstall = "installManPage docs/build/man/*\n\ninstallShellCompletion --cmd pip \\\n  --bash <($out/bin/pip completion --bash --no-cache-dir) \\\n  --fish <($out/bin/pip completion --fish --no-cache-dir) \\\n  --zsh <($out/bin/pip completion --zsh --no-cache-dir)\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "pip-tools": pip_tools,
-          pytest: nix.thunk(() => nix.app(nix.sel(self, "overridePythonAttrs"), nix.thunk(() => ({ __proto__: pos$2, doCheck: true })))),
+          pytest: nix.thunk(() => nix.app(nix.sel(self, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, doCheck: true })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         mainProgram: "pip",
         description: "PyPA recommended tool for installing Python packages",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
         changelog: nix.thunk(() => nix.str`https://pip.pypa.io/en/stable/news/#v${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["-"]), version)}`),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

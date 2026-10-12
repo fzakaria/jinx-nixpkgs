@@ -24,13 +24,13 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "nixos-option",
       version: nix.thunk(() => nix.sel(lib, "trivial", "release")),
       src: nix.path(here, "./nixos-option.sh"),
       nativeBuildInputs: nix.thunk(() => [installShellFiles, makeWrapper]),
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         nixosOptionNix: nix.thunk(() => nix.str`${nix.path(here, "./nixos-option.nix")}`),
         nixosOptionManpage: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/man`),
       })),
@@ -50,16 +50,16 @@ runHook postInstall
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils, jq, man_db, nix$]))}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "installer-simpleUefiSystemdBoot": nix.thunk(() => nix.sel(nixosTests, "installer", "simpleUefiSystemdBoot")),
-          shellcheck: nix.thunk(() => nix.app(runCommand, "nixos-option-shellchecked", nix.thunk(() => ({ __proto__: pos$2, nativeBuildInputs: nix.thunk(() => [shellcheck]) })), nix.thunk(() => nix.str`shellcheck ${nix.path(here, "./nixos-option.sh")} && touch $out
+          shellcheck: nix.thunk(() => nix.app(runCommand, "nixos-option-shellchecked", nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [shellcheck]) })), nix.thunk(() => nix.str`shellcheck ${nix.path(here, "./nixos-option.sh")} && touch $out
 `))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Evaluate NixOS configuration and return the properties of given option",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         mainProgram: "nixos-option",

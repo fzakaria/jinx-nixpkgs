@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "git-vanity-hash",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "prasmussen",
           repo: "git-vanity-hash",
           rev: "a80e7725ac6d0b7e6807cd7315cfdc7eaf0584f6",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-aHqH7SQBIe0oqD3MegWvAR3UvzRBm2X92lP931nVVtA=",
       postInstall: "mkdir -p $out/share/doc/git-vanity-hash\ncp README.md $out/share/doc/git-vanity-hash\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/prasmussen/git-vanity-hash",
         description: "Tool for creating commit hashes with a specific prefix",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

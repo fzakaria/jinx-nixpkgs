@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mdio-tools",
       version: "1.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wkz",
           repo: "mdio-tools",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
   --replace-fail "git describe --always --dirty --tags" "echo ${nix.sel(finalAttrs, "version")}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Low-level debug tools for MDIO devices",
         homepage: "https://github.com/wkz/mdio-tools",
         changelog: nix.thunk(() => nix.str`https://github.com/wkz/mdio-tools/blob/${nix.sel(finalAttrs, "src", "rev")}/ChangeLog.md`),

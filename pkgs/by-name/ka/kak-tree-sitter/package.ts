@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const tinycc = nix.arg($, "tinycc");
   const kak_tree_sitter_unwrapped = nix.arg($, "kak-tree-sitter-unwrapped");
   return nix.app(symlinkJoin, (finalAttrs) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["-unwrapped"]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(kak_tree_sitter_unwrapped, "pname")))),
       version: nix.thunk(() => nix.attr(kak_tree_sitter_unwrapped, "version")),
       name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}`),

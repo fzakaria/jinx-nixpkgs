@@ -18,49 +18,49 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const fetchurl = nix.arg($, "fetchurl");
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     "curl-8_21_0.tar.gz": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: "https://github.com/curl/curl/archive/curl-8_21_0.tar.gz",
         hash: "sha256-7HU6pvQIo8qfDW1fendBeuzRVE2xPAOuXUQ2Er82c2Q=",
       })))),
     "brotli-1.2.0.tar.gz": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: "https://github.com/google/brotli/archive/refs/tags/v1.2.0.tar.gz",
         hash: "sha256-gWyW6Ojxk7QBUdrX6P83sSIdAZ28ucNc0/rb/mR33+w=",
       })))),
     "boringssl-156c7b75ae9b8c3b3f847acf264f17594c3859fb.zip": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         url: "https://github.com/google/boringssl/archive/156c7b75ae9b8c3b3f847acf264f17594c3859fb.zip",
         hash: "sha256-RQ4WmyhGl8bq/lI8t2efQiH74aCZP3c6VmwzsYh2KEQ=",
       })))),
     "nghttp2-1.63.0.tar.bz2": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         url: "https://github.com/nghttp2/nghttp2/releases/download/v1.63.0/nghttp2-1.63.0.tar.bz2",
         hash: "sha256-YHsXRVTSKoKLxTLR1zT+D3KbXV7SB/LxLpamLoPynFU=",
       })))),
     "ngtcp2-1.20.0.tar.bz2": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         url: "https://github.com/ngtcp2/ngtcp2/releases/download/v1.20.0/ngtcp2-1.20.0.tar.bz2",
         hash: "sha256-hx7JethoA88xKQGww5Ow7nAWPiWofJsolNEjQ0HOTpc=",
       })))),
     "nghttp3-1.15.0.tar.bz2": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         url: "https://github.com/ngtcp2/nghttp3/releases/download/v1.15.0/nghttp3-1.15.0.tar.bz2",
         hash: "sha256-xsSRpSgEgUCY5EZjDm78RZr8DT2nlS/+bL3As/mbK2I=",
       })))),
     "zlib-1.3.1.tar.gz": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         url: "https://github.com/madler/zlib/releases/download/v1.3.1/zlib-1.3.1.tar.gz",
         hash: "sha256-mpOyt9/ax3zrpaVYpYDnRmfdb+3kWFuR7vtg8Dty3yM=",
       })))),
     "zstd-1.5.7.tar.gz": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         url: "https://github.com/facebook/zstd/releases/download/v1.5.7/zstd-1.5.7.tar.gz",
         hash: "sha256-6zPlH0mhXgI5UM14Jcp0pKK0Pbg1SCWsJPwbfuCeb6M=",
       })))),
     "libidn2-2.3.7.tar.gz": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         url: "https://ftp.gnu.org/gnu/libidn/libidn2-2.3.7.tar.gz",
         hash: "sha256-TCGnkbYQuVGbnQ4SuAl78vNZsS+N2SZHYRqSnmv9fWQ=",
       })))),

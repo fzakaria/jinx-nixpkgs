@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const bashInteractive = nix.arg($, "bashInteractive");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "linecast",
       version: "2.9.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ashuttl",
           repo: "linecast",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,11 +47,11 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         mainProgram: "linecast",
         description: "Weather, tides, the sun, the moon, and maps, in your terminal. The Old Farmer's Almanac meets Minitel",
         longDescription: "linecast turns free public data into six live, mouse-friendly terminal apps.\nIt is pure Python, has no dependencies on macOS or Linux (and just two on Windows),\ntries to match your terminal theme (on macOS and Linux), and needs no account or API key.\n",
@@ -65,15 +65,15 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w_1, "fromSource"))];
         })()),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           cpeParts: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             vendor: "ashuttl",
             product: "linecast",
             version: nix.thunk(() => nix.sel(finalAttrs, "version")),
           })),
           purlParts: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: "github",
             namespace: "ashuttl",
             name: "linecast",

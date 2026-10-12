@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "20080411",
       pname: "pari-galdata",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://pari.math.u-bordeaux.fr/pub/pari/packages/galdata.tgz",
           sha256: "1pch6bk76f1i6cwwgm7hhxi5h71m52lqayp4mnyj0jmjk406bhdp",
         })))),
       installPhase: "mkdir -p \"$out/share/pari\"\ncp -R * \"$out/share/pari/\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PARI database needed to compute Galois group in degrees 8 through 11",
         homepage: "http://pari.math.u-bordeaux.fr/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

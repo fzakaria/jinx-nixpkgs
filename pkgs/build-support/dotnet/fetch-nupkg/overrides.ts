@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const writeText = nix.arg($, "writeText");
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     Avalonia: (package$) => nix.app(nix.sel(package$, "overrideAttrs"), (old) => (() => {
         const affectedVersions = nix.thunk(() => [
           "11.1.0-beta1",
@@ -36,21 +36,21 @@ export default nix.lambda((args) => (() => {
           "11.2.0-beta1",
         ]);
         return nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.builtins.elem(nix.thunk(() => nix.sel(old, "version")), affectedVersions)), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             postPatch: "substituteInPlace {build,buildTransitive}/AvaloniaBuildTasks.targets \\\n  --replace-fail 'BeforeTargets=\"CopyFilesToOutputDirectory;BuiltProjectOutputGroup\"' \\\n                 'BeforeTargets=\"CopyFilesToOutputDirectory;BuiltProjectOutputGroup;ComputeResolvedFilesToPublishList\"'\n",
           })));
       })()),
     "Avalonia.X11": (package$) => nix.app(nix.sel(package$, "overrideAttrs"), (old) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           setupHook: nix.thunk(() => nix.app(writeText, "setupHook.sh", nix.thunk(() => nix.str`prependToVar dotnetRuntimeDeps \\
   "${nix.app(nix.sel(lib, "getLib"), libice)}" \\
   "${nix.app(nix.sel(lib, "getLib"), libsm)}" \\
   "${nix.app(nix.sel(lib, "getLib"), libx11)}"
 `))),
         })))),
-    "Avalonia.BuildServices": (package$) => nix.app(nix.sel(package$, "overrideAttrs"), (old) => ({ __proto__: pos$3, postPatch: "shopt -s extglob\nrm -rf !(*.nuspec)\n" })),
+    "Avalonia.BuildServices": (package$) => nix.app(nix.sel(package$, "overrideAttrs"), (old) => ({ [nix.POS]: pos$3, postPatch: "shopt -s extglob\nrm -rf !(*.nuspec)\n" })),
     "SkiaSharp.NativeAssets.Linux": (package$) => nix.app(nix.sel(package$, "overrideAttrs"), (old) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "nativeBuildInputs"), [autoPatchelfHook])),
           buildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "buildInputs"), nix.concat([fontconfig], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(old, "version")), "4")), nix.thunk(() => nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(stdenv, "cc", "cc")))))))),
           preInstall: nix.thunk(() => nix.add(nix.selOr(old, () => "", "preInstall"), nix.str`cd runtimes

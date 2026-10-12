@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "alibabacloud-credentials-api",
       version: "1.0.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "alibabacloud_credentials_api",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-jqBmimVY9pVrjSCy5WHRmoDqKcIs9WowBNQ0skqYGzY=",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["alibabacloud_credentials_api"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Aliyun Credentials API Library for Python",
         homepage: "https://pypi.org/project/alibabacloud-credentials-api/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

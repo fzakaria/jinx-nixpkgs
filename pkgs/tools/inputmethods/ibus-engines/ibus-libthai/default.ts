@@ -20,14 +20,14 @@ export default nix.lambda((args) => (() => {
       const pname = "ibus-libthai";
       const version = "0.1.6";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://linux.thai.net/pub/ThaiLinux/software/libthai/ibus-libthai-${version}.tar.xz`),
           sha256: "sha256-fhCs2tBftyH8PljcwGDIZPTIwWvWPA7EapUaWU1sBuM=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [pkg_config]);
       const buildInputs = nix.thunk(() => [gtk3, ibus, libthai]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         isIbusEngine: true,
         homepage: "https://linux.thai.net/projects/ibus-libthai",
         description: "Thai input method engine for IBus",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         maintainers: [],
       }));
-      return { __proto__: pos$3, pname, version, src, nativeBuildInputs, buildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

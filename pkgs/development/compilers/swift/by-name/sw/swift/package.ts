@@ -38,9 +38,9 @@ export default nix.lambda((args) => (() => {
   const enableRepl = nix.argOr($, "enableRepl", () => true);
   const includeTesting = nix.thunk(() => (nix.asBool(nix.sel(swiftc, "supportsMacros")) && nix.asBool(!nix.eq(swift_testing, null))));
   const propagated_sdk = nix.thunk(() => (nix.asBool(nix.sel(swiftc, "supportsMacros")) ? nix.force(apple_sdk_26) : nix.force(apple_sdk_14)));
-  const swift_corelibs_libdispatch_no_overlay = nix.thunk(() => nix.app(nix.sel(swift_corelibs_libdispatch, "override"), nix.thunk(() => ({ __proto__: pos$1, useSwift: false }))));
+  const swift_corelibs_libdispatch_no_overlay = nix.thunk(() => nix.app(nix.sel(swift_corelibs_libdispatch, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, useSwift: false }))));
   const outLinks = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: nix.thunk(() => nix.add(nix.add("swift", nix.app(nix.sel(lib, "removePrefix"), "swiftc", nix.thunk(() => nix.app(nix.sel(lib, "getName"), swiftc)))), nix.str`-${swift_release}-out`)),
       paths: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.sel(swiftc, "out")),
@@ -72,17 +72,17 @@ export default nix.lambda((args) => (() => {
           ])))))))))))),
     }))));
   const docLinks = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: nix.thunk(() => nix.add(nix.add("swift", nix.app(nix.sel(lib, "removePrefix"), "swiftc", nix.thunk(() => nix.app(nix.sel(lib, "getName"), swiftc)))), nix.str`-${swift_release}-doc`)),
       paths: nix.thunk(() => [nix.thunk(() => nix.sel(swiftc, "doc"))]),
     }))));
   const manLinks = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: nix.thunk(() => nix.add(nix.add("swift", nix.app(nix.sel(lib, "removePrefix"), "swiftc", nix.thunk(() => nix.app(nix.sel(lib, "getName"), swiftc)))), nix.str`-${swift_release}-man`)),
       paths: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(swiftc, "man"))], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))) && nix.asBool(!nix.eq(swift_corelibs_libdispatch, null)))), nix.thunk(() => [nix.thunk(() => nix.sel(swift_corelibs_libdispatch, "man"))])))),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: nix.thunk(() => nix.add("swift", nix.app(nix.sel(lib, "removePrefix"), "swiftc", nix.thunk(() => nix.app(nix.sel(lib, "getName"), swiftc))))),
       version: swift_release,
       outputs: nix.thunk(() => ["out", "doc", "man"]),
@@ -183,11 +183,11 @@ noBrokenSymlinksInAllOutputs
 `),
       __structuredAttrs: true,
       passthru: nix.thunk(() => nix.update({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         swiftc: swiftc,
         "swift-driver": swift_driver,
         tests: nix.thunk(() => nix.app(nix.sel(lib, "packagesFromDirectoryRecursive"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             callPackage: callPackage,
             directory: nix.path(here, "./tests"),
           })))),
@@ -196,7 +196,7 @@ noBrokenSymlinksInAllOutputs
         swiftModuleSubdir: nix.thunk(() => nix.str`lib/swift/${nix.sel(stdenv, "hostPlatform", "swift", "platform")}`),
         swiftStaticModuleSubdir: nix.thunk(() => nix.str`lib/swift_static/${nix.sel(stdenv, "hostPlatform", "swift", "platform")}`),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           swift: nix.thunk(() => nix.app(nix.sel(lib, "warnOnInstantiate"), "`swift` is an alias for this (`swift`) package. Just use it directly.", nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
           swiftArch: nix.thunk(() => nix.app(nix.sel(lib, "warn"), "'swiftArch' is an alias for 'stdenv.hostPlatform.swift.arch'.", nix.thunk(() => nix.sel(stdenv, "hostPlatform", "swift", "arch")))),
           swiftDriver: nix.thunk(() => nix.app(nix.sel(lib, "warnOnInstantiate"), "'swiftDriver' has been renamed to 'swift-driver'", nix.thunk(() => nix.sel(finalAttrs, "passthru", "swift-driver")))),
@@ -205,7 +205,7 @@ noBrokenSymlinksInAllOutputs
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(swiftc, "meta"));
         return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         mainProgram: "swift",
         description: "Swift Programming Language",
         homepage: "https://github.com/swiftlang/swift",

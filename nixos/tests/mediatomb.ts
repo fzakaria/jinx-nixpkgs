@@ -14,29 +14,29 @@ const formals$1 = { args: { nodes: false }, ellipsis: true };
 const pos$9 = nix.positions(here + "/mediatomb.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 33, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$9,
+  [nix.POS]: pos$9,
   name: "mediatomb",
   nodes: nix.thunk(() => ({
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     server: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         mediatomb: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: true,
           serverName: "Gerbera",
           interface: "eth1",
           openFirewall: true,
           mediaDirectories: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               path: "/var/lib/gerbera/pictures",
               recursive: false,
               "hidden-files": false,
             })),
             nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               path: "/var/lib/gerbera/audio",
               recursive: true,
               "hidden-files": false,
@@ -45,9 +45,9 @@ export default nix.thunk(() => ({
         })),
       })),
       systemd: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tmpfiles: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           rules: nix.thunk(() => [
             "d /var/lib/gerbera/pictures 0770 mediatomb mediatomb",
             "d /var/lib/gerbera/audio 0770 mediatomb mediatomb",

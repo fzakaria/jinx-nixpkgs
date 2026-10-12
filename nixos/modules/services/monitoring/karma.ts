@@ -40,17 +40,17 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "karma"));
   const yaml = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     options: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       services: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         karma: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the Karma dashboard service")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "karma", nix.thunk(() => ({})))),
           configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: nix.thunk(() => nix.app(nix.sel(yaml, "generate"), "karma.yaml", nix.thunk(() => nix.sel(cfg, "settings")))),
               defaultText: "A configuration file generated from the provided nix attributes settings option.",
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
               example: "/etc/karma/karma.conf",
             })))),
           environment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -66,19 +66,19 @@ export default nix.lambda((args) => (() => {
               default: nix.thunk(() => ({})),
               description: "Additional environment variables to provide to karma.\n",
               example: nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 ALERTMANAGER_URI: "https://alertmanager.example.com",
                 ALERTMANAGER_NAME: "single",
               })),
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to open ports in the firewall needed for karma to function.\n",
             })))),
           extraOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -88,23 +88,23 @@ export default nix.lambda((args) => (() => {
               example: nix.thunk(() => ["--alertmanager.timeout 10s"]),
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   freeformType: nix.thunk(() => nix.sel(yaml, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     listen: nix.thunk(() => ({
-                      __proto__: pos$8,
+                      [nix.POS]: pos$8,
                       address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "127.0.0.1",
                           description: "Hostname or IP to listen on.\n",
                           example: "[::]",
                         })))),
                       port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$7,
+                          [nix.POS]: pos$7,
                           type: nix.thunk(() => nix.sel(lib, "types", "port")),
                           default: 8080n,
                           description: "HTTP port to listen on.\n",
@@ -114,23 +114,23 @@ export default nix.lambda((args) => (() => {
                   })),
                 })))),
               default: nix.thunk(() => ({
-                __proto__: pos$12,
-                listen: nix.thunk(() => ({ __proto__: pos$11, address: "127.0.0.1" })),
+                [nix.POS]: pos$12,
+                listen: nix.thunk(() => ({ [nix.POS]: pos$11, address: "127.0.0.1" })),
               })),
               description: "Karma dashboard configuration as nix attributes.\n\nReference: <https://github.com/prymitive/karma/blob/main/docs/CONFIGURATION.md>\n",
               example: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 listen: nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   address: "192.168.1.4",
                   port: "8000",
                   prefix: "/dashboard",
                 })),
                 alertmanager: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   interval: "15s",
                   servers: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$14, name: "prod", uri: "http://alertmanager.example.com" })),
+                    nix.thunk(() => ({ [nix.POS]: pos$14, name: "prod", uri: "http://alertmanager.example.com" })),
                   ]),
                 })),
               })),
@@ -139,18 +139,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         systemd: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           services: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             karma: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               description: "Alert dashboard for Prometheus Alertmanager",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: nix.thunk(() => nix.sel(cfg, "environment")),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 Type: "simple",
                 DynamicUser: true,
                 Restart: "on-failure",
@@ -160,9 +160,9 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           firewall: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "listen", "port"))]))),
           })),
         })),

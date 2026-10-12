@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const unittestCheckHook = nix.arg($, "unittestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pypika",
       version: "0.50.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kayak",
           repo: "pypika",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [parameterized, unittestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["pypika"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python SQL query builder",
         homepage: "https://github.com/kayak/pypika",
         changelog: nix.thunk(() => nix.str`https://github.com/kayak/pypika/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ledger-udev-rules",
       version: "0-unstable-2024-02-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LedgerHQ",
           repo: "udev-rules",
           rev: "f474382e370c9fa2a2207e6e675b9b364441aed7",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       dontConfigure: true,
       installPhase: "mkdir -p $out/lib/udev/rules.d\ncp 20-hw1.rules $out/lib/udev/rules.d/20-ledger.rules\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "udev rules for Ledger devices",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => (() => {

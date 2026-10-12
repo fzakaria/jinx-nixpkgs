@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const xdg_utils = nix.arg($, "xdg-utils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nestopia",
       version: "1.53.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "0ldsk00l",
           repo: "nestopia",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "mkdir -p $out/{bin,share/nestopia}\n",
       preFixup: "for f in $out/bin/*; do\n  wrapProgram $f \\\n    --prefix XDG_DATA_DIRS : \"$GSETTINGS_SCHEMAS_PATH:$out/share\"\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://0ldsk00l.ca/nestopia/",
         description: "Cross-platform Nestopia emulator core with a GUI",
         changelog: nix.thunk(() => nix.str`https://raw.githubusercontent.com/0ldsk00l/nestopia/${nix.sel(finalAttrs, "src", "rev")}/ChangeLog`),

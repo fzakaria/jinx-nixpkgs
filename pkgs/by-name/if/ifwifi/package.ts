@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const networkmanager = nix.arg($, "networkmanager");
   const iw = nix.arg($, "iw");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ifwifi",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "araujobsd",
           repo: "ifwifi",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
 `),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple wrapper over nmcli using wifiscanner made in rust",
         mainProgram: "ifwifi",
         longDescription: "In the author's words:\n\nI felt bothered because I never remember the long and tedious command\nline to setup my wifi interface. So, I wanted to develop something\nusing rust to simplify the usage of nmcli, and I met the wifiscanner\nproject that gave me almost everything I wanted to create this tool.\n",

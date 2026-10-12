@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const starlette = nix.arg($, "starlette");
   const werkzeug = nix.arg($, "werkzeug");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "authlib",
       version: "1.7.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lepture",
           repo: "authlib",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["authlib"]),
       disabledTestPaths: nix.thunk(() => ["tests/django/", "tests/clients/test_django/", "tests/jose/test_chacha20.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for building OAuth and OpenID Connect servers",
         homepage: "https://github.com/lepture/authlib",
         changelog: nix.thunk(() => nix.str`https://github.com/lepture/authlib/blob/${nix.sel(finalAttrs, "src", "tag")}/docs/upgrades/changelog.rst`),

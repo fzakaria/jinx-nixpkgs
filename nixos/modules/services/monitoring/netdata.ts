@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "services", "netdata"));
-  const wrappedPlugins = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "wrapped-plugins", nix.thunk(() => ({ __proto__: pos$1, preferLocalBuild: true })), "mkdir -p $out/libexec/netdata/plugins.d\nln -s /run/wrappers/bin/apps.plugin $out/libexec/netdata/plugins.d/apps.plugin\nln -s /run/wrappers/bin/cgroup-network $out/libexec/netdata/plugins.d/cgroup-network\nln -s /run/wrappers/bin/debugfs.plugin $out/libexec/netdata/plugins.d/debugfs.plugin\nln -s /run/wrappers/bin/freeipmi.plugin $out/libexec/netdata/plugins.d/freeipmi.plugin\nln -s /run/wrappers/bin/go.d.plugin $out/libexec/netdata/plugins.d/go.d.plugin\nln -s /run/wrappers/bin/logs-management.plugin $out/libexec/netdata/plugins.d/logs-management.plugin\nln -s /run/wrappers/bin/network-viewer.plugin $out/libexec/netdata/plugins.d/network-viewer.plugin\nln -s /run/wrappers/bin/otel-plugin $out/libexec/netdata/plugins.d/otel-plugin\nln -s /run/wrappers/bin/perf.plugin $out/libexec/netdata/plugins.d/perf.plugin\nln -s /run/wrappers/bin/slabinfo.plugin $out/libexec/netdata/plugins.d/slabinfo.plugin\nln -s /run/wrappers/bin/systemd-journal.plugin $out/libexec/netdata/plugins.d/systemd-journal.plugin\n"));
+  const wrappedPlugins = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "wrapped-plugins", nix.thunk(() => ({ [nix.POS]: pos$1, preferLocalBuild: true })), "mkdir -p $out/libexec/netdata/plugins.d\nln -s /run/wrappers/bin/apps.plugin $out/libexec/netdata/plugins.d/apps.plugin\nln -s /run/wrappers/bin/cgroup-network $out/libexec/netdata/plugins.d/cgroup-network\nln -s /run/wrappers/bin/debugfs.plugin $out/libexec/netdata/plugins.d/debugfs.plugin\nln -s /run/wrappers/bin/freeipmi.plugin $out/libexec/netdata/plugins.d/freeipmi.plugin\nln -s /run/wrappers/bin/go.d.plugin $out/libexec/netdata/plugins.d/go.d.plugin\nln -s /run/wrappers/bin/logs-management.plugin $out/libexec/netdata/plugins.d/logs-management.plugin\nln -s /run/wrappers/bin/network-viewer.plugin $out/libexec/netdata/plugins.d/network-viewer.plugin\nln -s /run/wrappers/bin/otel-plugin $out/libexec/netdata/plugins.d/otel-plugin\nln -s /run/wrappers/bin/perf.plugin $out/libexec/netdata/plugins.d/perf.plugin\nln -s /run/wrappers/bin/slabinfo.plugin $out/libexec/netdata/plugins.d/slabinfo.plugin\nln -s /run/wrappers/bin/systemd-journal.plugin $out/libexec/netdata/plugins.d/systemd-journal.plugin\n"));
   const plugins = nix.thunk(() => nix.concat([
     nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/libexec/netdata/plugins.d`),
     nix.thunk(() => nix.str`${wrappedPlugins}/libexec/netdata/plugins.d`),
@@ -94,15 +94,15 @@ ${(nix.asBool(nix.eq(path, "apps_groups.conf")) ? "cp" : "ln -s")} "${file}" "$o
 `, nix.thunk(() => nix.sel(cfg, "configDir")))))}
 `)));
   const localConfig = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     global: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       "config directory": "/etc/netdata/conf.d",
       "plugins directory": nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", plugins)),
     })),
-    web: nix.thunk(() => ({ __proto__: pos$3, "web files owner": "root", "web files group": "root" })),
+    web: nix.thunk(() => ({ [nix.POS]: pos$3, "web files owner": "root", "web files group": "root" })),
     "plugin:cgroups": nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       "script to get cgroup network interfaces": nix.thunk(() => nix.str`${wrappedPlugins}/libexec/netdata/plugins.d/cgroup-network`),
       "use unified cgroups": "yes",
     })),
@@ -112,56 +112,56 @@ ${(nix.asBool(nix.eq(path, "apps_groups.conf")) ? "cp" : "ln -s")} "${file}" "$o
   const defaultUser = "netdata";
   const isThereAnyWireGuardTunnels = nix.thunk(() => (nix.asBool(nix.sel(config, "networking", "wireguard", "enable")) || nix.asBool(nix.app(nix.sel(lib, "any"), (c) => (nix.asBool(nix.app(nix.sel(lib, "hasAttrByPath"), nix.thunk(() => ["netdevConfig", "Kind"]), c)) && nix.asBool(nix.eq(nix.sel(c, "netdevConfig", "Kind"), "wireguard"))), nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(config, "systemd", "network", "netdevs"))))))));
   const extraNdsudoPathsEnv = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       name: "netdata-ndsudo-env",
       paths: nix.thunk(() => nix.sel(cfg, "extraNdsudoPackages")),
       pathsToLink: nix.thunk(() => ["/bin"]),
     }))));
   return {
-    __proto__: pos$73,
+    [nix.POS]: pos$73,
     options: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       services: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         netdata: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "netdata")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "netdata", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "netdata",
               description: "User account under which netdata runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "netdata",
               description: "Group under which netdata runs.",
             })))),
           configText: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "lines")))),
               description: "Verbatim netdata.conf, cannot be combined with config.",
               default: null,
               example: "[global]\ndebug log = syslog\naccess log = syslog\nerror log = syslog\n",
             })))),
           python: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Whether to enable python-based plugins\n",
               })))),
             recommendedPythonPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to enable a set of recommended Python plugins\nby installing extra Python packages.\n",
               })))),
             extraPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "functionTo"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))))),
                 default: (ps) => [],
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "ps: []")),
@@ -170,47 +170,47 @@ ${(nix.asBool(nix.eq(path, "apps_groups.conf")) ? "cp" : "ln -s")} "${file}" "$o
               })))),
           })),
           extraPluginPaths: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ \"/path/to/plugins.d\" ]\n")),
               description: "Extra paths to add to the netdata global \"plugins directory\"\noption.  Useful for when you want to include your own\ncollection scripts.\n\nDetails about writing a custom netdata plugin are available at:\n<https://docs.netdata.cloud/collectors/plugins.d/>\n\nCannot be combined with configText.\n",
             })))),
           extraNdsudoPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: [],
               description: "Extra packages to add to `PATH` to make available to `ndsudo`.\n::: {.warning}\n`ndsudo` has SUID privileges, be careful what packages you list here.\n:::\n\n::: {.note}\n`cfg.package` must be built with `withNdsudo = true`\n:::\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[\n  pkgs.smartmontools\n  pkgs.nvme-cli\n]\n")),
             })))),
           config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "attrs")))),
               default: nix.thunk(() => ({})),
               description: "netdata.conf configuration as nix attributes. cannot be combined with configText.",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "global = {\n  \"debug log\" = \"syslog\";\n  \"access log\" = \"syslog\";\n  \"error log\" = \"syslog\";\n};\n")),
             })))),
           configDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: nix.thunk(() => ({})),
               description: "Complete netdata config directory except netdata.conf.\nThe default configuration is merged with changes\ndefined in this option.\nEach top-level attribute denotes a path in the configuration\ndirectory as in environment.etc.\nIts value is the absolute path and must be readable by netdata.\nCannot be combined with configText.\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"health_alarm_notify.conf\" = pkgs.writeText \"health_alarm_notify.conf\" ''\n  sendmail=\"/path/to/sendmail\"\n'';\n\"health.d\" = \"/run/secrets/netdata/health.d\";\n")),
             })))),
           claimTokenFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "If set, automatically registers the agent using the given claim token\nfile.\n",
             })))),
           enableAnalyticsReporting: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enable reporting of anonymous usage statistics to Netdata Inc. via either\nGoogle Analytics (in versions prior to 1.29.4), or Netdata Inc.'s\nself-hosted PostHog (in versions 1.29.4 and later).\nSee: <https://learn.netdata.cloud/docs/agent/anonymous-statistics>\n",
             })))),
           deadlineBeforeStopSec: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 120n,
               description: "In order to detect when netdata is misbehaving, we run a concurrent task pinging netdata (wait-for-netdata-up)\nin the systemd unit.\n\nIf after a while, this task does not succeed, we stop the unit and mark it as failed.\n\nYou can control this deadline in seconds with this option, it's useful to bump it\nif you have (1) a lot of data (2) doing upgrades (3) have low IOPS/throughput.\n",
@@ -219,20 +219,20 @@ ${(nix.asBool(nix.eq(path, "apps_groups.conf")) ? "cp" : "ln -s")} "${file}" "$o
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$72,
+        [nix.POS]: pos$72,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, "config"), {})) || nix.asBool(nix.eq(nix.sel(cfg, "configText"), null)))),
             message: "Cannot specify both config and configText",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           netdata: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             python: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               extraPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "python", "recommendedPythonPackages")), (ps) => [
                   nix.thunk(() => nix.sel(ps, "requests")),
                   nix.thunk(() => nix.sel(ps, "pandas")),
@@ -243,44 +243,44 @@ ${(nix.asBool(nix.eq(path, "apps_groups.conf")) ? "cp" : "ln -s")} "${file}" "$o
                 ])),
             })),
             configDir: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               ".opt-out-from-anonymous-statistics": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "enableAnalyticsReporting"))), nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), ".opt-out-from-anonymous-statistics", "")))),
             })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           etc: nix.thunk(() => ({
-            __proto__: pos$31,
-            "netdata/netdata.conf": nix.thunk(() => ({ __proto__: pos$29, source: configFile })),
-            "netdata/conf.d": nix.thunk(() => ({ __proto__: pos$30, source: configDirectory })),
+            [nix.POS]: pos$31,
+            "netdata/netdata.conf": nix.thunk(() => ({ [nix.POS]: pos$29, source: configFile })),
+            "netdata/conf.d": nix.thunk(() => ({ [nix.POS]: pos$30, source: configDirectory })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$48,
+          [nix.POS]: pos$48,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "package", "withNdsudo")), nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 "95-netdata-ndsudo": nix.thunk(() => ({
-                  __proto__: pos$39,
+                  [nix.POS]: pos$39,
                   "/var/lib/netdata/ndsudo": nix.thunk(() => ({
-                    __proto__: pos$34,
+                    [nix.POS]: pos$34,
                     d: nix.thunk(() => ({
-                      __proto__: pos$33,
+                      [nix.POS]: pos$33,
                       mode: "0550",
                       user: nix.thunk(() => nix.sel(cfg, "user")),
                       group: nix.thunk(() => nix.sel(cfg, "group")),
                     })),
                   })),
                   "/var/lib/netdata/ndsudo/ndsudo": nix.thunk(() => ({
-                    __proto__: pos$36,
-                    "L+": nix.thunk(() => ({ __proto__: pos$35, argument: "/run/wrappers/bin/ndsudo" })),
+                    [nix.POS]: pos$36,
+                    "L+": nix.thunk(() => ({ [nix.POS]: pos$35, argument: "/run/wrappers/bin/ndsudo" })),
                   })),
                   "/var/lib/netdata/ndsudo/runtime-dependencies": nix.thunk(() => ({
-                    __proto__: pos$38,
+                    [nix.POS]: pos$38,
                     "L+": nix.thunk(() => ({
-                      __proto__: pos$37,
+                      [nix.POS]: pos$37,
                       argument: nix.thunk(() => nix.str`${extraNdsudoPathsEnv}/bin`),
                     })),
                   })),
@@ -288,9 +288,9 @@ ${(nix.asBool(nix.eq(path, "apps_groups.conf")) ? "cp" : "ln -s")} "${file}" "$o
               })))),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             netdata: nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               description: "Real time performance monitoring",
               after: nix.thunk(() => ["network.target", "suid-sgid-wrappers.service"]),
               requires: nix.thunk(() => ["suid-sgid-wrappers.service"]),
@@ -314,16 +314,16 @@ ${(nix.asBool(nix.eq(path, "apps_groups.conf")) ? "cp" : "ln -s")} "${file}" "$o
                   nix.thunk(() => nix.sel(config, "virtualisation", "podman", "package")),
                 ])), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(config, "boot", "zfs", "enabled")), nix.thunk(() => nix.sel(config, "boot", "zfs", "package"))))))))),
               environment: nix.thunk(() => nix.update({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 PYTHONPATH: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/libexec/netdata/python.d/python_modules`),
                 NETDATA_PIPENAME: "/run/netdata/ipc",
-              }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "enableAnalyticsReporting"))), nix.thunk(() => ({ __proto__: pos$43, DO_NOT_TRACK: "1" }))))),
+              }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "enableAnalyticsReporting"))), nix.thunk(() => ({ [nix.POS]: pos$43, DO_NOT_TRACK: "1" }))))),
               restartTriggers: nix.thunk(() => [
                 nix.thunk(() => nix.sel(config, "environment", "etc", "netdata/netdata.conf", "source")),
                 nix.thunk(() => nix.sel(config, "environment", "etc", "netdata/conf.d", "source")),
               ]),
               serviceConfig: nix.thunk(() => nix.update({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/netdata -P /run/netdata/netdata.pid -D -c /etc/netdata/netdata.conf`),
                 ExecReload: nix.thunk(() => nix.str`${nix.sel(pkgs, "util-linux")}/bin/kill -s HUP -s USR1 -s USR2 $MAINPID`),
                 ExecStartPost: nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScript"), "wait-for-netdata-up", nix.thunk(() => nix.str`while [ "$(${nix.sel(cfg, "package")}/bin/netdatacli ping)" != pong ]; do sleep 0.5; done
@@ -365,7 +365,7 @@ ${(nix.asBool(nix.eq(path, "apps_groups.conf")) ? "cp" : "ln -s")} "${file}" "$o
                 ProtectControlGroups: true,
                 PrivateMounts: true,
               }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "claimTokenFile"), null)), nix.thunk(() => ({
-                  __proto__: pos$45,
+                  [nix.POS]: pos$45,
                   LoadCredential: nix.thunk(() => [
                     nix.thunk(() => nix.str`netdata_claim_token:${nix.sel(cfg, "claimTokenFile")}`),
                   ]),
@@ -386,11 +386,11 @@ exec ${nix.sel(cfg, "package")}/bin/netdata-claim.sh \\
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$69,
+          [nix.POS]: pos$69,
           wrappers: nix.thunk(() => nix.update({
-            __proto__: pos$55,
+            [nix.POS]: pos$55,
             "apps.plugin": nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/libexec/netdata/plugins.d/apps.plugin.org`),
               capabilities: "cap_dac_read_search,cap_sys_ptrace+ep",
               owner: nix.thunk(() => nix.sel(cfg, "user")),
@@ -398,7 +398,7 @@ exec ${nix.sel(cfg, "package")}/bin/netdata-claim.sh \\
               permissions: "u+rx,g+x,o-rwx",
             })),
             "debugfs.plugin": nix.thunk(() => ({
-              __proto__: pos$50,
+              [nix.POS]: pos$50,
               source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/libexec/netdata/plugins.d/debugfs.plugin.org`),
               capabilities: "cap_dac_read_search+ep",
               owner: nix.thunk(() => nix.sel(cfg, "user")),
@@ -406,7 +406,7 @@ exec ${nix.sel(cfg, "package")}/bin/netdata-claim.sh \\
               permissions: "u+rx,g+x,o-rwx",
             })),
             "go.d.plugin": nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/libexec/netdata/plugins.d/godplugin`),
               capabilities: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "concatStringsSep"), ",", nix.thunk(() => [
                   "cap_dac_read_search",
@@ -419,7 +419,7 @@ exec ${nix.sel(cfg, "package")}/bin/netdata-claim.sh \\
               permissions: "u+rx,g+x,o-rwx",
             })),
             "cgroup-network": nix.thunk(() => ({
-              __proto__: pos$52,
+              [nix.POS]: pos$52,
               source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/libexec/netdata/plugins.d/cgroup-network.org`),
               capabilities: "cap_setuid+ep",
               owner: nix.thunk(() => nix.sel(cfg, "user")),
@@ -427,7 +427,7 @@ exec ${nix.sel(cfg, "package")}/bin/netdata-claim.sh \\
               permissions: "u+rx,g+x,o-rwx",
             })),
             "perf.plugin": nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/libexec/netdata/plugins.d/perf.plugin.org`),
               capabilities: "cap_sys_admin+ep",
               owner: nix.thunk(() => nix.sel(cfg, "user")),
@@ -435,7 +435,7 @@ exec ${nix.sel(cfg, "package")}/bin/netdata-claim.sh \\
               permissions: "u+rx,g+x,o-rwx",
             })),
             "slabinfo.plugin": nix.thunk(() => ({
-              __proto__: pos$54,
+              [nix.POS]: pos$54,
               source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/libexec/netdata/plugins.d/slabinfo.plugin.org`),
               capabilities: "cap_dac_override+ep",
               owner: nix.thunk(() => nix.sel(cfg, "user")),
@@ -443,9 +443,9 @@ exec ${nix.sel(cfg, "package")}/bin/netdata-claim.sh \\
               permissions: "u+rx,g+x,o-rwx",
             })),
           }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "package", "withIpmi")), nix.thunk(() => ({
-              __proto__: pos$57,
+              [nix.POS]: pos$57,
               "freeipmi.plugin": nix.thunk(() => ({
-                __proto__: pos$56,
+                [nix.POS]: pos$56,
                 source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/libexec/netdata/plugins.d/freeipmi.plugin.org`),
                 capabilities: "cap_dac_override,cap_fowner,cap_sys_rawio+ep",
                 owner: nix.thunk(() => nix.sel(cfg, "user")),
@@ -453,9 +453,9 @@ exec ${nix.sel(cfg, "package")}/bin/netdata-claim.sh \\
                 permissions: "u+rx,g+x,o-rwx",
               })),
             }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "package", "withNetworkViewer")), nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               "network-viewer.plugin": nix.thunk(() => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/libexec/netdata/plugins.d/network-viewer.plugin.org`),
                 capabilities: "cap_sys_admin,cap_dac_read_search,cap_sys_ptrace+ep",
                 owner: nix.thunk(() => nix.sel(cfg, "user")),
@@ -463,9 +463,9 @@ exec ${nix.sel(cfg, "package")}/bin/netdata-claim.sh \\
                 permissions: "u+rx,g+x,o-rwx",
               })),
             }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "package", "withNdsudo")), nix.thunk(() => ({
-              __proto__: pos$61,
+              [nix.POS]: pos$61,
               ndsudo: nix.thunk(() => ({
-                __proto__: pos$60,
+                [nix.POS]: pos$60,
                 source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/libexec/netdata/plugins.d/ndsudo.org`),
                 setuid: true,
                 owner: "root",
@@ -473,9 +473,9 @@ exec ${nix.sel(cfg, "package")}/bin/netdata-claim.sh \\
                 permissions: "u+rx,g+x,o-rwx",
               })),
             }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "package", "withOtel")), nix.thunk(() => ({
-              __proto__: pos$63,
+              [nix.POS]: pos$63,
               "otel-plugin": nix.thunk(() => ({
-                __proto__: pos$62,
+                [nix.POS]: pos$62,
                 source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/libexec/netdata/plugins.d/otel-plugin.org`),
                 setuid: true,
                 owner: "root",
@@ -483,9 +483,9 @@ exec ${nix.sel(cfg, "package")}/bin/netdata-claim.sh \\
                 permissions: "u+rx,g+x,o-rwx",
               })),
             }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "package", "withSystemdJournal")), nix.thunk(() => ({
-              __proto__: pos$65,
+              [nix.POS]: pos$65,
               "systemd-journal.plugin": nix.thunk(() => ({
-                __proto__: pos$64,
+                [nix.POS]: pos$64,
                 source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/libexec/netdata/plugins.d/systemd-journal.plugin.org`),
                 capabilities: "cap_dac_read_search,cap_syslog+ep",
                 owner: nix.thunk(() => nix.sel(cfg, "user")),
@@ -494,17 +494,17 @@ exec ${nix.sel(cfg, "package")}/bin/netdata-claim.sh \\
               })),
             }))))))))),
           pam: nix.thunk(() => ({
-            __proto__: pos$68,
+            [nix.POS]: pos$68,
             loginLimits: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$66,
+                [nix.POS]: pos$66,
                 domain: "netdata",
                 type: "soft",
                 item: "nofile",
                 value: "10000",
               })),
               nix.thunk(() => ({
-                __proto__: pos$67,
+                [nix.POS]: pos$67,
                 domain: "netdata",
                 type: "hard",
                 item: "nofile",
@@ -514,10 +514,10 @@ exec ${nix.sel(cfg, "package")}/bin/netdata-claim.sh \\
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$71,
+          [nix.POS]: pos$71,
           users: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), defaultUser)), nix.thunk(() => nix.attrsDyn({}, [
               [defaultUser, nix.thunk(() => ({
-                __proto__: pos$70,
+                [nix.POS]: pos$70,
                 group: defaultUser,
                 isSystemUser: true,
                 extraGroups: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(config, "virtualisation", "docker", "enable")), "docker"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(config, "virtualisation", "podman", "enable")), "podman"))),

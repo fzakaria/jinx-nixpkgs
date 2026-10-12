@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const stringext = nix.arg($, "stringext");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "gitlab-unix",
       version: nix.thunk(() => nix.attr(gitlab, "version")),
       src: nix.thunk(() => nix.attr(gitlab, "src")),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [gitlab, cmdliner, cohttp_lwt_unix, lwt]),
       checkInputs: nix.thunk(() => [alcotest]),
       doCheck: true,
-      meta: nix.thunk(() => nix.update(nix.sel(gitlab, "meta"), { __proto__: pos$1, description: "Gitlab APIv4 Unix library" })),
+      meta: nix.thunk(() => nix.update(nix.sel(gitlab, "meta"), { [nix.POS]: pos$1, description: "Gitlab APIv4 Unix library" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=unix.ts.map

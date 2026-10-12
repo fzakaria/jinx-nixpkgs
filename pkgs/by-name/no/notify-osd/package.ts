@@ -23,24 +23,24 @@ export default nix.lambda((args) => (() => {
   const gnome_common = nix.arg($, "gnome-common");
   const gsettings_desktop_schemas = nix.arg($, "gsettings-desktop-schemas");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "notify-osd",
       version: "0.9.35+20.04.20191129",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://launchpad.net/ubuntu/+archive/primary/+files/notify-osd_${nix.sel(finalAttrs, "version")}.orig.tar.gz`),
           sha256: "sha256-aSU83HoWhHZtob8NFHFYNUIIZAecvQ/p0z62KMlQNCU=",
           stripRoot: false,
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config, makeWrapper, libtool]),
       buildInputs: nix.thunk(() => [glib, libwnck, libnotify, dbus_glib, gsettings_desktop_schemas, gnome_common]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-fpermissive" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fpermissive" })),
       postPatch: "substituteInPlace src/stack.c \\\n  --replace-fail \"g_memdup\" \"g_memdup2\"\n",
       preConfigure: "NOCONFIGURE=1 ./autogen.sh\n",
       configureFlags: nix.thunk(() => ["--libexecdir=$(out)/bin"]),
       preFixup: "wrapProgram \"$out/bin/notify-osd\" \\\n  --prefix XDG_DATA_DIRS : \"$GSETTINGS_SCHEMAS_PATH\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Daemon that displays passive pop-up notifications",
         mainProgram: "notify-osd",
         homepage: "https://launchpad.net/notify-osd",

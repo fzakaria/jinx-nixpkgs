@@ -16,23 +16,23 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "fakeroute",
       version: "0.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://maxwell.eurofusion.eu/git/rnhmjoj/fakeroute/releases/download/v${nix.sel(finalAttrs, "version")}/fakeroute-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-DoXGJm8vOlAD6ZuvVAt6bkgfahc8WgyYIXCrgqzfiWg=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           fakeroute: nix.thunk(() => nix.sel(nixosTests, "fakeroute")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Make your machine appears to be anywhere on the internet in a traceroute\n",
         homepage: "https://maxwell.eurofusion.eu/git/rnhmjoj/fakeroute",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

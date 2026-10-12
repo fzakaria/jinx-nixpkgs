@@ -46,83 +46,83 @@ export default nix.lambda((args) => (() => {
   const useMysql = nix.thunk(() => nix.eq(nix.sel(cfg, "database", "type"), "mysql"));
   const usePostgresql = nix.thunk(() => nix.eq(nix.sel(cfg, "database", "type"), "postgres"));
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["services", "vikunja", "setupNginx"]), "services.vikunja no longer supports the automatic set up of a nginx virtual host. Set up your own webserver config with a proxy pass to the vikunja service.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         vikunja: nix.thunk(() => (() => {
           const w_1 = nix.withScope(lib, w);
           return {
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             enable: nix.thunk(() => nix.app(nix.lookup(w_1, "mkEnableOption"), "vikunja service")),
             package: nix.thunk(() => nix.app(nix.lookup(w_1, "mkPackageOption"), pkgs, "vikunja", nix.thunk(() => ({})))),
             environmentFiles: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "path")))),
                 default: [],
                 description: "List of environment files set in the vikunja systemd service.\nFor example passwords should be set in one of these files.\n",
               })))),
             frontendScheme: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "enum"), nix.thunk(() => ["http", "https"]))),
                 description: "Whether the site is available via http or https.\n",
               })))),
             frontendHostname: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
                 description: "The Hostname under which the frontend is running.",
               })))),
             address: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
                 default: "",
                 description: "The IP address to bind to.",
               })))),
             port: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "port")),
                 default: 3456n,
                 description: "The TCP port exposed by the API.",
               })))),
             settings: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(format, "type")),
                 default: nix.thunk(() => ({})),
                 description: "Vikunja configuration. Refer to\n<https://vikunja.io/docs/config-options/>\nfor details on supported values.\n",
               })))),
             database: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "enum"), nix.thunk(() => ["sqlite", "mysql", "postgres"]))),
                   example: "postgres",
                   default: "sqlite",
                   description: "Database engine to use.",
                 })))),
               host: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
                   default: "localhost",
                   description: "Database host address. Can also be a socket.",
                 })))),
               user: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
                   default: "vikunja",
                   description: "Database user.",
                 })))),
               database: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
                   default: "vikunja",
                   description: "Database name.",
                 })))),
               path: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
                   default: "/var/lib/vikunja/vikunja.db",
                   description: "Path to the sqlite3 database file.",
@@ -133,17 +133,17 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         services: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           vikunja: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             settings: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               database: nix.thunk(() => (() => {
                 const from = nix.thunk(() => nix.sel(cfg, "database"));
                 return {
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => nix.attr(from, "type")),
                 host: nix.thunk(() => nix.attr(from, "host")),
                 user: nix.thunk(() => nix.attr(from, "user")),
@@ -152,27 +152,27 @@ export default nix.lambda((args) => (() => {
               };
               })()),
               service: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 interface: nix.thunk(() => nix.str`${nix.sel(cfg, "address")}:${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "port")))}`),
                 publicurl: nix.thunk(() => nix.str`${nix.sel(cfg, "frontendScheme")}://${nix.sel(cfg, "frontendHostname")}/`),
               })),
-              files: nix.thunk(() => ({ __proto__: pos$18, basepath: "/var/lib/vikunja/files" })),
+              files: nix.thunk(() => ({ [nix.POS]: pos$18, basepath: "/var/lib/vikunja/files" })),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           services: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             vikunja: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               description: "vikunja",
               after: nix.thunk(() => nix.concat(["network.target"], nix.concat(nix.app(nix.sel(lib, "optional"), usePostgresql, "postgresql.target"), nix.app(nix.sel(lib, "optional"), useMysql, "mysql.service")))),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
               restartTriggers: nix.thunk(() => [configFile]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 Type: "simple",
                 DynamicUser: true,
                 StateDirectory: "vikunja",
@@ -184,10 +184,10 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           etc: nix.thunk(() => ({
-            __proto__: pos$27,
-            "vikunja/config.yaml": nix.thunk(() => ({ __proto__: pos$26, source: configFile })),
+            [nix.POS]: pos$27,
+            "vikunja/config.yaml": nix.thunk(() => ({ [nix.POS]: pos$26, source: configFile })),
           })),
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),

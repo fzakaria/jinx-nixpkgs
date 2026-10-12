@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const dune_site = nix.arg($, "dune-site");
   const ppx_expect = nix.arg($, "ppx_expect");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ocaml-protoc-plugin",
       version: "4.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "issuu",
           repo: "ocaml-protoc-plugin",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       nativeCheckInputs: nix.thunk(() => [protobuf]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Maps google protobuf compiler to Ocaml types",
         homepage: "https://github.com/issuu/ocaml-protoc-plugin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

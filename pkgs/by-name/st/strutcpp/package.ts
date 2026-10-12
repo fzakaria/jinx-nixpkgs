@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const gtest = nix.arg($, "gtest");
   const tinycmmc = nix.arg($, "tinycmmc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "strutcpp",
       version: "0-unstable-2025-07-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Grumbel",
           repo: "strutcpp",
           rev: "3c9cbf6cd0e09b34e464a0ff01aca99290d79870",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DBUILD_TESTS=ON"]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of string utilities",
         homepage: "https://github.com/Grumbel/strutcpp",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "SchweGELBin"))]),

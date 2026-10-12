@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const packages = nix.argOr($, "packages", () => (x) => []);
   const taffybarEnv = nix.thunk(() => nix.app(ghcWithPackages, (self) => nix.concat([nix.thunk(() => nix.sel(self, "taffybar"))], nix.app(packages, self))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "taffybar-with-packages",
       version: nix.thunk(() => nix.attr(taffybar, "version")),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -25,7 +25,7 @@ makeWrapper ${taffybarEnv}/bin/taffybar $out/bin/taffybar \\
 `),
       preferLocalBuild: true,
       allowSubstitutes: false,
-      passthru: nix.thunk(() => ({ __proto__: pos$1, env: taffybarEnv })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, env: taffybarEnv })),
       buildInputs: nix.thunk(() => [taffybarEnv]),
       shellHook: nix.thunk(() => nix.str`eval $(egrep ^export ${taffybarEnv}/bin/ghc)`),
       meta: nix.thunk(() => nix.attr(taffybar, "meta")),

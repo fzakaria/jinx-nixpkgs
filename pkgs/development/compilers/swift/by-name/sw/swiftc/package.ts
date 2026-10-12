@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
       "swift-remote-mirror-headers",
     ]))));
   const build_sdk = nix.thunk(() => (nix.asBool(nix.eq(bootstrapStage, 2n)) ? nix.force(apple_sdk_26) : nix.force(apple_sdk_14)));
-  const swift = nix.thunk(() => (nix.asBool(nix.eq(bootstrapStage, 2n)) ? nix.app(nix.sel(buildSwiftPackages, "swift", "override"), nix.thunk(() => ({ __proto__: pos$1, stdlib: stdlib }))) : nix.sel(buildSwiftPackages, "swift")));
+  const swift = nix.thunk(() => (nix.asBool(nix.eq(bootstrapStage, 2n)) ? nix.app(nix.sel(buildSwiftPackages, "swift", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdlib: stdlib }))) : nix.sel(buildSwiftPackages, "swift")));
   const swift_driver = nix.thunk(() => nix.selOr(swift, () => null, "swift-driver"));
   const clang = nix.thunk(() => nix.attr(llvmPackages, "clang"));
   const clang_unwrapped = nix.thunk(() => nix.attr(llvmPackages, "clang-unwrapped"));
@@ -85,11 +85,11 @@ export default nix.lambda((args) => (() => {
   const swiftComponents$ = nix.thunk(() => nix.app(nix.sel(lib, "filter"), isNotSwiftSyntax, swiftComponents));
   const swiftPlatform = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "swift", "platform"));
   const srcs = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "swift-experimental-string-processing": nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(swift_sources, "swift-experimental-string-processing"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         owner: "swiftlang",
         repo: "swift-experimental-string-processing",
         tag: nix.thunk(() => nix.str`swift-${swift_release}-RELEASE`),
@@ -97,7 +97,7 @@ export default nix.lambda((args) => (() => {
       };
       })()))),
     "swift-syntax": nix.thunk(() => nix.app(srcOnly, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name: nix.thunk(() => nix.attr(swift_syntax, "name")),
         version: nix.thunk(() => nix.attr(swift_syntax, "version")),
         src: nix.thunk(() => nix.attr(swift_syntax, "src")),
@@ -106,14 +106,14 @@ export default nix.lambda((args) => (() => {
       })))),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       pname: nix.thunk(() => nix.add(nix.add("swiftc", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(bootstrapStage, 0n)), "-cxx_bootstrap")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(bootstrapStage, 1n)), "-bootstrap"))),
       version: swift_release,
       outputs: nix.thunk(() => nix.concat(["out", "dev", "doc", "man"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(bootstrapStage, 2n)), nix.thunk(() => ["static"])))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(swift_sources, "swift"));
           return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "swiftlang",
           repo: "swift",
           tag: nix.thunk(() => nix.str`swift-${swift_release}-RELEASE`),
@@ -129,21 +129,21 @@ ln -s ${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.sel(srcs, "s
         nix.path(here, "./patches/0003-cmark-build-revamp.patch"),
         nix.path(here, "./patches/0004-sil-missing-headers.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patches/0005-specify-liblto-path.patch"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             libllvm_path: nix.thunk(() => nix.app(nix.sel(lib, "getLib"), libllvm)),
           })))),
         nix.path(here, "./patches/0006-use-nixpkgs-libdispatch.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patches/0007-Help-Swift-JIT-find-the-separate-stdlib-and-framewor.patch"), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             swiftPlatform: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "swift", "platform")),
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             url: "https://github.com/swiftlang/swift/commit/a5c727125e952839c373fe47e9f9e359db3d4d38.patch?full_index=1",
             hash: "sha256-OoTcPyqTzAhkxaRAMeu+hab3yoIDRPq6YzK5hrLk4Jg=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             url: "https://github.com/swiftlang/swift/commit/cfbe70db5d1e65bed2388f97ee52f65719c812b3.patch?full_index=1",
             hash: "sha256-XxdP3Qs2YfT20d5E216cOQy+fUgYQpwMDWSyl77NQHw=",
           })))),
@@ -228,7 +228,7 @@ grep -q 'set(SWIFT_SDK_\${prefix}_ARCHITECTURES "arm64")' cmake/modules/SwiftCon
             nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_CXX_COMPILER", nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), clang, "clang++")))),
           ]))))))))),
       env: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         NIX_CC_WRAPPER_SUPPRESS_TARGET_WARNING: true,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(["-Wno-error=unguarded-availability"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.eq(bootstrapStage, 2n)) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isElf")))), nix.thunk(() => ["-ffat-lto-objects"])))))),
       })),
@@ -248,7 +248,7 @@ grep -q 'set(SWIFT_SDK_\${prefix}_ARCHITECTURES "arm64")' cmake/modules/SwiftCon
         zlib,
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [build_sdk])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [
           libuuid,
-          nix.thunk(() => nix.app(nix.sel(swift_corelibs_libdispatch, "override"), nix.thunk(() => ({ __proto__: pos$11, useSwift: false })))),
+          nix.thunk(() => nix.app(nix.sel(swift_corelibs_libdispatch, "override"), nix.thunk(() => ({ [nix.POS]: pos$11, useSwift: false })))),
         ]))))),
       doCheck: doCheck,
       postInstall: nix.thunk(() => nix.add(nix.add(nix.add("while IFS= read -d \"\" dylib; do\n  dylib_name=$(basename \"$dylib\")\n  echo \"$dylib: fixing dylib\"\n  install_name_tool \"$dylib\" -id \"$dylib\"\ndone < <(find \"${!outputLib}/lib/swift/host/compiler\" -name '*.dylib' -print0)\nreadarray -t -d \"\" args < <(\n  find \"${!outputLib}/lib/swift/host/compiler\" -name '*.dylib' \\\n    -printf \"-change\\0${!outputLib}/lib/swift/host/%f\\0%p\\0\"\n)\nwhile IFS= read -d \"\" exe; do\n  if [[ \"$exe\" != *.a ]] && LC_ALL=C isMachO \"$exe\"; then\n    res=$(install_name_tool \"$exe\" \"${args[@]}\" 2>&1)\n    if [[ \"$res\" =~ invalidate ]]; then codesign -s - -f \"$exe\"; fi\n  fi\ndone < <(find \"$out\" -type f -print0)\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(stdlib, null)), nix.thunk(() => nix.str`rm -rf "\${!outputLib}/lib/swift/${swiftPlatform}"
@@ -395,12 +395,12 @@ cp -v ../cmake/modules/SwiftUtils.cmake "$static/lib/cmake/modules/SwiftUtils.cm
 cp -v ../cmake/modules/SwiftAddCustomCommandTarget.cmake "$static/lib/cmake/modules/SwiftAddCustomCommandTarget.cmake"
 `))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         supportsMacros: nix.thunk(() => nix.ge(bootstrapStage, 1n)),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         description: "Swift Programming Language",
         homepage: "https://github.com/swiftlang/swift",
         mainProgram: "swiftc",

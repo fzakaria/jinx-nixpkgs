@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const gifsicle = nix.arg($, "gifsicle");
   const gettext = nix.arg($, "gettext");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mtPaint",
       version: "3.50.14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wjaguar",
           repo: "mtPaint",
           rev: "8304376e8861a8a603371b0f188db30f9cafdc17",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [freetype, giflib, gtk3, lcms2, libjpeg, libpng, libtiff, openjpeg, gifsicle]),
       configureFlags: nix.thunk(() => ["gtk3", "intl", "man"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple GTK painting program",
         longDescription: "mtPaint is a simple GTK painting program designed for\ncreating icons and pixel based artwork.  It can edit indexed palette\nor 24 bit RGB images and offers basic painting and palette manipulation\ntools. It also has several other more powerful features such as channels,\nlayers and animation.\nDue to its simplicity and lack of dependencies it runs well on\nGNU/Linux, Windows and older PC hardware.\n",
         homepage: "https://mtpaint.sourceforge.net/",

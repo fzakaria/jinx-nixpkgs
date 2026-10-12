@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.22.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-cTgDmn7PVA2jI3kthZLvmQKx1563jBR9TyBmTeefNoA=",
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [levenshtein]);
       const nativeCheckInputs = nix.thunk(() => [hypothesis, pytestCheckHook]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, speedup: [] }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, speedup: [] }));
       const pythonImportsCheck = nix.thunk(() => ["thefuzz"]);
       const disabledTests = nix.thunk(() => ["test_pep8_conformance"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fuzzy string matching for Python",
         homepage: "https://github.com/seatgeek/thefuzz",
         changelog: nix.thunk(() => nix.str`https://github.com/seatgeek/thefuzz/blob/${version}/CHANGES.rst`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

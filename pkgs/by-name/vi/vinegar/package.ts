@@ -40,26 +40,26 @@ export default nix.lambda((args) => (() => {
   const symlinkJoin = nix.arg($, "symlinkJoin");
   const nix_update_script = nix.arg($, "nix-update-script");
   const kombuchaPatches = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "kombucha",
       owner: "vinegarhq",
       repo: "kombucha",
       rev: "05927db95b427cc5e57856087325806cb20a0124",
       hash: "sha256-gyyf/TVKrc6/cGP9fNKr5+qMo7ucg8l/VIklhVP8kLg=",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),
       })),
     }))));
   const wine = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(wine64Packages, "stable", "override"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       dbusSupport: true,
       embedInstallers: true,
       pulseaudioSupport: true,
       x11Support: true,
       waylandSupport: true,
     }))), "overrideAttrs"), (oldAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       configureFlags: nix.thunk(() => nix.concat(nix.selOr(oldAttrs, () => [], "configureFlags"), [
         "--disable-tests",
         "--disable-win16",
@@ -104,11 +104,11 @@ export default nix.lambda((args) => (() => {
         ])))),
     })));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "vinegar",
       version: "1.9.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "vinegarhq",
           repo: "vinegar",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -148,9 +148,9 @@ substituteInPlace internal/config/values.go \\
   --set-default PUREGOTK_LIB_FOLDER ${nix.sel(finalAttrs, "passthru", "libraryPath")}/lib
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         libraryPath: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: "vinegar-puregotk-lib-folder",
             paths: nix.thunk(() => [
               cairo,
@@ -166,7 +166,7 @@ substituteInPlace internal/config/values.go \\
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         changelog: nix.thunk(() => nix.str`https://github.com/vinegarhq/vinegar/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Open-source, minimal, configurable, fast bootstrapper for running Roblox Studio on Linux",
         homepage: "https://github.com/vinegarhq/vinegar",

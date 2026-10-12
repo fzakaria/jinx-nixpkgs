@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const extraPackages = nix.argOr($, "extraPackages", () => []);
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ags",
       version: "2.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Aylur",
           repo: "ags",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => (() => {
         const depsOf = (pkg) => nix.concat([nix.thunk(() => nix.selOr(pkg, () => nix.force(pkg), "dev"))], nix.builtins.map(depsOf, nix.thunk(() => nix.selOr(pkg, () => [], "propagatedBuildInputs"))));
         const girDirs = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "gir-dirs",
             paths: nix.thunk(() => nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.map(depsOf, nix.thunk(() => nix.sel(finalAttrs, "buildInputs")))))),
           }))));
@@ -77,12 +77,12 @@ export default nix.lambda((args) => (() => {
       })()),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion \\\n  --cmd ags \\\n  --bash <($out/bin/ags completion bash) \\\n  --fish <($out/bin/ags completion fish) \\\n  --zsh <($out/bin/ags completion zsh)\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         bundle: nix.thunk(() => nix.app(callPackage, nix.path(here, "./bundle.nix"), nix.thunk(() => ({})))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Scaffolding CLI for Astal widget system",
         homepage: "https://github.com/Aylur/ags",
         changelog: nix.thunk(() => nix.str`https://github.com/Aylur/ags/releases/tag/v${nix.sel(finalAttrs, "version")}`),

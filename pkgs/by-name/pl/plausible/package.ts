@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
   const version = "3.2.1";
   const mixEnv = "ce";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "plausible",
       repo: "analytics",
       rev: nix.thunk(() => nix.str`v${version}`),
@@ -59,7 +59,7 @@ EOF
 `),
     }))));
   const assets = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.str`${pname}-assets`),
       version: version,
       src: nix.thunk(() => nix.str`${src}/assets`),
@@ -68,7 +68,7 @@ EOF
       installPhase: "runHook preInstall\ncp -r . \"$out\"\nrunHook postInstall\n",
     }))));
   const tracker = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.str`${pname}-tracker`),
       version: version,
       src: nix.thunk(() => nix.str`${src}/tracker`),
@@ -78,14 +78,14 @@ EOF
     }))));
   const lexborCommit = "244b84956a6dc7eec293781d051354f351274c46";
   const lexborSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       owner: "lexbor",
       repo: "lexbor",
       rev: lexborCommit,
       hash: "sha256-Oup/lGU8a9Dqfho4Llg39t9Y9n4xfUmGk0772OkpnLQ=",
     }))));
   const mixFodDeps = nix.thunk(() => nix.app(nix.sel(beamPackages, "fetchMixDeps"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       src: src,
@@ -93,19 +93,19 @@ EOF
       hash: "sha256-fm/elkCNpu5sduBxly06i/z30Y9BMtt+qthXmLuvlUc=",
     }))));
   const mjmlNif = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "mjml-native",
       version: "",
       src: nix.thunk(() => nix.str`${mixFodDeps}/mjml/native/mjml_nif`),
       cargoHash: "sha256-a8xSRdFtMYF0n2rl7A5ZgHoaunUJLVJwHvrkc9uyZKo=",
       doCheck: false,
       env: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         RUSTLER_PRECOMPILED_FORCE_BUILD_ALL: "true",
         RUSTLER_PRECOMPILED_GLOBAL_CACHE_PATH: "unused-but-required",
       })),
     }))));
-  const patchedMixFodDeps = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.sel(mixFodDeps, "name")), nix.thunk(() => ({ __proto__: pos$8, hash: nix.thunk(() => nix.attr(mixFodDeps, "hash")) })), nix.thunk(() => nix.str`mkdir $out
+  const patchedMixFodDeps = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.sel(mixFodDeps, "name")), nix.thunk(() => ({ [nix.POS]: pos$8, hash: nix.thunk(() => nix.attr(mixFodDeps, "hash")) })), nix.thunk(() => nix.str`mkdir $out
 cp -r --no-preserve=mode ${mixFodDeps}/. $out
 
 mkdir -p $out/mjml/priv/native
@@ -123,7 +123,7 @@ mkdir -p $out/lazy_html/_build/c/third_party/lexbor
 cp -r --no-preserve=mode ${lexborSrc} \\
   $out/lazy_html/_build/c/third_party/lexbor/${lexborCommit}
 `)));
-  const beamPackages = nix.thunk(() => nix.app(nix.sel(beam27Packages, "overrideScope"), (final) => (prev) => ({ __proto__: pos$9, elixir: nix.thunk(() => nix.sel(final, "elixir_1_18")) })));
+  const beamPackages = nix.thunk(() => nix.app(nix.sel(beam27Packages, "overrideScope"), (final) => (prev) => ({ [nix.POS]: pos$9, elixir: nix.thunk(() => nix.sel(final, "elixir_1_18")) })));
   return nix.app(nix.sel(beamPackages, "mixRelease"), nix.thunk(() => (() => {
       const pname_1 = pname;
       const version_1 = version;
@@ -134,10 +134,10 @@ cp -r --no-preserve=mode ${lexborSrc} \\
       const mixFodDeps_1 = patchedMixFodDeps;
       const preConfigure = "cat >> config/config.exs <<EOF\nconfig :elixir_make, :force_build, lazy_html: true\nEOF\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         tests: nix.thunk(() => nix.sel(nixosTests, "plausible")),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             extraArgs: nix.thunk(() => ["-s", "tracker", "-s", "assets", "-s", "mjmlNif"]),
           })))),
         assets: assets,
@@ -145,7 +145,7 @@ cp -r --no-preserve=mode ${lexborSrc} \\
         mjmlNif: mjmlNif,
       }));
       const env = nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         APP_VERSION: version_1,
         RUSTLER_PRECOMPILED_FORCE_BUILD_ALL: "true",
         RUSTLER_PRECOMPILED_GLOBAL_CACHE_PATH: "unused-but-required",
@@ -166,7 +166,7 @@ EOF
 `);
       const postBuild = "npm run deploy --prefix ./tracker\n\n# for external task you need a workaround for the no deps check flag\n# https://github.com/phoenixframework/phoenix/issues/2690\nmix do deps.loadpaths --no-deps-check, assets.deploy\nmix do deps.loadpaths --no-deps-check, phx.digest priv/static\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
         homepage: "https://plausible.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/plausible/analytics/blob/${nix.sel(src_1, "rev")}/CHANGELOG.md`),
@@ -182,7 +182,7 @@ EOF
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         pname: pname_1,
         version: version_1,
         src: src_1,

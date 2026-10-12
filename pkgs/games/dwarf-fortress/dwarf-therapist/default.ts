@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "dwarf-therapist";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Dwarf-Therapist",
           repo: "Dwarf-Therapist",
           tag: nix.thunk(() => nix.str`v${version_1}`),
@@ -37,9 +37,9 @@ export default nix.lambda((args) => (() => {
       const cmakeFlags = nix.thunk(() => ["-GNinja", "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"]);
       const installPhase = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "mkdir -p $out/Applications\ncp -r DwarfTherapist.app $out/Applications\n" : null));
       const dontWrapQtApps = true;
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, maxDfVersion: maxDfVersion }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, maxDfVersion: maxDfVersion }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         mainProgram: "dwarftherapist",
         description: "Tool to manage dwarves in a running game of Dwarf Fortress",
         maintainers: nix.thunk(() => (() => {
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         homepage: "https://github.com/Dwarf-Therapist/Dwarf-Therapist",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version: version_1,
         src,

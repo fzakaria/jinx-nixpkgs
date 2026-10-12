@@ -14,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const contrib = nix.arg($, "contrib");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "iaia",
       version: "2017-11-10",
       idrisDeps: nix.thunk(() => [contrib]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sellout",
           repo: "Iaia",
           rev: "dce68d2b63a26dad7c94459773eae2d42686fa05",
           sha256: "0209fhv8x3sw6ijrwc8a85pch97z821ygaz78va3l274xam4l659",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Recursion scheme library for Idris",
         homepage: "https://github.com/sellout/Iaia",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

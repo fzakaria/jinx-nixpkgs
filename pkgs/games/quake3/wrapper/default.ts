@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
     const description = nix.argOr($_1, "description", () => "");
     const libPath = nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libGL, nix.thunk(() => nix.sel(stdenv, "cc", "cc"))])));
     const env = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "quake3-env",
         paths: nix.thunk(() => nix.concat([ioquake3], paks)),
       }))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: nix.thunk(() => nix.str`${pname}-${nix.sel(ioquake3, "name")}`),
         version: version,
         nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -65,7 +65,7 @@ wrapProgram $out/Applications/${pname}.app/Contents/MacOS/ioq3ded \\
           const from = nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "head"), paks), "meta"));
           const from_1 = nix.thunk(() => nix.sel(ioquake3, "meta"));
           return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           mainProgram: nix.thunk(() => nix.str`${pname}`),
           description: nix.thunk(() => nix.attr(from, "description")),
           longDescription: nix.thunk(() => nix.attr(from, "longDescription")),

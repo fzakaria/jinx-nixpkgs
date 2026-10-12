@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.add(nix.add("pcre", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(variant, "cpp")), "-cpp")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(!nix.eq(variant, "cpp")) && nix.asBool(!nix.eq(variant, null)))), variant)));
       const version = "8.45";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/pcre/pcre/${version}/pcre-${version}.tar.bz2`),
           sha256: "sha256-Ta5v3NK7C7bDe1+Xwzwr6VTadDmFNpzdrDVG4yGL/7g=",
         }))));
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [
         nix.path(here, "./stacksize-detection.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "sljit-ppc-icache-flush.patch",
             url: "https://github.com/void-linux/void-packages/raw/d286e231ee680875ad8e80f90ea62e46f5edd812/srcpkgs/pcre/patches/ppc-icache-flush.patch",
             hash: "sha256-pttmKwihLzKrAV6O4qVLp2pu4NwNJEFS/9Id8/b3nAU=",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const postFixup = nix.thunk(() => nix.add("moveToOutput bin/pcre-config \"$dev\"\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(variant, null)), nix.thunk(() => nix.str`ln -sf -t "$out/lib/" '${nix.sel(pcre, "out")}'/lib/libpcre{,posix}.{so.*.*.*,*dylib,*a}
 `))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.pcre.org/",
         description: "Library for Perl Compatible Regular Expressions",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         pkgConfigModules: nix.thunk(() => ["libpcre", "libpcreposix"]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

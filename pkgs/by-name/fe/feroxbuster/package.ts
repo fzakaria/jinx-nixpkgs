@@ -23,24 +23,24 @@ export default nix.lambda((args) => (() => {
       const pname = "feroxbuster";
       const version = "2.13.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "epi052",
           repo: "feroxbuster",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-x0oNgDEuRIHDUUSAiIgcjmm6NadyBFuvz/hOcqquM3g=",
         }))));
       const cargoHash = "sha256-kWRODW1BsnifEqGZj8jK5tUK/5zK1AIRSq3JSo6YmkI=";
-      const env = nix.thunk(() => ({ __proto__: pos$2, OPENSSL_NO_VENDOR: true }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: true }));
       const nativeBuildInputs = nix.thunk(() => [pkg_config, versionCheckHook]);
       const buildInputs = nix.thunk(() => [openssl]);
       const doCheck = false;
       const doInstallCheck = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Recursive content discovery tool",
         homepage: "https://github.com/epi052/feroxbuster",
         changelog: nix.thunk(() => nix.str`https://github.com/epi052/feroxbuster/releases/tag/${nix.sel(src, "tag")}`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "feroxbuster",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

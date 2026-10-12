@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const jansson = nix.arg($, "jansson");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mediasynclite",
       version: "0.4.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "iBroadcastMediaServices",
           repo: "MediaSyncLiteLinux",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       postPatch: "substitute ./src/ibmsl.c ./src/ibmsl.c --subst-var out\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Linux-native graphical uploader for iBroadcast",
         downloadPage: "https://github.com/tobz619/MediaSyncLiteLinuxNix",
         homepage: "https://github.com/iBroadcastMediaServices/MediaSyncLiteLinux",

@@ -17,17 +17,17 @@ export default nix.lambda((args) => (() => {
   const inInitrd = nix.thunk(() => nix.selOr(config, () => false, "boot", "initrd", "supportedFilesystems", "erofs"));
   const inSystem = nix.thunk(() => nix.selOr(config, () => false, "boot", "supportedFilesystems", "erofs"));
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(inInitrd) || nix.asBool(inSystem))), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         system: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           fsPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "erofs-utils"))]),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           initrd: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             availableKernelModules: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), inInitrd, nix.thunk(() => ["erofs"]))),
           })),
         })),

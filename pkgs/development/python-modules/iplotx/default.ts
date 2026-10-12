@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pylint = nix.arg($, "pylint");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "iplotx",
       version: "1.7.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fabilab",
           repo: "iplotx",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [matplotlib, numpy, pandas, pylint]),
       pythonRelaxDeps: nix.thunk(() => ["pylint"]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         igraph: nix.thunk(() => [igraph]),
         networkx: nix.thunk(() => [networkx]),
       })),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => nix.concat([pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
       pythonImportsCheck: nix.thunk(() => ["iplotx"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Plot networkx from igraph and networkx",
         homepage: "https://iplotx.readthedocs.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

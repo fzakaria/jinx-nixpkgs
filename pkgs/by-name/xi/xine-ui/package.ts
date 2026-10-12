@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const xine_lib = nix.arg($, "xine-lib");
   const xorgproto = nix.arg($, "xorgproto");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "xine-ui",
       version: "0.99.14-unstable-2024-08-26",
       src: nix.thunk(() => nix.app(fetchhg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "http://hg.code.sf.net/p/xine/xine-ui",
           rev: "2beaad6bb92e6732585f68af2e346a24e5ad53a5",
           hash: "sha256-Y08JX9q4w6pSJRCa5mWN11BnA6mZJSO/yn3X8YyZ6E4=",
@@ -63,14 +63,14 @@ export default nix.lambda((args) => (() => {
       ]),
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-readline=${nix.sel(readline, "dev")}`)]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         LIRC_CFLAGS: nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getInclude"), lirc)}/include`),
         LIRC_LIBS: nix.thunk(() => nix.str`-L ${nix.app(nix.sel(lib, "getLib"), lirc)}/lib -llirc_client`),
       })),
       postPatch: "substituteInPlace src/common/getopt.h \\\n  --replace-fail 'extern int getopt ();' 'extern int getopt (int ___argc, char *const *___argv, const char *__shortopts);'\n",
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://xine.sourceforge.net/",
         description: "Xlib-based frontend for Xine video player",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

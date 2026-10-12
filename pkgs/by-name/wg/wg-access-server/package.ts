@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nodejs_22 = nix.arg($, "nodejs_22");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "wg-access-server",
       version: "0.13.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "freifunkMUC",
           repo: "wg-access-server",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,12 +34,12 @@ export default nix.lambda((args) => (() => {
         })))),
       proxyVendor: true,
       vendorHash: "sha256-pjQeF1+1gr/0pF76KNdK7GDX3pYBTqqY3xbJeMLsJIM=",
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 1n })),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       checkFlags: nix.thunk(() => ["-skip=TestDNSProxy_ServeDNS"]),
       ui: nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           pname: "wg-access-server-ui",
@@ -58,14 +58,14 @@ wrapProgram  $out/bin/wg-access-server \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [iptables]))}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "wg-access-server": nix.thunk(() => nix.attr(nixosTests, "wg-access-server")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "All-in-one WireGuard VPN solution with a web ui for connecting devices",
         homepage: "https://github.com/freifunkMUC/wg-access-server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

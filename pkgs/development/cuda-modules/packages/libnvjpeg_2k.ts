@@ -13,19 +13,19 @@ export default nix.lambda((args) => (() => {
   const buildRedist = nix.arg($, "buildRedist");
   const lib = nix.arg($, "lib");
   return nix.app(buildRedist, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       redistName: "nvjpeg2000",
       pname: "libnvjpeg_2k",
       outputs: nix.thunk(() => ["out", "dev", "include", "lib", "static"]),
       platformAssertions: nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           message: nix.thunk(() => nix.add("nvJPEG2000 supports CUDA compute capabilities 6.0 and newer", nix.str` (found ${nix.builtins.toJSON(nix.thunk(() => nix.sel(backendStdenv, "cudaCapabilities")))})`)),
           assertion: nix.thunk(() => nix.app(nix.sel(lib, "all"), nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "versionAtLeast")), "6.0")), nix.thunk(() => nix.sel(backendStdenv, "cudaCapabilities")))),
         })),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Accelerates the decoding and encoding of JPEG2000 images on NVIDIA GPUs",
         longDescription: "The nvJPEG2000 library accelerates the decoding and encoding of JPEG2000 images on NVIDIA GPUs.\n",
         homepage: "https://docs.nvidia.com/cuda/nvjpeg2000",

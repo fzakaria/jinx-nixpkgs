@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Yelp",
           repo: "mrjob",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [distutils, pyyaml, standard_pipes]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         aws: nix.thunk(() => [boto3, botocore]),
         google: nix.thunk(() => [google_cloud_dataproc, google_cloud_logging, google_cloud_storage]),
         rapidjson: nix.thunk(() => [python_rapidjson]),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => nix.concat([pyspark, unittestCheckHook, warcio], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const unittestFlagsArray = nix.thunk(() => ["-v"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/Yelp/mrjob/blob/v${version}/CHANGES.txt`),
         description: "Run MapReduce jobs on Hadoop or Amazon Web Services",
         homepage: "https://github.com/Yelp/mrjob",
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -53,11 +53,11 @@ export default nix.lambda((args) => (() => {
     ];
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "radiotray-ng",
       version: "0.2.10.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ebruck",
           repo: "radiotray-ng",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -84,14 +84,14 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_TESTS", nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")))),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=deprecated-declarations" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=deprecated-declarations" })),
       nativeCheckInputs: nix.thunk(() => [gtest]),
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64"))),
       preFixup: nix.thunk(() => nix.str`gappsWrapperArgs+=(--suffix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [dbus]))})
 wrapProgram $out/bin/rt2rtng --prefix PYTHONPATH : $PYTHONPATH
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Internet radio player for linux",
         homepage: "https://github.com/ebruck/radiotray-ng",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const meson = nix.arg($, "meson");
   const ninja = nix.arg($, "ninja");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libgnome-games-support",
       version: "1.8.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libgnome-games-support/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/libgnome-games-support-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "KENGBKewOHMawCMXMTiP8QT1ZbsjMMwk54zaBM/T730=",
         })))),
@@ -37,16 +37,16 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libintl]),
       propagatedBuildInputs: nix.thunk(() => [glib, gtk3, libgee]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             packageName: "libgnome-games-support",
             versionPolicy: "odd-unstable",
             freeze: true,
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Small library intended for internal use by GNOME Games, but it may be used by others",
         homepage: "https://gitlab.gnome.org/GNOME/libgnome-games-support",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

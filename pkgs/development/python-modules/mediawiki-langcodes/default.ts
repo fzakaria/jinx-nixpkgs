@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mediawiki-langcodes",
       version: "0.2.28",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "mediawiki_langcodes",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-ZugyKir6QeFDHghTzCurK1wWV2m+p67EqI2/yAPe0NI=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["mediawiki_langcodes"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Convert MediaWiki language names and language codes",
         homepage: "https://github.com/xxyzz/mediawiki_langcodes",
         changelog: nix.thunk(() => nix.str`https://github.com/xxyzz/mediawiki_langcodes/releases/tag/v${nix.sel(finalAttrs, "version")}`),

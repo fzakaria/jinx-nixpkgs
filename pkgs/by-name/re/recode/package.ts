@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libiconv = nix.arg($, "libiconv");
   const libintl = nix.arg($, "libintl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "recode",
       version: "3.7.17",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/rrthomas/recode/releases/download/v${nix.sel(finalAttrs, "version")}/recode-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Gwrr5yg7ef9GvAoG7iH69ltNCzBGMsvIVXIcJVg9jqM=",
         })))),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/rrthomas/recode",
         description: "Converts files between various character sets and usages",
         mainProgram: "recode",

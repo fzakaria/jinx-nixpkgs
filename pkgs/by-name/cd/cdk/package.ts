@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cdk",
       version: "5.0-20260119",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://invisible-mirror.net/archives/cdk/cdk-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-RrtoRB5pinsfZC4lZJaKdwCv7wOGRCr9XPLnspbTDuU=",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ncurses, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Curses development kit",
         mainProgram: "cdk5-config",
         homepage: "https://invisible-island.net/cdk/",

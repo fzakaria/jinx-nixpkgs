@@ -17,29 +17,29 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gnushogi",
       version: "1.4.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/gnushogi/gnushogi-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-HsxIqGYwPGNlJVKzJdaF5+9emJMkQIApGmHZZQXVKyk=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://sources.debian.org/data/main/g/gnushogi/1.4.2-7/debian/patches/01-make-dont-ignore",
             hash: "sha256-Aw0zfH+wkj+rQQzKIn6bSilP76YIO27FwJ8n1UzG6ow=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://sources.debian.org/data/main/g/gnushogi/1.4.2-7/debian/patches/globals",
             hash: "sha256-wZJBPMYSz4n1kOyLmR9QOp70650R9xXQUWD5hvaMRok=",
           })))),
       ]),
       buildInputs: nix.thunk(() => [zlib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "GNU implementation of Shogi, also known as Japanese Chess",
         mainProgram: "gnushogi",
         homepage: "https://www.gnu.org/software/gnushogi/",

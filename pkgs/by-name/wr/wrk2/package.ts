@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "wrk2";
       const version = nix.thunk(() => nix.str`4.0.0-${nix.builtins.substring(0n, 7n, nix.thunk(() => nix.sel(src, "rev")))}`);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "giltene",
           repo: "wrk2",
           rev: "e0109df5b9de09251adb5f5848f223fbee2aa9f5",
@@ -40,7 +40,7 @@ substituteInPlace ./src/script.c \\
       const dontConfigure = true;
       const installPhase = "mkdir -p $out/bin\nmv ./wrk $out/bin/wrk2\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Constant throughput, correct latency recording variant of wrk",
         homepage: "https://github.com/giltene/wrk2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -53,7 +53,7 @@ substituteInPlace ./src/script.c \\
         mainProgram: "wrk2",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

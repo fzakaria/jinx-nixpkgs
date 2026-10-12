@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const opusfile = nix.arg($, "opusfile");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "squishyball",
       version: "unstable-2021-01-05",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.xiph.org",
           owner: "xiph",
           repo: "squishyball",
@@ -41,13 +41,13 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./gnu-screen.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "ncurses-6.3.patch",
             url: "https://gitlab.xiph.org/xiph/squishyball/uploads/5609ceaf85ebb6dc297c0efe61b9a1b7/0001-mincurses.c-use-ncurses-API-to-enter-raw-mode-ncurse.patch",
             sha256: "06llp7cd77f4vvhz8qdld551dnlpjxf98j7rmp3i1x1kng4f0iy3",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pname: "squishyball",
             version: "0.1~svn19085",
             debianRevision: "8",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-7zXPsJxIpQI2Ro+GNIZEASxHFrRqSUiXjQl9/KeHSAk=",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             pname: "squishyball",
             version: "0.1~svn19085",
             debianRevision: "8",
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "# Why doesn’t this happen automagically?\nmkdir -p $out/share/man/man1\ncp squishyball.1 $out/share/man/man1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Tool to perform sample comparison testing on the command line",
         longDescription: "squishyball is a simple command-line utility for performing\ndouble-blind A/B, A/B/X or X/X/Y testing on the command line.\nThe user specifies two input files to be compared and uses the\nkeyboard during playback to flip between the randomized samples\nto perform on-the-fly compar‐ isons.  After a predetermined\nnumber of trials, squishyball prints the trial results to\nstdout and exits.  Results (stdout) may be redirected to a file\nwithout affecting interactive use of the terminal.\n\nsquishyball can also be used to perform casual, non-randomized\ncomparisons of groups of up to ten samples; this is the default\nmode of operation.\n",
         homepage: "https://gitlab.xiph.org/xiph/squishyball",

@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const srcs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./binary-hashes.nix")), version));
   const unavailable = nix.thunk(() => nix.builtins.throw("libtorch is not available for this platform"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: version,
       pname: "libtorch",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => nix.selOr(srcs, () => nix.force(unavailable), nix.key(nix.str`${nix.sel(stdenv, "hostPlatform", "system")}-${device}`))))),
@@ -88,14 +88,14 @@ done
       })()),
       outputs: nix.thunk(() => ["out", "dev"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
-          cmake: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test"), nix.thunk(() => ({ __proto__: pos$1, cudaSupport: cudaSupport })))),
+          [nix.POS]: pos$2,
+          cmake: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test"), nix.thunk(() => ({ [nix.POS]: pos$1, cudaSupport: cudaSupport })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "C++ API of the PyTorch machine learning framework",
         homepage: "https://pytorch.org/",
         sourceProvenance: nix.thunk(() => (() => {

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mdzk";
       const version = "0.5.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mdzk-rs",
           repo: "mdzk",
           rev: version,
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const cargoPatches = nix.thunk(() => [nix.path(here, "./update-mdbook-for-rust-1.64.patch")]);
       const cargoHash = "sha256-+x4pOtszvdzI/zR55ezcxlS52GrWQTuBn7vbnqDTVac=";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Plain text Zettelkasten based on mdBook",
         homepage: "https://github.com/mdzk-rs/mdzk/",
         changelog: "https://github.com/mdzk-rs/mdzk/blob/main/CHANGELOG.md",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })()),
         mainProgram: "mdzk",
       }));
-      return { __proto__: pos$3, pname, version, src, cargoPatches, cargoHash, meta };
+      return { [nix.POS]: pos$3, pname, version, src, cargoPatches, cargoHash, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

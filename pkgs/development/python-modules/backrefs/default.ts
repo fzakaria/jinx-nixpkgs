@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "facelessuser",
           repo: "backrefs",
           tag: version,
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["backrefs"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, regex]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Wrapper around re or regex that adds additional back references",
         homepage: "https://github.com/facelessuser/backrefs",
         changelog: nix.thunk(() => nix.str`https://github.com/facelessuser/backrefs/releases/tag/${nix.sel(src, "tag")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libtypec";
       const version = "0.6.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libtypec",
           repo: "libtypec",
           rev: nix.thunk(() => nix.str`libtypec-${version}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           homepage: "https://github.com/libtypec/libtypec",
           description: "generic diagnostic tool interface for usb-c ports",
           longDescription: "libtypec is aimed to provide a generic interface abstracting all platform complexity for user space to develop tools for efficient USB-C port management. The library can also enable development of diagnostic and debug tools to debug system issues around USB-C/USB PD topology.",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         };
       })());
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

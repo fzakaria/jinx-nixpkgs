@@ -14,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const hezarfen = nix.arg($, "hezarfen");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "composition",
       version: "2017-11-12",
       idrisDeps: nix.thunk(() => [hezarfen]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vmchale",
           repo: "composition",
           rev: "8f05e8db750793a9992b315dc0a2c327b837ec8b",
           sha256: "05424xzxx6f3ig0ravib15nr34nqvaq8spcj6b1512raqrvkkay8",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Composition extras for Idris",
         homepage: "https://github.com/vmchale/composition",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

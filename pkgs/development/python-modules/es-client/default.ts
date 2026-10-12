@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "9.0.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "untergeek",
           repo: "es_client",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         "TestCLIExample",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module for building Elasticsearch client objects",
         homepage: "https://github.com/untergeek/es_client",
         changelog: nix.thunk(() => nix.str`https://github.com/untergeek/es_client/releases/tag/${nix.sel(src, "tag")}`),
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

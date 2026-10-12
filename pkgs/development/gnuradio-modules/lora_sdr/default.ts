@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const python = nix.arg($, "python");
   const gnuradioOlder = nix.arg($, "gnuradioOlder");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gr-lora_sdr",
       version: "0-unstable-2026-01-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tapparelj",
           repo: "gr-lora_sdr",
           rev: "862746dd1cf635c9c8a4bfbaa2c3a0ec3a5306c9",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "ENABLE_PYTHON", nix.thunk(() => nix.app(nix.sel(gnuradio, "hasFeature"), "python-support")))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fully-functional GNU Radio software-defined radio (SDR) implementation of a LoRa transceiver",
         homepage: "https://www.epfl.ch/labs/tcl/resources-and-sw/lora-phy/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

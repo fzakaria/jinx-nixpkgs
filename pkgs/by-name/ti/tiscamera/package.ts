@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const withGui = nix.argOr($, "withGui", () => true);
   const qt5 = nix.arg($, "qt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tiscamera",
       version: "1.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TheImagingSource",
           repo: "tiscamera",
           rev: nix.thunk(() => nix.str`v-tiscamera-${nix.sel(finalAttrs, "version")}`),
@@ -94,7 +94,7 @@ substituteInPlace ./data/udev/80-theimagingsource-cameras.rules.in \\
       doCheck: true,
       checkPhase: "ctest --force-new-ctest-process -E gstreamer",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         GI_TYPELIB_PATH: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/girepository-1.0`),
         GST_PLUGIN_SYSTEM_PATH_1_0: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/gstreamer-1.0`),
         QT_PLUGIN_PATH: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withGui, nix.thunk(() => nix.str`${nix.sel(qt5, "qtbase", "bin")}/${nix.sel(qt5, "qtbase", "qtPluginPrefix")}`))),
@@ -104,7 +104,7 @@ substituteInPlace ./data/udev/80-theimagingsource-cameras.rules.in \\
       doInstallCheck: true,
       preFixup: "gappsWrapperArgs+=(\"${qtWrapperArgs[@]}\")\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Linux sources and UVC firmwares for The Imaging Source cameras",
         homepage: "https://github.com/TheImagingSource/tiscamera",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

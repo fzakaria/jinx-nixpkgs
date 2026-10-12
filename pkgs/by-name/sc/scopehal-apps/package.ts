@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const wayland_scanner = nix.arg($, "wayland-scanner");
   const version = "0.3";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "scopehal-apps",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ngscopeclient",
           repo: "scopehal-apps",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -73,7 +73,7 @@ makeWrapper $out/bin/.ngscopeclient-unwrapped $out/bin/ngscopeclient \\
 `))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications/ngscopeclient.app/Contents/{MacOS,Resources}\n\ninstall -m644 {../src/ngscopeclient/icons/macos,$out/Applications/ngscopeclient.app/Contents/Resources}/ngscopeclient.icns\n\nwrite-darwin-bundle $out ngscopeclient ngscopeclient ngscopeclient\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Advanced test & measurement remote control and analysis suite",
         homepage: "https://www.ngscopeclient.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

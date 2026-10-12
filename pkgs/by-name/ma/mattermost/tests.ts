@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const net_tools = nix.arg($, "net-tools");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(nix.sel(mattermost, "overrideAttrs"), (final) => (prev) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       doCheck: true,
       checkTargets: nix.thunk(() => ["test-mmctl"]),
       nativeCheckInputs: nix.thunk(() => [which, postgresql, redis, curl, net_tools, gotestsum]),

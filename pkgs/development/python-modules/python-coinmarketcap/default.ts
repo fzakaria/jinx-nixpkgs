@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "python-coinmarketcap",
       version: "0.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rsz44",
           repo: "python-coinmarketcap",
           rev: "de069d55d7cc5eea9cd194b47d4609c4846d59d1",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["coinmarketcapapi"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python package to wrap the CoinMarketCap API",
         homepage: "https://github.com/rsz44/python-coinmarketcap",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

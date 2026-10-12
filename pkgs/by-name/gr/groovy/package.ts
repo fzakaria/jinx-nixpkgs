@@ -21,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "groovy",
       version: "5.0.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://apache/groovy/${nix.sel(finalAttrs, "version")}/distribution/apache-groovy-binary-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-Xl6aRo1DRODI7gzWjGJ1HM9OX4+E162birxqAQFLn3k=",
         })))),
       nativeBuildInputs: nix.thunk(() => [makeWrapper, unzip, installShellFiles, copyDesktopItems]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "groovy",
             desktopName: "Groovy Console",
             exec: "groovyConsole",
@@ -74,7 +74,7 @@ done
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Agile dynamic language for the Java Platform",
         homepage: "http://groovy-lang.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

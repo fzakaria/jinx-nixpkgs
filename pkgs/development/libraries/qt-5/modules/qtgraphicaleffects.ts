@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const qtModule = nix.arg($, "qtModule");
   const qtdeclarative = nix.arg($, "qtdeclarative");
   return nix.app(qtModule, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "qtgraphicaleffects",
       propagatedBuildInputs: nix.thunk(() => [qtdeclarative]),
       outputs: nix.thunk(() => ["out", "dev"]),

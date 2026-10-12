@@ -15,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const pam = nix.arg($, "pam");
   const libkrb5 = nix.arg($, "libkrb5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pam-krb5",
       version: "4.11",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://archives.eyrie.org/software/kerberos/pam-krb5-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-UDy+LLGv9L39o7z3+T+U+2ulLCbXCJNOcDmyGC/hCyA=",
         })))),
       buildInputs: nix.thunk(() => [pam, libkrb5]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.eyrie.org/~eagle/software/pam-krb5/",
         description: "PAM module allowing PAM-aware applications to authenticate users by performing an AS exchange with a Kerberos KDC",
         longDescription: "pam_krb5 can optionally convert Kerberos 5 credentials to Kerberos IV\ncredentials and/or use them to set up AFS tokens for a user's session.\n",

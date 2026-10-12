@@ -17,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const mono = nix.arg($, "mono");
   const version = "1.8.4.2";
   const drv = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "keepasshttp",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pfn",
           repo: "keepasshttp",
           rev: "c2c4eb5388a02169400cba7a67be325caabdcc37",
           sha256: "0bkzxggbqx7sql3sp46bqham6r457in0vrgh3ai3lw2jrw79pwmh",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "KeePass plugin to expose password entries securely (256bit AES/CBC) over HTTP",
         homepage: "https://github.com/pfn/keepasshttp",
         platforms: nix.thunk(() => (() => {
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -p $out/lib/dotnet/keepass/\ncp $pluginFilename $out/lib/dotnet/keepass/$pluginFilename\n",
     }))));
   return nix.app(buildEnv, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.attr(drv, "pname")),
       version: nix.thunk(() => nix.attr(drv, "version")),
       paths: nix.thunk(() => [mono, drv]),

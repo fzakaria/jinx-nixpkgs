@@ -40,53 +40,53 @@ export default nix.lambda((args) => (() => {
   const generateSplicesForMkScope = nix.arg($, "generateSplicesForMkScope");
   const patchesFn = nix.argOr($, "patchesFn", () => nix.sel(lib, "id"));
   const versions = nix.thunk(() => nix.update({
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     "18.1.8": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       officialRelease: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         sha256: "sha256-iiZKMRo/WxJaBXct9GdAcAT3cz9d9pnAcO1mmR6oPNE=",
       })),
     })),
     "19.1.7": nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       officialRelease: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         sha256: "sha256-cZAB5vZjeTsXt9QHbP5xluWNQnAHByHtHnAhVDV0E6I=",
       })),
     })),
     "20.1.8": nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       officialRelease: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         sha256: "sha256-ysyB/EYxi2qE9fD5x/F2zI4vjn8UDoo1Z9ukiIrjFGw=",
       })),
     })),
     "21.1.8": nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       officialRelease: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         sha256: "sha256-pgd8g9Yfvp7abjCCKSmIn1smAROjqtfZaJkaUkBSKW0=",
       })),
     })),
     "22.1.8": nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       officialRelease: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         sha256: "sha256-SF7wFuh4kXZTytpdgX7vUZItKtRobnVICm+ixze4iG0=",
       })),
     })),
     "23.1.3": nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       officialRelease: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         sha256: "sha256-+e5YvYEbCvvEQbLVIQP5hwPp4tEk6EB270bSEMKv0t4=",
       })),
     })),
     "24.0.0-git": nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       gitRelease: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         rev: "316d12deb7725d55f90c01b72799df18a7d71d81",
         "rev-version": "24.0.0-unstable-2026-09-20",
         sha256: "sha256-pmO1sZTiiQ8rx56RnltanWKFq4A/HevJJNar5cWEz0E=",
@@ -102,7 +102,7 @@ export default nix.lambda((args) => (() => {
     const monorepoSrc = nix.argOr($_1, "monorepoSrc", () => null);
     const version = nix.argOr($_1, "version", () => null);
     const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common/common-let.nix")), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         lib: lib,
         gitRelease: gitRelease,
         officialRelease: officialRelease,
@@ -112,7 +112,7 @@ export default nix.lambda((args) => (() => {
     const release_version = nix.thunk(() => nix.attr(releaseInfo, "release_version"));
     const attrName = nix.thunk(() => nix.selOr(args_2, () => (nix.asBool(!nix.eq(gitRelease, null)) ? "git" : nix.app(nix.sel(lib, "versions", "major"), release_version)), "name"));
     return nix.app(nix.sel(lib, "nameValuePair"), attrName, nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(callPackage, nix.path(here, "./common"), nix.thunk(() => nix.update({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             overrideCC: nix.thunk(() => nix.attr(stdenvAdapters, "overrideCC")),
             officialRelease: officialRelease,
             gitRelease: gitRelease,
@@ -124,7 +124,7 @@ export default nix.lambda((args) => (() => {
             otherSplices: nix.thunk(() => nix.app(generateSplicesForMkScope, nix.thunk(() => nix.str`llvmPackages_${attrName}`))),
           }, packageSetArgs)))))));
   })(), formals$2);
-  const llvmPackages = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (version) => (args_1) => nix.app(mkPackage, nix.thunk(() => nix.update(args_1, { __proto__: pos$18, version: version }))), versions));
-  return nix.update(llvmPackages, { __proto__: pos$19, mkPackage: mkPackage, versions: versions });
+  const llvmPackages = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (version) => (args_1) => nix.app(mkPackage, nix.thunk(() => nix.update(args_1, { [nix.POS]: pos$18, version: version }))), versions));
+  return nix.update(llvmPackages, { [nix.POS]: pos$19, mkPackage: mkPackage, versions: versions });
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

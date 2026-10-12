@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const guile_lib = nix.arg($, "guile-lib");
   const guix = nix.arg($, "guix");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "guile-hall",
       version: "0.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "a-sassmannshausen",
           repo: "guile-hall",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,7 +47,7 @@ $out/bin/hall --version | grep ${nix.sel(finalAttrs, "version")} > /dev/null
 runHook postInstallCheck
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Project manager and build tool for GNU guile",
         mainProgram: "hall",
         homepage: "https://gitlab.com/a-sassmannshausen/guile-hall",

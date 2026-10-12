@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bugdom",
       version: "1.3.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jorio",
           repo: "bugdom",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,7 +43,7 @@ sed -i '/plutil/d' CMakeLists.txt
         ]))),
       installPhase: nix.thunk(() => nix.add(nix.add("runHook preInstall\n\n", (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "mkdir -p $out/{bin,Applications}\nmv {,$out/Applications/}Bugdom.app\nmakeWrapper $out/{Applications/Bugdom.app/Contents/MacOS,bin}/Bugdom\n" : "mkdir -p $out/share/bugdom\nmv Data $out/share/bugdom\ninstall -Dm755 {.,$out/bin}/Bugdom\nwrapProgram $out/bin/Bugdom --run \"cd $out/share/bugdom\"\ninstall -Dm644 $src/packaging/io.jor.bugdom.desktop $out/share/applications/io.jor.bugdom.desktop\ninstall -Dm644 $src/packaging/io.jor.bugdom.png -t $out/share/icons/hicolor/512x512/apps\n")), "\nrunHook postInstall\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Port of Bugdom, a 1999 Macintosh game by Pangea Software, for modern operating systems",
         homepage: "https://github.com/jorio/Bugdom",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),

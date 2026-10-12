@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const libxcursor = nix.arg($, "libxcursor");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "rusty-path-of-building",
       version: "0.2.18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "meehl",
           repo: "rusty-path-of-building",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(luajit, "pkgs", "luautf8")),
         nix.thunk(() => nix.sel(luajit, "pkgs", "luasocket")),
         nix.thunk(() => nix.app(nix.sel(luajit, "pkgs", "buildLuaPackage"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: "lzip",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/lua/libs/lzip`),
@@ -69,7 +69,7 @@ wrapProgram $out/bin/rusty-path-of-building \\
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "rusty-path-of-building-1",
             desktopName: "Path of Building",
             comment: "Offline build planner for Path of Exile",
@@ -82,7 +82,7 @@ wrapProgram $out/bin/rusty-path-of-building \\
             mimeTypes: nix.thunk(() => ["x-scheme-handler/pob"]),
           })))),
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "rusty-path-of-building-2",
             desktopName: "Path of Building 2",
             comment: "Offline build planner for Path of Exile 2",
@@ -95,7 +95,7 @@ wrapProgram $out/bin/rusty-path-of-building \\
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "A cross-platform runtime for Path of Building and Path of Building 2.",
         homepage: "https://github.com/meehl/rusty-path-of-building",
         changelog: nix.thunk(() => nix.str`https://github.com/meehl/rusty-path-of-building/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

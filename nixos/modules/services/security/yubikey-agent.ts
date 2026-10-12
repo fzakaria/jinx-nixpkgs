@@ -25,9 +25,9 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "yubikey-agent"));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -37,13 +37,13 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "yubikey-agent": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to start yubikey-agent when you log in.  Also sets\nSSH_AUTH_SOCK to point at yubikey-agent.\n\nNote that yubikey-agent will use whatever pinentry is\nspecified in programs.gnupg.agent.pinentryPackage.\n",
@@ -53,21 +53,21 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         environment: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           extraInit: "if [ -z \"$SSH_AUTH_SOCK\" -a -n \"$XDG_RUNTIME_DIR\" ]; then\n  export SSH_AUTH_SOCK=\"$XDG_RUNTIME_DIR/yubikey-agent/yubikey-agent.sock\"\nfi\n",
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           user: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             services: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               "yubikey-agent": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(config, "programs", "gnupg", "agent", "pinentryPackage"), null)), nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   path: nix.thunk(() => [
                     nix.thunk(() => nix.sel(config, "programs", "gnupg", "agent", "pinentryPackage")),
                   ]),
@@ -77,8 +77,8 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$12,
-          pcscd: nix.thunk(() => ({ __proto__: pos$11, enable: true })),
+          [nix.POS]: pos$12,
+          pcscd: nix.thunk(() => ({ [nix.POS]: pos$11, enable: true })),
         })),
       })))),
   };

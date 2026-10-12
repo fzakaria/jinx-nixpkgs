@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "frink";
       const version = "2025-01-07";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://web.archive.org/web/20250119105218/https://frinklang.org/frinkjar/frink-tng.jar",
           sha256: "sha256-qsbYUUBBVILUG6oZVR3t5UaVdNew6xRvjqQBJVr76L8=",
         }))));
@@ -55,7 +55,7 @@ chmod a+x "$out/bin/frink"
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Practical calculating tool and programming language",
         homepage: "https://frinklang.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -63,14 +63,14 @@ runHook postInstall
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "stefanfehrenbach"))]),
       }));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          callFrinkVersion: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$3, package: frink, command: "frink -e 'FrinkVersion[]'" })))),
+          [nix.POS]: pos$4,
+          callFrinkVersion: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: frink, command: "frink -e 'FrinkVersion[]'" })))),
         })),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

@@ -19,22 +19,22 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const zones = nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: ".",
       master: true,
       file: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "root.zone", "$TTL 3600\n. IN SOA ns.example.org. admin.example.org. ( 1 3h 1h 1w 1d )\n. IN NS ns.example.org.\n\nns.example.org. IN A    192.168.0.1\nns.example.org. IN AAAA abcd::1\n\n1.0.168.192.in-addr.arpa IN PTR ns.example.org.\n")),
     }))));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     name: "bind",
     nodes: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       machine: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         services: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           bind: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             enable: true,
             extraOptions: "empty-zones-enable no;",
             zones: zones,
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       machineNonDefaultPort: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         services: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           bind: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: true,
             extraOptions: "empty-zones-enable no;",
             zones: zones,

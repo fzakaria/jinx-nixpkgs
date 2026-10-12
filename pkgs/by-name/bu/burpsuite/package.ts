@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const pname = "burpsuite";
   const version = "2026.8";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "burpsuite.jar",
       urls: nix.thunk(() => [
         nix.thunk(() => nix.str`https://portswigger-cdn.net/burp/releases/download?product=desktop&version=${version}&type=Jar`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const description = "Integrated platform for performing security testing of web applications";
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: pname,
       exec: pname,
       icon: pname,
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       categories: nix.thunk(() => ["Development", "Security", "System"]),
     }))));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       runScript: nix.thunk(() => nix.add(nix.str`${nix.app(nix.sel(lib, "getExe"), jdk)} -jar ${src} --suppress-jre-check --disable-check-for-updates-dialog --disable-auto-update`, nix.app(nix.sel(lib, "optionalString"), licenseAccepted, " --i-accept-the-license-agreement"))),
@@ -83,9 +83,9 @@ export default nix.lambda((args) => (() => {
 ${nix.app(nix.sel(lib, "getBin"), unzip)}/bin/unzip -p ${src} resources/Media/icon64${iconName}.png > "$out/share/icons/hicolor/64x64/apps/burpsuite.png"
 cp -r ${desktopItem}/share/applications $out/share
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: description,
         longDescription: "Burp Suite is an integrated platform for performing security testing of web applications.\nIts various tools work seamlessly together to support the entire testing process, from\ninitial mapping and analysis of an application's attack surface, through to finding and\nexploiting security vulnerabilities.\n",
         homepage: "https://portswigger.net/burp/",

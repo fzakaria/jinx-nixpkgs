@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.9";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-gkgLAedUtzGv/4P+D56M2Pb5YecyqyVYp06ST62sjdY=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [click, prompt_toolkit, pygments, requests, sqlparse]);
       const pythonImportsCheck = nix.thunk(() => ["clickhouse_cli"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Third-party client for the Clickhouse DBMS server",
         mainProgram: "clickhouse-cli",
         homepage: "https://github.com/hatarist/clickhouse-cli",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

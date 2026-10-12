@@ -42,9 +42,9 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const enableEnterprise = nix.argOr($, "enableEnterprise", () => false);
   const version = "1.0.4";
-  const updateScript = nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$1, "rev-prefix": "v", ignoredVersions: "rc" }))));
+  const updateScript = nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$1, "rev-prefix": "v", ignoredVersions: "rc" }))));
   const commonMeta = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     description: "Cloud-native observability platform built specifically for logs, metrics, traces, analytics & realtime user-monitoring",
     mainProgram: "openobserve",
     maintainers: nix.thunk(() => (() => {
@@ -57,13 +57,13 @@ export default nix.lambda((args) => (() => {
     })()),
   }));
   return (nix.asBool(enableEnterprise) ? nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "openobserve-ee",
       version: version,
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://downloads.openobserve.ai/releases/o2-enterprise/v${nix.sel(finalAttrs, "version")}/openobserve-ee-v${nix.sel(finalAttrs, "version")}-linux-amd64-musl.tar.gz`),
           hash: "sha256-vp/l/22a2bgN9pWJ9ZlLZFz+D6HMNCZGnWx/Q69KsM4=",
         })))),
@@ -74,16 +74,16 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\ninstallBin openobserve\nrunHook postInstall\n",
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
-      passthru: nix.thunk(() => ({ __proto__: pos$4, updateScript: updateScript })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: updateScript })),
       meta: nix.thunk(() => nix.update(commonMeta, {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://openobserve.ai/",
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
           return [nix.thunk(() => nix.lookup(w, "binaryNativeCode"))];
         })()),
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             shortName: "openObserveEE",
             fullName: "OpenObserve Enterprise Edition License Agreement",
             url: "https://openobserve.ai/legal/enterprise-license/",
@@ -94,14 +94,14 @@ export default nix.lambda((args) => (() => {
       })),
     })) : nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => (() => {
       const o2Datasource = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           owner: "openobserve",
           repo: "o2-datasource",
           rev: "7ea74ba2b8eabe5758c81b928a835144dc1f7f60",
           hash: "sha256-vORes6FEbhijRLTWjEaB+KHOUls2CGBED6WzLF3stnM=",
         }))));
       const web = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "openobserve-ui",
@@ -121,7 +121,7 @@ cat > src/assets/ai-datasource-content/generated/.fetch.json <<EOF
 EOF
 `),
           env: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             NODE_OPTIONS: "--max-old-space-size=8192",
             CYPRESS_INSTALL_BINARY: 0n,
             DS_CONTENT_FORCE: "",
@@ -129,11 +129,11 @@ EOF
           installPhase: "runHook preInstall\nmkdir -p $out/share\ncp -R dist $out/share/openobserve-ui\nrunHook postInstall\n",
         }))));
       return {
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         pname: "openobserve",
         version: version,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             owner: "openobserve",
             repo: "openobserve",
             tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -147,7 +147,7 @@ EOF
         nativeBuildInputs: nix.thunk(() => [pkg_config, protobuf]),
         buildInputs: nix.thunk(() => [bzip2, oniguruma, sqlite, xz, zlib, zstd]),
         env: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           LIBCLANG_PATH: nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libclang]))),
           RUSTONIG_SYSTEM_LIBONIG: true,
           ZSTD_SYS_USE_PKG_CONFIG: true,
@@ -159,7 +159,7 @@ EOF
           SWAGGER_UI_DOWNLOAD_URL: nix.thunk(() => (() => {
             const swaggerUiVersion = "5.17.14";
             const swaggerUi = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 url: nix.thunk(() => nix.str`https://github.com/swagger-api/swagger-ui/archive/refs/tags/v${swaggerUiVersion}.zip`),
                 hash: "sha256-SBJE0IEgl7Efuu73n3HZQrFxYX+cn5UU5jrL4T5xzNw=",
               }))));
@@ -185,9 +185,9 @@ EOF
         ]),
         doInstallCheck: true,
         nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
-        passthru: nix.thunk(() => ({ __proto__: pos$14, updateScript: updateScript })),
+        passthru: nix.thunk(() => ({ [nix.POS]: pos$14, updateScript: updateScript })),
         meta: nix.thunk(() => nix.update(commonMeta, {
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           homepage: "https://github.com/openobserve/openobserve",
           changelog: nix.thunk(() => nix.str`https://github.com/openobserve/openobserve/releases/tag/v${nix.sel(finalAttrs, "version")}`),
           license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

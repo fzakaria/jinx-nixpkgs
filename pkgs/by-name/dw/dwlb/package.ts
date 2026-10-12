@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const withCustomConfigH = nix.argOr($, "withCustomConfigH", () => !nix.eq(configH, null));
   const configH = nix.argOr($, "configH", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "dwlb",
       version: "0-unstable-2025-05-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kolunmi",
           repo: "dwlb",
           rev: "48dbe00bdb98a1ae6a0e60558ce14503616aa759",
@@ -41,14 +41,14 @@ export default nix.lambda((args) => (() => {
         const configFile = nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "isDerivation"), configH)) || nix.asBool(nix.builtins.isPath(configH)))) ? nix.force(configH) : nix.app(writeText, "config.h", configH)));
         return nix.app(nix.sel(lib, "optionalString"), withCustomConfigH, nix.thunk(() => nix.str`cp ${configFile} config.h`));
       })()),
-      env: nix.thunk(() => ({ __proto__: pos$2, PREFIX: nix.thunk(() => nix.builtins.placeholder("out")) })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, PREFIX: nix.thunk(() => nix.builtins.placeholder("out")) })),
       outputs: nix.thunk(() => ["out", "man"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Fast, feature-complete bar for dwl",
         homepage: "https://github.com/kolunmi/dwlb",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

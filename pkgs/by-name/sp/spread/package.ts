@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const gzip = nix.arg($, "gzip");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "spread",
       version: "2026.07.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "canonical",
           repo: "spread",
           rev: "d6447c43754c8ca0741901e9db73d5fdb4d21c93",
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/spread --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [bash, coreutils, gnutar, gzip]))}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         mainProgram: "spread",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
         description: "Convenient full-system test (task) distribution",

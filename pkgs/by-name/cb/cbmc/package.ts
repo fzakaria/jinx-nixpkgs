@@ -30,27 +30,27 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "cbmc",
       version: "6.11.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "diffblue",
           repo: "cbmc",
           tag: nix.thunk(() => nix.str`cbmc-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-GHpgcGBE/AAhTVxGVzTPMdZ8BkuXa7/OgMumZJ8ENRc=",
         })))),
       srcglucose: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "brunodutertre",
           repo: "glucose-syrup",
           rev: "0bb2afd3b9baace6981cbb8b4a1c7683c44968b7",
           hash: "sha256-+KrnXEJe7ApSuj936T615DaXOV+C2LlRxc213fQI+Q4=",
         })))),
-      srccadical: nix.thunk(() => nix.sel(nix.app(nix.sel(cadical, "override"), nix.thunk(() => ({ __proto__: pos$3, version: "3.0.0" }))), "src")),
+      srccadical: nix.thunk(() => nix.sel(nix.app(nix.sel(cadical, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, version: "3.0.0" }))), "src")),
       nativeBuildInputs: nix.thunk(() => [bison, cmake, flex, perl, makeWrapper]),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-Do-not-download-sources-in-cmake.patch"), nix.thunk(() => ({ __proto__: pos$4, cudd: nix.thunk(() => nix.sel(cudd, "src")) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-Do-not-download-sources-in-cmake.patch"), nix.thunk(() => ({ [nix.POS]: pos$4, cudd: nix.thunk(() => nix.sel(cudd, "src")) })))),
         nix.path(here, "./0002-Do-not-download-sources-in-cmake.patch"),
       ]),
       postPatch: nix.thunk(() => nix.add(nix.str`# fix library_check.sh interpreter error
@@ -69,7 +69,7 @@ substituteInPlace src/solvers/CMakeLists.txt \\
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "cc", "isGNU"))), "# goto-gcc rely on gcc\nsubstituteInPlace \"regression/CMakeLists.txt\" \\\n  --replace-fail \"add_subdirectory(goto-gcc)\" \"\"\n"))),
       postInstall: "# goto-cc expects ls_parse.py in PATH\nmkdir -p $out/share/cbmc\nmv $out/bin/ls_parse.py $out/share/cbmc/ls_parse.py\nchmod +x $out/share/cbmc/ls_parse.py\nwrapProgram $out/bin/goto-cc \\\n  --prefix PATH : \"$out/share/cbmc\"\n",
       env: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => [
               "-Wno-unused-command-line-argument",
               "-Wno-error=unused-but-set-variable",
@@ -86,14 +86,14 @@ substituteInPlace src/solvers/CMakeLists.txt \\
       doInstallCheck: true,
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/cbmc`),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             extraArgs: nix.thunk(() => ["--version-regex", "cbmc-(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Bounded Model Checker for C and C++ programs",
         homepage: "http://www.cprover.org/cbmc/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsdOriginal")),

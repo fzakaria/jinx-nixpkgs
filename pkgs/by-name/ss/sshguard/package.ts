@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const bison = nix.arg($, "bison");
   const flex = nix.arg($, "flex");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "2.5.1",
       pname: "sshguard",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/sshguard/sshguard-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-mXoeDsKyFltHV8QviUgWLrU0GDlGr1LvxAaIXZfLifw=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, bison, flex]),
       configureFlags: nix.thunk(() => ["--sysconfdir=/etc"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Protects hosts from brute-force attacks",
         mainProgram: "sshguard",
         longDescription: "SSHGuard can read log messages from various input sources. Log messages are parsed, line-by-line, for recognized patterns.\nIf an attack, such as several login failures within a few seconds, is detected, the offending IP is blocked.\n",

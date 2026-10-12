@@ -21,14 +21,14 @@ export default nix.lambda((args) => (() => {
       const pname = "ebook2cw";
       const version = "0.8.4";
       const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.fkurz.net/dj1yfk/ebook2cw.git",
           rev: nix.thunk(() => nix.str`${pname}-${version}`),
           sha256: "0h7lg59m3dcydzkc8szipnwzag8fqwwvppa9fspn5xqd4blpcjd5",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://git.fkurz.net/dj1yfk/ebook2cw/commit/eb5742e70b042cf98a04440395c34390b171c035.patch",
             sha256: "1m5f819cj3fj1piss0a5ciib3jqrqdc14lp3i3dszw4bg9v1pgyd",
           })))),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [lame, libvorbis, gettext]);
       const makeFlags = nix.thunk(() => ["DESTDIR=$(out)"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Convert ebooks to Morse MP3s/OGGs",
         homepage: "https://fkurz.net/ham/ebook2cw.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
         mainProgram: "ebook2cw",
       }));
-      return { __proto__: pos$4, pname, version, src, patches, buildInputs, makeFlags, meta };
+      return { [nix.POS]: pos$4, pname, version, src, patches, buildInputs, makeFlags, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

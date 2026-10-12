@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "deadbeef-waveform-seekbar-plugin",
       version: "0-unstable-2024-11-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Jbsco",
           repo: "ddb_waveform_seekbar",
           rev: "2e5ea867a77e37698524d22f41fc59ffae16e63d",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["gtk3"]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib/deadbeef/\ninstall -v -c -m 644 gtk3/ddb_misc_waveform_GTK3.so $out/lib/deadbeef/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Waveform Seekbar plugin for DeaDBeeF audio player",
         homepage: "https://github.com/cboxdoerfer/ddb_waveform_seekbar",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

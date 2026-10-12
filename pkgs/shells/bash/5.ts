@@ -35,17 +35,17 @@ export default nix.lambda((args) => (() => {
   const forFHSEnv = nix.argOr($, "forFHSEnv", () => false);
   const pkgsStatic = nix.arg($, "pkgsStatic");
   const upstreamPatches = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./bash-5.3-patches.nix")), (nr) => (sha256) => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: nix.thunk(() => nix.str`mirror://gnu/bash/bash-5.3-patches/bash53-${nr}`),
         sha256: sha256,
       })))));
   return nix.app(nix.sel(lib, "warnIf"), nix.thunk(() => !nix.eq(withDocs, null)), "bash: `.override { withDocs = true; }` is deprecated, the docs are always included.\n", nix.thunk(() => nix.sel(stdenv, "mkDerivation")), (fa) => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: nix.thunk(() => nix.str`bash${nix.app(nix.sel(lib, "optionalString"), interactive, "-interactive")}`),
       version: nix.thunk(() => nix.str`5.3${nix.sel(fa, "patch_suffix")}`),
       patch_suffix: nix.thunk(() => nix.str`p${nix.builtins.toString(nix.thunk(() => nix.builtins.length(upstreamPatches)))}`),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`mirror://gnu/bash/bash-${nix.app(nix.sel(lib, "removeSuffix"), nix.thunk(() => nix.sel(fa, "patch_suffix")), nix.thunk(() => nix.sel(fa, "version")))}.tar.gz`),
           hash: "sha256-DVzYaWX4aaJs9k9Lcb57lvkKO6iz104n6OnZ1VUPMbo=",
         })))),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev", "man", "doc", "info"]),
       separateDebugInfo: true,
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.add(nix.add("-DSYS_BASHRC=\"/etc/bashrc\"\n-DSYS_BASH_LOGOUT=\"/etc/bash_logout\"\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(forFHSEnv)), nix.thunk(() => nix.str`-DDEFAULT_PATH_VALUE="/no-such-path"
 -DSTANDARD_UTILS_PATH="/no-such-path"
 -DDEFAULT_LOADABLE_BUILTINS_PATH="${nix.builtins.placeholder("out")}/lib/bash:."
@@ -88,13 +88,13 @@ rm -f $out/lib/bash/Makefile.inc
 `),
       postFixup: nix.thunk(() => (nix.asBool(interactive) ? "substituteInPlace \"$out/bin/bashbug\" \\\n  --replace '#!/bin/sh' \"#!$out/bin/bash\"\n" : "rm -rf \"$out/share\" \"$out/bin/bashbug\"\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         shellPath: "/bin/bash",
         tests: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           static: nix.thunk(() => nix.sel(pkgsStatic, "bash")),
           withChecks: nix.thunk(() => nix.app(nix.sel(fa, "finalPackage", "overrideAttrs"), (attrs) => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               doCheck: true,
               nativeCheckInputs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "nativeCheckInputs"), [
                 util_linuxMinimal,
@@ -103,7 +103,7 @@ rm -f $out/lib/bash/Makefile.inc
                 gnused,
               ])),
               meta: nix.thunk(() => nix.update(nix.sel(attrs, "meta"), {
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 broken: nix.thunk(() => (nix.asBool(nix.selOr(attrs, () => false, "meta", "broken")) || nix.asBool(nix.sel(stdenv, "buildPlatform", "isDarwin")))),
               })),
               patches: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "patches"), [
@@ -116,7 +116,7 @@ rm -f $out/lib/bash/Makefile.inc
 export BASH_TSTOUT_KEEPDIR=$(mktemp -d)
 export HOME=$(mktemp -d)
 export NIX_REDIRECTS=${nix.app(nix.sel(lib, "concatMapAttrsStringSep"), ":", (name) => (value) => nix.str`${name}=${value}`, nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   "/bin/echo": nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), coreutils, "echo")),
                   "/bin/cat": nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), coreutils, "cat")),
                   "/bin/rm": nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), coreutils, "rm")),
@@ -177,7 +177,7 @@ done
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         homepage: "https://www.gnu.org/software/bash/",
         description: nix.thunk(() => nix.add("GNU Bourne-Again Shell, the de facto standard shell on Linux", nix.app(nix.sel(lib, "optionalString"), interactive, " (for interactive use)"))),
         longDescription: "Bash is the shell, or command language interpreter, that will\nappear in the GNU operating system.  Bash is an sh-compatible\nshell that incorporates useful features from the Korn shell\n(ksh) and C shell (csh).  It is intended to conform to the IEEE\nPOSIX P1003.2/ISO 9945.2 Shell and Tools standard.  It offers\nfunctional improvements over sh for both programming and\ninteractive use.  In addition, most sh scripts can be run by\nBash without modification.\n",
@@ -191,11 +191,11 @@ done
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "security-review"))]),
         mainProgram: "bash",
         identifiers: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           cpeParts: nix.thunk(() => (() => {
             const versionSplit = nix.thunk(() => nix.app(nix.sel(lib, "split"), "p", nix.thunk(() => nix.sel(fa, "version"))));
             return {
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               vendor: "gnu",
               product: "bash",
               version: nix.thunk(() => nix.app(nix.sel(lib, "elemAt"), versionSplit, 0n)),

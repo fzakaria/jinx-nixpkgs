@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
     const plugins$ = nix.thunk(() => nix.app(plugins, nix.thunk(() => nix.sel(unwrapped, "plugins"))));
     const extraPythonPackages = nix.thunk(() => nix.builtins.concatLists(nix.thunk(() => nix.builtins.map((p) => nix.selOr(p, () => [], "propagatedBuildInputs"), plugins$))));
     return nix.app(symlinkJoin, nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         name: nix.thunk(() => nix.str`${nix.sel(unwrapped, "pname")}-with-plugins-${nix.sel(unwrapped, "version")}`),
         unwrapped: unwrapped,
         paths: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(baseConfig, null)), unwrapped), plugins$)),
@@ -40,13 +40,13 @@ export default nix.lambda((args) => (() => {
 rmdir $out/nix-support || true
 ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(baseConfig, null)), nix.thunk(() => nix.str`rm $out/${nix.sel(python3, "sitePackages")}/maubot/example-config.yaml
 substituteAll ${nix.app(nix.sel(nix.app(nix.sel(formats, "yaml"), nix.thunk(() => ({}))), "generate"), "example-config.yaml", nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), baseConfig, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 plugin_directories: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(plugins$, [])), nix.thunk(() => ({
-                    __proto__: pos$1,
+                    [nix.POS]: pos$1,
                     load: nix.thunk(() => nix.concat(["@out@/lib/maubot-plugins"], nix.selOr(baseConfig, () => [], "plugin_directories", "load"))),
                   })))),
                 server: nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   override_resource_path: nix.thunk(() => (nix.asBool(nix.builtins.isNull(nix.thunk(() => nix.selOr(baseConfig, () => null, "server", "override_resource_path")))) ? nix.str`${unwrapped}/${nix.sel(python3, "sitePackages")}/maubot/management/frontend/build` : nix.sel(baseConfig, "server", "override_resource_path"))),
                 })),
               })))))} $out/${nix.sel(python3, "sitePackages")}/maubot/example-config.yaml
@@ -58,30 +58,30 @@ cp $unwrapped/bin/.maubot-wrapped $out/bin/maubot
 wrapPythonProgramsIn "$out/bin" "${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(baseConfig, null)), "$out ")}\${pythonPath[*]}"
 `),
         passthru: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           unwrapped: unwrapped,
           python: python3,
           withPythonPackages: (filter) => nix.app(wrapper, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               pythonPackages: (pkgs) => nix.concat(nix.app(pythonPackages, pkgs), nix.app(filter, pkgs)),
               plugins: plugins,
               baseConfig: baseConfig,
             }))),
           withPlugins: (filter) => nix.app(wrapper, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               plugins: (pkgs) => nix.concat(nix.app(plugins, pkgs), nix.app(filter, pkgs)),
               pythonPackages: pythonPackages,
               baseConfig: baseConfig,
             }))),
           withBaseConfig: (baseConfig_1) => nix.app(wrapper, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               baseConfig: baseConfig_1,
               pythonPackages: pythonPackages,
               plugins: plugins,
             }))),
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           priority: nix.thunk(() => nix.sub(nix.selOr(unwrapped, () => nix.sel(lib, "meta", "defaultPriority"), "meta", "priority"), 1n)),
         })),
       })));

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const kernel = nix.arg($, "kernel");
   const kernelModuleMakeFlags = nix.arg($, "kernelModuleMakeFlags");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ivsc-driver",
       version: "unstable-2024-09-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "intel",
           repo: "ivsc-driver",
           rev: "10f440febe87419d5c82d8fe48580319ea135b54",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "sed -i -e \"s,INSTALL_MOD_DIR=,INSTALL_MOD_PATH=$out INSTALL_MOD_DIR=,\" Makefile\n",
       installTargets: nix.thunk(() => ["modules_install"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/intel/ivsc-driver",
         description: "Intel Vision Sensing Controller kernel driver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nano = nix.arg($, "nano");
   const watch = nix.arg($, "watch");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tattoy",
       version: "0.1.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tattoy-org",
           repo: "tattoy",
           tag: nix.thunk(() => nix.str`tattoy-v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       useNextest: true,
       checkFlags: nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), (t) => ["--skip", nix.thunk(() => nix.str`${t}`)], nix.thunk(() => ["e2e", "gpu"]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Text-based compositor for modern terminals",
         homepage: "https://github.com/tattoy-org/tattoy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

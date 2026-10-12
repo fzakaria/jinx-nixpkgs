@@ -14,21 +14,21 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "kytea",
       version: "0.4.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://www.phontron.com/kytea/download/kytea-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0ilzzwn5vpvm65bnbyb9f5rxyxy3jmbafw9w0lgl5iad1ka36jjk",
         })))),
       patches: nix.thunk(() => [nix.path(here, "./gcc-O3.patch")]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-error=c++11-narrowing")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://www.phontron.com/kytea/",
         description: "General toolkit developed for analyzing text",
         longDescription: "A general toolkit developed for analyzing text, with a focus on Japanese,\nChinese and other languages requiring word or morpheme segmentation.\n",

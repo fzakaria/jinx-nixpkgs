@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const six = nix.arg($, "six");
   const twisted = nix.arg($, "twisted");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "txdbus",
       version: "1.1.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "txdbus",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-g3Wl+2ihIFTw3vka+ADIIfsiMpSTN3Vu2XX4jY6ivJc=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [six, twisted]),
       pythonImportsCheck: nix.thunk(() => ["txdbus"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Native Python implementation of DBus for Twisted",
         homepage: "https://github.com/cocagne/txdbus",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

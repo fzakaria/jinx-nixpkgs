@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const jre = nix.arg($, "jre");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tlaplus",
       version: "1.8.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/tlaplus/tlaplus/releases/download/v${nix.sel(finalAttrs, "version")}/tla2tools.jar`),
           sha256: "sha256-OXgpd1xuyvhveunlybBi/N6jnxtp/J8Kmp8PYX3eSZ4=",
         })))),
@@ -40,7 +40,7 @@ makeWrapper ${jre}/bin/java $out/bin/tlarepl \\
   --add-flags "-XX:+UseParallelGC -cp $out/share/java/tla2tools.jar tlc2.REPL"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Algorithm specification language with model checking tools",
         homepage: "https://lamport.azurewebsites.net/tla/tla.html",
         sourceProvenance: nix.thunk(() => (() => {

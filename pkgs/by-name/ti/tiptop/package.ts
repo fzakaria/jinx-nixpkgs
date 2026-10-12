@@ -21,23 +21,23 @@ export default nix.lambda((args) => (() => {
   const bison = nix.arg($, "bison");
   const flex = nix.arg($, "flex");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "tiptop",
       version: "2.3.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://tiptop.gforge.inria.fr/releases/tiptop-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "10j1138y3cj3hsmfz4w0bmk90523b0prqwi9nhb4z8xvjnf49i2i",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "reproducibility.patch",
             url: "https://salsa.debian.org/debian/tiptop/raw/debian/2.3.1-1/debian/patches/0001-fix-reproducibility-of-build-process.patch",
             sha256: "116l7n3nl9lj691i7j8x0d0za1i6zpqgghw5d70qfpb17c04cblp",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "ncurses-6.3.patch",
             url: "https://gitlab.inria.fr/rohou/tiptop/-/commit/a78234c27fdd62fed09430d998950e49e11a1832.patch",
             sha256: "1k55agdri7iw3gwm4snj3ps62qzmxlqr6s0868l8qamjw38z9g00",
@@ -47,11 +47,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [flex, bison]),
       buildInputs: nix.thunk(() => [libxml2, ncurses]),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.sel(libxml2, "dev")}/include/libxml2`),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Performance monitoring tool for Linux",
         homepage: "http://tiptop.gforge.inria.fr",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

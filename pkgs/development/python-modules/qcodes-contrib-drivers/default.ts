@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const pyvisa_sim = nix.arg($, "pyvisa-sim");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "qcodes-contrib-drivers",
       version: "0.25.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "QCoDeS",
           repo: "Qcodes_contrib_drivers",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["qcodes_contrib_drivers"]),
       disabledTests: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_stability_diagram_external"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["test_stability_diagram_external"])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "User contributed drivers for QCoDeS",
         homepage: "https://github.com/QCoDeS/Qcodes_contrib_drivers",
         changelog: nix.thunk(() => nix.str`https://github.com/QCoDeS/Qcodes_contrib_drivers/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

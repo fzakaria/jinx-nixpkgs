@@ -68,17 +68,17 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const runTest = nix.arg($, "runTest");
   const stunnelCommon = nix.thunk(() => ({
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     services: nix.thunk(() => ({
-      __proto__: pos$2,
-      stunnel: nix.thunk(() => ({ __proto__: pos$1, enable: true, user: "stunnel" })),
+      [nix.POS]: pos$2,
+      stunnel: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true, user: "stunnel" })),
     })),
     users: nix.thunk(() => ({
-      __proto__: pos$6,
-      groups: nix.thunk(() => ({ __proto__: pos$3, stunnel: nix.thunk(() => ({})) })),
+      [nix.POS]: pos$6,
+      groups: nix.thunk(() => ({ [nix.POS]: pos$3, stunnel: nix.thunk(() => ({})) })),
       users: nix.thunk(() => ({
-        __proto__: pos$5,
-        stunnel: nix.thunk(() => ({ __proto__: pos$4, isSystemUser: true, group: "stunnel" })),
+        [nix.POS]: pos$5,
+        stunnel: nix.thunk(() => ({ [nix.POS]: pos$4, isSystemUser: true, group: "stunnel" })),
       })),
     })),
   }));
@@ -88,18 +88,18 @@ export default nix.lambda((args) => (() => {
     const lib = nix.arg($_1, "lib");
     const pkgs = nix.arg($_1, "pkgs");
     return {
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       systemd: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         services: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           "create-test-cert": nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             wantedBy: nix.thunk(() => ["sysinit.target"]),
             before: nix.thunk(() => ["sysinit.target", "shutdown.target"]),
             conflicts: nix.thunk(() => ["shutdown.target"]),
-            unitConfig: nix.thunk(() => ({ __proto__: pos$8, DefaultDependencies: false })),
-            serviceConfig: nix.thunk(() => ({ __proto__: pos$9, Type: "oneshot" })),
+            unitConfig: nix.thunk(() => ({ [nix.POS]: pos$8, DefaultDependencies: false })),
+            serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$9, Type: "oneshot" })),
             script: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "openssl")))} req -batch -x509 -newkey rsa -nodes -out /test-cert.pem -keyout /test-key.pem -subj /CN=${nix.sel(config, "networking", "hostName")}
 ( umask 077; cat /test-key.pem /test-cert.pem > /test-key-and-cert.pem )
 chown stunnel /test-key.pem /test-key-and-cert.pem
@@ -114,19 +114,19 @@ chown stunnel /test-key.pem /test-key-and-cert.pem
     const lib = nix.arg($_1, "lib");
     const pkgs = nix.arg($_1, "pkgs");
     return {
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       networking: nix.thunk(() => ({
-        __proto__: pos$15,
-        firewall: nix.thunk(() => ({ __proto__: pos$14, allowedTCPPorts: nix.thunk(() => [443n]) })),
+        [nix.POS]: pos$15,
+        firewall: nix.thunk(() => ({ [nix.POS]: pos$14, allowedTCPPorts: nix.thunk(() => [443n]) })),
       })),
       services: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         stunnel: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           servers: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             https: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               accept: "443",
               connect: 80n,
               cert: "/test-key-and-cert.pem",
@@ -135,11 +135,11 @@ chown stunnel /test-key.pem /test-key-and-cert.pem
         })),
       })),
       systemd: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         services: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           "simple-webserver": nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             wantedBy: nix.thunk(() => ["multi-user.target"]),
             script: nix.thunk(() => nix.str`cd /etc/webroot
 ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "python3")), "python")} -m http.server 80
@@ -155,21 +155,21 @@ server_cert = ${src}.succeed("cat /test-cert.pem")
 ${dest}.succeed("echo %s > ${filename}" % quote(server_cert))
 `;
   return {
-    __proto__: pos$58,
+    [nix.POS]: pos$58,
     basicServer: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         name: "basicServer",
         nodes: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           client: nix.thunk(() => ({})),
           server: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             imports: nix.thunk(() => [makeCert, serverCommon, stunnelCommon]),
             environment: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               etc: nix.thunk(() => ({
-                __proto__: pos$25,
-                "webroot/index.html": nix.thunk(() => ({ __proto__: pos$24, text: "well met" })),
+                [nix.POS]: pos$25,
+                "webroot/index.html": nix.thunk(() => ({ [nix.POS]: pos$24, text: "well met" })),
               })),
             })),
           })),
@@ -186,34 +186,34 @@ client.succeed('[[ "$(< out)" == "well met" ]]')
 `),
       })))),
     serverAndClient: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        __proto__: pos$42,
+        [nix.POS]: pos$42,
         name: "serverAndClient",
         nodes: nix.thunk(() => ({
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           client: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             imports: nix.thunk(() => [stunnelCommon]),
             services: nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               stunnel: nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 clients: nix.thunk(() => ({
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   httpsClient: nix.thunk(() => ({
-                    __proto__: pos$30,
+                    [nix.POS]: pos$30,
                     accept: "80",
                     connect: "server:443",
                     CAFile: "/authorized-server-cert.crt",
                   })),
                   httpsClientWithHostVerify: nix.thunk(() => ({
-                    __proto__: pos$31,
+                    [nix.POS]: pos$31,
                     accept: "81",
                     connect: "server:443",
                     CAFile: "/authorized-server-cert.crt",
                     verifyHostname: "server",
                   })),
                   httpsClientWithHostVerifyFail: nix.thunk(() => ({
-                    __proto__: pos$32,
+                    [nix.POS]: pos$32,
                     accept: "82",
                     connect: "server:443",
                     CAFile: "/authorized-server-cert.crt",
@@ -224,13 +224,13 @@ client.succeed('[[ "$(< out)" == "well met" ]]')
             })),
           })),
           server: nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             imports: nix.thunk(() => [makeCert, serverCommon, stunnelCommon]),
             environment: nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               etc: nix.thunk(() => ({
-                __proto__: pos$38,
-                "webroot/index.html": nix.thunk(() => ({ __proto__: pos$37, text: "hello there" })),
+                [nix.POS]: pos$38,
+                "webroot/index.html": nix.thunk(() => ({ [nix.POS]: pos$37, text: "hello there" })),
               })),
             })),
           })),
@@ -256,20 +256,20 @@ client.succeed('[[ "$(< out)" == "" ]]')
 `),
       })))),
     mutualAuth: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        __proto__: pos$57,
+        [nix.POS]: pos$57,
         name: "mutualAuth",
         nodes: nix.thunk(() => (() => {
           const client = nix.thunk(() => ({
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             imports: nix.thunk(() => [makeCert, stunnelCommon]),
             services: nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               stunnel: nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 clients: nix.thunk(() => ({
-                  __proto__: pos$44,
+                  [nix.POS]: pos$44,
                   "authenticated-https": nix.thunk(() => ({
-                    __proto__: pos$43,
+                    [nix.POS]: pos$43,
                     accept: "80",
                     connect: "server:443",
                     verifyPeer: true,
@@ -283,27 +283,27 @@ client.succeed('[[ "$(< out)" == "" ]]')
           }));
           const wrongclient = client;
           const server = nix.thunk(() => ({
-            __proto__: pos$55,
+            [nix.POS]: pos$55,
             imports: nix.thunk(() => [makeCert, serverCommon, stunnelCommon]),
             services: nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               stunnel: nix.thunk(() => ({
-                __proto__: pos$50,
+                [nix.POS]: pos$50,
                 servers: nix.thunk(() => ({
-                  __proto__: pos$49,
-                  https: nix.thunk(() => ({ __proto__: pos$48, CAFile: "/authorized-client-certs.crt", verifyPeer: true })),
+                  [nix.POS]: pos$49,
+                  https: nix.thunk(() => ({ [nix.POS]: pos$48, CAFile: "/authorized-client-certs.crt", verifyPeer: true })),
                 })),
               })),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$54,
+              [nix.POS]: pos$54,
               etc: nix.thunk(() => ({
-                __proto__: pos$53,
-                "webroot/index.html": nix.thunk(() => ({ __proto__: pos$52, text: "secret handshake" })),
+                [nix.POS]: pos$53,
+                "webroot/index.html": nix.thunk(() => ({ [nix.POS]: pos$52, text: "secret handshake" })),
               })),
             })),
           }));
-          return { __proto__: pos$56, client, wrongclient, server };
+          return { [nix.POS]: pos$56, client, wrongclient, server };
         })()),
         testScript: nix.thunk(() => nix.str`start_all()
 

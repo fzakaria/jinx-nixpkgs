@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pname = "d3-graphviz";
       const version = "5.6.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "magjac",
           repo: "d3-graphviz",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -43,21 +43,21 @@ export default nix.lambda((args) => (() => {
         }))));
       const npmDepsHash = "sha256-J1kptumP/8UoiYDM+AJOYUne0OSkMXCTAXW3ZmavU4E=";
       const npmPruneFlags = "--include=dev";
-      return { __proto__: pos$2, pname, version, src, npmDepsHash, npmPruneFlags };
+      return { [nix.POS]: pos$2, pname, version, src, npmDepsHash, npmPruneFlags };
     })())));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "delineate",
       version: "0.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "SeaDve",
           repo: "Delineate",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-6SYYDxzBzs6nSrPp9TPKnIYHdoZJklTr5K0DSFx7S0s=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -80,11 +80,11 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`ln -s ${d3_graphviz}/lib/node_modules/d3-graphviz $out/opt/delineate/graph_view/d3-graphviz
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "View and edit graphs",
         homepage: "https://github.com/SeaDve/Delineate",
         changelog: nix.thunk(() => nix.str`https://github.com/SeaDve/Delineate/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -26,28 +26,28 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     name: "activation-bashless",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nikstur"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         const modulesPath = nix.arg($_1, "modulesPath");
         return {
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           imports: nix.thunk(() => [nix.thunk(() => nix.str`${modulesPath}/profiles/bashless.nix`)]),
           environment: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             binsh: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), null)),
-            shell: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+            shell: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs, "coreutils")),
               nix.thunk(() => nix.sel(pkgs, "gnugrep")),
@@ -55,29 +55,29 @@ export default nix.lambda((args) => (() => {
             ]),
           })),
           boot: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             initrd: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               systemd: nix.thunk(() => ({
-                __proto__: pos$5,
-                shell: nix.thunk(() => ({ __proto__: pos$4, enable: false })),
+                [nix.POS]: pos$5,
+                shell: nix.thunk(() => ({ [nix.POS]: pos$4, enable: false })),
               })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             shutdownRamfs: nix.thunk(() => ({
-              __proto__: pos$9,
-              shell: nix.thunk(() => ({ __proto__: pos$8, enable: false })),
+              [nix.POS]: pos$9,
+              shell: nix.thunk(() => ({ [nix.POS]: pos$8, enable: false })),
             })),
           })),
-          virtualisation: nix.thunk(() => ({ __proto__: pos$11, mountHostNixStore: false, useNixStoreImage: true })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$11, mountHostNixStore: false, useNixStoreImage: true })),
           programs: nix.thunk(() => ({
-            __proto__: pos$13,
-            bash: nix.thunk(() => ({ __proto__: pos$12, enable: true })),
+            [nix.POS]: pos$13,
+            bash: nix.thunk(() => ({ [nix.POS]: pos$12, enable: true })),
           })),
           system: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             forbiddenDependenciesRegexes: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
           })),
         };

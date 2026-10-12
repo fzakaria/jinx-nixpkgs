@@ -42,61 +42,61 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const journalVrlRemapTransform = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     journald_remap: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       inputs: nix.thunk(() => ["journald"]),
       type: "remap",
       source: "m = {}\nm.app = .SYSLOG_IDENTIFIER\nm.host = .host\nm.boot_id = ._BOOT_ID\nm.severity = to_int(.PRIORITY) ?? 0\nm.level = to_syslog_level(m.severity) ?? \"\"\nm.message = strip_ansi_escape_codes!(.message)\nm.timestamp = .timestamp\nm.uid = to_int(._UID) ?? 0\nm.pid = to_int(._PID) ?? 0\n. = [m]\n",
     })),
   }));
   return {
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     name: "vector-journald-clickhouse",
     meta: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "lib", "maintainers", "happysalada"))]),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       clickhouse: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             diskSize: nix.thunk(() => nix.mul(5n, 1024n)),
             memorySize: 4096n,
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$6,
-            firewall: nix.thunk(() => ({ __proto__: pos$5, allowedTCPPorts: nix.thunk(() => [6000n]) })),
+            [nix.POS]: pos$6,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$5, allowedTCPPorts: nix.thunk(() => [6000n]) })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             vector: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               enable: true,
               journaldAccess: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 sources: nix.thunk(() => ({
-                  __proto__: pos$9,
-                  journald: nix.thunk(() => ({ __proto__: pos$7, type: "journald" })),
-                  vector_source: nix.thunk(() => ({ __proto__: pos$8, type: "vector", address: "[::]:6000" })),
+                  [nix.POS]: pos$9,
+                  journald: nix.thunk(() => ({ [nix.POS]: pos$7, type: "journald" })),
+                  vector_source: nix.thunk(() => ({ [nix.POS]: pos$8, type: "vector", address: "[::]:6000" })),
                 })),
                 transforms: journalVrlRemapTransform,
                 sinks: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   clickhouse: nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     type: "clickhouse",
                     inputs: nix.thunk(() => ["journald_remap", "vector_source"]),
                     endpoint: "http://localhost:8123",
                     auth: nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       strategy: "basic",
                       user: "vector",
                       password: "helloclickhouseworld",
@@ -108,18 +108,18 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
             })),
-            clickhouse: nix.thunk(() => ({ __proto__: pos$15, enable: true })),
+            clickhouse: nix.thunk(() => ({ [nix.POS]: pos$15, enable: true })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             etc: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               "clickhouse-server/users.d/vector.xml": nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 text: "<clickhouse>\n  <users>\n    <vector>\n      <password>helloclickhouseworld</password>\n\n      <access_management>0</access_management>\n\n      <quota>default</quota>\n      <default_database>journald</default_database>\n\n      <grants>\n        <query>GRANT INSERT ON journald.logs</query>\n      </grants>\n    </vector>\n  </users>\n</clickhouse>\n",
               })),
               "clickhouse-server/users.d/grafana.xml": nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 text: "<clickhouse>\n  <users>\n    <grafana>\n      <password>helloclickhouseworld2</password>\n\n      <access_management>0</access_management>\n\n      <quota>default</quota>\n      <default_database>journald</default_database>\n\n      <grants>\n        <query>GRANT SELECT ON journald.logs</query>\n      </grants>\n    </grafana>\n  </users>\n</clickhouse>\n",
               })),
             })),
@@ -131,24 +131,24 @@ export default nix.lambda((args) => (() => {
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           services: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             vector: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               enable: true,
               journaldAccess: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 sources: nix.thunk(() => ({
-                  __proto__: pos$23,
-                  journald: nix.thunk(() => ({ __proto__: pos$22, type: "journald" })),
+                  [nix.POS]: pos$23,
+                  journald: nix.thunk(() => ({ [nix.POS]: pos$22, type: "journald" })),
                 })),
                 transforms: journalVrlRemapTransform,
                 sinks: nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   vector_sink: nix.thunk(() => ({
-                    __proto__: pos$24,
+                    [nix.POS]: pos$24,
                     type: "vector",
                     inputs: nix.thunk(() => ["journald_remap"]),
                     address: "clickhouse:6000",

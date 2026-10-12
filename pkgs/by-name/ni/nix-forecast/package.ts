@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "nix-forecast",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "getchoo",
           repo: "nix-forecast",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,13 +40,13 @@ installShellCompletion --cmd nix-forecast \\
   --fish completions/nix-forecast.fish \\
   --zsh completions/_nix-forecast
 `),
-      env: nix.thunk(() => ({ __proto__: pos$2, COMPLETION_DIR: "completions" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, COMPLETION_DIR: "completions" })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Check the forecast for today's Nix builds",
         homepage: "https://github.com/getchoo/nix-forecast",
         changelog: nix.thunk(() => nix.str`https://github.com/getchoo/nix-forecast/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -85,9 +85,9 @@ fi
 exec "\${sudo[@]}" ${nix.sel(cfg, "package")}/bin/inventree "$@"
 `)));
   return {
-    __proto__: pos$58,
+    [nix.POS]: pos$58,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       buildDocsInSandbox: false,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -95,34 +95,34 @@ exec "\${sudo[@]}" ${nix.sel(cfg, "package")}/bin/inventree "$@"
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       services: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         inventree: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "inventree")),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/var/lib/inventree",
               description: "Inventree's data storage path.  Will be `/var/lib/inventree` by default.",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
               description: "Which package to use for the InvenTree instance.",
               default: nix.thunk(() => nix.sel(pkgs, "inventree")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.inventree")),
             })))),
           adminPasswordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               example: "/run/keys/inventree-password",
               description: "Path to a file containing admin password",
             })))),
           secretKeyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/secret_key.txt`),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${cfg.dataDir}/secret_key.txt\"")),
@@ -130,41 +130,41 @@ exec "\${sudo[@]}" ${nix.sel(cfg, "package")}/bin/inventree "$@"
               description: "Path to a file containing the secret key\n",
             })))),
           database: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             dbtype: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["postgresql", "mysql"]))))),
                 default: "postgresql",
                 description: "Database type.",
               })))),
             dbhost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 example: "localhost",
                 description: "Database host or socket path.",
               })))),
             dbport: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "port")))),
                 default: null,
                 example: 5432n,
                 description: "Database host port.",
               })))),
             dbname: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "inventree",
                 description: "Database name.",
               })))),
             dbuser: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "inventree",
                 description: "Database username.",
               })))),
             passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -174,33 +174,33 @@ exec "\${sudo[@]}" ${nix.sel(cfg, "package")}/bin/inventree "$@"
                 description: "A file containing the password corresponding to\n<option>database.dbuser</option>.\n",
               })))),
             createLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Create the database and database user locally.",
               })))),
           })),
           domain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "localhost",
               example: "inventree.example.com",
               description: "The INVENTREE_SITE_URL option defines the base URL for the\nInvenTree server. This is a critical setting, and it is required\nfor correct operation of the server. If not specified, the\nserver will attempt to determine the site URL automatically -\nbut this may not always be correct!\n\nThe site URL is the URL that users will use to access the\nInvenTree server. For example, if the server is accessible at\n`https://inventree.example.com`, the site URL should be set to\n`https://inventree.example.com`. Note that this is not\nnecessarily the same as the internal URL that the server is\nrunning on - the internal URL will depend entirely on your\nserver configuration and may be obscured by a reverse proxy or\nother such setup.\n",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "inventree",
               description: "User under which InvenTree runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "inventree",
               description: "Group under which InvenTree runs.",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -211,7 +211,7 @@ exec "\${sudo[@]}" ${nix.sel(cfg, "package")}/bin/inventree "$@"
               default: nix.thunk(() => ({})),
               description: "InvenTree config options.\n\nSee [the documentation](https://docs.inventree.org/en/stable/start/config/) for available options.\n",
               example: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 INVENTREE_CACHE_ENABLED: true,
                 INVENTREE_CACHE_HOST: "localhost",
                 INVENTREE_EMAIL_HOST: "smtp.example.com",
@@ -223,13 +223,13 @@ exec "\${sudo[@]}" ${nix.sel(cfg, "package")}/bin/inventree "$@"
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$57,
+            [nix.POS]: pos$57,
             services: nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               inventree: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   INVENTREE_DB_ENGINE: nix.thunk(() => nix.sel(cfg, "database", "dbtype")),
                   INVENTREE_DB_NAME: nix.thunk(() => nix.sel(cfg, "database", "dbname")),
                   INVENTREE_DB_HOST: nix.thunk(() => nix.sel(cfg, "database", "dbhost")),
@@ -251,59 +251,59 @@ exec "\${sudo[@]}" ${nix.sel(cfg, "package")}/bin/inventree "$@"
                 })),
               })),
               postgresql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), pgsqlLocal, nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   enable: true,
                   ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "database", "dbname"))]),
                   ensureUsers: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$24,
+                      [nix.POS]: pos$24,
                       name: nix.thunk(() => nix.sel(cfg, "database", "dbuser")),
                       ensureDBOwnership: true,
                     })),
                   ]),
                 })))),
               mysql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), mysqlLocal, nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   enable: true,
                   package: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(pkgs, "mariadb")))),
                   ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "database", "dbname"))]),
                   ensureUsers: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$26,
+                      [nix.POS]: pos$26,
                       name: nix.thunk(() => nix.sel(cfg, "database", "dbuser")),
                       ensurePermissions: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${nix.sel(cfg, "database", "dbname")}.*`, "ALL PRIVILEGES"]])),
                     })),
                   ]),
                 })))),
               nginx: nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 enable: true,
                 virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                   [nix.sel(cfg, "domain"), nix.thunk(() => ({
-                    __proto__: pos$33,
+                    [nix.POS]: pos$33,
                     locations: nix.thunk(() => (() => {
                       const unixPath = nix.thunk(() => nix.sel(config, "systemd", "sockets", "inventree-server", "socketConfig", "ListenStream"));
                       return {
-                        __proto__: pos$32,
+                        [nix.POS]: pos$32,
                         "/": nix.thunk(() => ({
-                          __proto__: pos$28,
+                          [nix.POS]: pos$28,
                           recommendedProxySettings: true,
                           extraConfig: "proxy_set_header X-Forwarded-By $server_addr:$server_port;\nproxy_set_header CLIENT_IP $remote_addr;\n\nproxy_pass_request_headers on;\n\nproxy_redirect off;\n\nclient_max_body_size 100M;\n\nproxy_buffering off;\nproxy_request_buffering off;\n",
                           proxyPass: nix.thunk(() => nix.str`http://unix:${unixPath}`),
                         })),
                         "/auth": nix.thunk(() => ({
-                          __proto__: pos$29,
+                          [nix.POS]: pos$29,
                           recommendedProxySettings: true,
                           extraConfig: "internal;\nproxy_pass_request_body off;\nproxy_set_header Content-Length \"\";\nproxy_set_header X-Original-URI $request_uri;\n",
                           proxyPass: nix.thunk(() => nix.str`http://unix:${unixPath}:/auth/`),
                         })),
                         "/static/": nix.thunk(() => ({
-                          __proto__: pos$30,
+                          [nix.POS]: pos$30,
                           alias: nix.thunk(() => nix.str`${nix.sel(cfg, "settings", "INVENTREE_STATIC_ROOT")}/`),
                           extraConfig: "autoindex on;\n\n# Caching settings\nexpires 30d;\nadd_header Pragma public;\nadd_header Cache-Control \"public\";\n",
                         })),
                         "/media/": nix.thunk(() => ({
-                          __proto__: pos$31,
+                          [nix.POS]: pos$31,
                           alias: nix.thunk(() => nix.str`${nix.sel(cfg, "settings", "INVENTREE_MEDIA_ROOT")}/`),
                           extraConfig: "auth_request /auth;\nadd_header Content-disposition \"attachment\";\n",
                         })),
@@ -313,11 +313,11 @@ exec "\${sudo[@]}" ${nix.sel(cfg, "package")}/bin/inventree "$@"
                 ])),
               })),
             })),
-            environment: nix.thunk(() => ({ __proto__: pos$36, systemPackages: nix.thunk(() => [manage]) })),
+            environment: nix.thunk(() => ({ [nix.POS]: pos$36, systemPackages: nix.thunk(() => [manage]) })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               tmpfiles: nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 rules: nix.thunk(() => nix.builtins.map((dir) => nix.str`d ${dir} 0755 inventree inventree`, nix.thunk(() => [
                     nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}`),
                     nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/config`),
@@ -328,9 +328,9 @@ exec "\${sudo[@]}" ${nix.sel(cfg, "package")}/bin/inventree "$@"
                   ]))),
               })),
               services: nix.thunk(() => ({
-                __proto__: pos$47,
+                [nix.POS]: pos$47,
                 "inventree-setup": nix.thunk(() => ({
-                  __proto__: pos$40,
+                  [nix.POS]: pos$40,
                   description: "Inventree setup",
                   wantedBy: nix.thunk(() => ["inventree.target"]),
                   partOf: nix.thunk(() => ["inventree.target"]),
@@ -338,14 +338,14 @@ exec "\${sudo[@]}" ${nix.sel(cfg, "package")}/bin/inventree "$@"
                   requires: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), mysqlLocal, "mysql.service"), nix.app(nix.sel(lib, "optional"), pgsqlLocal, "postgresql.target"))),
                   before: nix.thunk(() => ["inventree-server.service", "inventree-qcluster.service"]),
                   serviceConfig: nix.thunk(() => nix.update({
-                    __proto__: pos$38,
+                    [nix.POS]: pos$38,
                     Type: "oneshot",
                     User: nix.thunk(() => nix.sel(cfg, "user")),
                     Group: nix.thunk(() => nix.sel(cfg, "group")),
                     RemainAfterExit: true,
                     PrivateTmp: true,
                   }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "database", "passwordFile"), null)), nix.thunk(() => ({
-                      __proto__: pos$39,
+                      [nix.POS]: pos$39,
                       LoadCredential: nix.thunk(() => nix.str`db_password:${nix.sel(cfg, "database", "passwordFile")}`),
                     }))))),
                   environment: nix.thunk(() => nix.sel(cfg, "settings")),
@@ -357,19 +357,19 @@ exec ${pkg}/bin/inventree migrate
 `),
                 })),
                 "inventree-server": nix.thunk(() => ({
-                  __proto__: pos$43,
+                  [nix.POS]: pos$43,
                   description: "Inventree Gunicorn service",
                   requiredBy: nix.thunk(() => ["inventree.target"]),
                   partOf: nix.thunk(() => ["inventree.target"]),
                   environment: nix.thunk(() => nix.sel(cfg, "settings")),
                   serviceConfig: nix.thunk(() => nix.update({
-                    __proto__: pos$41,
+                    [nix.POS]: pos$41,
                     User: nix.thunk(() => nix.sel(cfg, "user")),
                     Group: nix.thunk(() => nix.sel(cfg, "group")),
                     StateDirectory: "inventree",
                     PrivateTmp: true,
                   }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "database", "passwordFile"), null)), nix.thunk(() => ({
-                      __proto__: pos$42,
+                      [nix.POS]: pos$42,
                       LoadCredential: nix.thunk(() => nix.str`db_password:${nix.sel(cfg, "database", "passwordFile")}`),
                     }))))),
                   script: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "database", "passwordFile"), null)), "INVENTREE_DB_PASSWORD=$(<\"$CREDENTIALS_DIRECTORY/db_password\")\n")} \\
@@ -377,20 +377,20 @@ exec ${pkg}/bin/gunicorn InvenTree.wsgi
 `),
                 })),
                 "inventree-qcluster": nix.thunk(() => ({
-                  __proto__: pos$46,
+                  [nix.POS]: pos$46,
                   description: "InvenTree qcluster server",
                   requiredBy: nix.thunk(() => ["inventree.target"]),
                   wantedBy: nix.thunk(() => ["inventree.target"]),
                   partOf: nix.thunk(() => ["inventree.target"]),
                   environment: nix.thunk(() => nix.sel(cfg, "settings")),
                   serviceConfig: nix.thunk(() => nix.update({
-                    __proto__: pos$44,
+                    [nix.POS]: pos$44,
                     User: nix.thunk(() => nix.sel(cfg, "user")),
                     Group: nix.thunk(() => nix.sel(cfg, "group")),
                     StateDirectory: "inventree",
                     PrivateTmp: true,
                   }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "database", "passwordFile"), null)), nix.thunk(() => ({
-                      __proto__: pos$45,
+                      [nix.POS]: pos$45,
                       LoadCredential: nix.thunk(() => nix.str`db_password:${nix.sel(cfg, "database", "passwordFile")}`),
                     }))))),
                   script: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "database", "passwordFile"), null)), "INVENTREE_DB_PASSWORD=$(<\"$CREDENTIALS_DIRECTORY/db_password\")\n")} \\
@@ -399,18 +399,18 @@ exec ${pkg}/bin/inventree qcluster
                 })),
               })),
               sockets: nix.thunk(() => ({
-                __proto__: pos$50,
+                [nix.POS]: pos$50,
                 "inventree-server": nix.thunk(() => ({
-                  __proto__: pos$49,
+                  [nix.POS]: pos$49,
                   wantedBy: nix.thunk(() => ["sockets.target"]),
                   partOf: nix.thunk(() => ["inventree.target"]),
-                  socketConfig: nix.thunk(() => ({ __proto__: pos$48, ListenStream: "/run/inventree/gunicorn.socket" })),
+                  socketConfig: nix.thunk(() => ({ [nix.POS]: pos$48, ListenStream: "/run/inventree/gunicorn.socket" })),
                 })),
               })),
               targets: nix.thunk(() => ({
-                __proto__: pos$52,
+                [nix.POS]: pos$52,
                 inventree: nix.thunk(() => ({
-                  __proto__: pos$51,
+                  [nix.POS]: pos$51,
                   description: "Target for all InvenTree services",
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   wants: nix.thunk(() => ["network-online.target"]),
@@ -419,10 +419,10 @@ exec ${pkg}/bin/inventree qcluster
               })),
             })),
             users: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), nix.sel(cfg, "user"))), nix.thunk(() => ({
-                __proto__: pos$56,
+                [nix.POS]: pos$56,
                 users: nix.thunk(() => nix.attrsDyn({}, [
                   [nix.sel(cfg, "user"), nix.thunk(() => ({
-                    __proto__: pos$54,
+                    [nix.POS]: pos$54,
                     group: nix.thunk(() => nix.sel(cfg, "group")),
                     isSystemUser: true,
                     home: nix.thunk(() => nix.sel(cfg, "dataDir")),
@@ -430,7 +430,7 @@ exec ${pkg}/bin/inventree qcluster
                 ])),
                 groups: nix.thunk(() => nix.attrsDyn({}, [
                   [nix.sel(cfg, "group"), nix.thunk(() => ({
-                    __proto__: pos$55,
+                    [nix.POS]: pos$55,
                     members: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "user"))]),
                   }))],
                 ])),

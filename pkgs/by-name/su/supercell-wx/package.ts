@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
   const stb = nix.arg($, "stb");
   const zlib = nix.arg($, "zlib");
   const libtiffWithCxx = nix.thunk(() => nix.app(nix.sel(libtiff, "overrideAttrs"), (old) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       cmakeFlags: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "cmakeFlags"), ["-Dcxx=ON"])),
     })));
   const gtestSkip = nix.thunk(() => [
@@ -65,11 +65,11 @@ export default nix.lambda((args) => (() => {
     "MarkerModelTest.*",
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "supercell-wx",
       version: "0.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "dpaulat",
           repo: "supercell-wx",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}-release`),
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.path(here, "./patches/use-find-package.patch"),
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patches/skip-git-versioning.patch"), nix.thunk(() => ({ __proto__: pos$3, rev: nix.thunk(() => nix.sel(finalAttrs, "src", "rev")) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patches/skip-git-versioning.patch"), nix.thunk(() => ({ [nix.POS]: pos$3, rev: nix.thunk(() => nix.sel(finalAttrs, "src", "rev")) })))),
         nix.path(here, "./patches/fix-cmake-install.patch"),
         nix.path(here, "./patches/libtiff-cxx.patch"),
         nix.path(here, "./patches/explicit-link-aws-crt.patch"),
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "substituteInPlace external/maplibre-native-qt/src/core/CMakeLists.txt \\\n  --replace-fail \"CMAKE_SOURCE_DIR\" \"PROJECT_SOURCE_DIR\"\n",
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         CXXFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => [
             "-Wno-error=deprecated-declarations",
             "-Wno-error=free-nonheap-object",
@@ -143,7 +143,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       postInstall: "install -m0644 -D \"$src/scwx-qt/res/linux/supercell-wx.desktop\" \"$out/share/applications/supercell-wx.desktop\"\ninstall -m0644 -D \"$src/scwx-qt/res/icons/scwx-256.png\"  \"$out/share/icons/hicolor/256x256/apps/supercell-wx.png\"\ninstall -m0644 -D \"$src/scwx-qt/res/icons/scwx-64.png\"  \"$out/share/icons/hicolor/64x64/apps/supercell-wx.png\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://supercellwx.net/",
         downloadPage: "https://github.com/dpaulat/supercell-wx/releases",
         description: "Live visualization of NEXRAD weather data and alerts",

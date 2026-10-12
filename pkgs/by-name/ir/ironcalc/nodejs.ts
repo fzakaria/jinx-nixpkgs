@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const rustc = nix.arg($, "rustc");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ironcalc-nodejs",
       version: nix.thunk(() => nix.attr(ironcalc, "version")),
       src: nix.thunk(() => nix.attr(ironcalc, "src")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       __structuredAttrs: true,
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           src: nix.thunk(() => nix.attr(ironcalc, "src")),
           pname: "ironcalc-nodejs",
           hash: "sha256-WBISZTISqnti5MiI+/rECZw31YumSm7VPN+MYZNoS28=",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })))),
       makeCacheWritable: true,
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(ironcalc, "src")),
           hash: nix.thunk(() => nix.sel(ironcalc, "cargoHash")),
         })))),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkPhase: "runHook preCheck\npnpm run test\nrunHook postCheck\n",
       installPhase: "runHook preInstall\nmkdir -p $out/lib/node_modules/@ironcalc/nodejs\ncp index.js index.d.ts package.json *.node $out/lib/node_modules/@ironcalc/nodejs/\nrunHook postInstall\n",
-      meta: nix.thunk(() => nix.update(nix.sel(ironcalc, "meta"), { __proto__: pos$3, description: "Node.js bindings for IronCalc" })),
+      meta: nix.thunk(() => nix.update(nix.sel(ironcalc, "meta"), { [nix.POS]: pos$3, description: "Node.js bindings for IronCalc" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=nodejs.ts.map

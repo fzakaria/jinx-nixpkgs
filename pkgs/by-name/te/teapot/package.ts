@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libtirpc = nix.arg($, "libtirpc");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "teapot",
       version: "2.3.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.syntax-k.de/projekte/teapot/teapot-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-wzAwZwOMeTsuR5LhfjspGdejT6X1V8YJ8B7v9pcbxaY=",
         })))),
@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [libtirpc, ncurses]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), libtirpc)}/include/tirpc`),
         NIX_LDFLAGS: "-ltirpc",
       })),
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.6)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Table Editor And Planner, Or: Teapot",
         longDescription: "Teapot is a compact spreadsheet software originally written by Michael\nHaardt. It features a (n)curses-based text terminal interface, and\nrecently also a FLTK-based GUI.\n\nThese days, it may seem pointless having yet another spreadsheet program\n(and one that doesn't even know how to load Microsoft Excel files). Its\ncompact size (130k for the ncurses executable, 140k for the GUI\nexecutable, 300k for the self-contained Windows EXE) and the fact that it\ncan run across serial lines and SSH sessions make it an interesting choice\nfor embedded applications and as system administration utility, even more\nso since it has a batch processing mode and comes with example code for\ncreating graphs from data sets.\n\nAnother interesting feature is its modern approach to spread sheet theory:\nIt sports true three-dimensional tables and iterative expressions. And\nsince it breaks compatibility with the usual notions of big spreadsheet\npackages, it can also throw old syntactic cruft over board which many\nspreadsheets still inherit from the days of VisiCalc on ancient CP/M\nsystems.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

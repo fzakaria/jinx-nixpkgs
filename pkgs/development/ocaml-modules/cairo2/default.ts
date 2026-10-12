@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const cairo = nix.arg($, "cairo");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cairo2",
       version: "0.6.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/Chris00/ocaml-cairo/releases/download/${nix.sel(finalAttrs, "version")}/cairo2-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-JdxByUNtmrz1bKrZoQWUT/c0YEG4zGoqZUq4hItlc3I=",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [cairo, dune_configurator]),
       doCheck: nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) || nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.10"))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/Chris00/ocaml-cairo",
         description: "Binding to Cairo, a 2D Vector Graphics Library",
         longDescription: "This is a binding to Cairo, a 2D graphics library with support for\nmultiple output devices. Currently supported output targets include\nthe X Window System, Quartz, Win32, image buffers, PostScript, PDF,\nand SVG file output.\n",

@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "zsh-autopair";
       const version = "1.0-unstable-2024-07-14";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hlissner",
           repo: "zsh-autopair",
           rev: "449a7c3d095bc8f3d78cf37b9549f8bb4c383f3d",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const installPhase = nix.thunk(() => nix.str`install -D autopair.zsh $out/share/zsh/${pname}/autopair.zsh
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/hlissner/zsh-autopair",
         description: "Plugin that auto-closes, deletes and skips over matching delimiters in zsh intelligently",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

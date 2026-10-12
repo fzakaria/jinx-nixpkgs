@@ -45,14 +45,14 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(enableGUI) || nix.asBool(enableExamples)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/li/librealsense/package.nix:33:1");
   const effectiveStdenv = nix.thunk(() => (nix.asBool(cudaSupport) ? nix.sel(cudaPackages, "backendStdenv") : nix.force(stdenv)));
   return nix.app(nix.sel(effectiveStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "librealsense",
       version: "2.57.7",
       strictDeps: true,
       __structuredAttrs: true,
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "realsenseai",
           repo: "librealsense",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -134,22 +134,22 @@ substituteInPlace $out/lib/cmake/realsense2/realsense2Targets.cmake \\
 `, nix.app(nix.sel(lib, "optionalString"), enablePython, nix.thunk(() => nix.str`cp ../wrappers/python/pyrealsense2/__init__.py $out/${nix.sel(pythonPackages, "python", "sitePackages")}/pyrealsense2
 `)))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
           "cmake-config": nix.thunk(() => nix.app(nix.sel(testers, "hasCmakeConfigModules"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               moduleNames: nix.thunk(() => ["realsense2"]),
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Cross-platform library for Intel® RealSense™ depth cameras (D400 series and the SR300)",
         homepage: "https://github.com/realsenseai/librealsense",
         changelog: nix.thunk(() => nix.str`https://github.com/realsenseai/librealsense/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

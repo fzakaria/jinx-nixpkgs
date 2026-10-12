@@ -69,136 +69,136 @@ export default nix.lambda((args) => (() => {
   const mkKeyValue = (k) => (v) => nix.str`${k}=${nix.app(mkValue, v)}`;
   const defaultOf = (k) => (nix.asBool(nix.eq(k, "FSTYPE")) ? null : nix.selOr(configOptions, () => null, nix.key(nix.force(k)), "default"));
   const safeStr = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "types", "strMatching"), "[^\n\"]*"), {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     description: "string without line breaks or quotes",
     descriptionClass: "conjunction",
   }));
   const intOrNumberOrRange = nix.thunk(() => nix.app(nix.sel(lib, "types", "either"), nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")), nix.thunk(() => nix.update(nix.app(nix.sel(lib, "types", "strMatching"), "[[:digit:]]+(-[[:digit:]]+)?"), {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       description: "string containing either a number or a range",
       descriptionClass: "conjunction",
     }))));
   const configOptions = nix.thunk(() => ({
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     SUBVOLUME: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         type: nix.thunk(() => nix.sel(lib, "types", "path")),
         description: "Path of the subvolume or mount point.\nThis path is a subvolume and has to contain a subvolume named\n.snapshots.\nSee also man:snapper(8) section PERMISSIONS.\n",
       })))),
     FSTYPE: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["btrfs", "bcachefs"]))),
         default: "btrfs",
         description: "Filesystem type. Only btrfs is stable and tested.\n\nbcachefs support is experimental.\n",
       })))),
     ALLOW_GROUPS: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), safeStr)),
         default: [],
         description: "List of groups allowed to operate with the config.\n\nAlso see the PERMISSIONS section in man:snapper(8).\n",
       })))),
     ALLOW_USERS: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), safeStr)),
         default: [],
         example: nix.thunk(() => ["alice"]),
         description: "List of users allowed to operate with the config. \"root\" is always\nimplicitly included.\n\nAlso see the PERMISSIONS section in man:snapper(8).\n",
       })))),
     TIMELINE_CLEANUP: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
         default: false,
         description: "Defines whether the timeline cleanup algorithm should be run for the config.\n",
       })))),
     TIMELINE_CREATE: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
         default: false,
         description: "Defines whether hourly snapshots should be created.\n",
       })))),
     TIMELINE_LIMIT_HOURLY: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         type: intOrNumberOrRange,
         default: 10n,
         description: "Limits for timeline cleanup.\n",
       })))),
     TIMELINE_LIMIT_DAILY: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         type: intOrNumberOrRange,
         default: 10n,
         description: "Limits for timeline cleanup.\n",
       })))),
     TIMELINE_LIMIT_WEEKLY: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         type: intOrNumberOrRange,
         default: 0n,
         description: "Limits for timeline cleanup.\n",
       })))),
     TIMELINE_LIMIT_MONTHLY: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         type: intOrNumberOrRange,
         default: 10n,
         description: "Limits for timeline cleanup.\n",
       })))),
     TIMELINE_LIMIT_QUARTERLY: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         type: intOrNumberOrRange,
         default: 0n,
         description: "Limits for timeline cleanup.\n",
       })))),
     TIMELINE_LIMIT_YEARLY: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         type: intOrNumberOrRange,
         default: 10n,
         description: "Limits for timeline cleanup.\n",
       })))),
   }));
   return {
-    __proto__: pos$55,
+    [nix.POS]: pos$55,
     options: nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       services: nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         snapper: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           snapshotRootOnBoot: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to snapshot root on boot\n",
             })))),
           snapshotInterval: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "hourly",
               description: "Snapshot interval.\n\nThe format is described in\n{manpage}`systemd.time(7)`.\n",
             })))),
           persistentTimer: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               example: true,
               description: "Set the `Persistent` option for the\n{manpage}`systemd.timer(5)`\nwhich triggers the snapshot immediately if the last trigger\nwas missed (e.g. if the system was powered down).\n",
             })))),
           cleanupInterval: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "1d",
               description: "Cleanup interval.\n\nThe format is described in\n{manpage}`systemd.time(7)`.\n",
             })))),
           filters: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "lines")))),
               default: null,
               description: "Global display difference filter. See man:snapper(8) for more details.\n",
             })))),
           configs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  home = {\n    SUBVOLUME = \"/home\";\n    ALLOW_USERS = [ \"alice\" ];\n    TIMELINE_CREATE = true;\n    TIMELINE_CLEANUP = true;\n  };\n}\n")),
               description: "Subvolume configuration. Any option mentioned in man:snapper-configs(5)\nis valid here, even if NixOS doesn't document it.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$21,
+                    [nix.POS]: pos$21,
                     freeformType: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "oneOf"), nix.thunk(() => [
                           nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), safeStr)),
                           nix.thunk(() => nix.sel(lib, "types", "bool")),
@@ -214,42 +214,42 @@ export default nix.lambda((args) => (() => {
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "configs"), {})), nix.thunk(() => (() => {
         const documentation = nix.thunk(() => ["man:snapper(8)", "man:snapper-configs(5)"]);
         return {
-          __proto__: pos$53,
+          [nix.POS]: pos$53,
           environment: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "snapper"))]),
             etc: nix.thunk(() => nix.update({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               "sysconfig/snapper": nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 text: nix.thunk(() => nix.str`SNAPPER_CONFIGS="${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.sel(cfg, "configs")))))}"
 `),
               })),
             }, nix.update(nix.app(nix.sel(lib, "mapAttrs'"), (name) => (subvolume) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`snapper/configs/${name}`), nix.thunk(() => ({
-                  __proto__: pos$29,
-                  text: nix.thunk(() => nix.app(nix.sel(lib, "generators", "toKeyValue"), nix.thunk(() => ({ __proto__: pos$28, mkKeyValue: mkKeyValue })), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (k) => (v) => !nix.eq(v, nix.app(defaultOf, k)), subvolume)))),
+                  [nix.POS]: pos$29,
+                  text: nix.thunk(() => nix.app(nix.sel(lib, "generators", "toKeyValue"), nix.thunk(() => ({ [nix.POS]: pos$28, mkKeyValue: mkKeyValue })), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (k) => (v) => !nix.eq(v, nix.app(defaultOf, k)), subvolume)))),
                 }))), nix.thunk(() => nix.sel(cfg, "configs"))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "filters"), null)), nix.thunk(() => ({
-                __proto__: pos$31,
-                "snapper/filters/default.txt": nix.thunk(() => ({ __proto__: pos$30, text: nix.thunk(() => nix.sel(cfg, "filters")) })),
+                [nix.POS]: pos$31,
+                "snapper/filters/default.txt": nix.thunk(() => ({ [nix.POS]: pos$30, text: nix.thunk(() => nix.sel(cfg, "filters")) })),
               })))))),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             dbus: nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "snapper"))]),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             services: nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               snapperd: nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 description: "DBus interface for snapper",
                 documentation: documentation,
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$35,
+                  [nix.POS]: pos$35,
                   Type: "dbus",
                   BusName: "org.opensuse.Snapper",
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "snapper")}/bin/snapperd`),
@@ -263,57 +263,57 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               "snapper-timeline": nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 description: "Timeline of Snapper Snapshots",
                 documentation: documentation,
                 requires: nix.thunk(() => ["local-fs.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$37,
+                  [nix.POS]: pos$37,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "snapper")}/lib/snapper/systemd-helper --timeline`),
                 })),
               })),
               "snapper-cleanup": nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 description: "Cleanup of Snapper Snapshots",
                 documentation: documentation,
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$39,
+                  [nix.POS]: pos$39,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "snapper")}/lib/snapper/systemd-helper --cleanup`),
                 })),
               })),
               "snapper-boot": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "snapshotRootOnBoot")), nix.thunk(() => ({
-                  __proto__: pos$43,
+                  [nix.POS]: pos$43,
                   description: "Take snapper snapshot of root on boot",
                   documentation: documentation,
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$41,
+                    [nix.POS]: pos$41,
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "snapper")}/bin/snapper --config root create --cleanup-algorithm number --description boot`),
                     Type: "oneshot",
                   })),
                   requires: nix.thunk(() => ["local-fs.target"]),
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
-                  unitConfig: nix.thunk(() => ({ __proto__: pos$42, ConditionPathExists: "/etc/snapper/configs/root" })),
+                  unitConfig: nix.thunk(() => ({ [nix.POS]: pos$42, ConditionPathExists: "/etc/snapper/configs/root" })),
                 })))),
             })),
             timers: nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               "snapper-timeline": nix.thunk(() => ({
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 wantedBy: nix.thunk(() => ["timers.target"]),
                 timerConfig: nix.thunk(() => ({
-                  __proto__: pos$45,
+                  [nix.POS]: pos$45,
                   Persistent: nix.thunk(() => nix.sel(cfg, "persistentTimer")),
                   OnCalendar: nix.thunk(() => nix.sel(cfg, "snapshotInterval")),
                 })),
               })),
               "snapper-cleanup": nix.thunk(() => ({
-                __proto__: pos$48,
+                [nix.POS]: pos$48,
                 description: "Cleanup of Snapper Snapshots",
                 documentation: documentation,
                 wantedBy: nix.thunk(() => ["timers.target"]),
                 requires: nix.thunk(() => ["local-fs.target"]),
                 timerConfig: nix.thunk(() => ({
-                  __proto__: pos$47,
+                  [nix.POS]: pos$47,
                   OnBootSec: "10m",
                   OnUnitActiveSec: nix.thunk(() => nix.sel(cfg, "cleanupInterval")),
                 })),
@@ -324,14 +324,14 @@ export default nix.lambda((args) => (() => {
               const sub = nix.thunk(() => nix.sel(cfg, "configs", nix.key(nix.force(name))));
               return nix.concat([
                 nix.thunk(() => ({
-                  __proto__: pos$51,
+                  [nix.POS]: pos$51,
                   assertion: nix.thunk(() => !nix.asBool(nix.has(sub, "extraConfig"))),
                   message: nix.thunk(() => nix.str`The option definition \`services.snapper.configs.${name}.extraConfig' no longer has any effect; please remove it.
 The contents of this option should be migrated to attributes on \`services.snapper.configs.${name}'.
 `),
                 })),
               ], nix.builtins.map((attr) => ({
-                  __proto__: pos$52,
+                  [nix.POS]: pos$52,
                   assertion: nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "hasAttr"), attr, sub))),
                   message: nix.thunk(() => nix.str`The option definition \`services.snapper.configs.${name}.${attr}' has been renamed to \`services.snapper.configs.${name}.${nix.app(nix.sel(lib, "toUpper"), attr)}'.
 `),
@@ -340,7 +340,7 @@ The contents of this option should be migrated to attributes on \`services.snapp
         };
       })()))),
     meta: nix.thunk(() => ({
-      __proto__: pos$54,
+      [nix.POS]: pos$54,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "Djabx"))];

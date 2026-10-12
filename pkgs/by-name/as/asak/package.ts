@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const alsa_lib = nix.arg($, "alsa-lib");
   const libjack2 = nix.arg($, "libjack2");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "asak",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chaosprint",
           repo: "asak",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [alsa_lib, libjack2]),
       postInstall: "installManPage target/man/asak.1\n\ninstallShellCompletion --cmd asak \\\n  --bash target/completions/asak.bash \\\n  --fish target/completions/asak.fish \\\n  --zsh target/completions/_asak\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cross-platform audio recording/playback CLI tool with TUI, written in Rust",
         homepage: "https://github.com/chaosprint/asak",
         changelog: nix.thunk(() => nix.str`https://github.com/chaosprint/asak/releases/tag/v${nix.sel(finalAttrs, "version")}`),

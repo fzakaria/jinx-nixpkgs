@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libarchive-qt",
       version: "2.0.8",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "marcusbritanicus",
           repo: "libarchive-qt",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libarchive, bzip2, zlib, xz, nix.thunk(() => nix.sel(qt6, "qtbase"))]),
       mesonFlags: nix.thunk(() => ["-Duse_qt_version=qt6"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Qt based archiving solution with libarchive backend",
         mainProgram: "archiver",
         homepage: "https://gitlab.com/marcusbritanicus/libarchive-qt",

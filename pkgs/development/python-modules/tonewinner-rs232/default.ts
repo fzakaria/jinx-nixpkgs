@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const serialx = nix.arg($, "serialx");
   const uv_build = nix.arg($, "uv-build");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tonewinner-rs232",
       version: "1.2.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "emma-sg",
           repo: "tonewinner-rs232",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytest_timeout, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["tonewinner_rs232"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Async Python library for Tonewinner AV processors over RS232 serial",
         homepage: "https://github.com/emma-sg/tonewinner-rs232",
         changelog: nix.thunk(() => nix.str`https://github.com/emma-sg/tonewinner-rs232/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

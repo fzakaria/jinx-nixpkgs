@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const systemdMinimal = nix.arg($, "systemdMinimal");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sway-audio-idle-inhibit",
       version: "0.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ErikReider",
           repo: "SwayAudioIdleInhibit",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config]),
       buildInputs: nix.thunk(() => [libpulseaudio, systemdMinimal]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Prevent swayidle/hypridle from sleeping",
         longDescription: "SwayAudioIdleInhibit prevents swayidle/hypridle from sleeping\nwhile any application is outputting or receiving audio.\n\nThis requires systemd/elogind inhibit support and only works for\nPulseaudio/Pipewire Pulse.\n",
         homepage: "https://github.com/ErikReider/SwayAudioIdleInhibit",

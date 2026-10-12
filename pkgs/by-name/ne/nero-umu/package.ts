@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const gamescope = nix.arg($, "gamescope");
   const gamemode = nix.arg($, "gamemode");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nero-umu",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SeongGino",
           repo: "Nero-umu",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -64,7 +64,7 @@ ln -s ${nix.sel(qt6Packages, "quazip", "src")} source/lib/quazip
 )
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/SeongGino/Nero-umu",
         description: "Fast and efficient Proton prefix runner and manager using umu as backend",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -23,22 +23,22 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "xdg", "portal", "lxqt"));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "lxqt"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       xdg: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         portal: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           lxqt: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the desktop portal for the LXQt desktop environment.\n\nThis will add the `lxqt.xdg-desktop-portal-lxqt`\npackage (with the extra Qt styles) into the\n{option}`xdg.portal.extraPortals` option\n")),
             styles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
                 default: [],
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[\n  pkgs.libsForQt5.qtstyleplugin-kvantum\n  pkgs.breeze-qt5\n];\n")),
@@ -49,18 +49,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         xdg: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           portal: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             enable: true,
             extraPortals: nix.thunk(() => [
-              nix.thunk(() => nix.app(nix.sel(pkgs, "lxqt", "xdg-desktop-portal-lxqt", "override"), nix.thunk(() => ({ __proto__: pos$7, extraQtStyles: nix.thunk(() => nix.sel(cfg, "styles")) })))),
+              nix.thunk(() => nix.app(nix.sel(pkgs, "lxqt", "xdg-desktop-portal-lxqt", "override"), nix.thunk(() => ({ [nix.POS]: pos$7, extraQtStyles: nix.thunk(() => nix.sel(cfg, "styles")) })))),
             ]),
           })),
         })),
-        environment: nix.thunk(() => ({ __proto__: pos$10, systemPackages: nix.thunk(() => nix.sel(cfg, "styles")) })),
+        environment: nix.thunk(() => ({ [nix.POS]: pos$10, systemPackages: nix.thunk(() => nix.sel(cfg, "styles")) })),
       })))),
   };
 })(), formals$1);

@@ -30,13 +30,13 @@ export default nix.lambda((args) => (() => {
   const tensorflow_datasets = nix.arg($, "tensorflow-datasets");
   const torch = nix.arg($, "torch");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "clu",
       version: "0.0.12",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "google",
           repo: "CommonLoopUtils",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [chex, keras, pytestCheckHook, tensorflow, tensorflow_datasets, torch]),
       disabledTests: nix.thunk(() => ["test_collection_mixed_async", "test_async_execution"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Common training loops in JAX",
         homepage: "https://github.com/google/CommonLoopUtils",
         changelog: nix.thunk(() => nix.str`https://github.com/google/CommonLoopUtils/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

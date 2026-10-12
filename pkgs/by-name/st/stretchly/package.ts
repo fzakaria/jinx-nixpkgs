@@ -20,16 +20,16 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "stretchly",
       version: "1.19.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/hovancik/stretchly/releases/download/v${nix.sel(finalAttrs, "version")}/stretchly-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-llcKbzlqGMxwrqH1qvQo4fHxO0C1itVZ5wlkwL1IOOU=",
         })))),
       icon: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/hovancik/stretchly/v${nix.sel(finalAttrs, "version")}/stretchly_128x128.png`),
           hash: "sha256-tO0cNKopG/recQus7KDUTyGpApvR5/tpmF5C4V14DnI=",
         })))),
@@ -48,7 +48,7 @@ makeWrapper ${electron}/bin/electron $out/bin/stretchly \\
 runHook postInstall
 `),
       desktopItem: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name: "stretchly",
           exec: "stretchly",
           icon: nix.thunk(() => nix.sel(finalAttrs, "icon")),
@@ -57,11 +57,11 @@ runHook postInstall
           categories: nix.thunk(() => ["Utility"]),
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Break time reminder app",
         longDescription: "stretchly is a cross-platform electron app that reminds you to take\nbreaks when working on your computer. By default, it runs in your tray\nand displays a reminder window containing an idea for a microbreak for 20\nseconds every 10 minutes. Every 30 minutes, it displays a window\ncontaining an idea for a longer 5 minute break.\n",
         homepage: "https://hovancik.net/stretchly",

@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => nix.app(pythonOlder, "3.13"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "allenporter",
           repo: "gcal_sync",
           tag: version,
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [freezegun, pytest_aiohttp, pytest_asyncio, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["gcal_sync"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for syncing Google Calendar to local storage",
         homepage: "https://github.com/allenporter/gcal_sync",
         changelog: nix.thunk(() => nix.str`https://github.com/allenporter/gcal_sync/releases/tag/${nix.sel(src, "tag")}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

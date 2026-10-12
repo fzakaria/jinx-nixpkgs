@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "scanservjs"));
   const settings = nix.thunk(() => nix.update({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     scanimage: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(config, "hardware", "sane", "backends-package")), "scanimage")),
     convert: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "imagemagick")), "convert")),
     tesseract: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "tesseract")))),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
 module.exports = {
   afterConfig(config) {
     ${nix.builtins.concatStringsSep("", nix.thunk(() => nix.app(leafs, nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsRecursive"), (path) => (val) => nix.str`${nix.builtins.concatStringsSep(".", path)} = ${nix.builtins.toJSON(val)};
-`, nix.thunk(() => ({ __proto__: pos$2, config: settings })))))))}
+`, nix.thunk(() => ({ [nix.POS]: pos$2, config: settings })))))))}
     ${nix.sel(cfg, "extraConfig")}
   },
 
@@ -71,37 +71,37 @@ module.exports = {
 };
 `)));
   return {
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         scanservjs: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "scanservjs")),
           stateDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/var/lib/scanservjs",
               description: "State directory for scanservjs.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               default: nix.thunk(() => ({})),
               description: "Config to set in config.local.js's `afterConfig`.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         description: "The IP to listen on.",
                         default: "127.0.0.1",
                       })))),
                     port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: nix.thunk(() => nix.sel(lib, "types", "port")),
                         description: "The port to listen on.",
                         default: 8080n,
@@ -110,25 +110,25 @@ module.exports = {
                 })))),
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               default: "",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               description: "Extra code to add to config.local.js's `afterConfig`.\n",
             })))),
           extraDevicesConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               default: "",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               description: "Extra code to add to config.local.js's `afterDevices`.\n",
             })))),
           runAfterScan: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               default: "",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               description: "Extra code to add to config.local.js's `afterScan`.\n",
             })))),
           extraActions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               default: [],
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "lines")))),
               description: "Actions to add to config.local.js's `actions`.",
@@ -137,17 +137,17 @@ module.exports = {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         hardware: nix.thunk(() => ({
-          __proto__: pos$17,
-          sane: nix.thunk(() => ({ __proto__: pos$16, enable: true })),
+          [nix.POS]: pos$17,
+          sane: nix.thunk(() => ({ [nix.POS]: pos$16, enable: true })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           users: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             scanservjs: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               group: "scanservjs",
               extraGroups: nix.thunk(() => ["scanner", "lp"]),
               home: nix.thunk(() => nix.sel(cfg, "stateDir")),
@@ -155,12 +155,12 @@ module.exports = {
               createHome: true,
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$20, scanservjs: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$20, scanservjs: nix.thunk(() => ({})) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d ${nix.sel(cfg, "stateDir")}/data 0755 scanservjs scanservjs - -`),
               nix.thunk(() => nix.str`d ${nix.sel(cfg, "stateDir")}/data/preview 0755 scanservjs scanservjs - -`),
@@ -168,9 +168,9 @@ module.exports = {
             ]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             scanservjs: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               description: "scanservjs",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -184,13 +184,13 @@ module.exports = {
                 ];
               })()),
               environment: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 NIX_SCANSERVJS_CONFIG_PATH: configFile,
                 SANE_CONFIG_DIR: "/etc/sane-config",
                 LD_LIBRARY_PATH: "/etc/sane-libs",
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), package$)),
                 Restart: "always",
                 User: "scanservjs",

@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libjcat",
       version: "0.2.6",
       outputs: nix.thunk(() => ["bin", "out", "dev", "devdoc", "man", "installedTests"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hughsie",
           repo: "libjcat",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -60,14 +60,14 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "installed-tests": nix.thunk(() => nix.sel(nixosTests, "installed-tests", "libjcat")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Library for reading and writing Jcat files",
         mainProgram: "jcat-tool",
         homepage: "https://github.com/hughsie/libjcat",

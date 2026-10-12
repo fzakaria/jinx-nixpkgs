@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pname = "s3proxy";
   const version = "2.6.0";
   return nix.app(nix.sel(maven, "buildMavenPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       mvnHash: "sha256-OCFs1Q4NL5heP8AVvkQ+ZdhmPD2SNZMCF2gxjXpbfW4=",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gaul",
           repo: "s3proxy",
           rev: nix.thunk(() => nix.str`s3proxy-${version}`),
@@ -37,7 +37,7 @@ makeWrapper ${jre}/bin/java $out/bin/s3proxy \\
   --add-flags "-jar $out/share/s3proxy/s3proxy-${version}-jar-with-dependencies.jar"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Access other storage backends via the S3 API",
         mainProgram: "s3proxy",
         homepage: "https://github.com/gaul/s3proxy",

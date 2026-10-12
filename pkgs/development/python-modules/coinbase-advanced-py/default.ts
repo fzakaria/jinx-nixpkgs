@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.8.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "coinbase",
           repo: "coinbase-advanced-py",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["coinbase", "coinbase.rest", "coinbase.websocket"]);
       const disabledTestPaths = nix.thunk(() => ["tests/websocket/"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Coinbase Advanced API Python SDK",
         homepage: "https://github.com/coinbase/coinbase-advanced-py",
         changelog: nix.thunk(() => nix.str`https://github.com/coinbase/coinbase-advanced-py/releases/tag/v${version}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "jamiemagee"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

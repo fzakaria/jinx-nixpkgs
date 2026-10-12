@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const pname = "qidi-slicer";
   const version = "1.2.3";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/QIDITECH/QIDISlicer/releases/download/V${version}/QIDISlicer_${version}_Linux_Ubuntu24.AppImage`),
       hash: "sha256-76bdVQu+xCf6uCwkHcpLNNna5MgHm4vbuwMFoQ26N0Y=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, version: version, pname: pname, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, version: version, pname: pname, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: src,
@@ -35,7 +35,7 @@ install -m 444 -D ${appimageContents}/QIDISlicer.desktop $out/share/applications
 install -m 444 -D ${appimageContents}/usr/bin/resources/icons/QIDISlicer.svg $out/share/icons/hicolor/scalable/apps/QIDISlicer.svg
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Slicer for QIDI 3D Printers, based on PrusaSlicer",
         longDescription: "QIDISlicer is a 3D printer slicing software that works with all QIDI Technology printers and filaments.\nIt is easy to use and has all the functions you need to learn 3D printing.\n",
         homepage: "https://github.com/QIDITECH/QIDISlicer",

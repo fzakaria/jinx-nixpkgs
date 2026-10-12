@@ -30,34 +30,34 @@ export default nix.lambda((args) => (() => {
   const sysuserPassword = "$y$j9T$3aiOV/8CADAK22OK2QT3/0$67OKd50Z4qTaZ8c/eRWHLIM.o3ujtC1.n9ysmJfv639";
   const newSysuserPassword = "mellow";
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     name: "activation-sysusers-immutable",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nikstur"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       machine: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         systemd: nix.thunk(() => ({
-          __proto__: pos$3,
-          sysusers: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+          [nix.POS]: pos$3,
+          sysusers: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           mutableUsers: false,
           users: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             root: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               hashedPasswordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "/etc/rootpw.secret")),
             })),
             sysuser: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               isSystemUser: true,
               group: "wheel",
               home: "/sysuser",
@@ -66,24 +66,24 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           etc: nix.thunk(() => ({
-            __proto__: pos$9,
-            "rootpw.secret": nix.thunk(() => ({ __proto__: pos$8, text: rootPassword })),
+            [nix.POS]: pos$9,
+            "rootpw.secret": nix.thunk(() => ({ [nix.POS]: pos$8, text: rootPassword })),
           })),
         })),
         specialisation: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           "new-generation": nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             configuration: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               users: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 users: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   "new-sysuser": nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     isSystemUser: true,
                     group: "wheel",
                     home: "/new-sysuser",

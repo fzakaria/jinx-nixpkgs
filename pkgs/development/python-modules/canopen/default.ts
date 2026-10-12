@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.4.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-IKhLxJizTa3XnOzkZ9O74ZWRwcAqjzkzG8xgZcTYsus=",
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       const __darwinAllowLocalNetworking = true;
       const build_system = nix.thunk(() => [setuptools_scm]);
       const dependencies = nix.thunk(() => [python_can]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, db_export: nix.thunk(() => [canmatrix]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, db_export: nix.thunk(() => [canmatrix]) }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["canopen"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CANopen stack implementation",
         homepage: "https://github.com/christiansandberg/canopen/",
         changelog: nix.thunk(() => nix.str`https://github.com/christiansandberg/canopen/releases/tag/v${version}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pytz = nix.arg($, "pytz");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aio-geojson-usgs-earthquakes",
       version: "2026.8.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "exxamalte",
           repo: "python-aio-geojson-usgs-earthquakes",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["aio_geojson_usgs_earthquakes"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module for accessing the U.S. Geological Survey Earthquake Hazards Program feeds",
         homepage: "https://github.com/exxamalte/python-aio-geojson-usgs-earthquakes",
         changelog: nix.thunk(() => nix.str`https://github.com/exxamalte/python-aio-geojson-usgs-earthquakes/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

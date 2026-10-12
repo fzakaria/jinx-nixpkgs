@@ -19,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const napalm = nix.arg($, "napalm");
   const django = nix.arg($, "django");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       __structuredAttrs: true,
       pname: "netbox-napalm-plugin",
       version: "0.3.7",
       pyproject: true,
       disabled: nix.thunk(() => !nix.eq(nix.sel(python, "pythonVersion"), nix.sel(netbox, "python", "pythonVersion"))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "netbox-community",
           repo: "netbox-napalm-plugin",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,9 +38,9 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.str`export PYTHONPATH=${netbox}/opt/netbox/netbox:$PYTHONPATH
 `),
       pythonImportsCheck: nix.thunk(() => ["netbox_napalm_plugin"]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, pluginName: "netbox_napalm_plugin" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, pluginName: "netbox_napalm_plugin" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Netbox plugin for Napalm integration",
         homepage: "https://github.com/netbox-community/netbox-napalm-plugin",
         changelog: nix.thunk(() => nix.str`https://github.com/netbox-community/netbox-napalm-plugin/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

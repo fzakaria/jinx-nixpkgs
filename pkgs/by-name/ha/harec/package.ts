@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const platform = nix.thunk(() => nix.app(nix.sel(lib, "toLower"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "uname", "system"))));
   const arch = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "uname", "processor"));
-  const qbePlatform = nix.thunk(() => nix.sel({ __proto__: pos$1, x86_64: "amd64_sysv", aarch64: "arm64", riscv64: "rv64" }, nix.key(nix.force(arch))));
+  const qbePlatform = nix.thunk(() => nix.sel({ [nix.POS]: pos$1, x86_64: "amd64_sysv", aarch64: "arm64", riscv64: "rv64" }, nix.key(nix.force(arch))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "harec",
       version: "0.26.0",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "~sircmpwn",
           repo: "harec",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,15 +50,15 @@ export default nix.lambda((args) => (() => {
       postConfigure: nix.thunk(() => nix.str`ln -s configs/${platform}.mk config.mk
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => nix.builtins.map((item) => nix.sel(item, "command"), nix.thunk(() => [
               nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   attrPath: "harec",
                   ignoredVersions: nix.thunk(() => ["-rc[0-9]{1,}"]),
                 })))),
               nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   attrPath: "hare",
                   url: "https://git.sr.ht/~sircmpwn/hare",
                   ignoredVersions: nix.thunk(() => ["-rc[0-9]{1,}"]),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         qbe: qbe,
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://harelang.org/",
         description: "Bootstrapping Hare compiler written in C for POSIX systems",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

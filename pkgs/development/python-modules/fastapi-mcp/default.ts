@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tadata-org",
           repo: "fastapi_mcp",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/test_sse_real_transport.py"]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Expose your FastAPI endpoints as Model Context Protocol (MCP) tools, with Auth",
         homepage: "https://github.com/tadata-org/fastapi_mcp",
         changelog: nix.thunk(() => nix.str`https://github.com/tadata-org/fastapi_mcp/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

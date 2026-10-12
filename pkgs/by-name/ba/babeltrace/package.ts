@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const pythonPackages = nix.argOr($, "pythonPackages", () => null);
   const swig = nix.arg($, "swig");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "babeltrace",
       version: "1.5.11",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.efficios.com/files/babeltrace/babeltrace-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-Z7Q6qu9clR+nrxpVfPcgGhH+iYdrfCK6CgPLwxbbWpw=",
         })))),
@@ -39,16 +39,16 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "enableFeature"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), "debug-info")),
       ], nix.app(nix.sel(lib, "optionals"), enablePython, nix.thunk(() => ["--enable-python-bindings"])))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://git.efficios.com/babeltrace.git",
             "rev-prefix": "v",
             allowedVersions: "^1\\.",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Command-line tool and library to read and convert LTTng tracefiles",
         homepage: "https://www.efficios.com/babeltrace",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

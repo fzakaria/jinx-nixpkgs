@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const irssi = nix.arg($, "irssi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fish-irssi",
       version: "1.6-unstable-2023-08-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "falsovsky",
           repo: "FiSH-irssi",
           rev: "75f754fbcc3c68a078d23ae3e2baab71acc8ed9b",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib, openssl]),
       cmakeFlags: nix.thunk(() => [nix.thunk(() => nix.str`-DIRSSI_INCLUDE_PATH:PATH=${irssi}/include`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/falsovsky/FiSH-irssi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],

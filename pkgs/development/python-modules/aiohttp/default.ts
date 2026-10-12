@@ -47,12 +47,12 @@ export default nix.lambda((args) => (() => {
   const trustme = nix.arg($, "trustme");
   const zlib_ng = nix.arg($, "zlib-ng");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "aiohttp",
       version: "3.14.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aio-libs",
           repo: "aiohttp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,10 +62,10 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [cython, pkgconfig, setuptools]),
       preBuild: "make cythonize\n",
       buildInputs: nix.thunk(() => [llhttp]),
-      env: nix.thunk(() => ({ __proto__: pos$2, AIOHTTP_USE_SYSTEM_DEPS: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, AIOHTTP_USE_SYSTEM_DEPS: true })),
       dependencies: nix.thunk(() => nix.concat([aiohappyeyeballs, aiosignal, attrs, frozenlist, multidict, propcache, yarl], nix.sel(finalAttrs, "passthru", "optional-dependencies", "speedups"))),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         speedups: nix.thunk(() => nix.concat([
           aiodns,
           nix.thunk(() => (nix.asBool(isPyPy) ? nix.force(brotlicffi) : nix.force(brotli))),
@@ -105,7 +105,7 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       preCheck: nix.thunk(() => nix.add("# aiohttp in current folder shadows installed version\nrm -r aiohttp\ntouch tests/data.unknown_mime_type # has to be modified after 1 Jan 1990\n\nexport HOME=$(mktemp -d)\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "# Work around \"OSError: AF_UNIX path too long\"\nexport TMPDIR=\"/tmp\"\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://docs.aiohttp.org/en/${nix.sel(finalAttrs, "src", "tag")}/changes.html`),
         description: "Asynchronous HTTP Client/Server for Python and asyncio",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const withConjure = nix.argOr($, "withConjure", () => true);
   const version = "5.1.0";
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tractor",
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "framagit.org",
           owner: "tractor",
           repo: "tractor",
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://framagit.org/tractor/tractor",
         description: "Setup a proxy with Onion Routing via TOR and optionally obfs4proxy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
   const common = nix.thunk(() => (() => {
     const version = "2.9.3";
     const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         owner: "nix-community",
         repo: "nixd",
         tag: version,
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
     const separateDebugInfo = true;
     const doCheck = true;
     const meta = nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       homepage: "https://github.com/nix-community/nixd",
       changelog: nix.thunk(() => nix.str`https://github.com/nix-community/nixd/releases/tag/${version}`),
       license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
       platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
     }));
     return {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version,
       src,
       nativeBuildInputs,
@@ -89,9 +89,9 @@ export default nix.lambda((args) => (() => {
     };
   })());
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     nixf: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(common, {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname: "nixf",
         sourceRoot: nix.thunk(() => nix.str`${nix.sel(common, "src", "name")}/libnixf`),
         outputs: nix.thunk(() => ["out", "dev"]),
@@ -103,21 +103,21 @@ export default nix.lambda((args) => (() => {
           nlohmann_json,
         ]),
         passthru: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           tests: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nixf)),
           })),
         })),
         meta: nix.thunk(() => nix.update(nix.sel(common, "meta"), {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           description: "Nix language frontend, parser & semantic analysis",
           mainProgram: "nixf-tidy",
           pkgConfigModules: nix.thunk(() => ["nixf"]),
         })),
       })))),
     nixt: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(common, {
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         pname: "nixt",
         sourceRoot: nix.thunk(() => nix.str`${nix.sel(common, "src", "name")}/libnixt`),
         outputs: nix.thunk(() => ["out", "dev"]),
@@ -130,20 +130,20 @@ export default nix.lambda((args) => (() => {
           boost,
         ]),
         passthru: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           tests: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nixt)),
           })),
         })),
         meta: nix.thunk(() => nix.update(nix.sel(common, "meta"), {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           description: "Supporting library that wraps C++ nix",
           pkgConfigModules: nix.thunk(() => ["nixt"]),
         })),
       })))),
     nixd: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(common, {
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         pname: "nixd",
         sourceRoot: nix.thunk(() => nix.str`${nix.sel(common, "src", "name")}/nixd`),
         buildInputs: nix.thunk(() => [
@@ -171,15 +171,15 @@ export default nix.lambda((args) => (() => {
         doInstallCheck: true,
         nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
         passthru: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
           tests: nix.thunk(() => ({
-            __proto__: pos$13,
-            version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$12, package: nixd })))),
+            [nix.POS]: pos$13,
+            version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$12, package: nixd })))),
           })),
         })),
         meta: nix.thunk(() => nix.update(nix.sel(common, "meta"), {
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           description: "Feature-rich Nix language server interoperating with C++ nix",
           mainProgram: "nixd",
         })),

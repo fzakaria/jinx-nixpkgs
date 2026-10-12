@@ -10,12 +10,12 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildRedist = nix.arg($, "buildRedist");
   return nix.app(buildRedist, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       redistName: "nvpl",
       pname: "nvpl_common",
       outputs: nix.thunk(() => ["out", "dev"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Common part of NVIDIA Performance Libraries",
         homepage: "https://developer.nvidia.com/nvpl",
         changelog: "https://docs.nvidia.com/nvpl/latest/release_notes.html",

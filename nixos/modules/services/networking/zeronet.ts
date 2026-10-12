@@ -41,9 +41,9 @@ export default nix.lambda((args) => (() => {
   const dataDir = "/var/lib/zeronet";
   const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "zeronet.conf", nix.thunk(() => nix.app(nix.sel(generators, "toINI"), nix.thunk(() => ({})), nix.thunk(() => nix.app(recursiveUpdate, defaultSettings, nix.thunk(() => nix.sel(cfg, "settings"))))))));
   const defaultSettings = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     global: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       data_dir: dataDir,
       log_dir: dataDir,
       ui_port: nix.thunk(() => nix.sel(cfg, "port")),
@@ -53,17 +53,17 @@ export default nix.lambda((args) => (() => {
   }));
   const w = nix.withScope(lib, null);
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         zeronet: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(mkEnableOption, "zeronet")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "zeronet-conservancy", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(types, w);
                 return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "oneOf"), nix.thunk(() => [
@@ -78,25 +78,25 @@ export default nix.lambda((args) => (() => {
               description: "{file}`zeronet.conf` configuration. Refer to\n<https://zeronet.readthedocs.io/en/latest/faq/#is-it-possible-to-use-a-configuration-file>\nfor details on supported values;\n",
             })))),
           port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 43110n,
               description: "Optional zeronet web UI port.",
             })))),
           fileserverPort: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 12261n,
               description: "Zeronet fileserver port.",
             })))),
           tor: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Use TOR for zeronet traffic where possible.",
             })))),
           torAlways: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Use TOR for all zeronet traffic.",
@@ -105,14 +105,14 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         services: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           tor: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "tor")), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 ControlPort: 9051n,
                 CacheDirectoryGroupReadable: true,
                 CookieAuthentication: true,
@@ -121,16 +121,16 @@ export default nix.lambda((args) => (() => {
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             zeronet: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               description: "zeronet",
               after: nix.thunk(() => nix.concat(["network.target"], nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.sel(cfg, "tor")), "tor.service"))),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 User: "zeronet",
                 DynamicUser: true,
                 StateDirectory: "zeronet",
@@ -148,7 +148,7 @@ export default nix.lambda((args) => (() => {
     meta: nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "zeronet-conservancy", "meta"));
       return {
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
     };
     })()),

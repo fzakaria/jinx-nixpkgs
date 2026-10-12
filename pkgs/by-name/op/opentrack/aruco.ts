@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const opencv4 = nix.arg($, "opencv4");
   const opentrack = nix.arg($, "opentrack");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "opentrack-aruco",
       version: "0-unstable-2022-03-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "opentrack",
           repo: "aruco",
           rev: "e08d336bd2c70859efd19622582817fe8eabe714",
@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [opencv4]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wall -Wextra -Wpedantic -ffast-math -O3",
       })),
       installPhase: "runHook preInstall\n\ninstall -Dt $out/include/aruco ./src/include/aruco/*\ninstall -Dt $out/lib ./src/libaruco.a\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/opentrack/aruco",
         description: "C++ library for detection of AR markers based on OpenCV",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

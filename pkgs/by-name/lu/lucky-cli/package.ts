@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lucky-cli";
       const version = "1.4.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "luckyframework",
           repo: "lucky_cli",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,8 +34,8 @@ export default nix.lambda((args) => (() => {
       const lockFile = nix.path(here, "./shard.lock");
       const shardsFile = nix.path(here, "./shards.nix");
       const crystalBinaries = nix.thunk(() => ({
-        __proto__: pos$3,
-        lucky: nix.thunk(() => ({ __proto__: pos$2, src: "src/lucky.cr" })),
+        [nix.POS]: pos$3,
+        lucky: nix.thunk(() => ({ [nix.POS]: pos$2, src: "src/lucky.cr" })),
       }));
       const buildInputs = nix.thunk(() => [openssl]);
       const nativeBuildInputs = nix.thunk(() => [makeWrapper]);
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [crystal]))}
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Crystal library for creating and running tasks. Also generates Lucky projects",
         homepage: "https://luckyframework.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(crystal, "version")), "1.6.0")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

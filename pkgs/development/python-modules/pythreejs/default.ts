@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.4.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-pWi/3Ew3l8TCM5FYko7cfc9vpKJnsI487FEh4geLW9Y=",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["pythreejs"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Interactive 3D graphics for the Jupyter Notebook and JupyterLab, using Three.js and Jupyter Widgets",
         homepage: "https://github.com/jupyter-widgets/pythreejs",
         changelog: nix.thunk(() => nix.str`https://github.com/jupyter-widgets/pythreejs/releases/tag/${version}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

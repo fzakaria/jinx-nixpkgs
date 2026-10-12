@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const icoutils = nix.arg($, "icoutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "icon-conv-tools",
       version: "0.0.0",
       src: nix.path(here, "./bin"),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       dontPatchELF: true,
       dontStrip: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Tools for icon conversion specific to nix package manager",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

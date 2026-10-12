@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-UQryZ4aGVEr5vRLElmTwRNtgi3h6CPzzq5n+E58tuo8=",
@@ -36,12 +36,12 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const nativeBuildInputs = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), withGui, nix.thunk(() => [wrapQtAppsHook])));
       const dependencies = nix.thunk(() => nix.concat([pyasn1, pyasn1_modules, cxxfilt, msgpack, pycparser], nix.app(nix.sel(lib, "optionals"), withGui, nix.thunk(() => nix.sel(optional_dependencies, "gui")))));
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, gui: nix.thunk(() => [pyqt5]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, gui: nix.thunk(() => [pyqt5]) }));
       const postFixup = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withGui, "wrapQtApp $out/bin/vivbin\n"));
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["vivisect"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python disassembler, debugger, emulator, and static analysis framework",
         homepage: "https://github.com/vivisect/vivisect",
         changelog: nix.thunk(() => nix.str`https://github.com/vivisect/vivisect/blob/v${version}/CHANGELOG.rst`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         broken: withGui,
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

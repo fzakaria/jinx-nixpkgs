@@ -27,19 +27,19 @@ export default nix.lambda((args) => (() => {
   const tqdm = nix.arg($, "tqdm");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const binaries = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "binsync",
       repo: "bs-artifacts",
       tag: "514c2d6ef1875435c9d137bb5d99b6fc74063817",
       hash: "sha256-P7+BTJgdC9W8cC/7xQduFYllF+0ds1dSlm59/BFvZ2g=",
     }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libbs",
       version: "3.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "binsync",
           repo: "libbs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -71,7 +71,7 @@ export TEST_BINARIES_DIR=$HOME/bs-artifacts/binaries
         "TestHeadlessInterfaces",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library for writing plugins in any decompiler: includes API lifting, common data formatting, and GUI abstraction",
         homepage: "https://github.com/binsync/libbs",
         changelog: nix.thunk(() => nix.str`https://github.com/binsync/libbs/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "elementary-wallpapers";
       const version = "8.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "elementary",
           repo: "wallpapers",
           rev: version,
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [gettext, meson, ninja, python3]);
       const postPatch = "chmod +x meson/symlink.py\npatchShebangs meson/symlink.py\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Collection of wallpapers for elementary",
         homepage: "https://github.com/elementary/wallpapers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "pantheon"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(openocd, "overrideAttrs"), (finalAttrs) => (old) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "openocd-rp2040",
       version: "2.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "raspberrypi",
           repo: "openocd",
           tag: nix.thunk(() => nix.str`sdk-${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(old, "nativeBuildInputs"), [autoreconfHook])),
       meta: nix.thunk(() => nix.update(nix.sel(openocd, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Raspberry Pi's downstream fork of OpenOCD for use with Pico-series devices",
         homepage: "https://github.com/raspberrypi/openocd",
         maintainers: nix.thunk(() => (() => {

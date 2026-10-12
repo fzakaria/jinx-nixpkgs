@@ -98,7 +98,7 @@ export default nix.lambda((args) => (() => {
           const $_2 = nix.formals(args_2, formals$3);
           const additionalPkgs = nix.argOr($_2, "additionalPkgs", () => (pkgs) => []);
           const defaultArgs = nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pname: executableName,
             version: version,
             targetPkgs: (pkgs) => nix.concat((() => {
@@ -148,14 +148,14 @@ export default nix.lambda((args) => (() => {
             passthru: nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(finalAttrs, "finalPackage"));
               return {
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               executableName: executableName,
               pname: nix.thunk(() => nix.attr(from, "pname")),
               version: nix.thunk(() => nix.attr(from, "version")),
             };
             })()),
             meta: nix.thunk(() => nix.update(meta, {
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               description: nix.thunk(() => nix.str`Wrapped variant of ${pname} which launches in a FHS compatible environment, should allow for easy usage of extensions without nix-specific modifications`),
             })),
           }));
@@ -163,26 +163,26 @@ export default nix.lambda((args) => (() => {
           return nix.app(buildFHSEnv, customizedArgs);
         })(), formals$3);
         return {
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           pname: pname,
           version: version,
           src: src,
           sourceRoot: sourceRoot,
           dontFixup: dontFixup,
           passthru: nix.thunk(() => nix.update({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             executableName: executableName,
             iconName: iconName,
             longName: longName,
             tests: tests,
             updateScript: updateScript,
             vscodeVersion: vscodeVersion,
-            fhs: nix.thunk(() => nix.app(nix.sel(nix.app(fhs, nix.thunk(() => ({}))), "overrideAttrs"), (old) => ({ __proto__: pos$4, strictDeps: true, __structuredAttrs: true }))),
-            fhsWithPackages: (f) => nix.app(nix.sel(nix.app(fhs, nix.thunk(() => ({ __proto__: pos$5, additionalPkgs: f }))), "overrideAttrs"), (old) => ({ __proto__: pos$6, strictDeps: true, __structuredAttrs: true })),
-          }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(vscodeServer, null)), nix.thunk(() => ({ __proto__: pos$8, rev: rev, vscodeServer: vscodeServer }))))),
+            fhs: nix.thunk(() => nix.app(nix.sel(nix.app(fhs, nix.thunk(() => ({}))), "overrideAttrs"), (old) => ({ [nix.POS]: pos$4, strictDeps: true, __structuredAttrs: true }))),
+            fhsWithPackages: (f) => nix.app(nix.sel(nix.app(fhs, nix.thunk(() => ({ [nix.POS]: pos$5, additionalPkgs: f }))), "overrideAttrs"), (old) => ({ [nix.POS]: pos$6, strictDeps: true, __structuredAttrs: true })),
+          }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(vscodeServer, null)), nix.thunk(() => ({ [nix.POS]: pos$8, rev: rev, vscodeServer: vscodeServer }))))),
           desktopItems: nix.thunk(() => [
             nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 name: executableName,
                 desktopName: longName,
                 comment: "Code Editing. Redefined.",
@@ -195,9 +195,9 @@ export default nix.lambda((args) => (() => {
                 mimeTypes: nix.thunk(() => ["application/x-code-workspace", "text/plain", "inode/directory"]),
                 keywords: nix.thunk(() => ["vscode"]),
                 actions: nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   "new-empty-window": nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     name: "New Empty Window",
                     exec: nix.thunk(() => nix.str`${executableName} --new-window %F`),
                     icon: iconName,
@@ -205,7 +205,7 @@ export default nix.lambda((args) => (() => {
                 })),
               })))),
             nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 name: nix.thunk(() => nix.add(executableName, "-url-handler")),
                 desktopName: nix.thunk(() => nix.add(longName, " - URL Handler")),
                 comment: "Code Editing. Redefined.",
@@ -248,7 +248,7 @@ export default nix.lambda((args) => (() => {
               copyDesktopItems,
               jq,
               nix.thunk(() => nix.app(nix.sel(buildPackages, "wrapGAppsHook3", "override"), nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   makeWrapper: nix.thunk(() => nix.sel(buildPackages, "makeShellWrapper")),
                 })))),
             ]))))),
@@ -294,7 +294,7 @@ rm -rf "$packed"
 `), "ln -rs \"$unpacked\" \"$packed\"\n"), "rm -rf \"resources/app/node_modules.asar.unpacked\"\nln -rs \"$unpacked\" \"resources/app/node_modules.asar.unpacked\"\n"))), (() => {
             const nodeModulesPath = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), vscodeVersion, "1.129.0")) ? "Contents/Resources/app/node_modules.asar.unpacked" : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), vscodeVersion, "1.94.0")) ? "Contents/Resources/app/node_modules" : "Contents/Resources/app/node_modules.asar.unpacked")) : "resources/app/node_modules"));
             const ripgrepSystem = nix.thunk(() => nix.selOr({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               "aarch64-darwin": "darwin-arm64",
               "armv7l-linux": "linux-arm",
               "aarch64-linux": "linux-arm64",

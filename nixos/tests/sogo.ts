@@ -19,35 +19,35 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     name: "sogo",
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       sogo: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           services: nix.thunk(() => ({
-            __proto__: pos$7,
-            nginx: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+            [nix.POS]: pos$7,
+            nginx: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
             mysql: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               enable: true,
               package: nix.thunk(() => nix.sel(pkgs_1, "mariadb")),
               ensureDatabases: nix.thunk(() => ["sogo"]),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   name: "sogo",
-                  ensurePermissions: nix.thunk(() => ({ __proto__: pos$3, "sogo.*": "ALL PRIVILEGES" })),
+                  ensurePermissions: nix.thunk(() => ({ [nix.POS]: pos$3, "sogo.*": "ALL PRIVILEGES" })),
                 })),
               ]),
             })),
             sogo: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               enable: true,
               timezone: "Europe/Berlin",
               extraConfig: "WOWorkersCount = 1;\n\nSOGoUserSources = (\n  {\n    type = sql;\n    userPasswordAlgorithm = md5;\n    viewURL = \"mysql://sogo@%2Frun%2Fmysqld%2Fmysqld.sock/sogo/sogo_users\";\n    canAuthenticate = YES;\n    id = users;\n  }\n);\n\nSOGoProfileURL = \"mysql://sogo@%2Frun%2Fmysqld%2Fmysqld.sock/sogo/sogo_user_profile\";\nOCSFolderInfoURL = \"mysql://sogo@%2Frun%2Fmysqld%2Fmysqld.sock/sogo/sogo_folder_info\";\nOCSSessionsFolderURL = \"mysql://sogo@%2Frun%2Fmysqld%2Fmysqld.sock/sogo/sogo_sessions_folder\";\nOCSEMailAlarmsFolderURL = \"mysql://sogo@%2Frun%2Fmysqld%2Fmysqld.sock/sogo/sogo_alarms_folder\";\nOCSStoreURL = \"mysql://sogo@%2Frun%2Fmysqld%2Fmysqld.sock/sogo/sogo_store\";\nOCSAclURL = \"mysql://sogo@%2Frun%2Fmysqld%2Fmysqld.sock/sogo/sogo_acl\";\nOCSCacheFolderURL = \"mysql://sogo@%2Frun%2Fmysqld%2Fmysqld.sock/sogo/sogo_cache_folder\";\n",

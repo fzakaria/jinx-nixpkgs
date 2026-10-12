@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const ua_generator = nix.arg($, "ua-generator");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "garminconnect",
       version: "0.3.17",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cyberjunky",
           repo: "python-garminconnect",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["garminconnect"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Garmin Connect Python API wrapper",
         homepage: "https://github.com/cyberjunky/python-garminconnect",
         changelog: nix.thunk(() => nix.str`https://github.com/cyberjunky/python-garminconnect/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

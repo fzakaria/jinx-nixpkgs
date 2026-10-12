@@ -13,8 +13,8 @@ export default nix.lambda((args) => (() => {
     const result = nix.thunk(() => nix.app(nix.sel(lib, "makeOverridable"), f, args_1));
     const overrideWith = (update) => nix.update(args_1, (nix.asBool(nix.app(nix.sel(lib, "isFunction"), update)) ? nix.app(update, args_1) : nix.force(update)));
     const overridePackage = nix.thunk(() => nix.app(nix.sel(lib, "mirrorFunctionArgs"), f, (update) => nix.app(makePackageOverridable, f, nix.thunk(() => nix.app(overrideWith, update)))));
-    return nix.update(result, { __proto__: pos$1, overridePackage: overridePackage });
+    return nix.update(result, { [nix.POS]: pos$1, overridePackage: overridePackage });
   })();
-  return nix.update(lib, { __proto__: pos$2, makePackageOverridable: makePackageOverridable });
+  return nix.update(lib, { [nix.POS]: pos$2, makePackageOverridable: makePackageOverridable });
 })(), formals$1);
 //# sourceMappingURL=lib.ts.map

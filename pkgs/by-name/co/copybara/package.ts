@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "copybara",
       version: "20260928",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/google/copybara/releases/download/v${nix.sel(finalAttrs, "version")}/copybara_deploy.jar`),
           hash: "sha256-JYB2Re4Xt7hj9PiFASsGGSuZUmMrVAvfiiEIgxP+SSU=",
         })))),
@@ -50,13 +50,13 @@ runHook postInstall
       versionCheckProgramArg: "version",
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(jdk25_headless, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool for transforming and moving code between repositories",
         longDescription: "Copybara is a tool used internally at Google for transforming and moving\ncode between repositories. It allows you to maintain code in multiple\nrepositories while keeping them in sync through transformations.\n\nCommon use cases include:\n- Importing sections of code from a confidential repository to a public repository\n- Importing code from a public repository to a confidential repository\n- Moving changes between authoritative and non-authoritative repositories\n",
         homepage: "https://github.com/google/copybara",

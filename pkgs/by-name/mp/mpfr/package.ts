@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const writeScript = nix.arg($, "writeScript");
   const updateAutotoolsGnuConfigScriptsHook = nix.arg($, "updateAutotoolsGnuConfigScriptsHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "4.2.2",
       pname: "mpfr",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://www.mpfr.org/mpfr-${nix.sel(finalAttrs, "version")}/mpfr-${nix.sel(finalAttrs, "version")}.tar.xz`),
             nix.thunk(() => nix.str`mirror://gnu/mpfr/mpfr-${nix.sel(finalAttrs, "version")}.tar.xz`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-mpfr", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p curl pcre2 common-updater-scripts
 
@@ -51,7 +51,7 @@ update-source-version ${nix.sel(finalAttrs, "pname")} "$new_version"
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.mpfr.org/",
         description: "Library for multiple-precision floating-point arithmetic",
         longDescription: "The GNU MPFR library is a C library for multiple-precision\nfloating-point computations with correct rounding.  MPFR is\nbased on the GMP multiple-precision library.\n\nThe main goal of MPFR is to provide a library for\nmultiple-precision floating-point computation which is both\nefficient and has a well-defined semantics.  It copies the good\nideas from the ANSI/IEEE-754 standard for double-precision\nfloating-point arithmetic (53-bit mantissa).\n",

@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pytest-ansible",
       version: "26.6.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ansible",
           repo: "pytest-ansible",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["tests/test_adhoc.py", "tests/test_adhoc_result.py"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ansible_core, "version")), "2.16")), nix.thunk(() => ["tests/test_adhoc.py"]))))),
       pythonImportsCheck: nix.thunk(() => ["pytest_ansible"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Plugin for pytest to simplify calling ansible modules from tests or fixtures",
         homepage: "https://github.com/jlaska/pytest-ansible",
         changelog: nix.thunk(() => nix.str`https://github.com/ansible-community/pytest-ansible/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

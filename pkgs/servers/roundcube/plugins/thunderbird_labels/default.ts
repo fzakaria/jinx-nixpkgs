@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
       const pname = "thunderbird_labels";
       const version = "1.6.2";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mike-kfed/roundcube-thunderbird_labels/archive/refs/tags/v${version}.tar.gz`),
           hash: "sha256-i06kfA9oxRX+tICTPWBobOyHedqbjBb4JLBmC9ruBmM=",
         }))));
-      return { __proto__: pos$2, pname, version, src };
+      return { [nix.POS]: pos$2, pname, version, src };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

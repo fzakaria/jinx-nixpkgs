@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.64";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-7hafyW7jq/8Xk4POAohX6sNViJ+Azuqs5/0i1JqCqr0=",
@@ -72,7 +72,7 @@ sed -i -e "s|'xset|'${xset}/bin/xset|" py3status/modules/keyboard_layout.py
       const preFixup = "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n";
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extensible i3status wrapper",
         homepage: "https://github.com/ultrabug/py3status",
         changelog: nix.thunk(() => nix.str`https://github.com/ultrabug/py3status/blob/${version}/CHANGELOG`),
@@ -80,7 +80,7 @@ sed -i -e "s|'xset|'${xset}/bin/xset|" py3status/modules/keyboard_layout.py
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

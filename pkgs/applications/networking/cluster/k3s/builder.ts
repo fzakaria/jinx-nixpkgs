@@ -89,7 +89,7 @@ export default (lib) => nix.lambda((args) => (() => {
     const zstd = nix.arg($_1, "zstd");
     const versionCheckHook = nix.arg($_1, "versionCheckHook");
     const baseMeta = nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       description: "Lightweight Kubernetes distribution",
       license: nix.thunk(() => nix.sel(lib_1, "licenses", "asl20")),
       homepage: "https://k3s.io",
@@ -139,22 +139,22 @@ export default (lib) => nix.lambda((args) => (() => {
       ];
     })());
     const traefik = nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       chart: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.sel(chartVersions, "traefik")))),
       name: nix.thunk(() => nix.builtins.baseNameOf(nix.thunk(() => nix.sel(chartVersions, "traefik", "url")))),
     }));
     const traefik_crd = nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       chart: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.sel(chartVersions, "traefik-crd")))),
       name: nix.thunk(() => nix.builtins.baseNameOf(nix.thunk(() => nix.sel(chartVersions, "traefik-crd", "url")))),
     }));
     const airgap_images = nix.thunk(() => nix.selOr({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.sel(imagesVersions, "airgap-images-amd64-tar-zst")))),
       "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.sel(imagesVersions, "airgap-images-arm64-tar-zst")))),
     }, () => nix.builtins.throw(nix.thunk(() => nix.str`k3s: no airgap images available for system ${nix.sel(stdenv, "hostPlatform", "system")}, consider using an image archive with an explicit architecture.`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
     const k3sRoot = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         url: nix.thunk(() => nix.str`https://github.com/k3s-io/k3s-root/releases/download/v${k3sRootVersion}/k3s-root-amd64.tar`),
         sha256: k3sRootSha256,
         stripRoot: false,
@@ -165,16 +165,16 @@ export default (lib) => nix.lambda((args) => (() => {
         const vendorHash = null;
         const subPackages = nix.thunk(() => ["."]);
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             owner: "rancher",
             repo: "plugins",
             rev: nix.thunk(() => nix.str`v${version}`),
             sha256: k3sCNISha256,
           }))));
         const postInstall = "mv $out/bin/plugins $out/bin/cni\n";
-        const meta = nix.thunk(() => nix.update(baseMeta, { __proto__: pos$7, description: "CNI plugins, as patched by rancher for k3s" }));
+        const meta = nix.thunk(() => nix.update(baseMeta, { [nix.POS]: pos$7, description: "CNI plugins, as patched by rancher for k3s" }));
         return {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           pname,
           version,
           vendorHash,
@@ -185,7 +185,7 @@ export default (lib) => nix.lambda((args) => (() => {
         };
       })())), "overrideAttrs"), overrideCniPluginsAttrs));
     const k3sRepo = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         url: "https://github.com/k3s-io/k3s",
         rev: nix.thunk(() => nix.str`v${k3sVersion}`),
         sha256: k3sRepoSha256,
@@ -219,7 +219,7 @@ sed -i '$acreate_killall' install.sh
 KILLALL_K3S_SH=$out bash install.sh
 `)));
     const k3sBundle = nix.thunk(() => nix.app(nix.sel(nix.app(buildGoModule, nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         pname: "k3s-bin",
         version: k3sVersion,
         src: k3sRepo,
@@ -238,16 +238,16 @@ cp -v ${nix.sel(traefik_crd, "chart")} ./pkg/static/embed/charts/${nix.sel(traef
 `),
         postInstall: "mv $out/bin/server $out/bin/k3s\npushd $out\n# taken verbatim from https://github.com/k3s-io/k3s/blob/v1.23.3%2Bk3s1/scripts/build#L105-L113\nln -s k3s ./bin/containerd\nln -s k3s ./bin/crictl\nln -s k3s ./bin/ctr\nln -s k3s ./bin/k3s-agent\nln -s k3s ./bin/k3s-certificate\nln -s k3s ./bin/k3s-completion\nln -s k3s ./bin/k3s-etcd-snapshot\nln -s k3s ./bin/k3s-secrets-encrypt\nln -s k3s ./bin/k3s-server\nln -s k3s ./bin/k3s-token\nln -s k3s ./bin/kubectl\npopd\n",
         meta: nix.thunk(() => nix.update(baseMeta, {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           description: "Various binaries that get packaged into the final k3s binary",
         })),
       }))), "overrideAttrs"), overrideBundleAttrs));
     const k3sContainerd = nix.thunk(() => nix.app(nix.sel(nix.app(buildGoModule, nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         pname: "k3s-containerd",
         version: containerdVersion,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             owner: "k3s-io",
             repo: "containerd",
             rev: nix.thunk(() => nix.str`v${containerdVersion}`),
@@ -259,7 +259,7 @@ cp -v ${nix.sel(traefik_crd, "chart")} ./pkg/static/embed/charts/${nix.sel(traef
         ldflags: versionldflags,
       }))), "overrideAttrs"), overrideContainerdAttrs));
     return nix.app(buildGoModule, (finalAttrs) => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         pname: "k3s",
         version: k3sVersion,
         pos: nix.thunk(() => nix.builtins.unsafeGetAttrPos("k3sVersion", attrs)),
@@ -324,7 +324,7 @@ runHook postInstall
         doInstallCheck: true,
         nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
         passthru: nix.thunk(() => nix.update({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           "airgap-images": airgap_images,
           k3sCNIPlugins: k3sCNIPlugins,
           k3sContainerd: k3sContainerd,
@@ -342,7 +342,7 @@ runHook postInstall
           airgapImagesArm64: nix.thunk(() => nix.builtins.throw("k3s.airgapImagesArm64 was renamed to k3s.airgap-images-arm64-tar-zst")),
           airgapImagesArm: nix.thunk(() => nix.builtins.throw("k3s.airgapImagesArm was renamed to k3s.airgap-images-arm-tar-zst")),
         }, nix.app(nix.sel(lib_1, "mapAttrs"), (_) => (value) => nix.app(fetchurl, value), imagesVersions))),
-        meta: nix.thunk(() => nix.update(baseMeta, { __proto__: pos$15, mainProgram: "k3s" })),
+        meta: nix.thunk(() => nix.update(baseMeta, { [nix.POS]: pos$15, mainProgram: "k3s" })),
       }));
   })(), formals$2);
 })(), formals$1);

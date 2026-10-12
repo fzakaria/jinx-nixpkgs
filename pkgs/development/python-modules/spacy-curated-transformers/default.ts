@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const spacy = nix.arg($, "spacy");
   const torch = nix.arg($, "torch");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "spacy-curated-transformers",
       version: "2.1.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "explosion",
           repo: "spacy-curated-transformers",
           tag: nix.thunk(() => nix.str`release-v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [curated_tokenizers, curated_transformers, spacy, torch]),
       pythonImportsCheck: nix.thunk(() => ["spacy_curated_transformers"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "spaCy entry points for Curated Transformers",
         homepage: "https://github.com/explosion/spacy-curated-transformers",
         changelog: nix.thunk(() => nix.str`https://github.com/explosion/spacy-curated-transformers/releases/tag/v${nix.sel(finalAttrs, "version")}`),

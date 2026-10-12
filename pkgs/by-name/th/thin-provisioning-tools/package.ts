@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "thin-provisioning-tools",
       version: "1.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jthornber",
           repo: "thin-provisioning-tools",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [lvm2, udev]),
       cargoHash: "sha256-y3uvPwLps8edzO9GtJ1CpB55kieclk06PjOYsYs64go=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "lvm2"));
           return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "lvm-thinpool-linux-latest": nix.thunk(() => nix.attr(from, "lvm-thinpool-linux-latest")),
         };
         })()),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postInstall: "ln -s $out/bin/pdata_tools $out/bin/cache_check\nln -s $out/bin/pdata_tools $out/bin/cache_dump\nln -s $out/bin/pdata_tools $out/bin/cache_metadata_size\nln -s $out/bin/pdata_tools $out/bin/cache_repair\nln -s $out/bin/pdata_tools $out/bin/cache_restore\nln -s $out/bin/pdata_tools $out/bin/cache_writeback\nln -s $out/bin/pdata_tools $out/bin/era_check\nln -s $out/bin/pdata_tools $out/bin/era_dump\nln -s $out/bin/pdata_tools $out/bin/era_invalidate\nln -s $out/bin/pdata_tools $out/bin/era_restore\nln -s $out/bin/pdata_tools $out/bin/thin_check\nln -s $out/bin/pdata_tools $out/bin/thin_delta\nln -s $out/bin/pdata_tools $out/bin/thin_dump\nln -s $out/bin/pdata_tools $out/bin/thin_ls\nln -s $out/bin/pdata_tools $out/bin/thin_metadata_size\nln -s $out/bin/pdata_tools $out/bin/thin_repair\nln -s $out/bin/pdata_tools $out/bin/thin_restore\nln -s $out/bin/pdata_tools $out/bin/thin_rmap\nln -s $out/bin/pdata_tools $out/bin/thin_trim\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/jthornber/thin-provisioning-tools/",
         description: "Suite of tools for manipulating the metadata of the dm-thin device-mapper target",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

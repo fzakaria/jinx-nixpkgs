@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "setup-envtest",
       version: "0.22.3",
       src: nix.thunk(() => nix.add(nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kubernetes-sigs",
           repo: "controller-runtime",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       ldflags: nix.thunk(() => ["-s", "-w"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool that manages binaries for envtest, allowing the download of new binaries, listing installed and available ones, and cleaning up versions",
         homepage: nix.thunk(() => nix.str`https://github.com/kubernetes-sigs/controller-runtime/tree/v${nix.sel(finalAttrs, "version")}/tools/setup-envtest`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const pnpm = pnpm_10;
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "deltachat-tauri",
       version: "2.59.0-unstable-2026-08-15",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "deltachat",
           repo: "deltachat-tauri",
           rev: "ea854b4799578d7291e4dc9d6b76ddb5a001d2f0",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-Z3uZ+IARmCZbJiIotYjdQRzYZFplRwE3xO0Yb0tLbcE=",
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -75,12 +75,12 @@ export default nix.lambda((args) => (() => {
           webkitgtk_4_1,
         ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [apple_sdk_14])))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         VERSION_INFO_GIT_REF: nix.thunk(() => nix.sel(finalAttrs, "src", "rev")),
       })),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "install -Dm 444 images/tray/deltachat.svg \"$out/share/icons/hicolor/scalable/apps/deltachat-tauri.svg\"\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         broken: true,
         description: "Email-based instant messaging for Desktop",
         homepage: "https://github.com/deltachat/deltachat-tauri",

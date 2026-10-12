@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const scdoc = nix.arg($, "scdoc");
   const wl_present_binpath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [pipectl, slurp, nix.thunk(() => nix.builtins.placeholder("out"))])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wl-mirror",
       version: "0.18.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Ferdi265",
           repo: "wl-mirror",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +56,7 @@ substituteInPlace CMakeLists.txt \\
       postInstall: nix.thunk(() => nix.add("installShellCompletion --cmd wl-mirror \\\n  --bash ../scripts/completions/bash-completions/_wl-mirror \\\n  --zsh ../scripts/completions/zsh-completions/_wl-mirror\n\ninstallShellCompletion --cmd wl-present \\\n  --bash ../scripts/completions/bash-completions/_wl-present \\\n  --zsh ../scripts/completions/zsh-completions/_wl-present\n", nix.app(nix.sel(lib, "optionalString"), installExampleScripts, nix.thunk(() => nix.str`wrapProgram $out/bin/wl-present --prefix PATH ":" ${wl_present_binpath}
 `)))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mainProgram: "wl-mirror",
         homepage: "https://github.com/Ferdi265/wl-mirror",
         description: "Simple Wayland output mirror client",

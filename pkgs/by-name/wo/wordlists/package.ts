@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const writeShellScriptBin = nix.arg($, "writeShellScriptBin");
   const tree = nix.arg($, "tree");
   const wordlistsCollection = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "wordlists-collection",
       paths: lists,
       postBuild: "shopt -s extglob\nrm -rf $out/!(share)\nrm -rf $out/share/!(wordlists)\nshopt -u extglob\n",
@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const wordlistsPathBin = nix.thunk(() => nix.app(writeShellScriptBin, "wordlists_path", nix.thunk(() => nix.str`printf "${wordlistsCollection}/share/wordlists\\n"
 `)));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wordlists",
       version: nix.thunk(() => nix.sel(lib, "trivial", "release")),
       paths: nix.thunk(() => [wordlistsCollection, wordlistsBin, wordlistsPathBin]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of wordlists useful for security testing",
         longDescription: "The `wordlists` package provides two scripts. One is called {command}`wordlists`,\nand it will list a tree of all the wordlists installed. The other one is\ncalled {command}`wordlists_path` which will print the path to the nix store\nlocation of the lists. You can for example do\n{command}`$(wordlists_path)/rockyou.txt` to get the location of the\n[rockyou](https://en.wikipedia.org/wiki/RockYou#Data_breach)\nwordlist. If you want to modify the available wordlists you can override\nthe `lists` attribute`. In your nixos configuration this would look\nsimilar to this:\n\n```nix\nenvironment.systemPackages = [\n  (pkgs.wordlists.override { lists = with pkgs; [ rockyou ] })\n]\n```\n\nyou can use this with nix-shell by doing:\n{command}`nix-shell -p 'wordlists.override { lists = with (import <nixpkgs> {}); [ nmap ]; }'\nIf you want to add a new package that provides wordlist/s the convention\nis to copy it to {file}`$out/share/wordlists/myNewWordlist`.\n",
         maintainers: nix.thunk(() => (() => {

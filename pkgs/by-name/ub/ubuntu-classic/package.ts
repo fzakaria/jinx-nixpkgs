@@ -16,22 +16,22 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ubuntu-classic",
       version: "0.83-6ubuntu2",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.launchpad.net/ubuntu/+source/fonts-ubuntu-classic",
           rev: nix.thunk(() => nix.str`import/${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-GrpBVgisVu7NklFYqkEqYi0hui/pCHlsM3Ky4mEUq90=",
         })))),
       installPhase: "runHook preInstall\n\ninstall -m444 -Dt $out/share/fonts/truetype/ubuntu *.ttf\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "import/" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "import/" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Ubuntu Classic font",
         longDescription: "The Ubuntu typeface has been specially\n    created to complement the Ubuntu tone of voice. It has a\n    contemporary style and contains characteristics unique to\n    the Ubuntu brand that convey a precise, reliable and free attitude.",
         homepage: "https://design.ubuntu.com/font",

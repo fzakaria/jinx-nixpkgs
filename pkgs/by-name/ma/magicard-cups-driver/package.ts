@@ -16,16 +16,16 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const cups = nix.arg($, "cups");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "magicard-cups-driver",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://f08ddbe93aa02eaf9a6c-f08cd513e3a8c914f4f8f62af1786149.ssl.cf3.rackcdn.com/magicard_ltd-linux_driver-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-1k2Twn1JBizw/tzQ0xF1uJIecblRd6VurB7FAUop5F0=",
         })))),
       src_v1_3_4: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://techs.magicard.com/linux/v1.3.4/magicard_ltd-linux_driver-1.3.4.tar.gz",
           hash: "sha256-6UIL2wyFOjOJeyGjYScfjbpURycN469raye6DnP19jg=",
         })))),
@@ -37,7 +37,7 @@ rm makefile
       patches: nix.thunk(() => [nix.path(here, "./CMakeLists.patch")]),
       cmakeFlags: nix.thunk(() => ["-DCUPS_SERVER_BIN=lib/cups", "-DCUPS_DATA_DIR=share/cups"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CUPS driver for Magicard Printers",
         longDescription: "This driver supports Magicard printers and rebrands sold at least under the following brands:\n\n- Aisino\n- AlphaCard\n- BOOD\n- Brady\n- Cardmaker\n- Centena\n- DTP\n- Digital ID\n- DoH\n- Elliaden\n- Fagoo\n- Goodcard\n- Gudecard\n- IDentilam\n- IDville\n- ilinkcard\n- Intersider\n- Magicard\n- Orphicard\n- PPC ID\n- Polaroid\n- PriceCardPro\n- Pridento\n- ScreenCheck\n- Titan\n- Ying\n",
         homepage: "https://support.magicard.com/solution/linux-driver/",

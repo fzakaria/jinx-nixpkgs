@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const spice = nix.arg($, "spice");
   const spice_protocol = nix.arg($, "spice-protocol");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "x11spice",
       version: "2019-08-20",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "spice",
           repo: "x11spice",
@@ -35,9 +35,9 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => [libxcb, libxcb_util, util_macros, gtk3, spice, spice_protocol]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_LDFLAGS: "-lpthread" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-lpthread" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Enable a running X11 desktop to be available via a Spice server",
         homepage: "https://gitlab.freedesktop.org/spice/x11spice",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

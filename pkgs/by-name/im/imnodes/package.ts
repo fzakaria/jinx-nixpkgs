@@ -24,14 +24,14 @@ export default nix.lambda((args) => (() => {
   const imnodes = nix.arg($, "imnodes");
   const withExamples = nix.argOr($, "withExamples", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "imnodes",
       version: "0.5-unstable-2025-06-25",
       outputs: nix.thunk(() => ["out", "dev"]),
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Nelarius",
           repo: "imnodes",
           rev: "b2ec254ce576ac3d42dfb7aef61deadbff8e7211",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/Nelarius/imnodes/commit/ff20336fcd82ce07c39fabd76d5bc9fa0a08b3bc.patch",
             hash: "sha256-JHOUjwMofDwt2kg6SLPFZmuQC4bOfjGa3qHFr5MdPIE=",
           })))),
@@ -50,14 +50,14 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "IMNODES_EXAMPLES", withExamples)),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          examples: nix.thunk(() => nix.app(nix.sel(imnodes, "override"), nix.thunk(() => ({ __proto__: pos$3, withExamples: true })))),
+          [nix.POS]: pos$4,
+          examples: nix.thunk(() => nix.app(nix.sel(imnodes, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, withExamples: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Small, dependency-free node editor for dear imgui",
         homepage: "https://github.com/Nelarius/imnodes",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

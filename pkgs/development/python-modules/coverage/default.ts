@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytest7CheckHook = nix.arg($, "pytest7CheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "coverage",
       version: "7.15.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "coveragepy",
           repo: "coveragepy",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "export PATH=\"$PATH:$out/bin\"\n# import from $out\nrm -r coverage\n",
       disabledTests: nix.thunk(() => ["test_all_our_source_files", "test_real_code_regions"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/coveragepy/coveragepy/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.rst`),
         description: "Code coverage measurement for Python",
         homepage: "https://github.com/coveragepy/coveragepy",

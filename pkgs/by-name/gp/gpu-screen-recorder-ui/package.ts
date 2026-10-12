@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const wrapperDir = nix.argOr($, "wrapperDir", () => "/run/wrappers/bin");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gpu-screen-recorder-ui",
       version: "1.13.10",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://repo.dec05eba.com/gpu-screen-recorder-ui",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-mH/xSdsDHwokemGq2h/qaf/ImN3xlrZupcK+5ptXOns=",
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
       mesonBuildType: "release",
       mesonFlags: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "mesonBool"), "capabilities", false))]),
       postInstall: nix.thunk(() => (() => {
-        const gpu_screen_recorder_wrapped = nix.thunk(() => nix.app(nix.sel(gpu_screen_recorder, "override"), nix.thunk(() => ({ __proto__: pos$2, wrapperDir: wrapperDir }))));
+        const gpu_screen_recorder_wrapped = nix.thunk(() => nix.app(nix.sel(gpu_screen_recorder, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, wrapperDir: wrapperDir }))));
         return nix.str`wrapProgram "$out/bin/gsr-ui" \\
   --prefix LD_LIBRARY_PATH : "${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libglvnd]))}" \\
   --prefix XDG_DATA_DIRS : "${gsettings_desktop_schemas}/share/gsettings-schemas/${nix.sel(gsettings_desktop_schemas, "name")}" \\
@@ -88,11 +88,11 @@ export default nix.lambda((args) => (() => {
 `;
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Fullscreen overlay UI for GPU Screen Recorder in the style of ShadowPlay",
         homepage: "https://git.dec05eba.com/gpu-screen-recorder-ui/about",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

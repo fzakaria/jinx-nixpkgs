@@ -69,11 +69,11 @@ export default nix.lambda((args) => (() => {
         return nix.app(nix.sel(pkgsBuildBuild, "targetPackages", "python3", "withPackages"), checkDeps);
       })() : nix.force(python3)));
       return nix.update({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         pname: "llvm",
         version: version,
         src: nix.thunk(() => (nix.asBool(!nix.eq(monorepoSrc, null)) ? nix.app(runCommand, nix.thunk(() => nix.str`llvm-src-${version}`), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             passthru: nix.thunk(() => nix.attr(monorepoSrc, "passthru")),
             strictDeps: true,
             __structuredAttrs: true,
@@ -99,20 +99,20 @@ cp -r ${monorepoSrc}/mlir/utils "$out/mlir/utils"
           nix.thunk(() => nix.app(getVersionFile, "llvm/llvm-lit-cfg-add-libs-to-dylib-path.patch")),
           nix.thunk(() => nix.app(getVersionFile, "llvm/lit-shell-script-runner-set-dyld-library-path.patch")),
         ], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), release_version, "19")), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: "https://github.com/llvm/llvm-project/commit/7e44305041d96b064c197216b931ae3917a34ac1.patch",
               hash: "sha256-1htuzsaPHbYgravGc1vrR8sqpQ/NSQ8PUZeAU8ucCFk=",
               stripLen: 1n,
             }))))), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "versions", "major"), release_version), "18")), nix.thunk(() => [
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 name: "osabi-test-reorg.patch",
                 url: "https://github.com/llvm/llvm-project/commit/06cecdc60ec9ebfdd4d8cdb2586d201272bdf6bd.patch",
                 stripLen: 1n,
                 hash: "sha256-s9GZTNgzLS511Pzh6Wb1hEV68lxhmLWXjlybHBDMhvM=",
               })))),
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 name: "mc-set-openbsd-osabi.patch",
                 url: "https://github.com/llvm/llvm-project/commit/b64c1de714c50bec7493530446ebf5e540d5f96a.patch",
                 stripLen: 1n,
@@ -121,7 +121,7 @@ cp -r ${monorepoSrc}/mlir/utils "$out/mlir/utils"
             nix.path(here, "./llvm-add-include-cstdint.patch"),
           ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), release_version, "19")), nix.thunk(() => [
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 url: "https://github.com/llvm/llvm-project/commit/1e8df9e85a1ff213e5868bd822877695f27504ad.patch",
                 hash: "sha256-mvBlG2RxpZPFnPI7jvCMz+Fc8JuM15Ye3th1FVZMizE=",
                 stripLen: 1n,
@@ -130,7 +130,7 @@ cp -r ${monorepoSrc}/mlir/utils "$out/mlir/utils"
             nix.thunk(() => nix.app(getVersionFile, "llvm/gnu-install-dirs-polly.patch")),
             nix.thunk(() => nix.app(getVersionFile, "llvm/polly-lit-cfg-add-libs-to-dylib-path.patch")),
           ])), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "versions", "major"), release_version), "20")), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               url: "https://github.com/llvm/llvm-project/commit/bd49bbaaafc98433a2cb4e95ce25b7a201baf5a5.patch",
               hash: "sha256-3hkbYPUVRAtWpo5qBmc2jLZLivURMx8T0GQomvNZesc=",
               stripLen: 1n,
@@ -138,7 +138,7 @@ cp -r ${monorepoSrc}/mlir/utils "$out/mlir/utils"
             nix.thunk(() => nix.app(getVersionFile, "llvm/sdag-freeze-condition-in-select-of-load-fold.patch")),
           ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "versions", "major"), release_version), "22")), nix.thunk(() => [
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 name: "llvm-22-sdag-freeze-condition-in-select-of-load-fold.patch",
                 url: "https://github.com/rust-lang/llvm-project/commit/abcef279cd33492fe8301c8873fc535fa4dbf0d5.patch",
                 stripLen: 1n,
@@ -148,7 +148,7 @@ cp -r ${monorepoSrc}/mlir/utils "$out/mlir/utils"
             nix.thunk(() => nix.app(getVersionFile, "llvm/backport-darwin-triple-parsing.patch")),
           ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), release_version, "22")), nix.thunk(() => [
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 name: "llvm-textapi-separate-arch-name-enum-label.patch",
                 url: "https://github.com/llvm/llvm-project/commit/477a65a051ce151895193f8dede1262fdc251132.patch",
                 stripLen: 1n,
@@ -197,8 +197,8 @@ check_version minor ${minor}
 check_version patch ${patch}
 `;
         })()),
-        env: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(enableSharedLibraries) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))), nix.thunk(() => ({ __proto__: pos$9, LDFLAGS: "-Wl,--build-id=sha1" }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-            __proto__: pos$10,
+        env: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(enableSharedLibraries) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))), nix.thunk(() => ({ [nix.POS]: pos$9, LDFLAGS: "-Wl,--build-id=sha1" }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
+            [nix.POS]: pos$10,
             GTEST_FILTER: "-ProgramEnvTest.TestExecuteEmptyEnvironment",
           }))))),
         cmakeBuildType: "Release",
@@ -269,12 +269,12 @@ substituteInPlace "$dev/lib/cmake/llvm/LLVMConfig.cmake" \\
         doCheck: nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool(!nix.asBool(isDarwinBootstrap)) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch32"))))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_32"))))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isMusl"))))) && nix.asBool(!nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isPower64")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isBigEndian"))))))) && nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))))),
         checkTarget: "check-all",
         passthru: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           monorepoSrc: monorepoSrc,
           tests: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             withoutOptionalFeatures: nix.thunk(() => nix.app(nix.sel(libllvm, "override"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 enablePFM: false,
                 enablePolly: false,
                 enableTerminfo: false,
@@ -284,17 +284,17 @@ substituteInPlace "$dev/lib/cmake/llvm/LLVMConfig.cmake" \\
         requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
         __structuredAttrs: true,
         meta: nix.thunk(() => nix.update(llvm_meta, {
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           homepage: "https://llvm.org/",
           description: "Collection of modular and reusable compiler and toolchain technologies",
           longDescription: "The LLVM Project is a collection of modular and reusable compiler and\ntoolchain technologies. Despite its name, LLVM has little to do with\ntraditional virtual machines. The name \"LLVM\" itself is not an acronym; it\nis the full name of the project.\nLLVM began as a research project at the University of Illinois, with the\ngoal of providing a modern, SSA-based compilation strategy capable of\nsupporting both static and dynamic compilation of arbitrary programming\nlanguages. Since then, LLVM has grown to be an umbrella project consisting\nof a number of subprojects, many of which are being used in production by\na wide variety of commercial and open source projects as well as being\nwidely used in academic research. Code in the LLVM project is licensed\nunder the \"Apache 2.0 License with LLVM exceptions\".\n",
           identifiers: nix.thunk(() => ({
-            __proto__: pos$15,
-            cpeParts: nix.thunk(() => nix.update(nix.sel(llvm_meta, "identifiers", "cpeParts"), { __proto__: pos$14, version: version, update: "*" })),
+            [nix.POS]: pos$15,
+            cpeParts: nix.thunk(() => nix.update(nix.sel(llvm_meta, "identifiers", "cpeParts"), { [nix.POS]: pos$14, version: version, update: "*" })),
           })),
         })),
       }, nix.app(nix.sel(lib, "optionalAttrs"), enableManpages, nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           pname: "llvm-manpages",
           propagatedBuildInputs: [],
           ninjaFlags: nix.thunk(() => ["docs-llvm-man"]),
@@ -304,7 +304,7 @@ substituteInPlace "$dev/lib/cmake/llvm/LLVMConfig.cmake" \\
           postInstall: null,
           outputs: nix.thunk(() => ["out"]),
           meta: nix.thunk(() => nix.update(llvm_meta, {
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             description: nix.thunk(() => nix.str`man pages for LLVM ${version}`),
             homepage: "https://github.com/llvm/llvm-project",
           })),

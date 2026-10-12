@@ -34,12 +34,12 @@ export default nix.lambda((args) => (() => {
   const wirelesstools = nix.arg($, "wirelesstools");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "tuned",
       version: "2.28.0",
       outputs: nix.thunk(() => ["out", "doc", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "redhat-performance",
           repo: "tuned",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -124,12 +124,12 @@ substituteInPlace tests/unit/test_functions.py \\
       postInstall: "rm -rf $out/{run,var}\n",
       postFixup: "wrapPythonPrograms\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ __proto__: pos$2, nixos: nix.thunk(() => nix.sel(nixosTests, "tuned")) })))),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ [nix.POS]: pos$2, nixos: nix.thunk(() => nix.sel(nixosTests, "tuned")) })))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Tuning Profile Delivery Mechanism for Linux",
         homepage: "https://tuned-project.org",
         changelog: nix.thunk(() => nix.str`https://github.com/redhat-performance/tuned/releases/tag/v${nix.sel(finalAttrs, "version")}`),

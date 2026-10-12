@@ -40,42 +40,42 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const machineBase = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
     services: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       displayManager: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         ly: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: true,
-          settings: nix.thunk(() => ({ __proto__: pos$1, load: false, save: false })),
+          settings: nix.thunk(() => ({ [nix.POS]: pos$1, load: false, save: false })),
         })),
       })),
     })),
   }));
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     name: "ly",
     nodes: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return nix.app(nix.sel(lib, "attrsets", "recursiveUpdate"), machineBase, nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             services: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               displayManager: nix.thunk(() => ({
-                __proto__: pos$7,
-                ly: nix.thunk(() => ({ __proto__: pos$6, x11Support: true })),
+                [nix.POS]: pos$7,
+                ly: nix.thunk(() => ({ [nix.POS]: pos$6, x11Support: true })),
                 defaultSession: "none+icewm",
               })),
               xserver: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 enable: true,
                 windowManager: nix.thunk(() => ({
-                  __proto__: pos$9,
-                  icewm: nix.thunk(() => ({ __proto__: pos$8, enable: true })),
+                  [nix.POS]: pos$9,
+                  icewm: nix.thunk(() => ({ [nix.POS]: pos$8, enable: true })),
                 })),
               })),
             })),
@@ -84,21 +84,21 @@ export default nix.lambda((args) => (() => {
       machineAutologin: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return nix.app(nix.sel(lib, "attrsets", "recursiveUpdate"), machineBase, nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             services: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               displayManager: nix.thunk(() => ({
-                __proto__: pos$15,
-                ly: nix.thunk(() => ({ __proto__: pos$13, x11Support: true })),
+                [nix.POS]: pos$15,
+                ly: nix.thunk(() => ({ [nix.POS]: pos$13, x11Support: true })),
                 defaultSession: "none+icewm",
-                autoLogin: nix.thunk(() => ({ __proto__: pos$14, enable: true, user: "alice" })),
+                autoLogin: nix.thunk(() => ({ [nix.POS]: pos$14, enable: true, user: "alice" })),
               })),
               xserver: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 enable: true,
                 windowManager: nix.thunk(() => ({
-                  __proto__: pos$17,
-                  icewm: nix.thunk(() => ({ __proto__: pos$16, enable: true })),
+                  [nix.POS]: pos$17,
+                  icewm: nix.thunk(() => ({ [nix.POS]: pos$16, enable: true })),
                 })),
               })),
             })),
@@ -107,18 +107,18 @@ export default nix.lambda((args) => (() => {
       machineNoX11: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$4);
         return nix.app(nix.sel(lib, "attrsets", "recursiveUpdate"), machineBase, nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             services: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               displayManager: nix.thunk(() => ({
-                __proto__: pos$22,
-                ly: nix.thunk(() => ({ __proto__: pos$21, x11Support: false })),
+                [nix.POS]: pos$22,
+                ly: nix.thunk(() => ({ [nix.POS]: pos$21, x11Support: false })),
                 defaultSession: "sway",
               })),
             })),
             programs: nix.thunk(() => ({
-              __proto__: pos$25,
-              sway: nix.thunk(() => ({ __proto__: pos$24, enable: true })),
+              [nix.POS]: pos$25,
+              sway: nix.thunk(() => ({ [nix.POS]: pos$24, enable: true })),
             })),
           })));
       })(), formals$4),

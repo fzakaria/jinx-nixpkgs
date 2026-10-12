@@ -34,21 +34,21 @@ export default nix.lambda((args) => (() => {
           const synopsis = nix.argOr($_1, "synopsis", () => null);
           const homepage = nix.argOr($_1, "homepage", () => null);
           return nix.app(nix.sel(nix.app(akkuDerivation, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               pname: nix.thunk(() => nix.str`akku-${pname}`),
               version: version,
-              src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ __proto__: pos$1, url: url, sha256: sha256 })))),
+              src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$1, url: url, sha256: sha256 })))),
               buildInputs: nix.thunk(() => nix.builtins.map((x) => nix.sel(akkuself, nix.key(nix.force(x))), dependencies)),
               r7rs: nix.thunk(() => nix.eq(source, "snow-fort")),
               nativeBuildInputs: nix.thunk(() => nix.builtins.map((x) => nix.sel(akkuself, nix.key(nix.force(x))), dev_dependencies)),
               unpackPhase: "tar xf $src",
               meta: nix.thunk(() => nix.update({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 license: nix.thunk(() => (() => {
                   const stringToLicense = (s) => nix.selOr(nix.update(nix.sel(lib, "licenses"), (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
                     return {
-                      __proto__: pos$2,
+                      [nix.POS]: pos$2,
                       "0bsd": nix.thunk(() => nix.lookup(w, "bsd0")),
                       agpl: nix.thunk(() => nix.lookup(w, "agpl3Only")),
                       "apache-2.0": nix.thunk(() => nix.lookup(w, "asl20")),
@@ -84,14 +84,14 @@ export default nix.lambda((args) => (() => {
                   })()), () => nix.force(s), nix.key(nix.force(s)));
                   return (nix.asBool(nix.builtins.isList(license)) ? nix.builtins.map(stringToLicense, license) : nix.app(stringToLicense, license));
                 })()),
-              }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(homepage, null)), nix.thunk(() => ({ __proto__: pos$4, homepage: homepage }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(synopsis, null)), nix.thunk(() => ({ __proto__: pos$5, description: synopsis })))))),
+              }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(homepage, null)), nix.thunk(() => ({ [nix.POS]: pos$4, homepage: homepage }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(synopsis, null)), nix.thunk(() => ({ [nix.POS]: pos$5, description: synopsis })))))),
             }))), "overrideAttrs"), nix.thunk(() => nix.sel(nix.update(nix.attrsDyn({}, [[nix.str`${pname}`, nix.thunk(() => nix.sel(lib, "id"))]]), overrides), nix.key(nix.str`${pname}`))));
         })(), formals$2);
         const deps = nix.thunk(() => nix.app(nix.sel(lib, "importTOML"), nix.path(here, "./deps.toml")));
         const packages = nix.thunk(() => nix.app(nix.sel(lib, "makeScope"), nix.thunk(() => nix.sel(self, "newScope")), (akkuself) => nix.app(nix.sel(lib, "mapAttrs"), nix.thunk(() => nix.app(makeAkkuPackage, akkuself)), deps)));
         return nix.app(nix.sel(lib, "recurseIntoAttrs"), packages);
       })());
-      return { __proto__: pos$7, akkuDerivation, akku, akkuPackages };
+      return { [nix.POS]: pos$7, akkuDerivation, akku, akkuPackages };
     })());
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

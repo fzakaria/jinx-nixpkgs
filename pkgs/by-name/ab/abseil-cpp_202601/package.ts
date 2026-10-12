@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const static$ = nix.argOr($, "static", () => nix.sel(stdenv, "hostPlatform", "isStatic"));
   const cxxStandard = nix.argOr($, "cxxStandard", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "abseil-cpp",
       version: "20260107.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "abseil",
           repo: "abseil-cpp",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtest]),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open-source collection of C++ code designed to augment the C++ standard library",
         homepage: "https://abseil.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/abseil/abseil-cpp/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const python_dotenv = nix.arg($, "python-dotenv");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pajgps-api",
       version: "0.4.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "skipperro",
           repo: "pajgps-api",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, python_dotenv]),
       pythonImportsCheck: nix.thunk(() => ["pajgps_api"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library to interact with the PAJ GPS API",
         homepage: "https://github.com/skipperro/pajgps-api",
         changelog: nix.thunk(() => nix.str`https://github.com/skipperro/pajgps-api/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

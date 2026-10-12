@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "voidmap",
       version: "1.1.5-unstable-2023-09-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "void-rs",
           repo: "void",
           rev: "ab32290632fa9477a7e59b884bdfa69fb4b91906",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-H2KyqphEleEnWNfPdswns5QOLAlhO4UnmolnHcsV5FU=",
       checkFlags: nix.thunk(() => ["--skip=screen::qc_input_events_dont_crash_void"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Terminal-based personal organizer",
         homepage: "https://github.com/void-rs/void",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const libplatform = nix.thunk(() => nix.app(sourceRelease, "libplatform"));
   const xnu = nix.thunk(() => nix.app(sourceRelease, "xnu"));
   const privateHeaders = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "system_cmds-deps-private-headers",
       buildCommand: nix.thunk(() => nix.str`mkdir -p "$out/include/sys"
 '${nix.app(nix.sel(lib, "getExe"), AvailabilityVersions)}' ${nix.app(nix.sel(lib, "getVersion"), apple_sdk)} "$out"
@@ -103,14 +103,14 @@ touch "$out/include/CrashReporterClient.h"
 `),
     }))));
   return nix.app(mkAppleDerivation, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       releaseName: "system_cmds",
       xcodeHash: "sha256-/JFbwYJA2sx3F+ihyxemZX/LK3y5HLZSbQFDdvctzmQ=",
       patches: nix.thunk(() => [nix.path(here, "./patches/conditionalize-security-transition-shims.patch")]),
       postPatch: "# Replace hard-coded, impure system paths with the output path in the store.\nsed -e \"s|PATH=[^;]*|PATH='$out/bin'|\" -i \"pagesize/pagesize.sh\"\n\n# Requires BackgroundTaskManagement.framework headers.\nsed -e '/    if (os_feature_enabled(cronBTMToggle, cronBTMCheck))/,/    }/d' -i atrun/atrun.c\n\n# Fix format security errors\nfor src in latency/latency.c sc_usage/sc_usage.c; do\n  substituteInPlace $src \\\n    --replace-fail 'printw(tbuf)' 'printw(\"%s\", tbuf);'\ndone\n\n# The libdispatch APIs it uses aren’t actually private. They’re available in the public headers.\nsubstituteInPlace memory_pressure/memory_pressure.c \\\n  --replace-fail '<dispatch/private.h>' '<dispatch/dispatch.h>'\n",
       preConfigure: "export NIX_CFLAGS_COMPILE+=\" -iframework $SDKROOT/System/Library/Frameworks/OpenDirectory.framework/Frameworks\"\n",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${privateHeaders}/include`),
       })),
       buildInputs: nix.thunk(() => [
@@ -120,7 +120,7 @@ touch "$out/include/CrashReporterClient.h"
         openpam,
       ]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
-      meta: nix.thunk(() => ({ __proto__: pos$3, description: "System commands for Darwin" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$3, description: "System commands for Darwin" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

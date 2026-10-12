@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const hareHook = nix.arg($, "hareHook");
   const fetchFromSourcehut = nix.arg($, "fetchFromSourcehut");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hare-compress",
       version: "0.25.2.0",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~sircmpwn",
           repo: "hare-compress",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(hareHook, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://git.sr.ht/~sircmpwn/hare-compress/",
         description: "Compression algorithms for Hare",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

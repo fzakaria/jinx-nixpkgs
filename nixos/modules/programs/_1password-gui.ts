@@ -27,28 +27,28 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "_1password-gui"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["programs", "_1password-gui", "gid"]), "A preallocated GID will be used instead.\n")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       programs: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         "_1password-gui": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the 1Password GUI application")),
           polkitPolicyOwners: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[\"user1\" \"user2\" \"user3\"]")),
               description: "A list of users who should be able to integrate 1Password with polkit-based authentication mechanisms.\n",
             })))),
-          package: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "1Password GUI", nix.thunk(() => ({ __proto__: pos$2, default: nix.thunk(() => ["_1password-gui"]) }))), {
-            __proto__: pos$4,
+          package: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "1Password GUI", nix.thunk(() => ({ [nix.POS]: pos$2, default: nix.thunk(() => ["_1password-gui"]) }))), {
+            [nix.POS]: pos$4,
             apply: (pkg) => nix.app(nix.sel(pkg, "override"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 polkitPolicyOwners: nix.thunk(() => nix.attr(cfg, "polkitPolicyOwners")),
               }))),
           })),
@@ -56,27 +56,27 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         environment: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           groups: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             onepassword: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "onepassword")),
             })),
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           wrappers: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             "1Password-BrowserSupport": nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/1password/1Password-BrowserSupport`),
               owner: "root",
               group: "onepassword",

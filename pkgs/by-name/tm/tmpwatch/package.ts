@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const psmisc = nix.arg($, "psmisc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tmpwatch",
       version: "2.11",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://releases.pagure.org/tmpwatch/tmpwatch-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "1m5859ngwx61l1i4s6fja2avf1hyv6w170by273w8nsin89825lk",
         })))),
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-fuser=${psmisc}/bin/fuser`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://pagure.io/tmpwatch",
         description: "Recursively searches through specified directories and removes files which have not been accessed in a specified period of time",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.12.1";
       const rev = nix.thunk(() => nix.str`v${version}`);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           rev: rev,
           owner: "prometheus",
           repo: "influxdb_exporter",
@@ -37,14 +37,14 @@ export default nix.lambda((args) => (() => {
         "-X github.com/prometheus/common/version.BuildDate=unknown",
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { __proto__: pos$2, influxdb: nix.thunk(() => nix.attr(from, "influxdb")) };
+          return { [nix.POS]: pos$2, influxdb: nix.thunk(() => nix.attr(from, "influxdb")) };
         })()),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Prometheus exporter that accepts InfluxDB metrics",
         mainProgram: "influxdb_exporter",
         homepage: "https://github.com/prometheus/influxdb_exporter",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         rev,

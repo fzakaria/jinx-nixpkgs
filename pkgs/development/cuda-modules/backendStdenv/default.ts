@@ -57,13 +57,13 @@ export default nix.lambda((args) => (() => {
   const familySpecificCudaCapabilities = nix.thunk(() => nix.app(filter, (cudaCapability) => nix.sel(cudaCapabilityToInfo, nix.key(nix.force(cudaCapability)), "isFamilySpecific"), allSortedCudaCapabilities));
   const jetsonCudaCapabilities = nix.thunk(() => nix.app(filter, (cudaCapability) => nix.sel(cudaCapabilityToInfo, nix.key(nix.force(cudaCapability)), "isJetson"), allSortedCudaCapabilities));
   const passthruExtra = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     nvccHostCCMatchesStdenvCC: nix.thunk(() => nix.eq(nix.sel(backendStdenv, "cc"), nix.sel(stdenv, "cc"))),
     hostNixSystem: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system")),
     hostRedistSystem: nix.thunk(() => nix.app(getRedistSystem, nix.thunk(() => (() => {
         const from_3 = nix.thunk(() => nix.sel(stdenv, "hostPlatform"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         cudaCapabilities: nix.thunk(() => nix.attr(passthruExtra, "cudaCapabilities")),
         cudaMajorMinorVersion: cudaMajorMinorVersion,
         system: nix.thunk(() => nix.attr(from_3, "system")),
@@ -92,42 +92,42 @@ export default nix.lambda((args) => (() => {
     const tooNewCudaCapabilities = nix.thunk(() => nix.app(filter, (cap) => nix.app(nix.sel(lib, "versionOlder"), cudaMajorMinorVersion, nix.thunk(() => nix.sel(cudaCapabilityToInfo, nix.key(nix.force(cap)), "minCudaMajorMinorVersion"))), nix.thunk(() => nix.sel(passthruExtra, "cudaCapabilities"))));
     return [
       nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         message: nix.thunk(() => nix.str`Requested unrecognized CUDA capabilities: ${nix.app(toJSON, unrecognizedCudaCapabilities)}`),
         assertion: nix.thunk(() => nix.eq(unrecognizedCudaCapabilities, [])),
       })),
       nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         message: nix.thunk(() => nix.str`Requested CUDA capabilities which are too old for CUDA ${cudaMajorMinorVersion}: ${nix.app(toJSON, tooOldCudaCapabilities)}`),
         assertion: nix.thunk(() => nix.eq(tooOldCudaCapabilities, [])),
       })),
       nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         message: nix.thunk(() => nix.str`Requested CUDA capabilities which are too new for CUDA ${cudaMajorMinorVersion}: ${nix.app(toJSON, tooNewCudaCapabilities)}`),
         assertion: nix.thunk(() => nix.eq(tooNewCudaCapabilities, [])),
       })),
       nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         message: nix.thunk(() => nix.add(nix.str`Requested Jetson CUDA capabilities (${nix.app(toJSON, nix.thunk(() => nix.sel(passthruExtra, "requestedJetsonCudaCapabilities")))}) require `, nix.str`hostPlatform (${nix.sel(passthruExtra, "hostNixSystem")}) to be aarch64-linux`)),
         assertion: nix.thunk(() => (!nix.asBool(nix.sel(passthruExtra, "hasJetsonCudaCapability")) || nix.asBool(nix.eq(nix.sel(passthruExtra, "hostNixSystem"), "aarch64-linux")))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         message: nix.thunk(() => nix.add(nix.str`Requested pre-SBSA (${sbsaJetsonCapability}) Jetson CUDA capabilities (${nix.app(toJSON, preSbsaJetsonCudaCapabilities)}) cannot be `, nix.str`specified with other capabilities (${nix.app(toJSON, nix.thunk(() => nix.app(subtractLists, preSbsaJetsonCudaCapabilities, nix.thunk(() => nix.sel(passthruExtra, "cudaCapabilities")))))})`)),
         assertion: nix.thunk(() => (!nix.asBool(!nix.eq(preSbsaJetsonCudaCapabilities, [])) || nix.asBool(nix.eq(preSbsaJetsonCudaCapabilities, nix.sel(passthruExtra, "cudaCapabilities"))))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         message: nix.thunk(() => nix.add(nix.str`Requested pre-SBSA (${sbsaJetsonCapability}) Jetson CUDA capabilities (${nix.app(toJSON, preSbsaJetsonCudaCapabilities)}) require `, nix.str`computed NVIDIA hostRedistSystem (${nix.sel(passthruExtra, "hostRedistSystem")}) to be linux-aarch64`)),
         assertion: nix.thunk(() => (!nix.asBool(!nix.eq(preSbsaJetsonCudaCapabilities, [])) || nix.asBool(nix.eq(nix.sel(passthruExtra, "hostRedistSystem"), "linux-aarch64")))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         message: nix.thunk(() => nix.add(nix.str`Requested post-SBSA (${sbsaJetsonCapability}) Jetson CUDA capabilities (${nix.app(toJSON, postSbsaJetsonCudaCapabilities)}) require `, nix.str`computed NVIDIA hostRedistSystem (${nix.sel(passthruExtra, "hostRedistSystem")}) to be linux-sbsa`)),
         assertion: nix.thunk(() => (!nix.asBool(!nix.eq(postSbsaJetsonCudaCapabilities, [])) || nix.asBool(nix.eq(nix.sel(passthruExtra, "hostRedistSystem"), "linux-sbsa")))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         message: nix.thunk(() => nix.add(nix.str`Requested Jetson Orin (8.7) CUDA capabilities (${nix.app(toJSON, preSbsaJetsonCudaCapabilities)}) are not supported `, nix.str`by CUDA ${cudaMajorMinorVersion}; use CUDA 12 or CUDA 13.2 and later`)),
         assertion: nix.thunk(() => (!nix.asBool((nix.asBool(nix.app(versionAtLeast, cudaMajorMinorVersion, "13.0")) && nix.asBool(nix.app(versionOlder, cudaMajorMinorVersion, "13.2")))) || nix.asBool(!nix.asBool(nix.app(elem, "8.7", preSbsaJetsonCudaCapabilities))))),
       })),
@@ -152,7 +152,7 @@ export default nix.lambda((args) => (() => {
   })());
   nix.assert_(nix.app(assertMsg, nix.thunk(() => nix.eq(failedAssertionsString, "")), nix.thunk(() => nix.str`${nix.app(mkVersionedName, "cudaPackages", cudaMajorMinorVersion)}.backendStdenv has failed assertions:${failedAssertionsString}`)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/cuda-modules/backendStdenv/default.nix:282:1");
   return nix.app(nix.sel(backendStdenv, "override"), (prevArgs) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       extraAttrs: nix.thunk(() => nix.update(nix.selOr(prevArgs, () => ({}), "extraAttrs"), passthruExtra)),
     }));
 })(), formals$1);

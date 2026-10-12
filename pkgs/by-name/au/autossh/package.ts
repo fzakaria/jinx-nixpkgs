@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const openssh = nix.arg($, "openssh");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "autossh",
       version: "1.4g",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://www.harding.motd.ca/autossh/autossh-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "0xqjw8df68f4kzkns5gcah61s5wk0m44qdk2z1d6388w6viwxhsz",
         })))),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [openssh]),
       installPhase: "install -D -m755 autossh      $out/bin/autossh                          || return 1\ninstall -D -m644 CHANGES      $out/share/doc/autossh/CHANGES            || return 1\ninstall -D -m644 README       $out/share/doc/autossh/README             || return 1\ninstall -D -m644 autossh.host $out/share/autossh/examples/autossh.host  || return 1\ninstall -D -m644 rscreen      $out/share/autossh/examples/rscreen       || return 1\ninstall -D -m644 autossh.1    $out/man/man1/autossh.1                   || return 1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.harding.motd.ca/autossh/",
         description: "Automatically restart SSH sessions and tunnels",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd1")),

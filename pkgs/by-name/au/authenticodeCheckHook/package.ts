@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const makeSetupHook = nix.arg($, "makeSetupHook");
   const pesign = nix.arg($, "pesign");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "authenticode-check-hook",
       substitutions: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         pesigcheck: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), pesign, "pesigcheck")),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(pesign, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Setup hook for verifying Authenticode signatures",
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "boot-security"))]),

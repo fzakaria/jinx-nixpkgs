@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const rich = nix.arg($, "rich");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "intellifire4py",
       version: "4.5.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jeeftor",
           repo: "intellifire4py",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [aioresponses, pytest_asyncio, pytest_httpx, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["intellifire4py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module to read Intellifire fireplace status data",
         homepage: "https://github.com/jeeftor/intellifire4py",
         changelog: nix.thunk(() => nix.str`https://github.com/jeeftor/intellifire4py/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

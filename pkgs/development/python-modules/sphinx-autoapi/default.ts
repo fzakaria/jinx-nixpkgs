@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.8.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "readthedocs",
           repo: "sphinx-autoapi",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_integration"]);
       const pythonImportsCheck = nix.thunk(() => ["autoapi"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/readthedocs/sphinx-autoapi",
         changelog: nix.thunk(() => nix.str`https://github.com/readthedocs/sphinx-autoapi/blob/${nix.sel(src, "tag")}/CHANGELOG.rst`),
         description: "Provides 'autodoc' style documentation",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

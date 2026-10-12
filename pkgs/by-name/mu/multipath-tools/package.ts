@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const cmocka = nix.arg($, "cmocka");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "multipath-tools",
       version: "0.14.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "opensvc",
           repo: "multipath-tools",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -66,14 +66,14 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [cmocka]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "iscsi-multipath-root": nix.thunk(() => nix.attr(nixosTests, "iscsi-multipath-root")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Tools for the Linux multipathing storage driver",
         homepage: "http://christophe.varoqui.free.fr/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

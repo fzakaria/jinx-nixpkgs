@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const libxext = nix.arg($, "libxext");
   const xorgproto = nix.arg($, "xorgproto");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "libglvnd",
       version: "1.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "glvnd",
           repo: "libglvnd",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "large-file.patch",
             url: "https://gitlab.freedesktop.org/glvnd/libglvnd/-/commit/956d2d3f531841cabfeddd940be4c48b00c226b4.patch",
             hash: "sha256-Y6YCzd/jZ1VZP9bFlHkHjzSwShXeA7iJWdyfxpgT2l0=",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libx11, libxext, xorgproto]),
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace src/GLX/Makefile.am \\\n  --replace \"-Wl,-Bsymbolic \" \"\"\nsubstituteInPlace src/EGL/Makefile.am \\\n  --replace \"-Wl,-Bsymbolic \" \"\"\nsubstituteInPlace src/GLdispatch/Makefile.am \\\n  --replace \"-Xlinker --version-script=$(VERSION_SCRIPT)\" \"-Xlinker\"\n")),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat([
             "-UDEFAULT_EGL_VENDOR_CONFIG_DIRS",
             nix.thunk(() => nix.str`-DDEFAULT_EGL_VENDOR_CONFIG_DIRS="${nix.sel(addDriverRunpath, "driverLink")}/share/glvnd/egl_vendor.d:/etc/glvnd/egl_vendor.d:/usr/share/glvnd/egl_vendor.d"`),
@@ -58,13 +58,13 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev"]),
       postFixup: "addDriverRunpath $out/lib/libGLX.so\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         driverLink: nix.thunk(() => nix.attr(addDriverRunpath, "driverLink")),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "GL Vendor-Neutral Dispatch library",
         longDescription: "libglvnd is a vendor-neutral dispatch layer for arbitrating OpenGL API\ncalls between multiple vendors. It allows multiple drivers from different\nvendors to coexist on the same filesystem, and determines which vendor to\ndispatch each API call to at runtime.\nBoth GLX and EGL are supported, in any combination with OpenGL and OpenGL ES.\n",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

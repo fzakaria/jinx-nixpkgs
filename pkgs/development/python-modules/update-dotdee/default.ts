@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const property_manager = nix.arg($, "property-manager");
   const six = nix.arg($, "six");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "update-dotdee",
       version: "6.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xolox",
           repo: "python-update-dotdee",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["update_dotdee"]),
       disabledTests: nix.thunk(() => ["test_executable"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Generic modularized configuration file manager",
         mainProgram: "update-dotdee",
         homepage: "https://github.com/xolox/python-update-dotdee",

@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lightdm-tiny-greeter";
       const version = "1.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tobiohlala",
           repo: "lightdm-tiny-greeter",
           rev: version,
@@ -44,17 +44,17 @@ mv lightdm-tiny-greeter.desktop $out/share/xgreeters
 `);
       const installPhase = "substituteInPlace \"$out/share/xgreeters/lightdm-tiny-greeter.desktop\" \\\n  --replace \"Exec=lightdm-tiny-greeter\" \"Exec=$out/bin/lightdm-tiny-greeter\"\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         xgreeters: nix.thunk(() => nix.app(linkFarm, "lightdm-tiny-greeter-xgreeters", nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               path: nix.thunk(() => nix.str`${lightdm_tiny_greeter}/share/xgreeters/lightdm-tiny-greeter.desktop`),
               name: "lightdm-tiny-greeter.desktop",
             })),
           ]))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Tiny multi user lightdm greeter",
         mainProgram: "lightdm-tiny-greeter",
         homepage: "https://github.com/tobiohlala/lightdm-tiny-greeter",
@@ -62,7 +62,7 @@ mv lightdm-tiny-greeter.desktop $out/share/xgreeters
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

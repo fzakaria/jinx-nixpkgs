@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "gpib_ctypes",
           version: version,
           hash: "sha256-c9l6TNmM4PtbvopnnFi5R1dQ9o3MI39BHHHPSGqfjCY=",
@@ -32,7 +32,7 @@ substituteInPlace setup.py \\
 `);
       const pythonImportsCheck = nix.thunk(() => ["gpib_ctypes.gpib"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cross-platform Python bindings for the NI GPIB and linux-gpib C interfaces",
         homepage: "https://github.com/tivek/gpib_ctypes/",
         changelog: nix.thunk(() => nix.str`https://github.com/tivek/gpib_ctypes/blob/${version}/HISTORY.rst`),
@@ -43,7 +43,7 @@ substituteInPlace setup.py \\
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ad-ldap-enum",
       version: "0-unstable-2023-02-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CroweCybersecurity",
           repo: "ad-ldap-enum",
           rev: "60bc5bb111e2708d4bc2157f9ae3d5e0d06ece75",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ninstall -Dm555 ad-ldap-enum.py $out/bin/ad-ldap-enum\n\nrunHook postInstall\n",
       fixupPhase: "runHook preFixup\n\npatchShebangs $out/bin/ad-ldap-enum\n\nrunHook postFixup\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "LDAP based Active Directory user and group enumeration tool",
         homepage: "https://github.com/CroweCybersecurity/ad-ldap-enum",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromCodeberg = nix.arg($, "fetchFromCodeberg");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mitra",
       version: "5.6.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "silverpill",
           repo: "mitra",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-VGJ1ObOe/QQzSwRov06hkf9zkrmSmODiJUkhC2+Bcrk=",
       doCheck: false,
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         RUSTFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["--cfg=ammonia_unstable"]))),
       })),
       buildFeatures: nix.thunk(() => ["production"]),
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd mitra \\\n  --bash <($out/bin/mitra completion --shell bash) \\\n  --fish <($out/bin/mitra completion --shell fish) \\\n  --zsh <($out/bin/mitra completion --shell zsh)\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Federated micro-blogging platform",
         homepage: "https://codeberg.org/silverpill/mitra",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

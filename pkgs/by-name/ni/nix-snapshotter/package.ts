@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const version = "0.4.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "pdtpartners",
       repo: "nix-snapshotter",
       rev: nix.thunk(() => nix.str`v${version}`),
@@ -24,17 +24,17 @@ export default nix.lambda((args) => (() => {
     }))));
   const nix_snapshotter_lib = nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.str`${src}/package.nix`), nix.thunk(() => ({}))));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nix-snapshotter",
       version: version,
       src: src,
       vendorHash: "sha256-mWMkDALQ3QvDxgw1Nf0bgWYqeOFDUYKg3UNurNJdD9I=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         buildImage: nix.thunk(() => nix.attr(nix_snapshotter_lib, "buildImage")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Brings native understanding of Nix packages to containerd",
         homepage: "https://github.com/pdtpartners/nix-snapshotter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

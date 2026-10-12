@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const taglib = nix.arg($, "taglib");
   const taglib_extras = nix.arg($, "taglib_extras");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "amarok",
       version: "3.3.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://kde/stable/amarok/${nix.sel(finalAttrs, "version")}/amarok-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-aOnoPX2MDL3UcJWOdogV9XPWHzzjK+e8G4f7VtYiQ24=",
         })))),
@@ -92,10 +92,10 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w_2, "wrapQtAppsHook")),
         ];
       })())),
-      env: nix.thunk(() => ({ __proto__: pos$2, LANG: "C.UTF-8" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, LANG: "C.UTF-8" })),
       postInstall: "qtWrapperArgs+=(\n  --prefix GST_PLUGIN_SYSTEM_PATH_1_0 : \"$GST_PLUGIN_SYSTEM_PATH_1_0\"\n)\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://amarok.kde.org",
         description: "Powerful music player with an intuitive interface",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

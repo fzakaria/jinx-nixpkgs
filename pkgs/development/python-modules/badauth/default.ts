@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const unicrypto = nix.arg($, "unicrypto");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "badauth",
       version: "0.1.4-unstable-2025-10-09",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CravateRouge",
           repo: "badauth",
           rev: "86d6091470c98e1a5f6dc4b8749053189372bb53",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["badauth"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unified authentication library",
         homepage: "https://github.com/CravateRouge/badauth",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

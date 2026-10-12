@@ -28,17 +28,17 @@ export default nix.lambda((args) => (() => {
       const pname = "liblangtag";
       const version = "0.6.8";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://gitlab.com/tagoh/liblangtag/-/releases/${version}/downloads/liblangtag-${version}.tar.bz2`),
           hash: "sha256-qWl1t53dj+9tkpXAg/4/GvoaiJilcjXUBpJVreROXPI=",
         }))));
       const core_zip = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "http://www.unicode.org/Public/cldr/48/core.zip",
           hash: "sha256-BsfGmNb9jWfO+sFaAgawEJsA4O8WNvhvhESfqVlWH3Q=",
         }))));
       const language_subtag_registry = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: "https://web.archive.org/web/20241120202537id_/https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry",
           hash: "sha256-xy94jbBKP0Ig7yOPutSviCA6uryx7PW2b1lBIPk2+6Q=",
         }))));
@@ -59,7 +59,7 @@ cp "${language_subtag_registry}" data/language-subtag-registry
         gobject_introspection,
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://gitlab.com/tagoh/liblangtag/-/blob/${version}/NEWS`),
         description: "Interface library to access tags for identifying languages",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
@@ -68,7 +68,7 @@ cp "${language_subtag_registry}" data/language-subtag-registry
         homepage: "https://gitlab.com/tagoh/liblangtag",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

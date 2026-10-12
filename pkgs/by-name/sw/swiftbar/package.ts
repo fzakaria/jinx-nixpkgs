@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const build = "536";
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "swiftbar",
       version: "2.0.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/swiftbar/SwiftBar/releases/download/v${nix.sel(finalAttrs, "version")}/SwiftBar.v${nix.sel(finalAttrs, "version")}.b${build}.zip`),
           hash: "sha256-K46XQvhLs8rnQ0psveL2dZ/+bTZnaeWVLtrUm29RQYU=",
           stripRoot: false,
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/{Applications,bin}\ncp -r ./SwiftBar.app $out/Applications\n\n# Symlinking doesnt work; The auto-updater will fail to start which renders the app useless\nmakeWrapper $out/Applications/SwiftBar.app/Contents/MacOS/SwiftBar $out/bin/SwiftBar\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Powerful macOS menu bar customization tool",
         homepage: "https://swiftbar.app",
         changelog: nix.thunk(() => nix.str`https://github.com/swiftbar/SwiftBar/releases/tag/v${nix.sel(finalAttrs, "version")}`),

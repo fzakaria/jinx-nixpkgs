@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cargo-wizard",
       version: "0.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kobzol",
           repo: "cargo-wizard",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       preCheck: nix.thunk(() => nix.str`export PATH=$PATH:$PWD/target/${nix.sel(stdenv, "hostPlatform", "rust", "rustcTarget")}/$cargoBuildType
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cargo subcommand for configuring Cargo profile for best performance",
         homepage: "https://github.com/kobzol/cargo-wizard",
         changelog: nix.thunk(() => nix.str`https://github.com/kobzol/cargo-wizard/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

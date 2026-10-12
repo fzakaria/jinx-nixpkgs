@@ -40,12 +40,12 @@ export default nix.lambda((args) => (() => {
   const requests_mock = nix.arg($, "requests-mock");
   const signxml = nix.arg($, "signxml");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "pyhanko",
       version: "0.36.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MatthiasValvekens",
           repo: "pyHanko",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pyprojectVersionPatchHook]),
       dependencies: nix.thunk(() => [asn1crypto, cryptography, lxml, pyhanko_certvalidator, requests, tzlocal]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         opentype: nix.thunk(() => [fonttools, uharfbuzz]),
         "image-support": nix.thunk(() => [pillow, python_barcode]),
         pkcs11: nix.thunk(() => [python_pkcs11]),
@@ -106,9 +106,9 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       pythonImportsCheck: nix.thunk(() => ["pyhanko"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         testData: nix.thunk(() => nix.app(buildPythonPackage, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pname: "common-test-utils",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -122,7 +122,7 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Sign and stamp PDF files",
         homepage: "https://github.com/MatthiasValvekens/pyHanko",
         changelog: nix.thunk(() => nix.str`https://github.com/MatthiasValvekens/pyHanko/blob/${nix.sel(finalAttrs, "src", "tag")}/docs/changelog.rst#pyhanko`),

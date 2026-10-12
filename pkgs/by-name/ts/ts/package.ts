@@ -14,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const sendmailPath = nix.argOr($, "sendmailPath", () => "/run/wrappers/bin/sendmail");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ts",
       version: "1.0.4",
       installPhase: "make install \"PREFIX=$out\"",
       patchPhase: nix.thunk(() => nix.str`sed -i s,/usr/sbin/sendmail,${sendmailPath}, mail.c ts.1
 `),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://viric.name/~viric/soft/ts/ts-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-sas9tS3KNq82mReLjQ6TajAQf41chql0FjxYCCOwF5A=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://vicerveza.homeunix.net/~viric/soft/ts",
         description: "Task spooler - batch queue",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

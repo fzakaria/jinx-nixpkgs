@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "inframap",
       version: "0.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cycloidio",
           repo: "inframap",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       ]),
       vendorHash: "sha256-cEKrxuuksMEEVJEZ9/ZU2/MMxWZKlO05DkNX4n3ug/0=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Read your tfstate or HCL to generate a graph specific for each provider, showing only the resources that are most important/relevant",
         homepage: "https://github.com/cycloidio/inframap",
         changelog: nix.thunk(() => nix.str`https://github.com/cycloidio/inframap/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

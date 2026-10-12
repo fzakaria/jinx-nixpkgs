@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const nixosOptionsDoc = nix.arg($, "nixosOptionsDoc");
   const modules = nix.thunk(() => nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       modules: nix.thunk(() => [nix.path(here, "../../pkgs/top-level/config.nix")]),
       class: "nixpkgsConfig",
     }))));
@@ -23,17 +23,17 @@ export default nix.lambda((args) => (() => {
     const subpath = nix.thunk(() => nix.app(nix.sel(lib, "removePrefix"), "/", nix.thunk(() => nix.app(nix.sel(lib, "removePrefix"), root, declStr))));
     nix.assert_(nix.app(nix.sel(lib, "hasPrefix"), root, declStr), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/doc/doc-support/options-doc.nix:18:5");
     return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`https://github.com/NixOS/nixpkgs/blob/master/${subpath}`),
       name: subpath,
     };
   })();
   return nix.app(nixosOptionsDoc, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       options: nix.thunk(() => nix.attr(modules, "options")),
       documentType: "none",
       transformOptions: (opt) => nix.update(opt, {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         declarations: nix.thunk(() => nix.builtins.map(transformDeclaration, nix.thunk(() => nix.sel(opt, "declarations")))),
       }),
     })));

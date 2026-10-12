@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const useMoldLinker = nix.arg($, "useMoldLinker");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: "mold-unwrapped",
       version: "2.42.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rui314",
           repo: "mold",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,15 +55,15 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => (() => {
           const helloTest = (name) => (helloMold) => (() => {
             const command = nix.thunk(() => nix.str`$READELF -p .comment ${nix.app(nix.sel(lib, "getExe"), helloMold)}`);
             const emulator = nix.thunk(() => nix.app(nix.sel(stdenv, "hostPlatform", "emulator"), buildPackages));
             return nix.app(runCommandCC, nix.thunk(() => nix.str`mold-${name}-test`), nix.thunk(() => ({
-                __proto__: pos$3,
-                passthru: nix.thunk(() => ({ __proto__: pos$2, helloMold: helloMold })),
+                [nix.POS]: pos$3,
+                passthru: nix.thunk(() => ({ [nix.POS]: pos$2, helloMold: helloMold })),
               })), nix.thunk(() => nix.str`echo "Testing running the 'hello' binary which should be linked with 'mold'" >&2
 ${emulator} ${nix.app(nix.sel(lib, "getExe"), helloMold)}
 
@@ -88,17 +88,17 @@ fi
 `));
           })();
           return nix.update({
-            __proto__: pos$5,
-            version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$4, package: mold_unwrapped })))),
+            [nix.POS]: pos$5,
+            version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$4, package: mold_unwrapped })))),
           }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-              __proto__: pos$9,
-              "adapter-gcc": nix.thunk(() => nix.app(helloTest, "adapter-gcc", nix.thunk(() => nix.app(nix.sel(hello, "override"), (old) => ({ __proto__: pos$6, stdenv: nix.thunk(() => nix.app(useMoldLinker, gccStdenv)) }))))),
+              [nix.POS]: pos$9,
+              "adapter-gcc": nix.thunk(() => nix.app(helloTest, "adapter-gcc", nix.thunk(() => nix.app(nix.sel(hello, "override"), (old) => ({ [nix.POS]: pos$6, stdenv: nix.thunk(() => nix.app(useMoldLinker, gccStdenv)) }))))),
               "adapter-llvm": nix.thunk(() => nix.app(helloTest, "adapter-llvm", nix.thunk(() => nix.app(nix.sel(hello, "override"), (old) => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     stdenv: nix.thunk(() => nix.app(useMoldLinker, clangStdenv)),
                   }))))),
               wrapped: nix.thunk(() => nix.app(helloTest, "wrapped", nix.thunk(() => nix.app(nix.sel(hello, "overrideAttrs"), (previousAttrs) => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(previousAttrs, () => [], "nativeBuildInputs"), [mold])),
                     NIX_CFLAGS_LINK: nix.thunk(() => nix.add(nix.builtins.toString(nix.thunk(() => nix.selOr(previousAttrs, () => "", "NIX_CFLAGS_LINK"))), " -fuse-ld=mold")),
                   }))))),
@@ -106,7 +106,7 @@ fi
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         description: "Faster drop-in replacement for existing Unix linkers (unwrapped)",
         longDescription: "mold is a faster drop-in replacement for existing Unix linkers. It is\nseveral times faster than the LLVM lld linker. mold is designed to\nincrease developer productivity by reducing build time, especially in\nrapid debug-edit-rebuild cycles.\n",
         homepage: "https://github.com/rui314/mold",

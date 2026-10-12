@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkLibretroCore = nix.arg($, "mkLibretroCore");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       core: "smsplus",
       version: "0-unstable-2026-09-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libretro",
           repo: "smsplus-gx",
           rev: "3844b46caa926b6494987b97da63092818c4ddef",
           hash: "sha256-1DAxk0C6ee0WyYih4jOkVeegazegQBTumqH0WOkos+U=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SMS Plus GX libretro port",
         homepage: "https://github.com/libretro/smsplus-gx",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

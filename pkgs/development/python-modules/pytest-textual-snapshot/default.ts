@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Textualize",
           repo: "pytest-textual-snapshot",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["pytest_textual_snapshot"]);
       const postInstall = "mkdir -p $out/share/pytest-textual-snapshot/\ncp -r resources $out/share/pytest-textual-snapshot/\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Snapshot testing for Textual applications",
         homepage: "https://github.com/Textualize/pytest-textual-snapshot",
         changelog: nix.thunk(() => nix.str`https://github.com/Textualize/pytest-textual-snapshot/releases/tag/v${version}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

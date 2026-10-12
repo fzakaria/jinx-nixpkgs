@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "depthcharge-tools",
       version: "0.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.postmarketos.org",
           owner: "postmarketOS",
           repo: "depthcharge-tools",
@@ -55,12 +55,12 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [bzip2, dtc, gzip, lz4, lzop, ubootTools, vboot_utils, xz, zstd]))}`),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tools to manage the Chrome OS bootloader",
         homepage: "https://gitlab.postmarketos.org/postmarketOS/depthcharge-tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const rkbin = nix.arg($, "rkbin");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rkbin",
       version: "0-unstable-2026-06-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rockchip-linux",
           repo: "rkbin",
           rev: "3e288fe814e059dd06833495f845cab04ac20a5c",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "mkdir $out\nmv bin doc $out/\ncp LICENSE $out/doc/LICENSE\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         BL31_RK3568: nix.thunk(() => nix.str`${rkbin}/bin/rk35/rk3568_bl31_v1.46.elf`),
         BL31_RK3588: nix.thunk(() => nix.str`${rkbin}/bin/rk35/rk3588_bl31_v1.56.elf`),
         TPL_RK3566: nix.thunk(() => nix.str`${rkbin}/bin/rk35/rk3566_ddr_1056MHz_v1.26.bin`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         TPL_RK3588: nix.thunk(() => nix.str`${rkbin}/bin/rk35/rk3588_ddr_lp4_2112MHz_lp5_2400MHz_v1.24.bin`),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Rockchip proprietary bootloader blobs",
         homepage: "https://github.com/rockchip-linux/rkbin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributableFirmware")),

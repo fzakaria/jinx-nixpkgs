@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const shapelib = nix.arg($, "shapelib");
   const libax25 = nix.arg($, "libax25");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xastir",
       version: "2.2.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xastir",
           repo: "xastir",
           tag: nix.thunk(() => nix.str`Release-${nix.sel(finalAttrs, "version")}`),
@@ -78,7 +78,7 @@ substituteInPlace configure.ac \\
 `),
       preInstall: "patchShebangs --host --update .\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Graphical APRS client",
         homepage: "https://github.com/xastir/xastir",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

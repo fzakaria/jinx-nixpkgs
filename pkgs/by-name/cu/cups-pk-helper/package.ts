@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const cups = nix.arg($, "cups");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "0.2.6",
       pname: "cups-pk-helper",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.freedesktop.org/software/cups-pk-helper/releases/cups-pk-helper-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "0a52jw6rm7lr5nbyksiia0rn7sasyb5cjqcb95z1wxm2yprgi6lm",
         })))),
@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib, polkit, cups]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitlab.freedesktop.org/cups-pk-helper/cups-pk-helper/merge_requests/2.patch",
             sha256: "1kamhr5kn8c1y0q8xbip0fgr7maf3dyddlvab4n0iypk7rwwikl0",
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "PolicyKit helper to configure cups with fine-grained privileges",
         homepage: "https://www.freedesktop.org/wiki/Software/cups-pk-helper/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

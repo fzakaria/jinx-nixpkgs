@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const m2libcArch = nix.arg($, "m2libcArch");
   const m2libcOS = nix.arg($, "m2libcOS");
   return nix.app(derivationWithMeta, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: version,
       src: src,
       "mescc-tools": mescc_tools,
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       builder: kaem_unwrapped,
       args: nix.thunk(() => ["--verbose", "--strict", "--file", nix.path(here, "./build.kaem")]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Collection of tools written for use in bootstrapping",
         homepage: "https://github.com/oriansj/mescc-tools-extra",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

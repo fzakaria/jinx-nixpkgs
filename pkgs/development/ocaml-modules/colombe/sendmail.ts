@@ -21,14 +21,14 @@ export default nix.lambda((args) => (() => {
   const rresult = nix.arg($, "rresult");
   const tls = nix.arg($, "tls");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "sendmail",
       version: nix.thunk(() => nix.attr(colombe, "version")),
       src: nix.thunk(() => nix.attr(colombe, "src")),
       propagatedBuildInputs: nix.thunk(() => [base64, colombe, logs, rresult, hxd, ke, tls]),
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest, mrmime]),
-      meta: nix.thunk(() => nix.update(nix.sel(colombe, "meta"), { __proto__: pos$1, description: "Library to be able to send an email" })),
+      meta: nix.thunk(() => nix.update(nix.sel(colombe, "meta"), { [nix.POS]: pos$1, description: "Library to be able to send an email" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=sendmail.ts.map

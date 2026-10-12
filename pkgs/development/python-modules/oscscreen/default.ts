@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "unstable-2023-03-23";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "outscale",
           repo: "npyscreen",
           rev: "e2a97e4a201e2d7d5de3ee033071a7f93592b422",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [setuptools]);
       const pythonImportsCheck = nix.thunk(() => ["oscscreen"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Framework for developing console applications using Python and curses",
         homepage: "https://github.com/outscale/npyscreen",
         changelog: nix.thunk(() => nix.str`https://github.com/outscale/npyscreen/blob/${nix.sel(src, "rev")}/CHANGELOG`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

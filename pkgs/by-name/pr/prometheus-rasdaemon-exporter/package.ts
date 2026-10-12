@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0-unstable-2025-01-02";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sanecz",
           repo: "prometheus-rasdaemon-exporter",
           rev: "06cf02a4fa277fdc422275d9c4fe930786fc3f78",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         ];
       })());
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         SETUPTOOLS_SCM_PRETEND_VERSION: nix.thunk(() => nix.str`0.1.dev+g${nix.app(nix.sel(lib, "substring"), 0n, 7n, nix.thunk(() => nix.sel(src, "rev")))}`),
       }));
       const dependencies = nix.thunk(() => (() => {
@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["prometheus_rasdaemon_exporter"]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Rasdaemon exporter for Prometheus",
         homepage: "https://github.com/sanecz/prometheus-rasdaemon-exporter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "prometheus-rasdaemon-exporter",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

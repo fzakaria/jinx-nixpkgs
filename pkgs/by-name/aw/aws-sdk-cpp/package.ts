@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const requiredSystemFeatures = nix.argOr($, "requiredSystemFeatures", () => ["big-parallel"]);
   const host_os = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "APPLE" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAndroid")) ? "ANDROID" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows")) ? "WINDOWS" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? "LINUX" : nix.builtins.throw("Unknown host OS"))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "aws-sdk-cpp",
       version: "1.11.647",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aws",
           repo: "aws-sdk-cpp",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -72,20 +72,20 @@ rm tests/aws-cpp-sdk-core-tests/http/HttpClientTest.cpp
           nix.thunk(() => nix.str`-DTARGET_ARCH=${host_os}`),
         ])), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(apis, ["*"])), nix.thunk(() => nix.str`-DBUILD_ONLY=${nix.app(nix.sel(lib, "concatStringsSep"), ";", apis)}`)))))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=deprecated-declarations"]))),
       })),
       postFixupHooks: nix.thunk(() => ["mkdir -p $out/include"]),
       __darwinAllowLocalNetworking: true,
       requiredSystemFeatures: requiredSystemFeatures,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           nix: nix$,
           "arrow-cpp": arrow_cpp,
           "cmake-find-package": nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               pname: "aws-sdk-cpp-cmake-find-package-test",
               version: "0",
               dontUnpack: true,
@@ -96,7 +96,7 @@ rm tests/aws-cpp-sdk-core-tests/http/HttpClientTest.cpp
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "C++ interface for Amazon Web Services",
         homepage: "https://github.com/aws/aws-sdk-cpp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

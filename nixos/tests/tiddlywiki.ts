@@ -17,30 +17,30 @@ const pos$10 = nix.positions(here + "/tiddlywiki.nix", [["name", 3, 3], ["nodes"
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     name: "tiddlywiki",
     nodes: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       default: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         services: nix.thunk(() => ({
-          __proto__: pos$2,
-          tiddlywiki: nix.thunk(() => ({ __proto__: pos$1, enable: true })),
+          [nix.POS]: pos$2,
+          tiddlywiki: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
         })),
       })),
       configured: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         boot: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           postBootCommands: "echo \"username,password\nsomelogin,somesecret\" > /var/lib/wikiusers.csv\n",
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           tiddlywiki: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             enable: true,
             listenOptions: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               port: 3000n,
               credentials: "../wikiusers.csv",
               readers: "(authenticated)",

@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(lib, "makeOverridable"), (attrs) => (() => {
       const stdenv$ = nix.thunk(() => (nix.asBool(nix.selOr(attrs, () => false, "noCC")) ? nix.force(stdenvNoCC) : (nix.asBool(nix.selOr(attrs, () => false, "noLibc")) ? nix.force(stdenvNoLibc) : (nix.asBool(nix.selOr(attrs, () => false, "libcMinimal")) ? nix.force(stdenvLibcMinimal) : nix.force(stdenv)))));
       const machineMap = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         aarch64: "arm64",
         armv7l: "armv7",
         i486: "i386",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         riscv64: "riscv64",
       }));
       const archMap = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         aarch64: "aarch64",
         armv7l: "arm",
         i486: "i386",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       return nix.app(nix.sel(stdenv$, "mkDerivation"), nix.thunk(() => nix.update((() => {
           const pname = nix.thunk(() => nix.str`${nix.selOr(attrs, () => nix.builtins.baseNameOf(nix.thunk(() => nix.sel(attrs, "path"))), "pname")}-openbsd`);
           const version = "0";
-          const src = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-filtered-src`), nix.thunk(() => ({ __proto__: pos$3, nativeBuildInputs: nix.thunk(() => [rsync]) })), nix.thunk(() => nix.str`for p in ${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(attrs, "path"))], nix.selOr(attrs, () => [], "extraPaths"))))}; do
+          const src = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-filtered-src`), nix.thunk(() => ({ [nix.POS]: pos$3, nativeBuildInputs: nix.thunk(() => [rsync]) })), nix.thunk(() => nix.str`for p in ${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(attrs, "path"))], nix.selOr(attrs, () => [], "extraPaths"))))}; do
   set -x
   path="$out/$p"
   mkdir -p "$(dirname "$path")"
@@ -74,7 +74,7 @@ done
           const COMPONENT_PATH = nix.thunk(() => nix.selOr(attrs, () => null, "path"));
           const strictDeps = true;
           const meta = nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             maintainers: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
               return [nix.thunk(() => nix.lookup(w, "ericson2314"))];
@@ -83,7 +83,7 @@ done
             license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
           }));
           return {
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             pname,
             version,
             src,
@@ -100,9 +100,9 @@ done
             meta,
           };
         })(), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv$, "hasCC")), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             CPP: nix.thunk(() => nix.str`${nix.sel(stdenv$, "cc", "targetPrefix")}cpp`),
-          }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.selOr(attrs, () => false, "headersOnly")), nix.thunk(() => ({ __proto__: pos$7, installPhase: "includesPhase", dontBuild: true }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv$, "hostPlatform", "isStatic")), nix.thunk(() => ({ __proto__: pos$8, NOLIBSHARED: true }))), nix.builtins.removeAttrs(attrs, nix.thunk(() => ["extraNativeBuildInputs"]))))))));
+          }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.selOr(attrs, () => false, "headersOnly")), nix.thunk(() => ({ [nix.POS]: pos$7, installPhase: "includesPhase", dontBuild: true }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv$, "hostPlatform", "isStatic")), nix.thunk(() => ({ [nix.POS]: pos$8, NOLIBSHARED: true }))), nix.builtins.removeAttrs(attrs, nix.thunk(() => ["extraNativeBuildInputs"]))))))));
     })());
 })(), formals$1);
 //# sourceMappingURL=mkDerivation.ts.map

@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.7.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "JaidedAI",
           repo: "EasyOCR",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -66,7 +66,7 @@ runHook postCheck
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["easyocr"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Ready-to-use OCR with 80+ supported languages and all popular writing scripts",
         mainProgram: "easyocr",
         homepage: "https://github.com/JaidedAI/EasyOCR",
@@ -75,7 +75,7 @@ runHook postCheck
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

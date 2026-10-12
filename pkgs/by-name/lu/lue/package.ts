@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const ffmpeg = nix.arg($, "ffmpeg");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "lue",
       version: "0.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "paulilaaso",
           repo: "lue",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       "optional-dependencies": nix.thunk(() => (() => {
         const w_2 = nix.withScope(nix.thunk(() => nix.sel(python3, "pkgs")), null);
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           kokoro: nix.thunk(() => [
             nix.thunk(() => nix.lookup(w_2, "huggingface-hub")),
             nix.thunk(() => nix.lookup(w_2, "kokoro")),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--prefix PATH :${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [ffmpeg]))}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Terminal eBook Reader with Text-to-Speech",
         homepage: "https://github.com/paulilaaso/lue",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

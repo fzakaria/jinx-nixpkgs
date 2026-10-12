@@ -11,8 +11,8 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const testers = nix.arg($, "testers");
   const sitePkg = nix.thunk(() => nix.app(runCommand, "site", nix.thunk(() => ({})), "dist=$out/dist\nmkdir -p $dist\necho \"<html><body>hi</body></html>\" > $dist/index.html\necho \"<html><body><a href=\\\"/index.html\\\">home</a></body></html>\" > $dist/page.html\n"));
-  const linkCheck = nix.thunk(() => nix.app(nix.sel(testers, "lycheeLinkCheck"), nix.thunk(() => ({ __proto__: pos$1, site: nix.thunk(() => nix.add(sitePkg, "/dist")) }))));
+  const linkCheck = nix.thunk(() => nix.app(nix.sel(testers, "lycheeLinkCheck"), nix.thunk(() => ({ [nix.POS]: pos$1, site: nix.thunk(() => nix.add(sitePkg, "/dist")) }))));
   const failure = nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), linkCheck));
-  return nix.app(runCommand, "link-check-fail", nix.thunk(() => ({ __proto__: pos$2, failure: failure })), "grep -F \"root-relative-links-are-forbidden-use-relative-links/index.html\" $failure/testBuildFailure.log >/dev/null\ngrep -F \"Please set the relocatable parameter\" $failure/testBuildFailure.log >/dev/null\ntouch $out\n");
+  return nix.app(runCommand, "link-check-fail", nix.thunk(() => ({ [nix.POS]: pos$2, failure: failure })), "grep -F \"root-relative-links-are-forbidden-use-relative-links/index.html\" $failure/testBuildFailure.log >/dev/null\ngrep -F \"Please set the relocatable parameter\" $failure/testBuildFailure.log >/dev/null\ntouch $out\n");
 })(), formals$1);
 //# sourceMappingURL=fail-rootRelative.ts.map

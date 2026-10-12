@@ -26,14 +26,14 @@ export default nix.lambda((args) => (() => {
       const version = "2.2.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "capnproto",
           repo: "pycapnp",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-WM0DR1lTlgsKpTU8QlquL0RhrqPU/cUQav6p8EP7x9o=",
         }))));
       const patches = nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./include-paths.patch"), nix.thunk(() => ({ __proto__: pos$2, capnproto: capnproto })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./include-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, capnproto: capnproto })))),
       ]);
       const build_system = nix.thunk(() => [setuptools, wheel, cython, pkgconfig]);
       const buildInputs = nix.thunk(() => [capnproto]);
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "enabledTestPaths=$PWD/test\npushd \"$out\"\n";
       const postCheck = "popd\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Cython wrapping of the C++ Cap'n Proto library",
         homepage: "https://capnproto.github.io/pycapnp/",
         changelog: nix.thunk(() => nix.str`https://github.com/capnproto/pycapnp/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

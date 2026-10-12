@@ -21,35 +21,35 @@ export default nix.lambda((args) => (() => {
   const pname = "ookla-speedtest";
   const version = "1.2.0";
   const srcs = nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: nix.thunk(() => nix.str`https://install.speedtest.net/app/cli/${pname}-${version}-linux-x86_64.tgz`),
         sha256: "sha256-VpBZbFT/m+1j+jcy+BigXbwtsZrTbtaPIcpfZNXP7rc=",
       })))),
     "i686-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: nix.thunk(() => nix.str`https://install.speedtest.net/app/cli/${pname}-${version}-linux-i386.tgz`),
         sha256: "sha256-n/fhjbrn7g4DxmEIRFovts7qbIb2ZILhOS9ViBt3L+g=",
       })))),
     "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         url: nix.thunk(() => nix.str`https://install.speedtest.net/app/cli/${pname}-${version}-linux-aarch64.tgz`),
         sha256: "sha256-OVPSMdo3g+K/iQS23XJ2fFxuUz4WPTdC/QQ3r/pDG9M=",
       })))),
     "armv7l-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         url: nix.thunk(() => nix.str`https://install.speedtest.net/app/cli/${pname}-${version}-linux-armhf.tgz`),
         sha256: "sha256-5F/N672KGFVTU1Uz3QMtaxC8jGTu5BObEUe5wJg10I0=",
       })))),
     "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         url: nix.thunk(() => nix.str`https://install.speedtest.net/app/cli/${pname}-${version}-macosx-universal.tgz`),
         sha256: "sha256-yfgZIUnryI+GmZmM7Ksc4UQUQEWQfs5vU89Qh39N5m8=",
       })))),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.selOr(srcs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "install -D speedtest $out/bin/speedtest\ninstall -D speedtest.5 $man/share/man/man5/speedtest.5\n",
       outputs: nix.thunk(() => ["out", "man"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Command line internet speedtest tool by Ookla",
         homepage: "https://www.speedtest.net/apps/cli",
         sourceProvenance: nix.thunk(() => (() => {

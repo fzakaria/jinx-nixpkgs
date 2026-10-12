@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const elastix = nix.arg($, "elastix");
   const itk = nix.arg($, "itk");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "simpleitk",
       version: "2.5.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SimpleITK",
           repo: "SimpleITK",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         "-DSimpleITK_USE_ELASTIX=ON",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.simpleitk.org",
         description: "Simplified interface to ITK",
         changelog: nix.thunk(() => nix.str`https://github.com/SimpleITK/SimpleITK/releases/tag/v${nix.sel(finalAttrs, "version")}`),

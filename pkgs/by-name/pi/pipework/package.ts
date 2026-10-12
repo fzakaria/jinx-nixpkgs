@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const busybox = nix.arg($, "busybox");
   const dhcpcd = nix.arg($, "dhcpcd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pipework",
       version: "2017-08-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jpetazzo",
           repo: "pipework",
           rev: "ae42f1b5fef82b3bc23fe93c95c345e7af65fef3",
@@ -37,7 +37,7 @@ wrapProgram $out/bin/pipework --prefix PATH : \\
   ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [bridge_utils, iproute2, lxc, openvswitch, docker, busybox, dhcpcd]))};
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Software-Defined Networking tools for LXC",
         mainProgram: "pipework",
         homepage: "https://github.com/jpetazzo/pipework",

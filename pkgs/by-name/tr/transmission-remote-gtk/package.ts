@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "transmission-remote-gtk",
       version: "1.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "transmission-remote-gtk",
           repo: "transmission-remote-gtk",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GTK remote control for the Transmission BitTorrent client",
         mainProgram: "transmission-remote-gtk",
         homepage: "https://github.com/transmission-remote-gtk/transmission-remote-gtk",

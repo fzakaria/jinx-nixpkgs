@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.2.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "django-webpack",
           repo: "django-webpack-loader",
           tag: version,
@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["webpack_loader"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Use webpack to generate your static bundles",
         homepage: "https://github.com/owais/django-webpack-loader",
         changelog: nix.thunk(() => nix.str`https://github.com/django-webpack/django-webpack-loader/blob/${version}/CHANGELOG.md`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

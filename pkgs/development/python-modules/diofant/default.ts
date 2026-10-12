@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.15.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "diofant",
           repo: "diofant",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools_scm]);
       const dependencies = nix.thunk(() => [mpmath]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         exports: nix.thunk(() => [cython, numpy, scipy]),
         gmpy: nix.thunk(() => [gmpy2]),
       }));
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_evalf_fast_series", "test_evalf_sum"]);
       const pythonImportsCheck = nix.thunk(() => ["diofant"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://diofant.readthedocs.io/en/latest/release/notes-${nix.sel(src, "tag")}.html`),
         description: "Python CAS library",
         homepage: "https://github.com/diofant/diofant",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

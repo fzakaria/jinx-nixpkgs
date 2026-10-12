@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const perlPackages = nix.arg($, "perlPackages");
   const version = "2.37";
   const meta = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     description: "Typeface family based on the Bitstream Vera fonts",
     longDescription: "The DejaVu fonts are TrueType fonts based on the BitStream Vera fonts,\nproviding more styles and with greater coverage of Unicode.\n\nThis package includes DejaVu Sans, DejaVu Serif, DejaVu Sans Mono, and\nthe DejaVu Math TeX Gyre font.\n",
     homepage: "https://dejavu-fonts.github.io/",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
     platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
   }));
   const full_ttf = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dejavu-fonts-full",
       version: version,
       nativeBuildInputs: nix.thunk(() => [
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(perlPackages, "FontTTF")),
       ]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "dejavu-fonts",
           repo: "dejavu-fonts",
           rev: nix.thunk(() => nix.str`version_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       meta: meta,
     }))));
   const minimal = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dejavu-fonts-minimal",
       version: version,
       buildCommand: nix.thunk(() => nix.str`install -m444 -Dt $out/share/fonts/truetype ${full_ttf}/share/fonts/truetype/DejaVuSans.ttf
@@ -58,14 +58,14 @@ export default nix.lambda((args) => (() => {
       meta: meta,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "dejavu-fonts",
       version: version,
       buildCommand: nix.thunk(() => nix.str`install -m444 -Dt $out/share/fonts/truetype ${full_ttf}/share/fonts/truetype/*.ttf
 ln -s --relative --force --target-directory=$out/share/fonts/truetype ${minimal}/share/fonts/truetype/DejaVuSans.ttf
 `),
       meta: meta,
-      passthru: nix.thunk(() => ({ __proto__: pos$5, minimal: minimal, "full-ttf": full_ttf })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, minimal: minimal, "full-ttf": full_ttf })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
   const xdg_user_dirs = nix.arg($, "xdg-user-dirs");
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "spotube",
       version: "5.1.2",
       src: nix.thunk(() => nix.sel(finalAttrs, "passthru", "sources", nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
@@ -48,33 +48,33 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [xdg_user_dirs]))}
 `))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         sources: nix.thunk(() => (() => {
           const fetchArtifact = nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const suffix = nix.arg($_1, "suffix");
             const hash = nix.arg($_1, "hash");
             return nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 name: nix.thunk(() => nix.str`Spotube-${nix.sel(finalAttrs, "version")}-${suffix}`),
                 url: nix.thunk(() => nix.str`https://github.com/KRTirtho/spotube/releases/download/v${nix.sel(finalAttrs, "version")}/Spotube-${suffix}`),
                 hash: hash,
               })));
           })(), formals$2);
           return {
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             "aarch64-linux": nix.thunk(() => nix.app(fetchArtifact, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 suffix: "linux-aarch64.deb",
                 hash: "sha256-cb9qPNJ1wB3zURvBCLEJIr+L4BGYwtgjAezSRm4QQDE=",
               })))),
             "x86_64-linux": nix.thunk(() => nix.app(fetchArtifact, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 suffix: "linux-x86_64.deb",
                 hash: "sha256-FEb5mPmGOAMw4nnFJ0kC+ymg4zBdUXWjvIO0sGOS6M0=",
               })))),
             "aarch64-darwin": nix.thunk(() => nix.app(fetchArtifact, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 suffix: "macos-universal.dmg",
                 hash: "sha256-J2J9/UQZAECvGmumqGzcRFA5kpakOmFpQKlK5oesCRM=",
               })))),
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Open source, cross-platform Spotify client compatible across multiple platforms",
         longDescription: "Spotube is an open source, cross-platform Spotify client compatible across\nmultiple platforms utilizing Spotify's data API and YouTube (or Piped.video or JioSaavn)\nas an audio source, eliminating the need for Spotify Premium\n",
         downloadPage: "https://github.com/KRTirtho/spotube/releases",

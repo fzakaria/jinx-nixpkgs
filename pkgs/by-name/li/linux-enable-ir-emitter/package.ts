@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const usbutils = nix.arg($, "usbutils");
   const yaml_cpp = nix.arg($, "yaml-cpp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "linux-enable-ir-emitter",
       version: "6.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "EmixamPP",
           repo: "linux-enable-ir-emitter",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,11 +45,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(python3, "pkgs", "opencv4Full")),
       ]),
       mesonFlags: nix.thunk(() => nix.app(nix.sel(lib, "lists", "flatten"), nix.thunk(() => [
-          nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "strings", "mesonOption")), nix.thunk(() => ({ __proto__: pos$2, config_dir: "/var/lib", localstatedir: "/var" })))),
-          nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "strings", "mesonBool")), nix.thunk(() => ({ __proto__: pos$3, create_config_dir: false, create_log_dir: false })))),
+          nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "strings", "mesonOption")), nix.thunk(() => ({ [nix.POS]: pos$2, config_dir: "/var/lib", localstatedir: "/var" })))),
+          nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "strings", "mesonBool")), nix.thunk(() => ({ [nix.POS]: pos$3, create_config_dir: false, create_log_dir: false })))),
         ]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Provides support for infrared cameras that are not directly enabled out-of-the box",
         homepage: "https://github.com/EmixamPP/linux-enable-ir-emitter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

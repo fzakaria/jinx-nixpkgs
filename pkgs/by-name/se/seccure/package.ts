@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const libgcrypt = nix.arg($, "libgcrypt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "seccure",
       version: "0.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://point-at-infinity.org/seccure/seccure-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0nwnk3hfhgvf5xr0xipbh6smfnya22wphc5rj0vgi5d0zr5cwrk5",
         })))),
       buildInputs: nix.thunk(() => [libgcrypt]),
       preConfigure: "sed -e s@/usr/@$out/@g -i Makefile\nsed -e 's@ln -f@ln -sf@g' -i Makefile\nmkdir -p $out/bin $out/share/man/man1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://point-at-infinity.org/seccure/",
         description: "Zero-configuration elliptic curve cryptography utility",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

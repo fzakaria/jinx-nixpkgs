@@ -15,15 +15,15 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const config = nix.arg($, "config");
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     config: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
-        foos: nix.thunk(() => ({ __proto__: pos$2, "": nix.thunk(() => ({ __proto__: pos$1, bar: "baz" })) })),
+        [nix.POS]: pos$3,
+        foos: nix.thunk(() => ({ [nix.POS]: pos$2, "": nix.thunk(() => ({ [nix.POS]: pos$1, bar: "baz" })) })),
       })),
       result: nix.thunk(() => (() => {
-        nix.assert_(nix.eq(nix.sel(config, "services", "foos"), { __proto__: pos$5, "": nix.thunk(() => ({ __proto__: pos$4, bar: "baz" })) }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/doRename-condition-migrated.nix:6:7");
+        nix.assert_(nix.eq(nix.sel(config, "services", "foos"), { [nix.POS]: pos$5, "": nix.thunk(() => ({ [nix.POS]: pos$4, bar: "baz" })) }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/doRename-condition-migrated.nix:6:7");
         nix.assert_(nix.eq(nix.sel(config, "services", "foo", "bar"), "baz"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/doRename-condition-migrated.nix:12:7");
         return true;
       })()),

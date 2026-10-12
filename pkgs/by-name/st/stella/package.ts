@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "stella",
       version: "7.0c",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stella-emu",
           repo: "stella",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [SDL2, sqlite]),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://stella-emu.github.io/",
         description: "Open-source Atari 2600 VCS emulator",
         longDescription: "Stella is a multi-platform Atari 2600 VCS emulator released under the GNU\nGeneral Public License (GPL). Stella was originally developed for Linux by\nBradford W. Mott, and is currently maintained by Stephen Anthony. Since\nits original release several people have joined the development team to\nport Stella to other operating systems such as AcornOS, AmigaOS, DOS,\nFreeBSD, IRIX, Linux, OS/2, MacOS, Unix, and Windows. The development team\nis working hard to perfect the emulator and we hope you enjoy our effort.\n\nAs of its 3.5 release, Stella is officially donationware.\n",

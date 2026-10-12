@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const shared_mime_info = nix.arg($, "shared-mime-info");
   const xdgmime = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       domain: "gitlab.freedesktop.org",
       owner: "xdg",
       repo: "xdgmime",
@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-0sjH6qG0RYb1kCw4+veTpzv1zJCzoTd2LPa9pqsZrgY=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "shared-mime-info",
       version: "2.5.1",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           domain: "gitlab.freedesktop.org",
           owner: "xdg",
           repo: "shared-mime-info",
@@ -50,7 +50,7 @@ substituteInPlace subprojects/xdgmime/meson.build \\
       strictDeps: true,
       mesonFlags: nix.thunk(() => ["-Dupdate-mimedb=true", "-Dbuild-spec=false"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Database of common MIME types",
         homepage: "http://freedesktop.org/wiki/Software/shared-mime-info",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

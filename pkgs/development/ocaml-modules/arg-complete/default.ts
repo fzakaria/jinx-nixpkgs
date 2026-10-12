@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const cppo = nix.arg($, "cppo");
   const ounit2 = nix.arg($, "ounit2");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "arg-complete",
       version: "0.2.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/sim642/ocaml-arg-complete/releases/download/${nix.sel(finalAttrs, "version")}/arg-complete-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-SZvLaeeqY3j2LUvqxGs0Vw57JnnpdvAk1jnE3pk27QU=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.08")),
       checkInputs: nix.thunk(() => [ounit2]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bash completion support for OCaml Stdlib.Arg",
         homepage: "https://sim642.github.io/ocaml-arg-complete/",
         changelog: nix.thunk(() => nix.str`https://raw.githubusercontent.com/sim642/ocaml-arg-complete/refs/tags/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

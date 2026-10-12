@@ -53,29 +53,29 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "filebeat"));
   const json = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     options: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       services: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         filebeat: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           enable: nix.thunk(() => nix.app(mkEnableOption, "filebeat")),
-          package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "filebeat", nix.thunk(() => ({ __proto__: pos$1, example: "filebeat7" })))),
+          package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "filebeat", nix.thunk(() => ({ [nix.POS]: pos$1, example: "filebeat7" })))),
           inputs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               description: "Inputs specify how Filebeat locates and processes input data.\n\nThis is like `services.filebeat.settings.filebeat.inputs`,\nbut structured as an attribute set. This has the benefit\nthat multiple NixOS modules can contribute settings to a\nsingle filebeat input.\n\nAn input type can be specified multiple times by choosing a\ndifferent `<name>` for each, but setting\n[](#opt-services.filebeat.inputs._name_.type)\nto the same value.\n\nSee <https://www.elastic.co/guide/en/beats/filebeat/current/configuration-filebeat-options.html>.\n",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.lambda((args_1) => (() => {
                     const $_1 = nix.formals(args_1, formals$2);
                     const name = nix.arg($_1, "name");
                     return {
-                      __proto__: pos$4,
+                      [nix.POS]: pos$4,
                       freeformType: nix.thunk(() => nix.sel(json, "type")),
                       options: nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$2,
+                            [nix.POS]: pos$2,
                             type: nix.thunk(() => nix.sel(types, "str")),
                             default: name,
                             description: "The input type.\n\nLook for the value after `type:` on\nthe individual input pages linked from\n<https://www.elastic.co/guide/en/beats/filebeat/current/configuration-filebeat-options.html>.\n",
@@ -86,19 +86,19 @@ export default nix.lambda((args) => (() => {
               example: nix.thunk(() => nix.app(literalExpression, "{\n  journald.id = \"everything\";  # Only for filebeat7\n  log = {\n    enabled = true;\n    paths = [\n      \"/var/log/*.log\"\n    ];\n  };\n};\n")),
             })))),
           modules: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "Filebeat modules provide a quick way to get started\nprocessing common log formats. They contain default\nconfigurations, Elasticsearch ingest pipeline definitions,\nand Kibana dashboards to help you implement and deploy a log\nmonitoring solution.\n\nThis is like `services.filebeat.settings.filebeat.modules`,\nbut structured as an attribute set. This has the benefit\nthat multiple NixOS modules can contribute settings to a\nsingle filebeat module.\n\nA module can be specified multiple times by choosing a\ndifferent `<name>` for each, but setting\n[](#opt-services.filebeat.modules._name_.module)\nto the same value.\n\nSee <https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-modules.html>.\n",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.lambda((args_1) => (() => {
                     const $_1 = nix.formals(args_1, formals$3);
                     const name = nix.arg($_1, "name");
                     return {
-                      __proto__: pos$8,
+                      [nix.POS]: pos$8,
                       freeformType: nix.thunk(() => nix.sel(json, "type")),
                       options: nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         module: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$6,
+                            [nix.POS]: pos$6,
                             type: nix.thunk(() => nix.sel(types, "str")),
                             default: name,
                             description: "The name of the module.\n\nLook for the value after `module:` on\nthe individual input pages linked from\n<https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-modules.html>.\n",
@@ -109,18 +109,18 @@ export default nix.lambda((args) => (() => {
               example: nix.thunk(() => nix.app(literalExpression, "{\n  nginx = {\n    access = {\n      enabled = true;\n      var.paths = [ \"/path/to/log/nginx/access.log*\" ];\n    };\n    error = {\n      enabled = true;\n      var.paths = [ \"/path/to/log/nginx/error.log*\" ];\n    };\n  };\n};\n")),
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   freeformType: nix.thunk(() => nix.sel(json, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$16,
+                    [nix.POS]: pos$16,
                     output: nix.thunk(() => ({
-                      __proto__: pos$12,
+                      [nix.POS]: pos$12,
                       elasticsearch: nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         hosts: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$10,
+                            [nix.POS]: pos$10,
                             type: nix.thunk(() => (() => {
                               const w = nix.withScope(types, null);
                               return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -132,16 +132,16 @@ export default nix.lambda((args) => (() => {
                       })),
                     })),
                     filebeat: nix.thunk(() => ({
-                      __proto__: pos$15,
+                      [nix.POS]: pos$15,
                       inputs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$13,
+                          [nix.POS]: pos$13,
                           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(json, "type")))),
                           default: [],
                           internal: true,
                           description: "Inputs specify how Filebeat locates and processes\ninput data. Use [](#opt-services.filebeat.inputs) instead.\n\nSee <https://www.elastic.co/guide/en/beats/filebeat/current/configuration-filebeat-options.html>.\n",
                         })))),
                       modules: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(json, "type")))),
                           default: [],
                           internal: true,
@@ -158,15 +158,15 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         services: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           filebeat: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             settings: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               filebeat: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 inputs: nix.thunk(() => nix.app(attrValues, nix.thunk(() => nix.sel(cfg, "inputs")))),
                 modules: nix.thunk(() => nix.app(attrValues, nix.thunk(() => nix.sel(cfg, "modules")))),
               })),
@@ -174,17 +174,17 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           services: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             filebeat: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               description: "Filebeat log shipper",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["elasticsearch.service"]),
               after: nix.thunk(() => ["elasticsearch.service"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 ExecStartPre: nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScript"), "filebeat-exec-pre", nix.thunk(() => nix.str`set -euo pipefail
 
 umask u=rwx,g=,o=

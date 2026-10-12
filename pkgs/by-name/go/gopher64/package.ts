@@ -34,13 +34,13 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const stdenv = clangStdenv;
-  return nix.app(nix.sel(rustPlatform, "buildRustPackage", "override"), nix.thunk(() => ({ __proto__: pos$1, stdenv: stdenv })), (finalAttrs) => ({
-      __proto__: pos$7,
+  return nix.app(nix.sel(rustPlatform, "buildRustPackage", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: stdenv })), (finalAttrs) => ({
+      [nix.POS]: pos$7,
       pname: "gopher64",
       version: "1.1.20",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "gopher64",
           repo: "gopher64",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,17 +57,17 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-rmt2b8lk/9ts8v33yguuSFcbFvUX00icg1onmhCbDTQ=",
       postPatch: "substituteInPlace .cargo/config.toml \\\n  --replace-fail 'rustflags = [\"-C\", \"link-arg=-fuse-ld=lld\"]' \"\"\n",
       env: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         SKIA_SOURCE_DIR: nix.thunk(() => (() => {
           const repo = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               owner: "rust-skia",
               repo: "skia",
               tag: "m142-0.89.1",
               hash: "sha256-J7mBQ124/dODxX6MsuMW1NHizCMATAqdSzwxpP2afgk=",
             }))));
           const externals = nix.thunk(() => nix.app(linkFarm, "skia-externals", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value) => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 name: name,
                 path: nix.thunk(() => nix.app(fetchgit, value)),
               }), nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./skia-externals.json")))))));
@@ -107,7 +107,7 @@ runHook postInstall
       doInstallCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "N64 emulator",
         homepage: "https://loganmc10.itch.io/gopher64",
         downloadPage: "https://github.com/gopher64/gopher64/releases",

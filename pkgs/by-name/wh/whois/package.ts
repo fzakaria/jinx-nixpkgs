@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libidn2 = nix.arg($, "libidn2");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: "5.6.6",
       pname: "whois",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rfc1036",
           repo: "whois",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,13 +33,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/macports/macports-ports/raw/93de4e9fc1e5e8427bf98f48209e783a5e8fab57/net/whois/files/implicit.patch",
             extraPrefix: "",
             hash: "sha256-ogVylQz//tpXxPNIWIHkhghvToU1z1D1FfnUBdZLyRY=",
           })))),
       ]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ __proto__: pos$3, NIX_LDFLAGS: "-liconv" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$3, NIX_LDFLAGS: "-liconv" })))),
       nativeBuildInputs: nix.thunk(() => [perl, gettext, pkg_config]),
       buildInputs: nix.thunk(() => [libidn2, libiconv]),
       preConfigure: "for i in Makefile po/Makefile; do\n  substituteInPlace $i --replace \"prefix = /usr\" \"prefix = $out\"\ndone\n",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       buildFlags: nix.thunk(() => ["whois"]),
       installTargets: nix.thunk(() => ["install-whois"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Intelligent WHOIS client from Debian",
         longDescription: "This package provides a commandline client for the WHOIS (RFC 3912)\nprotocol, which queries online servers for information such as contact\ndetails for domains and IP address assignments. It can intelligently\nselect the appropriate WHOIS server for most queries.\n",
         homepage: "https://packages.qa.debian.org/w/whois.html",

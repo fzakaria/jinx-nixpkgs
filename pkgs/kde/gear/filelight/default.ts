@@ -13,10 +13,10 @@ export default nix.lambda((args) => (() => {
   const kquickcharts = nix.arg($, "kquickcharts");
   const kxmlgui = nix.arg($, "kxmlgui");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "filelight",
       extraBuildInputs: nix.thunk(() => [kirigami_addons, kquickcharts, kxmlgui]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "filelight" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "filelight" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

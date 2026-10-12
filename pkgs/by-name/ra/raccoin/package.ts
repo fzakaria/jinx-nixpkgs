@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const withWayland = nix.argOr($, "withWayland", () => true);
   const withX11 = nix.argOr($, "withX11", () => true);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "raccoin",
       version: "0.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bjorn",
           repo: "raccoin",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,11 +61,11 @@ export default nix.lambda((args) => (() => {
   $out/bin/raccoin
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Crypto portfolio & capital-gains reporting tool (Rust + Slint)",
         longDescription: "This GUI Tool enables accounting with the quite basic principle\n\"first in, first out\" (FIFO) in multiple wallets. It is for\ne.g. bitcoiners that actually use the currency and want\nreports on their holdings.\n",
         homepage: "https://raccoin.org",

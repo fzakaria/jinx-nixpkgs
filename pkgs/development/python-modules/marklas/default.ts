@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const mistune = nix.arg($, "mistune");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "marklas",
       version: "0.8.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "byExist",
           repo: "marklas",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["marklas"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bidirectional converter between GitHub Flavored Markdown and Atlassian Document Format",
         homepage: "https://github.com/byExist/marklas",
         changelog: nix.thunk(() => nix.str`https://github.com/byExist/marklas/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

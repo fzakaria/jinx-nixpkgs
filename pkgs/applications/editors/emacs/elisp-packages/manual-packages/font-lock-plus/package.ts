@@ -13,19 +13,19 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const melpaBuild = nix.arg($, "melpaBuild");
   return nix.app(melpaBuild, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "font-lock-plus",
       ename: "font-lock+",
       version: "208-unstable-2022-04-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "emacsmirror",
           repo: "font-lock-plus",
           rev: "aa1c82d05c9222b09099a0ccd7468e955497940c",
           hash: "sha256-er+knxqAejgKAtOnhqHfsGN286biHFdeMIUlbW7JyYw=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/emacsmirror/font-lock-plus",
         description: "Enhancements to standard library font-lock.el",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

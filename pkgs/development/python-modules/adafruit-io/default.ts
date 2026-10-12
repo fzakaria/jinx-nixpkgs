@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const setuptools_scm = nix.arg($, "setuptools-scm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "adafruit-io",
       version: "3.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "adafruit",
           repo: "Adafruit_IO_Python",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["Adafruit_IO"]),
       disabledTestPaths: nix.thunk(() => ["tests/test_client.py", "tests/test_errors.py", "tests/test_mqtt_client.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module for interacting with Adafruit IO",
         homepage: "https://github.com/adafruit/Adafruit_IO_Python",
         changelog: nix.thunk(() => nix.str`https://github.com/adafruit/Adafruit_IO_Python/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

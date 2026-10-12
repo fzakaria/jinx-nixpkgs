@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const poetry_core = nix.arg($, "poetry-core");
   const nixops = nix.arg($, "nixops");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nixops-hercules-ci",
       version: "0-unstable-2021-10-06",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hercules-ci",
           repo: "nixops-hercules-ci",
           rev: "e601d5baffd003fd5f22deeaea0cb96444b054dc",
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nixops]),
       pythonImportsCheck: nix.thunk(() => ["nixops_hercules_ci"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Use Hercules CI as a NixOps backend",
         homepage: "https://github.com/hercules-ci/nixops-hercules-ci",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

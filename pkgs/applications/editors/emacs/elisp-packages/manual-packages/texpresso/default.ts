@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const melpaBuild = nix.arg($, "melpaBuild");
   const texpresso = nix.arg($, "texpresso");
   return nix.app(melpaBuild, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "texpresso",
       version: nix.thunk(() => nix.sel(texpresso, "version")),
       src: nix.thunk(() => nix.sel(texpresso, "src")),
@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(texpresso, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),
         description: "Emacs mode for TeXpresso",

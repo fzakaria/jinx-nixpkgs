@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const gtk4 = nix.arg($, "gtk4");
   const gtk4_layer_shell = nix.arg($, "gtk4-layer-shell");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hyprland-preview-share-picker",
       version: "0.2.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "WhySoBad",
           repo: "hyprland-preview-share-picker",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib, gtk4, gtk4_layer_shell]),
       postInstall: "$out/bin/hyprland-preview-share-picker schema > schema.json\ninstall -Dm0644 schema.json -t $out/share/hyprland-preview-share-picker\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Alternative share picker for hyprland with window and monitor previews",
         homepage: "https://github.com/WhySoBad/hyprland-preview-share-picker",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

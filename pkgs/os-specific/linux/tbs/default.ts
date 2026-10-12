@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const owner = "tbsdtv";
       const rev = "3f1faba3930568fd2d472a2fe8c57af8d7084672";
       const hash = "sha256-tq92yqJVJgAYy7PTY/nk0Q6sWJ0kdSrw38JEOOhfwGQ=";
-      return { __proto__: pos$1, name, owner, repo, rev, hash };
+      return { [nix.POS]: pos$1, name, owner, repo, rev, hash };
     })())));
   const build = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => (() => {
       const repo = "media_build";
@@ -31,10 +31,10 @@ export default nix.lambda((args) => (() => {
       const owner = "tbsdtv";
       const rev = "bc02baf59046b02e3eb71653d8aa8d98e79dc4e1";
       const hash = "sha256-P0ASmWro3j3dk7LZQbUKXcGL+2c9fdjM7RgEfk0iDMs=";
-      return { __proto__: pos$2, name, owner, repo, rev, hash };
+      return { [nix.POS]: pos$2, name, owner, repo, rev, hash };
     })())));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tbs",
       version: nix.thunk(() => nix.str`20250510-${nix.sel(kernel, "version")}`),
       srcs: nix.thunk(() => [media, build]),
@@ -64,7 +64,7 @@ sed -i v4l/Makefile \\
       postInstall: nix.thunk(() => nix.str`find $out/lib/modules/${nix.sel(kernel, "modDirVersion")} -name "*.ko" -exec xz {} \\;
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.tbsdtv.com/",
         description: "Linux driver for TBSDTV cards",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

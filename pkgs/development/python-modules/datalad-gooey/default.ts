@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_qt = nix.arg($, "pytest-qt");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "datalad-gooey",
       version: "0.2.0-unstable-2024-02-20",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "datalad",
           repo: "datalad-gooey",
           rev: "5bd6b9257ff1569439d2a77663271f5d665e61b6",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["test_lsfiles"]))),
       pythonImportsCheck: nix.thunk(() => ["datalad_gooey"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Graphical user interface (GUI) for DataLad",
         homepage: "https://github.com/datalad/datalad-gooey",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

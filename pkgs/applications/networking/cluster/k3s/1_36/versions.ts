@@ -5,7 +5,7 @@ const here = nix.here(import.meta.url);
 const pos$1 = nix.positions(here + "/versions.nix", [["k3sVersion", 2, 3], ["k3sCommit", 3, 3], ["k3sRepoSha256", 4, 3], ["k3sVendorHash", 5, 3], ["chartVersions", 6, 3], ["imagesVersions", 7, 3], ["k3sRootVersion", 8, 3], ["k3sRootSha256", 9, 3], ["k3sCNIVersion", 10, 3], ["k3sCNISha256", 11, 3], ["containerdVersion", 12, 3], ["containerdSha256", 13, 3], ["containerdPackage", 14, 3], ["criCtlVersion", 15, 3], ["flannelVersion", 16, 3], ["flannelPluginVersion", 17, 3], ["kubeRouterVersion", 18, 3], ["criDockerdVersion", 19, 3], ["helmJobVersion", 20, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$1,
+  [nix.POS]: pos$1,
   k3sVersion: "1.36.4+k3s1",
   k3sCommit: "4dedb15be78017a8ddd5b9e81acd44f3481078ed",
   k3sRepoSha256: "07ynarjmjqybfyq30kaa08nx9rw5h83nifir050mplqjwb10mrk5",

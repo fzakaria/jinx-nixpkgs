@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const buildEnv = nix.arg($, "buildEnv");
   const name = nix.argOr($, "name", () => "kernel-modules");
   return nix.app(buildEnv, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: name,
       paths: modules,
       postBuild: nix.thunk(() => nix.str`source ${stdenvNoCC}/setup

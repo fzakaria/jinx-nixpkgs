@@ -52,49 +52,49 @@ export default nix.lambda((args) => (() => {
   const mkIf = nix.thunk(() => nix.attr(lib, "mkIf"));
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
-  const randomEncryptionCoerce = (enable) => ({ __proto__: pos$1, enable: enable });
+  const randomEncryptionCoerce = (enable) => ({ [nix.POS]: pos$1, enable: enable });
   const randomEncryptionOpts = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     return {
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       options: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             default: false,
             type: nix.thunk(() => nix.sel(types, "bool")),
             description: "Encrypt swap device with a random key. This way you won't have a persistent swap device.\n\nWARNING: Don't try to hibernate when you have at least one swap partition with\nthis option enabled! We have no way to set the partition into which hibernation image\nis saved, so if your image ends up on an encrypted one you would lose it!\n\nWARNING #2: Do not use /dev/disk/by-uuid/… or /dev/disk/by-label/… as your swap device\nwhen using randomEncryption as the UUIDs and labels will get erased on every boot when\nthe partition is encrypted. Best to use /dev/disk/by-partuuid/…\n",
           })))),
         cipher: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             default: "aes-xts-plain64",
             example: "serpent-xts-plain64",
             type: nix.thunk(() => nix.sel(types, "str")),
             description: "Use specified cipher for randomEncryption.\n\nHint: Run \"cryptsetup benchmark\" to see which one is fastest on your machine.\n",
           })))),
         keySize: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             default: null,
             example: "512",
             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "int")))),
             description: "Set the encryption key size for the plain device.\n\nIf not specified, the amount of data to read from `source` will be\ndetermined by cryptsetup.\n\nSee {manpage}`cryptsetup-open(8)` for details.\n",
           })))),
         sectorSize: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             default: null,
             example: "4096",
             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "int")))),
             description: "Set the sector size for the plain encrypted device type.\n\nIf not specified, the default sector size is determined from the\nunderlying block device.\n\nSee {manpage}`cryptsetup-open(8)` for details.\n",
           })))),
         source: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             default: "/dev/urandom",
             example: "/dev/random",
             type: nix.thunk(() => nix.sel(types, "str")),
             description: "Define the source of randomness to obtain a random key for encryption.\n",
           })))),
         allowDiscards: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             default: false,
             type: nix.thunk(() => nix.sel(types, "bool")),
             description: "Whether to allow TRIM requests to the underlying device. This option\nhas security implications; please read the LUKS documentation before\nactivating it.\n",
@@ -107,45 +107,45 @@ export default nix.lambda((args) => (() => {
     const config_1 = nix.arg($_1, "config");
     const options = nix.arg($_1, "options");
     return {
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       options: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         device: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             example: "/dev/sda3",
             type: nix.thunk(() => nix.sel(types, "nonEmptyStr")),
             description: "Path of the device or swap file.",
           })))),
         isDevice: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             default: nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "substring"), 0n, 5n, nix.thunk(() => nix.sel(config_1, "device"))), "/dev/")),
             internal: true,
           })))),
         label: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             example: "swap",
             type: nix.thunk(() => nix.sel(types, "str")),
             description: "Label of the device.  Can be used instead of {var}`device`.\n",
           })))),
         size: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             default: null,
             example: 2048n,
             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "int")))),
             description: "If this option is set, ‘device’ is interpreted as the\npath of a swapfile that will be created automatically\nwith the indicated size in MiB (1024×1024 bytes).\n",
           })))),
         priority: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             default: null,
             example: 2048n,
             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "int")))),
             description: "Specify the priority of the swap device. Priority is a value between 0 and 32767.\nHigher numbers indicate higher priority.\nnull lets the kernel choose a priority, which will show up as a negative value.\n",
           })))),
         randomEncryption: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             default: false,
             example: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               enable: true,
               cipher: "serpent-xts-plain64",
               source: "/dev/random",
@@ -154,32 +154,32 @@ export default nix.lambda((args) => (() => {
             description: "Encrypt swap device with a random key. This way you won't have a persistent swap device.\n\nHINT: run \"cryptsetup benchmark\" to test cipher performance on your machine.\n\nWARNING: Don't try to hibernate when you have at least one swap partition with\nthis option enabled! We have no way to set the partition into which hibernation image\nis saved, so if your image ends up on an encrypted one you would lose it!\n\nWARNING #2: Do not use /dev/disk/by-uuid/… or /dev/disk/by-label/… as your swap device\nwhen using randomEncryption as the UUIDs and labels will get erased on every boot when\nthe partition is encrypted. Best to use /dev/disk/by-partuuid/…\n",
           })))),
         discardPolicy: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             default: null,
             example: "once",
             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["once", "pages", "both"]))))),
             description: "Specify the discard policy for the swap device. If \"once\", then the\nwhole swap space is discarded at swapon invocation. If \"pages\",\nasynchronous discard on freed pages is performed, before returning to\nthe available pages pool. With \"both\", both policies are activated.\nSee {manpage}`swapon(8)` for more information.\n",
           })))),
         options: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             default: nix.thunk(() => ["defaults"]),
             example: nix.thunk(() => ["nofail"]),
             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "nonEmptyStr")))),
             description: "Options used to mount the swap.\n",
           })))),
         deviceName: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             type: nix.thunk(() => nix.sel(types, "str")),
             internal: true,
           })))),
         realDevice: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             type: nix.thunk(() => nix.sel(types, "path")),
             internal: true,
           })))),
       })),
       config: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         device: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(options, "label", "isDefined")), nix.thunk(() => nix.str`/dev/disk/by-label/${nix.sel(config_1, "label")}`))),
         deviceName: nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["\\"]), nix.thunk(() => [""]), nix.thunk(() => nix.app(nix.sel(utils, "escapeSystemdPath"), nix.thunk(() => nix.sel(config_1, "device")))))),
         realDevice: nix.thunk(() => (nix.asBool(nix.sel(config_1, "randomEncryption", "enable")) ? nix.str`/dev/mapper/${nix.sel(config_1, "deviceName")}` : nix.sel(config_1, "device"))),
@@ -187,25 +187,25 @@ export default nix.lambda((args) => (() => {
     };
   })(), formals$3);
   return {
-    __proto__: pos$37,
+    [nix.POS]: pos$37,
     options: nix.thunk(() => ({
-      __proto__: pos$28,
+      [nix.POS]: pos$28,
       swapDevices: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           default: [],
           example: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$24, device: "/dev/hda7" })),
-            nix.thunk(() => ({ __proto__: pos$25, device: "/var/swapfile" })),
-            nix.thunk(() => ({ __proto__: pos$26, label: "bigswap" })),
+            nix.thunk(() => ({ [nix.POS]: pos$24, device: "/dev/hda7" })),
+            nix.thunk(() => ({ [nix.POS]: pos$25, device: "/var/swapfile" })),
+            nix.thunk(() => ({ [nix.POS]: pos$26, label: "bigswap" })),
           ]),
           description: "The swap devices and swap files.  These must have been\ninitialised using {command}`mkswap`.  Each element\nshould be an attribute set specifying either the path of the\nswap device or file (`device`) or the label\nof the swap device (`label`, see\n{command}`mkswap -L`).  Using a label is\nrecommended.\n",
           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), swapCfg)))),
         })))),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.app(nix.sel(lib, "length"), nix.thunk(() => nix.sel(config, "swapDevices"))), 0n)), nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         assertions: nix.thunk(() => nix.app(nix.sel(lib, "map"), (sw) => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(sw, "randomEncryption", "enable")) || nix.asBool(nix.eq(nix.builtins.match("/dev/disk/by-(uuid|label)/.*", nix.thunk(() => nix.sel(sw, "device"))), null)))),
             message: nix.thunk(() => nix.str`You cannot use swap device "${nix.sel(sw, "device")}" with randomEncryption enabled.
 The UUIDs and labels will get erased on every boot when the partition is encrypted.
@@ -216,19 +216,19 @@ Use /dev/disk/by-partuuid/… instead.
             nix.thunk(() => nix.str`Setting the swap size of block device ${nix.sel(sw, "device")} has no effect`),
           ] : []), nix.thunk(() => nix.sel(config, "swapDevices")))),
         system: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           requiredKernelConfig: nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(config, "lib", "kernelConfig", "isYes"), "SWAP")),
           ]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           services: nix.thunk(() => (() => {
             const createSwapDevice = (sw) => (() => {
               const realDevice$ = nix.thunk(() => nix.app(nix.sel(utils, "escapeSystemdPath"), nix.thunk(() => nix.sel(sw, "realDevice"))));
               const btrfsInSystem = nix.thunk(() => nix.selOr(config, () => false, "boot", "supportedFilesystems", "btrfs"));
               return nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`mkswap-${nix.sel(sw, "deviceName")}`), nix.thunk(() => ({
-                  __proto__: pos$34,
+                  [nix.POS]: pos$34,
                   description: nix.thunk(() => nix.str`Initialisation of swap device ${nix.sel(sw, "device")}`),
                   after: nix.thunk(() => ["systemd-modules-load.service"]),
                   wantedBy: nix.thunk(() => [nix.thunk(() => nix.str`${realDevice$}.swap`)]),
@@ -239,7 +239,7 @@ Use /dev/disk/by-partuuid/… instead.
                     nix.thunk(() => nix.sel(pkgs, "util-linux")),
                     nix.thunk(() => nix.sel(pkgs, "e2fsprogs")),
                   ], nix.concat(nix.app(nix.sel(lib, "optional"), btrfsInSystem, nix.thunk(() => nix.sel(pkgs, "btrfs-progs"))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(sw, "randomEncryption", "enable")), nix.thunk(() => nix.sel(pkgs, "cryptsetup")))))),
-                  environment: nix.thunk(() => ({ __proto__: pos$31, DEVICE: nix.thunk(() => nix.sel(sw, "device")) })),
+                  environment: nix.thunk(() => ({ [nix.POS]: pos$31, DEVICE: nix.thunk(() => nix.sel(sw, "device")) })),
                   script: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(sw, "size"), null)), nix.thunk(() => nix.str`currentSize=$(( $(stat -c "%s" "$DEVICE" 2>/dev/null || echo 0) / 1024 / 1024 ))
 if [[ ! -b "$DEVICE" && "${nix.builtins.toString(nix.thunk(() => nix.sel(sw, "size")))}" != "$currentSize" ]]; then
   if [[ "$(stat -f -c %T "$(dirname "$DEVICE")")" == "btrfs" ]]; then
@@ -270,14 +270,14 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(sw, "isDevice"
 `),
                   enableStrictShellChecks: true,
                   unitConfig: nix.thunk(() => ({
-                    __proto__: pos$32,
+                    [nix.POS]: pos$32,
                     RequiresMountsFor: nix.thunk(() => [
                       nix.thunk(() => nix.str`${nix.builtins.dirOf(nix.thunk(() => nix.sel(sw, "device")))}`),
                     ]),
                     DefaultDependencies: false,
                   })),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$33,
+                    [nix.POS]: pos$33,
                     Type: "oneshot",
                     RemainAfterExit: nix.thunk(() => nix.sel(sw, "randomEncryption", "enable")),
                     UMask: "0177",

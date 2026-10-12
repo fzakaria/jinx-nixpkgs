@@ -52,25 +52,25 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "passthru"));
       return {
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "uhd",
       version: "4.11.0.0",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "EttusResearch",
           repo: "uhd",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-L8bd9KP3WauFKN6jEI5VECaTBgEuB8IcSiiLbXFMWZY=",
         })))),
       uhdImagesSrc: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/EttusResearch/uhd/releases/download/v${nix.sel(finalAttrs, "version")}/uhd-images_${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "0b5hy1bjyhd5s2b98jdjfk8r7aa939z6jwfnpl5qqp4dvhiyc9bm",
         })))),
       pythonPath: nix.thunk(() => nix.attr(from, "pythonPath")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         runtimePython: nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (ps) => nix.sel(finalAttrs, "finalPackage", "passthru", "pythonPath"))),
         pythonPath: nix.thunk(() => nix.concat(nix.app(optionals, nix.thunk(() => (nix.asBool(enablePythonApi) || nix.asBool(enableUtils))), nix.thunk(() => [
             nix.thunk(() => nix.sel(python3, "pkgs", "numpy")),
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
           nix.path(here, "./update.sh"),
           nix.thunk(() => nix.sel(nix.builtins.unsafeGetAttrPos("pname", nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))), "file")),
         ]),
-        tests: nix.thunk(() => ({ __proto__: pos$3, soapyuhd: soapyuhd })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, soapyuhd: soapyuhd })),
       })),
       cmakeFlags: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(cmakeBool, "ENABLE_LIBUHD", true)),
@@ -122,7 +122,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://github.com/EttusResearch/uhd/commit/6bc1d4d011825b2dca6d60b1cfb327dc07c63414.patch?full_index=1",
             hash: "sha256-Rx1B3za4sFbX3d6Vj8bVaPvPunNwc4Ir0WiXjLDgoQk=",
           })))),
@@ -137,7 +137,7 @@ tar --strip-components=1 -xvf "${nix.sel(finalAttrs, "uhdImagesSrc")}" -C "$out/
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(enablePythonApi) && nix.asBool(enableUtils))), "wrapPythonPrograms\n")),
       disallowedReferences: nix.thunk(() => nix.app(optionals, nix.thunk(() => (nix.asBool(!nix.asBool(enablePythonApi)) && nix.asBool(!nix.asBool(enableUtils)))), nix.thunk(() => [python3]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "USRP Hardware Driver (for Software Defined Radio)",
         longDescription: "The USRP Hardware Driver (UHD) software is the hardware driver for all\nUSRP (Universal Software Radio Peripheral) devices.\n\nUSRP devices are designed and sold by Ettus Research, LLC and its parent\ncompany, National Instruments.\n",
         homepage: "https://uhd.readthedocs.io",

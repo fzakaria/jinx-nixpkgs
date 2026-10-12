@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const mongodb_atlas_cli = nix.arg($, "mongodb-atlas-cli");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "mongodb-atlas-cli",
       version: "1.59.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mongodb",
           repo: "mongodb-atlas-cli",
           tag: nix.thunk(() => nix.str`atlascli/v${nix.sel(finalAttrs, "version")}`),
@@ -43,22 +43,22 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["cmd/atlas"]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd atlas \\\n  --bash <($out/bin/atlas completion bash) \\\n  --fish <($out/bin/atlas completion fish) \\\n  --zsh <($out/bin/atlas completion zsh)\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex=atlascli/v(.+)"]),
           })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: mongodb_atlas_cli,
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "CLI utility to manage MongoDB Atlas from the terminal",
         homepage: "https://github.com/mongodb/mongodb-atlas-cli",
         changelog: nix.thunk(() => nix.str`https://www.mongodb.com/docs/atlas/cli/current/atlas-cli-changelog/#atlas-cli-${nix.sel(finalAttrs, "version")}`),

@@ -26,16 +26,16 @@ export default nix.lambda((args) => (() => {
         const pname = "jetty";
         const version_1 = version;
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`mirror://maven/org/eclipse/jetty/jetty-home/${version_1}/jetty-home-${version_1}.tar.gz`),
             hash: hash,
           }))));
         const dontBuild = true;
         const installPhase = "mkdir -p $out\nmv etc lib modules start.jar $out\n";
         const passthru = nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: "https://github.com/jetty/jetty.project.git",
               allowedVersions: nix.thunk(() => nix.str`^${nix.app(nix.sel(lib, "versions", "major"), version_1)}\\.`),
               ignoredVersions: "(alpha|beta).*",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
             })))),
         }));
         const meta = nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           changelog: nix.thunk(() => nix.str`https://github.com/jetty/jetty.project/releases/tag/jetty-${version_1}`),
           description: "Web server and javax.servlet container",
           homepage: "https://jetty.org/",
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
           })()),
         }));
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           pname,
           version: version_1,
           src,
@@ -80,9 +80,9 @@ export default nix.lambda((args) => (() => {
       })()));
   })(), formals$2);
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     jetty_12: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         version: "12.1.13",
         hash: "sha256-FBeQSRGNSStrkfUtDw19JvJq90esje/npB/dChu6t3U=",
       })))),

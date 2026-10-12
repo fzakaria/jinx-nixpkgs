@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const libelf = nix.arg($, "libelf");
   const elfcopy = nix.arg($, "elfcopy");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "usr.sbin/kldxref",
       extraPaths: nix.thunk(() => ["lib/libkldelf"]),
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isFreeBSD"))), nix.thunk(() => [libelf])), compatIfNeeded)),
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "make -C $BSDSRCDIR/lib/libkldelf $makeFlags\n",
       postPatch: "sed -i 's/FTS_PHYSICAL/FTS_LOGICAL/' $BSDSRCDIR/usr.sbin/kldxref/kldxref.c\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
     })));

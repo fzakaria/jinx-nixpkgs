@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const readstat = nix.arg($, "readstat");
   const rPackages = nix.arg($, "rPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "jasp-desktop",
       version: "0.98.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jasp-stats",
           repo: "jasp-desktop",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(qt6, "qthttpserver")),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_LDFLAGS: nix.thunk(() => nix.str`-L${nix.sel(rPackages, "RInside")}/library/RInside/lib`),
       })),
       postInstall: nix.thunk(() => nix.str`# Remove flatpak proxy script
@@ -88,7 +88,7 @@ ln -s ${nix.sel(finalAttrs, "passthru", "moduleManifests")} $out/Modules/manifes
 `),
       passthru: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./modules.nix")), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             lib: lib,
             fetchFromGitHub: fetchFromGitHub,
             rPackages: rPackages,
@@ -96,11 +96,11 @@ ln -s ${nix.sel(finalAttrs, "passthru", "moduleManifests")} $out/Modules/manifes
             "jasp-version": nix.thunk(() => nix.sel(finalAttrs, "version")),
           }))));
         return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         customRPackages: nix.thunk(() => nix.attr(from, "customRPackages")),
         jaspModules: nix.thunk(() => nix.attr(from, "jaspModules")),
         customREnv: nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: nix.thunk(() => nix.str`jasp-desktop-${nix.sel(finalAttrs, "version")}-env`),
             paths: nix.thunk(() => nix.concat([
               nix.thunk(() => nix.str`${R}/lib/R`),
@@ -108,12 +108,12 @@ ln -s ${nix.sel(finalAttrs, "passthru", "moduleManifests")} $out/Modules/manifes
               nix.thunk(() => nix.sel(finalAttrs, "passthru", "customRPackages", "jaspBase")),
             ], nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "jaspModules"))))),
           })))),
-        moduleLibs: nix.thunk(() => nix.app(linkFarm, nix.thunk(() => nix.str`jasp-desktop-${nix.sel(finalAttrs, "version")}-module-libs`), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (drv) => ({ __proto__: pos$5, name: name, path: nix.thunk(() => nix.str`${drv}/library`) }), nix.thunk(() => nix.sel(finalAttrs, "passthru", "jaspModules")))))),
+        moduleLibs: nix.thunk(() => nix.app(linkFarm, nix.thunk(() => nix.str`jasp-desktop-${nix.sel(finalAttrs, "version")}-module-libs`), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (drv) => ({ [nix.POS]: pos$5, name: name, path: nix.thunk(() => nix.str`${drv}/library`) }), nix.thunk(() => nix.sel(finalAttrs, "passthru", "jaspModules")))))),
         moduleManifests: nix.thunk(() => nix.app(linkFarm, nix.thunk(() => nix.str`jasp-desktop-${nix.sel(finalAttrs, "version")}-module-manifests`), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (drv) => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               name: nix.thunk(() => nix.str`${name}_manifest.json`),
               path: nix.thunk(() => nix.app(nix.sel(writers, "writeJSON"), nix.thunk(() => nix.str`${name}_manifest.json`), nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   name: name,
                   version: nix.thunk(() => nix.sel(drv, "version")),
                 })))),
@@ -122,7 +122,7 @@ ln -s ${nix.sel(finalAttrs, "passthru", "moduleManifests")} $out/Modules/manifes
       };
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         changelog: "https://jasp-stats.org/release-notes",
         description: "Complete statistical package for both Bayesian and Frequentist statistical methods",
         homepage: "https://github.com/jasp-stats/jasp-desktop",

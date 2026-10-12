@@ -30,13 +30,13 @@ export default nix.lambda((args) => (() => {
   const version = "1.1.3";
   const model = "dcp375cw";
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     driver: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: nix.thunk(() => nix.str`${model}-lpr`),
         version: version,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf005427/dcp375cwlpr-${version}-1.i386.deb`),
             sha256: "6daf0144b5802ea8da394ca14db0e6f0200d4049545649283791f899b7f7bd26",
           })))),
@@ -56,7 +56,7 @@ wrapProgram $out/opt/brother/Printers/${model}/lpd/filter${model} \\
   --prefix PATH ":" ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gawk, ghostscript, a2ps, file, gnused, gnugrep, coreutils, which]))}
 `),
         meta: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           homepage: "http://www.brother.com/",
           description: nix.thunk(() => nix.str`Brother ${model} printer driver`),
           sourceProvenance: nix.thunk(() => (() => {
@@ -73,11 +73,11 @@ wrapProgram $out/opt/brother/Printers/${model}/lpd/filter${model} \\
         })),
       })))),
     cupswrapper: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname: nix.thunk(() => nix.str`${model}-cupswrapper`),
         version: version,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf005429/dcp375cwcupswrapper-${version}-1.i386.deb`),
             sha256: "9a255728b595d2667b2caf9d0d332b677e1a6829a3ec1ed6d4e900a44069cf2d",
           })))),
@@ -92,7 +92,7 @@ mkdir -p $out/share/cups/model
 ln -s $out/opt/brother/Printers/${model}/cupswrapper/brother_${model}_printer_en.ppd $out/share/cups/model/
 `),
         meta: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           homepage: "http://www.brother.com/",
           description: nix.thunk(() => nix.str`Brother ${model} printer CUPS wrapper driver`),
           sourceProvenance: nix.thunk(() => (() => {

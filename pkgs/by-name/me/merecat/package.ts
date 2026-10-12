@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const merecat = nix.arg($, "merecat");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "merecat",
       version: "2.31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "troglobit",
           repo: "merecat",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,15 +36,15 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => [libconfuse, libxcrypt]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          testVersion: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: merecat, command: "merecat -V" })))),
+          [nix.POS]: pos$3,
+          testVersion: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: merecat, command: "merecat -V" })))),
           merecat: nix.thunk(() => nix.attr(nixosTests, "merecat")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Small and made-easy HTTP/HTTPS server based on Jef Poskanzer's thttpd",
         homepage: "https://troglobit.com/projects/merecat/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

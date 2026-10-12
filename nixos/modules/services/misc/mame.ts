@@ -29,32 +29,32 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "mame"));
   const mame = nix.thunk(() => nix.str`mame${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "is64bit")), "64")}`);
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         mame: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to setup TUN/TAP Ethernet interface for MAME emulator.\n",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "User from which you run MAME binary.\n",
             })))),
           hostAddr: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "IP address of the host system. Usually an address of the main network\nadapter or the adapter through which you get an internet connection.\n",
               example: "192.168.31.156",
             })))),
           emuAddr: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "IP address of the guest system. The same you set inside guest OS under\nMAME. Should be on the same subnet as {option}`services.mame.hostAddr`.\n",
               example: "192.168.31.155",
@@ -63,16 +63,16 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         environment: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "mame"))]),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           wrappers: nix.thunk(() => nix.attrsDyn({}, [
             [nix.str`${mame}`, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               owner: "root",
               group: "root",
               capabilities: "cap_net_admin,cap_net_raw+eip",
@@ -81,17 +81,17 @@ export default nix.lambda((args) => (() => {
           ])),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             mame: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "MAME TUN/TAP Ethernet interface",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "iproute2"))]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 Type: "oneshot",
                 RemainAfterExit: true,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "mame")}/bin/taputil.sh -c ${nix.sel(cfg, "user")} ${nix.sel(cfg, "emuAddr")} ${nix.sel(cfg, "hostAddr")} -`),
@@ -101,7 +101,7 @@ export default nix.lambda((args) => (() => {
           })),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$16, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$16, maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=mame.ts.map

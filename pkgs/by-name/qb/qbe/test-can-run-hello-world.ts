@@ -13,9 +13,9 @@ export default nix.lambda((args) => (() => {
   const qbe = nix.arg($, "qbe");
   const helloWorld = nix.thunk(() => nix.app(writeText, "hello-world.ssa", "function w $add(w %a, w %b) {        # Define a function add\n@start\n  %c =w add %a, %b                   # Adds the 2 arguments\n  ret %c                             # Return the result\n}\nexport function w $main() {          # Main function\n@start\n  %r =w call $add(w 1, w 1)          # Call add(1, 1)\n  call $printf(l $fmt, w %r, ...)    # Show the result\n  ret 0\n}\ndata $fmt = { b \"One and one make %d!\\n\", b 0 }\n"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "qbe-test-can-run-hello-world",
-      meta: nix.thunk(() => ({ __proto__: pos$1, timeout: 10n })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 10n })),
       buildCommand: nix.thunk(() => nix.str`${qbe}/bin/qbe -o asm.s ${helloWorld}
 cc -o out asm.s
 ./out | grep 'One and one make 2!'

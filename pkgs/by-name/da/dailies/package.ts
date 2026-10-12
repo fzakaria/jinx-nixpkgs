@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dailies",
       version: "0.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "JachymPutta",
           repo: "dailies",
           rev: "66938203c644a54adcc1dbbe44ad37d348f3e986",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-R8r6YFo0Ih7esJl/OpcNNmmmB9pGxOXCc+3/ZivaWSw=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Daily journaling in plain markdown",
         homepage: "https://github.com/JachymPutta/dailies",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

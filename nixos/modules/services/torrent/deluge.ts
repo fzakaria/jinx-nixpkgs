@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
   const openFilesLimit = 4096n;
   const listenPortsDefault = nix.thunk(() => [6881n, 6889n]);
   const listToRange = (x) => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     from: nix.thunk(() => nix.app(nix.sel(lib, "elemAt"), x, 0n)),
     to: nix.thunk(() => nix.app(nix.sel(lib, "elemAt"), x, 1n)),
   });
@@ -82,22 +82,22 @@ fi
 fi
 `));
   return {
-    __proto__: pos$44,
+    [nix.POS]: pos$44,
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         deluge: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Deluge daemon")),
           openFilesLimit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: openFilesLimit,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "either"), nix.thunk(() => nix.sel(lib, "types", "int")), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "Number of files to allow deluged to open.\n",
             })))),
           config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "attrs")),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`{
@@ -112,59 +112,59 @@ fi
               description: "Deluge core configuration for the core.conf file. Only has an effect\nwhen {option}`services.deluge.declarative` is set to\n`true`. String values must be quoted, integer and\nboolean values must not. See\n<https://git.deluge-torrent.org/deluge/tree/deluge/core/preferencesmanager.py#n41>\nfor the available options.\n",
             })))),
           declarative: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to use a declarative deluge configuration.\nOnly if set to `true`, the options\n{option}`services.deluge.config`,\n{option}`services.deluge.openFirewall` and\n{option}`services.deluge.authFile` will be\napplied.\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Whether to open the firewall for the ports in\n{option}`services.deluge.config.listen_ports`. It only takes effet if\n{option}`services.deluge.declarative` is set to\n`true`.\n\nIt does NOT apply to the daemon port nor the web UI port. To access those\nports securely check the documentation\n<https://dev.deluge-torrent.org/wiki/UserGuide/ThinClient#CreateSSHTunnel>\nor use a VPN or configure certificates for deluge.\n",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/deluge",
               description: "The directory where deluge will create files.\n",
             })))),
           authFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               example: "/run/keys/deluge-auth",
               description: "The file managing the authentication for deluge, the format of this\nfile is straightforward, each line contains a\nusername:password:level tuple in plaintext. It only has an effect\nwhen {option}`services.deluge.declarative` is set to\n`true`.\nSee <https://dev.deluge-torrent.org/wiki/UserGuide/Authentication> for\nmore information.\n",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "deluge",
               description: "User account under which deluge runs.\n",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "deluge",
               description: "Group under which deluge runs.\n",
             })))),
           extraPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: [],
               description: "Extra packages available at runtime to enable Deluge's plugins. For example,\nextraction utilities are required for the built-in \"Extractor\" plugin.\nThis always contains unzip, gnutar, xz and bzip2.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "deluge-2_x", nix.thunk(() => ({})))),
           web: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Deluge Web daemon")),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 8112n,
                 description: "Deluge web UI port.\n",
               })))),
             openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Open ports in the firewall for deluge web daemon\n",
@@ -174,11 +174,11 @@ fi
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$43,
+        [nix.POS]: pos$43,
         services: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           deluge: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(config, "system", "stateVersion")), "20.09")) ? nix.sel(pkgs, "deluge-2_x") : nix.sel(pkgs, "deluge-1_x"))))),
             extraPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
@@ -192,42 +192,42 @@ fi
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             settings: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               "10-deluged": nix.thunk(() => (() => {
                 const defaultConfig = nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   user: nix.thunk(() => nix.attr(cfg, "user")),
                   group: nix.thunk(() => nix.attr(cfg, "group")),
                   mode: "0770",
                 }));
                 return nix.update(nix.attrsDyn({}, [
-                  [nix.str`${nix.sel(cfg, "dataDir")}`, nix.thunk(() => ({ __proto__: pos$20, d: defaultConfig }))],
-                  [nix.str`${nix.sel(cfg, "dataDir")}/.config`, nix.thunk(() => ({ __proto__: pos$21, d: defaultConfig }))],
-                  [nix.str`${nix.sel(cfg, "dataDir")}/.config/deluge`, nix.thunk(() => ({ __proto__: pos$22, d: defaultConfig }))],
+                  [nix.str`${nix.sel(cfg, "dataDir")}`, nix.thunk(() => ({ [nix.POS]: pos$20, d: defaultConfig }))],
+                  [nix.str`${nix.sel(cfg, "dataDir")}/.config`, nix.thunk(() => ({ [nix.POS]: pos$21, d: defaultConfig }))],
+                  [nix.str`${nix.sel(cfg, "dataDir")}/.config/deluge`, nix.thunk(() => ({ [nix.POS]: pos$22, d: defaultConfig }))],
                 ]), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(nix.sel(cfg, "config"), "download_location")), nix.thunk(() => nix.attrsDyn({}, [
-                    [nix.sel(cfg, "config", "download_location"), nix.thunk(() => ({ __proto__: pos$23, d: defaultConfig }))],
+                    [nix.sel(cfg, "config", "download_location"), nix.thunk(() => ({ [nix.POS]: pos$23, d: defaultConfig }))],
                   ]))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(nix.sel(cfg, "config"), "torrentfiles_location")), nix.thunk(() => nix.attrsDyn({}, [
-                    [nix.sel(cfg, "config", "torrentfiles_location"), nix.thunk(() => ({ __proto__: pos$24, d: defaultConfig }))],
+                    [nix.sel(cfg, "config", "torrentfiles_location"), nix.thunk(() => ({ [nix.POS]: pos$24, d: defaultConfig }))],
                   ]))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(nix.sel(cfg, "config"), "move_completed_path")), nix.thunk(() => nix.attrsDyn({}, [
-                    [nix.sel(cfg, "config", "move_completed_path"), nix.thunk(() => ({ __proto__: pos$25, d: defaultConfig }))],
+                    [nix.sel(cfg, "config", "move_completed_path"), nix.thunk(() => ({ [nix.POS]: pos$25, d: defaultConfig }))],
                   ]))))));
               })()),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             deluged: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               after: nix.thunk(() => ["network.target"]),
               description: "Deluge BitTorrent Daemon",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               path: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(cfg, "package"))], nix.sel(cfg, "extraPackages"))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/deluged \\
   --do-not-daemonize \\
   --config ${configDir}
@@ -241,14 +241,14 @@ fi
               preStart: preStart,
             })),
             delugeweb: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg_web, "enable")), nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 after: nix.thunk(() => ["network.target", "deluged.service"]),
                 requires: nix.thunk(() => ["deluged.service"]),
                 description: "Deluge BitTorrent WebUI",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 path: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/deluge-web \\
   ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(isDeluge1)), "--do-not-daemonize")} \\
   --config ${configDir} \\
@@ -261,29 +261,29 @@ fi
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(cfg, "declarative")) && nix.asBool(nix.sel(cfg, "openFirewall")))) && nix.asBool(!nix.asBool(nix.selOr(cfg, () => true, "config", "random_port"))))), nix.thunk(() => ({
-                  __proto__: pos$34,
+                  [nix.POS]: pos$34,
                   allowedTCPPortRanges: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => nix.app(listToRange, nix.thunk(() => nix.selOr(cfg, () => nix.force(listenPortsDefault), "config", "listen_ports")))))),
                   allowedUDPPortRanges: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => nix.app(listToRange, nix.thunk(() => nix.selOr(cfg, () => nix.force(listenPortsDefault), "config", "listen_ports")))))),
                 })))),
               nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "web", "openFirewall")), nix.thunk(() => ({
-                  __proto__: pos$35,
+                  [nix.POS]: pos$35,
                   allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "web", "port"))]),
                 })))),
             ]))),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$42,
+          [nix.POS]: pos$42,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "deluge")), nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               deluge: nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 uid: nix.thunk(() => nix.sel(config, "ids", "uids", "deluge")),
                 home: nix.thunk(() => nix.sel(cfg, "dataDir")),
@@ -291,9 +291,9 @@ fi
               })),
             })))),
           groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "deluge")), nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               deluge: nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 gid: nix.thunk(() => nix.sel(config, "ids", "gids", "deluge")),
               })),
             })))),

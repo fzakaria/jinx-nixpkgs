@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const sphinx = nix.arg($, "sphinx");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ckdl",
       version: "1.0",
       src: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchFromGitHub"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tjol",
           repo: "ckdl",
           tag: "1.0",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "cd doc\nmake singlehtml\nmkdir -p $doc/share/doc\nmv _build/singlehtml $doc/share/doc/ckdl\n\ncd ..\n",
       postInstall: "mkdir -p $bin/bin\n\n# some tools that are important for debugging.\n# idk why they are not copied to bin by cmake, but I’m too tired to figure it out\ninstall src/utils/ckdl-tokenize $bin/bin\ninstall src/utils/ckdl-parse-events $bin/bin\ninstall src/utils/ckdl-cat $bin/bin\ntouch $out\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C library that implements reading and writing the KDL Document Language",
         homepage: "https://github.com/tjol/ckdl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

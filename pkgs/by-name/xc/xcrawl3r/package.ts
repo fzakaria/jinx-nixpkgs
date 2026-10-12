@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xcrawl3r",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hueristiq",
           repo: "xcrawl3r",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-Ukz+fQuJp72Rhs/h+6kYp6rZgRFnAShO9+qGYuIjDh0=",
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI utility to recursively crawl webpages",
         homepage: "https://github.com/hueristiq/xcrawl3r",
         changelog: nix.thunk(() => nix.str`https://github.com/hueristiq/xcrawl3r/releases/tag/${nix.sel(finalAttrs, "version")}`),

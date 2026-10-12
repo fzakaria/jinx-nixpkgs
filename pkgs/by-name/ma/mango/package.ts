@@ -34,13 +34,13 @@ export default nix.lambda((args) => (() => {
   const wlroots_0_20 = nix.arg($, "wlroots_0_20");
   const libGL = nix.arg($, "libGL");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       __structuredAttrs: true,
       strictDeps: true,
       pname: "mango",
       version: "0.18.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mangowm",
           repo: "mango",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -64,9 +64,9 @@ export default nix.lambda((args) => (() => {
       mesonFlags: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "xwayland", enableXWayland)),
       ]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, providedSessions: nix.thunk(() => ["mango"]) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, providedSessions: nix.thunk(() => ["mango"]) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         mainProgram: "mango",
         description: "Lightweight and feature-rich Wayland compositor based on dwl",
         homepage: "https://mangowm.github.io",

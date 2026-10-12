@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libxml2 = nix.arg($, "libxml2");
   const fuse3 = nix.arg($, "fuse3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "s3fs-fuse",
       version: "1.97",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "s3fs-fuse",
           repo: "s3fs-fuse",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--with-openssl"]),
       postInstall: "ln -s $out/bin/s3fs $out/bin/mount.s3fs\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Mount an S3 bucket as filesystem through FUSE",
         homepage: "https://github.com/s3fs-fuse/s3fs-fuse",
         changelog: nix.thunk(() => nix.str`https://github.com/s3fs-fuse/s3fs-fuse/raw/v${nix.sel(finalAttrs, "version")}/ChangeLog`),

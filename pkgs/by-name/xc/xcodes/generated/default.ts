@@ -6,10 +6,10 @@ const pos$1 = nix.positions(here + "/default.nix", [["big-num", 5, 5], ["data", 
 const pos$2 = nix.positions(here + "/default.nix", [["workspaceStateFile", 3, 3], ["hashes", 4, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$2,
+  [nix.POS]: pos$2,
   workspaceStateFile: nix.path(here, "./workspace-state.json"),
   hashes: nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "big-num": "0wj45pmiafhbj5ch7b4s41ldycps0hcj29d0z6fanhiy7ljlhk35",
     data: "1jf2y9dbg1qvxkkabdkihdnr1kmznq79h18j65a7iw1hljdp8hyg",
     Foundation: "0hcpc15v38l32qc2sh4gqj909b1f90knln9yz3mfiyf6xi7iy6q7",

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const domain = "miraie";
       const version = "1.1.8";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rkzofficial",
           repo: "ha-miraie-ac",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
         }))));
       const dependencies = nix.thunk(() => [miraie_ac, aiomqtt]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/rkzofficial/ha-miraie-ac/releases/tag/v${version}`),
         description: "Home Assistant component for Miraie ACs",
         homepage: "https://github.com/rkzofficial/ha-miraie-ac",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
-      return { __proto__: pos$4, owner, domain, version, src, dependencies, passthru, meta };
+      return { [nix.POS]: pos$4, owner, domain, version, src, dependencies, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

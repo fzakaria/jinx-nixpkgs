@@ -34,12 +34,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const redisTestHook = nix.arg($, "redisTestHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "redis",
       version: "8.0.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "redis",
           repo: "redis-py",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonOlder, "3.11")), nix.thunk(() => [async_timeout]))),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         circuit_breaker: nix.thunk(() => [pybreaker]),
         hiredis: nix.thunk(() => [hiredis]),
         jwt: nix.thunk(() => [pyjwt]),
@@ -77,14 +77,14 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_readonly_invalid_cluster_state", "test_lolwut"]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          pytest: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$3, doInstallCheck: true })))),
+          [nix.POS]: pos$4,
+          pytest: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$3, doInstallCheck: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Python client for Redis key-value store",
         homepage: "https://github.com/redis/redis-py",
         changelog: nix.thunk(() => nix.str`https://github.com/redis/redis-py/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

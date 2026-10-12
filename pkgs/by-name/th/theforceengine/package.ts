@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const zenity = nix.arg($, "zenity");
   const withEditor = nix.argOr($, "withEditor", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "theforceengine",
       version: "1.22.420",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TheForceEngine",
           repo: "TheForceEngine",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +61,7 @@ substituteInPlace TheForceEngine/TFE_Ui/portable-file-dialogs.h \\
   --replace-fail "flags(flag::has_zenity) ? \\"zenity\\"" "flags(flag::has_zenity) ? \\"${nix.app(nix.sel(lib, "getExe"), zenity)}\\""
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Modern \"Jedi Engine\" replacement supporting Dark Forces, mods, and in the future, Outlaws",
         mainProgram: "theforceengine",
         homepage: "https://theforceengine.github.io",

@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nativeWayland = nix.argOr($, "nativeWayland", () => false);
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "osu-lazer",
       version: "2026.1005.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ppy",
           repo: "osu",
           tag: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}-lazer`),
@@ -78,7 +78,7 @@ runHook postFixup
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             desktopName: "osu!",
             name: "osu",
             exec: "osu!",
@@ -89,11 +89,11 @@ runHook postFixup
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$3, extraArgs: nix.thunk(() => ["--version-regex=(.*)-lazer"]) })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version-regex=(.*)-lazer"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Rhythm is just a *click* away (no score submission or multiplayer, see osu-lazer-bin)",
         homepage: "https://osu.ppy.sh",
         changelog: nix.thunk(() => nix.str`https://osu.ppy.sh/home/changelog/lazer/${nix.sel(finalAttrs, "version")}`),

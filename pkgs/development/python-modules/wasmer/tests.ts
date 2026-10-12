@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const wasmer_compiler_llvm = nix.arg($, "wasmer-compiler-llvm");
   const wasmer_compiler_singlepass = nix.arg($, "wasmer-compiler-singlepass");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       format: "setuptools",
       pname: "wasmer-tests",
       version: nix.thunk(() => nix.attr(wasmer, "version")),

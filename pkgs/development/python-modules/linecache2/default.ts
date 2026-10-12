@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "0z79g3ds5wk2lvnqw0y2jpakjf32h95bd9zmnvp7dnqhf57gy9jb",
@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [pbr]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Backport of linecache to older supported Pythons",
         homepage: "https://github.com/testing-cabal/linecache2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "psfl")),
       }));
-      return { __proto__: pos$3, pname, version, format, src, buildInputs, doCheck, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, buildInputs, doCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

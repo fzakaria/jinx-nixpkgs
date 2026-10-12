@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const mingw_w64_headers = nix.arg($, "mingw_w64_headers");
   const crt = nix.argOr($, "crt", () => nix.sel(stdenv, "hostPlatform", "libc"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "mingw-w64",
       version: nix.thunk(() => nix.attr(mingw_w64_headers, "version")),
       src: nix.thunk(() => nix.attr(mingw_w64_headers, "src")),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "enableFeature"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64")), "lib64")),
         nix.thunk(() => nix.app(nix.sel(lib, "enableFeature"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), "libarm64")),
       ]),
-      passthru: nix.thunk(() => ({ __proto__: pos$1, threadModel: "win32" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, threadModel: "win32" })),
       enableParallelBuilding: true,
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       buildInputs: nix.thunk(() => [mingw_w64_headers]),

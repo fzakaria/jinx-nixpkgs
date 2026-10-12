@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const text = nix.arg($, "text");
   const transformers = nix.arg($, "transformers");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "hercules-ci-optparse-applicative",
       version: "0.19.0.0",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://github.com/hercules-ci/optparse-applicative.git",
           sha256: "068rsq9j0afrywbcqf6vg4ivfxbb68ab7f0lvg1na81mfn7sfakk",
           rev: "b55bb38a2aea0cf776aec707cdce7c7418146077",

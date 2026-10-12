@@ -36,13 +36,13 @@ export default nix.lambda((args) => (() => {
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mistralai",
       version: "2.10.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mistralai",
           repo: "client-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         typing_inspection,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         agents: nix.thunk(() => [authlib, griffe, mcp]),
         gcp: nix.thunk(() => [google_auth, requests]),
         realtime: nix.thunk(() => [websockets]),
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
         "src/mistralai/extra/tests/test_otel_tracing.py::TestPerInstanceTracerProvider::test_get_telemetry_tracer_dedicated_provider_captures_app_spans",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python client library for Mistral AI platform",
         homepage: "https://github.com/mistralai/client-python",
         changelog: nix.thunk(() => nix.str`https://github.com/mistralai/client-python/blob/${nix.sel(finalAttrs, "src", "tag")}/RELEASES.md`),

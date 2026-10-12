@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.41.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "google_cloud_pubsub",
           version: version,
           hash: "sha256-THtCwjwUV1Q2ZewWLXXguhsdTJitzJx1PzUXFk95N9c=",
@@ -50,13 +50,13 @@ export default nix.lambda((args) => (() => {
         protobuf,
       ], nix.sel(google_api_core, "optional-dependencies", "grpc")));
       const pythonRelaxDeps = nix.thunk(() => ["protobuf"]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, libcst: nix.thunk(() => [libcst]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, libcst: nix.thunk(() => [libcst]) }));
       const nativeCheckInputs = nix.thunk(() => [google_cloud_testutils, pytestCheckHook, pytest_asyncio]);
       const preCheck = "# prevent google directory from shadowing google imports\nrm -r google\n";
       const disabledTestPaths = nix.thunk(() => ["tests/unit/pubsub_v1"]);
       const pythonImportsCheck = nix.thunk(() => ["google.cloud.pubsub"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Google Cloud Pub/Sub API client library",
         homepage: "https://github.com/googleapis/google-cloud-python/tree/main/packages/google-cloud-pubsub",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/google-cloud-python/blob/google-cloud-pubsub-v${version}/packages/google-cloud-pubsub/CHANGELOG.md`),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "fixup_pubsub_v1_keywords.py",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

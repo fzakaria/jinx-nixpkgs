@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const mpvSupport = nix.argOr($, "mpvSupport", () => true);
   const mpv = nix.arg($, "mpv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "qtgreet",
       version: "2.0.4",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "marcusbritanicus",
           repo: "QtGreet",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,9 +47,9 @@ export default nix.lambda((args) => (() => {
       mesonFlags: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mesonOption"), "dynpath", nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/var/lib/qtgreet`))),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_LDFLAGS: "-lwayqt-utils-qt6" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-lwayqt-utils-qt6" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Qt based greeter for greetd, to be run under wayfire or similar wlr-based compositors",
         homepage: "https://gitlab.com/marcusbritanicus/QtGreet",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/marcusbritanicus/QtGreet/-/blob/${nix.sel(finalAttrs, "src", "rev")}/Changelog`),

@@ -26,56 +26,56 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     name: "libvirtd",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "fpletz"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       virthost: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             cores: 2n,
             memorySize: 2048n,
             libvirtd: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               enable: true,
               hooks: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 qemu: nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   is_working: nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs_1, "writeShellScript"), "testHook.sh", "touch /tmp/qemu_hook_is_working\n")}`),
                 })),
               })),
-              nss: nix.thunk(() => ({ __proto__: pos$4, enable: true })),
-              dbus: nix.thunk(() => ({ __proto__: pos$5, enable: true })),
+              nss: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
+              dbus: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
             })),
           })),
-          boot: nix.thunk(() => ({ __proto__: pos$8, supportedFilesystems: nix.thunk(() => ["zfs"]) })),
-          networking: nix.thunk(() => ({ __proto__: pos$9, hostId: "deadbeef" })),
+          boot: nix.thunk(() => ({ [nix.POS]: pos$8, supportedFilesystems: nix.thunk(() => ["zfs"]) })),
+          networking: nix.thunk(() => ({ [nix.POS]: pos$9, hostId: "deadbeef" })),
           security: nix.thunk(() => ({
-            __proto__: pos$11,
-            polkit: nix.thunk(() => ({ __proto__: pos$10, enable: true })),
+            [nix.POS]: pos$11,
+            polkit: nix.thunk(() => ({ [nix.POS]: pos$10, enable: true })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [nix.thunk(() => nix.lookup(w, "virt-manager"))];
             })()),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$14,
-            resolved: nix.thunk(() => ({ __proto__: pos$13, enable: true })),
+            [nix.POS]: pos$14,
+            resolved: nix.thunk(() => ({ [nix.POS]: pos$13, enable: true })),
           })),
         };
       })(), formals$2),

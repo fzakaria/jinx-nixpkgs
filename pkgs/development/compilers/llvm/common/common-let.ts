@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.argOr($, "version", () => null);
   return (() => {
     const llvm_meta = nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       license: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
         return (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), release_version, "19")) ? nix.app(nix.lookup(w, "AND"), nix.thunk(() => [
@@ -38,8 +38,8 @@ export default nix.lambda((args) => (() => {
       ]),
       platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "aarch64"), nix.concat(nix.sel(lib, "platforms", "arm"), nix.concat(nix.sel(lib, "platforms", "mips"), nix.concat(nix.sel(lib, "platforms", "power"), nix.concat(nix.sel(lib, "platforms", "s390x"), nix.concat(nix.sel(lib, "platforms", "wasi"), nix.concat(nix.sel(lib, "platforms", "x86"), nix.concat(nix.sel(lib, "platforms", "riscv"), nix.concat(nix.sel(lib, "platforms", "m68k"), nix.sel(lib, "platforms", "loongarch64"))))))))))),
       identifiers: nix.thunk(() => ({
-        __proto__: pos$2,
-        cpeParts: nix.thunk(() => ({ __proto__: pos$1, vendor: "llvm" })),
+        [nix.POS]: pos$2,
+        cpeParts: nix.thunk(() => ({ [nix.POS]: pos$1, vendor: "llvm" })),
       })),
     }));
     const releaseInfo = nix.thunk(() => (nix.asBool(!nix.eq(gitRelease, null)) ? (() => {
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const release_version_1 = nix.thunk(() => nix.selOr(args_1, () => nix.sel(original, "version"), "version"));
       const version_1 = nix.thunk(() => nix.sel(gitRelease, "rev-version"));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         original,
         release_version: release_version_1,
         version: version_1,
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       const release_version_1 = nix.thunk(() => nix.selOr(args_1, () => nix.sel(original, "version"), "version"));
       const version_1 = nix.thunk(() => (nix.asBool(nix.has(original, "candidate")) ? nix.str`${release_version_1}-${nix.sel(original, "candidate")}` : nix.force(release_version_1)));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         original,
         release_version: release_version_1,
         version: version_1,
@@ -71,11 +71,11 @@ export default nix.lambda((args) => (() => {
           const repo = "llvm-project";
           const rev_1 = rev;
           const sha256_1 = sha256;
-          const passthru = nix.thunk(() => ({ __proto__: pos$6, owner: owner, repo: repo, rev: rev_1 }));
-          return { __proto__: pos$7, owner, repo, rev: rev_1, sha256: sha256_1, passthru };
+          const passthru = nix.thunk(() => ({ [nix.POS]: pos$6, owner: owner, repo: repo, rev: rev_1 }));
+          return { [nix.POS]: pos$7, owner, repo, rev: rev_1, sha256: sha256_1, passthru };
         })()));
     })()));
-    return { __proto__: pos$8, llvm_meta, releaseInfo, monorepoSrc };
+    return { [nix.POS]: pos$8, llvm_meta, releaseInfo, monorepoSrc };
   })();
 })(), formals$1);
 //# sourceMappingURL=common-let.ts.map

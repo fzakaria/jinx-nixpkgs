@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const ffmpeg_headless = nix.arg($, "ffmpeg-headless");
   const libjpeg = nix.arg($, "libjpeg");
   return nix.app(mkNginxPlugin, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "video-thumbextractor",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wandenberg",
           repo: "nginx-video-thumbextractor-module",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       buildInputs: nix.thunk(() => [ffmpeg_headless, libjpeg]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extract thumbs from a video file",
         homepage: "https://github.com/wandenberg/nginx-video-thumbextractor-module",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

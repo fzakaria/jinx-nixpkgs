@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.attr(finalAttrs, "pname"));
       const version = nix.thunk(() => nix.attr(finalAttrs, "version"));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname: "cairo",
         version: "1.18.4",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://cairographics.org/${(nix.asBool(nix.eq(nix.app(nix.sel(lib, "mod"), nix.thunk(() => nix.builtins.fromJSON(nix.thunk(() => nix.app(nix.sel(lib, "versions", "minor"), version)))), 2n), 0n)) ? "releases" : "snapshots")}/${pname}-${version}.tar.xz`),
             hash: "sha256-RF7YIIpuSCPeEianTKMZ02AOg/Y2n5mxQmUAZZnDLMs=",
           })))),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "xcb", xcbSupport)),
         ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))), nix.thunk(() => [
             nix.thunk(() => nix.str`--cross-file=${nix.builtins.toFile("cross-file.conf", nix.thunk(() => nix.str`[properties]
-ipc_rmid_deferred_release = ${nix.selOr({ __proto__: pos$2, linux: "true", freebsd: "true" }, () => "false", nix.key(nix.sel(stdenv, "hostPlatform", "parsed", "kernel", "name")))}
+ipc_rmid_deferred_release = ${nix.selOr({ [nix.POS]: pos$2, linux: "true", freebsd: "true" }, () => "false", nix.key(nix.sel(stdenv, "hostPlatform", "parsed", "kernel", "name")))}
 `))}`),
           ])))),
         preConfigure: "patchShebangs version.py\n",
@@ -77,14 +77,14 @@ sed -i "$out/lib/pkgconfig/cairo.pc" \\
     -es'|^Cflags:\\(.*\\)$|Cflags: \\1 -I${nix.sel(freetype, "dev")}/include/freetype2 -I${nix.sel(freetype, "dev")}/include|g'
 `),
         passthru: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           tests: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
           })),
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           description: "2D graphics library with support for multiple output devices",
           mainProgram: "cairo-trace",
           longDescription: "Cairo is a 2D graphics library with support for multiple output\ndevices.  Currently supported output targets include the X\nWindow System, XCB, Quartz, Win32, image buffers, PostScript,\nPDF, and SVG file output.\n\nCairo is designed to produce consistent output on all output\nmedia while taking advantage of display hardware acceleration\nwhen available (e.g., through the X Render Extension).\n",

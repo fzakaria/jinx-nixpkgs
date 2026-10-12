@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "colcon",
           repo: "colcon-installed-package-information",
           tag: version,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["test/test_flake8.py"]);
       const pythonImportsCheck = nix.thunk(() => ["colcon_installed_package_information"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extensions for colcon to inspect packages which have already been installed",
         homepage: "https://colcon.readthedocs.io/en/released/",
         downloadPage: "https://github.com/colcon/colcon-installed-package-information",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

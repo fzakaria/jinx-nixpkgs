@@ -27,42 +27,42 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const customLogo = nix.argOr($, "customLogo", () => nix.str`${nixos_icons}/share/icons/hicolor/256x256/apps/nix-snowflake.png`);
   const stdenvOpts = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     targetPlatform: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       system: "aarch64-none-elf",
       rust: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         rustcTarget: nix.thunk(() => nix.str`${nix.sel(stdenv, "hostPlatform", "parsed", "cpu", "name")}-unknown-none-softfloat`),
         rustcTargetSpec: nix.thunk(() => nix.str`${nix.sel(stdenv, "hostPlatform", "parsed", "cpu", "name")}-unknown-none-softfloat`),
       })),
     })),
   }));
   const rust = nix.thunk(() => nix.app(nix.sel(buildPackages, "rust", "override"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       stdenv: nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.sel(buildPackages, "stdenv")), stdenvOpts)),
     }))));
   const rustPackages = nix.thunk(() => nix.app(nix.sel(rust, "packages", "stable", "overrideScope"), (f) => (p) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       "rustc-unwrapped": nix.thunk(() => nix.app(nix.sel(p, "rustc-unwrapped", "override"), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           stdenv: nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.sel(p, "rustc-unwrapped", "stdenv")), stdenvOpts)),
         })))),
     })));
   const rustPlatform = nix.thunk(() => nix.app(nix.sel(buildPackages, "makeRustPlatform"), rustPackages));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "m1n1",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           owner: "AsahiLinux",
           repo: "m1n1",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-h+gRa1Msdbb7CCYWo2Wo5Q1MwPfIXBBBpdAGWLbRDdk=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/rust`),
@@ -100,13 +100,13 @@ magick ${customLogo} -resize 256x256 data/custom_256.png
       })()),
       checkPhase: "runHook preCheck\n\npytest\n\nrunHook postCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         rustPlatform: rustPlatform,
         rustPackages: rustPackages,
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "Bootloader to bridge the Apple (XNU) boot to Linux boot",
         longDescription: "m1n1 is the bootloader developed by the Asahi Linux project to\nbridge the Apple (XNU) boot ecosystem to the Linux boot ecosystem.\n\nWhat it does:\n\n- Initializes hardware\n- Puts up a pretty Nix logo\n- Loads embedded (appended) payloads, which can be:\n   - Device Trees (FDTs), with automatic selection based on the platform\n   - Initramfs images (compressed CPIO archives)\n   - Kernel images in Linux ARM64 boot format (optionally compressed)\n   - Configuration statements\n\nThe default Nix logo can be disabled by setting the `customLogo`\nargument to `null` or can be replaced by setting `customLogo` to\na path to the desired image file which will be resized by\nImageMagick to the correct sizes.\n",
         homepage: "https://github.com/AsahiLinux/m1n1",

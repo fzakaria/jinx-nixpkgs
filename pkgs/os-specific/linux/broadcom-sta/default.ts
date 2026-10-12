@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const version = "6.30.223.271";
   const release = "63";
   const hashes = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "i686-linux": "sha256-T4twspOsjMXHDlca1dGHjQ8p0TOkb+eGmGjZwZtQWM0=",
     "x86_64-linux": "sha256-X3l3TVvuyPdja1nA+wegMQju8eP9MkVjiyCFjHFBRL4=",
   }));
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const tarballVersion = nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version));
   const tarball = nix.thunk(() => nix.str`hybrid-v35${arch}-nodebug-pcoem-${tarballVersion}.tar.gz`);
   const rpmFusionPatches = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "rpmfusion",
       repo: "wl-kmod",
       rev: "5156986093f0f12ed04fe913b0a2f9e996c24274",
@@ -74,12 +74,12 @@ export default nix.lambda((args) => (() => {
     "wl-kmod-038_kernel_7.2_adaptation_remove_strncpy_function.patch",
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-${release}-${nix.sel(kernel, "version")}`),
       pname: "broadcom-sta",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://docs.broadcom.com/docs-and-downloads/docs/linux_sta/${tarball}`),
           hash: nix.thunk(() => nix.selOr(hashes, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
         })))),
@@ -99,7 +99,7 @@ cp lib/LICENSE.txt "$docDir"
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Kernel module driver for some Broadcom's wireless cards",
         homepage: "https://www.broadcom.com/support/download-search?pg=Legacy%20Products&pf=Legacy%20Wireless&pn&pa&po&dk&pl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),

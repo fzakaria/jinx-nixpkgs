@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const pnpmBuildHook = nix.arg($, "pnpmBuildHook");
   const nodejs = nix.arg($, "nodejs");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "opencloud-idp-web",
       src: nix.thunk(() => nix.attr(opencloud, "src")),
       version: nix.thunk(() => nix.attr(opencloud, "version")),
       pnpmRoot: "services/idp",
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       postBuild: "mkdir -p services/idp/assets/identifier/static\ncp -v services/idp/src/images/favicon.svg services/idp/assets/identifier/static/favicon.svg\ncp -v services/idp/src/images/icon-lilac.svg services/idp/assets/identifier/static/icon-lilac.svg\n",
       installPhase: "runHook preInstall\n\nmkdir $out\ncp -r services/idp/assets $out\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OpenCloud - IDP Web UI",
         homepage: "https://github.com/opencloud-eu/opencloud",
         changelog: nix.thunk(() => nix.str`https://github.com/opencloud-eu/opencloud/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

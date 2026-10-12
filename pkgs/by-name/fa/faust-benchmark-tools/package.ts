@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const libxml2 = nix.arg($, "libxml2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "faust-benchmark-tools",
       version: nix.thunk(() => nix.attr(faust, "version")),
       src: nix.thunk(() => nix.attr(faust, "src")),
@@ -67,7 +67,7 @@ for s in faustbench faust2object; do
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Benchmarking, tracing, and dynamic-compilation tools for the Faust compiler",
         longDescription: "A subset of the tools from the upstream Faust `tools/benchmark/`\ndirectory: dynamic-faust, faustbench-llvm, faustbench-llvm-interp,\nfaustbench-interp, interp-tracer (binaries built against libfaust.a),\nplus the scripts faustbench, faust2object, and faust-tester.\n\nThis package intentionally excludes the JACK/GTK runners (dynamic-jack-gtk,\nfaust-osc-controller, signal-tester, box-tester) and the WASM bench\ntools to keep the closure small. They can be packaged separately if\nneeded.\n",
         homepage: "https://github.com/grame-cncm/faust/tree/master-dev/tools/benchmark",

@@ -19,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const meson = nix.arg($, "meson");
   const ninja = nix.arg($, "ninja");
   const speech_denoiser_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "lucianodato",
       repo: "speech-denoiser",
       rev: "04cfba929630404f8d4f4ca5bac8d9b09a99152f",
       sha256: "189l6lz8sz5vr6bjyzgcsrvksl1w6crqsg0q65r94b5yjsmjnpr4",
     }))));
   const rnnoise_nu = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "rnnoise-nu",
       version: "0-unstable-2018-10-08",
       src: speech_denoiser_src,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       installTargets: nix.thunk(() => ["install-rnnoise-nu"]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "speech-denoiser",
       version: "0-unstable-2018-10-08",
       src: speech_denoiser_src,
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "substituteInPlace meson.build \\\n  --replace \"cc.find_library('rnnoise-nu',dirs: meson.current_source_dir() + '/rnnoise/.libs/',required : true)\" \"cc.find_library('rnnoise-nu', required : true)\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))),
         description: "Speech denoise lv2 plugin based on RNNoise library",
         homepage: "https://github.com/lucianodato/speech-denoiser",

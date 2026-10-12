@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "georss-nrcan-earthquakes-client",
       version: "2026.6.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "exxamalte",
           repo: "python-georss-nrcan-earthquakes-client",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["georss_nrcan_earthquakes_client"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library for accessing Natural Resources Canada Earthquakes feed",
         homepage: "https://github.com/exxamalte/python-georss-nrcan-earthquakes-client",
         changelog: nix.thunk(() => nix.str`https://github.com/exxamalte/python-georss-nrcan-earthquakes-client/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

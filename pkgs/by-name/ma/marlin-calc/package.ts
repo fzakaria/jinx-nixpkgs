@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "marlin-calc",
       version: "2019-10-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eyal0",
           repo: "Marlin",
           rev: "3d5a5c86bea35a2a169eb56c70128bf2d070feef",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "cd Marlin/src\nc++ module/planner.cpp module/calc.cpp feature/fwretract.cpp \\\n  -O2 -Wall -std=gnu++11 -o marlin-calc\n",
       installPhase: "install -Dm0755 {,$out/bin/}marlin-calc\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/eyal0/Marlin",
         description: "Marlin 3D printer timing simulator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

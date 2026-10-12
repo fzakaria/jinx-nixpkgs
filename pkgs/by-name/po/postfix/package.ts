@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const withTLSRPT = nix.argOr($, "withTLSRPT", () => true);
   const libtlsrpt = nix.arg($, "libtlsrpt");
-  const cyrus_sasl$ = nix.thunk(() => nix.app(nix.sel(cyrus_sasl, "override"), nix.thunk(() => ({ __proto__: pos$1, enableMySQL: true }))));
+  const cyrus_sasl$ = nix.thunk(() => nix.app(nix.sel(cyrus_sasl, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableMySQL: true }))));
   const ccargs = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.concat([
       "-DUSE_TLS",
       "-DUSE_SASL_AUTH",
@@ -60,11 +60,11 @@ export default nix.lambda((args) => (() => {
       ])), nix.concat(nix.app(nix.sel(lib, "optional"), withSQLite, "-DHAS_SQLITE"), nix.concat(nix.app(nix.sel(lib, "optionals"), withLDAP, nix.thunk(() => ["-DHAS_LDAP", "-DUSE_LDAP_SASL"])), nix.app(nix.sel(lib, "optional"), withTLSRPT, "-DUSE_TLSRPT")))))))));
   const auxlibs = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.concat(["-lcrypto", "-ldb", "-llmdb", "-lnsl", "-lresolv", "-lsasl2", "-lssl"], nix.concat(nix.app(nix.sel(lib, "optional"), withPgSQL, "-lpq"), nix.concat(nix.app(nix.sel(lib, "optional"), withMySQL, "-lmysqlclient"), nix.concat(nix.app(nix.sel(lib, "optional"), withSQLite, "-lsqlite3"), nix.concat(nix.app(nix.sel(lib, "optional"), withLDAP, "-lldap"), nix.app(nix.sel(lib, "optional"), withTLSRPT, "-ltlsrpt")))))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "postfix",
       version: "3.11.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`http://ftp.porcupine.org/mirrors/postfix-release/official/postfix-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ovMkI0V1NEgHIXf66DwyKkA8kmNpaZZAYgEUXauOhiU=",
         })))),
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./postfix-3.0-no-warnings.patch"),
         nix.path(here, "./relative-symlinks.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://src.fedoraproject.org/rpms/postfix/raw/2f9d42453e67ebc43f786d98262a249037f80a77/f/postfix-3.6.2-glibc-234-build-fix.patch",
             sha256: "sha256-xRUL5gaoIt6HagGlhsGwvwrAfYvzMgydsltYMWvl9BI=",
           })))),
@@ -102,7 +102,7 @@ makeFlagsArray+=(AR=$AR _AR=$AR RANLIB=$RANLIB _RANLIB=$RANLIB)
 make makefiles CCARGS='${ccargs}' AUXLIBS='${auxlibs}'
 `),
       enableParallelBuilding: true,
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), withLDAP, nix.thunk(() => ({ __proto__: pos$4, NIX_LDFLAGS: "-llber" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), withLDAP, nix.thunk(() => ({ [nix.POS]: pos$4, NIX_LDFLAGS: "-llber" })))),
       installTargets: nix.thunk(() => ["non-interactive-package"]),
       installFlags: nix.thunk(() => ["install_root=installdir"]),
       postInstall: nix.thunk(() => nix.str`mkdir -p $out
@@ -120,16 +120,16 @@ wrapProgram $out/libexec/postfix/postfix-script \\
 sed -e "s|$NIX_STORE/[a-z0-9]\\{32\\}-|$NIX_STORE/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee-|g" -i $out/etc/postfix/makedefs.out
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           postfix: nix.thunk(() => nix.attr(nixosTests, "postfix")),
           "postfix-raise-smtpd-tls-security-level": nix.thunk(() => nix.attr(nixosTests, "postfix-raise-smtpd-tls-security-level")),
         })),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "http://www.postfix.org/",
         changelog: nix.thunk(() => nix.str`https://www.postfix.org/announcements/postfix-${nix.sel(finalAttrs, "version")}.html`),
         description: "Fast, easy to administer, and secure mail server",

@@ -30,61 +30,61 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     name: "systemd-user-tmpfiles-rules",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "schnusch"))]),
       };
     })()),
     nodes: nix.thunk(() => (() => {
       const machine = nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         users: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           users: nix.thunk(() => ({
-            __proto__: pos$4,
-            alice: nix.thunk(() => ({ __proto__: pos$2, isNormalUser: true })),
-            bob: nix.thunk(() => ({ __proto__: pos$3, isNormalUser: true })),
+            [nix.POS]: pos$4,
+            alice: nix.thunk(() => ({ [nix.POS]: pos$2, isNormalUser: true })),
+            bob: nix.thunk(() => ({ [nix.POS]: pos$3, isNormalUser: true })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           user: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             tmpfiles: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               rules: nix.thunk(() => ["d %h/user_tmpfiles_created"]),
               users: nix.thunk(() => ({
-                __proto__: pos$8,
-                alice: nix.thunk(() => ({ __proto__: pos$6, rules: nix.thunk(() => ["d %h/only_alice"]) })),
-                bob: nix.thunk(() => ({ __proto__: pos$7, rules: nix.thunk(() => ["D %h/cleaned_up - - - 0"]) })),
+                [nix.POS]: pos$8,
+                alice: nix.thunk(() => ({ [nix.POS]: pos$6, rules: nix.thunk(() => ["d %h/only_alice"]) })),
+                bob: nix.thunk(() => ({ [nix.POS]: pos$7, rules: nix.thunk(() => ["D %h/cleaned_up - - - 0"]) })),
               })),
             })),
             timers: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               "systemd-tmpfiles-clean": nix.thunk(() => ({
-                __proto__: pos$11,
-                timerConfig: nix.thunk(() => ({ __proto__: pos$10, OnStartupSec: "10s", OnUnitActiveSec: "10s" })),
+                [nix.POS]: pos$11,
+                timerConfig: nix.thunk(() => ({ [nix.POS]: pos$10, OnStartupSec: "10s", OnUnitActiveSec: "10s" })),
               })),
             })),
           })),
         })),
       }));
       const disabled = nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         imports: nix.thunk(() => [machine]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           user: nix.thunk(() => ({
-            __proto__: pos$17,
-            tmpfiles: nix.thunk(() => ({ __proto__: pos$16, enable: false })),
+            [nix.POS]: pos$17,
+            tmpfiles: nix.thunk(() => ({ [nix.POS]: pos$16, enable: false })),
           })),
         })),
       }));
-      return { __proto__: pos$20, machine, disabled };
+      return { [nix.POS]: pos$20, machine, disabled };
     })()),
     testScript: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);

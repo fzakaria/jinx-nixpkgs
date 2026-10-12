@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kamichal",
           repo: "airium",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [beautifulsoup4, pytestCheckHook]);
       const disabledTests = nix.thunk(() => ["test_get_bad_content_type", "test_translate_remote_file"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bidirectional HTML-python translator",
         homepage: "https://gitlab.com/kamichal/airium",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/kamichal/airium/-/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "airium",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

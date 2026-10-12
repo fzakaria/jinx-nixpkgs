@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.13.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "setuptools_rust",
           version: version,
           hash: "sha256-8q/PS67uaJkQzknPqKrU4IzOcvQXRJvMMokbhmT9xyY=",
@@ -43,18 +43,18 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["setuptools_rust"]);
       const doCheck = false;
       const setupHook = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(python, "pythonOnTargetForTarget"), {})) ? null : nix.app(replaceVars, nix.path(here, "./setuptools-rust-hook.sh"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pyLibDir: nix.thunk(() => nix.str`${nix.sel(python, "pythonOnTargetForTarget")}/lib/${nix.sel(python, "pythonOnTargetForTarget", "libPrefix")}`),
           cargoBuildTarget: nix.thunk(() => nix.sel(stdenv, "targetPlatform", "rust", "rustcTargetSpec")),
           cargoLinkerVar: nix.thunk(() => nix.sel(stdenv, "targetPlatform", "rust", "cargoEnvVarTarget")),
           targetLinker: nix.thunk(() => nix.str`${nix.sel(targetPackages, "stdenv", "cc")}/bin/${nix.sel(targetPackages, "stdenv", "cc", "targetPrefix")}cc`),
         })))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pyo3: nix.thunk(() => nix.app(nix.sel(maturin, "tests", "pyo3", "override"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               buildAndTestSubdir: null,
               nativeBuildInputs: nix.thunk(() => nix.concat([setuptools_rust], [nix.thunk(() => nix.sel(rustPlatform, "cargoSetupHook")), cargo, rustc])),
               preConfigure: "# sourceRoot puts Cargo.lock in the wrong place due to the\n# example setup.\ncd examples/word-count\n",
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Setuptools plugin for Rust support",
         homepage: "https://github.com/PyO3/setuptools-rust",
         changelog: nix.thunk(() => nix.str`https://github.com/PyO3/setuptools-rust/releases/tag/v${version}`),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         pyproject,

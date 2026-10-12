@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const gdk_pixbuf = nix.arg($, "gdk-pixbuf");
   const atk = nix.arg($, "atk");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nwg-menu",
       version: "0.1.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nwg-piotr",
           repo: "nwg-menu",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "mkdir -p $out/share/\ncp menu-start.css $out/share/\n",
       preFixup: "gappsWrapperArgs+=(--prefix XDG_DATA_DIRS : \"$out/share\")\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/nwg-piotr/nwg-menu",
         description: "MenuStart plugin for nwg-panel",
         mainProgram: "nwg-menu",

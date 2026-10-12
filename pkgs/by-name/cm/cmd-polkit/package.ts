@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cmd-polkit",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OmarCastro",
           repo: "cmd-polkit",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, cmake, pkg_config, ninja]),
       buildInputs: nix.thunk(() => [json_glib, glib, polkit, gtk3]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Easily create polkit authentication agents by using commands",
         homepage: "https://github.com/OmarCastro/cmd-polkit",
         changelog: nix.thunk(() => nix.str`https://github.com/OmarCastro/cmd-polkit/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG`),

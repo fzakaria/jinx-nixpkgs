@@ -79,7 +79,7 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", extras)}
         return nix.app(nix.sel(lib, "optionalAttrs"), is_haskell_package, nix.thunk(() => nix.app(withPackages, nix.thunk(() => [haskell_package_env]))));
       })(), formals$3);
     })(), formals$2);
-    return { __proto__: pos$1, withPackages, haskellMonoRepo };
+    return { [nix.POS]: pos$1, withPackages, haskellMonoRepo };
   })();
 })(), formals$1);
 //# sourceMappingURL=buffer.ts.map

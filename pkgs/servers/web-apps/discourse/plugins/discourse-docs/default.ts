@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const mkDiscoursePlugin = nix.arg($, "mkDiscoursePlugin");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(mkDiscoursePlugin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "discourse-docs",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "discourse",
           repo: "discourse-docs",
           rev: "89bae0e929387ed5697fd3c5eedf9b3dbe85bead",
           sha256: "sha256-ycDyYRi7uab4vxHY8K2kUytWBmTuFTFHYGD1AHpzC+0=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/discourse/discourse-docs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         description: "Find and filter knowledge base topics",

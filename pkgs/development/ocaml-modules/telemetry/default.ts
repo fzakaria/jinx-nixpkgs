@@ -17,19 +17,19 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.1";
       const minimalOCamlVersion = "4.12";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/leostera/telemetry/releases/download/${version}/telemetry-${version}.tbz`),
           hash: "sha256-YEf7zC/F2zJBtQNfyJ2OznKmoFo1Ms9O2WgiOFkhp28=",
         }))));
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightweight library for dispatching and handling events, with a focus on metrics and instrumentation",
         homepage: "https://github.com/leostera/telemetry",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),
       }));
-      return { __proto__: pos$3, pname, version, minimalOCamlVersion, src, doCheck, meta };
+      return { [nix.POS]: pos$3, pname, version, minimalOCamlVersion, src, doCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

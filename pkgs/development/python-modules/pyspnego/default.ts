@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const ruamel_yaml = nix.arg($, "ruamel-yaml");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pyspnego",
       version: "0.12.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jborean93",
           repo: "pyspnego",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,15 +37,15 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [cryptography]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         kerberos: nix.thunk(() => [gssapi, krb5]),
         yaml: nix.thunk(() => [ruamel_yaml]),
       })),
       pythonImportsCheck: nix.thunk(() => ["spnego"]),
       nativeCheckInputs: nix.thunk(() => [glibcLocales, pytest_mock, pytestCheckHook]),
-      env: nix.thunk(() => ({ __proto__: pos$3, LC_ALL: "en_US.UTF-8" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, LC_ALL: "en_US.UTF-8" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python SPNEGO authentication library",
         homepage: "https://github.com/jborean93/pyspnego",
         changelog: nix.thunk(() => nix.str`https://github.com/jborean93/pyspnego/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

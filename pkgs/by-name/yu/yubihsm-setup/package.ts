@@ -17,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const yubihsm_shell = nix.arg($, "yubihsm-shell");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "yubihsm-setup",
       version: "2.3.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Yubico",
           repo: "yubihsm-setup",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-ScpcEDNWLhywtcPPG84vZyIAQ5lF07udmGsmsyc3+iU=",
         })))),
       yubihsmrs: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "Yubico",
           repo: "yubihsmrs",
           tag: "2.1.4",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       cargoPatches: nix.thunk(() => [nix.path(here, "./cargo-lock.patch")]),
       cargoHash: "sha256-Mk0uGNb0WGygSqocpo566sVHs13zvoFBbAevJj4OSBM=",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool to easily set up a YubiHSM device",
         homepage: "https://github.com/Yubico/yubihsm-setup",
         maintainers: nix.thunk(() => (() => {

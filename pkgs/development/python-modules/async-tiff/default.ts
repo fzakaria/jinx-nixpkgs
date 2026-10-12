@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   const rasterio = nix.arg($, "rasterio");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "async-tiff",
       version: "0.7.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "developmentseed",
           repo: "async-tiff",
           tag: nix.thunk(() => nix.str`py-v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       buildSystem: nix.thunk(() => [maturin]),
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(llvmPackages, "libclang"))]),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.sel(finalAttrs, "pname")),
           version: nix.thunk(() => nix.sel(finalAttrs, "version")),
           src: nix.thunk(() => nix.sel(finalAttrs, "src")),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [numpy, obstore, pytest_asyncio, rasterio]),
       disabledTests: nix.thunk(() => ["test_cog_s3", "test_raise_typeerror_fetch_tile_striped_tiff"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Async TIFF reader for Python",
         homepage: "http://developmentseed.org/async-tiff/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

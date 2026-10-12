@@ -12,9 +12,9 @@ export default nix.lambda((args) => (() => {
   const pre_commit = nix.arg($, "pre-commit");
   const runCommand = nix.arg($, "runCommand");
   return {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     "check-meta-hooks": nix.thunk(() => nix.app(runCommand, "check-meta-hooks", nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         nativeBuildInputs: nix.thunk(() => [gitMinimal, pre_commit]),
       })), "cd \"$(mktemp --directory)\"\nexport HOME=\"$PWD\"\ncat << 'EOF' > .pre-commit-config.yaml\nrepos:\n  - repo: local\n    hooks:\n      - id: echo\n        name: echo\n        entry: echo\n        files: \\.yaml$\n        language: system\n  - repo: meta\n    hooks:\n      - id: check-hooks-apply\n      - id: check-useless-excludes\n      - id: identity\nEOF\ngit config --global user.email \"you@example.com\"\ngit config --global user.name \"Your Name\"\ngit init --initial-branch=main\ngit add .\npre-commit run --all-files\ntouch $out\n")),
   };

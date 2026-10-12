@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "foomatic-db-engine";
       const version = "0-unstable-2026-04-13";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OpenPrinting",
           repo: "foomatic-db-engine",
           rev: "e4e7b9cd28ba160428f82bc5234559d1f50e5c42",
@@ -58,7 +58,7 @@ done
 `);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/OpenPrinting/foomatic-db-engine/blob/${nix.sel(src, "rev")}/ChangeLog`),
         description: "OpenPrinting printer support database engine",
         downloadPage: "https://www.openprinting.org/download/foomatic/",
@@ -68,7 +68,7 @@ done
         longDescription: "Foomatic's database engine generates PPD files\nfrom the data in Foomatic's XML database.\nIt also contains scripts to directly\ngenerate print queues and handle jobs.\n",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

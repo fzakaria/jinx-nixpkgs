@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cfs-zen-tweaks";
       const version = "1.3.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "igo95862",
           repo: "cfs-zen-tweaks",
           rev: version,
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const preFixup = "chmod +x $out/lib/cfs-zen-tweaks/set-cfs-zen-tweaks.sh\n";
       const nativeBuildInputs = nix.thunk(() => [cmake]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tweak Linux CPU scheduler for desktop responsiveness",
         homepage: "https://github.com/igo95862/cfs-zen-tweaks",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

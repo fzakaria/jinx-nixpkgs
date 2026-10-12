@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const gerbilPackages = nix.arg($, "gerbilPackages");
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     pname: "gerbil-persist",
     version: "unstable-2023-11-29",
     "git-version": "0.2-6-g8a5e40d",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       ];
     })()),
     "pre-src": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       fun: fetchFromGitHub,
       owner: "mighty-gerbils",
       repo: "gerbil-persist",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       sha256: "1c1h1yp7gf23r3asxppgga4j4jmy4l9rlbb7vw9jcwvl8d30yrab",
     })),
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       description: "Gerbil Persist: Persistent data and activities",
       homepage: "https://github.com/fare/gerbil-persist",
       license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

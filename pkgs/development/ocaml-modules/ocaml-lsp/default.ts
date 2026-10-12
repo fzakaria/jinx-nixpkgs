@@ -29,18 +29,18 @@ export default nix.lambda((args) => (() => {
   const astring = nix.arg($, "astring");
   const camlp_streams = nix.arg($, "camlp-streams");
   const base = nix.arg($, "base");
-  const lsp_v = nix.thunk(() => (nix.asBool(nix.eq(nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(ocaml, "version"))), "5.0")) ? nix.app(nix.sel(lsp, "override"), nix.thunk(() => ({ __proto__: pos$1, version: "1.17.0" }))) : nix.force(lsp)));
+  const lsp_v = nix.thunk(() => (nix.asBool(nix.eq(nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(ocaml, "version"))), "5.0")) ? nix.app(nix.sel(lsp, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, version: "1.17.0" }))) : nix.force(lsp)));
   const lsp_1 = lsp_v;
   const merlin_lib_v = nix.thunk(() => (nix.asBool(nix.eq(nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(ocaml, "version"))), "4.14")) ? nix.app(nix.sel(merlin_lib, "override"), nix.thunk(() => ({
-      __proto__: pos$3,
-      merlin: nix.thunk(() => nix.app(nix.sel(merlin, "override"), nix.thunk(() => ({ __proto__: pos$2, version: "4.16-414" })))),
+      [nix.POS]: pos$3,
+      merlin: nix.thunk(() => nix.app(nix.sel(merlin, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, version: "4.16-414" })))),
     }))) : (nix.asBool(nix.eq(nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(ocaml, "version"))), "5.1")) ? nix.app(nix.sel(merlin_lib, "override"), nix.thunk(() => ({
-      __proto__: pos$5,
-      merlin: nix.thunk(() => nix.app(nix.sel(merlin, "override"), nix.thunk(() => ({ __proto__: pos$4, version: "4.16-501" })))),
+      [nix.POS]: pos$5,
+      merlin: nix.thunk(() => nix.app(nix.sel(merlin, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, version: "4.16-501" })))),
     }))) : nix.force(merlin_lib))));
   const merlin_lib_1 = merlin_lib_v;
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "ocaml-lsp-server",
       version: nix.thunk(() => nix.attr(lsp_1, "version")),
       src: nix.thunk(() => nix.attr(lsp_1, "src")),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/ocamllsp --prefix PATH : ${dot_merlin_reader}/bin
 `),
       meta: nix.thunk(() => nix.update(nix.sel(lsp_1, "meta"), {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "OCaml Language Server Protocol implementation",
         mainProgram: "ocamllsp",
         broken: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.13")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(ocaml, "version")), "5.4")))),

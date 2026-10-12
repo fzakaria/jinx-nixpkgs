@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const pac_cmd = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pac-cmd",
       version: "0-unstable-2020-01-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "getlantern",
           repo: "pac-cmd",
           rev: "495bad48b8601385daa8205ec4db504166dff18b",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "mkdir -p binaries/linux_arm\n",
       installPhase: "runHook preInstall\n\ninstall -Dm755 -t $out/bin binaries/*/pac\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Change proxy auto-config settings of operation system",
         homepage: "https://github.com/getlantern/pac-cmd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -56,11 +56,11 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "gephgui-wry",
       version: "5.7.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "geph-official",
           repo: "gephgui-pkg",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
           fetchSubmodules: true,
         })))),
       gephgui: nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           pname: "gephgui",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
 `))),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               name: "Geph",
               desktopName: "Geph",
               icon: "geph",
@@ -100,13 +100,13 @@ export default nix.lambda((args) => (() => {
             })))),
         ]))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         "pac-cmd": pac_cmd,
         gephgui: nix.thunk(() => nix.attr(finalAttrs, "gephgui")),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$7, extraArgs: nix.thunk(() => ["--subpackage=gephgui"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$7, extraArgs: nix.thunk(() => ["--subpackage=gephgui"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Modular Internet censorship circumvention system designed specifically to deal with national filtering",
         homepage: "https://github.com/geph-official/gephgui-wry",
         mainProgram: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "Geph" : "gephgui-wry")),

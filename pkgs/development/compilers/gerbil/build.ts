@@ -54,7 +54,7 @@ done
         "--enable-march=",
       ]);
       const env = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
       }));
       const configurePhase = nix.thunk(() => nix.str`export CC=${nix.sel(gccStdenv, "cc")}/bin/${nix.sel(gccStdenv, "cc", "targetPrefix")}gcc \\
@@ -95,7 +95,7 @@ runHook postBuild
       const installPhase = nix.thunk(() => nix.add("runHook preInstall\nmkdir -p $out/gerbil $out/bin\n./install.sh\n(cd $out/bin ; ln -s ../gerbil/bin/* .)\nrunHook postInstall\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "libgerbil=\"$(realpath \"$out/gerbil/lib/libgerbil.so\")\"\ninstall_name_tool -id \"$libgerbil\" \"$libgerbil\"\n")));
       const dontStrip = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Gerbil Scheme",
         homepage: "https://github.com/vyzo/gerbil",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),
@@ -107,7 +107,7 @@ runHook postBuild
       }));
       const outputsToInstall = nix.thunk(() => ["out"]);
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version: version_1,
         src: src_1,

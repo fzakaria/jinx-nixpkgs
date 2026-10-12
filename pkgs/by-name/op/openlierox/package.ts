@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const SDL_mixer = nix.arg($, "SDL_mixer");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "openlierox",
       version: "0.58_rc5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openlierox",
           repo: "openlierox",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,12 +43,12 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DSYSTEM_DATA_DIR=${nix.builtins.placeholder("out")}/share`),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), libxml2)}/include/libxml2`),
       })),
       installPhase: "runHook preInstall\n\ninstall -Dm755 bin/* -t $out/bin\n\nmkdir -p $out/share/OpenLieroX\ncp -r ../share/gamedir/* $out/share/OpenLieroX\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Real-time game with Worms-like shooting",
         homepage: "http://openlierox.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),

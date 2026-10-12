@@ -41,24 +41,24 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const imcfg = nix.thunk(() => nix.sel(config, "i18n", "inputMethod"));
   const cfg = nix.thunk(() => nix.sel(imcfg, "fcitx5"));
-  const fcitx5Package = nix.thunk(() => nix.app(nix.sel(pkgs, "qt6Packages", "fcitx5-with-addons", "override"), nix.thunk(() => ({ __proto__: pos$1, addons: nix.thunk(() => nix.attr(cfg, "addons")) }))));
+  const fcitx5Package = nix.thunk(() => nix.app(nix.sel(pkgs, "qt6Packages", "fcitx5-with-addons", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, addons: nix.thunk(() => nix.attr(cfg, "addons")) }))));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({}))));
   const mkKeyValue = nix.thunk(() => nix.app(nix.sel(lib, "generators", "mkKeyValueDefault"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       mkValueString: (v) => (nix.asBool(nix.eq(true, v)) ? "True" : (nix.asBool(nix.eq(false, v)) ? "False" : nix.app(nix.sel(lib, "generators", "mkValueStringDefault"), nix.thunk(() => ({})), v))),
     })), "="));
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     options: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       i18n: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         inputMethod: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           fcitx5: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             addons: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "package")));
@@ -68,13 +68,13 @@ export default nix.lambda((args) => (() => {
                 description: "Enabled Fcitx5 addons.\n",
               })))),
             waylandFrontend: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Use the Wayland input method frontend.\nSee [Using Fcitx 5 on Wayland](https://fcitx-im.org/wiki/Using_Fcitx_5_on_Wayland).\n",
               })))),
             quickPhrase: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
                 description: "Quick phrases.",
               })))),
             quickPhraseFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "path")));
@@ -94,27 +94,27 @@ export default nix.lambda((args) => (() => {
                 description: "Quick phrase files.",
               })))),
             settings: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               globalOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                      __proto__: pos$7,
+                      [nix.POS]: pos$7,
                       freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                     })))),
                   default: nix.thunk(() => ({})),
                   description: "The global options in `config` file in ini format.\n",
                 })))),
               inputMethod: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                     })))),
                   default: nix.thunk(() => ({})),
                   description: "The input method configure in `profile` file in ini format.\n",
                 })))),
               addons: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   type: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                     return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "anything")));
@@ -125,7 +125,7 @@ export default nix.lambda((args) => (() => {
                 })))),
             })),
             ignoreUserConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Ignore the user configures. **Warning**: When this is enabled, the\nuser config files are totally ignored and the user dict can't be saved\nand loaded.\n",
@@ -139,14 +139,14 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["i18n", "inputMethod", "fcitx5", "plasma6Support"]), "qt6 is the only one used for fcitx5-configtool now.\n")),
     ]),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(imcfg, "enable")) && nix.asBool(nix.eq(nix.sel(imcfg, "type"), "fcitx5")))), nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         i18n: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           inputMethod: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             package: fcitx5Package,
             fcitx5: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               addons: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(cfg, "quickPhrase"), {})), nix.thunk(() => [
                   nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "share/fcitx5/data/QuickPhrase.mb", nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value) => nix.str`${name} "${nix.builtins.replaceStrings(nix.thunk(() => ["\\", "\n", "\""]), nix.thunk(() => ["\\\\", "\\n", "\\\""]), value)}"`, nix.thunk(() => nix.sel(cfg, "quickPhrase")))))))),
                 ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(cfg, "quickPhraseFiles"), {})), nix.thunk(() => [
@@ -156,25 +156,25 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           etc: nix.thunk(() => (() => {
             const optionalFile = (p) => (f) => (v) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(v, {})), nix.thunk(() => nix.attrsDyn({}, [
-                [nix.str`xdg/fcitx5/${p}`, nix.thunk(() => ({ __proto__: pos$21, text: nix.thunk(() => nix.app(f, v)) }))],
+                [nix.str`xdg/fcitx5/${p}`, nix.thunk(() => ({ [nix.POS]: pos$21, text: nix.thunk(() => nix.app(f, v)) }))],
               ])));
             return nix.app(nix.sel(lib, "attrsets", "mergeAttrsList"), nix.thunk(() => [
-                nix.thunk(() => nix.app(optionalFile, "config", nix.thunk(() => nix.app(nix.sel(lib, "generators", "toINI"), nix.thunk(() => ({ __proto__: pos$22, mkKeyValue: mkKeyValue })))), nix.thunk(() => nix.sel(cfg, "settings", "globalOptions")))),
-                nix.thunk(() => nix.app(optionalFile, "profile", nix.thunk(() => nix.app(nix.sel(lib, "generators", "toINI"), nix.thunk(() => ({ __proto__: pos$23, mkKeyValue: mkKeyValue })))), nix.thunk(() => nix.sel(cfg, "settings", "inputMethod")))),
-                nix.thunk(() => nix.app(nix.sel(lib, "concatMapAttrs"), (name) => (value) => nix.app(optionalFile, nix.thunk(() => nix.str`conf/${name}.conf`), nix.thunk(() => nix.app(nix.sel(lib, "generators", "toINIWithGlobalSection"), nix.thunk(() => ({ __proto__: pos$24, mkKeyValue: mkKeyValue })))), value), nix.thunk(() => nix.sel(cfg, "settings", "addons")))),
+                nix.thunk(() => nix.app(optionalFile, "config", nix.thunk(() => nix.app(nix.sel(lib, "generators", "toINI"), nix.thunk(() => ({ [nix.POS]: pos$22, mkKeyValue: mkKeyValue })))), nix.thunk(() => nix.sel(cfg, "settings", "globalOptions")))),
+                nix.thunk(() => nix.app(optionalFile, "profile", nix.thunk(() => nix.app(nix.sel(lib, "generators", "toINI"), nix.thunk(() => ({ [nix.POS]: pos$23, mkKeyValue: mkKeyValue })))), nix.thunk(() => nix.sel(cfg, "settings", "inputMethod")))),
+                nix.thunk(() => nix.app(nix.sel(lib, "concatMapAttrs"), (name) => (value) => nix.app(optionalFile, nix.thunk(() => nix.str`conf/${name}.conf`), nix.thunk(() => nix.app(nix.sel(lib, "generators", "toINIWithGlobalSection"), nix.thunk(() => ({ [nix.POS]: pos$24, mkKeyValue: mkKeyValue })))), value), nix.thunk(() => nix.sel(cfg, "settings", "addons")))),
               ]));
           })()),
           variables: nix.thunk(() => nix.update({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             XMODIFIERS: "@im=fcitx",
             QT_PLUGIN_PATH: nix.thunk(() => [
               nix.thunk(() => nix.str`${fcitx5Package}/${nix.sel(pkgs, "qt6", "qtbase", "qtPluginPrefix")}`),
             ]),
-          }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "waylandFrontend"))), nix.thunk(() => ({ __proto__: pos$26, GTK_IM_MODULE: "fcitx", QT_IM_MODULE: "fcitx" }))))),
-          sessionVariables: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "ignoreUserConfig")), nix.thunk(() => ({ __proto__: pos$27, SKIP_FCITX_USER_PATH: "1" })))),
+          }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "waylandFrontend"))), nix.thunk(() => ({ [nix.POS]: pos$26, GTK_IM_MODULE: "fcitx", QT_IM_MODULE: "fcitx" }))))),
+          sessionVariables: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "ignoreUserConfig")), nix.thunk(() => ({ [nix.POS]: pos$27, SKIP_FCITX_USER_PATH: "1" })))),
         })),
       })))),
   };

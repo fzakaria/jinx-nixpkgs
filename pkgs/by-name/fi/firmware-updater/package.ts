@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
       const pubspecLock = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json")));
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/apps/firmware_updater`);
       const gitHashes = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         fwupd: "sha256-l/+HrrJk1mE2Mrau+NmoQ7bu9qhHU6wX68+m++9Hjd4=",
       }));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "canonical",
           repo: "firmware-updater",
           rev: "402e97254b9d63c8d962c46724995e377ff922c8",
           hash: "sha256-nQn5mlgNj157h++67+mhez/F1ALz4yY+bxiGsi0/xX8=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Firmware Updater for Linux",
         mainProgram: "firmware-updater",
         homepage: "https://github.com/canonical/firmware-updater",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pubspecLock,

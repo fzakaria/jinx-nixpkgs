@@ -38,18 +38,18 @@ export default nix.lambda((args) => (() => {
   const enableScreen = nix.argOr($, "enableScreen", () => true);
   const enableYoctolight = nix.argOr($, "enableYoctolight", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "clightd",
       version: "5.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FedeDP",
           repo: "Clightd",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-LOhBBd7QL5kH4TzMFgrh70C37WsFdsiKArP+tIEiPWo=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         SYSTEM_BUS_DIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/dbus-1/system-services`),
         POLKIT_ACTION_DIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/polkit-1/actions`),
       })),
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), enableDdc, nix.thunk(() => [ddcutil])), nix.concat(nix.app(nix.sel(lib, "optionals"), enableDpms, nix.thunk(() => [libxext])), nix.concat(nix.app(nix.sel(lib, "optionals"), enableGamma, nix.thunk(() => [libxrandr])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool((nix.asBool(enableDpms) || nix.asBool(enableGamma))) || nix.asBool(enableScreen))), nix.thunk(() => [libdrm, wayland]))))))),
       postInstall: "mkdir -p $out/bin\nln -svT $out/libexec/clightd $out/bin/clightd\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Linux bus interface that changes screen brightness/temperature",
         mainProgram: "clightd",
         homepage: "https://github.com/FedeDP/Clightd",

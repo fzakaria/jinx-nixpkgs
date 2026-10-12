@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const udev = nix.arg($, "udev");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cargo-embassy",
       version: "0.3.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "adinack",
           repo: "cargo-embassy",
           rev: "989a406387ebda89acd943c57e207d78eba600c1",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       cargoHash: "sha256-iLGoc6CKZGlq9bw1sL0jCVm9lGa0i/BXiseU1USGjfQ=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command line tool for creating Embassy projects",
         homepage: "https://github.com/adinack/cargo-embassy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

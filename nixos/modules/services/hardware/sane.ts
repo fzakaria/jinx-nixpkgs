@@ -63,12 +63,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const pkg = nix.thunk(() => nix.app(nix.sel(config, "hardware", "sane", "backends-package", "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       scanSnapDriversUnfree: nix.thunk(() => nix.sel(config, "hardware", "sane", "drivers", "scanSnap", "enable")),
       scanSnapDriversPackage: nix.thunk(() => nix.sel(config, "hardware", "sane", "drivers", "scanSnap", "package")),
     }))));
   const sanedConf = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "saned.conf",
       destination: "/etc/sane.d/saned.conf",
       text: nix.thunk(() => nix.str`localhost
@@ -76,7 +76,7 @@ ${nix.sel(config, "services", "saned", "extraConfig")}
 `),
     }))));
   const netConf = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "net.conf",
       destination: "/etc/sane.d/net.conf",
       text: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(config, "services", "saned", "enable")), "localhost")}
@@ -84,7 +84,7 @@ ${nix.sel(config, "hardware", "sane", "netConf")}
 `),
     }))));
   const env = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     SANE_CONFIG_DIR: "/etc/sane-config",
     LD_LIBRARY_PATH: nix.thunk(() => ["/etc/sane-libs"]),
   }));
@@ -92,79 +92,79 @@ ${nix.sel(config, "hardware", "sane", "netConf")}
   const saneConfig = nix.thunk(() => nix.app(nix.sel(pkgs, "mkSaneConfig"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(config, "hardware", "sane"));
       return {
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       paths: backends,
       disabledDefaultBackends: nix.thunk(() => nix.attr(from, "disabledDefaultBackends")),
     };
     })())));
   const enabled = nix.thunk(() => (nix.asBool(nix.sel(config, "hardware", "sane", "enable")) || nix.asBool(nix.sel(config, "services", "saned", "enable"))));
   return {
-    __proto__: pos$53,
+    [nix.POS]: pos$53,
     options: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       hardware: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         sane: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enable support for SANE scanners.\n\n::: {.note}\nUsers in the \"scanner\" group will gain access to the scanner, or the \"lp\" group if it's also a printer.\n:::\n",
             })))),
           "backends-package": nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "sane-backends", nix.thunk(() => ({})))),
           snapshot: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Use a development snapshot of SANE scanner drivers.",
             })))),
           extraBackends: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: [],
               description: "Packages providing extra SANE backends to enable.\n\n::: {.note}\nThe example contains the package for HP scanners, and the package for\nApple AirScan and Microsoft WSD support (supports many\nvendors/devices).\n:::\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ pkgs.hplipWithPlugin pkgs.sane-airscan ]")),
             })))),
           disabledDefaultBackends: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["v4l"]),
               description: "Names of backends which are enabled by default but should be disabled.\nSee `$SANE_CONFIG_DIR/dll.conf` for the list of possible names.\n",
             })))),
           configDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               internal: true,
               description: "The value of SANE_CONFIG_DIR.",
             })))),
           netConf: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               example: "192.168.0.16",
               description: "Network hosts that should be probed for remote scanners.\n",
             })))),
           drivers: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             scanSnap: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                   default: false,
                   example: true,
                   description: "Whether to enable drivers for the Fujitsu ScanSnap scanners.\n\nThe driver files are unfree and extracted from the Windows driver image.\n",
                 })))),
               package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, nix.thunk(() => ["sane-drivers", "epjitsu"]), nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   extraDescription: "Useful if you want to extract the driver files yourself.\n\nThe process is described in the {file}`/etc/sane.d/epjitsu.conf` file in\nthe `sane-backends` package.\n",
                 })))),
             })),
           })),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Open ports needed for discovery of scanners on the local network, e.g.\nneeded for Canon scanners (BJNP protocol).\n",
@@ -172,17 +172,17 @@ ${nix.sel(config, "hardware", "sane", "netConf")}
         })),
       })),
       services: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         saned: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enable saned network daemon for remote connection to scanners.\n\nsaned would be run from `scanner` user; to allow\naccess to hardware that doesn't have `scanner` group\nyou should add needed groups to this user.\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               example: "192.168.0.0/24",
@@ -193,77 +193,77 @@ ${nix.sel(config, "hardware", "sane", "netConf")}
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), enabled, nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             hardware: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               sane: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 configDir: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`${saneConfig}/etc/sane.d`))),
               })),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               systemPackages: backends,
               sessionVariables: env,
               etc: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 "sane-config": nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   source: nix.thunk(() => nix.sel(config, "hardware", "sane", "configDir")),
                 })),
-                "sane-libs": nix.thunk(() => ({ __proto__: pos$27, source: nix.thunk(() => nix.str`${saneConfig}/lib/sane`) })),
+                "sane-libs": nix.thunk(() => ({ [nix.POS]: pos$27, source: nix.thunk(() => nix.str`${saneConfig}/lib/sane`) })),
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               udev: nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 packages: backends,
                 extraRules: nix.thunk(() => nix.str`ENV{DEVNAME}!="", ENV{libsane_matched}=="yes", RUN+="${nix.sel(pkgs, "acl")}/bin/setfacl -m g:scanner:rw $env{DEVNAME}"
 `),
               })),
             })),
             users: nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               groups: nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 scanner: nix.thunk(() => ({
-                  __proto__: pos$32,
+                  [nix.POS]: pos$32,
                   gid: nix.thunk(() => nix.sel(config, "ids", "gids", "scanner")),
                 })),
               })),
             })),
             networking: nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               firewall: nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 allowedUDPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "hardware", "sane", "openFirewall")), nix.thunk(() => [8612n]))),
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               tmpfiles: nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 rules: nix.thunk(() => ["d /var/lock/sane 0770 root scanner - -"]),
               })),
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "saned", "enable")), nix.thunk(() => ({
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             networking: nix.thunk(() => ({
-              __proto__: pos$41,
-              firewall: nix.thunk(() => ({ __proto__: pos$40, connectionTrackingModules: nix.thunk(() => ["sane"]) })),
+              [nix.POS]: pos$41,
+              firewall: nix.thunk(() => ({ [nix.POS]: pos$40, connectionTrackingModules: nix.thunk(() => ["sane"]) })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               services: nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 "saned@": nix.thunk(() => ({
-                  __proto__: pos$43,
+                  [nix.POS]: pos$43,
                   description: "Scanner Service",
                   environment: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => (val) => nix.builtins.toString(val), env)),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$42,
+                    [nix.POS]: pos$42,
                     User: "scanner",
                     Group: "scanner",
                     ExecStart: nix.thunk(() => nix.str`${pkg}/bin/saned`),
@@ -271,14 +271,14 @@ ${nix.sel(config, "hardware", "sane", "netConf")}
                 })),
               })),
               sockets: nix.thunk(() => ({
-                __proto__: pos$47,
+                [nix.POS]: pos$47,
                 saned: nix.thunk(() => ({
-                  __proto__: pos$46,
+                  [nix.POS]: pos$46,
                   description: "saned incoming socket",
                   wantedBy: nix.thunk(() => ["sockets.target"]),
                   listenStreams: nix.thunk(() => ["0.0.0.0:6566", "[::]:6566"]),
                   socketConfig: nix.thunk(() => ({
-                    __proto__: pos$45,
+                    [nix.POS]: pos$45,
                     BindIPv6Only: "ipv6-only",
                     Accept: true,
                     MaxConnections: 64n,
@@ -287,11 +287,11 @@ ${nix.sel(config, "hardware", "sane", "netConf")}
               })),
             })),
             users: nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               users: nix.thunk(() => ({
-                __proto__: pos$50,
+                [nix.POS]: pos$50,
                 scanner: nix.thunk(() => ({
-                  __proto__: pos$49,
+                  [nix.POS]: pos$49,
                   uid: nix.thunk(() => nix.sel(config, "ids", "uids", "scanner")),
                   group: "scanner",
                   extraGroups: nix.thunk(() => nix.concat(["lp"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(config, "services", "avahi", "enable")), nix.thunk(() => ["avahi"])))),

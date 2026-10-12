@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const bzip2 = nix.arg($, "bzip2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "bsdiff",
       version: "4.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.daemonology.net/bsdiff/bsdiff-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0j2zm3z271x5aw63mwhr3vymzn45p2vvrlrpm9cz2nywna41b0hq",
         })))),
       buildInputs: nix.thunk(() => [bzip2]),
       patches: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://sources.debian.org/data/main/b/bsdiff/4.3-22/debian/patches/20-CVE-2014-9862.patch",
             sha256: "sha256-3UuUfNvShQ8fLqxCKUTb/n4BmjL4+Nl7aEqCxYrrERQ=",
           })))),
@@ -38,17 +38,17 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./include-systypes.patch"),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               url: "https://sources.debian.org/data/main/b/bsdiff/4.3-22/debian/patches/30-bug-632585-mmap-src-file-instead-of-malloc-read-it.patch",
               sha256: "sha256-esbhz2/efUiuQDuF7LGfSeEn3/f1WbqCxQpTs2A0ulI=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               url: "https://sources.debian.org/data/main/b/bsdiff/4.3-22/debian/patches/31-bug-632585-mmap-dst-file-instead-of-malloc-read-it.patch",
               sha256: "sha256-Of4aOcI0rsgdRzPqyw2VRn2p9wQuo3hdlgDTBdXGzoc=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               url: "https://sources.debian.org/data/main/b/bsdiff/4.3-22/debian/patches/32-bug-632585-use-int32_t-instead-off_t-for-file-size.patch",
               sha256: "sha256-SooFnFK4uKNXvXQb/LEcH8GocnRtkryExI4b3BZTsAY=",
             })))),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "$CC -O3 -lbz2 bspatch.c -o bspatch\n$CC -O3 -lbz2 bsdiff.c  -o bsdiff\n",
       installPhase: "mkdir -p $out/bin\nmkdir -p $out/share/man/man1\n\ncp bsdiff    $out/bin\ncp bspatch   $out/bin\ncp bsdiff.1  $out/share/man/man1\ncp bspatch.1 $out/share/man/man1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Efficient binary diff/patch tool",
         homepage: "https://www.daemonology.net/bsdiff/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

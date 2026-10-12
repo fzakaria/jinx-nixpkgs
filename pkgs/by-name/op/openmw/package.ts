@@ -47,16 +47,16 @@ export default nix.lambda((args) => (() => {
   const isAarch64Linux = nix.thunk(() => (nix.asBool(isLinux) && nix.asBool(isAarch64)));
   nix.assert_(nix.app(nix.sel(lib, "assertOneOf"), "GLPreference", GLPreference, nix.thunk(() => ["GLVND", "LEGACY"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/op/openmw/package.nix:33:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "openmw",
       version: "0.51.0",
       __structuredAttrs: true,
       strictDeps: true,
-      "osg'": nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(openscenegraph, "override"), nix.thunk(() => ({ __proto__: pos$1, colladaSupport: true }))), "overrideAttrs"), (oldAttrs) => ({
-          __proto__: pos$3,
+      "osg'": nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(openscenegraph, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, colladaSupport: true }))), "overrideAttrs"), (oldAttrs) => ({
+          [nix.POS]: pos$3,
           patches: nix.thunk(() => nix.concat(nix.selOr(oldAttrs, () => [], "patches"), [
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 name: "darwin-osg-plugins-fix.patch",
                 url: "https://gitlab.com/OpenMW/openmw-dep/-/raw/1305497c009dc0e7a6a70fe14f0a2f92b96cbcb4/macos/osg.patch",
                 hash: "sha256-G8Y+fnR6FRGxECWrei/Ixch3A3PkRfH6b5q9iawsSCY=",
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
           ], nix.builtins.map((plugin) => nix.app(nix.sel(lib, "cmakeBool"), nix.thunk(() => nix.str`BUILD_OSG_PLUGIN_${plugin}`), true), nix.thunk(() => ["BMP", "DAE", "DDS", "FREETYPE", "JPEG", "OSG", "PNG", "TGA"]))))),
         }))),
       "bullet'": nix.thunk(() => nix.app(nix.sel(bullet, "overrideAttrs"), (oldAttrs) => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           cmakeFlags: nix.thunk(() => nix.concat(nix.selOr(oldAttrs, () => [], "cmakeFlags"), [
             "-Wno-dev",
             nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "OpenGL_GL_PREFERENCE", GLPreference)),
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
           ])),
         }))),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "OpenMW",
           repo: "openmw",
           tag: nix.thunk(() => nix.str`openmw-${nix.sel(finalAttrs, "version")}`),
@@ -120,16 +120,16 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "OPENMW_USE_SYSTEM_RECASTNAVIGATION", true)),
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "OPENMW_OSX_DEPLOYMENT", isDarwin)),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$6, LANG: "C.UTF-8" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$6, LANG: "C.UTF-8" })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             extraArgs: nix.thunk(() => ["--version-regex", "openmw-(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Unofficial open source engine reimplementation of the game Morrowind",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/OpenMW/openmw/-/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         homepage: "https://openmw.org",

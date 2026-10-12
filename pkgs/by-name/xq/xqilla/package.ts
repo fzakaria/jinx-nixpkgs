@@ -16,17 +16,17 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const xercesc = nix.arg($, "xercesc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "xqilla",
       version: "2.3.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/xqilla/XQilla-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-KSYxeRYx/i5+uXJzdzNQY6SPEmEdZB0Clml+DAdZAus=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "xqilla-gcc11.patch",
             url: "https://git.pld-linux.org/gitweb.cgi?p=packages/xqilla.git;a=blob_plain;f=xqilla-gcc11.patch;h=c9e28be64097040348f710cb27be5f7dad001112;hb=4efe07397c6fb426a65b2eec6999d3c7e683848a",
             hash: "sha256-enMEF3U+PsbwOQ5SwlRVWc/FpyLS3aK6JgUgOp3ZbiA=",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       buildInputs: nix.thunk(() => [xercesc]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "XQuery and XPath 2 library and command line utility written in C++, implemented on top of the Xerces-C library",
         mainProgram: "xqilla",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

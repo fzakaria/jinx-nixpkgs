@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
   const utils = nix.arg($, "utils");
   const cfg = nix.thunk(() => nix.sel(config, "services", "grafana-image-renderer"));
   const format = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     type: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
       return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -60,23 +60,23 @@ export default nix.lambda((args) => (() => {
       ]))),
   }));
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkChangedOptionModule"), nix.thunk(() => ["services", "grafana-image-renderer", "chromium"]), nix.thunk(() => ["services", "grafana-image-renderer", "settings", "browser", "path"]), (config_1) => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(config_1, "services", "grafana-image-renderer", "chromium"))))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "grafana-image-renderer", "verbose"]), "Use `services.grafana-image-renderer.settings.log.level = \"debug\"` instead.\n")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         "grafana-image-renderer": nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "grafana-image-renderer")),
           provisionGrafana: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Grafana configuration for grafana-image-renderer")),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   freeformType: nix.thunk(() => nix.sel(format, "type")),
                   imports: nix.thunk(() => [
                     nix.path(here, "../../misc/assertions.nix"),
@@ -88,20 +88,20 @@ export default nix.lambda((args) => (() => {
                     nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["service", "logging"]), nix.thunk(() => ["log"]))),
                   ]),
                   options: nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     server: nix.thunk(() => ({
-                      __proto__: pos$3,
+                      [nix.POS]: pos$3,
                       addr: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$2,
+                          [nix.POS]: pos$2,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "localhost:8081",
                           description: "Listen address of the service.\n",
                         })))),
                     })),
                     browser: nix.thunk(() => ({
-                      __proto__: pos$5,
+                      [nix.POS]: pos$5,
                       path: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           type: nix.thunk(() => nix.sel(lib, "types", "path")),
                           default: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "chromium")))),
                           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "lib.getExe pkgs.chromium")),
@@ -117,50 +117,50 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "provisionGrafana")) || nix.asBool(nix.sel(config, "services", "grafana", "enable")))),
             message: "To provision a Grafana instance to use grafana-image-renderer,\n`services.grafana.enable` must be set to `true`!\n",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           grafana: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             settings: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               rendering: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "provisionGrafana")), nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   server_url: nix.thunk(() => nix.str`http://${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "settings", "server", "addr")))}/render`),
                   callback_url: nix.thunk(() => nix.str`http://${nix.sel(config, "services", "grafana", "settings", "server", "http_addr")}:${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "grafana", "settings", "server", "http_port")))}`),
                 })))),
             })),
           })),
           "grafana-image-renderer": nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             settings: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               browser: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 timezone: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(config, "time", "timeZone"), null)), nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(config, "time", "timeZone")))))),
               })),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           services: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             "grafana-image-renderer": nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target"]),
               description: "Grafana backend plugin that handles rendering of panels & dashboards to PNGs using headless browser (Chromium/Chrome)",
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 DynamicUser: true,
                 PrivateTmp: true,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "grafana-image-renderer")))} server ${nix.app(nix.sel(format, "generate"), nix.thunk(() => nix.sel(cfg, "settings")))}`),
@@ -195,7 +195,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "ma27"))];

@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const libxtst = nix.arg($, "libxtst");
   const libxscrnsaver = nix.arg($, "libxscrnsaver");
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       desktopName: "HakuNeko Desktop",
       genericName: "Manga & Anime Downloader",
       categories: nix.thunk(() => ["Network", "FileTransfer"]),
@@ -37,18 +37,18 @@ export default nix.lambda((args) => (() => {
       name: "hakuneko-desktop",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "hakuneko",
       version: "6.1.7",
       src: nix.thunk(() => nix.selOr({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`https://github.com/manga-download/hakuneko/releases/download/v${nix.sel(finalAttrs, "version")}/hakuneko-desktop_${nix.sel(finalAttrs, "version")}_linux_amd64.deb`),
             sha256: "06bb17d7a06bb0601053eaaf423f9176f06ff3636cc43ffc024438e1962dcd02",
           })))),
         "i686-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: nix.thunk(() => nix.str`https://github.com/manga-download/hakuneko/releases/download/v${nix.sel(finalAttrs, "version")}/hakuneko-desktop_${nix.sel(finalAttrs, "version")}_linux_i386.deb`),
             sha256: "32017d26bafffaaf0a83dd6954d3926557014af4022a972371169c56c0e3d98b",
           })))),
@@ -68,7 +68,7 @@ cp "${desktopItem}/share/applications/hakuneko-desktop.desktop" \\
       runtimeDependencies: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "getLib"), udev))]),
       postFixup: "makeWrapper $out/lib/hakuneko-desktop/hakuneko $out/bin/hakuneko \\\n  \"${gappsWrapperArgs[@]}\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Manga & Anime Downloader",
         homepage: "https://sourceforge.net/projects/hakuneko/",
         sourceProvenance: nix.thunk(() => (() => {

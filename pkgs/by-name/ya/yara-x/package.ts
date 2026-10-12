@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const cargo_c = nix.arg($, "cargo-c");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "yara-x",
       version: "1.21.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "VirusTotal",
           repo: "yara-x",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-mvMhxRXSq6IFZaGXn7mwe2XlkyZhgJffUoWruWC6Yj0=",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CARGO_PROFILE_RELEASE_LTO: "fat",
         CARGO_PROFILE_RELEASE_CODEGEN_UNITS: "1",
       })),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool to do pattern matching for malware research",
         homepage: "https://virustotal.github.io/yara-x/",
         changelog: nix.thunk(() => nix.str`https://github.com/VirusTotal/yara-x/releases/tag/v${nix.sel(finalAttrs, "version")}`),

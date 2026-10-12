@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "squirrel-sql";
       const version = "5.1.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/squirrel-sql/1-stable/${version}-plainzip/squirrelsql-${version}-standard.zip`),
           sha256: "sha256-aYwA2TRXI74s1BXfhlatBqPzC1xCfEqTe/yK8DCMo4E=",
         }))));
@@ -64,7 +64,7 @@ ln -s ${desktopItem}/share/applications $out/share
 runHook postInstall
 `);
       const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "squirrel-sql",
           exec: "squirrel-sql",
           comment: nix.thunk(() => nix.sel(meta, "description")),
@@ -74,7 +74,7 @@ runHook postInstall
           icon: "squirrel-sql",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Universal SQL Client",
         mainProgram: "squirrel-sql",
         homepage: "http://squirrel-sql.sourceforge.net/",
@@ -86,7 +86,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const jdk = jdk8;
   const jre = jre8;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ili2c",
       version: "5.1.1",
       nativeBuildInputs: nix.thunk(() => [ant, jdk, makeWrapper, stripJavaArchivesHook]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "claeis",
           repo: "ili2c",
           rev: nix.thunk(() => nix.str`ili2c-${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ makeWrapper ${jre}/bin/java $out/bin/ili2c \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "INTERLIS Compiler",
         longDescription: "Checks the syntactical correctness of an INTERLIS data model.\n",
         homepage: "https://www.interlis.ch/downloads/ili2c",

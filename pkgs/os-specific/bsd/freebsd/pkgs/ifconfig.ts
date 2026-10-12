@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const libjail = nix.arg($, "libjail");
   const libnv = nix.arg($, "libnv");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "sbin/ifconfig",
       buildInputs: nix.thunk(() => nix.concat(compatIfNeeded, [libifconfig, lib80211, libjail, libnv])),
       MK_PIE: "no",

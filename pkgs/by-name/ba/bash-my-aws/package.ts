@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "jmespath"))])),
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bash-my-aws",
       version: "0-unstable-2025-01-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mbailey",
           repo: "bash-my-aws",
           rev: "d338b43cc215719c1853ec500c946db6b9caaa11",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
 chmod +x $out/lib/*
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://bash-my-aws.org",
         description: "CLI commands for AWS",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

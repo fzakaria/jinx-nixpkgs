@@ -24,23 +24,23 @@ export default nix.lambda((args) => (() => {
   const unknownFamilies = nix.thunk(() => nix.app(nix.sel(lib, "subtractLists"), availableFamilyNames, families));
   const fontsToBuild = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (name) => (_) => nix.app(nix.sel(lib, "elem"), name, selectedFamilies), allFonts));
   const makeFont = (font) => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.app(nix.sel(lib, "toLower"), nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => [" (", ")", " "]), nix.thunk(() => ["-", "", "-"]), nix.thunk(() => nix.sel(font, "name")))))),
       version: nix.thunk(() => nix.attr(font, "version")),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       outputs: nix.thunk(() => ["out", "webfont"]),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           hash: nix.thunk(() => nix.attr(font, "hash")),
           url: nix.thunk(() => nix.attr(font, "url")),
           stripRoot: nix.thunk(() => nix.selOr(font, () => true, "stripRoot")),
         })))),
       preInstall: "find . -type d \\( -name unhinted -or -name split \\) -exec rm -rf {} +\n",
-      meta: nix.thunk(() => nix.update(meta, { __proto__: pos$2, description: nix.thunk(() => nix.sel(font, "name")) })),
+      meta: nix.thunk(() => nix.update(meta, { [nix.POS]: pos$2, description: nix.thunk(() => nix.sel(font, "name")) })),
     }));
   const fontDerivations = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (v) => nix.app(makeFont, v), fontsToBuild));
   const meta = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     description: "IBM Plex Typeface",
     homepage: "https://www.ibm.com/plex/",
     license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
@@ -57,11 +57,11 @@ export default nix.lambda((args) => (() => {
   }));
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => nix.eq(unknownFamilies, [])), nix.thunk(() => nix.str`Unknown font(s): ${nix.builtins.toString(unknownFamilies)}`)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ib/ibm-plex/package.nix:62:1");
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "ibm-plex",
       version: "0-unstable-2026-07-30",
       paths: nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), fontDerivations)),
-      passthru: nix.thunk(() => nix.update(fontDerivations, { __proto__: pos$5, updateScript: nix.path(here, "./update.py") })),
+      passthru: nix.thunk(() => nix.update(fontDerivations, { [nix.POS]: pos$5, updateScript: nix.path(here, "./update.py") })),
       meta: meta,
     })));
 })(), formals$1);

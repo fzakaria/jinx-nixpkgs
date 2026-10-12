@@ -68,42 +68,42 @@ export default nix.lambda((args) => (() => {
     })())));
   const toml = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$45,
+    [nix.POS]: pos$45,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "podman"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         containers: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "This option enables the common /etc/containers configuration module.\n",
             })))),
           ociSeccompBpfHook: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
                 description: "Enable the OCI seccomp BPF hook",
               })))),
           })),
           containersConf: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(toml, "type")),
                 default: nix.thunk(() => ({})),
                 description: "containers.conf configuration",
               })))),
             cniPlugins: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "package")))),
                 defaultText: nix.thunk(() => nix.app(literalExpression, "[\n  pkgs.cni-plugins\n]\n")),
                 example: nix.thunk(() => nix.app(literalExpression, "[\n  pkgs.cniPlugins.dnsname\n]\n")),
@@ -111,51 +111,51 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           storage: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(toml, "type")),
                 description: "storage.conf configuration",
               })))),
           })),
           registries: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             search: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 visible: false,
                 type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                 default: [],
                 description: "List of repositories to search.\n\nDeprecated, examine {option}`virtualisation.containers.registries.settings` instead.\n",
               })))),
             insecure: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 default: [],
                 visible: false,
                 type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                 description: "List of insecure repositories.\n\nDeprecated, examine {option}`virtualisation.containers.registries.settings` instead.\n",
               })))),
             block: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 default: [],
                 visible: false,
                 type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                 description: "List of blocked repositories.\n\nDeprecated, examine {option}`virtualisation.containers.registries.settings` instead.\n",
               })))),
             settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => nix.sel(toml, "type")),
                 default: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   registry: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$13, location: "docker.io" })),
-                    nix.thunk(() => ({ __proto__: pos$14, location: "quay.io" })),
+                    nix.thunk(() => ({ [nix.POS]: pos$13, location: "docker.io" })),
+                    nix.thunk(() => ({ [nix.POS]: pos$14, location: "quay.io" })),
                   ]),
                 })),
                 description: "repositories.conf configuration.\n\nExamine [containers-registries.conf(5)] for more information about the format.\n\n  [containers-registries.conf(5)]: https://github.com/containers/image/blob/main/docs/containers-registries.conf.5.md\n",
               })))),
           })),
           policy: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.sel(types, "attrs")),
               example: nix.thunk(() => nix.app(literalExpression, "{\n  default = [ { type = \"insecureAcceptAnything\"; } ];\n  transports = {\n    docker-daemon = {\n      \"\" = [ { type = \"insecureAcceptAnything\"; } ];\n    };\n  };\n}\n")),
@@ -165,47 +165,47 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$44,
+        [nix.POS]: pos$44,
         warnings: nix.thunk(() => nix.app(nix.sel(lib, "optional"), oldRegistriesOptionsUsed, "the options virtualisation.containers.registries.search / insecure / block are deprecated. See virtualisation.containers.registries.settings instead.")),
         virtualisation: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           containers: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             registries: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               settings: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), oldRegistriesOptionsUsed, nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   registries: nix.thunk(() => ({
-                    __proto__: pos$25,
+                    [nix.POS]: pos$25,
                     block: nix.thunk(() => ({
-                      __proto__: pos$22,
+                      [nix.POS]: pos$22,
                       registries: nix.thunk(() => nix.sel(cfg, "registries", "block")),
                     })),
                     insecure: nix.thunk(() => ({
-                      __proto__: pos$23,
+                      [nix.POS]: pos$23,
                       registries: nix.thunk(() => nix.sel(cfg, "registries", "insecure")),
                     })),
                     search: nix.thunk(() => ({
-                      __proto__: pos$24,
+                      [nix.POS]: pos$24,
                       registries: nix.thunk(() => nix.sel(cfg, "registries", "search")),
                     })),
                   })),
                 })))),
             })),
             containersConf: nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               cniPlugins: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "cni-plugins"))]),
               settings: nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 network: nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   cni_plugin_dirs: nix.thunk(() => nix.builtins.map((p) => nix.str`${nix.app(nix.sel(lib, "getBin"), p)}/bin`, nix.thunk(() => nix.sel(cfg, "containersConf", "cniPlugins")))),
                 })),
                 engine: nix.thunk(() => nix.update({
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   init_path: nix.thunk(() => nix.str`${nix.sel(pkgs, "catatonit")}/bin/catatonit`),
                 }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "ociSeccompBpfHook", "enable")), nix.thunk(() => ({
-                    __proto__: pos$30,
+                    [nix.POS]: pos$30,
                     hooks_dir: nix.thunk(() => [
                       nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "oci-seccomp-bpf-hook")),
                     ]),
@@ -213,11 +213,11 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             storage: nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               settings: nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 storage: nix.thunk(() => ({
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   driver: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "overlay")),
                   graphroot: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/var/lib/containers/storage")),
                   runroot: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/run/containers/storage")),
@@ -227,23 +227,23 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$43,
+          [nix.POS]: pos$43,
           etc: nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             "containers/containers.conf": nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               source: nix.thunk(() => nix.app(nix.sel(toml, "generate"), "containers.conf", nix.thunk(() => nix.sel(cfg, "containersConf", "settings")))),
             })),
             "containers/storage.conf": nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               source: nix.thunk(() => nix.app(nix.sel(toml, "generate"), "storage.conf", nix.thunk(() => nix.sel(cfg, "storage", "settings")))),
             })),
             "containers/registries.conf": nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               source: nix.thunk(() => nix.app(nix.sel(toml, "generate"), "registries.conf", nix.thunk(() => nix.sel(cfg, "registries", "settings")))),
             })),
             "containers/policy.json": nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               source: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "policy"), {})) ? nix.app(nix.sel(pkgs, "writeText"), "policy.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.sel(cfg, "policy"))))) : nix.str`${nix.sel(pkgs, "skopeo", "policy")}/default-policy.json`)),
             })),
           })),

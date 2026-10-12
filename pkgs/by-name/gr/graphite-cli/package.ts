@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
   const graphite_cli = nix.arg($, "graphite-cli");
   const selectSystem = (attrs) => nix.selOr(attrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")));
   const suffix = nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       "x86_64-linux": "linux-x64",
       "aarch64-linux": "linux-arm64",
       "aarch64-darwin": "darwin-arm64",
     }))));
   const version = "1.8.6";
   const meta = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     changelog: "https://graphite.dev/docs/cli-changelog",
     description: "CLI that makes creating stacked git changes fast & intuitive",
     downloadPage: "https://www.npmjs.com/package/@withgraphite/graphite-cli",
@@ -49,26 +49,26 @@ export default nix.lambda((args) => (() => {
     sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
   }));
   const passthru = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     updateScript: nix.path(here, "./update.sh"),
     tests: nix.thunk(() => ({
-      __proto__: pos$4,
-      version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$3, package: graphite_cli, command: "gt --version" })))),
+      [nix.POS]: pos$4,
+      version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: graphite_cli, command: "gt --version" })))),
     })),
   }));
   const shellCompletions = "installShellCompletion --cmd gt \\\n  --bash <($out/bin/gt completion) \\\n  --zsh <(ZSH_NAME=zsh $out/bin/gt completion) \\\n  --fish <($out/bin/gt fish)\n";
   const unwrapped = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "graphite-cli-unwrapped",
       version: version,
       meta: meta,
       passthru: passthru,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           url: nix.thunk(() => nix.str`https://registry.npmjs.org/@withgraphite/graphite-cli-${suffix}/-/graphite-cli-${suffix}-${version}.tgz`),
           hash: nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               "x86_64-linux": "sha256-YnG3iw35ZEyGbB9vGdcnj0qkvUfyLuaIEB5l09hkRck=",
               "aarch64-linux": "sha256-Z4yY26hXf8++TX5tJcqufsAULTn9oUL90d9tDZj5d/k=",
               "aarch64-darwin": "sha256-6eogi8fMOD5IgRyEdPRxdDa17WytB1JwTpKRzyyhQ2Q=",
@@ -84,7 +84,7 @@ ${shellCompletions}
 `))),
     }))));
   return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? nix.app(nix.sel(nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "graphite-cli",
       version: version,
       passthru: passthru,
@@ -95,9 +95,9 @@ source ${installShellFiles}/nix-support/setup-hook
 ${shellCompletions}
 `),
       meta: nix.thunk(() => nix.update(meta, {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux"]),
       })),
-    }))), "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$11, strictDeps: true }))) : nix.force(unwrapped));
+    }))), "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$11, strictDeps: true }))) : nix.force(unwrapped));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

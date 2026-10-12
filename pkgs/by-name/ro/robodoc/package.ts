@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "robodoc",
       version: "4.99.44",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gumpu",
           repo: "ROBODoc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "troff_generator-fix",
             url: "https://github.com/gumpu/ROBODoc/commit/0f8b35c42523810415bec70bb2200d2ecb41c82f.patch?index=full",
             hash: "sha256-Pbuc1gHrOeHbR4QT/dZ8wP+vqYQlilayjCGKOJP5wvk=",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       hardeningDisable: nix.thunk(() => ["format"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/gumpu/ROBODoc",
         description: "Documentation Extraction Tool",
         longDescription: "ROBODoc is program documentation tool. The idea is to include for every\nfunction or procedure a standard header containing all sorts of\ninformation about the procedure or function. ROBODoc extracts these\nheaders from the source file and puts them in a separate\nautodocs-file. ROBODoc thus allows you to include the program\ndocumentation in the source code and avoid having to maintain two separate\ndocuments. Or as Petteri puts it: \"robodoc is very useful - especially for\nprogrammers who don't like writing documents with Word or some other\nstrange tool.\"\n\nROBODoc can format the headers in a number of different formats: HTML,\nRTF, LaTeX, or XML DocBook. In HTML mode it can generate cross links\nbetween headers. You can even include parts of your source code.\n\nROBODoc works with many programming languages: For instance C, Pascal,\nShell Scripts, Assembler, COBOL, Occam, Postscript, Forth, Tcl/Tk, C++,\nJava -- basically any program in which you can use remarks/comments.\n",

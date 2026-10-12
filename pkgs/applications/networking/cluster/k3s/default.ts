@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const forVersions = (versions) => nix.app(callPackage, nix.thunk(() => nix.app(k3s_builder, nix.thunk(() => nix.builtins.import(versions)))), extraArgs);
   const extraArgs = nix.thunk(() => nix.builtins.removeAttrs(args_1, nix.thunk(() => ["callPackage"])));
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     k3s_1_34: nix.thunk(() => nix.app(forVersions, nix.path(here, "./1_34/versions.nix"))),
     k3s_1_35: nix.thunk(() => nix.app(forVersions, nix.path(here, "./1_35/versions.nix"))),
     k3s_1_36: nix.thunk(() => nix.app(forVersions, nix.path(here, "./1_36/versions.nix"))),

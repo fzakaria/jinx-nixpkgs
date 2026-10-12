@@ -9,6 +9,6 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const emptyDirectory = nix.arg($, "emptyDirectory");
   const newlib_cygwin = nix.arg($, "newlib-cygwin");
-  return nix.update(newlib_cygwin, { __proto__: pos$1, bin: emptyDirectory });
+  return nix.update(newlib_cygwin, { [nix.POS]: pos$1, bin: emptyDirectory });
 })(), formals$1);
 //# sourceMappingURL=nobin.ts.map

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mlc";
       const version = "3.9a";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://downloadmirror.intel.com/736634/mlc_v${version}.tgz`),
           sha256: "EDa5V56qCPQxgCu4eddYiWDrk7vkYS0jisnG004L+jQ=",
         }))));
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [patchelf]);
       const fixupPhase = "patchelf --set-interpreter \"$(cat $NIX_CC/nix-support/dynamic-linker)\" $out/bin/mlc\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://software.intel.com/content/www/us/en/develop/articles/intelr-memory-latency-checker.html",
         description: "Intel Memory Latency Checker",
         sourceProvenance: nix.thunk(() => (() => {
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "mlc",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

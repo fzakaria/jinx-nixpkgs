@@ -21,16 +21,16 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const imagemagick = nix.arg($, "imagemagick");
   const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://baller.tuxfamily.org/king.png",
       hash: "sha256-HoL02xd4XkiegF/CueBDV4ppbR+6iUPllRwRow+CAvc=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ballerburg",
       version: "1.2.3",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://framagit.org/baller/ballerburg.git",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-4rO7ixLE+EV6zd0EryHU6QZeVoa6N4fvxwoJWa0aO70=",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["-DCMAKE_FIND_FRAMEWORK=LAST"]))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "Ballerburg",
             desktopName: "Ballerburg SDL",
             exec: "_NET_WM_ICON=ballerburg ballerburg",
@@ -58,7 +58,7 @@ for size in 16 32 48 64 72 96 128 192 512 1024; do
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Classic cannon combat game",
         mainProgram: "ballerburg",
         longDescription: "Two castles, separated by a mountain, try to defeat each other with their cannonballs,\neither by killing the opponent's king or by weakening the opponent enough so that the king capitulates.",

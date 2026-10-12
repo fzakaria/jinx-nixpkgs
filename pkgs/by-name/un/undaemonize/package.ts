@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "undaemonize",
       version: "0-unstable-2017-07-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "undaemonize",
           owner: "nickstenning",
           rev: "a181cfd900851543ee1f85fe8f76bc8916b446d4",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "install -D undaemonize $out/bin/undaemonize\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tiny helper utility to force programs which insist on daemonizing themselves to run in the foreground",
         homepage: "https://github.com/nickstenning/undaemonize",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

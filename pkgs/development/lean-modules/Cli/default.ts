@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildLakePackage = nix.arg($, "buildLakePackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildLakePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lean4-cli",
       version: "4.34.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "leanprover",
           repo: "lean4-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       leanPackageName: "Cli",
       postPatch: "substituteInPlace lakefile.toml \\\n  --replace-fail '[[lean_lib]]\nname = \"Cli\"' '[[lean_lib]]\nname = \"Cli\"\ndefaultFacets = [\"static\"]'\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command-line argument parser for Lean 4",
         homepage: "https://github.com/leanprover/lean4-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

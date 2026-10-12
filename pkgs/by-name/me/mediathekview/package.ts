@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const openjdk25 = nix.arg($, "openjdk25");
   const zip = nix.arg($, "zip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "14.4.2",
       pname: "mediathekview",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.mediathekview.de/stabil/MediathekView-${nix.sel(finalAttrs, "version")}-linux.tar.gz`),
           sha256: "sha256-sDZSXYzak2RKQiW1OGpgSvFlkZrttsoOxVqRaodol24=",
         })))),
@@ -56,7 +56,7 @@ runHook postInstall
 runHook preCheck
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Offers access to the Mediathek of different tv stations (ARD, ZDF, Arte, etc.)",
         homepage: "https://mediathekview.de/",
         sourceProvenance: nix.thunk(() => (() => {

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.6.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "5ad93a8456f0d084c3456d059fd9a92cce667963232cbf763eac3bc5b7940872",
@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [six]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "This is a factored out version of unparse found in the Python source distribution",
         homepage: "https://github.com/simonpercivall/astunparse",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

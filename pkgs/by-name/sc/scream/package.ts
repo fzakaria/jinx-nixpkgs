@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const pcapSupport = nix.argOr($, "pcapSupport", () => false);
   const libpcap = nix.arg($, "libpcap");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "scream",
       version: "4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "duncanthrax",
           repo: "scream",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "set +o pipefail\n\n# Programs exit with code 1 when testing help, so grep for a string\n$out/bin/scream -h 2>&1 | grep -q Usage:\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Audio receiver for the Scream virtual network sound card",
         homepage: "https://github.com/duncanthrax/scream",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mspl")),

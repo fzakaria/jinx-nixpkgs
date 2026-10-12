@@ -30,37 +30,37 @@ export default nix.lambda((args) => (() => {
     const lib_1 = nix.arg($_1, "lib");
     const config = nix.arg($_1, "config");
     return {
-      __proto__: pos$12,
-      virtualisation: nix.thunk(() => ({ __proto__: pos$1, memorySize: 2048n })),
-      boot: nix.thunk(() => ({ __proto__: pos$2, kernelModules: nix.thunk(() => ["ptp_kvm"]) })),
+      [nix.POS]: pos$12,
+      virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, memorySize: 2048n })),
+      boot: nix.thunk(() => ({ [nix.POS]: pos$2, kernelModules: nix.thunk(() => ["ptp_kvm"]) })),
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         chrony: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: true,
           servers: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), [])),
           extraConfig: "refclock PHC /dev/ptp0 poll 2 prefer require refid KVM\nmakestep 0.1 3\n",
         })),
         cockroachdb: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: true,
           insecure: true,
           openPorts: true,
           locality: locality,
-          listen: nix.thunk(() => ({ __proto__: pos$4, address: myAddr })),
+          listen: nix.thunk(() => ({ [nix.POS]: pos$4, address: myAddr })),
           join: nix.thunk(() => nix.app(nix.sel(lib_1, "mkIf"), nix.thunk(() => !nix.eq(joinNode, null)), joinNode)),
         })),
       })),
       systemd: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         services: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           chronyd: nix.thunk(() => ({
-            __proto__: pos$8,
-            unitConfig: nix.thunk(() => ({ __proto__: pos$7, ConditionPathExists: "/dev/ptp0" })),
+            [nix.POS]: pos$8,
+            unitConfig: nix.thunk(() => ({ [nix.POS]: pos$7, ConditionPathExists: "/dev/ptp0" })),
           })),
           cockroachdb: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             preStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "chrony")}/bin/chronyc waitsync
 `),
           })),
@@ -69,17 +69,17 @@ export default nix.lambda((args) => (() => {
     };
   })(), formals$2);
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     name: "cockroachdb",
     meta: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "thoughtpolice"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       node1: nix.thunk(() => nix.app(makeNode, "country=us,region=east,dc=1", "192.168.1.1", null)),
       node2: nix.thunk(() => nix.app(makeNode, "country=us,region=west,dc=2b", "192.168.1.2", "192.168.1.1")),
       node3: nix.thunk(() => nix.app(makeNode, "country=eu,region=west,dc=2", "192.168.1.3", "192.168.1.1")),

@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
       const version = "1.16.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-s+MLjZqtxgBmKs0x6Qrk2puEyYkAIlqgRNTCjBQKEs4=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Data collaborative and version-controlled JSON with CRDTs",
         homepage: "https://github.com/loro-dev/loro-py",
         changelog: nix.thunk(() => nix.str`https://github.com/loro-dev/loro-py/releases/tag/v${version}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
   const pandoc = nix.arg($, "pandoc");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
-  const gemEnv = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({ __proto__: pos$1, name: "mpdcron-bundle", gemdir: nix.path(here, "./.") }))));
+  const gemEnv = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({ [nix.POS]: pos$1, name: "mpdcron-bundle", gemdir: nix.path(here, "./.") }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mpdcron",
       version: "20161228",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "alip",
           repo: "mpdcron",
           rev: "e49e6049b8693d31887c538ddc7b19f5e8ca476b",
@@ -54,11 +54,11 @@ export default nix.lambda((args) => (() => {
       ]),
       configureFlags: nix.thunk(() => ["--enable-gmodule", "--with-standard-modules=all"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "mpdcron")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Cron like daemon for mpd",
         homepage: "http://alip.github.io/mpdcron/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -73,40 +73,40 @@ export default nix.lambda((args) => (() => {
   const toYAML = nix.thunk(() => nix.attr(from_1, "toYAML"));
   const freeformType = nix.thunk(() => nix.sel(nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))), "type"));
   return {
-    __proto__: pos$48,
+    [nix.POS]: pos$48,
     options: nix.thunk(() => ({
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       services: nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         bitmagnet: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Bitmagnet service")),
           useLocalPostgresDB: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               description: "Use a local postgresql database, create user and database",
               type: bool,
               default: true,
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               description: "Bitmagnet configuration (https://bitmagnet.io/setup/configuration.html).",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   freeformType: freeformType,
                   options: nix.thunk(() => ({
-                    __proto__: pos$21,
+                    [nix.POS]: pos$21,
                     http_server: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         default: nix.thunk(() => ({})),
                         description: "HTTP server settings",
                         type: nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                            __proto__: pos$4,
+                            [nix.POS]: pos$4,
                             freeformType: freeformType,
                             options: nix.thunk(() => ({
-                              __proto__: pos$3,
+                              [nix.POS]: pos$3,
                               local_address: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$2,
+                                  [nix.POS]: pos$2,
                                   type: str,
                                   default: ":3333",
                                   description: "HTTP server listen address",
@@ -115,42 +115,42 @@ export default nix.lambda((args) => (() => {
                           })))),
                       })))),
                     dht_server: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         default: nix.thunk(() => ({})),
                         description: "DHT server settings",
                         type: nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                            __proto__: pos$8,
+                            [nix.POS]: pos$8,
                             freeformType: freeformType,
                             options: nix.thunk(() => ({
-                              __proto__: pos$7,
-                              port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ __proto__: pos$6, type: port, default: 3334n, description: "DHT listen port" })))),
+                              [nix.POS]: pos$7,
+                              port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$6, type: port, default: 3334n, description: "DHT listen port" })))),
                             })),
                           })))),
                       })))),
                     postgres: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$16,
+                        [nix.POS]: pos$16,
                         default: nix.thunk(() => ({})),
                         description: "PostgreSQL database configuration",
                         type: nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                            __proto__: pos$15,
+                            [nix.POS]: pos$15,
                             freeformType: freeformType,
                             options: nix.thunk(() => ({
-                              __proto__: pos$14,
+                              [nix.POS]: pos$14,
                               host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$10,
+                                  [nix.POS]: pos$10,
                                   type: str,
                                   default: "",
                                   description: "Address, hostname or Unix socket path of the database server",
                                 })))),
                               name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$11,
+                                  [nix.POS]: pos$11,
                                   type: str,
                                   default: "bitmagnet",
                                   description: "Database name to connect to",
                                 })))),
-                              user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ __proto__: pos$12, type: str, default: "", description: "User to connect as" })))),
+                              user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$12, type: str, default: "", description: "User to connect as" })))),
                               password: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$13,
+                                  [nix.POS]: pos$13,
                                   type: str,
                                   default: "",
                                   description: "Password for database user",
@@ -159,16 +159,16 @@ export default nix.lambda((args) => (() => {
                           })))),
                       })))),
                     tmdb: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$20,
+                        [nix.POS]: pos$20,
                         default: nix.thunk(() => ({})),
                         description: "TMDB api settings",
                         type: nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                            __proto__: pos$19,
+                            [nix.POS]: pos$19,
                             freeformType: freeformType,
                             options: nix.thunk(() => ({
-                              __proto__: pos$18,
+                              [nix.POS]: pos$18,
                               api_key: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$17,
+                                  [nix.POS]: pos$17,
                                   type: nix.thunk(() => nix.app(nullOr, str)),
                                   default: null,
                                   description: "TMDB api key, to avoid api limits. Leave null to use the default shared key.",
@@ -181,19 +181,19 @@ export default nix.lambda((args) => (() => {
             })))),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "bitmagnet", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               description: "User running bitmagnet",
               type: str,
               default: "bitmagnet",
             })))),
           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               description: "Group of user running bitmagnet",
               type: str,
               default: "bitmagnet",
             })))),
           openFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               description: "Open DHT ports in firewall",
               type: bool,
               default: false,
@@ -202,13 +202,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$46,
+        [nix.POS]: pos$46,
         environment: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           etc: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             "xdg/bitmagnet/config.yml": nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               text: nix.thunk(() => nix.app(toYAML, nix.thunk(() => ({})), nix.thunk(() => nix.sel(cfg, "settings")))),
               mode: "0440",
               user: nix.thunk(() => nix.sel(cfg, "user")),
@@ -217,11 +217,11 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           services: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             bitmagnet: nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               enable: true,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => nix.concat(["network.target"], nix.app(optional, nix.thunk(() => nix.sel(cfg, "useLocalPostgresDB")), "postgresql.target"))),
@@ -230,7 +230,7 @@ export default nix.lambda((args) => (() => {
                 nix.thunk(() => nix.sel(config, "environment", "etc", "xdg/bitmagnet/config.yml", "source")),
               ]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 Type: "simple",
                 DynamicUser: true,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
@@ -263,29 +263,29 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           users: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "bitmagnet")), nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               bitmagnet: nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 isSystemUser: true,
               })),
             })))),
-          groups: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "bitmagnet")), nix.thunk(() => ({ __proto__: pos$39, bitmagnet: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "bitmagnet")), nix.thunk(() => ({ [nix.POS]: pos$39, bitmagnet: nix.thunk(() => ({})) })))),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$42,
+          [nix.POS]: pos$42,
           firewall: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "dht_server", "port"))]),
               allowedUDPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "dht_server", "port"))]),
             })))),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$45,
+          [nix.POS]: pos$45,
           postgresql: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "useLocalPostgresDB")), nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               enable: true,
               ensureDatabases: nix.thunk(() => [
                 nix.thunk(() => nix.sel(cfg, "settings", "postgres", "name")),
@@ -293,7 +293,7 @@ export default nix.lambda((args) => (() => {
               ]),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$43,
+                  [nix.POS]: pos$43,
                   name: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "settings", "postgres", "user"), "")) ? nix.sel(cfg, "user") : nix.sel(cfg, "settings", "postgres", "user"))),
                   ensureDBOwnership: true,
                 })),
@@ -302,7 +302,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$47,
+      [nix.POS]: pos$47,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "gileri"))];

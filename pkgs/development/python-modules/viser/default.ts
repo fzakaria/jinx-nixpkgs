@@ -53,12 +53,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const playwright_driver = nix.arg($, "playwright-driver");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "viser",
       version: "1.1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "viser-project",
           repo: "viser",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "# prepare npm offline cache\nmkdir -p node_modules\ncd src/viser/client\ncp package.json package-lock.json ../../..\nln -s ../../../node_modules\ncd ../../..\n",
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(npmHooks, "npmConfigHook")), nodejs]),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-npm-deps`),
           src: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/src/viser/client/")),
           hash: "sha256-ebEJ4lm45L6+Dw1jh0BjciUEQWpFNGqfVMT6loIgZsk=",
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
         zstandard,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         urdf: nix.thunk(() => [yourdfpy]),
         dev: nix.thunk(() => nix.concat([
           hypothesis,
@@ -117,7 +117,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [hypothesis, playwright_driver, pytestCheckHook]),
       checkInputs: nix.thunk(() => nix.app(nix.sel(lib, "filter"), (p) => !nix.eq(nix.sel(p, "pname"), "pre-commit"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies", "dev")))),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         PLAYWRIGHT_BROWSERS_PATH: nix.thunk(() => nix.sel(playwright_driver, "browsers")),
         PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: true,
         PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS: true,
@@ -128,7 +128,7 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: nix.thunk(() => ["rich", "trimesh"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/viser-project/viser/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Web-based 3D visualization in Python",
         homepage: "https://github.com/viser-project/viser",

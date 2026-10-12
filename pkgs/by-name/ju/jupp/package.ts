@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "41";
       const srcName = nix.thunk(() => nix.str`joe-3.1${pname}${version}`);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://www.mirbsd.org/MirOS/dist/jupp/${srcName}.tgz`),
             nix.thunk(() => nix.str`https://mbsd.evolvis.org/MirOS/dist/jupp/${srcName}.tgz`),
@@ -36,9 +36,9 @@ export default nix.lambda((args) => (() => {
         "--enable-termcap",
         "--enable-termidx",
       ]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://www.mirbsd.org/jupp.htm",
         downloadPage: "https://www.mirbsd.org/MirOS/dist/jupp/",
         description: "Portable fork of Joe's editor",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         srcName,

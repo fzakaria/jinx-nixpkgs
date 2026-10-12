@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const withSystemd = nix.argOr($, "withSystemd", () => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), systemd));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "gpclient",
       cargoHash: nix.thunk(() => nix.attr(gpauth, "cargoHash")),
       src: nix.thunk(() => nix.attr(gpauth, "src")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => nix.update(nix.sel(gpauth, "meta"), (() => {
         const from = nix.thunk(() => nix.sel(gpauth, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: nix.thunk(() => nix.attr(from, "description")),
       };
       })())),

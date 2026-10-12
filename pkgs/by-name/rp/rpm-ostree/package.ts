@@ -49,12 +49,12 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const cppunit = nix.arg($, "cppunit");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rpm-ostree",
       version: "2026.1",
       outputs: nix.thunk(() => ["out", "dev", "man", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/coreos/rpm-ostree/releases/download/v${nix.sel(finalAttrs, "version")}/rpm-ostree-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-/dgF4jN4Sq7pRFmSMWXmG21y0PlkPPOMf8QhP8CB+yA=",
         })))),
@@ -113,7 +113,7 @@ substituteInPlace Makefile-rpm-ostree.am \\
 `),
       preConfigure: "env NOCONFIGURE=1 ./autogen.sh\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Hybrid image/package system. It uses OSTree as an image format, and uses RPM as a component model",
         homepage: "https://coreos.github.io/rpm-ostree/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),

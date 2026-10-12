@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const includeLSP = nix.argOr($, "includeLSP", () => true);
   const includeForge = nix.argOr($, "includeForge", () => true);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "steel",
       version: "0.8.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mattwparas",
           repo: "steel",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,17 +54,17 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.add("mkdir -p $out/lib/steel\n\nsubstituteInPlace crates/forge/installer/download.scm \\\n  --replace-fail '\"cargo-steel-lib\"' '\"$out/bin/cargo-steel-lib\"'\n\npushd cogs\n$out/bin/steel install.scm\npopd\n\nmv $out/lib/steel/bin/repl-connect $out/bin\nrm -rf $out/lib/steel/bin\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd steel \\\n  --bash <($out/bin/steel completions bash) \\\n  --fish <($out/bin/steel completions fish) \\\n  --zsh <($out/bin/steel completions zsh)\n"))),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (bin) => nix.str`wrapProgram "$out/bin/${bin}" --prefix SEARCH_STEEL_PATHS : "$out/lib/steel/cogs"`, nix.thunk(() => ["cargo-steel-lib", "forge", "steel", "steel-language-server"]))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         OPENSSL_NO_VENDOR: true,
         RUSTONIG_SYSTEM_LIBONIG: true,
         STEEL_HOME: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/steel`),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$3, extraArgs: nix.thunk(() => ["--version-regex", "^v(.*)"]) })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version-regex", "^v(.*)"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Embedded scheme interpreter in Rust",
         homepage: "https://github.com/mattwparas/steel",
         license: nix.thunk(() => (() => {

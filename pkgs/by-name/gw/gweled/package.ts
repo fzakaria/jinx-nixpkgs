@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const gsound = nix.arg($, "gsound");
   const libgnome_games_support = nix.arg($, "libgnome-games-support");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gweled",
       version: "1.0-beta1",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.launchpad.net/gweled",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-cm1z6l2tfYBFVFcvsnQ6cI3pQDnJMzn6SUC20gnBF5w=",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [clutter, clutter_gtk, gsound, libgnome_games_support]),
       configureFlags: nix.thunk(() => ["--disable-setgid"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Puzzle game similar to Bejeweled or Diamond Mine",
         mainProgram: "gweled",
         homepage: "https://gweled.org",

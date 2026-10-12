@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const version = "0.2.5";
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "owncast",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "owncast",
           repo: "owncast",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
 `),
       installCheckPhase: "runHook preCheck\n$out/bin/owncast --help\nrunHook postCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, owncast: nix.thunk(() => nix.sel(nixosTests, "owncast")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, owncast: nix.thunk(() => nix.sel(nixosTests, "owncast")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Self-hosted video live streaming solution",
         homepage: "https://owncast.online",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

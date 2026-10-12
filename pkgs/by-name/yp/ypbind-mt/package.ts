@@ -20,18 +20,18 @@ export default nix.lambda((args) => (() => {
   const rpcbind = nix.arg($, "rpcbind");
   const systemdLibs = nix.arg($, "systemdLibs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ypbind-mt",
       version: "2.7.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/thkukuk/ypbind-mt/releases/download/v${nix.sel(finalAttrs, "version")}/ypbind-mt-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-Bk8vGFZzxUk9+D9kALeZ86NZ3lYRi2ujfEMnER8vzYs=",
         })))),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => [libnsl, libtirpc, libxcrypt, rpcbind, systemdLibs]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Multithreaded daemon maintaining the NIS binding information",
         homepage: "https://github.com/thkukuk/ypbind-mt",
         changelog: "https://github.com/thkukuk/ypbind-mt/blob/master/NEWS",

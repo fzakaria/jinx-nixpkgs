@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pyvesync",
       version: "3.4.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "webdjoe",
           repo: "pyvesync",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, pyyaml, requests]),
       pythonImportsCheck: nix.thunk(() => ["pyvesync"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library to manage Etekcity Devices and Levoit Air Purifier",
         homepage: "https://github.com/webdjoe/pyvesync",
         changelog: nix.thunk(() => nix.str`https://github.com/webdjoe/pyvesync/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

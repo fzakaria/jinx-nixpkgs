@@ -48,15 +48,15 @@ export default nix.lambda((args) => (() => {
   const socketNamespace = "foo";
   const interfaceNamespace = "bar";
   const node = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     networking: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       wireguard: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         interfaces: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           wg0: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             listenPort: listenPort,
             ips: nix.thunk(() => ["10.10.10.1/24"]),
             privateKeyFile: "/etc/wireguard/private",
@@ -67,35 +67,35 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   return {
-    __proto__: pos$32,
+    [nix.POS]: pos$32,
     name: "wireguard-with-namespaces",
     meta: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "asymmetric"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$31,
+      [nix.POS]: pos$31,
       peer0: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib_1 = nix.arg($_1, "lib");
         const pkgs = nix.arg($_1, "pkgs");
         return nix.app(nix.sel(lib_1, "attrsets", "recursiveUpdate"), node, nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             boot: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               kernelPackages: nix.thunk(() => nix.app(nix.sel(lib_1, "mkIf"), nix.thunk(() => !nix.eq(kernelPackages, null)), nix.thunk(() => nix.app(kernelPackages, pkgs)))),
             })),
             networking: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               wireguard: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 interfaces: nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   wg0: nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     preSetup: nix.thunk(() => nix.str`ip netns add ${socketNamespace}
 `),
                     socketNamespace: socketNamespace,
@@ -110,19 +110,19 @@ export default nix.lambda((args) => (() => {
         const lib_1 = nix.arg($_1, "lib");
         const pkgs = nix.arg($_1, "pkgs");
         return nix.app(nix.sel(lib_1, "attrsets", "recursiveUpdate"), node, nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             boot: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               kernelPackages: nix.thunk(() => nix.app(nix.sel(lib_1, "mkIf"), nix.thunk(() => !nix.eq(kernelPackages, null)), nix.thunk(() => nix.app(kernelPackages, pkgs)))),
             })),
             networking: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               wireguard: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 interfaces: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   wg0: nix.thunk(() => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     preSetup: nix.thunk(() => nix.str`ip netns add ${interfaceNamespace}
 `),
                     mtu: 1280n,
@@ -138,19 +138,19 @@ export default nix.lambda((args) => (() => {
         const lib_1 = nix.arg($_1, "lib");
         const pkgs = nix.arg($_1, "pkgs");
         return nix.app(nix.sel(lib_1, "attrsets", "recursiveUpdate"), node, nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             boot: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               kernelPackages: nix.thunk(() => nix.app(nix.sel(lib_1, "mkIf"), nix.thunk(() => !nix.eq(kernelPackages, null)), nix.thunk(() => nix.app(kernelPackages, pkgs)))),
             })),
             networking: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               wireguard: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 interfaces: nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   wg0: nix.thunk(() => ({
-                    __proto__: pos$20,
+                    [nix.POS]: pos$20,
                     preSetup: nix.thunk(() => nix.str`ip netns add ${socketNamespace}
 ip netns add ${interfaceNamespace}
 `),
@@ -167,19 +167,19 @@ ip netns add ${interfaceNamespace}
         const lib_1 = nix.arg($_1, "lib");
         const pkgs = nix.arg($_1, "pkgs");
         return nix.app(nix.sel(lib_1, "attrsets", "recursiveUpdate"), node, nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             boot: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               kernelPackages: nix.thunk(() => nix.app(nix.sel(lib_1, "mkIf"), nix.thunk(() => !nix.eq(kernelPackages, null)), nix.thunk(() => nix.app(kernelPackages, pkgs)))),
             })),
             networking: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               wireguard: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 interfaces: nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   wg0: nix.thunk(() => ({
-                    __proto__: pos$26,
+                    [nix.POS]: pos$26,
                     preSetup: nix.thunk(() => nix.str`ip netns add ${socketNamespace}
 `),
                     socketNamespace: socketNamespace,

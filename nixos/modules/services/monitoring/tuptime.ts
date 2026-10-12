@@ -34,24 +34,24 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "tuptime"));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tuptime: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the total uptime service")),
           timer: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Whether to regularly log uptime to detect bad shutdowns.",
               })))),
             period: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "*:0/5",
                 description: "systemd calendar event",
@@ -61,21 +61,21 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         environment: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "tuptime"))]),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           groups: nix.thunk(() => ({
-            __proto__: pos$9,
-            _tuptime: nix.thunk(() => ({ __proto__: pos$8, members: nix.thunk(() => ["_tuptime"]) })),
+            [nix.POS]: pos$9,
+            _tuptime: nix.thunk(() => ({ [nix.POS]: pos$8, members: nix.thunk(() => ["_tuptime"]) })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             _tuptime: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               isSystemUser: true,
               group: "_tuptime",
               description: "tuptime database owner",
@@ -83,17 +83,17 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           services: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             tuptime: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "The total uptime service",
               documentation: nix.thunk(() => ["man:tuptime(1)"]),
               after: nix.thunk(() => ["time-sync.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 StateDirectory: "tuptime",
                 Type: "oneshot",
                 User: "_tuptime",
@@ -103,10 +103,10 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             "tuptime-sync": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "timer", "enable")), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 description: "Tuptime scheduled sync service",
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   Type: "oneshot",
                   User: "_tuptime",
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "tuptime")}/bin/tuptime -q`),
@@ -114,14 +114,14 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           timers: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             "tuptime-sync": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "timer", "enable")), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 description: "Tuptime scheduled sync timer",
                 wantedBy: nix.thunk(() => ["tuptime.service", "timers.target"]),
                 partOf: nix.thunk(() => ["tuptime.service"]),
                 timerConfig: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   OnBootSec: "1min",
                   OnCalendar: nix.thunk(() => nix.sel(cfg, "timer", "period")),
                   Unit: "tuptime-sync.service",

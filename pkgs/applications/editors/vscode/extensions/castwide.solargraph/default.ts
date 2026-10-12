@@ -12,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "solargraph",
         publisher: "castwide",
         version: "0.25.0",
         hash: "sha256-5SmCkHGCS8dYfdSm3NRk091jH44m+7kkj+VL84YKM4g=",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Ruby language server featuring code completion, intellisense, and inline documentation",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=castwide.solargraph",
         homepage: "https://github.com/castwide/vscode-solargraph",

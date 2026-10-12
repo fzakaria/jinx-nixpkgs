@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "h2non",
           repo: "pook",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/integration/", "tests/unit/interceptors/"]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "HTTP traffic mocking and testing",
         homepage: "https://github.com/h2non/pook",
         changelog: nix.thunk(() => nix.str`https://github.com/h2non/pook/blob/${nix.sel(src, "tag")}/History.rst`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

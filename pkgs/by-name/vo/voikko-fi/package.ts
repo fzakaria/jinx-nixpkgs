@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const foma = nix.arg($, "foma");
   const libvoikko = nix.arg($, "libvoikko");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "voikko-fi",
       version: "2.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "voikko",
           repo: "corevoikko",
           tag: nix.thunk(() => nix.str`rel-voikko-fi-${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       installTargets: "vvfst-install DESTDIR=$(out)/share/voikko-fi",
       nativeBuildInputs: nix.thunk(() => [python3, foma, libvoikko]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://voikko.puimula.org",
         description: "Description of Finnish morphology written for libvoikko",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const jre_headless = nix.arg($, "jre_headless");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "detekt",
       version: "1.23.8",
       jarfilename: nix.thunk(() => nix.str`detekt-${nix.sel(finalAttrs, "version")}-executable.jar`),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/detekt/detekt/releases/download/v${nix.sel(finalAttrs, "version")}/detekt-cli-${nix.sel(finalAttrs, "version")}-all.jar`),
           sha256: "sha256-LOL/lS4VC68oopzacKNjsDQLPoGlX0PlHsXt/8PQZsE=",
         })))),
@@ -40,17 +40,17 @@ makeWrapper ${jre_headless}/bin/java $out/bin/detekt \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Static code analysis for Kotlin",
         mainProgram: "detekt",
         homepage: "https://detekt.dev/",

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "readexpro",
       version: "1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ThomasJockin",
           repo: "readexpro",
           rev: "563dfbb36ae45e52ec50829b016ce724ac2fca70",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       dontConfigure: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/fonts/\ncp -r $src/fonts/. $out/share/fonts/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "World-script expansion of Lexend",
         longDescription: "Readex is the world-script expansion of the font Lexend designed by Thomas Jockin and Nadine Chahine. Readex currently supports Latin and Arabic.\n\nLexend is a variable typeface designed by Bonnie Shaver-Troup and Thomas Jockin in 2018. Applying the Shaver-Troup Individually Optimal Text Formation Factors, studies have found readers instantaneously improve their reading fluency.\n\nThis font is based on the Quicksand project from Andrew Paglinawan, initiated in 2008. Quicksand was improved in 2016 by Thomas Jockin for Google Fonts. Thomas modified Quicksand for the specialized task of improving reading fluency in low-proficiency readers (including those with dyslexia.)\n",
         homepage: "http://www.lexend.com/",

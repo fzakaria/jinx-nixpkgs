@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const docutils = nix.arg($, "docutils");
   const sphinx = nix.arg($, "sphinx");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "linuxdoc",
       version: "20240924",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "return42",
           repo: "linuxdoc",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [fspath, docutils, sphinx]),
       pythonImportsCheck: nix.thunk(() => ["linuxdoc"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Sphinx-doc extensions for sophisticated C developer",
         homepage: "https://github.com/return42/linuxdoc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

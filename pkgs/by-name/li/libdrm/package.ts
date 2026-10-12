@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const valgrind_light = nix.arg($, "valgrind-light");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libdrm",
       version: "2.4.134",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dri.freedesktop.org/libdrm/libdrm-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-rF500VeDDri+5Exqa/OtSXdO8N0qcr2tdKjyAwi1KpU=",
         })))),
@@ -45,16 +45,16 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "tegra", nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")))),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux"))), nix.thunk(() => ["-Detnaviv=disabled"])))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitlab.freedesktop.org/mesa/drm.git",
             "rev-prefix": "libdrm-",
             ignoredVersions: "_",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://gitlab.freedesktop.org/mesa/drm",
         downloadPage: "https://dri.freedesktop.org/libdrm/",
         description: "Direct Rendering Manager library and headers",

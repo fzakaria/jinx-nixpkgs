@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "leftwm-config",
       version: "0-unstable-2024-03-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "leftwm",
           repo: "leftwm-config",
           rev: "a9f2f21ece3a01d6c36610295ae3163644d3f99e",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-FiM51ZV61aCFWHyNIudQl1B7X5ov0SXyWIVE4am1Vmw=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Little satellite utility for LeftWM",
         homepage: "https://github.com/leftwm/leftwm-config",
         maintainers: nix.thunk(() => (() => {

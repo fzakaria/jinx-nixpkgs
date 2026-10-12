@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
           const pname = nix.thunk(() => nix.str`gawkextlib-${name}`);
           const version = "unstable-2022-10-20";
           const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               url: "git://git.code.sf.net/p/gawkextlib/code",
               rev: "f6c75b4ac1e0cd8d70c2f6c7a8d58b4d94cfde97",
               sha256: "sha256-0p3CrQ3TBl7UcveZytK/9rkAzn69RRM2GwY2eCeqlkg=",
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
           const doCheck_1 = doCheck;
           const nativeCheckInputs = nix.thunk(() => [more]);
           const meta = nix.thunk(() => nix.update({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             homepage: "https://sourceforge.net/projects/gawkextlib/",
             description: "Dynamically loaded extension libraries for GNU AWK",
             mainProgram: "xmlgawk",
@@ -99,9 +99,9 @@ export default nix.lambda((args) => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
               return [nix.thunk(() => nix.lookup(w, "tomberek"))];
             })()),
-          }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(broken, null)), nix.thunk(() => ({ __proto__: pos$3, broken: broken })))));
+          }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(broken, null)), nix.thunk(() => ({ [nix.POS]: pos$3, broken: broken })))));
           return {
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             pname,
             version,
             src,
@@ -119,53 +119,53 @@ export default nix.lambda((args) => (() => {
           };
         })()));
     })(), formals$2)));
-  const gawkextlib = nix.thunk(() => nix.app(buildExtension, nix.thunk(() => ({ __proto__: pos$5, gawkextlib: null, name: "lib" }))));
+  const gawkextlib = nix.thunk(() => nix.app(buildExtension, nix.thunk(() => ({ [nix.POS]: pos$5, gawkextlib: null, name: "lib" }))));
   const libs = nix.thunk(() => ({
-    __proto__: pos$24,
-    abort: nix.thunk(() => nix.app(buildExtension, nix.thunk(() => ({ __proto__: pos$6, gawkextlib: gawkextlib, name: "abort" })))),
+    [nix.POS]: pos$24,
+    abort: nix.thunk(() => nix.app(buildExtension, nix.thunk(() => ({ [nix.POS]: pos$6, gawkextlib: gawkextlib, name: "abort" })))),
     aregex: nix.thunk(() => nix.app(buildExtension, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         gawkextlib: gawkextlib,
         name: "aregex",
         extraBuildInputs: nix.thunk(() => [tre]),
       })))),
-    csv: nix.thunk(() => nix.app(buildExtension, nix.thunk(() => ({ __proto__: pos$8, gawkextlib: gawkextlib, name: "csv" })))),
+    csv: nix.thunk(() => nix.app(buildExtension, nix.thunk(() => ({ [nix.POS]: pos$8, gawkextlib: gawkextlib, name: "csv" })))),
     errno: nix.thunk(() => nix.app(buildExtension, nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         gawkextlib: gawkextlib,
         name: "errno",
         extraPostPatch: nix.thunk(() => nix.str`substituteInPlace Makefile.am --replace-fail 'cpp -M' '${nix.sel(stdenv, "cc", "targetPrefix")}cpp -M'
 `),
       })))),
     gd: nix.thunk(() => nix.app(buildExtension, nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         gawkextlib: gawkextlib,
         name: "gd",
         extraBuildInputs: nix.thunk(() => [gd]),
         env: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
         })),
       })))),
     haru: nix.thunk(() => nix.app(buildExtension, nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         gawkextlib: gawkextlib,
         name: "haru",
         extraBuildInputs: nix.thunk(() => [libharu]),
         patches: nix.thunk(() => [nix.path(here, "./fix-typos-corrected-in-libharu-2.4.4.patch")]),
         env: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
         })),
       })))),
     json: nix.thunk(() => nix.app(buildExtension, nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         gawkextlib: gawkextlib,
         name: "json",
         extraBuildInputs: nix.thunk(() => [rapidjson]),
       })))),
     lmdb: nix.thunk(() => nix.app(buildExtension, nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         gawkextlib: gawkextlib,
         name: "lmdb",
         extraPostPatch: nix.thunk(() => nix.str`substituteInPlace Makefile.am --replace-fail 'cpp -M' '${nix.sel(stdenv, "cc", "targetPrefix")}cpp -M'
@@ -174,41 +174,41 @@ export default nix.lambda((args) => (() => {
         doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       })))),
     mbs: nix.thunk(() => nix.app(buildExtension, nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         gawkextlib: gawkextlib,
         name: "mbs",
         extraBuildInputs: nix.thunk(() => [glibcLocales]),
         doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       })))),
     mpfr: nix.thunk(() => nix.app(buildExtension, nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         gawkextlib: gawkextlib,
         name: "mpfr",
         extraBuildInputs: nix.thunk(() => [gmp, mpfr]),
       })))),
-    nl_langinfo: nix.thunk(() => nix.app(buildExtension, nix.thunk(() => ({ __proto__: pos$18, gawkextlib: gawkextlib, name: "nl_langinfo" })))),
+    nl_langinfo: nix.thunk(() => nix.app(buildExtension, nix.thunk(() => ({ [nix.POS]: pos$18, gawkextlib: gawkextlib, name: "nl_langinfo" })))),
     pgsql: nix.thunk(() => nix.app(buildExtension, nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         gawkextlib: gawkextlib,
         name: "pgsql",
         extraBuildInputs: nix.thunk(() => [libpq]),
       })))),
     redis: nix.thunk(() => nix.app(buildExtension, nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         gawkextlib: gawkextlib,
         name: "redis",
         extraBuildInputs: nix.thunk(() => [hiredis]),
       })))),
     select: nix.thunk(() => nix.app(buildExtension, nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         gawkextlib: gawkextlib,
         name: "select",
         extraPostPatch: nix.thunk(() => nix.str`substituteInPlace Makefile.am --replace-fail 'cpp -M' '${nix.sel(stdenv, "cc", "targetPrefix")}cpp -M'
 `),
       })))),
-    timex: nix.thunk(() => nix.app(buildExtension, nix.thunk(() => ({ __proto__: pos$22, gawkextlib: gawkextlib, name: "timex" })))),
+    timex: nix.thunk(() => nix.app(buildExtension, nix.thunk(() => ({ [nix.POS]: pos$22, gawkextlib: gawkextlib, name: "timex" })))),
     xml: nix.thunk(() => nix.app(buildExtension, nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         gawkextlib: gawkextlib,
         name: "xml",
         extraBuildInputs: nix.thunk(() => [expat, libiconv]),
@@ -216,7 +216,7 @@ export default nix.lambda((args) => (() => {
       })))),
   }));
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.update(libs, {
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       gawkextlib: gawkextlib,
       buildExtension: buildExtension,
       full: nix.thunk(() => nix.builtins.attrValues(libs)),

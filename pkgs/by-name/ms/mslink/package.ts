@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
       const pname = "mslink";
       const version = "1.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://www.mamachine.org/mslink/mslink_v${version}.tar.gz`),
           sha256: "1qiwqa6w2in6gk4sxiy37c2wwpakin6l2ad2cf5s7ij96z2ijgqg",
         }))));
       const preBuild = "rm mslink # clean up shipped executable\n";
       const installPhase = "if [[ \"$(uname)\" == \"Darwin\" ]]; then\n  mv mslink.exe mslink\nfi\ninstall -D mslink $out/bin/mslink\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Create Windows Shortcut Files (.LNK) without using Windows",
         homepage: "http://www.mamachine.org/mslink/index.en.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         mainProgram: "mslink",
       }));
-      return { __proto__: pos$3, pname, version, src, preBuild, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, preBuild, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

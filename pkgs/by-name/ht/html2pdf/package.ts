@@ -21,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "html2pdf",
       version: "0.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ilaborie",
           repo: "html2pdf",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-Oc8XrDhJhbBAUHa3+ILcJvnRs2wCowh0GqJzMtYkOog=",
         })))),
       cargoHash: "sha256-j94eelRqEBLUVRa8HacojGTY3zyJNlaOUmljlR5RyXY=",
-      env: nix.thunk(() => ({ __proto__: pos$2, DO_NOT_FORMAT: "true" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, DO_NOT_FORMAT: "true" })),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withChromium, nix.thunk(() => (() => {
           const runtimeInputs = nix.thunk(() => [chromium]);
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "CLI tool to convert local HTML files to PDF",
         homepage: "https://github.com/ilaborie/html2pdf",
         changelog: nix.thunk(() => nix.str`https://github.com/ilaborie/html2pdf/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

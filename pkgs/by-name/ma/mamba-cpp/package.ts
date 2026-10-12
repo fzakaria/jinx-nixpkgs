@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const defaultPkgPath = nix.argOr($, "defaultPkgPath", () => "~/.mamba/pkgs");
   const defaultRootPath = nix.argOr($, "defaultRootPath", () => "~/.mamba");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "mamba-cpp",
       version: nix.thunk(() => nix.attr(libmamba, "version")),
       src: nix.thunk(() => nix.attr(libmamba, "src")),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Reimplementation of the conda package manager",
         homepage: "https://github.com/mamba-org/mamba",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

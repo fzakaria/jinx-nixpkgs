@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const cython = nix.arg($, "cython");
   const pytest = nix.arg($, "pytest");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pybloomfilter3",
       version: "0.7.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cavoq",
           repo: "pybloomfiltermmap3",
           rev: "237631c181423c42043ba8003a305dd1d8e0b700",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest]),
       checkPhase: "runHook preCheck\npython -m unittest discover -s tests -p \"*.py\"\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/prashnts/pybloomfilter3/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG`),
         description: "Fast Python Bloom Filter using Mmap",
         homepage: "https://github.com/prashnts/pybloomfilter3",

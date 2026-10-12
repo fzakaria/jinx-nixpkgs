@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.builtins.findFile(nix.builtins.nixPath, "nixpkgs")), nix.thunk(() => ({}))));
   const feature = nix.arg($, "feature");
   return nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`${feature}-present-structured`), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       __structuredAttrs: true,
       requiredSystemFeatures: nix.thunk(() => [feature]),
     })), nix.thunk(() => nix.str`if [[ -e /${feature}-files ]]; then

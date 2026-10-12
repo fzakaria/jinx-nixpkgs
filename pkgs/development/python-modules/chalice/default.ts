@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const websocket_client = nix.arg($, "websocket-client");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "chalice",
       version: "1.33.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aws",
           repo: "chalice",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["chalice"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python Serverless Microframework for AWS",
         mainProgram: "chalice",
         homepage: "https://github.com/aws/chalice",

@@ -83,16 +83,16 @@ export default nix.lambda((args) => (() => {
   const fpm = nix.thunk(() => nix.sel(config, "services", "phpfpm", "pools", nix.key(poolName)));
   const poolName = "icingaweb2";
   const defaultConfig = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     global: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       module_path: nix.thunk(() => nix.str`${nix.sel(pkgs, "icingaweb2")}/modules`),
     })),
   }));
   return {
-    __proto__: pos$68,
+    [nix.POS]: pos$68,
     meta: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), w);
         return [
@@ -102,88 +102,88 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$33,
+      [nix.POS]: pos$33,
       services: nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         icingaweb2: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
           return {
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             enable: nix.thunk(() => nix.app(nix.lookup(w_1, "mkEnableOption"), "the icingaweb2 web interface")),
             pool: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.lookup(w_1, "str")),
                 default: poolName,
                 description: "Name of existing PHP-FPM pool that is used to run Icingaweb2.\nIf not specified, a pool will automatically created with default values.\n",
               })))),
             libraryPaths: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.lookup(w_1, "package")))),
                 default: nix.thunk(() => ({})),
                 description: "Libraries to add to the Icingaweb2 library path.\nThe name of the attribute is the name of the library, the value\nis the package to add.\n",
               })))),
             virtualHost: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
                 default: "icingaweb2",
                 description: "Name of the nginx virtualhost to use and setup. If null, no virtualhost is set up.\n",
               })))),
             timezone: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.lookup(w_1, "str")),
                 default: "UTC",
                 example: "Europe/Berlin",
                 description: "PHP-compliant timezone specification",
               })))),
             modules: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               doc: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 enable: nix.thunk(() => nix.app(nix.lookup(w_1, "mkEnableOption"), "the icingaweb2 doc module")),
               })),
               migrate: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 enable: nix.thunk(() => nix.app(nix.lookup(w_1, "mkEnableOption"), "the icingaweb2 migrate module")),
               })),
               setup: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 enable: nix.thunk(() => nix.app(nix.lookup(w_1, "mkEnableOption"), "the icingaweb2 setup module")),
               })),
               test: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 enable: nix.thunk(() => nix.app(nix.lookup(w_1, "mkEnableOption"), "the icingaweb2 test module")),
               })),
               translation: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 enable: nix.thunk(() => nix.app(nix.lookup(w_1, "mkEnableOption"), "the icingaweb2 translation module")),
               })),
             })),
             modulePackages: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.lookup(w_1, "package")))),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => nix.app(nix.lookup(w_1, "literalExpression"), "{\n  \"snow\" = icingaweb2Modules.theme-snow;\n}\n")),
                 description: "Name-package attrset of Icingaweb 2 modules packages to enable.\n\nIf you enable modules manually (e.g. via the web ui), they will not be touched.\n",
               })))),
             generalConfig: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "attrs")))),
                 default: null,
                 example: nix.thunk(() => ({
-                  __proto__: pos$17,
-                  general: nix.thunk(() => ({ __proto__: pos$15, showStacktraces: 1n, config_resource: "icingaweb_db" })),
-                  logging: nix.thunk(() => ({ __proto__: pos$16, log: "syslog", level: "CRITICAL" })),
+                  [nix.POS]: pos$17,
+                  general: nix.thunk(() => ({ [nix.POS]: pos$15, showStacktraces: 1n, config_resource: "icingaweb_db" })),
+                  logging: nix.thunk(() => ({ [nix.POS]: pos$16, log: "syslog", level: "CRITICAL" })),
                 })),
                 description: "config.ini contents.\nWill automatically be converted to a .ini file.\nIf you don't set global.module_path, the module will take care of it.\n\nIf the value is null, no config.ini is created and you can\nmodify it manually (e.g. via the web interface).\nNote that you need to update module_path manually.\n",
               })))),
             resources: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "attrs")))),
                 default: null,
                 example: nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   icingaweb_db: nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     type: "db",
                     db: "mysql",
                     host: "localhost",
@@ -195,32 +195,32 @@ export default nix.lambda((args) => (() => {
                 description: "resources.ini contents.\nWill automatically be converted to a .ini file.\n\nIf the value is null, no resources.ini is created and you can\nmodify it manually (e.g. via the web interface).\nNote that if you set passwords here, they will go into the nix store.\n",
               })))),
             authentications: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "attrs")))),
                 default: null,
                 example: nix.thunk(() => ({
-                  __proto__: pos$23,
-                  icingaweb: nix.thunk(() => ({ __proto__: pos$22, backend: "db", resource: "icingaweb_db" })),
+                  [nix.POS]: pos$23,
+                  icingaweb: nix.thunk(() => ({ [nix.POS]: pos$22, backend: "db", resource: "icingaweb_db" })),
                 })),
                 description: "authentication.ini contents.\nWill automatically be converted to a .ini file.\n\nIf the value is null, no authentication.ini is created and you can\nmodify it manually (e.g. via the web interface).\n",
               })))),
             groupBackends: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "attrs")))),
                 default: null,
                 example: nix.thunk(() => ({
-                  __proto__: pos$26,
-                  icingaweb: nix.thunk(() => ({ __proto__: pos$25, backend: "db", resource: "icingaweb_db" })),
+                  [nix.POS]: pos$26,
+                  icingaweb: nix.thunk(() => ({ [nix.POS]: pos$25, backend: "db", resource: "icingaweb_db" })),
                 })),
                 description: "groups.ini contents.\nWill automatically be converted to a .ini file.\n\nIf the value is null, no groups.ini is created and you can\nmodify it manually (e.g. via the web interface).\n",
               })))),
             roles: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "attrs")))),
                 default: null,
                 example: nix.thunk(() => ({
-                  __proto__: pos$29,
-                  Administrators: nix.thunk(() => ({ __proto__: pos$28, users: "admin", permissions: "*" })),
+                  [nix.POS]: pos$29,
+                  Administrators: nix.thunk(() => ({ [nix.POS]: pos$28, users: "admin", permissions: "*" })),
                 })),
                 description: "roles.ini contents.\nWill automatically be converted to a .ini file.\n\nIf the value is null, no roles.ini is created and you can\nmodify it manually (e.g. via the web interface).\n",
               })))),
@@ -229,18 +229,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$67,
+        [nix.POS]: pos$67,
         services: nix.thunk(() => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           phpfpm: nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             pools: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "pool"), nix.str`${poolName}`)), nix.thunk(() => nix.attrsDyn({}, [
                 [poolName, nix.thunk(() => ({
-                  __proto__: pos$37,
+                  [nix.POS]: pos$37,
                   user: "icingaweb2",
                   phpEnv: nix.thunk(() => ({
-                    __proto__: pos$35,
-                    ICINGAWEB_LIBDIR: nix.thunk(() => nix.app(nix.builtins.toString, nix.thunk(() => nix.app(nix.sel(pkgs, "linkFarm"), "icingaweb2-libdir", nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (name) => (path) => ({ __proto__: pos$34, name: name, path: path }), nix.thunk(() => nix.sel(cfg, "libraryPaths")))))))),
+                    [nix.POS]: pos$35,
+                    ICINGAWEB_LIBDIR: nix.thunk(() => nix.app(nix.builtins.toString, nix.thunk(() => nix.app(nix.sel(pkgs, "linkFarm"), "icingaweb2-libdir", nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (name) => (path) => ({ [nix.POS]: pos$34, name: name, path: path }), nix.thunk(() => nix.sel(cfg, "libraryPaths")))))))),
                   })),
                   phpPackage: nix.thunk(() => nix.app(nix.sel(pkgs, "php83", "withExtensions"), nix.lambda((args_1) => (() => {
                       const $_1 = nix.formals(args_1, formals$2);
@@ -251,7 +251,7 @@ export default nix.lambda((args) => (() => {
                   phpOptions: nix.thunk(() => nix.str`date.timezone = "${nix.sel(cfg, "timezone")}"
 `),
                   settings: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs"), (name) => nix.force(nix.lookup(w, "mkDefault")), nix.thunk(() => ({
-                      __proto__: pos$36,
+                      [nix.POS]: pos$36,
                       "listen.owner": nix.thunk(() => nix.sel(config, "services", "nginx", "user")),
                       "listen.group": nix.thunk(() => nix.sel(config, "services", "nginx", "group")),
                       "listen.mode": "0600",
@@ -265,26 +265,26 @@ export default nix.lambda((args) => (() => {
               ])))),
           })),
           icingaweb2: nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             libraryPaths: nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               ipl: nix.thunk(() => nix.sel(pkgs, "icingaweb2-ipl")),
               thirdparty: nix.thunk(() => nix.sel(pkgs, "icingaweb2-thirdparty")),
             })),
           })),
           nginx: nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             enable: true,
             virtualHosts: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "virtualHost"), null)), nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "virtualHost"), nix.thunk(() => ({
-                  __proto__: pos$44,
+                  [nix.POS]: pos$44,
                   root: nix.thunk(() => nix.str`${nix.sel(pkgs, "icingaweb2")}/public`),
                   extraConfig: "index index.php;\ntry_files $1 $uri $uri/ /index.php$is_args$args;\n",
                   locations: nix.thunk(() => ({
-                    __proto__: pos$43,
-                    "~ ..*/.*.php$": nix.thunk(() => ({ __proto__: pos$41, extraConfig: "return 403;\n" })),
+                    [nix.POS]: pos$43,
+                    "~ ..*/.*.php$": nix.thunk(() => ({ [nix.POS]: pos$41, extraConfig: "return 403;\n" })),
                     "~ ^/index.php(.*)$": nix.thunk(() => ({
-                      __proto__: pos$42,
+                      [nix.POS]: pos$42,
                       extraConfig: nix.thunk(() => nix.str`fastcgi_intercept_errors on;
 fastcgi_index index.php;
 include ${nix.sel(config, "services", "nginx", "package")}/conf/fastcgi.conf;
@@ -300,63 +300,63 @@ fastcgi_param SCRIPT_FILENAME ${nix.sel(pkgs, "icingaweb2")}/public/index.php;
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$49,
+          [nix.POS]: pos$49,
           services: nix.thunk(() => nix.attrsDyn({}, [
             [nix.str`phpfpm-${poolName}`, nix.thunk(() => ({
-              __proto__: pos$48,
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$47, ReadWritePaths: nix.thunk(() => ["/etc/icingaweb2"]) })),
+              [nix.POS]: pos$48,
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$47, ReadWritePaths: nix.thunk(() => ["/etc/icingaweb2"]) })),
             }))],
           ])),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$62,
+          [nix.POS]: pos$62,
           etc: nix.thunk(() => (() => {
             const doModule = (name) => nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "modules", nix.key(nix.force(name)), "enable")), nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`icingaweb2/enabledModules/${name}`, nix.thunk(() => ({
-                  __proto__: pos$50,
+                  [nix.POS]: pos$50,
                   source: nix.thunk(() => nix.str`${nix.sel(pkgs, "icingaweb2")}/modules/${name}`),
                 }))],
               ])));
-            return nix.update({}, nix.update(nix.app(nix.lookup(w, "mapAttrs'"), (k) => (v) => nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.str`icingaweb2/enabledModules/${k}`), nix.thunk(() => ({ __proto__: pos$51, source: v }))), nix.thunk(() => nix.sel(cfg, "modulePackages"))), nix.update(nix.app(doModule, "doc"), nix.update(nix.app(doModule, "migrate"), nix.update(nix.app(doModule, "setup"), nix.update(nix.app(doModule, "test"), nix.update(nix.app(doModule, "translation"), nix.update(nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "generalConfig"), null)), nix.thunk(() => ({
-                __proto__: pos$53,
+            return nix.update({}, nix.update(nix.app(nix.lookup(w, "mapAttrs'"), (k) => (v) => nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.str`icingaweb2/enabledModules/${k}`), nix.thunk(() => ({ [nix.POS]: pos$51, source: v }))), nix.thunk(() => nix.sel(cfg, "modulePackages"))), nix.update(nix.app(doModule, "doc"), nix.update(nix.app(doModule, "migrate"), nix.update(nix.app(doModule, "setup"), nix.update(nix.app(doModule, "test"), nix.update(nix.app(doModule, "translation"), nix.update(nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "generalConfig"), null)), nix.thunk(() => ({
+                [nix.POS]: pos$53,
                 "icingaweb2/config.ini": nix.thunk(() => ({
-                  __proto__: pos$52,
+                  [nix.POS]: pos$52,
                   text: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "generators"), "toINI"), nix.thunk(() => ({})), nix.thunk(() => nix.update(defaultConfig, nix.sel(cfg, "generalConfig"))))),
                 })),
               }))), nix.update(nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "resources"), null)), nix.thunk(() => ({
-                __proto__: pos$55,
+                [nix.POS]: pos$55,
                 "icingaweb2/resources.ini": nix.thunk(() => ({
-                  __proto__: pos$54,
+                  [nix.POS]: pos$54,
                   text: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "generators"), "toINI"), nix.thunk(() => ({})), nix.thunk(() => nix.sel(cfg, "resources")))),
                 })),
               }))), nix.update(nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "authentications"), null)), nix.thunk(() => ({
-                __proto__: pos$57,
+                [nix.POS]: pos$57,
                 "icingaweb2/authentication.ini": nix.thunk(() => ({
-                  __proto__: pos$56,
+                  [nix.POS]: pos$56,
                   text: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "generators"), "toINI"), nix.thunk(() => ({})), nix.thunk(() => nix.sel(cfg, "authentications")))),
                 })),
               }))), nix.update(nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "groupBackends"), null)), nix.thunk(() => ({
-                __proto__: pos$59,
+                [nix.POS]: pos$59,
                 "icingaweb2/groups.ini": nix.thunk(() => ({
-                  __proto__: pos$58,
+                  [nix.POS]: pos$58,
                   text: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "generators"), "toINI"), nix.thunk(() => ({})), nix.thunk(() => nix.sel(cfg, "groupBackends")))),
                 })),
               }))), nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "roles"), null)), nix.thunk(() => ({
-                __proto__: pos$61,
+                [nix.POS]: pos$61,
                 "icingaweb2/roles.ini": nix.thunk(() => ({
-                  __proto__: pos$60,
+                  [nix.POS]: pos$60,
                   text: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "generators"), "toINI"), nix.thunk(() => ({})), nix.thunk(() => nix.sel(cfg, "roles")))),
                 })),
               }))))))))))))));
           })()),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$66,
-          groups: nix.thunk(() => ({ __proto__: pos$63, icingaweb2: nix.thunk(() => ({})) })),
+          [nix.POS]: pos$66,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$63, icingaweb2: nix.thunk(() => ({})) })),
           users: nix.thunk(() => ({
-            __proto__: pos$65,
+            [nix.POS]: pos$65,
             icingaweb2: nix.thunk(() => ({
-              __proto__: pos$64,
+              [nix.POS]: pos$64,
               description: "Icingaweb2 service user",
               group: "icingaweb2",
               isSystemUser: true,

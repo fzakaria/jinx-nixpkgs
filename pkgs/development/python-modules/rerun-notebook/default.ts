@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const ipykernel = nix.arg($, "ipykernel");
   const jupyter_ui_poll = nix.arg($, "jupyter-ui-poll");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rerun-notebook",
       version: nix.thunk(() => nix.attr(rerun, "version")),
       format: "wheel",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "rerun_notebook",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           format: "wheel",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(rerun, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Implementation helper for running rerun-sdk in notebooks",
         homepage: "https://github.com/rerun-io/rerun/tree/main/rerun_notebook",
         changelog: nix.thunk(() => nix.attr(from, "changelog")),

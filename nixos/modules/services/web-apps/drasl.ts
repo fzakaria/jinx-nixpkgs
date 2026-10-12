@@ -37,42 +37,42 @@ export default nix.lambda((args) => (() => {
   const getIndex = (item) => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "lists", "findFirstIndex"), (x) => nix.eq(x, item), null, nix.thunk(() => nix.sel(cfg, "settings", "RegistrationOIDC")))));
   const secretFiles = nix.thunk(() => nix.app(nix.sel(lib, "filter"), (x) => nix.app(nix.sel(lib, "hasAttr"), "ClientSecretFile", nix.thunk(() => nix.app(filterAttrs, x))), nix.thunk(() => nix.sel(cfg, "settings", "RegistrationOIDC"))));
   const settings = nix.thunk(() => nix.app(nix.sel(format, "generate"), "drasl-config.toml", nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "settings", "RegistrationOIDC"), [])) ? nix.app(nix.sel(lib, "filterAttrs"), (n) => (v) => (nix.asBool(!nix.eq(n, "RegistrationOIDC")) || nix.asBool(!nix.eq(v, []))), nix.thunk(() => nix.sel(cfg, "settings"))) : nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.sel(cfg, "settings")), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         RegistrationOIDC: nix.thunk(() => nix.builtins.map((x) => (nix.asBool(nix.app(nix.sel(lib, "hasAttr"), "ClientSecretFile", nix.thunk(() => nix.app(filterAttrs, x)))) ? nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.app(filterAttrs, x)), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               ClientSecretFile: nix.thunk(() => nix.str`$CREDENTIALS_DIRECTORY/${nix.app(getIndex, x)}`),
             }))) : nix.app(filterAttrs, x)), nix.thunk(() => nix.sel(cfg, "settings", "RegistrationOIDC")))),
       })))))));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         drasl: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Drasl")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "drasl", nix.thunk(() => ({})))),
           enableDebug: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "debugging")),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "Configuration for Drasl. See the\n[Drasl documentation](https://github.com/unmojang/drasl/blob/master/doc/configuration.md)\nfor possible options.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   freeformType: nix.thunk(() => nix.sel(format, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     RegistrationOIDC: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         default: [],
                         description: "List of OpenID connect providers.",
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                              __proto__: pos$5,
+                              [nix.POS]: pos$5,
                               freeformType: nix.thunk(() => nix.sel(format, "type")),
                               options: nix.thunk(() => ({
-                                __proto__: pos$4,
+                                [nix.POS]: pos$4,
                                 ClientSecretFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                    __proto__: pos$3,
+                                    [nix.POS]: pos$3,
                                     default: null,
                                     description: "Path to a file containing the OIDC client secret.\n\n::: {.note}\nThe NixOS module will automatically load this file using\nsystemd's LoadCredential. Make sure this file is only\nreadable by the root user.\n:::\n",
                                     type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
@@ -87,32 +87,32 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             assertion: nix.thunk(() => nix.app(nix.sel(lib, "allUnique"), nix.thunk(() => nix.sel(cfg, "settings", "RegistrationOIDC")))),
             message: "All items in `services.drasl.settings.RegistrationOIDC` must be unique.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             assertion: nix.thunk(() => nix.app(nix.sel(lib, "all"), (x) => (!nix.asBool(nix.app(nix.sel(lib, "hasAttr"), "ClientSecretFile", nix.thunk(() => nix.app(filterAttrs, x)))) || nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "hasAttr"), "ClientSecret", nix.thunk(() => nix.app(filterAttrs, x)))))), nix.thunk(() => nix.sel(cfg, "settings", "RegistrationOIDC")))),
             message: nix.thunk(() => nix.add("Do not set both `services.drasl.settings.RegistrationOIDC.*.ClientSecret` ", "and `services.drasl.settings.RegistrationOIDC.*.ClientSecretFile`")),
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           services: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             drasl: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               description: "Drasl",
               after: nix.thunk(() => ["network-online.target", "nss-lookup.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
-              environment: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableDebug")), nix.thunk(() => ({ __proto__: pos$15, DRASL_DEBUG: "1" })))),
+              environment: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableDebug")), nix.thunk(() => ({ [nix.POS]: pos$15, DRASL_DEBUG: "1" })))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} -config ${settings}`),
                 DynamicUser: true,
                 RuntimeDirectory: "drasl",
@@ -163,7 +163,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const systemrdl_compiler = nix.arg($, "systemrdl-compiler");
   const uv_build = nix.arg($, "uv-build");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "peakrdl-rust",
       version: "0.7.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "darsor",
           repo: "PeakRDL-rust",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [uv_build]),
       dependencies: nix.thunk(() => [case_converter, jinja2, systemrdl_compiler]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Generate a Rust crate from SystemRDL for accessing control/status registers",
         homepage: "https://peakrdl-rust.readthedocs.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

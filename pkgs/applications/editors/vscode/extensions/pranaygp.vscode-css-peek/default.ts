@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const vscode_utils = nix.arg($, "vscode-utils");
   const version = "4.4.3";
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         publisher: "pranaygp",
         name: "vscode-css-peek",
         version: version,
         hash: "sha256-oY+mpDv2OTy5hFEk2DMNHi9epFm4Ay4qi0drCXPuYhU=",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Allow peeking to css ID and class strings as definitions from html files to respective CSS",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=pranaygp.vscode-css-peek",
         homepage: "https://github.com/pranaygp/vscode-css-peek",

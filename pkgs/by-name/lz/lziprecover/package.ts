@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const lzip = nix.arg($, "lzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lziprecover",
       version: "1.26",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://savannah/lzip/lziprecover/lziprecover-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-4jQAWnVtVkn0FoYRbT5UhzbUp35aXsN7lDymZQeHgB0=",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [lzip]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.nongnu.org/lzip/lziprecover.html",
         description: "Data recovery tool for lzip compressed files",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

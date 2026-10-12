@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const isCross = nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gsoap",
       version: "2.8.144",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/gsoap2/gsoap_${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-uYGBj7vUv59vT+rAMTaAD24Wp9C3UVkk/3omYcom5YE=",
         })))),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
 `))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C/C++ toolkit for SOAP web services and XML-based applications",
         homepage: "https://www.genivia.com/products.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

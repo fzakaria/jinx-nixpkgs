@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "step-ca";
       const version = "0.30.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "smallstep",
           repo: "certificates",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -46,11 +46,11 @@ substituteInPlace systemd/step-ca.service --replace "/bin/kill" "${coreutils}/bi
       const __darwinAllowLocalNetworking = true;
       const checkFlags = nix.thunk(() => ["-p 1"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, "step-ca": nix.thunk(() => nix.sel(nixosTests, "step-ca")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, "step-ca": nix.thunk(() => nix.sel(nixosTests, "step-ca")) })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Private certificate authority (X.509 & SSH) & ACME server for secure automated certificate management, so you can use TLS everywhere & SSO for SSH",
         homepage: "https://smallstep.com/certificates/",
         changelog: nix.thunk(() => nix.str`https://github.com/smallstep/certificates/releases/tag/v${version}`),
@@ -65,7 +65,7 @@ substituteInPlace systemd/step-ca.service --replace "/bin/kill" "${coreutils}/bi
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

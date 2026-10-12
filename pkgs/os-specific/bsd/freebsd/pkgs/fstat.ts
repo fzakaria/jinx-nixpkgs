@@ -11,10 +11,10 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const mkDerivation = nix.arg($, "mkDerivation");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "usr.bin/fstat",
       outputs: nix.thunk(() => ["out", "man", "debug"]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "fstat" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "fstat" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=fstat.ts.map

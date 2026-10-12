@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const isodate = nix.arg($, "isodate");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "azure-mgmt-automation",
       version: "2.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "azure_mgmt_automation",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-nRVIwul58bj8PtUXc/yEo0BkVSAzU+f3v19A5YEQmRY=",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["azure.mgmt.automation"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "This is the Microsoft Azure Automation Client Library",
         homepage: "https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/automation/azure-mgmt-automation",
         changelog: nix.thunk(() => nix.str`https://github.com/Azure/azure-sdk-for-python/blob/azure-mgmt-automation_${nix.sel(finalAttrs, "version")}/sdk/automation/azure-mgmt-automation/CHANGELOG.md`),

@@ -17,26 +17,26 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     name: "goatcounter",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "bhankas"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          __proto__: pos$5,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$2, memorySize: 2048n })),
+          [nix.POS]: pos$5,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, memorySize: 2048n })),
           services: nix.thunk(() => ({
-            __proto__: pos$4,
-            goatcounter: nix.thunk(() => ({ __proto__: pos$3, enable: true, proxy: true })),
+            [nix.POS]: pos$4,
+            goatcounter: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true, proxy: true })),
           })),
         };
       })(), formals$2),

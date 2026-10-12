@@ -25,20 +25,20 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "honey-home",
       version: "0-unstable-2022-10-25",
       src: nix.thunk(() => nix.app(nix.sel(nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dvdfu",
           repo: "ld38",
           rev: "45bb4bde8a667ee8cfb5034345bec90f70eb3b91",
           hash: "sha256-m8dyCoudTJDfP0KGcoA0Xj5LmRwN/8YOfEwiwCa8sOE=",
           fetchSubmodules: true,
         }))), "overrideAttrs"), (oldAttrs) => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           env: nix.thunk(() => nix.update(nix.selOr(oldAttrs, () => ({}), "env"), {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             GIT_CONFIG_COUNT: 1n,
             GIT_CONFIG_KEY_0: "url.https://github.com/.insteadOf",
             GIT_CONFIG_VALUE_0: "git@github.com:",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         }))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/dvdfu/ld38/commit/808537065a8dacc903e3d704b381f61b11f91d47.patch?full_index=1",
             hash: "sha256-iXFQWRU2hbKjVGjkwZKgxckRpr3/DUXczNNuMz48ktA=",
           })))),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems, makeBinaryWrapper, imagemagick, strip_nondeterminism, zip]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "Honey Home",
             exec: "honey-home",
             icon: "honey-home",
@@ -81,7 +81,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), love)} $out/bin/honey-home \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://github.com/dvdfu/ld38",
         downloadPage: "https://dvdfu.itch.io/honey-home",
         description: "A game where you save the bees, Ludum Dare 38 Game Jam winner",

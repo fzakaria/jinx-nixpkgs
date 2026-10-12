@@ -14,10 +14,10 @@ export default nix.lambda((args) => (() => {
   const libmpc = nix.arg($, "libmpc");
   const mpfr = nix.arg($, "mpfr");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "kcalc",
       extraBuildInputs: nix.thunk(() => [qt5compat, gmp, libmpc, mpfr]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "kcalc" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "kcalc" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

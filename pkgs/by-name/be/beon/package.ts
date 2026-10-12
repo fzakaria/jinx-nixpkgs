@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const mkfontscale = nix.arg($, "mkfontscale");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "beon",
       version: "2024-02-26",
       outputs: nix.thunk(() => ["out", "webfont"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "noirblancrouge",
           repo: "Beon",
           rev: "c0379c80a3b7d01532413f43f49904b2567341ac",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "rm -r docs/proof",
       postInstall: "mkfontdir $out/share/fonts\nmkfontscale $out/share/fonts\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Neon stencil typeface",
         homepage: "https://noirblancrouge.com/fonts/beon-display",
         changelog: "https://github.com/noirblancrouge/Beon#changelog",

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const gtest = nix.arg($, "gtest");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "elfio",
       version: "3.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "serge1",
           repo: "elfio",
           rev: nix.thunk(() => nix.str`Release_${nix.sel(finalAttrs, "version")}`),
@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/serge1/ELFIO/commit/34d2c64237bb40f09879e7421db120e50e7e2923.patch",
             hash: "sha256-HD+rOwqkuvu4lgeIHhiORNxpuowDfy94i0OgUVqbhJ8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/serge1/ELFIO/commit/575bfdb12cd90fa8913660295103549f151d116a.patch",
             hash: "sha256-9N/NC5U+zs9eFKYLw/kVdrMGySWakWH7HG4fsK0mvNw=",
           })))),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DELFIO_BUILD_TESTS=ON", "-DFETCHCONTENT_TRY_FIND_PACKAGE_MODE=ALWAYS"]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Header-only C++ library for reading and generating files in the ELF binary format",
         homepage: "https://github.com/serge1/ELFIO",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const libcusparse = nix.arg($, "libcusparse");
   const libnvjitlink = nix.arg($, "libnvjitlink");
   return nix.app(buildRedist, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       redistName: "cuda",
       pname: "libcusolver",
       outputs: nix.thunk(() => ["out", "dev", "include", "lib", "static", "stubs"]),
       buildInputs: nix.thunk(() => nix.concat([nix.thunk(() => nix.app(nix.sel(lib, "getLib"), libcublas))], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(cudaAtLeast, "12.0")), nix.thunk(() => [libnvjitlink])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(cudaAtLeast, "12.1")), nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "getLib"), libcusparse))]))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Collection of dense and sparse direct linear solvers and Eigen solvers",
         longDescription: "The NVIDIA cuSOLVER library provides a collection of dense and sparse direct linear solvers and Eigen solvers\nwhich deliver significant acceleration for Computer Vision, CFD, Computational Chemistry, and Linear\nOptimization applications.\n",
         homepage: "https://developer.nvidia.com/cusolver",

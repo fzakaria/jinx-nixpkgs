@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const swift = nix.arg($, "swift");
   const swiftpm = nix.arg($, "swiftpm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "airdrop-cli",
       version: "0-unstable-2025-07-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vldmrkl",
           repo: "airdrop-cli",
           rev: "8bb7d64c9f9ce1166405aa5b9a11f00dcc466ea0",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       dontUseSwiftpmInstall: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Use Airdrop from the CLI on macOS written in Swift",
         homepage: "https://github.com/vldmrkl/airdrop-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

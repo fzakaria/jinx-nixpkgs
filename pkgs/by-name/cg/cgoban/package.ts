@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cgoban",
       version: "3.5.144",
       nativeBuildInputs: nix.thunk(() => [temurin_jre_bin_17, makeWrapper]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://web.archive.org/web/20240314222506/https://files.gokgs.com/javaBin/cgoban.jar",
           hash: "sha256-ehN/aQU23ZEtDh/+r3H2PDPBrWhgoMfgEfKq5q08kFY=",
         })))),
@@ -34,7 +34,7 @@ makeWrapper ${temurin_jre_bin_17}/bin/java $out/bin/cgoban --add-flags "-jar $ou
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Client for the KGS Go Server",
         mainProgram: "cgoban",
         homepage: "https://www.gokgs.com/",

@@ -13,17 +13,17 @@ const pos$5 = nix.positions(here + "/stump.nix", [["name", 3, 3], ["nodes", 5, 3
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     name: "stump-nixos",
     nodes: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           services: nix.thunk(() => ({
-            __proto__: pos$2,
-            stump: nix.thunk(() => ({ __proto__: pos$1, enable: true })),
+            [nix.POS]: pos$2,
+            stump: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
           })),
         };
       })(), formals$2),

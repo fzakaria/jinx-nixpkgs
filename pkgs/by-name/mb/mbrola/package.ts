@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const pname = "mbrola";
   const version = "3.3-unstable-2024-01-29";
   const meta = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
     maintainers: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
     homepage: "https://github.com/numediart/MBROLA",
   }));
   const bin = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: nix.thunk(() => nix.str`${pname}-bin`),
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "numediart",
           repo: "MBROLA",
           rev: "bf17e9e1416a647979ac683657a536e8ca5d880e",
@@ -43,16 +43,16 @@ export default nix.lambda((args) => (() => {
         })))),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`)]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
         })))),
       installPhase: "runHook preInstall\ninstall -D Bin/mbrola $out/bin/mbrola\nrm -rf $out/share/mbrola/voices/*\nrunHook postInstall\n",
       meta: nix.thunk(() => nix.update(meta, {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Speech synthesizer based on the concatenation of diphones (binary only)",
       })),
     }))));
-  return nix.app(runCommandLocal, nix.thunk(() => nix.str`${pname}-${version}`), nix.thunk(() => ({ __proto__: pos$6, pname: pname, version: version, meta: meta })), nix.thunk(() => nix.str`mkdir -p "$out/share/mbrola"
+  return nix.app(runCommandLocal, nix.thunk(() => nix.str`${pname}-${version}`), nix.thunk(() => ({ [nix.POS]: pos$6, pname: pname, version: version, meta: meta })), nix.thunk(() => nix.str`mkdir -p "$out/share/mbrola"
 ln -s '${mbrola_voices}/data' "$out/share/mbrola/voices"
 ln -s '${bin}/bin' "$out/"
 `));

@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const webtest_aiohttp = nix.arg($, "webtest-aiohttp");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aiohttp-utils",
       version: "3.2.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sloria",
           repo: "aiohttp-utils",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
           "tests/test_routing.py",
         ]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Handy utilities for building aiohttp.web applications",
         homepage: "https://github.com/sloria/aiohttp-utils",
         changelog: nix.thunk(() => nix.str`https://github.com/sloria/aiohttp-utils/tags/${nix.sel(finalAttrs, "src", "tag")}`),

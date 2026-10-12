@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const systemd = nix.arg($, "systemd");
   const umount = nix.arg($, "umount");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "interlock",
       version: "2020.03.05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "usbarmory",
           repo: "interlock",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "mkdir -p $out/share\ncp -R $src/static $out/share\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/usbarmory/interlock",
         description: "File encryption tool and an HSM frontend",
         mainProgram: "interlock",

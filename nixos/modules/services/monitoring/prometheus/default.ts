@@ -192,7 +192,7 @@ journalctl -u prometheus.service --after-cursor="$cursor" -f \\
   | grep -m 1 "Completed loading of configuration file" > /dev/null
 `)));
   const promtoolCheck = (what) => (name) => (file) => (nix.asBool(checkConfigEnabled) ? nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`${name}-${nix.app(nix.lookup(w, "replaceStrings"), nix.thunk(() => [" "]), nix.thunk(() => [""]), what)}-checked`), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       preferLocalBuild: true,
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package", "cli"))]),
     })), nix.thunk(() => nix.str`ln -s ${file} $out
@@ -200,7 +200,7 @@ promtool ${what} $out
 `)) : nix.force(file));
   const generatedPrometheusYml = nix.thunk(() => nix.app(nix.sel(yaml, "generate"), "prometheus.yml", promConfig));
   const promConfig = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     global: nix.thunk(() => nix.app(filterValidPrometheus, nix.thunk(() => nix.sel(cfg, "globalConfig")))),
     scrape_configs: nix.thunk(() => nix.app(filterValidPrometheus, nix.thunk(() => nix.sel(cfg, "scrapeConfigs")))),
     remote_write: nix.thunk(() => nix.app(filterValidPrometheus, nix.thunk(() => nix.sel(cfg, "remoteWrite")))),
@@ -209,7 +209,7 @@ promtool ${what} $out
             nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "prometheus.rules", nix.thunk(() => nix.app(nix.lookup(w, "concatStringsSep"), "\n", nix.thunk(() => nix.sel(cfg, "rules")))))),
           ])))))))),
     alerting: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       alertmanagers: nix.thunk(() => nix.attr(cfg, "alertmanagers")),
     })),
   }));
@@ -231,20 +231,20 @@ Defaults to \`\`\`\`${defaultStr}\`\`\`\` in prometheus
 when set to \`null\`.
 `)));
   const mkOpt = (type) => (description) => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), type)),
       default: null,
       description: description,
     })));
   const mkSdConfigModule = (extraOptions) => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       options: nix.thunk(() => nix.update({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         basic_auth: nix.thunk(() => nix.app(mkOpt, nix.thunk(() => nix.sel(promTypes, "basic_auth")), "Optional HTTP basic authentication information.\n")),
         authorization: nix.thunk(() => nix.app(mkOpt, nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               options: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.app(mkDefOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), "Bearer", "Sets the authentication type.\n")),
                 credentials: nix.thunk(() => nix.app(mkOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), "Sets the credentials. It is mutually exclusive with `credentials_file`.\n")),
                 credentials_file: nix.thunk(() => nix.app(mkOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), "Sets the credentials to the credentials read from the configured file.\nIt is mutually exclusive with `credentials`.\n")),
@@ -257,11 +257,11 @@ when set to \`null\`.
       }, extraOptions)),
     })));
   const promTypes = nix.thunk(() => ({
-    __proto__: pos$109,
+    [nix.POS]: pos$109,
     globalConfig: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         options: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           scrape_interval: nix.thunk(() => nix.app(mkDefOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), "1m", "How frequently to scrape targets by default.\n")),
           scrape_timeout: nix.thunk(() => nix.app(mkDefOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), "10s", "How long until a scrape request times out.\n")),
           evaluation_interval: nix.thunk(() => nix.app(mkDefOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), "1m", "How frequently to evaluate rules by default.\n")),
@@ -270,11 +270,11 @@ when set to \`null\`.
         })),
       })))),
     basic_auth: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         options: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           username: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "HTTP username\n",
             })))),
@@ -283,9 +283,9 @@ when set to \`null\`.
         })),
       })))),
     sigv4: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         options: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           region: nix.thunk(() => nix.app(mkOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), "The AWS region.\n")),
           access_key: nix.thunk(() => nix.app(mkOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), "The Access Key ID.\n")),
           secret_key: nix.thunk(() => nix.app(mkOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), "The Secret Access Key.\n")),
@@ -294,9 +294,9 @@ when set to \`null\`.
         })),
       })))),
     tls_config: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         options: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           ca_file: nix.thunk(() => nix.app(mkOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), "CA certificate to validate API server certificate with.\n")),
           cert_file: nix.thunk(() => nix.app(mkOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), "Certificate file for client cert authentication to the server.\n")),
           key_file: nix.thunk(() => nix.app(mkOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), "Key file for client cert authentication to the server.\n")),
@@ -305,17 +305,17 @@ when set to \`null\`.
         })),
       })))),
     scrape_config: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         options: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           authorization: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "attrs")))),
               default: null,
               description: "Sets the `Authorization` header on every scrape request with the configured credentials.\n",
             })))),
           job_name: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "The job name assigned to scraped metrics by default.\n",
             })))),
@@ -369,13 +369,13 @@ when set to \`null\`.
         })),
       })))),
     azure_sd_config: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         options: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           environment: nix.thunk(() => nix.app(mkDefOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), "AzurePublicCloud", "The Azure environment.\n")),
           authentication_method: nix.thunk(() => nix.app(mkDefOpt, nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["OAuth", "ManagedIdentity"]))), "OAuth", "The authentication method, either OAuth or ManagedIdentity.\nSee <https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview>\n")),
           subscription_id: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "The subscription ID.\n",
             })))),
@@ -390,7 +390,7 @@ when set to \`null\`.
         })),
       })))),
     consul_sd_config: nix.thunk(() => nix.app(mkSdConfigModule, nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         server: nix.thunk(() => nix.app(mkDefOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), "localhost:8500", "Consul server to query.\n")),
         token: nix.thunk(() => nix.app(mkOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), "Consul token")),
         datacenter: nix.thunk(() => nix.app(mkOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), "Consul datacenter")),
@@ -406,28 +406,28 @@ when set to \`null\`.
         refresh_interval: nix.thunk(() => nix.app(mkDefOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), "30s", "The time after which the provided names are refreshed.\n\nOn large setup it might be a good idea to increase this value\nbecause the catalog will change all the time.\n")),
       })))),
     digitalocean_sd_config: nix.thunk(() => nix.app(mkSdConfigModule, nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         port: nix.thunk(() => nix.app(mkDefOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")), "80", "The port to scrape metrics from.\n")),
         refresh_interval: nix.thunk(() => nix.app(mkDefOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), "60s", "The time after which the droplets are refreshed.\n")),
       })))),
     docker_sd_config: nix.thunk(() => nix.app(mkDockerSdConfigModule, nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         host_networking_host: nix.thunk(() => nix.app(mkDefOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), "localhost", "The host to use if the container is in host networking mode.\n")),
       })))),
     dockerswarm_sd_config: nix.thunk(() => nix.app(mkDockerSdConfigModule, nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         role: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["services", "tasks", "nodes"]))),
             description: "Role of the targets to retrieve. Must be `services`, `tasks`, or `nodes`.\n",
           })))),
       })))),
     dns_sd_config: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         options: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           names: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               description: "A list of DNS SRV record names to be queried.\n",
             })))),
@@ -437,11 +437,11 @@ when set to \`null\`.
         })),
       })))),
     ec2_sd_config: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-        __proto__: pos$39,
+        [nix.POS]: pos$39,
         options: nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           region: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "The AWS Region. If blank, the region from the instance metadata is used.\n",
             })))),
@@ -453,16 +453,16 @@ when set to \`null\`.
           refresh_interval: nix.thunk(() => nix.app(mkDefOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), "60s", "Refresh interval to re-read the instance list.\n")),
           port: nix.thunk(() => nix.app(mkDefOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")), "80", "The port to scrape metrics from. If using the public IP\naddress, this must instead be specified in the relabeling\nrule.\n")),
           filters: nix.thunk(() => nix.app(mkOpt, nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                  __proto__: pos$37,
+                  [nix.POS]: pos$37,
                   options: nix.thunk(() => ({
-                    __proto__: pos$36,
+                    [nix.POS]: pos$36,
                     name: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$34,
+                        [nix.POS]: pos$34,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         description: "See [this list](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstances.html)\nfor the available filters.\n",
                       })))),
                     values: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$35,
+                        [nix.POS]: pos$35,
                         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                         default: [],
                         description: "Value of the filter.\n",
@@ -472,19 +472,19 @@ when set to \`null\`.
         })),
       })))),
     eureka_sd_config: nix.thunk(() => nix.app(mkSdConfigModule, nix.thunk(() => ({
-        __proto__: pos$41,
+        [nix.POS]: pos$41,
         server: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             description: "The URL to connect to the Eureka server.\n",
           })))),
       })))),
     file_sd_config: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-        __proto__: pos$44,
+        [nix.POS]: pos$44,
         options: nix.thunk(() => ({
-          __proto__: pos$43,
+          [nix.POS]: pos$43,
           files: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               description: "Patterns for files from which target groups are extracted. Refer\nto the Prometheus documentation for permitted filename patterns\nand formats.\n",
             })))),
@@ -492,16 +492,16 @@ when set to \`null\`.
         })),
       })))),
     gce_sd_config: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-        __proto__: pos$48,
+        [nix.POS]: pos$48,
         options: nix.thunk(() => ({
-          __proto__: pos$47,
+          [nix.POS]: pos$47,
           project: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "The GCP Project.\n",
             })))),
           zone: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "The zone of the scrape targets. If you need multiple zones use multiple\ngce_sd_configs.\n",
             })))),
@@ -512,9 +512,9 @@ when set to \`null\`.
         })),
       })))),
     hetzner_sd_config: nix.thunk(() => nix.app(mkSdConfigModule, nix.thunk(() => ({
-        __proto__: pos$50,
+        [nix.POS]: pos$50,
         role: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$49,
+            [nix.POS]: pos$49,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["robot", "hcloud"]))),
             description: "The Hetzner role of entities that should be discovered.\nOne of `robot` or `hcloud`.\n",
           })))),
@@ -522,11 +522,11 @@ when set to \`null\`.
         refresh_interval: nix.thunk(() => nix.app(mkDefOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), "60s", "The time after which the servers are refreshed.\n")),
       })))),
     http_sd_config: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-        __proto__: pos$53,
+        [nix.POS]: pos$53,
         options: nix.thunk(() => ({
-          __proto__: pos$52,
+          [nix.POS]: pos$52,
           url: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "URL from which the targets are fetched.\n",
             })))),
@@ -538,27 +538,27 @@ when set to \`null\`.
         })),
       })))),
     kubernetes_sd_config: nix.thunk(() => nix.app(mkSdConfigModule, nix.thunk(() => ({
-        __proto__: pos$60,
+        [nix.POS]: pos$60,
         api_server: nix.thunk(() => nix.app(mkOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), "The API server addresses. If left empty, Prometheus is assumed to run inside\nof the cluster and will discover API servers automatically and use the pod's\nCA certificate and bearer token file at /var/run/secrets/kubernetes.io/serviceaccount/.\n")),
         role: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$54,
+            [nix.POS]: pos$54,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["endpoints", "service", "pod", "node", "ingress"]))),
             description: "The Kubernetes role of entities that should be discovered.\nOne of endpoints, service, pod, node, or ingress.\n",
           })))),
         kubeconfig_file: nix.thunk(() => nix.app(mkOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), "Optional path to a kubeconfig file.\nNote that api_server and kube_config are mutually exclusive.\n")),
         namespaces: nix.thunk(() => nix.app(mkOpt, nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               options: nix.thunk(() => ({
-                __proto__: pos$55,
+                [nix.POS]: pos$55,
                 names: nix.thunk(() => nix.app(mkOpt, nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))), "Namespace name.\n")),
               })),
             })))), "Optional namespace discovery. If omitted, all namespaces are used.\n")),
         selectors: nix.thunk(() => nix.app(mkOpt, nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                __proto__: pos$59,
+                [nix.POS]: pos$59,
                 options: nix.thunk(() => ({
-                  __proto__: pos$58,
+                  [nix.POS]: pos$58,
                   role: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                      __proto__: pos$57,
+                      [nix.POS]: pos$57,
                       type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                       description: "Selector role\n",
                     })))),
@@ -568,9 +568,9 @@ when set to \`null\`.
               })))))), "Optional label and field selectors to limit the discovery process to a subset of available resources.\nSee <https://kubernetes.io/docs/concepts/overview/working-with-objects/field-selectors/>\nand <https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/> to learn more about the possible\nfilters that can be used. Endpoints role supports pod, service and endpoints selectors, other roles\nonly support selectors matching the role itself (e.g. node role can only contain node selectors).\n\nNote: When making decision about using field/label selector make sure that this\nis the best approach - it will prevent Prometheus from reusing single list/watch\nfor all scrape configs. This might result in a bigger load on the Kubernetes API,\nbecause per each selector combination there will be additional LIST/WATCH. On the other hand,\nif you just want to monitor small subset of pods in large cluster it's recommended to use selectors.\nDecision, if selectors should be used or not depends on the particular situation.\n")),
       })))),
     kuma_sd_config: nix.thunk(() => nix.app(mkSdConfigModule, nix.thunk(() => ({
-        __proto__: pos$62,
+        [nix.POS]: pos$62,
         server: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$61,
+            [nix.POS]: pos$61,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             description: "Address of the Kuma Control Plane's MADS xDS server.\n",
           })))),
@@ -578,9 +578,9 @@ when set to \`null\`.
         fetch_timeout: nix.thunk(() => nix.app(mkDefOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), "2m", "The time after which the monitoring assignments are refreshed.\n")),
       })))),
     lightsail_sd_config: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-        __proto__: pos$64,
+        [nix.POS]: pos$64,
         options: nix.thunk(() => ({
-          __proto__: pos$63,
+          [nix.POS]: pos$63,
           region: nix.thunk(() => nix.app(mkOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), "The AWS region. If blank, the region from the instance metadata is used.\n")),
           endpoint: nix.thunk(() => nix.app(mkOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), "Custom endpoint to be used.\n")),
           access_key: nix.thunk(() => nix.app(mkOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), "The AWS API keys. If blank, the environment variable `AWS_ACCESS_KEY_ID` is used.\n")),
@@ -592,15 +592,15 @@ when set to \`null\`.
         })),
       })))),
     linode_sd_config: nix.thunk(() => nix.app(mkSdConfigModule, nix.thunk(() => ({
-        __proto__: pos$65,
+        [nix.POS]: pos$65,
         port: nix.thunk(() => nix.app(mkDefOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")), "80", "The port to scrape metrics from.\n")),
         tag_separator: nix.thunk(() => nix.app(mkDefOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), ",", "The string by which Linode Instance tags are joined into the tag label.\n")),
         refresh_interval: nix.thunk(() => nix.app(mkDefOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), "60s", "The time after which the linode instances are refreshed.\n")),
       })))),
     marathon_sd_config: nix.thunk(() => nix.app(mkSdConfigModule, nix.thunk(() => ({
-        __proto__: pos$67,
+        [nix.POS]: pos$67,
         servers: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$66,
+            [nix.POS]: pos$66,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
             description: "List of URLs to be used to contact Marathon servers. You need to provide at least one server URL.\n",
           })))),
@@ -609,16 +609,16 @@ when set to \`null\`.
         auth_token_file: nix.thunk(() => nix.app(mkOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), "Optional authentication information for token-based authentication:\n<https://docs.mesosphere.com/1.11/security/ent/iam-api/#passing-an-authentication-token>\nIt is mutually exclusive with `auth_token` and other authentication mechanisms.\n")),
       })))),
     nerve_sd_config: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-        __proto__: pos$71,
+        [nix.POS]: pos$71,
         options: nix.thunk(() => ({
-          __proto__: pos$70,
+          [nix.POS]: pos$70,
           servers: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$68,
+              [nix.POS]: pos$68,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               description: "The Zookeeper servers.\n",
             })))),
           paths: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$69,
+              [nix.POS]: pos$69,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               description: "Paths can point to a single service, or the root of a tree of services.\n",
             })))),
@@ -626,21 +626,21 @@ when set to \`null\`.
         })),
       })))),
     openstack_sd_config: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-        __proto__: pos$75,
+        [nix.POS]: pos$75,
         options: nix.thunk(() => (() => {
           const userDescription = "username is required if using Identity V2 API. Consult with your provider's\ncontrol panel to discover your account's username. In Identity V3, either\nuserid or a combination of username and domain_id or domain_name are needed.\n";
           const domainDescription = "At most one of domain_id and domain_name must be provided if using username\nwith Identity V3. Otherwise, either are optional.\n";
           const projectDescription = "The project_id and project_name fields are optional for the Identity V2 API.\nSome providers allow you to specify a project_name instead of the project_id.\nSome require both. Your provider's authentication policies will determine\nhow these fields influence authentication.\n";
           const applicationDescription = "The application_credential_id or application_credential_name fields are\nrequired if using an application credential to authenticate. Some providers\nallow you to create an application credential to authenticate rather than a\npassword.\n";
           return {
-            __proto__: pos$74,
+            [nix.POS]: pos$74,
             role: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$72,
+                [nix.POS]: pos$72,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 description: "The OpenStack role of entities that should be discovered.\n",
               })))),
             region: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$73,
+                [nix.POS]: pos$73,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 description: "The OpenStack Region.\n",
               })))),
@@ -664,14 +664,14 @@ when set to \`null\`.
         })()),
       })))),
     puppetdb_sd_config: nix.thunk(() => nix.app(mkSdConfigModule, nix.thunk(() => ({
-        __proto__: pos$78,
+        [nix.POS]: pos$78,
         url: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$76,
+            [nix.POS]: pos$76,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             description: "The URL of the PuppetDB root query endpoint.\n",
           })))),
         query: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$77,
+            [nix.POS]: pos$77,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             description: "Puppet Query Language (PQL) query. Only resources are supported.\n<https://puppet.com/docs/puppetdb/latest/api/query/v4/pql.html>\n",
           })))),
@@ -680,23 +680,23 @@ when set to \`null\`.
         port: nix.thunk(() => nix.app(mkDefOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")), "80", "The port to scrape metrics from.\n")),
       })))),
     scaleway_sd_config: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-        __proto__: pos$83,
+        [nix.POS]: pos$83,
         options: nix.thunk(() => ({
-          __proto__: pos$82,
+          [nix.POS]: pos$82,
           access_key: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$79,
+              [nix.POS]: pos$79,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "Access key to use. <https://console.scaleway.com/project/credentials>\n",
             })))),
           secret_key: nix.thunk(() => nix.app(mkOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), "Secret key to use when listing targets. <https://console.scaleway.com/project/credentials>\nIt is mutually exclusive with `secret_key_file`.\n")),
           secret_key_file: nix.thunk(() => nix.app(mkOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), "Sets the secret key with the credentials read from the configured file.\nIt is mutually exclusive with `secret_key`.\n")),
           project_id: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$80,
+              [nix.POS]: pos$80,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "Project ID of the targets.\n",
             })))),
           role: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$81,
+              [nix.POS]: pos$81,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["instance", "baremetal"]))),
               description: "Role of the targets to retrieve. Must be `instance` or `baremetal`.\n",
             })))),
@@ -713,22 +713,22 @@ when set to \`null\`.
       })))),
     serverset_sd_config: nix.thunk(() => nix.sel(promTypes, "nerve_sd_config")),
     triton_sd_config: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-        __proto__: pos$88,
+        [nix.POS]: pos$88,
         options: nix.thunk(() => ({
-          __proto__: pos$87,
+          [nix.POS]: pos$87,
           account: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$84,
+              [nix.POS]: pos$84,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "The account to use for discovering new targets.\n",
             })))),
           role: nix.thunk(() => nix.app(mkDefOpt, nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["container", "cn"]))), "container", "The type of targets to discover, can be set to:\n- \"container\" to discover virtual machines (SmartOS zones, lx/KVM/bhyve branded zones) running on Triton\n- \"cn\" to discover compute nodes (servers/global zones) making up the Triton infrastructure\n")),
           dns_suffix: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$85,
+              [nix.POS]: pos$85,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "The DNS suffix which should be applied to target.\n",
             })))),
           endpoint: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$86,
+              [nix.POS]: pos$86,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "The Triton discovery endpoint (e.g. `cmon.us-east-3b.triton.zone`). This is\noften the same value as dns_suffix.\n",
             })))),
@@ -740,19 +740,19 @@ when set to \`null\`.
         })),
       })))),
     uyuni_sd_config: nix.thunk(() => nix.app(mkSdConfigModule, nix.thunk(() => ({
-        __proto__: pos$92,
+        [nix.POS]: pos$92,
         server: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$89,
+            [nix.POS]: pos$89,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             description: "The URL to connect to the Uyuni server.\n",
           })))),
         username: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$90,
+            [nix.POS]: pos$90,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             description: "Credentials are used to authenticate the requests to Uyuni API.\n",
           })))),
         password: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$91,
+            [nix.POS]: pos$91,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             description: "Credentials are used to authenticate the requests to Uyuni API.\n",
           })))),
@@ -761,16 +761,16 @@ when set to \`null\`.
         refresh_interval: nix.thunk(() => nix.app(mkDefOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), "60s", "Refresh interval to re-read the managed targets list.\n")),
       })))),
     static_config: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-        __proto__: pos$96,
+        [nix.POS]: pos$96,
         options: nix.thunk(() => ({
-          __proto__: pos$95,
+          [nix.POS]: pos$95,
           targets: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$93,
+              [nix.POS]: pos$93,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               description: "The targets specified by the target group.\n",
             })))),
           labels: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$94,
+              [nix.POS]: pos$94,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: nix.thunk(() => ({})),
               description: "Labels assigned to all metrics scraped from the targets.\n",
@@ -778,9 +778,9 @@ when set to \`null\`.
         })),
       })))),
     relabel_config: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-        __proto__: pos$98,
+        [nix.POS]: pos$98,
         options: nix.thunk(() => ({
-          __proto__: pos$97,
+          [nix.POS]: pos$97,
           source_labels: nix.thunk(() => nix.app(mkOpt, nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))), "The source labels select values from existing labels. Their content\nis concatenated using the configured separator and matched against\nthe configured regular expression.\n")),
           separator: nix.thunk(() => nix.app(mkDefOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), ";", "Separator placed between concatenated source label values.\n")),
           target_label: nix.thunk(() => nix.app(mkOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), "Label to which the resulting value is written in a replace action.\nIt is mandatory for replace actions.\n")),
@@ -801,11 +801,11 @@ when set to \`null\`.
         })),
       })))),
     remote_write: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-        __proto__: pos$105,
+        [nix.POS]: pos$105,
         options: nix.thunk(() => ({
-          __proto__: pos$104,
+          [nix.POS]: pos$104,
           url: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$99,
+              [nix.POS]: pos$99,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "ServerName extension to indicate the name of the server.\nhttp://tools.ietf.org/html/rfc4366#section-3.1\n",
             })))),
@@ -820,9 +820,9 @@ when set to \`null\`.
           tls_config: nix.thunk(() => nix.app(mkOpt, nix.thunk(() => nix.sel(promTypes, "tls_config")), "Configures the remote write request's TLS settings.\n")),
           proxy_url: nix.thunk(() => nix.app(mkOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), "Optional Proxy URL.")),
           queue_config: nix.thunk(() => nix.app(mkOpt, nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                __proto__: pos$101,
+                [nix.POS]: pos$101,
                 options: nix.thunk(() => ({
-                  __proto__: pos$100,
+                  [nix.POS]: pos$100,
                   capacity: nix.thunk(() => nix.app(mkOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")), "Number of samples to buffer per shard before we block reading of more\nsamples from the WAL. It is recommended to have enough capacity in each\nshard to buffer several requests to keep throughput up while processing\noccasional slow remote requests.\n")),
                   max_shards: nix.thunk(() => nix.app(mkOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")), "Maximum number of shards, i.e. amount of concurrency.\n")),
                   min_shards: nix.thunk(() => nix.app(mkOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")), "Minimum number of shards, i.e. amount of concurrency.\n")),
@@ -833,9 +833,9 @@ when set to \`null\`.
                 })),
               })))), "Configures the queue used to write to remote storage.\n")),
           metadata_config: nix.thunk(() => nix.app(mkOpt, nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                __proto__: pos$103,
+                [nix.POS]: pos$103,
                 options: nix.thunk(() => ({
-                  __proto__: pos$102,
+                  [nix.POS]: pos$102,
                   send: nix.thunk(() => nix.app(mkOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")), "Whether metric metadata is sent to remote storage or not.\n")),
                   send_interval: nix.thunk(() => nix.app(mkOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), "How frequently metric metadata is sent to remote storage.\n")),
                 })),
@@ -843,11 +843,11 @@ when set to \`null\`.
         })),
       })))),
     remote_read: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-        __proto__: pos$108,
+        [nix.POS]: pos$108,
         options: nix.thunk(() => ({
-          __proto__: pos$107,
+          [nix.POS]: pos$107,
           url: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$106,
+              [nix.POS]: pos$106,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "ServerName extension to indicate the name of the server.\nhttp://tools.ietf.org/html/rfc4366#section-3.1\n",
             })))),
@@ -865,11 +865,11 @@ when set to \`null\`.
       })))),
   }));
   const promtypes = nix.thunk(() => ({
-    __proto__: pos$112,
+    [nix.POS]: pos$112,
     oauth2: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-        __proto__: pos$111,
+        [nix.POS]: pos$111,
         options: nix.thunk(() => ({
-          __proto__: pos$110,
+          [nix.POS]: pos$110,
           client_id: nix.thunk(() => nix.app(mkOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), "OAuth client ID.\n")),
           client_secret: nix.thunk(() => nix.app(mkOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), "OAuth client secret.\n")),
           client_secret_file: nix.thunk(() => nix.app(mkOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), "Read the client secret from a file. It is mutually exclusive with `client_secret`.\n")),
@@ -880,24 +880,24 @@ when set to \`null\`.
       })))),
   }));
   const mkDockerSdConfigModule = (extraOptions) => nix.app(mkSdConfigModule, nix.thunk(() => nix.update({
-      __proto__: pos$118,
+      [nix.POS]: pos$118,
       host: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$113,
+          [nix.POS]: pos$113,
           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
           description: "Address of the Docker daemon.\n",
         })))),
       port: nix.thunk(() => nix.app(mkDefOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")), "80", "The port to scrape metrics from, when `role` is nodes, and for discovered\ntasks and services that don't have published ports.\n")),
       filters: nix.thunk(() => nix.app(mkOpt, nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-              __proto__: pos$117,
+              [nix.POS]: pos$117,
               options: nix.thunk(() => ({
-                __proto__: pos$116,
+                [nix.POS]: pos$116,
                 name: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$114,
+                    [nix.POS]: pos$114,
                     type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                     description: "Name of the filter. The available filters are listed in the upstream documentation:\nServices: <https://docs.docker.com/engine/api/v1.40/#operation/ServiceList>\nTasks: <https://docs.docker.com/engine/api/v1.40/#operation/TaskList>\nNodes: <https://docs.docker.com/engine/api/v1.40/#operation/NodeList>\n",
                   })))),
                 values: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$115,
+                    [nix.POS]: pos$115,
                     type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                     description: "Value for the filter.\n",
                   })))),
@@ -906,121 +906,121 @@ when set to \`null\`.
       refresh_interval: nix.thunk(() => nix.app(mkDefOpt, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), "60s", "The time after which the containers are refreshed.\n")),
     }, extraOptions)));
   return {
-    __proto__: pos$156,
+    [nix.POS]: pos$156,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.lookup(w, "mkRenamedOptionModule"), nix.thunk(() => ["services", "prometheus2"]), nix.thunk(() => ["services", "prometheus"]))),
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["services", "prometheus", "environmentFile"]), "It has been removed since it was causing issues (https://github.com/NixOS/nixpkgs/issues/126083) and Prometheus now has native support for secret files, i.e. `basic_auth.password_file` and `authorization.credentials_file`.")),
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["services", "prometheus", "alertmanagerTimeout"]), "Deprecated upstream and no longer had any effect")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$139,
+      [nix.POS]: pos$139,
       services: nix.thunk(() => ({
-        __proto__: pos$138,
+        [nix.POS]: pos$138,
         prometheus: nix.thunk(() => ({
-          __proto__: pos$137,
+          [nix.POS]: pos$137,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Prometheus monitoring daemon")),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "prometheus", nix.thunk(() => ({})))),
           port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$119,
+              [nix.POS]: pos$119,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               default: 9090n,
               description: "Port to listen on.\n",
             })))),
           listenAddress: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$120,
+              [nix.POS]: pos$120,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "0.0.0.0",
               description: "Address to listen on for the web interface, API, and telemetry.\n",
             })))),
           stateDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$121,
+              [nix.POS]: pos$121,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "prometheus2",
               description: "Directory below `/var/lib` to store Prometheus metrics data.\nThis directory will be created automatically using systemd's StateDirectory mechanism.\n",
             })))),
           extraFlags: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$122,
+              [nix.POS]: pos$122,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: [],
               description: "Extra commandline options when launching Prometheus.\n",
             })))),
           enableReload: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$123,
+              [nix.POS]: pos$123,
               default: false,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               description: "Reload prometheus when configuration file changes (instead of restart).\n\nThe following property holds: switching to a configuration\n(`switch-to-configuration`) that changes the prometheus\nconfiguration only finishes successfully when prometheus has finished\nloading the new configuration.\n",
             })))),
           enableAgentMode: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "agent mode")),
           configText: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$124,
+              [nix.POS]: pos$124,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")))),
               default: null,
               description: "If non-null, this option defines the text that is written to\nprometheus.yml. If null, the contents of prometheus.yml is generated\nfrom the structured config options.\n",
             })))),
           globalConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$125,
+              [nix.POS]: pos$125,
               type: nix.thunk(() => nix.sel(promTypes, "globalConfig")),
               default: nix.thunk(() => ({})),
               description: "Parameters that are valid in all  configuration contexts. They\nalso serve as defaults for other configuration sections\n",
             })))),
           remoteRead: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$126,
+              [nix.POS]: pos$126,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(promTypes, "remote_read")))),
               default: [],
               description: "Parameters of the endpoints to query from.\nSee [the official documentation](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#remote_read) for more information.\n",
             })))),
           remoteWrite: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$127,
+              [nix.POS]: pos$127,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(promTypes, "remote_write")))),
               default: [],
               description: "Parameters of the endpoints to send samples to.\nSee [the official documentation](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#remote_write) for more information.\n",
             })))),
           rules: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$128,
+              [nix.POS]: pos$128,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: [],
               description: "Alerting and/or Recording rules to evaluate at runtime.\n",
             })))),
           ruleFiles: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$129,
+              [nix.POS]: pos$129,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               default: [],
               description: "Any additional rules files to include in this configuration.\n",
             })))),
           scrapeConfigs: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$130,
+              [nix.POS]: pos$130,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(promTypes, "scrape_config")))),
               default: [],
               description: "A list of scrape configurations.\n",
             })))),
           alertmanagers: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$131,
+              [nix.POS]: pos$131,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "attrs")))),
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "[ {\n  scheme = \"https\";\n  path_prefix = \"/alertmanager\";\n  static_configs = [ {\n    targets = [\n      \"prometheus.domain.tld\"\n    ];\n  } ];\n} ]\n")),
               default: [],
               description: "A list of alertmanagers to send alerts to.\nSee [the official documentation](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#alertmanager_config) for more information.\n",
             })))),
           alertmanagerNotificationQueueCapacity: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$132,
+              [nix.POS]: pos$132,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
               default: 10000n,
               description: "The capacity of the queue for pending alert manager notifications.\n",
             })))),
           webExternalUrl: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$133,
+              [nix.POS]: pos$133,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: null,
               example: "https://example.com/",
               description: "The URL under which Prometheus is externally reachable (for example,\nif Prometheus is served via a reverse proxy).\n",
             })))),
           webConfigFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$134,
+              [nix.POS]: pos$134,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               default: null,
               description: "Specifies which file should be used as web.config.file and be passed on startup.\nSee <https://prometheus.io/docs/prometheus/latest/configuration/https/> for valid options.\n",
             })))),
           checkConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$135,
+              [nix.POS]: pos$135,
               type: nix.thunk(() => (() => {
                 const w_3 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_3, "either"), nix.thunk(() => nix.lookup(w_3, "bool")), nix.thunk(() => nix.app(nix.lookup(w_3, "enum"), nix.thunk(() => ["syntax-only"]))));
@@ -1030,7 +1030,7 @@ when set to \`null\`.
               description: "Check configuration with `promtool check`. The call to `promtool` is\nsubject to sandboxing by Nix.\n\nIf you use credentials stored in external files\n(`password_file`, `bearer_token_file`, etc),\nthey will not be visible to `promtool`\nand it will report errors, despite a correct configuration.\nTo resolve this, you may set this option to `\"syntax-only\"`\nin order to only syntax check the Prometheus configuration.\n",
             })))),
           retentionTime: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$136,
+              [nix.POS]: pos$136,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: null,
               example: "15d",
@@ -1040,12 +1040,12 @@ when set to \`null\`.
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$155,
+        [nix.POS]: pos$155,
         assertions: nix.thunk(() => [
           nix.thunk(() => (() => {
             const legacy = nix.thunk(() => nix.app(nix.sel(nix.builtins, "match"), "(.*\\..*|.*]):([[:digit:]]+)", nix.thunk(() => nix.sel(cfg, "listenAddress"))));
             return {
-              __proto__: pos$140,
+              [nix.POS]: pos$140,
               assertion: nix.thunk(() => nix.eq(legacy, null)),
               message: nix.thunk(() => nix.str`Do not specify the port for Prometheus to listen on in the
 listenAddress option; use the port option instead:
@@ -1056,18 +1056,18 @@ listenAddress option; use the port option instead:
           })()),
         ]),
         users: nix.thunk(() => ({
-          __proto__: pos$145,
+          [nix.POS]: pos$145,
           groups: nix.thunk(() => ({
-            __proto__: pos$142,
+            [nix.POS]: pos$142,
             prometheus: nix.thunk(() => ({
-              __proto__: pos$141,
+              [nix.POS]: pos$141,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "prometheus")),
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$144,
+            [nix.POS]: pos$144,
             prometheus: nix.thunk(() => ({
-              __proto__: pos$143,
+              [nix.POS]: pos$143,
               description: "Prometheus daemon user",
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "prometheus")),
               group: "prometheus",
@@ -1075,22 +1075,22 @@ listenAddress option; use the port option instead:
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$148,
+          [nix.POS]: pos$148,
           etc: nix.thunk(() => ({
-            __proto__: pos$147,
-            "prometheus/prometheus.yaml": nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableReload")), nix.thunk(() => ({ __proto__: pos$146, source: prometheusYml })))),
+            [nix.POS]: pos$147,
+            "prometheus/prometheus.yaml": nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableReload")), nix.thunk(() => ({ [nix.POS]: pos$146, source: prometheusYml })))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$154,
+          [nix.POS]: pos$154,
           services: nix.thunk(() => ({
-            __proto__: pos$153,
+            [nix.POS]: pos$153,
             prometheus: nix.thunk(() => ({
-              __proto__: pos$150,
+              [nix.POS]: pos$150,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$149,
+                [nix.POS]: pos$149,
                 ExecStart: nix.thunk(() => nix.add(nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))}`, nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.eq(nix.app(nix.lookup(w, "length"), cmdlineArgs), 0n)), nix.thunk(() => nix.add(" \\\n  ", nix.app(nix.lookup(w, "concatStringsSep"), " \\\n  ", cmdlineArgs)))))),
                 ExecReload: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableReload")), nix.thunk(() => nix.str`+${reload}/bin/reload-prometheus`))),
                 User: "prometheus",
@@ -1128,13 +1128,13 @@ listenAddress option; use the port option instead:
               })),
             })),
             "prometheus-config-reload": nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableReload")), nix.thunk(() => ({
-                __proto__: pos$152,
+                [nix.POS]: pos$152,
                 wantedBy: nix.thunk(() => ["prometheus.service"]),
                 after: nix.thunk(() => ["prometheus.service"]),
                 reloadIfChanged: true,
                 restartTriggers: nix.thunk(() => [prometheusYml]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$151,
+                  [nix.POS]: pos$151,
                   Type: "oneshot",
                   RemainAfterExit: true,
                   TimeoutSec: 60n,

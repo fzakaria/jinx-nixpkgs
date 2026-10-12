@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const gitMinimal = nix.arg($, "gitMinimal");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "git-dive",
       version: "0.1.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gitext-rs",
           repo: "git-dive",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,9 +36,9 @@ export default nix.lambda((args) => (() => {
       buildNoDefaultFeatures: true,
       checkFlags: nix.thunk(() => ["--skip=screenshot"]),
       preCheck: "export HOME=$(mktemp -d)\ngit config --global user.name nixbld\ngit config --global user.email nixbld@example.com\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, LIBGIT2_NO_VENDOR: 1n, RUSTONIG_SYSTEM_LIBONIG: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, LIBGIT2_NO_VENDOR: 1n, RUSTONIG_SYSTEM_LIBONIG: true })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Dive into a file's history to find root cause",
         homepage: "https://github.com/gitext-rs/git-dive",
         changelog: nix.thunk(() => nix.str`https://github.com/gitext-rs/git-dive/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

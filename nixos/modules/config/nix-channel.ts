@@ -29,22 +29,22 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const cfg = nix.thunk(() => nix.sel(config, "nix"));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       nix: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         channel: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               description: "Whether the `nix-channel` command and state files are made available on the machine.\n\nThe following files are initialized when enabled:\n  - `/nix/var/nix/profiles/per-user/root/channels`\n  - `/root/.nix-channels`\n  - `$HOME/.nix-defexpr/channels` (on login)\n\nDisabling this option will not remove the state files from the system.\n",
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: true,
             })))),
         })),
         nixPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
             default: nix.thunk(() => (nix.asBool(nix.sel(cfg, "channel", "enable")) ? [
               "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos",
@@ -56,9 +56,9 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       system: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         defaultChannel: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             internal: true,
             type: nix.thunk(() => nix.sel(types, "str")),
             default: "https://channels.nixos.org/nixos-unstable",
@@ -67,26 +67,26 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         environment: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           extraInit: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "channel", "enable")), "if [ -e \"$HOME/.nix-defexpr/channels\" ]; then\n  export NIX_PATH=\"$HOME/.nix-defexpr/channels${NIX_PATH:+:$NIX_PATH}\"\nfi\n")),
           extraSetup: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.asBool(nix.sel(cfg, "channel", "enable"))), "rm --force $out/bin/nix-channel\n")),
-          sessionVariables: nix.thunk(() => ({ __proto__: pos$8, NIX_PATH: nix.thunk(() => nix.sel(cfg, "nixPath")) })),
+          sessionVariables: nix.thunk(() => ({ [nix.POS]: pos$8, NIX_PATH: nix.thunk(() => nix.sel(cfg, "nixPath")) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             rules: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "channel", "enable")), nix.thunk(() => [
                 nix.thunk(() => nix.str`f /root/.nix-channels - - - - ${nix.sel(config, "system", "defaultChannel")} nixos\\n`),
               ]))),
           })),
         })),
         system: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           preSwitchChecks: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             "no-nix-channel": nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.asBool(nix.sel(cfg, "channel", "enable"))), nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["@getent@"]), nix.thunk(() => [
                   nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "getent")))),
                 ]), nix.thunk(() => nix.builtins.readFile(nix.path(here, "./nix-channel/pre-switch-check.sh"))))))),

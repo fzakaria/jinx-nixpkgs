@@ -24,13 +24,13 @@ export default nix.lambda((args) => (() => {
   const pythonOlder = nix.arg($, "pythonOlder");
   const gevent = nix.arg($, "gevent");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "synchronicity",
       version: "0.12.5",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "modal-labs",
           repo: "synchronicity",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,12 +38,12 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => [typing_extensions]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, compile: nix.thunk(() => [sigtools]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, compile: nix.thunk(() => [sigtools]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([mypy, pytest_asyncio, pytest_markdown_docs, pytestCheckHook, sigtools], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonOlder, "3.13")), nix.thunk(() => [gevent])))),
       disabledTests: nix.thunk(() => nix.concat(["test_blocking", "test_multithreaded", "test_nowrap"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_async"])))),
       pythonImportsCheck: nix.thunk(() => ["synchronicity"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Export blocking and async library versions from a single async implementation",
         homepage: "https://github.com/modal-labs/synchronicity",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

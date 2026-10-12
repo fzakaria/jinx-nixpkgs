@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
   const docutils = nix.arg($, "docutils");
   const gi_docgen = nix.arg($, "gi-docgen");
   const libcall_ui = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       domain: "gitlab.gnome.org",
       group: "World",
       owner: "Phosh",
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
       forceFetchGit: true,
     }))));
   const gvc = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       domain: "gitlab.gnome.org",
       owner: "GNOME",
       repo: "libgnome-volume-control",
@@ -78,11 +78,11 @@ export default nix.lambda((args) => (() => {
       forceFetchGit: true,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "phosh",
       version: "0.54.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           domain: "gitlab.gnome.org",
           group: "World",
           owner: "Phosh",
@@ -158,13 +158,13 @@ runHook postCheck
 )
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         providedSessions: nix.thunk(() => ["phosh"]),
-        tests: nix.thunk(() => ({ __proto__: pos$4, phosh: nix.thunk(() => nix.sel(nixosTests, "phosh")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$4, phosh: nix.thunk(() => nix.sel(nixosTests, "phosh")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Pure Wayland shell for mobile devices",
         homepage: "https://gitlab.gnome.org/World/Phosh/phosh",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/World/Phosh/phosh/-/blob/v${nix.sel(finalAttrs, "version")}/debian/changelog`),

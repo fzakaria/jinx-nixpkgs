@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const postgresqlTestHook = nix.arg($, "postgresqlTestHook");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "postgresql-test-hook-test",
       buildInputs: nix.thunk(() => [postgresqlTestHook]),
       nativeCheckInputs: nix.thunk(() => [postgresql]),

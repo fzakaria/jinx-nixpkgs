@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const openssh = nix.arg($, "openssh");
   const netcat = nix.arg($, "netcat");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "restream",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rien",
           repo: "restream",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +46,7 @@ sed -i \\
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "reMarkable screen sharing over SSH",
         mainProgram: "restream",
         homepage: "https://github.com/rien/reStream",

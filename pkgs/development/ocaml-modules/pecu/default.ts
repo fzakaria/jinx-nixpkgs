@@ -18,19 +18,19 @@ export default nix.lambda((args) => (() => {
   const crowbar = nix.arg($, "crowbar");
   const astring = nix.arg($, "astring");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pecu",
       version: "0.7",
       minimalOCamlVersion: "4.03",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/pecu/releases/download/v${nix.sel(finalAttrs, "version")}/pecu-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-rXR3tbFkKNM8MkQAZ2hJU9lO+qQ/qvYghXkYus6f13g=",
         })))),
       doCheck: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.08")),
       checkInputs: nix.thunk(() => [fmt, alcotest, crowbar, astring]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Encoder/Decoder of Quoted-Printable (RFC2045 & RFC2047)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/mirage/pecu",

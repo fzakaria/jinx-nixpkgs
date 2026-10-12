@@ -34,40 +34,40 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     name: "vikunja",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "leona"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       vikunjaSqlite: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           services: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             vikunja: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               enable: true,
-              database: nix.thunk(() => ({ __proto__: pos$2, type: "sqlite" })),
+              database: nix.thunk(() => ({ [nix.POS]: pos$2, type: "sqlite" })),
               frontendScheme: "http",
               frontendHostname: "localhost",
             })),
             nginx: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 "http://localhost": nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   locations: nix.thunk(() => ({
-                    __proto__: pos$5,
-                    "/": nix.thunk(() => ({ __proto__: pos$4, proxyPass: "http://localhost:3456" })),
+                    [nix.POS]: pos$5,
+                    "/": nix.thunk(() => ({ [nix.POS]: pos$4, proxyPass: "http://localhost:3456" })),
                   })),
                 })),
               })),
@@ -79,14 +79,14 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           services: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             vikunja: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               enable: true,
               database: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: "postgres",
                 user: "vikunja",
                 database: "vikunja",
@@ -97,23 +97,23 @@ export default nix.lambda((args) => (() => {
               port: 9090n,
             })),
             postgresql: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               enable: true,
               ensureDatabases: nix.thunk(() => ["vikunja"]),
               ensureUsers: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$13, name: "vikunja", ensureDBOwnership: true })),
+                nix.thunk(() => ({ [nix.POS]: pos$13, name: "vikunja", ensureDBOwnership: true })),
               ]),
             })),
             nginx: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 "http://localhost": nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   locations: nix.thunk(() => ({
-                    __proto__: pos$16,
-                    "/": nix.thunk(() => ({ __proto__: pos$15, proxyPass: "http://localhost:9090" })),
+                    [nix.POS]: pos$16,
+                    "/": nix.thunk(() => ({ [nix.POS]: pos$15, proxyPass: "http://localhost:9090" })),
                   })),
                 })),
               })),

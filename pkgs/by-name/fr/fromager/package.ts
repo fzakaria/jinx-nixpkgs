@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fromager",
       version: "0.101.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "python-wheel-build",
           repo: "fromager",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -70,10 +70,10 @@ export default nix.lambda((args) => (() => {
           writableTmpDirAsHomeHook,
         ];
       })()),
-      env: nix.thunk(() => ({ __proto__: pos$2, FROMAGER_HTTP_RETRIES: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, FROMAGER_HTTP_RETRIES: 0n })),
       pythonImportsCheck: nix.thunk(() => ["fromager"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Wheel maker",
         homepage: "https://pypi.org/project/fromager/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

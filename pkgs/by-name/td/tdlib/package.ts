@@ -25,17 +25,17 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const tde2eOnly = nix.argOr($, "tde2eOnly", () => false);
   const updateScript = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "update-tdlib",
       runtimeInputs: nix.thunk(() => [jq, common_updater_scripts]),
       text: "commit_msg=\"^Update version to (?<v>\\\\\\\\d+.\\\\\\\\d+.\\\\\\\\d+)\\\\\\\\.$\"\ncommit=$(curl -s \"https://api.github.com/repos/tdlib/td/commits?path=CMakeLists.txt\" | jq -c \"map(select(.commit.message | test(\\\"${commit_msg}\\\"))) | first\")\n\nrev=$(echo \"$commit\" | jq -r \".sha\")\nversion=$(echo \"$commit\" | jq -r \".commit.message | capture(\\\"${commit_msg}\\\") | .v\")\n\nupdate-source-version tdlib \"$version\" --rev=\"$rev\"\n",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: nix.thunk(() => (nix.asBool(tde2eOnly) ? "tde2e" : "tdlib")),
       version: "1.8.67",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "tdlib",
           repo: "td",
           rev: "bc9c263e2bfee06aaab41e82db51a103376030bc",
@@ -50,11 +50,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: nix.thunk(() => nix.add("substituteInPlace CMake/GeneratePkgConfig.cmake \\\n  --replace 'function(generate_pkgconfig' \\\n            'include(GNUInstallDirs)\n             function(generate_pkgconfig' \\\n  --replace '\\$'{prefix}/'$'{CMAKE_INSTALL_LIBDIR} '$'{CMAKE_INSTALL_FULL_LIBDIR} \\\n  --replace '\\$'{prefix}/'$'{CMAKE_INSTALL_INCLUDEDIR} '$'{CMAKE_INSTALL_FULL_INCLUDEDIR}\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), "sed -i \"/vptr/d\" test/CMakeLists.txt\n"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), updateScript)),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Cross-platform library for building Telegram clients",
         homepage: "https://core.telegram.org/tdlib/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "boost")),

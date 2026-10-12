@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.7.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "autinerd",
           repo: "eheimdigital",
           tag: version,
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["eheimdigital"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://codeberg.org/autinerd/eheimdigital/releases/tag/${nix.sel(src, "tag")}`),
         description: "Offers a Python API for the EHEIM Digital smart aquarium devices",
         homepage: "https://codeberg.org/autinerd/eheimdigital",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

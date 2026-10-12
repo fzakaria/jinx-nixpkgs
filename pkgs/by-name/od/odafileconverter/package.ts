@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "oda-file-converter";
       const version = "27.1.0.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://www.opendesign.com/guestfiles/get?filename=ODAFileConverter_QT6_lnxX64_8.3dll_27.1.deb",
           hash: "sha256-xxNjzVR1gXevR6NlFU8YDcUKHitSoTGZT9pUHBOjZ2Y=",
         }))));
@@ -50,7 +50,7 @@ substituteInPlace $out/share/applications/ODAFileConverter_*.desktop \\
   --replace-fail '/usr/bin/ODAFileConverter' 'ODAFileConverter'
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "For converting between different versions of .dwg and .dxf",
         homepage: "https://www.opendesign.com/guestfiles/oda_file_converter",
         sourceProvenance: nix.thunk(() => (() => {
@@ -69,7 +69,7 @@ substituteInPlace $out/share/applications/ODAFileConverter_*.desktop \\
         mainProgram: "ODAFileConverter",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

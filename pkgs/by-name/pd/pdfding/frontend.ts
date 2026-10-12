@@ -20,19 +20,19 @@ export default nix.lambda((args) => (() => {
   const pdfjsVersion = "6.1.200";
   const pdfjsHash = "sha256-IylR6X6qmyP7jvT12AerDd2UD0nqqOWljfT8wgKoFsg=";
   const pdfjs = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/mozilla/pdf.js/releases/download/v${pdfjsVersion}/pdfjs-${pdfjsVersion}-legacy-dist.zip`),
       hash: pdfjsHash,
       stripRoot: false,
       postFetch: "rm -rf $out/web/locale \\\n$out/web/standard_fonts \\\n$out/web/compressed.tracemonkey-pldi-09.pdf\n\n# remove source maps\nfind \"$out\" -name '*.map' -exec rm -f '{}' \\;\n",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pdfding-frontend",
       src: nix.thunk(() => nix.attr(pdfding, "src")),
       version: nix.thunk(() => nix.attr(pdfding, "version")),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           name: nix.thunk(() => nix.str`pdfding-${nix.sel(finalAttrs, "version")}-npm-deps`),
           hash: "sha256-1Yf6jEKB9a1nRAmeHj7hhnDlMPzKCz3ufp0thgGnGtQ=",
@@ -64,8 +64,8 @@ cp -r pdfding/static/js $out/pdfding/static
 
 runHook postBuild
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, pdfjs: pdfjs })),
-      meta: nix.thunk(() => ({ __proto__: pos$4, description: "PdfDing frontend" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, pdfjs: pdfjs })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$4, description: "PdfDing frontend" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=frontend.ts.map

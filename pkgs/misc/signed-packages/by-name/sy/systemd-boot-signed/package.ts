@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(finalAttrs, "unsigned"));
       return {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "systemd-boot-signed",
       version: nix.thunk(() => nix.attr(from, "version")),
       dontUnpack: true,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       signedPe: nix.thunk(() => nix.app(nix.sel(autopen, "authenticode", "mkSignedPe"), nix.thunk(() => (() => {
           const from_1 = nix.thunk(() => nix.sel(finalAttrs, "unsigned"));
           return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(from_1, "pname")),
           version: nix.thunk(() => nix.attr(from_1, "version")),
           signingKey: uefiSigningKey,
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from_1 = nix.thunk(() => nix.sel(systemd, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "A simple UEFI boot manager (signed)",
         homepage: nix.thunk(() => nix.attr(from_1, "homepage")),
         license: nix.thunk(() => nix.attr(from_1, "license")),

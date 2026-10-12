@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jbwdevries",
           repo: "pytest-integration",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "pushd example\n";
       const postCheck = "popd\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Organizing test by unit test, quick integration or slow integration",
         homepage: "https://github.com/jbwdevries/pytest-integration",
         changelog: nix.thunk(() => nix.str`https://github.com/jbwdevries/pytest-integration/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

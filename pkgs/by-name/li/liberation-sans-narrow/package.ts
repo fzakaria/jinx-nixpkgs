@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "liberation-sans-narrow";
       const version = "1.07.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "liberationfonts",
           repo: "liberation-sans-narrow",
           rev: version,
@@ -32,13 +32,13 @@ install -m444 -Dt $out/doc/${pname}-${version} AUTHORS ChangeLog COPYING License
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Liberation Sans Narrow Font Family is a replacement for Arial Narrow",
         longDescription: "Liberation Sans Narrow is a font originally created by Ascender\nInc and licensed to Oracle Corporation under a GPLv2 license. It is\nmetrically compatible with the commonly used Arial Narrow fonts\non Microsoft systems. It is no longer distributed with the\nlatest versions of the Liberation Fonts, as Red Hat has changed the\nlicense to the Open Font License.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
         homepage: "https://github.com/liberationfonts",
       }));
-      return { __proto__: pos$3, pname, version, src, nativeBuildInputs, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

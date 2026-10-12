@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pythological",
           repo: "python-cons",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pytestFlags = nix.thunk(() => ["--html=testing-report.html", "--self-contained-html"]);
       const pythonImportsCheck = nix.thunk(() => ["cons"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Implementation of Lisp/Scheme-like cons in Python",
         homepage: "https://github.com/pythological/python-cons",
         changelog: nix.thunk(() => nix.str`https://github.com/pythological/python-cons/releases/tag/${nix.sel(src, "tag")}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

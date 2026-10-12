@@ -123,7 +123,7 @@ export default nix.lambda((args) => (() => {
   const redisServer = nix.thunk(() => nix.sel(config, "services", "redis", "servers", "paperless"));
   const secretKeyFile = nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/nixos-paperless-secret-key.env`);
   const env = nix.thunk(() => nix.update({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     PAPERLESS_DATA_DIR: nix.thunk(() => nix.sel(cfg, "dataDir")),
     PAPERLESS_MEDIA_ROOT: nix.thunk(() => nix.sel(cfg, "mediaDir")),
     PAPERLESS_CONSUMPTION_DIR: nix.thunk(() => nix.sel(cfg, "consumptionDir")),
@@ -133,15 +133,15 @@ export default nix.lambda((args) => (() => {
     GRANIAN_WORKERS_KILL_TIMEOUT: "60",
     REQUESTS_CA_BUNDLE: nix.thunk(() => nix.sel(config, "security", "pki", "caBundle")),
   }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(config, "time", "timeZone"), null)), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       PAPERLESS_TIME_ZONE: nix.thunk(() => nix.sel(config, "time", "timeZone")),
     }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), enableRedis, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       PAPERLESS_REDIS: nix.thunk(() => nix.str`unix://${nix.sel(redisServer, "unixSocket")}`),
     }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.selOr(cfg, () => true, "settings", "PAPERLESS_AI_ENABLED")), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       TIKTOKEN_CACHE_DIR: nix.thunk(() => nix.sel(cfg, "package", "tiktokenCacheDir")),
-    }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "openMPThreadingWorkaround")), nix.thunk(() => ({ __proto__: pos$5, OMP_NUM_THREADS: "1" }))), nix.app(nix.sel(lib, "mapAttrs"), (_) => (s) => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "isAttrs"), s)) || nix.asBool(nix.app(nix.sel(lib, "isList"), s)))) ? nix.builtins.toJSON(s) : (nix.asBool(nix.app(nix.sel(lib, "isBool"), s)) ? nix.app(nix.sel(lib, "boolToString"), s) : nix.builtins.toString(s))), nix.thunk(() => nix.sel(cfg, "settings")))))))));
+    }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "openMPThreadingWorkaround")), nix.thunk(() => ({ [nix.POS]: pos$5, OMP_NUM_THREADS: "1" }))), nix.app(nix.sel(lib, "mapAttrs"), (_) => (s) => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "isAttrs"), s)) || nix.asBool(nix.app(nix.sel(lib, "isList"), s)))) ? nix.builtins.toJSON(s) : (nix.asBool(nix.app(nix.sel(lib, "isBool"), s)) ? nix.app(nix.sel(lib, "boolToString"), s) : nix.builtins.toString(s))), nix.thunk(() => nix.sel(cfg, "settings")))))))));
   const manage = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScriptBin"), "paperless-manage", nix.thunk(() => nix.str`set -o allexport # Export the following env vars
 ${nix.app(nix.sel(lib, "toShellVars"), env)}
 ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "environmentFile"), null)), nix.thunk(() => nix.str`source ${nix.sel(cfg, "environmentFile")}`))}
@@ -157,7 +157,7 @@ fi
 $sudo ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} "$@"
 `)));
   const defaultServiceConfig = nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     Slice: "system-paperless.slice",
     ReadWritePaths: nix.thunk(() => [
       nix.thunk(() => nix.sel(cfg, "consumptionDir")),
@@ -194,9 +194,9 @@ $sudo ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package"))
     UMask: "0066",
   }));
   return {
-    __proto__: pos$105,
+    [nix.POS]: pos$105,
     meta: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -213,66 +213,66 @@ $sudo ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package"))
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "paperless", "extraConfig"]), nix.thunk(() => ["services", "paperless", "settings"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$40,
+      [nix.POS]: pos$40,
       services: nix.thunk(() => ({
-        __proto__: pos$39,
+        [nix.POS]: pos$39,
         paperless: nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable Paperless-ngx.\n\nWhen started, the Paperless database is automatically created if it doesn't exist\nand updated if the Paperless package has changed.\nBoth tasks are achieved by running a Django migration.\n\nA script to manage the Paperless-ngx instance (by wrapping Django's manage.py) is available as `paperless-manage`.\n",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/var/lib/paperless",
               description: "Directory to store the Paperless data.",
             })))),
           mediaDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/media`),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${dataDir}/media\"")),
               description: "Directory to store the Paperless documents.",
             })))),
           consumptionDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/consume`),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${dataDir}/consume\"")),
               description: "Directory from which new documents are imported.",
             })))),
           consumptionDirIsPublic: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether all users can write to the consumption dir.",
             })))),
           passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               example: "/run/keys/paperless-password",
               description: "A file containing the superuser password.\n\nA superuser is required to access the web interface.\nIf unset, you can create a superuser manually by running `paperless-manage createsuperuser`.\n\nThe default superuser name is `admin`. To change it, set\noption {option}`settings.PAPERLESS_ADMIN_USER`.\nWARNING: When changing the superuser name after the initial setup, the old superuser\nwill continue to exist.\n\nTo disable login for the web interface, set the following:\n`settings.PAPERLESS_AUTO_LOGIN_USERNAME = \"admin\";`.\nWARNING: Only use this on a trusted system without internet access to Paperless.\n",
             })))),
           address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "127.0.0.1",
               description: "Web interface address.",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 28981n,
               description: "Web interface port.",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   freeformType: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                     return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => (() => {
@@ -294,57 +294,57 @@ $sudo ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package"))
               default: nix.thunk(() => ({})),
               description: "Extra paperless config options.\n\nSee [the documentation](https://docs.paperless-ngx.com/configuration/) for available options.\n\nNote that some settings such as `PAPERLESS_CONSUMER_IGNORE_PATTERN` expect JSON values.\nSettings declared as lists or attrsets will automatically be serialised into JSON strings for your convenience.\n",
               example: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 PAPERLESS_OCR_LANGUAGE: "deu+eng",
                 PAPERLESS_CONSUMER_IGNORE_PATTERN: nix.thunk(() => [".DS_STORE/*", "desktop.ini"]),
-                PAPERLESS_OCR_USER_ARGS: nix.thunk(() => ({ __proto__: pos$17, optimize: 1n, pdfa_image_compression: "lossless" })),
+                PAPERLESS_OCR_USER_ARGS: nix.thunk(() => ({ [nix.POS]: pos$17, optimize: 1n, pdfa_image_compression: "lossless" })),
               })),
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: defaultUser,
               description: "User under which Paperless runs\n\n::: {.note}\nIf left as the default value this user will automatically be\ncreated on system activation, otherwise you are responsible for\nensuring the group exists before the paperless service starts.\n:::\n",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: defaultUser,
               description: "Primary group under which Paperless runs\n\n::: {.note}\nIf left as the default value this group will automatically be\ncreated on system activation, otherwise you are responsible for\nensuring the group exists before the redis service starts.\n:::\n",
             })))),
           package: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "paperless-ngx", nix.thunk(() => ({}))), {
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             apply: (pkg) => nix.app(nix.sel(pkg, "override"), nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 tesseract5: nix.thunk(() => nix.app(nix.sel(pkg, "tesseract5", "override"), nix.thunk(() => ({
-                    __proto__: pos$22,
+                    [nix.POS]: pos$22,
                     enableLanguages: nix.thunk(() => (nix.asBool(nix.has(nix.sel(cfg, "settings"), "PAPERLESS_OCR_LANGUAGE")) ? nix.app(nix.sel(lib, "lists", "unique"), nix.thunk(() => nix.concat(["equ", "osd", "eng"], nix.app(nix.sel(lib, "splitString"), "+", nix.thunk(() => nix.sel(cfg, "settings", "PAPERLESS_OCR_LANGUAGE")))))) : null)),
                   })))),
               }))),
           })),
-          openMPThreadingWorkaround: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "a workaround for document classifier timeouts.\n\nPaperless uses OpenBLAS via scikit-learn for document classification.\n\nThe default is to use threading for OpenMP but this would cause the\ndocument classifier to spin on one core seemingly indefinitely if there\nare large amounts of classes per classification; causing it to\neffectively never complete due to running into timeouts.\n\nThis sets `OMP_NUM_THREADS` to `1` in order to mitigate the issue. See\nhttps://github.com/NixOS/nixpkgs/issues/240591 for more information\n"), nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ __proto__: pos$25, default: true }))))),
+          openMPThreadingWorkaround: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "a workaround for document classifier timeouts.\n\nPaperless uses OpenBLAS via scikit-learn for document classification.\n\nThe default is to use threading for OpenMP but this would cause the\ndocument classifier to spin on one core seemingly indefinitely if there\nare large amounts of classes per classification; causing it to\neffectively never complete due to running into timeouts.\n\nThis sets `OMP_NUM_THREADS` to `1` in order to mitigate the issue. See\nhttps://github.com/NixOS/nixpkgs/issues/240591 for more information\n"), nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$25, default: true }))))),
           environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               example: "/run/secrets/paperless",
               description: "Path to a file containing extra paperless config options in the systemd `EnvironmentFile`\nformat. Refer to the [documentation](https://docs.paperless-ngx.com/configuration/) for\nconfig options.\n\nThis can be used to pass secrets to paperless without putting them in the Nix store.\n\nTo set a database password, point `environmentFile` at a file containing:\n```\nPAPERLESS_DBPASS=<pass>\n```\n",
             })))),
           database: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             createLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Configure local PostgreSQL database server for Paperless.\n",
               })))),
           })),
           configureNginx: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), ""), {
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             description: "Whether to configure nginx as a reverse proxy.",
           })),
           domain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -354,29 +354,29 @@ $sudo ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package"))
               description: "Domain under which paperless will be available.",
             })))),
           exporter: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "regular automatic document exports")),
             directory: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: nix.thunk(() => nix.add(nix.sel(cfg, "dataDir"), "/export")),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "${config.services.paperless.dataDir}/export")),
                 description: "Directory to store export.",
               })))),
             onCalendar: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: "01:30:00",
                 description: "When to run the exporter. See {manpage}`systemd.time(7)`.\n\n`null` disables the timer; allowing you to run the\n`paperless-exporter` service through other means.\n",
               })))),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "anything")));
                 })()),
                 default: nix.thunk(() => ({
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   "no-progress-bar": true,
                   "no-color": true,
                   "compare-checksums": true,
@@ -386,13 +386,13 @@ $sudo ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package"))
               })))),
           })),
           configureTika: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to configure Tika and Gotenberg to process Office and e-mail files with OCR.\n",
             })))),
           manage: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
               readOnly: true,
               description: "The package derivation for the `paperless-manage` wrapper script.\nUseful for other modules that need to add this specific script to a service's PATH.\n",
@@ -402,33 +402,33 @@ $sudo ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package"))
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$94,
+            [nix.POS]: pos$94,
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "configureNginx")) || nix.asBool(!nix.eq(nix.sel(cfg, "domain"), null)))),
                 message: nix.thunk(() => nix.str`${nix.sel(opt, "configureNginx")} requires ${nix.sel(opt, "domain")} to be configured.`),
               })),
             ]),
             services: nix.thunk(() => ({
-              __proto__: pos$62,
+              [nix.POS]: pos$62,
               paperless: nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 manage: manage,
                 settings: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                     nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "domain"), null)), nix.thunk(() => ({
-                        __proto__: pos$42,
+                        [nix.POS]: pos$42,
                         PAPERLESS_URL: nix.thunk(() => nix.str`https://${nix.sel(cfg, "domain")}`),
                       })))),
                     nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ({
-                        __proto__: pos$43,
+                        [nix.POS]: pos$43,
                         PAPERLESS_DBENGINE: "postgresql",
                         PAPERLESS_DBHOST: "/run/postgresql",
                         PAPERLESS_DBNAME: "paperless",
                         PAPERLESS_DBUSER: "paperless",
                       })))),
                     nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "configureTika")), nix.thunk(() => ({
-                        __proto__: pos$44,
+                        [nix.POS]: pos$44,
                         PAPERLESS_GOTENBERG_ENABLED: true,
                         PAPERLESS_TIKA_GOTENBERG_ENDPOINT: nix.thunk(() => nix.str`http://${nix.sel(config, "services", "gotenberg", "bindIP")}:${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "gotenberg", "port")))}`),
                         PAPERLESS_TIKA_ENABLED: true,
@@ -437,12 +437,12 @@ $sudo ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package"))
                   ]))),
               })),
               nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "configureNginx")), nix.thunk(() => ({
-                  __proto__: pos$53,
+                  [nix.POS]: pos$53,
                   enable: true,
                   upstreams: nix.thunk(() => ({
-                    __proto__: pos$47,
+                    [nix.POS]: pos$47,
                     paperless: nix.thunk(() => ({
-                      __proto__: pos$46,
+                      [nix.POS]: pos$46,
                       servers: nix.thunk(() => nix.attrsDyn({}, [
                         [nix.str`${nix.sel(cfg, "address")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}`, nix.thunk(() => ({}))],
                       ])),
@@ -450,91 +450,91 @@ $sudo ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package"))
                   })),
                   virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                     [nix.sel(cfg, "domain"), nix.thunk(() => ({
-                      __proto__: pos$52,
+                      [nix.POS]: pos$52,
                       forceSSL: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                       locations: nix.thunk(() => ({
-                        __proto__: pos$51,
-                        "/": nix.thunk(() => ({ __proto__: pos$48, proxyPass: "http://paperless" })),
+                        [nix.POS]: pos$51,
+                        "/": nix.thunk(() => ({ [nix.POS]: pos$48, proxyPass: "http://paperless" })),
                         "/static/": nix.thunk(() => ({
-                          __proto__: pos$49,
+                          [nix.POS]: pos$49,
                           root: nix.thunk(() => nix.sel(config, "services", "paperless", "package")),
                           extraConfig: "rewrite ^/(.*)$ /lib/paperless-ngx/$1 break;\n",
                         })),
-                        "/ws/status": nix.thunk(() => ({ __proto__: pos$50, proxyPass: "http://paperless", proxyWebsockets: true })),
+                        "/ws/status": nix.thunk(() => ({ [nix.POS]: pos$50, proxyPass: "http://paperless", proxyWebsockets: true })),
                       })),
                     }))],
                   ])),
                 })))),
               redis: nix.thunk(() => ({
-                __proto__: pos$56,
+                [nix.POS]: pos$56,
                 servers: nix.thunk(() => ({
-                  __proto__: pos$55,
+                  [nix.POS]: pos$55,
                   paperless: nix.thunk(() => ({
-                    __proto__: pos$54,
+                    [nix.POS]: pos$54,
                     enable: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), enableRedis, true)),
                   })),
                 })),
               })),
               postgresql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ({
-                  __proto__: pos$58,
+                  [nix.POS]: pos$58,
                   enable: true,
                   ensureDatabases: nix.thunk(() => ["paperless"]),
                   ensureUsers: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$57,
+                      [nix.POS]: pos$57,
                       name: nix.thunk(() => nix.sel(config, "services", "paperless", "user")),
                       ensureDBOwnership: true,
                     })),
                   ]),
                 })))),
               gotenberg: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "configureTika")), nix.thunk(() => ({
-                  __proto__: pos$60,
+                  [nix.POS]: pos$60,
                   enable: true,
-                  chromium: nix.thunk(() => ({ __proto__: pos$59, disableJavascript: true })),
+                  chromium: nix.thunk(() => ({ [nix.POS]: pos$59, disableJavascript: true })),
                   extraArgs: nix.thunk(() => ["--chromium-allow-list=file:///tmp/.*"]),
                 })))),
-              tika: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "configureTika")), nix.thunk(() => ({ __proto__: pos$61, enable: true, enableOcr: true })))),
+              tika: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "configureTika")), nix.thunk(() => ({ [nix.POS]: pos$61, enable: true, enableOcr: true })))),
             })),
-            environment: nix.thunk(() => ({ __proto__: pos$63, systemPackages: nix.thunk(() => [manage]) })),
+            environment: nix.thunk(() => ({ [nix.POS]: pos$63, systemPackages: nix.thunk(() => [manage]) })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$90,
+              [nix.POS]: pos$90,
               slices: nix.thunk(() => ({
-                __proto__: pos$65,
+                [nix.POS]: pos$65,
                 "system-paperless": nix.thunk(() => ({
-                  __proto__: pos$64,
+                  [nix.POS]: pos$64,
                   description: "Paperless Document Management System Slice",
                   documentation: nix.thunk(() => ["https://docs.paperless-ngx.com"]),
                 })),
               })),
               tmpfiles: nix.thunk(() => ({
-                __proto__: pos$73,
+                [nix.POS]: pos$73,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$72,
+                  [nix.POS]: pos$72,
                   "10-paperless": nix.thunk(() => (() => {
                     const defaultRule = nix.thunk(() => (() => {
                       const from = nix.thunk(() => nix.sel(config, "users", "users", nix.key(nix.sel(cfg, "user"))));
                       return {
-                      __proto__: pos$66,
+                      [nix.POS]: pos$66,
                       user: nix.thunk(() => nix.attr(cfg, "user")),
                       group: nix.thunk(() => nix.attr(from, "group")),
                     };
                     })());
                     return nix.attrsDyn({}, [
-                      [nix.str`${nix.sel(cfg, "dataDir")}`, nix.thunk(() => ({ __proto__: pos$67, d: defaultRule }))],
-                      [nix.str`${nix.sel(cfg, "dataDir")}/index`, nix.thunk(() => ({ __proto__: pos$68, d: defaultRule }))],
-                      [nix.str`${nix.sel(cfg, "mediaDir")}`, nix.thunk(() => ({ __proto__: pos$69, d: defaultRule }))],
+                      [nix.str`${nix.sel(cfg, "dataDir")}`, nix.thunk(() => ({ [nix.POS]: pos$67, d: defaultRule }))],
+                      [nix.str`${nix.sel(cfg, "dataDir")}/index`, nix.thunk(() => ({ [nix.POS]: pos$68, d: defaultRule }))],
+                      [nix.str`${nix.sel(cfg, "mediaDir")}`, nix.thunk(() => ({ [nix.POS]: pos$69, d: defaultRule }))],
                       [nix.str`${nix.sel(cfg, "consumptionDir")}`, nix.thunk(() => ({
-                        __proto__: pos$71,
-                        d: nix.thunk(() => (nix.asBool(nix.sel(cfg, "consumptionDirIsPublic")) ? { __proto__: pos$70, mode: "777" } : nix.force(defaultRule))),
+                        [nix.POS]: pos$71,
+                        d: nix.thunk(() => (nix.asBool(nix.sel(cfg, "consumptionDirIsPublic")) ? { [nix.POS]: pos$70, mode: "777" } : nix.force(defaultRule))),
                       }))],
                     ]);
                   })()),
                 })),
               })),
               services: nix.thunk(() => ({
-                __proto__: pos$89,
+                [nix.POS]: pos$89,
                 "paperless-secret-key": nix.thunk(() => ({
-                  __proto__: pos$76,
+                  [nix.POS]: pos$76,
                   description: "Paperless secret key generator",
                   before: nix.thunk(() => [
                     "paperless-consumer.service",
@@ -549,11 +549,11 @@ $sudo ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package"))
                     "paperless-web.service",
                   ]),
                   unitConfig: nix.thunk(() => ({
-                    __proto__: pos$74,
+                    [nix.POS]: pos$74,
                     RequiresMountsFor: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "dataDir"))]),
                   })),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$75,
+                    [nix.POS]: pos$75,
                     Type: "oneshot",
                     RemainAfterExit: true,
                     User: nix.thunk(() => nix.sel(cfg, "user")),
@@ -581,7 +581,7 @@ fi
 `),
                 })),
                 "paperless-scheduler": nix.thunk(() => ({
-                  __proto__: pos$79,
+                  [nix.POS]: pos$79,
                   description: "Paperless Celery Beat",
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   wants: nix.thunk(() => [
@@ -590,7 +590,7 @@ fi
                     "paperless-task-queue.service",
                   ]),
                   serviceConfig: nix.thunk(() => nix.update(defaultServiceConfig, {
-                    __proto__: pos$77,
+                    [nix.POS]: pos$77,
                     User: nix.thunk(() => nix.sel(cfg, "user")),
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/celery --app paperless beat --loglevel INFO`),
                     Restart: "on-failure",
@@ -599,7 +599,7 @@ fi
                   })),
                   environment: env,
                   unitConfig: nix.thunk(() => ({
-                    __proto__: pos$78,
+                    [nix.POS]: pos$78,
                     RequiresMountsFor: nix.thunk(() => nix.sel(defaultServiceConfig, "ReadWritePaths")),
                   })),
                   preStart: nix.thunk(() => nix.str`  # remove old papaerless-manage symlink
@@ -639,12 +639,12 @@ fi
                   after: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), enableRedis, "redis-paperless.service"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), "postgresql.target"))),
                 })),
                 "paperless-task-queue": nix.thunk(() => ({
-                  __proto__: pos$81,
+                  [nix.POS]: pos$81,
                   description: "Paperless Celery Workers",
                   requires: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), "postgresql.target")),
                   after: nix.thunk(() => nix.concat(["paperless-scheduler.service"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), "postgresql.target"))),
                   serviceConfig: nix.thunk(() => nix.update(defaultServiceConfig, {
-                    __proto__: pos$80,
+                    [nix.POS]: pos$80,
                     User: nix.thunk(() => nix.sel(cfg, "user")),
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/celery --app paperless worker --loglevel INFO`),
                     Restart: "on-failure",
@@ -654,29 +654,29 @@ fi
                   environment: env,
                 })),
                 "paperless-consumer": nix.thunk(() => ({
-                  __proto__: pos$84,
+                  [nix.POS]: pos$84,
                   description: "Paperless document consumer",
                   bindsTo: nix.thunk(() => ["paperless-scheduler.service"]),
                   requires: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), "postgresql.target")),
                   after: nix.thunk(() => nix.concat(["paperless-scheduler.service"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), "postgresql.target"))),
                   serviceConfig: nix.thunk(() => nix.update(defaultServiceConfig, {
-                    __proto__: pos$82,
+                    [nix.POS]: pos$82,
                     User: nix.thunk(() => nix.sel(cfg, "user")),
                     ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} document_consumer`),
                     Restart: "on-failure",
                     PrivateNetwork: nix.thunk(() => nix.sel(cfg, "database", "createLocally")),
                   })),
                   environment: env,
-                  unitConfig: nix.thunk(() => ({ __proto__: pos$83, JoinsNamespaceOf: "paperless-task-queue.service" })),
+                  unitConfig: nix.thunk(() => ({ [nix.POS]: pos$83, JoinsNamespaceOf: "paperless-task-queue.service" })),
                 })),
                 "paperless-web": nix.thunk(() => ({
-                  __proto__: pos$88,
+                  [nix.POS]: pos$88,
                   description: "Paperless web server",
                   bindsTo: nix.thunk(() => ["paperless-scheduler.service"]),
                   requires: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), "postgresql.target")),
                   after: nix.thunk(() => nix.concat(["paperless-scheduler.service"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), "postgresql.target"))),
                   serviceConfig: nix.thunk(() => nix.update(defaultServiceConfig, {
-                    __proto__: pos$85,
+                    [nix.POS]: pos$85,
                     User: nix.thunk(() => nix.sel(cfg, "user")),
                     ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package", "python", "pkgs", "granian")))} --interface asginl --ws paperless.asgi:application`),
                     Restart: "on-failure",
@@ -685,18 +685,18 @@ fi
                     PrivateNetwork: false,
                   })),
                   environment: nix.thunk(() => nix.update(env, {
-                    __proto__: pos$86,
+                    [nix.POS]: pos$86,
                     PYTHONPATH: nix.thunk(() => nix.str`${nix.app(nix.sel(cfg, "package", "python", "pkgs", "makePythonPath"), nix.thunk(() => nix.sel(cfg, "package", "passthru", "dependencies")))}:${nix.sel(cfg, "package")}/lib/paperless-ngx/src`),
                   })),
-                  unitConfig: nix.thunk(() => ({ __proto__: pos$87, JoinsNamespaceOf: "paperless-task-queue.service" })),
+                  unitConfig: nix.thunk(() => ({ [nix.POS]: pos$87, JoinsNamespaceOf: "paperless-task-queue.service" })),
                 })),
               })),
             })),
             users: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), defaultUser)), nix.thunk(() => ({
-                __proto__: pos$93,
+                [nix.POS]: pos$93,
                 users: nix.thunk(() => nix.attrsDyn({}, [
                   [defaultUser, nix.thunk(() => ({
-                    __proto__: pos$91,
+                    [nix.POS]: pos$91,
                     extraGroups: nix.thunk(() => [
                       nix.thunk(() => nix.sel(config, "services", "redis", "servers", "paperless", "group")),
                     ]),
@@ -707,29 +707,29 @@ fi
                 ])),
                 groups: nix.thunk(() => nix.attrsDyn({}, [
                   [defaultUser, nix.thunk(() => ({
-                    __proto__: pos$92,
+                    [nix.POS]: pos$92,
                     gid: nix.thunk(() => nix.sel(config, "ids", "gids", "paperless")),
                   }))],
                 ])),
               })))),
           })),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "exporter", "enable")), nix.thunk(() => ({
-              __proto__: pos$104,
+              [nix.POS]: pos$104,
               systemd: nix.thunk(() => ({
-                __proto__: pos$100,
+                [nix.POS]: pos$100,
                 tmpfiles: nix.thunk(() => ({
-                  __proto__: pos$95,
+                  [nix.POS]: pos$95,
                   rules: nix.thunk(() => [
                     nix.thunk(() => nix.str`d '${nix.sel(cfg, "exporter", "directory")}' - ${nix.sel(cfg, "user")} ${nix.sel(config, "users", "users", nix.key(nix.sel(cfg, "user")), "group")} - -`),
                   ]),
                 })),
                 services: nix.thunk(() => ({
-                  __proto__: pos$99,
+                  [nix.POS]: pos$99,
                   "paperless-exporter": nix.thunk(() => ({
-                    __proto__: pos$98,
+                    [nix.POS]: pos$98,
                     startAt: nix.thunk(() => nix.app(nix.sel(lib, "defaultTo"), [], nix.thunk(() => nix.sel(cfg, "exporter", "onCalendar")))),
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$96,
+                      [nix.POS]: pos$96,
                       User: nix.thunk(() => nix.sel(cfg, "user")),
                       WorkingDirectory: nix.thunk(() => nix.sel(cfg, "dataDir")),
                     })),
@@ -741,7 +741,7 @@ fi
                         "paperless-web.service",
                       ]);
                       return {
-                        __proto__: pos$97,
+                        [nix.POS]: pos$97,
                         Conflicts: services,
                         After: services,
                         OnFailure: services,
@@ -756,11 +756,11 @@ fi
                 })),
               })),
               services: nix.thunk(() => ({
-                __proto__: pos$103,
+                [nix.POS]: pos$103,
                 paperless: nix.thunk(() => ({
-                  __proto__: pos$102,
+                  [nix.POS]: pos$102,
                   exporter: nix.thunk(() => ({
-                    __proto__: pos$101,
+                    [nix.POS]: pos$101,
                     settings: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (v) => nix.app(nix.sel(lib, "mkDefault"), v), nix.thunk(() => nix.sel(options, "services", "paperless", "exporter", "settings", "default")))),
                   })),
                 })),

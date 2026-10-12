@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const makeWrapper = nix.arg($, "makeWrapper");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
-  const jdk = nix.thunk(() => nix.app(nix.sel(jdk21, "override"), nix.thunk(() => ({ __proto__: pos$1, enableJavaFX: true }))));
+  const jdk = nix.thunk(() => nix.app(nix.sel(jdk21, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableJavaFX: true }))));
   return nix.app(nix.sel(maven, "buildMavenPackage"), nix.thunk(() => (() => {
       const pname = "scenebuilder";
       const version = "21.0.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "gluonhq",
           repo: "scenebuilder",
           rev: version,
@@ -56,7 +56,7 @@ runHook postInstall
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "scenebuilder",
             exec: "scenebuilder",
             icon: "scenebuilder",
@@ -67,7 +67,7 @@ runHook postInstall
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/gluonhq/scenebuilder/releases/tag/${nix.sel(src, "rev")}`),
         description: "Visual, drag'n'drop, layout tool for designing JavaFX application user interfaces",
         homepage: "https://gluonhq.com/products/scene-builder/",
@@ -87,7 +87,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

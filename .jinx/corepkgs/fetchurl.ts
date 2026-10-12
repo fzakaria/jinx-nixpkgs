@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const name = nix.argOr($, "name", () => nix.builtins.baseNameOf(nix.thunk(() => nix.builtins.toString(url))));
   const impure = nix.argOr($, "impure", () => false);
   return nix.app(nix.builtins.derivation, nix.thunk(() => nix.update({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       builder: "builtin:fetchurl",
       outputHashMode: nix.thunk(() => (nix.asBool((nix.asBool(unpack) || nix.asBool(executable))) ? "recursive" : "flat")),
       name: name,
@@ -34,5 +34,5 @@ export default nix.lambda((args) => (() => {
       preferLocalBuild: true,
       impureEnvVars: nix.thunk(() => ["http_proxy", "https_proxy", "ftp_proxy", "all_proxy", "no_proxy"]),
       urls: nix.thunk(() => [url]),
-    }, (nix.asBool(impure) ? { __proto__: pos$2, __impure: true } : { __proto__: pos$3, outputHashAlgo: outputHashAlgo, outputHash: outputHash }))));
+    }, (nix.asBool(impure) ? { [nix.POS]: pos$2, __impure: true } : { [nix.POS]: pos$3, outputHashAlgo: outputHashAlgo, outputHash: outputHash }))));
 })(), formals$1);

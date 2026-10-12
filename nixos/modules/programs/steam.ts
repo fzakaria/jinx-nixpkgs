@@ -72,28 +72,28 @@ Comment=A digital distribution platform
 Exec=${steam_gamescope}/bin/steam-gamescope
 Type=Application
 `)), "overrideAttrs"), (_) => ({
-      __proto__: pos$2,
-      passthru: nix.thunk(() => ({ __proto__: pos$1, providedSessions: nix.thunk(() => ["steam"]) })),
+      [nix.POS]: pos$2,
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, providedSessions: nix.thunk(() => ["steam"]) })),
     })));
   return {
-    __proto__: pos$48,
+    [nix.POS]: pos$48,
     options: nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       programs: nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         steam: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "steam")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
               default: nix.thunk(() => nix.sel(pkgs, "steam")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.steam")),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.steam.override {\n  extraEnv = {\n    MANGOHUD = true;\n    OBS_VKCAPTURE = true;\n    RADV_TEX_ANISO = 16;\n  };\n  extraLibraries = p: with p; [\n    atk\n  ];\n}\n")),
               apply: (steam) => nix.app(nix.sel(steam, "override"), (prev) => ({
-                  __proto__: pos$5,
-                  extraEnv: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "extraCompatPackages"), [])), nix.thunk(() => ({ __proto__: pos$3, STEAM_EXTRA_COMPAT_TOOLS_PATHS: extraCompatPaths }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "extest", "enable")), nix.thunk(() => ({
-                      __proto__: pos$4,
+                  [nix.POS]: pos$5,
+                  extraEnv: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "extraCompatPackages"), [])), nix.thunk(() => ({ [nix.POS]: pos$3, STEAM_EXTRA_COMPAT_TOOLS_PATHS: extraCompatPaths }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "extest", "enable")), nix.thunk(() => ({
+                      [nix.POS]: pos$4,
                       LD_PRELOAD: nix.thunk(() => nix.str`${nix.sel(pkgs, "pkgsi686Linux", "extest")}/lib/libextest.so`),
                     }))), nix.selOr(prev, () => ({}), "extraEnv")))),
                   extraLibraries: (pkgs_1) => (() => {
@@ -109,21 +109,21 @@ Type=Application
               description: "The Steam package to use. Additional libraries are added from the system\nconfiguration to ensure graphics work properly.\n\nUse this option to customise the Steam package rather than adding your\ncustom Steam to {option}`environment.systemPackages` yourself.\n",
             })))),
           extraPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "with pkgs; [\n  gamescope\n]\n")),
               description: "Additional packages to add to the Steam environment.\n",
             })))),
           extraCompatPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "with pkgs; [\n  proton-ge-bin\n]\n")),
               description: "Extra packages to be used as compatibility tools for Steam on Linux. Packages will be included\nin the `STEAM_EXTRA_COMPAT_TOOLS_PATHS` environmental variable. For more information see\nhttps://github.com/ValveSoftware/steam-for-linux/issues/6310.\n\nThese packages must be Steam compatibility tools that have a `steamcompattool` output.\n",
             })))),
           fontPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: nix.thunk(() => nix.builtins.filter(nix.thunk(() => nix.sel(lib, "types", "package", "check")), nix.thunk(() => nix.sel(config, "fonts", "packages")))),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "builtins.filter lib.types.package.check config.fonts.packages")),
@@ -131,55 +131,55 @@ Type=Application
               description: "Font packages to use in Steam.\n\nDefaults to system fonts, but could be overridden to use other fonts — useful for users who would like to customize CJK fonts used in Steam. According to the [upstream issue](https://github.com/ValveSoftware/steam-for-linux/issues/10422#issuecomment-1944396010), Steam only follows the per-user fontconfig configuration.\n",
             })))),
           remotePlay: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Open ports in the firewall for Steam Remote Play.\n",
               })))),
           })),
           dedicatedServer: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Open ports in the firewall for Source Dedicated Server.\n",
               })))),
           })),
           localNetworkGameTransfers: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Open ports in the firewall for Steam Local Network Game Transfers.\n",
               })))),
           })),
           gamescopeSession: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               description: "Run a GameScope driven Steam session from your display-manager",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   options: nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "GameScope Session")),
                     args: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$16,
+                        [nix.POS]: pos$16,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: [],
                         description: "Arguments to be passed to GameScope for the session.\n",
                       })))),
                     env: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$17,
+                        [nix.POS]: pos$17,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: nix.thunk(() => ({})),
                         description: "Environmental variables to be passed to GameScope for the session.\n",
                       })))),
                     steamArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$18,
+                        [nix.POS]: pos$18,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: nix.thunk(() => ["-tenfoot", "-pipewire-dmabuf"]),
                         description: "Arguments to be passed to Steam for the session.\n",
@@ -188,11 +188,11 @@ Type=Application
                 })))),
             })))),
           extest: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Load the extest library into Steam, to translate X11 input events to\nuinput events (e.g. for using Steam Input on Wayland)\n")),
           })),
           protontricks: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "protontricks, a simple wrapper for running Winetricks commands for Proton-enabled games")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "protontricks", nix.thunk(() => ({})))),
           })),
@@ -200,69 +200,69 @@ Type=Application
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$46,
+        [nix.POS]: pos$46,
         hardware: nix.thunk(() => ({
-          __proto__: pos$29,
-          graphics: nix.thunk(() => ({ __proto__: pos$27, enable: true, enable32Bit: true })),
-          "steam-hardware": nix.thunk(() => ({ __proto__: pos$28, enable: true })),
+          [nix.POS]: pos$29,
+          graphics: nix.thunk(() => ({ [nix.POS]: pos$27, enable: true, enable32Bit: true })),
+          "steam-hardware": nix.thunk(() => ({ [nix.POS]: pos$28, enable: true })),
         })),
         programs: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           steam: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             extraPackages: nix.thunk(() => nix.sel(cfg, "fontPackages")),
           })),
           gamescope: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(cfg, "gamescopeSession", "enable")))),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           displayManager: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             sessionPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "gamescopeSession", "enable")), nix.thunk(() => [gamescopeSessionFile]))),
           })),
           pulseaudio: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             support32Bit: nix.thunk(() => nix.sel(config, "services", "pulseaudio", "enable")),
           })),
           pipewire: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             alsa: nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               support32Bit: nix.thunk(() => nix.sel(config, "services", "pipewire", "alsa", "enable")),
             })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           systemPackages: nix.thunk(() => nix.concat([
             nix.thunk(() => nix.sel(cfg, "package")),
             nix.thunk(() => nix.sel(cfg, "package", "run")),
-          ], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "gamescopeSession", "enable")), steam_gamescope), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "protontricks", "enable")), nix.thunk(() => nix.app(nix.sel(cfg, "protontricks", "package", "override"), nix.thunk(() => ({ __proto__: pos$38, extraCompatPaths: extraCompatPaths })))))))),
+          ], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "gamescopeSession", "enable")), steam_gamescope), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "protontricks", "enable")), nix.thunk(() => nix.app(nix.sel(cfg, "protontricks", "package", "override"), nix.thunk(() => ({ [nix.POS]: pos$38, extraCompatPaths: extraCompatPaths })))))))),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$45,
+          [nix.POS]: pos$45,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
-              nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "remotePlay", "openFirewall")) || nix.asBool(nix.sel(cfg, "localNetworkGameTransfers", "openFirewall")))), nix.thunk(() => ({ __proto__: pos$40, allowedUDPPorts: nix.thunk(() => [27036n]) })))),
+              nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "remotePlay", "openFirewall")) || nix.asBool(nix.sel(cfg, "localNetworkGameTransfers", "openFirewall")))), nix.thunk(() => ({ [nix.POS]: pos$40, allowedUDPPorts: nix.thunk(() => [27036n]) })))),
               nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "remotePlay", "openFirewall")), nix.thunk(() => ({
-                  __proto__: pos$42,
+                  [nix.POS]: pos$42,
                   allowedTCPPorts: nix.thunk(() => [27036n, 27037n]),
                   allowedUDPPorts: nix.thunk(() => [10400n, 10401n]),
-                  allowedUDPPortRanges: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$41, from: 27031n, to: 27035n }))]),
+                  allowedUDPPortRanges: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$41, from: 27031n, to: 27035n }))]),
                 })))),
               nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "dedicatedServer", "openFirewall")), nix.thunk(() => ({
-                  __proto__: pos$43,
+                  [nix.POS]: pos$43,
                   allowedTCPPorts: nix.thunk(() => [27015n]),
                   allowedUDPPorts: nix.thunk(() => [27015n]),
                 })))),
-              nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "localNetworkGameTransfers", "openFirewall")), nix.thunk(() => ({ __proto__: pos$44, allowedTCPPorts: nix.thunk(() => [27040n]) })))),
+              nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "localNetworkGameTransfers", "openFirewall")), nix.thunk(() => ({ [nix.POS]: pos$44, allowedTCPPorts: nix.thunk(() => [27040n]) })))),
             ]))),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$47,
+      [nix.POS]: pos$47,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "steam"))]),
     })),
   };

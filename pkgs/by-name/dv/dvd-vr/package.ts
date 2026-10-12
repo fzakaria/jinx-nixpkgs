@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dvd-vr",
       version: "0.9.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.pixelbeat.org/programs/dvd-vr/dvd-vr-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "13wkdia3c0ryda40b2nzpb9vddimasgc4w95hvl0k555k9k8bl0r",
         })))),
       makeFlags: nix.thunk(() => ["PREFIX=$(out)", "CFLAGS=-Wno-error=incompatible-pointer-types"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.pixelbeat.org/programs/dvd-vr/",
         downloadPage: "https://www.pixelbeat.org/programs/dvd-vr/",
         description: "Utility to identify and optionally copy recordings from a DVD-VR format disc",

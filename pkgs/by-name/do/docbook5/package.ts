@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "docbook5",
       version: "5.0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.docbook.org/xml/${nix.sel(finalAttrs, "version")}/docbook-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "1iz3hq1lqgnshvlz4j9gvh4jy1ml74qf90vqf2ikbq0h4i2xzybs",
         })))),
       nativeBuildInputs: nix.thunk(() => [unzip]),
       installPhase: "dst=$out/share/xml/docbook-5.0\nmkdir -p $dst\ncp -prv * $dst/\n\nsubstituteInPlace $dst/catalog.xml --replace 'uri=\"' \"uri=\\\"$dst/\"\n\nrm -rf $dst/docs $dst/ChangeLog\n\n# Backwards compatibility. Will remove eventually.\nmkdir -p $out/xml/rng $out/xml/dtd\nln -s $dst/rng $out/xml/rng/docbook\nln -s $dst/dtd $out/xml/dtd/docbook\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Schemas for DocBook 5.0, a semantic markup language for technical documentation",
         homepage: "https://docbook.org/xml/5.0/",
         maintainers: [],

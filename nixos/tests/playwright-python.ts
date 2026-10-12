@@ -16,32 +16,32 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     name: "playwright-python",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "phaer"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           environment: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             variables: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               NIX_MANUAL_DOCROOT: nix.thunk(() => nix.str`file://${nix.sel(pkgs_1, "nix", "doc")}/share/doc/nix/manual/index.html`),
               PLAYWRIGHT_BROWSERS_PATH: nix.thunk(() => nix.sel(pkgs_1, "playwright-driver", "browsers")),
             })),
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(pkgs_1, "writers", "writePython3Bin"), "test_playwright", nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   libraries: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "python3Packages", "playwright"))]),
                 })), "import sys\nimport re\nfrom playwright.sync_api import sync_playwright\nfrom playwright.sync_api import expect\n\nbrowsers = {\n  \"chromium\": {'args': [\"--headless\", \"--disable-gpu\"], 'channel': 'chromium'},\n  \"firefox\": {},\n  \"webkit\": {}\n}\nneedle = re.compile(\"Nix.* Manual\")\nif len(sys.argv) != 3 or sys.argv[1] not in browsers.keys():\n    print(f\"usage: {sys.argv[0]} [{'|'.join(browsers.keys())}] <url>\")\n    sys.exit(1)\nbrowser_name = sys.argv[1]\nurl = sys.argv[2]\nbrowser_kwargs = browsers.get(browser_name)\nargs = ' '.join(browser_kwargs.get('args', []))\nprint(f\"Running test on {browser_name} {args}\")\nwith sync_playwright() as p:\n    browser = getattr(p, browser_name).launch(**browser_kwargs)\n    context = browser.new_context()\n    page = context.new_page()\n    page.goto(url)\n    expect(page.get_by_text(needle)).to_be_visible()\n")),
             ]),

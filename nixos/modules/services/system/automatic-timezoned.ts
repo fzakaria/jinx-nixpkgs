@@ -35,15 +35,15 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "automatic-timezoned"));
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "automatic-timezoned": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enable `automatic-timezoned`, simple daemon for keeping the system\ntimezone up-to-date based on the current location. It uses geoclue2 to\ndetermine the current location and systemd-timedated to actually set\nthe timezone.\n\nTo avoid silent overriding by the service, if you have explicitly set a\ntimezone, either remove it or ensure that it is set with a lower priority\nthan the default value using `lib.mkDefault` or `lib.mkOverride`. This is\nto make the choice deliberate. An error will be presented otherwise.\n",
@@ -53,24 +53,24 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$23,
-        time: nix.thunk(() => ({ __proto__: pos$5, timeZone: null })),
+        [nix.POS]: pos$23,
+        time: nix.thunk(() => ({ [nix.POS]: pos$5, timeZone: null })),
         security: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           polkit: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             extraConfig: "polkit.addRule(function(action, subject) {\n  if (action.id == \"org.freedesktop.timedate1.set-timezone\"\n      && subject.user == \"automatic-timezoned\") {\n    return polkit.Result.YES;\n  }\n});\n",
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           geoclue2: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             enable: true,
             appConfig: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               "automatic-timezoned": nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 isAllowed: true,
                 isSystem: true,
                 users: nix.thunk(() => [
@@ -81,16 +81,16 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             "automatic-timezoned": nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "Automatically update system timezone based on location",
               requires: nix.thunk(() => ["automatic-timezoned-geoclue-agent.service"]),
               after: nix.thunk(() => ["automatic-timezoned-geoclue-agent.service", "multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 Type: "exec",
                 User: "automatic-timezoned",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/automatic-timezoned`),
@@ -98,12 +98,12 @@ export default nix.lambda((args) => (() => {
               wantedBy: nix.thunk(() => ["multi-user.target"]),
             })),
             "automatic-timezoned-geoclue-agent": nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               description: "Geoclue agent for automatic-timezoned",
               requires: nix.thunk(() => ["geoclue.service"]),
               after: nix.thunk(() => ["geoclue.service"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 Type: "exec",
                 User: "automatic-timezoned",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "geoclue2-with-demo-agent")}/libexec/geoclue-2.0/demos/agent`),
@@ -114,20 +114,20 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           users: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             "automatic-timezoned": nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "automatic-timezoned",
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "automatic-timezoned")),
               group: "automatic-timezoned",
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             "automatic-timezoned": nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "automatic-timezoned")),
             })),
           })),

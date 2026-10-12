@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const multipart_form = nix.arg($, "multipart_form");
   const lwt = nix.arg($, "lwt");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "multipart_form-lwt",
       version: nix.thunk(() => nix.attr(multipart_form, "version")),
       src: nix.thunk(() => nix.attr(multipart_form, "src")),

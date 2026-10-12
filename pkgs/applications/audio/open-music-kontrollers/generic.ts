@@ -29,15 +29,15 @@ export default nix.lambda((args) => (() => {
   const additionalBuildInputs = nix.argOr($, "additionalBuildInputs", () => []);
   const postPatch = nix.argOr($, "postPatch", () => "");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       postPatch: postPatch,
-      src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ __proto__: pos$1, url: url, sha256: sha256 })))),
+      src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$1, url: url, sha256: sha256 })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config, meson, ninja]),
       buildInputs: nix.thunk(() => nix.concat([lv2, sord, libx11, libxext, glew, lv2lint], additionalBuildInputs)),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: description,
         homepage: nix.thunk(() => nix.str`https://open-music-kontrollers.ch/lv2/${pname}:`),

@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
     const env = nix.argOr($_1, "env", () => ({}));
     const serverJavabase = nix.argOr($_1, "serverJavabase", () => null);
     const registry = nix.argOr($_1, "registry", () => null);
-    const bazelRepoCacheFOD = nix.argOr($_1, "bazelRepoCacheFOD", () => ({ __proto__: pos$1, outputHash: null, outputHashAlgo: "sha256" }));
-    const bazelVendorDepsFOD = nix.argOr($_1, "bazelVendorDepsFOD", () => ({ __proto__: pos$2, outputHash: null, outputHashAlgo: "sha256" }));
+    const bazelRepoCacheFOD = nix.argOr($_1, "bazelRepoCacheFOD", () => ({ [nix.POS]: pos$1, outputHash: null, outputHashAlgo: "sha256" }));
+    const bazelVendorDepsFOD = nix.argOr($_1, "bazelVendorDepsFOD", () => ({ [nix.POS]: pos$2, outputHash: null, outputHashAlgo: "sha256" }));
     const installPhase = nix.arg($_1, "installPhase");
     const buildInputs = nix.argOr($_1, "buildInputs", () => []);
     const nativeBuildInputs = nix.argOr($_1, "nativeBuildInputs", () => []);
     const autoPatchelfIgnoreMissingDeps = nix.argOr($_1, "autoPatchelfIgnoreMissingDeps", () => null);
     const bazelRepoCache = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(bazelRepoCacheFOD, "outputHash"), null)) ? null : nix.app(callPackage, nix.path(here, "./bazelDerivation.nix"), nix.thunk(() => ({})), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name: "bazelRepoCache",
         outputHash: nix.thunk(() => nix.attr(bazelRepoCacheFOD, "outputHash")),
         outputHashAlgo: nix.thunk(() => nix.attr(bazelRepoCacheFOD, "outputHashAlgo")),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       })))));
     const bazelVendorDeps = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(bazelVendorDepsFOD, "outputHash"), null)) ? null : (() => {
       const stage1 = nix.thunk(() => nix.app(callPackage, nix.path(here, "./bazelDerivation.nix"), nix.thunk(() => ({})), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           name: "bazelVendorDepsStage1",
           outputHash: nix.thunk(() => nix.attr(bazelVendorDepsFOD, "outputHash")),
           outputHashAlgo: nix.thunk(() => nix.attr(bazelVendorDepsFOD, "outputHashAlgo")),
@@ -97,7 +97,7 @@ find vendor_dir -xtype l -exec rm '{}' \\;
           installPhase: "mkdir -p $out/vendor_dir\ncp -r --reflink=auto vendor_dir/* $out/vendor_dir\n",
         }))));
       return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           name: "bazelVendorDeps",
           buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), autoPatchelfHook), buildInputs)),
           autoPatchelfIgnoreMissingDeps: autoPatchelfIgnoreMissingDeps,
@@ -106,7 +106,7 @@ find vendor_dir -xtype l -exec rm '{}' \\;
         })));
     })()));
     const package$ = nix.thunk(() => nix.app(callPackage, nix.path(here, "./bazelDerivation.nix"), nix.thunk(() => ({})), nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         name: name,
         src: src,
         version: version,
@@ -126,9 +126,9 @@ find vendor_dir -xtype l -exec rm '{}' \\;
         command: "build",
       }))));
     return nix.update(package$, {
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         bazelRepoCache: bazelRepoCache,
         bazelVendorDeps: bazelVendorDeps,
       })),

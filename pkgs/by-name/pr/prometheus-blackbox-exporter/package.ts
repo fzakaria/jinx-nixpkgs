@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.29.0";
       const rev = nix.thunk(() => nix.str`v${version}`);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           rev: rev,
           owner: "prometheus",
           repo: "blackbox_exporter",
@@ -29,10 +29,10 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-4K4TXylVNk1d/E+jhAU+dm2GbF4Xl9h3nrFtTRf+siY=";
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { __proto__: pos$2, blackbox: nix.thunk(() => nix.attr(from, "blackbox")) };
+          return { [nix.POS]: pos$2, blackbox: nix.thunk(() => nix.attr(from, "blackbox")) };
         })()),
       }));
       const ldflags = nix.thunk(() => [
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         "-X github.com/prometheus/common/version.BuildDate=unknown",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Blackbox probing of endpoints over HTTP, HTTPS, DNS, TCP and ICMP",
         mainProgram: "blackbox_exporter",
         homepage: "https://github.com/prometheus/blackbox_exporter",
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         rev,

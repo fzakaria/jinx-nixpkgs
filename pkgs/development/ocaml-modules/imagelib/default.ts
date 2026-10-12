@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const stdlib_shims = nix.arg($, "stdlib-shims");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       minimalOCamlVersion: "4.08",
       version: "20221222",
       pname: "imagelib",
       duneVersion: "3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/rlepigre/ocaml-imagelib/releases/download/${nix.sel(finalAttrs, "version")}/imagelib-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-BQ2TVxGlpc6temteK84TKXpx0MtHZSykL/TjKN9xGP0=",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Image formats such as PNG and PPM in OCaml",
         homepage: "https://github.com/rlepigre/ocaml-imagelib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

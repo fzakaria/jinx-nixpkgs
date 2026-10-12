@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const ctestCheckHook = nix.arg($, "ctestCheckHook");
   const memcached = nix.arg($, "memcached");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libmemcached",
       version: "1.1.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "awesomized",
           repo: "libmemcached",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "libcxx-compat.patch",
             url: "https://github.com/awesomized/libmemcached/commit/547460c12287a34a5993045157a0e13e14203f92.patch",
             includes: nix.thunk(() => ["test/lib/random.cpp"]),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [ctestCheckHook, memcached]),
       disabledTests: nix.thunk(() => ["bin/memcapable", "memcached_regression_lp583031"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/awesomized/libmemcached",
         changelog: nix.thunk(() => nix.str`https://github.com/awesomized/libmemcached/blob/${nix.sel(finalAttrs, "src", "tag")}/ChangeLog-${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}.md`),
         description: "Open source C/C++ client library and tools for the memcached server",

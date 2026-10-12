@@ -60,11 +60,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "auto-multiple-choice",
       version: "1.7.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.auto-multiple-choice.net/auto-multiple-choice_${nix.sel(finalAttrs, "version")}_dist.tar.gz`),
           sha256: "sha256-37kWqgdvZopvNSU6LA/FmY2wfSJz3rRSlaQF2HSbdmA=",
         })))),
@@ -121,7 +121,7 @@ export default nix.lambda((args) => (() => {
         perlWithPackages,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Create and manage multiple choice questionnaires with automated marking",
         mainProgram: "auto-multiple-choice",
         longDescription: "Create, manage and mark multiple-choice questionnaires.\nauto-multiple-choice features automated or manual formatting with\nLaTeX, shuffling of questions and answers and automated marking using\nOptical Mark Recognition.\n\nQuestionnaires can be created using either a very simple text syntax,\nAMC-TXT, or LaTeX. In the latter case, your TeXLive installation must\nbe combined with this package.  This can be done in configuration.nix\nas follows:\n\n<screen>\n…\nenvironment.systemPackages = with pkgs; [\n  auto-multiple-choice\n  (texliveFull.withPackages (_: [auto-multiple-choice.tex]))\n];\n</screen>\n\nFor usage instructions, see documentation at the project's homepage.\n",

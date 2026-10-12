@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.10.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "smarie",
           repo: "python-pytest-harvest",
           tag: version,
@@ -45,7 +45,7 @@ substituteInPlace pytest_harvest/tests/test_lazy_and_harvest.py \\
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, numpy, pandas, tabulate, pytest_cases]);
       const pythonImportsCheck = nix.thunk(() => ["pytest_harvest"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Store data created during your `pytest` tests execution, and retrieve it at the end of the session, e.g. for applicative benchmarking purposes",
         homepage: "https://github.com/smarie/python-pytest-harvest",
         changelog: nix.thunk(() => nix.str`https://github.com/smarie/python-pytest-harvest/releases/tag/${version}`),
@@ -53,7 +53,7 @@ substituteInPlace pytest_harvest/tests/test_lazy_and_harvest.py \\
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

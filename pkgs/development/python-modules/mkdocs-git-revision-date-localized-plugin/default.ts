@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.5.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "timvink",
           repo: "mkdocs-git-revision-date-localized-plugin",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/test_builds.py"]);
       const pythonImportsCheck = nix.thunk(() => ["mkdocs_git_revision_date_localized_plugin"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MkDocs plugin that enables displaying the date of the last git modification of a page",
         homepage: "https://github.com/timvink/mkdocs-git-revision-date-localized-plugin",
         changelog: nix.thunk(() => nix.str`https://github.com/timvink/mkdocs-git-revision-date-localized-plugin/releases/tag/${nix.sel(src, "tag")}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

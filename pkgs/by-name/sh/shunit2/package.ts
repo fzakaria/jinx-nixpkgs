@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const findutils = nix.arg($, "findutils");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(resholve, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "shunit2",
       version: "2.1.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kward",
           repo: "shunit2",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,25 +38,25 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "$out/bin/shunit2\n",
       solutions: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         shunit: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           interpreter: nix.thunk(() => nix.str`${bash}/bin/sh`),
           scripts: nix.thunk(() => ["bin/shunit2"]),
           inputs: nix.thunk(() => [coreutils, gnused, gnugrep, findutils, ncurses]),
           fake: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             function: nix.thunk(() => ["oneTimeSetUp", "oneTimeTearDown", "setUp", "tearDown", "suite", "noexec"]),
             builtin: nix.thunk(() => ["setopt"]),
           })),
           fix: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             "/usr/bin/od": true,
             $__SHUNIT_CMD_ECHO_ESC: nix.thunk(() => ["echo -e"]),
             $SHUNIT_CMD_TPUT: nix.thunk(() => ["tput"]),
           })),
           keep: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             eval: nix.thunk(() => ["shunit_condition_", "_shunit_test_", "_shunit_prepForSourcing"]),
             $_SHUNIT_LINENO_: true,
           })),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://github.com/kward/shunit2",
         description: "XUnit based unit test framework for Bourne based shell scripts",
         maintainers: nix.thunk(() => (() => {

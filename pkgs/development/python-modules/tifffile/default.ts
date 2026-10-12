@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "2026.1.14";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-pCPFg+HuzZyiVWQtR/Rj76jX8jZaDhEOsBZ1cEk+DIw=",
@@ -45,9 +45,9 @@ export default nix.lambda((args) => (() => {
         "test_issue_invalid_predictor",
       ]);
       const pythonImportsCheck = nix.thunk(() => ["tifffile"]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, SKIP_LARGE: "1" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, SKIP_LARGE: "1" }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Read and write image data from and to TIFF files",
         homepage: "https://github.com/cgohlke/tifffile/",
         changelog: nix.thunk(() => nix.str`https://github.com/cgohlke/tifffile/blob/v${version}/CHANGES.rst`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

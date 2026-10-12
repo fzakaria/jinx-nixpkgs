@@ -90,11 +90,11 @@ export default nix.lambda((args) => (() => {
   })());
   nix.assert_(!nix.eq(nix.builtins.match("[^[:space:]]*", gpuTargetString), null), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ma/magma/package.nix:115:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       pname: "magma",
       version: "2.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "icl-utk-edu",
           repo: "magma",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -103,21 +103,21 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "test"]),
       patches: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "drop-cmp0037-old.patch",
             url: "https://github.com/icl-utk-edu/magma/commit/2fecaf3f0c811344363f713669c1fe30f6879acd.patch",
             hash: "sha256-Dfzq2gqoLSByCLWV5xvY/lXZeVa/yQ67lDSoIAa9jUU=",
           })))),
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), cudaSupport, nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               name: "fix-cuda13-compat.patch",
               url: "https://github.com/icl-utk-edu/magma/commit/235aefb7b064954fce09d035c69907ba8a87cbcd.patch",
               hash: "sha256-i9InbxD5HtfonB/GyF9nQhFmok3jZ73RxGcIciGBGvU=",
             })))),
         ])), nix.app(nix.sel(lib, "optionals"), rocmSupport, nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               name: "magma-ROCm-7.0-compat.patch",
               url: "https://github.com/icl-utk-edu/magma/commit/02ecee0ccc56cce85194fdda18c9e0614797b2f9.patch",
               hash: "sha256-vm58X30ZR02sOMsKrvxEcEF27tJYuuyZZrz+GGFNz5Q=",
@@ -159,7 +159,7 @@ make -j$NIX_BUILD_CORES generate
           ];
         })()))))),
       env: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         CFLAGS: nix.thunk(() => nix.add("-DADD_", nix.app(nix.sel(lib, "optionalString"), rocmSupport, " -fopenmp"))),
         CXXFLAGS: nix.thunk(() => nix.sel(finalAttrs, "env", "CFLAGS")),
         FFLAGS: "-DADD_",
@@ -181,18 +181,18 @@ make -j$NIX_BUILD_CORES generate
       doCheck: false,
       postInstall: nix.thunk(() => nix.add(nix.add("install -Dm755 ../testing/run_{tests,summarize}.py -t \"$test/bin/\"\n", "install -Dm755 ./testing/testing_* ./sparse/testing/testing_* -t \"$test/bin/\"\ninstall -Dm755 ./lib/lib*test*.* -t \"$test/lib/\"\n"), "find \"$test\" -type f -exec \\\n  patchelf \\\n    --shrink-rpath \\\n    --allowed-rpath-prefixes \"$NIX_STORE\" \\\n    {} \\;\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         cudaPackages: cudaPackages,
         cudaSupport: cudaSupport,
         rocmSupport: rocmSupport,
         gpuTargets: gpuTargets,
         testers: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           all: nix.thunk(() => (() => {
             const magma = nix.thunk(() => nix.sel(finalAttrs, "finalPackage"));
             return nix.app(writeShellApplication, nix.thunk(() => ({
-                __proto__: pos$7,
-                derivationArgs: nix.thunk(() => ({ __proto__: pos$6, __structuredAttrs: true, strictDeps: true })),
+                [nix.POS]: pos$7,
+                derivationArgs: nix.thunk(() => ({ [nix.POS]: pos$6, __structuredAttrs: true, strictDeps: true })),
                 name: "magma-testers-all",
                 text: nix.thunk(() => nix.str`logWithDate() {
   printf "%s: %s\\n" "$(date --utc --iso-8601=seconds)" "$*"
@@ -304,9 +304,9 @@ main
           })()),
         })),
         tests: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           all: nix.thunk(() => nix.app(runCommand, "magma-tests-all", nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               __structuredAttrs: true,
               strictDeps: true,
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "passthru", "testers", "all"))]),
@@ -315,7 +315,7 @@ main
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         description: "Matrix Algebra on GPU and Multicore Architectures",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         homepage: "https://icl.utk.edu/magma/",

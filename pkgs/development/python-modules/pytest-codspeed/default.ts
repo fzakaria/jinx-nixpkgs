@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const semver = nix.arg($, "semver");
   const setuptools = nix.arg($, "setuptools");
   const instrument_hooks = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "CodSpeedHQ",
       repo: "instrument-hooks",
       rev: "b003e5024d61cfb784d6ac6f3ffd7d61bf7b9ec9",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.0.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "CodSpeedHQ",
           repo: "pytest-codspeed",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -49,11 +49,11 @@ popd
       const build_system = nix.thunk(() => [cffi, setuptools]);
       const buildInputs = nix.thunk(() => [pytest]);
       const dependencies = nix.thunk(() => [cffi, rich]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$3, compat: nix.thunk(() => [pytest_benchmark, pytest_xdist]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$3, compat: nix.thunk(() => [pytest_benchmark, pytest_xdist]) }));
       const nativeCheckInputs = nix.thunk(() => [semver, pytest_cov_stub, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["pytest_codspeed"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Pytest plugin to create CodSpeed benchmarks",
         homepage: "https://github.com/CodSpeedHQ/pytest-codspeed",
         changelog: nix.thunk(() => nix.str`https://github.com/CodSpeedHQ/pytest-codspeed/releases/tag/${nix.sel(src, "tag")}`),
@@ -64,7 +64,7 @@ popd
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

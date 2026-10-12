@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const ruff = nix.arg($, "ruff");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hyprland-schema",
       version: "0.7.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BlueManCZ",
           repo: "hyprland-schema",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, ruff]),
       pythonImportsCheck: nix.thunk(() => ["hyprland_schema"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Typed Python schema for every Hyprland configuration option",
         homepage: "https://github.com/BlueManCZ/hyprland-schema",
         changelog: nix.thunk(() => nix.str`https://github.com/BlueManCZ/hyprland-schema/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.91.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pycontribs",
           repo: "ruyaml",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["ruyaml"]);
       const disabledTests = nix.thunk(() => ["test_issue_60", "test_issue_60_1", "test_issue_61"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "YAML 1.2 loader/dumper package for Python",
         homepage: "https://ruyaml.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/pycontribs/ruyaml/releases/tag/v${version}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

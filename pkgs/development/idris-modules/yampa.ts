@@ -14,20 +14,20 @@ export default nix.lambda((args) => (() => {
   const bifunctors = nix.arg($, "bifunctors");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "yampa",
       version: "2016-07-05",
       ipkgName: "idris-yampa",
       idrisDeps: nix.thunk(() => [bifunctors]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BartAdv",
           repo: "idris-yampa",
           rev: "2120dffb3ea0de906ba2b40080956c900457cf33",
           sha256: "0zp495zpbvsagdzrmg9iig652zbm34qc0gdr81x0viblwqxhicx6",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Idris implementation of Yampa FRP library as described in Reactive Programming through Dependent Types",
         homepage: "https://github.com/BartAdv/idris-yampa",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "brainrape"))]),

@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   const plugins = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "container-runtime-linux": "RuntimeLinux",
     "container-network-vmnet": "NetworkVmnet",
     "container-core-images": "CoreImages",
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
     k8s: "K8s",
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "container",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "apple",
           repo: "container",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         libiconv,
       ]),
       swiftpmDeps: nix.thunk(() => nix.app(fetchSwiftPMDeps, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -87,15 +87,15 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         swiftpmVendor: nix.thunk(() => nix.sel(finalAttrs, "swiftpmDeps", "vendorStaging")),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             extraArgs: nix.thunk(() => ["--custom-dep", "swiftpmVendor"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Create and run Linux containers using lightweight virtual machines on a Mac",
         homepage: "https://github.com/apple/container",
         changelog: nix.thunk(() => nix.str`https://github.com/apple/container/releases/tag/${nix.sel(finalAttrs, "version")}`),

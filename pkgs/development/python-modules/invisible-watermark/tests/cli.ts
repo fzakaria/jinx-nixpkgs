@@ -16,9 +16,9 @@ export default nix.lambda((args) => (() => {
   const withOnnx = nix.arg($, "withOnnx");
   const message = nix.thunk(() => (nix.asBool(nix.eq(method, "rivaGan")) ? "asdf" : "fnörd1"));
   const length = nix.thunk(() => nix.mul(nix.builtins.stringLength(message), 8n));
-  const invisible_watermark$ = nix.thunk(() => nix.app(nix.sel(invisible_watermark, "override"), nix.thunk(() => ({ __proto__: pos$1, withOnnx: withOnnx }))));
+  const invisible_watermark$ = nix.thunk(() => nix.app(nix.sel(invisible_watermark, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withOnnx: withOnnx }))));
   const expected_exit_code = nix.thunk(() => (nix.asBool((nix.asBool(nix.eq(method, "rivaGan")) && nix.asBool(!nix.asBool(withOnnx)))) ? "1" : "0"));
-  return nix.app(runCommand, nix.thunk(() => nix.str`invisible-watermark-test-${testName}`), nix.thunk(() => ({ __proto__: pos$2, nativeBuildInputs: nix.thunk(() => [invisible_watermark$]) })), nix.thunk(() => nix.str`set +e
+  return nix.app(runCommand, nix.thunk(() => nix.str`invisible-watermark-test-${testName}`), nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [invisible_watermark$]) })), nix.thunk(() => nix.str`set +e
 invisible-watermark \\
   --verbose \\
   --action encode \\

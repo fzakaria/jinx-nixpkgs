@@ -65,14 +65,14 @@ export default nix.lambda((args) => (() => {
   const version = "1.50.0";
   const selectSystem = (attrs) => nix.selOr(attrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")));
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: nix.thunk(() => nix.str`https://downloads.mongodb.com/compass/${nix.app(selectSystem, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           "x86_64-linux": nix.thunk(() => nix.str`mongodb-compass_${version}_amd64.deb`),
           "aarch64-darwin": nix.thunk(() => nix.str`mongodb-compass-${version}-darwin-arm64.zip`),
         })))}`),
       hash: nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "x86_64-linux": "sha256-lZ78YAjY3tZv8fdxlh0uFAEtzcV6u8+Jf6jugobzvLA=",
           "aarch64-darwin": "sha256-2yih0zGO6XTH6n+bbuYXEuIkQxo4BKJS1Yrk0uwKwc0=",
         })))),
@@ -121,7 +121,7 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(stdenv, "cc", "cc")))),
     ])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: version,
       src: src,
@@ -176,9 +176,9 @@ chmod +x "$out/bin/${pname}"
 
 runHook postInstall
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "GUI for MongoDB",
         homepage: "https://github.com/mongodb-js/compass",
         changelog: nix.thunk(() => nix.str`https://github.com/mongodb-js/compass/releases/tag/v${nix.sel(finalAttrs, "version")}`),

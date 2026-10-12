@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "crab-hole"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   const checkConfig = (file) => nix.app(nix.sel(pkgs, "runCommand"), "check-config", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nativeBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(cfg, "package")),
         nix.thunk(() => nix.sel(pkgs, "cacert")),
@@ -62,37 +62,37 @@ export CRAB_HOLE_DIR=$(pwd)
 ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} validate-config
 `));
   return {
-    __proto__: pos$36,
+    [nix.POS]: pos$36,
     options: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       services: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         "crab-hole": nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Crab-hole Service")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "crab-hole", nix.thunk(() => ({})))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Open ports in the firewall for crab-hole's DNS server.",
             })))),
           supplementaryGroups: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["acme"]),
               description: "Adds additional groups to the crab-hole service. Can be useful to prevent permission issues.",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               description: "Crab-holes config. See big example <https://github.com/LuckyTurtleDev/crab-hole/blob/main/example-config.toml>",
               example: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 downstream: nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$4, listen: "localhost", port: 8080n, protocol: "udp" })),
+                  nix.thunk(() => ({ [nix.POS]: pos$4, listen: "localhost", port: 8080n, protocol: "udp" })),
                   nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     certificate: "dns.example.com.crt",
                     dns_hostname: "dns.example.com",
                     key: "dns.example.com.key",
@@ -103,14 +103,14 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} val
                   })),
                 ]),
                 api: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   admin_key: "1234",
                   listen: "127.0.0.1",
                   port: 8080n,
                   show_doc: true,
                 })),
                 blocklist: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   allow_list: nix.thunk(() => ["file:///allowed.txt"]),
                   include_subdomains: true,
                   lists: nix.thunk(() => [
@@ -120,41 +120,41 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} val
                   ]),
                 })),
                 upstream: nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   name_servers: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$8,
+                      [nix.POS]: pos$8,
                       protocol: "tls",
                       socket_addr: "[2606:4700:4700::1111]:853",
                       tls_dns_name: "1dot1dot1dot1.cloudflare-dns.com",
                       trust_nx_responses: false,
                     })),
                     nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       protocol: "tls",
                       socket_addr: "1.1.1.1:853",
                       tls_dns_name: "1dot1dot1dot1.cloudflare-dns.com",
                       trust_nx_responses: false,
                     })),
                   ]),
-                  options: nix.thunk(() => ({ __proto__: pos$10, validate: false })),
+                  options: nix.thunk(() => ({ [nix.POS]: pos$10, validate: false })),
                 })),
               })),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     blocklist: nix.thunk(() => (() => {
                       const listOption = (name) => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$13,
+                          [nix.POS]: pos$13,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "either"), nix.thunk(() => nix.sel(lib, "types", "str")), nix.thunk(() => nix.sel(lib, "types", "path")))))),
                           default: [],
                           description: nix.thunk(() => nix.str`List of ${name}. If files are added via url, make sure the service has access to them!`),
                           apply: nix.thunk(() => nix.app(nix.builtins.map, (v) => (nix.asBool(nix.builtins.isPath(v)) ? nix.str`file://${v}` : nix.force(v)))),
                         })));
                       return {
-                        __proto__: pos$14,
+                        [nix.POS]: pos$14,
                         include_subdomains: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Include subdomains")),
                         lists: nix.thunk(() => nix.app(listOption, "blocklists")),
                         allow_list: nix.thunk(() => nix.app(listOption, "allowlists")),
@@ -164,7 +164,7 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} val
                 })))),
             })))),
           configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "The config file of crab-hole.\n\nIf files are added via url, make sure the service has access to them.\nSetting this option will override any configuration applied by the settings option.\n",
             })))),
@@ -172,36 +172,36 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} val
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         warnings: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.selOr(cfg, () => false, "settings", "upstream", "options", "validate")), "Validate options will ONLY allow DNSSec domains. See https://github.com/LuckyTurtleDev/crab-hole/issues/29\n")),
         services: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           "crab-hole": nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.app(checkConfig, nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "crab-hole.toml", nix.thunk(() => nix.sel(cfg, "settings")))))))),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           etc: nix.thunk(() => ({
-            __proto__: pos$25,
-            "crab-hole.toml": nix.thunk(() => ({ __proto__: pos$24, source: nix.thunk(() => nix.sel(cfg, "configFile")) })),
+            [nix.POS]: pos$25,
+            "crab-hole.toml": nix.thunk(() => ({ [nix.POS]: pos$24, source: nix.thunk(() => nix.sel(cfg, "configFile")) })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           services: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             "crab-hole": nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network-online.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               description: "Crab-hole dns server",
-              environment: nix.thunk(() => ({ __proto__: pos$27, HOME: "/var/lib/crab-hole" })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$27, HOME: "/var/lib/crab-hole" })),
               restartTriggers: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "configFile"))]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 Type: "simple",
                 DynamicUser: true,
                 SupplementaryGroups: nix.thunk(() => nix.sel(cfg, "supplementaryGroups")),
@@ -217,16 +217,16 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} val
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               allowedUDPPorts: nix.thunk(() => [53n]),
               allowedTCPPorts: nix.thunk(() => [53n]),
             })))),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$35,
+      [nix.POS]: pos$35,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "NiklasVousten"))]),
       doc: nix.path(here, "./crab-hole.md"),
     })),

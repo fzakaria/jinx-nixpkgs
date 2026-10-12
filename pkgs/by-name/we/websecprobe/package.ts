@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const fetchPypi = nix.arg($, "fetchPypi");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "websecprobe",
       version: "0.0.12",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "WebSecProbe",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-RX4tc6JaUVaNx8nidn8eMcbsmbcSY+VZbup6c6P7oOs=",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "mv $out/bin/WebSecProbe $out/bin/$pname\n",
       pythonImportsCheck: nix.thunk(() => ["WebSecProbe"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Web Security Assessment Tool",
         homepage: "https://github.com/spyboy-productions/WebSecProbe/",
         changelog: nix.thunk(() => nix.str`https://github.com/spyboy-productions/WebSecProbe/releases/tag/${nix.sel(finalAttrs, "version")}`),

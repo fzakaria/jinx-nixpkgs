@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pcre2 = nix.arg($, "pcre2");
   const asciidoc = nix.arg($, "asciidoc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pdfgrep",
       version: "2.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://pdfgrep.org/download/pdfgrep-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-BmHlMeTA7wl5Waocl3N5ZYXbOccshKAv+H0sNjfGIMs=",
         })))),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, asciidoc]),
       buildInputs: nix.thunk(() => [poppler, libgcrypt, pcre2]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Commandline utility to search text in PDF files",
         homepage: "https://pdfgrep.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

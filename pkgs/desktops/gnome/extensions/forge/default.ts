@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const uuid = "forge@jmmaranan.com";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gnome-shell-extension-forge",
       version: "50.1-development",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "forge-ext",
           repo: "forge",
           rev: "0319a7125db1088556b159a69bbec77e111afca7",
@@ -38,9 +38,9 @@ echo "export const developers = []" > \\
   $out/share/gnome-shell/extensions/${uuid}/lib/prefs/metadata.js
 runHook postInstall
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, extensionPortalSlug: "forge", extensionUuid: uuid })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, extensionPortalSlug: "forge", extensionUuid: uuid })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tiling and window manager for GNOME",
         homepage: "https://extensions.gnome.org/extension/4481/forge/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

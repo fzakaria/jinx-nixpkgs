@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
       const pname = "nanum";
       const version = "20200506";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://ubuntu/pool/universe/f/fonts-nanum/fonts-nanum_${version}.orig.tar.xz`),
           hash: "sha256-FXgDdIGYFRJQo898sDrvhE5AjpyYhJ3YieGRhGqsrUs=",
         }))));
       const installPhase = "runHook preInstall\n\nmkdir -p $out/share/fonts\ncp *.ttf $out/share/fonts\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Nanum Korean font set",
         homepage: "https://hangeul.naver.com/font",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

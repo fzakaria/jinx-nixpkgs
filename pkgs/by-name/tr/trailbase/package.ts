@@ -34,12 +34,12 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const pnpm = pnpm_11;
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "trailbase",
       version: "0.32.2",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "trailbaseio",
           repo: "trailbase",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,10 +48,10 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-RUbP49jXJj8UC2Sww0UlH8uyEpkshi2gewNqZ7XYeG4=",
       patches: nix.thunk(() => [nix.path(here, "./skip-pnpm-install.patch")]),
-      env: nix.thunk(() => ({ __proto__: pos$2, TRAILBASE_SKIP_PNPM_INSTALL: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, TRAILBASE_SKIP_PNPM_INSTALL: "1" })),
       pnpmWorkspaces: nix.thunk(() => ["trailbase-admin-ui..."]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -84,28 +84,28 @@ substituteInPlace crates/build/src/version.rs \\
       versionCheckProgramArg: "--version",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           trailbase: nix.thunk(() => nix.attr(nixosTests, "trailbase")),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           default: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             imports: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(lib, "modules", "importApply"), nix.path(here, "./service.nix"), nix.thunk(() => ({})))),
             ]),
             trailbase: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               package: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
             })),
           })),
         })),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$8, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$8, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "Single-executable Firebase alternative with type-safe APIs, auth, and an admin UI",
         homepage: "https://trailbase.io",
         changelog: nix.thunk(() => nix.str`https://github.com/trailbaseio/trailbase/releases/tag/v${nix.sel(finalAttrs, "version")}`),

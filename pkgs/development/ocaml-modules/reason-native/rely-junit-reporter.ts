@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const rely = nix.arg($, "rely");
   const src = nix.arg($, "src");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       src: src,
       pname: "rely-junit-reporter",
       version: "1.0.0-unstable-2024-05-07",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [atdgen]),
       propagatedBuildInputs: nix.thunk(() => [junit, re, pastel, rely]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Tool providing JUnit Reporter for Rely Testing Framework",
         downloadPage: "https://github.com/reasonml/reason-native/tree/master/src/rely-junit-reporter",
         homepage: "https://reason-native.com/docs/rely/",

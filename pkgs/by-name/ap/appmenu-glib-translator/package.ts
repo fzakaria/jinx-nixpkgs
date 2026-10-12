@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const vala = nix.arg($, "vala");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "appmenu-glib-translator",
       version: "25.04",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vala-panel-project",
           repo: "vala-panel-appmenu",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config, gobject_introspection, vala]),
       propagatedBuildInputs: nix.thunk(() => [glib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for translating from DBusMenu to GMenuModel",
         homepage: nix.thunk(() => nix.str`https://gitlab.com/vala-panel-project/vala-panel-appmenu/-/tree/${nix.sel(finalAttrs, "version")}/subprojects/appmenu-glib-translator`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

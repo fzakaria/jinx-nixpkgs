@@ -11,6 +11,6 @@ export default nix.thunk(() => (() => {
   const cargoHash = "sha256-eKfqPipGrrKQZLVKyHPYyeGHl8xQEIm4X5I1lfEwdxA=";
   const updateScript = nix.path(here, "./update-stable.sh");
   const patches = nix.thunk(() => [nix.path(here, "./0001-no-network-test.patch")]);
-  return { __proto__: pos$1, version, tag, hash, cargoHash, updateScript, patches };
+  return { [nix.POS]: pos$1, version, tag, hash, cargoHash, updateScript, patches };
 })());
 //# sourceMappingURL=stable.ts.map

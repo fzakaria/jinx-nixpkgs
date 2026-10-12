@@ -46,65 +46,65 @@ ${nix.sel(cfg, "ctlConfig")}
   const ectl = nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/ejabberdctl ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "configFile"), null)), nix.thunk(() => nix.str`--config ${nix.sel(cfg, "configFile")}`))} --ctl-config "${ctlcfg}" --spool "${nix.sel(cfg, "spoolDir")}" --logs "${nix.sel(cfg, "logsDir")}"`);
   const dumps = nix.thunk(() => nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.sel(cfg, "loadDumps"))));
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         ejabberd: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable ejabberd server",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "ejabberd", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "ejabberd",
               description: "User under which ejabberd is ran",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "ejabberd",
               description: "Group under which ejabberd is ran",
             })))),
           spoolDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/ejabberd",
               description: "Location of the spooldir of ejabberd",
             })))),
           logsDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/log/ejabberd",
               description: "Location of the logfile directory of ejabberd",
             })))),
           configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               description: "Configuration file for ejabberd in YAML format",
               default: null,
             })))),
           ctlConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Configuration of ejabberdctl",
             })))),
           loadDumps: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: [],
               description: "Configuration dumps that should be loaded on the first startup",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ ./myejabberd.dump ]")),
             })))),
           imagemagick: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Add ImageMagick to server's path; allows for image thumbnailing",
@@ -113,21 +113,21 @@ ${nix.sel(cfg, "ctlConfig")}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         environment: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$15,
-          epmd: nix.thunk(() => ({ __proto__: pos$14, enable: true })),
+          [nix.POS]: pos$15,
+          epmd: nix.thunk(() => ({ [nix.POS]: pos$14, enable: true })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           users: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "ejabberd")), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               ejabberd: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 home: nix.thunk(() => nix.sel(cfg, "spoolDir")),
                 createHome: true,
@@ -135,19 +135,19 @@ ${nix.sel(cfg, "ctlConfig")}
               })),
             })))),
           groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "ejabberd")), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               ejabberd: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 gid: nix.thunk(() => nix.sel(config, "ids", "gids", "ejabberd")),
               })),
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           services: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             ejabberd: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               description: "ejabberd server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target", "epmd.socket"]),
@@ -157,7 +157,7 @@ ${nix.sel(cfg, "ctlConfig")}
                 nix.thunk(() => nix.sel(pkgs, "coreutils")),
               ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "imagemagick")), nix.thunk(() => nix.sel(pkgs, "imagemagick"))))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
                 ExecStart: nix.thunk(() => nix.str`${ectl} foreground`),
@@ -192,7 +192,7 @@ fi
             })),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d '${nix.sel(cfg, "logsDir")}' 0750 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} -`),
               nix.thunk(() => nix.str`d '${nix.sel(cfg, "spoolDir")}' 0700 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} -`),
@@ -200,10 +200,10 @@ fi
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           pam: nix.thunk(() => ({
-            __proto__: pos$27,
-            services: nix.thunk(() => ({ __proto__: pos$26, ejabberd: nix.thunk(() => ({})) })),
+            [nix.POS]: pos$27,
+            services: nix.thunk(() => ({ [nix.POS]: pos$26, ejabberd: nix.thunk(() => ({})) })),
           })),
         })),
       })))),

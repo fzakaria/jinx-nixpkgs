@@ -21,32 +21,32 @@ export default nix.lambda((args) => (() => {
   const listenPort = 7700n;
   const apiUrl = nix.thunk(() => nix.str`http://${listenAddress}:${nix.builtins.toString(listenPort)}`);
   const uid = "movies";
-  const indexJSON = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "index.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ __proto__: pos$1, uid: uid }))))));
+  const indexJSON = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "index.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$1, uid: uid }))))));
   const moviesJSON = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchurl"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: "https://github.com/meilisearch/meilisearch/raw/v0.23.1/datasets/movies/movies.json",
       sha256: "1r3srld63dpmg9yrmysm6xl175661j5cspi93mk5q2wf8xwn50c5",
     }))));
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     name: "meilisearch",
     nodes: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           environment: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "curl")), nix.thunk(() => nix.lookup(w, "jq"))];
             })()),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             meilisearch: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               enable: true,
               listenAddress: listenAddress,
               listenPort: listenPort,

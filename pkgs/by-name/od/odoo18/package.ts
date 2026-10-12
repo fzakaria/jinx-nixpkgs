@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const odoo_version = "18.0";
   const odoo_release = "20260420";
-  const python = nix.thunk(() => nix.app(nix.sel(python312, "override"), nix.thunk(() => ({ __proto__: pos$1, self: python }))));
+  const python = nix.thunk(() => nix.app(nix.sel(python312, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, self: python }))));
   return nix.app(nix.sel(python, "pkgs", "buildPythonApplication"), nix.thunk(() => (() => {
       const pname = "odoo";
       const version = nix.thunk(() => nix.str`${odoo_version}.${odoo_release}`);
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://nightly.odoo.com/${odoo_version}/nightly/src/odoo_${version}.tar.gz`),
           name: nix.thunk(() => nix.str`odoo-${version}`),
           hash: "sha256-+ilM07s33pdwZc3XoAXbID7MRz/m6PHnzjHzi183eyM=",
@@ -100,16 +100,16 @@ substituteInPlace odoo/service/server.py \\
       })());
       const dontStrip = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           odoo18: nix.thunk(() => nix.attr(nixosTests, "odoo18")),
           "odoo18-multiprocess": nix.thunk(() => nix.attr(nixosTests, "odoo18-multiprocess")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Open Source ERP and CRM",
         homepage: "https://www.odoo.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),
@@ -122,7 +122,7 @@ substituteInPlace odoo/service/server.py \\
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

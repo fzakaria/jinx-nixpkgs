@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
   const cudaCapabilities = nix.thunk(() => nix.attr(torch, "cudaCapabilities"));
   const cudaSupport = nix.thunk(() => nix.attr(torch, "cudaSupport"));
   const cuda_native_redist = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "cuda-native-redist",
       paths: nix.thunk(() => (() => {
         const w = nix.withScope(cudaPackages, null);
@@ -56,14 +56,14 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
     }))));
-  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ __proto__: pos$2, stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
-      __proto__: pos$8,
+  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
+      [nix.POS]: pos$8,
       pname: "deepspeed",
       version: "0.19.6",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "deepspeedai",
           repo: "DeepSpeed",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -97,7 +97,7 @@ export default nix.lambda((args) => (() => {
         tqdm,
       ], nix.app(nix.sel(lib, "optionals"), cudaSupport, nix.thunk(() => [nvidia_ml_py])))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), cudaSupport, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           TORCH_CUDA_ARCH_LIST: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ";", cudaCapabilities)),
         })))),
       preCheck: nix.thunk(() => nix.add("rm -rf deepspeed\n", "export NIX_ENFORCE_NO_NATIVE=0\n")),
@@ -143,11 +143,11 @@ export default nix.lambda((args) => (() => {
         ])))),
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
-        gpuCheck: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$5, requiredSystemFeatures: nix.thunk(() => ["cuda"]) })))),
+        [nix.POS]: pos$6,
+        gpuCheck: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$5, requiredSystemFeatures: nix.thunk(() => ["cuda"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Deep learning optimization library that makes distributed training and inference easy, efficient, and effective",
         homepage: "https://www.deepspeed.ai/",
         downloadPage: "https://github.com/deepspeedai/deepspeed",

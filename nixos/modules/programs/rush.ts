@@ -37,41 +37,41 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.builtins.concatStringsSep, "\n")),
     ]));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.sel(pkgs, "rush", "meta", "maintainers")),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       programs: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         rush: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
           return {
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Restricted User Shell.")),
-            package: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "rush", nix.thunk(() => ({}))), { __proto__: pos$2, type: nix.thunk(() => nix.lookup(w, "shellPackage")) })),
+            package: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "rush", nix.thunk(() => ({}))), { [nix.POS]: pos$2, type: nix.thunk(() => nix.lookup(w, "shellPackage")) })),
             global: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.lookup(w, "lines")),
                 description: "The `global` statement defines global settings.",
                 default: "",
               })))),
             rules: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "lines")))),
                 default: nix.thunk(() => ({})),
                 description: "The rule statement configures a GNU Rush rule. This is a block statement, which means that all\nstatements located between it and the next rule statement (or end of file, whichever occurs first)\nmodify the definition of that rule.\n",
               })))),
             shell: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 readOnly: true,
                 type: nix.thunk(() => nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "shellPackage")), nix.thunk(() => nix.lookup(w, "path")))),
                 description: "The resolved shell path that users can inherit to set `rush` as their login shell.\nThis is a convenience option for use in user definitions. Example:\n  `users.users.alice = { inherit (config.programs.rush) shell; ... };`\n",
               })))),
             wrap: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.lookup(w, "bool")),
                 default: nix.thunk(() => nix.sel(config, "security", "enableWrappers")),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.security.enableWrappers")),
@@ -83,13 +83,13 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "wrap")), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               security: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 wrappers: nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   rush: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       group: "root",
                       owner: "root",
                       permissions: "u+rx,g+x,o+x",
@@ -101,22 +101,22 @@ export default nix.lambda((args) => (() => {
               })),
             })))),
           nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             programs: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               rush: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 shell: nix.thunk(() => (nix.asBool(nix.sel(cfg, "wrap")) ? nix.add(nix.sel(config, "security", "wrapperDir"), "/rush") : nix.sel(cfg, "package"))),
               })),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               shells: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "shell"))]),
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
               etc: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 "rush.rc": nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   text: nix.thunk(() => nix.app(nix.sel(lib, "pipe"), nix.thunk(() => [
                       "# This file was created by the module `programs.rush`;",
                       "rush 2.0",

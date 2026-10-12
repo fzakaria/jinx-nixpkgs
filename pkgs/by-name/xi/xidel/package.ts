@@ -21,46 +21,46 @@ export default nix.lambda((args) => (() => {
   const fpc = nix.arg($, "fpc");
   const openssl = nix.arg($, "openssl");
   const flreSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "benibela",
       repo: "flre",
       rev: "3e926d45d4352f1b7c7cd411ccd625df117dad5c",
       hash: "sha256-fs7CIjd3fwD/SORYh5pmJxIdrr8F9e36TNmnKUbUxP0=",
     }))));
   const synapseSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "benibela",
       repo: "ararat-synapse",
       rev: "7a77db926de66809080bada68b54172da7f84c0e",
       hash: "sha256-bVLQ0ohGJYtuP88Krxy9a7RnHHrW0OWw8H/uxa3PerU=",
     }))));
   const rcmdlineSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       owner: "benibela",
       repo: "rcmdline",
       rev: "ea02b770c4568717dd7b3b72da191a8bbcb4c751",
       hash: "sha256-6YtvAf0joRvtCKbUAaLwuwABw1GEIzammFLhboq9aG0=",
     }))));
   const internettoolsSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       owner: "benibela",
       repo: "internettools",
       rev: "dd972caaa4415468fa679ea7262976ead3fd3e38",
       hash: "sha256-09sADxPiE6ky1EX7dTXRBYVT3IarUcLYf5knzi7+CHU=",
     }))));
   const pasdblstrutilsSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       owner: "BeRo1985",
       repo: "pasdblstrutils",
       rev: "1696f0a2b822fef26c8992f96620f1be129cfa99",
       hash: "sha256-x0AjOTa1g7gJOR2iBO76yBt1kzcRNujHRUsq5QOlfP0=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "xidel",
       version: "unstable-2022-11-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           owner: "benibela",
           repo: "xidel",
           rev: "6d5655c1d73b88ddeb32d2450a35ee36e4762bb8",
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [fpc]),
       buildInputs: nix.thunk(() => [openssl]),
       env: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lcrypto"]))),
       })),
       patchPhase: "patchShebangs \\\n  build.sh \\\n  tests/test.sh \\\n  tests/tests-file-module.sh \\\n  tests/tests.sh \\\n  tests/downloadTest.sh \\\n  tests/downloadTests.sh \\\n  tests/zorbajsoniq.sh \\\n  tests/zorbajsoniq/download.sh\n",
@@ -88,7 +88,7 @@ substituteInPlace import/synapse/ssl_openssl{,11}_lib.pas \\
       installPhase: "mkdir -p \"$out/bin\" \"$out/share/man/man1\"\ncp meta/xidel.1 \"$out/share/man/man1/\"\ncp xidel \"$out/bin/\"\n",
       checkPhase: "./tests/tests.sh\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Command line tool to download and extract data from HTML/XML pages as well as JSON APIs",
         mainProgram: "xidel",
         homepage: "https://www.videlibri.de/xidel.html",

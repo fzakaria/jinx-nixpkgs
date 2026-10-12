@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "azure_ai_agents",
           version: version,
           hash: "sha256-651yJigtAyBsP6s/PuCi/HHgrTjlLS9PGaksVu2VGuo=",
@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [azure_core, isodate, typing_extensions]);
       const pythonImportsCheck = nix.thunk(() => ["azure.ai.agents"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Microsoft Corporation Azure AI Agents Client Library for Python",
         homepage: "https://pypi.org/project/azure-ai-agents",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => nix.sel(azure_cli, "meta", "maintainers")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -37,33 +37,33 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "config.yaml", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         "wg-access-server": nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(mkEnableOption, "wg-access-server")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "wg-access-server", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     dns: nix.thunk(() => ({
-                      __proto__: pos$2,
+                      [nix.POS]: pos$2,
                       enabled: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$1,
+                          [nix.POS]: pos$1,
                           type: nix.thunk(() => nix.sel(types, "bool")),
                           default: true,
                           description: "Enable/disable the embedded DNS proxy server.\nThis is enabled by default and allows VPN clients to avoid DNS leaks by sending all DNS requests to wg-access-server itself.\n",
                         })))),
                     })),
                     storage: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: "sqlite3://db.sqlite",
                         description: "A storage backend connection string. See [storage docs](https://www.freie-netze.org/wg-access-server/3-storage/)",
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
               description: "See <https://www.freie-netze.org/wg-access-server/2-configuration/> for possible options",
             })))),
           secretsFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(types, "path")),
               description: "yaml file containing all secrets. this needs to be in the same structure as the configuration.\n\nThis must to contain the admin password and wireguard private key.\nAs well as the secrets for your auth backend.\n\nExample:\n```yaml\nadminPassword: <admin password>\nwireguard:\n  privateKey: <wireguard private key>\nauth:\n  oidc:\n    clientSecret: <client secret>\n```\n",
             })))),
@@ -81,9 +81,9 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         assertions: nix.thunk(() => nix.builtins.map((attrPath) => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             assertion: nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "hasAttrByPath"), attrPath, nix.thunk(() => nix.sel(config, "services", "wg-access-server", "settings"))))),
             message: nix.thunk(() => nix.str`{option}\`services.wg-access-server.settings.${nix.app(nix.sel(lib, "concatStringsSep"), ".", attrPath)}\` must definded
 in {option}\`services.wg-access-server.secretsFile\`.
@@ -96,22 +96,22 @@ in {option}\`services.wg-access-server.secretsFile\`.
             nix.thunk(() => ["auth", "gitlab", "clientSecret"]),
           ]))),
         boot: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           kernel: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             sysctl: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               "net.ipv4.conf.all.forwarding": "1",
               "net.ipv6.conf.all.forwarding": "1",
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           services: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             "wg-access-server": nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               description: "WG access server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               requires: nix.thunk(() => ["network-online.target"]),
@@ -123,7 +123,7 @@ in {option}\`services.wg-access-server.secretsFile\`.
               serviceConfig: nix.thunk(() => (() => {
                 const capabilities = nix.thunk(() => nix.concat(["CAP_NET_ADMIN"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "settings", "dns", "enabled")), "CAP_NET_BIND_SERVICE")));
                 return {
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   WorkingDirectory: "/var/lib/wg-access-server",
                   StateDirectory: "wg-access-server",
                   LoadCredential: nix.thunk(() => [nix.thunk(() => nix.str`SECRETS_FILE:${nix.sel(cfg, "secretsFile")}`)]),

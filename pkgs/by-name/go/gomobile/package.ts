@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const xcodeWrapperArgs = nix.argOr($, "xcodeWrapperArgs", () => ({}));
   const xcodeWrapper = nix.argOr($, "xcodeWrapper", () => nix.app(nix.sel(xcodeenv, "composeXcodeWrapper"), xcodeWrapperArgs));
   const withAndroidPkgs = nix.argOr($, "withAndroidPkgs", () => true);
-  const androidPkgs = nix.argOr($, "androidPkgs", () => nix.app(nix.sel(androidenv, "composeAndroidPackages"), nix.thunk(() => ({ __proto__: pos$1, includeNDK: true }))));
+  const androidPkgs = nix.argOr($, "androidPkgs", () => nix.app(nix.sel(androidenv, "composeAndroidPackages"), nix.thunk(() => ({ [nix.POS]: pos$1, includeNDK: true }))));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gomobile",
       version: "0-unstable-2024-12-13",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "gomobile",
           url: "https://go.googlesource.com/mobile",
           rev: "a87c1cf6cf463f0d4476cfe0fcf67c2953d76e7c",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool for building and running mobile apps written in Go",
         homepage: "https://pkg.go.dev/golang.org/x/mobile/cmd/gomobile",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

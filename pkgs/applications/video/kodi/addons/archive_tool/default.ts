@@ -19,23 +19,23 @@ export default nix.lambda((args) => (() => {
       const namespace = "script.module.archive_tool";
       const version = "2.0.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zach-morris",
           repo: "script.module.archive_tool",
           rev: version,
           sha256: "0hbkyk59xxfjv6vzfjplahmqxi5564qjlwyq6k8ijy6jjcwnd3p7",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [vfs_libarchive]);
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, pythonPath: "lib" }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, pythonPath: "lib" }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/zach-morris/script.module.archive_tool",
         description: "Set of common python functions to work with the Kodi archive virtual file system (vfs) binary addons",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "kodi"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         namespace,
         version,

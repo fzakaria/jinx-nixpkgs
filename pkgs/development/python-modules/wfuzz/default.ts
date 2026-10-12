@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const legacy_cgi = nix.arg($, "legacy-cgi");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wfuzz",
       version: "3.1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xmendez",
           repo: "wfuzz",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["wfuzz"]),
       postInstall: "mkdir -p $out/share/wordlists/wfuzz\ncp -R -T \"wordlist\" \"$out/share/wordlists/wfuzz\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/xmendez/wfuzz/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Web content fuzzer to facilitate web applications assessments",
         longDescription: "Wfuzz provides a framework to automate web applications security assessments\nand could help you to secure your web applications by finding and exploiting\nweb application vulnerabilities.\n",

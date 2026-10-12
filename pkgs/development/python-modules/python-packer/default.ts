@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "fd363dae9bd2efd447739bbf7a4f29c1e4741596ae7b02d252fe525b2b4176e7",
         }))));
       const patches = nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`${nix.sel(meta, "homepage")}/commit/de3421bf13bf7c3ec11fe0a381f0944e102b1d97.patch`),
           excludes: nix.thunk(() => ["dev-requirements.txt"]),
           sha256: "0rgmkyn7i6y1xs8m75dpl8hq7j2ns2s3dvp7kv9j4zwic93rrlsc",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [sh]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Interface for packer.io",
         homepage: "https://github.com/nir0s/python-packer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

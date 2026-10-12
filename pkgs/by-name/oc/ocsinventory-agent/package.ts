@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ocsinventory-agent";
       const version = "2.10.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OCSInventory-NG",
           repo: "UnixAgent",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -76,15 +76,15 @@ export default nix.lambda((args) => (() => {
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const doInstallCheck = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "ocsinventory-agent": nix.thunk(() => nix.sel(nixosTests, "ocsinventory-agent")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "OCS Inventory unified agent for Unix operating systems",
         longDescription: "Open Computers and Software Inventory (OCS) is an application designed\nto help a network or system administrator to keep track of the hardware and\nsoftware configurations of computers that are installed on the network.\n",
         homepage: "https://ocsinventory-ng.org",
@@ -102,7 +102,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

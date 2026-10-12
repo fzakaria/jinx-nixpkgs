@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pax-utils",
       version: "1.3.11",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://anongit.gentoo.org/git/proj/pax-utils.git",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-eeWu8XKBAq6U5K5a93BZYGFGfz2R8ysW/VaCyjN0Um8=",
@@ -53,15 +53,15 @@ export default nix.lambda((args) => (() => {
           })())),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://anongit.gentoo.org/git/proj/pax-utils.git",
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "ELF utils that can check files for security relevant properties",
         longDescription: "A suite of ELF tools to aid auditing systems. Contains\nvarious ELF related utils for ELF32, ELF64 binaries useful\nfor displaying PaX and security info on a large groups of\nbinary files.\n",
         homepage: "https://wiki.gentoo.org/wiki/Hardened/PaX_Utilities",

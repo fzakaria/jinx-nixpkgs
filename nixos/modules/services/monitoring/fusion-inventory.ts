@@ -31,21 +31,21 @@ logger = stderr
 ${nix.sel(cfg, "extraConfig")}
 `)));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         fusionInventory: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Fusion Inventory Agent")),
           servers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "The urls of the OCS/GLPI servers to connect to.\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: "",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               description: "Configuration that is injected verbatim into the configuration file.\n",
@@ -54,24 +54,24 @@ ${nix.sel(cfg, "extraConfig")}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         users: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           users: nix.thunk(() => ({
-            __proto__: pos$7,
-            "fusion-inventory": nix.thunk(() => ({ __proto__: pos$6, description: "FusionInventory user", isSystemUser: true })),
+            [nix.POS]: pos$7,
+            "fusion-inventory": nix.thunk(() => ({ [nix.POS]: pos$6, description: "FusionInventory user", isSystemUser: true })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             "fusion-inventory": nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               description: "Fusion Inventory Agent",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "fusioninventory-agent")}/bin/fusioninventory-agent --conf-file=${configFile} --daemon --no-fork`),
               })),
             })),

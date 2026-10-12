@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pyhanko-cli",
       version: "0.4.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MatthiasValvekens",
           repo: "pyhanko",
           tag: nix.thunk(() => nix.str`pyhanko-cli/v${nix.sel(finalAttrs, "version")}`),
@@ -61,14 +61,14 @@ export default nix.lambda((args) => (() => {
       })())),
       disabledTestPaths: nix.thunk(() => ["tests/test_cli_signing_pkcs11.py"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex=pyhanko-cli/v(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Sign and stamp PDF files",
         mainProgram: "pyhanko",
         homepage: "https://github.com/MatthiasValvekens/pyHanko/tree/master/pkgs/pyhanko-cli",

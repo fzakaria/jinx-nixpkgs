@@ -67,13 +67,13 @@ export default nix.lambda((args) => (() => {
   const udev = nix.thunk(() => nix.sel(config, "systemd", "package"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "udev"));
   const extraUdevRules = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "extra-udev-rules",
       text: nix.thunk(() => nix.sel(cfg, "extraRules")),
       destination: "/etc/udev/rules.d/99-local.rules",
     }))));
   const extraHwdbFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "extra-hwdb-file",
       text: nix.thunk(() => nix.sel(cfg, "extraHwdb")),
       destination: "/etc/udev/hwdb.d/99-local.hwdb",
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
     const binPackages = nix.arg($_1, "binPackages");
     const initrdBin = nix.argOr($_1, "initrdBin", () => null);
     return nix.app(nix.sel(pkgs, "runCommand"), name, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         preferLocalBuild: true,
         allowSubstitutes: false,
         packages: nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.builtins.map(nix.builtins.toString, udevPackages)))),
@@ -198,7 +198,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(co
 `));
   })(), formals$2);
   const hwdbBin = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "hwdb.bin", nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       preferLocalBuild: true,
       allowSubstitutes: false,
       packages: nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.builtins.map(nix.builtins.toString, nix.thunk(() => nix.concat([udev], nix.sel(cfg, "packages"))))))),
@@ -220,45 +220,45 @@ mv etc/udev/hwdb.bin $out
 `)));
   const compressFirmware = (firmware) => (nix.asBool((nix.asBool(nix.eq(nix.sel(config, "hardware", "firmwareCompression"), "none")) || nix.asBool(nix.eq(nix.selOr(firmware, () => true, "compressFirmware"), false)))) ? nix.force(firmware) : (nix.asBool(nix.eq(nix.sel(config, "hardware", "firmwareCompression"), "zstd")) ? nix.app(nix.sel(pkgs, "compressFirmwareZstd"), firmware) : nix.app(nix.sel(pkgs, "compressFirmwareXz"), firmware)));
   const udevPath = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: "udev-path",
       paths: nix.thunk(() => nix.sel(cfg, "path")),
       pathsToLink: nix.thunk(() => ["/bin", "/sbin"]),
       ignoreCollisions: true,
     }))));
   return {
-    __proto__: pos$54,
+    [nix.POS]: pos$54,
     options: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       boot: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         hardwareScan: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             default: true,
             description: "Whether to try to load kernel modules for all detected hardware.\nUsually this does a good job of providing you with the modules\nyou need, but sometimes it can crash the system or cause other\nnasty effects.\n",
           })))),
         initrd: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             udev: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               packages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                   default: [],
                   description: "*This will only be used when systemd is used in stage 1.*\n\nList of packages containing {command}`udev` rules that will be copied to stage 1.\nAll files found in\n{file}`«pkg»/etc/udev/rules.d` and\n{file}`«pkg»/lib/udev/rules.d`\nwill be included.\n",
                 })))),
               binPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                   default: [],
                   description: "*This will only be used when systemd is used in stage 1.*\n\nPackages to search for binaries that are referenced by the udev rules in stage 1.\nThis list always contains /bin of the initrd.\n",
                   apply: nix.thunk(() => nix.app(nix.builtins.map, nix.thunk(() => nix.sel(lib, "getBin")))),
                 })))),
               rules: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   default: "",
                   example: "SUBSYSTEM==\"net\", ACTION==\"add\", DRIVERS==\"?*\", ATTR{address}==\"00:1D:60:B9:6D:4F\", KERNEL==\"eth*\", NAME=\"my_fast_network_card\"\n",
                   type: nix.thunk(() => nix.sel(lib, "types", "lines")),
@@ -269,32 +269,32 @@ mv etc/udev/hwdb.bin $out
         })),
       })),
       services: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         udev: nix.thunk(() => ({
-          __proto__: pos$19,
-          enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "udev, a device manager for the Linux kernel"), { __proto__: pos$14, default: true })),
+          [nix.POS]: pos$19,
+          enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "udev, a device manager for the Linux kernel"), { [nix.POS]: pos$14, default: true })),
           packages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: [],
               description: "List of packages containing {command}`udev` rules.\nAll files found in\n{file}`«pkg»/etc/udev/rules.d` and\n{file}`«pkg»/lib/udev/rules.d`\nwill be included.\n",
               apply: nix.thunk(() => nix.app(nix.builtins.map, nix.thunk(() => nix.sel(lib, "getBin")))),
             })))),
           path: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: [],
               description: "Packages added to the {env}`PATH` environment variable when\nexecuting programs from Udev rules.\n\ncoreutils, gnu{sed,grep}, util-linux and config.systemd.package are\nautomatically included.\n",
             })))),
           extraRules: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               default: "",
               example: "ENV{ID_VENDOR_ID}==\"046d\", ENV{ID_MODEL_ID}==\"0825\", ENV{PULSE_IGNORE}=\"1\"\n",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               description: "Additional {command}`udev` rules. They'll be written\ninto file {file}`99-local.rules`. Thus they are\nread and applied after all other rules.\n",
             })))),
           extraHwdb: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               default: "",
               example: "evdev:input:b0003v05AFp8277*\n  KEYBOARD_KEY_70039=leftalt\n  KEYBOARD_KEY_700e2=leftctrl\n",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
@@ -303,14 +303,14 @@ mv etc/udev/hwdb.bin $out
         })),
       })),
       hardware: nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         firmware: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
             default: [],
             description: "List of packages containing firmware files.  Such files\nwill be loaded automatically if the kernel asks for them\n(i.e., when it has detected specific hardware that requires\nfirmware to function).  If multiple packages contain firmware\nfiles with the same name, the first package in the list takes\nprecedence.  Note that you must rebuild your system if you add\nfiles to any of these directories.\n",
             apply: (list) => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 name: "firmware",
                 paths: nix.thunk(() => nix.builtins.map(compressFirmware, list)),
                 pathsToLink: nix.thunk(() => ["/lib/firmware"]),
@@ -318,7 +318,7 @@ mv etc/udev/hwdb.bin $out
               }))),
           })))),
         firmwareCompression: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["xz", "zstd", "none"]))),
             default: nix.thunk(() => (nix.asBool(nix.app(nix.sel(config, "boot", "kernelPackages", "kernelAtLeast"), "5.19")) ? "zstd" : (nix.asBool(nix.app(nix.sel(config, "boot", "kernelPackages", "kernelAtLeast"), "5.3")) ? "xz" : "none"))),
             defaultText: "auto",
@@ -326,9 +326,9 @@ mv etc/udev/hwdb.bin $out
           })))),
       })),
       networking: nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         usePredictableInterfaceNames: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             default: true,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             description: "Whether to assign [predictable names to network interfaces](https://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/).\nIf enabled, interfaces\nare assigned names that contain topology information\n(e.g. `wlp3s0`) and thus should be stable\nacross reboots.  If disabled, names depend on the order in\nwhich interfaces are discovered by the kernel, which may\nchange randomly across reboots; for instance, you may find\n`eth0` and `eth1` flipping\nunpredictably.\n",
@@ -336,23 +336,23 @@ mv etc/udev/hwdb.bin $out
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$53,
+        [nix.POS]: pos$53,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             assertion: nix.thunk(() => (!nix.asBool(nix.eq(nix.sel(config, "hardware", "firmwareCompression"), "zstd")) || nix.asBool(nix.app(nix.sel(config, "boot", "kernelPackages", "kernelAtLeast"), "5.19")))),
             message: "The firmware compression method is set to zstd, but the kernel version is too old.\nThe kernel version must be at least 5.19 to use zstd compression.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             assertion: nix.thunk(() => (!nix.asBool(nix.eq(nix.sel(config, "hardware", "firmwareCompression"), "xz")) || nix.asBool(nix.app(nix.sel(config, "boot", "kernelPackages", "kernelAtLeast"), "5.3")))),
             message: "The firmware compression method is set to xz, but the kernel version is too old.\nThe kernel version must be at least 5.3 to use xz compression.\n",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           udev: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             extraRules: nixosRules,
             packages: nix.thunk(() => [
               nix.thunk(() => nix.sel(config, "systemd", "package")),
@@ -369,23 +369,23 @@ mv etc/udev/hwdb.bin $out
           })),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           kernelParams: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(config, "networking", "usePredictableInterfaceNames"))), nix.thunk(() => ["net.ifnames=0"]))),
           initrd: nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             extraUdevRulesCommands: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable"))) && nix.asBool(!nix.eq(nix.sel(config, "boot", "initrd", "services", "udev", "rules"), "")))), nix.thunk(() => nix.str`cat <<'EOF' > $out/99-local.rules
 ${nix.sel(config, "boot", "initrd", "services", "udev", "rules")}
 EOF
 `))),
             services: nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               udev: nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 rules: nixosInitrdRules,
                 packages: nix.thunk(() => [
                   nix.thunk(() => nix.sel(config, "boot", "initrd", "systemd", "package")),
                   nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(config, "boot", "initrd", "services", "udev", "rules"), "")), nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-                        __proto__: pos$32,
+                        [nix.POS]: pos$32,
                         name: "initrd-udev-rules",
                         destination: "/etc/udev/rules.d/99-local.rules",
                         text: nix.thunk(() => nix.sel(config, "boot", "initrd", "services", "udev", "rules")),
@@ -394,7 +394,7 @@ EOF
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               additionalUpstreamUnits: nix.thunk(() => [
                 "initrd-udevadm-cleanup-db.service",
                 "systemd-udevd-control.socket",
@@ -410,11 +410,11 @@ EOF
                 nix.thunk(() => nix.str`${nix.sel(config, "boot", "initrd", "systemd", "package")}/lib/udev/rules.d`),
               ], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool((nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isx86")) || nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isAarch")))) || nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isLoongArch64")))) || nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isMips")))) || nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isRiscV64")))), nix.thunk(() => nix.str`${nix.sel(config, "boot", "initrd", "systemd", "package")}/lib/udev/dmi_memory_id`)), nix.builtins.map((x) => nix.str`${x}/bin`, nix.thunk(() => nix.sel(config, "boot", "initrd", "services", "udev", "binPackages")))))),
               contents: nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 "/etc/udev/rules.d": nix.thunk(() => ({
-                  __proto__: pos$36,
+                  [nix.POS]: pos$36,
                   source: nix.thunk(() => nix.app(udevRulesFor, nix.thunk(() => ({
-                      __proto__: pos$35,
+                      [nix.POS]: pos$35,
                       name: "initrd-udev-rules",
                       initrdBin: nix.thunk(() => nix.sel(config, "boot", "initrd", "systemd", "contents", "/bin", "source")),
                       udevPackages: nix.thunk(() => nix.sel(config, "boot", "initrd", "services", "udev", "packages")),
@@ -431,13 +431,13 @@ EOF
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$47,
+          [nix.POS]: pos$47,
           etc: nix.thunk(() => nix.update({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             "udev/rules.d": nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               source: nix.thunk(() => nix.app(udevRulesFor, nix.thunk(() => ({
-                  __proto__: pos$41,
+                  [nix.POS]: pos$41,
                   name: "udev-rules",
                   udevPackages: nix.thunk(() => nix.sel(cfg, "packages")),
                   systemd: nix.thunk(() => nix.sel(config, "systemd", "package")),
@@ -446,17 +446,17 @@ EOF
                   udev: udev,
                 })))),
             })),
-            "udev/hwdb.bin": nix.thunk(() => ({ __proto__: pos$43, source: hwdbBin })),
+            "udev/hwdb.bin": nix.thunk(() => ({ [nix.POS]: pos$43, source: hwdbBin })),
           }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "boot", "modprobeConfig", "enable")), nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               "modprobe.d/firmware.conf": nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 text: nix.thunk(() => nix.str`options firmware_class path=${nix.sel(config, "hardware", "firmware")}/lib/firmware`),
               })),
             }))))),
         })),
         system: nix.thunk(() => ({
-          __proto__: pos$49,
+          [nix.POS]: pos$49,
           requiredKernelConfig: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(config, "lib", "kernelConfig")), null);
             return [
@@ -466,7 +466,7 @@ EOF
             ];
           })()),
           activationScripts: nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             udevd: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "boot", "kernel", "enable")), nix.thunk(() => nix.str`# The deprecated hotplug uevent helper is not used anymore
 if [ -e /proc/sys/kernel/hotplug ]; then
   echo "" > /proc/sys/kernel/hotplug
@@ -480,11 +480,11 @@ fi
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$52,
+          [nix.POS]: pos$52,
           services: nix.thunk(() => ({
-            __proto__: pos$51,
+            [nix.POS]: pos$51,
             "systemd-udevd": nix.thunk(() => ({
-              __proto__: pos$50,
+              [nix.POS]: pos$50,
               restartTriggers: nix.thunk(() => [
                 nix.thunk(() => nix.sel(config, "environment", "etc", "udev/rules.d", "source")),
               ]),

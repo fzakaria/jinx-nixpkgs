@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const ruby = nix.arg($, "ruby");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "username-anarchy",
       version: "0.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           rev: "d5e653f0ab31d8d3fff79b2986f6ef9624d80fba",
           owner: "urbanadventurer",
           repo: "username-anarchy",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [ruby]),
       preInstall: "mkdir -p $out/bin\ninstall -Dm 555 format-plugins.rb $out/bin/\ninstall -Dm 555 username-anarchy $out/bin/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/urbanadventurer/username-anarchy/",
         description: "Username generator tool for penetration testing",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

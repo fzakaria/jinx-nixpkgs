@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.7.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-GV0ArplMidQ+2OVw3foKn7YQXmt4Pfwets6psybcM0Y=",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, mock]);
       const disabledTests = nix.thunk(() => nix.concat(["test_application_name_in_env", "test_init_command_option"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_application_name_db_uri"]))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command-line interface for PostgreSQL",
         mainProgram: "pgcli",
         longDescription: "Rich command-line interface for PostgreSQL with auto-completion and\nsyntax highlighting.\n",
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

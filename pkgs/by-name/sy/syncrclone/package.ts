@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "syncrclone",
       version: "0-unstable-2023-03-23",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jwink3101",
           repo: "syncrclone",
           rev: "137c9c4cc737a383b23cd9a5a21bb079e6a8fc59",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       })()),
       pythonImportsCheck: nix.thunk(() => ["syncrclone"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bidirectional sync tool for rclone",
         homepage: "https://github.com/Jwink3101/syncrclone",
         changelog: nix.thunk(() => nix.str`https://github.com/Jwink3101/syncrclone/blob/${nix.sel(finalAttrs, "src", "rev")}/docs/changelog.md`),

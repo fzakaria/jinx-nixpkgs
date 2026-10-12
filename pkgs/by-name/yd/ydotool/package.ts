@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const xinput = nix.arg($, "xinput");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "ydotool",
       version: "1.0.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ReimuNotMoe",
           repo: "ydotool",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/ReimuNotMoe/ydotool/commit/58fde33d9a8b393fd59348f71e80c56177b62706.patch?full_index=1",
             hash: "sha256-Ga9DPCzpJwtYVHWwKKl3kzn2BPEZBZ7uzbEY/eFXGs4=",
             includes: nix.thunk(() => ["CMakeLists.txt"]),
@@ -48,11 +48,11 @@ substituteInPlace Daemon/ydotool.service.in \\
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [cmake, scdoc]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, basic: nix.thunk(() => nix.sel(nixosTests, "ydotool")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, basic: nix.thunk(() => nix.sel(nixosTests, "ydotool")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Generic Linux command-line automation tool",
         homepage: "https://github.com/ReimuNotMoe/ydotool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

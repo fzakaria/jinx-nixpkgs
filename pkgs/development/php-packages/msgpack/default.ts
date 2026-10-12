@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "msgpack";
       const sha256 = "sha256-VTBqhHl9OZxrJpGB7EhGNPGL6hMwu9nXQFBDxZfeac0=";
       const meta = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         changelog: nix.thunk(() => nix.str`https://pecl.php.net/package-info.php?package=msgpack&version=${version}`),
         description: "PHP extension for interfacing with MessagePack",
         homepage: "https://github.com/msgpack/msgpack-php",
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ostrolucky"))]),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "php"))]),
       }));
-      return { __proto__: pos$2, version, pname, sha256, meta };
+      return { [nix.POS]: pos$2, version, pname, sha256, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

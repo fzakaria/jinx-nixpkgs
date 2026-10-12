@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jmrivas86",
           repo: "django-json-widget",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "export DJANGO_SETTINGS_MODULE=tests.settings\n";
       const pythonImportsCheck = nix.thunk(() => ["django_json_widget"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Alternative widget that makes it easy to edit the jsonfield field of django",
         homepage: "https://github.com/jmrivas86/django-json-widget",
         changelog: nix.thunk(() => nix.str`https://github.com/jmrivas86/django-json-widget/blob/${nix.sel(src, "tag")}/CHANGELOG.rst`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "onny"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

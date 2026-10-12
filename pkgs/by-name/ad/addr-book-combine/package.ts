@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromSourcehut = nix.arg($, "fetchFromSourcehut");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "addr-book-combine",
       version: "0-unstable-2022-12-14",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~jcc",
           repo: "addr-book-combine",
           rev: "11696f4726b981c774ad1d4858f1a935ac71e9ac",
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: null,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Combine multiple aerc-style address books into a single address book",
         homepage: "https://jasoncarloscox.com/creations/addr-book-combine/",
         downloadPage: "https://git.sr.ht/~jcc/addr-book-combine",

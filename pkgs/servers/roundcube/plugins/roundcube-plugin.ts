@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
     const pname = nix.arg($_1, "pname");
     const version = nix.arg($_1, "version");
     const src = nix.arg($_1, "src");
-    return nix.app(runCommand, nix.thunk(() => nix.str`roundcube-plugin-${pname}-${version}`), nix.thunk(() => ({ __proto__: pos$1, pname: pname, version: version })), nix.thunk(() => nix.str`mkdir -p $out/plugins/
+    return nix.app(runCommand, nix.thunk(() => nix.str`roundcube-plugin-${pname}-${version}`), nix.thunk(() => ({ [nix.POS]: pos$1, pname: pname, version: version })), nix.thunk(() => nix.str`mkdir -p $out/plugins/
 cp -r ${src} $out/plugins/${pname}
 `));
   })(), formals$2);

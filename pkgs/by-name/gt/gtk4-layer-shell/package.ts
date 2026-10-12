@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const gobject_introspection = nix.arg($, "gobject-introspection");
   const vala = nix.arg($, "vala");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gtk4-layer-shell",
       version: "1.3.0",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       outputBin: "devdoc",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wmww",
           repo: "gtk4-layer-shell",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk4, wayland, wayland_protocols]),
       mesonFlags: nix.thunk(() => ["-Ddocs=true", "-Dexamples=true"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to create panels and other desktop components for Wayland using the Layer Shell protocol and GTK4",
         homepage: "https://github.com/wmww/gtk4-layer-shell",
         mainProgram: "gtk4-layer-demo",

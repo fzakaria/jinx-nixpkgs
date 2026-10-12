@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const qtdeclarative = nix.arg($, "qtdeclarative");
   const qtsvg = nix.arg($, "qtsvg");
   return nix.app(qtModule, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "qtsensors",
       propagatedBuildInputs: nix.thunk(() => [qtbase, qtdeclarative, qtsvg]),
     })));

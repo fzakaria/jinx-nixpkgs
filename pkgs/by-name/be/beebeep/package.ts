@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const qt5 = nix.arg($, "qt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "beebeep",
       version: "5.8.6",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://netix.dl.sourceforge.net/project/beebeep/Linux/beebeep-${nix.sel(finalAttrs, "version")}-qt5-amd64.tar.gz`),
           hash: "sha256-YDgFRXFBM1tjLP99mHYJadgccHJYYPAZ1kqR+FngLKU=",
         })))),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       })()),
       installPhase: "mkdir -p $out/bin\ncp * $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.beebeep.net/",
         description: "Free office messenger that is indispensable in all those places where privacy and security are an essential requirement",
         mainProgram: "beebeep",

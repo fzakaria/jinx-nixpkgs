@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const jdk = nix.arg($, "jdk");
   const timestamp = "202609031315";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "jdt-language-server",
       version: "1.61.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.eclipse.org/jdtls/milestones/${nix.sel(finalAttrs, "version")}/jdt-language-server-${nix.sel(finalAttrs, "version")}-${timestamp}.tar.gz`),
           hash: "sha256-M45+c9YYNmUbokU5GaDTT6dj6058AzQgkjCb/7iTTGQ=",
         })))),
@@ -47,9 +47,9 @@ install -Dm444 -t $out/bin bin/jdtls.py
 runHook postInstall
 `;
       })()),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/eclipse/eclipse.jdt.ls",
         description: "Java language server",
         sourceProvenance: nix.thunk(() => (() => {

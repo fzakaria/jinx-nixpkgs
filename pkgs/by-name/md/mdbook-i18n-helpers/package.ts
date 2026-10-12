@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mdbook-i18n-helpers",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "google",
           repo: "mdbook-i18n-helpers",
           tag: nix.thunk(() => nix.str`mdbook-i18n-helpers-${nix.sel(finalAttrs, "version")}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-zxh4Wa8JngQfUYQsxEpdb+cO3zqNpt2TkesGVxqDnjs=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Helpers for a mdbook i18n workflow based on Gettext",
         homepage: "https://github.com/google/mdbook-i18n-helpers",
         changelog: nix.thunk(() => nix.str`https://github.com/google/mdbook-i18n-helpers/releases/tag/mdbook-i18n-helpers-${nix.sel(finalAttrs, "version")}`),

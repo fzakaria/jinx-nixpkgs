@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.9";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "htseq",
           repo: "htseq",
           rev: nix.thunk(() => nix.str`release_${version}`),
@@ -38,19 +38,19 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [swig]);
       const build_system = nix.thunk(() => [cython, numpy, pysam, setuptools]);
       const dependencies = nix.thunk(() => [numpy, pysam]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, "htseq-qa": nix.thunk(() => [matplotlib]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, "htseq-qa": nix.thunk(() => [matplotlib]) }));
       const pythonImportsCheck = nix.thunk(() => ["HTSeq"]);
       const nativeCheckInputs = nix.thunk(() => nix.concat([pandas, pytestCheckHook], nix.sel(optional_dependencies, "htseq-qa")));
       const preCheck = "rm -r src HTSeq\nexport PATH=$out/bin:$PATH\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version-regex", "release_(.+)"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://htseq.readthedocs.io/",
         description: "Framework to work with high-throughput sequencing data",
         maintainers: nix.thunk(() => (() => {
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

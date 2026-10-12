@@ -37,13 +37,13 @@ export default nix.lambda((args) => (() => {
   const libbass = nix.arg($, "libbass");
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   const allBass = nix.thunk(() => ({
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     bass: nix.thunk(() => ({
-      __proto__: pos$5,
-      h: nix.thunk(() => ({ __proto__: pos$1, linux: "c/bass.h", darwin: "c/bass.h" })),
+      [nix.POS]: pos$5,
+      h: nix.thunk(() => ({ [nix.POS]: pos$1, linux: "c/bass.h", darwin: "c/bass.h" })),
       version: "2.4.18.3",
       so: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         i686_linux: "libs/x86/libbass.so",
         "x86_64-linux": "libs/x86_64/libbass.so",
         "armv7l-linux": "libs/armhf/libbass.so",
@@ -51,23 +51,23 @@ export default nix.lambda((args) => (() => {
         "aarch64-darwin": "libbass.dylib",
       })),
       url: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         linux: "https://web.archive.org/web/20251222154947/https://www.un4seen.com/files/bass24-linux.zip",
         darwin: "https://web.archive.org/web/20260318192647/https://www.un4seen.com/files/bass24-osx.zip",
       })),
       hash: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         linux: "sha256-3iZk+9MaGn7vTbSNprjChICMXhk8Pu4hWHIR3peGkXI=",
         darwin: "sha256-363WI4iWsCsUSyhwZV+57iRF/ITVwA9+HFb6+TQ85Zw=",
       })),
       buildInputs: [],
     })),
     bass_fx: nix.thunk(() => ({
-      __proto__: pos$10,
-      h: nix.thunk(() => ({ __proto__: pos$6, linux: "C/bass_fx.h", darwin: "bass_fx.h" })),
+      [nix.POS]: pos$10,
+      h: nix.thunk(() => ({ [nix.POS]: pos$6, linux: "C/bass_fx.h", darwin: "bass_fx.h" })),
       version: "2.4.12.6",
       so: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         i686_linux: "libs/x86/libbass_fx.so",
         "x86_64-linux": "libs/x86_64/libbass_fx.so",
         "armv7l-linux": "libs/armhf/libbass_fx.so",
@@ -75,23 +75,23 @@ export default nix.lambda((args) => (() => {
         "aarch64-darwin": "libbass_fx.dylib",
       })),
       url: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         linux: "https://web.archive.org/web/20250627192213/https://www.un4seen.com/files/z/0/bass_fx24-linux.zip",
         darwin: "https://web.archive.org/web/20250927051000/https://www.un4seen.com/files/z/0/bass_fx24-osx.zip",
       })),
       hash: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         linux: "sha256-Hul2ELwnaDV8TDRMDXoFisle31GATDkf3PdkR2K9QTs=",
         darwin: "sha256-655JbaIpzdc9xR0Wx+P9F8dACoElwr4v64ju4axo3Gg=",
       })),
       buildInputs: nix.thunk(() => [libbass, nix.thunk(() => nix.sel(stdenv, "cc", "cc"))]),
     })),
     bassmidi: nix.thunk(() => ({
-      __proto__: pos$15,
-      h: nix.thunk(() => ({ __proto__: pos$11, linux: "c/bassmidi.h", darwin: "c/bassmidi.h" })),
+      [nix.POS]: pos$15,
+      h: nix.thunk(() => ({ [nix.POS]: pos$11, linux: "c/bassmidi.h", darwin: "c/bassmidi.h" })),
       version: "2.4.16",
       so: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         i686_linux: "libs/x86/libbassmidi.so",
         "x86_64-linux": "libs/x86_64/libbassmidi.so",
         "armv7l-linux": "libs/armhf/libbassmidi.so",
@@ -99,23 +99,23 @@ export default nix.lambda((args) => (() => {
         "aarch64-darwin": "libbassmidi.dylib",
       })),
       url: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         linux: "https://web.archive.org/web/20260801181155/https://www.un4seen.com/files/bassmidi24-linux.zip",
         darwin: "https://web.archive.org/web/20260801180948/https://www.un4seen.com/files/bassmidi24-osx.zip",
       })),
       hash: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         linux: "sha256-qNzY7ciG2Ld1n+hamcd6MOvuzOvmIIzVMbNLnmyd6HI=",
         darwin: "sha256-gBVVtfmDxJ+bOylYIJLtwyEwKwD1u4YkN96HoBUot/c=",
       })),
       buildInputs: nix.thunk(() => [libbass]),
     })),
     bassmix: nix.thunk(() => ({
-      __proto__: pos$20,
-      h: nix.thunk(() => ({ __proto__: pos$16, linux: "bassmix.h", darwin: "bassmix.h" })),
+      [nix.POS]: pos$20,
+      h: nix.thunk(() => ({ [nix.POS]: pos$16, linux: "bassmix.h", darwin: "bassmix.h" })),
       version: "2.4.12",
       so: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         i686_linux: "libs/x86/libbassmix.so",
         "x86_64-linux": "libs/x86_64/libbassmix.so",
         "armv7l-linux": "libs/armhf/libbassmix.so",
@@ -123,12 +123,12 @@ export default nix.lambda((args) => (() => {
         "aarch64-darwin": "libbassmix.dylib",
       })),
       url: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         linux: "https://web.archive.org/web/20240930183631/https://www.un4seen.com/files/bassmix24-linux.zip",
         darwin: "https://web.archive.org/web/20260318194151/https://www.un4seen.com/files/bassmix24-osx.zip",
       })),
       hash: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         linux: "sha256-oxxBhsjeLvUodg2SOMDH4wUy5na3nxLTqYkB+iXbOgA=",
         darwin: "sha256-HSu/R7JmPqJfr4jv6MthsdT+7okKm3EYe7+KdR9zSz0=",
       })),
@@ -136,11 +136,11 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   const dropBass = (name) => (bass) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       pname: nix.thunk(() => nix.str`lib${name}`),
       version: nix.thunk(() => nix.attr(bass, "version")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           url: nix.thunk(() => nix.sel(bass, "url", nix.key(nix.sel(stdenv, "hostPlatform", "parsed", "kernel", "name")))),
           hash: nix.thunk(() => nix.sel(bass, "hash", nix.key(nix.sel(stdenv, "hostPlatform", "parsed", "kernel", "name")))),
         })))),
@@ -156,7 +156,7 @@ install -m644 -t $out/include/ ${nix.sel(bass, "h", nix.key(nix.sel(stdenv, "hos
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         description: "Shareware audio library",
         homepage: "https://www.un4seen.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),

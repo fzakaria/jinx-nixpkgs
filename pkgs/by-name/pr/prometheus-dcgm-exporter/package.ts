@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
       const pname = "dcgm-exporter";
       const version = "4.3.1-4.4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NVIDIA",
           repo: "dcgm-exporter",
           tag: version,
           hash: "sha256-NafQWP1NxHTwmOND8ovy3oVia7qq0rCwZYE3VNlMBKQ=",
         }))));
-      const env = nix.thunk(() => ({ __proto__: pos$2, CGO_LDFLAGS: "-ldcgm" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, CGO_LDFLAGS: "-ldcgm" }));
       const buildInputs = nix.thunk(() => [dcgm]);
       const hardeningDisable = nix.thunk(() => ["bindnow"]);
       const vendorHash = "sha256-BfHC49Dzb4ArXK87JKD+aYEHR5HUS5NL0fEHa0jOCYM=";
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const postFixup = "patchelf --add-needed libnvidia-ml.so \"$out/bin/dcgm-exporter\"\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "NVIDIA GPU metrics exporter for Prometheus leveraging DCGM",
         homepage: "https://github.com/NVIDIA/dcgm-exporter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

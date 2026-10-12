@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const tune = nix.argOr($, "tune", () => false);
   nix.assert_((!nix.asBool(withGf2x) || nix.asBool(!nix.eq(gf2x, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/nt/ntl/package.nix:14:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ntl",
       version: "11.6.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.shoup.net/ntl/ntl-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-vA75rOsHWmoGc6yNj0fV+EWMcv6AbkRo+9XT2v8FYYI=",
         })))),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       enableParallelChecking: true,
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for doing Number Theory",
         longDescription: "NTL is a high-performance, portable C++ library providing data\nstructures and algorithms for manipulating signed, arbitrary\nlength integers, and for vectors, matrices, and polynomials over\nthe integers and over finite fields.\n",
         homepage: "http://www.shoup.net/ntl/",

@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const xxhash = nix.arg($, "xxhash");
   const kdePackages = nix.arg($, "kdePackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "chiaki-ng",
       version: "1.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "streetpea",
           repo: "chiaki-ng",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
         libdovi,
         xxhash,
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       cmakeFlags: nix.thunk(() => [
         "-Wno-dev",
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CHIAKI_USE_SYSTEM_CURL", "true")),
@@ -98,7 +98,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "install -Dm755 $src/scripts/psn-account-id.py $out/bin/psn-account-id\n",
       postFixup: "wrapPythonPrograms\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://streetpea.github.io/chiaki-ng/",
         description: "Next-Generation of Chiaki (the open-source remote play client for PlayStation)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

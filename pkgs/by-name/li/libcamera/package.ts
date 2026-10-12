@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libcamera";
       const version = "0.7.2";
       const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.libcamera.org/libcamera/libcamera.git",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-vhFkeT1j2KKm+CVvGrtH5BEYJSEdaX7N7DRdA0a9EWk=",
@@ -102,12 +102,12 @@ install -D ${nix.path(here, "./ipa-priv-key.pem")} src/ipa-priv-key.pem
         nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "documentation", false)),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch")), nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "rpi-awb-nn", false))]))));
       const env = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: "-Wno-error=deprecated-declarations",
-        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ __proto__: pos$2, fontDirectories: [] })))),
+        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$2, fontDirectories: [] })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Open source camera stack and framework for Linux, Android, and ChromeOS",
         homepage: "https://libcamera.org",
         changelog: nix.thunk(() => nix.str`https://git.libcamera.org/libcamera/libcamera.git/tag/?h=${nix.sel(src, "rev")}`),
@@ -122,7 +122,7 @@ install -D ${nix.path(here, "./ipa-priv-key.pem")} src/ipa-priv-key.pem
         ]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

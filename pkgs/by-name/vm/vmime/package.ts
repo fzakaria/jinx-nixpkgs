@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const sendmailPath = nix.argOr($, "sendmailPath", () => "/run/wrappers/bin/sendmail");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vmime",
       version: "0-unstable-2025-07-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kisli",
           repo: "vmime",
           rev: "7046a4360bbeea21d1d8b5cfa4589bb4df7f980d",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, cmake]),
       cmakeFlags: nix.thunk(() => [nix.thunk(() => nix.str`-DVMIME_SENDMAIL_PATH=${sendmailPath}`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.vmime.org/",
         description: "Free mail library for C++",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

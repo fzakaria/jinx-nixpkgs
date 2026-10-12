@@ -67,8 +67,8 @@ export default nix.lambda((args) => (() => {
     return (v) => (nix.asBool(nix.app(nix.lookup(w, "isInt"), v)) ? nix.app(nix.builtins.toString, v) : (nix.asBool(nix.app(nix.lookup(w, "isFloat"), v)) ? nix.app(nix.builtins.toString, v) : (nix.asBool(nix.app(nix.lookup(w, "isString"), v)) ? nix.force(v) : (nix.asBool(nix.eq(true, v)) ? "1" : (nix.asBool(nix.eq(false, v)) ? "0" : (nix.asBool(nix.eq(null, v)) ? "" : nix.app(nix.builtins.throw, nix.thunk(() => nix.str`unsupported type: ${nix.app(nix.sel(nix.builtins, "typeOf"), v)}: ${nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({})), v)}`))))))));
   })());
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "keyValue"), nix.thunk(() => ({
-      __proto__: pos$2,
-      mkKeyValue: nix.thunk(() => nix.app(nix.sel(lib, "generators", "mkKeyValueDefault"), nix.thunk(() => ({ __proto__: pos$1, mkValueString: mkValueStringArmagetron })), " ")),
+      [nix.POS]: pos$2,
+      mkKeyValue: nix.thunk(() => nix.app(nix.sel(lib, "generators", "mkKeyValueDefault"), nix.thunk(() => ({ [nix.POS]: pos$1, mkValueString: mkValueStringArmagetron })), " ")),
       listsAsDuplicateKeys: true,
     }))));
   const cfg = nix.thunk(() => nix.sel(config, "services", "armagetronad"));
@@ -77,65 +77,65 @@ export default nix.lambda((args) => (() => {
   const getStateDirectory = (serverName) => nix.str`armagetronad/${serverName}`;
   const getServerRoot = (serverName) => nix.str`/var/lib/${nix.app(getStateDirectory, serverName)}`;
   return {
-    __proto__: pos$44,
+    [nix.POS]: pos$44,
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         armagetronad: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           servers: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "Armagetron server definitions.",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     options: nix.thunk(() => ({
-                      __proto__: pos$11,
+                      [nix.POS]: pos$11,
                       enable: nix.thunk(() => nix.app(mkEnableOption, "armagetronad")),
                       package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "armagetronad-dedicated", nix.thunk(() => ({
-                          __proto__: pos$3,
+                          [nix.POS]: pos$3,
                           example: "pkgs.armagetronad.\"0.2.9-sty+ct+ap\".dedicated\n",
                           extraDescription: "Ensure that you use a derivation which contains the path `bin/armagetronad-dedicated`.\n",
                         })))),
                       host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           default: "0.0.0.0",
                           description: "Host to listen on. Used for SERVER_IP.",
                         })))),
                       port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$5,
+                          [nix.POS]: pos$5,
                           type: nix.thunk(() => nix.sel(types, "port")),
                           default: 4534n,
                           description: "Port to listen on. Used for SERVER_PORT.",
                         })))),
                       dns: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                           default: null,
                           description: "DNS address to use for this server. Optional.",
                         })))),
                       openFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$7,
+                          [nix.POS]: pos$7,
                           type: nix.thunk(() => nix.sel(types, "bool")),
                           default: true,
                           description: "Set to true to open the configured UDP port for Armagetron Advanced.",
                         })))),
                       name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           description: "The name of this server.",
                         })))),
                       settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           type: nix.thunk(() => nix.sel(settingsFormat, "type")),
                           default: nix.thunk(() => ({})),
                           description: "Armagetron Advanced server rules configuration. Refer to:\n<https://wiki.armagetronad.org/index.php?title=Console_Commands>\nor `armagetronad-dedicated --doc` for a list.\n\nThis attrset is used to populate `settings_custom.cfg`; see:\n<https://wiki.armagetronad.org/index.php/Configuration_Files>\n",
                           example: nix.thunk(() => nix.app(literalExpression, "{\n  CYCLE_RUBBER = 40;\n}\n")),
                         })))),
                       roundSettings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           type: nix.thunk(() => nix.sel(settingsFormat, "type")),
                           default: nix.thunk(() => ({})),
                           description: "Armagetron Advanced server per-round configuration. Refer to:\n<https://wiki.armagetronad.org/index.php?title=Console_Commands>\nor `armagetronad-dedicated --doc` for a list.\n\nThis attrset is used to populate `everytime.cfg`; see:\n<https://wiki.armagetronad.org/index.php/Configuration_Files>\n",
@@ -148,20 +148,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(enabledServers, {})), nix.thunk(() => ({
-        __proto__: pos$43,
+        [nix.POS]: pos$43,
         systemd: nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             settings: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => nix.app(mapAttrsToList, (serverName) => (serverCfg) => (() => {
                   const serverId = nix.thunk(() => nix.app(nameToId, serverName));
                   const serverRoot = nix.thunk(() => nix.app(getServerRoot, serverName));
                   const serverInfo = nix.thunk(() => nix.update({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     SERVER_IP: nix.thunk(() => nix.sel(serverCfg, "host")),
                     SERVER_PORT: nix.thunk(() => nix.sel(serverCfg, "port")),
                     SERVER_NAME: nix.thunk(() => nix.sel(serverCfg, "name")),
-                  }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(serverCfg, "dns"), null)), nix.thunk(() => ({ __proto__: pos$18, SERVER_DNS: nix.thunk(() => nix.sel(serverCfg, "dns")) })))));
+                  }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(serverCfg, "dns"), null)), nix.thunk(() => ({ [nix.POS]: pos$18, SERVER_DNS: nix.thunk(() => nix.sel(serverCfg, "dns")) })))));
                   const customSettings = nix.thunk(() => nix.sel(serverCfg, "settings"));
                   const everytimeSettings = nix.thunk(() => nix.sel(serverCfg, "roundSettings"));
                   const serverInfoCfg = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), nix.thunk(() => nix.str`server_info.${serverName}.cfg`), serverInfo));
@@ -170,37 +170,37 @@ export default nix.lambda((args) => (() => {
                   return nix.attrsDyn({}, [
                     [nix.str`10-armagetronad-${serverId}`, nix.thunk(() => nix.attrsDyn({}, [
                       [nix.str`${serverRoot}/data`, nix.thunk(() => ({
-                        __proto__: pos$20,
-                        d: nix.thunk(() => ({ __proto__: pos$19, group: serverId, user: serverId, mode: "0750" })),
+                        [nix.POS]: pos$20,
+                        d: nix.thunk(() => ({ [nix.POS]: pos$19, group: serverId, user: serverId, mode: "0750" })),
                       }))],
                       [nix.str`${serverRoot}/settings`, nix.thunk(() => ({
-                        __proto__: pos$22,
-                        d: nix.thunk(() => ({ __proto__: pos$21, group: serverId, user: serverId, mode: "0750" })),
+                        [nix.POS]: pos$22,
+                        d: nix.thunk(() => ({ [nix.POS]: pos$21, group: serverId, user: serverId, mode: "0750" })),
                       }))],
                       [nix.str`${serverRoot}/var`, nix.thunk(() => ({
-                        __proto__: pos$24,
-                        d: nix.thunk(() => ({ __proto__: pos$23, group: serverId, user: serverId, mode: "0750" })),
+                        [nix.POS]: pos$24,
+                        d: nix.thunk(() => ({ [nix.POS]: pos$23, group: serverId, user: serverId, mode: "0750" })),
                       }))],
                       [nix.str`${serverRoot}/resource`, nix.thunk(() => ({
-                        __proto__: pos$26,
-                        d: nix.thunk(() => ({ __proto__: pos$25, group: serverId, user: serverId, mode: "0750" })),
+                        [nix.POS]: pos$26,
+                        d: nix.thunk(() => ({ [nix.POS]: pos$25, group: serverId, user: serverId, mode: "0750" })),
                       }))],
                       [nix.str`${serverRoot}/input`, nix.thunk(() => ({
-                        __proto__: pos$28,
-                        "f+": nix.thunk(() => ({ __proto__: pos$27, group: serverId, user: serverId, mode: "0640" })),
+                        [nix.POS]: pos$28,
+                        "f+": nix.thunk(() => ({ [nix.POS]: pos$27, group: serverId, user: serverId, mode: "0640" })),
                       }))],
                       [nix.str`${serverRoot}/settings/server_info.cfg`, nix.thunk(() => ({
-                        __proto__: pos$30,
-                        "L+": nix.thunk(() => ({ __proto__: pos$29, argument: nix.thunk(() => nix.str`${serverInfoCfg}`) })),
+                        [nix.POS]: pos$30,
+                        "L+": nix.thunk(() => ({ [nix.POS]: pos$29, argument: nix.thunk(() => nix.str`${serverInfoCfg}`) })),
                       }))],
                       [nix.str`${serverRoot}/settings/settings_custom.cfg`, nix.thunk(() => ({
-                        __proto__: pos$32,
-                        "L+": nix.thunk(() => ({ __proto__: pos$31, argument: nix.thunk(() => nix.str`${customSettingsCfg}`) })),
+                        [nix.POS]: pos$32,
+                        "L+": nix.thunk(() => ({ [nix.POS]: pos$31, argument: nix.thunk(() => nix.str`${customSettingsCfg}`) })),
                       }))],
                       [nix.str`${serverRoot}/settings/everytime.cfg`, nix.thunk(() => ({
-                        __proto__: pos$34,
+                        [nix.POS]: pos$34,
                         "L+": nix.thunk(() => ({
-                          __proto__: pos$33,
+                          [nix.POS]: pos$33,
                           argument: nix.thunk(() => nix.str`${everytimeSettingsCfg}`),
                         })),
                       }))],
@@ -212,7 +212,7 @@ export default nix.lambda((args) => (() => {
                 const serverId = nix.thunk(() => nix.app(nameToId, serverName));
                 return nix.attrsDyn({}, [
                   [nix.str`armagetronad-${serverName}`, nix.thunk(() => ({
-                    __proto__: pos$37,
+                    [nix.POS]: pos$37,
                     description: nix.thunk(() => nix.str`Armagetron Advanced Dedicated Server for ${serverName}`),
                     wants: nix.thunk(() => ["basic.target"]),
                     after: nix.thunk(() => ["basic.target", "network.target", "multi-user.target"]),
@@ -220,7 +220,7 @@ export default nix.lambda((args) => (() => {
                     serviceConfig: nix.thunk(() => (() => {
                       const serverRoot = nix.thunk(() => nix.app(getServerRoot, serverName));
                       return {
-                        __proto__: pos$36,
+                        [nix.POS]: pos$36,
                         Type: "simple",
                         StateDirectory: nix.thunk(() => nix.app(getStateDirectory, serverName)),
                         ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(serverCfg, "package")))} --daemon --input ${serverRoot}/input --userdatadir ${serverRoot}/data --userconfigdir ${serverRoot}/settings --vardir ${serverRoot}/var --autoresourcedir ${serverRoot}/resource`),
@@ -251,17 +251,17 @@ export default nix.lambda((args) => (() => {
               })(), enabledServers)))),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           firewall: nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             allowedUDPPorts: nix.thunk(() => nix.app(unique, nix.thunk(() => nix.app(mapAttrsToList, (serverName) => (serverCfg) => nix.sel(serverCfg, "port"), nix.thunk(() => nix.app(filterAttrs, (serverName) => (serverCfg) => nix.sel(serverCfg, "openFirewall"), enabledServers)))))),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$42,
+          [nix.POS]: pos$42,
           users: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => nix.app(mapAttrsToList, (serverName) => (serverCfg) => nix.attrsDyn({}, [
                 [nix.app(nameToId, serverName), nix.thunk(() => ({
-                  __proto__: pos$41,
+                  [nix.POS]: pos$41,
                   group: nix.thunk(() => nix.app(nameToId, serverName)),
                   description: nix.thunk(() => nix.str`Armagetron Advanced dedicated user for server ${serverName}`),
                   isSystemUser: true,

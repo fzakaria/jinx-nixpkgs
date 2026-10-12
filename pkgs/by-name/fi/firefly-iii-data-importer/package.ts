@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const dataDir = nix.argOr($, "dataDir", () => "/var/lib/firefly-iii-data-importer");
   const php = php85;
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "firefly-iii-data-importer",
       version: "2.3.5",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "firefly-iii",
           repo: "data-importer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,13 +52,13 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       vendorHash: "sha256-X440UAEKEGQUeywMr4zE1bW1Sdx9DAECyvUXDjJeljs=",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-npm-deps`),
           hash: "sha256-45SItCuL1RO8kIZtYI/vt0wQyfQRBcb7nY5ECYEeybQ=",
         })))),
       composerRepository: nix.thunk(() => nix.app(nix.sel(php, "mkComposerRepository"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           vendorHash: nix.thunk(() => nix.attr(finalAttrs, "vendorHash")),
@@ -70,11 +70,11 @@ export default nix.lambda((args) => (() => {
         })))),
       preInstall: "npm run build --workspace=v2\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         phpPackage: php,
         tests: nix.thunk(() => nix.sel(nixosTests, "firefly-iii-data-importer")),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             extraArgs: nix.thunk(() => ["--version-regex", "v(\\d+\\.\\d+\\.\\d+)"]),
           })))),
       })),
@@ -85,7 +85,7 @@ ln -s ${dataDir}/storage $out/storage
 ln -s ${dataDir}/cache $out/bootstrap/cache
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         changelog: nix.thunk(() => nix.str`https://github.com/firefly-iii/data-importer/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Firefly III Data Importer can import data into Firefly III",
         homepage: "https://github.com/firefly-iii/data-importer",

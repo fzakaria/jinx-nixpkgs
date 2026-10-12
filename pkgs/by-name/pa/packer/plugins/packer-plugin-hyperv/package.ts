@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const mkPackerPlugin = nix.arg($, "mkPackerPlugin");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(mkPackerPlugin, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "packer-plugin-hyperv",
       version: "1.1.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hashicorp",
           repo: "packer-plugin-hyperv",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-J83f4pfD/J2lOZf7Uq01UKckfUmx0D9DRbz9V6ePdjI=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Packer plugin for Hyper-V",
         homepage: "https://github.com/hashicorp/packer-plugin-hyperv",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

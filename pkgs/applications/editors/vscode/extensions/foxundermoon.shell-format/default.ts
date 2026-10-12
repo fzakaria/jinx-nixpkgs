@@ -15,9 +15,9 @@ export default nix.lambda((args) => (() => {
   const shfmt = nix.arg($, "shfmt");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "shell-format",
         publisher: "foxundermoon",
         version: "7.2.5",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
 jq '.contributes.configuration.properties."shellformat.path".default = "${shfmt}/bin/shfmt"' package.json | sponge package.json
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=foxundermoon.shell-format",
         homepage: "https://github.com/foxundermoon/vs-shell-format",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

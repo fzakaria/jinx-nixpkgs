@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "demucs-rs",
       version: "0.3.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nikhilunni",
           repo: "demucs-rs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
   --prefix LD_LIBRARY_PATH : "${vulkan_loader}/lib"
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Native Rust implementation of HTDemucs v4 music source separation CLI",
         longDescription: "A native Rust implementation of HTDemucs v4 — state-of-the-art music\nsource separation. Splits any song into individual stems (drums, bass,\nvocals, etc.) using GPU-accelerated inference via Burn.\n\nModel weights are downloaded automatically from Hugging Face on first\nuse and cached for future runs.\n",
         homepage: "https://github.com/nikhilunni/demucs-rs",

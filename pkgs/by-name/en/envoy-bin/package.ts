@@ -23,18 +23,18 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform"));
   const system = nix.thunk(() => nix.attr(from, "system"));
   const throwSystem = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`envoy-bin is not available for ${system}.`)));
-  const plat = nix.thunk(() => nix.selOr({ __proto__: pos$1, "aarch64-linux": "aarch_64", "x86_64-linux": "x86_64" }, () => nix.force(throwSystem), nix.key(nix.force(system))));
+  const plat = nix.thunk(() => nix.selOr({ [nix.POS]: pos$1, "aarch64-linux": "aarch_64", "x86_64-linux": "x86_64" }, () => nix.force(throwSystem), nix.key(nix.force(system))));
   const hash = nix.thunk(() => nix.selOr({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     "aarch64-linux": "sha256-hWWtCvSx0dPJhuUWXAJ63TBzV5GC85jdf01yjSXp7GI=",
     "x86_64-linux": "sha256-ACxuHGntD6DqOBiHJHytrfrslIE3X6jY0rFzHuq/QLg=",
   }, () => nix.force(throwSystem), nix.key(nix.force(system))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "envoy-bin",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://github.com/envoyproxy/envoy/releases/download/v${version}/envoy-${version}-linux-${plat}`),
           hash: hash,
         })))),
@@ -47,15 +47,15 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "envoy-bin": nix.thunk(() => nix.sel(nixosTests, "envoy-bin")),
         })),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://envoyproxy.io",
         changelog: nix.thunk(() => nix.str`https://github.com/envoyproxy/envoy/releases/tag/v${version}`),
         description: "Cloud-native edge and service proxy",

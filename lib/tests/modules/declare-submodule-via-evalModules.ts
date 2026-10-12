@@ -21,19 +21,19 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       submodule: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               modules: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   options: nix.thunk(() => ({
-                    __proto__: pos$2,
+                    [nix.POS]: pos$2,
                     inner: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$1,
+                        [nix.POS]: pos$1,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         default: false,
                       })))),
@@ -42,31 +42,31 @@ export default nix.lambda((args) => (() => {
               ]),
             }))));
           return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           type: nix.thunk(() => nix.attr(from, "type")),
           default: nix.thunk(() => ({})),
         };
         })()))),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       submodule: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const lib_1 = nix.arg($_1, "lib");
             return {
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               options: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 outer: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     type: nix.thunk(() => nix.sel(lib_1, "types", "bool")),
                     default: false,
                   })))),
               })),
             };
           })(), formals$2),
-          nix.thunk(() => ({ __proto__: pos$10, inner: true, outer: true })),
+          nix.thunk(() => ({ [nix.POS]: pos$10, inner: true, outer: true })),
         ]))),
     })),
   };

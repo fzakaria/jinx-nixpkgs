@@ -4,5 +4,5 @@ import * as nix from "../../../../../.jinx/runtime/index.ts";
 const here = nix.here(import.meta.url);
 const pos$1 = nix.positions(here + "/env.nix", [["NIXPKGS_ALLOW_BROKEN", 2, 3]]);
 
-export default nix.thunk(() => ({ __proto__: pos$1, NIXPKGS_ALLOW_BROKEN: 1n }));
+export default nix.thunk(() => ({ [nix.POS]: pos$1, NIXPKGS_ALLOW_BROKEN: 1n }));
 //# sourceMappingURL=env.ts.map

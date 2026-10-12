@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const blas = nix.arg($, "blas");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libcint",
       version: "6.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sunqm",
           repo: "libcint",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(python3, "pkgs", "numpy"))]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "General GTO integrals for quantum chemistry",
         longDescription: "libcint is an open source library for analytical Gaussian integrals.\nIt provides C/Fortran API to evaluate one-electron / two-electron\nintegrals for Cartesian / real-spheric / spinor Gaussian type functions.\n",
         homepage: "https://github.com/sunqm/libcint",

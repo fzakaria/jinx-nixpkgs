@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const unixtools = nix.arg($, "unixtools");
   const version = "10";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gordonflashtool",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "marmolak",
           repo: "GordonFlashTool",
           rev: nix.thunk(() => nix.str`release-${version}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n# build the gordon binary\nmake all-boot-code\nrunHook postBuild\n",
       installPhase: "runHook preInstall\ninstall -Dm755 gordon $out/bin/gordon\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/marmolak/GordonFlashTool",
         description: "Toolset for Gotek SFR1M44-U100 formatted usb flash drives",
         maintainers: nix.thunk(() => (() => {

@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const openssh = nix.arg($, "openssh");
   const procps = nix.arg($, "procps");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sshuttle",
       version: "2.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sshuttle",
           repo: "sshuttle",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +49,7 @@ wrapProgram $out/bin/sshuttle \\
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat([coreutils, openssh, procps], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [iptables, net_tools])))))}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Transparent proxy server that works as a poor man's VPN",
         mainProgram: "sshuttle",
         longDescription: "Forward connections over SSH, without requiring administrator access to the\ntarget network (though it does require Python 2.7, Python 3.5 or later at both ends).\nWorks with Linux and Mac OS and supports DNS tunneling.\n",

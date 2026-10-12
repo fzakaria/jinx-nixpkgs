@@ -14,7 +14,7 @@ export default (lib) => nix.lambda((args) => (() => {
   const svcUser = (svc) => nix.selOr(svc, () => "root", "serviceConfig", "User");
   const svcGroups = (svc) => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.has(nix.sel(svc, "serviceConfig"), "Group")), nix.thunk(() => nix.sel(svc, "serviceConfig", "Group"))), nix.app(nix.sel(lib, "toList"), nix.thunk(() => nix.selOr(svc, () => [], "serviceConfig", "SupplementaryGroups"))));
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     assertion: nix.thunk(() => nix.builtins.all((svc) => (nix.asBool((nix.asBool(nix.eq(nix.app(svcUser, svc), "root")) || nix.asBool(nix.builtins.elem(nix.thunk(() => nix.app(svcUser, svc)), nix.thunk(() => nix.sel(groups, nix.key(nix.sel(cert, "group")), "members")))))) || nix.asBool(nix.builtins.elem(nix.thunk(() => nix.sel(cert, "group")), nix.thunk(() => nix.app(svcGroups, svc))))), services)),
     message: nix.thunk(() => nix.str`Certificate ${nix.sel(cert, "domain")} (group=${nix.sel(cert, "group")}) must be readable by service(s) ${nix.app(catSep, ", ", nix.thunk(() => nix.builtins.map((svc) => nix.str`${nix.sel(svc, "name")} (user=${nix.app(svcUser, svc)} groups=${nix.app(catSep, ",", nix.thunk(() => nix.app(svcGroups, svc)))})`, services)))}`),
   };

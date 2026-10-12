@@ -8,6 +8,6 @@ const pos$1 = nix.positions(here + "/package.nix", [["enableCompat", 5, 3]]);
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const minizip_ng = nix.arg($, "minizip-ng");
-  return nix.app(nix.sel(minizip_ng, "override"), nix.thunk(() => ({ __proto__: pos$1, enableCompat: true })));
+  return nix.app(nix.sel(minizip_ng, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableCompat: true })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

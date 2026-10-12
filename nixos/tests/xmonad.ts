@@ -69,42 +69,42 @@ compileRestart resume = do
   ]);
   const newConfig = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "xmonad.hs", nix.thunk(() => nix.app(mkConfig, "newXMonad", newKeys))));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     name: "xmonad",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "ivanbrennan"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           imports: nix.thunk(() => [
             nix.path(here, "./common/x11.nix"),
             nix.path(here, "./common/user-account.nix"),
           ]),
           "test-support": nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             displayManager: nix.thunk(() => ({
-              __proto__: pos$3,
-              auto: nix.thunk(() => ({ __proto__: pos$2, user: "alice" })),
+              [nix.POS]: pos$3,
+              auto: nix.thunk(() => ({ [nix.POS]: pos$2, user: "alice" })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$9,
-            displayManager: nix.thunk(() => ({ __proto__: pos$5, defaultSession: "none+xmonad" })),
+            [nix.POS]: pos$9,
+            displayManager: nix.thunk(() => ({ [nix.POS]: pos$5, defaultSession: "none+xmonad" })),
             xserver: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               windowManager: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 xmonad: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   enable: true,
                   enableConfiguredRecompile: true,
                   enableContribAndExtras: true,

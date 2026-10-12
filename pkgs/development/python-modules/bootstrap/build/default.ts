@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const tomli = nix.arg($, "tomli");
   const makeWrapper = nix.arg($, "makeWrapper");
   const buildBootstrapPythonModule = (basePackage) => (attrs) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: nix.thunk(() => nix.str`${nix.sel(python, "libPrefix")}-bootstrap-${nix.sel(basePackage, "pname")}`),
       version: nix.thunk(() => nix.attr(basePackage, "version")),
       src: nix.thunk(() => nix.attr(basePackage, "src")),
@@ -47,7 +47,7 @@ runHook postInstall
   const bootstrap_tomli = nix.thunk(() => nix.app(buildBootstrapPythonModule, tomli, nix.thunk(() => ({}))));
   const sitePkgs = nix.thunk(() => nix.sel(python, "sitePackages"));
   return nix.app(buildBootstrapPythonModule, build, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       installPhase: nix.thunk(() => nix.str`runHook preInstall
 
 PYTHONPATH="${installer}/${nix.sel(python, "sitePackages")}" \\

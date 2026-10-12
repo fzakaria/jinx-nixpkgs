@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const mkDerivation = nix.arg($, "mkDerivation");
   const libcMinimal = nix.arg($, "libcMinimal");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "lib/i18n_module",
       libcMinimal: true,
       NIX_CFLAGS_COMPILE_BEFORE: nix.thunk(() => nix.str`-isystem ${nix.sel(stdenvLibcMinimal, "cc", "libc", "dev")}/include`),
       extraPaths: nix.thunk(() => [nix.thunk(() => nix.sel(libcMinimal, "path"))]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "netbsd")),
       })),
     })));

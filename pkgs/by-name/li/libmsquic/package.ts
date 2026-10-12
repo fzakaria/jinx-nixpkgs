@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const coreutils = nix.arg($, "coreutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libmsquic",
       version: "2.6.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "microsoft",
           repo: "msquic",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ for g in $(find . -type f -name "*" ); do
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cross-platform, C implementation of the IETF QUIC protocol, exposed to C, C++, C# and Rust",
         homepage: "https://github.com/microsoft/msquic",
         changelog: nix.thunk(() => nix.str`https://github.com/microsoft/msquic/releases/tag/v${nix.sel(finalAttrs, "version")}`),

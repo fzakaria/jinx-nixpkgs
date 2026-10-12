@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mini-graph-card";
       const version = "0.13.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kalkih",
           repo: "mini-graph-card",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -25,9 +25,9 @@ export default nix.lambda((args) => (() => {
         }))));
       const npmDepsHash = "sha256-xzhyYYZLl8pyfK3+MRn35Ffdw/c78v8PjwLlAuQO92g=";
       const installPhase = "runHook preInstall\n\nmkdir $out\ncp -v dist/mini-graph-card-bundle.js $out/\n\nrunHook postInstall\n";
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, entrypoint: "mini-graph-card-bundle.js" }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, entrypoint: "mini-graph-card-bundle.js" }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/kalkih/mini-graph-card/releases/tag/v${version}`),
         description: "Minimalistic graph card for Home Assistant Lovelace UI",
         homepage: "https://github.com/kalkih/mini-graph-card",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

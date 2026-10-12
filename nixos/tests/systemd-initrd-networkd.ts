@@ -43,25 +43,25 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const pkgs = nix.arg($_1, "pkgs");
     return {
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       boot: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         initrd: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           systemd: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             enable: true,
             network: nix.thunk(() => ({
-              __proto__: pos$2,
-              "wait-online": nix.thunk(() => ({ __proto__: pos$1, timeout: 10n, anyInterface: true })),
+              [nix.POS]: pos$2,
+              "wait-online": nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 10n, anyInterface: true })),
             })),
             targets: nix.thunk(() => ({
-              __proto__: pos$4,
-              "network-online": nix.thunk(() => ({ __proto__: pos$3, requiredBy: nix.thunk(() => ["initrd.target"]) })),
+              [nix.POS]: pos$4,
+              "network-online": nix.thunk(() => ({ [nix.POS]: pos$3, requiredBy: nix.thunk(() => ["initrd.target"]) })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$6,
-              "systemd-networkd-wait-online": nix.thunk(() => ({ __proto__: pos$5, requiredBy: nix.thunk(() => ["network-online.target"]) })),
+              [nix.POS]: pos$6,
+              "systemd-networkd-wait-online": nix.thunk(() => ({ [nix.POS]: pos$5, requiredBy: nix.thunk(() => ["network-online.target"]) })),
             })),
             initrdBin: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs, "iproute2")),
@@ -69,52 +69,52 @@ export default nix.lambda((args) => (() => {
               nix.thunk(() => nix.sel(pkgs, "gnugrep")),
             ]),
           })),
-          network: nix.thunk(() => ({ __proto__: pos$8, enable: true })),
+          network: nix.thunk(() => ({ [nix.POS]: pos$8, enable: true })),
         })),
       })),
-      testing: nix.thunk(() => ({ __proto__: pos$11, initrdBackdoor: true })),
+      testing: nix.thunk(() => ({ [nix.POS]: pos$11, initrdBackdoor: true })),
     };
   })(), formals$2);
   const mkFlushTest = (flush) => (script) => nix.app(runTest, nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$3);
       const lib = nix.arg($_1, "lib");
       return {
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         name: nix.thunk(() => nix.str`systemd-initrd-network-${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(flush)), "no-")}flush`),
         meta: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w, "elvishjerricco"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           machine: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$4);
             const pkgs = nix.arg($_2, "pkgs");
             return {
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               imports: nix.thunk(() => [common]),
               boot: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 initrd: nix.thunk(() => ({
-                  __proto__: pos$15,
-                  network: nix.thunk(() => ({ __proto__: pos$14, flushBeforeStage2: flush })),
+                  [nix.POS]: pos$15,
+                  network: nix.thunk(() => ({ [nix.POS]: pos$14, flushBeforeStage2: flush })),
                 })),
               })),
               systemd: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 services: nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   "check-flush": nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     requiredBy: nix.thunk(() => ["multi-user.target"]),
                     before: nix.thunk(() => ["network-pre.target", "multi-user.target", "shutdown.target"]),
                     conflicts: nix.thunk(() => ["shutdown.target"]),
                     wants: nix.thunk(() => ["network-pre.target"]),
-                    unitConfig: nix.thunk(() => ({ __proto__: pos$17, DefaultDependencies: false })),
-                    serviceConfig: nix.thunk(() => ({ __proto__: pos$18, Type: "oneshot" })),
+                    unitConfig: nix.thunk(() => ({ [nix.POS]: pos$17, DefaultDependencies: false })),
+                    serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$18, Type: "oneshot" })),
                     path: nix.thunk(() => [
                       nix.thunk(() => nix.sel(pkgs, "iproute2")),
                       nix.thunk(() => nix.sel(pkgs, "iputils")),
@@ -131,21 +131,21 @@ export default nix.lambda((args) => (() => {
       };
     })(), formals$3));
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     basic: nix.thunk(() => nix.app(runTest, nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$5);
         const lib = nix.arg($_1, "lib");
         return {
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           name: "systemd-initrd-network",
           meta: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             maintainers: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
               return [nix.thunk(() => nix.lookup(w, "elvishjerricco"))];
             })()),
           })),
-          nodes: nix.thunk(() => ({ __proto__: pos$26, machine: common })),
+          nodes: nix.thunk(() => ({ [nix.POS]: pos$26, machine: common })),
           testScript: "machine.wait_for_unit(\"network-online.target\")\nmachine.succeed(\n    \"ip addr | grep 10.0.2.15\",\n    \"ping -c1 10.0.2.2\",\n)\nmachine.switch_root()\n\n# Make sure the systemd-network user was set correctly in initrd\nmachine.wait_for_unit(\"multi-user.target\")\nmachine.succeed(\"[ $(stat -c '%U,%G' /run/systemd/netif/links) = systemd-network,systemd-network ]\")\nmachine.succeed(\"ip addr show >&2\")\nmachine.succeed(\"ip route show >&2\")\n",
         };
       })(), formals$5))),

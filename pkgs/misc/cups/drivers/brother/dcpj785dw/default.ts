@@ -31,13 +31,13 @@ export default nix.lambda((args) => (() => {
   const version = "1.0.0_0";
   const model = "dcpj785dw";
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     driver: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: nix.thunk(() => nix.str`${model}-lpr`),
         version: version,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf102774/${model}lpr-1.0.0-0.i386.deb`),
             sha256: "sha256-EXUN69YJEz1M0ADEF+0uZ+hdMgIiXChwtf+NzeFk7j0=",
           })))),
@@ -58,7 +58,7 @@ wrapProgram $out/opt/brother/Printers/${model}/lpd/filter${model} \\
   --set NIX_REDIRECTS /opt/=$out/opt/
 `),
         meta: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           homepage: "http://www.brother.com/",
           description: nix.thunk(() => nix.str`Brother ${model} printer driver`),
           sourceProvenance: nix.thunk(() => (() => {
@@ -75,11 +75,11 @@ wrapProgram $out/opt/brother/Printers/${model}/lpd/filter${model} \\
         })),
       })))),
     cupswrapper: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname: nix.thunk(() => nix.str`${model}-cupswrapper`),
         version: version,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf102775/${model}cupswrapper-1.0.0-0.i386.deb`),
             sha256: "sha256-JrYn9UlQr48HlETUmsNRq4oNPwtSiTFCsOuPMJ2kzSU=",
           })))),
@@ -94,7 +94,7 @@ mkdir -p $out/share/cups/model
 ln -s $out/opt/brother/Printers/${model}/cupswrapper/brother_${model}_printer_en.ppd $out/share/cups/model/
 `),
         meta: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           homepage: "http://www.brother.com/",
           description: nix.thunk(() => nix.str`Brother ${model} printer CUPS wrapper driver`),
           sourceProvenance: nix.thunk(() => (() => {

@@ -33,9 +33,9 @@ export default nix.lambda((args) => (() => {
   const dbConfig = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "DB_CONFIG", nix.thunk(() => nix.str`${nix.sel(cfg, "extraDbConfig")}
 `)));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -45,40 +45,40 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         sks: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "SKS (synchronizing key server for OpenPGP) and start the database\nserver. You need to create \"${dataDir}/dump/*.gpg\" for the initial\nimport")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "sks", nix.thunk(() => ({})))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/db/sks",
               example: "/var/lib/sks",
               description: "Data directory (-basedir) for SKS, where the database and all\nconfiguration files are located (e.g. KDB, PTree, membership and\nsksconf).\n",
             })))),
           extraDbConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "",
               description: "Set contents of the files \"KDB/DB_CONFIG\" and \"PTree/DB_CONFIG\" within\nthe ${dataDir} directory. This is used to configure options for the\ndatabase for the sks key server.\n\nDocumentation of available options are available in the file named\n\"sampleConfig/DB_CONFIG\" in the following repository:\nhttps://bitbucket.org/skskeyserver/sks-keyserver/src\n",
             })))),
           hkpAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: nix.thunk(() => ["127.0.0.1", "::1"]),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "Domain names, IPv4 and/or IPv6 addresses to listen on for HKP\nrequests.\n",
             })))),
           hkpPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: 11371n,
               type: nix.thunk(() => nix.sel(lib, "types", "ints", "u16")),
               description: "HKP port to listen on.",
             })))),
           webroot: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: nix.thunk(() => nix.str`${nix.sel(sksPkg, "webSamples")}/OpenPKG`),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${package.webSamples}/OpenPKG\"")),
@@ -88,13 +88,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         users: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           users: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             sks: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               isSystemUser: true,
               description: "SKS user",
               home: nix.thunk(() => nix.sel(cfg, "dataDir")),
@@ -104,17 +104,17 @@ export default nix.lambda((args) => (() => {
               packages: nix.thunk(() => [sksPkg, nix.thunk(() => nix.sel(pkgs, "db"))]),
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$12, sks: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$12, sks: nix.thunk(() => ({})) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           services: nix.thunk(() => (() => {
             const hkpAddress = nix.thunk(() => nix.add(nix.add("'", nix.builtins.concatStringsSep(" ", nix.thunk(() => nix.sel(cfg, "hkpAddress")))), "'"));
             const hkpPort = nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "hkpPort"))));
             return {
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               "sks-db": nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 description: "SKS database server",
                 documentation: nix.thunk(() => ["man:sks(8)"]),
                 after: nix.thunk(() => ["network.target"]),
@@ -139,7 +139,7 @@ for CONFIG_FILE in KDB/DB_CONFIG PTree/DB_CONFIG; do
 done
 `),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   WorkingDirectory: "~",
                   User: "sks",
                   Group: "sks",

@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const ffmpeg = nix.arg($, "ffmpeg");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "terminal-rain-lightning",
       version: "0-unstable-2026-04-30",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rmaake1",
           repo: "terminal-rain-lightning",
           rev: "cc3aa19e1e9aec628a608b0ca6b7c475cce98c05",
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
 `),
       __structuredAttrs: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Terminal-based ASCII rain and lightning animation",
         homepage: "https://github.com/rmaake1/terminal-rain-lightning",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

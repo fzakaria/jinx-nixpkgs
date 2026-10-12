@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const sourceData = nix.arg($, "sourceData");
   return nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "freebsd",
       repo: "freebsd-src",
       rev: nix.thunk(() => nix.attr(sourceData, "rev")),

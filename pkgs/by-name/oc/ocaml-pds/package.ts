@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const ocaml_crunch = nix.arg($, "ocaml-crunch");
   const ocamlPackages = nix.arg($, "ocamlPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ocaml-pds",
       version: "6.55",
       src: nix.thunk(() => nix.app(fetchhg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://hg.sr.ht/~mmatalka/pds",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           sha256: "sha256-a6sMFzAwqLsLOq75JTyFxZiXuQvmOZG0bPzPehzLcws=",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n$out/bin/pds --help\nrunHook postInstallCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "A tool to build Makefiles for OCaml projects",
         longDescription: "pds is a build system for Ocaml that is meant to make it easy to build a project that follows a particular layout by generating a makefile for the project. The input to pds is a config file, pds.conf, and a directory structure, which is always the current working directory, and the output is the build description.\n",
         homepage: "https://hg.sr.ht/~mmatalka/pds",

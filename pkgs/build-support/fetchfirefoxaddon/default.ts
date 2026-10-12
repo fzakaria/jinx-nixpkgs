@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
     const src = nix.argOr($_1, "src", () => "");
     const extid = nix.thunk(() => (nix.asBool(nix.eq(fixedExtid, null)) ? nix.str`nixos@${name}` : nix.force(fixedExtid)));
     const source = nix.thunk(() => (nix.asBool(nix.eq(url, null)) ? nix.force(src) : nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: url,
         sha1: sha1,
         sha256: sha256,
@@ -37,9 +37,9 @@ export default nix.lambda((args) => (() => {
         hash: hash,
       })))));
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name: name,
-        passthru: nix.thunk(() => ({ __proto__: pos$2, extid: extid })),
+        passthru: nix.thunk(() => ({ [nix.POS]: pos$2, extid: extid })),
         builder: nix.thunk(() => nix.app(writeScript, "xpibuilder", nix.thunk(() => nix.str`echo "firefox addon $name into $out"
 
 UUID="${extid}"

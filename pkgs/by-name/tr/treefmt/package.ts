@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "treefmt",
       version: "2.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "numtide",
           repo: "treefmt",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-0lYflU2o+hGDGhGzRZIeZy9fv0X58Foqgu0E4lZtwB4=",
       subPackages: nix.thunk(() => ["."]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 1n })),
       ldflags: nix.thunk(() => [
         "-s",
         "-w",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       passthru: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.app(callPackages, nix.path(here, "./lib.nix"), nix.thunk(() => ({}))));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         evalConfig: nix.thunk(() => nix.attr(from, "evalConfig")),
         withConfig: nix.thunk(() => nix.attr(from, "withConfig")),
         buildConfig: nix.thunk(() => nix.attr(from, "buildConfig")),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       };
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "One CLI to format the code tree",
         longDescription: nix.thunk(() => nix.str`[treefmt](${nix.sel(finalAttrs, "meta", "homepage")}) streamlines the process of applying formatters
 to your project, making it a breeze with just one command line.

@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const translate_toolkit = nix.arg($, "translate-toolkit");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "weblate-language-data",
       version: "2026.10",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "WeblateOrg",
           repo: "language-data",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["weblate_language_data"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Language definitions used by Weblate",
         homepage: "https://github.com/WeblateOrg/language-data",
         changelog: nix.thunk(() => nix.str`https://github.com/WeblateOrg/language-data/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libconfig = nix.arg($, "libconfig");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "umurmur",
       version: "0.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "umurmur",
           repo: "umurmur",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openssl, protobufc, libconfig]),
       configureFlags: nix.thunk(() => ["--with-ssl=openssl", "--enable-shmapi"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, umurmur: nix.thunk(() => nix.attr(nixosTests, "umurmur")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, umurmur: nix.thunk(() => nix.attr(nixosTests, "umurmur")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Minimalistic Murmur (Mumble server)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         homepage: "https://github.com/umurmur/umurmur",

@@ -23,28 +23,28 @@ export default nix.lambda((args) => (() => {
   const libsForQt5 = nix.arg($, "libsForQt5");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "nano-wallet",
       version: "28.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nanocurrency",
           repo: "nano-node",
           tag: nix.thunk(() => nix.str`V${nix.sel(finalAttrs, "version")}`),
           fetchSubmodules: true,
           hash: "sha256-Wo1Gd6dOnCoPiGmuJQhZmKKSg7LrKpfdvLNNKBYTUWI=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error" })),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/nanocurrency/nano-node/commit/1835a04dbbd1f6970649d7f72c454831432dd01f.patch",
             hash: "sha256-IpC4yaIbJzQWYIC0QGXYQ345g6JnD2+xZG30qAQ1ubo=",
           })))),
       ]),
       cmakeFlags: nix.thunk(() => (() => {
         const options = nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           PYTHON_EXECUTABLE: nix.thunk(() => nix.str`${nix.sel(python3, "interpreter")}`),
           NANO_SHARED_BOOST: "ON",
           BOOST_ROOT: boost,
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["nano_wallet"]),
       checkPhase: "runHook preCheck\n./core_test\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Wallet for Nano cryptocurrency",
         homepage: "https://nano.org/en/wallet/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

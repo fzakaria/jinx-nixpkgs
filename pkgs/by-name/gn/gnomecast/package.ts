@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const w = nix.withScope(python3Packages, null);
   return nix.app(nix.lookup(w, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gnomecast",
       version: "1.9.11-unstable-2022-04-23",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "keredson",
           repo: "gnomecast",
           rev: "d42d8915838b01c5cadacb322909e08ffa455d4f",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
 `),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Native Linux GUI for Chromecasting local files",
         homepage: "https://github.com/keredson/gnomecast",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

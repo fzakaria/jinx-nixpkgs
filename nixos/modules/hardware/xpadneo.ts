@@ -33,28 +33,28 @@ export default nix.lambda((args) => (() => {
     return nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(params, [])), nix.thunk(() => nix.str`options hid_xpadneo ${nix.app(nix.sel(lib, "concatStringsSep"), " ", params)}`));
   })());
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       hardware: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         xpadneo: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the xpadneo driver for Xbox One wireless controllers")),
           rumbleAttenuation: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   options: nix.thunk(() => ({
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     overall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$1,
+                        [nix.POS]: pos$1,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "ints", "between"), 0n, 100n)),
                         default: 0n,
                         description: "Overall force feedback attenuation as a percentage.\n`0` means full rumble, `100` means no rumble.\nApplies to both main and trigger rumble.\n",
                       })))),
                     triggers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$2,
+                        [nix.POS]: pos$2,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "ints", "between"), 0n, 100n)))),
                         default: null,
                         description: "Extra attenuation for trigger rumble as a percentage, applied\non top of {option}`overall`. For example, `overall = 50` and\n`triggers = 50` results in 50% main rumble and 25% trigger rumble.\nSet to `100` to disable trigger rumble while keeping main rumble.\n`null` means no extra trigger attenuation.\n",
@@ -66,14 +66,14 @@ export default nix.lambda((args) => (() => {
               description: "Force feedback attenuation settings. Higher values reduce rumble strength.\n\nSee <https://github.com/atar-axis/xpadneo/blob/master/docs/CONFIGURATION.md>\nfor more information.\n",
             })))),
           quirks: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "ints", "u16")))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  \"11:22:33:44:55:66\" = 7; # Applies flags 1 + 2 + 4\n}\n")),
               description: "Controller-specific quirk flags, keyed by MAC address.\nFlags are combined as a bitmask to address compatibility issues\nwith specific controllers.\n\nThe value is a sum of individual flag values. For example, to apply\nflags 1, 2, and 4, use `7` (1 + 2 + 4). To apply flags 2, 4, and 32,\nuse `38` (2 + 4 + 32).\n\nSee <https://github.com/atar-axis/xpadneo/blob/master/docs/CONFIGURATION.md>\nfor available quirk flags and their values.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "oneOf"), nix.thunk(() => [
                     nix.thunk(() => nix.sel(lib, "types", "int")),
                     nix.thunk(() => nix.sel(lib, "types", "str")),
@@ -86,23 +86,23 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         hardware: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           xpadneo: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             settings: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "rumbleAttenuation", "overall"), 0n)) || nix.asBool(!nix.eq(nix.sel(cfg, "rumbleAttenuation", "triggers"), null)))), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 rumble_attenuation: nix.thunk(() => nix.add(nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "rumbleAttenuation", "overall"))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "rumbleAttenuation", "triggers"), null)), nix.thunk(() => nix.add(",", nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "rumbleAttenuation", "triggers")))))))),
               }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "quirks"), {})), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 quirks: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ",", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (mac) => (flags) => nix.str`${mac}:${nix.builtins.toString(flags)}`, nix.thunk(() => nix.sel(cfg, "quirks")))))),
               }))))),
           })),
-          bluetooth: nix.thunk(() => ({ __proto__: pos$14, enable: true })),
+          bluetooth: nix.thunk(() => ({ [nix.POS]: pos$14, enable: true })),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           extraModprobeConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "kernel", "version")), "5.12")), "options bluetooth disable_ertm=1")),
               modprobeConfig,
@@ -115,7 +115,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "kira-bruneau"))];

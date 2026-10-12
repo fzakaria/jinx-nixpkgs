@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ricty";
       const version = "4.1.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://rictyfonts.github.io/files/ricty_generator-${version}.sh`),
           sha256: "03fngb8f5hl7ifigdm5yljhs4z2x80cq8y8kna86d07ghknhzgw6",
         }))));
@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
 `);
       const installPhase = "install -m644 --target $out/share/fonts/truetype/ricty -D Ricty-*.ttf\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "High-quality Japanese font based on Inconsolata and Migu 1M",
         homepage: "https://rictyfonts.github.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "mikoim"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

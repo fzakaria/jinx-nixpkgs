@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "discrete-scroll",
       version: "1.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "emreyolcu",
           repo: "discrete-scroll",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n$CC -O3 -framework ApplicationServices DiscreteScroll/main.c\nrunHook postBuild\n",
       installPhase: "runHook preInstall\ninstall -Dm555 a.out $out/bin/discretescroll\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fix for macOS's unnecessary scroll wheel acceleration",
         homepage: "https://github.com/emreyolcu/discrete-scroll",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

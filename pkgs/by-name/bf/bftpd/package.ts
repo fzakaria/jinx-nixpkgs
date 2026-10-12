@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
       const pname = "bftpd";
       const version = "6.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/bftpd/bftpd/bftpd-${version}/bftpd-${version}.tar.gz`),
           sha256: "sha256-f7XZCSrGwmQqyf5C4xtJ46Q4SDHxbr15rDzcAK1PvB4=",
         }))));
       const postPatch = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "for file in login.*; do\n  substituteInPlace $file --replace-fail \"#ifdef HAVE_UTMP_H\" \"#if 0\"\ndone\n"));
       const buildInputs = nix.thunk(() => [libxcrypt]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, CFLAGS: "-std=gnu89" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, CFLAGS: "-std=gnu89" }));
       const preConfigure = "sed -re 's/-[og] 0//g' -i Makefile*\n";
       const postInstall = nix.thunk(() => nix.str`mkdir -p $out/share/doc/${pname}
 mv $out/etc/*.conf $out/share/doc/${pname}
@@ -32,7 +32,7 @@ rm -rf $out/{etc,var}
 `);
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Minimal ftp server",
         mainProgram: "bftpd",
         downloadPage: "http://bftpd.sf.net/download.html",
@@ -45,7 +45,7 @@ rm -rf $out/{etc,var}
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

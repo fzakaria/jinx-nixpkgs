@@ -25,27 +25,27 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({ __proto__: pos$1, system: system, config: config }))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
   const lib = nix.argOr($, "lib", () => nix.sel(pkgs, "lib"));
   const makeTest = nix.thunk(() => nix.builtins.import(nix.path(here, "./../make-test-python.nix")));
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ __proto__: pos$2, pkgs: pkgs, lib: lib }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, pkgs: pkgs, lib: lib }))));
   const mysqlPackages = nix.thunk(() => nix.attr(from, "mysqlPackages"));
   const makeSecureRootTest = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const package$ = nix.arg($_1, "package");
     const name = nix.argOr($_1, "name", () => nix.add("mysql_secure_root_", nix.builtins.replaceStrings(nix.thunk(() => ["-", "."]), nix.thunk(() => ["_", ""]), nix.thunk(() => nix.sel(package$, "pname")))));
     return nix.app(makeTest, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         name: name,
         nodes: nix.thunk(() => nix.attrsDyn({}, [
           [nix.force(name), nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
             const pkgs_1 = nix.arg($_2, "pkgs");
             return {
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               services: nix.thunk(() => ({
-                __proto__: pos$4,
-                mysql: nix.thunk(() => ({ __proto__: pos$3, enable: true, package: package$ })),
+                [nix.POS]: pos$4,
+                mysql: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true, package: package$ })),
               })),
             };
           })(), formals$3)],
@@ -84,18 +84,18 @@ machine.succeed("[ \\"$(mysql -u root -N -e \\"SELECT plugin FROM mysql.user WHE
     const package$ = nix.arg($_1, "package");
     const name = nix.argOr($_1, "name", () => nix.add("mysql_insecure_root_", nix.builtins.replaceStrings(nix.thunk(() => ["-", "."]), nix.thunk(() => ["_", ""]), nix.thunk(() => nix.sel(package$, "pname")))));
     return nix.app(makeTest, nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         name: name,
         nodes: nix.thunk(() => nix.attrsDyn({}, [
           [nix.force(name), nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$5);
             const pkgs_1 = nix.arg($_2, "pkgs");
             return {
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               services: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 mysql: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   enable: true,
                   package: package$,
                   secureSuperUserByDefault: false,
@@ -115,9 +115,9 @@ machine.succeed("sudo -u nobody mysql -u root -e 'SELECT 1;' 2>&1")
       })));
   })(), formals$4);
   return {
-    __proto__: pos$13,
-    "secure-by-default": nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (package$) => nix.app(makeSecureRootTest, nix.thunk(() => ({ __proto__: pos$11, package: package$ }))), mysqlPackages)),
-    "can-be-insecure": nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (package$) => nix.app(makeInsecureRootTest, nix.thunk(() => ({ __proto__: pos$12, package: package$ }))), mysqlPackages)),
+    [nix.POS]: pos$13,
+    "secure-by-default": nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (package$) => nix.app(makeSecureRootTest, nix.thunk(() => ({ [nix.POS]: pos$11, package: package$ }))), mysqlPackages)),
+    "can-be-insecure": nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (package$) => nix.app(makeInsecureRootTest, nix.thunk(() => ({ [nix.POS]: pos$12, package: package$ }))), mysqlPackages)),
   };
 })(), formals$1);
 //# sourceMappingURL=mysql-secure-root.ts.map

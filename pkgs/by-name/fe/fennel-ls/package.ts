@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const lua = lua5_5;
   const luaPackages = nix.thunk(() => nix.sel(lua, "pkgs"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fennel-ls",
       version: "0.2.4",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~xerool",
           repo: "fennel-ls",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(lua, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Language server for intelligent editing of the Fennel Programming Language",
         homepage: "https://git.sr.ht/~xerool/fennel-ls/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

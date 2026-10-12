@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wbond",
           repo: "oscrypto",
           rev: version,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [
         nix.path(here, "./support-openssl-3.0.10.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/wbond/oscrypto/commit/3865f5d528740aa1205d16ddbee84c5b48aeb078.patch",
             hash: "sha256-lQGoPM7EicwCPWapEDkqWEqMqXk4tijiImxndcDFqY4=",
           })))),
@@ -49,14 +49,14 @@ done
       const doCheck = nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
       const disabledTests = nix.thunk(() => ["TLSTests", "TrustListTests"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Encryption library for Python",
         homepage: "https://github.com/wbond/oscrypto",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

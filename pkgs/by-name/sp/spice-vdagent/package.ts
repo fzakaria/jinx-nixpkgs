@@ -28,17 +28,17 @@ export default nix.lambda((args) => (() => {
   const libdrm = nix.arg($, "libdrm");
   const systemdLibs = nix.arg($, "systemdLibs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "spice-vdagent",
       version: "0.23.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.spice-space.org/download/releases/spice-vdagent-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-Y+D5vVWXxGOKz9bxDXojVPWZvZ31sx5EMnDKzwfhakA=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "gcc16-unused-variable-device-info.patch",
             url: "https://gitlab.freedesktop.org/spice/linux/vd_agent/-/commit/e3c74bd3e75a3804692da7d526016a823f6273e0.patch",
             hash: "sha256-Bf1fwvsQuAVzkN6SNXk7YZxRuhhVInAFxnlrRlavgy0=",
@@ -59,9 +59,9 @@ export default nix.lambda((args) => (() => {
         dbus,
         systemdLibs,
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Enhanced SPICE integration for linux QEMU guest",
         longDescription: "Spice agent for linux guests offering\n* Client mouse mode\n* Copy and paste\n* Automatic adjustment of the X-session resolution\n  to the client resolution\n* Multiple displays\n",
         homepage: "https://www.spice-space.org/",

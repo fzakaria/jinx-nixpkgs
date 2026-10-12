@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const trio = nix.arg($, "trio");
   const untangle = nix.arg($, "untangle");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pydevd",
       version: "3.4.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fabioz",
           repo: "PyDev.Debugger",
           tag: nix.thunk(() => nix.str`pydev_debugger_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
         ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_multiprocessing_simple", "test_evaluate_exception_trace"])))))),
       pythonImportsCheck: nix.thunk(() => ["pydevd"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PyDev.Debugger (used in PyDev, PyCharm and VSCode Python)",
         homepage: "https://github.com/fabioz/PyDev.Debugger",
         license: nix.thunk(() => nix.sel(lib, "licenses", "epl10")),

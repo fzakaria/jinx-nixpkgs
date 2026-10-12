@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const libunistring = nix.arg($, "libunistring");
   const judy = nix.arg($, "judy");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zmap",
       version: "4.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zmap",
           repo: "zmap",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libjson, json_c, gmp, libpcap, libunistring, judy]),
       outputs: nix.thunk(() => ["out", "man"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://zmap.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         description: "Fast single packet network scanner designed for Internet-wide network surveys",

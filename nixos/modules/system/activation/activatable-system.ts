@@ -29,25 +29,25 @@ export default nix.lambda((args) => (() => {
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       system: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         activatable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => nix.sel(types, "bool")),
             default: true,
             description: "Whether to add the activation script to the system profile.\n\nThe default, to have the script available all the time, is what we normally\ndo, but for image based systems, this may not be needed or not be desirable.\n",
           })))),
         activatableSystemBuilderCommands: nix.thunk(() => nix.update(nix.sel(options, "system", "systemBuilderCommands"), {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           description: "Like `system.systemBuilderCommands`, but only for the commands that are\nneeded *both* when the system is activatable and when it isn't.\n\nDisclaimer: This option might go away in the future. It might be\nsuperseded by separating switch-to-configuration into a separate script\nwhich will make this option superfluous. See\nhttps://github.com/NixOS/nixpkgs/pull/263462#discussion_r1373104845 for\na discussion.\n",
         })),
         build: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           separateActivationScript: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "package")),
               description: "A separate activation script package that's not part of the system profile.\n\nThis is useful for configurations where `system.activatable` is `false`.\nOtherwise, you can just use `system.build.toplevel`.\n",
             })))),
@@ -56,33 +56,33 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => (() => {
       const activationScript = nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             name: "activate",
             text: nix.thunk(() => nix.sel(config, "system", "activationScripts", "script")),
             checkPhase: "",
             bashOptions: [],
-          }))), "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$8, preferLocalBuild: true }))))));
+          }))), "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$8, preferLocalBuild: true }))))));
       const dryActivationScript = nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             name: "dry-activate",
             text: nix.thunk(() => nix.sel(config, "system", "dryActivationScript")),
             checkPhase: "",
             bashOptions: [],
-          }))), "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$10, preferLocalBuild: true }))))));
+          }))), "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$10, preferLocalBuild: true }))))));
       return {
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         system: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           activatableSystemBuilderCommands: nix.thunk(() => nix.str`cp ${activationScript} $out/activate
 cp ${dryActivationScript} $out/dry-activate
 ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "buildPackages", "gnused")))} --in-place --expression "s|@out@|\${!toplevelVar}|g" $out/activate $out/dry-activate
 `),
           systemBuilderCommands: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "system", "activatable")), nix.thunk(() => nix.sel(config, "system", "activatableSystemBuilderCommands")))),
-          systemBuilderArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "system", "activatable")), nix.thunk(() => ({ __proto__: pos$11, toplevelVar: "out" })))),
+          systemBuilderArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "system", "activatable")), nix.thunk(() => ({ [nix.POS]: pos$11, toplevelVar: "out" })))),
           build: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             separateActivationScript: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "separate-activation-script", nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 toplevelVar: "toplevel",
                 toplevel: nix.thunk(() => nix.sel(config, "system", "build", "toplevel")),
               })), nix.thunk(() => nix.str`mkdir $out

@@ -14,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       "example-dir": nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure'"), nix.thunk(() => ({
-          __proto__: pos$2,
-          drv: nix.thunk(() => nix.app(nix.sel(testers, "shellcheck"), nix.thunk(() => ({ __proto__: pos$1, name: "example-dir", src: nix.path(here, "./src") })))),
+          [nix.POS]: pos$2,
+          drv: nix.thunk(() => nix.app(nix.sel(testers, "shellcheck"), nix.thunk(() => ({ [nix.POS]: pos$1, name: "example-dir", src: nix.path(here, "./src") })))),
           expectedBuilderExitCode: 123n,
           expectedBuilderLogEntries: nix.thunk(() => [
             "echo $@\n     ^-- SC2068 (error): Double quote array expansions to avoid re-splitting elements.\n",
           ]),
         })))),
       "example-file": nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure'"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           drv: nix.thunk(() => nix.app(nix.sel(testers, "shellcheck"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               name: "example-file",
               src: nix.path(here, "./src/example.sh"),
             })))),

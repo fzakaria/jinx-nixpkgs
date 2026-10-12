@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-TOuyVH2wKKruy7SBNW3z62yzpmBT6l6RcKhoO1XUFhE=",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "sed -i '/addopts =/d' setup.cfg\n";
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, matplotlib]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Provides fixtures for quickly creating Matplotlib plots in your tests",
         homepage: "https://www.nengo.ai/pytest-plt/",
         changelog: "https://github.com/nengo/pytest-plt/blob/master/CHANGES.rst",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "doronbehar"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

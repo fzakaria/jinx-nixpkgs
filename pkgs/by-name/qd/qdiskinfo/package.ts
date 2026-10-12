@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
   const themeBundle = nix.argOr($, "themeBundle", () => null);
   const nix_update_script = nix.arg($, "nix-update-script");
   const isThemed = nix.thunk(() => (nix.asBool(!nix.eq(themeBundle, null)) && nix.asBool(!nix.eq(themeBundle, {}))));
-  const themeBundle$ = nix.thunk(() => (nix.asBool(isThemed) ? nix.update({ __proto__: pos$1, rightCharacter: false }, themeBundle) : { __proto__: pos$2, rightCharacter: false }));
+  const themeBundle$ = nix.thunk(() => (nix.asBool(isThemed) ? nix.update({ [nix.POS]: pos$1, rightCharacter: false }, themeBundle) : { [nix.POS]: pos$2, rightCharacter: false }));
   nix.assert_((!nix.asBool(isThemed) || nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool(nix.has(themeBundle$, "src")) && nix.asBool(nix.has(themeBundle$, "paths", "bgDark")))) && nix.asBool(nix.has(themeBundle$, "paths", "bgLight")))) && nix.asBool(nix.has(themeBundle$, "paths", "status")))) && nix.asBool(nix.has(themeBundle$, "rightCharacter"))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/qd/qdiskinfo/package.nix:27:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "qdiskinfo",
       version: "0.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "edisionnano",
           repo: "QDiskInfo",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -67,16 +67,16 @@ cp $SRCPATH/${nix.sel(themeBundle$, "paths", "status")}/SDdiskStatusUnknown-300.
   --suffix PATH : ${smartmontools}/bin
 `),
       passthru: nix.thunk(() => (() => {
-        const themeSources = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")), nix.thunk(() => ({ __proto__: pos$4, fetchzip: fetchzip }))));
+        const themeSources = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")), nix.thunk(() => ({ [nix.POS]: pos$4, fetchzip: fetchzip }))));
         return (() => {
-          const themeBundles = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./themes.nix")), nix.thunk(() => ({ __proto__: pos$5, themeSources: themeSources }))));
-          const tests = nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "mapAttrs")), themeBundles, (themeName) => (themeBundle_1) => nix.app(nix.sel(nix.app(nix.sel(qdiskinfo, "override"), nix.thunk(() => ({ __proto__: pos$6, themeBundle: themeBundle_1 }))), "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$7, pname: nix.thunk(() => nix.str`qdiskinfo-${themeName}`) })))));
+          const themeBundles = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./themes.nix")), nix.thunk(() => ({ [nix.POS]: pos$5, themeSources: themeSources }))));
+          const tests = nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "mapAttrs")), themeBundles, (themeName) => (themeBundle_1) => nix.app(nix.sel(nix.app(nix.sel(qdiskinfo, "override"), nix.thunk(() => ({ [nix.POS]: pos$6, themeBundle: themeBundle_1 }))), "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$7, pname: nix.thunk(() => nix.str`qdiskinfo-${themeName}`) })))));
           const updateScript = nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({}))));
-          return { __proto__: pos$8, themeBundles, tests, updateScript };
+          return { [nix.POS]: pos$8, themeBundles, tests, updateScript };
         })();
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "CrystalDiskInfo alternative for Linux",
         homepage: "https://github.com/edisionnano/QDiskInfo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
       const pname = "dm-sans";
       const version = "1.002";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/googlefonts/dm-fonts/releases/download/v${version}/DeepMindSans_v${version}.zip`),
           stripRoot: false,
           hash: "sha256-RSHHxiCac18qqF+hW5M3BbBcra4AQpNLLlUmhiWj9f8=",
         }))));
       const installPhase = "runHook preInstall\n\nmkdir -p $out/share/fonts/truetype\nmv *.ttf $out/share/fonts/truetype\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Geometric sans-serif typeface",
         homepage: "https://github.com/googlefonts/dm-fonts",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "gilice"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

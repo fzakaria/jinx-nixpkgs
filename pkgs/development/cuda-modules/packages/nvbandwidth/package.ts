@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const cudaSupport = nix.argOr($, "cudaSupport", () => nix.sel(config, "cudaSupport"));
   return nix.app(nix.sel(backendStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "nvbandwidth",
       version: "0.10.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NVIDIA",
           repo: "nvbandwidth",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,18 +45,18 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [argparse, cuda_cudart, cuda_nvml_dev]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 nvbandwidth -t $out/bin\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         gpuCheck: nix.thunk(() => nix.app(nix.sel(nvbandwidth, "overrideAttrs"), (_) => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             requiredSystemFeatures: nix.thunk(() => ["cuda"]),
             doInstallCheck: true,
             postInstallCheck: nix.thunk(() => nix.str`$out/bin/${nix.sel(nvbandwidth, "meta", "mainProgram")}
 `),
-            meta: nix.thunk(() => ({ __proto__: pos$2, broken: true })),
+            meta: nix.thunk(() => ({ [nix.POS]: pos$2, broken: true })),
           }))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Tool for bandwidth measurements on NVIDIA GPUs",
         homepage: "https://github.com/NVIDIA/nvbandwidth",
         changelog: nix.thunk(() => nix.str`https://github.com/NVIDIA/nvbandwidth/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

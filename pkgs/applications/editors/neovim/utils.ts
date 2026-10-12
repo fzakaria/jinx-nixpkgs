@@ -41,13 +41,13 @@ export default nix.lambda((args) => (() => {
   const wrapNeovimUnstable = nix.arg($, "wrapNeovimUnstable");
   const toVimPlugin = nix.thunk(() => nix.attr(vimUtils, "toVimPlugin"));
   const normalizePlugins = (plugins) => (() => {
-    const defaultPlugin = nix.thunk(() => ({ __proto__: pos$1, plugin: null, config: null, optional: false }));
-    return nix.builtins.map((x) => nix.update(defaultPlugin, (nix.asBool(nix.has(x, "plugin")) ? nix.force(x) : { __proto__: pos$2, plugin: x })), plugins);
+    const defaultPlugin = nix.thunk(() => ({ [nix.POS]: pos$1, plugin: null, config: null, optional: false }));
+    return nix.builtins.map((x) => nix.update(defaultPlugin, (nix.asBool(nix.has(x, "plugin")) ? nix.force(x) : { [nix.POS]: pos$2, plugin: x })), plugins);
   })();
   const normalizedPluginsToVimPackage = (normalizedPlugins) => (() => {
     const pluginsPartitioned = nix.thunk(() => nix.app(nix.sel(lib, "partition"), (x) => nix.eq(nix.sel(x, "optional"), true), normalizedPlugins));
     return {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       start: nix.thunk(() => nix.builtins.map((x) => nix.sel(x, "plugin"), nix.thunk(() => nix.sel(pluginsPartitioned, "wrong")))),
       opt: nix.thunk(() => nix.builtins.map((x) => nix.sel(x, "plugin"), nix.thunk(() => nix.sel(pluginsPartitioned, "right")))),
     };
@@ -55,18 +55,18 @@ export default nix.lambda((args) => (() => {
   const makeVimPackageInfo = (plugins) => (() => {
     const neovimConfig = (structuredConfigure) => (() => {
       const module = nix.thunk(() => nix.builtins.import(nix.path(here, "./plugin-submodule.nix")));
-      const cfg = nix.thunk(() => nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({ __proto__: pos$4, modules: nix.thunk(() => [module, structuredConfigure]) }))));
+      const cfg = nix.thunk(() => nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({ [nix.POS]: pos$4, modules: nix.thunk(() => [module, structuredConfigure]) }))));
       return nix.sel(cfg, "config");
     })();
     const checked_cfg = nix.thunk(() => nix.app(neovimConfig, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         plugins: plugins,
         _file: "pkgs/applications/editors/neovim/plugin-submodule.nix",
       }))));
     const pluginsNormalized = nix.thunk(() => nix.sel(checked_cfg, "plugins"));
     const vimPackage = nix.thunk(() => nix.app(normalizedPluginsToVimPackage, pluginsNormalized));
     return {
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       userPluginViml: nix.thunk(() => nix.attr(checked_cfg, "userPluginViml")),
       runtimeDeps: nix.thunk(() => nix.attr(checked_cfg, "runtimeDeps")),
       pluginAdvisedLua: nix.thunk(() => nix.attr(checked_cfg, "pluginAdvisedLua")),
@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
     const extraLuaPackages = nix.argOr($_1, "extraLuaPackages", () => (_) => []);
     const luaEnv = nix.thunk(() => nix.app(nix.sel(neovim_unwrapped, "lua", "withPackages"), extraLuaPackages));
     return nix.app(nix.sel(lib, "warn"), "neovimUtils.makeNeovimConfig is deprecated. Use wrapNeovim or wrapNeovimUnstable directly.", nix.thunk(() => nix.update(attrs, {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         neovimRcContent: customRC,
         luaRcContent: nix.thunk(() => (nix.asBool(nix.has(attrs, "luaRcContent")) ? nix.app(nix.sel(lib, "warn"), "makeNeovimConfig: luaRcContent parameter is deprecated. Please use customLuaRC instead.", nix.thunk(() => nix.sel(attrs, "luaRcContent"))) : nix.force(customLuaRC))),
         wrapperArgs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(luaEnv, null)), nix.thunk(() => [
@@ -109,10 +109,10 @@ export default nix.lambda((args) => (() => {
       const $_2 = nix.formals(args_2, formals$4);
       const start = nix.argOr($_2, "start", () => []);
       const opt = nix.argOr($_2, "opt", () => []);
-      return nix.concat(start, nix.builtins.map((p) => ({ __proto__: pos$8, plugin: p, optional: true }), opt));
+      return nix.concat(start, nix.builtins.map((p) => ({ [nix.POS]: pos$8, plugin: p, optional: true }), opt));
     })(), formals$4);
     return nix.app(wrapNeovimUnstable, neovim, nix.thunk(() => nix.update(attrs, {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         neovimRcContent: nix.thunk(() => nix.selOr(configure, () => "", "customRC")),
         luaRcContent: nix.thunk(() => nix.selOr(configure, () => "", "customLuaRC")),
         plugins: plugins,
@@ -128,7 +128,7 @@ export default nix.lambda((args) => (() => {
     const withRuby = nix.argOr($_1, "withRuby", () => false);
     const withPerl = nix.argOr($_1, "withPerl", () => false);
     const hostprog_check_table = nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       node: withNodeJs,
       python: false,
       python3: withPython3,
@@ -140,7 +140,7 @@ export default nix.lambda((args) => (() => {
     return nix.app(nix.sel(lib, "concatStringsSep"), ";", hostProviderLua);
   })(), formals$5);
   const buildNeovimPlugin = nix.thunk(() => nix.app(callPackage, nix.path(here, "./build-neovim-plugin.nix"), nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       toVimPlugin: nix.thunk(() => nix.attr(vimUtils, "toVimPlugin")),
       lua: lua,
     }))));
@@ -153,14 +153,14 @@ export default nix.lambda((args) => (() => {
   const nvimGrammars = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value) => nix.selOr(value, () => nix.builtins.throw("additions to `pkgs.vimPlugins.nvim-treesitter.grammarPlugins` set should be passed through `pkgs.neovimUtils.grammarToPlugin` first"), "origGrammar"), nix.thunk(() => nix.sel(vimPlugins, "nvim-treesitter", "grammarPlugins"))));
   const isNvimGrammar = (x) => nix.builtins.elem(x, nvimGrammars);
   const toNvimTreesitterGrammar = nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       name: "to-nvim-treesitter-grammar",
-      meta: nix.thunk(() => ({ __proto__: pos$12, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$12, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
     })), nix.path(here, "./to-nvim-treesitter-grammar.sh")));
   const grammarToPlugin = (grammar) => (nix.asBool(nix.has(grammar, "origGrammar")) ? nix.force(grammar) : (() => {
     const name = nix.thunk(() => nix.app(toGrammarName, grammar));
     return nix.app(toVimPlugin, nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           pname: nix.thunk(() => nix.str`nvim-treesitter-grammar-${name}`),
           version: nix.thunk(() => nix.attr(grammar, "version")),
           origGrammar: grammar,
@@ -169,9 +169,9 @@ export default nix.lambda((args) => (() => {
           dontUnpack: true,
           __structuredAttrs: true,
           nativeBuildInputs: nix.thunk(() => [toNvimTreesitterGrammar]),
-          passthru: nix.thunk(() => nix.update(nix.selOr(grammar, () => ({}), "passthru"), { __proto__: pos$14, isTreesitterGrammar: true })),
+          passthru: nix.thunk(() => nix.update(nix.selOr(grammar, () => ({}), "passthru"), { [nix.POS]: pos$14, isTreesitterGrammar: true })),
           meta: nix.thunk(() => nix.update({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
           }, nix.sel(grammar, "meta"))),
         }))));
@@ -179,12 +179,12 @@ export default nix.lambda((args) => (() => {
   const packDir = (packages) => (() => {
     const rawPackDir = nix.thunk(() => nix.app(nix.sel(vimUtils, "packDir"), packages));
     return nix.app(nix.sel(rawPackDir, "override"), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         postBuild: "mkdir $out/nix-support\nfor i in $(find -L $out -name propagated-build-inputs ); do\n  cat \"$i\" >> $out/nix-support/propagated-build-inputs\ndone\n",
       })));
   })();
   return nix.update({
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     makeNeovimConfig: makeNeovimConfig,
     makeVimPackageInfo: makeVimPackageInfo,
     generateProviderRc: generateProviderRc,
@@ -195,7 +195,7 @@ export default nix.lambda((args) => (() => {
     normalizedPluginsToVimPackage: normalizedPluginsToVimPackage,
     buildNeovimPlugin: buildNeovimPlugin,
   }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       buildNeovimPluginFrom2Nix: nix.thunk(() => nix.app(nix.builtins.throw("buildNeovimPluginFrom2Nix was renamed to buildNeovimPlugin"), buildNeovimPlugin)),
     }))));
 })(), formals$1);

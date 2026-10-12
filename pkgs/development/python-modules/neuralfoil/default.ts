@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const aerosandbox = nix.arg($, "aerosandbox");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "neuralfoil",
       version: "0.2.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "peterdsharpe",
           repo: "NeuralFoil",
           rev: "46cda4041134d1b1794d3a81761d8d3e63f20855",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["neuralfoil"]),
       nativeBuildInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Airfoil aerodynamics analysis tool using physics-informed machine learning, in pure Python/NumPy",
         homepage: "https://github.com/peterdsharpe/NeuralFoil",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

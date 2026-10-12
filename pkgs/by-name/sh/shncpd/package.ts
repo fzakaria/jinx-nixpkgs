@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "shncpd",
       version: "2016-06-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jech",
           repo: "shncpd",
           rev: "62ef688db7a6535ce11e66c8c93ab64a1bb09484",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       preConfigure: "makeFlags=( \"PREFIX=$out\" )\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple, stupid and slow HNCP daemon",
         homepage: "https://www.irif.univ-paris-diderot.fr/~jch/software/homenet/shncpd.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

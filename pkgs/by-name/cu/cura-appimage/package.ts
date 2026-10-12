@@ -30,13 +30,13 @@ export default nix.lambda((args) => (() => {
       const appimageBinName = "cura-appimage-tools-output";
       const wrapperScriptName = nix.thunk(() => nix.str`${pname}-wrapper-script`);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/Ultimaker/Cura/releases/download/${version}/Ultimaker-Cura-${version}-linux-X64.AppImage`),
           hash: "sha256-EA8GgSeyWYFn8Auk2w4Gmd7UWt+Xu6stIv8XGh4ezEA=",
         }))));
-      const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+      const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
       const curaAppimageToolsWrapped = nix.thunk(() => nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           src: src,
           pname: appimageBinName,
           version: version,
@@ -60,7 +60,7 @@ QT_QPA_PLATFORM=xcb GTK_USE_PORTAL=1 exec "${curaAppimageToolsWrapped}/bin/${app
       const nativeBuildInputs = nix.thunk(() => [copyDesktopItems, wrapGAppsHook3]);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "cura",
             desktopName: "UltiMaker Cura",
             genericName: "3D Printing Software",
@@ -101,14 +101,14 @@ install -Dm644 ${appimageContents}/usr/share/icons/hicolor/128x128/apps/cura-ico
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             extraArgs: nix.thunk(() => ["--version-regex=([56789].+)"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "3D printing software",
         homepage: "https://github.com/ultimaker/cura",
         changelog: nix.thunk(() => nix.str`https://github.com/Ultimaker/Cura/releases/tag/${version}`),
@@ -126,7 +126,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version,
         appimageBinName,

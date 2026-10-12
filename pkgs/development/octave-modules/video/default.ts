@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "video";
       const version = "2.1.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Andy1978",
           repo: "octave-video",
           tag: version,
@@ -38,7 +38,7 @@ tar --transform 's,^,video-${version}/,' -cz * -f video-${version}.tar.gz
       const nativeBuildInputs = nix.thunk(() => [pkg_config, autoconf, automake]);
       const propagatedBuildInputs = nix.thunk(() => [ffmpeg_7]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gnu-octave.github.io/packages/video/",
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
@@ -54,7 +54,7 @@ tar --transform 's,^,video-${version}/,' -cz * -f video-${version}.tar.gz
         description: "Wrapper for OpenCV's CvCapture_FFMPEG and CvVideoWriter_FFMPEG",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

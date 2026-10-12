@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.104.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nominal-io",
           repo: "nominal-client",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -51,12 +51,12 @@ export default nix.lambda((args) => (() => {
         tabulate,
         ffmpeg_python,
       ]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, protos: nix.thunk(() => [nominal_api_protos]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, protos: nix.thunk(() => [nominal_api_protos]) }));
       const nativeCheckInputs = nix.thunk(() => [nominal_api_protos, pytest_cov_stub, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["nominal", "nominal.core"]);
       const disabledTestPaths = nix.thunk(() => ["tests/cli/test_auth.py::test_good_request"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Automate Nominal workflows in Python",
         homepage: "https://github.com/nominal-io/nominal-client",
         changelog: nix.thunk(() => nix.str`https://github.com/nominal-io/nominal-client/releases/tag/${nix.sel(src, "tag")}`),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

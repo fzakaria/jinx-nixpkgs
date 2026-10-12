@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const undmg = nix.arg($, "undmg");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "karabiner-elements",
       version: "15.7.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/pqrs-org/Karabiner-Elements/releases/download/v${nix.sel(finalAttrs, "version")}/Karabiner-Elements-${nix.sel(finalAttrs, "version")}.dmg`),
           hash: "sha256-Uy0k4xxkr33j92jxEhD/6DF0hhkdf8acU7lr3hTaFa4=",
         })))),
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\nmkdir -p $out $driver\ncp -R Installer.pkg/Applications Installer.pkg/Library $out\ncp -R Karabiner-DriverKit-VirtualHIDDevice.pkg/Applications Karabiner-DriverKit-VirtualHIDDevice.pkg/Library $driver\n\ncp \"$out/Library/Application Support/org.pqrs/Karabiner-Elements/package-version\" \"$out/Library/Application Support/org.pqrs/Karabiner-Elements/version\"\nrunHook postInstall\n",
       dontFixup: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/pqrs-org/Karabiner-Elements/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Powerful utility for keyboard customization on macOS Ventura (13) or later",
         homepage: "https://karabiner-elements.pqrs.org/",

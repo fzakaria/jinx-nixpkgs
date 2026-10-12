@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const mkPythonMetaPackage = nix.arg($, "mkPythonMetaPackage");
   const sqlcipher3 = nix.arg($, "sqlcipher3");
   return nix.app(mkPythonMetaPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "sqlcipher3-wheels",
       version: nix.thunk(() => nix.attr(sqlcipher3, "version")),
       dependencies: nix.thunk(() => [sqlcipher3]),
@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(sqlcipher3, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),

@@ -34,66 +34,66 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const makeSetupHook = nix.arg($, "makeSetupHook");
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     beamCopySourceHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: "beam-copy-source-hook.sh",
-        meta: nix.thunk(() => ({ __proto__: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
       })), nix.path(here, "./beam-copy-source-hook.sh"))),
     beamModuleInstallHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         name: "beam-module-install-hook.sh",
-        meta: nix.thunk(() => ({ __proto__: pos$3, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$3, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
       })), nix.path(here, "./beam-module-install-hook.sh"))),
     mixAppConfigPatchHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         name: "mix-config-patch-hook.sh",
-        meta: nix.thunk(() => ({ __proto__: pos$5, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$5, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
       })), nix.path(here, "./mix-app-config-patch-hook.sh"))),
     mixBuildDirHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         name: "mix-configure-hook.sh",
-        meta: nix.thunk(() => ({ __proto__: pos$7, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$7, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
       })), nix.path(here, "./mix-build-dir-hook.sh"))),
     mixCompileHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         name: "mix-compile-hook.sh",
-        meta: nix.thunk(() => ({ __proto__: pos$9, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$9, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
       })), nix.path(here, "./mix-compile-hook.sh"))),
     mixDepsCompileHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         name: "mix-deps-compile-hook.sh",
-        meta: nix.thunk(() => ({ __proto__: pos$11, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$11, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
       })), nix.path(here, "./mix-deps-compile-hook.sh"))),
     mixEscriptSetupHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         name: "mix-escript-setup-hook.sh",
-        meta: nix.thunk(() => ({ __proto__: pos$13, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$13, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
       })), nix.path(here, "./mix-escript-setup-hook.sh"))),
     mixFodDepsSetupHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         name: "mix-fod-deps-setup-hook",
-        meta: nix.thunk(() => ({ __proto__: pos$15, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$15, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
       })), nix.path(here, "./mix-fod-deps-setup-hook.sh"))),
     mixNixDepsSetupHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         name: "mix-nix-deps-setup-hook",
-        meta: nix.thunk(() => ({ __proto__: pos$17, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$17, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
       })), nix.path(here, "./mix-nix-deps-setup-hook.sh"))),
     mixReleaseSetupHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         name: "mix-release-setup-hook.sh",
-        meta: nix.thunk(() => ({ __proto__: pos$19, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$19, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
       })), nix.path(here, "./mix-release-setup-hook.sh"))),
     rebar3CompileHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         name: "rebar3-compile-hook.sh",
-        meta: nix.thunk(() => ({ __proto__: pos$21, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$21, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
       })), nix.path(here, "./rebar3-compile-hook.sh"))),
     rebarDevendorPatchHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         name: "rebar-devendor-patch-hook.sh",
-        meta: nix.thunk(() => ({ __proto__: pos$23, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$23, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
       })), nix.path(here, "./rebar-devendor-patch-hook.sh"))),
   };
 })(), formals$1);

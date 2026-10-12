@@ -32,16 +32,16 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
-  const fontsConf = nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ __proto__: pos$1, fontDirectories: nix.thunk(() => [liberation_ttf_v2]) }))));
+  const fontsConf = nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$1, fontDirectories: nix.thunk(() => [liberation_ttf_v2]) }))));
   const jre$ = nix.thunk(() => nix.sel(libreoffice, "unwrapped", "jdk"));
   const libreoffice$ = nix.thunk(() => nix.str`${libreoffice}/lib/libreoffice/program/soffice.bin`);
   const getExe = nix.thunk(() => nix.attr(lib, "getExe"));
   const unoconverter = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "unoconverter",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "gotenberg",
           repo: "unoconverter",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +61,7 @@ wrapProgram "$out/bin/unoconv" \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python script for interacting with LibreOffice",
         homepage: "https://github.com/gotenberg/unoconverter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -69,12 +69,12 @@ runHook postInstall
       })),
     })));
   return nix.app(buildGo126Module, (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "gotenberg",
       version: "8.36.0",
       outputs: nix.thunk(() => ["out", "hyphen"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "gotenberg",
           repo: "gotenberg",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -125,15 +125,15 @@ export JAVA_HOME=${jre$}
   --set UNOCONVERTER_BIN_PATH "${nix.app(getExe, unoconverter)}"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           gotenberg: nix.thunk(() => nix.attr(nixosTests, "gotenberg")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Converts numerous document formats into PDF files",
         mainProgram: "gotenberg",
         homepage: "https://gotenberg.dev",

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
     const rke2_1_36 = nix.thunk(() => nix.app(common, nix.thunk(() => nix.builtins.import(nix.path(here, "./1_36/versions.nix"))), extraArgs));
     const rke2_stable = rke2_1_35;
     const rke2_latest = rke2_1_36;
-    return { __proto__: pos$1, rke2_1_34, rke2_1_35, rke2_1_36, rke2_stable, rke2_latest };
+    return { [nix.POS]: pos$1, rke2_1_34, rke2_1_35, rke2_1_36, rke2_stable, rke2_latest };
   })();
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

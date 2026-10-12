@@ -41,12 +41,12 @@ export default nix.lambda((args) => (() => {
   const systemdLibs = nix.arg($, "systemdLibs");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "packagekit",
       version: "1.4.0",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PackageKit",
           repo: "PackageKit",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -101,14 +101,14 @@ substituteInPlace client/meson.build \\
 patchShebangs tests/runner/setup-test-root.py
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "nixos-test": nix.thunk(() => nix.sel(nixosTests, "packagekit")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "System to facilitate installing and updating packages",
         longDescription: "PackageKit is a system designed to make installing and updating software\non your computer easier. The primary design goal is to unify all the\nsoftware graphical tools used in different distributions, and use some of\nthe latest technology like PolicyKit. The actual nuts-and-bolts distro\ntool (dnf, apt, etc) is used by PackageKit using compiled and scripted\nhelpers. PackageKit isn't meant to replace these tools, instead providing\na common set of abstractions that can be used by standard GUI and text\nmode package managers.\n",
         homepage: "https://github.com/PackageKit/PackageKit",

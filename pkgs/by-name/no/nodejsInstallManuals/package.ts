@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const jq = nix.arg($, "jq");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "nodejs-install-manuals",
       propagatedBuildInputs: nix.thunk(() => [installShellFiles]),
-      substitutions: nix.thunk(() => ({ __proto__: pos$1, jq: nix.thunk(() => nix.str`${jq}/bin/jq`) })),
-      meta: nix.thunk(() => ({ __proto__: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      substitutions: nix.thunk(() => ({ [nix.POS]: pos$1, jq: nix.thunk(() => nix.str`${jq}/bin/jq`) })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
     })), nix.path(here, "./hook.sh"));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

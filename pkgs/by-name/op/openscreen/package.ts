@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const electron = electron_41;
   const nodejs = nodejs_22;
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       nodejs: nodejs,
       pname: "openscreen",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "siddharthvaddem",
           repo: "openscreen",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: "sha256-SMAYgOwlZg9+/KZBUhVviOxEdMeL3Z2YdC8Hx8Q/ioY=",
       npmRebuildFlags: nix.thunk(() => ["--ignore-scripts"]),
       nativeBuildInputs: nix.thunk(() => nix.concat([makeWrapper, copyDesktopItems], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))), nix.thunk(() => [xcbuild])))),
-      env: nix.thunk(() => ({ __proto__: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
 
 npm exec tsc
@@ -87,7 +87,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "openscreen",
             desktopName: "OpenScreen",
             comment: nix.thunk(() => nix.sel(finalAttrs, "meta", "description")),
@@ -98,11 +98,11 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Free, open-source alternative to Screen Studio (sort of)",
         homepage: "https://openscreen.vercel.app",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

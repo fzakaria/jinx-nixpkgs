@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const grpc_gateway = nix.arg($, "grpc-gateway");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "grpc-gateway",
       version: "2.31.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "grpc-ecosystem",
           repo: "grpc-gateway",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,17 +36,17 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X=main.commit=${nix.sel(finalAttrs, "version")}`),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: grpc_gateway,
               command: "protoc-gen-grpc-gateway --version",
               version: nix.thunk(() => nix.str`Version ${nix.sel(finalAttrs, "version")}, commit ${nix.sel(finalAttrs, "version")}, built at 1970-01-01T00:00:00Z`),
             })))),
           openapiv2Version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: grpc_gateway,
               command: "protoc-gen-openapiv2 --version",
               version: nix.thunk(() => nix.str`Version ${nix.sel(finalAttrs, "version")}, commit ${nix.sel(finalAttrs, "version")}, built at 1970-01-01T00:00:00Z`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "GRPC to JSON proxy generator plugin for Google Protocol Buffers",
         longDescription: "This is a plugin for the Google Protocol Buffers compiler (protoc). It reads\nprotobuf service definitions and generates a reverse-proxy server which\ntranslates a RESTful HTTP API into gRPC. This server is generated according to\nthe google.api.http annotations in the protobuf service definitions.\n",
         homepage: "https://github.com/grpc-ecosystem/grpc-gateway",

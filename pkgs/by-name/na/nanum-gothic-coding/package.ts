@@ -16,21 +16,21 @@ export default nix.lambda((args) => (() => {
       const pname = "nanum-gothic-coding";
       const version = "2.5";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/naver/nanumfont/releases/download/VER${version}/NanumGothicCoding-${version}.zip`),
           stripRoot: false,
           hash: "sha256-jHbbCMUxn54iQMKdAWI3r8CDxi+5LLJh8ucQzq2Ukdc=",
         }))));
       const installPhase = "runHook preInstall\n\nmkdir -p $out/share/fonts/NanumGothicCoding\ncp *.ttf $out/share/fonts/NanumGothicCoding\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Contemporary monospaced sans-serif typeface with a warm touch",
         homepage: "https://github.com/naver/nanumfont",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         maintainers: [],
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

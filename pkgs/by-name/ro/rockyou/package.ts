@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const seclists = nix.arg($, "seclists");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "rockyou",
       version: nix.thunk(() => nix.attr(seclists, "version")),
       src: nix.thunk(() => nix.attr(seclists, "src")),
@@ -23,7 +23,7 @@ tar -xvzf ${seclists}/share/wordlists/seclists/Passwords/Leaked-Databases/rockyo
 runHook postInstall
 `),
       meta: nix.thunk(() => nix.update(nix.sel(seclists, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Famous wordlist often used for brute force attacks",
       })),
     })));

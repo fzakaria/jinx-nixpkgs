@@ -27,16 +27,16 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const xar = nix.arg($, "xar");
   const otherSrcs = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     dyldinfo: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         owner: "apple-oss-distributions",
         repo: "ld64",
         tag: "ld64-762",
         hash: "sha256-UIq/fwO40vk8yvoTfx+UlLhnuzkI0Ih+Ym6W/BwnP0s=",
       })))),
     machochecker: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         owner: "apple-oss-distributions",
         repo: "ld64",
         tag: "ld64-954.16",
@@ -50,12 +50,12 @@ export default nix.lambda((args) => (() => {
   const libtapisrc = nix.thunk(() => nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.str`${nix.sel(otherSrcs, "libtapi")}`)));
   const llvmPath = nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), llvm)}`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "ld64",
       version: "957.1",
       outputs: nix.thunk(() => ["out", "dev", "lib"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "apple-oss-distributions",
           repo: "ld64",
           tag: nix.thunk(() => nix.str`ld64-${nix.sel(finalAttrs, "version")}`),
@@ -159,7 +159,7 @@ runHook postInstallCheck
       postInstall: "ln -s ld-classic.1 \"$out/share/man/man1/ld.1\"\nln -s ld.1 \"$out/share/man/man1/ld64.1\"\nmoveToOutput lib/libprunetrie.a \"$dev\"\n",
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Classic linker for Darwin",
         homepage: "https://opensource.apple.com/releases/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "apple-psl20")),

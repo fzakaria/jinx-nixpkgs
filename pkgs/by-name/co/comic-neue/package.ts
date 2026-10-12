@@ -18,14 +18,14 @@ export default nix.lambda((args) => (() => {
       const version = "2.51";
       const outputs = nix.thunk(() => ["out", "webfont", "doc"]);
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/crozynski/comicneue/releases/download/${version}/comicneue-master.zip`),
           hash: "sha256-Xkw+Yd36ffptKsS8RSEP9BPX6eQI7TZn2NgU49rdo80=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [installFonts]);
       const installPhase = "runHook preInstall\n\ninstall -m644 -Dt $doc/share/doc/ {FONTLOG,OFL-FAQ,OFL}.txt Booklet-ComicNeue.pdf\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://comicneue.com/",
         description: "Casual type face: Make your lemonade stand look like a fortune 500 company",
         longDescription: "ComicNeue is inspired by Comic Sans but more regular. It was\ndesigned by Craig Rozynski. It is available in two variants:\nComic Neue and Comic Neue Angular. The former having round and\nthe latter angular terminals. Both variants come in Light,\nRegular, and Bold weights with Oblique variants.\n",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         outputs,

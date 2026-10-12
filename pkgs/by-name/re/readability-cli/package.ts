@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "readability-cli",
       version: "2.4.5-unstable-2026-01-07",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gardenappl",
           repo: "readability-cli",
           rev: "72c232e3cd33e91ab04b7dacfa649082b8037436",
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       dontNpmBuild: true,
       postInstall: nix.thunk(() => nix.add("installManPage readability-cli.1\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd readable \\\n  --bash <(SHELL=bash $out/bin/readable --completion) \\\n  --zsh <(SHELL=zsh $out/bin/readable --completion)\n"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Firefox Reader Mode in your terminal - get useful text from a web page using Mozilla's Readability library",
         homepage: "https://gitlab.com/gardenappl/readability-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

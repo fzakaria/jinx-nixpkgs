@@ -31,19 +31,19 @@ chmod u-w $PURS
       const src = nix.thunk(() => (() => {
         const url = nix.thunk(() => nix.str`https://github.com/${pname}/${pname}/releases/download/v${version}/`);
         const sources = nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               url: nix.thunk(() => nix.add(url, "linux64.tar.gz")),
               sha256: "1w4jgjpfhaw3gkx9sna64lq9m030x49w4lwk01ik5ci0933imzj3",
             })))),
           "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: nix.thunk(() => nix.add(url, "linux-arm64.tar.gz")),
               sha256: "1ws5h337xq0l06zrs9010h6wj2hq5cqk5ikp9arq7hj7lxf43vn5",
             })))),
           "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               url: nix.thunk(() => nix.add(url, "macos-arm64.tar.gz")),
               sha256: "0bi231z1yhb7kjfn228wjkj6rv9lgpagz9f4djr2wy3kqgck4xg0",
             })))),
@@ -60,15 +60,15 @@ install -D -m555 -T purs $PURS
 ${nix.app(patchelf, libPath)}
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "mkdir -p $out/share/bash-completion/completions\n$PURS --bash-completion-script $PURS > $out/share/bash-completion/completions/purs-completion.bash\n")));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "minimal-module": nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./test-minimal-module"), nix.thunk(() => ({})))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Strongly-typed functional programming language that compiles to JavaScript",
         homepage: "https://www.purescript.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -88,7 +88,7 @@ ${nix.app(patchelf, libPath)}
         changelog: nix.thunk(() => nix.str`https://github.com/purescript/purescript/releases/tag/v${version}`),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version,
         src,

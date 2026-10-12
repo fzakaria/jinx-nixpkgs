@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
       coreutils,
     ])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "multilockscreen",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jeffmhubbard",
           repo: "multilockscreen",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +59,7 @@ cp multilockscreen $out/bin/multilockscreen
 wrapProgram "$out/bin/multilockscreen" --prefix PATH : "${binPath}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Wrapper script for i3lock-color",
         mainProgram: "multilockscreen",
         longDescription: "multilockscreen is a wrapper script for i3lock-color.\nIt allows you to cache background images for i3lock-color with a variety of different effects and adds a stylish indicator.\n",

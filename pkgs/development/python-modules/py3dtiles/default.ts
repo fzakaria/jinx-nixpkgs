@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
   const writeText = nix.arg($, "writeText");
   const moreutils = nix.arg($, "moreutils");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "py3dtiles",
       version: "12.1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "py3dtiles",
           repo: "py3dtiles",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: nix.thunk(() => ["mapbox_earcut", "numba", "numpy", "pyzmq"]),
       dependencies: nix.thunk(() => [lz4, mapbox_earcut, numba, numpy, psutil, pygltflib, pyproj, pyzmq]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         ifc: nix.thunk(() => [ifcopenshell, lark]),
         las: nix.thunk(() => [laspy]),
         ply: nix.thunk(() => [plyfile]),
@@ -77,7 +77,7 @@ runHook postInstallCheck
       pytestFlags: nix.thunk(() => ["--benchmark-disable"]),
       pythonImportsCheck: nix.thunk(() => ["py3dtiles"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: "https://py3dtiles.org/main/changelog.html",
         description: "Python module to manage 3DTiles format",
         downloadPage: "https://gitlab.com/py3dtiles/py3dtiles",

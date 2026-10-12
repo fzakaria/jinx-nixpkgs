@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sigil",
       version: "2.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "Sigil",
           owner: "Sigil-Ebook",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -61,7 +61,7 @@ runHook postFixup
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Free, open source, multi-platform ebook (ePub) editor",
         homepage: "https://github.com/Sigil-Ebook/Sigil/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

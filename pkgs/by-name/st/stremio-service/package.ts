@@ -34,19 +34,19 @@ export default nix.lambda((args) => (() => {
       const url = nix.thunk(() => nix.str`https://dl.strem.io/server/v${version}/desktop/server.js`);
       const hash = "sha256-Vno5e7EbeIVxvxdQ/QXdeJJ/l77Ayd3qptnMHszuOSI=";
       const meta = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
       }));
-      return { __proto__: pos$2, pname, version, url, hash, meta };
+      return { [nix.POS]: pos$2, pname, version, url, hash, meta };
     })())));
   const os = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "macos" : nix.sel(stdenv, "hostPlatform", "parsed", "kernel", "name")));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "stremio-service",
       version: "0.1.21",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "Stremio",
           repo: "stremio-service",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -105,9 +105,9 @@ makeBinaryWrapper \\
 runHook postInstall
 `),
       checkFlags: nix.thunk(() => ["--skip=copyright"]),
-      passthru: nix.thunk(() => ({ __proto__: pos$4, server: server })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, server: server })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         mainProgram: "stremio-service",
         description: "Modern media center that gives you the freedom to watch everything you want (Service only)",
         homepage: "https://www.stremio.com/",

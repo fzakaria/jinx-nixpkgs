@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.11";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sde1000",
           repo: "python-dali",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,21 +34,21 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/sde1000/python-dali/commit/fe85b8fd9a746d16a03de8fd8c643ef4254d1ccd.patch",
             hash: "sha256-bcfr948g7M6m3AQVArcYw9a22jA5eMim+J58iKci55s=",
           })))),
       ]);
       const build_system = nix.thunk(() => [setuptools]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "driver-unipi": nix.thunk(() => [pyusb, pymodbus]),
         "driver-serial": nix.thunk(() => [pyserial_asyncio]),
       }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook, pytest_asyncio], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["dali"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "IEC 62386 (DALI) lighting control library",
         homepage: "https://github.com/sde1000/python-dali",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

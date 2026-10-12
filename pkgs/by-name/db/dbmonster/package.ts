@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const tshark = nix.arg($, "tshark");
   const wirelesstools = nix.arg($, "wirelesstools");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dbmonster",
       version: "0-unstable-2022-09-17",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "90N45-d3v",
           repo: "dBmonster",
           rev: "4c79549079782a2991309120a55c8158701a9b70",
@@ -46,7 +46,7 @@ runHook postInstall
 `),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to track WiFi devices by signal strength",
         homepage: "https://github.com/90N45-d3v/dBmonster",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

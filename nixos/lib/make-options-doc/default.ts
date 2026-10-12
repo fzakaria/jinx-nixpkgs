@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const transformedOpts = nix.thunk(() => nix.builtins.map(transformOptions, rawOpts));
   const filteredOpts = nix.thunk(() => nix.app(nix.sel(lib, "filter"), (opt) => (nix.asBool(nix.sel(opt, "visible")) && nix.asBool(!nix.asBool(nix.sel(opt, "internal")))), transformedOpts));
   const optionsList = nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.builtins.map, filteredOpts, (opt) => nix.update(opt, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.has(opt, "relatedPackages")) && nix.asBool(!nix.eq(nix.sel(opt, "relatedPackages"), [])))), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         relatedPackages: nix.thunk(() => nix.app(genRelatedPackages, nix.thunk(() => nix.sel(opt, "relatedPackages")), nix.thunk(() => nix.sel(opt, "name")))),
       }))))));
   const genRelatedPackages = (packages) => (optName) => (() => {
-    const unpack = (p) => (nix.asBool(nix.app(nix.sel(lib, "isString"), p)) ? { __proto__: pos$2, name: p } : (nix.asBool(nix.app(nix.sel(lib, "isList"), p)) ? { __proto__: pos$3, path: p } : nix.force(p)));
+    const unpack = (p) => (nix.asBool(nix.app(nix.sel(lib, "isString"), p)) ? { [nix.POS]: pos$2, name: p } : (nix.asBool(nix.app(nix.sel(lib, "isList"), p)) ? { [nix.POS]: pos$3, path: p } : nix.force(p)));
     const describe = (args_1) => (() => {
       const title = nix.thunk(() => nix.selOr(args_1, () => null, "title"));
       const name = nix.thunk(() => nix.selOr(args_1, () => nix.app(nix.sel(lib, "concatStringsSep"), ".", nix.thunk(() => nix.sel(args_1, "path"))), "name"));
@@ -47,14 +47,14 @@ export default nix.lambda((args) => (() => {
     return nix.app(nix.sel(lib, "concatMapStrings"), (p) => nix.app(describe, nix.thunk(() => nix.app(unpack, p))), packages);
   })();
   const optionsNix = nix.thunk(() => nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((o) => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         name: nix.thunk(() => nix.sel(o, "name")),
         value: nix.thunk(() => nix.builtins.removeAttrs(o, nix.thunk(() => ["name", "visible", "internal"]))),
       }), optionsList))));
   return (() => {
     const optionsNix_1 = optionsNix;
     const optionsAsciiDoc = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "options.adoc", nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "nixos-render-docs"))]),
       })), nix.thunk(() => nix.str`nixos-render-docs -j $NIX_BUILD_CORES options asciidoc \\
   --manpage-urls ${nix.add(nix.sel(pkgs, "path"), "/doc/manpage-urls.json")} \\
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
   $out
 `)));
     const optionsCommonMark = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "options.md", nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         __structuredAttrs: true,
         nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "nixos-render-docs"))]),
         extraArgs: [],
@@ -75,8 +75,8 @@ export default nix.lambda((args) => (() => {
   $out
 `)));
     const optionsJSON = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "options.json", nix.thunk(() => ({
-        __proto__: pos$8,
-        meta: nix.thunk(() => ({ __proto__: pos$7, description: "List of NixOS options in JSON format" })),
+        [nix.POS]: pos$8,
+        meta: nix.thunk(() => ({ [nix.POS]: pos$7, description: "List of NixOS options in JSON format" })),
         nativeBuildInputs: nix.thunk(() => [
           nix.thunk(() => nix.sel(pkgs, "brotli")),
           nix.thunk(() => nix.sel(pkgs, "python3")),
@@ -109,7 +109,7 @@ fi
   echo "file json-br $dst/options.json.br" >> $out/nix-support/hydra-build-products
 `)));
     return {
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       optionsNix: optionsNix_1,
       optionsAsciiDoc,
       optionsCommonMark,

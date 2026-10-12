@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const fftwMpi = nix.arg($, "fftwMpi");
   const mpi = nix.arg($, "mpi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libvdwxc",
       version: "unstable-24.02.2020",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libvdwxc",
           repo: "libvdwxc",
           rev: "92f4910c6ac88e111db2fb3a518089d0510c53b0",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, gfortran]),
       buildInputs: nix.thunk(() => [mpi, fftwMpi]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       preConfigure: nix.thunk(() => nix.str`mkdir build && cd build
@@ -48,7 +48,7 @@ configureFlagsArray+=(
       hardeningDisable: nix.thunk(() => ["format"]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Portable C library of density functionals with van der Waals interactions for density functional theory",
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);

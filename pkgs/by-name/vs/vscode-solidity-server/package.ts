@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const clang_20 = nix.arg($, "clang_20");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "solidity-language-server",
       version: "0.0.185",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "juanfranblanco",
           repo: "vscode-solidity",
           rev: "5198201a23874e79248e6b09558ca30e5bf5cdcf",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libsecret]),
       npmBuildScript: "build:cli",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Language Server for solidity code",
         homepage: "https://github.com/juanfranblanco/vscode-solidity",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

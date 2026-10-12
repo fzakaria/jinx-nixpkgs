@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const pname = "sawja";
   const version = "1.5.12";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-${pname}`),
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "javalib-team",
           repo: pname,
           rev: version,
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library written in OCaml, relying on Javalib to provide a high level representation of Java bytecode programs",
         homepage: "https://github.com/javalib-team/sawja",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

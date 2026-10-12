@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const bash = nix.arg($, "bash");
   const scdoc = nix.arg($, "scdoc");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fetchutils",
       version: "0.1.0-unstable-2025-06-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kiedtl",
           repo: "fetchutils",
           rev: "462bf40a9b4121bb56b78bc8782a5d67ffefd0a2",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => ["PREFIX=$(out)/"]),
       postPatch: "patchShebangs --host src/*\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of small shell utilities to fetch system information",
         homepage: "https://github.com/kiedtl/fetchutils",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const ppx_deriving = nix.arg($, "ppx_deriving");
   const testo = nix.arg($, "testo");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "yamlx",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mjambon/yamlx/releases/download/${nix.sel(finalAttrs, "version")}/yamlx-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-ejpFZY4G6m4/EPApN6GDwEfFC9qS8azWeJQspOCRhkA=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [testo]),
       minimalOCamlVersion: "4.14",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pure-OCaml YAML 1.2 parser with a lossless, comment-preserving AST",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

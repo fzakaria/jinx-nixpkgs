@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const eigen = nix.arg($, "eigen");
   const qt5 = nix.arg($, "qt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nanovna-qt",
       version: "20200403",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nanovna-v2",
           repo: "NanoVNA-QT",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\ninstall -Dm555 vna_qt/vna_qt -t $out/bin/\ninstall -Dm555 libxavna/.libs/libxavna.so.0.0.0 -t $out/lib/\nln -s libxavna.so.0.0.0 $out/lib/libxavna.so.0\nln -s libxavna.so.0.0.0 $out/lib/libxavna.so\ninstall -Dm555 libxavna/xavna_mock_ui/libxavna_mock_ui.so.1.0.0 -t $out/lib/\nln -s libxavna_mock_ui.so.1.0.0 $out/lib/libxavna_mock_ui.so.1.0\nln -s libxavna_mock_ui.so.1.0.0 $out/lib/libxavna_mock_ui.so.1\nln -s libxavna_mock_ui.so.1.0.0 $out/lib/libxavna_mock_ui.so\nrunHook postInstall\n",
       preFixup: "qtWrapperArgs+=(--prefix LD_LIBRARY_PATH : \"$out/lib\")\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PC GUI software for NanoVNA V2 series",
         homepage: "https://nanorfe.com/nanovna-v2.html",
         mainProgram: "vna_qt",

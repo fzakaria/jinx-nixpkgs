@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const zita_convolver = nix.arg($, "zita-convolver");
   const zita_resampler = nix.arg($, "zita-resampler");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "kapitonov-plugins-pack",
       version: "1.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "olegkapitonov",
           repo: "kapitonov-plugins-pack",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,9 +51,9 @@ export default nix.lambda((args) => (() => {
         zita_convolver,
         zita_resampler,
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_LDFLAGS: "-lstdc++ -lm" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-lstdc++ -lm" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Set of LADSPA and LV2 plugins for guitar sound processing",
         homepage: "https://github.com/olegkapitonov/Kapitonov-Plugins-Pack",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

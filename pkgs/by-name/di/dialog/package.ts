@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const withLibrary = nix.argOr($, "withLibrary", () => true);
   nix.assert_((!nix.asBool(unicodeSupport) || nix.asBool(nix.sel(ncurses, "unicodeSupport"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/di/dialog/package.nix:12:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dialog",
       version: "1.3-20260107",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://invisible-island.net/archives/dialog/dialog-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-eLPdGNleUPC+j5ucHnz/4oyb8c3yDVs+8XJ5xNo1xbU=",
         })))),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ncurses, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://invisible-island.net/dialog/dialog.html",
         description: "Display dialog boxes from shell",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

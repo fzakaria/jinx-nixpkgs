@@ -13,21 +13,21 @@ export default nix.lambda((args) => (() => {
   const virtualbox = nix.arg($, "virtualbox");
   const kernel = nix.arg($, "kernel");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "virtualbox-modules",
       version: nix.thunk(() => nix.str`${nix.sel(virtualbox, "version")}-${nix.sel(kernel, "version")}`),
       src: nix.thunk(() => nix.sel(virtualbox, "modsrc")),
       hardeningDisable: nix.thunk(() => ["fortify", "pic", "stackprotector"]),
       nativeBuildInputs: nix.thunk(() => nix.sel(kernel, "moduleBuildDependencies")),
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         KERN_DIR: nix.thunk(() => nix.str`${nix.sel(kernel, "dev")}/lib/modules/${nix.sel(kernel, "modDirVersion")}/build`),
       })),
       makeFlags: nix.thunk(() => ["INSTALL_MOD_PATH=$(out)"]),
       installTargets: nix.thunk(() => ["install"]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => nix.update(nix.sel(virtualbox, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: nix.thunk(() => nix.add(nix.sel(virtualbox, "meta", "description"), " (kernel modules)")),
       })),
     })));

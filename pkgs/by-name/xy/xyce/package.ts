@@ -41,16 +41,16 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(withMPI) || nix.asBool(nix.sel(trilinos, "withMPI"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/xy/xyce/package.nix:32:1");
   const version = "7.10.0";
   const xyce_src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "Xyce",
       url: "https://github.com/Xyce/Xyce.git",
       rev: nix.thunk(() => nix.str`Release-${version}`),
       hash: "sha256-8cvglBCykZVQk3BD7VE3riXfJ0PAEBwsoloqUsrMlBc=",
     }))));
   const regression_src = nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "Xyce_Regression",
           owner: "Xyce",
           repo: "Xyce_Regression",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/Xyce/Xyce_Regression/commit/a77e39e409d3ab2ae05d6dcbf08d9e42e3fd0f15.patch",
             hash: "sha256-BJJO2qSwQf+u2HUWhdyBUwP3j4HbMPfXrAhgdzeTZgc=",
           })))),
@@ -162,7 +162,7 @@ done
 popd
 `)));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         broken: nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))),
         description: "High-performance analog circuit simulator",
         longDescription: "Xyce is a SPICE-compatible, high-performance analog circuit simulator,\ncapable of solving extremely large circuit problems by supporting\nlarge-scale parallel computing platforms.\n",
@@ -175,7 +175,7 @@ popd
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version: version_1,
         srcs,

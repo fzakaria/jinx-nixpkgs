@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
   const enableImages = nix.argOr($, "enableImages", () => false);
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "atril",
       version: "1.28.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mate-desktop",
           repo: "atril",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -78,18 +78,18 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), enableDjvu, nix.thunk(() => [djvulibre])), nix.concat(nix.app(nix.sel(lib, "optionals"), enableEpub, nix.thunk(() => [webkitgtk_4_1, libgepub])), nix.concat(nix.app(nix.sel(lib, "optionals"), enablePostScript, nix.thunk(() => [libspectre])), nix.app(nix.sel(lib, "optionals"), enableXps, nix.thunk(() => [libgxps]))))))),
       configureFlags: nix.thunk(() => nix.concat([], nix.concat(nix.app(nix.sel(lib, "optionals"), enableDjvu, nix.thunk(() => ["--enable-djvu"])), nix.concat(nix.app(nix.sel(lib, "optionals"), enableEpub, nix.thunk(() => ["--enable-epub"])), nix.concat(nix.app(nix.sel(lib, "optionals"), enablePostScript, nix.thunk(() => ["--enable-ps"])), nix.concat(nix.app(nix.sel(lib, "optionals"), enableXps, nix.thunk(() => ["--enable-xps"])), nix.app(nix.sel(lib, "optionals"), enableImages, nix.thunk(() => ["--enable-pixbuf"])))))))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.sel(glib, "dev")}/include/gio-unix-2.0`),
       })),
       makeFlags: nix.thunk(() => ["cajaextensiondir=$$out/lib/caja/extensions-2.0"]),
       enableParallelBuilding: true,
       postInstall: "substituteInPlace $out/share/thumbnailers/atril.thumbnailer \\\n  --replace-fail \"TryExec=atril-thumbnailer\" \"TryExec=$out/bin/atril-thumbnailer\" \\\n  --replace-fail \"Exec=atril-thumbnailer\" \"Exec=$out/bin/atril-thumbnailer\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$3, "rev-prefix": "v", "odd-unstable": true })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v", "odd-unstable": true })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Simple multi-page document viewer for the MATE desktop",
         homepage: "https://mate-desktop.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

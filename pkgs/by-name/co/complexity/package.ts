@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const autogen = nix.arg($, "autogen");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "complexity",
       version: "1.10",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/complexity/complexity-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1vfns9xm7w0wrz12a3w15slrqnrfh6qxk15nv7qkj3irll3ff522",
         })))),
       buildInputs: nix.thunk(() => [autogen]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C code complexity measurement tool",
         longDescription: "GNU Complexity is a tool designed for analyzing the complexity of C\nprogram functions.  It is very similar to the McCabe scoring, but\naddresses several issues not considered in that scoring scheme.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

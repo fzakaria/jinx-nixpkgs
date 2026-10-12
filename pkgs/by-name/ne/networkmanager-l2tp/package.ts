@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
       const pname = "NetworkManager-l2tp";
       const version = "1.52.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nm-l2tp",
           repo: "NetworkManager-l2tp",
           rev: version,
           hash: "sha256-5EIG/5fexhrcOOQE+31+TJKMtINGVL+EI32m9tEhYVo=",
         }))));
       const patches = nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ __proto__: pos$2, strongswan: strongswan, xl2tpd: xl2tpd })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, strongswan: strongswan, xl2tpd: xl2tpd })))),
       ]);
       const nativeBuildInputs = nix.thunk(() => nix.concat([autoreconfHook, glib, pkg_config], nix.app(nix.sel(lib, "optionals"), withGnome, nix.thunk(() => [gtk4]))));
       const buildInputs = nix.thunk(() => nix.concat([networkmanager, ppp, openssl, nss], nix.app(nix.sel(lib, "optionals"), withGnome, nix.thunk(() => [gtk3, gtk4, libsecret, libnma, libnma_gtk4]))));
@@ -54,11 +54,11 @@ export default nix.lambda((args) => (() => {
       ]);
       const enableParallelBuilding = true;
       const strictDeps = true;
-      const passthru = nix.thunk(() => ({ __proto__: pos$3, networkManagerPlugin: "VPN/nm-l2tp-service.name" }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, networkManagerPlugin: "VPN/nm-l2tp-service.name" }));
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(networkmanager, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "L2TP plugin for NetworkManager",
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
         homepage: "https://github.com/nm-l2tp/NetworkManager-l2tp",
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         name,
         pname,
         version,

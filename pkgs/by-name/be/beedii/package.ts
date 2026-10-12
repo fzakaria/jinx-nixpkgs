@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const installFonts = nix.arg($, "installFonts");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "beedii",
       version: "1.0.0",
       outputs: nix.thunk(() => ["out", "webfont"]),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/webkul/beedii/releases/download/v${nix.sel(finalAttrs, "version")}/beedii.zip`),
           hash: "sha256-MefkmWl7LdhQiePpixKcatoIeOTlrRaO3QA9xWAxJ4Q=",
           stripRoot: false,
@@ -30,16 +30,16 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/Fonts`),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/webkul/beedii",
             "rev-prefix": "v",
             ignoredVersions: "^1\\.2\\.0$",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Free Hand Drawn Emoji Font",
         homepage: "https://github.com/webkul/beedii",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),

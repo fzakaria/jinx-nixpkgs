@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const glib_networking = nix.arg($, "glib-networking");
   const version = "0.1.808-beta";
   const unsloth_desktop_unwrapped = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "unsloth-desktop-unwrapped",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/unslothai/unsloth/releases/download/v${version}/Unsloth-Desktop-Ubuntu.deb`),
           hash: "sha256-cyKUax4L5foIOT6RyOeGnbH72kpLFKjWtYv0cJszkLw=",
         })))),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       dontPatchELF: true,
       installPhase: "runHook preInstall\ndpkg-deb -x $src $out\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unsloth Studio desktop payload from the upstream .deb (unwrapped)",
         homepage: "https://unsloth.ai/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "unsloth-desktop",
       version: version,
       includeClosures: true,
@@ -86,16 +86,16 @@ install -Dm644 ${unsloth_desktop_unwrapped}/usr/share/icons/hicolor/128x128/apps
   $out/share/icons/hicolor/128x128/apps/unsloth-studio.png
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "unsloth-desktop-unwrapped": unsloth_desktop_unwrapped,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             attrPath: "unsloth-desktop.unsloth-desktop-unwrapped",
             extraArgs: nix.thunk(() => ["--version=unstable"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Desktop application for running and training AI models locally",
         homepage: "https://unsloth.ai/",
         changelog: "https://github.com/unslothai/unsloth/releases",

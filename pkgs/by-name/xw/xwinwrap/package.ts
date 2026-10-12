@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libxext = nix.arg($, "libxext");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xwinwrap",
       version: "4",
       src: nix.thunk(() => nix.app(fetchbzr, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://code.launchpad.net/~shantanu-goel/xwinwrap/devel",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           sha256: "1annhqc71jcgx5zvcy31c1c488ygx4q1ygrwyy2y0ww743smbchw",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? "make all64\n" : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")) ? "make all32\n" : nix.builtins.throw(nix.thunk(() => nix.str`xwinwrap is not supported on ${nix.sel(stdenv, "hostPlatform", "system")}`))))),
       installPhase: "mkdir -p $out/bin\nmv */xwinwrap $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utility that allows you to use an animated X window as the wallpaper",
         longDescription: "XWinWrap is a small utility written a loooong time ago that allowed you to\nstick most of the apps to your desktop background. What this meant was you\ncould use an animated screensaver (like glmatrix, electric sheep, etc) or\neven a movie, and use it as your wallpaper. But only one version of this\napp was ever released, and it had a few problems, like:\n\n- Well, sticking didn’t work. So if you did a “minimize all” or “go to\ndesktop” kind of thing, your “wallpaper” got minimized as well.\n\n- The geometry option didn’t work, so you could not create, e.g., a small\nmatrix window surrounded by your original wallpaper.\n\nSeeing no-one picking it up, I decided to give it a bit of polish last\nweekend by fixing the above problems and also add a few features. And here\nit is, in its new avatar “Shantz XWinWrap”.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "hpnd")),

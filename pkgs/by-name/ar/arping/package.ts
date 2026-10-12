@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libnet = nix.arg($, "libnet");
   const libpcap = nix.arg($, "libpcap");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "arping",
       version: "2.29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ThomasHabets",
           repo: "arping",
           tag: nix.thunk(() => nix.str`arping-${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       buildInputs: nix.thunk(() => [libnet, libpcap]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Broadcasts a who-has ARP packet on the network and prints answers",
         homepage: "https://github.com/ThomasHabets/arping",
         changelog: nix.thunk(() => nix.str`https://github.com/ThomasHabets/arping/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

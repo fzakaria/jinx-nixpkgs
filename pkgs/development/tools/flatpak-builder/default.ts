@@ -56,21 +56,21 @@ export default nix.lambda((args) => (() => {
   const patch = nix.arg($, "patch");
   const rpm = nix.arg($, "rpm");
   const attr = nix.arg($, "attr");
-  const gdkPixbufLoadersCache = nix.thunk(() => nix.app(nix.sel(gnome, "_gdkPixbufCacheBuilder_DO_NOT_USE"), nix.thunk(() => ({ __proto__: pos$1, extraLoaders: nix.thunk(() => [librsvg]) }))));
+  const gdkPixbufLoadersCache = nix.thunk(() => nix.app(nix.sel(gnome, "_gdkPixbufCacheBuilder_DO_NOT_USE"), nix.thunk(() => ({ [nix.POS]: pos$1, extraLoaders: nix.thunk(() => [librsvg]) }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "flatpak-builder",
       version: "1.4.10",
       outputs: nix.thunk(() => ["out", "doc", "man", "installedTests"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/flatpak/flatpak-builder/releases/download/${nix.sel(finalAttrs, "version")}/flatpak-builder-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-sXIQeMBpfIyh19uWUjK1CdGqh/aLTa43jrUAvd3bnME=",
         })))),
       patches: nix.thunk(() => [
         nix.path(here, "./respect-xml-catalog-files-var.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             brz: nix.thunk(() => nix.str`${breezy}/bin/brz`),
             cp: nix.thunk(() => nix.str`${coreutils}/bin/cp`),
             patch: nix.thunk(() => nix.str`${patch}/bin/patch`),
@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
             eustrip: nix.thunk(() => nix.str`${elfutils}/bin/eu-strip`),
             euelfcompress: nix.thunk(() => nix.str`${elfutils}/bin/eu-elfcompress`),
           })))),
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-test-paths.patch"), nix.thunk(() => ({ __proto__: pos$4, glibcLocales: glibcLocales })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-test-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$4, glibcLocales: glibcLocales })))),
         nix.path(here, "./fix-test-prefix.patch"),
       ]),
       nativeBuildInputs: nix.thunk(() => [
@@ -129,15 +129,15 @@ wrapProgram $out/bin/flatpak-builder --set GDK_PIXBUF_MODULE_FILE ${gdkPixbufLoa
 `;
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         installedTestsDependencies: nix.thunk(() => [gnupg, ostree, gnumake, attr, libxml2, appstream]),
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           installedTests: nix.thunk(() => nix.sel(nixosTests, "installed-tests", "flatpak-builder")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Tool to build flatpaks from source",
         mainProgram: "flatpak-builder",
         homepage: "https://github.com/flatpak/flatpak-builder",

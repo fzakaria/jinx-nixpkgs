@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
     libxcb_wm,
   ]);
   const meta = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     description: "Desktop Client for Nx Witness Video Systems",
     homepage: "https://nxvms.com/",
     sourceProvenance: nix.thunk(() => (() => {
@@ -74,13 +74,13 @@ export default nix.lambda((args) => (() => {
     platforms: nix.thunk(() => ["x86_64-linux"]),
   }));
   const nxwitness_client = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       buildInputs: buildInputs,
       meta: meta,
       pname: "nxwitness-client",
       version: nix.thunk(() => nix.str`${version}.${build}`),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://updates.networkoptix.com/default/${build}/linux/nxwitness-client-${nix.sel(finalAttrs, "version")}-linux_x64.deb`),
           hash: "sha256-qp3frZqVr6nJonUrcyM2xIliWkwf4aSge3oyWkrzzSs=",
         })))),
@@ -106,7 +106,7 @@ rm -r $out/lib/libva-drivers
 `),
     })));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.attr(nxwitness_client, "pname")),
       version: nix.thunk(() => nix.attr(nxwitness_client, "version")),
       meta: nix.thunk(() => nix.attr(nxwitness_client, "meta")),

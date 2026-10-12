@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => !nix.eq(nix.sel(python, "version"), nix.sel(home_assistant, "python3Packages", "python", "version")));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KapJI",
           repo: "homeassistant-stubs",
           tag: version,
@@ -37,7 +37,7 @@ substituteInPlace pyproject.toml --replace-fail \\
       const pythonImportsCheck = nix.thunk(() => ["homeassistant-stubs"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Typing stubs for Home Assistant Core",
         homepage: "https://github.com/KapJI/homeassistant-stubs",
         changelog: nix.thunk(() => nix.str`https://github.com/KapJI/homeassistant-stubs/releases/tag/${nix.sel(src, "tag")}`),
@@ -45,7 +45,7 @@ substituteInPlace pyproject.toml --replace-fail \\
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "home-assistant"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

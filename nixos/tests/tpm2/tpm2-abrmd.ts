@@ -26,43 +26,43 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     name: "tpm2",
     nodes: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             mountHostNixStore: true,
             useEFIBoot: true,
-            tpm: nix.thunk(() => ({ __proto__: pos$1, enable: true })),
+            tpm: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             users: nix.thunk(() => ({
-              __proto__: pos$4,
-              "tss-user": nix.thunk(() => ({ __proto__: pos$3, isNormalUser: true, extraGroups: nix.thunk(() => ["tss"]) })),
+              [nix.POS]: pos$4,
+              "tss-user": nix.thunk(() => ({ [nix.POS]: pos$3, isNormalUser: true, extraGroups: nix.thunk(() => ["tss"]) })),
             })),
           })),
           security: nix.thunk(() => ({
-            __proto__: pos$12,
-            sudo: nix.thunk(() => ({ __proto__: pos$6, wheelNeedsPassword: false })),
+            [nix.POS]: pos$12,
+            sudo: nix.thunk(() => ({ [nix.POS]: pos$6, wheelNeedsPassword: false })),
             tpm2: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               enable: true,
-              pkcs11: nix.thunk(() => ({ __proto__: pos$7, enable: true })),
-              abrmd: nix.thunk(() => ({ __proto__: pos$8, enable: true })),
-              tctiEnvironment: nix.thunk(() => ({ __proto__: pos$9, enable: true, interface: "tabrmd" })),
-              fapi: nix.thunk(() => ({ __proto__: pos$10, ekCertLess: true })),
+              pkcs11: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
+              abrmd: nix.thunk(() => ({ [nix.POS]: pos$8, enable: true })),
+              tctiEnvironment: nix.thunk(() => ({ [nix.POS]: pos$9, enable: true, interface: "tabrmd" })),
+              fapi: nix.thunk(() => ({ [nix.POS]: pos$10, ekCertLess: true })),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs_1, "tpm2-tools")),
               nix.thunk(() => nix.sel(pkgs_1, "openssl")),

@@ -50,20 +50,20 @@ export default nix.lambda((args) => (() => {
   const virtualenv = nix.arg($, "virtualenv");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "jupyterhub",
       version: "5.5.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jupyterhub",
           repo: "jupyterhub",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-BDU0RP6NRRnSZelRadhvSm2mfsuewyMwpcRlDBPDC0E=",
         })))),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-64FRdLHBpnywpCLjsMoXmWp/tK00+QwNIR9yAoQFIbg=",
         })))),
@@ -139,7 +139,7 @@ substituteInPlace jupyterhub/tests/test_proxy.py \\
       ]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Serves multiple Jupyter notebook instances",
         homepage: "https://github.com/jupyterhub/jupyterhub",
         changelog: nix.thunk(() => nix.str`https://github.com/jupyterhub/jupyterhub/blob/${nix.sel(finalAttrs, "src", "tag")}/docs/source/reference/changelog.md`),

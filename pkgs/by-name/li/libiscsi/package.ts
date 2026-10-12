@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libiscsi",
       version: "1.20.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sahlberg",
           repo: "libiscsi",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace lib/socket.c \\\n  --replace-fail \"void iscsi_decrement_iface_rr() {\" \"void iscsi_decrement_iface_rr(void) {\"\n",
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "is32bit")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isRiscV")))), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
               "-Wno-error=format",
               "-Wno-error=deprecated-declarations",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
             ]))),
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "iSCSI client library and utilities",
         homepage: "https://github.com/sahlberg/libiscsi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2")),

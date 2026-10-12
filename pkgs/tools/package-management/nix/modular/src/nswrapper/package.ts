@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.arg($, "version");
   const fileset = nix.thunk(() => nix.attr(lib, "fileset"));
   return nix.app(mkMesonExecutable, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "nix-nswrapper",
       version: version,
       workDir: nix.path(here, "./."),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix_util]),
       mesonFlags: [],
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         mainProgram: "nix-nswrapper",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       })),

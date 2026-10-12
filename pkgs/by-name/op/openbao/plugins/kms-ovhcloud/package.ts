@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkOpenbaoPlugin = nix.arg($, "mkOpenbaoPlugin");
   return nix.app(mkOpenbaoPlugin, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       plugin: "kms-ovhcloud",
       pluginType: "kms",
       pluginName: "ovhcloud",
       version: "0.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openbao",
           repo: "openbao-plugins",
           tag: nix.thunk(() => nix.str`kms-ovhcloud-v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-VzYdX3uV884+q+QpS6O3GIh8DhplF787RE2+2KWsOCs=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OpenBao KMS plugin for Auto Unseal via OVHcloud",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

@@ -56,25 +56,25 @@ export default nix.lambda((args) => (() => {
   const sources = nix.thunk(() => nix.app(callPackage, nix.path(here, "./sources.nix"), nix.thunk(() => ({}))));
   const supportFlags = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (name) => (_) => !nix.asBool(nix.builtins.elem(name, nix.thunk(() => ["lib", "stdenv", "callPackage", "darwin", "wineRelease", "wineBuild"]))), args_1));
   const releaseInfo = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     stable: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       src: nix.thunk(() => nix.sel(sources, "stable")),
       useStaging: false,
     })),
     unstable: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       src: nix.thunk(() => nix.sel(sources, "unstable")),
       useStaging: false,
     })),
     staging: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       src: nix.thunk(() => nix.sel(sources, "unstable")),
       pnameSuffix: "-staging",
       useStaging: true,
     })),
     yabridge: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       src: nix.thunk(() => nix.sel(sources, "yabridge")),
       pnameSuffix: "-yabridge",
       useStaging: true,
@@ -82,8 +82,8 @@ export default nix.lambda((args) => (() => {
   }));
   const baseWine = nix.thunk(() => nix.app(nix.sel(lib, "getAttr"), wineBuild, nix.thunk(() => nix.app(callPackage, nix.path(here, "./packages.nix"), nix.thunk(() => nix.update(nix.sel(releaseInfo, nix.key(nix.force(wineRelease))), supportFlags))))));
   return (nix.asBool(nix.eq(wineRelease, "yabridge")) ? nix.app(nix.sel(baseWine, "overrideAttrs"), (old) => ({
-      __proto__: pos$7,
-      env: nix.thunk(() => nix.update(nix.sel(old, "env"), { __proto__: pos$6, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      [nix.POS]: pos$7,
+      env: nix.thunk(() => nix.update(nix.sel(old, "env"), { [nix.POS]: pos$6, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
     })) : nix.force(baseWine));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
   const writeText = nix.arg($, "writeText");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ds4u",
       version: "0.1.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "git.yokai.digital",
           owner: "deadYokai",
           repo: "ds4u",
@@ -71,7 +71,7 @@ install -Dm644 ${nix.sel(finalAttrs, "udevRules")} -D $out/lib/udev/rules.d/70-d
       doInstallCheck: true,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "ds4u",
             desktopName: "DS4U",
             comment: nix.thunk(() => nix.sel(finalAttrs, "meta", "description")),
@@ -84,11 +84,11 @@ install -Dm644 ${nix.sel(finalAttrs, "udevRules")} -D $out/lib/udev/rules.d/70-d
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "DualSense controller manager for Linux",
         homepage: "https://git.yokai.digital/deadYokai/ds4u",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

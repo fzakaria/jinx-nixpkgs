@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.2.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-P2rPkBE60Ha+m1nqQULQ3k2RDUro+Zp0TUfPAQNS06g=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["dploot"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "DPAPI looting remotely in Python",
         homepage: "https://github.com/zblurx/dploot",
         changelog: nix.thunk(() => nix.str`https://github.com/zblurx/dploot/releases/tag/${version}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "dploot",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

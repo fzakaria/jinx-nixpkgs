@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const xkeyboard_config = nix.arg($, "xkeyboard-config");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "010editor",
       version: "16.0.4",
       src: nix.thunk(() => nix.sel(finalAttrs, "passthru", "srcs", nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
@@ -66,7 +66,7 @@ runHook postInstall
       })()),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             name: "010editor",
             exec: "010editor %f",
             icon: "010",
@@ -77,16 +77,16 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         srcs: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "x86_64-linux": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: nix.thunk(() => nix.str`https://download.sweetscape.com/010EditorLinux64Installer${nix.sel(finalAttrs, "version")}.tar.gz`),
               hash: "sha256-M1D2Bmi45sYiB0Ci+0X0AxyIeR+On60xt4jP1Jsy5tA=",
             })))),
           "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               url: nix.thunk(() => nix.str`https://download.sweetscape.com/010EditorMacARM64Installer${nix.sel(finalAttrs, "version")}.dmg`),
               hash: "sha256-+yU5JdPNS2BfiZLsBLyyC+ieVNqbIWba3teBlTIDWtk=",
             })))),
@@ -104,7 +104,7 @@ done
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Text and hex editor",
         homepage: "https://www.sweetscape.com/010editor/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

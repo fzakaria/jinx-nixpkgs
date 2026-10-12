@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lovelace-card-mod";
       const version = "4.2.1-202604";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "thomasloven",
           repo: "lovelace-card-mod",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -25,9 +25,9 @@ export default nix.lambda((args) => (() => {
         }))));
       const npmDepsHash = "sha256-RZP3zWz7ZHob/QySF/6XTYOYuulGZUBQXG79fHHJfug=";
       const installPhase = "runHook preInstall\n\nmkdir $out\ncp card-mod.js $out\n\nrunHook postInstall\n";
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, entrypoint: "card-mod.js" }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, entrypoint: "card-mod.js" }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Add CSS styles to (almost) any lovelace card",
         homepage: "https://github.com/thomasloven/lovelace-card-mod",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

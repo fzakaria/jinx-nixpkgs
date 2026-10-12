@@ -20,34 +20,34 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     _class: "nixosTest",
     name: "trailbase",
     nodes: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           environment: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs_1, "curl")),
               nix.thunk(() => nix.app(nix.sel(pkgs_1, "writers", "writePython3Bin"), "trailbase-api", nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   libraries: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "python3Packages", "trailbase"))]),
                 })), nix.thunk(() => nix.builtins.readFile(nix.path(here, "./api.py"))))),
             ]),
           })),
           system: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             services: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               trailbase: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 imports: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "trailbase", "services", "default"))]),
-                trailbase: nix.thunk(() => ({ __proto__: pos$3, address: "127.0.0.1:4000" })),
+                trailbase: nix.thunk(() => ({ [nix.POS]: pos$3, address: "127.0.0.1:4000" })),
               })),
             })),
           })),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
     })),
     testScript: "import re\n\nstart_all()\nmachine.wait_for_unit(\"trailbase.service\")\nmachine.wait_for_open_port(4000)\nmachine.succeed(\"curl --fail http://127.0.0.1:4000/api/healthcheck\")\nmachine.succeed(\"curl --fail -o /dev/null http://127.0.0.1:4000/_/admin/\")\n\njournal = machine.succeed(\"journalctl -u trailbase.service --no-pager\")\nmatch = re.search(r\"password:\\s*'([^']+)'\", journal)\nassert match, f\"admin password not in journal:\\n{journal}\"\npassword = match.group(1)\n\nmachine.succeed(f\"trailbase-api --password {password!r} setup\")\nmachine.succeed(\"systemctl restart trailbase.service\")\nmachine.wait_for_unit(\"trailbase.service\")\nmachine.wait_for_open_port(4000)\nmachine.succeed(\"curl --fail http://127.0.0.1:4000/api/healthcheck\")\nmachine.succeed(f\"trailbase-api --password {password!r} crud\")\n",
     meta: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "lucasew"))]),
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "ngi"))]),
     })),

@@ -56,13 +56,13 @@ export default nix.lambda((args) => (() => {
   const unrarSupport = nix.argOr($, "unrarSupport", () => false);
   const python3Packages = python314Packages;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: "calibre",
       version: "9.15.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.calibre-ebook.com/${nix.sel(finalAttrs, "version")}/calibre-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-nwLTbeyvRrF2ob73Q0kjJQi8wrSwbRZiu9H9QmxX1Vk=",
         })))),
@@ -71,13 +71,13 @@ export default nix.lambda((args) => (() => {
         const debian_tag = nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}+${debian_source}`);
         return [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: nix.thunk(() => nix.str`0001-only-plugin-update-${debian_tag}.patch`),
               url: nix.thunk(() => nix.str`https://github.com/debian-calibre/calibre/raw/refs/tags/debian/${debian_tag}/debian/patches/0001-only-plugin-update.patch`),
               hash: "sha256-2QhNf9CBxvoMiK9ZqBWnA/zdcIYpY+HGG0uguUZbinw=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               name: nix.thunk(() => nix.str`0007-Hardening-Qt-code-${debian_tag}.patch`),
               url: nix.thunk(() => nix.str`https://github.com/debian-calibre/calibre/raw/refs/tags/debian/${debian_tag}/debian/patches/hardening/0007-Hardening-Qt-code.patch`),
               hash: "sha256-ItJalYmBhK4Qgz6QDGbPpBMaa6oGQetQvg5ie3oxFMM=",
@@ -128,7 +128,7 @@ rm -rf src/odf resources/calibre-portable.*
             const w = nix.withScope(ps, null);
             return nix.concat([
               nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "apsw"), "overrideAttrs"), (_oldAttrs) => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   setupPyBuildFlags: nix.thunk(() => ["--enable=load_extension"]),
                 }))),
               nix.thunk(() => nix.lookup(w, "beautifulsoup4")),
@@ -169,10 +169,10 @@ rm -rf src/odf resources/calibre-portable.*
         xdg_utils,
       ], nix.app(nix.sel(lib, "optionals"), speechSupport, nix.thunk(() => [
           piper_tts,
-          nix.thunk(() => nix.app(nix.sel(speechd_minimal, "override"), nix.thunk(() => ({ __proto__: pos$5, python3Packages: python3Packages })))),
+          nix.thunk(() => nix.app(nix.sel(speechd_minimal, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, python3Packages: python3Packages })))),
         ])))),
       env: nix.thunk(() => nix.update({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         HOME: "/tmp",
         MAGICK_INC: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), imagemagick)}/include/ImageMagick`),
         MAGICK_LIB: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), imagemagick)}/lib`),
@@ -183,11 +183,11 @@ rm -rf src/odf resources/calibre-portable.*
         XDG_DATA_HOME: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share`),
         XDG_UTILS_INSTALL_MODE: "user",
       }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), popplerSupport, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           POPPLER_INC_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), poppler_utils)}/include/poppler`),
           POPPLER_LIB_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), poppler_utils)}/lib`),
         }))), nix.app(nix.sel(lib, "optionalAttrs"), speechSupport, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           PIPER_TTS_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), piper_tts)}/bin`),
         })))))),
       installPhase: "runHook preInstall\n\npython setup.py install --root=$out \\\n  --prefix=$out \\\n  --libdir=$out/lib \\\n  --staging-root=$out \\\n  --staging-libdir=$out/lib \\\n  --staging-sharedir=$out/share\n\nPYFILES=\"$out/bin/* $out/lib/calibre/calibre/web/feeds/*.py\n  $out/lib/calibre/calibre/ebooks/metadata/*.py\n  $out/lib/calibre/calibre/ebooks/rtf2xml/*.py\"\n\nsed -i \"s/env python[0-9.]*/python/\" $PYFILES\nsed -i \"2i import sys; sys.argv[0] = 'calibre'\" $out/bin/calibre\n\nmkdir -p $out/share\ncp -a man-pages $out/share/man\n\nrunHook postInstall\n",
@@ -233,14 +233,14 @@ runHook postInstallCheck
 `;
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             extraArgs: nix.thunk(() => ["--url=https://github.com/kovidgoyal/calibre"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         homepage: "https://calibre-ebook.com",
         description: "Comprehensive e-book software",
         mainProgram: "calibre",

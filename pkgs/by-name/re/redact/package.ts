@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const pname = "redact";
   const version = "0.21.28";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://update-desktop.redact.dev/build/Redact-${version}.AppImage`),
       hash: "sha256-YubwGhmRLuZ74pTIZvvHybq79puK2J9xSJ4IxD3hLpw=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, src: src, version: version }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, src: src, version: version }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       src: src,
@@ -38,11 +38,11 @@ substituteInPlace $out/share/applications/redact.desktop \\
   --replace-fail 'Exec=AppRun' 'Exec=${pname}'
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(writeScript, "update.sh", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p curl coreutils gnused common-updater-scripts\nset -eu -o pipefail\nurl=\"$(curl -ILs -w %{url_effective} -o /dev/null https://download.redact.dev/windows)\"\nversion=\"$(echo $url | sed -n 's/.*Redact-Setup-\\([0-9]\\+\\.[0-9]\\+\\.[0-9]\\+\\).*/\\1/p')\"\nhash=$(nix-hash --to-sri --type sha256 \"$(nix-prefetch-url \"https://update-desktop.redact.dev/build/Redact-$version.AppImage\")\")\nupdate-source-version redact \"$version\" \"$hash\" --print-changes --ignore-same-version\n")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Only platform that allows you to automatically clean up your old posts from services like Twitter, Reddit, Facebook, Discord, and more, all in one place",
         homepage: "https://redact.dev/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

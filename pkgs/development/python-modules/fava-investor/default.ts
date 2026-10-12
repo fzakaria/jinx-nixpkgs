@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "redstreet",
           repo: "fava_investor",
           tag: version,
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["fava_investor"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Comprehensive set of reports, analyses, and tools for investments, for Beancount and Fava",
         homepage: "https://github.com/redstreet/fava_investor",
         changelog: "https://github.com/redstreet/fava_investor/blob/main/CHANGELOG.md",
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

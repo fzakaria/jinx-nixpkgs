@@ -8,7 +8,7 @@ const pos$3 = nix.positions(here + "/versions.nix", [["fromMajorMinor", 26, 11],
 
 export default nix.thunk(() => (() => {
   const majorMinorToVersionMap = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "16": "16.2.0",
     "15": "15.3.0",
     "14": "14.4.0",
@@ -16,14 +16,14 @@ export default nix.thunk(() => (() => {
   }));
   const fromMajorMinor = (majorMinorVersion) => nix.sel(majorMinorToVersionMap, nix.key(nix.str`${majorMinorVersion}`));
   const srcHashForVersion = (version) => nix.sel({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     "16.2.0": "sha256-5nOOKVl/czJwcxqpBgDzf/3ARQed/CfsfoGSzIEIXD4=",
     "15.3.0": "sha256-+lnBvu+JlfJ8TXHB3yJ1hxiTFdPm+v8btDBuYbDFMOs=",
     "14.4.0": "sha256-dStvVnvqyDFZx3p2gLExa914Rzi/+anQcBEsCdqQ9tk=",
     "13.5.0": "sha256-7D3wAV7QFBH5H5qc1bTaMHDrEiKwL630EzwwwJA5mFU=",
   }, nix.key(nix.str`${version}`));
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     fromMajorMinor: fromMajorMinor,
     srcHashForVersion: srcHashForVersion,
     allMajorVersions: nix.thunk(() => nix.builtins.attrNames(majorMinorToVersionMap)),

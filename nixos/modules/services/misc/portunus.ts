@@ -72,35 +72,35 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "portunus"));
   return {
-    __proto__: pos$61,
+    [nix.POS]: pos$61,
     options: nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       services: nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         portunus: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Portunus, a self-contained user/group management and authentication service for LDAP")),
           domain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               example: "sso.example.com",
               description: "Subdomain which gets reverse proxied to Portunus webserver.",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 8080n,
               description: "Port where the Portunus webserver should listen on.\n\nThis must be put behind a TLS-capable reverse proxy because Portunus only listens on localhost.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "portunus", nix.thunk(() => ({})))),
           seedPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "Path to a portunus seed file in json format.\nSee <https://github.com/majewsky/portunus#seeding-users-and-groups-from-static-configuration> for available options.\n",
             })))),
           seedSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "anything")))))))));
@@ -109,46 +109,46 @@ export default nix.lambda((args) => (() => {
               description: "Seed settings for users and groups.\nSee upstream for format <https://github.com/majewsky/portunus#seeding-users-and-groups-from-static-configuration>\n",
             })))),
           stateDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/portunus",
               description: "Path where Portunus stores its state.",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "portunus",
               description: "User account under which Portunus runs its webserver.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "portunus",
               description: "Group account under which Portunus runs its webserver.",
             })))),
           dex: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Dex ldap connector.\n\nTo activate dex, first a search user must be created in the Portunus web ui\nand then the password must to be set as the `DEX_SEARCH_USER_PASSWORD` environment variable\nin the [](#opt-services.dex.environmentFile) setting\n")),
             oidcClients: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                      __proto__: pos$12,
+                      [nix.POS]: pos$12,
                       options: nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         redirectURIs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$8,
+                            [nix.POS]: pos$8,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                             default: [],
                             description: "URLs where the OIDC client should redirect",
                           })))),
                         callbackURL: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$9,
+                            [nix.POS]: pos$9,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                             default: null,
                             description: "URL where the OIDC client should redirect (deprecated, use redirectURIs)",
                           })))),
                         id: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$10,
+                            [nix.POS]: pos$10,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             description: "ID of the OIDC client",
                           })))),
@@ -157,7 +157,7 @@ export default nix.lambda((args) => (() => {
                 default: [],
                 example: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     redirectURIs: nix.thunk(() => ["https://example.com/client/oidc/callback"]),
                     id: "service",
                   })),
@@ -165,42 +165,42 @@ export default nix.lambda((args) => (() => {
                 description: "List of OIDC clients.\n\nThe OIDC secret must be set as the `DEX_CLIENT_${id}` environment variable\nin the [](#opt-services.dex.environmentFile) setting.\n\n::: {.note}\nMake sure the id only contains characters that are allowed in an environment variable name, e.g. no -.\n:::\n",
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 5556n,
                 description: "Port where dex should listen on.",
               })))),
           })),
           ldap: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "openldap", nix.thunk(() => ({})))),
             searchUserName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "",
                 example: "admin",
                 description: "The login name of the search user.\nThis user account must be configured in Portunus either manually or via seeding.\n",
               })))),
             suffix: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 example: "dc=example,dc=org",
                 description: "The DN of the topmost entry in your LDAP directory.\nPlease refer to the Portunus documentation for more information on how this impacts the structure of the LDAP directory.\n",
               })))),
             tls: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to enable LDAPS protocol.\nThis also adds two entries to the `/etc/hosts` file to point [](#opt-services.portunus.domain) to localhost,\nso that CLIs and programs can use ldaps protocol and verify the certificate without opening the firewall port for the protocol.\n\nThis requires a TLS certificate for [](#opt-services.portunus.domain) to be configured via [](#opt-security.acme.certs).\n",
               })))),
             user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "openldap",
                 description: "User account under which Portunus runs its LDAP server.",
               })))),
             group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "openldap",
                 description: "Group account under which Portunus runs its LDAP server.",
@@ -210,57 +210,57 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$59,
+        [nix.POS]: pos$59,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "dex", "enable")) || nix.asBool(!nix.eq(nix.sel(cfg, "ldap", "searchUserName"), "")))),
             message: "services.portunus.dex.enable requires services.portunus.ldap.searchUserName to be set.",
           })),
         ]),
         environment: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "ldap", "package"))]),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           hosts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "ldap", "tls")), nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               "::1": nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "domain"))]),
               "127.0.0.1": nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "domain"))]),
             })))),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$42,
+          [nix.POS]: pos$42,
           dex: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "dex", "enable")), nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 issuer: nix.thunk(() => nix.str`https://${nix.sel(cfg, "domain")}/dex`),
                 web: nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   http: nix.thunk(() => nix.str`127.0.0.1:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "dex", "port")))}`),
                 })),
                 storage: nix.thunk(() => ({
-                  __proto__: pos$32,
+                  [nix.POS]: pos$32,
                   type: "sqlite3",
-                  config: nix.thunk(() => ({ __proto__: pos$31, file: "/var/lib/dex/dex.db" })),
+                  config: nix.thunk(() => ({ [nix.POS]: pos$31, file: "/var/lib/dex/dex.db" })),
                 })),
                 enablePasswordDB: false,
                 connectors: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$37,
+                    [nix.POS]: pos$37,
                     type: "ldap",
                     id: "ldap",
                     name: "LDAP",
                     config: nix.thunk(() => ({
-                      __proto__: pos$36,
+                      [nix.POS]: pos$36,
                       host: nix.thunk(() => nix.str`${nix.sel(cfg, "domain")}:636`),
                       bindDN: nix.thunk(() => nix.str`uid=${nix.sel(cfg, "ldap", "searchUserName")},ou=users,${nix.sel(cfg, "ldap", "suffix")}`),
                       bindPW: "$DEX_SEARCH_USER_PASSWORD",
                       userSearch: nix.thunk(() => ({
-                        __proto__: pos$33,
+                        [nix.POS]: pos$33,
                         baseDN: nix.thunk(() => nix.str`ou=users,${nix.sel(cfg, "ldap", "suffix")}`),
                         filter: "(objectclass=person)",
                         username: "uid",
@@ -270,19 +270,19 @@ export default nix.lambda((args) => (() => {
                         preferredUsernameAttr: "uid",
                       })),
                       groupSearch: nix.thunk(() => ({
-                        __proto__: pos$35,
+                        [nix.POS]: pos$35,
                         baseDN: nix.thunk(() => nix.str`ou=groups,${nix.sel(cfg, "ldap", "suffix")}`),
                         filter: "(objectclass=groupOfNames)",
                         nameAttr: "cn",
                         userMatchers: nix.thunk(() => [
-                          nix.thunk(() => ({ __proto__: pos$34, userAttr: "DN", groupAttr: "member" })),
+                          nix.thunk(() => ({ [nix.POS]: pos$34, userAttr: "DN", groupAttr: "member" })),
                         ]),
                       })),
                     })),
                   })),
                 ]),
                 staticClients: nix.thunk(() => nix.app(nix.sel(lib, "forEach"), nix.thunk(() => nix.sel(cfg, "dex", "oidcClients")), (client) => ({
-                    __proto__: pos$38,
+                    [nix.POS]: pos$38,
                     id: nix.thunk(() => nix.attr(client, "id")),
                     redirectURIs: nix.thunk(() => nix.concat(nix.sel(client, "redirectURIs"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(client, "callbackURL"), null)), nix.thunk(() => nix.sel(client, "callbackURL"))))),
                     name: nix.thunk(() => nix.str`OIDC for ${nix.sel(client, "id")}`),
@@ -291,30 +291,30 @@ export default nix.lambda((args) => (() => {
               })),
             })))),
           portunus: nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             seedPath: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "seedSettings"), null)), nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "seed.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.sel(cfg, "seedSettings")))))))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$51,
+          [nix.POS]: pos$51,
           services: nix.thunk(() => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             dex: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "dex", "enable")), nix.thunk(() => ({
-                __proto__: pos$44,
-                serviceConfig: nix.thunk(() => ({ __proto__: pos$43, StateDirectory: "dex" })),
+                [nix.POS]: pos$44,
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$43, StateDirectory: "dex" })),
               })))),
             portunus: nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               description: "Self-contained authentication service",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/portunus-orchestrator`),
                 Restart: "on-failure",
               })),
               environment: nix.thunk(() => nix.update({
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 PORTUNUS_LDAP_SUFFIX: nix.thunk(() => nix.sel(cfg, "ldap", "suffix")),
                 PORTUNUS_SERVER_BINARY: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/portunus-server`),
                 PORTUNUS_SERVER_GROUP: nix.thunk(() => nix.sel(cfg, "group")),
@@ -326,12 +326,12 @@ export default nix.lambda((args) => (() => {
                 PORTUNUS_SLAPD_USER: nix.thunk(() => nix.sel(cfg, "ldap", "user")),
                 PORTUNUS_SLAPD_SCHEMA_DIR: nix.thunk(() => nix.str`${nix.sel(cfg, "ldap", "package")}/etc/schema`),
               }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "seedPath"), null)), nix.thunk(() => ({
-                  __proto__: pos$47,
+                  [nix.POS]: pos$47,
                   PORTUNUS_SEED_PATH: nix.thunk(() => nix.sel(cfg, "seedPath")),
                 }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "ldap", "tls")), nix.thunk(() => (() => {
                   const acmeDirectory = nix.thunk(() => nix.sel(config, "security", "acme", "certs", nix.key(nix.str`${nix.sel(cfg, "domain")}`), "directory"));
                   return {
-                    __proto__: pos$48,
+                    [nix.POS]: pos$48,
                     PORTUNUS_SERVER_HTTP_SECURE: "true",
                     PORTUNUS_SLAPD_TLS_CA_CERTIFICATE: nix.thunk(() => nix.sel(config, "security", "pki", "caBundle")),
                     PORTUNUS_SLAPD_TLS_CERTIFICATE: nix.thunk(() => nix.str`${acmeDirectory}/cert.pem`),
@@ -343,33 +343,33 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$58,
+          [nix.POS]: pos$58,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "ldap", "user"), "openldap")), nix.thunk(() => ({
-                  __proto__: pos$53,
+                  [nix.POS]: pos$53,
                   openldap: nix.thunk(() => ({
-                    __proto__: pos$52,
+                    [nix.POS]: pos$52,
                     group: nix.thunk(() => nix.sel(cfg, "ldap", "group")),
                     isSystemUser: true,
                   })),
                 })))),
               nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "portunus")), nix.thunk(() => ({
-                  __proto__: pos$55,
+                  [nix.POS]: pos$55,
                   portunus: nix.thunk(() => ({
-                    __proto__: pos$54,
+                    [nix.POS]: pos$54,
                     group: nix.thunk(() => nix.sel(cfg, "group")),
                     isSystemUser: true,
                   })),
                 })))),
             ]))),
           groups: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
-              nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "ldap", "user"), "openldap")), nix.thunk(() => ({ __proto__: pos$56, openldap: nix.thunk(() => ({})) })))),
-              nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "portunus")), nix.thunk(() => ({ __proto__: pos$57, portunus: nix.thunk(() => ({})) })))),
+              nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "ldap", "user"), "openldap")), nix.thunk(() => ({ [nix.POS]: pos$56, openldap: nix.thunk(() => ({})) })))),
+              nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "portunus")), nix.thunk(() => ({ [nix.POS]: pos$57, portunus: nix.thunk(() => ({})) })))),
             ]))),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$60,
+      [nix.POS]: pos$60,
       maintainers: nix.thunk(() => nix.sel(pkgs, "portunus", "meta", "maintainers")),
     })),
   };

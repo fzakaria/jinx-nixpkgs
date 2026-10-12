@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const pango = nix.arg($, "pango");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sfizz-ui",
       version: "1.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sfztools",
           repo: "sfizz-ui",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -95,7 +95,7 @@ substituteInPlace plugins/editor/external/vstgui4/vstgui/lib/finally.h \\
     "other.invoke = false;"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SFZ based sampler, providing AU / LV2 / PD / VST3 plugins using the sfizz library",
         homepage: "https://github.com/sfztools/sfizz-ui/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

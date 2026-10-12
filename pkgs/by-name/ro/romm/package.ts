@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
       const frontend = nix.thunk(() => nix.attr(from, "frontend"));
       const pythonEnv = nix.thunk(() => nix.attr(from, "pythonEnv"));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname: "romm",
         version: "5.2.0",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "rommapp",
             repo: "romm",
             tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -92,7 +92,7 @@ chmod +x $out/bin/romm-watcher
 runHook postInstall
 `),
         passthru: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           pythonEnv: nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (ps) => (() => {
               const w = nix.withScope(ps, null);
               return [
@@ -152,7 +152,7 @@ runHook postInstall
               ];
             })())),
           frontend: nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               pname: "romm-frontend",
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/frontend`),
@@ -161,11 +161,11 @@ runHook postInstall
               makeCacheWritable: true,
               installPhase: "runHook preInstall\ncp -r dist $out\n# merge static assets into the web root, as upstream's image does\nchmod u+w $out/assets\ncp -r assets/. $out/assets/\nrunHook postInstall\n",
             })))),
-          tests: nix.thunk(() => ({ __proto__: pos$3, romm: nix.thunk(() => nix.attr(nixosTests, "romm")) })),
-          updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$4, extraArgs: nix.thunk(() => ["--subpackage", "frontend"]) })))),
+          tests: nix.thunk(() => ({ [nix.POS]: pos$3, romm: nix.thunk(() => nix.attr(nixosTests, "romm")) })),
+          updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--subpackage", "frontend"]) })))),
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           description: "Self-hosted ROM manager and player",
           homepage: "https://romm.app/",
           changelog: nix.thunk(() => nix.str`https://github.com/rommapp/romm/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -32,18 +32,18 @@ export default nix.lambda((args) => (() => {
   const nix_update = nix.arg($, "nix-update");
   const yarn_berry = yarn_berry_4;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "learn6502",
       version: "0.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "JumpLink",
           repo: "Learn6502",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-b91b+H5avQDYknDaKUSPGG+Vq6sxSwuJgSiVzdqlbh8=",
           postFetch: nix.thunk(() => nix.str`cd $out
 patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               src: nix.path(here, "./yarn-fix.patch"),
               substitutions: nix.thunk(() => [
                 "--replace-fail",
@@ -56,7 +56,7 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
       patches: nix.thunk(() => [nix.path(here, "./get-yarn-from-path.patch")]),
       missingHashes: nix.path(here, "./missing-hashes.json"),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           hash: "sha256-BIP2L6EQXKzpiYrA8qpqQEQ/NnjFrQSyHlmFg7vg1Xk=",
@@ -79,7 +79,7 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
       postConfigure: "pushd ..\n",
       preBuild: "popd\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-learn6502", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix_update)} learn6502 || true
 export HOME=$(mktemp -d)
 src=$(nix build --no-link --print-out-paths .#learn6502.src)
@@ -93,7 +93,7 @@ ${nix.app(nix.sel(lib, "getExe"), nix_update)} learn6502 --version skip
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Modern 6502 Assembly Learning Environment for GNOME",
         homepage: "https://github.com/JumpLink/Learn6502",
         mainProgram: "eu.jumplink.Learn6502",

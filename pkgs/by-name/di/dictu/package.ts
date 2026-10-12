@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const enableLTO = nix.argOr($, "enableLTO", () => nix.sel(stdenv, "cc", "isGNU"));
   nix.assert_((!nix.asBool(enableLTO) || nix.asBool(nix.sel(stdenv, "cc", "isGNU"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/di/dictu/package.nix:15:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dictu",
       version: "0.25.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dictu-lang",
           repo: "dictu",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
     -e 's/-flto/${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), "-Wno-error=format-truncation")}/'
 `))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=unterminated-string-initialization",
       })),
       cmakeFlags: nix.thunk(() => nix.concat([
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "runHook preCheck\n./dictu tests/runTests.du\n",
       installPhase: nix.thunk(() => nix.add("mkdir -p $out\ncp -r src/include $out/include\nmkdir -p $out/lib\ncp build/src/libdictu_api* $out/lib\n", nix.app(nix.sel(lib, "optionalString"), cliSupport, "install -Dm755 dictu $out/bin/dictu\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "High-level dynamically typed, multi-paradigm, interpreted programming language",
         mainProgram: "dictu",
         homepage: "https://dictu-lang.com",

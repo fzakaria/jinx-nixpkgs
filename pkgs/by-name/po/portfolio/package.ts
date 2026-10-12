@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
   const imagemagick = nix.arg($, "imagemagick");
   const gitUpdater = nix.arg($, "gitUpdater");
   const jre = nix.thunk(() => nix.app(nix.sel(jre_minimal, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       jdk: jdk21_headless,
       modules: nix.thunk(() => [
         "java.base",
@@ -52,11 +52,11 @@ export default nix.lambda((args) => (() => {
     }))));
   const runtimeDeps = nix.thunk(() => [glib, glib_networking, gtk3, libsecret, webkitgtk_4_1]);
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "PortfolioPerformance",
       version: "0.88.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/buchen/portfolio/releases/download/${nix.sel(finalAttrs, "version")}/PortfolioPerformance-${nix.sel(finalAttrs, "version")}-linux.gtk.x86_64.tar.gz`),
           hash: "sha256-F3DZVIijg/O5fl56GzD5/RIiAKFviAeMqkgjlR6a6sI=",
         })))),
@@ -75,7 +75,7 @@ makeWrapper $out/portfolio/PortfolioPerformance $out/bin/portfolio \\
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "Portfolio",
             exec: "portfolio",
             icon: "portfolio",
@@ -86,11 +86,11 @@ makeWrapper $out/portfolio/PortfolioPerformance $out/bin/portfolio \\
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$4, url: "https://github.com/buchen/portfolio.git" })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, url: "https://github.com/buchen/portfolio.git" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Simple tool to calculate the overall performance of an investment portfolio",
         homepage: "https://www.portfolio-performance.info/",
         sourceProvenance: nix.thunk(() => (() => {

@@ -81,11 +81,11 @@ export default nix.lambda((args) => (() => {
     const replicate = nix.thunk(() => nix.attr(from, "replicate"));
     return nix.add(nix.str`${nix.app(replicate, depth, "[")}${k}${nix.app(replicate, depth, "]")}
 `, nix.app(nix.sel(lib, "generators", "toINIWithGlobalSection"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         mkKeyValue: nix.thunk(() => nix.app(mkSubSectionKeyValue, nix.thunk(() => nix.add(depth, 1n)))),
-      })), nix.thunk(() => ({ __proto__: pos$2, globalSection: v }))));
+      })), nix.thunk(() => ({ [nix.POS]: pos$2, globalSection: v }))));
   })() : nix.app(nix.sel(lib, "generators", "mkKeyValueDefault"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mkValueString: (v_1) => (nix.asBool(nix.app(nix.sel(lib, "isString"), v_1)) ? nix.str`"${v_1}"` : nix.app(nix.sel(lib, "generators", "mkValueStringDefault"), nix.thunk(() => ({})), v_1)),
     })), " = ", k, v));
   const iniFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({}))));
@@ -108,7 +108,7 @@ export default nix.lambda((args) => (() => {
       ];
     })()))));
   const finalPackage = nix.thunk(() => nix.app(nix.sel(cfg, "package", "python", "buildEnv", "override"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       extraLibs: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(cfg, "package", "python", "pkgs")), null);
         return nix.concat([
@@ -122,27 +122,27 @@ export default nix.lambda((args) => (() => {
       })()),
     }))));
   return {
-    __proto__: pos$66,
+    [nix.POS]: pos$66,
     options: nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       services: nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         mediagoblin: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable MediaGoblin.\n\nAfter the initial deployment, make sure to add an admin account:\n```\nmediagoblin-gmg adduser --username admin --email admin@example.com\nmediagoblin-gmg makeadmin admin\n```\n",
             })))),
           domain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               example: "mediagoblin.example.com",
               description: "Domain under which mediagoblin will be served.",
             })))),
           createDatabaseLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               example: false,
@@ -150,7 +150,7 @@ export default nix.lambda((args) => (() => {
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "mediagoblin", nix.thunk(() => ({})))),
           pluginPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "package")));
@@ -159,44 +159,44 @@ export default nix.lambda((args) => (() => {
               description: "Plugins to add to the environment of MediaGoblin. They still need to be enabled in the config.",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               description: "Settings which are written into `mediagoblin.ini`.",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   freeformType: nix.thunk(() => nix.sel(lib, "types", "anything")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     mediagoblin: nix.thunk(() => ({
-                      __proto__: pos$14,
+                      [nix.POS]: pos$14,
                       allow_registration: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: false,
                           description: "Whether to enable user self registration. This is generally not recommend due to spammers.\nSee [upstream FAQ](https://docs.mediagoblin.org/en/stable/siteadmin/production-deployments.html#should-i-keep-open-registration-enabled).\n",
                         })))),
                       email_debug_mode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: true,
                           example: false,
                           description: "Disable email debug mode to start sending outgoing mails.\nThis requires configuring SMTP settings,\nsee the [upstream docs](https://docs.mediagoblin.org/en/stable/siteadmin/configuration.html#enabling-email-notifications)\nfor details.\n",
                         })))),
                       email_sender_address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$11,
+                          [nix.POS]: pos$11,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           example: "noreply@example.org",
                           description: "Email address which notices are sent from.",
                         })))),
                       sql_engine: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$12,
+                          [nix.POS]: pos$12,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "sqlite:///var/lib/mediagoblin/mediagoblin.db",
                           example: "postgresql:///mediagoblin",
                           description: "Database to use.",
                         })))),
                       plugins: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$13,
+                          [nix.POS]: pos$13,
                           defaultText: "{\n  \"mediagoblin.plugins.geolocation\" = { };\n  \"mediagoblin.plugins.processing_info\" = { };\n  \"mediagoblin.plugins.basic_auth\" = { };\n  \"mediagoblin.media_types.image\" = { };\n}\n",
                           description: "Plugins to enable. See [upstream docs](https://docs.mediagoblin.org/en/stable/siteadmin/plugins.html) for details.\nExtra dependencies are automatically enabled.\n",
                         })))),
@@ -205,27 +205,27 @@ export default nix.lambda((args) => (() => {
                 })))),
             })))),
           paste: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 6543n,
                 description: "Port under which paste will listen.",
               })))),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 description: "Settings which are written into `paste.ini`.",
                 default: nix.thunk(() => ({})),
-                type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({ __proto__: pos$19, freeformType: nix.thunk(() => nix.sel(iniFormat, "type")) })))),
+                type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({ [nix.POS]: pos$19, freeformType: nix.thunk(() => nix.sel(iniFormat, "type")) })))),
               })))),
           })),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$65,
+        [nix.POS]: pos$65,
         environment: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScriptBin"), "mediagoblin-gmg", nix.thunk(() => nix.str`sudo=exec
 if [[ "$USER" != mediagoblin ]]; then
@@ -236,15 +236,15 @@ $sudo sh -c "cd /var/lib/mediagoblin; env GI_TYPELIB_PATH=${GI_TYPELIB_PATH} GST
           ]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           mediagoblin: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             settings: nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               mediagoblin: nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 plugins: nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   "mediagoblin.media_types.image": nix.thunk(() => ({})),
                   "mediagoblin.plugins.basic_auth": nix.thunk(() => ({})),
                   "mediagoblin.plugins.geolocation": nix.thunk(() => ({})),
@@ -255,51 +255,51 @@ $sudo sh -c "cd /var/lib/mediagoblin; env GI_TYPELIB_PATH=${GI_TYPELIB_PATH} GST
             })),
           })),
           nginx: nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             enable: true,
             recommendedGzipSettings: true,
             recommendedProxySettings: true,
             virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
               [nix.str`${nix.sel(cfg, "domain")}`, nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 forceSSL: true,
                 extraConfig: "# https://git.sr.ht/~mediagoblin/mediagoblin/tree/bf61d38df21748aadb480c53fdd928647285e35f/item/Dockerfile.nginx.in#L5\nclient_max_body_size 100M;\n\nmore_set_headers X-Content-Type-Options nosniff;\n",
                 locations: nix.thunk(() => ({
-                  __proto__: pos$35,
+                  [nix.POS]: pos$35,
                   "/": nix.thunk(() => ({
-                    __proto__: pos$30,
+                    [nix.POS]: pos$30,
                     proxyPass: nix.thunk(() => nix.str`http://127.0.0.1:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "paste", "port")))}`),
                   })),
                   "/mgoblin_static/": nix.thunk(() => ({
-                    __proto__: pos$31,
+                    [nix.POS]: pos$31,
                     alias: nix.thunk(() => nix.str`${finalPackage}/${nix.sel(finalPackage, "python", "sitePackages")}/mediagoblin/static/`),
                   })),
-                  "/mgoblin_media/": nix.thunk(() => ({ __proto__: pos$32, alias: "/var/lib/mediagoblin/user_dev/media/public/" })),
-                  "/theme_static/": nix.thunk(() => ({ __proto__: pos$33, alias: "/var/lib/mediagoblin/user_dev/theme_static/" })),
-                  "/plugin_static/": nix.thunk(() => ({ __proto__: pos$34, alias: "/var/lib/mediagoblin/user_dev/plugin_static/" })),
+                  "/mgoblin_media/": nix.thunk(() => ({ [nix.POS]: pos$32, alias: "/var/lib/mediagoblin/user_dev/media/public/" })),
+                  "/theme_static/": nix.thunk(() => ({ [nix.POS]: pos$33, alias: "/var/lib/mediagoblin/user_dev/theme_static/" })),
+                  "/plugin_static/": nix.thunk(() => ({ [nix.POS]: pos$34, alias: "/var/lib/mediagoblin/user_dev/plugin_static/" })),
                 })),
               }))],
             ])),
           })),
           postgresql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "createDatabaseLocally")), nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               enable: true,
               ensureDatabases: nix.thunk(() => ["mediagoblin"]),
               ensureUsers: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$38, name: "mediagoblin", ensureDBOwnership: true })),
+                nix.thunk(() => ({ [nix.POS]: pos$38, name: "mediagoblin", ensureDBOwnership: true })),
               ]),
             })))),
-          rabbitmq: nix.thunk(() => ({ __proto__: pos$40, enable: true })),
+          rabbitmq: nix.thunk(() => ({ [nix.POS]: pos$40, enable: true })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$59,
+          [nix.POS]: pos$59,
           services: nix.thunk(() => (() => {
             const serviceDefaults = nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               path: path,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 AmbientCapabilities: "",
                 CapabilityBoundingSet: nix.thunk(() => [""]),
                 DevicePolicy: "closed",
@@ -334,18 +334,18 @@ $sudo sh -c "cd /var/lib/mediagoblin; env GI_TYPELIB_PATH=${GI_TYPELIB_PATH} GST
             }));
             const generatedPasteConfig = nix.thunk(() => nix.app(nix.sel(iniFormat, "generate"), "paste.ini", nix.thunk(() => nix.sel(cfg, "paste", "settings"))));
             const pasteConfig = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "paste-combined.ini", nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "crudini"))]),
               })), nix.thunk(() => nix.str`cp ${nix.sel(cfg, "package", "src")}/paste.ini $out
 chmod +w $out
 crudini --merge $out < ${generatedPasteConfig}
 `)));
             return {
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               "mediagoblin-celeryd": nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), serviceDefaults, nix.thunk(() => ({
-                  __proto__: pos$49,
+                  [nix.POS]: pos$49,
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$47,
+                    [nix.POS]: pos$47,
                     Environment: nix.thunk(() => [
                       "CELERY_CONFIG_MODULE=mediagoblin.init.celery.from_celery",
                       nix.thunk(() => nix.str`GI_TYPELIB_PATH=${GI_TYPELIB_PATH}`),
@@ -354,23 +354,23 @@ crudini --merge $out < ${generatedPasteConfig}
                       nix.thunk(() => nix.str`PASTE_CONFIG=${pasteConfig}`),
                     ]),
                     ExecStartPre: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils")), "cp")} --remove-destination ${nix.app(nix.sel(pkgs, "writeText"), "mediagoblin.ini", nix.thunk(() => nix.add(nix.add(nix.app(nix.sel(lib, "generators", "toINI"), nix.thunk(() => ({})), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrsRecursive"), (n) => (v) => !nix.eq(n, "plugins"), nix.thunk(() => nix.sel(cfg, "settings"))))), "\n"), nix.app(nix.sel(lib, "generators", "toINI"), nix.thunk(() => ({
-                          __proto__: pos$45,
+                          [nix.POS]: pos$45,
                           mkKeyValue: nix.thunk(() => nix.app(mkSubSectionKeyValue, 2n)),
                         })), nix.thunk(() => (() => {
                           const from = nix.thunk(() => nix.sel(cfg, "settings", "mediagoblin"));
-                          return { __proto__: pos$46, plugins: nix.thunk(() => nix.attr(from, "plugins")) };
+                          return { [nix.POS]: pos$46, plugins: nix.thunk(() => nix.attr(from, "plugins")) };
                         })())))))} /var/lib/mediagoblin/mediagoblin.ini
 `),
                     ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), finalPackage, "celery")} worker --loglevel=INFO`),
                   })),
-                  unitConfig: nix.thunk(() => ({ __proto__: pos$48, Description: "MediaGoblin Celery" })),
+                  unitConfig: nix.thunk(() => ({ [nix.POS]: pos$48, Description: "MediaGoblin Celery" })),
                 })))),
               "mediagoblin-paster": nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), serviceDefaults, nix.thunk(() => ({
-                  __proto__: pos$52,
+                  [nix.POS]: pos$52,
                   after: nix.thunk(() => ["mediagoblin-celeryd.service", "postgresql.target"]),
                   requires: nix.thunk(() => ["mediagoblin-celeryd.service", "postgresql.target"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$50,
+                    [nix.POS]: pos$50,
                     Environment: nix.thunk(() => [
                       "CELERY_ALWAYS_EAGER=false",
                       nix.thunk(() => nix.str`GI_TYPELIB_PATH=${GI_TYPELIB_PATH}`),
@@ -382,36 +382,36 @@ crudini --merge $out < ${generatedPasteConfig}
                     ]),
                     ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), finalPackage, "paster")} serve /var/lib/mediagoblin/paste.ini`),
                   })),
-                  unitConfig: nix.thunk(() => ({ __proto__: pos$51, Description: "Mediagoblin" })),
+                  unitConfig: nix.thunk(() => ({ [nix.POS]: pos$51, Description: "Mediagoblin" })),
                 })))),
             };
           })()),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$58,
+            [nix.POS]: pos$58,
             settings: nix.thunk(() => ({
-              __proto__: pos$57,
+              [nix.POS]: pos$57,
               mediagoblin: nix.thunk(() => ({
-                __proto__: pos$56,
+                [nix.POS]: pos$56,
                 "/var/lib/mediagoblin/user_dev": nix.thunk(() => ({
-                  __proto__: pos$55,
-                  d: nix.thunk(() => ({ __proto__: pos$54, group: "mediagoblin", mode: "2750", user: "mediagoblin" })),
+                  [nix.POS]: pos$55,
+                  d: nix.thunk(() => ({ [nix.POS]: pos$54, group: "mediagoblin", mode: "2750", user: "mediagoblin" })),
                 })),
               })),
             })),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$64,
-          groups: nix.thunk(() => ({ __proto__: pos$60, mediagoblin: nix.thunk(() => ({})) })),
+          [nix.POS]: pos$64,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$60, mediagoblin: nix.thunk(() => ({})) })),
           users: nix.thunk(() => ({
-            __proto__: pos$63,
+            [nix.POS]: pos$63,
             mediagoblin: nix.thunk(() => ({
-              __proto__: pos$61,
+              [nix.POS]: pos$61,
               group: "mediagoblin",
               home: "/var/lib/mediagoblin",
               isSystemUser: true,
             })),
-            nginx: nix.thunk(() => ({ __proto__: pos$62, extraGroups: nix.thunk(() => ["mediagoblin"]) })),
+            nginx: nix.thunk(() => ({ [nix.POS]: pos$62, extraGroups: nix.thunk(() => ["mediagoblin"]) })),
           })),
         })),
       })))),

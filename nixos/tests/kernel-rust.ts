@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ __proto__: pos$1, system: system, config: config }))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
   const from = nix.thunk(() => nix.sel(pkgs, "lib"));
   const const$ = nix.thunk(() => nix.attr(from, "const"));
   const filterAttrs = nix.thunk(() => nix.attr(from, "filterAttrs"));
@@ -29,10 +29,10 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const lib = nix.arg($_1, "lib");
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         name: "kernel-rust",
         meta: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [
@@ -42,24 +42,24 @@ export default nix.lambda((args) => (() => {
           })()),
         })),
         nodes: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           machine: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
             const config_1 = nix.arg($_2, "config");
             return {
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               boot: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 kernelPackages: kernelPackages,
                 extraModulePackages: nix.thunk(() => [
                   nix.thunk(() => nix.sel(config_1, "boot", "kernelPackages", "rust-out-of-tree-module")),
                 ]),
                 kernelPatches: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     name: "Rust Support",
                     patch: null,
-                    features: nix.thunk(() => ({ __proto__: pos$3, rust: true })),
+                    features: nix.thunk(() => ({ [nix.POS]: pos$3, rust: true })),
                   })),
                 ]),
               })),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
   const kernels = nix.thunk(() => nix.update((() => {
     const from_1 = nix.thunk(() => nix.sel(pkgs, "linuxKernel", "packages"));
     return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     linux_testing: nix.thunk(() => nix.attr(from_1, "linux_testing")),
   };
   })(), nix.app(filterAttrs, nix.thunk(() => nix.app(const$, (x) => (() => {

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libfacet";
       const version = "0.0.1alpha2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/multitran/libfacet-${version}.tar.bz2`),
           sha256: "dc53351c4035a3c27dc6c1d0410e808346fbc107e7e7c112ec65c59d0df7a144",
         }))));
@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
   src/Makefile;
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://multitran.sourceforge.net/",
         description: "Multitran lib: enhanced locale facets",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
-      return { __proto__: pos$3, pname, version, src, buildInputs, patchPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, buildInputs, patchPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

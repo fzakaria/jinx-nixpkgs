@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const libiconv = nix.arg($, "libiconv");
   const withGfxstream = nix.argOr($, "withGfxstream", () => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), gfxstream));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "rutabaga_gfx",
       version: "0.1.6",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://chromium.googlesource.com/crosvm/crosvm",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}-rutabaga-release`),
           fetchSubmodules: true,
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => nix.concat([libiconv], nix.app(nix.sel(lib, "optionals"), withGfxstream, nix.thunk(() => nix.concat([aemu, gfxstream], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), libdrm)), nix.thunk(() => [libdrm]))))))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-23F0WU//4xvP9xffxr+cQa0m0sSJjcWyz+usKBpDg20=",
         })))),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonBool"), "gfxstream", withGfxstream)),
       ]),
       env: nix.thunk(() => nix.attrsDyn({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         CARGO_BUILD_TARGET: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "rust", "rustcTargetSpec")),
       }, [
         [nix.str`CARGO_TARGET_${nix.sel(stdenv, "hostPlatform", "rust", "cargoEnvVarTarget")}_LINKER`, nix.thunk(() => nix.str`${nix.sel(stdenv, "cc", "targetPrefix")}cc`)],
@@ -67,7 +67,7 @@ substituteInPlace build.sh \\
   --replace-fail '"$BUILDTYPE"/"$SHARED_LIB"' '${nix.sel(stdenv, "hostPlatform", "rust", "cargoShortTarget")}/"$BUILDTYPE"/"$SHARED_LIB"'
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://crosvm.dev/book/appendix/rutabaga_gfx.html",
         description: "Cross-platform abstraction for GPU and display virtualization",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

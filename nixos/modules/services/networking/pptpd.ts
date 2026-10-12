@@ -26,40 +26,40 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const w = nix.withScope(lib, null);
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pptpd: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "pptpd, the Point-to-Point Tunneling Protocol daemon")),
           serverIp: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "The server-side IP address.",
               default: "10.124.124.1",
             })))),
           clientIpRange: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "The range from which client IPs are drawn.",
               default: "10.124.124.2-11",
             })))),
           maxClients: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
               description: "The maximum number of simultaneous connections.",
               default: 10n,
             })))),
           extraPptpdOptions: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               description: "Adds extra lines to the pptpd configuration file.",
               default: "",
             })))),
           extraPppdOptions: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               description: "Adds extra lines to the pppd options file.",
               default: "",
@@ -69,11 +69,11 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(config, "services", "pptpd", "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             pptpd: nix.thunk(() => (() => {
               const cfg = nix.thunk(() => nix.sel(config, "services", "pptpd"));
               const pptpd_conf = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "pptpd.conf", nix.thunk(() => nix.str`# Inspired from pptpd-1.4.0/samples/pptpd.conf
@@ -105,7 +105,7 @@ nologfd
 ${nix.sel(cfg, "extraPppdOptions")}
 `)));
               const ppp_pptpd_wrapped = nix.thunk(() => nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   name: "ppp-pptpd-wrapped",
                   nativeBuildInputs: nix.thunk(() => (() => {
                     const w_1 = nix.withScope(pkgs, w);
@@ -118,13 +118,13 @@ makeWrapper ${nix.sel(pkgs, "ppp")}/bin/pppd $out/bin/pppd \\
 `),
                 }))));
               return {
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 description: "pptpd server",
                 requires: nix.thunk(() => ["network-online.target"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 preStart: "mkdir -p -m 700 /etc/ppp-pptpd\n\nsecrets=\"/etc/ppp-pptpd/chap-secrets\"\n\n[ -f \"$secrets\" ] || install -m 600 -o root -g root /dev/stdin \"$secrets\" << EOF\n# From: pptpd-1.4.0/samples/chap-secrets\n# Secrets for authentication using CHAP\n# client\tserver\tsecret\t\tIP addresses\n#username\tpptpd\tpassword\t*\nEOF\n",
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "pptpd")}/bin/pptpd --conf ${pptpd_conf}`),
                   KillMode: "process",
                   Restart: "on-success",

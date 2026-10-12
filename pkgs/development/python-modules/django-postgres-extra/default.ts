@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.9";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SectorLabs",
           repo: "django-postgres-extra",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(django, "version")), "5.2")), nix.thunk(() => ["test_query_annotate_rename_chain"])))));
       const pythonImportsCheck = nix.thunk(() => ["psqlextra"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bringing all of PostgreSQL's awesomeness to Django",
         homepage: "https://github.com/SectorLabs/django-postgres-extra",
         changelog: nix.thunk(() => nix.str`https://github.com/SectorLabs/django-postgres-extra/releases/tag/v${version}`),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

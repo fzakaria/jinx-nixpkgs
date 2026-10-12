@@ -14,20 +14,20 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const nixpkgs = nix.arg($, "nixpkgs");
   const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nixpkgs), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       system: "x86_64-linux",
       overlays: [],
-      config: nix.thunk(() => ({ __proto__: pos$1, checkMeta: true })),
+      config: nix.thunk(() => ({ [nix.POS]: pos$1, checkMeta: true })),
     }))));
   return nix.app(nix.sel(pkgs, "stdenvNoCC", "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "a",
       version: "0",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         problems: nix.thunk(() => ({
-          __proto__: pos$4,
-          invalid: nix.thunk(() => ({ __proto__: pos$3, message: "No maintainers" })),
+          [nix.POS]: pos$4,
+          invalid: nix.thunk(() => ({ [nix.POS]: pos$3, message: "No maintainers" })),
         })),
       })),
     })));

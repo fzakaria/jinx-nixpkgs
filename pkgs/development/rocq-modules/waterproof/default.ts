@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const stdlib = nix.arg($, "stdlib");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "waterproof",
       owner: "impermeable",
       repo: "coq-waterproof",
@@ -27,16 +27,16 @@ export default nix.lambda((args) => (() => {
         const range = nix.thunk(() => nix.attr(from, "range"));
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               case: nix.thunk(() => nix.app(range, "8.18", "8.18")),
               out: "2.1.1+8.18",
             })),
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "2.1.1+8.18": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           hash: "sha256-jYuQ9SPFRefNCUfn6+jEaJ4399EnU0gXPPkEDCpJYOI=",
         })),
       })),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       mlPlugin: true,
       useDune: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Coq proofs in a style that resembles non-mechanized mathematical proofs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
       })),

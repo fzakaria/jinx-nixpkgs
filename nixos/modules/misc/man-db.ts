@@ -36,33 +36,33 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "documentation", "man", "man-db"));
   const cfgm = nix.thunk(() => nix.sel(config, "documentation", "man"));
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       documentation: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         man: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           "man-db": nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "man-db as the default man page viewer"), {
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: nix.thunk(() => nix.sel(cfgm, "enable")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.documentation.man.enable")),
               example: false,
             })),
             skipPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
                 default: [],
                 internal: true,
                 description: "Packages to *not* include in the man-db.\nThis can be useful to avoid unnecessary rebuilds due to packages that change frequently, like nixos-version.\n",
               })))),
             manualPages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(lib, "types", "path")),
                 default: nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     name: "man-paths",
                     paths: nix.thunk(() => nix.app(nix.sel(lib, "subtractLists"), nix.thunk(() => nix.sel(cfg, "skipPackages")), nix.thunk(() => nix.sel(config, "environment", "systemPackages")))),
                     pathsToLink: nix.thunk(() => ["/share/man"]),
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
                 description: "The manual pages to generate caches for if {option}`documentation.man.cache.enable`\nis enabled. Must be a path to a directory with man pages under\n`/share/man`; see the source for an example.\nAdvanced users can make this a content-addressed derivation to save a few rebuilds.\n",
               })))),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(lib, "types", "package")),
                 default: nix.thunk(() => nix.sel(pkgs, "man-db")),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.man-db")),
@@ -88,18 +88,18 @@ export default nix.lambda((args) => (() => {
     ]),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             environment: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
               etc: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 "man_db.conf": nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   text: nix.thunk(() => (() => {
                     const buildPackage = nix.thunk(() => (nix.asBool(nix.app(nix.sel(pkgs, "stdenv", "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform")))) ? nix.sel(cfg, "package") : nix.sel(pkgs, "buildPackages", "man-db")));
                     const manualCache = nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(cfgm, "cache", "generateAtRuntime"))) ? nix.app(nix.sel(pkgs, "runCommand"), "man-cache", nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         nativeBuildInputs: nix.thunk(() => [buildPackage]),
                         preferLocalBuild: true,
                       })), nix.thunk(() => nix.str`echo "MANDB_MAP ${nix.sel(cfg, "manualPages")}/share/man $out" > man.conf
@@ -119,21 +119,21 @@ MANDB_MAP /run/current-system/sw/share/man ${manualCache}
             })),
           })),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfgm, "enable")) && nix.asBool(nix.sel(cfgm, "cache", "generateAtRuntime")))), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               users: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 users: nix.thunk(() => ({
-                  __proto__: pos$16,
-                  mandb: nix.thunk(() => ({ __proto__: pos$15, isSystemUser: true, group: "mandb" })),
+                  [nix.POS]: pos$16,
+                  mandb: nix.thunk(() => ({ [nix.POS]: pos$15, isSystemUser: true, group: "mandb" })),
                 })),
-                groups: nix.thunk(() => ({ __proto__: pos$17, mandb: nix.thunk(() => ({})) })),
+                groups: nix.thunk(() => ({ [nix.POS]: pos$17, mandb: nix.thunk(() => ({})) })),
               })),
               systemd: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 services: nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   mandb: nix.thunk(() => ({
-                    __proto__: pos$20,
+                    [nix.POS]: pos$20,
                     path: nix.thunk(() => [
                       nix.thunk(() => nix.sel(cfg, "package")),
                       nix.thunk(() => nix.sel(pkgs, "rsync")),
@@ -148,7 +148,7 @@ echo "MANDB_MAP $CACHE_DIRECTORY/nixos-manpages $CACHE_DIRECTORY/nixos-mandb" \\
 mandb -C "$RUNTIME_DIRECTORY/man.conf" -q
 `),
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$19,
+                      [nix.POS]: pos$19,
                       CacheDirectory: "man",
                       RuntimeDirectory: "mandb",
                       User: "mandb",

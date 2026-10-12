@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
   const swiftpmHook = nix.arg($, "swiftpmHook");
   const swift_release = nix.arg($, "swift_release");
   const swift_sources = nix.arg($, "swift_sources");
-  const swift_syntax_no_toolchain = nix.thunk(() => nix.app(nix.sel(swift_syntax, "override"), nix.thunk(() => ({ __proto__: pos$1, useToolchainLibraries: false }))));
+  const swift_syntax_no_toolchain = nix.thunk(() => nix.app(nix.sel(swift_syntax, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, useToolchainLibraries: false }))));
   const rpaths = nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [
       sqlite,
       swift_argument_parser,
@@ -55,14 +55,14 @@ export default nix.lambda((args) => (() => {
       swift_tools_support_core,
     ])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "swiftpm",
       version: swift_release,
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(swift_sources, "swift-package-manager"));
           return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "swiftlang",
           repo: "swift-package-manager",
           tag: nix.thunk(() => nix.str`swift-${nix.sel(finalAttrs, "version")}-RELEASE`),
@@ -79,12 +79,12 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./patches/0008-set-compiler-vendor.patch"),
         nix.path(here, "./patches/0009-add-missing-libraries.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patches/0010-Load-IndexStore-from-the-store.patch"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             libclang: nix.thunk(() => nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(llvmPackages, "libclang")))),
           })))),
         nix.path(here, "./patches/0011-Always-find-Clang-in-the-toolchain.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/swiftlang/swift-package-manager/commit/e1910f814cc1be40c709c3987a29488b9bee2f92.patch?full_index=1",
             hash: "sha256-4Ew/cKlk+Zn8cIQvh0jQy4Fz+xGYBYwch4+SBu1nKpI=",
           })))),
@@ -119,9 +119,9 @@ appendToVar cmakeFlags -DCMAKE_Swift_FLAGS=-module-cache-path\\ "$NIX_BUILD_TOP/
 done
 `)))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => nix.app(nix.sel(lib, "packagesFromDirectoryRecursive"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             callPackage: callPackage,
             directory: nix.path(here, "./tests"),
           })))),
@@ -130,7 +130,7 @@ done
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(swift, "meta"));
         return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Package Manager for the Swift Programming Language",
         homepage: "https://github.com/swiftlang/swift-package-manager",
         badPlatforms: nix.thunk(() => nix.attr(from, "badPlatforms")),

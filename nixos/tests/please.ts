@@ -22,42 +22,42 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     name: "please",
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           users: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             users: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
-                nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map((n) => nix.app(nix.sel(lib, "nameValuePair"), n, nix.thunk(() => ({ __proto__: pos$2, isNormalUser: true }))), nix.thunk(() => nix.app(nix.sel(lib, "genList"), (x) => nix.str`user${nix.builtins.toString(x)}`, 6n)))))),
+                nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map((n) => nix.app(nix.sel(lib, "nameValuePair"), n, nix.thunk(() => ({ [nix.POS]: pos$2, isNormalUser: true }))), nix.thunk(() => nix.app(nix.sel(lib, "genList"), (x) => nix.str`user${nix.builtins.toString(x)}`, 6n)))))),
                 nix.thunk(() => ({
-                  __proto__: pos$4,
-                  user0: nix.thunk(() => ({ __proto__: pos$3, extraGroups: nix.thunk(() => ["wheel"]) })),
+                  [nix.POS]: pos$4,
+                  user0: nix.thunk(() => ({ [nix.POS]: pos$3, extraGroups: nix.thunk(() => ["wheel"]) })),
                 })),
               ]))),
           })),
           security: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             please: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               enable: true,
               wheelNeedsPassword: false,
               settings: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 user2_run_true_as_root: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   name: "user2",
                   target: "root",
                   rule: "/run/current-system/sw/bin/true",
                   require_pass: false,
                 })),
                 user4_edit_etc_hosts_as_root: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   name: "user4",
                   type: "edit",
                   target: "root",

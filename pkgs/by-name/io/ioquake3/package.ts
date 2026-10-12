@@ -33,13 +33,13 @@ export default nix.lambda((args) => (() => {
   const bc = nix.arg($, "bc");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ioquake3",
       version: "0-unstable-2026-07-19",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ioquake",
           repo: "ioq3",
           rev: "588393618dbc82e7207c21c6ddecca229944a03a",
@@ -69,7 +69,7 @@ makeWrapper $out/share/ioquake3/ioq3ded $out/bin/ioq3ded
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "makeWrapper $out/share/ioquake3/ioquake3 $out/bin/ioquake3\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications\nmv $out/share/ioquake3/ioquake3.app $out/Applications/\nmkdir -p $out/bin\nmakeWrapper $out/Applications/ioquake3.app/Contents/MacOS/ioquake3 $out/bin/ioquake3\nmakeWrapper $out/share/ioquake3/ioq3ded $out/Applications/ioquake3.app/Contents/MacOS/ioq3ded\n"))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "IOQuake3",
             exec: "ioquake3",
             icon: "ioquake3",
@@ -79,11 +79,11 @@ makeWrapper $out/share/ioquake3/ioq3ded $out/bin/ioq3ded
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://ioquake3.org/",
         description: "Fast-paced 3D first-person shooter, a community effort to continue supporting/developing id's Quake III Arena",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

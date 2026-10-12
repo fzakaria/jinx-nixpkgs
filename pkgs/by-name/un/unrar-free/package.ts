@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "unrar-free",
       version: "0.3.4",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bgermann",
           repo: "unrar-free",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([libarchive], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [argp_standalone])))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-largp")),
       })),
       setupHook: nix.path(here, "./setup-hook.sh"),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Free utility to extract files from RAR archives",
         longDescription: "unrar-free is a free software version of the non-free unrar utility.\n\nThis program is a simple command-line front-end to libarchive, and can list\nand extract RAR archives but also other formats supported by libarchive.\n\nIt does not rival the non-free unrar in terms of features, but\nspecial care has been taken to ensure it meets most user's needs.\n",
         homepage: "https://gitlab.com/bgermann/unrar-free",

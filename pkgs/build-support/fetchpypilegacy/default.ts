@@ -45,15 +45,15 @@ export default nix.lambda((args) => (() => {
       const netrc_file = nix.thunk(() => (nix.asBool(!nix.eq(pathParts, [])) ? nix.sel(nix.app(head, pathParts), "path") : ""));
       nix.assert_(!nix.eq(urls$, []), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/fetchpypilegacy/default.nix:47:3");
       return nix.app(runCommand, file, nix.thunk(() => nix.update({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           nativeBuildInputs: nix.thunk(() => [python3, cacert_1]),
           impureEnvVars: impureEnvVars,
           outputHashMode: "flat",
           outputHashAlgo: nix.thunk(() => (nix.asBool(nix.eq(hash, "")) ? "sha256" : null)),
           outputHash: hash,
-        }, nix.update(nix.app(optionalAttrs, nix.thunk(() => !nix.eq(name, null)), nix.thunk(() => ({ __proto__: pos$2, name: name }))), nix.app(optionalAttrs, nix.thunk(() => !nix.asBool(inPureEvalMode)), nix.thunk(() => ({
-            __proto__: pos$4,
-            env: nix.thunk(() => ({ __proto__: pos$3, NETRC: netrc_file })),
+        }, nix.update(nix.app(optionalAttrs, nix.thunk(() => !nix.eq(name, null)), nix.thunk(() => ({ [nix.POS]: pos$2, name: name }))), nix.app(optionalAttrs, nix.thunk(() => !nix.asBool(inPureEvalMode)), nix.thunk(() => ({
+            [nix.POS]: pos$4,
+            env: nix.thunk(() => ({ [nix.POS]: pos$3, NETRC: netrc_file })),
           })))))), nix.thunk(() => nix.str`python ${nix.path(here, "./fetch-legacy.py")} ${nix.app(concatStringsSep, " ", nix.thunk(() => nix.builtins.map((url_1) => nix.str`--url ${nix.app(escapeShellArg, url_1)}`, urls$)))} --pname ${pname} --filename ${file}
 mv ${file} $out
 `));

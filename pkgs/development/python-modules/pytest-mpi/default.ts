@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aragilar",
           repo: "pytest-mpi",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const pytestFlags = nix.thunk(() => ["-ppytester"]);
       const pythonImportsCheck = nix.thunk(() => ["pytest_mpi"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pytest plugin for working with MPI",
         homepage: "https://github.com/aragilar/pytest-mpi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

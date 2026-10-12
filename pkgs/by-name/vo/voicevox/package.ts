@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const electron = nix.arg($, "electron");
   const voicevox_engine = nix.arg($, "voicevox-engine");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "voicevox",
       version: "0.25.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "VOICEVOX",
           repo: "voicevox",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             electron_path: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), electron)),
             sevenzip_path: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), _7zz)),
             voicevox_engine_path: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), voicevox_engine)),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "# don't fail if node version doesn't fit the constraint\nsubstituteInPlace .npmrc \\\n  --replace-fail \"engine-strict=true\" \"\"\n\n# unlock the overly specific pnpm package version pin\n# and also set version to a proper value\njq \"del(.packageManager) | .version = \\\"$version\\\"\" package.json | sponge package.json\n",
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-0Z/C4x4ZDPC+3o5i6KJgFqmAhHk9CUhoPB9+6yyLtdE=",
         })))),
       nativeBuildInputs: nix.thunk(() => nix.concat([dart_sass, jq, makeWrapper, moreutils, nodejs, pnpmConfigHook, pnpm_10], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [copyDesktopItems])))),
-      env: nix.thunk(() => ({ __proto__: pos$4, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$4, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
 
 # force sass-embedded to use our own sass from PATH instead of the bundled one
@@ -105,7 +105,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "voicevox",
             exec: "voicevox",
             icon: "voicevox",
@@ -115,7 +115,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         changelog: nix.thunk(() => nix.str`https://github.com/VOICEVOX/voicevox/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Editor for the VOICEVOX speech synthesis software",
         homepage: "https://github.com/VOICEVOX/voicevox",

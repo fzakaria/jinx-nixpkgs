@@ -83,11 +83,11 @@ export default nix.lambda((args) => (() => {
   const adapters = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(gcc16Stdenv, "targetPlatform", "isDarwin"))), nix.thunk(() => [nix.thunk(() => nix.sel(stdenvAdapters, "useMoldLinker"))])));
   const customStdenv = nix.thunk(() => nix.app(foldl$, (acc) => (adapter) => nix.app(adapter, acc), gcc16Stdenv, adapters));
   return nix.app(nix.sel(customStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: nix.thunk(() => nix.add("hyprland", nix.app(optionalString, debug, "-debug"))),
       version: "0.56.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hyprwm",
           repo: "hyprland",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -112,7 +112,7 @@ substituteInPlace systemd/hyprland-uwsm.desktop \\
   --replace-fail "TryExec=uwsm" "TryExec=${nix.app(nix.sel(lib, "getExe"), uwsm)}"
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         GIT_BRANCH: nix.thunk(() => nix.sel(info, "branch")),
         GIT_COMMITS: "-1",
         GIT_COMMIT_DATE: nix.thunk(() => nix.sel(info, "date")),
@@ -173,7 +173,7 @@ substituteInPlace systemd/hyprland-uwsm.desktop \\
       separateDebugInfo: nix.thunk(() => !nix.asBool(debug)),
       strictDeps: true,
       cmakeFlags: nix.thunk(() => nix.app(mapAttrsToList, cmakeBool, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           BUILT_WITH_NIX: true,
           NO_XWAYLAND: nix.thunk(() => !nix.asBool(enableXWayland)),
           NO_SYSTEMD: nix.thunk(() => !nix.asBool(withSystemd)),
@@ -186,12 +186,12 @@ substituteInPlace systemd/hyprland-uwsm.desktop \\
 `))}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         providedSessions: nix.thunk(() => nix.concat(["hyprland"], nix.app(optionals, withSystemd, nix.thunk(() => ["hyprland-uwsm"])))),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/hyprwm/Hyprland",
         changelog: nix.thunk(() => nix.str`https://github.com/hyprwm/Hyprland/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Dynamic tiling Wayland compositor that doesn't sacrifice on its looks",

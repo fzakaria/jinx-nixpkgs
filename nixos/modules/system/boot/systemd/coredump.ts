@@ -38,32 +38,32 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "systemd", "coredump"));
   const systemd = nix.thunk(() => nix.sel(config, "systemd", "package"));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["systemd", "coredump", "extraConfig"]), "Use systemd.coredump.settings.Coredump instead.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       systemd: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         coredump: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: true,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Whether core dumps should be processed by\n{command}`systemd-coredump`. If disabled, core dumps\nappear in the current directory of the crashing process.\n",
             })))),
           settings: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             Coredump: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$2,
+                    [nix.POS]: pos$2,
                     freeformType: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(utils, "systemdUtils", "unitOptions", "unitOption")))),
                   })))),
-                example: nix.thunk(() => ({ __proto__: pos$3, Storage: "journal" })),
+                example: nix.thunk(() => ({ [nix.POS]: pos$3, Storage: "journal" })),
                 description: "Settings for systemd-coredump. See {manpage}`coredump.conf(5)` for\navailable options.\n",
               })))),
           })),
@@ -72,54 +72,54 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             systemd: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               additionalUpstreamSystemUnits: nix.thunk(() => ["systemd-coredump.socket", "systemd-coredump@.service"]),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               etc: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 "systemd/coredump.conf": nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   text: nix.thunk(() => nix.app(nix.sel(utils, "systemdUtils", "lib", "settingsToSections"), nix.thunk(() => nix.sel(cfg, "settings")))),
                 })),
                 "sysctl.d/50-coredump.conf": nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   source: nix.thunk(() => nix.app(nix.sel(pkgs, "substitute"), nix.thunk(() => ({
-                      __proto__: pos$12,
+                      [nix.POS]: pos$12,
                       src: nix.thunk(() => nix.str`${systemd}/example/sysctl.d/50-coredump.conf`),
                       substitutions: nix.thunk(() => [
                         "--replace-fail",
                         nix.thunk(() => nix.str`${systemd}`),
-                        nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "symlinkJoin"), nix.thunk(() => ({ __proto__: pos$11, name: "systemd", paths: nix.thunk(() => [systemd]) })))}`),
+                        nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "symlinkJoin"), nix.thunk(() => ({ [nix.POS]: pos$11, name: "systemd", paths: nix.thunk(() => [systemd]) })))}`),
                       ]),
                     })))),
                 })),
               })),
             })),
             users: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               users: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 "systemd-coredump": nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   uid: nix.thunk(() => nix.sel(config, "ids", "uids", "systemd-coredump")),
                   group: "systemd-coredump",
                 })),
               })),
-              groups: nix.thunk(() => ({ __proto__: pos$18, "systemd-coredump": nix.thunk(() => ({})) })),
+              groups: nix.thunk(() => ({ [nix.POS]: pos$18, "systemd-coredump": nix.thunk(() => ({})) })),
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "enable"))), nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             boot: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               kernel: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 sysctl: nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   "kernel.core_pattern": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "core")),
                 })),
               })),

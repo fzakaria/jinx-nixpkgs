@@ -10,12 +10,12 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildRedist = nix.arg($, "buildRedist");
   return nix.app(buildRedist, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       redistName: "nvpl",
       pname: "nvpl_sparse",
       outputs: nix.thunk(() => ["out", "dev", "include", "lib"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Provides a set of CPU-accelerated basic linear algebra subroutines used for handling sparse matrices",
         homepage: "https://developer.nvidia.com/nvpl",
         changelog: "https://docs.nvidia.com/nvpl/latest/sparse/release_notes.html",

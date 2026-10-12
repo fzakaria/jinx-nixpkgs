@@ -9,6 +9,6 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const args_1 = args;
   const discord = nix.arg($, "discord");
-  return nix.app(nix.sel(discord, "override"), nix.thunk(() => nix.update({ __proto__: pos$1, pname: "discord-canary" }, nix.builtins.removeAttrs(args_1, nix.thunk(() => ["discord"])))));
+  return nix.app(nix.sel(discord, "override"), nix.thunk(() => nix.update({ [nix.POS]: pos$1, pname: "discord-canary" }, nix.builtins.removeAttrs(args_1, nix.thunk(() => ["discord"])))));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

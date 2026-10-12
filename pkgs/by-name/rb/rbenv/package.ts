@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rbenv",
       version: "1.3.2",
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rbenv",
           repo: "rbenv",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs src/configure\npushd src\n",
       installPhase: "popd\nmkdir -p $out/bin\nmv libexec $out\nln -s $out/libexec/rbenv $out/bin/rbenv\ninstallManPage share/man/man1/rbenv.1\n\ninstallShellCompletion --zsh completions/_rbenv\ninstallShellCompletion --bash completions/rbenv.bash\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Version manager tool for the Ruby programming language on Unix-like systems",
         longDescription: "Use rbenv to pick a Ruby version for your application and guarantee that your development environment matches production.\nPut rbenv to work with Bundler for painless Ruby upgrades and bulletproof deployments.\n",
         homepage: "https://github.com/rbenv/rbenv",

@@ -12,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const merlin = nix.arg($, "merlin");
   const csexp = nix.arg($, "csexp");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "merlin-lib",
       version: nix.thunk(() => nix.attr(merlin, "version")),
       src: nix.thunk(() => nix.attr(merlin, "src")),
       minimalOCamlVersion: "4.14",
       propagatedBuildInputs: nix.thunk(() => [csexp]),
-      meta: nix.thunk(() => nix.update(nix.sel(merlin, "meta"), { __proto__: pos$1, description: "Merlin’s libraries" })),
+      meta: nix.thunk(() => nix.update(nix.sel(merlin, "meta"), { [nix.POS]: pos$1, description: "Merlin’s libraries" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=lib.ts.map

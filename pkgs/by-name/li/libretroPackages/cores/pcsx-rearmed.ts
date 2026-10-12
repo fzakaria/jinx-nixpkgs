@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkLibretroCore = nix.arg($, "mkLibretroCore");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       core: "pcsx-rearmed",
       version: "0-unstable-2026-09-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libretro",
           repo: "pcsx_rearmed",
           rev: "8625c395a24411f8c77e69802b516df9c613a712",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       dontConfigure: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Port of PCSX ReARMed to libretro",
         homepage: "https://github.com/libretro/pcsx_rearmed",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

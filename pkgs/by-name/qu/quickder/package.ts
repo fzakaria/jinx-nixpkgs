@@ -30,26 +30,26 @@ export default nix.lambda((args) => (() => {
   const ensureNewerSourcesForZipFilesHook = nix.arg($, "ensureNewerSourcesForZipFilesHook");
   const python = nix.thunk(() => (() => {
     const packageOverrides = (self) => (super$) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pyparsing: nix.thunk(() => nix.app(nix.sel(super$, "pyparsing", "overridePythonAttrs"), (old) => (() => {
           const version = "3.1.2";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               owner: "pyparsing",
               repo: "pyparsing",
               tag: version,
               hash: "sha256-0B8DjO4kLgvt4sYsk8CZI+5icdKy73XE2tWeqVLqO5A=",
             }))));
-          return { __proto__: pos$2, version, src };
+          return { [nix.POS]: pos$2, version, src };
         })())),
     });
-    return nix.app(nix.sel(python3, "override"), nix.thunk(() => ({ __proto__: pos$4, packageOverrides: packageOverrides, self: python })));
+    return nix.app(nix.sel(python3, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, packageOverrides: packageOverrides, self: python })));
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "quickder";
       const version = "1.7.2";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "arpa2",
           repo: "quick-der",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -74,11 +74,11 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace setup.py --replace-fail 'pyparsing==' 'pyparsing>='\nrm python/__init__.py\n";
       const doCheck = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$7,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$6, "rev-prefix": "v" })))),
+        [nix.POS]: pos$7,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$6, "rev-prefix": "v" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Quick (and Easy) DER, a Library for parsing ASN.1",
         homepage: "https://gitlab.com/arpa2/quick-der/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname,
         version,
         src,

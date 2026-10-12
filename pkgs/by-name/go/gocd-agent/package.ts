@@ -21,19 +21,19 @@ export default nix.lambda((args) => (() => {
       const version = "23.1.0";
       const rev = "16079";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.go.cd/binaries/${version}-${rev}/generic/go-agent-${version}-${rev}.zip`),
           sha256: "sha256-L2MOkbVHoQu99lKrbnsNkhuU0SZ8VANSK72GZrGLbiQ=",
         }))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "gocd-agent": nix.thunk(() => nix.attr(nixosTests, "gocd-agent")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Continuous delivery server specializing in advanced workflow modeling and visualization",
         homepage: "http://www.go.cd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
     mv $out/go-agent-${version} $out/go-agent
   `);
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         rev,

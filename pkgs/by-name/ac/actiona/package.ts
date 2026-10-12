@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const textToSpeechSupport = nix.argOr($, "textToSpeechSupport", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "actiona",
       version: "3.11.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Jmgr",
           repo: "actiona",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(qt6, "qt5compat")),
       ], nix.app(nix.sel(lib, "optionals"), textToSpeechSupport, nix.thunk(() => [nix.thunk(() => nix.sel(qt6, "qtspeech"))])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cross-platform automation tool",
         homepage: "https://github.com/Jmgr/actiona",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

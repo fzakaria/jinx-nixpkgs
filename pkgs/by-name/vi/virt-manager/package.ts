@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
     ];
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "virt-manager",
       version: "5.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "virt-manager",
           repo: "virt-manager",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -84,7 +84,7 @@ gappsWrapperArgs+=(--prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.t
 patchShebangs $out/bin
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://virt-manager.org",
         description: "Desktop user interface for managing virtual machines",
         longDescription: "The virt-manager application is a desktop user interface for managing\nvirtual machines through libvirt. It primarily targets KVM VMs, but also\nmanages Xen and LXC (linux containers).\n",

@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const dpkg = nix.arg($, "dpkg");
   const fakeroot = nix.arg($, "fakeroot");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "apkg",
       version: "1.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.nic.cz",
           owner: "packaging",
           repo: "apkg",
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       })()),
       checkPhase: "runHook preCheck\npy.test # inspiration: .gitlab-ci.yml\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Upstream packaging automation tool",
         homepage: "https://pkg.labs.nic.cz/pages/apkg",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const from_1 = nix.thunk(() => nix.sel(lib, "strings"));
   const hasSuffix = nix.thunk(() => nix.attr(from_1, "hasSuffix"));
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     baseNameOf: nix.thunk(() => nix.attr(nix.builtins, "baseNameOf")),
     dirOf: nix.thunk(() => nix.attr(nix.builtins, "dirOf")),
     isPath: nix.thunk(() => nix.attr(nix.builtins, "isPath")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
     haskellPathsInDir: (root) => (() => {
       const root_files = nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.builtins.readDir(root))));
       const root_files_with_paths = nix.thunk(() => nix.builtins.map((file) => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: file,
           value: nix.thunk(() => nix.add(root, nix.str`/${file}`)),
         }), root_files));
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       const go = (path) => (() => {
         const files = nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.builtins.readDir(path))));
         const matches = nix.thunk(() => nix.builtins.filter((match) => !nix.eq(match, null), nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.app(nix.builtins.match, pattern)), files))));
-        return (nix.asBool(!nix.eq(nix.builtins.length(matches), 0n)) ? { __proto__: pos$2, path: path, matches: matches } : (nix.asBool(nix.eq(nix.app(toString, path), "/")) ? null : nix.app(go, nix.thunk(() => nix.builtins.dirOf(path)))));
+        return (nix.asBool(!nix.eq(nix.builtins.length(matches), 0n)) ? { [nix.POS]: pos$2, path: path, matches: matches } : (nix.asBool(nix.eq(nix.app(toString, path), "/")) ? null : nix.app(go, nix.thunk(() => nix.builtins.dirOf(path)))));
       })();
       const parent = nix.thunk(() => nix.builtins.dirOf(file));
       const isDir = nix.thunk(() => (() => {
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
         return nix.app(concatMapAttrs, (name) => (type) => (() => {
             const path = nix.thunk(() => nix.add(directory, nix.str`/${name}`));
             return (nix.asBool(nix.eq(type, "directory")) ? nix.attrsDyn({}, [
-              [nix.str`${name}`, nix.thunk(() => nix.app(packagesFromDirectoryRecursive, nix.thunk(() => nix.update(args_2, { __proto__: pos$3, directory: path }))))],
+              [nix.str`${name}`, nix.thunk(() => nix.app(packagesFromDirectoryRecursive, nix.thunk(() => nix.update(args_2, { [nix.POS]: pos$3, directory: path }))))],
             ]) : (nix.asBool((nix.asBool(nix.eq(type, "regular")) && nix.asBool(nix.app(isNixFile, name)))) ? nix.attrsDyn({}, [
               [nix.str`${nix.app(removeNixSuffix, name)}`, nix.thunk(() => nix.app(callPackage, path, nix.thunk(() => ({}))))],
             ]) : (nix.asBool(nix.eq(type, "regular")) ? {} : nix.builtins.throw(nix.thunk(() => nix.str`lib.filesystem.packagesFromDirectoryRecursive: Unsupported file type ${type} at path ${nix.app(toString, path)}
@@ -97,7 +97,7 @@ export default nix.lambda((args) => (() => {
         const directory = nix.arg($_1, "directory");
         const defaultPath = nix.thunk(() => nix.add(directory, "/package.nix"));
         return (nix.asBool(nix.app(pathExists, defaultPath)) ? nix.app(callPackage, defaultPath, nix.thunk(() => ({}))) : (nix.asBool(nix.has(args_2, "newScope")) ? nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(makeScope, newScope, (self) => nix.app(processDir, nix.thunk(() => nix.update(args_2, {
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 callPackage: nix.thunk(() => nix.attr(self, "callPackage")),
                 newScope: nix.thunk(() => nix.attr(self, "newScope")),
               })))))) : nix.app(processDir, args_2)));

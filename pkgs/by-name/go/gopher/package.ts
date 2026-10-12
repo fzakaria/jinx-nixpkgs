@@ -15,21 +15,21 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gopher",
       version: "3.0.19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jgoerzen",
           repo: "gopher",
           tag: nix.thunk(() => nix.str`release/${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-8J63TnC3Yq7+64PPLrlPEueMa9D/eWkPsb08t1+rPAA=",
         })))),
       buildInputs: nix.thunk(() => [ncurses]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       preConfigure: "export LIBS=-lncurses",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://gopher.quux.org:70/devel/gopher",
         description: "Ncurses gopher client",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

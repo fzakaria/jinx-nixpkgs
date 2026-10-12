@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
       const pname = "psol";
       const version = "1.13.35.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dl.google.com/dl/page-speed/psol/${version}-x64.tar.gz`),
           hash: "sha256-3zujyPxU4ThF0KHap6bj2YMSbCORKFG7+Lo1vmRqQ08=",
         }))));
       const installPhase = "runHook preInstall\n\nmkdir -p $out\nmv include lib -t $out\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PageSpeed Optimization Libraries",
         homepage: "https://developers.google.com/speed/pagespeed/psol",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

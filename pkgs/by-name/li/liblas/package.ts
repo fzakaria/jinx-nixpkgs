@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const fixDarwinDylibNames = nix.arg($, "fixDarwinDylibNames");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "liblas",
       version: "1.8.1-unstable-2025-11-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libLAS",
           repo: "libLAS",
           rev: "0756b73ed41211d1bb8d9b96c6767f2350d8fe2b",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-gcc15.patch",
             url: "https://gitlab.archlinux.org/archlinux/packaging/packages/liblas/-/raw/1.8.1.r128+gded46373-17/liblas-gcc15.patch",
             hash: "sha256-cOm5ElnR2mK+ofU0F4xzYTkFa3Oq8r/WSm4qo45vkt8=",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "install_name_tool -change \"@rpath/liblas.3.dylib\" \"$out/lib/liblas.3.dylib\" $out/lib/liblas_c.dylib\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "LAS 1.0/1.1/1.2 ASPRS LiDAR data translation toolset",
         homepage: "https://liblas.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

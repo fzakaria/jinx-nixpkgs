@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const licenses = nix.thunk(() => nix.attr(lib, "licenses"));
   const maintainers = nix.thunk(() => nix.attr(lib, "maintainers"));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hujsonfmt",
       version: "0-unstable-2025-06-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tailscale",
           repo: "hujson",
           rev: "992244df8c5ad853c10f498549e0eab54e515d13",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-cvoj85BNnm/ZX1UnXKU2HjvjQkRZ9uN3U0BnD3DmiTE=",
       subPackages: nix.thunk(() => ["cmd/hujsonfmt"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://tailscale.com",
         description: "Automatic formatter for HuJSON / JSON With Comments and trailing Commas (JWCC)",
         license: nix.thunk(() => nix.sel(licenses, "bsd3")),

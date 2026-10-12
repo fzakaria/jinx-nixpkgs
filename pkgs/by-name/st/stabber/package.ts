@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const expat = nix.arg($, "expat");
   const libmicrohttpd = nix.arg($, "libmicrohttpd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "stabber-unstable",
       version: "2026-03-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "profanity-im",
           repo: "stabber",
           rev: "ba6ca0707833c70ab38681bcc28bfff025c491f1",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, autoreconfHook]),
       buildInputs: nix.thunk(() => [glib, expat, libmicrohttpd]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Stubbed XMPP Server",
         mainProgram: "stabber",
         homepage: "https://github.com/profanity-im/stabber",

@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const windows = nix.arg($, "windows");
   const enableMoltenVKCompat = nix.argOr($, "enableMoltenVKCompat", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dxvk",
       version: "1.10.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "doitsujin",
           repo: "dxvk",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/doitsujin/dxvk/commit/1a5afc77b1859e6c7e31b55e11ece899e3b5295a.patch",
             hash: "sha256-tTAsQOMAazgH/6laLNTuG2lki257VUR9EBivnD4vCuY=",
           })))),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       mesonBuildType: "release",
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Vulkan-based translation layer for Direct3D 9/10/11",
         homepage: "https://github.com/doitsujin/dxvk",
         changelog: "https://github.com/doitsujin/dxvk/releases",

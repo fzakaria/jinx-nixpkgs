@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
   const configFile = nix.thunk(() => (() => {
     const src = nix.thunk(() => nix.str`${nix.sel(pkg, "src")}/tox_node/dpkg/config.yml`);
     const confJSON = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "config.json", nix.thunk(() => nix.app(nix.sel(nix.builtins, "toJSON"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           "log-type": nix.thunk(() => nix.sel(cfg, "logType")),
           "keys-file": nix.thunk(() => nix.sel(cfg, "keysFile")),
           "udp-address": nix.thunk(() => nix.sel(cfg, "udpAddress")),
@@ -50,58 +50,58 @@ ${nix.lookup(w_1, "jq")}/bin/jq -s '(.[0] | with_entries( select(.key == "bootst
 `));
   })());
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         "tox-node": nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Tox Node service")),
           logType: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["Stderr", "Stdout", "Syslog", "None"]))),
               default: "Stderr",
               description: "Logging implementation.",
             })))),
           keysFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: nix.thunk(() => nix.str`${homeDir}/keys`),
               description: "Path to the file where DHT keys are stored.",
             })))),
           udpAddress: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "0.0.0.0:33445",
               description: "UDP address to run DHT node.",
             })))),
           tcpAddresses: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: nix.thunk(() => ["0.0.0.0:33445"]),
               description: "TCP addresses to run TCP relay.",
             })))),
           tcpConnectionLimit: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
               default: 8192n,
               description: "Maximum number of active TCP connections relay can hold",
             })))),
           lanDiscovery: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "Enable local network discovery.",
             })))),
           threads: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
               default: 1n,
               description: "Number of threads for execution",
             })))),
           motd: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "Hi from tox-rs! I'm up {{uptime}}. TCP: incoming {{tcp_packets_in}}, outgoing {{tcp_packets_out}}, UDP: incoming {{udp_packets_in}}, outgoing {{udp_packets_out}}",
               description: "Message of the day",
@@ -110,18 +110,18 @@ ${nix.lookup(w_1, "jq")}/bin/jq -s '(.[0] | with_entries( select(.key == "bootst
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             "tox-node": nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "Tox Node",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 ExecStart: nix.thunk(() => nix.str`${pkg}/bin/tox-node config ${configFile}`),
                 StateDirectory: "tox-node",
                 DynamicUser: true,

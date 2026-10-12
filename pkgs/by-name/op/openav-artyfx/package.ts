@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const ntk = nix.arg($, "ntk");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "openav-artyfx",
       version: "1.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openAVproductions",
           repo: "openAV-ArtyFX",
           rev: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "substituteInPlace CMakeLists.txt --replace-fail \\\n  'cmake_minimum_required (VERSION 2.6)' \\\n  'cmake_minimum_required(VERSION 4.0)'\nsubstituteInPlace src/avtk/CMakeLists.txt --replace-fail \\\n  'cmake_minimum_required (VERSION 2.6)' \\\n  'cmake_minimum_required(VERSION 4.0)'\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://openavproductions.com/artyfx/",
         description: "LV2 plugin bundle of artistic realtime effects",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

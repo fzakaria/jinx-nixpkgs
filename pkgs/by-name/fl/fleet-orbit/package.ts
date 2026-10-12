@@ -19,19 +19,19 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "fleet-orbit",
       version: "1.55.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fleetdm",
           repo: "fleet",
           tag: nix.thunk(() => nix.str`orbit-v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-gaS6A9Zfpb/VMQMAO5qI0lIaohD8jj4KWFRTU0OeqMo=",
         })))),
       vendorHash: "sha256-fhACxmzJY0PEQmMbjQxlfQh5ZJ+7a4um0s8xFQq+57w=",
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: "1" })),
       subPackages: nix.thunk(() => ["orbit/cmd/orbit"]),
       goFlags: nix.thunk(() => ["-buildvcs=false"]),
       ldflags: nix.thunk(() => [
@@ -51,11 +51,11 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "version",
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, orbit: nix.thunk(() => nix.attr(nixosTests, "orbit")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, orbit: nix.thunk(() => nix.attr(nixosTests, "orbit")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Fleet's lightweight osquery manager",
         homepage: "https://github.com/fleetdm/fleet",
         changelog: nix.thunk(() => nix.str`https://github.com/fleetdm/fleet/releases/tag/orbit-v${nix.sel(finalAttrs, "version")}`),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
           return [
             nix.thunk(() => nix.lookup(w, "mit")),
             nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 shortName: "fleet-ee",
                 fullName: "Fleet Enterprise Edition License",
                 url: nix.thunk(() => nix.str`https://github.com/fleetdm/fleet/blob/orbit-v${nix.sel(finalAttrs, "version")}/ee/LICENSE`),

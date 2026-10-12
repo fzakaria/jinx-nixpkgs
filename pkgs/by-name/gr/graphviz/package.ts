@@ -45,11 +45,11 @@ export default nix.lambda((args) => (() => {
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   const optionalAttrs = nix.thunk(() => nix.attr(lib, "optionalAttrs"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "graphviz",
       version: "15.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "graphviz",
           repo: "graphviz",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       strictDeps: true,
       env: nix.thunk(() => nix.app(optionalAttrs, nix.thunk(() => (nix.asBool(withXorg) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           CPPFLAGS: nix.thunk(() => nix.str`-I${nix.sel(cairo, "dev")}/include/cairo`),
         })))),
       doCheck: false,
@@ -82,11 +82,11 @@ fi
 `),
       postFixup: nix.thunk(() => nix.app(optionalString, withXorg, "substituteInPlace $out/bin/vimdot \\\n  --replace-warn '\"/usr/bin/vi\"' '\"$(command -v vi)\"' \\\n  --replace-warn '\"/usr/bin/vim\"' '\"$(command -v vim)\"' \\\n  --replace-warn /usr/bin/vimdot $out/bin/vimdot\n\nwrapProgram $out/bin/vimdot --prefix PATH : \"$out/bin\"\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(python3, "pkgs"));
           return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           graphviz: nix.thunk(() => nix.attr(from, "graphviz")),
           pydot: nix.thunk(() => nix.attr(from, "pydot")),
           pygraphviz: nix.thunk(() => nix.attr(from, "pygraphviz")),
@@ -95,7 +95,7 @@ fi
           fltk: fltk,
           graphicsmagick: graphicsmagick,
           "dot-can-load-plugins": nix.thunk(() => nix.app(runCommand, "dot-can-load-plugins", nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
             })), "dot -P -o $out\n")),
         };
@@ -103,7 +103,7 @@ fi
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://graphviz.org",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/graphviz/graphviz/-/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Graph visualization tools",

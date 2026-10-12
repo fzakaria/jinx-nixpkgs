@@ -28,25 +28,25 @@ export default nix.lambda((args) => (() => {
   const report = nix.thunk(() => nix.attr(from, "report"));
   const cfg = nix.thunk(() => nix.sel(config, "hardware", "facter", "detected", "networking", "intel"));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       hardware: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         facter: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           detected: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             networking: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               intel: nix.thunk(() => (() => {
                 const w = nix.withScope(lib, null);
                 return {
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   _2200BG: nix.thunk(() => ({
-                    __proto__: pos$2,
+                    [nix.POS]: pos$2,
                     enable: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mkEnableOption"), "the Facter Intel 2200BG module"), {
-                      __proto__: pos$1,
+                      [nix.POS]: pos$1,
                       default: nix.thunk(() => nix.app(nix.sel(lib, "any"), nix.lambda((args_1) => (() => {
                           const $_1 = nix.formals(args_1, formals$2);
                           const vendor = nix.argOr($_1, "vendor", () => ({}));
@@ -57,9 +57,9 @@ export default nix.lambda((args) => (() => {
                     })),
                   })),
                   _3945ABG: nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     enable: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mkEnableOption"), "the Facter Intel 3945ABG module"), {
-                      __proto__: pos$3,
+                      [nix.POS]: pos$3,
                       default: nix.thunk(() => nix.app(nix.sel(lib, "any"), nix.lambda((args_1) => (() => {
                           const $_1 = nix.formals(args_1, formals$3);
                           const vendor = nix.argOr($_1, "vendor", () => ({}));
@@ -77,13 +77,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "hardware", "facter", "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         networking: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           enableIntel2200BGFirmware: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "_2200BG", "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)))),
         })),
         hardware: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enableRedistributableFirmware: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "_3945ABG", "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)))),
         })),
       })))),

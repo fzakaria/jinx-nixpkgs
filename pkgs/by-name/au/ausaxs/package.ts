@@ -31,49 +31,49 @@ export default nix.lambda((args) => (() => {
   const catch2_3 = nix.arg($, "catch2_3");
   const backward_cpp = nix.arg($, "backward-cpp");
   const dlib = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "davisking",
       repo: "dlib",
       tag: "v20.0",
       hash: "sha256-VTX7s0p2AzlvPUsSMXwZiij+UY9g2y+a1YIge9bi0sw=",
     }))));
   const thread_pool = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "bshoshany",
       repo: "thread-pool",
       tag: "v5.0.0",
       hash: "sha256-1TTpt6u3NVIMSExl0ttuwH2owQCetujolnR/t8hDMh0=",
     }))));
   const gcem = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       owner: "klytje",
       repo: "gcem",
       rev: "c5464969d373ed0a763c3562656798d1cc00687f",
       hash: "sha256-bnWakLHl/afpeFm6S32ku0IkniyIs8X+LE1NmV6p0ho=",
     }))));
   const elements = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       owner: "cycfi",
       repo: "elements",
       rev: "71ecd1f4ebc76967c6812b1872db639784e40a2d",
       hash: "sha256-F3Dv+QboXfOSaXpbdOeWPtOC8orWGZc8ZBFho/X8Ky8=",
     }))));
   const nfd = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       owner: "btzy",
       repo: "nativefiledialog-extended",
       tag: "v1.2.1",
       hash: "sha256-GwT42lMZAAKSJpUJE6MYOpSLKUD5o9nSe9lcsoeXgJY=",
     }))));
   const asio = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       owner: "chriskohlhoff",
       repo: "asio",
       tag: "asio-1-29-0",
       hash: "sha256-5WSrMe9n+8i/ZyvCsa4MMBguYbSz+7FwH0Z5JfHtRGM=",
     }))));
   const cycfi_infra = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       owner: "cycfi",
       repo: "infra",
       rev: "2dff97a4b107eced78e426152f5001a2331cb1cf",
@@ -81,11 +81,11 @@ export default nix.lambda((args) => (() => {
       fetchSubmodules: true,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "ausaxs",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           owner: "AUSAXS",
           repo: "AUSAXS",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -111,7 +111,7 @@ patch -p1 -d elements < ${nix.path(here, "./elements-cmake-no-fetchcontent.patch
       ]),
       postInstall: "cp --recursive lib/* $out/lib/\ncp --recursive bin $out/bin\ncp --recursive ../scripts $out/bin/scripts\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Small-angle X-ray scattering framework",
         homepage: "https://github.com/AUSAXS/AUSAXS",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

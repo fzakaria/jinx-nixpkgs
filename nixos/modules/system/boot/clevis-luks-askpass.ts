@@ -26,19 +26,19 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "boot", "initrd", "clevisLuksAskpass"));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       boot: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         initrd: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           clevisLuksAskpass: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "clevis-luks-askpass in initrd.\n\nWatches for systemd password requests during boot and answers them\nusing clevis tokens bound to LUKS headers. Runs in parallel with\nthe interactive password prompt. If clevis cannot unlock a device\n(tang unreachable, no binding, etc.) the user can still type the\npassphrase.\n\nPrerequisites:\n- Bind clevis to each LUKS device:\n    clevis luks bind -d /dev/xxx tang '{\"url\":\"...\"}'\n- Configure networking in the initrd so tang servers are reachable\n")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "clevis", nix.thunk(() => ({})))),
             useTang: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 description: "Whether the Clevis headers used to decrypt the devices uses a Tang server as a pin.",
                 default: false,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
@@ -48,10 +48,10 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             assertion: nix.thunk(() => nix.sel(config, "boot", "initrd", "systemd", "enable")),
             message: "clevis-luks-askpass requires boot.initrd.systemd.enable = true",
           })),
@@ -60,11 +60,11 @@ export default nix.lambda((args) => (() => {
           "In order to use a Tang pinned secret you must configure networking in initrd",
         ] : [])),
         boot: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           initrd: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             systemd: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
               storePaths: nix.thunk(() => [
                 nix.thunk(() => nix.sel(cfg, "package")),
@@ -83,13 +83,13 @@ export default nix.lambda((args) => (() => {
                 nix.thunk(() => nix.str`${nix.sel(pkgs, "tpm2-tools")}/bin/tpm2_unseal`),
               ]),
               paths: nix.thunk(() => ({
-                __proto__: pos$8,
-                "clevis-luks-askpass": nix.thunk(() => ({ __proto__: pos$7, wantedBy: nix.thunk(() => ["cryptsetup.target"]) })),
+                [nix.POS]: pos$8,
+                "clevis-luks-askpass": nix.thunk(() => ({ [nix.POS]: pos$7, wantedBy: nix.thunk(() => ["cryptsetup.target"]) })),
               })),
               services: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 "clevis-luks-askpass": nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   wants: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "useTang")), "network-online.target")),
                   after: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "useTang")), "network-online.target")),
                 })),

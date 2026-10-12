@@ -27,17 +27,17 @@ export default nix.lambda((args) => (() => {
   const openjdk = nix.arg($, "openjdk");
   const pkgsStatic = nix.arg($, "pkgsStatic");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "giflib",
       version: "6.1.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/giflib/giflib-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-tltmuZ8EJLk1JfmHOG8i/F77naK/ySrUpTIkmq/7qw4=",
         })))),
       patches: nix.thunk(() => nix.concat([nix.path(here, "./0001-Suppress-undefined-symbol-error-on-Darwin.patch")], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMinGW")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: "https://aur.archlinux.org/cgit/aur.git/plain/001-mingw-build.patch?h=mingw-w64-giflib&id=b7311edf54824ac797c7916cd3ddc3a4b2368a19",
               hash: "sha256-bBx7lw7FWtxZJ+E9AAbKIpCGcJnS5lrGpjYcv/zBtKk=",
             })))),
@@ -47,9 +47,9 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => nix.concat([nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform", "parsed", "kernel", "name"), nix.sel(stdenv, "hostPlatform", "parsed", "kernel", "name"))), nix.thunk(() => nix.str`UNAME=${nix.sel(stdenv, "hostPlatform", "uname", "system")}`)))),
       postPatch: nix.thunk(() => nix.add("# we don't want to build HTML documentation\nsubstituteInPlace doc/Makefile \\\n  --replace-fail \"all: allhtml manpages\" \"all: manpages\"\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), "# Upstream build system does not support NOT building shared libraries.\nsubstituteInPlace Makefile \\\n  --replace-fail \"all: shared-lib static-lib $(UTILS)\" \"all: static-lib $(UTILS)\" \\\n  --replace-fail \"install-lib: install-static-lib install-shared-lib\" \"install-lib: install-static-lib\"\n"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           static: nix.thunk(() => nix.sel(pkgsStatic, "giflib")),
           SDL2_image: SDL2_image,
           SDL_image: SDL_image,
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Library for reading and writing gif images",
         homepage: "https://giflib.sourceforge.net/",
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "unix"), nix.sel(lib, "platforms", "windows"))),

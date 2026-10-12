@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
       const pname = "fpl";
       const version = "1.3.5";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/octave/${pname}-${version}.tar.gz`),
           sha256: "0cbpahn9flrv9ppp5xakhwh8vyyy7wzlsz22i3s93yqg9q2bh4ys",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gnu-octave.github.io/packages/fpl/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: nix.thunk(() => (() => {
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })()),
         description: "Collection of routines to export data produced by Finite Elements or Finite Volume Simulations in formats used by some visualization programs",
       }));
-      return { __proto__: pos$3, pname, version, src, meta };
+      return { [nix.POS]: pos$3, pname, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

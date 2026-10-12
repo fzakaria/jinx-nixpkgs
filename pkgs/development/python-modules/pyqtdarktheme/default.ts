@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "5yutan5",
           repo: "PyQtDarkTheme",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -44,14 +44,14 @@ export QT_QPA_PLATFORM_PLUGIN_PATH="${nix.sel(qt5, "qtbase", "bin")}/lib/qt-${ni
 export QT_QPA_PLATFORM=offscreen
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Flat dark theme for PySide and PyQt",
         homepage: "https://pyqtdarktheme.readthedocs.io/en/stable",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

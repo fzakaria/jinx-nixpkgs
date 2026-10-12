@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const payload = nix.argOr($, "payload", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "riscv-pk",
       version: "1.0.0-unstable-2024-10-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "riscv-software-src",
           repo: "riscv-pk",
           rev: "abadfdc507d5a75b6272dc360e70a80a510c758a",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => ["all"]),
       postInstall: "mv $out/* $out/.cleanup\nmv $out/.cleanup/* $out\nrmdir $out/.cleanup\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "RISC-V Proxy Kernel and Bootloader",
         homepage: "https://github.com/riscv-software-src/riscv-pk",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

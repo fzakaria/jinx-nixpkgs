@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.12.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "marqo-ai",
           repo: "py-marqo",
           tag: version,
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       const pythonRemoveDeps = nix.thunk(() => ["urllib3"]);
       const pythonImportsCheck = nix.thunk(() => ["marqo"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unified embedding generation and search engine",
         homepage: "https://marqo.ai",
         changelog: nix.thunk(() => nix.str`https://github.com/marqo-ai/py-marqo/releases/tag/${version}`),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

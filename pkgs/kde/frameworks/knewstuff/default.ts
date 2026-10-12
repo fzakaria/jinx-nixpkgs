@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const qttools = nix.arg($, "qttools");
   const kcmutils = nix.arg($, "kcmutils");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "knewstuff",
       patches: nix.thunk(() => [nix.path(here, "./delay-resolving-knsrcdir.patch")]),
       extraBuildInputs: nix.thunk(() => [qtdeclarative, qttools]),
       extraPropagatedBuildInputs: nix.thunk(() => [kcmutils]),
       dontQmlLint: true,
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "knewstuff-dialog6" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "knewstuff-dialog6" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

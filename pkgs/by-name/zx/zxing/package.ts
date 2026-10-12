@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.5.4";
       const jre_1 = jre;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zxing",
           repo: "zxing",
           tag: nix.thunk(() => nix.str`zxing-${version}`),
@@ -41,7 +41,7 @@ done
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/zxing/zxing/releases/tag/zxing-${version}`),
         description: "1D and 2D code reading library",
         sourceProvenance: nix.thunk(() => (() => {
@@ -58,7 +58,7 @@ runHook postInstall
         homepage: "https://github.com/zxing/zxing",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         jre: jre_1,

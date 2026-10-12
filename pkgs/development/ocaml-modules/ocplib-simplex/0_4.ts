@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const ocaml = nix.arg($, "ocaml");
   const findlib = nix.arg($, "findlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ocplib-simplex",
       version: "0.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OCamlPro",
           repo: nix.thunk(() => nix.sel(finalAttrs, "pname")),
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`mv $out/lib/${nix.sel(finalAttrs, "pname")} $out/lib/ocaml/${nix.sel(ocaml, "version")}/site-lib
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OCaml library implementing a simplex algorithm, in a functional style, for solving systems of linear inequalities",
         homepage: "https://github.com/OCamlPro/ocplib-simplex",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

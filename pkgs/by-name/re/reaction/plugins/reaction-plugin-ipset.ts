@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const reaction = nix.arg($, "reaction");
   return nix.app(nix.sel(reaction, "mkReactionPlugin"), "reaction-plugin-ipset", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       buildInputs: nix.thunk(() => [ipset]),
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(rustPlatform, "bindgenHook")), pkg_config]),
     })));

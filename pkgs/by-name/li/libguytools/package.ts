@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libguytools",
       version: "2.1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/libguytools/libguytools/LatestSource/tools-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-eVYvjo2wKW2g9/9hL9nbQa1FRWDMMqMHok0V/adPHVY=",
         })))),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "./create_version_file.sh\n",
       installPhase: "runHook preInstall\nmkdir -p $out\ncp -r lib $out/\ncp -r include $out/\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Small programming toolbox",
         mainProgram: "libguytools",
         homepage: "https://libguytools.sourceforge.io",

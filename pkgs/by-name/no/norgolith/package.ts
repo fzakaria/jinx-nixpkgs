@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "norgolith",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "norgolith",
           repo: "core",
           tag: nix.thunk(() => nix.str`norgolith-v${nix.sel(finalAttrs, "version")}`),
@@ -33,10 +33,10 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libgit2, openssl, zlib]),
       useNextest: true,
       buildAndTestSubdir: "core",
-      env: nix.thunk(() => ({ __proto__: pos$2, LIBGIT2_NO_VENDOR: true, OPENSSL_NO_VENDOR: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, LIBGIT2_NO_VENDOR: true, OPENSSL_NO_VENDOR: true })),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "The monolithic Norg static site generator built with Rust",
         homepage: "https://norgolith.dev",
         changelog: nix.thunk(() => nix.str`https://github.com/norgolith/core/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

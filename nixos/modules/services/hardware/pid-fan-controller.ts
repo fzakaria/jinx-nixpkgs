@@ -24,19 +24,19 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "pid-fan-controller"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "pid-fan-controller": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the PID fan controller, which controls the configured fans by running a closed-loop PID control loop")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "pid-fan-controller", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   freeformType: nix.thunk(() => nix.app(nix.sel(lib, "types", "either"), nix.thunk(() => nix.sel(settingsFormat, "type")), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(settingsFormat, "type")))))),
                 })))),
               default: nix.thunk(() => ({})),
@@ -49,16 +49,16 @@ export default nix.lambda((args) => (() => {
       const oldConfig = nix.thunk(() => nix.has(nix.sel(cfg, "settings"), "heatSources"));
       const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "pid-fan-settings.json", nix.thunk(() => (nix.asBool(oldConfig) ? nix.builtins.throw("`pid-fan-controller` is no longer deeply configured.\nPlease switch to using underscore case as shown in the upstream documentation.\n") : nix.sel(cfg, "settings")))));
       return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           systemd: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
             services: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               "pid-fan-controller": nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 environment: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   PID_FAN_CONFIG: nix.thunk(() => nix.builtins.toString(configFile)),
                 })),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         })));
     })()),
     meta: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "zimward"))];

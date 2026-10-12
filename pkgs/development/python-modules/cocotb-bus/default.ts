@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const buildPythonPackage = nix.arg($, "buildPythonPackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cocotb-bus",
       version: "unstable-2025-11-03",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cocotb",
           repo: "cocotb-bus",
           rev: "f72b989bde036e677d5e9ebab3a6a21bdfe43d09",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pre-packaged testbenching tools and reusable bus interfaces for cocotb",
         homepage: "https://github.com/cocotb/cocotb-bus",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

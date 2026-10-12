@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const substitute = nix.arg($, "substitute");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libamplsolver",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ampl",
           repo: "asl",
           rootDir: "src/solvers",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(substitute, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             src: nix.path(here, "./libamplsolver-sharedlib.patch"),
             substitutions: nix.thunk(() => [
               "--replace",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preConfigure: "chmod u+x configure configurehere\n",
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isRiscV64")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isLoongArch64")))), "-DNO_fpu_control")),
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-headerpad_max_install_names")),
       })),
@@ -52,7 +52,7 @@ install -D -m 0644 *.a -t $out/lib
 popd
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "install_name_tool -id $out/lib/libamplsolver.dylib $out/lib/libamplsolver.dylib\n")), "runHook postInstall\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Library of routines that help solvers work with AMPL",
         homepage: "https://ampl.com/netlib/ampl/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

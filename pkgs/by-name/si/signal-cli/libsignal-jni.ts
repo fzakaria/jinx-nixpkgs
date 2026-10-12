@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const gitMinimal = nix.arg($, "gitMinimal");
   const llvmPackages = nix.arg($, "llvmPackages");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libsignal-jni",
       version: "0.102.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "signalapp",
           repo: "libsignal",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-bdp+DJWmg4czoZAP0GalCuK73/8lDTvVrRAwUCNJQXE=",
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config, protobuf, perl, jdk, gitMinimal]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         LIBCLANG_PATH: nix.thunk(() => nix.str`${nix.sel(llvmPackages, "libclang", "lib")}/lib`),
         BINDGEN_EXTRA_CLANG_ARGS: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.str`-isystem ${nix.sel(llvmPackages, "libclang", "lib")}/lib/clang/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(llvmPackages, "libclang", "version")))}/include` : nix.str`-isystem ${nix.sel(stdenv, "cc", "libc", "dev")}/include -isystem ${nix.sel(llvmPackages, "libclang", "lib")}/lib/clang/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(llvmPackages, "libclang", "version")))}/include`)),
         RUSTFLAGS: "--cfg aes_armv8 --cfg tokio_unstable",
@@ -51,7 +51,7 @@ done
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Signal Protocol JNI native library",
         homepage: "https://github.com/signalapp/libsignal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

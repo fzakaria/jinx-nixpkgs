@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const enableXdg = nix.argOr($, "enableXdg", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "skyscraper",
       version: "3.20.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Gemba",
           repo: "skyscraper",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,9 +45,9 @@ chmod +x $out/bin/*.py
 sed -i '2i\\\\export PATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [mdbtools, sqlite]))}:$PATH"' \\
   $out/bin/mdb2sqlite.sh
 `),
-      env: nix.thunk(() => ({ __proto__: pos$2, PREFIX: nix.thunk(() => nix.builtins.placeholder("out")) })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, PREFIX: nix.thunk(() => nix.builtins.placeholder("out")) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Powerful and versatile game data scraper written in Qt and C++",
         homepage: "https://gemba.github.io/skyscraper/",
         downloadPage: nix.thunk(() => nix.str`https://github.com/Gemba/skyscraper/releases/tag/${nix.sel(finalAttrs, "version")}`),

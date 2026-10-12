@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const kernelModuleMakeFlags = nix.arg($, "kernelModuleMakeFlags");
   const bc = nix.arg($, "bc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rtl8821cu",
       version: nix.thunk(() => nix.str`${nix.sel(kernel, "version")}-unstable-2025-12-15`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "morrownr",
           repo: "8821cu-20210916",
           rev: "7f63a9da2e8ed83403f6f920e9b1628a37b38ef4",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
 `),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Realtek rtl8821cu driver",
         homepage: "https://github.com/morrownr/8821cu-20210916",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

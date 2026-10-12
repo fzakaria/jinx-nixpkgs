@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const xmlto = nix.arg($, "xmlto");
   const docbook_xsl = nix.arg($, "docbook_xsl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "morse",
       version: "2.7",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "esr",
           repo: "morse-classic",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,10 +32,10 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [alsa_lib, pulseaudio]),
       nativeBuildInputs: nix.thunk(() => [pkg_config, xmlto, docbook_xsl]),
       postPatch: "substituteInPlace Makefile --replace-fail \"xmlto\" \"xmlto --skip-validation\"\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu99" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu99" })),
       installPhase: "runHook preInstall\ninstall -Dm755 morse -t \"$out/bin/\"\ninstall -Dm755 QSO -t \"$out/bin/\"\ninstall -Dm644 morse.1 -t \"$out/share/man/man1/\"\ninstall -Dm644 QSO.1 -t \"$out/share/man/man1/\"\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Training program about morse-code for aspiring radio hams",
         homepage: "https://gitlab.com/esr/morse-classic",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

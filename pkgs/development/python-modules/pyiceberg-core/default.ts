@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pyiceberg_core = nix.arg($, "pyiceberg-core");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "pyiceberg-core",
       version: "0.10.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "apache",
           repo: "iceberg-rust",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,9 +39,9 @@ export default nix.lambda((args) => (() => {
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/bindings/python`),
       cargoRoot: "../..",
-      env: nix.thunk(() => ({ __proto__: pos$2, CARGO_TARGET_DIR: "./target" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CARGO_TARGET_DIR: "./target" })),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -59,14 +59,14 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_cdc_write_and_read_via_datafusion"]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
-          pytest: nix.thunk(() => nix.app(nix.sel(pyiceberg_core, "overridePythonAttrs"), nix.thunk(() => ({ __proto__: pos$4, doCheck: true })))),
+          [nix.POS]: pos$5,
+          pytest: nix.thunk(() => nix.app(nix.sel(pyiceberg_core, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$4, doCheck: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Iceberg-rust powered core for pyiceberg",
         homepage: "https://github.com/apache/iceberg-rust/tree/main/bindings/python",
         changelog: nix.thunk(() => nix.str`https://github.com/apache/iceberg-rust/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

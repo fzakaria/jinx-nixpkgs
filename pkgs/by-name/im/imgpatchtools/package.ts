@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "imgpatchtools",
       version: "0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "erfanoabdi",
           repo: "imgpatchtools",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [bzip2, openssl, zlib]),
       installPhase: "install -Dt $out/bin bin/*",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tools to manipulate Android OTA archives",
         longDescription: "This package is useful for Android development. In particular, it can be\nused to extract ext4 /system image from Android distribution ZIP archives\nsuch as those distributed by LineageOS and Replicant, via BlockImageUpdate\nutility. It also includes other, related, but arguably more advanced tools\nfor OTA manipulation.\n",
         homepage: "https://github.com/erfanoabdi/imgpatchtools",

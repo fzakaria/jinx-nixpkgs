@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lis",
       version: "2.1.11",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.ssisc.org/lis/dl/lis-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-RyNFHdezJyE8rJohxW3FmcqD+4N+7+ejD1z/DplQHe8=",
         })))),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.ssisc.org/lis/",
         description: "Library of Iterative Solvers for linear systems",
         longDescription: "Lis (Library of Iterative Solvers for linear systems, pronounced [lis])\nis a parallel software library to solve discretized linear equations and\neigenvalue problems that arise from the numerical solution of\npartial differential equations using iterative methods.\n",

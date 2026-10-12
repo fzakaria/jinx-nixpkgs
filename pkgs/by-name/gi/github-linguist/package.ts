@@ -19,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const gemName = "github-linguist";
   const version = "9.5.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "github-linguist",
       repo: "linguist",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-kxPiHsWrd+iwvasXfHiwZYAJFMmzZGOsZtsor5Jf1fg=",
     }))));
   const deps = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "github-linguist-dep",
       gemfile: nix.thunk(() => nix.str`${src}/Gemfile`),
       lockfile: nix.path(here, "./Gemfile.lock"),
@@ -52,9 +52,9 @@ wrapProgram "$out/bin/github-linguist" \\
 wrapProgram "$out/bin/git-linguist" \\
   --set GEM_PATH "${deps}/lib/ruby/gems/${nix.sel(ruby_1, "version", "libDir")}"
 `);
-      const passthru = nix.thunk(() => ({ __proto__: pos$3, ruby: ruby_1, deps: deps }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, ruby: ruby_1, deps: deps }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Language savant Ruby library",
         longDescription: "A Ruby library that is used on GitHub.com to detect blob languages, ignore binary or vendored files, suppress generated files in diffs, and generate language breakdown graphs.\n",
         homepage: "https://github.com/github-linguist/linguist",
@@ -69,7 +69,7 @@ wrapProgram "$out/bin/git-linguist" \\
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         name,
         gemName: gemName_1,
         version: version_1,

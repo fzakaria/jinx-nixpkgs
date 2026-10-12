@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     imports: nix.thunk(() => [nix.path(here, "./installation-cd-graphical-calamares.nix")]),
     isoImage: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       edition: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "gnome")),
     })),
     services: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       desktopManager: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         gnome: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           favoriteAppsOverride: "[org.gnome.shell]\nfavorite-apps=[ 'firefox.desktop', 'nixos-manual.desktop', 'org.gnome.Console.desktop', 'org.gnome.Nautilus.desktop', 'gparted.desktop', 'calamares.desktop' ]\n",
           extraGSettingsOverrides: "[org.gnome.shell]\nwelcome-dialog-last-shown-version='9999999999'\n[org.gnome.desktop.session]\nidle-delay=0\n[org.gnome.settings-daemon.plugins.power]\nsleep-inactive-ac-type='nothing'\nsleep-inactive-battery-type='nothing'\n",
           extraGSettingsOverridePackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gnome-settings-daemon"))]),
@@ -38,15 +38,15 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       displayManager: nix.thunk(() => ({
-        __proto__: pos$6,
-        gdm: nix.thunk(() => ({ __proto__: pos$4, enable: true, autoSuspend: false })),
-        autoLogin: nix.thunk(() => ({ __proto__: pos$5, enable: true, user: "nixos" })),
+        [nix.POS]: pos$6,
+        gdm: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true, autoSuspend: false })),
+        autoLogin: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true, user: "nixos" })),
       })),
     })),
     environment: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       variables: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         QT_QPA_PLATFORM: "$([[ $XDG_SESSION_TYPE = \"wayland\" ]] && echo \"wayland\")",
       })),
     })),

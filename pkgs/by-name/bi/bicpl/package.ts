@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libminc = nix.arg($, "libminc");
   const netpbm = nix.arg($, "netpbm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bicpl",
       version: "0-unstable-2025-10-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BIC-MNI",
           repo: "bicpl",
           rev: "dc9828841e38c6b7c523f3ab8a4c23eeb9e4272b",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => [nix.thunk(() => nix.str`-DLIBMINC_DIR=${libminc}/lib/cmake`)]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/BIC-MNI/bicpl",
         description: "Brain Imaging Centre programming library",
         maintainers: nix.thunk(() => (() => {

@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const slop = nix.arg($, "slop");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "recapp",
       version: "1.1.1",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "amikha1lov",
           repo: "RecApp",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
 )
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "User friendly Open Source screencaster for Linux written in GTK",
         homepage: "https://github.com/amikha1lov/RecApp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

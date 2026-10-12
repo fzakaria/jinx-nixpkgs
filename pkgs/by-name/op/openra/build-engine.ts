@@ -25,21 +25,21 @@ export default nix.lambda((args) => (() => {
     const version = nix.thunk(() => nix.sel(engine, "version"));
     const dotnet_sdk = nix.thunk(() => nix.sel(engine, "dotnet-sdk"));
     return nix.app(buildDotnetModule, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: pname,
         version: version,
         "dotnet-sdk": dotnet_sdk,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "OpenRA",
             repo: "OpenRA",
             rev: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "hasAttr"), "rev", engine)) ? nix.sel(engine, "rev") : nix.str`${nix.sel(engine, "build")}-${nix.sel(engine, "version")}`)),
             hash: nix.thunk(() => nix.attr(engine, "hash")),
           })))),
         passthru: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           updateScript: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             command: nix.thunk(() => nix.app(openRaUpdater, engine)),
             supportedFeatures: nix.thunk(() => ["commit"]),
           })),
@@ -89,7 +89,7 @@ for bin in $(find $out/.bin-unwrapped -type f); do
 done
 `),
         meta: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           description: nix.thunk(() => nix.str`Open Source real-time strategy game engine for early Westwood games such as Command & Conquer: Red Alert. ${nix.sel(engine, "build")} version`),
           homepage: "https://www.openra.net/",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

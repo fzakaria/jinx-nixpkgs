@@ -12,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const json_glib = nix.arg($, "json-glib");
   const appmenu_glib_translator = nix.arg($, "appmenu-glib-translator");
   return nix.app(buildAstalModule, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "tray",
       buildInputs: nix.thunk(() => [json_glib, appmenu_glib_translator]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, description: "Astal module for StatusNotifierItem" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, description: "Astal module for StatusNotifierItem" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=tray.ts.map

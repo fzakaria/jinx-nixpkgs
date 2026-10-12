@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.8";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "pydruid",
           owner: "druid-io",
           tag: version,
@@ -37,13 +37,13 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook, pycurl], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["pydruid"]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pandas: nix.thunk(() => [pandas]),
         async: nix.thunk(() => [tornado]),
         sqlalchemy: nix.thunk(() => [sqlalchemy]),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simple API to create, execute, and analyze Druid queries",
         homepage: "https://github.com/druid-io/pydruid",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

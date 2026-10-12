@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const systemd = nix.arg($, "systemd");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "liberio",
       version: "0-unstable-2019-12-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "EttusResearch",
           repo: "liberio",
           rev: "81777e500d1c3b88d5048d46643fb5553eb5f786",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [systemd]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Ettus Research DMA I/O Library",
         homepage: "https://github.com/EttusResearch/liberio",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

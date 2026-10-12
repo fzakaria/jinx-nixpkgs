@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const bash = nix.arg($, "bash");
   const pythonWithPyqt6 = nix.thunk(() => nix.app(nix.sel(python3Packages, "python", "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "pyqt6"))]));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lxqt-panel-profiles",
       version: "1.4.1",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MrReplikant",
           repo: "lxqt-panel-profiles",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ substituteInPlace usr/lib/lxqt-panel-profiles/lxqt-panel-profiles.py \\
 `),
       installPhase: "mkdir $out\nmv usr/* $out\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "",
         homepage: "https://codeberg.org/MrReplikant/lxqt-panel-profiles/",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/MrReplikant/lxqt-panel-profiles/releases/tag/${nix.sel(finalAttrs, "version")}`),

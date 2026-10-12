@@ -89,7 +89,7 @@ ln -s${nix.app(optionalString, nix.thunk(() => !nix.asBool(absolute)), "r")} "$o
     const commands = nix.argOr($_1, "commands", () => []);
     const derivationArgs = nix.argOr($_1, "derivationArgs", () => ({}));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: name,
         strictDeps: true,
         dontUnpack: true,
@@ -100,67 +100,67 @@ ln -s${nix.app(optionalString, nix.thunk(() => !nix.asBool(absolute)), "r")} "$o
       }, derivationArgs)));
   })(), formals$2);
   return nix.update({
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     "fail-dangling-symlink-relative": nix.thunk(() => nix.app(runCommand, "fail-dangling-symlink-relative", nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         failed: nix.thunk(() => nix.app(testBuildFailure, nix.thunk(() => nix.app(testBuilder, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: "fail-dangling-symlink-relative-inner",
               commands: nix.thunk(() => [nix.thunk(() => nix.app(mkDanglingSymlink, false))]),
             })))))),
       })), "(( 1 == \"$(cat \"$failed/testBuildFailure.exit\")\" ))\ngrep -F 'found 1 dangling symlinks, 0 reflexive symlinks and 0 unreadable symlinks' \"$failed/testBuildFailure.log\"\ntouch $out\n")),
     "pass-dangling-symlink-relative-allowed": nix.thunk(() => nix.app(testBuilder, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         name: "pass-dangling-symlink-relative-allowed",
         commands: nix.thunk(() => [nix.thunk(() => nix.app(mkDanglingSymlink, false))]),
-        derivationArgs: nix.thunk(() => ({ __proto__: pos$4, dontCheckForBrokenSymlinks: true })),
+        derivationArgs: nix.thunk(() => ({ [nix.POS]: pos$4, dontCheckForBrokenSymlinks: true })),
       })))),
     "fail-dangling-symlink-absolute": nix.thunk(() => nix.app(runCommand, "fail-dangling-symlink-absolute", nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         failed: nix.thunk(() => nix.app(testBuildFailure, nix.thunk(() => nix.app(testBuilder, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               name: "fail-dangling-symlink-absolute-inner",
               commands: nix.thunk(() => [nix.thunk(() => nix.app(mkDanglingSymlink, true))]),
             })))))),
       })), "(( 1 == \"$(cat \"$failed/testBuildFailure.exit\")\" ))\ngrep -F 'found 1 dangling symlinks, 0 reflexive symlinks and 0 unreadable symlinks' \"$failed/testBuildFailure.log\"\ntouch $out\n")),
     "pass-dangling-symlink-absolute-allowed": nix.thunk(() => nix.app(testBuilder, nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         name: "pass-dangling-symlink-absolute-allowed",
         commands: nix.thunk(() => [nix.thunk(() => nix.app(mkDanglingSymlink, true))]),
-        derivationArgs: nix.thunk(() => ({ __proto__: pos$8, dontCheckForBrokenSymlinks: true })),
+        derivationArgs: nix.thunk(() => ({ [nix.POS]: pos$8, dontCheckForBrokenSymlinks: true })),
       })))),
     "fail-reflexive-symlink-relative": nix.thunk(() => nix.app(runCommand, "fail-reflexive-symlink-relative", nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         failed: nix.thunk(() => nix.app(testBuildFailure, nix.thunk(() => nix.app(testBuilder, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               name: "fail-reflexive-symlink-relative-inner",
               commands: nix.thunk(() => [nix.thunk(() => nix.app(mkReflexiveSymlink, false))]),
             })))))),
       })), "(( 1 == \"$(cat \"$failed/testBuildFailure.exit\")\" ))\ngrep -F 'found 0 dangling symlinks, 1 reflexive symlinks and 0 unreadable symlinks' \"$failed/testBuildFailure.log\"\ntouch $out\n")),
     "pass-reflexive-symlink-relative-allowed": nix.thunk(() => nix.app(testBuilder, nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         name: "pass-reflexive-symlink-relative-allowed",
         commands: nix.thunk(() => [nix.thunk(() => nix.app(mkReflexiveSymlink, false))]),
-        derivationArgs: nix.thunk(() => ({ __proto__: pos$12, dontCheckForBrokenSymlinks: true })),
+        derivationArgs: nix.thunk(() => ({ [nix.POS]: pos$12, dontCheckForBrokenSymlinks: true })),
       })))),
     "fail-reflexive-symlink-absolute": nix.thunk(() => nix.app(runCommand, "fail-reflexive-symlink-absolute", nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         failed: nix.thunk(() => nix.app(testBuildFailure, nix.thunk(() => nix.app(testBuilder, nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               name: "fail-reflexive-symlink-absolute-inner",
               commands: nix.thunk(() => [nix.thunk(() => nix.app(mkReflexiveSymlink, true))]),
             })))))),
       })), "(( 1 == \"$(cat \"$failed/testBuildFailure.exit\")\" ))\ngrep -F 'found 0 dangling symlinks, 1 reflexive symlinks and 0 unreadable symlinks' \"$failed/testBuildFailure.log\"\ntouch $out\n")),
     "pass-reflexive-symlink-absolute-allowed": nix.thunk(() => nix.app(testBuilder, nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         name: "pass-reflexive-symlink-absolute-allowed",
         commands: nix.thunk(() => [nix.thunk(() => nix.app(mkReflexiveSymlink, true))]),
-        derivationArgs: nix.thunk(() => ({ __proto__: pos$16, dontCheckForBrokenSymlinks: true })),
+        derivationArgs: nix.thunk(() => ({ [nix.POS]: pos$16, dontCheckForBrokenSymlinks: true })),
       })))),
     "fail-broken-symlinks-relative": nix.thunk(() => nix.app(runCommand, "fail-broken-symlinks-relative", nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         failed: nix.thunk(() => nix.app(testBuildFailure, nix.thunk(() => nix.app(testBuilder, nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               name: "fail-broken-symlinks-relative-inner",
               commands: nix.thunk(() => [
                 nix.thunk(() => nix.app(mkDanglingSymlink, false)),
@@ -169,18 +169,18 @@ ln -s${nix.app(optionalString, nix.thunk(() => !nix.asBool(absolute)), "r")} "$o
             })))))),
       })), "(( 1 == \"$(cat \"$failed/testBuildFailure.exit\")\" ))\ngrep -F 'found 1 dangling symlinks, 1 reflexive symlinks and 0 unreadable symlinks' \"$failed/testBuildFailure.log\"\ntouch $out\n")),
     "pass-broken-symlinks-relative-allowed": nix.thunk(() => nix.app(testBuilder, nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         name: "pass-broken-symlinks-relative-allowed",
         commands: nix.thunk(() => [
           nix.thunk(() => nix.app(mkDanglingSymlink, false)),
           nix.thunk(() => nix.app(mkReflexiveSymlink, false)),
         ]),
-        derivationArgs: nix.thunk(() => ({ __proto__: pos$20, dontCheckForBrokenSymlinks: true })),
+        derivationArgs: nix.thunk(() => ({ [nix.POS]: pos$20, dontCheckForBrokenSymlinks: true })),
       })))),
     "fail-broken-symlinks-absolute": nix.thunk(() => nix.app(runCommand, "fail-broken-symlinks-absolute", nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         failed: nix.thunk(() => nix.app(testBuildFailure, nix.thunk(() => nix.app(testBuilder, nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               name: "fail-broken-symlinks-absolute-inner",
               commands: nix.thunk(() => [
                 nix.thunk(() => nix.app(mkDanglingSymlink, true)),
@@ -189,56 +189,56 @@ ln -s${nix.app(optionalString, nix.thunk(() => !nix.asBool(absolute)), "r")} "$o
             })))))),
       })), "(( 1 == \"$(cat \"$failed/testBuildFailure.exit\")\" ))\ngrep -F 'found 1 dangling symlinks, 1 reflexive symlinks and 0 unreadable symlinks' \"$failed/testBuildFailure.log\"\ntouch $out\n")),
     "pass-broken-symlinks-absolute-allowed": nix.thunk(() => nix.app(testBuilder, nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         name: "pass-broken-symlinks-absolute-allowed",
         commands: nix.thunk(() => [
           nix.thunk(() => nix.app(mkDanglingSymlink, true)),
           nix.thunk(() => nix.app(mkReflexiveSymlink, true)),
         ]),
-        derivationArgs: nix.thunk(() => ({ __proto__: pos$24, dontCheckForBrokenSymlinks: true })),
+        derivationArgs: nix.thunk(() => ({ [nix.POS]: pos$24, dontCheckForBrokenSymlinks: true })),
       })))),
     "pass-valid-symlink-relative": nix.thunk(() => nix.app(testBuilder, nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         name: "pass-valid-symlink-relative",
         commands: nix.thunk(() => [nix.thunk(() => nix.app(mkValidSymlink, false))]),
       })))),
     "pass-valid-symlink-absolute": nix.thunk(() => nix.app(testBuilder, nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         name: "pass-valid-symlink-absolute",
         commands: nix.thunk(() => [nix.thunk(() => nix.app(mkValidSymlink, true))]),
       })))),
     "pass-valid-symlink-outside-nix-store-relative": nix.thunk(() => nix.app(testBuilder, nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         name: "pass-valid-symlink-outside-nix-store-relative",
         commands: nix.thunk(() => [nix.thunk(() => nix.app(mkValidSymlinkOutsideNixStore, false))]),
       })))),
     "pass-valid-symlink-outside-nix-store-absolute": nix.thunk(() => nix.app(testBuilder, nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         name: "pass-valid-symlink-outside-nix-store-absolute",
         commands: nix.thunk(() => [nix.thunk(() => nix.app(mkValidSymlinkOutsideNixStore, true))]),
       })))),
   }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), hasSymlinkPermissions, nix.thunk(() => ({
-      __proto__: pos$39,
+      [nix.POS]: pos$39,
       "fail-unreadable-symlink-relative": nix.thunk(() => nix.app(runCommand, "fail-unreadable-symlink-relative", nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           failed: nix.thunk(() => nix.app(testBuildFailure, nix.thunk(() => nix.app(testBuilder, nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 name: "fail-unreadable-symlink-relative-inner",
                 commands: nix.thunk(() => [nix.thunk(() => nix.app(mkUnreadableSymlink, false))]),
               })))))),
         })), "(( 1 == \"$(cat \"$failed/testBuildFailure.exit\")\" ))\ngrep -F 'found 0 dangling symlinks, 0 reflexive symlinks and 1 unreadable symlinks' \"$failed/testBuildFailure.log\"\ntouch $out\n")),
       "fail-unreadable-symlink-absolute": nix.thunk(() => nix.app(runCommand, "fail-unreadable-symlink-absolute", nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           failed: nix.thunk(() => nix.app(testBuildFailure, nix.thunk(() => nix.app(testBuilder, nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 name: "fail-unreadable-symlink-absolute-inner",
                 commands: nix.thunk(() => [nix.thunk(() => nix.app(mkUnreadableSymlink, true))]),
               })))))),
         })), "(( 1 == \"$(cat \"$failed/testBuildFailure.exit\")\" ))\ngrep -F 'found 0 dangling symlinks, 0 reflexive symlinks and 1 unreadable symlinks' \"$failed/testBuildFailure.log\"\ntouch $out\n")),
       "fail-all-broken-symlinks-relative": nix.thunk(() => nix.app(runCommand, "fail-all-broken-symlinks-relative", nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           failed: nix.thunk(() => nix.app(testBuildFailure, nix.thunk(() => nix.app(testBuilder, nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 name: "fail-all-broken-symlinks-relative-inner",
                 commands: nix.thunk(() => [
                   nix.thunk(() => nix.app(mkDanglingSymlink, false)),
@@ -248,9 +248,9 @@ ln -s${nix.app(optionalString, nix.thunk(() => !nix.asBool(absolute)), "r")} "$o
               })))))),
         })), "(( 1 == \"$(cat \"$failed/testBuildFailure.exit\")\" ))\nif ! grep -F 'found 1 dangling symlinks, 1 reflexive symlinks and 1 unreadable symlinks' \"$failed/testBuildFailure.log\"; then\n  grep -F 'symlink permissions not supported' \"$failed/testBuildFailure.log\"\n  grep -F 'found 1 dangling symlinks, 1 reflexive symlinks and 0 unreadable symlinks' \"$failed/testBuildFailure.log\"\nfi\ntouch $out\n")),
       "fail-all-broken-symlinks-absolute": nix.thunk(() => nix.app(runCommand, "fail-all-broken-symlinks-absolute", nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           failed: nix.thunk(() => nix.app(testBuildFailure, nix.thunk(() => nix.app(testBuilder, nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 name: "fail-all-broken-symlinks-absolute-inner",
                 commands: nix.thunk(() => [
                   nix.thunk(() => nix.app(mkDanglingSymlink, true)),
@@ -260,38 +260,38 @@ ln -s${nix.app(optionalString, nix.thunk(() => !nix.asBool(absolute)), "r")} "$o
               })))))),
         })), "(( 1 == \"$(cat \"$failed/testBuildFailure.exit\")\" ))\nif ! grep -F 'found 1 dangling symlinks, 1 reflexive symlinks and 1 unreadable symlinks' \"$failed/testBuildFailure.log\"; then\n  grep -F 'symlink permissions not supported' \"$failed/testBuildFailure.log\"\n  grep -F 'found 1 dangling symlinks, 1 reflexive symlinks and 0 unreadable symlinks' \"$failed/testBuildFailure.log\"\nfi\ntouch $out\n")),
     }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(hasSymlinkPermissions)), nix.thunk(() => ({
-      __proto__: pos$48,
+      [nix.POS]: pos$48,
       "pass-unreadable-symlink-relative-allowed": nix.thunk(() => nix.app(testBuilder, nix.thunk(() => ({
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           name: "pass-unreadable-symlink-relative-allowed",
           commands: nix.thunk(() => [nix.thunk(() => nix.app(mkUnreadableSymlink, false))]),
-          derivationArgs: nix.thunk(() => ({ __proto__: pos$40, dontCheckForBrokenSymlinks: true })),
+          derivationArgs: nix.thunk(() => ({ [nix.POS]: pos$40, dontCheckForBrokenSymlinks: true })),
         })))),
       "pass-unreadable-symlink-absolute-allowed": nix.thunk(() => nix.app(testBuilder, nix.thunk(() => ({
-          __proto__: pos$43,
+          [nix.POS]: pos$43,
           name: "pass-unreadable-symlink-absolute-allowed",
           commands: nix.thunk(() => [nix.thunk(() => nix.app(mkUnreadableSymlink, true))]),
-          derivationArgs: nix.thunk(() => ({ __proto__: pos$42, dontCheckForBrokenSymlinks: true })),
+          derivationArgs: nix.thunk(() => ({ [nix.POS]: pos$42, dontCheckForBrokenSymlinks: true })),
         })))),
       "pass-all-broken-symlinks-relative-allowed": nix.thunk(() => nix.app(testBuilder, nix.thunk(() => ({
-          __proto__: pos$45,
+          [nix.POS]: pos$45,
           name: "pass-all-broken-symlinks-relative-allowed",
           commands: nix.thunk(() => [
             nix.thunk(() => nix.app(mkDanglingSymlink, false)),
             nix.thunk(() => nix.app(mkReflexiveSymlink, false)),
             nix.thunk(() => nix.app(mkUnreadableSymlink, false)),
           ]),
-          derivationArgs: nix.thunk(() => ({ __proto__: pos$44, dontCheckForBrokenSymlinks: true })),
+          derivationArgs: nix.thunk(() => ({ [nix.POS]: pos$44, dontCheckForBrokenSymlinks: true })),
         })))),
       "pass-all-broken-symlinks-absolute-allowed": nix.thunk(() => nix.app(testBuilder, nix.thunk(() => ({
-          __proto__: pos$47,
+          [nix.POS]: pos$47,
           name: "pass-all-broken-symlinks-absolute-allowed",
           commands: nix.thunk(() => [
             nix.thunk(() => nix.app(mkDanglingSymlink, true)),
             nix.thunk(() => nix.app(mkReflexiveSymlink, true)),
             nix.thunk(() => nix.app(mkUnreadableSymlink, true)),
           ]),
-          derivationArgs: nix.thunk(() => ({ __proto__: pos$46, dontCheckForBrokenSymlinks: true })),
+          derivationArgs: nix.thunk(() => ({ [nix.POS]: pos$46, dontCheckForBrokenSymlinks: true })),
         })))),
     })))));
 })(), formals$1);

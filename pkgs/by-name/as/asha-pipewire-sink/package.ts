@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const bluez = nix.arg($, "bluez");
   const glib = nix.arg($, "glib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "asha-pipewire-sink",
       version: "0-unstable-2025-05-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "thewierdnut",
           repo: "asha_pipewire_sink",
           rev: "16a9c1cfba2d9aaa2cedbd86b4aa4f8e556736ae",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "install -Dm755 asha_connection_test snoop_analyze asha_stream_test asha_pipewire_sink -t $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Sample ASHA implementation for Linux designed to work with pipewire and bluez",
         homepage: "https://github.com/thewierdnut/asha_pipewire_sink",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const guile = nix.arg($, "guile");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mcron",
       version: "1.2.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/mcron/mcron-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-G8jA02LTsaMPoAcdf6tpa7/B2h7VNsQuBIC7n/0iFU4=",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [guile]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Flexible implementation of `cron' in Guile",
         longDescription: "The GNU package mcron (Mellor's cron) is a 100% compatible\nreplacement for Vixie cron.  It is written in pure Guile, and\nallows configuration files to be written in scheme (as well as\nVixie's original format) for infinite flexibility in specifying\nwhen jobs should be run.  Mcron was written by Dale Mellor.\n",
         homepage: "https://www.gnu.org/software/mcron/",

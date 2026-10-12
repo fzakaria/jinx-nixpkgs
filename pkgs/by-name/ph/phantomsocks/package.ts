@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const withPcap = nix.argOr($, "withPcap", () => (nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux"))) && nix.asBool(!nix.asBool(withRawsocket))));
   const withRawsocket = nix.argOr($, "withRawsocket", () => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(!nix.asBool(withPcap))));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "phantomsocks",
       version: "0-unstable-2025-08-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "macronut",
           repo: "phantomsocks",
           rev: "c52f1bde25ed5df07eb4cd010a3d508c5cf023e0",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), withPcap, libpcap)),
       tags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), withPcap, "pcap"), nix.app(nix.sel(lib, "optional"), withRawsocket, "rawsocket"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/macronut/phantomsocks",
         description: "Cross-platform proxy client/server for Linux/Windows/macOS",
         longDescription: "A cross-platform proxy tool that could be used to modify TCP packets\nto implement TCB desync to bypass detection and censoring.\n",

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.42.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fxsjy",
           repo: "jieba",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -30,13 +30,13 @@ export default nix.lambda((args) => (() => {
 ${nix.sel(python, "interpreter")} test/test_tokenize.py
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Chinese Words Segmentation Utilities",
         homepage: "https://github.com/fxsjy/jieba",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "tts"))]),
       }));
-      return { __proto__: pos$3, pname, version, format, src, doCheck, checkPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, doCheck, checkPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

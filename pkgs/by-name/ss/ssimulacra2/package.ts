@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const lcms2 = nix.arg($, "lcms2");
   const giflib = nix.arg($, "giflib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ssimulacra2",
       version: "2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cloudinary",
           repo: "ssimulacra2",
           hash: "sha256-gOo8WCWMdXOSmny0mQSzCvHgURQTCNBFD4G4sxfmXik=",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(libhwy, "overrideAttrs"), nix.thunk(() => (() => {
             const version = "0.15.0";
             const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 owner: "google",
                 repo: "highway",
                 rev: version,
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
             const outputs = nix.thunk(() => ["out"]);
             const patches = [];
             const postPatch = "substituteInPlace CMakeLists.txt --replace-fail \"set(CMAKE_CXX_STANDARD 11)\" \"set(CMAKE_CXX_STANDARD 17)\"\n";
-            return { __proto__: pos$3, version, src, outputs, patches, postPatch };
+            return { [nix.POS]: pos$3, version, src, outputs, patches, postPatch };
           })()))),
         lcms2,
         giflib,
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/src`),
       installPhase: "runHook preInstall\ninstall -m 755 -D ssimulacra2 -t $out/bin/\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/cloudinary/ssimulacra2",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "viraptor"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const kdePackages = nix.arg($, "kdePackages");
   const audioBackend = nix.argOr($, "audioBackend", () => "pulse");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "miniaudicle",
       version: "1.5.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ccrma",
           repo: "miniAudicle",
           tag: nix.thunk(() => nix.str`chuck-${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +48,7 @@ substituteInPlace miniAudicle.pro \\
       buildInputs: nix.thunk(() => nix.concat([alsa_lib, libsndfile, nix.thunk(() => nix.sel(kdePackages, "qscintilla"))], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(audioBackend, "pulse")), libpulseaudio), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(audioBackend, "jack")), libjack2)))),
       buildFlags: nix.thunk(() => [nix.thunk(() => nix.str`linux-${audioBackend}`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Light-weight integrated development environment for the ChucK digital audio programming language",
         mainProgram: "miniAudicle",
         homepage: "https://audicle.cs.princeton.edu/mini/",

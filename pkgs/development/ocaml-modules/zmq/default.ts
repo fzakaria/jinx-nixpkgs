@@ -18,14 +18,14 @@ export default nix.lambda((args) => (() => {
       const pname = "zmq";
       const version = "5.3.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/issuu/ocaml-zmq/releases/download/${version}/zmq-${version}.tbz`),
           hash: "sha256-tetCmVg27/WHZ+HMwKZVHCrHTzWAlKwkAjNDibB1+6g=",
         }))));
       const buildInputs = nix.thunk(() => [dune_configurator]);
       const propagatedBuildInputs = nix.thunk(() => [czmq]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ZeroMQ bindings for OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         homepage: "https://github.com/issuu/ocaml-zmq",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.4.1";
       const outputs = nix.thunk(() => nix.concat(["out", "doc"], nix.app(nix.sel(lib, "optional"), withMan, "man")));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "containerd",
           repo: "containerd",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -50,9 +50,9 @@ export default nix.lambda((args) => (() => {
       const buildPhase = "runHook preBuild\nmake $makeFlags\nrunHook postBuild\n";
       const installPhase = "runHook preInstall\nmake $makeFlags $installTargets\nrunHook postInstall\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.update({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             cross: nix.thunk(() => (() => {
               const systemString = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "buildPlatform", "isAarch64")) ? "gnu64" : "aarch64-multiplatform"));
               return nix.sel(pkgsCross, nix.key(nix.force(systemString)), "containerd");
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Daemon to control runC",
         homepage: "https://containerd.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/containerd/containerd/releases/tag/v${version}`),
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         outputs,

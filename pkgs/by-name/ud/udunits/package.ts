@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const flex = nix.arg($, "flex");
   const texinfo = nix.arg($, "texinfo");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "udunits",
       version: "unstable-2021-03-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Unidata",
           repo: "UDUNITS-2",
           rev: "c83da987387db1174cd2266b73dd5dd556f4476b",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [expat]),
       configureFlags: nix.thunk(() => ["CFLAGS=-std=gnu17"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.unidata.ucar.edu/software/udunits/",
         description: "C-based package for the programmatic handling of units of physical quantities",
         longDescription: "The UDUNITS package supports units of physical quantities. Its C library\nprovides for arithmetic manipulation of units and for conversion of\nnumeric values between compatible units. The package contains an extensive\nunit database, which is in XML format and user-extendable. The package\nalso contains a command-line utility for investigating units and\nconverting values.\n",

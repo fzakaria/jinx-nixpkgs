@@ -11,8 +11,8 @@ export default nix.lambda((args) => (() => {
   const expect = nix.arg($, "expect");
   const micro = nix.arg($, "micro");
   const runCommand = nix.arg($, "runCommand");
-  const expect_script = nix.thunk(() => nix.builtins.path(nix.thunk(() => ({ __proto__: pos$1, name: "hello.tcl", path: nix.path(here, "./hello.tcl") }))));
-  return nix.app(runCommand, "micro-expect-hello-world", nix.thunk(() => ({ __proto__: pos$2, nativeBuildInputs: nix.thunk(() => [expect, micro]) })), nix.thunk(() => nix.str`export HOME=$(pwd)
+  const expect_script = nix.thunk(() => nix.builtins.path(nix.thunk(() => ({ [nix.POS]: pos$1, name: "hello.tcl", path: nix.path(here, "./hello.tcl") }))));
+  return nix.app(runCommand, "micro-expect-hello-world", nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [expect, micro]) })), nix.thunk(() => nix.str`export HOME=$(pwd)
 expect -f ${expect_script}
 grep "Hello world!" file.txt
 cat file.txt > $out

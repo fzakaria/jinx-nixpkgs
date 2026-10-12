@@ -44,13 +44,13 @@ export default nix.lambda((args) => (() => {
   const transformers = nix.arg($, "transformers");
   const xgboost = nix.arg($, "xgboost");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "shap",
       version: "0.52.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "slundberg",
           repo: "shap",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [cmake, nanobind, ninja, numpy, packaging, scikit_build_core, setuptools_scm]),
       dontUseCmakeConfigure: true,
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CMAKE_PREFIX_PATH: nix.thunk(() => nix.str`${nanobind}/${nix.sel(python, "sitePackages")}/nanobind`),
       })),
       dependencies: nix.thunk(() => [
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
         tqdm,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         plots: nix.thunk(() => [matplotlib, ipython]),
         others: nix.thunk(() => [lime]),
       })),
@@ -114,7 +114,7 @@ cat ${conftestSkipNetworkErrors} >> tests/conftest.py
       ]),
       pythonImportsCheck: nix.thunk(() => ["shap"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Unified approach to explain the output of any machine learning model",
         homepage: "https://github.com/slundberg/shap",
         changelog: nix.thunk(() => nix.str`https://github.com/slundberg/shap/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

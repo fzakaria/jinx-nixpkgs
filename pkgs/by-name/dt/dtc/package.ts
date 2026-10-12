@@ -35,45 +35,45 @@ export default nix.lambda((args) => (() => {
   const libyaml = nix.arg($, "libyaml");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: "dtc",
       version: "1.8.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://git.kernel.org/pub/scm/utils/dtc/dtc.git/snapshot/dtc-v${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-l32ZGygimwSB2xmwQEvS+C2c5n86OMH92jQZ/tPI+YI=",
         })))),
       patches: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/dgibson/dtc/commit/9b53b9a4c2f953a37d8f68d72f5910b20cf5aee0.patch?full_index=1",
             hash: "sha256-HHX3zg1uwD3ZFHbHcANX85gNDpeEMVbkG7zMhyc/87k=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/dgibson/dtc/commit/f116f4800edce6cd58f680a36fbaed656018d528.patch?full_index=1",
             hash: "sha256-XcLzfruD3DGs4girNxsqrhBW3Ct/+vAltn8OzIRyU6w=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/dgibson/dtc/commit/4df9ca4c8ddb83c40900bf13916b42914a25caf4.patch?full_index=1",
             hash: "sha256-ap3D2DxHxLYOSJPhWAUP/nooi/n2/wLc65NfbjlYl2M=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://github.com/dgibson/dtc/commit/214372a27398121f8266cf9bb9592561508c4c0f.patch?full_index=1",
             hash: "sha256-Fk0dA1J14NsIfd5qSknOMkB769TEwvWem8e+uEleM84=",
           })))),
       ], nix.app(nix.sel(lib, "optionals"), pythonSupport, nix.thunk(() => [
           nix.thunk(() => nix.app(replaceVars, nix.path(here, "./python-path.patch"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               python_bin: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), python)),
             })))),
         ])))),
       nativeBuildInputs: nix.thunk(() => nix.concat([meson, ninja, flex, bison, pkg_config], nix.app(nix.sel(lib, "optionals"), pythonSupport, nix.thunk(() => [python, swig])))),
       buildInputs: nix.thunk(() => [libyaml]),
       postPatch: "# Align the name with pypi\nsubstituteInPlace pyproject.toml --replace-fail \"name = 'libfdt'\" \"name = 'pylibfdt'\"\n",
-      env: nix.thunk(() => nix.update({ __proto__: pos$7, DESTDIR: "/" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({ __proto__: pos$8, NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" }))))),
+      env: nix.thunk(() => nix.update({ [nix.POS]: pos$7, DESTDIR: "/" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({ [nix.POS]: pos$8, NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" }))))),
       mesonAutoFeatures: "auto",
       mesonFlags: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mesonBool"), "tests", nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")))),
@@ -83,15 +83,15 @@ export default nix.lambda((args) => (() => {
         return nix.app(nix.sel(nix.lookup(w, "buildPlatform"), "canExecute"), nix.thunk(() => nix.lookup(w, "hostPlatform")));
       })()))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             url: "https://git.kernel.org/pub/scm/utils/dtc/dtc.git",
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         description: "Device Tree Compiler",
         homepage: "https://git.kernel.org/pub/scm/utils/dtc/dtc.git",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

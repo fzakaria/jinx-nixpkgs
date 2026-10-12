@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const hatchling = nix.arg($, "hatchling");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "docling",
       version: nix.thunk(() => nix.attr(docling_slim, "version")),
       src: nix.thunk(() => nix.attr(docling_slim, "src")),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["docling"]),
       nativeCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "SDK and CLI for parsing PDF, DOCX, HTML, and more, to a unified document representation for powering downstream workflows such as gen AI applications",
         homepage: "https://github.com/DS4SD/docling",
         changelog: nix.thunk(() => nix.str`https://github.com/DS4SD/docling/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

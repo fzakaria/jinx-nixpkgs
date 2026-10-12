@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "posteid-seed-extractor",
       version: "0-unstable-2022-02-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "simone36050",
           repo: "PosteID-seed-extractor",
           rev: "667e2997a98aa3273a6bf6b4b34ca77715120e7f",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       })()),
       installPhase: "runHook preInstall\ninstall -Dm755 extractor.py $out/bin/posteid-seed-extractor\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/simone36050/PosteID-seed-extractor",
         description: "Extract OTP seed instead of using PosteID app",
         mainProgram: "posteid-seed-extractor",

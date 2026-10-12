@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nodejs = nix.arg($, "nodejs");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "deye-dummycloud",
       version: "c36009e",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Hypfer",
           repo: "deye-microinverter-cloud-free",
           rev: "c36009e5c1711aa0f76bd17d63e33322535a87f9",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       ]),
       dontNpmBuild: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "A dummy cloud server for DEYE microinverters (Node.js) and bridge to mqtt",
         homepage: "https://github.com/Hypfer/deye-microinverter-cloud-free",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

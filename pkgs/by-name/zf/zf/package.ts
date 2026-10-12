@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const zig_0_15 = nix.arg($, "zig_0_15");
   const callPackage = nix.arg($, "callPackage");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "zf",
       upstreamVersion: "0.10.3",
       version: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "upstreamVersion")}-unstable-2025-10-14`),
       rev: "3c52637b7e937c5ae61fd679717da3e276765b23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "natecraddock",
           repo: "zf",
           rev: nix.thunk(() => nix.sel(finalAttrs, "rev")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [installShellFiles, zig_0_15]),
       deps: nix.thunk(() => nix.app(callPackage, nix.path(here, "./deps.nix"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-cache-${nix.sel(finalAttrs, "version")}`),
         })))),
       dontSetZigDefaultFlags: true,
@@ -50,18 +50,18 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               version: nix.thunk(() => nix.sel(finalAttrs, "upstreamVersion")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://github.com/natecraddock/zf",
         description: "Commandline fuzzy finder that prioritizes matches on filenames",
         changelog: nix.thunk(() => nix.str`https://github.com/natecraddock/zf/releases/tag/${nix.sel(finalAttrs, "version")}`),

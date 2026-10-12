@@ -50,11 +50,11 @@ export default nix.lambda((args) => (() => {
   const single = (x) => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(x, null)), x);
   const pname = "Catppuccin-GTK";
   return nix.app(nix.sel(lib, "checkListOfEnum"), nix.thunk(() => nix.str`${pname} Valid theme accent(s)`), validAccents, accent, nix.thunk(() => nix.sel(lib, "checkListOfEnum")), nix.thunk(() => nix.str`${pname} Valid shades`), validShades, nix.thunk(() => nix.app(single, shade)), nix.thunk(() => nix.sel(lib, "checkListOfEnum")), nix.thunk(() => nix.str`${pname} Valid sizes`), validSizes, nix.thunk(() => nix.app(single, size)), nix.thunk(() => nix.sel(lib, "checkListOfEnum")), nix.thunk(() => nix.str`${pname} Valid tweaks`), validTweaks, tweaks, nix.thunk(() => nix.sel(stdenv, "mkDerivation")), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.str`magnetic-${nix.app(nix.sel(lib, "toLower"), pname)}`),
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Fausto-Korpsvart",
           repo: "Catppuccin-GTK-Theme",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "find -name \"*.sh\" -print0 | while IFS= read -r -d '' file; do\n  patchShebangs \"$file\"\ndone\n\nrm -r themes/src/main/gtk-2.0\nsed -i '/gtk-2/Is/^.*$/:/' themes/lib/installers/gtk.sh themes/lib/gtkrc.sh\n\nsubstituteInPlace themes/lib/utils.sh \\\n  --replace-fail 'LOG_FILE=\"${HOME}/.cache/catppuccin-install.log\"' 'LOG_FILE=/dev/null'\n",
       dontBuild: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       installPhase: nix.thunk(() => nix.str`runHook preInstall
@@ -89,7 +89,7 @@ jdupes --quiet --link-soft --recurse $out/share
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GTK Theme with Catppuccin colour scheme",
         homepage: "https://github.com/Fausto-Korpsvart/Catppuccin-GTK-Theme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

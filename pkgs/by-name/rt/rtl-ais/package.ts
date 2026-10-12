@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const libusb1 = nix.arg($, "libusb1");
   const rtl_sdr = nix.arg($, "rtl-sdr");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rtl-ais",
       version: "0.8.1",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [rtl_sdr, libusb1]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dgiardini",
           repo: "rtl-ais",
           rev: "0e85f4e5f9ce7378834c3129bc894580efc24291",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple AIS tuner and generic dual-frequency FM demodulator",
         homepage: "https://github.com/dgiardini/rtl-ais",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

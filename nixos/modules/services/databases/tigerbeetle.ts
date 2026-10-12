@@ -29,9 +29,9 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "tigerbeetle"));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "danielsidhion"))];
@@ -40,41 +40,41 @@ export default nix.lambda((args) => (() => {
       buildDocsInSandbox: true,
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         tigerbeetle: nix.thunk(() => (() => {
           const w = nix.withScope(lib, null);
           return {
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "TigerBeetle server")),
             package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "tigerbeetle", nix.thunk(() => ({})))),
             clusterId: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "either"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "ints", "unsigned")), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "strMatching"), "[0-9]+")))),
                 default: 0n,
                 description: "The 128-bit cluster ID used to create the replica data file (if needed).\nSince Nix only supports integers up to 64 bits, you need to pass a string to this if the cluster ID can't fit in 64 bits.\nOtherwise, you can pass the cluster ID as either an integer or a string.\n",
               })))),
             replicaIndex: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "ints", "unsigned")),
                 default: 0n,
                 description: "The index (starting at 0) of the replica in the cluster.\n",
               })))),
             replicaCount: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "ints", "unsigned")),
                 default: 1n,
                 description: "The number of replicas participating in replication of the cluster.\n",
               })))),
             cacheGridSize: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "strMatching"), "[0-9]+(K|M|G)iB")),
                 default: "1GiB",
                 description: "The grid cache size.\nThe grid cache acts like a page cache for TigerBeetle.\nIt is recommended to set this as large as possible.\n",
               })))),
             addresses: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "nonEmptyStr")))),
                 default: nix.thunk(() => ["3001"]),
                 description: "The addresses of all replicas in the cluster.\nThis should be a list of IPv4/IPv6 addresses with port numbers.\nEither the address or port number (but not both) may be omitted, in which case a default of 127.0.0.1 or 3001 will be used.\nThe first address in the list corresponds to the address for replica 0, the second address for replica 1, and so on.\n",
@@ -84,30 +84,30 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         assertions: nix.thunk(() => (() => {
           const numAddresses = nix.thunk(() => nix.builtins.length(nix.thunk(() => nix.sel(cfg, "addresses"))));
           return [
             nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               assertion: nix.thunk(() => nix.lt(nix.sel(cfg, "replicaIndex"), nix.sel(cfg, "replicaCount"))),
               message: "the TigerBeetle replica index must fit the configured replica count",
             })),
             nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               assertion: nix.thunk(() => nix.eq(nix.sel(cfg, "replicaCount"), numAddresses)),
               message: nix.thunk(() => (nix.asBool(nix.lt(nix.sel(cfg, "replicaCount"), numAddresses)) ? "TigerBeetle must not have more addresses than the configured number of replicas" : "TigerBeetle must be configured with the addresses of all replicas")),
             })),
           ];
         })()),
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             tigerbeetle: nix.thunk(() => (() => {
               const replicaDataPath = nix.thunk(() => nix.str`/var/lib/tigerbeetle/${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "clusterId")))}_${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "replicaIndex")))}.tigerbeetle`);
               return {
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 description: "TigerBeetle server",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 after: nix.thunk(() => ["network.target"]),
@@ -116,7 +116,7 @@ export default nix.lambda((args) => (() => {
 fi
 `),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   DevicePolicy: "closed",
                   DynamicUser: true,
                   ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} start --cache-grid=${nix.sel(cfg, "cacheGridSize")} --addresses=${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.builtins.concatStringsSep(",", nix.thunk(() => nix.sel(cfg, "addresses")))))} ${replicaDataPath}`),
@@ -143,7 +143,7 @@ fi
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
       })))),

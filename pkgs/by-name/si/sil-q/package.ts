@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const setup = nix.thunk(() => nix.app(writeScript, "setup", "mkdir -p \"$ANGBAND_PATH\"\n# copy all the data files into place\ncp -ar $1/* \"$ANGBAND_PATH\"\n# the copied files need to be writable\nchmod +w -R \"$ANGBAND_PATH\"\n"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "sil-q",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sil-quirk",
           repo: "sil-q",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,16 +47,16 @@ wrapProgram $out/bin/sil-q \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           saveDirCreation: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "save-dir-creation", nix.thunk(() => ({})), nix.thunk(() => nix.str`HOME=$(pwd) ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "sil-q")))} --help
 test -d .sil-q && touch $out
 `))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Roguelike game set in the First Age of Middle-earth",
         mainProgram: "sil-q",
         longDescription: "A game of adventure set in the First Age of Middle-earth, when the world still\nrang with Elven song and gleamed with Dwarven mail.\n\nWalk the dark halls of Angband.  Slay creatures black and fell.  Wrest a shining\nSilmaril from Morgoth’s iron crown.\n\nA fork of Sil that's still actively developed.\n",

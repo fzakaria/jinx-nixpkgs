@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const fakeredis = nix.arg($, "fakeredis");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: nix.thunk(() => nix.attr(opentelemetry_instrumentation, "version")),
       src: nix.thunk(() => nix.attr(opentelemetry_instrumentation, "src")),
       pname: "opentelemetry-instrumentation-redis",
@@ -34,10 +34,10 @@ export default nix.lambda((args) => (() => {
         wrapt,
       ]),
       nativeCheckInputs: nix.thunk(() => [fakeredis, opentelemetry_test_utils, pytestCheckHook]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$1, instruments: nix.thunk(() => [redis]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$1, instruments: nix.thunk(() => [redis]) })),
       pythonImportsCheck: nix.thunk(() => ["opentelemetry.instrumentation.redis"]),
       meta: nix.thunk(() => nix.update(nix.sel(opentelemetry_instrumentation, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-redis",
         description: "Redis instrumentation for OpenTelemetry",
       })),

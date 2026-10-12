@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const httptoolkit_server = nix.arg($, "httptoolkit-server");
   const electron = electron_42;
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "httptoolkit",
       version: "1.27.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "httptoolkit",
           repo: "httptoolkit-desktop",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace httptoolkit-{mcp,ctl} src/index.ts \\\n  --replace-fail \"@out@\" \"$out\"\n",
       npmDepsHash: "sha256-NF1FVh86pQdgqcYzqTHEzjM5x4jJamOqsculkyHyVEM=",
       makeCacheWritable: true,
-      env: nix.thunk(() => ({ __proto__: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       nativeBuildInputs: nix.thunk(() => nix.concat([makeWrapper], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [copyDesktopItems])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [xcbuild]))))),
       npmBuildScript: "build:src",
       postBuild: nix.thunk(() => nix.str`cp -rL ${nix.sel(electron, "dist")} electron-dist
@@ -71,7 +71,7 @@ makeWrapper "$out/Applications/HTTP Toolkit.app/Contents/MacOS/HTTP Toolkit" $ou
 `))), "runHook postInstall\n")),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "httptoolkit",
             desktopName: "HTTP Toolkit",
             exec: "httptoolkit %U",
@@ -84,7 +84,7 @@ makeWrapper "$out/Applications/HTTP Toolkit.app/Contents/MacOS/HTTP Toolkit" $ou
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "HTTP(S) debugging, development & testing tool",
         homepage: "https://httptoolkit.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

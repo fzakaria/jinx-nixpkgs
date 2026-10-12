@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libxau = nix.arg($, "libxau");
   const libxdmcp = nix.arg($, "libxdmcp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fricas",
       version: "1.3.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fricas",
           repo: "fricas",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [sbcl, libx11, libxpm, libice, libsm, libxt, libxau, libxdmcp]),
       dontStrip: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://fricas.github.io",
         description: "Advanced computer algebra system",
         changelog: nix.thunk(() => nix.str`https://github.com/fricas/fricas/blob/${nix.sel(finalAttrs, "src", "tag")}/ChangeLog`),

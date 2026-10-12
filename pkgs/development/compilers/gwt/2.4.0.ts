@@ -17,20 +17,20 @@ export default nix.lambda((args) => (() => {
       const pname = "gwt-java";
       const version = "2.4.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/google-web-toolkit/gwt-${version}.zip`),
           sha256: "1gvyg00vx7fdqgfl2w7nhql78clg3abs6fxxy7m03pprdm5qmm17",
         }))));
       const nativeBuildInputs = nix.thunk(() => [unzip]);
       const installPhase = "mkdir -p $out\nunzip $src\nmv gwt-2.4.0 $out/bin\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.gwtproject.org/",
         description: "Development toolkit for building and optimizing complex browser-based applications",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
-      return { __proto__: pos$3, pname, version, src, nativeBuildInputs, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=2.4.0.ts.map

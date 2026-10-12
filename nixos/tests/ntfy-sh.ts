@@ -15,20 +15,20 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
     const $ = nix.formals(args, formals$1);
     const pkgs = nix.arg($, "pkgs");
     return {
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       name: "ntfy-sh",
       nodes: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           return {
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             services: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               "ntfy-sh": nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 enable: true,
-                settings: nix.thunk(() => ({ __proto__: pos$1, "base-url": "http://localhost:2586" })),
+                settings: nix.thunk(() => ({ [nix.POS]: pos$1, "base-url": "http://localhost:2586" })),
                 environmentFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "ntfy.env", "NTFY_AUTH_DEFAULT_ACCESS='deny-all'\nNTFY_AUTH_USERS='user:$2a$12$W2v7IQhkayvJOYRpg6YEruxj.jUO3R2xQOU7s1vC3HzLLB9gSKJ9.:user'\nNTFY_AUTH_ACCESS='user:test:rw'\n")),
               })),
             })),

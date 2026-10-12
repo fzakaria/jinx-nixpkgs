@@ -27,15 +27,15 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const gtest = nix.arg($, "gtest");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "sommelier",
       version: "126.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => (() => {
           const url = nix.thunk(() => nix.str`https://chromium.googlesource.com/chromiumos/platform2/+archive/${nix.sel(passthru, "rev")}/vm_tools/sommelier.tar.gz`);
-          const passthru = nix.thunk(() => ({ __proto__: pos$1, rev: "fd3798efe23f2edbc48f86f2fbd82ba5059fd875" }));
+          const passthru = nix.thunk(() => ({ [nix.POS]: pos$1, rev: "fd3798efe23f2edbc48f86f2fbd82ba5059fd875" }));
           const stripRoot = false;
           const sha256 = "BmWZnMcK7IGaEAkVPulyb3hngsmuI0D1YtQEbqMjV5c=";
-          return { __proto__: pos$2, url, passthru, stripRoot, sha256 };
+          return { [nix.POS]: pos$2, url, passthru, stripRoot, sha256 };
         })()))),
       nativeBuildInputs: nix.thunk(() => [
         meson,
@@ -50,9 +50,9 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       nativeCheckInputs: nix.thunk(() => [gtest]),
       postInstall: "rm $out/bin/sommelier_test # why does it install the test binary? o_O\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.path(here, "./update.py") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.py") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         broken: true,
         homepage: "https://chromium.googlesource.com/chromiumos/platform2/+/refs/heads/main/vm_tools/sommelier/",
         description: "Nested Wayland compositor with support for X11 forwarding",

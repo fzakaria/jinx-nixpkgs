@@ -32,74 +32,74 @@ export default nix.thunk(() => (() => {
     const $ = nix.formals(args, formals$1);
     const pkgs = nix.arg($, "pkgs");
     return {
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       name: "nginx-proxyprotocol",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "raitobezarius"))];
         })()),
       })),
       nodes: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         webserver: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const pkgs_1 = nix.arg($_1, "pkgs");
           const lib = nix.arg($_1, "lib");
           return {
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             environment: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "netcat"))]),
             })),
             security: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               pki: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 certificateFiles: nix.thunk(() => [nix.thunk(() => nix.sel(certs, "ca", "cert"))]),
               })),
             })),
             networking: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               extraHosts: "127.0.0.5 proxy.test.nix\n127.0.0.5 noproxy.test.nix\n127.0.0.3 direct-nossl.test.nix\n127.0.0.4 unsecure-nossl.test.nix\n127.0.0.2 direct-noproxy.test.nix\n127.0.0.1 direct-proxy.test.nix\n",
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               nginx: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 enable: true,
                 defaultListen: nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$6, addr: "127.0.0.1", proxyProtocol: true, ssl: true })),
-                  nix.thunk(() => ({ __proto__: pos$7, addr: "127.0.0.2" })),
-                  nix.thunk(() => ({ __proto__: pos$8, addr: "127.0.0.3", ssl: false })),
-                  nix.thunk(() => ({ __proto__: pos$9, addr: "127.0.0.4", ssl: false, proxyProtocol: true })),
+                  nix.thunk(() => ({ [nix.POS]: pos$6, addr: "127.0.0.1", proxyProtocol: true, ssl: true })),
+                  nix.thunk(() => ({ [nix.POS]: pos$7, addr: "127.0.0.2" })),
+                  nix.thunk(() => ({ [nix.POS]: pos$8, addr: "127.0.0.3", ssl: false })),
+                  nix.thunk(() => ({ [nix.POS]: pos$9, addr: "127.0.0.4", ssl: false, proxyProtocol: true })),
                 ]),
                 commonHttpConfig: "log_format pcombined '(proxy_protocol=$proxy_protocol_addr) - (remote_addr=$remote_addr) - (realip=$realip_remote_addr) - (upstream=) - (remote_user=$remote_user) [$time_local] '\n              '\"$request\" $status $body_bytes_sent '\n              '\"$http_referer\" \"$http_user_agent\"';\naccess_log /var/log/nginx/access.log pcombined;\nerror_log /var/log/nginx/error.log;\n",
                 virtualHosts: nix.thunk(() => (() => {
                   const commonConfig = nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     locations: nix.thunk(() => ({
-                      __proto__: pos$11,
-                      "/": nix.thunk(() => ({ __proto__: pos$10, return: "200 '$remote_addr'" })),
+                      [nix.POS]: pos$11,
+                      "/": nix.thunk(() => ({ [nix.POS]: pos$10, return: "200 '$remote_addr'" })),
                     })),
                     extraConfig: "set_real_ip_from 127.0.0.5/32;\nreal_ip_header proxy_protocol;\n",
                   }));
                   return {
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     "*.test.nix": nix.thunk(() => nix.update(commonConfig, {
-                      __proto__: pos$13,
+                      [nix.POS]: pos$13,
                       sslCertificate: nix.thunk(() => nix.sel(certs, "*.test.nix", "cert")),
                       sslCertificateKey: nix.thunk(() => nix.sel(certs, "*.test.nix", "key")),
                       forceSSL: true,
                     })),
                     "direct-nossl.test.nix": commonConfig,
-                    "unsecure-nossl.test.nix": nix.thunk(() => nix.update(commonConfig, { __proto__: pos$14, extraConfig: "real_ip_header proxy_protocol;\n" })),
+                    "unsecure-nossl.test.nix": nix.thunk(() => nix.update(commonConfig, { [nix.POS]: pos$14, extraConfig: "real_ip_header proxy_protocol;\n" })),
                   };
                 })()),
               })),
               sniproxy: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 enable: true,
                 config: "error_log {\n  syslog daemon\n}\naccess_log {\n  syslog daemon\n}\nlistener 127.0.0.5:443 {\n  protocol tls\n  source 127.0.0.5\n}\ntable {\n  ^proxy\\.test\\.nix$   127.0.0.1 proxy_protocol\n  ^noproxy\\.test\\.nix$ 127.0.0.2\n}\n",
               })),

@@ -54,11 +54,11 @@ export default nix.lambda((args) => (() => {
   const wrapQtAppsHook = nix.thunk(() => nix.attr(qt6Packages, "wrapQtAppsHook"));
   const qtwayland = nix.thunk(() => nix.attr(qt6Packages, "qtwayland"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "rpcs3",
       version: "0.0.42-unstable-2026-08-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "RPCS3",
           repo: "rpcs3",
           rev: "fc93d932c8560f763f5223c0a4165cc53bceeb3f",
@@ -66,9 +66,9 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-3sGcpYfaxZNa6/CIRxylSf/EL+ievwIeQzEKYDOUNy8=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version=branch", "--use-github-releases"]),
           })))),
       })),
@@ -144,7 +144,7 @@ install -D ${nix.path(here, "./99-ds4-controllers.rules")} $out/etc/udev/rules.d
 install -D ${nix.path(here, "./99-dualsense-controllers.rules")} $out/etc/udev/rules.d/99-dualsense-controllers.rules
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "PS3 emulator/debugger",
         homepage: "https://rpcs3.net/",
         maintainers: nix.thunk(() => (() => {

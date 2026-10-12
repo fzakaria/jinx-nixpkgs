@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const gmp = nix.arg($, "gmp");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(gccStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "ginac",
       version: "1.8.10",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.ginac.de/ginac-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-bKwZc6UyXeC5vLjjkpiK6V+8N6pmwPHx07jmTAjOwbk=",
         })))),
@@ -38,17 +38,17 @@ export default nix.lambda((args) => (() => {
       preConfigure: "patchShebangs ginsh\n",
       configureFlags: nix.thunk(() => ["--disable-rpath"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           example: nix.thunk(() => nix.app(callPackage, nix.path(here, "./ginac-example-test.nix"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               ginac: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "GiNaC C++ library for symbolic manipulations",
         homepage: "https://www.ginac.de/",
         maintainers: [],

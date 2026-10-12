@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const libxml2 = nix.arg($, "libxml2");
   const ncurses6 = nix.arg($, "ncurses6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hopper",
       version: "5.19.4",
       rev: "v4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.hopperapp.com/downloader/public/Hopper-${nix.sel(finalAttrs, "rev")}-${nix.sel(finalAttrs, "version")}-Linux-demo.pkg.tar.xz`),
           curlOptsList: nix.thunk(() => [
             "--user-agent",
@@ -62,7 +62,7 @@ mkdir -p "$out/lib"
 ln -s "${nix.app(nix.sel(lib, "getLib"), libxml2)}/lib/libxml2.so" "$out/lib/libxml2.so.2"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.hopperapp.com/index.html",
         description: "MacOS and Linux Disassembler",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

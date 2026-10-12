@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.7";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "imagine",
           owner: "hertogp",
           rev: version,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       })());
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: nix.thunk(() => nix.sel(src, "meta", "homepage")),
         description: "A pandoc filter that will turn code blocks tagged with certain classes\ninto images or ASCII art\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "pandoc-imagine",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

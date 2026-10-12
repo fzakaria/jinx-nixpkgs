@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const libiodbc = nix.arg($, "libiodbc");
   const platformLdLibraryPath = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "DYLD_FALLBACK_LIBRARY_PATH" : (nix.asBool(nix.selOr(stdenv, () => nix.sel(stdenv, "hostPlatform", "isBSD"), "hostPlatform", "isLinux")) ? "LD_LIBRARY_PATH" : nix.builtins.throw("unsupported platform"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sagittarius-scheme",
       version: "0.9.14",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ktakashi/sagittarius-scheme/releases/download/v${nix.sel(finalAttrs, "version")}/sagittarius-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-L0ZKCiSbneWe1+czj83x+bCHPZw1uuYSdJwKHp4qTnk=",
         })))),
@@ -40,11 +40,11 @@ export ${platformLdLibraryPath}="$(pwd)/build"
       nativeBuildInputs: nix.thunk(() => [pkg_config, cmake]),
       buildInputs: nix.thunk(() => nix.concat([libffi, boehmgc, openssl, zlib], nix.app(nix.sel(lib, "optional"), odbcSupport, libiodbc))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["-Wno-error=int-conversion"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))), nix.thunk(() => ["-maes"])))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "R6RS/R7RS Scheme system",
         longDescription: "Sagittarius Scheme is a free Scheme implementation supporting\nR6RS/R7RS specification.\n\nFeatures:\n\n-  Builtin CLOS.\n-  Common Lisp like reader macro.\n-  Cryptographic libraries.\n-  Customisable cipher and hash algorithm.\n-  Custom codec mechanism.\n-  CL like keyword lambda syntax (taken from Gauche).\n-  Constant definition form. (define-constant form).\n-  Builtin regular expression\n-  mostly works O(n)\n-  Replaceable reader\n",
         homepage: "https://github.com/ktakashi/sagittarius-scheme",

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const rev = "e764ba00b9c34524e3ff3ffd19a44fa2a5c296a5";
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "blobs.gg",
       version: "0-unstable-2019-07-24",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://git.pleroma.social/pleroma/emoji-index/raw/commit/${rev}/packs/blobs_gg.zip`),
           hash: "sha256-OhLzoYFnjVs1hKYglUEbDWCjNRGBNZENh5kg+K3lpX8=",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [unzip]),
       installPhase: "runHook preInstall\n\nmkdir -p $out\ncp *.png LICENSE $out\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Blob emoji from blobs.gg repacked as APNG",
         homepage: "https://blobs.gg",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

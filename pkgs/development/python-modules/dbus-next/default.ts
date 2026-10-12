@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "altdesktop",
           repo: "python-dbus-next",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +39,7 @@ dbus-run-session --config-file=${dbus}/share/dbus-1/session.conf \\
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Zero-dependency DBus library for Python with asyncio support",
         homepage: "https://github.com/altdesktop/python-dbus-next",
         changelog: nix.thunk(() => nix.str`https://github.com/altdesktop/python-dbus-next/releases/tag/v${version}`),
@@ -47,7 +47,7 @@ runHook postCheck
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

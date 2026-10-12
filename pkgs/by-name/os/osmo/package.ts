@@ -26,17 +26,17 @@ export default nix.lambda((args) => (() => {
   const libgringotts = nix.arg($, "libgringotts");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "osmo",
       version: "0.4.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/osmo-pim/osmo-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "19h3dnjgqbawnvgnycyp4n5b6mjsp5zghn3b69b6f3xa3fyi32qy",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: "osmo",
             version: "0.4.4",
             debianRevision: "3",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         libgringotts,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Handy personal organizer",
         mainProgram: "osmo",
         homepage: "https://sourceforge.net/projects/osmo-pim/",

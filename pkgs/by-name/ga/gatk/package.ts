@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gatk",
       version: "4.7.0.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/broadinstitute/gatk/releases/download/${nix.sel(finalAttrs, "version")}/gatk-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "sha256-tOiI2O2Ey5fz/I+FbiqqbnXcZXnJ5k0efI7MQ1tRie0=",
         })))),
@@ -35,7 +35,7 @@ install -m755 -D $src/gatk $out/bin/
       postFixup: nix.thunk(() => nix.str`wrapProgram $out/bin/gatk --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [jre]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gatk.broadinstitute.org/hc/en-us",
         description: "Wide variety of tools with a primary focus on variant discovery and genotyping",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

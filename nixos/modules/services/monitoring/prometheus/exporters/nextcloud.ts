@@ -25,47 +25,47 @@ export default nix.lambda((args) => (() => {
   const escapeShellArg = nix.thunk(() => nix.attr(lib, "escapeShellArg"));
   const concatStringsSep = nix.thunk(() => nix.attr(lib, "concatStringsSep"));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     port: 9205n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       url: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(types, "str")),
           example: "https://domain.tld",
           description: "URL to the Nextcloud serverinfo page.\nAdding the path to the serverinfo API is optional, it defaults\nto `/ocs/v2.php/apps/serverinfo/api/v1/info`.\n",
         })))),
       username: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "nextcloud-exporter",
           description: "Username for connecting to Nextcloud.\nNote that this account needs to have admin privileges in Nextcloud.\nUnused when using token authentication.\n",
         })))),
       passwordFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
           default: null,
           example: "/path/to/password-file",
           description: "File containing the password for connecting to Nextcloud.\nMake sure that this file is readable by the exporter user.\n",
         })))),
       tokenFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
           default: null,
           example: "/path/to/token-file",
           description: "File containing the token for connecting to Nextcloud.\nMake sure that this file is readable by the exporter user.\n",
         })))),
       timeout: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "5s",
           description: "Timeout for getting server info document.\n",
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         DynamicUser: false,
         ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "prometheus-nextcloud-exporter")}/bin/nextcloud-exporter \\
   --addr ${nix.sel(cfg, "listenAddress")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))} \\

@@ -15,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     boot: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       kernelPackages: nix.thunk(() => nix.sel(pkgs, "linuxPackages_latest")),
-      supportedFilesystems: nix.thunk(() => ({ __proto__: pos$1, zfs: false, bcachefs: true })),
+      supportedFilesystems: nix.thunk(() => ({ [nix.POS]: pos$1, zfs: false, bcachefs: true })),
     })),
     environment: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       etc: nix.thunk(() => ({
-        __proto__: pos$4,
-        "nixos-generate-config.conf": nix.thunk(() => ({ __proto__: pos$3, text: "[Defaults]\nKernel=latest\n" })),
+        [nix.POS]: pos$4,
+        "nixos-generate-config.conf": nix.thunk(() => ({ [nix.POS]: pos$3, text: "[Defaults]\nKernel=latest\n" })),
       })),
     })),
   };

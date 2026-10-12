@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const python3_application = nix.arg($, "python3-application");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "xcaplib",
       version: "2.0.2-unstable-2026-07-09",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AGProjects",
           repo: "python3-xcaplib",
           rev: "73cc7f405f2a10fd113b5cbbc80e4b3fc5537236",
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["xcaplib"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "XCAP (RFC4825) client library",
         homepage: "https://github.com/AGProjects/python3-xcaplib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

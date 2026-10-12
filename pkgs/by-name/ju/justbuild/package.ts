@@ -44,19 +44,19 @@ export default nix.lambda((args) => (() => {
       const pname = "justbuild";
       const version = "1.6.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "just-buildsystem",
           repo: "justbuild",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-WvoH4xPtXbF0QoJLVOcrajavfbsEdnFSV+P6eTWV/vA=",
         }))));
       const bazelapi = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://github.com/bazelbuild/remote-apis/archive/9ef19c6b5fbf77d6dd9d84d75fbb5a20a6b62ef1.tar.gz",
           hash: "sha256-zPV1ObY0fOsKp+k+5Duf/xrrSW02zAl9qRjEo172WDk=",
         }))));
       const googleapi = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: "https://github.com/googleapis/googleapis/archive/fe8ba054ad4f7eca946c2d14a63c3f07c0b586a0.tar.gz",
           hash: "sha256:1r33jj8yipxjgiarddcxr1yc5kmn98rwrjl9qxfx0fzn1bsg04q5",
         }))));
@@ -118,12 +118,12 @@ runHook postBuild
 `);
       const installPhase = "runHook preInstall\nmkdir -p \"$out/bin\"\n\n\ninstall -m 755 -Dt \"$out/bin\" \"../build/out/bin/just\"\ninstall -m 755 -Dt \"$out/bin\" \"../build/out/bin/just-mr\"\ninstall -m 755 -DT \"bin/just-import-git.py\" \"$out/bin/just-import-git\"\ninstall -m 755 -DT \"bin/just-deduplicate-repos.py\" \"$out/bin/just-deduplicate-repos\"\ninstall -m 755 -DT \"bin/just-lock.py\" \"$out/bin/just-lock\"\n\nmkdir -p \"$out/share/bash-completion/completions\"\ninstall -m 0644 ./share/just_complete.bash \"$out/share/bash-completion/completions/just\"\n\nmkdir -p \"$out/share/man/\"{man1,man5}\ninstall -m 0644 -t \"$out/share/man/man1\" ./share/man/*.1\ninstall -m 0644 -t \"$out/share/man/man5\" ./share/man/*.5\n\nrunHook postInstall\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               package: justbuild,
               command: "just version",
               version: nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [","]), version)),
@@ -131,7 +131,7 @@ runHook postBuild
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Generic build tool",
         homepage: "https://github.com/just-buildsystem/justbuild",
@@ -144,7 +144,7 @@ runHook postBuild
         })()),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version,
         src,

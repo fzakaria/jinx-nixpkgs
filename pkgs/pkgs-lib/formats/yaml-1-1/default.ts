@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     format: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const tags = nix.argOr($_1, "tags", () => false);
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         generate: (name) => (value) => nix.app(nix.sel(pkgs, "callPackage"), nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
             const runCommand = nix.arg($_2, "runCommand");
             const remarshal = nix.arg($_2, "remarshal");
             return nix.app(runCommand, name, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 nativeBuildInputs: nix.thunk(() => [remarshal]),
                 value: value,
                 preferLocalBuild: true,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
               })), nix.thunk(() => nix.str`remarshal --from json --to yaml-1.1${nix.app(nix.sel(lib, "optionalString"), tags, " --yaml-tags")} ${(nix.asBool(nix.eq(value, null)) ? "<(echo \"null\")" : "--unwrap value \"$NIX_ATTRS_JSON_FILE\"")} "$out"
 `));
           })(), formals$3), nix.thunk(() => ({}))),
-        type: nix.thunk(() => nix.app(nix.sel(lib, "types", "serializableValueWith"), nix.thunk(() => ({ __proto__: pos$2, typeName: "YAML 1.1" })))),
+        type: nix.thunk(() => nix.app(nix.sel(lib, "types", "serializableValueWith"), nix.thunk(() => ({ [nix.POS]: pos$2, typeName: "YAML 1.1" })))),
       };
     })(), formals$2),
   };

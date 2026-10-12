@@ -14,15 +14,15 @@ export default nix.lambda((args) => (() => {
   const isDeclaredArray = nix.arg($, "isDeclaredArray");
   const makeSetupHook = nix.arg($, "makeSetupHook");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "sortArray",
       propagatedBuildInputs: nix.thunk(() => [isDeclaredArray]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         tests: nix.thunk(() => nix.app(callPackages, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Sorts an array",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),

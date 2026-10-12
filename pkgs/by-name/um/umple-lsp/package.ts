@@ -25,18 +25,18 @@ export default nix.lambda((args) => (() => {
   const umple = nix.arg($, "umple");
   const withUmple = nix.argOr($, "withUmple", () => true);
   const wasi32cc = nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgsCross, "wasi32", "stdenv", "cc"))));
-  const wasi_sdk = nix.thunk(() => nix.app(linkFarm, "wasi-sdk", nix.thunk(() => ({ __proto__: pos$1, "bin/clang": wasi32cc }))));
+  const wasi_sdk = nix.thunk(() => nix.app(linkFarm, "wasi-sdk", nix.thunk(() => ({ [nix.POS]: pos$1, "bin/clang": wasi32cc }))));
   const wasm_ld = nix.thunk(() => nix.app(linkFarm, "wasm-ld", nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       "bin/wasm-ld": nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgsCross, "wasi32", "buildPackages", "llvmPackages", "lld")), "wasm-ld")),
     }))));
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "umple-lsp",
       version: "1.0.2",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "umple",
           repo: "umple-lsp",
           rev: "1771d55d7e00a720b97c0f2422971efa26e110f6",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         tree_sitter,
         wasm_ld,
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$4, TREE_SITTER_WASI_SDK_PATH: wasi_sdk })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$4, TREE_SITTER_WASI_SDK_PATH: wasi_sdk })),
       dontNpmBuild: true,
       buildPhase: "runHook preBuild\n\ncd packages/tree-sitter-umple\ntree-sitter generate\ntree-sitter build --wasm\ncd -\n\nnpm run copy-wasm\nnode_modules/.bin/tsc -b\n\nrunHook postBuild\n",
       makeWrapperArgs: nix.thunk(() => nix.concat([
@@ -69,9 +69,9 @@ export default nix.lambda((args) => (() => {
       dontCheckForBrokenSymlinks: true,
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
-      passthru: nix.thunk(() => ({ __proto__: pos$5, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Umple language server",
         mainProgram: "umple-lsp-server",
         homepage: "https://github.com/umple/umple-lsp",

@@ -38,12 +38,12 @@ export default nix.lambda((args) => (() => {
   const withVlock = nix.argOr($, "withVlock", () => false);
   const kbdVlock = nix.arg($, "kbdVlock");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: nix.thunk(() => nix.add("kbd", nix.app(nix.sel(lib, "optionalString"), withVlock, "-vlock"))),
       version: "2.9.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.kernel.org/pub/scm/linux/kernel/git/legion/kbd.git",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-uUECxFdm/UhoHKLHLFe6/ygCQ+4mrQOZExKl+ReaTNw=",
@@ -70,21 +70,21 @@ moveToOutput bin/unicode_start $scripts
 moveToOutput bin/unicode_stop $scripts
 `),
       outputChecks: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         out: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           disallowedRequisites: nix.thunk(() => [bash, bashNonInteractive]),
         })),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/legionus/kbd.git",
             "rev-prefix": "v",
           })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           cross: nix.thunk(() => (() => {
             const systemString = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "buildPlatform", "isAarch64")) ? "gnu64" : "aarch64-multiplatform"));
             return nix.sel(pkgsCross, nix.key(nix.force(systemString)), "kbd");
@@ -96,7 +96,7 @@ moveToOutput bin/unicode_stop $scripts
         vlock: kbdVlock,
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://kbd-project.org/",
         description: "Linux keyboard tools and keyboard maps",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

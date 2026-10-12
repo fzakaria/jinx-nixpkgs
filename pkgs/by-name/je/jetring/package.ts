@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const gnupg = nix.arg($, "gnupg");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "jetring",
       version: "0.32",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "salsa.debian.org",
           owner: "debian",
           repo: "jetring",
@@ -48,11 +48,11 @@ installManPage *.{1,7}
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Maintenance of gpg keyrings using changesets",
         homepage: "https://salsa.debian.org/debian/jetring",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

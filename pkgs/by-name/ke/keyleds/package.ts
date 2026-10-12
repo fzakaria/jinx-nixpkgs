@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const luajit = nix.arg($, "luajit");
   const udev = nix.arg($, "udev");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "keyleds",
       version: "1.1.1-unstable-2021-03-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "keyleds",
           repo: "keyleds",
           rev: "171361654a64b570d747c2d196acb2da4b8dc293",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/keyleds/keyleds/commit/bffed5eb181127df915002b6ed830f85f15feafd.patch",
             sha256: "sha256-i2N3D/K++34JVqJloNK2UcN473NarIjdjAz6PUhXcNY=",
           })))),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       cmakeBuildType: "MinSizeRel",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/keyleds/keyleds",
         description: "Advanced RGB animation service for Logitech keyboards",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

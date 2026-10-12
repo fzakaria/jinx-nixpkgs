@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => nix.app(pythonOlder, "3.12"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zigpy",
           repo: "zha-device-handlers",
           tag: version,
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_tuya_mcu_set_time", "test_moes"]);
       const pythonImportsCheck = nix.thunk(() => ["zhaquirks"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ZHA Device Handlers are custom quirks implementations for Zigpy",
         homepage: "https://github.com/zigpy/zha-device-handlers",
         changelog: nix.thunk(() => nix.str`https://github.com/zigpy/zha-device-handlers/releases/tag/${nix.sel(src, "tag")}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

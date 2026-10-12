@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   return nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => (() => {
       const version = "1.0.10";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/libmicrohttpd/libmicrohttpd-${version}.tar.gz`),
           hash: "sha256-BL/o73XbfWKaM952dZl2XOytxWJ0o5gi1dCBAw1XdoU=",
         }))));
-      return { __proto__: pos$2, version, src };
+      return { [nix.POS]: pos$2, version, src };
     })()));
 })(), formals$1);
 //# sourceMappingURL=1.0.ts.map

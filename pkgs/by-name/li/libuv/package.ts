@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       version: "1.52.1",
       pname: "libuv",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libuv",
           repo: "libuv",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -138,9 +138,9 @@ export default nix.lambda((args) => (() => {
       preCheck: "export UV_TEST_TIMEOUT_MULTIPLIER=10\n",
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           bind: bind,
           cmake: cmake,
           "knot-resolver_5": knot_resolver_5,
@@ -159,7 +159,7 @@ export default nix.lambda((args) => (() => {
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Multi-platform support library with a focus on asynchronous I/O",
         homepage: "https://libuv.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/libuv/libuv/blob/v${nix.sel(finalAttrs, "version")}/ChangeLog`),
@@ -180,7 +180,7 @@ export default nix.lambda((args) => (() => {
           ];
         })()),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "libuv", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

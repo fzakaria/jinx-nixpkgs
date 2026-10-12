@@ -20,30 +20,30 @@ export default nix.lambda((args) => (() => {
   const passthruFun = nix.arg($, "passthruFun");
   const version = "2.1-20260824";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "openresty",
       repo: "luajit2",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-IynlDQOyjCr1C3qibLg3OJ9Qd/Rb5jzjy30ETKdKvFM=",
     }))));
   const srcWithRiscv64Port = nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       src: src,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/openresty/luajit2/compare/v2.1-20260824...ce14aff834d8d62220fc730a16042c52451f41cc.diff",
             hash: "sha256-VHDTUr7PWpthmhO3BokCbdL1cricAnX6BjZGTi1wr3Q=",
           })))),
       ]),
     }))));
   return nix.app(callPackage, nix.path(here, "./default.nix"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: version,
       luaAttr: "luajit_openresty",
       src: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isRiscV64")) ? nix.force(srcWithRiscv64Port) : nix.force(src))),
       extraMeta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         badPlatforms: nix.thunk(() => ["loongarch64-linux", "powerpc64-linux"]),
       })),
       self: self,

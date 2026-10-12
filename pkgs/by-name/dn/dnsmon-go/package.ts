@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const libpcap = nix.arg($, "libpcap");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dnsmon-go",
       version: "0-unstable-2022-05-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jonpulsifer",
           repo: "dnsmon-go",
           rev: "ec1d59f1f1314ce310ad4c04d2924e0ebd857f1d",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-aiX+NGUsFK0N9vC5baAHHMr28CbF5Xa4WgYLFFLBYTs=",
       buildInputs: nix.thunk(() => [libpcap]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to collect DNS traffic",
         homepage: "https://github.com/jonpulsifer/dnsmon-go",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

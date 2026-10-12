@@ -61,31 +61,31 @@ export default nix.lambda((args) => (() => {
   const enableAutoScrub = nix.thunk(() => nix.sel(cfgScrub, "enable"));
   const enableBtrfs = nix.thunk(() => (nix.asBool((nix.asBool(inInitrd) || nix.asBool(inSystem))) || nix.asBool(enableAutoScrub)));
   return {
-    __proto__: pos$32,
+    [nix.POS]: pos$32,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         btrfs: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           autoScrub: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enable: nix.thunk(() => nix.app(mkEnableOption, "regular btrfs scrub")),
             fileSystems: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "path")))),
                 example: nix.thunk(() => ["/"]),
                 description: "List of paths to btrfs filesystems to regularly call {command}`btrfs scrub` on.\nDefaults to all mount points with btrfs filesystems.\nNote that if you have filesystems that span multiple devices (e.g. RAID), you should\ntake care to use the same device for any given mount point and let btrfs take care\nof automatically mounting the rest, in order to avoid scrubbing the same data multiple times.\n",
               })))),
             interval: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 default: "monthly",
                 type: nix.thunk(() => nix.sel(types, "str")),
                 example: "weekly",
                 description: "Systemd calendar expression for when to scrub btrfs filesystems.\nThe recommended period is a month but could be less\n({manpage}`btrfs-scrub(8)`).\nSee\n{manpage}`systemd.time(7)`\nfor more information on the syntax.\n",
               })))),
             limit: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 default: null,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "strMatching"), "[0-9]+[KMGT]?")))),
                 example: "100M",
@@ -97,18 +97,18 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
         nix.thunk(() => nix.app(mkIf, enableBtrfs, nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             system: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               fsPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "btrfs-progs"))]),
             })),
           })))),
         nix.thunk(() => nix.app(mkIf, inInitrd, nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             boot: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               initrd: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 kernelModules: nix.thunk(() => ["btrfs"]),
                 availableKernelModules: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.app(nix.sel(config, "boot", "kernelPackages", "kernel", "kernelOlder"), "7.0")), nix.thunk(() => nix.concat(["crc32c"], nix.app(optionals, nix.thunk(() => nix.app(nix.sel(config, "boot", "kernelPackages", "kernel", "kernelAtLeast"), "5.5")), nix.thunk(() => ["xxhash64", "sha256", "blake2b-256"])))))),
                 extraUtilsCommands: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable"))), nix.thunk(() => nix.str`copy_bin_and_libs ${nix.sel(pkgs, "btrfs-progs")}/bin/btrfs
@@ -118,32 +118,32 @@ ln -sv btrfsck $out/bin/fsck.btrfs
                 extraUtilsCommandsTest: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable"))), "$out/bin/btrfs --version\n")),
                 postDeviceCommands: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable"))), "btrfs device scan\n")),
                 systemd: nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   initrdBin: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "btrfs-progs"))]),
                 })),
               })),
             })),
           })))),
         nix.thunk(() => nix.app(mkIf, enableAutoScrub, nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfgScrub, "enable")) || nix.asBool(!nix.eq(nix.sel(cfgScrub, "fileSystems"), [])))),
                 message: "If 'services.btrfs.autoScrub' is enabled, you need to have at least one\nbtrfs file system mounted via 'fileSystems' or specify a list manually\nin 'services.btrfs.autoScrub.fileSystems'.\n",
               })),
             ]),
             services: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               btrfs: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 autoScrub: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   fileSystems: nix.thunk(() => (() => {
                     const isDeviceInList = (list) => (device) => !nix.eq(nix.builtins.filter((e) => nix.eq(nix.sel(e, "device"), device), list), []);
                     const uniqueDeviceList = nix.thunk(() => nix.app(foldl$, (acc) => (e) => (nix.asBool(nix.app(isDeviceInList, acc, nix.thunk(() => nix.sel(e, "device")))) ? nix.force(acc) : nix.concat(acc, [e])), []));
                     return nix.app(mkDefault, nix.thunk(() => nix.builtins.map((e) => nix.sel(e, "mountPoint"), nix.thunk(() => nix.app(uniqueDeviceList, nix.thunk(() => nix.app(mapAttrsToList, (name) => (fs) => ({
-                              __proto__: pos$15,
+                              [nix.POS]: pos$15,
                               mountPoint: nix.thunk(() => nix.sel(fs, "mountPoint")),
                               device: nix.thunk(() => nix.sel(fs, "device")),
                             }), nix.thunk(() => nix.app(filterAttrs, (name) => (fs) => nix.eq(nix.sel(fs, "fsType"), "btrfs"), nix.thunk(() => nix.sel(config, "fileSystems")))))))))));
@@ -152,20 +152,20 @@ ln -sv btrfsck $out/bin/fsck.btrfs
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               services: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 "btrfs-scrub@": nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   description: "btrfs scrub on %f",
                   documentation: nix.thunk(() => ["man:btrfs-scrub(8)"]),
                   conflicts: nix.thunk(() => nix.app(optionals, nix.thunk(() => nix.app(versionOlder, nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "kernel", "version")), "6.19")), nix.thunk(() => ["shutdown.target", "sleep.target"]))),
                   before: nix.thunk(() => nix.app(optionals, nix.thunk(() => nix.app(versionOlder, nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "kernel", "version")), "6.19")), nix.thunk(() => ["shutdown.target", "sleep.target"]))),
-                  environment: nix.thunk(() => ({ __proto__: pos$19, PYTHON_JIT: "0" })),
-                  unitConfig: nix.thunk(() => ({ __proto__: pos$20, RequiresMountsFor: "%f" })),
+                  environment: nix.thunk(() => ({ [nix.POS]: pos$19, PYTHON_JIT: "0" })),
+                  unitConfig: nix.thunk(() => ({ [nix.POS]: pos$20, RequiresMountsFor: "%f" })),
                   serviceConfig: nix.thunk(() => (() => {
                     const btrfsCmd = nix.thunk(() => nix.app(getExe, nix.thunk(() => nix.sel(pkgs, "btrfs-progs"))));
-                    const btrfsCancelCmd = nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writePython3"), "btrfs-scrub-maybe-cancel", nix.thunk(() => ({ __proto__: pos$21, flakeIgnore: nix.thunk(() => ["E501"]) })), nix.thunk(() => nix.str`import subprocess
+                    const btrfsCancelCmd = nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writePython3"), "btrfs-scrub-maybe-cancel", nix.thunk(() => ({ [nix.POS]: pos$21, flakeIgnore: nix.thunk(() => ["E501"]) })), nix.thunk(() => nix.str`import subprocess
 import sys
 
 btrfs = "${nix.app(escape, nix.thunk(() => ["\"", "\\"]), btrfsCmd)}"
@@ -185,7 +185,7 @@ sys.exit(result.returncode)
 `)));
                     const additionalScrubArgs = nix.thunk(() => nix.app(optionals, nix.thunk(() => !nix.eq(nix.sel(cfgScrub, "limit"), null)), nix.thunk(() => ["--limit", nix.thunk(() => nix.sel(cfgScrub, "limit"))])));
                     return {
-                      __proto__: pos$22,
+                      [nix.POS]: pos$22,
                       Type: "simple",
                       Nice: 19n,
                       CPUSchedulingPolicy: "idle",
@@ -214,13 +214,13 @@ sys.exit(result.returncode)
                 })),
               })),
               timers: nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 "btrfs-scrub@": nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   description: "Regular btrfs scrub on %f",
                   documentation: nix.thunk(() => ["man:btrfs-scrub(8)"]),
                   timerConfig: nix.thunk(() => ({
-                    __proto__: pos$25,
+                    [nix.POS]: pos$25,
                     OnCalendar: nix.thunk(() => nix.sel(cfgScrub, "interval")),
                     AccuracySec: "1d",
                     Persistent: true,
@@ -228,9 +228,9 @@ sys.exit(result.returncode)
                 })),
               })),
               targets: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 timers: nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   wants: nix.thunk(() => nix.builtins.map((fs) => nix.str`btrfs-scrub@${nix.app(nix.sel(utils, "escapeSystemdPath"), fs)}.timer`, nix.thunk(() => nix.sel(cfgScrub, "fileSystems")))),
                 })),
               })),

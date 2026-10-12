@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const dbus = nix.arg($, "dbus");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pesde",
       version: "0.7.4",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pesde-pkg",
           repo: "pesde",
           rev: "611c484ed26aa6a7151d5f2c85e5048012eefdac",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openssl, dbus]),
       buildFeatures: nix.thunk(() => ["bin"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Package manager for the Luau programming language, supporting multiple runtimes including Roblox and Lune.",
         homepage: "https://github.com/pesde-pkg/pesde",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

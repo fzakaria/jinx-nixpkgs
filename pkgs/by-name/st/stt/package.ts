@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const bzip2 = nix.arg($, "bzip2");
   const xz = nix.arg($, "xz");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "stt",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/coqui-ai/STT/releases/download/v${nix.sel(finalAttrs, "version")}/native_client.tflite.Linux.tar.xz`),
           hash: "sha256-RVYc64pLYumQoVUEFZdxfUUaBMozaqgD0h/yiMaWN90=",
         })))),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "install -D stt $out/bin/stt\ninstall -D coqui-stt.h $out/include/coqui-stt.h\ninstall -D libkenlm.so $out/lib/libkenlm.so\ninstall -D libsox.so.3 $out/lib/libsox.so.3\ninstall -D libstt.so $out/lib/libstt.so\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/coqui-ai/STT",
         description: "Deep learning toolkit for Speech-to-Text, battle-tested in research and production",
         sourceProvenance: nix.thunk(() => (() => {

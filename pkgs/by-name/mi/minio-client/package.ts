@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "minio-client",
       version: "2025-08-13T08-35-41Z",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "minio",
           repo: "mc",
           rev: nix.thunk(() => nix.str`RELEASE.${nix.sel(finalAttrs, "version")}`),
@@ -36,11 +36,11 @@ sed -i "s/CommitID.*/CommitID = \\"${nix.sel(finalAttrs, "src", "rev")}\\"/g" cm
       installCheckPhase: nix.thunk(() => nix.str`$out/bin/mc --version | grep ${nix.sel(finalAttrs, "version")} > /dev/null
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, minio: nix.thunk(() => nix.sel(nixosTests, "minio")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, minio: nix.thunk(() => nix.sel(nixosTests, "minio")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/minio/mc",
         description: "Replacement for ls, cp, mkdir, diff and rsync commands for filesystems and object storage",
         maintainers: nix.thunk(() => (() => {

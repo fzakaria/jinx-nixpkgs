@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const kirigami_addons = nix.arg($, "kirigami-addons");
   const qtwebengine = nix.arg($, "qtwebengine");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "mimetreeparser",
       extraBuildInputs: nix.thunk(() => [qt5compat, qtdeclarative, qgpgme]),
       extraPropagatedBuildInputs: nix.thunk(() => [kirigami, kirigami_addons, qtwebengine]),

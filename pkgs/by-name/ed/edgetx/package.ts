@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
   const applyPatches = nix.arg($, "applyPatches");
   const targetsToBuild = nix.argOr($, "targetsToBuild", () => nix.builtins.import(nix.path(here, "./targets.nix")));
   const maxlibqt = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "edgetx",
       repo: "maxLibQt",
       rev: "ac1988ffd005cd15a8449b92150ce6c08574a4f1",
@@ -48,16 +48,16 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   const yaml_cppSrc = nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       src: nix.thunk(() => nix.attr(yaml_cpp, "src")),
       patches: nix.thunk(() => nix.selOr(yaml_cpp, () => [], "patches")),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "edgetx",
       version: "2.11.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "EdgeTX",
           repo: "edgetx",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-libclang-paths.patch"), nix.thunk(() => (() => {
             const llvmMajor = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(llvmPackages, "llvm", "version"))));
             return {
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               resourceDir: nix.thunk(() => nix.str`${nix.sel(llvmPackages, "clang", "cc", "lib")}/lib/clang/${llvmMajor}`),
               libclang: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(llvmPackages, "libclang")))}/lib/libclang.so`),
               "libc-cflags": nix.thunk(() => nix.str`${nix.sel(llvmPackages, "clang")}/nix-support/libc-cflags`),
@@ -109,14 +109,14 @@ patchShebangs companion/util radio/util
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "NATIVE_BUILD", true)),
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "CMAKE_SKIP_BUILD_RPATH", true)),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$5, EDGETX_VERSION_SUFFIX: "nixpkgs" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$5, EDGETX_VERSION_SUFFIX: "nixpkgs" })),
       dontUseCmakeConfigure: true,
       targetsToBuild: targetsToBuild,
       __structuredAttrs: true,
       configurePhase: "runHook preConfigure\nprependToVar cmakeFlags \"-GNinja\"\nrunHook postConfigure\n",
       buildPhase: "runHook preBuild\n\ncmakeCommonFlags=\"${cmakeFlags[@]}\"\n# This is the most sensible way to convert target name -> cmake options\n# aside from manually extracting bash variables from upstream's CI scripts\n# and converting that to nix expressions. Let's hope upstream doesn't break\n# this file too often.\nsource $src/tools/build-common.sh\n\n# Yes, this is really how upstream expects packaging to look like ¯\\_(ツ)_/¯.\n# https://github.com/EdgeTX/edgetx/wiki/Build-Instructions-under-Ubuntu-20.04#building-companion-simulator-and-radio-simulator-libraries\nfor plugin in \"${targetsToBuild[@]}\"\ndo\n  # Variable modified by `get_target_build_options` from build-common.sh.\n  local BUILD_OPTIONS=\"\"\n  get_target_build_options \"$plugin\"\n  # With each invocation of `cmakeConfigurePhase` `cmakeFlags` gets\n  # prepended to, so it has to be reset.\n  cmakeFlags=()\n  appendToVar cmakeFlags $cmakeCommonFlags $BUILD_OPTIONS\n  pushd .\n  cmakeConfigurePhase\n  ninjaFlags=(\"libsimulator\")\n  ninjaBuildPhase\n  rm CMakeCache.txt\n  popd\ndone\n\ncmakeConfigurePhase\nninjaFlags=()\nninjaBuildPhase\n\nrunHook postBuild\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "EdgeTX Companion transmitter support software",
         longDescription: "EdgeTX Companion is used for many different tasks like loading EdgeTX\nfirmware to the radio, backing up model settings, editing settings and\nrunning radio simulators.\n",
         mainProgram: nix.thunk(() => nix.add("companion", nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.app(nix.sel(lib, "take"), 2n, nix.thunk(() => nix.app(nix.sel(lib, "splitVersion"), nix.thunk(() => nix.sel(finalAttrs, "version"))))))))),

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "railway",
       version: "5.30.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "railwayapp",
           repo: "cli",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,10 +30,10 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-LE4wt0ymwsNlQ8ywDoml11+okXeyB5iNb2pg12mTGwE=",
       nativeBuildInputs: nix.thunk(() => [pkg_config, makeBinaryWrapper]),
       buildInputs: nix.thunk(() => [openssl]),
-      env: nix.thunk(() => ({ __proto__: pos$2, OPENSSL_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: 1n })),
       postInstall: "wrapProgram $out/bin/railway \\\n  --set RAILWAY_NO_AUTO_UPDATE true\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         mainProgram: "railway",
         description: "Railway.app CLI",
         homepage: "https://github.com/railwayapp/cli",

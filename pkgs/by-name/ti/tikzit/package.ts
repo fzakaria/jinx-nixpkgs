@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const bison = nix.arg($, "bison");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tikzit",
       version: "2.1.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tikzit",
           repo: "tikzit",
           rev: "v2.1.6",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       ]),
       enableParallelBuilding: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Graphical tool for rapidly creating graphs and diagrams using PGF/TikZ",
         longDescription: "TikZiT is a simple GUI editor for graphs and string diagrams.\nIts native file format is a subset of PGF/TikZ, which means TikZiT files\ncan be included directly in papers typeset using LaTeX.\nFor preview support the texlive package 'preview' has to be installed.\n",
         homepage: "https://tikzit.github.io/",

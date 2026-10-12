@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(buildPythonPackage, (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.app(callPackage, nix.path(here, "./src.nix"), nix.thunk(() => ({}))));
       return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "openpaperwork-core",
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "make l10n_compile\n",
       preCheck: "export HOME=$(mktemp -d)\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Backend part of Paperwork (Python API, no UI)",
         homepage: "https://openpaper.work/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

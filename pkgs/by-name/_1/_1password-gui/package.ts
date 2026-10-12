@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const sourcesChanOsArch = nix.thunk(() => nix.selOr(sourcesChanOs, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported architecture ${hostArch}`)), "sources", nix.key(nix.force(hostArch))));
   const version = nix.thunk(() => nix.attr(sourcesChanOs, "version"));
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.attr(sourcesChanOsArch, "url")),
       hash: nix.thunk(() => nix.attr(sourcesChanOsArch, "hash")),
     }))));
   const meta = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     description: "Multi-platform password manager",
     homepage: "https://1password.com/",
     sourceProvenance: nix.thunk(() => (() => {
@@ -49,8 +49,8 @@ export default nix.lambda((args) => (() => {
     platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux", "aarch64-darwin"]),
     mainProgram: "1password",
   }));
-  return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(callPackage, nix.path(here, "./darwin.nix"), nix.thunk(() => ({ __proto__: pos$3, pname: pname, version: version, src: src, meta: meta }))) : nix.app(callPackage, nix.path(here, "./linux.nix"), nix.thunk(() => ({
-      __proto__: pos$4,
+  return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(callPackage, nix.path(here, "./darwin.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, pname: pname, version: version, src: src, meta: meta }))) : nix.app(callPackage, nix.path(here, "./linux.nix"), nix.thunk(() => ({
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: src,

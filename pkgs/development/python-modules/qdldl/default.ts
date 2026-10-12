@@ -26,14 +26,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.7.post5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "osqp",
           repo: "qdldl-python",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-XHdvYWORHDYy/EIqmlmFQZwv+vK3I+rPIrvcEW1JyIw=",
         }))));
       const patches = nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./use-qdldl.patch"), nix.thunk(() => ({ __proto__: pos$2, qdldl: qdldl })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./use-qdldl.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, qdldl: qdldl })))),
       ]);
       const dontUseCmakeConfigure = true;
       const build_system = nix.thunk(() => [cmake, numpy, pybind11, setuptools]);
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["qdldl"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python interface to the QDLDL",
         homepage: "https://github.com/osqp/qdldl-python",
         changelog: nix.thunk(() => nix.str`https://github.com/osqp/qdldl-python/releases/tag/${nix.sel(src, "tag")}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

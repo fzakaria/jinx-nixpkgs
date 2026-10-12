@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchPypi = nix.arg($, "fetchPypi");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "chkcrontab",
       version: "1.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           sha256: "0gmxavjkjkvjysgf9cf5fcpk589gb75n1mn20iki82wifi1pk1jn",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "# cannot install the manpage as it is not present in the wheel\nsubstituteInPlace setup.py \\\n  --replace-fail \"'doc/chkcrontab.1'\" \"\"\n",
       "build-system": nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "setuptools"))]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to detect crontab errors",
         mainProgram: "chkcrontab",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

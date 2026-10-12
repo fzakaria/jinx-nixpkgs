@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const respx = nix.arg($, "respx");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: nix.thunk(() => nix.attr(opentelemetry_instrumentation, "version")),
       src: nix.thunk(() => nix.attr(opentelemetry_instrumentation, "src")),
       pname: "opentelemetry-instrumentation-urllib3",
@@ -37,12 +37,12 @@ export default nix.lambda((args) => (() => {
         wrapt,
         opentelemetry_util_http,
       ]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$1, instruments: nix.thunk(() => [urllib3]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$1, instruments: nix.thunk(() => [urllib3]) })),
       pythonImportsCheck: nix.thunk(() => ["opentelemetry.instrumentation.urllib3"]),
       nativeCheckInputs: nix.thunk(() => [httpretty, mocket, opentelemetry_test_utils, pytestCheckHook, respx, urllib3]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => nix.update(nix.sel(opentelemetry_instrumentation, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OpenTelemetry urllib3 instrumentation",
         homepage: "https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-urllib3",
       })),

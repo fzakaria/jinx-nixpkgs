@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
   const rocmSupport = nix.arg($, "rocmSupport");
   const nativeCpuSupport = nix.arg($, "nativeCpuSupport");
   const rocmtoolkit_joined = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "rocm-merged",
       paths: nix.thunk(() => (() => {
         const w = nix.withScope(rocmPackages, null);
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       })()),
     }))));
   const rocmPath = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "rocm-path",
       paths: nix.thunk(() => (() => {
         const w = nix.withScope(rocmPackages, null);
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
       })()),
     }))));
   const cudatoolkit_joined = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "cuda-merged",
       paths: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(buildPackages, "cudaPackages")), null);
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
       })()),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       name: "unified-runtime",
       version: "0.12.0",
       src: intel_llvm_src,
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       nativeBuildInputs: nix.thunk(() => [cmake, ninja, python3, pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([
-        nix.thunk(() => nix.app(nix.sel(unified_memory_framework, "override"), nix.thunk(() => ({ __proto__: pos$4, useJemalloc: false })))),
+        nix.thunk(() => nix.app(nix.sel(unified_memory_framework, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, useJemalloc: false })))),
         zlib,
         libbacktrace,
         hwloc,
@@ -138,12 +138,12 @@ EOF
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CUDA_cupti_LIBRARY", nix.thunk(() => nix.str`${cudatoolkit_joined}/lib/libcupti.so`))),
         ]))))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
-        setupVars: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), rocmSupport, nix.thunk(() => ({ __proto__: pos$5, ROCM_PATH: rocmPath }))), nix.app(nix.sel(lib, "optionalAttrs"), cudaSupport, nix.thunk(() => ({ __proto__: pos$6, CUDA_PATH: cudatoolkit_joined }))))),
+        [nix.POS]: pos$7,
+        setupVars: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), rocmSupport, nix.thunk(() => ({ [nix.POS]: pos$5, ROCM_PATH: rocmPath }))), nix.app(nix.sel(lib, "optionalAttrs"), cudaSupport, nix.thunk(() => ({ [nix.POS]: pos$6, CUDA_PATH: cudatoolkit_joined }))))),
         backends: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), levelZeroSupport, nix.thunk(() => ["level_zero", "level_zero_v2"])), nix.concat(nix.app(nix.sel(lib, "optional"), cudaSupport, "cuda"), nix.concat(nix.app(nix.sel(lib, "optional"), rocmSupport, "hip"), nix.concat(nix.app(nix.sel(lib, "optional"), nativeCpuSupport, "native_cpu"), nix.app(nix.sel(lib, "optional"), openclSupport, "opencl")))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Intel LLVM-based compiler with SYCL support",
         longDescription: "Intel's LLVM-based compiler toolchain with Data Parallel C++ (DPC++)\nand SYCL support for heterogeneous computing across CPUs, GPUs, and FPGAs.\n",
         homepage: "https://github.com/intel/llvm",

@@ -16,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const defaultGemConfig = nix.arg($, "defaultGemConfig");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "oxidized",
       gemdir: nix.path(here, "./."),
       ruby: ruby,
       exes: nix.thunk(() => ["oxidized", "oxs"]),
       gemConfig: defaultGemConfig,
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         tests: nix.thunk(() => nix.sel(nixosTests, "oxidized")),
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "oxidized")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Network device configuration backup tool. It's a RANCID replacement",
         homepage: "https://github.com/ytti/oxidized",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

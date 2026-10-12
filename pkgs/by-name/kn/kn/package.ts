@@ -17,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const getent = nix.arg($, "getent");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "kn",
       version: "1.23.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "knative",
           repo: "client",
           tag: nix.thunk(() => nix.str`knative-v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-Q0v+wFDSo/A7uvu3k7pqTCFowj8ujbgMLih/UUZTMvw=",
         })))),
       vendorHash: "sha256-eWEr0hIRcd6P8d0FqK2KgvJAY+na0gGccaEPNzmocoo=",
-      env: nix.thunk(() => ({ __proto__: pos$2, GOWORK: "off" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, GOWORK: "off" })),
       subPackages: nix.thunk(() => ["cmd/kn"]),
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       ldflags: nix.thunk(() => [
@@ -43,7 +43,7 @@ PATH=$PATH:${getent}/bin $out/bin/kn version | grep ${nix.sel(finalAttrs, "versi
 runHook postInstallCheck
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Create Knative resources interactively from the command line or from within scripts",
         mainProgram: "kn",
         homepage: "https://github.com/knative/client",

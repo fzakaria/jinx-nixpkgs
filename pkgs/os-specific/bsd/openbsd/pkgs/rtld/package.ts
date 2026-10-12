@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const mkDerivation = nix.arg($, "mkDerivation");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "libexec/ld.so",
       extraPaths: nix.thunk(() => ["lib/libc/string", "lib/csu/os-note-elf.h"]),
       patches: nix.thunk(() => [nix.path(here, "./ldso-fix-makefile.patch")]),
@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "mv $out/bin $out/libexec\n",
       outputs: nix.thunk(() => ["out", "man"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "openbsd")),
       })),
     })));

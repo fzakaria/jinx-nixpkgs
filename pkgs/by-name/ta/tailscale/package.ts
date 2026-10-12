@@ -38,12 +38,12 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const tailscale_nginx_auth = nix.arg($, "tailscale-nginx-auth");
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       pname: "tailscale",
       version: "1.104.1",
       outputs: nix.thunk(() => ["out", "derper"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tailscale",
           repo: "tailscale",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-f9abuyk1qvVr6MPpfmHay6p/U/+8flm1SBmHGjZa1aU=",
       nativeBuildInputs: nix.thunk(() => [makeWrapper, installShellFiles]),
       nativeCheckInputs: nix.thunk(() => nix.concat([gitMinimal], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(unixtools, "netstat"))])))),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       subPackages: nix.thunk(() => ["cmd/derper", "cmd/derpprobe", "cmd/tailscaled", "cmd/get-authkey"]),
       ldflags: nix.thunk(() => [
         "-w",
@@ -96,18 +96,18 @@ substituteInPlace ./cmd/tailscaled/tailscale-wait-online.service --replace-fail 
 install -D -m0444 -t $out/lib/systemd/system ./cmd/tailscaled/{tailscaled.service,tailscale-online.target,tailscale-wait-online.service}
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "local INSTALL=\"$out/bin/tailscale\"\ninstallShellCompletion --cmd tailscale \\\n  --bash <($out/bin/tailscale completion bash) \\\n  --fish <($out/bin/tailscale completion fish) \\\n  --zsh <($out/bin/tailscale completion zsh)\n"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         tests: nix.thunk(() => (() => {
           const goTestGroups = nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             client: nix.thunk(() => ({})),
             cmd: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               preCheck: "chmod +x cmd/containerboot/test_tailscale{,d}.sh\npatchShebangs cmd/containerboot/test_tailscale{,d}.sh\n",
             })),
             "cmd/testwrapper": (old) => ({
-              __proto__: pos$5,
-              env: nix.thunk(() => nix.update(nix.sel(old, "env"), { __proto__: pos$4, CGO_ENABLED: 1n })),
+              [nix.POS]: pos$5,
+              env: nix.thunk(() => nix.update(nix.sel(old, "env"), { [nix.POS]: pos$4, CGO_ENABLED: 1n })),
             }),
             control: nix.thunk(() => ({})),
             derp: nix.thunk(() => ({})),
@@ -118,9 +118,9 @@ install -D -m0444 -t $out/lib/systemd/system ./cmd/tailscaled/{tailscaled.servic
             kube: nix.thunk(() => ({})),
             net: nix.thunk(() => ({})),
             ssh: (old) => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               nativeCheckInputs: nix.thunk(() => nix.concat(nix.sel(old, "nativeCheckInputs"), [openssh])),
-              env: nix.thunk(() => nix.update(nix.sel(old, "env"), { __proto__: pos$6, CI: "true" })),
+              env: nix.thunk(() => nix.update(nix.sel(old, "env"), { [nix.POS]: pos$6, CI: "true" })),
               preCheck: "export TAILSCALE_SSH_DEFAULT_PATH=\"$PATH\"\n",
             }),
             tsnet: nix.thunk(() => ({})),
@@ -134,7 +134,7 @@ install -D -m0444 -t $out/lib/systemd/system ./cmd/tailscaled/{tailscaled.servic
           const mkGoTests = (name) => (pattern) => (excludedDirs) => (overrides) => (() => {
             const excludeRegex = nix.thunk(() => nix.str`^tailscale\\.com/(${nix.app(nix.sel(lib, "concatMapStringsSep"), "|", nix.thunk(() => nix.sel(lib, "escapeRegex")), nix.thunk(() => nix.concat(["tool"], excludedDirs)))})(/|$)`);
             return nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (old) => nix.update({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 pname: nix.thunk(() => nix.str`${nix.sel(old, "pname")}-go-tests-${name}`),
                 outputs: nix.thunk(() => ["out"]),
                 dontBuild: true,
@@ -161,11 +161,11 @@ runHook postCheck
               }, nix.app(nix.sel(lib, "toFunction"), overrides, old)));
           })();
           return nix.update({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             headscale: nix.thunk(() => nix.attr(nixosTests, "headscale")),
             "tailscale-nginx-auth": tailscale_nginx_auth,
             "go-other": nix.thunk(() => nix.app(mkGoTests, "other", "./...", goTestDirs, nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 preCheck: "chmod -R u+w vendor\nrm -rf vendor\nln -s \"$goModules\" vendor\n",
               })))),
           }, nix.app(nix.sel(lib, "mapAttrs'"), (dir) => (overrides) => (() => {
@@ -176,7 +176,7 @@ runHook postCheck
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         homepage: "https://tailscale.com",
         description: "Node agent for Tailscale, a mesh VPN built on WireGuard",
         changelog: "https://tailscale.com/changelog#client",

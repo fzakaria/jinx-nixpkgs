@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const setuptools_scm = nix.arg($, "setuptools-scm");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pyproject: true,
       pname: "ck4inductor",
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
 fi
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Pytorch inductor backend which uses composable_kernel universal GEMM implementations",
         homepage: "https://github.com/ROCm/rocm-libraries/tree/develop/projects/composablekernel",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

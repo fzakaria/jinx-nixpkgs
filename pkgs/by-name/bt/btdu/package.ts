@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "btdu";
       const version = "0.7.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CyberShadow",
           repo: "btdu",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [ncurses, zlib]);
       const installPhase = "runHook preInstall\ninstall -Dm755 btdu -t $out/bin\n./btdu --man \"\" > btdu.1\ninstall -Dm644 btdu.1 -t $out/share/man/man1\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Sampling disk usage profiler for btrfs",
         homepage: "https://github.com/CyberShadow/btdu",
         changelog: nix.thunk(() => nix.str`https://github.com/CyberShadow/btdu/releases/tag/${nix.sel(src, "rev")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "btdu",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

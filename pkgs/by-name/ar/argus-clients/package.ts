@@ -23,16 +23,16 @@ export default nix.lambda((args) => (() => {
   const libtirpc = nix.arg($, "libtirpc");
   const libnsl = nix.arg($, "libnsl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "argus-clients",
       version: "3.0.8.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://qosient.com/argus/src/argus-clients-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-uNTvi6zbrYHAivQMPkhlNCoqRW9GOkgKvCf3mInds80=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [nix.thunk(() => nix.str`-I${nix.sel(libtirpc, "dev")}/include/tirpc`)]))),
       })),
       postPatch: nix.thunk(() => nix.str`for file in ./examples/*/*.pl; do
@@ -44,7 +44,7 @@ done
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libpcap, bison, cyrus_sasl, tcp_wrappers, flex, libnsl]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Clients for ARGUS",
         longDescription: "Clients for Audit Record Generation and\nUtilization System (ARGUS). The Argus Project is focused on developing all\naspects of large scale network situtational awareness derived from\nnetwork activity audit. Argus, itself, is next-generation network\nflow technology, processing packets, either on the wire or in\ncaptures, into advanced network flow data. The data, its models,\nformats, and attributes are designed to support Network\nOperations, Performance and Security Management. If you need to\nknow what is going on in your network, right now or historically,\nyou will find Argus a useful tool.\n",
         homepage: "https://openargus.org",

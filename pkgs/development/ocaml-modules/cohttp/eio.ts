@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const ppx_expect = nix.arg($, "ppx_expect");
   const tls_eio = nix.arg($, "tls-eio");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "cohttp-eio",
       version: nix.thunk(() => nix.attr(cohttp, "version")),
       src: nix.thunk(() => nix.attr(cohttp, "src")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest, ca_certs, eio_main, ppx_expect, tls_eio]),
-      meta: nix.thunk(() => nix.update(nix.sel(cohttp, "meta"), { __proto__: pos$1, description: "CoHTTP implementation with eio backend" })),
+      meta: nix.thunk(() => nix.update(nix.sel(cohttp, "meta"), { [nix.POS]: pos$1, description: "CoHTTP implementation with eio backend" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=eio.ts.map

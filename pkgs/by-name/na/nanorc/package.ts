@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "nanorc";
       const version = "2020-10-10";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: owner,
           repo: repo,
           rev: nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["-"]), nix.thunk(() => ["."]), version)),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const dontBuild = true;
       const installPhase = "mkdir -p $out/share\n\ninstall *.nanorc $out/share/\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeScript, "update.sh", nix.thunk(() => nix.str`#!${nix.sel(stdenv, "shell")}
 set -o errexit
 PATH=${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [common_updater_scripts, coreutils, git, gnused, nix$]))}
@@ -49,14 +49,14 @@ fi
 `))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Improved Nano Syntax Highlighting Files",
         homepage: "https://github.com/scopatz/nanorc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

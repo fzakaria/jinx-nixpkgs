@@ -44,16 +44,16 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "rkvm"));
   const toml = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$30,
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    [nix.POS]: pos$30,
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     options: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       services: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         rkvm: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: nix.thunk(() => (nix.asBool(nix.sel(cfg, "server", "enable")) || nix.asBool(nix.sel(cfg, "client", "enable")))),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`config.${nix.sel(opt, "server", "enable")} || config.${nix.sel(opt, "client", "enable")}`))),
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
@@ -61,41 +61,41 @@ export default nix.lambda((args) => (() => {
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "rkvm", nix.thunk(() => ({})))),
           server: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the rkvm server daemon (input transmitter)")),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     freeformType: nix.thunk(() => nix.sel(toml, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$8,
+                      [nix.POS]: pos$8,
                       listen: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$3,
+                          [nix.POS]: pos$3,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "0.0.0.0:5258",
                           description: "An internet socket address to listen on, either IPv4 or IPv6.\n",
                         })))),
                       "switch-keys": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                           default: nix.thunk(() => ["left-alt", "left-ctrl"]),
                           description: "A key list specifying a host switch combination.\n\n_A list of key names is available in <https://github.com/htrefil/rkvm/blob/master/switch-keys.md>._\n",
                         })))),
                       certificate: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$5,
+                          [nix.POS]: pos$5,
                           type: nix.thunk(() => nix.sel(lib, "types", "path")),
                           default: "/etc/rkvm/certificate.pem",
                           description: "TLS certificate path.\n\n::: {.note}\nThis should be generated with {command}`rkvm-certificate-gen`.\n:::\n",
                         })))),
                       key: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           type: nix.thunk(() => nix.sel(lib, "types", "path")),
                           default: "/etc/rkvm/key.pem",
                           description: "TLS key path.\n\n::: {.note}\nThis should be generated with {command}`rkvm-certificate-gen`.\n:::\n",
                         })))),
                       password: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$7,
+                          [nix.POS]: pos$7,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "Shared secret token to authenticate the client.\nMake sure this matches your client's config.\n",
                         })))),
@@ -106,29 +106,29 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           client: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the rkvm client daemon (input receiver)")),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$16,
+                    [nix.POS]: pos$16,
                     freeformType: nix.thunk(() => nix.sel(toml, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$15,
+                      [nix.POS]: pos$15,
                       server: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$12,
+                          [nix.POS]: pos$12,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           example: "192.168.0.123:5258",
                           description: "An RKVM server's internet socket address, either IPv4 or IPv6.\n",
                         })))),
                       certificate: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$13,
+                          [nix.POS]: pos$13,
                           type: nix.thunk(() => nix.sel(lib, "types", "path")),
                           default: "/etc/rkvm/certificate.pem",
                           description: "TLS ceritficate path.\n\n::: {.note}\nThis should be generated with {command}`rkvm-certificate-gen`.\n:::\n",
                         })))),
                       password: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "Shared secret token to authenticate the client.\nMake sure this matches your server's config.\n",
                         })))),
@@ -142,30 +142,30 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         environment: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           services: nix.thunk(() => (() => {
             const mkBase = (component) => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               description: nix.thunk(() => nix.str`RKVM ${component}`),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => nix.sel({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 server: nix.thunk(() => ["network.target"]),
                 client: nix.thunk(() => ["network-online.target"]),
               }, nix.key(nix.force(component)))),
               wants: nix.thunk(() => nix.sel({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 server: [],
                 client: nix.thunk(() => ["network-online.target"]),
               }, nix.key(nix.force(component)))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/rkvm-${component} ${nix.app(nix.sel(toml, "generate"), nix.thunk(() => nix.str`rkvm-${component}.toml`), nix.thunk(() => nix.sel(cfg, nix.key(nix.force(component)), "settings")))}`),
                 Restart: "always",
                 RestartSec: 5n,
@@ -173,7 +173,7 @@ export default nix.lambda((args) => (() => {
               })),
             });
             return {
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               "rkvm-server": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "server", "enable")), nix.thunk(() => nix.app(mkBase, "server")))),
               "rkvm-client": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "client", "enable")), nix.thunk(() => nix.app(mkBase, "client")))),
             };

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
     const fontDirsPath = nix.thunk(() => nix.app(writeText, "font-dirs", nix.thunk(() => nix.str`<!-- Font directories -->
 ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.builtins.map((font) => nix.str`<dir>${font}</dir>`, fontDirectories)))}
 `)));
-    return nix.app(runCommand, "fc-cache", nix.thunk(() => ({ __proto__: pos$1, preferLocalBuild: true, allowSubstitutes: false })), nix.thunk(() => nix.str`export FONTCONFIG_FILE=$(pwd)/fonts.conf
+    return nix.app(runCommand, "fc-cache", nix.thunk(() => ({ [nix.POS]: pos$1, preferLocalBuild: true, allowSubstitutes: false })), nix.thunk(() => nix.str`export FONTCONFIG_FILE=$(pwd)/fonts.conf
 
 cat > fonts.conf << EOF
 <?xml version='1.0'?>

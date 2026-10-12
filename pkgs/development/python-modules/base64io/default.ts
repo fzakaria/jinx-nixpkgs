@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.3-unstable-2025-01-09";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aws",
           repo: "base64io-python",
           rev: "1bd47f7f8cfeeff654ea0edda3fbb69f840ccd05",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "default-buffer-size-compat.patch",
             url: "https://github.com/abus-sh/base64io-python/commit/a929dc3c9d873eabe491ccae9a2d0d57726f37da.patch?full_index=1",
             hash: "sha256-VfPOZ8cDRW2mQy6ROl77kBRE780NhH4kbjkyD1/jMRk=",
@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const nativeCheckInputs = nix.thunk(() => [mock, pytestCheckHook]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://base64io-python.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/aws/base64io-python/blob/${version}/CHANGELOG.rst`),
         description: "Python stream implementation for base64 encoding/decoding",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

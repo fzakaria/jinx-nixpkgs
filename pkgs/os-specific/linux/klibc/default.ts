@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "klibc";
       const version = "2.0.14";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://kernel/linux/libs/klibc/2.0/klibc-${version}.tar.xz`),
           hash: "sha256-KBv7aD4ZaBhBKvcLiWi3cmR1qA/xxL1nEZ5r9QWfkHU=",
         }))));
@@ -45,14 +45,14 @@ for file in ${linuxHeaders}/include/*; do
 done
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "initrd-network-ssh": nix.thunk(() => nix.attr(nixosTests, "initrd-network-ssh")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Minimalistic libc subset for initramfs usage",
         mainProgram: "klcc",
         homepage: "https://kernel.org/pub/linux/libs/klibc/",
@@ -64,7 +64,7 @@ done
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

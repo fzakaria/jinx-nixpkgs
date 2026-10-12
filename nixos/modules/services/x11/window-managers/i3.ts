@@ -33,20 +33,20 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "xserver", "windowManager", "i3"));
   const updateSessionEnvironmentScript = "systemctl --user import-environment PATH DISPLAY XAUTHORITY DESKTOP_SESSION XDG_CONFIG_DIRS XDG_DATA_DIRS XDG_RUNTIME_DIR XDG_SESSION_ID DBUS_SESSION_BUS_ADDRESS || true\ndbus-update-activation-environment --systemd --all || true\n";
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         xserver: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           windowManager: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             i3: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "i3 window manager")),
               configFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   default: null,
                   type: nix.thunk(() => (() => {
                     const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
@@ -55,20 +55,20 @@ export default nix.lambda((args) => (() => {
                   description: "Path to the i3 configuration file.\nIf left at the default value, $HOME/.i3/config will be used.\n",
                 })))),
               updateSessionEnvironment: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   default: true,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                   description: "Whether to run dbus-update-activation-environment and systemctl import-environment before session start.\nRequired for xdg portals to function properly.\n",
                 })))),
               extraSessionCommands: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   default: "",
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
                   description: "Shell commands executed just before i3 is started.\n",
                 })))),
               package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "i3", nix.thunk(() => ({})))),
               extraPackages: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   type: nix.thunk(() => (() => {
                     const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                     return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "package")));
@@ -89,16 +89,16 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         services: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           xserver: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             windowManager: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               session: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   name: "i3",
                   start: nix.thunk(() => nix.str`${nix.sel(cfg, "extraSessionCommands")}
 
@@ -113,18 +113,18 @@ waitPID=$!
           })),
         })),
         programs: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           i3lock: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           systemPackages: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(cfg, "package"))], nix.sel(cfg, "extraPackages"))),
           etc: nix.thunk(() => ({
-            __proto__: pos$17,
-            "i3/config": nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "configFile"), null)), nix.thunk(() => ({ __proto__: pos$16, source: nix.thunk(() => nix.sel(cfg, "configFile")) })))),
+            [nix.POS]: pos$17,
+            "i3/config": nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "configFile"), null)), nix.thunk(() => ({ [nix.POS]: pos$16, source: nix.thunk(() => nix.sel(cfg, "configFile")) })))),
           })),
         })),
       })))),

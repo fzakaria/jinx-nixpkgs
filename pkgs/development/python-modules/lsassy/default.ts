@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pypykatz = nix.arg($, "pypykatz");
   const rich = nix.arg($, "rich");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lsassy",
       version: "3.1.16",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Hackndo",
           repo: "lsassy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["lsassy"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python module to extract data from Local Security Authority Subsystem Service (LSASS)",
         homepage: "https://github.com/Hackndo/lsassy",
         changelog: nix.thunk(() => nix.str`https://github.com/Hackndo/lsassy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

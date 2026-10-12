@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.22";
       const outputs = nix.thunk(() => ["out", "dev"]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.drobilla.net/${pname}-${version}.tar.xz`),
           hash: "sha256-Agm30PIslqu0FnIu1zWwkzvkeTHs/0qksm3td2C08lI=",
         }))));
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "patchShebangs --build scripts/dox_to_sphinx.py\n";
       const mesonFlags = nix.thunk(() => ["-Ddocs=disabled"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-sratom", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p curl pcre2 common-updater-scripts
 
@@ -49,7 +49,7 @@ update-source-version ${pname} "$new_version"
 `))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://drobilla.net/software/sratom",
         description: "Library for serialising LV2 atoms to/from RDF",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -57,7 +57,7 @@ update-source-version ${pname} "$new_version"
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         outputs,

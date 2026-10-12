@@ -6,7 +6,7 @@ const pos$1 = nix.positions(here + "/define-enable-abort.nix", [["enable", 2, 10
 const pos$2 = nix.positions(here + "/define-enable-abort.nix", [["config", 2, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$2,
-  config: nix.thunk(() => ({ __proto__: pos$1, enable: nix.thunk(() => nix.builtins.abort("oops")) })),
+  [nix.POS]: pos$2,
+  config: nix.thunk(() => ({ [nix.POS]: pos$1, enable: nix.thunk(() => nix.builtins.abort("oops")) })),
 }));
 //# sourceMappingURL=define-enable-abort.ts.map

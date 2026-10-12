@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const pip = nix.arg($, "pip");
   const virtualenv = nix.arg($, "virtualenv");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "setuptools-scm-tests",
       version: nix.thunk(() => nix.attr(setuptools_scm, "version")),
       src: nix.thunk(() => nix.attr(setuptools_scm, "src")),

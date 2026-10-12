@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const gtk4 = nix.arg($, "gtk4");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "process-viewer",
       version: "0.5.11",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "process_viewer",
           hash: "sha256-d2qEcb9iPnhNnRFbzbktk36hyL16opcDgE9xOnmlJGg=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk4]),
       postInstall: "install -Dm644 assets/fr.guillaume_gomez.ProcessViewer.desktop -t $out/share/applications\ninstall -Dm644 assets/fr.guillaume_gomez.ProcessViewer.svg -t $out/share/icons/hicolor/scalable/apps\ninstall -Dm644 assets/fr.guillaume_gomez.ProcessViewer.metainfo.xml -t $out/share/metainfo\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Process viewer GUI in rust",
         homepage: "https://github.com/guillaumegomez/process-viewer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

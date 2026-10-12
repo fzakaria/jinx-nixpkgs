@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const requests_mock = nix.thunk(() => nix.attr(python3Packages, "requests-mock"));
   const version = "4.199";
   return nix.app(buildPythonApplication, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "svtplay-dl",
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "spaam",
           repo: "svtplay-dl",
           tag: version,
@@ -51,11 +51,11 @@ makeWrapperArgs+=(--prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.th
 `),
       postInstallCheck: "$out/bin/svtplay-dl --help > /dev/null\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/spaam/svtplay-dl",
         description: "Command-line tool to download videos from svtplay.se and other sites",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

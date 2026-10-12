@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const html2text = nix.arg($, "html2text");
   const txt2man = nix.arg($, "txt2man");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "simple-binary-encoding",
       version: "1.39.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aeron-io",
           repo: "simple-binary-encoding",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [gradle, htmlq, html2text, txt2man]),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: "simple-binary-encoding",
           pkg: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           data: nix.path(here, "./deps.json"),
@@ -92,9 +92,9 @@ runHook postInstall
 `),
       doInstallCheck: true,
       installCheckPhase: "# Check that we have some usage documentation\n\"$out\"/bin/sbetool --help 2>&1 | grep -q Usage\n\n# Check that the script can pass arguments to the underlying jar\ntmpdir=\"$(mktemp -d)\"\n\"$out\"/bin/sbetool \\\n  sbe-tool/src/test/resources/example-schema.xml \\\n  -Dsbe.target.language=golang \\\n  -Dsbe.output.dir=\"$tmpdir\"\nfind \"$tmpdir/baseline\" | grep -q '.*[.]go'\n\n# Check that -- passes as files\ntmpdir=\"$(mktemp -d)\"\ncp sbe-tool/src/test/resources/example-schema.xml -- -e.xml\n\"$out\"/bin/sbetool \\\n  -Dsbe.target.language=golang \\\n  -Dsbe.output.dir=\"$tmpdir\" \\\n  -- \\\n  -e.xml\nfind \"$tmpdir/baseline\" | grep -q '.*[.]go'\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/aeron-io/simple-binary-encoding",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => (() => {

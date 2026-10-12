@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "forgit";
       const version = "26.10.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wfxr",
           repo: "forgit",
           rev: version,
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const postInstall = "cp -r bin $out/share/fish/vendor_conf.d/\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utility tool powered by fzf for using git interactively",
         homepage: "https://github.com/wfxr/forgit",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "happysalada"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, postInstall, meta };
+      return { [nix.POS]: pos$3, pname, version, src, postInstall, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=forgit.ts.map

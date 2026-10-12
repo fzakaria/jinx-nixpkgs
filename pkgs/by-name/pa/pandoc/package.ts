@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const static$ = nix.thunk(() => nix.app(nix.sel(haskell, "lib", "compose", "justStaticExecutables"), pandoc_cli));
   const pandoc_cli = nix.thunk(() => nix.app(selectPandocCLI, haskellPackages));
   return nix.app(nix.sel(nix.app(nix.sel(haskell, "lib", "compose", "overrideCabal"), (drv) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       buildTools: nix.thunk(() => nix.concat(nix.selOr(drv, () => [], "buildTools"), [removeReferencesTo, installShellFiles])),
       postInstall: nix.thunk(() => nix.add(nix.add(nix.add(nix.selOr(drv, () => "", "postInstall"), nix.str`remove-references-to \\
   -t ${nix.sel(pandoc_cli, "scope", "pandoc-types")} \\
@@ -34,7 +34,7 @@ remove-references-to \\
   $out/bin/pandoc
 `), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), "mkdir -p $out/share/bash-completion/completions\n$out/bin/pandoc --bash-completion > $out/share/bash-completion/completions/pandoc\n")), "installManPage man/*\n")),
     }), static$), "overrideAttrs"), (drv) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       disallowedReferences: nix.thunk(() => [
         nix.thunk(() => nix.sel(pandoc_cli, "scope", "pandoc-types")),
         nix.thunk(() => nix.sel(pandoc_cli, "scope", "warp")),

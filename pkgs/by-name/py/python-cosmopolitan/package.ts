@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const bintools_unwrapped = nix.arg($, "bintools-unwrapped");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "python-cosmopolitan",
       version: "3.6.14",
       src: nix.thunk(() => nix.sel(cosmopolitan, "dist")),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       dontFixup: true,
       installPhase: "runHook preInstall\ninstall o/third_party/python/*.com -Dt $out/bin\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: "https://justine.lol/cosmopolitan/",
         description: "Actually Portable Python using Cosmopolitan",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "x86_64")),

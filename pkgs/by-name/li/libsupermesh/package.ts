@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const mpiCheckPhaseHook = nix.arg($, "mpiCheckPhaseHook");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "libsupermesh",
       version: "2026.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "firedrakeproject",
           repo: "libsupermesh",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,17 +45,17 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [mpiCheckPhaseHook]),
       doCheck: nix.thunk(() => !nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-darwin"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/firedrakeproject/libsupermesh",
         description: "Parallel supermeshing library",
         changelog: nix.thunk(() => nix.str`https://github.com/firedrakeproject/libsupermesh/releases/tag/${nix.sel(finalAttrs, "version")}`),

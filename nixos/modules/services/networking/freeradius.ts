@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "freeradius"));
   const freeradiusService = (cfg_1) => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     description: "FreeRadius server",
     wantedBy: nix.thunk(() => ["multi-user.target"]),
     after: nix.thunk(() => ["network.target"]),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
     preStart: nix.thunk(() => nix.str`${nix.sel(cfg_1, "package")}/bin/radiusd -C -d ${nix.sel(cfg_1, "configDir")} -l stdout
 `),
     serviceConfig: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       ExecStart: nix.thunk(() => nix.add(nix.str`${nix.sel(cfg_1, "package")}/bin/radiusd -f -d ${nix.sel(cfg_1, "configDir")} -l stdout`, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg_1, "debug")), " -xx"))),
       ExecReload: nix.thunk(() => [
         nix.thunk(() => nix.str`${nix.sel(cfg_1, "package")}/bin/radiusd -C -d ${nix.sel(cfg_1, "configDir")} -l stdout`),
@@ -49,47 +49,47 @@ export default nix.lambda((args) => (() => {
     })),
   });
   const freeradiusConfig = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the freeradius server")),
     package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "freeradius", nix.thunk(() => ({})))),
     configDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         type: nix.thunk(() => nix.sel(lib, "types", "path")),
         default: "/etc/raddb",
         description: "The path of the freeradius server configuration directory.\n",
       })))),
     debug: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
         default: false,
         description: "Whether to enable debug logging for freeradius (-xx\noption). This should not be left on, since it includes\nsensitive data such as passwords in the logs.\n",
       })))),
   }));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
-      services: nix.thunk(() => ({ __proto__: pos$6, freeradius: freeradiusConfig })),
+      [nix.POS]: pos$7,
+      services: nix.thunk(() => ({ [nix.POS]: pos$6, freeradius: freeradiusConfig })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         users: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           users: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             radius: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               description: "Radius daemon user",
               isSystemUser: true,
               group: "radius",
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$10, radius: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$10, radius: nix.thunk(() => ({})) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             freeradius: nix.thunk(() => nix.app(freeradiusService, cfg)),
           })),
         })),

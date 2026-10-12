@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "actkbd",
       version: "0.2.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://users.softlab.ece.ntua.gr/~thkala/projects/actkbd/files/actkbd-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "1ipb7k5q7k7p54is96ij2n74jfa6xc0llb9lpjwxhsqviqxn9slm",
         })))),
       preConfigure: "substituteInPlace Makefile \\\n  --replace-fail /usr/local $out \\\n  --replace-fail /etc $out/etc\n",
       postInstall: "mkdir -p $out/share/doc/actkbd\ncp -r README samples $out/share/doc/actkbd\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Keyboard shortcut daemon",
         longDescription: "actkbd is a simple daemon that binds actions to keyboard events\ndirectly on evdev interface (that is, no X11 required). It\nrecognises key combinations and can handle press, repeat and\nrelease events.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

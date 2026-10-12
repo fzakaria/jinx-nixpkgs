@@ -18,33 +18,33 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     name: "owi",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "ethancedwards8"))];
       })()),
     })),
     containers: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       machine: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         environment: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [nix.thunk(() => nix.lookup(w, "owi"))];
           })()),
           etc: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             "owipass.rs": nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "owi.rs", "use owi_sym::Symbolic;\n\nfn mean_one(x: i32, y: i32) -> i32 {\n    (x + y)/2\n}\n\nfn mean_two(x: i32, y: i32) -> i32 {\n    (y + x)/2\n}\n\nfn main() {\n    let x = i32::symbol();\n    let y = i32::symbol();\n    // proving the commutative property of addition!\n    owi_sym::assert(mean_one(x, y) == mean_two(x, y))\n}\n")),
             })),
             "owifail.rs": nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "owi.rs", "use owi_sym::Symbolic;\n\nfn mean_wrong(x: i32, y: i32) -> i32 {\n    (x + y) / 2\n}\n\nfn mean_correct(x: i32, y: i32) -> i32 {\n    (x & y) + ((x ^ y) >> 1)\n}\n\nfn main() {\n    let x = i32::symbol();\n    let y = i32::symbol();\n    owi_sym::assert(mean_wrong(x, y) == mean_correct(x, y))\n}\n")),
             })),
           })),

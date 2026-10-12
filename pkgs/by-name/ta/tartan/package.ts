@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "tartan",
       version: "0.3.0-unstable-2025-01-07",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "tartan",
           repo: "tartan",
@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(llvmPackages_20, "libllvm")),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, url: "https://gitlab.freedesktop.org/tartan/tartan.git" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, url: "https://gitlab.freedesktop.org/tartan/tartan.git" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Tools and Clang plugins for developing code with GLib",
         homepage: "https://gitlab.freedesktop.org/tartan/tartan",

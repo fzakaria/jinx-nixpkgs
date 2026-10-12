@@ -31,51 +31,51 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const pkgs_1 = nix.arg($_1, "pkgs");
     return {
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         httpd: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: true,
           adminAddr: "foo@example.org",
           virtualHosts: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             localhost: nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               documentRoot: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "valgrind", "doc")}/share/doc/valgrind/html`),
             })),
           })),
         })),
       })),
       networking: nix.thunk(() => ({
-        __proto__: pos$6,
-        firewall: nix.thunk(() => ({ __proto__: pos$5, allowedTCPPorts: nix.thunk(() => [80n]) })),
+        [nix.POS]: pos$6,
+        firewall: nix.thunk(() => ({ [nix.POS]: pos$5, allowedTCPPorts: nix.thunk(() => [80n]) })),
       })),
     };
   })(), formals$2);
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     name: "proxy",
-    meta: nix.thunk(() => ({ __proto__: pos$8, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$8, maintainers: [] })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       proxy: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const nodes = nix.arg($_1, "nodes");
         return {
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             httpd: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               enable: true,
               adminAddr: "bar@example.org",
               extraModules: nix.thunk(() => ["proxy_balancer", "lbmethod_byrequests"]),
               extraConfig: "ExtendedStatus on\n",
               virtualHosts: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 localhost: nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   extraConfig: nix.thunk(() => nix.str`<Location /server-status>
   Require all granted
   SetHandler server-status
@@ -100,8 +100,8 @@ ProxyTimeout      5
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$14,
-            firewall: nix.thunk(() => ({ __proto__: pos$13, allowedTCPPorts: nix.thunk(() => [80n]) })),
+            [nix.POS]: pos$14,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$13, allowedTCPPorts: nix.thunk(() => [80n]) })),
           })),
         };
       })(), formals$3),

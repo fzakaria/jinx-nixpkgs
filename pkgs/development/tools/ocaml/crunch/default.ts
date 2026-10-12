@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const cmdliner = nix.arg($, "cmdliner");
   const ptime = nix.arg($, "ptime");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "crunch",
       version: "4.1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/ocaml-crunch/releases/download/v${nix.sel(finalAttrs, "version")}/crunch-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-t3ddb7bmCUqMMf2/ISdQHZntjO6sQCcQVd1Sx5o+F+c=",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       installPhase: nix.thunk(() => nix.str`dune install --prefix=$bin --libdir=$lib/lib/ocaml/${nix.sel(ocaml, "version")}/site-lib/
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/mirage/ocaml-crunch",
         description: "Convert a filesystem into a static OCaml module",
         mainProgram: "ocaml-crunch",

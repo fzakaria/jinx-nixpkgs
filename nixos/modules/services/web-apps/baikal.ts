@@ -42,38 +42,38 @@ export default nix.lambda((args) => (() => {
   const common_name = "baikal";
   const cfg = nix.thunk(() => nix.sel(config, "services", "baikal"));
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "wrvsrx"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         baikal: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "baikal")),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: common_name,
               description: "User account under which the web-application run.\n",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: common_name,
               description: "Group account under which the web-application run.\n",
             })))),
           pool: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: common_name,
               description: "Name of existing phpfpm pool that is used to run web-application.\nIf not specified a pool will be created automatically with\ndefault values.\n",
             })))),
           virtualHost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: common_name,
               description: "Name of the nginx virtualhost to use and setup. If null, do not setup any virtualhost.\n",
@@ -84,23 +84,23 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         services: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           phpfpm: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             pools: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "pool"), nix.str`${common_name}`)), nix.thunk(() => nix.attrsDyn({}, [
                 [common_name, nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   user: nix.thunk(() => nix.attr(cfg, "user")),
                   phpPackage: nix.thunk(() => nix.attr(cfg, "phpPackage")),
                   phpEnv: nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     BAIKAL_PATH_CONFIG: "/var/lib/baikal/config/",
                     BAIKAL_PATH_SPECIFIC: "/var/lib/baikal/specific/",
                   })),
                   settings: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => nix.sel(lib, "mkDefault"), nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       "listen.owner": nix.thunk(() => nix.sel(config, "services", "nginx", "user")),
                       "listen.group": nix.thunk(() => nix.sel(config, "services", "nginx", "group")),
                       "listen.mode": "0600",
@@ -117,22 +117,22 @@ export default nix.lambda((args) => (() => {
               ])))),
           })),
           nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "virtualHost"), null)), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               enable: true,
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${nix.sel(cfg, "virtualHost")}`, nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   root: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/php/baikal/html`),
                   locations: nix.thunk(() => ({
-                    __proto__: pos$17,
-                    "/": nix.thunk(() => ({ __proto__: pos$13, index: "index.php" })),
+                    [nix.POS]: pos$17,
+                    "/": nix.thunk(() => ({ [nix.POS]: pos$13, index: "index.php" })),
                     "/.well-known/": nix.thunk(() => ({
-                      __proto__: pos$14,
+                      [nix.POS]: pos$14,
                       extraConfig: "rewrite ^/.well-known/caldav  /dav.php redirect;\nrewrite ^/.well-known/carddav /dav.php redirect;\n",
                     })),
-                    "~ /(\\.ht|Core|Specific|config)": nix.thunk(() => ({ __proto__: pos$15, extraConfig: "deny all;\nreturn 404;\n" })),
+                    "~ /(\\.ht|Core|Specific|config)": nix.thunk(() => ({ [nix.POS]: pos$15, extraConfig: "deny all;\nreturn 404;\n" })),
                     "~ ^(.+\\.php)(.*)$": nix.thunk(() => ({
-                      __proto__: pos$16,
+                      [nix.POS]: pos$16,
                       extraConfig: nix.thunk(() => nix.str`try_files $fastcgi_script_name =404;
 include                   ${nix.sel(config, "services", "nginx", "package")}/conf/fastcgi.conf;
 fastcgi_split_path_info   ^(.+\\.php)(.*)$;
@@ -147,10 +147,10 @@ fastcgi_param             PATH_INFO        $fastcgi_path_info;
             })))),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.sel(cfg, "user"), nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), common_name)), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 description: "baikal service user",
                 isSystemUser: true,
                 group: nix.thunk(() => nix.attr(cfg, "group")),
@@ -161,18 +161,18 @@ fastcgi_param             PATH_INFO        $fastcgi_path_info;
           ])),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             settings: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               baikal: nix.thunk(() => nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((x) => ({
-                    __proto__: pos$25,
+                    [nix.POS]: pos$25,
                     name: nix.thunk(() => nix.str`/var/lib/baikal/${x}`),
                     value: nix.thunk(() => ({
-                      __proto__: pos$24,
+                      [nix.POS]: pos$24,
                       d: nix.thunk(() => ({
-                        __proto__: pos$23,
+                        [nix.POS]: pos$23,
                         mode: "0700",
                         user: nix.thunk(() => nix.attr(cfg, "user")),
                         group: nix.thunk(() => nix.attr(cfg, "group")),

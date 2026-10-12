@@ -43,20 +43,20 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(melpaBuild, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "lsp-bridge",
       version: "0-unstable-2026-06-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "manateelazycat",
           repo: "lsp-bridge",
           rev: "a302f869abe498f1d1431c5f2d54f15ca9b83c8d",
           hash: "sha256-OdCiY5qUEQSbDAZqcXhgy7Sz1XWn0sipyiKkOVeDA/w=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-dependencies.patch"), nix.thunk(() => ({ __proto__: pos$2, python: nix.thunk(() => nix.sel(python, "interpreter")) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-dependencies.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, python: nix.thunk(() => nix.sel(python, "interpreter")) })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/manateelazycat/lsp-bridge/commit/a999c8432817a806ed9ad74b5e918ab9612bd09b.patch",
             revert: true,
             hash: "sha256-NK6hooWn78Hk26tcQbIwUiiJuQ/hhlbLK+pgiZT//fI=",
@@ -70,11 +70,11 @@ export default nix.lambda((args) => (() => {
       checkPhase: "runHook preCheck\n\nmkfifo test.log\ncat < test.log &\npython -m test.test\n\nrunHook postCheck\n",
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$4, hardcodeZeroVersion: true })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Blazingly fast LSP client for Emacs",
         homepage: "https://github.com/manateelazycat/lsp-bridge",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

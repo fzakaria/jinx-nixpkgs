@@ -18,25 +18,25 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "brillo",
       version: "1.4.13",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cameronnemo",
           repo: "brillo",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-+BUyM3FFnsk87NFaD9FBwdLqf6wsNhX+FDB7nqhgAmM=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./udev-rule.patch"), nix.thunk(() => ({ __proto__: pos$2, coreutils: coreutils, group: null })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./udev-rule.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, coreutils: coreutils, group: null })))),
       ]),
       nativeBuildInputs: nix.thunk(() => [go_md2man, udevCheckHook]),
       makeFlags: nix.thunk(() => ["PREFIX=$(out)", "AADIR=$(out)/etc/apparmor.d"]),
       doInstallCheck: true,
       installTargets: nix.thunk(() => ["install-dist"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Backlight and Keyboard LED control tool",
         homepage: "https://gitlab.com/cameronnemo/brillo",
         mainProgram: "brillo",

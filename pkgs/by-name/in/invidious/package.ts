@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const nixosTests = nix.arg($, "nixosTests");
   const versions = nix.argOr($, "versions", () => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./versions.json")));
-  const videojs = nix.thunk(() => nix.app(callPackage, nix.path(here, "./videojs.nix"), nix.thunk(() => ({ __proto__: pos$1, versions: versions }))));
+  const videojs = nix.thunk(() => nix.app(callPackage, nix.path(here, "./videojs.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, versions: versions }))));
   return nix.app(nix.sel(crystal, "buildCrystalPackage"), nix.thunk(() => (() => {
       const pname = "invidious";
       const from = nix.thunk(() => nix.sel(versions, "invidious"));
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => (() => {
           const from_1 = nix.thunk(() => nix.sel(versions, "invidious"));
           return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "iv-org",
           repo: "invidious",
           fetchSubmodules: true,
@@ -84,9 +84,9 @@ substituteInPlace src/invidious/user/captcha.cr \\
       const format = "crystal";
       const shardsFile = nix.path(here, "./shards.nix");
       const crystalBinaries = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         invidious: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           src: "src/invidious.cr",
           options: nix.thunk(() => [
             "--release",
@@ -100,15 +100,15 @@ substituteInPlace src/invidious/user/captcha.cr \\
       const postInstall = "mkdir -p $out/share/invidious/config\n\n# Copy static parts\ncp -r assets locales $out/share/invidious\ncp -r config/sql $out/share/invidious/config\n";
       const installCheckPhase = "export INVIDIOUS_CONFIG=\"$(cat <<EOF\ndatabase_url: sqlite3:///dev/null\nhmac_key: \"this-is-required\"\nEOF\n)\"\n$out/bin/invidious --help\n$out/bin/invidious --version\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           invidious: nix.thunk(() => nix.attr(nixosTests, "invidious")),
         })),
         updateScript: nix.path(here, "./update.sh"),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Open source alternative front-end to YouTube",
         mainProgram: "invidious",
         homepage: "https://invidious.io/",
@@ -126,7 +126,7 @@ substituteInPlace src/invidious/user/captcha.cr \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version,
         __structuredAttrs,

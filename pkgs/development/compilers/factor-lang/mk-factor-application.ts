@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         const deployScriptText = nix.argOr($_1, "deployScriptText", () => "USING: command-line io io.backend io.pathnames kernel namespaces sequences\ntools.deploy tools.deploy.config tools.deploy.backend vocabs.loader\nio.directories.unix ;\n\nIN: deploy-me\n\n! The Nix sandbox’s seccomp filter blocks chmod(2). Factor’s\n! copy-file calls set-file-permissions which chmod’s the target\n! to the source’s mode, 0o444. The blocked syscall returns\n! EACCES, crashing the deploys. The method override skips the\n! set-file-permissions call (Nix will manage its output\n! permissions).\n!\n! Surfaced with Factor 0.101 which added icon PNG resources to\n! the definitions.icons vocab to copy-vocab-resources.\nM: unix copy-file call-next-method ;\n\n: load-and-deploy ( path/vocab -- )\n    normalize-path [\n        parent-directory add-vocab-root\n    ] [\n        file-name dup reload deploy\n    ] bi ;\n\n! Factor 0.101 added a .out extension on not macOS. Rather than\n! having shell scripts dealing path name changes per-OS &\n! per-version, the deploy script prints its deploy path to a file.\n: deploy-vocab ( path/vocab path/target -- )\n    normalize-path deploy-directory set\n    f open-directory-after-deploy? set\n    dup file-name\n    [ load-and-deploy ] dip\n    deploy-path \"deploy-path.txt\" utf8 set-file-contents ;\n\n: deploy-me ( -- )\n    command-line get dup length 2 = [\n        first2 deploy-vocab\n    ] [\n        drop\n        \"Usage: deploy-me <PATH-TO-VOCAB> <TARGET-DIR>\" print\n        nl\n    ] if ;\n\nMAIN: deploy-me\n");
         const deployScript = nix.thunk(() => nix.app(writeText, "deploy-me.factor", nix.thunk(() => nix.sel(finalAttrs, "deployScriptText"))));
         const wrapped_factor = nix.thunk(() => nix.app(nix.sel(finalAttrs, "factor-lang", "override"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             extraLibs: nix.thunk(() => nix.attr(finalAttrs, "extraLibs")),
             extraVocabs: nix.thunk(() => nix.attr(finalAttrs, "extraVocabs")),
             doInstallCheck: false,
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
           return nix.concat(nix.lookup(w, "defaultBins"), nix.concat(nix.lookup(w, "binPackages"), nix.sel(finalAttrs, "extraPaths")));
         })());
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enableUI: enableUI,
           vocabName: vocabName,
           deployScriptText: deployScriptText,
@@ -95,9 +95,9 @@ makeWrapper "$deploy_path" \\
   "\${makeWrapperArgs[@]}"
 runHook postInstall
 `, "installPhase")),
-          passthru: nix.thunk(() => nix.update({ __proto__: pos$2, vocab: nix.thunk(() => nix.sel(finalAttrs, "src")) }, nix.selOr(attrs, () => ({}), "passthru"))),
+          passthru: nix.thunk(() => nix.update({ [nix.POS]: pos$2, vocab: nix.thunk(() => nix.sel(finalAttrs, "src")) }, nix.selOr(attrs, () => ({}), "passthru"))),
           meta: nix.thunk(() => nix.update({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             platforms: nix.thunk(() => nix.sel(wrapped_factor, "meta", "platforms")),
             mainProgram: nix.thunk(() => nix.sel(finalAttrs, "binName")),
           }, nix.selOr(attrs, () => ({}), "meta"))),

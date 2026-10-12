@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "protocol",
       version: "0-unstable-2019-03-28",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "luismartingarcia",
           repo: "protocol",
           rev: "4e8326ea6c2d288be5464c3a7d9398df468c0ada",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w, "setuptools"))];
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ASCII Header Generator for Network Protocols",
         homepage: "https://github.com/luismartingarcia/protocol",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

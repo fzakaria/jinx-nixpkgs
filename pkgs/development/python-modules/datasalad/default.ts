@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "datalad",
           repo: "datasalad",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [gitMinimal, pytestCheckHook, more_itertools, psutil, unzip]);
       const pythonImportsCheck = nix.thunk(() => ["datasalad"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pure-Python library with a collection of utilities for working with Git and git-annex",
         changelog: "https://github.com/datalad/datasalad/blob/main/CHANGELOG.md",
         homepage: "https://github.com/datalad/datasalad",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

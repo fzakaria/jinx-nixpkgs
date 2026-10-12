@@ -28,10 +28,10 @@ export default nix.lambda((args) => (() => {
   const gmpStatic = nix.argOr($, "gmpStatic", () => nix.sel(pkgsStatic, "gmp"));
   const pari = nix.arg($, "pari");
   const pariStatic_2_15 = nix.argOr($, "pariStatic_2_15", () => nix.app(nix.sel(pari, "overrideAttrs"), (finalAttrs) => (oldAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "2.15.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://pari.math.u-bordeaux.fr/pub/pari/OLD/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/pari-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-w1Rb/uDG37QLd/tLurr5mdguYAabn20ovLbPAEyMXA8=",
         })))),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.5.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "3-manifolds",
           repo: "CyPari",
           tag: nix.thunk(() => nix.str`${version}_as_released`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "fix-build-with-cython-3_1.patch",
             url: "https://github.com/3-manifolds/CyPari/compare/17bf39dc4508f2e46de75b95c65982c627652b60...d6cb914d2bdc74a51cc2a9136204ebf47b3e7369.diff",
             hash: "sha256-c8sq80mYSMMvgFh7RXYwKcqwI7iVRQsm/8yaIL0+PHQ=",
@@ -68,14 +68,14 @@ ${nix.sel(python, "interpreter")} -P -m cypari.test
 runHook postCheck
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             extraArgs: nix.thunk(() => ["--version-regex", "(.*)_as_released"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Sage's PARI extension, modified to stand alone",
         homepage: "https://github.com/3-manifolds/CyPari",
         changelog: nix.thunk(() => nix.str`https://github.com/3-manifolds/CyPari/releases/tag/${nix.sel(src, "tag")}`),
@@ -89,7 +89,7 @@ runHook postCheck
         })()),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version,
         pyproject,

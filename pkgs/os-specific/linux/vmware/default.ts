@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const kmod = nix.arg($, "kmod");
   const gnugrep = nix.arg($, "gnugrep");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vmware-modules",
       version: nix.thunk(() => nix.str`workstation-25h2-20251015-${nix.sel(kernel, "version")}`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "philipl",
           repo: "vmware-host-modules",
           rev: "5c80f597017882f76e9c7ffd48a292a4b7c860fe",
@@ -43,7 +43,7 @@ done
       preInstall: nix.thunk(() => nix.str`mkdir -p "$out/lib/modules/${nix.sel(kernel, "modDirVersion")}/misc"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Kernel modules needed for VMware hypervisor",
         homepage: "https://github.com/mkubecek/vmware-host-modules",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

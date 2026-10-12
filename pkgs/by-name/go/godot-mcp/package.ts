@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "godot-mcp",
       version: "0-unstable-2026-01-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Coding-Solo",
           repo: "godot-mcp",
           rev: "f341234dfe44613e1d48fe4fbc8bfb9bf2e8e9eb",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       npmBuildFlags: nix.thunk(() => ["run", "build"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MCP server for interfacing with Godot game engine",
         longDescription: "A Model Context Protocol (MCP) server for interacting with the Godot\ngame engine. Enables AI assistants to launch the Godot editor, run\nprojects, capture debug output, and control project execution.\n",
         mainProgram: "godot-mcp",

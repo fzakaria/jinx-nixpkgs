@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
   const libfprint = nix.arg($, "libfprint");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fprintd",
       version: "1.94.5",
       outputs: nix.thunk(() => ["out", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "libfprint",
           repo: "fprintd",
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-Dsystemd_system_unit_dir=${nix.builtins.placeholder("out")}/lib/systemd/system`),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PKG_CONFIG_DBUS_1_INTERFACES_DIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/dbus-1/interfaces`),
         PKG_CONFIG_POLKIT_GOBJECT_1_POLICYDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/polkit-1/actions`),
         PKG_CONFIG_DBUS_1_DATADIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share`),
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./skip-test-test_removal_during_enroll.patch")]),
       postPatch: "patchShebangs \\\n  po/check-translations.sh \\\n  tests/unittest_inspector.py\n\n# Stop tests from failing due to unhandled GTasks uncovered by GLib 2.76 bump.\n# https://gitlab.freedesktop.org/libfprint/fprintd/-/issues/151\nsubstituteInPlace tests/fprintd.py \\\n  --replace \"env['G_DEBUG'] = 'fatal-criticals'\" \"\"\nsubstituteInPlace tests/meson.build \\\n  --replace \"'G_DEBUG=fatal-criticals',\" \"\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://fprint.freedesktop.org/",
         description: "D-Bus daemon that offers libfprint functionality over the D-Bus interprocess communication bus",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

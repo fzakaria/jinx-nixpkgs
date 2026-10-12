@@ -35,13 +35,13 @@ export default nix.lambda((args) => (() => {
   const dataDir = nix.argOr($, "dataDir", () => "/var/lib/omada");
   const mongodb = mongodb_ce;
   const arch = nix.thunk(() => nix.app(writeScriptBin, "arch", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), coreutils, "uname")} -m`)));
-  const jsvcWithSameJdkVersion = nix.thunk(() => nix.app(nix.sel(jsvc, "override"), nix.thunk(() => ({ __proto__: pos$1, jdk: jdk_headless, jre: jdk_headless }))));
+  const jsvcWithSameJdkVersion = nix.thunk(() => nix.app(nix.sel(jsvc, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, jdk: jdk_headless, jre: jdk_headless }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "omada-software-controller",
       version: "6.3.0.45",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://static.tp-link.com/upload/software/2026/202609/20260904/Omada_Network_Application_v6.3.0.45_linux_x64_20260903171900.tar.gz",
           hash: "sha256-2t9+GH+ishiSo/Jkda4VNg9B1k9XinDwgB0q4Z2p62o=",
         })))),
@@ -92,11 +92,11 @@ makeWrapper $out/bin/control.sh $out/bin/tpeap \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "omada version",
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -121,7 +121,7 @@ update-source-version "omada-software-controller" "$NEW_VERSION" "$NIX_HASH" "$N
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           description: "Omada Software Controller",
           homepage: "https://www.tp-link.com/us/business-networking/omada-sdn-controller/omada-software-controller/",
           downloadPage: "https://www.tp-link.com/us/support/download/omada-software-controller/",

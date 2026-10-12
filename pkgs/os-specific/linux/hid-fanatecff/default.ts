@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const moduleDir = nix.thunk(() => nix.str`lib/modules/${nix.sel(kernel, "modDirVersion")}/kernel/drivers/hid`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "hid-fanatecff",
       version: "0.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gotzl",
           repo: "hid-fanatecff",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,11 +47,11 @@ substituteInPlace fanatec.rules \\
         nix.thunk(() => nix.str`MODULEDIR=$(out)/${moduleDir}`),
       ])),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Linux module driver for Fanatec driving wheels",
         homepage: "https://github.com/gotzl/hid-fanatecff",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nlohmann_json = nix.arg($, "nlohmann_json");
   const gtest = nix.arg($, "gtest");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rocprof-trace-decoder",
       version: "0.1.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ROCm",
           repo: "rocm-systems",
           rev: "feeca99950c590e0b8228733405c4a1a10fa4773",
@@ -57,7 +57,7 @@ runHook postCheck
       })()),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for decoding ROCm thread trace data",
         homepage: "https://github.com/ROCm/rocm-systems/tree/develop/projects/rocprof-trace-decoder",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

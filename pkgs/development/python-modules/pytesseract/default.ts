@@ -24,14 +24,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.13";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "madmaze",
           repo: "pytesseract",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-gQMeck6ojlIwyiOCBBhzHHrjQfBMelVksVGd+fyxWZk=",
         }))));
       const patches = nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./tesseract-binary.patch"), nix.thunk(() => ({ __proto__: pos$2, drv: tesseract })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./tesseract-binary.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, drv: tesseract })))),
       ]);
       const nativeBuildInputs = nix.thunk(() => [setuptools]);
       const buildInputs = nix.thunk(() => [tesseract]);
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["incorrect_tessdata_dir", "invalid_tessdata_dir"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://pypi.org/project/pytesseract/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         description: "Python wrapper for Google Tesseract",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

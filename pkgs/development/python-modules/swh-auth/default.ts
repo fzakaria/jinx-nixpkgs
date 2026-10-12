@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const djangorestframework = nix.arg($, "djangorestframework");
   const starlette = nix.arg($, "starlette");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "swh-auth",
       version: "0.10.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.softwareheritage.org",
           group: "swh",
           owner: "devel",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         starlette,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Set of utility libraries related to user authentication in applications and services based on the use of Keycloak and OpenID Connect",
         homepage: "https://gitlab.softwareheritage.org/swh/devel/swh-auth",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

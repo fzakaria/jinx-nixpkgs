@@ -40,80 +40,80 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "doh-server"));
   const toml = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     options: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       services: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         "doh-server": nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "DNS-over-HTTPS server")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "dns-over-https", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   freeformType: nix.thunk(() => nix.sel(toml, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     listen: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$1,
+                        [nix.POS]: pos$1,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: nix.thunk(() => ["127.0.0.1:8053", "[::1]:8053"]),
                         example: nix.thunk(() => [":443"]),
                         description: "HTTP listen address and port",
                       })))),
                     path: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$2,
+                        [nix.POS]: pos$2,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "/dns-query",
                         example: "/dns-query",
                         description: "HTTP path for resolve application",
                       })))),
                     upstream: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: nix.thunk(() => ["udp:1.1.1.1:53", "udp:1.0.0.1:53", "udp:8.8.8.8:53", "udp:8.8.4.4:53"]),
                         example: nix.thunk(() => ["udp:127.0.0.1:53"]),
                         description: "Upstream DNS resolver.\nIf multiple servers are specified, a random one will be chosen each time.\nYou can use \"udp\", \"tcp\" or \"tcp-tls\" for the type prefix.\nFor \"udp\", UDP will first be used, and switch to TCP when the server asks to or the response is too large.\nFor \"tcp\", only TCP will be used.\nFor \"tcp-tls\", DNS-over-TLS (RFC 7858) will be used to secure the upstream connection.\n",
                       })))),
                     timeout: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         type: nix.thunk(() => nix.sel(lib, "types", "int")),
                         default: 10n,
                         example: 15n,
                         description: "Upstream timeout",
                       })))),
                     tries: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: nix.thunk(() => nix.sel(lib, "types", "int")),
                         default: 3n,
                         example: 5n,
                         description: "Number of tries if upstream DNS fails",
                       })))),
                     verbose: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         default: false,
                         example: true,
                         description: "Enable logging",
                       })))),
                     log_guessed_client_ip: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         default: false,
                         example: true,
                         description: "Enable log IP from HTTPS-reverse proxy header: X-Forwarded-For or X-Real-IP\nNote: http uri/useragent log cannot be controlled by this config\n",
                       })))),
                     ecs_allow_non_global_ip: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         default: false,
                         example: true,
                         description: "By default, non global IP addresses are never forwarded to upstream servers.\nThis is to prevent two things from happening:\n  1. the upstream server knowing your private LAN addresses;\n  2. the upstream server unable to provide geographically near results,\n    or even fail to provide any result.\nHowever, if you are deploying a split tunnel corporation network environment, or for any other reason you want to inhibit this behavior and allow local (eg RFC1918) address to be forwarded, change the following option to \"true\".\n",
                       })))),
                     ecs_use_precise_ip: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         default: false,
                         example: true,
@@ -123,21 +123,21 @@ export default nix.lambda((args) => (() => {
                 })))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 listen: nix.thunk(() => [":8153"]),
                 upstream: nix.thunk(() => ["udp:127.0.0.1:53"]),
               })),
               description: "Configuration of doh-server in toml. See example in <https://github.com/m13253/dns-over-https/blob/master/doh-server/doh-server.conf>",
             })))),
           useACMEHost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               example: "doh.example.com",
               description: "A host of an existing Let's Encrypt certificate to use.\n*Note that this option does not create any certificates, nor it does add subdomains to existing ones – you will need to create them manually using [](#opt-security.acme.certs).*\n",
             })))),
           configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               example: "/path/to/doh-server.conf",
               description: "The config file for the doh-server.\nSetting this option will override any configuration applied by the `settings` option.\n",
@@ -146,16 +146,16 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         services: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           "doh-server": nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.app(nix.sel(toml, "generate"), "doh-server.conf", nix.thunk(() => nix.sel(cfg, "settings")))))),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "useACMEHost"), null)), nix.thunk(() => (() => {
                 const sslCertDir = nix.thunk(() => nix.sel(config, "security", "acme", "certs", nix.key(nix.sel(cfg, "useACMEHost")), "directory"));
                 return {
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   cert: nix.thunk(() => nix.str`${sslCertDir}/cert.pem`),
                   key: nix.thunk(() => nix.str`${sslCertDir}/key.pem`),
                 };
@@ -163,18 +163,18 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           services: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             "doh-server": nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               description: "DNS-over-HTTPS Server",
               documentation: nix.thunk(() => ["https://github.com/m13253/dns-over-https"]),
               after: nix.thunk(() => nix.concat(["network.target"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "useACMEHost"), null)), nix.thunk(() => nix.str`acme-${nix.sel(cfg, "useACMEHost")}.service`)))),
               wants: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "useACMEHost"), null)), nix.thunk(() => nix.str`acme-${nix.sel(cfg, "useACMEHost")}.service`))),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 AmbientCapabilities: "CAP_NET_BIND_SERVICE",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/doh-server -conf ${nix.sel(cfg, "configFile")}`),
                 LimitNOFILE: 1048576n,
@@ -189,7 +189,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "DictXiong"))];

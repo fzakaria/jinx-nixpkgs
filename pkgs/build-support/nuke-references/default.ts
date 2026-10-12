@@ -16,10 +16,10 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const shell = nix.argOr($, "shell", () => nix.sel(stdenvNoCC, "shell"));
   return nix.app(replaceVarsWith, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       src: nix.path(here, "./nuke-refs"),
       replacements: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         perl: perl,
         storeDir: nix.thunk(() => nix.attr(nix.builtins, "storeDir")),
         shell: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "getBin"), shell), nix.selOr(shell, () => "", "shellPath"))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       })),
       dir: "bin",
       isExecutable: true,
-      meta: nix.thunk(() => ({ __proto__: pos$2, mainProgram: "nuke-refs" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$2, mainProgram: "nuke-refs" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

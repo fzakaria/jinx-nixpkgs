@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const cg3 = nix.arg($, "cg3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "cg3",
       version: "1.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GrammarSoft",
           repo: "cg3",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,14 +39,14 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       postFixup: "substituteInPlace \"$out\"/lib/pkgconfig/cg3.pc \\\n  --replace-fail '=${prefix}//' '=/'\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          minimal: nix.thunk(() => nix.app(runCommand, "cg3-test", nix.thunk(() => ({ __proto__: pos$2, buildInputs: nix.thunk(() => [cg3, dieHook]) })), "echo 'DELIMITERS = \".\"; ADD (tag) (*);' >grammar.cg3\nprintf '\"<a>\"\\n\\t\"a\" tag\\n\\n' >want.txt\nprintf '\"<a>\"\\n\\t\"a\"\\n\\n' | vislcg3 -g grammar.cg3 >got.txt\ndiff -s want.txt got.txt || die \"Grammar application did not produce expected parse\"\ntouch $out\n")),
+          [nix.POS]: pos$3,
+          minimal: nix.thunk(() => nix.app(runCommand, "cg3-test", nix.thunk(() => ({ [nix.POS]: pos$2, buildInputs: nix.thunk(() => [cg3, dieHook]) })), "echo 'DELIMITERS = \".\"; ADD (tag) (*);' >grammar.cg3\nprintf '\"<a>\"\\n\\t\"a\" tag\\n\\n' >want.txt\nprintf '\"<a>\"\\n\\t\"a\"\\n\\n' | vislcg3 -g grammar.cg3 >got.txt\ndiff -s want.txt got.txt || die \"Grammar application did not produce expected parse\"\ntouch $out\n")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/GrammarSoft/cg3",
         description: "Constraint Grammar interpreter, compiler and applicator vislcg3",
         maintainers: nix.thunk(() => (() => {

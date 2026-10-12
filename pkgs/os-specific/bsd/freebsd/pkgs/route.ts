@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const compatIfNeeded = nix.arg($, "compatIfNeeded");
   const libjail = nix.arg($, "libjail");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "sbin/route",
       buildInputs: nix.thunk(() => nix.concat(compatIfNeeded, [libjail])),
       MK_TESTS: "no",

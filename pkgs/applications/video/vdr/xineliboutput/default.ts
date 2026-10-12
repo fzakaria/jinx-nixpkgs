@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pname = "vdr-xineliboutput";
       const version = "2.3.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/xineliboutput/xineliboutput/${pname}-${version}/${pname}-${version}.tgz`),
           sha256: "sha256-GnTaGaIbBufZP2npa9mAbrO1ccMf1RzhbvjrWhKBTjg=",
         }))));
@@ -67,11 +67,11 @@ done
         avahi,
         wayland,
       ]);
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, requiredXinePlugins: nix.thunk(() => [xine_lib, self]) }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, requiredXinePlugins: nix.thunk(() => [xine_lib, self]) }));
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(vdr, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://sourceforge.net/projects/xineliboutput/",
         description: "Xine-lib based software output device for VDR",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ck3d"))]),
@@ -80,7 +80,7 @@ done
       };
       })());
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

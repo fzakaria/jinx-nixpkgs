@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const ghidra = nix.arg($, "ghidra");
   const ant = nix.arg($, "ant");
   return nix.app(buildGhidraExtension, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wasm",
       version: "2.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nneonneo",
           repo: "ghidra-wasm-plugin",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ popd
 runHook postConfigure
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Ghidra Wasm plugin with disassembly and decompilation support",
         homepage: "https://github.com/nneonneo/ghidra-wasm-plugin",
         downloadPage: nix.thunk(() => nix.str`https://github.com/nneonneo/ghidra-wasm-plugin/releases/tag/v${nix.sel(finalAttrs, "version")}`),

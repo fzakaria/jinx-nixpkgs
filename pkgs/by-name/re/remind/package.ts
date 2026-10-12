@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const tkremind = nix.argOr($, "tkremind", () => null);
   const withGui = nix.argOr($, "withGui", () => (nix.asBool(!nix.eq(tkremind, null)) ? nix.app(nix.sel(lib, "warn"), "tkremind is deprecated and should be removed; use withGui instead.", tkremind) : true));
   return nix.app(nix.sel(tcl, "mkTclDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "remind",
       version: "06.03.05",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dianne.skoll.ca/projects/remind/download/remind-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-4TESOZrPqa2LahojSy27qgIzkuS/tr8ElAS7nw/t5Fo=",
         })))),
@@ -40,12 +40,12 @@ substituteInPlace scripts/tkremind.in \\
   --replace-fail 'set Rem2PDF "rem2pdf"' "set Rem2PDF \\"$out/bin/rem2pdf\\""
 `))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-DHAVE_SETENV", "-DHAVE_UNSETENV"]))),
         })))),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://dianne.skoll.ca/projects/remind/",
         description: "Sophisticated calendar and alarm program for the console",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

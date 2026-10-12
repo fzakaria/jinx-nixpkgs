@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const triforce_lv2 = nix.arg($, "triforce-lv2");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "asahi-audio",
       version: "4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AsahiLinux",
           repo: "asahi-audio",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["DESTDIR=$(out)", "DATA_DIR=share"]),
       fixupPhase: "runHook preFixup\n\nfor config_file in $(find $out -type f -not -name '*.wav') ; do\n    substituteInPlace \"$config_file\" --replace-warn \"/usr\" \"$out\"\ndone\n\nrunHook postFixup\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         requiredLv2Packages: nix.thunk(() => [lsp_plugins, bankstown_lv2, triforce_lv2]),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Linux userspace audio configuration for Apple Silicon Macs",
         longDescription: "This package contains DSP configuration files for Apple Silicon\nMacs supported by the Asahi Linux project. The goal is to make\nthe Asahi Linux audio experience better than macOS, and in doing\nso demonstrate that desktop Linux audio can be made fit for\npurpose with a little bit of effort.\n\nCurrently Supported Devices (speakers)\n  - MacBook Air (13-inch, M1, 2020)\n  - MacBook Air (13-inch, M2, 2022)\n  - MacBook Air (15-inch, M2, 2023)\n  - MacBook Pro (13-inch, M1/M2, 2020/2022)\n  - MacBook Pro (14-inch, M1/M2 Pro/Max, 2021/2023)\n  - MacBook Pro (16-inch, M1/M2 Pro/Max, 2021/2023)\n  - Mac mini (M1/M2/M2 Pro, 2020/2023)\n  - Mac Studio (M1/M2 Max/Ultra, 2022/2023)\n\nCurrently Supported Devices (microphones)\n  - MacBook Air (13-inch, M1, 2020)\n  - MacBook Air (13-inch, M2, 2022)\n  - MacBook Air (15-inch, M2, 2023)\n  - MacBook Pro (13-inch, M1/M2, 2020/2022)\n  - MacBook Pro (14-inch, M1/M2 Pro/Max, 2021/2023)\n  - MacBook Pro (16-inch, M1/M2 Pro/Max, 2021/2023)\n",
         homepage: "https://github.com/AsahiLinux/asahi-audio",

@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const uv_build = nix.arg($, "uv-build");
   const yarl = nix.arg($, "yarl");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "supabase-functions",
       version: "2.29.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "supabase",
           repo: "supabase-py",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, pyjwt, pytest_asyncio]),
       pythonImportsCheck: nix.thunk(() => ["supabase_functions"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Client library for Supabase Functions",
         homepage: "https://github.com/supabase/supabase-py",
         changelog: nix.thunk(() => nix.str`https://github.com/supabase/supabase-py/blob/v${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "osxsnarf";
       const version = "0.1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eraserhd",
           repo: "osxsnarf",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -26,14 +26,14 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [plan9port]);
       const makeFlags = nix.thunk(() => [nix.thunk(() => nix.str`prefix=${nix.builtins.placeholder("out")}`)]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Plan 9-inspired way to share your OS X clipboard",
         homepage: "https://github.com/eraserhd/osxsnarf",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "eraserhd"))]),
       }));
-      return { __proto__: pos$3, pname, version, src, buildInputs, makeFlags, meta };
+      return { [nix.POS]: pos$3, pname, version, src, buildInputs, makeFlags, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

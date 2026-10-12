@@ -16,24 +16,24 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "stargate-libcds",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "d3v-t00Lz",
           repo: "libcds",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           sha256: "sha256-THThEzS8gGdwn3h0EBttaX5ljZH9Ma2Rcg143+GIdU8=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PLAT_FLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat([], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64")), nix.thunk(() => ["-mfpmath=sse", "-mssse3"])))))),
       })),
       patches: nix.thunk(() => [
         nix.path(here, "./Makefile.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "malloc-to-stdlib.patch",
             url: "https://github.com/d3v-t00Lz/libcds/commit/65dc08f059deda8ba5707ba6116b616d0ad0bd8d.patch",
             sha256: "sha256-FIGlobUVrDYOtnHjsWyE420PoULPHEK/3T9Fv8hfTl4=",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       installPhase: "runHook preInstall\ninstall -D libcds.so -t $out/lib/\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "C data structure library",
         homepage: "https://github.com/d3v-t00Lz/libcds",
         maintainers: [],

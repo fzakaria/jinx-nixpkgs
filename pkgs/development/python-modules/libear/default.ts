@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const installPhase = "LIBPATH=\"$(toPythonPath \"$out\")/libear\"\nmkdir -p \"$LIBPATH\"\n\ninstall -t \"$LIBPATH\" $src/*\n";
       const pythonImportsCheck = nix.thunk(() => ["libear"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Hooks into build systems to listen to which files are opened",
         homepage: nix.thunk(() => nix.str`https://github.com/llvm/llvm-project/tree/llvmorg-${version}/clang/tools/scan-build-py/lib/libear`),
         license: nix.thunk(() => (() => {
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         version,
         pyproject,

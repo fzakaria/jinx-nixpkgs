@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const withGL = nix.argOr($, "withGL", () => true);
   const withX11perf = nix.argOr($, "withX11perf", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "unixbench",
       version: "6.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kdlucas",
           repo: "byte-unixbench",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -60,7 +60,7 @@ substituteInPlace src/syscall.c \\
         gawk,
       ], nix.app(nix.sel(lib, "optionals"), withX11perf, nix.thunk(() => [x11perf])))),
       makeFlags: nix.thunk(() => nix.concat([nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`)], nix.app(nix.sel(lib, "optionals"), withGL, nix.thunk(() => ["GRAPHIC_TESTS=defined"])))),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu89" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu89" })),
       installPhase: "runHook preInstall\nmkdir -p $out/{bin,libexec,share}\ninstall -D Run $out/bin/ubench\ncp -r pgms $out/libexec/\ncp -r testdir $out/share/\nrunHook postInstall\n",
       postInstall: "substituteInPlace USAGE \\\n  --replace-fail 'Run\"' 'ubench\"' \\\n  --replace-fail './Run' 'ubench' \\\n  --replace-fail 'Run ' 'ubench '\npandoc -f rst -t man USAGE -o ubench.1\ninstallManPage ubench.1\n",
       preFixup: nix.thunk(() => nix.str`substituteInPlace $out/libexec/pgms/multi.sh \\
@@ -73,7 +73,7 @@ wrapProgram $out/bin/ubench \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(finalAttrs, "runtimeDependencies")))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Basic indicator of the performance of a Unix-like system",
         homepage: "https://github.com/kdlucas/byte-unixbench",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

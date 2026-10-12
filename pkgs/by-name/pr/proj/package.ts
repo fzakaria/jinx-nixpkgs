@@ -30,13 +30,13 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const fetchpatch2 = nix.arg($, "fetchpatch2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "proj",
       version: "9.9.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OSGeo",
           repo: "PROJ",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./only-add-curl-for-static-builds.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix_issue_with_target_compile_features.patch",
             url: "https://github.com/OSGeo/PROJ/commit/7ea0fd3ba479845464b34ccf5265b8e6d055cde5.patch?full_index=1",
             hash: "sha256-IIe0T1/8Jv7tvhUupFn46PaFi7zggAT79EC55cmxHSs=",
@@ -70,15 +70,15 @@ export ${libPathEnvVar}=$PWD/lib
       })()),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           python: nix.thunk(() => nix.sel(python3, "pkgs", "pyproj")),
-          proj: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({ __proto__: pos$3, proj: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")) })))),
+          proj: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, proj: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")) })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         changelog: nix.thunk(() => nix.str`https://github.com/OSGeo/PROJ/blob/${nix.sel(finalAttrs, "src", "tag")}/NEWS.md`),
         description: "Cartographic Projections Library",
         homepage: "https://proj.org/",

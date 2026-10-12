@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "watson",
       version: "2.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jazzband",
           repo: "Watson",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-completion.patch",
             url: "https://github.com/jazzband/Watson/commit/43ad061a981eb401c161266f497e34df891a5038.patch",
             sha256: "sha256-v8/asP1wooHKjyy9XXB4Rtf6x+qmGDHpRoHEne/ZCxc=",
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "installShellCompletion --bash --name watson watson.completion\ninstallShellCompletion --zsh --name _watson watson.zsh-completion\ninstallShellCompletion --fish watson.fish\n",
       pythonImportsCheck: nix.thunk(() => ["watson"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/jazzband/Watson",
         description: "Wonderful CLI to track your time",
         mainProgram: "watson",

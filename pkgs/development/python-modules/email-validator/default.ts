@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.3.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "email_validator",
           version: version,
           hash: "sha256-n8BcN/L2z0Of9BT4/EbZF5KZdKgiRMIOsQIxumDFRCY=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/test_deliverability.py", "tests/test_main.py"]);
       const pythonImportsCheck = nix.thunk(() => ["email_validator"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Email syntax and deliverability validation library",
         mainProgram: "email_validator",
         homepage: "https://github.com/JoshData/python-email-validator",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

@@ -37,12 +37,12 @@ export default nix.lambda((args) => (() => {
   const mkPackages = nix.thunk(() => nix.app(callPackage, nix.path(here, "./packages.nix")));
   const mkVMR = nix.thunk(() => nix.app(callPackage, nix.path(here, "./vmr.nix")));
   const sdkPackages = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: nix.thunk(() => nix.str`${nix.sel(bootstrapSdk, "name")}-packages`),
-      paths: nix.thunk(() => nix.builtins.map((p) => nix.app(nix.sel(p, "override"), nix.thunk(() => ({ __proto__: pos$1, installable: true }))), nix.thunk(() => nix.sel(bootstrapSdk, "packages")))),
+      paths: nix.thunk(() => nix.builtins.map((p) => nix.app(nix.sel(p, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, installable: true }))), nix.thunk(() => nix.sel(bootstrapSdk, "packages")))),
     }))));
   const vmr = nix.thunk(() => nix.app(nix.sel(nix.app(mkVMR, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       baseName: baseName,
       releaseManifestFile: releaseManifestFile,
       tarballHash: tarballHash,
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       hasRuntime: true,
     }))), "overrideAttrs"), (old) => (() => {
       const prebuiltPackages = nix.thunk(() => nix.app(mkNugetDeps, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           name: "dotnet-vmr-deps",
           sourceFile: depsFile,
           installable: true,
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
         const updateScript = nix.thunk(() => nix.attr(vmr, "updateScript"));
         const otherRids = nix.thunk(() => nix.app(nix.sel(lib, "remove"), hostRid, nix.thunk(() => nix.builtins.map((system) => nix.app(nix.sel(dotnetCorePackages, "systemToDotnetRid"), system), nix.thunk(() => nix.sel(vmr, "meta", "platforms"))))));
         const pkg = nix.thunk(() => nix.app(nix.sel(vmr, "overrideAttrs"), (old_1) => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(old_1, "nativeBuildInputs"), [nix$, cacert, nuget_to_json, jq])),
             postPatch: nix.thunk(() => nix.add(nix.selOr(old_1, () => "", "postPatch"), nix.str`xmlstarlet ed \\
   --inplace \\
@@ -127,7 +127,7 @@ substituteInPlace build.proj \\
           })));
         const drv = nix.thunk(() => nix.builtins.unsafeDiscardOutputDependency(nix.thunk(() => nix.sel(pkg, "drvPath"))));
         return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           "fetch-drv": drv,
           "fetch-deps": nix.thunk(() => nix.app(writeShellScript, "fetch-dotnet-sdk-deps", nix.thunk(() => nix.str`${nix$}/bin/nix-shell --pure --run 'source /dev/stdin' "${drv}" << 'EOF'
 set -e
@@ -152,7 +152,7 @@ depsFiles=(./src/*/deps.json)
 combined=$(nix-build ${nix.builtins.toString(nix.path(here, "./combine-deps.nix"))} \\
   --arg list "[ \${depsFiles[*]} ]" \\
   --argstr baseRid ${hostRid} \\
-  --arg otherRids '${nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({ __proto__: pos$6, multiline: false })), otherRids)}')
+  --arg otherRids '${nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({ [nix.POS]: pos$6, multiline: false })), otherRids)}')
 
 jq . "$combined" > deps.json
 
@@ -162,7 +162,7 @@ EOF
         };
       })()));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         prebuiltPackages,
         nativeBuildInputs,
         postPatch,
@@ -171,6 +171,6 @@ EOF
         passthru,
       };
     })()));
-  return nix.app(mkPackages, nix.thunk(() => ({ __proto__: pos$9, baseName: baseName, vmr: vmr })));
+  return nix.app(mkPackages, nix.thunk(() => ({ [nix.POS]: pos$9, baseName: baseName, vmr: vmr })));
 })(), formals$1);
 //# sourceMappingURL=stage0.ts.map

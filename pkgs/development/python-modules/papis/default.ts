@@ -45,12 +45,12 @@ export default nix.lambda((args) => (() => {
   const sphinx_click = nix.arg($, "sphinx-click");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "papis",
       version: "0.16.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "papis",
           repo: "papis",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
         requests,
       ], nix.app(nix.sel(lib, "optionals"), withOptDeps, nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies", "complete"))))),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         complete: nix.thunk(() => [chardet, citeproc_py, jinja2, markdownify, whoosh]),
       })),
       pythonImportsCheck: nix.thunk(() => ["papis"]),
@@ -100,7 +100,7 @@ export default nix.lambda((args) => (() => {
         "test_yaml_unicode_dump",
       ], nix.app(nix.sel(lib, "optionals"), withOptDeps, nix.thunk(() => ["test_csl_style_download"])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Powerful command-line document and bibliography manager",
         mainProgram: "papis",
         homepage: "https://papis.readthedocs.io/",

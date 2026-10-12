@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sonoscli",
       version: "0.3.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "steipete",
           repo: "sonoscli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd sonos \\\n  --bash <($out/bin/sonos completion bash) \\\n  --fish <($out/bin/sonos completion fish) \\\n  --zsh  <($out/bin/sonos completion zsh)\n")),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Control Sonos speakers from your terminal over LAN (UPnP/SOAP)",
         longDescription: "sonoscli is a modern Go CLI to control Sonos speakers over your local\nnetwork using UPnP/SOAP. Features include reliable SSDP discovery,\ncoordinator-aware playback controls, grouping, queue management,\nfavorites, scenes, Spotify integration via SMAPI, and live event watching.\n",
         homepage: "https://github.com/steipete/sonoscli",

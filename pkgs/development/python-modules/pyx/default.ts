@@ -19,19 +19,19 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const disabled = nix.thunk(() => !nix.asBool(isPy3k));
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-O8iqgJExVZ96XA4fESm0LHGt423wMyET9cV3k4SjmvE=",
         }))));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python package for the generation of PostScript, PDF, and SVG files",
         homepage: "https://pyx.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
       }));
-      return { __proto__: pos$3, pname, version, format, disabled, src, doCheck, meta };
+      return { [nix.POS]: pos$3, pname, version, format, disabled, src, doCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

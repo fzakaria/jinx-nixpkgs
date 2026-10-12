@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "vanilla-dmz";
       const version = "0.4.5";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://debian/pool/main/d/dmz-cursor-theme/dmz-cursor-theme_${version}.tar.xz`),
           sha256: "14r8fri4byyzavzdifpga6118hxqjwpzd11xxj28s16zxcanq16m",
         }))));
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const buildPhase = "runHook preBuild\n\nfor theme in DMZ-{White,Black}; do\n  pushd $theme/pngs\n  ./make.sh\n  popd\ndone\n\nrunHook postBuild\n";
       const installPhase = "runHook preInstall\n\nfor theme in DMZ-{White,Black}; do\n  mkdir -p $out/share/icons/$theme/cursors\n  cp -a $theme/xcursors/* $out/share/icons/$theme/cursors/\n\n  pushd $out/share/icons/$theme/cursors\n  ln -s bottom_left_corner sw-resize\n  ln -s bottom_right_corner se-resize\n  ln -s bottom_side s-resize\n  ln -s left_ptr default\n  ln -s left_side w-resize\n  ln -s right_side e-resize\n  ln -s top_left_corner nw-resize\n  ln -s top_right_corner ne-resize\n  ln -s top_side n-resize\n  popd\n\n  install -m644 $theme/index.theme $out/share/icons/$theme/index.theme\ndone\n\nln -s $out/share/icons/{DMZ-White,Vanilla-DMZ}\nln -s $out/share/icons/{DMZ-Black,Vanilla-DMZ-AA}\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://jimmac.musichall.cz",
         description: "Style neutral scalable cursor theme",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

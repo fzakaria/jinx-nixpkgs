@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const enableExamples = nix.argOr($, "enableExamples", () => false);
   const enableShared = nix.argOr($, "enableShared", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "feather-tk",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "grizzlypeak3d",
           repo: "feather-tk",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -65,7 +65,7 @@ ${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? "xvfb-run" : "")} ct
 runHook postCheck
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightweight toolkit for building cross-platform applications",
         homepage: "https://github.com/grizzlypeak3d/feather-tk",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

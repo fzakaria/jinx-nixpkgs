@@ -28,23 +28,23 @@ export default nix.lambda((args) => (() => {
   const writeText = nix.arg($, "writeText");
   const hocon = nix.thunk(() => nix.app(nix.sel(formats, "hocon"), nix.thunk(() => ({}))));
   const include_file = nix.thunk(() => nix.app(nix.sel(nix.app(writeText, "hocon-test-include.conf", "\"val\" = 1\n"), "overrideAttrs"), (_) => (__1) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       outputHashAlgo: "sha256",
       outputHashMode: "flat",
       outputHash: "sha256-UhkJLhT3bD6znq+IdDjs/ahP19mLzrLCy/R14pVrfew=",
     })));
   const expression = nix.thunk(() => ({
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     simple_top_level_attr: "1.0",
     nested: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       attrset: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         has: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           a: nix.thunk(() => ({
-            __proto__: pos$3,
-            integer: nix.thunk(() => ({ __proto__: pos$2, value: 100n })),
+            [nix.POS]: pos$3,
+            integer: nix.thunk(() => ({ [nix.POS]: pos$2, value: 100n })),
           })),
         })),
       })),
@@ -53,30 +53,30 @@ export default nix.lambda((args) => (() => {
     array2d: nix.thunk(() => [nix.thunk(() => [1n, 2n, "a"]), nix.thunk(() => [2n, 1n, "b"])]),
     nasty_string: "\"@\n\\\t^*bf\n0\";'''$",
     "misc attrs": nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       x: 1n,
-      y: nix.thunk(() => nix.app(nix.sel(hocon, "lib", "mkAppend"), nix.thunk(() => ({ __proto__: pos$7, a: 1n })))),
+      y: nix.thunk(() => nix.app(nix.sel(hocon, "lib", "mkAppend"), nix.thunk(() => ({ [nix.POS]: pos$7, a: 1n })))),
     })),
     "cursed \" .attrs \" ": nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       a: 1n,
       "a b": nix.thunk(() => nix.app(nix.sel(hocon, "lib", "mkSubstitution"), "a")),
-      "a b c": nix.thunk(() => nix.app(nix.sel(hocon, "lib", "mkSubstitution"), nix.thunk(() => ({ __proto__: pos$9, value: "a b", required: false })))),
+      "a b c": nix.thunk(() => nix.app(nix.sel(hocon, "lib", "mkSubstitution"), nix.thunk(() => ({ [nix.POS]: pos$9, value: "a b", required: false })))),
     })),
     to_include: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       _includes: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(hocon, "lib", "mkInclude"), include_file)),
         nix.thunk(() => nix.app(nix.sel(hocon, "lib", "mkInclude"), "https://example.com")),
-        nix.thunk(() => nix.app(nix.sel(hocon, "lib", "mkInclude"), nix.thunk(() => ({ __proto__: pos$11, required: true, type: "file", value: include_file })))),
-        nix.thunk(() => nix.app(nix.sel(hocon, "lib", "mkInclude"), nix.thunk(() => ({ __proto__: pos$12, value: include_file })))),
-        nix.thunk(() => nix.app(nix.sel(hocon, "lib", "mkInclude"), nix.thunk(() => ({ __proto__: pos$13, value: "https://example.com", type: "url" })))),
+        nix.thunk(() => nix.app(nix.sel(hocon, "lib", "mkInclude"), nix.thunk(() => ({ [nix.POS]: pos$11, required: true, type: "file", value: include_file })))),
+        nix.thunk(() => nix.app(nix.sel(hocon, "lib", "mkInclude"), nix.thunk(() => ({ [nix.POS]: pos$12, value: include_file })))),
+        nix.thunk(() => nix.app(nix.sel(hocon, "lib", "mkInclude"), nix.thunk(() => ({ [nix.POS]: pos$13, value: "https://example.com", type: "url" })))),
       ]),
     })),
   }));
   const hocon_test_conf = nix.thunk(() => nix.app(nix.sel(hocon, "generate"), "hocon-test.conf", expression));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       name: "pkgs.formats.hocon-test-comprehensive",
       dontUnpack: true,
       dontBuild: true,

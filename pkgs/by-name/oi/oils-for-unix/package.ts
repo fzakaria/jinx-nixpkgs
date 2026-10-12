@@ -22,16 +22,16 @@ export default nix.lambda((args) => (() => {
   const withReadline = nix.argOr($, "withReadline", () => true);
   const readline = nix.arg($, "readline");
   const readline_all = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "readline-all",
       paths: nix.thunk(() => [readline, nix.thunk(() => nix.sel(readline, "dev"))]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "oils-for-unix",
       version: "0.38.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://oils.pub/download/oils-for-unix-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ozRTcigZtV7lUr/X88K6uPGUDe9V1ci0avFs6VvfiAM=",
         })))),
@@ -42,12 +42,12 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), withReadline, readline)),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-error=incompatible-function-pointer-types")),
       })),
       configureFlags: nix.thunk(() => nix.concat([nix.thunk(() => nix.str`--datarootdir=${nix.builtins.placeholder("out")}`)], nix.app(nix.sel(lib, "optionals"), withReadline, nix.thunk(() => ["--with-readline", nix.thunk(() => nix.str`--readline=${readline_all}`)])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Unix shell with JSON-compatible structured data. It's our upgrade path from bash to a better language and runtime",
         homepage: "https://www.oils.pub/",
         longDescription: "This package installs both `osh` and `ysh`. To use one as a login shell,\nselect one of `pkgs.oils-for-unix.osh`, `pkgs.oils-for-unix.ysh`.\n",
@@ -64,14 +64,14 @@ export default nix.lambda((args) => (() => {
       })),
       passthru: nix.thunk(() => (() => {
         const mkShell = (shellName) => nix.app(symlinkJoin, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             name: nix.thunk(() => nix.str`oils-for-unix-${shellName}-${nix.sel(finalAttrs, "version")}`),
             paths: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
-            passthru: nix.thunk(() => ({ __proto__: pos$5, shellPath: nix.thunk(() => nix.str`/bin/${shellName}`) })),
-            meta: nix.thunk(() => nix.update(nix.sel(finalAttrs, "meta"), { __proto__: pos$6, mainProgram: shellName })),
+            passthru: nix.thunk(() => ({ [nix.POS]: pos$5, shellPath: nix.thunk(() => nix.str`/bin/${shellName}`) })),
+            meta: nix.thunk(() => nix.update(nix.sel(finalAttrs, "meta"), { [nix.POS]: pos$6, mainProgram: shellName })),
           })));
         return {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           osh: nix.thunk(() => nix.app(mkShell, "osh")),
           ysh: nix.thunk(() => nix.app(mkShell, "ysh")),
         };

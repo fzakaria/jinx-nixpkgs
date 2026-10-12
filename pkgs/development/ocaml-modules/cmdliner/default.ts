@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const ocaml = nix.arg($, "ocaml");
   const version = nix.argOr($, "version", () => "2.1.1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cmdliner",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://erratique.ch/software/cmdliner/releases/cmdliner-${version}.tbz`),
           hash: nix.thunk(() => nix.sel({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             "1.0.4": "sha256-XCqT1Er4o4mWosD4D715cP5HUfEEvkcMr6BpNT/ABMA=",
             "1.3.0": "sha256-joGA9XO0QPanqMII2rLK5KgjhP7HMtInhNG7bmQWjLs=",
             "2.1.1": "sha256-Bbk40d709UxHgXjxmCgig0UQQx7ZjyrGfLTZCqEg1rY=",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://erratique.ch/software/cmdliner",
         description: "OCaml module for the declarative definition of command line interfaces",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

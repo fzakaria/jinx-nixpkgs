@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
   const unix = nix.arg($, "unix");
   const unordered_containers = nix.arg($, "unordered-containers");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "hnix-store-nar",
       version: "0.1.2.0",
       sha256: "113cj9dhiw1fj4sdh954l0gpw4l9iycy2xj1ajx76brhsqxrh5r9",

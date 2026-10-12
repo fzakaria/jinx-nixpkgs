@@ -26,27 +26,27 @@ export default nix.lambda((args) => (() => {
   const config = nix.thunk(() => nix.attr(pkgs, "config"));
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
   return nix.update({
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     openjfx17: nix.thunk(() => nix.attr(pkgs, "openjfx17")),
     openjfx21: nix.thunk(() => nix.attr(pkgs, "openjfx21")),
     openjfx25: nix.thunk(() => nix.attr(pkgs, "openjfx25")),
     compiler: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => (() => {
         const mergeMetaPlatforms = (jdk) => (other) => nix.update(jdk, {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           meta: nix.thunk(() => nix.update(nix.sel(jdk, "meta"), {
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             platforms: nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.concat(nix.sel(jdk, "meta", "platforms"), nix.sel(other, "meta", "platforms"))))),
           })),
         });
         const mkLinuxDarwin = (linux) => (darwin) => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? nix.app(mergeMetaPlatforms, linux, darwin) : nix.app(mergeMetaPlatforms, darwin, linux));
         const mkOpenjdk = (featureVersion) => (() => {
-          const openjdkLinux = nix.thunk(() => nix.update(nix.app(callPackage, nix.path(here, "../development/compilers/openjdk/generic.nix"), nix.thunk(() => nix.update({ __proto__: pos$3, featureVersion: featureVersion }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), featureVersion, "11")), nix.thunk(() => ({ __proto__: pos$4, enableGtk: false })))))), {
-            __proto__: pos$5,
+          const openjdkLinux = nix.thunk(() => nix.update(nix.app(callPackage, nix.path(here, "../development/compilers/openjdk/generic.nix"), nix.thunk(() => nix.update({ [nix.POS]: pos$3, featureVersion: featureVersion }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), featureVersion, "11")), nix.thunk(() => ({ [nix.POS]: pos$4, enableGtk: false })))))), {
+            [nix.POS]: pos$5,
             headless: nix.thunk(() => nix.app(mergeMetaPlatforms, openjdkLinuxHeadless, openjdkDarwin)),
           }));
-          const openjdkLinuxHeadless = nix.thunk(() => nix.app(nix.sel(openjdkLinux, "override"), nix.thunk(() => ({ __proto__: pos$6, headless: true }))));
+          const openjdkLinuxHeadless = nix.thunk(() => nix.app(nix.sel(openjdkLinux, "override"), nix.thunk(() => ({ [nix.POS]: pos$6, headless: true }))));
           const openjdkDarwin = nix.thunk(() => nix.update(nix.app(callPackage, nix.thunk(() => nix.add(nix.path(here, "../development/compilers/zulu"), nix.str`/${featureVersion}.nix`)), nix.thunk(() => ({}))), {
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             headless: nix.thunk(() => nix.app(mergeMetaPlatforms, openjdkDarwin, openjdkLinuxHeadless)),
           }));
           return nix.app(mkLinuxDarwin, openjdkLinux, openjdkDarwin);
@@ -66,13 +66,13 @@ export default nix.lambda((args) => (() => {
           const openjdk17_bootstrap = nix.thunk(() => nix.sel(temurin_bin, "jdk-17"));
           const temurin_bin = nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => (() => {
               const temurinLinux = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../development/compilers/temurin-bin/jdk-linux.nix")), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   lib: nix.thunk(() => nix.attr(pkgs, "lib")),
                   callPackage: nix.thunk(() => nix.attr(pkgs, "callPackage")),
                   stdenv: nix.thunk(() => nix.attr(pkgs, "stdenv")),
                 }))));
               const temurinDarwin = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../development/compilers/temurin-bin/jdk-darwin.nix")), nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   lib: nix.thunk(() => nix.attr(pkgs, "lib")),
                   callPackage: nix.thunk(() => nix.attr(pkgs, "callPackage")),
                 }))));
@@ -80,19 +80,19 @@ export default nix.lambda((args) => (() => {
             })())));
           const semeru_bin = nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => (() => {
               const semeruLinux = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../development/compilers/semeru-bin/jdk-linux.nix")), nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   lib: nix.thunk(() => nix.attr(pkgs, "lib")),
                   callPackage: nix.thunk(() => nix.attr(pkgs, "callPackage")),
                 }))));
               const semeruDarwin = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../development/compilers/semeru-bin/jdk-darwin.nix")), nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   lib: nix.thunk(() => nix.attr(pkgs, "lib")),
                   callPackage: nix.thunk(() => nix.attr(pkgs, "callPackage")),
                 }))));
               return nix.app(nix.sel(lib, "mapAttrs"), (name) => (drv) => nix.app(mkLinuxDarwin, drv, nix.thunk(() => nix.sel(semeruDarwin, nix.key(nix.force(name))))), semeruLinux);
             })())));
           return {
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             corretto11,
             corretto17,
             corretto21,
@@ -111,7 +111,7 @@ export default nix.lambda((args) => (() => {
         })();
       })()))),
   }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       jogl_2_4_0: nix.thunk(() => nix.builtins.throw("'jogl_2_4_0' is renamed to/replaced by 'jogl'")),
       mavenfod: nix.thunk(() => nix.builtins.throw("'mavenfod' is renamed to/replaced by 'maven.buildMavenPackage'")),
     }))));

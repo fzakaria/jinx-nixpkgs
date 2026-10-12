@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const libExt = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary"));
   const tsc_dyn = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "tsc-dyn",
       version: "0.19.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "emacs-tree-sitter",
           repo: "emacs-tree-sitter",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,18 +39,18 @@ popd
 `),
     })));
   return nix.app(melpaBuild, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "tsc",
       version: nix.thunk(() => nix.attr(tsc_dyn, "version")),
       src: nix.thunk(() => nix.attr(tsc_dyn, "src")),
       files: nix.thunk(() => nix.str`("core/*.el" "${tsc_dyn}/lib/*")`),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "tsc-dyn": tsc_dyn,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$3, attrPath: "emacsPackages.tsc.tsc-dyn" })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, attrPath: "emacsPackages.tsc.tsc-dyn" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Core APIs of the Emacs binding for tree-sitter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],

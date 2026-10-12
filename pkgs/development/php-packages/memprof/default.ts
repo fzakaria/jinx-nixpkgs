@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const judy = nix.arg($, "judy");
   const version = "3.1.0";
   return nix.app(buildPecl, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: version,
       pname: "memprof",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "arnaud-lb",
           repo: "php-memory-profiler",
           rev: version,
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/arnaud-lb/php-memory-profiler/releases/tag/${version}`),
         description: "Memory profiler for PHP. Helps finding memory leaks in PHP scripts",
         homepage: "https://github.com/arnaud-lb/php-memory-profiler",

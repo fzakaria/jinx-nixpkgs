@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
       const subversion = "0";
       const platform = "linux64";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.uppaal.org/uppaal-${version}/uppaal-${version}.${subversion}/uppaal-${version}.${subversion}-${platform}.zip`),
           hash: "sha256-o71mP2/sDNRpmA1Qx59cvx6t4pk5pP0lrn1CogN3PuM=",
         }))));
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "uppaal",
             exec: "uppaal %U",
             icon: "uppaal",
@@ -66,7 +66,7 @@ makeWrapper $out/lib/uppaal/uppaal $out/bin/uppaal \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Integrated tool environment for modeling, validation and verification of real-time systems",
         homepage: "https://uppaal.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
@@ -82,7 +82,7 @@ runHook postInstall
         mainProgram: "uppaal",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         subversion,

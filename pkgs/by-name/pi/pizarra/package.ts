@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const gdk_pixbuf = nix.arg($, "gdk-pixbuf");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pizarra",
       version: "1.7.5",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "categulario",
           repo: "pizarra-gtk",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk3_x11, atk, glib, librsvg]),
       postInstall: "install -Dm444 res/icons/tk.categulario.pizarra.svg $out/share/icons/hicolor/scalable/apps/pizarra.svg\ninstall -Dm444 res/pizarra.desktop -t $out/share/applications\nsubstituteInPlace $out/share/applications/pizarra.desktop \\\n  --replace \"TryExec=/usr/bin/\" \"TryExec=\" \\\n  --replace \"Exec=/usr/bin/\" \"Exec=\" \\\n  --replace \"Icon=/usr/share/icons/hicolor/scalable/apps/pizarra.svg\" \"Icon=pizarra\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple blackboard written in GTK",
         mainProgram: "pizarra",
         longDescription: "A simple endless blackboard.\nContains various features, such as:\n- Pencil\n- Rectangle\n- Ellipse\n- Line\n- Text\n- Grids\n",

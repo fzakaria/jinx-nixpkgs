@@ -88,7 +88,7 @@ ${nix.app(escapeShellArgs, nix.thunk(() => nix.concat([
         ])))))} ${nix.app(optionalString, nix.thunk(() => nix.sel(cfg, "logs", "save")), nix.thunk(() => nix.str`> ${nix.sel(cfg, "logs", "path")} 2>&1`))}
 `)));
   const autoLoginCommand = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "dms-greeter-autologin-command", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nativeBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(pkgs, "gnugrep")),
         nix.thunk(() => nix.sel(pkgs, "coreutils")),
@@ -122,27 +122,27 @@ exit 1
     nix.thunk(() => nix.str`${nix.sel(cfg, "configHome")}/.cache/DankMaterialShell/dms-colors.json`),
   ] : []));
   return {
-    __proto__: pos$45,
+    [nix.POS]: pos$45,
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         displayManager: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           "dms-greeter": nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             enable: nix.thunk(() => nix.app(mkEnableOption, "DankMaterialShell greeter")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "dms-greeter", nix.thunk(() => ({})))),
             compositor: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["niri", "hyprland", "sway", "mangowc", "miracle-wm", "labwc"]))),
                   example: "niri",
                   description: "The Wayland compositor to run the greeter in.\n\nThe specified compositor must be enabled via its corresponding\n`programs.<compositor>.enable` option.\n\nSupported compositors:\n- niri: A scrollable-tiling Wayland compositor\n- hyprland: A dynamic tiling Wayland compositor\n- sway: An i3-compatible Wayland compositor\n- mango: A dwm-inspired Wayland compositor with modern config options and multiple layouts\n- miracle-wm: A keyboard-driven Wayland compositor with smooth animations and extensibility\n- labwc: Lightweight stacking Wayland compositor inspired by Openbox\n",
                 })))),
               customConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   type: nix.thunk(() => nix.sel(types, "lines")),
                   default: "",
                   example: "# Niri example\ninput {\n    keyboard {\n        xkb {\n            layout \"us\"\n        }\n    }\n}\n",
@@ -150,23 +150,23 @@ exit 1
                 })))),
             })),
             configFiles: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "path")))),
                 default: [],
                 example: nix.thunk(() => nix.app(literalExpression, "[\n  \"/home/user/.config/DankMaterialShell/settings.json\"\n  \"/home/user/.local/state/DankMaterialShell/session.json\"\n]\n")),
                 description: "List of DankMaterialShell configuration files to copy into the greeter\ndata directory at `/var/lib/dms-greeter`.\n\nThis is useful for preserving user preferences like wallpapers, themes,\nand other settings in the greeter screen.\n\n::: {.tip}\nUse {option}`configHome` instead if your configuration files are in\nstandard XDG locations.\n:::\n",
               })))),
             configHome: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                 default: null,
                 example: "/home/alice",
                 description: "Path to a user's home directory from which to copy DankMaterialShell\nconfiguration files.\n\nWhen set, the following files will be automatically copied to the greeter:\n- `~/.config/DankMaterialShell/settings.json`\n- `~/.local/state/DankMaterialShell/session.json`\n- `~/.cache/DankMaterialShell/dms-colors.json`\n\nIf your configuration files are in non-standard locations, use the\n{option}`configFiles` option instead.\n",
               })))),
             quickshell: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               package: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   type: nix.thunk(() => nix.sel(types, "package")),
                   default: nix.thunk(() => (nix.asBool(nix.sel(cfgDms, "enable")) ? nix.sel(cfgDms, "quickshell", "package") : nix.sel(pkgs, "quickshell"))),
                   defaultText: nix.thunk(() => nix.app(literalExpression, "if config.programs.dms-shell.enable\nthen config.programs.dms-shell.quickshell.package\nelse pkgs.quickshell;\n")),
@@ -174,10 +174,10 @@ exit 1
                 })))),
             })),
             logs: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               save: nix.thunk(() => nix.app(mkEnableOption, "saving logs from the DMS greeter to a file")),
               path: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   type: nix.thunk(() => nix.sel(types, "path")),
                   default: "/tmp/dms-greeter.log",
                   example: "/var/log/dms-greeter.log",
@@ -189,10 +189,10 @@ exit 1
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$43,
+        [nix.POS]: pos$43,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             assertion: nix.thunk(() => nix.app(nix.sel(lib, "attrByPath"), nix.thunk(() => nix.concat(["programs"], nix.concat(nix.app(nix.sel(lib, "splitString"), ".", compositorOption), ["enable"]))), false, config)),
             message: nix.thunk(() => nix.str`DankMaterialShell greeter: The compositor "${nix.sel(cfg, "compositor", "name")}" is not enabled.
 
@@ -201,45 +201,45 @@ Please enable the compositor via:
 `),
           })),
           nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfgAutoLogin, "enable")) || nix.asBool(!nix.eq(nix.sel(sessionData, "autologinSession"), null)))),
             message: "dms-greeter auto-login requires services.displayManager.defaultSession to be set,\nor at least one session in services.displayManager.sessionPackages.\n",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           greetd: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             enable: nix.thunk(() => nix.app(mkDefault, true)),
             settings: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               default_session: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 user: "dms-greeter",
                 command: nix.thunk(() => nix.app(getExe, greeterScript)),
               })),
               initial_session: nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(nix.sel(cfgAutoLogin, "enable")) && nix.asBool(!nix.eq(nix.sel(cfgAutoLogin, "user"), null)))), nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   user: nix.thunk(() => nix.attr(cfgAutoLogin, "user")),
                   command: nix.thunk(() => nix.str`${nix.app(getExe, nix.thunk(() => nix.sel(pkgs, "bash")))} -lc "${nix.sel(config, "systemd", "package")}/bin/systemd-cat $(<${autoLoginCommand})"`),
                 })))),
             })),
           })),
           displayManager: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             "dms-greeter": nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               configFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "configHome"), null)), configFilesFromHome)),
             })),
           })),
-          libinput: nix.thunk(() => ({ __proto__: pos$23, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+          libinput: nix.thunk(() => ({ [nix.POS]: pos$23, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         fonts: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           packages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [
@@ -250,23 +250,23 @@ Please enable the compositor via:
           })()),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             settings: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               "10-dms-greeter": nix.thunk(() => nix.attrsDyn({}, [
                 [cacheDir, nix.thunk(() => ({
-                  __proto__: pos$28,
-                  d: nix.thunk(() => ({ __proto__: pos$27, user: "dms-greeter", group: "dms-greeter", mode: "0750" })),
+                  [nix.POS]: pos$28,
+                  d: nix.thunk(() => ({ [nix.POS]: pos$27, user: "dms-greeter", group: "dms-greeter", mode: "0750" })),
                 }))],
               ])),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             greetd: nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               preStart: nix.thunk(() => (() => {
                 const allConfigFiles = nix.thunk(() => nix.concat(nix.sel(cfg, "configFiles"), configFilesFromHome));
                 return nix.str`cd ${cacheDir}
@@ -321,12 +321,12 @@ chown dms-greeter:dms-greeter * || :
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$37,
-          groups: nix.thunk(() => ({ __proto__: pos$34, "dms-greeter": nix.thunk(() => ({})) })),
+          [nix.POS]: pos$37,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$34, "dms-greeter": nix.thunk(() => ({})) })),
           users: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             "dms-greeter": nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               description: "DankMaterialShell greeter user",
               isSystemUser: true,
               home: cacheDir,
@@ -338,19 +338,19 @@ chown dms-greeter:dms-greeter * || :
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           pam: nix.thunk(() => ({
-            __proto__: pos$39,
-            services: nix.thunk(() => ({ __proto__: pos$38, "dms-greeter": nix.thunk(() => ({})) })),
+            [nix.POS]: pos$39,
+            services: nix.thunk(() => ({ [nix.POS]: pos$38, "dms-greeter": nix.thunk(() => ({})) })),
           })),
         })),
         hardware: nix.thunk(() => ({
-          __proto__: pos$42,
-          graphics: nix.thunk(() => ({ __proto__: pos$41, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+          [nix.POS]: pos$42,
+          graphics: nix.thunk(() => ({ [nix.POS]: pos$41, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$44,
+      [nix.POS]: pos$44,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "danklinux"))]),
     })),
   };

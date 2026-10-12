@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const electron = nix.arg($, "electron");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ariang-native",
       version: "1.3.14",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mayswind",
           repo: "AriaNg-Native",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         const w = nix.withScope(finalAttrs, null);
         return [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: nix.thunk(() => nix.lookup(w, "pname")),
               desktopName: "AriaNg Native",
               genericName: nix.thunk(() => nix.sel(nix.lookup(w, "meta"), "description")),
@@ -71,11 +71,11 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), electron)} $out/bin/${nix.lookup(w
 `;
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Aria2 desktop frontend based on AriaNg with additional desktop features",
         homepage: "https://github.com/mayswind/AriaNg-Native",
         changelog: nix.thunk(() => nix.str`https://github.com/mayswind/AriaNg-Native/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const cln = nix.arg($, "cln");
   const ginac = nix.arg($, "ginac");
   return nix.app(runCommand, "ginac-example-test", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(gccStdenv, "cc")), ginac, cln]),
     })), "echo \"\n  #include <iostream>\n  #include <ginac/ginac.h>\n  using namespace std;\n  using namespace GiNaC;\n\n  int main() {\n    symbol x(\\\"x\\\"), y(\\\"y\\\");\n    ex poly;\n\n    for (int i=0; i<3; ++i) {\n      poly += factorial(i+16)*pow(x,i)*pow(y,2-i);\n    }\n\n    cout << poly << endl;\n    return 0;\n  }\" > hello.cc\nc++ -lginac -lcln hello.cc -o hello\n./hello\nmkdir $out\n");
 })(), formals$1);

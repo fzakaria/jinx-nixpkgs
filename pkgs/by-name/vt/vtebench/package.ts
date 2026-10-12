@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const gnuplot = nix.arg($, "gnuplot");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "vtebench",
       version: "0.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alacritty",
           repo: "vtebench",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,11 +54,11 @@ makeWrapper $out/share/vtebench/gnuplot_summary.sh $out/bin/vtebench-gnuplot-sum
   --suffix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gnuplot]))}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Generate benchmarks for terminal emulators",
         longDescription: "A tool for benchmarking terminal emulator PTY read performance.\n\nThe `vtebench` binary has been patched to use the default benchmarks\nautomatically. Run `vtebench-gnuplot` or `vtebench-gnuplot-summary`\nto run the `gnuplot.sh` and `gnuplot_summary.sh` scripts respectively.\n",
         homepage: "https://github.com/alacritty/vtebench",

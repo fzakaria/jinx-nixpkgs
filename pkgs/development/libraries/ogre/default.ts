@@ -51,9 +51,9 @@ export default nix.lambda((args) => (() => {
     const imguiVersion = nix.arg($_1, "imguiVersion");
     const imguiHash = nix.arg($_1, "imguiHash");
     const imgui = nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ocornut",
           repo: "imgui",
           rev: nix.thunk(() => nix.str`v${imguiVersion}`),
@@ -61,11 +61,11 @@ export default nix.lambda((args) => (() => {
         })))),
     }));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: "ogre",
         version: version,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             owner: "OGRECave",
             repo: "ogre",
             rev: nix.thunk(() => nix.str`v${version}`),
@@ -98,7 +98,7 @@ chmod -R u+w build/imgui-${imguiVersion}
             nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "OGRE_BUILD_LIBS_AS_FRAMEWORKS", false)),
           ])))),
         meta: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           description: "3D Object-Oriented Graphics Rendering Engine",
           homepage: "https://www.ogre3d.org/",
           maintainers: nix.thunk(() => (() => {
@@ -114,16 +114,16 @@ chmod -R u+w build/imgui-${imguiVersion}
       })));
   })(), formals$2);
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     ogre_14: nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         version: "14.6.0",
         hash: "sha256-dgMSn3kwgcToAhFDWRfL+E8zz/4rF4qqc7lCSiyeV68=",
         imguiVersion: "1.92.9b",
         imguiHash: "sha256-IjW+qddzKu9jOj3QCGhkChVK2UOvwl493ffUIIn/ZVQ=",
       })))),
     ogre_13: nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         version: "13.6.5",
         hash: "sha256-8VQqePrvf/fleHijVIqWWfwOusGjVR40IIJ13o+HwaE=",
         imguiVersion: "1.87",

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "npkill";
       const version = "0.12.2-1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "voidcosmos",
           repo: "npkill",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-scR7LF9UkDvQzAqe5TSKajr6VNrnjM2KZI7k2KLmoCc=";
       const strictDeps = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Easily find and remove old and heavy node_modules folders",
         homepage: "https://npkill.js.org",
         changelog: nix.thunk(() => nix.str`https://github.com/voidcosmos/npkill/releases/tag/v${version}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "npkill",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

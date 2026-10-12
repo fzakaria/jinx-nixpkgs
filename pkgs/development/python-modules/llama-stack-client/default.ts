@@ -40,12 +40,12 @@ export default nix.lambda((args) => (() => {
   const tqdm = nix.arg($, "tqdm");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "llama-stack-client",
       version: "0.7.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "llama_stack_client",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-gNQZu8uLHOwuGQU25XZXbtL7v0eIJGXXL8YGHvncrbI=",
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
         tqdm,
         typing_extensions,
       ]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, aiohttp: nix.thunk(() => [aiohttp, httpx_aiohttp]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, aiohttp: nix.thunk(() => [aiohttp, httpx_aiohttp]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([
         dirty_equals,
         nest_asyncio,
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
         "tests/lib/agents/test_agent_responses.py::test_agent_tracks_multiple_sessions",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library for the llama-stack-client API",
         homepage: "https://github.com/llamastack/llama-stack-client-python",
         changelog: nix.thunk(() => nix.str`https://github.com/llamastack/llama-stack-client-python/releases/tag/v${nix.sel(finalAttrs, "version")}`),

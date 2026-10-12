@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "morgen";
       const version = "4.0.6";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`morgen-${version}.deb`),
           url: nix.thunk(() => nix.str`https://dl.todesktop.com/210203cqcj00tw1/versions/${version}/linux/deb`),
           hash: "sha256-ZT8HC8uXDgIjDaAhivCQ9SfYYtPjYgcfCCRYkOWpLhE=",
@@ -55,9 +55,9 @@ makeWrapper ${electron}/bin/electron $out/bin/morgen \\
 
 runHook postInstall
 `);
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "All-in-one Calendars, Tasks and Scheduler",
         homepage: "https://morgen.so/",
         mainProgram: "morgen",
@@ -73,7 +73,7 @@ runHook postInstall
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

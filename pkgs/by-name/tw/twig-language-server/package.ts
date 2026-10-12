@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "twig-language-server";
       const version = "0.8.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kaermorchen",
           repo: "twig-language-server",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +34,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), nodejs)} $out/bin/twig-language-se
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Language server for Twig templates",
         homepage: "https://github.com/kaermorchen/twig-language-server",
         changelog: nix.thunk(() => nix.str`https://github.com/kaermorchen/twig-language-server/releases/tag/v${version}`),
@@ -45,7 +45,7 @@ runHook postInstall
         })()),
         mainProgram: "twig-language-server",
       }));
-      return { __proto__: pos$3, pname, version, src, npmDepsHash, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, npmDepsHash, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

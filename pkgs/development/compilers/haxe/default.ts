@@ -41,12 +41,12 @@ export default nix.lambda((args) => (() => {
     const hash = nix.arg($_1, "hash");
     const version = nix.arg($_1, "version");
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: "haxe",
         version: version,
         buildInputs: nix.thunk(() => nix.concat([zlib, neko, dune, pcre2, mbedtls], nix.app(ocamlDependencies, version))),
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "HaxeFoundation",
             repo: "haxe",
             rev: version,
@@ -91,7 +91,7 @@ done
         doInstallCheck: true,
         installCheckPhase: "# Get out of the source directory to make sure the stdlib from the\n# sources doesn't interfere with the installed one.\nmkdir installcheck\npushd installcheck > /dev/null\ncat >> InstallCheck.hx <<EOF\nclass InstallCheck {\n  public static function main() trace(\"test\");\n}\nEOF\n\"$out/bin/haxe\" -js installcheck.js -main InstallCheck\ngrep -q 'console\\.log.*test' installcheck.js\npopd > /dev/null\n",
         meta: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           description: "Programming language targeting JavaScript, Flash, NekoVM, PHP, C++",
           homepage: "https://haxe.org",
           license: nix.thunk(() => (() => {
@@ -111,9 +111,9 @@ done
       })));
   })(), formals$2);
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     haxe_4_3: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         version: "4.3.7",
         hash: "sha256-sQb7MCoH2dZOvNmDQ9P0yFYrSXYOMn4FS/jlyjth39Y=",
       })))),

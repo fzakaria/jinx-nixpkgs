@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const beidconnect = nix.arg($, "beidconnect");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "beidconnect",
       version: "2.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Fedict",
           repo: "fts-beidconnect",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,18 +39,18 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/linux`),
       postInstall: "install -d \\\n  $out/etc/chromium/native-messaging-hosts \\\n  $out/etc/opt/chrome/native-messaging-hosts/ \\\n  $out/etc/opt/edge/native-messaging-hosts/ \\\n  $out/etc/opt/vivaldi/native-messaging-hosts/ \\\n  $out/etc/opt/brave/native-messaging-hosts/ \\\n  $out/lib/mozilla/native-messaging-hosts \\\n\n$out/bin/beidconnect -setup $out/bin \\\n  $out/etc/chromium/native-messaging-hosts \\\n  $out/lib/mozilla/native-messaging-hosts\n\n# Chrome\ninstall $out/etc/chromium/native-messaging-hosts/be.bosa.beidconnect.json $out/etc/opt/chrome/native-messaging-hosts/\n\n# Edge\ninstall $out/etc/chromium/native-messaging-hosts/be.bosa.beidconnect.json $out/etc/opt/edge/native-messaging-hosts/\n\n# Vivaldi\ninstall $out/etc/chromium/native-messaging-hosts/be.bosa.beidconnect.json $out/etc/opt/vivaldi/native-messaging-hosts/\n\n# Brave\ninstall $out/etc/chromium/native-messaging-hosts/be.bosa.beidconnect.json $out/etc/opt/brave/native-messaging-hosts/\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: beidconnect,
               command: nix.thunk(() => nix.str`${beidconnect}/bin/beidconnect -version`),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "BeIDConnect native messaging component",
         longDescription: "The beidconnect is a program to help implementing digital signing services\nand/or an identity service using the Belgian eID card. It provides\nservices to webbrowsers to read data from cards, and is intended to work\ntogether with a WebExtension in the browser.\n\nThis package contains the native code. For the WebExtension, see your\nwebbrowser's extension store.\n",
         homepage: "https://github.com/Fedict/fts-beidconnect/",

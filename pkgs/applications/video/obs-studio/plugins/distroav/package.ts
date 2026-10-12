@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [cmake, nix.thunk(() => nix.sel(qt6, "qtbase"))]);
       const buildInputs = nix.thunk(() => [obs_studio, nix.thunk(() => nix.sel(qt6, "qtbase")), ndi_6, curl]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DistroAV",
           repo: "DistroAV",
           tag: version,
@@ -40,10 +40,10 @@ rm -rf lib/ndi
 ln -s ${ndi_6}/include lib/ndi
 `);
       const cmakeFlags = nix.thunk(() => ["-DENABLE_QT=ON"]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-deprecated-declarations" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-deprecated-declarations" }));
       const dontWrapQtApps = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Network A/V plugin for OBS Studio (formerly obs-ndi)",
         homepage: "https://github.com/DistroAV/DistroAV",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
@@ -54,7 +54,7 @@ ln -s ${ndi_6}/include lib/ndi
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         nativeBuildInputs,

@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => (() => {
       const web = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-web`),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
           installPhase: "runHook preInstall\ncp -r dist $out\nrunHook postInstall\n",
         }))));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname: "pipeweaver",
         version: "0.1.9",
         __structuredAttrs: true,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             owner: "pipeweaver",
             repo: "pipeweaver",
             tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +56,7 @@ mkdir -p daemon/web-content
 cp -r ${web}/* daemon/web-content/
 `),
         env: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           GIT_HASH: nix.thunk(() => nix.sel(finalAttrs, "src", "tag")),
         })),
         installPhase: nix.thunk(() => nix.str`runHook preInstall
@@ -85,12 +85,12 @@ install -Dm644 LICENSE $out/share/licenses/pipeweaver/LICENSE
 runHook postInstall
 `),
         passthru: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           web: web,
-          updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$4, extraArgs: nix.thunk(() => ["--subpackage", "web"]) })))),
+          updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--subpackage", "web"]) })))),
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           description: "Manage streaming audio on Linux through PipeWire with virtual channels, mixing, and routing",
           homepage: "https://github.com/pipeweaver/pipeweaver",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const cacert = nix.arg($, "cacert");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dezoomify-rs",
       version: "2.20.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lovasoa",
           repo: "dezoomify-rs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,13 +34,13 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [openssl]))),
       nativeCheckInputs: nix.thunk(() => [cacert]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       cargoHash: "sha256-w3kYruKuraP1NPTGupqLUA2WoIlieIrMVWAy13vO8Ug=",
       sandboxProfile: "(allow mach-lookup (global-name \"com.apple.SystemConfiguration.configd\"))\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Zoomable image downloader for Google Arts & Culture, Zoomify, IIIF, and others",
         changelog: nix.thunk(() => nix.str`https://github.com/lovasoa/dezoomify-rs/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         homepage: "https://github.com/lovasoa/dezoomify-rs/",

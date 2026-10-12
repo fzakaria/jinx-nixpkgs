@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const endianFlag = nix.thunk(() => (nix.asBool(nix.sel(hostPlatform, "isLittleEndian")) ? "--little-endian" : "--big-endian"));
   const bloodFlag = nix.thunk(() => (nix.asBool(nix.sel(hostPlatform, "is64bit")) ? "--64" : " "));
   const buildMesccToolsExtraUtil = (name) => nix.app(derivationWithMeta, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: nix.thunk(() => nix.str`mescc-tools-extra-${name}`),
       builder: kaem_unwrapped,
       args: nix.thunk(() => [
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
   const chmod = nix.thunk(() => nix.app(buildMesccToolsExtraUtil, "chmod"));
   const replace = nix.thunk(() => nix.app(buildMesccToolsExtraUtil, "replace"));
   return nix.app(derivationWithMeta, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mescc-tools",
       builder: kaem_unwrapped,
       args: nix.thunk(() => ["--verbose", "--strict", "--file", nix.path(here, "./build.kaem")]),
@@ -103,7 +103,7 @@ export default nix.lambda((args) => (() => {
       bloodFlag: bloodFlag,
       endianFlag: endianFlag,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of tools written for use in bootstrapping",
         homepage: "https://github.com/oriansj/mescc-tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

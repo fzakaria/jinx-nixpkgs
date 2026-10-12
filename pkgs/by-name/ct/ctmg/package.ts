@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ctmg",
       version: "1.2",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://git.zx2c4.com/ctmg/snapshot/ctmg-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "1i4v8sriwjrmj3yizbl1ysckb711yl9qsn9x45jq0ij1apsydhyc",
         })))),
       installPhase: "install -D ctmg.sh $out/bin/ctmg",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Encrypted container manager for Linux using cryptsetup",
         homepage: "https://git.zx2c4.com/ctmg/about/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

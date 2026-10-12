@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const reboot = nix.arg($, "reboot");
   const wall = nix.arg($, "wall");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "sbin/shutdown",
       postPatch: nix.thunk(() => nix.str`sed -i 's/4550/0550/' $BSDSRCDIR/sbin/shutdown/Makefile
 

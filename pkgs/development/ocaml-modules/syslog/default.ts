@@ -17,20 +17,20 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.2";
       const minimalOCamlVersion = "4.03";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "geneanet",
           repo: "ocaml-syslog",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-WybNZBPhv4fhjzzb95E+6ZHcZUnfROLlNF3PMBGO9ys=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/geneanet/ocaml-syslog",
         description: "Simple wrapper to access the system logger from OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "rixed"))]),
       }));
-      return { __proto__: pos$3, pname, version, minimalOCamlVersion, src, meta };
+      return { [nix.POS]: pos$3, pname, version, minimalOCamlVersion, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

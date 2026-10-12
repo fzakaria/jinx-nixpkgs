@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dlx",
       version: "0-unstable-2012-07-08",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://www.davidviner.com/zip/dlx/dlx.zip",
           hash: "sha256-r4FlMbfsGH50V502EfqzRwAqVv4vpdyH3zFlZW2kCBQ=",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => ["format"]),
       installPhase: "mkdir -p $out/include/dlx $out/share/dlx/{examples,doc} $out/bin\nmv masm mon dasm $out/bin/\nmv *.i auto.a $out/include/dlx/\nmv *.a *.m $out/share/dlx/examples/\nmv README.txt MANUAL.TXT $out/share/dlx/doc/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.davidviner.com/dlx.html?name=DLX+Simulator",
         description: "DLX simulator written in C",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

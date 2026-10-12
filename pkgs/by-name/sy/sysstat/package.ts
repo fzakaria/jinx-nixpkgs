@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const gettext = nix.arg($, "gettext");
   const bzip2 = nix.arg($, "bzip2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sysstat",
       version: "12.7.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sysstat",
           repo: "sysstat",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export COMPRESS_MANPG=n
       outputs: nix.thunk(() => ["out", "man", "doc"]),
       patches: nix.thunk(() => [nix.path(here, "./install.patch")]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mainProgram: "iostat",
         homepage: "https://sysstat.github.io/",
         description: "Collection of performance monitoring tools for Linux (such as sar, iostat and pidstat)",

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lexend",
       version: "0.pre+date=2022-09-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "googlefonts",
           repo: "lexend",
           rev: "cd26b9c2538d758138c20c3d2f10362ed613854b",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\ncd fonts\nfor f in *; do\n  install -D -t $out/share/fonts/truetype/lexend/$f $f/ttf/*\n  install -D -t $out/share/fonts/variable/lexend/$f $f/variable/*\ndone\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.lexend.com",
         description: "Variable font family designed to aid in reading proficiency",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

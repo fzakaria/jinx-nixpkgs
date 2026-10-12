@@ -22,18 +22,18 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const gupnp_1_6 = nix.arg($, "gupnp_1_6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "upnp-router-control",
       version: "0.3.6",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://launchpad.net/upnp-router-control/trunk/${nix.sel(finalAttrs, "version")}/+download/upnp-router-control-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-2vm6Rnn+V3V54W2xYDlMh7iFKNWfxxnDexlZdwS+8RA=",
         })))),
       nativeBuildInputs: nix.thunk(() => [desktop_file_utils, intltool, meson, ninja, pkg_config, wrapGAppsHook3]),
       buildInputs: nix.thunk(() => [gssdp_1_6, gtk3, gupnp_1_6]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://launchpad.net/upnp-router-control",
         description: "Access some parameters of the router and manage port forwarding",
         longDescription: "A GTK application to access some parameters of the router like:\nthe network speed, the external IP and the model name.\nIt can manage port forwarding through a simple GUI interface.\n",

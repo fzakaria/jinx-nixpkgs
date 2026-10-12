@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const undmg = nix.arg($, "undmg");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "raycast",
       version: "2.6.3.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: "Raycast.dmg",
           url: "https://x-r2.raycast-releases.com/Raycast_2.6.3.0_2bca862541_arm64.dmg",
           hash: "sha256-s5xIV0SN6mzkLoBWdfoqTu/hUhIXUzQOmRyIygVZCLE=",
@@ -39,16 +39,16 @@ export default nix.lambda((args) => (() => {
       sourceRoot: "Raycast.app",
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications/Raycast.app\"\ncp -R . \"$out/Applications/Raycast.app\"\nmkdir -p \"$out/bin\"\nln -s \"$out/Applications/Raycast.app/Contents/MacOS/Raycast\" \"$out/bin/raycast\"\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: "raycast-update-script",
               runtimeInputs: nix.thunk(() => [cacert, curl, openssl]),
               text: "download_url=\"https://x.raycast-releases.com/download?platform=macos&architecture=arm64\"\nurl=$(curl --fail --silent --show-error --head --output /dev/null --write-out '%{redirect_url}' \"$download_url\")\nfilename=\"${url##*/}\"\nversion=\"${filename#Raycast_}\"\nversion=\"${version%%_*}\"\nhash=\"sha256-$(curl --fail --silent --show-error --location \"$url\" | openssl dgst -sha256 -binary | openssl base64)\"\n\nsed -i -E \\\n  -e 's|(version = )\"[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+\";|\\1\"'\"$version\"'\";|' \\\n  -e 's|url = \"https://x-r2\\.raycast-releases\\.com/Raycast_[^\"]*_arm64\\.dmg\";|url = \"'\"$url\"'\";|' \\\n  -e 's|(hash = )\"sha256-[A-Za-z0-9+/]+=\";|\\1\"'\"$hash\"'\";|' \\\n  ./pkgs/by-name/ra/raycast/package.nix\n",
             })))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Control your tools with a few keystrokes",
         homepage: "https://www.raycast.com",
         changelog: nix.thunk(() => nix.str`https://www.raycast.com/changelog/macos/${nix.app(nix.sel(lib, "replaceString"), ".", "-", nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))))}`),

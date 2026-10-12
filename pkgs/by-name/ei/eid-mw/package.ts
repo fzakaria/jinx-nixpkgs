@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const pcsclite = nix.arg($, "pcsclite");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "eid-mw",
       version: "5.1.31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Fedict",
           repo: "eid-mw",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -65,10 +65,10 @@ export SSL_PREFIX=$(realpath openssl)
       configureFlags: nix.thunk(() => ["--disable-pinentry"]),
       postInstall: nix.thunk(() => (() => {
         const eid_nssdb_in = nix.thunk(() => nix.app(replaceVarsWith, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             isExecutable: true,
             src: nix.path(here, "./eid-nssdb.in"),
-            replacements: nix.thunk(() => ({ __proto__: pos$2, shell: nix.thunk(() => nix.attr(stdenv, "shell")) })),
+            replacements: nix.thunk(() => ({ [nix.POS]: pos$2, shell: nix.thunk(() => nix.attr(stdenv, "shell")) })),
           }))));
         return nix.str`install -D ${eid_nssdb_in} $out/bin/eid-nssdb
 substituteInPlace $out/bin/eid-nssdb \\
@@ -82,7 +82,7 @@ wrapProgram $out/bin/eid-viewer \\
       enableParallelBuilding: true,
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Belgian electronic identity card (eID) middleware",
         homepage: "https://eid.belgium.be/en",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),

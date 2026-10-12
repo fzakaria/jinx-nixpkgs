@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
   const xxhash = nix.arg($, "xxhash");
   const zstandard = nix.arg($, "zstandard");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "yardstick",
       version: "0.16.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "anchore",
           repo: "yardstick",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytest_cov_stub, pytest_mock, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["yardstick"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module to compare vulnerability scanners results",
         homepage: "https://github.com/anchore/yardstick",
         changelog: nix.thunk(() => nix.str`https://github.com/anchore/yardstick/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

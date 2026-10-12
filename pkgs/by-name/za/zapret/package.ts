@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libnfnetlink = nix.arg($, "libnfnetlink");
   const libmnl = nix.arg($, "libmnl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "zapret",
       version: "72.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bol-van",
           repo: "zapret",
           leaveDotGit: true,
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`TGT=${nix.builtins.placeholder("out")}/bin`)]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/usr/share/zapret/init.d/sysv\nmkdir -p $out/usr/share/docs\n\ncp $src/blockcheck.sh $out/bin/blockcheck\n\nsubstituteInPlace $out/bin/blockcheck \\\n  --replace-fail '$(cd \"$EXEDIR\"; pwd)' \"$out/usr/share/zapret\"\n\nln -s ../../../bin/blockcheck $out/usr/share/zapret/blockcheck\n\ncp $src/init.d/sysv/functions $out/usr/share/zapret/init.d/sysv/functions\ncp $src/init.d/sysv/zapret $out/usr/share/zapret/init.d/sysv/init.d\n\nsubstituteInPlace $out/usr/share/zapret/init.d/sysv/functions \\\n  --replace-fail \"/opt/zapret\" \"\\\"$out/usr/share/zapret\\\"\"\n\ntouch $out/usr/share/zapret/config\n\ncp -r $src/docs/* $out/usr/share/docs\n\nmkdir -p $out/usr/share/zapret/{common,files/fake,ipset}\n\ncp $src/common/* $out/usr/share/zapret/common\ncp $src/files/fake/* $out/usr/share/zapret/files/fake\ncp $src/ipset/* $out/usr/share/zapret/ipset\n\nrm -f $out/usr/share/zapret/ipset/zapret-hosts-user-exclude.txt.default\n\nmkdir -p $out/usr/share/zapret/nfq\nln -s ../../../../bin/nfqws $out/usr/share/zapret/nfq/nfqws\n\nfor i in ip2net mdig tpws\ndo\n  mkdir -p $out/usr/share/zapret/$i\n  ln -s ../../../../bin/$i $out/usr/share/zapret/$i/$i\ndone\n\nln -s ../usr/share/zapret/init.d/sysv/init.d $out/bin/zapret\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "DPI bypass multi platform",
         homepage: "https://github.com/bol-van/zapret",
         changelog: nix.thunk(() => nix.str`https://github.com/bol-van/zapret/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

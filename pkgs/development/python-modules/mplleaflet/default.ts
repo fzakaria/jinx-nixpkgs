@@ -21,19 +21,19 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [jinja2, six]);
       const doCheck = false;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "049e0b91797ce5b462853395138161fed9e8dfc1f4723f482ebb0739a0bbd289",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Convert Matplotlib plots into Leaflet web maps",
         homepage: "https://github.com/jwass/mplleaflet",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

@@ -49,65 +49,65 @@ export default nix.lambda((args) => (() => {
   const defaultUser = "code-server";
   const defaultGroup = defaultUser;
   return {
-    __proto__: pos$36,
+    [nix.POS]: pos$36,
     options: nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       services: nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         "code-server": nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "code-server")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "code-server", nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               example: "pkgs.vscode-with-extensions.override {\n  vscode = pkgs.code-server;\n  vscodeExtensions = with pkgs.vscode-extensions; [\n    bbenoist.nix\n    dracula-theme.theme-dracula\n  ];\n}\n",
             })))),
           extraPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: [],
               description: "Additional packages to add to the code-server {env}`PATH`.\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ pkgs.go ]")),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
             })))),
           extraEnvironment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "Additional environment variables to pass to code-server.\n",
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$3, PKG_CONFIG_PATH: "/run/current-system/sw/lib/pkgconfig" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$3, PKG_CONFIG_PATH: "/run/current-system/sw/lib/pkgconfig" })),
             })))),
           extraArguments: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: [],
               description: "Additional arguments to pass to code-server.\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ \"--log=info\" ]")),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             })))),
           host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: "localhost",
               description: "The host name or IP address the server should listen to.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: 4444n,
               description: "The port the server should listen to.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
             })))),
           auth: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               default: "password",
               description: "The type of authentication to use.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["none", "password"]))),
             })))),
           hashedPassword: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               default: "",
               description: "Create the password with: {command}`echo -n 'thisismypassword' | nix run nixpkgs#libargon2 -- \"$(head -c 20 /dev/random | base64)\" -e`\n",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               default: defaultUser,
               example: "yourUser",
               description: nix.thunk(() => nix.str`The user to run code-server as.
@@ -116,7 +116,7 @@ By default, a user named \`${defaultUser}\` will be created.
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               default: defaultGroup,
               example: "yourGroup",
               description: nix.thunk(() => nix.str`The group to run code-server under.
@@ -125,7 +125,7 @@ By default, a group named \`${defaultGroup}\` will be created.
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
             })))),
           extraGroups: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               default: [],
               description: nix.thunk(() => nix.str`An array of additional groups for the \`${defaultUser}\` user.
 `),
@@ -133,67 +133,67 @@ By default, a group named \`${defaultGroup}\` will be created.
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             })))),
           socket: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               default: null,
               example: "/run/code-server/socket",
               description: "Path to a socket (bind-addr will be ignored).\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             })))),
           socketMode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               default: null,
               description: "File mode of the socket.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             })))),
           userDataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               default: null,
               description: "Path to the user data directory.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             })))),
           extensionsDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               default: null,
               description: "Path to the extensions directory.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             })))),
           proxyDomain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               default: null,
               example: "code-server.lan",
               description: "Domain used for proxying ports.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             })))),
           disableTelemetry: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               default: false,
               example: true,
               description: "Disable telemetry.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             })))),
           disableUpdateCheck: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               default: false,
               example: true,
               description: "Disable update check.\nWithout this flag, code-server checks every 6 hours against the latest github release and\nthen notifies you once every week that a new release is available.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             })))),
           disableFileDownloads: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               default: false,
               example: true,
               description: "Disable file downloads from Code.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             })))),
           disableWorkspaceTrust: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               default: false,
               example: true,
               description: "Disable Workspace Trust feature.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             })))),
           disableGettingStartedOverride: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               default: false,
               example: true,
               description: "Disable the coder/coder override in the Help: Getting Started page.\n",
@@ -203,24 +203,24 @@ By default, a group named \`${defaultGroup}\` will be created.
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         systemd: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           services: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             "code-server": nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               description: "Code server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target"]),
               path: nix.thunk(() => nix.sel(cfg, "extraPackages")),
               environment: nix.thunk(() => nix.update({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 HASHED_PASSWORD: nix.thunk(() => nix.sel(cfg, "hashedPassword")),
               }, nix.sel(cfg, "extraEnvironment"))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 ExecStart: nix.thunk(() => nix.add(nix.add(nix.add(nix.add(nix.add(nix.add(nix.add(nix.add(nix.add(nix.add(nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} \\
   --auth=${nix.sel(cfg, "auth")} \\
   --bind-addr=${nix.sel(cfg, "host")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))} \\
@@ -239,17 +239,17 @@ By default, a group named \`${defaultGroup}\` will be created.
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.str`${nix.sel(cfg, "user")}`, nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), defaultUser)), nix.thunk(() => ({
-                    __proto__: pos$31,
+                    [nix.POS]: pos$31,
                     isNormalUser: true,
                     description: "code-server user",
                     group: nix.thunk(() => nix.attr(cfg, "group")),
                   })))),
                 nix.thunk(() => ({
-                  __proto__: pos$32,
+                  [nix.POS]: pos$32,
                   packages: nix.thunk(() => nix.sel(cfg, "extraPackages")),
                   extraGroups: nix.thunk(() => nix.attr(cfg, "extraGroups")),
                 })),
@@ -261,7 +261,7 @@ By default, a group named \`${defaultGroup}\` will be created.
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$35,
+      [nix.POS]: pos$35,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "stackshadow"))]),
     })),
   };

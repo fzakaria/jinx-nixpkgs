@@ -50,11 +50,11 @@ grep -v " PUBLIC KEY" |
 base64 -d | tail --bytes=32 | base32 | tr -d =
 `)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "tor",
       version: "0.4.9.14",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dist.torproject.org/tor-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-GCRJrByP9DJ42ie2mwIEDhHQPQMn222RJuQZDsYjXko=",
         })))),
@@ -63,7 +63,7 @@ base64 -d | tail --bytes=32 | base32 | tr -d =
       buildInputs: nix.thunk(() => nix.concat([libevent, openssl, zlib, xz, zstd, scrypt], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libseccomp, systemdLibs, libcap])))),
       patches: nix.thunk(() => [nix.path(here, "./disable-monotonic-timer-tests.patch")]),
       configureFlags: nix.thunk(() => nix.concat(["--enable-gpl"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), nix.thunk(() => ["--disable-tool-name-check"])))),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_LINK: "-lgcc_s" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_LINK: "-lgcc_s" })))),
       postPatch: nix.thunk(() => nix.str`substituteInPlace contrib/client-tools/torify \\
   --replace-fail 'command -v torsocks' 'true' \\
   --replace-fail 'exec torsocks' 'exec ${torsocks}/bin/torsocks'
@@ -81,27 +81,27 @@ ln -s ${tor_client_auth_gen} $out/bin/tor-client-auth-gen
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           tor: nix.thunk(() => nix.attr(nixosTests, "tor")),
-          proxyHook: nix.thunk(() => nix.app(callPackage, nix.path(here, "./proxy-hook-tests.nix"), nix.thunk(() => ({ __proto__: pos$3, tor: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")) })))),
+          proxyHook: nix.thunk(() => nix.app(callPackage, nix.path(here, "./proxy-hook-tests.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, tor: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")) })))),
         })),
         updateScript: nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({})))),
         proxyHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             name: "tor-proxy-hook",
             substitutions: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               grep: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), gnugrep)),
               tee: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), coreutils, "tee")),
               tor: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
             })),
-            meta: nix.thunk(() => ({ __proto__: pos$6, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+            meta: nix.thunk(() => ({ [nix.POS]: pos$6, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
           })), nix.path(here, "./proxy-hook.sh"))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         homepage: "https://www.torproject.org/",
         donationPage: "https://donate.torproject.org/",
         description: "Anonymizing overlay network",

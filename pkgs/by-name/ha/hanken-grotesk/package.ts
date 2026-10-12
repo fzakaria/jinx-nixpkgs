@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hanken-grotesk",
       version: "0-unstable-2024-01-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "marcologous",
           repo: "hanken-grotesk",
           rev: "1ab416e82130b2d3ddb7710abf7ceabf07156a13",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\nmkdir --parents $out/share/fonts\ncp --recursive fonts/ttf $out/share/fonts/truetype\ncp --recursive fonts/variable $out/share/fonts/variable\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Hanken Grotesk typeface",
         longDescription: "Hanken Grotesk is a sans serif typeface inspired by the classic grotesques.",
         homepage: "https://github.com/marcologous/hanken-grotesk",

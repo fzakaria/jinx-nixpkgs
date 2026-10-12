@@ -58,81 +58,81 @@ ${nix.app(nix.lookup(w, "concatMapStrings"), makeService, nix.thunk(() => nix.se
 }
 `;
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         xinetd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "the xinetd super-server daemon")),
           extraDefaults: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: "",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               description: "Additional configuration lines added to the default section of xinetd's configuration.\n",
             })))),
           services: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               default: [],
               description: "A list of services provided by xinetd.\n",
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), nix.thunk(() => ({
-                      __proto__: pos$12,
+                      [nix.POS]: pos$12,
                       options: nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         name: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$2,
+                            [nix.POS]: pos$2,
                             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
                             example: "login",
                             description: "Name of the service.",
                           })))),
                         protocol: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$3,
+                            [nix.POS]: pos$3,
                             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
                             default: "tcp",
                             description: "Protocol of the service.  Usually `tcp` or `udp`.",
                           })))),
                         port: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$4,
+                            [nix.POS]: pos$4,
                             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "port")),
                             default: 0n,
                             example: 123n,
                             description: "Port number of the service.",
                           })))),
                         user: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$5,
+                            [nix.POS]: pos$5,
                             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
                             default: "nobody",
                             description: "User account for the service",
                           })))),
                         server: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$6,
+                            [nix.POS]: pos$6,
                             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
                             example: "/foo/bin/ftpd",
                             description: "Path of the program that implements the service.",
                           })))),
                         serverArgs: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$7,
+                            [nix.POS]: pos$7,
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "separatedString"), " ")),
                             default: "",
                             description: "Command-line arguments for the server program.",
                           })))),
                         flags: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$8,
+                            [nix.POS]: pos$8,
                             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
                             default: "",
                             description: "",
                           })))),
                         unlisted: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$9,
+                            [nix.POS]: pos$9,
                             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "bool")),
                             default: false,
                             description: "Whether this server is listed in\n{file}`/etc/services`.  If so, the port\nnumber can be omitted.\n",
                           })))),
                         extraConfig: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$10,
+                            [nix.POS]: pos$10,
                             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "lines")),
                             default: "",
                             description: "Extra configuration-lines added to the section of the service.",
@@ -145,18 +145,18 @@ ${nix.app(nix.lookup(w, "concatMapStrings"), makeService, nix.thunk(() => nix.se
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             xinetd: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "xinetd server",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "xinetd")))} -syslog daemon -dontfork -stayalive -f ${configFile}`),
               })),
             })),

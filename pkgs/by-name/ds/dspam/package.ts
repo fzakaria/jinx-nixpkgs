@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const drivers = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ",", nix.thunk(() => nix.concat(["hash_drv"], nix.concat(nix.app(nix.sel(lib, "optional"), withMySQL, "mysql_drv"), nix.concat(nix.app(nix.sel(lib, "optional"), withPgSQL, "pgsql_drv"), nix.concat(nix.app(nix.sel(lib, "optional"), withSQLite, "sqlite3_drv"), nix.app(nix.sel(lib, "optional"), withDB, "libdb4_drv"))))))));
   const maintenancePath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gawk, gnused, gnugrep, coreutils, which])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dspam",
       version: "3.10.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/dspam/dspam/dspam-${nix.sel(finalAttrs, "version")}/dspam-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1acklnxn1wvc7abn31l3qdj8q6k13s51k5gv86vka7q20jb5cxmf",
         })))),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`--with-mysql-includes=${nix.sel(mariadb_connector_c, "dev")}/include/mysql`),
           nix.thunk(() => nix.str`--with-mysql-libraries=${nix.sel(mariadb_connector_c, "out")}/lib/mysql`),
         ])))),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fcommon" })),
       installFlags: nix.thunk(() => ["DESTDIR=$(out)"]),
       postInstall: nix.thunk(() => nix.str`cp -r $out/$out/* $out
 rm -rf $out/$(echo "$out" | cut -d "/" -f2)
@@ -107,7 +107,7 @@ sed -i \\
   $out/bin/dspam_maintenance
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://dspam.sourceforge.net/",
         description: "Community Driven Antispam Filter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

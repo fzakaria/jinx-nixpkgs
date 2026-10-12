@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "glances",
       version: "4.5.7",
       pyproject: true,
       disabled: nix.thunk(() => nix.sel(python3Packages, "isPyPy")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nicolargo",
           repo: "glances",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,8 +56,8 @@ export default nix.lambda((args) => (() => {
         ], nix.concat([which], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [hddtemp]))));
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, service: nix.thunk(() => nix.sel(nixosTests, "glances")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, service: nix.thunk(() => nix.sel(nixosTests, "glances")) })),
       })),
       nativeCheckInputs: nix.thunk(() => (() => {
         const w_2 = nix.withScope(python3Packages, null);
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
         "test_pipe",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://nicolargo.github.io/glances/",
         description: "Cross-platform curses-based monitoring tool",
         mainProgram: "glances",

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "oh-my-rime",
       version: "0-unstable-2026-09-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Mintimate",
           repo: "oh-my-rime",
           rev: "0b1d78474f5c11bdca78593b525bc2186be6c111",
@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\nrm -rf README*.md .git* .ide plum preview .cnb.yml demo.webp LICENSE\n\nmv default.yaml oh_my_rime_suggested_default.yaml\n\nmkdir -p $out/share\ncp -r . $out/share/rime-data\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, hardcodeZeroVersion: true })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, hardcodeZeroVersion: true })))),
       })),
       strictDeps: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Rime configuration template with multiple Chinese input schemas",
         longDescription: "Oh My Rime, also known as Mint Input Method, is a ready-to-use\nconfiguration template for Rime. It includes full and double pinyin,\nTerra Pinyin, and Wubi input schemas, along with dictionaries, Lua\nscripts, and themes.\n\nThe upstream `default.yaml` is included as\n`oh_my_rime_suggested_default.yaml`. To enable it, add the following to\nyour `default.custom.yaml`:\n\n```yaml\npatch:\n  __include: oh_my_rime_suggested_default:/\n```\n",
         homepage: "https://github.com/Mintimate/oh-my-rime",

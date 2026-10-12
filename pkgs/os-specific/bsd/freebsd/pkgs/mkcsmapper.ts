@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const byacc = nix.arg($, "byacc");
   const flex = nix.arg($, "flex");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "usr.bin/mkcsmapper",
       extraPaths: nix.thunk(() => ["lib/libc/iconv", "lib/libiconv_modules/mapper_std"]),
       extraNativeBuildInputs: nix.thunk(() => [byacc, flex]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
     })));

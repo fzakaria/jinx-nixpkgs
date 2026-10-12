@@ -26,26 +26,26 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const bintools = nix.arg($, "bintools");
   const uplosi = nix.arg($, "uplosi");
-  const skopeo$ = nix.thunk(() => nix.app(nix.sel(skopeo, "override"), nix.thunk(() => ({ __proto__: pos$1, buildGoModule: buildGoModule }))));
-  const uplosi$ = nix.thunk(() => nix.app(nix.sel(uplosi, "override"), nix.thunk(() => ({ __proto__: pos$2, buildGoModule: buildGoModule }))));
+  const skopeo$ = nix.thunk(() => nix.app(nix.sel(skopeo, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, buildGoModule: buildGoModule }))));
+  const uplosi$ = nix.thunk(() => nix.app(nix.sel(uplosi, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, buildGoModule: buildGoModule }))));
   const expectedCgoEnabledType = "DYN";
   const expectedCgoDisabledType = "EXE";
   return nix.update({
-    __proto__: pos$6,
-    skopeo: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$3, package: skopeo$ })))),
+    [nix.POS]: pos$6,
+    skopeo: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: skopeo$ })))),
     version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         package: go,
         command: "go version",
         version: nix.thunk(() => nix.str`go${nix.sel(go, "version")}`),
       })))),
-    uplosi: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$5, package: uplosi$ })))),
+    uplosi: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$5, package: uplosi$ })))),
   }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       "skopeo-bin-type": nix.thunk(() => nix.app(runCommand, "skopeo-bin-type", nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           meta: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")),
           })),
         })), nix.thunk(() => nix.str`bin="${nix.app(nix.sel(lib, "getExe'"), skopeo$, ".skopeo-wrapped")}"
@@ -61,9 +61,9 @@ else
 fi
 `))),
       "uplosi-bin-type": nix.thunk(() => nix.app(runCommand, "uplosi-bin-type", nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           meta: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")),
           })),
         })), nix.thunk(() => nix.str`bin="${nix.app(nix.sel(lib, "getExe"), uplosi$)}"

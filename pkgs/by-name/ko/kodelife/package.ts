@@ -52,16 +52,16 @@ export default nix.lambda((args) => (() => {
       const pname = "kodelife";
       const version = "1.1.0.173";
       const suffix = nix.thunk(() => nix.selOr({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         "aarch64-linux": "linux-arm64",
         "armv7l-linux": "linux-armhf",
         "x86_64-linux": "linux-x64",
       }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://hexler.net/pub/${pname}/${pname}-${version}-${suffix}.deb`),
           hash: nix.thunk(() => nix.selOr({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "aarch64-linux": "sha256-WPUWvgVZR+2Dg4zpk+iUemMBGlGBDtaGkUGrWuF5LBs=",
             "armv7l-linux": "sha256-tOPqP40e0JrXg92OluMZrurWHXZavGwTkJiNN1IFVEE=",
             "x86_64-linux": "sha256-ZA8BlUtKaiSnXGncYwb2BbhBlULuGz7SWuXL0RAgQLI=",
@@ -89,9 +89,9 @@ wrapProgram $out/bin/KodeLife \\
 
 runHook postInstall
 `);
-      const passthru = nix.thunk(() => ({ __proto__: pos$4, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://hexler.net/kodelife",
         description: "Real-time GPU shader editor",
         sourceProvenance: nix.thunk(() => (() => {
@@ -107,7 +107,7 @@ runHook postInstall
         mainProgram: "KodeLife",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         suffix,

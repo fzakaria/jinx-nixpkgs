@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.6.0";
       const outputs = nix.thunk(() => nix.concat(["out", "dev"], nix.app(nix.sel(lib, "optional"), withIntrospection, "devdoc")));
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libgweather/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/libgweather-${version}.tar.xz`),
           hash: "sha256-f10OjJaF7y/0bC86V8rkjXvzVAstg5IfiJ7yjmqHZ4g=",
         }))));
@@ -52,16 +52,16 @@ export default nix.lambda((args) => (() => {
       const postFixup = "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n";
       const strictDeps = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             packageName: pname,
             versionPolicy: "odd-unstable",
             freeze: "40.alpha",
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Library to access weather information from online services for numerous locations",
         homepage: "https://gitlab.gnome.org/GNOME/libgweather",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         outputs,

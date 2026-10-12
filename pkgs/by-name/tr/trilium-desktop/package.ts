@@ -30,33 +30,33 @@ export default nix.lambda((args) => (() => {
   const pname = "trilium-desktop";
   const version = "0.106.0";
   const triliumSource = (os) => (arch) => (hash) => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     url: nix.thunk(() => nix.str`https://github.com/TriliumNext/Trilium/releases/download/v${version}/TriliumNotes-v${version}-${os}-${arch}.zip`),
     hash: hash,
   });
   const linuxSource = nix.thunk(() => nix.app(triliumSource, "linux"));
   const darwinSource = nix.thunk(() => nix.app(triliumSource, "macos"));
   const x86_64_linux = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     hash: "sha256-7tNdk1m5aryKuuLUxpCcoLSPlNgZnN/kzkhbdvm4G/Q=",
   }));
   const aarch64_linux = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     hash: "sha256-ie8xGTCxfe+zLgHMZXqrOEYshIi1XHA5ZtzVMXdxVLU=",
   }));
   const aarch64_darwin = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     hash: "sha256-R1namqGh9scFL9tUfXKsSsU5RjF90J6oiVg5FLRD8kI=",
   }));
   const sources = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     "x86_64-linux": nix.thunk(() => nix.app(linuxSource, "x64", nix.thunk(() => nix.sel(x86_64_linux, "hash")))),
     "aarch64-linux": nix.thunk(() => nix.app(linuxSource, "arm64", nix.thunk(() => nix.sel(aarch64_linux, "hash")))),
     "aarch64-darwin": nix.thunk(() => nix.app(darwinSource, "arm64", nix.thunk(() => nix.sel(aarch64_darwin, "hash")))),
   }));
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.sel(sources, nix.key(nix.sel(stdenv, "hostPlatform", "system"))))));
   const meta = nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     description: "Hierarchical note taking application with focus on building large personal knowledge bases",
     homepage: "https://triliumnotes.org/",
     license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
     platforms: nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), sources)),
   }));
   const linux = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: pname,
       version: version,
       meta: meta,
@@ -94,7 +94,7 @@ export default nix.lambda((args) => (() => {
       ]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             name: "Trilium",
             exec: "trilium",
             icon: "trilium",
@@ -131,10 +131,10 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), electron_44)} $out/bin/trilium \\
 runHook postInstall
 `),
       dontWrapGApps: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$8, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$8, updateScript: nix.path(here, "./update.sh") })),
     }))));
   const darwin = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: pname,
       version: version,
       meta: meta,

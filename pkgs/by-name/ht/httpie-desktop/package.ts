@@ -19,16 +19,16 @@ export default nix.lambda((args) => (() => {
       const pname = "httpie-desktop";
       const version = "2025.2.0";
       const src = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/httpie/desktop/releases/download/v${version}/HTTPie-${version}-arm64.AppImage`),
           hash: "sha256-FBzjlYwgCULgjaJUPALlqqRj7fZMps7hybt5m5EkeAo=",
         }))) : nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/httpie/desktop/releases/download/v${version}/HTTPie-${version}.AppImage`),
           hash: "sha256-qFDiFXQbYAhweQhgYfZW/lUMtmw09tqT9t/GPJRtZU8=",
         })))));
       const extraInstallCommands = nix.thunk(() => (() => {
-        const contents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$3, pname: pname, version: version, src: src }))));
+        const contents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$3, pname: pname, version: version, src: src }))));
         return nix.str`install -Dm644 ${contents}/httpie.desktop $out/share/applications/httpie.desktop
 substituteInPlace $out/share/applications/httpie.desktop \\
   --replace-fail 'Exec=AppRun' 'Exec=httpie-desktop'
@@ -36,7 +36,7 @@ cp -r ${contents}/usr/share/* $out/share
 `;
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Cross-platform API testing client for humans. Painlessly test REST, GraphQL, and HTTP APIs",
         homepage: "https://github.com/httpie/desktop",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -47,7 +47,7 @@ cp -r ${contents}/usr/share/* $out/share
         mainProgram: "httpie-desktop",
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux"]),
       }));
-      return { __proto__: pos$5, pname, version, src, extraInstallCommands, meta };
+      return { [nix.POS]: pos$5, pname, version, src, extraInstallCommands, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

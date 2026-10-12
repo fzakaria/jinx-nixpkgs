@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
   const libdwarf = nix.arg($, "libdwarf");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "dwarfs",
       version: "0.15.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mhx",
           repo: "dwarfs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -91,10 +91,10 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       nativeCheckInputs: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(gtest, "override"), nix.thunk(() => ({ __proto__: pos$2, cxx_standard: "20" })))),
+        nix.thunk(() => nix.app(nix.sel(gtest, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, cxx_standard: "20" })))),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         GTEST_FILTER: nix.thunk(() => (() => {
           const disabledTests = nix.thunk(() => [
             "dwarfs/tools_test.end_to_end/*",
@@ -115,7 +115,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/dwarfs`),
       dontMoveSbin: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Fast high compression read-only file system",
         homepage: "https://github.com/mhx/dwarfs",
         changelog: nix.thunk(() => nix.str`https://github.com/mhx/dwarfs/blob/v${nix.sel(finalAttrs, "version")}/CHANGES.md`),

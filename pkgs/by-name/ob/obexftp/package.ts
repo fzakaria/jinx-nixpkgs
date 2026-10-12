@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const bluez = nix.arg($, "bluez");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "obexftp",
       version: "0.24.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/openobex/obexftp-${nix.sel(finalAttrs, "version")}-Source.tar.gz`),
           sha256: "18w9r78z78ri5qc8fjym4nk1jfbrkyr789sq7rxrkshf1a7b83yl",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "# cmake 4 compatibility, upstream is dead\nsubstituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required( VERSION 3.1 FATAL_ERROR )\" \"cmake_minimum_required( VERSION 3.10 FATAL_ERROR )\" \\\n  --replace-fail \"cmake_policy ( VERSION 3.1 )\" \"cmake_policy ( VERSION 3.10 )\"\n\n# https://sourceforge.net/p/openobex/bugs/66/\nsubstituteInPlace CMakeLists.txt \\\n  --replace-fail '\\$'{prefix}/'$'{CMAKE_INSTALL_LIBDIR} '$'{CMAKE_INSTALL_FULL_LIBDIR} \\\n  --replace-fail '\\$'{prefix}/'$'{CMAKE_INSTALL_INCLUDEDIR} '$'{CMAKE_INSTALL_FULL_INCLUDEDIR}\n",
       postFixup: "sed -i 's,^Requires: bluetooth,Requires:,' $out/lib/pkgconfig/obexftp.pc\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://dev.zuckschwerdt.org/openobex/wiki/ObexFtp",
         description: "Library and tool to access files on OBEX-based devices (such as Bluetooth phones)",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

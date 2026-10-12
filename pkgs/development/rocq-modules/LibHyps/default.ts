@@ -16,15 +16,15 @@ export default nix.lambda((args) => (() => {
   const stdlib = nix.arg($, "stdlib");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "LibHyps",
       owner: "Matafou",
       version: version,
       defaultVersion: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versions", "range"), "8.11", "9.0", nix.thunk(() => nix.sel(coq, "version")))) ? "2.0.8" : null)),
       release: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "2.0.8": nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           hash: "sha256-u8T7ZWfgYNFBsIPss0uUS0oBvdlwPp3t5yYIMjYzfLc=",
         })),
       })),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [stdlib]),
       releaseRev: (v) => nix.str`libhyps-${v}`,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Hypotheses manipulation library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),

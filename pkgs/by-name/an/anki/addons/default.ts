@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "adjust-sound-volume": nix.thunk(() => nix.app(callPackage, nix.path(here, "./adjust-sound-volume"), nix.thunk(() => ({})))),
     "advanced-browser": nix.thunk(() => nix.app(callPackage, nix.path(here, "./advanced-browser"), nix.thunk(() => ({})))),
     "ajt-card-management": nix.thunk(() => nix.app(callPackage, nix.path(here, "./ajt-card-management"), nix.thunk(() => ({})))),

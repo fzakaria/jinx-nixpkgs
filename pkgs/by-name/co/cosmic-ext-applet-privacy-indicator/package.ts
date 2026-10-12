@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const pipewire = nix.arg($, "pipewire");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cosmic-ext-applet-privacy-indicator",
       version: "0.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "D-Brox",
           repo: "cosmic-ext-applet-privacy-indicator",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-Tbcjnbjyo+FoYtRe5KnPiEzV+1PkzHOnbVDRe/pJul0=",
       cargoPatches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "deduplicate-sctk.patch",
             url: "https://patch-diff.githubusercontent.com/raw/D-Brox/cosmic-ext-applet-privacy-indicator/pull/7.diff?full_index=1",
             hash: "sha256-BN32JHouyIqJzBR6Mlp2pw/JhU5c6hdtG+P2SEl/0pA=",
@@ -57,11 +57,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`target/${nix.sel(stdenv, "hostPlatform", "rust", "cargoShortTarget")}/release/cosmic-ext-applet-privacy-indicator`),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/D-Brox/cosmic-ext-applet-privacy-indicator/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Privacy indicator applet for the COSMIC Desktop Environment",
         homepage: "https://github.com/D-Brox/cosmic-ext-applet-privacy-indicator",

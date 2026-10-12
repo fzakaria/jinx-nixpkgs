@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nschloe",
           repo: "pyfma",
           rev: version,
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/nschloe/pyfma/commit/e12d69d97a97657ab4fec3e8f2b2859f4360bc03.patch",
             hash: "sha256-BsQe4hpo+Cripa0FRGFnRBs1oQ1GZA1+ZYzycy5M4Ek=",
           })))),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["pyfma"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fused multiply-add for Python",
         homepage: "https://github.com/nschloe/pyfma",
         changelog: nix.thunk(() => nix.str`https://github.com/nschloe/pyfma/releases/tag/${version}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const gpm = nix.arg($, "gpm");
   const miniupnpc = nix.arg($, "miniupnpc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "qodem",
       version: "1.0.1-unstable-2022-02-12",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AutumnMeowMeow",
           repo: "qodem",
           rev: "69cc7458ef23243f790348a4cc503a8173008e55",
@@ -34,17 +34,17 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitlab.com/-/project/6684464/uploads/c2ceaef82d483c13ff9ec64424f3c40a/0001-Fix-ICH-with-count-1.patch",
             hash: "sha256-lCqj4p8onUS4pehQMXS6lbC7JH5dP6sOjDALpasgd2M=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://gitlab.com/-/project/6684464/uploads/462c0b1cf05c3fc2857ce982e62fefcc/0001-Don-t-clear-line-rendition-on-partial-ED.patch",
             hash: "sha256-lSuxP0tUfGa3BjK3ehpdMi16XaGZrdVvAcM2vnjAme8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://gitlab.com/-/project/6684464/uploads/812bdfdfaee44eed346fcff85f53efbe/0002-DECCOLM-should-clear-line-rendition-attributes.patch",
             hash: "sha256-XO+h5fpBTLLYC3t4FRCy1uFiMkmSXbre4T2NB/FC3uQ=",
           })))),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://qodem.sourceforge.net/",
         description: "Re-implementation of the DOS-era Qmodem serial communications package",
         longDescription: "Qodem is a from-scratch clone implementation of the Qmodem\ncommunications program made popular in the days when Bulletin Board\nSystems ruled the night. Qodem emulates the dialing directory and the\nterminal screen features of Qmodem over both modem and Internet\nconnections.\n",

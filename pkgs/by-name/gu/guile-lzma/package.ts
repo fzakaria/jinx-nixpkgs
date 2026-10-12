@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const guile = nix.arg($, "guile");
   const scheme_bytestructures = nix.arg($, "scheme-bytestructures");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "guile-lzma",
       version: "0.1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://files.ngyro.com/guile-lzma/guile-lzma-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-K4ZoltZy7U05AI9LUzZ1DXiXVgoGZ4Nl9cWnK9L8zl4=",
         })))),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       dontStrip: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://ngyro.com/software/guile-lzma.html",
         description: "Guile wrapper for lzma library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

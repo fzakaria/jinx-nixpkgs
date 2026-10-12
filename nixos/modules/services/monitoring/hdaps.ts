@@ -21,25 +21,25 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "hdapsd"));
   const hdapsd = nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "hdapsd"))]);
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       services: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         hdapsd: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Hard Drive Active Protection System Daemon,\ndevices are detected and managed automatically by udev and systemd\n")),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$8,
-        boot: nix.thunk(() => ({ __proto__: pos$4, kernelModules: nix.thunk(() => ["hdapsd"]) })),
+        [nix.POS]: pos$8,
+        boot: nix.thunk(() => ({ [nix.POS]: pos$4, kernelModules: nix.thunk(() => ["hdapsd"]) })),
         services: nix.thunk(() => ({
-          __proto__: pos$6,
-          udev: nix.thunk(() => ({ __proto__: pos$5, packages: hdapsd })),
+          [nix.POS]: pos$6,
+          udev: nix.thunk(() => ({ [nix.POS]: pos$5, packages: hdapsd })),
         })),
-        systemd: nix.thunk(() => ({ __proto__: pos$7, packages: hdapsd })),
+        systemd: nix.thunk(() => ({ [nix.POS]: pos$7, packages: hdapsd })),
       })))),
   };
 })(), formals$1);

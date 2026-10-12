@@ -16,17 +16,17 @@ export default nix.lambda((args) => (() => {
   const rdkafka = nix.arg($, "rdkafka");
   const zlib = nix.arg($, "zlib");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kafka",
       version: "0.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/didier-wenzek/ocaml-kafka/releases/download/${nix.sel(finalAttrs, "version")}/kafka-${nix.sel(finalAttrs, "version")}.tbz`),
           sha256: "0m9212yap0a00hd0f61i4y4fna3141p77qj3mm7jl1h4q60jdhvy",
         })))),
       propagatedBuildInputs: nix.thunk(() => [rdkafka, zlib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/didier-wenzek/ocaml-kafka",
         description: "OCaml bindings for Kafka",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

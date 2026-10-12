@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const pidgin = nix.arg($, "pidgin");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "purple-plugin-pack",
       version: "2.8.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "mirror://sourceforge/pidgin/purple-plugin-pack-2.8.0.tar.xz",
           hash: "sha256-gszemnJRp1t+A6P5qSkBTY4AjBtvRuWGOPX0dto+JC0=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja]),
       buildInputs: nix.thunk(() => [pidgin]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://keep.imfreedom.org/pidgin/purple-plugin-pack",
         description: "Collection of plugins for purple-based clients such as Pidgin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

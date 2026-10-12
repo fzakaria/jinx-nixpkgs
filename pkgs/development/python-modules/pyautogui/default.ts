@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const xvfb_run = nix.arg($, "xvfb-run");
   const scrot = nix.arg($, "scrot");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pyautogui",
       version: "0.9.53",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "asweigart",
           repo: "pyautogui",
           rev: "5e4acb870f2e7ce0ea1927cc5188bc2f5ab7bbbc",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [xvfb_run, scrot]),
       checkPhase: "xvfb-run python -c 'import pyautogui'\n# The tests depend on some specific things that xvfb cant provide, like keyboard and mouse\n# xvfb-run python -m unittest tests.test_pyautogui\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PyAutoGUI lets Python control the mouse and keyboard, and other GUI automation tasks",
         homepage: "https://github.com/asweigart/pyautogui",
         changelog: nix.thunk(() => nix.str`https://github.com/asweigart/pyautogui/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGES.txt`),

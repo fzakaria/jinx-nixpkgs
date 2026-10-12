@@ -18,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const bison = nix.arg($, "bison");
   const valgrind = nix.arg($, "valgrind");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "lockdep",
       version: "5.0.21",
       fullver: "5.0.21",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://kernel/linux/kernel/v5.x/linux-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "1my2m9hvnvdrvzcg0fgqgaga59y2cd5zlpv7xrfj2nn98sjhglwq",
         })))),
       postPatch: "substituteInPlace tools/lib/lockdep/Makefile \\\n  --replace 'CONFIG_INCLUDES =' $'CONFIG_INCLUDES = -I../../../usr/include\\n#'\n",
       nativeBuildInputs: nix.thunk(() => [flex, bison]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fcommon" })),
       buildPhase: "make defconfig\nmake headers_install\ncd tools/lib/lockdep\nmake\n",
       doCheck: true,
       nativeCheckInputs: nix.thunk(() => [valgrind]),
@@ -43,7 +43,7 @@ done
 `),
       installPhase: "mkdir -p $out/bin $out/lib $out/include\n\ncp -R include/liblockdep $out/include\nmake install DESTDIR=$out prefix=\"\"\n\nsubstituteInPlace $out/bin/lockdep --replace \"./liblockdep.so\" \"$out/lib/liblockdep.so.$fullver\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Userspace locking validation tool built on the Linux kernel",
         mainProgram: "lockdep",
         homepage: "https://kernel.org/",

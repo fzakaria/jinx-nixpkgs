@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.8.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ushiboy",
           repo: "nmcli",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools, wheel]);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./nmcli-path.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             nmcli: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), networkmanager, "nmcli")),
           })))),
       ]);
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(networkmanager, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python library for interacting with NetworkManager CLI",
         homepage: "https://github.com/ushiboy/nmcli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -26,43 +26,43 @@ export default nix.lambda((args) => (() => {
   const miscfiles = nix.arg($, "miscfiles");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "bsd-games",
       version: "2.17",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://ibiblioPubLinux/games/bsd-games-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Bm+SSu9sHF6pRvWI428wMCH138CTlEc48CXY7bxv/2A=",
         })))),
       buildInputs: nix.thunk(() => [ncurses, openssl, flex, bison]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "http://svn.exactcode.de/t2/trunk/package/games/bsd-games/delay_output-sym.patch",
             hash: "sha256-qbtp2cJVmEuxbTgpXM2gRHSNLE25OCmNxK+aeBBPRBw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "http://svn.exactcode.de/t2/trunk/package/games/bsd-games/dm-noutmpx.patch",
             hash: "sha256-oioJ5M7DAUVzX8k998p2h/APn8azw9Z8txmBuly2ouw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "http://svn.exactcode.de/t2/trunk/package/games/bsd-games/hotfix-gcc43.patch",
             hash: "sha256-9pkJmEOmM5vd/5nm3AlsbJNX0oX1kCtFrmciGpStvlA=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "http://svn.exactcode.de/t2/trunk/package/games/bsd-games/hotfix-glibc.patch",
             hash: "sha256-yNL88XORTXl2qSYTlYCYDN2G++TzBxywBpYdK+ufwrA=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             url: "http://svn.exactcode.de/t2/trunk/package/games/bsd-games/hotfix.patch",
             hash: "sha256-UFXvtfVzJLRWvzbv0gaoVdt0vZOUj4UWWqoCZL/BDqE=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             url: "http://svn.exactcode.de/t2/trunk/package/games/bsd-games/postfix-bsd.patch",
             hash: "sha256-Noqq+FpSJb3heejGGHyLYYkHB3fC4qCv/p1XMfEGdx8=",
           })))),
@@ -94,7 +94,7 @@ sed -e '/sigpause/d' -i hunt/hunt/otto.c
       postConfigure: "sed -i -e 's,/usr,'$out, \\\n   -e \"s,-o root -g root, ,\" \\\n   -e \"s,-o root -g games, ,\" \\\n   -e \"s,.*chown.*,true,\" \\\n   -e 's/install -c -m 2755/install -Dm755/' \\\n   -e 's/INSTALL_VARDATA.*/INSTALL_VARDATA := true/' \\\n   -e 's/INSTALL_HACKDIR.*/INSTALL_HACKDIR := true/' \\\n   -e 's/INSTALL_DM.*/INSTALL_DM := true/' \\\n   -e 's/INSTALL_SCORE_FILE.*/INSTALL_SCORE_FILE := true/' \\\n   Makeconfig install-man\n",
       preInstall: "mkdir -p $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         homepage: "http://www.t2-project.org/packages/bsd-games.html",
         description: "Ports of all the games from NetBSD-current that are free",
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),

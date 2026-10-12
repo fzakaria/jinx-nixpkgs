@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "bim";
       const version = "1.1.8";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "carlodefalco",
           repo: "bim",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const requiredOctavePackages = nix.thunk(() => [fpl, msh]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gnu-octave.github.io/packages/bim/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         maintainers: nix.thunk(() => (() => {
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })()),
         description: "Package for solving Diffusion Advection Reaction (DAR) Partial Differential Equations",
       }));
-      return { __proto__: pos$3, pname, version, src, requiredOctavePackages, meta };
+      return { [nix.POS]: pos$3, pname, version, src, requiredOctavePackages, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "josch",
           repo: "img2pdf",
           tag: version,
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./default-icc-profile.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             srgbProfile: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "/System/Library/ColorSync/Profiles/sRGB Profile.icc" : nix.app(runCommand, "sRGC.icc", nix.thunk(() => ({})), nix.thunk(() => nix.str`cp ${colord}/share/color/icc/colord/sRGB.icc $out
 `)))),
           })))),
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["img2pdf"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://gitlab.mister-muffin.de/josch/img2pdf/src/tag/${nix.sel(src, "tag")}/CHANGES.rst`),
         description: "Convert images to PDF via direct JPEG inclusion",
         homepage: "https://gitlab.mister-muffin.de/josch/img2pdf",
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

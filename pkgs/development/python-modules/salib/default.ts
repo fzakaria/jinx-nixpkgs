@@ -22,19 +22,19 @@ export default nix.lambda((args) => (() => {
   const multiprocess = nix.arg($, "multiprocess");
   const pathos = nix.arg($, "pathos");
   const finalAttrs = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     pname: "salib",
     version: "1.6.0",
     pyproject: true,
     src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
         version: nix.thunk(() => nix.attr(finalAttrs, "version")),
         hash: "sha256-Ei0lgWE3pQtelyogbecRiWHiAqb7CSLZ7IdP1J/bv18=",
       })))),
     "build-system": nix.thunk(() => [hatchling, hatch_vcs]),
     dependencies: nix.thunk(() => [numpy, scipy, matplotlib, pandas, multiprocess]),
-    "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, distributed: nix.thunk(() => [pathos]) })),
+    "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, distributed: nix.thunk(() => [pathos]) })),
     doCheck: false,
     pythonImportsCheck: nix.thunk(() => [
       "SALib",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       "SALib.util",
     ]),
     meta: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       changelog: "https://github.com/SALib/SALib/releases",
       description: "Python implementations of commonly used sensitivity analysis methods, useful in systems modeling to calculate the effects of model inputs or exogenous factors on outputs of interest",
       homepage: "https://github.com/SALib/SALib",

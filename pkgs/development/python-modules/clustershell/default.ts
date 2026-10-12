@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.9.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "ClusterShell",
           version: version,
           hash: "sha256-4oTA5rP+CgzWvmffcd+/aqMhGIlz22g6BX9WN1UvvIw=",
@@ -59,7 +59,7 @@ done
       const preCheck = "rm tests/CLIClushTest.py\nrm tests/TreeWorkerTest.py\nrm tests/TaskDistantMixin.py\nrm tests/TaskDistantTest.py\nrm tests/TaskDistantPdshMixin.py\nrm tests/TaskDistantPdshTest.py\nrm tests/TaskRLimitsTest.py\nrm tests/TreeGatewayTest.py\n";
       const postInstall = "installShellCompletion --bash bash_completion.d/*\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Scalable Python framework for cluster administration",
         homepage: "https://cea-hpc.github.io/clustershell",
@@ -67,7 +67,7 @@ done
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "alexvorobiev"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

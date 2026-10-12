@@ -19,23 +19,23 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     name: "pretix",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.sel(pkgs, "pretix", "meta", "maintainers")),
     })),
     containers: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pretix: nix.thunk(() => ({
-        __proto__: pos$9,
-        networking: nix.thunk(() => ({ __proto__: pos$2, extraHosts: "127.0.0.1 tickets.local\n" })),
+        [nix.POS]: pos$9,
+        networking: nix.thunk(() => ({ [nix.POS]: pos$2, extraHosts: "127.0.0.1 tickets.local\n" })),
         services: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           pretix: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             enable: true,
-            nginx: nix.thunk(() => ({ __proto__: pos$3, domain: "tickets.local" })),
+            nginx: nix.thunk(() => ({ [nix.POS]: pos$3, domain: "tickets.local" })),
             plugins: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "pretix", "plugins")), null);
               return [
@@ -45,9 +45,9 @@ export default nix.lambda((args) => (() => {
               ];
             })()),
             settings: nix.thunk(() => ({
-              __proto__: pos$6,
-              pretix: nix.thunk(() => ({ __proto__: pos$4, instance_name: "NixOS Test", url: "http://tickets.local" })),
-              mail: nix.thunk(() => ({ __proto__: pos$5, from: "hello@tickets.local" })),
+              [nix.POS]: pos$6,
+              pretix: nix.thunk(() => ({ [nix.POS]: pos$4, instance_name: "NixOS Test", url: "http://tickets.local" })),
+              mail: nix.thunk(() => ({ [nix.POS]: pos$5, from: "hello@tickets.local" })),
             })),
           })),
         })),

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const logs = nix.arg($, "logs");
   const lwt = nix.arg($, "lwt");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.3",
       pname: "resource-pooling",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ocsigen",
           repo: "resource-pooling",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [logs, lwt]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/ocsigen/resource-pooling/",
         description: "Library for pooling resources like connections, threads, or similar",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

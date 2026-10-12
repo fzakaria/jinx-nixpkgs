@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w, "tqdm"))];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "phockup",
       version: "1.13.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ivandokov",
           repo: "phockup",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +41,7 @@ makeWrapper ${nix.sel(pythonEnv, "interpreter")} $out/bin/phockup --add-flags "$
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Media sorting tool to organize photos and videos from your camera in folders by year, month and day",
         homepage: "https://github.com/ivandokov/phockup",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -26,26 +26,26 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "xserver", "windowManager", "wmderland"));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         xserver: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           windowManager: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             wmderland: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "wmderland")),
               extraSessionCommands: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   default: "",
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
                   description: "Shell commands executed just before wmderland is started.\n",
                 })))),
               extraPackages: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   type: nix.thunk(() => (() => {
                     const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                     return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "package")));
@@ -70,15 +70,15 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         services: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           xserver: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             windowManager: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               session: nix.thunk(() => nix.app(nix.lookup(w, "singleton"), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   name: "wmderland",
                   start: nix.thunk(() => nix.str`${nix.sel(cfg, "extraSessionCommands")}
 
@@ -90,7 +90,7 @@ waitPID=$!
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           systemPackages: nix.thunk(() => nix.concat([
             nix.thunk(() => nix.sel(pkgs, "wmderland")),
             nix.thunk(() => nix.sel(pkgs, "wmderlandc")),

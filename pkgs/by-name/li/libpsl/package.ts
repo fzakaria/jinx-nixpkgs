@@ -26,17 +26,17 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const publicsuffix_list = nix.arg($, "publicsuffix-list");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libpsl",
       version: "0.21.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/rockdaboot/libpsl/releases/download/${nix.sel(finalAttrs, "version")}/libpsl-${nix.sel(finalAttrs, "version")}.tar.lz`),
           hash: "sha256-mp9qjG7bplDPnqVUdc0XLdKEhzFoBOnHMgLZdXLNOi0=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "static.patch",
             url: "https://github.com/rockdaboot/libpsl/commit/490bd6f98a2addcade55028ea60c36cce07e21e4.patch",
             hash: "sha256-7Uu9gaVuA9Aly2mmnhUVgv2BYQTSBODJ2rDl5xp0uVY=",
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "C library for the Publix Suffix List",
         longDescription: "libpsl is a C library for the Publix Suffix List (PSL). A \"public suffix\"\nis a domain name under which Internet users can directly register own\nnames. Browsers and other web clients can use it to avoid privacy-leaking\n\"supercookies\" and \"super domain\" certificates, for highlighting parts of\nthe domain in a user interface or sorting domain lists by site.\n",
         homepage: "https://rockdaboot.github.io/libpsl/",

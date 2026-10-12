@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const bash = nix.arg($, "bash");
   const lenovo_legion = nix.arg($, "lenovo-legion");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "lenovo-legion-module",
       version: nix.thunk(() => nix.attr(lenovo_legion, "version")),
       src: nix.thunk(() => nix.attr(lenovo_legion, "src")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       ])),
       nativeBuildInputs: nix.thunk(() => nix.sel(kernel, "moduleBuildDependencies")),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Linux kernel module for controlling fan and power in Lenovo Legion laptops",
         homepage: "https://github.com/johnfanv2/LenovoLegionLinux",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

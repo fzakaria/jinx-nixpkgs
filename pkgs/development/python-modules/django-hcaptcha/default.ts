@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const django = nix.arg($, "django");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "django-hcaptcha",
       version: "0.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "django-hCaptcha",
           hash: "sha256-slGerwzJeGWscvglMBEixc9h4eSFLWiVmUFgIirLbBo=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["hcaptcha"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Django hCaptcha provides a simple way to protect your django forms using hCaptcha",
         homepage: "https://github.com/AndrejZbin/django-hcaptcha",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "markdown-link-check";
       const version = "3.15.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tcort",
           repo: "markdown-link-check",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-cThGNjM9Jpy281CCpfFOubImrYnMiFp/kljp1mmA1p8=";
       const dontNpmBuild = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Checks all of the hyperlinks in a markdown text to determine if they are alive or dead",
         mainProgram: "markdown-link-check",
         homepage: "https://github.com/tcort/markdown-link-check",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pam_xdg";
       const version = "0.8.5";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://ftp.sdaoden.eu/pam_xdg-${version}.tar.gz`),
           sha256: "sha256-o4Fol6LouBQVLiGMAszEB+zBkBj8C1xMp057AvH3nl4=",
         }))));
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
 `);
       const makeFlags = nix.thunk(() => ["PREFIX=$(out)"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.sdaoden.eu/code-pam_xdg.html",
         description: "PAM module that manages XDG Base Directories",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

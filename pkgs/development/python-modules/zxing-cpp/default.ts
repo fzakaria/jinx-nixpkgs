@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const libzint = nix.arg($, "libzint");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zxing-cpp",
       src: nix.thunk(() => nix.attr(libzxing_cpp, "src")),
       version: nix.thunk(() => nix.attr(libzxing_cpp, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(libzxing_cpp, "src", "name")}/wrappers/python`),
       dontUseCmakeConfigure: true,
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         nanobind_DIR: nix.thunk(() => nix.str`${nanobind}/${nix.sel(python, "sitePackages")}/nanobind/cmake`),
       })),
       cmakeFlags: nix.thunk(() => [
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libzxing_cpp, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         changelog: nix.thunk(() => nix.attr(from, "changelog")),
         description: nix.thunk(() => nix.attr(from, "description")),

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tracefilegen";
       const version = "0-unstable-2017-05-13";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GarCoSim",
           repo: "TraceFileGen",
           rev: "0ebfd1fdb54079d4bdeaa81fc9267ecb9f016d60",
@@ -31,7 +31,7 @@ cp -ar $src/Documentation/html $out/share/doc/${pname}-${version}/.
 `);
       const postPatch = "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 3.2)\" \"cmake_minimum_required(VERSION 3.10)\"\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Automatically generate all types of basic memory management operations and write into trace files",
         mainProgram: "TraceFileGen",
         homepage: "https://github.com/GarCoSim",
@@ -40,7 +40,7 @@ cp -ar $src/Documentation/html $out/share/doc/${pname}-${version}/.
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

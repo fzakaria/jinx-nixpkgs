@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mborgerson",
           repo: "pyside6_qtads",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -58,7 +58,7 @@ substituteInPlace pyproject.toml \\
       const dontCheckRuntimeDeps = true;
       const pythonImportsCheck = nix.thunk(() => ["PySide6QtAds"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python bindings to Qt Advanced Docking System for PySide6",
         homepage: "https://github.com/mborgerson/pyside6_qtads",
         changelog: "https://github.com/mborgerson/pyside6_qtads/releases/tag/",
@@ -69,7 +69,7 @@ substituteInPlace pyproject.toml \\
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

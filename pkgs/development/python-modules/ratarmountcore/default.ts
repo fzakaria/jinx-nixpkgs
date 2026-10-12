@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.10.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mxmlnkn",
           repo: "ratarmount",
           tag: nix.thunk(() => nix.str`core-v${version}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace tests/test_AutoMountLayer.py \\\n  --replace-fail 'f\"tests/{name}.tgz.tgz.gz\"' 'os.path.join(os.path.dirname(__file__), f\"../../tests/{name}.tgz.tgz.gz\")' \\\n  --replace-fail 'copy_test_file(\"tests/double-compressed-nested-tar.tgz.tgz\")' 'copy_test_file(os.path.join(os.path.dirname(__file__), \"../../tests/double-compressed-nested-tar.tgz.tgz\"))'\n";
       const build_system = nix.thunk(() => [setuptools]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         full: nix.thunk(() => [indexed_gzip, indexed_zstd, python_xz, rapidgzip, rarfile]),
         _7z: nix.thunk(() => [libarchive_c]),
         bzip2: nix.thunk(() => [rapidgzip]),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         "test_URL",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library for accessing archives by way of indexing",
         homepage: "https://github.com/mxmlnkn/ratarmount/tree/master/core",
         changelog: nix.thunk(() => nix.str`https://github.com/mxmlnkn/ratarmount/blob/${nix.sel(src, "rev")}/core/CHANGELOG.md`),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

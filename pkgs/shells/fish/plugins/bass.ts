@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   return nix.app(buildFishPlugin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bass",
       version: "1.0-unstable-2023-12-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "edc",
           repo: "bass",
           rev: "79b62958ecf4e87334f24d6743e5766475bcf4d0",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [python3]),
       checkPhase: "make test\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fish function making it easy to use utilities written for Bash in Fish shell",
         homepage: "https://github.com/edc/bass",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

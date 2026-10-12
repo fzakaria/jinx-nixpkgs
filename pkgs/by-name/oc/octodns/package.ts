@@ -20,21 +20,21 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const octodns = nix.arg($, "octodns");
   const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       self: python,
       packageOverrides: (final) => (prev) => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         octodns: nix.thunk(() => nix.app(nix.sel(final, "toPythonModule"), octodns)),
       }),
     }))));
   const python3Packages = nix.thunk(() => nix.sel(python, "pkgs"));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "octodns",
       version: "1.22.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "octodns",
           repo: "octodns",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,9 +66,9 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         providers: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "packagesFromDirectoryRecursive"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               callPackage: nix.thunk(() => nix.attr(python3Packages, "callPackage")),
               directory: nix.path(here, "./providers"),
             })))))),
@@ -80,7 +80,7 @@ ln -st $out/bin ${pyEnv}/bin/octodns-*
         })(),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Tools for managing DNS across multiple providers",
         homepage: "https://github.com/octodns/octodns",
         changelog: nix.thunk(() => nix.str`https://github.com/octodns/octodns/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const version = "4.0.3";
   const hash = "sha256-lbkuywAuLeTIoe/5zbKmxCbnNcEx96BiX6ftNJHutZE=";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "solana-cli",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "anza-xyz",
           repo: "agave",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-lQl8q0xMpXOmUirqL3Eyb4JcmYGSZK6pPMxQHOav9Zk=",
       cargoBuildFlags: nix.thunk(() => nix.builtins.map((n) => nix.str`--bin=${n}`, solanaPkgs)),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         RUSTFLAGS: "-Amismatched_lifetime_syntaxes -Adead_code -Aunused_parens -Aunused_imports",
         LIBCLANG_PATH: nix.thunk(() => nix.str`${nix.sel(libclang, "lib")}/lib`),
         ROCKSDB_LIB_DIR: nix.thunk(() => nix.str`${rocksdb}/lib`),
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/solana`),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd solana \\\n  --bash <($out/bin/solana completion --shell bash) \\\n  --fish <($out/bin/solana completion --shell fish)\n\nmkdir -p $out/bin/platform-tools-sdk\ncp -r ./platform-tools-sdk/sbf $out/bin/platform-tools-sdk\n\nmkdir -p $out/bin/deps\nfind . -name libsolana_program.dylib -exec cp {} $out/bin/deps \\;\nfind . -name libsolana_program.rlib -exec cp {} $out/bin/deps \\;\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Web-Scale Blockchain for fast, secure, scalable, decentralized apps and marketplaces",
         homepage: "https://solana.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
     }));

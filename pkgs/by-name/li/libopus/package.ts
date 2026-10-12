@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const ffmpeg_headless = nix.arg($, "ffmpeg-headless");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "libopus",
       version: "1.6.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://downloads.xiph.org/releases/opus/opus-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-b/y1kyB76SWE3xWzJGbtZLvsmRCfAHyCIF8BlFckEaE=",
         })))),
@@ -49,24 +49,24 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isi686"))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch32"))))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitlab.xiph.org/xiph/opus.git",
             "rev-prefix": "v",
           })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "ffmpeg-headless": ffmpeg_headless,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               moduleNames: nix.thunk(() => ["opus"]),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Open, royalty-free, highly versatile audio codec",
         homepage: "https://opus-codec.org/",
         changelog: nix.thunk(() => nix.str`https://gitlab.xiph.org/xiph/opus/-/releases/v${nix.sel(finalAttrs, "version")}`),

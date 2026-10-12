@@ -48,11 +48,11 @@ ${patchelf}/bin/patchelf \\
   veloren-server-cli
 `)));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "airshipper",
       version: "0.17.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Veloren",
           repo: "airshipper",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -72,10 +72,10 @@ ${patchelf}/bin/patchelf \\
         libGL,
       ]),
       nativeBuildInputs: nix.thunk(() => [pkg_config, makeWrapper]),
-      env: nix.thunk(() => ({ __proto__: pos$2, RUSTC_BOOTSTRAP: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTC_BOOTSTRAP: 1n })),
       postInstall: "install -Dm444 -t \"$out/share/applications\" \"client/assets/net.veloren.airshipper.desktop\"\ninstall -Dm444    \"client/assets/net.veloren.airshipper.png\"  \"$out/share/icons/net.veloren.airshipper.png\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         patchVoxygen: patchVoxygen,
         patchServer: patchServer,
         runtimeLibs: nix.thunk(() => [
@@ -107,7 +107,7 @@ wrapProgram "$out/bin/airshipper" \\
       cargoBuildFlags: nix.thunk(() => ["--package", "airshipper"]),
       cargoTestFlags: nix.thunk(() => ["--package", "airshipper"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Provides automatic updates for the voxel RPG Veloren",
         mainProgram: "airshipper",
         homepage: "https://www.veloren.net",

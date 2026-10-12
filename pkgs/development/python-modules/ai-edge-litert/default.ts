@@ -34,19 +34,19 @@ export default nix.lambda((args) => (() => {
   const pythonMajorMinor = nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(python, "version"))));
   const source = nix.thunk(() => nix.selOr(platform, () => nix.builtins.throw(nix.thunk(() => nix.str`ai-edge-litert: unsupported python version (${pythonMajorMinor})`)), nix.key(nix.force(pythonMajorMinor))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ai-edge-litert",
       version: nix.thunk(() => nix.sel(release, "version")),
       format: "wheel",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.attr(source, "url")),
           hash: nix.thunk(() => nix.attr(source, "hash")),
         })))),
       nativeBuildInputs: nix.thunk(() => [autoPatchelfHook]),
       buildInputs: nix.thunk(() => [openvino_native]),
       dependencies: nix.thunk(() => [backports_strenum, flatbuffers, numpy, protobuf, tqdm, typing_extensions]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, "model-utils": nix.thunk(() => [lark, ml_dtypes]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, "model-utils": nix.thunk(() => [lark, ml_dtypes]) })),
       preFixup: nix.thunk(() => nix.str`while IFS= read -r -d "" so; do
   ${patchelf}/bin/patchelf --replace-needed libopenvino.so.2630 libopenvino.so "$so"
   ${patchelf}/bin/patchelf --replace-needed libopenvino_tensorflow_lite_frontend.so.2630 libopenvino_tensorflow_lite_frontend.so "$so"
@@ -55,9 +55,9 @@ done < <(find "$out" -type f \\( -name '*.so' -o -name '*.so.*' \\) -print0)
       autoPatchelfIgnoreMissingDeps: nix.thunk(() => ["libQnnHtp.so", "libQnnIr.so", "libQnnSaver.so", "libQnnSystem.so"]),
       pythonRemoveDeps: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.12")), nix.thunk(() => ["backports.strenum"]))),
       pythonImportsCheck: nix.thunk(() => ["ai_edge_litert", "ai_edge_litert.interpreter"]),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.path(here, "./update.py") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.py") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/google-ai-edge/LiteRT/releases/tag/v${nix.sel(release, "version")}`),
         description: "LiteRT is for mobile and embedded devices",
         downloadPage: "https://github.com/google-ai-edge/LiteRT",

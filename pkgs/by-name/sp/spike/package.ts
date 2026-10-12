@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const dtc = nix.arg($, "dtc");
   const pkgsCross = nix.arg($, "pkgsCross");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "spike",
       version: "1.1.0-unstable-2024-09-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "riscv-software-src",
           repo: "riscv-isa-sim",
           rev: "de5094a1a901d77ff44f89b38e00fefa15d4018e",
@@ -42,7 +42,7 @@ runHook postInstallCheck
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "RISC-V ISA Simulator",
         homepage: "https://github.com/riscv-software-src/riscv-isa-sim",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const pkgsBuildTarget = nix.arg($, "pkgsBuildTarget");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "sys/arch/amd64/stand",
       extraPaths: nix.thunk(() => ["sys"]),
       patches: nix.thunk(() => [

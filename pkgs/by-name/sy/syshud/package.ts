@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const wireplumber = nix.arg($, "wireplumber");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "syshud",
       version: "0-unstable-2026-09-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "System64fumo",
           repo: "syshud",
           rev: "ef3fb52ea37f57170a5e91b266ed9a449de9d2e9",
@@ -50,11 +50,11 @@ runHook postConfigure
       postInstall: "wrapProgram $out/bin/syshud --prefix LD_LIBRARY_PATH : $out/lib\n",
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version", "branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version", "branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Simple heads up display written in gtkmm 4",
         mainProgram: "syshud",
         homepage: "https://github.com/System64fumo/syshud",

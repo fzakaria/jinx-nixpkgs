@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const buildClient = nix.argOr($, "buildClient", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "teeworlds",
       version: "0.7.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "teeworlds",
           repo: "teeworlds",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,13 +46,13 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./rename-VERSION-to-VERSION.txt.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "CVE-2021-43518.patch",
             url: "https://salsa.debian.org/games-team/teeworlds/-/raw/a6c4b23c1ce73466e6d89bccbede70e61e8c9cba/debian/patches/CVE-2021-43518.patch",
             hash: "sha256-2MmsucaaYjqLgMww1492gNmHmvBJm/NED+VV5pZDnBY=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/teeworlds/teeworlds/commit/23f33517b4b0621253862b559f6ed0cd0146bae2.patch",
             hash: "sha256-RZvq/my7N68Kea26WuzLmyaTNOm5eZL5Gw9SGYpTeoQ=",
           })))),
@@ -82,14 +82,14 @@ rm -rf 'src/engine/external/zlib/'
       ]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), buildClient, nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "# Convert and install desktop icon\nmkdir -p $out/share/icons/hicolor/256x256/apps\nicotool --extract --index 1 --output $out/share/icons/hicolor/256x256/apps/teeworlds.png $src/other/icons/teeworlds.ico\n\n# Install menu item\ninstall -D $src/other/teeworlds.desktop $out/share/applications/teeworlds.desktop\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p \"$out/Applications/teeworlds.app/Contents/MacOS\"\nmkdir -p \"$out/Applications/teeworlds.app/Contents/Resources\"\n\ncp '../other/icons/teeworlds.icns' \"$out/Applications/teeworlds.app/Contents/Resources/\"\ncp '../other/bundle/client/Info.plist.in' \"$out/Applications/teeworlds.app/Contents/Info.plist\"\ncp '../other/bundle/client/PkgInfo' \"$out/Applications/teeworlds.app/Contents/\"\nln -s \"$out/bin/teeworlds\" \"$out/Applications/teeworlds.app/Contents/MacOS/\"\nln -s \"$out/share/teeworlds/data\" \"$out/Applications/teeworlds.app/Contents/Resources/data\"\n"))))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           teeworlds: nix.thunk(() => nix.sel(nixosTests, "teeworlds")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Retro multiplayer shooter game",
         mainProgram: "teeworlds_srv",
         longDescription: "Teeworlds is a free online multiplayer game, available for all\nmajor operating systems.  Battle with up to 12 players in a\nvariety of game modes, including Team Deathmatch and Capture The\nFlag.  You can even design your own maps!\n",

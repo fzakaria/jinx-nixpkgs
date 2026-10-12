@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const libsForQt5 = nix.arg($, "libsForQt5");
   const withGUI = nix.argOr($, "withGUI", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mpsolve",
       version: "3.2.2",
       outputs: nix.thunk(() => ["out", "dev", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "robol",
           repo: "MPSolve",
           rev: "de7ebfc7afc4834a0c9f92a04be7abdf5943d446",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "include-cmath-in-c++-before-defining-isnan-macro.patch",
             url: "https://github.com/robol/MPSolve/commit/260432c9d1002261f60159d0520af7862d4471ed.patch",
             hash: "sha256-ODWpp966S1SsSN8hf7yuYgJR44GgbLwSxui280WWGmM=",
@@ -57,11 +57,11 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [check]),
       checkTarget: "check",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://numpi.dm.unipi.it/scientific-computing-libraries/mpsolve/",
         description: "Multiprecision Polynomial Solver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

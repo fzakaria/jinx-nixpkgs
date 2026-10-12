@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.0";
       const pname = "agda-categories";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "agda",
           repo: "agda-categories",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(src, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "New Categories library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       };
       })());
-      return { __proto__: pos$3, version, pname, src, postPatch, buildInputs, meta };
+      return { [nix.POS]: pos$3, version, pname, src, postPatch, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -39,61 +39,61 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const foo = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "foo", "Hello World"));
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     name: "misc",
     nodes: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           swapDevices: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOverride"), 0n, nix.thunk(() => [
-              nix.thunk(() => ({ __proto__: pos$1, device: "/root/swapfile", size: 128n })),
+              nix.thunk(() => ({ [nix.POS]: pos$1, device: "/root/swapfile", size: 128n })),
             ]))),
           environment: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             variables: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               EDITOR: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOverride"), 0n, "emacs")),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             tmpfiles: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               rules: nix.thunk(() => ["d /tmp 1777 root root 10d"]),
               settings: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 "10-test": nix.thunk(() => ({
-                  __proto__: pos$5,
-                  "/tmp/somefile": nix.thunk(() => ({ __proto__: pos$4, d: nix.thunk(() => ({})) })),
+                  [nix.POS]: pos$5,
+                  "/tmp/somefile": nix.thunk(() => ({ [nix.POS]: pos$4, d: nix.thunk(() => ({})) })),
                 })),
               })),
             })),
             automounts: nix.thunk(() => nix.app(nix.sel(lib_1, "singleton"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 where: "/tmp2",
               })))),
           })),
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             fileSystems: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               "/tmp2": nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 fsType: "tmpfs",
                 options: nix.thunk(() => ["mode=1777", "noauto"]),
               })),
               "/user-mount/point": nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 device: "/user-mount/source",
                 fsType: "none",
                 options: nix.thunk(() => ["bind", "rw", "user", "noauto"]),
               })),
               "/user-mount/denied-point": nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 device: "/user-mount/denied-source",
                 fsType: "none",
                 options: nix.thunk(() => ["bind", "rw", "noauto"]),
@@ -101,27 +101,27 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             users: nix.thunk(() => ({
-              __proto__: pos$17,
-              sybil: nix.thunk(() => ({ __proto__: pos$15, isNormalUser: true, group: "wheel" })),
-              alice: nix.thunk(() => ({ __proto__: pos$16, isNormalUser: true })),
+              [nix.POS]: pos$17,
+              sybil: nix.thunk(() => ({ [nix.POS]: pos$15, isNormalUser: true, group: "wheel" })),
+              alice: nix.thunk(() => ({ [nix.POS]: pos$16, isNormalUser: true })),
             })),
           })),
           security: nix.thunk(() => ({
-            __proto__: pos$20,
-            sudo: nix.thunk(() => ({ __proto__: pos$19, enable: true, wheelNeedsPassword: false })),
+            [nix.POS]: pos$20,
+            sudo: nix.thunk(() => ({ [nix.POS]: pos$19, enable: true, wheelNeedsPassword: false })),
           })),
           boot: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             kernel: nix.thunk(() => ({
-              __proto__: pos$22,
-              sysctl: nix.thunk(() => ({ __proto__: pos$21, "vm.swappiness": 1n })),
+              [nix.POS]: pos$22,
+              sysctl: nix.thunk(() => ({ [nix.POS]: pos$21, "vm.swappiness": 1n })),
             })),
             kernelParams: nix.thunk(() => ["vsyscall=emulate"]),
           })),
-          system: nix.thunk(() => ({ __proto__: pos$24, extraDependencies: nix.thunk(() => [foo]) })),
-          nix: nix.thunk(() => ({ __proto__: pos$25, enable: true })),
+          system: nix.thunk(() => ({ [nix.POS]: pos$24, extraDependencies: nix.thunk(() => [foo]) })),
+          nix: nix.thunk(() => ({ [nix.POS]: pos$25, enable: true })),
         };
       })(), formals$2),
     })),

@@ -30,55 +30,55 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const cfg = nix.thunk(() => nix.sel(config, "services", "zfs", "autoReplication"));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         zfs: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           autoReplication: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "ZFS snapshot replication")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "zfs-replicate", nix.thunk(() => ({})))),
             followDelete: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 description: "Remove remote snapshots that don't have a local correspondent.",
                 default: true,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               })))),
             host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 description: "Remote host where snapshots should be sent. `lz4` is expected to be installed on this host.",
                 example: "example.com",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
               })))),
             identityFilePath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 description: "Path to SSH key used to login to host.",
                 example: "/home/username/.ssh/id_rsa",
                 type: nix.thunk(() => nix.sel(lib, "types", "path")),
               })))),
             localFilesystem: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 description: "Local ZFS filesystem from which snapshots should be sent.  Defaults to the attribute name.",
                 example: "pool/file/path",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
               })))),
             remoteFilesystem: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 description: "Remote ZFS filesystem where snapshots should be sent.",
                 example: "pool/file/path",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
               })))),
             recursive: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 description: "Recursively discover snapshots to send.",
                 default: true,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               })))),
             username: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 description: "Username used by SSH to login to remote host.",
                 example: "username",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
@@ -88,17 +88,17 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         environment: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "lz4"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             "zfs-replication": nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               after: nix.thunk(() => [
                 "zfs-snapshot-daily.service",
                 "zfs-snapshot-frequent.service",
@@ -110,7 +110,7 @@ export default nix.lambda((args) => (() => {
               documentation: nix.thunk(() => ["https://github.com/alunduil/zfs-replicate"]),
               restartIfChanged: false,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 ExecStart: nix.thunk(() => (() => {
                   const args_1 = nix.thunk(() => nix.app(nix.sel(lib, "map"), nix.thunk(() => nix.sel(lib, "escapeShellArg")), nix.thunk(() => nix.concat([
                       "--verbose",
@@ -137,7 +137,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "alunduil"))];

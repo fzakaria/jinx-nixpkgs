@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const vapoursynth = nix.arg($, "vapoursynth");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vapoursynth-znedi3",
       version: "unstable-2023-07-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           fetchSubmodules: true,
           owner: "sekrit-twc",
           repo: "znedi3",
@@ -36,7 +36,7 @@ ln -s ${vapoursynth}/include/vapoursynth vsxx/vapoursynth
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(vapoursynth, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
         description: "Filter for VapourSynth",
         homepage: "https://github.com/sekrit-twc/znedi3",

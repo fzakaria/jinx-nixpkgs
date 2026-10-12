@@ -17,25 +17,25 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const testScript = "start_all()\n\nmachine.wait_for_unit(\"multi-user.target\")\n\n# Check that gopro-tool is installed\nmachine.succeed(\"which gopro-tool\")\n\n# Check that the v4l2loopback module is available\nmachine.succeed(\"lsmod | grep v4l2loopback || echo 'Module not found'\")\n\n# Check that VLC is installed\nmachine.succeed(\"which vlc\")\n";
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     name: "gopro-tool",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "ZMon3y"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           environment: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
             })()),
           })),
           boot: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraModulePackages: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(config, "boot", "kernelPackages")), null);
               return [nix.thunk(() => nix.lookup(w, "v4l2loopback"))];

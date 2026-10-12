@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.01";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-JbgnpXrb/Zo/qGJeQ6vD6Qf2HeYiND5+U4SC75tG/Qs=",
         }))));
       const pythonImportsCheck = nix.thunk(() => ["euclid3"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "2D and 3D vector, matrix, quaternion and geometry module",
         homepage: "http://code.google.com/p/pyeuclid/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
           ];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, format, src, pythonImportsCheck, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, pythonImportsCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

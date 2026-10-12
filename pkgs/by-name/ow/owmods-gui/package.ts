@@ -36,17 +36,17 @@ export default nix.lambda((args) => (() => {
   const pname = "owmods-gui";
   const version = "0.15.7";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "ow-mods",
       repo: "ow-mod-man",
       tag: nix.thunk(() => nix.str`gui_v${version}`),
       hash: "sha256-xGohK7ki82gvfTnjPUdpamnvPDf8vpuAuC0gjRvx7mQ=",
     }))));
   const frontend = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "owmods-gui-ui",
       version: version,
-      env: nix.thunk(() => ({ __proto__: pos$2, VITE_VERSION_SUFFIX: "-nix" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, VITE_VERSION_SUFFIX: "-nix" })),
       src: nix.thunk(() => nix.str`${src}/owmods_gui/frontend`),
       packageJSON: nix.thunk(() => nix.str`${src}/owmods_gui/frontend/package.json`),
       npmDepsHash: "sha256-+2PlfZijwYeGXDYycwgOfjbZCRazHs/O3iDDuKLIwxM=",
@@ -56,14 +56,14 @@ export default nix.lambda((args) => (() => {
       installInPlace: true,
       distDir: "../dist",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Web frontend for the Outer Wilds Mod Manager",
         homepage: "https://github.com/ow-mods/ow-mod-man/tree/main/owmods_gui/frontend",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
       })),
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: pname,
       version: version,
       src: src,
@@ -82,15 +82,15 @@ mv owmods_gui/backend/new.tauri.conf.json owmods_gui/backend/tauri.conf.json
 makeWrapper "$out/Applications/Outer Wilds Mod Manager.app/Contents/MacOS/owmods_gui" "$out/bin/owmods_gui" ${nix.app(nix.sel(lib, "optionalString"), wrapWithMono, nix.thunk(() => nix.str`--set MONO_BINARY ${nix.app(nix.sel(lib, "getExe"), mono)}`))}
 `))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         frontend: frontend,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             extraArgs: nix.thunk(() => ["--subpackage", "frontend", "--version-regex", "gui_v(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "GUI version of the mod manager for Outer Wilds Mod Loader",
         homepage: "https://github.com/ow-mods/ow-mod-man/tree/main/owmods_gui",
         downloadPage: nix.thunk(() => nix.str`https://github.com/ow-mods/ow-mod-man/releases/tag/gui_v${version}`),

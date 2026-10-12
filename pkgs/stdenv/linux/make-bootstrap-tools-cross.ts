@@ -11,15 +11,15 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const lib = nix.thunk(() => nix.attr(releaseLib, "lib"));
-  const releaseLib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../top-level/release-lib.nix")), nix.thunk(() => ({ __proto__: pos$1, supportedSystems: [] }))));
+  const releaseLib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../top-level/release-lib.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, supportedSystems: [] }))));
   const make = (crossSystem) => nix.app(nix.builtins.import(nix.path(here, "./make-bootstrap-tools.nix")), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pkgs: nix.thunk(() => nix.app(nix.sel(releaseLib, "pkgsForCross"), crossSystem, system)),
     })));
   return nix.app(nix.sel(lib, "mapAttrs"), (n) => make, nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "systems", "examples")), null);
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "armv5tel-unknown-linux-gnueabi": nix.thunk(() => nix.lookup(w, "armv5tel-multiplatform")),
         "armv6l-unknown-linux-gnueabihf": nix.thunk(() => nix.lookup(w, "raspberryPi")),
         "armv7l-unknown-linux-gnueabihf": nix.thunk(() => nix.lookup(w, "armv7l-hf-multiplatform")),

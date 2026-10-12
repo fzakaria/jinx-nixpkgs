@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const cups = nix.arg($, "cups");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rastertoezpl",
       version: "1.1.12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://godex.s3-accelerate.amazonaws.com/tWHDYruxWFM98frjWNTE,g.file?v01",
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-source.tar.gz`),
           hash: "sha256-iBhM8Mht/XncWU75cd485WK5GZtJNv78yMsFsD0eKWQ=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "mkdir -p $out/lib/cups/filter\nln -s $out/libexec/rastertoezpl/rastertoezpl $out/lib/cups/filter/rastertoezpl\ngzip -9n $out/share/cups/model/godex/*.ppd\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CUPS driver for GODEX printers",
         homepage: "https://www.godexintl.com/downloads",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

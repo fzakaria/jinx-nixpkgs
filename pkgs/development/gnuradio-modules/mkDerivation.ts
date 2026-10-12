@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
 Use \`disabled = gnuradioAtLeast "${nix.sel(args_2, "disabledForGRafter")}";\` instead.
 `)) : (() => {
       const args_ = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         enableParallelBuilding: nix.thunk(() => nix.selOr(args_2, () => true, "enableParallelBuilding")),
         nativeBuildInputs: nix.thunk(() => nix.selOr(args_2, () => [], "nativeBuildInputs")),
         buildInputs: nix.thunk(() => nix.concat(nix.selOr(args_2, () => [], "buildInputs"), [unwrapped, nix.thunk(() => nix.sel(unwrapped, "volk"))])),

@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const unittestCheckHook = nix.arg($, "unittestCheckHook");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pulsar-client",
       version: "3.10.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "apache",
           repo: "pulsar-client-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "make -j$NIX_BUILD_CORES\nmake install\ncd ..\n",
       dependencies: nix.thunk(() => [certifi]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         functions: nix.thunk(() => [grpcio, prometheus_client, protobuf, ratelimit]),
         avro: nix.thunk(() => [fastavro]),
       })),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["pulsar"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Apache Pulsar Python client library",
         homepage: "https://pulsar.apache.org/docs/next/client-libraries-python/",
         changelog: nix.thunk(() => nix.str`https://github.com/apache/pulsar-client-python/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

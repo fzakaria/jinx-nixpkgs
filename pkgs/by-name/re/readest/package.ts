@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const gst_all_1 = nix.arg($, "gst_all_1");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "readest",
       version: "0.12.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "readest",
           repo: "readest",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/apps/readest-app`),
       pnpmRoot: "../..",
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -105,10 +105,10 @@ jq '.scripts.build = "true"' \\
       ]),
       preBuild: "# set up pdfjs and simplecc\npnpm setup-vendors\n\n# `tauri-plugin-turso` expects frontend files to exist before the build, else it fails with:\n#\n# > > tauri-plugin-turso-api@0.1.0 build /build/source/apps/readest-app/src-tauri/plugins/tauri-plugin-turso\n# > > true\n# >\n# >   Error Unable to find your web assets, did you forget to build your web app?\n#     Your frontendDist is set to \"../out\" (which is `/build/source/apps/readest-app/out`).\npnpm --filter @readest/readest-app build\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tursoPluginDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pname: "tauri-plugin-turso",
             version: nix.thunk(() => nix.sel(finalAttrs, "version")),
             src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/apps/readest-app/src-tauri/plugins/tauri-plugin-turso`),
@@ -117,7 +117,7 @@ jq '.scripts.build = "true"' \\
             hash: "sha256-quVUYsT3u4UBhuJ75QQ4SEuW8MhGQ0vGhtwtUj/eKHs=",
           })))),
         tursoPlugin: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             pname: "tauri-plugin-turso",
             version: nix.thunk(() => nix.sel(finalAttrs, "version")),
             src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/apps/readest-app/src-tauri/plugins/tauri-plugin-turso`),
@@ -128,7 +128,7 @@ jq '.scripts.build = "true"' \\
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Modern, feature-rich ebook reader",
         homepage: "https://github.com/readest/readest",
         changelog: nix.thunk(() => nix.str`https://github.com/readest/readest/releases/tag/v${nix.sel(finalAttrs, "version")}`),

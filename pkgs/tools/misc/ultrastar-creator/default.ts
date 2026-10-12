@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const libbass_fx = nix.arg($, "libbass_fx");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ultrastar-creator",
       version: "1.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "UltraStar-Deluxe",
           repo: "UltraStar-Creator",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -80,14 +80,14 @@ sed -i \\
       ]),
       installPhase: "runHook preInstall\n\ninstall -Dm644 ../setup/unix/UltraStar-Creator.png $out/share/icons/hicolor/128x128/apps/ultrastar-creator.png\nln -s \"$desktopItem/share/applications\" \"$out/share/\"\n\nrunHook postInstall\n",
       desktopItem: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: nix.thunk(() => nix.sel(finalAttrs, "pname")),
           desktopName: "UltraStar-Creator",
           exec: "UltraStar-Creator",
           icon: "ultrastar-creator",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         mainProgram: "UltraStar-Creator",
         description: "Ultrastar karaoke song creation tool",
         homepage: "https://github.com/UltraStar-Deluxe/UltraStar-Creator",

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const lwt_ppx = nix.arg($, "lwt_ppx");
   const ppx_expect = nix.arg($, "ppx_expect");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "cohttp-lwt-jsoo",
       version: nix.thunk(() => nix.attr(cohttp_lwt, "version")),
       src: nix.thunk(() => nix.attr(cohttp_lwt, "src")),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [nodejs, lwt_ppx, ppx_expect]),
       meta: nix.thunk(() => nix.update(nix.sel(cohttp_lwt, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "CoHTTP implementation for the Js_of_ocaml JavaScript compiler",
       })),
     })));

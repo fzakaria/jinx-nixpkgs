@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const kernelModuleMakeFlags = nix.arg($, "kernelModuleMakeFlags");
   const modDestDir = nix.thunk(() => nix.str`$out/lib/modules/${nix.sel(kernel, "modDirVersion")}/kernel/drivers/net/wireless/realtek/rtw89`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rtw89",
       version: "unstable-2022-12-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lwfinger",
           repo: "rtw89",
           rev: "e834edfe8bee6e27e31c2f783817a9c13ff45665",
@@ -40,7 +40,7 @@ find ${modDestDir} -name '*.ko' -exec xz -f {} \\;
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Driver for Realtek 8852AE, 8852BE, and 8853CE, 802.11ax devices",
         homepage: "https://github.com/lwfinger/rtw89",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

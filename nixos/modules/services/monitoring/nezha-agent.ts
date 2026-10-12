@@ -46,99 +46,99 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "config.json", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$33,
+    [nix.POS]: pos$33,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "moraxyc"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       services: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         "nezha-agent": nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Agent of Nezha Monitoring")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "nezha-agent", nix.thunk(() => ({})))),
           debug: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "verbose log")),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               description: "Generate to {file}`config.json` as a Nix attribute set.\nCheck the [guide](https://nezha.wiki/en_US/guide/agent.html)\nfor possible options.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     disable_command_execute: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$2,
+                        [nix.POS]: pos$2,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         default: true,
                         description: "Disable executing the command from dashboard.\n",
                       })))),
                     disable_nat: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         default: false,
                         description: "Disable NAT penetration.\n",
                       })))),
                     disable_send_query: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         default: false,
                         description: "Disable sending TCP/ICMP/HTTP requests.\n",
                       })))),
                     gpu: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         default: false,
                         description: "Enable GPU monitoring.\n",
                       })))),
                     tls: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         default: false,
                         description: "Enable SSL/TLS encryption.\n",
                       })))),
                     temperature: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         default: true,
                         description: "Enable temperature monitoring.\n",
                       })))),
                     use_ipv6_country_code: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         default: true,
                         description: "Use ipv6 countrycode to report location.\n",
                       })))),
                     skip_connection_count: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         default: false,
                         description: "Do not monitor the number of connections.\n",
                       })))),
                     skip_procs_count: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         default: false,
                         description: "Do not monitor the number of processes.\n",
                       })))),
                     report_delay: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "ints", "between"), 1n, 4n)),
                         default: 3n,
                         description: "The interval between system status reportings.\nThe value must be an integer from 1 to 4.\n",
                       })))),
                     server: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         example: "127.0.0.1:8008",
                         description: "Address to the dashboard.\n",
                       })))),
                     uuid: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         type: nix.thunk(() => (() => {
                           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                           return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -151,13 +151,13 @@ export default nix.lambda((args) => (() => {
                 })))),
             })))),
           genUuid: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to generate uuid from fqdn automatically.\nPlease note that changes in hostname/domain will result in different uuid.\n",
             })))),
           clientSecretFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -187,25 +187,25 @@ export default nix.lambda((args) => (() => {
       ];
     })()),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             assertion: nix.thunk(() => (!nix.asBool(nix.eq(nix.sel(cfg, "settings", "uuid"), null)) || nix.asBool(nix.sel(cfg, "genUuid")))),
             message: "Please set `service.nezha-agent.settings.uuid` while `genUuid` is false.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, "settings", "uuid"), null)) || nix.asBool(!nix.asBool(nix.sel(cfg, "genUuid"))))),
             message: "When `service.nezha-agent.genUuid = true`, `settings.uuid` cannot be set.",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           "nezha-agent": nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             settings: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               debug: nix.thunk(() => nix.sel(cfg, "debug")),
               disable_auto_update: true,
               disable_force_update: true,
@@ -213,13 +213,13 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           services: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             "nezha-agent": nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 Restart: "on-failure",
                 StateDirectory: "nezha-agent",
                 RuntimeDirectory: "nezha-agent",
@@ -254,7 +254,7 @@ export default nix.lambda((args) => (() => {
                 RestrictAddressFamilies: nix.thunk(() => ["AF_INET", "AF_INET6"]),
                 PrivateDevices: "yes",
               })),
-              environment: nix.thunk(() => ({ __proto__: pos$28, HOME: "/var/lib/nezha-agent" })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$28, HOME: "/var/lib/nezha-agent" })),
               enableStrictShellChecks: true,
               startLimitIntervalSec: 10n,
               startLimitBurst: 3n,

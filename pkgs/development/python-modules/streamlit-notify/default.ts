@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const streamlit = nix.arg($, "streamlit");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "streamlit-notify",
       version: "0.3.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pgarrett-scripps",
           repo: "Streamlit_Notify",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["streamlit_notify"]),
       disabledTests: nix.thunk(() => ["TestStreamlitNotifyIntegration"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Queues and displays Streamlit Status Elements notifications",
         homepage: "https://github.com/pgarrett-scripps/Streamlit_Notify",
         changelog: nix.thunk(() => nix.str`https://github.com/pgarrett-scripps/Streamlit_Notify/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

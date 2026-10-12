@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const umu_launcher = nix.arg($, "umu-launcher");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "vermouth",
       version: "2.4.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dekomote",
           repo: "vermouth",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,14 +54,14 @@ export default nix.lambda((args) => (() => {
       qtWrapperArgs: nix.thunk(() => ["--prefix", "PATH", ":", nix.thunk(() => nix.str`${umu_launcher}/bin`)]),
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
-      env: nix.thunk(() => ({ __proto__: pos$2, QT_QPA_PLATFORM: "offscreen" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, QT_QPA_PLATFORM: "offscreen" })),
       versionCheckKeepEnvironment: nix.thunk(() => ["QT_QPA_PLATFORM"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Game and app launcher for Linux - native, Windows, and retro. KDE-first, lightweight, no frills",
         homepage: "https://github.com/dekomote/vermouth",
         changelog: nix.thunk(() => nix.str`https://github.com/dekomote/vermouth/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

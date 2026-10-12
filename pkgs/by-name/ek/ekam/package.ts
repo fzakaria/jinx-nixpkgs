@@ -15,9 +15,9 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const capnproto = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         owner: "capnproto",
         repo: "capnproto",
         tag: "v1.0.2",
@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
       })))),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ekam",
       version: "0-unstable-2021-09-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "capnproto",
           repo: "ekam",
           rev: "77c338f8bd8f4a2ce1e6199b2a52363f1fccf388",
@@ -44,7 +44,7 @@ cp -r ${nix.sel(capnproto, "src")} $sourceRoot/deps/capnproto
       postBuild: "rm bin/{capnp*,ekam-bootstrap}\n",
       installPhase: "runHook preInstall\nmkdir $out\ncp -r bin $out\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Build system (\"make\" in reverse)",
         longDescription: "Ekam (\"make\" spelled backwards) is a build system which automatically\nfigures out what to build and how to build it purely based on the\nsource code. No separate \"makefile\" is needed.\n",
         homepage: "https://github.com/capnproto/ekam",

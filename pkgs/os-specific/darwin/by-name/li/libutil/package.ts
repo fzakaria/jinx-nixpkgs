@@ -11,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const copyfile = nix.arg($, "copyfile");
   const mkAppleDerivation = nix.arg($, "mkAppleDerivation");
   return nix.app(mkAppleDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       releaseName: "libutil",
       outputs: nix.thunk(() => ["out", "dev", "man"]),
       xcodeHash: "sha256-LwR9fmvcdJ/QYlOx+7ffhV4mKvjkwN3rX3+yHSCovKQ=",
       buildInputs: nix.thunk(() => [copyfile]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, description: "System utilities library" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, description: "System utilities library" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

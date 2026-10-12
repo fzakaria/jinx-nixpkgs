@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const boost_build = nix.arg($, "boost-build");
   const fetchurl = nix.arg($, "fetchurl");
   const makeBoost = (file) => nix.app(nix.sel(lib, "fix"), (self) => nix.app(callPackage, file, nix.thunk(() => ({
-        __proto__: pos$2,
-        "boost-build": nix.thunk(() => nix.app(nix.sel(boost_build, "override"), nix.thunk(() => ({ __proto__: pos$1, useBoost: self })))),
+        [nix.POS]: pos$2,
+        "boost-build": nix.thunk(() => nix.app(nix.sel(boost_build, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, useBoost: self })))),
       }))));
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     boost178: nix.thunk(() => nix.app(makeBoost, nix.path(here, "./1.78.nix"))),
     boost179: nix.thunk(() => nix.app(makeBoost, nix.path(here, "./1.79.nix"))),
     boost180: nix.thunk(() => nix.app(makeBoost, nix.path(here, "./1.80.nix"))),

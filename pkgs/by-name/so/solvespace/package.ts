@@ -41,12 +41,12 @@ export default nix.lambda((args) => (() => {
   const libpthread_stubs = nix.arg($, "libpthread-stubs");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "solvespace",
       version: "3.2",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "solvespace",
           repo: "solvespace",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "patch CMakeLists.txt <<EOF\n@@ -20,9 +20,9 @@\n # NOTE TO PACKAGERS: The embedded git commit hash is critical for rapid bug triage when the builds\n # can come from a variety of sources. If you are mirroring the sources or otherwise build when\n # the .git directory is not present, please comment the following line:\n-include(GetGitCommitHash)\n+# include(GetGitCommitHash)\n # and instead uncomment the following, adding the complete git hash of the checkout you are using:\n-# set(GIT_COMMIT_HASH 0000000000000000000000000000000000000000)\n+set(GIT_COMMIT_HASH $version)\nEOF\n",
       cmakeFlags: nix.thunk(() => ["-DENABLE_OPENMP=ON", "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Parametric 3d CAD program",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "edef"))]),

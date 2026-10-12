@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
       "Gruvbox_Light_Brown",
       "Gruvbox_Light_Green",
     ]), nix.thunk(() => [variant]), nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: "1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sachnr",
           repo: "gruvbox-kvantum-themes",
           rev: "f47670be407c1f07c64890ad53884ee9977a7db1",
@@ -38,7 +38,7 @@ cp -a "${variant}" $out/share/Kvantum
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Gruvbox themes for kvantum",
         homepage: "https://github.com/sachnr/gruvbox-kvantum-themes",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

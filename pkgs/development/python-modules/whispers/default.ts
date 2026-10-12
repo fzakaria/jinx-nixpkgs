@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "adeptex",
           repo: "whispers",
           tag: version,
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "# Pinning test highly sensitive to semgrep version\nsubstituteInPlace tests/unit/test_main.py \\\n  --replace-fail '(\"--ast\", 434),' \"\"\n\n# Some tests need the binary available in PATH\nexport PATH=$out/bin:$PATH\n";
       const pythonImportsCheck = nix.thunk(() => ["whispers"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to identify hardcoded secrets in static structured text",
         homepage: "https://github.com/adeptex/whispers",
         changelog: nix.thunk(() => nix.str`https://github.com/adeptex/whispers/releases/tag/${nix.sel(src, "tag")}`),
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "whispers",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const procps = nix.arg($, "procps");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "imapsync",
       version: "2.314",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://imapsync.lamiral.info/dist/old_releases/${nix.sel(finalAttrs, "version")}/imapsync-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-NOFxXGWEiJ/zvZwKzC+rJURGKCvtqQyOWnGoOzpZ28o=",
         })))),
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Mail folder synchronizer between IMAP servers",
         homepage: "https://imapsync.lamiral.info",
         license: nix.thunk(() => nix.sel(lib, "licenses", "nlpl")),

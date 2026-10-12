@@ -18,14 +18,14 @@ export default nix.lambda((args) => (() => {
   const secureMemory = nix.argOr($, "secureMemory", () => false);
   const enableStatic = nix.argOr($, "enableStatic", () => nix.sel(stdenv, "hostPlatform", "isStatic"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jsoncpp",
       version: "1.9.8",
       strictDeps: true,
       __structuredAttrs: true,
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "open-source-parsers",
           repo: "jsoncpp",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +44,7 @@ export sourceRoot=${nix.sel(finalAttrs, "src", "name")}
         nix.thunk(() => nix.str`-DBUILD_STATIC_LIBS=${(nix.asBool(enableStatic) ? "ON" : "OFF")}`),
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))) || nix.asBool(secureMemory))), "-DJSONCPP_WITH_TESTS=OFF"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/open-source-parsers/jsoncpp/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         homepage: "https://github.com/open-source-parsers/jsoncpp",
         description: "C++ library for interacting with JSON",

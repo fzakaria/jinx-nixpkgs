@@ -17,21 +17,21 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "hardware", "xpad-noone"));
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       hardware: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "xpad-noone": nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the Xpad driver from the Linux kernel with support for Xbox One controllers removed")),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         boot: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           blacklistedKernelModules: nix.thunk(() => ["xpad"]),
           extraModulePackages: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(config, "boot", "kernelPackages")), null);
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "Cryolitia"))];

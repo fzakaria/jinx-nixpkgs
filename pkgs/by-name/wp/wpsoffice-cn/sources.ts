@@ -7,16 +7,16 @@ const pos$2 = nix.positions(here + "/sources.nix", [["url", 11, 5], ["hash", 12,
 const pos$3 = nix.positions(here + "/sources.nix", [["linux-version", 4, 3], ["darwin-version", 5, 3], ["x86_64-linux", 6, 3], ["aarch64-darwin", 10, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$3,
+  [nix.POS]: pos$3,
   "linux-version": "12.1.2.28080",
   "darwin-version": "12.1.26055",
   "x86_64-linux": nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     url: "https://wps-linux-personal.wpscdn.cn/wps/download/ep/Linux2023/28080/wps-office_12.1.2.28080.AK.preread.sw.Personal_765474_amd64.deb",
     hash: "sha256-L6mZ9gpx4hCTq0nvbX9h12aMhEv+vzCQfSwpDkYPm+A=",
   })),
   "aarch64-darwin": nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     url: "https://package.mac.wpscdn.cn/mac_wps_pkg/12.1.26055/WPS_Office_12.1.26055(26055)_arm64.dmg",
     hash: "sha256-uEcjS6RXGcIPeBUnGw+J1A6Yy+TuxHwrRIKJUxBZYUI=",
   })),

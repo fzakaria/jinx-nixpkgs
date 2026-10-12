@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.8.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-bC3+bKKC119m3zM4absM5zMcAbR122gJ/50Qe3zf4Es=",
@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonNamespaces = nix.thunk(() => ["sphinxcontrib"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Provides a Sphinx domain for describing RESTful HTTP APIs",
         homepage: "https://bitbucket.org/birkenfeld/sphinx-contrib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd0")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

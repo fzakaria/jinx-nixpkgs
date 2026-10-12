@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.4.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "django-cms",
           repo: "django-filer",
           tag: version,
@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => nix.concat([django, django_polymorphic, easy_thumbnails], nix.sel(easy_thumbnails, "optional-dependencies", "svg")));
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, heif: nix.thunk(() => [pillow_heif]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, heif: nix.thunk(() => [pillow_heif]) }));
       const checkInputs = nix.thunk(() => [distutils, django_app_helper]);
       const checkPhase = nix.thunk(() => nix.str`runHook preCheck
 ${nix.sel(python, "interpreter")} tests/settings.py
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/django-cms/django-filer/blob/${nix.sel(src, "tag")}/CHANGELOG.rst`),
         description: "File management application for Django",
         homepage: "https://github.com/django-cms/django-filer",
@@ -50,7 +50,7 @@ runHook postCheck
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "onny"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

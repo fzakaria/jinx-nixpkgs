@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libtiff = nix.arg($, "libtiff");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libpano13",
       version: "2.9.23",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/panotools/libpano13-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-58B203oUw5Q0liEV5H3b4YRSyj3lzkDiqu+nz1gV6ig=",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, perl]),
       buildInputs: nix.thunk(() => [libjpeg, libpng, libtiff]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Free software suite for authoring and displaying virtual reality panoramas",
         homepage: "https://panotools.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

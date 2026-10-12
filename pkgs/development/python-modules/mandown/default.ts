@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.12.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "potatoeggy",
           repo: "mandown",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -52,14 +52,14 @@ export default nix.lambda((args) => (() => {
         typer,
       ]);
       const pythonRelaxDeps = nix.thunk(() => ["beautifulsoup4", "lxml", "pillow", "typer"]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, gui: nix.thunk(() => [pyside6]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, gui: nix.thunk(() => [pyside6]) }));
       const pythonImportsCheck = nix.thunk(() => ["mandown"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/potatoeggy/mandown/releases/tag/v${version}`),
         description: "Comic/manga/webtoon downloader and CBZ/EPUB/MOBI/PDF converter",
         homepage: "https://github.com/potatoeggy/mandown",
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "blobtools",
       version: "0-unstable-2012-10-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AndroidRoot",
           repo: "BlobTools",
           rev: "6186e33baa10ce6f1c738d7b91eb5153743105af",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
 `),
       installPhase: "runHook preInstall\ninstall -Dm555 {blobpack,blobunpack} -t $out/bin\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/AndroidRoot/BlobTools",
         description: "Tools for modifying ASUS Transformer firmware",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

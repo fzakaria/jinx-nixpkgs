@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = nix.thunk(() => nix.attr(from, "version"));
       const cargoRoot = "plugins/webengineurlinterceptor/adblock";
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           cargoRoot: cargoRoot,
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const extraBuildInputs = nix.thunk(() => [discount, corrosion, alpaka]);
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         version,
         cargoRoot,

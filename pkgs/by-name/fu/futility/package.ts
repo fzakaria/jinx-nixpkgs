@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const url = "https://chromium.googlesource.com/chromiumos/platform/vboot_reference";
   const branch = "release-R145-16552.B";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "futility",
       version: nix.thunk(() => nix.str`0-${branch}`),
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: url,
           rev: nix.thunk(() => nix.str`refs/heads/${branch}`),
           hash: "sha256-LctTKkf8nTVcrErMiAkvSCYkZnBoTYjqxWj0xADi0Q4=",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [openssl, nss]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" })),
       postPatch: nix.thunk(() => nix.str`patchShebangs ./scripts
 substituteInPlace ./scripts/getversion.sh \\
   --replace-fail "unknown" "${branch}"
@@ -41,7 +41,7 @@ substituteInPlace ./Makefile \\
       buildFlags: "futil",
       installTargets: "futil_install",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: url,
         description: "ChromeOS firmware utility",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

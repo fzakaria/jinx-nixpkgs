@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const usePulseAudio = nix.argOr($, "usePulseAudio", () => nix.selOr(config, () => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), libpulseaudio), "pulseaudio"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "1.2.2",
       pname: "libao",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xiph",
           repo: "libao",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "nanosecond-header.patch",
             url: "https://github.com/xiph/libao/commit/1f998f5d6d77674dad01b181811638578ad68242.patch",
             hash: "sha256-cvlyhQq1YS4pVya44LfsKD1R6iSOONsHJGRbP5LlanQ=",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         longDescription: "Libao is Xiph.org's cross-platform audio library that allows\nprograms to output audio using a simple API on a wide variety of\nplatforms.\n",
         homepage: "https://xiph.org/ao/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

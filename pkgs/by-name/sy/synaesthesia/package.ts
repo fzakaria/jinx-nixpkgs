@@ -16,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libsm = nix.arg($, "libsm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "synaesthesia",
       version: "2.4",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://logarithmic.net/pfh-files/synaesthesia/synaesthesia-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0nzsdxbah0shm2vlziaaw3ilzlizd3d35rridkpg40nfxmq84qnx",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [SDL, libsm]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://logarithmic.net/pfh/synaesthesia",
         description: "Program for representing sounds visually",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

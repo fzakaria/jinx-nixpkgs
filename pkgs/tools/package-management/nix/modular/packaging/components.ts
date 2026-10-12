@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
     const from = nix.thunk(() => nix.app(nix.sel(scope, "callPackage"), nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const stdenv_1 = nix.arg($_1, "stdenv");
-        return { __proto__: pos$1, stdenv: stdenv_1 };
+        return { [nix.POS]: pos$1, stdenv: stdenv_1 };
       })(), formals$2), nix.thunk(() => ({}))));
     const stdenv = nix.thunk(() => nix.attr(from, "stdenv"));
     const from_1 = nix.thunk(() => nix.sel(pkgs, "buildPackages"));
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
     const filesetToSource = nix.thunk(() => nix.sel(lib, "fileset", "toSource"));
     const mkPackageBuilder = (exts) => (userFn) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.app(nix.sel(lib, "extends"), nix.thunk(() => nix.app(nix.sel(lib, "composeManyExtensions"), exts)), userFn)));
     const setVersionLayer = (finalAttrs) => (prevAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       preConfigure: nix.thunk(() => nix.add(nix.selOr(prevAttrs, () => "", "preConfigure"), nix.str`chmod u+w ./.version
 echo ${nix.sel(finalAttrs, "version")} > ./.version
 `)),
@@ -60,9 +60,9 @@ echo ${nix.sel(finalAttrs, "version")} > ./.version
         nix.assert_(nix.eq(nix.sel(prevAttrs, "fileset", "_type"), "fileset"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/tools/package-management/nix/modular/packaging/components.nix:65:9");
         return nix.sel(prevAttrs, "fileset");
       })());
-      const src_1 = nix.thunk(() => nix.app(nix.sel(lib, "fileset", "toSource"), nix.thunk(() => ({ __proto__: pos$3, fileset: sources, root: root }))));
+      const src_1 = nix.thunk(() => nix.app(nix.sel(lib, "fileset", "toSource"), nix.thunk(() => ({ [nix.POS]: pos$3, fileset: sources, root: root }))));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         sourceRoot: nix.thunk(() => nix.add(nix.str`${nix.sel(src_1, "name")}/`, workDirSubpath)),
         src: src_1,
         fileset: null,
@@ -74,7 +74,7 @@ echo ${nix.sel(finalAttrs, "version")} > ./.version
       const workDirPath = nix.thunk(() => nix.sel(prevAttrs, "workDir"));
       const workDirSubpath = nix.thunk(() => nix.app(resolveRelPath, workDirPath));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         sourceRoot: nix.thunk(() => nix.add(nix.str`${nix.sel(finalScope, "patchedSrc", "name")}/`, workDirSubpath)),
         src: nix.thunk(() => nix.sel(finalScope, "patchedSrc")),
         version: nix.thunk(() => (() => {
@@ -86,19 +86,19 @@ echo ${nix.sel(finalAttrs, "version")} > ./.version
       };
     })();
     const mesonLayer = (finalAttrs) => (prevAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       mesonBuildType: "release",
       preConfigure: nix.thunk(() => nix.add(nix.selOr(prevAttrs, () => "", "preConfigure"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(!nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isCygwin"))))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))))), "case \"$mesonBuildType\" in\nrelease|minsize) appendToVar mesonFlags \"-Db_lto=true\"  ;;\n*)               appendToVar mesonFlags \"-Db_lto=false\" ;;\nesac\n"))),
       nativeBuildInputs: nix.thunk(() => nix.concat([meson, ninja], nix.selOr(prevAttrs, () => [], "nativeBuildInputs"))),
       mesonCheckFlags: nix.thunk(() => nix.concat(nix.selOr(prevAttrs, () => [], "mesonCheckFlags"), ["--print-errorlogs"])),
     });
     const mesonBuildLayer = (finalAttrs) => (prevAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(prevAttrs, () => [], "nativeBuildInputs"), [pkg_config])),
       separateDebugInfo: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))),
     });
     const mesonLibraryLayer = (finalAttrs) => (prevAttrs) => nix.attrsDyn({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       outputs: nix.thunk(() => nix.concat(nix.selOr(prevAttrs, () => ["out"], "outputs"), ["dev"])),
     }, [
       [(nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "2.32")) ? null : "preConfigure"), nix.thunk(() => (() => {
@@ -109,20 +109,20 @@ export CXXFLAGS="\${CXXFLAGS:-} ${nix.builtins.toString(interpositionFlags)}"
       })())],
     ]);
     const fixupStaticLayer = (finalAttrs) => (prevAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       postFixup: nix.thunk(() => nix.add(nix.selOr(prevAttrs, () => "", "postFixup"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), "# HACK: Otherwise the result will have the entire buildInputs closure\n# injected by the pkgsStatic stdenv\n# <https://github.com/NixOS/nixpkgs/issues/83667>\nrm -f $out/nix-support/propagated-build-inputs\n"))),
     });
     const bsdNoLinkAsNeeded = (finalAttrs) => (prevAttrs) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isBSD")), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         mesonFlags: nix.thunk(() => nix.concat([nix.thunk(() => nix.app(nix.sel(lib, "mesonBool"), "b_asneeded", false))], nix.selOr(prevAttrs, () => [], "mesonFlags"))),
       })));
     const nixDefaultsLayer = (finalAttrs) => (prevAttrs) => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       strictDeps: nix.thunk(() => nix.selOr(prevAttrs, () => true, "strictDeps")),
       enableParallelBuilding: true,
       pos: nix.thunk(() => nix.builtins.unsafeGetAttrPos("pname", prevAttrs)),
       meta: nix.thunk(() => nix.update(nix.selOr(prevAttrs, () => ({}), "meta"), {
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         homepage: nix.thunk(() => nix.selOr(prevAttrs, () => "https://nixos.org/nix", "meta", "homepage")),
         donationPage: nix.thunk(() => nix.selOr(prevAttrs, () => "https://nixos.org/donate/", "meta", "donationPage")),
         changelog: nix.thunk(() => (() => {
@@ -136,12 +136,12 @@ export CXXFLAGS="\${CXXFLAGS:-} ${nix.builtins.toString(interpositionFlags)}"
       })),
     });
     const appendPatches = (scope_1) => (patches) => nix.app(nix.sel(scope_1, "overrideScope"), (finalScope) => (prevScope) => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         patches: nix.thunk(() => nix.concat(nix.sel(prevScope, "patches"), patches)),
       }));
     const whenAtLeast = (v) => (thing) => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, v)) ? nix.force(thing) : null);
     return nix.attrsDyn({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       version: version,
       teams: teams,
       filesetToSource: filesetToSource,
@@ -149,16 +149,16 @@ export CXXFLAGS="\${CXXFLAGS:-} ${nix.builtins.toString(interpositionFlags)}"
       sourceLayer: localSourceLayer,
       resolvePath: (p) => nix.force(p),
       overrideAllMesonComponents: (f) => nix.app(nix.sel(scope, "overrideScope"), (finalScope) => (prevScope) => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           mesonComponentOverrides: nix.thunk(() => nix.app(nix.sel(lib, "composeExtensions"), nix.thunk(() => nix.sel(scope, "mesonComponentOverrides")), f)),
         })),
       overrideSource: (src_1) => nix.app(nix.sel(scope, "overrideScope"), (finalScope) => (prevScope) => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           sourceLayer: nix.thunk(() => nix.app(makeFetchedSourceLayer, finalScope)),
           src: src_1,
           patches: [],
           patchedSrc: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(finalScope, "patches"), [])) ? nix.force(src_1) : nix.app(nix.sel(pkgs, "buildPackages", "srcOnly"), nix.thunk(() => nix.app(nix.sel(pkgs, "buildPackages", "stdenvNoCC", "mkDerivation"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 name: nix.thunk(() => nix.str`${nix.selOr(finalScope, () => "nix-source", "src", "name")}-patched`),
                 src: nix.thunk(() => nix.attr(finalScope, "src")),
                 patches: nix.thunk(() => nix.attr(finalScope, "patches")),
@@ -231,7 +231,7 @@ export CXXFLAGS="\${CXXFLAGS:-} ${nix.builtins.toString(interpositionFlags)}"
       "nix-external-api-docs": nix.thunk(() => nix.app(callPackage, nix.path(here, "../src/external-api-docs/package.nix"), nix.thunk(() => ({})))),
       "nix-perl-bindings": nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "2.35pre")) ? null : nix.app(callPackage, nix.path(here, "../src/perl/package.nix"), nix.thunk(() => ({}))))),
       "nix-everything": nix.thunk(() => nix.update(nix.app(callPackage, nix.path(here, "../packaging/everything.nix"), nix.thunk(() => ({}))), {
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         overrideAllMesonComponents: (f) => nix.sel(nix.app(nix.sel(scope, "overrideAllMesonComponents"), f), "nix-everything"),
         appendPatches: (ps) => nix.sel(nix.app(nix.sel(scope, "appendPatches"), ps), "nix-everything"),
         overrideSource: (src_1) => nix.sel(nix.app(nix.sel(scope, "overrideSource"), src_1), "nix-everything"),

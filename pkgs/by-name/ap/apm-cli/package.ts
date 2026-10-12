@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "apm-cli",
       version: "0.33.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "microsoft",
           repo: "apm",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +61,7 @@ substituteInPlace src/apm_cli/runtime/manager.py \\
       "optional-dependencies": nix.thunk(() => (() => {
         const w_2 = nix.withScope(python3Packages, null);
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           build: nix.thunk(() => [nix.thunk(() => nix.lookup(w_2, "pyinstaller"))]),
           dev: nix.thunk(() => [
             nix.thunk(() => nix.lookup(w_2, "hypothesis")),
@@ -95,7 +95,7 @@ for runtime_info in manager.supported_runtimes.values():
 PY
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Agent Package Manager",
         homepage: "https://github.com/microsoft/apm",
         changelog: nix.thunk(() => nix.str`https://github.com/microsoft/apm/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

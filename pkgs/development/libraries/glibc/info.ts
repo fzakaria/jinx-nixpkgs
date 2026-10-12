@@ -12,14 +12,14 @@ export default nix.lambda((args) => (() => {
   const texinfo = nix.arg($, "texinfo");
   const perl = nix.arg($, "perl");
   return nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({})), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "glibc-info",
       outputs: nix.thunk(() => ["out"]),
       configureFlags: nix.thunk(() => ["--enable-add-ons"]),
       extraNativeBuildInputs: nix.thunk(() => [texinfo, perl]),
       buildFlags: nix.thunk(() => ["info"]),
       installPhase: "mkdir -p \"$out/share/info\"\ncp -v \"manual/\"*.info* \"$out/share/info\"\n",
-      meta: nix.thunk(() => ({ __proto__: pos$1, description: "GNU Info manual of the GNU C Library" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, description: "GNU Info manual of the GNU C Library" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=info.ts.map

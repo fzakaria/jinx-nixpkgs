@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const build_idris_package = nix.arg($, "build-idris-package");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tf-random",
       version: "2020-01-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "david-christiansen",
           repo: "idris-tf-random",
           rev: "202aac3b96757e8247f6e26945329d90dd668aed",
           sha256: "1z8pyrsm1kdsspcs3h96k38h44ss0mv39lcz7xvwg8ickys3kqxl",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Port of Haskell tf-random",
         homepage: "https://github.com/david-christiansen/idris-tf-random",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

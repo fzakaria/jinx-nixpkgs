@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const llama_index_core = nix.arg($, "llama-index-core");
   const google_genai = nix.arg($, "google-genai");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "llama-index-embeddings-google-genai",
       version: "0.6.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "llama_index_embeddings_google_genai",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-4bdMO4Kre6aLt6xpg0Wh84NleYfRyLwfTJPBHkx+5Zw=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["llama_index.embeddings.google_genai"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "LlamaIndex Embeddings Integration for Google GenAI",
         homepage: "https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/embeddings/llama-index-embeddings-google-genai",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

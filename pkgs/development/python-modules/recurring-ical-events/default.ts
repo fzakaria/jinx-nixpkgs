@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.9.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "niccokunzmann",
           repo: "python-recurring-ical-events",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytz, restructuredtext_lint, pygments]);
       const pythonImportsCheck = nix.thunk(() => ["recurring_ical_events"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/niccokunzmann/python-recurring-ical-events/blob/${nix.sel(src, "tag")}/docs/changelog.md`),
         description: "Repeat ICalendar events by RRULE, RDATE and EXDATE",
         homepage: "https://github.com/niccokunzmann/python-recurring-ical-events",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

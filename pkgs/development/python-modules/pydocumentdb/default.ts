@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const pname = "pydocumentdb";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "1e6f072ae516fc061c9442f8ca470463b53dc626f0f6a86ff3a803293f4b50dd",
@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [six, requests]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Azure Cosmos DB API",
         homepage: "https://github.com/Azure/azure-cosmos-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         format,
         pname,

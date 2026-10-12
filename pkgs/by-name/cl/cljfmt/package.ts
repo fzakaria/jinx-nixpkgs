@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const testers = nix.arg($, "testers");
   return nix.app(buildGraalvmNativeImage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "cljfmt",
       version: "0.16.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/weavejester/cljfmt/releases/download/${nix.sel(finalAttrs, "version")}/cljfmt-${nix.sel(finalAttrs, "version")}-standalone.jar`),
           hash: "sha256-iyXosbUQs5pZarXHHdV2xZLTsFU+XP1CqRrndUELtvk=",
         })))),
@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
         "--no-fallback",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "cljfmt --version",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         mainProgram: "cljfmt",
         description: "Tool for formatting Clojure code",
         homepage: "https://github.com/weavejester/cljfmt",

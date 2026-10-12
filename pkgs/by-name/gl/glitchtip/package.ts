@@ -23,10 +23,10 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const nixosTests = nix.arg($, "nixosTests");
   const python = nix.thunk(() => nix.app(nix.sel(python314, "override"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       self: python,
       packageOverrides: (final) => (prev) => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         django: nix.thunk(() => nix.sel(final, "django_6")),
         "django-allauth-async": nix.thunk(() => nix.app(nix.sel(final, "callPackage"), nix.path(here, "./django-allauth-async.nix"), nix.thunk(() => ({})))),
         "glitchtip-rust": nix.thunk(() => nix.app(nix.sel(final, "callPackage"), nix.path(here, "./glitchtip-rust.nix"), nix.thunk(() => ({})))),
@@ -78,12 +78,12 @@ export default nix.lambda((args) => (() => {
   })());
   const frontend = nix.thunk(() => nix.app(callPackage, nix.path(here, "./frontend.nix"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "glitchtip",
       version: "6.2.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "glitchtip",
           repo: "glitchtip-backend",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://gitlab.com/glitchtip/glitchtip-backend/-/commit/4cf8c9d1518f5835b71c0692a72b63d8a62bea4a.patch",
             includes: nix.thunk(() => ["glitchtip/ingest_asgi.py", "glitchtip/settings.py"]),
             hash: "sha256-FwOJYSsJcJoqUwuHwHPWkzQqVB81Chex4RFTIhl82XM=",
@@ -114,20 +114,20 @@ runHook postBuild
       passthru: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(python, "pkgs"));
         return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         frontend: frontend,
         python: python,
         "django-allauth-async": nix.thunk(() => nix.attr(from, "django-allauth-async")),
         "glitchtip-rust": nix.thunk(() => nix.attr(from, "glitchtip-rust")),
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           glitchtip: nix.thunk(() => nix.attr(nixosTests, "glitchtip")),
         })),
         updateScript: nix.path(here, "./update.sh"),
       };
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Open source Sentry API compatible error tracking platform",
         homepage: "https://glitchtip.com",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/glitchtip/glitchtip-backend/-/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG`),

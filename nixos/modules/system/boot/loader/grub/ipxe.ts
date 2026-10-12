@@ -34,17 +34,17 @@ export default nix.lambda((args) => (() => {
     return (nix.asBool(nix.eq(nix.app(nix.sel(nix.builtins, "typeOf"), value), "path")) ? nix.force(value) : nix.app(nix.sel(nix.builtins, "toFile"), nix.thunk(() => nix.str`${name}.ipxe`), value));
   })();
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       boot: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         loader: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           grub: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             ipxe: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "either"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))))),
                 description: "Set of iPXE scripts available for\nbooting from the GRUB boot menu.\n",
                 default: nix.thunk(() => ({})),
@@ -55,19 +55,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.app(nix.sel(nix.builtins, "length"), scripts), 0n)), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         boot: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           loader: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             grub: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               extraEntries: nix.thunk(() => nix.app(nix.builtins.toString, nix.thunk(() => nix.app(nix.builtins.map, grubEntry, scripts)))),
               extraFiles: nix.thunk(() => nix.update({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 "ipxe.lkrn": nix.thunk(() => nix.str`${nix.sel(pkgs, "ipxe")}/ipxe.lkrn`),
               }, nix.app(nix.sel(nix.builtins, "listToAttrs"), nix.thunk(() => nix.app(nix.builtins.map, (name) => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     name: nix.thunk(() => nix.add(name, ".ipxe")),
                     value: nix.thunk(() => nix.app(scriptFile, name)),
                   }), scripts))))),

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "8.9.0";
       const underscoredVersion = nix.thunk(() => nix.app(nix.sel(lib, "strings", "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "weidai11",
           repo: "cryptopp",
           rev: nix.thunk(() => nix.str`CRYPTOPP_${underscoredVersion}`),
@@ -35,13 +35,13 @@ export default nix.lambda((args) => (() => {
       const buildFlags = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), enableStatic, "static"), nix.concat(nix.app(nix.sel(lib, "optional"), enableShared, "shared"), ["libcryptopp.pc"])));
       const enableParallelBuilding = true;
       const hardeningDisable = nix.thunk(() => ["fortify"]);
-      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), withOpenMP, nix.thunk(() => ({ __proto__: pos$2, CXXFLAGS: "-fopenmp" }))));
+      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), withOpenMP, nix.thunk(() => ({ [nix.POS]: pos$2, CXXFLAGS: "-fopenmp" }))));
       const doCheck = true;
       const preInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(enableStatic)), "rm -f libcryptopp.a"));
       const installTargets = nix.thunk(() => ["install-lib"]);
       const installFlags = nix.thunk(() => ["LDCONF=true"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Free C++ class library of cryptographic schemes",
         homepage: "https://cryptopp.com/",
         changelog: nix.thunk(() => [
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         underscoredVersion,

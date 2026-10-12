@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const jre = nix.arg($, "jre");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "revanced-cli",
       version: "6.0.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/revanced/revanced-cli/releases/download/v${nix.sel(finalAttrs, "version")}/revanced-cli-${nix.sel(finalAttrs, "version")}-all.jar`),
           hash: "sha256-wlVJvBfVnS65T6X4bmDpt3oCdyyoj3BQ+PEnb5I6mVg=",
         })))),
@@ -37,7 +37,7 @@ makeWrapper ${jre}/bin/java $out/bin/revanced-cli \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command line application as an alternative to the ReVanced Manager",
         homepage: "https://github.com/revanced/revanced-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

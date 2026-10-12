@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "programs", "zsh", "ohMyZsh"));
   const mkLinkFarmEntry = (name) => (dir) => (() => {
     const env = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: nix.thunk(() => nix.str`zsh-${name}-env`),
         paths: nix.thunk(() => nix.sel(cfg, "customPkgs")),
         pathsToLink: nix.thunk(() => [nix.thunk(() => nix.str`/share/zsh/${dir}`)]),
       }))));
     return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: name,
       path: nix.thunk(() => nix.str`${env}/share/zsh/${dir}`),
     };
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(mkLinkFarmEntry$, "plugins")),
     ])))));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["programs", "zsh", "oh-my-zsh", "enable"]), nix.thunk(() => ["programs", "zsh", "ohMyZsh", "enable"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["programs", "zsh", "oh-my-zsh", "theme"]), nix.thunk(() => ["programs", "zsh", "ohMyZsh", "theme"]))),
@@ -58,28 +58,28 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["programs", "zsh", "oh-my-zsh", "plugins"]), nix.thunk(() => ["programs", "zsh", "ohMyZsh", "plugins"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       programs: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         zsh: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           ohMyZsh: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Enable oh-my-zsh.\n",
               })))),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "oh-my-zsh", nix.thunk(() => ({})))),
             plugins: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 default: [],
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 description: "List of oh-my-zsh plugins\n",
               })))),
             custom: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 default: null,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -88,25 +88,25 @@ export default nix.lambda((args) => (() => {
                 description: "Path to a custom oh-my-zsh package to override config of oh-my-zsh.\n(Can't be used along with `customPkgs`).\n",
               })))),
             customPkgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 default: [],
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
                 description: "List of custom packages that should be loaded into `oh-my-zsh`.\n",
               })))),
             theme: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 default: "",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "Name of the theme to be used by oh-my-zsh.\n",
               })))),
             cacheDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 default: "$HOME/.cache/oh-my-zsh",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "Cache directory to be used by `oh-my-zsh`.\nWithout this option it would default to the read-only nix store.\n",
               })))),
             preLoaded: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(lib, "types", "lines")),
                 default: "",
                 description: "Shell commands executed before the `oh-my-zsh` is loaded.\nFor example, to disable async git prompt write `zstyle ':omz:alpha:lib:git' async-prompt no` (more information <https://github.com/ohmyzsh/ohmyzsh?tab=readme-ov-file#async-git-prompt>)\n",
@@ -116,11 +116,11 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         programs: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           zsh: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             promptInit: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "")),
             interactiveShellInit: nix.thunk(() => nix.str`# oh-my-zsh configuration generated by NixOS
 export ZSH=${nix.sel(cfg, "package")}/share/oh-my-zsh
@@ -143,18 +143,18 @@ source $ZSH/oh-my-zsh.sh
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, "custom"), null)) || nix.asBool(nix.eq(nix.sel(cfg, "customPkgs"), [])))),
             message: "If `cfg.custom` is set for `ZSH_CUSTOM`, `customPkgs` can't be used!",
           })),
         ]),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$19, doc: nix.path(here, "./oh-my-zsh.md") })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$19, doc: nix.path(here, "./oh-my-zsh.md") })),
   };
 })(), formals$1);
 //# sourceMappingURL=oh-my-zsh.ts.map

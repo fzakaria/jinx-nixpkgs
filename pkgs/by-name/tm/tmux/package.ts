@@ -34,14 +34,14 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const jq = nix.arg($, "jq");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "tmux",
       version: "3.7c",
       strictDeps: true,
       __structuredAttrs: true,
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tmux",
           repo: "tmux",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,8 +58,8 @@ echo "${nix.sel(finalAttrs, "passthru", "terminfo")}" >> $out/nix-support/propag
       versionCheckProgramArg: "-V",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        terminfo: nix.thunk(() => nix.app(runCommand, "tmux-terminfo", nix.thunk(() => ({ __proto__: pos$2, nativeBuildInputs: nix.thunk(() => [ncurses]) })), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.str`mkdir -p $out/share/terminfo/74
+        [nix.POS]: pos$3,
+        terminfo: nix.thunk(() => nix.app(runCommand, "tmux-terminfo", nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [ncurses]) })), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.str`mkdir -p $out/share/terminfo/74
 cp -v ${ncurses}/share/terminfo/74/tmux $out/share/terminfo/74
 # macOS ships an old version (5.7) of ncurses which does not include tmux-256color so we need to provide it from our ncurses.
 # However, due to a bug in ncurses 5.7, we need to first patch the terminfo before we can use it with macOS.
@@ -73,7 +73,7 @@ ${nix.app(nix.sel(lib, "getExe'"), common_updater_scripts, "update-source-versio
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://tmux.github.io/",
         downloadPage: "https://github.com/tmux/tmux",
         description: "Terminal multiplexer",

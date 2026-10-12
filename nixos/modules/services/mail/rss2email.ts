@@ -49,32 +49,32 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "rss2email"));
   return {
-    __proto__: pos$38,
+    [nix.POS]: pos$38,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         rss2email: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable rss2email.",
             })))),
           to: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Mail address to which to send emails",
             })))),
           interval: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "12h",
               description: "How often to check the feeds, in systemd interval format",
             })))),
           config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -87,19 +87,19 @@ export default nix.lambda((args) => (() => {
               description: "The configuration to give rss2email.\n\nDefault will use system-wide `sendmail` to send the\nemail. This is rss2email's default when running\n`r2e new`.\n\nThis set contains key-value associations that will be set in the\n`[DEFAULT]` block along with the\n`to` parameter.\n\nSee `man r2e` for more information on which\nparameters are accepted.\n",
             })))),
           feeds: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "The feeds to watch.",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     options: nix.thunk(() => ({
-                      __proto__: pos$7,
+                      [nix.POS]: pos$7,
                       url: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$5,
+                          [nix.POS]: pos$5,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "The URL at which to fetch the feed.",
                         })))),
                       to: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -114,20 +114,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$37,
+        [nix.POS]: pos$37,
         users: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           groups: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             rss2email: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "rss2email")),
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             rss2email: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               description: "rss2email user",
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "rss2email")),
               group: "rss2email",
@@ -135,44 +135,44 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [nix.thunk(() => nix.lookup(w, "rss2email"))];
           })()),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           rss2email: nix.thunk(() => ({
-            __proto__: pos$20,
-            config: nix.thunk(() => ({ __proto__: pos$19, to: nix.thunk(() => nix.sel(cfg, "to")) })),
+            [nix.POS]: pos$20,
+            config: nix.thunk(() => ({ [nix.POS]: pos$19, to: nix.thunk(() => nix.sel(cfg, "to")) })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             settings: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               "10-rss2email": nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 "/var/rss2email": nix.thunk(() => ({
-                  __proto__: pos$23,
-                  d: nix.thunk(() => ({ __proto__: pos$22, user: "rss2email", group: "rss2email", mode: "0700" })),
+                  [nix.POS]: pos$23,
+                  d: nix.thunk(() => ({ [nix.POS]: pos$22, user: "rss2email", group: "rss2email", mode: "0700" })),
                 })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             rss2email: nix.thunk(() => (() => {
-              const conf = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "rss2email.cfg", nix.thunk(() => nix.app(nix.sel(lib, "generators", "toINI"), nix.thunk(() => ({})), nix.thunk(() => nix.update({ __proto__: pos$27, DEFAULT: nix.thunk(() => nix.sel(cfg, "config")) }, nix.app(nix.sel(lib, "mapAttrs'"), (name) => (feed) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`feed.${name}`), nix.thunk(() => nix.update({ __proto__: pos$28, url: nix.thunk(() => nix.attr(feed, "url")) }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(feed, "to"), null)), nix.thunk(() => ({ __proto__: pos$29, to: nix.thunk(() => nix.attr(feed, "to")) })))))), nix.thunk(() => nix.sel(cfg, "feeds")))))))));
+              const conf = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "rss2email.cfg", nix.thunk(() => nix.app(nix.sel(lib, "generators", "toINI"), nix.thunk(() => ({})), nix.thunk(() => nix.update({ [nix.POS]: pos$27, DEFAULT: nix.thunk(() => nix.sel(cfg, "config")) }, nix.app(nix.sel(lib, "mapAttrs'"), (name) => (feed) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`feed.${name}`), nix.thunk(() => nix.update({ [nix.POS]: pos$28, url: nix.thunk(() => nix.attr(feed, "url")) }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(feed, "to"), null)), nix.thunk(() => ({ [nix.POS]: pos$29, to: nix.thunk(() => nix.attr(feed, "to")) })))))), nix.thunk(() => nix.sel(cfg, "feeds")))))))));
               return {
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 preStart: "if [ ! -f /var/rss2email/db.json ]; then\n  echo '{\"version\":2,\"feeds\":[]}' > /var/rss2email/db.json\nfi\n",
                 path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "system-sendmail"))]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "rss2email")}/bin/r2e -c ${conf} -d /var/rss2email/db.json run`),
                   User: "rss2email",
                 })),
@@ -180,13 +180,13 @@ export default nix.lambda((args) => (() => {
             })()),
           })),
           timers: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             rss2email: nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               partOf: nix.thunk(() => ["rss2email.service"]),
               wantedBy: nix.thunk(() => ["timers.target"]),
               timerConfig: nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 OnBootSec: "0",
                 OnUnitActiveSec: nix.thunk(() => nix.sel(cfg, "interval")),
               })),

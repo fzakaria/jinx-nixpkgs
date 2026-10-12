@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const logs = nix.arg($, "logs");
   const miou = nix.arg($, "miou");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "caqti-miou",
       version: nix.thunk(() => nix.attr(caqti, "version")),
       src: nix.thunk(() => nix.attr(caqti, "src")),
       minimalOCamlVersion: "5.1",
       propagatedBuildInputs: nix.thunk(() => [caqti, logs, miou]),
-      meta: nix.thunk(() => nix.update(nix.sel(caqti, "meta"), { __proto__: pos$1, description: "Miou support for Caqti" })),
+      meta: nix.thunk(() => nix.update(nix.sel(caqti, "meta"), { [nix.POS]: pos$1, description: "Miou support for Caqti" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=miou.ts.map

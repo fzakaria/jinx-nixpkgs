@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const fcitx5 = nix.arg($, "fcitx5");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fcitx5-array",
       version: "1.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ray2501",
           repo: "fcitx5-array",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       ]),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Array wrapper for Fcitx5",
         homepage: "https://github.com/ray2501/fcitx5-array",
         license: nix.thunk(() => (() => {

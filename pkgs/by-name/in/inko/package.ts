@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "inko",
       version: "0.21.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "inko-lang",
           repo: "inko",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [llvm, makeWrapper]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         INKO_STD: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib`),
         INKO_RT: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/runtime`),
       })),
@@ -54,16 +54,16 @@ export default nix.lambda((args) => (() => {
 `),
       postInstall: "mkdir -p $out/lib/runtime\nmv $out/lib/*.a $out/lib/runtime/\ncp -r std/src/* $out/lib/\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           simple: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test.nix"), nix.thunk(() => ({})))),
         })),
       })),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Language for building concurrent software with confidence",
         homepage: "https://inko-lang.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

@@ -39,12 +39,12 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
     const pkgs = nix.arg($, "pkgs");
     const lib = nix.arg($, "lib");
     return {
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       name: "pomerium",
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           maintainers: nix.thunk(() => [
             nix.thunk(() => nix.lookup(w, "lukegb")),
             nix.thunk(() => nix.lookup(w, "devusb")),
@@ -57,24 +57,24 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
           const pkgs_1 = nix.arg($_1, "pkgs");
           const lib_1 = nix.arg($_1, "lib");
           return {
-            __proto__: pos$11,
-            virtualisation: nix.thunk(() => ({ __proto__: pos$2, vlans: nix.thunk(() => [1n]) })),
+            [nix.POS]: pos$11,
+            virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, vlans: nix.thunk(() => [1n]) })),
             networking: nix.thunk(() => ({
-              __proto__: pos$10,
-              dhcpcd: nix.thunk(() => ({ __proto__: pos$3, enable: false })),
-              firewall: nix.thunk(() => ({ __proto__: pos$4, allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
+              [nix.POS]: pos$10,
+              dhcpcd: nix.thunk(() => ({ [nix.POS]: pos$3, enable: false })),
+              firewall: nix.thunk(() => ({ [nix.POS]: pos$4, allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
               hosts: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 "192.168.1.1": nix.thunk(() => ["pomerium", "pom-auth"]),
                 "192.168.1.2": nix.thunk(() => ["backend", "dummy-oidc"]),
               })),
               interfaces: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 eth1: nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   ipv4: nix.thunk(() => ({
-                    __proto__: pos$7,
-                    addresses: nix.thunk(() => nix.app(nix.sel(pkgs_1, "lib", "mkOverride"), 0n, nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$6, address: myIP, prefixLength: 24n }))]))),
+                    [nix.POS]: pos$7,
+                    addresses: nix.thunk(() => nix.app(nix.sel(pkgs_1, "lib", "mkOverride"), 0n, nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$6, address: myIP, prefixLength: 24n }))]))),
                   })),
                 })),
               })),
@@ -82,28 +82,28 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
           };
         })(), formals$2);
         return {
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           pomerium: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$3);
             const pkgs_1 = nix.arg($_1, "pkgs");
             const lib_1 = nix.arg($_1, "lib");
             return {
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               imports: nix.thunk(() => [nix.thunk(() => nix.app(base, "192.168.1.1"))]),
               environment: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 systemPackages: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(pkgs_1, null);
                   return [nix.thunk(() => nix.lookup(w_1, "chromium"))];
                 })()),
               })),
               services: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 pomerium: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   enable: true,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     address: ":80",
                     insecure_server: true,
                     authenticate_service_url: "http://pom-auth",
@@ -113,14 +113,14 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
                     idp_provider_url: "http://dummy-oidc",
                     policy: nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         from: "https://my.website",
                         to: "http://192.168.1.2",
                         allow_public_unauthenticated_access: true,
                         preserve_host_header: true,
                       })),
                       nix.thunk(() => ({
-                        __proto__: pos$14,
+                        [nix.POS]: pos$14,
                         from: "https://login.required",
                         to: "http://192.168.1.2",
                         allowed_domains: nix.thunk(() => ["my.domain"]),
@@ -138,21 +138,21 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
             const pkgs_1 = nix.arg($_1, "pkgs");
             const lib_1 = nix.arg($_1, "lib");
             return {
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               imports: nix.thunk(() => [nix.thunk(() => nix.app(base, "192.168.1.2"))]),
               services: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 nginx: nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   enable: true,
                   virtualHosts: nix.thunk(() => ({
-                    __proto__: pos$21,
+                    [nix.POS]: pos$21,
                     "my.website": nix.thunk(() => ({
-                      __proto__: pos$19,
+                      [nix.POS]: pos$19,
                       root: nix.thunk(() => nix.app(nix.sel(pkgs_1, "runCommand"), "testdir", nix.thunk(() => ({})), "mkdir \"$out\"\necho hello world > \"$out/index.html\"\n")),
                     })),
                     "dummy-oidc": nix.thunk(() => ({
-                      __proto__: pos$20,
+                      [nix.POS]: pos$20,
                       root: nix.thunk(() => nix.app(nix.sel(pkgs_1, "runCommand"), "testdir", nix.thunk(() => ({})), "mkdir -p \"$out/.well-known\"\ncat <<EOF >\"$out/.well-known/openid-configuration\"\n  {\n    \"issuer\": \"http://dummy-oidc\",\n    \"authorization_endpoint\": \"http://dummy-oidc/auth.txt\",\n    \"token_endpoint\": \"http://dummy-oidc/token\",\n    \"jwks_uri\": \"http://dummy-oidc/jwks.json\",\n    \"userinfo_endpoint\": \"http://dummy-oidc/userinfo\",\n    \"id_token_signing_alg_values_supported\": [\"RS256\"]\n  }\nEOF\necho hello I am login page >\"$out/auth.txt\"\n")),
                     })),
                   })),

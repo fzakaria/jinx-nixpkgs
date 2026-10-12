@@ -25,20 +25,20 @@ export default nix.lambda((args) => (() => {
   const pname = "fleet";
   const version = "4.92.1";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "fleetdm",
       repo: "fleet",
       tag: nix.thunk(() => nix.str`fleet-v${version}`),
       hash: "sha256-O6BXxILefLY8zAUGsiAGixcD35+mpm/631s6711A5RE=",
     }))));
   const frontend = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.str`${pname}-frontend`),
       version: version,
       src: src,
       nativeBuildInputs: nix.thunk(() => [yarnConfigHook, yarnBuildHook, nodejs_24]),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.add(src, "/yarn.lock")),
           hash: "sha256-ZhkCkaX6mzavOAfSyK81s6wVN59VvBkRVBfgIfw17vE=",
         })))),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out/assets\ncp -r assets/* $out/assets/\n\nmkdir -p $out/frontend/templates\ncp frontend/templates/react.tmpl $out/frontend/templates/react.tmpl\n\nrunHook postInstall\n",
     }))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: version,
       src: src,
@@ -70,9 +70,9 @@ go-bindata -pkg=bindata -tags full \\
       versionCheckProgramArg: "version",
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       __darwinAllowLocalNetworking: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$4, frontend: frontend })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, frontend: frontend })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/fleetdm/fleet",
         changelog: nix.thunk(() => nix.str`https://github.com/fleetdm/fleet/releases/tag/fleet-v${nix.sel(finalAttrs, "version")}`),
         description: "CLI tool to launch Fleet server",

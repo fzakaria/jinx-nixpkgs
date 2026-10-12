@@ -63,11 +63,11 @@ find ${nix.sel(d, "path")} -type f -exec chmod a-x {} +
   const libcInc = nix.thunk(() => nix.app(nix.sel(lib, "getDev"), libc));
   const libcLib = nix.thunk(() => nix.app(nix.sel(lib, "getLib"), libc));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => nix.update({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       version: version,
       pname: "perl",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://cpan/src/5.0/perl-${version}.tar.gz`),
           sha256: sha256,
         })))),
@@ -76,9 +76,9 @@ find ${nix.sel(d, "path")} -type f -exec chmod a-x {} +
       setOutputFlags: false,
       propagatedBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(enableCrypt) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isFreeBSD"))))), libxcrypt)),
       outputChecks: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         out: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           disallowedReferences: nix.thunk(() => [nix.thunk(() => nix.sel(stdenv, "cc"))]),
         })),
       })),
@@ -138,13 +138,13 @@ ZLIB_LIB     = ${nix.sel(zlib, "out")}/lib
       configurePlatforms: [],
       setupHook: nix.path(here, "./setup-hook.sh"),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(stdenv, "hasCC")) && nix.asBool(nix.sel(stdenv, "cc", "isClang")))) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "version")), "21")))), "-fno-strict-aliasing")),
       })),
       passthru: nix.thunk(() => (() => {
         const inputs$ = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (n) => (v) => (nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "isDerivation"), v))) && nix.asBool(!nix.eq(n, "passthruFun"))), inputs));
         const override = (attr) => (() => {
-          const perl = nix.thunk(() => nix.app(nix.sel(attr, "override"), nix.thunk(() => nix.update(inputs$, { __proto__: pos$5, self: perl }))));
+          const perl = nix.thunk(() => nix.app(nix.sel(attr, "override"), nix.thunk(() => nix.update(inputs$, { [nix.POS]: pos$5, self: perl }))));
           return nix.force(perl);
         })();
         return nix.app(passthruFun, nix.thunk(() => (() => {
@@ -157,15 +157,15 @@ ZLIB_LIB     = ${nix.sel(zlib, "out")}/lib
             const perlOnHostForHost = nix.thunk(() => nix.app(override, nix.thunk(() => nix.sel(pkgsHostHost, nix.key(nix.force(perlAttr_1))))));
             const perlOnTargetForTarget = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "hasAttr"), perlAttr_1, pkgsTargetTarget)) ? nix.app(override, nix.thunk(() => nix.sel(pkgsTargetTarget, nix.key(nix.force(perlAttr_1))))) : {}));
             const tests = nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               withCheck: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (_) => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   preCheck: "# Weird test failure, can't even understand what it's about\n# Disable the test for now\nsed -i '/ext\\/Pod-Html\\/t\\/htmldir3.*/d' MANIFEST\n",
                   doCheck: true,
                 }))),
             }));
             return {
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               self: self_1,
               perlAttr: perlAttr_1,
               overrides: overrides_1,
@@ -214,7 +214,7 @@ wrapProgram $mini/bin/perl --prefix PERL5LIB : \\
 `)))),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         homepage: "https://www.perl.org/",
         description: "Standard implementation of the Perl 5 programming language",
         license: nix.thunk(() => nix.sel(lib, "licenses", "artistic1")),
@@ -227,14 +227,14 @@ wrapProgram $mini/bin/perl --prefix PERL5LIB : \\
         priority: 6n,
         mainProgram: "perl",
         identifiers: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "perl", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),
     }, nix.app(nix.sel(lib, "optionalAttrs"), crossCompiling, nix.thunk(() => (() => {
         const crossVersion = "1.6.4";
         const perl_cross_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             name: nix.thunk(() => nix.str`perl-cross-${crossVersion}`),
             owner: "arsv",
             repo: "perl-cross",
@@ -253,7 +253,7 @@ cp -R ${nix.sel(perl_cross_src, "name")}/* perl-${version}/
         const configurePlatforms = nix.thunk(() => ["build", "host", "target"]);
         const setupHook = nix.path(here, "./setup-hook-cross.sh");
         return {
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           crossVersion,
           "perl-cross-src": perl_cross_src,
           patches,

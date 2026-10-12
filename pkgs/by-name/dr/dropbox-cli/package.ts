@@ -25,18 +25,18 @@ export default nix.lambda((args) => (() => {
   const version = "2024.04.17";
   const dropboxd = nix.thunk(() => nix.str`${dropbox}/bin/dropbox`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dropbox-cli",
       version: version,
       outputs: nix.thunk(() => ["out", "nautilusExtension"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://linux.dropbox.com/packages/nautilus-dropbox-${version}.tar.bz2`),
           hash: "sha256-pqCYzxaqR0f0CBaseT1Z436K47cIDQswYR1sK4Zj8sE=",
         })))),
       strictDeps: true,
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-cli-paths.patch"), nix.thunk(() => ({ __proto__: pos$2, dropboxd: dropboxd, DESKTOP_FILE_DIR: null })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-cli-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, dropboxd: dropboxd, DESKTOP_FILE_DIR: null })))),
       ]),
       nativeBuildInputs: nix.thunk(() => [
         autoreconfHook,
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`EMBLEM_DIR=${nix.builtins.placeholder("nautilusExtension")}/share/nautilus-dropbox/emblems`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.dropbox.com",
         description: "Command line client for the dropbox daemon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "drone-cli";
       const revision = nix.thunk(() => nix.str`v${version}`);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "harness",
           repo: "drone-cli",
           rev: revision,
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [nix.path(here, "./0001-use-builtin-go-syscerts.patch")]);
       const ldflags = nix.thunk(() => [nix.thunk(() => nix.str`-X main.version=${version}`)]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mainProgram: "drone",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         homepage: "https://github.com/harness/drone-cli",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         pname,
         revision,

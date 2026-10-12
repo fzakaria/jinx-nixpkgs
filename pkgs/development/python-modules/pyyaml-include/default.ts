@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tanbro",
           repo: "pyyaml-include",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["yaml_include"]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extending PyYAML with a custom constructor for including YAML files within YAML files",
         homepage: "https://github.com/tanbro/pyyaml-include",
         changelog: nix.thunk(() => nix.str`https://github.com/tanbro/pyyaml-include/blob/v${version}/CHANGELOG.md`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

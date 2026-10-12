@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ethash";
       const version = "1.1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chfast",
           repo: "ethash",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [gbenchmark, gtest]);
       const cmakeFlags = nix.thunk(() => ["-DHUNTER_ENABLED=OFF", "-DETHASH_BUILD_TESTS=OFF"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PoW algorithm for Ethereum 1.0 based on Dagger-Hashimoto",
         homepage: "https://github.com/ethereum/ethash",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

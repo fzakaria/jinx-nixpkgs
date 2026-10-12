@@ -48,8 +48,8 @@ export default nix.lambda((args) => (() => {
     })() : false);
     const toContextlessString = (x) => nix.app(unsafeDiscardStringContext, nix.thunk(() => nix.builtins.toString(x)));
     const warn = nix.thunk(() => (nix.asBool(verbose) ? nix.sel(lib, "warn") : (x) => (y) => nix.force(y)));
-    const referencesOf = (drv_1) => nix.builtins.import(nix.thunk(() => nix.sel(nix.app(runCommandLocal, "references.nix", nix.thunk(() => ({ __proto__: pos$1, exportReferencesGraph: nix.thunk(() => ["graph", drv_1]) })), "(echo {\nwhile read path\ndo\n    echo \"  \\\"$path\\\" = [\"\n    read count\n    read count\n    while [ \"0\" != \"$count\" ]\n    do\n        read ref_path\n        if [ \"$ref_path\" != \"$path\" ]\n        then\n            echo \"    \\\"$ref_path\\\"\"\n        fi\n        count=$(($count - 1))\n    done\n    echo \"  ];\"\ndone < graph\necho }) > $out\n"), "outPath")));
-    const realisation = (drv_1) => (nix.asBool(nix.app(isNonCaStorePath, drv_1)) ? nix.app(toContextlessString, drv_1) : nix.app(unsafeDiscardStringContext, nix.thunk(() => nix.app(readFile, nix.thunk(() => nix.app(runCommandLocal, "realisation", nix.thunk(() => ({ __proto__: pos$3, env: nix.thunk(() => ({ __proto__: pos$2, drv: drv_1 })) })), "echo -n \"$drv\" > $out\n"))))));
+    const referencesOf = (drv_1) => nix.builtins.import(nix.thunk(() => nix.sel(nix.app(runCommandLocal, "references.nix", nix.thunk(() => ({ [nix.POS]: pos$1, exportReferencesGraph: nix.thunk(() => ["graph", drv_1]) })), "(echo {\nwhile read path\ndo\n    echo \"  \\\"$path\\\" = [\"\n    read count\n    read count\n    while [ \"0\" != \"$count\" ]\n    do\n        read ref_path\n        if [ \"$ref_path\" != \"$path\" ]\n        then\n            echo \"    \\\"$ref_path\\\"\"\n        fi\n        count=$(($count - 1))\n    done\n    echo \"  ];\"\ndone < graph\necho }) > $out\n"), "outPath")));
+    const realisation = (drv_1) => (nix.asBool(nix.app(isNonCaStorePath, drv_1)) ? nix.app(toContextlessString, drv_1) : nix.app(unsafeDiscardStringContext, nix.thunk(() => nix.app(readFile, nix.thunk(() => nix.app(runCommandLocal, "realisation", nix.thunk(() => ({ [nix.POS]: pos$3, env: nix.thunk(() => ({ [nix.POS]: pos$2, drv: drv_1 })) })), "echo -n \"$drv\" > $out\n"))))));
     const rootReferences = nix.thunk(() => nix.app(referencesOf, drv));
     const relevantReplacements = nix.thunk(() => nix.app(filter, nix.lambda((args_2) => (() => {
         const $_2 = nix.formals(args_2, formals$3);
@@ -63,13 +63,13 @@ export default nix.lambda((args) => (() => {
         return nix.force(newDependency);
       })(), formals$4), relevantReplacements)));
     const referencesMemo = nix.thunk(() => nix.app(listToAttrs, nix.thunk(() => nix.builtins.map((drv_1) => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           name: nix.thunk(() => nix.app(realisation, drv_1)),
           value: nix.thunk(() => nix.app(referencesOf, drv_1)),
         }), targetDerivations))));
     const relevantReferences = nix.thunk(() => nix.app(mergeAttrsList, nix.thunk(() => nix.app(attrValues, referencesMemo))));
-    const storePathOrKnownTargetDerivationMemo = nix.thunk(() => nix.update(nix.app(mapAttrs, (drv_1) => (_references) => nix.app(appendContext, drv_1, nix.thunk(() => nix.attrsDyn({}, [[nix.force(drv_1), nix.thunk(() => ({ __proto__: pos$5, path: true }))]]))), relevantReferences), nix.app(listToAttrs, nix.thunk(() => nix.builtins.map((drv_1) => ({
-          __proto__: pos$6,
+    const storePathOrKnownTargetDerivationMemo = nix.thunk(() => nix.update(nix.app(mapAttrs, (drv_1) => (_references) => nix.app(appendContext, drv_1, nix.thunk(() => nix.attrsDyn({}, [[nix.force(drv_1), nix.thunk(() => ({ [nix.POS]: pos$5, path: true }))]]))), relevantReferences), nix.app(listToAttrs, nix.thunk(() => nix.builtins.map((drv_1) => ({
+          [nix.POS]: pos$6,
           name: nix.thunk(() => nix.app(realisation, drv_1)),
           value: drv_1,
         }), targetDerivations)))));
@@ -77,12 +77,12 @@ export default nix.lambda((args) => (() => {
         const rewrittenReferences = nix.thunk(() => nix.app(filter, (dep) => (nix.asBool(!nix.eq(dep, drv_1)) && nix.asBool(!nix.eq(nix.builtins.toString(nix.thunk(() => nix.sel(rewriteMemo, nix.key(nix.force(dep))))), dep))), references));
         const rewrites = nix.thunk(() => nix.app(getAttrs, rewrittenReferences, rewriteMemo));
         return nix.app(replaceDirectDependencies, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             drv: nix.thunk(() => nix.sel(storePathOrKnownTargetDerivationMemo, nix.key(nix.force(drv_1)))),
-            replacements: nix.thunk(() => nix.app(mapAttrsToList, (name) => (value) => ({ __proto__: pos$7, oldDependency: name, newDependency: value }), rewrites)),
+            replacements: nix.thunk(() => nix.app(mapAttrsToList, (name) => (value) => ({ [nix.POS]: pos$7, oldDependency: name, newDependency: value }), rewrites)),
           })));
       })(), relevantReferences), nix.update(nix.app(listToAttrs, nix.thunk(() => nix.builtins.map((drv_1) => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           name: nix.thunk(() => nix.app(realisation, drv_1)),
           value: nix.thunk(() => nix.sel(storePathOrKnownTargetDerivationMemo, nix.key(nix.app(realisation, drv_1)))),
         }), cutoffPackages))), nix.app(listToAttrs, nix.thunk(() => nix.builtins.map(nix.lambda((args_2) => (() => {
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
           const oldDependency = nix.arg($_2, "oldDependency");
           const newDependency = nix.arg($_2, "newDependency");
           return {
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             name: nix.thunk(() => nix.app(realisation, oldDependency)),
             value: nix.thunk(() => nix.sel(rewriteMemo, nix.key(nix.app(realisation, newDependency)))),
           };

@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const qtwayland = nix.arg($, "qtwayland");
   const plasma_workspace = nix.arg($, "plasma-workspace");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "plasma-mobile",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),
       extraBuildInputs: nix.thunk(() => [qtsensors, qtwayland]),
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
     "$out/libexec/plasma-dbus-run-session-if-needed" \\
     "${plasma_workspace}/libexec/plasma-dbus-run-session-if-needed"
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$1, providedSessions: nix.thunk(() => ["plasma-mobile"]) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, providedSessions: nix.thunk(() => ["plasma-mobile"]) })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

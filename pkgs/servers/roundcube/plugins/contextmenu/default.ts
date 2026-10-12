@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
       const pname = "contextmenu";
       const version = "3.3.1";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/johndoh/roundcube-contextmenu/archive/refs/tags/${version}.tar.gz`),
           sha256: "0aya3nv8jwfvd9rlvxfxnyfpdcpw858745xal362l3zzkbkhcrmb",
         }))));
-      return { __proto__: pos$2, pname, version, src };
+      return { [nix.POS]: pos$2, pname, version, src };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

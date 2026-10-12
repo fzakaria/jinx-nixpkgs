@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ondir",
       version: "0.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alecthomas",
           repo: "ondir",
           rev: "cb2f9f8b21e336165fc0a310d677fda75c8e8513",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\nmake DESTDIR=\"$out\" PREFIX= install\ncp scripts.* $out\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Small program to automate tasks specific to certain directories",
         longDescription: "It works by executing scripts in directories when you enter and leave them.\nThis is done by overriding the shell builtins cd, pushd, and popd,\n which is a manual action.\nThe user is required to add a snippet to their shell initialisation file like .bashrc or .profile.\n\nWhich commands are executed on directory entry and leave is done\n in predefined locations with a .ondirrc file.\n\nSee man ondir for more information\n",
         homepage: "https://github.com/alecthomas/ondir/",

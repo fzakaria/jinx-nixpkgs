@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const nix_prefetch_scripts = nix.arg($, "nix-prefetch-scripts");
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: nix.thunk(() => nix.attr(cabal2nix_unwrapped, "pname")),
       version: nix.thunk(() => nix.attr(cabal2nix_unwrapped, "version")),
       meta: nix.thunk(() => nix.attr(cabal2nix_unwrapped, "meta")),

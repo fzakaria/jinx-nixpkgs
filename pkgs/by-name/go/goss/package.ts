@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const pname = "goss";
       const version = "0.4.10";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "goss-org",
           repo: "goss",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-4DCPPeTL2x6mMpcP/cdyQWpqehGWkk7MWM7P93WzwCA=",
         }))));
       const vendorHash = "sha256-NlOS5APp9R45QpYKwP673pmN7CR+Ufz8LxWyMkrVeq0=";
-      const env = nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n }));
       const ldflags = nix.thunk(() => [
         "-s",
         "-w",
@@ -50,12 +50,12 @@ export default nix.lambda((args) => (() => {
 `;
       })());
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           goss: nix.thunk(() => nix.attr(nixosTests, "goss")),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               command: "goss --version",
               package: goss,
               version: nix.thunk(() => nix.str`v${version}`),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://github.com/goss-org/goss/",
         changelog: nix.thunk(() => nix.str`https://github.com/goss-org/goss/releases/tag/v${version}`),
         description: "Quick and easy server validation",
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

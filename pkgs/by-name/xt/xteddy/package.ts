@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const imlib2 = nix.arg($, "imlib2");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xteddy",
       version: "2.2-5",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "salsa.debian.org",
           owner: "games-team",
           repo: "xteddy",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "cp -R images $out/share/images\n# remove broken test script\nrm $out/bin/xteddy_test\n",
       postFixup: "# this is needed, because xteddy expects images to reside\n# in the current working directory\nwrapProgram $out/bin/xteddy --chdir \"$out/share/images/\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cuddly teddy bear for your X desktop",
         homepage: "https://salsa.debian.org/games-team/xteddy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

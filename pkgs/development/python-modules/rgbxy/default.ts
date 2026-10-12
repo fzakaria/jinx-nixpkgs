@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rgbxy",
       version: "0.5-unstable-2025-12-16",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "benknight",
           repo: "hue-python-rgb-converter",
           rev: "22a09c3c7d395b6e7b91b5f82944ccf1a7e9e47a",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       pythonImportsCheck: nix.thunk(() => ["rgbxy"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "RGB conversion tool written in Python for Philips Hue",
         homepage: "https://github.com/benknight/hue-python-rgb-converter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

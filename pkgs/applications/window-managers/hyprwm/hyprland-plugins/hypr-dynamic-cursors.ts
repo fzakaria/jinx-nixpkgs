@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(mkHyprlandPlugin, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pluginName: "hypr-dynamic-cursors",
       version: "0-unstable-2026-07-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "VirtCode",
           repo: "hypr-dynamic-cursors",
           rev: "f5ba36c7622098b53bf62ddb8ddf03b914abbdf8",
@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
       dontUseCmakeConfigure: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib\nmv out/dynamic-cursors.so $out/lib/libhypr-dynamic-cursors.so\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Plugin to make your Hyprland cursor more realistic",
         homepage: "https://github.com/VirtCode/hypr-dynamic-cursors",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

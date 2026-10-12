@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "rapidxml";
       const version = "1.13";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/rapidxml/rapidxml-${version}.zip`),
           sha256: "0w9mbdgshr6sh6a5jr10lkdycjyvapbj7wxwz8hbp0a96y3biw63",
         }))));
@@ -26,14 +26,14 @@ export default nix.lambda((args) => (() => {
 cp * $out/include/${pname}
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fast XML DOM-style parser in C++",
         homepage: "https://rapidxml.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "boost")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         maintainers: [],
       }));
-      return { __proto__: pos$3, pname, version, src, nativeBuildInputs, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

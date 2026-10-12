@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const bash = nix.arg($, "bash");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "patchance",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/Houston4444/Patchance/releases/download/v${nix.sel(finalAttrs, "version")}/Patchance-${nix.sel(finalAttrs, "version")}-source.tar.gz`),
           hash: "sha256-wlkEKkPH2C/y7TQicIVycWbtLUdX2hICcUWi7nFN51w=",
         })))),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       preFixup: "makeWrapperArgs+=(\"${qtWrapperArgs[@]}\")\n",
       postFixup: "wrapPythonProgramsIn \"$out/share/patchance/src\" \"$out ${pythonPath[*]}\"\nfor file in $out/bin/*; do\n  wrapQtApp \"$file\"\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/Houston4444/Patchance",
         description: "JACK Patchbay GUI",
         mainProgram: "patchance",

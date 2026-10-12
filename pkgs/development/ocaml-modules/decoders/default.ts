@@ -14,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const containers = nix.arg($, "containers");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "decoders",
       version: "1.0.0",
       minimalOCamlVersion: "4.03.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mattjbray/ocaml-decoders/releases/download/v${nix.sel(finalAttrs, "version")}/decoders-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-R/55xBAtD3EO/zzq7zExANnfPHlFg00884o5dCpXNZc=",
         })))),
       doCheck: true,
       checkInputs: nix.thunk(() => [containers]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Elm-inspired decoders for Ocaml",
         homepage: "https://github.com/mattjbray/ocaml-decoders",
         changelog: nix.thunk(() => nix.str`https://github.com/mattjbray/ocaml-decoders/blob/v${nix.sel(finalAttrs, "version")}/CHANGES.md`),

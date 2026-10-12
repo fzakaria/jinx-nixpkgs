@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hetzner-kube",
       version: "0.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xetys",
           repo: "hetzner-kube",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: "# Need a writable home, because it fails if unable to write config.\nexport HOME=$TMP\n$out/bin/hetzner-kube completion bash > hetzner-kube\n$out/bin/hetzner-kube completion zsh > _hetzner-kube\ninstallShellCompletion --zsh _hetzner-kube\ninstallShellCompletion --bash hetzner-kube\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI tool for provisioning Kubernetes clusters on Hetzner Cloud",
         mainProgram: "hetzner-kube",
         homepage: "https://github.com/xetys/hetzner-kube",

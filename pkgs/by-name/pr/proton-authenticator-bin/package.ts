@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       strictDeps: true,
       __structuredAttrs: true,
       pname: "proton-authenticator",
       version: "1.1.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://proton.me/download/authenticator/linux/ProtonAuthenticator_${nix.sel(finalAttrs, "version")}_amd64.deb`),
           hash: "sha256-jHtqBdGE9+Kz5sjPMrCDnHKX0NLscO5Dp4pYYE8L2iU=",
         })))),
@@ -45,7 +45,7 @@ runHook postInstall
 )
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Two-factor authentication manager with optional sync",
         longDescription: "This package provides proton-authenticator as a pre-built binary.\n\nChanged: proton-authenticator is now source-compiled by default.\nUse this package (proton-authenticator-bin) if you prefer the pre-built binary\ninstead of building from source.\n",
         homepage: "https://proton.me/authenticator",

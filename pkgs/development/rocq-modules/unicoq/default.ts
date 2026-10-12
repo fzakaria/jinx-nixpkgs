@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const coq = nix.arg($, "coq");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "unicoq",
       owner: "unicoq",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (case$_1) => (out) => ({ __proto__: pos$1, case: case$_1, out: out });
+        const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$1, case: case$_1, out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "version")), nix.thunk(() => [
             nix.thunk(() => nix.app(case$, nix.thunk(() => nix.app(nix.lookup(w, "range"), "9.1", "9.1")), "1.6-9.1")),
@@ -32,25 +32,25 @@ export default nix.lambda((args) => (() => {
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "1.6-9.1": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           rev: "0cf37ef7e638bfaad6e804e17bd80e7bb0e1b717",
           hash: "sha256-1EKDkj33pg3AsEpckZYqWppPUZV2OkxM2xLq2zvZGMQ=",
         })),
         "1.6-8.20": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           hash: "sha256-zne9LB0lGdqUfrBe8cDK8fwuxfBDFU4PqNlt9nl7rNI=",
         })),
         "1.6-8.19": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           hash: "sha256-fDk60B8AzJwiemxHGgWjNu6PTu6NcJoI9uK7Ww2AT14=",
         })),
       })),
       releaseRev: (v) => nix.str`v${v}`,
       mlPlugin: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Enhanced unification algorithm for Coq",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const help2man = nix.arg($, "help2man");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libiff",
       version: "0-unstable-2024-03-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "svanderburg",
           repo: "libiff",
           rev: "b5f542a83c824f26e0816770c9a17c22bd388606",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, help2man]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Parser for the Interchange File Format (IFF)",
         longDescription: "libiff is a portable, extensible parser library implemented in\nANSI C, for EA-IFF 85: Electronic Arts' Interchange File Format\n(IFF).\n",
         homepage: "https://github.com/svanderburg/libiff",

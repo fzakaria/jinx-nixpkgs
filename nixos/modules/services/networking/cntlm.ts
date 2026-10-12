@@ -47,63 +47,63 @@ ${nix.app(nix.sel(lib, "concatMapStrings"), (port) => nix.str`Listen ${nix.built
 ${nix.sel(cfg, "extraConfig")}
 `))));
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         cntlm: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "cntlm, which starts a local proxy")),
           username: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Proxy account name, without the possibility to include domain name ('at' sign is interpreted literally).\n",
             })))),
           domain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Proxy account domain/workgroup name.",
             })))),
           password: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: "/etc/cntlm.password",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Proxy account password. Note: use chmod 0600 on /etc/cntlm.password for security.",
             })))),
           netbios_hostname: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "",
               description: "The hostname of your machine.\n",
             })))),
           proxy: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "A list of NTLM/NTLMv2 authenticating HTTP proxies.\n\nParent proxy, which requires authentication. The same as proxy on the command-line, can be used more than  once  to  specify  unlimited\nnumber  of  proxies.  Should  one proxy fail, cntlm automatically moves on to the next one. The connect request fails only if the whole\nlist of proxies is scanned and (for each request) and found to be invalid. Command-line takes precedence over the configuration file.\n",
               example: nix.thunk(() => ["proxy.example.com:81"]),
             })))),
           noproxy: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               description: "A list of domains where the proxy is skipped.\n",
               default: [],
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               example: nix.thunk(() => ["*.example.com", "example.com"]),
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: nix.thunk(() => [3128n]),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "port")))),
               description: "Specifies on which ports the cntlm daemon listens.",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Additional config appended to the end of the generated {file}`cntlm.conf`.",
             })))),
           configText: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Verbatim contents of {file}`cntlm.conf`.",
@@ -112,18 +112,18 @@ ${nix.sel(cfg, "extraConfig")}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             cntlm: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "CNTLM is an NTLM / NTLM Session Response / NTLMv2 authenticating HTTP proxy",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 User: "cntlm",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "cntlm")}/bin/cntlm -U cntlm -c ${configFile} -v -f
 `),
@@ -132,11 +132,11 @@ ${nix.sel(cfg, "extraConfig")}
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           users: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             cntlm: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               name: "cntlm",
               description: "cntlm system-wide daemon",
               isSystemUser: true,

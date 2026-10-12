@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const secureBuild = nix.argOr($, "secureBuild", () => false);
   const soext = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mimalloc",
       version: "3.5.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "microsoft",
           repo: "mimalloc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       })()),
       nativeBuildInputs: nix.thunk(() => [cmake, ninja]),
       cmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "cmakeBool")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           MI_INSTALL_TOPLEVEL: true,
           MI_SECURE: secureBuild,
           MI_BUILD_SHARED: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "hasSharedLibraries")),
@@ -57,7 +57,7 @@ ln -sfv $out/lib/mimalloc-secure.o $out/lib/mimalloc.o
       })()),
       outputs: nix.thunk(() => ["out", "dev"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Compact, fast, general-purpose memory allocator",
         homepage: "https://github.com/microsoft/mimalloc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

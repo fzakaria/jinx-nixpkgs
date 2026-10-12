@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const numpy = nix.arg($, "numpy");
   const libndtypes = nix.arg($, "libndtypes");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "ndtypes",
       format: "setuptools",
       version: nix.thunk(() => nix.attr(libndtypes, "version")),

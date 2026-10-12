@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "arti",
       version: "2.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.torproject.org",
           group: "tpo",
           owner: "core",
@@ -44,19 +44,19 @@ export default nix.lambda((args) => (() => {
       buildFeatures: nix.thunk(() => ["full"]),
       checkFeatures: nix.thunk(() => ["full", "experimental-api"]),
       checkFlags: nix.thunk(() => ["--skip=reload_cfg::test::watch_single_file"]),
-      env: nix.thunk(() => ({ __proto__: pos$2, ARTI_FS_DISABLE_PERMISSION_CHECKS: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, ARTI_FS_DISABLE_PERMISSION_CHECKS: 1n })),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        tests: nix.thunk(() => ({ __proto__: pos$3, tor: nix.thunk(() => nix.attr(nixosTests, "tor")) })),
+        [nix.POS]: pos$5,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, tor: nix.thunk(() => nix.attr(nixosTests, "tor")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             extraArgs: nix.thunk(() => ["--version-regex=^arti-v(.*)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Implementation of Tor in Rust",
         mainProgram: "arti",
         homepage: "https://arti.torproject.org/",

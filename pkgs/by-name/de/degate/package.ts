@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const boost183 = nix.arg($, "boost183");
   const libsForQt5 = nix.arg($, "libsForQt5");
-  const boost_static = nix.thunk(() => nix.app(nix.sel(boost183, "override"), nix.thunk(() => ({ __proto__: pos$1, enableStatic: true }))));
+  const boost_static = nix.thunk(() => nix.app(nix.sel(boost183, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableStatic: true }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "degate";
       const version = "2.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "DegateCommunity",
           repo: "Degate",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "catch2-2.13.9.patch",
             url: "https://github.com/DegateCommunity/Degate/commit/06346dde4312cbb867854899eacf58679d6ac7e2.patch",
             includes: nix.thunk(() => ["tests/catch2/catch.hpp"]),
             hash: "sha256-SbSA813QI8RRVy1lvAOGMGAC2KUQKjwYR2imqX40pvU=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "memorymap-macos.patch",
             url: "https://github.com/DegateCommunity/Degate/commit/04685b088f485b3b73c55b7bfb989d2f0c88e4ca.patch",
             includes: nix.thunk(() => ["src/Core/Utils/MemoryMap.h"]),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Modern and open-source cross-platform software for chips reverse engineering",
         mainProgram: "Degate",
         homepage: "https://degate.readthedocs.io/",
@@ -80,7 +80,7 @@ runHook postCheck
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

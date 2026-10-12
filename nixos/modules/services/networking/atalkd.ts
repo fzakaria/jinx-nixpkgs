@@ -31,30 +31,30 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "atalkd"));
   const atalkdConfFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "atalkd.conf", nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (iface) => (ifaceCfg) => nix.add(iface, (nix.asBool(!nix.eq(nix.sel(ifaceCfg, "config"), null)) ? nix.str` ${nix.sel(ifaceCfg, "config")}` : "")), nix.thunk(() => nix.sel(cfg, "interfaces"))))))));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         atalkd: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the AppleTalk daemon")),
           configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: atalkdConfFile,
               defaultText: "/nix/store/xxx-atalkd.conf",
               description: "Optional path to a custom {file}`atalkd.conf` file. When set, this overrides the generated\nconfiguration from `services.atalkd.interfaces`.\n",
             })))),
           interfaces: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               description: "Per-interface configuration for atalkd.",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     options: nix.thunk(() => ({
-                      __proto__: pos$3,
+                      [nix.POS]: pos$3,
                       config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$2,
+                          [nix.POS]: pos$2,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                           default: null,
                           description: "Optional configuration string for this interface.",
@@ -69,19 +69,19 @@ export default nix.lambda((args) => (() => {
     config: nix.thunk(() => (() => {
       const interfaces = nix.thunk(() => nix.builtins.map((iface) => nix.str`sys-subsystem-net-devices-${nix.app(nix.sel(utils, "escapeSystemdPath"), iface)}.device`, nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.sel(cfg, "interfaces"))))));
       return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           system: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             requiredKernelConfig: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(config, "lib", "kernelConfig", "isEnabled"), "APPLETALK")),
             ]),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             services: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               netatalk: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 partOf: nix.thunk(() => ["atalkd.service"]),
                 after: interfaces,
                 requires: interfaces,
@@ -89,9 +89,9 @@ export default nix.lambda((args) => (() => {
               atalkd: nix.thunk(() => (() => {
                 const interfaces_1 = nix.thunk(() => nix.builtins.map((iface) => nix.str`sys-subsystem-net-devices-${nix.app(nix.sel(utils, "escapeSystemdPath"), iface)}.device`, nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.sel(cfg, "interfaces"))))));
                 return {
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   description: "atalkd AppleTalk daemon",
-                  unitConfig: nix.thunk(() => ({ __proto__: pos$11, Documentation: "man:atalkd.conf(5) man:atalkd(8)" })),
+                  unitConfig: nix.thunk(() => ({ [nix.POS]: pos$11, Documentation: "man:atalkd.conf(5) man:atalkd(8)" })),
                   after: interfaces_1,
                   wants: nix.thunk(() => ["network.target"]),
                   before: nix.thunk(() => ["netatalk.service"]),
@@ -99,7 +99,7 @@ export default nix.lambda((args) => (() => {
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "netatalk"))]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     Type: "forking",
                     GuessMainPID: "no",
                     DynamicUser: true,
@@ -117,7 +117,7 @@ export default nix.lambda((args) => (() => {
         })));
     })()),
     meta: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "matthewcroughan"))];

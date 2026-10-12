@@ -15,10 +15,10 @@ export default nix.lambda((args) => (() => {
   const writeTextFile = nix.arg($, "writeTextFile");
   const veryWeirdName = "here's a name with some \"bad\" characters, like spaces and quotes";
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       "different-exe-name": nix.thunk(() => (() => {
         const pkg = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             name: "bar",
             destination: "/bin/foo",
             executable: true,
@@ -36,7 +36,7 @@ touch $out
 `));
       })()),
       "weird-name": nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "weird-names",
           destination: nix.thunk(() => nix.str`/etc/${veryWeirdName}`),
           text: "passed!",

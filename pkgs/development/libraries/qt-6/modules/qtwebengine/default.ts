@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
   const cctools = nix.arg($, "cctools");
   const xcbuild = nix.arg($, "xcbuild");
   return nix.app(qtModule, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "qtwebengine",
       nativeBuildInputs: nix.thunk(() => nix.concat([
         bison,
@@ -234,7 +234,7 @@ return()'
       preConfigure: "export NINJAFLAGS=\"-j$NIX_BUILD_CORES\"\n",
       separateDebugInfo: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Web engine based on the Chromium web browser",
         platforms: nix.thunk(() => [
           "aarch64-darwin",

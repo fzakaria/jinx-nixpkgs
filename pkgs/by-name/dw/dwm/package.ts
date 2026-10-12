@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const extraLibs = nix.argOr($, "extraLibs", () => nix.selOr(config, () => [], "dwm", "extraLibs"));
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "dwm",
       version: "6.8",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dl.suckless.org/dwm/dwm-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-mkMFmqV9NVGTdDGqW8f+T7r0YQNU1KDsn6uRcacoNco=",
         })))),
@@ -48,11 +48,11 @@ export default nix.lambda((args) => (() => {
         return nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(conf, null)), nix.thunk(() => nix.str`cp ${configFile} config.def.h`));
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, url: "git://git.suckless.org/dwm" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, url: "git://git.suckless.org/dwm" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://dwm.suckless.org/",
         description: "Extremely fast, small, and dynamic window manager for X",
         longDescription: "dwm is a dynamic window manager for X. It manages windows in tiled,\nmonocle and floating layouts. All of the layouts can be applied\ndynamically, optimising the environment for the application in use and the\ntask performed.\nWindows are grouped by tags. Each window can be tagged with one or\nmultiple tags. Selecting certain tags displays all windows with these\ntags.\n",

@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const crossandra = nix.arg($, "crossandra");
   const dahlia = nix.arg($, "dahlia");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "samarium",
       version: "0.6.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "samarium-lang",
           repo: "samarium",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [poetry_core]),
       dependencies: nix.thunk(() => [crossandra, dahlia]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/samarium-lang/samarium/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Samarium Programming Language",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

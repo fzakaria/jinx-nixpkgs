@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sony-dump",
       version: "0-unstable-2019-11-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "munjeni",
           repo: "anyxperia_dumper",
           rev: "2171258c9df50aba139b4bd1aa93295cd14d2262",
@@ -35,7 +35,7 @@ mv zlib-* zlib
       ]),
       installPhase: "runHook preInstall\ninstall -Dm555 sony_dump -t $out/bin\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/munjeni/anyxperia_dumper",
         description: "Tool to dump Sony Xperia boot images",
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),

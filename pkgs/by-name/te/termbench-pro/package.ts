@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const fmt = nix.arg($, "fmt");
   const glaze = nix.arg($, "glaze");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "termbench-pro",
       version: "unstable-2025-01-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "contour-terminal",
           repo: "termbench-pro",
           rev: "3a39a4ad592047dee3038d8bfcce84215ac55032",
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [
         fmt,
-        nix.thunk(() => nix.app(nix.sel(glaze, "override"), nix.thunk(() => ({ __proto__: pos$2, enableSSL: false })))),
+        nix.thunk(() => nix.app(nix.sel(glaze, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, enableSSL: false })))),
       ]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\nmkdir -p $out/lib\nmv tb/tb $out/bin\nmv libtermbench/libtermbench.* $out/lib\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Terminal Benchmarking as CLI and library",
         homepage: "https://github.com/contour-terminal/termbench-pro",
         mainProgram: "tb",

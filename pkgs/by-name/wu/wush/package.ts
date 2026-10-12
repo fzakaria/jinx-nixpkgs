@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const version = "0.4.1";
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "wush",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "coder",
           repo: "wush",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -27,9 +27,9 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-3/DDtqVj7NNoJlNmKC+Q+XGS182E9OYkKMZ/2viANNQ=",
       ldflags: nix.thunk(() => [nix.thunk(() => nix.str`-s -w -X main.version=${version}`)]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/coder/wush",
         description: "Transfer files between computers via WireGuard",
         changelog: nix.thunk(() => nix.str`https://github.com/coder/wush/releases/tag/v${version}`),

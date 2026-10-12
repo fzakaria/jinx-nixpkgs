@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const llvmPackages = nix.arg($, "llvmPackages");
   const enableOpenMP = nix.argOr($, "enableOpenMP", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wfa2-lib",
       version: "2.3.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "smarco",
           repo: "WFA2-lib",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DOPENMP=${(nix.asBool(enableOpenMP) ? "ON" : "OFF")}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Wavefront alignment algorithm library v2",
         homepage: "https://github.com/smarco/WFA2-lib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

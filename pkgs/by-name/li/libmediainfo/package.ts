@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const curlSupport = nix.argOr($, "curlSupport", () => true);
   const curl = nix.arg($, "curl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libmediainfo",
       version: "26.05",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://mediaarea.net/download/source/libmediainfo/${nix.sel(finalAttrs, "version")}/libmediainfo_${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-wIsth7L7XttFJsKooxfrHyz/RIB+RjGgN8qfmh1FUFQ=",
         })))),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       postInstall: "install -vD -m 644 libmediainfo.pc \"$out/lib/pkgconfig/libmediainfo.pc\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Shared library for mediainfo",
         homepage: "https://mediaarea.net/",
         changelog: "https://mediaarea.net/MediaInfo/ChangeLog",

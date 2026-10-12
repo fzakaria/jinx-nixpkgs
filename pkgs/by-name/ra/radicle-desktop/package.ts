@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const clippy = nix.arg($, "clippy");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "radicle-desktop",
       version: "0.17.0",
       src: nix.thunk(() => nix.app(fetchFromRadicle, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           seed: "seed.radicle.dev",
           repo: "z4D5UCArafTzTQpDZNQRuqswh3ury",
           tag: nix.thunk(() => nix.str`releases/${nix.sel(finalAttrs, "version")}`),
@@ -59,20 +59,20 @@ substituteInPlace scripts/check-rs \\
   --replace-fail "-Dwarnings" ""
 `),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-gVKDUPkChjsZZS5+h1jfMuLekY40WRsvbxwqEw1IuTM=",
         })))),
       cargoHash: "sha256-ZkcnktTbvbiAPra+wgrm/xILZp1YBpsj0UFZ/AFzx1U=",
       twemojiAssets: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "twitter",
           repo: "twemoji",
           tag: "v14.0.2",
           hash: "sha256-YoOnZ5uVukzi/6bLi22Y8U5TpplPzB7ji42l+/ys5xI=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         HW_RELEASE: "nixpkgs",
         PLAYWRIGHT_BROWSERS_PATH: nix.thunk(() => nix.sel(playwright_driver, "browsers")),
         PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: true,
@@ -106,12 +106,12 @@ runHook postCheck
 `),
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         env: nix.thunk(() => nix.attr(finalAttrs, "env")),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Radicle desktop app",
         homepage: "https://radicle.network/nodes/seed.radicle.dev/rad:z4D5UCArafTzTQpDZNQRuqswh3ury",
         changelog: "https://radicle.network/nodes/seed.radicle.dev/rad:z4D5UCArafTzTQpDZNQRuqswh3ury/tree/CHANGELOG.md",

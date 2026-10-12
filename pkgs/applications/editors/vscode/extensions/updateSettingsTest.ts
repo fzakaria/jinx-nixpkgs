@@ -8,8 +8,8 @@ const pos$2 = nix.positions(here + "/updateSettingsTest.nix", [["settings", 3, 3
 export default nix.thunk(() => (() => {
   const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.builtins.findFile(nix.builtins.nixPath, "nixpkgs")), nix.thunk(() => ({})))), null);
   return nix.app(nix.lookup(w, "callPackage"), nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./updateSettings.nix"))), nix.thunk(() => ({})), nix.thunk(() => ({
-      __proto__: pos$2,
-      settings: nix.thunk(() => ({ __proto__: pos$1, a: "fdsdf" })),
+      [nix.POS]: pos$2,
+      settings: nix.thunk(() => ({ [nix.POS]: pos$1, a: "fdsdf" })),
     })));
 })());
 //# sourceMappingURL=updateSettingsTest.ts.map

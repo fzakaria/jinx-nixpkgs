@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const version = "1.4.0";
   const releaseDate = "20261003";
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "d2codingfont",
       version: version,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/naver/d2-coding-font/releases/download/VER${version}/D2Coding-Ver${version}-${releaseDate}.zip`),
           stripRoot: false,
           hash: "sha256-+kzLE7laRUheaEN+54DoAvkX4YC8Wv7NZva4T7kf2mo=",
         })))),
       installPhase: "runHook preInstall\n\ninstall -Dm644 */*-all.ttc -t $out/share/fonts/truetype/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Monospace font with support for Korean and latin characters",
         longDescription: "D2Coding is a monospace font developed by a Korean IT Company called Naver.\nFont is good for displaying both Korean characters and latin characters,\nas sometimes these two languages could share some similar strokes.\nSince version 1.3, D2Coding font is officially supported by the font\ncreator, with symbols for Powerline.\n",
         homepage: "https://github.com/naver/d2-coding-font",

@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const kdePackages = nix.arg($, "kdePackages");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "kguiaddons",
       nativeBuildInputs: nix.thunk(() => nix.concat([cmake, pkg_config, extra_cmake_modules], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [wayland_scanner])))),
       buildInputs: nix.thunk(() => nix.concat([qtx11extras], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [wayland, nix.thunk(() => nix.sel(kdePackages, "plasma-wayland-protocols"))])))),
       propagatedBuildInputs: nix.thunk(() => [qtbase]),
       outputs: nix.thunk(() => ["out", "dev"]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, homepage: "https://invent.kde.org/frameworks/kguiaddons" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, homepage: "https://invent.kde.org/frameworks/kguiaddons" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=kguiaddons.ts.map

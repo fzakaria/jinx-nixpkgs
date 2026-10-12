@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const xorgproto = nix.arg($, "xorgproto");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "imake",
       version: "1.0.11",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://xorg/individual/util/imake-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-VZVVJ+rr6UYz5Ag9T+XyFgpl/kxtr97ki4n+pfHKing=",
         })))),
@@ -42,15 +42,15 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`ac_cv_path_RAWCPP=${nix.sel(stdenv, "cc", "targetPrefix")}cpp`),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CFLAGS: nix.thunk(() => nix.str`-DIMAKE_COMPILETIME_CPP='"${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.str`${tradcpp}/bin/cpp` : "gcc")}"'`),
       })),
       preInstall: nix.thunk(() => nix.str`mkdir -p $out/lib/X11/config
 ln -s ${xorg_cf_files}/lib/X11/config/* $out/lib/X11/config
 `),
-      setupHook: nix.thunk(() => nix.app(replaceVars, nix.path(here, "./setup-hook.sh"), nix.thunk(() => ({ __proto__: pos$3, tradcpp: tradcpp })))),
+      setupHook: nix.thunk(() => nix.app(replaceVars, nix.path(here, "./setup-hook.sh"), nix.thunk(() => ({ [nix.POS]: pos$3, tradcpp: tradcpp })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(writeScript, nix.thunk(() => nix.str`update-${nix.sel(finalAttrs, "pname")}`), nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p common-updater-scripts
 version="$(list-directory-versions --pname ${nix.sel(finalAttrs, "pname")} \\
@@ -60,7 +60,7 @@ update-source-version ${nix.sel(finalAttrs, "pname")} "$version"
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Obsolete C preprocessor interface to the make utility",
         homepage: "https://gitlab.freedesktop.org/xorg/util/imake",
         license: nix.thunk(() => (() => {

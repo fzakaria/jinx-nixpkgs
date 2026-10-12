@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.7";
       const rev = "dcf764fef381f19ee49fad186b4e00024709f148";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cayleygraph",
           repo: "cayley",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         ];
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Graph database designed for ease of use and storing complex data",
         longDescription: "Cayley is an open-source database for Linked Data. It is inspired by the\ngraph database behind Google's Knowledge Graph (formerly Freebase).\n",
         homepage: "https://cayley.io/",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "cayley",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         rev,

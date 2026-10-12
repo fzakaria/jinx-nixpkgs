@@ -24,18 +24,18 @@ export default nix.lambda((args) => (() => {
     return (() => {
       const from = nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "mapAttrs"), (_) => nix.force(nix.lookup(w, "doJailbreak")), super$));
       const from_1 = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             badPlatforms: nix.thunk(() => nix.concat(nix.selOr(drv, () => [], "badPlatforms"), ["aarch64-linux"])),
           })), super$));
       const from_2 = nix.thunk(() => (() => {
         const hls_overlay = (lself) => (lsuper) => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           "Cabal-syntax": nix.thunk(() => nix.sel(lself, "Cabal-syntax_3_10_3_0")),
           Cabal: nix.thunk(() => nix.sel(lself, "Cabal_3_10_3_0")),
           extensions: nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.app(nix.lookup(w, "doJailbreak"), nix.thunk(() => nix.sel(lself, "extensions_0_1_0_1")))))),
         });
         return nix.app(nix.sel(lib, "mapAttrs"), (_) => (pkg) => nix.app(nix.lookup(w, "doDistribute"), nix.thunk(() => nix.app(nix.sel(pkg, "overrideScope"), hls_overlay))), nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             "apply-refact": nix.thunk(() => nix.app(nix.lookup(w, "addBuildDepend"), nix.thunk(() => nix.sel(self, "data-default-class")), nix.thunk(() => nix.sel(super$, "apply-refact")))),
             floskell: nix.thunk(() => nix.app(nix.lookup(w, "doJailbreak"), nix.thunk(() => nix.sel(super$, "floskell")))),
             fourmolu: nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.app(nix.lookup(w, "doJailbreak"), nix.thunk(() => nix.sel(self, "fourmolu_0_15_0_0")))))),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
           })));
       })());
       return {
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       array: null,
       base: null,
       binary: null,
@@ -121,14 +121,14 @@ export default nix.lambda((args) => (() => {
       gtk: nix.thunk(() => nix.app(nix.lookup(w, "doJailbreak"), nix.thunk(() => nix.sel(super$, "gtk")))),
       hip: nix.thunk(() => nix.app(nix.lookup(w, "appendConfigureFlag"), "--ghc-options=-fsimpl-tick-factor=200", nix.thunk(() => nix.sel(super$, "hip")))),
       "ascii-predicates": nix.thunk(() => nix.app(nix.lookup(w, "appendPatch"), nix.thunk(() => nix.app(nix.sel(pkgs, "fetchpatch"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: "https://github.com/typeclasses/ascii-predicates/commit/2e6d9ed45987a8566f3a77eedf7836055c076d1a.patch",
             name: "ascii-predicates-pull-1.patch",
             relative: "ascii-predicates",
             sha256: "sha256-4JguQFZNRQpjZThLrAo13jNeypvLfqFp6o7c1bnkmZo=",
           })))), nix.thunk(() => nix.sel(super$, "ascii-predicates")))),
       "ascii-numbers": nix.thunk(() => nix.app(nix.lookup(w, "appendPatch"), nix.thunk(() => nix.app(nix.sel(pkgs, "fetchpatch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/typeclasses/ascii-numbers/commit/e9474ad91bc997891f1a46afd5d0bdf9b9f7d768.patch",
             name: "ascii-numbers-pull-1.patch",
             relative: "ascii-numbers",
@@ -137,12 +137,12 @@ export default nix.lambda((args) => (() => {
       aeson: nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "aeson")))),
       "toml-reader": nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "toml-reader")))),
       ConfigFile: nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           editedCabalFile: null,
           buildDepends: nix.thunk(() => nix.concat(nix.selOr(drv, () => [], "buildDepends"), [nix.thunk(() => nix.sel(self, "HUnit"))])),
           patches: nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(pkgs, "fetchpatch"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 name: "ConfigFile-pr-12.patch",
                 url: "https://github.com/jgoerzen/configfile/compare/d0a2e654be0b73eadbf2a50661d00574ad7b6f87...83ee30b43f74d2b6781269072cf5ed0f0e00012f.patch",
                 sha256: "sha256-b7u9GiIAd2xpOrM0MfILHNb6Nt7070lNRIadn2l3DfQ=",
@@ -152,7 +152,7 @@ export default nix.lambda((args) => (() => {
       "libtorch-ffi-helper": nix.thunk(() => nix.app(nix.lookup(w, "unmarkBroken"), nix.thunk(() => nix.app(nix.lookup(w, "doDistribute"), nix.thunk(() => nix.sel(super$, "libtorch-ffi-helper")))))),
       kqueue: nix.thunk(() => nix.app(nix.lookup(w, "doJailbreak"), nix.thunk(() => nix.app(nix.lookup(w, "appendPatches"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(pkgs, "fetchpatch"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 name: "kqueue-ghc-9.6.patch",
                 url: "https://github.com/hesselink/kqueue/pull/10/commits/a2735e807d761410e776482ec04515d9cf76a7f5.patch",
                 sha256: "18rilz4nrwcmlvll3acjx2lp7s129pviggb8fy3hdb0z34ls5j84",

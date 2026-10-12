@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const base64 = nix.arg($, "base64");
   const ohex = nix.arg($, "ohex");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dns",
       version: "10.2.6",
       minimalOCamlVersion: "4.13",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/ocaml-dns/releases/download/v${nix.sel(finalAttrs, "version")}/dns-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-TD3yY91FlvhWNhX+NkTi+tWXi2aiaMPvNSCD1/7g/8g=",
         })))),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Domain Name System (DNS) library",
         homepage: "https://github.com/mirage/ocaml-dns",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

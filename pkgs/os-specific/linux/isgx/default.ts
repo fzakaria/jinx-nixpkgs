@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "isgx";
       const version = "2.14";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "intel",
           repo: "linux-sgx-driver",
           rev: nix.thunk(() => nix.str`sgx_diver_${version}`),
@@ -35,7 +35,7 @@ runHook postInstall
 `);
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Intel SGX Linux Driver",
         longDescription: "The linux-sgx-driver project (isgx) hosts an out-of-tree driver\nfor the Linux* Intel(R) SGX software stack, which would be used\nuntil the driver upstreaming process is complete (before 5.11.0).\n\nIt is used to support Enhanced Privacy Identification (EPID)\nbased attestation on the platforms without Flexible Launch Control.\n",
         homepage: "https://github.com/intel/linux-sgx-driver",
@@ -51,7 +51,7 @@ runHook postInstall
         broken: nix.thunk(() => nix.app(nix.sel(kernel, "kernelAtLeast"), "6.4")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name,
         pname,
         version,

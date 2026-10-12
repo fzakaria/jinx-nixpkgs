@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const runCommand = nix.arg($, "runCommand");
   return (() => {
-    const runTest = (name) => (body) => nix.app(runCommand, name, nix.thunk(() => ({ __proto__: pos$1, strictDeps: true })), nix.thunk(() => nix.str`set -o errexit
+    const runTest = (name) => (body) => nix.app(runCommand, name, nix.thunk(() => ({ [nix.POS]: pos$1, strictDeps: true })), nix.thunk(() => nix.str`set -o errexit
 ${body}
 touch $out
 `));
@@ -30,7 +30,7 @@ if ! grep --text "$filter" "$file" | grep --text --quiet "$expected"; then
 fi
 `;
     return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       runTest,
       skip,
       fail,

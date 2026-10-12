@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
   const passthruFun = nix.arg($, "passthruFun");
   const isPy3k = nix.thunk(() => nix.eq(majorVersion, "3"));
   const passthru = nix.thunk(() => nix.app(passthruFun, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       self: self,
       sourceVersion: sourceVersion,
       pythonVersion: pythonVersion,
@@ -59,18 +59,18 @@ export default nix.lambda((args) => (() => {
   })());
   const majorVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), pythonVersion));
   const downloadUrls = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     "aarch64-linux": nix.thunk(() => nix.str`https://downloads.python.org/pypy/pypy${pythonVersion}-v${version}-aarch64.tar.bz2`),
     "x86_64-linux": nix.thunk(() => nix.str`https://downloads.python.org/pypy/pypy${pythonVersion}-v${version}-linux64.tar.bz2`),
     "aarch64-darwin": nix.thunk(() => nix.str`https://downloads.python.org/pypy/pypy${pythonVersion}-v${version}-macos_arm64.tar.bz2`),
   }));
   const w_1 = nix.withScope(passthru, null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.selOr(downloadUrls, () => nix.app(nix.builtins.throw, nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "system")}`)), nix.key(nix.sel(stdenv, "system")))),
           hash: hash,
         })))),
@@ -130,7 +130,7 @@ $out/bin/${nix.lookup(w_1, "executable")} -c '${imports}'
       dontStrip: true,
       passthru: passthru,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "http://pypy.org/",
         description: nix.thunk(() => nix.str`Fast, compliant alternative implementation of the Python language (${pythonVersion})`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

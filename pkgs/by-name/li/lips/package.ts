@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lips";
       const version = "1.0.0-beta.20";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jcubic",
           repo: "lips",
           tag: version,
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       const doInstallCheck = true;
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Powerful Scheme based Lisp in JavaScript",
         homepage: "https://lips.js.org",
         changelog: nix.thunk(() => nix.str`https://github.com/jcubic/lips/releases/tag/${version}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "lips",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

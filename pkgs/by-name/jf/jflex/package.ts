@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "jflex";
       const version = "1.9.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://jflex.de/release/jflex-${version}.tar.gz`),
           sha256: "sha256-4MHp7vkf9t8E1z+l6v8T86ArZ5/uFHTlzK4AciTfbfY=",
         }))));
@@ -34,7 +34,7 @@ runHook postInstall
       const doInstallCheck = true;
       const installCheckPhase = "runHook preInstallCheck\n$out/bin/jflex --version\nrunHook postInstallCheck\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.jflex.de/",
         description: "Lexical analyzer generator for Java, written in Java",
         mainProgram: "jflex",
@@ -42,7 +42,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

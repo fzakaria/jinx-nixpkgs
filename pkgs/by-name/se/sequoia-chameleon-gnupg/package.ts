@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sequoia-chameleon-gnupg";
       const version = "0.13.1";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sequoia-pgp",
           repo: "sequoia-chameleon-gnupg",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         installShellFiles,
       ]);
       const buildInputs = nix.thunk(() => [nettle, openssl, sqlite]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, ASSET_OUT_DIR: "target" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, ASSET_OUT_DIR: "target" }));
       const postInstall = nix.thunk(() => nix.str`# Wrap to find gpg-agent from GnuPG.
 makeWrapper $out/bin/gpg-sq $out/bin/gpg \\
   --suffix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gnupg]))}
@@ -67,7 +67,7 @@ installShellCompletion --cmd gpg-sq \\
 `);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Sequoia's reimplementation of the GnuPG interface",
         homepage: "https://gitlab.com/sequoia-pgp/sequoia-chameleon-gnupg",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -78,7 +78,7 @@ installShellCompletion --cmd gpg-sq \\
         mainProgram: "gpg-sq",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

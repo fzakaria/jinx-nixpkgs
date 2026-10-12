@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const coreutils = nix.arg($, "coreutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "teensy-udev-rules",
       version: "2022-05-15",
       src: nix.path(here, "./teensy.rules"),
@@ -23,7 +23,7 @@ substituteInPlace $out/etc/udev/rules.d/70-teensy.rules \\
   --replace "/bin/stty" "${coreutils}/bin/stty"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: "https://www.pjrc.com/teensy/00-teensy.rules",
         description: "udev rules for the Teensy microcontrollers",
         longDescription: "udev rules that give non-root users permission to communicate with the\nTeensy family of microcontrollers.\n\nModemManager (part of NetworkManager) can interfere with USB Serial\ndevices, which includes the Teensy.  See comments in the .rules file (or\nthis package's homepage) for possible workarounds.\n",

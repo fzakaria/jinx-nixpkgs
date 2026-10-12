@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.0.3-unstable-2026-07-25";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "telegraphic",
           repo: "hickle",
           rev: "cd92308f564223be999230aeb708988cfb14c2e7",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [astropy, pandas, pytestCheckHook, pytest_cov_stub, scipy]);
       const pythonImportsCheck = nix.thunk(() => ["hickle"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Serialize Python data to HDF5",
         homepage: "https://github.com/telegraphic/hickle",
         changelog: nix.thunk(() => nix.str`https://github.com/telegraphic/hickle/releases/tag/v${version}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const mandoc = nix.arg($, "mandoc");
   const groff = nix.arg($, "groff");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "usr.bin/tsort",
       extraPaths: [],
       outputs: nix.thunk(() => ["out"]),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["STRIP=-s"]),
       nativeBuildInputs: nix.thunk(() => [bsdSetupHook, freebsdSetupHook, makeMinimal, install, mandoc, groff]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
     })));

@@ -33,17 +33,17 @@ export default nix.lambda((args) => (() => {
   const bk_rom_compressor = nix.arg($, "bk_rom_compressor");
   const fetchpatch = nix.arg($, "fetchpatch");
   const baseRom = nix.thunk(() => (nix.asBool(!nix.eq(banjobaserom, null)) ? nix.force(banjobaserom) : nix.app(requireFile, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "baserom.us.v10.z64",
       message: "banjorecomp only supports the US 1.0 version of Banjo-Kazooie.\nPlease dump your copy and rename it to baserom.us.v10.z64\nand add it to the nix store using\nnix-store --add-fixed sha256 baserom.us.v10.z64\nSee https://dumping.guide/carts/nintendo/n64 for more details.\n",
       hash: "sha256-WYdYNbmlEouwBUMVp/kp4gccIAHlKNcL9UPh1mgObv8=",
     })))));
   return nix.app(nix.sel(llvmPackages_21, "stdenv", "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "banjorecomp",
       version: "1.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "BanjoRecomp",
           repo: "BanjoRecomp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "rmlui-cstdint.patch",
             url: "https://github.com/mikke89/RmlUi/commit/8c27b0a5cb601a3c57ecddc6ce8769ca93a97cb8.patch",
             stripLen: 1n,
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [SDL2, gtk3, vulkan_loader]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "BanjoRecompiled",
             icon: "BanjoRecompiled",
             exec: "BanjoRecompiled",
@@ -110,7 +110,7 @@ substituteInPlace CMakeLists.txt \\
 `),
       postFixup: "wrapProgram $out/bin/BanjoRecompiled --chdir \"$out/share/banjorecomp\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "PC Port of Banjo-Kazooie made using N64: Recompiled",
         homepage: "https://github.com/BanjoRecomp/BanjoRecomp",
         license: nix.thunk(() => (() => {

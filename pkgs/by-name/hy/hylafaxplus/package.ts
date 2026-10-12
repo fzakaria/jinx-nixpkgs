@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
   const maxgid = nix.argOr($, "maxgid", () => 65534n);
   const maxuid = nix.argOr($, "maxuid", () => 65534n);
   const configSite = nix.thunk(() => nix.app(replaceVars, nix.path(here, "./config.site"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       config_maxgid: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(maxgid, null)), nix.thunk(() => nix.str`CONFIG_MAXGID=${nix.builtins.toString(maxgid)}`))),
       ghostscript_version: nix.thunk(() => nix.sel(ghostscript, "version")),
       out: null,
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       libtiff: libtiff,
     }))));
   const postPatch = nix.thunk(() => nix.app(replaceVars, nix.path(here, "./post-patch.sh"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       configSite: configSite,
       maxuid: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(maxuid, null)), nix.thunk(() => nix.builtins.toString(maxuid)))),
       faxcover_binpath: nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nix.thunk(() => nix.sel(stdenv, "shellPackage")), coreutils]))),
@@ -61,13 +61,13 @@ export default nix.lambda((args) => (() => {
           gawk,
         ]))),
     }))));
-  const postInstall = nix.thunk(() => nix.app(replaceVars, nix.path(here, "./post-install.sh"), nix.thunk(() => ({ __proto__: pos$3, fakeroot: fakeroot, libfaketime: libfaketime }))));
+  const postInstall = nix.thunk(() => nix.app(replaceVars, nix.path(here, "./post-install.sh"), nix.thunk(() => ({ [nix.POS]: pos$3, fakeroot: fakeroot, libfaketime: libfaketime }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "hylafaxplus",
       version: "7.0.11",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           url: nix.thunk(() => nix.str`mirror://sourceforge/hylafax/hylafax-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha512-JRuJdE17VBrlhVz5GBc2dKBtwzPjljeropcug0bsRvO/8SJvP5PzIP5gbBLpMQKGb77SNp2iNCCOroBOUOn57A==",
         })))),
@@ -92,7 +92,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`. ${postInstall}`),
       postInstallCheck: nix.thunk(() => nix.str`. ${nix.path(here, "./post-install-check.sh")}`),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://hylafax.sourceforge.io/news/${nix.sel(finalAttrs, "version")}.php`),
         description: "Enterprise-class system for sending and receiving facsimiles",
         downloadPage: "https://hylafax.sourceforge.io/download.php",

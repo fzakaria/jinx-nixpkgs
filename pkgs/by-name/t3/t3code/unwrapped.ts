@@ -43,13 +43,13 @@ export default nix.lambda((args) => (() => {
       const pnpm = pnpm_11;
       const desktopIcon = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "assets/prod/black-macos-1024.png" : "assets/prod/black-universal-1024.png"));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname: "t3code-unwrapped",
         version: "0.0.45",
         strictDeps: true,
         __structuredAttrs: true,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "pingdotgg",
             repo: "t3code",
             tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -82,7 +82,7 @@ cp ${nix.sel(spdx_license_list_data, "json")}/json/details/*.json \\
         buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libsecret]))),
         pnpmWorkspaces: nix.thunk(() => ["@t3tools/monorepo", "t3...", "@t3tools/desktop...", "@t3tools/scripts..."]),
         pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pnpm: pnpm,
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -158,7 +158,7 @@ runHook postInstall
         postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "for shell in bash fish zsh; do\n  installShellCompletion --cmd t3 --\"$shell\" <(\"$out/bin/t3\" --completions \"$shell\")\ndone\n")),
         desktopItems: nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               name: "t3code",
               desktopName: appName,
               comment: "Minimal web GUI for coding agents",
@@ -170,9 +170,9 @@ runHook postInstall
             })))),
         ]),
         passthru: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               attrPath: "t3code.unwrapped",
               extraArgs: nix.thunk(() => ["--use-github-releases"]),
             })))),
@@ -180,7 +180,7 @@ runHook postInstall
         meta: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nodejs, "meta"));
           return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           description: "Minimal web GUI for coding agents",
           homepage: "https://t3.codes",
           downloadPage: "https://t3.codes/download",

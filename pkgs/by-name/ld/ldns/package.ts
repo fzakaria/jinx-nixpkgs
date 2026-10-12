@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const dns_root_data = nix.arg($, "dns-root-data");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ldns",
       version: "1.9.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.nlnetlabs.nl/downloads/ldns/ldns-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-tST6IZlLboNCAM64wn8bhL2lmC/jVwbwWBlsB525TV0=",
         })))),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postInstall: "# Only 'drill' stays in $out\n# the rest are examples:\nmoveToOutput \"bin/ldns*\" \"$examples\"\n# with exception of ldns-config, which goes to $dev:\nmoveToOutput \"bin/ldns-config\" \"$dev\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library with the aim of simplifying DNS programming in C",
         homepage: "https://www.nlnetlabs.nl/projects/ldns/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

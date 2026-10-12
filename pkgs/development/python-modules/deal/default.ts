@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.24.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "life4",
           repo: "deal",
           tag: version,
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/test_runtime/test_offline.py", "tests/test_testing.py"]);
       const pythonImportsCheck = nix.thunk(() => ["deal"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for design by contract (DbC) and checking values, exceptions, and side-effects",
         longDescription: "In a nutshell, deal empowers you to write bug-free code.\nBy adding a few decorators to your code, you get for free tests, static analysis, formal verification,\nand much more.\n",
         homepage: "https://github.com/life4/deal",
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

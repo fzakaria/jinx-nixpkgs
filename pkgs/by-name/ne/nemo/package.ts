@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nemo",
       version: "6.6.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linuxmint",
           repo: "nemo",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -83,9 +83,9 @@ export default nix.lambda((args) => (() => {
    --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [xdg_user_dirs]))}"
 )
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, extensiondir: "lib/nemo/extensions-3.0" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, extensiondir: "lib/nemo/extensions-3.0" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/linuxmint/nemo",
         description: "File browser for Cinnamon",
         license: nix.thunk(() => [

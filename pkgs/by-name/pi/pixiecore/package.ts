@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "0-unstable-2024-05-31";
       const rev = "2ed7bd30206a51bae786b02d9a5b8156fdcc8870";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "danderson",
           repo: "netboot",
           rev: rev,
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-3cVGDAZWhmZ1byvjoRodSWMNHCpNujDOAVQKHNntHR8=";
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/danderson/netboot/commit/c999a6ca573c973e760c8df531b4c970c21f3d05.patch",
             sha256: "sha256-pRWcBz24cqqajLvJffugB/T6lKGVtvOG4ch3vyzDDQQ=",
           })))),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), rebuildIpxe, nix.thunk(() => [xz])));
       const nativeBuildInputs = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), rebuildIpxe, nix.thunk(() => [perl, go_bindata])));
       const env = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error"]))),
       }));
       const preBuild = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), rebuildIpxe, nix.thunk(() => nix.str`# don't run in our go-modules phase but only in the normal build phase
@@ -57,7 +57,7 @@ fi
 `)));
       const subPackages = nix.thunk(() => ["cmd/pixiecore"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Tool to manage network booting of machines",
         homepage: "https://github.com/danderson/netboot/tree/master/pixiecore",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -71,7 +71,7 @@ fi
         mainProgram: "pixiecore",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         rev,

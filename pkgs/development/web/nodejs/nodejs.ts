@@ -121,7 +121,7 @@ export default nix.lambda((args) => (() => {
     const useSharedTemporal = nix.thunk(() => nix.eq(majorVersion, "26"));
     const useSharedZstd = nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "22.15"));
     const sharedLibDeps = nix.thunk(() => nix.update({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       brotli: brotli,
       libuv: libuv,
       nghttp2: nghttp2,
@@ -132,14 +132,14 @@ export default nix.lambda((args) => (() => {
       zlib: zlib,
       cares: c_ares,
       "http-parser": llhttp,
-    }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), useSharedAbseilAndHighway, nix.thunk(() => ({ __proto__: pos$2, abseil: abseil_cpp, highway: libhwy }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), useSharedAdaAndSimdjson, nix.thunk(() => ({ __proto__: pos$3, ada: ada, simdjson: simdjson }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), useSharedSimdutf, nix.thunk(() => ({ __proto__: pos$4, simdutf: simdutf }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), useSharedSQLite, nix.thunk(() => ({ __proto__: pos$5, sqlite: sqlite }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), useSharedTemporal, nix.thunk(() => ({ __proto__: pos$6, temporal_capi: temporal_capi }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), useSharedGtestAndHistogram, nix.thunk(() => ({ __proto__: pos$7, gtest: gtest, "hdr-histogram": hdrhistogram_c }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), useSharedFFI, nix.thunk(() => ({ __proto__: pos$8, ffi: libffiReal }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), useSharedLief, nix.thunk(() => ({ __proto__: pos$9, lief: lief }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), useSharedNBytes, nix.thunk(() => ({ __proto__: pos$10, nbytes: nbytes }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), useSharedMerve, nix.thunk(() => ({
-        __proto__: pos$12,
-        merve: nix.thunk(() => (nix.asBool(nix.eq(majorVersion, "24")) ? nix.app(nix.sel(merve, "override"), nix.thunk(() => ({ __proto__: pos$11, simdutf: null }))) : nix.force(merve))),
-      }))), nix.app(nix.sel(lib, "optionalAttrs"), useSharedZstd, nix.thunk(() => ({ __proto__: pos$13, zstd: zstd })))))))))))))));
+    }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), useSharedAbseilAndHighway, nix.thunk(() => ({ [nix.POS]: pos$2, abseil: abseil_cpp, highway: libhwy }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), useSharedAdaAndSimdjson, nix.thunk(() => ({ [nix.POS]: pos$3, ada: ada, simdjson: simdjson }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), useSharedSimdutf, nix.thunk(() => ({ [nix.POS]: pos$4, simdutf: simdutf }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), useSharedSQLite, nix.thunk(() => ({ [nix.POS]: pos$5, sqlite: sqlite }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), useSharedTemporal, nix.thunk(() => ({ [nix.POS]: pos$6, temporal_capi: temporal_capi }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), useSharedGtestAndHistogram, nix.thunk(() => ({ [nix.POS]: pos$7, gtest: gtest, "hdr-histogram": hdrhistogram_c }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), useSharedFFI, nix.thunk(() => ({ [nix.POS]: pos$8, ffi: libffiReal }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), useSharedLief, nix.thunk(() => ({ [nix.POS]: pos$9, lief: lief }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), useSharedNBytes, nix.thunk(() => ({ [nix.POS]: pos$10, nbytes: nbytes }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), useSharedMerve, nix.thunk(() => ({
+        [nix.POS]: pos$12,
+        merve: nix.thunk(() => (nix.asBool(nix.eq(majorVersion, "24")) ? nix.app(nix.sel(merve, "override"), nix.thunk(() => ({ [nix.POS]: pos$11, simdutf: null }))) : nix.force(merve))),
+      }))), nix.app(nix.sel(lib, "optionalAttrs"), useSharedZstd, nix.thunk(() => ({ [nix.POS]: pos$13, zstd: zstd })))))))))))))));
     const copyLibHeaders = nix.thunk(() => nix.builtins.map((name) => nix.str`${nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(sharedLibDeps, nix.key(nix.force(name)))))}/include/*`, nix.thunk(() => nix.builtins.attrNames(sharedLibDeps))));
     const bundlesCorepack = nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "25.0.0")));
     const darwin_cctools_only_libtool = nix.thunk(() => nix.app(runCommand, "darwin-cctools-only-libtool", nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         cctools: nix.thunk(() => nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(buildPackages, "cctools")))),
       })), "mkdir -p \"$out/bin\"\nln -s \"$cctools/bin/libtool\" \"$out/bin/libtool\"\n"));
     const touchScript = (real) => nix.app(writeScript, "touch-script", nix.thunk(() => nix.str`#!${nix.sel(stdenv, "shell")}
@@ -158,17 +158,17 @@ done
     const package$ = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
         const self = nix.thunk(() => nix.sel(finalAttrs, "finalPackage"));
         return {
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           pname: pname,
           version: version,
           src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               url: nix.thunk(() => nix.str`https://nodejs.org/${downloadDir}/v${version}/node-v${version}.tar.xz`),
               sha256: sha256,
             })))),
           strictDeps: true,
-          env: nix.thunk(() => nix.update({ __proto__: pos$16, NINJA: "TERM=dumb ninja" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(!nix.asBool(canExecute)) && nix.asBool(!nix.asBool(canEmulate)))), nix.thunk(() => ({
-              __proto__: pos$17,
+          env: nix.thunk(() => nix.update({ [nix.POS]: pos$16, NINJA: "TERM=dumb ninja" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(!nix.asBool(canExecute)) && nix.asBool(!nix.asBool(canEmulate)))), nix.thunk(() => ({
+              [nix.POS]: pos$17,
               CC_host: nix.thunk(() => nix.app(touchScript, nix.thunk(() => nix.str`${nix.sel(buildPackages, "stdenv", "cc")}/bin/cc`))),
               CXX_host: nix.thunk(() => nix.app(touchScript, nix.thunk(() => nix.str`${nix.sel(buildPackages, "stdenv", "cc")}/bin/c++`))),
               AR_host: nix.thunk(() => nix.app(touchScript, nix.thunk(() => nix.str`${nix.sel(buildPackages, "stdenv", "cc")}/bin/ar`))),
@@ -201,18 +201,18 @@ export FAKE_TOUCH=1
           enableParallelBuilding: true,
           __contentAddressed: false,
           passthru: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             interpreterName: "nodejs",
             tests: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   package: self,
                   version: nix.thunk(() => nix.str`v${nix.app(nix.sel(lib, "head"), nix.thunk(() => nix.app(nix.sel(lib, "strings", "splitString"), "-rc.", version)))}`),
                 })))),
             })),
             updateScript: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./update.nix")), nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 writeScript: writeScript,
                 "common-updater-scripts": common_updater_scripts,
                 coreutils: coreutils,
@@ -306,18 +306,18 @@ export FAKE_TOUCH=1
                   ])), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(majorVersion, "22")), "test-child-process-stdout-flush-exit"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.eq(majorVersion, "22")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isRiscV64")))), "test-worker-messaging"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.eq(majorVersion, "26")) && nix.asBool(!nix.asBool(nix.sel(stdenv, "buildPlatform", "isDarwin"))))), "test-net-boundsocket"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.eq(majorVersion, "22")) && nix.asBool(nix.sel(stdenv, "buildPlatform", "isDarwin")))), "test/sequential/test-http-server-request-timeouts-mixed.js"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "24"))), "test-tls-junk-server"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(majorVersion, "22")), "test-tls-alert-handling")))))))))))))))}`),
             ]))))),
           outputChecks: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             out: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               disallowedReferences: nix.thunk(() => nix.concat(["libv8", "npm"], nix.app(nix.sel(lib, "optional"), bundlesCorepack, "corepack"))),
             })),
-            corepack: nix.thunk(() => ({ __proto__: pos$23, disallowedReferences: nix.thunk(() => ["libv8", "npm"]) })),
+            corepack: nix.thunk(() => ({ [nix.POS]: pos$23, disallowedReferences: nix.thunk(() => ["libv8", "npm"]) })),
             libv8: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               disallowedReferences: nix.thunk(() => nix.concat(["out", "npm"], nix.app(nix.sel(lib, "optional"), bundlesCorepack, "corepack"))),
             })),
             npm: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               disallowedReferences: nix.thunk(() => nix.concat(["libv8"], nix.app(nix.sel(lib, "optional"), bundlesCorepack, "corepack"))),
             })),
           })),
@@ -378,7 +378,7 @@ done
 `),
           requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
           meta: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             description: "Event-driven I/O framework for the V8 JavaScript engine",
             homepage: "https://nodejs.org",
             changelog: nix.thunk(() => nix.str`https://github.com/nodejs/node/releases/tag/v${version}`),

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libcap = nix.arg($, "libcap");
   const ntfs3g = nix.arg($, "ntfs3g");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wipefreespace",
       version: "3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bogdro",
           repo: "wipefreespace",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [e2fsprogs, libcap, ntfs3g, xfsprogs]),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Program which will securely wipe the free space",
         homepage: "https://wipefreespace.sourceforge.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

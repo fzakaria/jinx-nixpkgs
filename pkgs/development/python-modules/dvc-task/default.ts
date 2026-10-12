@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const setuptools_scm = nix.arg($, "setuptools-scm");
   const shortuuid = nix.arg($, "shortuuid");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dvc-task",
       version: "0.40.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "iterative",
           repo: "dvc-task",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["dvc_task"]),
       disabledTests: nix.thunk(() => ["test_start_already_exists", "celery_setup_worker"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Celery task queue used in DVC",
         homepage: "https://github.com/iterative/dvc-task",
         changelog: nix.thunk(() => nix.str`https://github.com/iterative/dvc-task/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

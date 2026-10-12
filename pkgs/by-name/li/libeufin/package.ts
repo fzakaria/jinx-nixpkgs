@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const customPython = nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (p) => [nix.thunk(() => nix.sel(p, "setuptools"))]));
   const gradle = gradle_8;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libeufin",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git-www.taler.net/libeufin.git/",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-bt1NBoiN52CX2Itg8lQ/b0V/MZulBTaD8luNlH4Mwss=",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace Makefile \\\n  --replace-fail \"install: build install-nobuild-files\" \"install: install-nobuild-files\"\n\n# The .git folder had to be deleted. Read hash from file instead of using the git command.\nsubstituteInPlace build.gradle \\\n  --replace-fail \"git rev-parse --short HEAD\" \"cat $projectDir/libeufin-common/src/main/resources/HEAD.txt\"\n\n# Use gradle repo to download dependencies\nsubstituteInPlace build.gradle \\\n  --replace-fail 'mavenCentral()' \"gradlePluginPortal()\"\n",
       preConfigure: "cp build-system/taler-build-scripts/configure ./configure\n",
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
@@ -66,7 +66,7 @@ runHook postInstall
 `),
       nativeCheckInputs: nix.thunk(() => [postgresql, postgresqlTestHook]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         PGUSER: "nixbld",
         PGDATABASE: "libeufincheck",
         postgresqlTestUserOptions: "LOGIN SUPERUSER",
@@ -74,7 +74,7 @@ runHook postInstall
       gradleCheckTask: nix.thunk(() => ["common:test", "bank:test", "nexus:test", "testbench:test"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://git-www.taler.net/libeufin.git",
         description: "Integration and sandbox testing for FinTech APIs and data formats",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

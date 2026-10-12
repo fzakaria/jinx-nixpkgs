@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wmii",
       version: "0-unstable-2023-09-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "0intro",
           repo: "wmii",
           rev: "26848c93457606b350f57d6d313112a745a0cf3d",
@@ -63,7 +63,7 @@ EOF
         which,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/0intro/wmii",
         description: "Small, scriptable window manager, with a 9P filesystem interface and an acme-like layout",
         maintainers: nix.thunk(() => (() => {

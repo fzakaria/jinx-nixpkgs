@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const owl_base = nix.arg($, "owl-base");
   const npy = nix.arg($, "npy");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "owl",
       version: nix.thunk(() => nix.attr(owl_base, "version")),
       src: nix.thunk(() => nix.attr(owl_base, "src")),

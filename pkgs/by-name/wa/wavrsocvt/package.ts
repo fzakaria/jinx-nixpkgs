@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wavrsocvt",
       version: "1.0.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://bricxcc.sourceforge.net/wavrsocvt.tgz",
           sha256: "15qlvdfwbiclljj7075ycm78yzqahzrgl4ky8pymix5179acm05h",
         })))),
       unpackPhase: "tar -zxf $src\n",
       installPhase: "mkdir -p $out/bin\ncp wavrsocvt $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Convert .wav files into sound files for Lego NXT brick",
         mainProgram: "wavrsocvt",
         longDescription: "wavrsocvt is a command-line utility which can be used from a\nterminal window or script to convert .wav files into sound\nfiles for the NXT brick (.rso files). It can also convert the\nother direction (i.e., .rso -> .wav). It can produce RSO files\nwith a sample rate between 2000 and 16000 (the min/max range of\nsupported sample rates in the standard NXT firmware).\nYou can then upload these with e.g. nxt-python.\n",

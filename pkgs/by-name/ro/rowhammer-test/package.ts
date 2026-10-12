@@ -14,24 +14,24 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rowhammer-test",
       version: "0-unstable-2015-08-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "google",
           repo: "rowhammer-test",
           rev: "c1d2bd9f629281402c10bb10e52bc1f1faf59cc4",
           sha256: "1fbfcnm5gjish47wdvikcsgzlb5vnlfqlzzm6mwiw2j5qkq0914i",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isi686")), "-Wno-error=format")),
       })),
       buildPhase: "sh -e make.sh",
       installPhase: "mkdir -p $out/bin\ncp rowhammer_test double_sided_rowhammer $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Test DRAM for bit flips caused by the rowhammer problem",
         homepage: "https://github.com/google/rowhammer-test",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

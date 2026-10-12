@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const bzip2 = nix.arg($, "bzip2");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "splat",
       version: "1.4.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.qsl.net/kd2bd/splat-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-ObCzFOLpJ73wDR7aS5hl79EouoUDBfmHrsBJxP1Yopw=",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n./build all\nrunHook postBuild\n",
       installPhase: "runHook preInstall\ninstall -Dt $out/bin splat\nfind utils -type f -executable -exec install -Dt $out/bin {} \\;\ninstall -Dt $out/share/man/man1 docs/english/man/*.1\ninstall -Dt $out/share/man/es/man1 docs/spanish/man/*.1\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "RF Signal Propagation, Loss, And Terrain analysis tool for the electromagnetic spectrum between 20 MHz and 20 GHz",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -11,14 +11,14 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "vkd3d-proton": nix.thunk(() => (() => {
       const self = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname: "vkd3d-proton",
         version: "2.14.1",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "HansKristian-Work",
             repo: "vkd3d-proton",
             tag: nix.thunk(() => nix.str`v${nix.sel(self, "version")}`),

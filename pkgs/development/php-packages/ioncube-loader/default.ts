@@ -17,19 +17,19 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const php = nix.arg($, "php");
   const source = nix.thunk(() => nix.sel({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "aarch64-darwin": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://web.archive.org/web/20260428124658/https://downloads.ioncube.com/loader_downloads/ioncube_loaders_mac_arm64.tar.gz",
       sha256: "sha256-KzBF5ufljAjjP2V1lUJgW9Z+7G1evafV7pvfADFMkMM=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: "https://web.archive.org/web/20260428121019/https://downloads.ioncube.com/loader_downloads/ioncube_loaders_lin_aarch64.tar.gz",
       sha256: "sha256-TNw9y8dapjNdNKdW0FpY6pHBrq7oqSK1Ao5oqhy3dvs=",
     })),
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: "https://web.archive.org/web/20260313061550/https://downloads.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz",
       sha256: "sha256-uCBEHux1R4FdC7aQa9oJJYgmwTTl3w5JQi+0KBDLZMc=",
     })),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
   const systemPrefix = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "mac" : nix.app(nix.sel(lib, "substring"), 0n, 3n, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "parsed", "kernel", "name")))));
   const filename = nix.thunk(() => nix.str`ioncube_loader_${systemPrefix}_${phpVersion}${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(php, "ztsSupport")), "_ts")}.so`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "ioncube-loader",
       version: "15.5.0",
       extensionName: "ioncube-loader",
@@ -48,7 +48,7 @@ install -Dm755 '${filename}' $out/lib/php/extensions/ioncube-loader.so
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Use ionCube-encoded files on a web server",
         changelog: "https://www.ioncube.com/loaders.php",
         homepage: "https://www.ioncube.com",

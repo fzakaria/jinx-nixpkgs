@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         const pname = "pygmo";
         const version = "2.19.7";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "esa",
             repo: "pygmo2",
             tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,14 +40,14 @@ export default nix.lambda((args) => (() => {
         const buildInputs = nix.thunk(() => [boost, pagmo2, pybind11]);
         const doCheck = true;
         const meta = nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           description: "Parallel optimisation for Python",
           homepage: "https://github.com/esa/pygmo2",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
           maintainers: [],
         }));
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname,
           version,
           src,

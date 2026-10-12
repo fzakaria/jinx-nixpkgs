@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2i";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dedupeio",
           repo: "doublemetaphone",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["doublemetaphone"]);
       const dontCheckPythonMetadata = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python wrapper for Double Metaphone phonetic encoding algorithm",
         homepage: "https://github.com/dedupeio/doublemetaphone",
         license: nix.thunk(() => nix.sel(lib, "licenses", "artistic1")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

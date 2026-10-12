@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const mirage_ptime = nix.arg($, "mirage-ptime");
   const ptime = nix.arg($, "ptime");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "tls-mirage",
       src: nix.thunk(() => nix.attr(tls, "src")),
       version: nix.thunk(() => nix.attr(tls, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         tls,
       ]),
       meta: nix.thunk(() => nix.update(nix.sel(tls, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Transport Layer Security purely in OCaml, MirageOS layer",
       })),
     })));

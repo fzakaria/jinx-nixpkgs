@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "xhyve";
       const version = "20210203";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "machyve",
           repo: "xhyve",
           rev: "83516a009c692ea5d2993d1071e68d05d359b11e",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const installPhase = "mkdir -p $out/bin\ncp build/xhyve $out/bin\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightweight Virtualization on macOS Based on bhyve",
         homepage: "https://github.com/mist64/xhyve",
         maintainers: [],
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

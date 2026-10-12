@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.1";
       const name = nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-${pname}-${version}`);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://erratique.ch/software/hmap/releases/${pname}-${version}.tbz`),
           sha256: "10xyjy4ab87z7jnghy0wnla9wrmazgyhdwhr4hdmxxdn28dxn03a",
         }))));
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = true;
       const checkPhase = nix.thunk(() => nix.str`${nix.sel(topkg, "run")} test`);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Heterogeneous value maps for OCaml",
         homepage: "https://erratique.ch/software/hmap",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "versionOlder"), minimumSupportedOcamlVersion, nix.thunk(() => nix.sel(ocaml, "version"))))),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         name,

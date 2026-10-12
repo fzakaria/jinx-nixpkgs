@@ -27,43 +27,43 @@ export default nix.lambda((args) => (() => {
   const stdlib = nix.arg($, "stdlib");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "graph-theory",
       release: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         "0.9": nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           hash: "sha256-Hl3JS9YERD8QQziXqZ9DqLHKp63RKI9HxoFYWSkJQZI=",
         })),
         "0.9.1": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           hash: "sha256-lRRY+501x+DqNeItBnbwYIqWLDksinWIY4x/iojRNYU=",
         })),
         "0.9.2": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           hash: "sha256-DPYCZS8CzkfgpR+lmYhV2v20ezMtyWp8hdWpuh0OOQU=",
         })),
         "0.9.3": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           hash: "sha256-9WX3gsw+4btJLqcGg2W+7Qy+jaZtkfw7vCp8sXYmaWw=",
         })),
         "0.9.4": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           hash: "sha256-fXTAsRdPisNhg8Umaa7S7gZ1M8zuPGg426KP9fAkmXQ=",
         })),
         "0.9.6": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           hash: "sha256-fvGb970tRE4xj1pBIhNBDaqssDd6kNQ/+s0c+aOO5IE=",
         })),
         "0.9.7": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           hash: "sha256-rAZn326EdmS8fjGjk785BSJBFSpol6suwD3zO/tCBgk=",
         })),
       })),
       releaseRev: (v) => nix.str`v${v}`,
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (coq_1) => (mc) => (out) => ({ __proto__: pos$9, cases: nix.thunk(() => [coq_1, mc]), out: out });
+        const case$ = (coq_1) => (mc) => (out) => ({ [nix.POS]: pos$9, cases: nix.thunk(() => [coq_1, mc]), out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => [
             nix.thunk(() => nix.sel(coq, "coq-version")),
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
         stdlib,
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(mathcomp, "version"), "dev")) && nix.asBool(nix.app(nix.sel(lib, "versions", "isLe"), "2.5", nix.thunk(() => nix.sel(mathcomp, "version")))))), mathcomp_algebra_tactics))),
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "Library of formalized graph theory results in Coq",
         longDescription: "A library of formalized graph theory results, including various\nstandard results from the literature (e.g., Menger’s Theorem, Hall’s\nMarriage Theorem, and the excluded minor characterization of\ntreewidth-two graphs) as well as some more recent results arising from\nthe study of relation algebra within the ERC CoVeCe project (e.g.,\nsoundness and completeness of an axiomatization of graph isomorphism).\n",
         maintainers: nix.thunk(() => (() => {

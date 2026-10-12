@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.24";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fastapi",
           repo: "fastapi-cli",
           tag: version,
@@ -36,23 +36,23 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [pdm_backend]);
       const dependencies = nix.thunk(() => nix.concat([rich_toolkit, typer, uvicorn], nix.sel(uvicorn, "optional-dependencies", "standard")));
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         standard: nix.thunk(() => nix.concat([uvicorn], nix.sel(uvicorn, "optional-dependencies", "standard"))),
         "standard-no-fastapi-cloud-cli": nix.thunk(() => nix.concat([uvicorn], nix.sel(uvicorn, "optional-dependencies", "standard"))),
       }));
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          pytest: nix.thunk(() => nix.app(nix.sel(self, "overridePythonAttrs"), nix.thunk(() => ({ __proto__: pos$3, doCheck: true })))),
+          [nix.POS]: pos$4,
+          pytest: nix.thunk(() => nix.app(nix.sel(self, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$3, doCheck: true })))),
         })),
       }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook, rich], nix.sel(optional_dependencies, "standard")));
       const disabledTests = nix.thunk(() => ["test_script"]);
       const pythonImportsCheck = nix.thunk(() => ["fastapi_cli"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Run and manage FastAPI apps from the command line with FastAPI CLI",
         homepage: "https://github.com/fastapi/fastapi-cli",
         changelog: nix.thunk(() => nix.str`https://github.com/fastapi/fastapi-cli/releases/tag/${nix.sel(src, "tag")}`),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         priority: 10n,
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         pyproject,

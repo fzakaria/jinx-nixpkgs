@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const parallel = nix.arg($, "parallel");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "wikiman",
       version: "2.14.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "filiparag",
           repo: "wikiman",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
 `;
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Offline search engine for manual pages, Arch Wiki, Gentoo Wiki and other documentation",
         homepage: "https://github.com/filiparag/wikiman",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

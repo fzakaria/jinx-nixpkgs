@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const suidHelper = nix.argOr($, "suidHelper", () => "/var/setuid-wrappers/dbus-daemon-launch-helper");
   const apparmor = nix.argOr($, "apparmor", () => "disabled");
   return nix.app(runCommand, "dbus-1", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       serviceDirectories: serviceDirectories,
       suidHelper: suidHelper,
       apparmor: apparmor,

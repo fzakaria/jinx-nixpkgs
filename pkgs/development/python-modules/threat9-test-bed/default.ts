@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "threat9",
           repo: "threat9-test-bed",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         "test_http_service_mock_random_port",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module for adding unittests.mock as view functions",
         homepage: "https://github.com/threat9/threat9-test-bed",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "test-bed",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

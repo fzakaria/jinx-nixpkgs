@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const extraVocabs = nix.argOr($_1, "extraVocabs", () => []);
       const extraPaths = nix.argOr($_1, "extraPaths", () => []);
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         vocabName: vocabName,
         vocabRoot: vocabRoot,
         installPhase: nix.thunk(() => nix.selOr(attrs, () => nix.str`runHook preInstall
@@ -43,7 +43,7 @@ fi
 runHook postInstall
 `, "installPhase")),
         passthru: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           extraLibs: extraLibs,
           extraVocabs: extraVocabs,
           extraPaths: extraPaths,

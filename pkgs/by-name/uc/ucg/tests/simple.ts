@@ -11,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const ucg = nix.arg($, "ucg");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "ucg-test",
       version: nix.thunk(() => nix.attr(ucg, "version")),
       nativeBuildInputs: nix.thunk(() => [ucg]),
       dontInstall: true,
       buildCommand: "testFile=$(mktemp /tmp/ucg-test.XXXX)\necho -ne 'Lorem ipsum dolor sit amet\\n2.7182818284590' > $testFile\nucg 'dolor' $testFile || { rm $testFile; exit -1; }\nucg --ignore-case 'lorem' $testFile || { rm $testFile; exit -1; }\nucg --word-regexp '2718' $testFile && { rm $testFile; exit -1; }\nucg 'pisum' $testFile && { rm $testFile; exit -1; }\nrm $testFile\ntouch $out\n",
-      meta: nix.thunk(() => ({ __proto__: pos$1, timeout: 10n })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 10n })),
     })));
 })(), formals$1);
 //# sourceMappingURL=simple.ts.map

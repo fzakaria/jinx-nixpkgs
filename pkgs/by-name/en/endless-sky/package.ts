@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const apple_sdk_15 = nix.arg($, "apple-sdk_15");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "endless-sky",
       version: "0.11.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "endless-sky",
           repo: "endless-sky",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -68,11 +68,11 @@ export default nix.lambda((args) => (() => {
         ]))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p \"$out/Applications\" \"$out/bin\"\nmv \"$out/Endless Sky.app\" \"$out/Applications/\"\nln -s \"$out/Applications/Endless Sky.app/Contents/MacOS/Endless Sky\" \"$out/bin/endless-sky\"\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Sandbox-style space exploration game similar to Elite, Escape Velocity, or Star Control",
         longDescription: "Endless Sky is a sandbox-style space exploration game. You start as the captain\nof a tiny spaceship and can choose what to do from there. The game includes a\nmajor plot line and many minor missions, but you can play as a merchant, bounty\nhunter, or explorer entirely at your own discretion. Trade goods between star\nsystems, upgrade your ship, recruit a fleet, and uncover alien civilisations\nbeyond the boundaries of human space.\n",
         mainProgram: "endless-sky",

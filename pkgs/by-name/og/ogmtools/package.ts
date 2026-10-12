@@ -17,21 +17,21 @@ export default nix.lambda((args) => (() => {
   const libvorbis = nix.arg($, "libvorbis");
   const libdvdread = nix.arg($, "libdvdread");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ogmtools",
       version: "1.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.bunkus.org/videotools/ogmtools/ogmtools-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "1spx81p5wf59ksl3r3gvf78d77sh7gj8a6lw773iv67bphfivmn8",
         })))),
       buildInputs: nix.thunk(() => [libogg, libvorbis, libdvdread]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-std=c++14"]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tools for modifying and inspecting OGG media streams",
         longDescription: "These tools allow information about (ogminfo) or extraction from\n(ogmdemux) or creation of (ogmmerge) OGG media streams. Includes dvdxchap\ntool for extracting chapter information from DVD.\n",
         homepage: "https://www.bunkus.org/videotools/ogmtools/",

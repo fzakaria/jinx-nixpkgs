@@ -22,20 +22,20 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rns",
       version: "1.5.7",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "rns",
           version: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-K7SCMuChC1myshtg52WSNiIQzavTQ9e5ejvxq6It2Hk=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./unvendor-esptool.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             esptool: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), esptool)),
           })))),
       ]),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/rncp`),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Cryptography-based networking stack for wide-area networks",
         homepage: "https://reticulum.network",
         changelog: nix.thunk(() => nix.str`https://github.com/markqvist/Reticulum/blob/${nix.sel(finalAttrs, "version")}/Changelog.md`),

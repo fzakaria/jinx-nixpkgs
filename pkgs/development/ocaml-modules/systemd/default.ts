@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const systemdLibs = nix.arg($, "systemdLibs");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "systemd",
       version: "1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "juergenhoetzel",
           repo: "ocaml-systemd",
           rev: "1.3",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       minimalOCamlVersion: "4.06",
       propagatedBuildInputs: nix.thunk(() => [systemdLibs]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         description: "OCaml module for native access to the systemd facilities",
         homepage: "https://github.com/juergenhoetzel/ocaml-systemd",

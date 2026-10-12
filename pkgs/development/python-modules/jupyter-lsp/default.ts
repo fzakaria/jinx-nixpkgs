@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "jupyter_lsp",
           version: version,
           hash: "sha256-RYqlkzncho+3hNczZPF9vOiDbpBs11/UcaMly6AuAkU=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["jupyter_lsp"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Multi-Language Server WebSocket proxy for your Jupyter notebook or lab server",
         homepage: "https://jupyterlab-lsp.readthedocs.io/en/latest/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const binary_file_toolkit = nix.argOr($, "binary-file-toolkit", () => nix.app(callPackage, nix.path(here, "./binary-file-toolkit.nix"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(ghidra, "buildGhidraExtension"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ghidra-delinker-extension",
       version: "0.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "boricj",
           repo: "ghidra-delinker-extension",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
       gradleBuildTask: "buildExtension",
       __darwinAllowLocalNetworking: true,
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pkg: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           data: nix.path(here, "./deps.json"),
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Ghidra extension for delinking executables back to object files",
         homepage: "https://github.com/boricj/ghidra-delinker-extension",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

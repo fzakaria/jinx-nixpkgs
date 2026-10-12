@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
     const hash = nix.arg($_1, "hash");
     const cargoHash = nix.arg($_1, "cargoHash");
     return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: "cargo-pgrx",
         version: version,
         __structuredAttrs: true,
-        src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({ __proto__: pos$1, version: version, hash: hash, pname: "cargo-pgrx" })))),
+        src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({ [nix.POS]: pos$1, version: version, hash: hash, pname: "cargo-pgrx" })))),
         cargoHash: cargoHash,
         nativeBuildInputs: nix.thunk(() => [pkg_config]),
         buildInputs: nix.thunk(() => [openssl]),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
           "--skip=command::upgrade::tests::process_workspace_package_manifest",
         ]),
         meta: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           description: "Build Postgres Extensions with Rust",
           homepage: "https://github.com/pgcentralfoundation/pgrx",
           changelog: nix.thunk(() => nix.str`https://github.com/pgcentralfoundation/pgrx/releases/tag/v${version}`),
@@ -58,9 +58,9 @@ export default nix.lambda((args) => (() => {
       })));
   })(), formals$2);
   return nix.update({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     "cargo-pgrx": nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         version: "0.19.3",
         hash: "sha256-TyViMU+ZLUHNK5CRi8CN3tThFNUJQnuWTeCxT2JTYG0=",
         cargoHash: "sha256-43B3zl/mJXuBD/w8x+lek7Wtg/lZ/bZWuJdv5v9ImSE=",

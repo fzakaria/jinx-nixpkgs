@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const kdePackages = nix.arg($, "kdePackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kshutdown",
       version: "6.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/kshutdown/KShutdown/${nix.sel(finalAttrs, "version")}/kshutdown-source-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-wV9CWS2I5DGt6oolXAyUqvN4OkV8M3MumflveGlNg5Y=",
           name: nix.thunk(() => nix.str`kshutdown-source-${nix.sel(finalAttrs, "version")}.zip`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://kshutdown.sourceforge.io/",
         description: "Graphical shutdown utility for Linux and Windows",
         mainProgram: "kshutdown",

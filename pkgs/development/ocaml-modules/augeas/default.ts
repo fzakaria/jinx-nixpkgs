@@ -23,22 +23,22 @@ export default nix.lambda((args) => (() => {
   const augeas = nix.arg($, "augeas");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ocaml-augeas",
       version: "0.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://people.redhat.com/~rjones/augeas/files/ocaml-augeas-0.6.tar.gz",
           sha256: "04bn62hqdka0658fgz0p0fil2fyic61i78plxvmni1yhmkfrkfla",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://salsa.debian.org/debian/ocaml-augeas/-/raw/07c2408a7e5a06cefe5d53a89fecaa8556a39b06/debian/patches/0001-Use-ocamlopt-g-option.patch",
             hash: "sha256-EMd/EfWO2ni0AMonfS7G5FENpVVq0+q3gUPd4My+Upg=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://salsa.debian.org/debian/ocaml-augeas/-/raw/07c2408a7e5a06cefe5d53a89fecaa8556a39b06/debian/patches/0002-caml_named_value-returns-const-value-pointer-in-OCam.patch",
             hash: "sha256-Y53UHwrTVeV3hnsvABmWxlPi2Fanm0Iy1OR8Zql5Ub8=",
           })))),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [ocaml, findlib, augeas, libxml2]),
       createFindlibDestdir: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://people.redhat.com/~rjones/augeas/",
         description: "OCaml bindings for Augeas",
         license: nix.thunk(() => (() => {

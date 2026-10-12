@@ -25,45 +25,45 @@ export default nix.lambda((args) => (() => {
   const forwardedPort = 19000n;
   const internalPort = 9000n;
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     name: "webhook",
     nodes: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       webhookMachine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             forwardPorts: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$3,
-                host: nix.thunk(() => ({ __proto__: pos$1, port: forwardedPort })),
-                guest: nix.thunk(() => ({ __proto__: pos$2, port: internalPort })),
+                [nix.POS]: pos$3,
+                host: nix.thunk(() => ({ [nix.POS]: pos$1, port: forwardedPort })),
+                guest: nix.thunk(() => ({ [nix.POS]: pos$2, port: internalPort })),
               })),
             ]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             webhook: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               enable: true,
               port: internalPort,
               openFirewall: true,
               hooks: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 echo: nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   "execute-command": "echo",
                   "response-message": "Webhook is reachable!",
                 })),
               })),
               hooksTemplated: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 echoTemplate: "{\n  \"id\": \"echo-template\",\n  \"execute-command\": \"echo\",\n  \"response-message\": \"{{ getenv \"WEBHOOK_MESSAGE\" }}\"\n}\n",
               })),
-              environment: nix.thunk(() => ({ __proto__: pos$8, WEBHOOK_MESSAGE: "Templates are working!" })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$8, WEBHOOK_MESSAGE: "Templates are working!" })),
             })),
           })),
         };

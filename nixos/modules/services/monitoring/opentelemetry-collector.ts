@@ -42,39 +42,39 @@ export default nix.lambda((args) => (() => {
   const opentelemetry_collector = nix.thunk(() => nix.sel(cfg, "package"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const generatedConf = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "configFile"), null)) ? nix.app(nix.sel(settingsFormat, "generate"), "config.yaml", nix.thunk(() => nix.sel(cfg, "settings"))) : nix.sel(cfg, "configFile")));
-  const conf = nix.thunk(() => (nix.asBool(nix.sel(cfg, "validateConfigFile")) ? nix.app(nix.sel(pkgs, "runCommandLocal"), "config.yaml", nix.thunk(() => ({ __proto__: pos$1, generatedConf: generatedConf })), nix.thunk(() => nix.str`cp $generatedConf $out
+  const conf = nix.thunk(() => (nix.asBool(nix.sel(cfg, "validateConfigFile")) ? nix.app(nix.sel(pkgs, "runCommandLocal"), "config.yaml", nix.thunk(() => ({ [nix.POS]: pos$1, generatedConf: generatedConf })), nix.thunk(() => nix.str`cp $generatedConf $out
 ${nix.app(getExe, opentelemetry_collector)} validate --config=file:$out \\
   ${nix.app(escapeShellArgs, nix.thunk(() => nix.builtins.map((o) => nix.str`--set=${o}`, nix.thunk(() => nix.sel(cfg, "validateConfigOverrides")))))}
 `)) : nix.force(generatedConf)));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         "opentelemetry-collector": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Opentelemetry Collector")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "opentelemetry-collector", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(settingsFormat, "type")),
               default: nix.thunk(() => ({})),
               description: "Specify the configuration for Opentelemetry Collector in Nix.\n\nSee <https://opentelemetry.io/docs/collector/configuration/> for available options.\n",
             })))),
           configFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               default: null,
               description: "Specify a path to a configuration file that Opentelemetry Collector should use.\n",
             })))),
           validateConfigFile: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "Validate configuration file"), {
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             defaultText: nix.thunk(() => nix.app(literalMD, "`true` unless `configFile` is a path outside the store")),
             default: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "configFile"), null)) || nix.asBool(nix.app(isStorePath, nix.thunk(() => nix.sel(cfg, "configFile")))))),
           })),
           validateConfigOverrides: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: [],
               example: nix.thunk(() => ["extensions::bearertokenauth::token=stub"]),
@@ -83,11 +83,11 @@ ${nix.app(getExe, opentelemetry_collector)} validate --config=file:$out \\
         })),
       })),
       system: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         build: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           opentelemetryCollectorConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(types, "path")),
               readOnly: true,
               internal: true,
@@ -97,28 +97,28 @@ ${nix.app(getExe, opentelemetry_collector)} validate --config=file:$out \\
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         system: nix.thunk(() => ({
-          __proto__: pos$13,
-          build: nix.thunk(() => ({ __proto__: pos$12, opentelemetryCollectorConfig: conf })),
+          [nix.POS]: pos$13,
+          build: nix.thunk(() => ({ [nix.POS]: pos$12, opentelemetryCollectorConfig: conf })),
         })),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             assertion: nix.thunk(() => !nix.eq(nix.eq(nix.sel(cfg, "settings"), {}), nix.eq(nix.sel(cfg, "configFile"), null))),
             message: "Please specify a configuration for Opentelemetry Collector with either\n'services.opentelemetry-collector.settings' or\n'services.opentelemetry-collector.configFile'.\n",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           services: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             "opentelemetry-collector": nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               description: "Opentelemetry Collector Service Daemon",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(getExe, opentelemetry_collector)} --config=file:${conf}`),
                 DynamicUser: true,
                 Restart: "always",

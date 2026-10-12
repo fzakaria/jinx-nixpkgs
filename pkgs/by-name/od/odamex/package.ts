@@ -50,11 +50,11 @@ export default nix.lambda((args) => (() => {
   const withX11 = nix.argOr($, "withX11", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   const withWayland = nix.argOr($, "withWayland", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "odamex",
       version: "12.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "odamex",
           repo: "odamex",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -106,7 +106,7 @@ runHook postInstall
 `))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "odamex",
             icon: "odamex",
             exec: "odamex",
@@ -115,7 +115,7 @@ runHook postInstall
             categories: nix.thunk(() => ["ActionGame", "Game", "Shooter"]),
           })))),
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "odalaunch",
             icon: "odalaunch",
             exec: "odalaunch",
@@ -124,7 +124,7 @@ runHook postInstall
             categories: nix.thunk(() => ["ActionGame", "Game", "Shooter"]),
           })))),
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "odasrv",
             icon: "odasrv",
             exec: "odasrv",
@@ -134,11 +134,11 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://odamex.net",
         description: "Client/server port for playing old-school Doom online",
         changelog: nix.thunk(() => nix.str`https://github.com/odamex/odamex/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

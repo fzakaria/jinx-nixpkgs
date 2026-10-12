@@ -11,10 +11,10 @@ export default nix.lambda((args) => (() => {
   const buildAstalModule = nix.arg($, "buildAstalModule");
   const json_glib = nix.arg($, "json-glib");
   return nix.app(buildAstalModule, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "apps",
       buildInputs: nix.thunk(() => [json_glib]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, description: "Astal module for application query" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, description: "Astal module for application query" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=apps.ts.map

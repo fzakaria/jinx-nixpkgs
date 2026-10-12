@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "srht-gen-oauth-tok";
       const version = "0.1";
       const src = nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "entropic.network",
           owner: "~nessdoor",
           repo: "srht-gen-oauth-tok",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [perl]);
       const installPhase = "install -Dm755 srht-gen-oauth-tok $out/bin/srht-gen-oauth-tok";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Script to register a new Sourcehut OAuth token for a given user",
         longDescription: "srht-gen-oauth-tok is a Perl script for automating the generation of user\nOAuth tokens for Sourcehut-based code forges. This is done by emulating a\nbrowser and interacting with the Web interface.\n",
         maintainers: nix.thunk(() => (() => {
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "fromSource"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

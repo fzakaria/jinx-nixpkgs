@@ -61,16 +61,16 @@ export default nix.lambda((args) => (() => {
 });
 `)));
   return {
-    __proto__: pos$35,
+    [nix.POS]: pos$35,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         mirakurun: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "the Mirakurun DVR Tuner Server")),
           port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "port")));
@@ -79,13 +79,13 @@ export default nix.lambda((args) => (() => {
               description: "Port to listen on. If `null`, it won't listen on\nany port.\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Open ports in the firewall for Mirakurun.\n\n::: {.warning}\nExposing Mirakurun to the open internet is generally advised\nagainst. Only use it inside a trusted local network, or\nconsider putting it behind a VPN if you want remote access.\n:::\n",
             })))),
           unixSocket: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "path")));
@@ -94,20 +94,20 @@ export default nix.lambda((args) => (() => {
               description: "Path to unix socket to listen on. If `null`, it\nwon't listen on any unix sockets.\n",
             })))),
           allowSmartCardAccess: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "Install polkit rules to allow Mirakurun to access smart card readers\nwhich is commonly used along with tuner devices.\n",
             })))),
           serverSettings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(settingsFmt, "type")),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  highWaterMark = 25165824;\n  overflowTimeLimit = 30000;\n};\n")),
               description: "Options for server.yml.\n\nDocumentation:\n<https://github.com/Chinachu/Mirakurun/blob/master/doc/Configuration.md>\n",
             })))),
           tunerSettings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.sel(settingsFmt, "type")));
@@ -117,7 +117,7 @@ export default nix.lambda((args) => (() => {
               description: "Options which are added to tuners.yml. If none is specified, it will\nautomatically be generated at runtime.\n\nDocumentation:\n<https://github.com/Chinachu/Mirakurun/blob/master/doc/Configuration.md>\n",
             })))),
           channelSettings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.sel(settingsFmt, "type")));
@@ -130,25 +130,25 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         environment: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           systemPackages: nix.thunk(() => nix.concat([mirakurun], nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.sel(cfg, "allowSmartCardAccess")), polkitRule))),
           etc: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             "mirakurun/server.yml": nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               source: nix.thunk(() => nix.app(nix.sel(settingsFmt, "generate"), "server.yml", nix.thunk(() => nix.sel(cfg, "serverSettings")))),
             })),
             "mirakurun/tuners.yml": nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "tunerSettings"), null)), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 source: nix.thunk(() => nix.app(nix.sel(settingsFmt, "generate"), "tuners.yml", nix.thunk(() => nix.sel(cfg, "tunerSettings")))),
                 mode: "0644",
                 user: username,
                 group: groupname,
               })))),
             "mirakurun/channels.yml": nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "channelSettings"), null)), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 source: nix.thunk(() => nix.app(nix.sel(settingsFmt, "generate"), "channels.yml", nix.thunk(() => nix.sel(cfg, "channelSettings")))),
                 mode: "0644",
                 user: username,
@@ -157,18 +157,18 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           firewall: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               allowedTCPPorts: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "port"), null)), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]))),
             })))),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           users: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             mirakurun: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "Mirakurun user",
               group: "video",
               isSystemUser: true,
@@ -177,11 +177,11 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           mirakurun: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             serverSettings: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               logLevel: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), 2n)),
               path: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "unixSocket"), null)), nix.thunk(() => nix.sel(cfg, "unixSocket")))),
               port: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "port"), null)), nix.thunk(() => nix.sel(cfg, "port")))),
@@ -189,29 +189,29 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             settings: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               "10-mirakurun": nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 "/etc/mirakurun": nix.thunk(() => ({
-                  __proto__: pos$25,
-                  d: nix.thunk(() => ({ __proto__: pos$24, user: username, group: groupname })),
+                  [nix.POS]: pos$25,
+                  d: nix.thunk(() => ({ [nix.POS]: pos$24, user: username, group: groupname })),
                 })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             mirakurun: nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               description: nix.thunk(() => nix.sel(mirakurun, "meta", "description")),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 ExecStart: nix.thunk(() => nix.str`${mirakurun}/bin/mirakurun start`),
                 User: username,
                 Group: groupname,
@@ -223,7 +223,7 @@ export default nix.lambda((args) => (() => {
                 IOSchedulingPriority: 7n,
               })),
               environment: nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 SERVER_CONFIG_PATH: "/etc/mirakurun/server.yml",
                 TUNERS_CONFIG_PATH: "/etc/mirakurun/tuners.yml",
                 CHANNELS_CONFIG_PATH: "/etc/mirakurun/channels.yml",

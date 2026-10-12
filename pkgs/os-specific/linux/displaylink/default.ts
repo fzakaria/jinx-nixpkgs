@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const bins = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? "x64-ubuntu-1604" : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")) ? "x86-ubuntu-1604" : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-linux")) ? "aarch64-linux-gnu" : nix.builtins.throw("Unsupported architecture")))));
   const libPath = nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [nix.thunk(() => nix.sel(stdenv, "cc", "cc")), util_linux, libusb1, evdi])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "displaylink",
       version: "6.3.0-48",
       src: nix.thunk(() => nix.app(requireFile, nix.thunk(() => (() => {
@@ -43,7 +43,7 @@ file directly:
 
 nix-prefetch-url --name ${name} https://www.synaptics.com/sites/default/files/exe_files/2026-06/DisplayLink%20USB%20Graphics%20Software%20for%20Ubuntu6.3-EXE.zip
 `);
-          return { __proto__: pos$1, name, hash, message };
+          return { [nix.POS]: pos$1, name, hash, message };
         })()))),
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper, unzip]),
       unpackPhase: nix.thunk(() => nix.str`runHook preUnpack
@@ -73,7 +73,7 @@ runHook postInstall
       dontStrip: true,
       dontPatchELF: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "DL-7xxx, DL-6xxx, DL-5xxx, DL-41xx and DL-3x00 Driver for Linux",
         homepage: "https://www.displaylink.com/",
         hydraPlatforms: [],

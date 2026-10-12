@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
       const pname = "antlr";
       const version = "3.5.2";
       const jar = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.antlr3.org/download/antlr-${version}-complete.jar`),
           sha256: "0srjwxipwsfzmpi0v32d1l5lzk9gi5in8ayg33sq8wyp8ygnbji6",
         }))));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "antlr",
           repo: "antlr3",
           rev: "5c2a916a10139cdb5c7c8851ee592ed9c3b3d4ff",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://src.fedoraproject.org/rpms/antlr3/raw/f1bb8d639678047935e1761c3bf3c1c7da8d0f1d/f/0006-antlr3memory.hpp-fix-for-C-20-mode.patch",
             sha256: "0apk904afjqbad6c7z9r72a9lkbz69vwrl8j2a6zgxjn8dfb2p8b",
           })))),
@@ -51,7 +51,7 @@ ln -s "$out/bin/antlr"{,3}
 `);
       const jre_1 = jre;
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Powerful parser generator",
         longDescription: "ANTLR (ANother Tool for Language Recognition) is a powerful parser\ngenerator for reading, processing, executing, or translating structured\ntext or binary files. It's widely used to build languages, tools, and\nframeworks. From a grammar, ANTLR generates a parser that can build and\nwalk parse trees.\n",
         homepage: "https://www.antlr.org/",
@@ -64,7 +64,7 @@ ln -s "$out/bin/antlr"{,3}
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "workflow"))]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         jar,

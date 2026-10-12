@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const enableDocs = nix.argOr($, "enableDocs", () => true);
   const enableGI = nix.argOr($, "enableGI", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "wireplumber",
       version: "0.5.18",
       outputs: nix.thunk(() => nix.concat(["out", "dev"], nix.app(nix.sel(lib, "optional"), enableDocs, "doc"))),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "pipewire",
           repo: "wireplumber",
@@ -65,11 +65,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonOption"), "sysconfdir", "/etc")),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Modular session / policy manager for PipeWire",
         homepage: "https://pipewire.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const jdk21 = nix.arg($, "jdk21");
   const jre_minimal = nix.arg($, "jre_minimal");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "jspecify",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jspecify",
           repo: "jspecify",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [gradle, jdk21]),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         JAVA_VERSION: nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(jdk21, "version")))),
       })),
       gradleBuildTask: "assemble",
@@ -51,7 +51,7 @@ install -Dm644 build/libs/jspecify-${nix.sel(finalAttrs, "version")}.jar \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-jspecify", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix_update)} jspecify
 $(nix-build -A jspecify.mitmCache.updateScript)
 `))),
@@ -59,7 +59,7 @@ $(nix-build -A jspecify.mitmCache.updateScript)
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(jre_minimal, "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://jspecify.dev",
         description: "Standard Annotations for Java Static Analysis",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

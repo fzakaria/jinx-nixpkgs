@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const uv_build = nix.arg($, "uv-build");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "busylight-core",
       version: "2.4.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "JnyJny",
           repo: "busylight",
           tag: nix.thunk(() => nix.str`busylight-core/v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["busylight_core"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for interacting programmatically with USB-connected LED lights",
         homepage: "https://github.com/JnyJny/busylight",
         changelog: nix.thunk(() => nix.str`https://github.com/JnyJny/busylight/blob/${nix.sel(finalAttrs, "src", "tag")}/${nix.sel(finalAttrs, "src", "rootDir")}/CHANGELOG.md`),

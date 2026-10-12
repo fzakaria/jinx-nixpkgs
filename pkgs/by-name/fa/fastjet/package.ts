@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const python = nix.argOr($, "python", () => null);
   const withPython = nix.argOr($, "withPython", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fastjet",
       version: "3.5.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://fastjet.fr/repo/fastjet-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-mkFUFj5yBB3uP93pyyToFGJeF4CRqHNKatU3XlNxtCM=",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => nix.concat(["--enable-allcxxplugins"], nix.app(nix.sel(lib, "optionals"), withPython, nix.thunk(() => ["--enable-pyext"])))),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Software package for jet finding in pp and e+e− collisions",
         mainProgram: "fastjet-config",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -22,19 +22,19 @@ const pos$11 = nix.positions(here + "/console.nix", [["name", 3, 3], ["meta", 4,
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     name: "console",
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     nodes: nix.thunk(() => (() => {
       const missingKeymapsWorkaround = nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           systemd: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             tmpfiles: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               rules: nix.thunk(() => [
                 nix.thunk(() => nix.str`L /usr/share/keymaps - - - - ${nix.sel(pkgs, "kbd")}/share/keymaps`),
               ]),
@@ -43,22 +43,22 @@ export default nix.lambda((args) => (() => {
         };
       })(), formals$2);
       return {
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         node_static: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$3);
           return {
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             imports: nix.thunk(() => [missingKeymapsWorkaround]),
-            console: nix.thunk(() => ({ __proto__: pos$5, keyMap: "lt" })),
+            console: nix.thunk(() => ({ [nix.POS]: pos$5, keyMap: "lt" })),
           };
         })(), formals$3),
         node_imperative: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$4);
           return {
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             imports: nix.thunk(() => [missingKeymapsWorkaround]),
-            console: nix.thunk(() => ({ __proto__: pos$7, keyMap: "lt" })),
-            i18n: nix.thunk(() => ({ __proto__: pos$8, imperativeLocale: true })),
+            console: nix.thunk(() => ({ [nix.POS]: pos$7, keyMap: "lt" })),
+            i18n: nix.thunk(() => ({ [nix.POS]: pos$8, imperativeLocale: true })),
           };
         })(), formals$4),
       };

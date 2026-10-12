@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "p1c2u",
           repo: "openapi-schema-validator",
           tag: version,
@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
         referencing,
         rfc3339_validator,
       ]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, "ecma-regex": nix.thunk(() => [regress]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, "ecma-regex": nix.thunk(() => [regress]) }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_cov_stub]);
       const pythonImportsCheck = nix.thunk(() => ["openapi_schema_validator"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/python-openapi/openapi-schema-validator/releases/tag/${nix.sel(src, "tag")}`),
         description: "Validates OpenAPI schema against the OpenAPI Schema Specification v3.0 and v3.1",
         homepage: "https://github.com/python-openapi/openapi-schema-validator",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const gettext = nix.arg($, "gettext");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pdfarranger",
       version: "1.14.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pdfarranger",
           repo: "pdfarranger",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -59,7 +59,7 @@ unset LINTL
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "Merge or split pdf documents and rotate, crop and rearrange their pages using a graphical interface",
         mainProgram: "pdfarranger",

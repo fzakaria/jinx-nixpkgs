@@ -25,27 +25,27 @@ export default nix.thunk(() => (() => {
   const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "./common/acme/server/snakeoil-certs.nix")));
   const domain = nix.thunk(() => nix.sel(certs, "domain"));
   return nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       name: "postfix",
       nodes: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         machine: nix.lambda((args) => (() => {
           const $ = nix.formals(args, formals$1);
           const pkgs = nix.arg($, "pkgs");
           return {
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             imports: nix.thunk(() => [nix.path(here, "common/user-account.nix")]),
             services: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               postfix: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 enable: true,
                 enableSubmission: true,
                 enableSubmissions: true,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   main: nix.thunk(() => ({
-                    __proto__: pos$2,
+                    [nix.POS]: pos$2,
                     smtp_tls_CAfile: nix.thunk(() => nix.str`${nix.sel(certs, "ca", "cert")}`),
                     smtpd_tls_chain_files: nix.thunk(() => [
                       nix.thunk(() => nix.sel(certs, nix.key(nix.force(domain)), "key")),
@@ -54,7 +54,7 @@ export default nix.thunk(() => (() => {
                     smtpd_sasl_auth_enable: "yes",
                     cyrus_sasl_config_path: nix.thunk(() => (() => {
                       const smtpdConf = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-                          __proto__: pos$1,
+                          [nix.POS]: pos$1,
                           name: "smtpd.conf",
                           destination: "/etc/sasl2/smtpd.conf",
                           text: "pwcheck_method: saslauthd\nmech_list: PLAIN LOGIN\n",
@@ -64,35 +64,35 @@ export default nix.thunk(() => (() => {
                   })),
                 })),
                 submissionsOptions: nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   smtpd_sasl_auth_enable: "yes",
                   smtpd_client_restrictions: "permit",
                   milter_macro_daemon_name: "ORIGINATING",
                 })),
               })),
-              saslauthd: nix.thunk(() => ({ __proto__: pos$6, enable: true })),
+              saslauthd: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
             })),
             security: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               pki: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 certificateFiles: nix.thunk(() => [nix.thunk(() => nix.sel(certs, "ca", "cert"))]),
               })),
               pam: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 services: nix.thunk(() => ({
-                  __proto__: pos$10,
-                  smtp: nix.thunk(() => ({ __proto__: pos$9, name: "smtp" })),
+                  [nix.POS]: pos$10,
+                  smtp: nix.thunk(() => ({ [nix.POS]: pos$9, name: "smtp" })),
                 })),
               })),
             })),
             networking: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               extraHosts: nix.thunk(() => nix.str`127.0.0.1 ${domain}
 `),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               systemPackages: nix.thunk(() => (() => {
                 const sendTestMail = nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writePython3Bin"), "send-testmail", nix.thunk(() => ({})), nix.thunk(() => nix.str`import smtplib
 

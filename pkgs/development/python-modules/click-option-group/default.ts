@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.9";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "click-contrib",
           repo: "click-option-group",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["click_option_group"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Option groups missing in Click",
         longDescription: "Option groups are convenient mechanism for logical structuring\nCLI, also it allows you to set the specific behavior and set the\nrelationship among grouped options (mutually exclusive options\nfor example). Moreover, argparse stdlib package contains this\nfunctionality out of the box.\n",
         homepage: nix.thunk(() => nix.str`https://github.com/click-contrib/click-option-group/releases/tag/${nix.sel(src, "tag")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const filelock = nix.arg($, "filelock");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cx-logging",
       version: "3.2.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "anthony-tuininga",
           repo: "cx_Logging",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ echo '${nix.sel(finalAttrs, "version")}' > VERSION
       dependencies: nix.thunk(() => [filelock]),
       pythonImportsCheck: nix.thunk(() => ["cx_Logging"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python and C interfaces for logging",
         homepage: "https://github.com/anthony-tuininga/cx_Logging",
         changelog: nix.thunk(() => nix.str`https://github.com/anthony-tuininga/cx_Logging/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "glock",
       version: "0-unstable-2021-03-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "robfig",
           repo: "glock",
           rev: "0ac7e52a4c8a9a7039a72b3c6a10e8be59bc6599",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/robfig/glock/commit/943afe5e26dd64ebad5ca17613ae3700c53fb25d.patch",
             hash: "sha256-nk+5uHlCv7Hxbo0Axvi15nJVzEcb++gOJpF3w06yQsk=",
           })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-v3lfb+CXbTxzObDpubufD3Q1h6IhULcC/6spA6StfGw=",
       checkFlags: nix.thunk(() => ["-skip=^TestSave$"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/robfig/glock",
         description: "Command-line tool to lock Go dependencies to specific revisions",
         mainProgram: "glock",

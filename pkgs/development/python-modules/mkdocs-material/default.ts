@@ -36,12 +36,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const trove_classifiers = nix.arg($, "trove-classifiers");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mkdocs-material",
       version: "9.7.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "squidfunk",
           repo: "mkdocs-material",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonRelaxDeps: nix.thunk(() => ["backrefs"]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         recommended: nix.thunk(() => [mkdocs_minify_plugin, mkdocs_redirects, mkdocs_rss_plugin]),
         git: nix.thunk(() => [mkdocs_git_revision_date_localized_plugin]),
         imaging: nix.thunk(() => [cairosvg, pillow]),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["mkdocs"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/squidfunk/mkdocs-material/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG`),
         description: "Material for mkdocs",
         downloadPage: "https://github.com/squidfunk/mkdocs-material",

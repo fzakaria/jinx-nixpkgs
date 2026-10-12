@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const blas = nix.arg($, "blas");
   const lapack = nix.arg($, "lapack");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ergoscf",
       version: "3.8.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.ergoscf.org/source/tarfiles/ergo-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-U0NVREEZ8HI0Q0ZcbwvZsYA76PWMh7bqgDG1uaUc01c=",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs ./test\n",
       configureFlags: nix.thunk(() => nix.concat(["--enable-linalgebra-templates", "--enable-performance"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64")), "--enable-sse-intrinsics"))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
         LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lblas", "-llapack"]))),
       })),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => ["fortify3"]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Quantum chemistry program for large-scale self-consistent field calculations",
         mainProgram: "ergo",
         homepage: "http://www.ergoscf.org",

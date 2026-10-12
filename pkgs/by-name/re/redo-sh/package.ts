@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const coreutils = nix.arg($, "coreutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "redo-sh",
       version: "4.0.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://web.archive.org/web/20251228095310/http://news.dieweltistgarnichtso.net/bin/archives/redo-sh.tar.gz",
           hash: "sha256-h9C/8ti8TBRM66OLYOk+TotwmDCIZBRvJ0tJKdYAwaQ=",
         })))),
@@ -37,7 +37,7 @@ done
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Redo implementation in Bourne Shell",
         homepage: "http://news.dieweltistgarnichtso.net/bin/redo-sh.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
   const vmopts = nix.argOr($, "vmopts", () => null);
   const excludeDrvArgNames = nix.arg($, "excludeDrvArgNames");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       excludeDrvArgNames: excludeDrvArgNames,
       constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
         const hiName = nix.thunk(() => nix.app(nix.sel(lib, "toUpper"), productShort));
         const vmoptsName = nix.thunk(() => nix.add(nix.add(loName, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "is64bit")), "64")), ".vmoptions"));
         const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             name: nix.thunk(() => nix.sel(finalAttrs, "pname")),
             exec: nix.thunk(() => nix.sel(finalAttrs, "meta", "mainProgram")),
             comment: nix.thunk(() => nix.app(nix.sel(lib, "trim"), nix.thunk(() => nix.app(nix.sel(lib, "replaceString"), "\n", " ", nix.thunk(() => nix.sel(finalAttrs, "meta", "longDescription")))))),
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
         const vmoptsIDE = nix.thunk(() => (nix.asBool(nix.eq(hiName, "WEBSTORM")) ? "WEBIDE" : nix.force(hiName)));
         const vmoptsFile = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(vmopts, null)), nix.thunk(() => nix.app(writeText, vmoptsName, vmopts))));
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           desktopItem: desktopItem,
           vmoptsIDE: vmoptsIDE,
           vmoptsFile: vmoptsFile,
@@ -202,7 +202,7 @@ runHook postInstall
           preFixup: nix.thunk(() => nix.str`addAutoPatchelfSearchPath "${nix.sel(jdk, "home")}/lib"
 `),
           preferLocalBuild: nix.thunk(() => !nix.asBool(nix.selOr(finalAttrs, () => true, "meta", "license", "free"))),
-          meta: nix.thunk(() => nix.update(meta, { __proto__: pos$2, mainProgram: pname })),
+          meta: nix.thunk(() => nix.update(meta, { [nix.POS]: pos$2, mainProgram: pname })),
         };
       })(), formals$2),
     })));

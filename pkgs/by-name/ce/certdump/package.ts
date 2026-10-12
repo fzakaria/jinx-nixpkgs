@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildDotnetModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "certdump",
       version: "0-unstable-2023-12-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "secana",
           repo: "CertDump",
           rev: "a834da24ee18503109631d836540a2b0cb481517",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       executables: nix.thunk(() => ["CertDump"]),
       dotnetFlags: nix.thunk(() => ["-property:ImportByWildcardBeforeSolution=false"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Dump certificates from PE files in different formats",
         mainProgram: "CertDump",
         homepage: "https://github.com/secana/CertDump",

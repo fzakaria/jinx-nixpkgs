@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const respx = nix.arg($, "respx");
   const llama_index_core = nix.arg($, "llama-index-core");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "llama-cloud",
       version: "2.16.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "llama_cloud",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-JI3cams5ReWH+PeWlVUPj0yR7Gzd+OBRPG1xKjo6x5o=",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), "tests/test_index.py")),
       pythonImportsCheck: nix.thunk(() => ["llama_cloud"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "LlamaIndex Python Client",
         homepage: "https://pypi.org/project/llama-cloud/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

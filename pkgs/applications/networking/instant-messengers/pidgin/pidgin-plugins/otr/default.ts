@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pidgin-otr";
       const version = "4.0.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://otr.cypherpunks.ca/pidgin-otr-${version}.tar.gz`),
           sha256: "1i5s9rrgbyss9rszq6c6y53hwqyw1k86s40cpsfx5ccl9bprxdgl",
         }))));
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [intltool]);
       const buildInputs = nix.thunk(() => [libotr, pidgin]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://otr.cypherpunks.ca/",
         description: "Plugin for Pidgin 2.x which implements OTR Messaging",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

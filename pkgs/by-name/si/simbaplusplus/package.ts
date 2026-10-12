@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const z3 = nix.arg($, "z3");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "simbaplusplus",
       version: "0-unstable-2025-11-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pgarba",
           repo: "SiMBA-",
           rev: "cbef1fc868d5de1b659ed317db9e0a1cecf6462b",
@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
   --replace-fail ' \${LLVM_TOOLS_BINARY_DIR}/llvm-config' " ${nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(llvmPackages, "libllvm")))}/bin/llvm-config" \\
   --replace-fail 'set(Z3_INCLUDE_DIRS “/usr/include”)' ""
 `),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-fexceptions" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fexceptions" })),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(llvmPackages, "libllvm")), z3]),
       checkInputs: nix.thunk(() => [python3]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "SiMBA++ is a port of MBA Solver SiMBA to C/C++",
         homepage: "https://github.com/pgarba/SiMBA-",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

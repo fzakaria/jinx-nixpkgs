@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const fmt = nix.arg($, "fmt");
   const spdlog = nix.arg($, "spdlog");
   return nix.app(nix.sel(llvmPackages, "stdenv", "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "irods",
       version: "5.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "irods",
           repo: "irods",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       ])),
       postPatch: "patchShebangs ./test\nsubstituteInPlace plugins/database/CMakeLists.txt --replace-fail \\\n  'COMMAND cpp -E -P -D${plugin} \"${CMAKE_CURRENT_BINARY_DIR}/src/icatSysTables.sql.pp\" ' \\\n  'COMMAND cpp -E -P -D${plugin} \"${CMAKE_CURRENT_BINARY_DIR}/src/icatSysTables.sql.pp\" -o '\nsubstituteInPlace server/auth/CMakeLists.txt --replace-fail SETUID \"\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         commonCmakeFlags: nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "IRODS_BUILD_WITH_CLANG", false)),
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "IRODS_BUILD_WITH_WERROR", false)),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         ]),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Integrated Rule-Oriented Data System (iRODS)",
         longDescription: "The Integrated Rule-Oriented Data System (iRODS) is open source data management\nsoftware used by research organizations and government agencies worldwide.\niRODS is released as a production-level distribution aimed at deployment in mission\ncritical environments.  It virtualizes data storage resources, so users can take\ncontrol of their data, regardless of where and on what device the data is stored.\nAs data volumes grow and data services become more complex, iRODS is increasingly\nimportant in data management. The development infrastructure supports exhaustive\ntesting on supported platforms; plug-in support for microservices, storage resources,\ndrivers, and databases; and extensive documentation, training and support services.\n",
         homepage: "https://irods.org",

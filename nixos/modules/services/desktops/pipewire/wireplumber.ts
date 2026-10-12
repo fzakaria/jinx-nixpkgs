@@ -71,63 +71,63 @@ export default nix.lambda((args) => (() => {
   const mapConfigToFiles = (config_1) => nix.app(mapAttrsToList, (name) => (value) => nix.app(configSectionsToConfFile, nix.thunk(() => nix.str`share/wireplumber/wireplumber.conf.d/${name}.conf`), value), config_1);
   const mapScriptsToFiles = (scripts) => nix.app(mapAttrsToList, (relativePath) => (value) => nix.app(nix.sel(pkgs, "writeTextDir"), nix.thunk(() => nix.app(nix.sel(subpath, "join"), nix.thunk(() => ["share/wireplumber/scripts", relativePath]))), value), scripts);
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(maintainers, "k900"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         pipewire: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           wireplumber: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: bool,
                 default: nix.thunk(() => nix.sel(pwCfg, "enable")),
                 defaultText: nix.thunk(() => nix.app(literalExpression, "config.services.pipewire.enable")),
                 description: "Whether to enable WirePlumber, a modular session / policy manager for PipeWire",
               })))),
             package: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: package$,
                 default: nix.thunk(() => nix.sel(pkgs, "wireplumber")),
                 defaultText: nix.thunk(() => nix.app(literalExpression, "pkgs.wireplumber")),
                 description: "The WirePlumber derivation to use.",
               })))),
             extraConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.app(attrsOf, nix.thunk(() => nix.app(attrsOf, nix.thunk(() => nix.sel(json, "type")))))),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => nix.app(literalExpression, "{\n  \"log-level-debug\" = {\n    \"context.properties\" = {\n      # Output Debug log messages as opposed to only the default level (Notice)\n      \"log.level\" = \"D\";\n    };\n  };\n  \"wh-1000xm3-ldac-hq\" = {\n    \"monitor.bluez.rules\" = [\n      {\n        matches = [\n          {\n            # Match any bluetooth device with ids equal to that of a WH-1000XM3\n            \"device.name\" = \"~bluez_card.*\";\n            \"device.product.id\" = \"0x0cd3\";\n            \"device.vendor.id\" = \"usb:054c\";\n          }\n        ];\n        actions = {\n          update-props = {\n            # Set quality to high quality instead of the default of auto\n            \"bluez5.a2dp.ldac.quality\" = \"hq\";\n          };\n        };\n      }\n    ];\n  };\n}\n")),
                 description: "Additional configuration for the WirePlumber daemon when run in\nsingle-instance mode (the default in nixpkgs and currently the only\nsupported way to run WirePlumber configured via `extraConfig`).\n\nSee also:\n- [The configuration file][docs-the-conf-file]\n- [Modifying configuration][docs-modifying-config]\n- [Locations of files][docs-file-locations]\n- and the [configuration section][docs-config-section] of the docs in general\n\nNote that WirePlumber (and PipeWire) use dotted attribute names like\n`device.product.id`. These are not nested, but flat objects for WirePlumber/PipeWire,\nso to write these in nix expressions, remember to quote them like `\"device.product.id\"`.\nHave a look at the example for this.\n\n[docs-the-conf-file]: https://pipewire.pages.freedesktop.org/wireplumber/daemon/configuration/conf_file.html\n[docs-modifying-config]: https://pipewire.pages.freedesktop.org/wireplumber/daemon/configuration/modifying_configuration.html\n[docs-file-locations]: https://pipewire.pages.freedesktop.org/wireplumber/daemon/configuration/locations.html\n[docs-config-section]: https://pipewire.pages.freedesktop.org/wireplumber/daemon/configuration.html\n",
               })))),
             extraScripts: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.app(attrsOf, lines)),
                 default: nix.thunk(() => ({})),
-                example: nix.thunk(() => ({ __proto__: pos$5, "test/hello-world.lua": "print(\"Hello, world!\")\n" })),
+                example: nix.thunk(() => ({ [nix.POS]: pos$5, "test/hello-world.lua": "print(\"Hello, world!\")\n" })),
                 description: "Additional scripts for WirePlumber to be used by configuration files.\n\nEvery item in this attrset becomes a separate lua file with the path\nrelative to the `scripts` directory specified in the name of the item.\nThe scripts get passed to the WirePlumber service via the `XDG_DATA_DIRS`\nvariable. Scripts specified here are preferred over those shipped with\nWirePlumber if they occupy the same relative path.\n\nFor a script to be loaded, it needs to be specified as part of a component,\nand that component needs to be required by an active profile (e.g. `main`).\nComponents can be defined in config files either via `extraConfig` or `configPackages`.\n\nFor the hello-world example, you'd have to add the following `extraConfig`:\n```nix\n  services.pipewire.wireplumber.extraConfig.\"99-hello-world\" = {\n    \"wireplumber.components\" = [\n      {\n        name = \"test/hello-world.lua\";\n        type = \"script/lua\";\n        provides = \"custom.hello-world\";\n      }\n    ];\n\n    \"wireplumber.profiles\" = {\n      main = {\n        \"custom.hello-world\" = \"required\";\n      };\n    };\n  };\n```\n\nSee also:\n- [Location of scripts][docs-file-locations-scripts]\n- [Components & Profiles][docs-components-profiles]\n- [Migration - Loading custom scripts][docs-migration-loading-custom-scripts]\n\n[docs-file-locations-scripts]: https://pipewire.pages.freedesktop.org/wireplumber/daemon/locations.html#location-of-scripts\n[docs-components-profiles]: https://pipewire.pages.freedesktop.org/wireplumber/daemon/configuration/components_and_profiles.html\n[docs-migration-loading-custom-scripts]: https://pipewire.pages.freedesktop.org/wireplumber/daemon/configuration/migration.html#loading-custom-scripts\n",
               })))),
             configPackages: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.app(listOf, package$)),
                 default: [],
                 example: nix.thunk(() => nix.app(literalExpression, "[\n  (pkgs.writeTextDir \"share/wireplumber/wireplumber.conf.d/10-bluez.conf\" ''\n    monitor.bluez.properties = {\n      bluez5.roles = [ a2dp_sink a2dp_source bap_sink bap_source hsp_hs hsp_ag hfp_hf hfp_ag ]\n      bluez5.codecs = [ sbc sbc_xq aac ]\n      bluez5.enable-sbc-xq = true\n      bluez5.hfphsp-backend = \"native\"\n    }\n  '')\n]\n")),
                 description: "List of packages that provide WirePlumber configuration, in the form of\n`share/wireplumber/*/*.conf` files.\n\nLV2/LADSPA dependencies will be picked up from config packages automatically\nvia `passthru.requiredLv2Packages`/`passthru.requiredLadspaPackages`.\n",
               })))),
             extraLv2Packages: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.app(listOf, package$)),
                 default: [],
                 example: nix.thunk(() => nix.app(literalExpression, "[ pkgs.lsp-plugins ]")),
                 description: "List of packages that provide LV2 plugins in `lib/lv2` that should\nbe made available to WirePlumber for [filter chains][wiki-filter-chain].\n\nConfig packages have their required LV2 plugins added automatically,\nso they don't need to be specified here. Config packages need to set\n`passthru.requiredLv2Packages` for this to work.\n\n[wiki-filter-chain]: https://docs.pipewire.org/page_module_filter_chain.html\n",
               })))),
             extraLadspaPackages: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.app(listOf, package$)),
                 default: [],
                 example: nix.thunk(() => nix.app(literalExpression, "[ pkgs.noisetorch-ladspa ]")),
@@ -140,78 +140,78 @@ export default nix.lambda((args) => (() => {
     config: nix.thunk(() => (() => {
       const pwNotForAudioConfigPkg = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "share/wireplumber/wireplumber.conf.d/90-nixos-no-audio.conf", "# PipeWire is not used for audio, so WirePlumber should not be handling it\nwireplumber.profiles = {\n  main = {\n    hardware.audio = disabled\n    hardware.bluetooth = disabled\n  }\n}\n"));
       const extraConfigPkg = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           name: "wireplumber-extra-config",
           paths: nix.thunk(() => nix.app(mapConfigToFiles, nix.thunk(() => nix.sel(cfg, "extraConfig")))),
           pathsToLink: nix.thunk(() => ["/share/wireplumber/wireplumber.conf.d"]),
         }))));
       const extraScriptsPkg = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           name: "wireplumber-extra-scrips",
           paths: nix.thunk(() => nix.app(mapScriptsToFiles, nix.thunk(() => nix.sel(cfg, "extraScripts")))),
           pathsToLink: nix.thunk(() => ["/share/wireplumber/scripts"]),
         }))));
       const configPackages = nix.thunk(() => nix.concat(nix.sel(cfg, "configPackages"), nix.concat([extraConfigPkg, extraScriptsPkg], nix.app(optional, nix.thunk(() => !nix.asBool(pwUsedForAudio)), pwNotForAudioConfigPkg))));
       const configs = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           name: "wireplumber-configs",
           paths: configPackages,
           pathsToLink: nix.thunk(() => ["/share/wireplumber"]),
         }))));
       const requiredLv2Packages = nix.thunk(() => nix.app(flatten, nix.thunk(() => nix.app(concatMap, (p) => nix.app(attrByPath, nix.thunk(() => ["passthru", "requiredLv2Packages"]), [], p), configPackages))));
       const lv2Plugins = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           name: "wireplumber-lv2-plugins",
           paths: nix.thunk(() => nix.concat(nix.sel(cfg, "extraLv2Packages"), requiredLv2Packages)),
           pathsToLink: nix.thunk(() => ["/lib/lv2"]),
         }))));
       const requiredLadspaPackages = nix.thunk(() => nix.app(flatten, nix.thunk(() => nix.app(concatMap, (p) => nix.app(attrByPath, nix.thunk(() => ["passthru", "requiredLadspaPackages"]), [], p), configPackages))));
       const ladspaPlugins = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           name: "pipewire-ladspa-plugins",
           paths: nix.thunk(() => nix.concat(nix.sel(cfg, "extraLadspaPackages"), requiredLadspaPackages)),
           pathsToLink: nix.thunk(() => ["/lib/ladspa"]),
         }))));
       const pluginsEnv = nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         XDG_DATA_DIRS: nix.thunk(() => nix.app(makeSearchPath, "share", nix.thunk(() => [configs, nix.thunk(() => nix.sel(cfg, "package"))]))),
         LV2_PATH: nix.thunk(() => nix.str`${lv2Plugins}/lib/lv2`),
         LADSPA_PATH: nix.thunk(() => nix.str`${ladspaPlugins}/lib/ladspa`),
       }));
       return nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           assertions: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               assertion: nix.thunk(() => !nix.asBool(nix.sel(config, "hardware", "bluetooth", "hsphfpd", "enable"))),
               message: "Using WirePlumber conflicts with hsphfpd, as it provides the same functionality. `hardware.bluetooth.hsphfpd.enable` needs be set to false",
             })),
           ]),
           environment: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
             services: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               wireplumber: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 enable: nix.thunk(() => nix.sel(pwCfg, "systemWide")),
                 wantedBy: nix.thunk(() => ["pipewire.service"]),
                 environment: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(pwCfg, "systemWide")), nix.thunk(() => nix.update(pluginsEnv, {
-                    __proto__: pos$22,
+                    [nix.POS]: pos$22,
                     DBUS_SESSION_BUS_ADDRESS: "unix:path=/run/dbus/system_bus_socket",
                   })))),
               })),
             })),
             user: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               services: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 wireplumber: nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   enable: nix.thunk(() => !nix.asBool(nix.sel(pwCfg, "systemWide"))),
                   wantedBy: nix.thunk(() => ["pipewire.service"]),
                   environment: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.asBool(nix.sel(pwCfg, "systemWide"))), pluginsEnv)),

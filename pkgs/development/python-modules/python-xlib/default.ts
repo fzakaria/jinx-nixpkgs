@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.33";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "python-xlib",
           repo: "python-xlib",
           tag: version,
           hash: "sha256-u06OWlMIOUzHOVS4hvm72jGgTSXWUqMvEQd8bTpFog0=",
         }))));
       const build_system = nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(setuptools_scm, "override"), nix.thunk(() => ({ __proto__: pos$2, setuptools: setuptools_80 })))),
+        nix.thunk(() => nix.app(nix.sel(setuptools_scm, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, setuptools: setuptools_80 })))),
       ]);
       const buildInputs = nix.thunk(() => [libx11]);
       const dependencies = nix.thunk(() => [six]);
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, mock, util_linux, xauth, xvfb]);
       const disabledTestPaths = nix.thunk(() => ["test/test_xlib_display.py"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/python-xlib/python-xlib/releases/tag/${version}`),
         description: "Fully functional X client library for Python programs",
         homepage: "https://github.com/python-xlib/python-xlib",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

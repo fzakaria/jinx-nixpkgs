@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const crowbar = nix.arg($, "crowbar");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "digestif",
       version: "1.3.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/digestif/releases/download/v${nix.sel(finalAttrs, "version")}/digestif-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-OSeUmlbUNawhBs24OUQAv/mJ1EVn66kDjkfbJmzIhGY=",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest, crowbar]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple hash algorithms in OCaml",
         homepage: "https://github.com/mirage/digestif",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

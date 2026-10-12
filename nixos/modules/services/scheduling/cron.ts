@@ -41,37 +41,37 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(confi
 NIX_CONF_DIR=/etc/nix
 ${nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.app(nix.builtins.map, (job) => nix.add(job, "\n"), nix.thunk(() => nix.sel(config, "services", "cron", "systemCronJobs")))))}
 `)));
-  const cronNixosPkg = nix.thunk(() => nix.app(nix.sel(pkgs, "cron", "override"), nix.thunk(() => ({ __proto__: pos$1, sendmailPath: "/run/wrappers/bin/sendmail" }))));
+  const cronNixosPkg = nix.thunk(() => nix.app(nix.sel(pkgs, "cron", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, sendmailPath: "/run/wrappers/bin/sendmail" }))));
   const allFiles = nix.thunk(() => nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => !nix.eq(nix.sel(config, "services", "cron", "systemCronJobs"), [])), systemCronJobsFile), nix.sel(config, "services", "cron", "cronFiles")));
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         cron: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether to enable the Vixie cron daemon.",
             })))),
           mailto: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: null,
               description: "Email address to which job output will be mailed.",
             })))),
           systemCronJobs: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "[ \"* * * * *  test   ls -l / > /tmp/cronout 2>&1\"\n  \"* * * * *  eelco  echo Hello World > /home/eelco/cronout\"\n]\n")),
               description: "A list of Cron jobs to be appended to the system-wide\ncrontab.  See the manual page for crontab for the expected\nformat. If you want to get the results mailed you must setuid\nsendmail. See {option}`security.wrappers`\n\nIf neither /var/cron/cron.deny nor /var/cron/cron.allow exist only root\nis allowed to have its own crontab file. The /var/cron/cron.deny file\nis created automatically for you, so every user can use a crontab.\n\nMany nixos modules set systemCronJobs, so if you decide to disable vixie cron\nand enable another cron daemon, you may want it to get its system crontab\nbased on systemCronJobs.\n",
             })))),
           cronFiles: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               default: [],
               description: "A list of extra crontab files that will be read and appended to the main\ncrontab file when the cron service starts.\n",
@@ -81,23 +81,23 @@ ${nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.app(nix.builtins.ma
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             cron: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => !nix.eq(allFiles, [])))),
             })),
           })),
         })),
         nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(config, "services", "cron", "enable")), nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             security: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               wrappers: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 crontab: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   setuid: true,
                   owner: "root",
                   group: "root",
@@ -106,29 +106,29 @@ ${nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.app(nix.builtins.ma
               })),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               systemPackages: nix.thunk(() => [cronNixosPkg]),
               etc: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 crontab: nix.thunk(() => ({
-                  __proto__: pos$16,
-                  source: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "crontabs", nix.thunk(() => ({ __proto__: pos$15, allFiles: allFiles, preferLocalBuild: true })), "touch $out\nfor i in $allFiles; do\n  cat \"$i\" >> $out\ndone\n")),
+                  [nix.POS]: pos$16,
+                  source: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "crontabs", nix.thunk(() => ({ [nix.POS]: pos$15, allFiles: allFiles, preferLocalBuild: true })), "touch $out\nfor i in $allFiles; do\n  cat \"$i\" >> $out\ndone\n")),
                   mode: "0600",
                 })),
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               services: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 cron: nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   description: "Cron Daemon",
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   preStart: "(umask 022 && mkdir -p /var)\n(umask 067 && mkdir -p /var/cron)\n\n# By default, allow all users to create a crontab.  This\n# is denoted by the existence of an empty cron.deny file.\nif ! test -e /var/cron/cron.allow -o -e /var/cron/cron.deny; then\n    touch /var/cron/cron.deny\nfi\n",
                   restartTriggers: nix.thunk(() => [nix.thunk(() => nix.sel(config, "time", "timeZone"))]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     ExecStart: nix.thunk(() => nix.str`${cronNixosPkg}/bin/cron -n`),
                   })),
                 })),

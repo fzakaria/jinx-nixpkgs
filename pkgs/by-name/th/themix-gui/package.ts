@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const pname = "themix-gui";
   const version = "1.15.1";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "themix-project",
           repo: "themix-gui",
           tag: version,
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nmake DESTDIR=/ APPDIR=$out/opt/oomox PREFIX=$out install_gui install_import_xresources install_export_xresources\npython -O -m compileall $out/opt/oomox/oomox_gui -d /opt/oomox/oomox_gui\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Graphical application for designing themes and exporting them using plugins",
         longDescription: "Graphical application for generating different color variations of\nOomox (Numix-based) and Materia (ex-Flat-Plat) themes (GTK2, GTK3,\nCinnamon, GNOME, Openbox, Xfwm), Archdroid, Gnome-Color, Numix, Papirus\nand Suru++ icon themes. Have a hack for HiDPI in gtk2. Its Base16 plugin\nalso allowing a lot of app themes support like Alacritty, Emacs, GTK4,\nKDE, VIM and many more.\n",
         homepage: "https://github.com/themix-project/themix-gui",

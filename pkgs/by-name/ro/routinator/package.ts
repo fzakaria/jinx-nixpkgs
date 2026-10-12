@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "routinator",
       version: "0.15.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NLnetLabs",
           repo: "routinator",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-rDFwfRXd8oMNh8iOPEWM1eADFQjys0GwPVr2r5hLW4Y=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "RPKI Validator written in Rust",
         homepage: "https://github.com/NLnetLabs/routinator",
         changelog: nix.thunk(() => nix.str`https://github.com/NLnetLabs/routinator/blob/v${nix.sel(finalAttrs, "version")}/Changelog.md`),
@@ -40,9 +40,9 @@ export default nix.lambda((args) => (() => {
         mainProgram: "routinator",
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "basic-functioniality": nix.thunk(() => nix.sel(nixosTests, "routinator")),
         })),
       })),

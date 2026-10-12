@@ -24,19 +24,19 @@ export default nix.lambda((args) => (() => {
   const packaging = nix.arg($, "packaging");
   const mock = nix.arg($, "mock");
   const testDBOpts = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     host: "127.0.0.1",
     port: "8529",
     password: "test",
     secret: "secret",
   }));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "python-arango",
       version: "8.3.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "arangodb",
           repo: "python-arango",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["arango"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python Driver for ArangoDB",
         homepage: "https://github.com/ArangoDB-Community/python-arango",
         changelog: nix.thunk(() => nix.str`https://github.com/ArangoDB-Community/python-arango/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

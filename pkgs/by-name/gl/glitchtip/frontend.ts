@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const moreutils = nix.arg($, "moreutils");
   const nodejs_22 = nix.arg($, "nodejs_22");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "glitchtip-frontend",
       version: "6.2.6",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "glitchtip",
           repo: "glitchtip-frontend",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nodejs: nodejs_22,
       npmDepsFetcherVersion: 2n,
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-npm-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           fetcherVersion: 2n,
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nnpm run build-prod\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ncp -r dist/glitchtip-frontend/browser $out/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Frontend for GlitchTip",
         homepage: "https://glitchtip.com",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/glitchtip/glitchtip-frontend/-/releases/v${nix.sel(finalAttrs, "version")}`),

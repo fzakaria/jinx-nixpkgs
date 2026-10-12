@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         const pname = "uqm3donix";
         const version = "0.1.0.0";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "aszlig",
             repo: "uqm3donix",
             rev: nix.thunk(() => nix.str`v${version}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         const description = "Extract video files from a Star Control II 3DO image";
         const license = nix.thunk(() => nix.sel(lib, "licenses", "bsd3"));
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname,
           version,
           src,
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       })()));
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "uqm-3dovideo",
       src: nix.thunk(() => nix.app(requireFile, nix.thunk(() => (() => {
           const name = "videos.tar";
@@ -74,7 +74,7 @@ add it to the Nix store.
 
 [*] ${helper}/bin/uqm3donix CDIMAGE ${name}
 `);
-          return { __proto__: pos$3, name, sha256, message };
+          return { [nix.POS]: pos$3, name, sha256, message };
         })()))),
       buildCommand: nix.thunk(() => nix.str`mkdir -vp "$out"
 tar xf "$src" -C "$out" --strip-components=3

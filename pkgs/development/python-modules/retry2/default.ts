@@ -21,19 +21,19 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eSAMTrade",
           repo: "retry",
           tag: version,
           hash: "sha256-RxOEekkmMRl2OQW2scFWbMQiFXcH0sbd+k9R8uul0uY=",
         }))));
-      const env = nix.thunk(() => ({ __proto__: pos$2, PBR_VERSION: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PBR_VERSION: version }));
       const build_system = nix.thunk(() => [pbr]);
       const dependencies = nix.thunk(() => [decorator]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["retry"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Retry decorator",
         homepage: "https://github.com/eSAMTrade/retry",
         changelog: nix.thunk(() => nix.str`https://github.com/eSAMTrade/retry/blob/${nix.sel(src, "rev")}/ChangeLog`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

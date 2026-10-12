@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "adamewing",
           repo: "tebreak",
           rev: version,
@@ -57,7 +57,7 @@ ${nix.sel(python3, "interpreter")} checktest.py
 `);
       const pythonImportsCheck = nix.thunk(() => ["tebreak"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Find and characterise transposable element insertions",
         mainProgram: "tebreak",
         homepage: "https://github.com/adamewing/tebreak",
@@ -70,7 +70,7 @@ ${nix.sel(python3, "interpreter")} checktest.py
         broken: true,
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

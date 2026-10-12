@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const websocket_client = nix.arg($, "websocket-client");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "darabonba-core",
       version: "1.0.9",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "darabonba_core",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-ECbJZbTCtI+JmV6trXq3gKA5WYEsj43kZw60TEjlsXk=",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["Tea"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "The darabonba module of alibabaCloud Python SDK",
         homepage: "https://github.com/aliyun/tea-python",
         changelog: "https://github.com/aliyun/tea-python/blob/master/ChangeLog.md",

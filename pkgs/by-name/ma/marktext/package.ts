@@ -34,18 +34,18 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const pnpm = pnpm_10;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "marktext",
       version: "0.19.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "marktext",
           repo: "marktext",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-i1CjwRndcDUNpoMUPZ9U2TI/OsSX/WH8zXgEMHy338k=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pnpm: pnpm,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         pnpmConfigHook,
       ]),
       buildInputs: nix.thunk(() => [fontconfig, libsecret, libx11, libxkbfile, pnpm, xorgproto]),
-      env: nix.thunk(() => ({ __proto__: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       postPatch: "# Fix static/locales folder location\nsubstituteInPlace packages/desktop/src/common/i18n.ts \\\n  --replace-fail \\\n    \"process.resourcesPath, 'static', 'locales'\" \\\n    \"__dirname, '..', '..', 'static', 'locales'\"\n",
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
 
@@ -122,11 +122,11 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), electron)} "$out/bin/marktext" \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$4, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Simple and elegant markdown editor, available for Linux, macOS and Windows",
         homepage: "https://www.marktext.me",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

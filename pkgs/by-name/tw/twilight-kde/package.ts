@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "twilight-kde",
       version: "0-unstable-2023-03-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "yeyushengfan258",
           repo: "Twilight-kde",
           rev: "a5fc50a040693a53472d83d2d47e964d2cf2bcd3",
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs install.sh\n\nsubstituteInPlace install.sh \\\n  --replace '$HOME/.local' $out \\\n  --replace '$HOME/.config' $out/share\n",
       installPhase: "runHook preInstall\n\nbash ./install.sh\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Light, clean theme for KDE Plasma desktop",
         homepage: "https://github.com/yeyushengfan258/Twilight-kde",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

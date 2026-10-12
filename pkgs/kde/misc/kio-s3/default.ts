@@ -16,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const aws_sdk_cpp = nix.arg($, "aws-sdk-cpp");
   const kcmutils = nix.arg($, "kcmutils");
-  const aws_sdk_cpp_s3 = nix.thunk(() => nix.app(nix.sel(aws_sdk_cpp, "override"), nix.thunk(() => ({ __proto__: pos$1, apis: nix.thunk(() => ["s3"]) }))));
+  const aws_sdk_cpp_s3 = nix.thunk(() => nix.app(nix.sel(aws_sdk_cpp, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, apis: nix.thunk(() => ["s3"]) }))));
   return nix.app(mkKdeDerivation, nix.thunk(() => (() => {
       const pname = "kio-s3";
       const version = "1.0.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`mirror://kde/stable/kio-s3/kio-s3-${version}.tar.xz`),
           hash: "sha256-zixxrZm1U6iaCyZeGBe1lP9ojDqd2qOaekkEa6dyEao=",
         }))));
       const extraNativeBuildInputs = nix.thunk(() => [pkg_config]);
       const extraBuildInputs = nix.thunk(() => [aws_sdk_cpp_s3, kcmutils]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
           return [
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(finalAttrs, "unsigned"));
       return {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "unsigned", "pname")}-signed`),
       version: nix.thunk(() => nix.attr(from, "version")),
       dontUnpack: true,
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       signedPe: nix.thunk(() => nix.app(nix.sel(autopen, "authenticode", "mkSignedPe"), nix.thunk(() => (() => {
           const from_1 = nix.thunk(() => nix.sel(finalAttrs, "unsigned"));
           return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(from_1, "pname")),
           version: nix.thunk(() => nix.attr(from_1, "version")),
           signingKey: uefiSigningKey,
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => nix.update(nix.sel(fwupd_efi, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: nix.thunk(() => nix.str`${nix.sel(fwupd_efi, "meta", "description")} (signed)`),
       })),
     };

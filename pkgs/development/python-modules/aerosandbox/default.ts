@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const dill = nix.arg($, "dill");
   const casadi = nix.arg($, "casadi");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aerosandbox",
       version: "4.2.8",
       format: "wheel",
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "AeroSandbox",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           format: "wheel",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["aerosandbox"]),
       pythonRemoveDeps: nix.thunk(() => ["neuralfoil", "casadi"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Aircraft design optimization made fast through modern automatic differentiation",
         homepage: "https://peterdsharpe.github.io/AeroSandbox",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

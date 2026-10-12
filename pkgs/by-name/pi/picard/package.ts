@@ -24,13 +24,13 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "picard",
       version: "3.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "metabrainz",
           repo: "picard",
           tag: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
       env: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(python3Packages, "pygit2"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         SSL_CERT_FILE: nix.thunk(() => nix.attr(from, "SSL_CERT_FILE")),
       };
       })()),
@@ -84,14 +84,14 @@ export default nix.lambda((args) => (() => {
       dontWrapQt: true,
       preFixup: nix.thunk(() => nix.add("makeWrapperArgs+=(\"${qtWrapperArgs[@]}\")\nmakeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), nix.thunk(() => nix.sel(qt6, "qtwayland")))), "makeWrapperArgs+=(--prefix GST_PLUGIN_SYSTEM_PATH_1_0 : \"$GST_PLUGIN_SYSTEM_PATH_1_0\")\n"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version-regex", "release-(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://picard.musicbrainz.org",
         changelog: "https://picard.musicbrainz.org/changelog",
         description: "Official MusicBrainz tagger",

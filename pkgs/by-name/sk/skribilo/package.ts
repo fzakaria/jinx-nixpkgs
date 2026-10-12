@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const texliveSmall = nix.arg($, "texliveSmall");
   const optional = nix.thunk(() => nix.attr(lib, "optional"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "skribilo",
       version: "0.11.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://savannah/skribilo/skribilo-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ZlwkHEKSC/Np8SMdS5xxzhi6Y63QuajyQYIf0Roo1ZI=",
         })))),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
   --prefix GUILE_LOAD_COMPILED_PATH : "$out/${nix.sel(guile, "siteCcacheDir")}:$GUILE_LOAD_COMPILED_PATH"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.nongnu.org/skribilo/",
         description: "Ultimate Document Programming Framework",
         longDescription: "Skribilo is a free document production tool that takes a structured\ndocument representation as its input and renders that document in a\nvariety of output formats: HTML and Info for on-line browsing, and Lout\nand LaTeX for high-quality hard copies.\n\nThe input document can use Skribilo's markup language to provide\ninformation about the document's structure, which is similar to HTML or\nLaTeX and does not require expertise. Alternatively, it can use a simpler,\n\"markup-less\" format that borrows from Emacs' outline mode and from other\nconventions used in emails, Usenet and text.\n",

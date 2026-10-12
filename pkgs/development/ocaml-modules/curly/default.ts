@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const cacert = nix.arg($, "cacert");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "curly",
       version: "0.3.0",
       minimalOCamlVersion: "4.03",
       duneVersion: "3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/rgrinberg/curly/releases/download/${nix.sel(finalAttrs, "version")}/curly-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-Qn/PKBNOcMt3dk2f7uJD8x0yo4RHobXSjTQck7fcXTw=",
         })))),
@@ -41,7 +41,7 @@ substituteInPlace test/test_curly.ml \\
                  "let body_header b = [\\"connection\\", \\"keep-alive\\"; \\"content-length\\", string_of_int (String.length b)]"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Curly is a brain dead wrapper around the curl command line utility",
         homepage: "https://github.com/rgrinberg/curly",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

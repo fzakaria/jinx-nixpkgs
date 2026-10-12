@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
   const nix$ = nix.arg($, "nix");
   const nix_update = nix.arg($, "nix-update");
   const testsuite = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "WebAssembly",
       repo: "testsuite",
       rev: "4b24564c844e3d34bf46dfcb3c774ee5163e31cc",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const pname = "binaryen";
       const version = "132";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "WebAssembly",
           repo: "binaryen",
           rev: nix.thunk(() => nix.str`version_${version}`),
@@ -81,7 +81,7 @@ fi
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ["example", "validator"]))));
       const doCheck = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/WebAssembly/binaryen",
         description: "Compiler infrastructure and toolchain library for WebAssembly, in C++",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
@@ -92,18 +92,18 @@ fi
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$6,
-        tests: nix.thunk(() => ({ __proto__: pos$4, emscripten: emscripten })),
+        [nix.POS]: pos$6,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$4, emscripten: emscripten })),
         testsuite: testsuite,
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               name: "binaryen-update",
               runtimeInputs: nix.thunk(() => [common_updater_scripts, curl, jq, nix$, nix_update]),
               text: "nix-update binaryen\n\n# keep the testsuite pin on binaryen's submodule pointer at the new tag\ntag=$(nix eval --raw --file . binaryen.src.rev)\nrev=$(curl -fsSL \"https://api.github.com/repos/WebAssembly/binaryen/contents/test/spec/testsuite?ref=$tag\" | jq -er .sha)\nif [[ $rev != \"$(nix eval --raw --file . binaryen.testsuite.rev)\" ]]; then\n  update-source-version binaryen --source-key=testsuite --rev=\"$rev\" --ignore-same-version\nfi\n",
             })))))),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

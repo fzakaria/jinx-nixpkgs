@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.19.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-qKue5+uZ6Ip+E4LtxupkHSGdWFp+B043duneyUc+WcE=",
@@ -105,7 +105,7 @@ export default nix.lambda((args) => (() => {
         "test_write_get_object_response",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Alibaba Cloud OSS SDK for Python",
         homepage: "https://github.com/aliyun/aliyun-oss-python-sdk",
         changelog: "https://github.com/aliyun/aliyun-oss-python-sdk/blob/master/CHANGELOG.rst",
@@ -116,7 +116,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

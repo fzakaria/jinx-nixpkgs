@@ -66,69 +66,69 @@ export default nix.lambda((args) => (() => {
   const overrideMkDerivationResult = (old) => (f) => nix.app(withOldMkDerivation, old, (_) => (mkDerivationSuper) => (args_1) => nix.app(f, nix.thunk(() => nix.app(mkDerivationSuper, args_1))));
   return (() => {
     const overrideCC = (stdenv) => (cc) => nix.app(nix.sel(stdenv, "override"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         allowedRequisites: null,
         cc: cc,
         hasCC: nix.thunk(() => !nix.eq(cc, null)),
       })));
     const overrideInStdenv = (stdenv) => (pkgs_1) => nix.app(nix.sel(stdenv, "override"), (prev) => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         allowedRequisites: null,
         extraBuildInputs: nix.thunk(() => nix.concat(nix.selOr(prev, () => [], "extraBuildInputs"), pkgs_1)),
       }));
-    const overrideSetup = (stdenv) => (setupScript) => nix.app(nix.sel(stdenv, "override"), nix.thunk(() => ({ __proto__: pos$3, setupScript: setupScript })));
+    const overrideSetup = (stdenv) => (setupScript) => nix.app(nix.sel(stdenv, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, setupScript: setupScript })));
     const makeStaticBinaries = (stdenv0) => nix.app(nix.sel(stdenv0, "override"), (old) => nix.update({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         mkDerivationFromStdenv: nix.thunk(() => nix.app(withOldMkDerivation, old, (stdenv) => (mkDerivationSuper) => (args_1) => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.builtins.throw("Cannot build fully static binaries on Darwin/macOS") : nix.app(nix.sel(nix.app(mkDerivationSuper, args_1), "overrideAttrs"), (args_2) => nix.update((nix.asBool(nix.has(args_2, "NIX_CFLAGS_LINK")) ? nix.app(nix.sel(lib, "warn"), nix.thunk(() => nix.add(nix.add("NIX_CFLAGS_LINK is an environment variable and should be defined inside `env`", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.has(args_2, "pname")), nix.thunk(() => nix.str` for package ${nix.sel(args_2, "pname")}`))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.has(args_2, "version")), nix.thunk(() => nix.str`-${nix.sel(args_2, "version")}`)))), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 NIX_CFLAGS_LINK: nix.thunk(() => nix.add(nix.add(nix.builtins.toString(nix.thunk(() => nix.selOr(args_2, () => "", "NIX_CFLAGS_LINK"))), " -static"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isOpenBSD")), " -pie"))),
               }))) : {
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               env: nix.thunk(() => nix.update(nix.selOr(args_2, () => ({}), "env"), {
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 NIX_CFLAGS_LINK: nix.thunk(() => nix.add(nix.add(nix.builtins.toString(nix.thunk(() => nix.selOr(args_2, () => "", "env", "NIX_CFLAGS_LINK"))), " -static"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isOpenBSD")), " -pie"))),
               })),
             }), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.selOr(args_2, () => false, "dontAddStaticConfigureFlags"))), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 configureFlags: nix.thunk(() => nix.concat(nix.selOr(args_2, () => [], "configureFlags"), ["--disable-shared"])),
                 cmakeFlags: nix.thunk(() => nix.concat(nix.selOr(args_2, () => [], "cmakeFlags"), ["-DCMAKE_SKIP_INSTALL_RPATH=On"])),
               })))))))),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(stdenv0, "hostPlatform", "libc"), "glibc")), nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           extraBuildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "extraBuildInputs"), [nix.thunk(() => nix.sel(pkgs, "glibc", "static"))])),
         })))));
-    const makeStaticLibraries = nix.thunk(() => nix.app(overrideMkDerivationArgs, (args_1) => nix.update({ __proto__: pos$10, dontDisableStatic: true }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.selOr(args_1, () => false, "dontAddStaticConfigureFlags"))), nix.thunk(() => ({
-          __proto__: pos$11,
+    const makeStaticLibraries = nix.thunk(() => nix.app(overrideMkDerivationArgs, (args_1) => nix.update({ [nix.POS]: pos$10, dontDisableStatic: true }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.selOr(args_1, () => false, "dontAddStaticConfigureFlags"))), nix.thunk(() => ({
+          [nix.POS]: pos$11,
           configureFlags: nix.thunk(() => nix.concat(nix.selOr(args_1, () => [], "configureFlags"), ["--enable-static", "--disable-shared"])),
           cmakeFlags: nix.thunk(() => nix.concat(nix.selOr(args_1, () => [], "cmakeFlags"), ["-DBUILD_SHARED_LIBS:BOOL=OFF"])),
           mesonFlags: nix.thunk(() => nix.concat(nix.selOr(args_1, () => [], "mesonFlags"), ["-Ddefault_library=static", "-Ddefault_both_libraries=static"])),
         }))))));
     const makeStaticDarwin = (stdenv) => nix.app(nix.sel(stdenv, "override"), (old) => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         mkDerivationFromStdenv: nix.thunk(() => nix.app(withOldMkDerivation, old, (stdenv_1) => (mkDerivationSuper) => (args_1) => nix.app(nix.sel(nix.app(mkDerivationSuper, args_1), "overrideAttrs"), (prevAttrs) => (nix.asBool(nix.has(prevAttrs, "env", "NIX_CFLAGS_LINK")) ? {
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               env: nix.thunk(() => nix.update(nix.sel(prevAttrs, "env"), {
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 NIX_CFLAGS_LINK: nix.thunk(() => nix.add(nix.builtins.toString(nix.thunk(() => nix.selOr(args_1, () => "", "env", "NIX_CFLAGS_LINK"))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.selOr(stdenv_1, () => false, "cc", "isGNU")), " -static-libgcc"))),
               })),
             } : {
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               NIX_CFLAGS_LINK: nix.thunk(() => nix.add(nix.builtins.toString(nix.thunk(() => nix.selOr(prevAttrs, () => "", "NIX_CFLAGS_LINK"))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.selOr(stdenv_1, () => false, "cc", "isGNU")), " -static-libgcc"))),
             })))),
       }));
     const makeStatic = (stdenv) => nix.app(nix.sel(lib, "foldl'"), nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "id")))), stdenv, nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), makeStaticDarwin), nix.concat([makeStaticLibraries, propagateBuildInputs], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), makeStaticBinaries)))));
     const propagateBuildInputs = nix.thunk(() => nix.app(overrideMkDerivationArgs, (args_1) => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         propagatedBuildInputs: nix.thunk(() => nix.concat(nix.selOr(args_1, () => [], "propagatedBuildInputs"), nix.selOr(args_1, () => [], "buildInputs"))),
         buildInputs: [],
       })));
     const addAttrsToDerivation = (extraAttrs) => nix.app(overrideMkDerivationArgs, (_) => nix.force(extraAttrs));
     const overrideMkDerivationArgs = (extension) => (stdenv) => nix.app(nix.sel(stdenv, "override"), (old) => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         mkDerivationFromStdenv: nix.thunk(() => nix.app(extendMkDerivationArgs, old, extension)),
       }));
     const traceDrvLicenses = (stdenv) => nix.app(nix.sel(stdenv, "override"), (old) => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         mkDerivationFromStdenv: nix.thunk(() => nix.app(overrideMkDerivationResult, (pkg) => (() => {
             const printDrvPath = (val) => (() => {
               const drvPath = nix.thunk(() => nix.builtins.unsafeDiscardStringContext(nix.thunk(() => nix.sel(pkg, "drvPath"))));
@@ -136,81 +136,81 @@ export default nix.lambda((args) => (() => {
               return nix.builtins.trace(nix.thunk(() => nix.str`@:drv:${nix.builtins.toString(drvPath)}:${nix.builtins.toString(license)}:@`), val);
             })();
             return nix.update(pkg, {
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               outPath: nix.thunk(() => nix.app(printDrvPath, nix.thunk(() => nix.sel(pkg, "outPath")))),
               drvPath: nix.thunk(() => nix.app(printDrvPath, nix.thunk(() => nix.sel(pkg, "drvPath")))),
             });
           })())),
       }));
     const keepDebugInfo = nix.thunk(() => nix.app(overrideMkDerivationArgs, (args_1) => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         dontStrip: true,
         env: nix.thunk(() => nix.update(nix.selOr(args_1, () => ({}), "env"), {
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.builtins.toString(nix.thunk(() => nix.selOr(args_1, () => "", "env", "NIX_CFLAGS_COMPILE"))), " -ggdb -Og")),
           NIX_RUSTFLAGS: nix.thunk(() => nix.add(nix.builtins.toString(nix.thunk(() => nix.selOr(args_1, () => "", "env", "NIX_RUSTFLAGS"))), " -g -C opt-level=0 -C strip=none")),
         })),
       })));
     const useGoldLinker = nix.thunk(() => nix.app(overrideMkDerivationArgs, (args_1) => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         env: nix.thunk(() => nix.update(nix.selOr(args_1, () => ({}), "env"), {
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           NIX_CFLAGS_LINK: nix.thunk(() => nix.add(nix.builtins.toString(nix.thunk(() => nix.selOr(args_1, () => "", "env", "NIX_CFLAGS_LINK"))), " -fuse-ld=gold")),
         })),
       })));
     const useLibsFrom = (modelStdenv) => (targetStdenv) => (() => {
       const ccForLibs = nix.thunk(() => nix.sel(modelStdenv, "cc", "cc"));
-      const cc = nix.thunk(() => nix.app(nix.sel(targetStdenv, "cc", "override"), nix.thunk(() => ({ __proto__: pos$24, useCcForLibs: true, gccForLibs: ccForLibs }))));
+      const cc = nix.thunk(() => nix.app(nix.sel(targetStdenv, "cc", "override"), nix.thunk(() => ({ [nix.POS]: pos$24, useCcForLibs: true, gccForLibs: ccForLibs }))));
       return nix.app(overrideCC, targetStdenv, cc);
     })();
     const useMoldLinker = (stdenv) => (nix.asBool(nix.sel(stdenv, "targetPlatform", "isDarwin")) ? nix.builtins.throw("Mold can't be used to emit Mach-O (Darwin) binaries") : (() => {
       const bintools = nix.thunk(() => nix.app(nix.sel(stdenv, "cc", "bintools", "override"), nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           extraBuildCommands: nix.thunk(() => nix.add(nix.add(nix.str`pushd $out/bin
 ln -s ${nix.sel(pkgs, "buildPackages", "mold")}/bin/${nix.sel(stdenv, "cc", "bintools", "targetPrefix")}ld.mold ${nix.sel(stdenv, "cc", "bintools", "targetPrefix")}ld.mold
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "cc", "bintools", "targetPrefix"), "")), nix.thunk(() => nix.str`ln -s ${nix.sel(stdenv, "cc", "bintools", "targetPrefix")}ld.mold ld.mold
 `))), "popd\n")),
         }))));
       return nix.app(nix.sel(stdenv, "override"), (old) => nix.update({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           allowedRequisites: null,
-          cc: nix.thunk(() => nix.app(nix.sel(stdenv, "cc", "override"), nix.thunk(() => ({ __proto__: pos$26, bintools: bintools })))),
+          cc: nix.thunk(() => nix.app(nix.sel(stdenv, "cc", "override"), nix.thunk(() => ({ [nix.POS]: pos$26, bintools: bintools })))),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isClang")) || nix.asBool((nix.asBool(nix.sel(stdenv, "cc", "isGNU")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "version")), "12")))))), nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             mkDerivationFromStdenv: nix.thunk(() => nix.app(extendMkDerivationArgs, old, (args_1) => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 env: nix.thunk(() => nix.update(nix.selOr(args_1, () => ({}), "env"), {
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   NIX_CFLAGS_LINK: nix.thunk(() => nix.add(nix.builtins.toString(nix.thunk(() => nix.selOr(args_1, () => "", "env", "NIX_CFLAGS_LINK"))), " -fuse-ld=mold")),
                 })),
               }))),
           })))));
     })());
     const useWildLinker = (stdenv) => (nix.asBool(!nix.asBool(nix.sel(stdenv, "targetPlatform", "isLinux"))) ? nix.builtins.throw("Wild only supports building Linux ELF files from Linux hosts.") : nix.app(nix.sel(stdenv, "override"), (prev) => nix.update({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         allowedRequisites: null,
         cc: nix.thunk(() => nix.app(nix.sel(prev, "cc", "override"), nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             bintools: nix.thunk(() => nix.app(nix.sel(prev, "cc", "bintools", "override"), nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 extraBuildCommands: nix.thunk(() => nix.str`ln -fs ${nix.sel(pkgs, "buildPackages", "wild")}/bin/* "$out/bin"
 `),
               })))),
           })))),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isClang")) || nix.asBool((nix.asBool(nix.sel(stdenv, "cc", "isGNU")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "version")), "16")))))), nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           mkDerivationFromStdenv: nix.thunk(() => nix.app(extendMkDerivationArgs, prev, (args_1) => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               env: nix.thunk(() => nix.update(nix.selOr(args_1, () => ({}), "env"), {
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 NIX_CFLAGS_LINK: nix.thunk(() => nix.add(nix.builtins.toString(nix.thunk(() => nix.selOr(args_1, () => "", "env", "NIX_CFLAGS_LINK"))), " -fuse-ld=wild")),
               })),
             }))),
         }))))));
     const impureUseNativeOptimizations = nix.thunk(() => nix.app(overrideMkDerivationArgs, (args_1) => ({
-        __proto__: pos$38,
+        [nix.POS]: pos$38,
         env: nix.thunk(() => nix.update(nix.selOr(args_1, () => ({}), "env"), {
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.builtins.toString(nix.thunk(() => nix.selOr(args_1, () => "", "env", "NIX_CFLAGS_COMPILE"))), " -march=native")),
         })),
         NIX_ENFORCE_NO_NATIVE: false,
@@ -218,25 +218,25 @@ ln -s ${nix.sel(pkgs, "buildPackages", "mold")}/bin/${nix.sel(stdenv, "cc", "bin
         allowSubstitutes: false,
       })));
     const withCFlags = (compilerFlags) => nix.app(overrideMkDerivationArgs, (args_1) => ({
-        __proto__: pos$40,
+        [nix.POS]: pos$40,
         env: nix.thunk(() => nix.update(nix.selOr(args_1, () => ({}), "env"), {
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.builtins.toString(nix.thunk(() => nix.selOr(args_1, () => "", "env", "NIX_CFLAGS_COMPILE"))), nix.str` ${nix.builtins.toString(compilerFlags)}`)),
         })),
       }));
     const withDefaultHardeningFlags = (defaultHardeningFlags) => (stdenv) => (() => {
       const bintools = nix.thunk(() => (() => {
         const bintools$ = nix.thunk(() => nix.sel(stdenv, "cc", "bintools"));
-        return (nix.asBool(nix.has(bintools$, "override")) ? nix.app(nix.sel(bintools$, "override"), nix.thunk(() => ({ __proto__: pos$41, defaultHardeningFlags: defaultHardeningFlags }))) : nix.force(bintools$));
+        return (nix.asBool(nix.has(bintools$, "override")) ? nix.app(nix.sel(bintools$, "override"), nix.thunk(() => ({ [nix.POS]: pos$41, defaultHardeningFlags: defaultHardeningFlags }))) : nix.force(bintools$));
       })());
       return nix.app(nix.sel(stdenv, "override"), (old) => ({
-          __proto__: pos$43,
-          cc: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "cc"), null)) ? null : nix.app(nix.sel(stdenv, "cc", "override"), nix.thunk(() => ({ __proto__: pos$42, bintools: bintools }))))),
+          [nix.POS]: pos$43,
+          cc: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "cc"), null)) ? null : nix.app(nix.sel(stdenv, "cc", "override"), nix.thunk(() => ({ [nix.POS]: pos$42, bintools: bintools }))))),
           allowedRequisites: nix.thunk(() => nix.app(nix.sel(lib, "mapNullable"), (rs) => nix.concat(rs, [bintools]), nix.thunk(() => nix.selOr(stdenv, () => null, "allowedRequisites")))),
         }));
     })();
     return {
-      __proto__: pos$44,
+      [nix.POS]: pos$44,
       overrideCC,
       overrideInStdenv,
       overrideSetup,

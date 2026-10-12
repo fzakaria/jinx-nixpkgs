@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "codeblocks";
       const version = "25.03";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/codeblocks/Sources/${version}/codeblocks_${version}.tar.xz`),
           hash: "sha256-sPaqWQjTNtf0H5V2skGKx9J++8WSgqqMkXHYjOp0BJ4=",
         }))));
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         ]))));
       const postInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "ln -s $out/lib/codeblocks/plugins $out/share/codeblocks/plugins\n"));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         maintainers: [],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         description: "Open source, cross platform, free C, C++ and Fortran IDE",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name,
         pname,
         version,

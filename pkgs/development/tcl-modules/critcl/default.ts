@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const tcl = nix.arg($, "tcl");
   const tcllib = nix.arg($, "tcllib");
   return nix.app(mkTclDerivation, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "critcl",
       version: "3.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "andreas-kupries",
           repo: "critcl",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "runHook preInstall\nHOME=\"$(mktemp -d)\" tclsh ./build.tcl test\nrunHook postInstall\n",
       installPhase: "runHook preInstall\ntclsh ./build.tcl install --prefix $out\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Easily embed C code in Tcl",
         homepage: "https://andreas-kupries.github.io/critcl/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "tcltk")),

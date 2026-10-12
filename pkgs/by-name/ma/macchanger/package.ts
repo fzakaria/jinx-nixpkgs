@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const texinfo = nix.arg($, "texinfo");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "macchanger",
       version: "1.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alobbs",
           repo: "macchanger",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,27 +33,27 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://sources.debian.org/data/main/m/macchanger/1.7.0-5.3/debian/patches/02-fix_usage_message.patch",
             sha256: "0pxljmq0l0znylbhms09i19qwil74gm8gx3xx2ffx00dajaizj18",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://sources.debian.org/data/main/m/macchanger/1.7.0-5.3/debian/patches/06-update_OUI_list.patch",
             sha256: "04kbd784z9nwkjva5ckkvb0yb3pim9valb1viywn1yyh577d0y7w",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://sources.debian.org/data/main/m/macchanger/1.7.0-5.3/debian/patches/08-fix_random_MAC_choice.patch",
             sha256: "1vz3appxxsdf1imzrn57amazfwlbrvx6g78b6n88aqgwzy5dm34d",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://sources.debian.org/data/main/m/macchanger/1.7.0-5.3/debian/patches/check-random-device-read-errors.patch",
             sha256: "0pra6qnk39crjlidspg3l6hpaqiw43cypahx793l59mqn956cngc",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             url: "https://sources.debian.org/data/main/m/macchanger/1.7.0-5.3/debian/patches/verify-changed-MAC.patch",
             sha256: "0vjhf2fnj1hlghjl821p6idrfc8hmd4lgps5lf1l68ylqvwjw0zj",
           })))),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, texinfo]),
       outputs: nix.thunk(() => ["out", "info"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Utility for viewing/manipulating the MAC address of network interfaces",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

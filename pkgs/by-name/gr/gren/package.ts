@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const haskellPackages = nix.arg($, "haskellPackages");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gren",
       version: "0.6.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gren-lang",
           repo: "compiler",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,12 +46,12 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/gren`),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         backend: nix.thunk(() => nix.app(nix.sel(haskellPackages, "callPackage"), nix.path(here, "./generated-backend-package.nix"), nix.thunk(() => ({})))),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Programming language for simple and correct applications",
         homepage: "https://gren-lang.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

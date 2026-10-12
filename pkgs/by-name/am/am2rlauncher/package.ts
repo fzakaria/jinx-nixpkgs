@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
   const gsettings_desktop_schemas = nix.arg($, "gsettings-desktop-schemas");
   const dotnetCorePackages = nix.arg($, "dotnetCorePackages");
   const am2r_run = nix.thunk(() => nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "am2r-run",
       multiArch: true,
       multiPkgs: (pkgs) => (() => {
@@ -53,11 +53,11 @@ export default nix.lambda((args) => (() => {
       runScript: nix.thunk(() => nix.app(writeShellScript, "am2r-run", "exec -- \"$1\" \"$@\"\n")),
     }))));
   return nix.app(buildDotnetModule, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "am2rlauncher",
       version: "2.3.0-unstable-2026-07-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "AM2R-Community-Developers",
           repo: "AM2RLauncher",
           rev: "f9bd0a3e0b661648b0ce1b0531dc174d9ebcf7d9",
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postFixup: "mkdir -p $out/share/icons\ninstall -Dm644 $src/AM2RLauncher/distribution/linux/AM2RLauncher.png $out/share/icons/AM2RLauncher.png\ninstall -Dm644 $src/AM2RLauncher/distribution/linux/AM2RLauncher.desktop $out/share/applications/AM2RLauncher.desktop\n\n# renames binary for desktop file\nmv $out/bin/AM2RLauncher.Gtk $out/bin/AM2RLauncher\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/AM2R-Community-Developers/AM2RLauncher",
         description: "Front-end for dealing with AM2R updates and mods",
         longDescription: "A front-end application that simplifies installing the latest\nAM2R-Community-Updates, creating APKs for Android use, as well as Mods for\nAM2R.\n",

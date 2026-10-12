@@ -41,12 +41,12 @@ export default nix.lambda((args) => (() => {
 patch -p1 -d ${dir} < ${patch}
 `, nix.thunk(() => nix.sel(extDep, "patches")))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "python3-sipsimple",
       version: "5.3.3.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AGProjects",
           repo: "python3-sipsimple",
           tag: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}-mac`),
@@ -54,7 +54,7 @@ patch -p1 -d ${dir} < ${patch}
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "0001-python3-sipsimple-port-to-cython-3.patch",
             url: "https://github.com/AGProjects/python3-sipsimple/commit/ccbbbb0225b2417bdf6ae07da96bffe367e242be.patch",
             hash: "sha256-MBiM9/yS5yX9QoZT7p76PI2rbBr22fZw6TAT4tw9iZk=",
@@ -89,17 +89,17 @@ bash ./get_dependencies.sh
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["sipsimple"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version-regex", "^(.*)-mac$"]),
           })))),
         extDeps: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           pjsip: nix.thunk(() => (() => {
             const version = "2.10";
             const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 url: nix.thunk(() => nix.str`https://github.com/pjsip/pjproject/archive/${version}.tar.gz`),
                 hash: "sha256-k2pMW5hgG1IyVGOjl93xGrQQbGp7BPjcfN03fvu1l94=",
               }))));
@@ -108,24 +108,24 @@ bash ./get_dependencies.sh
               nix.path(here, "./pjsip-0002-RISC-V.patch"),
               nix.path(here, "./pjsip-0003-LoongArch64.patch"),
             ]);
-            return { __proto__: pos$5, version, src, patches };
+            return { [nix.POS]: pos$5, version, src, patches };
           })()),
           zrtpcpp: nix.thunk(() => (() => {
             const rev = "6b3cd8e6783642292bad0c21e3e5e5ce45ff3e03";
             const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 owner: "wernerd",
                 repo: "ZRTPCPP",
                 rev: rev,
                 hash: "sha256-pGng1Y9N51nGBpiZbn2NTx4t2NGg4qkmbghTscJVhIA=",
                 postFetch: "# fix build with gcc15\nsed -e '9i #include <cstdint>' -i $out/zrtp/EmojiBase32.cpp\n",
               }))));
-            return { __proto__: pos$7, rev, src };
+            return { [nix.POS]: pos$7, rev, src };
           })()),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "SIP SIMPLE SDK written in Python",
         homepage: "https://sipsimpleclient.org/",
         downloadPage: "https://github.com/AGProjects/python3-sipsimple",

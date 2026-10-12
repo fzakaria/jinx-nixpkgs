@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fundoc",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "daynin",
           repo: "fundoc",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoPatches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-tests.patch",
             url: "https://github.com/daynin/fundoc/commit/7dd3cf53a1d1ed72b00bf38ea3a45ba4590da7ef.patch",
             hash: "sha256-9Xsw2P4t9gzwc/qDU6U5+HZevPiQOOQo88gybC8QpyM=",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       ]),
       cargoHash: "sha256-17PzGHSwruHPRKjyiHWBMqHANR5ulb+/J5UoVsOrbyc=",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Language agnostic documentation generator",
         mainProgram: "fundoc",
         homepage: "https://github.com/daynin/fundoc",

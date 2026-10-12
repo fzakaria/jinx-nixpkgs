@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "greed",
       version: "5.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "esr",
           repo: "greed",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-AT7o6uMdV6NtsbZwjh/r9OUMH7glaOeFfMvMJxVwXtA=",
       postPatch: "substituteInPlace Makefile \\\n  --replace-fail \"/usr/games/lib/greed.hs\" \"/var/lib/greed/greed.hs\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://www.catb.org/~esr/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

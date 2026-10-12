@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.8";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "m1stadev",
           repo: "PyIMG4",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         "test_read_payp",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(asn1, "version")), "3")),
         changelog: nix.thunk(() => nix.str`https://github.com/m1stadev/PyIMG4/releases/tag/${nix.sel(src, "tag")}`),
         description: "Python library/CLI tool for parsing Apple's Image4 format",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "dotlambda"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

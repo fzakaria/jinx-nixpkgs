@@ -73,13 +73,13 @@ export default nix.lambda((args) => (() => {
   const webp_pixbuf_loader = nix.arg($, "webp-pixbuf-loader");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const enableSshSocket = nix.argOr($, "enableSshSocket", () => false);
-  const introduction_list = nix.thunk(() => nix.app(replaceVars, nix.path(here, "./introduction.list"), nix.thunk(() => ({ __proto__: pos$1, budgie_desktop: budgie_desktop, wdisplays: wdisplays }))));
+  const introduction_list = nix.thunk(() => nix.app(replaceVars, nix.path(here, "./introduction.list"), nix.thunk(() => ({ [nix.POS]: pos$1, budgie_desktop: budgie_desktop, wdisplays: wdisplays }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "budgie-control-center",
       version: "2.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "BuddiesOfBudgie",
           repo: "budgie-control-center",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./paths.patch"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             budgie_desktop: budgie_desktop,
             cups: cups,
             shadow: shadow,
@@ -147,7 +147,7 @@ addToSearchPath "XDG_DATA_DIRS" "${nix.sel(polkit, "out")}/share"
       postInstall: nix.thunk(() => nix.str`# Pull in WebP support for gnome-backgrounds.
 # In postInstall to run before gappsWrapperArgsHook.
 export GDK_PIXBUF_MODULE_FILE="${nix.app(nix.sel(gnome, "_gdkPixbufCacheBuilder_DO_NOT_USE"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           extraLoaders: nix.thunk(() => [libjxl, librsvg, webp_pixbuf_loader]),
         })))}"
 
@@ -163,18 +163,18 @@ install -Dm644 ${introduction_list} $out/share/budgie-control-center/introductio
 `),
       separateDebugInfo: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Fork of GNOME Control Center for the Budgie 10 Series",
         homepage: "https://github.com/BuddiesOfBudgie/budgie-control-center",
         changelog: nix.thunk(() => nix.str`https://github.com/BuddiesOfBudgie/budgie-control-center/releases/tag/v${nix.sel(finalAttrs, "version")}`),

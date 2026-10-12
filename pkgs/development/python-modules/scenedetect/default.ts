@@ -23,19 +23,19 @@ export default nix.lambda((args) => (() => {
   const tqdm = nix.arg($, "tqdm");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const testsResources = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "Breakthrough",
       repo: "PySceneDetect",
       rev: "94389267a344785643980a2e0bb18179dcca01d3",
       hash: "sha256-7ws7F7CkEJAa0PgfMEOwnpF4Xl2BQCn9+qFQb5MMlZ0=",
     }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "scenedetect",
       version: "0.6.7.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "Breakthrough",
           repo: "PySceneDetect",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}-release`),
@@ -51,7 +51,7 @@ chmod -R +w tests/resources
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, versionCheckHook]),
       versionCheckProgramArg: "version",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python and OpenCV-based scene cut/transition detection program & library",
         homepage: "https://www.scenedetect.com",
         changelog: nix.thunk(() => nix.str`https://github.com/Breakthrough/PySceneDetect/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

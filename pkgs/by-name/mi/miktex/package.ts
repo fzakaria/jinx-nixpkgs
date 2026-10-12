@@ -61,49 +61,49 @@ export default nix.lambda((args) => (() => {
   const webArchivePrefix = "https://web.archive.org/web/20250323131915if_";
   const miktexRemoteRepository = "https://ctan.org/tex-archive/systems/win32/miktex/tm/packages";
   const miktexLocalRepository = nix.thunk(() => nix.app(runCommand, "miktex-local-repository", nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       src1: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`${webArchivePrefix}/${miktexRemoteRepository}/miktex-zzdb1-2.9.tar.lzma`),
           hash: "sha256-XYhbKlxhVSOlCcm0IOs2ddFgAt/CWXJoY6IuLSw74y4=",
         })))),
       src2: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`${webArchivePrefix}/${miktexRemoteRepository}/miktex-zzdb3-2.9.tar.lzma`),
           hash: "sha256-5vLuGwjddqtJ5F/DtVKuRVRqgGNbkGFxRF41cXwseIs=",
         })))),
       src3: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`${webArchivePrefix}/${miktexRemoteRepository}/miktex-config-2.9.tar.lzma`),
           hash: "sha256-fkh5KL+BU+gl8Sih8xBLi1DOx2vMuSflXlSTchjlGWQ=",
         })))),
       src4: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           url: nix.thunk(() => nix.str`${webArchivePrefix}/${miktexRemoteRepository}/miktex-dvips.tar.lzma`),
           hash: "sha256-eJQdLhYetNlXAyyiGD/JRDA3fv0BbALwXtNfRxkLM7o=",
         })))),
       src5: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           url: nix.thunk(() => nix.str`${webArchivePrefix}/${miktexRemoteRepository}/miktex-fontconfig.tar.lzma`),
           hash: "sha256-dxH/0iIL3SnjCSXLGAcNTb5cGJb5AQmV/JbH5CcPHdk=",
         })))),
       src6: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           url: nix.thunk(() => nix.str`${webArchivePrefix}/${miktexRemoteRepository}/miktex-misc.tar.lzma`),
           hash: "sha256-ysNREvnKWseqqN59cwNzlV21UmccbjSGFyno8lv2H+M=",
         })))),
       src7: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           url: nix.thunk(() => nix.str`${webArchivePrefix}/${miktexRemoteRepository}/tetex.tar.lzma`),
           hash: "sha256-DE1o66r2SFxxxuYeCRuFn6L1uBn26IFnje9b/qeVl6Q=",
         })))),
     })), "mkdir $out\ncp $src1 $out/miktex-zzdb1-2.9.tar.lzma\ncp $src2 $out/miktex-zzdb3-2.9.tar.lzma\ncp $src3 $out/miktex-config-2.9.tar.lzma\ncp $src4 $out/miktex-dvips.tar.lzma\ncp $src5 $out/miktex-fontconfig.tar.lzma\ncp $src6 $out/miktex-misc.tar.lzma\ncp $src7 $out/tetex.tar.lzma\n"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: "miktex",
       version: "25.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           owner: "miktex",
           repo: "miktex",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -169,7 +169,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "MIKTEX_USER_LINK_TARGET_DIR", nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin`))),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         LANG: "C.UTF-8",
         MIKTEX_REPOSITORY: nix.thunk(() => nix.str`file://${miktexLocalRepository}/`),
         NIX_CFLAGS_COMPILE: "-funsigned-char",
@@ -181,7 +181,7 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.add("wrapQtApp $out/bin/miktex-console\nwrapQtApp $out/bin/miktex-texworks\n$out/bin/miktexsetup finish --verbose\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), nix.thunk(() => nix.str`ln -sf ${biber}/bin/biber $out/bin/biber
 `)))),
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         description: "Modern TeX distribution",
         homepage: "https://miktex.org",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

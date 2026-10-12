@@ -39,42 +39,42 @@ export default nix.lambda((args) => (() => {
       const $_2 = nix.formals(args_2, formals$3);
       const pkgs = nix.arg($_2, "pkgs");
       return {
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         networking: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           interfaces: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             eth1: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               ipv6: nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 addresses: nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$1, address: publicV6Address, prefixLength: 64n })),
+                  nix.thunk(() => ({ [nix.POS]: pos$1, address: publicV6Address, prefixLength: 64n })),
                 ]),
               })),
             })),
           })),
-          firewall: nix.thunk(() => ({ __proto__: pos$5, allowedTCPPorts: nix.thunk(() => [3901n, 3902n]) })),
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$5, allowedTCPPorts: nix.thunk(() => [3901n, 3902n]) })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           garage: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             enable: true,
             package: package$,
             settings: nix.thunk(() => nix.update({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               rpc_bind_addr: "[::]:3901",
               rpc_public_addr: nix.thunk(() => nix.str`[${publicV6Address}]:3901`),
               rpc_secret: "5c1915fa04d0b6739675c61bf5907eb0fe3d9c69850c83820f51b4d25d13868c",
               s3_api: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 s3_region: "garage",
                 api_bind_addr: "[::]:3900",
                 root_domain: ".s3.garage",
               })),
               s3_web: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 bind_addr: "[::]:3902",
                 root_domain: ".web.garage",
                 index: "index.html",
@@ -83,32 +83,32 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "minio-client"))]),
         })),
-        virtualisation: nix.thunk(() => ({ __proto__: pos$13, diskSize: nix.thunk(() => nix.mul(2n, 1024n)) })),
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$13, diskSize: nix.thunk(() => nix.mul(2n, 1024n)) })),
       };
     })(), formals$3);
   })(), formals$2);
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     basic: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         imports: nix.thunk(() => [nix.path(here, "./common.nix"), nix.path(here, "./basic.nix")]),
         _module: nix.thunk(() => ({
-          __proto__: pos$16,
-          args: nix.thunk(() => ({ __proto__: pos$15, mkNode: mkNode, package: package$ })),
+          [nix.POS]: pos$16,
+          args: nix.thunk(() => ({ [nix.POS]: pos$15, mkNode: mkNode, package: package$ })),
         })),
       })))),
     "with-3node-replication": nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         imports: nix.thunk(() => [
           nix.path(here, "./common.nix"),
           nix.path(here, "./with-3node-replication.nix"),
         ]),
         _module: nix.thunk(() => ({
-          __proto__: pos$19,
-          args: nix.thunk(() => ({ __proto__: pos$18, mkNode: mkNode, package: package$ })),
+          [nix.POS]: pos$19,
+          args: nix.thunk(() => ({ [nix.POS]: pos$18, mkNode: mkNode, package: package$ })),
         })),
       })))),
   };

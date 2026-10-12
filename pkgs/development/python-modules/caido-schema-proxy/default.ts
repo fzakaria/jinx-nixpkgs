@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const hatchling = nix.arg($, "hatchling");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "caido-schema-proxy",
       version: "0.58.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "caido_schema_proxy",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-E/Gv0cl9BPN2OMmzMVNzJdzxNmVVlRDL4siEayZAJKk=",
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["caido_schema_proxy"]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Caido Proxy API schemas (GraphQL and OpenAPI)",
         homepage: "https://pypi.org/project/caido-schema-proxy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-40")),

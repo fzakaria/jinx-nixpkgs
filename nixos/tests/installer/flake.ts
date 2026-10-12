@@ -14,28 +14,28 @@ const pos$8 = nix.positions(here + "/flake.nix", [["nixosConfigurations", 11, 7]
 const pos$9 = nix.positions(here + "/flake.nix", [["inputs", 5, 3], ["outputs", 7, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$9,
+  [nix.POS]: pos$9,
   inputs: nix.thunk(() => ({
-    __proto__: pos$2,
-    nixpkgs: nix.thunk(() => ({ __proto__: pos$1, url: "@nixpkgs@" })),
+    [nix.POS]: pos$2,
+    nixpkgs: nix.thunk(() => ({ [nix.POS]: pos$1, url: "@nixpkgs@" })),
   })),
   outputs: nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const nixpkgs = nix.arg($, "nixpkgs");
     return {
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       nixosConfigurations: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         xyz: nix.thunk(() => nix.app(nix.sel(nixpkgs, "lib", "nixosSystem"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             modules: nix.thunk(() => [
               nix.path(here, "./configuration.nix"),
               nix.thunk(() => nix.add(nixpkgs, "/nixos/modules/testing/test-instrumentation.nix")),
               nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 nix: nix.thunk(() => ({
-                  __proto__: pos$4,
-                  channel: nix.thunk(() => ({ __proto__: pos$3, enable: false })),
+                  [nix.POS]: pos$4,
+                  channel: nix.thunk(() => ({ [nix.POS]: pos$3, enable: false })),
                 })),
               })),
             ]),

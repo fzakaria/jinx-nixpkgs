@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "google-cloud-bigtable-tool",
       version: "0.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "googleapis",
           repo: "cloud-bigtable-cbt-cli",
           rev: nix.thunk(() => nix.str`v.${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-kwvEfvHs6XF84bB3Ss1307OjId0nh/0Imih1fRFdY0M=",
       checkFlags: nix.thunk(() => ["-short"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Google Cloud Bigtable Tool",
         longDescription: "`cbt` is the Google Cloud Bigtable Tool. A CLI utility to interact with Google Cloud Bigtable.\nThe cbt CLI is a command-line interface for performing several different operations on Cloud Bigtable.\nIt is written in Go using the Go client library for Cloud Bigtable.\nAn overview of its usage can be found in the [Google Cloud docs](https://cloud.google.com/bigtable/docs/cbt-overview).\nFor information about Bigtable in general, see the [overview of Bigtable](https://cloud.google.com/bigtable/docs/overview).\n",
         homepage: "https://github.com/googleapis/cloud-bigtable-cbt-cli",

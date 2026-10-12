@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.8.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "strangetom",
           repo: "ingredient-parser",
           tag: version,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = nix.thunk(() => nix.str`export NLTK_DATA=${nix.sel(nltk_data, "averaged-perceptron-tagger-eng")}
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Parse structured information from recipe ingredient sentences",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/strangetom/ingredient-parser/",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

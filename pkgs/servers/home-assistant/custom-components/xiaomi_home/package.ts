@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const domain = "xiaomi_home";
       const version = "0.4.7";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "XiaoMi",
           repo: "ha_xiaomi_home",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const dependencies = nix.thunk(() => [construct, paho_mqtt, numpy, cryptography, psutil_home_assistant]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex=^v([0-9.]+)$"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/XiaoMi/ha_xiaomi_home/releases/tag/v${version}`),
         description: "Xiaomi Home Integration for Home Assistant",
         longDescription: "Xiaomi Home Integration for Home Assistant depends on additional components, example how to setup in NixOS `configuration.nix`:\n\n```\n{ config, lib, pkgs, ... }:\n{\n  services.home-assistant = {\n    customComponents = [ pkgs.home-assistant-custom-components.xiaomi_home ];\n    extraComponents = [ \"ffmpeg\" \"zeroconf\" ];\n  };\n  # OAuth2 Redirect URL is hardcoded as http://homeassistant.local:8123\n  # Make sure you can access HA via this URL with mDNS\n  services.avahi.hostName = \"homeassistant\";\n  networking.firewall.allowedTCPPorts = [ 8123 ];\n}\n```\n",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
       }));
-      return { __proto__: pos$5, owner, domain, version, src, dependencies, passthru, meta };
+      return { [nix.POS]: pos$5, owner, domain, version, src, dependencies, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

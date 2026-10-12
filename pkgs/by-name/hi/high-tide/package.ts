@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const pipewire = nix.arg($, "pipewire");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python313Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "high-tide",
       version: "1.5.0",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Nokse22",
           repo: "high-tide",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -70,11 +70,11 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       makeWrapperArgs: nix.thunk(() => ["${gappsWrapperArgs[@]}"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Libadwaita TIDAL client for Linux",
         homepage: "https://github.com/Nokse22/high-tide",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

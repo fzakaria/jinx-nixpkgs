@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wireless-tools",
       version: "30.pre9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://hewlettpackard.github.io/wireless-tools/wireless_tools.${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0qscyd44jmhs4k32ggp107hlym1pcyjzihiai48xs7xzib4wbndb",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         "LDCONFIG=:",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Wireless tools for Linux",
         homepage: "https://hewlettpackard.github.io/wireless-tools/Tools.html",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

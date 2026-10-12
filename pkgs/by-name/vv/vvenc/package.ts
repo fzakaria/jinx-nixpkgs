@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const nlohmann_json = nix.arg($, "nlohmann_json");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "vvenc",
       version: "1.14.0",
       outputs: nix.thunk(() => ["out", "lib", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fraunhoferhhi",
           repo: "vvenc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [nix.path(here, "./unset-darwin-cmake-flags.patch")]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ["-Wno-maybe-uninitialized", "-Wno-uninitialized"]))))),
       })),
       buildInputs: nix.thunk(() => [nlohmann_json]),
@@ -47,15 +47,15 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace pkgconfig/libvvenc.pc.in \\\n  --replace-fail \\\n    'libdir=@CMAKE_INSTALL_PREFIX@/@CMAKE_INSTALL_LIBDIR@' \\\n    'libdir=@CMAKE_INSTALL_FULL_LIBDIR@' \\\n  --replace-fail \\\n    'includedir=@CMAKE_INSTALL_PREFIX@/@CMAKE_INSTALL_INCLUDEDIR@' \\\n    'includedir=@CMAKE_INSTALL_FULL_INCLUDEDIR@'\n",
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$3, "rev-prefix": "v", ignoredVersions: "rc" })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v", ignoredVersions: "rc" })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://github.com/fraunhoferhhi/vvenc",
         description: "Fraunhofer Versatile Video Encoder",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3Clear")),

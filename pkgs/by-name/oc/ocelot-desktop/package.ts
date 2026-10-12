@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const xrandr = nix.arg($, "xrandr");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ocelot-desktop",
       version: "1.14.2",
       __darwinAllowLocalNetworking: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://gitlab.com/api/v4/projects/9941848/packages/generic/ocelot-desktop/v${nix.sel(finalAttrs, "version")}/ocelot-desktop-v${nix.sel(finalAttrs, "version")}.jar`),
           hash: "sha256-ZnXFCcm/b4hXLUrL7QZmRYwEFksKkIGI8zDqfXB+uhc=",
         })))),
@@ -82,7 +82,7 @@ runHook postInstall
       })()),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "ocelot-desktop",
             desktopName: "Ocelot Desktop",
             genericName: "OpenComputers Emulator",
@@ -109,7 +109,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Advanced OpenComputers emulator",
         homepage: "https://ocelot.fomalhaut.me/desktop",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/cc-ru/ocelot/ocelot-desktop/-/releases/v${nix.sel(finalAttrs, "version")}`),

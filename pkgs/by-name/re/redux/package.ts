@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "redux";
       const version = "1.4.1";
       const src = nix.thunk(() => (nix.asBool(!nix.eq(releasePath, null)) ? nix.force(releasePath) : nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://files.renoise.com/demo/Renoise_Redux_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}_Demo_Linux_x86_64.tar.gz`),
             nix.thunk(() => nix.str`https://files.renoise.com/demo/archive/Renoise_Redux_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}_Demo_Linux_x86_64.tar.gz`),
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
       ]);
       const installPhase = "runHook preInstall\n\nOUTDIR=$out/lib/vst2/RenoiseRedux.vst2\nmkdir -p $OUTDIR\ncp -r ./renoise_redux_x86_64/* $OUTDIR\n\nrunHook postInstall\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-redux", "#!/usr/bin/env nix-shell\n#!nix-shell -I nixpkgs=./. -i bash -p curl htmlq common-updater-scripts\nset -euo pipefail\n\nnew_version=\"$(\n  curl 'https://files.renoise.com/demo/' \\\n    | htmlq a --text \\\n    | grep -E '^Renoise_Redux_([0-9]+_?)+_Demo_Linux_x86_64\\.tar\\.gz$' \\\n    | grep -Eo '[0-9]+(_[0-9]+)*' \\\n    | head -n1 \\\n    | tr _ .\n)\"\nupdate-source-version redux \"$new_version\" --system=\"x86_64-linux\"\n")),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Sample-based instrument, with a powerful phrase sequencer",
         homepage: "https://www.renoise.com/products/redux",
         sourceProvenance: nix.thunk(() => (() => {
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

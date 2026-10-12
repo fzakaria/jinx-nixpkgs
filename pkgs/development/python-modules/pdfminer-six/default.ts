@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "20260107";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pdfminer",
           repo: "pdfminer.six",
           tag: version,
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const disabledTests = nix.thunk(() => ["test_contrib_issue_1004_mediabox"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, ocrmypdf: ocrmypdf })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, ocrmypdf: ocrmypdf })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/pdfminer/pdfminer.six/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
         description: "PDF parser and analyzer",
         homepage: "https://github.com/pdfminer/pdfminer.six",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

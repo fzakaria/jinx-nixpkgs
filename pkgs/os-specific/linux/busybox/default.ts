@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
   const libcConfig = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), useMusl, "CONFIG_FEATURE_UTMP n\nCONFIG_FEATURE_WTMP n\n"));
   const debianVersion = "1.30.1-6";
   const debianSource = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       domain: "salsa.debian.org",
       owner: "installer-team",
       repo: "busybox",
@@ -52,11 +52,11 @@ export default nix.lambda((args) => (() => {
   const pname = "busybox";
   const version = "1.37.0";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://busybox.net/downloads/${pname}-${version}.tar.bz2`),
           sha256: "sha256-MxHf8y50ZJn03w1d8E1+s5Y4LX4Qi7klDntRm4NwQ6Q=",
         })))),
@@ -65,26 +65,26 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./busybox-in-store.patch"),
         nix.path(here, "./fix-aarch64-sha1.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "CVE-2023-39810.patch",
             url: "https://github.com/vda-linux/busybox_mirror/commit/9a8796436b9b0641e13480811902ea2ac57881d3.patch",
             hash: "sha256-pOARbCwiucrkNITBoOMpLF3GniYvJiyBeBi2/Aw2JY8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "CVE-2026-26157_CVE-2026-26158.patch",
             url: "https://github.com/vda-linux/busybox_mirror/commit/3fb6b31c716669e12f75a2accd31bb7685b1a1cb.patch",
             excludes: nix.thunk(() => ["networking/httpd_ratelimit_cgi.c"]),
             hash: "sha256-Msm9sDZrVx7ofunnvnTS73SPKUUpR3Tv5xZ/wBd+rts=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "CVE-2026-26157_CVE-2026-26158-2.patch",
             url: "https://github.com/vda-linux/busybox_mirror/commit/599f5dd8fac390c18b79cba4c14c334957605dae.patch",
             hash: "sha256-go/KHSsuMSm21nC0yvKEtAQs8Jnjjqdcs5i8RWBGwT4=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             url: "https://hg.slitaz.org/wok/raw-file/1cba565dc2a9/busybox/stuff/busybox-1.37-fix-syslogd.patch",
             hash: "sha256-NZRctLv1CpTfnR6+CA890YY8ljBQLGkkselyP5/TnsQ=",
           })))),
@@ -158,12 +158,12 @@ HOST_PATH=$out/bin patchShebangs --host ${outDispatchPath}
       enableParallelBuilding: true,
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         shellPath: "/bin/ash",
         tests: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           withCheck: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (_) => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               doCheck: true,
               nativeCheckInputs: nix.thunk(() => [hostname, zip, which, simple_http_server]),
               preCheck: nix.thunk(() => nix.str`# Replace hard-coded dependencies on /bin
@@ -218,7 +218,7 @@ popd
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         description: "Tiny versions of common UNIX utilities in a single small executable",
         homepage: "https://busybox.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -234,7 +234,7 @@ popd
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         priority: 15n,
         identifiers: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "busybox", version)),
         })),
       })),

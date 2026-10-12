@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const six = nix.arg($, "six");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "bson",
       version: "0.5.10",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "py-bson",
           repo: "bson",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,13 +33,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "python-3.11.patch",
             url: "https://github.com/py-bson/bson/commit/5346e73124de8a1f9e2a1960501416529e4cee02.patch",
             hash: "sha256-kNs00j/FDjb2av+0WMORrCo75NcuaJXUl4SbYlksnfo=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "python-3.14.patch",
             url: "https://github.com/py-bson/bson/commit/4e6b4c206f7204034ef74bff8ae84a95d76d1684.patch",
             includes: nix.thunk(() => ["setup.py"]),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["bson"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "BSON codec for Python",
         homepage: "https://github.com/py-bson/bson",
         license: nix.thunk(() => [

@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const disabled = nix.thunk(() => nix.app(pythonAtLeast, "3.12"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "usnistgov",
           repo: "fipy",
           tag: version,
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
 ${nix.sel(python, "interpreter")} setup.py test --modules
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.ctcms.nist.gov/fipy/",
         description: "Finite Volume PDE Solver Using Python",
         changelog: nix.thunk(() => nix.str`https://github.com/usnistgov/fipy/blob/${nix.sel(src, "tag")}/CHANGELOG.rst`),
@@ -65,7 +65,7 @@ ${nix.sel(python, "interpreter")} setup.py test --modules
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

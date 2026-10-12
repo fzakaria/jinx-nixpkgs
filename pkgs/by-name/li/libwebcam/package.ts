@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libxml2 = nix.arg($, "libxml2");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libwebcam",
       version: "0.2.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/libwebcam/source/libwebcam-src-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0hcxv8di83fk41zjh0v592qm7c0v37a3m3n3lxavd643gff1k99w",
         })))),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "cmakeFlagsArray=(\n  $cmakeFlagsArray\n  \"-DCMAKE_INSTALL_PREFIX=$out\"\n)\n",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Webcam-tools package",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

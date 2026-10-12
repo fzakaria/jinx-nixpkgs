@@ -23,13 +23,13 @@ export default nix.lambda((args) => (() => {
       const pname = "unityhub";
       const version = "3.19.5";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://hub-dist.unity3d.com/artifactory/hub-debian-prod-local/pool/main/u/unity/unityhub_amd64/UnityHubSetup-${version}-amd64.deb`),
           hash: "sha256-WltXrcnOIJMcQVTFf/3tCPP/onQyhv3xTJ563WshJUA=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [dpkg, makeWrapper]);
       const fhsEnv = nix.thunk(() => nix.app(buildFHSEnv, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.str`${pname}-fhs-env`),
           version: version,
           runScript: "",
@@ -131,9 +131,9 @@ rm $out/opt/unityhub/resources/package-type
 
 runHook postInstall
 `);
-      const passthru = nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Official Unity3D app to download and manage Unity Projects and installations",
         homepage: "https://unity.com/",
         downloadPage: "https://unity.com/unity-hub",
@@ -150,7 +150,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

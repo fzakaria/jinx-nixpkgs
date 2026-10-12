@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const newScope = nix.arg($, "newScope");
   const callPackage = nix.thunk(() => nix.app(newScope, args_1));
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "discourse-bbcode-color": nix.thunk(() => nix.app(callPackage, nix.path(here, "./discourse-bbcode-color"), nix.thunk(() => ({})))),
     "discourse-docs": nix.thunk(() => nix.app(callPackage, nix.path(here, "./discourse-docs"), nix.thunk(() => ({})))),
     "discourse-events": nix.thunk(() => nix.app(callPackage, nix.path(here, "./discourse-events"), nix.thunk(() => ({})))),

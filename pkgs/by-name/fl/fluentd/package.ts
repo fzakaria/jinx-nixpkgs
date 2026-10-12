@@ -16,17 +16,17 @@ export default nix.lambda((args) => (() => {
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(bundlerEnv, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       ruby: ruby,
       pname: "fluentd",
       gemdir: nix.path(here, "./."),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "fluentd")),
-        tests: nix.thunk(() => ({ __proto__: pos$1, fluentd: nix.thunk(() => nix.sel(nixosTests, "fluentd")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$1, fluentd: nix.thunk(() => nix.sel(nixosTests, "fluentd")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Data collector",
         homepage: "https://www.fluentd.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

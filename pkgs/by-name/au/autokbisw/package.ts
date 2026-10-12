@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "autokbisw";
       const version = "2.0.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ohueter",
           repo: "autokbisw",
           tag: version,
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const configurePhase = nix.thunk(() => nix.sel(generated, "configure"));
       const installPhase = "runHook preInstall\n\nmkdir -p $out/bin\ncp $(swiftpmBinPath)/autokbisw $out/bin/\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Automatic keyboard input language switching for macOS",
         homepage: "https://github.com/ohueter/autokbisw",
         changelog: nix.thunk(() => nix.str`https://github.com/ohueter/autokbisw/releases/tag/${version}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

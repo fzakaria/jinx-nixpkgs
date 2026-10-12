@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ir-standard-fonts";
       const version = "20170121";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "molaeiali",
           repo: "ir-standard-fonts",
           rev: version,
@@ -24,14 +24,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const installPhase = "runHook preInstall\n\nfind . -name '*.ttf' -exec install -m444 -Dt $out/share/fonts/ir-standard-fonts {} \\;\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/morealaz/ir-standard-fonts",
         description: "Iran Supreme Council of Information and Communication Technology (SCICT) standard Persian fonts series",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         maintainers: [],
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

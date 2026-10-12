@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const soil = nix.arg($, "soil");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "esshader",
       version: "0-unstable-2020-08-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chrismcfee",
           repo: "esshader",
           rev: "506eb02f3de52d3d1f4d81ac9ee145655216dee5",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libGL, glfw, soil]),
       installPhase: "mkdir -p $out/bin\ncp -a esshader $out/bin/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Offline ShaderToy-compatible GLSL shader viewer using OpenGL ES 2.0",
         homepage: "https://github.com/chrismcfee/esshader",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

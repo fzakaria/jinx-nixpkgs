@@ -66,12 +66,12 @@ export default nix.lambda((args) => (() => {
   const qtile = nix.arg($, "qtile");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "qtile",
       version: "0.37.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "qtile",
           repo: "qtile",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       nativeBuildInputs: nix.thunk(() => [pkg_config, wayland_scanner]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         QTILE_CAIRO_PATH: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), cairo)}/include/cairo`),
         QTILE_PIXMAN_PATH: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), pixman)}/include/pixman-1`),
         QTILE_LIBDRM_PATH: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), libdrm)}/include/libdrm`),
@@ -96,7 +96,7 @@ export default nix.lambda((args) => (() => {
       ]),
       dependencies: nix.thunk(() => nix.concat(extraPackages, [
         aiohttp,
-        nix.thunk(() => nix.app(nix.sel(cairocffi, "override"), nix.thunk(() => ({ __proto__: pos$3, withXcffib: true })))),
+        nix.thunk(() => nix.app(nix.sel(cairocffi, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, withXcffib: true })))),
         cffi,
         dbus_fast,
         iwlib,
@@ -150,17 +150,17 @@ export default nix.lambda((args) => (() => {
         "test_thermal_zone_getting_value",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           nixosTestSession: nix.thunk(() => nix.sel(nixosTests, "qtile")),
-          withCheck: nix.thunk(() => nix.app(nix.sel(qtile, "overridePythonAttrs"), (_) => ({ __proto__: pos$4, doCheck: true }))),
+          withCheck: nix.thunk(() => nix.app(nix.sel(qtile, "overridePythonAttrs"), (_) => ({ [nix.POS]: pos$4, doCheck: true }))),
         })),
         providedSessions: nix.thunk(() => ["qtile"]),
       })),
       postInstall: "install -Dm644 resources/qtile-generic.desktop $out/share/xsessions/qtile.desktop\ninstall -Dm644 resources/qtile-generic.desktop $out/share/wayland-sessions/qtile.desktop\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://qtile.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         description: "Small, flexible, scriptable tiling window manager written in Python",

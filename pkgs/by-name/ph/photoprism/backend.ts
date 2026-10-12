@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const python3 = python313;
   const libtensorflow = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "libtensorflow",
       paths: nix.thunk(() => [
         nix.thunk(() => nix.str`${nix.sel(python3, "pkgs", "tensorflow-bin")}/${nix.sel(python3, "sitePackages")}/tensorflow`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       postBuild: "ln -s \"$out/libtensorflow_cc.so.2\" \"$out/libtensorflow.so\"\nln -s \"$out/libtensorflow_framework.so.2\" \"$out/libtensorflow_framework.so\"\n",
     }))));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       src: src,
       version: version,
       pname: "photoprism-backend",
@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
       CGO_CFLAGS: nix.thunk(() => nix.str`-Wno-return-local-addr -I${libtensorflow}/include`),
       CGO_LDFLAGS: nix.thunk(() => nix.str`-L${libtensorflow} -ltensorflow_framework`),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://photoprism.app",
         description: "Photoprism's backend",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

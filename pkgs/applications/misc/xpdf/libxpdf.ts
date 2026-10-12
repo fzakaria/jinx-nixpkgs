@@ -18,37 +18,37 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "libxpdf",
       version: "3.02pl5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://dl.xpdfreader.com/old/xpdf-3.02.tar.gz",
           sha256: "000zq4ddbwyxiki4vdwpmxbnw5n9hsg9hvwra2p33hslyib7sfmk",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://dl.xpdfreader.com/old/xpdf-3.02pl1.patch",
             sha256: "1wxv9l0d2kkwi961ihpdwi75whdvk7cgqxkbfym8cjj11fq17xjq",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://dl.xpdfreader.com/old/xpdf-3.02pl2.patch",
             sha256: "1nfrgsh9xj0vryd8h65myzd94bjz117y89gq0hzji9dqn23xihfi",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://dl.xpdfreader.com/old/xpdf-3.02pl3.patch",
             sha256: "0jskkv8x6dqr9zj4azaglas8cziwqqrkbbnzrpm2kzrvsbxyhk2r",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://dl.xpdfreader.com/old/xpdf-3.02pl4.patch",
             sha256: "1c48h7aizx0ngmzlzw0mpja1w8vqyy3pg62hyxp7c60k86al715h",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             url: "https://dl.xpdfreader.com/old/xpdf-3.02pl5.patch",
             sha256: "1fki66pw56yr6aw38f6amrx7wxwcxbx4704pjqq7pqqr784b7z4j",
           })))),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "mkdir -p $out/lib/goo\nmkdir -p $out/lib/fofi\nmkdir -p $out/lib/xpdf\nmkdir -p $out/include\n\ncp -v goo/libGoo.a $out/lib/goo\ncp -v fofi/libfofi.a $out/lib/fofi\ncp -v xpdf/libxpdf.a $out/lib/xpdf\n\ncp -v *.h $out/include\ncp -v goo/*.h $out/include\ncp -v fofi/*.h $out/include\ncp -v xpdf/*.h $out/include\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
       })),

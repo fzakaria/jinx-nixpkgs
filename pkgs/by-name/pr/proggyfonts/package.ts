@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const mkfontscale = nix.arg($, "mkfontscale");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "proggyfonts",
       version: "0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://web.archive.org/web/20150801042353/http://kaictl.net/software/proggyfonts-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-SsLzZdR5icVJNbr5rcCPbagPPtWghbqs2Jxmrtufsa4=",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "rm Speedy.pcf # duplicated as Speedy11.pcf\n\n# compress pcf fonts\nfor f in *.pcf; do\n  gzip -n -9 -c \"$f\" > \"$f\".gz\ndone\n\nrm *.pcf\n",
       postInstall: "install -D -m 644 Licence.txt -t \"$out/share/doc/$name\"\n\nmkfontscale \"$out/share/fonts/truetype\"\nmkfontdir   \"$out/share/fonts/misc\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/bluescan/proggyfonts",
         description: "Set of fixed-width screen fonts that are designed for code listings",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

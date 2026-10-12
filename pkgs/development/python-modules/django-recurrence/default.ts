@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pytest_cov_stub = nix.arg($, "pytest-cov-stub");
   const pdm_backend = nix.arg($, "pdm-backend");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "django-recurrence",
       version: "1.14",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jazzband",
           repo: "django-recurrence",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["recurrence"]),
       nativeCheckInputs: nix.thunk(() => [pytest_django, pytest_cov_stub, pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utility for working with recurring dates in Django",
         homepage: "https://github.com/jazzband/django-recurrence",
         changelog: nix.thunk(() => nix.str`https://github.com/jazzband/django-recurrence/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.rst`),

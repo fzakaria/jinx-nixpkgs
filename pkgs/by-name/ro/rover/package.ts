@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "rover",
       version: "0.37.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "apollographql",
           repo: "rover",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,16 +31,16 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-nMb0kwtzYmfOB+Ub8vXK39wp3vAe5HNFb9k579We26c=",
       buildInputs: nix.thunk(() => [openssl]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
-      env: nix.thunk(() => ({ __proto__: pos$2, OPENSSL_NO_VENDOR: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: true })),
       __darwinAllowLocalNetworking: true,
       cargoTestFlags: nix.thunk(() => ["--", "--skip=latest_plugins_are_valid_versions"]),
       preCheck: "export APOLLO_CONFIG_HOME=\"$PWD\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "CLI for interacting with ApolloGraphQL's developer tooling, including managing self-hosted and GraphOS graphs",
         mainProgram: "rover",
         homepage: "https://www.apollographql.com/docs/rover",

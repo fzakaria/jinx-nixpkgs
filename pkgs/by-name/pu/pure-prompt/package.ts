@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pure-prompt",
       version: "1.28.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sindresorhus",
           repo: "pure",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       installPhase: "OUTDIR=\"$out/share/zsh/site-functions\"\nmkdir -p \"$OUTDIR\"\ncp pure.zsh \"$OUTDIR/prompt_pure_setup\"\ncp async.zsh \"$OUTDIR/async\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pretty, minimal and fast ZSH prompt",
         homepage: "https://github.com/sindresorhus/pure",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

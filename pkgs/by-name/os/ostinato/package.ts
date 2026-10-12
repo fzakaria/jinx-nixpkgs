@@ -28,18 +28,18 @@ export default nix.lambda((args) => (() => {
   const libnl = nix.arg($, "libnl");
   const protobuf = protobuf_21;
   const ostinatoIcon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://ostinato.org/images/site-logo.png",
       hash: "sha256-9cBngj8pNOTTWNdvZaND79aa14OnrqvXq0zjzQNJDXA=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "ostinato",
       version: "1.3.0",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "pstavirs",
           repo: "ostinato",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       prePatch: nix.thunk(() => nix.str`sed -i 's|/usr/include/libnl3|${nix.sel(libnl, "dev")}/include/libnl3|' server/drone.pro
 `),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "ostinato",
             desktopName: "Ostinato",
             genericName: "Packet/Traffic Generator and Analyzer",
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
             exec: "@out@/bin/ostinato",
             icon: ostinatoIcon,
             extraConfig: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               "GenericName[it]": "Generatore ed Analizzatore di pacchetti di rete",
               "Comment[it]": "Generatore ed Analizzatore di pacchetti di rete con interfaccia amichevole",
             })),
@@ -91,7 +91,7 @@ EOF
 `),
       enableParallelBuilding: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Packet traffic generator and analyzer",
         homepage: "https://ostinato.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

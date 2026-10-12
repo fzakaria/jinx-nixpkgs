@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "listadmin";
       const version = "2.73";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/listadmin/${version}/listadmin-${version}.tar.gz`),
           sha256: "00333d65ygdbm1hqr4yp2j8vh1cgh3hyfm7iy9y1alf0p0f6aqac",
         }))));
@@ -43,7 +43,7 @@ wrapProgram $out/bin/listadmin \\
       const doInstallCheck = true;
       const installCheckPhase = "$out/bin/listadmin --help 2> /dev/null\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command line mailman moderator queue manipulation",
         longDescription: "listadmin is a command line tool to manipulate the queues of messages\nheld for moderator approval by mailman. It is designed to keep user\ninteraction to a minimum, in theory you could run it from cron to prune\nthe queue. It can use the score from a header added by SpamAssassin to\nfilter, or it can match specific senders, subjects, or reasons.\n",
         homepage: "https://sourceforge.net/projects/listadmin/",
@@ -56,7 +56,7 @@ wrapProgram $out/bin/listadmin \\
         mainProgram: "listadmin",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

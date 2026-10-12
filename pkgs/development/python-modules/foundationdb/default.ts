@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const foundationdb = nix.arg($, "foundationdb");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "foundationdb",
       version: nix.thunk(() => nix.sel(foundationdb, "version")),
       format: "setuptools",
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
 `),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Python bindings for FoundationDB",
         homepage: "https://www.foundationdb.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

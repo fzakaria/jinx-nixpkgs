@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "qt5ct";
       const version = "1.9";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/qt5ct/qt5ct-${version}.tar.bz2`),
           sha256: "sha256-3BDmk51CO5JZgc5n/rsaAVtvYcAiqcx+bIte/qRYi/8=",
         }))));
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`LIBDIR=${nix.builtins.placeholder("out")}/lib`),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Qt5 Configuration Tool",
         homepage: "https://sourceforge.net/projects/qt5ct/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "qt5ct",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

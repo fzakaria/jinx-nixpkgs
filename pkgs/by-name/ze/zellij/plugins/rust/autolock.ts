@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zellij-autolock",
       version: "0.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fresh2dev",
           repo: "zellij-autolock",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-ULBQN+EBvyEIdoaLpiMNqoDEQ8Lu0Sc3OeweuKMiIU0=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Autolock Zellij when certain processes open",
         homepage: "https://github.com/fresh2dev/zellij-autolock",
         changelog: nix.thunk(() => nix.str`https://github.com/fresh2dev/zellij-autolock/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

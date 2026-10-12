@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "c-ascii-render",
       version: "0-unstable-2025-11-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Lallapallooza",
           repo: "c_ascii_render",
           rev: "c1894b50488c6ba75e33734d6b3d4a3397ac1fb5",
@@ -31,15 +31,15 @@ export default nix.lambda((args) => (() => {
   --replace-fail '/usr/local' '${nix.builtins.placeholder("out")}'
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add("-Wno-error", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), " -D_DARWIN_C_SOURCE"))),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Simple ASCII Render using Pure C",
         homepage: "https://github.com/Lallapallooza/c_ascii_render",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

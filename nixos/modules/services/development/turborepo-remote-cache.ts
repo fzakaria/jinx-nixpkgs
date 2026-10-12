@@ -35,20 +35,20 @@ export default nix.lambda((args) => (() => {
   const mkPackageOption = nix.thunk(() => nix.attr(lib, "mkPackageOption"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         "turborepo-remote-cache": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.update(nix.app(mkEnableOption, "Turborepo Remote Cache"), {
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             description: "Enables the daemon for `turborepo-remote-cache`,\nan open source implementation of the Turborepo custom remote cache server.\n",
           })),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "turborepo-remote-cache", nix.thunk(() => ({})))),
           environment: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "oneOf"), nix.thunk(() => [
                       nix.thunk(() => nix.sel(types, "bool")),
                       nix.thunk(() => nix.sel(types, "int")),
@@ -59,14 +59,14 @@ export default nix.lambda((args) => (() => {
               example: nix.thunk(() => nix.app(literalExpression, "{\n  NODE_ENV = \"production\";\n  PORT = 8080;\n}\n")),
             })))),
           environmentFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               default: null,
               description: "Additional environment file as defined in {manpage}`systemd.exec(5)`.\n\nSecrets like {env}`TURBO_TOKEN` may be passed to the\nservice without making them readable to everyone with access to\nsystemctl by using this configuration parameter.\n\nNote that this file needs to be available on the host on which\n`turborepo-remote-cache` is running.\n\nSee the [documentation][envvars]\nand the [](#opt-services.turborepo-remote-cache.environment) configuration parameter\nfor further options.\n\n[envvars]: https://ducktors.github.io/turborepo-remote-cache/environment-variables.html\n",
               example: "/run/secrets/turborepo-remote-cache.env",
             })))),
           openFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Open ports in the firewall for turborepo-remote-cache daemon.\n",
@@ -75,15 +75,15 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         systemd: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             "turborepo-remote-cache": nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 Restart: "always",
                 EnvironmentFile: nix.thunk(() => nix.sel(cfg, "environmentFile")),
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/turborepo-remote-cache`),
@@ -100,9 +100,9 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           firewall: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             allowedTCPPorts: nix.thunk(() => (() => {
               const port = nix.thunk(() => nix.selOr(cfg, () => 3000n, "environment", "PORT"));
               return nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [port]));

@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const crc32c = nix.arg($, "crc32c");
   const version = "0.9.76";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bce-python-sdk",
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "bce_python_sdk",
           version: version,
           hash: "sha256-AcYwzo3L+L4FY9ZfGLUgHqrGvZVLPcd2BArsJo+Btv8=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [pycryptodome, six, crc32c]),
       pythonImportsCheck: nix.thunk(() => ["baidubce"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Baidu Cloud Engine SDK for python",
         homepage: "https://github.com/baidubce/bce-sdk-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

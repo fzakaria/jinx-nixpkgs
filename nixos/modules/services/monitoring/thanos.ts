@@ -146,7 +146,7 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "thanos"));
   const nullOpt = (type) => (description) => nix.app(mkOption, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       type: nix.thunk(() => (nix.asBool(nix.app(nix.sel(type, "check"), null)) ? nix.force(type) : nix.app(nix.sel(types, "nullOr"), type))),
       default: null,
       description: description,
@@ -160,45 +160,45 @@ Defaults to \`${nix.builtins.toString(default$)}\` in Thanos
 when set to \`null\`.
 `)));
   const mkParam = (type) => (description) => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     toArgs: optionToArgs,
     option: nix.thunk(() => nix.app(nullOpt, type, description)),
   });
   const mkFlagParam = (description) => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     toArgs: flagToArgs,
     option: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         type: nix.thunk(() => nix.sel(types, "bool")),
         default: false,
         description: description,
       })))),
   });
   const mkListParam = (opt) => (description) => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     toArgs: (_opt) => nix.app(listToArgs, opt),
     option: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
         default: [],
         description: description,
       })))),
   });
   const mkAttrsParam = (opt) => (description) => ({
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     toArgs: (_opt) => nix.app(attrsToArgs, opt),
     option: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "str")))),
         default: nix.thunk(() => ({})),
         description: description,
       })))),
   });
   const mkStateDirParam = (opt) => (default$) => (description) => ({
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     toArgs: (_opt) => (stateDir) => nix.app(optionToArgs, opt, nix.thunk(() => nix.str`/var/lib/${stateDir}`)),
     option: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         type: nix.thunk(() => nix.sel(types, "str")),
         default: default$,
         description: description,
@@ -215,7 +215,7 @@ when set to \`null\`.
           return nix.app(nix.sel(param, "toArgs"), opt, v);
         })())))));
   const mkArgumentsOption = (cmd) => nix.app(mkOption, nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
       default: nix.thunk(() => nix.app(argumentsOf, cmd)),
       defaultText: nix.thunk(() => nix.app(literalMD, nix.thunk(() => nix.str`calculated from \`config.services.thanos.${cmd}\`
@@ -235,24 +235,24 @@ any effect. So only set this if you know what you're doing!
   })());
   const paramsToOptions = nix.thunk(() => nix.app(mapParamsRecursive, (_path) => (param) => nix.sel(param, "option")));
   const params = nix.thunk(() => ({
-    __proto__: pos$57,
+    [nix.POS]: pos$57,
     log: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       log: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         level: nix.thunk(() => nix.app(mkParamDef, nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["debug", "info", "warn", "error", "fatal"]))), "info", "Log filtering level.\n")),
         format: nix.thunk(() => nix.app(mkParam, nix.thunk(() => nix.sel(types, "str")), "Log format to use.\n")),
       })),
     })),
     tracing: (cfg_1) => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       tracing: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         "config-file": nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           toArgs: (_opt) => (path) => nix.app(optionToArgs, "tracing.config-file", path),
           option: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -263,14 +263,14 @@ any effect. So only set this if you know what you're doing!
             })))),
         })),
         config: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           toArgs: (_opt) => (_attrs) => [],
           option: nix.thunk(() => nix.app(nullOpt, nix.thunk(() => nix.sel(format, "type")), "Tracing configuration.\n\nWhen not `null` the attribute set gets converted to\na YAML file and stored in the Nix store. The option\n{option}`tracing.config-file` will default to its path.\n\nIf {option}`tracing.config-file` is set this option has no effect.\n\nSee format details: <https://thanos.io/tip/thanos/tracing.md/#configuration>\n")),
         })),
       })),
     }),
     common: (cfg_1) => nix.update(nix.sel(params, "log"), nix.update(nix.app(nix.sel(params, "tracing"), cfg_1), {
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       "http-address": nix.thunk(() => nix.app(mkParamDef, nix.thunk(() => nix.sel(types, "str")), "0.0.0.0:10902", "Listen `host:port` for HTTP endpoints.\n")),
       "grpc-address": nix.thunk(() => nix.app(mkParamDef, nix.thunk(() => nix.sel(types, "str")), "0.0.0.0:10901", "Listen `ip:port` address for gRPC endpoints (StoreAPI).\n\nMake sure this address is routable from other components.\n")),
       "grpc-server-tls-cert": nix.thunk(() => nix.app(mkParam, nix.thunk(() => nix.sel(types, "str")), "TLS Certificate for gRPC server, leave blank to disable TLS\n")),
@@ -278,14 +278,14 @@ any effect. So only set this if you know what you're doing!
       "grpc-server-tls-client-ca": nix.thunk(() => nix.app(mkParam, nix.thunk(() => nix.sel(types, "str")), "TLS CA to verify clients against.\n\nIf no client CA is specified, there is no client verification on server side.\n(tls.NoClientCert)\n")),
     })),
     objstore: (cfg_1) => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       objstore: nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         "config-file": nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           toArgs: (_opt) => (path) => nix.app(optionToArgs, "objstore.config-file", path),
           option: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -296,25 +296,25 @@ any effect. So only set this if you know what you're doing!
             })))),
         })),
         config: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           toArgs: (_opt) => (_attrs) => [],
           option: nix.thunk(() => nix.app(nullOpt, nix.thunk(() => nix.sel(format, "type")), "Object store configuration.\n\nWhen not `null` the attribute set gets converted to\na YAML file and stored in the Nix store. The option\n{option}`objstore.config-file` will default to its path.\n\nIf {option}`objstore.config-file` is set this option has no effect.\n\nSee format details: <https://thanos.io/tip/thanos/storage.md/#configuring-access-to-object-storage>\n")),
         })),
       })),
     }),
     sidecar: nix.thunk(() => nix.update(nix.app(nix.sel(params, "common"), nix.thunk(() => nix.sel(cfg, "sidecar"))), nix.update(nix.app(nix.sel(params, "objstore"), nix.thunk(() => nix.sel(cfg, "sidecar"))), {
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       prometheus: nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         url: nix.thunk(() => nix.app(mkParamDef, nix.thunk(() => nix.sel(types, "str")), "http://localhost:9090", "URL at which to reach Prometheus's API.\n\nFor better performance use local network.\n")),
       })),
       tsdb: nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         path: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           toArgs: optionToArgs,
           option: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: nix.thunk(() => nix.str`/var/lib/${nix.sel(config, "services", "prometheus", "stateDir")}/data`),
               defaultText: nix.thunk(() => nix.app(literalExpression, "\"/var/lib/${config.services.prometheus.stateDir}/data\"")),
@@ -323,25 +323,25 @@ any effect. So only set this if you know what you're doing!
         })),
       })),
       reloader: nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         "config-file": nix.thunk(() => nix.app(mkParam, nix.thunk(() => nix.sel(types, "str")), "Config file watched by the reloader.\n")),
         "config-envsubst-file": nix.thunk(() => nix.app(mkParam, nix.thunk(() => nix.sel(types, "str")), "Output file for environment variable substituted config file.\n")),
         "rule-dirs": nix.thunk(() => nix.app(mkListParam, "reloader.rule-dir", "Rule directories for the reloader to refresh.\n")),
       })),
     }))),
     store: nix.thunk(() => nix.update(nix.app(nix.sel(params, "common"), nix.thunk(() => nix.sel(cfg, "store"))), nix.update(nix.app(nix.sel(params, "objstore"), nix.thunk(() => nix.sel(cfg, "store"))), {
-      __proto__: pos$34,
+      [nix.POS]: pos$34,
       stateDir: nix.thunk(() => nix.app(mkStateDirParam, "data-dir", "thanos-store", "Data directory relative to `/var/lib`\nin which to cache remote blocks.\n")),
       "index-cache-size": nix.thunk(() => nix.app(mkParamDef, nix.thunk(() => nix.sel(types, "str")), "250MB", "Maximum size of items held in the index cache.\n")),
       "chunk-pool-size": nix.thunk(() => nix.app(mkParamDef, nix.thunk(() => nix.sel(types, "str")), "2GB", "Maximum size of concurrently allocatable bytes for chunks.\n")),
       store: nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         limits: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           "request-samples": nix.thunk(() => nix.app(mkParamDef, nix.thunk(() => nix.sel(types, "int")), 0n, "The maximum samples allowed for a single Series request.\nThe Series call fails if this limit is exceeded.\n\n`0` means no limit.\n\nNOTE: For efficiency the limit is internally implemented as 'chunks limit'\nconsidering each chunk contains a maximum of 120 samples.\n")),
         })),
         grpc: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           "series-max-concurrency": nix.thunk(() => nix.app(mkParamDef, nix.thunk(() => nix.sel(types, "int")), 20n, "Maximum number of concurrent Series calls.\n")),
         })),
       })),
@@ -351,7 +351,7 @@ any effect. So only set this if you know what you're doing!
       "max-time": nix.thunk(() => nix.app(mkParamDef, nix.thunk(() => nix.sel(types, "str")), "9999-12-31T23:59:59Z", "End of time range limit to serve.\n\nThanos Store serves only blocks, which happened earlier than this\nvalue. Option can be a constant time in RFC3339 format or time duration\nrelative to current time, such as -1d or 2h45m. Valid duration units are\nms, s, m, h, d, w, y.\n")),
     }))),
     query: nix.thunk(() => nix.update(nix.app(nix.sel(params, "common"), nix.thunk(() => nix.sel(cfg, "query"))), {
-      __proto__: pos$38,
+      [nix.POS]: pos$38,
       "grpc-client-tls-secure": nix.thunk(() => nix.app(mkFlagParam, "Use TLS when talking to the gRPC server\n")),
       "grpc-client-tls-cert": nix.thunk(() => nix.app(mkParam, nix.thunk(() => nix.sel(types, "str")), "TLS Certificates to use to identify this client to the server\n")),
       "grpc-client-tls-key": nix.thunk(() => nix.app(mkParam, nix.thunk(() => nix.sel(types, "str")), "TLS Key for the client's certificate\n")),
@@ -359,13 +359,13 @@ any effect. So only set this if you know what you're doing!
       "grpc-client-server-name": nix.thunk(() => nix.app(mkParam, nix.thunk(() => nix.sel(types, "str")), "Server name to verify the hostname on the returned gRPC certificates.\nSee <https://tools.ietf.org/html/rfc4366#section-3.1>\n")),
       "grpc-compression": nix.thunk(() => nix.app(mkParam, nix.thunk(() => nix.sel(types, "str")), "Compression algorithm to use for gRPC requests to other clients.\n")),
       web: nix.thunk(() => ({
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         "route-prefix": nix.thunk(() => nix.app(mkParam, nix.thunk(() => nix.sel(types, "str")), "Prefix for API and UI endpoints.\n\nThis allows thanos UI to be served on a sub-path. This option is\nanalogous to {option}`web.route-prefix` of Promethus.\n")),
         "external-prefix": nix.thunk(() => nix.app(mkParam, nix.thunk(() => nix.sel(types, "str")), "Static prefix for all HTML links and redirect URLs in the UI query web\ninterface.\n\nActual endpoints are still served on / or the\n{option}`web.route-prefix`. This allows thanos UI to be served\nbehind a reverse proxy that strips a URL sub-path.\n")),
         "prefix-header": nix.thunk(() => nix.app(mkParam, nix.thunk(() => nix.sel(types, "str")), "Name of HTTP request header used for dynamic prefixing of UI links and\nredirects.\n\nThis option is ignored if the option\n`web.external-prefix` is set.\n\nSecurity risk: enable this option only if a reverse proxy in front of\nthanos is resetting the header.\n\nThe setting `web.prefix-header=\"X-Forwarded-Prefix\"`\ncan be useful, for example, if Thanos UI is served via Traefik reverse\nproxy with `PathPrefixStrip` option enabled, which\nsends the stripped prefix value in `X-Forwarded-Prefix`\nheader. This allows thanos UI to be served on a sub-path.\n")),
       })),
       query: nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         timeout: nix.thunk(() => nix.app(mkParamDef, nix.thunk(() => nix.sel(types, "str")), "2m", "Maximum time to process query by query node.\n")),
         "max-concurrent": nix.thunk(() => nix.app(mkParamDef, nix.thunk(() => nix.sel(types, "int")), 20n, "Maximum number of queries processed concurrently by query node.\n")),
         "replica-labels": nix.thunk(() => nix.app(mkListParam, "query.replica-label", "Labels to treat as a replica indicator along which data is\ndeduplicated.\n\nStill you will be able to query without deduplication using\n'dedup=false' parameter. Data includes time series, recording\nrules, and alerting rules.\n")),
@@ -376,7 +376,7 @@ any effect. So only set this if you know what you're doing!
       "selector-labels": nix.thunk(() => nix.app(mkAttrsParam, "selector-label", "Query selector labels that will be exposed in info endpoint.\n")),
       endpoints: nix.thunk(() => nix.app(mkListParam, "endpoint", "Addresses of statically configured Thanos API servers (repeatable).\n\nThe scheme may be prefixed with 'dns+' or 'dnssrv+' to detect\nThanos API servers through respective DNS lookups.\n")),
       store: nix.thunk(() => ({
-        __proto__: pos$37,
+        [nix.POS]: pos$37,
         "sd-files": nix.thunk(() => nix.app(mkListParam, "store.sd-files", "Path to files that contain addresses of store API servers. The path\ncan be a glob pattern.\n")),
         "sd-interval": nix.thunk(() => nix.app(mkParamDef, nix.thunk(() => nix.sel(types, "str")), "5m", "Refresh interval to re-read file SD files. It is used as a resync fallback.\n")),
         "sd-dns-interval": nix.thunk(() => nix.app(mkParamDef, nix.thunk(() => nix.sel(types, "str")), "30s", "Interval between DNS resolutions.\n")),
@@ -385,41 +385,41 @@ any effect. So only set this if you know what you're doing!
       })),
     })),
     "query-frontend": nix.thunk(() => nix.update(nix.app(nix.sel(params, "common"), nix.thunk(() => nix.sel(cfg, "query-frontend"))), {
-      __proto__: pos$40,
+      [nix.POS]: pos$40,
       "query-frontend": nix.thunk(() => ({
-        __proto__: pos$39,
+        [nix.POS]: pos$39,
         "downstream-url": nix.thunk(() => nix.app(mkParamDef, nix.thunk(() => nix.sel(types, "str")), "http://localhost:9090", "URL of downstream Prometheus Query compatible API.\n")),
       })),
     })),
     rule: nix.thunk(() => nix.update(nix.app(nix.sel(params, "common"), nix.thunk(() => nix.sel(cfg, "rule"))), nix.update(nix.app(nix.sel(params, "objstore"), nix.thunk(() => nix.sel(cfg, "rule"))), {
-      __proto__: pos$46,
+      [nix.POS]: pos$46,
       labels: nix.thunk(() => nix.app(mkAttrsParam, "label", "Labels to be applied to all generated metrics.\n\nSimilar to external labels for Prometheus,\nused to identify ruler and its blocks as unique source.\n")),
       stateDir: nix.thunk(() => nix.app(mkStateDirParam, "data-dir", "thanos-rule", "Data directory relative to `/var/lib`.\n")),
       "rule-files": nix.thunk(() => nix.app(mkListParam, "rule-file", "Rule files that should be used by rule manager. Can be in glob format.\n")),
       "eval-interval": nix.thunk(() => nix.app(mkParamDef, nix.thunk(() => nix.sel(types, "str")), "1m", "The default evaluation interval to use.\n")),
       tsdb: nix.thunk(() => ({
-        __proto__: pos$41,
+        [nix.POS]: pos$41,
         "block-duration": nix.thunk(() => nix.app(mkParamDef, nix.thunk(() => nix.sel(types, "str")), "2h", "Block duration for TSDB block.\n")),
         retention: nix.thunk(() => nix.app(mkParamDef, nix.thunk(() => nix.sel(types, "str")), "48h", "Block retention time on local disk.\n")),
       })),
       alertmanagers: nix.thunk(() => ({
-        __proto__: pos$42,
+        [nix.POS]: pos$42,
         urls: nix.thunk(() => nix.app(mkListParam, "alertmanagers.url", "Alertmanager replica URLs to push firing alerts.\n\nRuler claims success if push to at least one alertmanager from\ndiscovered succeeds. The scheme may be prefixed with\n`dns+` or `dnssrv+` to detect\nAlertmanager IPs through respective DNS lookups. The port defaults to\n`9093` or the SRV record's value. The URL path is\nused as a prefix for the regular Alertmanager API path.\n")),
         "send-timeout": nix.thunk(() => nix.app(mkParamDef, nix.thunk(() => nix.sel(types, "str")), "10s", "Timeout for sending alerts to alertmanager.\n")),
       })),
       alert: nix.thunk(() => ({
-        __proto__: pos$43,
+        [nix.POS]: pos$43,
         "query-url": nix.thunk(() => nix.app(mkParam, nix.thunk(() => nix.sel(types, "str")), "The external Thanos Query URL that would be set in all alerts 'Source' field.\n")),
         "label-drop": nix.thunk(() => nix.app(mkListParam, "alert.label-drop", "Labels by name to drop before sending to alertmanager.\n\nThis allows alert to be deduplicated on replica label.\n\nSimilar Prometheus alert relabelling\n")),
       })),
       web: nix.thunk(() => ({
-        __proto__: pos$44,
+        [nix.POS]: pos$44,
         "route-prefix": nix.thunk(() => nix.app(mkParam, nix.thunk(() => nix.sel(types, "str")), "Prefix for API and UI endpoints.\n\nThis allows thanos UI to be served on a sub-path.\n\nThis option is analogous to `--web.route-prefix` of Promethus.\n")),
         "external-prefix": nix.thunk(() => nix.app(mkParam, nix.thunk(() => nix.sel(types, "str")), "Static prefix for all HTML links and redirect URLs in the UI query web\ninterface.\n\nActual endpoints are still served on / or the\n{option}`web.route-prefix`. This allows thanos UI to be served\nbehind a reverse proxy that strips a URL sub-path.\n")),
         "prefix-header": nix.thunk(() => nix.app(mkParam, nix.thunk(() => nix.sel(types, "str")), "Name of HTTP request header used for dynamic prefixing of UI links and\nredirects.\n\nThis option is ignored if the option\n{option}`web.external-prefix` is set.\n\nSecurity risk: enable this option only if a reverse proxy in front of\nthanos is resetting the header.\n\nThe header `X-Forwarded-Prefix` can be useful, for\nexample, if Thanos UI is served via Traefik reverse proxy with\n`PathPrefixStrip` option enabled, which sends the\nstripped prefix value in `X-Forwarded-Prefix`\nheader. This allows thanos UI to be served on a sub-path.\n")),
       })),
       query: nix.thunk(() => ({
-        __proto__: pos$45,
+        [nix.POS]: pos$45,
         addresses: nix.thunk(() => nix.app(mkListParam, "query", "Addresses of statically configured query API servers.\n\nThe scheme may be prefixed with `dns+` or\n`dnssrv+` to detect query API servers through\nrespective DNS lookups.\n")),
         "sd-files": nix.thunk(() => nix.app(mkListParam, "query.sd-files", "Path to file that contain addresses of query peers.\nThe path can be a glob pattern.\n")),
         "sd-interval": nix.thunk(() => nix.app(mkParamDef, nix.thunk(() => nix.sel(types, "str")), "5m", "Refresh interval to re-read file SD files. (used as a fallback)\n")),
@@ -427,108 +427,108 @@ any effect. So only set this if you know what you're doing!
       })),
     }))),
     compact: nix.thunk(() => nix.update(nix.sel(params, "log"), nix.update(nix.app(nix.sel(params, "tracing"), nix.thunk(() => nix.sel(cfg, "compact"))), nix.update(nix.app(nix.sel(params, "objstore"), nix.thunk(() => nix.sel(cfg, "compact"))), {
-      __proto__: pos$51,
+      [nix.POS]: pos$51,
       "http-address": nix.thunk(() => nix.app(mkParamDef, nix.thunk(() => nix.sel(types, "str")), "0.0.0.0:10902", "Listen `host:port` for HTTP endpoints.\n")),
       stateDir: nix.thunk(() => nix.app(mkStateDirParam, "data-dir", "thanos-compact", "Data directory relative to `/var/lib`\nin which to cache blocks and process compactions.\n")),
       "consistency-delay": nix.thunk(() => nix.app(mkParamDef, nix.thunk(() => nix.sel(types, "str")), "30m", "Minimum age of fresh (non-compacted) blocks before they are being\nprocessed. Malformed blocks older than the maximum of consistency-delay\nand 30m0s will be removed.\n")),
       retention: nix.thunk(() => ({
-        __proto__: pos$47,
+        [nix.POS]: pos$47,
         "resolution-raw": nix.thunk(() => nix.app(mkParamDef, nix.thunk(() => nix.sel(types, "str")), "0d", "How long to retain raw samples in bucket.\n\n`0d` - disables this retention\n")),
         "resolution-5m": nix.thunk(() => nix.app(mkParamDef, nix.thunk(() => nix.sel(types, "str")), "0d", "How long to retain samples of resolution 1 (5 minutes) in bucket.\n\n`0d` - disables this retention\n")),
         "resolution-1h": nix.thunk(() => nix.app(mkParamDef, nix.thunk(() => nix.sel(types, "str")), "0d", "How long to retain samples of resolution 2 (1 hour) in bucket.\n\n`0d` - disables this retention\n")),
       })),
       startAt: nix.thunk(() => ({
-        __proto__: pos$48,
+        [nix.POS]: pos$48,
         toArgs: (_opt) => (startAt) => nix.app(flagToArgs, "wait", nix.thunk(() => nix.eq(startAt, null))),
         option: nix.thunk(() => nix.app(nullOpt, nix.thunk(() => nix.sel(types, "str")), "When this option is set to a `systemd.time`\nspecification the Thanos compactor will run at the specified period.\n\nWhen this option is `null` the Thanos compactor service\nwill run continuously. So it will not exit after all compactions have\nbeen processed but wait for new work.\n")),
       })),
       downsampling: nix.thunk(() => ({
-        __proto__: pos$49,
+        [nix.POS]: pos$49,
         disable: nix.thunk(() => nix.app(mkFlagParam, "Disables downsampling.\n\nThis is not recommended as querying long time ranges without\nnon-downsampled data is not efficient and useful e.g it is not possible\nto render all samples for a human eye anyway\n")),
       })),
       compact: nix.thunk(() => ({
-        __proto__: pos$50,
+        [nix.POS]: pos$50,
         concurrency: nix.thunk(() => nix.app(mkParamDef, nix.thunk(() => nix.sel(types, "int")), 1n, "Number of goroutines to use when compacting groups.\n")),
       })),
     })))),
     downsample: nix.thunk(() => nix.update(nix.sel(params, "log"), nix.update(nix.app(nix.sel(params, "tracing"), nix.thunk(() => nix.sel(cfg, "downsample"))), nix.update(nix.app(nix.sel(params, "objstore"), nix.thunk(() => nix.sel(cfg, "downsample"))), {
-      __proto__: pos$52,
+      [nix.POS]: pos$52,
       stateDir: nix.thunk(() => nix.app(mkStateDirParam, "data-dir", "thanos-downsample", "Data directory relative to `/var/lib`\nin which to cache blocks and process downsamplings.\n")),
     })))),
     receive: nix.thunk(() => nix.update(nix.app(nix.sel(params, "common"), nix.thunk(() => nix.sel(cfg, "receive"))), nix.update(nix.app(nix.sel(params, "objstore"), nix.thunk(() => nix.sel(cfg, "receive"))), {
-      __proto__: pos$56,
+      [nix.POS]: pos$56,
       receive: nix.thunk(() => ({
-        __proto__: pos$53,
+        [nix.POS]: pos$53,
         "grpc-compression": nix.thunk(() => nix.app(mkParam, nix.thunk(() => nix.sel(types, "str")), "Compression algorithm to use for gRPC requests to other receivers.\n")),
       })),
       "remote-write": nix.thunk(() => ({
-        __proto__: pos$54,
+        [nix.POS]: pos$54,
         address: nix.thunk(() => nix.app(mkParamDef, nix.thunk(() => nix.sel(types, "str")), "0.0.0.0:19291", "Address to listen on for remote write requests.\n")),
       })),
       stateDir: nix.thunk(() => nix.app(mkStateDirParam, "tsdb.path", "thanos-receive", "Data directory relative to `/var/lib` of TSDB.\n")),
       labels: nix.thunk(() => nix.app(mkAttrsParam, "label", "External labels to announce.\n\nThis flag will be removed in the future when handling multiple tsdb\ninstances is added.\n")),
       tsdb: nix.thunk(() => ({
-        __proto__: pos$55,
+        [nix.POS]: pos$55,
         retention: nix.thunk(() => nix.app(mkParamDef, nix.thunk(() => nix.sel(types, "str")), "15d", "How long to retain raw samples on local storage.\n\n`0d` - disables this retention\n")),
       })),
     }))),
   }));
   const assertRelativeStateDir = (cmd) => ({
-    __proto__: pos$59,
+    [nix.POS]: pos$59,
     assertions: nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$58,
+        [nix.POS]: pos$58,
         assertion: nix.thunk(() => !nix.asBool(nix.app(hasPrefix, "/", nix.thunk(() => nix.sel(cfg, nix.key(nix.force(cmd)), "stateDir"))))),
         message: nix.thunk(() => nix.add(nix.str`The option services.thanos.${cmd}.stateDir should not be an absolute directory.`, " It should be a directory relative to /var/lib.")),
       })),
     ]),
   });
   return {
-    __proto__: pos$114,
+    [nix.POS]: pos$114,
     options: nix.thunk(() => ({
-      __proto__: pos$70,
+      [nix.POS]: pos$70,
       services: nix.thunk(() => ({
-        __proto__: pos$69,
+        [nix.POS]: pos$69,
         thanos: nix.thunk(() => ({
-          __proto__: pos$68,
+          [nix.POS]: pos$68,
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "thanos", nix.thunk(() => ({})))),
           sidecar: nix.thunk(() => nix.update(nix.app(paramsToOptions, nix.thunk(() => nix.sel(params, "sidecar"))), {
-            __proto__: pos$60,
+            [nix.POS]: pos$60,
             enable: nix.thunk(() => nix.app(mkEnableOption, "the Thanos sidecar for Prometheus server")),
             arguments: nix.thunk(() => nix.app(mkArgumentsOption, "sidecar")),
           })),
           store: nix.thunk(() => nix.update(nix.app(paramsToOptions, nix.thunk(() => nix.sel(params, "store"))), {
-            __proto__: pos$61,
+            [nix.POS]: pos$61,
             enable: nix.thunk(() => nix.app(mkEnableOption, "the Thanos store node giving access to blocks in a bucket provider")),
             arguments: nix.thunk(() => nix.app(mkArgumentsOption, "store")),
           })),
           query: nix.thunk(() => nix.update(nix.app(paramsToOptions, nix.thunk(() => nix.sel(params, "query"))), {
-            __proto__: pos$62,
+            [nix.POS]: pos$62,
             enable: nix.thunk(() => nix.app(mkEnableOption, nix.thunk(() => nix.add("the Thanos query node exposing PromQL enabled Query API ", "with data retrieved from multiple store nodes")))),
             arguments: nix.thunk(() => nix.app(mkArgumentsOption, "query")),
           })),
           "query-frontend": nix.thunk(() => nix.update(nix.app(paramsToOptions, nix.thunk(() => nix.sel(params, "query-frontend"))), {
-            __proto__: pos$63,
+            [nix.POS]: pos$63,
             enable: nix.thunk(() => nix.app(mkEnableOption, "the Thanos query frontend implements a service deployed in front of queriers to\n          improve query parallelization and caching.")),
             arguments: nix.thunk(() => nix.app(mkArgumentsOption, "query-frontend")),
           })),
           rule: nix.thunk(() => nix.update(nix.app(paramsToOptions, nix.thunk(() => nix.sel(params, "rule"))), {
-            __proto__: pos$64,
+            [nix.POS]: pos$64,
             enable: nix.thunk(() => nix.app(mkEnableOption, nix.thunk(() => nix.add("the Thanos ruler service which evaluates Prometheus rules against", " given Query nodes, exposing Store API and storing old blocks in bucket")))),
             arguments: nix.thunk(() => nix.app(mkArgumentsOption, "rule")),
           })),
           compact: nix.thunk(() => nix.update(nix.app(paramsToOptions, nix.thunk(() => nix.sel(params, "compact"))), {
-            __proto__: pos$65,
+            [nix.POS]: pos$65,
             enable: nix.thunk(() => nix.app(mkEnableOption, "the Thanos compactor which continuously compacts blocks in an object store bucket")),
             arguments: nix.thunk(() => nix.app(mkArgumentsOption, "compact")),
           })),
           downsample: nix.thunk(() => nix.update(nix.app(paramsToOptions, nix.thunk(() => nix.sel(params, "downsample"))), {
-            __proto__: pos$66,
+            [nix.POS]: pos$66,
             enable: nix.thunk(() => nix.app(mkEnableOption, "the Thanos downsampler which continuously downsamples blocks in an object store bucket")),
             arguments: nix.thunk(() => nix.app(mkArgumentsOption, "downsample")),
           })),
           receive: nix.thunk(() => nix.update(nix.app(paramsToOptions, nix.thunk(() => nix.sel(params, "receive"))), {
-            __proto__: pos$67,
+            [nix.POS]: pos$67,
             enable: nix.thunk(() => nix.app(mkEnableOption, "the Thanos receiver which accept Prometheus remote write API requests and write to local tsdb")),
             arguments: nix.thunk(() => nix.app(mkArgumentsOption, "receive")),
           })),
@@ -537,29 +537,29 @@ any effect. So only set this if you know what you're doing!
     })),
     config: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "sidecar", "enable")), nix.thunk(() => ({
-            __proto__: pos$77,
+            [nix.POS]: pos$77,
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$71,
+                [nix.POS]: pos$71,
                 assertion: nix.thunk(() => nix.sel(config, "services", "prometheus", "enable")),
                 message: "Please enable services.prometheus when enabling services.thanos.sidecar.",
               })),
               nix.thunk(() => ({
-                __proto__: pos$72,
+                [nix.POS]: pos$72,
                 assertion: nix.thunk(() => !nix.asBool((nix.asBool(nix.eq(nix.sel(config, "services", "prometheus", "globalConfig", "external_labels"), null)) || nix.asBool(nix.eq(nix.sel(config, "services", "prometheus", "globalConfig", "external_labels"), {}))))),
                 message: nix.thunk(() => nix.add(nix.add("services.thanos.sidecar requires uniquely identifying external labels ", "to be configured in the Prometheus server. "), "Please set services.prometheus.globalConfig.external_labels.")),
               })),
             ]),
             systemd: nix.thunk(() => ({
-              __proto__: pos$76,
+              [nix.POS]: pos$76,
               services: nix.thunk(() => ({
-                __proto__: pos$75,
+                [nix.POS]: pos$75,
                 "thanos-sidecar": nix.thunk(() => ({
-                  __proto__: pos$74,
+                  [nix.POS]: pos$74,
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   after: nix.thunk(() => ["network.target", "prometheus.service"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$73,
+                    [nix.POS]: pos$73,
                     User: "prometheus",
                     Restart: "always",
                     ExecStart: nix.thunk(() => nix.app(thanos, "sidecar")),
@@ -572,17 +572,17 @@ any effect. So only set this if you know what you're doing!
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "store", "enable")), nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
               nix.thunk(() => nix.app(assertRelativeStateDir, "store")),
               nix.thunk(() => ({
-                __proto__: pos$82,
+                [nix.POS]: pos$82,
                 systemd: nix.thunk(() => ({
-                  __proto__: pos$81,
+                  [nix.POS]: pos$81,
                   services: nix.thunk(() => ({
-                    __proto__: pos$80,
+                    [nix.POS]: pos$80,
                     "thanos-store": nix.thunk(() => ({
-                      __proto__: pos$79,
+                      [nix.POS]: pos$79,
                       wantedBy: nix.thunk(() => ["multi-user.target"]),
                       after: nix.thunk(() => ["network.target"]),
                       serviceConfig: nix.thunk(() => ({
-                        __proto__: pos$78,
+                        [nix.POS]: pos$78,
                         DynamicUser: true,
                         StateDirectory: nix.thunk(() => nix.sel(cfg, "store", "stateDir")),
                         Restart: "always",
@@ -595,17 +595,17 @@ any effect. So only set this if you know what you're doing!
               })),
             ]))))),
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "query", "enable")), nix.thunk(() => ({
-            __proto__: pos$87,
+            [nix.POS]: pos$87,
             systemd: nix.thunk(() => ({
-              __proto__: pos$86,
+              [nix.POS]: pos$86,
               services: nix.thunk(() => ({
-                __proto__: pos$85,
+                [nix.POS]: pos$85,
                 "thanos-query": nix.thunk(() => ({
-                  __proto__: pos$84,
+                  [nix.POS]: pos$84,
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   after: nix.thunk(() => ["network.target"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$83,
+                    [nix.POS]: pos$83,
                     DynamicUser: true,
                     Restart: "always",
                     ExecStart: nix.thunk(() => nix.app(thanos, "query")),
@@ -616,17 +616,17 @@ any effect. So only set this if you know what you're doing!
             })),
           })))),
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "query-frontend", "enable")), nix.thunk(() => ({
-            __proto__: pos$92,
+            [nix.POS]: pos$92,
             systemd: nix.thunk(() => ({
-              __proto__: pos$91,
+              [nix.POS]: pos$91,
               services: nix.thunk(() => ({
-                __proto__: pos$90,
+                [nix.POS]: pos$90,
                 "thanos-query-frontend": nix.thunk(() => ({
-                  __proto__: pos$89,
+                  [nix.POS]: pos$89,
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   after: nix.thunk(() => ["network.target"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$88,
+                    [nix.POS]: pos$88,
                     DynamicUser: true,
                     Restart: "always",
                     ExecStart: nix.thunk(() => nix.app(thanos, "query-frontend")),
@@ -639,17 +639,17 @@ any effect. So only set this if you know what you're doing!
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "rule", "enable")), nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
               nix.thunk(() => nix.app(assertRelativeStateDir, "rule")),
               nix.thunk(() => ({
-                __proto__: pos$97,
+                [nix.POS]: pos$97,
                 systemd: nix.thunk(() => ({
-                  __proto__: pos$96,
+                  [nix.POS]: pos$96,
                   services: nix.thunk(() => ({
-                    __proto__: pos$95,
+                    [nix.POS]: pos$95,
                     "thanos-rule": nix.thunk(() => ({
-                      __proto__: pos$94,
+                      [nix.POS]: pos$94,
                       wantedBy: nix.thunk(() => ["multi-user.target"]),
                       after: nix.thunk(() => ["network.target"]),
                       serviceConfig: nix.thunk(() => ({
-                        __proto__: pos$93,
+                        [nix.POS]: pos$93,
                         DynamicUser: true,
                         StateDirectory: nix.thunk(() => nix.sel(cfg, "rule", "stateDir")),
                         Restart: "always",
@@ -664,19 +664,19 @@ any effect. So only set this if you know what you're doing!
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "compact", "enable")), nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
               nix.thunk(() => nix.app(assertRelativeStateDir, "compact")),
               nix.thunk(() => ({
-                __proto__: pos$103,
+                [nix.POS]: pos$103,
                 systemd: nix.thunk(() => ({
-                  __proto__: pos$102,
+                  [nix.POS]: pos$102,
                   services: nix.thunk(() => ({
-                    __proto__: pos$101,
+                    [nix.POS]: pos$101,
                     "thanos-compact": nix.thunk(() => (() => {
                       const wait = nix.thunk(() => nix.eq(nix.sel(cfg, "compact", "startAt"), null));
                       return nix.update({
-                        __proto__: pos$99,
+                        [nix.POS]: pos$99,
                         wantedBy: nix.thunk(() => ["multi-user.target"]),
                         after: nix.thunk(() => ["network.target"]),
                         serviceConfig: nix.thunk(() => ({
-                          __proto__: pos$98,
+                          [nix.POS]: pos$98,
                           Type: nix.thunk(() => (nix.asBool(wait) ? "simple" : "oneshot")),
                           Restart: nix.thunk(() => (nix.asBool(wait) ? "always" : "no")),
                           DynamicUser: true,
@@ -686,7 +686,7 @@ any effect. So only set this if you know what you're doing!
                         })),
                       }, nix.app(optionalAttrs, nix.thunk(() => !nix.asBool(wait)), nix.thunk(() => (() => {
                           const from = nix.thunk(() => nix.sel(cfg, "compact"));
-                          return { __proto__: pos$100, startAt: nix.thunk(() => nix.attr(from, "startAt")) };
+                          return { [nix.POS]: pos$100, startAt: nix.thunk(() => nix.attr(from, "startAt")) };
                         })())));
                     })()),
                   })),
@@ -696,17 +696,17 @@ any effect. So only set this if you know what you're doing!
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "downsample", "enable")), nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
               nix.thunk(() => nix.app(assertRelativeStateDir, "downsample")),
               nix.thunk(() => ({
-                __proto__: pos$108,
+                [nix.POS]: pos$108,
                 systemd: nix.thunk(() => ({
-                  __proto__: pos$107,
+                  [nix.POS]: pos$107,
                   services: nix.thunk(() => ({
-                    __proto__: pos$106,
+                    [nix.POS]: pos$106,
                     "thanos-downsample": nix.thunk(() => ({
-                      __proto__: pos$105,
+                      [nix.POS]: pos$105,
                       wantedBy: nix.thunk(() => ["multi-user.target"]),
                       after: nix.thunk(() => ["network.target"]),
                       serviceConfig: nix.thunk(() => ({
-                        __proto__: pos$104,
+                        [nix.POS]: pos$104,
                         DynamicUser: true,
                         StateDirectory: nix.thunk(() => nix.sel(cfg, "downsample", "stateDir")),
                         Restart: "always",
@@ -721,17 +721,17 @@ any effect. So only set this if you know what you're doing!
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "receive", "enable")), nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
               nix.thunk(() => nix.app(assertRelativeStateDir, "receive")),
               nix.thunk(() => ({
-                __proto__: pos$113,
+                [nix.POS]: pos$113,
                 systemd: nix.thunk(() => ({
-                  __proto__: pos$112,
+                  [nix.POS]: pos$112,
                   services: nix.thunk(() => ({
-                    __proto__: pos$111,
+                    [nix.POS]: pos$111,
                     "thanos-receive": nix.thunk(() => ({
-                      __proto__: pos$110,
+                      [nix.POS]: pos$110,
                       wantedBy: nix.thunk(() => ["multi-user.target"]),
                       after: nix.thunk(() => ["network.target"]),
                       serviceConfig: nix.thunk(() => ({
-                        __proto__: pos$109,
+                        [nix.POS]: pos$109,
                         DynamicUser: true,
                         StateDirectory: nix.thunk(() => nix.sel(cfg, "receive", "stateDir")),
                         Restart: "always",

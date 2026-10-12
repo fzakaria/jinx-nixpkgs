@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ponty",
           repo: "pyunpack",
           tag: version,
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_help"]);
       const disabledTestPaths = nix.thunk(() => ["tests/test_rar.py", "tests/test_rarpw.py", "tests/test_zippw.py"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unpack archive files in python",
         homepage: "https://github.com/ponty/pyunpack",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

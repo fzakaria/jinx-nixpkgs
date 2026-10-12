@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "heimer";
       const version = "4.5.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "juzzlin",
           repo: "heimer",
           rev: version,
@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "update-Argengine.patch",
             url: "https://github.com/juzzlin/Heimer/commit/76d9e8458038d2da4171be3a58766b84334119e8.patch",
             hash: "sha256-mFzfxxhaJ1jdwfFVo36N66+jzS/scEeray1s75c+T8M=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "update-SimpleLogger.patch",
             url: "https://github.com/juzzlin/Heimer/commit/75bff37b6ebd02d9f734e70ee4d3c10ec0291e0d.patch",
             hash: "sha256-ZPj5GaM13UsGwJbc0NW0xJd07agZT+g86674i3apqWY=",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(libsForQt5, "qtbase")),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Simple cross-platform mind map and note-taking tool written in Qt",
         mainProgram: "heimer",
         homepage: "https://github.com/juzzlin/Heimer",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

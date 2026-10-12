@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const cinnamon_translations = nix.arg($, "cinnamon-translations");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nemo-emblems",
       version: "6.6.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linuxmint",
           repo: "nemo-extensions",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ substituteInPlace nemo-extension/nemo-emblems.py \\
         return [nix.thunk(() => nix.lookup(w, "setuptools"))];
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/linuxmint/nemo-extensions/tree/master/nemo-emblems",
         description: "Change a folder or file emblem in Nemo",
         longDescription: "Nemo extension that allows you to change folder or file emblems.\nWhen adding this to nemo-with-extensions you also need to add nemo-python.\n",

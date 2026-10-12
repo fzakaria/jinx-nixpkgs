@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const urllib3 = nix.arg($, "urllib3");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "spotipy",
       version: "2.26.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "spotipy",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-32ol2CCQcu+ozqFlYI7mRIhOOAT4dittjgbKGlx/imM=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["spotipy", "spotipy.oauth2"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for the Spotify Web API",
         homepage: "https://spotipy.readthedocs.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/plamere/spotipy/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

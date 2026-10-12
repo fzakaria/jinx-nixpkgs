@@ -20,36 +20,36 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const dockerfile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "Dockerfile", "FROM nix\nRUN mkdir /home /tmp\nRUN touch /etc/passwd /etc/group\nCMD [\"true\"]\n"));
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     name: "charliecloud",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "bzizou"))]),
         broken: true,
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       host: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           environment: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "charliecloud"))]),
           })),
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$4,
-            docker: nix.thunk(() => ({ __proto__: pos$3, enable: true })),
+            [nix.POS]: pos$4,
+            docker: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             users: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               alice: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 isNormalUser: true,
                 extraGroups: nix.thunk(() => ["docker"]),
               })),

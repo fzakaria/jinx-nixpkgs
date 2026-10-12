@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const openssh = nix.arg($, "openssh");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "xxh",
       version: "0.8.16",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xxh",
           repo: "xxh",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
         ];
       })())),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, xxh: nix.thunk(() => nix.attr(nixosTests, "xxh")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, xxh: nix.thunk(() => nix.attr(nixosTests, "xxh")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Bring your favorite shell wherever you go through SSH",
         homepage: "https://github.com/xxh/xxh",
         changelog: nix.thunk(() => nix.str`https://github.com/xxh/xxh/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

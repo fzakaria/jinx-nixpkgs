@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "python-keycloak",
       version: "7.1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "marcospereirampj",
           repo: "python-keycloak",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +50,7 @@ substituteInPlace pyproject.toml \\
       ]),
       pythonImportsCheck: nix.thunk(() => ["keycloak"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Provides access to the Keycloak API",
         homepage: "https://github.com/marcospereirampj/python-keycloak",
         changelog: nix.thunk(() => nix.str`https://github.com/marcospereirampj/python-keycloak/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

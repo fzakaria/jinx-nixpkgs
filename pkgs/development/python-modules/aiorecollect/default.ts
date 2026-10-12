@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "2023.12.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bachya",
           repo: "aiorecollect",
           tag: version,
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["examples/"]);
       const pythonImportsCheck = nix.thunk(() => ["aiorecollect"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library for the Recollect Waste API",
         longDescription: "aiorecollect is a Python asyncio-based library for the ReCollect\nWaste API. It allows users to programmatically retrieve schedules\nfor waste removal in their area, including trash, recycling, compost\nand more.\n",
         homepage: "https://github.com/bachya/aiorecollect",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

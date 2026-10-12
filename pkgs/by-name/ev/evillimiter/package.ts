@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const iptables = nix.arg($, "iptables");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "evillimiter",
       version: "1.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bitbrute",
           repo: "evillimiter",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       })()),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool that monitors, analyzes and limits the bandwidth",
         longDescription: "A tool to monitor, analyze and limit the bandwidth (upload/download) of\ndevices on your local network without physical or administrative access.\nevillimiter employs ARP spoofing and traffic shaping to throttle the\nbandwidth of hosts on the network.\n",
         homepage: "https://github.com/bitbrute/evillimiter",

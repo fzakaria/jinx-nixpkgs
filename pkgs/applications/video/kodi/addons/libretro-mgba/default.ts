@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const namespace = "game.libretro.mgba";
       const version = "0.10.0.35";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kodi-game",
           repo: "game.libretro.mgba",
           rev: nix.thunk(() => nix.str`${version}-Matrix`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const extraBuildInputs = nix.thunk(() => [mgba]);
       const propagatedBuildInputs = nix.thunk(() => [libretro]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/kodi-game/game.libretro.mgba",
         description: "mGBA for Kodi",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "kodi"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         namespace,
         version,

@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       const pname = "xorgxrdp";
       const version = "0.10.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "neutrinolabs",
           repo: "xorgxrdp",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -66,11 +66,11 @@ export XRDP_CFLAGS="-I${nix.sel(xrdp, "src")}/common -I${nix.sel(libdrm, "dev")}
 `);
       const enableParallelBuilding = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,
@@ -86,12 +86,12 @@ export XRDP_CFLAGS="-I${nix.sel(xrdp, "src")}/common -I${nix.sel(libdrm, "dev")}
       const pname = "xrdp";
       const version = "0.10.6.1";
       const src = nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           version: version,
           patches: nix.thunk(() => [nix.path(here, "./dynamic_config.patch")]),
           name: nix.thunk(() => nix.str`xrdp-patched-${version}`),
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               owner: "neutrinolabs",
               repo: "xrdp",
               rev: nix.thunk(() => nix.str`v${version}`),
@@ -166,22 +166,22 @@ EOF
 `);
       const enableParallelBuilding = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         xorgxrdp: xorgxrdp,
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => nix.builtins.map((item) => nix.sel(item, "command"), nix.thunk(() => [
               nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   "rev-prefix": "v",
                   attrPath: "xrdp.src",
                   ignoredVersions: nix.thunk(() => ["beta"]),
                 })))),
-              nix.thunk(() => ({ __proto__: pos$8, command: nix.thunk(() => ["rm", "update-git-commits.txt"]) })),
-              nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$9, "rev-prefix": "v", attrPath: "xrdp.xorgxrdp" })))),
+              nix.thunk(() => ({ [nix.POS]: pos$8, command: nix.thunk(() => ["rm", "update-git-commits.txt"]) })),
+              nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$9, "rev-prefix": "v", attrPath: "xrdp.xorgxrdp" })))),
             ]))))),
-        tests: nix.thunk(() => ({ __proto__: pos$10, xrdp: nix.thunk(() => nix.attr(nixosTests, "xrdp")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$10, xrdp: nix.thunk(() => nix.attr(nixosTests, "xrdp")) })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         description: "Open source RDP server",
         homepage: "https://github.com/neutrinolabs/xrdp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -192,7 +192,7 @@ EOF
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         pname,
         version,
         src,

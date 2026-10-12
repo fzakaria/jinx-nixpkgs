@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const ppxlib = nix.arg($, "ppxlib");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ppx_gen_rec",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/flowtype/ocaml-ppx_gen_rec/releases/download/v${nix.sel(finalAttrs, "version")}/ppx_gen_rec-v${nix.sel(finalAttrs, "version")}.tbz`),
           sha256: "sha256-/mMj5UT22KQGVy1sjgEoOgPzyCYyeDPtWJYNDvQ9nlk=",
         })))),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       duneVersion: "3",
       buildInputs: nix.thunk(() => [ppxlib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/flowtype/ocaml-ppx_gen_rec",
         description: "Ppx rewriter that transforms a recursive module expression into a struct",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

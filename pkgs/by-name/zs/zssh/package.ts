@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const version = "1.5c";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "zssh",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/zssh/zssh-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "06z73iq59lz8ibjrgs7d3xl39vh9yld1988yx8khssch4pw41s52",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [readline]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix_use_ptmx_on_arch.patch",
             url: "https://raw.githubusercontent.com/archlinux/svntogit-community/0a7c92543f9309856d02e31196f06d7c3eaa8b67/trunk/fix_use_ptmx_on_arch.patch",
             sha256: "12daw9wpy58ql882zww945wk9cg2adwp8qsr5rvazx0xq0qawgbr",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "sed -i 1i'#include <pty.h>' openpty.c\n# readline has renamed the type name\nsubstituteInPlace completion.c \\\n  --replace-fail CPPFunction rl_completion_func_t\n",
       postBuild: "install -dm755 \"$out\"/{bin,share/man/man1}\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "SSH and Telnet client with ZMODEM file transfer capability",
         homepage: "https://zssh.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

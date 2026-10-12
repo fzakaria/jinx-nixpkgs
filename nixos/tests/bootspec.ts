@@ -72,150 +72,150 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ __proto__: pos$1, system: system, config: config }))));
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ __proto__: pos$2, system: system, pkgs: pkgs })))), null);
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs })))), null);
   const w_1 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib")), w);
   const baseline = nix.thunk(() => ({
-    __proto__: pos$4,
-    virtualisation: nix.thunk(() => ({ __proto__: pos$3, useBootLoader: true })),
+    [nix.POS]: pos$4,
+    virtualisation: nix.thunk(() => ({ [nix.POS]: pos$3, useBootLoader: true })),
   }));
   const grub = nix.thunk(() => ({
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     boot: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       loader: nix.thunk(() => ({
-        __proto__: pos$6,
-        grub: nix.thunk(() => ({ __proto__: pos$5, enable: true })),
+        [nix.POS]: pos$6,
+        grub: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
       })),
     })),
   }));
   const systemd_boot = nix.thunk(() => ({
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     boot: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       loader: nix.thunk(() => ({
-        __proto__: pos$10,
-        "systemd-boot": nix.thunk(() => ({ __proto__: pos$9, enable: true })),
+        [nix.POS]: pos$10,
+        "systemd-boot": nix.thunk(() => ({ [nix.POS]: pos$9, enable: true })),
       })),
     })),
   }));
   const uefi = nix.thunk(() => ({
-    __proto__: pos$19,
-    virtualisation: nix.thunk(() => ({ __proto__: pos$13, useEFIBoot: true })),
+    [nix.POS]: pos$19,
+    virtualisation: nix.thunk(() => ({ [nix.POS]: pos$13, useEFIBoot: true })),
     boot: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       loader: nix.thunk(() => ({
-        __proto__: pos$16,
-        efi: nix.thunk(() => ({ __proto__: pos$14, canTouchEfiVariables: true })),
-        grub: nix.thunk(() => ({ __proto__: pos$15, efiSupport: true })),
+        [nix.POS]: pos$16,
+        efi: nix.thunk(() => ({ [nix.POS]: pos$14, canTouchEfiVariables: true })),
+        grub: nix.thunk(() => ({ [nix.POS]: pos$15, efiSupport: true })),
       })),
     })),
     environment: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "efibootmgr"))]),
     })),
   }));
-  const standard = nix.thunk(() => ({ __proto__: pos$20, imports: nix.thunk(() => [baseline, systemd_boot, uefi]) }));
+  const standard = nix.thunk(() => ({ [nix.POS]: pos$20, imports: nix.thunk(() => [baseline, systemd_boot, uefi]) }));
   return {
-    __proto__: pos$63,
+    [nix.POS]: pos$63,
     basic: nix.thunk(() => nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         name: "systemd-boot-with-bootspec",
         meta: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           maintainers: nix.thunk(() => (() => {
             const w_2 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), w_1);
             return [nix.thunk(() => nix.lookup(w_2, "raitobezarius"))];
           })()),
         })),
-        nodes: nix.thunk(() => ({ __proto__: pos$22, machine: standard })),
+        nodes: nix.thunk(() => ({ [nix.POS]: pos$22, machine: standard })),
         testScript: "machine.start()\nmachine.wait_for_unit(\"multi-user.target\")\n\nmachine.succeed(\"test -e /run/current-system/boot.json\")\n",
       })))),
     grub: nix.thunk(() => nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         name: "grub-with-bootspec",
         meta: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           maintainers: nix.thunk(() => (() => {
             const w_2 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), w_1);
             return [nix.thunk(() => nix.lookup(w_2, "raitobezarius"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          __proto__: pos$26,
-          machine: nix.thunk(() => ({ __proto__: pos$25, imports: nix.thunk(() => [baseline, grub, uefi]) })),
+          [nix.POS]: pos$26,
+          machine: nix.thunk(() => ({ [nix.POS]: pos$25, imports: nix.thunk(() => [baseline, grub, uefi]) })),
         })),
         testScript: "machine.start()\nmachine.wait_for_unit(\"multi-user.target\")\n\nmachine.succeed(\"test -e /run/current-system/boot.json\")\n",
       })))),
     "legacy-boot": nix.thunk(() => nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         name: "legacy-boot-with-bootspec",
         meta: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           maintainers: nix.thunk(() => (() => {
             const w_2 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), w_1);
             return [nix.thunk(() => nix.lookup(w_2, "raitobezarius"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          __proto__: pos$30,
-          machine: nix.thunk(() => ({ __proto__: pos$29, imports: nix.thunk(() => [baseline, grub]) })),
+          [nix.POS]: pos$30,
+          machine: nix.thunk(() => ({ [nix.POS]: pos$29, imports: nix.thunk(() => [baseline, grub]) })),
         })),
         testScript: "machine.start()\nmachine.wait_for_unit(\"multi-user.target\")\n\nmachine.succeed(\"test -e /run/current-system/boot.json\")\n",
       })))),
     initrd: nix.thunk(() => nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-        __proto__: pos$38,
+        [nix.POS]: pos$38,
         name: "bootspec-with-initrd",
         meta: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           maintainers: nix.thunk(() => (() => {
             const w_2 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), w_1);
             return [nix.thunk(() => nix.lookup(w_2, "raitobezarius"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           machine: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             imports: nix.thunk(() => [standard]),
             environment: nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "jq"))]),
             })),
             boot: nix.thunk(() => ({
-              __proto__: pos$35,
-              initrd: nix.thunk(() => ({ __proto__: pos$34, enable: true })),
+              [nix.POS]: pos$35,
+              initrd: nix.thunk(() => ({ [nix.POS]: pos$34, enable: true })),
             })),
           })),
         })),
         testScript: "import json\n\nmachine.start()\nmachine.wait_for_unit(\"multi-user.target\")\n\nmachine.succeed(\"test -e /run/current-system/boot.json\")\n\nbootspec = json.loads(machine.succeed(\"jq -r '.\\\"org.nixos.bootspec.v1\\\"' /run/current-system/boot.json\"))\n\nassert 'initrd' in bootspec, \"Bootspec should contain initrd field when initrd is enabled\"\nassert 'initrdSecrets' not in bootspec, \"Bootspec should not contain initrdSecrets when there's no initrdSecrets\"\n",
       })))),
     "initrd-secrets": nix.thunk(() => nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-        __proto__: pos$46,
+        [nix.POS]: pos$46,
         name: "bootspec-with-initrd-secrets",
         meta: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           maintainers: nix.thunk(() => (() => {
             const w_2 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), w_1);
             return [nix.thunk(() => nix.lookup(w_2, "raitobezarius"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          __proto__: pos$45,
+          [nix.POS]: pos$45,
           machine: nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             imports: nix.thunk(() => [standard]),
             environment: nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "jq"))]),
             })),
             boot: nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               initrd: nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 enable: true,
                 secrets: nix.thunk(() => ({
-                  __proto__: pos$41,
+                  [nix.POS]: pos$41,
                   "/some/example": nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "example-secret", "test")),
                 })),
               })),
@@ -225,62 +225,62 @@ export default nix.lambda((args) => (() => {
         testScript: "import json\n\nmachine.start()\nmachine.wait_for_unit(\"multi-user.target\")\n\nmachine.succeed(\"test -e /run/current-system/boot.json\")\n\nbootspec = json.loads(machine.succeed(\"jq -r '.\\\"org.nixos.bootspec.v1\\\"' /run/current-system/boot.json\"))\n\nassert 'initrdSecrets' in bootspec, \"Bootspec should contain an 'initrdSecrets' field given there's an initrd secret\"\n",
       })))),
     specialisation: nix.thunk(() => nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-        __proto__: pos$53,
+        [nix.POS]: pos$53,
         name: "bootspec-with-specialisation",
         meta: nix.thunk(() => ({
-          __proto__: pos$47,
+          [nix.POS]: pos$47,
           maintainers: nix.thunk(() => (() => {
             const w_2 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), w_1);
             return [nix.thunk(() => nix.lookup(w_2, "raitobezarius"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          __proto__: pos$52,
+          [nix.POS]: pos$52,
           machine: nix.thunk(() => ({
-            __proto__: pos$51,
+            [nix.POS]: pos$51,
             imports: nix.thunk(() => [standard]),
             environment: nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "jq"))]),
             })),
             specialisation: nix.thunk(() => ({
-              __proto__: pos$50,
-              something: nix.thunk(() => ({ __proto__: pos$49, configuration: nix.thunk(() => ({})) })),
+              [nix.POS]: pos$50,
+              something: nix.thunk(() => ({ [nix.POS]: pos$49, configuration: nix.thunk(() => ({})) })),
             })),
           })),
         })),
         testScript: "import json\n\nmachine.start()\nmachine.wait_for_unit(\"multi-user.target\")\n\nmachine.succeed(\"test -e /run/current-system/boot.json\")\nmachine.succeed(\"test -e /run/current-system/specialisation/something/boot.json\")\n\nsp_in_parent = json.loads(machine.succeed(\"jq -r '.\\\"org.nixos.specialisation.v1\\\".something' /run/current-system/boot.json\"))\nsp_in_fs = json.loads(machine.succeed(\"cat /run/current-system/specialisation/something/boot.json\"))\n\nassert sp_in_parent['org.nixos.bootspec.v1'] == sp_in_fs['org.nixos.bootspec.v1'], \"Bootspecs of the same specialisation are different!\"\n",
       })))),
     extensions: nix.thunk(() => nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-        __proto__: pos$62,
+        [nix.POS]: pos$62,
         name: "bootspec-with-extensions",
         meta: nix.thunk(() => ({
-          __proto__: pos$54,
+          [nix.POS]: pos$54,
           maintainers: nix.thunk(() => (() => {
             const w_2 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), w_1);
             return [nix.thunk(() => nix.lookup(w_2, "raitobezarius"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          __proto__: pos$61,
+          [nix.POS]: pos$61,
           machine: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const config_1 = nix.arg($_1, "config");
             return {
-              __proto__: pos$60,
+              [nix.POS]: pos$60,
               imports: nix.thunk(() => [standard]),
               environment: nix.thunk(() => ({
-                __proto__: pos$55,
+                [nix.POS]: pos$55,
                 systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "jq"))]),
               })),
               boot: nix.thunk(() => ({
-                __proto__: pos$59,
+                [nix.POS]: pos$59,
                 bootspec: nix.thunk(() => ({
-                  __proto__: pos$58,
+                  [nix.POS]: pos$58,
                   extensions: nix.thunk(() => ({
-                    __proto__: pos$57,
+                    [nix.POS]: pos$57,
                     "org.nix-tests.product": nix.thunk(() => ({
-                      __proto__: pos$56,
+                      [nix.POS]: pos$56,
                       osRelease: nix.thunk(() => nix.sel(config_1, "environment", "etc", "os-release", "source")),
                     })),
                   })),

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.13";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "virtee",
           repo: "sev-snp-measure",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [cryptography]);
       const pythonImportsCheck = nix.thunk(() => ["sevsnpmeasure"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Calculate AMD SEV/SEV-ES/SEV-SNP measurement for confidential computing",
         homepage: "https://github.com/virtee/sev-snp-measure",
         changelog: nix.thunk(() => nix.str`https://github.com/virtee/sev-snp-measure/releases/tag/${nix.sel(src, "tag")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "sev-snp-measure",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

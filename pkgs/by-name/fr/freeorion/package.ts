@@ -33,18 +33,18 @@ export default nix.lambda((args) => (() => {
   const glew = nix.arg($, "glew");
   const libxslt = nix.arg($, "libxslt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "freeorion",
       version: "0.5.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "freeorion",
           repo: "freeorion",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-/pLNOkxjuh/vdQQZQ9BzPCMygYPMDJDJuSXxn5lJt2o=",
         })))),
       buildInputs: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(boost, "override"), nix.thunk(() => ({ __proto__: pos$2, enablePython: true, python: python3 })))),
+        nix.thunk(() => nix.app(nix.sel(boost, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, enablePython: true, python: python3 })))),
         nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (p) => (() => {
             const w = nix.withScope(p, null);
             return [nix.thunk(() => nix.lookup(w, "pycodestyle"))];
@@ -80,7 +80,7 @@ wrapProgram $out/bin/freeorion \\
   --prefix LD_LIBRARY_PATH : $out/lib/freeorion
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Free, open source, turn-based space empire and galactic conquest (4X) computer game",
         homepage: "https://www.freeorion.org/",
         license: nix.thunk(() => (() => {

@@ -18,17 +18,17 @@ export default nix.lambda((args) => (() => {
   const ocamlPackages = nix.arg($, "ocamlPackages");
   const dune = nix.arg($, "dune");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "abella",
       version: "2.0.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://abella-prover.org/distributions/abella-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-80b/RUpE3KRY0Qu8eeTxAbk6mwGG6jVTPOP0qFjyj2M=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/abella-prover/abella/commit/85dd329c03bf8866975ca0ea7278553d64f8d17f.patch",
             includes: nix.thunk(() => ["src/*.ml"]),
             hash: "sha256-adS2QGwqhLjiZo/Q4KUbpJVp8D/eNy/Ux17/nY3XMh4=",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       })()),
       installPhase: "mkdir -p $out/bin\nrsync -av _build/default/src/abella.exe    $out/bin/abella\n\nmkdir -p $out/share/emacs/site-lisp/abella/\nrsync -av emacs/    $out/share/emacs/site-lisp/abella/\n\nmkdir -p $out/share/abella/examples\nrsync -av examples/ $out/share/abella/examples/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Interactive theorem prover",
         mainProgram: "abella",
         longDescription: "Abella is an interactive theorem prover based on lambda-tree syntax.\nThis means that Abella is well-suited for reasoning about the meta-theory\nof programming languages and other logical systems which manipulate\nobjects with binding.\n",

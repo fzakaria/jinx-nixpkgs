@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mtproxy",
       version: "1-unstable-2025-11-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TelegramMessenger",
           repo: "MTProxy",
           rev: "cafc3380a81671579ce366d0594b9a8e450827e9",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openssl, zlib]),
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ncp objs/bin/mtproto-proxy $out/bin/\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple MT-Proto proxy",
         mainProgram: "mtproto-proxy",
         homepage: "https://github.com/TelegramMessenger/MTProxy",

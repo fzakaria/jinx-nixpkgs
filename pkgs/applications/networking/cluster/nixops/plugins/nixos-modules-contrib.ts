@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const poetry_core = nix.arg($, "poetry-core");
   const nixops = nix.arg($, "nixops");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nixos-modules-contrib",
       version: "0-unstable-2021-01-20",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nix-community",
           repo: "nixos-modules-contrib",
           rev: "81a1c2ef424dcf596a97b2e46a58ca73a1dd1ff8",
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nixops]),
       pythonImportsCheck: nix.thunk(() => ["nixos_modules_contrib"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Useful NixOS modules which may not belong in the Nixpkgs repository itself",
         homepage: "https://github.com/nix-community/nixos-modules-contrib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

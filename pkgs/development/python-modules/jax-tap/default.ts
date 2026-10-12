@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const pandas = nix.arg($, "pandas");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "jax-tap",
       version: "0.3.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "arcueil",
           repo: "jax-tap",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [hatch_vcs, hatchling]),
       dependencies: nix.thunk(() => [jax]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, pandas: nix.thunk(() => [pandas]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, pandas: nix.thunk(() => [pandas]) })),
       pythonImportsCheck: nix.thunk(() => ["jaxtap"]),
       nativeCheckInputs: nix.thunk(() => [pandas, pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Make print-debugging great again",
         homepage: "https://github.com/arcueil/jax-tap",
         changelog: nix.thunk(() => nix.str`https://github.com/arcueil/jax-tap/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const kdePackages = nix.arg($, "kdePackages");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "jetbrains-runner",
       version: "3.0.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alex1701c",
           repo: "JetBrainsRunner",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,13 +43,13 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, nix.thunk(() => nix.sel(kdePackages, "extra-cmake-modules"))]),
       cmakeFlags: nix.thunk(() => ["-DBUILD_TESTING=OFF", "-DBUILD_WITH_QT6=ON", "-DQT_MAJOR_VERSION=6"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(kdePackages, "krunner", "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Krunner Plugin which allows you to open your recent JetBrains projects",
         homepage: "https://github.com/alex1701c/JetBrainsRunner",
         sourceProvenance: nix.thunk(() => (() => {

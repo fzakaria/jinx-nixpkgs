@@ -10,15 +10,15 @@ const formals$1 = { args: { nodes: false }, ellipsis: true };
 const pos$5 = nix.positions(here + "/twingate.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 6, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$5,
+  [nix.POS]: pos$5,
   name: "twingate",
   nodes: nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     machine: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       services: nix.thunk(() => ({
-        __proto__: pos$2,
-        twingate: nix.thunk(() => ({ __proto__: pos$1, enable: true })),
+        [nix.POS]: pos$2,
+        twingate: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
       })),
     })),
   })),

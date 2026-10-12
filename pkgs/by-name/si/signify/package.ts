@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libbsd = nix.arg($, "libbsd");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "signify",
       version: "32",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aperezdc",
           repo: "signify",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace Makefile --replace \"shell pkg-config\" \"shell $PKG_CONFIG\"\n",
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OpenBSD signing tool",
         mainProgram: "signify",
         longDescription: "OpenBSDs signing tool, which uses the Ed25519 public key signature system\nfor fast signing and verification of messages using small public keys.\n",

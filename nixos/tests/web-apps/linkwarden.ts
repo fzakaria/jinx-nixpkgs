@@ -18,39 +18,39 @@ const pos$10 = nix.positions(here + "/linkwarden.nix", [["name", 3, 3], ["nodes"
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     name: "linkwarden-nixos",
     nodes: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         const secretsFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "linkwarden-secret-env", "VERY_SENSITIVE_SECRET\n"));
         const webroot = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "webroot", nix.thunk(() => ({})), "mkdir $out\ncd $out\necho '<!DOCTYPE html><html><body><h1>HELLO LINKWARDEN</h1></body></html>' > index.html\n"));
         return {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           services: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             linkwarden: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               enable: true,
               enableRegistration: true,
               secretFiles: nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 NEXTAUTH_SECRET: nix.thunk(() => nix.builtins.toString(secretsFile)),
               })),
               environment: nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 NEXTAUTH_URL: "http://localhost:3000/api/v1/auth",
                 ALLOW_PRIVATE_NETWORK_ACCESS: "true",
               })),
             })),
             nginx: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                __proto__: pos$5,
-                localhost: nix.thunk(() => ({ __proto__: pos$4, root: webroot })),
+                [nix.POS]: pos$5,
+                localhost: nix.thunk(() => ({ [nix.POS]: pos$4, root: webroot })),
               })),
             })),
           })),

@@ -11,9 +11,9 @@ export default nix.lambda((args) => (() => {
   const args_1 = args;
   const mattermost = nix.arg($, "mattermost");
   return nix.app(nix.sel(mattermost, "override"), nix.thunk(() => nix.update({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       latestVersionInfo: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         regex: "^v(11\\.[0-9]+\\.[0-9]+)$",
         version: "11.11.1",
         srcHash: "sha256-kbupWQe7pN9D01gpPcuc6sPfElcQZMZ39JClHqoaNG0=",

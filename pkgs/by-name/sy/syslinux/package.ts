@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "syslinux",
       version: "6.04-pre2-unstable-2019-02-07",
       src: nix.thunk(() => nix.app(fetchFromRepoOrCz, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "syslinux",
           rev: "b40487005223a78c3bb4c300ef6c436b3f6ec1f7",
           hash: "sha256-XNC+X7UYxdMQQAg4MLACQLxRNnI5/ZCOiCJrEkKgPeM=",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => (() => {
         const archlinuxCommit = "db7884ec80642781edeead3e3bbd883a15b9b3ce";
         const fetchArchlinuxPatch = (name) => (hash) => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`https://gitlab.archlinux.org/archlinux/packaging/packages/syslinux/-/raw/${archlinuxCommit}/${name}`),
             name: name,
             hash: hash,
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: false,
       hardeningDisable: nix.thunk(() => ["pic", "stackprotector", "fortify"]),
       stripDebugList: nix.thunk(() => ["bin", "sbin", "share/syslinux/com32"]),
-      env: nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-fcommon" })),
       makeFlags: nix.thunk(() => nix.concat([
         "BINDIR=$(out)/bin",
         "SBINDIR=$(out)/sbin",
@@ -86,14 +86,14 @@ export default nix.lambda((args) => (() => {
 rm -rf $out/share/syslinux/com32
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           biosCdrom: nix.thunk(() => nix.sel(nixosTests, "boot", "biosCdrom")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://www.syslinux.org/",
         description: "Lightweight bootloader",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

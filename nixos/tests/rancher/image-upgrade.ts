@@ -35,17 +35,17 @@ export default nix.lambda((args) => (() => {
   const coreImages = nix.arg($, "coreImages");
   const vmResources = nix.arg($, "vmResources");
   const containerdSocket = nix.thunk(() => nix.sel({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     k3s: "/run/k3s/containerd/containerd.sock",
     rke2: "/run/rke2/containerd/containerd.sock",
   }, nix.key(nix.force(rancherDistro))));
   const mkTestImage = (commandOutput) => nix.app(nix.sel(pkgs, "dockerTools", "buildImage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "test.local/test",
       compressor: "zstd",
       copyToRoot: nix.thunk(() => nix.sel(pkgs, "busybox")),
       config: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         Entrypoint: nix.thunk(() => ["sh"]),
         Cmd: nix.thunk(() => ["-c", nix.thunk(() => nix.str`echo '${commandOutput}'`)]),
       })),
@@ -53,22 +53,22 @@ export default nix.lambda((args) => (() => {
   const testImageV1 = nix.thunk(() => nix.app(mkTestImage, "image v1 deployed"));
   const testImageV2 = nix.thunk(() => nix.app(mkTestImage, "image v2 deployed"));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     name: nix.thunk(() => nix.str`${nix.sel(rancherPackage, "name")}-image-upgrade`),
     interactive: nix.thunk(() => ({
-      __proto__: pos$5,
-      sshBackdoor: nix.thunk(() => ({ __proto__: pos$4, enable: true })),
+      [nix.POS]: pos$5,
+      sshBackdoor: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           imports: nix.thunk(() => [nix.path(here, "../../modules/profiles/base.nix")]),
           environment: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [
@@ -77,19 +77,19 @@ export default nix.lambda((args) => (() => {
               ];
             })()),
             sessionVariables: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               KUBECONFIG: nix.thunk(() => nix.str`/etc/rancher/${rancherDistro}/${rancherDistro}.yaml`),
             })),
           })),
           virtualisation: vmResources,
           services: nix.thunk(() => nix.attrsDyn({}, [
             [nix.force(rancherDistro), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               enable: true,
               role: "server",
               package: rancherPackage,
               disable: nix.thunk(() => nix.sel({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 k3s: nix.thunk(() => nix.app(nix.sel(lib, "remove"), "traefik", disabledComponents)),
                 rke2: nix.thunk(() => nix.app(nix.sel(lib, "remove"), "rke2-ingress-nginx", disabledComponents)),
               }, nix.key(nix.force(rancherDistro)))),
@@ -97,18 +97,18 @@ export default nix.lambda((args) => (() => {
             }))],
           ])),
           specialisation: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             "image-v2": nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               inheritParentConfig: true,
               configuration: nix.lambda((args_2) => (() => {
                 const $_2 = nix.formals(args_2, formals$3);
                 const lib_1 = nix.arg($_2, "lib");
                 return {
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   services: nix.thunk(() => nix.attrsDyn({}, [
                     [nix.force(rancherDistro), nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       images: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => nix.concat(coreImages, nix.concat(nix.app(nix.sel(lib_1, "optional"), nix.thunk(() => nix.eq(rancherDistro, "k3s")), nix.thunk(() => nix.sel(rancherPackage, "airgap-images"))), [testImageV2]))))),
                     }))],
                   ])),
@@ -146,7 +146,7 @@ with subtest("Same-name image with different auto-generated tag is re-imported")
 `;
     })(), formals$4),
     meta: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       maintainers: nix.thunk(() => nix.concat(nix.sel(lib, "teams", "k3s", "members"), nix.sel(pkgs, "rke2", "meta", "maintainers"))),
     })),
   };

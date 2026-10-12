@@ -42,37 +42,37 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "dragonflydb"));
   const dragonflydb = nix.thunk(() => nix.sel(pkgs, "dragonflydb"));
   const settings = nix.thunk(() => nix.update({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     port: nix.thunk(() => nix.sel(cfg, "port")),
     dir: "/var/lib/dragonflydb",
     keys_output_limit: nix.thunk(() => nix.sel(cfg, "keysOutputLimit")),
-  }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "bind"), null)), nix.thunk(() => ({ __proto__: pos$2, bind: nix.thunk(() => nix.sel(cfg, "bind")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "requirePass"), null)), nix.thunk(() => ({ __proto__: pos$3, requirepass: nix.thunk(() => nix.sel(cfg, "requirePass")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "maxMemory"), null)), nix.thunk(() => ({ __proto__: pos$4, maxmemory: nix.thunk(() => nix.sel(cfg, "maxMemory")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "memcachePort"), null)), nix.thunk(() => ({
-      __proto__: pos$5,
+  }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "bind"), null)), nix.thunk(() => ({ [nix.POS]: pos$2, bind: nix.thunk(() => nix.sel(cfg, "bind")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "requirePass"), null)), nix.thunk(() => ({ [nix.POS]: pos$3, requirepass: nix.thunk(() => nix.sel(cfg, "requirePass")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "maxMemory"), null)), nix.thunk(() => ({ [nix.POS]: pos$4, maxmemory: nix.thunk(() => nix.sel(cfg, "maxMemory")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "memcachePort"), null)), nix.thunk(() => ({
+      [nix.POS]: pos$5,
       memcache_port: nix.thunk(() => nix.sel(cfg, "memcachePort")),
-    }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "dbNum"), null)), nix.thunk(() => ({ __proto__: pos$6, dbnum: nix.thunk(() => nix.sel(cfg, "dbNum")) }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "cacheMode"), null)), nix.thunk(() => ({ __proto__: pos$7, cache_mode: nix.thunk(() => nix.sel(cfg, "cacheMode")) }))))))))));
+    }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "dbNum"), null)), nix.thunk(() => ({ [nix.POS]: pos$6, dbnum: nix.thunk(() => nix.sel(cfg, "dbNum")) }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "cacheMode"), null)), nix.thunk(() => ({ [nix.POS]: pos$7, cache_mode: nix.thunk(() => nix.sel(cfg, "cacheMode")) }))))))))));
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     options: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       services: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         dragonflydb: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "DragonflyDB")),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "dragonfly",
               description: "The user to run DragonflyDB as",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 6379n,
               description: "The TCP port to accept connections.",
             })))),
           bind: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
               description: "The IP interface to bind to.\n`null` means \"all interfaces\".\n",
             })))),
           requirePass: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
               example: "letmein!",
             })))),
           maxMemory: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "ints"), "unsigned")));
@@ -100,7 +100,7 @@ export default nix.lambda((args) => (() => {
               description: "The maximum amount of memory to use for storage (in bytes).\n`null` means this will be automatically set.\n",
             })))),
           memcachePort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "port")));
@@ -109,13 +109,13 @@ export default nix.lambda((args) => (() => {
               description: "To enable memcached compatible API on this port.\n`null` means disabled.\n",
             })))),
           keysOutputLimit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
               default: 8192n,
               description: "Maximum number of returned keys in keys command.\n`keys` is a dangerous command.\nWe truncate its result to avoid blowup in memory when fetching too many keys.\n",
             })))),
           dbNum: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "ints"), "unsigned")));
@@ -124,7 +124,7 @@ export default nix.lambda((args) => (() => {
               description: "Maximum number of supported databases for `select`",
             })))),
           cacheMode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "bool")));
@@ -136,32 +136,32 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "dragonflydb", "enable")), nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         users: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           users: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "dragonfly")), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               dragonfly: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 description: "DragonflyDB server user",
                 isSystemUser: true,
                 group: "dragonfly",
               })),
             })))),
-          groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "dragonfly")), nix.thunk(() => ({ __proto__: pos$22, dragonfly: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "dragonfly")), nix.thunk(() => ({ [nix.POS]: pos$22, dragonfly: nix.thunk(() => ({})) })))),
         })),
-        environment: nix.thunk(() => ({ __proto__: pos$24, systemPackages: nix.thunk(() => [dragonflydb]) })),
+        environment: nix.thunk(() => ({ [nix.POS]: pos$24, systemPackages: nix.thunk(() => [dragonflydb]) })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           services: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             dragonflydb: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               description: "DragonflyDB server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 ExecStart: nix.thunk(() => nix.str`${dragonflydb}/bin/dragonfly --alsologtostderr ${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (n) => (v) => nix.str`--${n} ${nix.app(nix.sel(lib, "escapeShellArg"), v)}`, settings)))}`),
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 ReadWritePaths: nix.thunk(() => [nix.thunk(() => nix.sel(settings, "dir"))]),

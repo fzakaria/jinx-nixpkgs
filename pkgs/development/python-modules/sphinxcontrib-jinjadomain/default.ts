@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-frzcrUnJna8wmKbsC7wduazLSZ8lzOKOCf75Smk675E=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [sphinx]);
       const pythonImportsCheck = nix.thunk(() => ["sphinxcontrib.jinjadomain"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Sphinx domain for describing jinja templates",
         homepage: "https://github.com/offlinehacker/sphinxcontrib.jinjadomain",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "sphinxcontrib-jinjadomain",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

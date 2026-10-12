@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.4";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "spatialaudio",
           repo: "python-pa-ringbuffer",
           rev: version,
           sha256: "1d4k6z13mc1f88m6wbhfx8hillb7q78n33ws5bmyblsdkv1gx607",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Adds ring buffer functionality",
         homepage: "https://github.com/spatialaudio/python-pa-ringbuffer",
         maintainers: nix.thunk(() => (() => {
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })()),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
-      return { __proto__: pos$3, pname, version, format, src, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -25,29 +25,29 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "nix-index"));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       programs: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "nix-index": nix.thunk(() => (() => {
           const w = nix.withScope(lib, null);
           return {
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "nix-index, a file database for nixpkgs")),
             package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "nix-index", nix.thunk(() => ({})))),
-            enableBashIntegration: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mkEnableOption"), "Bash integration"), { __proto__: pos$1, default: true })),
-            enableZshIntegration: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mkEnableOption"), "Zsh integration"), { __proto__: pos$2, default: true })),
-            enableFishIntegration: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mkEnableOption"), "Fish integration"), { __proto__: pos$3, default: true })),
+            enableBashIntegration: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mkEnableOption"), "Bash integration"), { [nix.POS]: pos$1, default: true })),
+            enableZshIntegration: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mkEnableOption"), "Zsh integration"), { [nix.POS]: pos$2, default: true })),
+            enableFishIntegration: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mkEnableOption"), "Fish integration"), { [nix.POS]: pos$3, default: true })),
           };
         })()),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         assertions: nix.thunk(() => (() => {
           const checkOpt = (name) => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, nix.key(nix.force(name)))) || nix.asBool(!nix.asBool(nix.sel(config, "programs", "command-not-found", "enable"))))),
             message: nix.thunk(() => nix.str`The 'programs.command-not-found.enable' option is mutually exclusive
 with the 'programs.nix-index.${name}' option.
@@ -59,23 +59,23 @@ with the 'programs.nix-index.${name}' option.
           ];
         })()),
         environment: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         programs: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           bash: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             interactiveShellInit: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableBashIntegration")), nix.thunk(() => nix.str`source ${nix.sel(cfg, "package")}/etc/profile.d/command-not-found.sh
 `))),
           })),
           zsh: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             interactiveShellInit: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableZshIntegration")), nix.thunk(() => nix.str`source ${nix.sel(cfg, "package")}/etc/profile.d/command-not-found.sh
 `))),
           })),
           fish: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             interactiveShellInit: nix.thunk(() => (() => {
               const wrapper = nix.thunk(() => nix.app(nix.sel(pkgs, "writeScript"), "command-not-found", nix.thunk(() => nix.str`#!${nix.sel(pkgs, "bash")}/bin/bash
 source ${nix.sel(cfg, "package")}/etc/profile.d/command-not-found.sh

@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
     const version = nix.arg($_1, "version");
     const src = nix.arg($_1, "src");
     const rustDep = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: "super_native_extensions-rs",
         version: version,
         src: src,
@@ -54,7 +54,7 @@ runHook postUnpack
           const _0_8_18 = _0_8_22;
           const _0_8_17 = _0_8_22;
           return {
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             _0_9_1,
             "_0_9_0-dev_6": _0_9_0_dev_6,
             "_0_9_0-dev_5": _0_9_0_dev_5,
@@ -73,7 +73,7 @@ is the same with existing versions, add an alias here.
 `)), nix.key(nix.add("_", nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version))))),
         nativeBuildInputs: nix.thunk(() => [pkg_config]),
         buildInputs: nix.thunk(() => [at_spi2_atk, gdk_pixbuf, cairo, gtk3]),
-        passthru: nix.thunk(() => ({ __proto__: pos$2, libraryPath: "lib/libsuper_native_extensions.so" })),
+        passthru: nix.thunk(() => ({ [nix.POS]: pos$2, libraryPath: "lib/libsuper_native_extensions.so" })),
       }))));
     const fakeCargokitCmake = nix.thunk(() => nix.app(writeText, "FakeCargokit.cmake", nix.thunk(() => nix.str`function(apply_cargokit target manifest_dir lib_name any_symbol_name)
   target_link_libraries("\${target}" PRIVATE ${rustDep}/${nix.sel(rustDep, "passthru", "libraryPath")})
@@ -81,7 +81,7 @@ is the same with existing versions, add an alias here.
 endfunction()
 `)));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: "super_native_extensions",
         version: version,
         src: src,

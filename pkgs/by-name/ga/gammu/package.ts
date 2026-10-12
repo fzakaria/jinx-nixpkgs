@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
   const libgudev = nix.arg($, "libgudev");
   const glib = nix.arg($, "glib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gammu",
       version: "1.44.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gammu",
           repo: "gammu",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./bashcomp-dir.patch"),
         nix.path(here, "./systemd.patch"),
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./gammu-config-dialog.patch"), nix.thunk(() => ({ __proto__: pos$2, dialog: nix.thunk(() => nix.str`${dialog}/bin/dialog`) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./gammu-config-dialog.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, dialog: nix.thunk(() => nix.str`${dialog}/bin/dialog`) })))),
       ]),
       nativeBuildInputs: nix.thunk(() => [pkg_config, cmake]),
       cmakeFlags: nix.thunk(() => [
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       buildInputs: nix.thunk(() => nix.concat([bash, bluez, libusb1, curl, gettext, glib, sqlite, libiconv, libgudev], nix.concat(nix.app(nix.sel(lib, "optionals"), dbiSupport, nix.thunk(() => [libdbi, libdbi_drivers])), nix.app(nix.sel(lib, "optionals"), postgresSupport, nix.thunk(() => [libpq]))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://wammu.eu/gammu/",
         description: "Command line utility and library to control mobile phones",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const libpcap = nix.arg($, "libpcap");
   const openssl = nix.arg($, "openssl");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "usr.sbin/wpa",
       extraPaths: nix.thunk(() => ["contrib/wpa"]),
       buildInputs: nix.thunk(() => [libpcap, openssl]),

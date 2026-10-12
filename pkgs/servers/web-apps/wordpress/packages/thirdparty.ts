@@ -19,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     plugins: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       civicrm: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
           const pname = "civicrm";
           const version = "6.2.0";
           const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               version: version,
               name: pname,
               url: nix.thunk(() => nix.str`https://download.civicrm.org/${pname}-${version}-wordpress.zip`),
@@ -34,27 +34,27 @@ export default nix.lambda((args) => (() => {
             }))));
           const installPhase = "runHook preInstall\ncp -r ./ -T $out\nrunHook postInstall\n";
           const meta = nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
           }));
-          return { __proto__: pos$3, pname, version, src, installPhase, meta };
+          return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
         })()))),
     })),
     themes: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       proton: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
           const pname = "proton";
           const version = "1.0.1";
           const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               version: version,
               name: pname,
               url: nix.thunk(() => nix.str`https://github.com/christophery/proton/archive/refs/tags/${version}.zip`),
               hash: "sha256-JgKyLJ3dRqh1uwlsNuffCOM7LPBigGkLVFqftjFAiP4=",
             }))));
           const installPhase = "runHook preInstall\nmkdir -p $out\ncp -r ./* $out/\nrunHook postInstall\n";
-          const meta = nix.thunk(() => ({ __proto__: pos$6, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) }));
-          return { __proto__: pos$7, pname, version, src, installPhase, meta };
+          const meta = nix.thunk(() => ({ [nix.POS]: pos$6, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) }));
+          return { [nix.POS]: pos$7, pname, version, src, installPhase, meta };
         })()))),
     })),
   };

@@ -29,19 +29,19 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "reframe"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         reframe: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "DRM/KMS based remote desktop for Linux that supports Wayland/NVIDIA/headless/login…")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "reframe", nix.thunk(() => ({})))),
           configs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                 })))),
               default: nix.thunk(() => ({})),
@@ -52,12 +52,12 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         environment: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (name) => (value) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`reframe/${name}.conf`), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 mode: "0644",
                 user: "root",
                 group: "root",
@@ -65,30 +65,30 @@ export default nix.lambda((args) => (() => {
               }))), nix.thunk(() => nix.sel(cfg, "configs")))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
-          services: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (name) => (_) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`reframe-server@${name}`), nix.thunk(() => ({ __proto__: pos$9, wantedBy: nix.thunk(() => ["multi-user.target"]) }))), nix.thunk(() => nix.sel(cfg, "configs")))),
+          services: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (name) => (_) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`reframe-server@${name}`), nix.thunk(() => ({ [nix.POS]: pos$9, wantedBy: nix.thunk(() => ["multi-user.target"]) }))), nix.thunk(() => nix.sel(cfg, "configs")))),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           users: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             reframe: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               isSystemUser: true,
               group: "reframe",
               description: "ReFrame Remote Desktop",
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$13, reframe: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$13, reframe: nix.thunk(() => ({})) })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "bitbloxhub"))];

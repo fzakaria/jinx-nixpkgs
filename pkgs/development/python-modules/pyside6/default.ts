@@ -55,9 +55,9 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.lookup(w, "qttools")),
     ];
   })());
-  const qt_linked = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({ __proto__: pos$1, name: "qt_linked", paths: packages }))));
+  const qt_linked = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({ [nix.POS]: pos$1, name: "qt_linked", paths: packages }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pyside6",
       version: nix.thunk(() => nix.attr(shiboken6, "version")),
       src: nix.thunk(() => nix.attr(shiboken6, "src")),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "devtools"]),
       postPatch: nix.thunk(() => nix.add("# Don't ignore optional Qt modules\nsubstituteInPlace cmake/PySideHelpers.cmake \\\n  --replace-fail \\\n    'string(FIND \"${_module_dir}\" \"${_core_abs_dir}\" found_basepath)' \\\n    'set (found_basepath 0)'\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace cmake/PySideHelpers.cmake \\\n  --replace-fail \\\n    \"Designer\" \"\"\n"))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           LLVM_INSTALL_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(llvmPackages, "libclang")))}/lib`),
         })))),
       nativeBuildInputs: nix.thunk(() => nix.concat([cmake, ninja, python, pythonImportsCheckHook, shiboken6_generator], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [moveBuildTree])))),
@@ -83,7 +83,7 @@ moveToOutput "${nix.sel(python, "pkgs", "qt6", "qtbase", "qtPluginPrefix")}/desi
 `),
       pythonImportsCheck: nix.thunk(() => ["PySide6"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python bindings for Qt",
         license: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);

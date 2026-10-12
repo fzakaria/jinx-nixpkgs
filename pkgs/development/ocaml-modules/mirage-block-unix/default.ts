@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const rresult = nix.arg($, "rresult");
   const uri = nix.arg($, "uri");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mirage-block-unix",
       version: "2.14.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/mirage-block-unix/releases/download/v${nix.sel(finalAttrs, "version")}/mirage-block-unix-${nix.sel(finalAttrs, "version")}.tbz`),
           sha256: "sha256-6ReAzd+pCd5ccmXOh6GlSxHo4GuEgptxLha62n+dBsE=",
         })))),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [diet, ounit2]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MirageOS disk block driver for Unix",
         homepage: "https://github.com/mirage/mirage-block-unix",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

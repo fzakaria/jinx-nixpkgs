@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const rPackages = nix.arg($, "rPackages");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "git-unroll",
       version: "0-unstable-2026-03-25",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gm6k",
           repo: "git-unroll",
           rev: "62fc6ff3fcb62b6972182d64b4f3710c2188c082",
@@ -43,7 +43,7 @@ wrapProgram $out/bin/unroll \\
           gitMinimal,
           nix_prefetch_git,
           nix.thunk(() => nix.app(nix.sel(rWrapper, "override"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               packages: nix.thunk(() => (() => {
                 const w = nix.withScope(rPackages, null);
                 return [
@@ -60,11 +60,11 @@ wrapProgram $out/bin/unroll \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Convert Git repositories with submodules to a Nix expression based on non-recursive Git sources",
         homepage: "https://codeberg.org/gm6k/git-unroll",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

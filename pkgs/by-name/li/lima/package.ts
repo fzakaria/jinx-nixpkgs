@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const source = nix.thunk(() => nix.app(callPackage, nix.path(here, "./source.nix"), nix.thunk(() => ({}))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: nix.thunk(() => nix.add("lima", nix.app(nix.sel(lib, "optionalString"), withAdditionalGuestAgents, "-full"))),
       version: nix.thunk(() => nix.attr(source, "version")),
       src: nix.thunk(() => nix.attr(source, "src")),
@@ -72,31 +72,31 @@ wrapProgram $out/bin/limactl \\
       versionCheckKeepEnvironment: nix.thunk(() => ["HOME"]),
       installCheckPhase: "runHook preInstallCheck\n\nUSER=nix $out/bin/limactl validate templates/default.yaml\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         tests: nix.thunk(() => (() => {
           const arch = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "parsed", "cpu", "name"));
           return {
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             minimalAgent: nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 assertion: "limactl only detects host's architecture guest agent by default",
                 expected: nix.thunk(() => nix.app(writeText, "expected", "true\n1\n")),
                 actual: nix.thunk(() => nix.app(runCommand, "actual", nix.thunk(() => ({
-                    __proto__: pos$1,
+                    [nix.POS]: pos$1,
                     nativeBuildInputs: nix.thunk(() => [writableTmpDirAsHomeHook, lima, jq]),
                   })), nix.thunk(() => nix.str`limactl info | jq '.guestAgents | has("${arch}")' >>"$out"
 limactl info | jq '.guestAgents | length' >>"$out"
 `))),
               })))),
             additionalAgents: nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 assertion: "limactl also detects additional guest agents if specified",
                 expected: nix.thunk(() => nix.app(writeText, "expected", "true\ntrue\n")),
                 actual: nix.thunk(() => nix.app(runCommand, "actual", nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     nativeBuildInputs: nix.thunk(() => [
                       writableTmpDirAsHomeHook,
-                      nix.thunk(() => nix.app(nix.sel(lima, "override"), nix.thunk(() => ({ __proto__: pos$3, withAdditionalGuestAgents: true })))),
+                      nix.thunk(() => nix.app(nix.sel(lima, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, withAdditionalGuestAgents: true })))),
                       jq,
                     ]),
                   })), nix.thunk(() => nix.str`limactl info | jq '.guestAgents | has("${arch}")' >>"$out"
@@ -106,12 +106,12 @@ limactl info | jq '.guestAgents | length >= 2' >>"$out"
           };
         })()),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             extraArgs: nix.thunk(() => ["--override-filename", nix.path(here, "./source.nix")]),
           })))),
       })),
       meta: nix.thunk(() => nix.update(nix.sel(source, "meta"), {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Linux virtual machines with automatic file sharing and port forwarding",
       })),
     }));

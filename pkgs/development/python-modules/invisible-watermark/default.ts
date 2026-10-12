@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ShieldMnt",
           repo: "invisible-watermark",
           rev: "e58e451cff7e092457cd915e445b1a20b64a7c8f",
@@ -45,13 +45,13 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => nix.concat([opencv_python, torch, pillow, pywavelets, numpy], nix.app(nix.sel(lib, "optionals"), withOnnx, nix.thunk(() => [onnx, onnxruntime]))));
       const postPatch = "substituteInPlace imwatermark/rivaGan.py --replace \\\n  'You can install it with pip: `pip install onnxruntime`.' \\\n  'You can install it with an override: `python3Packages.invisible-watermark.override { withOnnx = true; };`.'\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => (() => {
           const image = nix.thunk(() => nix.str`${src}/test_vectors/original.jpg`);
           const methods = nix.thunk(() => ["dwtDct", "dwtDctSvd", "rivaGan"]);
           const testCases = nix.thunk(() => nix.builtins.concatMap((method) => [
-              nix.thunk(() => ({ __proto__: pos$2, method: method, withOnnx: true })),
-              nix.thunk(() => ({ __proto__: pos$3, method: method, withOnnx: false })),
+              nix.thunk(() => ({ [nix.POS]: pos$2, method: method, withOnnx: true })),
+              nix.thunk(() => ({ [nix.POS]: pos$3, method: method, withOnnx: false })),
             ], methods));
           const createTest = nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
             const skipTest = nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))) && nix.asBool(withOnnx_1))) && nix.asBool(nix.eq(method, "rivaGan"))));
             return nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(skipTest)), nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${testName}`, nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/cli.nix"), nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     image: image,
                     method: method,
                     testName: testName,
@@ -71,14 +71,14 @@ export default nix.lambda((args) => (() => {
           })(), formals$2);
           const allTests = nix.thunk(() => nix.builtins.map(createTest, testCases));
           return nix.update(nix.app(nix.sel(lib, "attrsets", "mergeAttrsList"), allTests), {
-            __proto__: pos$6,
-            python: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/python"), nix.thunk(() => ({ __proto__: pos$5, image: image })))),
+            [nix.POS]: pos$6,
+            python: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/python"), nix.thunk(() => ({ [nix.POS]: pos$5, image: image })))),
           });
         })()),
       }));
       const pythonImportsCheck = nix.thunk(() => ["imwatermark"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Library for creating and decoding invisible image watermarks",
         mainProgram: "invisible-watermark",
         homepage: "https://github.com/ShieldMnt/invisible-watermark",
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname,
         version,
         pyproject,

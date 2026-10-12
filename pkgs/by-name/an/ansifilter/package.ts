@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ansifilter",
       version: "2.24",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "saalen",
           repo: "ansifilter",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         "conf_dir=/etc/ansifilter",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ANSI sequence filter",
         mainProgram: "ansifilter",
         longDescription: "Ansifilter handles text files containing ANSI terminal escape codes.\nThe command sequences may be stripped or be interpreted to generate formatted\noutput (HTML, RTF, TeX, LaTeX, BBCode, Pango).\n",

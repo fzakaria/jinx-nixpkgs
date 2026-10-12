@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const pname = "gmp";
   const version = "6.3.0";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`mirror://gnu/gmp/gmp-${version}.tar.xz`),
       hash: "sha256-o8K4AgG4nmhhb0rTC8Zq7kknw85Q4zkpyoGdXENTiJg=",
     }))));
   return nix.app(nix.sel(bash, "runCommand"), nix.thunk(() => nix.str`${pname}-${version}`), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       nativeBuildInputs: nix.thunk(() => [
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         xz,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: nix.thunk(() => nix.str`The GNU Multiple Precision Arithmetic Library, version ${version}`),
         homepage: "https://gmplib.org/",
         license: nix.thunk(() => (() => {

@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const tasty_hunit = nix.arg($, "tasty-hunit");
   const text = nix.arg($, "text");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "elm-format-test-lib",
       version: "0.0.0.1",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://github.com/avh4/elm-format",
           sha256: "13i1wgva6p9zsx1a7sfb3skc0rv187isb920chkhljyh48c12k8l",
           rev: "4c5bfea5f47b38c1fd7ffa431c51c328a3ae5ba6",

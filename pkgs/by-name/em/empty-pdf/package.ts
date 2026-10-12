@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const imagemagick = nix.arg($, "imagemagick");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "empty-pdf",
       __structuredAttrs: true,
       strictDeps: true,
@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nmagick xc:none -page Letter empty.pdf\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmv empty.pdf $out\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Empty PDF file intended for testing",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

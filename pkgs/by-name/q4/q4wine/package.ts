@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const wine = nix.arg($, "wine");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "q4wine",
       version: "1.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "brezerk",
           repo: "q4wine",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [icoutils, wget, wine, which]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://q4wine.brezblock.org.ua/",
         description: "Qt GUI for Wine to manage prefixes and applications",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

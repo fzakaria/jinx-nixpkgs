@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const vid = nix.argOr($, "vid", () => "234b");
   const pid = nix.argOr($, "pid", () => "0000");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gnuk",
       version: "2.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "salsa.debian.org",
           owner: "gnuk-team",
           repo: "gnuk/gnuk",
@@ -64,7 +64,7 @@ echo "$out/bin/stlinkv2 -b \\$@ $out/gnuk.bin" >> $out/bin/flash
 chmod +x $out/bin/{unlock,flash}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.fsij.org/category/gnuk.html",
         description: "Implementation of USB cryptographic token for gpg",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

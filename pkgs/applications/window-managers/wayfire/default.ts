@@ -40,12 +40,12 @@ export default nix.lambda((args) => (() => {
   const yyjson = nix.arg($, "yyjson");
   const wlroots = wlroots_0_19;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "wayfire",
       version: "0.10.1",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "WayfireWM",
           repo: "wayfire",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -79,12 +79,12 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "wf-touch:tests", nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         providedSessions: nix.thunk(() => ["wayfire"]),
-        tests: nix.thunk(() => ({ __proto__: pos$2, mate: nix.thunk(() => nix.sel(nixosTests, "mate-wayland")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, mate: nix.thunk(() => nix.sel(nixosTests, "mate-wayland")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://wayfire.org/",
         description: "3D Wayland compositor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

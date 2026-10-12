@@ -42,34 +42,34 @@ server {
 ${nix.sel(cfg, "extraConfig")}
 `)));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pdnsd: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "pdnsd")),
           cacheDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "/var/cache/pdnsd",
               description: "Directory holding the pdnsd cache",
             })))),
           globalConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               description: "Global configuration that should be added to the global directory\nof {file}`pdnsd.conf`.\n",
             })))),
           serverConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               description: "Server configuration that should be added to the server directory\nof {file}`pdnsd.conf`.\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               description: "Extra configuration directives that should be added to\n{file}`pdnsd.conf`.\n",
@@ -78,12 +78,12 @@ ${nix.sel(cfg, "extraConfig")}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         users: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [pdnsdUser, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "pdnsd")),
               group: pdnsdGroup,
               description: "pdnsd user",
@@ -91,17 +91,17 @@ ${nix.sel(cfg, "extraConfig")}
           ])),
           groups: nix.thunk(() => nix.attrsDyn({}, [
             [pdnsdGroup, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "pdnsd")),
             }))],
           ])),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             pdnsd: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               preStart: nix.thunk(() => nix.str`mkdir -p "${nix.sel(cfg, "cacheDir")}"
@@ -110,7 +110,7 @@ chown -R ${pdnsdUser}:${pdnsdGroup} "${nix.sel(cfg, "cacheDir")}"
 `),
               description: "pdnsd",
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 ExecStart: nix.thunk(() => nix.str`${pdnsd}/bin/pdnsd -c ${pdnsdConf}`),
               })),
             })),

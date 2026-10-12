@@ -22,32 +22,32 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     name: "firejail",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "sgo"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           programs: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             firejail: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               enable: true,
               wrappedBinaries: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 "bash-jailed": nix.thunk(() => nix.str`${nix.sel(pkgs, "bash")}/bin/bash`),
                 "bash-jailed2": nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   executable: nix.thunk(() => nix.str`${nix.sel(pkgs, "bash")}/bin/bash`),
                   extraArgs: nix.thunk(() => ["--private=~/firejail-home"]),
                 })),
@@ -55,15 +55,15 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             services: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               setupFirejailTest: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 before: nix.thunk(() => ["multi-user.target"]),
-                environment: nix.thunk(() => ({ __proto__: pos$6, HOME: "/home/alice" })),
-                unitConfig: nix.thunk(() => ({ __proto__: pos$7, type: "oneshot", RemainAfterExit: true, user: "alice" })),
+                environment: nix.thunk(() => ({ [nix.POS]: pos$6, HOME: "/home/alice" })),
+                unitConfig: nix.thunk(() => ({ [nix.POS]: pos$7, type: "oneshot", RemainAfterExit: true, user: "alice" })),
                 script: "cd $HOME\n\nmkdir .password-store && echo s3cret > .password-store/secret\nmkdir my-secrets && echo s3cret > my-secrets/secret\n\necho publ1c > public\n\nmkdir -p .config/firejail\necho 'blacklist ${HOME}/my-secrets' > .config/firejail/globals.local\n",
               })),
             })),

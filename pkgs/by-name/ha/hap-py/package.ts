@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
   })();
   const my_python = nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), my_python_packages));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "hap.py",
       version: "0.3.15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Illumina",
           repo: "hap.py",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./python3.patch"),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-ldeflate"]))),
         BOOST_ROOT: nix.thunk(() => nix.str`${nix.sel(boost, "out")}`),
         ZLIBSTATIC: nix.thunk(() => nix.str`${nix.sel(zlib, "static")}`),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
    --add-flags "--engine-vcfeval-path=${nix.app(nix.sel(lib, "getExe"), rtg_tools)}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Compare genetics variants against a gold dataset",
         homepage: "https://github.com/Illumina/hap.py",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const cunit = nix.arg($, "cunit");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libdict",
       version: "1.0.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rtbrick",
           repo: "libdict",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DLIBDICT_SHARED=${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")) ? "OFF" : "ON")}`),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ["-Wno-error=strict-prototypes", "-Wno-error=newline-eof"]))))),
       })),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/rtbrick/libdict/",
         changelog: nix.thunk(() => nix.str`https://github.com/rtbrick/libdict/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "C library of key-value data structures",

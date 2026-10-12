@@ -21,18 +21,18 @@ export default nix.lambda((args) => (() => {
       const pname = "image";
       const version = "2.20.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/octave/${pname}-${version}.tar.gz`),
           sha256: "sha256-tLaGXn9l7lucJUppEovxDpOzi8J/W8W5c/7zACF/xyU=",
         }))));
       const nativeOctavePkgTestInputs = nix.thunk(() => [gnuplot, writableTmpDirAsHomeHook]);
       const octavePkgTestEnv = nix.thunk(() => ({
-        __proto__: pos$3,
-        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ __proto__: pos$2, fontDirectories: [] })))),
+        [nix.POS]: pos$3,
+        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$2, fontDirectories: [] })))),
       }));
       const __structuredAttrs = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://gnu-octave.github.io/packages/image/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: nix.thunk(() => (() => {
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         longDescription: "The Octave-forge Image package provides functions for processing\nimages. The package also provides functions for feature extraction,\nimage statistics, spatial and geometric transformations, morphological\noperations, linear filtering, and much more.\n",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

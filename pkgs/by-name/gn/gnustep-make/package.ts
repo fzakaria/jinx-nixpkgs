@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const gnustep_libobjc = nix.arg($, "gnustep-libobjc");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gnustep-make",
       version: "2.9.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`ftp://ftp.gnustep.org/pub/gnustep/core/gnustep-make-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-k8oyC3BieevKU3YNqJ1MPyu8VH9HI5ZxQKNDRtnwTCQ=",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./fixup-paths.patch")]),
       setupHook: nix.path(here, "./setup-hook.sh"),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/gnustep/tools-make/releases/tag/make-${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
         description: "Build manager for GNUstep",
         homepage: "https://gnustep.github.io/",

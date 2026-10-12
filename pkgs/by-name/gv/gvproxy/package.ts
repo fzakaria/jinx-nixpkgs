@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const buildGoModule = nix.arg($, "buildGoModule");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gvproxy",
       version: "0.8.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "containers",
           repo: "gvisor-tap-vsock",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\nmake build\nrunHook postBuild\n",
       installPhase: "runHook preInstall\ninstall bin/* -Dt $out/bin\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/containers/gvisor-tap-vsock/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),
         description: "Network stack based on gVisor",
         homepage: "https://github.com/containers/gvisor-tap-vsock",

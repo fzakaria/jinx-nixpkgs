@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
 rm -rf $out/grammars $out/queries
 `)));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: "evil-helix",
         version: "20250915",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "usagi-flow",
             repo: "evil-helix",
             tag: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ rm -rf $out/grammars $out/queries
         cargoHash: "sha256-Mf0nrgMk1MlZkSyUN6mlM5lmTcrOHn3xBNzmVGtApEU=",
         nativeBuildInputs: nix.thunk(() => [installShellFiles, makeBinaryWrapper]),
         env: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           HELIX_DISABLE_AUTO_GRAMMAR_BUILD: "1",
           HELIX_DEFAULT_RUNTIME: defaultRuntimeDir,
         })),
@@ -48,11 +48,11 @@ cp contrib/helix.png $out/share/icons/hicolor/256x256/apps
 wrapProgram $out/bin/hx --set HELIX_RUNTIME ${nix.sel(helix, "runtime")}
 `),
         passthru: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           description: "Post-modern modal text editor, with vim keybindings",
           homepage: "https://github.com/usagi-flow/evil-helix",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

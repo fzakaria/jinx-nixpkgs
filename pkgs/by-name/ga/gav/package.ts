@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const SDL_mixer = nix.arg($, "SDL_mixer");
   const SDL_net = nix.arg($, "SDL_net");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gav",
       version: "0.9.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/gav/gav-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "8f0deb8b2cd775b339229054f4f282583a4cfbcba9d27a6213cf910bab944f3e",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./gcc.patch")]),
       buildInputs: nix.thunk(() => [SDL, SDL_image, SDL_mixer, SDL_net]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Remake of AV Arcade Volleyball",
         mainProgram: "gav",
         homepage: "https://gav.sourceforge.net/",

@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
   const arch = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "parsed", "cpu", "name"));
   const triplet = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "config"));
   const clang = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "angle-clang-llvm-join",
       paths: nix.thunk(() => [
         nix.thunk(() => nix.sel(llvmPackages, "llvm")),
@@ -53,7 +53,7 @@ ln -s $out/resource-root/lib/linux \\
 `)),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "angle",
       version: "7258",
       gclientDeps: nix.thunk(() => nix.app(nix.sel(gclient2nix, "importGclientDeps"), nix.path(here, "./info.json"))),
@@ -89,7 +89,7 @@ ln -s $out/resource-root/lib/linux \\
         "treat_warnings_as_errors=false",
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isRiscV64")), nix.thunk(() => ["is_clang=true"])))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-headerpad_max_install_names")),
       })),
       patches: nix.thunk(() => [nix.path(here, "./fix-uninitialized-const-pointer-error-001.patch")]),
@@ -145,7 +145,7 @@ ln -sfn ${nix.app(nix.sel(lib, "getLib"), vulkan_loader)}/lib/libvulkan.so.1 \\
 `))),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "install_name_tool \\\n    -change ./libGLESv2.dylib \\\n    $out/lib/libGLESv2.dylib \\\n    $out/lib/libGLESv1_CM.dylib\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Conformant OpenGL ES implementation for Windows, Mac, Linux, iOS and Android",
         longDescription: "The goal of ANGLE is to allow users of multiple operating systems\nto seamlessly run WebGL and other OpenGL ES content by translating\nOpenGL ES API calls to one of the hardware-supported APIs available\nfor that platform.\n",
         homepage: "https://angleproject.org",

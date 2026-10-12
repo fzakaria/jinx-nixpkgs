@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const fixDarwinDylibNames = nix.arg($, "fixDarwinDylibNames");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "libdeltachat",
       version: "2.62.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chatmail",
           repo: "core",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [nix.path(here, "./no-static-lib.patch")]),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: "chatmail-core",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -65,14 +65,14 @@ export default nix.lambda((args) => (() => {
   --replace __FILE__ '"${nix.builtins.placeholder("out")}/include/deltachat.h"'
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         CARGO_BUILD_TARGET: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "rust", "rustcTarget")),
         CARGO_BUILD_RUSTFLAGS: nix.thunk(() => nix.str`-C linker=${nix.sel(stdenv, "cc", "targetPrefix")}cc`),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "deltachat-desktop": deltachat_desktop,
           "deltachat-repl": deltachat_repl,
           "deltachat-rpc-server": deltachat_rpc_server,
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Delta Chat Rust Core library",
         homepage: "https://github.com/chatmail/core",
         changelog: nix.thunk(() => nix.str`https://github.com/chatmail/core/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

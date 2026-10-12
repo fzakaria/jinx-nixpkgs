@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const kernel = nix.arg($, "kernel");
   const KDIR = nix.thunk(() => nix.str`${nix.sel(kernel, "dev")}/lib/modules/${nix.sel(kernel, "modDirVersion")}/build`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "amdgpu-i2c",
       version: "0-unstable-2024-12-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "twifty",
           repo: "amd-gpu-i2c",
           rev: "06ca41fd12fb90f970d3ebd4785cc26cc0a3f3b0",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       installPhase: nix.thunk(() => nix.str`make -C ${KDIR} M=/build/source INSTALL_MOD_PATH="$out" modules_install
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/twifty/amd-gpu-i2c",
         downloadPage: "https://github.com/twifty/amd-gpu-i2c",
         description: "Exposes i2c interface to set colors on AMD GPUs",

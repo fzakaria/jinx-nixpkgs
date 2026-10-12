@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const parallelSupport = nix.argOr($, "parallelSupport", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
   const mkFlag = (optset) => (flag) => (nix.asBool(optset) ? nix.str`-D${flag}=ON` : nix.str`-D${flag}=OFF`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "stxxl",
       version: "1.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stxxl",
           repo: "stxxl",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,10 +34,10 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(mkFlag, parallelSupport, "USE_GNU_PARALLEL")),
         nix.thunk(() => nix.app(mkFlag, parallelSupport, "USE_OPENMP")),
       ]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, parallelSupport: parallelSupport })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, parallelSupport: parallelSupport })),
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.6.2 FATAL_ERROR)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Implementation of the C++ standard template library STL for external memory (out-of-core) computations",
         homepage: "https://github.com/stxxl/stxxl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "boost")),

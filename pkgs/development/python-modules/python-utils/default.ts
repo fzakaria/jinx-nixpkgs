@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.9.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "WoLpH",
           repo: "python-utils",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
       const postPatch = "sed -i pytest.ini \\\n  -e '/--cov/d' \\\n  -e '/--mypy/d'\n";
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [typing_extensions]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, loguru: nix.thunk(() => [loguru]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, loguru: nix.thunk(() => [loguru]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytest_asyncio, pytestCheckHook], nix.sel(optional_dependencies, "loguru")));
       const pythonImportsCheck = nix.thunk(() => ["python_utils"]);
       const enabledTestPaths = nix.thunk(() => ["_python_utils_tests"]);
       const disabledTests = nix.thunk(() => ["test_timeout_generator"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Module with some convenient utilities",
         homepage: "https://github.com/WoLpH/python-utils",
         changelog: nix.thunk(() => nix.str`https://github.com/wolph/python-utils/releases/tag/v${version}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const arp_scan = nix.arg($, "arp-scan");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "watchyourlan",
       version: "2.1.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aceberg",
           repo: "WatchYourLAN",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : '${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [arp_scan]))}'
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightweight network IP scanner with web GUI",
         homepage: "https://github.com/aceberg/WatchYourLAN",
         changelog: nix.thunk(() => nix.str`https://github.com/aceberg/WatchYourLAN/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

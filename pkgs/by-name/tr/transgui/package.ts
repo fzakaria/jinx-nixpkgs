@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const pname = "transgui";
       const version = "5.18.0-unstable-2026-02-24";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "transmission-remote-gui",
           repo: "transgui",
           rev: "da71b860d4920f7ab847a48bd8d804725ddbad7b",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         openssl,
       ]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_LDFLAGS: nix.thunk(() => nix.str`-L${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(stdenv, "cc", "cc")))}/lib -lX11 -lglib-2.0 -lgtk-x11-2.0
 -lgdk-x11-2.0 -lgdk_pixbuf-2.0 -lpango-1.0 -latk-1.0 -lcairo
 -lc -lcrypto
@@ -68,7 +68,7 @@ lazbuild -B transgui.lpr --lazarusdir=${lazarus}/share/lazarus
 `);
       const makeFlags = nix.thunk(() => ["FPC=fpc", "PP=fpc", "INSTALL_PREFIX=$(out)"]);
       const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name: pname,
           exec: nix.thunk(() => nix.str`${pname} %U`),
           icon: pname,
@@ -82,11 +82,11 @@ lazbuild -B transgui.lpr --lazarusdir=${lazarus}/share/lazarus
         }))));
       const postInstall = "mkdir -p \"$out/share/applications\"\ncp $desktopItem/share/applications/* $out/share/applications\nmkdir -p \"$out/share/icons/hicolor/48x48/apps\"\ncp transgui.png \"$out/share/icons/hicolor/48x48/apps\"\nmkdir -p \"$out/share/transgui\"\ncp -r \"./lang\" \"$out/share/transgui\"\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$4, tagPrefix: "v" })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, tagPrefix: "v" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Cross platform front-end for the Transmission BitTorrent client",
         homepage: "https://sourceforge.net/p/transgui",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -98,7 +98,7 @@ lazbuild -B transgui.lpr --lazarusdir=${lazarus}/share/lazarus
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const swiftclient = nix.arg($, "swiftclient");
   const xattr = nix.arg($, "xattr");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "swift",
       version: "2.38.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-DX1qmFYv127uUfKjUgBWVrf6mGQ8BB833xn+EUR9p0Q=",
@@ -72,7 +72,7 @@ stestr run
 `),
       pythonImportsCheck: nix.thunk(() => ["swift"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OpenStack Object Storage",
         homepage: "https://github.com/openstack/swift",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

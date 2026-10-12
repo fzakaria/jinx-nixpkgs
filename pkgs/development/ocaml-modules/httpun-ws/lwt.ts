@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const httpun_ws = nix.arg($, "httpun-ws");
   const gluten_lwt = nix.arg($, "gluten-lwt");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "httpun-ws-lwt",
       src: nix.thunk(() => nix.attr(httpun_ws, "src")),
       version: nix.thunk(() => nix.attr(httpun_ws, "version")),
       propagatedBuildInputs: nix.thunk(() => [httpun_ws, lwt, digestif, gluten_lwt]),
       doCheck: true,
-      meta: nix.thunk(() => nix.update(nix.sel(httpun_ws, "meta"), { __proto__: pos$1, description: "Lwt support for httpun-ws" })),
+      meta: nix.thunk(() => nix.update(nix.sel(httpun_ws, "meta"), { [nix.POS]: pos$1, description: "Lwt support for httpun-ws" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=lwt.ts.map

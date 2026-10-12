@@ -51,11 +51,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_(nix.eq(nix.app(nix.sel(lib, "subtractLists"), nix.thunk(() => ["ncurses", "qt5"]), uiToolkits), []), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/cm/cmake/package.nix:46:1");
   nix.assert_((!nix.asBool(isMinimalBuild) || nix.asBool(nix.eq(uiToolkits, []))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/cm/cmake/package.nix:48:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: nix.thunk(() => nix.add(nix.add(nix.add("cmake", nix.app(nix.sel(lib, "optionalString"), isMinimalBuild, "-minimal")), nix.app(nix.sel(lib, "optionalString"), cursesUI, "-cursesUI")), nix.app(nix.sel(lib, "optionalString"), qt5UI, "-qt5UI"))),
       version: "4.4.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://cmake.org/files/v${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/cmake-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-xGQAYYtPHytDUH8k+yLzroMMNBbPI7d24W4dQTqokvA=",
         })))),
@@ -64,13 +64,13 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./add-nixpkgs-libc-paths.patch"),
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [
           nix.thunk(() => nix.app(replaceVars, nix.path(here, "./darwin-binary-paths.patch"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               sw_vers: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(darwin, "DarwinTools")), "sw_vers")),
               vm_stat: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(darwin, "system_cmds")), "vm_stat")),
             })))),
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isFreeBSD")))), nix.thunk(() => [
           nix.thunk(() => nix.app(replaceVars, nix.path(here, "./darwin-bsd-binary-paths.patch"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               ps: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), ps)),
               sysctl: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), sysctl)),
             })))),
@@ -117,9 +117,9 @@ configureFlags=("--parallel=\${NIX_BUILD_CORES:-1}" "CC=$CC_FOR_BUILD" "CXX=$CXX
       enableParallelBuilding: true,
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://gitlab.kitware.com/cmake/cmake.git",
             "rev-prefix": "v",
             ignoredVersions: "-",
@@ -127,7 +127,7 @@ configureFlags=("--parallel=\${NIX_BUILD_CORES:-1}" "CC=$CC_FOR_BUILD" "CXX=$CXX
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://cmake.org/",
         description: "Cross-platform, open-source build system generator",
         longDescription: "CMake is an open-source, cross-platform family of tools designed to build,\ntest and package software. CMake is used to control the software\ncompilation process using simple platform and compiler independent\nconfiguration files, and generate native makefiles and workspaces that can\nbe used in the compiler environment of your choice.\n",

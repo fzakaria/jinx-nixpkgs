@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const makeInstalledTest = nix.arg($, "makeInstalledTest");
   return nix.app(makeInstalledTest, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       tested: nix.thunk(() => nix.sel(pkgs, "xdg-desktop-portal")),
       testConfig: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         environment: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           variables: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             GI_TYPELIB_PATH: nix.thunk(() => nix.app(nix.sel(lib, "makeSearchPath"), "lib/girepository-1.0", nix.thunk(() => [
                 nix.thunk(() => nix.sel(pkgs, "glib", "out")),
                 nix.thunk(() => nix.sel(pkgs, "umockdev", "out")),
@@ -42,10 +42,10 @@ export default nix.lambda((args) => (() => {
           })()),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$4,
-          geoclue2: nix.thunk(() => ({ __proto__: pos$3, enable: true, enableDemoAgent: true })),
+          [nix.POS]: pos$4,
+          geoclue2: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true, enableDemoAgent: true })),
         })),
-        location: nix.thunk(() => ({ __proto__: pos$5, provider: "geoclue2" })),
+        location: nix.thunk(() => ({ [nix.POS]: pos$5, provider: "geoclue2" })),
       })),
     })));
 })(), formals$1);

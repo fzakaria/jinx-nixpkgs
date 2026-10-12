@@ -19,10 +19,10 @@ export default nix.lambda((args) => (() => {
   const port = 3001n;
   const host = "karakeep_server";
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     name: "karakeep",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "tetov"))];
@@ -30,23 +30,23 @@ export default nix.lambda((args) => (() => {
     })),
     nodes: nix.thunk(() => nix.attrsDyn({}, [
       [host, nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         networking: nix.thunk(() => ({
-          __proto__: pos$3,
-          firewall: nix.thunk(() => ({ __proto__: pos$2, allowedTCPPorts: nix.thunk(() => [port]) })),
+          [nix.POS]: pos$3,
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$2, allowedTCPPorts: nix.thunk(() => [port]) })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           karakeep: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             enable: true,
             extraEnvironment: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               HOST: host,
               PORT: nix.thunk(() => nix.builtins.toString(port)),
               DISABLE_NEW_RELEASE_CHECK: "true",
             })),
-            meilisearch: nix.thunk(() => ({ __proto__: pos$5, enable: true })),
+            meilisearch: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
           })),
         })),
       }))],

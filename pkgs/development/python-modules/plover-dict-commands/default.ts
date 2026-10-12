@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const setuptools_scm = nix.arg($, "setuptools-scm");
   const plover = nix.arg($, "plover");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "plover-dict-commands",
       version: "0.2.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KoiOates",
           repo: "plover_dict_commands",
           rev: "5dceddc0830fb5a72679d62995f27b2e49850998",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [plover]),
       pythonImportsCheck: nix.thunk(() => ["plover_dict_commands"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Plover plugin for enabling, disabling, and changing the priority of dictionaries",
         homepage: "https://github.com/KoiOates/plover_dict_commands",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

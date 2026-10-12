@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const scoreDirectory = nix.argOr($, "scoreDirectory", () => "$HOME/.local/share");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dopewars",
       version: "1.6.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "benmwebb",
           repo: "dopewars",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
   --add-flags '-f ${scoreDirectory}/dopewars.sco'
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Game simulating the life of a drug dealer in New York",
         homepage: "https://dopewars.sourceforge.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

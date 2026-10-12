@@ -34,13 +34,13 @@ export default nix.lambda((args) => (() => {
   const pname = "stash";
   return nix.app(buildGoModule, (finalAttrs) => (() => {
       const frontend = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (final) => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-ui`),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           gitHash: nix.thunk(() => nix.attr(finalAttrs, "gitHash")),
           src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/ui/v2.5`),
           yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               yarnLock: nix.thunk(() => nix.str`${nix.sel(final, "src")}/yarn.lock`),
               hash: nix.thunk(() => nix.sel(finalAttrs, "yarnHash")),
             })))),
@@ -67,14 +67,14 @@ runHook postBuild
           dontFixup: true,
         })));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname: pname,
         version: version,
         gitHash: gitHash,
         yarnHash: yarnHash,
         vendorHash: vendorHash,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             owner: "stashapp",
             repo: "stash",
             tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -94,21 +94,21 @@ runHook postBuild
 `),
         preBuild: "# `go mod tidy` requires internet access and does nothing\necho \"skip_mod_tidy: true\" >> gqlgen.yml\n# remove `-trimpath` fron `GOFLAGS` because `gqlgen` does not work with it\nGOFLAGS=\"${GOFLAGS/-trimpath/}\" go generate ./cmd/stash\n",
         passthru: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           frontend: frontend,
           updateScript: nix.path(here, "./update.py"),
           tests: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             stash: nix.thunk(() => nix.attr(nixosTests, "stash")),
             version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 package: stash,
                 version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")} (${nix.sel(finalAttrs, "gitHash")}) - Unofficial Build - 1970-01-01 00:00:00`),
               })))),
           })),
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           mainProgram: "stash",
           description: "Organizer for your adult videos/images",
           license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

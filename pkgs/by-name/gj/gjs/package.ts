@@ -48,12 +48,12 @@ export default nix.lambda((args) => (() => {
     gobject_introspection,
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "gjs",
       version: "1.88.1",
       outputs: nix.thunk(() => ["out", "dev", "installedTests"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gjs/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gjs-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-dnurgOZl1nLLAFY8JfCzkqnsjCmW7R1EVMaYtMLwo9k=",
         })))),
@@ -97,17 +97,17 @@ mv "$installedTests/share/glib-2.0" "$installedTestsSchemaDatadir"
       checkPhase: "runHook preCheck\nGTK_A11Y=none \\\nHOME=$(mktemp -d) \\\nxvfb-run -s '-screen 0 800x600x24' \\\n  meson test --print-errorlogs\nrunHook postCheck\n",
       separateDebugInfo: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "installed-tests": nix.thunk(() => nix.sel(nixosTests, "installed-tests", "gjs")),
         })),
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$3, packageName: "gjs", versionPolicy: "odd-unstable" })))),
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: "gjs", versionPolicy: "odd-unstable" })))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(gobject_introspection, "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "JavaScript bindings for GNOME",
         homepage: "https://gitlab.gnome.org/GNOME/gjs/blob/master/doc/Home.md",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),

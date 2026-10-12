@@ -17,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "color-parser-py",
       version: "0.1.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "color_parser_py",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-C3Q9vaOa/SE0PtQu5Gw/sk1JMRIlhgbA5VTW+2aC5dU=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -40,9 +40,9 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["color_parser_py"]),
-      env: nix.thunk(() => ({ __proto__: pos$3, PYO3_USE_ABI3_FORWARD_COMPATIBILITY: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, PYO3_USE_ABI3_FORWARD_COMPATIBILITY: true })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python bindings for color parsing and conversion",
         homepage: "https://github.com/rusiaaman/color-parser-py",
         changelog: nix.thunk(() => nix.str`https://github.com/rusiaaman/color-parser-py/releases/tag/${nix.sel(finalAttrs, "version")}`),

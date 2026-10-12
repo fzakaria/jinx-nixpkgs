@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const icalendar = nix.arg($, "icalendar");
   return nix.app(buildHomeAssistantComponent, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       owner: "JosephAbbey",
       domain: "calendar_export",
       version: "0.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "JosephAbbey",
           repo: "ha_calendar_export",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [icalendar]),
       ignoreVersionRequirement: nix.thunk(() => ["icalendar"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/josephabbey/ha_calendar_export/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Export calendar events in the iCalendar format",
         homepage: "https://github.com/JosephAbbey/ha_calendar_export",

@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const prefix = nix.thunk(() => nix.app(substring, 0n, nix.thunk(() => (nix.asBool(nix.app(hasPrefix, "lib", pname)) ? 4n : 1n)), pname));
       const versionString = nix.thunk(() => (nix.asBool(nix.eq(debianRevision, null)) ? nix.force(version) : nix.str`${version}-${debianRevision}`));
       return nix.app(fetchpatch, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: name,
           hash: hash,
           url: nix.thunk(() => nix.add(nix.str`https://sources.debian.org/data/${area}/${prefix}/`, nix.str`${pname}/${versionString}/debian/patches/${patch}`)),

@@ -15,23 +15,23 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sledtool",
       version: "0.1.3",
       cargoHash: "sha256-BrI4Xq3Kuj06aPKSXNhCKCWZurO1npIsbBil3MrbQfk=",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vi",
           repo: "sledtool",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-8D1zrRecU3s4EWKRAnnQ8Ga/kvKR0TCG6agoBCw+bEI=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         mainProgram: "sledtool",
         description: "CLI tool to work with Sled key-value databases",
         homepage: "https://github.com/vi/sledtool",

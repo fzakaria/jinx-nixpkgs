@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const version = nix.arg($, "version");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       src: src,
       version: version,
       pname: "flatpak-deno-generator",

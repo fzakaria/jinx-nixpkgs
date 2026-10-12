@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     pname: "gerbil-utils",
     version: "unstable-2023-12-06",
     "git-version": "0.4-13-g9398865",
@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
     "gerbil-package": "clan",
     "version-path": "version",
     "pre-src": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       fun: fetchFromGitHub,
       owner: "mighty-gerbils",
       repo: "gerbil-utils",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       sha256: "0dga03qq7iy12bnpxr6d40qhvihsvn3y87psf2w2clnpypjb3blx",
     })),
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       description: "Gerbil Clan: Community curated Collection of Common Utilities",
       homepage: "https://github.com/fare/gerbil-utils",
       license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mdformat",
       version: "1.0.0",
       pyproject: true,
       disabled: nix.thunk(() => nix.app(pythonOlder, "3.12")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "executablebooks",
           repo: "mdformat",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, versionCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["mdformat"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         withPlugins: nix.thunk(() => nix.builtins.throw("Use pkgs.mdformat.withPlugins, i.e. the top-level attribute.")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CommonMark compliant Markdown formatter",
         homepage: "https://mdformat.rtfd.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/executablebooks/mdformat/blob/${nix.sel(finalAttrs, "src", "tag")}/docs/users/changelog.md`),

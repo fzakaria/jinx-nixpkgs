@@ -34,9 +34,9 @@ export default nix.lambda((args) => (() => {
   const yaml = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const stateDir = "/var/lib/opensearch-dashboards";
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -46,22 +46,22 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         "opensearch-dashboards": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "OpenSearch Dashboards")),
-          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "OpenSearch Dashboards", nix.thunk(() => ({ __proto__: pos$2, default: nix.thunk(() => ["opensearch-dashboards"]) })))),
+          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "OpenSearch Dashboards", nix.thunk(() => ({ [nix.POS]: pos$2, default: nix.thunk(() => ["opensearch-dashboards"]) })))),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "opensearch-dashboards",
               description: "The user to run OpenSearch Dashboards under.\n",
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
-              type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({ __proto__: pos$4, freeformType: nix.thunk(() => nix.sel(yaml, "type")) })))),
+              [nix.POS]: pos$5,
+              type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({ [nix.POS]: pos$4, freeformType: nix.thunk(() => nix.sel(yaml, "type")) })))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  opensearch = {\n    username = \"foo\";\n    password._secret = \"/run/keys/opensearch_password\";\n  };\n\n  server = {\n    name = \"your-hostname\";\n    port = 5601;\n    maxPayloadbytes = 104857;\n  };\n};\n")),
               description: "OpenSearch Dashboards settings.\n\nAvailable settings can be found by looking at the\n[opensearch_dashboards.yml](https://github.com/opensearch-project/OpenSearch-Dashboards/blob/main/config/opensearch_dashboards.yml)\nfrom the Opensearch Dashboards repo.\n\n{file}`config/nixos_site_settings.json` file,\nattribute set containing the attribute\n`_secret` - a string pointing to a file\ncontaining the value the option should be set to. See the\nexample to get a better picture of this: in the resulting\n{file}`opensearch_dashboards.yml` file,\nthe `opensearch.password` key will\nbe set to the contents of the\n{file}`/run/keys/opensearch_password`\nfile.\n",
@@ -70,24 +70,24 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             "opensearch-dashboards": nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "OpenSearch Dashboards Service",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               environment: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 BABEL_CACHE_PATH: nix.thunk(() => nix.str`${stateDir}/.babelcache.json`),
               })),
               serviceConfig: nix.thunk(() => (() => {
                 const configPath = nix.thunk(() => nix.add(stateDir, "/opensearch_dashboards.yml"));
                 return {
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   ExecStartPre: nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScript"), "dashboards-exec-pre", nix.thunk(() => nix.str`set -euo pipefail
 umask 077
 ${nix.app(nix.sel(utils, "genJqSecretsReplacementSnippet"), nix.thunk(() => nix.sel(cfg, "settings")), configPath)}

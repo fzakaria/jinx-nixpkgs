@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const qt5compat = nix.arg($, "qt5compat");
   const qtsvg = nix.arg($, "qtsvg");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "massif-visualizer",
       extraBuildInputs: nix.thunk(() => [qt5compat, qtsvg]),
       extraNativeBuildInputs: nix.thunk(() => [shared_mime_info]),

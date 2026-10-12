@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libcmatrix",
       version: "0.0.4",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "source.puri.sm",
           owner: "Librem5",
           repo: "libcmatrix",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib, json_glib, libgcrypt, libsecret, libsoup_3, olm, sqlite]),
       prePatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "# 0u is not a valid version number on darwin\nsubstituteInPlace src/meson.build --replace-fail \"soversion: '0u',\" \"soversion: '0',\"\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://source.puri.sm/Librem5/libcmatrix/-/blob/${nix.sel(finalAttrs, "src", "tag")}/NEWS`),
         description: "Matrix protocol library written in C using GObject",
         homepage: "https://source.puri.sm/Librem5/libcmatrix",

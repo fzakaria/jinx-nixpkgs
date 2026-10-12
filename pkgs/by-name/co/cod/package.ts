@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const python3 = nix.arg($, "python3");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cod",
       version: "0.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dim-an",
           repo: "cod",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [python3]),
       preCheck: "pushd test/binaries/\nfor f in *.py; do\n  patchShebangs $f\ndone\npopd\nexport COD_TEST_BINARY=\"${NIX_BUILD_TOP}/go/bin/cod\"\n\nsubstituteInPlace test/learn_test.go --replace TestLearnArgparseSubCommand SkipLearnArgparseSubCommand\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for generating Bash/Fish/Zsh autocompletions based on `--help` output",
         homepage: "https://github.com/dim-an/cod/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

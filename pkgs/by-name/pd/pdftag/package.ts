@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const poppler = nix.arg($, "poppler");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pdftag",
       version: "1.0.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "arrufat",
           repo: "pdftag",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, meson, ninja, wrapGAppsHook3, vala]),
       buildInputs: nix.thunk(() => [gtk3, poppler]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Edit metadata found in PDFs",
         homepage: "https://github.com/arrufat/pdftag",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

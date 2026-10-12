@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const gnumake = nix.arg($, "gnumake");
   return nix.app(writeShellApplication, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "klipper-genconf",
       runtimeInputs: nix.thunk(() => [python3, gnumake]),
       text: nix.thunk(() => nix.str`CURRENT_DIR=$(pwd)

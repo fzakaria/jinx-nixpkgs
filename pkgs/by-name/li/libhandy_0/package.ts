@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const libxml2 = nix.arg($, "libxml2");
   const hicolor_icon_theme = nix.arg($, "hicolor-icon-theme");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libhandy",
       version: "0.0.13",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       outputBin: "dev",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "source.puri.sm",
           owner: "Librem5",
           repo: "libhandy",
@@ -62,7 +62,7 @@ xvfb-run -s '-screen 0 800x600x24' dbus-run-session \\
   meson test --print-errorlogs
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library full of GTK widgets for mobile phones",
         mainProgram: "handy-0.0-demo",
         homepage: "https://source.puri.sm/Librem5/libhandy",

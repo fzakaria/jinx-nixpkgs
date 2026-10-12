@@ -40,56 +40,56 @@ export default nix.lambda((args) => (() => {
     const path = nix.arg($_1, "path");
     const loop = nix.argOr($_1, "loop", () => false);
     return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       script: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/dd if=/dev/zero of=${path} bs=1K count=100
 ${nix.app(nix.sel(pkgs, "lib", "optionalString"), loop, nix.thunk(() => nix.str`${nix.sel(pkgs, "util-linux")}/bin/losetup --find ${path}`))}
 `),
-      serviceConfig: nix.thunk(() => ({ __proto__: pos$1, Type: "oneshot" })),
+      serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$1, Type: "oneshot" })),
       wantedBy: nix.thunk(() => ["multi-user.target"]),
       before: nix.thunk(() => ["nbd-server.service"]),
     };
   })(), formals$2);
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     name: "nbd",
     nodes: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           systemd: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             services: nix.thunk(() => ({
-              __proto__: pos$6,
-              "create-pub-file": nix.thunk(() => nix.app(mkCreateSmallFileService, nix.thunk(() => ({ __proto__: pos$3, path: "/vault-pub.disk" })))),
-              "create-priv-file": nix.thunk(() => nix.app(mkCreateSmallFileService, nix.thunk(() => ({ __proto__: pos$4, path: "/vault-priv.disk", loop: true })))),
-              "create-aaa-file": nix.thunk(() => nix.app(mkCreateSmallFileService, nix.thunk(() => ({ __proto__: pos$5, path: "/aaa.disk" })))),
+              [nix.POS]: pos$6,
+              "create-pub-file": nix.thunk(() => nix.app(mkCreateSmallFileService, nix.thunk(() => ({ [nix.POS]: pos$3, path: "/vault-pub.disk" })))),
+              "create-priv-file": nix.thunk(() => nix.app(mkCreateSmallFileService, nix.thunk(() => ({ [nix.POS]: pos$4, path: "/vault-priv.disk", loop: true })))),
+              "create-aaa-file": nix.thunk(() => nix.app(mkCreateSmallFileService, nix.thunk(() => ({ [nix.POS]: pos$5, path: "/aaa.disk" })))),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "nbd"))]),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$10,
-            firewall: nix.thunk(() => ({ __proto__: pos$9, allowedTCPPorts: nix.thunk(() => [listenPort]) })),
+            [nix.POS]: pos$10,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$9, allowedTCPPorts: nix.thunk(() => [listenPort]) })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             nbd: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               server: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 enable: true,
                 exports: nix.thunk(() => ({
-                  __proto__: pos$14,
-                  aaa: nix.thunk(() => ({ __proto__: pos$11, path: "/aaa.disk" })),
-                  "vault-pub": nix.thunk(() => ({ __proto__: pos$12, path: "/vault-pub.disk" })),
+                  [nix.POS]: pos$14,
+                  aaa: nix.thunk(() => ({ [nix.POS]: pos$11, path: "/aaa.disk" })),
+                  "vault-pub": nix.thunk(() => ({ [nix.POS]: pos$12, path: "/vault-pub.disk" })),
                   "vault-priv": nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     path: "/dev/loop0",
                     allowAddresses: nix.thunk(() => ["127.0.0.1", "::1"]),
                   })),
@@ -106,10 +106,10 @@ ${nix.app(nix.sel(pkgs, "lib", "optionalString"), loop, nix.thunk(() => nix.str`
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           programs: nix.thunk(() => ({
-            __proto__: pos$20,
-            nbd: nix.thunk(() => ({ __proto__: pos$19, enable: true })),
+            [nix.POS]: pos$20,
+            nbd: nix.thunk(() => ({ [nix.POS]: pos$19, enable: true })),
           })),
         };
       })(), formals$4),

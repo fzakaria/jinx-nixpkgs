@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const pure_eval = nix.arg($, "pure-eval");
   const stack_data = nix.arg($, "stack-data");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "friendly-traceback",
       version: "0-unstable-2025-04-13",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "friendly-traceback",
           repo: "friendly-traceback",
           rev: "bba8fc43c4caa4b64e8800e0b1f7ed39e0276170",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [asttokens, executing, pure_eval, stack_data]),
       pythonImportsCheck: nix.thunk(() => ["friendly_traceback"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Friendlier Python tracebacks",
         homepage: "https://github.com/friendly-traceback/friendly-traceback",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -47,19 +47,19 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "displayManager", "cosmic-greeter"));
   const cfgAutoLogin = nix.thunk(() => nix.sel(config, "services", "displayManager", "autoLogin"));
   return {
-    __proto__: pos$35,
+    [nix.POS]: pos$35,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "cosmic"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         displayManager: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "cosmic-greeter": nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "COSMIC greeter")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "cosmic-greeter", nix.thunk(() => ({})))),
           })),
@@ -67,9 +67,9 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         environment: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.sel(pkgs, "cosmic-comp")),
             nix.thunk(() => nix.sel(pkgs, "cosmic-icons")),
@@ -77,41 +77,41 @@ export default nix.lambda((args) => (() => {
           ]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           greetd: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             enable: true,
             settings: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               default_session: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 user: "cosmic-greeter",
                 command: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils")), "env")} XCURSOR_THEME="\${XCURSOR_THEME:-Pop}" ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "cosmic-greeter-start")}`),
               })),
               initial_session: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfgAutoLogin, "enable")) && nix.asBool(!nix.eq(nix.sel(cfgAutoLogin, "user"), null)))), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   user: nix.thunk(() => nix.sel(cfgAutoLogin, "user")),
                   command: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils")), "env")} XCURSOR_THEME="\${XCURSOR_THEME:-Pop}" systemd-cat -t cosmic-session ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "cosmic-session")), "start-cosmic")}`),
                 })))),
             })),
           })),
-          "accounts-daemon": nix.thunk(() => ({ __proto__: pos$11, enable: true })),
+          "accounts-daemon": nix.thunk(() => ({ [nix.POS]: pos$11, enable: true })),
           dbus: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
-          libinput: nix.thunk(() => ({ __proto__: pos$13, enable: true })),
+          libinput: nix.thunk(() => ({ [nix.POS]: pos$13, enable: true })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           services: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             "cosmic-greeter-daemon": nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               before: nix.thunk(() => ["greetd.service"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 Type: "dbus",
                 BusName: "com.system76.CosmicGreeter",
                 ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "cosmic-greeter-daemon")),
@@ -120,15 +120,15 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             settings: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               "cosmic-greeter": nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 "/run/cosmic-greeter": nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   d: nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     group: "cosmic-greeter",
                     mode: "0755",
                     user: "cosmic-greeter",
@@ -139,12 +139,12 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$27,
-          groups: nix.thunk(() => ({ __proto__: pos$24, "cosmic-greeter": nix.thunk(() => ({})) })),
+          [nix.POS]: pos$27,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$24, "cosmic-greeter": nix.thunk(() => ({})) })),
           users: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             "cosmic-greeter": nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               description: "COSMIC login greeter user",
               isSystemUser: true,
               home: "/var/lib/cosmic-greeter",
@@ -156,18 +156,18 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           pam: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             services: nix.thunk(() => ({
-              __proto__: pos$29,
-              "cosmic-greeter": nix.thunk(() => ({ __proto__: pos$28, allowNullPassword: true })),
+              [nix.POS]: pos$29,
+              "cosmic-greeter": nix.thunk(() => ({ [nix.POS]: pos$28, allowNullPassword: true })),
             })),
           })),
         })),
         hardware: nix.thunk(() => ({
-          __proto__: pos$33,
-          graphics: nix.thunk(() => ({ __proto__: pos$32, enable: true })),
+          [nix.POS]: pos$33,
+          graphics: nix.thunk(() => ({ [nix.POS]: pos$32, enable: true })),
         })),
       })))),
   };

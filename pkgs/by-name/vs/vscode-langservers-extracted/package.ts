@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const runCommandLocal = nix.arg($, "runCommandLocal");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: nix.thunk(() => nix.attr(vscodium, "version")),
       src: nix.thunk(() => nix.attr(vscodium, "src")),
       pname: "vscode-langservers-extracted",
@@ -53,11 +53,11 @@ cp -a node_modules/typescript "$out/lib/extensions/node_modules/typescript"
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           initialization: nix.thunk(() => nix.app(runCommandLocal, "vscode-langservers-extracted-initialization", nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
             })), "request() {\n  init_request='{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"initialize\",\"params\":{\"processId\":null,\"rootUri\":null,\"capabilities\":{}}}'\n  content_length=${#init_request}\n  printf \"Content-Length: %d\\r\\n\\r\\n%s\" \"$content_length\" \"$init_request\"\n  sleep 1\n}\n\nfor language in css html json eslint; do\n  echo \"Checking $language language server\"\n  response=$(request | timeout 3 \"vscode-$language-language-server\" --stdio) || true\n  grep -q '\"capabilities\"' <<< \"$response\"\ndone\n\ntouch $out\n")),
         })),
@@ -65,7 +65,7 @@ runHook postInstall
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(vscodium, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         license: nix.thunk(() => nix.attr(from, "license")),
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
         description: "HTML/CSS/JSON/ESLint language servers extracted from vscode",

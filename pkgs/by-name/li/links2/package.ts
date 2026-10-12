@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const libxt = nix.arg($, "libxt");
   const libxau = nix.arg($, "libxau");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "2.30",
       pname: "links2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://links.twibright.com/download/links-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-xGMca1oRUnzcPLeHL8I7fyslwrAh1Za+QQ2ttAMV8WY=",
         })))),
@@ -45,9 +45,9 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, bzip2]),
       patches: nix.thunk(() => [nix.path(here, "./gcc-16.patch")]),
       configureFlags: nix.thunk(() => nix.concat(["--with-ssl"], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool((nix.asBool(enableX11) || nix.asBool(enableFB))) || nix.asBool(enableDirectFB))), "--enable-graphics"), nix.concat(nix.app(nix.sel(lib, "optional"), enableX11, "--with-x"), nix.concat(nix.app(nix.sel(lib, "optional"), enableFB, "--with-fb"), nix.app(nix.sel(lib, "optional"), enableDirectFB, "--with-directfb")))))),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=implicit-int" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=implicit-int" })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://links.twibright.com/",
         description: "Small browser with some graphics support",
         maintainers: nix.thunk(() => (() => {

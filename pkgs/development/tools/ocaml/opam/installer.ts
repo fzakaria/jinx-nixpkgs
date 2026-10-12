@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const opam = nix.arg($, "opam");
   const ocamlPackages = nix.arg($, "ocamlPackages");
   return nix.app(nix.sel(ocamlPackages, "buildDunePackage"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "opam-installer",
       version: nix.thunk(() => nix.attr(opam, "version")),
       src: nix.thunk(() => nix.attr(opam, "src")),
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => nix.update(nix.sel(opam, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Handle (un)installation from opam install files",
         mainProgram: "opam-installer",
       })),

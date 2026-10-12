@@ -21,21 +21,21 @@ export default nix.lambda((args) => (() => {
       const rev = nix.arg($_1, "rev");
       const name = nix.argOr($_1, "name", () => nix.app(repoRevToNameMaybe, repo, rev, "savannah"));
       const result = nix.thunk(() => nix.update(nix.app(fetchzip, nix.thunk(() => nix.update({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name: name,
           url: nix.thunk(() => (() => {
             const repo$ = nix.thunk(() => nix.app(nix.sel(lib, "last"), nix.thunk(() => nix.app(nix.sel(lib, "strings", "splitString"), "/", repo))));
             return nix.str`https://cgit.git.savannah.gnu.org/cgit/${repo}.git/snapshot/${repo$}-${rev}.tar.gz`;
           })()),
           meta: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             homepage: nix.thunk(() => nix.str`https://cgit.git.savannah.gnu.org/cgit/${repo}.git/`),
           })),
           passthru: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             gitRepoUrl: nix.thunk(() => nix.str`https://cgit.git.savannah.gnu.org/git/${repo}.git`),
           })),
-        }, nix.builtins.removeAttrs(args_2, nix.thunk(() => ["repo", "rev"]))))), { __proto__: pos$4, rev: rev }));
+        }, nix.builtins.removeAttrs(args_2, nix.thunk(() => ["repo", "rev"]))))), { [nix.POS]: pos$4, rev: rev }));
       return nix.app(nix.sel(lib, "warnOnInstantiate"), "`fetchFromSavannah` is deprecated and will be removed in a future release.", result);
     })(), formals$2));
 })(), formals$1);

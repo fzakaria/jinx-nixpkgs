@@ -14,21 +14,21 @@ export default nix.lambda((args) => (() => {
   const ocf = nix.arg($, "ocf");
   const ppxlib = nix.arg($, "ppxlib");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ocf_ppx",
       minimalOCamlVersion: "4.11",
       src: nix.thunk(() => nix.attr(ocf, "src")),
       version: nix.thunk(() => nix.attr(ocf, "version")),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: "https://framagit.org/zoggy/ocf/-/commit/38b1f6420e5c01b3ea6b2fed99b6b62e4c848dc0.patch",
             hash: "sha256-GymTdK/dOYGianvNIKkl9OhBGW+4dX5TqAkQuEF5FmA=",
             includes: nix.thunk(() => ["*.ml"]),
           })))),
       ]),
       buildInputs: nix.thunk(() => [ppxlib, ocf]),
-      meta: nix.thunk(() => nix.update(nix.sel(ocf, "meta"), { __proto__: pos$2, description: "Preprocessor for Ocf library" })),
+      meta: nix.thunk(() => nix.update(nix.sel(ocf, "meta"), { [nix.POS]: pos$2, description: "Preprocessor for Ocf library" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=ppx.ts.map

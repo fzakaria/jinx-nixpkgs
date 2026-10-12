@@ -19,21 +19,21 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const CPPFLAGS = nix.arg($_1, "CPPFLAGS");
       return nix.app(nix.sel(mkspiffs, "overrideAttrs"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           env: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             CPPFLAGS: nix.thunk(() => nix.builtins.toString(CPPFLAGS)),
             BUILD_CONFIG_NAME: nix.thunk(() => nix.str`-${name}`),
           })),
         })));
     })(), formals$2), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       "arduino-esp8266": nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         CPPFLAGS: nix.thunk(() => ["-DSPIFFS_USE_MAGIC_LENGTH=0", "-DSPIFFS_ALIGNED_OBJECT_INDEX_TABLES=1"]),
       })),
-      "arduino-esp32": nix.thunk(() => ({ __proto__: pos$4, CPPFLAGS: nix.thunk(() => ["-DSPIFFS_OBJ_META_LEN=4"]) })),
-      "esp-idf": nix.thunk(() => ({ __proto__: pos$5, CPPFLAGS: nix.thunk(() => ["-DSPIFFS_OBJ_META_LEN=4"]) })),
+      "arduino-esp32": nix.thunk(() => ({ [nix.POS]: pos$4, CPPFLAGS: nix.thunk(() => ["-DSPIFFS_OBJ_META_LEN=4"]) })),
+      "esp-idf": nix.thunk(() => ({ [nix.POS]: pos$5, CPPFLAGS: nix.thunk(() => ["-DSPIFFS_OBJ_META_LEN=4"]) })),
     })));
 })(), formals$1);
 //# sourceMappingURL=presets.ts.map

@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ubidump",
       version: "0-unstable-2023-09-20",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nlitsme",
           repo: "ubidump",
           rev: "c8cffcbb8c2d61ebece81dff643b8eccfe6d5642",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "View or extract the contents of UBIFS images",
         homepage: "https://github.com/nlitsme/ubidump",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

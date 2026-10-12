@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
   const withIPv6 = nix.argOr($, "withIPv6", () => true);
   const withDebug = nix.argOr($, "withDebug", () => false);
   const phpConfig = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     embedSupport: true,
     apxs2Support: false,
     systemdSupport: false,
@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
   const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       version: "1.35.0",
       pname: "unit",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "nginx",
           repo: "unit",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -68,19 +68,19 @@ ${nix.app(optionalString, withPHP82, nix.thunk(() => nix.str`./configure php    
 ${nix.app(optionalString, withPerl, nix.thunk(() => nix.str`./configure perl   --module=perl     --perl=${perl}/bin/perl`))}
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=deprecated-declarations"]))),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "unit-perl": nix.thunk(() => nix.sel(nixosTests, "unit-perl")),
           "unit-php": nix.thunk(() => nix.sel(nixosTests, "unit-php")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Dynamic web and application server, designed to run applications in multiple languages",
         mainProgram: "unitd",
         homepage: "https://unit.nginx.org/",

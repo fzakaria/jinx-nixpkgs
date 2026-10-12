@@ -61,13 +61,13 @@ export default nix.lambda((args) => (() => {
   const ops = nix.thunk(() => nix.sel(lib, "optionals"));
   const opString = nix.thunk(() => nix.sel(lib, "optionalString"));
   const rubygems = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./rubygems")), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       stdenv: stdenv,
       lib: lib,
       fetchurl: fetchurl,
       gitUpdater: gitUpdater,
     }))));
-  const rubyVersion = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ruby-version.nix")), nix.thunk(() => ({ __proto__: pos$2, lib: lib }))));
+  const rubyVersion = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ruby-version.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, lib: lib }))));
   const generic = nix.lambda((args_2) => (() => {
     const $_1 = nix.formals(args_2, formals$2);
     const version = nix.arg($_1, "version");
@@ -120,15 +120,15 @@ export default nix.lambda((args) => (() => {
         const makeBinaryWrapper_1 = nix.arg($_2, "makeBinaryWrapper");
         const buildRubyGem_1 = nix.arg($_2, "buildRubyGem");
         const defaultGemConfig_1 = nix.arg($_2, "defaultGemConfig");
-        const baseRuby = nix.argOr($_2, "baseRuby", () => nix.app(nix.sel(buildPackages_1, "ruby", "override"), nix.thunk(() => ({ __proto__: pos$3, docSupport: false, rubygemsSupport: false }))));
+        const baseRuby = nix.argOr($_2, "baseRuby", () => nix.app(nix.sel(buildPackages_1, "ruby", "override"), nix.thunk(() => ({ [nix.POS]: pos$3, docSupport: false, rubygemsSupport: false }))));
         const useBaseRuby = nix.argOr($_2, "useBaseRuby", () => !nix.eq(nix.sel(stdenv_1, "hostPlatform"), nix.sel(stdenv_1, "buildPlatform")));
         const gitUpdater_1 = nix.arg($_2, "gitUpdater");
         return nix.app(nix.sel(stdenv_1, "mkDerivation"), (finalAttrs) => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             pname: "ruby",
             version: version,
             src: nix.thunk(() => nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 url: nix.thunk(() => nix.str`https://cache.ruby-lang.org/pub/ruby/${nix.sel(ver, "majMin")}/ruby-${ver}.tar.gz`),
                 hash: hash,
               })))),
@@ -138,15 +138,15 @@ export default nix.lambda((args) => (() => {
             buildInputs: nix.thunk(() => nix.concat([autoconf_1], nix.concat(nix.app(op, fiddleSupport, libffi_1), nix.concat(nix.app(ops, cursesSupport, nix.thunk(() => [ncurses_1, readline_1])), nix.concat(nix.app(op, zlibSupport, zlib_1), nix.concat(nix.app(op, opensslSupport, openssl_1), nix.concat(nix.app(op, gdbmSupport, gdbm_1), nix.concat(nix.app(op, yamlSupport, libyaml_1), nix.concat(nix.app(op, nix.thunk(() => (nix.asBool(!nix.asBool(cursesSupport)) && nix.asBool(nix.sel(stdenv_1, "hostPlatform", "isDarwin")))), readline_1), nix.app(ops, nix.thunk(() => nix.sel(stdenv_1, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv_1, libunwind_1]))))))))))),
             propagatedBuildInputs: nix.thunk(() => nix.app(op, jemallocSupport, jemalloc_1)),
             env: nix.thunk(() => nix.update(nix.app(nix.sel(lib_1, "optionalAttrs"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(stdenv_1, "hostPlatform"), nix.sel(stdenv_1, "buildPlatform"))) && nix.asBool(yjitSupport))), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 NIX_RUSTFLAGS: nix.thunk(() => nix.str`--target ${nix.sel(stdenv_1, "hostPlatform", "rust", "rustcTargetSpec")}`),
-              }))), nix.app(nix.sel(lib_1, "optionalAttrs"), docSupport, nix.thunk(() => ({ __proto__: pos$6, NROFF: nix.thunk(() => nix.str`${groff_1}/bin/nroff`) }))))),
+              }))), nix.app(nix.sel(lib_1, "optionalAttrs"), docSupport, nix.thunk(() => ({ [nix.POS]: pos$6, NROFF: nix.thunk(() => nix.str`${groff_1}/bin/nroff`) }))))),
             enableParallelBuilding: true,
             enableParallelInstalling: false,
             patches: nix.thunk(() => nix.concat(nix.app(op, useBaseRuby, nix.path(here, "./do-not-update-gems-baseruby-3.2.patch")), [nix.path(here, "./dont-refer-to-build-dir.patch")])),
             cargoRoot: nix.thunk(() => nix.app(opString, yjitSupport, "yjit")),
             cargoDeps: nix.thunk(() => (nix.asBool(yjitSupport) ? nix.app(nix.sel(rustPlatform_1, "fetchCargoVendor"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 src: nix.thunk(() => nix.attr(finalAttrs, "src")),
                 cargoRoot: nix.thunk(() => nix.attr(finalAttrs, "cargoRoot")),
                 hash: nix.thunk(() => (() => {
@@ -248,7 +248,7 @@ fi
             doInstallCheck: true,
             disallowedRequisites: nix.thunk(() => nix.concat(nix.app(op, nix.thunk(() => !nix.asBool(jitSupport)), nix.thunk(() => nix.sel(stdenv_1, "cc"))), nix.app(op, useBaseRuby, baseRuby))),
             meta: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               description: "Object-oriented language for quick and easy programming",
               homepage: "https://www.ruby-lang.org/",
               license: nix.thunk(() => nix.sel(lib_1, "licenses", "ruby")),
@@ -262,7 +262,7 @@ fi
               const libPath = nix.thunk(() => nix.str`lib/${rubyEngine}/${nix.sel(ver, "libDir")}`);
               const gemPath = nix.thunk(() => nix.str`lib/${rubyEngine}/gems/${nix.sel(ver, "libDir")}`);
               const devEnv = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./dev.nix")), nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   buildEnv: buildEnv_1,
                   bundler: bundler_1,
                   bundix: bundix_1,
@@ -270,7 +270,7 @@ fi
                 }))));
               const rubygems_1 = rubygems;
               const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../ruby-modules/with-packages")), nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   lib: lib_1,
                   stdenv: stdenv_1,
                   makeBinaryWrapper: makeBinaryWrapper_1,
@@ -283,7 +283,7 @@ fi
               const buildGems = nix.thunk(() => nix.attr(from, "buildGems"));
               const gems = nix.thunk(() => nix.attr(from, "gems"));
               return {
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 version: version_1,
                 rubyEngine,
                 libPath,
@@ -294,29 +294,29 @@ fi
                 buildGems,
                 gems,
               };
-            })(), nix.app(nix.sel(lib_1, "optionalAttrs"), useBaseRuby, nix.thunk(() => ({ __proto__: pos$12, baseRuby: baseRuby }))))),
+            })(), nix.app(nix.sel(lib_1, "optionalAttrs"), useBaseRuby, nix.thunk(() => ({ [nix.POS]: pos$12, baseRuby: baseRuby }))))),
           }));
       })(), formals$3), args_1));
     return nix.force(rubyDrv);
   })(), formals$2);
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     mkRubyVersion: rubyVersion,
     mkRuby: generic,
     ruby_3_3: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         version: nix.thunk(() => nix.app(rubyVersion, "3", "3", "10", "")),
         hash: "sha256-tVW6pGejBs/I5sbtJNDSeyfpob7R2R2VUJhZ6saw6Sg=",
         cargoHash: "sha256-xE7Cv+NVmOHOlXa/Mg72CTSaZRb72lOja98JBvxPvSs=",
       })))),
     ruby_3_4: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         version: nix.thunk(() => nix.app(rubyVersion, "3", "4", "9", "")),
         hash: "sha256-e7TU9egHzCclHRTZ1ghtGCxbJYdRkeRKsVtwnNen3Zw=",
         cargoHash: "sha256-5Tp8Kth0yO89/LIcU8K01z6DdZRr8MAA0DPKqDEjIt0=",
       })))),
     ruby_4_0: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         version: nix.thunk(() => nix.app(rubyVersion, "4", "0", "7", "")),
         hash: "sha256-kRrOIPkNBoyg5N2m0OTw+B5S5S8t1PQATHIeJTQS6C0=",
         cargoHash: "sha256-z7NwWc4TaR042hNx0xgRkh/BQEpEJtE53cfrN0qNiE0=",

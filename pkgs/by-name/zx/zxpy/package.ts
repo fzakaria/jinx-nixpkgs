@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const deterministic_uname = nix.arg($, "deterministic-uname");
   const addBinToPathHook = nix.arg($, "addBinToPathHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zxpy",
       version: "1.6.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tusharsadhwani",
           repo: "zxpy",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       })()),
       pythonImportsCheck: nix.thunk(() => ["zx"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Shell scripts made simple",
         homepage: "https://github.com/tusharsadhwani/zxpy",
         changelog: nix.thunk(() => nix.str`https://github.com/tusharsadhwani/zxpy/releases/tag/${nix.sel(finalAttrs, "version")}`),

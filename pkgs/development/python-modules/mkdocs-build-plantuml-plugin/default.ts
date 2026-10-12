@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const httplib2 = nix.arg($, "httplib2");
   const mkdocs = nix.arg($, "mkdocs");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mkdocs-build-plantuml",
       version: "2.1.0",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "christo-ph",
           repo: "mkdocs_build_plantuml",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["mkdocs_build_plantuml_plugin"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MkDocs plugin to help generate your plantuml images locally or remotely as files (NOT inline)",
         homepage: "https://github.com/christo-ph/mkdocs_build_plantuml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

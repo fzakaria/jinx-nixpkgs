@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-bWtaeN4qDQCEWJ9ofzhLLs1qZScJP+xWRAOxowYF16g=",
@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest7CheckHook, requests_mock]);
       const pythonImportsCheck = nix.thunk(() => ["favicon"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Find a website's favicon",
         homepage: "https://github.com/scottwernervt/favicon",
         changelog: nix.thunk(() => nix.str`https://github.com/scottwernervt/favicon/blob/v${version}/CHANGELOG.rst`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

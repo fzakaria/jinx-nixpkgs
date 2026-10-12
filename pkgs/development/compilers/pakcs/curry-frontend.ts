@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const time = nix.arg($, "time");
   const transformers = nix.arg($, "transformers");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "curry-frontend",
       version: "2.1.0",
       src: nix.path(here, "./."),

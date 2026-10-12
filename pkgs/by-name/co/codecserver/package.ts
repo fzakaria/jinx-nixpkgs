@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const udev = nix.arg($, "udev");
   const protobuf_21 = nix.arg($, "protobuf_21");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "codecserver",
       version: "0.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jketterl",
           repo: "codecserver",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [protobuf_21]),
       postFixup: "substituteInPlace \"$out\"/lib/pkgconfig/codecserver.pc \\\n  --replace-fail '=${prefix}//' '=/' \\\n  --replace-fail '=${exec_prefix}//' '=/'\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/jketterl/codecserver",
         description: "Modular audio codec server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

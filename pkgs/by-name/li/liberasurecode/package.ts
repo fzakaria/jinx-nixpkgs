@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "liberasurecode",
       version: "1.6.5",
       outputs: nix.thunk(() => ["out", "dev", "doc"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openstack",
           repo: "liberasurecode",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,17 +39,17 @@ export default nix.lambda((args) => (() => {
       postInstall: "# remove useless man pages about directories\nrm doc/man/man*/_*\n# avoid installing doc/man/man3/noname\ninstallManPage doc/man/man*/*.*\n\nmoveToOutput share/liberasurecode/ $doc\n",
       checkTarget: "test",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Erasure Code API library written in C with pluggable Erasure Code backends",
         homepage: "https://github.com/openstack/liberasurecode",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

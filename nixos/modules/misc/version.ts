@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
     const isNixos = nix.thunk(() => nix.eq(nix.sel(cfg, "distroId"), "nixos"));
     const optionalAttr = (cond) => (attr) => (nix.asBool(cond) ? nix.force(attr) : null);
     return nix.update(nix.attrsDyn({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       NAME: nix.thunk(() => nix.str`${nix.sel(cfg, "distroName")}`),
       ID: nix.thunk(() => nix.str`${nix.sel(cfg, "distroId")}`),
       VENDOR_NAME: nix.thunk(() => nix.sel(cfg, "vendorName")),
@@ -97,12 +97,12 @@ export default nix.lambda((args) => (() => {
     ]), nix.sel(cfg, "extraOSReleaseArgs"));
   })());
   const initrdReleaseContents = nix.thunk(() => nix.update(nix.builtins.removeAttrs(osReleaseContents, nix.thunk(() => ["BUILD_ID"])), {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     PRETTY_NAME: nix.thunk(() => nix.str`${nix.sel(osReleaseContents, "PRETTY_NAME")} (Initrd)`),
   }));
   const initrdRelease = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "initrd-release", nix.thunk(() => nix.app(attrsToText, initrdReleaseContents))));
   return {
-    __proto__: pos$41,
+    [nix.POS]: pos$41,
     imports: nix.thunk(() => [
       nix.path(here, "./label.nix"),
       nix.thunk(() => nix.app(mkRenamedOptionModule, nix.thunk(() => ["system", "nixosVersion"]), nix.thunk(() => ["system", "nixos", "version"]))),
@@ -111,128 +111,128 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(mkRenamedOptionModule, nix.thunk(() => ["system", "nixosLabel"]), nix.thunk(() => ["system", "nixos", "label"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       boot: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         initrd: nix.thunk(() => ({
-          __proto__: pos$4,
-          osRelease: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ __proto__: pos$3, internal: true, readOnly: true, default: initrdRelease })))),
+          [nix.POS]: pos$4,
+          osRelease: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$3, internal: true, readOnly: true, default: initrdRelease })))),
         })),
       })),
       system: nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         nixos: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           version: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               internal: true,
               type: nix.thunk(() => nix.sel(types, "str")),
               description: "The full NixOS version (e.g. `16.03.1160.f2d4ee1`).",
             })))),
           release: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               readOnly: true,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: nix.thunk(() => nix.sel(trivial, "release")),
               description: "The NixOS release (e.g. `16.03`).",
             })))),
           versionSuffix: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               internal: true,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: nix.thunk(() => nix.sel(trivial, "versionSuffix")),
               description: "The NixOS version suffix (e.g. `1160.f2d4ee1`).",
             })))),
           revision: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               internal: true,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
               default: nix.thunk(() => nix.app(nix.sel(trivial, "revisionWithDefault"), null)),
               description: "The Git revision from which this NixOS configuration was built.",
             })))),
           codeName: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               readOnly: true,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: nix.thunk(() => nix.sel(trivial, "codeName")),
               description: "The NixOS release code name (e.g. `Emu`).",
             })))),
           distroId: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               internal: true,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "nixos",
               description: "The id of the operating system",
             })))),
           distroName: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               internal: true,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "NixOS",
               description: "The name of the operating system",
             })))),
           variant_id: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "strMatching"), "^[a-z0-9._-]+$")))),
               default: null,
               description: "A lower-case string identifying a specific variant or edition of the operating system",
               example: "installer",
             })))),
           variantName: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
               default: null,
               description: "A string identifying a specific variant or edition of the operating system suitable for presentation to the user",
               example: "NixOS Installer Image",
             })))),
           vendorId: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               internal: true,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "nixos",
               description: "The id of the operating system vendor",
             })))),
           vendorName: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               internal: true,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "NixOS",
               description: "The name of the operating system vendor",
             })))),
           extraOSReleaseArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               internal: true,
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: nix.thunk(() => ({})),
               description: "Additional attributes to be merged with the /etc/os-release generator.",
-              example: nix.thunk(() => ({ __proto__: pos$17, ANSI_COLOR: "1;31" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$17, ANSI_COLOR: "1;31" })),
             })))),
           extraLSBReleaseArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               internal: true,
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: nix.thunk(() => ({})),
               description: "Additional attributes to be merged with the /etc/lsb-release generator.",
-              example: nix.thunk(() => ({ __proto__: pos$19, LSB_VERSION: "1.0" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$19, LSB_VERSION: "1.0" })),
             })))),
         })),
         image: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           id: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
               default: null,
               description: "Image identifier.\n\nThis corresponds to the `IMAGE_ID` field in {manpage}`os-release(5)`. See the\nupstream docs for more details on valid characters for this field:\n<https://www.freedesktop.org/software/systemd/man/latest/os-release.html#IMAGE_ID=>\n\nYou would only want to set this option if you're build NixOS appliance images.\n",
             })))),
           version: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
               default: null,
               description: "Image version.\n\nThis corresponds to the `IMAGE_VERSION` field in {manpage}`os-release(5)`. See the\nupstream docs for more details on valid characters for this field:\n<https://www.freedesktop.org/software/systemd/man/latest/os-release.html#IMAGE_VERSION=>\n\nYou would only want to set this option if you're build NixOS appliance images.\n",
             })))),
         })),
         stateVersion: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             type: nix.thunk(() => nix.sel(types, "str")),
             apply: (v) => nix.app(nix.sel(lib, "warnIf"), nix.thunk(() => nix.eq(nix.sel(options, "system", "stateVersion", "highestPrio"), nix.sel(nix.app(nix.sel(lib, "mkOptionDefault"), nix.thunk(() => ({}))), "priority"))), nix.thunk(() => nix.str`system.stateVersion is not set, defaulting to ${v}. Read why this matters on https://nixos.org/manual/nixos/stable/options.html#opt-system.stateVersion.`), v),
             default: nix.thunk(() => nix.sel(cfg, "release")),
@@ -240,12 +240,12 @@ export default nix.lambda((args) => (() => {
             description: "This option defines the first version of NixOS you have installed on this particular machine,\nand is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.\n\nFor example, if NixOS version XX.YY ships with AwesomeDB version N by default, and is then\nupgraded to version XX.YY+1, which ships AwesomeDB version N+1, the existing databases\nmay no longer be compatible, causing applications to fail, or even leading to data loss.\n\nThe `stateVersion` mechanism avoids this situation by making the default version of such packages\nconditional on the first version of NixOS you've installed (encoded in `stateVersion`), instead of\nsimply always using the latest one.\n\nNote that this generally only affects applications that can't upgrade their data automatically -\napplications and services supporting automatic migrations will remain on latest versions when\nyou upgrade.\n\nMost users should **never** change this value after the initial install, for any reason,\neven if you've upgraded your system to a new NixOS release.\n\nThis value does **not** affect the Nixpkgs version your packages and OS are pulled from,\nso changing it will **not** upgrade your system.\n\nThis value being lower than the current NixOS release does **not** mean your system is\nout of date, out of support, or vulnerable.\n\nDo **not** change this value unless you have manually inspected all the changes it would\nmake to your configuration, and migrated your data accordingly.\n",
           })))),
         moduleStateRevisions: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             type: nix.thunk(() => (() => {
               const baseType = nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "ints", "unsigned"))));
               const isStateRevisionOption = (x) => (nix.asBool(nix.app(nix.sel(lib, "isOption"), x)) && nix.asBool(nix.has(x, "migrations")));
               return nix.update(nix.app(nix.sel(types, "addCheck"), baseType, (attrs) => nix.builtins.all((attrPath) => nix.app(isStateRevisionOption, nix.thunk(() => nix.app(nix.sel(lib, "attrByPath"), nix.thunk(() => nix.app(nix.sel(lib, "splitString"), ".", attrPath)), null, options))), nix.thunk(() => nix.builtins.attrNames(attrs)))), {
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 description: nix.thunk(() => nix.str`${nix.sel(baseType, "description")}, in which every attribute name is the path to an option created with mkStateRevisionOption`),
               });
             })()),
@@ -254,7 +254,7 @@ export default nix.lambda((args) => (() => {
             description: "NixOS modules should set attributes on this option. Users should leave\nit alone. Future tooling may use it to determine the consequences of\nupdating {option}`system.stateVersion`.\n",
           })))),
         configurationRevision: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
             default: null,
             description: "The Git revision of the top-level flake from which this configuration was built.",
@@ -262,10 +262,10 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$39,
+      [nix.POS]: pos$39,
       assertions: nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           assertion: nix.thunk(() => !nix.eq(nix.app(match, "[0-9]{2}\\.[0-9]{2}", nix.thunk(() => nix.sel(config, "system", "stateVersion"))), null)),
           message: nix.thunk(() => nix.str`${nix.sel(config, "system", "stateVersion")} is an invalid value for 'system.stateVersion'; it must be in the format "YY.MM",
 which corresponds to a prior release of NixOS.
@@ -279,20 +279,20 @@ If you're unsure which value to set it to, use "${(nix.asBool(!nix.eq(nix.app(ma
         })),
       ]),
       system: nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         nixos: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           version: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.add(nix.sel(cfg, "release"), nix.sel(cfg, "versionSuffix"))))),
         })),
       })),
       environment: nix.thunk(() => ({
-        __proto__: pos$38,
+        [nix.POS]: pos$38,
         etc: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           "lsb-release": nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             text: nix.thunk(() => nix.app(attrsToText, nix.thunk(() => nix.update({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 LSB_VERSION: nix.thunk(() => nix.str`${nix.sel(cfg, "release")} (${nix.sel(cfg, "codeName")})`),
                 DISTRIB_ID: nix.thunk(() => nix.str`${nix.sel(cfg, "distroId")}`),
                 DISTRIB_RELEASE: nix.thunk(() => nix.sel(cfg, "release")),
@@ -301,13 +301,13 @@ If you're unsure which value to set it to, use "${(nix.asBool(!nix.eq(nix.app(ma
               }, nix.sel(cfg, "extraLSBReleaseArgs"))))),
           })),
           "os-release": nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             text: nix.thunk(() => nix.app(attrsToText, osReleaseContents)),
           })),
         })),
       })),
     })),
-    meta: nix.thunk(() => ({ __proto__: pos$40, buildDocsInSandbox: false })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$40, buildDocsInSandbox: false })),
   };
 })(), formals$1);
 //# sourceMappingURL=version.ts.map

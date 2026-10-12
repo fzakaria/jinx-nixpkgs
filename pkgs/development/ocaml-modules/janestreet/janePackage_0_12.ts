@@ -22,19 +22,19 @@ export default nix.lambda((args) => (() => {
     const duneVersion = nix.argOr($_1, "duneVersion", () => "3");
     const hash = nix.arg($_1, "hash");
     return nix.app(buildDunePackage, nix.thunk(() => nix.update(args_2, {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version: version,
         duneVersion: duneVersion,
         minimalOCamlVersion: "4.07",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "janestreet",
             repo: pname,
             rev: nix.thunk(() => nix.str`v${version}`),
             sha256: hash,
           })))),
         meta: nix.thunk(() => nix.update({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
           homepage: nix.thunk(() => nix.str`https://github.com/janestreet/${pname}`),
         }, nix.sel(args_2, "meta"))),

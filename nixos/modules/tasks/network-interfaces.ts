@@ -270,7 +270,7 @@ export default nix.lambda((args) => (() => {
     })(), formals$2)));
   const needsMstpd = nix.thunk(() => !nix.eq(rstpBridges, {}));
   const bridgeStp = nix.thunk(() => nix.app(nix.lookup(w_1, "optional"), needsMstpd, nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "bridge-stp",
         executable: true,
         destination: "/bin/bridge-stp",
@@ -296,18 +296,18 @@ exit 1
   const addrOpts = (v) => (() => {
     nix.assert_((nix.asBool(nix.eq(v, 4n)) || nix.asBool(nix.eq(v, 6n))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/modules/tasks/network-interfaces.nix:70:5");
     return {
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       options: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         address: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
             description: nix.thunk(() => nix.str`IPv${nix.app(nix.builtins.toString, v)} address of the interface. Leave empty to configure the
 interface using DHCP.
 `),
           })))),
         prefixLength: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "ints", "between"), 0n, nix.thunk(() => (nix.asBool(nix.eq(v, 4n)) ? 32n : 128n)))),
             description: nix.thunk(() => nix.str`Subnet mask of the interface, specified as the number of
 bits in the prefix (\`${(nix.asBool(nix.eq(v, 4n)) ? "24" : "64")}\`).
@@ -317,70 +317,70 @@ bits in the prefix (\`${(nix.asBool(nix.eq(v, 4n)) ? "24" : "64")}\`).
     };
   })();
   const routeOpts = (v) => ({
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       address: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
           description: nix.thunk(() => nix.str`IPv${nix.app(nix.builtins.toString, v)} address of the network.`),
         })))),
       prefixLength: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "ints", "between"), 0n, nix.thunk(() => (nix.asBool(nix.eq(v, 4n)) ? 32n : 128n)))),
           description: nix.thunk(() => nix.str`Subnet mask of the network, specified as the number of
 bits in the prefix (\`${(nix.asBool(nix.eq(v, 4n)) ? "24" : "64")}\`).
 `),
         })))),
       type: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "nullOr"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "enum"), nix.thunk(() => ["unicast", "local", "broadcast", "multicast"]))))),
           default: null,
           description: "Type of the route.  See the `Route types` section\nin the {manpage}`ip-route(8)` manual page for the details.\n\nNote that `prohibit`, `blackhole`,\n`unreachable`, and `throw` cannot\nbe configured per device, so they are not available here. Similarly,\n`nat` hasn't been supported since kernel 2.6.\n",
         })))),
       via: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")))),
           default: null,
           description: nix.thunk(() => nix.str`IPv${nix.app(nix.builtins.toString, v)} address of the next hop.`),
         })))),
       options: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")))),
           default: nix.thunk(() => ({})),
-          example: nix.thunk(() => ({ __proto__: pos$10, mtu: "1492", window: "524288" })),
+          example: nix.thunk(() => ({ [nix.POS]: pos$10, mtu: "1492", window: "524288" })),
           description: "Other route options. See the symbol `OPTIONS`\nin the {manpage}`ip-route(8)` manual page for the details.\nYou may also specify `metric`,\n`src`, `protocol`,\n`scope`, `from`\nand `table`, which are technically\nnot route options, in the sense used in the manual.\n",
         })))),
     })),
   });
-  const gatewayCoerce = (address) => ({ __proto__: pos$14, address: address });
+  const gatewayCoerce = (address) => ({ [nix.POS]: pos$14, address: address });
   const gatewayOpts = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$3);
     return {
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       options: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         address: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
             description: "The default gateway address.",
           })))),
         interface: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")))),
             default: null,
             example: "enp0s3",
             description: "The default gateway interface.",
           })))),
         metric: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "int")))),
             default: null,
             example: 42n,
             description: "The default gateway metric/preference.",
           })))),
         source: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")))),
             default: null,
             description: "The default source address.",
@@ -392,17 +392,17 @@ bits in the prefix (\`${(nix.asBool(nix.eq(v, 4n)) ? "24" : "64")}\`).
     const $_1 = nix.formals(args_1, formals$4);
     const name = nix.arg($_1, "name");
     return {
-      __proto__: pos$53,
+      [nix.POS]: pos$53,
       options: nix.thunk(() => ({
-        __proto__: pos$47,
+        [nix.POS]: pos$47,
         name: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             example: "eth0",
             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
             description: "Name of the interface.",
           })))),
         tempAddress: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "enum"), nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), tempaddrValues)))),
             default: nix.thunk(() => nix.sel(cfg, "tempAddresses")),
             defaultText: nix.thunk(() => nix.app(nix.lookup(w_1, "literalExpression"), "config.networking.tempAddresses")),
@@ -419,19 +419,19 @@ ${tempaddrDoc}
 `),
           })))),
         useDHCP: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "bool")))),
             default: null,
             description: "Whether this interface should be configured with DHCP. Overrides the\ndefault set by {option}`networking.useDHCP`. If `null` (the default),\nDHCP is enabled if the interface has no IPv4 addresses configured\nwith {option}`networking.interfaces.<name>.ipv4.addresses`, and\ndisabled otherwise.\n",
           })))),
         ipv4: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           addresses: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               default: [],
               example: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$24, address: "10.0.0.1", prefixLength: 16n })),
-                nix.thunk(() => ({ __proto__: pos$25, address: "192.168.1.1", prefixLength: 24n })),
+                nix.thunk(() => ({ [nix.POS]: pos$24, address: "10.0.0.1", prefixLength: 16n })),
+                nix.thunk(() => ({ [nix.POS]: pos$25, address: "192.168.1.1", prefixLength: 24n })),
               ]),
               type: nix.thunk(() => (() => {
                 const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w_1, "types")), w_1);
@@ -440,12 +440,12 @@ ${tempaddrDoc}
               description: "List of IPv4 addresses that will be statically assigned to the interface.\n",
             })))),
           routes: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               default: [],
               example: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$27, address: "10.0.0.0", prefixLength: 16n })),
+                nix.thunk(() => ({ [nix.POS]: pos$27, address: "10.0.0.0", prefixLength: 16n })),
                 nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   address: "192.168.2.0",
                   prefixLength: 24n,
                   via: "192.168.1.1",
@@ -459,13 +459,13 @@ ${tempaddrDoc}
             })))),
         })),
         ipv6: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           addresses: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               default: [],
               example: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$31, address: "fdfd:b3f0:482::1", prefixLength: 48n })),
-                nix.thunk(() => ({ __proto__: pos$32, address: "2001:1470:fffd:2098::e006", prefixLength: 64n })),
+                nix.thunk(() => ({ [nix.POS]: pos$31, address: "fdfd:b3f0:482::1", prefixLength: 48n })),
+                nix.thunk(() => ({ [nix.POS]: pos$32, address: "2001:1470:fffd:2098::e006", prefixLength: 64n })),
               ]),
               type: nix.thunk(() => (() => {
                 const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w_1, "types")), w_1);
@@ -474,12 +474,12 @@ ${tempaddrDoc}
               description: "List of IPv6 addresses that will be statically assigned to the interface.\n",
             })))),
           routes: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               default: [],
               example: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$34, address: "fdfd:b3f0::", prefixLength: 48n })),
+                nix.thunk(() => ({ [nix.POS]: pos$34, address: "fdfd:b3f0::", prefixLength: 48n })),
                 nix.thunk(() => ({
-                  __proto__: pos$35,
+                  [nix.POS]: pos$35,
                   address: "2001:1470:fffd:2098::",
                   prefixLength: 64n,
                   via: "fdfd:b3f0::1",
@@ -493,33 +493,33 @@ ${tempaddrDoc}
             })))),
         })),
         macAddress: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             default: null,
             example: "00:11:22:33:44:55",
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")))),
             description: "MAC address of the interface. Leave empty to use the default.\n",
           })))),
         mtu: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             default: null,
             example: 9000n,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "int")))),
             description: "MTU size for packets leaving the interface. Leave empty to use the default.\n",
           })))),
         virtual: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             default: false,
             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "bool")),
             description: "Whether this interface is virtual and should be created by tunctl.\nThis is mainly useful for creating bridges between a host and a virtual\nnetwork such as VPN or a virtual machine.\n",
           })))),
         virtualOwner: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             default: "root",
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")))),
             description: "In case of a virtual device, the user who owns it.\n`null` will not set owner, allowing access to any user.\n",
           })))),
         virtualType: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             default: nix.thunk(() => (nix.asBool(nix.app(nix.lookup(w_1, "hasPrefix"), "tun", name)) ? "tun" : "tap")),
             defaultText: nix.thunk(() => nix.app(nix.lookup(w_1, "literalExpression"), "if hasPrefix \"tun\" name then \"tun\" else \"tap\"")),
             type: nix.thunk(() => (() => {
@@ -529,21 +529,21 @@ ${tempaddrDoc}
             description: "The type of interface to create.\nThe default is TUN for an interface name starting\nwith \"tun\", otherwise TAP.\n",
           })))),
         proxyARP: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             default: false,
             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "bool")),
             description: "Turn on proxy_arp for this device.\nThis is mainly useful for creating pseudo-bridges between a real\ninterface and a virtual network such as VPN or a virtual machine for\ninterfaces that don't support real bridging (most wlan interfaces).\nAs ARP proxying acts slightly above the link-layer, below-ip traffic\nisn't bridged, so things like DHCP won't work. The advantage above\nusing NAT lies in the fact that no IP addresses are shared, so all\nhosts are reachable/routeable.\n\nWARNING: turns on ip-routing, so if you have multiple interfaces, you\nshould think of the consequence and setup firewall rules to limit this.\n",
           })))),
         wakeOnLan: nix.thunk(() => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           enable: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "bool")),
               default: false,
               description: "Whether to enable wol on this interface.",
             })))),
           policy: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               type: nix.thunk(() => (() => {
                 const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w_1, "types")), w_1);
                 return nix.app(nix.lookup(w_2, "listOf"), nix.thunk(() => nix.app(nix.lookup(w_2, "enum"), nix.thunk(() => ["phy", "unicast", "multicast", "broadcast", "arp", "magic", "secureon"]))));
@@ -554,7 +554,7 @@ ${tempaddrDoc}
         })),
       })),
       config: nix.thunk(() => ({
-        __proto__: pos$48,
+        [nix.POS]: pos$48,
         name: nix.thunk(() => nix.app(nix.lookup(w_1, "mkDefault"), name)),
       })),
       imports: nix.thunk(() => (() => {
@@ -570,7 +570,7 @@ ${tempaddrDoc}
           nix.thunk(() => nix.app(nix.lookup(w_1, "mkMergedOptionModule"), nix.thunk(() => [nix.thunk(() => ["ipAddress"]), nix.thunk(() => ["prefixLength"])]), nix.thunk(() => ["ipv4", "addresses"]), (cfg_1) => (() => {
               const w_2 = nix.withScope(cfg_1, w_1);
               return nix.app(nix.lookup(w_2, "optional"), nix.thunk(() => (nix.asBool(nix.app(defined, nix.thunk(() => nix.lookup(w_2, "ipAddress")))) && nix.asBool(nix.app(defined, nix.thunk(() => nix.lookup(w_2, "prefixLength")))))), nix.thunk(() => ({
-                  __proto__: pos$49,
+                  [nix.POS]: pos$49,
                   address: nix.thunk(() => nix.lookup(w_2, "ipAddress")),
                   prefixLength: nix.thunk(() => nix.lookup(w_2, "prefixLength")),
                 })));
@@ -578,15 +578,15 @@ ${tempaddrDoc}
           nix.thunk(() => nix.app(nix.lookup(w_1, "mkMergedOptionModule"), nix.thunk(() => [nix.thunk(() => ["ipv6Address"]), nix.thunk(() => ["ipv6PrefixLength"])]), nix.thunk(() => ["ipv6", "addresses"]), (cfg_1) => (() => {
               const w_2 = nix.withScope(cfg_1, w_1);
               return nix.app(nix.lookup(w_2, "optional"), nix.thunk(() => (nix.asBool(nix.app(defined, nix.thunk(() => nix.lookup(w_2, "ipv6Address")))) && nix.asBool(nix.app(defined, nix.thunk(() => nix.lookup(w_2, "ipv6PrefixLength")))))), nix.thunk(() => ({
-                  __proto__: pos$50,
+                  [nix.POS]: pos$50,
                   address: nix.thunk(() => nix.lookup(w_2, "ipv6Address")),
                   prefixLength: nix.thunk(() => nix.lookup(w_2, "ipv6PrefixLength")),
                 })));
             })())),
           nix.thunk(() => ({
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             options: nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               warnings: nix.thunk(() => nix.sel(options, "warnings")),
               assertions: nix.thunk(() => nix.sel(options, "assertions")),
             })),
@@ -599,24 +599,24 @@ ${tempaddrDoc}
     const $_1 = nix.formals(args_1, formals$5);
     const name = nix.arg($_1, "name");
     return {
-      __proto__: pos$58,
+      [nix.POS]: pos$58,
       options: nix.thunk(() => ({
-        __proto__: pos$57,
+        [nix.POS]: pos$57,
         name: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$54,
+            [nix.POS]: pos$54,
             description: "Name of the interface",
             example: "eth0",
             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
           })))),
         vlan: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$55,
+            [nix.POS]: pos$55,
             description: "Vlan tag to apply to interface",
             example: 10n,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "int")))),
             default: null,
           })))),
         type: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$56,
+            [nix.POS]: pos$56,
             description: "Openvswitch type to assign to interface",
             example: "internal",
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")))),
@@ -628,19 +628,19 @@ ${tempaddrDoc}
   const hexChars = nix.thunk(() => nix.app(nix.lookup(w_1, "stringToCharacters"), "0123456789abcdef"));
   const isHexString = (s) => nix.app(nix.lookup(w_1, "all"), (c) => nix.app(nix.lookup(w_1, "elem"), c, hexChars), nix.thunk(() => nix.app(nix.lookup(w_1, "stringToCharacters"), nix.thunk(() => nix.app(nix.lookup(w_1, "toLower"), s)))));
   const tempaddrValues = nix.thunk(() => ({
-    __proto__: pos$62,
+    [nix.POS]: pos$62,
     disabled: nix.thunk(() => ({
-      __proto__: pos$59,
+      [nix.POS]: pos$59,
       sysctl: "0",
       description: "completely disable IPv6 temporary addresses",
     })),
     enabled: nix.thunk(() => ({
-      __proto__: pos$60,
+      [nix.POS]: pos$60,
       sysctl: "1",
       description: "generate IPv6 temporary addresses but still use EUI-64 addresses as source addresses",
     })),
     default: nix.thunk(() => ({
-      __proto__: pos$61,
+      [nix.POS]: pos$61,
       sysctl: "2",
       description: "generate IPv6 temporary addresses and use these as source addresses in routing",
     })),
@@ -650,31 +650,31 @@ ${tempaddrDoc}
         const description = nix.arg($_1, "description");
         return nix.str`- \`"${name}"\` to ${description};`;
       })(), formals$6), tempaddrValues))));
-  const hostidFile = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "gen-hostid", nix.thunk(() => ({ __proto__: pos$63, preferLocalBuild: true })), nix.thunk(() => nix.str`hi="${nix.sel(cfg, "hostId")}"
+  const hostidFile = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "gen-hostid", nix.thunk(() => ({ [nix.POS]: pos$63, preferLocalBuild: true })), nix.thunk(() => nix.str`hi="${nix.sel(cfg, "hostId")}"
 ${(nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isBigEndian")) ? "echo -ne \"\\x${hi:0:2}\\x${hi:2:2}\\x${hi:4:2}\\x${hi:6:2}\" > $out\n" : "echo -ne \"\\x${hi:6:2}\\x${hi:4:2}\\x${hi:2:2}\\x${hi:0:2}\" > $out\n")}
 `)));
   return {
-    __proto__: pos$235,
+    [nix.POS]: pos$235,
     options: nix.thunk(() => ({
-      __proto__: pos$195,
+      [nix.POS]: pos$195,
       networking: nix.thunk(() => ({
-        __proto__: pos$194,
+        [nix.POS]: pos$194,
         hostName: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$64,
+            [nix.POS]: pos$64,
             default: nix.thunk(() => nix.sel(config, "system", "nixos", "distroId")),
             defaultText: nix.thunk(() => nix.app(nix.lookup(w_1, "literalExpression"), "config.system.nixos.distroId")),
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "strMatching"), "^$|^[[:alnum:]]([[:alnum:]_-]{0,61}[[:alnum:]])?$")),
             description: "The name of the machine. Leave it empty if you want to obtain it from a\nDHCP server (if using DHCP). The hostname must be a valid DNS label (see\nRFC 1035 section 2.3.1: \"Preferred name syntax\", RFC 1123 section 2.1:\n\"Host Names and Numbers\") and as such must not contain the domain part.\nThis means that the hostname must start with a letter or digit,\nend with a letter or digit, and have as interior characters only\nletters, digits, and hyphen. The maximum length is 63 characters.\nAdditionally it is recommended to only use lower-case characters.\nIf (e.g. for legacy reasons) a FQDN is required as the Linux kernel\nnetwork node hostname (uname --nodename) the option\nboot.kernel.sysctl.\"kernel.hostname\" can be used as a workaround (but\nthe 64 character limit still applies).\n\nWARNING: Do not use underscores (_) or you may run into unexpected issues.\n",
           })))),
         fqdn: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$65,
+            [nix.POS]: pos$65,
             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
             default: nix.thunk(() => (nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "hostName"), "")) && nix.asBool(!nix.eq(nix.sel(cfg, "domain"), null)))) ? nix.str`${nix.sel(cfg, "hostName")}.${nix.sel(cfg, "domain")}` : nix.app(nix.builtins.throw, "The FQDN is required but cannot be determined from `networking.hostName`\nand `networking.domain`. Please ensure these options are set properly or\nset `networking.fqdn` directly.\n"))),
             defaultText: nix.thunk(() => nix.app(nix.lookup(w_1, "literalExpression"), "\"${networking.hostName}.${networking.domain}\"")),
             description: "The fully qualified domain name (FQDN) of this host. By default, it is\nthe result of combining `networking.hostName` and `networking.domain.`\n\nUsing this option will result in an evaluation error if the hostname is empty or\nno domain is specified.\n\nModules that accept a mere `networking.hostName` but prefer a fully qualified\ndomain name may use `networking.fqdnOrHostName` instead.\n",
           })))),
         fqdnOrHostName: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$66,
+            [nix.POS]: pos$66,
             readOnly: true,
             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
             default: nix.thunk(() => (nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "domain"), null)) || nix.asBool(nix.lt(nix.sel(opt, "fqdn", "highestPrio"), nix.sel(nix.app(nix.lookup(w_1, "mkOptionDefault"), nix.thunk(() => ({}))), "priority"))))) ? nix.sel(cfg, "fqdn") : nix.sel(cfg, "hostName"))),
@@ -682,23 +682,23 @@ ${(nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isBigEndian")) ? "echo -n
             description: "Either the fully qualified domain name (FQDN), or just the host name if\nit does not exist.\n\nThis is a convenience option for modules to read instead of `fqdn` when\na mere `hostName` is also an acceptable value; this option does not\nthrow an error when `domain` or `fqdn` is unset.\n",
           })))),
         hostId: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$67,
+            [nix.POS]: pos$67,
             default: null,
             example: "4e98920d",
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")))),
             description: "The 32-bit host ID of the machine, formatted as 8 hexadecimal characters.\n\nYou should try to make this ID unique among your machines. You can\ngenerate a random 32-bit ID using the following commands:\n\n`head -c 8 /etc/machine-id`\n\n(this derives it from the machine-id that systemd generates) or\n\n`head -c4 /dev/urandom | od -A none -t x4`\n\nThe primary use case is to ensure when using ZFS that a pool isn't imported\naccidentally on a wrong machine.\n",
           })))),
         enableIPv6: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$68,
+            [nix.POS]: pos$68,
             default: true,
             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "bool")),
             description: "Whether to enable support for IPv6.\n",
           })))),
         defaultGateway: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$70,
+            [nix.POS]: pos$70,
             default: null,
             example: nix.thunk(() => ({
-              __proto__: pos$69,
+              [nix.POS]: pos$69,
               address: "131.211.84.1",
               interface: "enp3s0",
               source: "131.211.84.2",
@@ -707,10 +707,10 @@ ${(nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isBigEndian")) ? "echo -n
             description: "The default gateway. It can be left empty if it is auto-detected through DHCP.\nIt can be specified as a string or an option set along with a network interface.\n",
           })))),
         defaultGateway6: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$72,
+            [nix.POS]: pos$72,
             default: null,
             example: nix.thunk(() => ({
-              __proto__: pos$71,
+              [nix.POS]: pos$71,
               address: "2001:4d0:1e04:895::1",
               interface: "enp3s0",
               source: "2001:4d0:1e04:895::2",
@@ -719,57 +719,57 @@ ${(nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isBigEndian")) ? "echo -n
             description: "The default ipv6 gateway. It can be left empty if it is auto-detected through DHCP.\nIt can be specified as a string or an option set along with a network interface.\n",
           })))),
         defaultGatewayWindowSize: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$73,
+            [nix.POS]: pos$73,
             default: null,
             example: 524288n,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "int")))),
             description: "The window size of the default gateway. It limits maximal data bursts that TCP peers\nare allowed to send to us.\n",
           })))),
         nameservers: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$74,
+            [nix.POS]: pos$74,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")))),
             default: [],
             example: nix.thunk(() => ["130.161.158.4", "130.161.33.17"]),
             description: "The list of nameservers.  It can be left empty if it is auto-detected through DHCP.\n",
           })))),
         search: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$75,
+            [nix.POS]: pos$75,
             default: [],
             example: nix.thunk(() => ["example.com", "home.arpa"]),
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")))),
             description: "The list of domain search paths that are considered for resolving\nhostnames with fewer dots than configured in the `ndots` option,\nwhich defaults to 1 if unset.\n",
           })))),
         domain: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$76,
+            [nix.POS]: pos$76,
             default: null,
             example: "home.arpa",
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")))),
             description: "The system domain name. Used to populate the {option}`fqdn` value.\n\n::: {.warning}\nThe domain name is not configured for DNS resolution purposes, see {option}`search` instead.\n:::\n",
           })))),
         useHostResolvConf: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$77,
+            [nix.POS]: pos$77,
             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "bool")),
             default: false,
             description: "In containers, whether to use the\n{file}`resolv.conf` supplied by the host.\n",
           })))),
         localCommands: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$78,
+            [nix.POS]: pos$78,
             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "lines")),
             default: "",
             example: "text=anything; echo You can put $text here.",
             description: "Shell commands to be executed after all the network\ninterfaces have been created, but not necessarily\nfully configured.\n",
           })))),
         interfaces: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$83,
+            [nix.POS]: pos$83,
             default: nix.thunk(() => ({})),
             example: nix.thunk(() => ({
-              __proto__: pos$82,
+              [nix.POS]: pos$82,
               eth0: nix.thunk(() => ({
-                __proto__: pos$81,
+                [nix.POS]: pos$81,
                 ipv4: nix.thunk(() => ({
-                  __proto__: pos$80,
+                  [nix.POS]: pos$80,
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$79, address: "131.211.84.78", prefixLength: 25n })),
+                    nix.thunk(() => ({ [nix.POS]: pos$79, address: "131.211.84.78", prefixLength: 25n })),
                   ]),
                 })),
               })),
@@ -781,23 +781,23 @@ ${(nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isBigEndian")) ? "echo -n
             })()),
           })))),
         vswitches: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$99,
+            [nix.POS]: pos$99,
             default: nix.thunk(() => ({})),
             example: nix.thunk(() => ({
-              __proto__: pos$90,
+              [nix.POS]: pos$90,
               vs0: nix.thunk(() => ({
-                __proto__: pos$86,
+                [nix.POS]: pos$86,
                 interfaces: nix.thunk(() => ({
-                  __proto__: pos$85,
+                  [nix.POS]: pos$85,
                   eth0: nix.thunk(() => ({})),
-                  lo1: nix.thunk(() => ({ __proto__: pos$84, type: "internal" })),
+                  lo1: nix.thunk(() => ({ [nix.POS]: pos$84, type: "internal" })),
                 })),
               })),
               vs1: nix.thunk(() => ({
-                __proto__: pos$89,
+                [nix.POS]: pos$89,
                 interfaces: nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$87, name: "eth2" })),
-                  nix.thunk(() => ({ __proto__: pos$88, name: "lo2", type: "internal" })),
+                  nix.thunk(() => ({ [nix.POS]: pos$87, name: "eth2" })),
+                  nix.thunk(() => ({ [nix.POS]: pos$88, name: "lo2", type: "internal" })),
                 ]),
               })),
             })),
@@ -805,11 +805,11 @@ ${(nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isBigEndian")) ? "echo -n
             type: nix.thunk(() => (() => {
               const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w_1, "types")), w_1);
               return nix.app(nix.lookup(w_2, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_2, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$98,
+                    [nix.POS]: pos$98,
                     options: nix.thunk(() => ({
-                      __proto__: pos$97,
+                      [nix.POS]: pos$97,
                       interfaces: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$91,
+                          [nix.POS]: pos$91,
                           description: "The physical network interfaces connected by the vSwitch.",
                           type: nix.thunk(() => (() => {
                             const w_3 = nix.withScope(nix.thunk(() => nix.lookup(w_2, "types")), w_2);
@@ -817,34 +817,34 @@ ${(nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isBigEndian")) ? "echo -n
                           })()),
                         })))),
                       controllers: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$92,
+                          [nix.POS]: pos$92,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "str")))),
                           default: [],
                           example: nix.thunk(() => ["ptcp:6653:[::1]"]),
                           description: "Specify the controller targets. For the allowed options see `man 8 ovs-vsctl`.\n",
                         })))),
                       openFlowRules: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$93,
+                          [nix.POS]: pos$93,
                           type: nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "lines")),
                           default: "",
                           example: "actions=normal\n",
                           description: "OpenFlow rules to insert into the Open vSwitch. All `openFlowRules` are\nloaded with `ovs-ofctl` within one atomic operation.\n",
                         })))),
                       supportedOpenFlowVersions: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$94,
+                          [nix.POS]: pos$94,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "str")))),
                           example: nix.thunk(() => ["OpenFlow10", "OpenFlow13", "OpenFlow14"]),
                           default: nix.thunk(() => ["OpenFlow13"]),
                           description: "Supported versions to enable on this switch.\n",
                         })))),
                       openFlowVersion: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$95,
+                          [nix.POS]: pos$95,
                           type: nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "str")),
                           default: "OpenFlow13",
                           description: "Version of OpenFlow protocol to use when communicating with the switch internally (e.g. with `openFlowRules`).\n",
                         })))),
                       extraOvsctlCmds: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$96,
+                          [nix.POS]: pos$96,
                           type: nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "lines")),
                           default: "",
                           example: "set-fail-mode <switch_name> secure\nset Bridge <switch_name> stp_enable=true\n",
@@ -855,28 +855,28 @@ ${(nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isBigEndian")) ? "echo -n
             })()),
           })))),
         bridges: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$107,
+            [nix.POS]: pos$107,
             default: nix.thunk(() => ({})),
             example: nix.thunk(() => ({
-              __proto__: pos$102,
-              br0: nix.thunk(() => ({ __proto__: pos$100, interfaces: nix.thunk(() => ["eth0", "eth1"]) })),
-              br1: nix.thunk(() => ({ __proto__: pos$101, interfaces: nix.thunk(() => ["eth2", "wlan0"]) })),
+              [nix.POS]: pos$102,
+              br0: nix.thunk(() => ({ [nix.POS]: pos$100, interfaces: nix.thunk(() => ["eth0", "eth1"]) })),
+              br1: nix.thunk(() => ({ [nix.POS]: pos$101, interfaces: nix.thunk(() => ["eth2", "wlan0"]) })),
             })),
             description: "This option allows you to define Ethernet bridge devices\nthat connect physical networks together.  The value of this\noption is an attribute set.  Each attribute specifies a\nbridge, with the attribute name specifying the name of the\nbridge's network interface.\n",
             type: nix.thunk(() => (() => {
               const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w_1, "types")), w_1);
               return nix.app(nix.lookup(w_2, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_2, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$106,
+                    [nix.POS]: pos$106,
                     options: nix.thunk(() => ({
-                      __proto__: pos$105,
+                      [nix.POS]: pos$105,
                       interfaces: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$103,
+                          [nix.POS]: pos$103,
                           example: nix.thunk(() => ["eth0", "eth1"]),
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "str")))),
                           description: "The physical network interfaces connected by the bridge.",
                         })))),
                       rstp: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$104,
+                          [nix.POS]: pos$104,
                           default: false,
                           type: nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "bool")),
                           description: "Whether the bridge interface should enable rstp.",
@@ -888,7 +888,7 @@ ${(nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isBigEndian")) ? "echo -n
         bonds: nix.thunk(() => (() => {
           const driverOptionsExample = "{\n  miimon = \"100\";\n  mode = \"active-backup\";\n}\n";
           return nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$116,
+              [nix.POS]: pos$116,
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.lookup(w_1, "literalExpression"), nix.thunk(() => nix.str`{
   bond0 = {
@@ -902,45 +902,45 @@ ${(nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isBigEndian")) ? "echo -n
               type: nix.thunk(() => (() => {
                 const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w_1, "types")), w_1);
                 return nix.app(nix.lookup(w_2, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_2, "submodule"), nix.thunk(() => ({
-                      __proto__: pos$115,
+                      [nix.POS]: pos$115,
                       options: nix.thunk(() => ({
-                        __proto__: pos$114,
+                        [nix.POS]: pos$114,
                         interfaces: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$108,
+                            [nix.POS]: pos$108,
                             example: nix.thunk(() => ["enp4s0f0", "enp4s0f1", "wlan0"]),
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "str")))),
                             description: "The interfaces to bond together",
                           })))),
                         driverOptions: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$109,
+                            [nix.POS]: pos$109,
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "str")))),
                             default: nix.thunk(() => ({})),
                             example: nix.thunk(() => nix.app(nix.lookup(w_2, "literalExpression"), driverOptionsExample)),
                             description: "Options for the bonding driver.\nDocumentation can be found in\n<https://www.kernel.org/doc/Documentation/networking/bonding.txt>\n",
                           })))),
                         lacp_rate: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$110,
+                            [nix.POS]: pos$110,
                             default: null,
                             example: "fast",
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "str")))),
                             description: "DEPRECATED, use `driverOptions`.\nOption specifying the rate in which we'll ask our link partner\nto transmit LACPDU packets in 802.3ad mode.\n",
                           })))),
                         miimon: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$111,
+                            [nix.POS]: pos$111,
                             default: null,
                             example: 100n,
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "int")))),
                             description: "DEPRECATED, use `driverOptions`.\nMiimon is the number of millisecond in between each round of polling\nby the device driver for failed links. By default polling is not\nenabled and the driver is trusted to properly detect and handle\nfailure scenarios.\n",
                           })))),
                         mode: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$112,
+                            [nix.POS]: pos$112,
                             default: null,
                             example: "active-backup",
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "str")))),
                             description: "DEPRECATED, use `driverOptions`.\nThe mode which the bond will be running. The default mode for\nthe bonding driver is balance-rr, optimizing for throughput.\nMore information about valid modes can be found at\nhttps://www.kernel.org/doc/Documentation/networking/bonding.txt\n",
                           })))),
                         xmit_hash_policy: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$113,
+                            [nix.POS]: pos$113,
                             default: null,
                             example: "layer2+3",
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "str")))),
@@ -952,24 +952,24 @@ ${(nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isBigEndian")) ? "echo -n
             })));
         })()),
         macvlans: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$121,
+            [nix.POS]: pos$121,
             default: nix.thunk(() => ({})),
             example: nix.thunk(() => nix.app(nix.lookup(w_1, "literalExpression"), "{\n  wan = {\n    interface = \"enp2s0\";\n    mode = \"vepa\";\n  };\n}\n")),
             description: "This option allows you to define macvlan interfaces which should\nbe automatically created.\n",
             type: nix.thunk(() => (() => {
               const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w_1, "types")), w_1);
               return nix.app(nix.lookup(w_2, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_2, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$120,
+                    [nix.POS]: pos$120,
                     options: nix.thunk(() => ({
-                      __proto__: pos$119,
+                      [nix.POS]: pos$119,
                       interface: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$117,
+                          [nix.POS]: pos$117,
                           example: "enp4s0",
                           type: nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "str")),
                           description: "The interface the macvlan will transmit packets through.",
                         })))),
                       mode: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$118,
+                          [nix.POS]: pos$118,
                           default: null,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "str")))),
                           example: "vepa",
@@ -980,30 +980,30 @@ ${(nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isBigEndian")) ? "echo -n
             })()),
           })))),
         ipvlans: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$127,
+            [nix.POS]: pos$127,
             default: nix.thunk(() => ({})),
             example: nix.thunk(() => nix.app(nix.lookup(w_1, "literalExpression"), "{\n  wan = {\n    interface = \"enp2s0\";\n    mode = \"l2\";\n    flags = \"vepa\";\n  };\n}\n")),
             description: "This option allows you to define ipvlan interfaces which should\nbe automatically created.\n",
             type: nix.thunk(() => (() => {
               const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w_1, "types")), w_1);
               return nix.app(nix.lookup(w_2, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_2, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$126,
+                    [nix.POS]: pos$126,
                     options: nix.thunk(() => ({
-                      __proto__: pos$125,
+                      [nix.POS]: pos$125,
                       interface: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$122,
+                          [nix.POS]: pos$122,
                           example: "enp4s0",
                           type: nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "str")),
                           description: "The interface the ipvlan will transmit packets through.",
                         })))),
                       mode: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$123,
+                          [nix.POS]: pos$123,
                           default: "l2",
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "enum"), nix.thunk(() => ["l2", "l3", "l3s"]))),
                           description: "The mode of the interface.",
                         })))),
                       flags: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$124,
+                          [nix.POS]: pos$124,
                           default: null,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "str")))),
                           example: "vepa",
@@ -1014,48 +1014,48 @@ ${(nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isBigEndian")) ? "echo -n
             })()),
           })))),
         fooOverUDP: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$142,
+            [nix.POS]: pos$142,
             default: nix.thunk(() => ({})),
             example: nix.thunk(() => ({
-              __proto__: pos$131,
+              [nix.POS]: pos$131,
               primary: nix.thunk(() => ({
-                __proto__: pos$129,
+                [nix.POS]: pos$129,
                 port: 9001n,
-                local: nix.thunk(() => ({ __proto__: pos$128, address: "192.0.2.1", dev: "eth0" })),
+                local: nix.thunk(() => ({ [nix.POS]: pos$128, address: "192.0.2.1", dev: "eth0" })),
               })),
-              backup: nix.thunk(() => ({ __proto__: pos$130, port: 9002n })),
+              backup: nix.thunk(() => ({ [nix.POS]: pos$130, port: 9002n })),
             })),
             description: "This option allows you to configure Foo Over UDP and Generic UDP Encapsulation\nendpoints. See {manpage}`ip-fou(8)` for details.\n",
             type: nix.thunk(() => (() => {
               const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w_1, "types")), w_1);
               return nix.app(nix.lookup(w_2, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_2, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$141,
+                    [nix.POS]: pos$141,
                     options: nix.thunk(() => ({
-                      __proto__: pos$140,
+                      [nix.POS]: pos$140,
                       port: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$132,
+                          [nix.POS]: pos$132,
                           type: nix.thunk(() => nix.lookup(w_2, "port")),
                           description: "Local port of the encapsulation UDP socket.\n",
                         })))),
                       protocol: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$133,
+                          [nix.POS]: pos$133,
                           type: nix.thunk(() => nix.app(nix.lookup(w_2, "nullOr"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "ints"), "between"), 1n, 255n)))),
                           default: null,
                           description: "Protocol number of the encapsulated packets. Specifying `null`\n(the default) creates a GUE endpoint, specifying a protocol number will create\na FOU endpoint.\n",
                         })))),
                       local: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$139,
+                          [nix.POS]: pos$139,
                           type: nix.thunk(() => nix.app(nix.lookup(w_2, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_2, "submodule"), nix.thunk(() => ({
-                                __proto__: pos$137,
+                                [nix.POS]: pos$137,
                                 options: nix.thunk(() => ({
-                                  __proto__: pos$136,
+                                  [nix.POS]: pos$136,
                                   address: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$134,
+                                      [nix.POS]: pos$134,
                                       type: nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "str")),
                                       description: "Local address to bind to. The address must be available when the FOU\nendpoint is created, using the scripted network setup this can be achieved\neither by setting `dev` or adding dependency information to\n`systemd.services.<name>-fou-encap`; it isn't supported\nwhen using networkd.\n",
                                     })))),
                                   dev: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$135,
+                                      [nix.POS]: pos$135,
                                       type: nix.thunk(() => nix.app(nix.lookup(w_2, "nullOr"), nix.thunk(() => nix.lookup(w_2, "str")))),
                                       default: null,
                                       example: "eth0",
@@ -1064,7 +1064,7 @@ ${(nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isBigEndian")) ? "echo -n
                                 })),
                               })))))),
                           default: null,
-                          example: nix.thunk(() => ({ __proto__: pos$138, address: "203.0.113.22" })),
+                          example: nix.thunk(() => ({ [nix.POS]: pos$138, address: "203.0.113.22" })),
                           description: "Local address (and optionally device) to bind to using the given port.\n",
                         })))),
                     })),
@@ -1072,52 +1072,52 @@ ${(nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isBigEndian")) ? "echo -n
             })()),
           })))),
         ipips: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$152,
+            [nix.POS]: pos$152,
             default: nix.thunk(() => ({})),
             example: nix.thunk(() => nix.app(nix.lookup(w_1, "literalExpression"), "{\n  wan4in6 = {\n    remote = \"2001:db8::1\";\n    local = \"2001:db8::3\";\n    dev = \"wan6\";\n    encapsulation.type = \"4in6\";\n    encapsulation.limit = 0;\n  };\n}\n")),
             description: "This option allows you to define interfaces encapsulating IP\npackets within IP packets; which should be automatically created.\n\nFor example, this allows you to create 4in6 (RFC 2473)\nor IP within IP (RFC 2003) tunnels.\n",
             type: nix.thunk(() => (() => {
               const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w_1, "types")), w_1);
               return nix.app(nix.lookup(w_2, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_2, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$151,
+                    [nix.POS]: pos$151,
                     options: nix.thunk(() => ({
-                      __proto__: pos$150,
+                      [nix.POS]: pos$150,
                       remote: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$143,
+                          [nix.POS]: pos$143,
                           type: nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "str")),
                           example: "2001:db8::1",
                           description: "The address of the remote endpoint to forward traffic over.\n",
                         })))),
                       local: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$144,
+                          [nix.POS]: pos$144,
                           type: nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "str")),
                           example: "2001:db8::3",
                           description: "The address of the local endpoint which the remote\nside should send packets to.\n",
                         })))),
                       ttl: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$145,
+                          [nix.POS]: pos$145,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "int")))),
                           default: null,
                           example: 255n,
                           description: "The time-to-live of the connection to the remote tunnel endpoint.\n",
                         })))),
                       dev: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$146,
+                          [nix.POS]: pos$146,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "str")))),
                           default: null,
                           example: "wan6",
                           description: "The underlying network device on which the tunnel resides.\n",
                         })))),
                       encapsulation: nix.thunk(() => ({
-                        __proto__: pos$149,
+                        [nix.POS]: pos$149,
                         type: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$147,
+                            [nix.POS]: pos$147,
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "enum"), nix.thunk(() => ["ipip", "4in6", "ip6ip6"]))),
                             default: "ipip",
                             description: "Select the encapsulation type:\n\n- `ipip` to create an IPv4 within IPv4 tunnel (RFC 2003).\n\n- `4in6` to create a 4in6 tunnel (RFC 2473);\n\n- `ip6ip6` to create an IPv6 within IPv6 tunnel (RFC 2473);\n\n::: {.note}\nFor encapsulating IPv6 within IPv4 packets, see\nthe ad-hoc {option}`networking.sits` option.\n:::\n",
                           })))),
                         limit: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$148,
+                            [nix.POS]: pos$148,
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "either"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "enum"), nix.thunk(() => ["none"]))), nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "ints", "unsigned")))),
                             default: 4n,
                             example: "none",
@@ -1129,65 +1129,65 @@ ${(nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isBigEndian")) ? "echo -n
             })()),
           })))),
         sits: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$167,
+            [nix.POS]: pos$167,
             default: nix.thunk(() => ({})),
             example: nix.thunk(() => nix.app(nix.lookup(w_1, "literalExpression"), "{\n  hurricane = {\n    remote = \"10.0.0.1\";\n    local = \"10.0.0.22\";\n    ttl = 255;\n  };\n  msipv6 = {\n    remote = \"192.168.0.1\";\n    dev = \"enp3s0\";\n    ttl = 127;\n  };\n}\n")),
             description: "This option allows you to define interfaces encapsulating IPv6\npackets within IPv4 packets; which should be automatically created.\n",
             type: nix.thunk(() => (() => {
               const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w_1, "types")), w_1);
               return nix.app(nix.lookup(w_2, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_2, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$166,
+                    [nix.POS]: pos$166,
                     options: nix.thunk(() => ({
-                      __proto__: pos$165,
+                      [nix.POS]: pos$165,
                       remote: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$153,
+                          [nix.POS]: pos$153,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "str")))),
                           default: null,
                           example: "10.0.0.1",
                           description: "The address of the remote endpoint to forward traffic over.\n",
                         })))),
                       local: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$154,
+                          [nix.POS]: pos$154,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "str")))),
                           default: null,
                           example: "10.0.0.22",
                           description: "The address of the local endpoint which the remote\nside should send packets to.\n",
                         })))),
                       ttl: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$155,
+                          [nix.POS]: pos$155,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "int")))),
                           default: null,
                           example: 255n,
                           description: "The time-to-live of the connection to the remote tunnel endpoint.\n",
                         })))),
                       dev: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$156,
+                          [nix.POS]: pos$156,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "str")))),
                           default: null,
                           example: "enp4s0f0",
                           description: "The underlying network device on which the tunnel resides.\n",
                         })))),
                       encapsulation: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$164,
+                          [nix.POS]: pos$164,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "nullOr"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "submodule"), nix.thunk(() => ({
-                                __proto__: pos$161,
+                                [nix.POS]: pos$161,
                                 options: nix.thunk(() => ({
-                                  __proto__: pos$160,
+                                  [nix.POS]: pos$160,
                                   type: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$157,
+                                      [nix.POS]: pos$157,
                                       type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "enum"), nix.thunk(() => ["6in4", "fou", "gue"]))),
                                       default: "6in4",
                                       description: "Select the encapsulation type:\n\n- `6in4`: the IPv6 packets are encapsulated using the\n  6in4 protocol (formerly known as SIT, RFC 4213);\n\n- `gue`: the IPv6 packets are encapsulated in UDP packets\n   using the Generic UDP Encapsulation (GUE) scheme;\n\n- `foo`: the IPv6 packets are encapsulated in UDP packets\n   using the Foo over UDP (FOU) scheme.\n",
                                     })))),
                                   port: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$158,
+                                      [nix.POS]: pos$158,
                                       type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "port")))),
                                       default: null,
                                       example: 9001n,
                                       description: "Destination port when using UDP encapsulation.\n",
                                     })))),
                                   sourcePort: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$159,
+                                      [nix.POS]: pos$159,
                                       type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "port")))),
                                       default: null,
                                       example: 9002n,
@@ -1195,9 +1195,9 @@ ${(nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isBigEndian")) ? "echo -n
                                     })))),
                                 })),
                               })))))),
-                          apply: (x) => (nix.asBool(nix.eq(x, null)) ? nix.app(nix.sel(lib, "warn"), "The option networking.sits.*.encapsulation no longer accepts `null`\nas a valid value. To fix this warning simply remove this definition.\n", nix.thunk(() => ({ __proto__: pos$162, type: "6in4", port: null, sourcePort: null }))) : nix.force(x)),
+                          apply: (x) => (nix.asBool(nix.eq(x, null)) ? nix.app(nix.sel(lib, "warn"), "The option networking.sits.*.encapsulation no longer accepts `null`\nas a valid value. To fix this warning simply remove this definition.\n", nix.thunk(() => ({ [nix.POS]: pos$162, type: "6in4", port: null, sourcePort: null }))) : nix.force(x)),
                           default: nix.thunk(() => ({})),
-                          example: nix.thunk(() => ({ __proto__: pos$163, type: "fou", port: 9001n })),
+                          example: nix.thunk(() => ({ [nix.POS]: pos$163, type: "fou", port: 9001n })),
                           description: "Configures the type of encapsulation.\n",
                         })))),
                     })),
@@ -1205,46 +1205,46 @@ ${(nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isBigEndian")) ? "echo -n
             })()),
           })))),
         greTunnels: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$176,
+            [nix.POS]: pos$176,
             default: nix.thunk(() => ({})),
             example: nix.thunk(() => nix.app(nix.lookup(w_1, "literalExpression"), "{\n  greBridge = {\n    remote = \"10.0.0.1\";\n    local = \"10.0.0.22\";\n    dev = \"enp4s0f0\";\n    type = \"tap\";\n    ttl = 255;\n  };\n  gre6Tunnel = {\n    remote = \"fd7a:5634::1\";\n    local = \"fd7a:5634::2\";\n    dev = \"enp4s0f0\";\n    type = \"tun6\";\n    ttl = 255;\n  };\n}\n")),
             description: "This option allows you to define Generic Routing Encapsulation (GRE) tunnels.\n",
             type: nix.thunk(() => (() => {
               const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w_1, "types")), w_1);
               return nix.app(nix.lookup(w_2, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_2, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$175,
+                    [nix.POS]: pos$175,
                     options: nix.thunk(() => ({
-                      __proto__: pos$174,
+                      [nix.POS]: pos$174,
                       remote: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$168,
+                          [nix.POS]: pos$168,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "str")))),
                           default: null,
                           example: "10.0.0.1",
                           description: "The address of the remote endpoint to forward traffic over.\n",
                         })))),
                       local: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$169,
+                          [nix.POS]: pos$169,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "str")))),
                           default: null,
                           example: "10.0.0.22",
                           description: "The address of the local endpoint which the remote\nside should send packets to.\n",
                         })))),
                       dev: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$170,
+                          [nix.POS]: pos$170,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "str")))),
                           default: null,
                           example: "enp4s0f0",
                           description: "The underlying network device on which the tunnel resides.\n",
                         })))),
                       ttl: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$171,
+                          [nix.POS]: pos$171,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "int")))),
                           default: null,
                           example: 255n,
                           description: "The time-to-live/hoplimit of the connection to the remote tunnel endpoint.\n",
                         })))),
                       type: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$173,
+                          [nix.POS]: pos$173,
                           type: nix.thunk(() => (() => {
                             const w_3 = nix.withScope(nix.thunk(() => nix.lookup(w_2, "types")), w_2);
                             return nix.app(nix.lookup(w_3, "enum"), nix.thunk(() => ["tun", "tap", "tun6", "tap6"]));
@@ -1252,7 +1252,7 @@ ${(nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isBigEndian")) ? "echo -n
                           default: "tap",
                           example: "tap",
                           apply: (v) => nix.sel({
-                            __proto__: pos$172,
+                            [nix.POS]: pos$172,
                             tun: "gre",
                             tap: "gretap",
                             tun6: "ip6gre",
@@ -1265,24 +1265,24 @@ ${(nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isBigEndian")) ? "echo -n
             })()),
           })))),
         vlans: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$181,
+            [nix.POS]: pos$181,
             default: nix.thunk(() => ({})),
             example: nix.thunk(() => nix.app(nix.lookup(w_1, "literalExpression"), "{\n  vlan0 = {\n    id = 3;\n    interface = \"enp3s0\";\n  };\n  vlan1 = {\n    id = 1;\n    interface = \"wlan0\";\n  };\n}\n")),
             description: "This option allows you to define vlan devices that tag packets\non top of a physical interface. The value of this option is an\nattribute set. Each attribute specifies a vlan, with the name\nspecifying the name of the vlan interface.\n",
             type: nix.thunk(() => (() => {
               const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w_1, "types")), w_1);
               return nix.app(nix.lookup(w_2, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_2, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$180,
+                    [nix.POS]: pos$180,
                     options: nix.thunk(() => ({
-                      __proto__: pos$179,
+                      [nix.POS]: pos$179,
                       id: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$177,
+                          [nix.POS]: pos$177,
                           example: 1n,
                           type: nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "int")),
                           description: "The vlan identifier",
                         })))),
                       interface: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$178,
+                          [nix.POS]: pos$178,
                           example: "enp4s0",
                           type: nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "str")),
                           description: "The interface the vlan will transmit packets through.",
@@ -1292,37 +1292,37 @@ ${(nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isBigEndian")) ? "echo -n
             })()),
           })))),
         wlanInterfaces: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$190,
+            [nix.POS]: pos$190,
             default: nix.thunk(() => ({})),
             example: nix.thunk(() => nix.app(nix.lookup(w_1, "literalExpression"), "{\n  wlan-station0 = {\n      device = \"wlp6s0\";\n  };\n  wlan-adhoc0 = {\n      type = \"ibss\";\n      device = \"wlp6s0\";\n      mac = \"02:00:00:00:00:01\";\n  };\n  wlan-p2p0 = {\n      device = \"wlp6s0\";\n      mac = \"02:00:00:00:00:02\";\n  };\n  wlan-ap0 = {\n      device = \"wlp6s0\";\n      mac = \"02:00:00:00:00:03\";\n  };\n}\n")),
             description: "Creating multiple WLAN interfaces on top of one physical WLAN device (NIC).\n\nThe name of the WLAN interface corresponds to the name of the attribute.\nA NIC is referenced by the persistent device name of the WLAN interface that\n`udev` assigns to a NIC by default.\nIf a NIC supports multiple WLAN interfaces, then the one NIC can be used as\n`device` for multiple WLAN interfaces.\nIf a NIC is used for creating WLAN interfaces, then the default WLAN interface\nwith a persistent device name form `udev` is not created.\nA WLAN interface with the persistent name assigned from `udev`\nwould have to be created explicitly.\n",
             type: nix.thunk(() => (() => {
               const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w_1, "types")), w_1);
               return nix.app(nix.lookup(w_2, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_2, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$189,
+                    [nix.POS]: pos$189,
                     options: nix.thunk(() => ({
-                      __proto__: pos$188,
+                      [nix.POS]: pos$188,
                       device: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$182,
+                          [nix.POS]: pos$182,
                           type: nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "str")),
                           example: "wlp6s0",
                           description: "The name of the underlying hardware WLAN device as assigned by `udev`.",
                         })))),
                       type: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$183,
+                          [nix.POS]: pos$183,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "enum"), nix.thunk(() => ["managed", "ibss", "monitor", "mesh", "wds"]))),
                           default: "managed",
                           example: "ibss",
                           description: "The type of the WLAN interface.\nThe type has to be supported by the underlying hardware of the device.\n",
                         })))),
                       meshID: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$184,
+                          [nix.POS]: pos$184,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "str")))),
                           default: null,
                           description: "MeshID of interface with type `mesh`.",
                         })))),
                       flags: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$185,
+                          [nix.POS]: pos$185,
                           type: nix.thunk(() => (() => {
                             const w_3 = nix.withScope(nix.thunk(() => nix.lookup(w_2, "types")), w_2);
                             return nix.app(nix.lookup(w_3, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_3, "enum"), nix.thunk(() => ["none", "fcsfail", "control", "otherbss", "cook", "active"]))));
@@ -1332,13 +1332,13 @@ ${(nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isBigEndian")) ? "echo -n
                           description: "Flags for interface of type `monitor`.\n",
                         })))),
                       fourAddr: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$186,
+                          [nix.POS]: pos$186,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "bool")))),
                           default: null,
                           description: "Whether to enable `4-address mode` with type `managed`.",
                         })))),
                       mac: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$187,
+                          [nix.POS]: pos$187,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "str")))),
                           default: null,
                           example: "02:00:00:00:00:01",
@@ -1349,19 +1349,19 @@ ${(nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isBigEndian")) ? "echo -n
             })()),
           })))),
         useDHCP: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$191,
+            [nix.POS]: pos$191,
             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "bool")),
             default: true,
             description: "Whether to use DHCP to obtain an IP address and other\nconfiguration for all network interfaces that do not have any manually\nconfigured IPv4 addresses.\n",
           })))),
         useNetworkd: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$192,
+            [nix.POS]: pos$192,
             default: false,
             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "bool")),
             description: "Whether we should use networkd as the network configuration backend or\nthe legacy script based system.\n",
           })))),
         tempAddresses: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$193,
+            [nix.POS]: pos$193,
             default: nix.thunk(() => (nix.asBool(nix.sel(cfg, "enableIPv6")) ? "default" : "disabled")),
             defaultText: nix.thunk(() => nix.app(nix.lookup(w_1, "literalExpression"), nix.thunk(() => nix.str`if \${config.${nix.sel(opt, "enableIPv6")}} then "default" else "disabled"
 `))),
@@ -1379,49 +1379,49 @@ ${tempaddrDoc}
       })),
     })),
     meta: nix.thunk(() => ({
-      __proto__: pos$196,
+      [nix.POS]: pos$196,
       maintainers: nix.thunk(() => (() => {
         const w_2 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), w_1);
         return [nix.thunk(() => nix.lookup(w_2, "rnhmjoj"))];
       })()),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$234,
+      [nix.POS]: pos$234,
       warnings: nix.thunk(() => nix.concat(nix.app(nix.lookup(w_1, "concatMap"), (i) => nix.sel(i, "warnings"), interfaces), nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(config, "systemd", "network", "enable")) && nix.asBool(nix.sel(cfg, "useDHCP")))) && nix.asBool(!nix.asBool(nix.sel(cfg, "useNetworkd"))))), "The combination of `systemd.network.enable = true`, `networking.useDHCP = true` and `networking.useNetworkd = false` can cause both networkd and dhcpcd to manage the same interfaces. This can lead to loss of networking. It is recommended you choose only one of networkd (by also enabling `networking.useNetworkd`) or scripting (by disabling `systemd.network.enable`)\n"))),
       assertions: nix.thunk(() => nix.concat(nix.app(nix.lookup(w_1, "forEach"), interfaces, (i) => ({
-          __proto__: pos$197,
+          [nix.POS]: pos$197,
           assertion: nix.thunk(() => nix.lt(nix.app(nix.lookup(w_1, "stringLength"), nix.thunk(() => nix.sel(i, "name"))), 16n)),
           message: nix.thunk(() => nix.str`The name of networking.interfaces."${nix.sel(i, "name")}" is too long, it needs to be less than 16 characters.
 `),
         })), nix.concat(nix.app(nix.lookup(w_1, "forEach"), slaveIfs, (i) => ({
-          __proto__: pos$198,
+          [nix.POS]: pos$198,
           assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(i, "ipv4", "addresses"), [])) && nix.asBool(nix.eq(nix.sel(i, "ipv6", "addresses"), [])))),
           message: nix.thunk(() => nix.str`The networking.interfaces."${nix.sel(i, "name")}" must not have any defined ips when it is a slave.
 `),
         })), nix.concat(nix.app(nix.lookup(w_1, "forEach"), interfaces, (i) => ({
-          __proto__: pos$199,
+          [nix.POS]: pos$199,
           assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(i, "tempAddress"), "disabled")) || nix.asBool(nix.sel(cfg, "enableIPv6")))),
           message: "Temporary addresses are only needed when IPv6 is enabled.\n",
         })), nix.concat(nix.app(nix.lookup(w_1, "forEach"), interfaces, (i) => ({
-          __proto__: pos$200,
+          [nix.POS]: pos$200,
           assertion: nix.thunk(() => (!nix.asBool((nix.asBool(nix.sel(i, "virtual")) && nix.asBool(nix.eq(nix.sel(i, "virtualType"), "tun")))) || nix.asBool(nix.eq(nix.sel(i, "macAddress"), null)))),
           message: nix.thunk(() => nix.str`Setting a MAC Address for tun device ${nix.sel(i, "name")} isn't supported.
 `),
         })), [
         nix.thunk(() => ({
-          __proto__: pos$201,
+          [nix.POS]: pos$201,
           assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "hostId"), null)) || nix.asBool((nix.asBool(nix.eq(nix.app(nix.lookup(w_1, "stringLength"), nix.thunk(() => nix.sel(cfg, "hostId"))), 8n)) && nix.asBool(nix.app(isHexString, nix.thunk(() => nix.sel(cfg, "hostId")))))))),
           message: "Invalid value given to the networking.hostId option.",
         })),
       ]))))),
       boot: nix.thunk(() => ({
-        __proto__: pos$208,
+        [nix.POS]: pos$208,
         kernelModules: nix.thunk(() => nix.concat([], nix.concat(nix.app(nix.lookup(w_1, "optional"), hasVirtuals, "tun"), nix.concat(nix.app(nix.lookup(w_1, "optional"), hasSits, "sit"), nix.concat(nix.app(nix.lookup(w_1, "optional"), hasGres, "gre"), nix.concat(nix.app(nix.lookup(w_1, "optional"), hasBonds, "bonding"), nix.app(nix.lookup(w_1, "optional"), hasFous, "fou"))))))),
         extraModprobeConfig: nix.thunk(() => nix.app(nix.lookup(w_1, "optionalString"), hasBonds, "options bonding max_bonds=0")),
         kernel: nix.thunk(() => ({
-          __proto__: pos$203,
+          [nix.POS]: pos$203,
           sysctl: nix.thunk(() => nix.update({
-            __proto__: pos$202,
+            [nix.POS]: pos$202,
             "net.ipv4.conf.all.forwarding": nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), nix.thunk(() => nix.app(nix.lookup(w_1, "any"), (i) => nix.sel(i, "proxyARP"), interfaces)), nix.thunk(() => nix.app(nix.lookup(w_1, "mkDefault"), true)))),
             "net.ipv6.conf.all.disable_ipv6": nix.thunk(() => nix.app(nix.lookup(w_1, "mkDefault"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "enableIPv6"))))),
             "net.ipv6.conf.default.disable_ipv6": nix.thunk(() => nix.app(nix.lookup(w_1, "mkDefault"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "enableIPv6"))))),
@@ -1434,23 +1434,23 @@ ${tempaddrDoc}
               })())))))),
         })),
         initrd: nix.thunk(() => ({
-          __proto__: pos$207,
+          [nix.POS]: pos$207,
           systemd: nix.thunk(() => ({
-            __proto__: pos$206,
+            [nix.POS]: pos$206,
             contents: nix.thunk(() => ({
-              __proto__: pos$205,
-              "/etc/hostid": nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "hostId"), null)), nix.thunk(() => ({ __proto__: pos$204, source: hostidFile })))),
+              [nix.POS]: pos$205,
+              "/etc/hostid": nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "hostId"), null)), nix.thunk(() => ({ [nix.POS]: pos$204, source: hostidFile })))),
             })),
           })),
         })),
       })),
       environment: nix.thunk(() => ({
-        __proto__: pos$212,
+        [nix.POS]: pos$212,
         etc: nix.thunk(() => ({
-          __proto__: pos$211,
-          hostid: nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "hostId"), null)), nix.thunk(() => ({ __proto__: pos$209, source: hostidFile })))),
+          [nix.POS]: pos$211,
+          hostid: nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "hostId"), null)), nix.thunk(() => ({ [nix.POS]: pos$209, source: hostidFile })))),
           hostname: nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "hostName"), "")), nix.thunk(() => ({
-              __proto__: pos$210,
+              [nix.POS]: pos$210,
               text: nix.thunk(() => nix.add(nix.sel(cfg, "hostName"), "\n")),
             })))),
         })),
@@ -1462,16 +1462,16 @@ ${tempaddrDoc}
         ], bridgeStp)),
       })),
       systemd: nix.thunk(() => ({
-        __proto__: pos$221,
+        [nix.POS]: pos$221,
         network: nix.thunk(() => ({
-          __proto__: pos$216,
+          [nix.POS]: pos$216,
           links: nix.thunk(() => nix.app(nix.lookup(w_1, "pipe"), interfaces, nix.thunk(() => [
               nix.thunk(() => nix.app(nix.lookup(w_1, "filter"), (i) => nix.sel(i, "wakeOnLan", "enable"))),
               nix.thunk(() => nix.app(nix.builtins.map, (i) => nix.app(nix.lookup(w_1, "nameValuePair"), nix.thunk(() => nix.str`40-${nix.sel(i, "name")}`), nix.thunk(() => ({
-                    __proto__: pos$215,
-                    matchConfig: nix.thunk(() => ({ __proto__: pos$213, OriginalName: nix.thunk(() => nix.sel(i, "name")) })),
+                    [nix.POS]: pos$215,
+                    matchConfig: nix.thunk(() => ({ [nix.POS]: pos$213, OriginalName: nix.thunk(() => nix.sel(i, "name")) })),
                     linkConfig: nix.thunk(() => ({
-                      __proto__: pos$214,
+                      [nix.POS]: pos$214,
                       WakeOnLan: nix.thunk(() => nix.app(nix.lookup(w_1, "concatStringsSep"), " ", nix.thunk(() => nix.sel(i, "wakeOnLan", "policy")))),
                     })),
                   }))))),
@@ -1479,17 +1479,17 @@ ${tempaddrDoc}
             ]))),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$220,
+          [nix.POS]: pos$220,
           "network-local-commands": nix.thunk(() => ({
-            __proto__: pos$219,
+            [nix.POS]: pos$219,
             enable: nix.thunk(() => !nix.eq(nix.sel(cfg, "localCommands"), "")),
             description: "Extra networking commands.",
             before: nix.thunk(() => ["network.target"]),
             wantedBy: nix.thunk(() => ["network.target"]),
             after: nix.thunk(() => ["network-pre.target"]),
-            unitConfig: nix.thunk(() => ({ __proto__: pos$217, ConditionCapability: "CAP_NET_ADMIN" })),
+            unitConfig: nix.thunk(() => ({ [nix.POS]: pos$217, ConditionCapability: "CAP_NET_ADMIN" })),
             path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "iproute2"))]),
-            serviceConfig: nix.thunk(() => ({ __proto__: pos$218, Type: "oneshot", RemainAfterExit: true })),
+            serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$218, Type: "oneshot", RemainAfterExit: true })),
             script: nix.thunk(() => nix.str`# Run any user-specified commands.
 ${nix.sel(cfg, "localCommands")}
 `),
@@ -1497,7 +1497,7 @@ ${nix.sel(cfg, "localCommands")}
         })),
       })),
       networking: nix.thunk(() => ({
-        __proto__: pos$222,
+        [nix.POS]: pos$222,
         localCommands: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "networking", "resolvconf", "enable")), nix.thunk(() => nix.str`# Set the static DNS configuration, if given.
 ${nix.sel(pkgs, "openresolv")}/sbin/resolvconf -m 1 -a static <<EOF
 ${nix.app(nix.lookup(w_1, "optionalString"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "nameservers"), [])) && nix.asBool(!nix.eq(nix.sel(cfg, "domain"), null)))), nix.thunk(() => nix.str`domain ${nix.sel(cfg, "domain")}
@@ -1509,10 +1509,10 @@ EOF
 `))),
       })),
       services: nix.thunk(() => ({
-        __proto__: pos$231,
-        mstpd: nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), needsMstpd, nix.thunk(() => ({ __proto__: pos$223, enable: true })))),
+        [nix.POS]: pos$231,
+        mstpd: nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), needsMstpd, nix.thunk(() => ({ [nix.POS]: pos$223, enable: true })))),
         udev: nix.thunk(() => ({
-          __proto__: pos$230,
+          [nix.POS]: pos$230,
           packages: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(config, "systemd", "network", "enable"))), nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => (() => {
                   const name = "ipv6-privacy-extensions.rules";
@@ -1523,7 +1523,7 @@ EOF
 ACTION=="add", SUBSYSTEM=="net", RUN+="${nix.sel(pkgs, "bash")}/bin/sh -c 'echo ${sysctl_value} > /proc/sys/net/ipv6/conf/$name/use_tempaddr'"
 `;
                   })());
-                  return { __proto__: pos$224, name, destination, text };
+                  return { [nix.POS]: pos$224, name, destination, text };
                 })()))),
               nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => (() => {
                   const name = "ipv6-privacy-extensions.rules";
@@ -1536,10 +1536,10 @@ ACTION=="add", SUBSYSTEM=="net", RUN+="${nix.sel(pkgs, "bash")}/bin/sh -c 'echo 
 ACTION=="add", SUBSYSTEM=="net", NAME=="${nix.sel(i, "name")}", RUN+="${nix.sel(pkgs, "procps")}/bin/sysctl net.ipv6.conf.${nix.app(nix.lookup(w_1, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["/"]), nix.thunk(() => nix.sel(i, "name")))}.use_tempaddr=${val}"
 `;
                     })(), nix.thunk(() => nix.app(nix.lookup(w_1, "filter"), (i) => !nix.eq(nix.sel(i, "tempAddress"), nix.sel(cfg, "tempAddresses")), interfaces))));
-                  return { __proto__: pos$225, name, destination, text };
+                  return { [nix.POS]: pos$225, name, destination, text };
                 })()))),
             ])), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "wlanInterfaces"), {})), nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-                __proto__: pos$229,
+                [nix.POS]: pos$229,
                 name: "99-zzz-40-wlanInterfaces.rules",
                 destination: "/etc/udev/rules.d/99-zzz-40-wlanInterfaces.rules",
                 text: nix.thunk(() => (() => {
@@ -1548,7 +1548,7 @@ ACTION=="add", SUBSYSTEM=="net", NAME=="${nix.sel(i, "name")}", RUN+="${nix.sel(
                     const interfacesOfDevice = (d) => nix.app(nix.lookup(w_1, "filterAttrs"), (_) => (v) => nix.eq(nix.sel(v, "device"), d), nix.thunk(() => nix.sel(cfg, "wlanInterfaces")));
                     return nix.app(nix.lookup(w_1, "genAttrs"), allDevices, (d) => nix.app(interfacesOfDevice, d));
                   })());
-                  const wlanListDeviceFirst = (device) => (interfaces_1) => (nix.asBool(nix.app(nix.lookup(w_1, "hasAttr"), device, interfaces_1)) ? nix.concat(nix.app(nix.lookup(w_1, "mapAttrsToList"), (n) => (v) => nix.update(v, { __proto__: pos$226, _iName: n }), nix.thunk(() => nix.app(nix.lookup(w_1, "filterAttrs"), (n) => (_) => nix.eq(n, device), interfaces_1))), nix.app(nix.lookup(w_1, "mapAttrsToList"), (n) => (v) => nix.update(v, { __proto__: pos$227, _iName: n }), nix.thunk(() => nix.app(nix.lookup(w_1, "filterAttrs"), (n) => (_) => !nix.eq(n, device), interfaces_1)))) : nix.app(nix.lookup(w_1, "mapAttrsToList"), (n) => (v) => nix.update(v, { __proto__: pos$228, _iName: n }), interfaces_1));
+                  const wlanListDeviceFirst = (device) => (interfaces_1) => (nix.asBool(nix.app(nix.lookup(w_1, "hasAttr"), device, interfaces_1)) ? nix.concat(nix.app(nix.lookup(w_1, "mapAttrsToList"), (n) => (v) => nix.update(v, { [nix.POS]: pos$226, _iName: n }), nix.thunk(() => nix.app(nix.lookup(w_1, "filterAttrs"), (n) => (_) => nix.eq(n, device), interfaces_1))), nix.app(nix.lookup(w_1, "mapAttrsToList"), (n) => (v) => nix.update(v, { [nix.POS]: pos$227, _iName: n }), nix.thunk(() => nix.app(nix.lookup(w_1, "filterAttrs"), (n) => (_) => !nix.eq(n, device), interfaces_1)))) : nix.app(nix.lookup(w_1, "mapAttrsToList"), (n) => (v) => nix.update(v, { [nix.POS]: pos$228, _iName: n }), interfaces_1));
                   const curInterfaceScript = (device) => (current) => (new$) => nix.app(nix.sel(pkgs, "writeScript"), nix.thunk(() => nix.str`udev-run-script-wlan-interfaces-${device}.sh`), nix.thunk(() => nix.str`#!${nix.sel(pkgs, "runtimeShell")}
 # Change the wireless phy device to a predictable name.
 ${nix.sel(pkgs, "iw")}/bin/iw phy \`${nix.sel(pkgs, "coreutils")}/bin/cat /sys/class/net/$INTERFACE/phy80211/name\` set name ${device}
@@ -1593,8 +1593,8 @@ ACTION=="move", SUBSYSTEM=="net", ENV{DEVTYPE}=="wlan", NAME=="${device}", ${nix
         })),
       })),
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$233,
-        vswitch: nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "vswitches"), {})), nix.thunk(() => ({ __proto__: pos$232, enable: true })))),
+        [nix.POS]: pos$233,
+        vswitch: nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "vswitches"), {})), nix.thunk(() => ({ [nix.POS]: pos$232, enable: true })))),
       })),
     })),
   };

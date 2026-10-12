@@ -340,12 +340,12 @@ export default nix.lambda((args) => (() => {
     const w = nix.withScope(beamPackages, null);
     const w_1 = nix.withScope(self, w);
     return {
-      __proto__: pos$323,
+      [nix.POS]: pos$323,
       absinthe: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "absinthe";
           const version = "1.11.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               pkg: "absinthe",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "39b3b4b6e3eb405fa98b449feef0dacff81d89bf01c2866cfa513616c5530ba6",
@@ -356,13 +356,13 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "nimble_parsec")),
             nix.thunk(() => nix.lookup(w_1, "telemetry")),
           ]);
-          return { __proto__: pos$2, name, version, src, beamDeps };
+          return { [nix.POS]: pos$2, name, version, src, beamDeps };
         })()))),
       absinthe_phoenix: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "absinthe_phoenix";
           const version = "2.0.5";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               pkg: "absinthe_phoenix",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "086c6d4a1c32f7444713130d204c87b1b006169f5159026b73f02f7d38ccd05c",
@@ -375,13 +375,13 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "phoenix_html")),
             nix.thunk(() => nix.lookup(w_1, "phoenix_pubsub")),
           ]);
-          return { __proto__: pos$4, name, version, src, beamDeps };
+          return { [nix.POS]: pos$4, name, version, src, beamDeps };
         })()))),
       absinthe_plug: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "absinthe_plug";
           const version = "1.5.10";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               pkg: "absinthe_plug",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "489ac1951c8e4128571141c60a0669a720619bc161f801a8c6be8cfaf7ab0979",
@@ -390,13 +390,13 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "absinthe")),
             nix.thunk(() => nix.lookup(w_1, "plug")),
           ]);
-          return { __proto__: pos$6, name, version, src, beamDeps };
+          return { [nix.POS]: pos$6, name, version, src, beamDeps };
         })()))),
       argon2_elixir: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "argon2_elixir";
           const version = "4.1.3";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               pkg: "argon2_elixir",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "7c295b8d8e0eaf6f43641698f962526cdf87c6feb7d14bd21e599271b510608c",
@@ -405,25 +405,25 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "comeonin")),
             nix.thunk(() => nix.lookup(w_1, "elixir_make")),
           ]);
-          return { __proto__: pos$8, name, version, src, beamDeps };
+          return { [nix.POS]: pos$8, name, version, src, beamDeps };
         })()))),
       atomex: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "atomex";
           const version = "0.5.1";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               pkg: "atomex",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "6248891b5fcab8503982e090eedeeadb757a6311c2ef2e2998b874f7d319ab3f",
             }))));
           const beamDeps = nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "xml_builder"))]);
-          return { __proto__: pos$10, name, version, src, beamDeps };
+          return { [nix.POS]: pos$10, name, version, src, beamDeps };
         })()))),
       bandit: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "bandit";
           const version = "1.12.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               pkg: "bandit",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "45dac82dc86f45cf4a196dee9cc5a8b791d9c9469d996055f055e6ee36c66e20",
@@ -435,25 +435,25 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "thousand_island")),
             nix.thunk(() => nix.lookup(w_1, "websock")),
           ]);
-          return { __proto__: pos$12, name, version, src, beamDeps };
+          return { [nix.POS]: pos$12, name, version, src, beamDeps };
         })()))),
       bunt: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "bunt";
           const version = "1.0.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               pkg: "bunt",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "dc5f86aa08a5f6fa6b8096f0735c4e76d54ae5c9fa2c143e5a1fc7c1cd9bb6b5",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$14, name, version, src, beamDeps };
+          return { [nix.POS]: pos$14, name, version, src, beamDeps };
         })()))),
       cachex: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "cachex";
           const version = "3.6.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               pkg: "cachex",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "ebf24e373883bc8e0c8d894a63bbe102ae13d918f790121f5cfe6e485cc8e2e2",
@@ -464,37 +464,37 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "sleeplocks")),
             nix.thunk(() => nix.lookup(w_1, "unsafe")),
           ]);
-          return { __proto__: pos$16, name, version, src, beamDeps };
+          return { [nix.POS]: pos$16, name, version, src, beamDeps };
         })()))),
       castore: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "castore";
           const version = "1.0.19";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               pkg: "castore",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "3669e6cab13f54c2df26b3e6833745d647f35b6e30d8ddd5975df0d5c842ca98",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$18, name, version, src, beamDeps };
+          return { [nix.POS]: pos$18, name, version, src, beamDeps };
         })()))),
       certifi: nix.thunk(() => nix.app(buildRebar3, nix.thunk(() => (() => {
           const name = "certifi";
           const version = "2.15.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               pkg: "certifi",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "b147ed22ce71d72eafdad94f055165c1c182f61a2ff49df28bcc71d1d5b94a60",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$20, name, version, src, beamDeps };
+          return { [nix.POS]: pos$20, name, version, src, beamDeps };
         })()))),
       cldr_utils: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "cldr_utils";
           const version = "2.29.7";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               pkg: "cldr_utils",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "4bddcd597fee34e2d2829ae9ef62bcfef8d97ae5f6b75f0c6ee37a3db31aa73a",
@@ -504,61 +504,61 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "certifi")),
             nix.thunk(() => nix.lookup(w_1, "decimal")),
           ]);
-          return { __proto__: pos$22, name, version, src, beamDeps };
+          return { [nix.POS]: pos$22, name, version, src, beamDeps };
         })()))),
       codepagex: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "codepagex";
           const version = "0.1.13";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               pkg: "codepagex",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "c328170767e3ec04682193e7a07a8074c934a995a903d1836777c0ca5edf0d46",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$24, name, version, src, beamDeps };
+          return { [nix.POS]: pos$24, name, version, src, beamDeps };
         })()))),
       combine: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "combine";
           const version = "0.10.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               pkg: "combine",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "1b1dbc1790073076580d0d1d64e42eae2366583e7aecd455d1215b0d16f2451b",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$26, name, version, src, beamDeps };
+          return { [nix.POS]: pos$26, name, version, src, beamDeps };
         })()))),
       comeonin: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "comeonin";
           const version = "5.5.1";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               pkg: "comeonin",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "65aac8f19938145377cee73973f192c5645873dcf550a8a6b18187d17c13ccdb",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$28, name, version, src, beamDeps };
+          return { [nix.POS]: pos$28, name, version, src, beamDeps };
         })()))),
       cors_plug: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "cors_plug";
           const version = "3.0.3";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               pkg: "cors_plug",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "3f2d759e8c272ed3835fab2ef11b46bddab8c1ab9528167bd463b6452edf830d",
             }))));
           const beamDeps = nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "plug"))]);
-          return { __proto__: pos$30, name, version, src, beamDeps };
+          return { [nix.POS]: pos$30, name, version, src, beamDeps };
         })()))),
       credo: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "credo";
           const version = "1.7.19";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               pkg: "credo",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "2d8bc95d5a7bb99dd2613621d4f08c6a3575c3fd4b62e6a2b48a100352a557b8",
@@ -568,13 +568,13 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "file_system")),
             nix.thunk(() => nix.lookup(w_1, "jason")),
           ]);
-          return { __proto__: pos$32, name, version, src, beamDeps };
+          return { [nix.POS]: pos$32, name, version, src, beamDeps };
         })()))),
       credo_code_climate: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "credo_code_climate";
           const version = "0.1.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               pkg: "credo_code_climate",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "75529fe38056f4e229821d604758282838b8397c82e2c12e409fda16b16821ca",
@@ -583,13 +583,13 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "credo")),
             nix.thunk(() => nix.lookup(w_1, "jason")),
           ]);
-          return { __proto__: pos$34, name, version, src, beamDeps };
+          return { [nix.POS]: pos$34, name, version, src, beamDeps };
         })()))),
       dataloader: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "dataloader";
           const version = "2.0.2";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               pkg: "dataloader",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "4c6cabc0b55e96e7de74d14bf37f4a5786f0ab69aa06764a1f39dda40079b098",
@@ -598,97 +598,97 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "ecto")),
             nix.thunk(() => nix.lookup(w_1, "telemetry")),
           ]);
-          return { __proto__: pos$36, name, version, src, beamDeps };
+          return { [nix.POS]: pos$36, name, version, src, beamDeps };
         })()))),
       db_connection: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "db_connection";
           const version = "2.10.1";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               pkg: "db_connection",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "18ed94c6e627b4bf452dbd4df61b69a35a1e768525140bc1917b7a685026a6a3",
             }))));
           const beamDeps = nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "telemetry"))]);
-          return { __proto__: pos$38, name, version, src, beamDeps };
+          return { [nix.POS]: pos$38, name, version, src, beamDeps };
         })()))),
       decimal: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "decimal";
           const version = "2.4.1";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               pkg: "decimal",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "7e618897933a8455f19a727d7c5e50a2c071a544b700e5e724298ecb4340187f",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$40, name, version, src, beamDeps };
+          return { [nix.POS]: pos$40, name, version, src, beamDeps };
         })()))),
       dialyxir: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "dialyxir";
           const version = "1.4.7";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               pkg: "dialyxir",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "b34527202e6eb8cee198efec110996c25c5898f43a4094df157f8d28f27d9efe",
             }))));
           const beamDeps = nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "erlex"))]);
-          return { __proto__: pos$42, name, version, src, beamDeps };
+          return { [nix.POS]: pos$42, name, version, src, beamDeps };
         })()))),
       digital_token: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "digital_token";
           const version = "2.0.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               pkg: "digital_token",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "cbd2fff52770284a8251540a4b4e529e9738c6fe052d7f3c3428eb5c817385cd",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$44, name, version, src, beamDeps };
+          return { [nix.POS]: pos$44, name, version, src, beamDeps };
         })()))),
       doctor: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "doctor";
           const version = "0.22.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               pkg: "doctor",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "96e22cf8c0df2e9777dc55ebaa5798329b9028889c4023fed3305688d902cd5b",
             }))));
           const beamDeps = nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "decimal"))]);
-          return { __proto__: pos$46, name, version, src, beamDeps };
+          return { [nix.POS]: pos$46, name, version, src, beamDeps };
         })()))),
       earmark_parser: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "earmark_parser";
           const version = "1.4.45";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               pkg: "earmark_parser",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "d3ec045bf122965db20c0bdb420e19ee1415843135327124918473feb4b328e8",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$48, name, version, src, beamDeps };
+          return { [nix.POS]: pos$48, name, version, src, beamDeps };
         })()))),
       eblurhash: nix.thunk(() => nix.app(buildRebar3, nix.thunk(() => (() => {
           const name = "eblurhash";
           const version = "1.2.2";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               pkg: "eblurhash",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "8c20ca00904de023a835a9dcb7b7762fed32264c85a80c3cafa85288e405044c",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$50, name, version, src, beamDeps };
+          return { [nix.POS]: pos$50, name, version, src, beamDeps };
         })()))),
       ecto: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "ecto";
           const version = "3.13.6";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               pkg: "ecto",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "8afa059bc16cd2c94739ec0a11e3e5df69d828125119109bef35f20a21a76af2",
@@ -698,13 +698,13 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "jason")),
             nix.thunk(() => nix.lookup(w_1, "telemetry")),
           ]);
-          return { __proto__: pos$52, name, version, src, beamDeps };
+          return { [nix.POS]: pos$52, name, version, src, beamDeps };
         })()))),
       ecto_autoslug_field: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "ecto_autoslug_field";
           const version = "3.1.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               pkg: "ecto_autoslug_field",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "b6ddd614805263e24b5c169532c934440d0289181cce873061fca3a8e92fd9ff",
@@ -713,13 +713,13 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "ecto")),
             nix.thunk(() => nix.lookup(w_1, "slugify")),
           ]);
-          return { __proto__: pos$54, name, version, src, beamDeps };
+          return { [nix.POS]: pos$54, name, version, src, beamDeps };
         })()))),
       ecto_dev_logger: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "ecto_dev_logger";
           const version = "0.15.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$55,
+              [nix.POS]: pos$55,
               pkg: "ecto_dev_logger",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "b2c807d7d599a4fcf288139851c09262333b193bdb41f8d65f515853d117e88a",
@@ -730,13 +730,13 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "jason")),
             nix.thunk(() => nix.lookup(w_1, "postgrex")),
           ]);
-          return { __proto__: pos$56, name, version, src, beamDeps };
+          return { [nix.POS]: pos$56, name, version, src, beamDeps };
         })()))),
       ecto_enum: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "ecto_enum";
           const version = "1.4.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$57,
+              [nix.POS]: pos$57,
               pkg: "ecto_enum",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "8fb55c087181c2b15eee406519dc22578fa60dd82c088be376d0010172764ee4",
@@ -746,13 +746,13 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "ecto_sql")),
             nix.thunk(() => nix.lookup(w_1, "postgrex")),
           ]);
-          return { __proto__: pos$58, name, version, src, beamDeps };
+          return { [nix.POS]: pos$58, name, version, src, beamDeps };
         })()))),
       ecto_shortuuid: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "ecto_shortuuid";
           const version = "0.4.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               pkg: "ecto_shortuuid",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "1edb0e17f689c564039cb780b6a7409076f179ad236ad96413f00c7613db8bb3",
@@ -761,13 +761,13 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "ecto")),
             nix.thunk(() => nix.lookup(w_1, "shortuuid")),
           ]);
-          return { __proto__: pos$60, name, version, src, beamDeps };
+          return { [nix.POS]: pos$60, name, version, src, beamDeps };
         })()))),
       ecto_sql: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "ecto_sql";
           const version = "3.13.5";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$61,
+              [nix.POS]: pos$61,
               pkg: "ecto_sql",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "aa36751f4e6a2b56ae79efb0e088042e010ff4935fc8684e74c23b1f49e25fdc",
@@ -778,73 +778,73 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "postgrex")),
             nix.thunk(() => nix.lookup(w_1, "telemetry")),
           ]);
-          return { __proto__: pos$62, name, version, src, beamDeps };
+          return { [nix.POS]: pos$62, name, version, src, beamDeps };
         })()))),
       elixir_feed_parser: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "elixir_feed_parser";
           const version = "2.1.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$63,
+              [nix.POS]: pos$63,
               pkg: "elixir_feed_parser",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "2d3c62fe7b396ee3b73d7160bc8fadbd78bfe9597c98c7d79b3f1038d9cba28f",
             }))));
           const beamDeps = nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "timex"))]);
-          return { __proto__: pos$64, name, version, src, beamDeps };
+          return { [nix.POS]: pos$64, name, version, src, beamDeps };
         })()))),
       elixir_make: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "elixir_make";
           const version = "0.10.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$65,
+              [nix.POS]: pos$65,
               pkg: "elixir_make",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "dc1f09fb7fa68866b886abd5f0f3c83553b1a19a52359a899e92af1bb3b31982",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$66, name, version, src, beamDeps };
+          return { [nix.POS]: pos$66, name, version, src, beamDeps };
         })()))),
       erlex: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "erlex";
           const version = "0.2.9";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$67,
+              [nix.POS]: pos$67,
               pkg: "erlex",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "8cfffc0ec7159e6d73de2ab28a588064de80f88b2798d5cbe4482cbbc200178b",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$68, name, version, src, beamDeps };
+          return { [nix.POS]: pos$68, name, version, src, beamDeps };
         })()))),
       erlport: nix.thunk(() => nix.app(buildRebar3, nix.thunk(() => (() => {
           const name = "erlport";
           const version = "0.11.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$69,
+              [nix.POS]: pos$69,
               pkg: "erlport",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "8eb136ccaf3948d329b8d1c3278ad2e17e2a7319801bc4cc2da6db278204eee4",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$70, name, version, src, beamDeps };
+          return { [nix.POS]: pos$70, name, version, src, beamDeps };
         })()))),
       eternal: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "eternal";
           const version = "1.2.2";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$71,
+              [nix.POS]: pos$71,
               pkg: "eternal",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "2c9fe32b9c3726703ba5e1d43a1d255a4f3f2d8f8f9bc19f094c7cb1a7a9e782",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$72, name, version, src, beamDeps };
+          return { [nix.POS]: pos$72, name, version, src, beamDeps };
         })()))),
       ex_cldr: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "ex_cldr";
           const version = "2.47.4";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$73,
+              [nix.POS]: pos$73,
               pkg: "ex_cldr",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "918aabc032955f3eac70abbdf2c5469433132edfaaaccee55451f074ee1ccdba",
@@ -856,13 +856,13 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "jason")),
             nix.thunk(() => nix.lookup(w_1, "nimble_parsec")),
           ]);
-          return { __proto__: pos$74, name, version, src, beamDeps };
+          return { [nix.POS]: pos$74, name, version, src, beamDeps };
         })()))),
       ex_cldr_calendars: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "ex_cldr_calendars";
           const version = "2.4.3";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$75,
+              [nix.POS]: pos$75,
               pkg: "ex_cldr_calendars",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "b46ef6bd74f7e2dc3de27366f79372b1e630563bcf09b7803fec162e28d4a85e",
@@ -872,13 +872,13 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "ex_doc")),
             nix.thunk(() => nix.lookup(w_1, "jason")),
           ]);
-          return { __proto__: pos$76, name, version, src, beamDeps };
+          return { [nix.POS]: pos$76, name, version, src, beamDeps };
         })()))),
       ex_cldr_currencies: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "ex_cldr_currencies";
           const version = "2.17.2";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$77,
+              [nix.POS]: pos$77,
               pkg: "ex_cldr_currencies",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "797095c106a2fe6632981531e29cfb1d2f8ee7de626f4d6243f974d6f74a0112",
@@ -887,13 +887,13 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "ex_cldr")),
             nix.thunk(() => nix.lookup(w_1, "jason")),
           ]);
-          return { __proto__: pos$78, name, version, src, beamDeps };
+          return { [nix.POS]: pos$78, name, version, src, beamDeps };
         })()))),
       ex_cldr_dates_times: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "ex_cldr_dates_times";
           const version = "2.25.6";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$79,
+              [nix.POS]: pos$79,
               pkg: "ex_cldr_dates_times",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "926ff5662b849f86088832ee66b61a96aab0fa5a54d5e14240e08ad3030663e2",
@@ -902,13 +902,13 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "ex_cldr_calendars")),
             nix.thunk(() => nix.lookup(w_1, "jason")),
           ]);
-          return { __proto__: pos$80, name, version, src, beamDeps };
+          return { [nix.POS]: pos$80, name, version, src, beamDeps };
         })()))),
       ex_cldr_languages: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "ex_cldr_languages";
           const version = "0.3.3";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$81,
+              [nix.POS]: pos$81,
               pkg: "ex_cldr_languages",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "22fb1fef72b7b4b4872d243b34e7b83734247a78ad87377986bf719089cc447a",
@@ -917,13 +917,13 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "ex_cldr")),
             nix.thunk(() => nix.lookup(w_1, "jason")),
           ]);
-          return { __proto__: pos$82, name, version, src, beamDeps };
+          return { [nix.POS]: pos$82, name, version, src, beamDeps };
         })()))),
       ex_cldr_numbers: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "ex_cldr_numbers";
           const version = "2.38.3";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$83,
+              [nix.POS]: pos$83,
               pkg: "ex_cldr_numbers",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "3a0d87ef2747c66d78ae8967023d415d3d76aa310981047ad601e3287e8fe73c",
@@ -935,13 +935,13 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "ex_cldr_currencies")),
             nix.thunk(() => nix.lookup(w_1, "jason")),
           ]);
-          return { __proto__: pos$84, name, version, src, beamDeps };
+          return { [nix.POS]: pos$84, name, version, src, beamDeps };
         })()))),
       ex_cldr_plugs: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "ex_cldr_plugs";
           const version = "1.4.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$85,
+              [nix.POS]: pos$85,
               pkg: "ex_cldr_plugs",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "0859ccd533bddd00a36008ea970ba2d6440c8f01b1d73b115f445015046277bc",
@@ -952,13 +952,13 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "jason")),
             nix.thunk(() => nix.lookup(w_1, "plug")),
           ]);
-          return { __proto__: pos$86, name, version, src, beamDeps };
+          return { [nix.POS]: pos$86, name, version, src, beamDeps };
         })()))),
       ex_doc: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "ex_doc";
           const version = "0.40.3";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$87,
+              [nix.POS]: pos$87,
               pkg: "ex_doc",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "2756e357742fecd9749b489b85d67c9ce99c465f2e75728d9e6dc8d704b973de",
@@ -968,37 +968,37 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "makeup_elixir")),
             nix.thunk(() => nix.lookup(w_1, "makeup_erlang")),
           ]);
-          return { __proto__: pos$88, name, version, src, beamDeps };
+          return { [nix.POS]: pos$88, name, version, src, beamDeps };
         })()))),
       ex_hash_ring: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "ex_hash_ring";
           const version = "6.0.4";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$89,
+              [nix.POS]: pos$89,
               pkg: "ex_hash_ring",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "89adabf31f7d3dfaa36802ce598ce918e9b5b33bae8909ac1a4d052e1e567d18",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$90, name, version, src, beamDeps };
+          return { [nix.POS]: pos$90, name, version, src, beamDeps };
         })()))),
       ex_ical: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "ex_ical";
           const version = "0.2.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$91,
+              [nix.POS]: pos$91,
               pkg: "ex_ical",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "db76473b2ae0259e6633c6c479a5a4d8603f09497f55c88f9ef4d53d2b75befb",
             }))));
           const beamDeps = nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "timex"))]);
-          return { __proto__: pos$92, name, version, src, beamDeps };
+          return { [nix.POS]: pos$92, name, version, src, beamDeps };
         })()))),
       ex_machina: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "ex_machina";
           const version = "2.8.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$93,
+              [nix.POS]: pos$93,
               pkg: "ex_machina",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "79fe1a9c64c0c1c1fab6c4fa5d871682cb90de5885320c187d117004627a7729",
@@ -1007,37 +1007,37 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "ecto")),
             nix.thunk(() => nix.lookup(w_1, "ecto_sql")),
           ]);
-          return { __proto__: pos$94, name, version, src, beamDeps };
+          return { [nix.POS]: pos$94, name, version, src, beamDeps };
         })()))),
       ex_optimizer: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "ex_optimizer";
           const version = "0.1.1";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$95,
+              [nix.POS]: pos$95,
               pkg: "ex_optimizer",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "e6f5c059bcd58b66be2f6f257fdc4f69b74b0fa5c9ddd669486af012e4b52286",
             }))));
           const beamDeps = nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "file_info"))]);
-          return { __proto__: pos$96, name, version, src, beamDeps };
+          return { [nix.POS]: pos$96, name, version, src, beamDeps };
         })()))),
       ex_unit_notifier: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "ex_unit_notifier";
           const version = "1.3.1";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$97,
+              [nix.POS]: pos$97,
               pkg: "ex_unit_notifier",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "87eb1cea911ed1753e1cc046cbf1c7f86af9058e30672a355f0699b41e5e119d",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$98, name, version, src, beamDeps };
+          return { [nix.POS]: pos$98, name, version, src, beamDeps };
         })()))),
       excoveralls: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "excoveralls";
           const version = "0.18.5";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$99,
+              [nix.POS]: pos$99,
               pkg: "excoveralls",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "523fe8a15603f86d64852aab2abe8ddbd78e68579c8525ae765facc5eae01562",
@@ -1046,49 +1046,49 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "castore")),
             nix.thunk(() => nix.lookup(w_1, "jason")),
           ]);
-          return { __proto__: pos$100, name, version, src, beamDeps };
+          return { [nix.POS]: pos$100, name, version, src, beamDeps };
         })()))),
       exgravatar: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "exgravatar";
           const version = "2.0.3";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$101,
+              [nix.POS]: pos$101,
               pkg: "exgravatar",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "aca18ff9bd8991d3be3e5446d3bdefc051be084c1ffc9ab2d43b3e65339300e1",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$102, name, version, src, beamDeps };
+          return { [nix.POS]: pos$102, name, version, src, beamDeps };
         })()))),
       expo: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "expo";
           const version = "1.1.1";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$103,
+              [nix.POS]: pos$103,
               pkg: "expo",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "5fb308b9cb359ae200b7e23d37c76978673aa1b06e2b3075d814ce12c5811640",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$104, name, version, src, beamDeps };
+          return { [nix.POS]: pos$104, name, version, src, beamDeps };
         })()))),
       export: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "export";
           const version = "0.1.1";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$105,
+              [nix.POS]: pos$105,
               pkg: "export",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "3da7444ff4053f1824352f4bdb13fbd2c28c93c2011786fb686b649fdca1021f",
             }))));
           const beamDeps = nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "erlport"))]);
-          return { __proto__: pos$106, name, version, src, beamDeps };
+          return { [nix.POS]: pos$106, name, version, src, beamDeps };
         })()))),
       fast_html: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "fast_html";
           const version = "2.5.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$107,
+              [nix.POS]: pos$107,
               pkg: "fast_html",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "69eb46ed98a5d9cca1ccd4a5ac94ce5dd626fc29513fbaa0a16cd8b2da67ae3e",
@@ -1097,13 +1097,13 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "elixir_make")),
             nix.thunk(() => nix.lookup(w_1, "nimble_pool")),
           ]);
-          return { __proto__: pos$108, name, version, src, beamDeps };
+          return { [nix.POS]: pos$108, name, version, src, beamDeps };
         })()))),
       fast_sanitize: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "fast_sanitize";
           const version = "0.2.3";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$109,
+              [nix.POS]: pos$109,
               pkg: "fast_sanitize",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "e8ad286d10d0386e15d67d0ee125245ebcfbc7d7290b08712ba9013c8c5e56e2",
@@ -1112,73 +1112,73 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "fast_html")),
             nix.thunk(() => nix.lookup(w_1, "plug")),
           ]);
-          return { __proto__: pos$110, name, version, src, beamDeps };
+          return { [nix.POS]: pos$110, name, version, src, beamDeps };
         })()))),
       file_info: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "file_info";
           const version = "0.0.4";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$111,
+              [nix.POS]: pos$111,
               pkg: "file_info",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "50e7ad01c2c8b9339010675fe4dc4a113b8d6ca7eddce24d1d74fd0e762781a5",
             }))));
           const beamDeps = nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "mimetype_parser"))]);
-          return { __proto__: pos$112, name, version, src, beamDeps };
+          return { [nix.POS]: pos$112, name, version, src, beamDeps };
         })()))),
       file_system: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "file_system";
           const version = "1.1.1";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$113,
+              [nix.POS]: pos$113,
               pkg: "file_system",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "7a15ff97dfe526aeefb090a7a9d3d03aa907e100e262a0f8f7746b78f8f87a5d",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$114, name, version, src, beamDeps };
+          return { [nix.POS]: pos$114, name, version, src, beamDeps };
         })()))),
       floki: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "floki";
           const version = "0.38.4";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$115,
+              [nix.POS]: pos$115,
               pkg: "floki",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "bdb34645eee8e79845c7edaca2d4099a52804ee4d4a3ecc683a69451f0244973",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$116, name, version, src, beamDeps };
+          return { [nix.POS]: pos$116, name, version, src, beamDeps };
         })()))),
       gen_smtp: nix.thunk(() => nix.app(buildRebar3, nix.thunk(() => (() => {
           const name = "gen_smtp";
           const version = "1.3.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$117,
+              [nix.POS]: pos$117,
               pkg: "gen_smtp",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "0b73fbf069864ecbce02fe653b16d3f35fd889d0fdd4e14527675565c39d84e6",
             }))));
           const beamDeps = nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "ranch"))]);
-          return { __proto__: pos$118, name, version, src, beamDeps };
+          return { [nix.POS]: pos$118, name, version, src, beamDeps };
         })()))),
       geo: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "geo";
           const version = "4.1.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$119,
+              [nix.POS]: pos$119,
               pkg: "geo",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "19edb2b3398ca9f701b573b1fb11bc90951ebd64f18b06bd1bf35abe509a2934",
             }))));
           const beamDeps = nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "jason"))]);
-          return { __proto__: pos$120, name, version, src, beamDeps };
+          return { [nix.POS]: pos$120, name, version, src, beamDeps };
         })()))),
       geo_postgis: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "geo_postgis";
           const version = "3.7.1";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$121,
+              [nix.POS]: pos$121,
               pkg: "geo_postgis",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "c20d823c600d35b7fe9ddd5be03052bb7136c57d6f1775dbd46871545e405280",
@@ -1189,37 +1189,37 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "jason")),
             nix.thunk(() => nix.lookup(w_1, "postgrex")),
           ]);
-          return { __proto__: pos$122, name, version, src, beamDeps };
+          return { [nix.POS]: pos$122, name, version, src, beamDeps };
         })()))),
       geohax: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "geohax";
           const version = "1.0.2";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$123,
+              [nix.POS]: pos$123,
               pkg: "geohax",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "4c782de1e1ee781e2fa07ba6ebfbfb66b91c215b901073defe6196184b8b60a4",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$124, name, version, src, beamDeps };
+          return { [nix.POS]: pos$124, name, version, src, beamDeps };
         })()))),
       geolix: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "geolix";
           const version = "2.1.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$125,
+              [nix.POS]: pos$125,
               pkg: "geolix",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "0b871bc2db8efd0114d1fd7087c83180056a1fff20d90946c89d32200e368651",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$126, name, version, src, beamDeps };
+          return { [nix.POS]: pos$126, name, version, src, beamDeps };
         })()))),
       geolix_adapter_mmdb2: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "geolix_adapter_mmdb2";
           const version = "0.6.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$127,
+              [nix.POS]: pos$127,
               pkg: "geolix_adapter_mmdb2",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "06ff962feae8a310cffdf86b74bfcda6e2d0dccb439bb1f62df2b657b1c0269b",
@@ -1228,25 +1228,25 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "geolix")),
             nix.thunk(() => nix.lookup(w_1, "mmdb2_decoder")),
           ]);
-          return { __proto__: pos$128, name, version, src, beamDeps };
+          return { [nix.POS]: pos$128, name, version, src, beamDeps };
         })()))),
       gettext: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "gettext";
           const version = "0.26.2";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$129,
+              [nix.POS]: pos$129,
               pkg: "gettext",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "aa978504bcf76511efdc22d580ba08e2279caab1066b76bb9aa81c4a1e0a32a5",
             }))));
           const beamDeps = nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "expo"))]);
-          return { __proto__: pos$130, name, version, src, beamDeps };
+          return { [nix.POS]: pos$130, name, version, src, beamDeps };
         })()))),
       guardian: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "guardian";
           const version = "2.4.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$131,
+              [nix.POS]: pos$131,
               pkg: "guardian",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "5c80103a9c538fbc2505bf08421a82e8f815deba9eaedb6e734c66443154c518",
@@ -1255,13 +1255,13 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "jose")),
             nix.thunk(() => nix.lookup(w_1, "plug")),
           ]);
-          return { __proto__: pos$132, name, version, src, beamDeps };
+          return { [nix.POS]: pos$132, name, version, src, beamDeps };
         })()))),
       guardian_db: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "guardian_db";
           const version = "3.0.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$133,
+              [nix.POS]: pos$133,
               pkg: "guardian_db",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "9c2ec4278efa34f9f1cc6ba795e552d41fdc7ffba5319d67eeb533b89392d183",
@@ -1272,13 +1272,13 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "guardian")),
             nix.thunk(() => nix.lookup(w_1, "postgrex")),
           ]);
-          return { __proto__: pos$134, name, version, src, beamDeps };
+          return { [nix.POS]: pos$134, name, version, src, beamDeps };
         })()))),
       guardian_phoenix: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "guardian_phoenix";
           const version = "2.0.1";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$135,
+              [nix.POS]: pos$135,
               pkg: "guardian_phoenix",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "21f439246715192b231f228680465d1ed5fbdf01555a4a3b17165532f5f9a08c",
@@ -1287,13 +1287,13 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "guardian")),
             nix.thunk(() => nix.lookup(w_1, "phoenix")),
           ]);
-          return { __proto__: pos$136, name, version, src, beamDeps };
+          return { [nix.POS]: pos$136, name, version, src, beamDeps };
         })()))),
       hackney: nix.thunk(() => nix.app(buildRebar3, nix.thunk(() => (() => {
           const name = "hackney";
           const version = "1.25.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$137,
+              [nix.POS]: pos$137,
               pkg: "hackney",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "7209bfd75fd1f42467211ff8f59ea74d6f2a9e81cbcee95a56711ee79fd6b1d4",
@@ -1307,193 +1307,193 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "ssl_verify_fun")),
             nix.thunk(() => nix.lookup(w_1, "unicode_util_compat")),
           ]);
-          return { __proto__: pos$138, name, version, src, beamDeps };
+          return { [nix.POS]: pos$138, name, version, src, beamDeps };
         })()))),
       hammer: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "hammer";
           const version = "6.2.1";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$139,
+              [nix.POS]: pos$139,
               pkg: "hammer",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "b9476d0c13883d2dc0cc72e786bac6ac28911fba7cc2e04b70ce6a6d9c4b2bdc",
             }))));
           const beamDeps = nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "poolboy"))]);
-          return { __proto__: pos$140, name, version, src, beamDeps };
+          return { [nix.POS]: pos$140, name, version, src, beamDeps };
         })()))),
       haversine: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "haversine";
           const version = "0.1.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$141,
+              [nix.POS]: pos$141,
               pkg: "haversine",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "54dc48e895bc18a59437a37026c873634e17b648a64cb87bfafb96f64d607060",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$142, name, version, src, beamDeps };
+          return { [nix.POS]: pos$142, name, version, src, beamDeps };
         })()))),
       hpax: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "hpax";
           const version = "1.0.3";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$143,
+              [nix.POS]: pos$143,
               pkg: "hpax",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "8eab6e1cfa8d5918c2ce4ba43588e894af35dbd8e91e6e55c817bca5847df34a",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$144, name, version, src, beamDeps };
+          return { [nix.POS]: pos$144, name, version, src, beamDeps };
         })()))),
       html_entities: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "html_entities";
           const version = "0.5.2";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$145,
+              [nix.POS]: pos$145,
               pkg: "html_entities",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "c53ba390403485615623b9531e97696f076ed415e8d8058b1dbaa28181f4fdcc",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$146, name, version, src, beamDeps };
+          return { [nix.POS]: pos$146, name, version, src, beamDeps };
         })()))),
       http_signatures: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "http_signatures";
           const version = "0.1.3";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$147,
+              [nix.POS]: pos$147,
               pkg: "http_signatures",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "20313a65516db88006f85b090f6f76cc5b04e9609b45943657e6781eb91174f4",
             }))));
           const beamDeps = nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "plug"))]);
-          return { __proto__: pos$148, name, version, src, beamDeps };
+          return { [nix.POS]: pos$148, name, version, src, beamDeps };
         })()))),
       httpoison: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "httpoison";
           const version = "1.8.2";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$149,
+              [nix.POS]: pos$149,
               pkg: "httpoison",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "2bb350d26972e30c96e2ca74a1aaf8293d61d0742ff17f01e0279fef11599921",
             }))));
           const beamDeps = nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "hackney"))]);
-          return { __proto__: pos$150, name, version, src, beamDeps };
+          return { [nix.POS]: pos$150, name, version, src, beamDeps };
         })()))),
       idna: nix.thunk(() => nix.app(buildRebar3, nix.thunk(() => (() => {
           const name = "idna";
           const version = "6.1.1";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$151,
+              [nix.POS]: pos$151,
               pkg: "idna",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "92376eb7894412ed19ac475e4a86f7b413c1b9fbb5bd16dccd57934157944cea",
             }))));
           const beamDeps = nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "unicode_util_compat"))]);
-          return { __proto__: pos$152, name, version, src, beamDeps };
+          return { [nix.POS]: pos$152, name, version, src, beamDeps };
         })()))),
       inet_cidr: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "inet_cidr";
           const version = "1.0.9";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$153,
+              [nix.POS]: pos$153,
               pkg: "inet_cidr",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "172da15ff7cf635b1feaf14f5818be28c811b37cc5fb7c5f7c01058c1c1066cc",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$154, name, version, src, beamDeps };
+          return { [nix.POS]: pos$154, name, version, src, beamDeps };
         })()))),
       ip_reserved: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "ip_reserved";
           const version = "0.1.1";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$155,
+              [nix.POS]: pos$155,
               pkg: "ip_reserved",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "55fcd2b6e211caef09ea3f54ef37d43030bec486325d12fe865ab5ed8140a4fe",
             }))));
           const beamDeps = nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "inet_cidr"))]);
-          return { __proto__: pos$156, name, version, src, beamDeps };
+          return { [nix.POS]: pos$156, name, version, src, beamDeps };
         })()))),
       jason: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "jason";
           const version = "1.4.5";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$157,
+              [nix.POS]: pos$157,
               pkg: "jason",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "b0c823996102bcd0239b3c2444eb00409b72f6a140c1950bc8b457d836b30684",
             }))));
           const beamDeps = nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "decimal"))]);
-          return { __proto__: pos$158, name, version, src, beamDeps };
+          return { [nix.POS]: pos$158, name, version, src, beamDeps };
         })()))),
       jose: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "jose";
           const version = "1.11.12";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$159,
+              [nix.POS]: pos$159,
               pkg: "jose",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "31e92b653e9210b696765cdd885437457de1add2a9011d92f8cf63e4641bab7b",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$160, name, version, src, beamDeps };
+          return { [nix.POS]: pos$160, name, version, src, beamDeps };
         })()))),
       jumper: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "jumper";
           const version = "1.0.2";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$161,
+              [nix.POS]: pos$161,
               pkg: "jumper",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "9b7782409021e01ab3c08270e26f36eb62976a38c1aa64b2eaf6348422f165e1",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$162, name, version, src, beamDeps };
+          return { [nix.POS]: pos$162, name, version, src, beamDeps };
         })()))),
       junit_formatter: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "junit_formatter";
           const version = "3.4.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$163,
+              [nix.POS]: pos$163,
               pkg: "junit_formatter",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "bb36e2ae83f1ced6ab931c4ce51dd3dbef1ef61bb4932412e173b0cfa259dacd",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$164, name, version, src, beamDeps };
+          return { [nix.POS]: pos$164, name, version, src, beamDeps };
         })()))),
       linkify: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "linkify";
           const version = "0.5.3";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$165,
+              [nix.POS]: pos$165,
               pkg: "linkify",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "3ef35a1377d47c25506e07c1c005ea9d38d700699d92ee92825f024434258177",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$166, name, version, src, beamDeps };
+          return { [nix.POS]: pos$166, name, version, src, beamDeps };
         })()))),
       makeup: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "makeup";
           const version = "1.2.1";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$167,
+              [nix.POS]: pos$167,
               pkg: "makeup",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "d36484867b0bae0fea568d10131197a4c2e47056a6fbe84922bf6ba71c8d17ce",
             }))));
           const beamDeps = nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "nimble_parsec"))]);
-          return { __proto__: pos$168, name, version, src, beamDeps };
+          return { [nix.POS]: pos$168, name, version, src, beamDeps };
         })()))),
       makeup_elixir: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "makeup_elixir";
           const version = "1.0.1";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$169,
+              [nix.POS]: pos$169,
               pkg: "makeup_elixir",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "7284900d412a3e5cfd97fdaed4f5ed389b8f2b4cb49efc0eb3bd10e2febf9507",
@@ -1502,229 +1502,229 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "makeup")),
             nix.thunk(() => nix.lookup(w_1, "nimble_parsec")),
           ]);
-          return { __proto__: pos$170, name, version, src, beamDeps };
+          return { [nix.POS]: pos$170, name, version, src, beamDeps };
         })()))),
       makeup_erlang: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "makeup_erlang";
           const version = "1.1.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$171,
+              [nix.POS]: pos$171,
               pkg: "makeup_erlang",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "1cd6780fb1dd1a03979abaed0fe82712b0625118fd5257d3ebbf73f960c73c3c",
             }))));
           const beamDeps = nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "makeup"))]);
-          return { __proto__: pos$172, name, version, src, beamDeps };
+          return { [nix.POS]: pos$172, name, version, src, beamDeps };
         })()))),
       meck: nix.thunk(() => nix.app(buildRebar3, nix.thunk(() => (() => {
           const name = "meck";
           const version = "0.9.2";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$173,
+              [nix.POS]: pos$173,
               pkg: "meck",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "81344f561357dc40a8344afa53767c32669153355b626ea9fcbc8da6b3045826",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$174, name, version, src, beamDeps };
+          return { [nix.POS]: pos$174, name, version, src, beamDeps };
         })()))),
       metrics: nix.thunk(() => nix.app(buildRebar3, nix.thunk(() => (() => {
           const name = "metrics";
           const version = "1.0.1";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$175,
+              [nix.POS]: pos$175,
               pkg: "metrics",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "69b09adddc4f74a40716ae54d140f93beb0fb8978d8636eaded0c31b6f099f16",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$176, name, version, src, beamDeps };
+          return { [nix.POS]: pos$176, name, version, src, beamDeps };
         })()))),
       mime: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "mime";
           const version = "2.0.7";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$177,
+              [nix.POS]: pos$177,
               pkg: "mime",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "6171188e399ee16023ffc5b76ce445eb6d9672e2e241d2df6050f3c771e80ccd",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$178, name, version, src, beamDeps };
+          return { [nix.POS]: pos$178, name, version, src, beamDeps };
         })()))),
       mimerl: nix.thunk(() => nix.app(buildRebar3, nix.thunk(() => (() => {
           const name = "mimerl";
           const version = "1.5.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$179,
+              [nix.POS]: pos$179,
               pkg: "mimerl",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "db648ce065bae14ea84ca8b5dd123f42f49417cef693541110bf6f9e9be9ecc4",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$180, name, version, src, beamDeps };
+          return { [nix.POS]: pos$180, name, version, src, beamDeps };
         })()))),
       mimetype_parser: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "mimetype_parser";
           const version = "0.1.3";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$181,
+              [nix.POS]: pos$181,
               pkg: "mimetype_parser",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "7d8f80c567807ce78cd93c938e7f4b0a20b1aaaaab914bf286f68457d9f7a852",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$182, name, version, src, beamDeps };
+          return { [nix.POS]: pos$182, name, version, src, beamDeps };
         })()))),
       mix_test_watch: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "mix_test_watch";
           const version = "1.4.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$183,
+              [nix.POS]: pos$183,
               pkg: "mix_test_watch",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "2b4693e17c8ead2ef56d4f48a0329891e8c2d0d73752c0f09272a2b17dc38d1b",
             }))));
           const beamDeps = nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "file_system"))]);
-          return { __proto__: pos$184, name, version, src, beamDeps };
+          return { [nix.POS]: pos$184, name, version, src, beamDeps };
         })()))),
       mmdb2_decoder: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "mmdb2_decoder";
           const version = "3.0.1";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$185,
+              [nix.POS]: pos$185,
               pkg: "mmdb2_decoder",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "316af0f388fac824782d944f54efe78e7c9691bbbdb0afd5cccdd0510adf559d",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$186, name, version, src, beamDeps };
+          return { [nix.POS]: pos$186, name, version, src, beamDeps };
         })()))),
       mock: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "mock";
           const version = "0.3.9";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$187,
+              [nix.POS]: pos$187,
               pkg: "mock",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "9e1b244c4ca2551bb17bb8415eed89e40ee1308e0fbaed0a4fdfe3ec8a4adbd3",
             }))));
           const beamDeps = nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "meck"))]);
-          return { __proto__: pos$188, name, version, src, beamDeps };
+          return { [nix.POS]: pos$188, name, version, src, beamDeps };
         })()))),
       mogrify: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "mogrify";
           const version = "0.9.3";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$189,
+              [nix.POS]: pos$189,
               pkg: "mogrify",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "0189b1e1de27455f2b9ae8cf88239cefd23d38de9276eb5add7159aea51731e6",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$190, name, version, src, beamDeps };
+          return { [nix.POS]: pos$190, name, version, src, beamDeps };
         })()))),
       mox: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "mox";
           const version = "1.2.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$191,
+              [nix.POS]: pos$191,
               pkg: "mox",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "c7b92b3cc69ee24a7eeeaf944cd7be22013c52fcb580c1f33f50845ec821089a",
             }))));
           const beamDeps = nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "nimble_ownership"))]);
-          return { __proto__: pos$192, name, version, src, beamDeps };
+          return { [nix.POS]: pos$192, name, version, src, beamDeps };
         })()))),
       nimble_csv: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "nimble_csv";
           const version = "1.3.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$193,
+              [nix.POS]: pos$193,
               pkg: "nimble_csv",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "41ccdc18f7c8f8bb06e84164fc51635321e80d5a3b450761c4997d620925d619",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$194, name, version, src, beamDeps };
+          return { [nix.POS]: pos$194, name, version, src, beamDeps };
         })()))),
       nimble_options: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "nimble_options";
           const version = "1.1.1";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$195,
+              [nix.POS]: pos$195,
               pkg: "nimble_options",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "821b2470ca9442c4b6984882fe9bb0389371b8ddec4d45a9504f00a66f650b44",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$196, name, version, src, beamDeps };
+          return { [nix.POS]: pos$196, name, version, src, beamDeps };
         })()))),
       nimble_ownership: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "nimble_ownership";
           const version = "1.0.2";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$197,
+              [nix.POS]: pos$197,
               pkg: "nimble_ownership",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "098af64e1f6f8609c6672127cfe9e9590a5d3fcdd82bc17a377b8692fd81a879",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$198, name, version, src, beamDeps };
+          return { [nix.POS]: pos$198, name, version, src, beamDeps };
         })()))),
       nimble_parsec: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "nimble_parsec";
           const version = "1.4.2";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$199,
+              [nix.POS]: pos$199,
               pkg: "nimble_parsec",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "4b21398942dda052b403bbe1da991ccd03a053668d147d53fb8c4e0efe09c973",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$200, name, version, src, beamDeps };
+          return { [nix.POS]: pos$200, name, version, src, beamDeps };
         })()))),
       nimble_pool: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "nimble_pool";
           const version = "1.1.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$201,
+              [nix.POS]: pos$201,
               pkg: "nimble_pool",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "af2e4e6b34197db81f7aad230c1118eac993acc0dae6bc83bac0126d4ae0813a",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$202, name, version, src, beamDeps };
+          return { [nix.POS]: pos$202, name, version, src, beamDeps };
         })()))),
       oauth2: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "oauth2";
           const version = "2.1.1";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$203,
+              [nix.POS]: pos$203,
               pkg: "oauth2",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "1d5997cb1ff1643dac17076b6c00c91e4381d8389f3c49a8c390984606dad439",
             }))));
           const beamDeps = nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "tesla"))]);
-          return { __proto__: pos$204, name, version, src, beamDeps };
+          return { [nix.POS]: pos$204, name, version, src, beamDeps };
         })()))),
       oauther: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "oauther";
           const version = "1.3.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$205,
+              [nix.POS]: pos$205,
               pkg: "oauther",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "78eb888ea875c72ca27b0864a6f550bc6ee84f2eeca37b093d3d833fbcaec04e",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$206, name, version, src, beamDeps };
+          return { [nix.POS]: pos$206, name, version, src, beamDeps };
         })()))),
       oban: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "oban";
           const version = "2.23.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$207,
+              [nix.POS]: pos$207,
               pkg: "oban",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "8e5f0cec5abecce78dd08cb14dc5438db90ec3884987b44773ce76fe60dd3f81",
@@ -1735,13 +1735,13 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "postgrex")),
             nix.thunk(() => nix.lookup(w_1, "telemetry")),
           ]);
-          return { __proto__: pos$208, name, version, src, beamDeps };
+          return { [nix.POS]: pos$208, name, version, src, beamDeps };
         })()))),
       oidcc: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "oidcc";
           const version = "3.7.2";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$209,
+              [nix.POS]: pos$209,
               pkg: "oidcc",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "e3f1ed91509fdeb31ec8b9de4ecda0e80cb68b463a9f5b7a9ee1ee40e521e445",
@@ -1751,37 +1751,37 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "telemetry")),
             nix.thunk(() => nix.lookup(w_1, "telemetry_registry")),
           ]);
-          return { __proto__: pos$210, name, version, src, beamDeps };
+          return { [nix.POS]: pos$210, name, version, src, beamDeps };
         })()))),
       paasaa: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "paasaa";
           const version = "1.0.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$211,
+              [nix.POS]: pos$211,
               pkg: "paasaa",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "709262e8df8fa3b93e502c04d255a63d8729e609d9eb7fc42b9479f3f98e02b7",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$212, name, version, src, beamDeps };
+          return { [nix.POS]: pos$212, name, version, src, beamDeps };
         })()))),
       parse_trans: nix.thunk(() => nix.app(buildRebar3, nix.thunk(() => (() => {
           const name = "parse_trans";
           const version = "3.4.1";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$213,
+              [nix.POS]: pos$213,
               pkg: "parse_trans",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "620a406ce75dada827b82e453c19cf06776be266f5a67cff34e1ef2cbb60e49a",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$214, name, version, src, beamDeps };
+          return { [nix.POS]: pos$214, name, version, src, beamDeps };
         })()))),
       phoenix: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "phoenix";
           const version = "1.8.8";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$215,
+              [nix.POS]: pos$215,
               pkg: "phoenix",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "f0c843037bd2e7012fc1d1ec9574dfa6972b7e3d09e9b77fd23aa283af0aa994",
@@ -1797,13 +1797,13 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "telemetry")),
             nix.thunk(() => nix.lookup(w_1, "websock_adapter")),
           ]);
-          return { __proto__: pos$216, name, version, src, beamDeps };
+          return { [nix.POS]: pos$216, name, version, src, beamDeps };
         })()))),
       phoenix_ecto: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "phoenix_ecto";
           const version = "4.7.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$217,
+              [nix.POS]: pos$217,
               pkg: "phoenix_ecto",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "1d75011e4254cb4ddf823e81823a9629559a1be93b4321a6a5f11a5306fbf4cc",
@@ -1814,25 +1814,25 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "plug")),
             nix.thunk(() => nix.lookup(w_1, "postgrex")),
           ]);
-          return { __proto__: pos$218, name, version, src, beamDeps };
+          return { [nix.POS]: pos$218, name, version, src, beamDeps };
         })()))),
       phoenix_html: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "phoenix_html";
           const version = "4.3.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$219,
+              [nix.POS]: pos$219,
               pkg: "phoenix_html",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "3eaa290a78bab0f075f791a46a981bbe769d94bc776869f4f3063a14f30497ad",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$220, name, version, src, beamDeps };
+          return { [nix.POS]: pos$220, name, version, src, beamDeps };
         })()))),
       phoenix_html_helpers: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "phoenix_html_helpers";
           const version = "1.0.1";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$221,
+              [nix.POS]: pos$221,
               pkg: "phoenix_html_helpers",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "cffd2385d1fa4f78b04432df69ab8da63dc5cf63e07b713a4dcf36a3740e3090",
@@ -1841,13 +1841,13 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "phoenix_html")),
             nix.thunk(() => nix.lookup(w_1, "plug")),
           ]);
-          return { __proto__: pos$222, name, version, src, beamDeps };
+          return { [nix.POS]: pos$222, name, version, src, beamDeps };
         })()))),
       phoenix_live_reload: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "phoenix_live_reload";
           const version = "1.6.2";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$223,
+              [nix.POS]: pos$223,
               pkg: "phoenix_live_reload",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "d1f89c18114c50d394721365ffb428cce24f1c13de0467ffa773e2ff4a30d5b9",
@@ -1856,13 +1856,13 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "file_system")),
             nix.thunk(() => nix.lookup(w_1, "phoenix")),
           ]);
-          return { __proto__: pos$224, name, version, src, beamDeps };
+          return { [nix.POS]: pos$224, name, version, src, beamDeps };
         })()))),
       phoenix_live_view: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "phoenix_live_view";
           const version = "1.2.3";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$225,
+              [nix.POS]: pos$225,
               pkg: "phoenix_live_view",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "449affd6aea24daaa2f6b43748fc1e2c6a87610df996cc1f54e7b19a7a18e638",
@@ -1876,25 +1876,25 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "plug")),
             nix.thunk(() => nix.lookup(w_1, "telemetry")),
           ]);
-          return { __proto__: pos$226, name, version, src, beamDeps };
+          return { [nix.POS]: pos$226, name, version, src, beamDeps };
         })()))),
       phoenix_pubsub: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "phoenix_pubsub";
           const version = "2.2.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$227,
+              [nix.POS]: pos$227,
               pkg: "phoenix_pubsub",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "adc313a5bf7136039f63cfd9668fde73bba0765e0614cba80c06ac9460ff3e96",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$228, name, version, src, beamDeps };
+          return { [nix.POS]: pos$228, name, version, src, beamDeps };
         })()))),
       phoenix_swoosh: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "phoenix_swoosh";
           const version = "1.2.1";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$229,
+              [nix.POS]: pos$229,
               pkg: "phoenix_swoosh",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "4000eeba3f9d7d1a6bf56d2bd56733d5cadf41a7f0d8ffe5bb67e7d667e204a2",
@@ -1906,25 +1906,25 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "phoenix_view")),
             nix.thunk(() => nix.lookup(w_1, "swoosh")),
           ]);
-          return { __proto__: pos$230, name, version, src, beamDeps };
+          return { [nix.POS]: pos$230, name, version, src, beamDeps };
         })()))),
       phoenix_template: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "phoenix_template";
           const version = "1.0.4";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$231,
+              [nix.POS]: pos$231,
               pkg: "phoenix_template",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "2c0c81f0e5c6753faf5cca2f229c9709919aba34fab866d3bc05060c9c444206",
             }))));
           const beamDeps = nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "phoenix_html"))]);
-          return { __proto__: pos$232, name, version, src, beamDeps };
+          return { [nix.POS]: pos$232, name, version, src, beamDeps };
         })()))),
       phoenix_view: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "phoenix_view";
           const version = "2.0.4";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$233,
+              [nix.POS]: pos$233,
               pkg: "phoenix_view",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "4e992022ce14f31fe57335db27a28154afcc94e9983266835bb3040243eb620b",
@@ -1933,13 +1933,13 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "phoenix_html")),
             nix.thunk(() => nix.lookup(w_1, "phoenix_template")),
           ]);
-          return { __proto__: pos$234, name, version, src, beamDeps };
+          return { [nix.POS]: pos$234, name, version, src, beamDeps };
         })()))),
       plug: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "plug";
           const version = "1.20.1";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$235,
+              [nix.POS]: pos$235,
               pkg: "plug",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "892d2a1a7a3f5368c5a3b9067bba1050c031495f48c430ec00b09691dbf211b7",
@@ -1949,37 +1949,37 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "plug_crypto")),
             nix.thunk(() => nix.lookup(w_1, "telemetry")),
           ]);
-          return { __proto__: pos$236, name, version, src, beamDeps };
+          return { [nix.POS]: pos$236, name, version, src, beamDeps };
         })()))),
       plug_crypto: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "plug_crypto";
           const version = "2.1.1";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$237,
+              [nix.POS]: pos$237,
               pkg: "plug_crypto",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "6470bce6ffe41c8bd497612ffde1a7e4af67f36a15eea5f921af71cf3e11247c",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$238, name, version, src, beamDeps };
+          return { [nix.POS]: pos$238, name, version, src, beamDeps };
         })()))),
       poolboy: nix.thunk(() => nix.app(buildRebar3, nix.thunk(() => (() => {
           const name = "poolboy";
           const version = "1.5.2";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$239,
+              [nix.POS]: pos$239,
               pkg: "poolboy",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "dad79704ce5440f3d5a3681c8590b9dc25d1a561e8f5a9c995281012860901e3",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$240, name, version, src, beamDeps };
+          return { [nix.POS]: pos$240, name, version, src, beamDeps };
         })()))),
       postgrex: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "postgrex";
           const version = "0.22.2";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$241,
+              [nix.POS]: pos$241,
               pkg: "postgrex",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "8946382ddb06294f56026ac4278b3cc212bac8a2c82ed68b4087819ed1abc53b",
@@ -1989,37 +1989,37 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "decimal")),
             nix.thunk(() => nix.lookup(w_1, "jason")),
           ]);
-          return { __proto__: pos$242, name, version, src, beamDeps };
+          return { [nix.POS]: pos$242, name, version, src, beamDeps };
         })()))),
       progress_bar: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "progress_bar";
           const version = "3.0.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$243,
+              [nix.POS]: pos$243,
               pkg: "progress_bar",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "6981c2b25ab24aecc91a2dc46623658e1399c21a2ae24db986b90d678530f2b7",
             }))));
           const beamDeps = nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "decimal"))]);
-          return { __proto__: pos$244, name, version, src, beamDeps };
+          return { [nix.POS]: pos$244, name, version, src, beamDeps };
         })()))),
       ranch: nix.thunk(() => nix.app(buildRebar3, nix.thunk(() => (() => {
           const name = "ranch";
           const version = "2.2.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$245,
+              [nix.POS]: pos$245,
               pkg: "ranch",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "fa0b99a1780c80218a4197a59ea8d3bdae32fbff7e88527d7d8a4787eff4f8e7",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$246, name, version, src, beamDeps };
+          return { [nix.POS]: pos$246, name, version, src, beamDeps };
         })()))),
       remote_ip: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "remote_ip";
           const version = "1.2.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$247,
+              [nix.POS]: pos$247,
               pkg: "remote_ip",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "2ff91de19c48149ce19ed230a81d377186e4412552a597d6a5137373e5877cb7",
@@ -2028,25 +2028,25 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "combine")),
             nix.thunk(() => nix.lookup(w_1, "plug")),
           ]);
-          return { __proto__: pos$248, name, version, src, beamDeps };
+          return { [nix.POS]: pos$248, name, version, src, beamDeps };
         })()))),
       replug: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "replug";
           const version = "0.1.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$249,
+              [nix.POS]: pos$249,
               pkg: "replug",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "f71f7a57e944e854fe4946060c6964098e53958074c69fb844b96e0bd58cfa60",
             }))));
           const beamDeps = nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "plug"))]);
-          return { __proto__: pos$250, name, version, src, beamDeps };
+          return { [nix.POS]: pos$250, name, version, src, beamDeps };
         })()))),
       sentry: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "sentry";
           const version = "11.0.4";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$251,
+              [nix.POS]: pos$251,
               pkg: "sentry",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "feaafc284dc204c82aadaddc884227aeaa3480decb274d30e184b9d41a700c66",
@@ -2061,121 +2061,121 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "plug")),
             nix.thunk(() => nix.lookup(w_1, "telemetry")),
           ]);
-          return { __proto__: pos$252, name, version, src, beamDeps };
+          return { [nix.POS]: pos$252, name, version, src, beamDeps };
         })()))),
       shortuuid: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "shortuuid";
           const version = "4.1.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$253,
+              [nix.POS]: pos$253,
               pkg: "shortuuid",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "7336719118b3cca1ac73e95810199b0b9b7d00f9d71bd2c2d27fed4c4f74388e",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$254, name, version, src, beamDeps };
+          return { [nix.POS]: pos$254, name, version, src, beamDeps };
         })()))),
       sitemapper: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "sitemapper";
           const version = "0.10.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$255,
+              [nix.POS]: pos$255,
               pkg: "sitemapper",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "89ef80f04e4092cb3a8cbcf37520fa31784cc07104c0b47354539e38d2e62443",
             }))));
           const beamDeps = nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "xml_builder"))]);
-          return { __proto__: pos$256, name, version, src, beamDeps };
+          return { [nix.POS]: pos$256, name, version, src, beamDeps };
         })()))),
       sleeplocks: nix.thunk(() => nix.app(buildRebar3, nix.thunk(() => (() => {
           const name = "sleeplocks";
           const version = "1.1.4";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$257,
+              [nix.POS]: pos$257,
               pkg: "sleeplocks",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "bc12752ab0693ea4e4a3bcf4e063cef408d71197a3c0fad75497fabd475f5481",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$258, name, version, src, beamDeps };
+          return { [nix.POS]: pos$258, name, version, src, beamDeps };
         })()))),
       slugger: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "slugger";
           const version = "0.3.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$259,
+              [nix.POS]: pos$259,
               pkg: "slugger",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "20d0ded0e712605d1eae6c5b4889581c3460d92623a930ddda91e0e609b5afba",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$260, name, version, src, beamDeps };
+          return { [nix.POS]: pos$260, name, version, src, beamDeps };
         })()))),
       slugify: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "slugify";
           const version = "1.3.1";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$261,
+              [nix.POS]: pos$261,
               pkg: "slugify",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "cb090bbeb056b312da3125e681d98933a360a70d327820e4b7f91645c4d8be76",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$262, name, version, src, beamDeps };
+          return { [nix.POS]: pos$262, name, version, src, beamDeps };
         })()))),
       sobelow: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "sobelow";
           const version = "0.14.1";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$263,
+              [nix.POS]: pos$263,
               pkg: "sobelow",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "8fac9a2bd90fdc4b15d6fca6e1608efb7f7c600fa75800813b794ee9364c87f2",
             }))));
           const beamDeps = nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "jason"))]);
-          return { __proto__: pos$264, name, version, src, beamDeps };
+          return { [nix.POS]: pos$264, name, version, src, beamDeps };
         })()))),
       ssl_verify_fun: nix.thunk(() => nix.app(buildRebar3, nix.thunk(() => (() => {
           const name = "ssl_verify_fun";
           const version = "1.1.7";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$265,
+              [nix.POS]: pos$265,
               pkg: "ssl_verify_fun",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "fe4c190e8f37401d30167c8c405eda19469f34577987c76dde613e838bbc67f8",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$266, name, version, src, beamDeps };
+          return { [nix.POS]: pos$266, name, version, src, beamDeps };
         })()))),
       struct_access: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "struct_access";
           const version = "1.1.2";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$267,
+              [nix.POS]: pos$267,
               pkg: "struct_access",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "e4c411dcc0226081b95709909551fc92b8feb1a3476108348ea7e3f6c12e586a",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$268, name, version, src, beamDeps };
+          return { [nix.POS]: pos$268, name, version, src, beamDeps };
         })()))),
       sweet_xml: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "sweet_xml";
           const version = "0.7.5";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$269,
+              [nix.POS]: pos$269,
               pkg: "sweet_xml",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "193b28a9b12891cae351d81a0cead165ffe67df1b73fe5866d10629f4faefb12",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$270, name, version, src, beamDeps };
+          return { [nix.POS]: pos$270, name, version, src, beamDeps };
         })()))),
       swoosh: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "swoosh";
           const version = "1.26.2";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$271,
+              [nix.POS]: pos$271,
               pkg: "swoosh",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "08c6a1636b82721d0f64259053a733526526d077011ff6a7776f80e21dc60757",
@@ -2190,37 +2190,37 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "plug")),
             nix.thunk(() => nix.lookup(w_1, "telemetry")),
           ]);
-          return { __proto__: pos$272, name, version, src, beamDeps };
+          return { [nix.POS]: pos$272, name, version, src, beamDeps };
         })()))),
       telemetry: nix.thunk(() => nix.app(buildRebar3, nix.thunk(() => (() => {
           const name = "telemetry";
           const version = "1.4.2";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$273,
+              [nix.POS]: pos$273,
               pkg: "telemetry",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "928f6495066506077862c0d1646609eed891a4326bee3126ba54b60af61febb1",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$274, name, version, src, beamDeps };
+          return { [nix.POS]: pos$274, name, version, src, beamDeps };
         })()))),
       telemetry_registry: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "telemetry_registry";
           const version = "0.3.2";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$275,
+              [nix.POS]: pos$275,
               pkg: "telemetry_registry",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "e7ed191eb1d115a3034af8e1e35e4e63d5348851d556646d46ca3d1b4e16bab9",
             }))));
           const beamDeps = nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "telemetry"))]);
-          return { __proto__: pos$276, name, version, src, beamDeps };
+          return { [nix.POS]: pos$276, name, version, src, beamDeps };
         })()))),
       tesla: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "tesla";
           const version = "1.20.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$277,
+              [nix.POS]: pos$277,
               pkg: "tesla",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "3ecb41cb458772332752c3acdfe983e23abb991f5a43cfd69a64e9ea3f4b0061",
@@ -2233,25 +2233,25 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "mox")),
             nix.thunk(() => nix.lookup(w_1, "telemetry")),
           ]);
-          return { __proto__: pos$278, name, version, src, beamDeps };
+          return { [nix.POS]: pos$278, name, version, src, beamDeps };
         })()))),
       thousand_island: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "thousand_island";
           const version = "1.5.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$279,
+              [nix.POS]: pos$279,
               pkg: "thousand_island",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "708923d40523e43cf99041ab37a0d4b0ec426ac6438fa3716ab23d919eaeb412",
             }))));
           const beamDeps = nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "telemetry"))]);
-          return { __proto__: pos$280, name, version, src, beamDeps };
+          return { [nix.POS]: pos$280, name, version, src, beamDeps };
         })()))),
       timex: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "timex";
           const version = "3.7.13";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$281,
+              [nix.POS]: pos$281,
               pkg: "timex",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "09588e0522669328e973b8b4fd8741246321b3f0d32735b589f78b136e6d4c54",
@@ -2261,25 +2261,25 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "gettext")),
             nix.thunk(() => nix.lookup(w_1, "tzdata")),
           ]);
-          return { __proto__: pos$282, name, version, src, beamDeps };
+          return { [nix.POS]: pos$282, name, version, src, beamDeps };
         })()))),
       tls_certificate_check: nix.thunk(() => nix.app(buildRebar3, nix.thunk(() => (() => {
           const name = "tls_certificate_check";
           const version = "1.33.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$283,
+              [nix.POS]: pos$283,
               pkg: "tls_certificate_check",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "cab9a7439e2dbfe91b38104f2d8a4b6d61dbc4d3a5ad59ac364713a88c6cfd9b",
             }))));
           const beamDeps = nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "ssl_verify_fun"))]);
-          return { __proto__: pos$284, name, version, src, beamDeps };
+          return { [nix.POS]: pos$284, name, version, src, beamDeps };
         })()))),
       tz_world: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "tz_world";
           const version = "1.4.2";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$285,
+              [nix.POS]: pos$285,
               pkg: "tz_world",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "ee260d860d475a1a0fa7cd5d76b114007dbbc902144b61d1ca24e6bc23432a4c",
@@ -2290,37 +2290,37 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "geo")),
             nix.thunk(() => nix.lookup(w_1, "jason")),
           ]);
-          return { __proto__: pos$286, name, version, src, beamDeps };
+          return { [nix.POS]: pos$286, name, version, src, beamDeps };
         })()))),
       tzdata: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "tzdata";
           const version = "1.1.4";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$287,
+              [nix.POS]: pos$287,
               pkg: "tzdata",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "ab48888699de8ff4a255522fd858abe81bac2e64690a375e6cb590112cf4a24e",
             }))));
           const beamDeps = nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "hackney"))]);
-          return { __proto__: pos$288, name, version, src, beamDeps };
+          return { [nix.POS]: pos$288, name, version, src, beamDeps };
         })()))),
       ueberauth: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "ueberauth";
           const version = "0.10.8";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$289,
+              [nix.POS]: pos$289,
               pkg: "ueberauth",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "f2d3172e52821375bccb8460e5fa5cb91cfd60b19b636b6e57e9759b6f8c10c1",
             }))));
           const beamDeps = nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "plug"))]);
-          return { __proto__: pos$290, name, version, src, beamDeps };
+          return { [nix.POS]: pos$290, name, version, src, beamDeps };
         })()))),
       ueberauth_cas: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "ueberauth_cas";
           const version = "2.3.1";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$291,
+              [nix.POS]: pos$291,
               pkg: "ueberauth_cas",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "5068ae2b9e217c2f05aa9a67483a6531e21ba0be9a6f6c8749bb7fd1599be321",
@@ -2330,13 +2330,13 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "sweet_xml")),
             nix.thunk(() => nix.lookup(w_1, "ueberauth")),
           ]);
-          return { __proto__: pos$292, name, version, src, beamDeps };
+          return { [nix.POS]: pos$292, name, version, src, beamDeps };
         })()))),
       ueberauth_discord: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "ueberauth_discord";
           const version = "0.7.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$293,
+              [nix.POS]: pos$293,
               pkg: "ueberauth_discord",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "d6f98ef91abb4ddceada4b7acba470e0e68c4d2de9735ff2f24172a8e19896b4",
@@ -2345,13 +2345,13 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "oauth2")),
             nix.thunk(() => nix.lookup(w_1, "ueberauth")),
           ]);
-          return { __proto__: pos$294, name, version, src, beamDeps };
+          return { [nix.POS]: pos$294, name, version, src, beamDeps };
         })()))),
       ueberauth_facebook: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "ueberauth_facebook";
           const version = "0.10.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$295,
+              [nix.POS]: pos$295,
               pkg: "ueberauth_facebook",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "bf8ce5d66b1c50da8abff77e8086c1b710bdde63f4acaef19a651ba43a9537a8",
@@ -2360,13 +2360,13 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "oauth2")),
             nix.thunk(() => nix.lookup(w_1, "ueberauth")),
           ]);
-          return { __proto__: pos$296, name, version, src, beamDeps };
+          return { [nix.POS]: pos$296, name, version, src, beamDeps };
         })()))),
       ueberauth_github: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "ueberauth_github";
           const version = "0.8.3";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$297,
+              [nix.POS]: pos$297,
               pkg: "ueberauth_github",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "ae0ab2879c32cfa51d7287a48219b262bfdab0b7ec6629f24160564247493cc6",
@@ -2375,13 +2375,13 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "oauth2")),
             nix.thunk(() => nix.lookup(w_1, "ueberauth")),
           ]);
-          return { __proto__: pos$298, name, version, src, beamDeps };
+          return { [nix.POS]: pos$298, name, version, src, beamDeps };
         })()))),
       ueberauth_gitlab_strategy: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "ueberauth_gitlab_strategy";
           const version = "0.4.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$299,
+              [nix.POS]: pos$299,
               pkg: "ueberauth_gitlab_strategy",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "e86e2e794bb063c07c05a6b1301b73f2be3ba9308d8f47ecc4d510ef9226091e",
@@ -2390,13 +2390,13 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "oauth2")),
             nix.thunk(() => nix.lookup(w_1, "ueberauth")),
           ]);
-          return { __proto__: pos$300, name, version, src, beamDeps };
+          return { [nix.POS]: pos$300, name, version, src, beamDeps };
         })()))),
       ueberauth_google: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "ueberauth_google";
           const version = "0.12.1";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$301,
+              [nix.POS]: pos$301,
               pkg: "ueberauth_google",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "7f7deacd679b2b66e3bffb68ecc77aa1b5396a0cbac2941815f253128e458c38",
@@ -2405,13 +2405,13 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "oauth2")),
             nix.thunk(() => nix.lookup(w_1, "ueberauth")),
           ]);
-          return { __proto__: pos$302, name, version, src, beamDeps };
+          return { [nix.POS]: pos$302, name, version, src, beamDeps };
         })()))),
       ueberauth_keycloak_strategy: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "ueberauth_keycloak_strategy";
           const version = "0.4.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$303,
+              [nix.POS]: pos$303,
               pkg: "ueberauth_keycloak_strategy",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "c03027937bddcbd9ff499e457f9bb05f79018fa321abf79ebcfed2af0007211b",
@@ -2420,13 +2420,13 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "oauth2")),
             nix.thunk(() => nix.lookup(w_1, "ueberauth")),
           ]);
-          return { __proto__: pos$304, name, version, src, beamDeps };
+          return { [nix.POS]: pos$304, name, version, src, beamDeps };
         })()))),
       ueberauth_oidcc: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "ueberauth_oidcc";
           const version = "0.4.2";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$305,
+              [nix.POS]: pos$305,
               pkg: "ueberauth_oidcc",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "b9ea3c981464a5052e4f4fbf0a3c716e124da056aca30b9754654c5c6f90f8c2",
@@ -2436,13 +2436,13 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "plug")),
             nix.thunk(() => nix.lookup(w_1, "ueberauth")),
           ]);
-          return { __proto__: pos$306, name, version, src, beamDeps };
+          return { [nix.POS]: pos$306, name, version, src, beamDeps };
         })()))),
       ueberauth_twitter: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "ueberauth_twitter";
           const version = "0.4.1";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$307,
+              [nix.POS]: pos$307,
               pkg: "ueberauth_twitter",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "83ca8ea3e1a3f976f1adbebfb323b9ebf53af453fbbf57d0486801a303b16065",
@@ -2452,49 +2452,49 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "oauther")),
             nix.thunk(() => nix.lookup(w_1, "ueberauth")),
           ]);
-          return { __proto__: pos$308, name, version, src, beamDeps };
+          return { [nix.POS]: pos$308, name, version, src, beamDeps };
         })()))),
       unicode_util_compat: nix.thunk(() => nix.app(buildRebar3, nix.thunk(() => (() => {
           const name = "unicode_util_compat";
           const version = "0.7.1";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$309,
+              [nix.POS]: pos$309,
               pkg: "unicode_util_compat",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "b3a917854ce3ae233619744ad1e0102e05673136776fb2fa76234f3e03b23642",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$310, name, version, src, beamDeps };
+          return { [nix.POS]: pos$310, name, version, src, beamDeps };
         })()))),
       unplug: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "unplug";
           const version = "1.1.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$311,
+              [nix.POS]: pos$311,
               pkg: "unplug",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "a3b302125ed60b658a9a7c0dff6941050bfc56dc77a0bca72facdb743159898f",
             }))));
           const beamDeps = nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "plug"))]);
-          return { __proto__: pos$312, name, version, src, beamDeps };
+          return { [nix.POS]: pos$312, name, version, src, beamDeps };
         })()))),
       unsafe: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "unsafe";
           const version = "1.0.2";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$313,
+              [nix.POS]: pos$313,
               pkg: "unsafe",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "b485231683c3ab01a9cd44cb4a79f152c6f3bb87358439c6f68791b85c2df675",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$314, name, version, src, beamDeps };
+          return { [nix.POS]: pos$314, name, version, src, beamDeps };
         })()))),
       vite_phx: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "vite_phx";
           const version = "0.3.2";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$315,
+              [nix.POS]: pos$315,
               pkg: "vite_phx",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "43e95d2d80e0cb62c33fc6db4aa6a6135efe1a70395c85a44bdc855da01587ba",
@@ -2503,25 +2503,25 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "jason")),
             nix.thunk(() => nix.lookup(w_1, "phoenix")),
           ]);
-          return { __proto__: pos$316, name, version, src, beamDeps };
+          return { [nix.POS]: pos$316, name, version, src, beamDeps };
         })()))),
       websock: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "websock";
           const version = "0.5.3";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$317,
+              [nix.POS]: pos$317,
               pkg: "websock",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "6105453d7fac22c712ad66fab1d45abdf049868f253cf719b625151460b8b453",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$318, name, version, src, beamDeps };
+          return { [nix.POS]: pos$318, name, version, src, beamDeps };
         })()))),
       websock_adapter: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "websock_adapter";
           const version = "0.5.9";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$319,
+              [nix.POS]: pos$319,
               pkg: "websock_adapter",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "5534d5c9adad3c18a0f58a9371220d75a803bf0b9a3d87e6fe072faaeed76a08",
@@ -2531,19 +2531,19 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "plug")),
             nix.thunk(() => nix.lookup(w_1, "websock")),
           ]);
-          return { __proto__: pos$320, name, version, src, beamDeps };
+          return { [nix.POS]: pos$320, name, version, src, beamDeps };
         })()))),
       xml_builder: nix.thunk(() => nix.app(buildMix, nix.thunk(() => (() => {
           const name = "xml_builder";
           const version = "2.4.0";
           const src = nix.thunk(() => nix.app(nix.lookup(w_1, "fetchHex"), nix.thunk(() => ({
-              __proto__: pos$321,
+              [nix.POS]: pos$321,
               pkg: "xml_builder",
               version: nix.thunk(() => nix.str`${version}`),
               sha256: "833e325bb997f032b5a1b740d2fd6feed3c18ca74627f9f5f30513a9ae1a232d",
             }))));
           const beamDeps = [];
-          return { __proto__: pos$322, name, version, src, beamDeps };
+          return { [nix.POS]: pos$322, name, version, src, beamDeps };
         })()))),
     };
   })());

@@ -27,33 +27,33 @@ export default nix.lambda((args) => (() => {
   const version = nix.argOr($, "version", () => null);
   const ocamlPackages = nix.thunk(() => nix.sel(rocq_core, "ocamlPackages"));
   const defaultVersion = nix.thunk(() => (() => {
-    const case$ = (case$_1) => (out) => ({ __proto__: pos$1, case: case$_1, out: out });
+    const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$1, case: case$_1, out: out });
     return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(rocq_core, "rocq-version")), nix.thunk(() => [
         nix.thunk(() => nix.app(case$, nix.thunk(() => nix.app(nix.sel(lib, "versions", "range"), "8.18", "9.1")), "2.4.3")),
       ]), null);
   })());
-  const location = nix.thunk(() => ({ __proto__: pos$2, domain: "github.com", owner: "rocq-prover", repo: "vsrocq" }));
+  const location = nix.thunk(() => ({ [nix.POS]: pos$2, domain: "github.com", owner: "rocq-prover", repo: "vsrocq" }));
   const fetch = nix.thunk(() => nix.app(metaFetch, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       release: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         "2.3.0": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           rev: "v2.3.0",
           sha256: "sha256-BZLxcCmSGFf04eUmlJXnyxmg4hTwpFaPaIik4VD444M=",
         })),
         "2.3.3": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           rev: "v2.3.3",
           sha256: "sha256-wgn28wqWhZS4UOLUblkgXQISgLV+XdSIIEMx9uMT/ig=",
         })),
         "2.3.4": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           rev: "v2.3.4",
           sha256: "sha256-v1hQjE8U1o2VYOlUjH0seIsNG+NrMNZ8ixt4bQNyGvI=",
         })),
         "2.4.3": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           rev: "v2.4.3",
           sha256: "sha256-R/fpTiYZ9uvtKQcWD4jwUZPvUrcdvHc/wpoTrdkEQoQ=",
         })),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const fetched = nix.thunk(() => nix.app(fetch, nix.thunk(() => (nix.asBool(!nix.eq(version, null)) ? nix.force(version) : nix.force(defaultVersion)))));
   return nix.app(nix.sel(ocamlPackages, "buildDunePackage"), nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "vsrocq-language-server",
       version: nix.thunk(() => nix.attr(fetched, "version")),
       src: nix.thunk(() => nix.str`${nix.sel(fetched, "src")}/language-server`),
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
       })())),
       preBuild: "make dune-files\n",
       meta: nix.thunk(() => nix.update({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Language server for the vsrocq vscode/codium extension",
         homepage: "https://github.com/rocq-prover/vsrocq",
         maintainers: nix.thunk(() => (() => {
@@ -95,7 +95,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w_1, "cohencyril"))];
         })()),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
-      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.selOr(fetched, () => false, "broken")), nix.thunk(() => ({ __proto__: pos$10, broken: true }))))),
+      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.selOr(fetched, () => false, "broken")), nix.thunk(() => ({ [nix.POS]: pos$10, broken: true }))))),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

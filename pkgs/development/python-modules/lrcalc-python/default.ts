@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: "lrcalc",
           sha256: "e3a0509aeda487b412b391a52e817ca36b5c063a8305e09fd54d53259dd6aaa9",
@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [lrcalc]);
       const pythonImportsCheck = nix.thunk(() => ["lrcalc"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Littlewood-Richardson Calculator bindings",
         homepage: "https://sites.math.rutgers.edu/~asbuch/lrcalc/",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "sage"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

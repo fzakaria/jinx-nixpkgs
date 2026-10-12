@@ -56,32 +56,32 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const sources = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       platform: "linux-x64",
       hash: "sha256-/C4q9JpFrv7pVYvOVqqku94A1WDTVDV68bg0qd1DzTM=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       platform: "linux-arm",
       hash: "sha256-cgSbIH0cF5qFJKTc8TxPhtjLulmdhF/cRX3g9/ES6Rg=",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       platform: "darwin-arm",
       hash: "sha256-0XWhNL4ssGNB2jJs4OqLgu3PaDaRBwP5hRKAMa1kP5w=",
     })),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "antigravity-hub",
       version: "2.12.2",
       src: nix.thunk(() => (() => {
         const source = nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
         const ext = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "zip" : "tar.gz"));
         return nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: nix.thunk(() => nix.str`https://storage.googleapis.com/antigravity-public/antigravity-hub/${nix.sel(finalAttrs, "version")}-${nix.sel(finalAttrs, "passthru", "buildId")}/${nix.sel(source, "platform")}/Antigravity.${ext}`),
             hash: nix.thunk(() => nix.attr(source, "hash")),
           })));
@@ -120,7 +120,7 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               name: "antigravity-hub",
               desktopName: "Antigravity",
               comment: "Manage multiple autonomous agents across independent projects",
@@ -135,12 +135,12 @@ export default nix.lambda((args) => (() => {
       dontFixup: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       postFixup: "makeShellWrapper $out/share/antigravity/antigravity $out/bin/antigravity \\\n  \"${gappsWrapperArgs[@]}\" \\\n  --add-flags \"\\${NIXOS_OZONE_WL:+\\${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations}}\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         buildId: "6298742303883264",
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Desktop environment for managing multiple autonomous agents across independent projects",
         homepage: "https://antigravity.google",
         changelog: "https://antigravity.google/changelog",

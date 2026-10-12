@@ -11,14 +11,14 @@ export default nix.lambda((args) => (() => {
   const mkPythonMetaPackage = nix.arg($, "mkPythonMetaPackage");
   const faiss = nix.arg($, "faiss");
   return nix.app(mkPythonMetaPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "faiss-cpu",
       version: nix.thunk(() => nix.attr(faiss, "version")),
       dependencies: nix.thunk(() => [faiss]),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(faiss, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
       };

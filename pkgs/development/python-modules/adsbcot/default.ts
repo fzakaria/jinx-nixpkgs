@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const aircot = nix.arg($, "aircot");
   const websockets = nix.arg($, "websockets");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "adsbcot",
       version: "9.0.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "snstac",
           repo: "adsbcot",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_adsb_to_cot_xml", "test_adsb_to_cot_with_known_craft"]),
       pythonImportsCheck: nix.thunk(() => ["adsbcot"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Display Aircraft in TAK - ADS-B to TAK Gateway",
         homepage: "https://adsbcot.readthedocs.io",
         changelog: nix.thunk(() => nix.str`https://github.com/snstac/adsbcot/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

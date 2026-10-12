@@ -17,15 +17,15 @@ export default nix.lambda((args) => (() => {
   const numactl = nix.arg($, "numactl");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rt-tests",
       version: "2.11",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://git.kernel.org/pub/scm/utils/rt-tests/rt-tests.git/snapshot/rt-tests-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-AXQt8UueTZ86SN0I/owVhgx6siAFV13ph+ZJww9kXVU=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=format-overflow" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=format-overflow" })),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       buildInputs: nix.thunk(() => [numactl, python3]),
       makeFlags: nix.thunk(() => [
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "wrapProgram \"$out/bin/determine_maximum_mpps.sh\" --prefix PATH : $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://git.kernel.org/pub/scm/utils/rt-tests/rt-tests.git",
         description: "Suite of real-time tests - cyclictest, hwlatdetect, pip_stress, pi_stress, pmqtest, ptsematest, rt-migrate-test, sendme, signaltest, sigwaittest, svsematest",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

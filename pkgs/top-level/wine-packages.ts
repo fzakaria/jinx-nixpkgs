@@ -28,17 +28,17 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(lib, "makeExtensible"), (self) => (() => {
       const callPackage = nix.thunk(() => nix.app(newScope, self));
       return {
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         callPackage: callPackage,
         wineBuild: wineBuild,
         fonts: nix.thunk(() => nix.app(callPackage, nix.path(here, "../applications/emulators/wine/fonts.nix"), nix.thunk(() => ({})))),
         minimal: nix.thunk(() => nix.app(callPackage, nix.path(here, "../applications/emulators/wine"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             wineRelease: nix.thunk(() => nix.selOr(config, () => "stable", "wine", "release")),
             wineBuild: wineBuild,
           })))),
         base: nix.thunk(() => nix.app(nix.sel(self, "minimal", "override"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             gettextSupport: true,
             fontconfigSupport: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")),
             alsaSupport: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
             ffmpegSupport: true,
           })))),
         full: nix.thunk(() => nix.app(nix.sel(self, "base", "override"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             gtkSupport: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")),
             gstreamerSupport: true,
             openclSupport: true,
@@ -75,16 +75,16 @@ export default nix.lambda((args) => (() => {
             embedInstallers: true,
             smartcardSupport: true,
           })))),
-        stable: nix.thunk(() => nix.app(nix.sel(self, "base", "override"), nix.thunk(() => ({ __proto__: pos$4, wineRelease: "stable" })))),
-        stableFull: nix.thunk(() => nix.app(nix.sel(self, "full", "override"), nix.thunk(() => ({ __proto__: pos$5, wineRelease: "stable" })))),
-        unstable: nix.thunk(() => nix.app(nix.sel(self, "base", "override"), nix.thunk(() => ({ __proto__: pos$6, wineRelease: "unstable" })))),
-        unstableFull: nix.thunk(() => nix.app(nix.sel(self, "full", "override"), nix.thunk(() => ({ __proto__: pos$7, wineRelease: "unstable" })))),
-        staging: nix.thunk(() => nix.app(nix.sel(self, "base", "override"), nix.thunk(() => ({ __proto__: pos$8, wineRelease: "staging" })))),
-        stagingFull: nix.thunk(() => nix.app(nix.sel(self, "full", "override"), nix.thunk(() => ({ __proto__: pos$9, wineRelease: "staging" })))),
-        wayland: nix.thunk(() => nix.app(nix.sel(self, "base", "override"), nix.thunk(() => ({ __proto__: pos$10, x11Support: false })))),
-        waylandFull: nix.thunk(() => nix.app(nix.sel(self, "full", "override"), nix.thunk(() => ({ __proto__: pos$11, x11Support: false })))),
+        stable: nix.thunk(() => nix.app(nix.sel(self, "base", "override"), nix.thunk(() => ({ [nix.POS]: pos$4, wineRelease: "stable" })))),
+        stableFull: nix.thunk(() => nix.app(nix.sel(self, "full", "override"), nix.thunk(() => ({ [nix.POS]: pos$5, wineRelease: "stable" })))),
+        unstable: nix.thunk(() => nix.app(nix.sel(self, "base", "override"), nix.thunk(() => ({ [nix.POS]: pos$6, wineRelease: "unstable" })))),
+        unstableFull: nix.thunk(() => nix.app(nix.sel(self, "full", "override"), nix.thunk(() => ({ [nix.POS]: pos$7, wineRelease: "unstable" })))),
+        staging: nix.thunk(() => nix.app(nix.sel(self, "base", "override"), nix.thunk(() => ({ [nix.POS]: pos$8, wineRelease: "staging" })))),
+        stagingFull: nix.thunk(() => nix.app(nix.sel(self, "full", "override"), nix.thunk(() => ({ [nix.POS]: pos$9, wineRelease: "staging" })))),
+        wayland: nix.thunk(() => nix.app(nix.sel(self, "base", "override"), nix.thunk(() => ({ [nix.POS]: pos$10, x11Support: false })))),
+        waylandFull: nix.thunk(() => nix.app(nix.sel(self, "full", "override"), nix.thunk(() => ({ [nix.POS]: pos$11, x11Support: false })))),
         yabridge: nix.thunk(() => (() => {
-          const yabridge = nix.thunk(() => nix.app(nix.sel(self, "base", "override"), nix.thunk(() => ({ __proto__: pos$12, wineRelease: "yabridge" }))));
+          const yabridge = nix.thunk(() => nix.app(nix.sel(self, "base", "override"), nix.thunk(() => ({ [nix.POS]: pos$12, wineRelease: "yabridge" }))));
           return (nix.asBool(nix.eq(wineBuild, "wineWow")) ? nix.force(yabridge) : nix.app(nix.sel(lib, "dontDistribute"), yabridge));
         })()),
       };

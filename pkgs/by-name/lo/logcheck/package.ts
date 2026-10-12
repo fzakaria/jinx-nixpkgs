@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const lockfile_progs = nix.arg($, "lockfile-progs");
   const perlPackages = nix.arg($, "perlPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "logcheck",
       version: "1.4.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://debian/pool/main/l/logcheck/logcheck_${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-zBYMvKwo85OI6LluRixOYtAFRTtpV/Hw6qjAk/+c898=",
         })))),
@@ -40,7 +40,7 @@ sed -i -e 's|! -f /usr/bin/lockfile|! -f ${lockfile_progs}/bin/lockfile|' \\
         "SHAREDIR=share/logtail/detectrotate",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Mails anomalies in the system logfiles to the administrator",
         longDescription: "Mails anomalies in the system logfiles to the administrator.\n\nLogcheck helps spot problems and security violations in your logfiles automatically and will send the results to you by e-mail.\nLogcheck was part of the Abacus Project of security tools, but this version has been rewritten.\n",
         homepage: "https://salsa.debian.org/debian/logcheck",

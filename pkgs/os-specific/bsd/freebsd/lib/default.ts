@@ -14,10 +14,10 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const writeText = nix.arg($, "writeText");
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     version: version,
     mkBsdArch: (stdenv$) => nix.selOr({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       x86_64: "amd64",
       aarch64: "aarch64",
       i486: "i386",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       riscv64: "riscv64",
     }, () => nix.sel(stdenv$, "hostPlatform", "parsed", "cpu", "name"), nix.key(nix.sel(stdenv$, "hostPlatform", "parsed", "cpu", "name"))),
     mkBsdCpuArch: (stdenv$) => nix.selOr({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       x86_64: "amd64",
       aarch64: "aarch64",
       i486: "i386",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       riscv64: "riscv",
     }, () => nix.sel(stdenv$, "hostPlatform", "parsed", "cpu", "name"), nix.key(nix.sel(stdenv$, "hostPlatform", "parsed", "cpu", "name"))),
     mkBsdMachine: (stdenv$) => nix.selOr({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       x86_64: "amd64",
       aarch64: "arm64",
       i486: "i386",

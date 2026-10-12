@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
   const deep = (func) => (override) => (type) => (() => {
     const prev = nix.thunk(() => nix.app(func, type));
     return nix.update(prev, {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       check: (value) => (() => {
         const prevResult = nix.thunk(() => nix.builtins.tryEval(nix.thunk(() => nix.app(nix.sel(prev, "check"), value))));
         const nextResult = nix.thunk(() => nix.builtins.tryEval(nix.thunk(() => nix.app(override, type, value))));
@@ -107,7 +107,7 @@ export default nix.lambda((args) => (() => {
   const either$ = (first) => (second) => (() => {
     const prev = nix.thunk(() => nix.app(either, first, second));
     return nix.update(prev, {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       check: (value) => (() => {
         const firstResult = nix.thunk(() => nix.builtins.tryEval(nix.thunk(() => nix.app(nix.sel(first, "check"), value))));
         const secondResult = nix.thunk(() => nix.builtins.tryEval(nix.thunk(() => nix.app(nix.sel(second, "check"), value))));
@@ -138,7 +138,7 @@ export default nix.lambda((args) => (() => {
   const headerKvPairs = nix.thunk(() => nix.app(attrsOf$, nix.thunk(() => nix.app(listOf$, nix.thunk(() => nix.app(attrsOf$, atomOrList))))));
   const topLevel = nix.thunk(() => (() => {
     const topLevel$ = nix.thunk(() => nix.app(oneOf$, nix.thunk(() => [headerKvPairs, headerKvPair, kvPairs, kvPair, listOfAtom, lists, atom])));
-    return nix.update(nix.app(attrsOf$, topLevel$), { __proto__: pos$3, description: "Kismet config stanza" });
+    return nix.update(nix.app(attrsOf$, topLevel$), { [nix.POS]: pos$3, description: "Kismet config stanza" });
   })());
   const invalid = (atom_1) => nix.builtins.throw(nix.thunk(() => nix.str`invalid value '${nix.builtins.toString(atom_1)}' of type '${nix.app(typeOf, atom_1)}'`));
   const mkAtom = (atom_1) => (nix.asBool(nix.app(isString, atom_1)) ? (nix.asBool((nix.asBool(nix.app(hasInfix, "\"", atom_1)) || nix.asBool(nix.app(hasInfix, ",", atom_1)))) ? nix.str`"${nix.app(replaceStrings, nix.thunk(() => ["\""]), nix.thunk(() => ["\\\""]), atom_1)}"` : nix.force(atom_1)) : (nix.asBool((nix.asBool((nix.asBool(nix.app(isFloat, atom_1)) || nix.asBool(nix.app(isInt, atom_1)))) || nix.asBool(nix.app(isBool, atom_1)))) ? nix.builtins.toString(atom_1) : nix.app(invalid, atom_1)));
@@ -155,44 +155,44 @@ export default nix.lambda((args) => (() => {
       const newValue = nix.thunk(() => (nix.asBool(nix.app(nix.sel(headerKvPairs, "check"), value)) ? nix.app(flatten, nix.thunk(() => nix.app(mapAttrsToList, (header) => (values) => nix.builtins.map((value_1) => nix.app(convertKvWithHeader, header, value_1), values), value))) : (nix.asBool(nix.app(nix.sel(headerKvPair, "check"), value)) ? nix.app(mapAttrsToList, convertKvWithHeader, value) : (nix.asBool(nix.app(nix.sel(kvPairs, "check"), value)) ? nix.builtins.map(convertKv, value) : (nix.asBool(nix.app(nix.sel(kvPair, "check"), value)) ? nix.app(convertKv, value) : (nix.asBool(nix.app(nix.sel(listOfAtom, "check"), value)) ? nix.app(mkAtomOrList, value) : (nix.asBool(nix.app(nix.sel(lists, "check"), value)) ? nix.builtins.map(mkAtomOrList, value) : (nix.asBool(nix.app(nix.sel(atom, "check"), value)) ? nix.app(mkAtom, value) : nix.app(invalid, value)))))))));
       return nix.app(nameValuePair, newName, newValue);
     })()));
-  const mkKismetConf = (options) => nix.app(toKeyValue, nix.thunk(() => ({ __proto__: pos$4, listsAsDuplicateKeys: true })), nix.thunk(() => nix.app(filterAttrs, (_) => (value) => !nix.eq(value, null), nix.thunk(() => nix.app(convertConfig, options)))));
+  const mkKismetConf = (options) => nix.app(toKeyValue, nix.thunk(() => ({ [nix.POS]: pos$4, listsAsDuplicateKeys: true })), nix.thunk(() => nix.app(filterAttrs, (_) => (value) => !nix.eq(value, null), nix.thunk(() => nix.app(convertConfig, options)))));
   const cfg = nix.thunk(() => nix.sel(config, "services", "kismet"));
   return {
-    __proto__: pos$37,
+    [nix.POS]: pos$37,
     options: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       services: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         kismet: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           enable: nix.thunk(() => nix.app(mkEnableOption, "kismet")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "kismet", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               description: "The user to run Kismet as.",
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "kismet",
             })))),
           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               description: "The group to run Kismet as.",
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "kismet",
             })))),
           serverName: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               description: "The name of the server.",
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "Kismet",
             })))),
           serverDescription: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               description: "The description of the server.",
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "NixOS Kismet server",
             })))),
           logTypes: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "The log types.",
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(types, null);
@@ -201,41 +201,41 @@ export default nix.lambda((args) => (() => {
               default: nix.thunk(() => ["kismet"]),
             })))),
           dataDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               description: "The Kismet data directory.",
               type: nix.thunk(() => nix.sel(types, "path")),
               default: "/var/lib/kismet",
             })))),
           httpd: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 description: "True to enable the HTTP server.",
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
               })))),
             address: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 description: "The address to listen on. Note that this cannot be a hostname or Kismet will not start.",
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "127.0.0.1",
               })))),
             port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 description: "The port to listen on.",
                 type: nix.thunk(() => nix.sel(types, "port")),
                 default: 2501n,
               })))),
           })),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               description: "Options for Kismet. See:\nhttps://www.kismetwireless.net/docs/readme/configuring/configfiles/\n",
               default: nix.thunk(() => ({})),
               type: topLevel,
               example: nix.thunk(() => nix.app(literalExpression, "{\n  /* Examples for atoms */\n  # dot11_link_bssts=false\n  dot11_link_bssts = false; # Boolean\n\n  # dot11_related_bss_window=10000000\n  dot11_related_bss_window = 10000000; # Integer\n\n  # devicefound=00:11:22:33:44:55\n  devicefound = \"00:11:22:33:44:55\"; # String\n\n  # log_types+=wiglecsv\n  log_types' = \"wiglecsv\";\n\n  /* Examples for lists of atoms */\n  # wepkey=00:DE:AD:C0:DE:00,FEEDFACE42\n  wepkey = [ \"00:DE:AD:C0:DE:00\" \"FEEDFACE42\" ];\n\n  # alert=ADHOCCONFLICT,5/min,1/sec\n  # alert=ADVCRYPTCHANGE,5/min,1/sec\n  alert = [\n    [ \"ADHOCCONFLICT\"  \"5/min\" \"1/sec\" ]\n    [ \"ADVCRYPTCHANGE\" \"5/min\" \"1/sec\" ]\n  ];\n\n  /* Examples for sets of atoms */\n  # source=wlan0:name=ath11k\n  source.wlan0 = { name = \"ath11k\"; };\n\n  /* Examples with colon-suffixed headers */\n  # gps=gpsd:host=localhost,port=2947\n  gps.gpsd = {\n    host = \"localhost\";\n    port = 2947;\n  };\n\n  # apspoof=Foo1:ssid=Bar1,validmacs=\"00:11:22:33:44:55,aa:bb:cc:dd:ee:ff\"\n  # apspoof=Foo1:ssid=Bar2,validmacs=\"01:12:23:34:45:56,ab:bc:cd:de:ef:f0\"\n  # apspoof=Foo2:ssid=Baz1,validmacs=\"11:22:33:44:55:66,bb:cc:dd:ee:ff:00\"\n  apspoof.Foo1 = [\n    { ssid = \"Bar1\"; validmacs = [ \"00:11:22:33:44:55\" \"aa:bb:cc:dd:ee:ff\" ]; }\n    { ssid = \"Bar2\"; validmacs = [ \"01:12:23:34:45:56\" \"ab:bc:cd:de:ef:f0\" ]; }\n  ];\n\n  # because Foo1 is a list, Foo2 needs to be as well\n  apspoof.Foo2 = [\n    {\n      ssid = \"Bar2\";\n      validmacs = [ \"00:11:22:33:44:55\" \"aa:bb:cc:dd:ee:ff\" ];\n    };\n  ];\n}\n")),
             })))),
           extraConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               description: "Literal Kismet config lines appended to the site config.\nNote that `services.kismet.settings` allows you to define\nall options here using Nix attribute sets.\n",
               default: "",
               type: nix.thunk(() => nix.sel(types, "str")),
@@ -247,40 +247,40 @@ export default nix.lambda((args) => (() => {
     config: nix.thunk(() => (() => {
       const configDir = nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/.kismet`);
       const settings = nix.thunk(() => nix.update(nix.sel(cfg, "settings"), nix.update({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         server_name: nix.thunk(() => nix.sel(cfg, "serverName")),
         server_description: nix.thunk(() => nix.sel(cfg, "serverDescription")),
         logging_enabled: nix.thunk(() => !nix.eq(nix.sel(cfg, "logTypes"), [])),
         log_types: nix.thunk(() => nix.sel(cfg, "logTypes")),
       }, nix.app(optionalAttrs, nix.thunk(() => nix.sel(cfg, "httpd", "enable")), nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           httpd_bind_address: nix.thunk(() => nix.sel(cfg, "httpd", "address")),
           httpd_port: nix.thunk(() => nix.sel(cfg, "httpd", "port")),
           httpd_auth_file: nix.thunk(() => nix.str`${configDir}/kismet_httpd.conf`),
           httpd_home: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/kismet/httpd`),
         }))))));
       return nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           systemd: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             tmpfiles: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               settings: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 "10-kismet": nix.thunk(() => nix.attrsDyn({}, [
                   [nix.sel(cfg, "dataDir"), nix.thunk(() => ({
-                    __proto__: pos$23,
+                    [nix.POS]: pos$23,
                     d: nix.thunk(() => ({
-                      __proto__: pos$22,
+                      [nix.POS]: pos$22,
                       user: nix.thunk(() => nix.attr(cfg, "user")),
                       group: nix.thunk(() => nix.attr(cfg, "group")),
                       mode: "0750",
                     })),
                   }))],
                   [nix.force(configDir), nix.thunk(() => ({
-                    __proto__: pos$25,
+                    [nix.POS]: pos$25,
                     d: nix.thunk(() => ({
-                      __proto__: pos$24,
+                      [nix.POS]: pos$24,
                       user: nix.thunk(() => nix.attr(cfg, "user")),
                       group: nix.thunk(() => nix.attr(cfg, "group")),
                       mode: "0750",
@@ -290,13 +290,13 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               kismet: nix.thunk(() => (() => {
                 const kismetConf = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "kismet.conf", nix.thunk(() => nix.str`${nix.app(mkKismetConf, settings)}
 ${nix.sel(cfg, "extraConfig")}
 `)));
                 return {
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   description: "Kismet monitoring service",
                   wants: nix.thunk(() => ["basic.target"]),
                   after: nix.thunk(() => ["basic.target", "network.target"]),
@@ -336,7 +336,7 @@ done
 ln -sf ${kismetConf} kismet_site.conf
 `)));
                     return {
-                      __proto__: pos$28,
+                      [nix.POS]: pos$28,
                       Type: "simple",
                       ExecStart: nix.thunk(() => nix.app(escapeShellArgs, nix.thunk(() => [
                           nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/kismet`),
@@ -378,17 +378,17 @@ ln -sf ${kismetConf} kismet_site.conf
                       TimeoutStopSec: 30n,
                     };
                   })()),
-                  unitConfig: nix.thunk(() => ({ __proto__: pos$29, StartLimitIntervalSec: 5n })),
+                  unitConfig: nix.thunk(() => ({ [nix.POS]: pos$29, StartLimitIntervalSec: 5n })),
                 };
               })()),
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             groups: nix.thunk(() => nix.attrsDyn({}, [[nix.sel(cfg, "group"), nix.thunk(() => ({}))]])),
             users: nix.thunk(() => nix.attrsDyn({}, [
               [nix.sel(cfg, "user"), nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 group: nix.thunk(() => nix.attr(cfg, "group")),
                 description: "User for running Kismet",
                 isSystemUser: true,
@@ -399,7 +399,7 @@ ln -sf ${kismetConf} kismet_site.conf
         })));
     })()),
     meta: nix.thunk(() => ({
-      __proto__: pos$36,
+      [nix.POS]: pos$36,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w_1, "numinit"))];

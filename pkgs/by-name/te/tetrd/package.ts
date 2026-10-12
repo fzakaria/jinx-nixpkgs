@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tetrd";
       const version = "1.3.1-1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://web.archive.org/web/20260108185127/https://download.tetrd.app/files/tetrd.linux_amd64.pkg.tar.xz",
           sha256: "0mpixs20jrxkbxvd7nl0p664jgqfp3m6qf7kmsj7frkhky697fbm",
         }))));
@@ -78,7 +78,7 @@ runHook postInstall
 `);
       const postFixup = "substituteInPlace $out/share/applications/tetrd.desktop --replace /opt $out/opt\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Share your internet connection from your device to your PC and vice versa through a USB cable",
         homepage: "https://tetrd.app",
         sourceProvenance: nix.thunk(() => (() => {
@@ -90,7 +90,7 @@ runHook postInstall
         mainProgram: "tetrd",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

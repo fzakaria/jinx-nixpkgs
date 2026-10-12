@@ -19,10 +19,10 @@ export default nix.lambda((args) => (() => {
   const compatIfNeeded = nix.arg($, "compatIfNeeded");
   const cksum = nix.arg($, "cksum");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "usr.bin/config",
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-DMAKE_BOOTSTRAP"]))),
       })),
       nativeBuildInputs: nix.thunk(() => [bsdSetupHook, netbsdSetupHook, makeMinimal, install, mandoc, byacc, flex]),

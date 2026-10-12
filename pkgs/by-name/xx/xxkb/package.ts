@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const gdk_pixbuf = nix.arg($, "gdk-pixbuf");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xxkb",
       version: "1.11.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/xxkb/xxkb-${nix.sel(finalAttrs, "version")}-src.tar.gz`),
           sha256: "0hl1i38z9xnbgfjkaz04vv1n8xbgfg88g5z8fyzyb2hxv2z37anf",
         })))),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installTargets: nix.thunk(() => ["install", "install.man"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Keyboard layout indicator and switcher",
         homepage: "http://xxkb.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "artistic2")),

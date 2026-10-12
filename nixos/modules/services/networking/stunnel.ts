@@ -43,38 +43,38 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "stunnel"));
   const verifyRequiredField = (type) => (field) => (n) => (c) => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     assertion: nix.thunk(() => nix.app(nix.sel(lib, "hasAttr"), field, c)),
     message: nix.thunk(() => nix.str`stunnel: "${n}" ${type} configuration - Field ${field} is required.`),
   });
   const verifyChainPathAssert = (n) => (c) => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.selOr(c, () => null, "verifyHostname"), null)) || nix.asBool((nix.asBool(nix.sel(c, "verifyChain")) || nix.asBool(nix.sel(c, "verifyPeer")))))),
     message: nix.thunk(() => nix.add(nix.str`stunnel: "${n}" client configuration - hostname verification `, "is not possible without either verifyChain or verifyPeer enabled")),
   });
   const removeNulls = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => nix.app(nix.sel(lib, "filterAttrs"), (__1) => (v) => !nix.eq(v, null))));
   const mkValueString = (v) => (nix.asBool(nix.app(nix.sel(lib, "isBool"), v)) ? nix.app(nix.sel(lib, "boolToYesNo"), v) : nix.app(nix.sel(lib, "generators", "mkValueStringDefault"), nix.thunk(() => ({})), v));
   const generateConfig = (c) => nix.app(nix.sel(lib, "generators", "toINI"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mkSectionName: nix.thunk(() => nix.sel(lib, "id")),
       mkKeyValue: (k) => (v) => nix.str`${k} = ${nix.app(mkValueString, v)}`,
     })), nix.thunk(() => nix.app(removeNulls, c)));
   return {
-    __proto__: pos$32,
+    [nix.POS]: pos$32,
     options: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       services: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         stunnel: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable the stunnel TLS tunneling service.",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
               description: "The user under which stunnel runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -92,25 +92,25 @@ export default nix.lambda((args) => (() => {
               description: "The group under which stunnel runs.",
             })))),
           logLevel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["emerg", "alert", "crit", "err", "warning", "notice", "info", "debug"]))),
               default: "info",
               description: "Verbosity of stunnel output.",
             })))),
           fipsMode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enable FIPS 140-2 mode required for compliance.",
             })))),
           enableInsecureSSLv3: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enable support for the insecure SSLv3 protocol.",
             })))),
           servers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "Define the server configurations.\n\nSee \"SERVICE-LEVEL OPTIONS\" in {manpage}`stunnel(8)`.\n",
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -121,13 +121,13 @@ export default nix.lambda((args) => (() => {
                         ]))))))));
               })()),
               example: nix.thunk(() => ({
-                __proto__: pos$11,
-                fancyWebserver: nix.thunk(() => ({ __proto__: pos$10, accept: 443n, connect: 8080n, cert: "/path/to/pem/file" })),
+                [nix.POS]: pos$11,
+                fancyWebserver: nix.thunk(() => ({ [nix.POS]: pos$10, accept: 443n, connect: 8080n, cert: "/path/to/pem/file" })),
               })),
               default: nix.thunk(() => ({})),
             })))),
           clients: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "Define the client configurations.\n\nBy default, verifyChain and OCSPaia are enabled and CAFile is set to `security.pki.caBundle`.\n\nSee \"SERVICE-LEVEL OPTIONS\" in {manpage}`stunnel(8)`.\n",
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -139,23 +139,23 @@ export default nix.lambda((args) => (() => {
               })()),
               apply: nix.thunk(() => (() => {
                 const applyDefaults = (c) => nix.update({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   CAFile: nix.thunk(() => nix.sel(config, "security", "pki", "caBundle")),
                   OCSPaia: true,
                   verifyChain: true,
                 }, c);
                 const setCheckHostFromVerifyHostname = (c) => nix.update(c, {
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   checkHost: nix.thunk(() => nix.selOr(c, () => nix.selOr(c, () => null, "verifyHostname"), "checkHost")),
                   verifyHostname: null,
                 });
-                const forceClient = (c) => nix.update(c, { __proto__: pos$15, client: true });
+                const forceClient = (c) => nix.update(c, { [nix.POS]: pos$15, client: true });
                 return nix.app(nix.sel(lib, "mapAttrs"), (_) => (c) => nix.app(forceClient, nix.thunk(() => nix.app(setCheckHostFromVerifyHostname, nix.thunk(() => nix.app(applyDefaults, c))))));
               })()),
               example: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 foobar: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   accept: "0.0.0.0:8080",
                   connect: "nixos.org:443",
                   verifyChain: false,
@@ -167,10 +167,10 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         assertions: nix.thunk(() => nix.app(nix.sel(lib, "concatLists"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 assertion: nix.thunk(() => (nix.asBool(!nix.eq(nix.app(nix.sel(lib, "length"), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(cfg, "servers"))))), 0n)) || nix.asBool(!nix.eq(nix.app(nix.sel(lib, "length"), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(cfg, "clients"))))), 0n)))),
                 message: "stunnel: At least one server- or client-configuration has to be present.",
               })))),
@@ -182,12 +182,12 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.app(verifyRequiredField, "server", "connect")), nix.thunk(() => nix.sel(cfg, "servers")))),
           ]))),
         environment: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "stunnel"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             "stunnel.cfg": nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               text: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "user"), null)), nix.thunk(() => nix.str`setuid = ${nix.sel(cfg, "user")}`))}
 ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "group"), null)), nix.thunk(() => nix.str`setgid = ${nix.sel(cfg, "group")}`))}
 
@@ -206,11 +206,11 @@ ${nix.app(generateConfig, nix.thunk(() => nix.sel(cfg, "clients")))}
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           services: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             stunnel: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               description: "stunnel TLS tunneling service",
               after: nix.thunk(() => ["network.target"]),
               wants: nix.thunk(() => ["network.target"]),
@@ -219,7 +219,7 @@ ${nix.app(generateConfig, nix.thunk(() => nix.sel(cfg, "clients")))}
                 nix.thunk(() => nix.sel(config, "environment", "etc", "stunnel.cfg", "source")),
               ]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "stunnel")}/bin/stunnel ${nix.sel(config, "environment", "etc", "stunnel.cfg", "source")}`),
                 Type: "forking",
               })),
@@ -228,7 +228,7 @@ ${nix.app(generateConfig, nix.thunk(() => nix.sel(cfg, "clients")))}
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$31,
+      [nix.POS]: pos$31,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "das_j"))];

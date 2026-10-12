@@ -38,35 +38,35 @@ export default nix.lambda((args) => (() => {
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "bee.yaml", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$25,
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    [nix.POS]: pos$25,
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         bee: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Ethereum Swarm Bee")),
-          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "bee", nix.thunk(() => ({ __proto__: pos$2, example: "bee-unstable" })))),
+          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "bee", nix.thunk(() => ({ [nix.POS]: pos$2, example: "bee-unstable" })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(format, "type")),
               description: "Ethereum Swarm Bee configuration. Refer to\n<https://gateway.ethswarm.org/bzz/docs.swarm.eth/docs/installation/configuration/>\nfor details on supported values.\n",
             })))),
           daemonNiceLevel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 0n,
               description: "Daemon process priority for bee.\n0 is the default Unix process priority, 19 is the lowest.\n",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "bee",
               description: "User the bee binary should execute under.\n",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "bee",
               description: "Group the bee binary should execute under.\n",
@@ -75,25 +75,25 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             assertion: nix.thunk(() => !nix.eq(nix.app(nix.sel(lib, "hasAttr"), "password", nix.thunk(() => nix.sel(cfg, "settings"))), true)),
             message: "`services.bee.settings.password` is insecure. Use `services.bee.settings.password-file` or `systemd.services.bee.serviceConfig.EnvironmentFile` instead.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             assertion: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "hasAttr"), "swap-endpoint", nix.thunk(() => nix.sel(cfg, "settings")))) || nix.asBool(nix.eq(nix.selOr(cfg, () => true, "settings", "swap-enable"), false)))),
             message: "In a swap-enabled network a working Ethereum blockchain node is required. You must specify one using `services.bee.settings.swap-endpoint`, or disable `services.bee.settings.swap-enable` = false.\n",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           bee: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             settings: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               "data-dir": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/var/lib/bee")),
               "password-file": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/var/lib/bee/password")),
               "clef-signer-enable": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
@@ -102,21 +102,21 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d '${nix.sel(cfg, "settings", "data-dir")}' 0750 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")}`),
             ]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             bee: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 Nice: nix.thunk(() => nix.sel(cfg, "daemonNiceLevel")),
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -149,18 +149,18 @@ After you finish configuration run 'sudo bee-get-addr'."
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           users: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "bee")), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               bee: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 home: nix.thunk(() => nix.sel(cfg, "settings", "data-dir")),
                 isSystemUser: true,
                 description: "Daemon user for Ethereum Swarm Bee",
               })),
             })))),
-          groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "bee")), nix.thunk(() => ({ __proto__: pos$22, bee: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "bee")), nix.thunk(() => ({ [nix.POS]: pos$22, bee: nix.thunk(() => ({})) })))),
         })),
       })))),
   };

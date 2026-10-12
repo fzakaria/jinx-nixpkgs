@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const runtimePath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nix_prefetch_git, nix_prefetch_docker, git])));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "npins",
       version: "0.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "andir",
           repo: "npins",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd npins \\\n  --bash <($out/bin/npins-completions bash) \\\n  --fish <(cat <($out/bin/npins-completions fish) $src/completions/pin-completions.fish) \\\n  --zsh <($out/bin/npins-completions zsh)\n\nrm $out/bin/npins-completions\n"), nix.str`wrapProgram $out/bin/npins --prefix PATH : "${runtimePath}"
 `)),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple and convenient dependency pinning for Nix",
         mainProgram: "npins",
         homepage: "https://github.com/andir/npins",

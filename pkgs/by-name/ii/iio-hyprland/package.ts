@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const dbus = nix.arg($, "dbus");
   const ninja = nix.arg($, "ninja");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "iio-hyprland",
       version: "0-unstable-2026-02-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "JeanSchoeller",
           repo: "iio-hyprland",
           rev: "1dec30019fbe8cd375b6050eb597a01328435d79",
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [dbus]),
       nativeBuildInputs: nix.thunk(() => [meson, cmake, pkg_config, ninja]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Listens to iio-sensor-proxy and automatically changes Hyprland output orientation",
         homepage: "https://github.com/JeanSchoeller/iio-hyprland/tree/master",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

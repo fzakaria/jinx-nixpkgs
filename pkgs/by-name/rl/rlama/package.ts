@@ -24,18 +24,18 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "rlama",
       version: "0.1.39",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dontizi",
           repo: "rlama",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-9qm9QSMko+ZHfKMMaTesA26X4OuemyB/w1w+0QOEpyE=",
         })))),
       vendorHash: "sha256-GHmLCgL79BdGw/5zz50Y1kR/6JYNalvOj2zjIHQ9IF0=",
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: "0" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: "0" })),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       nativeBuildInputs: nix.thunk(() => [pkg_config, makeBinaryWrapper]),
       checkPhase: "runHook preCheck\n\ngo test -v ./internal/domain/... ./pkg/vector/... ./internal/repository/...\n\nrunHook postCheck\n",
@@ -66,11 +66,11 @@ fi
 runHook postInstallCheck
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Retrieval-Augmented Language Model Adapter",
         homepage: "https://github.com/dontizi/rlama",
         changelog: nix.thunk(() => nix.str`https://github.com/dontizi/rlama/releases/tag/v${nix.sel(finalAttrs, "version")}`),

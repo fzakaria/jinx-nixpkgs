@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
   const tiktoken = nix.arg($, "tiktoken");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const fetchTestData = (name) => (hash) => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://huggingface.co/datasets/hf-internal-testing/tokenizers-test-data/resolve/main/${name}`),
       hash: hash,
     })));
   const test_data = nix.thunk(() => nix.app(linkFarm, "tokenizers-test-data", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), fetchTestData, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "albert-base-v1-tokenizer.json": "sha256-biqj1cpMaEG8NqUCgXnLTWPBKZMfoY/OOP2zjOxNKsM=",
         "bert-base-uncased-vocab.txt": "sha256-B+ztN1zsFE0nyQAkHz4zlHjeyVj5L928VR8pXJkgOKM=",
         "bert-wiki.json": "sha256-i533xC8J5CDMNxBjo+p6avIM8UOcui8RmGAmK0GmfBc=",
@@ -50,20 +50,20 @@ export default nix.lambda((args) => (() => {
         "tokenizer-wiki.json": "sha256-ipY9d5DR5nxoO6kj7rItueZ9AO5wq9+Nzr6GuEIfIBI=",
       }))))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "tokenizers",
       version: "0.23.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "huggingface",
           repo: "tokenizers",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-liHx1YRFZC/PUNiv1MJyb9oAw7/xHbaRbFsn1n8gtuI=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -107,7 +107,7 @@ ln -s ${test_data}/* $sourceRoot/tests/data/
       ]),
       disabledTestPaths: nix.thunk(() => ["benches/test_tiktoken.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Fast State-of-the-Art Tokenizers optimized for Research and Production",
         homepage: "https://github.com/huggingface/tokenizers",
         changelog: nix.thunk(() => nix.str`https://github.com/huggingface/tokenizers/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

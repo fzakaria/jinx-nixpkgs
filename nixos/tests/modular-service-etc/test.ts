@@ -43,46 +43,46 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$33,
+    [nix.POS]: pos$33,
     _class: "nixosTest",
     name: "modular-service-etc",
     nodes: nix.thunk(() => ({
-      __proto__: pos$31,
+      [nix.POS]: pos$31,
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         const python_http_server = nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           imports: nix.thunk(() => [nix.path(here, "./python-http-server.nix")]),
-          "python-http-server": nix.thunk(() => ({ __proto__: pos$1, package: nix.thunk(() => nix.sel(pkgs, "python3")) })),
+          "python-http-server": nix.thunk(() => ({ [nix.POS]: pos$1, package: nix.thunk(() => nix.sel(pkgs, "python3")) })),
         }));
         return {
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           system: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             services: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               webserver: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 imports: nix.thunk(() => [python_http_server]),
-                "python-http-server": nix.thunk(() => ({ __proto__: pos$3, port: 8080n })),
+                "python-http-server": nix.thunk(() => ({ [nix.POS]: pos$3, port: 8080n })),
                 configData: nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   webroot: nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     source: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "webroot", nix.thunk(() => ({})), "mkdir -p $out\ncat > $out/index.html << 'EOF'\n<!DOCTYPE html>\n<html>\n<head><title>Python Web Server</title></head>\n<body>\n  <h1>Welcome to the Python Web Server</h1>\n  <p>Serving from port 8080</p>\n</body>\n</html>\nEOF\n")),
                   })),
                 })),
                 services: nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   api: nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     imports: nix.thunk(() => [python_http_server]),
-                    "python-http-server": nix.thunk(() => ({ __proto__: pos$6, port: 8081n })),
+                    "python-http-server": nix.thunk(() => ({ [nix.POS]: pos$6, port: 8081n })),
                     configData: nix.thunk(() => ({
-                      __proto__: pos$8,
+                      [nix.POS]: pos$8,
                       webroot: nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         source: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "api-webroot", nix.thunk(() => ({})), "mkdir -p $out\ncat > $out/index.html << 'EOF'\n<!DOCTYPE html>\n<html>\n<head><title>API Sub-service</title></head>\n<body>\n  <h1>API Sub-service</h1>\n  <p>This is a sub-service running on port 8081</p>\n</body>\n</html>\nEOF\ncat > $out/status.json << 'EOF'\n{\"status\": \"ok\", \"service\": \"api\", \"port\": 8081}\nEOF\n")),
                       })),
                     })),
@@ -92,36 +92,36 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$15,
-            firewall: nix.thunk(() => ({ __proto__: pos$14, allowedTCPPorts: nix.thunk(() => [8080n, 8081n]) })),
+            [nix.POS]: pos$15,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$14, allowedTCPPorts: nix.thunk(() => [8080n, 8081n]) })),
           })),
           specialisation: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             updated: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               configuration: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 system: nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   services: nix.thunk(() => ({
-                    __proto__: pos$23,
+                    [nix.POS]: pos$23,
                     webserver: nix.thunk(() => ({
-                      __proto__: pos$22,
+                      [nix.POS]: pos$22,
                       configData: nix.thunk(() => ({
-                        __proto__: pos$17,
+                        [nix.POS]: pos$17,
                         webroot: nix.thunk(() => ({
-                          __proto__: pos$16,
+                          [nix.POS]: pos$16,
                           source: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "webroot-updated", nix.thunk(() => ({})), "mkdir -p $out\ncat > $out/index.html << 'EOF'\n<!DOCTYPE html>\n<html>\n<head><title>Updated Python Web Server</title></head>\n<body>\n  <h1>Updated content via specialisation</h1>\n  <p>This content was changed without restarting the service</p>\n</body>\n</html>\nEOF\n")))),
                         })),
                       })),
                       services: nix.thunk(() => ({
-                        __proto__: pos$21,
+                        [nix.POS]: pos$21,
                         api: nix.thunk(() => ({
-                          __proto__: pos$20,
+                          [nix.POS]: pos$20,
                           configData: nix.thunk(() => ({
-                            __proto__: pos$19,
+                            [nix.POS]: pos$19,
                             webroot: nix.thunk(() => ({
-                              __proto__: pos$18,
+                              [nix.POS]: pos$18,
                               source: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "api-webroot-updated", nix.thunk(() => ({})), "mkdir -p $out\ncat > $out/index.html << 'EOF'\n<!DOCTYPE html>\n<html>\n<head><title>Updated API Sub-service</title></head>\n<body>\n  <h1>Updated API Sub-service</h1>\n  <p>This sub-service content was also updated</p>\n</body>\n</html>\nEOF\ncat > $out/status.json << 'EOF'\n{\"status\": \"updated\", \"service\": \"api\", \"port\": 8081, \"version\": \"2.0\"}\nEOF\n")))),
                             })),
                           })),
@@ -139,9 +139,9 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           environment: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "curl"))]),
           })),
         };
@@ -149,7 +149,7 @@ export default nix.lambda((args) => (() => {
     })),
     testScript: "start_all()\n\nserver.wait_for_unit(\"multi-user.target\")\nclient.wait_for_unit(\"multi-user.target\")\n\n# Wait for the web servers to start\nserver.wait_for_unit(\"webserver.service\")\nserver.wait_for_open_port(8080)\nserver.wait_for_unit(\"webserver-api.service\")\nserver.wait_for_open_port(8081)\n\n# Check that the configData directories were created with unique paths\nserver.succeed(\"test -d /etc/system-services/webserver/webroot\")\nserver.succeed(\"test -f /etc/system-services/webserver/webroot/index.html\")\nserver.succeed(\"test -d /etc/system-services/webserver-api/webroot\")\nserver.succeed(\"test -f /etc/system-services/webserver-api/webroot/index.html\")\nserver.succeed(\"test -f /etc/system-services/webserver-api/webroot/status.json\")\n\n# Check that the main web server is serving the configData content\nclient.succeed(\"curl -f http://server:8080/index.html | grep 'Welcome to the Python Web Server'\")\nclient.succeed(\"curl -f http://server:8080/index.html | grep 'Serving from port 8080'\")\n\n# Check that the sub-service is serving its own configData content\nclient.succeed(\"curl -f http://server:8081/index.html | grep 'API Sub-service'\")\nclient.succeed(\"curl -f http://server:8081/index.html | grep 'This is a sub-service running on port 8081'\")\nclient.succeed(\"curl -f http://server:8081/status.json | grep '\\\"service\\\": \\\"api\\\"'\")\n\n# Record PIDs before switching to verify services aren't restarted\nwebserver_pid = server.succeed(\"systemctl show webserver.service --property=MainPID --value\").strip()\napi_pid = server.succeed(\"systemctl show webserver-api.service --property=MainPID --value\").strip()\n\nprint(f\"Before switch - webserver PID: {webserver_pid}, api PID: {api_pid}\")\n\n# Switch to the specialisation with updated content\n# Capture both stdout and stderr, and show stderr in real-time for debugging\nswitch_output = server.succeed(\"/run/current-system/specialisation/updated/bin/switch-to-configuration test 2>&1 | tee /dev/stderr\")\nprint(f\"Switch output (stdout+stderr): {switch_output}\")\n\n# Verify services are not mentioned in the switch output (indicating they weren't touched)\nassert \"webserver.service\" not in switch_output, f\"webserver.service was mentioned in switch output: {switch_output}\"\nassert \"webserver-api.service\" not in switch_output, f\"webserver-api.service was mentioned in switch output: {switch_output}\"\n\n# Verify the content was updated without restarting the services\nserver.succeed(\"systemctl is-active webserver.service\")\nserver.succeed(\"systemctl is-active webserver-api.service\")\n\n# Verify PIDs are the same (services weren't restarted)\nwebserver_pid_after = server.succeed(\"systemctl show webserver.service --property=MainPID --value\").strip()\napi_pid_after = server.succeed(\"systemctl show webserver-api.service --property=MainPID --value\").strip()\n\nprint(f\"After switch - webserver PID: {webserver_pid_after}, api PID: {api_pid_after}\")\n\nassert webserver_pid == webserver_pid_after, f\"webserver.service was restarted: PID changed from {webserver_pid} to {webserver_pid_after}\"\nassert api_pid == api_pid_after, f\"webserver-api.service was restarted: PID changed from {api_pid} to {api_pid_after}\"\n\n# Check main service updated content\nclient.succeed(\"curl -f http://server:8080/index.html | grep 'Updated content via specialisation'\")\nclient.succeed(\"curl -f http://server:8080/index.html | grep 'This content was changed without restarting the service'\")\n\n# Check sub-service updated content\nclient.succeed(\"curl -f http://server:8081/index.html | grep 'Updated API Sub-service'\")\nclient.succeed(\"curl -f http://server:8081/index.html | grep 'This sub-service content was also updated'\")\nclient.succeed(\"curl -f http://server:8081/status.json | grep '\\\"version\\\": \\\"2.0\\\"'\")\n",
     meta: nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "roberth"))];

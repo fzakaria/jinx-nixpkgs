@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.5.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "VirusTotal",
           repo: "yara-python",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const enabledTestPaths = nix.thunk(() => ["tests.py"]);
       const pythonImportsCheck = nix.thunk(() => ["yara"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python interface for YARA",
         homepage: "https://github.com/VirusTotal/yara-python",
         changelog: nix.thunk(() => nix.str`https://github.com/VirusTotal/yara-python/releases/tag/v${version}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

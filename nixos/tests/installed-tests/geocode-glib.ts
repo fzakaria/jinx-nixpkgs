@@ -12,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const makeInstalledTest = nix.arg($, "makeInstalledTest");
   return nix.app(makeInstalledTest, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       testConfig: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         i18n: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           supportedLocales: nix.thunk(() => [
             "en_US.UTF-8/UTF-8",
             "en_GB.UTF-8/UTF-8",

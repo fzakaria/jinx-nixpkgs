@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const withPython = nix.argOr($, "withPython", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "libcap-ng",
       version: "0.9.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stevegrubb",
           repo: "libcap-ng",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,12 +39,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/stevegrubb/libcap-ng/commit/ef1b34928455fa31ff5427d6ad4166406d5a1df1.patch",
             hash: "sha256-7EZC87RoVH2Dkg859rRXt2A+GhRJVajn/DpmYBUuEBI=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/stevegrubb/libcap-ng/commit/b346f998af31febfb7d0915d0cf5e633a5262e88.patch",
             hash: "sha256-b+OOY4XFXxK7sAH8/PUJ8oDPVtH84LYrzcEvhPfB9QI=",
           })))),
@@ -65,10 +65,10 @@ substituteInPlace utils/captest.c \\
         nix.thunk(() => nix.str`--with-capability_header='${linuxHeaders}/include/linux/capability.h'`),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
           python: nix.thunk(() => nix.sel(python3Packages, "libcap_ng")),
         })),
@@ -77,7 +77,7 @@ substituteInPlace utils/captest.c \\
       pythonImportsCheck: nix.thunk(() => ["capng"]),
       preCheck: "patchShebangs bindings/test bindings/python3/test\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         broken: nix.thunk(() => (nix.asBool(withPython) && nix.asBool(!nix.eq(nix.sel(stdenv, "hostPlatform", "parsed", "cpu", "bits"), nix.sel(stdenv, "buildPlatform", "parsed", "cpu", "bits"))))),
         changelog: "https://people.redhat.com/sgrubb/libcap-ng/ChangeLog",
         description: "Library for working with POSIX capabilities",
@@ -91,7 +91,7 @@ substituteInPlace utils/captest.c \\
         })()),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "security-review"))]),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "libcap-ng_project", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

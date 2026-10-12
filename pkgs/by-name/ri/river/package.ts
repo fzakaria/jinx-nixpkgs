@@ -35,13 +35,13 @@ export default nix.lambda((args) => (() => {
   const xwaylandSupport = nix.argOr($, "xwaylandSupport", () => true);
   const zig = zig_0_16;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "river",
       version: "0.4.8",
       __structuredAttrs: true,
       outputs: nix.thunk(() => nix.concat(["out"], nix.app(nix.sel(lib, "optionals"), withManpages, nix.thunk(() => ["man"])))),
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "river",
           repo: "river",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })))),
       strictDeps: true,
       zigDeps: nix.thunk(() => nix.app(nix.sel(zig, "fetchDeps"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -77,12 +77,12 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "-version",
       postInstall: "install contrib/river.desktop -Dt $out/share/wayland-sessions\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         providedSessions: nix.thunk(() => ["river"]),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Non-monolithic Wayland compositor",
         homepage: "https://codeberg.org/river/river",
         donationPage: "https://codeberg.org/river/river#donate",

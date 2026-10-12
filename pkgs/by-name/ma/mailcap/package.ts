@@ -22,18 +22,18 @@ export default nix.lambda((args) => (() => {
   const writeScript = nix.arg($, "writeScript");
   const nix_update = nix.arg($, "nix-update");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mailcap",
       version: "2.1.54",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://releases.pagure.org/mailcap/mailcap-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-mkAyIC/A0rCFj0GxZzianP5SrCTsKC5kebkHZTGd4RM=",
         })))),
       strictDeps: true,
       installPhase: "runHook preInstall\n\nsubstituteInPlace mailcap --replace-fail \"/usr/bin/\" \"\"\nsh generate-nginx-mimetypes.sh < mime.types > nginx-mime.types\n\ninstall -D -m0644 nginx-mime.types $out/etc/nginx/mime.types\ninstall -D -m0644 -t $out/etc mailcap mime.types\ninstall -D -m0644 -t $out/share/man/man5 mailcap.5\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-mailcap", nix.thunk(() => nix.str`export PATH=${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [git, coreutils, gawk, gnused, nix_update]))}:$PATH
 VERSION="$(git ls-remote --tags --sort="v:refname" https://pagure.io/mailcap.git | \\
   awk '{ print $2 }' | \\
@@ -44,13 +44,13 @@ VERSION="$(git ls-remote --tags --sort="v:refname" https://pagure.io/mailcap.git
 exec nix-update --version "$VERSION" "$@"
 `))),
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "nginx-mime": nix.thunk(() => nix.sel(nixosTests, "nginx-mime")),
         })),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Helper application and MIME type associations for file types",
         homepage: "https://pagure.io/mailcap",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

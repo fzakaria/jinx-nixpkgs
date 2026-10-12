@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "picard-tools",
       version: "3.5.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/broadinstitute/picard/releases/download/${nix.sel(finalAttrs, "version")}/picard.jar`),
           sha256: "sha256-t9l4YcOlS6WkIfWjF/ODgvlVgDhi0w70rKK83FSUNjE=",
         })))),
@@ -32,7 +32,7 @@ mkdir -p $out/bin
 makeWrapper ${jre}/bin/java $out/bin/picard --add-flags "-jar $out/libexec/picard/picard.jar"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tools for high-throughput sequencing (HTS) data and formats such as SAM/BAM/CRAM and VCF",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://broadinstitute.github.io/picard/",

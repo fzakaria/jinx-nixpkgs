@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const hareThirdParty = nix.arg($, "hareThirdParty");
   const fetchFromSourcehut = nix.arg($, "fetchFromSourcehut");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hare-png",
       version: "0-unstable-2024-03-13",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~sircmpwn",
           repo: "hare-png",
           rev: "5ae7bc7f6caa6f89dcfd8e3ebed717b50c35e085",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(hareHook, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://git.sr.ht/~sircmpwn/hare-png/",
         description: "PNG implementation for Hare",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

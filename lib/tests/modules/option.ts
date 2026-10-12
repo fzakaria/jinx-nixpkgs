@@ -16,23 +16,23 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const options = nix.arg($, "options");
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       theOption: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(lib, "types", "optionDeclaration")),
         })))),
       anOption: nix.thunk(() => nix.sel(config, "theOption")),
       aBadOptionDef: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.sel(lib, "types", "optionDeclaration")),
           description: "This option is perfectly fine, but will have a bad definition.\n",
         })))),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$5,
-      theOption: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ __proto__: pos$4, type: nix.thunk(() => nix.sel(lib, "types", "int")) })))),
+      [nix.POS]: pos$5,
+      theOption: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$4, type: nix.thunk(() => nix.sel(lib, "types", "int")) })))),
       anOption: 10n,
       aBadOptionDef: nix.thunk(() => nix.sel(options, "theOption")),
     })),

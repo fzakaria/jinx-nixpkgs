@@ -40,20 +40,20 @@ export default nix.lambda((args) => (() => {
   const defaultSIMD = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(hostPlatform, "system"), "i686-linux")) ? "SSE2" : (nix.asBool(nix.sel(hostPlatform, "isx86_64")) ? (nix.asBool(nix.sel(hostPlatform, "avx512Support")) ? "AVX_512" : (nix.asBool(nix.sel(hostPlatform, "avx2Support")) ? "AVX2_256" : (nix.asBool(nix.sel(hostPlatform, "avxSupport")) ? "AVX_256" : "SSE4.1"))) : (nix.asBool(nix.sel(hostPlatform, "isAarch64")) ? "ARM_NEON_ASIMD" : "None"))));
   const SIMD = nix.thunk(() => (nix.asBool(!nix.eq(cpuAcceleration, null)) ? nix.force(cpuAcceleration) : nix.force(defaultSIMD)));
   const source = nix.thunk(() => (nix.asBool(enablePlumed) ? {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     version: "2024.2",
     hash: "sha256-gCp+M18uiVdw9XsVnk7DaOuw/yzm2sz3BsboAlw2hSs=",
   } : {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     version: "2026.4",
     hash: "sha256-WO2mCXmxJPz53/ixtjzt+8cv2zbZnpIdwb3DEFcQmLY=",
   }));
   return nix.app(nix.sel(effectiveStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "gromacs",
       version: nix.thunk(() => nix.sel(source, "version")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`ftp://ftp.gromacs.org/pub/gromacs/gromacs-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: nix.thunk(() => nix.attr(source, "hash")),
         })))),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => (nix.asBool(enablePlumed) ? nix.path(here, "./pkgconfig-2024.patch") : nix.path(here, "./pkgconfig-2025.patch"))),
       ], nix.app(nix.sel(lib, "optionals"), enablePlumed, nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               url: "https://gitlab.com/gromacs/gromacs/-/commit/e0180bc37f3111d7dcaffca3854c088ed910c3b4.diff",
               hash: "sha256-TvTzfb/RETAzFpYfFFr6/L5GV1Pile16gVJhNigwAB4=",
             })))),
@@ -93,7 +93,7 @@ export default nix.lambda((args) => (() => {
         ]))))),
       postInstall: "moveToOutput share/cmake $dev\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://www.gromacs.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
         description: "Molecular dynamics software package",

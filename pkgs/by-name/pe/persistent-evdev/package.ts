@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(python3Packages, "buildPythonPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "persistent-evdev",
       version: "unstable-2022-05-07",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aiberia",
           repo: "persistent-evdev",
           rev: "52bf246464e09ef4e6f2e1877feccc7b9feba164",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ncp bin/persistent-evdev.py $out/bin\n\nmkdir -p $out/etc/udev/rules.d\ncp udev/60-persistent-input-uinput.rules $out/etc/udev/rules.d\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/aiberia/persistent-evdev",
         description: "Persistent virtual input devices for qemu/libvirt/evdev hotplug support",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

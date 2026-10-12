@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const fixup_yarn_lock = nix.arg($, "fixup-yarn-lock");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "alice-lg",
       version: "6.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alice-lg",
           repo: "alice-lg",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-OkOUgW6BHJKIdY1soMqTXhL6RYy3567iL1/VZasIdvQ=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         ui: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pname: "alice-lg-ui",
             src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/ui`),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/ui/yarn.lock")),
                 hash: "sha256-PwByNIegKYTOT8Yg3nDMDFZiLRVkbX07z99YaDiBsIY=",
               })))),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["cmd/alice-lg"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/alice-lg/alice-lg",
         description: "Looking-glass for BGP sessions",
         changelog: "https://github.com/alice-lg/alice-lg/blob/main/CHANGELOG.md",

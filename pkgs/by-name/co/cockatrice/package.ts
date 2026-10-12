@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const protobuf_21 = nix.arg($, "protobuf_21");
   const protobuf = protobuf_21;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cockatrice",
       version: "2026-05-08-Release-3.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Cockatrice",
           repo: "Cockatrice",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(qt5, "qtwebsockets")),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/Cockatrice/Cockatrice",
         description: "Cross-platform virtual tabletop for multiplayer card games",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

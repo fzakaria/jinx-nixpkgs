@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.68";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aequitas",
           repo: "python-rflink",
           tag: version,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
 `);
       const pythonImportsCheck = nix.thunk(() => ["rflink.protocol"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library and CLI tools for interacting with RFlink 433MHz transceiver",
         homepage: "https://github.com/aequitas/python-rflink",
         changelog: nix.thunk(() => nix.str`https://github.com/aequitas/python-rflink/releases/tag/${nix.sel(src, "tag")}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

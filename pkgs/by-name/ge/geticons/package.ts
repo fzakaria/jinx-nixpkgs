@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromSourcehut = nix.arg($, "fetchFromSourcehut");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "geticons",
       version: "1.2.2",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~zethra",
           repo: "geticons",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-V3e3boIzn76irAfn9fF9MycPRAWorUUSD/CUZhgKv0E=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CLI utility to get icons for apps on your system or other generic icons by name",
         mainProgram: "geticons",
         homepage: "https://git.sr.ht/~zethra/geticons",

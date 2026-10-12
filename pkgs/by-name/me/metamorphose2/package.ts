@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const gettext = nix.arg($, "gettext");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "metamorphose2",
       version: "0.10.0beta",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "timinaust",
           repo: "metamorphose2",
           rev: "ba0666dd02e4f3f58c1dadc309e7ec1cc13fe851",
@@ -48,7 +48,7 @@ makeWrapper ${nix.sel(python3, "interpreter")} $out/bin/metamorphose2 \\
       })()),
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Graphical mass renaming program for files and folders",
         homepage: "https://github.com/timinaust/metamorphose2",
         license: nix.thunk(() => (() => {

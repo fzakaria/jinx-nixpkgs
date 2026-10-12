@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const proj = nix.arg($, "proj");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ossim",
       version: "2.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ossimlabs",
           repo: "ossim",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/ossimlabs/ossim/commit/13b9fa9ae54f79a7e7728408de6246e00d38f399.patch",
             hash: "sha256-AKzOT+JurB/54gvzn2a5amw+uIupaNxssnEhc8CSfPM=",
           })))),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "for binary in $out/bin/ossim-*; do\n  wrapProgram $binary \\\n    --prefix LD_LIBRARY_PATH \":\" $out/lib\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Open Source Software Image Map library",
         homepage: "https://github.com/ossimlabs/ossim",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
   const tinyxml_2 = nix.arg($, "tinyxml-2");
   const withUnfree = nix.argOr($, "withUnfree", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "casadi",
       version: "3.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "casadi",
           repo: "casadi",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), pythonSupport, nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: "add-missing-stub-guards.patch",
               url: "https://github.com/casadi/casadi/commit/fc4b71177089c2fabbfc3a41dca8a6e40a0a81f4.patch?full_index=1",
               hash: "sha256-/T9Fof36l/wEeKusI1teCcrax3Zg+fhpteBwnVjWr0o=",
@@ -153,7 +153,7 @@ substituteInPlace swig/python/CMakeLists.txt --replace-fail \\
       strictDeps: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Symbolic framework for numeric optimization",
         longDescription: "CasADi is a symbolic framework for numeric optimization\nimplementing automatic differentiation in forward and reverse\nmodes on sparse matrix-valued computational graphs. It supports\nself-contained C-code generation and interfaces state-of-the-art\ncodes such as SUNDIALS, IPOPT etc. It can be used from C++,\nPython or Matlab/Octave\n",
         homepage: "https://github.com/casadi/casadi",

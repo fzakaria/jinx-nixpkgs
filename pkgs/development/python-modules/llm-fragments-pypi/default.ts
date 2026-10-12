@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "samueldg",
           repo: "llm-fragments-pypi",
           tag: version,
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [httpx, llm]);
       const pythonImportsCheck = nix.thunk(() => ["llm_fragments_pypi"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         tests: nix.thunk(() => nix.app(nix.sel(llm, "mkPluginTest"), llm_fragments_pypi)),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "LLM fragments plugin for PyPI packages metadata",
         homepage: "https://github.com/samueldg/llm-fragments-pypi",
         changelog: nix.thunk(() => nix.str`https://github.com/samueldg/llm-fragments-pypi/releases/tag/${version}/CHANGELOG.md`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

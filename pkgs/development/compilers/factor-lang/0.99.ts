@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   return nix.app(callPackage, nix.path(here, "./unwrapped.nix"), nix.thunk(() => nix.update((() => {
       const version = "0.99";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://downloads.factorcode.org/releases/${version}/factor-src-${version}.zip`),
           sha256: "f5626bb3119bd77de9ac3392fdbe188bffc26557fab3ea34f7ca21e372a8443e",
         }))));
-      return { __proto__: pos$2, version, src };
+      return { [nix.POS]: pos$2, version, src };
     })(), nix.builtins.removeAttrs(args_1, nix.thunk(() => ["callPackage", "fetchurl"])))));
 })(), formals$1);
 //# sourceMappingURL=0.99.ts.map

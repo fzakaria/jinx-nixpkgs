@@ -44,35 +44,35 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "git"));
   return {
-    __proto__: pos$32,
+    [nix.POS]: pos$32,
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       programs: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         git: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "git, a distributed version control system")),
-          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "git", nix.thunk(() => ({ __proto__: pos$1, example: "gitFull" })))),
+          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "git", nix.thunk(() => ({ [nix.POS]: pos$1, example: "gitFull" })))),
           config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 const gitini = nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "anything"))))));
                 return nix.update(nix.app(nix.lookup(w, "either"), gitini, nix.thunk(() => nix.app(nix.lookup(w, "listOf"), gitini))), {
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   merge: (loc) => (defs) => (() => {
                     const config_1 = nix.thunk(() => nix.app(nix.sel(nix.builtins, "foldl'"), (acc) => nix.lambda((args_1) => (() => {
                         const $_1 = nix.formals(args_1, formals$2);
                         const x = args_1;
                         const value = nix.arg($_1, "value");
                         return nix.update(acc, (nix.asBool(nix.app(nix.sel(nix.builtins, "isList"), value)) ? {
-                          __proto__: pos$2,
+                          [nix.POS]: pos$2,
                           ordered: nix.thunk(() => nix.concat(nix.sel(acc, "ordered"), value)),
                         } : {
-                          __proto__: pos$3,
+                          [nix.POS]: pos$3,
                           unordered: nix.thunk(() => nix.concat(nix.sel(acc, "unordered"), [x])),
                         }));
-                      })(), formals$2), nix.thunk(() => ({ __proto__: pos$4, ordered: [], unordered: [] })), defs));
+                      })(), formals$2), nix.thunk(() => ({ [nix.POS]: pos$4, ordered: [], unordered: [] })), defs));
                     return nix.concat([
                       nix.thunk(() => nix.app(nix.sel(gitini, "merge"), loc, nix.thunk(() => nix.sel(config_1, "unordered")))),
                     ], nix.sel(config_1, "ordered"));
@@ -81,27 +81,27 @@ export default nix.lambda((args) => (() => {
               })()),
               default: [],
               example: nix.thunk(() => ({
-                __proto__: pos$9,
-                init: nix.thunk(() => ({ __proto__: pos$6, defaultBranch: "main" })),
+                [nix.POS]: pos$9,
+                init: nix.thunk(() => ({ [nix.POS]: pos$6, defaultBranch: "main" })),
                 url: nix.thunk(() => ({
-                  __proto__: pos$8,
-                  "https://github.com/": nix.thunk(() => ({ __proto__: pos$7, insteadOf: nix.thunk(() => ["gh:", "github:"]) })),
+                  [nix.POS]: pos$8,
+                  "https://github.com/": nix.thunk(() => ({ [nix.POS]: pos$7, insteadOf: nix.thunk(() => ["gh:", "github:"]) })),
                 })),
               })),
               description: "Configuration to write to /etc/gitconfig. A list can also be\nspecified to keep the configuration in order. For example, setting\n`config` to `[ { foo.x = 42; } { bar.y = 42; }]` will put the `foo`\nsection before the `bar` section unlike the default alphabetical\norder, which can be helpful for sections such as `include` and\n`includeIf`. See the CONFIGURATION FILE section of {manpage}`git-config(1)` for\nmore information.\n",
             })))),
           prompt: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "automatically sourcing git-prompt.sh. This does not change $PS1; it simply provides relevant utility functions")),
           })),
           lfs: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "git-lfs (Large File Storage)")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "git-lfs", nix.thunk(() => ({})))),
             enablePureSSHTransfer: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Enable pure SSH transfer in server side by adding git-lfs-transfer to environment.systemPackages")),
           })),
           attributes: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               example: "*.pdf diff=pdf",
@@ -112,42 +112,42 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             environment: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
               etc: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 gitconfig: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "config"), [])), nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     text: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", nix.thunk(() => nix.sel(lib, "generators", "toGitINI")), nix.thunk(() => nix.sel(cfg, "config")))),
                   })))),
                 gitattributes: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "attributes"), "")), nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     text: nix.thunk(() => nix.add(nix.sel(cfg, "attributes"), "\n")),
                   })))),
               })),
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enable")) && nix.asBool(nix.sel(cfg, "lfs", "enable")))), nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             environment: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               systemPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                   nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "lfs", "package"))]),
                   nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "lfs", "enablePureSSHTransfer")), nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "git-lfs-transfer"))]))),
                 ]))),
             })),
             programs: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               git: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 config: nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   filter: nix.thunk(() => ({
-                    __proto__: pos$24,
+                    [nix.POS]: pos$24,
                     lfs: nix.thunk(() => ({
-                      __proto__: pos$23,
+                      [nix.POS]: pos$23,
                       clean: "git-lfs clean -- %f",
                       smudge: "git-lfs smudge -- %f",
                       process: "git-lfs filter-process",
@@ -159,16 +159,16 @@ export default nix.lambda((args) => (() => {
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enable")) && nix.asBool(nix.sel(cfg, "prompt", "enable")))), nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             environment: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               interactiveShellInit: nix.thunk(() => nix.str`source ${nix.sel(cfg, "package")}/share/bash-completion/completions/git-prompt.sh
 `),
             })),
           })))),
       ]))),
     meta: nix.thunk(() => ({
-      __proto__: pos$31,
+      [nix.POS]: pos$31,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "mushrowan"))]),
     })),
   };

@@ -22,28 +22,28 @@ export default nix.lambda((args) => (() => {
   const pythonUseFixed = nix.argOr($, "pythonUseFixed", () => false);
   const vscode_extension_update_script = nix.arg($, "vscode-extension-update-script");
   const supported = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       hash: "sha256-HQfmDV6rJX6l1pGybe8//2QrTSwE+rlEJOi4/iW69lY=",
       arch: "linux-x64",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       hash: "sha256-v7fatW/LMJ8CeSRrE/5b7dLqOrhNhwzUySUxtAMuBUE=",
       arch: "linux-arm64",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       hash: "sha256-XntiQmvagiSWcfVIp13CDq2RTZ4NhKOzf4QmecZjMIs=",
       arch: "darwin-arm64",
     })),
   }));
   const base = nix.thunk(() => nix.selOr(supported, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported platform ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       mktplcRef: nix.thunk(() => nix.update(base, {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         name: "python",
         publisher: "ms-python",
         version: "2026.4.0",
@@ -70,11 +70,11 @@ substituteInPlace "./package.json" \\
   --replace-fail "\\"default\\":\\"python\\"" "\\"default\\":\\"${nix.sel(python3, "interpreter")}\\""
 `)))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(vscode_extension_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Visual Studio Code extension with rich support for the Python language",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=ms-python.python",
         homepage: "https://github.com/Microsoft/vscode-python",

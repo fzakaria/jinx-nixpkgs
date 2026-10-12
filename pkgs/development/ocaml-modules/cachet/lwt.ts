@@ -13,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const lwt = nix.arg($, "lwt");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "cachet-lwt",
       src: nix.thunk(() => nix.attr(cachet, "src")),
       version: nix.thunk(() => nix.attr(cachet, "version")),
       propagatedBuildInputs: nix.thunk(() => [cachet, lwt]),
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest]),
-      meta: nix.thunk(() => nix.update(nix.sel(cachet, "meta"), { __proto__: pos$1, description: "A simple cache system for mmap and lwt" })),
+      meta: nix.thunk(() => nix.update(nix.sel(cachet, "meta"), { [nix.POS]: pos$1, description: "A simple cache system for mmap and lwt" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=lwt.ts.map

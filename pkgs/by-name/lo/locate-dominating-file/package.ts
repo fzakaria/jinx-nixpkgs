@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const getopt = nix.arg($, "getopt");
   const version = "0.0.1";
   return nix.app(nix.sel(resholve, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "locate-dominating-file",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "roman",
           repo: "locate-dominating-file",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -42,16 +42,16 @@ export default nix.lambda((args) => (() => {
       checkPhase: "runHook preCheck\n\nbats -t tests\n\nrunHook postCheck\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ncp src/locate-dominating-file.sh $out/bin/locate-dominating-file\n\nrunHook postInstall\n",
       solutions: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         default: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           scripts: nix.thunk(() => ["bin/locate-dominating-file"]),
           interpreter: nix.thunk(() => nix.str`${bash}/bin/bash`),
           inputs: nix.thunk(() => [coreutils, getopt]),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/roman/locate-dominating-file",
         description: "Program that looks up in a directory hierarchy for a given filename",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

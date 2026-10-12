@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const lance_namespace = nix.arg($, "lance-namespace");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "lance-namespace",
       version: "0.13.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lancedb",
           repo: "lance-namespace",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => [lance_namespace_urllib3_client, typing_extensions, pyarrow]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         dir: nix.thunk(() => [opendal]),
         glue: nix.thunk(() => [boto3, botocore]),
         hive2: nix.thunk(() => [hive_metastore_client, thrift]),
@@ -54,11 +54,11 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => nix.concat([pylance, pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "optional-dependencies"))))),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pytest: nix.thunk(() => nix.app(nix.sel(lance_namespace, "overridePythonAttrs"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               disabledTests: nix.thunk(() => [
                 "test_create_table",
                 "test_describe_table",
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Open specification on top of the storage-based Lance table and file format to standardize access to a collection of Lance tables",
         homepage: "https://github.com/lancedb/lance-namespace/tree/main/python/lance_namespace",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

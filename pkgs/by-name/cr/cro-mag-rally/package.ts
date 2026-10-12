@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "CroMagRally",
       version: "3.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jorio",
           repo: "CroMagRally",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [SDL2, libGL]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/CroMagRally\nmv Data ReadMe.txt $out/share/CroMagRally/\ninstall -Dm755 CroMagRally $out/bin/CroMagRally\nwrapProgram $out/bin/CroMagRally --chdir $out/share/CroMagRally\ninstall -Dm644 ../packaging/io.jor.cromagrally.desktop $out/share/applications/cromagrally.desktop\ninstall -Dm644 ../packaging/io.jor.cromagrally.png -t $out/share/icons/hicolor/256x256/apps/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Port of Cro-Mag Rally, a 2000 Macintosh game by Pangea Software, for modern operating systems",
         homepage: "https://github.com/jorio/CroMagRally",
         changelog: "https://github.com/jorio/CroMagRally/releases",

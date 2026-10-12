@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ripes",
       version: "2.2.6-unstable-2024-04-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mortbopet",
           repo: "Ripes",
           rev: "878087332afa3558dc8ca657f80a16ecdcf82818",
@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
 runHook postInstall
 `)),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Graphical processor simulator and assembly editor for the RISC-V ISA",
         homepage: "https://github.com/mortbopet/Ripes",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

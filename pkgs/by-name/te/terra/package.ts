@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const luajitBase = nix.thunk(() => nix.str`LuaJIT-${luajitRev}`);
   const luajitArchive = nix.thunk(() => nix.str`${luajitBase}.tar.gz`);
   const luajitSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "LuaJIT",
       repo: "LuaJIT",
       rev: luajitRev,
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const llvmPackages = llvmPackages_22;
   const llvmMerged = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "llvmClangMerged",
       paths: nix.thunk(() => (() => {
         const w = nix.withScope(llvmPackages, null);
@@ -53,13 +53,13 @@ export default nix.lambda((args) => (() => {
     }))));
   const clangVersion = nix.thunk(() => nix.sel(llvmPackages, "clang-unwrapped", "version"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "terra",
       version: "1.2.2",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "terralang",
           repo: "terra",
           tag: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -111,7 +111,7 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Low-level counterpart to Lua",
         homepage: "https://terralang.org/",
         downloadPage: "https://github.com/terralang/terra",

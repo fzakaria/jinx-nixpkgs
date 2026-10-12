@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ricochet-refresh",
       version: "3.0.45",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "blueprint-freespeech",
           repo: "ricochet-refresh",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}-release`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "USE_SUBMODULE_FMT", true)),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Secure chat without DNS or WebPKI",
         mainProgram: "ricochet-refresh",
         longDescription: "Ricochet Refresh is a peer-to-peer messenger app that uses Tor\nto connect clients.\n\nWhen you start Ricochet Refresh it creates a Tor hidden\nservice on your computer.  The address of this hidden service\nis your anonymous identity on the Tor network and how others\nwill be able to communicate with you.  When you start a chat\nwith one of your contacts a Tor circuit is created between\nyour machine and the your contact's machine.\n\nThe original Ricochet uses onion \"v2\" hashed-RSA addresses,\nwhich are no longer supported by the Tor network.  Ricochet\nRefresh upgrades the original Ricochet protocol to use the\ncurrent onion \"v3\" ed25519 addresses.\n",

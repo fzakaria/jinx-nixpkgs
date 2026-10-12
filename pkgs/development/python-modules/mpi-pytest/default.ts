@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const mpiCheckPhaseHook = nix.arg($, "mpiCheckPhaseHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mpi-pytest",
       version: "2025.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "firedrakeproject",
           repo: "mpi-pytest",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, mpiCheckPhaseHook, nix.thunk(() => nix.sel(mpi4py, "mpi"))]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/firedrakeproject/mpi-pytest",
         description: "Pytest plugin that lets you run tests in parallel with MPI",
         changelog: nix.thunk(() => nix.str`https://github.com/firedrakeproject/mpi-pytest/releases/tag/v${nix.sel(finalAttrs, "version")}`),

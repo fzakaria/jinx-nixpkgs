@@ -37,9 +37,9 @@ export default nix.lambda((args) => (() => {
   const galliumDrivers = nix.argOr($, "galliumDrivers", () => ["llvmpipe", "softpipe"]);
   const vulkanDrivers = nix.argOr($, "vulkanDrivers", () => ["kosmickrisp"]);
   const vulkanLayers = nix.argOr($, "vulkanLayers", () => ["anti-lag", "intel-nullhw", "overlay", "screenshot", "vram-report-limit"]);
-  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib, fetchFromGitLab: fetchFromGitLab }))));
+  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib, fetchFromGitLab: fetchFromGitLab }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.attr(common, "pname")),
       version: nix.thunk(() => nix.attr(common, "version")),
       src: nix.thunk(() => nix.attr(common, "src")),
@@ -96,7 +96,7 @@ export default nix.lambda((args) => (() => {
       mesonBuildType: "release",
       postFixup: "install_name_tool -add_rpath \"$out/lib\" \"$out/lib/libGL.dylib\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         driverLink: nix.thunk(() => nix.builtins.throw("driverLink not supported on darwin")),
         llvmpipeHook: null,
       })),

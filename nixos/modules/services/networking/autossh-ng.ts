@@ -31,48 +31,48 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "autossh-ng"));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         "autossh-ng": nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           sessions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.lambda((args_1) => (() => {
                     const $_1 = nix.formals(args_1, formals$2);
                     const name = nix.arg($_1, "name");
                     const config_1 = nix.arg($_1, "config");
                     return {
-                      __proto__: pos$7,
+                      [nix.POS]: pos$7,
                       options: nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$1,
+                            [nix.POS]: pos$1,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             example: "bill",
                             description: "Name of the user the local session should run as",
                           })))),
                         destination: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$2,
+                            [nix.POS]: pos$2,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             example: "billremote@socks.host.net",
                             description: "Destination to connect to",
                           })))),
                         hostKeyChecking: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$3,
+                            [nix.POS]: pos$3,
                             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                             description: "Whether to enable host key checking. The advantage of enabling\nhost key checking is that it protects against AitM attacks, on\nthe other hand disabling host key checking makes the autossh\nconnection resilient against host key rotations of the destination\nmachine.\n",
                           })))),
                         knownHostsFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$4,
+                            [nix.POS]: pos$4,
                             type: nix.thunk(() => nix.sel(lib, "types", "path")),
                             example: "/home/bill/.ssh/known_hosts",
                             description: "If you enabled host key checking, use this file to verify\ndestination host keys against.\n",
                           })))),
                         extraArguments: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$5,
+                            [nix.POS]: pos$5,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "separatedString"), " ")),
                             example: "-L2222:localhost:22 -i ${config.age.secrets.privatekey.path}",
                             description: "Arguments to be passed to the ssh process process.\nSome meaningful options include\n-D (open SOCKS proxy on local port),\n-R (forward remote port),\n-L (forward local port),\n-v (Enable debug),\n-i (identity file to use).\nCheck ssh manual for the complete list.\n",
@@ -83,9 +83,9 @@ export default nix.lambda((args) => (() => {
               default: nix.thunk(() => ({})),
               description: "Set of SSH sessions to start as systemd services. Each service is\nnamed 'autossh-ng-{session.name}'.\n",
               example: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 "socket-peer": nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   user: "bill",
                   destination: "billremote@socks.host.net",
                   extraArguments: "-L2222:localhost:22 -i ${config.age.secrets.privatekey.path}",
@@ -96,19 +96,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "sessions"), {})), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         systemd: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           services: nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "mapAttrs'"), (name) => (s) => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               name: nix.thunk(() => nix.str`autossh-ng-${name}`),
               value: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 description: nix.thunk(() => nix.add(nix.add("Automatic SSH session (", name), ")")),
                 after: nix.thunk(() => ["network.target"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   Type: "notify",
                   NotifyAccess: "all",
                   User: nix.thunk(() => nix.str`${nix.sel(s, "user")}`),

@@ -21,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "opengist",
       version: "1.15.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "thomiceli",
           repo: "opengist",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-yXd/6nhyRjbCdnlC5/CPMnO2zTsUAD6BupGMgebzQd0=",
         })))),
       frontend: nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: "opengist-frontend",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -55,12 +55,12 @@ cp ${nix.sel(finalAttrs, "frontend")}/public/.vite/manifest.json public/.vite/ma
 cp -R ${nix.sel(finalAttrs, "frontend")}/public/assets public/
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         frontend: nix.thunk(() => nix.attr(finalAttrs, "frontend")),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Self-hosted pastebin powered by Git",
         homepage: "https://github.com/thomiceli/opengist",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

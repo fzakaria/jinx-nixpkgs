@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const eio_main = nix.arg($, "eio_main");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "tar-eio",
       version: nix.thunk(() => nix.attr(tar, "version")),
       src: nix.thunk(() => nix.attr(tar, "src")),
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [tar, eio]),
       checkInputs: nix.thunk(() => [alcotest, eio_main]),
       meta: nix.thunk(() => nix.update(nix.sel(tar, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Decode and encode tar format files using Eio",
       })),
     })));

@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => nix.attrsDyn({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "qpdf",
       version: "12.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "qpdf",
           repo: "qpdf",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,13 +48,13 @@ export default nix.lambda((args) => (() => {
       preConfigure: "patchShebangs qtest/bin/qtest-driver\npatchShebangs run-qtest\n# qtest needs to know where the source code is\nsubstituteInPlace CMakeLists.txt --replace \"run-qtest\" \"run-qtest --top $src --code $src --bin $out\"\n",
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(python3, "pkgs"));
           return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
           pikepdf: nix.thunk(() => nix.attr(from, "pikepdf")),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://qpdf.sourceforge.io/",
         description: "C++ library and set of programs that inspect and manipulate the structure of PDF files",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

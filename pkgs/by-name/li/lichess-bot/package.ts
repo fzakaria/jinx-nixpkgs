@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "lichess-bot",
       version: "2026.8.9.2",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lichess-bot-devs",
           repo: "lichess-bot",
           rev: "df7e730de58cc3ef2f1415a0dc2eeda842d39167",
@@ -57,16 +57,16 @@ runHook postInstall
       versionCheckProgramArg: "--disable_auto_logging",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: "lichess-bot-update-script",
               runtimeInputs: nix.thunk(() => [curl, jq, common_updater_scripts]),
               text: "commit_msg='^Auto update version to (?<ver>[0-9.]+)$'\ncommit=\"$(\n  curl -s 'https://api.github.com/repos/lichess-bot-devs/lichess-bot/commits?path=lib/versioning.yml' | \\\n  jq -c \"map(select(.commit.message | test(\\\"$commit_msg\\\"))) | first\"\n)\"\nrev=\"$(jq -r '.sha' <<< \"$commit\")\"\nversion=\"$(jq -r \".commit.message | capture(\\\"$commit_msg\\\") | .ver\" <<< \"$commit\")\"\n\nupdate-source-version lichess-bot \"$version\" --rev=\"$rev\"\n",
             })))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Bridge between lichess.org and bots",
         homepage: "https://github.com/lichess-bot-devs/lichess-bot",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

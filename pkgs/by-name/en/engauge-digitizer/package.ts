@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libsForQt5 = nix.arg($, "libsForQt5");
   const qt5 = nix.arg($, "qt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "engauge-digitizer",
       version: "12.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "akhuettel",
           repo: "engauge-digitizer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       ]),
       qmakeFlags: nix.thunk(() => ["CONFIG+=jpeg2000", "CONFIG+=pdf", "CONFIG+=log4cpp_null"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         POPPLER_INCLUDE: nix.thunk(() => nix.str`${nix.sel(libsForQt5, "poppler", "dev")}/include/poppler/qt5`),
         POPPLER_LIB: nix.thunk(() => nix.str`${nix.sel(libsForQt5, "poppler")}/lib`),
         OPENJPEG_INCLUDE: nix.thunk(() => nix.str`${nix.sel(openjpeg, "dev")}/include/openjpeg-${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(openjpeg, "version")))}`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       })),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ncp bin/engauge $out/bin/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Engauge Digitizer is a tool for recovering graph data from an image file",
         mainProgram: "engauge",
         homepage: "https://markummitchell.github.io/engauge-digitizer",

@@ -27,43 +27,43 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "services", "pufferpanel"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pufferpanel: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable PufferPanel game management server.\n\nNote that [PufferPanel templates] and binaries downloaded by PufferPanel\nexpect [FHS environment]. It is possible to set {option}`package` option\nto use PufferPanel wrapper with FHS environment. For example, to use\n`Download Game from Steam` and `Download Java` template operations:\n```Nix\n{ lib, pkgs, ... }: {\n  services.pufferpanel = {\n    enable = true;\n    extraPackages = with pkgs; [ bash curl gawk gnutar gzip ];\n    package = pkgs.buildFHSEnv {\n      name = \"pufferpanel-fhs\";\n      runScript = lib.getExe pkgs.pufferpanel;\n      targetPkgs = pkgs': with pkgs'; [ icu openssl zlib ];\n    };\n  };\n}\n```\n\n[PufferPanel templates]: https://github.com/PufferPanel/templates\n[FHS environment]: https://wikipedia.org/wiki/Filesystem_Hierarchy_Standard\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "pufferpanel", nix.thunk(() => ({})))),
           extraGroups: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["podman"]),
               description: "Additional groups for the systemd service.\n",
             })))),
           extraPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ pkgs.jre ]")),
               description: "Packages to add to the PATH environment variable. Both the {file}`bin`\nand {file}`sbin` subdirectories of each package are added.\n",
             })))),
           environment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  PUFFER_WEB_HOST = \":8080\";\n  PUFFER_DAEMON_SFTP_HOST = \":5657\";\n  PUFFER_DAEMON_CONSOLE_BUFFER = \"1000\";\n  PUFFER_DAEMON_CONSOLE_FORWARD = \"true\";\n  PUFFER_PANEL_REGISTRATIONENABLED = \"false\";\n}\n")),
               description: "Environment variables to set for the service. Secrets should be\nspecified using {option}`environmentFile`.\n\nRefer to the [PufferPanel source code][] for the list of available\nconfiguration options. Variable name is an upper-cased configuration\nentry name with underscores instead of dots, prefixed with `PUFFER_`.\nFor example, `panel.settings.companyName` entry can be set using\n{env}`PUFFER_PANEL_SETTINGS_COMPANYNAME`.\n\nWhen running with panel enabled (configured with `PUFFER_PANEL_ENABLE`\nenvironment variable), it is recommended disable registration using\n`PUFFER_PANEL_REGISTRATIONENABLED` environment variable (registration is\nenabled by default). To create the initial administrator user, run\n{command}`pufferpanel --workDir /var/lib/pufferpanel user add --admin`.\n\nSome options override corresponding settings set via web interface (e.g.\n`PUFFER_PANEL_REGISTRATIONENABLED`). Those options can be temporarily\ntoggled or set in settings but do not persist between restarts.\n\n[PufferPanel source code]: https://github.com/PufferPanel/PufferPanel/blob/master/config/entries.go\n",
             })))),
           environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "File to load environment variables from. Loaded variables override\nvalues set in {option}`environment`.\n",
@@ -72,13 +72,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             pufferpanel: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "PufferPanel game management server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
               environment: nix.thunk(() => nix.sel(cfg, "environment")),
               script: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "concatLines"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value) => nix.str`export ${name}="\${${name}-${value}}"
 `, nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     PUFFER_LOGS: "$LOGS_DIRECTORY",
                     PUFFER_DAEMON_DATA_CACHE: "$CACHE_DIRECTORY",
                     PUFFER_DAEMON_DATA_SERVERS: "$STATE_DIRECTORY/servers",
@@ -95,7 +95,7 @@ export default nix.lambda((args) => (() => {
 exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} run --workDir "$STATE_DIRECTORY"
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 Type: "simple",
                 Restart: "always",
                 UMask: "0077",
@@ -132,7 +132,7 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "tie"))]),
     })),
   };

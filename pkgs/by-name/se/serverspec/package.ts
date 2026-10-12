@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const bundlerApp = nix.arg($, "bundlerApp");
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "serverspec",
       gemdir: nix.path(here, "./."),
       ruby: ruby,
       exes: nix.thunk(() => ["serverspec-init"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "serverspec")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "RSpec tests for your servers configured by CFEngine, Puppet, Ansible, Itamae or anything else",
         homepage: "https://serverspec.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

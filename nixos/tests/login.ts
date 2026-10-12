@@ -18,26 +18,26 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const latestKernel = nix.arg($, "latestKernel");
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     _module: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       args: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         latestKernel: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
       })),
     })),
     name: "login",
-    meta: nix.thunk(() => ({ __proto__: pos$3, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$3, maintainers: [] })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           boot: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             kernelPackages: nix.thunk(() => nix.app(nix.sel(lib_1, "mkIf"), latestKernel, nix.thunk(() => nix.sel(pkgs_1, "linuxPackages_latest")))),
           })),
         };

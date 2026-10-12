@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.1-unstable-2022-03-25";
       const pname = "meminfo";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BitOne",
           repo: "php-meminfo",
           rev: "0ab7f5aea96c4dafce27c7e215b4907db2a2f493",
@@ -27,17 +27,17 @@ export default nix.lambda((args) => (() => {
         }))));
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/extension`);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "PHP extension to get insight about memory usage",
         homepage: "https://github.com/BitOne/php-meminfo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
-      return { __proto__: pos$5, version, pname, src, sourceRoot, passthru, meta };
+      return { [nix.POS]: pos$5, version, pname, src, sourceRoot, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

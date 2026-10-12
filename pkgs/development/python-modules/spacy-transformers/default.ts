@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const transformers = nix.arg($, "transformers");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "spacy-transformers",
       version: "1.3.9",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "explosion",
           repo: "spacy-transformers",
           tag: nix.thunk(() => nix.str`release-v${nix.sel(finalAttrs, "version")}`),
@@ -44,14 +44,14 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["spacy_transformers"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           annotation: nix.thunk(() => nix.app(callPackage, nix.path(here, "./annotation-test"), nix.thunk(() => ({})))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "spaCy pipelines for pretrained BERT, XLNet and GPT-2",
         homepage: "https://github.com/explosion/spacy-transformers",
         changelog: nix.thunk(() => nix.str`https://github.com/explosion/spacy-transformers/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

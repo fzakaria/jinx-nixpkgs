@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const lwt_ppx = nix.arg($, "lwt_ppx");
   const ocsipersist = nix.arg($, "ocsipersist");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "eliom",
       version: "12.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ocsigen",
           repo: "eliom",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       setupHook: nix.thunk(() => [nix.path(here, "./setup-hook.sh")]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://ocsigen.org/eliom/",
         description: "OCaml Framework for programming Web sites and client/server Web applications",
         longDescription: "Eliom is a framework for programming Web sites\nand client/server Web applications. It introduces new concepts to\nsimplify programming common behaviours and uses advanced static\ntyping features of OCaml to check many properties of the Web site\nat compile time. If you want to write a Web application, Eliom\nmakes possible to write the whole application as a single program\n(client and server parts). A syntax extension is used to\ndistinguish both parts and the client side is compiled to JS using\nOcsigen Js_of_ocaml.\n",

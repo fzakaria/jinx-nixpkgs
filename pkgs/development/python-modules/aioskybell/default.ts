@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aioskybell",
       version: "23.12.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tkdrob",
           repo: "aioskybell",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_get_devices", "test_errors", "test_async_change_setting"]),
       pythonImportsCheck: nix.thunk(() => ["aioskybell"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "API client for Skybell doorbells",
         homepage: "https://github.com/tkdrob/aioskybell",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

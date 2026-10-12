@@ -30,22 +30,22 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform"));
   const system = nix.thunk(() => nix.attr(from, "system"));
   const channels = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     stable: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "2.36.6",
       hash: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         "x86_64-linux": "sha256-VXm0K7A+aqZGqfGQhi5lo9rfpjUylrqZVT/pW4UDKcI=",
         "aarch64-linux": "sha256-jof9EX3Xb73dFr51eAOliuDPEfUnkdLul3ZdKU4Vv5w=",
         "aarch64-darwin": "sha256-vaz+mpt4hNhN9Jc39wNOnh0/Q5RjenXyGKl7BgMtj10=",
       })),
     })),
     mainline: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "2.37.2",
       hash: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "x86_64-linux": "sha256-gSl6eWk4vYyCAAUCvomaiiYRUDl2wPVQ37rdHMH06zY=",
         "aarch64-linux": "sha256-HVWGvqcdPogWBo015gtxWnXM/iRLcJEO8UVAROtkHEQ=",
         "aarch64-darwin": "sha256-INFPg6wUu4O/Cr+U9o/059bfr4g3QYZWbG17DU8KeJk=",
@@ -53,22 +53,22 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: "coder",
       version: nix.thunk(() => nix.sel(channels, nix.key(nix.force(channel)), "version")),
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           hash: nix.thunk(() => nix.sel(nix.sel(channels, nix.key(nix.force(channel)), "hash"), nix.key(nix.force(system)))),
           url: nix.thunk(() => (() => {
             const systemName = nix.thunk(() => nix.sel({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               "x86_64-linux": "linux_amd64",
               "aarch64-linux": "linux_arm64",
               "aarch64-darwin": "darwin_arm64",
             }, nix.key(nix.force(system))));
             const ext = nix.thunk(() => nix.sel({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               "x86_64-linux": "tar.gz",
               "aarch64-linux": "tar.gz",
               "aarch64-darwin": "zip",
@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
 `),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Provision remote development environments via Terraform",
         homepage: "https://coder.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -102,9 +102,9 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         updateScript: nix.path(here, "./update.sh"),
-        tests: nix.thunk(() => ({ __proto__: pos$10, coder: nix.thunk(() => nix.attr(nixosTests, "coder")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$10, coder: nix.thunk(() => nix.attr(nixosTests, "coder")) })),
       })),
     }));
 })(), formals$1);

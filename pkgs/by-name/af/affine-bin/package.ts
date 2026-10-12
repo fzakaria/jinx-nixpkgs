@@ -29,10 +29,10 @@ export default nix.lambda((args) => (() => {
   const nodePlatform = nix.thunk(() => nix.sel(hostPlatform, "node", "platform"));
   const nodeArch = nix.thunk(() => nix.sel(hostPlatform, "node", "arch"));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => nix.update({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       version: "0.18.1",
       githubSourceCode: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "toeverything",
           repo: "AFFiNE",
           rev: "8b066a4b398aace25a20508a8e3c1a381721971f",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       binName: nix.thunk(() => nix.app(nix.sel(lib, "toLower"), nix.thunk(() => nix.sel(finalAttrs, "productName")))),
       pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "binName")}-bin`),
       meta: nix.thunk(() => nix.update({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Workspace with fully merged docs, whiteboards and databases",
         longDescription: "AFFiNE is an open-source, all-in-one workspace and an operating\nsystem for all the building blocks that assemble your knowledge\nbase and much more -- wiki, knowledge management, presentation\nand digital assets\n",
         homepage: "https://affine.pro/",
@@ -57,20 +57,20 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["aarch64-darwin", "x86_64-linux"]),
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryBytecode"))]),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(hostPlatform, "isLinux")), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           mainProgram: nix.thunk(() => nix.sel(finalAttrs, "binName")),
         }))))),
       src: nix.thunk(() => (() => {
         const version = nix.thunk(() => nix.attr(finalAttrs, "version"));
         const affinePrebuiltBinariesHashes = nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "darwin-arm64": "I8lOO97MNLkha0utWPAP4EKv9HiPMWpLi2ibvXjzjhdl7abgSPmMKbv1dGHxMzgMzGbDzhzKqzhYtJI+0Asfzw==",
           "darwin-x64": "LZdd7yHJx9Hx0Po8NQgeDp0BhIyXGr0QsbF6bWP5pS08c4fdtE9UzNPfJGfzz/snTkWfKMQZop0Ea4fYGosr1Q==",
           "linux-x64": "+impaFLuvcfpj4QjHwjZ06+fUpsxxRlk4eWO6+E4xkBMrV43gwZGeSeAw2pMgXogRGb/Oy6XUoA7o8tTQt9J6A==",
         }));
         const platform = nix.thunk(() => (nix.asBool(nix.sel(hostPlatform, "isLinux")) ? "linux" : "macos"));
         return nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: nix.thunk(() => nix.str`https://github.com/toeverything/AFFiNE/releases/download/v${version}/affine-${version}-${buildType}-${platform}-${nodeArch}.zip`),
             sha512: nix.thunk(() => nix.sel(affinePrebuiltBinariesHashes, nix.key(nix.str`${nodePlatform}-${nodeArch}`))),
           })));
@@ -102,13 +102,13 @@ runHook postInstall
 `);
       })()),
     }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(hostPlatform, "isLinux")), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         desktopItems: nix.thunk(() => (() => {
           const binName = nix.thunk(() => nix.attr(finalAttrs, "binName"));
           const productName = nix.thunk(() => nix.attr(finalAttrs, "productName"));
           return [
             nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 name: binName,
                 desktopName: productName,
                 comment: "AFFiNE Desktop App",

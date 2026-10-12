@@ -15,19 +15,19 @@ export default nix.lambda((args) => (() => {
       const pname = "pycrypto";
       const version = nix.thunk(() => nix.sel(pycryptodome, "version"));
       const format = "setuptools";
-      const env = nix.thunk(() => ({ __proto__: pos$1, SOURCE_DATE_EPOCH: 315532800n }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$1, SOURCE_DATE_EPOCH: 315532800n }));
       const unpackPhase = nix.thunk(() => nix.str`echo "from setuptools import setup; setup(name='${pname}', version='${version}', install_requires=['pycryptodome'])" > setup.py
 `);
       const propagatedBuildInputs = nix.thunk(() => [pycryptodome]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.pycrypto.org/",
         description: "Drop-in replacement for pycrypto using pycryptodome",
         platforms: nix.thunk(() => nix.sel(pycryptodome, "meta", "platforms")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

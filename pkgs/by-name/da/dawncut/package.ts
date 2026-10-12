@@ -17,17 +17,17 @@ export default nix.lambda((args) => (() => {
       const pname = "dawncut";
       const version = "1.54a";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`${pname}-${version}.tar.gz`),
           url: nix.thunk(() => nix.str`https://geant4.kek.jp/~tanaka/src/dawncut_${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}.taz`),
           hash: "sha256-Ux4fDi7TXePisYAxCMDvtzLYOgxnbxQIO9QacTRrT6k=",
         }))));
       const postPatch = "substituteInPlace Makefile.architecture \\\n  --replace 'CXX      := g++' \"\"\n";
       const dontConfigure = true;
-      const env = nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=c++98" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=c++98" }));
       const installPhase = "runHook preInstall\n\ninstall -Dm 500 dawncut \"$out/bin/dawncut\"\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool to generate a 3D scene data clipped with an arbitrary plane",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         homepage: "https://geant4.kek.jp/~tanaka/DAWN/About_DAWNCUT.html",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

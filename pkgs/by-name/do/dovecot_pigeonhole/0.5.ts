@@ -6,7 +6,7 @@ const formals$1 = { args: { version: false, dovecotMajorMinor: false }, ellipsis
 const pos$1 = nix.positions(here + "/0.5.nix", [["version", 2, 3], ["url", 3, 3], ["hash", 9, 3]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     version: "0.5.21.1",
     url: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);

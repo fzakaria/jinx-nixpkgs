@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const wlroots_0_19 = nix.arg($, "wlroots_0_19");
   const xwayland = nix.arg($, "xwayland");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "wayback",
       version: "0.3",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "wayback",
           repo: "wayback",
@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libxkbcommon, pixman, wayland, wayland_protocols, wlroots_0_19, xwayland]),
       postInstall: "wrapProgram \"$out/bin/wayback-session\" \\\n  --set XWAYBACK_PATH \"$out/bin/Xwayback\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "X11 compatibility layer leveraging wlroots and Xwayland",
         homepage: "https://wayback.freedesktop.org",
         changelog: nix.thunk(() => nix.str`https://gitlab.freedesktop.org/wayback/wayback/-/releases/${nix.sel(finalAttrs, "version")}`),

@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const pname = "itables";
       const version = "2.9.1";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-tUfwiCtW5eN+1qiEULPjRJKqA/WqpM8P4AtUkzuet+k=",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [dash, hatchling, hatch_jupyter_builder, pyyaml, setuptools]);
       const nativeBuildInputs = nix.thunk(() => [nodejs]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         all: nix.thunk(() => [
           pandas,
           polars,
@@ -72,12 +72,12 @@ export default nix.lambda((args) => (() => {
         other_dataframes: nix.thunk(() => [narwhals, pyarrow]),
       }));
       const doCheck = false;
-      const env = nix.thunk(() => ({ __proto__: pos$3, HATCH_BUILD_NO_HOOKS: true }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$3, HATCH_BUILD_NO_HOOKS: true }));
       const postInstall = nix.thunk(() => nix.str`cp -R itables $out/${nix.sel(python, "sitePackages")}
 `);
       const pythonImportsCheck = nix.thunk(() => ["itables"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Pandas and Polar DataFrames as interactive DataTables",
         homepage: "https://github.com/mwouts/itables",
         changelog: nix.thunk(() => nix.str`https://github.com/mwouts/itables/releases/tag/v${version}`),
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

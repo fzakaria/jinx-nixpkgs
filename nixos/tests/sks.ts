@@ -18,31 +18,31 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const gpgKeyring = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "gpg-keyring", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gnupg"))]),
     })), "mkdir -p $out\nexport GNUPGHOME=$out\ncat > foo <<EOF\n  %echo Generating a basic OpenPGP key\n  %no-protection\n  Key-Type: DSA\n  Key-Length: 1024\n  Subkey-Type: ELG-E\n  Subkey-Length: 1024\n  Name-Real: Foo Example\n  Name-Email: foo@example.org\n  Expire-Date: 0\n  # Do a commit here, so that we can later print \"done\"\n  %commit\n  %echo done\nEOF\ngpg --batch --generate-key foo\nrm $out/S.gpg-agent $out/S.gpg-agent.*\n"));
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     name: "sks",
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "h7x4"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           environment: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "gnupg"))]),
           })),
-          services: nix.thunk(() => ({ __proto__: pos$5, sks: nix.thunk(() => ({ __proto__: pos$4, enable: true })) })),
+          services: nix.thunk(() => ({ [nix.POS]: pos$5, sks: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })) })),
         };
       })(), formals$2),
     })),

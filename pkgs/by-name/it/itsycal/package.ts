@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const re_plistbuddy = nix.arg($, "re-plistbuddy");
   const nix_update_script = nix.arg($, "nix-update-script");
   const masShortcutSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "rxhanson",
       repo: "MASShortcut",
       rev: "2f9fbb3f959b7a683c6faaf9638d22afad37a235",
@@ -44,8 +44,8 @@ export default nix.lambda((args) => (() => {
     "User Defaults Storage/MASDictionaryTransformer.m",
     "User Defaults Storage/MASShortcutBinder.m",
   ]);
-  const masShortcutInfoPlist = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toPlist"), nix.thunk(() => ({ __proto__: pos$2, escape: true })), nix.thunk(() => ({
-      __proto__: pos$3,
+  const masShortcutInfoPlist = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toPlist"), nix.thunk(() => ({ [nix.POS]: pos$2, escape: true })), nix.thunk(() => ({
+      [nix.POS]: pos$3,
       CFBundleDevelopmentRegion: "English",
       CFBundleExecutable: "MASShortcut",
       CFBundleIdentifier: "com.github.shpakovski.MASShortcut",
@@ -57,11 +57,11 @@ export default nix.lambda((args) => (() => {
       NSHumanReadableCopyright: "Copyright © Vadim Shpakovski. All rights reserved.",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "itsycal",
       version: "0.15.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "sfsam",
           repo: "Itsycal",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
       ]),
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [actool, ibtool, lld, makeWrapper, rcodesign, re_plistbuddy]),
-      env: nix.thunk(() => ({ __proto__: pos$5, NIX_CFLAGS_LINK: "-fuse-ld=lld" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$5, NIX_CFLAGS_LINK: "-fuse-ld=lld" })),
       dontConfigure: true,
       postPatch: "# Both upstream frameworks contain native code. MASShortcut is rebuilt\n# below and Sparkle is removed by patch 0002, so make accidental reuse fail.\nrm -rf Itsycal/_frameworks\n",
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
@@ -192,14 +192,14 @@ runHook postInstall
 `),
       postFixup: "rcodesign sign \"$out/Applications/Itsycal.app\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             extraArgs: nix.thunk(() => ["--version-regex=^([0-9]+\\.[0-9]+\\.[0-9]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         changelog: "https://www.mowglii.com/itsycal/versionhistory.html",
         description: "Tiny menu bar calendar",
         homepage: "https://www.mowglii.com/itsycal/",

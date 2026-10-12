@@ -34,18 +34,18 @@ export default nix.lambda((args) => (() => {
   const windowSupport = nix.argOr($, "windowSupport", () => false);
   const runCommand = nix.arg($, "runCommand");
   const versionInfo = nix.thunk(() => nix.sel({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     stable: nix.thunk(() => nix.builtins.import(nix.path(here, "./stable.nix"))),
     unstable: nix.thunk(() => nix.builtins.import(nix.path(here, "./unstable.nix"))),
   }, nix.key(nix.force(uiua_versionType))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "uiua",
       version: nix.thunk(() => nix.attr(versionInfo, "version")),
       cargoHash: nix.thunk(() => nix.attr(versionInfo, "cargoHash")),
       patches: nix.thunk(() => nix.attr(versionInfo, "patches")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "uiua-lang",
           repo: "uiua",
           tag: nix.thunk(() => nix.attr(versionInfo, "tag")),
@@ -62,18 +62,18 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.sel(versionInfo, "updateScript")),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           run: nix.thunk(() => nix.app(runCommand, "uiua-test-run", nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
             })), "echo '&p \"Hello, World!\"' > test.ua\ndiff -U3 --color=auto <(uiua run test.ua) <(echo 'Hello, World!')\ntouch $out\n")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         changelog: nix.thunk(() => nix.str`https://github.com/uiua-lang/uiua/blob/${nix.sel(finalAttrs, "src", "rev")}/changelog.md`),
         description: "Stack-oriented array programming language with a focus on simplicity, beauty, and tacit code",
         longDescription: "Uiua combines the stack-oriented and array-oriented paradigms in a single\nlanguage. Combining these already terse paradigms results in code with a very\nhigh information density and little syntactic noise.\n",

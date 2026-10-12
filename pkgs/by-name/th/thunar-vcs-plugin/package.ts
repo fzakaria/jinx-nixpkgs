@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const withSubversion = nix.argOr($, "withSubversion", () => false);
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "thunar-vcs-plugin",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.xfce.org",
           owner: "thunar-plugins",
           repo: "thunar-vcs-plugin",
@@ -47,11 +47,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([thunar, xfce4_exo, libxfce4ui, libxfce4util, gtk3, glib], nix.app(nix.sel(lib, "optionals"), withSubversion, nix.thunk(() => [apr, aprutil, subversion])))),
       mesonFlags: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "svn", withSubversion))]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "thunar-vcs-plugin-" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "thunar-vcs-plugin-" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Thunar plugin providing support for Subversion and Git",
         homepage: "https://gitlab.xfce.org/thunar-plugins/thunar-vcs-plugin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Only")),

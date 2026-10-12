@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchsvn = nix.arg($, "fetchsvn");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "srm",
       version: "1.2.15-unstable-2017-12-18",
       src: nix.thunk(() => nix.app(fetchsvn, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "svn://svn.code.sf.net/p/srm/srm/trunk/",
           rev: "268",
           sha256: "sha256-bY8p6IS5zeByoe/uTmvBAaBN4Wu7J19dVSpbtqx4OeQ=",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       configureFlags: nix.thunk(() => ["CFLAGS=-std=gnu17"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Delete files securely",
         longDescription: "srm (secure rm) is a command-line compatible rm(1) which\noverwrites file contents before unlinking. The goal is to\nprovide drop in security for users who wish to prevent recovery\nof deleted information, even if the machine is compromised.\n",
         homepage: "https://srm.sourceforge.net",

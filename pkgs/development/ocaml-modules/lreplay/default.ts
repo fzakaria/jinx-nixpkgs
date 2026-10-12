@@ -16,17 +16,17 @@ export default nix.lambda((args) => (() => {
   const frama_c = nix.arg($, "frama-c");
   const menhir = nix.arg($, "menhir");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lreplay",
       version: "0.1.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://git.frama-c.com/pub/ltest/lreplay/-/archive/${nix.sel(finalAttrs, "version")}/lreplay-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-FSICl9x/uL4hMVFz5Ef7NYKATZDdtYY9DRU0AZKSDD8=",
         })))),
       nativeBuildInputs: nix.thunk(() => [menhir]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lreplay plugin of Frama-C, part of the LTest suite",
         homepage: "https://frama-c.com/fc-plugins/ltest.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2")),

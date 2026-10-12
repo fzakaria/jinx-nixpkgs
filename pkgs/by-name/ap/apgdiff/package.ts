@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "apgdiff";
       const version = "2.7.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           sparseCheckout: nix.thunk(() => ["src"]),
           owner: "fordfrog",
           repo: "apgdiff",
@@ -40,7 +40,7 @@ makeWrapper ${jre}/bin/java $out/bin/apgdiff \\
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(jre, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Another PostgreSQL diff tool",
         mainProgram: "apgdiff",
         homepage: "https://apgdiff.com",
@@ -50,7 +50,7 @@ makeWrapper ${jre}/bin/java $out/bin/apgdiff \\
       };
       })());
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

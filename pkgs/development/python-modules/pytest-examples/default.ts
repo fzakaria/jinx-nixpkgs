@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.18";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pydantic",
           repo: "pytest-examples",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/pydantic/pytest-examples/pull/65/commits/60ae70d05ee345b38c2d2048d36b4a4545c98b6b.diff",
             hash: "sha256-Rhrg0zVChwwa7Gk+WYrCu44VgUQmxLBeq8pWSF6Nzdo=",
           })))),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const disabledTestPaths = nix.thunk(() => ["tests/test_run_examples.py::test_run_example_ok_fail"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Pytest plugin for testing examples in docstrings and markdown files",
         homepage: "https://github.com/pydantic/pytest-examples",
         changelog: nix.thunk(() => nix.str`https://github.com/pydantic/pytest-examples/releases/tag/${nix.sel(src, "tag")}`),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

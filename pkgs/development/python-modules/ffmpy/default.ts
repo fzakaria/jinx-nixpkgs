@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const go = nix.arg($, "go");
   const ffmpeg_headless = nix.arg($, "ffmpeg-headless");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ffmpy",
       version: "1.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Ch00k",
           repo: "ffmpy",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_invalid_executable_path"]))),
       preCheck: "rm -v tests/ffmpeg/ffmpeg\necho Building tests/ffmpeg/ffmpeg...\nHOME=$(mktemp -d) go build -o tests/ffmpeg/ffmpeg tests/ffmpeg/ffmpeg.go\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple python interface for FFmpeg/FFprobe",
         homepage: "https://github.com/Ch00k/ffmpy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

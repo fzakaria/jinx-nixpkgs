@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [libssh2]);
       const configureFlags = nix.thunk(() => [nix.thunk(() => nix.str`--with-ssh2=${nix.sel(libssh2, "dev")}`)]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         changelog: nix.thunk(() => nix.str`https://pecl.php.net/package-info.php?package=ssh2&version=${version}`),
         description: "PHP bindings for the libssh2 library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "php301")),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ostrolucky"))]),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "php"))]),
       }));
-      return { __proto__: pos$2, version, pname, sha256, buildInputs, configureFlags, meta };
+      return { [nix.POS]: pos$2, version, pname, sha256, buildInputs, configureFlags, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

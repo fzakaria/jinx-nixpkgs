@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.9.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jupyter",
           repo: "jupyter_core",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,9 +40,9 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_argv0"]);
       const postCheck = "$out/bin/jupyter --help > /dev/null\n";
       const pythonImportsCheck = nix.thunk(() => ["jupyter_core"]);
-      const passthru = nix.thunk(() => ({ __proto__: pos$3, tests: nix.thunk(() => ({ __proto__: pos$2, sage: sage })) }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, tests: nix.thunk(() => ({ [nix.POS]: pos$2, sage: sage })) }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Base package on which Jupyter projects rely",
         homepage: "https://jupyter.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/jupyter/jupyter_core/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "jupyter"))]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

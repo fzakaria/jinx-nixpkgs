@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const cubes = nix.argOr($, "cubes", () => []);
   const constructed = nix.argOr($, "constructed", () => []);
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ddm",
       version: "4.1.0",
       src: nix.thunk(() => nix.app(fetchItchIo, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: "DungeonDuelMonsters-linux-x64.zip",
           hash: "sha256-gq2nGwpaStqaVI1pL63xygxOI/z53o+zLwiKizG98Ks=",
           gameUrl: "https://mikaygo.itch.io/ddm",
@@ -59,7 +59,7 @@ mkdir $out/share/ddm/{campaigns,cubes,constructed}
 `, constructed)), "\nrunHook postInstall\n")),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "ddm",
             desktopName: "Dungeon Duel Monsters",
             comment: "A Tabletop Yugioh Experience",
@@ -69,7 +69,7 @@ mkdir $out/share/ddm/{campaigns,cubes,constructed}
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tabletop Yugioh Experience",
         homepage: "https://dungeonduelmonsters.com",
         changelog: "https://mikaygo.itch.io/ddm/devlog",

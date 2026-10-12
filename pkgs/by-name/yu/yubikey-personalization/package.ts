@@ -20,23 +20,23 @@ export default nix.lambda((args) => (() => {
   const libyubikey = nix.arg($, "libyubikey");
   const json_c = nix.arg($, "json_c");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "yubikey-personalization",
       version: "1.20.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://developers.yubico.com/yubikey-personalization/Releases/ykpers-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "14wvlwqnwj0gllkpvfqiy8ns938bwvjsz8x1hmymmx32m074vj0f",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "json-c-0.14-support.patch",
             url: "https://github.com/Yubico/yubikey-personalization/commit/0aa2e2cae2e1777863993a10c809bb50f4cde7f8.patch",
             sha256: "1wnigf3hbq59i15kgxpq3pwrl1drpbj134x81mmv9xm1r44cjva8",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "fno-common.patch",
             url: "https://github.com/Yubico/yubikey-personalization/commit/09ea16d9e2030e4da6ad00c1e5147e962aa7ff84.patch",
             sha256: "0n3ka8n7f3ndbxv3k0bi77d850kr2ypglkw81gqycpqyaciidqwa",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       postInstall: "# Don't use 70-yubikey.rules because it depends on ConsoleKit\ninstall -D -t $out/lib/udev/rules.d 69-yubikey.rules\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://developers.yubico.com/yubikey-personalization",
         description: "Library and command line tool to personalize YubiKeys",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const mapAttrs = nix.thunk(() => nix.attr(lib, "mapAttrs"));
   const version = "7.70.2";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "DataDog",
       repo: "integrations-core",
       tag: version,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
     const args_2 = args_1;
     const pname = nix.arg($_1, "pname");
     return nix.app(nix.sel(python3Packages, "buildPythonPackage"), nix.thunk(() => nix.update(args_2, {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         src: src,
         version: version,
         name: nix.thunk(() => nix.str`datadog-integration-${pname}-${version}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       })));
   })(), formals$2);
   const datadog_checks_base = nix.thunk(() => nix.app(buildIntegration, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "checks-base",
       sourceRoot: "datadog_checks_base",
       dependencies: nix.thunk(() => (() => {
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["datadog_checks.base", "datadog_checks.base.checks", "datadog_checks.checks"]),
     }))));
   const defaultIntegrations = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     disk: (ps) => [nix.thunk(() => nix.sel(ps, "psutil"))],
     mongo: (ps) => [nix.thunk(() => nix.sel(ps, "pymongo"))],
     network: (ps) => [nix.thunk(() => nix.sel(ps, "psutil"))],
@@ -94,12 +94,12 @@ export default nix.lambda((args) => (() => {
   }));
   const integrations = nix.thunk(() => nix.update(defaultIntegrations, extraIntegrations));
   const builtIntegrations = nix.thunk(() => nix.app(mapAttrs, (pname) => (fdeps) => nix.app(buildIntegration, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: pname,
         propagatedBuildInputs: nix.thunk(() => nix.concat(nix.app(fdeps, python3Packages), [datadog_checks_base])),
       }))), integrations));
   return nix.update(builtIntegrations, {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     datadog_checks_base: datadog_checks_base,
     python: nix.thunk(() => nix.app(nix.sel(python3Packages, "python", "withPackages"), (_) => nix.app(attrValues, builtIntegrations))),
   });

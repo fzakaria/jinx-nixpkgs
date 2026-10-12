@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "flatbuffers";
       const version = "23.5.26";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "google",
           repo: "flatbuffers",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))));
       const checkTarget = "test";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Memory Efficient Serialization Library",
         longDescription: "FlatBuffers is an efficient cross platform serialization library for\ngames and other memory constrained apps. It allows you to directly\naccess serialized data without unpacking/parsing it first, while still\nhaving great forwards/backwards compatibility.\n",
         homepage: "https://google.github.io/flatbuffers/",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

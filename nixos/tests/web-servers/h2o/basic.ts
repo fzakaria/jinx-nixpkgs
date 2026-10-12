@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const hostPkgs = nix.arg($, "hostPkgs");
   const lib = nix.arg($, "lib");
-  const domain = nix.thunk(() => ({ __proto__: pos$1, HTTP: "h2o.local", TLS: "acme.test" }));
+  const domain = nix.thunk(() => ({ [nix.POS]: pos$1, HTTP: "h2o.local", TLS: "acme.test" }));
   const sawatdi_chao_lok = "สวัสดีชาวโลก";
-  const hello_world_txt = nix.thunk(() => nix.app(nix.sel(hostPkgs, "writeTextFile"), nix.thunk(() => ({ __proto__: pos$2, name: "/hello_world.txt", text: sawatdi_chao_lok }))));
+  const hello_world_txt = nix.thunk(() => nix.app(nix.sel(hostPkgs, "writeTextFile"), nix.thunk(() => ({ [nix.POS]: pos$2, name: "/hello_world.txt", text: sawatdi_chao_lok }))));
   const hello_world_rst = nix.thunk(() => nix.app(nix.sel(hostPkgs, "writeTextFile"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "/hello_world.rst",
       text: nix.thunk(() => nix.str`====================
 Thaiger Sprint 2025‼
@@ -58,72 +58,72 @@ ${sawatdi_chao_lok}
 `),
     }))));
   return {
-    __proto__: pos$33,
+    [nix.POS]: pos$33,
     name: "h2o-basic",
     meta: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "toastal"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           services: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             h2o: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               enable: true,
               defaultHTTPListenPort: 8080n,
               defaultTLSListenPort: 8443n,
               hosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${nix.sel(domain, "HTTP")}`, nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     paths: nix.thunk(() => ({
-                      __proto__: pos$6,
-                      "/hello_world.txt": nix.thunk(() => ({ __proto__: pos$5, "file.file": nix.thunk(() => nix.str`${hello_world_txt}`) })),
+                      [nix.POS]: pos$6,
+                      "/hello_world.txt": nix.thunk(() => ({ [nix.POS]: pos$5, "file.file": nix.thunk(() => nix.str`${hello_world_txt}`) })),
                     })),
                   })),
                 }))],
                 [nix.str`${nix.sel(domain, "TLS")}`, nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   tls: nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     policy: "force",
-                    quic: nix.thunk(() => ({ __proto__: pos$9, retry: "ON" })),
+                    quic: nix.thunk(() => ({ [nix.POS]: pos$9, retry: "ON" })),
                     identity: nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         "key-file": nix.path(here, "../../common/acme/server/acme.test.key.pem"),
                         "certificate-file": nix.path(here, "../../common/acme/server/acme.test.cert.pem"),
                       })),
                     ]),
-                    extraSettings: nix.thunk(() => ({ __proto__: pos$11, "minimum-version": "TLSv1.3", "ocsp-update-interval": 0n })),
+                    extraSettings: nix.thunk(() => ({ [nix.POS]: pos$11, "minimum-version": "TLSv1.3", "ocsp-update-interval": 0n })),
                   })),
                   settings: nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     paths: nix.thunk(() => ({
-                      __proto__: pos$14,
-                      "/hello_world.rst": nix.thunk(() => ({ __proto__: pos$13, "file.file": nix.thunk(() => nix.str`${hello_world_rst}`) })),
+                      [nix.POS]: pos$14,
+                      "/hello_world.rst": nix.thunk(() => ({ [nix.POS]: pos$13, "file.file": nix.thunk(() => nix.str`${hello_world_rst}`) })),
                     })),
                   })),
                 }))],
               ])),
               settings: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 compress: "ON",
                 "compress-minimum-size": 32n,
                 "file.mime.addtypes": nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   "text/x-rst": nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     extensions: nix.thunk(() => [".rst"]),
                     is_compressible: "YES",
                   })),
@@ -133,18 +133,18 @@ ${sawatdi_chao_lok}
             })),
           })),
           security: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             pki: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               certificates: nix.thunk(() => [
                 nix.thunk(() => nix.builtins.readFile(nix.path(here, "../../common/acme/server/ca.cert.pem"))),
               ]),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             firewall: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               allowedTCPPorts: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(config, "services", "h2o")), null);
                 return [
@@ -168,22 +168,22 @@ ${nix.sel(config, "networking", "primaryIPAddress")} ${nix.sel(domain, "TLS")}
         const nodes = nix.arg($_1, "nodes");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           environment: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "curl"))]),
           })),
           security: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             pki: nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               certificates: nix.thunk(() => [
                 nix.thunk(() => nix.builtins.readFile(nix.path(here, "../../common/acme/server/ca.cert.pem"))),
               ]),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             extraHosts: nix.thunk(() => nix.str`${nix.sel(nodes, "server", "networking", "primaryIPAddress")} ${nix.sel(domain, "HTTP")}
 ${nix.sel(nodes, "server", "networking", "primaryIPAddress")} ${nix.sel(domain, "TLS")}
 `),

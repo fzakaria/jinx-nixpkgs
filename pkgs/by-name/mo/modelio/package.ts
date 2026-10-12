@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const glib_networking = nix.arg($, "glib-networking");
   const imagemagick = nix.arg($, "imagemagick");
   const webkitCompat = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "webkitgtk-4.0-compat",
       dontUnpack: true,
       installPhase: nix.thunk(() => nix.str`mkdir -p $out/lib
@@ -35,11 +35,11 @@ ln -s ${webkitgtk_4_1}/lib/libwebkit2gtk-4.1.so.0 $out/lib/libwebkit2gtk-4.0.so.
 `),
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "modelio",
       version: "5.4.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/ModelioOpenSource/Modelio/releases/download/v${nix.sel(finalAttrs, "version")}/modelio-open-source-${nix.sel(finalAttrs, "version")}_amd64.deb`),
           hash: "sha256-cg7ruIYpOgz2nfax37M8sUs89Qvbb5PMudyR0ZNiURo=",
         })))),
@@ -97,7 +97,7 @@ done
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.modelio.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/ModelioOpenSource/Modelio/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Open-source UML, BPMN, ArchiMate and SysML modeling environment",

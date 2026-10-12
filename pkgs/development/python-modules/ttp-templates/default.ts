@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const poetry_core = nix.arg($, "poetry-core");
   const pydantic = nix.arg($, "pydantic");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ttp-templates",
       version: "0.6.10",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dmulyalin",
           repo: "ttp_templates",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "# Drop circular dependency on ttp\nsed -i '/ttp =/d' pyproject.toml\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Template Text Parser Templates collections",
         homepage: "https://github.com/dmulyalin/ttp_templates",
         changelog: nix.thunk(() => nix.str`https://github.com/dmulyalin/ttp_templates/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

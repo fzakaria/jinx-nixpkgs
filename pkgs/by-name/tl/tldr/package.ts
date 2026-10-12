@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tldr",
       version: "3.4.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tldr-pages",
           repo: "tldr-python-client",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_error_message"]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd tldr \\\n  --bash <($out/bin/tldr --print-completion bash | sed -E \"s#\\\"/nix/store/[^\\\"]+/bin/python[^\\\"]*\\\" -m tldr#\\\"$out/bin/tldr\\\"#g\") \\\n  --zsh <($out/bin/tldr --print-completion zsh | sed -E \"s#\\\"/nix/store/[^\\\"]+/bin/python[^\\\"]*\\\" -m tldr#\\\"$out/bin/tldr\\\"#g\")\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simplified and community-driven man pages",
         longDescription: "tldr pages gives common use cases for commands, so you don't need to hunt\nthrough a man page for the correct flags.\n",
         homepage: "https://tldr.sh",

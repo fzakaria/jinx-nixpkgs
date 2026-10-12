@@ -47,14 +47,14 @@ export default nix.lambda((args) => (() => {
   const azure_cli = nix.arg($, "azure-cli");
   const version = "2.91.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.str`azure-cli-${version}-src`),
       owner: "Azure",
       repo: "azure-cli",
       tag: nix.thunk(() => nix.str`azure-cli-${version}`),
       hash: "sha256-wZG9yWDgAk+7wNBUU5bmmkna2f8TmH+Fo7NX0UbPcCQ=",
     }))));
-  const py = nix.thunk(() => nix.app(callPackage, nix.path(here, "./python-packages.nix"), nix.thunk(() => ({ __proto__: pos$2, src: src, version: version, python3: python3 }))));
+  const py = nix.thunk(() => nix.app(callPackage, nix.path(here, "./python-packages.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, src: src, version: version, python3: python3 }))));
   const mkAzExtension = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const args_2 = args_1;
@@ -64,21 +64,21 @@ export default nix.lambda((args) => (() => {
     const hash = nix.arg($_1, "hash");
     const description = nix.arg($_1, "description");
     const self = nix.thunk(() => nix.app(nix.sel(python3, "pkgs", "buildPythonPackage"), nix.thunk(() => nix.update({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         format: "wheel",
-        src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ __proto__: pos$3, url: url, hash: hash })))),
+        src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$3, url: url, hash: hash })))),
         passthru: nix.thunk(() => nix.update({
-          __proto__: pos$6,
-          updateScript: nix.thunk(() => nix.app(extensionUpdateScript, nix.thunk(() => ({ __proto__: pos$4, pname: pname })))),
+          [nix.POS]: pos$6,
+          updateScript: nix.thunk(() => nix.app(extensionUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$4, pname: pname })))),
           tests: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             azWithExtension: nix.thunk(() => nix.app(testAzWithExts, nix.thunk(() => [self]))),
           })),
         }, nix.selOr(args_2, () => ({}), "passthru"))),
         meta: nix.thunk(() => nix.update((() => {
           const from = nix.thunk(() => nix.sel(azure_cli, "meta"));
           return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           description: description,
           platforms: nix.thunk(() => nix.attr(from, "platforms")),
           maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
@@ -116,17 +116,17 @@ done
 `));
   })();
   const extensions_generated = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => (ext) => nix.app(mkAzExtension, nix.thunk(() => nix.update(ext, {
-        __proto__: pos$10,
-        passthru: nix.thunk(() => ({ __proto__: pos$9, updateScript: [] })),
+        [nix.POS]: pos$10,
+        passthru: nix.thunk(() => ({ [nix.POS]: pos$9, updateScript: [] })),
       }))), nix.thunk(() => nix.builtins.fromJSON(nix.thunk(() => nix.builtins.readFile(nix.path(here, "./extensions-generated.json")))))));
   const extensions_manual = nix.thunk(() => nix.app(callPackages, nix.path(here, "./extensions-manual.nix"), nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       mkAzExtension: mkAzExtension,
       python3Packages: nix.thunk(() => nix.sel(python3, "pkgs")),
     }))));
   const extensions = nix.thunk(() => nix.update(extensions_generated, extensions_manual));
   const extensionDir = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       name: "azure-cli-extensions",
       dontUnpack: true,
       installPhase: nix.thunk(() => (() => {
@@ -330,11 +330,11 @@ done
           "azure.storage.common",
         ]);
         const passthru = nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           extensions: extensions,
-          withExtensions: (extensions_1) => nix.app(nix.sel(azure_cli, "override"), nix.thunk(() => ({ __proto__: pos$13, withExtensions: extensions_1 }))),
+          withExtensions: (extensions_1) => nix.app(nix.sel(azure_cli, "override"), nix.thunk(() => ({ [nix.POS]: pos$13, withExtensions: extensions_1 }))),
           tests: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             azWithExtensions: nix.thunk(() => nix.app(testAzWithExts, nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.sel(azure_cli, "extensions")), null);
                 return [
@@ -344,7 +344,7 @@ done
                 ];
               })()))),
             azWithMutableConfig: nix.thunk(() => (() => {
-              const az = nix.thunk(() => nix.app(nix.sel(azure_cli, "override"), nix.thunk(() => ({ __proto__: pos$14, withImmutableConfig: false }))));
+              const az = nix.thunk(() => nix.app(nix.sel(azure_cli, "override"), nix.thunk(() => ({ [nix.POS]: pos$14, withImmutableConfig: false }))));
               return nix.app(runCommand, "test-az-with-immutable-config", nix.thunk(() => ({})), nix.thunk(() => nix.str`export HOME=$TMPDIR
 ${nix.app(nix.sel(lib, "getExe"), az)} --version || exit 1
 touch $out
@@ -355,10 +355,10 @@ touch $out
           "generate-extensions": nix.thunk(() => nix.app(writeShellScriptBin, nix.thunk(() => nix.str`${pname}-update-extensions`), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(azure_cli, "extensions-tool")))} --cli-version ${nix.sel(azure_cli, "version")} --commit
 `))),
           "extensions-tool": nix.thunk(() => nix.app(runCommand, "azure-cli-extensions-tool", nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               src: nix.path(here, "./extensions-tool.py"),
               nativeBuildInputs: nix.thunk(() => [black, isort, makeWrapper, mypy, python3]),
-              meta: nix.thunk(() => ({ __proto__: pos$16, mainProgram: "extensions-tool" })),
+              meta: nix.thunk(() => ({ [nix.POS]: pos$16, mainProgram: "extensions-tool" })),
             })), nix.thunk(() => nix.str`black --check --diff $src
 isort --profile=black --check --diff $src
 
@@ -377,7 +377,7 @@ wrapProgram $out/bin/extensions-tool \\
 `))),
         }));
         const meta = nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           homepage: "https://github.com/Azure/azure-cli",
           description: "Next generation multi-platform command line experience for Azure",
           downloadPage: nix.thunk(() => nix.str`https://github.com/Azure/azure-cli/releases/tag/azure-cli-${version_1}`),
@@ -393,7 +393,7 @@ wrapProgram $out/bin/extensions-tool \\
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         }));
         return {
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           pname,
           version: version_1,
           src: src_1,

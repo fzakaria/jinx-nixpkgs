@@ -69,16 +69,16 @@ export default nix.lambda((args) => (() => {
   const cacheDir = nix.thunk(() => nix.str`${dataDir}/cache`);
   const settingsDir = nix.thunk(() => nix.str`${dataDir}/settings`);
   const python = nix.thunk(() => nix.app(nix.sel(cfg, "package", "python", "override"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       self: python,
       packageOverrides: (_final) => (prev) => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         gunicorn: nix.thunk(() => nix.app(nix.sel(prev, "gunicorn", "overridePythonAttrs"), (old) => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             dependencies: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "dependencies"), nix.sel(old, "optional-dependencies", "setproctitle"))),
           }))),
-        weblate: nix.thunk(() => nix.app(nix.sel(prev, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({ __proto__: pos$2, python3: python }))), "overridePythonAttrs"), (old) => ({
-              __proto__: pos$3,
+        weblate: nix.thunk(() => nix.app(nix.sel(prev, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, python3: python }))), "overridePythonAttrs"), (old) => ({
+              [nix.POS]: pos$3,
               dependencies: nix.thunk(() => nix.concat(nix.sel(old, "dependencies"), nix.sel(cfg, "package", "optional-dependencies", "postgres"))),
               makeWrapperArgs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "makeWrapperArgs"), [
                 "--set",
@@ -156,14 +156,14 @@ EMAIL_HOST_USER = "${nix.sel(cfg, "smtp", "user")}"
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "smtp", "enable")) && nix.asBool(!nix.eq(nix.sel(cfg, "smtp", "passwordFile"), null)))), nix.thunk(() => nix.str`with open("${nix.sel(cfg, "smtp", "passwordFile")}") as f:
   EMAIL_HOST_PASSWORD = f.read().rstrip("\\n")
 `))), nix.sel(cfg, "extraConfig")));
-  const settings_py = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "weblate_settings.py", nix.thunk(() => ({ __proto__: pos$6, weblateConfig: weblateConfig, __structuredAttrs: true })), nix.thunk(() => nix.str`mkdir -p $out
+  const settings_py = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "weblate_settings.py", nix.thunk(() => ({ [nix.POS]: pos$6, weblateConfig: weblateConfig, __structuredAttrs: true })), nix.thunk(() => nix.str`mkdir -p $out
 (
   cat ${nix.sel(python, "pkgs", "weblate")}/${nix.sel(python, "sitePackages")}/weblate/settings_example.py
   printf "%s" "$weblateConfig"
 ) > $out/settings.py
 `)));
   const environment = nix.thunk(() => ({
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     PYTHONPATH: nix.thunk(() => nix.str`${settingsDir}:${pythonEnv}/${nix.sel(python, "sitePackages")}/`),
     DJANGO_SETTINGS_MODULE: "settings",
   }));
@@ -183,43 +183,43 @@ EMAIL_HOST_USER = "${nix.sel(cfg, "smtp", "user")}"
     ];
   })());
   return {
-    __proto__: pos$55,
+    [nix.POS]: pos$55,
     options: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       services: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         weblate: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Weblate service")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "weblate", nix.thunk(() => ({})))),
           localDomain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               description: "The domain name serving your Weblate instance.",
               example: "weblate.example.org",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
             })))),
           djangoSecretKeyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "Location of the Django secret key.\n\nThis should be a path pointing to a file with secure permissions (not /nix/store).\n\nCan be generated with `weblate-generate-secret-key` which is available as the `weblate` user.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
             })))),
           configurePostgresql: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to enable and configure a local PostgreSQL server by creating a user and database for weblate.\nThe default `settings` reference this database, if you disable this option you must provide a database URL in `extraConfig`.\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Text to append to `settings.py` Weblate configuration file.\n",
             })))),
           smtp: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Weblate SMTP support")),
             from: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 description: "The from address being used in sent emails.",
                 example: "weblate@example.com",
                 default: nix.thunk(() => nix.sel(config, "services", "weblate", "smtp", "user")),
@@ -227,27 +227,27 @@ EMAIL_HOST_USER = "${nix.sel(cfg, "smtp", "user")}"
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
               })))),
             user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 description: "SMTP login name.",
                 example: "weblate@example.org",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
               })))),
             host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 description: "SMTP host used when sending emails to users.",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 example: "127.0.0.1",
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 description: "SMTP port used when sending emails to users.",
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 587n,
                 example: 25n,
               })))),
             passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 description: "Location of a file containing the SMTP password.\n\nThis should be a path pointing to a file with secure permissions (not /nix/store).\n",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
@@ -257,21 +257,21 @@ EMAIL_HOST_USER = "${nix.sel(cfg, "smtp", "user")}"
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$53,
+        [nix.POS]: pos$53,
         systemd: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             rules: nix.thunk(() => [nix.thunk(() => nix.str`L+ ${settingsDir} - - - - ${settings_py}`)]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             "weblate-postgresql-setup": nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               description: "Weblate PostgreSQL setup",
               after: nix.thunk(() => ["postgresql.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 Type: "oneshot",
                 User: "postgres",
                 Group: "postgres",
@@ -280,7 +280,7 @@ EMAIL_HOST_USER = "${nix.sel(cfg, "smtp", "user")}"
               })),
             })),
             "weblate-migrate": nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               description: "Weblate migration",
               after: nix.thunk(() => ["weblate-postgresql-setup.service", "redis-weblate.service"]),
               requires: nix.thunk(() => ["weblate-postgresql-setup.service", "redis-weblate.service"]),
@@ -288,7 +288,7 @@ EMAIL_HOST_USER = "${nix.sel(cfg, "smtp", "user")}"
               environment: environment,
               path: weblatePath,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 Type: "oneshot",
                 StateDirectory: "weblate",
                 User: "weblate",
@@ -297,11 +297,11 @@ EMAIL_HOST_USER = "${nix.sel(cfg, "smtp", "user")}"
               })),
             })),
             "weblate-celery": nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               description: "Weblate Celery",
               after: nix.thunk(() => ["network.target", "redis-weblate.service", "postgresql.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
-              environment: nix.thunk(() => nix.update(environment, { __proto__: pos$26, CELERY_WORKER_RUNNING: "1" })),
+              environment: nix.thunk(() => nix.update(environment, { [nix.POS]: pos$26, CELERY_WORKER_RUNNING: "1" })),
               path: weblatePath,
               serviceConfig: nix.thunk(() => (() => {
                 const pidFile = "/run/celery/weblate-%%n.pid";
@@ -326,7 +326,7 @@ EMAIL_HOST_USER = "${nix.sel(cfg, "smtp", "user")}"
   --prefetch-multiplier:backup=2
 `;
                 return {
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   Type: "forking",
                   User: "weblate",
                   Group: "weblate",
@@ -345,7 +345,7 @@ EMAIL_HOST_USER = "${nix.sel(cfg, "smtp", "user")}"
               })()),
             })),
             weblate: nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               description: "Weblate Gunicorn app",
               after: nix.thunk(() => ["network.target", "weblate-migrate.service", "weblate-celery.service"]),
               requires: nix.thunk(() => ["weblate-migrate.service", "weblate-celery.service", "weblate.socket"]),
@@ -356,7 +356,7 @@ EMAIL_HOST_USER = "${nix.sel(cfg, "smtp", "user")}"
 fi
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 Type: "notify",
                 NotifyAccess: "all",
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), pythonEnv, "gunicorn")} \\
@@ -377,13 +377,13 @@ fi
             })),
           })),
           sockets: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             weblate: nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               before: nix.thunk(() => ["nginx.service"]),
               wantedBy: nix.thunk(() => ["sockets.target"]),
               socketConfig: nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 ListenStream: "/run/weblate.socket",
                 SocketUser: "weblate",
                 SocketGroup: "weblate",
@@ -393,36 +393,36 @@ fi
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$47,
+          [nix.POS]: pos$47,
           nginx: nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             enable: true,
             virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
               [nix.str`${nix.sel(cfg, "localDomain")}`, nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 forceSSL: true,
                 enableACME: true,
                 locations: nix.thunk(() => ({
-                  __proto__: pos$39,
+                  [nix.POS]: pos$39,
                   "= /favicon.ico": nix.thunk(() => ({
-                    __proto__: pos$36,
+                    [nix.POS]: pos$36,
                     alias: nix.thunk(() => nix.str`${nix.sel(python, "pkgs", "weblate")}/${nix.sel(python, "sitePackages")}/weblate/static/favicon.ico`),
                   })),
                   "/static/": nix.thunk(() => ({
-                    __proto__: pos$37,
+                    [nix.POS]: pos$37,
                     alias: nix.thunk(() => nix.str`${nix.sel(python, "pkgs", "weblate", "static")}/`),
                   })),
-                  "/": nix.thunk(() => ({ __proto__: pos$38, proxyPass: "http://unix:///run/weblate.socket" })),
+                  "/": nix.thunk(() => ({ [nix.POS]: pos$38, proxyPass: "http://unix:///run/weblate.socket" })),
                 })),
               }))],
             ])),
           })),
           redis: nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             servers: nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               weblate: nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 enable: true,
                 user: "weblate",
                 unixSocket: "/run/redis-weblate/redis.sock",
@@ -431,36 +431,36 @@ fi
             })),
           })),
           postgresql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "configurePostgresql")), nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               enable: true,
               ensureUsers: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$45, name: "weblate", ensureDBOwnership: true })),
+                nix.thunk(() => ({ [nix.POS]: pos$45, name: "weblate", ensureDBOwnership: true })),
               ]),
               ensureDatabases: nix.thunk(() => ["weblate"]),
             })))),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$52,
+          [nix.POS]: pos$52,
           users: nix.thunk(() => ({
-            __proto__: pos$49,
+            [nix.POS]: pos$49,
             weblate: nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               isSystemUser: true,
               group: "weblate",
               packages: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(python, "pkgs", "weblate"))], weblatePath)),
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$51,
+            [nix.POS]: pos$51,
             weblate: nix.thunk(() => ({
-              __proto__: pos$50,
+              [nix.POS]: pos$50,
               members: nix.thunk(() => [nix.thunk(() => nix.sel(config, "services", "nginx", "user"))]),
             })),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$54,
+      [nix.POS]: pos$54,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w_1, "erictapen"))];

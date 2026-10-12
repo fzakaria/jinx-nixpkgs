@@ -27,23 +27,23 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "services", "salt", "master"));
   const fullConfig = nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       default_include: "/var/lib/salt/master.d/*.conf",
       pki_dir: "/var/lib/salt/pki/master",
     })), nix.thunk(() => nix.sel(cfg, "configuration"))));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         salt: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           master: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Salt configuration management system master service")),
             configuration: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(lib, "types", "attrs")),
                 default: nix.thunk(() => ({})),
                 description: "Salt master configuration as Nix attribute set.",
@@ -53,13 +53,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         environment: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           etc: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             "salt/master": nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "master", nix.thunk(() => nix.builtins.toJSON(fullConfig)))),
             })),
           })),
@@ -69,11 +69,11 @@ export default nix.lambda((args) => (() => {
           })()),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             "salt-master": nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "Salt Master",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
                 return [nix.thunk(() => nix.lookup(w, "util-linux"))];
               })()),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "salt")}/bin/salt-master`),
                 LimitNOFILE: 16384n,
                 Type: "notify",
@@ -96,7 +96,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "Flakebi"))];

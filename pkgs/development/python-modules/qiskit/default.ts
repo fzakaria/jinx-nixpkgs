@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.4.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Qiskit",
           repo: "qiskit",
           tag: version,
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools, setuptools_rust]);
       const buildInputs = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv])));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: src,
           pname: pname,
           version: version,
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const dependencies = nix.thunk(() => [dill, numpy, rustworkx, scipy, stevedore, typing_extensions]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         visualization: nix.thunk(() => [matplotlib, pillow, pydot, pylatexenc, seaborn, sympy]),
         "crosstalk-pass": nix.thunk(() => [z3_solver]),
         "csp-layout-pass": nix.thunk(() => [python_constraint]),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
       }));
       const pythonImportsCheck = nix.thunk(() => ["qiskit", "qiskit.circuit", "qiskit.providers.basic_provider"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Software for developing quantum computing programs",
         longDescription: "Open-source SDK for working with quantum computers at the level of\nextended quantum circuits, operators, and primitives.\n",
         homepage: "https://www.ibm.com/quantum/qiskit",
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

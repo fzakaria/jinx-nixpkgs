@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const bankstown_lv2 = nix.arg($, "bankstown-lv2");
   const lsp_plugins = nix.arg($, "lsp-plugins");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gpd-pocket-4-pipewire",
       version: "0.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Manawyrm",
           repo: "gpd-pocket-4-pipewire",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace pipewire.conf.d/sink-gpd-pocket-4.conf \\\n  --replace-fail /usr/share/pipewire/pipewire.conf.d $out/share/pipewire/pipewire.conf.d\n",
       installPhase: "install -dDm0755 \"$out/share/pipewire/pipewire.conf.d/\"\ninstall -v -D -m0644 \"pipewire.conf.d/gpd-pocket-4-mp-48k-l.wav\" \"$out/share/pipewire/pipewire.conf.d/gpd-pocket-4-mp-48k-l.wav\"\ninstall -v -D -m0644 \"pipewire.conf.d/gpd-pocket-4-mp-48k-r.wav\" \"$out/share/pipewire/pipewire.conf.d/gpd-pocket-4-mp-48k-r.wav\"\ninstall -v -D -m0644 \"pipewire.conf.d/sink-gpd-pocket-4.conf\" \"$out/share/pipewire/pipewire.conf.d/sink-gpd-pocket-4.conf\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         requiredLv2Packages: nix.thunk(() => [bankstown_lv2, lsp_plugins]),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Pipewire audio DSP for internal speakers of GPD Pocket 4",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/Manawyrm/gpd-pocket-4-pipewire/",

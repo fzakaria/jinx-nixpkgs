@@ -31,33 +31,33 @@ export default nix.lambda((args) => (() => {
   const apple = "05ac";
   const cfg = nix.thunk(() => nix.sel(config, "services", "usbmuxd"));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         usbmuxd: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enable the usbmuxd (\"USB multiplexing daemon\") service. This daemon is\nin charge of multiplexing connections over USB to an iOS device. This is\nneeded for transferring data from and to iOS devices (see ifuse). Also\nthis may enable plug-n-play tethering for iPhones.\n",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: defaultUserGroup,
               description: "The user usbmuxd should use to run after startup.\n",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: defaultUserGroup,
               description: "The group usbmuxd should use to run after startup.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
               default: nix.thunk(() => nix.sel(pkgs, "usbmuxd")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.usbmuxd")),
@@ -68,12 +68,12 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         users: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           users: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), defaultUserGroup)), nix.thunk(() => nix.attrsDyn({}, [
               [nix.sel(cfg, "user"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 description: "usbmuxd user",
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 isSystemUser: true,
@@ -82,24 +82,24 @@ export default nix.lambda((args) => (() => {
           groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), defaultUserGroup)), nix.thunk(() => nix.attrsDyn({}, [[nix.sel(cfg, "group"), nix.thunk(() => ({}))]])))),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           udev: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             extraRules: nix.thunk(() => nix.str`SUBSYSTEM=="usb", ATTR{idVendor}=="${apple}", GROUP="${nix.sel(cfg, "group")}"
 `),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             usbmuxd: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "usbmuxd",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
-              unitConfig: nix.thunk(() => ({ __proto__: pos$12, Documentation: "man:usbmuxd(8)" })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$12, Documentation: "man:usbmuxd(8)" })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 ExecStartPre: nix.thunk(() => nix.str`${nix.sel(config, "systemd", "package")}/bin/udevadm trigger -s usb -a idVendor=${apple}`),
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/usbmuxd -U ${nix.sel(cfg, "user")} -v`),
               })),

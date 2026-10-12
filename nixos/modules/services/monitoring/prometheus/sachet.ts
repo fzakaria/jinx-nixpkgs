@@ -26,31 +26,31 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "prometheus", "sachet"));
   const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "sachet.yml", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.sel(cfg, "configuration"))))));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         prometheus: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           sachet: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Sachet, an SMS alerting tool for the Prometheus Alertmanager")),
             configuration: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "attrs")))),
                 default: null,
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  providers = {\n    twilio = {\n      # environment variables gets expanded at runtime\n      account_sid = \"$TWILIO_ACCOUNT\";\n      auth_token = \"$TWILIO_TOKEN\";\n    };\n  };\n  templates = [ ./some-template.tmpl ];\n  receivers = [{\n    name = \"pager\";\n    provider = \"twilio\";\n    to = [ \"+33123456789\" ];\n    text = \"{{ template \\\"message\\\" . }}\";\n  }];\n}\n")),
                 description: "Sachet's configuration as a nix attribute set.\n",
               })))),
             address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "localhost",
                 description: "The address Sachet will listen to.\n",
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 9876n,
                 description: "The port Sachet will listen to.\n",
@@ -60,25 +60,25 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         assertions: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "configuration"), null)),
             message: "Cannot enable Sachet without a configuration.",
           })))),
         systemd: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             sachet: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target", "network-online.target"]),
               script: nix.thunk(() => nix.str`${nix.sel(pkgs, "envsubst")}/bin/envsubst -i "${configFile}" > /tmp/sachet.yaml
 exec ${nix.sel(pkgs, "prometheus-sachet")}/bin/sachet -config /tmp/sachet.yaml -listen-address ${nix.sel(cfg, "address")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 Restart: "always",
                 ProtectSystem: "strict",
                 ProtectHome: true,

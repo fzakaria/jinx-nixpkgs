@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "stoken";
       const version = "0.93";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stoken-dev",
           repo: "stoken",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [autoreconfHook, pkg_config]);
       const buildInputs = nix.thunk(() => nix.concat([libxml2, nettle], nix.app(nix.sel(lib, "optionals"), withGTK3, nix.thunk(() => [gtk3]))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Software Token for Linux/UNIX",
         homepage: "https://github.com/stoken-dev/stoken",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

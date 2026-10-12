@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "changelog-d";
       const version = "1.0.2";
       const src = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fgaz",
           repo: "changelog-d",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       const license = nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus"));
       const mainProgram = "changelog-d";
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         version,
         src,

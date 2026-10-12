@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         return nix.str`${tag}1.dev1+g${rev}`;
       })());
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "amaranth-lang",
           repo: "amaranth-soc",
           rev: "3e3d8b7241c1c7e80e0cd12937d288d0ad4a6cba",
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       const preBuild = nix.thunk(() => nix.str`export PDM_BUILD_SCM_VERSION="${realVersion}"
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, tagPrefix: "v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, tagPrefix: "v" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "System on Chip toolkit for Amaranth HDL",
         homepage: "https://github.com/amaranth-lang/amaranth-soc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(lib, "makeScope"), nix.thunk(() => nix.sel(pkgs, "newScope")), (self) => (() => {
       const callPackage = nix.thunk(() => nix.attr(self, "callPackage"));
       return nix.update({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         buildManPages: nix.thunk(() => nix.app(callPackage, nix.path(here, "./build-skaware-man-pages.nix"), nix.thunk(() => ({})))),
         buildPackage: nix.thunk(() => nix.app(callPackage, nix.path(here, "./build-skaware-package.nix"), nix.thunk(() => ({})))),
         cleanPackaging: nix.thunk(() => nix.app(callPackage, nix.path(here, "./clean-packaging.nix"), nix.thunk(() => ({})))),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         "s6-portable-utils-man-pages": nix.thunk(() => nix.sel(self, "s6-portable-utils", "passthru", "manpages")),
         "s6-rc-man-pages": nix.thunk(() => nix.sel(self, "s6-rc", "passthru", "manpages")),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "sdnotify-wrapper": nix.thunk(() => nix.builtins.throw("sdnotify-wrapper has been removed in favour of s6-notify-socket-from-fd in the s6 package")),
         }))));
     })());

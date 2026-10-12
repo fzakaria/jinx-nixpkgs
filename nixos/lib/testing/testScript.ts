@@ -31,24 +31,24 @@ export default nix.lambda((args) => (() => {
   const lines = nix.thunk(() => nix.attr(types, "lines"));
   const functionTo = nix.thunk(() => nix.attr(types, "functionTo"));
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       testScript: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.app(coercedTo, lines, const$, nix.thunk(() => nix.app(functionTo, lines)))),
           apply: (v) => (args_1) => nix.app(v, nix.thunk(() => nix.builtins.intersectAttrs(nix.thunk(() => nix.app(nix.sel(lib, "functionArgs"), v)), args_1))),
           description: "A series of python declarations and statements that you write to perform\nthe test.\n",
         })))),
-      testScriptString: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ __proto__: pos$2, type: lines, readOnly: true, internal: true })))),
+      testScriptString: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$2, type: lines, readOnly: true, internal: true })))),
       includeTestScriptReferences: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.sel(types, "bool")),
           default: true,
           internal: true,
         })))),
       withoutTestScriptReferences: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: moduleType,
           description: "A parallel universe where the testScript is invalid and has no references.\n",
           internal: true,
@@ -56,14 +56,14 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       withoutTestScriptReferences: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         includeTestScriptReferences: false,
         testScript: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "testscript omitted")),
       })),
       testScriptString: nix.thunk(() => nix.app(nix.sel(config, "testScript"), nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           nodes: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (k) => (v) => (nix.asBool(nix.sel(v, "virtualisation", "useNixStoreImage")) ? nix.sel(config, "withoutTestScriptReferences", "nodesCompat", nix.key(nix.force(k))) : nix.force(v)), nix.thunk(() => nix.sel(config, "nodesCompat")))),
           containers: nix.thunk(() => nix.sel(config, "containers")),
         })))),
@@ -72,9 +72,9 @@ export default nix.lambda((args) => (() => {
         const config_1 = nix.arg($_1, "config");
         const name = nix.arg($_1, "name");
         return {
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             additionalPaths: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(config_1, "virtualisation", "useNixStoreImage")) && nix.asBool(nix.builtins.hasContext(nix.thunk(() => nix.sel(testModuleArgs, "config", "testScriptString")))))) && nix.asBool(nix.sel(testModuleArgs, "config", "includeTestScriptReferences")))), nix.thunk(() => nix.app(nix.sel(hostPkgs, "writeStringReferencesToFile"), nix.thunk(() => nix.sel(testModuleArgs, "config", "testScriptString")))))),
           })),
         };

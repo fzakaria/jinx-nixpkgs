@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const mkDerivation = nix.arg($, "mkDerivation");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       path: "...",
       pname: "bsdfan",
       version: "devel-2018",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "claudiozz",
           repo: "bsdfan",
           rev: "d8428a773ec4e0dd465b145fa701097e2f93d7cc",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "debug"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://raw.githubusercontent.com/freebsd/freebsd-ports/ca7665183b5ede6266650081b4fadfb5afa6561c/sysutils/bsdfan/files/patch-system.c",
             extraPrefix: "",
             hash: "sha256-VPO1S6KUuPOUhJ0U+MvI1Ksaa9t9aXtzrKgqfWtcHzo=",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "mkdir -p $out/etc\ncp bsdfan.conf $out/etc\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "A simple FreeBSD fan control utility for thinkpads",
         mainProgram: "bsdfan",
       })),

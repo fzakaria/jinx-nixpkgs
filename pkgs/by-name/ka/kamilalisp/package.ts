@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kamilalisp",
       version: "0.3.0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/kspalaiologos/kamilalisp/releases/download/v${nix.sel(finalAttrs, "version")}/kamilalisp-${nix.sel(finalAttrs, "version")}.jar`),
           hash: "sha256-SW0U483eHptkYw+yJV/2cImfK3uEjkl8ma54yeagF6s=",
         })))),
@@ -35,7 +35,7 @@ makeWrapper ${jre}/bin/java $out/bin/kamilalisp \\
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(jre, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/kspalaiologos/kamilalisp",
         description: "Functional, flexible, and concise Lisp",
         mainProgram: "kamilalisp",

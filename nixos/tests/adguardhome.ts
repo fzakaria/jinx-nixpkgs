@@ -56,81 +56,81 @@ const pos$49 = nix.positions(here + "/adguardhome.nix", [["nullConf", 5, 5], ["e
 const pos$50 = nix.positions(here + "/adguardhome.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 125, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$50,
+  [nix.POS]: pos$50,
   name: "adguardhome",
   nodes: nix.thunk(() => ({
-    __proto__: pos$49,
+    [nix.POS]: pos$49,
     nullConf: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       services: nix.thunk(() => ({
-        __proto__: pos$2,
-        adguardhome: nix.thunk(() => ({ __proto__: pos$1, enable: true })),
+        [nix.POS]: pos$2,
+        adguardhome: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
       })),
     })),
     emptyConf: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
-        adguardhome: nix.thunk(() => ({ __proto__: pos$4, enable: true, settings: nix.thunk(() => ({})) })),
+        [nix.POS]: pos$5,
+        adguardhome: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true, settings: nix.thunk(() => ({})) })),
       })),
     })),
     schemaVersionBefore23: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         adguardhome: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: true,
-          settings: nix.thunk(() => ({ __proto__: pos$7, schema_version: 20n })),
+          settings: nix.thunk(() => ({ [nix.POS]: pos$7, schema_version: 20n })),
         })),
       })),
     })),
     syslogConf: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         adguardhome: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           enable: true,
           settings: nix.thunk(() => ({
-            __proto__: pos$12,
-            log: nix.thunk(() => ({ __proto__: pos$11, file: "syslog" })),
+            [nix.POS]: pos$12,
+            log: nix.thunk(() => ({ [nix.POS]: pos$11, file: "syslog" })),
           })),
         })),
       })),
     })),
     declarativeConf: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       services: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         adguardhome: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           enable: true,
           host: "127.0.0.1",
           mutableSettings: false,
           port: 43074n,
           settings: nix.thunk(() => ({
-            __proto__: pos$19,
-            dns: nix.thunk(() => ({ __proto__: pos$16, bootstrap_dns: nix.thunk(() => ["127.0.0.1"]) })),
+            [nix.POS]: pos$19,
+            dns: nix.thunk(() => ({ [nix.POS]: pos$16, bootstrap_dns: nix.thunk(() => ["127.0.0.1"]) })),
             http: nix.thunk(() => ({
-              __proto__: pos$18,
-              doh: nix.thunk(() => ({ __proto__: pos$17, insecure_enabled: true })),
+              [nix.POS]: pos$18,
+              doh: nix.thunk(() => ({ [nix.POS]: pos$17, insecure_enabled: true })),
             })),
           })),
         })),
       })),
     })),
     mixedConf: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       services: nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         adguardhome: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           enable: true,
           mutableSettings: true,
           settings: nix.thunk(() => ({
-            __proto__: pos$24,
-            dns: nix.thunk(() => ({ __proto__: pos$23, bootstrap_dns: nix.thunk(() => ["127.0.0.1"]) })),
+            [nix.POS]: pos$24,
+            dns: nix.thunk(() => ({ [nix.POS]: pos$23, bootstrap_dns: nix.thunk(() => ["127.0.0.1"]) })),
           })),
         })),
       })),
@@ -139,46 +139,46 @@ export default nix.thunk(() => ({
       const $ = nix.formals(args, formals$1);
       const lib = nix.arg($, "lib");
       return {
-        __proto__: pos$42,
-        virtualisation: nix.thunk(() => ({ __proto__: pos$28, vlans: nix.thunk(() => [1n]) })),
+        [nix.POS]: pos$42,
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$28, vlans: nix.thunk(() => [1n]) })),
         networking: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           useDHCP: false,
           interfaces: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             eth1: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 useDHCP: false,
                 ipv4: nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$29, address: "10.0.10.1", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: pos$29, address: "10.0.10.1", prefixLength: 24n })),
                   ]),
                   routes: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$30, address: "10.0.10.0", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: pos$30, address: "10.0.10.0", prefixLength: 24n })),
                   ]),
                 })),
               })))),
           })),
-          firewall: nix.thunk(() => ({ __proto__: pos$34, allowedUDPPorts: nix.thunk(() => [67n, 68n]) })),
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$34, allowedUDPPorts: nix.thunk(() => [67n, 68n]) })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           adguardhome: nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             enable: true,
             allowDHCP: true,
             mutableSettings: false,
             settings: nix.thunk(() => ({
-              __proto__: pos$39,
-              dns: nix.thunk(() => ({ __proto__: pos$36, bootstrap_dns: nix.thunk(() => ["127.0.0.1"]) })),
+              [nix.POS]: pos$39,
+              dns: nix.thunk(() => ({ [nix.POS]: pos$36, bootstrap_dns: nix.thunk(() => ["127.0.0.1"]) })),
               dhcp: nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 enabled: true,
                 interface_name: "eth1",
                 local_domain_name: "lan",
                 dhcpv4: nix.thunk(() => ({
-                  __proto__: pos$37,
+                  [nix.POS]: pos$37,
                   gateway_ip: "10.0.10.1",
                   range_start: "10.0.10.100",
                   range_end: "10.0.10.101",
@@ -194,17 +194,17 @@ export default nix.thunk(() => ({
       const $ = nix.formals(args, formals$2);
       const lib = nix.arg($, "lib");
       return {
-        __proto__: pos$48,
-        virtualisation: nix.thunk(() => ({ __proto__: pos$43, vlans: nix.thunk(() => [1n]) })),
+        [nix.POS]: pos$48,
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$43, vlans: nix.thunk(() => [1n]) })),
         networking: nix.thunk(() => ({
-          __proto__: pos$47,
+          [nix.POS]: pos$47,
           interfaces: nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             eth1: nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               useDHCP: true,
               ipv4: nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
               })),
             })),

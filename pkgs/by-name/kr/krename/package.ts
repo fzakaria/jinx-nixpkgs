@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const exiv2 = nix.arg($, "exiv2");
   const podofo0 = nix.arg($, "podofo0");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "krename",
       version: "5.0.60-unstable-2025-09-02",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "invent.kde.org",
           owner: "utilities",
           repo: "krename",
@@ -49,11 +49,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(kdePackages, "kdoctools")),
         nix.thunk(() => nix.sel(kdePackages, "wrapQtAppsHook")),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_LDFLAGS: "-ltag" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-ltag" })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(kdePackages, "qtbase", "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Powerful batch renamer for KDE",
         mainProgram: "krename",
         homepage: "https://kde.org/applications/utilities/krename/",

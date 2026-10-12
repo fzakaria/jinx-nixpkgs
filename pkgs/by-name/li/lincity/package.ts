@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const libpng12 = nix.arg($, "libpng12");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "lincity",
       version: "1.13.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/lincity/lincity-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-e0y9Ef/Uy+15oKrbJfKxw04lqCARgvuyWc4vRQ/lAV0=",
         })))),
@@ -42,48 +42,48 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libice, libpng12, libsm, libx11, libxext, xorgproto, zlib]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://sources.debian.net/data/main/l/lincity/1.13.1-13/debian/patches/extern-inline-functions-777982",
             hash: "sha256-4LKZuUztvfOUhkKwjZJnku1yfBVSqT5Uybx8MPkftxk=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://sources.debian.net/data/main/l/lincity/1.13.1-13/debian/patches/clang-ftbfs-757859",
             hash: "sha256-91mzptO37x1UfY6pa6CrEkSkfhu1KNJDqIB5zbi3GSU=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://sources.debian.org/data/main/l/lincity/1.13.1-16/debian/patches/fix-implicit-declarations-823432",
             hash: "sha256-S9TQ7KcmGGsQeTKLXqF/9FDXv/+WjrEPL4ly7DSki1s=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://sources.debian.org/data/main/l/lincity/1.13.1-16/debian/patches/fix-implicit-function-declarations-1066295",
             hash: "sha256-KlmXBWPI8lFWO8kPA78uG52DCs8NeGmNNFpZYfCwo5M=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             url: "https://sources.debian.org/data/main/l/lincity/1.13.1-16/debian/patches/delay_timers",
             hash: "sha256-IxstC74R7kige0ormFLGEj4uzbJt/b8bLmygheN08II=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             url: "https://sources.debian.org/data/main/l/lincity/1.13.1-16/debian/patches/map-max-draw",
             hash: "sha256-9qLPrmEKMMrSVwqtEvoiyjPPo1eLO3u6bCJslubmBJU=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             url: "https://sources.debian.org/data/main/l/lincity/1.13.1-17/debian/patches/function-pointer-1097300",
             hash: "sha256-6fwDIX88dCpAFE02Z4Ts5gsMf3wwxrToEwpy0DwZ6H4=",
           })))),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$9, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$9, NIX_CFLAGS_COMPILE: "-fcommon" })),
       postPatch: nix.thunk(() => nix.str`sed -e 's@\\[MPS_INFO_CHARS\\]@[MPS_INFO_CHARS+8]@' -i mps.c -i mps.h
 
 ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "sed -i '/\\#include \\\"malloc.h\\\"/d' readpng.c\n")}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "City simulation game",
         mainProgram: "xlincity",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

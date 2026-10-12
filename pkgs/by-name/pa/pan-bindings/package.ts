@@ -19,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const asio = nix.arg($, "asio");
   const version = "unstable-2025-06-15";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "lschulz",
       repo: "pan-bindings",
       rev: "708d7f36a0a32816b2b0d8e2e5a4d79f2144f406",
       hash: "sha256-wGHa8NV8M+9dHvn8UqejderyA1UgYQUcTOKocRFhg6U=",
     }))));
   const goDeps = nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "pan-bindings-goDeps",
       src: src,
       version: version,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-3MybV76pHDnKgN2ENRgsyAvynXQctv0fJcRGzesmlww=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pan-bindings",
       src: src,
       version: version,
@@ -47,7 +47,7 @@ runHook postPatch
       buildInputs: nix.thunk(() => [ncurses, asio]),
       nativeBuildInputs: nix.thunk(() => [cmake, nix.thunk(() => nix.sel(goDeps, "go"))]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "SCION PAN Bindings for C, C++, and Python",
         homepage: "https://github.com/lschulz/pan-bindings",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

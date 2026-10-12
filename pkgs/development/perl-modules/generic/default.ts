@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
         const defaultMeta = nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(perl, "meta"));
           return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           homepage: nix.thunk(() => nix.str`https://metacpan.org/dist/${nix.sel(attrs, "pname")}`),
           platforms: nix.thunk(() => nix.attr(from, "platforms")),
         };
         })());
         const package$ = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(attrs, {
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: nix.thunk(() => nix.str`perl${nix.sel(perl, "version")}-${nix.sel(attrs, "pname")}-${nix.sel(attrs, "version")}`),
             builder: nix.path(here, "./builder.sh"),
             buildInputs: nix.thunk(() => nix.concat(buildInputs, [perl])),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
             enableParallelBuilding: enableParallelBuilding,
             postPatch: postPatch,
             env: nix.thunk(() => nix.update({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               PERL_AUTOINSTALL: PERL_AUTOINSTALL,
               AUTOMATED_TESTING: AUTOMATED_TESTING,
               PERL_USE_UNSAFE_INC: PERL_USE_UNSAFE_INC,

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const jq = nix.arg($, "jq");
   const tusc = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "tusc-sh",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "adhocore",
           repo: "tusc.sh",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ninstall -Dm755 tusc.sh -t $out/bin\n\nrunHook postInstall\n",
     })));
   return nix.app(writeShellApplication, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "tusc",
       runtimeInputs: nix.thunk(() => [tusc, curl, coreutils, jq]),
       text: "tusc.sh \"$@\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tus 1.0.0 client protocol implementation for bash",
         homepage: "https://github.com/adhocore/tusc.sh",
         changelog: nix.thunk(() => nix.str`https://github.com/adhocore/tusc.sh/blob/${nix.sel(tusc, "version")}/CHANGELOG.md`),

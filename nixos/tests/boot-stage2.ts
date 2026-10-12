@@ -24,10 +24,10 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     name: "boot-stage2",
     nodes: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
@@ -35,21 +35,21 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const uid = nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeCBin"), "uid", "#include <unistd.h>\n#include <stdio.h>\nint main(void) {\n  printf(\"%d\\n\", geteuid());\n  return 0;\n}\n"));
         return {
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           users: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             users: nix.thunk(() => ({
-              __proto__: pos$2,
-              alice: nix.thunk(() => ({ __proto__: pos$1, isNormalUser: true, uid: 1000n })),
+              [nix.POS]: pos$2,
+              alice: nix.thunk(() => ({ [nix.POS]: pos$1, isNormalUser: true, uid: 1000n })),
             })),
           })),
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             emptyDiskImages: nix.thunk(() => [256n]),
             fileSystems: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               "/nix/store": nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   device: "/dev/vdb",
                   fsType: "ext4",
                   options: nix.thunk(() => ["defaults", "errors=remount-ro", "data=journal"]),
@@ -57,15 +57,15 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "xxd"))]),
           })),
-          system: nix.thunk(() => ({ __proto__: pos$8, extraDependencies: nix.thunk(() => [uid]) })),
+          system: nix.thunk(() => ({ [nix.POS]: pos$8, extraDependencies: nix.thunk(() => [uid]) })),
           boot: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             initrd: nix.thunk(() => ({
-              __proto__: pos$10,
-              systemd: nix.thunk(() => ({ __proto__: pos$9, enable: false })),
+              [nix.POS]: pos$10,
+              systemd: nix.thunk(() => ({ [nix.POS]: pos$9, enable: false })),
               postDeviceCommands: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "e2fsprogs")}/bin/mkfs.ext4 /dev/vdb
 `),
               postMountCommands: nix.thunk(() => nix.str`mkdir -p /mnt-root/nix/store/ro /mnt-root/nix/store/rw /mnt-root/nix/store/work
@@ -96,7 +96,7 @@ mknod -m 666 $evil/dev/zero c 1 5
     })),
     testScript: "machine.wait_for_unit(\"multi-user.target\")\nmachine.succeed(\"test /etc/post-boot-ran\")\nmachine.fail(\"touch /nix/store/should-not-work\");\n\nfor opt in [\"ro\", \"nosuid\", \"nodev\"]:\n  with subtest(f\"testing store mount option: {opt}\"):\n    machine.succeed(f'[[ \"$(findmnt --direction backward --first-only --noheadings --output OPTIONS /nix/store)\" =~ (^|,){opt}(,|$) ]]')\n\n# should still be suid\nmachine.succeed('[ -u /nix/store/evil/bin/suid ]')\n# runs as alice and is not root\nmachine.succeed('[ \"$(sudo -u alice /nix/store/evil/bin/suid)\" == 1000 ]')\n# can be remounted and runs as root\nmachine.succeed('mount -o remount,suid,bind /nix/store && mount >&2')\nmachine.succeed('[ \"$(sudo -u alice /nix/store/evil/bin/suid)\" == 0 ]')\n# double checking we can undo it\nmachine.succeed('mount -o remount,nosuid,bind /nix/store && mount >&2')\nmachine.succeed('[ \"$(sudo -u alice /nix/store/evil/bin/suid)\" == 1000 ]')\n\n# should still be a character device\nmachine.succeed('[ -c /nix/store/evil/dev/zero ]')\n# should not work\nmachine.fail('[ \"$(dd if=/nix/store/evil/dev/zero bs=1 count=1 | xxd -pl1)\" == 00 ]')\n# can be remounted and works\nmachine.succeed('mount -o remount,dev,bind /nix/store && mount >&2')\nmachine.succeed('[ \"$(dd if=/nix/store/evil/dev/zero bs=1 count=1 | xxd -pl1)\" == 00 ]')\n# double checking we can undo it\nmachine.succeed('mount -o remount,nodev,bind /nix/store && mount >&2')\nmachine.fail('[ \"$(dd if=/nix/store/evil/dev/zero bs=1 count=1 | xxd -pl1)\" == 00 ]')\n",
     meta: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "numinit"))];

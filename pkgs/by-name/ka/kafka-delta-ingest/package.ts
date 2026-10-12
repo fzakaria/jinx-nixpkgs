@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const enableAzure = nix.argOr($, "enableAzure", () => true);
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => (nix.asBool(enableS3) || nix.asBool(enableAzure))), "Either S3 or azure support needs to be enabled"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ka/kafka-delta-ingest/package.nix:15:1");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "kafka-delta-ingest",
       version: "0-unstable-2025-05-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "delta-io",
           repo: "kafka-delta-ingest",
           rev: "da9c932be3a98649da74ed91f5e1593bece65e89",
@@ -36,13 +36,13 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, perl]),
       buildFeatures: nix.thunk(() => nix.concat(["dynamic-linking"], nix.concat(nix.app(nix.sel(lib, "optional"), enableS3, "s3"), nix.app(nix.sel(lib, "optional"), enableAzure, "azure")))),
       buildInputs: nix.thunk(() => [openssl, rdkafka]),
-      env: nix.thunk(() => ({ __proto__: pos$2, RUSTFLAGS: "--cap-lints warn" })),
-      cargoLock: nix.thunk(() => ({ __proto__: pos$3, lockFile: nix.path(here, "./Cargo.lock") })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTFLAGS: "--cap-lints warn" })),
+      cargoLock: nix.thunk(() => ({ [nix.POS]: pos$3, lockFile: nix.path(here, "./Cargo.lock") })),
       postPatch: nix.thunk(() => nix.str`ln -s ${nix.path(here, "./Cargo.lock")} Cargo.lock
 `),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Highly efficient daemon for streaming data from Kafka into Delta Lake",
         mainProgram: "kafka-delta-ingest",

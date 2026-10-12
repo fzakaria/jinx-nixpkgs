@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
       const pname = "custom_from";
       const version = "1.6.6";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/r3c/custom_from/archive/refs/tags/${version}.zip`),
           hash: "sha256-QvMYwFWY0BZOkzhDtW7XJ77i5mVkDNAiN4JBdsCuUy0=",
         }))));
-      return { __proto__: pos$2, pname, version, src };
+      return { [nix.POS]: pos$2, pname, version, src };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

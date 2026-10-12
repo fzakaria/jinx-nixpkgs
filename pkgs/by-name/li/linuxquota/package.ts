@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const binlore = nix.arg($, "binlore");
   const linuxquota = nix.arg($, "linuxquota");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: "4.11",
       pname: "quota",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/linuxquota/quota-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ClG4+SAlTY6Dw0pMMIK30kH11v1lGIr63ymFnVIj73g=",
         })))),
@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [e2fsprogs, openldap]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         binlore: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           out: nix.thunk(() => nix.app(nix.sel(binlore, "synthesize"), linuxquota, "execer cannot bin/quota\n")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Tools to manage kernel-level quotas in Linux",
         homepage: "https://sourceforge.net/projects/linuxquota/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

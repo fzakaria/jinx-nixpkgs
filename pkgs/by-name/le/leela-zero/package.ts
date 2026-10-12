@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const opencl_headers = nix.arg($, "opencl-headers");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "leela-zero",
       version: "0.17-unstable-2023-02-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "leela-zero",
           repo: "leela-zero",
           rev: "3ee6d20d0b36ae26120331c610926359cc5837de",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: nix.thunk(() => nix.sel(finalAttrs, "pname")),
             version: "0.17",
             debianRevision: "1.3",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DCMAKE_POLICY_VERSION_MINIMUM=3.10"]),
       dontWrapQtApps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Go engine modeled after AlphaGo Zero",
         homepage: "https://github.com/gcp/leela-zero",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

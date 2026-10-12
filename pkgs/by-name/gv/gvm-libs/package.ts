@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const radcli = nix.arg($, "radcli");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gvm-libs",
       version: "23.11.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "greenbone",
           repo: "gvm-libs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
       ]),
       hardeningDisable: nix.thunk(() => ["fortify3"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Libraries module for the Greenbone Vulnerability Management Solution",
         homepage: "https://github.com/greenbone/gvm-libs",
         changelog: nix.thunk(() => nix.str`https://github.com/greenbone/gvm-libs/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

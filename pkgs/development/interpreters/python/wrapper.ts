@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
     const pythonPath = nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/${nix.sel(python, "sitePackages")}`);
     const pythonExecutable = nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/${nix.sel(python, "executable")}`);
     return nix.app(buildEnv, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name: nix.thunk(() => nix.str`${nix.sel(python, "name")}-env`),
         paths: paths,
         ignoreCollisions: ignoreCollisions,
@@ -64,11 +64,11 @@ done
 `, postBuild)),
         meta: nix.thunk(() => nix.attr(python, "meta")),
         passthru: nix.thunk(() => nix.update(nix.sel(python, "passthru"), {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           interpreter: nix.thunk(() => nix.str`${env}/bin/${nix.sel(python, "executable")}`),
           python: python,
           env: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               name: nix.thunk(() => nix.str`interactive-${nix.sel(python, "name")}-environment`),
               nativeBuildInputs: nix.thunk(() => [env]),
               buildCommand: "echo >&2 \"\"\necho >&2 \"*** Python 'env' attributes are intended for interactive nix-shell sessions, not for building! ***\"\necho >&2 \"\"\nexit 1\n",

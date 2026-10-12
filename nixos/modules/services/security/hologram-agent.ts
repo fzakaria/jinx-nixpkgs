@@ -30,29 +30,29 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "services", "hologram-agent"));
-  const cfgFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "hologram-agent.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ __proto__: pos$1, host: nix.thunk(() => nix.sel(cfg, "dialAddress")) }))))));
+  const cfgFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "hologram-agent.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$1, host: nix.thunk(() => nix.sel(cfg, "dialAddress")) }))))));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         "hologram-agent": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable the Hologram agent for AWS instance credentials",
             })))),
           dialAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "localhost:3100",
               description: "Hologram server and port.",
             })))),
           httpPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "80",
               description: "Port for metadata service to listen on.",
@@ -61,35 +61,35 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$18,
-        boot: nix.thunk(() => ({ __proto__: pos$8, kernelModules: nix.thunk(() => ["dummy"]) })),
+        [nix.POS]: pos$18,
+        boot: nix.thunk(() => ({ [nix.POS]: pos$8, kernelModules: nix.thunk(() => ["dummy"]) })),
         networking: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           interfaces: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             dummy0: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               ipv4: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 addresses: nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$9, address: "169.254.169.254", prefixLength: 32n })),
+                  nix.thunk(() => ({ [nix.POS]: pos$9, address: "169.254.169.254", prefixLength: 32n })),
                 ]),
               })),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             "hologram-agent": nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               description: "Provide EC2 instance credentials to machines outside of EC2",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               requires: nix.thunk(() => ["network-link-dummy0.service", "network-addresses-dummy0.service"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 ExecStartPre: "/run/current-system/sw/bin/rm -fv /run/hologram.sock",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "hologram")}/bin/hologram-agent -debug -conf ${cfgFile} -port ${nix.sel(cfg, "httpPort")}`),
               })),
@@ -97,7 +97,7 @@ export default nix.lambda((args) => (() => {
           })),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$19, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$19, maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=hologram-agent.ts.map

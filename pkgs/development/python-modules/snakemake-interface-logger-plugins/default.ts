@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const snakemake_logger_plugin_rich = nix.arg($, "snakemake-logger-plugin-rich");
   const snakemake_interface_logger_plugins = nix.arg($, "snakemake-interface-logger-plugins");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "snakemake-interface-logger-plugins",
       version: "2.1.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "snakemake",
           repo: "snakemake-interface-logger-plugins",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,14 +40,14 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["tests/tests.py"]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          pytest: nix.thunk(() => nix.app(nix.sel(snakemake_interface_logger_plugins, "overridePythonAttrs"), nix.thunk(() => ({ __proto__: pos$2, doCheck: true })))),
+          [nix.POS]: pos$3,
+          pytest: nix.thunk(() => nix.app(nix.sel(snakemake_interface_logger_plugins, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, doCheck: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Stable interface for interactions between Snakemake and its logger plugins",
         homepage: "https://github.com/snakemake/snakemake-interface-logger-plugins",
         changelog: nix.thunk(() => nix.str`https://github.com/snakemake/snakemake-interface-logger-plugins/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

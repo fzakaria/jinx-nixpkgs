@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "serious-sam-classic",
       version: "1.10.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tx00100xt",
           repo: "SeriousSamClassic",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
 wrapProgram $out/bin/serioussamse --prefix LD_LIBRARY_PATH : ${libvorbis}/lib
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: nix.thunk(() => nix.str`https://github.com/tx00100xt/${nix.sel(finalAttrs, "src", "repo")}`),
         description: "Open source game engine version developed by Croteam for Serious Sam Classic",
         longDescription: nix.thunk(() => nix.str`Note: This package allows to run both Serious Sam: The First Encounter (serioussam)

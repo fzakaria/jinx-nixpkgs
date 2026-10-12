@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const gmp = nix.arg($, "gmp");
   const mpfr = nix.arg($, "mpfr");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mathemagix",
       version: "11229",
       src: nix.thunk(() => nix.app(fetchsvn, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://subversion.renater.fr/anonscm/svn/mmx/",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-JSjgvbOjV/66wjFpLGI1vCTvNGdYX48JTGGvWdBzQm8=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [bison]),
       preConfigure: "export HOME=\"$PWD\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Free computer algebra and analysis system consisting of a high level language with a compiler and a series of mathematical libraries",
         homepage: "https://www.mathemagix.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

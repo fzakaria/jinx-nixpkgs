@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const pnpm = pnpm_10;
   const rushWorkspace = "@microsoft/rush...";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "microsoft-rush",
       version: "5.178.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "microsoft",
           repo: "rushstack",
           tag: nix.thunk(() => nix.str`@microsoft/rush_v${nix.sel(finalAttrs, "version")}`),
@@ -58,7 +58,7 @@ ${nix.app(nix.sel(lib, "getExe"), yq)} -y \\
   pnpm-lock.yaml > pnpm-workspace.yaml
 `),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -71,7 +71,7 @@ ${nix.app(nix.sel(lib, "getExe"), yq)} -y \\
         })))),
       pnpmWorkspaces: nix.thunk(() => [rushWorkspace]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         npm_config_auto_install_peers: "false",
         npm_config_inject_workspace_packages: "true",
       })),
@@ -95,11 +95,11 @@ done
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               command: "HOME=$TMPDIR rush --help",
@@ -110,7 +110,7 @@ runHook postInstall
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(nodejs, "meta"));
         return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Scalable monorepo manager for the web",
         homepage: "https://rushjs.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

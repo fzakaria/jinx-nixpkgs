@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.8";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aresch",
           repo: "rencode",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/aresch/rencode/commit/591b9f4d85d7e2d4f4e99441475ef15366389be2.patch",
             hash: "sha256-KhfawtYa4CnYiVzBYdtMn/JRkeqCLJetHvLEm1YVOe4=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/aresch/rencode/commit/e7ec8ea718e73a8fee7dbc007c262e1584f7f94b.patch",
             hash: "sha256-gNYjxBsMN1p4IAmutV73JF8yCj0iz3DIl7kg7WrBdbs=",
           })))),
@@ -46,14 +46,14 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const preCheck = "# import from $out\nrm -r rencode\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/aresch/rencode",
         description: "Fast (basic) object serialization similar to bencode",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

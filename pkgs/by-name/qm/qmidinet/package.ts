@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libjack2 = nix.arg($, "libjack2");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.0.2",
       pname: "qmidinet",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/qmidinet/qmidinet-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-gBAaK32rabujVsCIOJcNZluaKpFz1KjICcRbKgvmXaQ=",
         })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config, nix.thunk(() => nix.sel(qt6, "wrapQtAppsHook"))]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MIDI network gateway application that sends and receives MIDI data (ALSA Sequencer and/or JACK MIDI) over the network",
         mainProgram: "qmidinet",
         homepage: "http://qmidinet.sourceforge.net/",

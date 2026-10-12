@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libnetfilter_queue = nix.arg($, "libnetfilter_queue");
   const libusb1 = nix.arg($, "libusb1");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bettercap",
       version: "2.41.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bettercap",
           repo: "bettercap",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([libpcap, libusb1], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libnfnetlink, libnetfilter_queue])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Man in the middle tool",
         longDescription: "BetterCAP is a powerful, flexible and portable tool created to perform various\ntypes of MITM attacks against a network, manipulate HTTP, HTTPS and TCP traffic\nin realtime, sniff for credentials and much more.\n",
         homepage: "https://www.bettercap.org/",

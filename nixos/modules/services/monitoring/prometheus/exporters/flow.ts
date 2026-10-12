@@ -25,39 +25,39 @@ export default nix.lambda((args) => (() => {
   const concatStringsSep = nix.thunk(() => nix.attr(lib, "concatStringsSep"));
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     port: 9590n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       brokers: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
           example: nix.thunk(() => nix.app(literalExpression, "[ \"kafka.example.org:19092\" ]")),
           description: "List of Kafka brokers to connect to.",
         })))),
       asn: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.sel(types, "ints", "positive")),
           example: 65542n,
           description: "The ASN being monitored.",
         })))),
       partitions: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "int")))),
           default: [],
           description: "The number of the partitions to consume, none means all.\n",
         })))),
       topic: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => nix.sel(types, "str")),
           example: "pmacct.acct",
           description: "The Kafka topic to consume from.",
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         DynamicUser: true,
         ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "prometheus-flow-exporter")}/bin/flow-exporter \\
   -asn ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "asn")))} \\

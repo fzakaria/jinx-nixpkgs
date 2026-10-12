@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "glpi-agent";
       const version = "1.21";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "glpi-project",
           repo: "glpi-agent",
           tag: version,
@@ -112,11 +112,11 @@ done
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const doInstallCheck = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GLPI unified Agent for UNIX, Linux, Windows and MacOSX",
         homepage: "https://glpi-project.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/glpi-project/glpi-agent/releases/tag/${nix.sel(src, "tag")}`),
@@ -128,7 +128,7 @@ done
         mainProgram: "glpi-agent",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

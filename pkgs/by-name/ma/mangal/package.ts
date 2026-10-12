@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mangal",
       version: "4.0.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "metafates",
           repo: "mangal",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "# Mangal creates a config file in the folder ~/.config/mangal and fails if not possible\nexport HOME=$(mktemp -d)\ninstallShellCompletion --cmd mangal \\\n  --bash <($out/bin/mangal completion bash) \\\n  --zsh <($out/bin/mangal completion zsh) \\\n  --fish <($out/bin/mangal completion fish)\n")),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI app written in Go which scrapes, downloads and packs manga into different formats",
         homepage: "https://github.com/metafates/mangal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

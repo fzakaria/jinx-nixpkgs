@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pname = "vulkan-tools";
       const version = "1.4.357.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KhronosGroup",
           repo: "Vulkan-Tools",
           rev: nix.thunk(() => nix.str`vulkan-sdk-${version}`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       const libraryPath = nix.thunk(() => nix.app(nix.sel(lib, "strings", "makeLibraryPath"), nix.thunk(() => [vulkan_loader])));
       const dontPatchELF = true;
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PKG_CONFIG_PATH: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(buildPackages, "wayland-scanner")))}/lib/pkgconfig`),
       }));
       const cmakeFlags = nix.thunk(() => nix.concat([
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
           "-DBUILD_CUBE=OFF",
         ]))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Khronos official Vulkan Tools and Utilities",
         longDescription: "This project provides Vulkan tools and utilities that can assist\ndevelopment by enabling developers to verify their applications correct\nuse of the Vulkan API.\n",
         homepage: "https://github.com/KhronosGroup/Vulkan-Tools",
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ralith"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

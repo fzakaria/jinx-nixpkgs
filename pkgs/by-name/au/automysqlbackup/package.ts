@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const bzip2 = nix.arg($, "bzip2");
   const gzip = nix.arg($, "gzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "automysqlbackup",
       version: "3.0.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sixhop",
           repo: "automysqlbackup",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +39,7 @@ cp automysqlbackup.conf $out/etc/
 wrapProgram $out/bin/automysqlbackup --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [mariadb, mailutils, pbzip2, pigz, bzip2, gzip]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Script to run daily, weekly and monthly backups for your MySQL database",
         mainProgram: "automysqlbackup",
         homepage: "https://github.com/sixhop/AutoMySQLBackup",

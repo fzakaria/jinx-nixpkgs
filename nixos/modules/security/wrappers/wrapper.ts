@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const sourceProg = nix.arg($, "sourceProg");
   const debug = nix.argOr($, "debug", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.str`security-wrapper-${nix.builtins.baseNameOf(sourceProg)}`),
       buildInputs: nix.thunk(() => [linuxHeaders]),
       dontUnpack: true,

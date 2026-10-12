@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const pname = "hydralauncher";
   const version = "4.1.5";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/hydralauncher/hydra/releases/download/v${version}/hydralauncher-${version}.AppImage`),
       hash: "sha256-OkJyHiUDRrvyyF/6onGnGJSjQX2qPjRlPtUo685tDQ8=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, src: src, version: version }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, src: src, version: version }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       src: src,
       version: version,
@@ -37,11 +37,11 @@ substituteInPlace $out/share/applications/hydralauncher.desktop \\
   --replace-fail 'Exec=AppRun' 'Exec=${nix.builtins.placeholder("out")}/bin/hydralauncher'
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Game launcher with its own embedded bittorrent client",
         homepage: "https://github.com/hydralauncher/hydra",
         changelog: nix.thunk(() => nix.str`https://github.com/hydralauncher/hydra/releases/tag/v${version}`),

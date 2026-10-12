@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tinywm",
       version: "1.1-unstable-2014-04-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mackstann",
           repo: "tinywm",
           rev: "9d05612f41fdb8bc359f1fd9cc930bf16315abb1",
@@ -45,7 +45,7 @@ runHook postInstall
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libx11, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://incise.org/tinywm.html",
         description: "Tiny window manager for X11",
         longDescription: "TinyWM is a tiny window manager that I created as an exercise in\nminimalism. It is also maybe helpful in learning some of the very basics\nof creating a window manager. It is only around 50 lines of C. There is\nalso a Python version using python-xlib.\n\nIt lets you do four basic things:\n\n- Move windows interactively with Alt+Button1 drag (left mouse button)\n- Resize windows interactively with Alt+Button3 drag (right mouse button)\n- Raise windows with Alt+F1 (not high on usability I know, but I needed a\n  keybinding in there somewhere)\n- Focus windows with the mouse pointer (X does this on its own)\n",

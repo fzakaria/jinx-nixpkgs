@@ -83,33 +83,33 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const name = nix.arg($_1, "name");
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         options: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           desktopID: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Desktop ID of the application.",
             })))),
           isAllowed: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Whether the application will be allowed access to location information.\n",
             })))),
           isSystem: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Whether the application is a system component or not.\n",
             })))),
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "List of UIDs of all users for which this application is allowed location\ninfo access, Defaults to an empty string to allow it for all users.\n",
             })))),
         })),
         config: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           desktopID: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), name)),
         })),
       };
@@ -121,10 +121,10 @@ export default nix.lambda((args) => (() => {
     const isSystem = nix.arg($_1, "isSystem");
     const users = nix.arg($_1, "users");
     return {
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       name: desktopID,
       value: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         allowed: isAllowed,
         system: isSystem,
         users: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ";", users)),
@@ -132,125 +132,125 @@ export default nix.lambda((args) => (() => {
     };
   })(), formals$3);
   return {
-    __proto__: pos$67,
+    [nix.POS]: pos$67,
     options: nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       services: nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         geoclue2: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable GeoClue 2 daemon, a DBus service\nthat provides location information for accessing.\n",
             })))),
           whitelistedAgents: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => ["gnome-shell", "io.elementary.desktop.agent-geoclue2"]),
               description: "Desktop IDs (without the .desktop extension) of whitelisted agents.\n",
             })))),
           enableDemoAgent: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to use the GeoClue demo agent. This should be\noverridden by desktop environments that provide their own\nagent.\n",
             })))),
           enableNmea: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to fetch location from NMEA sources on local network.\n",
             })))),
           enable3G: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to enable 3G source.\n",
             })))),
           enableCDMA: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to enable CDMA source.\n",
             })))),
           enableModemGPS: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to enable Modem-GPS source.\n",
             })))),
           enableWifi: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to enable WiFi source.\n",
             })))),
           enableStatic: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable the static source. This source defines a fixed\nlocation using the `staticLatitude`, `staticLongitude`,\n`staticAltitude`, and `staticAccuracy` options.\n\nSetting `enableStatic` to true will disable all other sources, to\nprevent conflicts. Use `lib.mkForce true` when enabling other sources\nif for some reason you want to override this.\n",
             })))),
           staticLatitude: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "numbers", "between"), nix.thunk(() => nix.neg(90n)), 90n)),
               description: "Latitude to use for the static source. Defaults to `location.latitude`.\n",
             })))),
           staticLongitude: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "numbers", "between"), nix.thunk(() => nix.neg(180n)), 180n)),
               description: "Longitude to use for the static source. Defaults to `location.longitude`.\n",
             })))),
           staticAltitude: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               type: nix.thunk(() => nix.sel(lib, "types", "number")),
               description: "Altitude in meters to use for the static source.\n",
             })))),
           staticAccuracy: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: nix.thunk(() => nix.sel(lib, "types", "numbers", "positive")),
               description: "Accuracy radius in meters to use for the static source.\n",
             })))),
           geoProviderUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "https://api.beacondb.net/v1/geolocate",
               example: "https://www.googleapis.com/geolocation/v1/geolocate?key=YOUR_KEY",
               description: "The url to the wifi GeoLocation Service.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
               default: nix.thunk(() => nix.sel(pkgs, "geoclue2")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.geoclue2")),
               apply: (pkg) => nix.app(nix.sel(pkg, "override"), nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   withDemoAgent: nix.thunk(() => nix.sel(cfg, "enableDemoAgent")),
                 }))),
               description: "The geoclue2 package to use",
             })))),
           submitData: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to submit data to a GeoLocation Service.\n",
             })))),
           submissionUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "https://api.beacondb.net/v2/geosubmit",
               description: "The url to submit data to a GeoLocation Service.\n",
             })))),
           submissionNick: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "geoclue",
               description: "A nickname to submit network data with.\nMust be 2-32 characters long.\n",
             })))),
           appConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), appConfigModule)),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"com.github.app\" = {\n  isAllowed = true;\n  isSystem = true;\n  users = [ \"300\" ];\n};\n")),
@@ -260,36 +260,36 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$65,
+        [nix.POS]: pos$65,
         environment: nix.thunk(() => ({
-          __proto__: pos$45,
+          [nix.POS]: pos$45,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             "geoclue/geoclue.conf": nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               text: nix.thunk(() => nix.app(nix.sel(lib, "generators", "toINI"), nix.thunk(() => ({})), nix.thunk(() => nix.update({
-                  __proto__: pos$41,
+                  [nix.POS]: pos$41,
                   agent: nix.thunk(() => ({
-                    __proto__: pos$33,
+                    [nix.POS]: pos$33,
                     whitelist: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ";", nix.thunk(() => nix.app(nix.sel(lib, "lists", "unique"), nix.thunk(() => nix.concat(nix.sel(cfg, "whitelistedAgents"), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(config, "services", "geoclue2", "enableDemoAgent")), nix.thunk(() => ["geoclue-demo-agent"])))))))),
                   })),
-                  "network-nmea": nix.thunk(() => ({ __proto__: pos$34, enable: nix.thunk(() => nix.sel(cfg, "enableNmea")) })),
-                  "3g": nix.thunk(() => ({ __proto__: pos$35, enable: nix.thunk(() => nix.sel(cfg, "enable3G")) })),
-                  cdma: nix.thunk(() => ({ __proto__: pos$36, enable: nix.thunk(() => nix.sel(cfg, "enableCDMA")) })),
-                  "modem-gps": nix.thunk(() => ({ __proto__: pos$37, enable: nix.thunk(() => nix.sel(cfg, "enableModemGPS")) })),
-                  wifi: nix.thunk(() => nix.update({ __proto__: pos$38, enable: nix.thunk(() => nix.sel(cfg, "enableWifi")) }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "enableWifi")), nix.thunk(() => ({
-                      __proto__: pos$39,
+                  "network-nmea": nix.thunk(() => ({ [nix.POS]: pos$34, enable: nix.thunk(() => nix.sel(cfg, "enableNmea")) })),
+                  "3g": nix.thunk(() => ({ [nix.POS]: pos$35, enable: nix.thunk(() => nix.sel(cfg, "enable3G")) })),
+                  cdma: nix.thunk(() => ({ [nix.POS]: pos$36, enable: nix.thunk(() => nix.sel(cfg, "enableCDMA")) })),
+                  "modem-gps": nix.thunk(() => ({ [nix.POS]: pos$37, enable: nix.thunk(() => nix.sel(cfg, "enableModemGPS")) })),
+                  wifi: nix.thunk(() => nix.update({ [nix.POS]: pos$38, enable: nix.thunk(() => nix.sel(cfg, "enableWifi")) }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "enableWifi")), nix.thunk(() => ({
+                      [nix.POS]: pos$39,
                       url: nix.thunk(() => nix.sel(cfg, "geoProviderUrl")),
                       "submit-data": nix.thunk(() => nix.app(nix.sel(lib, "boolToString"), nix.thunk(() => nix.sel(cfg, "submitData")))),
                       "submission-url": nix.thunk(() => nix.sel(cfg, "submissionUrl")),
                       "submission-nick": nix.thunk(() => nix.sel(cfg, "submissionNick")),
                     }))))),
-                  "static-source": nix.thunk(() => ({ __proto__: pos$40, enable: nix.thunk(() => nix.sel(cfg, "enableStatic")) })),
+                  "static-source": nix.thunk(() => ({ [nix.POS]: pos$40, enable: nix.thunk(() => nix.sel(cfg, "enableStatic")) })),
                 }, nix.app(nix.sel(lib, "mapAttrs'"), appConfigToINICompatible, nix.thunk(() => nix.sel(cfg, "appConfig"))))))),
             })),
             geolocation: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableStatic")), nix.thunk(() => ({
-                __proto__: pos$43,
+                [nix.POS]: pos$43,
                 mode: "0440",
                 group: "geoclue",
                 text: nix.thunk(() => nix.str`${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "staticLatitude")))}
@@ -301,13 +301,13 @@ ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "staticAccuracy")))}
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$51,
+          [nix.POS]: pos$51,
           dbus: nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
           geoclue2: nix.thunk(() => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             enable3G: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableStatic")), false)),
             enableCDMA: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableStatic")), false)),
             enableModemGPS: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableStatic")), false)),
@@ -316,40 +316,40 @@ ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "staticAccuracy")))}
             staticLatitude: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(config, "location", "latitude")))),
             staticLongitude: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(config, "location", "longitude")))),
             appConfig: nix.thunk(() => ({
-              __proto__: pos$49,
-              epiphany: nix.thunk(() => ({ __proto__: pos$47, isAllowed: true, isSystem: false })),
-              firefox: nix.thunk(() => ({ __proto__: pos$48, isAllowed: true, isSystem: false })),
+              [nix.POS]: pos$49,
+              epiphany: nix.thunk(() => ({ [nix.POS]: pos$47, isAllowed: true, isSystem: false })),
+              firefox: nix.thunk(() => ({ [nix.POS]: pos$48, isAllowed: true, isSystem: false })),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$60,
+          [nix.POS]: pos$60,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$54,
+            [nix.POS]: pos$54,
             geoclue: nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               wants: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "enableWifi")), nix.thunk(() => ["network-online.target"]))),
               after: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "enableWifi")), nix.thunk(() => ["network-online.target"]))),
               restartTriggers: nix.thunk(() => [
                 nix.thunk(() => nix.sel(config, "environment", "etc", "geoclue/geoclue.conf", "source")),
               ]),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$52, StateDirectory: "geoclue" })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$52, StateDirectory: "geoclue" })),
             })),
           })),
           user: nix.thunk(() => ({
-            __proto__: pos$59,
+            [nix.POS]: pos$59,
             services: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableDemoAgent")), nix.thunk(() => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 "geoclue-agent": nix.thunk(() => ({
-                  __proto__: pos$57,
+                  [nix.POS]: pos$57,
                   description: "Geoclue agent",
                   wantedBy: nix.thunk(() => ["default.target"]),
                   wants: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "enableWifi")), nix.thunk(() => ["network-online.target"]))),
                   after: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "enableWifi")), nix.thunk(() => ["network-online.target"]))),
-                  unitConfig: nix.thunk(() => ({ __proto__: pos$55, ConditionUser: "!@system" })),
+                  unitConfig: nix.thunk(() => ({ [nix.POS]: pos$55, ConditionUser: "!@system" })),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$56,
+                    [nix.POS]: pos$56,
                     Type: "exec",
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/libexec/geoclue-2.0/demos/agent`),
                     Restart: "on-failure",
@@ -360,22 +360,22 @@ ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "staticAccuracy")))}
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$64,
+          [nix.POS]: pos$64,
           users: nix.thunk(() => ({
-            __proto__: pos$62,
+            [nix.POS]: pos$62,
             geoclue: nix.thunk(() => ({
-              __proto__: pos$61,
+              [nix.POS]: pos$61,
               isSystemUser: true,
               home: "/var/lib/geoclue",
               group: "geoclue",
               description: "Geoinformation service",
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$63, geoclue: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$63, geoclue: nix.thunk(() => ({})) })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$66,
+      [nix.POS]: pos$66,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "pantheon"))]),
     })),
   };

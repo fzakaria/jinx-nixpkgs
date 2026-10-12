@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gtk-mac-integration";
       const version = "3.0.1";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           owner: "GNOME",
           repo: "gtk-mac-integration",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [gtk]);
       const preAutoreconf = "gtkdocize\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Provides integration for GTK applications into the Mac desktop",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
         homepage: "https://gitlab.gnome.org/GNOME/gtk-mac-integration",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

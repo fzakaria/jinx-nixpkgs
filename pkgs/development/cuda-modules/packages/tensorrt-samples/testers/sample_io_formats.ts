@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const mkTester = nix.arg($, "mkTester");
   const sample_data = nix.arg($, "sample-data");
   return nix.update({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     default: nix.thunk(() => nix.app(mkTester, "sample_io_formats", nix.thunk(() => [
         "sample_io_formats",
         nix.thunk(() => nix.str`--datadir=${nix.add(nix.sel(sample_data, "outPath"), "/mnist")}`),
       ]))),
   }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "subtractLists"), nix.thunk(() => ["7.2", "8.7"]), nix.thunk(() => nix.sel(backendStdenv, "cudaCapabilities"))), [])), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       dla: nix.thunk(() => nix.app(mkTester, "sample_io_formats-dla", nix.thunk(() => [
           "sample_io_formats",
           nix.thunk(() => nix.str`--datadir=${nix.add(nix.sel(sample_data, "outPath"), "/mnist")}`),

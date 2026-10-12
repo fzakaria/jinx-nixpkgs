@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "taskwarrior",
       version: "3.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GothenburgBitFactory",
           repo: "taskwarrior",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
           fetchSubmodules: true,
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/GothenburgBitFactory/taskwarrior/commit/c1958786deb9be8b245b4fc4c3efd0258cd70782.patch",
             hash: "sha256-i/9m/ipF+yc2iMNoNWH4i2myUOilyKNqP2A5zWkCJaQ=",
           })))),
@@ -77,14 +77,14 @@ export default nix.lambda((args) => (() => {
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/${nix.sel(finalAttrs, "meta", "mainProgram")}`),
       postInstall: "# Install vim and neovim plugin\nmkdir -p $out/share/vim-plugins\nmv $out/share/doc/task/scripts/vim $out/share/vim-plugins/task\nmkdir -p $out/share/nvim\nln -s $out/share/vim-plugins/task $out/share/nvim/site\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           nixos: nix.thunk(() => nix.sel(nixosTests, "taskchampion-sync-server")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         changelog: nix.thunk(() => nix.str`https://github.com/GothenburgBitFactory/taskwarrior/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Highly flexible command-line tool to manage TODO lists",
         homepage: "https://taskwarrior.org",

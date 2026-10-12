@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "yaml";
       const version = "3.2.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/avsm/ocaml-yaml/releases/download/v${version}/yaml-${version}.tbz`),
           hash: "sha256-xQ0qyii5+WZ5K3HhYDNR5dJO2k39PkRT+9UDZqOggic=",
         }))));
@@ -37,14 +37,14 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [nix.thunk(() => nix.sel(mdx, "bin"))]);
       const checkInputs = nix.thunk(() => [fmt, logs, alcotest, crowbar, junit_alcotest, ezjsonm]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Parse and generate YAML 1.1 files",
         homepage: "https://github.com/avsm/ocaml-yaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

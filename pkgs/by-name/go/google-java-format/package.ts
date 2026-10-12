@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "google-java-format",
       version: "1.37.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           sha256: "sha256-g0sqDDjLd0lTMiqEtco/L0DdMVZlCzzUTTt0Q0WWL3o=",
           url: nix.thunk(() => nix.str`https://github.com/google/google-java-format/releases/download/v${nix.sel(finalAttrs, "version")}/google-java-format-${nix.sel(finalAttrs, "version")}-all-deps.jar`),
         })))),
@@ -44,7 +44,7 @@ makeWrapper ${jre}/bin/java $out/bin/${nix.sel(finalAttrs, "pname")} \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Java source formatter by Google",
         longDescription: "A program that reformats Java source code to comply with Google Java Style.\n",
         homepage: "https://github.com/google/google-java-format",

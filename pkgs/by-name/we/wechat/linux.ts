@@ -14,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const meta = nix.arg($, "meta");
   const appimageTools = nix.arg($, "appimageTools");
   const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: pname,
       version: version,
       src: src,
       postExtract: "patchelf --replace-needed libtiff.so.5 libtiff.so $out/opt/wechat/wechat\n",
     }))));
   return nix.app(nix.sel(appimageTools, "wrapAppImage"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: pname,
       version: version,
       meta: meta,

@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
     const postPatch = nix.argOr($_1, "postPatch", () => "");
     const knownVulnerabilities = nix.argOr($_1, "knownVulnerabilities", () => []);
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: "libressl",
         version: version,
         strictDeps: true,
         __structuredAttrs: true,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`mirror://openbsd/LibreSSL/libressl-${version}.tar.gz`),
             hash: hash,
           })))),
@@ -69,7 +69,7 @@ grep "${cacert}/etc/ssl/certs/ca-bundle.crt" $out/lib/*libtls*
 runHook postInstallCheck
 `),
         meta: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           description: "Free TLS/SSL implementation",
           homepage: "https://www.libressl.org",
           license: nix.thunk(() => (() => {
@@ -101,32 +101,32 @@ runHook postInstallCheck
             ];
           })()),
           identifiers: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "openbsd", version)),
           })),
         })),
       })));
   })(), formals$2);
   const common_cmake_install_full_dirs_patch = nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       url: "https://github.com/libressl/portable/commit/a15ea0710398eaeed3be53cf643e80a1e80c981d.patch",
       hash: "sha256-Mlf4SrGCCqALQicbGtmVGdkdfcE8DEGYkOuVyG2CozM=",
     }))));
   const tls_default_ca_patch = nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       url: "https://github.com/libressl/portable/commit/c85e07d0d68129fc1b1c9039b266099c8d735c3d.patch",
       hash: "sha256-oNL3v8Ef1HrayXn+/3T4UhHLJos8eVMlqebVyaxnWVo=",
     }))));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     libressl_4_2: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         version: "4.2.1",
         hash: "sha256-bVwvWFg1iOp5H0yGRQBAcdAN+lVKW/eIoAbKHrWr1ws=",
         patches: nix.thunk(() => [common_cmake_install_full_dirs_patch, tls_default_ca_patch]),
       })))),
     libressl_4_3: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         version: "4.3.2",
         hash: "sha256-7fAa7iTGXWnmqe/LnUS82mgv+dTzu72V55Th36kIR7U=",
         patches: nix.thunk(() => [tls_default_ca_patch]),

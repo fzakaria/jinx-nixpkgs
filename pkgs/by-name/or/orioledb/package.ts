@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const postgresql_18 = nix.arg($, "postgresql_18");
   const orioledb_postgres = nix.thunk(() => nix.app(nix.sel(postgresql_18, "overrideAttrs"), (finalAttrs) => (oldAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "orioledb-postgres",
       version: "18.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "orioledb",
           repo: "postgres",
           tag: "patches18_3",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(oldAttrs, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         license: nix.thunk(() => nix.attr(from, "license")),
         pkgConfigModules: nix.thunk(() => nix.attr(from, "pkgConfigModules")),
         platforms: nix.thunk(() => nix.attr(from, "platforms")),

@@ -31,24 +31,24 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "mainsail"));
   const moonraker = nix.thunk(() => nix.sel(config, "services", "moonraker"));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         mainsail: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "a modern and responsive user interface for Klipper")),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "mainsail", nix.thunk(() => ({})))),
           hostName: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "localhost",
               description: "Hostname to serve mainsail on",
             })))),
           nginx: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
-              type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "../web-servers/nginx/vhost-options.nix"), nix.thunk(() => ({ __proto__: pos$2, config: config, lib: lib })))))),
+              [nix.POS]: pos$3,
+              type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "../web-servers/nginx/vhost-options.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, config: config, lib: lib })))))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  serverAliases = [ \"mainsail.${config.networking.domain}\" ];\n}\n")),
               description: "Extra configuration for the nginx virtual host of mainsail.",
@@ -57,16 +57,16 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         services: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           nginx: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             enable: true,
             upstreams: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               "mainsail-apiserver": nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 servers: nix.thunk(() => nix.attrsDyn({}, [
                   [nix.str`${nix.sel(moonraker, "address")}:${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(moonraker, "port")))}`, nix.thunk(() => ({}))],
                 ])),
@@ -76,22 +76,22 @@ export default nix.lambda((args) => (() => {
               [nix.str`${nix.sel(cfg, "hostName")}`, nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
                   nix.thunk(() => nix.sel(cfg, "nginx")),
                   nix.thunk(() => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     root: nix.thunk(() => nix.app(nix.lookup(w, "mkForce"), nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/mainsail`))),
                     locations: nix.thunk(() => ({
-                      __proto__: pos$13,
-                      "/": nix.thunk(() => ({ __proto__: pos$9, index: "index.html", tryFiles: "$uri $uri/ /index.html" })),
+                      [nix.POS]: pos$13,
+                      "/": nix.thunk(() => ({ [nix.POS]: pos$9, index: "index.html", tryFiles: "$uri $uri/ /index.html" })),
                       "/index.html": nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         extraConfig: "add_header Cache-Control \"no-store, no-cache, must-revalidate\";\n",
                       })),
                       "/websocket": nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         proxyWebsockets: true,
                         proxyPass: "http://mainsail-apiserver/websocket",
                       })),
                       "~ ^/(printer|api|access|machine|server)/": nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         proxyWebsockets: true,
                         proxyPass: "http://mainsail-apiserver$request_uri",
                       })),

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const kernel = nix.arg($, "kernel");
   const kernelModuleMakeFlags = nix.arg($, "kernelModuleMakeFlags");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "r8125",
       version: "9.016.01",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "salsa.debian.org",
           owner: "debian",
           repo: "r8125",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
 cp src/r8125.ko $out/lib/modules/${nix.sel(kernel, "modDirVersion")}/kernel/drivers/net/ethernet/realtek/
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://salsa.debian.org/debian/r8125",
         description: "Realtek r8125 2.5G Ethernet driver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -19,25 +19,25 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "liboping",
       version: "1.10.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://noping.cc/files/liboping-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-6ziqk/k+irKC2X4lgvuuqIs/iJoIy8nb8gBZw3edXNg=",
         })))),
       patches: nix.thunk(() => [
         nix.path(here, "./ncurses-6.3.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "format-args.patch",
             url: "https://github.com/octo/liboping/commit/7a50e33f2a686564aa43e4920141e6f64e042df1.patch",
             sha256: "118fl3k84m3iqwfp49g5qil4lw1gcznzmyxnfna0h7za2nm50cxw",
           })))),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), "-Wno-error=format-truncation")),
       })),
       nativeBuildInputs: nix.thunk(() => [perl, pkg_config]),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`LD=${nix.sel(stdenv, "cc", "targetPrefix")}cc`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "C library to generate ICMP echo requests (a.k.a. ping packets)",
         longDescription: "liboping is a C library to generate ICMP echo requests, better known as\n\"ping packets\". It is intended for use in network monitoring applications\nor applications that would otherwise need to fork ping(1) frequently.\nIncluded is a sample application, called oping, which demonstrates the\nlibrary's abilities.\n",
         homepage: "https://noping.cc/",

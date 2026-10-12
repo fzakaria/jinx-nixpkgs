@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
   const chromiumVersion = nix.argOr($, "chromiumVersion", () => "151.0.7922.109");
   const buildType = nix.argOr($, "buildType", () => "Release");
   const srcHashes = nix.argOr($, "srcHashes", () => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "aarch64-linux": "sha256-gRYcEylZAUvKTOmV1zw9TyiEkv6FZ0vhVT1mLwne57k=",
     "x86_64-linux": "sha256-6usxPmA53kZIVYk9KHxNXrTscSaXjqg8YWS/SiPcAXo=",
   }));
@@ -83,12 +83,12 @@ export default nix.lambda((args) => (() => {
     ])));
   const selectSystem = (attrs) => nix.selOr(attrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "cef-binary",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
-          url: nix.thunk(() => nix.str`https://cef-builds.spotifycdn.com/cef_binary_${version}+g${gitRevision}+chromium-${chromiumVersion}_${nix.app(selectSystem, nix.thunk(() => ({ __proto__: pos$2, "aarch64-linux": "linuxarm64", "x86_64-linux": "linux64" })))}_minimal.tar.bz2`),
+          [nix.POS]: pos$3,
+          url: nix.thunk(() => nix.str`https://cef-builds.spotifycdn.com/cef_binary_${version}+g${gitRevision}+chromium-${chromiumVersion}_${nix.app(selectSystem, nix.thunk(() => ({ [nix.POS]: pos$2, "aarch64-linux": "linuxarm64", "x86_64-linux": "linux64" })))}_minimal.tar.bz2`),
           hash: nix.thunk(() => nix.app(selectSystem, srcHashes)),
         })))),
       dontStrip: true,
@@ -107,12 +107,12 @@ cp --recursive . $out
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         buildType: buildType,
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Simple framework for embedding Chromium-based browsers in other applications",
         homepage: "https://cef-builds.spotifycdn.com/index.html",
         maintainers: nix.thunk(() => (() => {

@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pyenchant = nix.arg($, "pyenchant");
   const pygobject3 = nix.arg($, "pygobject3");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pygtkspellcheck",
       version: "5.0.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-NzaxRXU3BTIcRO9nowEak+Vk+XYw8nBCsTl//e/qg6w=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["gtkspellcheck"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/koehlma/pygtkspellcheck",
         description: "Python spell-checking library for GtkTextViews based on Enchant",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

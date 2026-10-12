@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const _cuda = nix.arg($, "_cuda");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     _evaluateAssertions: (assertions) => (() => {
       const failedAssertionsString = nix.thunk(() => nix.app(nix.sel(_cuda, "lib", "_mkFailedAssertionsString"), assertions));
       return (nix.asBool(nix.eq(failedAssertionsString, "")) ? true : nix.app(nix.sel(lib, "addErrorContext"), nix.thunk(() => nix.str`with failed assertions:${failedAssertionsString}`), false));
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (value) => nix.eq(value, null))),
         nix.thunk(() => nix.sel(lib, "attrNames")),
         nix.thunk(() => nix.app(nix.sel(lib, "map"), (name) => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             message: nix.thunk(() => nix.str`${name} is available`),
             assertion: false,
           }))),

@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const buildNoDefaultFeatures = nix.argOr($, "buildNoDefaultFeatures", () => false);
   const buildFeatures = nix.argOr($, "buildFeatures", () => []);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       buildNoDefaultFeatures: buildNoDefaultFeatures,
       buildFeatures: buildFeatures,
       pname: "neverest",
       version: "1.0.0-beta",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pimalaya",
           repo: "neverest",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postInstall: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), installManPages, "mkdir -p $out/man\n$out/bin/neverest man $out/man\ninstallManPage $out/man/*\n"), nix.app(nix.sel(lib, "optionalString"), installShellCompletions, "installShellCompletion --cmd neverest \\\n  --bash <($out/bin/neverest completion bash) \\\n  --fish <($out/bin/neverest completion fish) \\\n  --zsh <($out/bin/neverest completion zsh)\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI to synchronize, backup and restore emails",
         mainProgram: "neverest",
         homepage: nix.thunk(() => nix.str`https://pimalaya.org/neverest/cli/v${nix.sel(finalAttrs, "version")}/`),

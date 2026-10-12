@@ -15,19 +15,19 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ipmiutil",
       version: "3.2.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/ipmiutil/ipmiutil-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-N/m8jmsYwRVeTV6jjIe4OQi3rMekT7xeOvST8m74t2c=",
         })))),
       buildInputs: nix.thunk(() => [openssl]),
       preBuild: "sed -e \"s@/usr@$out@g\" -i Makefile */Makefile */*/Makefile\nsed -e \"s@/etc@$out/etc@g\" -i Makefile */Makefile */*/Makefile\nsed -e \"s@/var@$out/var@g\" -i Makefile */Makefile */*/Makefile\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-fno-stack-protector" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fno-stack-protector" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Easy-to-use IPMI server management utility",
         homepage: "https://ipmiutil.sourceforge.net/",
         maintainers: nix.thunk(() => (() => {

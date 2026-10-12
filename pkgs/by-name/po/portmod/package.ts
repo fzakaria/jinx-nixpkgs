@@ -23,14 +23,14 @@ export default nix.lambda((args) => (() => {
   const tr_patcher = nix.arg($, "tr-patcher");
   const version = "2.9.2";
   const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "portmod",
       repo: "Portmod",
       rev: "aa454a8ed943758a2f73efa82766d5f627bb3ccd",
       hash: "sha256-bnCyjHy3I5ETnfvkTGPEwVD5LtrvavU9AisFvQ942l8=",
     }))));
   const portmod_rust = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       src: src,
       version: version,
       pname: "portmod-rust",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
     openmw,
   ]);
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       src: src,
       version: version,
       pname: "portmod",
@@ -107,7 +107,7 @@ makeWrapperArgs+=("--prefix" "GIT_SSL_CAINFO" ":" "${cacert}/etc/ssl/certs/ca-bu
   "--prefix" "PATH" ":" "${nix.app(nix.sel(lib, "makeBinPath"), bin_programs)}")
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Mod manager for openMW based on portage",
         homepage: "https://gitlab.com/portmod/portmod",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

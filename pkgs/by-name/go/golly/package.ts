@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const SDL2 = nix.arg($, "SDL2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "golly",
       version: "5.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           hash: "sha256-WDXN5CgVP5uEC6lKQ1nlyybrMC56wBoJfNf1pcgwNhE=",
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/golly/golly/golly-${nix.sel(finalAttrs, "version")}/golly-${nix.sel(finalAttrs, "version")}-src.tar.gz`),
         })))),
@@ -59,7 +59,7 @@ substituteInPlace ../cmdline/bgolly.cpp \\
       ]),
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/bin\"\ncp ../golly ../bgolly \"$out/bin\"\n\nmkdir -p \"$out/share/doc/golly/\"\ncp ../docs/*  \"$out/share/doc/golly/\"\n\nmkdir -p \"$out/share/golly\"\ncp -r ../{Help,Patterns,Scripts,Rules} \"$out/share/golly\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cellular automata simulation program",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         maintainers: nix.thunk(() => (() => {

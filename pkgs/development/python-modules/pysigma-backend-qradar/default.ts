@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pysigma_pipeline_sysmon = nix.arg($, "pysigma-pipeline-sysmon");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pysigma-backend-qradar",
       version: "0.3.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nNipsx-Sec",
           repo: "pySigma-backend-qradar",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["sigma.backends.qradar"]),
       disabledTests: nix.thunk(() => ["test_qradar_extension_output"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to support Qradar for pySigma",
         homepage: "https://github.com/nNipsx-Sec/pySigma-backend-qradar",
         changelog: nix.thunk(() => nix.str`https://github.com/nNipsx-Sec/pySigma-backend-qradar/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

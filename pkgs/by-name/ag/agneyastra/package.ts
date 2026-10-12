@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "agneyastra",
       version: "0-unstable-2025-11-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "JA3G3R",
           repo: "agneyastra",
           rev: "16a90ecc7189e12261a24b88e6d6ac24b7f3b216",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-urAw78X6mY2O+rLdQvA6eubFk7XmzEzPQPKc/QudVTQ=",
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Firebase Misconfiguration Detection Toolkit",
         homepage: "https://github.com/JA3G3R/agneyastra",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const publicsuffix2 = nix.arg($, "publicsuffix2");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mailsuite",
       version: "2.3.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "seanthegeek",
           repo: "mailsuite",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         publicsuffix2,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         all: nix.thunk(() => nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.app(nix.sel(lib, "removeAttrs"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies")), nix.thunk(() => ["all"]))))),
         gmail: nix.thunk(() => [google_api_python_client, google_auth, google_auth_oauthlib]),
         msgraph: nix.thunk(() => [azure_identity, msgraph_sdk]),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["mailsuite"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python package to simplify receiving, parsing, and sending email",
         homepage: "https://seanthegeek.github.io/mailsuite/",
         changelog: nix.thunk(() => nix.str`https://github.com/seanthegeek/mailsuite/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

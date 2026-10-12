@@ -17,19 +17,19 @@ export default nix.lambda((args) => (() => {
   const cstruct = nix.arg($, "cstruct");
   const lwt = nix.arg($, "lwt");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mirage-profile",
       version: "0.9.1",
       duneVersion: "3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/mirage-profile/releases/download/v${nix.sel(finalAttrs, "version")}/mirage-profile-v${nix.sel(finalAttrs, "version")}.tbz`),
           sha256: "0lh3591ad4v7nxpd410b75idmgdq668mqdilvkg4avrwqw1wzdib",
         })))),
       buildInputs: nix.thunk(() => [ppx_cstruct]),
       propagatedBuildInputs: nix.thunk(() => [cstruct, lwt, stdlib_shims]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collect runtime profiling information in CTF format",
         homepage: "https://github.com/mirage/mirage-profile",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

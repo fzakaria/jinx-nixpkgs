@@ -11,9 +11,9 @@ export default nix.lambda((args) => (() => {
   const cue = nix.arg($, "cue");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(runCommand, nix.thunk(() => nix.str`cue-test-001-all-good-${nix.sel(cue, "version")}`), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       nativeBuildInputs: nix.thunk(() => [cue]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, timeout: 10n })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 10n })),
     })), "cue eval - <<<'a: \"all good\"' > $out\n");
 })(), formals$1);
 //# sourceMappingURL=001-all-good.ts.map

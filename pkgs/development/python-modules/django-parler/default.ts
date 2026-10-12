@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "django-parler",
           repo: "django-parler",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +34,7 @@ ${nix.sel(python, "interpreter")} runtests.py
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple Django model translations without nasty hacks",
         homepage: "https://github.com/django-parler/django-parler",
         changelog: nix.thunk(() => nix.str`https://github.com/django-parler/django-parler/releases/tag/v${version}`),
@@ -45,7 +45,7 @@ runHook postCheck
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

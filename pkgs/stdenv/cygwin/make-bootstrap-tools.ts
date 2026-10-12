@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
     const newlib_cygwin = nix.thunk(() => nix.attr(from_1, "newlib-cygwin"));
     const w32api = nix.thunk(() => nix.attr(from_1, "w32api"));
     return nix.app(runCommand, "unpacked", nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         nativeBuildInputs: nix.thunk(() => [nukeReferences]),
         allowedReferences: [],
         strictDeps: true,
@@ -83,8 +83,8 @@ find "$out" -print0 | xargs -0 nuke-refs -e "$out"
 `));
   })());
   return {
-    __proto__: pos$3,
-    unpack: nix.thunk(() => nix.app(runCommand, "unpack.nar.xz", nix.thunk(() => ({ __proto__: pos$2, nativeBuildInputs: nix.thunk(() => [dumpnar]) })), nix.thunk(() => nix.str`dumpnar ${unpacked} | xz -9 -e -T $NIX_BUILD_CORES >$out`))),
+    [nix.POS]: pos$3,
+    unpack: nix.thunk(() => nix.app(runCommand, "unpack.nar.xz", nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [dumpnar]) })), nix.thunk(() => nix.str`dumpnar ${unpacked} | xz -9 -e -T $NIX_BUILD_CORES >$out`))),
   };
 })(), formals$1);
 //# sourceMappingURL=make-bootstrap-tools.ts.map

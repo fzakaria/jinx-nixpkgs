@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const ff_sig = nix.arg($, "ff-sig");
   const zarith = nix.arg($, "zarith");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bls12-381-gen",
       version: "0.4.4",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dannywillems",
           repo: "ocaml-bls12-381",
           rev: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}-legacy`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [ff_sig, zarith]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gitlab.com/dannywillems/ocaml-bls12-381",
         description: "Functors to generate BLS12-381 primitives based on stubs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

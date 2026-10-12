@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const gcc_unwrapped = nix.arg($, "gcc-unwrapped");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "delayarchitect",
       version: "0-unstable-2022-01-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jpcima",
           repo: "DelayArchitect",
           rev: "5abf4dfb7f92ba604d591a2c388d2d69a9055fe3",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "mkdir -p $out/lib/vst3\ncd DelayArchitect_artefacts/Release\ncp -r VST3/Delay\\ Architect.vst3 $out/lib/vst3\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/jpcima/DelayArchitect",
         description: "Visual, musical editor for delay effects",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "magnetophon"))]),

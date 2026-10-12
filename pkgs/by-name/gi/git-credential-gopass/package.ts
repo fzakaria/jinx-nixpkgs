@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const gopass = nix.arg($, "gopass");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "git-credential-gopass",
       version: "1.17.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gopasspw",
           repo: "git-credential-gopass",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       versionCheckKeepEnvironment: nix.thunk(() => ["HOME"]),
       preVersionCheck: "gopass setup --name \"user\" --email \"user@localhost\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Manage git credentials using gopass",
         homepage: "https://github.com/gopasspw/git-credential-gopass",
         changelog: nix.thunk(() => nix.str`https://github.com/gopasspw/git-credential-gopass/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

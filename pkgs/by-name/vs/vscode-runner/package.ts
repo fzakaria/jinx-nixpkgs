@@ -18,27 +18,27 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const version = "1.9.3";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "Merrit",
       repo: "vscode-runner",
       rev: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-qeB6lroBxdZP5+AFfMgTzli2ID8Ed3+1m2nACb1d+Bk=",
     }))));
   return nix.app(buildDartApplication, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "vscode-runner",
       version: version,
       src: src,
       vendorHash: "sha256-jS4jH00uxZIX81sZQIi+s42ofmXpD4/tPMRV2heaM2U=",
       pubspecLock: nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json"))),
-      dartEntryPoints: nix.thunk(() => ({ __proto__: pos$2, "bin/vscode_runner": "bin/vscode_runner.dart" })),
+      dartEntryPoints: nix.thunk(() => ({ [nix.POS]: pos$2, "bin/vscode_runner": "bin/vscode_runner.dart" })),
       buildInputs: nix.thunk(() => [sqlite]),
       postInstall: "substituteInPlace ./package/codes.merritt.vscode_runner.service \\\n  --replace-fail \"Exec=\" \"Exec=$out/bin/vscode_runner\"\ninstall -D \\\n  ./package/codes.merritt.vscode_runner.service \\\n  $out/share/dbus-1/services/codes.merritt.vscode_runner.service\n\ninstall -D \\\n  ./package/plasma-runner-vscode_runner.desktop \\\n  $out/share/krunner/dbusplugins/plasma-runner-vscode_runner.desktop\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(kdePackages, "krunner", "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "KRunner plugin for quickly opening recent VSCode workspaces",
         homepage: "https://github.com/Merrit/vscode-runner",
         changelog: nix.thunk(() => nix.str`https://github.com/Merrit/vscode-runner/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),

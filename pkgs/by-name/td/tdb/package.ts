@@ -26,15 +26,15 @@ export default nix.lambda((args) => (() => {
   const docbook_xml_dtd_45 = nix.arg($, "docbook_xml_dtd_45");
   const needsAnswers = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))) && nix.asBool(!nix.asBool(nix.app(nix.sel(stdenv, "hostPlatform", "emulatorAvailable"), buildPackages)))));
   const answers = nix.thunk(() => nix.selOr({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "x86_64-freebsd": nix.path(here, "./answers-x86_64-freebsd"),
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`Need pre-generated answers file to compile for ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "tdb",
       version: "1.4.15",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`mirror://samba/tdb/tdb-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-+6CdjfHxuQcq6ujniyvUPFr+8gsvbe76YzqhSjd6jdI=",
         })))),
@@ -49,9 +49,9 @@ chmod +w answers
           nix.thunk(() => (nix.asBool(nix.app(nix.sel(stdenv, "hostPlatform", "emulatorAvailable"), buildPackages)) ? nix.str`--cross-execute=${nix.app(nix.sel(stdenv, "hostPlatform", "emulator"), buildPackages)}` : "--cross-answers=answers")),
         ])))),
       postFixup: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "install_name_tool -id $out/lib/libtdb.dylib $out/lib/libtdb.dylib" : null)),
-      env: nix.thunk(() => nix.update({ __proto__: pos$3, PYTHON_CONFIG: "/invalid" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "bintools", "isLLVM")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "bintools", "version")), "17")))), nix.thunk(() => ({ __proto__: pos$4, NIX_LDFLAGS: "--undefined-version" }))))),
+      env: nix.thunk(() => nix.update({ [nix.POS]: pos$3, PYTHON_CONFIG: "/invalid" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "bintools", "isLLVM")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "bintools", "version")), "17")))), nix.thunk(() => ({ [nix.POS]: pos$4, NIX_LDFLAGS: "--undefined-version" }))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Trivial database",
         longDescription: "TDB is a Trivial Database. In concept, it is very much like GDBM,\nand BSD's DB except that it allows multiple simultaneous writers\nand uses locking internally to keep writers from trampling on each\nother. TDB is also extremely small.\n",
         homepage: "https://tdb.samba.org/",

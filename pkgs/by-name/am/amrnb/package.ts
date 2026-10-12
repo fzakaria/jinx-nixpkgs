@@ -15,16 +15,16 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "amrnb",
       version: "11.0.0.0",
       srcAmr: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://www.3gpp.org/ftp/Specs/latest/Rel-11/26_series/26104-b00.zip",
           sha256: "1wf8ih0hk7w20vdlnw7jb7w73v15hbxgbvmq4wq7h2ghn0j8ppr3",
         })))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "http://www.penguin.cz/~utx/ftp/amr/amrnb-11.0.0.0.tar.bz2",
           sha256: "1qgiw02n2a6r32pimnd97v2jkvnw449xrqmaxiivjy2jcr5h141q",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--cache-file=config.cache", "--with-downloader=true"]),
       postConfigure: "cp $srcAmr 26104-b00.zip\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://www.penguin.cz/~utx/amr",
         description: "AMR Narrow-Band Codec",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

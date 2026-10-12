@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.0.15";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-3oYQY5mW8VZ5UtdjpaQa+K838ldaQfmFKjj5R+uCo7k=",
@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["widgetsnbextension"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "IPython HTML widgets for Jupyter",
         homepage: "https://github.com/jupyter-widgets/ipywidgets/tree/master/python/widgetsnbextension",
         license: nix.thunk(() => nix.sel(ipywidgets, "meta", "license")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

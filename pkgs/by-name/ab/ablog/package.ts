@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const version = "0.11.13";
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ablog",
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sunpy",
           repo: "ablog",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -58,11 +58,11 @@ export default nix.lambda((args) => (() => {
       pytestFlags: nix.thunk(() => ["--rootdir=src/ablog"]),
       disabledTests: nix.thunk(() => ["test_not_safe_for_parallel_read", "test_feed"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Sphinx extension that converts any documentation or personal website project into a full-fledged blog",
         mainProgram: "ablog",
         homepage: "https://ablog.readthedocs.io/en/latest/",

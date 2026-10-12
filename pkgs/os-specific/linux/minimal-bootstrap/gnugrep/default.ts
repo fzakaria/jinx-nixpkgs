@@ -19,26 +19,26 @@ export default nix.lambda((args) => (() => {
   const pname = "gnugrep";
   const version = "2.4";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`mirror://gnu/grep/grep-${version}.tar.gz`),
       sha256: "05iayw5sfclc476vpviz67hdy03na0pz2kb5csa50232nfx34853",
     }))));
   return nix.app(nix.sel(bash, "runCommand"), nix.thunk(() => nix.str`${pname}-${version}`), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(tinycc, "compiler")), gnumake]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "get-version": (result) => nix.app(nix.sel(bash, "runCommand"), nix.thunk(() => nix.str`${pname}-get-version-${version}`), nix.thunk(() => ({})), nix.thunk(() => nix.str`${result}/bin/grep --version
 mkdir \${out}
 `)),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "GNU implementation of the Unix grep command",
         homepage: "https://www.gnu.org/software/grep",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

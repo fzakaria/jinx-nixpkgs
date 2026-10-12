@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const uart_devices = nix.arg($, "uart-devices");
   const usb_devices = nix.arg($, "usb-devices");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bluetooth-adapters",
       version: "2.4.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Bluetooth-Devices",
           repo: "bluetooth-adapters",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytest_cov_stub, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["bluetooth_adapters"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tools to enumerate and find Bluetooth Adapters",
         homepage: "https://github.com/Bluetooth-Devices/bluetooth-adapters",
         changelog: nix.thunk(() => nix.str`https://github.com/Bluetooth-Devices/bluetooth-adapters/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

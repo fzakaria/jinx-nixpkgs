@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.15.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "PyQtDataVisualization",
           version: version,
           hash: "sha256-ntM7IOdHvGnh1hnxR7sWJcwA1u9ATb8Ha6E6n/b2Bh0=",
@@ -43,7 +43,7 @@ sip-include-dirs = [\\"${pyqt5}/${nix.sel(python, "sitePackages")}/PyQt5/binding
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["PyQt5.QtDataVisualization"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python bindings for the Qt Data Visualization library",
         homepage: "https://riverbankcomputing.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -53,7 +53,7 @@ sip-include-dirs = [\\"${pyqt5}/${nix.sel(python, "sitePackages")}/PyQt5/binding
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

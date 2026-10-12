@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gnome-kra-ora-thumbnailer",
       version: "1.4",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           owner: "GNOME",
           repo: "gnome-kra-ora-thumbnailer",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [intltool, autoreconfHook, pkg_config, gnome_common]),
       buildInputs: nix.thunk(() => [libarchive, gdk_pixbuf]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Thumbnailer for Krita and MyPaint images",
         homepage: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/gnome-kra-ora-thumbnailer/-/blob/${nix.sel(finalAttrs, "src", "tag")}?ref_type=tags`),
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/gnome-kra-ora-thumbnailer/-/blob/${nix.sel(finalAttrs, "src", "tag")}/NEWS?ref_type=tags`),

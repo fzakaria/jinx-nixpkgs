@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const withQt = nix.thunk(() => (nix.asBool(withUtils) && nix.asBool(withGUI)));
   const isCrossBuild = nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "systems", "equals"), nix.thunk(() => nix.sel(stdenv, "buildPlatform")), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "v4l-utils",
       version: "1.32.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://linuxtv.org/downloads/v4l-utils/v4l-utils-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-aCiCihd3VSbrk/slipKU0dEHPWM8NE3XHs1Oeh/7ffw=",
         })))),
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "V4L utils and libv4l, provide common image formats regardless of the v4l device",
         homepage: "https://linuxtv.org/projects.php",
         changelog: nix.thunk(() => nix.str`https://git.linuxtv.org/v4l-utils.git/plain/ChangeLog?h=v4l-utils-${nix.sel(finalAttrs, "version")}`),

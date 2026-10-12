@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const ssl = nix.arg($, "ssl");
   const lwt = nix.arg($, "lwt");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lwt_ssl",
       version: "1.2.0",
       duneVersion: "3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ocsigen/lwt_ssl/releases/download/${nix.sel(finalAttrs, "version")}/lwt_ssl-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-swIK0nrs83fhw/J0Cgizbcu6mR+EMGZRE1dBBUiImnc=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [ssl, lwt]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/aantron/lwt_ssl",
         description: "OpenSSL binding with concurrent I/O",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

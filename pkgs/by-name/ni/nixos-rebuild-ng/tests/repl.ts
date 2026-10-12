@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const expectSetup = "set timeout 300\nproc expect_simple { pattern } {\n  puts \"Expecting: $pattern\"\n  expect {\n    timeout {\n      puts \"\\nTimeout waiting for: $pattern\\n\"\n      exit 1\n    }\n    $pattern\n  }\n}\n";
   const linuxSystem = nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["darwin"]), nix.thunk(() => ["linux"]), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(runCommand, "test-nixos-rebuild-repl", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nativeBuildInputs: nix.thunk(() => [expect, nix$, nixos_rebuild_ng]),
       nixpkgs: nix.thunk(() => (nix.asBool(nix.builtins.pathExists(nix.thunk(() => nix.add(path, "/.git")))) ? nix.app(nix.sel(lib, "cleanSource"), path) : nix.force(path))),
     })), nix.thunk(() => nix.str`export HOME=$(mktemp -d)

@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "goocanvas",
       version: "3.0.0",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/goocanvas/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/goocanvas-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "06j05g2lmwvklmv51xsb7gm7rszcarhm01sal41jfp0qzrbpa2k7",
         })))),
@@ -39,21 +39,21 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, gettext, gobject_introspection, gtk_doc, python3]),
       buildInputs: nix.thunk(() => [cairo, gtk3, glib]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PKG_CONFIG_GOBJECT_INTROSPECTION_1_0_GIRDIR: "$(dev)/share/gir-1.0",
         PKG_CONFIG_GOBJECT_INTROSPECTION_1_0_TYPELIBDIR: "$(out)/lib/girepository-1.0",
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             attrPath: nix.thunk(() => nix.str`goocanvas_${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
             packageName: "goocanvas",
             versionPolicy: "odd-unstable",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Canvas widget for GTK based on the the Cairo 2D library",
         homepage: "https://gitlab.gnome.org/Archive/goocanvas",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),

@@ -13,9 +13,9 @@ export default nix.lambda((args) => (() => {
   const json_schema_catalog_rs = nix.arg($, "json-schema-catalog-rs");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       "test-with-json-schema-catalog-rs": nix.thunk(() => nix.app(runCommand, "json-schema-catalogs-integration-test", nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           nativeBuildInputs: nix.thunk(() => [json_schema, json_schema_catalog_rs]),
         })), nix.thunk(() => nix.str`cat >example.json <<"EOF"
 {

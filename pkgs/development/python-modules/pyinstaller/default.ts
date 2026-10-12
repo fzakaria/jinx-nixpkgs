@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const glibc = nix.arg($, "glibc");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pyinstaller",
       version: "6.22.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-BesvVhVQPnKTmnIk1otK/1csawQ47koX0KS0gfOZNi0=",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["PyInstaller"]),
       nativeCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to bundle a python application with dependencies into a single package",
         homepage: "https://pyinstaller.org/",
         changelog: nix.thunk(() => nix.str`https://pyinstaller.org/en/v${nix.sel(finalAttrs, "version")}/CHANGES.html`),

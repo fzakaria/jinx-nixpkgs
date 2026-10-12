@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const perlPackages = nix.arg($, "perlPackages");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(perlPackages, "buildPerlPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "graph-easy",
       version: "0.76",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "mirror://cpan/authors/id/S/SH/SHLOMIF/Graph-Easy-0.76.tar.gz",
           sha256: "d4a2c10aebef663b598ea37f3aa3e3b752acf1fbbb961232c3dbe1155008d1fa",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Render/convert graphs in/from various formats",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl1Only")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
   const customFrameControlSupport = nix.argOr($, "customFrameControlSupport", () => false);
   const optional = nix.thunk(() => nix.attr(lib, "optional"));
   return nix.app(nix.sel(lib, "checkListOfEnum"), "raylib: platform", nix.thunk(() => ["Desktop", "Web", "Android", "Raspberry Pi", "SDL"]), nix.thunk(() => [platform]), nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         __structuredAttrs: true,
         pname: "raylib",
         version: "6.0",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "raysan5",
             repo: "raylib",
             rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -53,11 +53,11 @@ export default nix.lambda((args) => (() => {
         ], nix.concat(nix.app(optional, nix.thunk(() => nix.eq(platform, "Desktop")), nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "USE_EXTERNAL_GLFW", "ON"))), nix.concat(nix.app(optional, includeEverything, nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "INCLUDE_EVERYTHING", true))), nix.app(optional, sharedLib, nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_SHARED_LIBS", true))))))),
         appendRunpaths: nix.thunk(() => nix.app(optional, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => nix.concat(nix.app(optional, alsaSupport, alsa_lib), nix.app(optional, pulseSupport, libpulseaudio))))))),
         passthru: nix.thunk(() => ({
-          __proto__: pos$3,
-          tests: nix.thunk(() => ({ __proto__: pos$2, "raylib-games": raylib_games })),
+          [nix.POS]: pos$3,
+          tests: nix.thunk(() => ({ [nix.POS]: pos$2, "raylib-games": raylib_games })),
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           description: "Simple and easy-to-use library to enjoy videogames programming",
           homepage: "https://www.raylib.com/",
           downloadPage: "https://github.com/raysan5/raylib",

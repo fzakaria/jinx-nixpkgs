@@ -22,15 +22,15 @@ export default nix.lambda((args) => (() => {
       const pname = "mlton";
       const version = "20241230";
       const src = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/MLton/mlton/releases/download/on-${version}-release/${pname}-${version}-1.amd64-linux.ubuntu-24.04_glibc2.39.tgz`),
           hash: "sha256-ldXnjHcWGu77LP9WL6vTC6FngzhxPFAUflAA+bpIFZM=",
         }))) : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/MLton/mlton/releases/download/on-${version}-release/${pname}-${version}-1.arm64-linux.ubuntu-24.04-arm_glibc2.39.tgz`),
           hash: "sha256-rn65t253SfUShAM3kXiLQJHT7JS7EO3fAPB23LWIwfc=",
         }))) : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-darwin")) ? nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://github.com/MLton/mlton/releases/download/on-${version}-release/${pname}-${version}-1.arm64-darwin.macos-15_gmp-static.tgz`),
           hash: "sha256-xhFP2plFjP/mbLz1CNtlZzkm0Kx6twfD/Dmn79Vj908=",
         }))) : nix.builtins.throw("Architecture not supported")))));
@@ -62,9 +62,9 @@ for e in mllex mlnlffigen mlprof mlyacc; do
     $out/bin/$e
 done
 `))));
-      const meta = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./meta.nix")), nix.thunk(() => ({ __proto__: pos$4, lib: lib }))));
+      const meta = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./meta.nix")), nix.thunk(() => ({ [nix.POS]: pos$4, lib: lib }))));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

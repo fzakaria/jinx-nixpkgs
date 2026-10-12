@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const vala = nix.arg($, "vala");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "ayatana-indicator-sound",
       version: "24.5.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AyatanaIndicators",
           repo: "ayatana-indicator-sound",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -121,20 +121,20 @@ substituteInPlace \\
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       enableParallelChecking: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "ayatana-indicators": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "ayatana-indicator-sound": nix.thunk(() => ["ayatana", "lomiri"]),
         })),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           startup: nix.thunk(() => nix.sel(nixosTests, "ayatana-indicators")),
           lomiri: nix.thunk(() => nix.sel(nixosTests, "lomiri", "desktop-ayatana-indicator-sound")),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Ayatana Indicator for managing system sound",
         longDescription: "Ayatana Indicator Sound that provides easy control of the PulseAudio\nsound daemon.\n",
         homepage: "https://github.com/AyatanaIndicators/ayatana-indicator-sound",

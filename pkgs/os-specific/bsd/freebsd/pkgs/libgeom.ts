@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const libbsdxml = nix.arg($, "libbsdxml");
   const libsbuf = nix.arg($, "libsbuf");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "lib/libgeom",
       outputs: nix.thunk(() => ["out", "man", "debug"]),
       buildInputs: nix.thunk(() => [libbsdxml, libsbuf]),

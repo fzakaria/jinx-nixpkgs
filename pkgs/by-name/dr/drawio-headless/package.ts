@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const drawio = nix.arg($, "drawio");
   const xvfb_run = nix.arg($, "xvfb-run");
   return nix.app(writeTextFile, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: nix.thunk(() => nix.str`${nix.sel(drawio, "pname")}-headless-${nix.sel(drawio, "version")}`),
       executable: true,
       destination: "/bin/drawio",
@@ -36,7 +36,7 @@ trap cleanup EXIT
 XDG_CONFIG_HOME="$tmpdir" ${xvfb_run}/bin/xvfb-run --auto-display ${drawio}/bin/drawio $@
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "xvfb wrapper around drawio",
         longDescription: "A wrapper around drawio (draw.io) for running in headless environments.\nRuns drawio under xvfb-run, with configuration going to a temporary\ndirectory.\n",
         maintainers: nix.thunk(() => (() => {

@@ -31,48 +31,48 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     name: "ghostunnel",
     nodes: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       backend: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           services: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             nginx: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 backend: nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   root: nix.thunk(() => nix.app(nix.sel(pkgs_1, "runCommand"), "webroot", nix.thunk(() => ({})), "mkdir $out\necho hi >$out/hi.txt\n")),
                 })),
               })),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$6,
-            firewall: nix.thunk(() => ({ __proto__: pos$5, allowedTCPPorts: nix.thunk(() => [80n]) })),
+            [nix.POS]: pos$6,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$5, allowedTCPPorts: nix.thunk(() => [80n]) })),
           })),
         };
       })(), formals$2),
       service: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             ghostunnel: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               enable: true,
               servers: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 "plain-old": nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   listen: "0.0.0.0:443",
                   cert: "/root/service-cert.pem",
                   key: "/root/service-key.pem",
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
                   unsafeTarget: true,
                 })),
                 "client-cert": nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   listen: "0.0.0.0:1443",
                   cert: "/root/service-cert.pem",
                   key: "/root/service-key.pem",
@@ -94,8 +94,8 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$14,
-            firewall: nix.thunk(() => ({ __proto__: pos$13, allowedTCPPorts: nix.thunk(() => [443n, 1443n]) })),
+            [nix.POS]: pos$14,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$13, allowedTCPPorts: nix.thunk(() => [443n, 1443n]) })),
           })),
         };
       })(), formals$3),
@@ -103,9 +103,9 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$4);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           environment: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "curl"))]),
           })),
         };
@@ -172,7 +172,7 @@ client.succeed("bash -c 'diff <(curl -v --no-progress-meter --cert /root/client-
 client.fail("bash -c 'diff <(curl -v --no-progress-meter --cacert /root/ca.pem https://service:1443/hi.txt) <(echo hi)'")
 `),
     meta: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "roberth"))];

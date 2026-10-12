@@ -13,20 +13,20 @@ const pos$6 = nix.positions(here + "/scanservjs.nix", [["name", 5, 3], ["nodes",
 export default nix.thunk(() => (() => {
   const port = 1234n;
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     name: "scanservjs",
     nodes: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       machine: nix.lambda((args) => (() => {
         const $ = nix.formals(args, formals$1);
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           services: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             scanservjs: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               enable: true,
-              settings: nix.thunk(() => ({ __proto__: pos$1, host: "0.0.0.0", port: port })),
+              settings: nix.thunk(() => ({ [nix.POS]: pos$1, host: "0.0.0.0", port: port })),
             })),
           })),
         };

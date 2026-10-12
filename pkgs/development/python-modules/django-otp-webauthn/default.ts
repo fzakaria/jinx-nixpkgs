@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const pytest_factoryboy = nix.arg($, "pytest-factoryboy");
   const pytest_mock = nix.arg($, "pytest-mock");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "django-otp-webauthn",
       version: "0.10.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Stormbase",
           repo: "django-otp-webauthn",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         pytest_mock,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Passkey support for Django",
         homepage: "https://github.com/Stormbase/django-otp-webauthn",
         changelog: nix.thunk(() => nix.str`https://github.com/Stormbase/django-otp-webauthn/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

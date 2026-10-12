@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "iaca";
       const version = "2.1";
       const src = nix.thunk(() => nix.app(requireFile, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`iaca-version-${version}-lin64.zip`),
           sha256: "11s1134ijf66wrc77ksky9mnb0lq6ml6fzmr86a6p6r5xclzay2m",
           url: "https://software.intel.com/en-us/articles/intel-architecture-code-analyzer-download",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       })());
       const postFixup = "wrapProgram $out/bin/iaca --set LD_LIBRARY_PATH $out/lib";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Intel Architecture Code Analyzer",
         homepage: "https://software.intel.com/en-us/articles/intel-architecture-code-analyzer/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

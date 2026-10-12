@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libusb_compat_0_1 = nix.argOr($, "libusb-compat-0_1", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "sane-frontends",
       version: "1.0.14",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://alioth-archive.debian.org/releases/sane/${nix.sel(finalAttrs, "pname")}/${nix.sel(finalAttrs, "version")}/${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1ad4zr7rcxpda8yzvfkq1rfjgx9nl6lan5a628wvpdbh3fn9v0z7",
         })))),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
           const name = nix.arg($_1, "name");
           const hash = nix.arg($_1, "hash");
           return nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: name,
               hash: hash,
               url: nix.thunk(() => nix.str`https://src.fedoraproject.org/rpms/sane-frontends/raw/89f752d7e236e86be8d64b7ac6991a36f9e9f7d0/f/${name}`),
@@ -51,37 +51,37 @@ export default nix.lambda((args) => (() => {
         })(), formals$2);
         return nix.builtins.map(fetchFedoraPatch, nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               name: "0001-src-scanadf.c-Fix-segfault-when-scanadf-h-d-device.patch",
               hash: "sha256-sSUWm5fL7YTebzXh3Thb/qwgr7d++1Y+74uI8R5oF0g=",
             })),
             nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               name: "frontends-scanadf-segv.patch",
               hash: "sha256-VRag9nMk8ZCjg9Oq0siHdT8J6sbNjq9cU2ktOH2vkLo=",
             })),
             nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               name: "sane-frontends-1.0.14-array-out-of-bounds.patch",
               hash: "sha256-a0lzbAogSrXsK5jVeNffDS+zFxpuDHXpHQlOJ5874+U=",
             })),
             nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               name: "sane-frontends-1.0.14-sane-backends-1.0.20.patch",
               hash: "sha256-ViYjxXGj58P6EaZ+fIiAydrgbyS1ivn39uN3EWcvnZg=",
             })),
             nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               name: "sane-frontends-1.0.14-xcam-man.patch",
               hash: "sha256-HGANgQPujn/jjOMGs9LlzYvYZphMWwbsI74NCad5ADc=",
             })),
             nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               name: "sane-frontends-c99.patch",
               hash: "sha256-LPELEG11wEom05ECAMgXUDRWvrbuU4nT3apuS1eITyA=",
             })),
             nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               name: "sane-frontends-configure-c99.patch",
               hash: "sha256-SPvMDCZv8VRGP+cXRFjVbqgbTeVhdLOTEQbbBgSMLvY=",
             })),
@@ -92,7 +92,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       preConfigure: "autoconf\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "Scanner Access Now Easy",
         homepage: "http://www.sane-project.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

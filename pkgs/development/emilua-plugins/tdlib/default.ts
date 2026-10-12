@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
   const fmt = nix.arg($, "fmt");
   const zlib = nix.arg($, "zlib");
   const td_wrap = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "tdlib",
       repo: "td",
       rev: "4041ecb535802ba1c55fcd11adf5d3ada41c2be7",
       hash: "sha256-/TaPYy+FUOVhyocDZ13zwR07xbzp6g8c6xvAGVFLQvk=",
     }))));
   const trial_circular_wrap = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "breese",
       repo: "trial.protocol",
       rev: "79149f604a49b8dfec57857ca28aaf508069b669",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const pname = "emilua-tdlib";
       const version = "1.0.4";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "emilua",
           repo: "tdlib",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -75,11 +75,11 @@ substituteInPlace td/td/generate/tl-parser/CMakeLists.txt \\
   --replace-fail "cmake_minimum_required(VERSION 3.0 FATAL_ERROR)" "cmake_minimum_required(VERSION 3.10)"
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$4, "rev-prefix": "v" })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, "rev-prefix": "v" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Telegram Database Library bindings for Emilua",
         homepage: "https://emilua.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -90,7 +90,7 @@ substituteInPlace td/td/generate/tl-parser/CMakeLists.txt \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

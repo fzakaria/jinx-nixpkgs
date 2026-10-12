@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const installAgentSkills = nix.arg($, "installAgentSkills");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nu_scripts",
       version: "0-unstable-2026-10-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nushell",
           repo: "nu_scripts",
           rev: "3ffc5aa43194bb4d5295dec9fbf0a18b3a2dddfc",
@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installAgentSkills]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/nu_scripts\nmv ./* $out/share/nu_scripts\nrm -r $out/share/nu_scripts/themes/screenshots\nrm -r $out/share/nu_scripts/skills/ # installAgentSkills installs these in the correct directory\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Place to share Nushell scripts with each other",
         homepage: "https://github.com/nushell/nu_scripts",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

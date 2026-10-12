@@ -42,14 +42,14 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const version = "1.52.0.1-unstable-2025-09-09";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "espeak-ng",
       repo: "espeak-ng",
       rev: "0d451f8c1c6ae837418b823bd9c4cbc574ea9ff5",
       hash: "sha256-wpPi+YjSLhsEWfE3KEbL4A7o48qtz9fLRZ/u4xGOM2g=",
     }))));
   const ucd_tools = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "ucd-tools",
       version: version,
       src: src,
@@ -64,19 +64,19 @@ export default nix.lambda((args) => (() => {
       const src_1 = src;
       const patches = nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "libsonic.patch",
             url: "https://github.com/espeak-ng/espeak-ng/commit/83e646e711af608fafa8c01dd812cd29e073f644.patch",
             hash: "sha256-UHuURyqRy/JVYYJH5EI5J2cpBfCNeTE24sMmheb+D2Q=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "cmake-default-ESPEAK_COMPAT-to-ON.patch",
             url: "https://github.com/espeak-ng/espeak-ng/commit/3dcbe7ea3ea85a9212968d0f05172dde4259e770.patch",
             hash: "sha256-U694hGe+cwy7qLe/6XmNHYIhccJGsbM0CzPZT5pIpUI=",
           })))),
       ], nix.app(nix.sel(lib, "optionals"), mbrolaSupport, nix.thunk(() => [
-          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./mbrola.patch"), nix.thunk(() => ({ __proto__: pos$5, mbrola: mbrola })))),
+          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./mbrola.patch"), nix.thunk(() => ({ [nix.POS]: pos$5, mbrola: mbrola })))),
         ]))));
       const postPatch = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), ucdSupport, nix.thunk(() => nix.str`ln -s ${ucd_tools}/libucd.a src/ucd-tools/libucd.a
 `)));
@@ -106,9 +106,9 @@ export default nix.lambda((args) => (() => {
       const postInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`wrapProgram $out/bin/espeak-ng \\
   --set ALSA_PLUGIN_DIR ${alsa_plugins}/lib/alsa-lib
 `)));
-      const passthru = nix.thunk(() => ({ __proto__: pos$6, mbrolaSupport: mbrolaSupport, "ucd-tools": ucd_tools }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$6, mbrolaSupport: mbrolaSupport, "ucd-tools": ucd_tools }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Speech synthesizer that supports more than hundred languages and accents",
         homepage: "https://github.com/espeak-ng/espeak-ng",
         changelog: nix.thunk(() => nix.str`https://github.com/espeak-ng/espeak-ng/blob/${nix.sel(src_1, "rev")}/ChangeLog.md`),
@@ -121,7 +121,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "espeak-ng",
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version: version_1,
         src: src_1,

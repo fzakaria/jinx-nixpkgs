@@ -23,34 +23,34 @@ export default nix.lambda((args) => (() => {
   const port = 5000n;
   const scanPath = "/var/lib/legit";
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     name: "legit-web",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ratsclub"))]),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           services: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             legit: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$4,
-                server: nix.thunk(() => ({ __proto__: pos$2, port: 5000n })),
-                repo: nix.thunk(() => ({ __proto__: pos$3, scanPath: scanPath })),
+                [nix.POS]: pos$4,
+                server: nix.thunk(() => ({ [nix.POS]: pos$2, port: 5000n })),
+                repo: nix.thunk(() => ({ [nix.POS]: pos$3, scanPath: scanPath })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "git"))]),
           })),
         };

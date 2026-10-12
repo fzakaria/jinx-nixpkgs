@@ -17,28 +17,28 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     name: "moodle",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "aanderse"))]),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           services: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             moodle: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               enable: true,
-              virtualHost: nix.thunk(() => ({ __proto__: pos$2, hostName: "localhost", adminAddr: "root@example.com" })),
+              virtualHost: nix.thunk(() => ({ [nix.POS]: pos$2, hostName: "localhost", adminAddr: "root@example.com" })),
               initialPassword: "correcthorsebatterystaple",
             })),
           })),
-          virtualisation: nix.thunk(() => ({ __proto__: pos$5, memorySize: 2000n })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$5, memorySize: 2000n })),
         };
       })(), formals$2),
     })),

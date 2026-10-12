@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const patchelf = nix.arg($, "patchelf");
   const asterisk = nix.arg($, "asterisk");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "asterisk-module-sccp",
       version: "4.3.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chan-sccp",
           repo: "chan-sccp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ cp -r /build/dest/${asterisk}/* "$out"
 patchelf --set-rpath "$p:${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [binutils_unwrapped]))}" "$p"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Replacement for the SCCP channel driver in Asterisk",
         homepage: "https://github.com/chan-sccp/chan-sccp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl1Only")),

@@ -84,28 +84,28 @@ export default nix.lambda((args) => (() => {
   const vulkan_memory_allocator = nix.arg($, "vulkan-memory-allocator");
   const zlib = nix.arg($, "zlib");
   const pdfjsForLadybird = nix.thunk(() => nix.app(nix.sel(pdfjs, "overrideAttrs"), (final) => (_prev) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "5.6.205",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mozilla/pdf.js/releases/download/v${nix.sel(final, "version")}/pdfjs-${nix.sel(final, "version")}-dist.zip`),
           hash: "sha256-JMmxoT68PNJ/MmlMwVNYcHerorklLv5YY6C55xjn73w=",
           stripRoot: false,
         })))),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       pname: "ladybird",
       version: "0-unstable-2026-09-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "LadybirdBrowser",
           repo: "ladybird",
           rev: "b90af890b56cbd51c452d929fe71abcb8adaa36f",
           hash: "sha256-CfSC0zEn1VUZaoBHi4a91n/QLTdpapygVf9c/v44X9E=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -172,10 +172,10 @@ cp ${chromium_hsts_preload_list}/share/chromium-hsts-preload-list/transport_secu
         libedit,
         libwebp,
         nix.thunk(() => nix.app(nix.sel(mimalloc, "overrideAttrs"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             version: "2.2.7",
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 owner: "microsoft",
                 repo: "mimalloc",
                 tag: "v2.2.7",
@@ -188,15 +188,15 @@ cp ${chromium_hsts_preload_list}/share/chromium-hsts-preload-list/transport_secu
         sdl3,
         simdutf,
         nix.thunk(() => nix.app(nix.sel(skia, "overrideAttrs"), (prev) => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             gnFlags: nix.thunk(() => nix.concat(nix.sel(prev, "gnFlags"), ["extra_cflags+=[\"-DSKCMS_DLL\"]"])),
           }))),
         nix.thunk(() => nix.app(nix.sel(wuffs, "overrideAttrs"), (prev) => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             version: "0.3.4",
             vendorHash: "sha256-CRzsGHE3K/WWPX0A3B1CvvEdADlxdIhaT5fOtaA3LPo=",
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 owner: "google",
                 repo: "wuffs",
                 tag: "v0.3.4",
@@ -224,7 +224,7 @@ cp ${chromium_hsts_preload_list}/share/chromium-hsts-preload-list/transport_secu
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "ICU_ROOT", nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(icu78, "dev")))))),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ["-DCMAKE_INSTALL_LIBEXECDIR=libexec"])))),
       env: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         NIX_LDFLAGS: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "-lGL "), "-lfontconfig")),
       })),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications $out/bin\nmv $out/bundle/Ladybird.app $out/Applications\nmakeWrapper \"$out/Applications/Ladybird.app/Contents/MacOS/Ladybird\" \"$out/bin/Ladybird\"\n")),
@@ -234,15 +234,15 @@ cp ${chromium_hsts_preload_list}/share/chromium-hsts-preload-list/transport_secu
 `))),
       dontWrapQtApps: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         tests: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           nixosTest: nix.thunk(() => nix.sel(nixosTests, "ladybird")),
         })),
         updateScript: nix.thunk(() => (() => {
-          const updateSource = nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$12, hardcodeZeroVersion: true }))));
+          const updateSource = nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$12, hardcodeZeroVersion: true }))));
           const updateCargoDeps = nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             command: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), common_updater_scripts, "update-source-version")),
               "ladybird",
@@ -254,7 +254,7 @@ cp ${chromium_hsts_preload_list}/share/chromium-hsts-preload-list/transport_secu
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         description: "Browser using the SerenityOS LibWeb engine with a Qt or Cocoa GUI",
         homepage: "https://ladybird.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

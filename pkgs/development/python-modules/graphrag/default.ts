@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.7.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "microsoft",
           repo: "graphrag",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -109,7 +109,7 @@ export default nix.lambda((args) => (() => {
         "test_sort_context_max_tokens",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Modular graph-based Retrieval-Augmented Generation (RAG) system",
         homepage: "https://github.com/microsoft/graphrag",
         changelog: nix.thunk(() => nix.str`https://github.com/microsoft/graphrag/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -120,7 +120,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

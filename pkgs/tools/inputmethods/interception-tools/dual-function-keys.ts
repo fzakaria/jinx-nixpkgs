@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "dual-function-keys";
       const version = "1.5.0";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           group: "interception",
           owner: "linux/plugins",
           repo: pname,
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const prePatch = "substituteInPlace config.mk --replace \\\n  '/usr/include/libevdev-1.0' \\\n  \"$(pkg-config --cflags libevdev | cut -c 3-)\"\n";
       const installFlags = nix.thunk(() => ["DESTDIR=$(out)", "PREFIX="]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gitlab.com/interception/linux/plugins/dual-function-keys",
         description: "Tap for one key, hold for another",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "dual-function-keys",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -76,93 +76,93 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   const common = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     networking: nix.thunk(() => ({
-      __proto__: pos$2,
-      firewall: nix.thunk(() => ({ __proto__: pos$1, enable: false })),
+      [nix.POS]: pos$2,
+      firewall: nix.thunk(() => ({ [nix.POS]: pos$1, enable: false })),
       useDHCP: false,
     })),
   }));
   const exampleZone = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "example.com.zone", "@ SOA ns.example.com. noc.example.com. 2019031301 86400 7200 3600000 172800\n@       NS      ns1\n@       NS      ns2\nns1     A       192.168.0.1\nns1     AAAA    fd00::1\nns2     A       192.168.0.2\nns2     AAAA    fd00::2\nwww     A       192.0.2.1\nwww     AAAA    2001:DB8::1\nsub     NS      ns.example.com.\n"));
   const delegatedZone = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "sub.example.com.zone", "@ SOA ns.example.com. noc.example.com. 2019031301 86400 7200 3600000 172800\n@       NS      ns1.example.com.\n@       NS      ns2.example.com.\n@       A       192.0.2.2\n@       AAAA    2001:DB8::2\n"));
   const knotZonesEnv = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "knot-zones",
       paths: nix.thunk(() => [exampleZone, delegatedZone]),
     }))));
   const tsigFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "tsig.conf", "key:\n  - id: xfr_key\n    algorithm: hmac-sha256\n    secret: zOYgOgnzx3TGe5J5I/0kxd7gTcxXhLYMEq3Ek3fY37s=\n"));
   return {
-    __proto__: pos$63,
+    [nix.POS]: pos$63,
     name: "knot",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "hexa"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$62,
+      [nix.POS]: pos$62,
       primary: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           imports: nix.thunk(() => [common]),
-          virtualisation: nix.thunk(() => ({ __proto__: pos$6, cores: 2n })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$6, cores: 2n })),
           networking: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             interfaces: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               eth1: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 ipv4: nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   addresses: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$7, address: "192.168.0.1", prefixLength: 24n })),
+                      nix.thunk(() => ({ [nix.POS]: pos$7, address: "192.168.0.1", prefixLength: 24n })),
                     ]))),
                 })),
                 ipv6: nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   addresses: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$9, address: "fd00::1", prefixLength: 64n })),
+                      nix.thunk(() => ({ [nix.POS]: pos$9, address: "fd00::1", prefixLength: 64n })),
                     ]))),
                 })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             knot: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               enable: true,
               extraArgs: nix.thunk(() => ["-v"]),
               keyFiles: nix.thunk(() => [tsigFile]),
               settings: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 server: nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   listen: nix.thunk(() => ["0.0.0.0@53", "::@53"]),
                   "listen-quic": nix.thunk(() => ["0.0.0.0@853", "::@853"]),
                   "automatic-acl": true,
                 })),
                 acl: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   secondary_acl: nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     address: "192.168.0.2",
                     key: "xfr_key",
                     action: "transfer",
                   })),
                 })),
                 remote: nix.thunk(() => ({
-                  __proto__: pos$18,
-                  secondary: nix.thunk(() => ({ __proto__: pos$17, address: "192.168.0.2@53" })),
+                  [nix.POS]: pos$18,
+                  secondary: nix.thunk(() => ({ [nix.POS]: pos$17, address: "192.168.0.2@53" })),
                 })),
                 template: nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   default: nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     storage: knotZonesEnv,
                     notify: nix.thunk(() => ["secondary"]),
                     acl: nix.thunk(() => ["secondary_acl"]),
@@ -173,13 +173,13 @@ export default nix.lambda((args) => (() => {
                   })),
                 })),
                 zone: nix.thunk(() => ({
-                  __proto__: pos$23,
-                  "example.com": nix.thunk(() => ({ __proto__: pos$21, file: "example.com.zone" })),
-                  "sub.example.com": nix.thunk(() => ({ __proto__: pos$22, file: "sub.example.com.zone" })),
+                  [nix.POS]: pos$23,
+                  "example.com": nix.thunk(() => ({ [nix.POS]: pos$21, file: "example.com.zone" })),
+                  "sub.example.com": nix.thunk(() => ({ [nix.POS]: pos$22, file: "sub.example.com.zone" })),
                 })),
                 log: nix.thunk(() => ({
-                  __proto__: pos$25,
-                  syslog: nix.thunk(() => ({ __proto__: pos$24, any: "info" })),
+                  [nix.POS]: pos$25,
+                  syslog: nix.thunk(() => ({ [nix.POS]: pos$24, any: "info" })),
                 })),
               })),
             })),
@@ -190,62 +190,62 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$52,
+          [nix.POS]: pos$52,
           imports: nix.thunk(() => [common]),
           networking: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             interfaces: nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               eth1: nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 ipv4: nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   addresses: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$30, address: "192.168.0.2", prefixLength: 24n })),
+                      nix.thunk(() => ({ [nix.POS]: pos$30, address: "192.168.0.2", prefixLength: 24n })),
                     ]))),
                 })),
                 ipv6: nix.thunk(() => ({
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   addresses: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$32, address: "fd00::2", prefixLength: 64n })),
+                      nix.thunk(() => ({ [nix.POS]: pos$32, address: "fd00::2", prefixLength: 64n })),
                     ]))),
                 })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$51,
+            [nix.POS]: pos$51,
             knot: nix.thunk(() => ({
-              __proto__: pos$50,
+              [nix.POS]: pos$50,
               enable: true,
               keyFiles: nix.thunk(() => [tsigFile]),
               extraArgs: nix.thunk(() => ["-v"]),
               settings: nix.thunk(() => ({
-                __proto__: pos$49,
-                server: nix.thunk(() => ({ __proto__: pos$37, "automatic-acl": true })),
-                xdp: nix.thunk(() => ({ __proto__: pos$38, listen: nix.thunk(() => ["eth1"]), tcp: true })),
+                [nix.POS]: pos$49,
+                server: nix.thunk(() => ({ [nix.POS]: pos$37, "automatic-acl": true })),
+                xdp: nix.thunk(() => ({ [nix.POS]: pos$38, listen: nix.thunk(() => ["eth1"]), tcp: true })),
                 remote: nix.thunk(() => ({
-                  __proto__: pos$41,
-                  primary: nix.thunk(() => ({ __proto__: pos$39, address: "192.168.0.1@53", key: "xfr_key" })),
-                  "primary-quic": nix.thunk(() => ({ __proto__: pos$40, address: "192.168.0.1@853", key: "xfr_key", quic: true })),
+                  [nix.POS]: pos$41,
+                  primary: nix.thunk(() => ({ [nix.POS]: pos$39, address: "192.168.0.1@53", key: "xfr_key" })),
+                  "primary-quic": nix.thunk(() => ({ [nix.POS]: pos$40, address: "192.168.0.1@853", key: "xfr_key", quic: true })),
                 })),
                 template: nix.thunk(() => ({
-                  __proto__: pos$43,
+                  [nix.POS]: pos$43,
                   default: nix.thunk(() => ({
-                    __proto__: pos$42,
+                    [nix.POS]: pos$42,
                     "zonefile-sync": "-1",
                     "zonefile-load": "none",
                     "journal-content": "all",
                   })),
                 })),
                 zone: nix.thunk(() => ({
-                  __proto__: pos$46,
-                  "example.com": nix.thunk(() => ({ __proto__: pos$44, master: "primary", file: "example.com.zone" })),
-                  "sub.example.com": nix.thunk(() => ({ __proto__: pos$45, master: "primary-quic", file: "sub.example.com.zone" })),
+                  [nix.POS]: pos$46,
+                  "example.com": nix.thunk(() => ({ [nix.POS]: pos$44, master: "primary", file: "example.com.zone" })),
+                  "sub.example.com": nix.thunk(() => ({ [nix.POS]: pos$45, master: "primary-quic", file: "sub.example.com.zone" })),
                 })),
                 log: nix.thunk(() => ({
-                  __proto__: pos$48,
-                  syslog: nix.thunk(() => ({ __proto__: pos$47, any: "debug" })),
+                  [nix.POS]: pos$48,
+                  syslog: nix.thunk(() => ({ [nix.POS]: pos$47, any: "debug" })),
                 })),
               })),
             })),
@@ -257,31 +257,31 @@ export default nix.lambda((args) => (() => {
         const lib_1 = nix.arg($_1, "lib");
         const nodes = nix.arg($_1, "nodes");
         return {
-          __proto__: pos$61,
+          [nix.POS]: pos$61,
           imports: nix.thunk(() => [common]),
           networking: nix.thunk(() => ({
-            __proto__: pos$59,
+            [nix.POS]: pos$59,
             interfaces: nix.thunk(() => ({
-              __proto__: pos$58,
+              [nix.POS]: pos$58,
               eth1: nix.thunk(() => ({
-                __proto__: pos$57,
+                [nix.POS]: pos$57,
                 ipv4: nix.thunk(() => ({
-                  __proto__: pos$54,
+                  [nix.POS]: pos$54,
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$53, address: "192.168.0.3", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: pos$53, address: "192.168.0.3", prefixLength: 24n })),
                   ]),
                 })),
                 ipv6: nix.thunk(() => ({
-                  __proto__: pos$56,
+                  [nix.POS]: pos$56,
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$55, address: "fd00::3", prefixLength: 64n })),
+                    nix.thunk(() => ({ [nix.POS]: pos$55, address: "fd00::3", prefixLength: 64n })),
                   ]),
                 })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$60,
+            [nix.POS]: pos$60,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "knot-dns"))]),
           })),
         };

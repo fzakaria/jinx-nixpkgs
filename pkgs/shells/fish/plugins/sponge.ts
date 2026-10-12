@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
       const pname = "sponge";
       const version = "1.1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "meaningful-ooo",
           repo: "sponge",
           rev: version,
           sha256: "sha256-MdcZUDRtNJdiyo2l9o5ma7nAX84xEJbGFhAVhK+Zm1w=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Keeps your fish shell history clean from typos, incorrectly used commands and everything you don't want to store due to privacy reasons",
         homepage: "https://github.com/meaningful-ooo/sponge",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "quantenzitrone"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, meta };
+      return { [nix.POS]: pos$3, pname, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=sponge.ts.map

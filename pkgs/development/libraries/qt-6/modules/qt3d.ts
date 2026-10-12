@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const qtmultimedia = nix.arg($, "qtmultimedia");
   const assimp = nix.arg($, "assimp");
   return nix.app(qtModule, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "qt3d",
       postPatch: "rm -rf src/3rdparty/assimp/src\nsubstituteInPlace src/core/configure.cmake --replace-fail \"WrapQt3DAssimp 5\" \"WrapQt3DAssimp 6\"\n",
       propagatedBuildInputs: nix.thunk(() => [qtbase, qtdeclarative, qtmultimedia, assimp]),

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const protobuf = nix.arg($, "protobuf");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kontroll",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zsa",
           repo: "kontroll",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-maryIYWZdDaGe9IC+hCSNH7IhZ6r7nWlD6ws5n1U6Xo=",
       nativeBuildInputs: nix.thunk(() => [protobuf]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Demonstrates how to control the Keymapp API, making it easy to control your ZSA keyboard from the command line and scripts",
         homepage: "https://github.com/zsa/kontroll",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

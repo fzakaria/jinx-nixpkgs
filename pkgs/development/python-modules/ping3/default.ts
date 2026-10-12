@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.1.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kyan001",
           repo: "ping3",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["ping3"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ICMP ping implementation using raw socket",
         homepage: "https://github.com/kyan001/ping3",
         changelog: "https://github.com/kyan001/ping3/blob/master/CHANGELOG.md",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "ping3",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

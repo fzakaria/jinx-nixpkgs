@@ -34,12 +34,12 @@ export default nix.lambda((args) => (() => {
   const packaging_legacy = nix.arg($, "packaging-legacy");
   const webtest = nix.arg($, "webtest");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "devpi-web",
       version: "5.1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "devpi",
           repo: "devpi",
           tag: nix.thunk(() => nix.str`web-${nix.sel(finalAttrs, "version")}`),
@@ -66,12 +66,12 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_dont_index_deleted_mirror"]))),
       pythonImportsCheck: nix.thunk(() => ["devpi_web"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         skipBulkUpdate: true,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "web-" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "web-" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/devpi/devpi",
         description: "Web view for devpi-server",
         changelog: nix.thunk(() => nix.str`https://github.com/devpi/devpi/blob/${nix.sel(finalAttrs, "src", "tag")}/common/CHANGELOG`),

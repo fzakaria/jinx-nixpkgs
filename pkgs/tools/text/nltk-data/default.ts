@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const base = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     version: "0-unstable-2026-07-01",
     nativeBuildInputs: nix.thunk(() => [unzip]),
     dontBuild: true,
     dontFixup: true,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       description: "NLTK Data",
       homepage: "https://github.com/nltk/nltk_data",
       license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
     const location = nix.arg($_1, "location");
     const hash = nix.arg($_1, "hash");
     const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name: nix.thunk(() => nix.str`nltk-${location}`),
         owner: "nltk",
         repo: "nltk_data",
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         sparseCheckout: nix.thunk(() => [nix.thunk(() => nix.str`packages/${location}/${pname}.zip`)]),
       }))));
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => nix.update(base, {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: pname,
         src: src,
         version: nix.thunk(() => nix.attr(base, "version")),
@@ -78,61 +78,61 @@ runHook postInstall
       })));
   })(), formals$2);
   const makeChunker = (pname) => nix.app(makeNltkDataPackage, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       location: "chunkers",
       hash: "sha256-+n0TkS+/NHk0OqFZNQBLIcO/9uw56Mn7/AyNkRDGZEQ=",
     })));
   const makeCorpus = (pname) => nix.app(makeNltkDataPackage, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       location: "corpora",
       hash: "sha256-7uiTXZ+eMyBtH135NsYoAjLV6R/DG2hVV+RJwYDmu50=",
     })));
   const makeGrammar = (pname) => nix.app(makeNltkDataPackage, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: pname,
       location: "grammars",
       hash: "sha256-KoZ1q0F2X7bSFdbw1qK/jzZ3iuMJXTYHfogylO7nHEY=",
     })));
   const makeHelp = (pname) => nix.app(makeNltkDataPackage, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: pname,
       location: "help",
       hash: "sha256-2x3kemPdipHAj0TGYCm6Il5Aapx+fuo/jlNT9+XWbss=",
     })));
   const makeMisc = (pname) => nix.app(makeNltkDataPackage, nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: pname,
       location: "misc",
       hash: "sha256-edBgrWM+eQgEGWq7oBHTebtvJPZcofCzzXSu3S9Fa1o=",
     })));
   const makeModel = (pname) => nix.app(makeNltkDataPackage, nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: pname,
       location: "models",
       hash: "sha256-uTRr9pBfL1KZ7z8WTQPAiWlMn/os4ISa9tj/Si/RmtI=",
     })));
   const makeTagger = (pname) => nix.app(makeNltkDataPackage, nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: pname,
       location: "taggers",
       hash: "sha256-V5bs0JUQgr4ijs2NaF5JXzVwT1e/ZYnlU0TZXeoqfM4=",
     })));
   const makeTokenizer = (pname) => nix.app(makeNltkDataPackage, nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: pname,
       location: "tokenizers",
       hash: "sha256-V/Qs8wJbCZB8gp5pAAM1JK8aAfcHorNyvAkHUat56uY=",
     })));
   const makeStemmer = (pname) => nix.app(makeNltkDataPackage, nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       pname: pname,
       location: "stemmers",
       hash: "sha256-6sQQCA8r8jWRFImpiBovUt/IzHjh13W6X8yLpn61cs0=",
     })));
   return nix.app(nix.sel(lib, "makeScope"), newScope, (self) => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       "maxent-ne-chunker": nix.thunk(() => nix.app(makeChunker, "maxent_ne_chunker")),
       "maxent-ne-chunker-tab": nix.thunk(() => nix.app(makeChunker, "maxent_ne_chunker_tab")),
       abc: nix.thunk(() => nix.app(makeCorpus, "abc")),

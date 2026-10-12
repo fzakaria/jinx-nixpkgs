@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.8";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lamoreauxlab",
           repo: "srpenergy-api-client-python",
           tag: version,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["quickstart_test.py"]);
       const pythonImportsCheck = nix.thunk(() => ["srpenergy.client"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/lamoreauxlab/srpenergy-api-client-python/releases/tag/${version}`),
         description: "Unofficial Python module for interacting with Srp Energy data",
         homepage: "https://github.com/lamoreauxlab/srpenergy-api-client-python",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "robotframework-tidy",
       version: "4.18.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MarketSquare",
           repo: "robotframework-tidy",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         "tests/utest/test_cli.py::TestGenerateConfig::test_missing_dependency",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Code autoformatter for Robot Framework",
         homepage: "https://robotidy.readthedocs.io",
         changelog: nix.thunk(() => nix.str`https://github.com/MarketSquare/robotframework-tidy/blob/main/docs/releasenotes/${nix.sel(finalAttrs, "src", "tag")}.rst`),

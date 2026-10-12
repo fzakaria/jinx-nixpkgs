@@ -22,17 +22,17 @@ export default nix.lambda((args) => (() => {
   const telemetry = nix.arg($, "telemetry");
   const tls = nix.arg($, "tls");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "riot",
       version: "0.0.8",
       minimalOCamlVersion: "5.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/leostera/riot/releases/download/${nix.sel(finalAttrs, "version")}/riot-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-SsiDz53b9bMIT9Q3IwDdB3WKy98WSd9fiieU41qZpeE=",
         })))),
       patches: nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://github.com/riot-ml/riot/commit/bbbf0efce6dc84afba84e84cc231ce7ef2dcaa91.patch",
           hash: "sha256-qsPuEpur5DohOGezSTpOyBq9WxnY9OS6+w2Ls0tZkT8=",
           includes: nix.thunk(() => ["riot/lib/ssl.ml"]),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [gluon, mirage_crypto_rng, mtime, randomconv, rio, telemetry, tls]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Actor-model multi-core scheduler for OCaml 5",
         homepage: "https://github.com/leostera/riot",
         changelog: nix.thunk(() => nix.str`https://github.com/leostera/riot/blob/${nix.sel(finalAttrs, "version")}/CHANGES.md`),

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = nix.thunk(() => nix.str`20170525-${nix.app(nix.sel(lib, "strings", "substring"), 0n, 7n, rev)}`);
       const rev = "721b084c088d779075405b7f20c77c2578e2a961";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           rev: rev,
           owner: "taviso",
           repo: "loadlibrary",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [cabextract, readline]);
       const installPhase = "mkdir -p $out/bin/\ncp mpclient $out/bin/\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/taviso/loadlibrary",
         description: "Porting Windows Dynamic Link Libraries to Linux",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         mainProgram: "mpclient",
       }));
-      return { __proto__: pos$3, pname, version, rev, src, buildInputs, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, rev, src, buildInputs, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

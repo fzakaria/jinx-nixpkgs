@@ -26,14 +26,14 @@ export default nix.lambda((args) => (() => {
   const pname = "fava-portfolio-returns";
   const version = "2.4.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "andreasgerstmayr",
       repo: "fava-portfolio-returns",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-3v5zIpho6HppNm1yJdVJKhPxKgNsvRetOQIAKkp6u9U=",
     }))));
   const frontend = nix.thunk(() => nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.str`${pname}-frontend`),
       version: version,
       src: nix.thunk(() => nix.str`${src}/frontend`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out\ncp ../src/fava_portfolio_returns/FavaPortfolioReturns.js $out/\n\nrunHook postInstall\n",
     })));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       src: src,
@@ -56,9 +56,9 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["fava_portfolio_returns"]),
       pytestFlags: nix.thunk(() => ["--import-mode=importlib"]),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, frontend: frontend })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, frontend: frontend })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Show portfolio returns in Fava",
         homepage: "https://github.com/andreasgerstmayr/fava-portfolio-returns",
         changelog: "https://github.com/andreasgerstmayr/fava-portfolio-returns/blob/main/CHANGELOG.md",

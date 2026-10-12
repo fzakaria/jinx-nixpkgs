@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const buildGoModule = nix.arg($, "buildGoModule");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ultrablue-server",
       version: "unstable-fosdem2023",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ANSSI-FR",
           repo: "ultrablue",
           rev: "tags/fosdem-2023",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-249LWguTHIF0HNIo8CsE/HWpAtBw4P46VPvlTARLTpw=",
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "User-friendly Lightweight TPM Remote Attestation over Bluetooth",
         mainProgram: "ultrablue-server",
         homepage: "https://github.com/ANSSI-FR/ultrablue",

@@ -48,63 +48,63 @@ export default nix.lambda((args) => (() => {
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    __proto__: pos$34,
+    [nix.POS]: pos$34,
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         filebrowser: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "FileBrowser")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "filebrowser", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "filebrowser",
               description: "User account under which FileBrowser runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "filebrowser",
               description: "Group under which FileBrowser runs.",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "opening firewall ports for FileBrowser")),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               default: nix.thunk(() => ({})),
               description: "Settings for FileBrowser.\nRefer to <https://filebrowser.org/cli/filebrowser#options> for all supported values.\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   freeformType: nix.thunk(() => nix.sel(format, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         default: "localhost",
                         description: "The address to listen on.\n",
                         type: nix.thunk(() => nix.sel(types, "str")),
                       })))),
                     port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         default: 8080n,
                         description: "The port to listen on.\n",
                         type: nix.thunk(() => nix.sel(types, "port")),
                       })))),
                     root: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         default: "/var/lib/filebrowser/data",
                         description: "The directory where FileBrowser stores files.\n",
                         type: nix.thunk(() => nix.sel(types, "path")),
                       })))),
                     database: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         default: "/var/lib/filebrowser/database.db",
                         description: "The path to FileBrowser's Bolt database.\n",
                         type: nix.thunk(() => nix.sel(types, "path")),
                       })))),
                     "cache-dir": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         default: "/var/cache/filebrowser",
                         description: "The directory where FileBrowser stores its cache.\n",
                         type: nix.thunk(() => nix.sel(types, "path")),
@@ -117,18 +117,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         systemd: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             filebrowser: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               after: nix.thunk(() => ["network.target"]),
               description: "FileBrowser",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 ExecStart: nix.thunk(() => (() => {
                   const args_1 = nix.thunk(() => [
                     nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))),
@@ -159,32 +159,32 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             settings: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               filebrowser: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${nix.sel(cfg, "settings", "root")}`, nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   d: nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     user: nix.thunk(() => nix.attr(cfg, "user")),
                     group: nix.thunk(() => nix.attr(cfg, "group")),
                     mode: "0700",
                   })),
                 }))],
                 [nix.str`${nix.sel(cfg, "settings", "cache-dir")}`, nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   d: nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     user: nix.thunk(() => nix.attr(cfg, "user")),
                     group: nix.thunk(() => nix.attr(cfg, "group")),
                     mode: "0700",
                   })),
                 }))],
                 [nix.str`${nix.builtins.dirOf(nix.thunk(() => nix.sel(cfg, "settings", "database")))}`, nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   d: nix.thunk(() => ({
-                    __proto__: pos$21,
+                    [nix.POS]: pos$21,
                     user: nix.thunk(() => nix.attr(cfg, "user")),
                     group: nix.thunk(() => nix.attr(cfg, "group")),
                     mode: "0700",
@@ -195,27 +195,27 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "filebrowser")), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               filebrowser: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 group: nix.thunk(() => nix.attr(cfg, "group")),
                 isSystemUser: true,
               })),
             })))),
-          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "filebrowser")), nix.thunk(() => ({ __proto__: pos$28, filebrowser: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "filebrowser")), nix.thunk(() => ({ [nix.POS]: pos$28, filebrowser: nix.thunk(() => ({})) })))),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           firewall: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "port"))]))),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$33,
+      [nix.POS]: pos$33,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "lukaswrz"))]),
     })),
   };

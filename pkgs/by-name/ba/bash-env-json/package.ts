@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "bash-env-json",
       version: "0.11.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tesujimath",
           repo: "bash-env-json",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,11 +37,11 @@ substituteInPlace $out/bin/bash-env-json --replace-fail " sed " " ${nix.app(nix.
 substituteInPlace $out/bin/bash-env-json --replace-fail " touch " " ${nix.app(nix.sel(lib, "getExe'"), coreutils, "touch")} "
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Export Bash environment as JSON for import into modern shells like Elvish and Nushell",
         homepage: "https://github.com/tesujimath/bash-env-json",
         mainProgram: "bash-env-json",

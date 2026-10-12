@@ -19,23 +19,23 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const libgcc = nix.arg($, "libgcc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "caido-cli",
       version: "0.57.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.selOr({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "x86_64-linux": nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://caido.download/releases/v${nix.sel(finalAttrs, "version")}/caido-cli-v${nix.sel(finalAttrs, "version")}-linux-x86_64.tar.gz`),
             hash: "sha256-ujpGYERNceUPartkgx4o38xUfPwWvnmiEnjkvmEbybA=",
           })),
           "aarch64-linux": nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`https://caido.download/releases/v${nix.sel(finalAttrs, "version")}/caido-cli-v${nix.sel(finalAttrs, "version")}-linux-aarch64.tar.gz`),
             hash: "sha256-d1xzF0N6emShCQpotFiQEj1wV3hdt1DK7R+6Smlxrmg=",
           })),
           "aarch64-darwin": nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: nix.thunk(() => nix.str`https://caido.download/releases/v${nix.sel(finalAttrs, "version")}/caido-cli-v${nix.sel(finalAttrs, "version")}-mac-aarch64.zip`),
             hash: "sha256-FwbKLEwjiFzZWdBS6RgsDtc/EkI9AT2CBGwdmgEdDnw=",
           })),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: ".",
       installPhase: "runHook preInstall\ninstall -m 755 -D caido-cli $out/bin/caido-cli\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Caido CLI — lightweight web security auditing toolkit",
         homepage: "https://caido.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/caido/caido/releases/tag/v${nix.sel(finalAttrs, "version")}`),

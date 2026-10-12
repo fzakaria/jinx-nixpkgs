@@ -17,17 +17,17 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const pythonPackages = nix.thunk(() => nix.app(nix.sel(python3Packages, "overrideScope"), (self) => (super$) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       lsprotocol: nix.thunk(() => nix.sel(self, "lsprotocol_2023")),
       pygls: nix.thunk(() => nix.sel(self, "pygls_1")),
     })));
   return nix.app(nix.sel(pythonPackages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cmake-language-server",
       version: "0.1.11",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "regen100",
           repo: "cmake-language-server",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         "test_completions_triggercharacter",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CMake LSP Implementation",
         homepage: "https://github.com/regen100/cmake-language-server",
         changelog: nix.thunk(() => nix.str`https://github.com/regen100/cmake-language-server/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

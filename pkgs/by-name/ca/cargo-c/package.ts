@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const rav1e = nix.arg($, "rav1e");
   const cargoVersion = "0.96.0";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "cargo-c",
       version: "0.10.22",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}+cargo-${cargoVersion}`),
           hash: "sha256-yqSrpBZUa0NmsPawYKKgywmbbG4zgguwfDF667s7zdo=",
@@ -38,12 +38,12 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "libc"), "glibc")),
       installCheckPhase: "runHook preInstallCheck\n\nldd \"$out/bin/cargo-cbuild\" | grep libcurl.so\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$2, rav1e: rav1e })),
-        updateScript: nix.thunk(() => ({ __proto__: pos$3, command: nix.thunk(() => [nix.path(here, "./update.sh")]) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, rav1e: rav1e })),
+        updateScript: nix.thunk(() => ({ [nix.POS]: pos$3, command: nix.thunk(() => [nix.path(here, "./update.sh")]) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Cargo subcommand to build and install C-ABI compatible dynamic and static libraries",
         longDescription: "Cargo C-ABI helpers. A cargo applet that produces and installs a correct\npkg-config file, a static library and a dynamic library, and a C header\nto be used by any C (and C-compatible) software.\n",
         homepage: "https://github.com/lu-zero/cargo-c",

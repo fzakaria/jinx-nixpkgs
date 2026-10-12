@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const xray = nix.arg($, "xray");
   const obfs4 = nix.arg($, "obfs4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "z-library-desktop",
       version: "3.2.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://web.archive.org/web/20260927191559/https://dln1.ncdn.ec/general-files/soft/desktop/Z-Library_3.2.1_amd64.deb",
           hash: "sha256-1zmcFIoZWuKUgS4YhyYrsIYISEFD1diEqtNbZvs4lC4=",
         })))),
@@ -82,11 +82,11 @@ runHook postInstall
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`mkdir -p $out/Applications/Z-Library.app/Contents/{MacOS,Resources}
 ln -s $out/bin/z-library $out/Applications/Z-Library.app/Contents/MacOS/Z-Library
 ln -s $phome/resources/app/dist/icon.icns $out/Applications/Z-Library.app/Contents/Resources/icon.icns
-install -Dm444 ${nix.app(replaceVars, nix.path(here, "./Info.plist"), nix.thunk(() => ({ __proto__: pos$2, version: nix.thunk(() => nix.attr(finalAttrs, "version")) })))} $out/Applications/Z-Library.app/Contents/Info.plist
+install -Dm444 ${nix.app(replaceVars, nix.path(here, "./Info.plist"), nix.thunk(() => ({ [nix.POS]: pos$2, version: nix.thunk(() => nix.attr(finalAttrs, "version")) })))} $out/Applications/Z-Library.app/Contents/Info.plist
 `))),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.path(here, "./update.rb") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.rb") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://z-library.sk",
         description: "Client for the online library Z-Library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(actual_server, "offlineCache"));
       return {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "actual-client",
       srcs: nix.thunk(() => nix.attr(actual_server, "srcs")),
       version: nix.thunk(() => nix.attr(actual_server, "version")),
@@ -116,7 +116,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             name: "com.actualbudget.actual",
             desktopName: "Actual",
             exec: "actual %U",
@@ -130,11 +130,11 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         offlineCache: nix.thunk(() => nix.attr(finalAttrs, "offlineCache")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: "https://actualbudget.org/docs/releases",
         description: "Super fast privacy-focused app for managing your finances",
         homepage: "https://actualbudget.org/",

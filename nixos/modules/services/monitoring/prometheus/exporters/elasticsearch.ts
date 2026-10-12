@@ -22,20 +22,20 @@ export default nix.lambda((args) => (() => {
   const escapeSystemdExecArgs = nix.thunk(() => nix.attr(utils, "escapeSystemdExecArgs"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "prometheus", "exporters", "elasticsearch"));
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     port: 9114n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "prometheus-elasticsearch-exporter", nix.thunk(() => ({})))),
       url: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "http://localhost:9200",
           example: "https://localhost:9200",
           description: "URI of the Elasticsearch (or OpenSearch) node to scrape, passed as\n`--es.uri`. Any credentials embedded here are overridden by the\n`ES_USERNAME`/`ES_PASSWORD` or `ES_API_KEY` environment variables when\n{option}`environmentFile` is set.\n",
         })))),
       environmentFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
           default: null,
           example: "/run/secrets/elasticsearch-exporter.env",
@@ -43,9 +43,9 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         EnvironmentFile: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "environmentFile"), null)), nix.thunk(() => nix.sel(cfg, "environmentFile")))),
         ExecStart: nix.thunk(() => nix.app(escapeSystemdExecArgs, nix.thunk(() => nix.concat([
             nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))),

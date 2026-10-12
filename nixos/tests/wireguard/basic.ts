@@ -33,19 +33,19 @@ export default nix.lambda((args) => (() => {
   const wg_snakeoil_keys = nix.thunk(() => nix.builtins.import(nix.path(here, "./snakeoil-keys.nix")));
   const peer = nix.thunk(() => nix.builtins.import(nix.path(here, "./make-peer.nix")));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     name: "wireguard",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "ma27"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       peer0: nix.thunk(() => nix.app(peer, nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           ip4: "192.168.0.1",
           ip6: "fd00::1",
           extraConfig: nix.lambda((args_1) => (() => {
@@ -53,29 +53,29 @@ export default nix.lambda((args) => (() => {
             const lib_1 = nix.arg($_1, "lib");
             const pkgs = nix.arg($_1, "pkgs");
             return {
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               boot: nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 kernelPackages: nix.thunk(() => nix.app(nix.sel(lib_1, "mkIf"), nix.thunk(() => !nix.eq(kernelPackages, null)), nix.thunk(() => nix.app(kernelPackages, pkgs)))),
               })),
               networking: nix.thunk(() => ({
-                __proto__: pos$8,
-                firewall: nix.thunk(() => ({ __proto__: pos$3, allowedUDPPorts: nix.thunk(() => [23542n]) })),
+                [nix.POS]: pos$8,
+                firewall: nix.thunk(() => ({ [nix.POS]: pos$3, allowedUDPPorts: nix.thunk(() => [23542n]) })),
                 wireguard: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   interfaces: nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     wg0: nix.thunk(() => (() => {
                       const from = nix.thunk(() => nix.sel(wg_snakeoil_keys, "peer0"));
                       return {
-                      __proto__: pos$5,
+                      [nix.POS]: pos$5,
                       ips: nix.thunk(() => ["10.23.42.1/32", "fc00::1/128"]),
                       listenPort: 23542n,
                       privateKey: nix.thunk(() => nix.attr(from, "privateKey")),
                       peers: nix.thunk(() => nix.app(nix.sel(lib_1, "singleton"), nix.thunk(() => (() => {
                           const from_1 = nix.thunk(() => nix.sel(wg_snakeoil_keys, "peer1"));
                           return {
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           allowedIPs: nix.thunk(() => ["10.23.42.2/32", "fc00::2/128"]),
                           publicKey: nix.thunk(() => nix.attr(from_1, "publicKey")),
                         };
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
           })(), formals$2),
         })))),
       peer1: nix.thunk(() => nix.app(peer, nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           ip4: "192.168.0.2",
           ip6: "fd00::2",
           extraConfig: nix.lambda((args_1) => (() => {
@@ -97,21 +97,21 @@ export default nix.lambda((args) => (() => {
             const lib_1 = nix.arg($_1, "lib");
             const pkgs = nix.arg($_1, "pkgs");
             return {
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               boot: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 kernelPackages: nix.thunk(() => nix.app(nix.sel(lib_1, "mkIf"), nix.thunk(() => !nix.eq(kernelPackages, null)), nix.thunk(() => nix.app(kernelPackages, pkgs)))),
               })),
               networking: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 wireguard: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   interfaces: nix.thunk(() => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     wg0: nix.thunk(() => (() => {
                       const from = nix.thunk(() => nix.sel(wg_snakeoil_keys, "peer1"));
                       return {
-                      __proto__: pos$13,
+                      [nix.POS]: pos$13,
                       ips: nix.thunk(() => ["10.23.42.2/32", "fc00::2/128"]),
                       listenPort: 23542n,
                       allowedIPsAsRoutes: false,
@@ -119,7 +119,7 @@ export default nix.lambda((args) => (() => {
                       peers: nix.thunk(() => nix.app(nix.sel(lib_1, "singleton"), nix.thunk(() => (() => {
                           const from_1 = nix.thunk(() => nix.sel(wg_snakeoil_keys, "peer0"));
                           return {
-                          __proto__: pos$12,
+                          [nix.POS]: pos$12,
                           allowedIPs: nix.thunk(() => ["0.0.0.0/0", "::/0"]),
                           endpoint: "192.168.0.1:23542",
                           persistentKeepalive: 25n,

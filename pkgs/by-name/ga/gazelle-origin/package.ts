@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "gazelle-origin",
           owner: "spinfast319",
           tag: version,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       })());
       const pythonImportsCheck = nix.thunk(() => ["gazelleorigin"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for generating origin files using the API of Gazelle-based torrent trackers",
         homepage: "https://github.com/spinfast319/gazelle-origin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "gazelle-origin",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

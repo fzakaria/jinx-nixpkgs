@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pixelb",
           repo: "crudini",
           tag: version,
@@ -45,7 +45,7 @@ installManPage *.1
 `);
       const checkPhase = "runHook preCheck\n\npushd tests >/dev/null\n./test.sh\npopd >/dev/null\n\nrunHook postCheck\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utility for manipulating ini files",
         homepage: "https://www.pixelbeat.org/programs/crudini/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -56,7 +56,7 @@ installManPage *.1
         mainProgram: "crudini",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

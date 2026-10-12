@@ -106,11 +106,11 @@ export default nix.lambda((args) => (() => {
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: nix.thunk(() => nix.str`${nix.app(optionalString, onlyLibVLC, "lib")}vlc`),
       version: "3.0.24",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "code.videolan.org",
           owner: "videolan",
           repo: "vlc",
@@ -202,13 +202,13 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       outputs: nix.thunk(() => ["out", "dev", "doc", "man"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         BUILDCC: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgsBuildBuild, "stdenv", "cc")))),
         LIVE555_PREFIX: live555,
       })),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://code.videolan.org/videolan/vlc/uploads/eb1c313d2d499b8a777314f789794f9d/0001-Add-lssl-and-lcrypto-to-liblive555_plugin_la_LIBADD.patch",
             hash: "sha256-qs3gY1ksCZlf931TSZyMuT2JD0sqrmcRCZwL+wVG0U8=",
           })))),
@@ -233,11 +233,11 @@ ${(nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(
 `, nix.app(optionalString, withQt5, nix.thunk(() => nix.str`remove-references-to -t "${nix.sel(libsForQt5, "qtbase", "dev")}" $out/lib/vlc/plugins/gui/libqt_plugin.so
 `)))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Cross-platform media player and streaming server",
         homepage: "https://www.videolan.org/vlc/",
         donationPage: "https://www.videolan.org/contribute.html#money",

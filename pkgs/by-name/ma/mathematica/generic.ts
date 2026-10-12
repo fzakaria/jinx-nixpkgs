@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const cudaSupport = nix.arg($, "cudaSupport");
   const cudaEnv = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "mathematica-cuda-env",
       paths: nix.thunk(() => (() => {
         const w = nix.withScope(cudaPackages, null);
@@ -89,7 +89,7 @@ ln -s lib $out/lib64
 `),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       meta: meta,
       pname: pname,
       src: src,

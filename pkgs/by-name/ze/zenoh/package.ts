@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const zenoh = nix.arg($, "zenoh");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "zenoh",
       version: "1.10.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eclipse-zenoh",
           repo: "zenoh",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,11 +45,11 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       preInstall: "cp -r $releaseDir/examples/* $tmpDir/\nbins=$(find $tmpDir \\\n  -maxdepth 1 \\\n  -type f \\\n  -executable \\\n  -regextype posix-extended \\\n  ! -regex \".*\\.(so\\.[0-9.]+|so|a|d|dylib)|.*-[0-9a-f]{16,}\")\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: zenoh,
               version: nix.thunk(() => nix.add("v", nix.sel(finalAttrs, "version"))),
             })))),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Communication protocol that combines pub/sub with key value storage and computation",
         longDescription: "Zenoh unifies data in motion, data in-use, data at rest and computations. It carefully blends traditional pub/sub with geo-distributed storages, queries and computations, while retaining a level of time and space efficiency that is well beyond any of the mainstream stacks",
         homepage: "https://zenoh.io",

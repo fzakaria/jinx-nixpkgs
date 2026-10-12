@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "zsh-edit";
       const version = "0-unstable-2022-05-05";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "marlonrichert",
           repo: "zsh-edit",
           rev: "4a8fa599792b6d52eadbb3921880a40872013d28",
@@ -31,7 +31,7 @@ install -d $outdir/functions
 install -D functions/{,.edit}* $outdir/functions
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/marlonrichert/zsh-edit",
         description: "Set of powerful extensions to the Zsh command line editor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -42,7 +42,7 @@ install -D functions/{,.edit}* $outdir/functions
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

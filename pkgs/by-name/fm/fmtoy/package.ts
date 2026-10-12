@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "fmtoy",
       version: "0-unstable-2024-12-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vampirefrog",
           repo: "fmtoy",
           rev: "6858fc8ad3171df2c9b90cb1e62719af9fc4f7c2",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         alsa_lib,
         libjack2,
         nix.thunk(() => nix.app(nix.sel(libvgm, "override"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             enableEmulation: true,
             withAllEmulators: false,
             emulators: nix.thunk(() => [
@@ -67,11 +67,11 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 fmtoy_jack $out/bin/fmtoy_jack\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "FM synthesiser based on emulated Yamaha YM chips (OPL, OPM and OPN series)",
         homepage: "https://github.com/vampirefrog/fmtoy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

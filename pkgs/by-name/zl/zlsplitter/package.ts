@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const libxkbcommon = nix.arg($, "libxkbcommon");
   const lv2 = nix.arg($, "lv2");
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "zlsplitter",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ZL-Audio",
           repo: "ZLSplitter",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
           libxkbcommon,
         ])))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(clangStdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lX11", "-lXext", "-lXcursor", "-lXinerama", "-lXrandr"]))),
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-ffat-lto-objects"]))),
         })))),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: nix.thunk(() => nix.add(nix.add(nix.add("runHook preInstall\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(clangStdenv, "hostPlatform", "isLinux")), "mkdir -p $out/lib/{lv2,vst3}\nmkdir -p $out/bin/\ncp -r \"ZLSplitter_artefacts/Release/LV2/ZL Splitter.lv2\" $out/lib/lv2/\ncp -r \"ZLSplitter_artefacts/Release/VST3/ZL Splitter.vst3\" $out/lib/vst3/\ninstall -Dm755 \"ZLSplitter_artefacts/Release/Standalone/ZL Splitter\" $out/bin/\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(clangStdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications\ncp -r ZLSplitter_artefacts/Release/{AU,VST3} $out/\ncp -r ZLSplitter_artefacts/Release/Standalone/* $out/Applications/\n")), "runHook postInstall\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://zl-audio.github.io/plugins/zlsplitter/",
         description: "Versatile splitter plugin for VST3, LV2 and standalone",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const bluez = nix.arg($, "bluez");
   const udevGroup = nix.argOr($, "udevGroup", () => "ubertooth");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ubertooth",
       version: "2020-12-R1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "greatscottgadgets",
           repo: "ubertooth",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         ]))),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open source wireless development platform suitable for Bluetooth experimentation",
         homepage: "https://github.com/greatscottgadgets/ubertooth",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

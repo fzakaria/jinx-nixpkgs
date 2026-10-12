@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const yt_dlp_light = nix.arg($, "yt-dlp-light");
   const withMpv = nix.argOr($, "withMpv", () => true);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "bilibili-tui",
       version: "1.0.14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MareDevi",
           repo: "bilibili-tui",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,17 +37,17 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-YxCvFCRtnIUxXgZWBvhKnjeth8TX+3iHcOxPQX8d6Ck=",
       nativeBuildInputs: nix.thunk(() => nix.concat([makeBinaryWrapper], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), pkg_config))),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), openssl)),
-      env: nix.thunk(() => ({ __proto__: pos$2, OPENSSL_NO_VENDOR: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: true })),
       nativeCheckInputs: nix.thunk(() => [cacert]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withMpv, nix.thunk(() => nix.str`wrapProgram $out/bin/bilibili-tui \\
   --suffix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [mpv_unwrapped, yt_dlp_light]))}
 `))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Terminal user interface (TUI) client for Bilibili",
         homepage: "https://maredevi.moe/projects/bilibili-tui/",
         downloadPage: "https://github.com/MareDevi/bilibili-tui/releases",

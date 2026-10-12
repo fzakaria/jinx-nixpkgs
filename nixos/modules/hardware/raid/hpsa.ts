@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "hpssacli";
       const version = "2.40-13.0";
       const src = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchurl"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://downloads.linux.hpe.com/SDR/downloads/MCP/Ubuntu/pool/non-free/${pname}-${version}_amd64.deb`),
             nix.thunk(() => nix.str`http://apt.netangels.net/pool/main/h/hpssacli/${pname}-${version}_amd64.deb`),
@@ -48,7 +48,7 @@ done
 `);
       const dontStrip = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "HP Smart Array CLI",
         homepage: "https://downloads.linux.hpe.com/SDR/downloads/MCP/Ubuntu/pool/non-free/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
@@ -56,7 +56,7 @@ done
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,
@@ -68,31 +68,31 @@ done
       };
     })())));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       hardware: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         raid: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           HPSmartArray: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "HP Smart Array kernel modules and CLI utility")),
           })),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "hardware", "raid", "HPSmartArray", "enable")), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         boot: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           initrd: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             kernelModules: nix.thunk(() => ["sg"]),
             availableKernelModules: nix.thunk(() => ["hpsa"]),
           })),
         })),
-        environment: nix.thunk(() => ({ __proto__: pos$10, systemPackages: nix.thunk(() => [hpssacli]) })),
+        environment: nix.thunk(() => ({ [nix.POS]: pos$10, systemPackages: nix.thunk(() => [hpssacli]) })),
       })))),
   };
 })(), formals$1);

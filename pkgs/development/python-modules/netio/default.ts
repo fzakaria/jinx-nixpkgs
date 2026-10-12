@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pyopenssl = nix.arg($, "pyopenssl");
   const requests = nix.arg($, "requests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "netio",
       version: "2.0.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "netioproducts",
           repo: "PyNetio",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["Netio"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module for interacting with NETIO devices",
         homepage: "https://github.com/netioproducts/PyNetio",
         changelog: nix.thunk(() => nix.str`https://github.com/netioproducts/PyNetio/blob/v${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

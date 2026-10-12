@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const typer = nix.arg($, "typer");
   const zip = nix.arg($, "zip");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "swi-tools",
       version: "1.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aristanetworks",
           repo: "swi-tools",
           rev: "6db86f5983426d272e541a61e0add79b3fec5b1e",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["switools", "switools.verify"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, zip, versionCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Scripts for operating on an Arista SWI or SWIX",
         homepage: "https://github.com/aristanetworks/swi-tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

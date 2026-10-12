@@ -15,22 +15,22 @@ export default nix.lambda((args) => (() => {
   const pkgsBuildHost = nix.arg($, "pkgsBuildHost");
   const resholve = nix.arg($, "resholve");
   const removeKnownVulnerabilities = (pkg) => nix.app(nix.sel(pkg, "overrideAttrs"), (old) => ({
-      __proto__: pos$2,
-      meta: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "meta"), { __proto__: pos$1, knownVulnerabilities: [] })),
+      [nix.POS]: pos$2,
+      meta: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "meta"), { [nix.POS]: pos$1, knownVulnerabilities: [] })),
     }));
   const callPackage = nix.thunk(() => nix.app(nix.sel(lib, "callPackageWith"), pkgsBuildHost));
   const source = nix.thunk(() => nix.app(callPackage, nix.path(here, "./source.nix"), nix.thunk(() => ({}))));
   const resholveBuildTimeOnly = nix.thunk(() => nix.app(removeKnownVulnerabilities, resholve));
   return (() => {
     const resholve_1 = nix.thunk(() => nix.app(callPackage, nix.path(here, "./resholve.nix"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         rSrc: nix.thunk(() => nix.attr(source, "rSrc")),
         version: nix.thunk(() => nix.attr(source, "version")),
         "resholve-utils": resholve_utils,
         resholve: resholveBuildTimeOnly,
       }))));
-    const resholve_utils = nix.thunk(() => nix.app(callPackage, nix.path(here, "./resholve-utils.nix"), nix.thunk(() => ({ __proto__: pos$4, resholve: resholveBuildTimeOnly }))));
-    return { __proto__: pos$5, resholve: resholve_1, "resholve-utils": resholve_utils };
+    const resholve_utils = nix.thunk(() => nix.app(callPackage, nix.path(here, "./resholve-utils.nix"), nix.thunk(() => ({ [nix.POS]: pos$4, resholve: resholveBuildTimeOnly }))));
+    return { [nix.POS]: pos$5, resholve: resholve_1, "resholve-utils": resholve_utils };
   })();
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

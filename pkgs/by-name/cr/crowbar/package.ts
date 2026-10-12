@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const tigervnc = nix.arg($, "tigervnc");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "crowbar",
       version: "4.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "galkan",
           repo: "crowbar",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ sed -i 's,/usr/bin/nmap,${nmap}/bin/nmap,g' lib/nmap.py
 `),
       checkPhase: "$out/bin/crowbar --help > /dev/null\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/galkan/crowbar",
         description: "Brute forcing tool that can be used during penetration tests",
         mainProgram: "crowbar",

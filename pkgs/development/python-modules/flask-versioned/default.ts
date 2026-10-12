@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const flask = nix.arg($, "flask");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "flask-versioned",
       version: "0.9.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pilt",
           repo: "flask-versioned",
           rev: "38046fb53a09060de437c90a5f7370a6b94ffc31",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonNamespaces: nix.thunk(() => ["flaskext"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Flask plugin to rewrite file paths to add version info",
         homepage: "https://github.com/pilt/flask-versioned",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

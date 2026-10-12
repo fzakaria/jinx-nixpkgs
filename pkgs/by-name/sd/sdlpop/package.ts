@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const SDL2 = nix.arg($, "SDL2");
   const SDL2_image = nix.arg($, "SDL2_image");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sdlpop",
       version: "1.23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NagyD",
           repo: "SDLPoP",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +51,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "sdlpop",
             icon: "sdlpop",
             exec: "prince",
@@ -61,7 +61,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Open-source port of Prince of Persia",
         homepage: "https://github.com/NagyD/SDLPoP",
         changelog: nix.thunk(() => nix.str`https://github.com/NagyD/SDLPoP/blob/v${nix.sel(finalAttrs, "version")}/doc/ChangeLog.txt`),

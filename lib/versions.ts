@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       return nix.add(nix.app(nix.sel(lib, "concatStringsSep"), ".", nix.thunk(() => nix.app(nix.sel(lib, "take"), n, nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "splitVersion"), numericVersion), nix.app(nix.sel(lib, "genList"), (_) => "0", n)))))), versionSuffix);
     })();
     return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       compareVersions,
       splitVersion,
       major,

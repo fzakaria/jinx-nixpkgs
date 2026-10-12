@@ -22,42 +22,42 @@ const pos$16 = nix.positions(here + "/ntfy-sh-migration.nix", [["machine", 13, 9
 const pos$17 = nix.positions(here + "/ntfy-sh-migration.nix", [["name", 11, 3], ["nodes", 13, 3], ["testScript", 49, 3]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.thunk(() => ({
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     name: "ntfy-sh",
     nodes: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       machine: nix.lambda((args) => (() => {
         const $ = nix.formals(args, formals$1);
         const lib = nix.arg($, "lib");
         const pkgs = nix.arg($, "pkgs");
         return {
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           environment: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             etc: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               "ntfy-sh-dynamic-user.conf": nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 text: "[Service]\nGroup=new-ntfy-sh\nUser=new-ntfy-sh\nDynamicUser=true\n",
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             "ntfy-sh": nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               enable: true,
-              settings: nix.thunk(() => ({ __proto__: pos$4, "base-url": "http://localhost:2586" })),
+              settings: nix.thunk(() => ({ [nix.POS]: pos$4, "base-url": "http://localhost:2586" })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             services: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               "ntfy-sh": nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   DynamicUser: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), false)),
                   ExecStartPre: nix.thunk(() => [
                     nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/id`),
@@ -71,12 +71,12 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             users: nix.thunk(() => ({
-              __proto__: pos$12,
-              "old-ntfy-sh": nix.thunk(() => ({ __proto__: pos$11, isSystemUser: true, group: "old-ntfy-sh" })),
+              [nix.POS]: pos$12,
+              "old-ntfy-sh": nix.thunk(() => ({ [nix.POS]: pos$11, isSystemUser: true, group: "old-ntfy-sh" })),
             })),
-            groups: nix.thunk(() => ({ __proto__: pos$13, "old-ntfy-sh": nix.thunk(() => ({})) })),
+            groups: nix.thunk(() => ({ [nix.POS]: pos$13, "old-ntfy-sh": nix.thunk(() => ({})) })),
           })),
         };
       })(), formals$1),

@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "polyglot";
       const version = "3.6.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DraqueT",
           repo: "PolyGlot",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -42,18 +42,18 @@ zip -r ../../assets/assets/org/DarisaDesigns/exlex *
 cd ../..
 `);
       const mvnHash = nix.thunk(() => nix.selOr({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "aarch64-linux": "sha256-o5dFk1pghCOaaxAto7e5kXn2mrVEGAtb9kTwQQN2N8o=",
         "x86_64-linux": "sha256-KYgeVBhqBjP6dqwpSzoqH8dfsL4WpJcSiHEMfgk0CNE=",
       }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
       const mvnFetchExtraArgs = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         env: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           SOURCE_DATE_EPOCH: nix.thunk(() => nix.attr(env, "SOURCE_DATE_EPOCH")),
         })),
       }));
-      const env = nix.thunk(() => ({ __proto__: pos$5, SOURCE_DATE_EPOCH: 315532802n }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$5, SOURCE_DATE_EPOCH: 315532802n }));
       const mvnParameters = "-DskipTests";
       const nativeBuildInputs = nix.thunk(() => [makeWrapper, zip]);
       const runtimeDeps = nix.thunk(() => [xdg_utils, zlib]);
@@ -70,7 +70,7 @@ makeWrapper ${jre}/bin/java $out/bin/PolyGlot \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Conlang construction toolkit",
         homepage: "https://draquet.github.io/PolyGlot/readme.html",
         changelog: nix.thunk(() => nix.str`https://github.com/DraqueT/PolyGlot/releases/tag/v${version}`),
@@ -83,7 +83,7 @@ runHook postInstall
         mainProgram: "PolyGlot",
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

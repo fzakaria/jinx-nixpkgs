@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const rev = "e821bcbecdc997d71766836a200e16b27535a835";
   const realVersion = nix.thunk(() => nix.str`1.4-12-g${nix.builtins.substring(0n, 7n, rev)}`);
   const main_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "YosysHQ",
       repo: "prjtrellis",
       rev: rev,
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       name: "trellis",
     }))));
   const database_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "YosysHQ",
       repo: "prjtrellis-db",
       rev: "015e0330630d7c238c0e4f2cdd9c8157eb78c54a",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       name: "trellis-database",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "trellis",
       version: "unstable-2025-01-30",
       srcs: nix.thunk(() => [main_src, database_src]),
@@ -53,7 +53,7 @@ cd libtrellis
       doInstallCheck: true,
       installCheckPhase: "$out/bin/ecppack $out/share/trellis/misc/basecfgs/empty_lfe5u-85f.config /tmp/test.bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Documentation and bitstream tools for Lattice ECP5 FPGAs",
         longDescription: "Project Trellis documents the Lattice ECP5 architecture\nto enable development of open-source tools. Its goal is\nto provide sufficient information to develop a free and\nopen Verilog to bitstream toolchain for these devices.\n",
         homepage: "https://github.com/YosysHQ/prjtrellis",

@@ -40,12 +40,12 @@ export default nix.lambda((args) => (() => {
   const cudaSupport = nix.thunk(() => nix.attr(torch, "cudaSupport"));
   const backendStdenv = nix.thunk(() => nix.attr(cudaPackages, "backendStdenv"));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mmcv",
       version: "2.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "open-mmlab",
           repo: "mmcv",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -69,11 +69,11 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools_80]),
       dependencies: nix.thunk(() => [addict, mmengine, numpy, packaging, pillow, pyyaml, yapf]),
       env: nix.thunk(() => nix.update({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CUDA_HOME: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), cudaSupport, nix.thunk(() => nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(cudaPackages, "cuda_nvcc")))))),
         MMCV_WITH_OPS: 1n,
       }, nix.app(nix.sel(lib, "optionalAttrs"), cudaSupport, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           CC: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(backendStdenv, "cc")), "cc")),
           CXX: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(backendStdenv, "cc")), "c++")),
           TORCH_CUDA_ARCH_LIST: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ";", cudaCapabilities)),
@@ -102,7 +102,7 @@ export default nix.lambda((args) => (() => {
         "test_reader",
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["test_ycbcr2rgb", "test_ycbcr2bgr", "test_tensor2imgs"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))), nix.thunk(() => ["test_transform"]))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Foundational Library for Computer Vision Research",
         homepage: "https://github.com/open-mmlab/mmcv",
         changelog: nix.thunk(() => nix.str`https://github.com/open-mmlab/mmcv/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

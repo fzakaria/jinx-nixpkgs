@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libxcrypt = nix.arg($, "libxcrypt");
   const version = "0.16";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gatling",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.fefe.de/gatling/gatling-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "0nrnws5qrl4frqcsfa9z973vv5mifgr9z170qbvg3mq1wa7475jz",
         })))),
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       configurePhase: "runHook preConfigure\n\nsubstituteInPlace Makefile --replace-fail \"/usr/local\" \"$out\"\nsubstituteInPlace GNUmakefile --replace-fail \"/opt/diet\" \"$out\"\nsubstituteInPlace tryalloca.c --replace-fail \"main() {\" \"int main() {\"\nsubstituteInPlace trysocket.c --replace-fail \"main() {\" \"int main() {\"\n\nrunHook postConfigure\n",
       buildPhase: "make gatling\n",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=incompatible-pointer-types"]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "High performance web server",
         homepage: "http://www.fefe.de/gatling/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

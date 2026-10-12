@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const enableXinerama = nix.argOr($, "enableXinerama", () => true);
   const libxinerama = nix.arg($, "libxinerama");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "2.0.2",
       pname: "setroot",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ttzhou",
           repo: "setroot",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/ttzhou/setroot/commit/d8ff8edd7d7594d276d741186bf9ccf0bce30277.patch",
             sha256: "sha256-e0iMSpiOmTOpQnp599fjH2UCPU4Oq1VKXcVypVoR9hw=",
           })))),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       buildFlags: nix.thunk(() => [nix.thunk(() => (nix.asBool(enableXinerama) ? "xinerama=1" : "xinerama=0"))]),
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simple X background setter inspired by imlibsetroot and feh",
         homepage: "https://github.com/ttzhou/setroot",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

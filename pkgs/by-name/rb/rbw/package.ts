@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const withPass = nix.argOr($, "withPass", () => false);
   const pass = nix.arg($, "pass");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rbw",
       version: "1.15.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://git.tozt.net/rbw/snapshot/rbw-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-N/s1flB+s2HwEeLsf7YlJG+5TJgP8Wu7PHNPWmVfpIo=",
         })))),
@@ -53,7 +53,7 @@ substituteInPlace $out/bin/pass-import \\
   --replace pass ${pass}/bin/pass
 `)))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unofficial command line client for Bitwarden",
         homepage: "https://crates.io/crates/rbw",
         changelog: nix.thunk(() => nix.str`https://git.tozt.net/rbw/plain/CHANGELOG.md?id=${nix.sel(finalAttrs, "version")}`),

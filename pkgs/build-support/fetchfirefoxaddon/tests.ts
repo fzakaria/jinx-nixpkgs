@@ -14,20 +14,20 @@ export default nix.lambda((args) => (() => {
   const fetchFirefoxAddon = nix.arg($, "fetchFirefoxAddon");
   const fetchurl = nix.arg($, "fetchurl");
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     simple: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchFirefoxAddon, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "image-search-options",
         url: "https://addons.mozilla.org/firefox/downloads/file/3059971/image_search_options-3.0.12-fx.xpi",
         sha256: "sha256-H73YWX/DKxvhEwKpWOo7orAQ7c/rQywpljeyxYxv0Gg=",
       })))),
     "overridden-source": nix.thunk(() => (() => {
       const image_search_options = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://addons.mozilla.org/firefox/downloads/file/3059971/image_search_options-3.0.12-fx.xpi",
           sha256: "sha256-H73YWX/DKxvhEwKpWOo7orAQ7c/rQywpljeyxYxv0Gg=",
         }))));
-      return nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchFirefoxAddon, nix.thunk(() => ({ __proto__: pos$3, name: "image-search-options", src: image_search_options })));
+      return nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchFirefoxAddon, nix.thunk(() => ({ [nix.POS]: pos$3, name: "image-search-options", src: image_search_options })));
     })()),
   };
 })(), formals$1);

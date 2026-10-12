@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const pname = "snorkel";
   const version = "0.10.0";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "snorkel-team",
           repo: "snorkel",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(spacy_models, "en_core_web_sm")),
       ], nix.sel(dask, "optional-dependencies", "distributed"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "System for quickly generating training data with weak supervision",
         homepage: "https://github.com/snorkel-team/snorkel",
         changelog: nix.thunk(() => nix.str`https://github.com/snorkel/snorkel/releases/tag/v${version}`),

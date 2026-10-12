@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "kodi-platform";
       const version = "20250416";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xbmc",
           repo: "kodi-platform",
           rev: nix.thunk(() => nix.str`kodiplatform-${version}`),
@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [cmake]);
       const buildInputs = nix.thunk(() => [kodi, libcec_platform, tinyxml]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/xbmc/kodi-platform",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
       }));
-      return { __proto__: pos$3, pname, version, src, nativeBuildInputs, buildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

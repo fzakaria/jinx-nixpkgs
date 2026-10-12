@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const xmlsec = nix.arg($, "xmlsec");
   const xxd = nix.arg($, "xxd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "4.5.1",
       pname: "libdigidocpp",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "open-eid",
           repo: "libdigidocpp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,14 +42,14 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "PKCS11_MODULE", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), opensc)}/lib/opensc-pkcs11.so`))),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_LDFLAGS: nix.thunk(() => nix.str`-L${nix.sel(libtool, "lib")}/lib`),
       })),
       postFixup: nix.thunk(() => nix.str`sed '/^  INTERFACE_INCLUDE_DIRECTORIES/s|"[^"]*/include"|"${nix.builtins.placeholder("dev")}/include"|' \\
   -i "$dev"/lib/cmake/libdigidocpp/libdigidocpp-config.cmake
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library for creating DigiDoc signature files",
         mainProgram: "digidoc-tool",
         homepage: "https://www.id.ee/",

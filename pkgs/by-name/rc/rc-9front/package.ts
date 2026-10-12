@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const nawk = nix.arg($, "nawk");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "rc-9front",
       version: "0-unstable-2026-06-20",
       src: nix.thunk(() => nix.app(fetchFrom9Front, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "shithub.us",
           owner: "cinap_lenrek",
           repo: "rc",
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 -t $out/bin/ rc\ninstallManPage rc.1\nmkdir -p $out/lib\ninstall -m644 rcmain.unix $out/lib/rcmain\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         shellPath: "/bin/rc",
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, shallowClone: false })))),
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, shallowClone: false })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           simple: nix.thunk(() => nix.app(runCommand, "rc-test", nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), rc_9front)} -c 'nl=\`{echo} && \\
   res=\`$nl{for(i in \`{seq 1 10}) echo $i} && \\
   echo -n $res' >$out
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "9front shell",
         longDescription: "unix port of 9front rc",
         homepage: "http://shithub.us/cinap_lenrek/rc/HEAD/info.html",

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "rvz";
       const version = "1.0.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bodgit",
           repo: "rvz",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const subPackages = nix.thunk(() => ["cmd/rvz"]);
       const checkPhase = "go test -v -short -coverprofile=cover.out ./...\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Golang library for reading RVZ disc images",
         homepage: "https://github.com/bodgit/rvz",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "rvz",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

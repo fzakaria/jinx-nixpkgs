@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const emptyDirectory = nix.thunk(() => nix.attr(buildPackages, "emptyDirectory"));
   const buildDotnetModule = nix.thunk(() => nix.attr(buildPackages, "buildDotnetModule"));
   return nix.app(mapAttrs, (name) => (nugetDeps) => nix.app(buildDotnetModule, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: nix.thunk(() => nix.str`nuget-deps-${name}`),
         unpackPhase: "runHook preUnpack\n\nmkdir test\ncd test\ndotnet new console -o .\nls -l\n\nrunHook postUnpack\n",
         nugetDeps: nugetDeps,
       }))), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       null: null,
       "nix-file": nix.path(here, "./nuget-deps.nix"),
       "json-file": nix.path(here, "./nuget-deps.json"),

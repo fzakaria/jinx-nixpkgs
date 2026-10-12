@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const syrupy = nix.arg($, "syrupy");
   const tenacity = nix.arg($, "tenacity");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nettigo-air-monitor",
       version: "5.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bieniu",
           repo: "nettigo-air-monitor",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_retry_fail", "test_retry_success"]),
       pythonImportsCheck: nix.thunk(() => ["nettigo_air_monitor"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python module to get air quality data from Nettigo Air Monitor devices",
         homepage: "https://github.com/bieniu/nettigo-air-monitor",
         changelog: nix.thunk(() => nix.str`https://github.com/bieniu/nettigo-air-monitor/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

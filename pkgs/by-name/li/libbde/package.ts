@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libbde",
       version: "20240502",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/libyal/libbde/releases/download/${nix.sel(finalAttrs, "version")}/libbde-alpha-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-La6rzBOfyBIXDn78vXb8GUt8jgQkzsqM38kRZ7t3Fp0=",
         })))),
@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
       preInstall: "substituteInPlace pybde/Makefile \\\n  --replace-fail '$(LIBTOOL) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=install' ' '\n",
       configureFlags: nix.thunk(() => ["--enable-python"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library to access the BitLocker Drive Encryption (BDE) format",
         homepage: "https://github.com/libyal/libbde/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

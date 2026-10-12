@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.8.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "Flask-HTTPAuth",
           version: version,
           hash: "sha256-ZlaKBbxzlCxl8eIgGudGKVgW3ACe3YS0gsRMdY11CXo=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["flask_httpauth"]);
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.sel(flask, "optional-dependencies", "async")));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extension that provides HTTP authentication for Flask routes",
         homepage: "https://github.com/miguelgrinberg/Flask-HTTPAuth",
         changelog: nix.thunk(() => nix.str`https://github.com/miguelgrinberg/Flask-HTTPAuth/blob/v${version}/CHANGES.md`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

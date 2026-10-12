@@ -61,7 +61,7 @@ exec ${wrapLegacyBinary} "$TARGET-unwrapped" "$TARGET"
       const pname = nix.thunk(() => nix.str`${nix.sel(passthru, "prettyName")}-unwrapped`);
       const version = "1.9";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://ftp.openwatcom.org/install/open-watcom-c-linux-${version}`),
           sha256: "1wzkvc6ija0cjj5mcyjng5b7hnnc5axidz030c0jh05pgvi4nj7p",
         }))));
@@ -72,9 +72,9 @@ exec ${wrapLegacyBinary} "$TARGET-unwrapped" "$TARGET"
 wrapInPlace install-bin-unwrapped
 `);
       const installPhase = "# Command line options to do an unattended install are documented in\n# https://github.com/open-watcom/open-watcom-v2/blob/master/bld/setupgui/setup.txt\nscript -c \"./install-bin-unwrapped -dDstDir=$out -dFullInstall=1 -i\"\n\nfor e in $(find $out/binl -type f -executable); do\n  echo \"Wrapping $e\"\n  wrapInPlace \"$e\"\ndone\n";
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, prettyName: "open-watcom-bin" }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, prettyName: "open-watcom-bin" }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Project to maintain and enhance the Watcom C, C++, and Fortran cross compilers and tools",
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
@@ -86,7 +86,7 @@ wrapInPlace install-bin-unwrapped
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "blitz"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

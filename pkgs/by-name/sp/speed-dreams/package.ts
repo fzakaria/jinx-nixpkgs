@@ -79,18 +79,18 @@ export default nix.lambda((args) => (() => {
   const runtimeLibPath = nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), runtimeLibs));
   const libPathVar = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "DYLD_LIBRARY_PATH" : "LD_LIBRARY_PATH"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "2.4.2",
       pname: "speed-dreams",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://forge.a-lec.org/speed-dreams/speed-dreams-code.git",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           sha256: "sha256-ZY/0tf0wFbepEUNqpaBA4qgkWDij/joqPtbiF/48oN4=",
           fetchSubmodules: true,
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-I${nix.sel(finalAttrs, "src")}/src/libs/tgf`),
             nix.thunk(() => nix.str`-I${nix.sel(finalAttrs, "src")}/src/libs/tgfdata`),
@@ -143,7 +143,7 @@ makeWrapper "$out/games/speed-dreams-2" "$out/bin/speed-dreams" "\${makeWrapperA
         rhash,
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libGL, libGLU, libglut])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Car racing game - TORCS fork with more experimental approach",
         homepage: "https://www.speed-dreams.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const threadingSuffix = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withOpenMP, "-mt"));
   const blasIntSize = nix.thunk(() => (nix.asBool(blas64) ? "64" : "32"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "amd-blis",
       version: "5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "amd",
           repo: "blis",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,13 +36,13 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./build-date.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "amd-blis-gcc-15-fix-1.patch",
             url: "https://github.com/amd/blis/commit/14e46ad83bac5fd82569a43c7cbd3e791a1eacc8.patch",
             hash: "sha256-3vk9NSnhT64J6PUabeP58Gn7p1zheGbPxSRjVEX7WNg=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "amd-blis-gcc-15-fix-2.patch",
             url: "https://github.com/amd/blis/commit/30c42202d78fd5ee5e54d50ad57348e5e541a7d5.patch",
             hash: "sha256-FCMWQzfzQxCQqngULoXfh35BFGaNTu732iu3HctNcFM=",
@@ -61,7 +61,7 @@ ln -s $out/lib/libblas.so.3 $out/lib/libblas.so
 ln -s $out/lib/libcblas.so.3 $out/lib/libcblas.so
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "BLAS-compatible library optimized for AMD CPUs",
         homepage: "https://developer.amd.com/amd-aocl/blas-library/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

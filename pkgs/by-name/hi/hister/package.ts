@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "hister",
       version: "0.20.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "asciimoo",
           repo: "hister",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,9 +54,9 @@ cp -r ${nix.sel(finalAttrs, "passthru", "frontend")}/* server/static/app/
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
-        frontend: nix.thunk(() => nix.app(nix.sel(buildNpmPackage, "override"), nix.thunk(() => ({ __proto__: pos$2, nodejs: nodejs_22 })), nix.thunk(() => ({
-            __proto__: pos$3,
+        [nix.POS]: pos$6,
+        frontend: nix.thunk(() => nix.app(nix.sel(buildNpmPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, nodejs: nodejs_22 })), nix.thunk(() => ({
+            [nix.POS]: pos$3,
             pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-frontend`),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -68,11 +68,11 @@ cp -r ${nix.sel(finalAttrs, "passthru", "frontend")}/* server/static/app/
             preBuild: "patchShebangs webui\n",
             installPhase: "runHook preInstall\nmkdir -p \"$out\"\ncp -r webui/app/build/* \"$out/\"\nrunHook postInstall\n",
           })))),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$4, extraArgs: nix.thunk(() => ["--subpackage", "frontend"]) })))),
-        tests: nix.thunk(() => ({ __proto__: pos$5, hister: nix.thunk(() => nix.attr(nixosTests, "hister")) })),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--subpackage", "frontend"]) })))),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$5, hister: nix.thunk(() => nix.attr(nixosTests, "hister")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         changelog: nix.thunk(() => nix.str`https://github.com/asciimoo/hister/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Web history on steroids - blazing fast, content-based search for visited websites",
         homepage: "https://github.com/asciimoo/hister",

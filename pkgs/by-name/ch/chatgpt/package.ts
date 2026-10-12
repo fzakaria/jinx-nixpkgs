@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const source = nix.thunk(() => nix.builtins.import(nix.path(here, "./source.nix")));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "chatgpt",
       version: nix.thunk(() => nix.attr(source, "version")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.sel(source, "src")))),
@@ -24,9 +24,9 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [unzip]),
       sourceRoot: ".",
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications\"\nmkdir -p \"$out/bin\"\ncp -a ChatGPT.app \"$out/Applications\"\nln -s \"$out/Applications/ChatGPT.app/Contents/MacOS/ChatGPT\" \"$out/bin/ChatGPT\"\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$1, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Desktop application for ChatGPT",
         homepage: "https://openai.com/chatgpt/desktop/",
         changelog: "https://help.openai.com/en/articles/9703738-macos-app-release-notes",

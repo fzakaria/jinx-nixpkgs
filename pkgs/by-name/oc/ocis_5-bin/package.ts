@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   const arch = nix.thunk(() => nix.selOr({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "i686-linux": "386",
     "x86_64-linux": "amd64",
     "aarch64-linux": "arm64",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.str`${nix.sel(stdenv, "hostPlatform", "system")}`)));
   const os = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? "linux" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "darwin" : nix.builtins.throw("Unsupported OS"))));
   const hash = nix.thunk(() => nix.sel({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     "hash_386-linux": "sha256-2RtkxtVk7YN7CfsIBpMP85g84MNTzrnEgk10eFdfyyw=",
     "hash_amd64-linux": "sha256-tmUfDKLO35qCs1hauJQKhJhcnMhqOpcqDFtAggMFhLE=",
     "hash_arm64-linux": "sha256-ggRDW1cnTHMQKvOvCDH3eptH3O3PgYaondlzOGHTjio=",
@@ -34,20 +34,20 @@ export default nix.lambda((args) => (() => {
     "hash_arm64-darwin": "sha256-k5X2ZInFS/HlToOZPX23TRJqlx/XM1ZG++Xr4BHn8SY=",
   }, nix.key(nix.str`hash_${arch}-${os}`)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "ocis_5-bin",
       version: "5.0.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://github.com/owncloud/ocis/releases/download/v${nix.sel(finalAttrs, "version")}/ocis-${nix.sel(finalAttrs, "version")}-${os}-${arch}`),
           hash: hash,
         })))),
       dontUnpack: true,
       nativeBuildInputs: nix.thunk(() => [autoPatchelfHook]),
       installPhase: "runHook preInstall\ninstall -D $src $out/bin/ocis\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$4, updateScript: nix.path(here, "./update.py") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.py") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "ownCloud Infinite Scale Stack",
         homepage: "https://owncloud.dev/ocis/",
         changelog: nix.thunk(() => nix.str`https://github.com/owncloud/ocis/releases/tag/v${nix.sel(finalAttrs, "version")}`),

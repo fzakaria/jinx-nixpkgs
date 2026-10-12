@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "zfs_exporter";
       const version = "2.4.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pdf",
           repo: "zfs_exporter",
           rev: nix.thunk(() => nix.add("v", version)),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const postInstall = "install -Dm444 -t $out/share/doc/zfs_exporter *.md\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ZFS Exporter for the Prometheus monitoring system",
         mainProgram: "zfs_exporter",
         homepage: "https://github.com/pdf/zfs_exporter",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

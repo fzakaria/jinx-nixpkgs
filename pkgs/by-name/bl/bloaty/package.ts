@@ -25,18 +25,18 @@ export default nix.lambda((args) => (() => {
   const lit = nix.arg($, "lit");
   const llvmPackages = nix.arg($, "llvmPackages");
   const demumble = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "nico",
       repo: "demumble",
       rev: "10e00fb708a3d24c1bb16682cac76925ffb76af5",
       hash: "sha256-JNSSvYE5bh/9RVLQXVNmWRKAzidg4ktmqLI7pcUATDs=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "bloaty",
       version: "1.1-unstable-2026-05-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "google",
           repo: "bloaty",
           rev: "4a601b636e2347322d0371c8bf8ca5eaeaca4bac",
@@ -74,7 +74,7 @@ rm -rf tests/wasm
       postCheck: "# These lit tests need to be build seperatly.\n# See https://github.com/google/bloaty/blob/main/tests/README.md\ncmake --build . --target check-bloaty\n",
       installPhase: "install -Dm755 {.,$out/bin}/bloaty\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Size profiler for binaries",
         mainProgram: "bloaty",
         homepage: "https://github.com/google/bloaty",

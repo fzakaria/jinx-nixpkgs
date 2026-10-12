@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pytest = nix.arg($, "pytest");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pytest-gitconfig",
       version: "0.9.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "noirbizarre",
           repo: "pytest-gitconfig",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gitMinimal")), pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["pytest_gitconfig"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pytest gitconfig sandbox",
         homepage: "https://github.com/noirbizarre/pytest-gitconfig",
         changelog: nix.thunk(() => nix.str`https://github.com/noirbizarre/pytest-gitconfig/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

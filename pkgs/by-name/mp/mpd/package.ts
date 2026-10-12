@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
   const features = nix.argOr($, "features", () => null);
   const concatAttrVals = (nameList) => (set) => nix.app(nix.sel(lib, "concatMap"), (x) => nix.selOr(set, () => [], nix.key(nix.force(x))), nameList);
   const featureDependencies = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     udisks: nix.thunk(() => [dbus]),
     webdav: nix.thunk(() => [curl, expat]),
     cdio_paranoia: nix.thunk(() => [libcdio, libcdio_paranoia]),
@@ -118,7 +118,7 @@ export default nix.lambda((args) => (() => {
     zeroconf: nix.thunk(() => [avahi, dbus]),
   }));
   const nativeFeatureDependencies = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     documentation: nix.thunk(() => [doxygen, nix.thunk(() => nix.sel(python3Packages, "sphinx"))]),
   }));
   const platformMask = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["mad", "pulse", "jack", "smbclient"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux"))), nix.thunk(() => ["alsa", "pipewire", "io_uring", "systemd", "syslog"]))));
@@ -132,11 +132,11 @@ export default nix.lambda((args) => (() => {
     })());
   })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "mpd",
       version: "0.24.15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "MusicPlayerDaemon",
           repo: "MPD",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -151,7 +151,7 @@ export default nix.lambda((args) => (() => {
       mesonAutoFeatures: "disabled",
       outputs: nix.thunk(() => nix.concat(["out", "doc"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.builtins.elem("documentation", features_)), "man"))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           CXXFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-D__ASSERT_MACROS_DEFINE_VERSIONS_WITHOUT_UNDERSCORES=0"]))),
         })))),
       mesonFlags: nix.thunk(() => nix.concat([
@@ -160,11 +160,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonBool"), "html_manual", true)),
       ], nix.concat(nix.builtins.map((x) => nix.app(nix.sel(lib, "mesonEnable"), x, true), features_), nix.concat(nix.builtins.map((x) => nix.app(nix.sel(lib, "mesonEnable"), x, false), nix.thunk(() => nix.app(nix.sel(lib, "subtractLists"), features_, knownFeatures))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.builtins.elem("zeroconf", features_)), nix.thunk(() => nix.app(nix.sel(lib, "mesonOption"), "zeroconf", nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "bonjour" : "avahi"))))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.builtins.elem("systemd", features_)), nix.thunk(() => nix.app(nix.sel(lib, "mesonOption"), "systemd_system_unit_dir", "etc/systemd/system"))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.builtins.elem("qobuz", features_)), nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "nlohmann_json", true))))))))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
-        tests: nix.thunk(() => ({ __proto__: pos$5, nixos: nix.thunk(() => nix.sel(nixosTests, "mpd")) })),
+        [nix.POS]: pos$6,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$5, nixos: nix.thunk(() => nix.sel(nixosTests, "mpd")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Flexible, powerful daemon for playing music",
         homepage: "https://www.musicpd.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

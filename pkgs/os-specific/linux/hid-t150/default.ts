@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "hid-t150";
       const version = "1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "scarburato",
           repo: "t150_driver",
           rev: nix.thunk(() => nix.str`${version}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const installPhase = nix.thunk(() => nix.str`make -C ${nix.sel(kernel, "dev")}/lib/modules/${nix.sel(kernel, "modDirVersion")}/build M=$(pwd) modules_install $makeFlags
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Linux kernel driver for Thrustmaster T150 and TMX Force Feedback wheel",
         homepage: "https://github.com/scarburato/t150_driver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

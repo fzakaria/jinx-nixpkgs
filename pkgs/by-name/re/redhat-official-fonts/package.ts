@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "redhat-official";
       const version = "4.0.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "RedHatOfficial",
           repo: "RedHatFont",
           rev: version,
@@ -24,14 +24,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const installPhase = "runHook preInstall\n\nfor kind in mono proportional; do\n  install -m444 -Dt $out/share/fonts/opentype fonts/$kind/static/otf/*.otf\n  install -m444 -Dt $out/share/fonts/truetype fonts/$kind/static/ttf/*.ttf\ndone\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/RedHatOfficial/RedHatFont",
         description: "Red Hat's Open Source Fonts - Red Hat Display and Red Hat Text",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         maintainers: [],
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const protobuf = nix.arg($, "protobuf");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jumanpp",
       version: "2.0.0-rc4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ku-nlp/jumanpp/releases/download/v${nix.sel(finalAttrs, "version")}/jumanpp-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-qyy0mTBrH3y8OBIVXuTHIDV+AbQIvCIA7rzhbI2b8y8=",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([protobuf], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), libiconv))),
       postPatch: "substituteInPlace libs/pathie-cpp/CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 3.1)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Japanese morphological analyser using a recurrent neural network language model (RNNLM)",
         mainProgram: "jumanpp",
         longDescription: "JUMAN++ is a new morphological analyser that considers semantic\nplausibility of word sequences by using a recurrent neural network\nlanguage model (RNNLM).\n",

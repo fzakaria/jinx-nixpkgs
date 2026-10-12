@@ -58,91 +58,91 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => (nix.asBool(nix.sel(cfg, "insecure")) ? "--insecure" : nix.str`--certs-dir=${nix.sel(cfg, "certsDir")}`)),
     ], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "join"), null)), nix.thunk(() => nix.str`--join=${nix.sel(cfg, "join")}`)), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "locality"), null)), nix.thunk(() => nix.str`--locality=${nix.sel(cfg, "locality")}`)), nix.sel(cfg, "extraArgs")))))));
   const addressOption = (descr) => (defaultPort) => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         type: nix.thunk(() => nix.sel(lib, "types", "str")),
         default: "localhost",
         description: nix.thunk(() => nix.str`Address to bind to for ${descr}`),
       })))),
     port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         type: nix.thunk(() => nix.sel(lib, "types", "port")),
         default: defaultPort,
         description: nix.thunk(() => nix.str`Port to bind to for ${descr}`),
       })))),
   });
   return {
-    __proto__: pos$34,
+    [nix.POS]: pos$34,
     options: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       services: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         cockroachdb: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "CockroachDB Server")),
           listen: nix.thunk(() => nix.app(addressOption, "intra-cluster communication", 26257n)),
           http: nix.thunk(() => nix.app(addressOption, "http-based Admin UI", 8080n)),
           locality: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "An ordered, comma-separated list of key-value pairs that describe the\ntopography of the machine. Topography might include country,\ndatacenter or rack designations. Data is automatically replicated to\nmaximize diversities of each tier. The order of tiers is used to\ndetermine the priority of the diversity, so the more inclusive\nlocalities like country should come before less inclusive localities\nlike datacenter.  The tiers and order must be the same on all nodes.\nIncluding more tiers is better than including fewer. For example:\n\n```\n    country=us,region=us-west,datacenter=us-west-1b,rack=12\n    country=ca,region=ca-east,datacenter=ca-east-2,rack=4\n\n    planet=earth,province=manitoba,colo=secondary,power=3\n```\n",
             })))),
           join: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "The addresses for connecting the node to a cluster.",
             })))),
           insecure: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Run in insecure mode.",
             })))),
           certsDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "The path to the certificate directory.",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "cockroachdb",
               description: "User account under which CockroachDB runs",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "cockroachdb",
               description: "User account under which CockroachDB runs",
             })))),
           openPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Open firewall ports for cluster communication by default",
             })))),
           cache: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "25%",
               description: "The total size for caches.\n\nThis can be a percentage, expressed with a fraction sign or as a\ndecimal-point number, or any bytes-based unit. For example,\n`\"25%\"`, `\"0.25\"` both represent\n25% of the available system memory. The values\n`\"1000000000\"` and `\"1GB\"` both\nrepresent 1 gigabyte of memory.\n\n",
             })))),
           maxSqlMemory: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "25%",
               description: "The maximum in-memory storage capacity available to store temporary\ndata for SQL queries.\n\nThis can be a percentage, expressed with a fraction sign or as a\ndecimal-point number, or any bytes-based unit. For example,\n`\"25%\"`, `\"0.25\"` both represent\n25% of the available system memory. The values\n`\"1000000000\"` and `\"1GB\"` both\nrepresent 1 gigabyte of memory.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "cockroachdb", nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               extraDescription: "This would primarily be useful to enable Enterprise Edition features\nin your own custom CockroachDB build (Nixpkgs CockroachDB binaries\nonly contain open source features and open source code).\n",
             })))),
           extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["--advertise-addr", "[fe80::f6f2:::]"]),
@@ -152,38 +152,38 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "cockroachdb", "enable")), nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             assertion: nix.thunk(() => (!nix.asBool(!nix.asBool(nix.sel(cfg, "insecure"))) || nix.asBool(!nix.eq(nix.sel(cfg, "certsDir"), null)))),
             message: "CockroachDB must have a set of SSL certificates (.certsDir), or run in Insecure Mode (.insecure = true)",
           })),
         ]),
-        environment: nix.thunk(() => ({ __proto__: pos$19, systemPackages: nix.thunk(() => [crdb]) })),
+        environment: nix.thunk(() => ({ [nix.POS]: pos$19, systemPackages: nix.thunk(() => [crdb]) })),
         users: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           users: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "cockroachdb")), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               cockroachdb: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 description: "CockroachDB Server User",
                 uid: nix.thunk(() => nix.sel(config, "ids", "uids", "cockroachdb")),
                 group: nix.thunk(() => nix.sel(cfg, "group")),
               })),
             })))),
           groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "cockroachdb")), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               cockroachdb: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 gid: nix.thunk(() => nix.sel(config, "ids", "gids", "cockroachdb")),
               })),
             })))),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           firewall: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "openPorts")), nix.thunk(() => [
                 nix.thunk(() => nix.sel(cfg, "http", "port")),
                 nix.thunk(() => nix.sel(cfg, "listen", "port")),
@@ -191,19 +191,19 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           services: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             cockroachdb: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               description: "CockroachDB Server",
               documentation: nix.thunk(() => ["man:cockroach(1)", "https://www.cockroachlabs.com"]),
               after: nix.thunk(() => ["network.target", "time-sync.target"]),
               requires: nix.thunk(() => ["time-sync.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
-              unitConfig: nix.thunk(() => ({ __proto__: pos$27, RequiresMountsFor: "/var/lib/cockroachdb" })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$27, RequiresMountsFor: "/var/lib/cockroachdb" })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 ExecStart: startupCommand,
                 Type: "notify",
                 User: nix.thunk(() => nix.sel(cfg, "user")),
@@ -218,7 +218,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$33,
+      [nix.POS]: pos$33,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "thoughtpolice"))];

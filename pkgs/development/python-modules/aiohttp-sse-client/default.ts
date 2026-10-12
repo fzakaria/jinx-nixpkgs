@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-UATiknFiSvWGFY3HFmywaHp6WZeqtbgI9LU0AOG3Ljs=",
@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [aiohttp, attrs, multidict, yarl]);
       const pythonImportsCheck = nix.thunk(() => ["aiohttp_sse_client"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Server-Sent Event python client base on aiohttp",
         homepage: "https://pypi.org/project/aiohttp-sse-client/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

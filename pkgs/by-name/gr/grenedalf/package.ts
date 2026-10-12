@@ -27,20 +27,20 @@ export default nix.lambda((args) => (() => {
       const version = "1.16";
       const name = nix.thunk(() => nix.str`${nix.sel(oldAttrs, "pname")}-nocurl-${version}`);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/samtools/htslib/releases/download/${version}/htslib-${version}.tar.bz2`),
           sha256: "sha256-YGt8ev9zc0zwM+zRVvQFKfpXkvVFJJUqKJOMoIkNeSQ=",
         }))));
       const configureFlags = nix.thunk(() => ["--disable-libcurl", "--disable-plugins"]);
       const patches = [];
-      return { __proto__: pos$2, version, name, src, configureFlags, patches };
+      return { [nix.POS]: pos$2, version, name, src, configureFlags, patches };
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "grenedalf",
       version: "0.6.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "lczech",
           repo: "grenedalf",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => [nix.thunk(() => nix.str`-DHTSLIB_DIR=${htslib_gr}`)]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ncp ../bin/grenedalf $out/bin\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/lczech/grenedalf",
         description: "Collection of commands for working with population genetic data",
         longDescription: "grenedalf is a collection of commands for working with population genetic\ndata, in particular from pool sequencing. Its main focus are statistical\nanalyses such as Tajima's D and Fst. The statistics follow the approaches\nof PoPoolation and PoPoolation2, as well as poolfstat and npstat. However,\ncompared to those, grenedalf is significantly more scalable, more user\nfriendly, and offers more settings and input file formats.\n",

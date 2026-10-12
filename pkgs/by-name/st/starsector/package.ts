@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "starsector";
       const version = "0.98a-RC8";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://f005.backblazeb2.com/file/fractalsoftworks/release/starsector_linux-${version}.zip`),
           sha256: "sha256-W/6QpgKbUJC+jWOlAOEEGStee5KJuLi020kRtPQXK3U=",
         }))));
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const dontBuild = true;
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "starsector",
             exec: "starsector",
             icon: "starsector",
@@ -75,7 +75,7 @@ runHook postInstall
   --replace-fail "com.fs.starfarer.StarfarerLauncher" "\\"\\$@\\" com.fs.starfarer.StarfarerLauncher"
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(writeScript, "starsector-update-script", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p curl gnugrep common-updater-scripts
 set -eou pipefail;
@@ -84,7 +84,7 @@ update-source-version ${pname} "$version" --file=./pkgs/by-name/st/starsector/pa
 `))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Open-world single-player space-combat, roleplaying, exploration, and economic game",
         homepage: "https://fractalsoftworks.com",
         sourceProvenance: nix.thunk(() => (() => {
@@ -102,7 +102,7 @@ update-source-version ${pname} "$version" --file=./pkgs/by-name/st/starsector/pa
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

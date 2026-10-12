@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const vector = nix.arg($, "vector");
   const qcheck_alcotest = nix.arg($, "qcheck-alcotest");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "irmin-test",
       version: nix.thunk(() => nix.attr(irmin, "version")),
       src: nix.thunk(() => nix.attr(irmin, "src")),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       checkInputs: nix.thunk(() => [hex, qcheck_alcotest, vector]),
-      meta: nix.thunk(() => nix.update(nix.sel(irmin, "meta"), { __proto__: pos$1, description: "Irmin test suite" })),
+      meta: nix.thunk(() => nix.update(nix.sel(irmin, "meta"), { [nix.POS]: pos$1, description: "Irmin test suite" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=test.ts.map

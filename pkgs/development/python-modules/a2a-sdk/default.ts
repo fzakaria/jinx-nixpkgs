@@ -42,12 +42,12 @@ export default nix.lambda((args) => (() => {
   const uv_dynamic_versioning = nix.arg($, "uv-dynamic-versioning");
   const uvicorn = nix.arg($, "uvicorn");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "a2a-sdk",
       version: "0.3.26",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "a2aproject",
           repo: "a2a-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling, uv_dynamic_versioning]),
       dependencies: nix.thunk(() => [google_api_core, httpx, httpx_sse, protobuf, pydantic]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         encryption: nix.thunk(() => [cryptography]),
         grpc: nix.thunk(() => [grpcio, grpcio_reflection, grpcio_tools]),
         "http-server": nix.thunk(() => [fastapi, sse_starlette, starlette]),
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
           "test_trace_function_sync_attribute_extractor_error_logged",
         ]))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python SDK for the Agent2Agent (A2A) Protocol",
         homepage: "https://github.com/a2aproject/a2a-python",
         changelog: nix.thunk(() => nix.str`https://github.com/a2aproject/a2a-python/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const antlr3_4 = nix.arg($, "antlr3_4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cvc4",
       version: "1.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cvc4",
           repo: "cvc4-archived",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -62,7 +62,7 @@ patch -p1 -i ${nix.path(here, "./minisat-fenv.patch")} -d src/prop/bvminisat
       preConfigure: "patchShebangs ./src/\n",
       cmakeBuildType: "Production",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "High-performance theorem prover and SMT solver",
         mainProgram: "cvc4",
         homepage: "http://cvc4.cs.stanford.edu/web/",

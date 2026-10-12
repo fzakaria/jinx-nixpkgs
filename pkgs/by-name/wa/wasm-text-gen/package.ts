@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const gcc = nix.arg($, "gcc");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "wasm-text-gen",
       version: "1.14.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xtuc",
           repo: "webassemblyjs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: "substituteInPlace packages/**/package.json \\\n  --replace-warn \"1.13.2\" \"1.14.1\"\n\npatchShebangs scripts/\n",
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-gweiisUVp1D4BAcyuf3V81jN+ehm6z5ztftG+tc7M+A=",
         })))),
@@ -53,11 +53,11 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), nodejs)} $out/bin/wasmgen \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Toolbox for WebAssembly",
         homepage: "https://webassembly.js.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

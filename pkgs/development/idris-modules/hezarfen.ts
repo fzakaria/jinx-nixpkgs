@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hezarfen",
       version: "2018-02-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "joom",
           repo: "hezarfen",
           rev: "079884d85619cd187ae67230480a1f37327f8d78",
           sha256: "0z4150gavpx64m3l0xbjjz9dcir7zij9hvd69k98zvhw7i27b1xp",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Theorem prover for intuitionistic propositional logic in Idris, with metaprogramming features",
         homepage: "https://github.com/joom/hezarfen",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

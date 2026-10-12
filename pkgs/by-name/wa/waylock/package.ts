@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const zig_0_16 = nix.arg($, "zig_0_16");
   const zig = zig_0_16;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "waylock",
       version: "1.6.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ifreund",
           repo: "waylock",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,9 +45,9 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`${nix.sel(finalAttrs, "deps")}`),
       ]),
       preBuild: "substituteInPlace pam.d/waylock --replace-fail \"system-auth\" \"login\"\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://codeberg.org/ifreund/waylock",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/ifreund/waylock/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Small screenlocker for Wayland compositors",

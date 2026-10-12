@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const callPackage = nix.arg($, "callPackage");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "typst",
       version: "0.15.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "typst",
           repo: "typst",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,21 +38,21 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-+/2L4o9d8UENPtJAD/sSqf5ysOfHJYZgnvhOAoRdK40=",
       nativeBuildInputs: nix.thunk(() => [installShellFiles, pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
-      env: nix.thunk(() => ({ __proto__: pos$2, GEN_ARTIFACTS: "artifacts", OPENSSL_NO_VENDOR: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, GEN_ARTIFACTS: "artifacts", OPENSSL_NO_VENDOR: true })),
       postPatch: "substituteInPlace tests/src/tests.rs --replace-fail \\\n  'ARGS.num_threads' \\\n  'ARGS.test_threads'\nsubstituteInPlace tests/src/args.rs --replace-fail \\\n  'num_threads' \\\n  'test_threads'\n\nexport TYPST_COMMIT_SHA=\"$(cat COMMIT | cut -c1-8)\"\n",
       postInstall: "installManPage crates/typst-cli/artifacts/*.1\ninstallShellCompletion \\\n  crates/typst-cli/artifacts/typst.{bash,fish} \\\n  --zsh crates/typst-cli/artifacts/_typst\n",
       cargoTestFlags: nix.thunk(() => ["--workspace"]),
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         packages: nix.thunk(() => nix.app(callPackage, nix.path(here, "./typst-packages.nix"), nix.thunk(() => ({})))),
         wrapper: nix.thunk(() => nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({})))),
-        withPackages: (ps) => nix.app(nix.sel(finalAttrs, "passthru", "wrapper"), nix.thunk(() => ({ __proto__: pos$3, packages: ps }))),
+        withPackages: (ps) => nix.app(nix.sel(finalAttrs, "passthru", "wrapper"), nix.thunk(() => ({ [nix.POS]: pos$3, packages: ps }))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/typst/typst/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "New markup-based typesetting system that is powerful and easy to learn",
         homepage: "https://github.com/typst/typst",

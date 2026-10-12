@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const stdlib_shims = nix.arg($, "stdlib-shims");
   const ounit2 = nix.arg($, "ounit2");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fileutils",
       version: "0.6.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/gildor478/ocaml-fileutils/releases/download/v${nix.sel(finalAttrs, "version")}/fileutils-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-eW1XkeK/ezv/IAz1BXp6GHhDnrzXTtDxCIz4Z1bVK+Y=",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [ounit2]),
       doCheck: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.08")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OCaml API to manipulate real files (POSIX like) and filenames",
         homepage: "https://github.com/gildor478/ocaml-fileutils",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

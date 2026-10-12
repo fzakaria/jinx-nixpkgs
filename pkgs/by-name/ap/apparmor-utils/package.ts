@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const apparmor_init = nix.arg($, "apparmor-init");
   const libapparmor = nix.thunk(() => nix.attr(python3Packages, "libapparmor"));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "apparmor-utils",
       version: nix.thunk(() => nix.attr(libapparmor, "version")),
       src: nix.thunk(() => nix.attr(libapparmor, "src")),
@@ -60,7 +60,7 @@ sed -i aa-unconfined -e "/my_env\\['PATH'\\]/d"
  --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gawk]))}
 `),
       meta: nix.thunk(() => nix.update(nix.sel(libapparmor, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Mandatory access control system - script user-land utilities",
       })),
     })));

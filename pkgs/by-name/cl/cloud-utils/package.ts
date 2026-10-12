@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const guestDeps = nix.thunk(() => [e2fsprogs, gptfdisk, gawk, gnused, util_linux]);
   const binDeps = nix.thunk(() => nix.concat(guestDeps, [wget, file, qemu_utils, cdrkit]));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cloud-utils",
       version: "0.33",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "canonical",
           repo: "cloud-utils",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -62,11 +62,11 @@ done
 `),
       dontBuild: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Useful set of utilities for interacting with a cloud",
         homepage: "https://github.com/canonical/cloud-utils",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

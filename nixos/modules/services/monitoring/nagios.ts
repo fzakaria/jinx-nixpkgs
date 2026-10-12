@@ -46,10 +46,10 @@ export default nix.lambda((args) => (() => {
   const nagiosLogDir = "/var/log/nagios";
   const urlPath = "/nagios";
   const nagiosObjectDefs = nix.thunk(() => nix.sel(cfg, "objectDefs"));
-  const nagiosObjectDefsDir = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "nagios-objects", nix.thunk(() => ({ __proto__: pos$1, nagiosObjectDefs: nagiosObjectDefs, preferLocalBuild: true })), "mkdir -p $out; ln -s $nagiosObjectDefs $out/"));
+  const nagiosObjectDefsDir = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "nagios-objects", nix.thunk(() => ({ [nix.POS]: pos$1, nagiosObjectDefs: nagiosObjectDefs, preferLocalBuild: true })), "mkdir -p $out; ln -s $nagiosObjectDefs $out/"));
   const nagiosCfgFile = nix.thunk(() => (() => {
     const default$ = nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       log_file: nix.thunk(() => nix.str`${nagiosLogDir}/current`),
       log_archive_path: nix.thunk(() => nix.str`${nagiosLogDir}/archive`),
       status_file: nix.thunk(() => nix.str`${nagiosState}/status.dat`),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
     const lines = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (key) => (value) => nix.str`${key}=${value}`, nix.thunk(() => nix.update(default$, nix.sel(cfg, "extraConfig")))));
     const content = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", lines));
     const file = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "nagios.cfg", content));
-    const validated = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "nagios-checked.cfg", nix.thunk(() => ({ __proto__: pos$3, preferLocalBuild: true })), nix.thunk(() => nix.str`cp ${file} nagios.cfg
+    const validated = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "nagios-checked.cfg", nix.thunk(() => ({ [nix.POS]: pos$3, preferLocalBuild: true })), nix.thunk(() => nix.str`cp ${file} nagios.cfg
 # nagios checks the existence of /var/lib/nagios, but
 # it does not exist in the build sandbox, so we fake it
 mkdir lib
@@ -100,32 +100,32 @@ Alias ${urlPath} ${nix.sel(pkgs, "nagios")}/share
 </Directory>
 `);
   return {
-    __proto__: pos$32,
+    [nix.POS]: pos$32,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "nagios", "urlPath"]), "The urlPath option has been removed as it is hard coded to /nagios in the nagios package.")),
     ]),
     meta: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "symphorien"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         nagios: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "[Nagios](https://www.nagios.org/) to monitor your system or network")),
           objectDefs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               description: "A list of Nagios object configuration files that must define\nthe hosts, host groups, services and contacts for the\nnetwork that you want Nagios to monitor.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ ./objects.cfg ]")),
             })))),
           plugins: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: nix.thunk(() => (() => {
                 const w = nix.withScope(pkgs, null);
@@ -139,40 +139,40 @@ Alias ${urlPath} ${nix.sel(pkgs, "nagios")}/share
               description: "Packages to be added to the Nagios {env}`PATH`.\nTypically used to add plugins, but can be anything.\n",
             })))),
           mainConfigFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: null,
               description: "If non-null, overrides the main configuration file of Nagios.\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
-              example: nix.thunk(() => ({ __proto__: pos$8, debug_level: "-1", debug_file: "/var/log/nagios/debug.log" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$8, debug_level: "-1", debug_file: "/var/log/nagios/debug.log" })),
               default: nix.thunk(() => ({})),
               description: "Configuration to add to /etc/nagios.cfg",
             })))),
           validateConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: nix.thunk(() => nix.eq(nix.sel(pkgs, "stdenv", "hostPlatform"), nix.sel(pkgs, "stdenv", "buildPlatform"))),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.stdenv.hostPlatform == pkgs.stdenv.buildPlatform")),
               description: "if true, the syntax of the nagios configuration file is checked at build time",
             })))),
           cgiConfigFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
               default: nagiosCGICfgFile,
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "nagiosCGICfgFile")),
               description: "Derivation for the configuration file of Nagios CGI scripts\nthat can be used in web servers for running the Nagios web interface.\n",
             })))),
           enableWebInterface: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable the Nagios web interface.  You should also\nenable Apache ({option}`services.httpd.enable`).\n",
             })))),
           virtualHost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.builtins.import(nix.path(here, "../web-servers/apache-httpd/vhost-options.nix"))))),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{ hostName = \"example.org\";\n  adminAddr = \"webmaster@example.org\";\n  enableSSL = true;\n  sslServerCert = \"/var/lib/acme/example.org/full.pem\";\n  sslServerKey = \"/var/lib/acme/example.org/key.pem\";\n}\n")),
               description: "Apache configuration can be done by adapting {option}`services.httpd.virtualHosts`.\nSee [](#opt-services.httpd.virtualHosts) for further information.\n",
@@ -181,42 +181,42 @@ Alias ${urlPath} ${nix.sel(pkgs, "nagios")}/share
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         users: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           users: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             nagios: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               description: "Nagios user",
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "nagios")),
               home: nagiosState,
               group: "nagios",
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$19, nagios: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$19, nagios: nix.thunk(() => ({})) })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           etc: nix.thunk(() => ({
-            __proto__: pos$22,
-            "nagios.cfg": nix.thunk(() => ({ __proto__: pos$21, source: nagiosCfgFile })),
+            [nix.POS]: pos$22,
+            "nagios.cfg": nix.thunk(() => ({ [nix.POS]: pos$21, source: nagiosCfgFile })),
           })),
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "nagios"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           services: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             nagios: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               description: "Nagios monitoring daemon",
               path: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(pkgs, "nagios"))], nix.sel(cfg, "plugins"))),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               restartTriggers: nix.thunk(() => [nagiosCfgFile]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 User: "nagios",
                 Group: "nagios",
                 Restart: "always",
@@ -229,13 +229,13 @@ Alias ${urlPath} ${nix.sel(pkgs, "nagios")}/share
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           httpd: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             virtualHosts: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "enableWebInterface")), nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "virtualHost", "hostName"), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                     nix.thunk(() => nix.sel(cfg, "virtualHost")),
-                    nix.thunk(() => ({ __proto__: pos$28, extraConfig: extraHttpdConfig })),
+                    nix.thunk(() => ({ [nix.POS]: pos$28, extraConfig: extraHttpdConfig })),
                   ])))],
               ])))),
           })),

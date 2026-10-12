@@ -35,18 +35,18 @@ export default nix.lambda((args) => (() => {
   const epic_integration = nix.thunk(() => nix.app(callPackage, nix.path(here, "./epic-integration.nix"), nix.thunk(() => ({}))));
   const comet_gog = comet_gog_heroic;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "heroic-unwrapped",
       version: "2.22.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Heroic-Games-Launcher",
           repo: "HeroicGamesLauncher",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-gXG0ojLIT28aAYXhpMmR9Oksmdfidr4m6M7PDJWwa1c=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpmConfigHook, pnpm, python3, makeWrapper]),
       patches: nix.thunk(() => [nix.path(here, "./fix-non-steam-shortcuts.patch")]),
-      env: nix.thunk(() => ({ __proto__: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
 
 # set nodedir to prevent node-gyp from downloading headers
@@ -111,12 +111,12 @@ substituteInPlace "$out/share/applications/com.heroicgameslauncher.hgl.desktop" 
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "epic-integration": epic_integration,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Native GOG, Epic, and Amazon Games Launcher for Linux, Windows and Mac",
         homepage: "https://github.com/Heroic-Games-Launcher/HeroicGamesLauncher",
         changelog: nix.thunk(() => nix.str`https://github.com/Heroic-Games-Launcher/HeroicGamesLauncher/releases/tag/v${nix.sel(finalAttrs, "version")}`),

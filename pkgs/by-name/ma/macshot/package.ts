@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const undmg = nix.arg($, "undmg");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "macshot",
       version: "4.1.2",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/sw33tLie/macshot/releases/download/v${nix.sel(finalAttrs, "version")}/MacShot.dmg`),
           hash: "sha256-5o8l6MvGs58zSPKaR4RQZ2UgWsqcQRaRUsd8cS62VVg=",
         })))),
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [undmg]),
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications\"\ncp -R macshot.app \"$out/Applications/\"\n\nmkdir -p \"$out/bin\"\nln -s \"$out/Applications/macshot.app/Contents/MacOS/macshot\" \"$out/bin/macshot\"\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Feature-packed native macOS screenshot & recording tool",
         homepage: "https://github.com/sw33tLie/macshot",
         changelog: nix.thunk(() => nix.str`https://github.com/sw33tLie/macshot/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

@@ -14,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "prociono",
       version: "2011-05-25",
       outputs: nix.thunk(() => ["out", "webfont"]),
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "theleagueof",
           repo: "prociono",
           rev: "f9d9680de6d6f0c13939f23c9dd14cd7853cf844",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Roman serif with blackletter elements",
         longDescription: "\"Prociono\" (pro-tsee-O-no) is an Esperanto word meaning either the star\nProcyon or the animal species known as the raccoon. It is a roman serif\nwith blackletter elements.\n",
         homepage: "https://www.theleagueofmoveabletype.com/prociono",

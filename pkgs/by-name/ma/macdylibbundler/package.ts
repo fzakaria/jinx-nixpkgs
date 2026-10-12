@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "macdylibbundler";
       const version = "1.0.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "auriamg",
           repo: "macdylibbundler",
           rev: version,
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH ":" "${cctools}/bin"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utility to ease bundling libraries into executables for OSX",
         longDescription: "dylibbundler is a small command-line programs that aims to make bundling\n.dylibs as easy as possible. It automatically determines which dylibs are\nneeded by your program, copies these libraries inside the app bundle, and\nfixes both them and the executable to be ready for distribution... all\nthis with a single command on the terminal! It will also work if your\nprogram uses plug-ins that have dependencies too.\n",
         homepage: "https://github.com/auriamg/macdylibbundler",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "nomeata"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

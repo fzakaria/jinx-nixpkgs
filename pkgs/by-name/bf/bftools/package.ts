@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const jre = nix.arg($, "jre");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bftools",
       version: "7.3.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://downloads.openmicroscopy.org/bio-formats/${nix.sel(finalAttrs, "version")}/artifacts/bftools.zip`),
           hash: "sha256-EQ7P07d53e6Q/9Wt2Pa1h0TfuYblOZeByGW30oE3i6M=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
 `),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bundle of scripts for using Bio-Formats on the command line with bioformats_package.jar already included",
         mainProgram: "showinf",
         sourceProvenance: nix.thunk(() => (() => {

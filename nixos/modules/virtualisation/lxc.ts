@@ -41,45 +41,45 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "virtualisation", "lxc"));
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "lxc"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         lxc: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "This enables Linux Containers (LXC), which provides tools\nfor creating and managing system or application containers\non Linux.\n",
             })))),
           unprivilegedContainers: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "support for unprivileged users to launch containers")),
           systemConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "This is the system-wide LXC config. See\n{manpage}`lxc.system.conf(5)`.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "lxc", nix.thunk(() => ({})))),
           defaultConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Default config (default.conf) for new containers, i.e. for\nnetwork config. See {manpage}`lxc.container.conf(5)`.\n",
             })))),
           usernetConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "This is the config file for managing unprivileged user network\nadministration access in LXC. See {manpage}`lxc-usernet(5)`.\n",
             })))),
           bridgeConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "This is the config file for override lxc-net bridge default settings.\n",
@@ -88,30 +88,30 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         environment: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$14,
-            "lxc/lxc.conf": nix.thunk(() => ({ __proto__: pos$10, text: nix.thunk(() => nix.sel(cfg, "systemConfig")) })),
-            "lxc/lxc-usernet": nix.thunk(() => ({ __proto__: pos$11, text: nix.thunk(() => nix.sel(cfg, "usernetConfig")) })),
-            "lxc/default.conf": nix.thunk(() => ({ __proto__: pos$12, text: nix.thunk(() => nix.sel(cfg, "defaultConfig")) })),
-            "lxc/lxc-net": nix.thunk(() => ({ __proto__: pos$13, text: nix.thunk(() => nix.sel(cfg, "bridgeConfig")) })),
+            [nix.POS]: pos$14,
+            "lxc/lxc.conf": nix.thunk(() => ({ [nix.POS]: pos$10, text: nix.thunk(() => nix.sel(cfg, "systemConfig")) })),
+            "lxc/lxc-usernet": nix.thunk(() => ({ [nix.POS]: pos$11, text: nix.thunk(() => nix.sel(cfg, "usernetConfig")) })),
+            "lxc/default.conf": nix.thunk(() => ({ [nix.POS]: pos$12, text: nix.thunk(() => nix.sel(cfg, "defaultConfig")) })),
+            "lxc/lxc-net": nix.thunk(() => ({ [nix.POS]: pos$13, text: nix.thunk(() => nix.sel(cfg, "bridgeConfig")) })),
           })),
           pathsToLink: nix.thunk(() => ["/share/lxc"]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             rules: nix.thunk(() => ["d /var/lib/lxc/rootfs 0755 root root -"]),
           })),
           packages: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "unprivilegedContainers")), nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "lxc"))]))),
           services: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "unprivilegedContainers")), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               "lxc-net": nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 enable: true,
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 path: nix.thunk(() => [
@@ -124,28 +124,28 @@ export default nix.lambda((args) => (() => {
             })))),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           apparmor: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
             policies: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               "bin.lxc-start": nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 profile: nix.thunk(() => nix.str`include ${nix.sel(cfg, "package")}/etc/apparmor.d/usr.bin.lxc-start
 `),
               })),
               "lxc-containers": nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 profile: nix.thunk(() => nix.str`include ${nix.sel(cfg, "package")}/etc/apparmor.d/lxc-containers
 `),
               })),
             })),
           })),
           wrappers: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "unprivilegedContainers")), nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               lxcUserNet: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 source: nix.thunk(() => nix.str`${nix.sel(pkgs, "lxc")}/libexec/lxc/lxc-user-nic`),
                 setuid: true,
                 owner: "root",
@@ -156,8 +156,8 @@ export default nix.lambda((args) => (() => {
             })))),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$28,
-          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "unprivilegedContainers")), nix.thunk(() => ({ __proto__: pos$27, "lxc-user": nix.thunk(() => ({})) })))),
+          [nix.POS]: pos$28,
+          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "unprivilegedContainers")), nix.thunk(() => ({ [nix.POS]: pos$27, "lxc-user": nix.thunk(() => ({})) })))),
         })),
       })))),
   };

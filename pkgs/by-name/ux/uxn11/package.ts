@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromSourcehut = nix.arg($, "fetchFromSourcehut");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "uxn11",
       version: "1.0-unstable-2025-09-27",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~rabbits",
           repo: "uxn11",
           rev: "3c16d2acecfe4784dfe75de520e6229fa809b634",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libx11, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://git.sr.ht/~rabbits/uxn11",
         description: "X11 and standalone text-mode emulators for the Uxn virtual machine",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

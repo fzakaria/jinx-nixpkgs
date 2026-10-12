@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const version = "0.6.0";
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "unbound_exporter",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "letsencrypt",
           repo: "unbound_exporter",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-2M7s9YPAFxCQcIgF+HDKu6kztHBvbl/S2BmaBngeBFI=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { __proto__: pos$2, unbound: nix.thunk(() => nix.attr(from, "unbound")) };
+          return { [nix.POS]: pos$2, unbound: nix.thunk(() => nix.attr(from, "unbound")) };
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/letsencrypt/unbound_exporter/releases/tag/v${version}`),
         description: "Prometheus exporter for Unbound DNS resolver",
         mainProgram: "unbound_exporter",

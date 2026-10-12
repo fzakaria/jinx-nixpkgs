@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const protobuf = nix.arg($, "protobuf");
   const grpc = nix.arg($, "grpc");
   return nix.app(qtModule, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "qtgrpc",
       propagatedBuildInputs: nix.thunk(() => [qtbase, qtdeclarative]),
       buildInputs: nix.thunk(() => [protobuf, grpc]),

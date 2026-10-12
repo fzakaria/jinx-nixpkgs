@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_cov_stub = nix.arg($, "pytest-cov-stub");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "typed-argparse",
       version: "0.3.1-unstable-2025-05-09",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "typed-argparse",
           repo: "typed-argparse",
           rev: "989887701c5b4e8c835fac60d6124a9efa557e6f",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       pythonImportsCheck: nix.thunk(() => ["typed_argparse"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Type-safe Python argument parsing",
         homepage: "https://typed-argparse.github.io/typed-argparse/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

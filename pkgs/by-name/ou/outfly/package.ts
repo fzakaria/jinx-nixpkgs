@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pname = "outfly";
       const version = "0.15.0";
       const src = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "outfly",
           repo: "outfly",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const cargoHash = "sha256-UXqS4JfKuLxeTW1MDMnKLzw8oHf1Gpgv8SktTtf12mc=";
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "outfly",
             exec: "outfly",
             desktopName: "OutFly",
@@ -54,11 +54,11 @@ export default nix.lambda((args) => (() => {
           })))),
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Breathtaking 3D space game in the rings of Jupiter",
         homepage: "https://yunicode.itch.io/outfly",
         downloadPage: "https://codeberg.org/outfly/outfly/releases",
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "outfly",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

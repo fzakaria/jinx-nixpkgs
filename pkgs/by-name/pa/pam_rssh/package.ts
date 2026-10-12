@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const openssh = nix.arg($, "openssh");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pam_rssh",
       version: "1.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "z4yx",
           repo: "pam_rssh",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,14 +44,14 @@ export default nix.lambda((args) => (() => {
         "--skip=sign_verify::test_dsa_sign_verify",
       ]),
       nativeCheckInputs: nix.thunk(() => [openssh]),
-      env: nix.thunk(() => ({ __proto__: pos$2, USER: "nixbld" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, USER: "nixbld" })),
       preCheck: "export HOME=$(mktemp -d)\nmkdir $HOME/.ssh\nssh-keygen -q -N \"\" -t ecdsa -b 521 -f $HOME/.ssh/id_ecdsa521\nssh-keygen -q -N \"\" -t ecdsa -b 384 -f $HOME/.ssh/id_ecdsa384\nssh-keygen -q -N \"\" -t ecdsa -b 256 -f $HOME/.ssh/id_ecdsa256\nssh-keygen -q -N \"\" -t ed25519 -f $HOME/.ssh/id_ed25519\nssh-keygen -q -N \"\" -t rsa -f $HOME/.ssh/id_rsa\nexport SSH_AUTH_SOCK=$HOME/ssh-agent.sock\neval $(ssh-agent -a $SSH_AUTH_SOCK)\nssh-add $HOME/.ssh/id_ecdsa521\nssh-add $HOME/.ssh/id_ecdsa384\nssh-add $HOME/.ssh/id_ecdsa256\nssh-add $HOME/.ssh/id_ed25519\nssh-add $HOME/.ssh/id_rsa\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "PAM module for authenticating via ssh-agent, written in Rust",
         homepage: "https://github.com/z4yx/pam_rssh",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const cunit = nix.arg($, "cunit");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libtraceevent",
       version: "1.9.0",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.kernel.org/pub/scm/libs/libtrace/libtraceevent.git",
           tag: nix.thunk(() => nix.str`libtraceevent-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-4KuF+UNMWxfxXYVlS0cBY5/p242UQ/NoRRVK+wmn04E=",
@@ -40,15 +40,15 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [cunit]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://git.kernel.org/pub/scm/libs/libtrace/libtraceevent.git",
             "rev-prefix": "libtraceevent-",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Linux kernel trace event library",
         homepage: "https://git.kernel.org/pub/scm/libs/libtrace/libtraceevent.git/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

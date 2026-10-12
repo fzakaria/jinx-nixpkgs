@@ -14,9 +14,9 @@ export default nix.lambda((args) => (() => {
   const writeText = nix.arg($, "writeText");
   const src = nix.thunk(() => nix.app(writeText, "CODE.c", "#include <stdio.h>\n#include <stddef.h>\n#include <stdlib.h>\n\nint main(int argc, char *argv[]) {\n  return EXIT_SUCCESS;\n}\n"));
   return nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(sparse, "pname")}-tests`), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       buildInputs: nix.thunk(() => [gcc, sparse]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, timeout: 3n })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 3n })),
     })), nix.thunk(() => nix.str`set -eu
 ${sparse}/bin/cgcc ${src} > output 2>&1 || ret=$?
 if [[ -z $(<output) ]]; then

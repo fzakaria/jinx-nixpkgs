@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const dcompiler = nix.argOr($, "dcompiler", () => nix.force(ldc));
   nix.assert_(!nix.eq(dcompiler, null), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ru/rund/package.nix:9:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rund",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dragon-lang",
           repo: "rund",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "$NIX_BUILD_TOP/rund make.d test\n",
       installPhase: "mkdir -p $out/bin\nmv $NIX_BUILD_TOP/rund $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Compiler-wrapper that runs and caches D programs",
         mainProgram: "rund",
         homepage: "https://github.com/dragon-lang/rund",

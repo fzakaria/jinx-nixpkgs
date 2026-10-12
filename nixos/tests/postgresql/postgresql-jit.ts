@@ -22,26 +22,26 @@ export default nix.lambda((args) => (() => {
       const lib = nix.arg($_1, "lib");
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         name: nix.thunk(() => nix.str`postgresql-jit-${nix.sel(package$, "name")}`),
         meta: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w, "ma27"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           machine: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
             const pkgs_1 = nix.arg($_2, "pkgs");
             return {
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               services: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 postgresql: nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   package: package$,
                   enable: true,
                   enableJIT: true,
@@ -68,6 +68,6 @@ machine.shutdown()
 `),
       };
     })(), formals$2));
-  return nix.app(genTests, nix.thunk(() => ({ __proto__: pos$7, makeTestFor: makeTestFor })));
+  return nix.app(genTests, nix.thunk(() => ({ [nix.POS]: pos$7, makeTestFor: makeTestFor })));
 })(), formals$1);
 //# sourceMappingURL=postgresql-jit.ts.map

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const util_linuxMinimal = nix.arg($, "util-linuxMinimal");
   return nix.app(replaceVarsWith, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "nixos-enter",
       src: nix.path(here, "./nixos-enter.sh"),
       replacements: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         runtimeShell: runtimeShell,
         path: nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [util_linuxMinimal]))),
       })),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`installManPage ${nix.path(here, "./nixos-enter.8")}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Run a command in a NixOS chroot environment",
         homepage: "https://github.com/NixOS/nixpkgs/tree/master/pkgs/by-name/ni/nixos-enter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

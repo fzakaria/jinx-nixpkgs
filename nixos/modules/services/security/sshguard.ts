@@ -39,59 +39,59 @@ LOGREADER="LANG=C ${nix.sel(config, "systemd", "package")}/bin/journalctl ${args
 `));
   })());
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         sshguard: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Whether to enable the sshguard service.",
             })))),
           attack_threshold: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: 30n,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               description: "Block attackers when their cumulative attack score exceeds threshold. Most attacks have a score of 10.\n",
             })))),
           blacklist_threshold: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: null,
               example: 120n,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "int")))),
               description: "Blacklist an attacker when its score exceeds threshold. Blacklisted addresses are loaded from and added to blacklist-file.\n",
             })))),
           blacklist_file: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: "/var/lib/sshguard/blacklist.db",
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "Blacklist an attacker when its score exceeds threshold. Blacklisted addresses are loaded from and added to blacklist-file.\n",
             })))),
           blocktime: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: 120n,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               description: "Block attackers for initially blocktime seconds after exceeding threshold. Subsequent blocks increase by a factor of 1.5.\n\nsshguard unblocks attacks at random intervals, so actual block times will be longer.\n",
             })))),
           detection_time: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: 1800n,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               description: "Remember potential attackers for up to detection_time seconds before resetting their score.\n",
             })))),
           whitelist: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: [],
               example: nix.thunk(() => ["198.51.100.56", "198.51.100.2"]),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "Whitelist a list of addresses, hostnames, or address blocks.\n",
             })))),
           services: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               default: nix.thunk(() => ["sshd"]),
               example: nix.thunk(() => ["sshd", "exim"]),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
@@ -101,20 +101,20 @@ LOGREADER="LANG=C ${nix.sel(config, "systemd", "package")}/bin/journalctl ${args
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         environment: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           etc: nix.thunk(() => ({
-            __proto__: pos$13,
-            "sshguard.conf": nix.thunk(() => ({ __proto__: pos$12, source: configFile })),
+            [nix.POS]: pos$13,
+            "sshguard.conf": nix.thunk(() => ({ [nix.POS]: pos$12, source: configFile })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           services: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             sshguard: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               description: "SSHGuard brute-force attacks protection system",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
@@ -143,9 +143,9 @@ ${nix.sel(pkgs, "ipset")}/bin/ipset -quiet destroy sshguard4
 `)), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(config, "networking", "firewall", "enable")) && nix.asBool(nix.sel(config, "networking", "enableIPv6")))), nix.thunk(() => nix.str`${nix.sel(pkgs, "iptables")}/bin/ip6tables -D INPUT -m set --match-set sshguard6 src -j DROP
 ${nix.sel(pkgs, "ipset")}/bin/ipset -quiet destroy sshguard6
 `)))),
-              unitConfig: nix.thunk(() => ({ __proto__: pos$15, Documentation: "man:sshguard(8)" })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$15, Documentation: "man:sshguard(8)" })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 Type: "simple",
                 ExecStart: nix.thunk(() => (() => {
                   const args_1 = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.concat([

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       version: nix.thunk(() => nix.attr(simple_dftd3, "version")),
       src: nix.thunk(() => nix.attr(simple_dftd3, "src")),
       meta: nix.thunk(() => nix.attr(simple_dftd3, "meta")),

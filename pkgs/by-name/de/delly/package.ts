@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const delly = nix.arg($, "delly");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "delly",
       version: "2.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dellytools",
           repo: "delly",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,9 +37,9 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`EBROOTHTSLIB=${htslib}`), "PARALLEL=1"]),
       installPhase: "runHook preInstall\n\ninstall -Dm555 src/delly $out/bin/delly\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           simple: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-test`), nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir $out
 ${nix.app(nix.sel(lib, "getExe"), delly)} sr -g ${nix.sel(delly, "src")}/example/ref.fa ${nix.sel(delly, "src")}/example/sr.bam > $out/sr.vcf
 ${nix.app(nix.sel(lib, "getExe"), delly)} lr -g ${nix.sel(delly, "src")}/example/ref.fa ${nix.sel(delly, "src")}/example/lr.bam > $out/lr.vcf
@@ -48,7 +48,7 @@ ${nix.app(nix.sel(lib, "getExe"), delly)} cnv -g ${nix.sel(delly, "src")}/exampl
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Structural variant discovery by integrated paired-end and split-read analysis",
         homepage: "https://github.com/dellytools/delly",
         changelog: nix.thunk(() => nix.str`https://github.com/dellytools/delly/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

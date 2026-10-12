@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const dist = nix.arg($_1, "dist");
       const hash = nix.arg($_1, "hash");
       return nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           platform: platform,
           dist: dist,
@@ -50,57 +50,57 @@ export default nix.lambda((args) => (() => {
         })));
     })(), formals$2);
     return {
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       "3.12-x86_64-linux": nix.thunk(() => nix.app(getSrcFromPypi, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           platform: "manylinux_2_27_x86_64",
           dist: "cp312",
           hash: "sha256-Yzih8JVvYNAlKUBKwzqAcAFaUmNc22u7FdDRmXVwd7s=",
         })))),
       "3.12-aarch64-linux": nix.thunk(() => nix.app(getSrcFromPypi, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           platform: "manylinux_2_27_aarch64",
           dist: "cp312",
           hash: "sha256-1JcAToDaqRuYJY1kWzdOjf9IC/AX0sXz4wsTcayPVLE=",
         })))),
       "3.12-aarch64-darwin": nix.thunk(() => nix.app(getSrcFromPypi, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           platform: "macosx_11_0_arm64",
           dist: "cp312",
           hash: "sha256-7KgOdFt2IzaadrX2hWduwjOjOlXWn2D6flfL78/Uetw=",
         })))),
       "3.13-x86_64-linux": nix.thunk(() => nix.app(getSrcFromPypi, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           platform: "manylinux_2_27_x86_64",
           dist: "cp313",
           hash: "sha256-XzysjXAwwfgKGCAl1xceo7EkUWKnEPbljSXuP+F0iqw=",
         })))),
       "3.13-aarch64-linux": nix.thunk(() => nix.app(getSrcFromPypi, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           platform: "manylinux_2_27_aarch64",
           dist: "cp313",
           hash: "sha256-X504M8sr6l40a9ITi6dJkgF+CEHGPYkKAVehP5y/Q54=",
         })))),
       "3.13-aarch64-darwin": nix.thunk(() => nix.app(getSrcFromPypi, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           platform: "macosx_11_0_arm64",
           dist: "cp313",
           hash: "sha256-dmvZDieg/1O4e7nXDHNWXsgLmxFlMgzLj3LeRrhVEN8=",
         })))),
       "3.14-x86_64-linux": nix.thunk(() => nix.app(getSrcFromPypi, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           platform: "manylinux_2_27_x86_64",
           dist: "cp314",
           hash: "sha256-HzHYprH7Exgf8YB3V1BtEPbny6aycH9/gPc7hTyy/yI=",
         })))),
       "3.14-aarch64-linux": nix.thunk(() => nix.app(getSrcFromPypi, nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           platform: "manylinux_2_27_aarch64",
           dist: "cp314",
           hash: "sha256-BhRo61rGtiEyFf0RArI3vLyT8kSAyIEkW3NhnQwqMh4=",
         })))),
       "3.14-aarch64-darwin": nix.thunk(() => nix.app(getSrcFromPypi, nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           platform: "macosx_11_0_arm64",
           dist: "cp314",
           hash: "sha256-7a1rKhjWPcKWTMl6FtEm2tQWIe2sedZR4PbIeF2JE2k=",
@@ -108,7 +108,7 @@ export default nix.lambda((args) => (() => {
     };
   })());
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       pname: "jaxlib",
       version: version,
       format: "wheel",
@@ -121,7 +121,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [ml_dtypes, numpy, scipy]),
       pythonImportsCheck: nix.thunk(() => ["jaxlib"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         description: "Prebuilt jaxlib backend from PyPi",
         homepage: "https://github.com/jax-ml/jax",
         sourceProvenance: nix.thunk(() => (() => {

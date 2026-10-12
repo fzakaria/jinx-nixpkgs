@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "google-cloud-workflows",
       version: "1.23.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "google_cloud_workflows",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-vo4IpdE0GG2834Z8BbFZrYrH3jtkJbIb76q39PJY1Kg=",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         "google.cloud.workflows_v1beta",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python Client for Cloud Workflows",
         homepage: "https://github.com/googleapis/google-cloud-python/tree/main/packages/google-cloud-workflows",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/google-cloud-python/blob/google-cloud-workflows-v${nix.sel(finalAttrs, "version")}/packages/google-cloud-workflows/CHANGELOG.md`),

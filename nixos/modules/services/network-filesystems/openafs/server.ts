@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lib.nix")), nix.thunk(() => ({ __proto__: pos$1, config: config, lib: lib, pkgs: pkgs })))), null);
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lib.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, config: config, lib: lib, pkgs: pkgs })))), null);
   const concatStringsSep = nix.thunk(() => nix.attr(lib, "concatStringsSep"));
   const literalExpression = nix.thunk(() => nix.attr(lib, "literalExpression"));
   const mkIf = nix.thunk(() => nix.attr(lib, "mkIf"));
@@ -89,9 +89,9 @@ end
   const cfg = nix.thunk(() => nix.sel(config, "services", "openafsServer"));
   const udpSizeStr = nix.thunk(() => nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "udpPacketSize"))));
   const fabsConfFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "fabs.yaml", nix.thunk(() => nix.app(nix.sel(nix.builtins, "toJSON"), nix.thunk(() => nix.update({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         afs: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           aklog: nix.thunk(() => nix.add(nix.sel(cfg, "package"), "/bin/aklog")),
           cell: nix.thunk(() => nix.sel(cfg, "cellName")),
           dumpscan: nix.thunk(() => nix.add(nix.sel(cfg, "package"), "/bin/afsdump_scan")),
@@ -100,80 +100,80 @@ end
           vos: nix.thunk(() => nix.add(nix.sel(cfg, "package"), "/bin/vos")),
         })),
         k5start: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           command: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(pkgs, "kstart"))), "/bin/k5start")),
         })),
       }, nix.sel(cfg, "roles", "backup", "fabsExtraConfig")))))));
   return {
-    __proto__: pos$46,
+    [nix.POS]: pos$46,
     options: nix.thunk(() => ({
-      __proto__: pos$31,
+      [nix.POS]: pos$31,
       services: nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         openafsServer: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: false,
               type: nix.thunk(() => nix.sel(types, "bool")),
               description: "Whether to enable the OpenAFS server. An OpenAFS server needs a\ncomplex setup. So, be aware that enabling this service and setting\nsome options does not give you a turn-key-ready solution. You need\nat least a running Kerberos 5 setup, as OpenAFS relies on it for\nauthentication. See the Guide \"QuickStartUnix\" coming with\n`pkgs.openafs.doc` for complete setup\ninstructions.\n",
             })))),
           advertisedAddresses: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: [],
               description: "List of IP addresses this server is advertised under. See {manpage}`NetInfo(5)`",
             })))),
           cellName: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: "",
               type: nix.thunk(() => nix.sel(types, "str")),
               description: "Cell name, this server will serve.",
               example: "grand.central.org",
             })))),
           cellServDB: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.lookup(w, "cellServDBType"), nix.thunk(() => nix.sel(cfg, "cellName")))),
               description: "Definition of all cell-local database server machines. If a single\nlist is provided, it will be used as the servers for `cellName`.\n",
               example: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$8, ip: "1.2.3.4", dnsname: "first.afsdb.server.dns.fqdn.org" })),
-                nix.thunk(() => ({ __proto__: pos$9, ip: "2.3.4.5", dnsname: "second.afsdb.server.dns.fqdn.org" })),
+                nix.thunk(() => ({ [nix.POS]: pos$8, ip: "1.2.3.4", dnsname: "first.afsdb.server.dns.fqdn.org" })),
+                nix.thunk(() => ({ [nix.POS]: pos$9, ip: "2.3.4.5", dnsname: "second.afsdb.server.dns.fqdn.org" })),
               ]),
             })))),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "openafs", nix.thunk(() => ({})))),
           roles: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             fileserver: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   default: true,
                   type: nix.thunk(() => nix.sel(types, "bool")),
                   description: "Fileserver role, serves files and volumes from its local storage.",
                 })))),
               fileserverArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   default: "-vattachpar 128 -vhashsize 11 -L -rxpck 400 -cb 1000000",
                   type: nix.thunk(() => nix.sel(types, "str")),
                   description: "Arguments to the dafileserver process. See its man page.",
                 })))),
               volserverArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   default: "",
                   type: nix.thunk(() => nix.sel(types, "str")),
                   description: "Arguments to the davolserver process. See its man page.",
                   example: "-sync never",
                 })))),
               salvageserverArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   default: "",
                   type: nix.thunk(() => nix.sel(types, "str")),
                   description: "Arguments to the salvageserver process. See its man page.",
                   example: "-showlog",
                 })))),
               salvagerArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   default: "",
                   type: nix.thunk(() => nix.sel(types, "str")),
                   description: "Arguments to the dasalvager process. See its man page.",
@@ -181,22 +181,22 @@ end
                 })))),
             })),
             database: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   default: true,
                   type: nix.thunk(() => nix.sel(types, "bool")),
                   description: "Database server role, maintains the Volume Location Database,\nProtection Database (and Backup Database, see\n`backup` role). There can be multiple\nservers in the database role for replication, which then need\nreliable network connection to each other.\n\nServers in this role appear in AFSDB DNS records or the\nCellServDB.\n",
                 })))),
               vlserverArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   default: "",
                   type: nix.thunk(() => nix.sel(types, "str")),
                   description: "Arguments to the vlserver process. See its man page.",
                   example: "-rxbind",
                 })))),
               ptserverArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   default: "",
                   type: nix.thunk(() => nix.sel(types, "str")),
                   description: "Arguments to the ptserver process. See its man page.",
@@ -204,30 +204,30 @@ end
                 })))),
             })),
             backup: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               enable: nix.thunk(() => nix.app(mkEnableOption, "the backup server role. When using OpenAFS built-in buserver, use in conjunction with the\n`database` role to maintain the Backup\nDatabase. Normally only used in conjunction with tape storage\nor IBM's Tivoli Storage Manager.\n\nFor a modern backup server, enable this role and see\n{option}`enableFabs`\n")),
               enableFabs: nix.thunk(() => nix.app(mkEnableOption, "FABS, the flexible AFS backup system. It stores volumes as dump files, relying on other\npre-existing backup solutions for handling them\n")),
               buserverArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   default: "",
                   type: nix.thunk(() => nix.sel(types, "str")),
                   description: "Arguments to the buserver process. See its man page.",
                   example: "-p 8",
                 })))),
               cellServDB: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   default: nix.thunk(() => ({})),
                   type: nix.thunk(() => nix.app(nix.lookup(w, "cellServDBType"), nix.thunk(() => nix.sel(cfg, "cellName")))),
                   description: "Definition of all cell-local backup database server machines.\nUse this when your cell uses less backup database servers than\nother database server machines.\n",
                 })))),
               fabsArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   default: "",
                   type: nix.thunk(() => nix.sel(types, "str")),
                   description: "Arguments to the fabsys process. See\n{manpage}`fabsys_server(1)` and\n{manpage}`fabsys_config(1)`.\n",
                 })))),
               fabsExtraConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   default: nix.thunk(() => ({})),
                   type: nix.thunk(() => nix.sel(types, "attrs")),
                   description: "Additional configuration parameters for the FABS backup server.\n",
@@ -236,13 +236,13 @@ end
             })),
           })),
           dottedPrincipals: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               default: false,
               type: nix.thunk(() => nix.sel(types, "bool")),
               description: "If enabled, allow principal names containing (.) dots. Enabling\nthis has security implications!\n",
             })))),
           udpPacketSize: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               default: 1310720n,
               type: nix.thunk(() => nix.sel(types, "int")),
               description: "UDP packet size to use in Bytes. Higher values can speed up\ncommunications. The default of 1 MB is a sufficient in most\ncases. Make sure to increase the kernel's UDP buffer size\naccordingly via `net.core(w|r|opt)mem_max`\nsysctl.\n",
@@ -251,47 +251,47 @@ end
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$45,
+        [nix.POS]: pos$45,
         warnings: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.app(nix.sel(nix.builtins, "attrNames"), nix.thunk(() => nix.sel(cfg, "cellServDB"))), [nix.thunk(() => nix.sel(cfg, "cellName"))])), nix.thunk(() => nix.str`config.services.openafsServer.cellServDB should normally only contain servers for one cell. It currently contains servers for ${nix.app(nix.builtins.toString, nix.thunk(() => nix.app(nix.sel(nix.builtins, "attrNames"), nix.thunk(() => nix.sel(cfg, "cellServDB")))))}.
 `)), nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(useBuCellServDB) && nix.asBool(!nix.eq(nix.app(nix.sel(nix.builtins, "attrNames"), nix.thunk(() => nix.sel(cfg, "backup", "cellServDB"))), [nix.thunk(() => nix.sel(cfg, "cellName"))])))), nix.thunk(() => nix.str`config.services.openafsServer.backup.cellServDB should normally only contain servers for one cell. It currently contains servers for ${nix.app(nix.builtins.toString, nix.thunk(() => nix.app(nix.sel(nix.builtins, "attrNames"), nix.thunk(() => nix.sel(cfg, "cellServDB")))))}.
 `)))),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             assertion: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "cellServDB"), {})) && nix.asBool(!nix.eq(nix.selOr(cfg, () => [], "cellServDB", nix.key(nix.str`${nix.sel(cfg, "cellName")}`)), [])))),
             message: "You must specify all cell-local database servers in config.services.openafsServer.cellServDB.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "cellName"), "")),
             message: "You must specify the local cell name in config.services.openafsServer.cellName.",
           })),
         ]),
         environment: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "openafsBin"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             bosConfig: nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               source: bosConfig,
               target: "openafs/BosConfig",
               mode: "0644",
             })),
             cellServDB: nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               text: nix.thunk(() => nix.app(nix.lookup(w, "mkCellServDB"), nix.thunk(() => nix.sel(cfg, "cellServDB")))),
               target: "openafs/server/CellServDB",
               mode: "0644",
             })),
             thisCell: nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               text: nix.thunk(() => nix.sel(cfg, "cellName")),
               target: "openafs/server/ThisCell",
               mode: "0644",
             })),
             buCellServDB: nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               enable: useBuCellServDB,
               text: nix.thunk(() => nix.app(nix.lookup(w, "mkCellServDB"), nix.thunk(() => nix.sel(cfg, "roles", "backup", "cellServDB")))),
               target: "openafs/backup/CellServDB",
@@ -300,21 +300,21 @@ end
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$44,
+          [nix.POS]: pos$44,
           services: nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             "openafs-server": nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               description: "OpenAFS server",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               restartIfChanged: false,
               unitConfig: nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 ConditionPathExists: nix.thunk(() => ["|/etc/openafs/server/KeyFileExt"]),
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 ExecStartPre: nix.thunk(() => nix.concat([
                   nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils")), "mkdir")} -m 0755 -p /var/openafs`),
                 ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(netInfo, null)), nix.thunk(() => [

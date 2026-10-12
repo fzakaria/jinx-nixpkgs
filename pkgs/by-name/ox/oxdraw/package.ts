@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => (() => {
       const frontend = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "oxdraw-frontend",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -37,11 +37,11 @@ runHook postBuild
           npmDepsHash: "sha256-Yyox/x78spQqCJDJkPVuzfeAbtd/fdyihDHudIqruo4=",
         }))));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname: "oxdraw",
         version: "0.2.0",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             owner: "RohanAdwankar",
             repo: "oxdraw",
             tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,13 +52,13 @@ runHook postBuild
         nativeBuildInputs: nix.thunk(() => [pkg_config]),
         buildInputs: nix.thunk(() => [openssl]),
         preBuild: "# The build.rs builds the frontend, which we manually build via Nix already\nrm build.rs\n",
-        env: nix.thunk(() => ({ __proto__: pos$3, OXDRAW_BUNDLED_WEB_DIST: frontend })),
+        env: nix.thunk(() => ({ [nix.POS]: pos$3, OXDRAW_BUNDLED_WEB_DIST: frontend })),
         passthru: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           description: "Diagram as Code Tool Written in Rust with Draggable Editing",
           homepage: "https://github.com/RohanAdwankar/oxdraw",
           changelog: nix.thunk(() => nix.str`https://github.com/RohanAdwankar/oxdraw/releases/tag/v${nix.sel(finalAttrs, "version")}`),

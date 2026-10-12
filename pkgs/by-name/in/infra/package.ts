@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "infra";
       const version = "0.21.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "infrahq",
           repo: "infra",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const subPackages = nix.thunk(() => ["."]);
       const ldflags = nix.thunk(() => ["-s", "-w"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Manages access to infrastructure such as Kubernetes",
         homepage: "https://github.com/infrahq/infra",
         changelog: nix.thunk(() => nix.str`https://github.com/infrahq/infra/raw/v${version}/CHANGELOG.md`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "infra",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wavpack",
       version: "5.9.0",
       enableParallelBuilding: true,
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, gettext]),
       buildInputs: nix.thunk(() => [libiconv]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dbry",
           repo: "WavPack",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       outputs: nix.thunk(() => ["out", "dev", "doc", "man"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Hybrid audio compression format",
         homepage: "https://www.wavpack.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/dbry/WavPack/releases/tag/${nix.sel(finalAttrs, "version")}`),

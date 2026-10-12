@@ -69,65 +69,65 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "linkding"));
   return {
-    __proto__: pos$52,
+    [nix.POS]: pos$52,
     options: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       services: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         linkding: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           enable: nix.thunk(() => nix.app(mkEnableOption, "linkding, a self-hosted bookmark manager")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "linkding", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "linkding",
               description: "User account under which linkding runs.\n\n::: {.note}\nIf left as the default value this user will automatically be created\non system activation, otherwise you are responsible for ensuring the\nuser exists before the linkding service starts.\n:::\n",
             })))),
           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "linkding",
               description: "Group under which linkding runs.\n\n::: {.note}\nIf left as the default value this group will automatically be created\non system activation, otherwise you are responsible for ensuring the\ngroup exists before the linkding service starts.\n:::\n",
             })))),
           dataDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "path")),
               default: "/var/lib/linkding",
               description: "Directory used for all mutable state: SQLite database, secret key, favicons, previews, and assets.",
             })))),
           address: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "127.0.0.1",
               description: "Address on which linkding listens.",
             })))),
           port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 9090n,
               description: "Port on which linkding listens.",
             })))),
           contextPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "",
               example: "linkding/",
               description: "Configures a URL context path under which linkding is accessible.\nWhen set, linkding is available at `http://host:<port>/<contextPath>`.\nMust end with a `/` when non-empty.\n",
             })))),
           environmentFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               default: null,
               example: "/run/secrets/linkding.env",
               description: "Path to an environment file loaded by all linkding services.\nUseful for injecting secrets that should not appear in the Nix store,\nsuch as `LD_DB_PASSWORD` or `LD_SUPERUSER_PASSWORD`.\n",
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 LD_DISABLE_BACKGROUND_TASKS: "True",
                 LD_DISABLE_URL_VALIDATION: "True",
                 LD_ENABLE_OIDC: "True",
@@ -135,58 +135,58 @@ export default nix.lambda((args) => (() => {
               description: "Additional environment variables passed to linkding.\nRefer to the [linkding documentation](https://linkding.link/options/)\nfor the full list of supported `LD_*` options.\n",
             })))),
           database: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             type: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["sqlite", "postgres"]))),
                 default: "sqlite",
                 description: "Database engine to use. Defaults to SQLite.",
               })))),
             host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "localhost",
                 description: "PostgreSQL server host.",
               })))),
             port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.sel(types, "port")),
                 default: 5432n,
                 description: "PostgreSQL server port.",
               })))),
             name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "linkding",
                 description: "PostgreSQL database name.",
               })))),
             user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "linkding",
                 description: "PostgreSQL user name.",
               })))),
             createLocally: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
                 description: "Whether to automatically create a local PostgreSQL database and user.",
               })))),
           })),
           openFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Open the linkding port in the firewall.",
             })))),
           processes: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.sel(types, "ints", "positive")),
               default: 2n,
               description: "Number of uWSGI processes to spawn.",
             })))),
           threads: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.sel(types, "ints", "positive")),
               default: 2n,
               description: "Number of threads to spawn (per uWSGI process).",
@@ -199,21 +199,21 @@ export default nix.lambda((args) => (() => {
         const usePostgres = nix.thunk(() => nix.eq(nix.sel(cfg, "database", "type"), "postgres"));
         const pythonPath = nix.thunk(() => nix.add(nix.str`${nix.app(nix.sel(pkg, "passthru", "python", "pkgs", "makePythonPath"), nix.thunk(() => nix.sel(pkg, "passthru", "dependencies")))}:${nix.app(nix.sel(lib, "getBin"), pkg)}/${nix.sel(pkg, "passthru", "python", "sitePackages")}`, nix.app(nix.sel(lib, "strings", "optionalString"), usePostgres, nix.thunk(() => nix.str`:${nix.app(nix.sel(pkg, "passthru", "python", "pkgs", "makePythonPath"), nix.thunk(() => nix.sel(pkg, "optional-dependencies", "postgres")))}`))));
         const environment = nix.thunk(() => nix.update({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           DJANGO_SETTINGS_MODULE: "bookmarks.settings.prod",
           _NIXOS_LINKDING_DATA_DIR: nix.thunk(() => nix.sel(cfg, "dataDir")),
           LD_SERVER_PORT: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))),
         }, nix.update(nix.app(optionalAttrs, nix.thunk(() => !nix.eq(nix.sel(cfg, "contextPath"), "")), nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             LD_CONTEXT_PATH: nix.thunk(() => nix.sel(cfg, "contextPath")),
           }))), nix.update(nix.app(optionalAttrs, usePostgres, nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             LD_DB_ENGINE: "postgres",
             LD_DB_DATABASE: nix.thunk(() => nix.sel(cfg, "database", "name")),
             LD_DB_USER: nix.thunk(() => nix.sel(cfg, "database", "user")),
             LD_DB_HOST: "/run/postgresql",
           }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => (nix.asBool(usePostgres) && nix.asBool(!nix.asBool(nix.sel(cfg, "database", "createLocally"))))), nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             LD_DB_HOST: nix.thunk(() => nix.sel(cfg, "database", "host")),
             LD_DB_PORT: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "database", "port")))),
           }))), nix.sel(cfg, "settings"))))));
@@ -275,7 +275,7 @@ endif =
 `));
         })());
         const commonServiceConfig = nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           Slice: "system-linkding.slice",
           User: nix.thunk(() => nix.sel(cfg, "user")),
           Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -303,42 +303,42 @@ endif =
           RestrictSUIDSGID: true,
         }));
         return {
-          __proto__: pos$50,
+          [nix.POS]: pos$50,
           assertions: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "database", "createLocally")) || nix.asBool(usePostgres))),
               message: "services.linkding.database.createLocally requires services.linkding.database.type = \"postgres\"",
             })),
             nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "database", "createLocally")) || nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "database", "host"), "localhost")) || nix.asBool(nix.eq(nix.sel(cfg, "database", "host"), "")))))),
               message: "services.linkding.database.host should be empty or \"localhost\" when createLocally is enabled",
             })),
             nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "database", "createLocally")) || nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "database", "user"), nix.sel(cfg, "user"))) && nix.asBool(nix.eq(nix.sel(cfg, "database", "user"), nix.sel(cfg, "database", "name"))))))),
               message: "services.linkding.database.user must match services.linkding.user and services.linkding.database.name when createLocally is enabled",
             })),
             nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "contextPath"), "")) || nix.asBool(nix.app(nix.sel(lib, "hasSuffix"), "/", nix.thunk(() => nix.sel(cfg, "contextPath")))))),
               message: "services.linkding.contextPath must end with \"/\" when non-empty",
             })),
           ]),
           networking: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             firewall: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]),
               })))),
           })),
-          environment: nix.thunk(() => ({ __proto__: pos$34, systemPackages: nix.thunk(() => [linkdingManageScript]) })),
+          environment: nix.thunk(() => ({ [nix.POS]: pos$34, systemPackages: nix.thunk(() => [linkdingManageScript]) })),
           users: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             users: nix.thunk(() => nix.attrsDyn({}, [
               [nix.sel(cfg, "user"), nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 isSystemUser: true,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 home: nix.thunk(() => nix.sel(cfg, "dataDir")),
@@ -347,30 +347,30 @@ endif =
             groups: nix.thunk(() => nix.attrsDyn({}, [[nix.sel(cfg, "group"), nix.thunk(() => ({}))]])),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             slices: nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               "system-linkding": nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 description: "linkding bookmark manager System Slice",
                 documentation: nix.thunk(() => ["https://linkding.link/"]),
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               "linkding-setup": nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 description: "linkding database migrations and initialization",
                 after: nix.thunk(() => nix.concat(["network.target"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(usePostgres) && nix.asBool(nix.sel(cfg, "database", "createLocally")))), nix.thunk(() => ["postgresql.target"])))),
                 requires: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(usePostgres) && nix.asBool(nix.sel(cfg, "database", "createLocally")))), nix.thunk(() => ["postgresql.target"]))),
                 serviceConfig: nix.thunk(() => nix.update(commonServiceConfig, {
-                  __proto__: pos$39,
+                  [nix.POS]: pos$39,
                   Type: "oneshot",
                   ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), pkg, "linkding-bootstrap")}`),
                 })),
               })),
               linkding: nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 description: "linkding bookmark manager",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 after: nix.thunk(() => ["linkding-setup.service"]),
@@ -378,20 +378,20 @@ endif =
                 startLimitBurst: 5n,
                 startLimitIntervalSec: 60n,
                 serviceConfig: nix.thunk(() => nix.update(commonServiceConfig, {
-                  __proto__: pos$41,
+                  [nix.POS]: pos$41,
                   Type: "exec",
                   ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "uwsgi")))} --ini ${uwsgiIni}`),
                   Restart: "on-failure",
                 })),
               })),
               "linkding-background-tasks": nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.selOr(cfg, () => "False", "settings", "LD_DISABLE_BACKGROUND_TASKS"), "True")), nix.thunk(() => ({
-                  __proto__: pos$44,
+                  [nix.POS]: pos$44,
                   description: "linkding background task processor",
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   after: nix.thunk(() => ["linkding-setup.service"]),
                   requires: nix.thunk(() => ["linkding-setup.service"]),
                   serviceConfig: nix.thunk(() => nix.update(commonServiceConfig, {
-                    __proto__: pos$43,
+                    [nix.POS]: pos$43,
                     Type: "exec",
                     ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), pkg, "linkding")} run_huey -f`),
                     Restart: "on-failure",
@@ -401,14 +401,14 @@ endif =
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$49,
+            [nix.POS]: pos$49,
             postgresql: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ({
-                __proto__: pos$48,
+                [nix.POS]: pos$48,
                 enable: true,
                 ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "database", "name"))]),
                 ensureUsers: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$47,
+                    [nix.POS]: pos$47,
                     name: nix.thunk(() => nix.sel(cfg, "database", "user")),
                     ensureDBOwnership: true,
                   })),
@@ -418,7 +418,7 @@ endif =
         };
       })()))),
     meta: nix.thunk(() => ({
-      __proto__: pos$51,
+      [nix.POS]: pos$51,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "squat"))];

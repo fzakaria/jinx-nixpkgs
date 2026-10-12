@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "npm-check-updates";
       const version = "23.1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "raineorshine",
           repo: "npm-check-updates",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "sed -i '/\"prepare\"/d' package.json\n";
       const makeCacheWritable = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/raineorshine/npm-check-updates/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
         description: "Find newer versions of package dependencies than what your package.json allows",
         homepage: "https://github.com/raineorshine/npm-check-updates",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

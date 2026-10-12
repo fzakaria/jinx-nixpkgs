@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const scspell = nix.arg($, "scspell");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "colcon-coveragepy-result",
       version: "0.0.8",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "colcon",
           repo: "colcon-coveragepy-result",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["colcon_coveragepy_result"]),
       disabledTestPaths: nix.thunk(() => ["test/test_flake8.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Colcon extension for collecting coverage.py results",
         homepage: "https://colcon.readthedocs.io/",
         downloadPage: "https://github.com/colcon/colcon-coveragepy-result.git",

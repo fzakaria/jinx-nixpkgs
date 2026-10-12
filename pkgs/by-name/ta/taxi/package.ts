@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const vala = nix.arg($, "vala");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "taxi",
       version: "2.0.2-unstable-2024-12-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ellie-commons",
           repo: "taxi",
           rev: "b1c81490641f102005d9451a33d21610c0637e22",
@@ -56,11 +56,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(pantheon, "granite7")),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/ellie-commons/taxi",
         description: "FTP Client that drives you anywhere",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

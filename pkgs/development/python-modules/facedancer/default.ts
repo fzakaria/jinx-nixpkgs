@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.1.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "greatscottgadgets",
           repo: "facedancer",
           tag: version,
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [pyusb, pyserial, prompt_toolkit, libusb1, hid_parser]);
       const pythonImportsCheck = nix.thunk(() => ["facedancer"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/greatscottgadgets/facedancer/releases/tag/${nix.sel(src, "tag")}`),
         description: "Implement your own USB device in Python, supported by a hardware peripheral such as Cynthion or GreatFET",
         homepage: "https://github.com/greatscottgadgets/facedancer",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.app(pythonAtLeast, "3.14")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

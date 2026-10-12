@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const containerd = nix.arg($, "containerd");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "nomad-driver-containerd",
       version: "0.9.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Roblox",
           repo: "nomad-driver-containerd",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,25 +30,25 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/Roblox/nomad-driver-containerd/commit/80b9be1353f701b9d47d874923a9e8ffed4dbd98.patch",
             hash: "sha256-d4C/YwemmZQAt0fTAnQkJVKn8cK4kmxB+wQEHycdn9U=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/Roblox/nomad-driver-containerd/commit/cc0da224669a8f85a8b695288fe5ea748fb270c2.patch",
             hash: "sha256-W8ZOKMkv1814cPNyqTaXUGhh44WfMizZNL4cNX+FOqg=",
           })))),
       ]),
       postPatch: nix.thunk(() => nix.str`substituteInPlace containerd/driver.go --replace-warn 'PluginVersion = "v0.9.3"' 'PluginVersion = "v${nix.sel(finalAttrs, "version")}"'
 `),
-      env: nix.thunk(() => ({ __proto__: pos$4, CGO_ENABLED: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$4, CGO_ENABLED: "1" })),
       vendorHash: "sha256-OO+a5AqhB0tf6lyodhYl9HUSaWvtXWwevRHYy1Q6VoU=",
       subPackages: nix.thunk(() => ["."]),
       buildInputs: nix.thunk(() => [containerd]),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://www.github.com/Roblox/nomad-driver-containerd",
         description: "Containerd task driver for Nomad",
         mainProgram: "nomad-driver-containerd",

@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const hwloc = nix.arg($, "hwloc");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "tt-metal",
       version: "0.79.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tenstorrent",
           repo: "tt-metal",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-sA9ryiVDBF9yJUfQ2cQDvphEC0nVQx6X2F91s2BA8Qo=",
         })))),
       cpm: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://github.com/cpm-cmake/CPM.cmake/releases/download/v0.40.2/CPM.cmake",
           hash: "sha256-yM3DLAOBZTjOInge1ylk3IZLKjSjENO3EEgSpcotg10=",
         })))),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preConfigure: nix.thunk(() => nix.str`mkdir -p build/_deps
 ${nix.app(nix.sel(lib, "concatMapAttrsStringSep"), "\n", (name) => (src) => nix.str`cp -r --no-preserve=ownership,mode ${src} build/_deps/${name}-src`, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./deps.nix")), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             fetchFromGitHub: fetchFromGitHub,
             applyPatches: applyPatches,
             ttMetalSrc: nix.thunk(() => nix.sel(finalAttrs, "src")),
@@ -72,9 +72,9 @@ appendToVar cmakeFlags "-DCPM_ELFIO_SOURCE=$PWD/build/_deps/elfio-src"
       nativeBuildInputs: nix.thunk(() => [cmake, ninja, pkg_config, python3]),
       buildInputs: nix.thunk(() => [numactl, boost, mpi, hwloc]),
       noAuditTmpdir: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$4, sfpi: nix.thunk(() => nix.sel(finalAttrs, "sfpi")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, sfpi: nix.thunk(() => nix.sel(finalAttrs, "sfpi")) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "TT-NN operator library, and TT-Metalium low level kernel programming model",
         homepage: "https://github.com/tenstorrent/tt-metal",
         maintainers: nix.thunk(() => (() => {

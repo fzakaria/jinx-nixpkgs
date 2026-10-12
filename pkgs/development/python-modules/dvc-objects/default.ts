@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "iterative",
           repo: "dvc-objects",
           tag: version,
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["dvc_objects"]);
       const disabledTestPaths = nix.thunk(() => ["tests/benchmarks/"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for DVC objects",
         homepage: "https://github.com/iterative/dvc-objects",
         changelog: nix.thunk(() => nix.str`https://github.com/iterative/dvc-objects/releases/tag/${nix.sel(src, "tag")}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

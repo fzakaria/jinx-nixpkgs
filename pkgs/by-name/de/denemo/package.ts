@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const fftw = nix.arg($, "fftw");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "denemo",
       version: "2.6.49",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.savannah.gnu.org/git/denemo.git",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-TUdaGOChqwK3fAmdaP9Lg2FGrEWF0yjwqsRXK7h/83Y=",
@@ -68,12 +68,12 @@ export default nix.lambda((args) => (() => {
         portmidi,
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pname: "denemo",
             version: "2.6.49",
             debianRevision: "0.2",
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-l1eXjQieH5ySqwaTJAE8lUq/FsB//cl02Wgt0TRQBMo=",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             pname: "denemo",
             version: "2.6.49",
             debianRevision: "0.2",
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-H3hRmAPazYRkwQI97vNR9kpV0lYpIiAXyMfrnJl+lNo=",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             pname: "denemo",
             version: "2.6.49",
             debianRevision: "0.2",
@@ -103,7 +103,7 @@ export default nix.lambda((args) => (() => {
 `),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, gtk_doc, wrapGAppsHook3, intltool, gettext, pkg_config]),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Music notation and composition software used with lilypond",
         homepage: "http://denemo.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

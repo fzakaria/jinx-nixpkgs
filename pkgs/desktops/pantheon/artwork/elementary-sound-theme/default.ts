@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "elementary-sound-theme";
       const version = "1.1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "elementary",
           repo: "sound-theme",
           rev: version,
@@ -29,18 +29,18 @@ export default nix.lambda((args) => (() => {
         }))));
       const nativeBuildInputs = nix.thunk(() => [meson, ninja, pkg_config]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Set of system sounds for elementary",
         homepage: "https://github.com/elementary/sound-theme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "pantheon"))]),
       }));
-      return { __proto__: pos$4, pname, version, src, nativeBuildInputs, passthru, meta };
+      return { [nix.POS]: pos$4, pname, version, src, nativeBuildInputs, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -27,43 +27,43 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "hardware", "infiniband"));
   const opensm_services = nix.thunk(() => nix.update({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "opensm@": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       enable: true,
       description: "Starts OpenSM Infiniband fabric Subnet Managers",
       before: nix.thunk(() => ["network.target"]),
       unitConfig: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         ConditionPathExists: "/sys/class/infiniband_mad/abi_version",
       })),
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         Type: "simple",
         ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "opensm")}/bin/opensm --guid %I --log_file /var/log/opensm.%I.log`),
       })),
     })),
   }, nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((guid) => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         name: nix.thunk(() => nix.str`opensm@${guid}`),
         value: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: true,
           wantedBy: nix.thunk(() => ["machines.target"]),
           overrideStrategy: "asDropin",
         })),
       }), nix.thunk(() => nix.sel(cfg, "guids")))))));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       hardware: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         infiniband: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Infiniband support")),
           guids: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -76,11 +76,11 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         boot: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           initrd: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             kernelModules: nix.thunk(() => [
               "mlx5_core",
               "mlx5_ib",
@@ -96,7 +96,7 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [
@@ -106,7 +106,7 @@ export default nix.lambda((args) => (() => {
             ];
           })()),
         })),
-        systemd: nix.thunk(() => ({ __proto__: pos$14, services: opensm_services })),
+        systemd: nix.thunk(() => ({ [nix.POS]: pos$14, services: opensm_services })),
       })))),
   };
 })(), formals$1);

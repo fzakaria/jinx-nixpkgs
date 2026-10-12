@@ -42,13 +42,13 @@ export default nix.lambda((args) => (() => {
   const x11Support = nix.argOr($, "x11Support", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   const waylandSupport = nix.argOr($, "waylandSupport", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "q2repro",
       version: "0-unstable-2026-09-27",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Paril",
           repo: "q2repro",
           rev: "e6b9273672a1d6ea65038ce9033979b25f1b94be",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-PeA2EuA7XBH9fhorkPtMD6UvHgajYwMtf8MRBXnCr28=",
         })))),
       revCount: "4613",
-      env: nix.thunk(() => ({ __proto__: pos$2, SOURCE_DATE_EPOCH: "1790475158" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, SOURCE_DATE_EPOCH: "1790475158" })),
       nativeBuildInputs: nix.thunk(() => nix.concat([meson, pkg_config, ninja, makeBinaryWrapper, copyDesktopItems], nix.concat(nix.app(nix.sel(lib, "optional"), waylandSupport, wayland_scanner), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), desktopToDarwinBundle)))),
       buildInputs: nix.thunk(() => nix.concat([zlib, libpng, libjpeg, curl, SDL2, libGL, ffmpeg, openal_soft, fmt, jsoncpp], nix.concat(nix.app(nix.sel(lib, "optionals"), waylandSupport, nix.thunk(() => [wayland, wayland_protocols, libdecor])), nix.app(nix.sel(lib, "optionals"), x11Support, nix.thunk(() => [libx11, libxi]))))),
       mesonBuildType: "release",
@@ -100,7 +100,7 @@ install -D ${nix.sel(finalAttrs, "src")}/src/unix/res/q2pro.xpm $out/share/icons
       doInstallCheck: true,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "q2repro",
             desktopName: "Q2REPRO",
             exec: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "q2repro" : "q2repro +connect %u")),
@@ -111,9 +111,9 @@ install -D ${nix.sel(finalAttrs, "src")}/src/unix/res/q2pro.xpm $out/share/icons
             categories: nix.thunk(() => ["Game", "ActionGame"]),
           })))),
       ]),
-      passthru: nix.thunk(() => ({ __proto__: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Fork of Q2PRO designed to be a drop-in replacement of the Kex Quake II re-release engine",
         homepage: "https://github.com/Paril/q2repro",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

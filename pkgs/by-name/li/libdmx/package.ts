@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libxext = nix.arg($, "libxext");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libdmx",
       version: "1.1.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://xorg/individual/lib/libdmx-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-NaTiaosLK0/jZEHcpGNkXD+lLSgqw1IFAaOOqULL908=",
         })))),
@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [xorgproto, libx11, libxext]),
       configureFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), "--enable-malloc0returnsnull")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Xlib-based library for the DMX (Distributed Multihead X) extension",
         longDescription: "This library allows X11 clients to use the Distributed Multihead X (DMX) Extension,\nas previously implemented in the Xdmx server.\nX.Org removed support for the Xdmx server from the xorg-server releases in the version 21\nrelease in 2021. This library is thus now considered deprecated and the version 1.1.5 release\nis the last release X.Org plans to make of libdmx.\n",
         homepage: "https://gitlab.freedesktop.org/xorg/lib/libdmx",

@@ -19,23 +19,23 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_cov_stub = nix.arg($, "pytest-cov-stub");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "python-barcode",
       version: "0.16.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "WhyNotHugo",
           repo: "python-barcode",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-a/w2JxFBm/jqIRnqIB7ZtkdiLnBNjbR0V5SNuau/YxY=",
         })))),
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, images: nix.thunk(() => [pillow]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, images: nix.thunk(() => [pillow]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytestCheckHook, pytest_cov_stub], nix.sel(finalAttrs, "passthru", "optional-dependencies", "images"))),
       pythonImportsCheck: nix.thunk(() => ["barcode"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Create standard barcodes with Python",
         mainProgram: "python-barcode",
         homepage: "https://github.com/WhyNotHugo/python-barcode",

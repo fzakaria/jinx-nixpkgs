@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.0.20230622";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "JustAnotherArchivist",
           repo: "snscrape",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-find-module.patch",
             url: "https://github.com/JustAnotherArchivist/snscrape/commit/7f4717aaaaa8d4c96fa1dbe72ded799a722732ee.patch",
             hash: "sha256-6O9bZ5GlTPuR0MML/O4DDRBcDX/CJbU54ZE551cfPHo=",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "export PATH=$PATH:$out/bin\nsnscrape --help\n";
       const pythonImportsCheck = nix.thunk(() => ["snscrape"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Social networking service scraper",
         homepage: "https://github.com/JustAnotherArchivist/snscrape",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "snscrape",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

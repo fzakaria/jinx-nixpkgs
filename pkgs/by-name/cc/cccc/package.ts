@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cccc",
       version: "3.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sarnold",
           repo: "cccc",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
       buildFlags: nix.thunk(() => ["CCC=c++", "LD=c++"]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ncp cccc/cccc $out/bin/\n\nrunHook postInstall\n",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add("-Wno-register ", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), "-std=gnu17"))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "C and C++ Code Counter",
         mainProgram: "cccc",
         longDescription: "CCCC is a tool which analyzes C++ and Java files and generates a report\non various metrics of the code. Metrics supported include lines of code, McCabe's\ncomplexity and metrics proposed by Chidamber&Kemerer and Henry&Kafura.\n",

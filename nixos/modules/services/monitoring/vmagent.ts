@@ -39,13 +39,13 @@ export default nix.lambda((args) => (() => {
     ])), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "remoteWrite", "basicAuthUsername"), null)), nix.thunk(() => nix.str`-remoteWrite.basicAuth.username=${nix.sel(cfg, "remoteWrite", "basicAuthUsername")}`)), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "remoteWrite", "basicAuthPasswordFile"), null)), "-remoteWrite.basicAuth.passwordFile=${CREDENTIALS_DIRECTORY}/remote_write_basic_auth_password"), nix.sel(cfg, "extraArgs"))))));
   const prometheusConfigYml = nix.thunk(() => nix.app(checkedConfig, nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "prometheusConfig.yaml", nix.thunk(() => nix.sel(cfg, "prometheusConfig"))))));
   const checkedConfig = (file) => (nix.asBool(nix.sel(cfg, "checkConfig")) ? nix.app(nix.sel(pkgs, "runCommand"), "checked-config", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
     })), nix.thunk(() => nix.str`ln -s ${file} $out
 ${nix.app(nix.sel(lib, "escapeShellArgs"), startCLIList)} -promscrape.config=${file} -dryRun
 `)) : nix.force(file));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "vmagent", "dataDir"]), "dataDir has been deprecated in favor of systemd provided CacheDirectory")),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "vmagent", "user"]), "user has been deprecated in favor of systemd DynamicUser")),
@@ -53,61 +53,61 @@ ${nix.app(nix.sel(lib, "escapeShellArgs"), startCLIList)} -promscrape.config=${f
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "vmagent", "remoteWriteUrl"]), nix.thunk(() => ["services", "vmagent", "remoteWrite", "url"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         vmagent: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable VictoriaMetrics's `vmagent`.\n\n`vmagent` efficiently scrape metrics from Prometheus-compatible exporters\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "vmagent", nix.thunk(() => ({})))),
           remoteWrite: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             url: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 default: null,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 description: "Endpoint for prometheus compatible remote_write\n",
               })))),
             basicAuthUsername: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 default: null,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 description: "Basic Auth username used to connect to remote_write endpoint\n",
               })))),
             basicAuthPasswordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 default: null,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 description: "File that contains the Basic Auth password used to connect to remote_write endpoint\n",
               })))),
           })),
           prometheusConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                 })))),
               description: "Config for prometheus style metrics\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to open the firewall for the default ports.\n",
             })))),
           extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "Extra args to pass to `vmagent`. See the docs:\n<https://docs.victoriametrics.com/vmagent.html#advanced-usage>\nor {command}`vmagent -help` for more information.\n",
             })))),
           checkConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Check configuration.\n\nIf you use credentials stored in external files (`environmentFile`, etc),\nthey will not be visible  and it will report errors, despite a correct configuration.\n",
@@ -116,25 +116,25 @@ ${nix.app(nix.sel(lib, "escapeShellArgs"), startCLIList)} -promscrape.config=${f
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         networking: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           firewall: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [8429n]))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             vmagent: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               description: "vmagent system service",
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 DynamicUser: true,
                 User: "vmagent",
                 Group: "vmagent",

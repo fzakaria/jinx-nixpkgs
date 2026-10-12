@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const libGL = nix.arg($, "libGL");
   const libgbm = nix.arg($, "libgbm");
   const libjpeg_turbo = nix.arg($, "libjpeg_turbo");
-  const libjpeg_turbo$ = nix.argOr($, "libjpeg_turbo'", () => nix.app(nix.sel(libjpeg_turbo, "override"), nix.thunk(() => ({ __proto__: pos$1, enableJava: true }))));
+  const libjpeg_turbo$ = nix.argOr($, "libjpeg_turbo'", () => nix.app(nix.sel(libjpeg_turbo, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableJava: true }))));
   const makeWrapper = nix.arg($, "makeWrapper");
   const mesa_gl_headers = nix.arg($, "mesa-gl-headers");
   const openjdk = nix.arg($, "openjdk");
@@ -54,11 +54,11 @@ export default nix.lambda((args) => (() => {
   const libfontenc = nix.arg($, "libfontenc");
   const xterm = nix.arg($, "xterm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "turbovnc",
       version: "3.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "TurboVNC",
           repo: "turbovnc",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -123,14 +123,14 @@ wrapProgram $out/bin/vncviewer \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [openssh]))}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "turbovnc-headless-server": nix.thunk(() => nix.sel(nixosTests, "turbovnc-headless-server")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://turbovnc.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         description: "High-speed version of VNC derived from TightVNC",

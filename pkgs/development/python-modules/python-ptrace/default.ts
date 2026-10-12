@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.9";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-Vrv+9E6vOne+SBOMyldnzfRx6CeP4Umfm3LxUZB/Jc8=",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [setuptools]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python binding of ptrace library",
         homepage: "https://github.com/vstinner/python-ptrace",
         changelog: nix.thunk(() => nix.str`https://github.com/vstinner/python-ptrace/blob/${version}/doc/changelog.rst`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

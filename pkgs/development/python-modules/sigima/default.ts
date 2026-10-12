@@ -47,14 +47,14 @@ export default nix.lambda((args) => (() => {
   const pytest_xvfb = nix.arg($, "pytest-xvfb");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sigima",
       version: "1.2.0",
       pyproject: true,
       __darwinAllowLocalNetworking: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DataLab-Platform",
           repo: "Sigima",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
         typing_extensions,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         dev: nix.thunk(() => [babel, build, coverage, pre_commit, pylint, ruff, setuptools, wheel]),
         doc: nix.thunk(() => [
           matplotlib,
@@ -98,7 +98,7 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: nix.thunk(() => ["numpy", "scipy"]),
       pythonImportsCheck: nix.thunk(() => ["sigima"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Scientific computing engine for 1D signals and 2D images",
         homepage: "https://github.com/DataLab-Platform/Sigima",
         changelog: nix.thunk(() => nix.str`https://github.com/DataLab-Platform/Sigima/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

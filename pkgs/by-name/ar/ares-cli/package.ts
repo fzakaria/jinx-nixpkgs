@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ares-cli";
       const version = "3.2.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "webos-tools",
           repo: "cli",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
       const dontNpmBuild = true;
       const npmDepsHash = "sha256-k8PRP1liSbJze2SHkmvUBqcGuAusnudwgj6ANMu32A8=";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://webostv.developer.lge.com/develop/tools/cli-introduction",
         description: "Collection of commands used for creating, packaging, installing, and launching web apps for LG webOS TV",
         longDescription: "webOS CLI (Command Line Interface) provides a collection of commands used for creating, packaging, installing,\nand launching web apps in the command line environment. The CLI allows you to develop and test your app without using\na specific IDE.\n",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "chilanka";
       const version = "1.7";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           group: "smc",
           owner: "fonts",
           repo: "chilanka",
@@ -40,7 +40,7 @@ install -Dm644 -t $out/share/doc/${pname}-${version} OFL.txt FONTLOG.md
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://smc.org.in/fonts/chilanka",
         description: "Chilanka Malayalam Typeface",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
@@ -48,7 +48,7 @@ runHook postInstall
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

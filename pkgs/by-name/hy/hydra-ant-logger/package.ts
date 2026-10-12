@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const jdk = nix.arg($, "jdk");
   const stripJavaArchivesHook = nix.arg($, "stripJavaArchivesHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hydra-ant-logger",
       version: "2010.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NixOS",
           repo: "hydra-ant-logger",
           rev: "dae3224f4ed42418d3492bdf5bee4f825819006f",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\nmkdir lib\nant\nrunHook postBuild\n",
       installPhase: "runHook preInstall\ninstall -Dm644 *.jar -t $out/share/java\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/NixOS/hydra-ant-logger",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libGLU = nix.arg($, "libGLU");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "openctm",
       version: "1.0.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/openctm/OpenCTM-${nix.sel(finalAttrs, "version")}/OpenCTM-${nix.sel(finalAttrs, "version")}-src.tar.bz2`),
           hash: "sha256-So0mCNlzZPfuxWt8Y3xWuTCK6YKGs+kNu3QTyQ6UPx0=",
         })))),
@@ -45,7 +45,7 @@ substituteInPlace "lib/Makefile.macosx" "tools/Makefile.macosx" "tools/tinyxml/M
       makefile: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "Makefile.macosx" : "Makefile.linux")),
       preInstall: "mkdir -p $bin/bin $dev/include $out/lib $man/share/man/man1",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "File format, software library and a tool set for compression of 3D triangle meshes",
         homepage: "https://sourceforge.net/projects/openctm/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

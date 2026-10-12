@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pgbadger";
       const version = "13.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "darold",
           repo: "pgbadger",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,17 +37,17 @@ export default nix.lambda((args) => (() => {
       const postPatch = "patchShebangs ./pgbadger\n";
       const outputs = nix.thunk(() => ["out"]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PERL_MM_OPT: nix.thunk(() => nix.str`INSTALL_BASE=${nix.builtins.placeholder("out")}`),
       }));
       const buildInputs = nix.thunk(() => [JSONXS, PodMarkdown, TextCSV_XS]);
       const nativeCheckInputs = nix.thunk(() => [bzip2, which]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               version: version,
               command: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), pgbadger)} --version`),
               package: pgbadger,
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://github.com/darold/pgbadger",
         description: "Fast PostgreSQL Log Analyzer",
         changelog: nix.thunk(() => nix.str`https://github.com/darold/pgbadger/raw/v${version}/ChangeLog`),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "pgbadger",
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

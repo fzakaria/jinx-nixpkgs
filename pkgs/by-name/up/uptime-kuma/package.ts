@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "uptime-kuma",
       version: "2.5.6",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "louislam",
           repo: "uptime-kuma",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,14 +38,14 @@ export default nix.lambda((args) => (() => {
   --chdir $out/lib/node_modules/uptime-kuma
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "uptime-kuma": nix.thunk(() => nix.sel(nixosTests, "uptime-kuma")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Fancy self-hosted monitoring tool",
         mainProgram: "uptime-kuma-server",
         homepage: "https://github.com/louislam/uptime-kuma",

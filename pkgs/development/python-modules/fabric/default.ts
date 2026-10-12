@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const __structuredAttrs = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fabric",
           repo: "fabric",
           tag: version,
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         "fake",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pythonic remote execution",
         homepage: "https://www.fabfile.org/",
         changelog: "https://www.fabfile.org/changelog.html",
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "fab",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

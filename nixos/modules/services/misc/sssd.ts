@@ -70,26 +70,26 @@ export default nix.lambda((args) => (() => {
   })();
   const settingsFileUnsubstituted = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "settings"), {})) ? nix.app(nix.sel(pkgs, "writeText"), "sssd-unsubstituted.conf", nix.thunk(() => nix.sel(cfg, "config"))) : nix.app(mkSettingsFileUnsubstituted, nix.thunk(() => nix.sel(cfg, "settings")))));
   return {
-    __proto__: pos$50,
+    [nix.POS]: pos$50,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         sssd: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the System Security Services Daemon")),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.attr(settingsFormat, "type")),
               description: "Contents of {file}`sssd.conf`.",
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$3,
-                sssd: nix.thunk(() => ({ __proto__: pos$1, services: "nss, pam", domains: "shadowutils" })),
+                [nix.POS]: pos$3,
+                sssd: nix.thunk(() => ({ [nix.POS]: pos$1, services: "nss, pam", domains: "shadowutils" })),
                 nss: nix.thunk(() => ({})),
                 pam: nix.thunk(() => ({})),
                 "domain/shadowutils": nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   id_provider: "proxy",
                   proxy_lib_name: "files",
                   auth_provider: "proxy",
@@ -99,32 +99,32 @@ export default nix.lambda((args) => (() => {
               })),
             })))),
           config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               description: "Contents of {file}`sssd.conf`.",
               default: "",
               example: "[sssd]\nservices = nss, pam\ndomains = shadowutils\n\n[nss]\n\n[pam]\n\n[domain/shadowutils]\nid_provider = proxy\nproxy_lib_name = files\nauth_provider = proxy\nproxy_pam_target = sssd-shadowutils\nproxy_fast_alias = True\n",
             })))),
           sshAuthorizedKeysIntegration: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to make sshd look up authorized keys from SSS.\nFor this to work, the `ssh` SSS service must be enabled in the sssd configuration.\n",
             })))),
           kcm: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to use SSS as a Kerberos Cache Manager (KCM).\nKerberos will be configured to cache credentials in SSS.\n",
             })))),
           subIDsIntegration: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to use SSS as a source for subuid and subgid.\n",
             })))),
           environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "Environment file as defined in {manpage}`systemd.exec(5)`.\n\nSecrets may be passed to the service without adding them to the world-readable\nNix store, by specifying placeholder variables as the option value in Nix and\nsetting these variables accordingly in the environment file.\n\n```\n  # snippet of sssd-related config\n  [domain/LDAP]\n  ldap_default_authtok = $SSSD_LDAP_DEFAULT_AUTHTOK\n```\n\n```\n  # contents of the environment file\n  SSSD_LDAP_DEFAULT_AUTHTOK=verysecretpassword\n```\n",
@@ -134,28 +134,28 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 assertion: nix.thunk(() => nix.app(nix.sel(lib, "xor"), nix.thunk(() => !nix.eq(nix.sel(cfg, "settings"), {})), nix.thunk(() => !nix.eq(nix.sel(cfg, "config"), "")))),
                 message: "services.sssd.settings and services.sssd.config are mutually exclusive",
               })),
             ]),
             environment: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               etc: nix.thunk(() => ({
-                __proto__: pos$16,
-                "sssd/sssd.conf": nix.thunk(() => ({ __proto__: pos$14, source: settingsFile })),
-                "sssd/conf.d": nix.thunk(() => ({ __proto__: pos$15, source: nix.thunk(() => nix.str`${dataDir}/conf.d`) })),
+                [nix.POS]: pos$16,
+                "sssd/sssd.conf": nix.thunk(() => ({ [nix.POS]: pos$14, source: settingsFile })),
+                "sssd/conf.d": nix.thunk(() => ({ [nix.POS]: pos$15, source: nix.thunk(() => nix.str`${dataDir}/conf.d`) })),
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               services: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 sssd: nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   description: "System Security Services Daemon",
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   before: nix.thunk(() => ["systemd-user-sessions.service", "nss-user-lookup.target"]),
@@ -167,11 +167,11 @@ export default nix.lambda((args) => (() => {
                     settingsFileUnsubstituted,
                   ]),
                   environment: nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     LDB_MODULES_PATH: nix.thunk(() => nix.str`${nix.sel(pkgs, "ldb")}/modules/ldb:${nix.sel(pkgs, "sssd")}/modules/ldb`),
                   })),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "sssd")}/bin/sssd -i -c ${settingsFile}`),
                     Type: "notify",
                     NotifyAccess: "main",
@@ -192,7 +192,7 @@ export default nix.lambda((args) => (() => {
                     ]),
                     EnvironmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "environmentFile"), null)), nix.thunk(() => nix.sel(cfg, "environmentFile")))),
                   })),
-                  unitConfig: nix.thunk(() => ({ __proto__: pos$20, StartLimitIntervalSec: "50s", StartLimitBurst: 5n })),
+                  unitConfig: nix.thunk(() => ({ [nix.POS]: pos$20, StartLimitIntervalSec: "50s", StartLimitBurst: 5n })),
                   preStart: nix.thunk(() => nix.str`[ -f ${settingsFile} ] && rm -f ${settingsFile}
 old_umask=$(umask)
 umask 0177
@@ -205,10 +205,10 @@ umask $old_umask
               })),
             })),
             system: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               nssModules: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "sssd"))]),
               nssDatabases: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 group: nix.thunk(() => ["sss"]),
                 passwd: nix.thunk(() => ["sss"]),
                 services: nix.thunk(() => ["sss"]),
@@ -216,25 +216,25 @@ umask $old_umask
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               dbus: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "sssd"))]),
               })),
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "kcm")), nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             systemd: nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               services: nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 "sssd-kcm": nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   description: "SSSD Kerberos Cache Manager",
                   requires: nix.thunk(() => ["sssd-kcm.socket"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$29,
+                    [nix.POS]: pos$29,
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "sssd")}/libexec/sssd/sssd_kcm`),
                     CapabilityBoundingSet: nix.thunk(() => [
                       "CAP_IPC_LOCK",
@@ -249,9 +249,9 @@ umask $old_umask
                 })),
               })),
               sockets: nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 "sssd-kcm": nix.thunk(() => ({
-                  __proto__: pos$32,
+                  [nix.POS]: pos$32,
                   description: "SSSD Kerberos Cache Manager responder socket",
                   wantedBy: nix.thunk(() => ["sockets.target"]),
                   listenStreams: nix.thunk(() => ["/var/run/.heim_org.h5l.kcm-socket"]),
@@ -259,24 +259,24 @@ umask $old_umask
               })),
             })),
             security: nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               krb5: nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$36,
-                  libdefaults: nix.thunk(() => ({ __proto__: pos$35, default_ccache_name: "KCM:" })),
+                  [nix.POS]: pos$36,
+                  libdefaults: nix.thunk(() => ({ [nix.POS]: pos$35, default_ccache_name: "KCM:" })),
                 })),
               })),
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "sshAuthorizedKeysIntegration")), nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             environment: nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               etc: nix.thunk(() => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 "ssh/authorized_keys_command": nix.thunk(() => ({
-                  __proto__: pos$40,
+                  [nix.POS]: pos$40,
                   mode: "0755",
                   text: nix.thunk(() => nix.str`#!/bin/sh
 exec ${nix.sel(pkgs, "sssd")}/bin/sss_ssh_authorizedkeys "$@"
@@ -285,20 +285,20 @@ exec ${nix.sel(pkgs, "sssd")}/bin/sss_ssh_authorizedkeys "$@"
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               openssh: nix.thunk(() => ({
-                __proto__: pos$43,
+                [nix.POS]: pos$43,
                 authorizedKeysCommand: "/etc/ssh/authorized_keys_command",
                 authorizedKeysCommandUser: "nobody",
               })),
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "subIDsIntegration")), nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             system: nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               nssDatabases: nix.thunk(() => ({
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 subuid: nix.thunk(() => ["sss"]),
                 subgid: nix.thunk(() => ["sss"]),
               })),
@@ -306,7 +306,7 @@ exec ${nix.sel(pkgs, "sssd")}/bin/sss_ssh_authorizedkeys "$@"
           })))),
       ]))),
     meta: nix.thunk(() => ({
-      __proto__: pos$49,
+      [nix.POS]: pos$49,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "bbigras"))];

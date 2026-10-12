@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "unstable-2023-07-01";
       const runtimeLoaderEnvVariableName = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "DYLD_FALLBACK_LIBRARY_PATH" : "LD_LIBRARY_PATH"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "meebey",
           repo: "smuxi",
           rev: "3e4b5050b66944532e95df3c31245c8ae6379b3f",
@@ -62,7 +62,7 @@ cp -a lib/log4net.dll $out/lib/smuxi/
 cp -a lib/Nini.dll $out/lib/smuxi/
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://smuxi.im/",
         downloadPage: "https://smuxi.im/download/",
         changelog: nix.thunk(() => nix.str`https://github.com/meebey/smuxi/releases/tag/v${version}`),
@@ -75,7 +75,7 @@ cp -a lib/Nini.dll $out/lib/smuxi/
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         runtimeLoaderEnvVariableName,

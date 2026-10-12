@@ -22,33 +22,33 @@ export default nix.lambda((args) => (() => {
   const writeShellApplication = nix.arg($, "writeShellApplication");
   const gnugrep = nix.arg($, "gnugrep");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "tideways-daemon",
       version: "1.18.10",
       src: nix.thunk(() => nix.selOr(finalAttrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported platform for tideways-cli: ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)), "passthru", "sources", nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system")))),
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ncp tideways-daemon $out/bin/tideways-daemon\nchmod +x $out/bin/tideways-daemon\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         sources: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               url: nix.thunk(() => nix.str`https://tideways.s3.amazonaws.com/daemon/${nix.sel(finalAttrs, "version")}/tideways-daemon_linux_amd64-${nix.sel(finalAttrs, "version")}.tar.gz`),
               hash: "sha256-IAsmddpnmYhObcDa47W30obH60gCDOgmDI4crUu/Tro=",
             })))),
           "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: nix.thunk(() => nix.str`https://tideways.s3.amazonaws.com/daemon/${nix.sel(finalAttrs, "version")}/tideways-daemon_linux_aarch64-${nix.sel(finalAttrs, "version")}.tar.gz`),
               hash: "sha256-alRLgA3TQD7rxN/CiNS0a5lFD48tdnbwm3KRYk+RCeQ=",
             })))),
           "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               url: nix.thunk(() => nix.str`https://tideways.s3.amazonaws.com/daemon/${nix.sel(finalAttrs, "version")}/tideways-daemon_macos_arm64-${nix.sel(finalAttrs, "version")}.tar.gz`),
               hash: "sha256-Q/iXE350V73wH6WnWdACooN6ocUzAiV/X3CT+hN/MWY=",
             })))),
         })),
         updateScript: nix.thunk(() => nix.str`${nix.app(writeShellApplication, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "update-tideways-daemon",
             runtimeInputs: nix.thunk(() => [curl, gnugrep, common_updater_scripts]),
             text: nix.thunk(() => nix.str`NEW_VERSION=$(curl --fail -L -s https://tideways.com/profiler/downloads | grep -E 'https://tideways.s3.amazonaws.com/daemon/([0-9]+\\.[0-9]+\\.[0-9]+)/tideways-daemon_linux_amd64-\\1.tar.gz' | grep -oP 'daemon/\\K[0-9]+\\.[0-9]+\\.[0-9]+')
@@ -65,7 +65,7 @@ done
           })))}/bin/update-tideways-daemon`),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Tideways Daemon",
         homepage: "https://tideways.com/",
         sourceProvenance: nix.thunk(() => (() => {

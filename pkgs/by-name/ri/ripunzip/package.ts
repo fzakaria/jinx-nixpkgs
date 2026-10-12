@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const ripunzip = nix.arg($, "ripunzip");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "ripunzip",
       version: "2.0.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GoogleChrome",
           repo: "ripunzip",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,19 +51,19 @@ export default nix.lambda((args) => (() => {
       ]),
       setupHook: nix.path(here, "./setup-hook.sh"),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
-          fetchzipWithRipunzip: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), nix.thunk(() => nix.app(nix.sel(fetchzip, "override"), nix.thunk(() => ({ __proto__: pos$2, unzip: ripunzip })))), nix.thunk(() => ({
-              __proto__: pos$3,
+          [nix.POS]: pos$5,
+          fetchzipWithRipunzip: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), nix.thunk(() => nix.app(nix.sel(fetchzip, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, unzip: ripunzip })))), nix.thunk(() => ({
+              [nix.POS]: pos$3,
               url: "https://github.com/GoogleChrome/ripunzip/archive/cb9caa3ba4b0e27a85e165be64c40f1f6dfcc085.zip",
               hash: "sha256-BoErC5VL3Vpvkx6xJq6J+eUJrBnjVEdTuSo7zh98Jy4=",
             })))),
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$4, package: ripunzip })))),
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$4, package: ripunzip })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Tool to unzip files in parallel",
         mainProgram: "ripunzip",
         homepage: "https://github.com/GoogleChrome/ripunzip",

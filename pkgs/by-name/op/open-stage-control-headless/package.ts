@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "open-stage-control-headless",
       version: "1.30.3",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://openstagecontrol.ammd.net/packages/open-stage-control_${nix.sel(finalAttrs, "version")}_node.zip`),
           hash: "sha256-ef9433pG+eMFc+7pReE2qA3hK27y5KyiRTPQ2h6Ir8A=",
         })))),
@@ -46,7 +46,7 @@ makeWrapper ${nodejs}/bin/node "$out/bin/open-stage-control" \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Libre and modular OSC / MIDI controller",
         homepage: "https://openstagecontrol.ammd.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

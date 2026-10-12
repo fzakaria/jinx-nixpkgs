@@ -17,19 +17,19 @@ export default nix.lambda((args) => (() => {
       const pname = "reveal-md";
       const version = "6.1.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "webpro",
           repo: "reveal-md",
           rev: version,
           hash: "sha256-5lYC4v+Jvm1OdWrkU/cn1I1jd0B1C+AvACCiGUBv+h0=",
         }))));
       const npmDepsHash = "sha256-+SYAgY3C3LWwi8qTMy7MyfOgGaw2EohscoX5QIRafxM=";
-      const env = nix.thunk(() => ({ __proto__: pos$2, PUPPETEER_SKIP_DOWNLOAD: true }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PUPPETEER_SKIP_DOWNLOAD: true }));
       const dontNpmBuild = true;
       const doCheck = true;
       const checkPhase = "runHook preCheck\n\nnpm run test\n\nrunHook postCheck\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Get beautiful reveal.js presentations from your Markdown files",
         mainProgram: "reveal-md",
         homepage: "https://github.com/webpro/reveal-md",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

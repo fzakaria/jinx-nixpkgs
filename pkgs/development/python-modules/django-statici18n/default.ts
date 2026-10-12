@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.8.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zyegfryed",
           repo: "django-statici18n",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,19 +33,19 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [django, django_appconf]);
       const pythonImportsCheck = nix.thunk(() => ["statici18n"]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         DJANGO_SETTINGS_MODULE: "tests.test_project.project.settings",
       }));
       const nativeCheckInputs = nix.thunk(() => [pytest_django, pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Helper for generating Javascript catalog to static files",
         homepage: "https://github.com/zyegfryed/django-statici18n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

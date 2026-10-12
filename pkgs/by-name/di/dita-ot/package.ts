@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "dita-ot",
       version: "4.4.1",
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       buildInputs: nix.thunk(() => [openjdk17]),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/dita-ot/dita-ot/releases/download/${nix.sel(finalAttrs, "version")}/dita-ot-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-RWMb2s9feFUeRVrp2J9MZmEivCf3bGsqlQcSRWEJhpM=",
         })))),
@@ -42,17 +42,17 @@ makeWrapper "$out/share/dita-ot/bin/dita" "$out/bin/dita" \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://dita-ot.org",
         changelog: nix.thunk(() => nix.str`https://www.dita-ot.org/dev/release-notes/#v${nix.sel(finalAttrs, "version")}`),
         description: "Open-source publishing engine for content authored in the Darwin Information Typing Architecture",

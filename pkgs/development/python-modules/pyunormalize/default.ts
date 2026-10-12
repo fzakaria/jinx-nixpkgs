@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "17.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mlodewijck",
           repo: "pyunormalize",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["pyunormalize"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unicode normalization forms (NFC, NFKC, NFD, NFKD) independent of the Python core Unicode database",
         homepage: "https://github.com/mlodewijck/pyunormalize",
         changelog: nix.thunk(() => nix.str`https://github.com/mlodewijck/pyunormalize/releases/tag/${nix.sel(src, "tag")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

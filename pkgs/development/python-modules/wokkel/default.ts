@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "18.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ralphm",
           repo: "wokkel",
           tag: version,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [
         nix.path(here, "./0001-Remove-py2-compat.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-test-for-twisted-26.patch",
             url: "https://salsa.debian.org/python-team/packages/wokkel/-/raw/f9425d127449a47a7578a01a1b802b7b26b0677f/debian/patches/fix-test-for-twisted-26.patch",
             hash: "sha256-gyVKKqDCFFXyA5LG0q2p8SWIh9DJCUkdK6slOaYsAw0=",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "runHook preCheck\n\ntrial wokkel\n\nrunHook postCheck\n";
       const pythonImportsCheck = nix.thunk(() => ["twisted.plugins.server", "wokkel.disco", "wokkel.muc", "wokkel.pubsub"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Twisted Jabber support library",
         longDescription: "Wokkel is collection of enhancements on top of the Twisted networking framework, written in Python. It mostly\nprovides a testing ground for enhancements to the Jabber/XMPP protocol implementation as found in\nTwisted Words, that are meant to eventually move there.\n",
         homepage: "https://github.com/ralphm/wokkel",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "ngi"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

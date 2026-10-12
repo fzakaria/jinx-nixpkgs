@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const kdePackages = nix.arg($, "kdePackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "samplv1",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/samplv1/samplv1-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-EzmkDwxU6C8/ExQUQ3dWW2Tez8h/cg8Q+x6CWfnL5kw=",
         })))),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(kdePackages, "qtsvg")),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Old-school all-digital polyphonic sampler synthesizer with stereo fx",
         mainProgram: "samplv1_jack",
         homepage: "http://samplv1.sourceforge.net/",

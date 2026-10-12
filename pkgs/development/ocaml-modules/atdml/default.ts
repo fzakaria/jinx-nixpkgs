@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const atd = nix.arg($, "atd");
   const cmdliner = nix.arg($, "cmdliner");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "atdml",
       version: nix.thunk(() => nix.attr(atd, "version")),
       src: nix.thunk(() => nix.attr(atd, "src")),
@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [cmdliner]),
       propagatedBuildInputs: nix.thunk(() => [atd]),
       meta: nix.thunk(() => nix.update(nix.sel(atd, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Simplified OCaml JSON serializers using the Yojson AST",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),
         mainProgram: "atdml",

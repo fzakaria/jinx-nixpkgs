@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "nvidia-driver";
       const version = "570.124.04";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://us.download.nvidia.com/XFree86/FreeBSD-x86_64/${version}/NVIDIA-FreeBSD-x86_64-${version}.tar.xz`),
           hash: "sha256-3FNJPZWg23H/YiUdIfO4KOUZ7BrJ2/xw8LD6MMSEICY=",
         }))));
@@ -37,14 +37,14 @@ export default nix.lambda((args) => (() => {
         "DEBUG_FLAGS=-g",
       ]);
       const hardeningDisable = nix.thunk(() => ["pic"]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE_AFTER: "-O0" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE_AFTER: "-O0" }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         platforms: nix.thunk(() => ["x86_64-freebsd"]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         path,
         pname,
         version,

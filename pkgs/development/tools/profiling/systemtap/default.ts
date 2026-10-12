@@ -30,15 +30,15 @@ ln -s ${kernel}/System.map $out/boot/System.map-${nix.sel(kernel, "version")}
     return nix.app(nix.lookup(w, "makePythonPath"), nix.thunk(() => [nix.thunk(() => nix.lookup(w, "pyparsing"))]));
   })());
   return nix.app(runCommand, nix.thunk(() => nix.str`systemtap-${nix.sel(systemtap_unwrapped, "version")}`), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       stapBuild: systemtap_unwrapped,
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "systemtap"));
           return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           linux_default: nix.thunk(() => nix.attr(from, "linux_default")),
           linux_latest: nix.thunk(() => nix.attr(from, "linux_latest")),
         };

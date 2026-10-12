@@ -14,22 +14,22 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const version = "43.0.0";
   return nix.app(nix.sel(nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/castlabs/electron-releases/releases/download/v${version}+wvcus/electron-v${version}+wvcus-linux-x64.zip`),
       hash: "sha256-cUhDsxW4V13H2oWgCSyrWicoo5yTD36XQZQ0TvCfexc=",
       stripRoot: false,
     }))), "overrideAttrs"), (final) => (_) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: nix.thunk(() => nix.str`castlabs-electron-${version}`),
       version: version,
       pname: "castlabs-electron",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         dist: nix.thunk(() => nix.sel(final, "finalPackage", "outPath")),
         src: nix.thunk(() => nix.sel(final, "finalPackage")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);

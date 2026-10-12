@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pyannote",
           repo: "pyannote-pipeline",
           tag: version,
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["pyannote.pipeline"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, versionCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tunable pipelines",
         homepage: "https://github.com/pyannote/pyannote-pipeline",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "pyannote-pipeline",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

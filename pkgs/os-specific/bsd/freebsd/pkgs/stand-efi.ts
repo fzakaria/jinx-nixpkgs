@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const elfcopy = nix.arg($, "elfcopy");
   const hostArchBsd = nix.thunk(() => nix.app(nix.sel(freebsd_lib, "mkBsdArch"), stdenv));
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "stand/efi",
       extraPaths: nix.thunk(() => [
         "contrib/bzip2",

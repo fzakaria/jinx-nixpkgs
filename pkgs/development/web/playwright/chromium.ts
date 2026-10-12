@@ -54,25 +54,25 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const libxcb = nix.arg($, "libxcb");
   const download = nix.thunk(() => nix.selOr(nix.app(nix.builtins.import(nix.path(here, "./browser-downloads.nix")), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "chromium",
       revision: revision,
       browserVersion: browserVersion,
     }))), () => nix.force(throwSystem), nix.key(nix.force(system))));
   const chromeDir = nix.thunk(() => nix.selOr({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     "x86_64-linux": "chrome-linux64",
     "aarch64-linux": "chrome-linux-arm64",
   }, () => nix.force(throwSystem), nix.key(nix.force(system))));
   const chromium_linux = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: "playwright-chromium",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           url: nix.thunk(() => nix.attr(download, "url")),
           stripRoot: nix.thunk(() => nix.attr(download, "stripRoot")),
           hash: nix.thunk(() => nix.selOr({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             "x86_64-linux": "sha256-ORdMu1e4Peolr8rdfvzgeaFhC8RgBipaOsAm7e3ZeqE=",
             "aarch64-linux": "sha256-AWXksACJGsDisnp9dAUcukDf/ruMCRCX9kZNNnE0R8Q=",
           }, () => nix.force(throwSystem), nix.key(nix.force(system)))),
@@ -122,16 +122,16 @@ ln -s -t "$out/${chromeDir}" "${nix.app(nix.sel(lib, "getLib"), vulkan_loader)}/
 `),
     }))));
   const chromium_darwin = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       url: nix.thunk(() => nix.attr(download, "url")),
       stripRoot: nix.thunk(() => nix.attr(download, "stripRoot")),
       hash: nix.thunk(() => nix.selOr({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         "aarch64-darwin": "sha256-Zm7aHjwXL0kbucBiNoWxBM6rFdY0UmVIwcr/f8V31G8=",
       }, () => nix.force(throwSystem), nix.key(nix.force(system)))),
     }))));
   return nix.selOr({
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     "x86_64-linux": chromium_linux,
     "aarch64-linux": chromium_linux,
     "aarch64-darwin": chromium_darwin,

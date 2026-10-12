@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const zenity = nix.arg($, "zenity");
   return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "nfd",
       version: "scm-1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Vexatos",
           repo: "nativefiledialog",
           rev: "bea4560b9269bdc142fef946ccd8682450748958",
@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
           fetchSubmodules: true,
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./zenity.patch"), nix.thunk(() => ({ __proto__: pos$2, zenity: zenity })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./zenity.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, zenity: zenity })))),
       ]),
       knownRockspec: "lua/nfd-scm-1.rockspec",
       luarocksConfig: nix.thunk(() => ({
-        __proto__: pos$4,
-        variables: nix.thunk(() => ({ __proto__: pos$3, LUA_LIBDIR: nix.thunk(() => nix.str`${lua}/lib`) })),
+        [nix.POS]: pos$4,
+        variables: nix.thunk(() => ({ [nix.POS]: pos$3, LUA_LIBDIR: nix.thunk(() => nix.str`${lua}/lib`) })),
       })),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       postInstall: "find $out -name nfd_zenity.so -execdir mv {} nfd.so \\;\n",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(lua, "pkgs", "busted"))]),
       installCheckPhase: "busted lua/spec/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Tiny, neat Lua library that invokes native file open and save dialogs",
         homepage: "https://github.com/Alloyed/nativefiledialog/tree/master/lua",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const qtsvg = nix.arg($, "qtsvg");
   const kirigami_addons = nix.arg($, "kirigami-addons");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "calindori",
       extraBuildInputs: nix.thunk(() => [qtsvg, kirigami_addons]),
     })));

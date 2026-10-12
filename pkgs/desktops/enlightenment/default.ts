@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(lib, "makeScope"), nix.thunk(() => nix.sel(pkgs, "newScope")), (self) => (() => {
       const w = nix.withScope(self, null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         efl: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./efl"), nix.thunk(() => ({})))),
         enlightenment: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./enlightenment"), nix.thunk(() => ({})))),
         econnman: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./econnman"), nix.thunk(() => ({})))),

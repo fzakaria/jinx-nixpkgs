@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const pup = nix.arg($, "pup");
   const version = "2.16.5.1";
   const src = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "rescuetime-installer.deb",
       url: nix.thunk(() => nix.str`https://www.rescuetime.com/installers/rescuetime_${version}_i386.deb`),
       sha256: "1xrvyy0higc1fbc8ascpaszvg2bl6x0a35bzmdq6dkay48hnrd8b",
     }))) : nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "rescuetime-installer.deb",
       url: nix.thunk(() => nix.str`https://www.rescuetime.com/installers/rescuetime_${version}_amd64.deb`),
       sha256: "09ng0yal66d533vzfv27k9l2va03rqbqmsni43qi3hgx7w9wx5ii",
@@ -58,7 +58,7 @@ ${patchelf}/bin/patchelf \\
   $out/bin/rescuetime
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(writeScript, nix.thunk(() => nix.str`${pname}-updater`), nix.thunk(() => nix.str`#!${nix.sel(stdenv, "shell")}
 set -eu -o pipefail
 PATH=${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [curl, pup, common_updater_scripts]))}:$PATH
@@ -70,7 +70,7 @@ done
 `))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Helps you understand your daily habits so you can focus and be more productive",
         homepage: "https://www.rescuetime.com",
         maintainers: [],
@@ -82,7 +82,7 @@ done
         platforms: nix.thunk(() => ["i686-linux", "x86_64-linux"]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         version: version_1,
         pname,
         src: src_1,

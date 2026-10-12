@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const icon_lang = nix.arg($, "icon-lang");
   const useIcon = nix.argOr($, "useIcon", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "noweb",
       version: "2.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nrnrnr",
           repo: "noweb",
           rev: nix.thunk(() => nix.str`v${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -67,7 +67,7 @@ ln -s "$tex" "$out/share/texmf"
 `),
       outputs: nix.thunk(() => ["out", "tex"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple, extensible literate-programming tool",
         homepage: "https://www.cs.tufts.edu/~nr/noweb",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

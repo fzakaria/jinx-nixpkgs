@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.11.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "dbt_snowflake",
           version: version,
           hash: "sha256-C2uS13vwN9AuZ0XgrdRHMsunuzSwoM06HGFmJ45Bs0A=",
@@ -34,14 +34,14 @@ export default nix.lambda((args) => (() => {
       const pytestFlags = nix.thunk(() => ["--override-ini=addopts="]);
       const pythonImportsCheck = nix.thunk(() => ["dbt.adapters.snowflake"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Plugin enabling dbt to work with Snowflake",
         homepage: "https://github.com/dbt-labs/dbt-adapters/blob/main/dbt-snowflake",
         changelog: "https://github.com/dbt-labs/dbt-adapters/blob/main/dbt-snowflake/CHANGELOG.md",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

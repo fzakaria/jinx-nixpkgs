@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libxft = nix.arg($, "libxft");
   const libxrender = nix.arg($, "libxrender");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "stw",
       version: "unstable-2022-02-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sineemore",
           repo: "stw",
           rev: "c034e04ac912c157f9faa35cb769ba93d92486a0",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libx11, fontconfig, libxft, libxrender]),
       makeFlags: nix.thunk(() => ["CC:=$(CC)", "PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple text widget for X resembling the watch(1) command",
         homepage: "https://github.com/sineemore/stw",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-camlidl`);
       const version = "1.12";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xavierleroy",
           repo: "camlidl",
           rev: "camlidl112",
@@ -48,7 +48,7 @@ ln -s $out/camlidl $out/bin
 export NIX_LDFLAGS+=" -L $1/lib/ocaml/${nix.sel(ocaml, "version")}/site-lib/camlidl"
 `)));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Stub code generator and COM binding for Objective Caml",
         mainProgram: "camlidl",
         homepage: "https://xavierleroy.org/camlidl/",
@@ -57,7 +57,7 @@ export NIX_LDFLAGS+=" -L $1/lib/ocaml/${nix.sel(ocaml, "version")}/site-lib/caml
         broken: nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.03"))),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

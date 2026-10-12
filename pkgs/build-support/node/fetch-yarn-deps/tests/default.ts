@@ -17,40 +17,40 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const fetchYarnDeps = nix.arg($, "fetchYarnDeps");
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     file: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchYarnDeps, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         yarnLock: nix.path(here, "./file.lock"),
         sha256: "sha256-BPuyQVCbdpFL/iRhmarwWAmWO2NodlVCOY9JU+4pfa4=",
       })))),
     simple: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchYarnDeps, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         yarnLock: nix.path(here, "./simple.lock"),
         sha256: "sha256-FRrt8BixleILmFB2ZV8RgPNLqgS+dlH5nWoPgeaaNQ8=",
       })))),
     mirrorUrl: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchYarnDeps, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         yarnLock: nix.path(here, "./simple.lock"),
         mirrorUrl: "https://registry.npmjs.com/",
         sha256: "sha256-FRrt8BixleILmFB2ZV8RgPNLqgS+dlH5nWoPgeaaNQ8=",
       })))),
     gitDep: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchYarnDeps, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         yarnLock: nix.path(here, "./git.lock"),
         sha256: "sha256-f90IiEzHDiBdswWewRBHcJfqqpPipaMg8N0DVLq2e8Q=",
       })))),
     githubDep: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchYarnDeps, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         yarnLock: nix.path(here, "./github.lock"),
         sha256: "sha256-DIKrhDKoqm7tHZmcuh9eK9VTqp6BxeW0zqDUpY4F57A=",
       })))),
     githubReleaseDep: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchYarnDeps, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         yarnLock: nix.path(here, "./github-release.lock"),
         sha256: "sha256-g+y/H6k8LZ+IjWvkkwV7JhKQH1ycfeqzsIonNv4fDq8=",
       })))),
     gitUrlDep: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchYarnDeps, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         yarnLock: nix.path(here, "./giturl.lock"),
         sha256: "sha256-VPnyqN6lePQZGXwR7VhbFnP7/0/LB621RZwT1F+KzVQ=",
       })))),

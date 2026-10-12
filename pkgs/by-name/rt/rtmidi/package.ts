@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "rtmidi";
       const version = "6.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "thestk",
           repo: "rtmidi",
           tag: version,
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DRTMIDI_API_CORE=${(nix.asBool(coremidiSupport) ? "ON" : "OFF")}`),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Set of C++ classes that provide a cross platform API for realtime MIDI input/output",
         homepage: "https://www.music.mcgill.ca/~gary/rtmidi/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

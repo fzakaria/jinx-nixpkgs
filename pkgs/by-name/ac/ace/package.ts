@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libtool = nix.arg($, "libtool");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ace",
       version: "7.0.11",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.dre.vanderbilt.edu/previous_versions/ACE-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-r+LRiu/u1qMcbrjkSr8ErnemX6zvhgvc5cLWu8AQhww=",
         })))),
@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, libtool]),
       buildInputs: nix.thunk(() => [perl]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=format-security"]))),
       })),
       postPatch: "patchShebangs ./MPC/prj_install.pl\n",
       preConfigure: "export INSTALL_PREFIX=$out\nexport ACE_ROOT=$(pwd)\nexport LD_LIBRARY_PATH=\"$ACE_ROOT/ace:$ACE_ROOT/lib\"\necho '#include \"ace/config-linux.h\"' > ace/config.h\necho 'include $(ACE_ROOT)/include/makeinclude/platform_linux.GNU'\\\n> include/makeinclude/platform_macros.GNU\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.dre.vanderbilt.edu/~schmidt/ACE.html",
         description: "ADAPTIVE Communication Environment",
         mainProgram: "ace_gperf",

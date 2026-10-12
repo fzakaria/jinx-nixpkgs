@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.4.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-vKatqTcUcWbWbp+hUlZvI3iGjXmCEcrWmQCAOZVg+jQ=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [hatch_vcs, hatchling]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pint]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Units and constants in the HEP system of units",
         homepage: "https://github.com/scikit-hep/hepunits",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

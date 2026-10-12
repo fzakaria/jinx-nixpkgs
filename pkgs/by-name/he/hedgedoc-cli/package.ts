@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const curl = nix.arg($, "curl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hedgedoc-cli",
       version: "1.0-unstable-2025-05-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hedgedoc",
           repo: "cli",
           rev: "defeac80ca97fedcb19bdcddc516fd8f6e55fe8c",
@@ -37,7 +37,7 @@ runHook postInstall
 `),
       checkPhase: "runHook preCheck\n\nhedgedoc-cli help\n\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Hedgedoc CLI",
         homepage: "https://github.com/hedgedoc/cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

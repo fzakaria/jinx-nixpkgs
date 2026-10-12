@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
     const fetchFromGitHub = nix.arg($_1, "fetchFromGitHub");
     const fetchpatch = nix.arg($_1, "fetchpatch");
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname: "microcabal-stage1",
         version: version,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "augustss",
             repo: "MicroCabal",
             rev: rev,
@@ -36,19 +36,19 @@ export default nix.lambda((args) => (() => {
           })))),
         patches: nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: "remove-mtl-mhs-override.patch",
               url: "https://github.com/AlexandreTunstall/MicroCabal/commit/ad30461aaf3dd295f4f5cf5db12635e42557cbfa.patch",
               hash: "sha256-Gmlt76C19ZtCHpKyNim0ggtjXnVuq5F0ywvX8BW15uM=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               name: "package-install-path.patch",
               url: "https://github.com/augustss/MicroCabal/commit/dc358bbab312e1788564fbb36f835347c21792c0.patch",
               hash: "sha256-aUQwuyp+ihXZ9PeSCqGUylcvzA6/ktZyeyBXiEoVY54=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               name: "package-search-path.patch",
               url: "https://github.com/augustss/MicroCabal/commit/3898e5f0596a7391818a0a2cfa994317cda62479.patch",
               hash: "sha256-76yEUpzH5xZZt3U+BCSqyWsImfpOEowupd5YCaYVTO0=",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         ]),
         installPhase: "runHook preInstall\ninstall -m755 -d $out/bin\ninstall -m755 bin/mcabal $out/bin/mcabal\nrunHook postInstall\n",
         meta: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           description: "A partial Cabal replacement",
           longDescription: "A portable subset of the Cabal functionality.\n",
           homepage: "https://github.com/augustss/MicroCabal",

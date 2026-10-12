@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "factoriolab";
       const version = "3.21.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "factoriolab",
           repo: "factoriolab",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,11 +38,11 @@ mv -f angular.json.new angular.json
 `);
       const installPhase = "runHook preInstall\n\nmkdir -p $out/share\n\ncp -r dist/browser $out/share/factoriolab\n\nrunHook postInstall\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         homepage: "https://github.com/factoriolab/factoriolab",
         changelog: nix.thunk(() => nix.str`https://github.com/factoriolab/factoriolab/releases/tag/v${version}`),
@@ -54,7 +54,7 @@ mv -f angular.json.new angular.json
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

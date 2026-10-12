@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const self = nix.thunk(() => nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: nix.thunk(() => nix.attr(opentelemetry_api, "version")),
       src: nix.thunk(() => nix.attr(opentelemetry_api, "src")),
       pname: "opentelemetry-sdk",
@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["opentelemetry.sdk"]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         tests: nix.thunk(() => nix.attrsDyn({}, [
-          [nix.sel(self, "pname"), nix.thunk(() => nix.app(nix.sel(self, "overridePythonAttrs"), nix.thunk(() => ({ __proto__: pos$1, doCheck: true }))))],
+          [nix.sel(self, "pname"), nix.thunk(() => nix.app(nix.sel(self, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$1, doCheck: true }))))],
         ])),
       })),
       meta: nix.thunk(() => nix.update(nix.sel(opentelemetry_api, "meta"), {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/open-telemetry/opentelemetry-python/tree/main/opentelemetry-sdk",
         description: "OpenTelemetry Python SDK",
       })),

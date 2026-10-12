@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libosmocore = nix.arg($, "libosmocore");
   const libosmo_netif = nix.arg($, "libosmo-netif");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libosmo-sigtran",
       version: "2.3.0",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://gitea.osmocom.org/osmocom/libosmo-sigtran.git",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-RtEncgL+AVpFQ+4/j9fSVvpAuRoIOXOoqJoVIdkh/48=",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [lksctp_tools, libosmocore, libosmo_netif]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SCCP + SIGTRAN (SUA/M3UA) libraries as well as OsmoSTP",
         mainProgram: "osmo-stp",
         homepage: "https://osmocom.org/projects/libosmo-sccp",

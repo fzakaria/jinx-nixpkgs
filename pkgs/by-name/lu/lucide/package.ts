@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const recursiveHash = true;
       const postFetch = "mkdir -p $out/share/fonts/truetype\ncp -a $downloadedFile $out/share/fonts/truetype/Lucide.ttf\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: "https://lucide.dev/",
         description: "Open-source icon library that provides 1000+ icons",
         downloadPage: url,
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryBytecode"))]),
       }));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         version,
         url,

@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const sniffio = nix.arg($, "sniffio");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "claude-agent-sdk",
       version: "0.2.164",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "anthropics",
           repo: "claude-agent-sdk-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       ]),
       disabledTestPaths: nix.thunk(() => ["tests/test_close_cancellation.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python SDK for Claude Agent",
         homepage: "https://github.com/anthropics/claude-agent-sdk-python",
         changelog: nix.thunk(() => nix.str`https://github.com/anthropics/claude-agent-sdk-python/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pkcrack",
       version: "1.2.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.unix-ag.uni-kl.de/~conrad/krypto/pkcrack/pkcrack-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-j0n6OHlio3oUyavVSQFnIaY0JREFv0uDfMcvC61BPTg=",
         })))),
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       installPhase: "runHook preInstall\n\ninstall -D extract $out/bin/extract\ninstall -D findkey $out/bin/findkey\ninstall -D makekey $out/bin/makekey\ninstall -D pkcrack $out/bin/pkcrack\ninstall -D zipdecrypt $out/bin/zipdecrypt\n\nmkdir -p $out/share/doc\ncp -R ../doc/ $out/share/doc/pkcrack\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Breaking PkZip-encryption",
         homepage: "https://www.unix-ag.uni-kl.de/~conrad/krypto/pkcrack.html",
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             shortName: "pkcrack",
             fullName: "PkCrack Non Commercial License",
             url: "https://www.unix-ag.uni-kl.de/~conrad/krypto/pkcrack/pkcrack-readme.html",

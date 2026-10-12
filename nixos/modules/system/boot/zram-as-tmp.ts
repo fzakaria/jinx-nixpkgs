@@ -30,45 +30,45 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "boot", "tmp"));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       boot: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         tmp: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           useZram: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               example: true,
               description: "Whether to mount a zram device on {file}`/tmp` during boot.\n\n::: {.note}\nLarge Nix builds can fail if the mounted zram device is not large enough.\nIn such a case either increase the zramSettings.zram-size or disable this option.\n:::\n",
             })))),
           zramSettings: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             "zram-size": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "ram * 0.5",
                 example: "min(ram / 2, 4096)",
                 description: "The size of the zram device, as a function of MemTotal, both in MB.\nFor example, if the machine has 1 GiB, and zram-size=ram/4,\nthen the zram device will have 256 MiB.\nFractions in the range 0.1–0.5 are recommended\n\nSee: <https://github.com/systemd/zram-generator/blob/main/zram-generator.conf.example>\n",
               })))),
             "compression-algorithm": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "zstd",
                 example: "lzo-rle",
                 description: "The compression algorithm to use for the zram device.\n\nSee: <https://github.com/systemd/zram-generator/blob/main/zram-generator.conf.example>\n",
               })))),
             "fs-type": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "ext4",
                 example: "ext2",
                 description: "The file system to put on the device.\n\nSee: <https://github.com/systemd/zram-generator/blob/main/zram-generator.conf.example>\n",
               })))),
             options: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "X-mount.mode=1777,discard",
                 description: "By default, file systems and swap areas are trimmed on-the-go\nby setting \"discard\".\nSetting this to the empty string clears the option.\n\nSee: <https://github.com/systemd/zram-generator/blob/main/zram-generator.conf.example>\n",
@@ -78,28 +78,28 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "useZram")), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             assertion: nix.thunk(() => !nix.asBool(nix.sel(cfg, "useTmpfs"))),
             message: "boot.tmp.useTmpfs is unnecessary if useZram=true",
           })),
         ]),
         boot: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           supportedFilesystems: nix.thunk(() => nix.attrsDyn({}, [[nix.sel(cfg, "zramSettings", "fs-type"), true]])),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           "zram-generator": nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             enable: true,
             settings: nix.thunk(() => (() => {
               const cfgz = nix.thunk(() => nix.sel(cfg, "zramSettings"));
               return nix.attrsDyn({}, [
                 [nix.str`zram${nix.builtins.toString(nix.thunk(() => (nix.asBool(nix.sel(config, "zramSwap", "enable")) ? nix.sel(config, "zramSwap", "swapDevices") : 0n)))}`, nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   "mount-point": "/tmp",
                   "zram-size": nix.thunk(() => nix.sel(cfgz, "zram-size")),
                   "compression-algorithm": nix.thunk(() => nix.sel(cfgz, "compression-algorithm")),
@@ -111,11 +111,11 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             "systemd-zram-setup@": nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               path: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(pkgs, "util-linux"))], nix.sel(config, "system", "fsPackages"))),
             })),
           })),

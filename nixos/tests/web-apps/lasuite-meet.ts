@@ -37,53 +37,53 @@ export default nix.lambda((args) => (() => {
   const domain = "meet.local";
   const oidcDomain = "127.0.0.1:8080";
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     name: "lasuite-meet",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "soyouzpanda"))];
       })()),
     })),
     containers: nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           networking: nix.thunk(() => ({
-            __proto__: pos$3,
-            hosts: nix.thunk(() => ({ __proto__: pos$2, "127.0.0.1": nix.thunk(() => [domain]) })),
+            [nix.POS]: pos$3,
+            hosts: nix.thunk(() => ({ [nix.POS]: pos$2, "127.0.0.1": nix.thunk(() => [domain]) })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "jq"))];
             })()),
             etc: nix.thunk(() => ({
-              __proto__: pos$5,
-              "dex/lasuite-meet": nix.thunk(() => ({ __proto__: pos$4, mode: "0400", user: "dex", text: "lasuitemeetclientsecret" })),
+              [nix.POS]: pos$5,
+              "dex/lasuite-meet": nix.thunk(() => ({ [nix.POS]: pos$4, mode: "0400", user: "dex", text: "lasuitemeetclientsecret" })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             "lasuite-meet": nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               enable: true,
               enableNginx: true,
               livekit: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 enable: true,
                 keyFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "lasuite-meet-livekit-keys", "lasuite-meet: ca50qKzxEXVIu61wHshAyJNzlWw8vlIwUuzxQbUK1rG\n")),
               })),
-              redis: nix.thunk(() => ({ __proto__: pos$8, createLocally: true })),
-              postgresql: nix.thunk(() => ({ __proto__: pos$9, createLocally: true })),
+              redis: nix.thunk(() => ({ [nix.POS]: pos$8, createLocally: true })),
+              postgresql: nix.thunk(() => ({ [nix.POS]: pos$9, createLocally: true })),
               domain: domain,
               settings: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 DJANGO_SECRET_KEY_FILE: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "django-secret-file", "8540db59c03943d48c3ed1a0f96ce3b560e0f45274f120f7ee4dace3cc366a6b\n")),
                 OIDC_OP_JWKS_ENDPOINT: nix.thunk(() => nix.str`http://${oidcDomain}/dex/keys`),
                 OIDC_OP_AUTHORIZATION_ENDPOINT: nix.thunk(() => nix.str`http://${oidcDomain}/dex/auth/mock`),
@@ -106,21 +106,21 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             dex: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 issuer: nix.thunk(() => nix.str`http://${oidcDomain}/dex`),
                 storage: nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   type: "postgres",
-                  config: nix.thunk(() => ({ __proto__: pos$12, host: "/var/run/postgresql" })),
+                  config: nix.thunk(() => ({ [nix.POS]: pos$12, host: "/var/run/postgresql" })),
                 })),
-                web: nix.thunk(() => ({ __proto__: pos$14, http: "127.0.0.1:8080" })),
-                oauth2: nix.thunk(() => ({ __proto__: pos$15, skipApprovalScreen: true })),
+                web: nix.thunk(() => ({ [nix.POS]: pos$14, http: "127.0.0.1:8080" })),
+                oauth2: nix.thunk(() => ({ [nix.POS]: pos$15, skipApprovalScreen: true })),
                 staticClients: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$16,
+                    [nix.POS]: pos$16,
                     id: "lasuite-meet",
                     name: "Meet",
                     redirectURIs: nix.thunk(() => [nix.thunk(() => nix.str`http://${domain}/api/v1.0/callback/`)]),
@@ -129,21 +129,21 @@ export default nix.lambda((args) => (() => {
                 ]),
                 connectors: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     type: "mockPassword",
                     id: "mock",
                     name: "Example",
-                    config: nix.thunk(() => ({ __proto__: pos$17, username: "admin", password: "password" })),
+                    config: nix.thunk(() => ({ [nix.POS]: pos$17, username: "admin", password: "password" })),
                   })),
                 ]),
               })),
             })),
             postgresql: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               enable: true,
               ensureDatabases: nix.thunk(() => ["dex"]),
               ensureUsers: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$21, name: "dex", ensureDBOwnership: true })),
+                nix.thunk(() => ({ [nix.POS]: pos$21, name: "dex", ensureDBOwnership: true })),
               ]),
             })),
           })),

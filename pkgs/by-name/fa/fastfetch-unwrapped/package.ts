@@ -55,13 +55,13 @@ export default nix.lambda((args) => (() => {
   const zfs = nix.arg($, "zfs");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fastfetch-unwrapped",
       version: "2.69.0",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fastfetch-cli",
           repo: "fastfetch",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -119,11 +119,11 @@ cp ${libdrm}/share/libdrm/amdgpu.ids "$buildDir/amdgpu.ids"
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Actively maintained, feature-rich and performance oriented, neofetch like system information tool",
         homepage: "https://github.com/fastfetch-cli/fastfetch",
         changelog: nix.thunk(() => nix.str`https://github.com/fastfetch-cli/fastfetch/releases/tag/${nix.sel(finalAttrs, "version")}`),

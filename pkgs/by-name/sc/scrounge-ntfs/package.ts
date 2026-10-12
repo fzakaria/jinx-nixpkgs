@@ -14,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "scrounge-ntfs",
       version: "0.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://thewalter.net/stef/software/scrounge/scrounge-ntfs-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-HYrMIMTRPmgAac/vaZ1jaUFchyAl5B0quxgHH0DHJ84=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-D_FILE_OFFSET_BITS=64" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-D_FILE_OFFSET_BITS=64" })),
       postPatch: "substituteInPlace src/{list,ntfsx,scrounge}.c \\\n  --replace-fail \"lseek64\" \"lseek\"\n",
       patches: nix.thunk(() => [nix.path(here, "./darwin.diff")]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Data recovery program for NTFS file systems",
         mainProgram: "scrounge-ntfs",
         homepage: "http://thewalter.net/stef/software/scrounge/",

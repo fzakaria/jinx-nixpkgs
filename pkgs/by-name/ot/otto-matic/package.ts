@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "OttoMatic",
       version: "4.0.1-unstable-2025-09-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jorio",
           repo: "OttoMatic",
           rev: "636056a92c1f276a5af5c3dc7df5c3cb952fd47a",
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [sdl3, libGL]),
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/bin\"\nmkdir -p \"$out/share/OttoMatic\"\nmv Data ReadMe.txt \"$out/share/OttoMatic/\"\ninstall -Dm755 {.,$out/bin}/OttoMatic\nwrapProgram $out/bin/OttoMatic --chdir \"$out/share/OttoMatic\"\ninstall -Dm644 $src/packaging/io.jor.ottomatic.desktop $out/share/applications/io.jor.ottomatic.desktop\ninstall -Dm644 $src/packaging/io.jor.ottomatic.png $out/share/icons/hicolor/512x512/apps/io.jor.ottomatic.png\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Port of Otto Matic, a 2001 Macintosh game by Pangea Software, for modern operating systems",
         homepage: "https://github.com/jorio/OttoMatic",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),

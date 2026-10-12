@@ -29,54 +29,54 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     name: "btrbk-section-order",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "oxalica"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             btrbk: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               instances: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 local: nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   onCalendar: null,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     timestamp_format: "long",
                     target: nix.thunk(() => ({
-                      __proto__: pos$3,
-                      "ssh://global-target/": nix.thunk(() => ({ __proto__: pos$2, ssh_user: "root" })),
+                      [nix.POS]: pos$3,
+                      "ssh://global-target/": nix.thunk(() => ({ [nix.POS]: pos$2, ssh_user: "root" })),
                     })),
                     volume: nix.thunk(() => ({
-                      __proto__: pos$11,
+                      [nix.POS]: pos$11,
                       "/btrfs": nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         snapshot_dir: "/volume-snapshots",
                         target: nix.thunk(() => ({
-                          __proto__: pos$5,
-                          "ssh://volume-target/": nix.thunk(() => ({ __proto__: pos$4, ssh_user: "root" })),
+                          [nix.POS]: pos$5,
+                          "ssh://volume-target/": nix.thunk(() => ({ [nix.POS]: pos$4, ssh_user: "root" })),
                         })),
                         subvolume: nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           "@subvolume": nix.thunk(() => ({
-                            __proto__: pos$8,
+                            [nix.POS]: pos$8,
                             snapshot_dir: "/subvolume-snapshots",
                             target: nix.thunk(() => ({
-                              __proto__: pos$7,
-                              "ssh://subvolume-target/": nix.thunk(() => ({ __proto__: pos$6, ssh_user: "root" })),
+                              [nix.POS]: pos$7,
+                              "ssh://subvolume-target/": nix.thunk(() => ({ [nix.POS]: pos$6, ssh_user: "root" })),
                             })),
                           })),
                         })),

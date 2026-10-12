@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "intel-media-sdk";
       const version = "23.2.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Intel-Media-SDK",
           repo: "MediaSDK",
           rev: nix.thunk(() => nix.str`intel-mediasdk-${version}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [
         nix.path(here, "./nixos-search-onevplrt-in-run-opengl-driver-lib.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "include-cstdint-explicitly.patch",
             url: "https://github.com/Intel-Media-SDK/MediaSDK/commit/a4f37707c1bfdd5612d3de4623ffb2d21e8c1356.patch",
             hash: "sha256-OPwGzcMTctJvHcKn5bHqV8Ivj4P7+E4K9WOKgECqf04=",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const cmakeFlags = nix.thunk(() => ["-DBUILD_SAMPLES=OFF", "-DBUILD_TESTS=OFF", "-DUSE_SYSTEM_GTEST=ON"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Intel Media SDK",
         homepage: "https://github.com/Intel-Media-SDK/MediaSDK",
         mainProgram: "mfx-tracer-config",
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

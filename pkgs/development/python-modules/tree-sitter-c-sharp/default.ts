@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.23.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tree-sitter",
           repo: "tree-sitter-c-sharp",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-N5AAlwQFGGi47cj0m7Te08bA486gwY6NBOx4Qcy4lpo=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: src,
           hash: "sha256-fPjCguwWE+beoOiLR2EyMtogiv1JRXI8NP4vCuvGHss=",
         }))));
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
         rustc,
         setuptools,
       ]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$3, core: nix.thunk(() => [tree_sitter]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$3, core: nix.thunk(() => [tree_sitter]) }));
       const pythonImportsCheck = nix.thunk(() => ["tree_sitter_c_sharp"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, tree_sitter]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "C# Grammar for tree-sitter",
         homepage: "https://github.com/tree-sitter/tree-sitter-c-sharp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

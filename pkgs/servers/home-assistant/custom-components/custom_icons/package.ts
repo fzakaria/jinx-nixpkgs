@@ -13,19 +13,19 @@ export default nix.lambda((args) => (() => {
   const buildHomeAssistantComponent = nix.arg($, "buildHomeAssistantComponent");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildHomeAssistantComponent, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       owner: "thomasloven",
       domain: "custom_icons",
       version: "1.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: nix.thunk(() => nix.attr(finalAttrs, "owner")),
           repo: "hass-custom_icons",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-RJ9lfEFzKIFacOkOBlpS+7YJjHFxxRNmOQtIxt0Z8ks=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Home Assistant custom component for loading custom SVG icons",
         homepage: "https://github.com/thomasloven/hass-custom_icons",
         changelog: nix.thunk(() => nix.str`https://github.com/thomasloven/hass-custom_icons/releases/tag/v${nix.sel(finalAttrs, "version")}`),

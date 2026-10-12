@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const x11Support = nix.argOr($, "x11Support", () => true);
   nix.assert_((nix.asBool(x11Support) || nix.asBool(waylandSupport)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ya/yambar/package.nix:32:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "yambar",
       version: "1.11.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dnkl",
           repo: "yambar",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "backend-wayland", waylandSupport)),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://codeberg.org/dnkl/yambar",
         description: "Modular status panel for X11 and Wayland",
         longDescription: "yambar is a lightweight and configurable status panel (bar, for short) for\nX11 and Wayland, that goes to great lengths to be both CPU and battery\nefficient - polling is only done when absolutely necessary.\n\nIt has a number of modules that provide information in the form of tags.\nFor example, the clock module has a date tag that contains the current\ndate.\n\nThe modules do not know how to present the information though. This is\ninstead done by particles. And the user, you, decides which particles (and\nthus how to present the data) to use.\n\nFurthermore, each particle can have a decoration - a background color or a\ngraphical underline, for example.\n\nThere is no support for images or icons. use an icon font (e.g. Font\nAwesome, or Material Icons) if you want a graphical representation.\n\nThere are a number of modules and particles builtin. More can be added as\nplugins. You can even write your own!\n\nTo summarize: a bar displays information provided by modules, using\nparticles and decorations. How is configured by you.\n",

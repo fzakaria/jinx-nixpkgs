@@ -31,13 +31,13 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const version = nix.argOr($, "version", () => null);
   const derivation = nix.thunk(() => nix.app(mkRocqDerivation, nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       namePrefix: nix.thunk(() => ["rocq", "mathcomp"]),
       pname: "finmap",
       owner: "math-comp",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (rocq) => (mc) => (out) => ({ __proto__: pos$1, cases: nix.thunk(() => [rocq, mc]), out: out });
+        const case$ = (rocq) => (mc) => (out) => ({ [nix.POS]: pos$1, cases: nix.thunk(() => [rocq, mc]), out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => [
             nix.thunk(() => nix.sel(rocq_core, "rocq-version")),
@@ -59,72 +59,72 @@ export default nix.lambda((args) => (() => {
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         "2.2.4": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           sha256: "sha256-sEok7UhXiPdIH8/wzvVhXg1yprCETVmxMzeFRHh6Tug=",
         })),
         "2.2.2": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           sha256: "sha256-G5fSdx4MhOXtQ2H8lpyK5FuIbWAZNc7vRL3hcYmGA2o=",
         })),
         "2.2.0": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           hash: "sha256-oDQEZOutrJxmN8FvzovUIhqw0mwc8Ej7thrieJrW8BY=",
         })),
         "2.1.0": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           hash: "sha256-gh0cnhdVDyo+D5zdtxLc10kGKQLQ3ITzHnMC45mCtpY=",
         })),
         "2.0.0": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           hash: "sha256-0Wr1ZUYVuZH74vawO4EZlZ+K3kq+s1xEz/BfzyKj+wk=",
         })),
         "1.5.2": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           hash: "sha256-0KmmSjc2AlUo6BKr9RZ4FjL9wlGISlTGU0X1Eu7l4sw=",
         })),
         "1.5.1": nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           hash: "sha256:0ryfml4pf1dfya16d8ma80favasmrygvspvb923n06kfw9v986j7",
         })),
         "1.5.0": nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           hash: "sha256:0vx9n1fi23592b3hv5p5ycy7mxc8qh1y5q05aksfwbzkk5zjkwnq",
         })),
         "1.4.1": nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           hash: "sha256:0kx4nx24dml1igk0w0qijmw221r5bgxhwhl5qicnxp7ab3c35s8p",
         })),
         "1.4.0+coq-8.11": nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           hash: "sha256:1fd00ihyx0kzq5fblh9vr8s5mr1kg7p6pk11c4gr8svl1n69ppmb",
         })),
         "1.4.0": nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           hash: "sha256:0mp82mcmrs424ff1vj3cvd8353r9vcap027h3p0iprr1vkkwjbzd",
         })),
         "1.3.4": nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           hash: "sha256:0f5a62ljhixy5d7gsnwd66gf054l26k3m79fb8nz40i2mgp6l9ii",
         })),
         "1.2.1": nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           hash: "sha256:0jryb5dq8js3imbmwrxignlk5zh8gwfb1wr4b1s7jbwz410vp7zf",
         })),
         "1.1.0": nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           hash: "sha256:05df59v3na8jhpsfp7hq3niam6asgcaipg2wngnzxzqnl86srp2a",
         })),
         "1.0.0": nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           hash: "sha256:0sah7k9qm8sw17cgd02f0x84hki8vj8kdz7h15i7rmz08rj0whpa",
         })),
       })),
       propagatedBuildInputs: nix.thunk(() => [mathcomp_boot]),
       useCoqifVersion: (v) => (nix.asBool((nix.asBool(!nix.eq(v, null)) && nix.asBool(!nix.eq(v, "dev")))) && nix.asBool(nix.app(nix.sel(lib, "versions", "isLe"), "2.2.2", v))),
       meta: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         description: "Finset and finmap library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cecill-b")),
       })),

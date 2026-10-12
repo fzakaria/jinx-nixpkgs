@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libnotify = nix.arg($, "libnotify");
   const xdpyinfo = nix.arg($, "xdpyinfo");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "yaxg",
       version: "0-unstable-2018-05-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DanielFGray",
           repo: "yaxg",
           rev: "9d6af75da2ec25dba4b8d784e431064033d67ad2",
@@ -40,7 +40,7 @@ wrapProgram $out/bin/yaxg --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "Yet Another X Grabber script",
         longDescription: "Capture and record your screen with callbacks. Wraps maim, slop, ffmpeg,\nand byzanz to enable still image, video, or gif recording of part or all\nof your screen. Similar command-line interface to scrot but is overall\nmore flexible and less buggy.\n",

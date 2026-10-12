@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const useQt6 = nix.argOr($, "useQt6", () => false);
   const qt = nix.thunk(() => (nix.asBool(useQt6) ? nix.force(qt6) : nix.force(qt5)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "adwaita-qt",
       version: "1.4.2",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FedoraQt",
           repo: "adwaita-qt",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), useQt6, nix.thunk(() => ["-DUSE_QT6=true"]))),
       postPatch: "# Fix plugin dir\nsubstituteInPlace src/style/CMakeLists.txt \\\n   --replace-fail \"DESTINATION \\\"\\${QT_PLUGINS_DIR}/styles\" \"DESTINATION \\\"$qtPluginPrefix/styles\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Style to bend Qt applications to look like they belong into GNOME Shell",
         homepage: "https://github.com/FedoraQt/adwaita-qt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

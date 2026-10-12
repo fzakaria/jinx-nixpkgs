@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const mpv_unwrapped = nix.arg($, "mpv-unwrapped");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "anilibria-winmaclinux",
       version: "2.2.36",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "anilibria",
           repo: "anilibria-winmaclinux",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,14 +40,14 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./0001-disable-version-check.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "0002-do_not_override_pkg-config_when_building_via_nix.patch",
             url: "https://github.com/anilibria/anilibria-winmaclinux/commit/5ce7429c35fb05334496b5a200058b7952e9aef6.patch",
             hash: "sha256-OgQLOmHnRZiyH11YIoCx1XeIVLi6wWdoeuV9K80Lgio=",
             stripLen: 1n,
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "0003-fixed-qt6-folder-modal.patch",
             url: "https://github.com/anilibria/anilibria-winmaclinux/commit/adb4f7e5447d733fc3042f4bff25224ed726f3e6.patch",
             hash: "sha256-6/oXAObmXS+GKjjLNneMIj2gtKNvz6zHshWDYPv4agY=",
@@ -95,7 +95,7 @@ makeWrapper $out/Applications/AniLiberty.app/Contents/MacOS/AniLiberty $out/bin/
 `))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "AniLiberty",
             desktopName: "AniLiberty",
             icon: "aniliberty",
@@ -110,7 +110,7 @@ makeWrapper $out/Applications/AniLiberty.app/Contents/MacOS/AniLiberty $out/bin/
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(qt6Packages, "qtbase", "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/anilibria/anilibria-winmaclinux",
         description: "AniLiberty (ex AniLibria) cross platform desktop client, an anime theater for any computer you own",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

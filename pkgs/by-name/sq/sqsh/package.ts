@@ -20,23 +20,23 @@ export default nix.lambda((args) => (() => {
   const libiconv = nix.arg($, "libiconv");
   const mainVersion = "2.5";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "sqsh",
       version: nix.thunk(() => nix.str`${mainVersion}.16.1`),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/sqsh/sqsh/sqsh-${mainVersion}/sqsh-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "1wi0hdmhk7l8nrz4j3kaa177mmxyklmzhj7sq1gj4q6fb8v1yr6n",
         })))),
       preConfigure: nix.thunk(() => nix.add(nix.str`export SYBASE=${freetds}
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace configure --replace \"libct.so\" \"libct.dylib\"\n"))),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       enableParallelBuilding: true,
       buildInputs: nix.thunk(() => [freetds, readline, libiconv]),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "patch-src_cmd_connect_c.patch",
             url: "https://cvsweb.openbsd.org/cgi-bin/cvsweb/~checkout~/ports/databases/sqsh/patches/patch-src_cmd_connect_c?rev=1.2&content-type=text/plain",
             sha256: "1dz97knr2h0a0ca1vq2mx6h8s3ns9jb1a0qraa4wkfmcdi3aqw0j",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       ]),
       patchFlags: nix.thunk(() => ["-p0"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Command line tool for querying Sybase/MSSQL databases",
         mainProgram: "sqsh",
         longDescription: "Sqsh (pronounced skwish) is short for SQshelL (pronounced s-q-shell),\nit is intended as a replacement for the venerable 'isql' program supplied\nby Sybase.\n",

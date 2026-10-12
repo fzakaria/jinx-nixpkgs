@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
   const plugins = nix.argOr($, "plugins", () => []);
   const version = "2026.9.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "discourse",
       repo: "discourse",
       tag: nix.thunk(() => nix.str`v${version}`),
@@ -120,7 +120,7 @@ export default nix.lambda((args) => (() => {
     jhead,
   ]);
   const runtimeEnv = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     HOME: "/run/discourse/home",
     RAILS_ENV: "production",
     UNICORN_LISTENER: "/run/discourse/sockets/unicorn.sock",
@@ -135,12 +135,12 @@ export default nix.lambda((args) => (() => {
     const bundlerEnvArgs = nix.argOr($_1, "bundlerEnvArgs", () => ({}));
     const preserveGemsDir = nix.argOr($_1, "preserveGemsDir", () => false);
     const src_1 = nix.arg($_1, "src");
-    const rubyEnv_1 = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => nix.update(bundlerEnvArgs, { __proto__: pos$3, name: name, pname: pname, version: version_1, ruby: ruby }))));
+    const rubyEnv_1 = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => nix.update(bundlerEnvArgs, { [nix.POS]: pos$3, name: name, pname: pname, version: version_1, ruby: ruby }))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pluginName: nix.thunk(() => (nix.asBool(!nix.eq(name, null)) ? nix.force(name) : nix.str`${pname}-${version_1}`)),
       }, nix.update(nix.builtins.removeAttrs(args_2, nix.thunk(() => ["bundlerEnvArgs"])), {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         dontConfigure: true,
         dontBuild: true,
         installPhase: nix.thunk(() => nix.add("runHook preInstall\nmkdir -p $out\ncp -r * $out/\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(bundlerEnvArgs, {})), nix.thunk(() => (nix.asBool(preserveGemsDir) ? nix.str`cp -r ${rubyEnv_1}/lib/ruby/gems/* $out/gems/
@@ -153,7 +153,7 @@ ln -sf ${rubyEnv_1}/lib/ruby/gems $out/gems
 `, "runHook postInstall\n")))))),
       }))));
   })(), formals$2);
-  const rake = nix.thunk(() => nix.app(runCommand, "discourse-rake", nix.thunk(() => ({ __proto__: pos$6, nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`mkdir -p $out/bin
+  const rake = nix.thunk(() => nix.app(runCommand, "discourse-rake", nix.thunk(() => ({ [nix.POS]: pos$6, nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`mkdir -p $out/bin
 makeWrapper ${rubyEnv}/bin/rake $out/bin/discourse-rake \\
     ${nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value) => nix.str`--set ${name} '${value}' `, runtimeEnv)))} \\
     --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), runtimeDeps)} \\
@@ -170,15 +170,15 @@ makeWrapper ${rubyEnv}/bin/rake $out/bin/discourse-rake \\
         const gemdir = nix.path(here, "./rubyEnv");
         const gemset = nix.thunk(() => nix.app(nix.builtins.import(nix.thunk(() => nix.add(gemdir, "/gemset.nix"))), src));
         const passthru = nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           "dart-x64-hash": dart_x64_hash,
           "dart-arm64-hash": dart_arm64_hash,
           gemset: gemset,
         }));
         const gemConfig = nix.thunk(() => nix.update(defaultGemConfig, {
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           mini_racer: (attrs) => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             buildInputs: nix.thunk(() => [icu]),
             dontBuild: false,
             NIX_LDFLAGS: "-licui18n",
@@ -196,7 +196,7 @@ mkdir -p ext/libv8-node
 echo '--- !ruby/object:Libv8::Node::Location::Vendor {}' >ext/libv8-node/.location.yml
 `)));
             return {
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               dontBuild: false,
               postPatch: nix.thunk(() => nix.str`cp ${noopScript} libexec/build-libv8
 cp ${noopScript} libexec/build-monolith
@@ -207,23 +207,23 @@ cp ${linkFiles} libexec/inject-libv8
             };
           })(),
           mini_suffix: (attrs) => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             propagatedBuildInputs: nix.thunk(() => [libpsl]),
             dontBuild: false,
             postPatch: nix.thunk(() => nix.str`cp $(readlink -f ${nix.app(nix.sel(lib, "getLib"), libpsl)}/lib/libpsl.so) vendor/libpsl.x86_64.so
 `),
           }),
           tokenizers: (attrs) => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => (() => {
                 const from = nix.thunk(() => nix.app(buildRubyGem, nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     gemName: nix.thunk(() => nix.attr(attrs, "gemName")),
                     version: nix.thunk(() => nix.attr(attrs, "version")),
                     source: nix.thunk(() => nix.attr(attrs, "source")),
                   }))));
                 return {
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 name: nix.thunk(() => nix.attr(from, "name")),
                 src: nix.thunk(() => nix.attr(from, "src")),
                 unpackPhase: nix.thunk(() => nix.attr(from, "unpackPhase")),
@@ -243,16 +243,16 @@ cp ${linkFiles} libexec/inject-libv8
             postInstall: "find $out -type f -name .rustc_info.json -delete\n",
           }),
           tiktoken_ruby: (attrs) => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => (() => {
                 const from = nix.thunk(() => nix.app(buildRubyGem, nix.thunk(() => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     gemName: nix.thunk(() => nix.attr(attrs, "gemName")),
                     version: nix.thunk(() => nix.attr(attrs, "version")),
                     source: nix.thunk(() => nix.attr(attrs, "source")),
                   }))));
                 return {
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 name: nix.thunk(() => nix.attr(from, "name")),
                 src: nix.thunk(() => nix.attr(from, "src")),
                 unpackPhase: nix.thunk(() => nix.attr(from, "unpackPhase")),
@@ -275,14 +275,14 @@ find $out -type f -name .rustc_info.json -delete
 `),
           }),
           "sass-embedded": (attrs) => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             env: nix.thunk(() => (() => {
               const system_code = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "system"), "x86_64-linux")) ? "linux-x64" : (nix.asBool(nix.eq(nix.sel(stdenv, "system"), "aarch64-linux")) ? "linux-arm64" : "unsupported-system-triple-download-will-fail")));
               const hash = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "system"), "x86_64-linux")) ? dart_x64_hash : (nix.asBool(nix.eq(nix.sel(stdenv, "system"), "aarch64-linux")) ? dart_arm64_hash : "unsupported-system")));
               return nix.update(nix.selOr(attrs, () => ({}), "env"), {
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 DART_SASS_VENDORED: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     hash: hash,
                     url: nix.thunk(() => nix.str`https://github.com/sass/dart-sass/releases/download/${nix.sel(attrs, "version")}/dart-sass-${nix.sel(attrs, "version")}-${system_code}.tar.gz`),
                   })))),
@@ -294,7 +294,7 @@ find $out -type f -name .rustc_info.json -delete
         }));
         const groups = nix.thunk(() => ["default", "assets", "development", "test"]);
         return {
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           name,
           version: version_1,
           ruby: ruby_1,
@@ -307,12 +307,12 @@ find $out -type f -name .rustc_info.json -delete
       })()));
   })());
   const assets = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       pname: "discourse-assets",
       version: version,
       src: src,
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           pname: "discourse-assets",
           version: version,
           src: src,
@@ -340,7 +340,7 @@ find $out -type f -name .rustc_info.json -delete
         nix.path(here, "./safe-exec-from-nix-store.patch"),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         RAILS_ENV: "production",
         DISCOURSE_DOWNLOAD_PRE_BUILT_ASSETS: "0",
         BUNDLER_VERSION: nix.thunk(() => nix.sel(pkgs, "bundler", "version")),
@@ -380,7 +380,7 @@ chmod -R +w tmp
     }))));
   const voiceAssets = nix.thunk(() => nix.sel(rubyEnv, "gems", "discourse_voice_assets"));
   const discourse = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       pname: "discourse",
       version: version,
       src: src,
@@ -435,7 +435,7 @@ ln -sf \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         rubyEnv: rubyEnv,
         runtimeEnv: runtimeEnv,
         runtimeDeps: runtimeDeps,
@@ -444,16 +444,16 @@ runHook postInstall
         assets: assets,
         discourseAllPlugins: nix.thunk(() => nix.attr(pkgs, "discourseAllPlugins")),
         enabledPlugins: plugins,
-        plugins: nix.thunk(() => nix.app(callPackage, nix.path(here, "./plugins/all-plugins.nix"), nix.thunk(() => ({ __proto__: pos$25, mkDiscoursePlugin: mkDiscoursePlugin })))),
+        plugins: nix.thunk(() => nix.app(callPackage, nix.path(here, "./plugins/all-plugins.nix"), nix.thunk(() => ({ [nix.POS]: pos$25, mkDiscoursePlugin: mkDiscoursePlugin })))),
         ruby: nix.thunk(() => nix.sel(rubyEnv, "wrappedRuby")),
         tests: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           discourse: nix.thunk(() => nix.attr(nixosTests, "discourse")),
           discourseAllPlugins: nix.thunk(() => nix.attr(nixosTests, "discourseAllPlugins")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         homepage: "https://www.discourse.org/",
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux"]),
         maintainers: nix.thunk(() => (() => {

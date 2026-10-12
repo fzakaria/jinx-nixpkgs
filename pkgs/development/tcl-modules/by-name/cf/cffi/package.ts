@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libffi = nix.arg($, "libffi");
   const libuuid = nix.arg($, "libuuid");
   return nix.app(mkTclDerivation, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cffi",
       version: "2.0.3",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/magicsplat/cffi/cffi${nix.sel(finalAttrs, "version")}-src.tar.gz`),
           hash: "sha256-IcoDZu2P+yafntDNeDZS3NSwFuRgZgIBZCLhCdIY+6g=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--disable-staticffi"]),
       tclRequiresCheck: nix.thunk(() => ["cffi"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Foreign function interface (FFI) extension for Tcl",
         downloadPage: "https://sourceforge.net/projects/magicsplat/files/cffi",
         homepage: "https://cffi.magicsplat.com/",

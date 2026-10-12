@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sope";
       const version = "5.12.11";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Alinto",
           repo: "sope",
           rev: nix.thunk(() => nix.str`SOPE-${version}`),
@@ -42,13 +42,13 @@ EOF
 `);
       const configureFlags = nix.thunk(() => nix.concat(["--prefix=", "--disable-debug", "--enable-xml", "--with-ssl=ssl"], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(openldap, null)), "--enable-openldap"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(mariadb, null)), "--enable-mysql"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(libpq, null)), "--enable-postgresql")))));
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         GNUSTEP_CONFIG_FILE: "/build/GNUstep.conf",
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types -Wno-error=int-conversion",
       }));
       const postInstall = "mkdir -p $out/share/GNUstep/Makefiles\nfind /build/Makefiles -mindepth 1 -maxdepth 1 -not -type l -exec cp -r '{}' $out/share/GNUstep/Makefiles \\;\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Extensive set of frameworks which form a complete Web application server environment",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),
         homepage: "https://github.com/Alinto/sope",
@@ -60,7 +60,7 @@ EOF
         knownVulnerabilities: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

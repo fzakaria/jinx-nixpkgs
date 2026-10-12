@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "wv",
       version: "1.2.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AbiWord",
           repo: "wv",
           rev: nix.thunk(() => nix.str`wv-${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["-"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -40,14 +40,14 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`PKG_CONFIG=${nix.sel(buildPackages, "pkg-config")}/bin/${nix.sel(buildPackages, "pkg-config", "targetPrefix")}pkg-config`),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-error=incompatible-function-pointer-types -Wno-error=int-conversion")),
       })),
       hardeningDisable: nix.thunk(() => ["format"]),
       enableParallelBuilding: true,
       postPatch: "touch AUTHORS\nmv CHANGELOG ChangeLog~ && mv ChangeLog~ ChangeLog\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/AbiWord/wv",
         description: "Converter from Microsoft Word formats to human-editable ones",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

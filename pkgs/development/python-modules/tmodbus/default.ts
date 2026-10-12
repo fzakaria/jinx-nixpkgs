@@ -30,42 +30,42 @@ export default nix.lambda((args) => (() => {
   const tenacity = nix.arg($, "tenacity");
   const version = "0.6.2";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "wlcrs",
       repo: "tmodbus",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-VqIke5S7x5Qm9dsk7/e8jqNYA1PQ7akdJVbXt0lcIC8=",
     }))));
   const rmodbus_server = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rmodbus-server",
       version: "0.1.0",
       src: src,
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/integration_tests/rmodbus`),
       cargoHash: "sha256-wJ6HVtl7X+1M3By06q02K2naBFEvZNWh42StOhJbYt0=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Rust Modbus server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         mainProgram: "server",
       })),
     })));
   const tokio_modbus_server = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "tokio-modbus-server",
       version: "0.1.0",
       src: src,
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/integration_tests/tokio`),
       cargoHash: "sha256-/V10uVQPgiqp05557OvhVgo/jDyWopRUUAkf4Ibfh/E=",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Rust Tokio Modbus server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         mainProgram: "tokio-server",
       })),
     })));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "tmodbus",
       version: version,
       src: src,
@@ -82,19 +82,19 @@ ln -s ${nix.app(nix.sel(lib, "getExe"), tokio_modbus_server)} integration_tests/
       "build-system": nix.thunk(() => [hatch_vcs, hatchling]),
       dependencies: nix.thunk(() => [tenacity]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         "async-serial": nix.thunk(() => [serialx]),
         security: nix.thunk(() => [cryptography]),
       })),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytest_asyncio, pytestCheckHook, sybil], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
       pythonImportsCheck: nix.thunk(() => ["tmodbus"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         "rmodbus-server": rmodbus_server,
         "tokio-modbus-server": tokio_modbus_server,
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Modern Python Modbus library",
         homepage: "https://github.com/wlcrs/tmodbus",
         changelog: nix.thunk(() => nix.str`https://github.com/wlcrs/tmodbus/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

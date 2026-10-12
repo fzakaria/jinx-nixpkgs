@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pps-tools",
       version: "1.0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "redlab-i",
           repo: "pps-tools",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev"]),
       installPhase: "mkdir -p $out/bin\nmkdir -p $dev/include\nmkdir -p $out/{usr/bin,usr/include/sys}\nmake install DESTDIR=$out\nmv $out/usr/bin/* $out/bin\nmv $out/usr/include/* $dev/include/\nrm -rf $out/usr/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "User-space tools for LinuxPPS",
         homepage: "http://linuxpps.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
   const mathcomp_boot = nix.arg($, "mathcomp-boot");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkRocqDerivation, nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       pname: "relation-algebra",
       owner: "damien-pous",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (case$_1) => (out) => ({ __proto__: pos$1, case: case$_1, out: out });
+        const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$1, case: case$_1, out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(rocq_core, "rocq-version")), nix.thunk(() => [
             nix.thunk(() => nix.app(case$, nix.thunk(() => nix.app(nix.lookup(w, "isEq"), "9.2")), "1.9.0")),
@@ -57,61 +57,61 @@ export default nix.lambda((args) => (() => {
       })()),
       releaseRev: (v) => (nix.asBool(nix.app(nix.sel(lib, "versions", "range"), "1.7.6", "1.7.9", v)) ? nix.str`v.${v}` : nix.str`v${v}`),
       release: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         "1.9.0": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           hash: "sha256-VxeyxOhvyZzvJss93IFsoU/k6QinpepFUdIf8PG4V9A=",
         })),
         "1.8.1": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           hash: "sha256-pVeoPt8z1StOfFu5ALCAAxKHecxVNTn9dBXt+nL5d2s=",
         })),
         "1.8.0": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           hash: "sha256-RnY+a57KnStACteaT5dKQoCCH0qp7/W+4qoaApIilj0=",
         })),
         "1.7.11": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           hash: "sha256-ZOV0lUdduSabW9Qsz70clkO7QK/NK2STaHqBWcXb7nI=",
         })),
         "1.7.10": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           hash: "sha256-h738L+dybhmWZwTSLJrhv+sB+cIbj0+62Zcy9BH5sVo=",
         })),
         "1.7.9": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           hash: "sha256-1WzAZyj6q7s0u/9r7lahzxTl8612EA540l9wpm7TYEg=",
         })),
         "1.7.8": nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           hash: "sha256-RITFd3G5TjY+rFzW073Ao1AGU+u6OGQyQeGHVodAXnA=",
         })),
         "1.7.7": nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           hash: "sha256:1dff3id6nypl2alhk9rcifj3dab0j78dym05blc525lawsmc26l2",
         })),
         "1.7.6": nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           hash: "sha256:02gsj06zcy9zgd0h1ibqspwfiwm36pkkgg9cz37k4bxzcapxcr6w",
         })),
         "1.7.5": nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           hash: "sha256-XdO8agoJmNXPv8Ho+KTlLCB4oRlQsb0w06aM9M16ZBU=",
         })),
         "1.7.4": nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           hash: "sha256-o+v2CIAa2+9tJ/V8DneDTf4k31KMHycgMBLaQ+A4ufM=",
         })),
         "1.7.3": nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           hash: "sha256-4feSNfi7h4Yhwn5L+9KP9K1S7HCPvsvaVWwoQSTFvos=",
         })),
         "1.7.2": nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           hash: "sha256-f4oNjXspNMEz3AvhIeYO3avbUa1AThoC9DbcHMb5A2o=",
         })),
         "1.7.1": nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           hash: "sha256-WWVMcR6z8rT4wzZPb8SlaVWGe7NC8gScPqawd7bltQA=",
         })),
       })),
@@ -120,7 +120,7 @@ export default nix.lambda((args) => (() => {
       mlPlugin: true,
       useCoqifVersion: (v) => (nix.asBool((nix.asBool(!nix.eq(v, null)) && nix.asBool(!nix.eq(v, "dev")))) && nix.asBool(nix.app(nix.sel(lib, "versions", "isLe"), "1.7.11", v))),
       meta: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         description: "Relation algebra library for Rocq",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

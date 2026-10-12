@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
   const postgresqlSupport = nix.argOr($, "postgresqlSupport", () => true);
   const libpq = nix.arg($, "libpq");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gnunet",
       version: "0.26.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/gnunet/gnunet-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-d7fjcM2EA39XktgSU2vFoQNUCeajSqBo0Iyegb6Ak4k=",
         })))),
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       checkPhase: "export GNUNET_PREFIX=\"$out\"\nexport PATH=\"$out/bin:$PATH\"\nmake -k check\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GNU's decentralized anonymous and censorship-resistant P2P framework",
         longDescription: "GNUnet is a framework for secure peer-to-peer networking that\ndoes not use any centralized or otherwise trusted services.  A\nfirst service implemented on top of the networking layer\nallows anonymous censorship-resistant file-sharing.  Anonymity\nis provided by making messages originating from a peer\nindistinguishable from messages that the peer is routing.  All\npeers act as routers and use link-encrypted connections with\nstable bandwidth utilization to communicate with each other.\nGNUnet uses a simple, excess-based economic model to allocate\nresources.  Peers in GNUnet monitor each others behavior with\nrespect to resource usage; peers that contribute to the\nnetwork are rewarded with better service.\n",
         homepage: "https://www.gnunet.org/en/",

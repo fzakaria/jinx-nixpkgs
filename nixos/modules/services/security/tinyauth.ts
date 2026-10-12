@@ -57,73 +57,73 @@ export default nix.lambda((args) => (() => {
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "keyValue"), nix.thunk(() => ({}))));
   const settingsFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "tinyauth-env-vars", nix.thunk(() => nix.app(mapAttrs$, (name) => (value) => nix.app(nameValuePair, nix.thunk(() => nix.str`TINYAUTH_${name}`), value), nix.thunk(() => nix.sel(cfg, "settings"))))));
   return {
-    __proto__: pos$34,
+    [nix.POS]: pos$34,
     options: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       services: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         tinyauth: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Tinyauth server")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "tinyauth", nix.thunk(() => ({})))),
           environmentFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(types, "path")),
               description: "Path to an environment file loaded for Tinyauth.\n\nThis can be used to securely store tokens and secrets outside of the world-readable Nix store.\n\nExample contents of the file:\n```\nTINYAUTH_AUTH_USERS=user-hash\nTINYAUTH_OAUTH_PROVIDERS_GOOGLE_CLIENTSECRET=client-secret\n```\n",
               default: "/dev/null",
               example: "/var/lib/secrets/tinyauth",
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   freeformType: nix.thunk(() => nix.sel(format, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     SERVER_ADDRESS: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$2,
+                        [nix.POS]: pos$2,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         description: "Address to bind the server to.\n",
                         default: "0.0.0.0",
                       })))),
                     SERVER_PORT: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => nix.sel(types, "port")),
                         description: "The port to run the server on.\n",
                         default: 3000n,
                       })))),
                     APPURL: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         description: "URL of the app.\n",
                         example: "https://auth.example.com",
                       })))),
                     ANALYTICS_ENABLED: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: nix.thunk(() => nix.sel(types, "bool")),
                         description: "Whether to enable anonymous version collection.\n",
                         default: false,
                       })))),
                     RESOURCES_ENABLED: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => nix.sel(types, "bool")),
                         description: "Whether to enable the resources server.\n",
                         default: true,
                       })))),
                     AUTH_LOGINMAXRETRIES: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => nix.sel(types, "ints", "unsigned")),
                         description: "Maximum login attempts before timeout (0 to disable).\n",
                         default: 3n,
                       })))),
                     AUTH_LOGINTIMEOUT: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: nix.thunk(() => nix.sel(types, "ints", "unsigned")),
                         description: "Login timeout in seconds after max retries reached (0 to disable).\n",
                         default: 300n,
                       })))),
                     AUTH_TRUSTEDPROXIES: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         description: "Comma-separated list of trusted proxy addresses.\n",
                         default: "",
@@ -134,19 +134,19 @@ export default nix.lambda((args) => (() => {
               description: "Environment variables that will be passed to Tinyauth.\nThe \"TINYAUTH_\" prefix will be prepended to the setting names.\nSee [configuration options](https://tinyauth.app/docs/reference/configuration)\nfor supported values.\n",
             })))),
           dataDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(types, "path")),
               default: "/var/lib/tinyauth",
               description: "The directory where Tinyauth will store its data.\n",
             })))),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "tinyauth",
               description: "User account under which Tinyauth runs.",
             })))),
           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "tinyauth",
               description: "Group account under which Tinyauth runs.",
@@ -156,18 +156,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         systemd: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             settings: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               tinyauth: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${nix.sel(cfg, "dataDir")}`, nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   d: nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     mode: "0750",
                     user: nix.thunk(() => nix.sel(cfg, "user")),
                     group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -177,9 +177,9 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             tinyauth: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               description: "Tinyauth",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -189,14 +189,14 @@ export default nix.lambda((args) => (() => {
                 settingsFile,
               ]),
               environment: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 GIN_MODE: "release",
                 TINYAUTH_DATABASE_PATH: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/tinyauth.db`),
                 TINYAUTH_RESOURCES_PATH: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/resources`),
                 TINYAUTH_SERVER_SOCKETPATH: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enableUnixSocket")), "%t/tinyauth/tinyauth.sock")),
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 Type: "simple",
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -238,22 +238,22 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           users: nix.thunk(() => nix.app(optionalAttrs, nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "tinyauth")), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               tinyauth: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 isSystemUser: true,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 description: "Tinyauth user",
                 home: nix.thunk(() => nix.sel(cfg, "dataDir")),
               })),
             })))),
-          groups: nix.thunk(() => nix.app(optionalAttrs, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "tinyauth")), nix.thunk(() => ({ __proto__: pos$30, tinyauth: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(optionalAttrs, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "tinyauth")), nix.thunk(() => ({ [nix.POS]: pos$30, tinyauth: nix.thunk(() => ({})) })))),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$33,
+      [nix.POS]: pos$33,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(maintainers, null);
         return [nix.thunk(() => nix.lookup(w, "shaunren"))];

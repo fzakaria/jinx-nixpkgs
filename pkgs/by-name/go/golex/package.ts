@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const fetchpatch2 = nix.arg($, "fetchpatch2");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "golex",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cznic",
           repo: "golex",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitlab.com/cznic/golex/-/commit/a735a3b62b5fb36a715ba4e280270f9ca91c5e59.patch",
             hash: "sha256-Q/Vyh91IwL3ConWpJU0akslkaVhHTkBmrMbmDVU3Txs=",
           })))),
       ]),
       vendorHash: "sha256-Ig4cxZepvmI1EH0j2fuQ33jHOLWfS40UE+A4UHdo8oE=",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Lex/flex like utility rendering .l formatted data to Go source code",
         homepage: "https://pkg.go.dev/modernc.org/golex",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

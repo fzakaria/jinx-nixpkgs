@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const kicad = nix.arg($, "kicad");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kicadcliwrapper",
       version: "1.1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "atopile",
           repo: "kicadcliwrapper",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "rm src/kicadcliwrapper/main.py\n",
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, kicad]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Strongly typed, auto-generated bindings for KiCAD's CLI",
         homepage: "https://github.com/atopile/kicadcliwrapper",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

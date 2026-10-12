@@ -49,10 +49,10 @@ const pos$42 = nix.positions(here + "/unit.nix", [["testHandlersLessThan", 66, 3
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
-  const p = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../stdenv/generic/problems.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib }))));
+  const p = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../stdenv/generic/problems.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib }))));
   const genConstraintsTest = (problems) => (expected) => ({
-    __proto__: pos$3,
-    expr: nix.thunk(() => nix.sel(nix.app(nix.sel(p, "genHandlerSwitch"), nix.thunk(() => ({ __proto__: pos$2, problems: problems }))), "definedConstraints")),
+    [nix.POS]: pos$3,
+    expr: nix.thunk(() => nix.sel(nix.app(nix.sel(p, "genHandlerSwitch"), nix.thunk(() => ({ [nix.POS]: pos$2, problems: problems }))), "definedConstraints")),
     expected: expected,
   });
   const genHandlerTest = nix.thunk(() => (() => {
@@ -63,93 +63,93 @@ export default nix.lambda((args) => (() => {
         ])), nix.key(nix.force(name)));
     const genValue = (f) => nix.builtins.map((package$) => nix.builtins.map((name) => nix.builtins.map((kind) => nix.app(f, kind, name, package$), nix.thunk(() => ["k1", "k2", "k3"])), nix.thunk(() => ["n1", "n2", "n3"])), nix.thunk(() => ["p1", "p2", "p3"]));
     return (v) => ({
-      __proto__: pos$6,
-      expr: nix.thunk(() => nix.app(genValue, nix.thunk(() => nix.sel(nix.app(nix.sel(p, "genHandlerSwitch"), nix.thunk(() => ({ __proto__: pos$4, problems: v }))), "handlerForProblem")))),
-      expected: nix.thunk(() => nix.app(genValue, nix.thunk(() => nix.app(slowReference, nix.thunk(() => ({ __proto__: pos$5, problems: v })))))),
+      [nix.POS]: pos$6,
+      expr: nix.thunk(() => nix.app(genValue, nix.thunk(() => nix.sel(nix.app(nix.sel(p, "genHandlerSwitch"), nix.thunk(() => ({ [nix.POS]: pos$4, problems: v }))), "handlerForProblem")))),
+      expected: nix.thunk(() => nix.app(genValue, nix.thunk(() => nix.app(slowReference, nix.thunk(() => ({ [nix.POS]: pos$5, problems: v })))))),
     });
   })());
   return nix.app(nix.sel(lib, "runTests"), nix.thunk(() => ({
-      __proto__: pos$42,
+      [nix.POS]: pos$42,
       testHandlersLessThan: nix.thunk(() => (() => {
         const levels = nix.thunk(() => nix.sel(p, "handlers", "levels"));
         const slowReference = (a) => (b) => nix.lt(nix.app(nix.sel(lib, "lists", "findFirstIndex"), (v) => nix.eq(v, a), nix.thunk(() => nix.builtins.abort("Shouldn't happen")), levels), nix.app(nix.sel(lib, "lists", "findFirstIndex"), (v) => nix.eq(v, b), nix.thunk(() => nix.builtins.abort("Shouldn't happen")), levels));
         const genValue = (f) => nix.app(nix.sel(lib, "genList"), (i) => nix.app(nix.sel(lib, "genList"), (j) => nix.app(f, nix.thunk(() => nix.app(nix.sel(lib, "elemAt"), levels, i)), nix.thunk(() => nix.app(nix.sel(lib, "elemAt"), levels, j))), nix.thunk(() => nix.app(nix.sel(lib, "length"), levels))), nix.thunk(() => nix.app(nix.sel(lib, "length"), levels)));
         return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           expr: nix.thunk(() => nix.app(genValue, nix.thunk(() => nix.sel(p, "handlers", "lessThan")))),
           expected: nix.thunk(() => nix.app(genValue, slowReference)),
         };
       })()),
-      testHandlerEmpty: nix.thunk(() => nix.app(genHandlerTest, nix.thunk(() => ({ __proto__: pos$8, matchers: [], handlers: nix.thunk(() => ({})) })))),
+      testHandlerEmpty: nix.thunk(() => nix.app(genHandlerTest, nix.thunk(() => ({ [nix.POS]: pos$8, matchers: [], handlers: nix.thunk(() => ({})) })))),
       testHandlerNameSpecificHandlers: nix.thunk(() => nix.app(genHandlerTest, nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           matchers: [],
           handlers: nix.thunk(() => ({
-            __proto__: pos$10,
-            p1: nix.thunk(() => ({ __proto__: pos$9, n1: "error", n2: "warn", n3: "ignore" })),
+            [nix.POS]: pos$10,
+            p1: nix.thunk(() => ({ [nix.POS]: pos$9, n1: "error", n2: "warn", n3: "ignore" })),
           })),
         })))),
       testHandlerPackageSpecificHandlers: nix.thunk(() => nix.app(genHandlerTest, nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           matchers: [],
           handlers: nix.thunk(() => ({
-            __proto__: pos$15,
-            p1: nix.thunk(() => ({ __proto__: pos$12, n1: "error" })),
-            p2: nix.thunk(() => ({ __proto__: pos$13, n1: "warn" })),
-            p3: nix.thunk(() => ({ __proto__: pos$14, n1: "ignore" })),
+            [nix.POS]: pos$15,
+            p1: nix.thunk(() => ({ [nix.POS]: pos$12, n1: "error" })),
+            p2: nix.thunk(() => ({ [nix.POS]: pos$13, n1: "warn" })),
+            p3: nix.thunk(() => ({ [nix.POS]: pos$14, n1: "ignore" })),
           })),
         })))),
       testHandlersOverrideMatchers: nix.thunk(() => nix.app(genHandlerTest, nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           matchers: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$17, package: "p1", name: "n1", kind: null, handler: "error" })),
+            nix.thunk(() => ({ [nix.POS]: pos$17, package: "p1", name: "n1", kind: null, handler: "error" })),
           ]),
-          handlers: nix.thunk(() => ({ __proto__: pos$19, p1: nix.thunk(() => ({ __proto__: pos$18, n1: "warn" })) })),
+          handlers: nix.thunk(() => ({ [nix.POS]: pos$19, p1: nix.thunk(() => ({ [nix.POS]: pos$18, n1: "warn" })) })),
         })))),
       testMatchersDefault: nix.thunk(() => nix.app(genHandlerTest, nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           matchers: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$21, package: null, name: null, kind: null, handler: "warn" })),
+            nix.thunk(() => ({ [nix.POS]: pos$21, package: null, name: null, kind: null, handler: "warn" })),
           ]),
           handlers: nix.thunk(() => ({})),
         })))),
       testMatchersComplicated: nix.thunk(() => nix.app(genHandlerTest, nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           matchers: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$23, package: "p1", name: null, kind: null, handler: "warn" })),
-            nix.thunk(() => ({ __proto__: pos$24, package: "p1", name: "n1", kind: null, handler: "error" })),
-            nix.thunk(() => ({ __proto__: pos$25, package: "p1", name: null, kind: "k1", handler: "error" })),
-            nix.thunk(() => ({ __proto__: pos$26, package: "p1", name: "n2", kind: "k2", handler: "error" })),
+            nix.thunk(() => ({ [nix.POS]: pos$23, package: "p1", name: null, kind: null, handler: "warn" })),
+            nix.thunk(() => ({ [nix.POS]: pos$24, package: "p1", name: "n1", kind: null, handler: "error" })),
+            nix.thunk(() => ({ [nix.POS]: pos$25, package: "p1", name: null, kind: "k1", handler: "error" })),
+            nix.thunk(() => ({ [nix.POS]: pos$26, package: "p1", name: "n2", kind: "k2", handler: "error" })),
           ]),
           handlers: nix.thunk(() => ({})),
         })))),
-      testDefinedConstraintsEmpty: nix.thunk(() => nix.app(genConstraintsTest, nix.thunk(() => ({ __proto__: pos$28, matchers: [], handlers: nix.thunk(() => ({})) })), nix.thunk(() => ({ __proto__: pos$29, kinds: [], names: [], packages: [] })))),
+      testDefinedConstraintsEmpty: nix.thunk(() => nix.app(genConstraintsTest, nix.thunk(() => ({ [nix.POS]: pos$28, matchers: [], handlers: nix.thunk(() => ({})) })), nix.thunk(() => ({ [nix.POS]: pos$29, kinds: [], names: [], packages: [] })))),
       testDefinedConstraintsMatchers: nix.thunk(() => nix.app(genConstraintsTest, nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           handlers: nix.thunk(() => ({})),
           matchers: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$30, package: null, name: null, kind: "k1", handler: "warn" })),
-            nix.thunk(() => ({ __proto__: pos$31, package: null, name: null, kind: "k2", handler: "error" })),
-            nix.thunk(() => ({ __proto__: pos$32, package: null, name: null, kind: "k3", handler: "ignore" })),
-            nix.thunk(() => ({ __proto__: pos$33, package: "p1", name: "n1", kind: null, handler: "error" })),
-            nix.thunk(() => ({ __proto__: pos$34, package: "p2", name: "n1", kind: null, handler: "warn" })),
+            nix.thunk(() => ({ [nix.POS]: pos$30, package: null, name: null, kind: "k1", handler: "warn" })),
+            nix.thunk(() => ({ [nix.POS]: pos$31, package: null, name: null, kind: "k2", handler: "error" })),
+            nix.thunk(() => ({ [nix.POS]: pos$32, package: null, name: null, kind: "k3", handler: "ignore" })),
+            nix.thunk(() => ({ [nix.POS]: pos$33, package: "p1", name: "n1", kind: null, handler: "error" })),
+            nix.thunk(() => ({ [nix.POS]: pos$34, package: "p2", name: "n1", kind: null, handler: "warn" })),
           ]),
         })), nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           kinds: nix.thunk(() => ["k1", "k2"]),
           names: nix.thunk(() => ["n1"]),
           packages: nix.thunk(() => ["p1", "p2"]),
         })))),
       testDefinedConstraintsHandlers: nix.thunk(() => nix.app(genConstraintsTest, nix.thunk(() => ({
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           matchers: [],
           handlers: nix.thunk(() => ({
-            __proto__: pos$39,
-            p1: nix.thunk(() => ({ __proto__: pos$37, n1: "warn", n2: "error" })),
-            p2: nix.thunk(() => ({ __proto__: pos$38, n3: "ignore" })),
+            [nix.POS]: pos$39,
+            p1: nix.thunk(() => ({ [nix.POS]: pos$37, n1: "warn", n2: "error" })),
+            p2: nix.thunk(() => ({ [nix.POS]: pos$38, n3: "ignore" })),
           })),
         })), nix.thunk(() => ({
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           kinds: [],
           names: nix.thunk(() => ["n1", "n2"]),
           packages: nix.thunk(() => ["p1"]),

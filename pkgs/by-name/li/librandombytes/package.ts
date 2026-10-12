@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "librandombytes",
       version: "20240318",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://randombytes.cr.yp.to/librandombytes-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-LE8iWw7FxckPREyqefgKtslD6CPDsL7VsfHScQ6JmLs=",
         })))),
@@ -31,15 +31,15 @@ export default nix.lambda((args) => (() => {
       configurePlatforms: [],
       hardeningDisable: nix.thunk(() => ["fortify"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ["-Qunused-arguments"])), ["-D_FORTIFY_SOURCE=2", "-O1"])))),
       })),
       nativeBuildInputs: nix.thunk(() => [python3]),
       buildInputs: nix.thunk(() => [openssl]),
       preFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "install_name_tool -id \"$out/lib/librandombytes-kernel.1.dylib\" \"$out/lib/librandombytes-kernel.1.dylib\"\ninstall_name_tool -change \"librandombytes-kernel.1.dylib\" \"$out/lib/librandombytes-kernel.1.dylib\" \"$out/bin/randombytes-info\"\n")),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://randombytes.cr.yp.to/",
         description: "Simple API for applications generating fresh randomness",
         changelog: "https://randombytes.cr.yp.to/download.html",

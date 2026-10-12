@@ -38,37 +38,37 @@ export default nix.lambda((args) => (() => {
   const noStaticAssert = nix.argOr($, "noStaticAssert", () => false);
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (self) => (() => {
       const generator_out = nix.thunk(() => nix.app(nix.sel(buildPackages, "callPackage"), nix.path(here, "./generator-out.nix"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           src: nix.thunk(() => nix.attr(self, "src")),
           version: nix.thunk(() => nix.attr(self, "version")),
         }))));
       const python_module = nix.thunk(() => nix.app(nix.sel(buildPackages, "callPackage"), nix.path(here, "./python-module.nix"), nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(self, "passthru"));
           return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           version: nix.thunk(() => nix.attr(self, "version")),
           "generator-out": nix.thunk(() => nix.attr(from, "generator-out")),
         };
         })())));
       const python3 = nix.thunk(() => nix.app(nix.sel(buildPackages, "python3", "override"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           self: python3,
           packageOverrides: (_) => (__1) => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             "nanopb-proto": nix.thunk(() => nix.sel(self, "passthru", "python-module")),
           }),
         }))));
       const generator = nix.thunk(() => nix.app(nix.sel(buildPackages, "callPackage"), nix.path(here, "./generator.nix"), nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(self, "passthru"));
           return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           python3: python3,
           version: nix.thunk(() => nix.attr(self, "version")),
           "generator-out": nix.thunk(() => nix.attr(from, "generator-out")),
         };
         })())));
       const runtime = nix.thunk(() => nix.app(callPackage, nix.path(here, "./runtime.nix"), nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           python3: python3,
           src: nix.thunk(() => nix.attr(self, "src")),
           version: nix.thunk(() => nix.attr(self, "version")),
@@ -88,11 +88,11 @@ export default nix.lambda((args) => (() => {
           noStaticAssert: noStaticAssert,
         }))));
       return {
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         pname: "nanopb",
         version: "0.4.9.1",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             owner: "nanopb",
             repo: "nanopb",
             rev: nix.thunk(() => nix.sel(self, "version")),
@@ -110,13 +110,13 @@ mkdir -p $out/share/nanopb/generator/proto
 ln -s ${nix.sel(self, "src")}/generator/proto/nanopb.proto $out/share/nanopb/generator/proto/nanopb.proto
 `),
         passthru: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           runtime: runtime,
           "generator-out": generator_out,
           "python-module": python_module,
           generator: generator,
           tests: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             "simple-proto2": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-simple-proto2"), nix.thunk(() => ({})))),
             "simple-proto3": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-simple-proto3"), nix.thunk(() => ({})))),
             "message-with-annotations": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-message-with-annotations"), nix.thunk(() => ({})))),
@@ -124,7 +124,7 @@ ln -s ${nix.sel(self, "src")}/generator/proto/nanopb.proto $out/share/nanopb/gen
           })),
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
           description: "Protocol Buffers with small code size",
           homepage: "https://jpa.kapsi.fi/nanopb/",

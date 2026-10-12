@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const extras = nix.argOr($, "extras", () => ["all"]);
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "browsr",
       version: "1.22.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "juftin",
           repo: "browsr",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "textual-6-compat.patch",
             url: "https://github.com/juftin/browsr/commit/ab958ac982e14e836a0e44080a53c920ad50b256.patch",
             hash: "sha256-vAJ+M6Eg7N2NV7Cb2DWPYqLJIeq/DY1COECEQOnkpXE=",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       "optional-dependencies": nix.thunk(() => (() => {
         const w_2 = nix.withScope(python3Packages, null);
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           all: nix.thunk(() => [
             nix.thunk(() => nix.lookup(w_2, "pyarrow")),
             nix.thunk(() => nix.sel(nix.lookup(w_2, "textual-universal-directorytree"), "optional-dependencies", "remote")),
@@ -98,7 +98,7 @@ export default nix.lambda((args) => (() => {
         "test_mkdocs_screenshot",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "File explorer in your terminal",
         mainProgram: "browsr",
         homepage: "https://juftin.com/browsr",

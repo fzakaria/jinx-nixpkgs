@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "yate",
       version: "6.4.0-1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://voip.null.ro/tarballs/yate${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/yate-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-jCPca/+/jUeNs6hZZLUBl3HI9sms9SIPNGVRanSKA7A=",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: false,
       preBuild: "export NIX_LDFLAGS=\"-L$TMP/yate $NIX_LDFLAGS\"\nfind . -type f -iname Makefile | xargs sed -i \\\n  -e 's@-Wl,--unresolved-symbols=ignore-in-shared-libs@@' \\\n  -e 's@-Wl,--retain-symbols-file@@'\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Yet another telephony engine",
         homepage: "https://yate.ro/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

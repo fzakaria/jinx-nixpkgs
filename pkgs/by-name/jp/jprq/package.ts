@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.4";
       const __structuredAttrs = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "azimjohn",
           repo: "jprq",
           tag: version,
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const subPackages = nix.thunk(() => ["cli"]);
       const postInstall = "mv $out/bin/cli $out/bin/jprq\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Free and open tool for exposing local servers to public network",
         homepage: "https://jprq.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "jprq",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         __structuredAttrs,

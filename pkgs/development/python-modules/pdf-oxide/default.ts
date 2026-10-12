@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(buildPythonPackage, (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "pdf-oxide"));
       return {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.attr(from, "pname")),
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),
@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w, "maturinBuildHook")),
         ];
       })()),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$1, ocr: nix.thunk(() => [onnxruntime]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$1, ocr: nix.thunk(() => [onnxruntime]) })),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       disabledTests: nix.thunk(() => [
         "test_version_is_038_or_newer",
         "test_issue_401_two_embedded_fonts_save_encrypted",
       ]),
       pythonImportsCheck: nix.thunk(() => ["pdf_oxide"]),
-      meta: nix.thunk(() => nix.update(nix.sel(pkgs, "pdf-oxide", "meta"), { __proto__: pos$2, description: "Python bindings for the pdf_oxide library" })),
+      meta: nix.thunk(() => nix.update(nix.sel(pkgs, "pdf-oxide", "meta"), { [nix.POS]: pos$2, description: "Python bindings for the pdf_oxide library" })),
     };
     })());
 })(), formals$1);

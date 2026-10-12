@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const name = nix.argOr($, "name", () => "binary-tarball");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       doCheck: true,
       showBuildStats: true,
       prefix: "/usr/local",
       postPhases: nix.thunk(() => ["finalPhase"]),
     }, nix.update(args_1, {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: nix.thunk(() => nix.add(name, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.has(src, "version")), nix.thunk(() => nix.str`-${nix.sel(src, "version")}`)))),
       postHook: nix.thunk(() => nix.str`mkdir -p $out/nix-support
 echo "$system" > $out/nix-support/system
@@ -45,7 +45,7 @@ prefix=$TMPDIR/inst$prefix
       doDist: true,
       distPhase: "mkdir -p $out/tarballs\ntar cvfj $out/tarballs/${releaseName:-binary-dist}.tar.bz2 -C $TMPDIR/inst .\n",
       finalPhase: "for i in $out/tarballs/*; do\n    echo \"file binary-dist $i\" >> $out/nix-support/hydra-build-products\ndone\n\n# Propagate the release name of the source tarball.  This is\n# to get nice package names in channels.\ntest -n \"$releaseName\" && (echo \"$releaseName\" >> $out/nix-support/hydra-release-name)\n",
-      meta: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_1, "meta")), nix.thunk(() => nix.sel(args_1, "meta"))), { __proto__: pos$2, description: "Build of a generic binary distribution" })),
+      meta: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_1, "meta")), nix.thunk(() => nix.sel(args_1, "meta"))), { [nix.POS]: pos$2, description: "Build of a generic binary distribution" })),
     }))));
 })(), formals$1);
 //# sourceMappingURL=binary-tarball.ts.map

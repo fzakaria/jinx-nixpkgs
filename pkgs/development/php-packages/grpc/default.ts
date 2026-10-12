@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const grpc = nix.arg($, "grpc");
   const php = nix.arg($, "php");
   return nix.app(buildPecl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "grpc",
       version: nix.thunk(() => nix.attr(grpc, "version")),
       src: nix.thunk(() => nix.attr(grpc, "src")),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [grpc]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "High performance, open source, general RPC framework that puts mobile and HTTP/2 first",
         homepage: "https://github.com/grpc/grpc/tree/master/src/php/ext/grpc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

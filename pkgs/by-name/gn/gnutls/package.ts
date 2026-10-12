@@ -57,11 +57,11 @@ export default nix.lambda((args) => (() => {
   const isDarwin = nix.thunk(() => nix.attr(from, "isDarwin"));
   const util_linux = util_linuxMinimal;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "gnutls",
       version: "3.8.13",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnupg/gnutls/v${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnutls-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-/+2Owb8JwkJtTxSq43feR1O1PlN9aF5gTpmosWypyX4=",
         })))),
@@ -96,10 +96,10 @@ export default nix.lambda((args) => (() => {
     -i $out/lib/*.la "$dev/lib/pkgconfig/gnutls.pc"
 `)), "# It seems only useful for static linking but basically noone does that.\nsubstituteInPlace \"$out/lib/libgnutls.la\" \\\n  --replace \"-lunistring\" \"\"\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, url: "https://gitlab.com/gnutls/gnutls.git" })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, url: "https://gitlab.com/gnutls/gnutls.git" })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "ngtcp2-gnutls": ngtcp2_gnutls,
           curlWithGnuTls: curlWithGnuTls,
           ffmpeg: ffmpeg,
@@ -109,13 +109,13 @@ export default nix.lambda((args) => (() => {
           samba: samba,
           openconnect: openconnect,
           "python3-gnutls": nix.thunk(() => nix.sel(python3Packages, "python3-gnutls")),
-          rsyslog: nix.thunk(() => nix.app(nix.sel(rsyslog, "override"), nix.thunk(() => ({ __proto__: pos$3, withGnutls: true })))),
+          rsyslog: nix.thunk(() => nix.app(nix.sel(rsyslog, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, withGnutls: true })))),
           static: nix.thunk(() => nix.sel(pkgsStatic, "gnutls")),
         })),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "GNU Transport Layer Security Library",
         longDescription: "GnuTLS is a project that aims to develop a library which\nprovides a secure layer, over a reliable transport\nlayer. Currently the GnuTLS library implements the proposed standards by\nthe IETF's TLS working group.\n\nQuoting from the TLS protocol specification:\n\n\"The TLS protocol provides communications privacy over the\nInternet. The protocol allows client/server applications to\ncommunicate in a way that is designed to prevent eavesdropping,\ntampering, or message forgery.\"\n",
         homepage: "https://gnutls.org/",
@@ -126,7 +126,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "gnu", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

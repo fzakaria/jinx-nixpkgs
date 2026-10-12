@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.8.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Zuzu-Typ",
           repo: "PyGLM",
           tag: version,
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "cd test\n";
       const pythonImportsCheck = nix.thunk(() => ["pyglm", "glm"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/Zuzu-Typ/PyGLM",
         description: "OpenGL Mathematics (GLM) library for Python written in C++",
         changelog: nix.thunk(() => nix.str`https://github.com/Zuzu-Typ/PyGLM/releases/tag/${nix.sel(src, "tag")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

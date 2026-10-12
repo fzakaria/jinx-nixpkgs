@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const nix$ = nix.arg($, "nix");
   const bash = nix.arg($, "bash");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libnixxml",
       version: "0-unstable-2020-06-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "svanderburg",
           repo: "libnixxml",
           rev: "54c04a5fdbc8661b2445a7527f499e0a77753a1a",
@@ -45,7 +45,7 @@ substituteInPlace scripts/nixexpr2xml.in \\
       preAutoreconf: "# Copied from bootstrap script\nln -s README.md README\nmkdir -p config\n",
       configureFlags: nix.thunk(() => ["--with-gd", "--with-glib"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wall", "-std=c90"]))),
       })),
       strictDeps: true,
@@ -54,7 +54,7 @@ substituteInPlace scripts/nixexpr2xml.in \\
       nativeCheckInputs: nix.thunk(() => [nix$]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "XML-based Nix-friendly data integration library",
         homepage: "https://github.com/svanderburg/libnixxml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

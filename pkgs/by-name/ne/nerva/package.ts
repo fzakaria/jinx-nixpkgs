@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGo127Module = nix.arg($, "buildGo127Module");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nerva",
       version: "1.70.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "praetorian-inc",
           repo: "nerva",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fingerprinting CLI tool for various protocols",
         homepage: "https://github.com/praetorian-inc/nerva",
         changelog: nix.thunk(() => nix.str`https://github.com/praetorian-inc/nerva/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

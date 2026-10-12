@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const pname = "appcenter";
       const version = "8.4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "elementary",
           repo: "appcenter",
           tag: version,
@@ -62,11 +62,11 @@ export default nix.lambda((args) => (() => {
       const mesonFlags = nix.thunk(() => ["-Dpayments=false", "-Dcurated=false"]);
       const postPatch = "# Since we do not build libxml2 with legacy support,\n# we cannot use compressed appstream metadata.\n# https://gitlab.gnome.org/GNOME/libxml2/-/commit/f7f14537727bf6845d0eea08cd1fdc30accc2a53\nsubstituteInPlace src/Core/FlatpakBackend.vala \\\n  --replace-fail \".xml.gz\" \".xml\"\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/elementary/appcenter",
         description: "Open, pay-what-you-want app store for indie developers, designed for elementary OS",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "io.elementary.appcenter",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

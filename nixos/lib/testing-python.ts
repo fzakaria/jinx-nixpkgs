@@ -20,19 +20,19 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const args_1 = args;
   const system = nix.arg($, "system");
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ __proto__: pos$1, system: system, config: config }))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
   const minimal = nix.argOr($, "minimal", () => false);
   const config = nix.argOr($, "config", () => ({}));
   const specialArgs = nix.argOr($, "specialArgs", () => nix.builtins.throw("legacy - do not use, see error below"));
   const extraConfigurations = nix.argOr($, "extraConfigurations", () => []);
-  const nixos_lib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./default.nix")), nix.thunk(() => ({ __proto__: pos$2, lib: nix.thunk(() => nix.attr(pkgs, "lib")) }))));
+  const nixos_lib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./default.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, lib: nix.thunk(() => nix.attr(pkgs, "lib")) }))));
   return nix.app(nix.sel(pkgs, "lib", "throwIf"), nix.thunk(() => nix.has(args_1, "specialArgs")), "testing-python.nix: `specialArgs` is not supported anymore. If you're looking\nfor the public interface to the NixOS test framework, use `runTest`, and\n`node.specialArgs`.\nSee https://nixos.org/manual/nixos/unstable/index.html#sec-calling-nixos-tests\nand https://nixos.org/manual/nixos/unstable/index.html#test-opt-node.specialArgs\n", nix.thunk(() => (() => {
       const pkgs_1 = pkgs;
-      const evalTest = (module) => nix.app(nix.sel(nixos_lib, "evalTest"), nix.thunk(() => ({ __proto__: pos$3, imports: nix.thunk(() => [extraTestModule, module]) })));
-      const runTest = (module) => nix.app(nix.sel(nixos_lib, "runTest"), nix.thunk(() => ({ __proto__: pos$4, imports: nix.thunk(() => [extraTestModule, module]) })));
+      const evalTest = (module) => nix.app(nix.sel(nixos_lib, "evalTest"), nix.thunk(() => ({ [nix.POS]: pos$3, imports: nix.thunk(() => [extraTestModule, module]) })));
+      const runTest = (module) => nix.app(nix.sel(nixos_lib, "runTest"), nix.thunk(() => ({ [nix.POS]: pos$4, imports: nix.thunk(() => [extraTestModule, module]) })));
       const extraTestModule = nix.thunk(() => ({
-        __proto__: pos$6,
-        config: nix.thunk(() => ({ __proto__: pos$5, hostPkgs: pkgs_1 })),
+        [nix.POS]: pos$6,
+        config: nix.thunk(() => ({ [nix.POS]: pos$5, hostPkgs: pkgs_1 })),
       }));
       const makeTest = nix.lambda((args_2) => (() => {
         const $_1 = nix.formals(args_2, formals$2);
@@ -53,13 +53,13 @@ export default nix.lambda((args) => (() => {
         const interactive = nix.argOr($_1, "interactive", () => ({}));
         const sshBackdoor = nix.argOr($_1, "sshBackdoor", () => ({}));
         const testConfig = nix.thunk(() => nix.sel(nix.app(evalTest, nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             imports: nix.thunk(() => [
-              nix.thunk(() => ({ __proto__: pos$7, _file: "makeTest parameters", config: t })),
+              nix.thunk(() => ({ [nix.POS]: pos$7, _file: "makeTest parameters", config: t })),
               nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 defaults: nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   _file: "makeTest: extraConfigurations",
                   imports: extraConfigurations,
                 })),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       })(), formals$2);
       const simpleTest = (as) => nix.sel(nix.app(makeTest, as), "test");
       return {
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         pkgs: pkgs_1,
         evalTest,
         runTest,

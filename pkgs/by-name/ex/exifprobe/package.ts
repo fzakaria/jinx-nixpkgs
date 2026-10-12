@@ -14,24 +14,24 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "exifprobe",
       version: "2.0.1-unstable-2018-06-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hfiguiere",
           repo: "exifprobe",
           rev: "ce1ea2bc3dbbe8092b26f41cd89831cafe633d69",
           sha256: "1c1fhc0v1m452lgnfcijnvrc0by06qfbhn3zkliqi60kv8l2isbp",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-O2"]))),
       })),
       installFlags: nix.thunk(() => ["DESTDIR=$(out)"]),
       postInstall: "mv $out/usr/bin $out/bin\nmv $out/usr/share $out/share\nrm -r $out/usr\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool for reading EXIF data from image files produced by digital cameras",
         homepage: "https://github.com/hfiguiere/exifprobe",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

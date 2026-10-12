@@ -14,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const opam_repository = nix.arg($, "opam-repository");
   const spdx_licenses = nix.arg($, "spdx_licenses");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "opam-state",
       src: nix.thunk(() => nix.attr(opam, "src")),
       version: nix.thunk(() => nix.attr(opam, "version")),
       configureFlags: nix.thunk(() => ["--disable-checks"]),
       propagatedBuildInputs: nix.thunk(() => [opam_repository, spdx_licenses]),
       meta: nix.thunk(() => nix.update(nix.sel(opam, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "OPAM development library handling the ~/.opam hierarchy, repository and switch states",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

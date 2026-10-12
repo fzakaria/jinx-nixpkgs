@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
   const pcre2 = nix.arg($, "pcre2");
   const sphinx = nix.arg($, "sphinx");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libdnf",
       version: "0.76.0",
       outputs: nix.thunk(() => ["out", "dev", "py"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rpm-software-management",
           repo: "libdnf",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -78,7 +78,7 @@ substituteInPlace cmake/modules/FindPythonInstDir.cmake \\
       postFixup: nix.thunk(() => nix.str`moveToOutput "lib/${nix.sel(python3, "libPrefix")}" "$py"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Package management library",
         homepage: "https://github.com/rpm-software-management/libdnf",
         changelog: nix.thunk(() => nix.str`https://github.com/rpm-software-management/libdnf/releases/tag/${nix.sel(finalAttrs, "version")}`),

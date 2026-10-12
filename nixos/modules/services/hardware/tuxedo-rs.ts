@@ -29,16 +29,16 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "hardware", "tuxedo-rs"));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       hardware: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "tuxedo-rs": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Rust utilities for interacting with hardware from TUXEDO Computers")),
           "tailor-gui": nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "tailor-gui, an alternative to TUXEDO Control Center, written in Rust")),
           })),
         })),
@@ -46,23 +46,23 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             hardware: nix.thunk(() => ({
-              __proto__: pos$6,
-              "tuxedo-drivers": nix.thunk(() => ({ __proto__: pos$5, enable: true })),
+              [nix.POS]: pos$6,
+              "tuxedo-drivers": nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               services: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 tailord: nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   enable: true,
                   description: "Tuxedo Tailor hardware control service",
                   after: nix.thunk(() => ["systemd-logind.service"]),
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     Type: "dbus",
                     BusName: "com.tux.Tailor",
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "tuxedo-rs")}/bin/tailord`),
@@ -73,27 +73,27 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               dbus: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "tuxedo-rs"))]),
               })),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "tuxedo-rs"))]),
             })),
           })),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "tailor-gui", "enable")), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               environment: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "tailor-gui"))]),
               })),
             })))),
         ]))))),
     meta: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "xaverdh"))];

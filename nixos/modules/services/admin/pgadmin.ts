@@ -71,48 +71,48 @@ export default nix.lambda((args) => (() => {
         ]))));
   })());
   return {
-    __proto__: pos$34,
+    [nix.POS]: pos$34,
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         pgadmin: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "PostgreSQL Admin 4")),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               description: "Port for pgadmin4 to run on",
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 5050n,
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "pgadmin4", nix.thunk(() => ({})))),
           initialEmail: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               description: "Initial email for the pgAdmin account",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
             })))),
           initialPasswordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               description: "Initial password file for the pgAdmin account. Minimum length by default is 6.\nPlease see `services.pgadmin.minimumPasswordLength`.\nNOTE: Should be string not a store path, to prevent the password from being world readable\n",
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
             })))),
           minimumPasswordLength: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               description: "Minimum length of the password",
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 6n,
             })))),
           emailServer: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "SMTP email server. This is necessary, if you want to use password recovery or change your own password")),
             address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 description: "SMTP server for email delivery",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "localhost",
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 description: "SMTP server port for email delivery",
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 25n,
@@ -120,26 +120,26 @@ export default nix.lambda((args) => (() => {
             useSSL: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "SSL for connecting to the SMTP server")),
             useTLS: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "TLS for connecting to the SMTP server")),
             username: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 description: "SMTP server username for email delivery",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
               })))),
             sender: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 description: "SMTP server sender email for email delivery. Some servers require this to be a valid email address from that server\n",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 example: "noreply@example.com",
               })))),
             passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 description: "Password for SMTP email account.\nNOTE: Should be string not a store path, to prevent the password from being world readable\n",
                 type: nix.thunk(() => nix.sel(lib, "types", "path")),
               })))),
           })),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "firewall passthrough for pgadmin4")),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "Settings for pgadmin4.\n[Documentation](https://www.pgadmin.org/docs/pgadmin4/development/config_py.html)\n",
               type: pyType,
               default: nix.thunk(() => ({})),
@@ -148,29 +148,29 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         networking: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           firewall: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]))),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           pgadmin: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             settings: nix.thunk(() => nix.update({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               DEFAULT_SERVER_PORT: nix.thunk(() => nix.sel(cfg, "port")),
               PASSWORD_LENGTH_MIN: nix.thunk(() => nix.sel(cfg, "minimumPasswordLength")),
               SERVER_MODE: true,
               UPGRADE_CHECK_ENABLED: false,
             }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 DEFAULT_SERVER: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "::")),
               }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "emailServer", "enable")), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 MAIL_SERVER: nix.thunk(() => nix.sel(cfg, "emailServer", "address")),
                 MAIL_PORT: nix.thunk(() => nix.sel(cfg, "emailServer", "port")),
                 MAIL_USE_SSL: nix.thunk(() => nix.sel(cfg, "emailServer", "useSSL")),
@@ -181,11 +181,11 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           services: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             pgadmin: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               requires: nix.thunk(() => ["network.target"]),
@@ -220,7 +220,7 @@ fi
 `),
               restartTriggers: nix.thunk(() => ["/etc/pgadmin/config_system.py"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 User: "pgadmin",
                 DynamicUser: true,
                 LogsDirectory: "pgadmin",
@@ -262,19 +262,19 @@ fi
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           users: nix.thunk(() => ({
-            __proto__: pos$27,
-            pgadmin: nix.thunk(() => ({ __proto__: pos$26, isSystemUser: true, group: "pgadmin" })),
+            [nix.POS]: pos$27,
+            pgadmin: nix.thunk(() => ({ [nix.POS]: pos$26, isSystemUser: true, group: "pgadmin" })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$28, pgadmin: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$28, pgadmin: nix.thunk(() => ({})) })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           etc: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             "pgadmin/config_system.py": nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               text: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "emailServer", "enable")), "import os\nwith open(os.path.join(os.environ['CREDENTIALS_DIRECTORY'], 'email_password')) as f:\n  pw = f.read()\nMAIL_PASSWORD = pw\n"), nix.app(formatPy, nix.thunk(() => nix.sel(cfg, "settings"))))),
               mode: "0600",
               user: "pgadmin",

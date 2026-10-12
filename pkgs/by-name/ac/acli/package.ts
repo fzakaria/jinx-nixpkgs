@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)), "sources", nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system"))))));
   const version = nix.thunk(() => nix.sel(sources, "version"));
   const meta = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     description: "Atlassian Command Line Interface",
     homepage: "https://developer.atlassian.com/cloud/acli/guides/introduction",
     maintainers: nix.thunk(() => (() => {
@@ -37,14 +37,14 @@ export default nix.lambda((args) => (() => {
   }));
   const updateScript = nix.path(here, "./update.py");
   const unwrapped = nix.thunk(() => nix.app(callPackage, nix.path(here, "./unwrapped.nix"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       src: src,
       version: version,
       meta: meta,
       updateScript: updateScript,
     }))));
   const wrapped = nix.thunk(() => nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "acli",
       version: version,
       targetPkgs: (p) => (() => {
@@ -59,9 +59,9 @@ export default nix.lambda((args) => (() => {
         ];
       })(),
       runScript: "acli",
-      passthru: nix.thunk(() => ({ __proto__: pos$3, unwrapped: unwrapped, updateScript: updateScript })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, unwrapped: unwrapped, updateScript: updateScript })),
       meta: meta,
     }))));
-  return (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isLinux")) ? nix.force(wrapped) : nix.app(nix.sel(unwrapped, "override"), nix.thunk(() => ({ __proto__: pos$5, pname: "acli" }))));
+  return (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isLinux")) ? nix.force(wrapped) : nix.app(nix.sel(unwrapped, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, pname: "acli" }))));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

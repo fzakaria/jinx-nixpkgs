@@ -18,19 +18,19 @@ export default nix.lambda((args) => (() => {
   const base5 = nix.thunk(() => nix.app(callPackage, nix.path(here, "./tesseract5.nix"), nix.thunk(() => ({}))));
   const languages = nix.thunk(() => nix.app(callPackage, nix.path(here, "./languages.nix"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     tesseract3: nix.thunk(() => nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         tesseractBase: base3,
         languages: nix.thunk(() => nix.sel(languages, "v3")),
       })))),
     tesseract4: nix.thunk(() => nix.app(lowPrio, nix.thunk(() => nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           tesseractBase: base4,
           languages: nix.thunk(() => nix.sel(languages, "v4")),
         })))))),
     tesseract5: nix.thunk(() => nix.app(lowPrio, nix.thunk(() => nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           tesseractBase: base5,
           languages: nix.thunk(() => nix.sel(languages, "v4")),
         })))))),

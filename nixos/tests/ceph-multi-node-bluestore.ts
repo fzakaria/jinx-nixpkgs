@@ -86,44 +86,44 @@ export default nix.lambda((args) => (() => {
     const defaultTimeout = 60n;
     const investigateFailures = false;
     const cfg = nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       clusterId: "066ae264-2a5d-4729-8001-6ad265f50b03",
-      monA: nix.thunk(() => ({ __proto__: pos$1, name: "a", ip: "192.168.1.1" })),
+      monA: nix.thunk(() => ({ [nix.POS]: pos$1, name: "a", ip: "192.168.1.1" })),
       osd0: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: "0",
         ip: "192.168.1.2",
         uuid: "55ba2294-3e24-478f-bee0-9dca4c231dd9",
       })),
       osd1: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name: "1",
         ip: "192.168.1.3",
         uuid: "5e97a838-85b6-43b0-8950-cb56d554d1e5",
       })),
       osd2: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         name: "2",
         ip: "192.168.1.4",
         uuid: "ea999274-13d0-4dd5-9af9-ad25a324f72f",
       })),
-      kclient: nix.thunk(() => ({ __proto__: pos$5, ip: "192.168.1.5" })),
-      fuseclient: nix.thunk(() => ({ __proto__: pos$6, ip: "192.168.1.6" })),
+      kclient: nix.thunk(() => ({ [nix.POS]: pos$5, ip: "192.168.1.5" })),
+      fuseclient: nix.thunk(() => ({ [nix.POS]: pos$6, ip: "192.168.1.6" })),
     }));
     const generateCephConfig = nix.lambda((args_2) => (() => {
       const $_2 = nix.formals(args_2, formals$3);
       const daemonConfig = nix.arg($_2, "daemonConfig");
       return nix.update({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         enable: true,
         global: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           fsid: nix.thunk(() => nix.sel(cfg, "clusterId")),
           monHost: nix.thunk(() => nix.sel(cfg, "monA", "ip")),
           monInitialMembers: nix.thunk(() => nix.sel(cfg, "monA", "name")),
         })),
         extraConfig: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           log_to_syslog: "false",
           log_to_file: "false",
           log_to_stderr: "true",
@@ -141,15 +141,15 @@ export default nix.lambda((args) => (() => {
         const $_3 = nix.formals(args_3, formals$5);
         const pkgs = nix.arg($_3, "pkgs");
         return {
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             emptyDiskImages: nix.thunk(() => [20480n]),
             vlans: nix.thunk(() => [1n]),
           })),
           networking: networkConfig,
           environment: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [
@@ -161,20 +161,20 @@ export default nix.lambda((args) => (() => {
               ];
             })()),
           })),
-          services: nix.thunk(() => ({ __proto__: pos$13, ceph: cephConfig })),
+          services: nix.thunk(() => ({ [nix.POS]: pos$13, ceph: cephConfig })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             services: nix.thunk(() => (() => {
               const daemonUnits = nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), (daemonType) => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.selOr(cephConfig, () => false, nix.key(nix.force(daemonType)), "enable")), nix.thunk(() => nix.builtins.map((daemon) => nix.str`ceph-${daemonType}-${daemon}`, nix.thunk(() => nix.sel(cephConfig, nix.key(nix.force(daemonType)), "daemons"))))), nix.thunk(() => ["mon", "mgr", "osd", "mds"])));
               return nix.app(nix.sel(lib, "genAttrs"), daemonUnits, (_) => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     Restart: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "always")),
                     RestartSec: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "1")),
                   })),
                   unitConfig: nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     StartLimitIntervalSec: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), 0n)),
                   })),
                 }));
@@ -184,17 +184,17 @@ export default nix.lambda((args) => (() => {
       })(), formals$5);
     })(), formals$4);
     const networkMonA = nix.thunk(() => ({
-      __proto__: pos$26,
-      dhcpcd: nix.thunk(() => ({ __proto__: pos$19, enable: false })),
+      [nix.POS]: pos$26,
+      dhcpcd: nix.thunk(() => ({ [nix.POS]: pos$19, enable: false })),
       interfaces: nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         eth1: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           ipv4: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   address: nix.thunk(() => nix.sel(cfg, "monA", "ip")),
                   prefixLength: 24n,
                 })),
@@ -203,51 +203,51 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       firewall: nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         allowedTCPPorts: nix.thunk(() => [6789n, 3300n]),
-        allowedTCPPortRanges: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$24, from: 6800n, to: 7300n }))]),
+        allowedTCPPortRanges: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$24, from: 6800n, to: 7300n }))]),
       })),
     }));
     const cephConfigMonA = nix.thunk(() => nix.app(generateCephConfig, nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         daemonConfig: nix.thunk(() => nix.update({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           mon: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             enable: true,
             daemons: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "monA", "name"))]),
           })),
           mgr: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             enable: true,
             daemons: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "monA", "name"))]),
           })),
           rgw: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             enable: true,
             daemons: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "monA", "name"))]),
           })),
         }, nix.app(nix.sel(lib, "optionalAttrs"), withCephfs, nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             mds: nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               enable: true,
               daemons: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "monA", "name"))]),
             })),
           }))))),
       }))));
     const networkOsd = (osd) => ({
-      __proto__: pos$41,
-      dhcpcd: nix.thunk(() => ({ __proto__: pos$34, enable: false })),
+      [nix.POS]: pos$41,
+      dhcpcd: nix.thunk(() => ({ [nix.POS]: pos$34, enable: false })),
       interfaces: nix.thunk(() => ({
-        __proto__: pos$38,
+        [nix.POS]: pos$38,
         eth1: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           ipv4: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$35,
+                  [nix.POS]: pos$35,
                   address: nix.thunk(() => nix.sel(osd, "ip")),
                   prefixLength: 24n,
                 })),
@@ -256,33 +256,33 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       firewall: nix.thunk(() => ({
-        __proto__: pos$40,
-        allowedTCPPortRanges: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$39, from: 6800n, to: 7300n }))]),
+        [nix.POS]: pos$40,
+        allowedTCPPortRanges: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$39, from: 6800n, to: 7300n }))]),
       })),
     });
     const cephConfigOsd = (osd) => nix.app(generateCephConfig, nix.thunk(() => ({
-        __proto__: pos$44,
+        [nix.POS]: pos$44,
         daemonConfig: nix.thunk(() => ({
-          __proto__: pos$43,
+          [nix.POS]: pos$43,
           osd: nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             enable: true,
             daemons: nix.thunk(() => [nix.thunk(() => nix.sel(osd, "name"))]),
           })),
         })),
       })));
     const networkClient = (client) => ({
-      __proto__: pos$50,
-      dhcpcd: nix.thunk(() => ({ __proto__: pos$45, enable: false })),
+      [nix.POS]: pos$50,
+      dhcpcd: nix.thunk(() => ({ [nix.POS]: pos$45, enable: false })),
       interfaces: nix.thunk(() => ({
-        __proto__: pos$49,
+        [nix.POS]: pos$49,
         eth1: nix.thunk(() => ({
-          __proto__: pos$48,
+          [nix.POS]: pos$48,
           ipv4: nix.thunk(() => ({
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$46,
+                  [nix.POS]: pos$46,
                   address: nix.thunk(() => nix.sel(client, "ip")),
                   prefixLength: 24n,
                 })),
@@ -291,7 +291,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
     });
-    const cephConfigClient = nix.thunk(() => nix.app(generateCephConfig, nix.thunk(() => ({ __proto__: pos$51, daemonConfig: nix.thunk(() => ({})) }))));
+    const cephConfigClient = nix.thunk(() => nix.app(generateCephConfig, nix.thunk(() => ({ [nix.POS]: pos$51, daemonConfig: nix.thunk(() => ({})) }))));
     const generateClientHost = nix.lambda((args_2) => (() => {
       const $_2 = nix.formals(args_2, formals$6);
       const networkConfig = nix.arg($_2, "networkConfig");
@@ -299,21 +299,21 @@ export default nix.lambda((args) => (() => {
         const $_3 = nix.formals(args_3, formals$7);
         const pkgs = nix.arg($_3, "pkgs");
         return {
-          __proto__: pos$56,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$52, vlans: nix.thunk(() => [1n]) })),
+          [nix.POS]: pos$56,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$52, vlans: nix.thunk(() => [1n]) })),
           boot: nix.thunk(() => ({
-            __proto__: pos$53,
+            [nix.POS]: pos$53,
             kernelPackages: nix.thunk(() => nix.sel(pkgs, "linuxPackages_latest")),
           })),
           networking: networkConfig,
           environment: nix.thunk(() => ({
-            __proto__: pos$54,
+            [nix.POS]: pos$54,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "ceph"))];
             })()),
           })),
-          services: nix.thunk(() => ({ __proto__: pos$55, ceph: cephConfigClient })),
+          services: nix.thunk(() => ({ [nix.POS]: pos$55, ceph: cephConfigClient })),
         };
       })(), formals$7);
     })(), formals$6);
@@ -738,10 +738,10 @@ kclient.wait_until_succeeds(
 )
 `);
     return {
-      __proto__: pos$66,
+      [nix.POS]: pos$66,
       name: nix.thunk(() => nix.add("basic-multi-node-ceph-cluster-bluestore", nix.app(nix.sel(lib, "optionalString"), withCephfs, "-cephfs"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$57,
+        [nix.POS]: pos$57,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [
@@ -751,31 +751,31 @@ kclient.wait_until_succeeds(
         })()),
       })),
       nodes: nix.thunk(() => nix.update({
-        __proto__: pos$62,
-        monA: nix.thunk(() => nix.app(generateHost, nix.thunk(() => ({ __proto__: pos$58, cephConfig: cephConfigMonA, networkConfig: networkMonA })))),
+        [nix.POS]: pos$62,
+        monA: nix.thunk(() => nix.app(generateHost, nix.thunk(() => ({ [nix.POS]: pos$58, cephConfig: cephConfigMonA, networkConfig: networkMonA })))),
         osd0: nix.thunk(() => nix.app(generateHost, nix.thunk(() => ({
-            __proto__: pos$59,
+            [nix.POS]: pos$59,
             cephConfig: nix.thunk(() => nix.app(cephConfigOsd, nix.thunk(() => nix.sel(cfg, "osd0")))),
             networkConfig: nix.thunk(() => nix.app(networkOsd, nix.thunk(() => nix.sel(cfg, "osd0")))),
           })))),
         osd1: nix.thunk(() => nix.app(generateHost, nix.thunk(() => ({
-            __proto__: pos$60,
+            [nix.POS]: pos$60,
             cephConfig: nix.thunk(() => nix.app(cephConfigOsd, nix.thunk(() => nix.sel(cfg, "osd1")))),
             networkConfig: nix.thunk(() => nix.app(networkOsd, nix.thunk(() => nix.sel(cfg, "osd1")))),
           })))),
         osd2: nix.thunk(() => nix.app(generateHost, nix.thunk(() => ({
-            __proto__: pos$61,
+            [nix.POS]: pos$61,
             cephConfig: nix.thunk(() => nix.app(cephConfigOsd, nix.thunk(() => nix.sel(cfg, "osd2")))),
             networkConfig: nix.thunk(() => nix.app(networkOsd, nix.thunk(() => nix.sel(cfg, "osd2")))),
           })))),
       }, nix.app(nix.sel(lib, "optionalAttrs"), withCephfs, nix.thunk(() => ({
-          __proto__: pos$65,
+          [nix.POS]: pos$65,
           kclient: nix.thunk(() => nix.app(generateClientHost, nix.thunk(() => ({
-              __proto__: pos$63,
+              [nix.POS]: pos$63,
               networkConfig: nix.thunk(() => nix.app(networkClient, nix.thunk(() => nix.sel(cfg, "kclient")))),
             })))),
           fuseclient: nix.thunk(() => nix.app(generateClientHost, nix.thunk(() => ({
-              __proto__: pos$64,
+              [nix.POS]: pos$64,
               networkConfig: nix.thunk(() => nix.app(networkClient, nix.thunk(() => nix.sel(cfg, "fuseclient")))),
             })))),
         }))))),

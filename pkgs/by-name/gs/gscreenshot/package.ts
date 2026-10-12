@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const waylandSupport = nix.argOr($, "waylandSupport", () => true);
   const x11Support = nix.argOr($, "x11Support", () => true);
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gscreenshot",
       version: "3.11.1",
       pyproject: true,
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w, "setuptools"))];
       })()),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "thenaterhood",
           repo: "gscreenshot",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       })())))),
       patches: nix.thunk(() => [nix.path(here, "./0001-Changing-paths-to-be-nix-compatible.patch")]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Screenshot frontend (CLI and GUI) for a variety of screenshot backends",
         longDescription: "gscreenshot provides a common frontend and expanded functionality to a\nnumber of X11 and Wayland screenshot and region selection utilities.\n\nIn a nutshell, gscreenshot supports the following:\n\n- Capturing a full-screen screenshot\n- Capturing a region of the screen interactively\n- Capturing a window interactively\n- Capturing the cursor\n- Capturing the cursor, using an alternate cursor glyph\n- Capturing a screenshot with a delay\n- Showing a notification when a screenshot is taken\n- Capturing a screenshot from the command line or a custom script\n- Capturing a screenshot using a GUI\n- Saving to a variety of image formats including 'bmp', 'eps', 'gif', 'jpeg', 'pcx', 'pdf', 'ppm', 'tiff', 'png', and 'webp'.\n- Copying a screenshot to the system clipboard\n- Opening a screenshot in the configured application after capture\n\nOther than region selection, gscreenshot's CLI is non-interactive and is suitable for use in scripts.\n",
         homepage: "https://github.com/thenaterhood/gscreenshot",

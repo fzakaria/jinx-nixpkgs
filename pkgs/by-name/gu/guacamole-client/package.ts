@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "guacamole-client",
       version: "1.6.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://apache/guacamole/${nix.sel(finalAttrs, "version")}/binary/guacamole-${nix.sel(finalAttrs, "version")}.war`),
           hash: "sha256-tBzrHi3wELVNtWPgsA7bjV/p8HPGFoRi5Ml43w/G5xY=",
         })))),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/webapps\ncp $src $out/webapps/guacamole.war\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Clientless remote desktop gateway",
         homepage: "https://guacamole.apache.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -21,20 +21,20 @@ export default nix.lambda((args) => (() => {
       const pname = "ps3netsrv";
       const version = "20220813";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/aldostools/webMAN-MOD/releases/download/${webManModVersion}/${pname}_${version}.zip`),
           hash: "sha256-ynFuCD+tp8E/DDdB/HU9BCmwKcmQy6NBx26MKnP4W0o=",
         }))));
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/${pname}`);
       const buildInputs = nix.thunk(() => [meson, ninja, mbedtls]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-Doff64_t=off_t")),
       }));
       const postInstall = nix.thunk(() => nix.str`install -Dm644 ../LICENSE.TXT $out/usr/share/licenses/${pname}/LICENSE.TXT
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "PS3 Net Server (mod by aldostools)",
         homepage: "https://github.com/aldostools/webMAN-MOD/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "ps3netsrv",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

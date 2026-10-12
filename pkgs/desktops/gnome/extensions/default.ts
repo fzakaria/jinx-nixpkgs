@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.builtins.map, (extension) => (() => {
           const from = nix.thunk(() => nix.sel(extension, "shell_version_map", nix.key(nix.force(shell_version))));
           return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           uuid: nix.thunk(() => nix.attr(extension, "uuid")),
           name: nix.thunk(() => nix.attr(extension, "name")),
           description: nix.thunk(() => nix.attr(extension, "description")),
@@ -50,11 +50,11 @@ export default nix.lambda((args) => (() => {
     const gnome50Extensions = nix.thunk(() => nix.app(mapUuidNames, nix.thunk(() => nix.app(produceExtensionsList, "50"))));
     const gnomeExtensions = nix.thunk(() => nix.app(nix.sel(lib, "trivial", "pipe"), nix.thunk(() => nix.update(gnome48Extensions, nix.update(gnome49Extensions, gnome50Extensions))), nix.thunk(() => [
         nix.thunk(() => nix.app(callPackage, nix.path(here, "./extensionOverrides.nix"), nix.thunk(() => ({})))),
-        (extensions) => nix.update(extensions, nix.app(nix.builtins.import(nix.path(here, "./manuallyPackaged.nix")), nix.thunk(() => ({ __proto__: pos$2, callPackage: callPackage })))),
+        (extensions) => nix.update(extensions, nix.app(nix.builtins.import(nix.path(here, "./manuallyPackaged.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, callPackage: callPackage })))),
         nix.thunk(() => nix.sel(lib, "attrValues")),
         mapReadableNames,
         (extensions) => nix.update(extensions, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             "unite-shell": nix.thunk(() => nix.sel(gnomeExtensions, "unite")),
             "arc-menu": nix.thunk(() => nix.sel(gnomeExtensions, "arcmenu")),
             "clock-override": nix.thunk(() => nix.builtins.throw("'gnomeExtensions.clock-override' has been removed due to lack of upstream maintenance")),
@@ -72,11 +72,11 @@ export default nix.lambda((args) => (() => {
             "topicons-plus": nix.thunk(() => nix.builtins.throw("'gnomeExtensions.topicons-plus' has been removed due to lack of upstream maintenance")),
             "window-corner-preview": nix.thunk(() => nix.builtins.throw("'gnomeExtensions.window-corner-preview' has been removed due to lack of upstream maintenance")),
           })))),
-        (extensions) => nix.update(extensions, { __proto__: pos$4, buildShellExtension: buildShellExtension }),
+        (extensions) => nix.update(extensions, { [nix.POS]: pos$4, buildShellExtension: buildShellExtension }),
         nix.thunk(() => nix.sel(lib, "recurseIntoAttrs")),
       ])));
     return {
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       gnome48Extensions,
       gnome49Extensions,
       gnome50Extensions,

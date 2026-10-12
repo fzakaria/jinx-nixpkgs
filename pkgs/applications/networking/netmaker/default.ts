@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "netmaker";
       const version = "1.7.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gravitl",
           repo: "netmaker",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [pkg_config]);
       const buildInputs = nix.thunk(() => [libglvnd, libx11, libxcursor, libxi, libxinerama, libxrandr]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "WireGuard automation from homelab to enterprise",
         homepage: "https://netmaker.io",
         changelog: nix.thunk(() => nix.str`https://github.com/gravitl/netmaker/-/releases/v${version}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "netmaker",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

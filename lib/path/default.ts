@@ -45,14 +45,14 @@ export default nix.lambda((args) => (() => {
   })();
   const joinRelPath = (components) => nix.add("./", (nix.asBool(nix.eq(components, [])) ? "." : nix.app(concatStringsSep, "/", components)));
   const deconstructPath = nix.thunk(() => (() => {
-    const recurse = (components) => (base) => (nix.asBool(nix.eq(base, nix.builtins.dirOf(base))) ? { __proto__: pos$1, root: base, components: components } : nix.app(recurse, nix.thunk(() => nix.concat([nix.thunk(() => nix.builtins.baseNameOf(base))], components)), nix.thunk(() => nix.builtins.dirOf(base))));
+    const recurse = (components) => (base) => (nix.asBool(nix.eq(base, nix.builtins.dirOf(base))) ? { [nix.POS]: pos$1, root: base, components: components } : nix.app(recurse, nix.thunk(() => nix.concat([nix.thunk(() => nix.builtins.baseNameOf(base))], components)), nix.thunk(() => nix.builtins.dirOf(base))));
     return nix.app(recurse, []);
   })());
   const storeDirComponents = nix.thunk(() => nix.app(splitRelPath, nix.thunk(() => nix.add("./", storeDir))));
   const storeDirLength = nix.thunk(() => nix.app(length, storeDirComponents));
   const componentsHaveStorePathPrefix = (components) => (nix.asBool((nix.asBool((nix.asBool(nix.app(listHasPrefix, storeDirComponents, components)) && nix.asBool(!nix.eq(storeDirComponents, components)))) && nix.asBool(!nix.eq(nix.app(match, ".{32}-.+", nix.thunk(() => nix.app(elemAt, components, storeDirLength))), null)))) || nix.asBool((nix.asBool(!nix.eq(components, [])) && nix.asBool(!nix.eq(nix.app(match, "[0-9a-z]{52}", nix.thunk(() => nix.app(head, components))), null)))));
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     append: (path) => (subpath) => (() => {
       nix.assert_((nix.asBool(nix.app(isPath, path)) || nix.asBool(nix.builtins.throw(nix.thunk(() => nix.str`lib.path.append: The first argument is of type ${nix.builtins.typeOf(path)}, but a path was expected`)))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/path/default.nix:237:5");
       nix.assert_((nix.asBool(nix.app(isValid, subpath)) || nix.asBool(nix.builtins.throw(nix.thunk(() => nix.str`lib.path.append: Second argument is not a valid subpath string:
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
       nix.assert_((nix.asBool(nix.app(isPath, path)) || nix.asBool(nix.builtins.throw(nix.thunk(() => nix.str`lib.path.splitRoot: Argument is of type ${nix.app(typeOf, path)}, but a path was expected`)))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/path/default.nix:432:5");
       const deconstructed = nix.thunk(() => nix.app(deconstructPath, path));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         root: nix.thunk(() => nix.sel(deconstructed, "root")),
         subpath: nix.thunk(() => nix.app(joinRelPath, nix.thunk(() => nix.sel(deconstructed, "components")))),
       };
@@ -102,7 +102,7 @@ export default nix.lambda((args) => (() => {
       return nix.app(componentsHaveStorePathPrefix, nix.thunk(() => nix.sel(deconstructed, "components")));
     })(),
     subpath: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       isValid: (value) => nix.eq(nix.app(subpathInvalidReason, value), null),
       join: (subpaths) => (nix.asBool(nix.app(all, isValid, subpaths)) ? nix.app(joinRelPath, nix.thunk(() => nix.app(concatMap, splitRelPath, subpaths))) : nix.app(foldl$, (i) => (path) => (nix.asBool(nix.app(isValid, path)) ? nix.add(i, 1n) : nix.builtins.throw(nix.thunk(() => nix.str`lib.path.subpath.join: Element at index ${nix.builtins.toString(i)} is not a valid subpath string:
     ${nix.app(subpathInvalidReason, path)}`))), 0n, subpaths)),

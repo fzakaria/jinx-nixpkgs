@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const snakemake = nix.arg($, "snakemake");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "snakemake-storage-plugin-http",
       version: "0.3.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "snakemake",
           repo: "snakemake-storage-plugin-http",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["tests/tests.py"]),
       disabledTests: nix.thunk(() => ["test_storage"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Snakemake storage plugin for downloading input files from HTTP(s)",
         homepage: "https://github.com/snakemake/snakemake-storage-plugin-http",
         changelog: nix.thunk(() => nix.str`https://github.com/snakemake/snakemake-storage-plugin-http/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

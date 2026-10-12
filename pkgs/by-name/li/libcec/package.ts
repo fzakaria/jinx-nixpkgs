@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const withLibraspberrypi = nix.argOr($, "withLibraspberrypi", () => false);
   const libraspberrypi = nix.arg($, "libraspberrypi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libcec",
       version: "8.1.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Pulse-Eight",
           repo: "libcec",
           rev: nix.thunk(() => nix.str`libcec-${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => nix.concat(["-DBUILD_SHARED_LIBS=1"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ["-DHAVE_LINUX_API=1"])))),
       outputs: nix.thunk(() => ["out", "dev", "lib"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Allows you (with the right hardware) to control your device with your TV remote control using existing HDMI cabling",
         homepage: "http://libcec.pulse-eight.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

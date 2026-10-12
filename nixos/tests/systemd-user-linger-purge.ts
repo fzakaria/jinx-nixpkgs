@@ -12,14 +12,14 @@ const pos$6 = nix.positions(here + "/systemd-user-linger-purge.nix", [["name", 4
 export default nix.thunk(() => (() => {
   const name = "systemd-user-linger-purge";
   const nodes = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     machine: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       users: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         users: nix.thunk(() => ({
-          __proto__: pos$2,
-          bob: nix.thunk(() => ({ __proto__: pos$1, isNormalUser: true, linger: false, uid: 1001n })),
+          [nix.POS]: pos$2,
+          bob: nix.thunk(() => ({ [nix.POS]: pos$1, isNormalUser: true, linger: false, uid: 1001n })),
         })),
       })),
     })),
@@ -43,6 +43,6 @@ with subtest("mutable users can linger"):
     machine.succeed("test -e /var/lib/systemd/linger/alice")
 `;
   })());
-  return { __proto__: pos$6, name, nodes, testScript };
+  return { [nix.POS]: pos$6, name, nodes, testScript };
 })());
 //# sourceMappingURL=systemd-user-linger-purge.ts.map

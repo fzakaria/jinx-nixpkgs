@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
     const url = nix.arg($_1, "url");
     const hash = nix.arg($_1, "hash");
     return nix.app(runCommandLocal, nix.thunk(() => nix.str`wpsoffice-cn-${version}.deb`), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         outputHashAlgo: "sha256",
         outputHash: hash,
         nativeBuildInputs: nix.thunk(() => [curl, coreutils]),
@@ -63,9 +63,9 @@ curl --retry 3 --retry-delay 3 "${url}?t=$timestamp10&k=$md5hash" > $out
 `));
   })(), formals$2)));
   const src = nix.thunk(() => nix.app(fetch, nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))))));
-  const passthru = nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") }));
+  const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") }));
   const meta = nix.thunk(() => nix.update({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     description: "Office suite, formerly Kingsoft Office",
     homepage: "https://www.wps.cn",
     platforms: nix.thunk(() => ["aarch64-darwin", "x86_64-linux"]),
@@ -86,12 +86,12 @@ curl --retry 3 --retry-delay 3 "${url}?t=$timestamp10&k=$md5hash" > $out
       ];
     })()),
   }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       changelog: "https://linux.wps.cn/wpslinuxlog",
       mainProgram: "wps",
     })))));
   return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       src: src,
@@ -101,7 +101,7 @@ curl --retry 3 --retry-delay 3 "${url}?t=$timestamp10&k=$md5hash" > $out
       sourceRoot: ".",
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications\ncp -a wpsoffice.app $out/Applications\n\nrunHook postInstall\n",
     }))) : nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: version,
       src: src,

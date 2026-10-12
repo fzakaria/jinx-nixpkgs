@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const localConfig = nix.thunk(() => nix.app(writeText, "config.local.php", "<?php\n  return require(getenv('JIRAFEAU_CONFIG'));\n?>\n"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "jirafeau",
       version: "4.7.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jirafeau",
           repo: "Jirafeau",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,14 +33,14 @@ cp -r * $out/
 cp ${localConfig} $out/lib/config.local.php
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           jirafeau: nix.thunk(() => nix.attr(nixosTests, "jirafeau")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Website permitting upload of a file in a simple way and giving a unique link to it",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
         homepage: "https://gitlab.com/jirafeau/Jirafeau",

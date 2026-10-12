@@ -14,22 +14,22 @@ const pos$6 = nix.positions(here + "/import-error-submodule.nix", [["options", 6
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
-  const myconf = nix.thunk(() => nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({ __proto__: pos$1, modules: nix.thunk(() => [nix.thunk(() => ({}))]) }))));
+  const myconf = nix.thunk(() => nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({ [nix.POS]: pos$1, modules: nix.thunk(() => [nix.thunk(() => ({}))]) }))));
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       foo: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({})))),
           default: nix.thunk(() => ({})),
         })))),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       foo: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
-        return { __proto__: pos$4, imports: nix.thunk(() => [myconf]) };
+        return { [nix.POS]: pos$4, imports: nix.thunk(() => [myconf]) };
       })(), formals$2),
     })),
   };

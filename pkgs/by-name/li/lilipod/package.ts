@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lilipod";
       const version = "0.0.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "89luca89",
           repo: "lilipod",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +36,7 @@ runHook postBuild
       const checkPhase = "runHook preCheck\n\nmake coverage\n\nrunHook postCheck\n";
       const installPhase = "runHook preInstall\n\ninstall -Dm755 lilipod $out/bin/lilipod\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Very simple (as in few features) container and image manager",
         longDescription: "Lilipod is a very simple container manager with minimal features to:\n\n- Download and manager images\n- Create and run containers\n\nIt tries to keep a somewhat compatible CLI interface with Podman/Docker/Nerdctl.\n",
         homepage: "https://github.com/89luca89/lilipod",
@@ -49,7 +49,7 @@ runHook postBuild
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

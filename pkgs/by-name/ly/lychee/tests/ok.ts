@@ -14,8 +14,8 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(testers, "lycheeLinkCheck"), nix.thunk(() => (() => {
       const site = nix.thunk(() => nix.add(sitePkg, "/dist"));
       const relocatable = false;
-      const remap = nix.thunk(() => ({ __proto__: pos$1, "https://example.com": site }));
-      return { __proto__: pos$2, site, relocatable, remap };
+      const remap = nix.thunk(() => ({ [nix.POS]: pos$1, "https://example.com": site }));
+      return { [nix.POS]: pos$2, site, relocatable, remap };
     })()));
 })(), formals$1);
 //# sourceMappingURL=ok.ts.map

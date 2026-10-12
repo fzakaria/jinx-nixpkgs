@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const xmljson = nix.arg($, "xmljson");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "imantics",
       version: "0.1.12",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jsbroks",
           repo: "imantics",
           rev: "76d81036d8f92854d63ad9938dd76c718f8b482e",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["imantics"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Convert and visualize many annotation formats for object detection and localization",
         homepage: "https://github.com/jsbroks/imantics",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

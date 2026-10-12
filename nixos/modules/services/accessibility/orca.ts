@@ -25,35 +25,35 @@ export default nix.lambda((args) => (() => {
   const mkIf = nix.thunk(() => nix.attr(lib, "mkIf"));
   const mkPackageOption = nix.thunk(() => nix.attr(lib, "mkPackageOption"));
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       services: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         orca: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Orca screen reader")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "orca", nix.thunk(() => ({})))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         environment: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           gnome: nix.thunk(() => ({
-            __proto__: pos$7,
-            "at-spi2-core": nix.thunk(() => ({ __proto__: pos$6, enable: true })),
+            [nix.POS]: pos$7,
+            "at-spi2-core": nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
           })),
-          speechd: nix.thunk(() => ({ __proto__: pos$8, enable: true })),
+          speechd: nix.thunk(() => ({ [nix.POS]: pos$8, enable: true })),
         })),
       })))),
   };

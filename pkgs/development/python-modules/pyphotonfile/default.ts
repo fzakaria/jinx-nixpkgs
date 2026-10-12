@@ -16,20 +16,20 @@ export default nix.lambda((args) => (() => {
   const numpy = nix.arg($, "numpy");
   const version = "0.2.1";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pyphotonfile",
       format: "setuptools",
       version: version,
       propagatedBuildInputs: nix.thunk(() => [pillow, numpy]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cab404",
           repo: "pyphotonfile",
           rev: "b7ee92a0071007bb1d6a5984262651beec26543d",
           sha256: "sha256-iB5ky4fPX8ZnvXlDpggqS/345k2x/mPC4cIgb9M0f/c=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "cab404"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         description: "Library for reading and writing files for the Anycubic Photon 3D-Printer",

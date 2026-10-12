@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const dwarfs = nix.arg($, "dwarfs");
   const squashfs_tools = nix.arg($, "squashfs-tools");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gearlever",
       version: "3.4.7",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mijorus",
           repo: "gearlever",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -81,7 +81,7 @@ substituteInPlace src/models/UpdateManager.py \\
           ]))}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Manage AppImages with ease",
         longDescription: "Features:\n\n- Integrate AppImages into your app menu with just one click\n- Drag and drop files directly from your file manager\n- Keep all the AppImages organized in a custom folder\n- Open new AppImages directly with Gear lever\n- Manage updates: keep older versions installed or replace\n  them with the latest release\n- Save CLI apps with their executable name automatically\n- Modern and Fresh UI\n",
         homepage: "https://mijorus.it/projects/gearlever",

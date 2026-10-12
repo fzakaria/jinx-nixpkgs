@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchCrate = nix.arg($, "fetchCrate");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lscolors",
       version: "0.21.0",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           hash: "sha256-75RE72Vy4HRRjwa7qOybnUAzxxhBUKSlKfrLrm6Ish8=",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       buildFeatures: nix.thunk(() => ["nu-ansi-term"]),
       checkFlags: nix.thunk(() => ["--skip=tests::style_for_setid"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Rust library and tool to colorize paths using LS_COLORS",
         homepage: "https://github.com/sharkdp/lscolors",
         changelog: nix.thunk(() => nix.str`https://github.com/sharkdp/lscolors/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -23,21 +23,21 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const testers = nix.arg($, "testers");
   const platform = nix.thunk(() => nix.selOr({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "x86_64-linux": "x86_64-pc-linux",
     "aarch64-darwin": "arm64-apple-darwin",
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported system ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)), nix.key(nix.str`${nix.sel(stdenvNoCC, "system")}`)));
   const hash = nix.thunk(() => nix.selOr({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     "x86_64-linux": "sha256-SGV0fEuwmGwpqmD42a+x0fIK50RWSHEYDesH4obgRhg=",
     "aarch64-darwin": "sha256-qL0hjEdfkN62NDvhlzVgW4TYWv0IReo2Fo5eVhUaOrI=",
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported system ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)), nix.key(nix.str`${nix.sel(stdenvNoCC, "system")}`)));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "bleep",
       version: "0.0.13",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://github.com/oyvindberg/bleep/releases/download/v${nix.sel(finalAttrs, "version")}/bleep-${platform}.tar.gz`),
           hash: hash,
         })))),
@@ -47,18 +47,18 @@ export default nix.lambda((args) => (() => {
       dontAutoPatchelf: true,
       postFixup: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isLinux")), "autoPatchelf $out\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform")))), "export PATH=$PATH:$out/bin\ninstallShellCompletion --cmd bleep \\\n  --bash <(bleep install-tab-completions-bash --stdout) \\\n  --zsh <(bleep install-tab-completions-zsh --stdout)\n"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "bleep --help | sed -n '/Bleeping/s/[^0-9.]//gp'",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://bleep.build/",
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

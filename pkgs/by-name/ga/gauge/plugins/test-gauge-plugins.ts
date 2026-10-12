@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const plugins = nix.arg($_1, "plugins");
     const gaugeWithPlugins = nix.thunk(() => nix.app(nix.sel(gauge, "withPlugins"), (_) => nix.force(plugins)));
-    return nix.app(runCommand, "gauge-test", nix.thunk(() => ({ __proto__: pos$1, nativeBuildInputs: nix.thunk(() => [gaugeWithPlugins]) })), nix.thunk(() => nix.str`mkdir $out
+    return nix.app(runCommand, "gauge-test", nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [gaugeWithPlugins]) })), nix.thunk(() => nix.str`mkdir $out
 echo $(gauge install || true) > $out/output.txt
 
 function checkPlugin() {

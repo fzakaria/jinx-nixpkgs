@@ -21,16 +21,16 @@ export default nix.lambda((args) => (() => {
   const mpv = nix.arg($, "mpv");
   const ffmpeg = nix.arg($, "ffmpeg");
   const desktop = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://github.com/THMonster/Revda/raw/e1c236f6f940443419b6202735b6f8a0c9cdbe8b/misc/dmlive-mime.desktop",
       hash: "sha256-k4h0cSfjuTZAYLjbaTfcye1aC5obd6D3tAZjgBV8xCI=",
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "dmlive",
       version: "5.7.0-unstable-2026-01-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "THMonster",
           repo: "dmlive",
           rev: "47b06e57fc0fa9cf888f7c054f776a73d65e77ce",
@@ -42,9 +42,9 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`wrapProgram "$out/bin/dmlive" --suffix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [mpv, ffmpeg]))}"
 install -Dm644 ${desktop} $out/share/applications/dmlive-mime.desktop
 `),
-      env: nix.thunk(() => ({ __proto__: pos$3, OPENSSL_NO_VENDOR: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, OPENSSL_NO_VENDOR: true })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Tool to play and record videos or live streams with danmaku",
         homepage: "https://github.com/THMonster/dmlive",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

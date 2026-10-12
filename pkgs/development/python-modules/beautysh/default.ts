@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pyyaml = nix.arg($, "pyyaml");
   const types_colorama = nix.arg($, "types-colorama");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "beautysh",
       version: "6.4.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lovesegfault",
           repo: "beautysh",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [hypothesis, pytestCheckHook, pyyaml]),
       pythonImportsCheck: nix.thunk(() => ["beautysh"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for beautifying Bash scripts",
         homepage: "https://github.com/lovesegfault/beautysh",
         changelog: nix.thunk(() => nix.str`https://github.com/lovesegfault/beautysh/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

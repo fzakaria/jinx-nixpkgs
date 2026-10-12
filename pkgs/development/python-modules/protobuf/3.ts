@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const tzdata = nix.arg($, "tzdata");
   nix.assert_((!nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(protobuf, "version")), "3.21")) || nix.asBool(nix.builtins.throw("Protobuf 3.20 or older required"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/python-modules/protobuf/3.nix:13:1");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.attr(protobuf, "pname")),
       src: nix.thunk(() => nix.attr(protobuf, "src")),
       version: nix.thunk(() => nix.sel(protobuf, "version")),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(protobuf, "src", "name")}/python`),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.11")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               name: "support-python311.patch",
               url: "https://github.com/protocolbuffers/protobuf/commit/2206b63c4649cf2e8a06b66c9191c8ef862ca519.diff",
               stripLen: 1n,
@@ -51,9 +51,9 @@ export default nix.lambda((args) => (() => {
           "testStrictUtf8Check",
         ]))),
       pythonImportsCheck: nix.thunk(() => ["google.protobuf", "google.protobuf.internal._api_implementation"]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, protobuf: protobuf })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, protobuf: protobuf })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Protocol Buffers are Google's data interchange format",
         homepage: "https://developers.google.com/protocol-buffers/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

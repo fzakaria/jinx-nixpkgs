@@ -39,42 +39,42 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     name: "gonic",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.sel(pkgs, "gonic", "meta", "maintainers")),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       default_cache_dir: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           systemd: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             tmpfiles: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               settings: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 "10-gonic": nix.thunk(() => ({
-                  __proto__: pos$6,
-                  "/tmp/music": nix.thunk(() => ({ __proto__: pos$2, d: nix.thunk(() => ({})) })),
-                  "/tmp/podcast": nix.thunk(() => ({ __proto__: pos$3, d: nix.thunk(() => ({})) })),
-                  "/tmp/playlists": nix.thunk(() => ({ __proto__: pos$4, d: nix.thunk(() => ({})) })),
-                  "/tmp/secrets": nix.thunk(() => ({ __proto__: pos$5, d: nix.thunk(() => ({})) })),
+                  [nix.POS]: pos$6,
+                  "/tmp/music": nix.thunk(() => ({ [nix.POS]: pos$2, d: nix.thunk(() => ({})) })),
+                  "/tmp/podcast": nix.thunk(() => ({ [nix.POS]: pos$3, d: nix.thunk(() => ({})) })),
+                  "/tmp/playlists": nix.thunk(() => ({ [nix.POS]: pos$4, d: nix.thunk(() => ({})) })),
+                  "/tmp/secrets": nix.thunk(() => ({ [nix.POS]: pos$5, d: nix.thunk(() => ({})) })),
                 })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             gonic: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               enable: true,
               package: nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   name: "gonic-test-wrapper",
                   runtimeInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gonic"))]),
                   text: nix.thunk(() => nix.str`touch ${nix.sel(config, "services", "gonic", "settings", "cache-path")}/foo && echo "cache dir writeable" >&2
@@ -85,7 +85,7 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "gonic")))}
 `),
                 })))),
               settings: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 "music-path": nix.thunk(() => ["/tmp/music"]),
                 "podcast-path": "/tmp/podcast",
                 "playlists-path": "/tmp/playlists",
@@ -97,30 +97,30 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "gonic")))}
       custom_cache_dir: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           systemd: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             tmpfiles: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               settings: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 "10-gonic": nix.thunk(() => ({
-                  __proto__: pos$19,
-                  "/tmp/music": nix.thunk(() => ({ __proto__: pos$15, d: nix.thunk(() => ({})) })),
-                  "/tmp/podcast": nix.thunk(() => ({ __proto__: pos$16, d: nix.thunk(() => ({})) })),
-                  "/tmp/playlists": nix.thunk(() => ({ __proto__: pos$17, d: nix.thunk(() => ({})) })),
-                  "/tmp/cache": nix.thunk(() => ({ __proto__: pos$18, d: nix.thunk(() => ({})) })),
+                  [nix.POS]: pos$19,
+                  "/tmp/music": nix.thunk(() => ({ [nix.POS]: pos$15, d: nix.thunk(() => ({})) })),
+                  "/tmp/podcast": nix.thunk(() => ({ [nix.POS]: pos$16, d: nix.thunk(() => ({})) })),
+                  "/tmp/playlists": nix.thunk(() => ({ [nix.POS]: pos$17, d: nix.thunk(() => ({})) })),
+                  "/tmp/cache": nix.thunk(() => ({ [nix.POS]: pos$18, d: nix.thunk(() => ({})) })),
                 })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             gonic: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 "music-path": nix.thunk(() => ["/tmp/music"]),
                 "podcast-path": "/tmp/podcast",
                 "playlists-path": "/tmp/playlists",

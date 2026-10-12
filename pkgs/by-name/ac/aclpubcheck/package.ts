@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const callPackage = nix.arg($, "callPackage");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "aclpubcheck",
       version: "0.1-unstable-2026-09-11",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "acl-org",
           repo: "aclpubcheck",
           rev: "237bee3a554f2d2fcda69cd0cf1edf4168e3d339",
@@ -47,14 +47,14 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "example-pdf": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test"), nix.thunk(() => ({})))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Tool for checking ACL paper submissions",
         homepage: "https://github.com/acl-org/aclpubcheck",
         license: nix.thunk(() => (() => {

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const boost = nix.arg($, "boost");
   const codec2 = nix.arg($, "codec2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "m17-cxx-demod",
       version: "2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mobilinkd",
           repo: "m17-cxx-demod",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "gcc-13.patch",
             url: "https://github.com/mobilinkd/m17-cxx-demod/commit/2e2aaf95eeac456a2e8795e4363518bb4d797ac0.patch",
             hash: "sha256-+XRzHStJ/7XI5JDoBeNwbifsTOw8il3GyFwlbw07wyk=",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       buildInputs: nix.thunk(() => [codec2, boost]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "M17 Demodulator in C++",
         homepage: "https://github.com/mobilinkd/m17-cxx-demod",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const gnupg = nix.arg($, "gnupg");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rt",
       version: "6.0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "rt",
           rev: nix.thunk(() => nix.str`rt-${nix.sel(finalAttrs, "version")}`),
           owner: "bestpractical",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [
         perl,
         nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "rt-perl-deps",
             paths: nix.thunk(() => (() => {
               const w = nix.withScope(perlPackages, null);
@@ -167,7 +167,7 @@ ln -s /var/lib/rt/smime $out/var/data/smime
 ln -s /var/lib/rt/gpg $out/var/data/gpg
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/bestpractical/rt",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const qtsvg = nix.arg($, "qtsvg");
   const knotifications = nix.arg($, "knotifications");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "francis",
       extraBuildInputs: nix.thunk(() => [qtsvg, knotifications]),
     })));

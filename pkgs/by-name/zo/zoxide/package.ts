@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const nushell = nix.arg($, "nushell");
   const zoxide = nix.arg($, "zoxide");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "zoxide",
       version: "0.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ajeetdsouza",
           repo: "zoxide",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,15 +44,15 @@ export default nix.lambda((args) => (() => {
 `))),
       cargoHash: "sha256-5Be/eIMn3JurFIhoPK6B5L054lLPek9CR93zTJzJS6w=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: zoxide })))),
+          [nix.POS]: pos$5,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: zoxide })))),
           "nushell-integration": nix.thunk(() => nix.app(runCommandLocal, nix.thunk(() => nix.str`test-${nix.sel(zoxide, "name")}-nushell-integration`), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               nativeBuildInputs: nix.thunk(() => [nushell, zoxide]),
               meta: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 platforms: nix.thunk(() => nix.sel(nushell, "meta", "platforms")),
               })),
             })), "mkdir $out\nnu -c \"zoxide init nushell | save zoxide.nu\"\nnu -c \"source zoxide.nu\"\n")),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       })),
       postInstall: "installManPage man/man*/*\ninstallShellCompletion --cmd zoxide \\\n  --bash contrib/completions/zoxide.bash \\\n  --fish contrib/completions/zoxide.fish \\\n  --nushell contrib/completions/zoxide.nu \\\n  --zsh contrib/completions/_zoxide\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Fast cd command that learns your habits",
         homepage: "https://github.com/ajeetdsouza/zoxide",
         changelog: nix.thunk(() => nix.str`https://github.com/ajeetdsouza/zoxide/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

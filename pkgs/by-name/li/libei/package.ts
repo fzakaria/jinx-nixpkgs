@@ -30,18 +30,18 @@ export default nix.lambda((args) => (() => {
   const basu = nix.arg($, "basu");
   const evdev_proto = nix.arg($, "evdev-proto");
   const munit = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "nemequ",
       repo: "munit",
       rev: "fbbdf1467eb0d04a6ee465def2e529e4c87f2118",
       hash: "sha256-qm30C++rpLtxBhOABBzo+6WILSpKz2ibvUvoe8ku4ow=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libei",
       version: "1.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           domain: "gitlab.freedesktop.org",
           owner: "libinput",
           repo: "libei",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isBSD")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               name: "peercred-bsd.patch",
               url: "https://gitlab.freedesktop.org/libinput/libei/-/commit/4f11112be0c0a89e8f078c0b4bcc103dbc6ac875.patch",
               hash: "sha256-Z6oZphzyfHMdAQninbUvEtxr738sx/SQV8o0fkF25iI=",
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
 patchShebangs ./proto/ei-scanner
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Library for Emulated Input",
         mainProgram: "ei-debug-events",
         homepage: "https://gitlab.freedesktop.org/libinput/libei",

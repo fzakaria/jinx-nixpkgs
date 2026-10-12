@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
       const pname = "xlights";
       const version = "2026.16";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/smeighan/xLights/releases/download/${version}/xLights-${version}-x86_64.AppImage`),
           hash: "sha256-JadeIsb2LoAYCW+K09dzpYpxb0deVyUrYLoXThiTFuQ=",
         }))));
-      const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+      const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
       const extraInstallCommands = nix.thunk(() => nix.str`install -m 444 -D ${appimageContents}/xlights.desktop $out/share/applications/xlights.desktop
 install -m 444 -D ${appimageContents}/usr/share/icons/hicolor/256x256/apps/xlights.png \\
   $out/share/icons/hicolor/256x256/apps/xlights.png
@@ -29,7 +29,7 @@ substituteInPlace $out/share/applications/xlights.desktop \\
   --replace-fail 'Exec=xLights' 'Exec=xlights'
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Sequencer for lights with USB and E1.31 drivers",
         homepage: "https://xlights.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -41,7 +41,7 @@ substituteInPlace $out/share/applications/xlights.desktop \\
         mainProgram: "xlights",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

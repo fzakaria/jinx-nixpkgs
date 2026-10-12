@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(llvm, "llvm"));
       return {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rocm-comgr",
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.sel(llvm, "llvm", "monorepoSrc")),
@@ -31,13 +31,13 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             hash: "sha256-X2VPGigK582J+a/u2Kg74w25/+CTpVWU9D3Eqgnb2PU=",
             url: "https://github.com/GZGavinZhao/rocm-llvm-project/commit/7002dc04863d38c57cfd2e6fc60a1cf5a613fd8e.patch",
             relative: "amd/comgr",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             hash: "sha256-/50I+PqxL3oaQMqg5vR7+ibUcXO1SvfXBdw/sybRt1o=",
             url: "https://github.com/GZGavinZhao/rocm-llvm-project/commit/2c1e44fc3eacadcafdd4ada3e3184a092b6f26c5.patch",
             relative: "amd/comgr",
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
       ]),
       cmakeFlags: nix.thunk(() => [nix.thunk(() => nix.str`-DLLVM_TARGETS_TO_BUILD=AMDGPU;${llvmNativeTarget}`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "APIs for compiling and inspecting AMDGPU code objects",
         homepage: "https://github.com/ROCm/ROCm-CompilerSupport/tree/amd-stg-open/lib/comgr",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ncsa")),

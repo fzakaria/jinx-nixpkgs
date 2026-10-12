@@ -42,18 +42,18 @@ export default nix.lambda((args) => (() => {
   const wasm_bindgen_cli_0_2_100 = nix.arg($, "wasm-bindgen-cli_0_2_100");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "yaak",
       version: "2025.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mountain-loop",
           repo: "yaak",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-3sEq7VpzaIMbkvHQTQLf3NRbAJjtpOJpirdcA7y2FIE=",
         })))),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-zz9wlJ3yQ3oTyCFrAV7vD1xENLW+vmf2Pzly4yYas/g=",
         })))),
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
         adwaita_icon_theme,
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [webkitgtk_4_1])))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
         NPM_CONFIG_IGNORE_SCRIPTS: "true",
       })),
@@ -105,7 +105,7 @@ substituteInPlace package.json \\
 `),
       preBuild: nix.thunk(() => (() => {
         const archPlatforms = nix.thunk(() => nix.sel({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "aarch64-darwin": "aarch64-apple-darwin",
           "aarch64-linux": "aarch64-unknown-linux-gnu",
           "x86_64-linux": "x86_64-unknown-linux-gnu",
@@ -122,11 +122,11 @@ ln -s ${protobuf}/include src-tauri/vendored/protoc/include
       preInstall: "pushd src-tauri",
       postInstall: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir $out/bin\nmakeWrapper $out/Applications/Yaak.app/Contents/MacOS/yaak-app $out/bin/yaak-app\n"), "popd\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Desktop API client for organizing and executing REST, GraphQL, and gRPC requests",
         homepage: "https://yaak.app/",
         changelog: nix.thunk(() => nix.str`https://github.com/mountain-loop/yaak/releases/tag/v${nix.sel(finalAttrs, "version")}`),

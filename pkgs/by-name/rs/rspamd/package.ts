@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const cmakeFeature = nix.thunk(() => nix.attr(lib, "cmakeFeature"));
   const cmakeBool$ = (feature) => (condition) => nix.app(cmakeFeature, feature, nix.thunk(() => (nix.asBool(condition) ? "ON" : "OFF")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rspamd",
       version: "4.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rspamd",
           repo: "rspamd",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -81,9 +81,9 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(cmakeBool$, "SYSTEM_ZSTD", true)),
       ]),
       __structuredAttrs: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$2, tests: nix.thunk(() => nix.sel(nixosTests, "rspamd")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, tests: nix.thunk(() => nix.sel(nixosTests, "rspamd")) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/rspamd/rspamd/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         homepage: "https://rspamd.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

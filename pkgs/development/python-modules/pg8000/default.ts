@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.31.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-RuuwO+UrenfAPHJcedosooHW6PWVd8pmsXyQCWGMrng=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["pg8000"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python driver for PostgreSQL",
         homepage: "https://codeberg.org/tlocke/pg8000",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/tlocke/pg8000/src/tag/${version}#release-notes`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

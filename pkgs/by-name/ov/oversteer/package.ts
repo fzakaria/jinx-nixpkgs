@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "0.8.3",
       pname: "oversteer",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "berarma",
           repo: "oversteer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -86,7 +86,7 @@ substituteInPlace $out/lib/udev/rules.d/99-fanatec-wheel-perms.rules \\
       doInstallCheck: true,
       patches: [],
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/berarma/oversteer",
         changelog: nix.thunk(() => nix.str`https://github.com/berarma/oversteer/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Steering Wheel Manager for Linux",

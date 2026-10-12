@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "omnisharp-roslyn";
       const version = "1.39.14";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OmniSharp",
           repo: "omnisharp-roslyn",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -50,12 +50,12 @@ export default nix.lambda((args) => (() => {
       const useDotnetFromEnv = true;
       const executables = nix.thunk(() => ["OmniSharp"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => (() => {
           const with_sdk = (sdk) => nix.app(runCommand, nix.thunk(() => nix.str`with-${(nix.asBool(nix.has(sdk, "version")) ? nix.sel(sdk, "version") : "no")}-sdk`), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               nativeBuildInputs: nix.thunk(() => [finalPackage, sdk, expect]),
-              meta: nix.thunk(() => ({ __proto__: pos$2, timeout: 60n })),
+              meta: nix.thunk(() => ({ [nix.POS]: pos$2, timeout: 60n })),
             })), nix.thunk(() => nix.str`HOME=$TMPDIR
 expect <<"EOF"
   spawn OmniSharp
@@ -73,7 +73,7 @@ EOF
 touch $out
 `));
           return {
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             "with-net8-sdk": nix.thunk(() => nix.app(with_sdk, sdk_8_0)),
             "with-net9-sdk": nix.thunk(() => nix.app(with_sdk, sdk_9_0)),
             "no-sdk": nix.thunk(() => nix.app(with_sdk, null)),
@@ -82,7 +82,7 @@ touch $out
         updateScript: nix.path(here, "./update.sh"),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "OmniSharp based on roslyn workspaces",
         homepage: "https://github.com/OmniSharp/omnisharp-roslyn",
         changelog: nix.thunk(() => nix.str`https://github.com/OmniSharp/omnisharp-roslyn/blob/v${version}/CHANGELOG.md`),
@@ -107,7 +107,7 @@ touch $out
         mainProgram: "OmniSharp",
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

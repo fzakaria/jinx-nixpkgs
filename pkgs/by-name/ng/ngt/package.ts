@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const openblas = nix.arg($, "openblas");
   const enableAVX = nix.argOr($, "enableAVX", () => nix.sel(stdenv, "hostPlatform", "avxSupport"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "NGT",
       version: "2.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NGT-labs",
           repo: "NGT",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(llvmPackages, "openmp")), openblas]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_ENFORCE_NO_NATIVE: nix.thunk(() => !nix.asBool(enableAVX)),
         __AVX2__: nix.thunk(() => (nix.asBool(enableAVX) ? 1n : 0n)),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/NGT-labs/NGT",
         description: "Nearest Neighbor Search with Neighborhood Graph and Tree for High-dimensional Data",
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),

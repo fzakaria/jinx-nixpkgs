@@ -13,9 +13,9 @@ export default nix.lambda((args) => (() => {
   const jupyter = nix.arg($, "jupyter");
   const wolfram_for_jupyter_kernel = nix.arg($, "wolfram-for-jupyter-kernel");
   const wolfram_jupyter = nix.thunk(() => nix.app(nix.sel(jupyter, "override"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       definitions: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         wolfram: nix.thunk(() => nix.sel(wolfram_for_jupyter_kernel, "definition")),
       })),
     }))));

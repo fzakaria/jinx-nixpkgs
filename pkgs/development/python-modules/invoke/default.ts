@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.2.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-UVv0m0pIkyt5sCRZA0jaIvOcSULf+ZGtH7i4uuob5wc=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["invoke"]);
       const postInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "mkdir -p $out/share/{bash-completion/completions,fish/vendor_completions.d,zsh/site-functions}\n$out/bin/inv --print-completion-script=zsh >$out/share/zsh/site-functions/_inv\n$out/bin/inv --print-completion-script=bash >$out/share/bash-completion/completions/inv.bash\n$out/bin/inv --print-completion-script=fish >$out/share/fish/vendor_completions.d/inv.fish\n"));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: "https://www.pyinvoke.org/changelog.html",
         description: "Pythonic task execution",
         homepage: "https://www.pyinvoke.org/",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

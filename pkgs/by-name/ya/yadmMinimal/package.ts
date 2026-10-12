@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const yadm = nix.arg($, "yadm");
   return nix.app(nix.sel(yadm, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       withAwk: false,
       withEsh: false,
       withGpg: false,

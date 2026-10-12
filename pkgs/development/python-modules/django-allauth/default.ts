@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const version = "65.19.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "allauth",
           repo: "django-allauth",
           tag: version,
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       const preBuild = nix.thunk(() => nix.str`${nix.sel(python, "pythonOnBuildForHost", "interpreter")} -m django compilemessages
 `);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         headless: nix.thunk(() => nix.concat([pyjwt], nix.sel(pyjwt, "optional-dependencies", "crypto"))),
         "headless-spec": nix.thunk(() => [pyyaml]),
         "idp-oidc": nix.thunk(() => nix.concat([oauthlib, pyjwt], nix.sel(pyjwt, "optional-dependencies", "crypto"))),
@@ -78,11 +78,11 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const disabledTests = nix.thunk(() => ["test_login"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, "dj-rest-auth": dj_rest_auth })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, "dj-rest-auth": dj_rest_auth })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Integrated set of Django applications addressing authentication, registration, account management as well as 3rd party (social) account authentication",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/allauth/django-allauth/src/tag/${nix.sel(src, "tag")}/ChangeLog.rst`),
         downloadPage: "https://codeberg.org/allauth/django-allauth",
@@ -94,7 +94,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

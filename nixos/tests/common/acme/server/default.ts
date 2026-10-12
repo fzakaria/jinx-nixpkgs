@@ -30,9 +30,9 @@ export default nix.lambda((args) => (() => {
   const testCerts = nix.thunk(() => nix.builtins.import(nix.path(here, "./snakeoil-certs.nix")));
   const domain = nix.thunk(() => nix.sel(testCerts, "domain"));
   const pebbleConf = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     pebble: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       listenAddress: "0.0.0.0:443",
       managementListenAddress: "0.0.0.0:15000",
       certificate: nix.thunk(() => nix.sel(testCerts, nix.key(nix.force(domain)), "cert")),
@@ -45,22 +45,22 @@ export default nix.lambda((args) => (() => {
   }));
   const pebbleConfFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "pebble.conf", nix.thunk(() => nix.builtins.toJSON(pebbleConf))));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       "test-support": nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         acme: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           caDomain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               readOnly: true,
               default: domain,
               description: "A domain name to use with the `nodes` attribute to\nidentify the CA server.\n",
             })))),
           caCert: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               readOnly: true,
               default: nix.thunk(() => nix.sel(testCerts, "ca", "cert")),
@@ -70,11 +70,11 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       networking: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         firewall: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           allowedTCPPorts: nix.thunk(() => [80n, 443n, 15000n, 4002n]),
         })),
         hostName: "acme",
@@ -84,22 +84,22 @@ export default nix.lambda((args) => (() => {
             const primaryIPAddress = nix.thunk(() => nix.attr(from, "primaryIPAddress"));
             const primaryIPv6Address = nix.thunk(() => nix.attr(from, "primaryIPv6Address"));
             const ips = nix.thunk(() => nix.builtins.filter((ip) => !nix.eq(ip, ""), nix.thunk(() => [primaryIPAddress, primaryIPv6Address])));
-            const names = nix.thunk(() => nix.app(nix.sel(lib, "lists", "unique"), nix.thunk(() => nix.app(nix.sel(lib, "lists", "flatten"), nix.thunk(() => nix.app(nix.sel(lib, "lists", "concatMap"), (cfg) => nix.app(nix.sel(lib, "attrsets", "mapAttrsToList"), (domain_1) => (cfg_1) => nix.builtins.map(nix.thunk(() => nix.app(nix.builtins.replaceStrings, nix.thunk(() => ["*."]), nix.thunk(() => [""]))), nix.thunk(() => nix.concat([domain_1], nix.sel(cfg_1, "extraDomainNames")))), nix.thunk(() => nix.sel(cfg, "configuration", "security", "acme", "certs"))), nix.thunk(() => nix.concat([nix.thunk(() => ({ __proto__: pos$9, configuration: node }))], nix.builtins.attrValues(nix.thunk(() => nix.sel(node, "specialisation")))))))))));
+            const names = nix.thunk(() => nix.app(nix.sel(lib, "lists", "unique"), nix.thunk(() => nix.app(nix.sel(lib, "lists", "flatten"), nix.thunk(() => nix.app(nix.sel(lib, "lists", "concatMap"), (cfg) => nix.app(nix.sel(lib, "attrsets", "mapAttrsToList"), (domain_1) => (cfg_1) => nix.builtins.map(nix.thunk(() => nix.app(nix.builtins.replaceStrings, nix.thunk(() => ["*."]), nix.thunk(() => [""]))), nix.thunk(() => nix.concat([domain_1], nix.sel(cfg_1, "extraDomainNames")))), nix.thunk(() => nix.sel(cfg, "configuration", "security", "acme", "certs"))), nix.thunk(() => nix.concat([nix.thunk(() => ({ [nix.POS]: pos$9, configuration: node }))], nix.builtins.attrValues(nix.thunk(() => nix.sel(node, "specialisation")))))))))));
             return nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((ip) => nix.app(nix.sel(lib, "attrsets", "nameValuePair"), ip, names), ips)));
           })(), nodes)),
       })),
       systemd: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         services: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           pebble: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             enable: true,
             description: "Pebble ACME server",
             wantedBy: nix.thunk(() => ["network.target"]),
-            environment: nix.thunk(() => ({ __proto__: pos$11, PEBBLE_VA_NOSLEEP: "1", PEBBLE_WFE_NONCEREJECT: "0" })),
+            environment: nix.thunk(() => ({ [nix.POS]: pos$11, PEBBLE_VA_NOSLEEP: "1", PEBBLE_WFE_NONCEREJECT: "0" })),
             serviceConfig: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               RuntimeDirectory: "pebble",
               WorkingDirectory: "/run/pebble",
               AmbientCapabilities: nix.thunk(() => ["CAP_NET_BIND_SERVICE"]),

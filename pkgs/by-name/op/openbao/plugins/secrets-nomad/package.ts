@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkOpenbaoPlugin = nix.arg($, "mkOpenbaoPlugin");
   return nix.app(mkOpenbaoPlugin, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       plugin: "secrets-nomad",
       pluginType: "secret",
       pluginName: "nomad",
       version: "0.1.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openbao",
           repo: "openbao-plugins",
           tag: nix.thunk(() => nix.str`secrets-nomad-v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-eR4f+T5zDxpLp5oPqfKe8QUe2w9T0zM3E0vOQIRhsm8=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OpenBao secrets plugin to generate Nomad ACL tokens",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

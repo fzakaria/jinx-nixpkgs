@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(php, "buildComposerProject2"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "composer",
       version: "2.10.3",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "composer",
           repo: "composer",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       composer: nix.thunk(() => nix.app(callPackage, nix.path(here, "../../../build-support/php/pkgs/composer-phar.nix"), nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(finalAttrs, "passthru"));
           return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pharHash: nix.thunk(() => nix.attr(from, "pharHash")),
         };
@@ -50,11 +50,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pharHash: "sha256-ei03nVuP/aoChYDvJklMNtL+70sXjT3RRzpNvF4XyNY=",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/composer/composer/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Dependency Manager for PHP",
         homepage: "https://getcomposer.org/",

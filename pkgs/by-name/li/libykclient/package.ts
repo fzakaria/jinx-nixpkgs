@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const help2man = nix.arg($, "help2man");
   const curl = nix.arg($, "curl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libykclient",
       version: "unstable-2019-03-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Yubico",
           repo: "yubico-c-client",
           rev: "ad9eda6aac4c3f81784607c30b971f4a050b5c2e",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config, help2man]),
       buildInputs: nix.thunk(() => [curl]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Yubikey C client library",
         mainProgram: "ykclient",
         homepage: "https://developers.yubico.com/yubico-c-client",

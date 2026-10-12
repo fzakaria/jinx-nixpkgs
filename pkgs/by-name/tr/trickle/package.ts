@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libevent = nix.arg($, "libevent");
   const libtirpc = nix.arg($, "libtirpc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "trickle",
       version: "1.07-unstable-2019-10-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mariusae",
           repo: "trickle",
           rev: "09a1d955c6554eb7e625c99bf96b2d99ec7db3dc",
@@ -40,7 +40,7 @@ sed -i 's|libevent.a|libevent.so|' configure.in
 `),
       preBuild: "sed -i '/#define in_addr_t/ s:^://:' config.h\nsed -i 's|^_select(int|select(int|' trickle-overload.c\n",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-levent", "-ltirpc"]))),
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-I${nix.sel(libtirpc, "dev")}/include/tirpc`),
@@ -50,7 +50,7 @@ sed -i 's|libevent.a|libevent.so|' configure.in
       configureFlags: nix.thunk(() => ["--with-libevent"]),
       hardeningDisable: nix.thunk(() => ["format"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Lightweight userspace bandwidth shaper",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         homepage: "https://monkey.org/~marius/pages/?page=trickle",

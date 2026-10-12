@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "jflap";
       const version = "7.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.jflap.org/jflaptmp/july27-18/JFLAP${version}.jar`),
           sha256: "oiwJXdxWsYFj6Ovu7xZbOgTLVw8160a5YQUWbgbJlAY=",
         }))));
@@ -31,13 +31,13 @@ export default nix.lambda((args) => (() => {
       const dontUnpack = true;
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "jflap",
             desktopName: "jflap",
             genericName: "Formal language application",
             exec: "jflap",
             icon: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 url: "https://www.jflap.org/jflapLogo2.jpg",
                 sha256: "sha256-IiworHI+GT6Fm6B0E+FXnKe+hN8nZYPrxHGZFAcsWDw=",
               })))),
@@ -61,7 +61,7 @@ makeWrapper ${jre8}/bin/java $out/bin/jflap \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "GUI tool for experimenting with formal languages topics",
         homepage: "https://www.jflap.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -76,7 +76,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(jre8, "meta", "platforms")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

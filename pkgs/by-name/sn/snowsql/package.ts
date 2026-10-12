@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "snowsql";
       const version = "1.3.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://sfc-repo.snowflakecomputing.com/snowsql/bootstrap/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/linux_x86_64/snowflake-snowsql-${version}-1.x86_64.rpm`),
           sha256: "sha256-BedOcd3ZllzMSZ6hjs1BG0o9TEg3aJKtLzutOE3nI1s=",
         }))));
@@ -42,7 +42,7 @@ makeWrapper $out/lib64/snowflake/snowsql/snowsql $out/bin/snowsql \\
   --set LD_LIBRARY_PATH "${libPath}":"${nix.builtins.placeholder("out")}"/lib64/snowflake/snowsql
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command line client for the Snowflake database",
         homepage: "https://www.snowflake.com",
         sourceProvenance: nix.thunk(() => (() => {
@@ -58,7 +58,7 @@ makeWrapper $out/lib64/snowflake/snowsql/snowsql $out/bin/snowsql \\
         mainProgram: "snowsql",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

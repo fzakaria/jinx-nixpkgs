@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const stdenv = nix.thunk(() => nix.sel(llvmPackages, "libcxxStdenv"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "maloader",
       version: "0-unstable-2018-05-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "shinh",
           repo: "maloader",
           rev: "464a90fdfd06a54c9da5d1a3725ed6229c0d3d60",
@@ -37,14 +37,14 @@ substituteInPlace libmac/stack_protector-obsd.c \\
       buildInputs: nix.thunk(() => [libuuid, zlib]),
       buildFlags: nix.thunk(() => ["USE_LIBCXX=1", "release"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=unused-command-line-argument",
       })),
       installPhase: "runHook preInstall\n\ninstall -vD libmac.so \"$out/lib/libmac.so\"\n\nfor bin in extract macho2elf ld-mac; do\n  install -vD \"$bin\" \"$out/bin/$bin\"\ndone\n\nrunHook postInstall\n",
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(opencflite, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Mach-O loader for Linux",
         homepage: "https://github.com/shinh/maloader",
         license: nix.thunk(() => (() => {

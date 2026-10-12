@@ -111,135 +111,135 @@ command = ${pkg}/libexec/backup_agent
 ${nix.app(backupAgents, nix.thunk(() => nix.sel(cfg, "backupProcesses")))}
 `)));
   return {
-    __proto__: pos$56,
+    [nix.POS]: pos$56,
     options: nix.thunk(() => ({
-      __proto__: pos$37,
+      [nix.POS]: pos$37,
       services: nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         foundationdb: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "FoundationDB Server")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
               description: "The FoundationDB package to use for this server. This must be specified by the user\nin order to ensure migrations and upgrades are controlled appropriately.\n",
             })))),
           publicAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "auto",
               description: "Publicly visible IP address of the process. Port is determined by process ID",
             })))),
           listenAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "public",
               description: "Publicly visible IP address of the process. Port is determined by process ID",
             })))),
           listenPortStart: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 4500n,
               description: "Starting port number for database listening sockets. Every FDB process binds to a\nsubsequent port, to this number reflects the start of the overall range. e.g. having\n8 server processes will use all ports between 4500 and 4507.\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Open the firewall ports corresponding to FoundationDB processes and coordinators\nusing {option}`config.networking.firewall.*`.\n",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/foundationdb",
               description: "Data directory. All cluster data will be put under here.",
             })))),
           logDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/log/foundationdb",
               description: "Log directory.",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "foundationdb",
               description: "User account under which FoundationDB runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "foundationdb",
               description: "Group account under which FoundationDB runs.",
             })))),
           class: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["storage", "transaction", "stateless"]))))),
               default: null,
               description: "Process class",
             })))),
           restartDelay: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 10n,
               description: "Number of seconds to wait before restarting servers.",
             })))),
           logSize: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "10MiB",
               description: "Roll over to a new log file after the current log file\nreaches the specified size.\n",
             })))),
           maxLogSize: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "100MiB",
               description: "Delete the oldest log file when the total size of all log\nfiles exceeds the specified size. If set to 0, old log files\nwill not be deleted.\n",
             })))),
           serverProcesses: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 1n,
               description: "Number of fdbserver processes to run.",
             })))),
           backupProcesses: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 1n,
               description: "Number of backup_agent processes to run for snapshots.",
             })))),
           memory: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "8GiB",
               description: "Maximum memory used by the process. The default value is\n`8GiB`. When specified without a unit,\n`MiB` is assumed. This parameter does not\nchange the memory allocation of the program. Rather, it sets\na hard limit beyond which the process will kill itself and\nbe restarted. The default value of `8GiB`\nis double the intended memory usage in the default\nconfiguration (providing an emergency buffer to deal with\nmemory leaks or similar problems). It is not recommended to\ndecrease the value of this parameter below its default\nvalue. It may be increased if you wish to allocate a very\nlarge amount of storage engine memory or cache. In\nparticular, when the `storageMemory`\nparameter is increased, the `memory`\nparameter should be increased by an equal amount.\n",
             })))),
           storageMemory: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "1GiB",
               description: "Maximum memory used for data storage. The default value is\n`1GiB`. When specified without a unit,\n`MB` is assumed. Clusters using the memory\nstorage engine will be restricted to using this amount of\nmemory per process for purposes of data storage. Memory\noverhead associated with storing the data is counted against\nthis total. If you increase the\n`storageMemory`, you should also increase\nthe `memory` parameter by the same amount.\n",
             })))),
           tls: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               default: null,
               description: "FoundationDB Transport Security Layer (TLS) settings.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$22,
+                    [nix.POS]: pos$22,
                     options: nix.thunk(() => ({
-                      __proto__: pos$21,
+                      [nix.POS]: pos$21,
                       certificate: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$18,
+                          [nix.POS]: pos$18,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "Path to the TLS certificate file. This certificate will\nbe offered to, and may be verified by, clients.\n",
                         })))),
                       key: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$19,
+                          [nix.POS]: pos$19,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "Private key file for the certificate.",
                         })))),
                       allowedPeers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$20,
+                          [nix.POS]: pos$20,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "Check.Valid=1,Check.Unexpired=1",
                           description: "\"Peer verification string\". This may be used to adjust which TLS\nclient certificates a server will accept, as a form of user\nauthorization; for example, it may only accept TLS clients who\noffer a certificate abiding by some locality or organization name.\n\nFor more information, please see the FoundationDB documentation.\n",
@@ -248,9 +248,9 @@ ${nix.app(backupAgents, nix.thunk(() => nix.sel(cfg, "backupProcesses")))}
                   })))))),
             })))),
           locality: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               default: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 machineId: null,
                 zoneId: null,
                 datacenterId: null,
@@ -258,29 +258,29 @@ ${nix.app(backupAgents, nix.thunk(() => nix.sel(cfg, "backupProcesses")))}
               })),
               description: "FoundationDB locality settings.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   options: nix.thunk(() => ({
-                    __proto__: pos$29,
+                    [nix.POS]: pos$29,
                     machineId: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$25,
+                        [nix.POS]: pos$25,
                         default: null,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         description: "Machine identifier key. All processes on a machine should share a\nunique id. By default, processes on a machine determine a unique id to share.\nThis does not generally need to be set.\n",
                       })))),
                     zoneId: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$26,
+                        [nix.POS]: pos$26,
                         default: null,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         description: "Zone identifier key. Processes that share a zone id are\nconsidered non-unique for the purposes of data replication.\nIf unset, defaults to machine id.\n",
                       })))),
                     datacenterId: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$27,
+                        [nix.POS]: pos$27,
                         default: null,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         description: "Data center identifier key. All processes physically located in a\ndata center should share the id. If you are depending on data\ncenter based replication this must be set on all processes.\n",
                       })))),
                     dataHall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$28,
+                        [nix.POS]: pos$28,
                         default: null,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         description: "Data hall identifier key. All processes physically located in a\ndata hall should share the id. If you are depending on data\nhall based replication this must be set on all processes.\n",
@@ -289,19 +289,19 @@ ${nix.app(backupAgents, nix.thunk(() => nix.sel(cfg, "backupProcesses")))}
                 })))),
             })))),
           extraReadWritePaths: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               default: [],
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               description: "An extra set of filesystem paths that FoundationDB can read to\nand write from. By default, FoundationDB runs under a heavily\nnamespaced systemd environment without write access to most of\nthe filesystem outside of its data and log directories. By\nadding paths to this list, the set of writeable paths will be\nexpanded. This is useful for allowing e.g. backups to local files,\nwhich must be performed on behalf of the foundationdb service.\n",
             })))),
           pidfile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/run/foundationdb.pid",
               description: "Path to pidfile for fdbmonitor.",
             })))),
           traceFormat: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["xml", "json"]))),
               default: "xml",
               description: "Trace logging format.",
@@ -310,41 +310,41 @@ ${nix.app(backupAgents, nix.thunk(() => nix.sel(cfg, "backupProcesses")))}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$54,
+        [nix.POS]: pos$54,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             assertion: nix.thunk(() => (!nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(cfg, "package", "version")), "6.1")) || nix.asBool(nix.eq(nix.sel(cfg, "traceFormat"), "xml")))),
             message: nix.thunk(() => nix.add(nix.add("Versions of FoundationDB before 6.1 do not support configurable trace formats (only XML is supported).\nThis option has no effect for version ", nix.sel(cfg, "package", "version")), ", and enabling it is an error.\n")),
           })),
         ]),
-        environment: nix.thunk(() => ({ __proto__: pos$39, systemPackages: nix.thunk(() => [pkg]) })),
+        environment: nix.thunk(() => ({ [nix.POS]: pos$39, systemPackages: nix.thunk(() => [pkg]) })),
         users: nix.thunk(() => ({
-          __proto__: pos$44,
+          [nix.POS]: pos$44,
           users: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "foundationdb")), nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               foundationdb: nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 description: "FoundationDB User",
                 uid: nix.thunk(() => nix.sel(config, "ids", "uids", "foundationdb")),
                 group: nix.thunk(() => nix.sel(cfg, "group")),
               })),
             })))),
           groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "foundationdb")), nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               foundationdb: nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 gid: nix.thunk(() => nix.sel(config, "ids", "gids", "foundationdb")),
               })),
             })))),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$47,
+          [nix.POS]: pos$47,
           firewall: nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             allowedTCPPortRanges: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$45,
+                  [nix.POS]: pos$45,
                   from: nix.thunk(() => nix.sel(cfg, "listenPortStart")),
                   to: nix.thunk(() => nix.sub(nix.add(nix.sel(cfg, "listenPortStart"), nix.sel(cfg, "serverProcesses")), 1n)),
                 })),
@@ -352,9 +352,9 @@ ${nix.app(backupAgents, nix.thunk(() => nix.sel(cfg, "backupProcesses")))}
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$53,
+          [nix.POS]: pos$53,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d /etc/foundationdb 0755 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} - -`),
               nix.thunk(() => nix.str`d '${nix.sel(cfg, "dataDir")}' 0770 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} - -`),
@@ -363,14 +363,14 @@ ${nix.app(backupAgents, nix.thunk(() => nix.sel(cfg, "backupProcesses")))}
             ]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             foundationdb: nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               description: "FoundationDB Service",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               unitConfig: nix.thunk(() => ({
-                __proto__: pos$49,
+                [nix.POS]: pos$49,
                 RequiresMountsFor: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")} ${nix.sel(cfg, "logDir")}`),
               })),
               serviceConfig: nix.thunk(() => (() => {
@@ -381,7 +381,7 @@ ${nix.app(backupAgents, nix.thunk(() => nix.sel(cfg, "backupProcesses")))}
                   "/etc/foundationdb",
                 ], nix.sel(cfg, "extraReadWritePaths")));
                 return {
-                  __proto__: pos$50,
+                  [nix.POS]: pos$50,
                   Type: "simple",
                   Restart: "always",
                   RestartSec: 5n,
@@ -421,7 +421,7 @@ fi
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$55,
+      [nix.POS]: pos$55,
       doc: nix.path(here, "./foundationdb.md"),
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

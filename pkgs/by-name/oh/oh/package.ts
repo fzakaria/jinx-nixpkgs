@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "oh",
       version: "0.8.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "michaelmacinnis",
           repo: "oh",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-Qma5Vk0JO/tTrZanvTCE40LmjeCfBup3U3N7gyhfp44=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/michaelmacinnis/oh",
         description: "New Unix shell",
         mainProgram: "oh",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, shellPath: "/bin/oh" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, shellPath: "/bin/oh" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

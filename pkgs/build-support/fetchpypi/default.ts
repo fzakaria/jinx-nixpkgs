@@ -50,17 +50,17 @@ export default nix.lambda((args) => (() => {
       const version = nix.arg($_1, "version");
       const url = nix.thunk(() => nix.app(computeUrl, nix.thunk(() => nix.builtins.removeAttrs(attrs, nix.thunk(() => ["sha256", "hash"])))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         identifiers: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           purlParts: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: "pypi",
             spec: nix.thunk(() => nix.str`${pname}@${version}`),
           })),
         })),
       }));
-      return nix.app(fetchurl, nix.thunk(() => ({ __proto__: pos$4, url: url, sha256: sha256, hash: hash, meta: meta })));
+      return nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$4, url: url, sha256: sha256, hash: hash, meta: meta })));
     })(), formals$5));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

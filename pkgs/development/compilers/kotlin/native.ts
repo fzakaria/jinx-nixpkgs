@@ -21,19 +21,19 @@ export default nix.lambda((args) => (() => {
       const version = "2.2.21";
       const src = nix.thunk(() => (() => {
         const getArch = nix.thunk(() => nix.selOr({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           "aarch64-darwin": "macos-aarch64",
           "x86_64-linux": "linux-x86_64",
         }, () => nix.builtins.throw(nix.thunk(() => nix.str`${pname}-${version}: ${nix.sel(stdenv, "system")} is unsupported.`)), nix.key(nix.sel(stdenv, "system"))));
         const getUrl = (version_1) => (arch) => nix.str`https://github.com/JetBrains/kotlin/releases/download/v${version_1}/kotlin-native-prebuilt-${arch}-${version_1}.tar.gz`;
         const getHash = (arch) => nix.sel({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "macos-aarch64": "sha256-UnDl9wj/7RXrEaApuAaLczIfz0lscQPf+pCeSdJxJeY=",
           "macos-x86_64": "sha256-mmsBQrx0yKqvvhnD8CU+oxqhWsOT1RzvzSniN3CeG7g=",
           "linux-x86_64": "sha256-oTW6qe+SklxcKu8gwc8DZzTKj+L65duYYXO+uWp6gfg=",
         }, nix.key(nix.force(arch)));
         return nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: nix.thunk(() => nix.app(getUrl, version, getArch)),
             sha256: nix.thunk(() => nix.app(getHash, getArch)),
           })));
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const postFixup = nix.thunk(() => nix.str`wrapProgram $out/bin/run_konan --prefix PATH ":" ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [jre]))}
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://kotlinlang.org/",
         description: "Modern programming language that makes developers happier",
         longDescription: "Kotlin/Native is a technology for compiling Kotlin code to native\nbinaries, which can run without a virtual machine. It is an LLVM based\nbackend for the Kotlin compiler and native implementation of the Kotlin\nstandard library.\n",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.concat(["x86_64-linux"], nix.sel(lib, "platforms", "darwin"))),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

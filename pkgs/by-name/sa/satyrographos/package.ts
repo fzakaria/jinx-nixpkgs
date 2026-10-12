@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const pname = "satyrographos";
   const version = "0.0.2.13";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "na4zagin3",
       repo: "satyrographos",
       tag: nix.thunk(() => nix.str`v${version}`),
       sha256: "sha256-f9iJTr4nV7dFCMkI8+zv9qvYWRSw8H/xbbZm2LR9cB4=",
     }))));
   return nix.app(nix.sel(ocamlPackages, "buildDunePackage"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: src,
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w_1, "opam-format")),
           nix.thunk(() => nix.lookup(w_1, "opam-state")),
           nix.thunk(() => nix.lookup(w_1, "ppx_deriving")),
-          nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "ppx_deriving_yojson"), "override"), nix.thunk(() => ({ __proto__: pos$2, yojson: nix.thunk(() => nix.lookup(w_1, "yojson_2")) })))),
+          nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "ppx_deriving_yojson"), "override"), nix.thunk(() => ({ [nix.POS]: pos$2, yojson: nix.thunk(() => nix.lookup(w_1, "yojson_2")) })))),
           nix.thunk(() => nix.lookup(w_1, "ppx_import")),
           nix.thunk(() => nix.lookup(w_1, "ppx_jane")),
           nix.thunk(() => nix.lookup(w_1, "shexp")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/na4zagin3/satyrographos/releases/tag/${nix.sel(src, "rev")}`),
         description: "Package manager for SATySFi",
         homepage: "https://github.com/na4zagin3/satyrographos",

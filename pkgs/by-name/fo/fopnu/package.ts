@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "fopnu";
       const version = "1.68";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download2.fopnu.com/download/fopnu-${version}-1.x86_64.manualinstall.tar.gz`),
           hash: "sha256-q+nI0s4zu6+Lr8pdEyR8/zOkq5ULydYt2bntvzyalZo=",
         }))));
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const dontBuild = true;
       const installPhase = "runHook preInstall\n\ninstall -D -m 0755 fopnu -t $out/bin\ninstall -D -m 0444 fopnu.desktop -t $out/share/applications\ninstall -D -m 0444 fopnu.png -t $out/share/icons/hicolor/48x48/apps\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "P2P file sharing system",
         homepage: "https://fopnu.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

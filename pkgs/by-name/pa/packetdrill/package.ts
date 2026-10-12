@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const libpcap = nix.arg($, "libpcap");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "packetdrill",
       version: "2.0-unstable-2026-04-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "google",
           repo: "packetdrill",
           rev: "faa0dfb54065118625e169d3111ce09c65b20229",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libpcap]),
       installPhase: "install -m 0755 -t $out/bin -D \\\n  packetdrill \\\n  packet_parser_test \\\n  packet_to_string_test \\\n  checksum_test\nmkdir -p $out/share\ncp -r ../tests $out/share/packetdrill-tests\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Quick, precise tests for entire TCP/UDP/IPv4/IPv6 network stacks",
         homepage: "https://github.com/google/packetdrill",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "model-hosting-container-standards",
       version: "0.1.16",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aws",
           repo: "model-hosting-container-standards",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/python`),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-compat-with-fastapi-0.137.patch",
             url: "https://github.com/aws/model-hosting-container-standards/commit/ce3f9590088e3194d56345074c65ae96524fb127.patch",
             hash: "sha256-H0oxuIOoGthN+JdXQmeJ/9PRwrfhBUnVEj0ASwgtztQ=",
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_continuous_restart_behavior", "test_startup_retry_limit"]),
       disabledTestPaths: nix.thunk(() => ["tests/integration/test_dependency_install_integration.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Standardized Python framework for seamless integration between ML frameworks (TensorRT-LLM, vLLM) and Amazon SageMaker hosting",
         homepage: "https://github.com/aws/model-hosting-container-standards/tree/main/python",
         changelog: nix.thunk(() => nix.str`https://github.com/aws/model-hosting-container-standards/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

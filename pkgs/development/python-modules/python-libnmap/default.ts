@@ -19,17 +19,17 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.3";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "savon-noir",
           repo: "python-libnmap",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-cI8wdOvTmRy2cxLBkJn7vXRBRvewDMNl/tkIiRGhZJ8=",
         }))));
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, defusedxml: nix.thunk(() => [defusedxml]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, defusedxml: nix.thunk(() => [defusedxml]) }));
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["libnmap"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library to run nmap scans, parse and diff scan results",
         homepage: "https://github.com/savon-noir/python-libnmap",
         changelog: nix.thunk(() => nix.str`https://github.com/savon-noir/python-libnmap/blob/${version}/CHANGELOG.md`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

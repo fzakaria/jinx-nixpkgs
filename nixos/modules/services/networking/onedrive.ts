@@ -26,36 +26,36 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "onedrive"));
   const onedriveLauncher = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScriptBin"), "onedrive-launcher", "# XDG_CONFIG_HOME is not recognized in the environment here.\nif [ -f $HOME/.config/onedrive-launcher ]\nthen\n  # Hopefully using underscore boundary helps locate variables\n  for _onedrive_config_dirname_ in $(cat $HOME/.config/onedrive-launcher | grep -v '[ \\t]*#' )\n  do\n    systemctl --user start onedrive@$_onedrive_config_dirname_\n  done\nelse\n  systemctl --user start onedrive@onedrive\nfi\n"));
   return {
-    __proto__: pos$14,
-    meta: nix.thunk(() => ({ __proto__: pos$1, doc: nix.path(here, "./onedrive.md") })),
+    [nix.POS]: pos$14,
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, doc: nix.path(here, "./onedrive.md") })),
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         onedrive: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "OneDrive service")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "onedrive", nix.thunk(() => ({})))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         environment: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           user: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             services: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               "onedrive@": nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 description: "Onedrive sync service",
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   Type: "simple",
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/onedrive --monitor --confdir=%h/.config/%i
 `),
@@ -65,10 +65,10 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               "onedrive-launcher": nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 wantedBy: nix.thunk(() => ["default.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   Type: "oneshot",
                   ExecStart: nix.thunk(() => nix.str`${onedriveLauncher}/bin/onedrive-launcher`),
                 })),

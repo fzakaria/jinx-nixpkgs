@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const jdk25 = nix.arg($, "jdk25");
   const llvmPackages = nix.arg($, "llvmPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jextract",
       version: "0-unstable-2025-11-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openjdk",
           repo: "jextract",
           rev: "91fc954c46fac907cae6cd1417d835208c9df150",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       gradleCheckTask: "verify",
       installPhase: "runHook preInstall\n\nmkdir -p $out/opt/\ncp -r ./build/jextract $out/opt/jextract\nmakeBinaryWrapper \"$out/opt/jextract/bin/jextract\" \"$out/bin/jextract\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool which mechanically generates Java bindings from a native library headers",
         mainProgram: "jextract",
         homepage: "https://github.com/openjdk/jextract",

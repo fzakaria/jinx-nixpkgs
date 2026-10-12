@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ente-auth";
       const version = "4.4.25";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ente",
           repo: "ente",
           sparseCheckout: nix.thunk(() => ["mobile"]),
@@ -44,7 +44,7 @@ ln -s ${simple_icons} apps/auth/assets/simple-icons
       const nativeBuildInputs = nix.thunk(() => [copyDesktopItems, makeWrapper]);
       const buildInputs = nix.thunk(() => [libayatana_appindicator, libsodium, jdk17_headless]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CXXFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-deprecated-literal-operator"]))),
         LIBSODIUM_USE_PKGCONFIG: "1",
       }));
@@ -52,7 +52,7 @@ ln -s ${simple_icons} apps/auth/assets/simple-icons
       const flutterBuildFlags = nix.thunk(() => ["--dart-define=app.flavor=independent"]);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: desktopId,
             exec: "enteauth",
             icon: "enteauth",
@@ -82,9 +82,9 @@ rm $out/app/ente-auth/lib/libdartjni.so
 # Return to the workspace root so the Dart cache hook can find .dart_tool.
 popd
 `);
-      const passthru = nix.thunk(() => ({ __proto__: pos$4, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "End-to-end encrypted, cross platform and free app for storing your 2FA codes with cloud backups",
         longDescription: "Ente's 2FA app. An end-to-end encrypted, cross platform and free app for storing your 2FA codes with cloud backups. Works offline. You can even use it without signing up for an account if you don't want the cloud backups or multi-device sync.\n",
         homepage: "https://ente.io/auth/",
@@ -103,7 +103,7 @@ popd
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux"]),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

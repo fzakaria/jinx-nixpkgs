@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
     const xcodewrapperArgs = nix.thunk(() => nix.builtins.intersectAttrs(nix.thunk(() => nix.builtins.functionArgs(composeXcodeWrapper)), args_2));
     const xcodewrapper = nix.thunk(() => nix.app(composeXcodeWrapper, xcodewrapperArgs));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => [" "]), nix.thunk(() => [""]), name)),
         buildCommand: nix.thunk(() => nix.str`mkdir -p $out/bin
 cat > $out/bin/run-test-simulator << "EOF"

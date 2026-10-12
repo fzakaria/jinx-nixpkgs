@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const jdk = nix.arg($, "jdk");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sshoogr",
       version: "0.9.26",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://maven/com/aestasit/infrastructure/sshoogr/sshoogr/${nix.sel(finalAttrs, "version")}/sshoogr-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "134qlx90y82g1rfxhyn12z9r2imm1l3fz09hrrn3pgcdcq5jz2s1",
         })))),
@@ -30,7 +30,7 @@ wrapProgram $out/bin/sshoogr \\
   --prefix JAVA_HOME : ${jdk}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "A Groovy-based DSL for working with remote SSH servers\n",
         mainProgram: "sshoogr",
         longDescription: "The sshoogr (pronounced [ʃʊgə]) is a Groovy-based DSL library for working\nwith remote servers through SSH. The DSL allows: connecting, executing\nremote commands, copying files and directories, creating tunnels in a\nsimple and concise way.\n",

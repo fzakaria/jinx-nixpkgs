@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const base = nix.thunk(() => nix.app(callPackage, nix.path(here, "./base.nix"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.attr(base, "pname")),
       version: nix.thunk(() => nix.attr(base, "version")),
       src: nix.thunk(() => nix.attr(base, "src")),
       meta: nix.thunk(() => nix.attr(base, "meta")),
       env: nix.thunk(() => nix.attr(base, "env")),
-      passthru: nix.thunk(() => ({ __proto__: pos$1, base: base })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, base: base })),
       buildInputs: nix.thunk(() => nix.concat(nix.sel(base, "buildInputs"), [libspnav])),
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(base, "nativeBuildInputs"), [nix.thunk(() => nix.sel(boost, "dev")), wrapGAppsHook3, python3])),
       installFlags: nix.thunk(() => [

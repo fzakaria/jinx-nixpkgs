@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "findbugs",
       version: "3.0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/findbugs/findbugs-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "06b46fz4nid7qvm36r66zw01fr87y4jyz21ixw27b8hkqah0s3p8",
         })))),
       buildPhase: "substituteInPlace bin/findbugs --replace /bin/pwd pwd\n",
       installPhase: "d=$out/libexec/findbugs\nmkdir -p $d $out/bin $out/nix-support\n\ncp -prd bin lib plugin doc $d/\nrm $d/bin/*.bat\nfor i in $d/bin/*; do\n  if [ -f $i ]; then ln -s $i $out/bin/; fi\ndone\n\n# Get rid of unnecessary JARs.\nrm $d/lib/ant.jar\n\n# Make some JARs findable.\nmkdir -p $out/share/java\nln -s $d/lib/{findbugs.jar,findbugs-ant.jar} $out/share/java/\n\ncat <<EOF > $out/nix-support/setup-hook\nexport FINDBUGS_HOME=$d\nEOF\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Static analysis tool to find bugs in Java programs automatically",
         homepage: "https://findbugs.sourceforge.net/",
         maintainers: nix.thunk(() => (() => {

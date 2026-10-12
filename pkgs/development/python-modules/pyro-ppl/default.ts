@@ -34,13 +34,13 @@ export default nix.lambda((args) => (() => {
   const wget = nix.arg($, "wget");
   const pytest_xdist = nix.arg($, "pytest-xdist");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pyro-ppl",
       version: "1.9.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pyro-ppl",
           repo: "pyro",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [numpy, opt_einsum, pyro_api, torch, tqdm]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         extras: nix.thunk(() => [
           notebook,
           ipywidgets,
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       pytestFlags: nix.thunk(() => ["--stage=unit"]),
       disabledTests: nix.thunk(() => ["test_stable_with_log_prob_param_fit"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library for probabilistic modeling and inference",
         homepage: "http://pyro.ai",
         changelog: nix.thunk(() => nix.str`https://github.com/pyro-ppl/pyro/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

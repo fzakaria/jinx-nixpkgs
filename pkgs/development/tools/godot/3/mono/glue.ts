@@ -15,10 +15,10 @@ export default nix.lambda((args) => (() => {
   const scons = nix.arg($, "scons");
   const python311Packages = nix.arg($, "python311Packages");
   return nix.app(nix.sel(nix.app(nix.sel(godot3, "override"), nix.thunk(() => ({
-      __proto__: pos$2,
-      scons: nix.thunk(() => nix.app(nix.sel(scons, "override"), nix.thunk(() => ({ __proto__: pos$1, python3Packages: python311Packages })))),
+      [nix.POS]: pos$2,
+      scons: nix.thunk(() => nix.app(nix.sel(scons, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, python3Packages: python311Packages })))),
     }))), "overrideAttrs"), (self) => (base) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "godot3-mono-glue",
       godotBuildDescription: "mono glue",
       godotBuildPlatform: "server",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out"]),
       installPhase: "runHook preInstall\n\nglue=\"$out\"/modules/mono/glue\nmkdir -p \"$glue\"\nbin/godot_server.x11.opt.tools.*.mono --generate-mono-glue \"$glue\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => nix.update(nix.sel(base, "meta"), {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://docs.godotengine.org/en/stable/development/compiling/compiling_with_mono.html#generate-the-glue",
       })),
     }));

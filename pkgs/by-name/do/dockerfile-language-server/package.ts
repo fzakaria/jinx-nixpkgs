@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "dockerfile-language-server";
       const version = "0.15.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rcjsuen",
           repo: "dockerfile-language-server",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const preBuild = "npm run prepublishOnly\n";
       const npmDepsHash = "sha256-cJ11l2NF/sCzPw/eQNFon5oKRM+KPoy4lxLz0yivHTo=";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/rcjsuen/dockerfile-language-server/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
         description: "Language server for Dockerfiles powered by Node.js, TypeScript, and VSCode technologies",
         homepage: "https://github.com/rcjsuen/dockerfile-language-server",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
           ];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, preBuild, npmDepsHash, meta };
+      return { [nix.POS]: pos$3, pname, version, src, preBuild, npmDepsHash, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

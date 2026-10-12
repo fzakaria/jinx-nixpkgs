@@ -22,15 +22,15 @@ export default nix.lambda((args) => (() => {
   const result = nix.arg($, "result");
   const opaline = nix.arg($, "opaline");
   const param = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.05")) ? {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     version: "1.1.0",
     hash: "sha256-rS2n9eoqRKclaOy5W1ezaquItfnhH/ee+2TkFvF3FOA=",
   } : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.03")) ? {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     version: "1.0.3",
     hash: "sha256:0b77gsz9bqby8v77kfi4lans47x9p2lmzanzwins5r29maphb8y6",
   } : {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     version: "1.0.0",
     hash: "sha256:1df61vw6v5bg2mys045682ggv058yqkqb67w7r2gz85crs04d5fw",
     propagatedBuildInputs: nix.thunk(() => [result]),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-topkg`);
       const version = nix.thunk(() => nix.attr(param, "version"));
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           url: nix.thunk(() => nix.str`https://erratique.ch/software/topkg/releases/topkg-${version}.tbz`),
           hash: nix.thunk(() => nix.attr(param, "hash")),
         }))));
@@ -50,11 +50,11 @@ export default nix.lambda((args) => (() => {
       const buildPhase = nix.thunk(() => nix.str`${run} build`);
       const createFindlibDestdir = true;
       const installPhase = nix.thunk(() => nix.str`${opaline}/bin/opaline -prefix $out -libdir $OCAMLFIND_DESTDIR`);
-      const passthru = nix.thunk(() => ({ __proto__: pos$5, run: run }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$5, run: run }));
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://erratique.ch/software/topkg",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

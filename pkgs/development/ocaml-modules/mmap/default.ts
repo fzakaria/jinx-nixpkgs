@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const bigarray_compat = nix.arg($, "bigarray-compat");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mmap",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/mmap/releases/download/v${nix.sel(finalAttrs, "version")}/mmap-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-FgKoq8jiMvqUdxpS5UDleAtAwvJ2Lu5q+9koZQIRbds=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [bigarray_compat]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/mirage/mmap",
         description: "Function for mapping files in memory",
         longDescription: "This project provides a Mmap.map_file functions for mapping files in memory.\n",

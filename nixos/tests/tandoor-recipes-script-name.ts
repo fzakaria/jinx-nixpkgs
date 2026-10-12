@@ -18,23 +18,23 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     name: "tandoor-recipes-script-name",
     nodes: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         const nodes = nix.arg($_1, "nodes");
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           services: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             "tandoor-recipes": nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               enable: true,
               extraConfig: nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 SCRIPT_NAME: "/any/path",
                 STATIC_URL: nix.thunk(() => nix.str`${nix.sel(nodes, "machine", "services", "tandoor-recipes", "extraConfig", "SCRIPT_NAME")}/static/`),
               })),
@@ -120,7 +120,7 @@ for url in parser.urls:
 `;
     })(), formals$3),
     meta: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "l0b0"))];

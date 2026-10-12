@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libgpiod",
       version: "1.6.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://git.kernel.org/pub/scm/libs/libgpiod/libgpiod.git/snapshot/libgpiod-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-gp1KwmjfB4U2CdZ8/H9HbpqnNssqaKYwvpno+tGXvgo=",
         })))),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--prefix=${nix.builtins.placeholder("out")}`),
       ], nix.app(nix.sel(lib, "optional"), enablePython, "--enable-bindings-python"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C library and tools for interacting with the linux GPIO character device",
         longDescription: "Since linux 4.8 the GPIO sysfs interface is deprecated. User space should use\nthe character device instead. This library encapsulates the ioctl calls and\ndata structures behind a straightforward API.\n",
         homepage: "https://git.kernel.org/pub/scm/libs/libgpiod/libgpiod.git/about/",

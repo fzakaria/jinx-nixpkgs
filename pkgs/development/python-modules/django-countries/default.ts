@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "9.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SmileyChris",
           repo: "django-countries",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [asgiref, typing_extensions]);
       const nativeCheckInputs = nix.thunk(() => [django, djangorestframework, graphene_django, pytestCheckHook, pytest_django]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Provides a country field for Django models",
         longDescription: "A Django application that provides country choices for use with\nforms, flag icons static files, and a country field for models.\n",
         homepage: "https://github.com/SmileyChris/django-countries",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

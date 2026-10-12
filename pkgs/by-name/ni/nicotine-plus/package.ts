@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pname = "nicotine-plus";
   const version = "3.3.10";
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nicotine-plus",
           repo: "nicotine-plus",
           tag: version,
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       makeWrapperArgs: nix.thunk(() => ["${gappsWrapperArgs[@]}"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Graphical client for the SoulSeek peer-to-peer system",
         mainProgram: "nicotine",
         longDescription: "Nicotine+ aims to be a pleasant, free and open source (FOSS) alternative\nto the official Soulseek client, providing additional functionality while\nkeeping current with the Soulseek protocol.\n",

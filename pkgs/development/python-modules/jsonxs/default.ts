@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pname = "jsonxs";
   const version = "0.6";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fboender",
           repo: "jsonxs",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library that uses path expression strings to get and set values in JSON",
         homepage: "https://github.com/fboender/jsonxs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

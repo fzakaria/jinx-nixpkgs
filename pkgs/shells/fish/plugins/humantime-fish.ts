@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fishtape = nix.arg($, "fishtape");
   return nix.app(buildFishPlugin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "humantime-fish",
       version: "1.0.0-unstable-2022-04-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jorgebucaran",
           repo: "humantime.fish",
           rev: "53b2adb4c6aff0da569c931a3cc006efcd0e7219",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       checkPlugins: nix.thunk(() => [fishtape]),
       checkPhase: "fishtape tests/humantime.fish\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Turn milliseconds into a human-readable string in Fish",
         homepage: "https://github.com/jorgebucaran/humantime.fish",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

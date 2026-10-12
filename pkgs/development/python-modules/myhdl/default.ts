@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.11.52";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-gUz3hyyBan+4q+ltmLJDuBXanomAVt/bvbaAY9ruZJY=",
@@ -48,9 +48,9 @@ export default nix.lambda((args) => (() => {
         "myhdl/test/conversion/toVerilog/test_rom.py",
       ]);
       const disabledTests = nix.thunk(() => ["TestInc", "TestInfer", "testAugmOps", "testBinaryOps", "testUnaryOps"]);
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, ghdl: ghdl, iverilog: iverilog }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, ghdl: ghdl, iverilog: iverilog }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Free, open-source package for using Python as a hardware description and verification language",
         homepage: "https://www.myhdl.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

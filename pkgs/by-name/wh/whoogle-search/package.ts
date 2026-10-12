@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "whoogle-search",
       version: "1.2.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "whoogle_search",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-Vq8CLElP1P/Lcq98IZHgug7a4+sSSyEL2ih4Y5McAfg=",
@@ -76,14 +76,14 @@ export default nix.lambda((args) => (() => {
 python3 $out/${nix.sel(python3Packages, "python", "sitePackages")}/app/__init__.py
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "whoogle-search": nix.thunk(() => nix.attr(nixosTests, "whoogle-search")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/benbusby/whoogle-search",
         description: "Self-hosted, ad-free, privacy-respecting metasearch engine",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

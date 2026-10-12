@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "uv",
       version: "0.12.22",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "astral-sh",
           repo: "uv",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,15 +49,15 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "uv-python": nix.thunk(() => nix.sel(python3Packages, "uv")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Extremely fast Python package installer and resolver, written in Rust",
         longDescription: "`uv` manages project dependencies and environments, with support for lockfiles, workspaces, and more.\n\nDue to `uv`'s (over)eager fetching of dynamically-linked Python executables,\nas well as vendoring of dynamically-linked libraries within Python modules distributed via PyPI,\nNixOS users can run into issues when managing Python projects.\nSee the Nixpkgs Manual entry for `uv` for information on how to mitigate these issues:\nhttps://nixos.org/manual/nixpkgs/unstable/#sec-uv.\n\nFor building Python projects with `uv` and Nix outside of nixpkgs, check out `uv2nix` at https://github.com/pyproject-nix/uv2nix.\n",
         homepage: "https://github.com/astral-sh/uv",

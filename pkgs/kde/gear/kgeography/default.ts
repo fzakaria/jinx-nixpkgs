@@ -10,9 +10,9 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const mkKdeDerivation = nix.arg($, "mkKdeDerivation");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "kgeography",
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "kgeography" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "kgeography" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

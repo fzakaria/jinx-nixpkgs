@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const electron = electron_42;
   const dotnet = nix.thunk(() => nix.sel(dotnetCorePackages, "dotnet_10"));
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "vrcx",
       version: "2026.09.16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "VRCX",
           owner: "vrcx-team",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -80,7 +80,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "vrcx",
             icon: "vrcx",
             exec: "vrcx %u",
@@ -92,9 +92,9 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         backend: nix.thunk(() => nix.app(buildDotnetModule, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-backend`),
@@ -106,7 +106,7 @@ runHook postInstall
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Friendship management tool for VRChat",
         longDescription: "VRCX is an assistant/companion application for VRChat that provides information about and helps you accomplish various things\nrelated to VRChat in a more convenient fashion than relying on the plain VRChat client (desktop or VR), or website alone.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libxmu = nix.arg($, "libxmu");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wmctrl",
       version: "1.07",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://sites.google.com/site/tstyblo/wmctrl/wmctrl-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1afclc57b9017a73mfs9w7lbdvdipmf9q0xdk116f61gnvyix2np",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libx11, libxmu, glib]),
       patches: nix.thunk(() => [nix.path(here, "./64-bit-data.patch")]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://sites.google.com/site/tstyblo/wmctrl",
         description: "CLI tool to interact with EWMH/NetWM compatible X Window Managers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

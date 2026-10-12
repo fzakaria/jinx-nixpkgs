@@ -101,7 +101,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({}))));
   const currLibPath = nix.argOr($, "currLibPath", () => nix.path(here, "../."));
   const prevLibPath = nix.argOr($, "prevLibPath", () => nix.str`${nix.app(nix.sel(pkgs, "fetchFromGitHub"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "nixos",
       repo: "nixpkgs",
       rev: "bcf94dd3f07189b7475d823c8d67d08b58289905",
@@ -118,32 +118,32 @@ export default nix.lambda((args) => (() => {
     const value = nix.arg($_1, "value");
     const testAttrs = nix.arg($_1, "testAttrs");
     const evalModules = nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       call_v1: nix.thunk(() => nix.sel(lib_with_merge_v1, "evalModules")),
       call_v2: nix.thunk(() => nix.sel(lib_with_merge_v2, "evalModules")),
     }));
     const outerTypes = nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       outer_v1: nix.thunk(() => nix.sel(lib_with_merge_v1, "types")),
       outer_v2: nix.thunk(() => nix.sel(lib_with_merge_v2, "types")),
     }));
     const innerTypes = nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       inner_v1: nix.thunk(() => nix.sel(lib_with_merge_v1, "types")),
       inner_v2: nix.thunk(() => nix.sel(lib_with_merge_v2, "types")),
     }));
     return nix.app(nix.sel(lib, "mapAttrs"), (_) => (evalModules_1) => nix.app(nix.sel(lib, "mapAttrs"), (__1) => (outerTypes_1) => nix.app(nix.sel(lib, "mapAttrs"), (__2) => (innerTypes_1) => nix.attrsDyn({}, [
             [nix.str`test_${outerTypeName}_${innerTypeName}`, nix.thunk(() => nix.update(testAttrs, {
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               expr: nix.thunk(() => nix.sel(nix.app(evalModules_1, nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   modules: nix.thunk(() => [
                     (m) => ({
-                      __proto__: pos$7,
+                      [nix.POS]: pos$7,
                       options: nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         foo: nix.thunk(() => nix.app(nix.sel(m, "lib", "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$5,
+                            [nix.POS]: pos$5,
                             type: nix.thunk(() => (nix.asBool(!nix.eq(getType, null)) ? nix.app(getType, outerTypes_1, innerTypes_1) : nix.app(nix.sel(outerTypes_1, nix.key(nix.force(outerTypeName))), nix.thunk(() => nix.sel(innerTypes_1, nix.key(nix.force(innerTypeName))))))),
                             default: value,
                           })))),
@@ -155,283 +155,283 @@ export default nix.lambda((args) => (() => {
           ]), innerTypes), outerTypes), evalModules);
   })(), formals$2);
   return {
-    __proto__: pos$91,
+    [nix.POS]: pos$91,
     attrsOf_str_ok: nix.thunk(() => nix.app(getMatrix, nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         outerTypeName: "attrsOf",
         innerTypeName: "str",
-        value: nix.thunk(() => ({ __proto__: pos$10, bar: "test" })),
+        value: nix.thunk(() => ({ [nix.POS]: pos$10, bar: "test" })),
         testAttrs: nix.thunk(() => ({
-          __proto__: pos$12,
-          expected: nix.thunk(() => ({ __proto__: pos$11, bar: "test" })),
+          [nix.POS]: pos$12,
+          expected: nix.thunk(() => ({ [nix.POS]: pos$11, bar: "test" })),
         })),
       })))),
     attrsOf_str_err_inner: nix.thunk(() => nix.app(getMatrix, nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         outerTypeName: "attrsOf",
         innerTypeName: "str",
-        value: nix.thunk(() => ({ __proto__: pos$14, bar: 1n })),
+        value: nix.thunk(() => ({ [nix.POS]: pos$14, bar: 1n })),
         testAttrs: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           expectedError: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             type: "ThrownError",
             msg: "A definition for option `foo.bar' is not of type `string'.*",
           })),
         })),
       })))),
     attrsOf_str_err_outer: nix.thunk(() => nix.app(getMatrix, nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         outerTypeName: "attrsOf",
         innerTypeName: "str",
         value: nix.thunk(() => ["foo"]),
         testAttrs: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           expectedError: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             type: "ThrownError",
             msg: "A definition for option `foo' is not of type `attribute set of string'.*",
           })),
         })),
       })))),
     listOf_str_ok: nix.thunk(() => nix.app(getMatrix, nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         outerTypeName: "listOf",
         innerTypeName: "str",
         value: nix.thunk(() => ["foo", "bar"]),
-        testAttrs: nix.thunk(() => ({ __proto__: pos$21, expected: nix.thunk(() => ["foo", "bar"]) })),
+        testAttrs: nix.thunk(() => ({ [nix.POS]: pos$21, expected: nix.thunk(() => ["foo", "bar"]) })),
       })))),
     listOf_str_err_inner: nix.thunk(() => nix.app(getMatrix, nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         outerTypeName: "listOf",
         innerTypeName: "str",
         value: nix.thunk(() => ["foo", 1n]),
         testAttrs: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           expectedError: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             type: "ThrownError",
             msg: "A definition for option `foo.\"\\[definition 1-entry 2\\]\"' is not of type `string'.",
           })),
         })),
       })))),
     listOf_str_err_outer: nix.thunk(() => nix.app(getMatrix, nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         outerTypeName: "listOf",
         innerTypeName: "str",
-        value: nix.thunk(() => ({ __proto__: pos$26, foo: 42n })),
+        value: nix.thunk(() => ({ [nix.POS]: pos$26, foo: 42n })),
         testAttrs: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           expectedError: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             type: "ThrownError",
             msg: "A definition for option `foo' is not of type `list of string'.*",
           })),
         })),
       })))),
     attrsOf_submodule_ok: nix.thunk(() => nix.app(getMatrix, nix.thunk(() => ({
-        __proto__: pos$40,
+        [nix.POS]: pos$40,
         getType: (a) => (b) => nix.app(nix.sel(a, "attrsOf"), nix.thunk(() => nix.app(nix.sel(b, "submodule"), (m) => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               options: nix.thunk(() => ({
-                __proto__: pos$31,
-                nested: nix.thunk(() => nix.app(nix.sel(m, "lib", "mkOption"), nix.thunk(() => ({ __proto__: pos$30, type: nix.thunk(() => nix.sel(m, "lib", "types", "str")) })))),
+                [nix.POS]: pos$31,
+                nested: nix.thunk(() => nix.app(nix.sel(m, "lib", "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$30, type: nix.thunk(() => nix.sel(m, "lib", "types", "str")) })))),
               })),
             })))),
         outerTypeName: "attrsOf",
         innerTypeName: "submodule",
         value: nix.thunk(() => ({
-          __proto__: pos$35,
-          foo: nix.thunk(() => ({ __proto__: pos$33, nested: "test1" })),
-          bar: nix.thunk(() => ({ __proto__: pos$34, nested: "test2" })),
+          [nix.POS]: pos$35,
+          foo: nix.thunk(() => ({ [nix.POS]: pos$33, nested: "test1" })),
+          bar: nix.thunk(() => ({ [nix.POS]: pos$34, nested: "test2" })),
         })),
         testAttrs: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           expected: nix.thunk(() => ({
-            __proto__: pos$38,
-            foo: nix.thunk(() => ({ __proto__: pos$36, nested: "test1" })),
-            bar: nix.thunk(() => ({ __proto__: pos$37, nested: "test2" })),
+            [nix.POS]: pos$38,
+            foo: nix.thunk(() => ({ [nix.POS]: pos$36, nested: "test1" })),
+            bar: nix.thunk(() => ({ [nix.POS]: pos$37, nested: "test2" })),
           })),
         })),
       })))),
     attrsOf_submodule_err_inner: nix.thunk(() => nix.app(getMatrix, nix.thunk(() => ({
-        __proto__: pos$48,
+        [nix.POS]: pos$48,
         outerTypeName: "attrsOf",
         innerTypeName: "submodule",
         getType: (a) => (b) => nix.app(nix.sel(a, "attrsOf"), nix.thunk(() => nix.app(nix.sel(b, "submodule"), (m) => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               options: nix.thunk(() => ({
-                __proto__: pos$42,
-                nested: nix.thunk(() => nix.app(nix.sel(m, "lib", "mkOption"), nix.thunk(() => ({ __proto__: pos$41, type: nix.thunk(() => nix.sel(m, "lib", "types", "str")) })))),
+                [nix.POS]: pos$42,
+                nested: nix.thunk(() => nix.app(nix.sel(m, "lib", "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$41, type: nix.thunk(() => nix.sel(m, "lib", "types", "str")) })))),
               })),
             })))),
         value: nix.thunk(() => ({
-          __proto__: pos$45,
+          [nix.POS]: pos$45,
           foo: nix.thunk(() => [1n]),
-          bar: nix.thunk(() => ({ __proto__: pos$44, nested: "test2" })),
+          bar: nix.thunk(() => ({ [nix.POS]: pos$44, nested: "test2" })),
         })),
         testAttrs: nix.thunk(() => ({
-          __proto__: pos$47,
+          [nix.POS]: pos$47,
           expectedError: nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             type: "ThrownError",
             msg: "A definition for option `foo.foo' is not of type `submodule'.*",
           })),
         })),
       })))),
     attrsOf_submodule_err_outer: nix.thunk(() => nix.app(getMatrix, nix.thunk(() => ({
-        __proto__: pos$54,
+        [nix.POS]: pos$54,
         outerTypeName: "attrsOf",
         innerTypeName: "submodule",
         getType: (a) => (b) => nix.app(nix.sel(a, "attrsOf"), nix.thunk(() => nix.app(nix.sel(b, "submodule"), (m) => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               options: nix.thunk(() => ({
-                __proto__: pos$50,
-                nested: nix.thunk(() => nix.app(nix.sel(m, "lib", "mkOption"), nix.thunk(() => ({ __proto__: pos$49, type: nix.thunk(() => nix.sel(m, "lib", "types", "str")) })))),
+                [nix.POS]: pos$50,
+                nested: nix.thunk(() => nix.app(nix.sel(m, "lib", "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$49, type: nix.thunk(() => nix.sel(m, "lib", "types", "str")) })))),
               })),
             })))),
         value: nix.thunk(() => [123n]),
         testAttrs: nix.thunk(() => ({
-          __proto__: pos$53,
+          [nix.POS]: pos$53,
           expectedError: nix.thunk(() => ({
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             type: "ThrownError",
             msg: "A definition for option `foo' is not of type `attribute set of \\(submodule\\).*",
           })),
         })),
       })))),
     either_str_attrsOf_ok: nix.thunk(() => nix.app(getMatrix, nix.thunk(() => ({
-        __proto__: pos$56,
+        [nix.POS]: pos$56,
         outerTypeName: "either",
         innerTypeName: "str_or_attrsOf_str",
         getType: (a) => (b) => nix.app(nix.sel(a, "either"), nix.thunk(() => nix.sel(b, "str")), nix.thunk(() => nix.app(nix.sel(b, "attrsOf"), nix.thunk(() => nix.sel(a, "str"))))),
         value: "string value",
-        testAttrs: nix.thunk(() => ({ __proto__: pos$55, expected: "string value" })),
+        testAttrs: nix.thunk(() => ({ [nix.POS]: pos$55, expected: "string value" })),
       })))),
     either_str_attrsOf_err_1: nix.thunk(() => nix.app(getMatrix, nix.thunk(() => ({
-        __proto__: pos$59,
+        [nix.POS]: pos$59,
         outerTypeName: "either",
         innerTypeName: "str_or_attrsOf_str",
         getType: (a) => (b) => nix.app(nix.sel(a, "either"), nix.thunk(() => nix.sel(b, "str")), nix.thunk(() => nix.app(nix.sel(b, "attrsOf"), nix.thunk(() => nix.sel(a, "str"))))),
         value: 1n,
         testAttrs: nix.thunk(() => ({
-          __proto__: pos$58,
+          [nix.POS]: pos$58,
           expectedError: nix.thunk(() => ({
-            __proto__: pos$57,
+            [nix.POS]: pos$57,
             type: "ThrownError",
             msg: "A definition for option `foo' is not of type `string or attribute set of string'.*",
           })),
         })),
       })))),
     either_str_attrsOf_err_2: nix.thunk(() => nix.app(getMatrix, nix.thunk(() => ({
-        __proto__: pos$63,
+        [nix.POS]: pos$63,
         outerTypeName: "either",
         innerTypeName: "str_or_attrsOf_str",
         getType: (a) => (b) => nix.app(nix.sel(a, "either"), nix.thunk(() => nix.sel(b, "str")), nix.thunk(() => nix.app(nix.sel(b, "attrsOf"), nix.thunk(() => nix.sel(a, "str"))))),
-        value: nix.thunk(() => ({ __proto__: pos$60, bar: 1n })),
+        value: nix.thunk(() => ({ [nix.POS]: pos$60, bar: 1n })),
         testAttrs: nix.thunk(() => ({
-          __proto__: pos$62,
+          [nix.POS]: pos$62,
           expectedError: nix.thunk(() => ({
-            __proto__: pos$61,
+            [nix.POS]: pos$61,
             type: "ThrownError",
             msg: "A definition for option `foo.bar' is not of type `string'.*",
           })),
         })),
       })))),
     coerce_attrsOf_str_to_listOf_str_run: nix.thunk(() => nix.app(getMatrix, nix.thunk(() => ({
-        __proto__: pos$66,
+        [nix.POS]: pos$66,
         outerTypeName: "coercedTo",
         innerTypeName: "attrsOf_str->listOf_str",
         getType: (a) => (b) => nix.app(nix.sel(a, "coercedTo"), nix.thunk(() => nix.app(nix.sel(b, "attrsOf"), nix.thunk(() => nix.sel(b, "str")))), nix.thunk(() => nix.builtins.attrValues), nix.thunk(() => nix.app(nix.sel(b, "listOf"), nix.thunk(() => nix.sel(b, "str"))))),
-        value: nix.thunk(() => ({ __proto__: pos$64, bar: "test1", foo: "test2" })),
-        testAttrs: nix.thunk(() => ({ __proto__: pos$65, expected: nix.thunk(() => ["test1", "test2"]) })),
+        value: nix.thunk(() => ({ [nix.POS]: pos$64, bar: "test1", foo: "test2" })),
+        testAttrs: nix.thunk(() => ({ [nix.POS]: pos$65, expected: nix.thunk(() => ["test1", "test2"]) })),
       })))),
     coerce_attrsOf_str_to_listOf_str_final: nix.thunk(() => nix.app(getMatrix, nix.thunk(() => ({
-        __proto__: pos$68,
+        [nix.POS]: pos$68,
         outerTypeName: "coercedTo",
         innerTypeName: "attrsOf_str->listOf_str",
         getType: (a) => (b) => nix.app(nix.sel(a, "coercedTo"), nix.thunk(() => nix.app(nix.sel(b, "attrsOf"), nix.thunk(() => nix.sel(b, "str")))), nix.thunk(() => nix.builtins.abort("This shouldnt run")), nix.thunk(() => nix.app(nix.sel(b, "listOf"), nix.thunk(() => nix.sel(b, "str"))))),
         value: nix.thunk(() => ["test1", "test2"]),
-        testAttrs: nix.thunk(() => ({ __proto__: pos$67, expected: nix.thunk(() => ["test1", "test2"]) })),
+        testAttrs: nix.thunk(() => ({ [nix.POS]: pos$67, expected: nix.thunk(() => ["test1", "test2"]) })),
       })))),
     coerce_attrsOf_str_to_listOf_err_coercer_input: nix.thunk(() => nix.app(getMatrix, nix.thunk(() => ({
-        __proto__: pos$71,
+        [nix.POS]: pos$71,
         outerTypeName: "coercedTo",
         innerTypeName: "attrsOf_str->listOf_str",
         getType: (a) => (b) => nix.app(nix.sel(a, "coercedTo"), nix.thunk(() => nix.app(nix.sel(b, "attrsOf"), nix.thunk(() => nix.sel(b, "str")))), nix.thunk(() => nix.builtins.attrValues), nix.thunk(() => nix.app(nix.sel(b, "listOf"), nix.thunk(() => nix.sel(b, "str"))))),
         value: nix.thunk(() => [nix.thunk(() => ({})), nix.thunk(() => ({}))]),
         testAttrs: nix.thunk(() => ({
-          __proto__: pos$70,
+          [nix.POS]: pos$70,
           expectedError: nix.thunk(() => ({
-            __proto__: pos$69,
+            [nix.POS]: pos$69,
             type: "ThrownError",
             msg: "A definition for option `foo.\"\\[definition 1-entry 1\\]\"' is not of type `string'.*",
           })),
         })),
       })))),
     coerce_attrsOf_str_to_listOf_err_coercer_ouput: nix.thunk(() => nix.app(getMatrix, nix.thunk(() => ({
-        __proto__: pos$76,
+        [nix.POS]: pos$76,
         outerTypeName: "coercedTo",
         innerTypeName: "attrsOf_str->listOf_str",
         getType: (a) => (b) => nix.app(nix.sel(a, "coercedTo"), nix.thunk(() => nix.app(nix.sel(b, "attrsOf"), nix.thunk(() => nix.sel(b, "str")))), nix.thunk(() => nix.builtins.attrValues), nix.thunk(() => nix.app(nix.sel(b, "listOf"), nix.thunk(() => nix.sel(b, "str"))))),
-        value: nix.thunk(() => ({ __proto__: pos$73, foo: nix.thunk(() => ({ __proto__: pos$72, bar: 1n })) })),
+        value: nix.thunk(() => ({ [nix.POS]: pos$73, foo: nix.thunk(() => ({ [nix.POS]: pos$72, bar: 1n })) })),
         testAttrs: nix.thunk(() => ({
-          __proto__: pos$75,
+          [nix.POS]: pos$75,
           expectedError: nix.thunk(() => ({
-            __proto__: pos$74,
+            [nix.POS]: pos$74,
             type: "ThrownError",
             msg: "A definition for option `foo.\"\\[definition 1-entry 1\\]\"' is not of type `string'.*",
           })),
         })),
       })))),
     coerce_str_to_int_coercer_ouput: nix.thunk(() => nix.app(getMatrix, nix.thunk(() => ({
-        __proto__: pos$79,
+        [nix.POS]: pos$79,
         outerTypeName: "coercedTo",
         innerTypeName: "int->str",
         getType: (a) => (b) => nix.app(nix.sel(a, "coercedTo"), nix.thunk(() => nix.sel(b, "int")), nix.builtins.toString, nix.thunk(() => nix.sel(a, "str"))),
         value: [],
         testAttrs: nix.thunk(() => ({
-          __proto__: pos$78,
+          [nix.POS]: pos$78,
           expectedError: nix.thunk(() => ({
-            __proto__: pos$77,
+            [nix.POS]: pos$77,
             type: "ThrownError",
             msg: "A definition for option `foo' is not of type `string or signed integer convertible to it.*",
           })),
         })),
       })))),
     submodule_with_ok: nix.thunk(() => nix.app(getMatrix, nix.thunk(() => ({
-        __proto__: pos$90,
+        [nix.POS]: pos$90,
         outerTypeName: "submoduleWith",
         innerTypeName: "mixed_types",
         getType: (a) => (b) => nix.app(nix.sel(a, "submodule"), (m) => ({
-            __proto__: pos$84,
+            [nix.POS]: pos$84,
             options: nix.thunk(() => ({
-              __proto__: pos$83,
+              [nix.POS]: pos$83,
               attrs: nix.thunk(() => nix.app(nix.sel(m, "lib", "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$80,
+                  [nix.POS]: pos$80,
                   type: nix.thunk(() => nix.app(nix.sel(b, "attrsOf"), nix.thunk(() => nix.sel(b, "str")))),
                 })))),
               list: nix.thunk(() => nix.app(nix.sel(m, "lib", "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$81,
+                  [nix.POS]: pos$81,
                   type: nix.thunk(() => nix.app(nix.sel(b, "listOf"), nix.thunk(() => nix.sel(b, "str")))),
                 })))),
               either: nix.thunk(() => nix.app(nix.sel(m, "lib", "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$82,
+                  [nix.POS]: pos$82,
                   type: nix.thunk(() => nix.app(nix.sel(b, "either"), nix.thunk(() => nix.sel(a, "str")), nix.thunk(() => nix.sel(a, "int")))),
                 })))),
             })),
           })),
         value: nix.thunk(() => ({
-          __proto__: pos$86,
-          attrs: nix.thunk(() => ({ __proto__: pos$85, foo: "bar" })),
+          [nix.POS]: pos$86,
+          attrs: nix.thunk(() => ({ [nix.POS]: pos$85, foo: "bar" })),
           list: nix.thunk(() => ["foo", "bar"]),
           either: 123n,
         })),
         testAttrs: nix.thunk(() => ({
-          __proto__: pos$89,
+          [nix.POS]: pos$89,
           expected: nix.thunk(() => ({
-            __proto__: pos$88,
-            attrs: nix.thunk(() => ({ __proto__: pos$87, foo: "bar" })),
+            [nix.POS]: pos$88,
+            attrs: nix.thunk(() => ({ [nix.POS]: pos$87, foo: "bar" })),
             list: nix.thunk(() => ["foo", "bar"]),
             either: 123n,
           })),

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "general";
       const version = "2.1.4";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/octave/${pname}-${version}.tar.gz`),
           sha256: "sha256-sTd31PWTLmiR8qrBPaF/IrjJuLT/jtAXllnr0ZEkFI8=",
         }))));
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const preAutoreconf = "pushd src\nrm -rf config.*\n";
       const postAutoreconf = "popd\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gnu-octave.github.io/packages/general/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: nix.thunk(() => (() => {
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         description: "General tools for Octave",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -250,30 +250,30 @@ export default nix.lambda((args) => (() => {
   const mkForce = nix.thunk(() => nix.attr(lib, "mkForce"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    __proto__: pos$231,
+    [nix.POS]: pos$231,
     options: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       attrList: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.app(nix.sel(types, "attrListOf"), nix.thunk(() => nix.sel(types, "str")))))),
         })))),
       attrListInt: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.app(nix.sel(types, "attrListOf"), nix.thunk(() => nix.sel(types, "int")))))),
         })))),
       attrListSubmodule: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           type: nix.thunk(() => nix.app(nix.sel(types, "attrListOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 options: nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      __proto__: pos$3,
+                      [nix.POS]: pos$3,
                       type: nix.thunk(() => nix.sel(types, "int")),
                       description: "Port number",
                     })))),
                   host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      __proto__: pos$4,
+                      [nix.POS]: pos$4,
                       type: nix.thunk(() => nix.sel(types, "str")),
                       default: "localhost",
                       description: "Hostname",
@@ -282,317 +282,317 @@ export default nix.lambda((args) => (() => {
               })))))),
         })))),
       asAttrs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.app(nix.sel(types, "attrListWith"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 elemType: nix.thunk(() => nix.sel(types, "str")),
                 asAttrs: true,
                 mergeAttrValues: (_name) => (values) => nix.app(nix.sel(lib, "last"), values),
               })))))),
         })))),
       asAttrsDefault: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.app(nix.sel(types, "attrListWith"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 elemType: nix.thunk(() => nix.sel(types, "int")),
                 asAttrs: true,
               })))))),
         })))),
       attrListStrict: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "raw")))),
         })))),
       attrListIntStrict: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "raw")))),
         })))),
       eitherAttrListOrInt: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           type: nix.thunk(() => nix.app(nix.sel(types, "either"), nix.thunk(() => nix.app(nix.sel(types, "attrListOf"), nix.thunk(() => nix.sel(types, "str")))), nix.thunk(() => nix.sel(types, "int")))),
         })))),
       eitherAttrListOrIntFallback: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           type: nix.thunk(() => nix.app(nix.sel(types, "either"), nix.thunk(() => nix.app(nix.sel(types, "attrListOf"), nix.thunk(() => nix.sel(types, "str")))), nix.thunk(() => nix.sel(types, "int")))),
         })))),
       eitherIntOrAttrList: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           type: nix.thunk(() => nix.app(nix.sel(types, "either"), nix.thunk(() => nix.sel(types, "int")), nix.thunk(() => nix.app(nix.sel(types, "attrListOf"), nix.thunk(() => nix.sel(types, "str")))))),
         })))),
       eitherIntOrAttrListFallback: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           type: nix.thunk(() => nix.app(nix.sel(types, "either"), nix.thunk(() => nix.sel(types, "int")), nix.thunk(() => nix.app(nix.sel(types, "attrListOf"), nix.thunk(() => nix.sel(types, "str")))))),
         })))),
       assertions: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({})))),
     })),
     imports: nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         attrListInt: nix.thunk(() => ({
-          __proto__: pos$20,
-          multiModule: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$19, b: 2n }))]),
+          [nix.POS]: pos$20,
+          multiModule: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$19, b: 2n }))]),
         })),
       })),
     ]),
     config: nix.thunk(() => ({
-      __proto__: pos$230,
+      [nix.POS]: pos$230,
       attrList: nix.thunk(() => ({
-        __proto__: pos$89,
+        [nix.POS]: pos$89,
         listInput: nix.thunk(() => [
-          nix.thunk(() => ({ __proto__: pos$22, a: "alpha" })),
-          nix.thunk(() => ({ __proto__: pos$23, b: "beta" })),
+          nix.thunk(() => ({ [nix.POS]: pos$22, a: "alpha" })),
+          nix.thunk(() => ({ [nix.POS]: pos$23, b: "beta" })),
         ]),
         attrsetOrdered: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           x: nix.thunk(() => nix.app(mkOrder, 200n, "x-val")),
           y: nix.thunk(() => nix.app(mkOrder, 100n, "y-val")),
         })),
         mixed: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
-            nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$25, m: "from-list" }))]),
-            nix.thunk(() => ({ __proto__: pos$26, n: nix.thunk(() => nix.app(mkOrder, 50n, "from-attrset")) })),
+            nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$25, m: "from-list" }))]),
+            nix.thunk(() => ({ [nix.POS]: pos$26, n: nix.thunk(() => nix.app(mkOrder, 50n, "from-attrset")) })),
           ]))),
-        attrsetNoOrder: nix.thunk(() => ({ __proto__: pos$27, foo: "bar", baz: "qux" })),
+        attrsetNoOrder: nix.thunk(() => ({ [nix.POS]: pos$27, foo: "bar", baz: "qux" })),
         empty: [],
         ordering: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$28, last: nix.thunk(() => nix.app(mkOrder, 1500n, "last")) })),
-            nix.thunk(() => ({ __proto__: pos$29, first: nix.thunk(() => nix.app(mkOrder, 500n, "first")) })),
-            nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$30, middle: "middle" }))]),
+            nix.thunk(() => ({ [nix.POS]: pos$28, last: nix.thunk(() => nix.app(mkOrder, 1500n, "last")) })),
+            nix.thunk(() => ({ [nix.POS]: pos$29, first: nix.thunk(() => nix.app(mkOrder, 500n, "first")) })),
+            nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$30, middle: "middle" }))]),
           ]))),
         listOrdering: nix.thunk(() => [
-          nix.thunk(() => nix.app(mkAfter, nix.thunk(() => ({ __proto__: pos$31, z: "after" })))),
-          nix.thunk(() => ({ __proto__: pos$32, m: "default" })),
-          nix.thunk(() => nix.app(mkBefore, nix.thunk(() => ({ __proto__: pos$33, a: "before" })))),
+          nix.thunk(() => nix.app(mkAfter, nix.thunk(() => ({ [nix.POS]: pos$31, z: "after" })))),
+          nix.thunk(() => ({ [nix.POS]: pos$32, m: "default" })),
+          nix.thunk(() => nix.app(mkBefore, nix.thunk(() => ({ [nix.POS]: pos$33, a: "before" })))),
         ]),
         listDefaultPrio: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$34, after: nix.thunk(() => nix.app(mkOrder, 1001n, "after")) })),
-            nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$35, mid: "list-entry" }))]),
-            nix.thunk(() => ({ __proto__: pos$36, before: nix.thunk(() => nix.app(mkOrder, 999n, "before")) })),
+            nix.thunk(() => ({ [nix.POS]: pos$34, after: nix.thunk(() => nix.app(mkOrder, 1001n, "after")) })),
+            nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$35, mid: "list-entry" }))]),
+            nix.thunk(() => ({ [nix.POS]: pos$36, before: nix.thunk(() => nix.app(mkOrder, 999n, "before")) })),
           ]))),
         beforeAfter: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$37, z: nix.thunk(() => nix.app(mkAfter, "after")) })),
-            nix.thunk(() => ({ __proto__: pos$38, a: nix.thunk(() => nix.app(mkBefore, "before")) })),
-            nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$39, m: "default" }))]),
+            nix.thunk(() => ({ [nix.POS]: pos$37, z: nix.thunk(() => nix.app(mkAfter, "after")) })),
+            nix.thunk(() => ({ [nix.POS]: pos$38, a: nix.thunk(() => nix.app(mkBefore, "before")) })),
+            nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$39, m: "default" }))]),
           ]))),
         withMkIf: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
-            nix.thunk(() => nix.app(mkIf, true, nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$40, yes: "included" }))]))),
-            nix.thunk(() => nix.app(mkIf, false, nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$41, no: "excluded" }))]))),
+            nix.thunk(() => nix.app(mkIf, true, nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$40, yes: "included" }))]))),
+            nix.thunk(() => nix.app(mkIf, false, nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$41, no: "excluded" }))]))),
           ]))),
         withOverride: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
-            nix.thunk(() => nix.app(mkOverride, 100n, nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$42, replaced: "gone" }))]))),
-            nix.thunk(() => nix.app(mkOverride, 50n, nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$43, winner: "wins" }))]))),
+            nix.thunk(() => nix.app(mkOverride, 100n, nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$42, replaced: "gone" }))]))),
+            nix.thunk(() => nix.app(mkOverride, 50n, nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$43, winner: "wins" }))]))),
           ]))),
         withDefault: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
-            nix.thunk(() => nix.app(mkDefault, nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$44, default: "overridden" }))]))),
-            nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$45, normal: "wins" }))]),
+            nix.thunk(() => nix.app(mkDefault, nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$44, default: "overridden" }))]))),
+            nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$45, normal: "wins" }))]),
           ]))),
         withForce: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
-            nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$46, discarded: "gone" }))]),
-            nix.thunk(() => nix.app(mkForce, nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$47, forced: "wins" }))]))),
+            nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$46, discarded: "gone" }))]),
+            nix.thunk(() => nix.app(mkForce, nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$47, forced: "wins" }))]))),
           ]))),
         forceWithOrder: nix.thunk(() => nix.app(mkForce, nix.thunk(() => [
-            nix.thunk(() => nix.app(mkAfter, nix.thunk(() => ({ __proto__: pos$48, second: "after" })))),
-            nix.thunk(() => nix.app(mkBefore, nix.thunk(() => ({ __proto__: pos$49, first: "before" })))),
+            nix.thunk(() => nix.app(mkAfter, nix.thunk(() => ({ [nix.POS]: pos$48, second: "after" })))),
+            nix.thunk(() => nix.app(mkBefore, nix.thunk(() => ({ [nix.POS]: pos$49, first: "before" })))),
           ]))),
         forceAttrset: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
-            nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$50, discarded: "gone" }))]),
+            nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$50, discarded: "gone" }))]),
             nix.thunk(() => nix.app(mkForce, nix.thunk(() => ({
-                __proto__: pos$51,
+                [nix.POS]: pos$51,
                 x: nix.thunk(() => nix.app(mkOrder, 200n, "x-val")),
                 y: nix.thunk(() => nix.app(mkOrder, 100n, "y-val")),
               })))),
           ]))),
         forceRepeatedKey: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             x: nix.thunk(() => nix.app(mkOverride, 100n, nix.thunk(() => nix.builtins.abort("overridden by mkForce; laziness guarantee: MUST NOT be evaluated")))),
           })),
-          nix.thunk(() => ({ __proto__: pos$53, x: nix.thunk(() => nix.app(mkForce, "wins")) })),
-          nix.thunk(() => ({ __proto__: pos$54, x: nix.thunk(() => nix.app(mkForce, "wins 2")) })),
+          nix.thunk(() => ({ [nix.POS]: pos$53, x: nix.thunk(() => nix.app(mkForce, "wins")) })),
+          nix.thunk(() => ({ [nix.POS]: pos$54, x: nix.thunk(() => nix.app(mkForce, "wins 2")) })),
         ]),
         forceRepeatedKeyMerge: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
             nix.thunk(() => [
-              nix.thunk(() => ({ __proto__: pos$55, x: "unused: overridden by mkForce" })),
+              nix.thunk(() => ({ [nix.POS]: pos$55, x: "unused: overridden by mkForce" })),
               nix.thunk(() => ({
-                __proto__: pos$56,
+                [nix.POS]: pos$56,
                 x: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.builtins.abort("overridden by mkForce; laziness guarantee: MUST NOT be evaluated")))),
               })),
             ]),
             nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$57,
+                [nix.POS]: pos$57,
                 x: nix.thunk(() => nix.app(mkOverride, 100n, nix.thunk(() => nix.builtins.abort("overridden by mkForce; laziness guarantee: MUST NOT be evaluated")))),
               })),
             ]),
             nix.thunk(() => [
-              nix.thunk(() => ({ __proto__: pos$58, x: nix.thunk(() => nix.app(mkForce, "forced")) })),
+              nix.thunk(() => ({ [nix.POS]: pos$58, x: nix.thunk(() => nix.app(mkForce, "forced")) })),
             ]),
           ]))),
         forceRepeatedKeyAttrs: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               x: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.builtins.abort("overridden by mkForce; laziness guarantee: MUST NOT be evaluated")))),
               y: "kept",
             })),
-            nix.thunk(() => ({ __proto__: pos$60, x: nix.thunk(() => nix.app(mkForce, "forced")) })),
+            nix.thunk(() => ({ [nix.POS]: pos$60, x: nix.thunk(() => nix.app(mkForce, "forced")) })),
           ]))),
         forcePartialAttrs: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$61, x: "unused: overridden by mkForce", y: "normal y" })),
-            nix.thunk(() => ({ __proto__: pos$62, x: nix.thunk(() => nix.app(mkForce, "forced x")) })),
+            nix.thunk(() => ({ [nix.POS]: pos$61, x: "unused: overridden by mkForce", y: "normal y" })),
+            nix.thunk(() => ({ [nix.POS]: pos$62, x: nix.thunk(() => nix.app(mkForce, "forced x")) })),
           ]))),
         forceMixedFormats: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
             nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$63,
+                [nix.POS]: pos$63,
                 x: nix.thunk(() => nix.app(mkOverride, 100n, nix.thunk(() => nix.builtins.abort("overridden by mkForce; laziness guarantee: MUST NOT be evaluated")))),
               })),
-              nix.thunk(() => ({ __proto__: pos$64, y: "list y" })),
+              nix.thunk(() => ({ [nix.POS]: pos$64, y: "list y" })),
             ]),
-            nix.thunk(() => ({ __proto__: pos$65, x: nix.thunk(() => nix.app(mkForce, "attrset forced x")) })),
+            nix.thunk(() => ({ [nix.POS]: pos$65, x: nix.thunk(() => nix.app(mkForce, "attrset forced x")) })),
           ]))),
         nestListOrderForce: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
             nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$66,
+                [nix.POS]: pos$66,
                 x: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.builtins.abort("overridden by mkForce; laziness guarantee: MUST NOT be evaluated")))),
               })),
-              nix.thunk(() => nix.app(mkOrder, 500n, nix.thunk(() => ({ __proto__: pos$67, x: nix.thunk(() => nix.app(mkForce, "forced-early")) })))),
-              nix.thunk(() => nix.app(mkOrder, 1500n, nix.thunk(() => ({ __proto__: pos$68, y: "late" })))),
+              nix.thunk(() => nix.app(mkOrder, 500n, nix.thunk(() => ({ [nix.POS]: pos$67, x: nix.thunk(() => nix.app(mkForce, "forced-early")) })))),
+              nix.thunk(() => nix.app(mkOrder, 1500n, nix.thunk(() => ({ [nix.POS]: pos$68, y: "late" })))),
             ]),
             nix.thunk(() => [
-              nix.thunk(() => nix.app(mkOrder, 100n, nix.thunk(() => ({ __proto__: pos$69, z: "earliest" })))),
+              nix.thunk(() => nix.app(mkOrder, 100n, nix.thunk(() => ({ [nix.POS]: pos$69, z: "earliest" })))),
             ]),
           ]))),
         nestListOrderOfForce: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
             nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$70,
+                [nix.POS]: pos$70,
                 x: nix.thunk(() => nix.app(mkOverride, 100n, nix.thunk(() => nix.builtins.abort("overridden by mkForce; laziness guarantee: MUST NOT be evaluated")))),
               })),
-              nix.thunk(() => ({ __proto__: pos$71, y: "plain-early" })),
+              nix.thunk(() => ({ [nix.POS]: pos$71, y: "plain-early" })),
             ]),
             nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$72,
+                [nix.POS]: pos$72,
                 x: nix.thunk(() => nix.app(mkOrder, 1500n, nix.thunk(() => nix.app(mkForce, "forced-late")))),
               })),
-              nix.thunk(() => ({ __proto__: pos$73, z: nix.thunk(() => nix.app(mkOrder, 500n, "earliest")) })),
+              nix.thunk(() => ({ [nix.POS]: pos$73, z: nix.thunk(() => nix.app(mkOrder, 500n, "earliest")) })),
             ]),
             nix.thunk(() => [
-              nix.thunk(() => ({ __proto__: pos$74, x: "unused: overridden by mkForce" })),
-              nix.thunk(() => ({ __proto__: pos$75, w: nix.thunk(() => nix.app(mkOrder, 1200n, "mid")) })),
+              nix.thunk(() => ({ [nix.POS]: pos$74, x: "unused: overridden by mkForce" })),
+              nix.thunk(() => ({ [nix.POS]: pos$75, w: nix.thunk(() => nix.app(mkOrder, 1200n, "mid")) })),
             ]),
           ]))),
         nestListForceOfOrder: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
             nix.thunk(() => [
-              nix.thunk(() => ({ __proto__: pos$76, x: "unused: overridden by mkForce" })),
-              nix.thunk(() => ({ __proto__: pos$77, y: "plain-early" })),
+              nix.thunk(() => ({ [nix.POS]: pos$76, x: "unused: overridden by mkForce" })),
+              nix.thunk(() => ({ [nix.POS]: pos$77, y: "plain-early" })),
             ]),
             nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$78,
+                [nix.POS]: pos$78,
                 x: nix.thunk(() => nix.app(mkForce, nix.thunk(() => nix.app(mkOrder, 1500n, "forced-late")))),
               })),
-              nix.thunk(() => ({ __proto__: pos$79, z: nix.thunk(() => nix.app(mkOrder, 500n, "earliest")) })),
+              nix.thunk(() => ({ [nix.POS]: pos$79, z: nix.thunk(() => nix.app(mkOrder, 500n, "earliest")) })),
             ]),
             nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$80,
+                [nix.POS]: pos$80,
                 x: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.builtins.abort("overridden by mkForce; laziness guarantee: MUST NOT be evaluated")))),
               })),
-              nix.thunk(() => ({ __proto__: pos$81, w: nix.thunk(() => nix.app(mkOrder, 1200n, "mid")) })),
+              nix.thunk(() => ({ [nix.POS]: pos$81, w: nix.thunk(() => nix.app(mkOrder, 1200n, "mid")) })),
             ]),
           ]))),
         nestAttrsOrderOfForce: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$82,
+              [nix.POS]: pos$82,
               x: nix.thunk(() => nix.app(mkOverride, 100n, nix.thunk(() => nix.builtins.abort("overridden by mkForce; laziness guarantee: MUST NOT be evaluated")))),
               y: "plain-early",
             })),
             nix.thunk(() => ({
-              __proto__: pos$83,
+              [nix.POS]: pos$83,
               x: nix.thunk(() => nix.app(mkOrder, 1500n, nix.thunk(() => nix.app(mkForce, "forced-late")))),
               z: nix.thunk(() => nix.app(mkOrder, 500n, "earliest")),
             })),
             nix.thunk(() => ({
-              __proto__: pos$84,
+              [nix.POS]: pos$84,
               x: "unused: overridden by mkForce",
               w: nix.thunk(() => nix.app(mkOrder, 1200n, "mid")),
             })),
           ]))),
         nestAttrsForceOfOrder: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$85, x: "unused: overridden by mkForce", y: "plain-early" })),
+            nix.thunk(() => ({ [nix.POS]: pos$85, x: "unused: overridden by mkForce", y: "plain-early" })),
             nix.thunk(() => ({
-              __proto__: pos$86,
+              [nix.POS]: pos$86,
               x: nix.thunk(() => nix.app(mkForce, nix.thunk(() => nix.app(mkOrder, 1500n, "forced-late")))),
               z: nix.thunk(() => nix.app(mkOrder, 500n, "earliest")),
             })),
             nix.thunk(() => ({
-              __proto__: pos$87,
+              [nix.POS]: pos$87,
               x: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.builtins.abort("overridden by mkForce; laziness guarantee: MUST NOT be evaluated")))),
               w: nix.thunk(() => nix.app(mkOrder, 1200n, "mid")),
             })),
           ]))),
-        badListElem: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$88, a: "ok", b: "extra" }))]),
+        badListElem: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$88, a: "ok", b: "extra" }))]),
         badString: "not-a-container",
         badListString: nix.thunk(() => ["not a singleton attribute"]),
       })),
       attrListInt: nix.thunk(() => ({
-        __proto__: pos$100,
-        multiModule: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$90, a: 1n }))]),
+        [nix.POS]: pos$100,
+        multiModule: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$90, a: 1n }))]),
         forceElementValue: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$91,
+            [nix.POS]: pos$91,
             a: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.builtins.abort("overridden by mkForce; laziness guarantee: MUST NOT be evaluated")))),
           })),
-          nix.thunk(() => ({ __proto__: pos$92, a: nix.thunk(() => nix.app(mkForce, 42n)) })),
+          nix.thunk(() => ({ [nix.POS]: pos$92, a: nix.thunk(() => nix.app(mkForce, 42n)) })),
           nix.thunk(() => ({
-            __proto__: pos$93,
+            [nix.POS]: pos$93,
             a: nix.thunk(() => nix.app(mkOverride, 100n, nix.thunk(() => nix.builtins.abort("overridden by mkForce; laziness guarantee: MUST NOT be evaluated")))),
           })),
-          nix.thunk(() => ({ __proto__: pos$94, b: 2n })),
+          nix.thunk(() => ({ [nix.POS]: pos$94, b: 2n })),
         ]),
         optionalValueList: nix.thunk(() => [
-          nix.thunk(() => ({ __proto__: pos$95, a: nix.thunk(() => nix.app(mkIf, true, 1n)) })),
-          nix.thunk(() => ({ __proto__: pos$96, b: nix.thunk(() => nix.app(mkIf, false, 2n)) })),
-          nix.thunk(() => ({ __proto__: pos$97, c: 3n })),
+          nix.thunk(() => ({ [nix.POS]: pos$95, a: nix.thunk(() => nix.app(mkIf, true, 1n)) })),
+          nix.thunk(() => ({ [nix.POS]: pos$96, b: nix.thunk(() => nix.app(mkIf, false, 2n)) })),
+          nix.thunk(() => ({ [nix.POS]: pos$97, c: 3n })),
         ]),
         optionalValueAttrs: nix.thunk(() => ({
-          __proto__: pos$98,
+          [nix.POS]: pos$98,
           a: nix.thunk(() => nix.app(mkIf, true, 1n)),
           b: nix.thunk(() => nix.app(mkIf, false, 2n)),
           c: 3n,
         })),
-        badValue: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$99, a: "not-an-int" }))]),
+        badValue: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$99, a: "not-an-int" }))]),
       })),
       attrListSubmodule: nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$102,
-          web: nix.thunk(() => ({ __proto__: pos$101, port: 80n })),
+          [nix.POS]: pos$102,
+          web: nix.thunk(() => ({ [nix.POS]: pos$101, port: 80n })),
         })),
         nix.thunk(() => ({
-          __proto__: pos$104,
-          db: nix.thunk(() => ({ __proto__: pos$103, port: 5432n, host: "dbhost" })),
+          [nix.POS]: pos$104,
+          db: nix.thunk(() => ({ [nix.POS]: pos$103, port: 5432n, host: "dbhost" })),
         })),
       ]),
       asAttrs: nix.thunk(() => ({
-        __proto__: pos$113,
+        [nix.POS]: pos$113,
         unique: nix.thunk(() => [
-          nix.thunk(() => ({ __proto__: pos$105, a: "alpha" })),
-          nix.thunk(() => ({ __proto__: pos$106, b: "beta" })),
+          nix.thunk(() => ({ [nix.POS]: pos$105, a: "alpha" })),
+          nix.thunk(() => ({ [nix.POS]: pos$106, b: "beta" })),
         ]),
         duplicateKeys: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$107, x: nix.thunk(() => nix.app(mkOrder, 500n, "first")) })),
-            nix.thunk(() => ({ __proto__: pos$108, x: nix.thunk(() => nix.app(mkOrder, 1500n, "last")) })),
-            nix.thunk(() => ({ __proto__: pos$109, y: "only" })),
+            nix.thunk(() => ({ [nix.POS]: pos$107, x: nix.thunk(() => nix.app(mkOrder, 500n, "first")) })),
+            nix.thunk(() => ({ [nix.POS]: pos$108, x: nix.thunk(() => nix.app(mkOrder, 1500n, "last")) })),
+            nix.thunk(() => ({ [nix.POS]: pos$109, y: "only" })),
           ]))),
         ordered: nix.thunk(() => ({
-          __proto__: pos$110,
+          [nix.POS]: pos$110,
           z: nix.thunk(() => nix.app(mkOrder, 200n, "z-val")),
           a: nix.thunk(() => nix.app(mkOrder, 100n, "a-val")),
         })),
         withForce: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$111, x: "unused: overridden by mkForce" })),
+            nix.thunk(() => ({ [nix.POS]: pos$111, x: "unused: overridden by mkForce" })),
             nix.thunk(() => ({
-              __proto__: pos$112,
+              [nix.POS]: pos$112,
               x: nix.thunk(() => nix.app(mkForce, "forced")),
               y: "kept",
             })),
@@ -600,158 +600,158 @@ export default nix.lambda((args) => (() => {
         empty: [],
       })),
       asAttrsDefault: nix.thunk(() => ({
-        __proto__: pos$120,
+        [nix.POS]: pos$120,
         unique: nix.thunk(() => [
-          nix.thunk(() => ({ __proto__: pos$114, a: 1n })),
-          nix.thunk(() => ({ __proto__: pos$115, b: 2n })),
+          nix.thunk(() => ({ [nix.POS]: pos$114, a: 1n })),
+          nix.thunk(() => ({ [nix.POS]: pos$115, b: 2n })),
         ]),
         duplicates: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$116, x: nix.thunk(() => nix.app(mkOrder, 500n, 10n)) })),
-            nix.thunk(() => ({ __proto__: pos$117, x: nix.thunk(() => nix.app(mkOrder, 1500n, 30n)) })),
-            nix.thunk(() => ({ __proto__: pos$118, y: 99n })),
-            nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$119, x: 20n }))]),
+            nix.thunk(() => ({ [nix.POS]: pos$116, x: nix.thunk(() => nix.app(mkOrder, 500n, 10n)) })),
+            nix.thunk(() => ({ [nix.POS]: pos$117, x: nix.thunk(() => nix.app(mkOrder, 1500n, 30n)) })),
+            nix.thunk(() => ({ [nix.POS]: pos$118, y: 99n })),
+            nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$119, x: 20n }))]),
           ]))),
       })),
       eitherAttrListOrInt: nix.thunk(() => [
-        nix.thunk(() => ({ __proto__: pos$121, a: "hello" })),
-        nix.thunk(() => ({ __proto__: pos$122, b: "world" })),
+        nix.thunk(() => ({ [nix.POS]: pos$121, a: "hello" })),
+        nix.thunk(() => ({ [nix.POS]: pos$122, b: "world" })),
       ]),
       eitherAttrListOrIntFallback: 42n,
       eitherIntOrAttrList: 42n,
-      eitherIntOrAttrListFallback: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$123, a: "hello" }))]),
+      eitherIntOrAttrListFallback: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$123, a: "hello" }))]),
       attrListStrict: nix.thunk(() => nix.builtins.mapAttrs((k) => (v) => nix.builtins.deepSeq(v, v), nix.thunk(() => nix.sel(config, "attrList")))),
       attrListIntStrict: nix.thunk(() => nix.builtins.mapAttrs((k) => (v) => nix.builtins.deepSeq(v, v), nix.thunk(() => nix.sel(config, "attrListInt")))),
       assertions: nix.thunk(() => (() => {
         const c = nix.thunk(() => nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({
-            __proto__: pos$124,
+            [nix.POS]: pos$124,
             modules: nix.thunk(() => [nix.path(here, "./declare-attrList.nix")]),
           }))));
         const cfg = nix.thunk(() => nix.sel(c, "config"));
         nix.assert_(nix.eq(nix.sel(cfg, "attrList", "listInput"), [
-          nix.thunk(() => ({ __proto__: pos$125, a: "alpha" })),
-          nix.thunk(() => ({ __proto__: pos$126, b: "beta" })),
+          nix.thunk(() => ({ [nix.POS]: pos$125, a: "alpha" })),
+          nix.thunk(() => ({ [nix.POS]: pos$126, b: "beta" })),
         ]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:502:7");
         nix.assert_(nix.eq(nix.sel(cfg, "attrList", "attrsetOrdered"), [
-          nix.thunk(() => ({ __proto__: pos$127, y: "y-val" })),
-          nix.thunk(() => ({ __proto__: pos$128, x: "x-val" })),
+          nix.thunk(() => ({ [nix.POS]: pos$127, y: "y-val" })),
+          nix.thunk(() => ({ [nix.POS]: pos$128, x: "x-val" })),
         ]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:509:7");
         nix.assert_(nix.eq(nix.sel(cfg, "attrList", "mixed"), [
-          nix.thunk(() => ({ __proto__: pos$129, n: "from-attrset" })),
-          nix.thunk(() => ({ __proto__: pos$130, m: "from-list" })),
+          nix.thunk(() => ({ [nix.POS]: pos$129, n: "from-attrset" })),
+          nix.thunk(() => ({ [nix.POS]: pos$130, m: "from-list" })),
         ]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:516:7");
         nix.assert_(nix.eq(nix.sel(cfg, "attrListInt", "multiModule"), [
-          nix.thunk(() => ({ __proto__: pos$131, b: 2n })),
-          nix.thunk(() => ({ __proto__: pos$132, a: 1n })),
+          nix.thunk(() => ({ [nix.POS]: pos$131, b: 2n })),
+          nix.thunk(() => ({ [nix.POS]: pos$132, a: 1n })),
         ]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:524:7");
         nix.assert_(nix.eq(nix.builtins.length(nix.thunk(() => nix.sel(cfg, "attrList", "attrsetNoOrder"))), 2n), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:531:7");
         nix.assert_(nix.eq(nix.sel(cfg, "attrList", "empty"), []), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:534:7");
         nix.assert_(nix.eq(nix.sel(cfg, "attrList", "listOrdering"), [
-          nix.thunk(() => ({ __proto__: pos$133, a: "before" })),
-          nix.thunk(() => ({ __proto__: pos$134, m: "default" })),
-          nix.thunk(() => ({ __proto__: pos$135, z: "after" })),
+          nix.thunk(() => ({ [nix.POS]: pos$133, a: "before" })),
+          nix.thunk(() => ({ [nix.POS]: pos$134, m: "default" })),
+          nix.thunk(() => ({ [nix.POS]: pos$135, z: "after" })),
         ]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:537:7");
         nix.assert_(nix.eq(nix.sel(cfg, "attrList", "listDefaultPrio"), [
-          nix.thunk(() => ({ __proto__: pos$136, before: "before" })),
-          nix.thunk(() => ({ __proto__: pos$137, mid: "list-entry" })),
-          nix.thunk(() => ({ __proto__: pos$138, after: "after" })),
+          nix.thunk(() => ({ [nix.POS]: pos$136, before: "before" })),
+          nix.thunk(() => ({ [nix.POS]: pos$137, mid: "list-entry" })),
+          nix.thunk(() => ({ [nix.POS]: pos$138, after: "after" })),
         ]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:545:7");
         nix.assert_(nix.eq(nix.sel(cfg, "attrList", "ordering"), [
-          nix.thunk(() => ({ __proto__: pos$139, first: "first" })),
-          nix.thunk(() => ({ __proto__: pos$140, middle: "middle" })),
-          nix.thunk(() => ({ __proto__: pos$141, last: "last" })),
+          nix.thunk(() => ({ [nix.POS]: pos$139, first: "first" })),
+          nix.thunk(() => ({ [nix.POS]: pos$140, middle: "middle" })),
+          nix.thunk(() => ({ [nix.POS]: pos$141, last: "last" })),
         ]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:553:7");
         nix.assert_(nix.eq(nix.sel(cfg, "attrList", "beforeAfter"), [
-          nix.thunk(() => ({ __proto__: pos$142, a: "before" })),
-          nix.thunk(() => ({ __proto__: pos$143, m: "default" })),
-          nix.thunk(() => ({ __proto__: pos$144, z: "after" })),
+          nix.thunk(() => ({ [nix.POS]: pos$142, a: "before" })),
+          nix.thunk(() => ({ [nix.POS]: pos$143, m: "default" })),
+          nix.thunk(() => ({ [nix.POS]: pos$144, z: "after" })),
         ]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:561:7");
-        nix.assert_(nix.eq(nix.sel(cfg, "attrList", "withMkIf"), [nix.thunk(() => ({ __proto__: pos$145, yes: "included" }))]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:569:7");
-        nix.assert_(nix.eq(nix.sel(cfg, "attrList", "withOverride"), [nix.thunk(() => ({ __proto__: pos$146, winner: "wins" }))]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:575:7");
-        nix.assert_(nix.eq(nix.sel(cfg, "attrList", "withDefault"), [nix.thunk(() => ({ __proto__: pos$147, normal: "wins" }))]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:581:7");
-        nix.assert_(nix.eq(nix.sel(cfg, "attrList", "withForce"), [nix.thunk(() => ({ __proto__: pos$148, forced: "wins" }))]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:587:7");
+        nix.assert_(nix.eq(nix.sel(cfg, "attrList", "withMkIf"), [nix.thunk(() => ({ [nix.POS]: pos$145, yes: "included" }))]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:569:7");
+        nix.assert_(nix.eq(nix.sel(cfg, "attrList", "withOverride"), [nix.thunk(() => ({ [nix.POS]: pos$146, winner: "wins" }))]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:575:7");
+        nix.assert_(nix.eq(nix.sel(cfg, "attrList", "withDefault"), [nix.thunk(() => ({ [nix.POS]: pos$147, normal: "wins" }))]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:581:7");
+        nix.assert_(nix.eq(nix.sel(cfg, "attrList", "withForce"), [nix.thunk(() => ({ [nix.POS]: pos$148, forced: "wins" }))]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:587:7");
         nix.assert_(nix.eq(nix.sel(cfg, "attrList", "forceWithOrder"), [
-          nix.thunk(() => ({ __proto__: pos$149, first: "before" })),
-          nix.thunk(() => ({ __proto__: pos$150, second: "after" })),
+          nix.thunk(() => ({ [nix.POS]: pos$149, first: "before" })),
+          nix.thunk(() => ({ [nix.POS]: pos$150, second: "after" })),
         ]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:593:7");
         nix.assert_(nix.eq(nix.sel(cfg, "attrListInt", "forceElementValue"), [
-          nix.thunk(() => ({ __proto__: pos$151, a: 42n })),
-          nix.thunk(() => ({ __proto__: pos$152, b: 2n })),
+          nix.thunk(() => ({ [nix.POS]: pos$151, a: 42n })),
+          nix.thunk(() => ({ [nix.POS]: pos$152, b: 2n })),
         ]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:600:7");
         nix.assert_(nix.eq(nix.sel(cfg, "attrList", "forceAttrset"), [
-          nix.thunk(() => ({ __proto__: pos$153, y: "y-val" })),
-          nix.thunk(() => ({ __proto__: pos$154, x: "x-val" })),
+          nix.thunk(() => ({ [nix.POS]: pos$153, y: "y-val" })),
+          nix.thunk(() => ({ [nix.POS]: pos$154, x: "x-val" })),
         ]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:607:7");
         nix.assert_(nix.eq(nix.sel(cfg, "attrList", "forceRepeatedKey"), [
-          nix.thunk(() => ({ __proto__: pos$155, x: "wins" })),
-          nix.thunk(() => ({ __proto__: pos$156, x: "wins 2" })),
+          nix.thunk(() => ({ [nix.POS]: pos$155, x: "wins" })),
+          nix.thunk(() => ({ [nix.POS]: pos$156, x: "wins 2" })),
         ]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:614:7");
-        nix.assert_(nix.eq(nix.sel(cfg, "attrList", "forceRepeatedKeyMerge"), [nix.thunk(() => ({ __proto__: pos$157, x: "forced" }))]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:621:7");
+        nix.assert_(nix.eq(nix.sel(cfg, "attrList", "forceRepeatedKeyMerge"), [nix.thunk(() => ({ [nix.POS]: pos$157, x: "forced" }))]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:621:7");
         nix.assert_(nix.eq(nix.sel(cfg, "attrList", "forceRepeatedKeyAttrs"), [
-          nix.thunk(() => ({ __proto__: pos$158, y: "kept" })),
-          nix.thunk(() => ({ __proto__: pos$159, x: "forced" })),
+          nix.thunk(() => ({ [nix.POS]: pos$158, y: "kept" })),
+          nix.thunk(() => ({ [nix.POS]: pos$159, x: "forced" })),
         ]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:627:7");
         nix.assert_(nix.eq(nix.sel(cfg, "attrList", "forcePartialAttrs"), [
-          nix.thunk(() => ({ __proto__: pos$160, y: "normal y" })),
-          nix.thunk(() => ({ __proto__: pos$161, x: "forced x" })),
+          nix.thunk(() => ({ [nix.POS]: pos$160, y: "normal y" })),
+          nix.thunk(() => ({ [nix.POS]: pos$161, x: "forced x" })),
         ]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:634:7");
         nix.assert_(nix.eq(nix.sel(cfg, "attrList", "forceMixedFormats"), [
-          nix.thunk(() => ({ __proto__: pos$162, y: "list y" })),
-          nix.thunk(() => ({ __proto__: pos$163, x: "attrset forced x" })),
+          nix.thunk(() => ({ [nix.POS]: pos$162, y: "list y" })),
+          nix.thunk(() => ({ [nix.POS]: pos$163, x: "attrset forced x" })),
         ]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:641:7");
         nix.assert_(nix.eq(nix.sel(cfg, "attrList", "nestListOrderForce"), [
-          nix.thunk(() => ({ __proto__: pos$164, z: "earliest" })),
-          nix.thunk(() => ({ __proto__: pos$165, x: "forced-early" })),
-          nix.thunk(() => ({ __proto__: pos$166, y: "late" })),
+          nix.thunk(() => ({ [nix.POS]: pos$164, z: "earliest" })),
+          nix.thunk(() => ({ [nix.POS]: pos$165, x: "forced-early" })),
+          nix.thunk(() => ({ [nix.POS]: pos$166, y: "late" })),
         ]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:649:7");
         nix.assert_(nix.eq(nix.sel(cfg, "attrList", "nestListOrderOfForce"), [
-          nix.thunk(() => ({ __proto__: pos$167, z: "earliest" })),
-          nix.thunk(() => ({ __proto__: pos$168, y: "plain-early" })),
-          nix.thunk(() => ({ __proto__: pos$169, w: "mid" })),
-          nix.thunk(() => ({ __proto__: pos$170, x: "forced-late" })),
+          nix.thunk(() => ({ [nix.POS]: pos$167, z: "earliest" })),
+          nix.thunk(() => ({ [nix.POS]: pos$168, y: "plain-early" })),
+          nix.thunk(() => ({ [nix.POS]: pos$169, w: "mid" })),
+          nix.thunk(() => ({ [nix.POS]: pos$170, x: "forced-late" })),
         ]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:658:7");
         nix.assert_(nix.eq(nix.sel(cfg, "attrList", "nestListForceOfOrder"), [
-          nix.thunk(() => ({ __proto__: pos$171, z: "earliest" })),
-          nix.thunk(() => ({ __proto__: pos$172, y: "plain-early" })),
-          nix.thunk(() => ({ __proto__: pos$173, w: "mid" })),
-          nix.thunk(() => ({ __proto__: pos$174, x: "forced-late" })),
+          nix.thunk(() => ({ [nix.POS]: pos$171, z: "earliest" })),
+          nix.thunk(() => ({ [nix.POS]: pos$172, y: "plain-early" })),
+          nix.thunk(() => ({ [nix.POS]: pos$173, w: "mid" })),
+          nix.thunk(() => ({ [nix.POS]: pos$174, x: "forced-late" })),
         ]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:668:7");
         nix.assert_(nix.eq(nix.sel(cfg, "attrList", "nestAttrsOrderOfForce"), [
-          nix.thunk(() => ({ __proto__: pos$175, z: "earliest" })),
-          nix.thunk(() => ({ __proto__: pos$176, y: "plain-early" })),
-          nix.thunk(() => ({ __proto__: pos$177, w: "mid" })),
-          nix.thunk(() => ({ __proto__: pos$178, x: "forced-late" })),
+          nix.thunk(() => ({ [nix.POS]: pos$175, z: "earliest" })),
+          nix.thunk(() => ({ [nix.POS]: pos$176, y: "plain-early" })),
+          nix.thunk(() => ({ [nix.POS]: pos$177, w: "mid" })),
+          nix.thunk(() => ({ [nix.POS]: pos$178, x: "forced-late" })),
         ]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:678:7");
         nix.assert_(nix.eq(nix.sel(cfg, "attrList", "nestAttrsForceOfOrder"), [
-          nix.thunk(() => ({ __proto__: pos$179, z: "earliest" })),
-          nix.thunk(() => ({ __proto__: pos$180, y: "plain-early" })),
-          nix.thunk(() => ({ __proto__: pos$181, w: "mid" })),
-          nix.thunk(() => ({ __proto__: pos$182, x: "forced-late" })),
+          nix.thunk(() => ({ [nix.POS]: pos$179, z: "earliest" })),
+          nix.thunk(() => ({ [nix.POS]: pos$180, y: "plain-early" })),
+          nix.thunk(() => ({ [nix.POS]: pos$181, w: "mid" })),
+          nix.thunk(() => ({ [nix.POS]: pos$182, x: "forced-late" })),
         ]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:688:7");
         nix.assert_(nix.eq(nix.sel(cfg, "attrListInt", "optionalValueList"), [
-          nix.thunk(() => ({ __proto__: pos$183, a: 1n })),
-          nix.thunk(() => ({ __proto__: pos$184, c: 3n })),
+          nix.thunk(() => ({ [nix.POS]: pos$183, a: 1n })),
+          nix.thunk(() => ({ [nix.POS]: pos$184, c: 3n })),
         ]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:697:7");
         nix.assert_(nix.eq(nix.sel(cfg, "attrListInt", "optionalValueAttrs"), [
-          nix.thunk(() => ({ __proto__: pos$185, a: 1n })),
-          nix.thunk(() => ({ __proto__: pos$186, c: 3n })),
+          nix.thunk(() => ({ [nix.POS]: pos$185, a: 1n })),
+          nix.thunk(() => ({ [nix.POS]: pos$186, c: 3n })),
         ]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:704:7");
         nix.assert_(nix.eq(nix.sel(cfg, "attrListSubmodule"), [
           nix.thunk(() => ({
-            __proto__: pos$188,
-            web: nix.thunk(() => ({ __proto__: pos$187, host: "localhost", port: 80n })),
+            [nix.POS]: pos$188,
+            web: nix.thunk(() => ({ [nix.POS]: pos$187, host: "localhost", port: 80n })),
           })),
           nix.thunk(() => ({
-            __proto__: pos$190,
-            db: nix.thunk(() => ({ __proto__: pos$189, host: "dbhost", port: 5432n })),
+            [nix.POS]: pos$190,
+            db: nix.thunk(() => ({ [nix.POS]: pos$189, host: "dbhost", port: 5432n })),
           })),
         ]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:711:7");
         nix.assert_(nix.eq(nix.builtins.map((m) => nix.sel(m, "configuration", "config"), nix.thunk(() => nix.sel(c, "options", "attrListSubmodule", "valueMeta", "attrList"))), [
-          nix.thunk(() => ({ __proto__: pos$191, host: "localhost", port: 80n })),
-          nix.thunk(() => ({ __proto__: pos$192, host: "dbhost", port: 5432n })),
+          nix.thunk(() => ({ [nix.POS]: pos$191, host: "localhost", port: 80n })),
+          nix.thunk(() => ({ [nix.POS]: pos$192, host: "dbhost", port: 5432n })),
         ]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:726:7");
         nix.assert_(nix.eq(nix.builtins.map((m) => nix.builtins.mapAttrs((n) => (o) => nix.sel(o, "description"), nix.thunk(() => nix.builtins.removeAttrs(nix.thunk(() => nix.sel(m, "configuration", "options")), nix.thunk(() => ["_module"])))), nix.thunk(() => nix.sel(c, "options", "attrListSubmodule", "valueMeta", "attrList"))), [
-          nix.thunk(() => ({ __proto__: pos$193, host: "Hostname", port: "Port number" })),
-          nix.thunk(() => ({ __proto__: pos$194, host: "Hostname", port: "Port number" })),
+          nix.thunk(() => ({ [nix.POS]: pos$193, host: "Hostname", port: "Port number" })),
+          nix.thunk(() => ({ [nix.POS]: pos$194, host: "Hostname", port: "Port number" })),
         ]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:737:7");
         nix.assert_(nix.eq(nix.sel(c, "options", "attrList", "valueMeta", "attrs", "listInput", "attrList"), [nix.thunk(() => ({})), nix.thunk(() => ({}))]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:753:7");
         nix.assert_(nix.eq(nix.sel(c, "options", "attrList", "valueMeta", "attrs", "attrsetOrdered", "attrList"), [nix.thunk(() => ({})), nix.thunk(() => ({}))]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:758:7");
@@ -759,90 +759,90 @@ export default nix.lambda((args) => (() => {
         nix.assert_(nix.eq(nix.sel(c, "options", "attrList", "valueMeta", "attrs", "empty", "attrList"), []), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:768:7");
         nix.assert_(nix.eq(nix.sel(c, "options", "attrListInt", "valueMeta", "attrs", "optionalValueList", "attrList"), [nix.thunk(() => ({})), nix.thunk(() => ({}))]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:769:7");
         nix.assert_(nix.eq(nix.sel(cfg, "eitherAttrListOrInt"), [
-          nix.thunk(() => ({ __proto__: pos$195, a: "hello" })),
-          nix.thunk(() => ({ __proto__: pos$196, b: "world" })),
+          nix.thunk(() => ({ [nix.POS]: pos$195, a: "hello" })),
+          nix.thunk(() => ({ [nix.POS]: pos$196, b: "world" })),
         ]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:776:7");
         nix.assert_(nix.eq(nix.sel(cfg, "eitherAttrListOrIntFallback"), 42n), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:783:7");
         nix.assert_(nix.eq(nix.sel(cfg, "eitherIntOrAttrList"), 42n), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:786:7");
-        nix.assert_(nix.eq(nix.sel(cfg, "eitherIntOrAttrListFallback"), [nix.thunk(() => ({ __proto__: pos$197, a: "hello" }))]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:789:7");
-        nix.assert_(nix.eq(nix.sel(cfg, "asAttrs", "unique"), { __proto__: pos$198, a: "alpha", b: "beta" }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:795:7");
+        nix.assert_(nix.eq(nix.sel(cfg, "eitherIntOrAttrListFallback"), [nix.thunk(() => ({ [nix.POS]: pos$197, a: "hello" }))]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:789:7");
+        nix.assert_(nix.eq(nix.sel(cfg, "asAttrs", "unique"), { [nix.POS]: pos$198, a: "alpha", b: "beta" }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:795:7");
         nix.assert_(nix.eq(nix.sel(c, "options", "asAttrs", "valueMeta", "attrs", "unique", "attrListValue"), [
-          nix.thunk(() => ({ __proto__: pos$199, a: "alpha" })),
-          nix.thunk(() => ({ __proto__: pos$200, b: "beta" })),
+          nix.thunk(() => ({ [nix.POS]: pos$199, a: "alpha" })),
+          nix.thunk(() => ({ [nix.POS]: pos$200, b: "beta" })),
         ]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:801:7");
-        nix.assert_(nix.eq(nix.sel(cfg, "asAttrs", "duplicateKeys"), { __proto__: pos$201, x: "last", y: "only" }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:808:7");
+        nix.assert_(nix.eq(nix.sel(cfg, "asAttrs", "duplicateKeys"), { [nix.POS]: pos$201, x: "last", y: "only" }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:808:7");
         nix.assert_(nix.eq(nix.sel(c, "options", "asAttrs", "valueMeta", "attrs", "duplicateKeys", "attrListValue"), [
-          nix.thunk(() => ({ __proto__: pos$202, x: "first" })),
-          nix.thunk(() => ({ __proto__: pos$203, y: "only" })),
-          nix.thunk(() => ({ __proto__: pos$204, x: "last" })),
+          nix.thunk(() => ({ [nix.POS]: pos$202, x: "first" })),
+          nix.thunk(() => ({ [nix.POS]: pos$203, y: "only" })),
+          nix.thunk(() => ({ [nix.POS]: pos$204, x: "last" })),
         ]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:813:7");
-        nix.assert_(nix.eq(nix.sel(cfg, "asAttrs", "ordered"), { __proto__: pos$205, a: "a-val", z: "z-val" }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:821:7");
+        nix.assert_(nix.eq(nix.sel(cfg, "asAttrs", "ordered"), { [nix.POS]: pos$205, a: "a-val", z: "z-val" }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:821:7");
         nix.assert_(nix.eq(nix.sel(c, "options", "asAttrs", "valueMeta", "attrs", "ordered", "attrListValue"), [
-          nix.thunk(() => ({ __proto__: pos$206, a: "a-val" })),
-          nix.thunk(() => ({ __proto__: pos$207, z: "z-val" })),
+          nix.thunk(() => ({ [nix.POS]: pos$206, a: "a-val" })),
+          nix.thunk(() => ({ [nix.POS]: pos$207, z: "z-val" })),
         ]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:826:7");
-        nix.assert_(nix.eq(nix.sel(cfg, "asAttrs", "withForce"), { __proto__: pos$208, x: "forced", y: "kept" }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:833:7");
+        nix.assert_(nix.eq(nix.sel(cfg, "asAttrs", "withForce"), { [nix.POS]: pos$208, x: "forced", y: "kept" }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:833:7");
         nix.assert_(nix.eq(nix.sel(cfg, "asAttrs", "empty"), {}), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:840:7");
-        nix.assert_(nix.eq(nix.sel(cfg, "asAttrsDefault", "unique"), { __proto__: pos$209, a: nix.thunk(() => [1n]), b: nix.thunk(() => [2n]) }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:843:7");
+        nix.assert_(nix.eq(nix.sel(cfg, "asAttrsDefault", "unique"), { [nix.POS]: pos$209, a: nix.thunk(() => [1n]), b: nix.thunk(() => [2n]) }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:843:7");
         nix.assert_(nix.eq(nix.sel(cfg, "asAttrsDefault", "duplicates"), {
-          __proto__: pos$210,
+          [nix.POS]: pos$210,
           x: nix.thunk(() => [10n, 20n, 30n]),
           y: nix.thunk(() => [99n]),
         }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:850:7");
         nix.assert_(nix.eq(nix.sel(c, "options", "asAttrsDefault", "valueMeta", "attrs", "duplicates", "attrListValue"), [
-          nix.thunk(() => ({ __proto__: pos$211, x: 10n })),
-          nix.thunk(() => ({ __proto__: pos$212, y: 99n })),
-          nix.thunk(() => ({ __proto__: pos$213, x: 20n })),
-          nix.thunk(() => ({ __proto__: pos$214, x: 30n })),
+          nix.thunk(() => ({ [nix.POS]: pos$211, x: 10n })),
+          nix.thunk(() => ({ [nix.POS]: pos$212, y: 99n })),
+          nix.thunk(() => ({ [nix.POS]: pos$213, x: 20n })),
+          nix.thunk(() => ({ [nix.POS]: pos$214, x: 30n })),
         ]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:859:7");
         nix.assert_((() => {
           const defs = nix.thunk(() => nix.sel(c, "options", "asAttrs", "valueMeta", "attrs", "duplicateKeys", "definitions"));
           const extract = (d) => ({
-            __proto__: pos$215,
+            [nix.POS]: pos$215,
             prio: nix.thunk(() => nix.sel(d, "value", "priority")),
             value: nix.thunk(() => nix.sel(d, "value", "content")),
           });
           return nix.eq(nix.builtins.map(extract, defs), [
             nix.thunk(() => ({
-              __proto__: pos$217,
+              [nix.POS]: pos$217,
               prio: 500n,
-              value: nix.thunk(() => ({ __proto__: pos$216, x: "first" })),
+              value: nix.thunk(() => ({ [nix.POS]: pos$216, x: "first" })),
             })),
             nix.thunk(() => ({
-              __proto__: pos$219,
+              [nix.POS]: pos$219,
               prio: 1000n,
-              value: nix.thunk(() => ({ __proto__: pos$218, y: "only" })),
+              value: nix.thunk(() => ({ [nix.POS]: pos$218, y: "only" })),
             })),
             nix.thunk(() => ({
-              __proto__: pos$221,
+              [nix.POS]: pos$221,
               prio: 1500n,
-              value: nix.thunk(() => ({ __proto__: pos$220, x: "last" })),
+              value: nix.thunk(() => ({ [nix.POS]: pos$220, x: "last" })),
             })),
           ]);
         })(), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declare-attrList.nix:869:7");
         nix.assert_((() => {
           const rendered = nix.thunk(() => nix.app(nix.sel(lib, "modules", "mapDefinitionValue"), (attr) => nix.app(nix.sel(lib, "cli", "toCommandLineGNU"), nix.thunk(() => ({})), attr), nix.thunk(() => nix.app(mkMerge, nix.thunk(() => nix.sel(c, "options", "asAttrs", "valueMeta", "attrs", "duplicateKeys", "definitions"))))));
           const result = nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({
-              __proto__: pos$229,
+              [nix.POS]: pos$229,
               modules: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$224,
+                  [nix.POS]: pos$224,
                   options: nix.thunk(() => ({
-                    __proto__: pos$223,
+                    [nix.POS]: pos$223,
                     out: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$222,
+                        [nix.POS]: pos$222,
                         type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                       })))),
                   })),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$226,
-                  config: nix.thunk(() => ({ __proto__: pos$225, out: rendered })),
+                  [nix.POS]: pos$226,
+                  config: nix.thunk(() => ({ [nix.POS]: pos$225, out: rendered })),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$228,
+                  [nix.POS]: pos$228,
                   config: nix.thunk(() => ({
-                    __proto__: pos$227,
+                    [nix.POS]: pos$227,
                     out: nix.thunk(() => nix.app(mkOrder, 800n, nix.thunk(() => ["--interleaved"]))),
                   })),
                 })),

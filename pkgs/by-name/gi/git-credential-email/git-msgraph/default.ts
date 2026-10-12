@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const callPackage = nix.arg($, "callPackage");
   return nix.app(callPackage, nix.path(here, "../package.nix"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "git-msgraph",
       scripts: nix.thunk(() => ["git-msgraph"]),
       description: "Git helper to use Microsoft Graph API instead of SMTP to send emails",

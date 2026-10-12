@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const ptime = nix.arg($, "ptime");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "prettym",
       version: "0.0.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/dinosaure/prettym/releases/download/${nix.sel(finalAttrs, "version")}/prettym-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-kXDxoRref02YpYSlvlK7a5FBX5ccbnWJQzG0axi5jwk=",
         })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [ptime, alcotest, jsonm, base64]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple bounded encoder to serialize human readable values and respect the 80-column constraint",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/dinosaure/prettym",

@@ -18,19 +18,19 @@ export default nix.lambda((args) => (() => {
   const libargon2 = nix.arg($, "libargon2");
   const buildDunePackage = nix.arg($, "buildDunePackage");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "argon2",
       version: "1.0.2",
       minimalOCamlVersion: "4.02.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/Khady/ocaml-argon2/releases/download/${nix.sel(finalAttrs, "version")}/argon2-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-NDsOV4kPT2SnSfNHDBAK+VKZgHDIKxW+dNJ/C5bQ8gU=",
         })))),
       buildInputs: nix.thunk(() => [dune_configurator]),
       propagatedBuildInputs: nix.thunk(() => [ctypes, ctypes_foreign, libargon2, result]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/Khady/ocaml-argon2",
         description: "Ocaml bindings to Argon2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

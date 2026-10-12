@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const driver_version = nix.argOr($, "driver-version", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "karabiner-dk",
       sourceVersion: "6.6.0",
       version: nix.thunk(() => nix.app(nix.sel(lib, "defaultTo"), nix.thunk(() => nix.sel(finalAttrs, "sourceVersion")), driver_version)),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pqrs-org",
           repo: "Karabiner-DriverKit-VirtualHIDDevice",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "sourceVersion")}`),
@@ -41,13 +41,13 @@ runHook postUnpack
       installPhase: "runHook preInstall\nmkdir -p $out\ncp -R ./Applications ./Library $out\nrunHook postInstall\n",
       dontFixup: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeShellScript, "karabiner-dk", nix.thunk(() => nix.str`NEW_VERSION=$(${nix.app(nix.sel(lib, "getExe"), curl)} --silent https://api.github.com/repos/pqrs-org/Karabiner-DriverKit-VirtualHIDDevice/releases/latest $\${GITHUB_TOKEN:+" -u \\":$GITHUB_TOKEN\\""} | ${nix.app(nix.sel(lib, "getExe"), jq)} '.tag_name | ltrimstr("v")' --raw-output)
 ${nix.app(nix.sel(lib, "getExe'"), common_updater_scripts, "update-source-version")} "karabiner-dk" "$NEW_VERSION" --system=aarch64-darwin --ignore-same-version --version-key="sourceVersion";
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/pqrs-org/Karabiner-DriverKit-VirtualHIDDevice/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Virtual keyboard and virtual mouse using DriverKit on macOS",
         homepage: "https://karabiner-elements.pqrs.org/",

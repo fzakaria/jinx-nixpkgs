@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const jdk = nix.arg($, "jdk");
   const mpv = nix.arg($, "mpv");
   const ffmpeg_kit = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "ffmpeg-kit-linux-x86_64-min-8.1.2",
       url: "https://github.com/sk3llo/ffmpeg_kit_flutter/releases/download/8.1.2-min/ffmpeg-kit-linux-x86_64-min-8.1.2.tar.gz",
       hash: "sha256-5N6CCntUT0UwMt5+Hsdm+R/DhHG7FysRhGoHqrnVnfU=",
       stripRoot: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const pname = "bluebubbles";
       const version = "2.1.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "BlueBubblesApp",
           repo: "bluebubbles-app",
           tag: nix.thunk(() => nix.str`v${version}+91`),
@@ -52,11 +52,11 @@ export default nix.lambda((args) => (() => {
         }))));
       const pubspecLock = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json")));
       const customSourceBuilders = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         objectbox_flutter_libs: nix.thunk(() => nix.app(callPackage, nix.path(here, "./objectbox_flutter_libs.nix"), nix.thunk(() => ({})))),
       }));
       const gitHashes = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         desktop_drop: "sha256-ZvSTnZMCrA0WF+bERalxukeTnaeQiVU4g8geNeZoy3Y=",
         desktop_webview_auth: "sha256-G6xrC6Jz3kYAysHI6w/8ahzXTvX7k6QW3GB3b8Uh+RQ=",
         disable_battery_optimization: "sha256-IsfclmbdLvju+0VWElFz9brdVntRESFB+PF8UPJBL2E=",
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       }));
       const nativeBuildInputs = nix.thunk(() => [autoPatchelfHook]);
       const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64")), nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           FFMPEGKIT_LOCAL_DIR: nix.thunk(() => nix.str`${ffmpeg_kit}/ffmpeg-kit`),
         }))));
       const buildInputs = nix.thunk(() => [webkitgtk_4_1, libayatana_appindicator, jdk, mpv]);
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
       const postInstall = "sed -i 's#Icon=.*/bluebubbles.png#Icon=bluebubbles#g' snap/gui/bluebubbles.desktop\ninstall -Dm0644 snap/gui/bluebubbles.desktop $out/share/applications/bluebubbles.desktop\ninstall -Dm0644 snap/gui/bluebubbles.png -t $out/share/icons/hicolor/1024x1024/apps\ninstall -Dm0644 flatpak/icon/128x128.png $out/share/icons/hicolor/128x128/apps/bluebubbles.png\n";
       const extraWrapProgramArgs = "--prefix LD_LIBRARY_PATH : $out/app/bluebubbles/lib\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Cross-platform iMessage client",
         homepage: "https://github.com/BlueBubblesApp/bluebubbles-app",
         mainProgram: "bluebubbles",
@@ -104,7 +104,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version,
         src,

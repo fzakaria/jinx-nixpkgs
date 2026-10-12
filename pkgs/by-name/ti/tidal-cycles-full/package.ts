@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.thunk(() => nix.sel(haskellPackages, "tidal", "version"));
   const ghcWithTidal = nix.thunk(() => nix.app(nix.sel(haskellPackages, "ghcWithPackages"), (haskellPackages$) => [nix.thunk(() => nix.sel(haskellPackages$, "tidal"))]));
   const tidalBoot = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "tidal-cycles-boot",
       version: version,
       src: nix.thunk(() => nix.sel(haskellPackages, "tidal", "src")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
     const src = nix.arg($_1, "src");
     const dependencies = nix.argOr($_1, "dependencies", () => []);
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname: pname,
         version: version_1,
         src: src,
@@ -85,12 +85,12 @@ runHook postInstall
       })));
   })(), formals$2);
   const dirt_samples = nix.thunk(() => nix.app(mkQuark, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dirt-samples",
       version: "unstable-2023-10-27",
       quarkName: "Dirt-Samples",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "tidalcycles",
           repo: "dirt-samples",
           rev: "9a6dff8f9ec3cd55b287290cf04e01afa6b8f532",
@@ -98,12 +98,12 @@ runHook postInstall
         })))),
     }))));
   const vowel = nix.thunk(() => nix.app(mkQuark, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "vowel",
       version: "unstable-2022-01-04",
       quarkName: "Vowel",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "supercollider-quarks",
           repo: "vowel",
           rev: "ab59caa870201ecf2604b3efdd2196e21a8b5446",
@@ -111,12 +111,12 @@ runHook postInstall
         })))),
     }))));
   const superdirt = nix.thunk(() => nix.app(mkQuark, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "superdirt",
       version: "unstable-2023-10-15",
       quarkName: "SuperDirt",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           owner: "musikinformatik",
           repo: "superdirt",
           rev: "c7f32998572984705d340e7c1b9ed9ad998a39b6",
@@ -126,21 +126,21 @@ runHook postInstall
     }))));
   const superdirtStartSc = nix.thunk(() => nix.app(writeText, "superdirt-start.sc", "SuperDirt.start;"));
   const tidalCycles = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       name: "tidal-cycles",
       runtimeInputs: nix.thunk(() => [ghcWithTidal]),
       text: nix.thunk(() => nix.str`exec ghci -ghci-script "${tidalBoot}/share/tidal-cycles/BootTidal.hs" "$@"
 `),
     }))));
   const sclangWithSuperDirt = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       name: "sclang-with-superdirt",
       runtimeInputs: nix.thunk(() => [supercollider_with_sc3_plugins]),
       text: nix.thunk(() => nix.str`exec sclang -l "${superdirt}/sclang_conf.yaml" "$@"
 `),
     }))));
   const superdirtStart = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       name: "superdirt-start",
       text: nix.thunk(() => nix.str`start_script="\${1:-${superdirtStartSc}}"
 
@@ -163,14 +163,14 @@ exec ${sclangWithSuperDirt}/bin/sclang-with-superdirt "$start_script"
 `),
     }))));
   const superdirtInstall = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       name: "superdirt-install",
       runtimeInputs: nix.thunk(() => [supercollider_with_sc3_plugins]),
       text: nix.thunk(() => nix.str`exec sclang "${superdirt}/install.scd"
 `),
     }))));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       pname: "tidal-cycles-full",
       version: version,
       paths: nix.thunk(() => [
@@ -181,7 +181,7 @@ exec ${sclangWithSuperDirt}/bin/sclang-with-superdirt "$start_script"
         supercollider_with_sc3_plugins,
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         "dirt-samples": dirt_samples,
         ghcWithTidal: ghcWithTidal,
         superdirt: superdirt,
@@ -192,7 +192,7 @@ exec ${sclangWithSuperDirt}/bin/sclang-with-superdirt "$start_script"
       strictDeps: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         description: "TidalCycles live-coding environment with SuperDirt",
         longDescription: "This package provides the TidalCycles live-coding environment and\nSuperDirt setup helpers. It installs the `tidal-cycles`,\n`sclang-with-superdirt`, `superdirt-start`, and `superdirt-install`\ncommands, and also makes the wrapped SuperCollider programs from\n`supercollider-with-sc3-plugins` available.\n",
         homepage: "https://tidalcycles.org/",

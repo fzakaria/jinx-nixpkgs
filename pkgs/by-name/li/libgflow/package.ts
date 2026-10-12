@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const gtk3 = nix.arg($, "gtk3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libgflow",
       version: "1.0.4",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       outputBin: "devdoc",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "notabug.org",
           owner: "grindhold",
           repo: "libgtkflow",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       mesonFlags: nix.thunk(() => ["-Denable_valadoc=true", "-Denable_gtk3=false", "-Denable_gtk4=false"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Flow graph widget for GTK 3",
         homepage: "https://notabug.org/grindhold/libgtkflow",
         maintainers: nix.thunk(() => (() => {

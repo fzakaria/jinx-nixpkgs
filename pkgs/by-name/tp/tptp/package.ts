@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "TPTP";
       const version = "9.1.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://tptp.org/TPTP/Distribution/TPTP-v${version}.tgz`),
             nix.thunk(() => nix.str`https://tptp.org/TPTP/Archive/TPTP-v${version}.tgz`),
@@ -50,7 +50,7 @@ ln -s $sharedir/Scripts/tptp2T $out/bin
 ln -s $sharedir/Scripts/tptp4X $out/bin
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Thousands of problems for theorem provers and tools",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -66,7 +66,7 @@ ln -s $sharedir/Scripts/tptp4X $out/bin
         homepage: "https://tptp.org/TPTP/",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

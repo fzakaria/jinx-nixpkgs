@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
   const nix_update = nix.arg($, "nix-update");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "mongodb-ce",
       version: "8.3.11",
       __structuredAttrs: true,
@@ -49,28 +49,28 @@ export default nix.lambda((args) => (() => {
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/mongod`),
       sandboxProfile: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "(allow file-read* (literal \"/private/etc/ssl/openssl.cnf\"))\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         sources: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               url: nix.thunk(() => nix.str`https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu2404-${nix.sel(finalAttrs, "version")}.tgz`),
               hash: "sha256-qKpPddwPKmarQhUpuxRSSFIixsmJCbBHqY2QmBw06r4=",
             })))),
           "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: nix.thunk(() => nix.str`https://fastdl.mongodb.org/linux/mongodb-linux-aarch64-ubuntu2404-${nix.sel(finalAttrs, "version")}.tgz`),
               hash: "sha256-UlQL+x3nrUFVJMalEX1DT82E8k8j49tW5xl36f7Sjy4=",
             })))),
           "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               url: nix.thunk(() => nix.str`https://fastdl.mongodb.org/osx/mongodb-macos-arm64-${nix.sel(finalAttrs, "version")}.tgz`),
               hash: "sha256-tYbDlyiA/N6pBpCm0iwizSYLCXLecXynEMC8d8ZLA54=",
             })))),
         })),
         updateScript: nix.thunk(() => (() => {
           const script = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-updateScript`),
               runtimeInputs: nix.thunk(() => [common_updater_scripts, curl, gitMinimal, jq, nix_update]),
               text: nix.thunk(() => nix.str`# Pick the newest production (non-RC) release within the current major version from
@@ -92,17 +92,17 @@ done
 `),
             }))));
           return {
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             command: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), script)),
           };
         })()),
         tests: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           "mongodb-ce": nix.thunk(() => nix.attr(nixosTests, "mongodb-ce")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         changelog: nix.thunk(() => nix.str`https://www.mongodb.com/docs/upcoming/release-notes/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/`),
         description: "MongoDB is a general purpose, document-based, distributed database",
         homepage: "https://www.mongodb.com/",

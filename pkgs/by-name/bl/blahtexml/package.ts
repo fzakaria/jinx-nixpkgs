@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const texliveBasic = nix.arg($, "texliveBasic");
   const xercesc = nix.arg($, "xercesc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "blahtexml",
       version: "1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gvanas",
           repo: "blahtexml",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       buildFlags: nix.thunk(() => nix.concat(["doc"], (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? ["blahtex-mac", "blahtexml-mac"] : ["blahtex-linux", "blahtexml-linux"]))),
       installPhase: "install -D -t \"$out/bin\" blahtex blahtexml\ninstall -m644 -D -t \"$doc/share/doc/blahtexml\" Documentation/manual.pdf\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gva.noekeon.org/blahtexml/",
         description: "TeX to MathML converter",
         longDescription: "Blahtex is a program written in C++, which converts an equation given in\na syntax close to TeX into MathML. It is designed by David Harvey and is\naimed at supporting equations in MediaWiki.\n\nBlahtexml is a simple extension of blahtex, written by Gilles Van Assche.\nIn addition to the functionality of blahtex, blahtexml has XML processing\nin mind and is able to process a whole XML document into another XML\ndocument. Instead of converting only one formula at a time, blahtexml can\nconvert all the formulas of the given XML file into MathML.\n",

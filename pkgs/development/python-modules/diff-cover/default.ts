@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "10.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "diff_cover",
           version: version,
           hash: "sha256-Yb+DAl8QUQx272pYIGgM9hubl06Pgd5wxXrJJvpjhyo=",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["diff_cover"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Automatically find diff lines that need test coverage",
         homepage: "https://github.com/Bachmann1234/diff-cover",
         changelog: nix.thunk(() => nix.str`https://github.com/Bachmann1234/diff_cover/releases/tag/v${version}`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

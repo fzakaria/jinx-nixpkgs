@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const types_awscrt = nix.arg($, "types-awscrt");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "botocore-stubs",
       version: "1.43.67",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "botocore_stubs",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-hT50AUofVXBVxP+uX7ONfGXHwFIOGqs2bKxB1UKPQZ0=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [types_awscrt, typing_extensions]),
       pythonImportsCheck: nix.thunk(() => ["botocore-stubs"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Type annotations and code completion for botocore",
         homepage: "https://pypi.org/project/botocore-stubs/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

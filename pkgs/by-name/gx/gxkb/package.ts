@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gxkb";
       const version = "0.9.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zen-tools",
           repo: "gxkb",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -37,14 +37,14 @@ export default nix.lambda((args) => (() => {
       const configureFlags = nix.thunk(() => nix.app(nix.sel(lib, "optional"), appindicatorSupport, "--enable-appindicator=yes"));
       const outputs = nix.thunk(() => ["out", "man"]);
       const p1 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://github.com/omgbebebe/gxkb/commit/727ec8b595a91dbb540e6087750f43b85d0dfbc0.patch",
           hash: "sha256-x7x3MHHrOnPivvlzOFqgFAA5BDB2LOXMlalPYbwM/1Q=",
         }))));
       const postPatch = nix.thunk(() => nix.str`${git}/bin/git apply ${p1}
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "X11 keyboard indicator and switcher",
         homepage: "https://zen-tools.github.io/gxkb/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "gxkb",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

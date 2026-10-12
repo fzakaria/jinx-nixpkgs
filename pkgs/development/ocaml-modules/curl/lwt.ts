@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const lwt = nix.arg($, "lwt");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "curl_lwt",
       version: nix.thunk(() => nix.attr(curl, "version")),
       src: nix.thunk(() => nix.attr(curl, "src")),
       propagatedBuildInputs: nix.thunk(() => [curl, lwt]),
       doCheck: true,
-      meta: nix.thunk(() => nix.update(nix.sel(curl, "meta"), { __proto__: pos$1, description: "Bindings to libcurl (lwt variant)" })),
+      meta: nix.thunk(() => nix.update(nix.sel(curl, "meta"), { [nix.POS]: pos$1, description: "Bindings to libcurl (lwt variant)" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=lwt.ts.map

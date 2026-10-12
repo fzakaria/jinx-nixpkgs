@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildDhallGitHubPackage = nix.arg($, "buildDhallGitHubPackage");
   return nix.app(buildDhallGitHubPackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "Prelude",
       owner: "dhall-lang",
       repo: "dhall-lang",

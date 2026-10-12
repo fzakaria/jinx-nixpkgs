@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const yarnConfigHook = nix.arg($, "yarnConfigHook");
   const yarnBuildHook = nix.arg($, "yarnBuildHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lasuite-drive-mail",
       src: src,
       version: version,
@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
     '${nix.builtins.placeholder("out")}'
 `),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/src/mail/yarn.lock`),
           hash: "sha256-UPIb9QJk+zC8wYeBeDnmlGLhHDhsEOoT+qquFM1XyqU=",
         })))),
       nativeBuildInputs: nix.thunk(() => [nodejs, yarnConfigHook, yarnBuildHook]),
       dontInstall: true,
       __structuredAttrs: true,
-      meta: nix.thunk(() => nix.update(meta, { __proto__: pos$2, description: "HTML mail templates for LaSuite Drive" })),
+      meta: nix.thunk(() => nix.update(meta, { [nix.POS]: pos$2, description: "HTML mail templates for LaSuite Drive" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=mail.ts.map

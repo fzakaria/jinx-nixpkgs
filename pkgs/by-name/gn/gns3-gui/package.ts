@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "gns3-gui",
       version: "2.2.56.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GNS3",
           repo: "gns3-gui",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/GNS3/gns3-gui/commit/e6e2a1cafbc3ce4be9cca3428e60400f25806cde.patch",
             hash: "sha256-T15OCqm+Te9ZOCg/kFf/fd2DY75LfaLHskAAgGYMloI=",
           })))),
@@ -76,11 +76,11 @@ export QT_QPA_PLATFORM=offscreen
       passthru: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(gns3_server, "passthru"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: gns3_gui,
               command: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), gns3_gui)} --version`),
             })))),
@@ -89,7 +89,7 @@ export QT_QPA_PLATFORM=offscreen
       };
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Graphical Network Simulator 3 GUI",
         longDescription: "Graphical user interface for controlling the GNS3 network simulator. This\nrequires access to a local or remote GNS3 server (it's recommended to\ndownload the official GNS3 VM).\n",
         homepage: "https://www.gns3.com/",

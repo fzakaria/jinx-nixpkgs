@@ -34,34 +34,34 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "firewalld"));
   const paths = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "firewalld-paths",
       paths: nix.thunk(() => nix.sel(cfg, "packages")),
       pathsToLink: nix.thunk(() => ["/lib/firewalld"]),
     }))));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     imports: nix.thunk(() => [
       nix.path(here, "./service.nix"),
       nix.path(here, "./settings.nix"),
       nix.path(here, "./zone.nix"),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         firewalld: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "FirewallD")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "firewalld", nix.thunk(() => ({})))),
           packages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: [],
               description: "Packages providing firewalld zones and other files.\nFiles found in `/lib/firewalld` will be included.\n",
             })))),
           extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["--debug"]),
@@ -71,48 +71,48 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         environment: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             "sysconfig/firewalld": nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               text: nix.thunk(() => nix.str`FIREWALLD_ARGS=${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.sel(cfg, "extraArgs")))}
 `),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           dbus: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
           firewalld: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
           logrotate: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             settings: nix.thunk(() => ({
-              __proto__: pos$13,
-              "/var/log/firewalld": nix.thunk(() => ({ __proto__: pos$12, copytruncate: true, minsize: "1M" })),
+              [nix.POS]: pos$13,
+              "/var/log/firewalld": nix.thunk(() => ({ [nix.POS]: pos$12, copytruncate: true, minsize: "1M" })),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             firewalld: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               aliases: nix.thunk(() => ["dbus-org.fedoraproject.FirewallD1.service"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 ExecReload: nix.thunk(() => [
                   "",
                   nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils")), "kill")} -HUP $MAINPID`),
@@ -122,7 +122,7 @@ export default nix.lambda((args) => (() => {
                 nix.thunk(() => nix.sel(config, "environment", "etc", "firewalld/firewalld.conf", "source")),
               ], nix.concat(nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (_) => nix.sel(config, "environment", "etc", nix.key(nix.str`firewalld/zones/${name}.xml`), "source"), nix.thunk(() => nix.sel(config, "services", "firewalld", "zones"))), nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (_) => nix.sel(config, "environment", "etc", nix.key(nix.str`firewalld/services/${name}.xml`), "source"), nix.thunk(() => nix.sel(config, "services", "firewalld", "services")))))),
               environment: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 NIX_FIREWALLD_CONFIG_PATH: nix.thunk(() => nix.str`${paths}/lib/firewalld`),
               })),
             })),
@@ -130,7 +130,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "prince213"))];

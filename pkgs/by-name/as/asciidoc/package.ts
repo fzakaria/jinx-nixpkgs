@@ -79,61 +79,61 @@ export default nix.lambda((args) => (() => {
   const _enableOdfBackend = nix.thunk(() => (nix.asBool(enableExtraPlugins) || nix.asBool(enableOdfBackend)));
   const texlive = nix.thunk(() => nix.app(nix.sel(texliveMinimal, "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "dvipng"))]));
   const ditaaFilterSrc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://asciidoc-ditaa-filter.googlecode.com/files/ditaa-filter-1.1.zip",
       sha256: "0p7hm2a1xywx982ia3vg4c0lam5sz0xknsc10i2a5vswy026naf6",
     }))));
   const mscgenFilterSrc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: "https://asciidoc-mscgen-filter.googlecode.com/files/mscgen-filter-1.2.zip",
       sha256: "1nfwmj375gpv5dn9i770pjv59aihzy2kja0fflsk96xwnlqsqq61",
     }))));
   const diagFilterSrc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: "https://asciidoc-diag-filter.googlecode.com/files/diag_filter.zip",
       sha256: "1qlqrdbqkdqqgfdhjsgdws1al0sacsyq6jmwxdfy7r8k7bv7n7mm",
     }))));
   const qrcodeFilterSrc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       url: "https://asciidoc-qrencode-filter.googlecode.com/files/qrcode-filter-1.0.zip",
       sha256: "0h4bql1nb4y4fmg2yvlpfjhvy22ln8jsaxdr10f8bfcg5lr0zkxs",
     }))));
   const matplotlibFilterSrc = nix.thunk(() => (() => {
     const commit = "75f0d009629f93f33fab04b83faca20cc35dd358";
     return nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         name: nix.thunk(() => nix.str`mplw-${commit}.tar.gz`),
         url: nix.thunk(() => nix.str`https://api.github.com/repos/lvv/mplw/tarball/${commit}`),
         sha256: "0yfhkm2dr8gnp0fcg25x89hwiymkri2m5cyqzmzragzwj0hbmcf1",
       })));
   })());
   const aafigureFilterSrc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       url: "https://asciidoc-aafigure-filter.googlecode.com/files/aafigure-filter-1.1.zip",
       sha256: "1hq2s30dvmv5dqvj0xm1qwdwafhgm9w1iyr0lr0c40cyk8h00j8j",
     }))));
   const deckjsBackendSrc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       url: "https://github.com/downloads/houqp/asciidoc-deckjs/deckjs-1.6.2.zip",
       sha256: "1siy1j8naj5irrrrv5bfgl4d8nal6j9pyahy4f50wmrr9wv59s46",
     }))));
   const odtBackendSrc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       url: "https://github.com/downloads/dagwieers/asciidoc-odf/odt-backend-0.1.zip",
       sha256: "1zaa97h9sx6ncxcdkl1x3ggydi7f8kjgvrnpjnkjiizi45k350kw",
     }))));
   const odpBackendSrc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       url: "https://github.com/downloads/dagwieers/asciidoc-odf/odp-backend-0.1.zip",
       sha256: "08ya4bskygzqkfqwjllpg31qc5k08xp2k78z9b2480g8y57bfy10",
     }))));
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: nix.thunk(() => nix.add(nix.add("asciidoc", nix.app(nix.sel(lib, "optionalString"), enableStandardFeatures, "-full")), nix.app(nix.sel(lib, "optionalString"), enableExtraPlugins, "-with-plugins"))),
       version: "10.2.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           owner: "asciidoc-py",
           repo: "asciidoc-py",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -248,7 +248,7 @@ substituteInPlace Makefile.in \\
       checkPhase: "runHook preCheck\n\nmake test\n\nrunHook postCheck\n",
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         description: "Text-based document generation system",
         longDescription: "AsciiDoc is a text document format for writing notes, documentation,\narticles, books, ebooks, slideshows, web pages, man pages and blogs.\nAsciiDoc files can be translated to many formats including HTML, PDF,\nEPUB, man page.\n\nAsciiDoc is highly configurable: both the AsciiDoc source file syntax and\nthe backend output markups (which can be almost any type of SGML/XML\nmarkup) can be customized and extended by the user.\n",
         sourceProvenance: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(lib, "sourceTypes", "fromSource"))], nix.app(nix.sel(lib, "optional"), _enableDitaaFilter, nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryBytecode"))))),

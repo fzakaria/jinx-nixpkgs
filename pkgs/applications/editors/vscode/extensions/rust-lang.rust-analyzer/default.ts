@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
   const version = nix.thunk(() => nix.attr(vsix, "version"));
   const releaseTag = "2026-02-16";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "rust-lang",
       repo: "rust-analyzer",
       tag: releaseTag,
       hash: "sha256-1TZROjtryMzOJHgHhAUQUoAMnnWal231G7gM1pfNlK4=",
     }))));
   const vsix = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: pname,
       releaseTag: releaseTag,
       name: nix.thunk(() => nix.str`${pname}-${version}.vsix`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "jq '\n  .version = $ENV.version |\n  .releaseTag = $ENV.releaseTag |\n  .enableProposedApi = false |\n  walk(del(.[\"$generated-start\"]?) | del(.[\"$generated-end\"]?))\n' package.json | sponge package.json\n\nnpm exec --package=@vscode/vsce -- vsce package --out $out\n",
     }))));
   return nix.app(nix.sel(vscode_utils, "buildVscodeExtension"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: version,
       vsix: vsix,
       pname: pname,
@@ -67,7 +67,7 @@ grep -Fq ${rust_analyzer}/bin/rust-analyzer package.json || {
 }
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Alternative rust language server to the RLS",
         homepage: "https://github.com/rust-lang/rust-analyzer",
         license: nix.thunk(() => [

@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const readline = nix.arg($, "readline");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "atari800",
       version: "5.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "atari800",
           repo: "atari800",
           rev: nix.thunk(() => nix.str`ATARI800_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "withFeatureAs"), true, "video", "sdl")),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://atari800.github.io/",
         description: "Atari 8-bit emulator",
         longDescription: "Atari800 is the emulator of Atari 8-bit computer systems and 5200 game\nconsole for Unix, Linux, Amiga, MS-DOS, Atari TT/Falcon, MS-Windows, MS\nWinCE, Sega Dreamcast, Android and other systems supported by the SDL\nlibrary.\n",

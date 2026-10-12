@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const qtlocation = nix.arg($, "qtlocation");
   const plasma_nm = nix.arg($, "plasma-nm");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "plasma-setup",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),
       extraBuildInputs: nix.thunk(() => [qtlocation, plasma_nm]),

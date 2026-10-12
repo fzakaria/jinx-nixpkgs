@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pname = "msg-parser";
   const version = "1.2.0";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vikramarsid",
           repo: "msg_parser",
           rev: "4100b553b24895b489ebd414c771933fc1e558d3",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [olefile]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python module to read, parse and converting Microsoft Outlook MSG E-Mail files",
         mainProgram: "msg_parser",
         homepage: "https://github.com/vikramarsid/msg_parser",

@@ -18,16 +18,16 @@ export default nix.lambda((args) => (() => {
   const clr = nix.arg($, "clr");
   const rocm_smi = nix.arg($, "rocm-smi");
   const resnet18 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: "https://huggingface.co/onnxmodelzoo/resnet18_Opset18_timm/resolve/main/resnet18_Opset18_timm.onnx",
       hash: "sha256-u2Io20n72qoA9atRsFIWb0zHF1WdJYgHQdMWfJhJGHA=",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
       })),
     }))));
   return nix.app(makeImpureTest, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "migraphx-driver",
       testedPackage: "rocmPackages.migraphx",
       sandboxPaths: nix.thunk(() => ["/sys", "/dev/dri", "/dev/kfd"]),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
 migraphx-driver verify -O --rms-tol 0.03 --atol 1.0 --rtol 0.01 ${resnet18}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "rocm"))]),
       })),
     })));

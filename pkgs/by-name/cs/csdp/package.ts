@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const gfortran = nix.arg($, "gfortran");
   const lapack = nix.arg($, "lapack");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "csdp",
       version: "6.1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.coin-or.org/download/source/Csdp/Csdp-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "1f9ql6cjy2gwiyc51ylfan24v1ca9sjajxkbhszlds1lqmma8n05",
         })))),
@@ -31,7 +31,7 @@ substituteInPlace lib/Makefile \\
 `),
       preInstall: "rm -f INSTALL\nmkdir -p $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://projects.coin-or.org/Csdp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cpl10")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "roconnor"))]),

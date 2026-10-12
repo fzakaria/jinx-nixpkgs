@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const gh_markdown_preview = nix.arg($, "gh-markdown-preview");
   const testers = nix.arg($, "testers");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "gh-markdown-preview",
       version: "1.11.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "yusukebe",
           repo: "gh-markdown-preview",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,14 +36,14 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: gh_markdown_preview })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: gh_markdown_preview })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "gh extension to preview Markdown looking like on GitHub",
         homepage: "https://github.com/yusukebe/gh-markdown-preview",
         changelog: nix.thunk(() => nix.str`https://github.com/yusukebe/gh-markdown-preview/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "liblscp",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.linuxsampler.org/packages/liblscp-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-21SjPA5emMRKEQIukhg7r3uXfnByEpNkGhCepNu09sc=",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.linuxsampler.org",
         description: "LinuxSampler Control Protocol (LSCP) wrapper library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

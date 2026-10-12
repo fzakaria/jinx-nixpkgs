@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const yarnInstallHook = nix.arg($, "yarnInstallHook");
   const yarnBuildHook = nix.arg($, "yarnBuildHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ember-language-server",
       version: "2.30.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ember-tooling",
           repo: "ember-language-server",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-/6j71pBmZor7C1u9BkptwwQonh6ZWoLmMDCMOGCpMik=",
         })))),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: "sha256-vWCG+FDf6XTNrgqOQGMnE6xNZ5A8PU5DA+FcTLLurIg=",
         })))),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       yarnBuildScript: "compile",
       postInstall: "ln -s $out/bin/@ember-tooling/ember-language-server $out/bin/ember-language-server\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Language Server Protocol implementation for Ember.js projects",
         homepage: "https://github.com/ember-tooling/ember-language-server",
         changelog: nix.thunk(() => nix.str`https://github.com/ember-tooling/ember-language-server/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

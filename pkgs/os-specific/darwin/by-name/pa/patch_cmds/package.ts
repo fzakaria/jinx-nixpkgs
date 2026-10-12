@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const mkAppleDerivation = nix.arg($, "mkAppleDerivation");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(mkAppleDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       releaseName: "patch_cmds",
       outputs: nix.thunk(() => ["out", "man"]),
       patches: nix.thunk(() => [nix.path(here, "./patches/0001-Fall-back-to-scandir.patch")]),
@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [apple_sdk_26, libutil]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "BSD patch commands for Darwin",
         license: nix.thunk(() => [
           nix.thunk(() => nix.sel(lib, "licenses", "apple-psl10")),

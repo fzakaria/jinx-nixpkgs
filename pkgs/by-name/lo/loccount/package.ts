@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const python3 = nix.arg($, "python3");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "loccount",
       version: "2.16",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "esr",
           repo: "loccount",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       ldflags: nix.thunk(() => ["-s", "-w"]),
       preBuild: "patchShebangs --build tablegen.py\n\ngo generate\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Re-implementation of sloccount in Go",
         mainProgram: "loccount",
         longDescription: "loccount is a re-implementation of David A. Wheeler's sloccount tool\nin Go.  It is faster and handles more different languages. Because\nit's one source file in Go, it is easier to maintain and extend than the\nmulti-file, multi-language implementation of the original.\n\nThe algorithms are largely unchanged and can be expected to produce\nidentical numbers for languages supported by both tools.  Python is\nan exception; loccount corrects buggy counting of single-quote multiline\nliterals in sloccount 2.26.\n",

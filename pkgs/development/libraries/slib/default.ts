@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "slib";
       const version = "3c2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://groups.csail.mit.edu/mac/ftpdir/scm/${pname}-${version}.zip`),
           hash: "sha256-eQbY4gHcGOl5RaYaxiznkuyTm2fQvMIwc+ABGsJWGgQ=",
         }))));
@@ -38,7 +38,7 @@ sed -i \\
       const doCheck = false;
       const setupHook = nix.path(here, "./setup-hook.sh");
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SLIB Portable Scheme Library",
         mainProgram: "slib",
         longDescription: "SLIB is a portable library for the programming language Scheme.  It\nprovides a platform independent framework for using packages of Scheme\nprocedures and syntax.  As distributed, SLIB contains useful packages\nfor all Scheme implementations.  Its catalog can be transparently\nextended to accommodate packages specific to a site, implementation,\nuser, or directory.\n\nSLIB supports Bigloo, Chez, ELK 3.0, Gambit 4.0, Guile, JScheme, Kawa,\nLarceny, MacScheme, MIT/GNU Scheme, Pocket Scheme, RScheme, scheme->C,\nScheme48, SCM, SCM Mac, scsh, sisc, Stk, T3.1, umb-scheme, and VSCM.\n",
@@ -48,7 +48,7 @@ sed -i \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

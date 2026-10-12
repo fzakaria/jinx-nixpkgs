@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const taglib_1 = nix.arg($, "taglib_1");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "loudgain",
       version: "0.6.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Moonbase59",
           repo: "loudgain",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [ffmpeg, libebur128, libresample, taglib_1, zlib]),
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"CMAKE_MINIMUM_REQUIRED(VERSION 2.8)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       postInstall: "sed -e \"1aPATH=$out/bin:\\$PATH\" -i \"$out/bin/rgbpm\"\n",
-      meta: nix.thunk(() => nix.update(nix.sel(finalAttrs, "src", "meta"), { __proto__: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "free")) })),
+      meta: nix.thunk(() => nix.update(nix.sel(finalAttrs, "src", "meta"), { [nix.POS]: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "free")) })),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

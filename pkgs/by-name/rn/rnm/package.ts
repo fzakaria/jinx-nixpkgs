@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const jpcre2 = nix.arg($, "jpcre2");
   const pcre2 = nix.arg($, "pcre2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rnm",
       version: "4.0.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "neurobin",
           repo: "rnm",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       buildInputs: nix.thunk(() => [gmp, jpcre2, pcre2]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/neurobin/rnm",
         description: "Bulk rename utility",
         changelog: nix.thunk(() => nix.str`https://github.com/neurobin/rnm/blob/${nix.sel(finalAttrs, "version")}/ChangeLog`),

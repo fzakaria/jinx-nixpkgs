@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: "2.0.9",
       pname: "ulogd",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.netfilter.org/pub/ulogd/ulogd-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-UjplH+Cp8lsM2H1dNfw32Tgufuz89h5I1VBf88+A7aU=",
         })))),
@@ -65,11 +65,11 @@ export default nix.lambda((args) => (() => {
         linuxdoc_tools,
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, ulogd: nix.thunk(() => nix.attr(nixosTests, "ulogd")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, ulogd: nix.thunk(() => nix.attr(nixosTests, "ulogd")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Userspace logging daemon for netfilter/iptables",
         mainProgram: "ulogd",
         longDescription: "Logging daemon that reads event messages coming from the Netfilter\nconnection tracking, the Netfilter packet logging subsystem and from the\nNetfilter accounting subsystem. You have to enable support for connection\ntracking event delivery; ctnetlink and the NFLOG target in your Linux\nkernel 2.6.x or load their respective modules. The deprecated ULOG target\n(which has been superseded by NFLOG) is also supported.\n\nThe received messages can be logged into files or into a MySQL, SQLite3\nor PostgreSQL database. IPFIX and Graphite output are also supported.\n",

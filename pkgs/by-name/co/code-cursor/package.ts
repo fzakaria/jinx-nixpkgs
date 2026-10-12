@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const hostPlatform = nix.thunk(() => nix.attr(stdenv, "hostPlatform"));
   const sourcesJson = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./sources.json")));
   const sources = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (info) => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: nix.thunk(() => nix.attr(info, "url")),
         hash: nix.thunk(() => nix.attr(info, "hash")),
       }))), nix.thunk(() => nix.sel(sourcesJson, "sources"))));
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const shortName = "cursor";
       const libraryName = "cursor";
       const iconName = "cursor";
-      const src = nix.thunk(() => (nix.asBool(nix.sel(hostPlatform, "isLinux")) ? nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: source }))) : nix.force(source)));
+      const src = nix.thunk(() => (nix.asBool(nix.sel(hostPlatform, "isLinux")) ? nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: source }))) : nix.force(source)));
       const extraNativeBuildInputs = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(hostPlatform, "isDarwin")), nix.thunk(() => [undmg])));
       const sourceRoot = nix.thunk(() => (nix.asBool(nix.sel(hostPlatform, "isLinux")) ? nix.str`${pname}-${version}-extracted/usr/share/cursor` : "Cursor.app"));
       const tests = nix.thunk(() => ({}));
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const dontFixup = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin"));
       const patchVSCodePath = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "AI-powered code editor built on vscode",
         homepage: "https://cursor.com",
         changelog: "https://cursor.com/changelog",
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "cursor",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         commandLineArgs: commandLineArgs_1,
         useVSCodeRipgrep: useVSCodeRipgrep_1,
         version,
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
         meta,
       };
     })())), "overrideAttrs"), (oldAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       autoPatchelfIgnoreMissingDeps: nix.thunk(() => nix.concat(nix.selOr(oldAttrs, () => [], "autoPatchelfIgnoreMissingDeps"), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isMusl"))))), nix.thunk(() => ["libc.musl-*.so.*"])))),
       preFixup: nix.thunk(() => nix.add(nix.selOr(oldAttrs, () => "", "preFixup"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(hostPlatform, "isLinux")), "sed -i '/^Keywords=/a MimeType=application/x-cursor-workspace;' \\\n  $out/share/applications/cursor.desktop\n"))),
       postInstall: nix.thunk(() => nix.add(nix.selOr(oldAttrs, () => "", "postInstall"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(hostPlatform, "isLinux")), "install -Dm644 ../mime/packages/cursor-workspace.xml -t $out/share/mime/packages\nrm -f $out/lib/cursor/resources/appimageupdatetool.AppImage\n"))),

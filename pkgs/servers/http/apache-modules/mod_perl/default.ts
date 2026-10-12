@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mod_perl";
       const version = "2.0.13";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://apache/perl/${pname}-${version}.tar.gz`),
           sha256: "sha256-reO+McRHuESIaf7N/KziWNbVh7jGx3PF8ic19w2C1to=",
         }))));
@@ -39,13 +39,13 @@ mv $out${perl}/* $out
 rm $out/nix -rf
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ __proto__: pos$2, url: "https://archive.apache.org/dist/perl/" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, url: "https://archive.apache.org/dist/perl/" })))),
         tests: nix.thunk(() => nix.sel(nixosTests, "mod_perl")),
       }));
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Integration of perl with the Apache2 web server",
         homepage: "https://perl.apache.org/download/index.html",
         changelog: "https://github.com/apache/mod_perl/blob/trunk/Changes",
@@ -55,7 +55,7 @@ rm $out/nix -rf
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
   const monorepoSrc$ = monorepoSrc;
   const metadata = nix.thunk(() => (() => {
     const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common-let.nix")), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         lib: nix.thunk(() => nix.attr(args_1, "lib")),
         gitRelease: nix.thunk(() => nix.attr(args_1, "gitRelease")),
         officialRelease: nix.thunk(() => nix.attr(args_1, "officialRelease")),
@@ -94,7 +94,7 @@ export default nix.lambda((args) => (() => {
     const release_version = nix.thunk(() => nix.attr(releaseInfo, "release_version"));
     const version_1 = nix.thunk(() => nix.attr(releaseInfo, "version"));
     const from_1 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common-let.nix")), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         lib: lib,
         fetchFromGitHub: fetchFromGitHub,
         release_version: release_version,
@@ -108,7 +108,7 @@ export default nix.lambda((args) => (() => {
     const src = monorepoSrc_1;
     const versionDir = nix.thunk(() => nix.add(nix.path(here, "../."), nix.str`/${(nix.asBool(!nix.eq(gitRelease, null)) ? "git" : nix.app(nix.sel(lib, "versions", "major"), release_version))}`));
     const getVersionFile = (p) => nix.builtins.path(nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         name: nix.thunk(() => nix.builtins.baseNameOf(p)),
         path: nix.thunk(() => (() => {
           const patches = nix.thunk(() => nix.app(nix.sel(args_1, "patchesFn"), nix.thunk(() => nix.builtins.import(nix.path(here, "./patches.nix")))));
@@ -123,12 +123,12 @@ export default nix.lambda((args) => (() => {
             const matchAfter = nix.thunk(() => nix.app(check, nix.thunk(() => nix.sel(lib, "versionAtLeast")), after));
             return (nix.asBool(matchBefore) && nix.asBool(matchAfter));
           })(), formals$2);
-          const patchDir = nix.thunk(() => (nix.asBool(nix.eq(constraints, null)) ? nix.sel(metadata, "versionDir") : nix.sel(nix.app(nix.sel(lib, "findFirst"), matchConstraint, nix.thunk(() => ({ __proto__: pos$3, path: nix.thunk(() => nix.sel(metadata, "versionDir")) })), constraints), "path")));
+          const patchDir = nix.thunk(() => (nix.asBool(nix.eq(constraints, null)) ? nix.sel(metadata, "versionDir") : nix.sel(nix.app(nix.sel(lib, "findFirst"), matchConstraint, nix.thunk(() => ({ [nix.POS]: pos$3, path: nix.thunk(() => nix.sel(metadata, "versionDir")) })), constraints), "path")));
           return nix.add(patchDir, nix.add("/", p));
         })()),
       })));
     return {
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       releaseInfo,
       release_version,
       version: version_1,
@@ -141,12 +141,12 @@ export default nix.lambda((args) => (() => {
   })());
   const buildLlvmPackages = nix.thunk(() => nix.sel(otherSplices, "selfBuildHost"));
   return nix.app(makeScopeWithSplicing$, nix.thunk(() => ({
-      __proto__: pos$48,
+      [nix.POS]: pos$48,
       otherSplices: otherSplices,
-      extra: (_spliced0) => nix.update(args_1, nix.update(metadata, { __proto__: pos$6, buildLlvmPackages: buildLlvmPackages })),
+      extra: (_spliced0) => nix.update(args_1, nix.update(metadata, { [nix.POS]: pos$6, buildLlvmPackages: buildLlvmPackages })),
       f: (self) => (() => {
         const targetLlvmPackages = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(otherSplices, "selfTargetTarget"), {})) ? nix.force(self) : nix.sel(otherSplices, "selfTargetTarget")));
-        const newScope = (scope) => nix.app(nix.sel(self, "newScope"), nix.thunk(() => nix.update({ __proto__: pos$7, stdenv: nix.thunk(() => nix.attr(args_1, "stdenv")) }, scope)));
+        const newScope = (scope) => nix.app(nix.sel(self, "newScope"), nix.thunk(() => nix.update({ [nix.POS]: pos$7, stdenv: nix.thunk(() => nix.attr(args_1, "stdenv")) }, scope)));
         const callPackage = nix.thunk(() => nix.app(newScope, nix.thunk(() => ({}))));
         const clangVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(metadata, "release_version"))));
         const mkExtraBuildCommands0 = (cc) => nix.add("rsrc=\"$out/resource-root\"\nmkdir \"$rsrc\"\necho \"-resource-dir=$rsrc\" >> $out/nix-support/cc-cflags\n", (nix.asBool(nix.sel(stdenv, "targetPlatform", "isFreeBSD")) ? nix.str`echo "-idirafter ${nix.app(nix.sel(lib, "getLib"), cc)}/lib/clang/${clangVersion}/include" >> $out/nix-support/cc-cflags
@@ -160,12 +160,12 @@ ln -s "${nix.sel(targetLlvmPackages, "compiler-rt", "out")}/share" "$rsrc/share"
         const bintoolsNoLibc$ = nix.thunk(() => (nix.asBool(nix.eq(bootBintoolsNoLibc, null)) ? nix.sel(self, "bintoolsNoLibc") : nix.force(bootBintoolsNoLibc)));
         const bintools$ = nix.thunk(() => (nix.asBool(nix.eq(bootBintools, null)) ? nix.sel(self, "bintools") : nix.force(bootBintools)));
         return nix.update({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           release_version: nix.thunk(() => nix.attr(metadata, "release_version")),
           libllvm: nix.thunk(() => nix.app(callPackage, nix.path(here, "./llvm"), nix.thunk(() => ({})))),
           llvm: nix.thunk(() => nix.sel(self, "libllvm")),
           tblgen: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tblgen.nix"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               patches: nix.thunk(() => nix.builtins.filter((p) => !nix.asBool(nix.app(nix.sel(lib, "hasInfix"), "-polly", p)), nix.thunk(() => nix.sel(self, "libllvm", "patches")))),
               clangPatches: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(metadata, "getVersionFile"), "clang/gnu-install-dirs.patch")),
@@ -174,12 +174,12 @@ ln -s "${nix.sel(targetLlvmPackages, "compiler-rt", "out")}/share" "$rsrc/share"
           libclang: nix.thunk(() => nix.app(callPackage, nix.path(here, "./clang"), nix.thunk(() => ({})))),
           "clang-unwrapped": nix.thunk(() => nix.sel(self, "libclang")),
           "llvm-manpages": nix.thunk(() => nix.app(nix.sel(lib, "lowPrio"), nix.thunk(() => nix.app(nix.sel(self, "libllvm", "override"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 enableManpages: true,
                 python3: nix.thunk(() => nix.sel(pkgs, "python3")),
               })))))),
           "clang-manpages": nix.thunk(() => nix.app(nix.sel(lib, "lowPrio"), nix.thunk(() => nix.app(nix.sel(self, "libclang", "override"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 enableManpages: true,
                 python3: nix.thunk(() => nix.sel(pkgs, "python3")),
               })))))),
@@ -190,45 +190,45 @@ ln -s "${nix.sel(targetLlvmPackages, "compiler-rt", "out")}/share" "$rsrc/share"
               const libcxx = null;
               const extraPackages = nix.thunk(() => [nix.thunk(() => nix.sel(targetLlvmPackages, "compiler-rt"))]);
               const extraBuildCommands = nix.thunk(() => nix.app(mkExtraBuildCommands, cc));
-              return { __proto__: pos$11, cc, libcxx, extraPackages, extraBuildCommands };
+              return { [nix.POS]: pos$11, cc, libcxx, extraPackages, extraBuildCommands };
             })()))),
           libcxxClang: nix.thunk(() => nix.app(wrapCCWith, nix.thunk(() => (() => {
               const cc = nix.thunk(() => nix.sel(self, "clang-unwrapped"));
               const libcxx = nix.thunk(() => nix.sel(targetLlvmPackages, "libcxx"));
               const extraPackages = nix.thunk(() => [nix.thunk(() => nix.sel(targetLlvmPackages, "compiler-rt"))]);
               const extraBuildCommands = nix.thunk(() => nix.app(mkExtraBuildCommands, cc));
-              return { __proto__: pos$12, cc, libcxx, extraPackages, extraBuildCommands };
+              return { [nix.POS]: pos$12, cc, libcxx, extraPackages, extraBuildCommands };
             })()))),
           systemLibcxxClang: nix.thunk(() => nix.app(wrapCCWith, nix.thunk(() => (() => {
               const cc = nix.thunk(() => nix.sel(self, "clang-unwrapped"));
               const libcxx = nix.thunk(() => nix.sel(darwin, "libcxx"));
               const extraPackages = nix.thunk(() => [nix.thunk(() => nix.sel(targetLlvmPackages, "compiler-rt"))]);
               const extraBuildCommands = nix.thunk(() => nix.app(mkExtraBuildCommands, cc));
-              return { __proto__: pos$13, cc, libcxx, extraPackages, extraBuildCommands };
+              return { [nix.POS]: pos$13, cc, libcxx, extraPackages, extraBuildCommands };
             })()))),
           lld: nix.thunk(() => nix.app(callPackage, nix.path(here, "./lld"), nix.thunk(() => ({})))),
-          lldbPlugins: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "makeScopeWithSplicing'"), nix.thunk(() => ({ __proto__: pos$14, splicePackages: splicePackages, newScope: newScope })), nix.thunk(() => ({
-                __proto__: pos$16,
+          lldbPlugins: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "makeScopeWithSplicing'"), nix.thunk(() => ({ [nix.POS]: pos$14, splicePackages: splicePackages, newScope: newScope })), nix.thunk(() => ({
+                [nix.POS]: pos$16,
                 otherSplices: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (selfSplice) => nix.selOr(selfSplice, () => ({}), "lldbPlugins"), otherSplices)),
                 f: (selfLldbPlugins) => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   llef: nix.thunk(() => nix.app(nix.sel(selfLldbPlugins, "callPackage"), nix.path(here, "./lldb-plugins/llef.nix"), nix.thunk(() => ({})))),
                 }),
               })))))),
           lldb: nix.thunk(() => nix.app(callPackage, nix.path(here, "./lldb"), nix.thunk(() => ({})))),
           "lldb-manpages": nix.thunk(() => nix.app(nix.sel(lib, "lowPrio"), nix.thunk(() => nix.app(nix.sel(self, "lldb", "override"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 enableManpages: true,
                 python3: nix.thunk(() => nix.sel(pkgs, "python3")),
               })))))),
           "bintools-unwrapped": nix.thunk(() => nix.app(callPackage, nix.path(here, "./bintools.nix"), nix.thunk(() => ({})))),
           bintoolsNoLibc: nix.thunk(() => nix.app(wrapBintoolsWith, nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               bintools: nix.thunk(() => nix.sel(self, "bintools-unwrapped")),
               libc: nix.thunk(() => nix.selOr(targetPackages, () => nix.force(preLibcHeaders), "preLibcHeaders")),
             })))),
           bintools: nix.thunk(() => nix.app(wrapBintoolsWith, nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               bintools: nix.thunk(() => nix.sel(self, "bintools-unwrapped")),
             })))),
           clangUseLLVM: nix.thunk(() => nix.app(wrapCCWith, nix.thunk(() => (() => {
@@ -238,7 +238,7 @@ ln -s "${nix.sel(targetLlvmPackages, "compiler-rt", "out")}/share" "$rsrc/share"
               const extraPackages = nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(targetLlvmPackages, "compiler-rt"))], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(stdenv, "targetPlatform", "isWasm"))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "targetPlatform", "isFreeBSD"))))), nix.thunk(() => [nix.thunk(() => nix.sel(targetLlvmPackages, "libunwind"))]))));
               const extraBuildCommands = nix.thunk(() => nix.app(mkExtraBuildCommands, cc));
               const nixSupport = nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 "cc-cflags": nix.thunk(() => nix.concat([
                   "-rtlib=compiler-rt",
                   "-Wno-unused-command-line-argument",
@@ -247,7 +247,7 @@ ln -s "${nix.sel(targetLlvmPackages, "compiler-rt", "out")}/share" "$rsrc/share"
                 "cc-ldflags": nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(stdenv, "targetPlatform", "isWasm"))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "targetPlatform", "isFreeBSD"))))), nix.thunk(() => [nix.thunk(() => nix.str`-L${nix.sel(targetLlvmPackages, "libunwind")}/lib`)])), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "targetPlatform", "isMinGW")), nix.thunk(() => nix.str`-L${nix.sel(targetLlvmPackages, "compiler-rt")}/lib`)))),
               }));
               return {
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 cc,
                 libcxx,
                 bintools,
@@ -263,7 +263,7 @@ ln -s "${nix.sel(targetLlvmPackages, "compiler-rt", "out")}/share" "$rsrc/share"
               const extraPackages = nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(targetLlvmPackages, "compiler-rt-no-libc"))], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool((nix.asBool(!nix.asBool(nix.sel(stdenv, "targetPlatform", "isWasm"))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "targetPlatform", "isFreeBSD"))))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "targetPlatform", "isDarwin"))))), nix.thunk(() => [nix.thunk(() => nix.sel(targetLlvmPackages, "libunwind"))]))));
               const extraBuildCommands = nix.thunk(() => nix.app(mkExtraBuildCommandsBasicRt, cc));
               const nixSupport = nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 "cc-cflags": nix.thunk(() => nix.concat([
                   "-rtlib=compiler-rt",
                   "-Wno-unused-command-line-argument",
@@ -272,7 +272,7 @@ ln -s "${nix.sel(targetLlvmPackages, "compiler-rt", "out")}/share" "$rsrc/share"
                 "cc-ldflags": nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool((nix.asBool(!nix.asBool(nix.sel(stdenv, "targetPlatform", "isWasm"))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "targetPlatform", "isFreeBSD"))))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "targetPlatform", "isDarwin"))))), nix.thunk(() => [nix.thunk(() => nix.str`-L${nix.sel(targetLlvmPackages, "libunwind")}/lib`)]))),
               }));
               return {
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 cc,
                 libcxx,
                 bintools,
@@ -288,7 +288,7 @@ ln -s "${nix.sel(targetLlvmPackages, "compiler-rt", "out")}/share" "$rsrc/share"
               const extraPackages = nix.thunk(() => [nix.thunk(() => nix.sel(targetLlvmPackages, "compiler-rt-no-libc"))]);
               const extraBuildCommands = nix.thunk(() => nix.app(mkExtraBuildCommandsBasicRt, cc));
               const nixSupport = nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 "cc-cflags": nix.thunk(() => nix.concat([
                   "-rtlib=compiler-rt",
                   nix.thunk(() => nix.str`-B${nix.sel(targetLlvmPackages, "compiler-rt-no-libc")}/lib`),
@@ -296,7 +296,7 @@ ln -s "${nix.sel(targetLlvmPackages, "compiler-rt", "out")}/share" "$rsrc/share"
                 ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "targetPlatform", "isWasm")), "-fno-exceptions"))),
               }));
               return {
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 cc,
                 libcxx,
                 bintools,
@@ -312,14 +312,14 @@ ln -s "${nix.sel(targetLlvmPackages, "compiler-rt", "out")}/share" "$rsrc/share"
               const extraPackages = nix.thunk(() => [nix.thunk(() => nix.sel(targetLlvmPackages, "compiler-rt-no-libc"))]);
               const extraBuildCommands = nix.thunk(() => nix.app(mkExtraBuildCommandsBasicRt, cc));
               const nixSupport = nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 "cc-cflags": nix.thunk(() => nix.concat([
                   "-rtlib=compiler-rt",
                   nix.thunk(() => nix.str`-B${nix.sel(targetLlvmPackages, "compiler-rt-no-libc")}/lib`),
                 ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "targetPlatform", "isWasm")), "-fno-exceptions"))),
               }));
               return {
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 cc,
                 libcxx,
                 bintools,
@@ -335,11 +335,11 @@ ln -s "${nix.sel(targetLlvmPackages, "compiler-rt", "out")}/share" "$rsrc/share"
               const extraPackages = [];
               const extraBuildCommands = nix.thunk(() => nix.app(mkExtraBuildCommands0, cc));
               const nixSupport = nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 "cc-cflags": nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "targetPlatform", "isWasm")), "-fno-exceptions")),
               }));
               return {
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 cc,
                 libcxx,
                 bintools,
@@ -355,11 +355,11 @@ ln -s "${nix.sel(targetLlvmPackages, "compiler-rt", "out")}/share" "$rsrc/share"
               const extraPackages = [];
               const extraBuildCommands = nix.thunk(() => nix.app(mkExtraBuildCommands0, cc));
               const nixSupport = nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 "cc-cflags": nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "targetPlatform", "isWasm")), "-fno-exceptions")),
               }));
               return {
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 cc,
                 libcxx,
                 bintools,
@@ -373,10 +373,10 @@ ln -s "${nix.sel(targetLlvmPackages, "compiler-rt", "out")}/share" "$rsrc/share"
           clangNoLibcxx: nix.thunk(() => nix.sel(self, "clangWithLibcAndBasicRt")),
           "compiler-rt-libc": nix.thunk(() => nix.app(callPackage, nix.path(here, "./compiler-rt"), nix.thunk(() => (() => {
               const stdenv_1 = nix.thunk(() => (nix.asBool(nix.sel(args_1, "stdenv", "hostPlatform", "isDarwin")) ? nix.app(overrideCC, nix.thunk(() => nix.sel(darwin, "bootstrapStdenv")), nix.thunk(() => nix.sel(buildLlvmPackages, "clangWithLibcAndBasicRtAndLibcxx"))) : (nix.asBool(nix.selOr(args_1, () => false, "stdenv", "hostPlatform", "useLLVM")) ? nix.app(overrideCC, nix.thunk(() => nix.sel(args_1, "stdenv")), nix.thunk(() => nix.sel(buildLlvmPackages, "clangWithLibcAndBasicRtAndLibcxx"))) : nix.sel(args_1, "stdenv"))));
-              return { __proto__: pos$32, stdenv: stdenv_1 };
+              return { [nix.POS]: pos$32, stdenv: stdenv_1 };
             })()))),
           "compiler-rt-no-libc": nix.thunk(() => nix.app(callPackage, nix.path(here, "./compiler-rt"), nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               doFakeLibgcc: nix.thunk(() => nix.selOr(stdenv, () => false, "hostPlatform", "useLLVM")),
               withAtomicsLib: false,
               withAtomicsPthread: false,
@@ -386,17 +386,17 @@ ln -s "${nix.sel(targetLlvmPackages, "compiler-rt", "out")}/share" "$rsrc/share"
           stdenv: nix.thunk(() => nix.app(overrideCC, stdenv, nix.thunk(() => nix.sel(buildLlvmPackages, "clang")))),
           libcxxStdenv: nix.thunk(() => nix.app(overrideCC, stdenv, nix.thunk(() => nix.sel(buildLlvmPackages, "libcxxClang")))),
           libcxx: nix.thunk(() => nix.app(callPackage, nix.path(here, "./libcxx"), nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               stdenv: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(overrideCC, nix.thunk(() => nix.sel(darwin, "bootstrapStdenv")), nix.thunk(() => nix.sel(buildLlvmPackages, "clangWithLibcAndBasicRt"))) : nix.app(overrideCC, stdenv, nix.thunk(() => nix.sel(buildLlvmPackages, "clangWithLibcAndBasicRt"))))),
             })))),
           libunwind: nix.thunk(() => nix.app(callPackage, nix.path(here, "./libunwind"), nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               stdenv: nix.thunk(() => nix.app(overrideCC, stdenv, nix.thunk(() => nix.sel(buildLlvmPackages, "clangWithLibcAndBasicRt")))),
             })))),
           openmp: nix.thunk(() => nix.app(callPackage, nix.path(here, "./openmp"), nix.thunk(() => ({})))),
           mlir: nix.thunk(() => nix.app(callPackage, nix.path(here, "./mlir"), nix.thunk(() => ({})))),
         }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(metadata, "release_version")), "19")), nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             bolt: nix.thunk(() => nix.app(callPackage, nix.path(here, "./bolt"), nix.thunk(() => ({})))),
           }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(metadata, "release_version")), "20")), nix.thunk(() => (() => {
             const flangDriverPatches = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(metadata, "release_version")), "20")), nix.thunk(() => [
@@ -405,14 +405,14 @@ ln -s "${nix.sel(targetLlvmPackages, "compiler-rt", "out")}/share" "$rsrc/share"
                 nix.thunk(() => nix.app(nix.sel(metadata, "getVersionFile"), "flang/warn-on-fbuiltin-and-fno-builtin.patch")),
                 nix.thunk(() => nix.app(nix.sel(metadata, "getVersionFile"), "flang/accept-and-ignore-some-gfortran-optimization-flags.patch")),
               ]))));
-            const flangLibclang = nix.thunk(() => (nix.asBool(nix.eq(flangDriverPatches, [])) ? nix.sel(self, "libclang") : nix.app(nix.sel(self, "libclang", "override"), nix.thunk(() => ({ __proto__: pos$38, extraPatches: flangDriverPatches })))));
-            const flangUnwrapped = nix.thunk(() => nix.app(callPackage, nix.path(here, "./flang"), nix.thunk(() => ({ __proto__: pos$39, libclang: flangLibclang }))));
+            const flangLibclang = nix.thunk(() => (nix.asBool(nix.eq(flangDriverPatches, [])) ? nix.sel(self, "libclang") : nix.app(nix.sel(self, "libclang", "override"), nix.thunk(() => ({ [nix.POS]: pos$38, extraPatches: flangDriverPatches })))));
+            const flangUnwrapped = nix.thunk(() => nix.app(callPackage, nix.path(here, "./flang"), nix.thunk(() => ({ [nix.POS]: pos$39, libclang: flangLibclang }))));
             const flangRt = nix.thunk(() => nix.app(callPackage, nix.path(here, "./flang-rt"), nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 buildFlang: nix.thunk(() => nix.sel(buildLlvmPackages, "flang-unwrapped")),
               }))));
             return {
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               "flang-unwrapped": flangUnwrapped,
               "flang-rt": flangRt,
               flang: nix.thunk(() => (() => {
@@ -431,21 +431,21 @@ else
   echo "-L$rsrc/lib" >> $out/nix-support/cc-ldflags
 fi
 `));
-                    return { __proto__: pos$41, cc, bintools, extraPackages, extraBuildCommands };
+                    return { [nix.POS]: pos$41, cc, bintools, extraPackages, extraBuildCommands };
                   })())));
-                const tests = nix.thunk(() => nix.app(callPackage, nix.path(here, "./flang/tests.nix"), nix.thunk(() => ({ __proto__: pos$42, flang: wrapped }))));
+                const tests = nix.thunk(() => nix.app(callPackage, nix.path(here, "./flang/tests.nix"), nix.thunk(() => ({ [nix.POS]: pos$42, flang: wrapped }))));
                 return nix.update(wrapped, {
-                  __proto__: pos$44,
-                  passthru: nix.thunk(() => nix.update(nix.selOr(wrapped, () => ({}), "passthru"), { __proto__: pos$43, tests: tests })),
+                  [nix.POS]: pos$44,
+                  passthru: nix.thunk(() => nix.update(nix.selOr(wrapped, () => ({}), "passthru"), { [nix.POS]: pos$43, tests: tests })),
                 });
               })()),
               "libc-overlay": nix.thunk(() => nix.app(callPackage, nix.path(here, "./libc"), nix.thunk(() => ({
-                  __proto__: pos$45,
+                  [nix.POS]: pos$45,
                   isFullBuild: false,
                   stdenv: nix.thunk(() => nix.app(overrideCC, stdenv, nix.thunk(() => nix.sel(buildLlvmPackages, "clang")))),
                 })))),
               "libc-full": nix.thunk(() => nix.app(callPackage, nix.path(here, "./libc"), nix.thunk(() => ({
-                  __proto__: pos$46,
+                  [nix.POS]: pos$46,
                   isFullBuild: true,
                   stdenv: nix.thunk(() => nix.app(overrideCC, stdenv, nix.thunk(() => nix.sel(buildLlvmPackages, "clangNoLibcNoRt")))),
                   cmake: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "targetPlatform", "libc"), "llvm")) ? nix.force(cmakeMinimal) : nix.force(cmake))),

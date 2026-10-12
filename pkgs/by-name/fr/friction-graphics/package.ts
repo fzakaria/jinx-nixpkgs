@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const pname = "friction";
       const version = "1.0.0-rc.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "friction2d",
           repo: "friction",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(clangStdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["-DCMAKE_OSX_DEPLOYMENT_TARGET=12.7", "-DMAC_DEPLOY=ON"]))));
       const postPatch = nix.thunk(() => nix.add("grep -rl 'hb' src/skia | xargs sed -Ei 's/([\"<])(hb.*\\.h)/\\1harfbuzz\\/\\2/'\n", nix.app(nix.sel(lib, "optionalString"), enableWayland, "sed -i '/qputenv(\"QT_QPA_PLATFORM\", \"xcb\")/d' src/core/appsupport.cpp\n")));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Vector motion graphics program",
         longDescription: "Friction is a powerful and versatile motion graphics application that allows you to create stunning vector and raster animations for web and video platforms with ease.",
         homepage: "https://friction.graphics/",
@@ -93,7 +93,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "friction",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

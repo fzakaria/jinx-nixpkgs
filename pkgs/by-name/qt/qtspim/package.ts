@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const bison = nix.arg($, "bison");
   const flex = nix.arg($, "flex");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "qtspim",
       version: "9.1.23",
       src: nix.thunk(() => nix.app(fetchsvn, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://svn.code.sf.net/p/spimsimulator/code/",
           rev: "r749",
           sha256: "0iazl7mlcilrdbw8gb98v868a8ldw2lmkn1xs8hnfvr93l6aj0rp",
@@ -45,13 +45,13 @@ substituteInPlace ../Setup/qtspim_debian_deployment/qtspim.desktop \\
       ]),
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(libsForQt5, "qtbase"))]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         QT_PLUGIN_PATH: nix.thunk(() => nix.str`${nix.sel(libsForQt5, "qtbase")}/${nix.sel(libsForQt5, "qtbase", "qtPluginPrefix")}`),
       })),
       qmakeFlags: nix.thunk(() => ["QtSpim.pro", "-spec", "linux-g++", "CONFIG+=release"]),
       installPhase: "runHook preInstall\n\ninstall -D QtSpim $out/bin/qtspim\ninstall -D ../Setup/qtspim_debian_deployment/copyright $out/share/licenses/qtspim/copyright\ninstall -D ../Setup/qtspim_debian_deployment/qtspim.desktop $out/share/applications/qtspim.desktop\ninstall -D ../Setup/NewIcon48x48.png $out/share/icons/hicolor/48x48/apps/qtspim.png\ninstall -D ../Setup/NewIcon256x256.png $out/share/icons/hicolor/256x256/apps/qtspim.png\ncp -r help $out/share/help\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "New user interface for spim, a MIPS simulator",
         mainProgram: "qtspim",
         homepage: "https://spimsimulator.sourceforge.net/",

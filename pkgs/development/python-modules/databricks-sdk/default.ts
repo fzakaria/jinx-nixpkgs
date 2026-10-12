@@ -23,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const pytest_mock = nix.arg($, "pytest-mock");
   const requests_mock = nix.arg($, "requests-mock");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "databricks-sdk",
       version: "0.140.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "databricks",
           repo: "databricks-sdk-py",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
       ]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Databricks SDK for Python",
         homepage: "https://github.com/databricks/databricks-sdk-py",
         changelog: nix.thunk(() => nix.str`https://github.com/databricks/databricks-sdk-py/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

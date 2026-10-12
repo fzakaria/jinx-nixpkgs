@@ -33,34 +33,34 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "websurfx"));
-  const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "lua"), nix.thunk(() => ({ __proto__: pos$1, asBindings: true }))));
+  const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "lua"), nix.thunk(() => ({ [nix.POS]: pos$1, asBindings: true }))));
   const settingsFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "config.lua", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         websurfx: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Websurfx, a metasearch engine")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "websurfx", nix.thunk(() => ({})))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Whether to open the used port in the firewall")),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     binding_ip: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$2,
+                        [nix.POS]: pos$2,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "127.0.0.1",
                         description: "IP address on which the server should be launched",
                       })))),
                     port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => nix.sel(lib, "types", "port")),
                         default: 4567n,
                         description: "Port on which the server should be launched",
@@ -74,13 +74,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         services: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           websurfx: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             settings: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               logging: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
               debug: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
               threads: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 10n)),
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
               tcp_connection_keep_alive: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 30n)),
               pool_idle_connection_timeout: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 30n)),
               rate_limiter: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 number_of_requests: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 20n)),
                 time_limit: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 3n)),
               })),
@@ -103,7 +103,7 @@ export default nix.lambda((args) => (() => {
               animation: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "simple-frosted-glow")),
               cache_expiry_time: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 600n)),
               upstream_search_engines: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 DuckDuckGo: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                 Searx: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
                 Brave: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
@@ -119,21 +119,21 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           firewall: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "port"))]))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             websurfx: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "Websurfx, a metasearch engine",
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))),
                 DynamicUser: true,
                 RuntimeDirectory: "websurfx",
@@ -150,7 +150,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "SchweGELBin"))]),
     })),
   };

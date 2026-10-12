@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const yq = nix.arg($, "yq");
   const enableStubOnly = nix.argOr($, "enableStubOnly", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "getdns",
       version: "1.7.3",
       outputs: nix.thunk(() => ["out", "dev", "lib", "man"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://getdnsapi.net/releases/getdns-${nix.app(nix.sel(lib, "concatStringsSep"), "-", nix.thunk(() => nix.app(nix.sel(lib, "splitVersion"), nix.thunk(() => nix.sel(finalAttrs, "version")))))}/getdns-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "f1404ca250f02e37a118aa00cf0ec2cbe11896e060c6d369c6761baea7d55a2c",
         })))),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace getdns.pc.in \\\n  --replace '$'{exec_prefix}/@CMAKE_INSTALL_LIBDIR@ @CMAKE_INSTALL_FULL_LIBDIR@ \\\n  --replace '$'{prefix}/@CMAKE_INSTALL_INCLUDEDIR@ @CMAKE_INSTALL_FULL_INCLUDEDIR@\n",
       postInstall: "rm -r $out/share/doc",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Modern asynchronous DNS API",
         longDescription: "getdns is an implementation of a modern asynchronous DNS API; the\nspecification was originally edited by Paul Hoffman. It is intended to make all\ntypes of DNS information easily available to application developers and non-DNS\nexperts. DNSSEC offers a unique global infrastructure for establishing and\nenhancing cryptographic trust relations. With the development of this API the\ndevelopers intend to offer application developers a modern and flexible\ninterface that enables end-to-end trust in the DNS architecture, and which will\ninspire application developers to implement innovative security solutions in\ntheir applications.\n",
         homepage: "https://getdnsapi.net",

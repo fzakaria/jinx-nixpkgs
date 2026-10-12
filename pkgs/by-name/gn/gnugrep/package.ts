@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const runtimeShellPackage = nix.arg($, "runtimeShellPackage");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "gnugrep",
       version: "3.12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/grep/grep-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-JkmyfA6Q5jLq3NdXvgbG6aT0jZQd5R58D4P/dkCKB7k=",
         })))),
@@ -42,10 +42,10 @@ export default nix.lambda((args) => (() => {
       preConfigure: "export MKDIR_P=\"mkdir -p\"\n",
       enableParallelBuilding: true,
       postInstall: "rm $out/bin/egrep $out/bin/fgrep\necho \"#! /bin/sh\" > $out/bin/egrep\necho \"exec $out/bin/grep -E \\\"\\$@\\\"\" >> $out/bin/egrep\necho \"#! /bin/sh\" > $out/bin/fgrep\necho \"exec $out/bin/grep -F \\\"\\$@\\\"\" >> $out/bin/fgrep\nchmod +x $out/bin/egrep $out/bin/fgrep\n",
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isMinGW")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isCygwin")))), nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=format-security" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isMinGW")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isCygwin")))), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=format-security" })))),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://www.gnu.org/software/grep/",
         description: "GNU implementation of the Unix grep command",
         longDescription: "The grep command searches one or more input files for lines\ncontaining a match to a specified pattern.  By default, grep\nprints the matching lines.\n",
@@ -58,11 +58,11 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         mainProgram: "grep",
         identifiers: nix.thunk(() => ({
-          __proto__: pos$4,
-          cpeParts: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "gnu", nix.thunk(() => nix.sel(finalAttrs, "version"))), { __proto__: pos$3, product: "grep" })),
+          [nix.POS]: pos$4,
+          cpeParts: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "gnu", nix.thunk(() => nix.sel(finalAttrs, "version"))), { [nix.POS]: pos$3, product: "grep" })),
         })),
       })),
-      passthru: nix.thunk(() => ({ __proto__: pos$6, pcre2: pcre2 })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$6, pcre2: pcre2 })),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

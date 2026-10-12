@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(python3Packages, "buildPythonPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "qmake2cmake",
       version: "1.0.8",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://codereview.qt-project.org/qt/qmake2cmake",
           rev: "2ae9ac3a5a657f58d7eea0824ead217e495d048b",
           hash: "sha256-LLP/sdFNsBYrz9gAh76QymtK71T+ZyknTGJiHGJnanU=",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         writableTmpDirAsHomeHook,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to convert qmake .pro files to CMakeLists.txt",
         homepage: "https://wiki.qt.io/Qmake2cmake",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

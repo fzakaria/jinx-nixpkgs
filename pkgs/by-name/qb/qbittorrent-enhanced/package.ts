@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const qbittorrent = nix.arg($, "qbittorrent");
   const guiSupport = nix.argOr($, "guiSupport", () => true);
-  return nix.app(nix.sel(nix.app(nix.sel(qbittorrent, "override"), nix.thunk(() => ({ __proto__: pos$1, guiSupport: guiSupport }))), "overrideAttrs"), (old) => (() => {
+  return nix.app(nix.sel(nix.app(nix.sel(qbittorrent, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, guiSupport: guiSupport }))), "overrideAttrs"), (old) => (() => {
       const pname = nix.thunk(() => nix.add("qbittorrent-enhanced", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(guiSupport)), "-nox")));
       const version = "5.2.3.10";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "c0re100",
           repo: "qBittorrent-Enhanced-Edition",
           rev: nix.thunk(() => nix.str`release-${version}`),
           hash: "sha256-frAmiYQekEzIgWeSqHVAlTY5u6j7eH8Nx8MaqHjZU9E=",
         }))));
       const meta = nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Unofficial enhanced version of qBittorrent, a BitTorrent client",
         homepage: "https://github.com/c0re100/qBittorrent-Enhanced-Edition",
         changelog: nix.thunk(() => nix.str`https://github.com/c0re100/qBittorrent-Enhanced-Edition/blob/release-${version}/Changelog`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "ByteSudoer"))];
         })()),
       }));
-      return { __proto__: pos$4, pname, version, src, meta };
+      return { [nix.POS]: pos$4, pname, version, src, meta };
     })());
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

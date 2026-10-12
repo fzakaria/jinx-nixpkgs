@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ffizer",
       version: "2.13.12",
       buildFeatures: nix.thunk(() => ["cli"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ffizer",
           repo: "ffizer",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,10 +32,10 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-dVClzX57kRtc5O0DzIGGhmV8ySH0DjffJiIbxHt+bxY=",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libgit2, openssl, zlib]),
-      env: nix.thunk(() => ({ __proto__: pos$2, OPENSSL_NO_VENDOR: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: true })),
       checkFlags: nix.thunk(() => ["--skip=run_test_samples_tests_data_template_2"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Files and folders initializer / generator based on templates",
         homepage: "https://github.com/ffizer/ffizer",
         changelog: nix.thunk(() => nix.str`https://github.com/ffizer/ffizer/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

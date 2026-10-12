@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const disabled = isPyPy;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "secdev",
           repo: "scapy",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -52,7 +52,7 @@ substituteInPlace "scapy/libs/winpcapy.py" \\
 `))));
       const buildInputs = nix.thunk(() => nix.app(nix.sel(lib, "optional"), withVoipSupport, sox));
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         all: nix.thunk(() => [cryptography, ipython, matplotlib, pyx]),
         cli: nix.thunk(() => [ipython]),
       }));
@@ -61,7 +61,7 @@ substituteInPlace "scapy/libs/winpcapy.py" \\
       const checkPhase = "# TODO: be more specific about files\npatchShebangs .\n.config/ci/test.sh\n";
       const pythonImportsCheck = nix.thunk(() => ["scapy"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python-based network packet manipulation program and library",
         mainProgram: "scapy",
         longDescription: "Scapy is a powerful Python-based interactive packet manipulation program\nand library.\n\nIt is able to forge or decode packets of a wide number of protocols, send\nthem on the wire, capture them, store or read them using pcap files,\nmatch requests and replies, and much more. It is designed to allow fast\npacket prototyping by using default values that work.\n\nIt can easily handle most classical tasks like scanning, tracerouting,\nprobing, unit tests, attacks or network discovery (it can replace hping,\n85% of nmap, arpspoof, arp-sk, arping, tcpdump, wireshark, p0f, etc.). It\nalso performs very well at a lot of other specific tasks that most other\ntools can't handle, like sending invalid frames, injecting your own\n802.11 frames, combining techniques (VLAN hopping+ARP cache poisoning,\nVoIP decoding on WEP protected channel, ...), etc.\n\nScapy supports Python 2.7 and Python 3 (3.4 to 3.8). It's intended to be\ncross platform, and runs on many different platforms (Linux, OSX, *BSD,\nand Windows).\n",
@@ -75,7 +75,7 @@ substituteInPlace "scapy/libs/winpcapy.py" \\
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

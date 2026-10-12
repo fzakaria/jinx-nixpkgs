@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fastlane",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["fastlane"]),
       buildInputs: nix.thunk(() => [makeBinaryWrapper]),
       postBuild: "wrapProgram $out/bin/fastlane --set FASTLANE_SKIP_UPDATE_CHECK 1\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "fastlane")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to automate building and releasing iOS and Android apps",
         longDescription: "fastlane is a tool for iOS and Android developers to automate tedious tasks like generating screenshots, dealing with provisioning profiles, and releasing your application.",
         homepage: "https://fastlane.tools/",

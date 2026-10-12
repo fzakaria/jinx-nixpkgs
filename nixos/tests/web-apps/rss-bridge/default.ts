@@ -12,9 +12,9 @@ export default nix.lambda((args) => (() => {
   const system = nix.arg($, "system");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$3,
-    nginx: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./nginx.nix")), nix.thunk(() => ({ __proto__: pos$1, system: system, pkgs: pkgs })))),
-    caddy: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./caddy.nix")), nix.thunk(() => ({ __proto__: pos$2, system: system, pkgs: pkgs })))),
+    [nix.POS]: pos$3,
+    nginx: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./nginx.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, pkgs: pkgs })))),
+    caddy: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./caddy.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs })))),
   };
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

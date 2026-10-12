@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const mkNginxPlugin = nix.arg($, "mkNginxPlugin");
   return nix.app(mkNginxPlugin, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sorted-querystring",
       version: "0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wandenberg",
           repo: "nginx-sorted-querystring-module",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-Rz5ylx1e/gukwphANc06m92xIJnpdtLdETYNzRkEy1w=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Expose querystring parameters sorted in a variable",
         homepage: "https://github.com/wandenberg/nginx-sorted-querystring-module",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

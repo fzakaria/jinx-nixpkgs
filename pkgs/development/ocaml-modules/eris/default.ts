@@ -31,13 +31,13 @@ export default nix.lambda((args) => (() => {
   const qcheck = nix.arg($, "qcheck");
   const qcheck_alcotest = nix.arg($, "qcheck-alcotest");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "eris",
       version: "1.0.0-unstable-2026-09-30",
       minimalOCamlVersion: "4.14",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eris",
           repo: "ocaml-eris",
           rev: "142882564bb587375e690182e48cb438e207173a",
@@ -49,11 +49,11 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [benchmark, bos, decoders_yojson, alcotest, qcheck, qcheck_alcotest]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, tagPrefix: "v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, tagPrefix: "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "OCaml implementation of the Encoding for Robust Immutable Storage (ERIS)",
         homepage: "https://codeberg.org/eris/ocaml-eris",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

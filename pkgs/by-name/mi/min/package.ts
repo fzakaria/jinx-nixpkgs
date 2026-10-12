@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const pcre = nix.arg($, "pcre");
   return nix.app(buildNimPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "min",
       version: "0.45.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "h3rald",
           repo: "min",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openssl, pcre]),
       prePatch: "# remove vendorabilities\nfind . -name '*.a' -delete\nfind minpkg/lib -name '*.nim' \\\n  -exec sed 's|{\\.passL:.*\\.}|discard|g' -i {} \\;\n",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lpcre"]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Functional, concatenative programming language with a minimalist syntax",
         homepage: "https://min-lang.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/h3rald/min/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

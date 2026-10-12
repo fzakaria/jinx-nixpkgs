@@ -39,17 +39,17 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const util_linux = nix.arg($, "util-linux");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "openvas-scanner",
       version: "23.28.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "greenbone",
           repo: "openvas-scanner",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-ggmex/BmAVgdE1JNM3kybEmr/uKqrIl8JdSoBnsg+40=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" })),
       nativeBuildInputs: nix.thunk(() => [cmake, git, doxygen, pandoc, pkg_config]),
       buildInputs: nix.thunk(() => [
         bison,
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
         "-DOPENVAS_FEED_LOCK_PATH=$out/var/lib/openvas/feed-update.lock",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Scanner component for Greenbone Community Edition",
         homepage: "https://github.com/greenbone/openvas-scanner",
         changelog: nix.thunk(() => nix.str`https://github.com/greenbone/openvas-scanner/blob/${nix.sel(finalAttrs, "src", "rev")}/changelog.toml`),

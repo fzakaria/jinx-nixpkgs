@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "2026.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-DmC0eynyFXQ3byGP4hq8AJiUojIeoWxnVPPK1ut83Wo=",
@@ -34,7 +34,7 @@ ln -snvf ${tzdata}/share/zoneinfo pytz/zoneinfo
       const unittestFlagsArray = nix.thunk(() => ["-s", "pytz/tests"]);
       const pythonImportsCheck = nix.thunk(() => ["pytz"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: "https://launchpad.net/pytz/+announcements",
         description: "World timezone definitions, modern and historical",
         homepage: "https://pythonhosted.org/pytz",
@@ -48,7 +48,7 @@ ln -snvf ${tzdata}/share/zoneinfo pytz/zoneinfo
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

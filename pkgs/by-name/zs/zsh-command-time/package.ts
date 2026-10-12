@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "2020-11-15",
       pname: "zsh-command-time",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "popstas",
           repo: "zsh-command-time",
           rev: "803d26eef526bff1494d1a584e46a6e08d25d918",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       dontUnpack: true,
       installPhase: "install -Dm0444 $src/command-time.plugin.zsh --target-directory=$out/share/zsh/plugins/command-time\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Plugin that output time: xx after long commands",
         homepage: "https://github.com/popstas/zsh-command-time",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

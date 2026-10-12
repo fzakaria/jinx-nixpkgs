@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "rust-addr2line";
       const version = "0.26.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gimli-rs",
           repo: "addr2line",
           tag: version,
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       const doInstallCheck = true;
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Cross-platform `addr2line` clone written in Rust, using `gimli`",
         homepage: "https://github.com/gimli-rs/addr2line",
         license: nix.thunk(() => (() => {
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "addr2line",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

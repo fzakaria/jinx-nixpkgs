@@ -25,18 +25,18 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.1";
       const gemdir = nix.path(here, "./.");
       const gemset = nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.builtins.import(nix.path(here, "./gemset.nix"))), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           flatito: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             source: nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               remotes: nix.thunk(() => ["https://rubygems.org"]),
               sha256: "9f5a8f899a14c1a0fe74cb89288f24ddc47bd5d83ac88ac8023d19b056ecb50f",
               type: "gem",
             })),
           })),
         }))));
-      return { __proto__: pos$4, ruby: ruby_1, name, version, gemdir, gemset };
+      return { [nix.POS]: pos$4, ruby: ruby_1, name, version, gemdir, gemset };
     })())));
   return nix.app(buildRubyGem, nix.thunk(() => (() => {
       const ruby_1 = ruby;
@@ -44,16 +44,16 @@ export default nix.lambda((args) => (() => {
       const pname = gemName;
       const version = "0.1.1";
       const source = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         sha256: "sha256-n1qPiZoUwaD+dMuJKI8k3cR71dg6yIrIAj0ZsFbstQ8=",
       }));
       const propagatedBuildInputs = nix.thunk(() => [deps]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, nix.thunk(() => nix.str`${pname}`))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Grep for keys in YAML and JSON files",
         homepage: "https://github.com/ceritium/flatito",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "flatito",
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         ruby: ruby_1,
         gemName,
         pname,

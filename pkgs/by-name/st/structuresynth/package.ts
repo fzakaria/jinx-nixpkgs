@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libGL = nix.arg($, "libGL");
   const libGLU = nix.arg($, "libGLU");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "structuresynth",
       version: "1.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alemuntoni",
           repo: "structuresynth",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "shared-lib.patch",
             url: "https://github.com/alemuntoni/StructureSynth/pull/1/commits/fdb87c55a03c6a0faa4335de5d29f0fb547b6102.patch",
             hash: "sha256-/66x8HGyNhGwoxsbV+QIRFYQNuFSHYXNYkJzAn4jyJI=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "install-project.patch",
             url: "https://github.com/alemuntoni/StructureSynth/pull/1/commits/f96a90f6a4c60e9e0316edd20ea77674a2b764a7.patch",
             hash: "sha256-cSZAL1N2/Gd0x+9UkTUQxqVlb2m2MM8AA1Zzlo6S35w=",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libGL, libGLU, nix.thunk(() => nix.sel(libsForQt5, "qtbase"))]),
       nativeBuildInputs: nix.thunk(() => [cmake, nix.thunk(() => nix.sel(libsForQt5, "wrapQtAppsHook"))]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Generate 3D structures by specifying a design grammar",
         homepage: "https://github.com/alemuntoni/StructureSynth",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "moonpalace";
       const version = "0.12.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MoonshotAI",
           repo: "moonpalace",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
         }))));
       const vendorHash = "sha256-e5G+28cgUJvUpS1CX/Tinn3gDK8fNEcJi8uv9xMR+5o=";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: moonpalace,
               version: nix.thunk(() => nix.str`v${nix.sel(moonpalace, "version")}`),
               command: "HOME=$(mktemp -d) moonpalace --version",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "API debugging tool provided by Moonshot AI",
         homepage: "https://github.com/MoonshotAI/moonpalace",
         changelog: nix.thunk(() => nix.str`https://github.com/MoonshotAI/moonpalace/releases/tag/v${version}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })()),
         mainProgram: "moonpalace",
       }));
-      return { __proto__: pos$6, pname, version, src, vendorHash, passthru, meta };
+      return { [nix.POS]: pos$6, pname, version, src, vendorHash, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

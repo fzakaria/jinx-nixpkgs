@@ -26,15 +26,15 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "programs", "entropy"));
   const mkIf = nix.thunk(() => nix.attr(lib, "mkIf"));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       programs: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         entropy: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enables the Entropy keyboard configurator and sets up necessary\nudev rules for Vial-QMK/RMK compatible devices.\nThis allows configuring programmable keyboards without root privileges.\nEnsure your user is a member of the 'plugdev' group after enabling.\n",
@@ -43,28 +43,28 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         users: nix.thunk(() => ({
-          __proto__: pos$6,
-          groups: nix.thunk(() => ({ __proto__: pos$5, plugdev: nix.thunk(() => ({})) })),
+          [nix.POS]: pos$6,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$5, plugdev: nix.thunk(() => ({})) })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "ergohaven-entropy"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           udev: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "ergohaven-entropy"))]),
           })),
         })),
         i18n: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           inputMethod: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             ibus: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               engines: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "ergohaven-entropy"))]),
             })),
           })),

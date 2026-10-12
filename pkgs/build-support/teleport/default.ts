@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
     const withRdpClient = nix.argOr($_1, "withRdpClient", () => true);
     const extPatches = nix.argOr($_1, "extPatches", () => []);
     const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         owner: "gravitational",
         repo: "teleport",
         tag: nix.thunk(() => nix.str`v${version_1}`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
     const pname = "teleport";
     const version_1 = version;
     const rdpClient = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: "teleport-rdpclient",
         cargoHash: cargoHash,
         version: version_1,
@@ -65,19 +65,19 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => [openssl]),
         nativeBuildInputs: nix.thunk(() => [pkg_config]),
         nativeCheckInputs: nix.thunk(() => nix.sel(finalAttrs, "buildInputs")),
-        env: nix.thunk(() => ({ __proto__: pos$2, OPENSSL_NO_VENDOR: "1" })),
+        env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: "1" })),
         postInstall: nix.thunk(() => nix.str`mkdir -p $out/include
 cp ${nix.sel(finalAttrs, "buildAndTestSubdir")}/librdpclient.h $out/include/
 `),
       })));
     const webassets = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname: "teleport-webassets",
         src: src,
         version: version_1,
-        cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({ __proto__: pos$4, src: src, hash: cargoHash })))),
+        cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({ [nix.POS]: pos$4, src: src, hash: cargoHash })))),
         pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             src: src,
             pname: pname,
             version: version_1,
@@ -103,7 +103,7 @@ cp ${nix.sel(finalAttrs, "buildAndTestSubdir")}/librdpclient.h $out/include/
         installPhase: "mkdir -p $out\ncp -R webassets/. $out\n",
       }))));
     return nix.app(buildGoModule, (finalAttrs) => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname: pname,
         src: src,
         version: version_1,
@@ -134,9 +134,9 @@ $out/bin/tbot version | grep ${version_1} > /dev/null
 $out/bin/tctl version | grep ${version_1} > /dev/null
 $out/bin/teleport version | grep ${version_1} > /dev/null
 `),
-        passthru: nix.thunk(() => ({ __proto__: pos$7, tests: nix.thunk(() => nix.sel(nixosTests, "teleport")) })),
+        passthru: nix.thunk(() => ({ [nix.POS]: pos$7, tests: nix.thunk(() => nix.sel(nixosTests, "teleport")) })),
         meta: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           description: "Certificate authority and access plane for SSH, Kubernetes, web applications, and databases",
           homepage: "https://goteleport.com/",
           license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

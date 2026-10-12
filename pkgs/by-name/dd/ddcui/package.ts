@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ddcui";
       const version = "0.6.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rockowitz",
           repo: "ddcui",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         ddcutil,
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Graphical user interface for ddcutil - control monitor settings",
         mainProgram: "ddcui",
         homepage: "https://www.ddcutil.com/ddcui_main/",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
           return nix.force(nix.lookup(w_1, "linux"));
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, nativeBuildInputs, buildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

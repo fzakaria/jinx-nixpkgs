@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "usbsdmux",
       version: "25.8",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-/hDDEUvpdpUpg3ZVw8NWcDOLOtLu087Ki7FmGrDh9Gg=",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "install -Dm0444 -t $out/lib/udev/rules.d/ contrib/udev/99-usbsdmux.rules\n",
       pythonImportsCheck: nix.thunk(() => ["usbsdmux"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Control software for the LXA USB-SD-Mux",
         homepage: "https://github.com/linux-automation/usbsdmux",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

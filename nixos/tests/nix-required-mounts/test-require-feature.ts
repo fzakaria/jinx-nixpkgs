@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.builtins.findFile(nix.builtins.nixPath, "nixpkgs")), nix.thunk(() => ({}))));
   const feature = nix.arg($, "feature");
-  return nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`${feature}-present`), nix.thunk(() => ({ __proto__: pos$1, requiredSystemFeatures: nix.thunk(() => [feature]) })), nix.thunk(() => nix.str`if [[ ! -e /${feature}-files ]]; then
+  return nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`${feature}-present`), nix.thunk(() => ({ [nix.POS]: pos$1, requiredSystemFeatures: nix.thunk(() => [feature]) })), nix.thunk(() => nix.str`if [[ ! -e /${feature}-files ]]; then
   echo "The host declares ${feature} support, but doesn't expose /${feature}-files" >&2
   exit 1
 fi

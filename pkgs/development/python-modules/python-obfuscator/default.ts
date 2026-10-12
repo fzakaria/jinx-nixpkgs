@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const typer = nix.arg($, "typer");
   const poetry_core = nix.arg($, "poetry-core");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "python-obfuscator",
       version: "0.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "davidteather",
           repo: "python-obfuscator",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["python_obfuscator"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module to obfuscate code",
         homepage: "https://github.com/davidteather/python-obfuscator",
         changelog: nix.thunk(() => nix.str`https://github.com/davidteather/python-obfuscator/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

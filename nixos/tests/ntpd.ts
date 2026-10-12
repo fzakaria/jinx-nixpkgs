@@ -14,20 +14,20 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     name: "ntpd",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "pyrox0"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       machine: nix.thunk(() => ({
-        __proto__: pos$4,
-        services: nix.thunk(() => ({ __proto__: pos$3, ntp: nix.thunk(() => ({ __proto__: pos$2, enable: true })) })),
+        [nix.POS]: pos$4,
+        services: nix.thunk(() => ({ [nix.POS]: pos$3, ntp: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })) })),
       })),
     })),
     testScript: "start_all()\n\nmachine.wait_for_unit('ntpd.service')\nmachine.wait_for_console_text('Listen normally on 10 eth*')\nmachine.succeed('systemctl is-active ntpd.service')\nmachine.succeed('ntpq -p')\n# ntp user must be able to create drift files\nmachine.succeed('su -s /bin/sh -c \"touch /var/lib/ntp/ntp.drift\" ntp')\n",

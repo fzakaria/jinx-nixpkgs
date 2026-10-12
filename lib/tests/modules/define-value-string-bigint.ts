@@ -4,5 +4,5 @@ import * as nix from "../../../.jinx/runtime/index.ts";
 const here = nix.here(import.meta.url);
 const pos$1 = nix.positions(here + "/define-value-string-bigint.nix", [["value", 2, 3]]);
 
-export default nix.thunk(() => ({ __proto__: pos$1, value: "1000" }));
+export default nix.thunk(() => ({ [nix.POS]: pos$1, value: "1000" }));
 //# sourceMappingURL=define-value-string-bigint.ts.map

@@ -23,10 +23,10 @@ export default nix.lambda((args) => (() => {
     "/some/other/dep",
   ], nix.app(nix.sel(lib, "lists", "optional"), __structuredAttrs, "/some/dep with space")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "auto-patchelf-test",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://tonelib.net/download/221222/ToneLib-Jam-amd64.deb",
           sha256: "sha256-c6At2lRPngQPpE7O+VY/Hsfw+QfIb3COIuHfbqqIEuM=",
         })))),
@@ -64,7 +64,7 @@ test "\${paths[${iAsStr}]}" = "$path"
       })()),
       doInstallCheck: true,
       __structuredAttrs: __structuredAttrs,
-      meta: nix.thunk(() => ({ __proto__: pos$2, platforms: nix.thunk(() => ["x86_64-linux"]) })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$2, platforms: nix.thunk(() => ["x86_64-linux"]) })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

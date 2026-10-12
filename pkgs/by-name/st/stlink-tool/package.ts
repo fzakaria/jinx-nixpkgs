@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const libusb1 = nix.arg($, "libusb1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "stlink-tool",
       version: "0-unstable-2020-06-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jeanthom",
           repo: "stlink-tool",
           rev: "8cbdffee012d5a782dd67d1277ed22fa889b9ba9",
@@ -29,10 +29,10 @@ export default nix.lambda((args) => (() => {
         })))),
       buildInputs: nix.thunk(() => [libusb1]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-uninitialized" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-uninitialized" })),
       installPhase: "runHook preInstall\ninstall -D stlink-tool $out/bin/stlink-tool\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "libusb tool for flashing chinese ST-Link dongles",
         homepage: "https://github.com/jeanthom/stlink-tool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

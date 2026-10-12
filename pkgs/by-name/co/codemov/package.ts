@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const ffmpeg = nix.arg($, "ffmpeg");
   const git = nix.arg($, "git");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "codemov",
       version: "0-unstable-2023-08-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sloganking",
           repo: "codemov",
           rev: "8a4d6e50c21010866ca06f845f30c2aa54c09854",
@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
       cargoPatches: nix.thunk(() => [nix.path(here, "./fix-build-with-rust-1.80.patch")]),
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper, pkg_config]),
       buildInputs: nix.thunk(() => [oniguruma]),
-      env: nix.thunk(() => ({ __proto__: pos$2, RUSTONIG_SYSTEM_LIBONIG: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTONIG_SYSTEM_LIBONIG: true })),
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/codemov \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [ffmpeg, git]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Create a video of how a git repository's code changes over time",
         homepage: "https://github.com/sloganking/codemov",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -39,28 +39,28 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const pnpm = pnpm_11;
   const sparkle_service = nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sparkle-service",
       version: "0-unstable-2026-08-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xishang0128",
           repo: "sparkle-service",
           rev: "3cabb61aaf446444d71acbe06a3abdd768d2e80e",
           hash: "sha256-djXVcBDf5whSM6U0qBydFeX+XbHnmKTVGDet6aA3a1g=",
         })))),
       vendorHash: "sha256-GXAP6pCKyy41UyMfz1X9F8GeAbyYZi4suPXDryKINOU=",
-      meta: nix.thunk(() => ({ __proto__: pos$2, mainProgram: "sparkle-service" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$2, mainProgram: "sparkle-service" })),
     }))));
   const resourcesDir = nix.thunk(() => (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")) ? "$out/Applications/Sparkle.app/Contents/Resources" : "$out/share/sparkle/resources"));
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "sparkle",
       version: "1.26.9",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "xishang0128",
           repo: "sparkle",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         })))),
       npmDeps: null,
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [pnpm, makeWrapper, copyDesktopItems]),
       npmConfigHook: pnpmConfigHook,
-      env: nix.thunk(() => ({ __proto__: pos$6, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$6, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       postPatch: nix.thunk(() => nix.str`substituteInPlace src/main/utils/dirs.ts \\
   --replace-fail "process.resourcesPath" "'${resourcesDir}'"
 `),
@@ -123,7 +123,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             name: "sparkle",
             desktopName: "Sparkle",
             exec: "sparkle %U",
@@ -141,11 +141,11 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$9,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$8, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
+        [nix.POS]: pos$9,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$8, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "Another Mihomo GUI",
         homepage: "https://github.com/xishang0128/sparkle",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

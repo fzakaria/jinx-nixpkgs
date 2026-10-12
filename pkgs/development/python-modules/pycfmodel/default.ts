@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const setuptools_scm = nix.arg($, "setuptools-scm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pycfmodel",
       version: "2.1.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Skyscanner",
           repo: "pycfmodel",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/test_resource_generator.py"]),
       pythonImportsCheck: nix.thunk(() => ["pycfmodel"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Model for Cloud Formation scripts",
         homepage: "https://github.com/Skyscanner/pycfmodel",
         changelog: nix.thunk(() => nix.str`https://github.com/Skyscanner/pycfmodel/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

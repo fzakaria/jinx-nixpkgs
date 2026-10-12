@@ -25,17 +25,17 @@ export default nix.lambda((args) => (() => {
   const pname = "exact-audio-copy";
   const version = "1.8.0";
   const eac_exe = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`http://www.exactaudiocopy.de/eac-${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}.exe`),
       sha256: "205530cfbfdff82343858f38b0e709e586051fb8900ecd513d7992a3c1ef031b",
     }))));
   const cygwin = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: "https://mirrors.kernel.org/sourceware/cygwin/x86_64/release/cygwin/cygwin-3.6.6-1-x86_64.tar.xz",
       hash: "sha256-xcgYjfVB9dF0twGC1ww7r4NCPHT/+aEk1CMmS7ndJuA=",
     }))));
   const patched_eac = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "patched_eac",
       version: version,
       nativeBuildInputs: nix.thunk(() => [imagemagick, p7zip]),
@@ -66,7 +66,7 @@ fi
 exec ${wine}/bin/wine ${patched_eac}/EAC.exe "$@"
 `)));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: pname,
       exec: pname,
       comment: "Audio Grabber for CDs",
@@ -75,12 +75,12 @@ exec ${wine}/bin/wine ${patched_eac}/EAC.exe "$@"
       icon: nix.thunk(() => nix.str`${patched_eac}/eac.ico.128.png`),
     }))));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: version,
       paths: nix.thunk(() => [wrapper, desktopItem]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Precise CD audio grabber for creating perfect quality rips using CD and DVD drives",
         homepage: "https://www.exactaudiocopy.de/",
         changelog: "https://www.exactaudiocopy.de/en/index.php/resources/whats-new/whats-new/",

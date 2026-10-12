@@ -42,13 +42,13 @@ export default nix.lambda((args) => (() => {
   const gdktarget = nix.argOr($, "gdktarget", () => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "quartz" : "x11"));
   const cupsSupport = nix.argOr($, "cupsSupport", () => nix.selOr(config, () => nix.sel(stdenv, "hostPlatform", "isLinux"), "gtk2", "cups"));
   const xineramaSupport = nix.argOr($, "xineramaSupport", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
-  const gtkCleanImmodulesCache = nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hooks/clean-immodules-cache.sh"), nix.thunk(() => ({ __proto__: pos$1, gtk_module_path: "gtk-2.0", gtk_binary_version: "2.10.0" }))));
+  const gtkCleanImmodulesCache = nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hooks/clean-immodules-cache.sh"), nix.thunk(() => ({ [nix.POS]: pos$1, gtk_module_path: "gtk-2.0", gtk_binary_version: "2.10.0" }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "gtk+",
       version: "2.24.33",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gtk+/2.24/gtk+-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-rCrHV/WULTGKMRpUsMgLXvKV8pnCpzxjL2v7H/Scxto=",
         })))),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./patches/2.0-immodules.cache.patch"),
         nix.path(here, "./patches/gtk2-theme-paths.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "CVE-2024-6655.patch",
             url: "https://gitlab.gnome.org/GNOME/gtk/-/commit/3bbf0b6176d42836d23c36a6ac410e807ec0a7a7.patch",
             hash: "sha256-mstOPk9NNpUwScrdEbvGhmAv8jlds3SBdj53T0q33vM=",
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`ac_cv_path_GDK_PIXBUF_CSOURCE=${nix.sel(buildPackages, "gdk-pixbuf", "dev")}/bin/gdk-pixbuf-csource`),
         ]))))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=implicit-int", "-Wno-error=incompatible-pointer-types"]))),
         })))),
       enableParallelBuilding: true,
@@ -89,16 +89,16 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postInstall: "moveToOutput share/gtk-2.0/demo \"$devdoc\"\n# The updater is needed for nixos env and it's tiny.\nmoveToOutput bin/gtk-update-icon-cache \"$out\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         gtkExeEnvPostBuild: "rm $out/lib/gtk-2.0/2.10.0/immodules.cache\n$out/bin/gtk-query-immodules-2.0 $out/lib/gtk-2.0/2.10.0/immodules/*.so > $out/lib/gtk-2.0/2.10.0/immodules.cache\n",
         gdktarget: gdktarget,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://www.gtk.org/",
         description: "Multi-platform toolkit for creating graphical user interfaces",
         longDescription: "GTK is a highly usable, feature rich toolkit for creating graphical user\ninterfaces which boasts cross platform compatibility and an easy to use\nAPI.  GTK it is written in C, but has bindings to many other popular\nprogramming languages such as C++, Python and C# among others.  GTK is\nlicensed under the GNU LGPL 2.1 allowing development of both free and\nproprietary software with GTK without any license fees or royalties.\n",

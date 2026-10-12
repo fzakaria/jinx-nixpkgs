@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "shadowsocks"));
   const opts = nix.thunk(() => nix.update({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     server: nix.thunk(() => nix.sel(cfg, "localAddress")),
     server_port: nix.thunk(() => nix.sel(cfg, "port")),
     method: nix.thunk(() => nix.sel(cfg, "encryptionMethod")),
@@ -48,32 +48,32 @@ export default nix.lambda((args) => (() => {
     user: "nobody",
     fast_open: nix.thunk(() => nix.sel(cfg, "fastOpen")),
   }, nix.update(nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "plugin"), null)), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       plugin: nix.thunk(() => nix.sel(cfg, "plugin")),
       plugin_opts: nix.thunk(() => nix.sel(cfg, "pluginOpts")),
-    }))), nix.update(nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "password"), null)), nix.thunk(() => ({ __proto__: pos$3, password: nix.thunk(() => nix.sel(cfg, "password")) }))), nix.sel(cfg, "extraConfig")))));
+    }))), nix.update(nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "password"), null)), nix.thunk(() => ({ [nix.POS]: pos$3, password: nix.thunk(() => nix.sel(cfg, "password")) }))), nix.sel(cfg, "extraConfig")))));
   const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "shadowsocks.json", nix.thunk(() => nix.app(nix.sel(nix.builtins, "toJSON"), opts))));
   const executablesMap = nix.thunk(() => nix.attrsDyn({}, [
-    [nix.str`${nix.app(nix.lookup(w, "getName"), nix.thunk(() => nix.sel(pkgs, "shadowsocks-libev")))}`, nix.thunk(() => ({ __proto__: pos$4, server: "ss-server" }))],
-    [nix.str`${nix.app(nix.lookup(w, "getName"), nix.thunk(() => nix.sel(pkgs, "shadowsocks-rust")))}`, nix.thunk(() => ({ __proto__: pos$5, server: "ssserver" }))],
+    [nix.str`${nix.app(nix.lookup(w, "getName"), nix.thunk(() => nix.sel(pkgs, "shadowsocks-libev")))}`, nix.thunk(() => ({ [nix.POS]: pos$4, server: "ss-server" }))],
+    [nix.str`${nix.app(nix.lookup(w, "getName"), nix.thunk(() => nix.sel(pkgs, "shadowsocks-rust")))}`, nix.thunk(() => ({ [nix.POS]: pos$5, server: "ssserver" }))],
   ]));
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     options: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       services: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         shadowsocks: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether to run shadowsocks-libev shadowsocks server.\n",
             })))),
-          package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "Shadowsocks", nix.thunk(() => ({ __proto__: pos$7, default: "shadowsocks-libev" })))),
+          package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "Shadowsocks", nix.thunk(() => ({ [nix.POS]: pos$7, default: "shadowsocks-libev" })))),
           localAddress: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "oneOf"), nix.thunk(() => [
@@ -85,70 +85,70 @@ export default nix.lambda((args) => (() => {
               description: "Local addresses to which the server binds.\nNote: shadowsocks-rust accepts only string parameter.\n",
             })))),
           port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               default: 8388n,
               description: "Port which the server uses.\n",
             })))),
           password: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: null,
               description: "Password for connecting clients.\n",
             })))),
           passwordFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               default: null,
               description: "Password file with a password for connecting clients.\n",
             })))),
           mode: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["tcp_only", "tcp_and_udp", "udp_only"]))),
               default: "tcp_and_udp",
               description: "Relay protocols.\n",
             })))),
           fastOpen: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "use TCP fast-open\n",
             })))),
           encryptionMethod: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "chacha20-ietf-poly1305",
               description: "Encryption method. See <https://github.com/shadowsocks/shadowsocks-org/wiki/AEAD-Ciphers>.\n",
             })))),
           plugin: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: null,
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "\"${pkgs.shadowsocks-v2ray-plugin}/bin/v2ray-plugin\"")),
               description: "SIP003 plugin for shadowsocks\n",
             })))),
           pluginOpts: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "",
               example: "server;host=example.com",
               description: "Options to pass to the plugin if one was specified\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "attrs")),
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$17, nameserver: "8.8.8.8" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$17, nameserver: "8.8.8.8" })),
               description: "Additional configuration for shadowsocks that is not covered by the\nprovided options. The provided attrset will be serialized to JSON and\nhas to contain valid shadowsocks options. Unfortunately most\nadditional options are undocumented but it's easy to find out what is\navailable by looking into the source code of\n<https://github.com/shadowsocks/shadowsocks-libev/blob/master/src/jconf.c>\n",
             })))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             assertion: nix.thunk(() => (() => {
               const noPasswd = nix.thunk(() => nix.eq(nix.sel(cfg, "password"), null));
               const noPasswdFile = nix.thunk(() => nix.eq(nix.sel(cfg, "passwordFile"), null));
@@ -157,21 +157,21 @@ export default nix.lambda((args) => (() => {
             message: "Option `password` or `passwordFile` must be set and cannot be set simultaneously",
           })),
           nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             assertion: nix.thunk(() => !nix.asBool((nix.asBool(nix.eq(nix.app(nix.lookup(w, "getName"), nix.thunk(() => nix.sel(cfg, "package"))), "shadowsocks-rust")) && nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "strings", "isString"), nix.thunk(() => nix.sel(cfg, "localAddress")))))))),
             message: "Option `localAddress` must be a string when using shadowsocks-rust.",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           services: nix.thunk(() => nix.attrsDyn({}, [
             [nix.app(nix.lookup(w, "getName"), nix.thunk(() => nix.sel(cfg, "package"))), nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               description: nix.thunk(() => nix.str`${nix.app(nix.lookup(w, "getName"), nix.thunk(() => nix.sel(cfg, "package")))} Daemon`),
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               path: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(cfg, "package"))], nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "plugin"), null)), nix.thunk(() => nix.sel(cfg, "plugin"))), nix.app(nix.lookup(w, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "passwordFile"), null)), nix.thunk(() => nix.sel(pkgs, "jq")))))),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$24, PrivateTmp: true })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$24, PrivateTmp: true })),
               script: nix.thunk(() => nix.str`${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "passwordFile"), null)), nix.thunk(() => nix.str`cat ${configFile} | jq --arg password "$(cat "${nix.sel(cfg, "passwordFile")}")" '. + { password: $password }' > /tmp/shadowsocks.json
 `))}
 exec ${nix.sel(nix.sel(executablesMap, nix.key(nix.app(nix.lookup(w, "getName"), nix.thunk(() => nix.sel(cfg, "package"))))), "server")} -c ${(nix.asBool(!nix.eq(nix.sel(cfg, "passwordFile"), null)) ? "/tmp/shadowsocks.json" : nix.force(configFile))}

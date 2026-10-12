@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.81";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "extra_streamlit_components",
           version: version,
           hash: "sha256-65vre6z+iz0jjxiIohx4rGz6VpNBvkhLygjD6gsV8g0=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["extra_streamlit_components"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Additional components for streamlit",
         homepage: "https://pypi.org/project/extra-streamlit-components/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

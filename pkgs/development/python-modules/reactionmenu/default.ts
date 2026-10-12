@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const pname = "reactionmenu";
   const version = "3.1.7";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Defxult",
           repo: "reactionmenu",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [discordpy]),
       pythonImportsCheck: nix.thunk(() => ["reactionmenu"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to create a discord.py 2.0+ paginator",
         longDescription: "A Python library to create a discord.py 2.0+ paginator (reaction menu/buttons menu).\nSupports pagination with buttons, reactions, and category selection using selects.\n",
         homepage: "https://github.com/Defxult/reactionmenu",

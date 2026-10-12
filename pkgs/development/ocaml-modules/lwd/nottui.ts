@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const lwd = nix.arg($, "lwd");
   const notty_community = nix.arg($, "notty-community");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "nottui",
       version: nix.thunk(() => nix.attr(lwd, "version")),
       src: nix.thunk(() => nix.attr(lwd, "src")),
       propagatedBuildInputs: nix.thunk(() => [lwd, notty_community]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "UI toolkit for the terminal built on top of Notty and Lwd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "alizter"))]),

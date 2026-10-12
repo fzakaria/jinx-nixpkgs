@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const bashNonInteractive = nix.arg($, "bashNonInteractive");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "systemtap",
       version: "5.5",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "git://sourceware.org/git/systemtap.git",
           rev: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-olN98hjIYZmQvI7Fn1v5ZwRl7yaCAPRGr2g33oMq7VQ=",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [boost, elfutils, python3, bashNonInteractive]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://sourceware.org/systemtap/",
         description: "Provides a scripting language for instrumentation on a live kernel plus user-space",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

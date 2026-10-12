@@ -35,78 +35,78 @@ export default nix.lambda((args) => (() => {
     return (pset) => nix.selOr(pset, () => nix.builtins.throw(nix.thunk(() => nix.str`bionic-prebuilt: unsupported platform ${pname}`)), nix.key(nix.force(pname)));
   })());
   const prebuilt_crt = nix.thunk(() => nix.app(choosePlatform, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       aarch64: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/+archive/98dce673ad97a9640c5d90bbb1c718e75c21e071/lib/gcc/aarch64-linux-android/4.9.x.tar.gz",
           hash: "sha256-LLD2OJi78sNN5NulOsJZl7Ei4F1EUYItGG6eUsKWULc=",
           stripRoot: false,
         })))),
       x86_64: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9/+archive/7e8507d2a2d4df3bced561b894576de70f065be4/lib/gcc/x86_64-linux-android/4.9.x.tar.gz",
           hash: "sha256-y7CFLF76pTlj+oYev9taBnL2nlT3+Tx8c6wmicWmKEw=",
           stripRoot: false,
         })))),
     }))));
   const prebuilt_libs = nix.thunk(() => nix.app(choosePlatform, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       aarch64: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           url: "https://android.googlesource.com/platform/prebuilts/ndk/+archive/f2c77d8ba8a7f5c2d91771e31164f29be0b8ff98/platform/platforms/android-30/arch-arm64/usr/lib.tar.gz",
           hash: "sha256-TZBV7+D1QvKOCEi+VNGT5SStkgj0xRbyWoLH65zSrjw=",
           stripRoot: false,
         })))),
       x86_64: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           url: "https://android.googlesource.com/platform/prebuilts/ndk/+archive/f2c77d8ba8a7f5c2d91771e31164f29be0b8ff98/platform/platforms/android-30/arch-x86_64/usr/lib64.tar.gz",
           hash: "sha256-n2EuOKy3RGKmEYofNlm+vDDBuiQRuAJEJT6wq6NEJQs=",
           stripRoot: false,
         })))),
     }))));
   const prebuilt_ndk_crt = nix.thunk(() => nix.app(choosePlatform, nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       aarch64: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           url: "https://android.googlesource.com/toolchain/prebuilts/ndk/r23/+archive/6c5fa4c0d3999b9ee932f6acbd430eb2f31f3151/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/30.tar.gz",
           hash: "sha256-KHw+cCwAwlm+5Nwp1o8WONqdi4BBDhFaVVr+7GxQ5uE=",
           stripRoot: false,
         })))),
       x86_64: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           url: "https://android.googlesource.com/toolchain/prebuilts/ndk/r23/+archive/6c5fa4c0d3999b9ee932f6acbd430eb2f31f3151/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/x86_64-linux-android/30.tar.gz",
           hash: "sha256-XEd7L3cBzn+1pKfji40V92G/uZhHSMMuZcRZaiKkLnk=",
           stripRoot: false,
         })))),
     }))));
   const ndk_support_headers = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       url: "https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/0e7f808fa26cce046f444c9616d9167dafbfb272/clang-r416183b/include/c++/v1/support.tar.gz",
       hash: "sha256-NBv7Pk1CEaz8ns9moleEERr3x/rFmVmG33LgFSeO6fY=",
       stripRoot: false,
     }))));
   const kernelHeaders = nix.thunk(() => nix.app(nix.sel(pkgs, "makeLinuxHeaders"), nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       version: "android-common-11-5.4",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           url: "https://android.googlesource.com/kernel/common/+archive/48ffcbf0b9e7f0280bfb8c32c68da0aaf0fdfef6.tar.gz",
           hash: "sha256-cylYnJqVet1TURj+wahXhPk0gi7o2NSax22XzCqt7Pg=",
           stripRoot: false,
         })))),
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       pname: "bionic-prebuilt",
       version: "ndk-release-r23",
       name: nix.thunk(() => nix.str`${nix.sel(stdenv, "hostPlatform", "parsed", "cpu", "name")}-${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}`),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           url: "https://android.googlesource.com/platform/bionic/+archive/00e8ce1142d8823b0d2fc8a98b40119b0f1f02cd.tar.gz",
           hash: "sha256-oaGscyXu85za6o42WbPyDIJTj8KUn93flpspwMmt5YM=",
           stripRoot: false,
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$14, NIX_DONT_SET_RPATH: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$14, NIX_DONT_SET_RPATH: true })),
       dontConfigure: true,
       dontBuild: true,
       patches: nix.thunk(() => [nix.path(here, "./ndk-version.patch")]),
@@ -150,9 +150,9 @@ for i in libc.a libm.a libdl.a; do
 done
 `))), "mkdir -p $dev/include\ncp -v $out/include/*.h $dev/include/\n")),
       outputs: nix.thunk(() => ["out", "dev"]),
-      passthru: nix.thunk(() => ({ __proto__: pos$15, linuxHeaders: kernelHeaders })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$15, linuxHeaders: kernelHeaders })),
       meta: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         description: "Android libc implementation",
         homepage: "https://android.googlesource.com/platform/bionic/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

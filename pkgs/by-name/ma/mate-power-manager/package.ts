@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mate-power-manager",
       version: "1.28.1",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://pub.mate-desktop.org/releases/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/mate-power-manager-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "jr3LdLYH6Ggza6moFGze+Pl7zlNcKwyzv2UMWPce7iE=",
         })))),
@@ -60,16 +60,16 @@ export default nix.lambda((args) => (() => {
       postPatch: "# Fixes polkit popup after `nixos-rebuild switch`.\nsubstituteInPlace src/gpm-brightness.c \\\n  --replace-fail 'SBINDIR \"/mate-power-backlight-helper' '\"/run/current-system/sw/bin/mate-power-backlight-helper'\n",
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://git.mate-desktop.org/mate-power-manager",
             "odd-unstable": true,
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "MATE Power Manager",
         homepage: "https://mate-desktop.org",
         license: nix.thunk(() => (() => {

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const domain = "bodymiscale";
       const version = "2026.9.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: owner,
           repo: domain,
           rev: version,
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [cachetools]);
       const ignoreVersionRequirement = nix.thunk(() => ["cachetools"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Home Assistant custom component providing body metrics for Xiaomi Mi Scale 1 and 2",
         homepage: "https://github.com/dckiller51/bodymiscale",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         owner,
         domain,
         version,

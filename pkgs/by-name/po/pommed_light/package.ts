@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const eject = nix.arg($, "eject");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pommed-light",
       version: "1.51lw",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bytbox",
           repo: "pommed-light",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fno-common.patch",
             url: "https://github.com/bytbox/pommed-light/commit/5848b49b45a9c3ab047ebd17deb2162daab1e0b8.patch",
             sha256: "15rsq2i4rqp4ssab20486a1wgxi2cp87b7nxyk9h23gdwld713vf",
@@ -49,7 +49,7 @@ substituteInPlace pommed/cd_eject.c --replace /usr/bin/eject ${eject}/bin/eject
       buildInputs: nix.thunk(() => [pciutils, libconfuse, alsa_lib, audiofile, zlib, eject]),
       installPhase: "install -Dm755 pommed/pommed $out/bin/pommed\ninstall -Dm644 pommed.conf.mactel $out/etc/pommed.conf.mactel\ninstall -Dm644 pommed.conf.pmac $out/etc/pommed.conf.pmac\n\n# Man page\ninstall -Dm644 pommed.1 $out/share/man/man1/pommed.1\n\n# Sounds\ninstall -Dm644 pommed/data/goutte.wav $out/share/pommed/goutte.wav\ninstall -Dm644 pommed/data/click.wav $out/share/pommed/click.wav\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Trimmed version of the pommed hotkey handler for MacBooks",
         mainProgram: "pommed",
         longDescription: "This is a stripped-down version of pommed with client, dbus, and\nambient light sensor support removed, optimized for use with dwm\nand the like.\n",

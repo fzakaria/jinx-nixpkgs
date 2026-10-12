@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const alsa_utils = nix.arg($, "alsa-utils");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "alsa-utils-nhlt",
       version: nix.thunk(() => nix.attr(alsa_utils, "version")),
       src: nix.thunk(() => nix.attr(alsa_utils, "src")),
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\n# Compile flags -g -O2 mirroring configure script.\n$CC -g -O2 -o nhlt-dmic-info nhlt/nhlt-dmic-info.c\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ninstallBin nhlt-dmic-info\ninstallManPage nhlt/nhlt-dmic-info.1\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Tool to extract microphone array information from ACPI NHLT table",
         homepage: "http://www.alsa-project.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -28,28 +28,28 @@ export default nix.lambda((args) => (() => {
   const tcpStreamPort = 10006n;
   const bufferSize = 742n;
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     name: "snapcast",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "hexa"))]),
       };
     })()),
     containers: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       server: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         services: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           snapserver: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             enable: true,
             settings: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               stream: nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 source: nix.thunk(() => [
                   "pipe:///run/snapserver/mpd?name=mpd&mode=create",
                   "pipe:///run/snapserver/bluetooth?name=bluetooth",
@@ -58,22 +58,22 @@ export default nix.lambda((args) => (() => {
                 ]),
                 buffer: bufferSize,
               })),
-              "tcp-streaming": nix.thunk(() => ({ __proto__: pos$3, enabled: true, port: port })),
-              "tcp-control": nix.thunk(() => ({ __proto__: pos$4, enabled: true, port: tcpPort })),
-              http: nix.thunk(() => ({ __proto__: pos$5, enabled: true, port: httpPort })),
+              "tcp-streaming": nix.thunk(() => ({ [nix.POS]: pos$3, enabled: true, port: port })),
+              "tcp-control": nix.thunk(() => ({ [nix.POS]: pos$4, enabled: true, port: tcpPort })),
+              http: nix.thunk(() => ({ [nix.POS]: pos$5, enabled: true, port: httpPort })),
             })),
             openFirewall: true,
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "snapcast"))]),
         })),
       })),
       client: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         environment: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "snapcast"))]),
         })),
       })),

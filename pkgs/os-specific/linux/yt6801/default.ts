@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const kernel = nix.arg($, "kernel");
   const modDestDir = nix.thunk(() => nix.str`$(out)/lib/modules/${nix.sel(kernel, "modDirVersion")}/kernel/drivers/net/ethernet/motorcomm`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "yt6801",
       version: "1.0.30-20250430",
       src: nix.thunk(() => (() => {
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
         const versionName = nix.thunk(() => nix.builtins.elemAt(version_split, 0n));
         const uploadDate = nix.thunk(() => nix.builtins.elemAt(version_split, 1n));
         return nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             stripRoot: false,
             url: nix.thunk(() => nix.str`https://www.motor-comm.com/Public/Uploads/uploadfile/files/${uploadDate}/yt6801-linux-driver-${versionName}.zip`),
             sha256: "sha256-6HeU3bbTaKOCy3X+nMpC9/bBc+0c4Ip5TdG+LGUGTKk=",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`ko_full=${modDestDir}/yt6801.ko.xz`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.motor-comm.com/product/ethernet-control-chip",
         description: "YT6801 Gigabit PCIe Ethernet controller chip",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -15,23 +15,23 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "n2048",
       version: "0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.dettus.net/n2048/n2048_v${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-c4bHWmdQuwyRXIm/sqw3p71pMv6VLAzIuUTaDHIWn6A=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=implicit-function-declaration"]))),
       })),
       buildInputs: nix.thunk(() => [ncurses]),
       makeFlags: nix.thunk(() => ["DESTDIR=$(out)"]),
       preInstall: "mkdir -p \"$out\"/{share/man,bin}\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Console implementation of 2048 game",
         mainProgram: "n2048",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

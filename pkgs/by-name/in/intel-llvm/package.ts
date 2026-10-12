@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const onedpl = nix.arg($, "onedpl");
   const scope = nix.thunk(() => nix.app(nix.sel(lib, "makeScope"), newScope, (self) => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       llvmMajorVersion: "22",
       version: "7.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "intel",
           repo: "llvm",
           tag: nix.thunk(() => nix.str`v${nix.sel(self, "version")}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })))),
       commitDate: "20260915",
       "vc-intrinsics-src": nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "intel",
           repo: "vc-intrinsics",
           rev: "60cea7590bd022d95f5cf336ee765033bd114d69",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         const rocmGpuTargets = nix.arg($_1, "rocmGpuTargets");
         const nativeCpuSupport = nix.arg($_1, "nativeCpuSupport");
         return nix.app(callPackage, nix.path(here, "./unified-runtime.nix"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             "intel-llvm-src": nix.thunk(() => nix.sel(self, "src")),
             levelZeroSupport: levelZeroSupport,
             cudaSupport: cudaSupport,
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
           })));
       })(), formals$2),
       unwrapped: nix.thunk(() => nix.app(callPackage, nix.path(here, "./unwrapped.nix"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           llvmMajorVersion: nix.thunk(() => nix.attr(self, "llvmMajorVersion")),
           src: nix.thunk(() => nix.attr(self, "src")),
           version: nix.thunk(() => nix.attr(self, "version")),
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
           "make-unified-runtime": nix.thunk(() => nix.attr(self, "make-unified-runtime")),
         })))),
       wrapper: nix.thunk(() => nix.app(wrapCCWith, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           cc: nix.thunk(() => nix.sel(self, "unwrapped")),
           extraBuildCommands: nix.thunk(() => nix.add(nix.add(nix.str`rsrc="$out/resource-root"
 mkdir "$rsrc"
@@ -97,14 +97,14 @@ echo "export PATH=${nix.sel(self, "unwrapped", "unified-runtime", "setupVars", "
           extraPackages: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(self, "unwrapped", "dev"))], nix.sel(self, "unwrapped", "propagatedBuildInputs"))),
         })))),
       "clang-tools-wrapper": nix.thunk(() => nix.app(callPackage, nix.path(here, "./clang-tools.nix"), nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           unwrapped: nix.thunk(() => nix.attr(self, "unwrapped")),
           wrapper: nix.thunk(() => nix.attr(self, "wrapper")),
         })))),
       merged: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(self, "unwrapped"));
           return {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           pname: nix.thunk(() => nix.attr(from, "pname")),
           version: nix.thunk(() => nix.attr(from, "version")),
           meta: nix.thunk(() => nix.attr(from, "meta")),
@@ -121,12 +121,12 @@ echo "export PATH=${nix.sel(self, "unwrapped", "unified-runtime", "setupVars", "
             ];
           })()),
           passthru: nix.thunk(() => nix.update(nix.sel(self, "unwrapped", "passthru"), {
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             stdenv: nix.thunk(() => nix.attr(self, "stdenv")),
             unwrapped: nix.thunk(() => nix.attr(self, "unwrapped")),
             "vc-intrinsics-src": nix.thunk(() => nix.attr(self, "vc-intrinsics-src")),
             updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   name: "update-intel-llvm",
                   runtimeInputs: nix.thunk(() => [nix$, nix_update, nix_prefetch_github, curl, jq]),
                   text: nix.thunk(() => nix.builtins.readFile(nix.path(here, "./update.sh"))),
@@ -134,11 +134,11 @@ echo "export PATH=${nix.sel(self, "unwrapped", "unified-runtime", "setupVars", "
             tests: nix.thunk(() => nix.update(nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => (() => {
                 const from_1 = nix.thunk(() => nix.sel(self, "unwrapped", "unified-runtime"));
                 return {
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 stdenv: nix.thunk(() => nix.attr(self, "stdenv")),
                 backends: nix.thunk(() => nix.attr(from_1, "backends")),
               };
-              })())), { __proto__: pos$9, onedpl: onedpl })),
+              })())), { [nix.POS]: pos$9, onedpl: onedpl })),
             overrideScope: (newF) => nix.sel(nix.app(nix.sel(self, "overrideScope"), newF), "merged"),
           })),
         };

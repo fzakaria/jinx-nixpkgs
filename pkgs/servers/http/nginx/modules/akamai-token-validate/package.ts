@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const mkNginxPlugin = nix.arg($, "mkNginxPlugin");
   const openssl = nix.arg($, "openssl");
   return nix.app(mkNginxPlugin, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "akamai-token-validate",
       version: "0-unstable-2026-06-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kaltura",
           repo: "nginx-akamai-token-validate-module",
           rev: "34fd0c94d2c43c642f323491c4f4a226cd83b962",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       buildInputs: nix.thunk(() => [openssl]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Validates Akamai v2 query string tokens",
         homepage: "https://github.com/kaltura/nginx-akamai-token-validate-module",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

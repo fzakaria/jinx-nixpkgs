@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
       const pname = "hasklig";
       const version = "1.1";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/i-tu/Hasklig/releases/download/${version}/Hasklig-${version}.zip`),
           stripRoot: false,
           hash: "sha256-jsPQtjuegMePt4tB1dZ9mq15LSxXBYwtakbq4od/sko=",
         }))));
       const installPhase = "runHook preInstall\n\ninstall -m444 -Dt $out/share/fonts/opentype *.otf\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/i-tu/Hasklig",
         description: "Font with ligatures for Haskell code based off Source Code Pro",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "davidrusu"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

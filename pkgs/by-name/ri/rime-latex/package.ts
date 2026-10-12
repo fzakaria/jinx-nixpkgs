@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rime-latex",
       version: "0-unstable-2025-04-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "shenlebantongying",
           repo: "rime_latex",
           rev: "858f2abc645f0e459e468e98122470ce20b16b30",
@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\nrm -rf README.md .git* LICENSE .script\n\nmkdir -p $out/share\ncp -r . $out/share/rime-data\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Typing LaTeX math symbols in RIME",
         longDescription: "Typing LaTeX math symbols in RIME.\n\nAdd those lines to `default.custom.yaml`:\n\n```yaml\npatch:\n  schema_list:\n    - schema: latex\n```\n\nPress `\\` key then input latex symbol's name: `\\lambda` will automatically become `λ`.\n",
         homepage: "https://github.com/shenlebantongying/rime_latex",

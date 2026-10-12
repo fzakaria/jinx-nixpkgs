@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const pname = "nitrokey-storage-firmware";
   const version = "0.57";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "Nitrokey",
       repo: "nitrokey-storage-firmware",
       rev: nix.thunk(() => nix.str`V${version}`),
       hash: "sha256-u8IK57NVS/IOPIE3Ah/O8WuOIr0EY6AF1bEaeDgIBuk=",
     }))));
   const toolchain = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "avr32-toolchain",
       version: "3.0.0.201009140852",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://ww1.microchip.com/downloads/archive/avr32studio-ide-2.6.0.753-linux.gtk.x86_64.zip",
           hash: "sha256-MwsaGyNqbO0lBy1rcczuvKOaGbO3f0V+j84sUCkRlxc=",
         })))),
@@ -42,7 +42,7 @@ rm -r $out/avr $out/bin/avr-*
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "AVR32 toolchain",
         homepage: "https://web.archive.org/web/20210419192039/https://www.microchip.com/mplab/avr-support/avr-and-sam-downloads-archive",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -50,7 +50,7 @@ runHook postInstall
       })),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: version,
       src: src,
@@ -68,7 +68,7 @@ install -D nitrokey-storage-V${version}-reproducible.hex $out/nitrokey-storage-V
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Firmware for the Nitrokey Storage device",
         homepage: "https://github.com/Nitrokey/nitrokey-storage-firmware",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

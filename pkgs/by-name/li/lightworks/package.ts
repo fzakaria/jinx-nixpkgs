@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       const rev = "56356";
       const pname = "lightworks";
       const src = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://cdn.lwks.com/releases/${version}/Lightworks-${version}-${rev}.deb`),
           sha256: "sha256-MQsXl10I85qHiOosBEpdrLPq3iIiFlzumQv2R2sXNn8=",
         }))) : nix.builtins.throw(nix.thunk(() => nix.str`${pname}-${version} is not supported on ${nix.sel(stdenv, "hostPlatform", "system")}`))));
@@ -104,7 +104,7 @@ cp -r usr/share $out/share
 `);
       const dontPatchELF = true;
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         version,
         rev,
         pname,
@@ -115,13 +115,13 @@ cp -r usr/share $out/share
       };
     })())));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.attr(lightworks, "pname")),
       version: nix.thunk(() => nix.attr(lightworks, "version")),
       targetPkgs: (pkgs) => [lightworks],
       runScript: "lightworks",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Professional Non-Linear Video Editor",
         homepage: "https://www.lwks.com/",
         sourceProvenance: nix.thunk(() => (() => {

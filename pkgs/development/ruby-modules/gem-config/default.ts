@@ -265,24 +265,24 @@ export default nix.lambda((args) => (() => {
   const autoSignDarwinBinariesHook = nix.arg($, "autoSignDarwinBinariesHook");
   const systemd = nix.arg($, "systemd");
   const rainbow_rake = nix.thunk(() => nix.app(buildRubyGem, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "rake",
       gemName: "rake",
       source: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         sha256: "01j8fc9bqjnrsxbppncai05h43315vmz9fwg28qdsgcjw9ck1d7n",
       })),
       type: "gem",
       version: "12.0.0",
     }))));
   return {
-    __proto__: pos$148,
+    [nix.POS]: pos$148,
     ZenTest: (attrs) => ({
-      __proto__: pos$4,
-      meta: nix.thunk(() => ({ __proto__: pos$3, mainProgram: "zentest" })),
+      [nix.POS]: pos$4,
+      meta: nix.thunk(() => ({ [nix.POS]: pos$3, mainProgram: "zentest" })),
     }),
     atk: (attrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       dependencies: nix.thunk(() => nix.concat(nix.sel(attrs, "dependencies"), ["gobject-introspection"])),
       nativeBuildInputs: nix.thunk(() => nix.concat([rake, bundler, pkg_config], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [DarwinTools])))),
       propagatedBuildInputs: nix.thunk(() => [gobject_introspection, wrapGAppsHook3, atk]),
@@ -290,7 +290,7 @@ export default nix.lambda((args) => (() => {
     bundler: (attrs) => (() => {
       const templates = nix.thunk(() => nix.str`${nix.sel(attrs, "ruby", "gemPath")}/gems/${nix.sel(attrs, "gemName")}-${nix.sel(attrs, "version")}/lib/bundler/templates/`);
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         preFixup: nix.thunk(() => nix.str`chmod -x $out/${templates}/Executable`),
         postFixup: nix.thunk(() => nix.str`chmod +x $out/${templates}/Executable
 
@@ -300,200 +300,200 @@ sed -i -e "s/activate_bin_path/bin_path/g" $out/bin/bundle
       };
     })(),
     cairo: (attrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [DarwinTools])))),
       buildInputs: nix.thunk(() => [cairo, expat, glib, libsysprof_capture, pcre2, libpthread_stubs, libxdmcp]),
     }),
     "cairo-gobject": (attrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [DarwinTools])))),
       buildInputs: nix.thunk(() => [cairo, expat, libsysprof_capture, pcre2, libpthread_stubs, libxdmcp]),
     }),
-    charlock_holmes: (attrs) => ({ __proto__: pos$9, buildInputs: nix.thunk(() => [which, icu, zlib]) }),
+    charlock_holmes: (attrs) => ({ [nix.POS]: pos$9, buildInputs: nix.thunk(() => [which, icu, zlib]) }),
     cld3: (attrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [protobuf]),
     }),
     "cocoapods-acknowledgements": (attrs) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       dependencies: nix.thunk(() => nix.concat(nix.sel(attrs, "dependencies"), ["cocoapods"])),
     }),
-    "cocoapods-deploy": (attrs) => ({ __proto__: pos$12, dependencies: nix.thunk(() => ["cocoapods"]) }),
-    "cocoapods-disable-podfile-validations": (attrs) => ({ __proto__: pos$13, dependencies: nix.thunk(() => ["cocoapods"]) }),
+    "cocoapods-deploy": (attrs) => ({ [nix.POS]: pos$12, dependencies: nix.thunk(() => ["cocoapods"]) }),
+    "cocoapods-disable-podfile-validations": (attrs) => ({ [nix.POS]: pos$13, dependencies: nix.thunk(() => ["cocoapods"]) }),
     "cocoapods-generate": (attrs) => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       dependencies: nix.thunk(() => nix.concat(nix.sel(attrs, "dependencies"), ["cocoapods"])),
     }),
-    "cocoapods-git_url_rewriter": (attrs) => ({ __proto__: pos$15, dependencies: nix.thunk(() => ["cocoapods"]) }),
+    "cocoapods-git_url_rewriter": (attrs) => ({ [nix.POS]: pos$15, dependencies: nix.thunk(() => ["cocoapods"]) }),
     "cocoapods-keys": (attrs) => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       dependencies: nix.thunk(() => nix.concat(nix.sel(attrs, "dependencies"), ["cocoapods"])),
     }),
-    "cocoapods-open": (attrs) => ({ __proto__: pos$17, dependencies: nix.thunk(() => ["cocoapods"]) }),
-    "cocoapods-try-release-fix": (attrs) => ({ __proto__: pos$18, dependencies: nix.thunk(() => ["cocoapods"]) }),
-    curb: (attrs) => ({ __proto__: pos$19, buildInputs: nix.thunk(() => [curl]) }),
+    "cocoapods-open": (attrs) => ({ [nix.POS]: pos$17, dependencies: nix.thunk(() => ["cocoapods"]) }),
+    "cocoapods-try-release-fix": (attrs) => ({ [nix.POS]: pos$18, dependencies: nix.thunk(() => ["cocoapods"]) }),
+    curb: (attrs) => ({ [nix.POS]: pos$19, buildInputs: nix.thunk(() => [curl]) }),
     curses: (attrs) => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       dontBuild: false,
       buildInputs: nix.thunk(() => [ncurses]),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(attrs, "version")), "1.4.5")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               url: "https://github.com/ruby/curses/commit/13e00d07c3aaed83d5f138cf268cc33c9f025d0e.patch?full_index=1",
               hash: "sha256-ZJ2egqj3Uwmi4KrF79dtwczpwUqFCp52/xQYUymYDmc=",
             })))),
         ]))),
     }),
     "dep-selector-libgecode": (attrs) => ({
-      __proto__: pos$23,
-      env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), { __proto__: pos$22, USE_SYSTEM_GECODE: true })),
+      [nix.POS]: pos$23,
+      env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), { [nix.POS]: pos$22, USE_SYSTEM_GECODE: true })),
       postInstall: nix.thunk(() => nix.str`installPath=$(cat $out/nix-support/gem-meta/install-path)
 sed -i $installPath/lib/dep-selector-libgecode.rb -e 's@VENDORED_GECODE_DIR =.*@VENDORED_GECODE_DIR = "${gecode_3}"@'
 `),
     }),
-    "digest-sha3": (attrs) => ({ __proto__: pos$24, hardeningDisable: nix.thunk(() => ["format"]) }),
+    "digest-sha3": (attrs) => ({ [nix.POS]: pos$24, hardeningDisable: nix.thunk(() => ["format"]) }),
     rdiscount: (attrs) => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       dontBuild: false,
       buildInputs: nix.thunk(() => [discount]),
       patches: nix.thunk(() => [nix.path(here, "./rdiscount-use-nixpkgs-libmarkdown.patch")]),
     }),
     ethon: (attrs) => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       dontBuild: false,
       postPatch: nix.thunk(() => nix.str`substituteInPlace lib/ethon/curls/settings.rb \\
   --replace "libcurl" "${nix.sel(curl, "out")}/lib/libcurl${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}"
 `),
     }),
     exiv2: (attrs) => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       buildFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`--with-exiv2-lib=${exiv2}/lib`),
         nix.thunk(() => nix.str`--with-exiv2-include=${nix.sel(exiv2, "dev")}/include`),
       ]),
     }),
     "fog-dnsimple": (attrs) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(attrs, "version")), "1.0.1")), nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         postInstall: "cd $(cat $out/nix-support/gem-meta/install-path)\nrm {$out/bin,bin,../../bin}/{setup,console}\n",
       }))),
     "redis-rack": (attrs) => ({
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       dontBuild: false,
       preBuild: "exec 3>&1\noutput=\"$(gem build $gemspec | tee >(cat - >&3))\"\nexec 3>&-\nsed -i 's!\"rake\".freeze!!' $gemspec\n",
     }),
     "ffi-rzmq-core": (attrs) => ({
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       postInstall: nix.thunk(() => nix.str`installPath=$(cat $out/nix-support/gem-meta/install-path)
 sed -i $installPath/lib/ffi-rzmq-core/libzmq.rb -e 's@inside_gem =.*@inside_gem = "${zeromq}/lib"@'
 `),
     }),
     mimemagic: (attrs) => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), {
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         FREEDESKTOP_MIME_TYPES_PATH: nix.thunk(() => nix.str`${shared_mime_info}/share/mime/packages/freedesktop.org.xml`),
       })),
     }),
     mini_magick: (attrs) => ({
-      __proto__: pos$33,
+      [nix.POS]: pos$33,
       postInstall: nix.thunk(() => nix.str`installPath=$(cat $out/nix-support/gem-meta/install-path)
 echo -e "\\nENV['PATH'] += ':${graphicsmagick}/bin'\\n" >> $installPath/lib/mini_magick/configuration.rb
 `),
     }),
     mini_racer: (attrs) => ({
-      __proto__: pos$34,
+      [nix.POS]: pos$34,
       buildFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-v8-dir="${nix.sel(nodejs_slim, "libv8")}"`)]),
       dontBuild: false,
       postPatch: "substituteInPlace ext/mini_racer_extension/extconf.rb \\\n  --replace Libv8.configure_makefile '$CPPFLAGS += \" -x c++\"; Libv8.configure_makefile'\n",
     }),
-    do_sqlite3: (attrs) => ({ __proto__: pos$35, buildInputs: nix.thunk(() => [sqlite]) }),
+    do_sqlite3: (attrs) => ({ [nix.POS]: pos$35, buildInputs: nix.thunk(() => [sqlite]) }),
     eventmachine: (attrs) => ({
-      __proto__: pos$36,
+      [nix.POS]: pos$36,
       dontBuild: false,
       buildInputs: nix.thunk(() => [openssl]),
       postPatch: "substituteInPlace ext/em.cpp \\\n  --replace 'if (bind (' 'if (::bind ('\n",
     }),
     exif: (attrs) => ({
-      __proto__: pos$37,
+      [nix.POS]: pos$37,
       buildFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-exif-dir=${libexif}`)]),
       buildInputs: nix.thunk(() => [libexif]),
     }),
     ffi: (attrs) => ({
-      __proto__: pos$38,
+      [nix.POS]: pos$38,
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libffi]),
     }),
-    fiddle: (attrs) => ({ __proto__: pos$39, buildInputs: nix.thunk(() => [libffi]) }),
+    fiddle: (attrs) => ({ [nix.POS]: pos$39, buildInputs: nix.thunk(() => [libffi]) }),
     gdk_pixbuf2: (attrs) => ({
-      __proto__: pos$40,
+      [nix.POS]: pos$40,
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config, bundler, rake], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [DarwinTools])))),
       propagatedBuildInputs: nix.thunk(() => [gobject_introspection, wrapGAppsHook3, gdk_pixbuf]),
     }),
     gdk3: (attrs) => ({
-      __proto__: pos$41,
+      [nix.POS]: pos$41,
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config, bundler, rake], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [DarwinTools])))),
       propagatedBuildInputs: nix.thunk(() => [gobject_introspection, wrapGAppsHook3, gdk_pixbuf, cairo]),
     }),
     gpgme: (attrs) => ({
-      __proto__: pos$42,
+      [nix.POS]: pos$42,
       buildInputs: nix.thunk(() => [gpgme]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildFlags: nix.thunk(() => ["--use-system-libraries"]),
     }),
     gio2: (attrs) => ({
-      __proto__: pos$43,
+      [nix.POS]: pos$43,
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config, gobject_introspection], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [DarwinTools])))),
       buildInputs: nix.thunk(() => nix.concat([glib, libsysprof_capture, pcre2], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [util_linux, libselinux, libsepol])))),
     }),
     "gitlab-markup": (attrs) => ({
-      __proto__: pos$45,
-      meta: nix.thunk(() => ({ __proto__: pos$44, priority: 1n })),
+      [nix.POS]: pos$45,
+      meta: nix.thunk(() => ({ [nix.POS]: pos$44, priority: 1n })),
     }),
     "gitlab-pg_query": (attrs) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(attrs, "version"), "1.3.1")), nix.thunk(() => ({
-        __proto__: pos$47,
+        [nix.POS]: pos$47,
         dontBuild: false,
         postPatch: nix.thunk(() => nix.str`sed -i "s;'https://codeload.github.com.*';'${nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             url: "https://codeload.github.com/lfittl/libpg_query/tar.gz/10-1.0.3",
             sha256: "0jfij8apzxsdabl70j42xgd5f3ka1gdcrk764nccp66164gpcchk",
           })))}';" ext/pg_query/extconf.rb
 `),
       }))),
     parser: (attrs) => ({
-      __proto__: pos$49,
-      meta: nix.thunk(() => ({ __proto__: pos$48, mainProgram: "ruby-parse" })),
+      [nix.POS]: pos$49,
+      meta: nix.thunk(() => ({ [nix.POS]: pos$48, mainProgram: "ruby-parse" })),
     }),
     pg_query: (attrs) => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(attrs, "version"), "2.0.2")), nix.thunk(() => ({
-        __proto__: pos$51,
+        [nix.POS]: pos$51,
         dontBuild: false,
         postPatch: nix.thunk(() => nix.str`sed -i "s;'https://codeload.github.com.*';'${nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             url: "https://codeload.github.com/lfittl/libpg_query/tar.gz/13-2.0.2",
             sha256: "0ms2s6hmy8qyzv4g1hj4i2p5fws1v8lrj73b2knwbp2ipd45yj7y",
           })))}';" ext/pg_query/extconf.rb
 `),
       }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(attrs, "version"), "1.3.0")), nix.thunk(() => ({
-        __proto__: pos$53,
+        [nix.POS]: pos$53,
         dontBuild: false,
         postPatch: nix.thunk(() => nix.str`sed -i "s;'https://codeload.github.com.*';'${nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             url: "https://codeload.github.com/lfittl/libpg_query/tar.gz/10-1.0.4",
             sha256: "0f0kshhai0pnkqj0w4kgz3fssnvwidllc31n1fysxjjzdqlr1k48",
           })))}';" ext/pg_query/extconf.rb
 `),
       })))),
     prettier: (attrs) => ({
-      __proto__: pos$55,
-      meta: nix.thunk(() => ({ __proto__: pos$54, mainProgram: "rbprettier" })),
+      [nix.POS]: pos$55,
+      meta: nix.thunk(() => ({ [nix.POS]: pos$54, mainProgram: "rbprettier" })),
     }),
     glib2: (attrs) => ({
-      __proto__: pos$56,
+      [nix.POS]: pos$56,
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [DarwinTools])))),
       buildInputs: nix.thunk(() => nix.concat([glib, libsysprof_capture, pcre2], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [util_linux, libselinux, libsepol])))),
     }),
     gtk3: (attrs) => ({
-      __proto__: pos$57,
+      [nix.POS]: pos$57,
       nativeBuildInputs: nix.thunk(() => nix.concat([binutils, pkg_config], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [DarwinTools])))),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [util_linux, libselinux, libsepol, systemd]))),
       propagatedBuildInputs: nix.thunk(() => [
@@ -522,30 +522,30 @@ echo -e "\\nENV['PATH'] += ':${graphicsmagick}/bin'\\n" >> $installPath/lib/mini
       dontStrip: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
     }),
     "gobject-introspection": (attrs) => ({
-      __proto__: pos$58,
+      [nix.POS]: pos$58,
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [DarwinTools])))),
       propagatedBuildInputs: nix.thunk(() => [gobject_introspection, wrapGAppsHook3, glib, pcre2, libsysprof_capture]),
     }),
     gollum: (attrs) => ({
-      __proto__: pos$59,
+      [nix.POS]: pos$59,
       dontBuild: false,
       postPatch: nix.thunk(() => nix.str`substituteInPlace bin/gollum \\
   --replace "/usr/bin/env -S ruby" "${ruby}/bin/ruby"
 `),
     }),
-    "google-protobuf": (attrs) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(attrs, "version")), "3.25.0")), nix.thunk(() => ({ __proto__: pos$60, hardeningDisable: nix.thunk(() => ["format"]) }))),
+    "google-protobuf": (attrs) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(attrs, "version")), "3.25.0")), nix.thunk(() => ({ [nix.POS]: pos$60, hardeningDisable: nix.thunk(() => ["format"]) }))),
     grpc: (attrs) => ({
-      __proto__: pos$63,
+      [nix.POS]: pos$63,
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), cctools), nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(attrs, "version")), "1.53.0")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), autoSignDarwinBinariesHook)))),
       buildInputs: nix.thunk(() => [openssl]),
       hardeningDisable: nix.thunk(() => ["format"]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(attrs, "version")), "1.68.1")), nix.thunk(() => ({
-          __proto__: pos$61,
+          [nix.POS]: pos$61,
           NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(attrs, "version")), "1.65.0")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$62,
+              [nix.POS]: pos$62,
               name: "gcc-14-fixes.patch",
               url: "https://boringssl.googlesource.com/boringssl/+/c70190368c7040c37c1d655f0690bcde2b109a0d%5E%21/?format=TEXT",
               decode: "base64 -d",
@@ -558,7 +558,7 @@ echo -e "\\nENV['PATH'] += ':${graphicsmagick}/bin'\\n" >> $installPath/lib/mini
       postPatch: nix.thunk(() => nix.add("substituteInPlace Makefile \\\n  --replace '-Wno-invalid-source-encoding' \"\"\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(attrs, "version")), "1.53.0")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))), "# For < v1.48.0\nsubstituteInPlace src/ruby/ext/grpc/extconf.rb \\\n  --replace \"ENV['AR'] = 'libtool -o' if RUBY_PLATFORM =~ /darwin/\" \"\"\n# For >= v1.48.0\nsubstituteInPlace src/ruby/ext/grpc/extconf.rb \\\n  --replace 'apple_toolchain = ' 'apple_toolchain = false && '\n"))),
     }),
     h3: (attrs) => ({
-      __proto__: pos$64,
+      [nix.POS]: pos$64,
       dontBuild: false,
       postPatch: nix.thunk(() => nix.str`substituteInPlace ext/h3/Makefile \\
   --replace-fail 'cd src; cmake . -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DBUILD_SHARED_LIBS=true -DBUILD_FILTERS=OFF -DBUILD_BENCHMARKS=OFF -DENABLE_LINTING=OFF; make' ':'
@@ -568,40 +568,40 @@ substituteInPlace lib/h3/bindings/base.rb \\
       postInstall: nix.thunk(() => nix.str`rm -rf $out/${nix.sel(ruby, "gemPath")}/gems/h3-${nix.sel(attrs, "version")}/ext/h3/src
 `),
     }),
-    "hiredis-client": (attrs) => ({ __proto__: pos$65, buildInputs: nix.thunk(() => [openssl]) }),
+    "hiredis-client": (attrs) => ({ [nix.POS]: pos$65, buildInputs: nix.thunk(() => [openssl]) }),
     hpricot: (attrs) => ({
-      __proto__: pos$67,
+      [nix.POS]: pos$67,
       dontBuild: false,
       patches: nix.thunk(() => [
         nix.path(here, "./hpricot-fix-incompatible-function-pointer-conversion.patch"),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$66,
+        [nix.POS]: pos$66,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=incompatible-pointer-types", "-Wno-error=int-conversion"]))),
       })),
     }),
     iconv: (attrs) => ({
-      __proto__: pos$69,
+      [nix.POS]: pos$69,
       buildFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [
           nix.thunk(() => nix.str`--with-iconv-dir=${nix.app(nix.sel(lib, "getLib"), libiconv)}`),
           nix.thunk(() => nix.str`--with-iconv-include=${nix.app(nix.sel(lib, "getDev"), libiconv)}/include`),
         ]))),
       env: nix.thunk(() => ({
-        __proto__: pos$68,
+        [nix.POS]: pos$68,
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
     }),
-    "idn-ruby": (attrs) => ({ __proto__: pos$70, buildInputs: nix.thunk(() => [libidn]) }),
+    "idn-ruby": (attrs) => ({ [nix.POS]: pos$70, buildInputs: nix.thunk(() => [libidn]) }),
     jekyll: (attrs) => ({
-      __proto__: pos$71,
+      [nix.POS]: pos$71,
       postInstall: "installPath=$(cat $out/nix-support/gem-meta/install-path)\nsed -i $installPath/lib/jekyll/commands/new.rb \\\n    -e 's@Exec.run(\"bundle\", \"install\"@Exec.run(\"true\"@' \\\n    -e 's@FileUtils.cp_r site_template + \"/.\", path@FileUtils.cp_r site_template + \"/.\", path; FileUtils.chmod_R \"u+w\", path@'\n",
     }),
     execjs: (attrs) => ({
-      __proto__: pos$72,
+      [nix.POS]: pos$72,
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(nodejs_slim, "libv8"))]),
     }),
     "libxml-ruby": (attrs) => ({
-      __proto__: pos$73,
+      [nix.POS]: pos$73,
       buildFlags: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.str`--with-xml2-lib=${nix.sel(libxml2, "out")}/lib`),
         nix.thunk(() => nix.str`--with-xml2-include=${nix.sel(libxml2, "dev")}/include/libxml2`),
@@ -611,7 +611,7 @@ substituteInPlace lib/h3/bindings/base.rb \\
         ])))),
     }),
     mathematical: (attrs) => ({
-      __proto__: pos$74,
+      [nix.POS]: pos$74,
       nativeBuildInputs: nix.thunk(() => [ruby, cmake, bison, flex, pkg_config, python3, patchelf]),
       buildInputs: nix.thunk(() => [cairo, fribidi, gdk_pixbuf, glib, libxml2, pango]),
       strictDeps: true,
@@ -632,30 +632,30 @@ install_name_tool -change @rpath/liblasem.dylib "${nix.app(nix.sel(lib, "getLib"
 `)))),
     }),
     magic: (attrs) => ({
-      __proto__: pos$75,
+      [nix.POS]: pos$75,
       buildInputs: nix.thunk(() => [file]),
       postInstall: nix.thunk(() => nix.str`installPath=$(cat $out/nix-support/gem-meta/install-path)
 sed -e 's@ENV\\["MAGIC_LIB"\\] ||@ENV\\["MAGIC_LIB"\\] || "${file}/lib/libmagic.so" ||@' -i $installPath/lib/magic/api.rb
 `),
     }),
     maxmind_geoip2: (attrs) => ({
-      __proto__: pos$76,
+      [nix.POS]: pos$76,
       buildFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`--with-maxminddb-lib=${libmaxminddb}/lib`),
         nix.thunk(() => nix.str`--with-maxminddb-include=${libmaxminddb}/include`),
       ]),
     }),
-    "metasploit-framework": (attrs) => ({ __proto__: pos$77, preInstall: "export HOME=$TMPDIR\n" }),
+    "metasploit-framework": (attrs) => ({ [nix.POS]: pos$77, preInstall: "export HOME=$TMPDIR\n" }),
     mysql: (attrs) => ({
-      __proto__: pos$78,
+      [nix.POS]: pos$78,
       buildInputs: nix.thunk(() => [libmysqlclient, zlib, openssl]),
     }),
     mysql2: (attrs) => ({
-      __proto__: pos$79,
+      [nix.POS]: pos$79,
       buildInputs: nix.thunk(() => [libmysqlclient, zlib, openssl]),
     }),
     ncursesw: (attrs) => ({
-      __proto__: pos$80,
+      [nix.POS]: pos$80,
       buildInputs: nix.thunk(() => [ncurses]),
       buildFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`--with-cflags=-I${nix.sel(ncurses, "dev")}/include`),
@@ -663,7 +663,7 @@ sed -e 's@ENV\\["MAGIC_LIB"\\] ||@ENV\\["MAGIC_LIB"\\] || "${file}/lib/libmagic.
       ]),
     }),
     nokogiri: (attrs) => nix.update({
-      __proto__: pos$81,
+      [nix.POS]: pos$81,
       buildFlags: nix.thunk(() => nix.concat([
         "--use-system-libraries",
         nix.thunk(() => nix.str`--with-zlib-lib=${nix.sel(zlib, "out")}/lib`),
@@ -679,19 +679,19 @@ sed -e 's@ENV\\["MAGIC_LIB"\\] ||@ENV\\["MAGIC_LIB"\\] || "${file}/lib/libmagic.
           nix.thunk(() => nix.str`--with-opt-include=${libiconv}/include`),
         ])))),
     }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-        __proto__: pos$83,
+        [nix.POS]: pos$83,
         buildInputs: nix.thunk(() => [libxml2]),
         meta: nix.thunk(() => ({
-          __proto__: pos$82,
+          [nix.POS]: pos$82,
           broken: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(attrs, "version")), "1.16.0")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(libxml2, "version")), "2.12")))),
         })),
       })))),
     openssl: (attrs) => (() => {
       nix.assert_((nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(attrs, "version")), "3.0.0")) || nix.asBool(nix.builtins.throw("OpenSSL 1.1 is EOL and the corresponding Ruby gem was removed."))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/ruby-modules/gem-config/default.nix:816:5");
-      return { __proto__: pos$84, buildInputs: nix.thunk(() => [openssl]) };
+      return { [nix.POS]: pos$84, buildInputs: nix.thunk(() => [openssl]) };
     })(),
     "opus-ruby": (attrs) => ({
-      __proto__: pos$85,
+      [nix.POS]: pos$85,
       dontBuild: false,
       postPatch: nix.thunk(() => nix.str`substituteInPlace lib/opus-ruby.rb \\
   --replace "ffi_lib 'opus'" \\
@@ -699,10 +699,10 @@ sed -e 's@ENV\\["MAGIC_LIB"\\] ||@ENV\\["MAGIC_LIB"\\] || "${file}/lib/libmagic.
 `),
     }),
     "ovirt-engine-sdk": (attrs) => ({
-      __proto__: pos$88,
+      [nix.POS]: pos$88,
       buildInputs: nix.thunk(() => [curl, libxml2]),
       env: nix.thunk(() => ({
-        __proto__: pos$86,
+        [nix.POS]: pos$86,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-Wno-error=implicit-function-declaration",
             "-Wno-error=incompatible-pointer-types",
@@ -711,12 +711,12 @@ sed -e 's@ENV\\["MAGIC_LIB"\\] ||@ENV\\["MAGIC_LIB"\\] || "${file}/lib/libmagic.
       })),
       dontBuild: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$87,
+        [nix.POS]: pos$87,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       })),
     }),
     pango: (attrs) => ({
-      __proto__: pos$89,
+      [nix.POS]: pos$89,
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [DarwinTools])))),
       buildInputs: nix.thunk(() => nix.concat([
         libdatrie,
@@ -730,52 +730,52 @@ sed -e 's@ENV\\["MAGIC_LIB"\\] ||@ENV\\["MAGIC_LIB"\\] || "${file}/lib/libmagic.
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libselinux, libsepol, util_linux])))),
       propagatedBuildInputs: nix.thunk(() => [gobject_introspection, wrapGAppsHook3]),
     }),
-    patron: (attrs) => ({ __proto__: pos$90, buildInputs: nix.thunk(() => [curl]) }),
-    pcaprub: (attrs) => ({ __proto__: pos$91, buildInputs: nix.thunk(() => [libpcap]) }),
+    patron: (attrs) => ({ [nix.POS]: pos$90, buildInputs: nix.thunk(() => [curl]) }),
+    pcaprub: (attrs) => ({ [nix.POS]: pos$91, buildInputs: nix.thunk(() => [libpcap]) }),
     pg: (attrs) => ({
-      __proto__: pos$92,
+      [nix.POS]: pos$92,
       buildFlags: nix.thunk(() => ["--with-pg-config=ignore"]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libpq]),
     }),
     rszr: (attrs) => ({
-      __proto__: pos$93,
+      [nix.POS]: pos$93,
       buildInputs: nix.thunk(() => [imlib2, nix.thunk(() => nix.sel(imlib2, "dev"))]),
       buildFlags: nix.thunk(() => ["--without-imlib2-config"]),
     }),
     "prawn-gmagick": (attrs) => ({
-      __proto__: pos$94,
+      [nix.POS]: pos$94,
       buildInputs: nix.thunk(() => [graphicsmagick]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
     }),
-    psych: (attrs) => ({ __proto__: pos$95, buildInputs: nix.thunk(() => [libyaml]) }),
-    puma: (attrs) => ({ __proto__: pos$96, buildInputs: nix.thunk(() => [openssl]) }),
-    "pygments.rb": (attrs) => ({ __proto__: pos$97, buildInputs: nix.thunk(() => [python3]) }),
+    psych: (attrs) => ({ [nix.POS]: pos$95, buildInputs: nix.thunk(() => [libyaml]) }),
+    puma: (attrs) => ({ [nix.POS]: pos$96, buildInputs: nix.thunk(() => [openssl]) }),
+    "pygments.rb": (attrs) => ({ [nix.POS]: pos$97, buildInputs: nix.thunk(() => [python3]) }),
     rack: (attrs) => ({
-      __proto__: pos$99,
-      meta: nix.thunk(() => ({ __proto__: pos$98, mainProgram: "rackup" })),
+      [nix.POS]: pos$99,
+      meta: nix.thunk(() => ({ [nix.POS]: pos$98, mainProgram: "rackup" })),
     }),
     railties: (attrs) => ({
-      __proto__: pos$101,
-      meta: nix.thunk(() => ({ __proto__: pos$100, mainProgram: "rails" })),
+      [nix.POS]: pos$101,
+      meta: nix.thunk(() => ({ [nix.POS]: pos$100, mainProgram: "rails" })),
     }),
-    rainbow: (attrs) => ({ __proto__: pos$102, buildInputs: nix.thunk(() => [rainbow_rake]) }),
+    rainbow: (attrs) => ({ [nix.POS]: pos$102, buildInputs: nix.thunk(() => [rainbow_rake]) }),
     rbczmq: nix.lambda((args_2) => (() => {
       const $_1 = nix.formals(args_2, formals$2);
       return {
-        __proto__: pos$103,
+        [nix.POS]: pos$103,
         buildInputs: nix.thunk(() => [zeromq, czmq]),
         buildFlags: nix.thunk(() => ["--with-system-libs"]),
       };
     })(), formals$2),
     rbnacl: (spec) => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(spec, "version")), "6.0.0")) ? {
-      __proto__: pos$104,
+      [nix.POS]: pos$104,
       postInstall: nix.thunk(() => nix.str`sed -i $(cat $out/nix-support/gem-meta/install-path)/lib/rbnacl.rb -e "2a \\
 RBNACL_LIBSODIUM_GEM_LIB_PATH = '${nix.sel(libsodium, "out")}/lib/libsodium${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}'
 "
 `),
     } : {
-      __proto__: pos$105,
+      [nix.POS]: pos$105,
       dontBuild: false,
       postPatch: nix.thunk(() => nix.str`substituteInPlace lib/rbnacl/sodium.rb \\
   --replace 'ffi_lib ["sodium"' \\
@@ -783,31 +783,31 @@ RBNACL_LIBSODIUM_GEM_LIB_PATH = '${nix.sel(libsodium, "out")}/lib/libsodium${nix
 `),
     }),
     re2: (attrs) => ({
-      __proto__: pos$106,
+      [nix.POS]: pos$106,
       buildInputs: nix.thunk(() => [re2]),
       buildFlags: nix.thunk(() => ["--enable-system-libraries"]),
     }),
-    "readline-ext": (attrs) => ({ __proto__: pos$107, buildInputs: nix.thunk(() => [readline]) }),
+    "readline-ext": (attrs) => ({ [nix.POS]: pos$107, buildInputs: nix.thunk(() => [readline]) }),
     "rest-client": (attrs) => ({
-      __proto__: pos$109,
-      meta: nix.thunk(() => ({ __proto__: pos$108, mainProgram: "restclient" })),
+      [nix.POS]: pos$109,
+      meta: nix.thunk(() => ({ [nix.POS]: pos$108, mainProgram: "restclient" })),
     }),
     rmagick: (attrs) => ({
-      __proto__: pos$110,
+      [nix.POS]: pos$110,
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [imagemagick, which]),
     }),
     rouge: (attrs) => ({
-      __proto__: pos$112,
-      meta: nix.thunk(() => ({ __proto__: pos$111, mainProgram: "rougify" })),
+      [nix.POS]: pos$112,
+      meta: nix.thunk(() => ({ [nix.POS]: pos$111, mainProgram: "rougify" })),
     }),
-    rpam2: (attrs) => ({ __proto__: pos$113, buildInputs: nix.thunk(() => [linux_pam]) }),
+    rpam2: (attrs) => ({ [nix.POS]: pos$113, buildInputs: nix.thunk(() => [linux_pam]) }),
     "rspec-core": (attrs) => ({
-      __proto__: pos$115,
-      meta: nix.thunk(() => ({ __proto__: pos$114, mainProgram: "rspec" })),
+      [nix.POS]: pos$115,
+      meta: nix.thunk(() => ({ [nix.POS]: pos$114, mainProgram: "rspec" })),
     }),
     "ruby-libvirt": (attrs) => ({
-      __proto__: pos$116,
+      [nix.POS]: pos$116,
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libvirt]),
       buildFlags: nix.thunk(() => [
@@ -816,15 +816,15 @@ RBNACL_LIBSODIUM_GEM_LIB_PATH = '${nix.sel(libsodium, "out")}/lib/libsodium${nix
       ]),
     }),
     "ruby-lxc": (attrs) => ({
-      __proto__: pos$118,
+      [nix.POS]: pos$118,
       buildInputs: nix.thunk(() => [lxc]),
       env: nix.thunk(() => ({
-        __proto__: pos$117,
+        [nix.POS]: pos$117,
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
     }),
     "ruby-terminfo": (attrs) => ({
-      __proto__: pos$119,
+      [nix.POS]: pos$119,
       buildInputs: nix.thunk(() => [ncurses]),
       buildFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`--with-cflags=-I${nix.sel(ncurses, "dev")}/include`),
@@ -834,7 +834,7 @@ RBNACL_LIBSODIUM_GEM_LIB_PATH = '${nix.sel(libsodium, "out")}/lib/libsodium${nix
       postPatch: "substituteInPlace extconf.rb --replace 'rubyio.h' 'ruby/io.h'\nsubstituteInPlace terminfo.c \\\n  --replace 'rubyio.h' 'ruby/io.h' \\\n  --replace 'rb_cData' 'rb_cObject'\n",
     }),
     "ruby-vips": (attrs) => ({
-      __proto__: pos$120,
+      [nix.POS]: pos$120,
       postInstall: nix.thunk(() => nix.str`cd "$(cat $out/nix-support/gem-meta/install-path)"
 
 substituteInPlace lib/vips.rb \\
@@ -847,30 +847,30 @@ substituteInPlace lib/vips.rb \\
 `),
     }),
     rugged: (attrs) => ({
-      __proto__: pos$121,
+      [nix.POS]: pos$121,
       nativeBuildInputs: nix.thunk(() => nix.concat([cmake, pkg_config, which], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), libiconv))),
       buildInputs: nix.thunk(() => [openssl, libssh2, zlib]),
       dontUseCmakeConfigure: true,
       buildFlags: nix.thunk(() => ["--with-ssh"]),
     }),
     rbtrace: (attrs) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isRiscV64")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isLoongArch64")))), nix.thunk(() => ({
-        __proto__: pos$122,
+        [nix.POS]: pos$122,
         dontBuild: false,
         postPatch: "tar -xzf ext/src/msgpack-1.1.0.tar.gz -C ext/src\n",
         preConfigure: "tar -czf ext/src/msgpack-1.1.0.tar.gz -C ext/src msgpack-1.1.0\nrm -r ext/src/msgpack-1.1.0\n",
       }))),
     sassc: (attrs) => ({
-      __proto__: pos$124,
+      [nix.POS]: pos$124,
       nativeBuildInputs: nix.thunk(() => [rake]),
       dontBuild: false,
       env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), {
-        __proto__: pos$123,
+        [nix.POS]: pos$123,
         SASS_LIBSASS_PATH: nix.thunk(() => nix.builtins.toString(libsass)),
       })),
       postPatch: "substituteInPlace lib/sassc/native.rb \\\n  --replace 'gem_root = spec.gem_dir' 'gem_root = File.join(__dir__, \"../../\")'\n",
     }),
     "sass-embedded": (attrs) => ({
-      __proto__: pos$125,
+      [nix.POS]: pos$125,
       dontBuild: false,
       postPatch: nix.thunk(() => nix.str`substituteInPlace ext/sass/Rakefile \\
   --replace \\'dart-sass/sass\\' \\'${dart_sass}/bin/sass\\' \\
@@ -878,54 +878,54 @@ substituteInPlace lib/vips.rb \\
 `),
     }),
     scrypt: (attrs) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-        __proto__: pos$126,
+        [nix.POS]: pos$126,
         dontBuild: false,
         postPatch: "sed -i -e \"s/-arch i386//\" Rakefile ext/scrypt/Rakefile\n",
       }))),
-    semian: (attrs) => ({ __proto__: pos$127, buildInputs: nix.thunk(() => [openssl]) }),
-    sequel_pg: (attrs) => ({ __proto__: pos$128, buildInputs: nix.thunk(() => [libpq]) }),
+    semian: (attrs) => ({ [nix.POS]: pos$127, buildInputs: nix.thunk(() => [openssl]) }),
+    sequel_pg: (attrs) => ({ [nix.POS]: pos$128, buildInputs: nix.thunk(() => [libpq]) }),
     snappy: (attrs) => ({
-      __proto__: pos$129,
+      [nix.POS]: pos$129,
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(args_1, "snappy"))]),
     }),
     sqlite3: (attrs) => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(attrs, "version")), "1.5.0")) ? {
-      __proto__: pos$130,
+      [nix.POS]: pos$130,
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [sqlite]),
       buildFlags: nix.thunk(() => ["--enable-system-libraries"]),
     } : {
-      __proto__: pos$132,
+      [nix.POS]: pos$132,
       buildFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`--with-sqlite3-include=${nix.sel(sqlite, "dev")}/include`),
         nix.thunk(() => nix.str`--with-sqlite3-lib=${nix.sel(sqlite, "out")}/lib`),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$131,
+        [nix.POS]: pos$131,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=incompatible-pointer-types", "-Wno-error=int-conversion"]))),
       })),
     }),
     "rb-readline": (attrs) => ({
-      __proto__: pos$133,
+      [nix.POS]: pos$133,
       dontBuild: false,
       postPatch: nix.thunk(() => nix.str`substituteInPlace lib/rbreadline.rb \\
   --replace 'infocmp' '${ncurses}/bin/infocmp'
 `),
     }),
-    "taglib-ruby": (attrs) => ({ __proto__: pos$134, buildInputs: nix.thunk(() => [taglib]) }),
-    "timfel-krb5-auth": (attrs) => ({ __proto__: pos$135, buildInputs: nix.thunk(() => [libkrb5]) }),
+    "taglib-ruby": (attrs) => ({ [nix.POS]: pos$134, buildInputs: nix.thunk(() => [taglib]) }),
+    "timfel-krb5-auth": (attrs) => ({ [nix.POS]: pos$135, buildInputs: nix.thunk(() => [libkrb5]) }),
     tiny_tds: (attrs) => ({
-      __proto__: pos$136,
+      [nix.POS]: pos$136,
       nativeBuildInputs: nix.thunk(() => [pkg_config, openssl]),
       buildInputs: nix.thunk(() => [freetds]),
     }),
     treetop: (attrs) => ({
-      __proto__: pos$138,
-      meta: nix.thunk(() => ({ __proto__: pos$137, mainProgram: "tt" })),
+      [nix.POS]: pos$138,
+      meta: nix.thunk(() => ({ [nix.POS]: pos$137, mainProgram: "tt" })),
     }),
-    trilogy: (attrs) => ({ __proto__: pos$139, buildInputs: nix.thunk(() => [openssl]) }),
-    typhoeus: (attrs) => ({ __proto__: pos$140, buildInputs: nix.thunk(() => [curl]) }),
+    trilogy: (attrs) => ({ [nix.POS]: pos$139, buildInputs: nix.thunk(() => [openssl]) }),
+    typhoeus: (attrs) => ({ [nix.POS]: pos$140, buildInputs: nix.thunk(() => [curl]) }),
     tzinfo: (attrs) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(attrs, "version")), "1.0")), nix.thunk(() => ({
-        __proto__: pos$141,
+        [nix.POS]: pos$141,
         dontBuild: false,
         postPatch: nix.thunk(() => (() => {
           const path = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(attrs, "version")), "2.0")) ? "lib/tzinfo/data_sources/zoneinfo_data_source.rb" : "lib/tzinfo/zoneinfo_data_source.rb"));
@@ -934,13 +934,13 @@ substituteInPlace lib/vips.rb \\
 `;
         })()),
       }))),
-    uuid4r: (attrs) => ({ __proto__: pos$142, buildInputs: nix.thunk(() => [which, libossp_uuid]) }),
+    uuid4r: (attrs) => ({ [nix.POS]: pos$142, buildInputs: nix.thunk(() => [which, libossp_uuid]) }),
     whois: (attrs) => ({
-      __proto__: pos$144,
-      meta: nix.thunk(() => ({ __proto__: pos$143, mainProgram: "whoisrb" })),
+      [nix.POS]: pos$144,
+      meta: nix.thunk(() => ({ [nix.POS]: pos$143, mainProgram: "whoisrb" })),
     }),
     "xapian-ruby": (attrs) => ({
-      __proto__: pos$145,
+      [nix.POS]: pos$145,
       dontBuild: false,
       nativeBuildInputs: nix.thunk(() => [rake, pkg_config, bundler]),
       buildInputs: nix.thunk(() => [xapian, zlib]),
@@ -949,9 +949,9 @@ substituteInPlace lib/vips.rb \\
       preInstall: nix.thunk(() => nix.str`export XAPIAN_CONFIG=${xapian}/bin/xapian-config
 `),
     }),
-    zlib: (attrs) => ({ __proto__: pos$146, buildInputs: nix.thunk(() => [zlib]) }),
+    zlib: (attrs) => ({ [nix.POS]: pos$146, buildInputs: nix.thunk(() => [zlib]) }),
     zookeeper: (attrs) => ({
-      __proto__: pos$147,
+      [nix.POS]: pos$147,
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [cctools]))),
     }),
   };

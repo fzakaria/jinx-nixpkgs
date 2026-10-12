@@ -18,31 +18,31 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "scx-loader",
       version: "1.1.3",
       cargoHash: "sha256-N2bJBIqledSGxFmJQCBRIH6ZK0aGumGbL7kfrzgl7HI=",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sched-ext",
           repo: "scx-loader",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-NbTakrEdk3pundjk554QrUpKTXxQl6I8Y/IgmxjGKuw=",
         })))),
       __structuredAttrs: true,
-      env: nix.thunk(() => ({ __proto__: pos$2, VENDOR_PREFIX: "", VENDOR_DATADIR: "/share" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, VENDOR_PREFIX: "", VENDOR_DATADIR: "/share" })),
       postInstall: "cargo xtask install --destdir $out\nrm $out/bin/xtask\n",
       postFixup: "substituteInPlace $out/lib/systemd/system/scx_loader.service \\\n  --replace-fail \"/usr/bin/scx_loader\" \"$out/bin/scx_loader\"\nsubstituteInPlace $out/share/dbus-1/system-services/org.scx.Loader.service \\\n  --replace-fail \"/usr/bin/scx_loader\" \"$out/bin/scx_loader\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "scx-loader": nix.thunk(() => nix.attr(nixosTests, "scx-loader")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         mainProgram: "scxctl",
         homepage: "https://github.com/sched-ext/scx-loader",
         changelog: nix.thunk(() => nix.str`https://github.com/sched-ext/scx-loader/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

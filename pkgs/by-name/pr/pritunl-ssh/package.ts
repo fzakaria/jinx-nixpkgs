@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pritunl-ssh";
       const version = "1.0.3231.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pritunl",
           repo: "pritunl-zero-client",
           rev: version,
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [python3]);
       const installPhase = "mkdir -p $out/bin\ninstall ssh_client.py $out/bin/pritunl-ssh\ninstall ssh_host_client.py $out/bin/pritunl-ssh-host\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pritunl Zero SSH client",
         homepage: "https://github.com/pritunl/pritunl-zero-client",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
-      return { __proto__: pos$3, pname, version, src, buildInputs, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, buildInputs, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

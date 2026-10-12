@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.10";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jedie",
           repo: "python-creole",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "replace-poetry-with-poetry-core.patch",
             url: "https://github.com/jedie/python-creole/commit/bfc46730ab4a189f3142246cead8d26005a28671.patch",
             hash: "sha256-WtoEQyu/154Cfj6eSnNA+t37+o7Ij328QGMKxwcLg5k=",
@@ -69,7 +69,7 @@ sed -i "/-cov/d" pytest.ini
         "creole/tests/test_cross_compare_all.py::CrossCompareTests::test_link_without_title",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Creole markup tools written in Python",
         homepage: "https://github.com/jedie/python-creole",
         changelog: nix.thunk(() => nix.str`https://github.com/jedie/python-creole/releases/tag/v${version}`),
@@ -80,7 +80,7 @@ sed -i "/-cov/d" pytest.ini
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "uptimed",
       version: "0.4.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           sha256: "sha256-gP6Syzu54/co4L+UCPikUhXDpxpfAB4jO/5ZF/9RdN0=",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           repo: "uptimed",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./no-var-spool-install.patch")]),
       postPatch: "substituteInPlace libuptimed/urec.h \\\n  --replace /var/spool /var/lib\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Uptime record daemon",
         longDescription: "An uptime record daemon keeping track of the highest uptimes a computer\nsystem ever had. It uses the system boot time to keep sessions apart from\neach other. Uptimed comes with a console front-end to parse the records,\nwhich can also easily be used to show your records on a web page.\n",
         homepage: "https://github.com/rpodgorny/uptimed/",

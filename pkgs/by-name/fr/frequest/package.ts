@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const qt5 = nix.arg($, "qt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "frequest",
       version: "1.2a",
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "fabiobento512",
             name: "frequest",
             repo: "FRequest",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-fdn3MK5GWBOhJjpMtRaytO9EsVzz6KJknDhqWtAyXCc=",
           })))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             owner: "fabiobento512",
             name: "CommonLibs",
             repo: "CommonLibs",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-iLJJ95yJ+VjNPuk8fNEDvYBI0db0rcfJF12a9azGv1Y=",
           })))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             owner: "fabiobento512",
             name: "CommonUtils",
             repo: "CommonUtils",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: "frequest",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "Change-desktop-icon-name",
             url: "https://github.com/fabiobento512/FRequest/commit/22e98970b78f6d9ca0037c39c2492e93e836abff.patch",
             hash: "sha256-YoI68SPMHD4bAgjWpn6eSda3Oon8bevbiwTx1JFFm40=",
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "install -D FRequest $out/bin/FRequest\ninstall -D LinuxAppImageDeployment/frequest.desktop $out/share/applications/frequest.desktop\ninstall -D LinuxAppImageDeployment/frequest_icon.png $out/share/icons/hicolor/128x128/apps/frequest_icon.png\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Fast, lightweight and opensource desktop application to make HTTP(s) requests",
         homepage: "https://fabiobento512.github.io/FRequest",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

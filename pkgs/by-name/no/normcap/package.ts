@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const ps = nix.thunk(() => nix.sel(python3, "pkgs"));
   const wrapperDeps = nix.thunk(() => nix.concat([leptonica, tesseract4, libnotify], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [wl_clipboard]))));
   return nix.app(nix.sel(ps, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "normcap",
       version: "0.6.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dynobo",
           repo: "normcap",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -123,7 +123,7 @@ ln -s $out/${nix.sel(python3, "sitePackages")}/normcap/resources/icons/normcap.p
         ])))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "com.github.dynobo.normcap",
             desktopName: "NormCap",
             genericName: "OCR powered screen-capture tool",
@@ -136,7 +136,7 @@ ln -s $out/${nix.sel(python3, "sitePackages")}/normcap/resources/icons/normcap.p
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "OCR powered screen-capture tool to capture information instead of images",
         homepage: "https://dynobo.github.io/normcap/",
         changelog: nix.thunk(() => nix.str`https://github.com/dynobo/normcap/releases/tag/v${nix.sel(finalAttrs, "version")}`),

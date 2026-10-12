@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pyannote",
           repo: "pyannote-database",
           tag: version,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const preCheck = "$out/bin/pyannote-database --help\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Reproducible experimental protocols for multimedia (audio, video, text) database",
         homepage: "https://github.com/pyannote/pyannote-database",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "pyannote-database",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

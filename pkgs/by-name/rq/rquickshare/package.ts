@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pname = "rquickshare";
       const version = "0.11.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Martichou",
           repo: "rquickshare",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
 `)));
       const pnpmRoot = "app/main";
       const pnpmDeps = nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -72,13 +72,13 @@ export default nix.lambda((args) => (() => {
         protobuf,
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [pkg_config, wrapGAppsHook4]))));
       const buildInputs = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [glib_networking, libayatana_appindicator, libsoup_3, openssl, webkitgtk_4_1])));
-      const env = nix.thunk(() => ({ __proto__: pos$3, OPENSSL_NO_VENDOR: 1n }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$3, OPENSSL_NO_VENDOR: 1n }));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Rust implementation of NearbyShare/QuickShare from Android for Linux and macOS",
         homepage: "https://github.com/Martichou/rquickshare",
         changelog: nix.thunk(() => nix.str`https://github.com/Martichou/rquickshare/blob/v${version}/CHANGELOG.md`),
@@ -94,7 +94,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

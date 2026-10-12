@@ -45,75 +45,75 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const forEachInstance = (f) => nix.app(nix.lookup(w, "flip"), nix.thunk(() => nix.lookup(w, "mapAttrs'")), nix.thunk(() => nix.sel(config, "services", "fcgiwrap", "instances")), (name) => (cfg) => nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.str`fcgiwrap-${name}`), nix.thunk(() => nix.app(f, cfg))));
   return {
-    __proto__: pos$32,
+    [nix.POS]: pos$32,
     imports: nix.thunk(() => nix.app(nix.lookup(w, "forEach"), nix.thunk(() => ["enable", "user", "group", "socketType", "socketAddress", "preforkProcesses"]), (attr) => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["services", "fcgiwrap", attr]), "The global shared fcgiwrap instance is no longer supported due to\nsecurity issues.\nIsolated instances should instead be configured through\n`services.fcgiwrap.instances.*'.\n"))),
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         fcgiwrap: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           instances: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "Configuration for fcgiwrap instances.",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.lambda((args_1) => (() => {
                     const $_1 = nix.formals(args_1, formals$2);
                     const config_1 = nix.arg($_1, "config");
                     return {
-                      __proto__: pos$12,
+                      [nix.POS]: pos$12,
                       options: nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         process: nix.thunk(() => ({
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           prefork: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$1,
+                              [nix.POS]: pos$1,
                               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "ints", "positive")),
                               default: 1n,
                               description: "Number of processes to prefork.",
                             })))),
                           user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$2,
+                              [nix.POS]: pos$2,
                               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                               default: null,
                               description: "User as which this instance of fcgiwrap will be run.\nSet to `null` (the default) to use a dynamically allocated user.\n",
                             })))),
                           group: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$3,
+                              [nix.POS]: pos$3,
                               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                               default: null,
                               description: "Group as which this instance of fcgiwrap will be run.",
                             })))),
                         })),
                         socket: nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           type: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$5,
+                              [nix.POS]: pos$5,
                               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["unix", "tcp", "tcp6"]))),
                               default: "unix",
                               description: "Socket type: 'unix', 'tcp' or 'tcp6'.",
                             })))),
                           address: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$6,
+                              [nix.POS]: pos$6,
                               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                               default: nix.thunk(() => nix.str`/run/fcgiwrap-${nix.sel(config_1, "_module", "args", "name")}.sock`),
                               example: "1.2.3.4:5678",
                               description: "Socket address.\nIn case of a UNIX socket, this should be its filesystem path.\n",
                             })))),
                           user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$7,
+                              [nix.POS]: pos$7,
                               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                               default: null,
                               description: "User to be set as owner of the UNIX socket.\n",
                             })))),
                           group: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$8,
+                              [nix.POS]: pos$8,
                               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                               default: null,
                               description: "Group to be set as owner of the UNIX socket.\n",
                             })))),
                           mode: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$9,
+                              [nix.POS]: pos$9,
                               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                               default: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(config_1, "socket", "type"), "unix")) ? "0600" : null)),
                               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "if config.socket.type == \"unix\" then \"0600\" else null\n")),
@@ -128,58 +128,58 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$31,
+      [nix.POS]: pos$31,
       assertions: nix.thunk(() => nix.app(nix.lookup(w, "concatLists"), nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (name) => (cfg) => [
             nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               assertion: nix.thunk(() => (!nix.asBool(nix.eq(nix.sel(cfg, "socket", "type"), "unix")) || nix.asBool(!nix.eq(nix.sel(cfg, "socket", "user"), null)))),
               message: "Socket owner is required for the UNIX socket type.",
             })),
             nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               assertion: nix.thunk(() => (!nix.asBool(nix.eq(nix.sel(cfg, "socket", "type"), "unix")) || nix.asBool(!nix.eq(nix.sel(cfg, "socket", "group"), null)))),
               message: "Socket owner is required for the UNIX socket type.",
             })),
             nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, "socket", "user"), null)) || nix.asBool(nix.eq(nix.sel(cfg, "socket", "type"), "unix")))),
               message: "Socket owner can only be set for the UNIX socket type.",
             })),
             nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, "socket", "group"), null)) || nix.asBool(nix.eq(nix.sel(cfg, "socket", "type"), "unix")))),
               message: "Socket owner can only be set for the UNIX socket type.",
             })),
             nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, "socket", "mode"), null)) || nix.asBool(nix.eq(nix.sel(cfg, "socket", "type"), "unix")))),
               message: "Socket mode can only be set for the UNIX socket type.",
             })),
           ], nix.thunk(() => nix.sel(config, "services", "fcgiwrap", "instances")))))),
       systemd: nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         services: nix.thunk(() => nix.app(forEachInstance, (cfg) => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             after: nix.thunk(() => ["nss-user-lookup.target"]),
             wantedBy: nix.thunk(() => nix.app(nix.lookup(w, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "socket", "type"), "unix")), "multi-user.target")),
             serviceConfig: nix.thunk(() => nix.update({
-              __proto__: pos$24,
-              ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "fcgiwrap")}/sbin/fcgiwrap ${nix.app(nix.sel(nix.lookup(w, "cli"), "toCommandLineShellGNU"), nix.thunk(() => ({})), nix.thunk(() => nix.update({ __proto__: pos$22, c: nix.thunk(() => nix.sel(cfg, "process", "prefork")) }, nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "socket", "type"), "unix")), nix.thunk(() => ({
-                    __proto__: pos$23,
+              [nix.POS]: pos$24,
+              ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "fcgiwrap")}/sbin/fcgiwrap ${nix.app(nix.sel(nix.lookup(w, "cli"), "toCommandLineShellGNU"), nix.thunk(() => ({})), nix.thunk(() => nix.update({ [nix.POS]: pos$22, c: nix.thunk(() => nix.sel(cfg, "process", "prefork")) }, nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "socket", "type"), "unix")), nix.thunk(() => ({
+                    [nix.POS]: pos$23,
                     s: nix.thunk(() => nix.str`${nix.sel(cfg, "socket", "type")}:${nix.sel(cfg, "socket", "address")}`),
                   }))))))}
 `),
             }, (nix.asBool(!nix.eq(nix.sel(cfg, "process", "user"), null)) ? {
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               User: nix.thunk(() => nix.sel(cfg, "process", "user")),
               Group: nix.thunk(() => nix.sel(cfg, "process", "group")),
-            } : { __proto__: pos$26, DynamicUser: true }))),
+            } : { [nix.POS]: pos$26, DynamicUser: true }))),
           }))),
         sockets: nix.thunk(() => nix.app(forEachInstance, (cfg) => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "socket", "type"), "unix")), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               wantedBy: nix.thunk(() => ["sockets.target"]),
               socketConfig: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 ListenStream: nix.thunk(() => nix.sel(cfg, "socket", "address")),
                 SocketUser: nix.thunk(() => nix.sel(cfg, "socket", "user")),
                 SocketGroup: nix.thunk(() => nix.sel(cfg, "socket", "group")),

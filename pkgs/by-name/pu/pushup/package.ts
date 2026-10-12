@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const go = nix.arg($, "go");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pushup",
       version: "0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "adhocteam",
           repo: "pushup",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: null,
       subPackages: ".",
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       allowGoReference: true,
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/${nix.sel(finalAttrs, "meta", "mainProgram")} --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [go]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Web framework for Go",
         homepage: "https://pushup.adhoc.dev/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

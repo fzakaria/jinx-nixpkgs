@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const lilypond = nix.arg($, "lilypond");
   const openlilylib_fonts = nix.arg($, "openlilylib-fonts");
   return nix.app(nix.sel(lib, "appendToName"), "with-fonts", nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname: nix.thunk(() => nix.attr(lilypond, "pname")),
         outputs: nix.thunk(() => nix.attr(lilypond, "outputs")),
         version: nix.thunk(() => nix.attr(lilypond, "version")),
         meta: nix.thunk(() => nix.attr(lilypond, "meta")),
-        paths: nix.thunk(() => nix.concat([lilypond], nix.sel(nix.app(nix.sel(openlilylib_fonts, "override"), nix.thunk(() => ({ __proto__: pos$1, lilypond: lilypond }))), "all"))),
+        paths: nix.thunk(() => nix.concat([lilypond], nix.sel(nix.app(nix.sel(openlilylib_fonts, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, lilypond: lilypond }))), "all"))),
         nativeBuildInputs: nix.thunk(() => [makeWrapper]),
         postBuild: nix.thunk(() => nix.str`for p in $out/bin/*; do
   wrapProgram "$p" --set LILYPOND_DATADIR "$out/share/lilypond/${nix.sel(lilypond, "version")}"

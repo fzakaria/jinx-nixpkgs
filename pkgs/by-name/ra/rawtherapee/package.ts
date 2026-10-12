@@ -46,11 +46,11 @@ export default nix.lambda((args) => (() => {
   const libjxl = nix.arg($, "libjxl");
   const fmt = nix.arg($, "fmt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rawtherapee",
       version: "5.13",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/RawTherapee/RawTherapee/releases/download/${nix.sel(finalAttrs, "version")}/rawtherapee-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-I73/SxgX4SdMEalLEdIcrFnpwbHSCXldMZRxDuc+d78=",
         })))),
@@ -105,13 +105,13 @@ substituteInPlace tools/osx/Info.plist.in rtgui/config.h.in \\
           nix.thunk(() => nix.str`-DCMAKE_OSX_DEPLOYMENT_TARGET=${nix.sel(stdenv, "hostPlatform", "darwinMinVersion")}`),
         ])))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CMAKE_CXX_FLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-std=c++11", "-Wno-deprecated-declarations", "-Wno-unused-result"]))),
         CXXFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-include", "cstdint"]))),
       })),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications/RawTherapee.app $out/bin\ncp -R Release $out/Applications/RawTherapee.app/Contents\nfor f in $out/Applications/RawTherapee.app/Contents/MacOS/*; do\n  makeWrapper $f $out/bin/$(basename $f)\ndone\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "RAW converter and digital photo processing software",
         homepage: "http://www.rawtherapee.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -17,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const libmysqlclient = nix.arg($, "libmysqlclient");
   const dune_configurator = nix.arg($, "dune-configurator");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mariadb",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ocaml-community/ocaml-mariadb/releases/download/${nix.sel(finalAttrs, "version")}/mariadb-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-MnsGPH4gAs401Y8/uvrvRx21stQSVrU9RYpC2T8TEcw=",
         })))),
       buildInputs: nix.thunk(() => [mariadb, libmysqlclient, dune_configurator]),
       propagatedBuildInputs: nix.thunk(() => [ctypes]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OCaml bindings for MariaDB",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {

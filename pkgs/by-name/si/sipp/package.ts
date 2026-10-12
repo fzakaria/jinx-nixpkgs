@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const lksctp_tools = nix.arg($, "lksctp-tools");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "sipp",
       version: "3.7.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SIPp",
           repo: "sipp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,19 +34,19 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "CVE-2026-90780.patch",
             url: "https://github.com/SIPp/sipp/commit/8ddfb43359703e665041a955543e07f504f80232.patch",
             hash: "sha256-MYzy6C5yOwEJ7lo+GDdfTRlJ1t4ABtnm7ha+gAwoARo=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "CVE-2026-90779.patch",
             url: "https://github.com/SIPp/sipp/commit/09916a92de768ab08056a78e4731f9edc3853e1c.patch",
             hash: "sha256-MJe6SMT3yNzbep9/eC4ELCqxMKwe/v9ZkB4q/R0dpUg=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "CVE-2026-90778.patch",
             url: "https://github.com/SIPp/sipp/commit/d913c75c4ac55fe6d2b79c6dc23d8aa36dbc5283.patch",
             hash: "sha256-SEufhy4qB8PTWVwr5TE783P0yWjZk2/jcBGlqtJIbXc=",
@@ -65,7 +65,7 @@ echo '#define VERSION "v${nix.sel(finalAttrs, "version")}"' >> include/version.h
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => nix.concat([ncurses, libpcap, openssl], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), lksctp_tools))),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "http://sipp.sf.net",
         description: "SIPp testing tool",
         mainProgram: "sipp",

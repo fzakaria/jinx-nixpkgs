@@ -23,21 +23,21 @@ export default nix.lambda((args) => (() => {
   const snakeOilPublicKey = nix.thunk(() => nix.attr(from, "snakeOilPublicKey"));
   const ssh_config = nix.thunk(() => nix.builtins.toFile("ssh.conf", "UserKnownHostsFile=/dev/null\nStrictHostKeyChecking=no\n"));
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     name: "nix-ssh-serve",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "shlevy"))]),
     })),
-    defaults: nix.thunk(() => ({ __proto__: pos$3, nix: nix.thunk(() => ({ __proto__: pos$2, enable: true })) })),
+    defaults: nix.thunk(() => ({ [nix.POS]: pos$3, nix: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })) })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       server: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         nix: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           sshServe: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enable: true,
             keys: nix.thunk(() => [snakeOilPublicKey]),
             protocol: "ssh-ng",
@@ -46,8 +46,8 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       client: nix.thunk(() => ({
-        __proto__: pos$8,
-        nix: nix.thunk(() => ({ __proto__: pos$7, package: nix.thunk(() => nix.sel(pkgs, "nix")) })),
+        [nix.POS]: pos$8,
+        nix: nix.thunk(() => ({ [nix.POS]: pos$7, package: nix.thunk(() => nix.sel(pkgs, "nix")) })),
       })),
     })),
     testScript: nix.thunk(() => nix.str`start_all()

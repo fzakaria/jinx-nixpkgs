@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const v2ray_rules_dat = nix.arg($, "v2ray-rules-dat");
   const assets = nix.argOr($, "assets", () => [v2ray_rules_dat]);
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "xray",
       version: "26.9.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "XTLS",
           repo: "Xray-core",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,14 +36,14 @@ export default nix.lambda((args) => (() => {
       ldflags: nix.thunk(() => ["-s", "-w"]),
       subPackages: nix.thunk(() => ["main"]),
       installPhase: "runHook preInstall\ninstall -Dm555 \"$GOPATH\"/bin/main $out/bin/xray\nrunHook postInstall\n",
-      assetsDrv: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({ __proto__: pos$2, name: "v2ray-assets", paths: assets })))),
+      assetsDrv: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({ [nix.POS]: pos$2, name: "v2ray-assets", paths: assets })))),
       postFixup: "wrapProgram $out/bin/xray \\\n  --set-default V2RAY_LOCATION_ASSET $assetsDrv/share/v2ray \\\n  --set-default XRAY_LOCATION_ASSET $assetsDrv/share/v2ray\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Platform for building proxies to bypass network restrictions. A replacement for v2ray-core, with XTLS support and fully compatible configuration",
         mainProgram: "xray",
         homepage: "https://github.com/XTLS/Xray-core",

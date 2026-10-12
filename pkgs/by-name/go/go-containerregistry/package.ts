@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const bins = nix.thunk(() => ["crane", "gcrane"]);
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "go-containerregistry",
       version: "0.22.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "google",
           repo: "go-containerregistry",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ ln -s $${bin}/bin/${bin} $out/bin/
 `, bins))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "for cmd in crane gcrane; do\n  installShellCompletion --cmd \"$cmd\" \\\n    --bash <($GOPATH/bin/$cmd completion bash) \\\n    --fish <($GOPATH/bin/$cmd completion fish) \\\n    --zsh <($GOPATH/bin/$cmd completion zsh)\ndone\n"))),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tools for interacting with remote images and registries including crane and gcrane",
         homepage: "https://github.com/google/go-containerregistry",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

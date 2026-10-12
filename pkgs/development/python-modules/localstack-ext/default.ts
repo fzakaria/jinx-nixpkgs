@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.12.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "localstack_ext",
           version: version,
           hash: "sha256-AQrG6iRTBarinrGgJeLr5OYguuN7KWyxRUYNMHz4mlE=",
@@ -64,18 +64,18 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["localstack"]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, localstack: nix.thunk(() => nix.attr(pkgs, "localstack")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, localstack: nix.thunk(() => nix.attr(pkgs, "localstack")) })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Extensions for LocalStack",
         homepage: "https://github.com/localstack/localstack",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

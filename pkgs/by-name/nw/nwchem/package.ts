@@ -39,30 +39,30 @@ export default nix.lambda((args) => (() => {
   nix.assert_(nix.eq(nix.sel(blas_ilp64, "isILP64"), nix.sel(scalapack_ilp64, "isILP64")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/nw/nwchem/package.nix:26:1");
   const versionGA = "5.9.2";
   const gaSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "GlobalArrays",
       repo: "ga",
       rev: nix.thunk(() => nix.str`v${versionGA}`),
       hash: "sha256-leCvbWteOp7z7ORwtljA+KslHUptY2vdupZTmAjsArg=",
     }))));
   const dftd3Src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: "https://www.chemie.uni-bonn.de/grimme/software/dft-d3/dftd3.tgz",
       hash: "sha256-2Xz5dY9hqoH9hUJUSPv0pujOB8EukjZzmDGjrzKID1k=",
     }))));
   const plumedSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       owner: "edoapra",
       repo: "plumed2",
       rev: "e7c908da50bde1c6399c9f0e445d6ea3330ddd9b",
       hash: "sha256-CNlb6MTEkD977hj3xonYqZH1/WlQ1EdVD7cvL//heRM=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "nwchem",
       version: "7.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "nwchemgit",
           repo: "nwchem",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}-release`),
@@ -150,7 +150,7 @@ export NWCHEM_TOP="$(pwd)"
 
 runHook postConfigure
 `),
-      env: nix.thunk(() => ({ __proto__: pos$5, NIX_CFLAGS_COMPILE: "-Wno-error=implicit-int -std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$5, NIX_CFLAGS_COMPILE: "-Wno-error=implicit-int -std=gnu17" })),
       enableParallelBuilding: true,
       preBuild: nix.thunk(() => nix.str`ln -s ${gaSrc} src/tools/ga-${versionGA}.tar.gz
 cd src
@@ -163,9 +163,9 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(bl
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [mpiCheckPhaseHook]),
       installCheckPhase: "runHook preInstallCheck\n\n# run a simple water test\nmpirun -np 2 $out/bin/nwchem $NWCHEM_TOP/QA/tests/h2o/h2o.nw > h2o.out\ngrep \"Total SCF energy\" h2o.out  | grep 76.010538\n\nrunHook postInstallCheck\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$6, mpi: mpi })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$6, mpi: mpi })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Open Source High-Performance Computational Chemistry",
         mainProgram: "nwchem",
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux"]),

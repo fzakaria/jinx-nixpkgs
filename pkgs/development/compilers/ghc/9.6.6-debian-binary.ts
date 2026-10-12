@@ -50,30 +50,30 @@ export default nix.lambda((args) => (() => {
   const replaceVarsWith = nix.arg($, "replaceVarsWith");
   nix.assert_(nix.eq(nix.sel(stdenv, "targetPlatform"), nix.sel(stdenv, "hostPlatform")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/compilers/ghc/9.6.6-debian-binary.nix:20:1");
   const version = "9.6.6";
-  const useLLVM = nix.thunk(() => !nix.asBool(nix.app(nix.builtins.import(nix.path(here, "./common-have-ncg.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib, stdenv: stdenv, version: version })))));
+  const useLLVM = nix.thunk(() => !nix.asBool(nix.app(nix.builtins.import(nix.path(here, "./common-have-ncg.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib, stdenv: stdenv, version: version })))));
   const ghcDebs = nix.thunk(() => ({
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     "loongarch64-linux": nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       toolPrefix: "loongarch64-linux-gnu-",
       src: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: "http://ftp.ports.debian.org/debian-ports/pool-loong64/main/g/ghc/ghc_9.6.6-4+b1_loong64.deb",
         sha256: "f14b5e3c8e6bd233b5be8e72c369fea0644f2a804d7636f930c05b4abf77d57f",
       })),
       exePathForLibraryCheck: null,
       archSpecificLibraries: nix.thunk(() => [
-        nix.thunk(() => ({ __proto__: pos$3, nixPackage: gmp, fileToCheckFor: null })),
-        nix.thunk(() => ({ __proto__: pos$4, nixPackage: ncurses6, fileToCheckFor: "libtinfo.so.6" })),
-        nix.thunk(() => ({ __proto__: pos$5, nixPackage: numactl, fileToCheckFor: null })),
-        nix.thunk(() => ({ __proto__: pos$6, nixPackage: libffi, fileToCheckFor: null })),
+        nix.thunk(() => ({ [nix.POS]: pos$3, nixPackage: gmp, fileToCheckFor: null })),
+        nix.thunk(() => ({ [nix.POS]: pos$4, nixPackage: ncurses6, fileToCheckFor: "libtinfo.so.6" })),
+        nix.thunk(() => ({ [nix.POS]: pos$5, nixPackage: numactl, fileToCheckFor: null })),
+        nix.thunk(() => ({ [nix.POS]: pos$6, nixPackage: libffi, fileToCheckFor: null })),
       ]),
     })),
     "powerpc64-linux": nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       toolPrefix: "powerpc64-linux-gnu-",
       src: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         urls: nix.thunk(() => [
           "http://ftp.ports.debian.org/debian-ports/pool-ppc64/main/g/ghc/ghc_9.6.6-4_ppc64.deb",
           "https://snapshot.debian.org/archive/debian-ports/20250917T193713Z/pool-ppc64/main/g/ghc/ghc_9.6.6-4_ppc64.deb",
@@ -82,17 +82,17 @@ export default nix.lambda((args) => (() => {
       })),
       exePathForLibraryCheck: null,
       archSpecificLibraries: nix.thunk(() => [
-        nix.thunk(() => ({ __proto__: pos$9, nixPackage: gmp, fileToCheckFor: null })),
-        nix.thunk(() => ({ __proto__: pos$10, nixPackage: ncurses6, fileToCheckFor: "libtinfo.so.6" })),
-        nix.thunk(() => ({ __proto__: pos$11, nixPackage: numactl, fileToCheckFor: null })),
-        nix.thunk(() => ({ __proto__: pos$12, nixPackage: libffi, fileToCheckFor: null })),
+        nix.thunk(() => ({ [nix.POS]: pos$9, nixPackage: gmp, fileToCheckFor: null })),
+        nix.thunk(() => ({ [nix.POS]: pos$10, nixPackage: ncurses6, fileToCheckFor: "libtinfo.so.6" })),
+        nix.thunk(() => ({ [nix.POS]: pos$11, nixPackage: numactl, fileToCheckFor: null })),
+        nix.thunk(() => ({ [nix.POS]: pos$12, nixPackage: libffi, fileToCheckFor: null })),
       ]),
     })),
     "riscv64-linux": nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       toolPrefix: "riscv64-linux-gnu-",
       src: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         urls: nix.thunk(() => [
           "https://deb.debian.org/debian/pool/main/g/ghc/ghc_9.6.6-4_riscv64.deb",
           "https://snapshot.debian.org/archive/debian/20250218T211057Z/pool/main/g/ghc/ghc_9.6.6-4_riscv64.deb",
@@ -101,10 +101,10 @@ export default nix.lambda((args) => (() => {
       })),
       exePathForLibraryCheck: "ghc-debian-binary-9.6.6/usr/lib/ghc/bin/ghc-9.6.6",
       archSpecificLibraries: nix.thunk(() => [
-        nix.thunk(() => ({ __proto__: pos$15, nixPackage: gmp, fileToCheckFor: null })),
-        nix.thunk(() => ({ __proto__: pos$16, nixPackage: ncurses6, fileToCheckFor: "libtinfo.so.6" })),
-        nix.thunk(() => ({ __proto__: pos$17, nixPackage: numactl, fileToCheckFor: null })),
-        nix.thunk(() => ({ __proto__: pos$18, nixPackage: libffi, fileToCheckFor: null })),
+        nix.thunk(() => ({ [nix.POS]: pos$15, nixPackage: gmp, fileToCheckFor: null })),
+        nix.thunk(() => ({ [nix.POS]: pos$16, nixPackage: ncurses6, fileToCheckFor: "libtinfo.so.6" })),
+        nix.thunk(() => ({ [nix.POS]: pos$17, nixPackage: numactl, fileToCheckFor: null })),
+        nix.thunk(() => ({ [nix.POS]: pos$18, nixPackage: libffi, fileToCheckFor: null })),
       ]),
     })),
   }));
@@ -116,23 +116,23 @@ export default nix.lambda((args) => (() => {
     coreutils,
   ], nix.app(nix.sel(lib, "optionals"), useLLVM, nix.thunk(() => [
       nix.thunk(() => nix.app(replaceVarsWith, nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           name: "subopt",
           src: nix.path(here, "./subopt.bash"),
           dir: "bin",
           isExecutable: true,
           preBuild: "name=opt\n",
           replacements: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             shell: nix.thunk(() => nix.attr(stdenv, "shell")),
             opt: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(llvmPackages, "llvm")), "opt")),
           })),
         })))),
       nix.thunk(() => nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(llvmPackages, "llvm")))),
     ]))));
-  const extraLibraryMapping = nix.thunk(() => ({ __proto__: pos$23, gmp: gmpUsed, numa: numactl, ffi: libffi }));
+  const extraLibraryMapping = nix.thunk(() => ({ [nix.POS]: pos$23, gmp: gmpUsed, numa: numactl, ffi: libffi }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       version: version,
       pname: "ghc-debian-binary",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.sel(debUsed, "src")))),
@@ -223,7 +223,7 @@ done
       doInstallCheck: true,
       installCheckPhase: "# Sanity check, can ghc create executables?\ncd $TMP\nmkdir test-ghc; cd test-ghc\ncat > main.hs << EOF\n  {-# LANGUAGE TemplateHaskell #-}\n  module Main where\n  main = putStrLn \\$([|\"yes\"|])\nEOF\nenv -i $out/bin/ghc --make main.hs || exit 1\necho compilation ok\n[ $(./main) == \"yes\" ]\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         targetPrefix: "",
         enableShared: true,
         llvmPackages: llvmPackages,
@@ -231,7 +231,7 @@ done
         hadrian: null,
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         homepage: "http://haskell.org/ghc",
         description: "Glasgow Haskell Compiler",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libressl = nix.arg($, "libressl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "notemap",
       version: "1.3",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://git.causal.agency/notemap/snapshot/notemap-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0s9c1xx0iggyzclqw3294bjv7qgvd5l5zgbryks4hvfibr73r6ps",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libressl]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Mirror notes to IMAP",
         longDescription: "notemap(1) mirrors text files to an IMAP mailbox in a format compatible with the iOS\nNotes app. It's intended to make notes managed in git(1) easily accessible\nfrom the phone.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

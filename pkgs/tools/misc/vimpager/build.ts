@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const version = nix.arg($, "version");
   const sha256 = nix.arg($, "sha256");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: version,
       pname: "vimpager",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           sha256: sha256,
           owner: "rkitover",
           repo: "vimpager",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
 make
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Use Vim as PAGER",
         homepage: "https://www.vim.org/scripts/script.php?script_id=1723",
         license: nix.thunk(() => (() => {

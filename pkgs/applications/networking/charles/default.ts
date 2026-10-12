@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
     const jdk = nix.arg($_1, "jdk");
     const updateScript = nix.argOr($_1, "updateScript", () => null);
     const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         categories: nix.thunk(() => ["Network", "Development", "WebDevelopment", "Java"]),
         desktopName: "Charles",
         exec: "charles %F",
@@ -52,11 +52,11 @@ export default nix.lambda((args) => (() => {
         startupNotify: true,
       }))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: "charles",
         version: version,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`https://www.charlesproxy.com/assets/release/${version}/charles-proxy-${version}${platform}.tar.gz`),
             curlOptsList: nix.thunk(() => ["--user-agent", "Mozilla/5.0"]),
             hash: hash,
@@ -79,7 +79,7 @@ ${(nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "4.0")) ? "for size
 runHook postInstall
 `),
         meta: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           description: "Web Debugging Proxy",
           homepage: "https://www.charlesproxy.com/",
           maintainers: nix.thunk(() => (() => {
@@ -97,13 +97,13 @@ runHook postInstall
           license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         })),
-        passthru: nix.thunk(() => ({ __proto__: pos$4, updateScript: updateScript })),
+        passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: updateScript })),
       })));
   })(), formals$2);
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     charles5: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         version: "5.2.1",
         hash: "sha256-li08tpPDumfXnjeVkkNdO7kRhxqyrGIaWCWU2rV1fu8=",
         platform: "_x86_64",
@@ -111,14 +111,14 @@ runHook postInstall
         updateScript: nix.thunk(() => nix.app(writeScript, "update-charles", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p curl gnugrep common-updater-scripts\n\nset -eu -o pipefail\n\nversion=$(curl -A \"Mozilla/5.0\" -s https://www.charlesproxy.com/download/ | grep -oP 'Version \\K[0-9.]+' | head -n1)\n\nupdate-source-version charles5 \"$version\"\n")),
       })))),
     charles4: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         version: "4.6.8",
         hash: "sha256-AaS+zmQTWsGoLEhyGHA/UojmctE7IV0N9fnygNhEPls=",
         platform: "_amd64",
         jdk: jdk11,
       })))),
     charles3: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         version: "3.12.3",
         hash: "sha256-Wotxzf6kutYv1F6q71eJVojVJsATJ81war/w4K1A848=",
         jdk: nix.thunk(() => nix.sel(jdk8, "jre")),

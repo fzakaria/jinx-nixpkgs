@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const mkKdeDerivation = nix.arg($, "mkKdeDerivation");
   const cyrus_sasl = nix.arg($, "cyrus_sasl");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kimap",
       extraBuildInputs: nix.thunk(() => [cyrus_sasl]),
     })));

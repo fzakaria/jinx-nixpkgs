@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pyeve",
           repo: "events",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["events"]);
       const enabledTestPaths = nix.thunk(() => ["events/tests/tests.py"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bringing the elegance of C# EventHandler to Python",
         homepage: "https://events.readthedocs.org",
         changelog: "https://github.com/pyeve/events/blob/v0.5/CHANGES",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const skalibs = nix.arg($, "skalibs");
   const execline = nix.arg($, "execline");
   return nix.app(nix.sel(skawarePackages, "buildPackage"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "s6-linux-utils",
       version: "2.6.4.1",
       sha256: "sha256-FuGltaK0qYZ0tKlxlhKtt5WI48IMQIM2AnjqOPLTISk=",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Set of minimalistic Linux-specific system utilities",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       })),

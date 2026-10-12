@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const firefox_unwrapped = nix.arg($, "firefox-unwrapped");
   const firefox_esr_unwrapped = nix.arg($, "firefox-esr-unwrapped");
   return nix.app(nix.sel(stdenvNoLibc, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "wasilibc",
       version: "32",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "WebAssembly",
           repo: "wasi-libc",
           tag: nix.thunk(() => nix.str`wasi-sdk-${nix.sel(finalAttrs, "version")}`),
@@ -49,17 +49,17 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(stdenvNoLibc, "system"), nix.sel(stdenvNoLibc, "targetPlatform", "rust", "rustcTargetSpec"))), nix.thunk(() => nix.str`ln -s $out/lib/${nix.sel(stdenvNoLibc, "system")} $out/lib/${nix.sel(stdenvNoLibc, "targetPlatform", "rust", "rustcTargetSpec")}
 `))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         incdir: nix.thunk(() => nix.str`/include/${nix.sel(stdenvNoLibc, "system")}`),
         libdir: nix.thunk(() => nix.str`/lib/${nix.sel(stdenvNoLibc, "system")}`),
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "firefox-unwrapped": firefox_unwrapped,
           "firefox-esr-unwrapped": firefox_esr_unwrapped,
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/WebAssembly/wasi-sdk/releases/tag/wasi-sdk-${nix.sel(finalAttrs, "version")}`),
         description: "WASI libc implementation for WebAssembly",
         homepage: "https://wasi.dev",

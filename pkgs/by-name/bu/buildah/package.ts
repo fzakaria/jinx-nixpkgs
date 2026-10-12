@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const passt = nix.arg($, "passt");
   const binPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat([], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [runc, crun, conmon, slirp4netns, fuse_overlayfs, util_linuxMinimal, iptables])), extraPackages)))));
   const helpersBin = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.str`${nix.sel(buildah_unwrapped, "pname")}-helper-binary-wrapper-${nix.sel(buildah_unwrapped, "version")}`),
       paths: nix.thunk(() => nix.concat([], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [aardvark_dns, netavark, passt])))),
     }))));
   return nix.app(runCommand, nix.thunk(() => nix.sel(buildah_unwrapped, "name")), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: nix.thunk(() => nix.str`${nix.sel(buildah_unwrapped, "pname")}-wrapper-${nix.sel(buildah_unwrapped, "version")}`),
       pname: nix.thunk(() => nix.attr(buildah_unwrapped, "pname")),
       version: nix.thunk(() => nix.attr(buildah_unwrapped, "version")),

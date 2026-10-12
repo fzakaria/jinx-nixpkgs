@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const flex = nix.arg($, "flex");
   const libjack2 = nix.arg($, "libjack2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "brutefir",
       version: "1.0o",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://torger.se/anders/files/brutefir-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "caae4a933b53b55b29d6cb7e2803e20819f31def6d0e4e12f9a48351e6dbbe9f",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace bfconf.c --replace /usr/local $out",
       installFlags: nix.thunk(() => ["INSTALL_PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://torger.se/anders/brutefir.html",
         description: "Software convolution engine",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

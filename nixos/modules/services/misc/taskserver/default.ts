@@ -95,7 +95,7 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "taskserver"));
   const taskd = nix.thunk(() => nix.str`${nix.sel(pkgs, "taskserver")}/bin/taskd`);
   const mkManualPkiOption = (desc) => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
       default: null,
       description: nix.thunk(() => nix.str`${desc}
@@ -106,13 +106,13 @@ Setting this option will prevent automatic CA creation and handling.
 `),
     })));
   const manualPkiOptions = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     ca: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       cert: nix.thunk(() => nix.app(mkManualPkiOption, "Fully qualified path to the CA certificate.\n")),
     })),
     server: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       cert: nix.thunk(() => nix.app(mkManualPkiOption, "Fully qualified path to the server certificate.\n")),
       crl: nix.thunk(() => nix.app(mkManualPkiOption, "Fully qualified path to the server certificate revocation list.\n")),
       key: nix.thunk(() => nix.app(mkManualPkiOption, "Fully qualified path to the server key.\n")),
@@ -126,7 +126,7 @@ of the {option}\`services.taskserver.pki.manual.*\` options are set.
 :::
 `;
   const mkExpireOption = (desc) => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "int")))),
       default: null,
       example: 365n,
@@ -136,16 +136,16 @@ expiration time.
 `))),
     })));
   const autoPkiOptions = nix.thunk(() => ({
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     bits: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         type: nix.thunk(() => nix.sel(lib, "types", "int")),
         default: 4096n,
         example: 2048n,
         description: nix.thunk(() => nix.app(mkAutoDesc, "The bit size for generated keys.")),
       })))),
     expiration: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       ca: nix.thunk(() => nix.app(mkExpireOption, "the CA certificate")),
       server: nix.thunk(() => nix.app(mkExpireOption, "the server certificate")),
       client: nix.thunk(() => nix.app(mkExpireOption, "client certificates")),
@@ -169,18 +169,18 @@ expiration time.
   const orgOptions = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     return {
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       options: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         users: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "uniq"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))))),
             default: [],
             example: nix.thunk(() => ["alice", "bob"]),
             description: "A list of user names that belong to the organization.\n",
           })))),
         groups: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             default: [],
             example: nix.thunk(() => ["workers", "slackers"]),
@@ -193,12 +193,12 @@ expiration time.
   const nixos_taskserver = nix.thunk(() => (() => {
     const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "python3", "pkgs")), null);
     return nix.app(nix.lookup(w, "buildPythonApplication"), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         format: "setuptools",
         name: "nixos-taskserver",
-        src: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "nixos-taskserver-src", nix.thunk(() => ({ __proto__: pos$13, preferLocalBuild: true })), nix.thunk(() => nix.str`mkdir -p "$out"
+        src: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "nixos-taskserver-src", nix.thunk(() => ({ [nix.POS]: pos$13, preferLocalBuild: true })), nix.thunk(() => nix.str`mkdir -p "$out"
 cat "${nix.app(nix.sel(pkgs, "replaceVars"), nix.path(here, "./helper-tool.py"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               taskd: taskd,
               certtool: certtool,
               dataDir: nix.thunk(() => nix.attr(cfg, "dataDir")),
@@ -222,15 +222,15 @@ EOF
       })));
   })());
   return {
-    __proto__: pos$82,
+    [nix.POS]: pos$82,
     options: nix.thunk(() => ({
-      __proto__: pos$44,
+      [nix.POS]: pos$44,
       services: nix.thunk(() => ({
-        __proto__: pos$43,
+        [nix.POS]: pos$43,
         taskserver: nix.thunk(() => ({
-          __proto__: pos$42,
+          [nix.POS]: pos$42,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: nix.thunk(() => (() => {
@@ -243,25 +243,25 @@ found [in the NixOS manual](${url}).
               })()),
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "taskd",
               description: "User for Taskserver.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "taskd",
               description: "Group for Taskserver.",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/taskserver",
               description: "Data directory for Taskserver.",
             })))),
           ciphers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "separatedString"), ":")))),
               default: null,
               example: "NORMAL:-VERS-SSL3.0",
@@ -273,58 +273,58 @@ priority strings at <${url}> for full details.
               })()),
             })))),
           organisations: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), orgOptions)))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 myShinyOrganisation: nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   users: nix.thunk(() => ["alice", "bob"]),
                   groups: nix.thunk(() => ["staff", "outsiders"]),
                 })),
-                yetAnotherOrganisation: nix.thunk(() => ({ __proto__: pos$22, users: nix.thunk(() => ["foo", "bar"]) })),
+                yetAnotherOrganisation: nix.thunk(() => ({ [nix.POS]: pos$22, users: nix.thunk(() => ["foo", "bar"]) })),
               })),
               description: "An attribute set where the keys name the organisation and the values\nare a set of lists of {option}`users` and\n{option}`groups`.\n",
             })))),
           confirmation: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Determines whether certain commands are confirmed.\n",
             })))),
           debug: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Logs debugging information.\n",
             })))),
           extensions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "Fully qualified path of the Taskserver extension scripts.\nCurrently there are none.\n",
             })))),
           ipLog: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Logs the IP addresses of incoming requests.\n",
             })))),
           queueSize: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 10n,
               description: "Size of the connection backlog, see {manpage}`listen(2)`.\n",
             })))),
           requestLimit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 1048576n,
               description: "Size limit of incoming requests, in bytes.\n",
             })))),
           allowedClientIDs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w_1, "either"), nix.thunk(() => nix.lookup(w_1, "str")), nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")))));
@@ -334,7 +334,7 @@ priority strings at <${url}> for full details.
               description: "A list of regular expressions that are matched against the reported\nclient id (such as `task 2.3.0`).\n\nThe values `all` or `none` have\nspecial meaning. Overridden by any entry in the option\n{option}`services.taskserver.disallowedClientIDs`.\n",
             })))),
           disallowedClientIDs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w_1, "either"), nix.thunk(() => nix.lookup(w_1, "str")), nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")))));
@@ -344,43 +344,43 @@ priority strings at <${url}> for full details.
               description: "A list of regular expressions that are matched against the reported\nclient id (such as `task 2.3.0`).\n\nThe values `all` or `none` have\nspecial meaning. Any entry here overrides those in\n{option}`services.taskserver.allowedClientIDs`.\n",
             })))),
           listenHost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "localhost",
               example: "::",
               description: "The address (IPv4, IPv6 or DNS) to listen on.\n",
             })))),
           listenPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 53589n,
               description: "Port number of the Taskserver.\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to open the firewall for the specified Taskserver port.\n",
             })))),
           fqdn: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "localhost",
               description: "The fully qualified domain name of this server, which is also used\nas the common name in the certificates.\n",
             })))),
           trust: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["allow all", "strict"]))),
               default: "strict",
               description: "Determines how client certificates are validated.\n\nThe value `allow all` performs no client\ncertificate validation. This is not recommended. The value\n`strict` causes the client certificate to be\nvalidated against a CA.\n",
             })))),
-          pki: nix.thunk(() => ({ __proto__: pos$38, manual: manualPkiOptions, auto: autoPkiOptions })),
+          pki: nix.thunk(() => ({ [nix.POS]: pos$38, manual: manualPkiOptions, auto: autoPkiOptions })),
           config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               type: nix.thunk(() => nix.sel(lib, "types", "attrs")),
               example: nix.thunk(() => ({
-                __proto__: pos$40,
-                client: nix.thunk(() => ({ __proto__: pos$39, cert: "/tmp/debugging.cert" })),
+                [nix.POS]: pos$40,
+                client: nix.thunk(() => ({ [nix.POS]: pos$39, cert: "/tmp/debugging.cert" })),
               })),
               description: "Configuration options to pass to Taskserver.\n\nThe options here are the same as described in\n{manpage}`taskdrc(5)` from the `taskwarrior2` package, but with one difference:\n\nThe `server` option is\n`server.listen` here, because the\n`server` option would collide with other options\nlike `server.cert` and we would run in a type error\n(attribute set versus string).\n\nNix types like integers or booleans are automatically converted to\nthe right values Taskserver would expect.\n",
               apply: nix.thunk(() => (() => {
@@ -404,96 +404,96 @@ priority strings at <${url}> for full details.
     ]),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$72,
-            environment: nix.thunk(() => ({ __proto__: pos$45, systemPackages: nix.thunk(() => [nixos_taskserver]) })),
+            [nix.POS]: pos$72,
+            environment: nix.thunk(() => ({ [nix.POS]: pos$45, systemPackages: nix.thunk(() => [nixos_taskserver]) })),
             users: nix.thunk(() => ({
-              __proto__: pos$50,
+              [nix.POS]: pos$50,
               users: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "taskd")), nix.thunk(() => ({
-                  __proto__: pos$47,
+                  [nix.POS]: pos$47,
                   taskd: nix.thunk(() => ({
-                    __proto__: pos$46,
+                    [nix.POS]: pos$46,
                     uid: nix.thunk(() => nix.sel(config, "ids", "uids", "taskd")),
                     description: "Taskserver user",
                     group: nix.thunk(() => nix.sel(cfg, "group")),
                   })),
                 })))),
               groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "taskd")), nix.thunk(() => ({
-                  __proto__: pos$49,
+                  [nix.POS]: pos$49,
                   taskd: nix.thunk(() => ({
-                    __proto__: pos$48,
+                    [nix.POS]: pos$48,
                     gid: nix.thunk(() => nix.sel(config, "ids", "gids", "taskd")),
                   })),
                 })))),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$61,
+              [nix.POS]: pos$61,
               taskserver: nix.thunk(() => ({
-                __proto__: pos$60,
+                [nix.POS]: pos$60,
                 config: nix.thunk(() => ({
-                  __proto__: pos$59,
+                  [nix.POS]: pos$59,
                   daemon: false,
                   log: "-",
                   debug: nix.thunk(() => nix.sel(cfg, "debug")),
-                  ip: nix.thunk(() => ({ __proto__: pos$51, log: nix.thunk(() => nix.sel(cfg, "ipLog")) })),
+                  ip: nix.thunk(() => ({ [nix.POS]: pos$51, log: nix.thunk(() => nix.sel(cfg, "ipLog")) })),
                   ciphers: nix.thunk(() => nix.sel(cfg, "ciphers")),
                   confirmation: nix.thunk(() => nix.sel(cfg, "confirmation")),
                   extensions: nix.thunk(() => nix.sel(cfg, "extensions")),
-                  queue: nix.thunk(() => ({ __proto__: pos$52, size: nix.thunk(() => nix.sel(cfg, "queueSize")) })),
-                  request: nix.thunk(() => ({ __proto__: pos$53, limit: nix.thunk(() => nix.sel(cfg, "requestLimit")) })),
+                  queue: nix.thunk(() => ({ [nix.POS]: pos$52, size: nix.thunk(() => nix.sel(cfg, "queueSize")) })),
+                  request: nix.thunk(() => ({ [nix.POS]: pos$53, limit: nix.thunk(() => nix.sel(cfg, "requestLimit")) })),
                   client: nix.thunk(() => ({
-                    __proto__: pos$54,
+                    [nix.POS]: pos$54,
                     allow: nix.thunk(() => nix.sel(cfg, "allowedClientIDs")),
                     deny: nix.thunk(() => nix.sel(cfg, "disallowedClientIDs")),
                   })),
                   trust: nix.thunk(() => nix.sel(cfg, "trust")),
                   server: nix.thunk(() => nix.update({
-                    __proto__: pos$55,
+                    [nix.POS]: pos$55,
                     listen: nix.thunk(() => nix.str`${nix.sel(cfg, "listenHost")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "listenPort")))}`),
                   }, (nix.asBool(needToCreateCA) ? {
-                    __proto__: pos$56,
+                    [nix.POS]: pos$56,
                     cert: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/keys/server.cert`),
                     key: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/keys/server.key`),
                     crl: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/keys/server.crl`),
                   } : nix.attrsDyn({
-                    __proto__: pos$57,
+                    [nix.POS]: pos$57,
                     cert: nix.thunk(() => nix.str`${nix.sel(cfg, "pki", "manual", "server", "cert")}`),
                     key: nix.thunk(() => nix.str`${nix.sel(cfg, "pki", "manual", "server", "key")}`),
                   }, [
                     [nix.app(nix.sel(lib, "mapNullable"), (_) => "crl", nix.thunk(() => nix.sel(cfg, "pki", "manual", "server", "crl"))), nix.thunk(() => nix.str`${nix.sel(cfg, "pki", "manual", "server", "crl")}`)],
                   ])))),
                   ca: nix.thunk(() => ({
-                    __proto__: pos$58,
+                    [nix.POS]: pos$58,
                     cert: nix.thunk(() => (nix.asBool(needToCreateCA) ? nix.str`${nix.sel(cfg, "dataDir")}/keys/ca.cert` : nix.str`${nix.sel(cfg, "pki", "manual", "ca", "cert")}`)),
                   })),
                 })),
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$71,
+              [nix.POS]: pos$71,
               tmpfiles: nix.thunk(() => ({
-                __proto__: pos$62,
+                [nix.POS]: pos$62,
                 rules: nix.thunk(() => [
                   nix.thunk(() => nix.str`d ${nix.sel(cfg, "dataDir")} 0770 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")}`),
                   nix.thunk(() => nix.str`z ${nix.sel(cfg, "dataDir")} 0770 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")}`),
                 ]),
               })),
               services: nix.thunk(() => ({
-                __proto__: pos$70,
+                [nix.POS]: pos$70,
                 "taskserver-init": nix.thunk(() => ({
-                  __proto__: pos$66,
+                  [nix.POS]: pos$66,
                   wantedBy: nix.thunk(() => ["taskserver.service"]),
                   before: nix.thunk(() => ["taskserver.service"]),
                   description: "Initialize Taskserver Data Directory",
                   script: nix.thunk(() => nix.str`${taskd} init
 touch "${nix.sel(cfg, "dataDir")}/.is_initialized"
 `),
-                  environment: nix.thunk(() => ({ __proto__: pos$63, TASKDDATA: nix.thunk(() => nix.sel(cfg, "dataDir")) })),
+                  environment: nix.thunk(() => ({ [nix.POS]: pos$63, TASKDDATA: nix.thunk(() => nix.sel(cfg, "dataDir")) })),
                   unitConfig: nix.thunk(() => ({
-                    __proto__: pos$64,
+                    [nix.POS]: pos$64,
                     ConditionPathExists: nix.thunk(() => nix.str`!${nix.sel(cfg, "dataDir")}/.is_initialized`),
                   })),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$65,
+                    [nix.POS]: pos$65,
                     Type: "oneshot",
                     User: nix.thunk(() => nix.sel(cfg, "user")),
                     Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -504,11 +504,11 @@ touch "${nix.sel(cfg, "dataDir")}/.is_initialized"
                   })),
                 })),
                 taskserver: nix.thunk(() => ({
-                  __proto__: pos$69,
+                  [nix.POS]: pos$69,
                   description: "Taskwarrior 2 Server",
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   after: nix.thunk(() => ["network.target"]),
-                  environment: nix.thunk(() => ({ __proto__: pos$67, TASKDDATA: nix.thunk(() => nix.sel(cfg, "dataDir")) })),
+                  environment: nix.thunk(() => ({ [nix.POS]: pos$67, TASKDDATA: nix.thunk(() => nix.sel(cfg, "dataDir")) })),
                   preStart: nix.thunk(() => (() => {
                     const jsonOrgs = nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.sel(cfg, "organisations"))));
                     const jsonFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "orgs.json", jsonOrgs));
@@ -516,7 +516,7 @@ touch "${nix.sel(cfg, "dataDir")}/.is_initialized"
                     return nix.str`${helperTool} process-json '${jsonFile}'`;
                   })()),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$68,
+                    [nix.POS]: pos$68,
                     ExecStart: nix.thunk(() => (() => {
                       const mkCfgFlag = (flag) => nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.str`--${flag}`));
                       const cfgFlags = nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), " ", mkCfgFlag, nix.thunk(() => nix.sel(cfg, "config"))));
@@ -535,19 +535,19 @@ touch "${nix.sel(cfg, "dataDir")}/.is_initialized"
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enable")) && nix.asBool(needToCreateCA))), nix.thunk(() => ({
-            __proto__: pos$77,
+            [nix.POS]: pos$77,
             systemd: nix.thunk(() => ({
-              __proto__: pos$76,
+              [nix.POS]: pos$76,
               services: nix.thunk(() => ({
-                __proto__: pos$75,
+                [nix.POS]: pos$75,
                 "taskserver-ca": nix.thunk(() => ({
-                  __proto__: pos$74,
+                  [nix.POS]: pos$74,
                   wantedBy: nix.thunk(() => ["taskserver.service"]),
                   after: nix.thunk(() => ["taskserver-init.service"]),
                   before: nix.thunk(() => ["taskserver.service"]),
                   description: "Initialize CA for TaskServer",
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$73,
+                    [nix.POS]: pos$73,
                     Type: "oneshot",
                     UMask: "0077",
                     PrivateNetwork: true,
@@ -625,17 +625,17 @@ chmod go+x "${nix.sel(cfg, "dataDir")}/keys"
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enable")) && nix.asBool(nix.sel(cfg, "openFirewall")))), nix.thunk(() => ({
-            __proto__: pos$80,
+            [nix.POS]: pos$80,
             networking: nix.thunk(() => ({
-              __proto__: pos$79,
+              [nix.POS]: pos$79,
               firewall: nix.thunk(() => ({
-                __proto__: pos$78,
+                [nix.POS]: pos$78,
                 allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "listenPort"))]),
               })),
             })),
           })))),
       ]))),
-    meta: nix.thunk(() => ({ __proto__: pos$81, doc: nix.path(here, "./default.md") })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$81, doc: nix.path(here, "./default.md") })),
   };
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

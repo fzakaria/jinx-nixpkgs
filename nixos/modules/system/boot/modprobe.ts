@@ -29,18 +29,18 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const attrNamesToTrue = nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "coercedTo"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))), (enabledList) => nix.app(nix.sel(lib, "genAttrs"), enabledList, (_attrName) => true), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool"))))));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       boot: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         modprobeConfig: nix.thunk(() => ({
-          __proto__: pos$3,
-          enable: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mkEnableOption"), "modprobe config. This is useful for systems like containers which do not require a kernel"), { __proto__: pos$1, default: true })),
-          useUbuntuModuleBlacklist: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mkEnableOption"), "Ubuntu distro's module blacklist"), { __proto__: pos$2, default: true })),
+          [nix.POS]: pos$3,
+          enable: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mkEnableOption"), "modprobe config. This is useful for systems like containers which do not require a kernel"), { [nix.POS]: pos$1, default: true })),
+          useUbuntuModuleBlacklist: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mkEnableOption"), "Ubuntu distro's module blacklist"), { [nix.POS]: pos$2, default: true })),
         })),
         blacklistedKernelModules: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: attrNamesToTrue,
             default: nix.thunk(() => ({})),
             example: nix.thunk(() => ["cirrusfb", "i2c_piix4"]),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
             apply: (mods) => nix.app(nix.sel(lib, "attrNames"), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (v) => nix.force(v), mods))),
           })))),
         extraModprobeConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             default: "",
             example: "options parport_pc io=0x378 irq=7 dma=1\n",
             description: "Any additional configuration to be appended to the generated\n{file}`modprobe.conf`.  This is typically used to\nspecify module options.  See\n{manpage}`modprobe.d(5)` for details.\n",
@@ -57,37 +57,37 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(config, "boot", "modprobeConfig", "enable")), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         environment: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           etc: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             "modprobe.d/ubuntu.conf": nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(config, "boot", "modprobeConfig", "useUbuntuModuleBlacklist")), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 source: nix.thunk(() => nix.str`${nix.sel(pkgs, "kmod-blacklist-ubuntu")}/modprobe.conf`),
               })))),
             "modprobe.d/nixos.conf": nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               text: nix.thunk(() => nix.str`${nix.app(nix.lookup(w, "flip"), nix.thunk(() => nix.lookup(w, "concatMapStrings")), nix.thunk(() => nix.sel(config, "boot", "blacklistedKernelModules")), (name) => nix.str`blacklist ${name}
 `)}
 ${nix.sel(config, "boot", "extraModprobeConfig")}
 `),
             })),
             "modprobe.d/debian.conf": nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               source: nix.thunk(() => nix.sel(pkgs, "kmod-debian-aliases")),
             })),
             "modprobe.d/systemd.conf": nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               source: nix.thunk(() => nix.str`${nix.sel(config, "systemd", "package")}/lib/modprobe.d/systemd.conf`),
             })),
           })),
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "kmod"))]),
         })),
         system: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           activationScripts: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             modprobe: nix.thunk(() => nix.app(nix.lookup(w, "stringAfter"), nix.thunk(() => ["specialfs"]), nix.thunk(() => nix.str`# Allow the kernel to find our wrapped modprobe (which searches
 # in the right location in the Nix store for kernel modules).
 # We need this when the kernel (or some module) auto-loads a

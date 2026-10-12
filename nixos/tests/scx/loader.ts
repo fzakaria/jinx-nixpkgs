@@ -17,29 +17,29 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     name: "scx-loader",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "ccicnce113424"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       machine: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         boot: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           kernelPackages: nix.thunk(() => nix.sel(pkgs, "linuxPackages_latest")),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "scx-loader": nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enable: true,
-            config: nix.thunk(() => ({ __proto__: pos$3, default_sched: "scx_bpfland" })),
+            config: nix.thunk(() => ({ [nix.POS]: pos$3, default_sched: "scx_bpfland" })),
           })),
         })),
       })),

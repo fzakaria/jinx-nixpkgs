@@ -34,13 +34,13 @@ export default nix.lambda((args) => (() => {
   const qtconsole = nix.arg($, "qtconsole");
   const torch = nix.arg($, "torch");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "optiland",
       version: "0.6.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "HarrisonKramer",
           repo: "optiland",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,9 +66,9 @@ export default nix.lambda((args) => (() => {
         vtk,
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "optional-dependencies": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           gui: nix.thunk(() => [pyside6, qtconsole]),
           torch: nix.thunk(() => [torch]),
         })),
@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["optiland"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Comprehensive optical design, optimization, and analysis in Python, including GPU-accelerated and differentiable ray tracing via PyTorch",
         homepage: "https://github.com/HarrisonKramer/optiland",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

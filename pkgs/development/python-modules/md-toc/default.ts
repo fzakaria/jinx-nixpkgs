@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pyfakefs = nix.arg($, "pyfakefs");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "md-toc",
       version: "9.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "frnmst",
           repo: "md-toc",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["md_toc/tests/tests.py"]),
       pythonImportsCheck: nix.thunk(() => ["md_toc"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Table of contents generator for Markdown",
         homepage: "https://docs.franco.net.eu.org/md-toc/",
         changelog: "https://blog.franco.net.eu.org/software/CHANGELOG-md-toc.html",

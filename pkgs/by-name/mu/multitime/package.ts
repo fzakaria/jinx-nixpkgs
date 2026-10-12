@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "multitime",
       version: "1.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ltratt",
           repo: "multitime",
           rev: nix.thunk(() => nix.str`multitime-${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Time command execution over multiple executions",
         longDescription: "Unix's `time` utility is a simple and often effective way of measuring\nhow long a command takes to run. Unfortunately, running a command once\ncan give misleading timings: the process may create a cache on its first\nexecution, running faster subsequently; other processes may cause the\ncommand to be starved of CPU or IO time; etc. It is common to see people\nrun `time` several times and take whichever values they feel most\ncomfortable with. Inevitably, this causes problems.\n\n`multitime` is, in essence, a simple extension to time which runs a\ncommand multiple times and prints the timing means (with confidence\nintervals), standard deviations, minimums, medians, and maximums having\ndone so. This can give a much better understanding of the command's\nperformance.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
     return [nix.thunk(() => nix.lookup(w, "ffmpeg"))];
   })());
   const phpPackage = nix.thunk(() => nix.app(nix.sel(cfg, "phpPackage", "buildEnv"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       extensions: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const enabled = nix.arg($_1, "enabled");
@@ -116,7 +116,7 @@ $sudo ${phpPackage}/bin/php artisan "$@"
 `)));
   const redisService = "redis-loops-server.service";
   const defaultServiceConfig = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     User: nix.thunk(() => nix.sel(cfg, "user")),
     Group: nix.thunk(() => nix.sel(cfg, "group")),
     WorkingDirectory: nix.thunk(() => nix.sel(cfg, "dataDir")),
@@ -154,45 +154,45 @@ $sudo ${phpPackage}/bin/php artisan "$@"
     UMask: "0077",
   }));
   return {
-    __proto__: pos$68,
+    [nix.POS]: pos$68,
     meta: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "onny"))]),
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "ngi"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       services: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         "loops-server": nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "a Loops instance")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "loops-server", nix.thunk(() => ({})))),
           phpPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "php85", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "loops",
               description: "User account under which Loops runs.\n\n::: {.note}\nIf left as the default value this user will automatically be created\non system activation, otherwise you are responsible for\nensuring the user exists before the Loops application starts.\n:::\n",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "loops",
               description: "Group account under which Loops runs.\n\n::: {.note}\nIf left as the default value this group will automatically be created\non system activation, otherwise you are responsible for\nensuring the group exists before the Loops application starts.\n:::\n",
             })))),
           domain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "FQDN for the Loops instance.\n",
             })))),
           secretFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "A secret file to be sourced for the .env settings.\nPlace `APP_KEY` and other settings that should not end up in the Nix store here.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "oneOf"), nix.thunk(() => [
@@ -204,35 +204,35 @@ $sudo ${phpPackage}/bin/php artisan "$@"
               description: ".env settings for Loops.\nSecrets should use `secretFile` option instead.\n",
             })))),
           nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
-              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")), nix.thunk(() => ({ __proto__: pos$9, config: config, lib: lib })))))))),
+              [nix.POS]: pos$10,
+              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")), nix.thunk(() => ({ [nix.POS]: pos$9, config: config, lib: lib })))))))),
               default: null,
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  serverAliases = [\n    \"pics.${config.networking.domain}\"\n  ];\n  enableACME = true;\n  forceSSL = true;\n}\n")),
               description: "With this option, you can customize an nginx virtual host which already has sensible defaults for Loops.\nSet to {} if you do not need any customization to the virtual host.\nIf enabled, then by default, the {option}`serverName` is\n`${domain}`,\nIf this is set to null (the default), no nginx virtualHost will be configured.\n",
             })))),
           redis: nix.thunk(() => ({
-            __proto__: pos$12,
-            createLocally: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "a local Redis database using UNIX socket authentication"), { __proto__: pos$11, default: true })),
+            [nix.POS]: pos$12,
+            createLocally: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "a local Redis database using UNIX socket authentication"), { [nix.POS]: pos$11, default: true })),
           })),
           database: nix.thunk(() => ({
-            __proto__: pos$16,
-            createLocally: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "a local database using UNIX socket authentication"), { __proto__: pos$13, default: true })),
-            automaticMigrations: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "automatic migrations for database schema and data"), { __proto__: pos$14, default: true })),
+            [nix.POS]: pos$16,
+            createLocally: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "a local database using UNIX socket authentication"), { [nix.POS]: pos$13, default: true })),
+            automaticMigrations: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "automatic migrations for database schema and data"), { [nix.POS]: pos$14, default: true })),
             name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "loops",
                 description: "Database name.",
               })))),
           })),
           maxUploadSize: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "100M",
               description: "Max upload size with units.\n",
             })))),
           poolConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "oneOf"), nix.thunk(() => [
@@ -245,13 +245,13 @@ $sudo ${phpPackage}/bin/php artisan "$@"
               description: "Options for Loops's PHP-FPM pool.\n",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/var/lib/loops-server",
               description: "State directory of the `loops` user which holds\nthe application's state and data.\n",
             })))),
           schedulerInterval: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "1d",
               description: "How often the Loops cron task should run",
@@ -260,14 +260,14 @@ $sudo ${phpPackage}/bin/php artisan "$@"
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$67,
+        [nix.POS]: pos$67,
         services: nix.thunk(() => ({
-          __proto__: pos$47,
+          [nix.POS]: pos$47,
           "loops-server": nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   APP_NAME: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "Loops")),
                   APP_ENV: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "production")),
                   APP_DEBUG: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
@@ -277,13 +277,13 @@ $sudo ${phpPackage}/bin/php artisan "$@"
                   LOG_CHANNEL: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "stderr")),
                 })),
                 nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "redis", "createLocally")), nix.thunk(() => ({
-                    __proto__: pos$25,
+                    [nix.POS]: pos$25,
                     REDIS_HOST: nix.thunk(() => nix.sel(config, "services", "redis", "servers", "loops-server", "unixSocket")),
                     REDIS_PATH: nix.thunk(() => nix.sel(config, "services", "redis", "servers", "loops-server", "unixSocket")),
                     REDIS_PORT: 0n,
                   })))),
                 nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ({
-                    __proto__: pos$26,
+                    [nix.POS]: pos$26,
                     DB_CONNECTION: "mysql",
                     DB_SOCKET: "/run/mysqld/mysqld.sock",
                     DB_DATABASE: nix.thunk(() => nix.sel(cfg, "database", "name")),
@@ -292,7 +292,7 @@ $sudo ${phpPackage}/bin/php artisan "$@"
                   })))),
               ]))),
             poolConfig: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (n) => (v) => nix.app(nix.sel(lib, "nameValuePair"), n, nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), v))), nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 pm: "dynamic",
                 "php_admin_value[error_log]": "stderr",
                 "php_admin_flag[log_errors]": true,
@@ -305,24 +305,24 @@ $sudo ${phpPackage}/bin/php artisan "$@"
               })))),
           })),
           mysql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
               package: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(pkgs, "mariadb")))),
               ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "database", "name"))]),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   name: nix.thunk(() => nix.sel(cfg, "user")),
                   ensurePermissions: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${nix.sel(cfg, "database", "name")}.*`, "ALL PRIVILEGES"]])),
                 })),
               ]),
             })))),
           phpfpm: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             pools: nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               "loops-server": nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 user: nix.thunk(() => nix.attr(cfg, "user")),
                 group: nix.thunk(() => nix.attr(cfg, "group")),
                 phpPackage: phpPackage,
@@ -340,7 +340,7 @@ opcache.revalidate_freq = 2;
 opcache.fast_shutdown = 1;
 `),
                 settings: nix.thunk(() => nix.update({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   "listen.owner": nix.thunk(() => nix.sel(cfg, "user")),
                   "listen.group": nix.thunk(() => nix.sel(cfg, "group")),
                   "listen.mode": "0660",
@@ -350,27 +350,27 @@ opcache.fast_shutdown = 1;
             })),
           })),
           nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "nginx"), null)), nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               enable: true,
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${nix.sel(cfg, "domain")}`, nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                     nix.thunk(() => nix.sel(cfg, "nginx")),
                     nix.thunk(() => ({
-                      __proto__: pos$41,
+                      [nix.POS]: pos$41,
                       root: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/public/`))),
                       locations: nix.thunk(() => ({
-                        __proto__: pos$40,
-                        "/": nix.thunk(() => ({ __proto__: pos$35, tryFiles: "$uri $uri/ /index.php?$query_string" })),
-                        "/favicon.ico": nix.thunk(() => ({ __proto__: pos$36, extraConfig: "access_log off; log_not_found off;\n" })),
-                        "/robots.txt": nix.thunk(() => ({ __proto__: pos$37, extraConfig: "access_log off; log_not_found off;\n" })),
+                        [nix.POS]: pos$40,
+                        "/": nix.thunk(() => ({ [nix.POS]: pos$35, tryFiles: "$uri $uri/ /index.php?$query_string" })),
+                        "/favicon.ico": nix.thunk(() => ({ [nix.POS]: pos$36, extraConfig: "access_log off; log_not_found off;\n" })),
+                        "/robots.txt": nix.thunk(() => ({ [nix.POS]: pos$37, extraConfig: "access_log off; log_not_found off;\n" })),
                         "~ \\.php$": nix.thunk(() => ({
-                          __proto__: pos$38,
+                          [nix.POS]: pos$38,
                           extraConfig: nix.thunk(() => nix.str`fastcgi_split_path_info ^(.+\\.php)(/.+)$;
 fastcgi_pass unix:${nix.sel(config, "services", "phpfpm", "pools", "loops-server", "socket")};
 fastcgi_index index.php;
 `),
                         })),
-                        "~ /\\.(?!well-known).*": nix.thunk(() => ({ __proto__: pos$39, extraConfig: "deny all;\n" })),
+                        "~ /\\.(?!well-known).*": nix.thunk(() => ({ [nix.POS]: pos$39, extraConfig: "deny all;\n" })),
                       })),
                       extraConfig: nix.thunk(() => nix.str`add_header X-Frame-Options "SAMEORIGIN";
 add_header X-Content-Type-Options "nosniff";
@@ -383,14 +383,14 @@ client_max_body_size ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "maxUp
               ])),
             })))),
           redis: nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             servers: nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               "loops-server": nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 enable: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "redis", "createLocally")), true)),
                 settings: nix.thunk(() => ({
-                  __proto__: pos$43,
+                  [nix.POS]: pos$43,
                   loadmodule: nix.thunk(() => [nix.thunk(() => nix.str`${nix.sel(pkgs, "redisbloom")}/lib/redisbloom.so`)]),
                 })),
               })),
@@ -398,9 +398,9 @@ client_max_body_size ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "maxUp
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$60,
+          [nix.POS]: pos$60,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`L+ /run/loops-server - - - - ${nix.sel(cfg, "dataDir")}`),
               nix.thunk(() => nix.str`d ${nix.sel(cfg, "dataDir")}/cache 0755 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} -`),
@@ -408,38 +408,38 @@ client_max_body_size ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "maxUp
             ]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$56,
+            [nix.POS]: pos$56,
             "phpfpm-loops-server": nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               after: nix.thunk(() => ["loops-data-setup.service"]),
               requires: nix.thunk(() => nix.concat(["loops-horizon.service", "loops-data-setup.service"], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), "mysql.service"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "redis", "createLocally")), redisService)))),
               path: extraPrograms,
             })),
             "loops-horizon": nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               description: "Loops task queueing via Laravel Horizon framework",
               after: nix.thunk(() => ["network.target", "loops-data-setup.service"]),
               requires: nix.thunk(() => nix.concat(["loops-data-setup.service"], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), "mysql.service"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "redis", "createLocally")), redisService)))),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               path: extraPrograms,
               serviceConfig: nix.thunk(() => nix.update({
-                __proto__: pos$50,
+                [nix.POS]: pos$50,
                 Type: "simple",
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), loops_manage)} horizon`),
                 Restart: "on-failure",
               }, defaultServiceConfig)),
             })),
             "loops-cron": nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               description: "Loops periodic tasks",
               path: extraPrograms,
               serviceConfig: nix.thunk(() => nix.update({
-                __proto__: pos$52,
+                [nix.POS]: pos$52,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), loops_manage)} schedule:run`),
               }, defaultServiceConfig)),
             })),
             "loops-data-setup": nix.thunk(() => ({
-              __proto__: pos$55,
+              [nix.POS]: pos$55,
               description: "Loops setup: migrations, environment file update, cache reload, data changes",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), "mysql.service")),
@@ -453,7 +453,7 @@ client_max_body_size ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "maxUp
                 ], extraPrograms);
               })()),
               serviceConfig: nix.thunk(() => nix.update({
-                __proto__: pos$54,
+                [nix.POS]: pos$54,
                 Type: "oneshot",
                 LoadCredential: nix.thunk(() => nix.str`env-secrets:${nix.sel(cfg, "secretFile")}`),
                 UMask: "077",
@@ -500,15 +500,15 @@ loops-manage config:cache
             })),
           })),
           timers: nix.thunk(() => ({
-            __proto__: pos$59,
+            [nix.POS]: pos$59,
             "loops-cron": nix.thunk(() => ({
-              __proto__: pos$58,
+              [nix.POS]: pos$58,
               description: "Loops periodic tasks timer",
               after: nix.thunk(() => ["loops-data-setup.service"]),
               requires: nix.thunk(() => ["phpfpm-loops-server.service"]),
               wantedBy: nix.thunk(() => ["timers.target"]),
               timerConfig: nix.thunk(() => ({
-                __proto__: pos$57,
+                [nix.POS]: pos$57,
                 OnBootSec: nix.thunk(() => nix.sel(cfg, "schedulerInterval")),
                 OnUnitActiveSec: nix.thunk(() => nix.sel(cfg, "schedulerInterval")),
               })),
@@ -516,12 +516,12 @@ loops-manage config:cache
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$65,
+          [nix.POS]: pos$65,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "loops")), nix.thunk(() => ({
-                  __proto__: pos$62,
+                  [nix.POS]: pos$62,
                   loops: nix.thunk(() => ({
-                    __proto__: pos$61,
+                    [nix.POS]: pos$61,
                     isSystemUser: true,
                     group: nix.thunk(() => nix.sel(cfg, "group")),
                     home: nix.thunk(() => nix.sel(cfg, "dataDir")),
@@ -530,17 +530,17 @@ loops-manage config:cache
                 })))),
               nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "nginx"), null)), nix.thunk(() => nix.attrsDyn({}, [
                   [nix.str`${nix.sel(config, "services", "nginx", "user")}`, nix.thunk(() => ({
-                    __proto__: pos$63,
+                    [nix.POS]: pos$63,
                     extraGroups: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "group"))]),
                   }))],
                 ])))),
             ]))),
           groups: nix.thunk(() => ({
-            __proto__: pos$64,
+            [nix.POS]: pos$64,
             loops: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "loops")), nix.thunk(() => ({})))),
           })),
         })),
-        environment: nix.thunk(() => ({ __proto__: pos$66, systemPackages: nix.thunk(() => [loops_manage]) })),
+        environment: nix.thunk(() => ({ [nix.POS]: pos$66, systemPackages: nix.thunk(() => [loops_manage]) })),
       })))),
   };
 })(), formals$1);

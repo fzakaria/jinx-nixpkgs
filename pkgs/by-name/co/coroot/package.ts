@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const npmHooks = nix.arg($, "npmHooks");
   const lz4 = nix.arg($, "lz4");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "coroot",
       version: "1.27.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "coroot",
           repo: "coroot",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-QB5jz+ks9naRM7KvlxXUkMcTTtmy0SQXkfxGx/vh3W4=",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/front`),
           hash: "sha256-NrlZ4Lri43fkD7JclYlyLMKfRzNr2RIt4krGbZuJc68=",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config, nodejs, nix.thunk(() => nix.sel(npmHooks, "npmConfigHook"))]),
       buildInputs: nix.thunk(() => [lz4]),
       overrideModAttrs: (oldAttrs) => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "remove"), nix.thunk(() => nix.sel(npmHooks, "npmConfigHook")), nix.thunk(() => nix.sel(oldAttrs, "nativeBuildInputs")))),
         preBuild: null,
       }),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "npm --prefix=\"$npmRoot\" run build-prod\n",
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Open-source APM & Observability tool",
         homepage: "https://coroot.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

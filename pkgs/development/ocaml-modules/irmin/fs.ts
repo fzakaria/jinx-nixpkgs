@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
   const irmin_test = nix.arg($, "irmin-test");
   const irmin_watcher = nix.arg($, "irmin-watcher");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "irmin-fs",
       version: nix.thunk(() => nix.attr(irmin, "version")),
       src: nix.thunk(() => nix.attr(irmin, "src")),
       propagatedBuildInputs: nix.thunk(() => [irmin, astring, logs, lwt]),
       checkInputs: nix.thunk(() => [alcotest, irmin_test, irmin_watcher]),
       doCheck: true,
-      meta: nix.thunk(() => nix.update(nix.sel(irmin, "meta"), { __proto__: pos$1, description: "Generic file-system backend for Irmin" })),
+      meta: nix.thunk(() => nix.update(nix.sel(irmin, "meta"), { [nix.POS]: pos$1, description: "Generic file-system backend for Irmin" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=fs.ts.map

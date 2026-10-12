@@ -55,16 +55,16 @@ export default nix.lambda((args) => (() => {
   const gst_all_1 = nix.arg($, "gst_all_1");
   const withFwupd = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "gnome-software",
       version: "50.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-software/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-software-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-sTGOaPArs5AvzY+QTVbwP1NOpQmPZeTGu5wskk2n+CM=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ __proto__: pos$2, isocodes: isocodes })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, isocodes: isocodes })))),
       ]),
       nativeBuildInputs: nix.thunk(() => [
         meson,
@@ -107,11 +107,11 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), withFwupd, nix.thunk(() => [fwupd])))),
       mesonFlags: nix.thunk(() => nix.concat(["-Dtests=false"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withFwupd)), nix.thunk(() => ["-Dfwupd=false"])))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$3, packageName: "gnome-software" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: "gnome-software" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Software store that lets you install and update applications and system extensions",
         mainProgram: "gnome-software",
         homepage: "https://apps.gnome.org/Software/",

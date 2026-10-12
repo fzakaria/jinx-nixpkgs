@@ -50,45 +50,45 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "image", "repart", "verityStore"));
   const verityMatchKey = "store";
   const partitionTypes = nix.thunk(() => ({
-    __proto__: pos$3,
-    usr: nix.thunk(() => nix.sel({ __proto__: pos$1, x86_64: "usr-x86-64", arm64: "usr-arm64" }, nix.key(nix.str`${nix.sel(pkgs, "stdenv", "hostPlatform", "linuxArch")}`))),
-    "usr-verity": nix.thunk(() => nix.sel({ __proto__: pos$2, x86_64: "usr-x86-64-verity", arm64: "usr-arm64-verity" }, nix.key(nix.str`${nix.sel(pkgs, "stdenv", "hostPlatform", "linuxArch")}`))),
+    [nix.POS]: pos$3,
+    usr: nix.thunk(() => nix.sel({ [nix.POS]: pos$1, x86_64: "usr-x86-64", arm64: "usr-arm64" }, nix.key(nix.str`${nix.sel(pkgs, "stdenv", "hostPlatform", "linuxArch")}`))),
+    "usr-verity": nix.thunk(() => nix.sel({ [nix.POS]: pos$2, x86_64: "usr-x86-64-verity", arm64: "usr-arm64-verity" }, nix.key(nix.str`${nix.sel(pkgs, "stdenv", "hostPlatform", "linuxArch")}`))),
   }));
-  const verityHashCheck = nix.thunk(() => nix.app(nix.sel(pkgs, "buildPackages", "writers", "writePython3Bin"), "assert_uki_repart_match.py", nix.thunk(() => ({ __proto__: pos$4, flakeIgnore: nix.thunk(() => ["E501"]) })), nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["@NIX_STORE_VERITY@"]), nix.thunk(() => [nix.thunk(() => nix.sel(partitionTypes, "usr-verity"))]), nix.thunk(() => nix.builtins.readFile(nix.path(here, "./assert_uki_repart_match.py")))))));
+  const verityHashCheck = nix.thunk(() => nix.app(nix.sel(pkgs, "buildPackages", "writers", "writePython3Bin"), "assert_uki_repart_match.py", nix.thunk(() => ({ [nix.POS]: pos$4, flakeIgnore: nix.thunk(() => ["E501"]) })), nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["@NIX_STORE_VERITY@"]), nix.thunk(() => [nix.thunk(() => nix.sel(partitionTypes, "usr-verity"))]), nix.thunk(() => nix.builtins.readFile(nix.path(here, "./assert_uki_repart_match.py")))))));
   return {
-    __proto__: pos$38,
+    [nix.POS]: pos$38,
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       image: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         repart: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           verityStore: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "building images with a dm-verity protected nix store")),
             ukiPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: nix.thunk(() => nix.str`/EFI/Linux/${nix.sel(config, "system", "boot", "loader", "ukiFile")}`),
                 defaultText: "/EFI/Linux/${config.system.boot.loader.ukiFile}",
                 description: "Specify the location on the ESP where the UKI is placed.\n",
               })))),
             partitionIds: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               esp: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                   default: "00-esp",
                   description: "Specify the attribute name of the ESP.\n",
                 })))),
               "store-verity": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                   default: "10-store-verity",
                   description: "Specify the attribute name of the store's dm-verity hash partition.\n",
                 })))),
               store: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                   default: "20-store",
                   description: "Specify the attribute name of the store partition.\n",
@@ -99,14 +99,14 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         boot: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           initrd: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             systemd: nix.thunk(() => ({
-              __proto__: pos$15,
-              dmVerity: nix.thunk(() => ({ __proto__: pos$14, enable: true })),
+              [nix.POS]: pos$15,
+              dmVerity: nix.thunk(() => ({ [nix.POS]: pos$14, enable: true })),
             })),
             supportedFilesystems: nix.thunk(() => nix.attrsDyn({}, [
               [nix.sel(config, "image", "repart", "partitions", nix.key(nix.sel(cfg, "partitionIds", "store")), "repartConfig", "Format"), nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true))],
@@ -114,23 +114,23 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         fileSystems: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           "/nix/store": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               device: "/usr/nix/store",
               fsType: "none",
               options: nix.thunk(() => ["bind"]),
             })))),
         })),
         image: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           repart: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             partitions: nix.thunk(() => nix.attrsDyn({}, [
               [nix.sel(cfg, "partitionIds", "store-verity"), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 repartConfig: nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   Type: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(partitionTypes, "usr-verity")))),
                   Verity: "hash",
                   VerityMatchKey: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), verityMatchKey)),
@@ -139,10 +139,10 @@ export default nix.lambda((args) => (() => {
                 })),
               }))],
               [nix.sel(cfg, "partitionIds", "store"), nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 storePaths: nix.thunk(() => [nix.thunk(() => nix.sel(config, "system", "build", "toplevel"))]),
                 repartConfig: nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   Type: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(partitionTypes, "usr")))),
                   Verity: "data",
                   Format: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "erofs")),
@@ -155,15 +155,15 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         system: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           build: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             finalImage: nix.thunk(() => nix.app(nix.sel(lib, "warn"), "system.build.finalImage has been renamed to system.build.image", nix.thunk(() => nix.sel(config, "system", "build", "image")))),
             intermediateImage: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(config, "image", "repart", "image", "override"), nix.thunk(() => ({
-                __proto__: pos$27,
-                compression: nix.thunk(() => ({ __proto__: pos$26, enable: false })),
+                [nix.POS]: pos$27,
+                compression: nix.thunk(() => ({ [nix.POS]: pos$26, enable: false })),
               }))), "overrideAttrs"), (_) => (previousAttrs) => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 name: nix.thunk(() => (nix.asBool(nix.has(previousAttrs, "pname")) ? nix.str`${nix.sel(previousAttrs, "pname")}-${nix.sel(previousAttrs, "version")}-intermediate` : nix.str`${nix.sel(previousAttrs, "name")}-intermediate`)),
                 systemdRepartFlags: nix.thunk(() => nix.concat(nix.sel(previousAttrs, "systemdRepartFlags"), ["--defer-partitions=esp"])),
               }))),
@@ -172,7 +172,7 @@ export default nix.lambda((args) => (() => {
               const ukiFile = nix.thunk(() => nix.attr(from, "ukiFile"));
               const cmdline = nix.thunk(() => nix.str`init=${nix.sel(config, "system", "build", "toplevel")}/init ${nix.builtins.toString(nix.thunk(() => nix.sel(config, "boot", "kernelParams")))}`);
               return nix.app(nix.sel(lib, "mkOverride"), 99n, nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), ukiFile, nix.thunk(() => ({
-                    __proto__: pos$29,
+                    [nix.POS]: pos$29,
                     nativeBuildInputs: nix.thunk(() => [
                       nix.thunk(() => nix.sel(pkgs, "buildPackages", "jq")),
                       nix.thunk(() => nix.sel(pkgs, "buildPackages", "systemdUkify")),
@@ -192,14 +192,14 @@ ukify build \\
     --output="$out/${ukiFile}"
 `))));
             })()),
-            image: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 99n, nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(config, "image", "repart", "image", "override"), nix.thunk(() => ({ __proto__: pos$30, createEmpty: false }))), "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-                  __proto__: pos$33,
+            image: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 99n, nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(config, "image", "repart", "image", "override"), nix.thunk(() => ({ [nix.POS]: pos$30, createEmpty: false }))), "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
+                  [nix.POS]: pos$33,
                   finalPartitions: nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.sel(previousAttrs, "finalPartitions")), nix.thunk(() => nix.attrsDyn({}, [
                       [nix.sel(cfg, "partitionIds", "esp"), nix.thunk(() => ({
-                        __proto__: pos$32,
+                        [nix.POS]: pos$32,
                         contents: nix.thunk(() => nix.attrsDyn({}, [
                           [nix.str`${nix.sel(cfg, "ukiPath")}`, nix.thunk(() => ({
-                            __proto__: pos$31,
+                            [nix.POS]: pos$31,
                             source: nix.thunk(() => nix.str`${nix.sel(config, "system", "build", "uki")}/${nix.sel(config, "system", "boot", "loader", "ukiFile")}`),
                           }))],
                         ])),
@@ -244,7 +244,7 @@ rm -v repart-output_orig.json
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$37,
+      [nix.POS]: pos$37,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

@@ -23,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const replaceVars = nix.arg($, "replaceVars");
   const version = "1.00.39.12_00.15";
-  const installationPath = nix.thunk(() => nix.selOr({ __proto__: pos$1, "x86_64-linux": "x86_64", "i686-linux": "i386" }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
+  const installationPath = nix.thunk(() => nix.selOr({ [nix.POS]: pos$1, "x86_64-linux": "x86_64", "i686-linux": "i386" }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const unpacked = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: version,
       pname: "hp-unified-linux-driver-unpacked",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://ftp.hp.com/pub/softlib/software13/printers/MFP170/uld-hp_V${version}.tar.gz`),
           hash: "sha256-zrube2El50BmNLucKpiwFHfR4R1mx8kEdGad6ZJ7yR0=",
         })))),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -p $out/opt/smfp-common/scanner/.usedby/\ncp -r . $out\n",
     })));
   const patchedWrapper = nix.thunk(() => nix.app(replaceVars, nix.path(here, "./libsane-smfp-wrapper.c"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       libsane_smfp_cfg_to: nix.thunk(() => nix.str`${unpacked}/noarch/libsane-smfp.cfg`),
       smfp_conf_to: nix.thunk(() => nix.str`${unpacked}/noarch/etc/smfp.conf`),
       usedby_to: nix.thunk(() => nix.str`${unpacked}/opt/smfp-common/scanner/.usedby/`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const wrapperLibName = "libsane-smfp-wrapper.so";
   const wrapperLib = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libsane-smfp-wrapper-lib",
       version: version,
       unpackPhase: nix.thunk(() => nix.str`cp ${patchedWrapper} libsane-smfp-wrapper.c
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
     })));
   const libPath = nix.thunk(() => nix.add(nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [cups, libusb1, libxml2_13, wrapperLib])), nix.str`:$out/lib:${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(stdenv, "cc", "cc")))}/lib`));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       version: version,
       pname: "hp-unified-linux-driver",
       src: unpacked,
@@ -112,7 +112,7 @@ patchelf --set-rpath ${libPath} $out/lib/libscmssc.so
 `),
       ppdFileCommands: nix.thunk(() => ["pstosecps", "rastertospl", "smfpnetdiscovery"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Drivers for HP printers that are actually Samsung printers",
         homepage: "http://www.hp.com/",
         sourceProvenance: nix.thunk(() => (() => {

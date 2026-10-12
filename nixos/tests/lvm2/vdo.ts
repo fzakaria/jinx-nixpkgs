@@ -23,34 +23,34 @@ export default nix.lambda((args) => (() => {
   const kernelPackages = nix.argOr($, "kernelPackages", () => null);
   const mkXfsFlags = nix.argOr($, "mkXfsFlags", () => "");
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     name: "lvm2-vdo",
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$10,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$2, emptyDiskImages: nix.thunk(() => [8192n]) })),
+          [nix.POS]: pos$10,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, emptyDiskImages: nix.thunk(() => [8192n]) })),
           services: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             lvm: nix.thunk(() => ({
-              __proto__: pos$6,
-              boot: nix.thunk(() => ({ __proto__: pos$4, vdo: nix.thunk(() => ({ __proto__: pos$3, enable: true })) })),
-              dmeventd: nix.thunk(() => ({ __proto__: pos$5, enable: true })),
+              [nix.POS]: pos$6,
+              boot: nix.thunk(() => ({ [nix.POS]: pos$4, vdo: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })) })),
+              dmeventd: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "xfsprogs"))];
             })()),
           })),
-          boot: nix.thunk(() => nix.app(nix.sel(lib_1, "mkIf"), nix.thunk(() => !nix.eq(kernelPackages, null)), nix.thunk(() => ({ __proto__: pos$9, kernelPackages: kernelPackages })))),
+          boot: nix.thunk(() => nix.app(nix.sel(lib_1, "mkIf"), nix.thunk(() => !nix.eq(kernelPackages, null)), nix.thunk(() => ({ [nix.POS]: pos$9, kernelPackages: kernelPackages })))),
         };
       })(), formals$2),
     })),

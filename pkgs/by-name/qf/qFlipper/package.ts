@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const timestamp = "99999999999";
   const commit = nix.thunk(() => nix.str`nix-${version}`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "flipperdevices",
           repo: "qFlipper",
           rev: version,
@@ -74,11 +74,11 @@ cp installer-assets/udev/42-flipperzero.rules $out/etc/udev/rules.d/
 `),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Cross-platform desktop tool to manage your flipper device",
         homepage: "https://flipperzero.one/",

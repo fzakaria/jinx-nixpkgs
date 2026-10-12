@@ -33,33 +33,33 @@ export default nix.lambda((args) => (() => {
   })();
   const optUdevRule = (attr) => (val) => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(val, null)), nix.thunk(() => nix.app(udevRule, attr, val)));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["hardware", "tuxedo-keyboard"]), nix.thunk(() => ["hardware", "tuxedo-drivers"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       hardware: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         "tuxedo-drivers": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "The tuxedo-drivers driver enables access to the following on TUXEDO notebooks:\n- Driver for Fn-keys\n- SysFS control of brightness/color/mode for most TUXEDO keyboards\n- Hardware I/O driver for TUXEDO Control Center\n\nFor more inforation it is best to check at the source code description: <https://gitlab.com/tuxedocomputers/development/packages/tuxedo-drivers>\n")),
           settings: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             "charging-profile": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["high_capacity", "balanced", "stationary"]))))),
                 default: null,
                 description: "The maximum charge level to help reduce battery wear:\n- `high_capacity` charges to 100% (driver default)\n- `balanced` charges to 90%\n- `stationary` charges to 80% (maximum lifespan)\n\n**Note:** Regardless of the configured charging profile, the operating system will always report the battery as being charged to 100%.\n",
               })))),
             "charging-priority": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["charge_battery", "performance"]))))),
                 default: null,
                 description: "These options manage the trade-off between battery charging and CPU performance when the USB-C power supply cannot provide sufficient power for both simultaneously:\n- `charge_battery` prioritizes battery charging (driver default)\n- `performance` prioritizes maximum CPU performance\n",
               })))),
             "fn-lock": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "bool")))),
                 default: null,
                 description: "Enables or disables the laptop keyboard's Function (Fn) lock at boot.\n\nWhen set to `true`, the Fn lock is enabled, allowing the function keys (F1–F12) to control brightness, volume etc.\n",
@@ -69,16 +69,16 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         boot: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           kernelModules: nix.thunk(() => ["tuxedo_keyboard"]),
           extraModulePackages: nix.thunk(() => [tuxedo_drivers]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           udev: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             packages: nix.thunk(() => nix.concat([tuxedo_drivers], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "any"), (v) => !nix.eq(v, null), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(cfg, "settings")))))), nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "etc/udev/rules.d/90-tuxedo.rules", nix.thunk(() => nix.app(nix.sel(lib, "concatLines"), nix.thunk(() => nix.concat(["# Custom rules for TUXEDO laptops"], nix.concat(nix.app(optUdevRule, "charging_profile/charging_profile", nix.thunk(() => nix.sel(cfg, "settings", "charging-profile"))), nix.concat(nix.app(optUdevRule, "charging_priority/charging_prio", nix.thunk(() => nix.sel(cfg, "settings", "charging-priority"))), nix.app(optUdevRule, "fn_lock", nix.thunk(() => nix.sel(cfg, "settings", "fn-lock")))))))))))))),
           })),
         })),

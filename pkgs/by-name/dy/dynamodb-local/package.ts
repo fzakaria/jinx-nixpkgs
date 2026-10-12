@@ -27,16 +27,16 @@ export default nix.lambda((args) => (() => {
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   const writeShellScript = nix.arg($, "writeShellScript");
   const jre = nix.thunk(() => nix.app(nix.sel(jre_minimal, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       modules: nix.thunk(() => ["java.logging", "java.xml", "java.desktop", "java.management", "java.naming"]),
       jdk: jdk_headless,
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "dynamodb-local",
       version: "2.6.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://d1ni2b6xgvw0s0.cloudfront.net/v2.x/dynamodb_local_2025-03-13.tar.gz",
           hash: "sha256-mAXZX+L17+z9f3/sMq+O+zLcg7YKGKL72BhhTtS2xuw=",
         })))),
@@ -53,10 +53,10 @@ makeBinaryWrapper ${jre}/bin/java $out/bin/dynamodb-local \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$3, package: dynamodb_local })))),
+          [nix.POS]: pos$4,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: dynamodb_local })))),
         })),
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-dynamodb-local", nix.thunk(() => nix.str`set -o errexit
 export PATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [curl, jq, yq, common_updater_scripts]))}:$PATH"
@@ -76,7 +76,7 @@ update-source-version "dynamodb-local" "$NEW_VERSION" "$NIX_HASH" "$DOWNLOAD_URL
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "DynamoDB Local is a small client-side database and server that mimics the DynamoDB service",
         homepage: "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

@@ -13,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const libwacom = nix.arg($, "libwacom");
   const libwacom_surface = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "linux-surface",
       repo: "libwacom-surface",
       tag: "v2.17.0-1",
       hash: "sha256-0p68GMtQPlf/lX0Sl0VtttRODBKPMSeQOu3Le5JorSQ=",
     }))));
   return nix.app(nix.sel(libwacom, "overrideAttrs"), (prevAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libwacom-surface",
       patches: nix.thunk(() => nix.concat(nix.selOr(prevAttrs, () => [], "patches"), nix.builtins.map((p) => nix.str`${libwacom_surface}/patches/v2/${p}`, nix.thunk(() => [
           "0001-Add-support-for-BUS_VIRTUAL.patch",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
           "0016-data-Add-Microsoft-Surface-Laptop-Studio.patch",
         ])))),
       meta: nix.thunk(() => nix.update(nix.sel(prevAttrs, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/linux-surface/libwacom-surface",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

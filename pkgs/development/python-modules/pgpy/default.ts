@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SecurityInnovation",
           repo: "PGPy",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "# https://github.com/SecurityInnovation/PGPy/issues/472\nsubstituteInPlace tests/test_10_exceptions.py \\\n  --replace-fail \", 512\" \", 1024\" # We need longer test key because pgp deprecated length=512\n";
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/SecurityInnovation/PGPy",
         description: "Pretty Good Privacy for Python",
         longDescription: "PGPy is a Python library for implementing Pretty Good Privacy into Python\nprograms, conforming to the OpenPGP specification per RFC 4880.\n",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

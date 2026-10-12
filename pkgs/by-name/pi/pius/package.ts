@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const gnupg = nix.arg($, "gnupg");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pius",
       namePrefix: "",
       version: "3.0.0",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w, "setuptools"))];
       })()),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jaymzh",
           repo: "pius",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ done
 `),
       buildInputs: nix.thunk(() => [perl]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.phildev.net/pius/",
         description: "PGP Individual UID Signer (PIUS), quickly and easily sign UIDs on a set of PGP keys",
         longDescription: "This software will allow you to quickly and easily sign each UID on\na set of PGP keys.  It is designed to take the pain out of the\nsign-all-the-keys part of PGP Keysigning Party while adding security\nto the process.\n",

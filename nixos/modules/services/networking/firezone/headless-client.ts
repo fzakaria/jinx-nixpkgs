@@ -34,36 +34,36 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "firezone", "headless-client"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         firezone: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           "headless-client": nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: nix.thunk(() => nix.app(mkEnableOption, "the firezone headless client")),
             package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "firezone-headless-client", nix.thunk(() => ({})))),
             name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 description: "The name of this client as shown in firezone",
               })))),
             apiUrl: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.app(nix.sel(types, "strMatching"), "^wss://.+/$")),
                 example: "wss://firezone.example.com/api/",
                 description: "The URL of your firezone server's API. This should be the same\nas your server's setting for {option}`services.firezone.server.settings.api.externalUrl`,\nbut with `wss://` instead of `https://`.\n",
               })))),
             tokenFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(types, "path")),
                 example: "/run/secrets/firezone-client-token",
                 description: "A file containing the firezone client token. Do not use a nix-store path here\nas it will make the token publicly readable!\n\nThis file will be passed via systemd credentials, it should only be accessible\nby the root user.\n",
               })))),
             logLevel: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "info",
                 description: "The log level for the firezone application. See\n[RUST_LOG](https://docs.rs/env_logger/latest/env_logger/#enabling-logging)\nfor the format.\n",
@@ -74,13 +74,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             "firezone-headless-client": nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "headless client service for the Firezone zero-trust access platform",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -96,7 +96,7 @@ fi
 exec ${nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))}
 `),
               environment: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 FIREZONE_API_URL: nix.thunk(() => nix.sel(cfg, "apiUrl")),
                 FIREZONE_NAME: nix.thunk(() => nix.sel(cfg, "name")),
                 FIREZONE_NO_TELEMETRY: nix.thunk(() => nix.app(boolToString, nix.thunk(() => !nix.asBool(nix.sel(cfg, "enableTelemetry"))))),
@@ -105,7 +105,7 @@ exec ${nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))}
                 RUST_LOG: nix.thunk(() => nix.sel(cfg, "logLevel")),
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 Type: "exec",
                 LoadCredential: nix.thunk(() => [nix.thunk(() => nix.str`firezone-token:${nix.sel(cfg, "tokenFile")}`)]),
                 DeviceAllow: "/dev/net/tun",
@@ -146,7 +146,7 @@ exec ${nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))}
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

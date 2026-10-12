@@ -18,20 +18,20 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const platform = nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform"));
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     options: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       hardware: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         enableAllHardware: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Enable support for most hardware")),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "hardware", "enableAllHardware")), nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         boot: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           initrd: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             availableKernelModules: nix.thunk(() => nix.concat([
               "ahci",
               "ata_piix",
@@ -115,7 +115,7 @@ export default nix.lambda((args) => (() => {
               ]))))))))),
           })),
         })),
-        hardware: nix.thunk(() => ({ __proto__: pos$5, enableRedistributableFirmware: true })),
+        hardware: nix.thunk(() => ({ [nix.POS]: pos$5, enableRedistributableFirmware: true })),
       })))),
   };
 })(), formals$1);

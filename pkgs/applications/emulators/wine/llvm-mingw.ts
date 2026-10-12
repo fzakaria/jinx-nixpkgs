@@ -19,16 +19,16 @@ export default nix.lambda((args) => (() => {
   const version = "20260421";
   const hostArch = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) ? "aarch64" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) ? "x86_64" : nix.builtins.throw(nix.thunk(() => nix.str`llvm-mingw: unsupported host platform ${nix.sel(stdenv, "hostPlatform", "system")}`)))));
   const hashes = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     aarch64: "sha256-6c+lqTKQy4Utxaa5DM3iVUA6YzMmSL4XFHDKPBrTeCg=",
     x86_64: "sha256-+LjM53mv/qtHvK7Gzm6edosWYJSjZhI+9kstCzicwSE=",
   }));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.str`llvm-mingw-${hostArch}`),
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/mstorsjo/llvm-mingw/releases/download/${version}/llvm-mingw-${version}-ucrt-ubuntu-22.04-${hostArch}.tar.xz`),
           hash: nix.thunk(() => nix.sel(hashes, nix.key(nix.force(hostArch)))),
         })))),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       autoPatchelfIgnoreMissingDeps: nix.thunk(() => ["*.dll"]),
       dontStrip: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "LLVM/Clang/LLD-based mingw-w64 toolchain (prebuilt)",
         homepage: "https://github.com/mstorsjo/llvm-mingw",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

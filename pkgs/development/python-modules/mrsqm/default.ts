@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const build_system = nix.thunk(() => [setuptools]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mlgig",
           repo: "mrsqm",
           tag: nix.thunk(() => nix.str`r${version}`),
@@ -44,14 +44,14 @@ export default nix.lambda((args) => (() => {
       const enabledTestPaths = nix.thunk(() => ["tests/mrsqm"]);
       const pythonImportsCheck = nix.thunk(() => ["mrsqm"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex", "v\\.(.*)"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "MrSQM (Multiple Representations Sequence Miner) is a time series classifier",
         homepage: "https://pypi.org/project/mrsqm",
         changelog: nix.thunk(() => nix.str`https://github.com/mlgig/mrsqm/releases/tag/v.${nix.sel(src, "tag")}`),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

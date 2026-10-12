@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "comfortaa",
       version: "3.101-unstable-2021-07-29",
       outputs: nix.thunk(() => ["out", "webfont"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "googlefonts",
           repo: "comfortaa",
           rev: "2a87ac6f6ea3495150bfa00d0c0fb53dd0a2f11b",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       postInstall: "mkdir -p $out/share/doc/comfortaa\ncp ../FONTLOG.txt ../README.md $out/share/doc/comfortaa\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://aajohan.deviantart.com/art/Comfortaa-font-105395949",
         description: "Clean and modern font suitable for headings and logos",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

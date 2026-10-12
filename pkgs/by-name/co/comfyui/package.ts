@@ -37,12 +37,12 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const packageOverrides = nix.argOr($_1, "packageOverrides", () => (_) => (__1) => ({}));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         self: python,
         packageOverrides: nix.thunk(() => nix.app(nix.sel(lib, "composeExtensions"), packageOverrides, (final) => (prev) => ({
-            __proto__: pos$3,
-            torch: nix.thunk(() => nix.app(nix.sel(prev, "torch", "override"), nix.thunk(() => ({ __proto__: pos$1, cudaPackages: cudaPackages_13 })))),
-            triton: nix.thunk(() => nix.app(nix.sel(prev, "triton", "override"), nix.thunk(() => ({ __proto__: pos$2, cudaPackages: cudaPackages_13 })))),
+            [nix.POS]: pos$3,
+            torch: nix.thunk(() => nix.app(nix.sel(prev, "torch", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, cudaPackages: cudaPackages_13 })))),
+            triton: nix.thunk(() => nix.app(nix.sel(prev, "triton", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, cudaPackages: cudaPackages_13 })))),
           }))),
       };
     })(), formals$2)));
@@ -88,13 +88,13 @@ export default nix.lambda((args) => (() => {
   })();
   const pythonEnv = nix.thunk(() => nix.app(nix.sel(python, "withPackages"), appDependencies));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: "comfyui",
       version: "0.37.0",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "Comfy-Org",
           repo: "ComfyUI",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -125,24 +125,24 @@ export XDG_DATA_HOME="$(mktemp -d)"
 runHook postInstallCheck
 `),
       passthru: nix.thunk(() => nix.update({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         python: python,
         pythonEnv: pythonEnv,
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               name: "update-comfyui",
               runtimeInputs: nix.thunk(() => [common_updater_scripts, gnutar, gzip, nix_update, yq_go]),
               text: "nix-update comfyui\n\nsrc=$(nix-build --no-out-link -A comfyui.src)\n\nwhile IFS= read -r requirement; do\n  if [[ $requirement =~ ^comfy.+==.+ ]]; then\n    pkg=${requirement%%==*}\n    version=${requirement##*==}\n\n    nix-update \"python3Packages.$pkg\" --version \"$version\"\n\n    if [[ $pkg == comfyui-workflow-templates ]]; then\n      wtSrc=$(nix-build --no-out-link -A python3Packages.comfyui-workflow-templates.src)\n\n      while IFS= read -r subRequirement; do\n        if [[ $subRequirement =~ ^comfyui-workflow-templates-.+==.+ ]]; then\n          subPkg=${subRequirement%%==*}\n          subVersion=${subRequirement##*==}\n\n          nix-update \"python3Packages.$subPkg\" --version \"$subVersion\"\n        fi\n      done < <(\n        tar --extract --gzip --to-stdout --file=\"$wtSrc\" --strip-components=1 --wildcards '*/pyproject.toml' \\\n          | yq --input-format toml --output-format yaml '.project.dependencies[]'\n      )\n    fi\n  fi\ndone < \"$src/requirements.txt\"\n",
             })))))),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(withManager)), nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           tests: nix.thunk(() => ({
-            __proto__: pos$9,
-            withManager: nix.thunk(() => nix.app(callPackage, nix.path(here, "./package.nix"), nix.thunk(() => ({ __proto__: pos$8, withManager: true })))),
+            [nix.POS]: pos$9,
+            withManager: nix.thunk(() => nix.app(callPackage, nix.path(here, "./package.nix"), nix.thunk(() => ({ [nix.POS]: pos$8, withManager: true })))),
           })),
         }))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         description: "Modular diffusion model GUI, API, and backend with graph and nodes interface",
         homepage: "https://github.com/Comfy-Org/ComfyUI",
         changelog: nix.thunk(() => nix.str`https://github.com/Comfy-Org/ComfyUI/releases/tag/v${nix.sel(finalAttrs, "version")}`),

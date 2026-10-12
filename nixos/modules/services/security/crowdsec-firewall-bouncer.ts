@@ -50,69 +50,69 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "crowdsec-firewall-bouncer"));
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$38,
+    [nix.POS]: pos$38,
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         "crowdsec-firewall-bouncer": nix.thunk(() => (() => {
           const types = nix.thunk(() => nix.attr(lib, "types"));
           const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
           const mkEnableOption = nix.thunk(() => nix.attr(lib, "mkEnableOption"));
           const mkPackageOption = nix.thunk(() => nix.attr(lib, "mkPackageOption"));
           return {
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             enable: nix.thunk(() => nix.app(mkEnableOption, "CrowdSec Firewall Bouncer")),
             package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "crowdsec-firewall-bouncer", nix.thunk(() => ({})))),
             createRulesets: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 description: "Whether to have the module create the appropriate firewall configuration\nbased on the bouncer settings.\nYou may disable this option to manually configure it.\n",
                 default: true,
               })))),
             registerBouncer: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   type: nix.thunk(() => nix.sel(types, "bool")),
                   description: "Whether to automatically register the bouncer to the locally running\n`crowdsec` service.\n\nWhen authenticating to an external CrowdSec API, you may use the\n[](#opt-services.crowdsec-firewall-bouncer.secrets.apiKeyPath) option\ninstead.\n",
                   default: nix.thunk(() => nix.sel(config, "services", "crowdsec", "enable")),
                   defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.crowdsec.enable")),
                 })))),
               bouncerName: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   type: nix.thunk(() => nix.sel(types, "nonEmptyStr")),
                   description: "Name to register the bouncer as to the CrowdSec API",
                   default: "crowdsec-firewall-bouncer",
                 })))),
             })),
             secrets: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               apiKeyPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                   description: "Path to the API key to authenticate with a local CrowdSec API.\n\nYou need to call `cscli bouncers add <bouncer-name>` to register\nthe bouncer and get this API key.\n\nWhen authenticating to the locally running `crowdsec` service, you may use the\n[](#opt-services.crowdsec-firewall-bouncer.registerBouncer.enable) option instead.\n",
                   default: null,
                 })))),
             })),
             settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 description: "Settings for the main CrowdSec Firewall Bouncer.\n\nRefer to the defaults at <https://github.com/crowdsecurity/cs-firewall-bouncer/blob/main/config/crowdsec-firewall-bouncer.yaml>.\n",
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     freeformType: nix.thunk(() => nix.sel(format, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       mode: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$7,
+                          [nix.POS]: pos$7,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           description: "Firewall mode to use.",
                           default: nix.thunk(() => (nix.asBool(nix.sel(config, "networking", "nftables", "enable")) ? "nftables" : "iptables")),
                           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "if config.networking.nftables.enable then \"nftables\" else \"iptables\"")),
                         })))),
                       api_url: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           description: "URL of the local API.",
                           example: "http://127.0.0.1:8080",
@@ -120,7 +120,7 @@ export default nix.lambda((args) => (() => {
                           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "http://$\\{config.services.crowdsec.settings.general.api.server.listen_uri}")),
                         })))),
                       api_key: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                           description: "API key to authenticate with a local crowdsec API.\n\nYou need to call `cscli bouncers add <bouncer-name>` to register\nthe bouncer and get this API key.\n\nSetting this option will store this secret in the Nix store.\nInstead, you should set the `services.crowdsec-firewall-bouncer.secrets.apiKeyPath`\noption, which will read the value at runtime.\n",
                           default: null,
@@ -133,35 +133,35 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             assertion: nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(cfg, "registerBouncer", "enable")) || nix.asBool(!nix.eq(nix.sel(cfg, "secrets", "apiKeyPath"), null)))) || nix.asBool(!nix.eq(nix.sel(cfg, "settings", "api_key"), null)))),
             message: "An API key must be set for the bouncer to be able to authenticate to a local crowdsec API.\n\nSee the `registerBouncer.enable` and `secrets.apiKeyPath` options of\n`services.crowdsec-firewall-bouncer` for more information.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             assertion: nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(cfg, "registerBouncer", "enable")) && nix.asBool(!nix.eq(nix.sel(cfg, "secrets", "apiKeyPath"), null))))),
             message: "The `registerBouncer.enable` and `secrets.apiKeyPath` options of\n`services.crowdsec-firewall-bouncer` are mutually exclusive.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             assertion: nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(cfg, "registerBouncer", "enable")) && nix.asBool(!nix.asBool(nix.sel(config, "services", "crowdsec", "enable")))))),
             message: "The `services.crowdsec-firewall-bouncer.registerBouncer.enable` option\nrequires the `crowdsec` service to be enabled.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             assertion: nix.thunk(() => !nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "settings", "mode"), "ipset")) && nix.asBool(nix.sel(cfg, "createRulesets"))))),
             message: "The crowdsec-firewall-bouncer module is currently not able to configure the firewall in \"ipset\" mode.\n\nEither set the `services.crowdsec-firewall-bouncer.settings.mode` to \"iptables\" to leave the bouncer\nmanage the firewall configuration, or disable the `services.crowdsec-firewall-bouncer.createRulesets`\noption and manually configure your firewall.\n",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           "crowdsec-firewall-bouncer": nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             settings: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               update_frequency: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "10s")),
               log_mode: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "stdout")),
               log_level: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "info")),
@@ -169,16 +169,16 @@ export default nix.lambda((args) => (() => {
               blacklists_ipv6: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "crowdsec6-blacklists")),
               iptables_chains: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ["INPUT"]))),
               nftables: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 ipv4: nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   enabled: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                   "set-only": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                   table: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "crowdsec")),
                   chain: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "crowdsec-chain")),
                 })),
                 ipv6: nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   enabled: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                   "set-only": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                   table: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "crowdsec6")),
@@ -190,12 +190,12 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           nftables: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             tables: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "settings", "mode"), "nftables")), nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${nix.sel(cfg, "settings", "nftables", "ipv4", "table")}`, nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(cfg, "createRulesets")) && nix.asBool(nix.sel(cfg, "settings", "nftables", "ipv4", "enabled")))) && nix.asBool(nix.sel(cfg, "settings", "nftables", "ipv4", "set-only")))), nix.thunk(() => ({
-                    __proto__: pos$26,
+                    [nix.POS]: pos$26,
                     family: "ip",
                     content: nix.thunk(() => nix.str`set crowdsec-blacklists {
   type ipv4_addr
@@ -209,7 +209,7 @@ chain ${nix.sel(cfg, "settings", "nftables", "ipv4", "chain")} {
 `),
                   }))))],
                 [nix.str`${nix.sel(cfg, "settings", "nftables", "ipv6", "table")}`, nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(cfg, "createRulesets")) && nix.asBool(nix.sel(cfg, "settings", "nftables", "ipv6", "enabled")))) && nix.asBool(nix.sel(cfg, "settings", "nftables", "ipv6", "set-only")))), nix.thunk(() => ({
-                    __proto__: pos$27,
+                    [nix.POS]: pos$27,
                     family: "ip6",
                     content: nix.thunk(() => nix.str`set crowdsec6-blacklists {
   type ipv6_addr
@@ -226,11 +226,11 @@ chain ${nix.sel(cfg, "settings", "nftables", "ipv6", "chain")} {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           services: nix.thunk(() => (() => {
             const apiKeyFile = "/var/lib/crowdsec-firewall-bouncer-register/api-key.cred";
             return {
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               "crowdsec-firewall-bouncer-register": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "registerBouncer", "enable")), nix.thunk(() => (() => {
                   const description = "Register the CrowdSec Firewall Bouncer to the local CrowdSec service";
                   const wantedBy = nix.thunk(() => ["multi-user.target"]);
@@ -256,7 +256,7 @@ else
 fi
 `);
                   const serviceConfig = nix.thunk(() => ({
-                    __proto__: pos$30,
+                    [nix.POS]: pos$30,
                     Type: "oneshot",
                     User: nix.thunk(() => nix.sel(config, "services", "crowdsec", "user")),
                     Group: nix.thunk(() => nix.sel(config, "services", "crowdsec", "group")),
@@ -282,7 +282,7 @@ fi
                     UMask: "0077",
                   }));
                   return {
-                    __proto__: pos$31,
+                    [nix.POS]: pos$31,
                     description,
                     wantedBy,
                     after,
@@ -351,7 +351,7 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "replace-secret"
                     const SystemCallFilter = nix.thunk(() => ["@system-service", "~@privileged", "~@resources"]);
                     const UMask = "0077";
                     return {
-                      __proto__: pos$32,
+                      [nix.POS]: pos$32,
                       Type,
                       ExecStartPre,
                       ExecStart,
@@ -382,7 +382,7 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "replace-secret"
                     };
                   })());
                   return {
-                    __proto__: pos$33,
+                    [nix.POS]: pos$33,
                     description,
                     wantedBy,
                     partOf,
@@ -399,7 +399,7 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "replace-secret"
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$37,
+      [nix.POS]: pos$37,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

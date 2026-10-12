@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const readline = nix.arg($, "readline");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mrsh-unstable",
       version: "2021-01-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "emersion",
           repo: "mrsh",
           rev: "9f9884083831ea1f94bdda5151c5df3888932849",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [readline]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Minimal POSIX shell",
         mainProgram: "mrsh",
         homepage: "https://github.com/emersion/mrsh",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, shellPath: "/bin/mrsh" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, shellPath: "/bin/mrsh" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

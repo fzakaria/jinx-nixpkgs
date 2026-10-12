@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const fts = nix.arg($, "fts");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fpart",
       version: "1.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "martymac",
           repo: "fpart",
           rev: nix.thunk(() => nix.str`fpart-${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [fts]),
       postInstall: "sed \"s|^FPART_BIN=.*|FPART_BIN=\\\"$out/bin/fpart\\\"|\" \\\n    -i \"$out/bin/fpsync\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Split file trees into bags (called \"partitions\")",
         longDescription: "Fpart is a tool that helps you sort file trees and pack them into bags\n(called \"partitions\").\n\nIt splits a list of directories and file trees into a certain number of\npartitions, trying to produce partitions with the same size and number of\nfiles. It can also produce partitions with a given number of files or a\nlimited size.\n\nOnce generated, partitions are either printed as file lists to stdout\n(default) or to files. Those lists can then be used by third party programs.\n\nFpart also includes a live mode, which allows it to crawl very large\nfilesystems and produce partitions in live. Hooks are available to act on\nthose partitions (e.g. immediately start a transfer using rsync(1))\nwithout having to wait for the filesystem traversal job to be finished.\nUsed this way, fpart can be seen as a powerful data migration tool.\n",
         homepage: "http://contribs.martymac.org/",

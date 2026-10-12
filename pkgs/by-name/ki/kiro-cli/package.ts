@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.thunk(() => nix.attr(kiro_cli_unwrapped, "version"));
   const meta = nix.thunk(() => nix.attr(kiro_cli_unwrapped, "meta"));
   const fhsenv = nix.thunk(() => nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "kiro-cli",
       version: version,
       runScript: nix.thunk(() => nix.app(writeShellScript, "kiro-cli", "command=\"$1\"\nshift\nexec \"$command\" \"$@\"\n")),
@@ -34,15 +34,15 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       extraInstallCommands: "mkdir -p $out/libexec/kiro-cli\nmv $out/bin/kiro-cli $out/libexec/kiro-cli/kiro-cli-wrapper\n\nfor command in kiro-cli kiro-cli-chat kiro-cli-term; do\n  makeWrapper \"$out/libexec/kiro-cli/kiro-cli-wrapper\" \"$out/bin/$command\" \\\n    --add-flags \"$command\"\ndone\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         unwrapped: kiro_cli_unwrapped,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$1, package: kiro_cli_unwrapped, version: version })))),
+          [nix.POS]: pos$2,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$1, package: kiro_cli_unwrapped, version: version })))),
         })),
       })),
-      meta: nix.thunk(() => nix.update(meta, { __proto__: pos$4, mainProgram: "kiro-cli" })),
+      meta: nix.thunk(() => nix.update(meta, { [nix.POS]: pos$4, mainProgram: "kiro-cli" })),
     }))));
-  return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? nix.force(fhsenv) : nix.app(nix.sel(kiro_cli_unwrapped, "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$6, pname: "kiro-cli" }))));
+  return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? nix.force(fhsenv) : nix.app(nix.sel(kiro_cli_unwrapped, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$6, pname: "kiro-cli" }))));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

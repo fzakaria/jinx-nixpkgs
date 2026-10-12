@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libjpeg = nix.arg($, "libjpeg");
   const libGLU = nix.arg($, "libGLU");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "eureka-editor",
       version: "1.27b",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/eureka-editor/Eureka/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/eureka-${nix.sel(finalAttrs, "version")}-source.tar.gz`),
           sha256: "075w7xxsgbgh6dhndc1pfxb2h1s5fhsw28yl1c025gmx9bb4v3bf",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace src/main.cc --replace /usr/local $out\nsubstituteInPlace Makefile    --replace /usr/local $out\n",
       preInstall: "mkdir -p $out/bin $out/share/applications $out/share/icons $out/man/man6\ncp misc/eureka.desktop $out/share/applications\ncp misc/eureka.ico $out/share/icons\ncp misc/eureka.6 $out/man/man6\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://eureka-editor.sourceforge.net",
         description: "Map editor for the classic DOOM games, and a few related games such as Heretic and Hexen",
         mainProgram: "eureka",

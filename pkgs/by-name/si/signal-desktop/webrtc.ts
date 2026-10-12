@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
   const xcodebuild = nix.arg($, "xcodebuild");
   const llvmPackages = nix.arg($, "llvmPackages");
   const llvmCcAndBintools = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "signal-webrtc-llvm-cc-and-bintools",
       paths: nix.thunk(() => [
         nix.thunk(() => nix.sel(llvmPackages, "llvm")),
@@ -40,14 +40,14 @@ export default nix.lambda((args) => (() => {
       ]),
     }))));
   const chromiumRosettaStone = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     cpu: (platform) => (() => {
       const name = nix.thunk(() => nix.sel(platform, "parsed", "cpu", "name"));
-      return nix.selOr({ __proto__: pos$2, x86_64: "x64", i686: "x86", arm: "arm", aarch64: "arm64" }, () => nix.builtins.throw(nix.thunk(() => nix.str`no chromium Rosetta Stone entry for cpu: ${name}`)), nix.key(nix.force(name)));
+      return nix.selOr({ [nix.POS]: pos$2, x86_64: "x64", i686: "x86", arm: "arm", aarch64: "arm64" }, () => nix.builtins.throw(nix.thunk(() => nix.str`no chromium Rosetta Stone entry for cpu: ${name}`)), nix.key(nix.force(name)));
     })(),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "signal-webrtc",
       version: nix.thunk(() => nix.sel(finalAttrs, "gclientDeps", "src", "path", "tag")),
       gclientDeps: nix.thunk(() => nix.app(nix.sel(gclient2nix, "importGclientDeps"), nix.path(here, "./webrtc-sources.json"))),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [apple_sdk, xcodebuild])))),
       buildInputs: nix.thunk(() => nix.concat([glib, pulseaudio], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(llvmPackages, "compiler-rt"))])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [alsa_lib]))))),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         BUILD_CC: "$CC_FOR_BUILD",
         BUILD_CXX: "$CXX_FOR_BUILD",
         BUILD_AR: "$AR_FOR_BUILD",
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./chromium-147-llvm-22.patch"),
         nix.path(here, "./chromium-149-llvm-22.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "chromium-150-backport-build--Omit-ar-from-inputs-when-resolved-via--PATH.patch",
             url: "https://chromium.googlesource.com/chromium/src/+/60f987d8d5f7272793a40290d060b8f50933f825^!?format=TEXT",
             decode: "base64 -d",
@@ -150,7 +150,7 @@ install -D obj/libwebrtc${nix.sel(stdenv, "hostPlatform", "extensions", "staticL
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "WebRTC library used by Signal",
         homepage: "https://github.com/SignalApp/webrtc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

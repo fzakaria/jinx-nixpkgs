@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "google-health-api",
       version: "0.10.0",
       pyproject: true,
       disabled: nix.thunk(() => nix.app(pythonOlder, "3.14")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "allenporter",
           repo: "python-google-health-api",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [aiohttp, google_auth, google_auth_oauthlib, mashumaro, requests]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, webhook: nix.thunk(() => [cryptography]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, webhook: nix.thunk(() => [cryptography]) })),
       nativeCheckInputs: nix.thunk(() => [cryptography, pytest_aiohttp, pytest_asyncio, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["google_health_api"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Asynchronous, type-safe Python client library for the Google Health API",
         homepage: "https://github.com/allenporter/python-google-health-api",
         changelog: nix.thunk(() => nix.str`https://github.com/allenporter/python-google-health-api/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

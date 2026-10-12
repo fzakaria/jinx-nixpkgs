@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sshesame";
       const version = "0.0.39";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jaksi",
           repo: "sshesame",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-1v+cNMr2jpLPfxusPsgnFN31DwuNntXuq3sDNpWL0Rg=";
       const ldflags = nix.thunk(() => ["-s", "-w"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Easy to set up and use SSH honeypot",
         longDescription: "A fake SSH server that lets anyone in and logs their activity.\nsshesame accepts and logs SSH connections and activity (channels, requests),\nwithout doing anything on the host (e.g. executing commands, making network requests).\n",
         homepage: "https://github.com/jaksi/sshesame",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
         mainProgram: "sshesame",
       }));
-      return { __proto__: pos$4, pname, version, src, vendorHash, ldflags, passthru, meta };
+      return { [nix.POS]: pos$4, pname, version, src, vendorHash, ldflags, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

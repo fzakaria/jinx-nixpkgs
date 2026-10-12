@@ -17,9 +17,9 @@ export default nix.lambda((args) => (() => {
   const harper = nix.arg($, "harper");
   const moreutils = nix.arg($, "moreutils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "harper",
         publisher: "elijah-potter",
         version: nix.thunk(() => nix.sel(harper, "version")),
@@ -33,11 +33,11 @@ jq '.contributes.configuration.properties."harper.path".default = "${nix.app(nix
 rm ./bin/harper-ls
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(vscode_extension_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/Automattic/harper/releases/tag/v${nix.sel(harper, "version")}`),
         description: "The grammar checker for developers as a Visual Studio Code extension",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=elijah-potter.harper",

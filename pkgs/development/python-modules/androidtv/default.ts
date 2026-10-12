@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.75";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "JeffLIrion",
           repo: "python-androidtv",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const optional_dependencies = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(adb_shell, "optional-dependencies"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         async: nix.thunk(() => [aiofiles]),
         usb: nix.thunk(() => nix.attr(from, "usb")),
       };
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_no_underscores"]);
       const pythonImportsCheck = nix.thunk(() => ["androidtv"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Communicate with an Android TV or Fire TV device via ADB over a network",
         homepage: "https://github.com/JeffLIrion/python-androidtv/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const modDirVersion = nix.argOr($, "modDirVersion", () => "");
   const forPlatform = nix.argOr($, "forPlatform", () => nix.sel(stdenv, "buildPlatform"));
   return nix.app(replaceVarsWith, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "uname",
       src: nix.path(here, "./deterministic-uname.sh"),
       dir: "bin",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       replacements: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(forPlatform, "uname"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         coreutils: coreutils,
         getopt: getopt,
         runtimeShell: runtimeShell,
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       })()),
       setupHook: nix.path(here, "./setup-hook.sh"),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Print certain system information (hardcoded with lib/system values)",
         mainProgram: "uname",
         longDescription: "This package provides a replacement for `uname` whose output depends only\non `stdenv.buildPlatform`, or a configurable `forPlatform`.  It is meant\nto be used from within derivations. Many packages' build processes run\n`uname` at compile time and embed its output into the result of the build.\nSince `uname` calls into the kernel, and the Nix sandbox currently does\nnot intercept these calls, builds made on different kernels will produce\ndifferent results.\n",

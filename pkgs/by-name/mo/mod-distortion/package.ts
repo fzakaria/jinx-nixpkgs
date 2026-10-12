@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lv2 = nix.arg($, "lv2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mod-distortion",
       version: "0-unstable-2016-08-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mod-audio",
           repo: "mod-distortion",
           rev: "e672d5feb9d631798e3d56eb96e8958c3d2c6821",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [lv2]),
       installFlags: nix.thunk(() => ["INSTALL_PATH=$(out)/lib/lv2"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/mod-audio/mod-distortion",
         description: "Analog distortion emulation lv2 plugins",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

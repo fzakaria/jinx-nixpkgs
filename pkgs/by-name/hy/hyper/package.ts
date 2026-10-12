@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
       const pname = "hyper";
       const version = "3.4.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/vercel/hyper/releases/download/v${version}/hyper_${version}_amd64.deb`),
           sha256: "sha256-jEzZ6MWFaNXBS8CAzfn/ufMPpWcua9HhBFzetWMlH1Y=",
         }))));
@@ -108,15 +108,15 @@ substituteInPlace $out/share/applications/hyper.desktop \\
   --replace "/opt/Hyper/hyper" "hyper"
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           test: nix.thunk(() => nix.sel(nixosTests, "terminal-emulators", "hyper")),
         })),
       }));
       const dontPatchELF = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Terminal built on web technologies",
         homepage: "https://hyper.is/",
         maintainers: nix.thunk(() => (() => {
@@ -133,7 +133,7 @@ substituteInPlace $out/share/applications/hyper.desktop \\
         broken: true,
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

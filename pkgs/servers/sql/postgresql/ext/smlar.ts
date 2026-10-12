@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const postgresql = nix.arg($, "postgresql");
   const postgresqlBuildExtension = nix.arg($, "postgresqlBuildExtension");
   return nix.app(postgresqlBuildExtension, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "smlar-unstable",
       version: "2021-11-08",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "git://sigaev.ru/smlar.git",
           rev: "f2522d5f20a46a3605a761d34a3aefcdffb94e71",
           hash: "sha256-AC6w7uYw0OW70pQpWbK1A3rkCnMvTJzTCAdFiY3rO7A=",
         })))),
       makeFlags: nix.thunk(() => ["USE_PGXS=1"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Compute similarity of any one-dimensional arrays",
         homepage: "http://sigaev.ru/git/gitweb.cgi?p=smlar.git",
         platforms: nix.thunk(() => nix.sel(postgresql, "meta", "platforms")),

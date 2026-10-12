@@ -20,17 +20,17 @@ export default nix.lambda((args) => (() => {
   const protobuf = nix.arg($, "protobuf");
   const tantivy_go = nix.arg($, "tantivy-go");
   const arch = nix.thunk(() => nix.selOr({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "x86_64-linux": "linux-amd64-musl",
     "aarch64-linux": "linux-arm64-musl",
     "aarch64-darwin": "darwin-arm64",
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`anytype-heart not supported on ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "anytype-heart",
       version: "0.51.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "anyproto",
           repo: "anytype-heart",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-yDTaCubG6/gxtEuUuXfoqBnc1GplrYqjwPCXAXPcQIM=",
       subPackages: nix.thunk(() => ["cmd/grpcserver"]),
       tags: nix.thunk(() => ["nosigar", "nowatchdog"]),
-      env: nix.thunk(() => ({ __proto__: pos$3, CGO_ENABLED: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, CGO_ENABLED: 1n })),
       proxyVendor: true,
       nativeBuildInputs: nix.thunk(() => [protoc_gen_grpc_web, protoc_gen_js, protobuf]),
       preBuild: nix.thunk(() => nix.str`mkdir -p deps/libs/${arch}
@@ -48,7 +48,7 @@ cp ${tantivy_go}/lib/libtantivy_go.a deps/libs/${arch}
       postInstall: "mv $out/bin/grpcserver $out/bin/anytypeHelper\nmkdir -p $out/lib/protos\nfind pb -type f -name \"*.proto\" -exec cp {} $out/lib/protos/ \\;\nfind pkg/lib/pb -type f -name \"*.proto\" -exec cp {} $out/lib/protos/ \\;\n\nmkdir -p $out/lib/json/generated\ncp pkg/lib/bundle/system*.json $out/lib/json/generated\ncp pkg/lib/bundle/internal*.json $out/lib/json/generated\n\nmkdir -p $out/share\ncp LICENSE.md $out/share\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Shared library for Anytype clients",
         homepage: "https://anytype.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/anyproto/anytype-heart/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

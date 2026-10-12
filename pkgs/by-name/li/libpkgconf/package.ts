@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pkgconf",
       version: "2.5.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/pkgconf/pkgconf/archive/refs/tags/pkgconf-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-eXIbrcrRmH3q2cNgnrSHerm1iCHAa9rLgk8siJfBHyo=",
         })))),
@@ -42,15 +42,15 @@ remove-references-to \\
 `, nix.str`mv ${nix.builtins.placeholder("dev")}/share ${nix.builtins.placeholder("out")}
 `)),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/pkgconf/pkgconf",
             "rev-prefix": "pkgconf-",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/pkgconf/pkgconf",
         description: "Package compiler and linker metadata toolkit",
         longDescription: "pkgconf is a program which helps to configure compiler and linker flags\nfor development libraries. It is similar to pkg-config from\nfreedesktop.org.\n\nlibpkgconf is a library which provides access to most of pkgconf's\nfunctionality, to allow other tooling such as compilers and IDEs to\ndiscover and use libraries configured by pkgconf.\n",

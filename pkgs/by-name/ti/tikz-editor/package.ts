@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   const apple_sdk_15 = nix.arg($, "apple-sdk_15");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tikz-editor",
       version: "0.6.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-source`),
           owner: "DominikPeters",
           repo: "tikz-editor",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       cargoRoot: "apps/desktop/src-tauri",
       cargoHash: "sha256-tIhjljsgDkVHvUKpPAjZUQvmEWNopE/NXjbcIt9LBv4=",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-npm-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-dUrnaZ5nVJTHbA5mkigAsa7xhuAnOV8gO3GqqJFQBJQ=",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [wrapGAppsHook4])))),
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [webkitgtk_4_1])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [apple_sdk_15])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "WYSIWYG editor for TikZ diagrams in LaTeX",
         homepage: "https://tikz.dev/editor/",
         changelog: nix.thunk(() => nix.str`https://github.com/DominikPeters/tikz-editor/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

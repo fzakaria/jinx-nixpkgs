@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const libxkbcommon = nix.arg($, "libxkbcommon");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "showmethekey",
       version: "1.21.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AlynxZhou",
           repo: "showmethekey",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, json_glib, pkg_config, wrapGAppsHook4]),
       buildInputs: nix.thunk(() => [gtk4, libadwaita, libevdev, libinput, libxkbcommon]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Show keys you typed on screen",
         homepage: "https://showmethekey.alynx.one/",
         changelog: nix.thunk(() => nix.str`https://github.com/AlynxZhou/showmethekey/releases/tag/v${nix.sel(finalAttrs, "version")}`),

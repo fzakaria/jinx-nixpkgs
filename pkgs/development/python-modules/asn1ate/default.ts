@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const version = "0.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           sha256: "1p8hv4gsyqsdr0gafcq497n52pybiqmc22di8ai4nsj60fv0km45",
           rev: nix.thunk(() => nix.str`v${version}`),
           owner: "schneider-electric",
@@ -26,14 +26,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const propagatedBuildInputs = nix.thunk(() => [pyparsing]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library for translating ASN.1 into other forms",
         homepage: "https://github.com/schneider-electric/asn1ate",
         mainProgram: "asn1ate",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
-      return { __proto__: pos$3, pname, format, version, src, propagatedBuildInputs, meta };
+      return { [nix.POS]: pos$3, pname, format, version, src, propagatedBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

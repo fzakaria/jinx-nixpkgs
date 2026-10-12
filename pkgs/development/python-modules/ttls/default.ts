@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.11.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jschlyter",
           repo: "ttls",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["ttls"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module to interact with Twinkly LEDs",
         homepage: "https://github.com/jschlyter/ttls",
         changelog: nix.thunk(() => nix.str`https://github.com/jschlyter/ttls/blob/${nix.sel(src, "tag")}/CHANGES.md`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "ttls",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

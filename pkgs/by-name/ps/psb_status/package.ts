@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const iotools = nix.arg($, "iotools");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "psb_status",
       version: "0-unstable-2024-10-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mkopec",
           repo: "psb_status",
           rev: "be896832c53d6b0b70cf8a87f7ee46ad33deefc2",
@@ -38,7 +38,7 @@ wrapProgram $out/bin/psb_status \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Script to check Platform Secure Boot enablement on Zen based AMD CPUs",
         homepage: "https://github.com/mkopec/psb_status",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

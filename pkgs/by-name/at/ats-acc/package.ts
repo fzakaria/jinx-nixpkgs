@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const ats2 = nix.arg($, "ats2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ats-acc",
       version: "0-unstable-2018-10-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sparverius",
           repo: "ats-acc",
           rev: "2d49f4e76d0fe1f857ceb70deba4aed13c306dcb",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
 `),
       nativeBuildInputs: nix.thunk(() => [ats2]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pretty-print error messages of the ATS Compiler",
         homepage: "https://github.com/sparverius/ats-acc",
         maintainers: nix.thunk(() => (() => {

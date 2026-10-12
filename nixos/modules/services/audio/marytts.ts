@@ -42,49 +42,49 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "marytts"));
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "javaProperties"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         marytts: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "MaryTTS")),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
-              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({ __proto__: pos$1, freeformType: nix.thunk(() => nix.sel(format, "type")) })))),
+              [nix.POS]: pos$2,
+              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({ [nix.POS]: pos$1, freeformType: nix.thunk(() => nix.sel(format, "type")) })))),
               default: nix.thunk(() => ({})),
               description: "Settings for MaryTTS.\n\nSee the [default settings](https://github.com/marytts/marytts/blob/master/marytts-runtime/conf/marybase.config)\nfor a list of possible keys.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "marytts", nix.thunk(() => ({})))),
           basePath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/marytts",
               description: "The base path in which MaryTTS runs.\n",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 59125n,
               description: "Port to bind the MaryTTS server to.\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               example: true,
               description: "Whether to open the port in the firewall for MaryTTS.\n",
             })))),
           voices: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[\n  (pkgs.fetchzip {\n    url = \"https://github.com/marytts/voice-bits1-hsmm/releases/download/v5.2/voice-bits1-hsmm-5.2.zip\";\n    hash = \"sha256-1nK+qZxjumMev7z5lgKr660NCKH5FDwvZ9sw/YYYeaA=\";\n  })\n]\n")),
               description: "Paths to the JAR files that contain additional voices for MaryTTS.\n\nVoices are automatically detected by MaryTTS, so there is no need to alter\nyour config to make use of new voices.\n",
             })))),
           userDictionaries: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[\n  (pkgs.writeTextFile {\n    name = \"userdict-en_US\";\n    destination = \"/userdict-en_US.txt\";\n    text = ''\n      Nixpkgs | n I k s - ' p { - k @ - dZ @ s\n    '';\n  })\n]\n")),
@@ -94,28 +94,28 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         services: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           marytts: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             settings: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               "mary.base": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(cfg, "basePath")))),
               "socket.port": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(cfg, "port")))),
             })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           services: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             marytts: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               description: "MaryTTS server instance",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -123,7 +123,7 @@ export default nix.lambda((args) => (() => {
 `),
               restartTriggers: nix.thunk(() => nix.concat(nix.sel(cfg, "voices"), nix.sel(cfg, "userDictionaries"))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 DynamicUser: true,
                 User: "marytts",
                 RuntimeDirectory: "marytts",
@@ -158,27 +158,27 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             settings: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               "10-marytts": nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${nix.sel(cfg, "basePath")}/lib`, nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   "L+": nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     argument: nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "symlinkJoin"), nix.thunk(() => ({
-                        __proto__: pos$18,
+                        [nix.POS]: pos$18,
                         name: "marytts-lib",
                         paths: nix.thunk(() => nix.concat(nix.sel(cfg, "voices"), [nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/lib`)])),
                       })))}`),
                   })),
                 }))],
                 [nix.str`${nix.sel(cfg, "basePath")}/user-dictionaries`, nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   "L+": nix.thunk(() => ({
-                    __proto__: pos$22,
+                    [nix.POS]: pos$22,
                     argument: nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "symlinkJoin"), nix.thunk(() => ({
-                        __proto__: pos$21,
+                        [nix.POS]: pos$21,
                         name: "marytts-user-dictionaries",
                         paths: nix.thunk(() => nix.concat(nix.sel(cfg, "userDictionaries"), [nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/user-dictionaries`)])),
                       })))}`),
@@ -189,9 +189,9 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]),
             })))),
         })),

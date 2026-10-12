@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "unstable-2018-10-18",
       pname: "ps2client",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ps2dev",
           repo: "ps2client",
           rev: "92fcaf18aabf74daaed40bd50d428cce326a87c0",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       patchPhase: "sed -i -e \"s|-I/usr/include||g\" -e \"s|-I/usr/local/include||g\" Makefile\n",
       installPhase: "make PREFIX=$out install\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Desktop clients to interact with ps2link and ps2netfs",
         homepage: "https://github.com/ps2dev/ps2client",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

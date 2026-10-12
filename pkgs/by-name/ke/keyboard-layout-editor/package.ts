@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const openjdk = nix.arg($, "openjdk");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const xkbcomp = nix.arg($, "xkbcomp");
-  const jdk = nix.thunk(() => nix.app(nix.sel(openjdk, "override"), nix.thunk(() => ({ __proto__: pos$1, enableJavaFX: true }))));
+  const jdk = nix.thunk(() => nix.app(nix.sel(openjdk, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableJavaFX: true }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "keyboard-layout-editor";
       const version = "0-unstable-2019-05-14";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "vgresak",
           repo: "keyboard-layout-editor",
           rev: "308c62ac4bb9ad25429f4d09c0aaa9f72d4194c9",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [nix.path(here, "./fix-build-gradle.patch")]);
       const nativeBuildInputs = nix.thunk(() => [gradle_8, makeBinaryWrapper, wrapGAppsHook3]);
       const gradleUpdateScript = "runHook preBuild\n\ngradle nixDownloadDeps -Dos.family=linux -Dos.arch=amd64\ngradle nixDownloadDeps -Dos.family=linux -Dos.arch=aarch64\ngradle nixDownloadDeps -Dos.name='mac os x' -Dos.arch=amd64\ngradle nixDownloadDeps -Dos.name='mac os x' -Dos.arch=aarch64\n";
-      const mitmCache = nix.thunk(() => nix.app(nix.sel(gradle_8, "fetchDeps"), nix.thunk(() => ({ __proto__: pos$3, pname: pname, data: nix.path(here, "./deps.json") }))));
+      const mitmCache = nix.thunk(() => nix.app(nix.sel(gradle_8, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: pos$3, pname: pname, data: nix.path(here, "./deps.json") }))));
       const __darwinAllowLocalNetworking = true;
       const gradleBuildTask = "fatJar";
       const installPhase = nix.thunk(() => nix.str`runHook preInstall
@@ -52,7 +52,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), jdk)} $out/bin/keyboard-layout-edi
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Keyboard layout editor for XKB",
         homepage: "https://github.com/vgresak/keyboard-layout-editor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -64,7 +64,7 @@ runHook postInstall
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux", "aarch64-darwin"]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

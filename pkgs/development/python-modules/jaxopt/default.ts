@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const scikit_learn = nix.arg($, "scikit-learn");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jaxopt",
       version: "0.8.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "google",
           repo: "jaxopt",
           tag: nix.thunk(() => nix.str`jaxopt-v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         "test_wrapper_grad",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://jaxopt.github.io",
         description: "Hardware accelerated, batchable and differentiable optimizers in JAX",
         changelog: nix.thunk(() => nix.str`https://github.com/google/jaxopt/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

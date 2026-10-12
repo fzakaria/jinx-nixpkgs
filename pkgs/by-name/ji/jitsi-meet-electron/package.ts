@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pname = "jitsi-meet-electron";
       const version = "2026.7.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jitsi",
           repo: "jitsi-meet-electron",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-m2+knAWSSraNGNGjMFoMC9+MlOhs+XyXs90GcMx9ulw=";
       const makeCacheWritable = true;
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         ELECTRON_SKIP_BINARY_DOWNLOAD: 1n,
         NIX_CFLAGS_COMPILE: "-Wno-implicit-function-declaration",
       }));
@@ -83,7 +83,7 @@ runHook postInstall
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "jitsi-meet-electron",
             exec: "jitsi-meet-electron %U",
             icon: "jitsi-meet-electron",
@@ -95,13 +95,13 @@ runHook postInstall
           })))),
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(electron, "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/jitsi/jitsi-meet-electron/releases/tag/${nix.sel(src, "rev")}`),
         description: "Jitsi Meet desktop application powered by Electron",
         homepage: "https://github.com/jitsi/jitsi-meet-electron",
@@ -113,7 +113,7 @@ runHook postInstall
       };
       })());
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

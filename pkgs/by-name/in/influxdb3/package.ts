@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "influxdb3",
       version: "3.8.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "influxdata",
           repo: "influxdb",
           rev: "73f689bb31d5ca13c4f950fefb40d5f6e6163019",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [rust_jemalloc_sys_unprefixed, python3]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         GIT_HASH: "000000000000000000000000000000000000000000000000000",
         GIT_HASH_SHORT: "0000000",
         PYO3_PYTHON: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), python3)),
@@ -55,11 +55,11 @@ export default nix.lambda((args) => (() => {
 `),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$3, extraArgs: nix.thunk(() => ["--version-regex", "v(3.*)"]) })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version-regex", "v(3.*)"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Scalable datastore for metrics, events, and real-time analytics",
         homepage: "https://github.com/influxdata/influxdb",
         license: nix.thunk(() => (() => {

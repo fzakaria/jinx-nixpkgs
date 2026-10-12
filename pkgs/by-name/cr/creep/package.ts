@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const mkfontscale = nix.arg($, "mkfontscale");
   const fonttosfnt = nix.arg($, "fonttosfnt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "creep",
       version: "0.31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "romeovs",
           repo: "creep",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "faketime -f \"1970-01-01 00:00:01\" fonttosfnt -g 2 -m 2 -o creep.otb creep.bdf\n",
       installPhase: "install -D -m644 creep.otb creep.bdf -t \"$out/share/fonts/misc/\"\nmkfontdir \"$out/share/fonts/misc\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pretty sweet 4px wide pixel font",
         homepage: "https://github.com/romeovs/creep",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

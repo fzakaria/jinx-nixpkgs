@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(melpaBuild, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "eaf-pdf-viewer",
       version: "0-unstable-2025-07-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "emacs-eaf",
           repo: "eaf-pdf-viewer",
           rev: "ff08a6b48faac2d231fb1cfe968cec7e41bbeb98",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       files: "(\"*.el\"\n \"*.py\")\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
         eafPythonDeps: (ps) => (() => {
           const w = nix.withScope(ps, null);
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })(),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fastest PDF Viewer in Emacs",
         homepage: "https://github.com/emacs-eaf/eaf-pdf-viewer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

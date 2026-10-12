@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
   const path = nix.thunk(() => ["programs", "dms-shell"]);
   const builtInRemovedMsg = "This is now built-in in DMS and doesn't need additional dependencies.";
   return {
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => nix.concat(path, ["enableBrightnessControl"])), builtInRemovedMsg)),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => nix.concat(path, ["enableColorPicker"])), builtInRemovedMsg)),
@@ -65,58 +65,58 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => nix.concat(path, ["enableCalendarEvents"])), "Install a supported calendar backend separately and select it in DMS settings.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       programs: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         "dms-shell": nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enable: nix.thunk(() => nix.app(mkEnableOption, "DankMaterialShell, a complete desktop shell for Wayland compositors")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "dms-shell", nix.thunk(() => ({})))),
           excludePackages: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "package")))),
               default: [],
               description: "Which packages DMS should exclude from its default environment.",
             })))),
           systemd: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: true,
                 description: "Whether to enable DankMaterialShell systemd startup service.\n",
               })))),
             target: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "graphical-session.target",
                 description: "The systemd target that will automatically start the DankMaterialShell service.\n\nCommon targets include:\n- `graphical-session.target` for most desktop environments\n- `wayland-session.target` for Wayland-specific sessions\n",
               })))),
             restartIfChanged: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: true,
                 description: "Whether to restart the dms.service when the DankMaterialShell package or\nconfiguration changes. This ensures the latest version is always running\nafter a system rebuild.\n",
               })))),
           })),
           quickshell: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "quickshell", nix.thunk(() => ({})))),
           })),
           plugins: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     options: nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$7,
+                          [nix.POS]: pos$7,
                           type: nix.thunk(() => nix.sel(types, "bool")),
                           default: true,
                           description: "Whether to enable this plugin",
                         })))),
                       src: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           type: nix.thunk(() => nix.app(nix.sel(types, "either"), nix.thunk(() => nix.sel(types, "package")), nix.thunk(() => nix.sel(types, "path")))),
                           description: "Source of the plugin package or path",
                         })))),
@@ -130,16 +130,16 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         systemd: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           packages: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "systemd", "enable")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]))),
           user: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             services: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               dms: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "systemd", "enable")), nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   wantedBy: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "systemd", "target"))]),
                   restartIfChanged: nix.thunk(() => nix.sel(cfg, "systemd", "restartIfChanged")),
                   path: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
@@ -148,7 +148,7 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           systemPackages: nix.thunk(() => nix.app(nix.sel(utils, "removePackagesByName"), nix.thunk(() => [
               nix.thunk(() => nix.sel(cfg, "package")),
               nix.thunk(() => nix.sel(cfg, "quickshell", "package")),
@@ -156,32 +156,32 @@ export default nix.lambda((args) => (() => {
               nix.thunk(() => nix.sel(pkgs, "cava")),
             ]), nix.thunk(() => nix.sel(cfg, "excludePackages")))),
           etc: nix.thunk(() => nix.app(mapAttrs$, (name) => (value) => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               name: nix.thunk(() => nix.str`xdg/quickshell/dms-plugins/${name}`),
               value: value,
-            }), nix.thunk(() => nix.app(mapAttrs, (name) => (plugin) => ({ __proto__: pos$20, source: nix.thunk(() => nix.sel(plugin, "src")) }), nix.thunk(() => nix.app(filterAttrs, (n) => (v) => nix.sel(v, "enable"), nix.thunk(() => nix.sel(cfg, "plugins")))))))),
+            }), nix.thunk(() => nix.app(mapAttrs, (name) => (plugin) => ({ [nix.POS]: pos$20, source: nix.thunk(() => nix.sel(plugin, "src")) }), nix.thunk(() => nix.app(filterAttrs, (n) => (v) => nix.sel(v, "enable"), nix.thunk(() => nix.sel(cfg, "plugins")))))))),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           "accounts-daemon": nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
           })),
         })),
         hardware: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           i2c: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
           })),
           graphics: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$28,
+      [nix.POS]: pos$28,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "danklinux"))]),
     })),
   };

@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const runCommand = nix.arg($, "runCommand");
   const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       self: python,
       packageOverrides: (final) => (prev) => ({
-        __proto__: pos$3,
-        "markdown-it-py": nix.thunk(() => nix.app(nix.sel(prev, "markdown-it-py", "overridePythonAttrs"), (_) => ({ __proto__: pos$1, doCheck: false }))),
-        "mdit-py-plugins": nix.thunk(() => nix.app(nix.sel(prev, "mdit-py-plugins", "overridePythonAttrs"), (_) => ({ __proto__: pos$2, doCheck: false }))),
+        [nix.POS]: pos$3,
+        "markdown-it-py": nix.thunk(() => nix.app(nix.sel(prev, "markdown-it-py", "overridePythonAttrs"), (_) => ({ [nix.POS]: pos$1, doCheck: false }))),
+        "mdit-py-plugins": nix.thunk(() => nix.app(nix.sel(prev, "mdit-py-plugins", "overridePythonAttrs"), (_) => ({ [nix.POS]: pos$2, doCheck: false }))),
       }),
     }))));
   return nix.app(nix.sel(python, "pkgs", "buildPythonApplication"), nix.thunk(() => (() => {
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(nix.sel(lib, "cleanSourceWith"), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           filter: (name) => (type) => (nix.asBool(nix.app(nix.sel(lib, "cleanSourceFilter"), name, type)) && nix.asBool(!nix.asBool((nix.asBool(nix.eq(type, "directory")) && nix.asBool(nix.builtins.elem(nix.thunk(() => nix.builtins.baseNameOf(name)), nix.thunk(() => [".pytest_cache", ".mypy_cache", "__pycache__"]))))))),
           src: nix.path(here, "./src"),
         }))));
@@ -49,11 +49,11 @@ export default nix.lambda((args) => (() => {
       const pytestFlags = nix.thunk(() => ["-vvrP"]);
       const enabledTestPaths = nix.thunk(() => ["tests/"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         tests: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           typing: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-mypy`), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               nativeBuildInputs: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (ps) => (() => {
                     const w_1 = nix.withScope(ps, null);
@@ -71,14 +71,14 @@ touch $out
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Renderer for NixOS manual and option docs",
         mainProgram: "nixos-render-docs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         pname,
         version,
         pyproject,

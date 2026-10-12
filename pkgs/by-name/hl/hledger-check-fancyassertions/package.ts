@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const from = nix.thunk(() => nix.sel(haskellPackages, "hledger-lib"));
       const version = nix.thunk(() => nix.attr(from, "version"));
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`hledger-check-fancyassertion-${version}.hs`),
           url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/simonmichael/hledger/hledger-lib-${version}/bin/hledger-check-fancyassertions.hs`),
           hash: "sha256-ISA7ED0HgyWOxfaufaFpNb1dHfE+1+Xh4SRCZ64yM6E=",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const dontUnpack = true;
       const dontBuild = true;
       const executable = nix.thunk(() => nix.app(nix.sel(writers, "writeHaskell"), "hledger-check-fancyassertions", nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           libraries: nix.thunk(() => (() => {
             const w = nix.withScope(haskellPackages, null);
             return [
@@ -53,7 +53,7 @@ install -D $executable $out/bin/${pname}
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Complex account balance assertions for hledger journals",
         homepage: "https://hledger.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/simonmichael/hledger/blob/${version}/hledger/CHANGES.md`),
@@ -63,7 +63,7 @@ runHook postInstall
         mainProgram: "hledger-check-fancyassertions",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

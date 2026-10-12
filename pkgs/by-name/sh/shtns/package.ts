@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   const fftw = nix.arg($, "fftw");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "shtns",
       version: "3.5.1",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://bitbucket.org/nschaeff/shtns",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           sha256: "1ajrplhv7a2dvb3cn3n638281w0bzdcydvvwbg64awbjg622mdpd",
         })))),
       buildInputs: nix.thunk(() => [fftw]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "High performance library for Spherical Harmonic Transform",
         homepage: "https://nschaeff.bitbucket.io/shtns/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cecill21")),

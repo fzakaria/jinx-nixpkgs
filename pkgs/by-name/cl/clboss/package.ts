@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libunwind = nix.arg($, "libunwind");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "clboss",
       version: "0.17.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ZmnSCPxj/clboss/releases/download/v${nix.sel(finalAttrs, "version")}/clboss-v${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-T5MENKxAPeH0gz9dvnyRb+8/dOzcCg1HO8ZWgwz133M=",
         })))),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       ]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Automated C-Lightning Node Manager",
         homepage: "https://github.com/ZmnSCPxj/clboss",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

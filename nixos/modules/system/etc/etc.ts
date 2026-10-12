@@ -39,9 +39,9 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const etc$ = nix.thunk(() => nix.app(nix.sel(lib, "filter"), (f) => nix.sel(f, "enable"), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(config, "environment", "etc"))))));
   const etc = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommandLocal"), "etc", nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         targets: nix.thunk(() => nix.builtins.map((x) => nix.sel(x, "target"), etc$)),
       })),
     })), nix.thunk(() => nix.str`set -euo pipefail
@@ -95,24 +95,24 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (etcEntry) => nix.app(nix.s
   const isInlinedAtEvalTime = (f) => (nix.asBool(!nix.eq(nix.sel(f, "text"), null)) && nix.asBool(nix.le(nix.app(nix.sel(lib, "stringLength"), nix.thunk(() => nix.sel(f, "text"))), etcInlineContentMax)));
   const etcBasedirEntries = nix.thunk(() => nix.app(nix.sel(lib, "filter"), (f) => !nix.asBool(nix.app(isInlinedAtEvalTime, f)), etcHardlinks));
   return {
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     imports: nix.thunk(() => [nix.path(here, "../build.nix")]),
     options: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       system: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         etc: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           overlay: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Mount `/etc` as an overlayfs instead of generating it via a perl script.\n\nNote: This is currently experimental. Only enable this option if you're\nconfident that you can recover your system if it breaks.\n",
               })))),
             mutable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Whether to mount `/etc` mutably (i.e. read-write) or immutably (i.e. read-only).\n\nIf this is false, only the immutable lowerdir is mounted. If it is\ntrue, a writable upperdir is mounted on top.\n",
@@ -121,9 +121,9 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (etcEntry) => nix.app(nix.s
         })),
       })),
       environment: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         etc: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             default: nix.thunk(() => ({})),
             example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{ example-configuration-file =\n    { source = \"/nix/store/.../etc/dir/file.conf.example\";\n      mode = \"0440\";\n    };\n  \"default/useradd\".text = \"GROUP=100 ...\";\n}\n")),
             description: "Set of files that have to be linked in {file}`/etc`.\n",
@@ -135,65 +135,65 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (etcEntry) => nix.app(nix.s
                     const config_1 = nix.arg($_1, "config");
                     const options = nix.arg($_1, "options");
                     return {
-                      __proto__: pos$19,
+                      [nix.POS]: pos$19,
                       options: nix.thunk(() => ({
-                        __proto__: pos$17,
+                        [nix.POS]: pos$17,
                         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$8,
+                            [nix.POS]: pos$8,
                             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                             default: true,
                             description: "Whether this `/etc` file should be generated.  This\noption allows specific `/etc` files to be disabled.\n",
                           })))),
                         target: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$9,
+                            [nix.POS]: pos$9,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             description: "Name of symlink (relative to\n{file}`/etc`).  Defaults to the attribute\nname.\n",
                           })))),
                         text: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$10,
+                            [nix.POS]: pos$10,
                             default: null,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "lines")))),
                             description: "Text content of the file.",
                           })))),
                         source: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$11,
+                            [nix.POS]: pos$11,
                             type: nix.thunk(() => nix.sel(lib, "types", "path")),
                             description: "Path of the source file.",
                           })))),
                         mode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$12,
+                            [nix.POS]: pos$12,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: "symlink",
                             example: "0600",
                             description: "If set to something other than `symlink`,\nthe file is copied instead of symlinked, with the given\nfile mode.\n",
                           })))),
                         uid: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$13,
+                            [nix.POS]: pos$13,
                             default: 0n,
                             type: nix.thunk(() => nix.sel(lib, "types", "int")),
                             description: "UID of created file. Only takes effect when the file is\ncopied (that is, the mode is not 'symlink').\n",
                           })))),
                         gid: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$14,
+                            [nix.POS]: pos$14,
                             default: 0n,
                             type: nix.thunk(() => nix.sel(lib, "types", "int")),
                             description: "GID of created file. Only takes effect when the file is\ncopied (that is, the mode is not `symlink`).\n",
                           })))),
                         user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$15,
+                            [nix.POS]: pos$15,
                             default: nix.thunk(() => nix.str`+${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(config_1, "uid")))}`),
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             description: "User name of file owner. Only takes effect when the file is copied (that is, the\nmode is not `symlink`).\n\nWhen `services.userborn.enable`, this option has no effect.\nYou have to assign a `uid` instead. Otherwise this option\ntakes precedence over `uid`.\n",
                           })))),
                         group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$16,
+                            [nix.POS]: pos$16,
                             default: nix.thunk(() => nix.str`+${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(config_1, "gid")))}`),
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             description: "Group name of file owner.\n\nOnly takes effect when the file is copied (that is, the\nmode is not `symlink`).\n\nWhen `services.userborn.enable`, this option has no effect.\nYou have to assign a `gid` instead. Otherwise this option\ntakes precedence over `gid`.\n",
                           })))),
                       })),
                       config: nix.thunk(() => ({
-                        __proto__: pos$18,
+                        [nix.POS]: pos$18,
                         target: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), name)),
                         source: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(config_1, "text"), null)), nix.thunk(() => (() => {
                             const name$ = nix.thunk(() => nix.add("etc-", nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["/"]), nix.thunk(() => ["-"]), name)));
@@ -207,11 +207,11 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (etcEntry) => nix.app(nix.s
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       system: nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         build: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           etc: etc,
           etcActivationCommands: nix.thunk(() => (() => {
             const etcOverlayOptions = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ",", nix.thunk(() => nix.concat(["relatime", "redirect_dir=on", "metacopy=on"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(config, "system", "etc", "overlay", "mutable")), nix.thunk(() => ["upperdir=/.rw-etc/upper", "workdir=/.rw-etc/work"]))))));
@@ -327,7 +327,7 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (etcEntry) => nix.app(nix.s
             const etcDump = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommandLocal"), "etc-dump", nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "buildPackages", "python3")))} ${nix.path(here, "./build-composefs-dump.py")} ${etcJson} > $out
 `)));
             return nix.app(nix.sel(pkgs, "runCommandLocal"), "etc-metadata.erofs", nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 nativeBuildInputs: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "buildPackages")), null);
                   return [

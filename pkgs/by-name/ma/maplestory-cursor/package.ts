@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const clickgen = nix.arg($, "clickgen");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "maplestory-cursor",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Liam-Weitzel",
           repo: "maplestory-cursor",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nctgen build.toml -p x11 -o $out\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/icons\nmv $out/Maple $out/share/icons\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Maplestory cursor theme for x11 & wayland",
         homepage: "https://github.com/Liam-Weitzel/maplestory-cursor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

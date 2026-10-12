@@ -4,5 +4,5 @@ import * as nix from "../../../../../.jinx/runtime/index.ts";
 const here = nix.here(import.meta.url);
 const pos$1 = nix.positions(here + "/default.nix", [["imports", 2, 3]]);
 
-export default nix.thunk(() => ({ __proto__: pos$1, imports: nix.thunk(() => [nix.path(here, "./ipu6.nix")]) }));
+export default nix.thunk(() => ({ [nix.POS]: pos$1, imports: nix.thunk(() => [nix.path(here, "./ipu6.nix")]) }));
 //# sourceMappingURL=default.ts.map

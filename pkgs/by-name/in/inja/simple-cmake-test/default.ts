@@ -14,10 +14,10 @@ export default nix.lambda((args) => (() => {
   const inja = nix.arg($, "inja");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "inja-simple-cmake-test",
       src: nix.thunk(() => nix.app(nix.sel(lib, "fileset", "toSource"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           root: nix.path(here, "./."),
           fileset: nix.thunk(() => nix.app(nix.sel(lib, "fileset", "unions"), nix.thunk(() => [nix.path(here, "./main.cpp"), nix.path(here, "./CMakeLists.txt")]))),
         })))),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [inja]),
       doInstallCheck: true,
       installCheckPhase: "if [[ `$out/bin/simple-cmake-test` != \"Hello world!\" ]]; then\n  echo \"ERROR: $out/bin/simple-cmake-test does not output 'Hello world!'\"\n  exit 1\nfi\n",
-      meta: nix.thunk(() => ({ __proto__: pos$2, timeout: 30n })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$2, timeout: 30n })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

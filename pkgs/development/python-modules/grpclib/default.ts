@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.9";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vmagamedov",
           repo: "grpclib",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -45,14 +45,14 @@ export default nix.lambda((args) => (() => {
       const __darwinAllowLocalNetworking = true;
       const pythonImportsCheck = nix.thunk(() => ["grpclib"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pure-Python gRPC implementation for asyncio",
         homepage: "https://github.com/vmagamedov/grpclib",
         changelog: nix.thunk(() => nix.str`https://github.com/vmagamedov/grpclib/blob/v${version}/docs/changelog/index.rst`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -54,11 +54,11 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "podman",
       version: "5.8.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "podman-container-tools",
           repo: "podman",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             bin_path: nix.thunk(() => nix.sel(finalAttrs, "passthru", "helpersBin")),
           })))),
         nix.path(here, "./rm-podman-mac-helper-msg.patch"),
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, installShellFiles, makeBinaryWrapper, python3]),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [btrfs_progs, gpgme, libapparmor, libseccomp, libselinux, systemdLibs]))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         HELPER_BINARIES_DIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/libexec/podman`),
         PREFIX: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}`),
         GOMD2MAN: nix.thunk(() => nix.str`${nix.sel(buildPackages, "go-md2man")}/bin/go-md2man`),
@@ -111,9 +111,9 @@ substituteInPlace "$out/share/systemd/user/podman-user-wait-network-online.servi
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook, writableTmpDirAsHomeHook]),
       versionCheckKeepEnvironment: nix.thunk(() => ["HOME"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             podman: nix.thunk(() => nix.attr(nixosTests, "podman")),
             "podman-tls-ghostunnel": nix.thunk(() => nix.attr(nixosTests, "podman-tls-ghostunnel")),
             "oci-containers-podman": nix.thunk(() => nix.sel(nixosTests, "oci-containers", "podman")),
@@ -122,13 +122,13 @@ substituteInPlace "$out/share/systemd/user/podman-user-wait-network-online.servi
           })))),
         binPath: nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [fuse_overlayfs, util_linuxMinimal, iptables, iproute2, nftables])), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), vfkit)), vfkit), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), krunkit)), krunkit), extraPackages)))))),
         helpersBin: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "podman-helper-binary-wrapper",
             paths: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [gvproxy])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [aardvark_dns, catatonit, netavark, passt, conmon, crun])), extraRuntimes))),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://podman.io/",
         description: "Program for managing pods, containers and container images",
         longDescription: "Podman (the POD MANager) is a tool for managing containers and images, volumes mounted into those containers, and pods made from groups of containers. Podman runs containers on Linux, but can also be used on Mac and Windows systems using a Podman-managed virtual machine. Podman is based on libpod, a library for container lifecycle management that is also contained in this repository. The libpod library provides APIs for managing containers, pods, container images, and volumes.\n\nTo install on NixOS, please use the option `virtualisation.podman.enable = true`.\n",

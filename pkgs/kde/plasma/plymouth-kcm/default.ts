@@ -12,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const plymouth = nix.arg($, "plymouth");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "plymouth-kcm",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),
       extraBuildInputs: nix.thunk(() => [plymouth]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "kplymouththemeinstaller" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "kplymouththemeinstaller" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

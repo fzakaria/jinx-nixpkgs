@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const xclip = nix.arg($, "xclip");
   const deps = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [curl, jq, gnugrep, libnotify, scrot, which, xclip])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "2.0.0",
       pname: "imgur-screenshot",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jomo",
           repo: "imgur-screenshot",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
 wrapProgram $out/bin/imgur-screenshot --prefix PATH ':' ${deps}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for easy screencapping and uploading to imgur",
         homepage: "https://github.com/jomo/imgur-screenshot/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

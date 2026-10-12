@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const ghostscript_headless = nix.arg($, "ghostscript_headless");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ccal",
       version: "2.5.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://ccal.chinesebay.com/ccal-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-PUy9yfkFzgKrSEBB+79/C3oxmuajUMbBbWNuGlpQ35Y=",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [ghostscript_headless]))}:$out/bin
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://ccal.chinesebay.com/ccal.htm",
         description: "Command line Chinese calendar viewer, similar to cal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

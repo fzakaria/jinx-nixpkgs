@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const betterproto = nix.arg($, "betterproto");
   const grpcio_tools = nix.arg($, "grpcio-tools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "envoy-data-plane",
       version: "1.0.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "envoy_data_plane",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-UkSrtENDXjEtvEJldgZ5UHHkxK3rOqV3mmifrLGo538=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["envoy_data_plane"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python dataclasses for the Envoy Data-Plane-API",
         homepage: "https://pypi.org/project/envoy_data_plane/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -18,22 +18,22 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const hamlib = nix.arg($, "hamlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "xlog",
       version: "2.0.25",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://savannah/xlog/xlog-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-NYC3LgoLXnJQURcZTc2xHOzOleotrWtOETMBgadf2qU=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-DGLIB_DISABLE_DEPRECATION_WARNINGS -Wno-old-style-definition",
       })),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [glib, gtk2, hamlib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Amateur radio logging program",
         longDescription: "Xlog is an amateur radio logging program.\nIt supports cabrillo, ADIF, trlog (format also used by tlf),\nand EDI (ARRL VHF/UHF contest format) and can import twlog, editest and OH1AA logbook files.\nXlog is able to do DXCC lookups and will display country information, CQ and ITU zone,\nlocation in latitude and longitude and distance and heading in kilometers or miles,\nboth for short and long path.\n",
         homepage: "https://www.nongnu.org/xlog",

@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const __darwinAllowLocalNetworking = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "azure_core",
           version: version,
           hash: "sha256-gZTSaCJFo+TjFRpmfGhkZMN4b+15GLOU0DW9zWG7WZM=",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [requests, six, typing_extensions]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         aio: nix.thunk(() => [aiohttp]),
         tracing: nix.thunk(() => [opentelemetry_api]),
       }));
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
         "tests/test_tracing_live.py",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Microsoft Azure Core Library for Python",
         homepage: "https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/core/azure-core",
         changelog: nix.thunk(() => nix.str`https://github.com/Azure/azure-sdk-for-python/blob/azure-core_${version}/sdk/core/azure-core/CHANGELOG.md`),
@@ -93,7 +93,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         version,
         pname,
         pyproject,

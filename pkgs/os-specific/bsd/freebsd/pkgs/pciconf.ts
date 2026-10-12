@@ -12,14 +12,14 @@ export default nix.lambda((args) => (() => {
   const mkDerivation = nix.arg($, "mkDerivation");
   const pciutils = nix.arg($, "pciutils");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "usr.sbin/pciconf",
       outputs: nix.thunk(() => ["out", "man", "debug"]),
       postPatch: "cat >usr.sbin/pciconf/pathnames.h <<EOF\n#include <paths.h>\n\n#define\t_PATH_DEVPCI\t\"/dev/pci\"\n#define\t_PATH_PCIVDB\t\"$out/share/pci.ids\"\n#define\t_PATH_LPCIVDB\t\"/red/herring\"\n\nEOF\n",
       postInstall: nix.thunk(() => nix.str`mkdir -p $out/share/misc
 cp "${pciutils}/share/pci.ids" "$out/share/pci.ids"
 `),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "pciconf" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "pciconf" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=pciconf.ts.map

@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "x16-emulator",
       version: "48",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "X16Community",
           repo: "x16-emulator",
           tag: nix.thunk(() => nix.str`r${nix.sel(finalAttrs, "version")}`),
@@ -35,25 +35,25 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/X16Community/x16-emulator/commit/3da83c93d46a99635cf73a6f9fdcf1bd4a4ae04f.patch",
             hash: "sha256-DZItqq7B1lXZ6VFsQUdQKn0wt1HaX4ymq2pI2DamY3w=",
           })))),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" })),
       postPatch: "substituteInPlace Makefile \\\n  --replace-fail '/bin/echo' 'echo'\n",
       dontConfigure: true,
       buildInputs: nix.thunk(() => [SDL2, zlib]),
       installPhase: "runHook preInstall\n\ninstall -Dm 755 -t $out/bin/ x16emu\ninstall -Dm 444 -t $out/share/doc/x16-emulator/ README.md\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         version: nix.thunk(() => nix.attr(finalAttrs, "version")),
         emulator: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
         rom: nix.thunk(() => nix.app(callPackage, nix.path(here, "./rom.nix"), nix.thunk(() => ({})))),
         run: nix.thunk(() => nix.app(callPackage, nix.path(here, "./run.nix"), nix.thunk(() => ({})), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(finalAttrs, "finalPackage"));
             return {
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             emulator: nix.thunk(() => nix.attr(from, "emulator")),
             rom: nix.thunk(() => nix.attr(from, "rom")),
           };
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(SDL2, "meta"));
         return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://cx16forum.com/",
         description: "Official emulator of CommanderX16 8-bit computer",
         changelog: nix.thunk(() => nix.str`https://github.com/X16Community/x16-emulator/blob/${nix.sel(finalAttrs, "src", "rev")}/RELEASES.md`),

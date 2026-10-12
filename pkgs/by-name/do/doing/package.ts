@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const bundlerApp = nix.arg($, "bundlerApp");
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "doing",
       exes: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), "doing")),
       gemdir: nix.path(here, "./."),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "doing")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command line tool for keeping track of what you’re doing and tracking what you’ve done",
         longDescription: "doing is a basic CLI for adding and listing \"what was I doing\" reminders\nin a TaskPaper-formatted text file. It allows for multiple\nsections/categories and flexible output formatting.\n",
         homepage: "https://brettterpstra.com/projects/doing/",

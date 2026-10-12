@@ -66,11 +66,11 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const libarchive = nix.arg($, "libarchive");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "mlt",
       version: "7.40.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mltframework",
           repo: "mlt",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -80,13 +80,13 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([cmake, pkg_config, which, makeWrapper, wrapQtAppsHook], nix.concat(nix.app(nix.sel(lib, "optionals"), cudaSupport, nix.thunk(() => [nix.thunk(() => nix.sel(cudaPackages, "cuda_nvcc"))])), nix.app(nix.sel(lib, "optionals"), enablePython, nix.thunk(() => [python3, swig]))))),
       buildInputs: nix.thunk(() => nix.concat([
         gdk_pixbuf,
-        nix.thunk(() => nix.app(nix.sel(opencv4, "override"), nix.thunk(() => ({ __proto__: pos$2, "ffmpeg_8-headless": ffmpeg_8 })))),
+        nix.thunk(() => nix.app(nix.sel(opencv4, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, "ffmpeg_8-headless": ffmpeg_8 })))),
         ffmpeg_8,
         fftw,
         fontconfig,
         nix.thunk(() => nix.app(nix.sel(frei0r, "override"), nix.thunk(() => ({
-            __proto__: pos$4,
-            opencv: nix.thunk(() => nix.app(nix.sel(opencv4, "override"), nix.thunk(() => ({ __proto__: pos$3, "ffmpeg_8-headless": ffmpeg_8 })))),
+            [nix.POS]: pos$4,
+            opencv: nix.thunk(() => nix.app(nix.sel(opencv4, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, "ffmpeg_8-headless": ffmpeg_8 })))),
           })))),
         libdv,
         libebur128,
@@ -115,8 +115,8 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), enablePython, nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "SWIG_PYTHON", true))])))),
       preFixup: nix.thunk(() => nix.str`wrapProgram $out/bin/melt \\
   --prefix FREI0R_PATH : ${nix.app(nix.sel(frei0r, "override"), nix.thunk(() => ({
-          __proto__: pos$6,
-          opencv: nix.thunk(() => nix.app(nix.sel(opencv4, "override"), nix.thunk(() => ({ __proto__: pos$5, "ffmpeg_8-headless": ffmpeg_8 })))),
+          [nix.POS]: pos$6,
+          opencv: nix.thunk(() => nix.app(nix.sel(opencv4, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, "ffmpeg_8-headless": ffmpeg_8 })))),
         })))}/lib/frei0r-1 \\
   ${nix.app(nix.sel(lib, "optionalString"), enableJackrack, nix.thunk(() => nix.str`--prefix LADSPA_PATH : ${ladspaPlugins}/lib/ladspa`))} \\
   ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(qtbase, null)), "${qtWrapperArgs[@]}")}
@@ -124,12 +124,12 @@ export default nix.lambda((args) => (() => {
 `),
       postFixup: "substituteInPlace \"$dev\"/lib/pkgconfig/mlt-framework-7.pc \\\n  --replace-fail '=${prefix}//' '=/'\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         ffmpeg: ffmpeg_8,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$7, "rev-prefix": "v" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$7, "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Open source multimedia framework, designed for television broadcasting",
         homepage: "https://www.mltframework.org/",
         license: nix.thunk(() => (() => {

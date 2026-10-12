@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const pname = "typora";
   const version = "1.14.9";
   const passthru = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     sources: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://download.typora.io/linux/typora_${version}_amd64.deb`),
             nix.thunk(() => nix.str`https://downloads.typoraio.cn/linux/typora_${version}_amd64.deb`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-iIUgfPni2u2iWS/ancsFwS1rXEZloqBVpQ5lSADmM+o=",
         })))),
       "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://download.typora.io/linux/typora_${version}_arm64.deb`),
             nix.thunk(() => nix.str`https://downloads.typoraio.cn/linux/typora_${version}_arm64.deb`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-RXSQKwEffTcWgFR/P04UJ/e41mr26YGcGC2byNyGACw=",
         })))),
       "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://download.typora.io/mac/Typora-${version}.dmg`),
             nix.thunk(() => nix.str`https://downloads.typoraio.cn/mac/Typora-${version}.dmg`),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
   }));
   const src = nix.thunk(() => nix.selOr(passthru, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported system ${nix.sel(stdenv, "hostPlatform", "system")}`)), "sources", nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const meta = nix.thunk(() => nix.update({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     description: "A minimal Markdown editor and reader.",
     homepage: "https://typora.io/",
     changelog: "https://typora.io/releases/all",
@@ -78,9 +78,9 @@ export default nix.lambda((args) => (() => {
       ];
     })()),
     platforms: nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.sel(passthru, "sources")))),
-  }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ __proto__: pos$7, mainProgram: "typora" })))));
+  }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ [nix.POS]: pos$7, mainProgram: "typora" })))));
   return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: pname,
       version: version,
       src: src,
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: ".",
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications\ncp -a Typora.app $out/Applications\n\nrunHook postInstall\n",
     }))) : nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: pname,
       version: version,
       src: src,

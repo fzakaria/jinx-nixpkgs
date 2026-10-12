@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const libintl = nix.arg($, "libintl");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libgsf",
       version: "1.14.58",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           owner: "GNOME",
           repo: "libgsf",
@@ -52,15 +52,15 @@ export default nix.lambda((args) => (() => {
       preCheck: "patchShebangs ./tests/\n",
       postInstall: "substituteInPlace $out/share/thumbnailers/gsf-office.thumbnailer \\\n  --replace-fail \"TryExec=gsf-office-thumbnailer\" \"TryExec=$out/bin/gsf-office-thumbnailer\" \\\n  --replace-fail \"Exec=gsf-office-thumbnailer\" \"Exec=$out/bin/gsf-office-thumbnailer\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             packageName: nix.thunk(() => nix.sel(finalAttrs, "pname")),
             versionPolicy: "odd-unstable",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "GNOME's Structured File Library",
         homepage: "https://gitlab.gnome.org/GNOME/libgsf",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/libgsf/-/blob/${nix.sel(finalAttrs, "src", "tag")}/ChangeLog`),

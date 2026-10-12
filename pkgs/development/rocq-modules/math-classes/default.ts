@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const bignums = nix.arg($, "bignums");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: "math-classes",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (case$_1) => (out) => ({ __proto__: pos$1, case: case$_1, out: out });
+        const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$1, case: case$_1, out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => nix.app(case$, nix.thunk(() => nix.app(nix.lookup(w, "range"), "9.0", "9.3")), "9.2.0")),
@@ -40,44 +40,44 @@ export default nix.lambda((args) => (() => {
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         "8.12.0": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           hash: "sha256:14nd6a08zncrl5yg2gzk0xf4iinwq4hxnsgm4fyv07ydbkxfb425",
         })),
         "8.13.0": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           hash: "sha256:1ln7ziivfbxzbdvlhbvyg3v30jgblncmwcsam6gg3d1zz6r7cbby",
         })),
         "8.15.0": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           hash: "sha256:10w1hm537k6jx8a8vghq1yx12rsa0sjk2ipv3scgir71ln30hllw",
         })),
         "8.17.0": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           hash: "sha256-WklL8pgYTd0l4TGt7h7tWj1qcFcXvoPn25+XKF1pIKA=",
         })),
         "8.18.0": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           hash: "sha256-0WwPss8+Vr37zX616xeuS4TvtImtSbToFQkQostIjO8=",
         })),
         "8.19.0": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           hash: "sha256-rsV96W9MPFi/DKsepNPm1QnC2DMemio+uALIgzVYw0w=",
         })),
         "9.0.0": nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           hash: "sha256-b8GPb1MRg5ZLieDTaoozy6ju10FhVdb6/XhKmyac1V4=",
         })),
         "9.2.0": nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           hash: "sha256-NdmZcaNg0AmJXRsB3reyxrOYOnj/ZHgv3kF9Bxw+Q3I=",
         })),
       })),
       mlPlugin: true,
       propagatedBuildInputs: nix.thunk(() => [bignums]),
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         homepage: "https://math-classes.github.io",
         description: "Library of abstract interfaces for mathematical structures in Coq",
         maintainers: nix.thunk(() => (() => {

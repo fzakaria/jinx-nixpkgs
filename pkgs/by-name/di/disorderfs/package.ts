@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const attr = nix.arg($, "attr");
   const asciidoc_full = nix.arg($, "asciidoc-full");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "disorderfs",
       version: "0.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "salsa.debian.org",
           owner: "reproducible-builds",
           repo: "disorderfs",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [fuse3, attr]),
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Overlay FUSE filesystem that introduces non-determinism into filesystem metadata",
         homepage: "https://salsa.debian.org/reproducible-builds/disorderfs",
         mainProgram: "disorderfs",

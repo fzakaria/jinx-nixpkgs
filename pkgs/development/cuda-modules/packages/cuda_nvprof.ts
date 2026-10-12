@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const cudaAtLeast = nix.arg($, "cudaAtLeast");
   const lib = nix.arg($, "lib");
   return nix.app(buildRedist, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       redistName: "cuda",
       pname: "cuda_nvprof",
       allowFHSReferences: true,
@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [cuda_cupti]),
       autoPatchelfIgnoreMissingDeps: nix.thunk(() => ["libcuda.so.1"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Collect and view profiling data from the command-line",
         longDescription: "The `nvprof` profiling tool enables you to collect and view profiling data from the command-line. `nvprof`\nenables the collection of a timeline of CUDA-related activities on both CPU and GPU, including kernel execution,\nmemory transfers, memory set and CUDA API calls and events or metrics for CUDA kernels. Profiling options are\nprovided to `nvprof` through command-line options. Profiling results are displayed in the console after the\nprofiling data is collected, and may also be saved for later viewing by either `nvprof` or the Visual Profiler.\n",
         homepage: "https://docs.nvidia.com/cuda/profiler-users-guide#nvprof",

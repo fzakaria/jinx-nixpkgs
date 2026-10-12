@@ -13,19 +13,19 @@ export default nix.lambda((args) => (() => {
   const buildRedist = nix.arg($, "buildRedist");
   const lib = nix.arg($, "lib");
   return nix.app(buildRedist, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       redistName: "nvcomp",
       pname: "nvcomp",
       outputs: nix.thunk(() => ["out", "dev", "include", "lib", "static"]),
       platformAssertions: nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           message: nix.thunk(() => nix.add("nvCOMP supports CUDA compute capabilities 7.0 and newer", nix.str` (found ${nix.builtins.toJSON(nix.thunk(() => nix.sel(backendStdenv, "cudaCapabilities")))})`)),
           assertion: nix.thunk(() => nix.app(nix.sel(lib, "all"), nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "versionAtLeast")), "7.0")), nix.thunk(() => nix.sel(backendStdenv, "cudaCapabilities")))),
         })),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "High-speed data compression and decompression library optimized for NVIDIA GPUs",
         longDescription: "NVIDIA nvCOMP is a high-speed data compression and decompression library optimized for NVIDIA GPUs.\n",
         homepage: "https://developer.nvidia.com/nvcomp",

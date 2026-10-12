@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jsubfinder",
       version: "0-unstable-2022-05-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ThreatUnknown",
           repo: "jsubfinder",
           rev: "e21de1ebc174bb69485f1c224e8063c77d87e4ad",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-pr4KkszyzEl+yLJousx29tr7UZDJf0arEfXBb7eumww=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to search for in Javascript hidden subdomains and secrets",
         mainProgram: "jsubfinder",
         homepage: "https://github.com/ThreatUnknown/jsubfinder",

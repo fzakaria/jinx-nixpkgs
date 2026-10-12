@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "zwave-js-server";
       const version = "3.10.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zwave-js",
           repo: "zwave-js-server",
           rev: version,
@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-kiQD4Bvqz32XcWnUPsU+C8sW/pd8s7qxlh/0RWN1n5s=";
       const npmFlags = nix.thunk(() => ["--include=dev"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "zwave-js": nix.thunk(() => nix.attr(nixosTests, "zwave-js")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/zwave-js/zwave-js-server/releases/tag/${version}`),
         description: "Small server wrapper around Z-Wave JS to access it via a WebSocket",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "graham33"))];
         })()),
       }));
-      return { __proto__: pos$5, pname, version, src, npmDepsHash, npmFlags, passthru, meta };
+      return { [nix.POS]: pos$5, pname, version, src, npmDepsHash, npmFlags, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

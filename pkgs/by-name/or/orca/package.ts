@@ -44,29 +44,29 @@ export default nix.lambda((args) => (() => {
   const liblouis = nix.arg($, "liblouis");
   const gst_all_1 = nix.arg($, "gst_all_1");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "orca",
       version: "50.2",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/orca/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/orca-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-BxRCHN6OxLr0fxjktKErTlxKPP47FhVp4HD+A3cT/QQ=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitlab.gnome.org/GNOME/orca/-/commit/8f47283da2da7a7d34e769d9c129152decf632cb.patch",
             hash: "sha256-ts/ZCgEaTrnmMM1cUFJB2rDW9icMoi4jV34psD0IDCc=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://gitlab.gnome.org/GNOME/orca/-/commit/a7b10302b9ff9145a98cb3626f2488d15c558d3e.patch",
             hash: "sha256-lacy9vIyM3n84s+tbYvAUBKWCT+4nlI9uPVl7UPVS74=",
             includes: nix.thunk(() => ["src/orca/orca_modifier_manager.py"]),
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://gitlab.gnome.org/GNOME/orca/-/commit/6c18ba002c6fac3fb80a10791b0daab6ea85f072.patch",
             hash: "sha256-jTwVN0hPkead7PiVo/KEUrP04XU/05LXnXutvVmyecc=",
             excludes: nix.thunk(() => [
@@ -75,14 +75,14 @@ export default nix.lambda((args) => (() => {
             ]),
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://gitlab.gnome.org/GNOME/orca/-/commit/0a1271f0d6ed6f6d73d41b227a9f6d84d994c154.patch",
             hash: "sha256-ry8fmzUjtHR8/0UpB/zXuv6RYDS8z6fWRdb9eci6nLY=",
             includes: nix.thunk(() => ["src/orca/sound.py"]),
           })))),
         nix.path(here, "./fix-mock-typing.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             pgrep: nix.thunk(() => nix.str`${procps}/bin/pgrep`),
             xkbcomp: nix.thunk(() => nix.str`${xkbcomp}/bin/xkbcomp`),
           })))),
@@ -143,11 +143,11 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\nsubstituteInPlace $out/lib/systemd/user/orca.service --replace-fail ExecStart=orca ExecStart=$out/bin/orca\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$7, packageName: "orca" })))),
+        [nix.POS]: pos$8,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$7, packageName: "orca" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         homepage: "https://orca.gnome.org/",
         changelog: "https://gitlab.gnome.org/GNOME/orca/-/blob/main/NEWS",
         description: "Screen reader",

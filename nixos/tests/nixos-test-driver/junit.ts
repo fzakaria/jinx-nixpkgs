@@ -11,19 +11,19 @@ const pos$6 = nix.positions(here + "/junit.nix", [["machine", 7, 9]]);
 const pos$7 = nix.positions(here + "/junit.nix", [["name", 3, 3], ["extraDriverArgs", 5, 3], ["nodes", 7, 3], ["testScript", 14, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$7,
+  [nix.POS]: pos$7,
   name: "junit",
   extraDriverArgs: nix.thunk(() => ["--junit=junit.xml"]),
   nodes: nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     machine: nix.thunk(() => ({
-      __proto__: pos$5,
-      networking: nix.thunk(() => ({ __proto__: pos$1, useNetworkd: true })),
+      [nix.POS]: pos$5,
+      networking: nix.thunk(() => ({ [nix.POS]: pos$1, useNetworkd: true })),
       environment: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         etc: nix.thunk(() => ({
-          __proto__: pos$3,
-          something: nix.thunk(() => ({ __proto__: pos$2, text: "nothing" })),
+          [nix.POS]: pos$3,
+          something: nix.thunk(() => ({ [nix.POS]: pos$2, text: "nothing" })),
         })),
       })),
     })),

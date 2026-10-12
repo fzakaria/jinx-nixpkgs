@@ -41,13 +41,13 @@ export default nix.lambda((args) => (() => {
       const version = "26.9.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "scipp",
           repo: "Scipp",
           tag: version,
           hash: "sha256-1u9KT6o83hn9x/WGXj26OsGJOQpMBu1G4FiDIVaGXoM=",
         }))));
-      const env = nix.thunk(() => ({ __proto__: pos$2, SKIP_REMOTE_SOURCES: "true" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, SKIP_REMOTE_SOURCES: "true" }));
       const build_system = nix.thunk(() => [scikit_build_core, setuptools, setuptools_scm]);
       const nativeBuildInputs = nix.thunk(() => [cmake, ninja]);
       const dontUseCmakeConfigure = true;
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
       const pytestFlags = nix.thunk(() => ["--hypothesis-profile=ci"]);
       const pythonImportsCheck = nix.thunk(() => ["scipp"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Multi-dimensional data arrays with labeled dimensions",
         homepage: "https://scipp.github.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

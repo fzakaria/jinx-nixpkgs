@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.7.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "scientific-python",
           repo: "pytest-doctestplus",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -48,14 +48,14 @@ export default nix.lambda((args) => (() => {
         "test_remote_data_all",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pytest plugin with advanced doctest features",
         homepage: "https://astropy.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

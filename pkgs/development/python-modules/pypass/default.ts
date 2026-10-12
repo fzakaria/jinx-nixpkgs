@@ -27,19 +27,19 @@ export default nix.lambda((args) => (() => {
   const tree = nix.arg($, "tree");
   const xclip = nix.arg($, "xclip");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pypass",
       version: "0.2.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-+dAQiufpULdU26or4EKDqazQbOZjGRbhI/+ddo+spNo=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./mark-executables.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             git_exec: nix.thunk(() => nix.str`${gitMinimal}/bin/git`),
             grep_exec: nix.thunk(() => nix.str`${gnugrep}/bin/grep`),
             gpg_exec: nix.thunk(() => nix.str`${gnupg}/bin/gpg2`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "export HOME=$(mktemp -d)\nexport GNUPGHOME=pypass/tests/gnupg\ngit config --global user.email \"nix-builder@nixos.org\"\ngit config --global user.name \"Nix Builder\"\ngit config --global pull.ff only\nmake setup_gpg\n",
       disabledTests: nix.thunk(() => ["test_show_clip"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Password manager pass in Python",
         mainProgram: "pypass",

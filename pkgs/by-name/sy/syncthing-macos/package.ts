@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const undmg = nix.arg($, "undmg");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "syncthing-macos",
       version: "2.1.5-1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/syncthing/syncthing-macos/releases/download/v${nix.sel(finalAttrs, "version")}/Syncthing-${nix.sel(finalAttrs, "version")}.dmg`),
           hash: "sha256-UJA6KmIhhW4cNuPFxf856JcFPSmqH2ha1XZiLJMGnog=",
         })))),
@@ -35,11 +35,11 @@ cp -R . $out/Applications/${nix.sel(finalAttrs, "sourceRoot")}
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Official frugal and native macOS Syncthing application bundle",
         homepage: "https://github.com/syncthing/syncthing-macos",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

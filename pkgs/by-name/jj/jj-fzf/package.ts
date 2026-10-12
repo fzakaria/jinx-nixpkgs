@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const unixtools = nix.arg($, "unixtools");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jj-fzf",
       version: "0.38.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tim-janik",
           repo: "jj-fzf",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +57,7 @@ patchShebangs --host jj-fzf *.sh contrib/*.sh
         ]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Text UI for Jujutsu based on fzf",
         homepage: "https://github.com/tim-janik/jj-fzf",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

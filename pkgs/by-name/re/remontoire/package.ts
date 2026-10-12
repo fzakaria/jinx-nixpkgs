@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const vala = nix.arg($, "vala");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "remontoire",
       version: "unstable-2022-06-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "regolith-linux",
           repo: "remontoire",
           rev: "68d562c78d6e0094ca744bd7161c308f583e93e",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk3, json_glib, libgee]),
       postPatch: "chmod +x build-aux/meson/postinstall.py\npatchShebangs build-aux/meson/postinstall.py\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Small GTK app for presenting keybinding hints",
         mainProgram: "remontoire",
         homepage: "https://github.com/regolith-linux/remontoire",

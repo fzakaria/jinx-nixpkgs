@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const sqlite3_to_mysql = nix.arg($, "sqlite3-to-mysql");
   const mysql84 = nix.arg($, "mysql84");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "sqlite3-to-mysql",
       version: "2.5.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "techouse",
           repo: "sqlite3-to-mysql",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,19 +58,19 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: nix.thunk(() => ["mysql-connector-python"]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           nixosTest: nix.thunk(() => nix.sel(nixosTests, "sqlite3-to-mysql")),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: sqlite3_to_mysql,
               command: "sqlite3mysql --version",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Simple Python tool to transfer data from SQLite 3 to MySQL",
         homepage: "https://github.com/techouse/sqlite3-to-mysql",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

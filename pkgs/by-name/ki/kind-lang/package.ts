@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const ghcVersion = "ghc910";
   const haskellPackages = nix.thunk(() => nix.sel(haskell, "packages", nix.key(ghcVersion)));
   const overrides = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     version: nix.thunk(() => nix.str`${nix.sel(raw_pkg, "version")}-unstable-2024-12-09`),
     postPatch: "sed -i -E \\\n  's/([ ,]+[^ =]+)[ =^><]+[0-9.]+/\\1/' \\\n  kind-lang.cabal\n",
     doCheck: false,

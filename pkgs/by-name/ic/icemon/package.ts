@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const libarchive = nix.arg($, "libarchive");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "icemon",
       version: "3.3-unstable-2025-05-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "icecc",
           repo: "icemon",
           rev: "d0969453c7d4467e22dcff0f218b31e81136afbe",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         libarchive,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Icecream GUI Monitor",
         homepage: "https://github.com/icecc/icemon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

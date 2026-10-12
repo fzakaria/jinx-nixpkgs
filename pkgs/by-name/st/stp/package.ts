@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const useCadical = nix.argOr($, "useCadical", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "stp",
       version: "2.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stp",
           repo: "stp",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "python-3.14-ast-constant.patch",
             url: "https://github.com/stp/stp/commit/e5ab190e872d669b8fcd0d76e432e982707fa706.patch",
             hash: "sha256-EKeLny9sb2XVsJHzSDh2WVvIg8jPIr0MkEqCHvctbB8=",
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, bison, flex, gitMinimal, perl, pkg_config]),
       cmakeFlags: nix.thunk(() => (() => {
         const cadicalDependency = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: nix.thunk(() => nix.str`stp-${nix.sel(finalAttrs, "version")}-cadical`),
             paths: nix.thunk(() => [
               nix.thunk(() => nix.sel(cadical_2, "lib")),
@@ -102,14 +102,14 @@ PYTHONPATH=$out/${nix.sel(python3, "sitePackages")} ${nix.app(nix.sel(lib, "getE
   "import stp; s = stp.Solver(); a, b, c = s.bitvec('a', 32), s.bitvec('b', 32), s.bitvec('c', 32); s.add(a == 5); s.add(b == 6); s.add(a + b == c); assert s.check(); print(s.model())" >&2
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             extraArgs: nix.thunk(() => ["--version-regex", "^v(2\\.3\\.[0-9]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Simple Theorem Prover",
         homepage: "https://stp.github.io/",
         maintainers: nix.thunk(() => (() => {

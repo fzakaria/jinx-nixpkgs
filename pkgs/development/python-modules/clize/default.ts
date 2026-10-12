@@ -24,19 +24,19 @@ export default nix.lambda((args) => (() => {
   const sigtools = nix.arg($, "sigtools");
   const unittestCheckHook = nix.arg($, "unittestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "clize",
       version: "5.0.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-BH9aRHNgJxirG4VnKn4VMDOHF41agcJ13EKd+sHstRA=",
         })))),
       "build-system": nix.thunk(() => [setuptools_scm]),
       dependencies: nix.thunk(() => [attrs, docutils, od, sigtools]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, datetime: nix.thunk(() => [python_dateutil]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, datetime: nix.thunk(() => [python_dateutil]) })),
       nativeCheckInputs: nix.thunk(() => [pygments, unittestCheckHook, python_dateutil, repeated_test]),
       unittestFlags: nix.thunk(() => (() => {
         const disabledTests = nix.thunk(() => nix.concat([
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       })()),
       pythonImportsCheck: nix.thunk(() => ["clize"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Command-line argument parsing for Python",
         homepage: "https://github.com/epsy/clize",
         changelog: nix.thunk(() => nix.str`https://github.com/epsy/clize/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -12,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "prettier-sql-vscode",
         publisher: "inferrinizzard",
         version: "1.6.0",
         hash: "sha256-l6pf/+uv8Bn4uDMX0CbzSjydTStr73uRY550Ad9wm7Q=",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "VSCode Extension to format SQL files",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=inferrinizzard.prettier-sql-vscode",
         homepage: "https://github.com/sql-formatter-org/sql-formatter",

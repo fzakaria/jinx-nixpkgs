@@ -55,104 +55,104 @@ AuditFilePath=/dev/null
 `);
   const daemonConfFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "usbguard-daemon-conf", daemonConf));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         usbguard: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "USBGuard daemon")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "usbguard", nix.thunk(() => ({})))),
           ruleFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: "/var/lib/usbguard/rules.conf",
               example: "/run/secrets/usbguard-rules",
               description: "This tells the USBGuard daemon which file to load as policy rule set.\n\nThe file can be changed manually or via the IPC interface assuming it has the right file permissions.\n\nFor more details see {manpage}`usbguard-rules.conf(5)`.\n",
             })))),
           rules: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "lines")))),
               default: null,
               example: "allow with-interface equals { 08:*:* }\n",
               description: "The USBGuard daemon will load this as the policy rule set.\nAs these rules are NixOS managed they are immutable and can't\nbe changed by the IPC interface.\n\nIf you do not set this option, the USBGuard daemon will load\nit's policy rule set from the option configured in `services.usbguard.ruleFile`.\n\nRunning `usbguard generate-policy` as root will\ngenerate a config for your currently plugged in devices.\n\nFor more details see {manpage}`usbguard-rules.conf(5)`.\n",
             })))),
           implicitPolicyTarget: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["allow", "block", "reject"]))),
               default: "block",
               description: "How to treat USB devices that don't match any rule in the policy.\nTarget should be one of allow, block or reject (logically remove the\ndevice node from the system).\n",
             })))),
           presentDevicePolicy: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: policy,
               default: "apply-policy",
               description: "How to treat USB devices that are already connected when the daemon\nstarts. Policy should be one of allow, block, reject, keep (keep\nwhatever state the device is currently in) or apply-policy (evaluate\nthe rule set for every present device).\n",
             })))),
           presentControllerPolicy: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: policy,
               default: "keep",
               description: "How to treat USB controller devices that are already connected when\nthe daemon starts. One of allow, block, reject, keep or apply-policy.\n",
             })))),
           insertedDevicePolicy: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["block", "reject", "apply-policy"]))),
               default: "apply-policy",
               description: "How to treat USB devices that are already connected after the daemon\nstarts. One of block, reject, apply-policy.\n",
             })))),
           restoreControllerDeviceState: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "The  USBGuard  daemon  modifies  some attributes of controller\ndevices like the default authorization state of new child device\ninstances. Using this setting, you can control whether the daemon\nwill try to restore the attribute values to the state before\nmodification on shutdown.\n",
             })))),
           IPCAllowedUsers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => ["root"]),
               example: nix.thunk(() => ["root", "yourusername"]),
               description: "A list of usernames that the daemon will accept IPC connections from.\n",
             })))),
           IPCAllowedGroups: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["wheel"]),
               description: "A list of groupnames that the daemon will accept IPC connections\nfrom.\n",
             })))),
           deviceRulesWithPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Generate device specific rules including the \"via-port\" attribute.\n",
             })))),
           dbus: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "USBGuard dbus daemon")),
           })),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         environment: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           services: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             usbguard: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               description: "USBGuard daemon",
               wantedBy: nix.thunk(() => ["basic.target"]),
               wants: nix.thunk(() => ["systemd-udevd.service"]),
               preStart: nix.thunk(() => nix.str`[ -f "${ruleFile}" ] || touch ${ruleFile}`),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 Type: "simple",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/usbguard-daemon -P -k -c ${daemonConfFile}`),
                 Restart: "on-failure",
@@ -182,12 +182,12 @@ AuditFilePath=/dev/null
               })),
             })),
             "usbguard-dbus": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "dbus", "enable")), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 description: "USBGuard D-Bus Service",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 requires: nix.thunk(() => ["usbguard.service"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   Type: "dbus",
                   BusName: "org.usbguard1",
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/usbguard-dbus --system`),
@@ -198,9 +198,9 @@ AuditFilePath=/dev/null
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           polkit: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             extraConfig: nix.thunk(() => (() => {
               const groupCheck = nix.thunk(() => nix.add(nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.builtins.map((g) => nix.str`subject.isInGroup("${g}") || `, nix.thunk(() => nix.sel(cfg, "IPCAllowedGroups"))))), "false"));
               return nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "dbus", "enable")), nix.thunk(() => nix.str`polkit.addRule(function(action, subject) {

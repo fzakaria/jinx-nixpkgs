@@ -65,14 +65,14 @@ export default nix.lambda((args) => (() => {
   const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
   const teams = nix.thunk(() => nix.attr(lib, "teams"));
   return nix.app(nix.sel(backendStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       __structuredAttrs: true,
       strictDeps: true,
       name: nix.thunk(() => nix.str`${cudaNamePrefix}-${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}`),
       pname: "libnvshmem",
       version: "3.6.5-0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NVIDIA",
           repo: "nvshmem",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -100,7 +100,7 @@ export default nix.lambda((args) => (() => {
         rdma_core,
       ], nix.concat(nix.app(optionals, withLibfabric, nix.thunk(() => [libfabric])), nix.concat(nix.app(optionals, withGdrcopy, nix.thunk(() => [gdrcopy])), nix.concat(nix.app(optionals, withNccl, nix.thunk(() => [nccl])), nix.concat(nix.app(optionals, withPmix, nix.thunk(() => [pmix])), nix.app(optionals, withUcx, nix.thunk(() => [ucx])))))))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CUDA_HOME: nix.thunk(() => nix.sel(nix.app(getBin, cuda_nvcc), "outPath")),
       })),
       cmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "concatLists"), nix.thunk(() => [
@@ -148,23 +148,23 @@ remove-references-to ${nix.app(concatMapStringsSep, " ", (p) => nix.str`-t "${p}
 `)),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             "rev-prefix": "v",
           })))),
         brokenAssertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             message: nix.thunk(() => nix.str`NVSHMEM does not support CUDA releases earlier than 11.7 (found ${cudaMajorMinorVersion})`),
             assertion: nix.thunk(() => nix.app(cudaAtLeast, "11.7")),
           })),
         ]),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Parallel programming interface for NVIDIA GPUs based on OpenSHMEM",
         homepage: "https://github.com/NVIDIA/nvshmem",
         changelog: nix.thunk(() => nix.str`https://github.com/NVIDIA/nvshmem/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

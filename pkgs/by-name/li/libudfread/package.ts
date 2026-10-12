@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libudfread",
       version: "1.1.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://code.videolan.org/videolan/libudfread/-/archive/${nix.sel(finalAttrs, "version")}/libudfread-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1idsfxff1x264n8jd7077qrd61rycsd09fwmc4ar7l4qmhk6gw9b",
         })))),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "UDF reader",
         homepage: "https://code.videolan.org/videolan/libudfread",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.8.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "man-group",
           repo: "pytest-plugins",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [pytest]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, six]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/man-group/pytest-plugins/blob/${nix.sel(src, "tag")}/CHANGES.md`),
         description: "Simple configuration objects for Py.test fixtures. Allows you to skip tests when their required config variables aren’t set",
         homepage: "https://github.com/manahl/pytest-plugins",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

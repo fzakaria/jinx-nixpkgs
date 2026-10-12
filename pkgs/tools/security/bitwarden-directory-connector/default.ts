@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
     const npmBuildScript = nix.arg($_1, "npmBuildScript");
     const installPhase = nix.arg($_1, "installPhase");
     return nix.app(buildNpmPackage, (finalAttrs) => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: name,
         version: "2026.6.1",
         nodejs: nodejs_24,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "bitwarden",
             repo: "directory-connector",
             tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,14 +49,14 @@ export default nix.lambda((args) => (() => {
         npmDepsHash: "sha256-1Yu/drKTE6GgFetnJpQSOiTHCUK2XN3KGFGEXeu5vKA=",
         cargoRoot: "native",
         cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             cargoRoot: nix.thunk(() => nix.attr(finalAttrs, "cargoRoot")),
             hash: "sha256-1YcdUuAAIFevZJg4dY9xEBw0TLsUFoMGoMW7ZPKbqjQ=",
           })))),
-        env: nix.thunk(() => ({ __proto__: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+        env: nix.thunk(() => ({ [nix.POS]: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
         makeCacheWritable: true,
         npmBuildScript: npmBuildScript,
         installPhase: installPhase,
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.sel(rustPlatform, "cargoSetupHook")),
         ]),
         meta: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           description: "LDAP connector for Bitwarden",
           homepage: "https://github.com/bitwarden/directory-connector",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -90,9 +90,9 @@ export default nix.lambda((args) => (() => {
       }));
   })(), formals$2);
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     "bitwarden-directory-connector": nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         name: "bitwarden-directory-connector",
         npmBuildScript: "build:dist",
         installPhase: nix.thunk(() => nix.str`runHook preInstall
@@ -116,7 +116,7 @@ runHook postInstall
 `),
       })))),
     "bitwarden-directory-connector-cli": nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         name: "bitwarden-directory-connector-cli",
         npmBuildScript: "build:cli:prod",
         installPhase: "runHook preInstall\n\nmkdir -p $out/libexec/bitwarden-directory-connector\ncp -R build-cli native node_modules $out/libexec/bitwarden-directory-connector\n\n# needs to be wrapped with nodejs so that it can be executed\nchmod +x $out/libexec/bitwarden-directory-connector/build-cli/bwdc.js\nmkdir -p $out/bin\nln -s $out/libexec/bitwarden-directory-connector/build-cli/bwdc.js $out/bin/bitwarden-directory-connector-cli\n\nrunHook postInstall\n",

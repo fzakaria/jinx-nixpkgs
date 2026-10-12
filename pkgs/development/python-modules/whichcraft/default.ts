@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const pytest = nix.arg($, "pytest");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "whichcraft",
       version: "0.6.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           sha256: "11yfkzyplizdgndy34vyd5qlmr1n5mxis3a3svxmx8fnccdvknxc",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest]),
       checkPhase: "py.test\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/pydanny/whichcraft",
         description: "Cross-platform cross-python shutil.which functionality",
         changelog: nix.thunk(() => nix.str`https://github.com/cookiecutter/whichcraft/blob/${nix.sel(finalAttrs, "version")}/HISTORY.rst`),

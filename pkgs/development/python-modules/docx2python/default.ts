@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const types_lxml = nix.arg($, "types-lxml");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "docx2python",
       version: "3.6.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ShayHill",
           repo: "docx2python",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["docx2python"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extract docx headers, footers, (formatted) text, footnotes, endnotes, properties, and images",
         homepage: "https://github.com/ShayHill/docx2python",
         changelog: nix.thunk(() => nix.str`https://github.com/ShayHill/docx2python/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

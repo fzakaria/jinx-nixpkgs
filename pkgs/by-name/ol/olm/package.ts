@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "olm",
       version: "3.2.16",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.matrix.org",
           owner: "matrix-org",
           repo: "olm",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       postPatch: nix.thunk(() => nix.add("substituteInPlace olm.pc.in \\\n  --replace '$'{exec_prefix}/@CMAKE_INSTALL_LIBDIR@ @CMAKE_INSTALL_FULL_LIBDIR@ \\\n  --replace '$'{prefix}/@CMAKE_INSTALL_INCLUDEDIR@ @CMAKE_INSTALL_FULL_INCLUDEDIR@\n\nsubstituteInPlace CMakeLists.txt \\\n  --replace-fail \\\n    'cmake_minimum_required(VERSION 3.4)' \\\n    'cmake_minimum_required(VERSION 3.10)'\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isClang")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "version")), "19")))), "substituteInPlace include/olm/list.hh \\\n  --replace-fail \"T * const other_pos = other._data;\" \"T const * other_pos = other._data;\"\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Implements double cryptographic ratchet and Megolm ratchet",
         homepage: "https://gitlab.matrix.org/matrix-org/olm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

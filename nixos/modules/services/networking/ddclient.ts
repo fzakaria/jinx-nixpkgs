@@ -74,7 +74,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(nix.sel(cfg, "c
 `)))))}
 `);
   return {
-    __proto__: pos$33,
+    [nix.POS]: pos$33,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkChangedOptionModule"), nix.thunk(() => ["services", "ddclient", "domain"]), nix.thunk(() => ["services", "ddclient", "domains"]), (config_1) => (() => {
           const value = nix.thunk(() => nix.app(nix.sel(lib, "getAttrFromPath"), nix.thunk(() => ["services", "ddclient", "domain"]), config_1));
@@ -85,126 +85,126 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(nix.sel(cfg, "c
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "ddclient", "ipv6"]), "")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       services: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         ddclient: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
           return {
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 default: false,
                 type: nix.thunk(() => nix.lookup(w, "bool")),
                 description: "Whether to synchronise your machine's IP address with a dynamic DNS provider (e.g. dyndns.org).\n",
               })))),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.lookup(w, "package")),
                 default: nix.thunk(() => nix.sel(pkgs, "ddclient")),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.ddclient")),
                 description: "The ddclient executable package run by the service.\n",
               })))),
             domains: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 default: nix.thunk(() => [""]),
                 type: nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))),
                 description: "Domain name(s) to synchronize.\n",
               })))),
             username: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 default: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(nix.sel(config, "services", "ddclient", "protocol"), "nsupdate")), nix.thunk(() => nix.str`${nix.sel(pkgs, "bind", "dnsutils")}/bin/nsupdate`))),
                 defaultText: "",
                 type: nix.thunk(() => nix.lookup(w, "str")),
                 description: "User name.\n",
               })))),
             passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 default: null,
                 type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")))),
                 description: "A file containing the password or a TSIG key in named format when using the nsupdate protocol.\n",
               })))),
             secretsFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 default: null,
                 type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")))),
                 description: "A file containing the secrets for the dynamic DNS provider.\nThis file should contain lines of valid secrets in the format specified by the ddclient documentation.\nIf this option is set, it overrides the `passwordFile` option.\n",
               })))),
             interval: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 default: "10min",
                 type: nix.thunk(() => nix.lookup(w, "str")),
                 description: "The interval at which to run the check and update.\nSee {command}`man 7 systemd.time` for the format.\n",
               })))),
             configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 default: null,
                 type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")))),
                 description: "Path to configuration file.\nWhen set this overrides the generated configuration from module options.\n",
                 example: "/root/nixos/secrets/ddclient.conf",
               })))),
             protocol: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 default: "dyndns2",
                 type: nix.thunk(() => nix.lookup(w, "str")),
                 description: "Protocol to use with dynamic DNS provider (see <https://ddclient.net/protocols.html> ).\n",
               })))),
             server: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 default: "",
                 type: nix.thunk(() => nix.lookup(w, "str")),
                 description: "Server address.\n",
               })))),
             ssl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 default: true,
                 type: nix.thunk(() => nix.lookup(w, "bool")),
                 description: "Whether to use SSL/TLS to connect to dynamic DNS provider.\n",
               })))),
             quiet: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 default: false,
                 type: nix.thunk(() => nix.lookup(w, "bool")),
                 description: "Print no messages for unnecessary updates.\n",
               })))),
             script: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 default: "",
                 type: nix.thunk(() => nix.lookup(w, "str")),
                 description: "script as required by some providers.\n",
               })))),
             use: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 default: "",
                 type: nix.thunk(() => nix.lookup(w, "str")),
                 description: "Method to determine the IP address to send to the dynamic DNS provider.\n",
               })))),
             usev4: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 default: "webv4, webv4=ipify-ipv4",
                 type: nix.thunk(() => nix.lookup(w, "str")),
                 description: "Method to determine the IPv4 address to send to the dynamic DNS provider. Only used if `use` is not set.\n",
               })))),
             usev6: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 default: "webv6, webv6=ipify-ipv6",
                 type: nix.thunk(() => nix.lookup(w, "str")),
                 description: "Method to determine the IPv6 address to send to the dynamic DNS provider. Only used if `use` is not set.\n",
               })))),
             verbose: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 default: false,
                 type: nix.thunk(() => nix.lookup(w, "bool")),
                 description: "Print verbose information.\n",
               })))),
             zone: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 default: "",
                 type: nix.thunk(() => nix.lookup(w, "str")),
                 description: "zone as required by some providers.\n",
               })))),
             extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 default: "",
                 type: nix.thunk(() => nix.lookup(w, "lines")),
                 description: "Extra configuration. Contents will be added verbatim to the configuration file.\n\n::: {.note}\n`daemon` should not be added here because it does not work great with the systemd-timer approach the service uses.\n:::\n",
@@ -214,33 +214,33 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(nix.sel(cfg, "c
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "ddclient", "enable")), nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         warnings: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "use"), "")), "Setting `use` is deprecated, ddclient now supports `usev4` and `usev6` for separate IPv4/IPv6 configuration.")),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             assertion: nix.thunk(() => !nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "passwordFile"), null)) && nix.asBool(!nix.eq(nix.sel(cfg, "secretsFile"), null))))),
             message: "You cannot use both services.ddclient.passwordFile and services.ddclient.secretsFile at the same time.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             assertion: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "protocol"), "nsupdate")) || nix.asBool(nix.eq(nix.sel(cfg, "secretsFile"), null)))),
             message: "You cannot use services.ddclient.secretsFile when services.ddclient.protocol is \"nsupdate\". Use services.ddclient.passwordFile instead.",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           services: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             ddclient: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               description: "Dynamic DNS Client",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               restartTriggers: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "configFile"), null)), nix.thunk(() => nix.sel(cfg, "configFile")))),
               path: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), "if,", nix.thunk(() => nix.sel(cfg, "use")))) || nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), "ifv4,", nix.thunk(() => nix.sel(cfg, "usev4")))))) || nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), "ifv6,", nix.thunk(() => nix.sel(cfg, "usev6")))))), nix.thunk(() => nix.sel(pkgs, "iproute2")))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 DynamicUser: true,
                 RuntimeDirectoryMode: "0700",
                 RuntimeDirectory: RuntimeDirectory,
@@ -254,13 +254,13 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(nix.sel(cfg, "c
             })),
           })),
           timers: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             ddclient: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               description: "Run ddclient",
               wantedBy: nix.thunk(() => ["timers.target"]),
               timerConfig: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 OnBootSec: nix.thunk(() => nix.sel(cfg, "interval")),
                 OnUnitInactiveSec: nix.thunk(() => nix.sel(cfg, "interval")),
               })),

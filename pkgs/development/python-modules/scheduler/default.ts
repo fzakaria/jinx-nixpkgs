@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.11";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-siNKBpRIphervFEbnhj0jE3rPc2dzFFyHZyQ7ylDtyo=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [typeguard]);
       const pythonImportsCheck = nix.thunk(() => ["scheduler"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple in-process python scheduler library with asyncio, threading and timezone support",
         homepage: "https://pypi.org/project/scheduler/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

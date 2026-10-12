@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const help2man = nix.arg($, "help2man");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vsmartcard-vpcd",
       version: "0.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "frankmorgner",
           repo: "vsmartcard",
           tag: nix.thunk(() => nix.str`virtualsmartcard-${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "--enable-infoplist")),
       postFixup: "wrapPythonPrograms\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Emulates a smart card and makes it accessible through PC/SC",
         homepage: "http://frankmorgner.github.io/vsmartcard/virtualsmartcard/README.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

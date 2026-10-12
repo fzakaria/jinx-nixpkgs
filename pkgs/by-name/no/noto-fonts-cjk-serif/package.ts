@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "noto-fonts-cjk-serif";
       const version = "2.003";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "notofonts",
           repo: "noto-cjk",
           tag: nix.thunk(() => nix.str`Serif${version}`),
@@ -35,15 +35,15 @@ export default nix.lambda((args) => (() => {
 `;
       })());
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "noto-fonts": nix.thunk(() => nix.sel(nixosTests, "noto-fonts")),
         })),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$3, "rev-prefix": "Serif" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "Serif" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Beautiful and free fonts for CJK languages",
         homepage: "https://www.google.com/get/noto/help/cjk/",
         longDescription: "Noto Serif CJK is a serif typeface designed as\nan intermediate style between the modern and traditional. It is\nintended to be a multi-purpose digital font for user interface\ndesigns, digital content, reading on laptops, mobile devices, and\nelectronic books. Noto Serif CJK comprehensively covers\nSimplified Chinese, Traditional Chinese, Japanese, and Korean in a\nunified font family. It supports regional variants of ideographic\ncharacters for each of the four languages. In addition, it supports\nJapanese kana, vertical forms, and variant characters (itaiji); it\nsupports Korean hangeul — both contemporary and archaic.\n",
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
           ];
         })()),
       }));
-      return { __proto__: pos$6, pname, version, src, installPhase, passthru, meta };
+      return { [nix.POS]: pos$6, pname, version, src, installPhase, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

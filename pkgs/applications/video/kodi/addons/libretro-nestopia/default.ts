@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const namespace = "game.libretro.nestopia";
       const version = "1.52.0.41";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kodi-game",
           repo: "game.libretro.nestopia",
           rev: nix.thunk(() => nix.str`${version}-${rel}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const extraBuildInputs = nix.thunk(() => [nestopia]);
       const propagatedBuildInputs = nix.thunk(() => [libretro]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/kodi-game/game.libretro.nestopia",
         description: "Nintendo - NES / Famicom (Nestopia UE) GameClient for Kodi",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "kodi"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         namespace,
         version,

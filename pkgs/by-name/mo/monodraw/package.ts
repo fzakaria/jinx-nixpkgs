@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   const build = "118";
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "monodraw",
       version: "1.7.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://updates.helftone.com/monodraw/downloads/Monodraw-b${build}.zip`),
           hash: "sha256-7ti/FXoxNMhSYV7TWTeP8mAnCdqukI0SgDdW6RRQsFc=",
         })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [unzip]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications\ncp -R ./Monodraw.app $out/Applications\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         build: build,
         updateScript: nix.thunk(() => nix.app(writeShellScript, "monodraw-update-script", nix.thunk(() => nix.str`set -euo pipefail
 export PATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [curl, xmlstarlet, gnused, common_updater_scripts]))}"
@@ -53,7 +53,7 @@ update-source-version monodraw "$version"
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Powerful ASCII art editor designed for the Mac",
         homepage: "https://monodraw.helftone.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
       const duneVersion = "3";
       const minimalOCamlVersion = "4.03";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ncannasse/xml-light/releases/download/${version}/xml-light-${version}.tbz`),
           hash: "sha256-9YwrPbcK0boICw0wauMvgsy7ldq7ksWZzcRn0eROAD0=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Minimal Xml parser and printer for OCaml",
         longDescription: "Xml-Light provides functions to parse an XML document into an OCaml\ndata structure, work with it, and print it back to an XML\ndocument. It support also DTD parsing and checking, and is\nentirely written in OCaml, hence it does not require additional C\nlibrary.\n",
         homepage: "https://github.com/ncannasse/xml-light",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "romildo"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         duneVersion,

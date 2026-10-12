@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ripe-atlas-tools",
       version: "3.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "RIPE-NCC",
           repo: "ripe-atlas-tools",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -81,7 +81,7 @@ mkdir -p ripe/atlas/tools
 echo "__version__ = \\"${nix.sel(finalAttrs, "version")}\\"" > ripe/atlas/tools/version.py
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "RIPE ATLAS project tools",
         homepage: "https://github.com/RIPE-NCC/ripe-atlas-tools",
         changelog: nix.thunk(() => nix.str`https://github.com/RIPE-NCC/ripe-atlas-tools/blob/v${nix.sel(finalAttrs, "version")}/CHANGES.rst`),

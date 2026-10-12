@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const llvmPackages = nix.arg($, "llvmPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gklib",
       version: "5.1.1-unstable-2025-07-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KarypisLab",
           repo: "GKlib",
           rev: "6e7951358fd896e2abed7887196b6871aac9f2f8",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "NO_X86", nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86"))))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library of various helper routines and frameworks used by many of the lab's software",
         homepage: "https://github.com/KarypisLab/GKlib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

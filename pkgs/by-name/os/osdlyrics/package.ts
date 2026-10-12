@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "osdlyrics",
       version: "0.5.16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "osdlyrics",
           repo: "osdlyrics",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -87,7 +87,7 @@ for p in "$out/bin/osdlyrics-create-lyricsource" "$out/bin/osdlyrics-daemon" "$o
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Standalone lyrics fetcher/displayer",
         homepage: "https://github.com/osdlyrics/osdlyrics",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

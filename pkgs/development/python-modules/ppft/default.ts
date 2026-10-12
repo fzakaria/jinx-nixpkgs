@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.7.8";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-X2ltTzl66bCvObH6/7MZV8Ud+8WjgVhWRy1PTocpN+4=",
@@ -33,7 +33,7 @@ runHook postCheck
 `);
       const pythonImportsCheck = nix.thunk(() => ["ppft"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Distributed and parallel Python",
         mainProgram: "ppserver",
         homepage: "https://ppft.readthedocs.io/",
@@ -42,7 +42,7 @@ runHook postCheck
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

@@ -36,48 +36,48 @@ export default nix.lambda((args) => (() => {
   const usingDefaultDataDir = nix.thunk(() => nix.eq(nix.sel(cfg, "dataDir"), "/var/lib/temporal"));
   const usingDefaultUserAndGroup = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "user"), "temporal")) && nix.asBool(nix.eq(nix.sel(cfg, "group"), "temporal"))));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "jpds"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         temporal: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Temporal")),
-          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "Temporal", nix.thunk(() => ({ __proto__: pos$2, default: nix.thunk(() => ["temporal"]) })))),
+          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "Temporal", nix.thunk(() => ({ [nix.POS]: pos$2, default: nix.thunk(() => ["temporal"]) })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                 })))),
               description: "Temporal configuration.\n\nSee <https://docs.temporal.io/references/configuration> for more\ninformation about Temporal configuration options\n",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/temporal",
               apply: nix.thunk(() => nix.app(nix.sel(lib, "converge"), nix.thunk(() => nix.app(nix.sel(lib, "removeSuffix"), "/")))),
               description: "Data directory for Temporal. If you change this, you need to\nmanually create the directory. You also need to create the\n`temporal` user and group, or change\n[](#opt-services.temporal.user) and\n[](#opt-services.temporal.group) to existing ones with\naccess to the directory.\n",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "temporal",
               description: "The user Temporal runs as. Should be left at default unless\nyou have very specific needs.\n",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "temporal",
               description: "The group temporal runs as. Should be left at default unless\nyou have very specific needs.\n",
             })))),
           restartIfChanged: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Automatically restart the service on config change.\nThis can be set to false to defer restarts on a server or cluster.\nPlease consider the security implications of inadvertently running an older version,\nand the possibility of unexpected behavior caused by inconsistent versions across a cluster when disabling this option.\n",
               default: true,
@@ -86,23 +86,23 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         environment: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           etc: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             "temporal/temporal-server.yaml": nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               source: nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "temporal-server.yaml", nix.thunk(() => nix.sel(cfg, "settings")))),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             temporal: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "Temporal server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
@@ -110,9 +110,9 @@ export default nix.lambda((args) => (() => {
               restartTriggers: nix.thunk(() => [
                 nix.thunk(() => nix.sel(config, "environment", "etc", "temporal/temporal-server.yaml", "source")),
               ]),
-              environment: nix.thunk(() => ({ __proto__: pos$15, HOME: nix.thunk(() => nix.sel(cfg, "dataDir")) })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$15, HOME: nix.thunk(() => nix.sel(cfg, "dataDir")) })),
               serviceConfig: nix.thunk(() => nix.update({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/temporal-server --root / --config /etc/temporal/ -e temporal-server start
 `),
                 User: nix.thunk(() => nix.sel(cfg, "user")),
@@ -142,7 +142,7 @@ export default nix.lambda((args) => (() => {
                 RestrictSUIDSGID: true,
                 SystemCallArchitectures: "native",
                 SystemCallFilter: nix.thunk(() => ["@system-service @resources", "~@privileged", "@chown"]),
-              }, nix.app(nix.sel(lib, "optionalAttrs"), usingDefaultDataDir, nix.thunk(() => ({ __proto__: pos$17, StateDirectory: "temporal", StateDirectoryMode: "0700" }))))),
+              }, nix.app(nix.sel(lib, "optionalAttrs"), usingDefaultDataDir, nix.thunk(() => ({ [nix.POS]: pos$17, StateDirectory: "temporal", StateDirectoryMode: "0700" }))))),
             })),
           })),
         })),

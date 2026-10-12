@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.9";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KieranWynn",
           repo: "pyquaternion",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -38,14 +38,14 @@ export default nix.lambda((args) => (() => {
       const enabledTestPaths = nix.thunk(() => ["pyquaternion/test/"]);
       const pythonImportsCheck = nix.thunk(() => ["pyquaternion"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for representing and using quaternions",
         homepage: "http://kieranwynn.github.io/pyquaternion/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

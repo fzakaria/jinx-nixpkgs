@@ -45,14 +45,14 @@ export default nix.lambda((args) => (() => {
   const scipopt_scip = nix.arg($, "scipopt-scip");
   const withScip = nix.argOr($, "withScip", () => true);
   const abseil_cpp$ = abseil_cpp_202508;
-  const gtest$ = nix.thunk(() => nix.app(nix.sel(gtest, "override"), nix.thunk(() => ({ __proto__: pos$1, withAbseil: true, "abseil-cpp": abseil_cpp$ }))));
-  const protobuf$ = nix.thunk(() => nix.app(nix.sel(protobuf_32, "override"), nix.thunk(() => ({ __proto__: pos$2, "abseil-cpp": abseil_cpp$ }))));
-  const protobuf_matchers$ = nix.thunk(() => nix.app(nix.sel(protobuf_matchers, "override"), nix.thunk(() => ({ __proto__: pos$3, protobuf: protobuf$ }))));
-  const python_protobuf$ = nix.thunk(() => nix.app(nix.sel(python3, "pkgs", "protobuf6", "override"), nix.thunk(() => ({ __proto__: pos$4, protobuf: protobuf$ }))));
+  const gtest$ = nix.thunk(() => nix.app(nix.sel(gtest, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withAbseil: true, "abseil-cpp": abseil_cpp$ }))));
+  const protobuf$ = nix.thunk(() => nix.app(nix.sel(protobuf_32, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, "abseil-cpp": abseil_cpp$ }))));
+  const protobuf_matchers$ = nix.thunk(() => nix.app(nix.sel(protobuf_matchers, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, protobuf: protobuf$ }))));
+  const python_protobuf$ = nix.thunk(() => nix.app(nix.sel(python3, "pkgs", "protobuf6", "override"), nix.thunk(() => ({ [nix.POS]: pos$4, protobuf: protobuf$ }))));
   const pybind11$ = nix.thunk(() => nix.app(callPackage, nix.path(here, "./pybind11-2.13.6.nix"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(python3, "pkgs"));
       return {
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       buildPythonPackage: nix.thunk(() => nix.attr(from, "buildPythonPackage")),
       cmake: nix.thunk(() => nix.attr(from, "cmake")),
       ninja: nix.thunk(() => nix.attr(from, "ninja")),
@@ -62,27 +62,27 @@ export default nix.lambda((args) => (() => {
       python: python3,
     };
     })())));
-  const pybind11_abseil$ = nix.thunk(() => nix.app(nix.sel(python3, "pkgs", "pybind11-abseil", "override"), nix.thunk(() => ({ __proto__: pos$6, pybind11: pybind11$, "abseil-cpp": abseil_cpp$ }))));
+  const pybind11_abseil$ = nix.thunk(() => nix.app(nix.sel(python3, "pkgs", "pybind11-abseil", "override"), nix.thunk(() => ({ [nix.POS]: pos$6, pybind11: pybind11$, "abseil-cpp": abseil_cpp$ }))));
   const pybind11_protobuf$ = nix.thunk(() => nix.app(callPackage, nix.path(here, "./pybind11-protobuf.nix"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(python3, "pkgs"));
       return {
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       buildPythonPackage: nix.thunk(() => nix.attr(from, "buildPythonPackage")),
       pybind11: pybind11$,
     };
     })())));
-  const re2$ = nix.thunk(() => nix.app(nix.sel(re2, "override"), nix.thunk(() => ({ __proto__: pos$8, "abseil-cpp": abseil_cpp$ }))));
+  const re2$ = nix.thunk(() => nix.app(nix.sel(re2, "override"), nix.thunk(() => ({ [nix.POS]: pos$8, "abseil-cpp": abseil_cpp$ }))));
   const scipopt_scip$ = nix.thunk(() => nix.app(nix.sel(scipopt_scip, "overrideAttrs"), (old) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       patches: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "patches"), [nix.path(here, "./scip.patch")])),
       postPatch: nix.thunk(() => nix.add(nix.selOr(old, () => "", "postPatch"), "substituteInPlace CMakeLists.txt \\\n  --replace-fail 'message(STATUS \"Finding Soplex\")' 'find_package(SOPLEX CONFIG HINTS ${SOPLEX_DIR})'\n")),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       pname: "or-tools",
       version: "9.15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           owner: "google",
           repo: "or-tools",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./0001-Do-not-try-to-copy-pybind11_abseil-status-extension-.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             name: "0001-Revert-python-Fix-python-install-on-windows-breaks-L.patch",
             url: "https://build.opensuse.org/public/source/science/google-or-tools/0001-Revert-python-Fix-python-install-on-windows-breaks-L.patch?rev=19",
             hash: "sha256-BNB3KlgjpWcZtb9e68Jkc/4xC4K0c+Iisw0eS6ltYXE=",
@@ -177,7 +177,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "cmake . -DBUILD_EXAMPLES=OFF -DBUILD_PYTHON=OFF -DBUILD_SAMPLES=OFF\ncmake --install .\n\n# Install the Python bindings.\n# --no-build-isolation: Required because Nix provides build tools (setuptools/wheel)\n#   locally; without this, pip tries to download them from the internet.\n# --no-index: Prevents pip from searching PyPI for packages.\npip install --no-index --no-build-isolation --prefix=\"$python\" python/\n",
       outputs: nix.thunk(() => ["out", "python"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         homepage: "https://github.com/google/or-tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         description: "Google's software suite for combinatorial optimization.\n",

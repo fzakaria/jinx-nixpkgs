@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mmdbctl";
       const version = "1.5.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ipinfo",
           repo: "mmdbctl",
           tag: nix.thunk(() => nix.str`mmdbctl-${version}`),
@@ -34,9 +34,9 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [installShellFiles]);
       const postInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd mmdbctl \\\n  --bash <($out/bin/mmdbctl completion bash) \\\n  --fish <($out/bin/mmdbctl completion fish) \\\n  --zsh <($out/bin/mmdbctl completion zsh)\n"));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           simple: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-test`), nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), mmdbctl)} verify ${nix.sel(dbip_country_lite, "mmdb")} | grep valid
 ${nix.app(nix.sel(lib, "getExe"), mmdbctl)} metadata ${nix.sel(dbip_country_lite, "mmdb")} | grep DBIP-Country-Lite
 touch $out
@@ -44,7 +44,7 @@ touch $out
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "MMDB file management CLI supporting various operations on MMDB database files",
         homepage: "https://github.com/ipinfo/mmdbctl",
         changelog: nix.thunk(() => nix.str`https://github.com/ipinfo/mmdbctl/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -56,7 +56,7 @@ touch $out
         mainProgram: "mmdbctl",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

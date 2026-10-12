@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const xdelta = nix.arg($, "xdelta");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fwup",
       version: "1.15.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fwup-home",
           repo: "fwup",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [which, xdelta]),
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/fwup-home/fwup/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Configurable embedded Linux firmware update creator and runner",
         homepage: "https://github.com/fwup-home/fwup",

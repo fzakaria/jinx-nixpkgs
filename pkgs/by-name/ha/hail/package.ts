@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const SDL2_gfx = nix.arg($, "SDL2_gfx");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "hail",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "periwinkle",
           repo: "hail",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [fontconfig, freetype, libxkbcommon, wayland, SDL2, SDL2_image, SDL2_gfx]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Minimal speedrun timer",
         homepage: "https://codeberg.org/periwinkle/hail",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/periwinkle/hail/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

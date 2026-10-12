@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const buildServer = nix.argOr($, "buildServer", () => false);
   const exe = nix.thunk(() => (nix.asBool(buildServer) ? "xash" : "xash3d"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xash3d-fwgs",
       version: "0-unstable-2026-04-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FWGS",
           repo: "xash3d-fwgs",
           rev: "255c9bcaed1cf02bc4c22276c8e39d5cdbfc0fb5",
@@ -54,7 +54,7 @@ makeWrapper $out/bin/${exe}-unwrapped $out/bin/${exe} \\
   --prefix ${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "DYLD_LIBRARY_PATH" : "LD_LIBRARY_PATH")} : "$out/lib"
 `, nix.app(nix.sel(lib, "optionalString"), buildSdk, nix.thunk(() => nix.str`cp -TR ${hlsdk_portable}/valve $out/lib/valve`)))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/FWGS/xash3d-fwgs",
         description: "Xash3D FWGS engine",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

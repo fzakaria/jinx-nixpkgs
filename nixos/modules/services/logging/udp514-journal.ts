@@ -29,17 +29,17 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "udp514-journal"));
   const description = "Forward syslog from network (udp/514) to journal";
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "udp514-journal": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the udp514-journal systemd socket/service")),
-          openFirewall: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), ""), { __proto__: pos$1, description: "Whether to open the port in the firewall." })),
+          openFirewall: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), ""), { [nix.POS]: pos$1, description: "Whether to open the port in the firewall." })),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 514n,
               description: "Port to listen on",
@@ -49,13 +49,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         systemd: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           sockets: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             "udp514-journal": nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               enable: true,
               name: "udp514-journal.socket",
               description: description,
@@ -66,15 +66,15 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             "udp514-journal": nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               enable: true,
               name: "udp514-journal.service",
               description: description,
               requires: nix.thunk(() => ["systemd-journald.socket", "udp514-journal.socket"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 Type: "notify",
                 Restart: "always",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/udp514-journal`),
@@ -107,20 +107,20 @@ export default nix.lambda((args) => (() => {
                 MemoryMax: "5M",
                 UMask: "0077",
               })),
-              confinement: nix.thunk(() => ({ __proto__: pos$9, enable: true, binSh: null })),
+              confinement: nix.thunk(() => ({ [nix.POS]: pos$9, enable: true, binSh: null })),
             })),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           firewall: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             allowedUDPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]))),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "usovalx"))];

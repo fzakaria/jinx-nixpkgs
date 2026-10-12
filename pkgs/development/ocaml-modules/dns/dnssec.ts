@@ -18,14 +18,14 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const base64 = nix.arg($, "base64");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "dnssec",
       version: nix.thunk(() => nix.attr(dns, "version")),
       src: nix.thunk(() => nix.attr(dns, "src")),
       propagatedBuildInputs: nix.thunk(() => [dns, mirage_crypto, mirage_crypto_pk, mirage_crypto_ec, domain_name, logs]),
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest, base64]),
-      meta: nix.thunk(() => nix.update(nix.sel(dns, "meta"), { __proto__: pos$1, description: "DNSSec support for OCaml-DNS" })),
+      meta: nix.thunk(() => nix.update(nix.sel(dns, "meta"), { [nix.POS]: pos$1, description: "DNSSec support for OCaml-DNS" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=dnssec.ts.map

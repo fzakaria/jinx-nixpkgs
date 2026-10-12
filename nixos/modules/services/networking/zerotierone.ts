@@ -38,35 +38,35 @@ export default nix.lambda((args) => (() => {
   const localConfFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "zt-local.conf", nix.thunk(() => nix.sel(cfg, "localConf"))));
   const localConfFilePath = "/var/lib/zerotier-one/local.conf";
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         zerotierone: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "ZeroTierOne")),
           joinNetworks: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: [],
               example: nix.thunk(() => ["a8a2c3c10c1a68de"]),
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               description: "List of ZeroTier Network IDs to join on startup.\nNote that networks are only ever joined, but not automatically left after removing them from the list.\nTo remove networks, use the ZeroTier CLI: `zerotier-cli leave <network-id>`\n",
             })))),
           port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: 9993n,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               description: "Network port used by ZeroTier.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "zerotierone", nix.thunk(() => ({})))),
           localConf: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: nix.thunk(() => ({})),
               description: "Optional configuration to be written to the Zerotier JSON-based local.conf.\nIf set, the configuration will be symlinked to `/var/lib/zerotier-one/local.conf` at build time.\nTo understand the configuration format, refer to <https://docs.zerotier.com/config/#local-configuration-options>.\n",
               example: nix.thunk(() => ({
-                __proto__: pos$4,
-                settings: nix.thunk(() => ({ __proto__: pos$3, allowTcpFallbackRelay: false })),
+                [nix.POS]: pos$4,
+                settings: nix.thunk(() => ({ [nix.POS]: pos$3, allowTcpFallbackRelay: false })),
               })),
               type: nix.thunk(() => nix.sel(settingsFormat, "type")),
             })))),
@@ -74,13 +74,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         systemd: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             zerotierone: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               description: "ZeroTierOne",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
@@ -98,7 +98,7 @@ fi
 ln -s ${localConfFile} ${localConfFilePath}
 `)))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 StateDirectory: nix.thunk(() => ["zerotier-one/networks.d"]),
                 StateDirectoryMode: "0700",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/zerotier-one -p${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "port")))}`),
@@ -109,27 +109,27 @@ ln -s ${localConfFile} ${localConfFilePath}
             })),
           })),
           network: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             links: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               "50-zerotier": nix.thunk(() => ({
-                __proto__: pos$14,
-                matchConfig: nix.thunk(() => ({ __proto__: pos$12, OriginalName: "zt*" })),
-                linkConfig: nix.thunk(() => ({ __proto__: pos$13, AutoNegotiation: false, MACAddressPolicy: "none" })),
+                [nix.POS]: pos$14,
+                matchConfig: nix.thunk(() => ({ [nix.POS]: pos$12, OriginalName: "zt*" })),
+                linkConfig: nix.thunk(() => ({ [nix.POS]: pos$13, AutoNegotiation: false, MACAddressPolicy: "none" })),
               })),
             })),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$20,
-          dhcpcd: nix.thunk(() => ({ __proto__: pos$18, denyInterfaces: nix.thunk(() => ["zt*"]) })),
+          [nix.POS]: pos$20,
+          dhcpcd: nix.thunk(() => ({ [nix.POS]: pos$18, denyInterfaces: nix.thunk(() => ["zt*"]) })),
           firewall: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             allowedUDPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
       })))),

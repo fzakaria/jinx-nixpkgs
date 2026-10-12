@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.15.0";
       const jarName = nix.thunk(() => nix.str`bfg-${version}.jar`);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://maven/com/madgag/bfg/${version}/${jarName}`),
           hash: "sha256-3+KIWtwpFjeQk/AqgBgSAFNoVsmph78hxJLkUq3v73o=",
         }))));
@@ -36,7 +36,7 @@ makeWrapper "${jre}/bin/java" $out/bin/bfg --add-flags "-cp $out/share/java/$jar
       const doInstallCheck = true;
       const versionCheckProgram = nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/${nix.sel(meta, "mainProgram")}`);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://rtyley.github.io/bfg-repo-cleaner/",
         description: "Removes large or troublesome blobs in a git repository like git-filter-branch does, but faster",
         longDescription: "The BFG is a simpler, faster alternative to git-filter-branch for\ncleansing bad data out of your Git repository history, in particular removing\ncrazy big files and removing passwords, credentials, and other private data.\n\nThe git-filter-branch command is enormously powerful and can do things\nthat the BFG can't - but the BFG is much better for the tasks above, because\nit's faster (10-720x), simpler (dedicated to just removing things), and\nbeautiful (can use Scala instead of bash to script customizations).\n",
@@ -51,7 +51,7 @@ makeWrapper "${jre}/bin/java" $out/bin/bfg --add-flags "-cp $out/share/java/$jar
         downloadPage: nix.thunk(() => nix.str`https://mvnrepository.com/artifact/com.madgag/bfg/${version}`),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         jarName,

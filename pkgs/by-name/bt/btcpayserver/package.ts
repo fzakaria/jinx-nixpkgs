@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "btcpayserver";
       const version = "2.4.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "btcpayserver",
           repo: "btcpayserver",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const buildType = nix.thunk(() => (nix.asBool(altcoinSupport) ? "Altcoins-Release" : "Release"));
       const postFixup = "mv $out/bin/{BTCPayServer,btcpayserver} || :\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Self-hosted, open-source cryptocurrency payment processor",
         homepage: "https://btcpayserver.org",
         changelog: nix.thunk(() => nix.str`https://github.com/btcpayserver/btcpayserver/blob/v${version}/Changelog.md`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

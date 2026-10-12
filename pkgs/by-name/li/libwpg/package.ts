@@ -18,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const librevenge = nix.arg($, "librevenge");
   const boost = nix.arg($, "boost");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libwpg",
       version: "0.3.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/libwpg/libwpg-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-tV/alEDR4HBjDrJIfYuGl89BLCFKJ8runfac7HwATeM=",
         })))),
       buildInputs: nix.thunk(() => [libwpd, zlib, librevenge, boost]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://libwpg.sourceforge.net",
         description: "C++ library to parse WPG",
         license: nix.thunk(() => (() => {

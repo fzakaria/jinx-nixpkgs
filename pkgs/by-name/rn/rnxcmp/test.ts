@@ -23,24 +23,24 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => (() => {
         const name = nix.thunk(() => nix.str`${file_1_name}.crx.gz`);
         const path = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://igs.bkg.bund.de/root_ftp/EUREF/highrate/2026/002/b/${name}`),
             hash: "sha256-HUpzgFfwCf0N/OyJjJEStrOPPecmC4cr66DPbMjNyzc=",
           }))));
-        return { __proto__: pos$2, name, path };
+        return { [nix.POS]: pos$2, name, path };
       })()),
       nix.thunk(() => (() => {
         const name = "ZARA00ESP_S_20260020115_15M_01S_MO.crx.gz";
         const path = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: nix.thunk(() => nix.str`https://igs.bkg.bund.de/root_ftp/EUREF/highrate/2026/002/b/${name}`),
             hash: "sha256-cnoYjcUwJMSvNB7f1HNCBi1hBKsuduOxrRw9S2Evopw=",
           }))));
-        return { __proto__: pos$4, name, path };
+        return { [nix.POS]: pos$4, name, path };
       })()),
     ])));
   const assert_dir_not_empty_app = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: "assert-dir-not-empty",
       text: "# From https://mywiki.wooledge.org/BashFAQ/004\nshopt -s nullglob dotglob\nfiles=(\"$1/\"*)\nif ! (( ${#files[*]} )); then\n  echo \"ERROR: Previous command did not produce any files!\"\n  exit 1\nfi\n",
     }))));
@@ -99,7 +99,7 @@ done
 touch "$out"
 `)));
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     crx: file_comparison,
     crz: files_comparison,
     rnx: comparison_rnx,

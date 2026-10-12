@@ -20,18 +20,18 @@ export default nix.lambda((args) => (() => {
   const libjpeg = nix.arg($, "libjpeg");
   const version = "0.9.13";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "crrcsim",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/crrcsim/crrcsim-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "abe59b35ebb4322f3c48e6aca57dbf27074282d4928d66c0caa40d7a97391698",
         })))),
       buildInputs: nix.thunk(() => [libGLU, libGL, SDL, SDL_mixer, plib, libjpeg]),
       patches: nix.thunk(() => [nix.path(here, "./gcc6.patch")]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Model-airplane flight simulator",
         mainProgram: "crrcsim",
         maintainers: nix.thunk(() => (() => {

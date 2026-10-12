@@ -30,9 +30,9 @@ export default nix.lambda((args) => (() => {
   const systemd = nix.thunk(() => nix.sel(config, "boot", "initrd", "systemd"));
   const supportedFs = nix.thunk(() => ["zfs", "bcachefs"]);
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -43,25 +43,25 @@ export default nix.lambda((args) => (() => {
       doc: nix.path(here, "./clevis.md"),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       boot: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         initrd: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           clevis: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Clevis in initrd")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "clevis", nix.thunk(() => ({})))),
             devices: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 description: "Encrypted devices that need to be unlocked at boot using Clevis",
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                      __proto__: pos$4,
+                      [nix.POS]: pos$4,
                       options: nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         secretFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$2,
+                            [nix.POS]: pos$2,
                             description: "Clevis JWE file used to decrypt the device at boot, in concert with the chosen pin (one of TPM2, Tang server, or SSS).",
                             type: nix.thunk(() => nix.sel(lib, "types", "path")),
                           })))),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
                     })))))),
               })))),
             useTang: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 description: "Whether the Clevis JWE file used to decrypt the devices uses a Tang server as a pin.",
                 default: false,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
@@ -79,9 +79,9 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         assertions: nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (device) => (_) => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               assertion: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "any"), (fs) => (nix.asBool((nix.asBool(nix.eq(nix.sel(fs, "device"), device)) && nix.asBool(nix.app(nix.sel(lib, "elem"), nix.thunk(() => nix.sel(fs, "fsType")), supportedFs)))) || nix.asBool((nix.asBool(nix.eq(nix.sel(fs, "fsType"), "zfs")) && nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), nix.thunk(() => nix.str`${device}/`), nix.thunk(() => nix.sel(fs, "device"))))))), nix.thunk(() => nix.sel(config, "system", "build", "fileSystems")))) || nix.asBool(nix.app(nix.sel(lib, "hasAttr"), device, nix.thunk(() => nix.sel(config, "boot", "initrd", "luks", "devices")))))),
               message: nix.thunk(() => nix.str`No filesystem or LUKS device with the name ${device} is declared in your configuration.`),
             }), nix.thunk(() => nix.sel(cfg, "devices")))))),
@@ -89,9 +89,9 @@ export default nix.lambda((args) => (() => {
           "In order to use a Tang pinned secret you must configure networking in initrd",
         ] : [])),
         boot: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           initrd: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             extraUtilsCommands: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(systemd, "enable"))), nix.thunk(() => nix.str`copy_bin_and_libs ${nix.sel(pkgs, "jose")}/bin/jose
 copy_bin_and_libs ${nix.sel(pkgs, "curl")}/bin/curl
 copy_bin_and_libs ${nix.sel(pkgs, "bashNonInteractive")}/bin/bash
@@ -118,9 +118,9 @@ sed -i $out/bin/clevis-decrypt-tpm2 -e 's,tpm2_,tpm2 ,'
 `))),
             secrets: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (name) => (value) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`/etc/clevis/${name}.jwe`), nix.thunk(() => nix.sel(value, "secretFile"))), nix.thunk(() => nix.sel(cfg, "devices")))),
             systemd: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               extraBin: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(systemd, "enable")), nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   clevis: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/clevis`),
                   curl: nix.thunk(() => nix.str`${nix.sel(pkgs, "curl")}/bin/curl`),
                 })))),

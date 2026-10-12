@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const gtest = nix.arg($, "gtest");
   const gmp = nix.arg($, "gmp");
   const cadical = nix.arg($, "cadical");
-  const cadical$ = nix.argOr($, "cadical'", () => nix.app(nix.sel(cadical, "override"), nix.thunk(() => ({ __proto__: pos$1, version: "2.1.3" }))));
+  const cadical$ = nix.argOr($, "cadical'", () => nix.app(nix.sel(cadical, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, version: "2.1.3" }))));
   const cryptominisat = nix.arg($, "cryptominisat");
   const kissat = nix.arg($, "kissat");
   const zlib = nix.arg($, "zlib");
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const aiger = nix.arg($, "aiger");
   const mpfr = nix.arg($, "mpfr");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "bitwuzla",
       version: "0.9.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "bitwuzla",
           repo: "bitwuzla",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\nexport needle=11011110101011011011111011101111\n\ncat > file.smt2 <<EOF\n(declare-fun a () (_ BitVec 32))\n(assert (= a #b$needle))\n(check-sat)\n(get-model)\nEOF\n\n# check each backend\n(\nset -euxo pipefail;\n$out/bin/bitwuzla -S cms -j 3 -m file.smt2 | tee /dev/stderr | grep $needle;\n$out/bin/bitwuzla -S cadical -m file.smt2 | tee /dev/stderr | grep $needle;\n$out/bin/bitwuzla -S kissat -m file.smt2 | tee /dev/stderr | grep $needle;\n)\n\nrunHook postInstallCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "SMT solver for fixed-size bit-vectors, floating-point arithmetic, arrays, and uninterpreted functions",
         mainProgram: "bitwuzla",
         homepage: "https://bitwuzla.github.io",

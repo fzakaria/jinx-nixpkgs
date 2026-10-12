@@ -32,25 +32,25 @@ export default nix.lambda((args) => (() => {
   const ldmcfg = nix.thunk(() => nix.sel(config, "services", "xserver", "displayManager", "lightdm"));
   const cfg = nix.thunk(() => nix.sel(ldmcfg, "greeters", "lomiri"));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "lomiri"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         xserver: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           displayManager: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             lightdm: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               greeters: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 lomiri: nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "lomiri's greeter as the lightdm greeter")),
                 })),
               })),
@@ -60,25 +60,25 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(ldmcfg, "enable")) && nix.asBool(nix.sel(cfg, "enable")))), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         services: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           desktopManager: nix.thunk(() => ({
-            __proto__: pos$10,
-            lomiri: nix.thunk(() => ({ __proto__: pos$9, basics: true })),
+            [nix.POS]: pos$10,
+            lomiri: nix.thunk(() => ({ [nix.POS]: pos$9, basics: true })),
           })),
           xserver: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             displayManager: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               lightdm: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 greeters: nix.thunk(() => ({
-                  __proto__: pos$12,
-                  gtk: nix.thunk(() => ({ __proto__: pos$11, enable: false })),
+                  [nix.POS]: pos$12,
+                  gtk: nix.thunk(() => ({ [nix.POS]: pos$11, enable: false })),
                 })),
                 greeter: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     package: nix.thunk(() => nix.sel(pkgs, "lomiri", "lomiri", "greeter")),
                     name: "lomiri-greeter",
                   })))),

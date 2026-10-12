@@ -14,15 +14,15 @@ export default nix.thunk(() => (() => {
     const $ = nix.formals(args, formals$1);
     const evalConfig = nix.argOr($, "evalConfig", () => nix.builtins.import(nix.thunk(() => nix.str`${nixpkgs}/nixos/lib/eval-config.nix`)));
     return nix.app(evalConfig, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         modules: nix.thunk(() => [
           nix.path(here, "./configuration.nix"),
           nix.thunk(() => nix.builtins.import(nix.thunk(() => nix.str`${nixpkgs}/nixos/modules/testing/test-instrumentation.nix`))),
           nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             nix: nix.thunk(() => ({
-              __proto__: pos$2,
-              channel: nix.thunk(() => ({ __proto__: pos$1, enable: false })),
+              [nix.POS]: pos$2,
+              channel: nix.thunk(() => ({ [nix.POS]: pos$1, enable: false })),
             })),
           })),
         ]),

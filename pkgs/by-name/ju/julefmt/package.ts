@@ -15,22 +15,22 @@ export default nix.lambda((args) => (() => {
   const clangStdenv = nix.arg($, "clangStdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "julefmt",
       version: "0.0.0-unstable-2026-05-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "julelang",
           repo: "julefmt",
           rev: "7ac9b383013d13a03bc06f90f0b86f4fca11a4a8",
           hash: "sha256-q90B0rYaUN/gQ3TUNcPS+SqIQefam1Qmzx6jUBe+c0g=",
         })))),
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(julec, "hook"))]),
-      env: nix.thunk(() => ({ __proto__: pos$2, JULE_OUT_NAME: "julefmt" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, JULE_OUT_NAME: "julefmt" })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(julec, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Official formatter tool for the Jule programming language",
         homepage: "https://manual.jule.dev/tools/julefmt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

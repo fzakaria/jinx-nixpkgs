@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const vimUtils = nix.arg($, "vimUtils");
   const codeiumVersion = "1.20.9";
   const codeiumHashes = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "x86_64-linux": "sha256-IeNK7UQtOhqC/eQv7MAya4jB1WIGykSR7IgutZatmHM=",
     "aarch64-linux": "sha256-ujTFki/3V79El2WCkG0PJhbaMT0knC9mrS9E7Uv9HD4=",
     "aarch64-darwin": "sha256-1jNH0Up8mAahDgvPF6g42LV+RVDVsPqDM54lE2KYY48=",
@@ -35,27 +35,27 @@ export default nix.lambda((args) => (() => {
         const system = nix.thunk(() => nix.attr(from, "system"));
         const throwSystem = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${system}`)));
         const platform = nix.thunk(() => nix.selOr({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "x86_64-linux": "linux_x64",
           "aarch64-linux": "linux_arm",
           "aarch64-darwin": "macos_arm",
         }, () => nix.force(throwSystem), nix.key(nix.force(system))));
         const hash = nix.thunk(() => nix.selOr(codeiumHashes, () => nix.force(throwSystem), nix.key(nix.force(system))));
         return nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: nix.thunk(() => nix.str`codeium-${version}.gz`),
             url: nix.thunk(() => nix.str`https://github.com/Exafunction/codeium/releases/download/language-server-v${version}/language_server_${platform}.gz`),
             hash: hash,
           })));
       })());
-      return { __proto__: pos$4, version, src };
+      return { [nix.POS]: pos$4, version, src };
     })())));
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "windsurf.nvim",
       version: "0-unstable-2025-04-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "Exafunction",
           repo: "windsurf.nvim",
           rev: "821b570b526dbb05b57aa4ded578b709a704a38a",
@@ -74,7 +74,7 @@ EOF
       checkInputs: nix.thunk(() => [jq, codeium$]),
       checkPhase: "runHook preCheck\n\nexpected_codeium_version=$(jq -r '.version' lua/codeium/versions.json)\nactual_codeium_version=$(codeium_language_server --version)\n\nexpected_codeium_stamp=$(jq -r '.stamp' lua/codeium/versions.json)\nactual_codeium_stamp=$(codeium_language_server --stamp | grep STABLE_BUILD_SCM_REVISION | cut -d' ' -f2)\n\nif [ \"$actual_codeium_stamp\" != \"$expected_codeium_stamp\" ]; then\n  echo \"\nThe version of codeium patched in vimPlugins.codeium-nvim is incorrect.\nExpected stamp: $expected_codeium_stamp\nActual stamp: $actual_codeium_stamp\n\nExpected codeium version: $expected_codeium_version\nActual codeium version: $actual_codeium_version\n\nPlease, update 'codeiumVersion' in pkgs/applications/editors/vim/plugins/overrides.nix accordingly to:\nhttps://github.com/Exafunction/codeium.nvim/blob/main/lua/codeium/versions.json\n  \"\n  exit 1\nfi\n\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Native neovim extension for Codeium",
         homepage: "https://github.com/Exafunction/windsurf.nvim",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

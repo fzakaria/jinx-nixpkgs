@@ -23,17 +23,17 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "xserver", "windowManager", "dk"));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         xserver: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           windowManager: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             dk: nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "dk")),
               package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "dk", nix.thunk(() => ({})))),
             })),
@@ -42,15 +42,15 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         services: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           xserver: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             windowManager: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               session: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   name: "dk",
                   start: nix.thunk(() => nix.str`export _JAVA_AWT_WM_NONREPARENTING=1
 ${nix.sel(cfg, "package")}/bin/dk &
@@ -61,7 +61,7 @@ waitPID=$!
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
       })))),

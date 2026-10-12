@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const autoAddDriverRunpath = nix.arg($, "autoAddDriverRunpath");
   const cliVersionPackage = "github.com/NVIDIA/nvidia-container-toolkit/internal/info";
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nvidia-container-toolkit",
       version: "1.20.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NVIDIA",
           repo: "nvidia-container-toolkit",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +59,7 @@ substituteInPlace cmd/nvidia-cdi-hook/update-ldcache/update-ldcache.go \\
       })()),
       postInstall: "mkdir -p $tools/bin\nmv $out/bin/{nvidia-cdi-hook,nvidia-container-runtime,nvidia-container-runtime.cdi,nvidia-container-runtime-hook,nvidia-container-runtime.legacy} $tools/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/NVIDIA/nvidia-container-toolkit",
         description: "NVIDIA Container Toolkit",
         mainProgram: "nvidia-ctk",

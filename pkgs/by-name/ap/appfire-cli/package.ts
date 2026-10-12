@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "appfire-cli",
       version: "12.1.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://appfire.atlassian.net/wiki/download/attachments/60562669/acli-${nix.sel(finalAttrs, "version")}-distribution.zip`),
           hash: "sha256-6p8i5ec8IAygACdsdzP8g5u24mQZ7Ci684xuu/kAADo=",
         })))),
@@ -52,17 +52,17 @@ makeBinaryWrapper $out/share/appfire-cli/acli.sh $out/bin/acli
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         shellNames: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "x86_64-linux": "bin/shell-linux-amd64",
           "aarch64-linux": "bin/shell-linux-arm64",
           "aarch64-darwin": "bin/shell-macos-arm64",
         })),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "acli -a getClientInfo",
             })))),
@@ -71,7 +71,7 @@ runHook postInstall
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(jre, "meta"));
         return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Integrated family of CLIs for Atlassian, Atlassian-related, and other applications",
         longDescription: "Appfire CLI (ACLI) is an integrated family of CLIs for Atlassian,\nAtlassian-related, and other applications.\n\nACLI provides a consistent and reliable automation platform that allows\nusers, administrators, script writers, and DevOps developers to perform\ntasks, implement business processes, or apply general automation with\nAtlassian products.\n\nThe CLIs are built on the Atlassian remote APIs and deliver a higher\nlevel, client-based API that is easier to use and more powerful than\nthe underlying product APIs.\n\nThe upstream documentation describes configuring acli by placing\n{file}`acli.properties` in the same directory as {file}`acli.sh`.\nSince the /nix/store is not writable, you can instead place the file\nat {file}`$HOME/acli.properties` to achieve the same effect.\n",
         homepage: "https://apps.appf.re/acli",

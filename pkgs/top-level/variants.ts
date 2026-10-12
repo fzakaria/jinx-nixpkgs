@@ -45,46 +45,46 @@ export default nix.lambda((args) => (() => {
   const nixpkgsFun = nix.arg($, "nixpkgsFun");
   const overlays = nix.arg($, "overlays");
   return (self) => (super$) => ({
-    __proto__: pos$34,
+    [nix.POS]: pos$34,
     pkgsLLVM: nix.thunk(() => nix.app(nixpkgsFun, nix.thunk(() => ({
-        __proto__: pos$3,
-        overlays: nix.thunk(() => nix.concat([(self$) => (super$_1) => ({ __proto__: pos$1, pkgsLLVM: super$_1 })], overlays)),
-        crossSystem: nix.thunk(() => nix.update(nix.sel(stdenv, "hostPlatform"), { __proto__: pos$2, useLLVM: true, linker: "lld" })),
+        [nix.POS]: pos$3,
+        overlays: nix.thunk(() => nix.concat([(self$) => (super$_1) => ({ [nix.POS]: pos$1, pkgsLLVM: super$_1 })], overlays)),
+        crossSystem: nix.thunk(() => nix.update(nix.sel(stdenv, "hostPlatform"), { [nix.POS]: pos$2, useLLVM: true, linker: "lld" })),
       })))),
     pkgsArocc: nix.thunk(() => nix.app(nixpkgsFun, nix.thunk(() => ({
-        __proto__: pos$6,
-        overlays: nix.thunk(() => nix.concat([(self$) => (super$_1) => ({ __proto__: pos$4, pkgsArocc: super$_1 })], overlays)),
-        crossSystem: nix.thunk(() => nix.update(nix.sel(stdenv, "hostPlatform"), { __proto__: pos$5, useArocc: true, linker: "lld" })),
+        [nix.POS]: pos$6,
+        overlays: nix.thunk(() => nix.concat([(self$) => (super$_1) => ({ [nix.POS]: pos$4, pkgsArocc: super$_1 })], overlays)),
+        crossSystem: nix.thunk(() => nix.update(nix.sel(stdenv, "hostPlatform"), { [nix.POS]: pos$5, useArocc: true, linker: "lld" })),
       })))),
     pkgsZig: nix.thunk(() => nix.app(nixpkgsFun, nix.thunk(() => ({
-        __proto__: pos$9,
-        overlays: nix.thunk(() => nix.concat([(self$) => (super$_1) => ({ __proto__: pos$7, pkgsZig: super$_1 })], overlays)),
-        crossSystem: nix.thunk(() => nix.update(nix.sel(stdenv, "hostPlatform"), { __proto__: pos$8, useZig: true, linker: "lld" })),
+        [nix.POS]: pos$9,
+        overlays: nix.thunk(() => nix.concat([(self$) => (super$_1) => ({ [nix.POS]: pos$7, pkgsZig: super$_1 })], overlays)),
+        crossSystem: nix.thunk(() => nix.update(nix.sel(stdenv, "hostPlatform"), { [nix.POS]: pos$8, useZig: true, linker: "lld" })),
       })))),
     pkgsMusl: nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool((nix.asBool(nix.sel(stdenv, "buildPlatform", "is64bit")) || nix.asBool(nix.sel(stdenv, "buildPlatform", "isx86")))))) ? nix.app(nixpkgsFun, nix.thunk(() => nix.attrsDyn({
-        __proto__: pos$12,
-        overlays: nix.thunk(() => nix.concat([(self$) => (super$_1) => ({ __proto__: pos$10, pkgsMusl: super$_1 })], overlays)),
+        [nix.POS]: pos$12,
+        overlays: nix.thunk(() => nix.concat([(self$) => (super$_1) => ({ [nix.POS]: pos$10, pkgsMusl: super$_1 })], overlays)),
       }, [
         [(nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))) ? "localSystem" : "crossSystem"), nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           config: nix.thunk(() => nix.app(nix.sel(lib, "systems", "parse", "tripleFromSystem"), nix.thunk(() => nix.app(nix.sel(lib, "systems", "parse", "mkMuslSystem"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "parsed")))))),
         }))],
       ]))) : nix.builtins.throw("Musl libc only supports 64-bit Linux systems, and i686-linux."))),
     pkgsRocm: nix.thunk(() => nix.app(nixpkgsFun, nix.thunk(() => ({
-        __proto__: pos$14,
-        config: nix.thunk(() => nix.update(nix.sel(super$, "config"), { __proto__: pos$13, cudaSupport: false, rocmSupport: true })),
+        [nix.POS]: pos$14,
+        config: nix.thunk(() => nix.update(nix.sel(super$, "config"), { [nix.POS]: pos$13, cudaSupport: false, rocmSupport: true })),
       })))),
     pkgsCuda: nix.thunk(() => nix.app(nixpkgsFun, nix.thunk(() => ({
-        __proto__: pos$16,
-        config: nix.thunk(() => nix.update(nix.sel(super$, "config"), { __proto__: pos$15, cudaSupport: true, rocmSupport: false })),
+        [nix.POS]: pos$16,
+        config: nix.thunk(() => nix.update(nix.sel(super$, "config"), { [nix.POS]: pos$15, cudaSupport: true, rocmSupport: false })),
       })))),
     pkgsForCudaArch: nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "map"), (cudaCapability) => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           name: nix.thunk(() => nix.app(nix.sel(self, "_cuda", "lib", "mkRealArchitecture"), cudaCapability)),
           value: nix.thunk(() => nix.app(nixpkgsFun, nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               config: nix.thunk(() => nix.update(nix.sel(super$, "config"), {
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 cudaSupport: true,
                 rocmSupport: false,
                 cudaForwardCompat: false,
@@ -93,10 +93,10 @@ export default nix.lambda((args) => (() => {
             })))),
         }), nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), nix.thunk(() => nix.sel(self, "_cuda", "db", "cudaCapabilityToInfo")))))))),
     pkgsExtraHardening: nix.thunk(() => nix.app(nixpkgsFun, nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         overlays: nix.thunk(() => nix.concat([
           (self$) => (super$_1) => nix.update({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             pkgsExtraHardening: super$_1,
             stdenv: nix.thunk(() => nix.app(nix.sel(super$_1, "withDefaultHardeningFlags"), nix.thunk(() => nix.concat(nix.sel(super$_1, "stdenv", "cc", "defaultHardeningFlags"), [
                 "shadowstack",
@@ -109,33 +109,33 @@ export default nix.lambda((args) => (() => {
             glibc: nix.thunk(() => nix.app(nix.sel(super$_1, "glibc", "override"), nix.thunk(() => (() => {
                 const enableCET = nix.thunk(() => (nix.asBool(nix.sel(self$, "stdenv", "hostPlatform", "isx86_64")) ? "permissive" : false));
                 const enableCETRuntimeDefault = nix.thunk(() => !nix.eq(enableCET, false));
-                return { __proto__: pos$20, enableCET, enableCETRuntimeDefault };
+                return { [nix.POS]: pos$20, enableCET, enableCETRuntimeDefault };
               })()))),
           }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(super$_1, "stdenv", "hostPlatform")), null);
               return (nix.asBool(nix.lookup(w, "isx86_64")) && nix.asBool(nix.lookup(w, "isLinux")));
             })()), nix.thunk(() => ({
-              __proto__: pos$24,
-              pcre: nix.thunk(() => nix.app(nix.sel(super$_1, "pcre", "override"), nix.thunk(() => ({ __proto__: pos$22, enableJit: false })))),
-              "pcre-cpp": nix.thunk(() => nix.app(nix.sel(super$_1, "pcre-cpp", "override"), nix.thunk(() => ({ __proto__: pos$23, enableJit: false })))),
+              [nix.POS]: pos$24,
+              pcre: nix.thunk(() => nix.app(nix.sel(super$_1, "pcre", "override"), nix.thunk(() => ({ [nix.POS]: pos$22, enableJit: false })))),
+              "pcre-cpp": nix.thunk(() => nix.app(nix.sel(super$_1, "pcre-cpp", "override"), nix.thunk(() => ({ [nix.POS]: pos$23, enableJit: false })))),
             })))),
         ], overlays)),
       })))),
     pkgsChecked: nix.thunk(() => nix.app(nixpkgsFun, nix.thunk(() => ({
-        __proto__: pos$27,
-        config: nix.thunk(() => nix.update(nix.sel(super$, "config"), { __proto__: pos$26, doCheckByDefault: true })),
+        [nix.POS]: pos$27,
+        config: nix.thunk(() => nix.update(nix.sel(super$, "config"), { [nix.POS]: pos$26, doCheckByDefault: true })),
       })))),
     pkgsParallel: nix.thunk(() => nix.app(nixpkgsFun, nix.thunk(() => ({
-        __proto__: pos$29,
-        config: nix.thunk(() => nix.update(nix.sel(super$, "config"), { __proto__: pos$28, enableParallelBuildingByDefault: true })),
+        [nix.POS]: pos$29,
+        config: nix.thunk(() => nix.update(nix.sel(super$, "config"), { [nix.POS]: pos$28, enableParallelBuildingByDefault: true })),
       })))),
     pkgsStrict: nix.thunk(() => nix.app(nixpkgsFun, nix.thunk(() => ({
-        __proto__: pos$31,
-        config: nix.thunk(() => nix.update(nix.sel(super$, "config"), { __proto__: pos$30, strictDepsByDefault: true })),
+        [nix.POS]: pos$31,
+        config: nix.thunk(() => nix.update(nix.sel(super$, "config"), { [nix.POS]: pos$30, strictDepsByDefault: true })),
       })))),
     pkgsStructured: nix.thunk(() => nix.app(nixpkgsFun, nix.thunk(() => ({
-        __proto__: pos$33,
-        config: nix.thunk(() => nix.update(nix.sel(super$, "config"), { __proto__: pos$32, structuredAttrsByDefault: true })),
+        [nix.POS]: pos$33,
+        config: nix.thunk(() => nix.update(nix.sel(super$, "config"), { [nix.POS]: pos$32, structuredAttrsByDefault: true })),
       })))),
   });
 })(), formals$1);

@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const pcre = nix.arg($, "pcre");
   const withStatic = nix.argOr($, "withStatic", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hyperscan",
       version: "5.4.2",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "intel",
           repo: "hyperscan",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ ${nix.app(nix.sel(lib, "optionalString"), withStatic, "bin/unit-chimera")}
 runHook postCheck
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")),
         description: "High-performance multiple regex matching library",
         longDescription: "Hyperscan is a high-performance multiple regex matching library.\nIt follows the regular expression syntax of the commonly-used\nlibpcre library, but is a standalone library with its own C API.\n\nHyperscan uses hybrid automata techniques to allow simultaneous\nmatching of large numbers (up to tens of thousands) of regular\nexpressions and for the matching of regular expressions across\nstreams of data.\n\nHyperscan is typically used in a DPI library stack.\n",

@@ -21,14 +21,14 @@ export default nix.lambda((args) => (() => {
   const yojson = nix.arg($, "yojson");
   const cacert = nix.arg($, "cacert");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "irmin-graphql",
       version: nix.thunk(() => nix.attr(irmin, "version")),
       src: nix.thunk(() => nix.attr(irmin, "src")),
       propagatedBuildInputs: nix.thunk(() => [cohttp_lwt, cohttp_lwt_unix, graphql_cohttp, graphql_lwt, irmin, git_unix]),
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest, alcotest_lwt, logs, yojson, cacert]),
-      meta: nix.thunk(() => nix.update(nix.sel(irmin, "meta"), { __proto__: pos$1, description: "GraphQL server for Irmin" })),
+      meta: nix.thunk(() => nix.update(nix.sel(irmin, "meta"), { [nix.POS]: pos$1, description: "GraphQL server for Irmin" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=graphql.ts.map

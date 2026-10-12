@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const nixos_artwork = nix.arg($, "nixos-artwork");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mint-artwork",
       version: "1.9.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`http://packages.linuxmint.com/pool/main/m/mint-artwork/mint-artwork_${nix.sel(finalAttrs, "version")}.tar.xz`),
             nix.thunk(() => nix.str`https://web.archive.org/web/20261007095334/http://packages.linuxmint.com/pool/main/m/mint-artwork/mint-artwork_${nix.sel(finalAttrs, "version")}.tar.xz`),
@@ -47,7 +47,7 @@ mv usr/share $out/share
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/linuxmint/mint-artwork",
         description: "Artwork for the cinnamon desktop",
         license: nix.thunk(() => (() => {

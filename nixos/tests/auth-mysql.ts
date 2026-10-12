@@ -61,48 +61,48 @@ INSERT INTO \`users\` (name, uid, gid, password) VALUES
 INSERT INTO \`groups\` (name, gid) VALUES ('${mysqlGroup}', 5000);
 `)));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     name: "auth-mysql",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "netali"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             mysql: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               enable: true,
               package: nix.thunk(() => nix.sel(pkgs, "mariadb")),
               settings: nix.thunk(() => ({
-                __proto__: pos$3,
-                mysqld: nix.thunk(() => ({ __proto__: pos$2, "bind-address": "127.0.0.1" })),
+                [nix.POS]: pos$3,
+                mysqld: nix.thunk(() => ({ [nix.POS]: pos$2, "bind-address": "127.0.0.1" })),
               })),
               initialScript: mysqlInit,
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             users: nix.thunk(() => nix.attrsDyn({}, [
-              [localUsername, nix.thunk(() => ({ __proto__: pos$6, isNormalUser: true, password: localPassword }))],
+              [localUsername, nix.thunk(() => ({ [nix.POS]: pos$6, isNormalUser: true, password: localPassword }))],
             ])),
             mysql: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               enable: true,
               host: "127.0.0.1",
               user: dbUser,
               database: dbName,
               passwordFile: nix.thunk(() => nix.str`${nix.builtins.toFile("dbPassword", dbPassword)}`),
               pam: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 table: "users",
                 userColumn: "name",
                 passwordColumn: "password",
@@ -110,7 +110,7 @@ INSERT INTO \`groups\` (name, gid) VALUES ('${mysqlGroup}', 5000);
                 disconnectEveryOperation: true,
               })),
               nss: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 getpwnam: "SELECT name, 'x', uid, gid, name, CONCAT('/home/', name), \"/run/current-system/sw/bin/bash\" \\\nFROM users \\\nWHERE name='%1$s' \\\nLIMIT 1\n",
                 getpwuid: "SELECT name, 'x', uid, gid, name, CONCAT('/home/', name), \"/run/current-system/sw/bin/bash\" \\\nFROM users \\\nWHERE uid=%1$u \\\nLIMIT 1\n",
                 getspnam: "SELECT name, password, 1, 0, 99999, 7, 0, -1, 0 \\\nFROM users \\\nWHERE name='%1$s' \\\nLIMIT 1\n",
@@ -125,12 +125,12 @@ INSERT INTO \`groups\` (name, gid) VALUES ('${mysqlGroup}', 5000);
             })),
           })),
           security: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             pam: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               services: nix.thunk(() => ({
-                __proto__: pos$12,
-                login: nix.thunk(() => ({ __proto__: pos$11, makeHomeDir: true })),
+                [nix.POS]: pos$12,
+                login: nix.thunk(() => ({ [nix.POS]: pos$11, makeHomeDir: true })),
               })),
             })),
           })),

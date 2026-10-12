@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromSourcehut = nix.arg($, "fetchFromSourcehut");
   const port = nix.argOr($, "port", () => "1234");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "among-sus-unstable",
       version: "2021-05-19",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~martijnbraam",
           repo: "among-sus",
           rev: "554e60bf52e3fa931661b9414189a92bb8f69d78",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
 `),
       installPhase: "mkdir -p $out/bin\ninstall -Dm755 among-sus $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://git.sr.ht/~martijnbraam/among-sus",
         description: "Among us, but it's a text adventure",
         mainProgram: "among-sus",

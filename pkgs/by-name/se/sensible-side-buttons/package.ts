@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const undmg = nix.arg($, "undmg");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sensible-side-buttons-bin",
       version: "1.0.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/archagon/sensible-side-buttons/releases/download/${nix.sel(finalAttrs, "version")}/SensibleSideButtons-${nix.sel(finalAttrs, "version")}.dmg`),
           hash: "sha256-Hys678R6wf+M4eg6892rgU3Xxua5dLc9zjaU7HQ1iBs=",
         })))),
@@ -34,7 +34,7 @@ ln -s "$out/Applications/SensibleSideButtons.app/Contents/MacOS/SensibleSideButt
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utilize mouse side navigation buttons",
         homepage: "https://sensible-side-buttons.archagon.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

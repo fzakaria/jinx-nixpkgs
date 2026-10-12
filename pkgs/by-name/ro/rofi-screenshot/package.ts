@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const gnused = nix.arg($, "gnused");
   const procps = nix.arg($, "procps");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rofi-screenshot",
       version: "2024-09-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ceuk",
           repo: "rofi-screenshot",
           rev: "09a07d9c2ff2efbf75b1753bb412f4f8f086708f",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
 `),
       installPhase: "install -Dm755 rofi-screenshot $out/bin/rofi-screenshot\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Use rofi to perform various types of screenshots and screen captures",
         mainProgram: "rofi-screenshot",
         homepage: "https://github.com/ceuk/rofi-screenshot",

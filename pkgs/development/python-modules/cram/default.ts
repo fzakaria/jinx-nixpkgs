@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cram";
       const nativeCheckInputs = nix.thunk(() => [which]);
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "0bvz6fwdi55rkrz3f50zsy35gvvwhlppki2yml5bj5ffy9d499vx",
@@ -32,7 +32,7 @@ substituteInPlace tests/test.t \\
 `);
       const checkPhase = "scripts/cram tests\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple testing framework for command line applications",
         mainProgram: "cram",
         homepage: "https://bitheap.org/cram/",
@@ -44,7 +44,7 @@ substituteInPlace tests/test.t \\
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isi686")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         format,
         pname,

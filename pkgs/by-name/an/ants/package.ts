@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const itk = nix.arg($, "itk");
   const vtk = nix.arg($, "vtk");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ANTs",
       version: "2.6.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ANTsX",
           repo: "ANTs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DANTS_SUPERBUILD=FALSE", "-DUSE_VTK=TRUE"]),
       postInstall: "for file in $out/bin/*; do\n  wrapProgram $file --prefix PATH : \"$out/bin\"\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/ANTsX/ANTs/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Advanced normalization toolkit for medical image registration and other processing",
         homepage: "https://github.com/ANTsX/ANTs",

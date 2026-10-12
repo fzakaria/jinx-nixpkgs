@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(anki_utils, "buildAnkiAddon"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "local-audio-yomichan",
       version: "0-unstable-2025-12-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "yomidevs",
           repo: "local-audio-yomichan",
           rev: "2cbabbc75b4195b75033adf059d2a5ff037f60a6",
@@ -43,11 +43,11 @@ ${nix.app(nix.sel(lib, "getExe"), python3)} -c \\
    db_utils.init_db()"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Run a local audio server for Yomitan",
         longDescription: "This add-on must be configured with an audio collection.\n\nExample:\n\n```nix\npkgs.ankiAddons.local-audio-yomichan.withConfig {\n  userFiles =\n    let\n      audio-collection =\n        pkgs.runCommand \"local-yomichan-audio-collection\"\n          {\n            outputHashMode = \"recursive\";\n            outputHash = \"sha256-NxbcXh2SDPfCd+ZHAWT5JdxRecNbT4Xpo0pxX5/DOfo=\";\n\n            src = pkgs.requireFile {\n              name = \"local-yomichan-audio-collection-2023-06-11-opus.tar.xz\";\n              url = \"https://github.com/yomidevs/local-audio-yomichan?tab=readme-ov-file#steps\";\n              sha256 = \"1xsxp8iggklv77rj972mqaa1i8f9hvr3ir0r2mwfqcdz4q120hr1\";\n            };\n          }\n          ''\n            mkdir -p $out\n            cd $out\n            tar -xf \"$src\"\n          '';\n    in\n    \"${audio-collection}/user_files\";\n}\n```\n",
         homepage: "https://github.com/yomidevs/local-audio-yomichan",

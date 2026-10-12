@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const navidrome = nix.arg($, "navidrome");
   const navidromePluginInstallHook = nix.arg($, "navidromePluginInstallHook");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       constructDrv: nix.thunk(() => nix.sel(rustPlatform, "buildRustPackage")),
       excludeDrvArgNames: nix.thunk(() => ["meta", "passthru"]),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -33,13 +33,13 @@ export default nix.lambda((args) => (() => {
         const env = nix.argOr($_1, "env", () => ({}));
         const passthru = nix.argOr($_1, "passthru", () => ({}));
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           __structuredAttrs: true,
           nativeBuildInputs: nix.thunk(() => [lld, navidromePluginInstallHook]),
-          env: nix.thunk(() => nix.update({ __proto__: pos$1, RUSTFLAGS: "-C linker=wasm-ld" }, env)),
-          passthru: nix.thunk(() => nix.update({ __proto__: pos$2, isNavidromePlugin: true }, passthru)),
+          env: nix.thunk(() => nix.update({ [nix.POS]: pos$1, RUSTFLAGS: "-C linker=wasm-ld" }, env)),
+          passthru: nix.thunk(() => nix.update({ [nix.POS]: pos$2, isNavidromePlugin: true }, passthru)),
           meta: nix.thunk(() => nix.update(meta, {
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             platforms: nix.thunk(() => nix.sel(lib, "platforms", "wasi")),
             maintainers: nix.thunk(() => nix.concat(nix.sel(navidrome, "meta", "maintainers"), nix.selOr(meta, () => [], "maintainers"))),
           })),

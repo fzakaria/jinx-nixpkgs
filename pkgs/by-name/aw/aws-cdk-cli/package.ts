@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const yarn_berry = yarn_berry_4;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "aws-cdk-cli",
       version: "2.1142.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aws",
           repo: "aws-cdk-cli",
           tag: nix.thunk(() => nix.str`cdk@v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })))),
       missingHashes: nix.path(here, "./missing-hashes.json"),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           hash: "sha256-lTT7hO0dZxrUlmah7d9UQEIAt/STLoH0xZ3oxx2Vh5I=",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         unzip,
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NX_DISABLE_REMOTE_CACHE: "true",
         NX_TASKS_RUNNER_DYNAMIC_OUTPUT: "false",
         NX_VERBOSE_LOGGING: "true",
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
       })),
       yarnBuildScript: "compile",
       postPatch: nix.thunk(() => (() => {
-        const cliVersionJson = nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ __proto__: pos$4, version: nix.thunk(() => nix.attr(finalAttrs, "version")) }))));
+        const cliVersionJson = nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$4, version: nix.thunk(() => nix.attr(finalAttrs, "version")) }))));
         return nix.str`echo '${cliVersionJson}' > packages/@aws-cdk/cloud-assembly-schema/cli-version.json
 `;
       })()),
@@ -92,18 +92,18 @@ popd
 `),
       dontFixup: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "AWS CDK Toolkit",
         homepage: "https://docs.aws.amazon.com/cdk/v2/guide/cli.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const nix_update_script = nix.arg($, "nix-update-script");
   const nodejs = nodejs_24;
-  const npmHooks = nix.thunk(() => nix.app(nix.sel(buildPackages, "npmHooks", "override"), nix.thunk(() => ({ __proto__: pos$1, nodejs: nodejs }))));
+  const npmHooks = nix.thunk(() => nix.app(nix.sel(buildPackages, "npmHooks", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, nodejs: nodejs }))));
   return nix.app(buildDotnetModule, nix.thunk(() => (() => {
       const pname = "slskd";
       const version = "0.26.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "slskd",
           repo: "slskd",
           tag: version,
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const runtimeDeps = nix.thunk(() => [mono]);
       const npmRoot = "src/web";
       const npmDeps = nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name: nix.thunk(() => nix.str`${pname}-${version}-npm-deps`),
           src: src,
           sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/${npmRoot}`),
@@ -59,15 +59,15 @@ export default nix.lambda((args) => (() => {
       const postBuild = "pushd \"$npmRoot\"\nnpm run build --legacy-peer-deps\npopd\n";
       const postInstall = "rm -r $out/lib/slskd/wwwroot\nmv \"$npmRoot\"/build $out/lib/slskd/wwwroot\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$4, package: slskd })))),
+          [nix.POS]: pos$5,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$4, package: slskd })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Modern client-server application for the Soulseek file sharing network",
         homepage: "https://github.com/slskd/slskd",
         changelog: nix.thunk(() => nix.str`https://github.com/slskd/slskd/releases/tag/${version}`),
@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version,
         src,

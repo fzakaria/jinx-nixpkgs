@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const torch = nix.arg($, "torch");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "guidance",
       version: "0.3.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "guidance-ai",
           repo: "guidance",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: nix.thunk(() => ["llguidance"]),
       dependencies: nix.thunk(() => [guidance_stitch, jinja2, llguidance, numpy, psutil, pydantic, requests]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         azureai: nix.thunk(() => [openai]),
         openai: nix.thunk(() => [openai]),
       })),
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["guidance"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Guidance language for controlling large language models",
         homepage: "https://github.com/guidance-ai/guidance",
         changelog: nix.thunk(() => nix.str`https://github.com/guidance-ai/guidance/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

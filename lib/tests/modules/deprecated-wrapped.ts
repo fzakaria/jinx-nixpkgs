@@ -46,64 +46,64 @@ export default nix.lambda((args) => (() => {
   const coercedTo = nix.thunk(() => nix.attr(types, "coercedTo"));
   const either = nix.thunk(() => nix.attr(types, "either"));
   return {
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     imports: nix.thunk(() => [
       nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           options: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             attrsWith: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.app(attrsOf, nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.sel(types, "str")))))),
               })))),
             mergedAttrsWith: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.app(attrsOf, nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.sel(types, "str")))))),
               })))),
             listOf: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.sel(types, "str")))))),
               })))),
             mergedListOf: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.sel(types, "str")))))),
               })))),
             unique: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$6,
-                type: nix.thunk(() => nix.app(unique, nix.thunk(() => ({ __proto__: pos$5, message: "" })), nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.sel(types, "str")))))),
+                [nix.POS]: pos$6,
+                type: nix.thunk(() => nix.app(unique, nix.thunk(() => ({ [nix.POS]: pos$5, message: "" })), nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.sel(types, "str")))))),
               })))),
             mergedUnique: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$8,
-                type: nix.thunk(() => nix.app(unique, nix.thunk(() => ({ __proto__: pos$7, message: "" })), nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.sel(types, "str")))))),
+                [nix.POS]: pos$8,
+                type: nix.thunk(() => nix.app(unique, nix.thunk(() => ({ [nix.POS]: pos$7, message: "" })), nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.sel(types, "str")))))),
               })))),
             nullOr: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.app(nullOr, nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.sel(types, "str")))))),
               })))),
             mergedNullOr: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.app(nullOr, nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.sel(types, "str")))))),
               })))),
             functionTo: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.app(functionTo, nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.sel(types, "str")))))),
               })))),
             mergedFunctionTo: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.app(functionTo, nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.sel(types, "str")))))),
               })))),
             coercedTo: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.app(coercedTo, nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.sel(types, "str")))), nix.thunk(() => nix.sel(lib, "id")), nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.sel(types, "str")))))),
               })))),
             either: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.app(either, nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.sel(types, "str")))), nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.sel(types, "str")))))),
               })))),
             mergedEither: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.app(either, nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.sel(types, "str")))), nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.sel(types, "str")))))),
               })))),
           })),
@@ -112,31 +112,31 @@ export default nix.lambda((args) => (() => {
       nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           options: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             mergedAttrsWith: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 type: nix.thunk(() => nix.app(attrsOf, nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.sel(types, "str")))))),
               })))),
             mergedListOf: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 type: nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.sel(types, "str")))))),
               })))),
             mergedUnique: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$21,
-                type: nix.thunk(() => nix.app(unique, nix.thunk(() => ({ __proto__: pos$20, message: "" })), nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.sel(types, "str")))))),
+                [nix.POS]: pos$21,
+                type: nix.thunk(() => nix.app(unique, nix.thunk(() => ({ [nix.POS]: pos$20, message: "" })), nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.sel(types, "str")))))),
               })))),
             mergedNullOr: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 type: nix.thunk(() => nix.app(nullOr, nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.sel(types, "str")))))),
               })))),
             mergedFunctionTo: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 type: nix.thunk(() => nix.app(functionTo, nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.sel(types, "str")))))),
               })))),
             mergedEither: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 type: nix.thunk(() => nix.app(either, nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.sel(types, "str")))), nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.sel(types, "str")))))),
               })))),
           })),

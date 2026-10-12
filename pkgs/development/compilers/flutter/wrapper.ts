@@ -52,23 +52,23 @@ export default nix.lambda((args) => (() => {
   const symlinkJoin = nix.arg($, "symlinkJoin");
   const supportsLinuxDesktopTarget = nix.thunk(() => nix.builtins.elem("linux", supportedTargetFlutterPlatforms));
   const flutterPlatformArtifacts = nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), supportedTargetFlutterPlatforms, (flutterPlatform) => nix.app(callPackage, nix.path(here, "./artifacts/prepare-artifacts.nix"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         src: nix.thunk(() => nix.app(callPackage, nix.path(here, "./artifacts/fetch-artifacts.nix"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             flutterPlatform: flutterPlatform,
             systemPlatform: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system")),
-            flutter: nix.thunk(() => nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({ __proto__: pos$1, flutter: flutter })))),
+            flutter: nix.thunk(() => nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, flutter: flutter })))),
             hash: nix.thunk(() => nix.selOr(artifactHashes, () => "", nix.key(nix.force(flutterPlatform)), nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
           })))),
       })))));
   const cacheDir = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: "flutter-cache-dir",
       paths: nix.thunk(() => nix.builtins.attrValues(flutterPlatformArtifacts)),
       postBuild: nix.thunk(() => nix.str`mkdir --parents "$out/bin/cache"
 ln --symbolic '${flutter}/bin/cache/dart-sdk' "$out/bin/cache"
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$4, flutterPlatform: flutterPlatformArtifacts })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, flutterPlatform: flutterPlatformArtifacts })),
     }))));
   const immutableFlutter = nix.thunk(() => nix.app(writeShellScript, "flutter_immutable", nix.thunk(() => nix.str`export PUB_CACHE=\${PUB_CACHE:-"$HOME/.pub-cache"}
 ${flutter}/bin/flutter "$@"
@@ -88,10 +88,10 @@ ${flutter}/bin/flutter "$@"
     ])));
   const appBuildDeps = nix.thunk(() => (() => {
     const deps = (pkg) => nix.app(nix.sel(lib, "filter"), nix.thunk(() => nix.sel(lib, "isDerivation")), nix.thunk(() => nix.concat(nix.selOr(pkg, () => [], "buildInputs"), nix.selOr(pkg, () => [], "propagatedBuildInputs"))));
-    const withKey = (pkg) => ({ __proto__: pos$6, key: nix.thunk(() => nix.sel(pkg, "outPath")), val: pkg });
+    const withKey = (pkg) => ({ [nix.POS]: pos$6, key: nix.thunk(() => nix.sel(pkg, "outPath")), val: pkg });
     const collect = (pkg) => nix.app(nix.sel(lib, "map"), withKey, nix.thunk(() => nix.concat([pkg], nix.app(deps, pkg))));
     return nix.app(nix.sel(lib, "map"), (e) => nix.sel(e, "val"), nix.thunk(() => nix.app(nix.sel(lib, "genericClosure"), nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           startSet: nix.thunk(() => nix.app(nix.sel(lib, "map"), withKey, appRuntimeDeps)),
           operator: (item) => nix.app(collect, nix.thunk(() => nix.sel(item, "val"))),
         })))));
@@ -102,14 +102,14 @@ ${flutter}/bin/flutter "$@"
   const includeFlags = nix.thunk(() => nix.builtins.map((pkg) => nix.str`-isystem ${nix.app(nix.sel(lib, "getOutput"), "dev", pkg)}/include`, nix.thunk(() => nix.concat(appStaticBuildDeps, extraIncludes))));
   const linkerFlags = nix.thunk(() => nix.concat(nix.builtins.map((pkg) => nix.str`-rpath,${nix.app(nix.sel(lib, "getOutput"), "lib", pkg)}/lib`, appRuntimeDeps), extraLinkerFlags));
   return nix.app(callPackage, nix.path(here, "./sdk-symlink.nix"), nix.thunk(() => ({})), nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname: "flutter-wrapped",
         version: nix.thunk(() => nix.attr(flutter, "version")),
         strictDeps: true,
         __structuredAttrs: true,
         nativeBuildInputs: nix.thunk(() => nix.concat([makeWrapper], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(darwin, "DarwinTools"))])), nix.app(nix.sel(lib, "optionals"), supportsLinuxDesktopTarget, nix.thunk(() => [glib, wrapGAppsHook3]))))),
         passthru: nix.thunk(() => nix.update(nix.sel(flutter, "passthru"), {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           version: nix.thunk(() => nix.attr(flutter, "version")),
           unwrapped: flutter,
           updateScript: nix.path(here, "./update/update.py"),

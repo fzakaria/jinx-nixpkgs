@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const buildPythonPackage = nix.arg($, "buildPythonPackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "simple-websocket-server",
       version: "20180414",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dpallot",
           repo: "simple-websocket-server",
           rev: "34e6def93502943d426fb8bb01c6901341dd4fe6",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python based websocket server that is simple and easy to use",
         homepage: "https://github.com/dpallot/simple-websocket-server/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

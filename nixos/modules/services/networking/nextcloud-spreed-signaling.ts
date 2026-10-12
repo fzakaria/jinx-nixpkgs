@@ -106,21 +106,21 @@ export default nix.lambda((args) => (() => {
     const nullable = nix.argOr($_1, "nullable", () => false);
     return nix.attrsDyn({}, [
       [nix.force(name), nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(types, "str")),
           internal: true,
           readOnly: true,
           default: nix.thunk(() => nix.str`#${path}-${name}#`),
         }))))],
       [nix.str`${name}File`, nix.thunk(() => nix.update(nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => (nix.asBool(nullable) ? nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path"))) : nix.sel(types, "path"))),
           description: nix.thunk(() => nix.str`The path to the file containing the value for \`${path}.${name}\`.
 
 ${description}
 `),
           example: nix.thunk(() => nix.str`/run/secrets/${path}.${name}`),
-        }))), nix.app(nix.sel(lib, "optionalAttrs"), nullable, nix.thunk(() => ({ __proto__: pos$3, default: null })))))],
+        }))), nix.app(nix.sel(lib, "optionalAttrs"), nullable, nix.thunk(() => ({ [nix.POS]: pos$3, default: null })))))],
     ]);
   })(), formals$2);
   const mkManySecretOptions = nix.lambda((args_1) => (() => {
@@ -129,7 +129,7 @@ ${description}
     const path = nix.arg($_1, "path");
     const nullable = nix.argOr($_1, "nullable", () => false);
     return nix.app(nix.sel(lib, "foldlAttrs"), (acc) => (name) => (value) => nix.update(acc, nix.app(mkSecretOptions, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           name: name,
           path: path,
           nullable: nullable,
@@ -155,61 +155,61 @@ ${description}
     "tun",
   ]);
   return {
-    __proto__: pos$79,
+    [nix.POS]: pos$79,
     options: nix.thunk(() => ({
-      __proto__: pos$55,
+      [nix.POS]: pos$55,
       services: nix.thunk(() => ({
-        __proto__: pos$54,
+        [nix.POS]: pos$54,
         "nextcloud-spreed-signaling": nix.thunk(() => ({
-          __proto__: pos$53,
+          [nix.POS]: pos$53,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Spreed standalone signaling server")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "nextcloud-spreed-signaling", nix.thunk(() => ({})))),
           stateDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(types, "path")),
               default: "/var/lib/nextcloud-spreed-signaling",
               description: "Directory used for state & config files.",
             })))),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "nextcloud-spreed-signaling",
               description: "User account under which to run the Spreed signaling server.",
             })))),
           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "nextcloud-spreed-signaling",
               description: "Group under which to run the Spreed signaling server.",
             })))),
           hostName: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
               default: null,
               example: "talk.mydomain.org",
               description: "The host name to bind the nginx virtual host to, if\n`config.services.nextcloud-spreed-signaling.configureNginx` is set to `true`.\n",
             })))),
           configureNginx: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               example: true,
               description: "Whether to set up and configure an nginx virtual host according to upstream's recommendations.\n\nThe virtualHost domain must be specified under `config.services.nextcloud-spreed-signaling.hostName` if this is enabled.\n",
             })))),
           backends: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     options: nix.thunk(() => nix.update({
-                      __proto__: pos$11,
+                      [nix.POS]: pos$11,
                       urls: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                           description: "List of URLs of the Nextcloud instance",
                           apply: nix.thunk(() => nix.app(nix.builtins.concatStringsSep, ", ")),
                         })))),
                     }, nix.app(mkSecretOptions, nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         name: "secret",
                         path: "backends.<name>",
                         description: "Shared secret for requests from and to the backend servers.\n\nThis must be the same value as configured in the Nextloud Talk admin UI.\n",
@@ -217,32 +217,32 @@ ${description}
                   })))))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 nextcloud: nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   urls: nix.thunk(() => ["https://cloud.example.com"]),
                   secretFile: "/run/secrets/nextcloud-secret",
                 })),
               })),
               description: "A list of backends from which clients are allowed to connect from. The name of the attribute will be used as the\nbackend id.\n\nEach backend will have isolated rooms, i.e. clients connecting to room \"abc12345\" on backend 1 will be in a\ndifferent room than clients connected to a room with the same name on backend 2. Also sessions connected from\ndifferent backends will not be able to communicate with each other.\n",
-              apply: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (n) => (v) => nix.update(v, { __proto__: pos$16, secret: nix.thunk(() => nix.str`#backend-${n}-secret#`) }))),
+              apply: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (n) => (v) => nix.update(v, { [nix.POS]: pos$16, secret: nix.thunk(() => nix.str`#backend-${n}-secret#`) }))),
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$52,
+              [nix.POS]: pos$52,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.lambda((args_1) => (() => {
                   const $_1 = nix.formals(args_1, formals$4);
                   const config_1 = nix.arg($_1, "config");
                   const options = nix.arg($_1, "options");
                   return {
-                    __proto__: pos$51,
+                    [nix.POS]: pos$51,
                     freeformType: nix.thunk(() => nix.sel(iniFmt, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$50,
+                      [nix.POS]: pos$50,
                       app: nix.thunk(() => ({
-                        __proto__: pos$19,
+                        [nix.POS]: pos$19,
                         debug: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$18,
+                            [nix.POS]: pos$18,
                             type: nix.thunk(() => nix.sel(types, "bool")),
                             default: false,
                             description: nix.thunk(() => nix.str`Set to "true" to install pprof debug handlers. Access will only be possible from IPs allowed through
@@ -253,24 +253,24 @@ See "https://golang.org/pkg/net/http/pprof/" for further information.
                           })))),
                       })),
                       clients: nix.thunk(() => nix.app(mkSecretOptions, nix.thunk(() => ({
-                          __proto__: pos$20,
+                          [nix.POS]: pos$20,
                           name: "internalsecret",
                           path: "clients",
                           description: "Shared secret for connections from internal clients.\nThis must be the same value as configured in the respective internal services.\n",
                         })))),
                       sessions: nix.thunk(() => nix.app(mkManySecretOptions, nix.thunk(() => ({
-                          __proto__: pos$22,
+                          [nix.POS]: pos$22,
                           options: nix.thunk(() => ({
-                            __proto__: pos$21,
+                            [nix.POS]: pos$21,
                             hashkey: "Secret value used to generate the checksums of sessions.\nThis should be a random string of 32 or 64 bytes.\nGenerate one using `openssl rand -hex 32`\n",
                             blockkey: "Key for encrypting data in the sessions. Must be either 16, 24, or 32 bytes.\nGenerate one using `openssl rand -hex 16`\n",
                           })),
                           path: "sessions",
                         })))),
                       http: nix.thunk(() => ({
-                        __proto__: pos$24,
+                        [nix.POS]: pos$24,
                         listen: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$23,
+                            [nix.POS]: pos$23,
                             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                             default: null,
                             example: "127.0.0.1:8080",
@@ -278,9 +278,9 @@ See "https://golang.org/pkg/net/http/pprof/" for further information.
                           })))),
                       })),
                       https: nix.thunk(() => ({
-                        __proto__: pos$28,
+                        [nix.POS]: pos$28,
                         listen: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$25,
+                            [nix.POS]: pos$25,
                             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                             default: null,
                             example: "127.0.0.1:8443",
@@ -291,7 +291,7 @@ If set to \`null\`, will not spawn a HTTPS listener at all.
 `),
                           })))),
                         certificate: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$26,
+                            [nix.POS]: pos$26,
                             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                             default: null,
                             example: "/etc/nginx/ssl/server.crt",
@@ -300,7 +300,7 @@ is not \`null\`.
 `),
                           })))),
                         key: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$27,
+                            [nix.POS]: pos$27,
                             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                             default: null,
                             example: "/etc/nginx/ssl/server.key",
@@ -310,36 +310,36 @@ is not \`null\`.
                           })))),
                       })),
                       backend: nix.thunk(() => ({
-                        __proto__: pos$34,
+                        [nix.POS]: pos$34,
                         backendtype: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$29,
+                            [nix.POS]: pos$29,
                             type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["static", "etcd"]))),
                             default: "static",
                             description: "Type of backend configuration.\nDefaults to \"static\".\n\nPossible values:\n- static: A comma-separated list of backends is given in the \"backends\" option (derived from\n  `config.services.nextcloud-spreed-signaling.backends`)\n- etcd: Backends are retrieved from an etcd cluster.\n",
                           })))),
                         backends: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$30,
+                            [nix.POS]: pos$30,
                             type: nix.thunk(() => nix.sel(types, "str")),
                             internal: true,
                             readOnly: true,
                             default: nix.thunk(() => nix.builtins.concatStringsSep(", ", nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.sel(cfg, "backends")))))),
                           })))),
                         allowall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$31,
+                            [nix.POS]: pos$31,
                             type: nix.thunk(() => nix.sel(types, "bool")),
                             default: false,
                             example: true,
                             description: "Allow any hostname as backend endpoint. This is insecure and not advised.",
                           })))),
                         timeout: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$32,
+                            [nix.POS]: pos$32,
                             type: nix.thunk(() => nix.sel(types, "ints", "positive")),
                             default: 10n,
                             example: 30n,
                             description: "Timeout in seconds for requests to the backend",
                           })))),
                         connectionsperhost: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$33,
+                            [nix.POS]: pos$33,
                             type: nix.thunk(() => nix.sel(types, "ints", "positive")),
                             default: 8n,
                             example: 12n,
@@ -347,9 +347,9 @@ is not \`null\`.
                           })))),
                       })),
                       nats: nix.thunk(() => ({
-                        __proto__: pos$36,
+                        [nix.POS]: pos$36,
                         url: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$35,
+                            [nix.POS]: pos$35,
                             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                             default: nix.thunk(() => ["nats://loopback"]),
                             example: nix.thunk(() => ["nats://localhost:4222"]),
@@ -358,9 +358,9 @@ is not \`null\`.
                           })))),
                       })),
                       mcu: nix.thunk(() => ({
-                        __proto__: pos$38,
+                        [nix.POS]: pos$38,
                         type: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$37,
+                            [nix.POS]: pos$37,
                             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["janus", "proxy"]))))),
                             default: null,
                             example: "janus",
@@ -368,9 +368,9 @@ is not \`null\`.
                           })))),
                       })),
                       turn: nix.thunk(() => nix.update({
-                        __proto__: pos$40,
+                        [nix.POS]: pos$40,
                         servers: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$39,
+                            [nix.POS]: pos$39,
                             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                             default: [],
                             example: nix.thunk(() => ["turn:1.2.3.4:9991?transport=udp"]),
@@ -378,9 +378,9 @@ is not \`null\`.
                             apply: (v) => (nix.asBool(nix.eq(v, [])) ? null : nix.builtins.concatStringsSep(",", v)),
                           })))),
                       }, nix.app(mkManySecretOptions, nix.thunk(() => ({
-                          __proto__: pos$42,
+                          [nix.POS]: pos$42,
                           options: nix.thunk(() => ({
-                            __proto__: pos$41,
+                            [nix.POS]: pos$41,
                             apikey: "API key that the MCU will need to send when requesting TURN credentials.\n",
                             secret: "The shared secret to use for generating TURN credentials. This must be the same as on the TURN server.\n",
                           })),
@@ -388,9 +388,9 @@ is not \`null\`.
                           nullable: true,
                         }))))),
                       etcd: nix.thunk(() => ({
-                        __proto__: pos$44,
+                        [nix.POS]: pos$44,
                         endpoints: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$43,
+                            [nix.POS]: pos$43,
                             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                             default: [],
                             example: nix.thunk(() => ["127.0.0.1:2379"]),
@@ -399,9 +399,9 @@ is not \`null\`.
                           })))),
                       })),
                       stats: nix.thunk(() => ({
-                        __proto__: pos$46,
+                        [nix.POS]: pos$46,
                         allowed_ips: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$45,
+                            [nix.POS]: pos$45,
                             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))))),
                             default: null,
                             example: nix.thunk(() => ["127.0.0.1"]),
@@ -410,16 +410,16 @@ is not \`null\`.
                           })))),
                       })),
                       grpc: nix.thunk(() => ({
-                        __proto__: pos$49,
+                        [nix.POS]: pos$49,
                         listen: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$47,
+                            [nix.POS]: pos$47,
                             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                             default: null,
                             example: "127.0.0.1:9090",
                             description: "IP and port to listen on for GRPC requests. Leave `null` to disable the listener.",
                           })))),
                         targets: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$48,
+                            [nix.POS]: pos$48,
                             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                             default: [],
                             example: nix.thunk(() => ["192.168.0.1:9090"]),
@@ -437,20 +437,20 @@ is not \`null\`.
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$70,
+            [nix.POS]: pos$70,
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$56,
+                [nix.POS]: pos$56,
                 assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, "settings", "https", "listen"), null)) || nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "settings", "https", "certificate"), null)) && nix.asBool(!nix.eq(nix.sel(cfg, "settings", "https", "key"), null)))))),
                 message: "When enabling `services.nextcloud-spreed-signaling.settings.https.listen`, you must specify certificate &\nprivate key files.\n",
               })),
               nix.thunk(() => ({
-                __proto__: pos$57,
+                [nix.POS]: pos$57,
                 assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, "settings", "turn", "servers"), null)) || nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "settings", "turn", "apikeyFile"), null)) && nix.asBool(!nix.eq(nix.sel(cfg, "settings", "turn", "secretFile"), null)))))),
                 message: "When enabling `services.nextcloud-spreed-signaling.settings.turn.servers`, api & secret keys must be\nconfigured.\n",
               })),
               nix.thunk(() => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 assertion: nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "lists", "any"), (v) => nix.builtins.elem(v, illegalBackendNames), nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.sel(cfg, "backends"))))))),
                 message: nix.thunk(() => nix.str`Backends defined in \`services.nextcloud-spreed-signaling.backends\` may not have any of the following names:
 
@@ -458,24 +458,24 @@ ${nix.builtins.concatStringsSep("\n", nix.thunk(() => nix.builtins.map((e) => ni
 `),
               })),
               nix.thunk(() => ({
-                __proto__: pos$59,
+                [nix.POS]: pos$59,
                 assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "configureNginx")) || nix.asBool(!nix.eq(nix.sel(cfg, "settings", "http", "listen"), null)))),
                 message: "You must specify a listening address & port in `services.nextcloud-spreed-signaling.settings.http.listen` when choosing to configure nginx.\n",
               })),
               nix.thunk(() => ({
-                __proto__: pos$60,
+                [nix.POS]: pos$60,
                 assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "configureNginx")) || nix.asBool(!nix.eq(nix.sel(cfg, "hostName"), null)))),
                 message: "You must specify a host name in `services.nextcloud-spreed-signaling.hostName` when choosing to configure nginx.\n",
               })),
             ]),
             systemd: nix.thunk(() => ({
-              __proto__: pos$65,
+              [nix.POS]: pos$65,
               services: nix.thunk(() => ({
-                __proto__: pos$63,
+                [nix.POS]: pos$63,
                 "nextcloud-spreed-signaling": nix.thunk(() => (() => {
                   const runConfig = nix.thunk(() => nix.str`${nix.sel(cfg, "stateDir")}/server.conf`);
                   return {
-                    __proto__: pos$62,
+                    [nix.POS]: pos$62,
                     description: "Spreed standalone signaling server",
                     after: nix.thunk(() => ["network-online.target"]),
                     wants: nix.thunk(() => ["network-online.target"]),
@@ -498,7 +498,7 @@ chmod u-w '${runConfig}'
 `;
                     })()),
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$61,
+                      [nix.POS]: pos$61,
                       Type: "simple",
                       User: nix.thunk(() => nix.sel(cfg, "user")),
                       Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -536,44 +536,44 @@ chmod u-w '${runConfig}'
                 })()),
               })),
               tmpfiles: nix.thunk(() => ({
-                __proto__: pos$64,
+                [nix.POS]: pos$64,
                 rules: nix.thunk(() => [
                   nix.thunk(() => nix.str`d '${nix.sel(cfg, "stateDir")}' 0750 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} - -`),
                 ]),
               })),
             })),
             users: nix.thunk(() => ({
-              __proto__: pos$69,
+              [nix.POS]: pos$69,
               users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "nextcloud-spreed-signaling")), nix.thunk(() => ({
-                  __proto__: pos$67,
+                  [nix.POS]: pos$67,
                   "nextcloud-spreed-signaling": nix.thunk(() => ({
-                    __proto__: pos$66,
+                    [nix.POS]: pos$66,
                     group: nix.thunk(() => nix.attr(cfg, "group")),
                     isSystemUser: true,
                   })),
                 })))),
-              groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "nextcloud-spreed-signaling")), nix.thunk(() => ({ __proto__: pos$68, "nextcloud-spreed-signaling": nix.thunk(() => ({})) })))),
+              groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "nextcloud-spreed-signaling")), nix.thunk(() => ({ [nix.POS]: pos$68, "nextcloud-spreed-signaling": nix.thunk(() => ({})) })))),
             })),
           })),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "configureNginx")), nix.thunk(() => ({
-              __proto__: pos$77,
+              [nix.POS]: pos$77,
               services: nix.thunk(() => ({
-                __proto__: pos$76,
+                [nix.POS]: pos$76,
                 nginx: nix.thunk(() => ({
-                  __proto__: pos$75,
+                  [nix.POS]: pos$75,
                   enable: true,
                   virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                     [nix.str`${nix.sel(cfg, "hostName")}`, nix.thunk(() => ({
-                      __proto__: pos$74,
+                      [nix.POS]: pos$74,
                       locations: nix.thunk(() => ({
-                        __proto__: pos$73,
+                        [nix.POS]: pos$73,
                         "/": nix.thunk(() => ({
-                          __proto__: pos$71,
+                          [nix.POS]: pos$71,
                           recommendedProxySettings: true,
                           proxyPass: nix.thunk(() => nix.str`http://${nix.sel(cfg, "settings", "http", "listen")}`),
                         })),
                         "/spreed": nix.thunk(() => ({
-                          __proto__: pos$72,
+                          [nix.POS]: pos$72,
                           recommendedProxySettings: true,
                           proxyWebsockets: true,
                           proxyPass: nix.thunk(() => nix.str`http://${nix.sel(cfg, "settings", "http", "listen")}/spreed`),
@@ -586,7 +586,7 @@ chmod u-w '${runConfig}'
             })))),
         ]))))),
     meta: nix.thunk(() => ({
-      __proto__: pos$78,
+      [nix.POS]: pos$78,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "naxdy"))]),
       doc: nix.path(here, "./nextcloud-spreed-signaling.md"),
     })),

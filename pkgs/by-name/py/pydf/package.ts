@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "12";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "7f47a7c3abfceb1ac04fc009ded538df1ae449c31203962a1471a4eb3bf21439",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       })());
       const postInstall = "mkdir -p $out/share/man/man1 $out/share/pydf\ninstall -t $out/share/pydf -m 444 pydfrc\ninstall -t $out/share/man/man1 -m 444 pydf.1\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Colourised df(1)-clone",
         homepage: "http://kassiopeia.juls.savba.sk/~garabik/software/pydf/",
         mainProgram: "pydf",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

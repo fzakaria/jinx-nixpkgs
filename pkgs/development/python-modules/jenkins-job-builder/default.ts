@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const pytest_mock = nix.arg($, "pytest-mock");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "jenkins-job-builder",
       version: "6.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "jenkins_job_builder",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-9E3tWR9olpAZrloh/dxsIztz2PJJfRJrPUzMvpuLFJ0=",
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [pbr, python_jenkins, pyyaml, six, stevedore, fasteners, jinja2]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, testtools, pytest_mock]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, jenkins: nix.thunk(() => nix.attr(nixosTests, "jenkins")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, jenkins: nix.thunk(() => nix.attr(nixosTests, "jenkins")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Jenkins Job Builder is a system for configuring Jenkins jobs using simple YAML files stored in Git",
         mainProgram: "jenkins-jobs",
         homepage: "https://jenkins-job-builder.readthedocs.io/en/latest/",

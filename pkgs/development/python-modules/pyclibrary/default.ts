@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pyparsing = nix.arg($, "pyparsing");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pyclibrary",
       version: "0.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MatthieuDartiailh",
           repo: "pyclibrary",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["pyclibrary"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C parser and ctypes automation for python",
         homepage: "https://github.com/MatthieuDartiailh/pyclibrary",
         changelog: nix.thunk(() => nix.str`https://github.com/MatthieuDartiailh/pyclibrary/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES`),

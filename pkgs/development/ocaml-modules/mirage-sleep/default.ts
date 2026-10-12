@@ -16,17 +16,17 @@ export default nix.lambda((args) => (() => {
   const duration = nix.arg($, "duration");
   const version = nix.argOr($, "version", () => "4.1.0");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: version,
       pname: "mirage-sleep",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/mirage-sleep/releases/download/v${version}/mirage-sleep-${version}.tbz`),
           hash: "sha256-CoHl4LgGbADtDvWb3q0u8aMh2jHT9Gvt47vk0Pzp2bs=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [duration, lwt]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Sleep operations for MirageOS",
         homepage: "https://github.com/mirage/mirage-sleep",
         changelog: nix.thunk(() => nix.str`https://raw.githubusercontent.com/mirage/mirage-sleep/refs/tags/v${version}/CHANGES.md`),

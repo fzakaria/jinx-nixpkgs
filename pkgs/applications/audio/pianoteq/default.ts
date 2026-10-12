@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
     const src = nix.arg($_1, "src");
     const version = nix.arg($_1, "version");
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         src: src,
         version: version,
         pname: nix.thunk(() => nix.str`pianoteq-${name}`),
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
         ]),
         desktopItems: nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               name: nix.thunk(() => nix.sel(finalAttrs, "pname")),
               exec: nix.thunk(() => nix.str`"${mainProgram}"`),
               desktopName: mainProgram,
@@ -101,7 +101,7 @@ done
 runHook postInstall
 `),
         meta: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           homepage: "https://www.modartt.com/pianoteq",
           description: "Software synthesizer that features real-time MIDI-control of digital physically modeled pianos and related instruments",
           license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -125,7 +125,7 @@ runHook postInstall
     const script = nix.arg($_1, "script");
     const impureEnvVars = nix.argOr($_1, "impureEnvVars", () => []);
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         name: name,
         builder: nix.thunk(() => nix.app(writeShellScript, "builder.sh", nix.thunk(() => nix.str`curlVersion=$(${curl}/bin/curl -V | head -1 | cut -d' ' -f2)
 
@@ -159,7 +159,7 @@ ${script}
     const name = nix.arg($_1, "name");
     const hash = nix.arg($_1, "hash");
     return nix.app(fetchWithCurlScript, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         name: name,
         hash: hash,
         script: nix.thunk(() => nix.str`html=$(
@@ -196,7 +196,7 @@ fi
     const name = nix.arg($_1, "name");
     const hash = nix.arg($_1, "hash");
     return nix.app(fetchWithCurlScript, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         name: name,
         hash: hash,
         impureEnvVars: nix.thunk(() => ["NIX_MODARTT_USERNAME", "NIX_MODARTT_PASSWORD"]),
@@ -240,91 +240,91 @@ url=$(echo $json | ${jq}/bin/jq -r .url)
   const version8 = "8.4.3";
   const version9 = "9.2.1";
   const mkStandard = (version) => (hash) => nix.app(mkPianoteq, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       name: "standard",
       mainProgram: nix.thunk(() => nix.str`Pianoteq ${nix.app(nix.sel(lib, "versions", "major"), version)}`),
       startupWMClass: "Pianoteq",
       version: version,
       src: nix.thunk(() => nix.app(fetchPianoteqWithLogin, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           name: nix.thunk(() => nix.str`pianoteq_linux_v${nix.app(versionForFile, version)}.7z`),
           hash: hash,
         })))),
     })));
   const mkStage = (version) => (hash) => nix.app(mkPianoteq, nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       name: "stage",
       mainProgram: nix.thunk(() => nix.str`Pianoteq ${nix.app(nix.sel(lib, "versions", "major"), version)} STAGE`),
       startupWMClass: "Pianoteq STAGE",
       version: version,
       src: nix.thunk(() => nix.app(fetchPianoteqWithLogin, nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           name: nix.thunk(() => nix.str`pianoteq_stage_linux_v${nix.app(versionForFile, version)}.7z`),
           hash: hash,
         })))),
     })));
   const mkStandardTrial = (version) => (hash) => nix.app(mkPianoteq, nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       name: "standard-trial",
       mainProgram: nix.thunk(() => nix.str`Pianoteq ${nix.app(nix.sel(lib, "versions", "major"), version)}`),
       startupWMClass: "Pianoteq Trial",
       version: version,
       src: nix.thunk(() => nix.app(fetchPianoteqTrial, nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           name: nix.thunk(() => nix.str`pianoteq_linux_trial_v${nix.app(versionForFile, version)}.7z`),
           hash: hash,
         })))),
     })));
   const mkStageTrial = (version) => (hash) => nix.app(mkPianoteq, nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       name: "stage-trial",
       mainProgram: nix.thunk(() => nix.str`Pianoteq ${nix.app(nix.sel(lib, "versions", "major"), version)} STAGE`),
       startupWMClass: "Pianoteq STAGE Trial",
       version: version,
       src: nix.thunk(() => nix.app(fetchPianoteqTrial, nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           name: nix.thunk(() => nix.str`pianoteq_stage_linux_trial_v${nix.app(versionForFile, version)}.7z`),
           hash: hash,
         })))),
     })));
   const mkTrial9 = (hash) => nix.app(mkPianoteq, nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       name: "trial",
       version: version9,
       mainProgram: "Pianoteq 9",
       startupWMClass: "Pianoteq Trial",
       src: nix.thunk(() => nix.app(fetchPianoteqTrial, nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           name: nix.thunk(() => nix.str`pianoteq_trial_v${nix.app(versionForFile, version9)}.tar.xz`),
           hash: hash,
         })))),
     })));
   const mkStage9 = (hash) => nix.app(mkPianoteq, nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       name: "stage",
       version: version9,
       mainProgram: "Pianoteq 9 STAGE",
       startupWMClass: "Pianoteq STAGE",
       src: nix.thunk(() => nix.app(fetchPianoteqWithLogin, nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           name: nix.thunk(() => nix.str`pianoteq_setup_v${nix.app(versionForFile, version9)}.tar.xz`),
           hash: hash,
         })))),
     })));
   const mkStandard9 = (hash) => nix.app(mkPianoteq, nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       name: "standard",
       mainProgram: "Pianoteq 9",
       startupWMClass: "Pianoteq",
       version: version9,
       src: nix.thunk(() => nix.app(fetchPianoteqWithLogin, nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           name: nix.thunk(() => nix.str`pianoteq_setup_v${nix.app(versionForFile, version9)}.tar.xz`),
           hash: hash,
         })))),
     })));
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     standard_9: nix.thunk(() => nix.app(mkStandard9, "sha256-iIKYmXy7d5mGkONUqR91Qjo7IIGJE9eBN4pCr0+D7no=")),
     trial_9: nix.thunk(() => nix.app(mkTrial9, "sha256-QQMLYvn7KW7u4JYeNCqxE+7Yn36bR+bTA2bP2IcQGZg=")),
     stage_9: nix.thunk(() => nix.app(mkStage9, "sha256-iIKYmXy7d5mGkONUqR91Qjo7IIGJE9eBN4pCr0+D7no=")),

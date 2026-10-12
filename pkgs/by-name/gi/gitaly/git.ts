@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const data = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./git-data.json")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: nix.thunk(() => nix.attr(data, "version")),
       pname: "gitaly-git",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gitlab-org",
           repo: "git",
           rev: nix.thunk(() => nix.attr(data, "rev")),
@@ -53,7 +53,7 @@ git config --global --add safe.directory '*'
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\nHOME=/build PAGER=cat $out/bin/git config -l\nfile $out/bin/git | grep -qv 'too large section header'\n\nrunHook postInstallCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://git-scm.com/",
         description: "Distributed version control system - with Gitaly patches",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

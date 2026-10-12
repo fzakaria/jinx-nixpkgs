@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const undmg = nix.arg($, "undmg");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gamemac",
       version: "0.8.328",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`GameHub_en_${nix.sel(finalAttrs, "version")}.dmg`),
           url: "https://gamehub-cdn.masnet.cn/uploads/upgrade/20260618/b616a96780c249a789d95f7b897333cb.dmg",
           hash: "sha256-uo/kr9PAFREfbkXX9hpJJNT6OZDv3jnOuZgc2fwtSyM=",
@@ -30,9 +30,9 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [undmg, makeWrapper]),
       sourceRoot: ".",
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications\" \"$out/bin\"\nmv GameHub.app \"$out/Applications/\"\nmakeWrapper \"$out/Applications/GameHub.app/Contents/MacOS/GameHub\" \"$out/bin/GameHub\"\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Play mobile games natively on macOS",
         homepage: "https://www.gamemac.com/en/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

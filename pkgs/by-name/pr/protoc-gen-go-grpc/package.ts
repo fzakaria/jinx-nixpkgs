@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const testers = nix.arg($, "testers");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "protoc-gen-go-grpc",
       version: "1.6.2",
       modRoot: "cmd/protoc-gen-go-grpc",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "grpc",
           repo: "grpc-go",
           rev: nix.thunk(() => nix.str`cmd/protoc-gen-go-grpc/v${nix.sel(finalAttrs, "version")}`),
@@ -31,18 +31,18 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-lBOgdAE2FT5ZQxfG/ugqxtH5RB3946VJYjm+VUT1AEI=",
       ldflags: nix.thunk(() => ["-s", "-w"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         updateScript: nix.path(here, "./update.py"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Go language implementation of gRPC. HTTP/2 based RPC",
         homepage: "https://grpc.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -25,20 +25,20 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "uuu",
       version: "1.5.243",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nxp-imx",
           repo: "mfgtools",
           rev: nix.thunk(() => nix.str`uuu_${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-+m3r/QxOnTjemqIaZ/2cxDHtHlw7qxu9PbTsQYyMaEY=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex", "uuu_([0-9.]+)"]),
           })))),
       })),
@@ -54,7 +54,7 @@ cat <($out/bin/uuu -udev) > $out/lib/udev/rules.d/70-uuu.rules
 `),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Freescale/NXP I.MX Chip image deploy tools",
         homepage: "https://github.com/nxp-imx/mfgtools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

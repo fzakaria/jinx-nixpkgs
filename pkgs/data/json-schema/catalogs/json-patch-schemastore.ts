@@ -15,16 +15,16 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const newCatalog = nix.arg($, "newCatalog");
   return nix.app(newCatalog, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: "json-patch-schemastore",
       displayName: "JSON Patch as maintained by the https://www.schemastore.org community",
       version: "2024-11-26",
       groups: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "JSON Patch": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "https://json.schemastore.org/json-patch.json": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               name: "json-patch-schema",
               url: "https://github.com/schemastore/schemastore/raw/138439cd4f9d7bf57d6747b674ce5bbcffbfafdc/src/schemas/json/json-patch.json",
               hash: "sha256-vrqlgvlU61aEO6jd1SLLEqJDZG1k+eTBozcyPmhUp2U=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       })),
       extraDescription: "A JSON Patch is a sequence of editing and checking operations to perform against another JSON document.\nIt is specified in IETF RFC 6902: https://datatracker.ietf.org/doc/html/rfc6902/\n\nThe schema is maintained by the community at https://www.schemastore.org, which is a collection of JSON Schemas for various purposes.\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "roberth"))];

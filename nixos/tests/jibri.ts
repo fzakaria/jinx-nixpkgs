@@ -30,55 +30,55 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     name: "jibri",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.sel(pkgs, "lib", "teams", "jitsi", "members")),
     })),
-    node: nix.thunk(() => ({ __proto__: pos$2, pkgsReadOnly: false })),
+    node: nix.thunk(() => ({ [nix.POS]: pos$2, pkgsReadOnly: false })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          __proto__: pos$19,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$3, memorySize: 5120n })),
+          [nix.POS]: pos$19,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$3, memorySize: 5120n })),
           nixpkgs: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             config: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               permittedInsecurePackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "jitsi-meet", "name"))]),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             "jitsi-meet": nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               enable: true,
               hostName: "machine",
-              jibri: nix.thunk(() => ({ __proto__: pos$6, enable: true })),
+              jibri: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
             })),
-            jibri: nix.thunk(() => ({ __proto__: pos$8, ignoreCert: true })),
-            "jitsi-videobridge": nix.thunk(() => ({ __proto__: pos$9, openFirewall: true })),
+            jibri: nix.thunk(() => ({ [nix.POS]: pos$8, ignoreCert: true })),
+            "jitsi-videobridge": nix.thunk(() => ({ [nix.POS]: pos$9, openFirewall: true })),
             nginx: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               virtualHosts: nix.thunk(() => ({
-                __proto__: pos$11,
-                machine: nix.thunk(() => ({ __proto__: pos$10, enableACME: true, forceSSL: true })),
+                [nix.POS]: pos$11,
+                machine: nix.thunk(() => ({ [nix.POS]: pos$10, enableACME: true, forceSSL: true })),
               })),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$15,
-            firewall: nix.thunk(() => ({ __proto__: pos$14, allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
+            [nix.POS]: pos$15,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$14, allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
           })),
           security: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             acme: nix.thunk(() => ({
-              __proto__: pos$17,
-              defaults: nix.thunk(() => ({ __proto__: pos$16, email: "me@example.org", server: "https://example.com" })),
+              [nix.POS]: pos$17,
+              defaults: nix.thunk(() => ({ [nix.POS]: pos$16, email: "me@example.org", server: "https://example.com" })),
               acceptTerms: true,
             })),
           })),

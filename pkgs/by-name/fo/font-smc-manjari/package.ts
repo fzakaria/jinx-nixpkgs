@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "font-smc-manjari",
       version: "20241013",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://smc.org.in/downloads/fonts/manjari/manjari.zip",
           hash: "sha256-Sq/7UOBO54c3id6FMZeOmnZTRceEkMAAN8W+C7v7Mtw=",
           stripRoot: false,
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nfind . -name \"*.otf\" -exec install -Dm644 {} -t \"$out/share/fonts/opentype\" \\;\nfind . -name \"*.ttf\" -exec install -Dm644 {} -t \"$out/share/fonts/truetype\" \\;\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "This is a multipurpose font suitable for body and titles. This font is available in regular, bold, thin style variants. The glyph shapes follow a spiral theme, true to the beautiful curves of Malayalam. The font has comprehensive glyph set including all widely used ligatures. Designed by Santhosh Thottingal. Maintained by SMC",
         homepage: "https://smc.org.in/fonts/manjari",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

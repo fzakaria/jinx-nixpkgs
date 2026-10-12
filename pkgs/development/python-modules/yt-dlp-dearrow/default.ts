@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "yt-dlp-dearrow",
       version: "2023.01.01-unstable-2024-01-13",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "QuantumWarpCode",
           repo: "yt-dlp-dearrow",
           rev: "2e46eca7b2242d8c9765bf2d12f92270b694be64",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["yt_dlp_plugins"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Post-processor plugin to use DeArrow video titles in YT-DLP",
         homepage: "https://github.com/QuantumWarpCode/yt-dlp-dearrow",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

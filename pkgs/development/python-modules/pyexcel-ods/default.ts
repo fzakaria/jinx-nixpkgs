@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pyexcel",
           repo: "pyexcel-ods",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "nose-to-pytest.patch",
             url: "https://github.com/pyexcel/pyexcel-ods/compare/661d4f0b484ed281128c72e1a2701e2d33fc1879...838b410e800a86c147644568aaa8b2c005d13491.diff?full_index=1",
             hash: "sha256-voBdAjSJIsLEn7Tr44aagJy1FU9vWnBs1bM48zYxujA=",
@@ -45,14 +45,14 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [pyexcel_io, odfpy]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_cov_stub, pyexcel, pyexcel_xls, psutil]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Plug-in to pyexcel providing the capbility to read, manipulate and write data in ods formats using odfpy",
         homepage: "http://docs.pyexcel.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

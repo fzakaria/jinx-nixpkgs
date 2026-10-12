@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const useSystemJemalloc = nix.argOr($, "useSystemJemalloc", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "valkey",
       version: "9.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "valkey-io",
           repo: "valkey",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -52,24 +52,24 @@ export default nix.lambda((args) => (() => {
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), withSystemd, nix.thunk(() => ["USE_SYSTEMD=yes"])), nix.app(nix.sel(lib, "optionals"), tlsSupport, nix.thunk(() => ["BUILD_TLS=yes"])))))),
       enableParallelBuilding: true,
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ["-std=c11"]))))),
       })),
       doCheck: false,
       nativeCheckInputs: nix.thunk(() => nix.concat([which, tcl, ps], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), nix.thunk(() => [getconf])))),
       checkPhase: "runHook preCheck\n\n# disable test \"Connect multiple replicas at the same time\": even\n# upstream find this test too timing-sensitive\nsubstituteInPlace tests/integration/replication.tcl \\\n  --replace-fail 'foreach mdl {no yes} dualchannel {no yes}' 'foreach mdl {} dualchannel {}'\n\nsubstituteInPlace tests/support/server.tcl \\\n  --replace-fail 'exec /usr/bin/env' 'exec env'\n\nsed -i '/^proc wait_load_handlers_disconnected/{n ; s/wait_for_condition 50 100/wait_for_condition 50 500/; }' \\\n  tests/support/util.tcl\n\nCLIENTS=\"$NIX_BUILD_CORES\"\nif (( $CLIENTS > 4)); then\n  CLIENTS=4\nfi\n\n# Skip some more flaky tests.\n# Skip test requiring custom jemalloc (unit/memefficiency, unit/type/string).\n./runtest \\\n  --no-latency \\\n  --timeout 2000 \\\n  --clients \"$CLIENTS\" \\\n  --tags -leaks \\\n  --skipunit unit/memefficiency \\\n  --skipunit unit/type/string \\\n  --skipunit integration/failover \\\n  --skipunit integration/aof-multi-part \\\n  --skipunit integration/dual-channel-replication\n\nrunHook postCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           valkey: nix.thunk(() => nix.sel(nixosTests, "valkey")),
-          unitTests: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$3, doCheck: true })))),
+          unitTests: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$3, doCheck: true })))),
           "valkey-python": nix.thunk(() => nix.sel(python3Packages, "valkey")),
         })),
         serverBin: "valkey-server",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://valkey.io/",
         description: "High-performance data structure server that primarily serves key/value workloads",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

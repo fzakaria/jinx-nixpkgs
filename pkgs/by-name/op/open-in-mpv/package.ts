@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "open-in-mpv",
       version: "2.4.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Baldomo",
           repo: "open-in-mpv",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       ldflags: nix.thunk(() => ["-s", "-w"]),
       postInstall: "install -Dm444 -t $out/share/applications scripts/open-in-mpv.desktop\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple web extension to open videos in mpv",
         longDescription: "To function the browser extension must be installed and open-in-mpv must be set as the default scheme-handler for mpv:// eg.:\n  xdg-mime default open-in-mpv.desktop x-scheme-handler/mpv\n\nhttps://addons.mozilla.org/en-US/firefox/addon/iina-open-in-mpv/\nhttps://chrome.google.com/webstore/detail/open-in-mpv/ggijpepdpiehgbiknmfpfbhcalffjlbj\n",
         homepage: "https://github.com/Baldomo/open-in-mpv",

@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const websockets = nix.arg($, "websockets");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "firecrawl-py",
       version: "4.38.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mendableai",
           repo: "firecrawl",
           tag: "v2.11.226",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["firecrawl"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Turn entire websites into LLM-ready markdown or structured data. Scrape, crawl and extract with a single API",
         homepage: "https://firecrawl.dev",
         changelog: nix.thunk(() => nix.str`https://github.com/mendableai/firecrawl/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

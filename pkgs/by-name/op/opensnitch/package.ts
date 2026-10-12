@@ -34,21 +34,21 @@ export default nix.lambda((args) => (() => {
   const protoc_gen_go_grpc$ = nix.thunk(() => nix.app(nix.sel(protoc_gen_go_grpc, "overrideAttrs"), (oldAttrs) => (() => {
       const version = "1.3.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "grpc",
           repo: "grpc-go",
           rev: nix.thunk(() => nix.str`cmd/protoc-gen-go-grpc/v${version}`),
           hash: "sha256-Zy0k5X/KFzCao9xAGt5DNb0MMGEyqmEsDj+uvXI4xH4=",
         }))));
       const vendorHash = "sha256-y+/hjYUTFZuq55YAZ5M4T1cwIR+XFQBmWVE+Cg1Y7PI=";
-      return { __proto__: pos$2, version, src, vendorHash };
+      return { [nix.POS]: pos$2, version, src, vendorHash };
     })()));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "opensnitch",
       version: "1.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "evilsocket",
           repo: "opensnitch",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -70,20 +70,20 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [iptables]))}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           opensnitch: nix.thunk(() => nix.attr(nixosTests, "opensnitch")),
           "opensnitch-ui": opensnitch_ui,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$4, package: opensnitch, command: "opensnitchd -version" })))),
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$4, package: opensnitch, command: "opensnitchd -version" })))),
         })),
         updater: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             extraArgs: nix.thunk(() => ["--version-regex", "^v([0-9.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Application firewall",
         mainProgram: "opensnitchd",
         homepage: "https://github.com/evilsocket/opensnitch/wiki",

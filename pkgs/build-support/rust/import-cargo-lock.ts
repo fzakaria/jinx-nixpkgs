@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
     const type = nix.thunk(() => nix.app(elemAt, parts, 2n));
     const value = nix.thunk(() => nix.app(elemAt, parts, 3n));
     return (nix.asBool(nix.eq(parts, null)) ? null : nix.attrsDyn({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.app(head, parts)),
       sha: nix.thunk(() => nix.app(elemAt, parts, 4n)),
     }, [
@@ -62,13 +62,13 @@ export default nix.lambda((args) => (() => {
   const nameGitSha = (pkg) => (() => {
     const gitParts = nix.thunk(() => nix.app(parseGit, nix.thunk(() => nix.sel(pkg, "source"))));
     return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: nix.thunk(() => nix.str`${nix.sel(pkg, "name")}-${nix.sel(pkg, "version")}`),
       value: nix.thunk(() => nix.sel(gitParts, "sha")),
     };
   })();
   const replaceWorkspaceValues = nix.thunk(() => nix.app(nix.sel(writers, "writePython3"), "replace-workspace-values", nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       libraries: nix.thunk(() => (() => {
         const w = nix.withScope(python3Packages, null);
         return [
@@ -97,21 +97,21 @@ export default nix.lambda((args) => (() => {
     const gitShaOutputHash = nix.thunk(() => nix.app(mapAttrs$, (nameVer) => (hash) => (() => {
         const unusedHash = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`A hash was specified for ${nameVer}, but there is no corresponding git dependency.`)));
         const rev = nix.thunk(() => nix.selOr(namesGitShas, () => nix.force(unusedHash), nix.key(nix.force(nameVer))));
-        return { __proto__: pos$4, name: rev, value: hash };
+        return { [nix.POS]: pos$4, name: rev, value: hash };
       })(), outputHashes));
     const fetchCrate = (pkg) => (downloadUrl) => (() => {
       const checksum = nix.thunk(() => nix.selOr(pkg, () => nix.sel(parsedLockFile, "metadata", nix.key(nix.str`checksum ${nix.sel(pkg, "name")} ${nix.sel(pkg, "version")} (${nix.sel(pkg, "source")})`)), "checksum"));
       nix.assert_((nix.asBool(!nix.eq(checksum, null)) || nix.asBool(nix.builtins.throw(nix.thunk(() => nix.str`Package ${nix.sel(pkg, "name")} does not have a checksum.
 `)))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/rust/import-cargo-lock.nix:158:5");
       return nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           name: nix.thunk(() => nix.str`crate-${nix.sel(pkg, "name")}-${nix.sel(pkg, "version")}.tar.gz`),
           url: nix.thunk(() => nix.str`${downloadUrl}/${nix.sel(pkg, "name")}/${nix.sel(pkg, "version")}/download`),
           sha256: checksum,
         })));
     })();
     const registries = nix.thunk(() => nix.update({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       "https://github.com/rust-lang/crates.io-index": "https://static.crates.io/crates",
     }, extraRegistries));
     const mkCrate = (pkg) => (() => {
@@ -137,12 +137,12 @@ If you use \`buildRustPackage\`, you can add this attribute to the \`cargoLock\`
 attribute set.
 `)));
         const tree = nix.thunk(() => (nix.asBool(nix.has(gitShaOutputHash, nix.key(nix.sel(gitParts, "sha")))) ? nix.app(fetchgit, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             url: nix.thunk(() => nix.attr(gitParts, "url")),
             rev: nix.thunk(() => nix.sel(gitParts, "sha")),
             sha256: nix.thunk(() => nix.sel(gitShaOutputHash, nix.key(nix.sel(gitParts, "sha")))),
           }))) : (nix.asBool(allowBuiltinFetchGit) ? nix.builtins.fetchGit(nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             url: nix.thunk(() => nix.attr(gitParts, "url")),
             rev: nix.thunk(() => nix.sel(gitParts, "sha")),
             allRefs: true,
@@ -207,9 +207,9 @@ EOF
 `));
       })() : nix.builtins.throw(nix.thunk(() => nix.str`Cannot handle crate source: ${nix.sel(pkg, "source")}`))));
     })();
-    const vendorDir = nix.thunk(() => nix.app(runCommand, "cargo-vendor-dir", nix.thunk(() => nix.update({ __proto__: pos$9, __structuredAttrs: true }, (nix.asBool(nix.eq(lockFile, null)) ? { __proto__: pos$10, lockFileContents: lockFileContents_1 } : {
-        __proto__: pos$12,
-        passthru: nix.thunk(() => ({ __proto__: pos$11, lockFile: lockFile })),
+    const vendorDir = nix.thunk(() => nix.app(runCommand, "cargo-vendor-dir", nix.thunk(() => nix.update({ [nix.POS]: pos$9, __structuredAttrs: true }, (nix.asBool(nix.eq(lockFile, null)) ? { [nix.POS]: pos$10, lockFileContents: lockFileContents_1 } : {
+        [nix.POS]: pos$12,
+        passthru: nix.thunk(() => ({ [nix.POS]: pos$11, lockFile: lockFile })),
       }))), nix.thunk(() => nix.str`    mkdir -p $out/.cargo
 
     ${(nix.asBool(nix.eq(lockFile, null)) ? "printf \"%s\" \"$lockFileContents\" > \"$out/Cargo.lock\"\n" : nix.str`ln -s ${lockFile} $out/Cargo.lock`)}

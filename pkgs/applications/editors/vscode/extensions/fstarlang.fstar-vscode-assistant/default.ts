@@ -12,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "fstar-vscode-assistant",
         publisher: "FStarLang",
         version: "0.25.4",
         hash: "sha256-9gPM/T3Kbwt40V2ZuzN/OkQVNATsp4AYK9HuOu/Ui+0=",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Interactive editing mode VS Code extension for F*",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=FStarLang.fstar-vscode-assistant",
         homepage: "https://github.com/FStarLang/fstar-vscode-assistant",

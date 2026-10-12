@@ -24,13 +24,13 @@ export default nix.lambda((args) => (() => {
   const gst_all_1 = nix.arg($, "gst_all_1");
   const libdrm = nix.arg($, "libdrm");
   const ipuVersion = nix.argOr($, "ipuVersion", () => "ipu7x");
-  const ipuTarget = nix.thunk(() => nix.sel({ __proto__: pos$1, ipu7x: "ipu_lnl", ipu75xa: "ipu_lnl" }, nix.key(nix.force(ipuVersion))));
+  const ipuTarget = nix.thunk(() => nix.sel({ [nix.POS]: pos$1, ipu7x: "ipu_lnl", ipu75xa: "ipu_lnl" }, nix.key(nix.force(ipuVersion))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: nix.thunk(() => nix.str`${ipuVersion}-camera-hal`),
       version: "20260629_1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "intel",
           repo: "ipu7-camera-hal",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         "-DUSE_STATIC_GRAPH=ON",
         "-DUSE_STATIC_GRAPH_AUTOGEN=ON",
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error" })),
       enableParallelBuilding: true,
       buildInputs: nix.thunk(() => [
         expat,
@@ -69,9 +69,9 @@ cp -r $src/include $out/include/${ipuTarget}/libcamhal
   patchelf --add-rpath "${ipu7_camera_bins}/lib" $lib
 done
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$4, ipuVersion: ipuVersion, ipuTarget: ipuTarget })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, ipuVersion: ipuVersion, ipuTarget: ipuTarget })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "HAL for processing of images in userspace",
         homepage: "https://github.com/intel/ipu7-camera-hal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

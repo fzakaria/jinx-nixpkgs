@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const urllib3 = nix.arg($, "urllib3");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tf-playwright-stealth",
       version: "1.2.2-unstable-2026-06-30",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tinyfish-io",
           repo: "tf-playwright-stealth",
           rev: "01b1b7a436edee4363a5d6f78f626a602550138b",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           description: "Module for using playwright stealthy",
           homepage: "https://github.com/tinyfish-io/tf-playwright-stealth",
           license: nix.thunk(() => nix.sel(nix.lookup(w, "licenses"), "mit")),

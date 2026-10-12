@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const zeroad_unwrapped = nix.arg($, "zeroad-unwrapped");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "0ad-data",
       version: nix.thunk(() => nix.attr(zeroad_unwrapped, "version")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://releases.wildfiregames.com/0ad-${nix.sel(finalAttrs, "version")}-unix-data.tar.xz`),
           hash: "sha256-6ESzCuIQLEfgpP/y8ODvBboM67GJCqcidvoSRXw5Um8=",
         })))),
       installPhase: "mkdir -p $out/share/0ad\ncp -r binaries/data $out/share/0ad/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Free, open-source game of ancient warfare -- data files",
         homepage: "https://play0ad.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-30")),

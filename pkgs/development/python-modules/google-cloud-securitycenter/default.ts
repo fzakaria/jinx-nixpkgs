@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "google-cloud-securitycenter",
       version: "1.47.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "google_cloud_securitycenter",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-TeYcQ7MXsnDfAIP5yWuJ3ODpSYUdva/H4IBiEs7h5Bk=",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         "google.cloud.securitycenter_v1p1beta1",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cloud Security Command Center API API client library",
         homepage: "https://github.com/googleapis/google-cloud-python/tree/main/packages/google-cloud-securitycenter",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/google-cloud-python/blob/google-cloud-securitycenter-v${nix.sel(finalAttrs, "version")}/packages/google-cloud-securitycenter/CHANGELOG.md`),

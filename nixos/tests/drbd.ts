@@ -23,16 +23,16 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const nodes = nix.arg($_1, "nodes");
     return {
-      __proto__: pos$6,
-      virtualisation: nix.thunk(() => ({ __proto__: pos$1, emptyDiskImages: nix.thunk(() => [1n]) })),
+      [nix.POS]: pos$6,
+      virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, emptyDiskImages: nix.thunk(() => [1n]) })),
       networking: nix.thunk(() => ({
-        __proto__: pos$3,
-        firewall: nix.thunk(() => ({ __proto__: pos$2, allowedTCPPorts: nix.thunk(() => [drbdPort]) })),
+        [nix.POS]: pos$3,
+        firewall: nix.thunk(() => ({ [nix.POS]: pos$2, allowedTCPPorts: nix.thunk(() => [drbdPort]) })),
       })),
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         drbd: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: true,
           config: nix.thunk(() => nix.str`global {
   usage-count yes;
@@ -66,12 +66,12 @@ resource r0 {
     };
   })(), formals$2);
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     name: "drbd",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "ryantm")),
           nix.thunk(() => nix.lookup(w, "astro")),
@@ -79,7 +79,7 @@ resource r0 {
         ]),
       };
     })()),
-    nodes: nix.thunk(() => ({ __proto__: pos$8, drbd1: drbdConfig, drbd2: drbdConfig })),
+    nodes: nix.thunk(() => ({ [nix.POS]: pos$8, drbd1: drbdConfig, drbd2: drbdConfig })),
     testScript: "drbd1.start()\ndrbd2.start()\n\ndrbd1.wait_for_unit(\"network.target\")\ndrbd2.wait_for_unit(\"network.target\")\n\ndrbd1.succeed(\n    \"drbdadm create-md r0\",\n    \"drbdadm up r0\",\n    \"drbdadm primary r0 --force\",\n)\n\ndrbd2.succeed(\"drbdadm create-md r0\", \"drbdadm up r0\")\n\ndrbd1.succeed(\n    \"mkfs.ext4 /dev/drbd0\",\n    \"mkdir -p /mnt/drbd\",\n    \"mount /dev/drbd0 /mnt/drbd\",\n    \"touch /mnt/drbd/hello\",\n    \"umount /mnt/drbd\",\n    \"drbdadm secondary r0\",\n)\ndrbd1.sleep(1)\n\ndrbd2.succeed(\n    \"drbdadm primary r0\",\n    \"mkdir -p /mnt/drbd\",\n    \"mount /dev/drbd0 /mnt/drbd\",\n    \"ls /mnt/drbd/hello\",\n)\n",
   };
 })(), formals$1);

@@ -18,19 +18,19 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(buildLua, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "uosc",
       version: "5.13.0",
       scriptPath: "src/uosc",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tomasklaen",
           repo: "uosc",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-5fHihGI2rodEByqTRs3NasmLUBjG3VY9l/YnKDCKSt8=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
         fontDirectories: nix.thunk(() => [nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/share/fonts`)]),
         extraWrapperArgs: nix.thunk(() => [
@@ -41,14 +41,14 @@ export default nix.lambda((args) => (() => {
       })),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       tools: nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: "uosc-bin",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           vendorHash: "sha256-oRXChHeVQj6nXvKOVV125sM8wD33Dxxv0r/S7sl6SxQ=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Feature-rich minimalist proximity-based UI for MPV player",
         homepage: "https://github.com/tomasklaen/uosc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

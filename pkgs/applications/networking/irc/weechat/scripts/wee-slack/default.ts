@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "wee-slack",
       version: "2.11.0-unstable-2026-01-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "wee-slack",
           owner: "wee-slack",
           rev: "08a9cd05d482772e79d879e0b99ddd66a94d979d",
@@ -31,9 +31,9 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./libpath.patch"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             env: nix.thunk(() => nix.str`${nix.app(buildEnv, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 name: "wee-slack-env",
                 paths: nix.thunk(() => (() => {
                   const w = nix.withScope(python3Packages, null);
@@ -44,10 +44,10 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./load_weemoji_path.patch"),
       ]),
       postPatch: "substituteInPlace wee_slack.py --subst-var out\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$4, scripts: nix.thunk(() => ["wee_slack.py"]) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, scripts: nix.thunk(() => ["wee_slack.py"]) })),
       installPhase: "mkdir -p $out/share\ncp wee_slack.py $out/share/wee_slack.py\ninstall -D -m 0444 weemoji.json $out/share/wee-slack/weemoji.json\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/wee-slack/wee-slack",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],

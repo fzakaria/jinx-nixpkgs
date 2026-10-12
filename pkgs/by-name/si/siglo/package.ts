@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "siglo",
       version: "0.9.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "theironrobin",
           repo: "siglo",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       })()),
       preFixup: "buildPythonPath \"$out ${pythonPath[*]}\"\ngappsWrapperArgs+=(--prefix PYTHONPATH : \"$program_PYTHONPATH\")\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GTK app to sync InfiniTime watch with PinePhone",
         mainProgram: "siglo",
         homepage: "https://github.com/theironrobin/siglo",

@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const pytest_django = nix.arg($, "pytest-django");
   const pytz = nix.arg($, "pytz");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "djangorestframework",
       version: "3.17.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "encode",
           repo: "django-rest-framework",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,14 +41,14 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [django]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         complete: nix.thunk(() => [coreapi, coreschema, django_guardian, inflection, psycopg2, pygments, pyyaml]),
       })),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytest_django, pytestCheckHook, pytz], nix.sel(finalAttrs, "passthru", "optional-dependencies", "complete"))),
       disabledTests: nix.thunk(() => ["test_urlpatterns"]),
       pythonImportsCheck: nix.thunk(() => ["rest_framework"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/encode/django-rest-framework/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Web APIs for Django, made easy",
         homepage: "https://www.django-rest-framework.org/",

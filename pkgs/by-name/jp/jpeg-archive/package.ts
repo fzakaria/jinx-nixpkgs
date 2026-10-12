@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const parallel = nix.arg($, "parallel");
   const findutils = nix.arg($, "findutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "jpeg-archive",
       version: "2.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "danielgtaylor",
           repo: "jpeg-archive",
           rev: "8da4bf76b6c3c0e11e4941294bfc1857c119419b",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       buildInputs: nix.thunk(() => [mozjpeg]),
       prePatch: "# allow override LIBJPEG\nsubstituteInPlace Makefile --replace 'LIBJPEG =' 'LIBJPEG ?='\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fcommon" })),
       makeFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`),
         "PREFIX=$(out)",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
   --set PATH "$out/bin:${coreutils}/bin:${parallel}/bin:${findutils}/bin"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Utilities for archiving photos for saving to long term storage or serving over the web",
         homepage: "https://github.com/danielgtaylor/jpeg-archive",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(ocaml_ng, "ocamlPackages_4_14"));
   const ocaml = nix.thunk(() => nix.attr(from, "ocaml"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "megam",
       version: "0.92",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "http://hal3.name/megam/megam_src.tgz",
           hash: "sha256-3A6fWf+FE0Sf471AsmAUH4nIik7fbdyLijlMdY5Jck4=",
         })))),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       dontStrip: true,
       installPhase: "runHook preInstall\n\ninstall -Dm755 megam $out/bin/megam\ninstall -Dm755 megam.opt $out/bin/megam.opt\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MEGA Model Optimization Package",
         longDescription: "The software here is an implementation of maximum likelihood and maximum a\nposterior optimization of the parameters of these models. The algorithms\nused are much more efficient than the iterative scaling techniques used in\nalmost every other maxent package out there.\n",
         homepage: "http://www.umiacs.umd.edu/~hal/megam",

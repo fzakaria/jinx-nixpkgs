@@ -26,19 +26,19 @@ export default nix.lambda((args) => (() => {
   const collectorIsEnabled = (final) => nix.app(elem, final, nix.thunk(() => nix.sel(cfg, "enabledCollectors")));
   const collectorIsDisabled = (final) => nix.app(elem, final, nix.thunk(() => nix.sel(cfg, "disabledCollectors")));
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     port: 9100n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       enabledCollectors: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
           default: [],
           example: nix.thunk(() => ["systemd"]),
           description: "Collectors to enable. The collectors listed here are enabled in addition to the default ones.\n",
         })))),
       disabledCollectors: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
           default: [],
           example: nix.thunk(() => ["timex"]),
@@ -46,9 +46,9 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         DynamicUser: false,
         RuntimeDirectory: "prometheus-node-exporter",
         ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "prometheus-node-exporter")}/bin/node_exporter \\

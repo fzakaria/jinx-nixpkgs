@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "10.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-K5gpv39C8MqGACUHYuZyVXXaWa8Y2af4Kq4sl7FPD2Y=",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const enabledTestPaths = nix.thunk(() => ["testfixtures/tests"]);
       const pythonImportsCheck = nix.thunk(() => ["testfixtures"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of helpers and mock objects for unit tests and doc tests",
         homepage: "https://github.com/Simplistix/testfixtures",
         changelog: nix.thunk(() => nix.str`https://github.com/simplistix/testfixtures/blob/${version}/CHANGELOG.rst`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

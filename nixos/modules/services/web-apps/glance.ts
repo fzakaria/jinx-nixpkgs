@@ -49,33 +49,33 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const settingsFile = "/run/glance/glance.yaml";
   return {
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     options: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       services: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         glance: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           enable: nix.thunk(() => nix.app(mkEnableOption, "glance")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "glance", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     server: nix.thunk(() => ({
-                      __proto__: pos$3,
+                      [nix.POS]: pos$3,
                       host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$1,
+                          [nix.POS]: pos$1,
                           description: "Glance bind address",
                           default: "127.0.0.1",
                           example: "0.0.0.0",
                           type: nix.thunk(() => nix.sel(types, "str")),
                         })))),
                       port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$2,
+                          [nix.POS]: pos$2,
                           description: "Glance port to listen on",
                           default: 8080n,
                           example: 5678n,
@@ -83,36 +83,36 @@ export default nix.lambda((args) => (() => {
                         })))),
                     })),
                     pages: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         type: nix.thunk(() => nix.sel(settingsFormat, "type")),
                         description: "List of pages to be present on the dashboard.\n\nSee <https://github.com/glanceapp/glance/blob/main/docs/configuration.md#pages--columns>\n",
                         default: nix.thunk(() => [
                           nix.thunk(() => ({
-                            __proto__: pos$6,
+                            [nix.POS]: pos$6,
                             name: "Calendar",
                             columns: nix.thunk(() => [
                               nix.thunk(() => ({
-                                __proto__: pos$5,
+                                [nix.POS]: pos$5,
                                 size: "full",
-                                widgets: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$4, type: "calendar" }))]),
+                                widgets: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$4, type: "calendar" }))]),
                               })),
                             ]),
                           })),
                         ]),
                         example: nix.thunk(() => [
                           nix.thunk(() => ({
-                            __proto__: pos$11,
+                            [nix.POS]: pos$11,
                             name: "Home",
                             columns: nix.thunk(() => [
                               nix.thunk(() => ({
-                                __proto__: pos$10,
+                                [nix.POS]: pos$10,
                                 size: "full",
                                 widgets: nix.thunk(() => [
-                                  nix.thunk(() => ({ __proto__: pos$7, type: "calendar" })),
+                                  nix.thunk(() => ({ [nix.POS]: pos$7, type: "calendar" })),
                                   nix.thunk(() => ({
-                                    __proto__: pos$9,
+                                    [nix.POS]: pos$9,
                                     type: "weather",
-                                    location: nix.thunk(() => ({ __proto__: pos$8, _secret: "/var/lib/secrets/glance/location" })),
+                                    location: nix.thunk(() => ({ [nix.POS]: pos$8, _secret: "/var/lib/secrets/glance/location" })),
                                   })),
                                 ]),
                               })),
@@ -126,7 +126,7 @@ export default nix.lambda((args) => (() => {
               description: "Configuration written to a yaml file that is read by glance. See\n<https://github.com/glanceapp/glance/blob/main/docs/configuration.md>\nfor more.\n\nSettings containing secret data should be set to an\nattribute set with this format: `{ _secret = \"/path/to/secret\"; }`.\nSee the example in `services.glance.settings.pages` at the weather widget\nwith a location secret to get a better picture of this.\n\nAlternatively, you can use a single file with environment variables,\nsee `services.glance.environmentFile`.\n",
             })))),
           environmentFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               description: nix.thunk(() => (() => {
                 const singleQuotes = "''";
@@ -173,7 +173,7 @@ see \`services.glance.settings\`.
               example: "/var/lib/secrets/glance",
             })))),
           openFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Whether to open the firewall for Glance.\nThis adds `services.glance.settings.server.port` to `networking.firewall.allowedTCPPorts`.\n",
@@ -182,19 +182,19 @@ see \`services.glance.settings\`.
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         systemd: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           services: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             glance: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               description: "Glance feed dashboard server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target", "nss-user-lookup.target"]),
               requires: nix.thunk(() => ["nss-user-lookup.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 ExecStartPre: nix.thunk(() => nix.add("+", nix.app(nix.sel(pkgs, "writeShellScript"), "glance-start-pre", nix.thunk(() => nix.str`${nix.app(nix.sel(utils, "genJqSecretsReplacementSnippet"), nix.thunk(() => nix.sel(cfg, "settings")), settingsFile)}
 chown $USER ${settingsFile}
 `)))),
@@ -227,15 +227,15 @@ chown $USER ${settingsFile}
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           firewall: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "server", "port"))]),
             })))),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$28,
+      [nix.POS]: pos$28,
       doc: nix.path(here, "./glance.md"),
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libiconv = nix.arg($, "libiconv");
   const bash = nix.arg($, "bash");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "djvulibre",
       version: "3.5.30",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/djvu/djvulibre-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-7l5FfUz+vlZvlLmeXj08x/XHndt0HCrCui5FbwAylkQ=",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libjpeg, libtiff, libiconv, bash]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Big set of CLI tools to make/modify/optimize/show/export DJVU files",
         homepage: "https://djvu.sourceforge.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

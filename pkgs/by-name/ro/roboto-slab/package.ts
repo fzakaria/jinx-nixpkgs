@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "roboto-slab",
       version: "2.000",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "googlefonts",
           repo: "robotoslab",
           rev: "baeeba45e0c3ccdcfb6a70dc564785941aafef5d",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "rm -r ./old\n",
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://fonts.google.com/specimen/Roboto+Slab",
         description: "Roboto Slab Typeface by Google",
         longDescription: "Roboto has a dual nature. It has a mechanical skeleton and the forms\nare largely geometric. At the same time, the font features friendly\nand open curves. While some grotesks distort their letterforms to\nforce a rigid rhythm, Roboto doesn't compromise, allowing letters to\nbe settled into their natural width. This makes for a more natural\nreading rhythm more commonly found in humanist and serif types.\n\nThis is the Roboto Slab family, which can be used alongside the normal\nRoboto family and the Roboto Condensed family.\n",

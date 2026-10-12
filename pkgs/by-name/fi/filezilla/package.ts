@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const xdg_utils = nix.arg($, "xdg-utils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "filezilla",
       version: "3.71.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://sources.archlinux.org/other/filezilla/filezilla-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-Pfm5s+Wyw33G2ey4g1VKuhQKAuxHw9a1IzO/FzOvTaQ=",
         })))),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
 )
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://filezilla-project.org/",
         description: "Graphical FTP, FTPS and SFTP client",
         longDescription: "FileZilla Client is a free, open source FTP client. It supports\nFTP, SFTP, and FTPS (FTP over SSL/TLS). The client is available\nunder many platforms, binaries for Windows, Linux and macOS are\nprovided.\n",

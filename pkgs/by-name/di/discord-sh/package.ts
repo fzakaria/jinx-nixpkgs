@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "discord-sh";
       const version = "2.0.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fieu",
           repo: "discord.sh",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +39,7 @@ wrapProgram $out/bin/discord.sh \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Write-only command-line Discord webhook integration written in 100% Bash script",
         mainProgram: "discord.sh",
         homepage: "https://github.com/fieu/discord.sh",
@@ -51,7 +51,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

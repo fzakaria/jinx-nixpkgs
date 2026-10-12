@@ -50,11 +50,11 @@ export default nix.lambda((args) => (() => {
   const withNotmuch = nix.argOr($, "withNotmuch", () => true);
   nix.assert_(nix.app(nix.sel(lib, "warnIf"), enableMixmaster, "Support for mixmaster has been removed from neomutt since the 20241002 release", true), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ne/neomutt/package.nix:40:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "neomutt",
       version: "20260616",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "neomutt",
           repo: "neomutt",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -132,16 +132,16 @@ substituteInPlace test/main.c \\
   --replace-fail "NEOMUTT_TEST_ITEM(test_expando_node_padding)" ""
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "test-files": nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             owner: "neomutt",
             repo: "neomutt-test-files",
             rev: "00efc8388110208e77e6ed9d8294dfc333753d54",
             hash: "sha256-/ELowuMq67v56MAJBtO73g6OqV0DVwW4+x+0u4P5mB0=",
           })))),
         contrib: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             owner: "neomutt",
             repo: "neomutt-contrib",
             rev: "8e97688693ca47ea1055f3d15055a4f4ecc5c832",
@@ -152,7 +152,7 @@ substituteInPlace test/main.c \\
       checkTarget: "test",
       postCheck: "unset NEOMUTT_TEST_DIR",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Small but very powerful text-based mail client",
         changelog: nix.thunk(() => nix.str`https://github.com/neomutt/neomutt/releases/tag/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         mainProgram: "neomutt",

@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const libevent = nix.arg($, "libevent");
   const byacc = nix.arg($, "byacc");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "sbin/dhcpleased",
       postPatch: "sed -i 's/DPADD/#DPADD/' $BSDSRCDIR/sbin/dhcpleased/Makefile\n",
       buildInputs: nix.thunk(() => [libevent]),

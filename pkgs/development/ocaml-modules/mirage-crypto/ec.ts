@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const ppx_deriving = nix.arg($, "ppx_deriving");
   const yojson = nix.arg($, "yojson");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "mirage-crypto-ec",
       src: nix.thunk(() => nix.attr(mirage_crypto, "src")),
       version: nix.thunk(() => nix.attr(mirage_crypto, "version")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         yojson,
       ]),
       meta: nix.thunk(() => nix.update(nix.sel(mirage_crypto, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Elliptic Curve Cryptography with primitives taken from Fiat",
       })),
     })));

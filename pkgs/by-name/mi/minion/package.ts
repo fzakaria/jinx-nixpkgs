@@ -20,8 +20,8 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
-  const openjfx_jdk = nix.thunk(() => nix.app(nix.sel(openjfx21, "override"), nix.thunk(() => ({ __proto__: pos$1, withWebKit: true }))));
-  const openjdk = nix.thunk(() => nix.app(nix.sel(openjdk21, "override"), nix.thunk(() => ({ __proto__: pos$2, enableJavaFX: true, openjfx_jdk: openjfx_jdk }))));
+  const openjfx_jdk = nix.thunk(() => nix.app(nix.sel(openjfx21, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withWebKit: true }))));
+  const openjdk = nix.thunk(() => nix.app(nix.sel(openjdk21, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, enableJavaFX: true, openjfx_jdk: openjfx_jdk }))));
   const jvmArgs = nix.thunk(() => [
     "-cp $out/share/minion/lib",
     "--add-exports=javafx.graphics/com.sun.javafx.css=ALL-UNNAMED",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.12";
       const pname = "minion";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://cdn.mmoui.com/minion/v3/Minion${version}-java.zip`),
           hash: "sha256-KjSj3TBMY3y5kgIywtIDeil0L17dau/Rb2HuXAulSO8=",
           stripRoot: false,
@@ -53,7 +53,7 @@ runHook postInstall
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "minion",
             exec: "minion",
             comment: "MMO Addon manager for Elder Scrolls Online and World of Warcraft",
@@ -62,7 +62,7 @@ runHook postInstall
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Addon manager for World of Warcraft and The Elder Scrolls Online",
         homepage: "https://minion.mmoui.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -78,7 +78,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         version,
         pname,
         src,

@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const gradle = gradle_8;
   const jdk = jdk_headless;
   const freenet_ext = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://github.com/hyphanet/fred/releases/download/build01495/freenet-ext.jar",
       hash: "sha256-MvKz1r7t9UE36i+aPr72dmbXafCWawjNF/19tZuk158=",
     }))));
   const seednodes = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "hyphanet-seednodes",
       owner: "hyphanet",
       repo: "seedrefs",
@@ -45,13 +45,13 @@ export default nix.lambda((args) => (() => {
       postFetch: "cat $out/* > $out/seednodes.fref\n",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "hyphanet",
       version: nix.thunk(() => nix.str`0.7.5.${version}`),
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "hyphanet",
           repo: "fred",
           tag: nix.thunk(() => nix.str`build0${version}`),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [gradle, jdk]),
       wrapper: nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hyphanetWrapper"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           bash: bash,
           coreutils: coreutils,
           jre: jre,
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
           CLASSPATH: null,
         })))),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
@@ -87,14 +87,14 @@ substituteInPlace $out/bin/freenet \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           hyphanet: nix.thunk(() => nix.attr(nixosTests, "hyphanet")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Decentralised and censorship-resistant network",
         homepage: "https://www.hyphanet.org/",
         sourceProvenance: nix.thunk(() => (() => {

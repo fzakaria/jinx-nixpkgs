@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "xkb-switch-i3",
       version: "2.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Zebradil",
           repo: "xkb-switch-i3",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "bump-cmake-required-version.patch",
             url: "https://github.com/Zebradil/xkb-switch-i3/commit/95f6ff96c77fc17891d57332f6d3a014500396eb.patch?full_index=1",
             hash: "sha256-J8EITYxi5EpYwROmFrAXgqFgbnFh8/fy9nxEKNhBvek=",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       buildInputs: nix.thunk(() => [i3, jsoncpp, libsigcxx_2_0, libx11, libxkbfile]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Switch your X keyboard layouts from the command line(i3 edition)",
         homepage: "https://github.com/Zebradil/xkb-switch-i3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

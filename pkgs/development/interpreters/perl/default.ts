@@ -37,31 +37,31 @@ export default nix.lambda((args) => (() => {
         const perl = nix.arg($_2, "perl");
         const callPackage_1 = nix.arg($_2, "callPackage");
         const makeScopeWithSplicing$ = nix.arg($_2, "makeScopeWithSplicing'");
-        const perlPackagesFun = nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../../../top-level/perl-packages.nix"), nix.thunk(() => ({ __proto__: pos$1, stdenv: stdenv, pkgs: pkgs, perl: self }))));
+        const perlPackagesFun = nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../../../top-level/perl-packages.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: stdenv, pkgs: pkgs, perl: self }))));
         const otherSplices = nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           selfBuildBuild: nix.thunk(() => nix.sel(perlOnBuildForBuild, "pkgs")),
           selfBuildHost: nix.thunk(() => nix.sel(perlOnBuildForHost, "pkgs")),
           selfBuildTarget: nix.thunk(() => nix.sel(perlOnBuildForTarget, "pkgs")),
           selfHostHost: nix.thunk(() => nix.sel(perlOnHostForHost, "pkgs")),
           selfTargetTarget: nix.thunk(() => nix.selOr(perlOnTargetForTarget, () => ({}), "pkgs")),
         }));
-        return nix.app(makeScopeWithSplicing$, nix.thunk(() => ({ __proto__: pos$3, otherSplices: otherSplices, f: perlPackagesFun })));
-      })(), formals$3), nix.thunk(() => ({ __proto__: pos$4, perl: self }))));
+        return nix.app(makeScopeWithSplicing$, nix.thunk(() => ({ [nix.POS]: pos$3, otherSplices: otherSplices, f: perlPackagesFun })));
+      })(), formals$3), nix.thunk(() => ({ [nix.POS]: pos$4, perl: self }))));
     return (() => {
       const buildEnv = nix.thunk(() => nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           perl: self,
           requiredPerlModules: nix.thunk(() => nix.attr(pkgs, "requiredPerlModules")),
         }))));
-      const withPackages = (f) => nix.app(nix.sel(buildEnv, "override"), nix.thunk(() => ({ __proto__: pos$6, extraLibs: nix.thunk(() => nix.app(f, pkgs)) })));
+      const withPackages = (f) => nix.app(nix.sel(buildEnv, "override"), nix.thunk(() => ({ [nix.POS]: pos$6, extraLibs: nix.thunk(() => nix.app(f, pkgs)) })));
       const pkgs = nix.thunk(() => nix.update(perlPackages, nix.app(overrides, pkgs)));
       const interpreter = nix.thunk(() => nix.str`${self}/bin/perl`);
       const libPrefix = "lib/perl5/site_perl";
-      const perlOnBuild = nix.thunk(() => nix.app(nix.sel(perlOnBuildForHost, "override"), nix.thunk(() => ({ __proto__: pos$7, overrides: overrides, self: perlOnBuild }))));
+      const perlOnBuild = nix.thunk(() => nix.app(nix.sel(perlOnBuildForHost, "override"), nix.thunk(() => ({ [nix.POS]: pos$7, overrides: overrides, self: perlOnBuild }))));
       const tests_1 = tests;
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         buildEnv,
         withPackages,
         pkgs,
@@ -74,13 +74,13 @@ export default nix.lambda((args) => (() => {
   })(), formals$2);
   return (() => {
     const perl5 = nix.thunk(() => nix.app(callPackage, nix.path(here, "./interpreter.nix"), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         self: perl5,
         version: "5.42.3",
         sha256: "sha256-ETd0CYWDe1zfFfDPq5Miedy0NS+RL+1vwUTotPCCNic=",
         passthruFun: passthruFun,
       }))));
-    return { __proto__: pos$10, perl5 };
+    return { [nix.POS]: pos$10, perl5 };
   })();
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

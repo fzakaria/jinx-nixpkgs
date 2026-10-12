@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "anthy",
       version: "9100h",
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))), nix.thunk(() => nix.str`# for cross builds, copy build tools from the native package
@@ -38,7 +38,7 @@ substituteInPlace mkanthydic/Makefile.in \\
 `))),
       outputs: nix.thunk(() => ["out", "dev"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Hiragana text to Kana Kanji mixed text Japanese input method",
         homepage: "https://web.archive.org/web/20250404073626/https://osdn.net/projects/anthy/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -47,7 +47,7 @@ substituteInPlace mkanthydic/Makefile.in \\
       })),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "# not relevant for installed package\nmkdir \"$dev/lib/internals\"\ncp -r depgraph/{mkdepgraph,.libs} mkworddic/{mkworddic,.libs} calctrans/{calctrans,.libs} mkanthydic/{mkfiledic,.libs} \"$dev/lib/internals\"\n")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`mirror://osdn/anthy/37536/anthy-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0ism4zibcsa5nl77wwi12vdsfjys3waxcphn1p5s7d0qy1sz0mnj",
         })))),

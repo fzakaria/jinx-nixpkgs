@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
           const pname = "cups-filters";
           const version = "2.0.1";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               owner: "OpenPrinting",
               repo: "cups-filters",
               rev: version,
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
             }))));
           const patches = nix.thunk(() => [
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 name: "cups-filters-fix-build-with-gcc15-c23.patch",
                 url: "https://github.com/OpenPrinting/cups-filters/commit/9871a50b5c1f9c2caa2754aac1f5db70c886021b.patch",
                 hash: "sha256-Hu3nCHzX6K4tD7T5XIt0dh6GPQxmgfuHqbBXWfdXxoA=",
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
             "CUPS_DATADIR=$(out)/share/cups",
             "CUPS_SERVERROOT=$(out)/etc/cups",
           ]);
-          const env = nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-std=c++17" }));
+          const env = nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-std=c++17" }));
           const postConfigure = nix.thunk(() => nix.str`# Ensure that bannertopdf can find the PDF templates in
 # $out. (By default, it assumes that cups and cups-filters are
 # installed in the same prefix.)
@@ -98,14 +98,14 @@ done
           const enableParallelBuilding = true;
           const doCheck = true;
           const meta = nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             homepage: "http://www.linuxfoundation.org/collaborate/workgroups/openprinting/cups-filters",
             description: "Backends, filters, and other software that was once part of the core CUPS distribution but is no longer maintained by Apple Inc",
             license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
             platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
           }));
           return {
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             pname,
             version,
             src,

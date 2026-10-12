@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.13.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~martijnbraam",
           repo: "pyatem",
           rev: version,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const postCheck = "popd\n";
       const pythonImportsCheck = nix.thunk(() => ["pyatem"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for controlling Blackmagic Design ATEM video mixers",
         homepage: "https://git.sr.ht/~martijnbraam/pyatem",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

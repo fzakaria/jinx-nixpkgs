@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "rfc3986_validator",
           version: version,
           hash: "sha256-PUS955IbO57Drk463KNwQ47M68Z2RWRJsUXVM7JA0FU=",
@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace setup.py \\\n  --replace \"'pytest-runner',\" \"\"\n";
       const nativeCheckInputs = nix.thunk(() => [hypothesis, pytestCheckHook, rfc3987]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pure python rfc3986 validator",
         homepage: "https://github.com/naimetti/rfc3986-validator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

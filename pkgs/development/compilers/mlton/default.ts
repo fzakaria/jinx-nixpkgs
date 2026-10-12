@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
     const mlton20130715 = nix.thunk(() => nix.app(callPackage, nix.path(here, "./20130715.nix"), nix.thunk(() => ({}))));
     const mlton20180207Binary = nix.thunk(() => nix.app(callPackage, nix.path(here, "./20180207-binary.nix"), nix.thunk(() => ({}))));
     const mlton20180207 = nix.thunk(() => nix.app(callPackage, nix.path(here, "./from-git-source.nix"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         mltonBootstrap: mlton20180207Binary,
         version: "20180207",
         rev: "on-20180207-release",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       }))));
     const mlton20210117Binary = nix.thunk(() => nix.app(callPackage, nix.path(here, "./20210117-binary.nix"), nix.thunk(() => ({}))));
     const mlton20210117 = nix.thunk(() => nix.app(callPackage, nix.path(here, "./from-git-source.nix"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mltonBootstrap: mlton20210117Binary,
         version: "20210117",
         rev: "on-20210117-release",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       }))));
     const mlton20241230Binary = nix.thunk(() => nix.app(callPackage, nix.path(here, "./20241230-binary.nix"), nix.thunk(() => ({}))));
     const mlton20241230 = nix.thunk(() => nix.app(callPackage, nix.path(here, "./from-git-source.nix"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         mltonBootstrap: mlton20241230Binary,
         version: "20241230",
         rev: "on-20241230-release",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       }))));
     const mltonHEAD = nix.thunk(() => nix.app(callPackage, nix.path(here, "./from-git-source.nix"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         mltonBootstrap: mlton20241230Binary,
         version: "HEAD",
         rev: "61baac7108fbd91413f0537b7a42d9a1023455f4",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       }))));
     return {
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       mlton20130715,
       mlton20180207Binary,
       mlton20180207,

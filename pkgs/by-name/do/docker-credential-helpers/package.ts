@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "docker-credential-helpers";
       const version = "0.9.9";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "docker",
           repo: "docker-credential-helpers",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -48,25 +48,25 @@ done
       })());
       const installPhase = "install -Dm755 -t $out/bin bin/docker-credential-*\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: docker_credential_helpers,
               command: "docker-credential-pass version",
             })))),
         })),
       }));
       const meta = nix.thunk(() => nix.update({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Suite of programs to use native stores to keep Docker credentials safe",
         homepage: "https://github.com/docker/docker-credential-helpers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
-      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ __proto__: pos$6, mainProgram: "docker-credential-osxkeychain" })))));
+      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$6, mainProgram: "docker-credential-osxkeychain" })))));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

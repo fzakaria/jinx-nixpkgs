@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const postgresql = nix.arg($, "postgresql");
   const postgresqlTestExtension = nix.arg($, "postgresqlTestExtension");
   return nix.app(buildPgrxExtension, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       postgresql: postgresql,
       "cargo-pgrx": cargo_pgrx_0_18_0,
       pname: "pglite_fusion",
       version: "0.0.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "frectonz",
           repo: "pglite-fusion",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,17 +36,17 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-954nNwdMDE9tVOvql/fMR8J1pIq64AdKiKlBjl0yqRI=",
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           extension: nix.thunk(() => nix.app(postgresqlTestExtension, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               finalPackage: nix.thunk(() => nix.attr(finalAttrs, "finalPackage")),
               sql: "CREATE EXTENSION pglite_fusion;\n\nCREATE TABLE people (\n  name     TEXT NOT NULL,\n  database SQLITE DEFAULT init_sqlite($sqlite$CREATE TABLE todos (task TEXT)$sqlite$)\n);\n\nINSERT INTO people VALUES ('frectonz');\n\nUPDATE people\nSET database = execute_sqlite(\n  database,\n  $sqlite$INSERT INTO todos VALUES ('solve multitenancy')$sqlite$\n)\nWHERE name = 'frectonz';\n",
               asserts: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   query: "SELECT get_sqlite_text(sqlite_row, 0)\nFROM query_sqlite(\n  (SELECT database FROM people WHERE name = 'frectonz'),\n  'SELECT * FROM todos'\n)\n",
                   expected: "'solve multitenancy'",
                   description: "todo stored in the embedded SQLite database can be read back",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "PostgreSQL extension for embedding an SQLite database in a column",
         homepage: "https://github.com/frectonz/pglite-fusion",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

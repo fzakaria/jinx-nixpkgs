@@ -56,17 +56,17 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const gsettings_desktop_schemas = nix.arg($, "gsettings-desktop-schemas");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "gvfs",
       version: "1.60.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gvfs/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gvfs-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-TLIdURwuKVEamfOhk96qkUqLt9njciKGc8awha/2P0s=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-ssh-path.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             ssh_program: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), openssh)}/bin/ssh`),
           })))),
       ]),
@@ -125,11 +125,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")),
       separateDebugInfo: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$3, packageName: "gvfs", versionPolicy: "odd-unstable" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: "gvfs", versionPolicy: "odd-unstable" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: nix.thunk(() => nix.add("Virtual Filesystem support library", nix.app(nix.sel(lib, "optionalString"), gnomeSupport, " (full GNOME support)"))),
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

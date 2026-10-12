@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cidrgrep",
       version: "0-unstable-2020-11-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tomdoherty",
           repo: "cidrgrep",
           rev: "8ad5af533e8dc33ea18ff19b7c6a41550748fe0e",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: null,
       postInstall: "mv $out/bin/cmd $out/bin/cidrgrep\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Like grep but for IPv4 CIDRs",
         homepage: "https://github.com/tomdoherty/cidrgrep",
         mainProgram: "cidrgrep",

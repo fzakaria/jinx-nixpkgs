@@ -84,29 +84,29 @@ const pos$73 = nix.positions(here + "/yggdrasil.nix", [["name", 51, 3], ["meta",
 
 export default nix.thunk(() => (() => {
   const privateKeys = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     alice: "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIKhn+eB45M5Y0xDPWs1GItdZ4qId8H4db8OAoqJkiUgN\n-----END PRIVATE KEY-----\n",
     bob: "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIAxKJKzTQCcizpJ37RefSgS4lbSVhkk8Jfuu1gZT2FfW\n-----END PRIVATE KEY-----\n",
   }));
   const aliceIp6 = "202:b70:9b0b:cf34:f93c:8f18:bbfd:7034";
   const aliceKeys = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     PublicKey: "3e91ec9e861960d86e1ce88051f97c435bdf2859640ab681dfa906eb45ad5182",
   }));
   const frankIp6 = aliceIp6;
   const frankLegacyKeys = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     PrivateKey: nix.thunk(() => nix.add("a867f9e078e4ce58d310cf5acd4622d759e2a21df07e1d6fc380a2a26489480d", nix.sel(aliceKeys, "PublicKey"))),
     PublicKey: nix.thunk(() => nix.sel(aliceKeys, "PublicKey")),
   }));
   const bobIp6 = "202:a483:73a4:9f2d:a559:4a19:bc9:8458";
   const bobPrefix = "302:a483:73a4:9f2d";
   const bobConfig = nix.thunk(() => ({
-    __proto__: pos$6,
-    InterfacePeers: nix.thunk(() => ({ __proto__: pos$4, eth1: nix.thunk(() => ["tcp://192.168.1.200:12345"]) })),
+    [nix.POS]: pos$6,
+    InterfacePeers: nix.thunk(() => ({ [nix.POS]: pos$4, eth1: nix.thunk(() => ["tcp://192.168.1.200:12345"]) })),
     MulticastInterfaces: nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         Regex: ".*",
         Beacon: true,
         Listen: true,
@@ -121,45 +121,45 @@ export default nix.thunk(() => (() => {
     const $ = nix.formals(args, formals$1);
     const pkgs = nix.arg($, "pkgs");
     return {
-      __proto__: pos$73,
+      [nix.POS]: pos$73,
       name: "yggdrasil",
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "gazally"))]),
         };
       })()),
       nodes: nix.thunk(() => ({
-        __proto__: pos$72,
+        [nix.POS]: pos$72,
         alice: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           return {
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             networking: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               interfaces: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 eth1: nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   ipv4: nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     addresses: nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$8, address: "192.168.1.200", prefixLength: 24n })),
+                      nix.thunk(() => ({ [nix.POS]: pos$8, address: "192.168.1.200", prefixLength: 24n })),
                     ]),
                   })),
                 })),
               })),
-              firewall: nix.thunk(() => ({ __proto__: pos$12, allowedTCPPorts: nix.thunk(() => [80n, 12345n]) })),
+              firewall: nix.thunk(() => ({ [nix.POS]: pos$12, allowedTCPPorts: nix.thunk(() => [80n, 12345n]) })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$17,
-              httpd: nix.thunk(() => ({ __proto__: pos$14, enable: true, adminAddr: "foo@example.org" })),
+              [nix.POS]: pos$17,
+              httpd: nix.thunk(() => ({ [nix.POS]: pos$14, enable: true, adminAddr: "foo@example.org" })),
               yggdrasil: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 enable: true,
                 settings: nix.thunk(() => nix.update({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   Listen: nix.thunk(() => ["tcp://0.0.0.0:12345"]),
                   MulticastInterfaces: [],
                   PrivateKeyPath: nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "writeText"), "private", nix.thunk(() => nix.sel(privateKeys, "alice")))}`),
@@ -171,23 +171,23 @@ export default nix.thunk(() => (() => {
         bob: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$3);
           return {
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             networking: nix.thunk(() => ({
-              __proto__: pos$26,
-              firewall: nix.thunk(() => ({ __proto__: pos$19, allowedTCPPorts: nix.thunk(() => [54321n]) })),
+              [nix.POS]: pos$26,
+              firewall: nix.thunk(() => ({ [nix.POS]: pos$19, allowedTCPPorts: nix.thunk(() => [54321n]) })),
               bridges: nix.thunk(() => ({
-                __proto__: pos$21,
-                br0: nix.thunk(() => ({ __proto__: pos$20, interfaces: [] })),
+                [nix.POS]: pos$21,
+                br0: nix.thunk(() => ({ [nix.POS]: pos$20, interfaces: [] })),
               })),
               interfaces: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 br0: nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   ipv6: nix.thunk(() => ({
-                    __proto__: pos$23,
+                    [nix.POS]: pos$23,
                     addresses: nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$22,
+                        [nix.POS]: pos$22,
                         address: nix.thunk(() => nix.add(bobPrefix, "::1")),
                         prefixLength: 64n,
                       })),
@@ -197,51 +197,51 @@ export default nix.thunk(() => (() => {
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               yggdrasil: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 enable: true,
                 openMulticastPort: true,
                 settings: nix.thunk(() => nix.update(bobConfig, {
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   PrivateKeyPath: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "private", nix.thunk(() => nix.sel(privateKeys, "bob")))),
                 })),
               })),
             })),
             boot: nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               kernel: nix.thunk(() => ({
-                __proto__: pos$31,
-                sysctl: nix.thunk(() => ({ __proto__: pos$30, "net.ipv6.conf.all.forwarding": 1n })),
+                [nix.POS]: pos$31,
+                sysctl: nix.thunk(() => ({ [nix.POS]: pos$30, "net.ipv6.conf.all.forwarding": 1n })),
               })),
             })),
             containers: nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               dan: nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 autoStart: true,
                 privateNetwork: true,
                 hostBridge: "br0",
                 config: nix.thunk(() => ({
-                  __proto__: pos$43,
+                  [nix.POS]: pos$43,
                   networking: nix.thunk(() => ({
-                    __proto__: pos$39,
+                    [nix.POS]: pos$39,
                     interfaces: nix.thunk(() => ({
-                      __proto__: pos$37,
+                      [nix.POS]: pos$37,
                       eth0: nix.thunk(() => ({
-                        __proto__: pos$36,
+                        [nix.POS]: pos$36,
                         ipv6: nix.thunk(() => ({
-                          __proto__: pos$35,
+                          [nix.POS]: pos$35,
                           addresses: nix.thunk(() => [
                             nix.thunk(() => ({
-                              __proto__: pos$33,
+                              [nix.POS]: pos$33,
                               address: nix.thunk(() => nix.add(bobPrefix, "::2")),
                               prefixLength: 64n,
                             })),
                           ]),
                           routes: nix.thunk(() => [
                             nix.thunk(() => ({
-                              __proto__: pos$34,
+                              [nix.POS]: pos$34,
                               address: "200::",
                               prefixLength: 7n,
                               via: nix.thunk(() => nix.add(bobPrefix, "::1")),
@@ -250,13 +250,13 @@ export default nix.thunk(() => (() => {
                         })),
                       })),
                     })),
-                    firewall: nix.thunk(() => ({ __proto__: pos$38, allowedTCPPorts: nix.thunk(() => [80n]) })),
+                    firewall: nix.thunk(() => ({ [nix.POS]: pos$38, allowedTCPPorts: nix.thunk(() => [80n]) })),
                   })),
                   services: nix.thunk(() => ({
-                    __proto__: pos$41,
-                    httpd: nix.thunk(() => ({ __proto__: pos$40, enable: true, adminAddr: "foo@example.org" })),
+                    [nix.POS]: pos$41,
+                    httpd: nix.thunk(() => ({ [nix.POS]: pos$40, enable: true, adminAddr: "foo@example.org" })),
                   })),
-                  nix: nix.thunk(() => ({ __proto__: pos$42, enable: false })),
+                  nix: nix.thunk(() => ({ [nix.POS]: pos$42, enable: false })),
                 })),
               })),
             })),
@@ -265,23 +265,23 @@ export default nix.thunk(() => (() => {
         carol: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$4);
           return {
-            __proto__: pos$53,
+            [nix.POS]: pos$53,
             networking: nix.thunk(() => ({
-              __proto__: pos$48,
-              firewall: nix.thunk(() => ({ __proto__: pos$47, allowedTCPPorts: nix.thunk(() => [43210n]) })),
+              [nix.POS]: pos$48,
+              firewall: nix.thunk(() => ({ [nix.POS]: pos$47, allowedTCPPorts: nix.thunk(() => [43210n]) })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$52,
+              [nix.POS]: pos$52,
               yggdrasil: nix.thunk(() => ({
-                __proto__: pos$51,
+                [nix.POS]: pos$51,
                 enable: true,
                 extraArgs: nix.thunk(() => ["-loglevel", "error"]),
                 denyDhcpcdInterfaces: nix.thunk(() => ["ygg0"]),
                 settings: nix.thunk(() => ({
-                  __proto__: pos$50,
+                  [nix.POS]: pos$50,
                   IfTAPMode: true,
                   IfName: "ygg0",
-                  MulticastInterfaces: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$49, Port: 43210n }))]),
+                  MulticastInterfaces: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$49, Port: 43210n }))]),
                 })),
                 openMulticastPort: true,
                 persistentKeys: true,
@@ -292,23 +292,23 @@ export default nix.thunk(() => (() => {
         eve: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$5);
           return {
-            __proto__: pos$60,
+            [nix.POS]: pos$60,
             networking: nix.thunk(() => ({
-              __proto__: pos$55,
-              firewall: nix.thunk(() => ({ __proto__: pos$54, allowedTCPPorts: nix.thunk(() => [43211n]) })),
+              [nix.POS]: pos$55,
+              firewall: nix.thunk(() => ({ [nix.POS]: pos$54, allowedTCPPorts: nix.thunk(() => [43211n]) })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               yggdrasil: nix.thunk(() => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 enable: true,
                 persistentKeys: true,
                 openMulticastPort: true,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$57,
+                  [nix.POS]: pos$57,
                   IfName: "ygg0",
                   MulticastInterfaces: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$56, Regex: ".*", Beacon: true, Listen: true, Port: 43211n })),
+                    nix.thunk(() => ({ [nix.POS]: pos$56, Regex: ".*", Beacon: true, Listen: true, Port: 43211n })),
                   ]),
                 })),
               })),
@@ -319,20 +319,20 @@ export default nix.thunk(() => (() => {
           const $_1 = nix.formals(args_1, formals$6);
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            __proto__: pos$71,
+            [nix.POS]: pos$71,
             networking: nix.thunk(() => ({
-              __proto__: pos$62,
-              firewall: nix.thunk(() => ({ __proto__: pos$61, allowedTCPPorts: nix.thunk(() => [43212n]) })),
+              [nix.POS]: pos$62,
+              firewall: nix.thunk(() => ({ [nix.POS]: pos$61, allowedTCPPorts: nix.thunk(() => [43212n]) })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$66,
+              [nix.POS]: pos$66,
               services: nix.thunk(() => ({
-                __proto__: pos$65,
+                [nix.POS]: pos$65,
                 "yggdrasil-legacy-keys": nix.thunk(() => ({
-                  __proto__: pos$64,
+                  [nix.POS]: pos$64,
                   wantedBy: nix.thunk(() => ["yggdrasil-persistent-keys.service"]),
                   before: nix.thunk(() => ["yggdrasil-persistent-keys.service"]),
-                  serviceConfig: nix.thunk(() => ({ __proto__: pos$63, Type: "oneshot", RemainAfterExit: true })),
+                  serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$63, Type: "oneshot", RemainAfterExit: true })),
                   script: nix.thunk(() => nix.str`mkdir -p /var/lib/yggdrasil
 cat > /var/lib/yggdrasil/keys.json << 'EOF'
 ${nix.builtins.toJSON(frankLegacyKeys)}
@@ -343,17 +343,17 @@ chmod 600 /var/lib/yggdrasil/keys.json
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$70,
+              [nix.POS]: pos$70,
               yggdrasil: nix.thunk(() => ({
-                __proto__: pos$69,
+                [nix.POS]: pos$69,
                 enable: true,
                 persistentKeys: true,
                 openMulticastPort: true,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$68,
+                  [nix.POS]: pos$68,
                   IfName: "ygg0",
                   MulticastInterfaces: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$67, Regex: ".*", Beacon: true, Listen: true, Port: 43212n })),
+                    nix.thunk(() => ({ [nix.POS]: pos$67, Regex: ".*", Beacon: true, Listen: true, Port: 43212n })),
                   ]),
                 })),
               })),

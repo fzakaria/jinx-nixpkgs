@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const chromium = nix.arg($, "chromium");
   const electron = electron_43;
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "Sharedown",
       version: "5.3.6-unstable-2025-12-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kylon",
           repo: "Sharedown",
           rev: "5d0cbe2d25de6e288e35bd549f436b090d6e287a",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libsecret]),
       strictDeps: true,
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
         PUPPETEER_SKIP_DOWNLOAD: "1",
       })),
@@ -60,7 +60,7 @@ makeWrapper ${electron}/bin/electron $out/bin/sharedown \\
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "Sharedown",
             exec: "Sharedown",
             icon: "Sharedown",
@@ -70,12 +70,12 @@ makeWrapper ${electron}/bin/electron $out/bin/sharedown \\
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         wrapperPaths: nix.thunk(() => [ffmpeg, yt_dlp, chromium]),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$4, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Application to save your Sharepoint videos for offline usage",
         homepage: "https://github.com/kylon/Sharedown",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

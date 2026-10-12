@@ -52,26 +52,26 @@ export default nix.lambda((args) => (() => {
   const user = "zabbix-agent";
   const group = "zabbix-agent";
   const moduleEnv = nix.thunk(() => nix.app(nix.sel(pkgs, "symlinkJoin"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "zabbix-agent-module-env",
       paths: nix.thunk(() => nix.app(attrValues, nix.thunk(() => nix.sel(cfg, "modules")))),
     }))));
-  const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "zabbix_agent.conf", nix.thunk(() => nix.app(toKeyValue, nix.thunk(() => ({ __proto__: pos$2, listsAsDuplicateKeys: true })), nix.thunk(() => nix.sel(cfg, "settings"))))));
+  const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "zabbix_agent.conf", nix.thunk(() => nix.app(toKeyValue, nix.thunk(() => ({ [nix.POS]: pos$2, listsAsDuplicateKeys: true })), nix.thunk(() => nix.sel(cfg, "settings"))))));
   return {
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "zabbixAgent", "extraConfig"]), "Use services.zabbixAgent.settings instead.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         zabbixAgent: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enable: nix.thunk(() => nix.app(mkEnableOption, "the Zabbix Agent")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, nix.thunk(() => ["zabbix", "agent"]), nix.thunk(() => ({})))),
           extraPackages: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "package")))),
               default: nix.thunk(() => (() => {
                 const w = nix.withScope(pkgs, null);
@@ -82,40 +82,40 @@ export default nix.lambda((args) => (() => {
               description: "Packages to be added to the Zabbix {env}`PATH`.\nTypically used to add executables for scripts, but can be anything.\n",
             })))),
           modules: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "package")))),
               description: "A set of modules to load.",
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(literalExpression, "{\n  \"dummy.so\" = pkgs.stdenv.mkDerivation {\n    name = \"zabbix-dummy-module-${cfg.package.version}\";\n    src = cfg.package.src;\n    buildInputs = [ cfg.package ];\n    sourceRoot = \"zabbix-${cfg.package.version}/src/modules/dummy\";\n    installPhase = ''\n      mkdir -p $out/lib\n      cp dummy.so $out/lib/\n    '';\n  };\n}\n")),
             })))),
           server: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(types, "str")),
               description: "The IP address or hostname of the Zabbix server to connect to.\n",
             })))),
           listen: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             ip: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "0.0.0.0",
                 description: "List of comma delimited IP addresses that the agent should listen on.\n",
               })))),
             port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.sel(types, "port")),
                 default: 10050n,
                 description: "Agent will listen on this port for connections from the server.\n",
               })))),
           })),
           openFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Open ports in the firewall for the Zabbix Agent.\n",
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -126,45 +126,45 @@ export default nix.lambda((args) => (() => {
               })()),
               default: nix.thunk(() => ({})),
               description: "Zabbix Agent configuration. Refer to\n<https://www.zabbix.com/documentation/current/manual/appendix/config/zabbix_agentd>\nfor details on supported values.\n",
-              example: nix.thunk(() => ({ __proto__: pos$10, Hostname: "example.org", DebugLevel: 4n })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$10, Hostname: "example.org", DebugLevel: 4n })),
             })))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         services: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           zabbixAgent: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             settings: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   LogType: "console",
                   Server: nix.thunk(() => nix.sel(cfg, "server")),
                   ListenPort: nix.thunk(() => nix.sel(cfg, "listen", "port")),
                 })),
                 nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "modules"), {})), nix.thunk(() => ({
-                    __proto__: pos$16,
+                    [nix.POS]: pos$16,
                     LoadModule: nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.sel(cfg, "modules")))),
                     LoadModulePath: nix.thunk(() => nix.str`${moduleEnv}/lib`),
                   })))),
-                nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "listen", "ip"), "0.0.0.0")), nix.thunk(() => ({ __proto__: pos$17, ListenIP: nix.thunk(() => nix.sel(cfg, "listen", "ip")) })))),
+                nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "listen", "ip"), "0.0.0.0")), nix.thunk(() => ({ [nix.POS]: pos$17, ListenIP: nix.thunk(() => nix.sel(cfg, "listen", "ip")) })))),
               ]))),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           firewall: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "listen", "port"))]),
             })))),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [user, nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               description: "Zabbix Agent daemon user",
               group: group,
               isSystemUser: true,
@@ -173,11 +173,11 @@ export default nix.lambda((args) => (() => {
           groups: nix.thunk(() => nix.attrsDyn({}, [[group, nix.thunk(() => ({}))]])),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           services: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             "zabbix-agent": nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               description: "Zabbix Agent",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               path: nix.thunk(() => (() => {
@@ -185,7 +185,7 @@ export default nix.lambda((args) => (() => {
                 return nix.concat([nix.thunk(() => nix.lookup(w, "bash")), "/run/wrappers"], nix.sel(cfg, "extraPackages"));
               })()),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 ExecStart: nix.thunk(() => nix.str`@${nix.sel(cfg, "package")}/sbin/zabbix_agentd zabbix_agentd -f --config ${configFile}`),
                 Restart: "always",
                 RestartSec: 2n,

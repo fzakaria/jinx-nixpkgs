@@ -19,7 +19,7 @@ echo "sanjuuni-test-run-on-nixos-artwork: Checking syntax on $out/${baseFilename
 lua -e "loadfile(\\"$out/${baseFilename}.lua\\")"
 `;
   return nix.app(runCommand, "sanjuuni-test-run-on-nixos-artwork", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nativeBuildInputs: nix.thunk(() => [
         sanjuuni,
         lua5_2,

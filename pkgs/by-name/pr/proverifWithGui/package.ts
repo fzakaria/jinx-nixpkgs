@@ -8,6 +8,6 @@ const pos$1 = nix.positions(here + "/package.nix", [["enable_interact", 1, 35]])
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const proverif = nix.arg($, "proverif");
-  return nix.app(nix.sel(proverif, "override"), nix.thunk(() => ({ __proto__: pos$1, enable_interact: true })));
+  return nix.app(nix.sel(proverif, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enable_interact: true })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

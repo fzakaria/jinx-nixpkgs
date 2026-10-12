@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const twine = nix.arg($, "twine");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hatch-jupyter-builder",
       version: "0.9.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jupyterlab",
           repo: "hatch-jupyter-builder",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_mock, pytestCheckHook, twine]),
       disabledTests: nix.thunk(() => ["test_hatch_build"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/jupyterlab/hatch-jupyter-builder/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Hatch plugin to help build Jupyter packages",
         mainProgram: "hatch-jupyter-builder",

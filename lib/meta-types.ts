@@ -49,35 +49,35 @@ export default nix.lambda((args) => (() => {
   const mapAttrs = nix.thunk(() => nix.attr(lib, "mapAttrs"));
   const isTypeDef = (t) => (nix.asBool((nix.asBool((nix.asBool((nix.asBool(nix.app(isAttrs, t)) && nix.asBool(nix.has(t, "name")))) && nix.asBool(nix.app(isString, nix.thunk(() => nix.sel(t, "name")))))) && nix.asBool(nix.has(t, "verify")))) && nix.asBool(nix.app(isFunction, nix.thunk(() => nix.sel(t, "verify")))));
   return nix.app(nix.sel(lib, "fix"), (self) => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       errors: (t) => nix.selOr(t, () => (ctx) => (v) => [
           nix.thunk(() => nix.str`${ctx}: Invalid value; expected ${nix.sel(t, "name")}, got
-    ${nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({ __proto__: pos$1, indent: "    " })), v)}`),
+    ${nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({ [nix.POS]: pos$1, indent: "    " })), v)}`),
         ], "errors"),
-      string: nix.thunk(() => ({ __proto__: pos$2, name: "string", verify: isString })),
+      string: nix.thunk(() => ({ [nix.POS]: pos$2, name: "string", verify: isString })),
       str: nix.thunk(() => nix.sel(self, "string")),
-      any: nix.thunk(() => ({ __proto__: pos$3, name: "any", verify: (_) => true })),
-      int: nix.thunk(() => ({ __proto__: pos$4, name: "int", verify: isInt })),
-      float: nix.thunk(() => ({ __proto__: pos$5, name: "float", verify: isFloat })),
-      bool: nix.thunk(() => ({ __proto__: pos$6, name: "bool", verify: isBool })),
-      attrs: nix.thunk(() => ({ __proto__: pos$7, name: "attrs", verify: isAttrs })),
-      list: nix.thunk(() => ({ __proto__: pos$8, name: "list", verify: isList })),
+      any: nix.thunk(() => ({ [nix.POS]: pos$3, name: "any", verify: (_) => true })),
+      int: nix.thunk(() => ({ [nix.POS]: pos$4, name: "int", verify: isInt })),
+      float: nix.thunk(() => ({ [nix.POS]: pos$5, name: "float", verify: isFloat })),
+      bool: nix.thunk(() => ({ [nix.POS]: pos$6, name: "bool", verify: isBool })),
+      attrs: nix.thunk(() => ({ [nix.POS]: pos$7, name: "attrs", verify: isAttrs })),
+      list: nix.thunk(() => ({ [nix.POS]: pos$8, name: "list", verify: isList })),
       attrsOf: (t) => (() => {
         nix.assert_(nix.app(isTypeDef, t), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/meta-types.nix:90:5");
         const verify = nix.thunk(() => nix.attr(t, "verify"));
         return {
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           name: nix.thunk(() => nix.str`attrsOf<${nix.sel(t, "name")}>`),
           verify: nix.thunk(() => (nix.asBool(nix.eq(t, nix.sel(self, "any"))) ? nix.force(isAttrs) : (attrs) => (nix.asBool(nix.app(isAttrs, attrs)) && nix.asBool(nix.app(all, verify, nix.thunk(() => nix.app(attrValues, attrs))))))),
           errors: (ctx) => (attrs) => (nix.asBool(!nix.asBool(nix.app(isAttrs, attrs))) ? nix.app(nix.sel(self, "errors"), nix.thunk(() => nix.sel(self, "attrs")), ctx, attrs) : nix.app(concatMap, (name) => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.app(verify, nix.thunk(() => nix.sel(attrs, nix.key(nix.force(name))))))), nix.thunk(() => nix.app(nix.sel(self, "errors"), t, nix.thunk(() => nix.str`${ctx}.${name}`), nix.thunk(() => nix.sel(attrs, nix.key(nix.force(name))))))), nix.thunk(() => nix.app(attrNames, attrs)))),
         };
       })(),
-      derivation: nix.thunk(() => ({ __proto__: pos$10, name: "derivation", verify: isDerivation })),
+      derivation: nix.thunk(() => ({ [nix.POS]: pos$10, name: "derivation", verify: isDerivation })),
       listOf: (t) => (() => {
         nix.assert_(nix.app(isTypeDef, t), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/meta-types.nix:116:5");
         const verify = nix.thunk(() => nix.attr(t, "verify"));
         return {
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           name: nix.thunk(() => nix.str`listOf<${nix.sel(t, "name")}>`),
           verify: nix.thunk(() => (nix.asBool(nix.eq(t, nix.sel(self, "any"))) ? nix.force(isList) : (v) => (nix.asBool(nix.app(isList, v)) && nix.asBool(nix.app(all, verify, v))))),
           errors: (ctx) => (v) => (nix.asBool(!nix.asBool(nix.app(isList, v))) ? nix.app(nix.sel(self, "errors"), nix.thunk(() => nix.sel(self, "list")), ctx, v) : nix.app(nix.sel(lib, "concatMap"), nix.lambda((args_1) => (() => {
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
                 const errors = nix.arg($_1, "errors");
                 return !nix.asBool(valid);
               })(), formals$3), nix.thunk(() => nix.app(nix.sel(lib, "imap0"), (i) => (el) => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   valid: nix.thunk(() => nix.app(verify, el)),
                   errors: nix.thunk(() => nix.app(nix.sel(self, "errors"), t, nix.thunk(() => nix.str`${ctx}.${nix.builtins.toString(i)}`), el)),
                 }), v)))))),
@@ -101,7 +101,7 @@ export default nix.lambda((args) => (() => {
         nix.assert_(nix.app(all, isTypeDef, types), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/meta-types.nix:142:5");
         const funcs = nix.thunk(() => nix.app(catAttrs, "verify", types));
         return {
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           name: nix.thunk(() => nix.str`union<${nix.app(concatStringsSep, ",", nix.thunk(() => nix.app(catAttrs, "name", types)))}>`),
           verify: (v) => nix.app(any, (func) => nix.app(func, v), funcs),
         };
@@ -110,7 +110,7 @@ export default nix.lambda((args) => (() => {
         nix.assert_(nix.app(all, isTypeDef, types), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/meta-types.nix:154:5");
         const funcs = nix.thunk(() => nix.app(catAttrs, "verify", types));
         return {
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           name: nix.thunk(() => nix.str`intersection<${nix.app(concatStringsSep, ",", nix.thunk(() => nix.app(catAttrs, "name", types)))}>`),
           verify: (v) => nix.app(all, (func) => nix.app(func, v), funcs),
         };
@@ -120,7 +120,7 @@ export default nix.lambda((args) => (() => {
         const v1 = nix.thunk(() => nix.sel(t1, "verify"));
         const v2 = nix.thunk(() => nix.sel(t2, "verify"));
         return {
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           name: nix.thunk(() => nix.str`either<${nix.sel(t1, "name")},${nix.sel(t2, "name")}>`),
           verify: (v) => (nix.asBool(nix.app(v1, v)) || nix.asBool(nix.app(v2, v))),
         };
@@ -130,7 +130,7 @@ export default nix.lambda((args) => (() => {
         const v1 = nix.thunk(() => nix.sel(t1, "verify"));
         const v2 = nix.thunk(() => nix.sel(t2, "verify"));
         return {
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           name: nix.thunk(() => nix.str`both<${nix.sel(t1, "name")},${nix.sel(t2, "name")}>`),
           verify: (v) => (nix.asBool(nix.app(v1, v)) && nix.asBool(nix.app(v2, v))),
         };
@@ -139,7 +139,7 @@ export default nix.lambda((args) => (() => {
         nix.assert_(nix.app(isTypeDef, t), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/meta-types.nix:192:5");
         const verify = nix.thunk(() => nix.attr(t, "verify"));
         return {
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           name: nix.thunk(() => nix.str`not<${nix.sel(t, "name")}>`),
           verify: (v) => !nix.asBool(nix.app(verify, v)),
         };
@@ -147,7 +147,7 @@ export default nix.lambda((args) => (() => {
       enum: (values) => (() => {
         nix.assert_(nix.app(isList, values), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/meta-types.nix:203:5");
         return {
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           name: nix.thunk(() => (nix.asBool(nix.app(all, isString, values)) ? nix.str`enum<${nix.app(concatStringsSep, ",", values)}>` : "enum")),
           verify: (v) => nix.app(elem, v, values),
         };
@@ -156,7 +156,7 @@ export default nix.lambda((args) => (() => {
         nix.assert_((nix.asBool(nix.app(isAttrs, fields)) && nix.asBool(nix.app(all, isTypeDef, nix.thunk(() => nix.app(attrValues, fields))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/meta-types.nix:211:5");
         const fieldVerifiers = nix.thunk(() => nix.app(mapAttrs, (_) => (t) => nix.sel(t, "verify"), fields));
         return {
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           name: "record",
           verify: (v) => (nix.asBool(nix.app(isAttrs, v)) && nix.asBool(nix.app(all, (k) => (nix.asBool(nix.has(fieldVerifiers, nix.key(nix.force(k)))) && nix.asBool(nix.app(nix.sel(fieldVerifiers, nix.key(nix.force(k))), nix.thunk(() => nix.sel(v, nix.key(nix.force(k))))))), nix.thunk(() => nix.app(attrNames, v))))),
           errors: (ctx) => (v) => (nix.asBool(!nix.asBool(nix.app(isAttrs, v))) ? nix.app(nix.sel(self, "errors"), nix.thunk(() => nix.sel(self, "attrs")), ctx, v) : nix.app(concatMap, (k) => (nix.asBool(nix.has(fieldVerifiers, nix.key(nix.force(k)))) ? nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(fieldVerifiers, nix.key(nix.force(k))), nix.thunk(() => nix.sel(v, nix.key(nix.force(k))))))), nix.thunk(() => nix.app(nix.sel(self, "errors"), nix.thunk(() => nix.sel(fields, nix.key(nix.force(k)))), nix.thunk(() => nix.str`${ctx}.${k}`), nix.thunk(() => nix.sel(v, nix.key(nix.force(k))))))) : [

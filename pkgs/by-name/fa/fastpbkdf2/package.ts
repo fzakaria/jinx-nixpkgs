@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fastpbkdf2",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ctz",
           repo: "fastpbkdf2",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "makeFlagsArray=(CFLAGS=\"-std=c99 -O3 -g\")\n",
       installPhase: "mkdir -p $out/{lib,include/fastpbkdf2}\ncp *.a $out/lib\ncp fastpbkdf2.h $out/include/fastpbkdf2\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fast PBKDF2-HMAC-{SHA1,SHA256,SHA512} implementation in C",
         homepage: "https://github.com/ctz/fastpbkdf2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),

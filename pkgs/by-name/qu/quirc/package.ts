@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libjpeg = nix.arg($, "libjpeg");
   const libpng = nix.arg($, "libpng");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "quirc",
       version: "1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dlbeer",
           repo: "quirc",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,12 +40,12 @@ substituteInPlace Makefile \\
       makeFlags: nix.thunk(() => ["PREFIX=$(out)", "SDL_CFLAGS=", "SDL_LIBS=", "-o inspect", "-o quirc-demo"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/dlbeer/quirc/commit/2c350d8aaf37246e538a2c93b2cce8c78600d2fc.patch?full_index=1",
             hash: "sha256-ZTcy/EoOBoyOjtXjmT+J/JcbX8lxGKmbWer23lymbWo=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/dlbeer/quirc/commit/257c6c94d99960819ecabf72199e5822f60a3bc5.patch?full_index=1",
             hash: "sha256-WLQK7vy34VmgJzppTnRjAcZoSGWVaXQSaGq9An8W0rw=",
           })))),
@@ -57,7 +57,7 @@ dylib=$out/lib/libquirc.${nix.sel(finalAttrs, "version")}.dylib
 ${nix.sel(stdenv, "cc", "targetPrefix")}install_name_tool -id "$dylib" "$dylib"
 `)))),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Small QR code decoding library",
         homepage: "https://github.com/dlbeer/quirc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

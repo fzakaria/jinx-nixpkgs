@@ -29,35 +29,35 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "nix", "firewall"));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       nix: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         firewall: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "firewalling for outgoing traffic of the nix daemon")),
           allowLoopback: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               description: "Whether to allow traffic on the loopback interface. Traffic is still subject to protocol/port rules",
               default: false,
               example: true,
             })))),
           allowPrivateNetworks: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               description: "Whether to allow traffic to local networks. Traffic is still subject to protocol/port rules. Note that this option may break DNS resolution when the DNS resolver is in a local network",
               default: true,
               example: false,
             })))),
           allowNonTCPUDP: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               description: "Whether to allow traffic that is neither TCP nor UDP",
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               example: true,
             })))),
           allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               description: "TCP ports to which traffic is allowed. Specifying no ports will allow all TCP traffic",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "oneOf"), nix.thunk(() => [
                     nix.thunk(() => nix.sel(lib, "types", "singleLineStr")),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
               example: nix.thunk(() => ["http", 443n, "30000-31000"]),
             })))),
           allowedUDPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               description: "UDP ports to which traffic is allowed. Specifying no ports will allow all UDP traffic",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "oneOf"), nix.thunk(() => [
                     nix.thunk(() => nix.sel(lib, "types", "singleLineStr")),
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
               example: nix.thunk(() => [53n]),
             })))),
           extraNftablesRules: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               description: "Extra nftables rules to prepend to the generated ones",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "singleLineStr")))),
               default: [],
@@ -87,34 +87,34 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             assertion: nix.thunk(() => nix.sel(config, "networking", "nftables", "enable")),
             message: "The nix-daemon firewall requires an nftables-based firewall.\nnetworking.nftables.enable must be set to true.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             assertion: nix.thunk(() => !nix.asBool(nix.sel(config, "networking", "nftables", "flushRuleset"))),
             message: "The nix-daemon firewall writes extra tables to nftables.\nnetworking.nftables.flushRuleset must be set to false.\n",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             "nix-daemon": nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               after: nix.thunk(() => ["nftables.service"]),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$12, NFTSet: "cgroup:inet:nix_daemon_firewall:nix_daemon" })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$12, NFTSet: "cgroup:inet:nix_daemon_firewall:nix_daemon" })),
             })),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           nftables: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             ruleset: nix.thunk(() => nix.str`table inet nix_daemon_firewall {
   set nix_daemon {
     type cgroupsv2

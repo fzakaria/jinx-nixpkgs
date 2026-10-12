@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const gitMinimal = nix.arg($, "gitMinimal");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ko",
       version: "0.19.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ko-build",
           repo: "ko",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-f9eSrBhevZ+eS/ct28GoDfoGu1NT+hVLvZwi2euqBe0=",
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       subPackages: ".",
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => [
         "-s",
         "-w",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "# Feed in all the tests for testing\n# This is because subPackages above limits what is built to just what we\n# want but also limits the tests\ngetGoDirs() {\n  go list ./...\n}\n\n# resolves some complaints from ko\nexport GOROOT=\"$(go env GOROOT)\"\ngit init\n\n# ko tests will fail if any of those env are set, as ko tries\n# to make sure it can build and target multiple GOOS/GOARCH\nunset GOOS GOARCH GOARM\n",
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd ko \\\n  --bash <($out/bin/ko completion bash) \\\n  --fish <($out/bin/ko completion fish) \\\n  --zsh <($out/bin/ko completion zsh)\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/ko-build/ko",
         changelog: nix.thunk(() => nix.str`https://github.com/ko-build/ko/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Build and deploy Go applications",

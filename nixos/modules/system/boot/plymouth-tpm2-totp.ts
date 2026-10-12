@@ -29,26 +29,26 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "boot", "plymouth", "tpm2-totp"));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       boot: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         plymouth: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "tpm2-totp": nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "tpm2-totp using Plymouth"), {
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               description: "Whether to display a TOTP during boot using tpm2-totp and Plymouth.",
             })),
-            package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "tpm2-totp", nix.thunk(() => ({ __proto__: pos$2, default: "tpm2-totp-with-plymouth" })))),
+            package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "tpm2-totp", nix.thunk(() => ({ [nix.POS]: pos$2, default: "tpm2-totp-with-plymouth" })))),
           })),
         })),
       })),
     })),
     meta: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "majiir"))];
@@ -56,40 +56,40 @@ export default nix.lambda((args) => (() => {
       doc: nix.path(here, "./plymouth-tpm2-totp.md"),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             assertion: nix.thunk(() => nix.sel(config, "boot", "initrd", "systemd", "enable")),
             message: "boot.plymouth.tpm2-totp is only supported with boot.initrd.systemd.",
           })),
         ]),
         environment: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           initrd: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             systemd: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               storePaths: nix.thunk(() => [
                 nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/libexec/tpm2-totp/plymouth-tpm2-totp`),
                 nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/lib/libtpm2-totp.so.0`),
                 nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/lib/libtpm2-totp.so.0.0.0`),
               ]),
               services: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 "plymouth-tpm2-totp": nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   description: "Display a TOTP during boot using Plymouth",
                   requires: nix.thunk(() => ["plymouth-start.service"]),
                   after: nix.thunk(() => ["plymouth-start.service", "tpm2.target"]),
                   wantedBy: nix.thunk(() => ["sysinit.target"]),
-                  unitConfig: nix.thunk(() => ({ __proto__: pos$10, DefaultDependencies: false })),
+                  unitConfig: nix.thunk(() => ({ [nix.POS]: pos$10, DefaultDependencies: false })),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     Type: "exec",
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/libexec/tpm2-totp/plymouth-tpm2-totp`),
                   })),

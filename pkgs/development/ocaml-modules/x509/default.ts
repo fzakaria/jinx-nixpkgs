@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const base64 = nix.arg($, "base64");
   const ohex = nix.arg($, "ohex");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "x509",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirleft/ocaml-x509/releases/download/v${nix.sel(finalAttrs, "version")}/x509-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-SD9SkJah/O3D+YJ7gmgZ1qKU+Xq6CPkD62v4n7D2FnQ=",
         })))),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/mirleft/ocaml-x509",
         description: "X509 (RFC5280) handling in OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.9.4-unstable-2024-01-23",
       pname: "pyperclipfix",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AuroraWright",
           repo: "pyperclipfix",
           rev: "8c6c61de35b44ddbc927b37ade5579825db40826",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["pyperclipfix"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/AuroraWright/pyperclipfix",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         description: "Cross-platform clipboard module with various fixes",

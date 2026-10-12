@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const version = "1.31.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "suitenumerique",
       repo: "meet",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-yxOld2AfGjw282sx/e1G/iM2D8LUMwAeFyNUUvEmFjc=",
     }))));
   const meta = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     homepage: "https://github.com/suitenumerique/meet",
     changelog: nix.thunk(() => nix.str`https://github.com/suitenumerique/meet/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
     license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -42,16 +42,16 @@ export default nix.lambda((args) => (() => {
     })()),
     platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
   }));
-  const mail = nix.thunk(() => nix.app(callPackage, nix.path(here, "./mail.nix"), nix.thunk(() => ({ __proto__: pos$3, src: src, version: version, meta: meta }))));
-  const frontend = nix.thunk(() => nix.app(callPackage, nix.path(here, "./frontend.nix"), nix.thunk(() => ({ __proto__: pos$4, src: src, version: version, meta: meta }))));
-  const outlook = nix.thunk(() => nix.app(callPackage, nix.path(here, "./addon-outlook.nix"), nix.thunk(() => ({ __proto__: pos$5, src: src, version: version, meta: meta }))));
+  const mail = nix.thunk(() => nix.app(callPackage, nix.path(here, "./mail.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, src: src, version: version, meta: meta }))));
+  const frontend = nix.thunk(() => nix.app(callPackage, nix.path(here, "./frontend.nix"), nix.thunk(() => ({ [nix.POS]: pos$4, src: src, version: version, meta: meta }))));
+  const outlook = nix.thunk(() => nix.app(callPackage, nix.path(here, "./addon-outlook.nix"), nix.thunk(() => ({ [nix.POS]: pos$5, src: src, version: version, meta: meta }))));
   const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       self: python3,
-      packageOverrides: (self) => (super$) => ({ __proto__: pos$6, django: nix.thunk(() => nix.sel(super$, "django_5")) }),
+      packageOverrides: (self) => (super$) => ({ [nix.POS]: pos$6, django: nix.thunk(() => nix.sel(super$, "django_5")) }),
     }))));
   return nix.app(nix.sel(python, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: "lasuite-meet",
       pyproject: true,
       version: version,
@@ -135,17 +135,17 @@ ln -sv ${nix.sel(finalAttrs, "passthru", "mail")}/ $out/${nix.sel(python, "siteP
 `;
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         mail: mail,
         frontend: frontend,
-        addons: nix.thunk(() => ({ __proto__: pos$8, outlook: outlook })),
+        addons: nix.thunk(() => ({ [nix.POS]: pos$8, outlook: outlook })),
         tests: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           "login-and-create-room": nix.thunk(() => nix.sel(nixosTests, "lasuite-meet")),
         })),
       })),
       meta: nix.thunk(() => nix.update(meta, {
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         description: "Open source alternative to Google Meet and Zoom powered by LiveKit: HD video calls, screen sharing, and chat features. Built with Django and React",
         mainProgram: "meet",
       })),

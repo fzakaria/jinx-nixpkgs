@@ -18,26 +18,26 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const inInitrd = nix.thunk(() => nix.selOr(config, () => false, "boot", "initrd", "supportedFilesystems", "vfat"));
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.selOr(config, () => false, "boot", "supportedFilesystems", "vfat")), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         system: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           fsPackages: nix.thunk(() => [
             nix.thunk(() => nix.sel(pkgs, "dosfstools")),
             nix.thunk(() => nix.sel(pkgs, "mtools")),
           ]),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           initrd: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             kernelModules: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), inInitrd, nix.thunk(() => ["vfat", "nls_cp437", "nls_iso8859-1"]))),
             extraUtilsCommands: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => (nix.asBool(inInitrd) && nix.asBool(!nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable"))))), nix.thunk(() => nix.str`copy_bin_and_libs ${nix.sel(pkgs, "dosfstools")}/sbin/dosfsck
 ln -sv dosfsck $out/bin/fsck.vfat
 `))),
             systemd: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               initrdBin: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), inInitrd, nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "dosfstools"))]))),
             })),
           })),

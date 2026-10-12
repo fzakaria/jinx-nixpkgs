@@ -30,58 +30,58 @@ export default nix.lambda((args) => (() => {
   const concatStringsSep = nix.thunk(() => nix.attr(lib, "concatStringsSep"));
   const optional = nix.thunk(() => nix.attr(lib, "optional"));
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     port: 9154n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "prometheus-postfix-exporter", nix.thunk(() => ({})))),
       group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(types, "str")),
           description: "Group under which the postfix exporter shall be run.\nIt should match the group that is allowed to access the\n`showq` socket in the `queue/public/` directory.\nDefaults to `services.postfix.setgidGroup` when postfix is enabled.\n",
         })))),
       telemetryPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "/metrics",
           description: "Path under which to expose metrics.\n",
         })))),
       logfilePath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.sel(types, "path")),
           default: "/var/log/postfix_exporter_input.log",
           example: "/var/log/mail.log",
           description: "Path where Postfix writes log entries.\nThis file will be truncated by this exporter!\n",
         })))),
       showqPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => nix.sel(types, "path")),
           default: "/var/lib/postfix/queue/public/showq",
           example: "/var/spool/postfix/public/showq",
           description: "Path where Postfix places its showq socket.\n",
         })))),
       systemd: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             type: nix.thunk(() => nix.sel(types, "bool")),
             default: true,
             description: "Whether to enable reading metrics from the systemd journal instead of from a logfile\n",
           })))),
         unit: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             type: nix.thunk(() => nix.sel(types, "str")),
             default: "postfix.service",
             description: "Name of the postfix systemd unit.\n",
           })))),
         slice: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
             default: null,
             description: "Name of the postfix systemd slice.\nThis overrides the {option}`systemd.unit`.\n",
           })))),
         journalPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
             default: null,
             description: "Path to the systemd journal.\n",
@@ -89,10 +89,10 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       after: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "systemd", "enable")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "systemd", "unit"))]))),
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         DynamicUser: false,
         RestrictAddressFamilies: nix.thunk(() => ["AF_UNIX"]),
         SupplementaryGroups: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "systemd", "enable")), nix.thunk(() => ["systemd-journal"]))),

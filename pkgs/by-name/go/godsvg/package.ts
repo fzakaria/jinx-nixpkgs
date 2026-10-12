@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const enableWayland = nix.argOr($, "enableWayland", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "godsvg",
       version: "1.0-alpha17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MewPurPur",
           repo: "GodSVG",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [godot_4_6, makeWrapper]),
       buildPhase: nix.thunk(() => (() => {
-        const preset = nix.thunk(() => nix.selOr({ __proto__: pos$2, "x86_64-linux": "Linux", "aarch64-darwin": "macOS" }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
+        const preset = nix.thunk(() => nix.selOr({ [nix.POS]: pos$2, "x86_64-linux": "Linux", "aarch64-darwin": "macOS" }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
         return nix.str`runHook preBuild
 
 # Cannot create file \`/homeless-shelter/.config/godot_4_5/projects/...\`
@@ -62,11 +62,11 @@ install -Dm444 ./no_export/distribution/com.godsvg.GodSVG.desktop $out/share/app
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$3, extraArgs: nix.thunk(() => ["--version=unstable"]) })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version=unstable"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://www.godsvg.com/",
         description: "A vector graphics application for structured SVG editing",
         changelog: nix.thunk(() => nix.str`https://www.godsvg.com/article/${nix.app(nix.sel(lib, "replaceString"), ".", "-", nix.thunk(() => nix.sel(finalAttrs, "version")))}`),

@@ -118,27 +118,27 @@ export default nix.lambda((args) => (() => {
   const delegateWireless = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(config, "networking", "wireless", "networks"), {})) && nix.asBool(!nix.eq(nix.sel(cfg, "unmanaged"), []))));
   const enableIwd = nix.thunk(() => nix.eq(nix.sel(cfg, "wifi", "backend"), "iwd"));
   const configAttrs = nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       main: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         plugins: "keyfile",
         dhcp: nix.thunk(() => nix.attr(cfg, "dhcp")),
         dns: nix.thunk(() => nix.attr(cfg, "dns")),
         "rc-manager": nix.thunk(() => (nix.asBool(nix.sel(config, "networking", "resolvconf", "enable")) ? "resolvconf" : "unmanaged")),
       })),
       keyfile: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         path: "/etc/NetworkManager/system-connections",
         "unmanaged-devices": nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "unmanaged"), [])) ? null : nix.app(nix.sel(lib, "concatStringsSep"), ";", nix.thunk(() => nix.sel(cfg, "unmanaged"))))),
       })),
       logging: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         audit: nix.thunk(() => nix.sel(config, "security", "audit", "enable")),
         level: nix.thunk(() => nix.sel(cfg, "logLevel")),
       })),
       connection: nix.thunk(() => nix.sel(cfg, "connectionConfig")),
       device: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "wifi.scan-rand-mac-address": nix.thunk(() => nix.sel(cfg, "wifi", "scanRandMacAddress")),
         "wifi.backend": nix.thunk(() => nix.sel(cfg, "wifi", "backend")),
       })),
@@ -164,20 +164,20 @@ cat $tmp ${nix.app(ns, nix.thunk(() => nix.sel(cfg, "insertNameservers")))} $tmp
 rm -f $tmp $tmp.ns
 `)));
   const dispatcherTypesSubdirMap = nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     basic: "",
     "pre-up": "pre-up.d/",
     "pre-down": "pre-down.d/",
   }));
   const macAddressOptWifi = nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "either"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["permanent", "preserve", "random", "stable", "stable-ssid"]))))),
       default: "preserve",
       example: "00:11:22:33:44:55",
       description: "Set the MAC address of the interface.\n\n- `\"XX:XX:XX:XX:XX:XX\"`: MAC address of the interface\n- `\"permanent\"`: Use the permanent MAC address of the device\n- `\"preserve\"`: Don’t change the MAC address of the device upon activation\n- `\"random\"`: Generate a randomized value upon each connect\n- `\"stable\"`: Generate a stable, hashed MAC address\n- `\"stable-ssid\"`: Generate a stable MAC addressed based on Wi-Fi network\n",
     }))));
   const macAddressOptEth = nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "either"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["permanent", "preserve", "random", "stable"]))))),
       default: "preserve",
       example: "00:11:22:33:44:55",
@@ -189,27 +189,27 @@ rm -f $tmp $tmp.ns
   const pluginTmpfilesRules = nix.thunk(() => nix.app(concatPluginAttrs, "networkManagerTmpfilesRules"));
   const packages = nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(cfg, "package"))], nix.concat(nix.sel(cfg, "plugins"), pluginRuntimeDeps)));
   return {
-    __proto__: pos$103,
+    [nix.POS]: pos$103,
     meta: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "freedesktop"))]),
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "frontear"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$48,
+      [nix.POS]: pos$48,
       networking: nix.thunk(() => ({
-        __proto__: pos$47,
+        [nix.POS]: pos$47,
         networkmanager: nix.thunk(() => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether to use NetworkManager to obtain an IP address and other\nconfiguration for all network interfaces that are not manually\nconfigured. If enabled, a group `networkmanager`\nwill be created. Add all users that should have permission\nto change network settings to this group.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "networkmanager", nix.thunk(() => ({})))),
           connectionConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => (() => {
                 const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_2, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_2, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_2, "oneOf"), nix.thunk(() => [
@@ -222,22 +222,22 @@ rm -f $tmp $tmp.ns
               description: "Configuration for the [connection] section of NetworkManager.conf.\nRefer to\n[\n  https://developer.gnome.org/NetworkManager/stable/NetworkManager.conf.html#id-1.2.3.11\n](https://developer.gnome.org/NetworkManager/stable/NetworkManager.conf.html)\nor\n{manpage}`NetworkManager.conf(5)`\nfor more information.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(ini, "type")),
               default: nix.thunk(() => ({})),
               description: "Configuration added to the generated NetworkManager.conf, note that you can overwrite settings with this.\nRefer to\n[\n  https://developer.gnome.org/NetworkManager/stable/NetworkManager.conf.html\n](https://developer.gnome.org/NetworkManager/stable/NetworkManager.conf.html)\nor\n{manpage}`NetworkManager.conf(5)`\nfor more information.\n",
             })))),
           unmanaged: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: [],
               description: "List of interfaces that will not be managed by NetworkManager.\nInterface name can be specified here, but if you need more fidelity,\nrefer to\n[\n  https://developer.gnome.org/NetworkManager/stable/NetworkManager.conf.html#device-spec\n](https://developer.gnome.org/NetworkManager/stable/NetworkManager.conf.html#device-spec)\nor the \"Device List Format\" Appendix of\n{manpage}`NetworkManager.conf(5)`.\n",
             })))),
           plugins: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => (() => {
                 const networkManagerPluginPackage = nix.thunk(() => nix.update(nix.sel(nix.lookup(w, "types"), "package"), {
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   description: "NetworkManager plugin package",
                   check: (p) => nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(nix.lookup(w, "types"), "package", "check"), p)) && nix.asBool(nix.has(p, "networkManagerPlugin")))) && nix.asBool(nix.app(nix.sel(lib, "isString"), nix.thunk(() => nix.sel(p, "networkManagerPlugin")))))), nix.thunk(() => nix.str`Package ‘${nix.sel(p, "name")}’, is not a NetworkManager plugin.
 Those need to have a ‘networkManagerPlugin’ attribute.
@@ -250,71 +250,71 @@ Those need to have a ‘networkManagerPlugin’ attribute.
               description: "List of plugin packages to install.\n\nSee <https://search.nixos.org/packages?query=networkmanager-> for available plugin packages.\nand <https://networkmanager.dev/docs/vpn/> for an overview over builtin and external plugins\nand their support status.\n",
             })))),
           dhcp: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["dhcpcd", "internal"]))),
               default: "internal",
               description: "Which program (or internal library) should be used for DHCP.\n",
             })))),
           logLevel: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["OFF", "ERR", "WARN", "INFO", "DEBUG", "TRACE"]))),
               default: "WARN",
               description: "Set the default logging verbosity level.\n",
             })))),
           appendNameservers: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: [],
               description: "A list of name servers that should be appended\nto the ones configured in NetworkManager or received by DHCP.\n",
             })))),
           insertNameservers: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: [],
               description: "A list of name servers that should be inserted before\nthe ones configured in NetworkManager or received by DHCP.\n",
             })))),
-          ethernet: nix.thunk(() => ({ __proto__: pos$20, macAddress: macAddressOptEth })),
+          ethernet: nix.thunk(() => ({ [nix.POS]: pos$20, macAddress: macAddressOptEth })),
           wifi: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             macAddress: macAddressOptWifi,
             backend: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["wpa_supplicant", "iwd"]))),
                 default: "wpa_supplicant",
                 description: "Specify the Wi-Fi backend used for the device.\nCurrently supported are {option}`wpa_supplicant` or {option}`iwd` (experimental).\n",
               })))),
             powersave: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")))),
                 default: null,
                 description: "Whether to enable Wi-Fi power saving.\n",
               })))),
             scanRandMacAddress: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: true,
                 description: "Whether to enable MAC address randomization of a Wi-Fi device\nduring scanning.\n",
               })))),
           })),
           dns: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["default", "dnsmasq", "systemd-resolved", "none"]))),
               default: "default",
               description: "Set the DNS ({file}`resolv.conf`) processing mode.\n\nA description of these modes can be found in the main section of\n[\n  https://developer.gnome.org/NetworkManager/stable/NetworkManager.conf.html\n](https://developer.gnome.org/NetworkManager/stable/NetworkManager.conf.html)\nor in\n{manpage}`NetworkManager.conf(5)`.\n",
             })))),
           dispatcherScripts: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                    __proto__: pos$29,
+                    [nix.POS]: pos$29,
                     options: nix.thunk(() => ({
-                      __proto__: pos$28,
+                      [nix.POS]: pos$28,
                       source: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$26,
+                          [nix.POS]: pos$26,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
                           description: "Path to the hook script.\n",
                         })))),
                       type: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$27,
+                          [nix.POS]: pos$27,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => nix.app(nix.lookup(w, "attrNames"), dispatcherTypesSubdirMap)))),
                           default: "basic",
                           description: "Dispatcher hook type. Look up the hooks described at\n[https://developer.gnome.org/NetworkManager/stable/NetworkManager.html](https://developer.gnome.org/NetworkManager/stable/NetworkManager.html)\nand choose the type depending on the output folder.\nYou should then filter the event type (e.g., \"up\"/\"down\") from within your script.\n",
@@ -326,25 +326,25 @@ Those need to have a ‘networkManagerPlugin’ attribute.
               description: "A list of scripts which will be executed in response to network events.\n",
             })))),
           ensureProfiles: nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             profiles: nix.thunk(() => (() => {
               const w_2 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), w);
               return nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$43,
+                  [nix.POS]: pos$43,
                   type: nix.thunk(() => nix.app(nix.lookup(w_2, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_2, "submodule"), nix.thunk(() => ({
-                        __proto__: pos$35,
+                        [nix.POS]: pos$35,
                         freeformType: nix.thunk(() => nix.sel(ini, "type")),
                         options: nix.thunk(() => ({
-                          __proto__: pos$34,
+                          [nix.POS]: pos$34,
                           connection: nix.thunk(() => ({
-                            __proto__: pos$33,
+                            [nix.POS]: pos$33,
                             id: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$31,
+                                [nix.POS]: pos$31,
                                 type: nix.thunk(() => nix.lookup(w_2, "str")),
                                 description: "This is the name that will be displayed by NetworkManager and GUIs.",
                               })))),
                             type: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$32,
+                                [nix.POS]: pos$32,
                                 type: nix.thunk(() => nix.lookup(w_2, "str")),
                                 description: "The connection type defines the connection kind, like vpn, wireguard, gsm, wifi and more.",
                                 example: "vpn",
@@ -355,25 +355,25 @@ Those need to have a ‘networkManagerPlugin’ attribute.
                   apply: nix.thunk(() => nix.app(nix.sel(lib, "filterAttrsRecursive"), (n) => (v) => !nix.eq(v, {}))),
                   default: nix.thunk(() => ({})),
                   example: nix.thunk(() => ({
-                    __proto__: pos$42,
+                    [nix.POS]: pos$42,
                     "home-wifi": nix.thunk(() => ({
-                      __proto__: pos$41,
-                      connection: nix.thunk(() => ({ __proto__: pos$36, id: "home-wifi", type: "wifi", permissions: "" })),
+                      [nix.POS]: pos$41,
+                      connection: nix.thunk(() => ({ [nix.POS]: pos$36, id: "home-wifi", type: "wifi", permissions: "" })),
                       wifi: nix.thunk(() => ({
-                        __proto__: pos$37,
+                        [nix.POS]: pos$37,
                         "mac-address-blacklist": "",
                         mode: "infrastructure",
                         ssid: "Home Wi-Fi",
                       })),
                       "wifi-security": nix.thunk(() => ({
-                        __proto__: pos$38,
+                        [nix.POS]: pos$38,
                         "auth-alg": "open",
                         "key-mgmt": "wpa-psk",
                         psk: "$HOME_WIFI_PASSWORD",
                       })),
-                      ipv4: nix.thunk(() => ({ __proto__: pos$39, "dns-search": "", method: "auto" })),
+                      ipv4: nix.thunk(() => ({ [nix.POS]: pos$39, "dns-search": "", method: "auto" })),
                       ipv6: nix.thunk(() => ({
-                        __proto__: pos$40,
+                        [nix.POS]: pos$40,
                         "addr-gen-mode": "stable-privacy",
                         "dns-search": "",
                         method: "auto",
@@ -384,7 +384,7 @@ Those need to have a ‘networkManagerPlugin’ attribute.
                 })));
             })()),
             environmentFiles: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 default: [],
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
                 example: nix.thunk(() => ["/run/secrets/network-manager.env"]),
@@ -406,32 +406,32 @@ Those need to have a ‘networkManagerPlugin’ attribute.
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["networking", "networkmanager", "enableDefaultPlugins"]), "Configure the required plugins explicitly in `networking.networkmanager.plugins`.")),
     ]),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$102,
+        [nix.POS]: pos$102,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$49,
+            [nix.POS]: pos$49,
             assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(config, "networking", "wireless", "networks"), {})) || nix.asBool(!nix.eq(nix.sel(cfg, "unmanaged"), [])))),
             message: "You can not use networking.networkmanager with networking.wireless.networks.\nExcept if you mark some interfaces as <literal>unmanaged</literal> by NetworkManager.\n",
           })),
         ]),
-        hardware: nix.thunk(() => ({ __proto__: pos$50, wirelessRegulatoryDatabase: true })),
+        hardware: nix.thunk(() => ({ [nix.POS]: pos$50, wirelessRegulatoryDatabase: true })),
         environment: nix.thunk(() => ({
-          __proto__: pos$59,
+          [nix.POS]: pos$59,
           etc: nix.thunk(() => nix.update({
-            __proto__: pos$53,
-            "NetworkManager/NetworkManager.conf": nix.thunk(() => ({ __proto__: pos$51, source: configFile })),
-            "ipsec.secrets": nix.thunk(() => ({ __proto__: pos$52, text: "include ipsec.d/ipsec.nm-l2tp.secrets\n" })),
+            [nix.POS]: pos$53,
+            "NetworkManager/NetworkManager.conf": nix.thunk(() => ({ [nix.POS]: pos$51, source: configFile })),
+            "ipsec.secrets": nix.thunk(() => ({ [nix.POS]: pos$52, text: "include ipsec.d/ipsec.nm-l2tp.secrets\n" })),
           }, nix.update(nix.app(nix.sel(nix.builtins, "listToAttrs"), nix.thunk(() => nix.app(nix.builtins.map, (pkg) => nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.str`NetworkManager/${nix.sel(pkg, "networkManagerPlugin")}`), nix.thunk(() => ({
-                  __proto__: pos$54,
+                  [nix.POS]: pos$54,
                   source: nix.thunk(() => nix.str`${pkg}/lib/NetworkManager/${nix.sel(pkg, "networkManagerPlugin")}`),
                 }))), nix.thunk(() => nix.sel(cfg, "plugins"))))), nix.update(nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "appendNameservers"), [])) || nix.asBool(!nix.eq(nix.sel(cfg, "insertNameservers"), [])))), nix.thunk(() => ({
-              __proto__: pos$56,
-              "NetworkManager/dispatcher.d/02overridedns": nix.thunk(() => ({ __proto__: pos$55, source: overrideNameserversScript })),
+              [nix.POS]: pos$56,
+              "NetworkManager/dispatcher.d/02overridedns": nix.thunk(() => ({ [nix.POS]: pos$55, source: overrideNameserversScript })),
             }))), nix.app(nix.lookup(w, "listToAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "imap1"), (i) => (s) => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 name: nix.thunk(() => nix.str`NetworkManager/dispatcher.d/${nix.sel(dispatcherTypesSubdirMap, nix.key(nix.sel(s, "type")))}03userscript${nix.app(nix.sel(lib, "fixedWidthNumber"), 4n, i)}`),
                 value: nix.thunk(() => ({
-                  __proto__: pos$57,
+                  [nix.POS]: pos$57,
                   mode: "0544",
                   source: nix.thunk(() => nix.attr(s, "source")),
                 })),
@@ -439,72 +439,72 @@ Those need to have a ‘networkManagerPlugin’ attribute.
           systemPackages: packages,
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$66,
+          [nix.POS]: pos$66,
           groups: nix.thunk(() => ({
-            __proto__: pos$62,
+            [nix.POS]: pos$62,
             networkmanager: nix.thunk(() => ({
-              __proto__: pos$60,
+              [nix.POS]: pos$60,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "networkmanager")),
             })),
             "nm-openvpn": nix.thunk(() => ({
-              __proto__: pos$61,
+              [nix.POS]: pos$61,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "nm-openvpn")),
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$65,
+            [nix.POS]: pos$65,
             "nm-openvpn": nix.thunk(() => ({
-              __proto__: pos$63,
+              [nix.POS]: pos$63,
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "nm-openvpn")),
               group: "nm-openvpn",
               extraGroups: nix.thunk(() => ["networkmanager"]),
             })),
-            "nm-iodine": nix.thunk(() => ({ __proto__: pos$64, isSystemUser: true, group: "networkmanager" })),
+            "nm-iodine": nix.thunk(() => ({ [nix.POS]: pos$64, isSystemUser: true, group: "networkmanager" })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$84,
+          [nix.POS]: pos$84,
           packages: packages,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$75,
+            [nix.POS]: pos$75,
             settings: nix.thunk(() => ({
-              __proto__: pos$74,
+              [nix.POS]: pos$74,
               networkmanager: nix.thunk(() => nix.attrsDyn({
-                __proto__: pos$73,
+                [nix.POS]: pos$73,
                 "/var/lib/misc": nix.thunk(() => ({
-                  __proto__: pos$68,
-                  d: nix.thunk(() => ({ __proto__: pos$67, mode: "0755", user: "root", group: "root" })),
+                  [nix.POS]: pos$68,
+                  d: nix.thunk(() => ({ [nix.POS]: pos$67, mode: "0755", user: "root", group: "root" })),
                 })),
                 "/run/pppd/lock": nix.thunk(() => ({
-                  __proto__: pos$70,
-                  d: nix.thunk(() => ({ __proto__: pos$69, mode: "0700", user: "root", group: "root" })),
+                  [nix.POS]: pos$70,
+                  d: nix.thunk(() => ({ [nix.POS]: pos$69, mode: "0700", user: "root", group: "root" })),
                 })),
               }, [
                 [nix.sel(configAttrs, "keyfile", "path"), nix.thunk(() => ({
-                  __proto__: pos$72,
-                  d: nix.thunk(() => ({ __proto__: pos$71, mode: "0700", user: "root", group: "root" })),
+                  [nix.POS]: pos$72,
+                  d: nix.thunk(() => ({ [nix.POS]: pos$71, mode: "0700", user: "root", group: "root" })),
                 }))],
               ])),
             })),
             rules: pluginTmpfilesRules,
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$83,
+            [nix.POS]: pos$83,
             NetworkManager: nix.thunk(() => ({
-              __proto__: pos$77,
+              [nix.POS]: pos$77,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               restartTriggers: nix.thunk(() => [configFile]),
               aliases: nix.thunk(() => ["dbus-org.freedesktop.NetworkManager.service"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$76,
+                [nix.POS]: pos$76,
                 StateDirectory: "NetworkManager",
                 StateDirectoryMode: 755n,
               })),
               path: pluginRuntimeDeps,
             })),
-            "NetworkManager-wait-online": nix.thunk(() => ({ __proto__: pos$78, wantedBy: nix.thunk(() => ["network-online.target"]) })),
+            "NetworkManager-wait-online": nix.thunk(() => ({ [nix.POS]: pos$78, wantedBy: nix.thunk(() => ["network-online.target"]) })),
             "NetworkManager-dispatcher": nix.thunk(() => ({
-              __proto__: pos$79,
+              [nix.POS]: pos$79,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               restartTriggers: nix.thunk(() => [configFile, overrideNameserversScript]),
               path: nix.thunk(() => [
@@ -515,7 +515,7 @@ Those need to have a ‘networkManagerPlugin’ attribute.
               aliases: nix.thunk(() => ["dbus-org.freedesktop.nm-dispatcher.service"]),
             })),
             "NetworkManager-ensure-profiles": nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "ensureProfiles", "profiles"), {})), nix.thunk(() => ({
-                __proto__: pos$82,
+                [nix.POS]: pos$82,
                 description: "Ensure that NetworkManager declarative profiles are created",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 before: nix.thunk(() => ["network-online.target"]),
@@ -524,11 +524,11 @@ Those need to have a ‘networkManagerPlugin’ attribute.
                 script: nix.thunk(() => (() => {
                   const path = (id) => nix.str`/run/NetworkManager/system-connections/${id}.nmconnection`;
                   return nix.add(nix.add("mkdir -p /run/NetworkManager/system-connections\n", nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (profile) => nix.str`${nix.sel(pkgs, "envsubst")}/bin/envsubst -i ${nix.app(nix.sel(ini, "generate"), nix.thunk(() => nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.sel(profile, "n")))), nix.thunk(() => nix.sel(profile, "v")))} > ${nix.app(path, nix.thunk(() => nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.sel(profile, "n")))))}
-`, nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (n) => (v) => ({ __proto__: pos$80, n: n, v: v }), nix.thunk(() => nix.sel(cfg, "ensureProfiles", "profiles")))))), nix.str`${nix.sel(cfg, "package")}/bin/nmcli connection reload
+`, nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (n) => (v) => ({ [nix.POS]: pos$80, n: n, v: v }), nix.thunk(() => nix.sel(cfg, "ensureProfiles", "profiles")))))), nix.str`${nix.sel(cfg, "package")}/bin/nmcli connection reload
 `);
                 })()),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$81,
+                  [nix.POS]: pos$81,
                   EnvironmentFile: nix.thunk(() => nix.sel(cfg, "ensureProfiles", "environmentFiles")),
                   UMask: "0177",
                   Type: "oneshot",
@@ -537,33 +537,33 @@ Those need to have a ‘networkManagerPlugin’ attribute.
           })),
         })),
         networking: nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
-            nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.asBool(delegateWireless)), nix.thunk(() => ({ __proto__: pos$85, useDHCP: false })))),
+            nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.asBool(delegateWireless)), nix.thunk(() => ({ [nix.POS]: pos$85, useDHCP: false })))),
             nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => (nix.asBool(!nix.asBool(delegateWireless)) && nix.asBool(!nix.asBool(enableIwd)))), nix.thunk(() => ({
-                __proto__: pos$87,
+                [nix.POS]: pos$87,
                 wireless: nix.thunk(() => ({
-                  __proto__: pos$86,
+                  [nix.POS]: pos$86,
                   enable: true,
                   autoDetectInterfaces: false,
                   dbusControlled: true,
                 })),
               })))),
             nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), enableIwd, nix.thunk(() => ({
-                __proto__: pos$90,
+                [nix.POS]: pos$90,
                 wireless: nix.thunk(() => ({
-                  __proto__: pos$89,
-                  iwd: nix.thunk(() => ({ __proto__: pos$88, enable: true })),
+                  [nix.POS]: pos$89,
+                  iwd: nix.thunk(() => ({ [nix.POS]: pos$88, enable: true })),
                 })),
               })))),
             nix.thunk(() => ({
-              __proto__: pos$94,
+              [nix.POS]: pos$94,
               modemmanager: nix.thunk(() => ({
-                __proto__: pos$91,
+                [nix.POS]: pos$91,
                 enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
               })),
               networkmanager: nix.thunk(() => ({
-                __proto__: pos$93,
+                [nix.POS]: pos$93,
                 connectionConfig: nix.thunk(() => ({
-                  __proto__: pos$92,
+                  [nix.POS]: pos$92,
                   "ethernet.cloned-mac-address": nix.thunk(() => nix.sel(cfg, "ethernet", "macAddress")),
                   "wifi.cloned-mac-address": nix.thunk(() => nix.sel(cfg, "wifi", "macAddress")),
                   "wifi.powersave": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "wifi", "powersave"), null)), nix.thunk(() => (nix.asBool(nix.sel(cfg, "wifi", "powersave")) ? 3n : 2n)))),
@@ -571,19 +571,19 @@ Those need to have a ‘networkManagerPlugin’ attribute.
               })),
             })),
           ]))),
-        boot: nix.thunk(() => ({ __proto__: pos$95, kernelModules: nix.thunk(() => ["ctr"]) })),
+        boot: nix.thunk(() => ({ [nix.POS]: pos$95, kernelModules: nix.thunk(() => ["ctr"]) })),
         security: nix.thunk(() => ({
-          __proto__: pos$97,
-          polkit: nix.thunk(() => ({ __proto__: pos$96, enable: true, extraConfig: polkitConf })),
+          [nix.POS]: pos$97,
+          polkit: nix.thunk(() => ({ [nix.POS]: pos$96, enable: true, extraConfig: polkitConf })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$101,
+          [nix.POS]: pos$101,
           dbus: nix.thunk(() => ({
-            __proto__: pos$98,
+            [nix.POS]: pos$98,
             packages: nix.thunk(() => nix.concat(packages, nix.concat(pluginDbusDeps, nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.eq(nix.sel(cfg, "dns"), "dnsmasq")), nix.thunk(() => nix.sel(pkgs, "dnsmasq")))))),
           })),
-          firewalld: nix.thunk(() => ({ __proto__: pos$99, packages: packages })),
-          udev: nix.thunk(() => ({ __proto__: pos$100, packages: packages })),
+          firewalld: nix.thunk(() => ({ [nix.POS]: pos$99, packages: packages })),
+          udev: nix.thunk(() => ({ [nix.POS]: pos$100, packages: packages })),
         })),
       })))),
   };

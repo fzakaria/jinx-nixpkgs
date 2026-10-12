@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const vala = nix.arg($, "vala");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libdbusmenu-glib",
       version: "16.04.0-jetbrains-fork-2022-05-18",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jetbrains",
           repo: "libdbusmenu",
           rev: "d8a49303f908a272e6670b7cee65a2ba7c447875",
@@ -59,7 +59,7 @@ done
       ]),
       postInstall: "mkdir -p $out/lib\ncp libdbusmenu-glib/.libs/libdbusmenu-glib.a $out/lib\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for passing menu structures across DBus",
         homepage: "https://launchpad.net/dbusmenu",
         license: nix.thunk(() => (() => {

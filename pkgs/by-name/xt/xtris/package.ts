@@ -15,23 +15,23 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "xtris",
       version: "1.15",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://web.archive.org/web/20120315061213/http://www.iagora.com/~espel/xtris/xtris-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1vqva99lyv7r6f9c7yikk8ahcfh9aq3clvwm4pz964wlbr9mj1v6",
         })))),
       patchPhase: "sed -i '\n  s:/usr/local/bin:'$out'/bin:\n  s:/usr/local/man:'$out'/share/man:\n  s:mkdir:mkdir -p:g\n  s:^CFLAGS:#CFLAGS:\n' Makefile\n\nsed -i '28i#include <time.h>' xtserv.c\nsed -i '35i#include <time.h>' xtbot.c\n",
       buildInputs: nix.thunk(() => [libx11]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Multi-player version of the classical game of Tetris, for the X Window system",
         homepage: "https://web.archive.org/web/20120315061213/http://www.iagora.com/~espel/xtris/xtris.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

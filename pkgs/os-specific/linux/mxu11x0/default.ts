@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   const kernel = nix.arg($, "kernel");
-  const srcs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./srcs.nix")), nix.thunk(() => ({ __proto__: pos$1, fetchurl: fetchurl }))));
+  const srcs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./srcs.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, fetchurl: fetchurl }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "mxu11x0";
       const src = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(kernel, "version")), "5.0")) ? nix.sel(srcs, "mxu11x0_5", "src") : nix.sel(srcs, "mxu11x0_4", "src")));
@@ -30,7 +30,7 @@ install -v -D -m 644 ./driver/mxu11x0.ko "$out/lib/modules/${nix.sel(kernel, "mo
       const enableParallelBuilding = true;
       const hardeningDisable = nix.thunk(() => ["pic"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MOXA UPort 11x0 USB to Serial Hub driver",
         homepage: "https://www.moxa.com/en/products/industrial-edge-connectivity/usb-to-serial-converters-usb-hubs/usb-to-serial-converters/uport-1000-series",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -42,7 +42,7 @@ install -v -D -m 644 ./driver/mxu11x0.ko "$out/lib/modules/${nix.sel(kernel, "mo
         broken: nix.thunk(() => nix.app(nix.sel(kernel, "kernelAtLeast"), "5.14")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         src,
         mxu_version,

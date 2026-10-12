@@ -21,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const re2 = nix.arg($, "re2");
   const spirv_headers = nix.arg($, "spirv-headers");
   const effcee_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "google",
       repo: "effcee",
       rev: "910ed15722d5d05c9d71ecf36c1a22243cb79b02",
       hash: "sha256-l6MbPrPHqpeov4QSO/rmIuPcFqnlLJ5kTusNqZM5mFM=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "spirv-tools",
       version: "1.4.357.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "KhronosGroup",
           repo: "SPIRV-Tools",
           rev: nix.thunk(() => nix.str`vulkan-sdk-${nix.sel(finalAttrs, "version")}`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       disabledTests: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isLittleEndian"))), nix.thunk(() => ["spirv-tools-test_spirv_unit_test_tools_objdump"]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "SPIR-V Tools project provides an API and commands for processing SPIR-V modules",
         homepage: "https://github.com/KhronosGroup/SPIRV-Tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const outputs = nix.thunk(() => ["out", "dev", "devdoc"]);
       const outputBin = "dev";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libdazzle/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/libdazzle-${version}.tar.xz`),
           sha256: "PNPkXrbiaAywXVLh6A3Y+dWdR2UhLw4o945sF4PRjq4=",
         }))));
@@ -60,11 +60,11 @@ export default nix.lambda((args) => (() => {
   meson test --print-errorlogs
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: pname })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: pname })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Library to delight your users with fancy features",
         mainProgram: "dazzle-list-counters",
         longDescription: "The libdazzle library is a companion library to GObject and GTK. It\nprovides various features that we wish were in the underlying library but\ncannot for various reasons. In most cases, they are wildly out of scope\nfor those libraries. In other cases, our design isn't quite generic\nenough to work for everyone.\n",
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         outputs,

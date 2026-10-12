@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const mock = nix.arg($, "mock");
   const glibcLocales = nix.arg($, "glibcLocales");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "blessed",
       version: "1.25-unstable-2025-12-05",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jquast",
           repo: "blessed",
           rev: "cee680ff7fb3ad31f42ae98582ba74629f1fd6b0",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "rm tox.ini\n",
       disabledTestPaths: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["tests/test_sixel.py"]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/jquast/blessed",
         description: "Thin, practical wrapper around terminal capabilities in Python",
         maintainers: nix.thunk(() => (() => {

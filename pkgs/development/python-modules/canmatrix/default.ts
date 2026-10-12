@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const xlrd = nix.arg($, "xlrd");
   const xlwt = nix.arg($, "xlwt");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "canmatrix",
       version: "1.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ebroecker",
           repo: "canmatrix",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +44,7 @@ substituteInPlace setup.py \\
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [attrs, click]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         arxml: nix.thunk(() => [lxml]),
         fibex: nix.thunk(() => [lxml]),
         kcd: nix.thunk(() => [lxml]),
@@ -60,7 +60,7 @@ substituteInPlace setup.py \\
       disabledTests: nix.thunk(() => ["long_envvar_name_imports"]),
       pythonImportsCheck: nix.thunk(() => ["canmatrix"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Support and convert several CAN (Controller Area Network) database formats",
         homepage: "https://github.com/ebroecker/canmatrix",
         changelog: nix.thunk(() => nix.str`https://github.com/ebroecker/canmatrix/releases/tag/${nix.sel(finalAttrs, "version")}`),

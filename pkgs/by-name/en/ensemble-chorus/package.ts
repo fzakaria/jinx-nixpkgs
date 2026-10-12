@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ensemble-chorus",
       version: "0-unstable-2019-02-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jpcima",
           repo: "ensemble-chorus",
           rev: "59baeb86b8851f521bc8162e22e3f15061662cc3",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [fltk, alsa_lib, freetype, libxrandr, libxinerama, libxcursor, lv2, libjack2]),
       postPatch: "substituteInPlace CMakeLists.txt --replace-fail \\\n  'cmake_minimum_required(VERSION \"3.3\")' \\\n  'cmake_minimum_required(VERSION 4.0)'\nsubstituteInPlace thirdparty/gsl-lite/CMakeLists.txt --replace-fail \\\n  'cmake_minimum_required( VERSION 3.0 FATAL_ERROR )' \\\n  'cmake_minimum_required(VERSION 4.0)'\nsubstituteInPlace thirdparty/jsl/CMakeLists.txt --replace-fail \\\n  'cmake_minimum_required(VERSION 3.3)' \\\n  'cmake_minimum_required(VERSION 4.0)'\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/jpcima/ensemble-chorus",
         description: "Digital model of electronic string ensemble chorus",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "magnetophon"))]),

@@ -36,19 +36,19 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.thunk(() => nix.attr(from, "pytestCheckHook"));
   const python = nix.thunk(() => nix.attr(from, "python"));
   return nix.app(buildPythonApplication, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "s3ql",
       version: "5.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "s3ql",
           repo: "s3ql",
           tag: nix.thunk(() => nix.str`s3ql-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-SVB+VB508hGXvdHZo5lt09yssjjwHS1tsDU8M4j+swc=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-setup.py-remove-self-reference.patch"), nix.thunk(() => ({ __proto__: pos$2, version: nix.thunk(() => nix.attr(finalAttrs, "version")) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-setup.py-remove-self-reference.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, version: nix.thunk(() => nix.attr(finalAttrs, "version")) })))),
       ]),
       "build-system": nix.thunk(() => [setuptools]),
       nativeBuildInputs: nix.thunk(() => [which, cython]),
@@ -70,14 +70,14 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["tests/"]),
       disabledTests: nix.thunk(() => ["test_aborted_write2"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version-regex", "s3ql-([0-9.]+)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Full-featured file system for online data storage",
         homepage: "https://github.com/s3ql/s3ql/",
         changelog: nix.thunk(() => nix.str`https://github.com/s3ql/s3ql/releases/tag/s3ql-${nix.sel(finalAttrs, "version")}`),

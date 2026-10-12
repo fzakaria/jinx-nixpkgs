@@ -12,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const runCommandLocal = nix.arg($, "runCommandLocal");
   return nix.app(runCommandLocal, "install-shell-files--install-manpage-outputs", nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       outputs: nix.thunk(() => ["out", "man", "devman"]),
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       })),
     })), "mkdir -p doc\necho foo > doc/foo.1\necho bar > doc/bar.3\n\ninstallManPage doc/*\n\n# assert they didn't go into $out\n[[ ! -f $out/share/man/man1/foo.1 && ! -f $out/share/man/man3/bar.3 ]]\n\n# foo.1 alone went into man\ncmp doc/foo.1 ${!outputMan:?}/share/man/man1/foo.1\n[[ ! -f ${!outputMan:?}/share/man/man3/bar.3 ]]\n\n# bar.3 alone went into devman\ncmp doc/bar.3 ${!outputDevman:?}/share/man/man3/bar.3\n[[ ! -f ${!outputDevman:?}/share/man/man1/foo.1 ]]\n\ntouch $out\n");

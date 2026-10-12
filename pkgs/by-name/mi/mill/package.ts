@@ -34,32 +34,32 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const nix$ = nix.arg($, "nix");
   const sources = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "aarch64-darwin": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       suffix: "native-mac-aarch64",
       hash: "sha256-QRSTbViDa64TrzpVx7hz4PNPHLufW/GKNjT9IU/4OqM=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       suffix: "native-linux-aarch64",
       hash: "sha256-lwCt1bsYbOWIRCjphxDUub7h8onjKifdfArp0Vze3Ro=",
     })),
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       suffix: "native-linux-amd64",
       hash: "sha256-p3mXy754MUvKjbAgyg4eDX9Clgv82F3NO6OkzlsbX7A=",
     })),
   }));
   const source = nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "mill",
       version: "1.1.10",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           url: nix.thunk(() => nix.str`https://repo1.maven.org/maven2/com/lihaoyi/mill-dist-${nix.sel(source, "suffix")}/${nix.sel(finalAttrs, "version")}/mill-dist-${nix.sel(source, "suffix")}-${nix.sel(finalAttrs, "version")}.exe`),
           hash: nix.thunk(() => nix.attr(source, "hash")),
         })))),
@@ -84,11 +84,11 @@ runHook postInstall
 `;
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         updateScript: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           command: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 name: "update-mill",
                 runtimeInputs: nix.thunk(() => [common_updater_scripts, coreutils, curl, git, gnugrep, gnused, jq, nix$]),
                 text: nix.thunk(() => nix.str`# stdout is reserved for the JSON expected by the \`commit\` updateScript
@@ -171,7 +171,7 @@ jq --null-input --compact-output \\
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         homepage: "https://com-lihaoyi.github.io/mill/",
         changelog: nix.thunk(() => nix.str`https://github.com/com-lihaoyi/mill/releases/tag/${nix.sel(finalAttrs, "version")}`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

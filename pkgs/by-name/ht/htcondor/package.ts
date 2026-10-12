@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pname = "htcondor";
       const version = "24.2.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "htcondor",
           repo: "htcondor",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -55,10 +55,10 @@ export default nix.lambda((args) => (() => {
         perl,
         scitokens_cpp,
       ]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, CXXFLAGS: "-fpermissive" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, CXXFLAGS: "-fpermissive" }));
       const cmakeFlags = nix.thunk(() => ["-DSYSTEM_NAME=NixOS", "-DWITH_PYTHON_BINDINGS=false"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://htcondor.org/",
         description: "Software system that creates a High-Throughput Computing (HTC) environment",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         broken: true,
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

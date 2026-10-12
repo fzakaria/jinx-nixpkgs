@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const multidict = nix.arg($, "multidict");
   const syrupy = nix.arg($, "syrupy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "latex2mathml",
       version: "3.81.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "roniemartinez",
           repo: "latex2mathml",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace pyproject.toml \\\n  --replace-fail 'uv_build>=0.10.11,<0.11.0' 'uv_build'\n",
       pythonImportsCheck: nix.thunk(() => ["latex2mathml"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pure Python library for LaTeX to MathML conversion",
         homepage: "https://github.com/roniemartinez/latex2mathml",
         changelog: nix.thunk(() => nix.str`https://github.com/roniemartinez/latex2mathml/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

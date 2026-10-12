@@ -27,16 +27,16 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const recent = nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))), "8"));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         version: nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.12")) && nix.asBool(!nix.asBool(legacy)))) ? "8.05.02" : "7.14")),
         pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-camlp5`),
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             owner: "camlp5",
             repo: "camlp5",
             tag: nix.thunk(() => (nix.asBool(recent) ? nix.sel(finalAttrs, "version") : nix.str`rel${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`)),
             hash: nix.thunk(() => nix.sel({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               "8.05.02": "sha256-OnTc4Vpr2I3sFwm5JYxud9z1hbzDvQw3LNsO/EHa3k8=",
               "8.03.2": "sha256-nz+VfGR/6FdBvMzPPpVpviAXXBWNqM3Ora96Yzx964o=",
               "7.14": "sha256-/ORtS0uc/GN+g3y6N5ftjL4OBSqV6iswLRbfpeNCprU=",
@@ -54,7 +54,7 @@ patchShebangs ./config/find_stuffversion.pl etc/META.pl tools/ ocaml_src/tools/
         postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), recent, "for prog in camlp5 camlp5o camlp5r camlp5sch mkcamlp5 ocpp5\ndo\n  wrapProgram $out/bin/$prog \\\n    --prefix CAML_LD_LIBRARY_PATH : \"$CAML_LD_LIBRARY_PATH\"\ndone\n")),
         dontStrip: true,
         meta: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           broken: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.4")) && nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(finalAttrs, "version")), "8.04.00"))))),
           description: "Preprocessor-pretty-printer for OCaml",
           longDescription: "Camlp5 is a preprocessor and pretty-printer for OCaml programs.\nIt also provides parsing and printing tools.\n",

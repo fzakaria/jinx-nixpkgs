@@ -22,14 +22,14 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "0066c863441f1c3ddea60cee1ccc50d00a91a317a8052ca44131da1a12a840e2",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/Pylons/pyramid_mako/commit/c0f9e7e0146a7f94e35a9401b1519ac8b7765f5b.patch",
             sha256: "15swfm0a07bdl32s85426rmjh72jwfasjcrl849ppg035z75q9fx",
           })))),
@@ -37,14 +37,14 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [webtest]);
       const propagatedBuildInputs = nix.thunk(() => [pyramid, mako]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/Pylons/pyramid_mako",
         description: "Mako template bindings for the Pyramid web framework",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd0")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

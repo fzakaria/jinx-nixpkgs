@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "marked-man";
       const version = "2.1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kapouer",
           repo: "marked-man",
           rev: version,
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-8m0Xgq3O69hbSQArSrU/gbJvBEGP6rHK4to16QkXG6M=";
       const dontNpmBuild = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Markdown to roff wrapper around marked",
         homepage: "https://github.com/kapouer/marked-man",
         changelog: nix.thunk(() => nix.str`https://github.com/kapouer/marked-man/blob/${version}/CHANGES.md`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

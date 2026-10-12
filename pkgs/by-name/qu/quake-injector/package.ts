@@ -21,16 +21,16 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const fetchurl = nix.arg($, "fetchurl");
   const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://raw.githubusercontent.com/hrehfeld/QuakeInjector/b741bae9904acbf2e18cdb1ca8e71a12e7d416cf/src/main/resources/Inject2_256.png",
       hash: "sha256-769YoSJ52+BTk7s+wh4oOyHwPPrR7AeOxCS58CdQ93s=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "quake-injector",
       version: "08",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/hrehfeld/QuakeInjector/releases/download/alpha${nix.sel(finalAttrs, "version")}/QuakeInjector-alpha${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-u2Ir7KxptgX9hcCf0GECl/z2+qSfHUdMgCoN8qbQMUs=",
         })))),
@@ -78,7 +78,7 @@ runHook postInstall
       doCheck: false,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "quake-injector",
             exec: nix.thunk(() => nix.sel(finalAttrs, "meta", "mainProgram")),
             icon: "quake-injector",
@@ -88,7 +88,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Download, install and play quake singleplayer maps from the quaddicted.com archive",
         homepage: "https://github.com/hrehfeld/QuakeInjector",
         changelog: "https://github.com/hrehfeld/QuakeInjector/releases",

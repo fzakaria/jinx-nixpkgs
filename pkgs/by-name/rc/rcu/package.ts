@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
       const pyproject = false;
       const src = nix.thunk(() => (() => {
         const src_tarball = nix.thunk(() => nix.app(requireFile, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: nix.thunk(() => nix.str`rcu-${version}-source.tar.gz`),
             hash: "sha256-6O2WULD4QAq20ax67gcr8DoNWehoIoFc1LGXFxROTLA=",
             url: "https://www.davisr.me/projects/rcu/",
-            meta: nix.thunk(() => ({ __proto__: pos$1, license: nix.thunk(() => nix.attr(meta, "license")) })),
+            meta: nix.thunk(() => ({ [nix.POS]: pos$1, license: nix.thunk(() => nix.attr(meta, "license")) })),
           }))));
         return nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(src_tarball, "name")}-unpacked`), nix.thunk(() => ({})), nix.thunk(() => nix.str`gunzip -ck ${src_tarball} | tar -xvf-
 mv rcu $out
@@ -75,7 +75,7 @@ ln -s ${src_tarball} $out/src
       })());
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "rcu",
             desktopName: "reMarkable Connection Utility",
             comment: "All-in-one offline/local management software for reMarkable e-paper tablets",
@@ -120,15 +120,15 @@ runHook postInstall
   --add-flags $out/share/rcu/main.py
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$4, package: rcu })))),
+          [nix.POS]: pos$5,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$4, package: rcu })))),
         })),
         updateScript: null,
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         mainProgram: "rcu",
         description: "All-in-one offline/local management software for reMarkable e-paper tablets",
         homepage: "http://www.davisr.me/projects/rcu/",
@@ -140,7 +140,7 @@ runHook postInstall
         hydraPlatforms: [],
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version,
         pyproject,

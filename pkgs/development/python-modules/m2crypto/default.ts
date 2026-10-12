@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const swig = nix.arg($, "swig");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "m2crypto",
       version: "0.50.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "m2crypto",
           repo: "m2crypto",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,14 +36,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [swig]),
       buildInputs: nix.thunk(() => [openssl]),
       env: nix.thunk(() => nix.update({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
               "-Wno-error=implicit-function-declaration",
               "-Wno-error=incompatible-pointer-types",
             ]))))),
         OPENSSL_PATH: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`${nix.sel(openssl, "dev")}`))),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           CPP: nix.thunk(() => nix.str`${nix.sel(stdenv, "cc", "targetPrefix")}cpp`),
         }))))),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, openssl]),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       pythonImportsCheck: nix.thunk(() => ["M2Crypto"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python crypto and SSL toolkit",
         homepage: "https://gitlab.com/m2crypto/m2crypto",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/m2crypto/m2crypto/-/tags/${nix.sel(finalAttrs, "version")}`),

@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.4.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "django-import-export",
           repo: "django-import-export",
           tag: version,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools_scm]);
       const dependencies = nix.thunk(() => [diff_match_patch, django, tablib]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         all: nix.thunk(() => nix.concat([tablib], nix.sel(tablib, "optional-dependencies", "all"))),
         cli: nix.thunk(() => nix.concat([tablib], nix.sel(tablib, "optional-dependencies", "cli"))),
         ods: nix.thunk(() => nix.concat([tablib], nix.sel(tablib, "optional-dependencies", "ods"))),
@@ -52,7 +52,7 @@ runHook postCheck
 `);
       const pythonImportsCheck = nix.thunk(() => ["import_export"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Django application and library for importing and exporting data with admin integration",
         homepage: "https://github.com/django-import-export/django-import-export",
         changelog: nix.thunk(() => nix.str`https://github.com/django-import-export/django-import-export/blob/${nix.sel(src, "tag")}/docs/changelog.rst`),
@@ -63,7 +63,7 @@ runHook postCheck
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

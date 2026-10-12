@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "witnessme",
       version: "0-unstable-2023-12-06",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "byt3bl33d3r",
           repo: "WitnessMe",
           rev: "16d4a377eba653315e827b0af686b948681be301",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "switch-poetry-core.patch",
             url: "https://github.com/byt3bl33d3r/WitnessMe/commit/147ce9fc7c9ac84712aa1ba2f7073bc2f29c8afe.patch",
             hash: "sha256-ZcIt/ueLgVlZePgxYljRFtvF5t2zlB80HsNyjheCnxI=",
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
         "tests/test_target_parsing.py",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Web Inventory tool",
         homepage: "https://github.com/byt3bl33d3r/WitnessMe",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

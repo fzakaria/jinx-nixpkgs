@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const qmake = nix.arg($, "qmake");
   const qtdeclarative = nix.arg($, "qtdeclarative");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "qtfeedback",
       version: "5.0.0-beta1-unstable-2018-03-29",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "qt",
           repo: "qtfeedback",
           rev: "a14bd0bb1373cde86e09e3619fb9dc70f34c71f2",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       postFixup: "# Drop QMAKE_PRL_BUILD_DIR because it references the build dir\nfind \"$out/lib\" -type f -name '*.prl' \\\n  -exec sed -i -e '/^QMAKE_PRL_BUILD_DIR/d' {} \\;\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Qt Tactile Feedback",
         homepage: "https://github.com/qt/qtfeedback",
         license: nix.thunk(() => (() => {

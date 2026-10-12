@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const dontUnpack = true;
       const installPhase = nix.thunk(() => (() => {
         const env = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             name: nix.thunk(() => nix.str`${pname}-${version}-gems`),
             ruby: ruby,
             gemfile: nix.path(here, "./Gemfile"),
@@ -35,11 +35,11 @@ makeWrapper ${env}/bin/lvmsync $out/bin/lvmsync
 `;
       })());
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "lvmsync")),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Optimised synchronisation of LVM snapshots over a network",
         mainProgram: "lvmsync",
         homepage: "https://theshed.hezmatt.org/lvmsync/",
@@ -54,7 +54,7 @@ makeWrapper ${env}/bin/lvmsync $out/bin/lvmsync
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         nativeBuildInputs,

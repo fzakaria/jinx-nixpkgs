@@ -26,46 +26,46 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const fetchurl = nix.arg($, "fetchurl");
   const apexcharts = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     url: "https://cdn.jsdelivr.net/npm/apexcharts@5.13.0/dist/apexcharts.min.js",
     hash: "sha256-DgRUn+X1cxT0z5O+QcrX48NuVrY1KhoCmHPvVZAvS8k=",
   }));
   const tablerCss = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     url: "https://cdn.jsdelivr.net/npm/@tabler/core@1.4.0/dist/css/tabler.min.css",
     hash: "sha256-fvdQvRBUamldCxJ2etgEi9jz7F3n2u+xBn+dDao9HJo=",
   }));
   const tomSelectCss = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     url: "https://cdn.jsdelivr.net/npm/tom-select@2.6.1/dist/css/tom-select.bootstrap5.css",
     hash: "sha256-vW5UjM/Ka9/jIY8I5s5KcudaTRWh/cCGE1ZUsrJvlI0=",
   }));
   const tablerVendorsCss = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     url: "https://cdn.jsdelivr.net/npm/@tabler/core@1.4.0/dist/css/tabler-vendors.min.css",
     hash: "sha256-/VPz9GtiH1Es1KGLY706UIayEEgG93B6aIBa3WzwKYc=",
   }));
   const tablerJs = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     url: "https://cdn.jsdelivr.net/npm/@tabler/core@1.4.0/dist/js/tabler.min.js",
     hash: "sha256-tgx2Fg6XYkV027jPEKvmrummSTtgCW/fwV3R3SvZnrk=",
   }));
   const tablerIcons = nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     url: "https://cdn.jsdelivr.net/npm/@tabler/icons-sprite@3.44.0/dist/tabler-sprite.svg",
     hash: "sha256-aHeH8IGC75mepyW2gj/aYrW7LCEtjobwxvGnVp5j3Uc=",
   }));
   const tomselect = nix.thunk(() => ({
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     url: "https://cdn.jsdelivr.net/npm/tom-select@2.6.1/dist/js/tom-select.popular.min.js",
     hash: "sha256-KmjMBvL4Ni3AYc9OCi9xSEuamESyLEBL4B2gzFrWPGE=",
   }));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "sqlpage",
       version: "0.45.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           owner: "sqlpage",
           repo: "SQLpage",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -97,10 +97,10 @@ substituteInPlace build.rs \\
       cargoHash: "sha256-ZT1le+YtArIebctgIZFUPk3AKPCDug8R2+dJjZiw028=",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [sqlite, unixodbc, zstd]),
-      env: nix.thunk(() => ({ __proto__: pos$9, ZSTD_SYS_USE_PKG_CONFIG: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$9, ZSTD_SYS_USE_PKG_CONFIG: true })),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "SQL-only webapp builder, empowering data analysts to build websites and applications quickly",
         homepage: "https://github.com/sqlpage/SQLpage",
         changelog: nix.thunk(() => nix.str`https://github.com/sqlpage/SQLpage/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

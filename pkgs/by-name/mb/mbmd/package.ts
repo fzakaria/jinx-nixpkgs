@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const rev = "499ae856f44e511b236660d9dce0021f758fc64e";
   const modulePath = "github.com/volkszaehler/mbmd";
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mbmd",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           rev: rev,
           owner: "volkszaehler",
           repo: "mbmd",
@@ -35,9 +35,9 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X ${modulePath}/server.Commit=${rev}`),
       ]),
       vendorHash: "sha256-L816AQmyL6ZctKgImbU/cAYSQkQhxuhvtr4SyjPKMFs=",
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "ModBus Measurement Daemon - simple reading of data from ModBus meters and grid inverters",
         homepage: "https://github.com/volkszaehler/mbmd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

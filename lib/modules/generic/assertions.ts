@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     _class: null,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       assertions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "unspecified")))),
           internal: true,
           default: [],
           example: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               assertion: false,
               message: "you can't enable this for that reason",
             })),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
           description: "This option allows modules to express conditions that must\nhold for the evaluation of the system configuration to\nsucceed, along with associated error messages for the user.\n",
         })))),
       warnings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           internal: true,
           default: [],
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),

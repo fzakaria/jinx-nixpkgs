@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const cudf = nix.arg($, "cudf");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "opam-0install-cudf",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ocaml-opam",
           repo: "opam-0install-cudf",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/ocaml-opam/opam-0install-cudf",
         description: "Opam solver using 0install backend using the CUDF interface",
         longDescription: "Opam's default solver is designed to maintain a set of packages\nover time, minimising disruption when installing new programs and\nfinding a compromise solution across all packages.\n\nIn many situations (e.g. CI, local roots or duniverse builds) this\nis not necessary, and we can get a solution much faster by using\na different algorithm.\n\nThis package provides a generic solver library which uses 0install's\nsolver library. The library uses the CUDF library in order to interface\nwith opam as it is the format common used to talk to all the supported solvers.\n",

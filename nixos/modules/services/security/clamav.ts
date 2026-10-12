@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
   const clamavGroup = clamavUser;
   const cfg = nix.thunk(() => nix.sel(config, "services", "clamav"));
   const toKeyValue = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toKeyValue"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       mkKeyValue: nix.thunk(() => nix.app(nix.sel(lib, "generators", "mkKeyValueDefault"), nix.thunk(() => ({})), " ")),
       listsAsDuplicateKeys: true,
     }))));
@@ -92,24 +92,24 @@ export default nix.lambda((args) => (() => {
   const fangfrischConfigFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "fangfrisch.conf", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "generators", "toINI"), nix.thunk(() => ({})), nix.thunk(() => nix.sel(cfg, "fangfrisch", "settings")))}
 `)));
   return {
-    __proto__: pos$69,
+    [nix.POS]: pos$69,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "clamav", "updater", "config"]), "Use services.clamav.updater.settings instead.")),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "clamav", "updater", "extraConfig"]), "Use services.clamav.updater.settings instead.")),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "clamav", "daemon", "extraConfig"]), "Use services.clamav.daemon.settings instead.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       services: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         clamav: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "clamav", nix.thunk(() => ({})))),
           daemon: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "ClamAV clamd daemon")),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -124,9 +124,9 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           clamonacc: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 default: false,
                 example: true,
                 description: "Whether to enable ClamAV on-access scanner.\n\nThe settings for ClamAV's on-access scanner is configured in `clamd.conf` via `services.clamav.daemon.settings`.\nRefer to <https://docs.clamav.net/manual/OnAccess.html> on how to configure it.\n\nExample to scan `/home/foo/Downloads` (and block access until scanning is completed) would be:\n```\nservices.clamav = {\n  daemon.enable = true;\n  clamonacc.enable = true;\n\n  daemon.settings = {\n    OnAccessPrevention = true;\n    OnAccessIncludePath = \"/home/foo/Downloads\";\n  };\n};\n```\n",
@@ -134,22 +134,22 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           updater: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "ClamAV freshclam updater")),
             frequency: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(lib, "types", "int")),
                 default: 12n,
                 description: "Number of database checks per day.\n",
               })))),
             interval: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "hourly",
                 description: "How often freshclam is invoked. See {manpage}`systemd.time(7)` for more\ninformation about the format.\n",
               })))),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -164,18 +164,18 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           fangfrisch: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "ClamAV fangfrisch updater")),
             interval: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "hourly",
                 description: "How often freshclam is invoked. See {manpage}`systemd.time(7)` for more\ninformation about the format.\n",
               })))),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     freeformType: nix.thunk(() => (() => {
                       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                       return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -187,23 +187,23 @@ export default nix.lambda((args) => (() => {
                   })))),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => ({
-                  __proto__: pos$13,
-                  securiteinfo: nix.thunk(() => ({ __proto__: pos$12, enabled: "yes", customer_id: "your customer_id" })),
+                  [nix.POS]: pos$13,
+                  securiteinfo: nix.thunk(() => ({ [nix.POS]: pos$12, enabled: "yes", customer_id: "your customer_id" })),
                 })),
                 description: "fangfrisch configuration. Refer to <https://rseichter.github.io/fangfrisch/#_configuration>,\nfor details on supported values.\nNote that by default urlhaus and sanesecurity are enabled.\n",
               })))),
           })),
           scanner: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "ClamAV scanner")),
             interval: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "*-*-* 04:00:00",
                 description: "How often clamdscan is invoked. See {manpage}`systemd.time(7)` for more\ninformation about the format.\nBy default this runs using 10 cores at most, be sure to run it at a time of low traffic.\n",
               })))),
             scanDirectories: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -216,33 +216,33 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "updater", "enable")) || nix.asBool(nix.sel(cfg, "daemon", "enable")))), nix.thunk(() => ({
-        __proto__: pos$68,
+        [nix.POS]: pos$68,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "scanner", "enable")) || nix.asBool(nix.sel(cfg, "daemon", "enable")))),
             message: "ClamAV scanner requires ClamAV daemon to operate",
           })),
           nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "clamonacc", "enable")) || nix.asBool(nix.sel(cfg, "daemon", "enable")))),
             message: "ClamAV on-access scanner requires ClamAV daemon to operate",
           })),
         ]),
         environment: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$26,
-            "clamav/freshclam.conf": nix.thunk(() => ({ __proto__: pos$24, source: freshclamConfigFile })),
-            "clamav/clamd.conf": nix.thunk(() => ({ __proto__: pos$25, source: clamdConfigFile })),
+            [nix.POS]: pos$26,
+            "clamav/freshclam.conf": nix.thunk(() => ({ [nix.POS]: pos$24, source: freshclamConfigFile })),
+            "clamav/clamd.conf": nix.thunk(() => ({ [nix.POS]: pos$25, source: clamdConfigFile })),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [clamavUser, nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "clamav")),
               group: clamavGroup,
               description: "ClamAV daemon user",
@@ -251,19 +251,19 @@ export default nix.lambda((args) => (() => {
           ])),
           groups: nix.thunk(() => nix.attrsDyn({}, [
             [nix.force(clamavGroup), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "clamav")),
             }))],
           ])),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           clamav: nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             daemon: nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               settings: nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 DatabaseDirectory: stateDir,
                 LocalSocket: "/run/clamav/clamd.ctl",
                 PidFile: "/run/clamav/clamd.pid",
@@ -273,9 +273,9 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             updater: nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               settings: nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 DatabaseDirectory: stateDir,
                 Foreground: true,
                 Checks: nix.thunk(() => nix.sel(cfg, "updater", "frequency")),
@@ -283,22 +283,22 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             fangfrisch: nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               settings: nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 DEFAULT: nix.thunk(() => ({
-                  __proto__: pos$35,
+                  [nix.POS]: pos$35,
                   db_url: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "sqlite:////var/lib/clamav/fangfrisch_db.sqlite")),
                   local_directory: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), stateDir)),
                   log_level: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "INFO")),
                 })),
                 urlhaus: nix.thunk(() => ({
-                  __proto__: pos$36,
+                  [nix.POS]: pos$36,
                   enabled: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "yes")),
                   max_size: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "2MB")),
                 })),
                 sanesecurity: nix.thunk(() => ({
-                  __proto__: pos$37,
+                  [nix.POS]: pos$37,
                   enabled: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "yes")),
                 })),
               })),
@@ -306,20 +306,20 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$67,
+          [nix.POS]: pos$67,
           slices: nix.thunk(() => ({
-            __proto__: pos$43,
-            "system-clamav": nix.thunk(() => ({ __proto__: pos$42, description: "ClamAV Antivirus Slice" })),
+            [nix.POS]: pos$43,
+            "system-clamav": nix.thunk(() => ({ [nix.POS]: pos$42, description: "ClamAV Antivirus Slice" })),
           })),
           sockets: nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             "clamav-daemon": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "daemon", "enable")), nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 description: "Socket for ClamAV daemon (clamd)",
                 wantedBy: nix.thunk(() => ["sockets.target"]),
                 listenStreams: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "daemon", "settings", "LocalSocket"))]),
                 socketConfig: nix.thunk(() => ({
-                  __proto__: pos$44,
+                  [nix.POS]: pos$44,
                   SocketUser: clamavUser,
                   SocketGroup: clamavGroup,
                   SocketMode: nix.thunk(() => nix.str`0${nix.selOr(cfg, () => "666", "daemon", "settings", "LocalSocketMode")}`),
@@ -327,9 +327,9 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$59,
+            [nix.POS]: pos$59,
             "clamav-daemon": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "daemon", "enable")), nix.thunk(() => ({
-                __proto__: pos$48,
+                [nix.POS]: pos$48,
                 description: "ClamAV daemon (clamd)",
                 documentation: nix.thunk(() => ["man:clamd(8)"]),
                 after: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "updater", "enable")), nix.thunk(() => ["clamav-freshclam.service"]))),
@@ -338,7 +338,7 @@ export default nix.lambda((args) => (() => {
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 restartTriggers: nix.thunk(() => [clamdConfigFile]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$47,
+                  [nix.POS]: pos$47,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/clamd`),
                   ExecReload: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/kill -USR2 $MAINPID`),
                   User: clamavUser,
@@ -352,27 +352,27 @@ export default nix.lambda((args) => (() => {
                 })),
               })))),
             "clamav-clamonacc": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "clamonacc", "enable")), nix.thunk(() => ({
-                __proto__: pos$50,
+                [nix.POS]: pos$50,
                 description: "ClamAV on-access scanner (clamonacc)",
                 after: nix.thunk(() => ["clamav-daemon.socket"]),
                 requires: nix.thunk(() => ["clamav-daemon.socket"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 restartTriggers: nix.thunk(() => [clamdConfigFile]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$49,
+                  [nix.POS]: pos$49,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/clamonacc -F --fdpass`),
                   Slice: "system-clamav.slice",
                 })),
               })))),
             "clamav-freshclam": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "updater", "enable")), nix.thunk(() => ({
-                __proto__: pos$52,
+                [nix.POS]: pos$52,
                 description: "ClamAV virus database updater (freshclam)",
                 documentation: nix.thunk(() => ["man:freshclam(1)"]),
                 restartTriggers: nix.thunk(() => [freshclamConfigFile]),
                 requires: nix.thunk(() => ["network-online.target"]),
                 after: nix.thunk(() => ["network-online.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$51,
+                  [nix.POS]: pos$51,
                   Type: "oneshot",
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/freshclam`),
                   SuccessExitStatus: "1",
@@ -385,7 +385,7 @@ export default nix.lambda((args) => (() => {
                 })),
               })))),
             "clamav-fangfrisch-init": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "fangfrisch", "enable")), nix.thunk(() => ({
-                __proto__: pos$54,
+                [nix.POS]: pos$54,
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 script: nix.thunk(() => nix.str`db_url="${nix.sel(cfg, "fangfrisch", "settings", "DEFAULT", "db_url")}"
 db_path="\${db_url#sqlite:///}"
@@ -395,7 +395,7 @@ if [ ! -f "$db_path" ]; then
 fi
 `),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$53,
+                  [nix.POS]: pos$53,
                   Type: "oneshot",
                   StateDirectory: "clamav",
                   User: clamavUser,
@@ -406,13 +406,13 @@ fi
                 })),
               })))),
             "clamav-fangfrisch": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "fangfrisch", "enable")), nix.thunk(() => ({
-                __proto__: pos$56,
+                [nix.POS]: pos$56,
                 description: "ClamAV virus database updater (fangfrisch)",
                 restartTriggers: nix.thunk(() => [fangfrischConfigFile]),
                 requires: nix.thunk(() => ["network-online.target"]),
                 after: nix.thunk(() => ["network-online.target", "clamav-fangfrisch-init.service"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$55,
+                  [nix.POS]: pos$55,
                   Type: "oneshot",
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "fangfrisch")}/bin/fangfrisch --conf ${fangfrischConfigFile} refresh`),
                   StateDirectory: "clamav",
@@ -424,13 +424,13 @@ fi
                 })),
               })))),
             clamdscan: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "scanner", "enable")), nix.thunk(() => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 description: "ClamAV virus scanner",
                 documentation: nix.thunk(() => ["man:clamdscan(1)"]),
                 after: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "updater", "enable")), nix.thunk(() => ["clamav-freshclam.service"]))),
                 wants: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "updater", "enable")), nix.thunk(() => ["clamav-freshclam.service"]))),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$57,
+                  [nix.POS]: pos$57,
                   Type: "oneshot",
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/clamdscan --multiscan --fdpass --infected --allmatch ${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.sel(cfg, "scanner", "scanDirectories")))}`),
                   Slice: "system-clamav.slice",
@@ -438,33 +438,33 @@ fi
               })))),
           })),
           timers: nix.thunk(() => ({
-            __proto__: pos$66,
+            [nix.POS]: pos$66,
             "clamav-freshclam": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "updater", "enable")), nix.thunk(() => ({
-                __proto__: pos$61,
+                [nix.POS]: pos$61,
                 description: "Timer for ClamAV virus database updater (freshclam)",
                 wantedBy: nix.thunk(() => ["timers.target"]),
                 timerConfig: nix.thunk(() => ({
-                  __proto__: pos$60,
+                  [nix.POS]: pos$60,
                   OnCalendar: nix.thunk(() => nix.sel(cfg, "updater", "interval")),
                   Unit: "clamav-freshclam.service",
                 })),
               })))),
             "clamav-fangfrisch": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "fangfrisch", "enable")), nix.thunk(() => ({
-                __proto__: pos$63,
+                [nix.POS]: pos$63,
                 description: "Timer for ClamAV virus database updater (fangfrisch)",
                 wantedBy: nix.thunk(() => ["timers.target"]),
                 timerConfig: nix.thunk(() => ({
-                  __proto__: pos$62,
+                  [nix.POS]: pos$62,
                   OnCalendar: nix.thunk(() => nix.sel(cfg, "fangfrisch", "interval")),
                   Unit: "clamav-fangfrisch.service",
                 })),
               })))),
             clamdscan: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "scanner", "enable")), nix.thunk(() => ({
-                __proto__: pos$65,
+                [nix.POS]: pos$65,
                 description: "Timer for ClamAV virus scanner",
                 wantedBy: nix.thunk(() => ["timers.target"]),
                 timerConfig: nix.thunk(() => ({
-                  __proto__: pos$64,
+                  [nix.POS]: pos$64,
                   OnCalendar: nix.thunk(() => nix.sel(cfg, "scanner", "interval")),
                   Unit: "clamdscan.service",
                 })),

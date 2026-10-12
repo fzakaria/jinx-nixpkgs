@@ -41,86 +41,86 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.str`--provided-by=${nix.app(nix.lookup(w, "escapeShellArg"), nix.thunk(() => nix.sel(cfg, "providedBy")))}`),
   ], nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "statusListenAddress"), null)) && nix.asBool(nix.eq(nix.sel(cfg, "statusPort"), null)))), "--status-srv="), nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "statusListenAddress"), null)) || nix.asBool(!nix.eq(nix.sel(cfg, "statusPort"), null)))), nix.thunk(() => nix.str`--status-srv=${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "statusListenAddress")))}:${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "statusPort")))}`)), nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "pools"), null)), nix.thunk(() => nix.str`--pools=${nix.app(nix.lookup(w, "escapeShellArg"), nix.thunk(() => nix.app(nix.lookup(w, "concatStringsSep"), ",", nix.thunk(() => nix.sel(cfg, "pools")))))}`)), nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "globalRateBps"), null)), nix.thunk(() => nix.str`--global-rate=${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "globalRateBps")))}`)), nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "perSessionRateBps"), null)), nix.thunk(() => nix.str`--per-session-rate=${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "perSessionRateBps")))}`)), nix.sel(cfg, "extraOptions"))))))));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         syncthing: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           relay: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Syncthing relay service")),
             cert: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 default: null,
                 description: "Path to the `cert.pem` file, which will be copied into `dataDirectory`.\n",
               })))),
             key: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 default: null,
                 description: "Path to the `key.pem` file, which will be copied into `dataDirectory`.\n",
               })))),
             token: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
                 default: null,
                 description: "Path to the file containing the token. This can be used to run private\nrelays.\n\n::: {.warning}\nSince syncthing-relay doesn't support passing the token through a\nfile, the token value will be exposed in clear text in the process\nlist.\n:::\n",
               })))),
             listenAddress: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "",
                 example: "1.2.3.4",
                 description: "Address to listen on for relay traffic.\n",
               })))),
             port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
                 default: 22067n,
                 description: "Port to listen on for relay traffic. This port should be added to\n{option}`networking.firewall.allowedTCPPorts`.\n",
               })))),
             statusListenAddress: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 default: "",
                 example: "1.2.3.4",
                 description: "Address to listen on for serving the relay status API.\n\nSet {option}`statusPort` and {option}`statusListenAddress` to `null`\nto disable the status API.\n",
               })))),
             statusPort: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")))),
                 default: 22070n,
                 description: "Port to listen on for serving the relay status API. This port should be\nadded to {option}`networking.firewall.allowedTCPPorts`.\n\nSet {option}`statusPort` and {option}`statusListenAddress` to `null`\nto disable the status API.\n",
               })))),
             pools: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))))),
                 default: null,
                 description: "Relay pools to join. If null, uses the default global pool.\n",
               })))),
             providedBy: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "",
                 description: "Human-readable description of the provider of the relay (you).\n",
               })))),
             globalRateBps: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "ints", "positive")))),
                 default: null,
                 description: "Global bandwidth rate limit in bytes per second.\n",
               })))),
             perSessionRateBps: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "ints", "positive")))),
                 default: null,
                 description: "Per session bandwidth rate limit in bytes per second.\n",
               })))),
             extraOptions: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 default: [],
                 description: "Extra command line arguments to pass to strelaysrv.\n",
@@ -130,18 +130,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             "syncthing-relay": nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "Syncthing relay service",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 DynamicUser: true,
                 StateDirectory: nix.thunk(() => nix.app(nix.builtins.baseNameOf, dataDirectory)),
                 LoadCredential: nix.thunk(() => nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "token"), null)), nix.thunk(() => nix.str`token:${nix.sel(cfg, "token")}`)), nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "key"), null)), nix.thunk(() => nix.str`key:${nix.sel(cfg, "key")}`)), nix.app(nix.lookup(w, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "cert"), null)), nix.thunk(() => nix.str`cert:${nix.sel(cfg, "cert")}`))))),
@@ -162,7 +162,7 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, 
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_1, "Sighery"))];

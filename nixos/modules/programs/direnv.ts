@@ -36,19 +36,19 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "direnv"));
-  const enabledOption = (x) => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), x), { __proto__: pos$1, default: true, example: false });
+  const enabledOption = (x) => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), x), { [nix.POS]: pos$1, default: true, example: false });
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["programs", "direnv", "finalPackage"]), "programs.direnv.finalPackage has been removed now, as its value is identical to programs.direnv.package.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       programs: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         direnv: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "direnv integration. Takes care of both installation and\nsetting up the sourcing of the shell. Additionally enables nix-direnv\nintegration. Note that you need to logout and login for this change to apply\n")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "direnv", nix.thunk(() => ({})))),
           enableBashIntegration: nix.thunk(() => nix.app(enabledOption, "Bash integration\n")),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
           enableFishIntegration: nix.thunk(() => nix.app(enabledOption, "Fish integration\n")),
           enableXonshIntegration: nix.thunk(() => nix.app(enabledOption, "Xonsh integration\n")),
           direnvrcExtra: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               example: "export FOO=\"foo\"\necho \"loaded direnv!\"\n",
@@ -65,18 +65,18 @@ export default nix.lambda((args) => (() => {
           silent: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the hiding of direnv logging\n")),
           loadInNixShell: nix.thunk(() => nix.app(enabledOption, "loading direnv in `nix-shell` `nix shell` or `nix develop`\n")),
           "nix-direnv": nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: nix.thunk(() => nix.app(enabledOption, "a faster, persistent implementation of use_nix and use_flake, to replace the builtin one\n")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
-                default: nix.thunk(() => nix.app(nix.sel(pkgs, "nix-direnv", "override"), nix.thunk(() => ({ __proto__: pos$3, nix: nix.thunk(() => nix.sel(config, "nix", "package")) })))),
+                [nix.POS]: pos$4,
+                default: nix.thunk(() => nix.app(nix.sel(pkgs, "nix-direnv", "override"), nix.thunk(() => ({ [nix.POS]: pos$3, nix: nix.thunk(() => nix.sel(config, "nix", "package")) })))),
                 defaultText: "pkgs.nix-direnv",
                 type: nix.thunk(() => nix.sel(lib, "types", "package")),
                 description: "The nix-direnv package to use\n",
               })))),
           })),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.attr(format, "type")),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  global = {\n    log_format = \"-\";\n    log_filter = \"^$\";\n  };\n}\n")),
@@ -86,43 +86,43 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         programs: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           direnv: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "silent")), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 global: nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   log_format: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "-")),
                   log_filter: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "^$")),
                 })),
               })))),
           })),
           zsh: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             interactiveShellInit: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableZshIntegration")), nix.thunk(() => nix.str`if ${nix.app(nix.sel(lib, "boolToString"), nix.thunk(() => nix.sel(cfg, "loadInNixShell")))} || printenv PATH | grep -vqc '/nix/store'; then
   eval "$(${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} hook zsh)"
 fi
 `))),
           })),
           bash: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             interactiveShellInit: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableBashIntegration")), nix.thunk(() => nix.str`if ${nix.app(nix.sel(lib, "boolToString"), nix.thunk(() => nix.sel(cfg, "loadInNixShell")))} || [ -z "$IN_NIX_SHELL$NIX_GCROOT$(printenv PATH | grep '/nix/store')" ] ; then
   eval "$(${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} hook bash)"
 fi
 `))),
           })),
           fish: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             interactiveShellInit: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableFishIntegration")), nix.thunk(() => nix.str`if ${nix.app(nix.sel(lib, "boolToString"), nix.thunk(() => nix.sel(cfg, "loadInNixShell")))}; or printenv PATH | grep -vqc '/nix/store';
   ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} hook fish | source
 end
 `))),
           })),
           xonsh: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableXonshIntegration")), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               extraPackages: (ps) => [nix.thunk(() => nix.sel(ps, "xonsh", "xontribs", "xonsh-direnv"))],
               config: nix.thunk(() => nix.str`if ${(nix.asBool(nix.sel(cfg, "loadInNixShell")) ? "True" : "not any(map(lambda s: s.startswith('/nix/store'), __xonsh__.env.get('PATH')))")}:
     xontrib load direnv
@@ -130,17 +130,17 @@ end
             })))),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
-          variables: nix.thunk(() => ({ __proto__: pos$18, DIRENV_CONFIG: "/etc/direnv" })),
+          variables: nix.thunk(() => ({ [nix.POS]: pos$18, DIRENV_CONFIG: "/etc/direnv" })),
           etc: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             "direnv/direnv.toml": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "settings"), {})), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 source: nix.thunk(() => nix.app(nix.sel(format, "generate"), "direnv.toml", nix.thunk(() => nix.sel(cfg, "settings")))),
               })))),
             "direnv/direnvrc": nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               text: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "nix-direnv", "enable")), nix.thunk(() => nix.str`#Load nix-direnv
 source ${nix.sel(cfg, "nix-direnv", "package")}/share/nix-direnv/direnvrc
 `))}
@@ -160,14 +160,14 @@ unset direnv_config_dir_home
 `),
             })),
             "direnv/lib/zz-user.sh": nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               text: "direnv_config_dir_home=\"${DIRENV_CONFIG_HOME:-${XDG_CONFIG_HOME:-$HOME/.config}/direnv}\"\n\nfor lib in \"$direnv_config_dir_home/lib/\"*.sh; do\n  source \"$lib\"\ndone\n\nunset direnv_config_dir_home\n",
             })),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "gerg-l"))];

@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const output = "hello";
   return nix.app(nix.sel(nix.app(writeShellScript, "test-script", nix.thunk(() => nix.str`echo ${nix.app(nix.sel(lib, "escapeShellArg"), output)}
 `)), "overrideAttrs"), (old) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       checkPhase: nix.thunk(() => nix.add(nix.selOr(old, () => "", "checkPhase"), nix.str`expected=${nix.app(nix.sel(lib, "escapeShellArg"), output)}
 got=$("$target")
 if [[ "$got" != "$expected" ]]; then

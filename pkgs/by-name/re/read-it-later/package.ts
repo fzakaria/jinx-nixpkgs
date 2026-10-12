@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pname = "read-it-later";
       const version = "0.6.3";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           owner: "World",
           repo: "read-it-later",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-m4s5oW8JlRogPVriJ+WHhEmf1asmZoC8f5zgPW0Crpc=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -60,11 +60,11 @@ export default nix.lambda((args) => (() => {
       ]);
       const buildInputs = nix.thunk(() => [libadwaita, openssl, libsoup_3, webkitgtk_6_0, sqlite]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Simple Wallabag client with basic features to manage articles",
         homepage: "https://gitlab.gnome.org/World/read-it-later",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/World/read-it-later/-/releases/${nix.sel(src, "tag")}`),
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

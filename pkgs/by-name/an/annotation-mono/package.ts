@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "annotation-mono",
       version: "0.4",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/qwerasd205/AnnotationMono/releases/download/v${nix.sel(finalAttrs, "version")}/AnnotationMono_v${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-6DEYTYAENNY/5oD9us9f7VtPae/it7qrFC3/UT1J+Qg=",
           stripRoot: false,
         })))),
       installPhase: "runHook preInstall\n\ninstall -D -m444 -t $out/share/fonts/truetype $src/dist/ttf/*.ttf\ninstall -D -m444 -t $out/share/fonts/truetype $src/dist/variable/AnnotationMono-VF.ttf\ninstall -D -m444 -t $out/share/fonts/opentype $src/dist/otf/*.otf\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/qwerasd205/AnnotationMono",
         description: "Lovingly crafted handwriting-style monospace font",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

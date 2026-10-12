@@ -14,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "metamath",
       version: "0.198",
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "metamath",
           repo: "metamath-exe",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           sha256: "sha256-Cg1dgz+uphDlGhKH3mTywtAccWinC5+pwNv4TB3YAnI=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Interpreter for the metamath proof language",
         mainProgram: "metamath",
         longDescription: "The metamath program is an ASCII-based ANSI C program with a command-line\ninterface. It was used (along with mmj2) to build and verify the proofs\nin the Metamath Proof Explorer, and it generated its web pages. The *.mm\nASCII databases (set.mm and others) are also included in this derivation.\n",

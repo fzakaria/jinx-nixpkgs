@@ -14,7 +14,7 @@ export default (lib) => (() => {
           nix.thunk(() => nix.lookup(w, "listToAttrs")),
         ]));
     })(), {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       "Bitstream-Vera AND MIT": nix.thunk(() => (() => {
         const w_1 = nix.withScope(ls, null);
         return [

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cmospwd",
       version: "5.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.cgsecurity.org/cmospwd-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-8pbSl5eUsKa3JrgK/JLk0FnGXcJhKksJN3wWiDPYYvQ=",
         })))),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "cd src\n\n# It already contains compiled executable (that doesn't work), so make\n# will refuse to build if it's still there\nrm cmospwd\n",
       installPhase: "runHook preInstall\ninstall -Dm0755 cmospwd -t \"$out/bin\"\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Decrypt password stored in cmos used to access BIOS SETUP",
         mainProgram: "cmospwd",
         homepage: "https://www.cgsecurity.org/wiki/CmosPwd",

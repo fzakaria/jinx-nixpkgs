@@ -71,43 +71,43 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "nebula"));
   const enabledNetworks = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (n) => (v) => nix.sel(v, "enable"), nix.thunk(() => nix.sel(cfg, "networks"))));
   const genSettings = (netName) => (netCfg) => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pki: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         ca: nix.thunk(() => nix.sel(netCfg, "ca")),
         cert: nix.thunk(() => nix.sel(netCfg, "cert")),
         key: nix.thunk(() => nix.sel(netCfg, "key")),
       })),
       static_host_map: nix.thunk(() => nix.sel(netCfg, "staticHostMap")),
       lighthouse: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         am_lighthouse: nix.thunk(() => nix.sel(netCfg, "isLighthouse")),
         hosts: nix.thunk(() => nix.sel(netCfg, "lighthouses")),
         serve_dns: nix.thunk(() => nix.sel(netCfg, "lighthouse", "dns", "enable")),
         dns: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           host: nix.thunk(() => nix.sel(netCfg, "lighthouse", "dns", "host")),
           port: nix.thunk(() => nix.sel(netCfg, "lighthouse", "dns", "port")),
         })),
       })),
       relay: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         am_relay: nix.thunk(() => nix.sel(netCfg, "isRelay")),
         relays: nix.thunk(() => nix.sel(netCfg, "relays")),
         use_relays: true,
       })),
       listen: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         host: nix.thunk(() => nix.sel(netCfg, "listen", "host")),
         port: nix.thunk(() => nix.app(resolveFinalPort, netCfg)),
       })),
       tun: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         disabled: nix.thunk(() => nix.sel(netCfg, "tun", "disable")),
         dev: nix.thunk(() => nix.sel(netCfg, "tun", "device")),
       })),
       firewall: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         inbound: nix.thunk(() => nix.sel(netCfg, "firewall", "inbound")),
         outbound: nix.thunk(() => nix.sel(netCfg, "firewall", "outbound")),
       })),
@@ -119,45 +119,45 @@ You will likely experience connectivity issues: https://nebula.defined.net/docs/
   const nameToId = (netName) => nix.str`nebula-${netName}`;
   const resolveFinalPort = (netCfg) => (nix.asBool(nix.eq(nix.sel(netCfg, "listen", "port"), null)) ? (nix.asBool((nix.asBool(nix.sel(netCfg, "isLighthouse")) || nix.asBool(nix.sel(netCfg, "isRelay")))) ? 4242n : 0n) : nix.sel(netCfg, "listen", "port"));
   return {
-    __proto__: pos$58,
+    [nix.POS]: pos$58,
     options: nix.thunk(() => ({
-      __proto__: pos$44,
+      [nix.POS]: pos$44,
       services: nix.thunk(() => ({
-        __proto__: pos$43,
+        [nix.POS]: pos$43,
         nebula: nix.thunk(() => ({
-          __proto__: pos$42,
+          [nix.POS]: pos$42,
           networks: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               description: "Nebula network definitions.",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.lambda((args_1) => (() => {
                     const $_1 = nix.formals(args_1, formals$2);
                     const name = nix.arg($_1, "name");
                     return {
-                      __proto__: pos$40,
+                      [nix.POS]: pos$40,
                       options: nix.thunk(() => ({
-                        __proto__: pos$39,
+                        [nix.POS]: pos$39,
                         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$9,
+                            [nix.POS]: pos$9,
                             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                             default: true,
                             description: "Enable or disable this network.",
                           })))),
                         package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "nebula", nix.thunk(() => ({})))),
                         ca: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$10,
+                            [nix.POS]: pos$10,
                             type: nix.thunk(() => nix.sel(lib, "types", "path")),
                             description: "Path to the certificate authority certificate.",
                             example: "/etc/nebula/ca.crt",
                           })))),
                         cert: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$11,
+                            [nix.POS]: pos$11,
                             type: nix.thunk(() => nix.sel(lib, "types", "path")),
                             description: "Path to the host certificate.",
                             example: "/etc/nebula/host.crt",
                           })))),
                         key: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$12,
+                            [nix.POS]: pos$12,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "oneOf"), nix.thunk(() => [
                                 nix.thunk(() => nix.sel(lib, "types", "nonEmptyStr")),
                                 nix.thunk(() => nix.sel(lib, "types", "path")),
@@ -166,48 +166,48 @@ You will likely experience connectivity issues: https://nebula.defined.net/docs/
                             example: "/etc/nebula/host.key",
                           })))),
                         enableReload: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$13,
+                            [nix.POS]: pos$13,
                             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                             default: false,
                             description: "Enable automatic config reload on config change.\nThis setting is not enabled by default as nix cannot determine if the config change is reloadable.\nPlease refer to the [config reference](https://nebula.defined.net/docs/config/) for documentation on reloadable changes.\n",
                           })))),
                         staticHostMap: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$15,
+                            [nix.POS]: pos$15,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))))),
                             default: nix.thunk(() => ({})),
                             description: "The static host map defines a set of hosts with fixed IP addresses on the internet (or any network).\nA host can have multiple fixed IP addresses defined here, and nebula will try each when establishing a tunnel.\n",
-                            example: nix.thunk(() => ({ __proto__: pos$14, "192.168.100.1": nix.thunk(() => ["100.64.22.11:4242"]) })),
+                            example: nix.thunk(() => ({ [nix.POS]: pos$14, "192.168.100.1": nix.thunk(() => ["100.64.22.11:4242"]) })),
                           })))),
                         isLighthouse: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$16,
+                            [nix.POS]: pos$16,
                             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                             default: false,
                             description: "Whether this node is a lighthouse.",
                           })))),
                         isRelay: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$17,
+                            [nix.POS]: pos$17,
                             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                             default: false,
                             description: "Whether this node is a relay.",
                           })))),
                         lighthouse: nix.thunk(() => ({
-                          __proto__: pos$22,
+                          [nix.POS]: pos$22,
                           dns: nix.thunk(() => ({
-                            __proto__: pos$21,
+                            [nix.POS]: pos$21,
                             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$18,
+                                [nix.POS]: pos$18,
                                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                                 default: false,
                                 description: "Whether this lighthouse node should serve DNS.",
                               })))),
                             host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$19,
+                                [nix.POS]: pos$19,
                                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                                 default: "localhost",
                                 description: "IP address on which nebula lighthouse should serve DNS.\n'localhost' is a good default to ensure the service does not listen on public interfaces;\nuse a Nebula address like 10.0.0.5 to make DNS resolution available to nebula hosts only.\n",
                               })))),
                             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$20,
+                                [nix.POS]: pos$20,
                                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "port")))),
                                 default: 5353n,
                                 description: "UDP port number for lighthouse DNS server.",
@@ -215,29 +215,29 @@ You will likely experience connectivity issues: https://nebula.defined.net/docs/
                           })),
                         })),
                         lighthouses: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$23,
+                            [nix.POS]: pos$23,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                             default: [],
                             description: "List of IPs of lighthouse hosts this node should report to and query from. This should be empty on lighthouse\nnodes. The IPs should be the lighthouse's Nebula IPs, not their external IPs.\n",
                             example: nix.thunk(() => ["192.168.100.1"]),
                           })))),
                         relays: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$24,
+                            [nix.POS]: pos$24,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                             default: [],
                             description: "List of IPs of relays that this node should allow traffic from.\n",
                             example: nix.thunk(() => ["192.168.100.1"]),
                           })))),
                         listen: nix.thunk(() => ({
-                          __proto__: pos$27,
+                          [nix.POS]: pos$27,
                           host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$25,
+                              [nix.POS]: pos$25,
                               type: nix.thunk(() => nix.sel(lib, "types", "str")),
                               default: "0.0.0.0",
                               description: "IP address to listen on.",
                             })))),
                           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$26,
+                              [nix.POS]: pos$26,
                               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "port")))),
                               default: null,
                               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "if (config.services.nebula.networks.${name}.isLighthouse ||\n    config.services.nebula.networks.${name}.isRelay) then\n  4242\nelse\n  0;\n")),
@@ -245,56 +245,56 @@ You will likely experience connectivity issues: https://nebula.defined.net/docs/
                             })))),
                         })),
                         tun: nix.thunk(() => ({
-                          __proto__: pos$30,
+                          [nix.POS]: pos$30,
                           disable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$28,
+                              [nix.POS]: pos$28,
                               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                               default: false,
                               description: "When tun is disabled, a lighthouse can be started without a local tun interface (and therefore without root).\n",
                             })))),
                           device: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$29,
+                              [nix.POS]: pos$29,
                               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                               default: nix.thunk(() => nix.str`nebula.${name}`),
                               description: "Name of the tun device. Defaults to nebula.${networkName}.",
                             })))),
                         })),
                         firewall: nix.thunk(() => ({
-                          __proto__: pos$35,
+                          [nix.POS]: pos$35,
                           outbound: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$32,
+                              [nix.POS]: pos$32,
                               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "attrs")))),
                               default: [],
                               description: "Firewall rules for outbound traffic.",
                               example: nix.thunk(() => [
-                                nix.thunk(() => ({ __proto__: pos$31, port: "any", proto: "any", host: "any" })),
+                                nix.thunk(() => ({ [nix.POS]: pos$31, port: "any", proto: "any", host: "any" })),
                               ]),
                             })))),
                           inbound: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$34,
+                              [nix.POS]: pos$34,
                               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "attrs")))),
                               default: [],
                               description: "Firewall rules for inbound traffic.",
                               example: nix.thunk(() => [
-                                nix.thunk(() => ({ __proto__: pos$33, port: "any", proto: "any", host: "any" })),
+                                nix.thunk(() => ({ [nix.POS]: pos$33, port: "any", proto: "any", host: "any" })),
                               ]),
                             })))),
                         })),
                         settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$36,
+                            [nix.POS]: pos$36,
                             type: nix.thunk(() => nix.sel(format, "type")),
                             default: nix.thunk(() => ({})),
                             description: "Nebula configuration. Refer to\n<https://github.com/slackhq/nebula/blob/master/examples/config.yml>\nfor details on supported values.\n",
                             example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  lighthouse.interval = 15;\n}\n")),
                           })))),
                         user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$37,
+                            [nix.POS]: pos$37,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: nix.thunk(() => nix.app(nameToId, name)),
                             description: "User under which the nebula daemon is run for this network.\n\n::: {.note}\nA user will be created if this config is left to the default value.\n:::\n",
                           })))),
                         group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$38,
+                            [nix.POS]: pos$38,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: nix.thunk(() => nix.app(nameToId, name)),
                             description: "Group under which the nebula daemon is run for this network.\n\n::: {.note}\nThe group will be created if this config is left to the default value.\n:::\n",
@@ -307,9 +307,9 @@ You will likely experience connectivity issues: https://nebula.defined.net/docs/
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(enabledNetworks, {})), nix.thunk(() => ({
-        __proto__: pos$56,
+        [nix.POS]: pos$56,
         assertions: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (netName) => (netCfg) => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             assertion: nix.thunk(() => (nix.asBool(nix.sel(netCfg, "tun", "disable")) || nix.asBool(nix.le(nix.builtins.stringLength(nix.thunk(() => nix.sel(netCfg, "tun", "device"))), 15n)))),
             message: nix.thunk(() => nix.str`Network device names can't be longer than 15 chars.
 \`config.services.nebula.networks.${netName}.tun.device\` is set to "${nix.sel(netCfg, "tun", "device")}" which is above the limit.
@@ -317,7 +317,7 @@ Please assign \`tun.device\` to something shorter.
 `),
           }), enabledNetworks)),
         systemd: nix.thunk(() => ({
-          __proto__: pos$49,
+          [nix.POS]: pos$49,
           services: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (netName) => (netCfg) => (() => {
                 const settings = nix.thunk(() => nix.app(genSettings, netName, netCfg));
                 const generatedConfigFile = nix.thunk(() => nix.app(genConfigFile, netName, settings));
@@ -329,7 +329,7 @@ Please assign \`tun.device\` to something shorter.
                 })());
                 return nix.attrsDyn({}, [
                   [nix.str`nebula@${netName}`, nix.thunk(() => ({
-                    __proto__: pos$48,
+                    [nix.POS]: pos$48,
                     description: nix.thunk(() => nix.str`Nebula VPN service for ${netName}`),
                     wants: nix.thunk(() => ["basic.target"]),
                     after: nix.thunk(() => ["basic.target", "network.target"]),
@@ -338,7 +338,7 @@ Please assign \`tun.device\` to something shorter.
                     restartTriggers: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(netCfg, "enableReload"))), generatedConfigFile)),
                     reloadTriggers: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(netCfg, "enableReload")), generatedConfigFile)),
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$46,
+                      [nix.POS]: pos$46,
                       Type: "notify",
                       Restart: "always",
                       ExecStart: nix.thunk(() => nix.str`${nix.sel(netCfg, "package")}/bin/nebula -config ${configFile}`),
@@ -367,16 +367,16 @@ Please assign \`tun.device\` to something shorter.
                       User: nix.thunk(() => nix.sel(netCfg, "user")),
                       Group: nix.thunk(() => nix.sel(netCfg, "group")),
                     })),
-                    unitConfig: nix.thunk(() => ({ __proto__: pos$47, StartLimitIntervalSec: 0n })),
+                    unitConfig: nix.thunk(() => ({ [nix.POS]: pos$47, StartLimitIntervalSec: 0n })),
                   }))],
                 ]);
               })(), enabledNetworks)))),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$51,
+          [nix.POS]: pos$51,
           etc: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (netName) => (netCfg) => nix.attrsDyn({}, [
                 [nix.str`nebula/${netName}.yml`, nix.thunk(() => ({
-                  __proto__: pos$50,
+                  [nix.POS]: pos$50,
                   source: nix.thunk(() => nix.app(genConfigFile, netName, nix.thunk(() => nix.app(genSettings, netName, netCfg)))),
                   mode: "0440",
                   user: nix.thunk(() => nix.sel(netCfg, "user")),
@@ -384,17 +384,17 @@ Please assign \`tun.device\` to something shorter.
               ]), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (netCfg) => (nix.asBool(nix.sel(netCfg, "enableReload")) || nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(config, "system", "stateVersion")), "25.11"))), enabledNetworks)))))),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$53,
+          [nix.POS]: pos$53,
           firewall: nix.thunk(() => ({
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             allowedUDPPorts: nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.app(nix.sel(lib, "filter"), (port) => nix.gt(port, 0n), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (netName) => (netCfg) => nix.app(resolveFinalPort, netCfg), enabledNetworks)))))),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$55,
+          [nix.POS]: pos$55,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (netName) => (netCfg) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(netCfg, "user"), nix.app(nameToId, netName))), nix.thunk(() => nix.attrsDyn({}, [
                   [nix.app(nameToId, netName), nix.thunk(() => ({
-                    __proto__: pos$54,
+                    [nix.POS]: pos$54,
                     group: nix.thunk(() => nix.sel(netCfg, "group")),
                     description: nix.thunk(() => nix.str`Nebula service user for network ${netName}`),
                     isSystemUser: true,
@@ -404,7 +404,7 @@ Please assign \`tun.device\` to something shorter.
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$57,
+      [nix.POS]: pos$57,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

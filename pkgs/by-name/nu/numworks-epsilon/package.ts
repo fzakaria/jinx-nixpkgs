@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "numworks-epsilon";
       const version = "23.2.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "numworks",
           repo: "epsilon",
           rev: version,
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const installPhase = "runHook preInstall\n\nmkdir -p $out/bin\ncp ./output/release/simulator/linux/epsilon.bin $out/bin/epsilon\n\n# Build the logo\nassets=\"$src/ion/src/simulator/assets\"\nlogo_dir=\"$out/share/icons/hicolor/scalable/apps\"\nlogo=\"$logo_dir/numworks.svg\"\nmkdir -p \"$logo_dir\"\n\n# Take opening svg tag\ngrep '<svg' \"$assets/logo.svg\" > \"$logo\"\n\n# Insert path from logo mask and change color\ngrep path \"$assets/icon_mask.svg\" | sed 's/fill=\"[^\"]*\"/fill=\"#edb14b\"/' >> \"$logo\"\n\n# Add remainder of logo\ngrep -v '<svg' \"$assets/logo.svg\" >> \"$logo\"\n\nrunHook postInstall\n";
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "epsilon",
             exec: "epsilon",
             icon: "numworks",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simulator for Epsilon, a High-performance graphing calculator operating system",
         homepage: "https://numworks.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-nc-sa-40")),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

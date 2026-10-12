@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "orbiton";
       const version = "2.74.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xyproto",
           repo: "orbiton",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       })());
       const postInstall = nix.thunk(() => nix.add("cd ..\ninstallManPage o.1\nmv $out/bin/{orbiton,o}\n", nix.app(nix.sel(lib, "optionalString"), withGui, "make install-gui PREFIX=$out\nwrapProgram $out/bin/og --prefix PATH : $out/bin\n")));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Config-free text editor and IDE limited to VT100",
         homepage: "https://roboticoverlords.org/orbiton/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "o",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

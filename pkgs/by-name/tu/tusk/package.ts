@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pname = "tusk";
   const version = "0.23.0";
   const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/klaussinani/tusk/v${version}/static/Icon.png`),
       sha256: "1jqclyrjgg6hir45spg75plfmd8k9nrsrzw3plbcg43s5m1qzihb",
     }))));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: pname,
       exec: pname,
       icon: icon,
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pname_1 = pname;
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://github.com/klaussinani/tusk/releases/download/v${version_1}/tusk-${version_1}-x86_64.AppImage`),
           sha256: "02q7wsnhlyq8z74avflrm7805ny8fzlmsmz4bmafp4b4pghjh5ky",
         }))));
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
 ln -s "${desktopItem}/share/applications" "$out/share/"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Refined Evernote desktop app",
         longDescription: "Tusk is an unofficial, featureful, open source, community-driven, free Evernote app used by people in more than 140 countries. Tusk is indicated by Evernote as an alternative client for Linux environments trusted by the open source community.\n",
         homepage: "https://klaussinani.github.io/tusk/",
@@ -54,7 +54,7 @@ ln -s "${desktopItem}/share/applications" "$out/share/"
         mainProgram: "tusk",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: pname_1,
         version: version_1,
         src,

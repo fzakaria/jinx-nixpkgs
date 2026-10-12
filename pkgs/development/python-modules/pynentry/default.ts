@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const pinentry_curses = nix.arg($, "pinentry-curses");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pynentry",
       version: "0.1.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Laharah",
           repo: "pynentry",
           rev: "54a484b36b8ac16c0ae51fe436844d5a056ec3c9",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
 `),
       pythonImportsCheck: nix.thunk(() => ["pynentry"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Wrapper for pinentry for python",
         homepage: "https://github.com/Laharah/pynentry",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

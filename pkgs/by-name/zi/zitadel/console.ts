@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
     const protoc_gen_grpc_web = nix.arg($_1, "protoc-gen-grpc-web");
     const protoc_gen_js = nix.arg($_1, "protoc-gen-js");
     const protobufGenerated = nix.thunk(() => nix.app(generateProtobufCode, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         pname: "zitadel-console",
         version: version,
         nativeBuildInputs: nix.thunk(() => [grpc_gateway, protoc_gen_grpc_web, protoc_gen_js]),
@@ -34,13 +34,13 @@ export default nix.lambda((args) => (() => {
         hash: "sha256-UzmwUUYg0my3noAQNtlUEBQ+K6GVnBSkWj4CzoaoLKw=",
       }))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: "zitadel-console",
         version: version,
         src: zitadelRepo,
         sourceRoot: nix.thunk(() => nix.str`${nix.sel(zitadelRepo, "name")}/console`),
         offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             yarnLock: nix.thunk(() => nix.str`${zitadelRepo}/console/yarn.lock`),
             hash: "sha256-ekgLd5DTOBZWuT63QnTjx40ZYvLKZh+FXCn+h5vj9qQ=",
           })))),

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cppcms",
       version: "2.0.0.beta2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/cppcms/cppcms-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-aXAxx9FB/dIVxr5QkLZuIQamO7PlLwnugSDo78bAiiE=",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       cmakeFlags: nix.thunk(() => ["--no-warn-unused-cli"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://cppcms.com",
         description: "High Performance C++ Web Framework",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

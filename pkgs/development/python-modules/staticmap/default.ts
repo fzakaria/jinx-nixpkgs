@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const pillow = nix.arg($, "pillow");
   const requests = nix.arg($, "requests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "staticmap",
       version: "0.5.7",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-x6lrkCumEpLoGMILCBBhnWuBps21C8wauS1QrE2yCn8=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["staticmap"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Small, python-based library for creating map images with lines and markers",
         homepage: "https://pypi.org/project/staticmap/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

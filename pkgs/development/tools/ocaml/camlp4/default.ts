@@ -39,105 +39,105 @@ export default nix.lambda((args) => (() => {
   const ocamlbuild = nix.arg($, "ocamlbuild");
   const findlib = nix.arg($, "findlib");
   const params = nix.thunk(() => ({
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     "4.02": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       version: "4.02+6",
       sha256: "06yl4q0qazl7g25b0axd1gdkfd4qpqzs1gr5fkvmkrcbz113h1hj",
     })),
     "4.03": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "4.03+1",
       sha256: "1f2ndch6f1m4fgnxsjb94qbpwjnjgdlya6pard44y6n0dqxi1wsq",
     })),
     "4.04": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "4.04+1",
       sha256: "1ad7rygqjxrc1im95gw9lp8q83nhdaf383f2808f1p63yl42xm7k",
     })),
     "4.05": nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "4.05+1",
       sha256: "0wm795hpwvwpib9c9z6p8kw2fh7p7b2hml6g15z8zry3y7w738sv",
     })),
     "4.06": nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: "4.06+1",
       sha256: "0fazfw2l7wdmbwnqc22xby5n4ri1wz27lw9pfzhsbcdrighykysf",
     })),
     "4.07": nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       version: "4.07+1",
       sha256: "0cxl4hkqcvspvkx4f2k83217rh6051fll9i2yz7cw6m3bq57mdvl",
     })),
     "4.08": nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       version: "4.08+1",
       sha256: "0qplawvxwai25bi27niw2cgz2al01kcnkj8wxwhxslpi21z6pyx1",
     })),
     "4.09": nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       version: "4.09+1",
       sha256: "1gr33x6xs1rs0bpyq4vzyfxd6vn47jfkg8imi81db2r0cbs0kxx1",
     })),
     "4.10": nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       version: "4.10+1",
       sha256: "093bc1c28wid5li0jwglnd4p3csxw09fmbs9ffybq2z41a5mgay6",
     })),
     "4.11": nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       version: "4.11+1",
       sha256: "0sn7f6im940qh0ixmx1k738xrwwdvy9g7r19bv5218jb6mh0g068",
     })),
     "4.12": nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       version: "4.12+1",
       sha256: "1cfk5ppnd511vzsr9gc0grxbafmh0m3m897aij198rppzxps5kyz",
     })),
     "4.13": nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       version: "4.13+1",
       sha256: "0fzxa1zdhk74mlxpin7p90flks6sp4gkc0mfclmj9zak15rii55n",
     })),
     "4.14": nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       version: "4.14+1",
       sha256: "sha256-cPN3GioZT/Zt6uzbjGUPEGVJcPQdsAnCkU/AQoPfvuo=",
     })),
     "5.0": nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       version: "5.0",
       sha256: "sha256-oZptFNPUEAq5YlcqAoDWfLghGMF9AN7E7hUN55SAX+4=",
     })),
     "5.1": nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       version: "5.1",
       sha256: "sha256-Ubedjg3BeHA0bJbEalQN9eEk5+LRAI/er+8mWfVYchg=",
     })),
     "5.2": nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       version: "5.2",
       sha256: "sha256-lzbc9xsgeYlbVf71O+PWYS14QivAH1aPdnvWhe0HHME=",
     })),
     "5.3": nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       version: "5.3",
       sha256: "sha256-V/kKhTP9U4jWDFuQKuB7BS3XICg1lq/2Avj7UJR55+k=",
     })),
     "5.4": nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       version: "5.4",
       sha256: "sha256-7FsKEr0cRVF4LIOvROWMyXBefRTBaS66ZqwtP2VLefM=",
     })),
     "5.5": nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       version: "5.5+1",
       sha256: "sha256-ERzTg6CFXm1Z0/NSXP5MwM0H/fSpN/4D2ISFcJa1qSI=",
     })),
   }));
   const param = nix.thunk(() => nix.update({
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     version: "",
     sha256: nix.thunk(() => nix.sel(lib, "fakeSha256")),
   }, nix.selOr(params, () => ({}), nix.key(nix.sel(ocaml, "meta", "branch")))));
@@ -145,7 +145,7 @@ export default nix.lambda((args) => (() => {
       const pname = "camlp4";
       const version = nix.thunk(() => nix.attr(param, "version"));
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           url: nix.thunk(() => nix.str`https://github.com/ocaml/camlp4/archive/${version}.tar.gz`),
           sha256: nix.thunk(() => nix.attr(param, "sha256")),
         }))));
@@ -172,7 +172,7 @@ configureFlagsArray=(
       const installTargets = nix.thunk(() => ["install", "install-META"]);
       const dontStrip = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         description: "Software system for writing extensible parsers for programming languages",
         homepage: "https://github.com/ocaml/camlp4",
         platforms: nix.thunk(() => nix.sel(ocaml, "meta", "platforms")),
@@ -180,7 +180,7 @@ configureFlagsArray=(
         broken: nix.thunk(() => !nix.asBool(nix.has(params, nix.key(nix.sel(ocaml, "meta", "branch"))))),
       }));
       return {
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         pname,
         version,
         src,

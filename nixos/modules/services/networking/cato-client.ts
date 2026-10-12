@@ -30,39 +30,39 @@ export default nix.lambda((args) => (() => {
   const mkPackageOption = nix.thunk(() => nix.attr(lib, "mkPackageOption"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "cato-client"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       services: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "cato-client": nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(mkEnableOption, "cato-client service")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "cato-client", nix.thunk(() => ({})))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         users: nix.thunk(() => ({
-          __proto__: pos$5,
-          groups: nix.thunk(() => ({ __proto__: pos$4, "cato-client": nix.thunk(() => ({})) })),
+          [nix.POS]: pos$5,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$4, "cato-client": nix.thunk(() => ({})) })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           services: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             "cato-client": nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               enable: true,
               description: "Cato Networks Linux client - connects tunnel to Cato cloud",
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 Type: "simple",
                 User: "root",
                 Group: "cato-client",
@@ -80,11 +80,11 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           wrappers: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             "cato-clientd": nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/cato-clientd`),
               owner: "root",
               group: "cato-client",
@@ -92,7 +92,7 @@ export default nix.lambda((args) => (() => {
               setgid: true,
             })),
             "cato-sdp": nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/cato-sdp`),
               owner: "root",
               group: "cato-client",

@@ -17,26 +17,26 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const librsync = nix.arg($, "librsync");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "btar",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://vicerveza.homeunix.net/~viric/soft/btar/btar-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0miklk4bqblpyzh1bni4x6lqn88fa8fjn15x1k1n8bxkx60nlymd",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://build.opensuse.org/public/source/openSUSE:Factory/btar/btar-librsync.patch?rev=2",
             sha256: "1awqny9489vsfffav19s73xxg26m7zrhvsgf1wxb8c2izazwr785",
           })))),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-fcommon" })),
       buildInputs: nix.thunk(() => [librsync]),
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Tar-compatible block-based archiver",
         mainProgram: "btar",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

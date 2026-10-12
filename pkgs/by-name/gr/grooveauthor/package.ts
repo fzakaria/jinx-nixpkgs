@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const libGL = nix.arg($, "libGL");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "grooveauthor",
       version: "1.1.4",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/PerryAsleep/GrooveAuthor/releases/download/v${nix.sel(finalAttrs, "version")}/GrooveAuthor-v${nix.sel(finalAttrs, "version")}-linux-x64.tar.gz`),
           hash: "sha256-LjOOI1cUbYpl4tmY1eAZV3S99yQOb4V6LU9Gu/hTtnY=",
           stripRoot: false,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       runtimeDependencies: nix.thunk(() => [gtk3]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             desktopName: "GrooveAuthor",
             name: nix.thunk(() => nix.sel(finalAttrs, "pname")),
             genericName: "Editor for StepMania",
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
 )
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GrooveAuthor is an editor for authoring StepMania charts",
         homepage: "https://github.com/PerryAsleep/GrooveAuthor",
         license: nix.thunk(() => (() => {

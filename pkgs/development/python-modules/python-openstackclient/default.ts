@@ -44,19 +44,19 @@ export default nix.lambda((args) => (() => {
   const stestrCheckHook = nix.arg($, "stestrCheckHook");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "python-openstackclient",
       version: "10.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openstack",
           repo: "python-openstackclient",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-xOvDAwnJGYbMJDG+lO1TCLRFavlciJRVmbjYqU/E1DY=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PBR_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       "build-system": nix.thunk(() => [openstackdocstheme, setuptools, sphinxHook, sphinxcontrib_apidoc]),
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
         "openstackclient.tests",
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "cli-plugins": nix.thunk(() => [
           aodhclient,
           osc_placement,
@@ -99,7 +99,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd openstack \\\n  --bash <($out/bin/openstack complete)\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "OpenStack Command-line Client",
         mainProgram: "openstack",
         homepage: "https://docs.openstack.org/python-openstackclient/latest/",

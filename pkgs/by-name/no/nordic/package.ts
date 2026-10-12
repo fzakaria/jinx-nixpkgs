@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const jdupes = nix.arg($, "jdupes");
   const kdePackages = nix.arg($, "kdePackages");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "nordic",
       version: "2.2.0-unstable-2025-05-05",
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "EliverLara",
             repo: "nordic",
             rev: "d9b5c42cebf9a165bcce7b6b8a019f5cfd5b789c",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
             name: "Nordic",
           })))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             owner: "EliverLara",
             repo: "nordic",
             rev: "361f0d1d23177a1154d415f793ce52a2c09629d4",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
             name: "Nordic-standard-buttons",
           })))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             owner: "EliverLara",
             repo: "nordic",
             rev: "bf05d41c7c7cd03e391854739bcc843fc6053ced",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
             name: "Nordic-darker",
           })))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             owner: "EliverLara",
             repo: "nordic",
             rev: "98cdf88d77fa7f0535ff660148e0ccbabe47a579",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
             name: "Nordic-darker-standard-buttons",
           })))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             owner: "EliverLara",
             repo: "nordic",
             rev: "f1e43cf9ba83602f73f71407a8a4ba768122b7f4",
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
             name: "Nordic-bluish-accent",
           })))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             owner: "EliverLara",
             repo: "nordic",
             rev: "52a37ebce50f948129507e4804240d9e7788a7a2",
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
             name: "Nordic-bluish-accent-standard-buttons",
           })))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             owner: "EliverLara",
             repo: "nordic-polar",
             rev: "24dc0325c4a38508039f5fee9a5391c1d9d8d5d5",
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
             name: "Nordic-Polar",
           })))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             owner: "EliverLara",
             repo: "nordic-polar",
             rev: "fe0d657613a1e6330fa8c41378c324af93a42c3a",
@@ -103,7 +103,7 @@ printWords ${nix.sel(kdePackages, "breeze-icons", "out")} ${nix.sel(kdePackages,
   >> $sddm/nix-support/propagated-build-inputs
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Gtk and KDE themes using the Nord color pallete",
         homepage: "https://github.com/EliverLara/Nordic",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

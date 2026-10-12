@@ -12,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const libde265 = nix.arg($, "libde265");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "libde265-test-corpus-decode",
       version: "unstable-2020-02-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "strukturag",
           repo: "libde265-data",
           rev: "bdfdfdbe682f514c5185c270c74eac42731a7fa8",

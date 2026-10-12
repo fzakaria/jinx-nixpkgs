@@ -16,22 +16,22 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(haskellLib, null);
   return (self) => (super$) => (() => {
     const tensorflow_haskell = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchFromGitHub"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         owner: "tensorflow",
         repo: "haskell",
         rev: "555d90c43202d5a3021893013bfc8e2ffff58c97",
         sha256: "uOuIeD4o+pcjvluTqyVU3GJUQ4e1+p3FhINJ9b6oK+k=",
         fetchSubmodules: true,
       }))));
-    const setTensorflowSourceRoot = (dir) => (drv) => nix.app(nix.sel(nix.app(nix.lookup(w, "overrideCabal"), (drv_1) => ({ __proto__: pos$2, src: tensorflow_haskell }), drv), "overrideAttrs"), (_oldAttrs) => ({
-        __proto__: pos$3,
+    const setTensorflowSourceRoot = (dir) => (drv) => nix.app(nix.sel(nix.app(nix.lookup(w, "overrideCabal"), (drv_1) => ({ [nix.POS]: pos$2, src: tensorflow_haskell }), drv), "overrideAttrs"), (_oldAttrs) => ({
+        [nix.POS]: pos$3,
         sourceRoot: nix.thunk(() => nix.str`${nix.sel(tensorflow_haskell, "name")}/${dir}`),
       }));
     return {
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       "tensorflow-proto": nix.thunk(() => nix.app(setTensorflowSourceRoot, "tensorflow-proto", nix.thunk(() => nix.sel(super$, "tensorflow-proto")))),
       tensorflow: nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           libraryHaskellDepends: nix.thunk(() => nix.concat(nix.sel(drv, "libraryHaskellDepends"), [nix.thunk(() => nix.sel(self, "vector-split"))])),
         }), nix.thunk(() => nix.app(setTensorflowSourceRoot, "tensorflow", nix.thunk(() => nix.sel(super$, "tensorflow")))))),
       "tensorflow-core-ops": nix.thunk(() => nix.app(setTensorflowSourceRoot, "tensorflow-core-ops", nix.thunk(() => nix.sel(super$, "tensorflow-core-ops")))),

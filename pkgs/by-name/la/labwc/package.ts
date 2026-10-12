@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const xwayland = nix.arg($, "xwayland");
   const enableSystemd = nix.argOr($, "enableSystemd", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "labwc",
       version: "0.20.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "labwc",
           repo: "labwc",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -76,11 +76,11 @@ export default nix.lambda((args) => (() => {
       ]),
       strictDeps: true,
       doInstallCheck: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$2, providedSessions: nix.thunk(() => ["labwc"]) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, providedSessions: nix.thunk(() => ["labwc"]) })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(wayland, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/labwc/labwc",
         description: "Wayland stacking compositor, inspired by Openbox",
         changelog: "https://github.com/labwc/labwc/blob/master/NEWS.md",

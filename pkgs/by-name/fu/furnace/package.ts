@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const withGL = nix.argOr($, "withGL", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
   const preferGLES = nix.argOr($, "preferGLES", () => nix.sel(stdenv, "hostPlatform", "isAarch"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "furnace",
       version: "0.6.8.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tildearrow",
           repo: "furnace",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -77,15 +77,15 @@ substituteInPlace src/gui/scaling.cpp \\
       ]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "# Normal CMake install phase on Darwin only installs the binary, the user is expected to use CPack to build a\n# bundle. That adds alot of overhead for not much benefit (CPack is currently abit broken, and needs impure access\n# to /usr/bin/hdiutil). So we'll manually assemble & install everything instead.\n\nmkdir -p $out/{Applications/Furnace.app/Contents/{MacOS,Resources},share/{,doc,licenses}/furnace}\nmv $out/{bin,Applications/Furnace.app/Contents/MacOS}/furnace\nmakeWrapper $out/{Applications/Furnace.app/Contents/MacOS,bin}/furnace\n\ninstall -m644 {../res,$out/Applications/Furnace.app/Contents}/Info.plist\ninstall -m644 ../res/icon.icns $out/Applications/Furnace.app/Contents/Resources/Furnace.icns\ninstall -m644 {..,$out/share/licenses/furnace}/LICENSE\ncp -r ../papers $out/share/doc/furnace/\ncp -r ../demos $out/share/furnace/\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: furnace })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: furnace })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Multi-system chiptune tracker compatible with DefleMask modules",
         homepage: "https://github.com/tildearrow/furnace",
         changelog: nix.thunk(() => nix.str`https://github.com/tildearrow/furnace/releases/tag/v${nix.sel(finalAttrs, "version")}`),

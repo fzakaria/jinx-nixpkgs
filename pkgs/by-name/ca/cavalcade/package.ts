@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cavalcade",
       version: "0.8",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "worron",
           repo: "cavalcade",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -55,12 +55,12 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk3]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "Cavalcade",
             type: "Application",
             exec: "cavalcade",
             icon: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 url: "https://raw.githubusercontent.com/worron/cavalcade/68ba5a2b2effd1c46b0568f4a27852689c2cdf32/desktop/cavalcade.svg",
                 hash: "sha256-GJR5kUmSnFG6dE+o2UWKaHmiKPZNDGZZqXCIP8o883M=",
               })))),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python wrapper for C.A.V.A. utility with a GUI",
         homepage: "https://github.com/worron/cavalcade",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

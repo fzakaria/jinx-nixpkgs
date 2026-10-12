@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
       const pname = "fluxbox";
       const version = "1.3.7";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/fluxbox/fluxbox-${version}.tar.xz`),
           sha256: "1h1f70y40qd225dqx937vzb4k2cz219agm1zvnjxakn5jkz7b37w",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "gcc-11.patch",
             url: "http://git.fluxbox.org/fluxbox.git/patch/?id=22866c4d30f5b289c429c5ca88d800200db4fc4f",
             sha256: "1x7126rlmzky51lk370fczssgnjs7i6wgfaikfib9pvn4vv945ai",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       const enableParallelBuilding = true;
       const preConfigure = "substituteInPlace util/fluxbox-generate_menu.in \\\n  --subst-var-by PREFIX \"$out\"\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Full-featured, light-resource X window manager",
         longDescription: "Fluxbox is a X window manager based on Blackbox 0.61.1 window\nmanager sources.  It is very light on resources and easy to\nhandle but yet full of features to make an easy, and extremely\nfast, desktop experience. It is written in C++ and licensed\nunder MIT license.\n",
         homepage: "https://fluxbox.org/",
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

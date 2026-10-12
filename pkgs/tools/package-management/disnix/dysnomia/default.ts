@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       const pname = "dysnomia";
       const version = "0.10.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/svanderburg/dysnomia/releases/download/dysnomia-${version}/dysnomia-${version}.tar.gz`),
           sha256: "08ijqbijs2h584dvsb3z858ha385fqd5jfxc51lks9lxxv0sfkr4",
         }))));
@@ -83,12 +83,12 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optional"), enableLegacy, "--enable-legacy")));
       const buildInputs = nix.thunk(() => nix.concat([getopt, netcat], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), systemd), nix.concat(nix.app(nix.sel(lib, "optional"), enableEjabberdDump, ejabberd), nix.concat(nix.app(nix.sel(lib, "optional"), enableMySQLDatabase, nix.thunk(() => nix.sel(mariadb, "out"))), nix.concat(nix.app(nix.sel(lib, "optional"), enablePostgreSQLDatabase, libpq), nix.concat(nix.app(nix.sel(lib, "optional"), enableSubversionRepository, subversion), nix.concat(nix.app(nix.sel(lib, "optionals"), enableMongoDatabase, nix.thunk(() => [mongodb, mongodb_tools])), nix.concat(nix.app(nix.sel(lib, "optional"), enableInfluxDatabase, influxdb), nix.concat(nix.app(nix.sel(lib, "optional"), enableSupervisordProgram, supervisor), nix.concat(nix.app(nix.sel(lib, "optional"), enableDockerContainer, docker), nix.concat(nix.app(nix.sel(lib, "optional"), enableNginxWebApplication, nginx), nix.concat(nix.app(nix.sel(lib, "optional"), enableS6RCService, s6_rc), nix.app(nix.sel(lib, "optional"), enableXinetdService, xinetd))))))))))))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Automated deployment of mutable components and services for Disnix",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
-      return { __proto__: pos$3, pname, version, src, configureFlags, buildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, configureFlags, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const cpio = nix.arg($, "cpio");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mist-cli",
       version: "2.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ninxsoft/mist-cli/releases/download/v${nix.sel(finalAttrs, "version")}/mist-cli.${nix.sel(finalAttrs, "version")}.pkg`),
           hash: "sha256-rUIA40JTXndE7W2wQiayhAP9RPTQMeJV8d6NUy/Immk=",
         })))),
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ninstall -D usr/local/bin/mist \"$out/bin/mist\"\n\nrunHook postInstall\n",
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform")))), "installShellCompletion --cmd mist \\\n  --bash <($out/bin/mist --generate-completion-script bash) \\\n  --fish <($out/bin/mist --generate-completion-script fish) \\\n  --zsh <($out/bin/mist --generate-completion-script zsh)\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Command-line tool that downloads macOS firmwares and installers",
         homepage: "https://github.com/ninxsoft/mist-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

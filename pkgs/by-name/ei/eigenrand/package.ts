@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "eigenrand",
       version: "0.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bab2min",
           repo: "EigenRand",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "support-eigen-341.patch",
             url: "https://github.com/bab2min/EigenRand/commit/8114df93b4c8a84a4f853380f0875a2c9d683cd0.patch",
             hash: "sha256-2KivLlyYGSRZurtxLghNfWwUNEUNWZdC6q+H65EPLnQ=",
@@ -51,7 +51,7 @@ rm test/test_mv.cpp
       doCheck: true,
       cmakeFlags: nix.thunk(() => ["-DCMAKE_CTEST_ARGUMENTS=--exclude-regex;EigenRand-test"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fastest Random Distribution Generator for Eigen",
         homepage: "https://github.com/bab2min/EigenRand",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

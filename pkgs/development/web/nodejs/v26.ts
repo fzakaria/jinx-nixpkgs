@@ -17,19 +17,19 @@ export default nix.lambda((args) => (() => {
   const fetchpatch2 = nix.arg($, "fetchpatch2");
   const openssl = nix.arg($, "openssl");
   const python3 = nix.arg($, "python3");
-  const buildNodejs = nix.thunk(() => nix.app(callPackage, nix.path(here, "./nodejs.nix"), nix.thunk(() => ({ __proto__: pos$1, openssl: openssl, python: python3 }))));
+  const buildNodejs = nix.thunk(() => nix.app(callPackage, nix.path(here, "./nodejs.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, openssl: openssl, python: python3 }))));
   const gypPatches = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "buildPlatform", "isDarwin")) ? [nix.path(here, "./gyp-patches-set-fallback-value-for-CLT-darwin.patch")] : []));
   return nix.app(buildNodejs, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "26.11.1",
       sha256: "2c79a3c1095c7da4c549c84e90b2d28df5479315ab6d0aff9bc71dcf4c9df1e0",
       patches: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "hostPlatform", "emulatorAvailable"), buildPackages))), nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://raw.githubusercontent.com/buildroot/buildroot/2f0c31bffdb59fb224387e35134a6d5e09a81d57/package/nodejs/nodejs-src/0003-include-obj-name-in-shared-intermediate.patch",
             hash: "sha256-3g4aS+NmmUYNOYRNc6UMJKYoaTlpP5Knt9UHegx+o0Y=",
           }))))), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isFreeBSD")))), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               url: "https://raw.githubusercontent.com/rubyjs/libv8-node/62476a398d4c9c1a670240a3b070d69544be3761/patch/v8-no-assert-trivially-copyable.patch",
               hash: "sha256-hSTLljmVzYmc3WAVeRq9EPYluXGXFeWVXkykufGQPVw=",
             })))),

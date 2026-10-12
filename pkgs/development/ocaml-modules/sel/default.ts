@@ -15,19 +15,19 @@ export default nix.lambda((args) => (() => {
   const ppx_deriving = nix.arg($, "ppx_deriving");
   const buildDunePackage = nix.arg($, "buildDunePackage");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sel",
       version: "0.8.0",
       minimalOCamlVersion: "4.07",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/gares/sel/releases/download/v${nix.sel(finalAttrs, "version")}/sel-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-jTAjWdaoioR5+G96qoOY+JXrJY00eF7y7WhGSiFwfqg=",
         })))),
       buildInputs: nix.thunk(() => [ppxlib]),
       propagatedBuildInputs: nix.thunk(() => [ppx_deriving]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple event library",
         homepage: "https://github.com/gares/sel/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

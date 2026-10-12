@@ -29,29 +29,29 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     name: "olivetin",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "defelo"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       machine: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         services: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           olivetin: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enable: true,
             settings: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               actions: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   id: "hello_world",
                   title: "Say Hello",
                   shell: "echo -n 'Hello World!' | tee /tmp/result",
@@ -66,30 +66,30 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     interactive: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       nodes: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         machine: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             olivetin: nix.thunk(() => ({
-              __proto__: pos$9,
-              settings: nix.thunk(() => ({ __proto__: pos$8, ListenAddressSingleHTTPFrontend: "0.0.0.0:8000" })),
+              [nix.POS]: pos$9,
+              settings: nix.thunk(() => ({ [nix.POS]: pos$8, ListenAddressSingleHTTPFrontend: "0.0.0.0:8000" })),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$12,
-            firewall: nix.thunk(() => ({ __proto__: pos$11, allowedTCPPorts: nix.thunk(() => [8000n]) })),
+            [nix.POS]: pos$12,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$11, allowedTCPPorts: nix.thunk(() => [8000n]) })),
           })),
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             forwardPorts: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 from: "host",
-                host: nix.thunk(() => ({ __proto__: pos$13, port: 8000n })),
-                guest: nix.thunk(() => ({ __proto__: pos$14, port: 8000n })),
+                host: nix.thunk(() => ({ [nix.POS]: pos$13, port: 8000n })),
+                guest: nix.thunk(() => ({ [nix.POS]: pos$14, port: 8000n })),
               })),
             ]),
           })),

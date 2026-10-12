@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const lsd = nix.arg($, "lsd");
   const git = nix.arg($, "git");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "lsd",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lsd-rs",
           repo: "lsd",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,14 +36,14 @@ export default nix.lambda((args) => (() => {
       postInstall: "pandoc --standalone --to man doc/lsd.md -o lsd.1\ninstallManPage lsd.1\n\ninstallShellCompletion --cmd lsd \\\n  --bash $releaseDir/build/lsd-*/out/lsd.bash \\\n  --fish $releaseDir/build/lsd-*/out/lsd.fish \\\n  --zsh $releaseDir/build/lsd-*/out/_lsd\n",
       nativeCheckInputs: nix.thunk(() => [git]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: lsd })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: lsd })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/lsd-rs/lsd",
         description: "Next gen ls command",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

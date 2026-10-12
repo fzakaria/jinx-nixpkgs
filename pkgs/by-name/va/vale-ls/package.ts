@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const vale = nix.arg($, "vale");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "vale-ls",
       version: "0.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vale-cli",
           repo: "vale-ls",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,13 +36,13 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [openssl]),
       checkFlags: nix.thunk(() => nix.concat(["--skip=vale::tests"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["--skip=utils::tests::arch"])))),
-      env: nix.thunk(() => ({ __proto__: pos$2, OPENSSL_NO_VENDOR: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: true })),
       cargoHash: "sha256-6VotndueXjZR5nN4Eu/QIxP6ykTlVEkG+SuCL2T3mY0=",
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/vale-ls \\
   --suffix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [vale]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "LSP implementation for the Vale command-line tool",
         homepage: "https://github.com/vale-cli/vale-ls",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

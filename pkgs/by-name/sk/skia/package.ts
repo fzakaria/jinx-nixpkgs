@@ -39,18 +39,18 @@ export default nix.lambda((args) => (() => {
   const fixDarwinDylibNames = nix.arg($, "fixDarwinDylibNames");
   const enableVulkan = nix.argOr($, "enableVulkan", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "skia",
       version: "148-unstable-2026-04-14",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://skia.googlesource.com/skia.git",
           rev: "e7c90ecca9444fe09598f1630ab7cee2c0ee027a",
           hash: "sha256-2+fxWqkNBStoN6l5Y3xMqkwvh69sCU6A//wz8fMnmjY=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://salsa.debian.org/fonts-team/libskia/-/raw/6574ca599eab076a9cd5b8667f81aef0f67b3eeb/debian/patches/loong-build",
             hash: "sha256-6dUCQixmll2K8fqRGwhay7ee8gvdRq1NJjUHBHxIFvo=",
           })))),
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), enableVulkan, nix.thunk(() => [vulkan_headers, vulkan_memory_allocator])))),
       gnFlags: nix.thunk(() => (() => {
         const cpu = nix.thunk(() => nix.sel({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           x86_64: "x64",
           i686: "x86",
           arm: "arm",
@@ -99,7 +99,7 @@ export default nix.lambda((args) => (() => {
           ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["skia_use_fontconfig=true", "skia_use_freetype=true", "skia_use_metal=true"])))));
       })()),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-lz")),
       })),
       installPhase: nix.thunk(() => nix.str`runHook preInstall
@@ -135,14 +135,14 @@ runHook postInstall
 `),
       preFixup: "# Some skia includes are assumed to be under an include sub directory by\n# other includes\nfor file in $(grep -rl '#include \"include/' $out/include); do\n  substituteInPlace \"$file\" \\\n    --replace-fail '#include \"include/' '#include \"'\ndone\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "2D graphic library for drawing text, geometries and images",
         homepage: "https://skia.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

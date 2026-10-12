@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libxcb_wm = nix.arg($, "libxcb-wm");
   const xcbproto = nix.arg($, "xcbproto");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "windowchef",
       version: "0.5.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tudurom",
           repo: "windowchef",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libxcb, libxrandr, libxcb_util, libxcb_keysyms, libxcb_wm, xcbproto]),
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Stacking window manager that cooks windows with orders from the Waitron",
         homepage: "https://github.com/tudurom/windowchef",
         maintainers: nix.thunk(() => (() => {

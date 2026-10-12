@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const libGL = nix.arg($, "libGL");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "krillinai",
       version: "2.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "krillinai",
           repo: "KrillinAI",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postInstall: "mv $out/bin/desktop $out/bin/krillinai-desktop\nmv $out/bin/server $out/bin/krillinai-server\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Video translation and dubbing tool",
         homepage: "https://github.com/krillinai/KrillinAI",
         changelog: nix.thunk(() => nix.str`https://github.com/krillinai/KrillinAI/releases/tag/v${nix.sel(finalAttrs, "version")}`),

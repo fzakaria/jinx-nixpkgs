@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const libdecor = nix.arg($, "libdecor");
   const libxkbcommon = nix.arg($, "libxkbcommon");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "foxotron",
       version: "2024-09-23-unstable-2026-03-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Gargaj",
           repo: "Foxotron",
           rev: "6edbf2e52e59a4206420bc667225a4e18778be76",
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
           wayland,
         ])))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=array-bounds"]))),
       })),
       hardeningDisable: nix.thunk(() => ["fortify3"]),
@@ -83,11 +83,11 @@ ln -s $out/{lib/foxotron,bin}/Foxotron
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "General purpose model viewer",
         longDescription: "ASSIMP based general purpose model viewer (\"turntable\") created for the\nRevision 2021 3D Graphics Competition.\n",
         homepage: "https://github.com/Gargaj/Foxotron",

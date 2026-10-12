@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const undmg = nix.arg($, "undmg");
   const snapshot = "20250820092243";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "apparency",
       version: "2.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://web.archive.org/web/${snapshot}/https://www.mothersruin.com/software/downloads/Apparency.dmg`),
           hash: "sha256-QaP7Ll5ZK0QVHPFzDPmV8rd0XmY3Ie0VPBDXJEDMECU=",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: "Apparency.app",
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications/Apparency.app $out/bin\ncp -R . $out/Applications/Apparency.app\nln -s ../Applications/Apparency.app/Contents/MacOS/appy $out/bin\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Toolkit for analysing macOS applications",
         homepage: "https://www.mothersruin.com/software/Apparency/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),

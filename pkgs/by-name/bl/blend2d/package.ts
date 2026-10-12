@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const asmjit = nix.arg($, "asmjit");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "blend2d",
       version: "0.21.2-unstable-2025-11-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "blend2d",
           repo: "blend2d",
           rev: "6dbc2cefbc996379e07104e34519a440b49b15d7",
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "ASMJIT_DIR", nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(asmjit, "src")))))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "2D Vector Graphics Engine Powered by a JIT Compiler",
         homepage: "https://blend2d.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "4.3.4",
       pname: "randoop",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/randoop/randoop/releases/download/v${nix.sel(finalAttrs, "version")}/randoop-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "sha256-yzQw9l3uAq51SHXJ4rsZNRCiFdhOEoSrwv9iPvD2i9c=",
         })))),
       nativeBuildInputs: nix.thunk(() => [unzip]),
       installPhase: "mkdir -p $out/lib $out/doc\n\ncp -R *.jar $out/lib\ncp README.txt $out/doc\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Automatic test generation for Java",
         homepage: "https://randoop.github.io/randoop/",
         sourceProvenance: nix.thunk(() => (() => {

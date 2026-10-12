@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.str`${extraMvnFlags}`),
     ])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: name,
       src: src,
       phases: nix.thunk(() => nix.str`setupPhase unpackPhase patchPhase mvnCompile ${nix.app(nix.sel(lib, "optionalString"), doTestCompile, "mvnTestCompile mvnTestJar")} ${nix.app(nix.sel(lib, "optionalString"), doTest, "mvnTest")} ${nix.app(nix.sel(lib, "optionalString"), doJavadoc, "mvnJavadoc")} ${nix.app(nix.sel(lib, "optionalString"), doCheckstyle, "mvnCheckstyle")} mvnJar mvnAssembly mvnRelease finalPhase`),

@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const zig_0_15 = nix.arg($, "zig_0_15");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fancy-cat",
       version: "0.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "freref",
           repo: "fancy-cat",
           tag: "v0.6.0",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(zig_0_15, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PDF viewer for terminals using the Kitty image protocol",
         homepage: "https://github.com/freref/fancy-cat",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

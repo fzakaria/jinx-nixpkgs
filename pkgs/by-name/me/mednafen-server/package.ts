@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mednafen-server",
       version: "0.5.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://mednafen.github.io/releases/files/mednafen-server-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-uJmxaMW+bydfAXq8XDOioMoBOLUsi5OT2Tpbbotsp3Y=",
         })))),
       strictDeps: true,
       postInstall: "install -m 644 -Dt $out/share/mednafen-server standard.conf\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Netplay server for Mednafen",
         mainProgram: "mednafen-server",
         homepage: "https://mednafen.github.io/",

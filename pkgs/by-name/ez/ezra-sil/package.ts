@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ezra-sil";
       const version = "2.51";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://software.sil.org/downloads/r/ezra/EzraSIL-${version}.zip`),
           hash: "sha256-hGOHjvFVFLwyVkcoUz+7rQekCdn4oEOB+L16XRpthJM=",
         }))));
@@ -28,14 +28,14 @@ install -Dm644 OFL-FAQ.txt README.txt FONTLOG.txt -t $out/share/doc/${pname}-${v
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://software.sil.org/ezra",
         description: "Typeface fashioned after the square letter forms of the typography of the Biblia Hebraica Stuttgartensia (BHS)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "kmein"))]),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const namespace = "screensaver.asteroids";
       const version = "21.0.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xbmc",
           repo: namespace,
           rev: nix.thunk(() => nix.str`${version}-${rel}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const extraNativeBuildInputs = nix.thunk(() => [pkg_config]);
       const extraBuildInputs = nix.thunk(() => [glm, libGL]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/xbmc/screensaver.asteroids",
         description: "Screensaver that plays Asteroids",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "kodi"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         namespace,
         version,

@@ -13,19 +13,19 @@ export default nix.lambda((args) => (() => {
   const buildRedist = nix.arg($, "buildRedist");
   const lib = nix.arg($, "lib");
   return nix.app(buildRedist, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       redistName: "nvtiff",
       pname: "libnvtiff",
       outputs: nix.thunk(() => ["out", "dev", "include", "lib", "static"]),
       platformAssertions: nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           message: nix.thunk(() => nix.add("nvTIFF supports CUDA compute capabilities 7.0 and newer", nix.str` (found ${nix.builtins.toJSON(nix.thunk(() => nix.sel(backendStdenv, "cudaCapabilities")))})`)),
           assertion: nix.thunk(() => nix.app(nix.sel(lib, "all"), nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "versionAtLeast")), "7.0")), nix.thunk(() => nix.sel(backendStdenv, "cudaCapabilities")))),
         })),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Accelerates TIFF encode/decode on NVIDIA GPUs",
         longDescription: "nvTIFF is a GPU accelerated TIFF(Tagged Image File Format) encode/decode library built on the CUDA platform.\n",
         homepage: "https://docs.nvidia.com/cuda/nvtiff",

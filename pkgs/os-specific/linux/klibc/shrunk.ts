@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const klibc = nix.arg($, "klibc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: nix.thunk(() => nix.attr(klibc, "pname")),
       version: nix.thunk(() => nix.attr(klibc, "version")),
       buildCommand: nix.thunk(() => nix.str`mkdir -p $out/lib

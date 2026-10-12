@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "it87";
       const version = "unstable-2026-08-25";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "frankcrawford",
           repo: "it87",
           rev: "c567739c639533177abd66894a6a8d561337285f",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`MODDESTDIR=$(out)/lib/modules/${nix.sel(kernel, "modDirVersion")}/kernel/drivers/hwmon`),
       ]));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Patched module for IT87xx superio chip sensors support",
         homepage: "https://github.com/frankcrawford/it87",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(kernel, "version")), "6.4")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name,
         pname,
         version,

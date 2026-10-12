@@ -63,86 +63,86 @@ export default nix.lambda((args) => (() => {
         })()),
       ], nix.app(optional, nix.thunk(() => nix.app(isNixAtLeast, "2.4pre")), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(machine, "publicHostKey"), null)) ? nix.sel(machine, "publicHostKey") : "-")))))), "\n"), nix.thunk(() => nix.sel(cfg, "buildMachines"))));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     options: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       nix: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         buildMachines: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   options: nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     hostName: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$1,
+                        [nix.POS]: pos$1,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         example: "nixbuilder.example.org",
                         description: "The hostname of the build machine.\n",
                       })))),
                     protocol: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$2,
+                        [nix.POS]: pos$2,
                         type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => [null, "ssh", "ssh-ng"]))),
                         default: "ssh",
                         example: "ssh-ng",
                         description: "The protocol used for communicating with the build machine.\nUse `ssh-ng` if your remote builder and your\nlocal Nix version support that improved protocol.\n\nUse `null` when trying to change the special localhost builder\nwithout a protocol which is for example used by hydra.\n",
                       })))),
                     system: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                         default: null,
                         example: "x86_64-linux",
                         description: "The system type the build machine can execute derivations on.\nEither this attribute or {var}`systems` must be\npresent, where {var}`system` takes precedence if\nboth are set.\n",
                       })))),
                     systems: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                         default: [],
                         example: nix.thunk(() => ["x86_64-linux", "aarch64-linux"]),
                         description: "The system types the build machine can execute derivations on.\nEither this attribute or {var}`system` must be\npresent, where {var}`system` takes precedence if\nboth are set.\n",
                       })))),
                     sshUser: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                         default: null,
                         example: "builder",
                         description: "The username to log in as on the remote host. This user must be\nable to log in and run nix commands non-interactively. It must\nalso be privileged to build derivations, so must be included in\n{option}`nix.settings.trusted-users`.\n",
                       })))),
                     sshKey: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                         default: null,
                         example: "/root/.ssh/id_buildhost_builduser",
                         description: "The path to the SSH private key with which to authenticate on\nthe build machine. The private key must not have a passphrase.\nIf null, the building user (root on NixOS machines) must have an\nappropriate ssh configuration to log in non-interactively.\n\nNote that for security reasons, this path must point to a file\nin the local filesystem, *not* to the nix store.\n",
                       })))),
                     maxJobs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => nix.sel(types, "int")),
                         default: 1n,
                         description: "The number of concurrent jobs the build machine supports. The\nbuild machine will enforce its own limits, but this allows hydra\nto schedule better since there is no work-stealing between build\nmachines.\n",
                       })))),
                     speedFactor: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: nix.thunk(() => nix.sel(types, "numbers", "nonnegative")),
                         default: 1n,
                         description: "The relative speed of this builder. This is an arbitrary\npositive number that indicates the speed of this builder,\nrelative to other builders. Higher is faster.\n",
                       })))),
                     mandatoryFeatures: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                         default: [],
                         example: nix.thunk(() => ["big-parallel"]),
                         description: "A list of features mandatory for this builder. The builder will\nbe ignored for derivations that don't require all features in\nthis list. All mandatory features are automatically included in\n{var}`supportedFeatures`.\n",
                       })))),
                     supportedFeatures: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                         default: [],
                         example: nix.thunk(() => ["kvm", "big-parallel"]),
                         description: "A list of features supported by this builder. The builder will\nbe ignored for derivations that require features not in this\nlist.\n",
                       })))),
                     publicHostKey: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                         default: null,
                         description: "The (base64-encoded) public host key of this builder. The field\nis calculated via {command}`base64 -w0 /etc/ssh/ssh_host_type_key.pub`.\nIf null, SSH will use its regular known-hosts file when connecting.\n",
@@ -153,7 +153,7 @@ export default nix.lambda((args) => (() => {
             description: "This option lists the machines to be used if distributed builds are\nenabled (see {option}`nix.distributedBuilds`).\nNix will perform derivations on those machines via SSH by copying the\ninputs to the Nix store on the remote machine, starting the build,\nthen copying the output back to the local Nix store.\n",
           })))),
         distributedBuilds: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             type: nix.thunk(() => nix.sel(types, "bool")),
             default: false,
             description: "Whether to distribute builds to the machines listed in\n{option}`nix.buildMachines`.\n",
@@ -161,27 +161,27 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         assertions: nix.thunk(() => (() => {
           const badMachine = (m) => (nix.asBool(nix.eq(nix.sel(m, "system"), null)) && nix.asBool(nix.eq(nix.sel(m, "systems"), [])));
           return [
             nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               assertion: nix.thunk(() => !nix.asBool(nix.app(any, badMachine, nix.thunk(() => nix.sel(cfg, "buildMachines"))))),
               message: nix.thunk(() => nix.add(nix.add("At least one system type (via <varname>system</varname> or\n  <varname>systems</varname>) must be set for every build machine.\n  Invalid machine specifications:\n", "      "), nix.app(concatStringsSep, "\n      ", nix.thunk(() => nix.builtins.map((m) => nix.sel(m, "hostName"), nix.thunk(() => nix.app(filter, badMachine, nix.thunk(() => nix.sel(cfg, "buildMachines"))))))))),
             })),
           ];
         })()),
         environment: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           etc: nix.thunk(() => ({
-            __proto__: pos$20,
-            "nix/machines": nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "buildMachines"), [])), nix.thunk(() => ({ __proto__: pos$19, text: buildMachinesText })))),
+            [nix.POS]: pos$20,
+            "nix/machines": nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "buildMachines"), [])), nix.thunk(() => ({ [nix.POS]: pos$19, text: buildMachinesText })))),
           })),
         })),
         nix: nix.thunk(() => ({
-          __proto__: pos$23,
-          settings: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.asBool(nix.sel(cfg, "distributedBuilds"))), nix.thunk(() => ({ __proto__: pos$22, builders: null })))),
+          [nix.POS]: pos$23,
+          settings: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.asBool(nix.sel(cfg, "distributedBuilds"))), nix.thunk(() => ({ [nix.POS]: pos$22, builders: null })))),
         })),
       })))),
   };

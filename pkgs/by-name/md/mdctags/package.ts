@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mdctags",
       version: "0.1.0-unstable-2020-07-11",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wsdjeg",
           repo: "mdctags.rs",
           rev: "0ed9736ea0c77e6ff5b560dda46f5ed0a983ed82",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-xg9tBBo3Al8x0HkgRnfdZybcjaHsNMv/Ot3NwGiHkBg=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tags for markdown file",
         homepage: "https://github.com/wsdjeg/mdctags.rs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

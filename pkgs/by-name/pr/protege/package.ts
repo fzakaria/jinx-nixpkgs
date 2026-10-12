@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "protege";
       const version = "5.6.8";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "protegeproject",
           repo: "protege",
           rev: version,
@@ -57,7 +57,7 @@ runHook postInstall
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: pname,
             desktopName: "Protege Desktop",
             genericName: "Ontology Editor",
@@ -68,7 +68,7 @@ runHook postInstall
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://protege.stanford.edu/",
         downloadPage: "https://protege.stanford.edu/software.php#desktop-protege",
         description: "Free and open-source OWL 2 ontology editor",
@@ -89,7 +89,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

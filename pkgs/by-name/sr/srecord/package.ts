@@ -18,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const ghostscript = nix.arg($, "ghostscript");
   const libgcrypt = nix.argOr($, "libgcrypt", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "srecord",
       version: "1.64",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/srecord/srecord-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1qk75q0k5vzmm3932q9hqz2gp8n9rrdfjacsswxc02656f3l3929",
         })))),
       buildInputs: nix.thunk(() => [boost, libtool, groff, ghostscript, libgcrypt]),
       configureFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(libgcrypt, null)), "--without-gcrypt")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of powerful tools for manipulating EPROM load files",
         homepage: "https://srecord.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

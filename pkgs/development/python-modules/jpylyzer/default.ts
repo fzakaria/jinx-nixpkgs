@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const doFullCheck = nix.argOr($, "doFullCheck", () => false);
   const jpylyzer = nix.arg($, "jpylyzer");
   const testFiles = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "openpreserve",
       repo: "jpylyzer-test-files",
       rev: "0290e98bae9c5480c995954d3f14b4cf0a0395ff",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.2.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "openpreserve",
           repo: "jpylyzer",
           rev: version,
@@ -47,14 +47,14 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["jpylyzer"]);
       const disallowedReferences = nix.thunk(() => [testFiles]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          withFullCheck: nix.thunk(() => nix.app(nix.sel(jpylyzer, "override"), nix.thunk(() => ({ __proto__: pos$3, doFullCheck: true })))),
+          [nix.POS]: pos$4,
+          withFullCheck: nix.thunk(() => nix.app(nix.sel(jpylyzer, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, doFullCheck: true })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "JP2 (JPEG 2000 Part 1) image validator and properties extractor",
         mainProgram: "jpylyzer",
         homepage: "https://jpylyzer.openpreservation.org/",
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         format,

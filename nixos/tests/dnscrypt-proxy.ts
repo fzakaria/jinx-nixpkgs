@@ -32,37 +32,37 @@ export default nix.lambda((args) => (() => {
   const localProxyPort = 43n;
   const localProxyExtraPort = 44n;
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     name: "dnscrypt-proxy",
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           imports: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               services: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 "dnscrypt-proxy": nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$2,
+                    [nix.POS]: pos$2,
                     listen_addresses: nix.thunk(() => [nix.thunk(() => nix.str`127.0.0.1:${nix.builtins.toString(localProxyPort)}`)]),
                   })),
                 })),
               })),
             })),
             nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               services: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 "dnscrypt-proxy": nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     listen_addresses: nix.thunk(() => [
                       nix.thunk(() => nix.str`127.0.0.1:${nix.builtins.toString(localProxyExtraPort)}`),
                     ]),
@@ -72,20 +72,20 @@ export default nix.lambda((args) => (() => {
             })),
           ]),
           security: nix.thunk(() => ({
-            __proto__: pos$11,
-            apparmor: nix.thunk(() => ({ __proto__: pos$10, enable: true })),
+            [nix.POS]: pos$11,
+            apparmor: nix.thunk(() => ({ [nix.POS]: pos$10, enable: true })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             "dnscrypt-proxy": nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 sources: nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   "public-resolvers": nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     urls: nix.thunk(() => ["https://download.dnscrypt.info/resolvers-list/v2/public-resolvers.md"]),
                     cache_file: "public-resolvers.md",
                     minisign_key: "RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3",
@@ -95,10 +95,10 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             dnsmasq: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 server: nix.thunk(() => [
                   nix.thunk(() => nix.str`127.0.0.1#${nix.builtins.toString(localProxyPort)}`),
                   nix.thunk(() => nix.str`127.0.0.1#${nix.builtins.toString(localProxyExtraPort)}`),

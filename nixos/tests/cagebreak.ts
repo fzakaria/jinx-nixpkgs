@@ -31,31 +31,31 @@ escape C-t
 bind t exec env DISPLAY=:0 ${nix.sel(pkgs, "xterm")}/bin/xterm -cm -pc
 `)));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     name: "cagebreak",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "berbiche"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           services: nix.thunk(() => ({
-            __proto__: pos$3,
-            getty: nix.thunk(() => ({ __proto__: pos$2, autologinUser: "alice" })),
+            [nix.POS]: pos$3,
+            getty: nix.thunk(() => ({ [nix.POS]: pos$2, autologinUser: "alice" })),
           })),
           programs: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             bash: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               loginShellInit: nix.thunk(() => nix.str`if [ "$(tty)" = "/dev/tty1" ]; then
   set -e
 
@@ -66,27 +66,27 @@ bind t exec env DISPLAY=:0 ${nix.sel(pkgs, "xterm")}/bin/xterm -cm -pc
 fi
 `),
             })),
-            xwayland: nix.thunk(() => ({ __proto__: pos$5, enable: true })),
+            xwayland: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
           })),
           hardware: nix.thunk(() => ({
-            __proto__: pos$8,
-            graphics: nix.thunk(() => ({ __proto__: pos$7, enable: true })),
+            [nix.POS]: pos$8,
+            graphics: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
           })),
           security: nix.thunk(() => ({
-            __proto__: pos$10,
-            polkit: nix.thunk(() => ({ __proto__: pos$9, enable: true })),
+            [nix.POS]: pos$10,
+            polkit: nix.thunk(() => ({ [nix.POS]: pos$9, enable: true })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs, "cagebreak")),
               nix.thunk(() => nix.sel(pkgs, "wayland-utils")),
             ]),
           })),
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             qemu: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               options: nix.thunk(() => ["-vga none -device virtio-gpu-pci"]),
             })),
           })),

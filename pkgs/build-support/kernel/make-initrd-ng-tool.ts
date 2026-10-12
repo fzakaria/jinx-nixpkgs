@@ -13,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "make-initrd-ng",
       version: "0.1.0",
       src: nix.path(here, "./make-initrd-ng"),
-      cargoLock: nix.thunk(() => ({ __proto__: pos$1, lockFile: nix.path(here, "./make-initrd-ng/Cargo.lock") })),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./make-initrd-ng/update.sh") })),
+      cargoLock: nix.thunk(() => ({ [nix.POS]: pos$1, lockFile: nix.path(here, "./make-initrd-ng/Cargo.lock") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./make-initrd-ng/update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool for copying binaries and their dependencies",
         mainProgram: "make-initrd-ng",
         maintainers: nix.thunk(() => (() => {

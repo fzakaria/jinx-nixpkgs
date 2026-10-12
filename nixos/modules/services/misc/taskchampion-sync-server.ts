@@ -38,70 +38,70 @@ export default nix.lambda((args) => (() => {
   const defaultGroup = "taskchampion";
   const defaultDir = "/var/lib/taskchampion-sync-server";
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         "taskchampion-sync-server": nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "TaskChampion Sync Server for Taskwarrior 3")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "taskchampion-sync-server", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               description: "Unix User to run the server under",
               type: nix.thunk(() => nix.sel(types, "str")),
               default: defaultUser,
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               description: "Unix Group to run the server under",
               type: nix.thunk(() => nix.sel(types, "str")),
               default: defaultGroup,
             })))),
           host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               description: "Host address on which to serve",
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "127.0.0.1",
               example: "0.0.0.0",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               description: "Port on which to serve",
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 10222n,
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Open firewall port for taskchampion-sync-server")),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               description: "Directory in which to store data",
               type: nix.thunk(() => nix.sel(types, "path")),
               default: defaultDir,
             })))),
           snapshot: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             versions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 description: "Target number of versions between snapshots",
                 type: nix.thunk(() => nix.sel(types, "ints", "positive")),
                 default: 100n,
               })))),
             days: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 description: "Target number of days between snapshots",
                 type: nix.thunk(() => nix.sel(types, "ints", "positive")),
                 default: 14n,
               })))),
           })),
           allowClientIds: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "Client IDs to allow (can be repeated; if not specified, all clients are allowed)",
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: [],
             })))),
           dynamicUser: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               description: "Whether to use dynamic user",
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(config, "system", "stateVersion")), "26.05")),
@@ -110,12 +110,12 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         users: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.sel(cfg, "user"), nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(cfg, "dynamicUser"))) && nix.asBool(nix.eq(nix.sel(cfg, "user"), defaultUser)))), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 isSystemUser: true,
                 group: nix.thunk(() => nix.attr(cfg, "group")),
               }))))],
@@ -125,22 +125,22 @@ export default nix.lambda((args) => (() => {
           ])),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           firewall: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           services: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             "taskchampion-sync-server": nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
                 DynamicUser: nix.thunk(() => nix.sel(cfg, "dynamicUser")),

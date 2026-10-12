@@ -16,16 +16,16 @@ export default nix.lambda((args) => (() => {
   const dpkg = nix.arg($, "dpkg");
   const version = "20030809";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "kochi-substitute",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://debian/pool/main/t/ttf-kochi/ttf-kochi-gothic_${version}-15_all.deb`),
           sha256: "6e2311cd8e880a9328e4d3eef34a1c1f024fc87fba0dce177a0e1584a7360fea",
         })))),
       src2: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`mirror://debian/pool/main/t/ttf-kochi/ttf-kochi-mincho_${version}-15_all.deb`),
           sha256: "91ce6c993a3a0f77ed85db76f62ce18632b4c0cbd8f864676359a17ae5e6fa3c",
         })))),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       outputHashMode: "recursive",
       outputHash: "10hcrf51npc1w2jsz5aiw07dgw96vs4wmsz4ai9zyaswipvf8ddy",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Japanese font, a free replacement for MS Gothic and MS Mincho",
         longDescription: "Kochi Gothic and Kochi Mincho were developed as free replacements for the\nMS Gothic and MS Mincho fonts from Microsoft. These are the Debian\nversions of the fonts, which remove some non-free glyphs that were added\nfrom the naga10 font.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "wadalab")),

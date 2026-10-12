@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
       const domain = "hildebrand_glow_ihd";
       const version = "1.8.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: owner,
           repo: "ha_hildebrand_glow_ihd_mqtt",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-13NmNHaCYDZkWK5uqKeTZlB84UuThNLOAYaPS4QfTKY=",
         }))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/megakid/ha_hildebrand_glow_ihd_mqtt/releases/tag/${nix.sel(src, "tag")}`),
         description: "Home Assistant integration for local MQTT Hildebrand Glow IHD",
         homepage: "https://github.com/megakid/ha_hildebrand_glow_ihd_mqtt",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
       }));
-      return { __proto__: pos$4, owner, domain, version, src, passthru, meta };
+      return { [nix.POS]: pos$4, owner, domain, version, src, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

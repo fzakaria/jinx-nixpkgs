@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const libpass = nix.arg($, "libpass");
   const mkPythonMetaPackage = nix.arg($, "mkPythonMetaPackage");
   return nix.app(mkPythonMetaPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "passlib",
       version: nix.thunk(() => nix.attr(libpass, "version")),
       dependencies: nix.thunk(() => [libpass]),
@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libpass, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         changelog: nix.thunk(() => nix.attr(from, "changelog")),
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

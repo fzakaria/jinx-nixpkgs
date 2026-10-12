@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libnfnetlink",
       version: "1.0.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.netfilter.org/projects/libnfnetlink/files/libnfnetlink-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "0xn3rcrzxr6g82kfxzs9bqn2zvl2kf2yda30drwb9vr6sk1wfr5h",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Low-level library for netfilter related kernel/userspace communication",
         longDescription: "libnfnetlink is the low-level library for netfilter related kernel/userspace communication.\nIt provides a generic messaging infrastructure for in-kernel netfilter subsystems\n(such as nfnetlink_log, nfnetlink_queue, nfnetlink_conntrack) and their respective users\nand/or management tools in userspace.\n\nThis library is not meant as a public API for application developers.\nIt is only used by other netfilter.org projects, like the aforementioned ones.\n",
         homepage: "https://www.netfilter.org/projects/libnfnetlink/index.html",

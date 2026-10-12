@@ -10,12 +10,12 @@ const pos$3 = nix.positions(here + "/minfeatures.nix", [["all", 16, 3], ["suppor
 export default nix.thunk(() => (() => {
   const features = nix.thunk(() => [
     nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       description: "the `nixVersion` builtin",
       condition: nix.thunk(() => nix.has(nix.builtins, "nixVersion")),
     })),
     nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       description: "`builtins.nixVersion` reports at least 2.18",
       condition: nix.thunk(() => (nix.asBool(nix.has(nix.builtins, "nixVersion")) && nix.asBool(!nix.eq(nix.builtins.compareVersions("2.18", nix.thunk(() => nix.builtins.nixVersion)), 1n)))),
     })),
@@ -26,7 +26,7 @@ export default nix.thunk(() => (() => {
       return nix.force(condition);
     })(), formals$1), features));
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     all: features,
     supported: nix.thunk(() => nix.sel(evaluated, "right")),
     missing: nix.thunk(() => nix.sel(evaluated, "wrong")),

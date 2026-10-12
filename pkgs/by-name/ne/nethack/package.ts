@@ -43,17 +43,17 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.str`${font_adobe_75dpi}/share/fonts/X11/75dpi`),
     ])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: "5.0.0",
       pname: nix.thunk(() => (nix.asBool(x11Mode) ? "nethack-x11" : (nix.asBool(qtMode) ? "nethack-qt" : "nethack"))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://nethack.org/download/${nix.sel(finalAttrs, "version")}/nethack-${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}-src.tgz`),
           sha256: "sha256-KVm3iGqsdhhbkK6gyfgNFDQ/YE3grpaz3Sp2D3qzvek=",
         })))),
       postUnpack: nix.thunk(() => (() => {
         const lua548 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://www.lua.org/ftp/lua-5.4.8.tar.gz",
             hash: "sha256-TxjdrhVOeT5G7qtyfFnvHAwMK3ROe5QhlxDXb1MGKa4=",
           }))));
@@ -184,7 +184,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool((nix.asBoo
 `),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(x11Mode) || nix.asBool(qtMode))), nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               name: "NetHack",
               exec: nix.thunk(() => (nix.asBool(x11Mode) ? "nethack-x11" : (nix.asBool(qtMode) ? "nethack-qt" : "nethack"))),
               icon: "nethack",
@@ -194,7 +194,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool((nix.asBoo
             })))),
         ]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Rogue-like game",
         homepage: "http://nethack.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ngpl")),

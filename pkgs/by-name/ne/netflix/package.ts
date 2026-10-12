@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const commandLineArgs = nix.argOr($, "commandLineArgs", () => []);
   const name = "netflix-via-google-chrome";
   const meta = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     description: "Open Netflix in Google Chrome app mode",
     longDescription: "Netflix is a video streaming service providing films, TV series and exclusive content. See https://www.netflix.com.\n\nThis package installs an application launcher item that opens Netflix in a dedicated Google Chrome window. If your preferred browser doesn't support Netflix's DRM, this package provides a quick and easy way to launch Netflix on a supported browser, without polluting your application list with a redundant, single-purpose browser.\n",
     homepage: nix.thunk(() => nix.selOr(google_chrome, () => null, "meta", "homepage")),
@@ -30,16 +30,16 @@ export default nix.lambda((args) => (() => {
     platforms: nix.thunk(() => nix.selOr(google_chrome, () => nix.sel(lib, "platforms", "all"), "meta", "platforms")),
   }));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: name,
       exec: name,
       icon: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name: "netflix-icon-2016.png",
           url: "https://assets.nflxext.com/us/ffe/siteui/common/icons/nficon2016.png",
           sha256: "sha256-c0H3uLCuPA2krqVZ78MfC1PZ253SkWZP3PfWGP2V7Yo=",
           meta: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
           })),
         })))),
@@ -57,7 +57,7 @@ exec ${google_chrome}/bin/${nix.sel(google_chrome, "meta", "mainProgram")} ${nix
   "$@"
 `)));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: name,
       meta: meta,
       paths: nix.thunk(() => [script, desktopItem]),

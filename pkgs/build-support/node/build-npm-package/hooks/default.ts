@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const nodejsInstallManuals = nix.arg($, "nodejsInstallManuals");
   const nodejsInstallExecutables = nix.arg($, "nodejsInstallExecutables");
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     npmConfigHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name: "npm-config-hook",
         substitutions: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           nodeSrc: nix.thunk(() => nix.app(srcOnly, nodejs)),
           nodeGyp: nix.thunk(() => nix.str`${nodejs}/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js`),
           npmArch: nix.thunk(() => nix.sel(stdenv, "targetPlatform", "node", "arch")),
@@ -45,24 +45,24 @@ export default nix.lambda((args) => (() => {
           nodeVersion: nix.thunk(() => nix.sel(nodejs, "version")),
           nodeVersionMajor: nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(nodejs, "version")))),
         })),
-        meta: nix.thunk(() => ({ __proto__: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
       })), nix.path(here, "./npm-config-hook.sh"))),
     npmBuildHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         name: "npm-build-hook",
-        meta: nix.thunk(() => ({ __proto__: pos$4, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$4, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
       })), nix.path(here, "./npm-build-hook.sh"))),
     npmInstallHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         name: "npm-install-hook",
         propagatedBuildInputs: nix.thunk(() => [
           installShellFiles,
           makeWrapper,
           nodejsInstallManuals,
-          nix.thunk(() => nix.app(nix.sel(nodejsInstallExecutables, "override"), nix.thunk(() => ({ __proto__: pos$6, nodejs: nodejs })))),
+          nix.thunk(() => nix.app(nix.sel(nodejsInstallExecutables, "override"), nix.thunk(() => ({ [nix.POS]: pos$6, nodejs: nodejs })))),
         ]),
-        substitutions: nix.thunk(() => ({ __proto__: pos$7, jq: nix.thunk(() => nix.str`${jq}/bin/jq`) })),
-        meta: nix.thunk(() => ({ __proto__: pos$8, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        substitutions: nix.thunk(() => ({ [nix.POS]: pos$7, jq: nix.thunk(() => nix.str`${jq}/bin/jq`) })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$8, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
       })), nix.path(here, "./npm-install-hook.sh"))),
   };
 })(), formals$1);

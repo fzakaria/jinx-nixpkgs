@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const selectedPlugs = nix.thunk(() => (nix.asBool(nix.eq(plugs, null)) ? nix.force(switchboardPlugs) : nix.concat(plugs, nix.app(nix.sel(lib, "optionals"), useDefaultPlugs, switchboardPlugs))));
   const testingName = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(testName, null)), nix.thunk(() => nix.str`${testName}-`)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: nix.thunk(() => nix.str`${testingName}${nix.sel(switchboard, "pname")}-with-plugs`),
       version: nix.thunk(() => nix.attr(switchboard, "version")),
       src: null,

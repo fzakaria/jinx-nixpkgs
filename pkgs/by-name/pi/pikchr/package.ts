@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const tcl = nix.arg($, "tcl");
   const enableTcl = nix.argOr($, "enableTcl", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pikchr",
       version: "0-unstable-2026-04-03",
       src: nix.thunk(() => nix.app(fetchfossil, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://pikchr.org/home",
           rev: "a7f1c35bc0448daf",
           hash: "sha256-Yxp1jvxxXQsdljsvw1ed4XfOvGwbwWIeCfYEQ6D9Zqc=",
@@ -33,9 +33,9 @@ export default nix.lambda((args) => (() => {
       installPhase: nix.thunk(() => nix.add(nix.add("runHook preInstall\ninstall -Dm755 pikchr $out/bin/pikchr\ninstall -Dm755 pikchr.out $out/lib/pikchr.o\ninstall -Dm644 pikchr.h $out/include/pikchr.h\n", nix.app(nix.sel(lib, "optionalString"), enableTcl, "cp -r piktcl $out/lib/piktcl\n")), "runHook postInstall\n")),
       dontWrapTclBinaries: true,
       doCheck: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "PIC-like markup language for diagrams in technical documentation",
         homepage: "https://pikchr.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd0")),

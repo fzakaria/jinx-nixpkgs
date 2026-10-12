@@ -42,14 +42,14 @@ export default nix.lambda((args) => (() => {
   const fftw = nix.arg($, "fftw");
   const version = "1.5.5";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "synfig",
       repo: "synfig",
       rev: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-5jVd+YqHVHKkePXBb3zjXEVlgdlU6Yb6LC4CurvsBtE=",
     }))));
   const ETL = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "ETL",
       version: version,
       src: src,
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, autoreconfHook]),
     })));
   const synfig = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "synfig",
       version: version,
       src: src,
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
       ]),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "synfigstudio",
       version: version,
       src: src,
@@ -118,13 +118,13 @@ export default nix.lambda((args) => (() => {
       ]),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         ETL: ETL,
         synfig: synfig,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$4, "rev-prefix": "v" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "2D animation program",
         homepage: "https://www.synfig.org",
         changelog: nix.thunk(() => nix.str`https://github.com/synfig/synfig/releases/tag/v${nix.sel(finalAttrs, "version")}`),

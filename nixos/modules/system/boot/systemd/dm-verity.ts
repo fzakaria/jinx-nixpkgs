@@ -25,19 +25,19 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "boot", "initrd", "systemd", "dmVerity"));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       boot: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         initrd: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           systemd: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             dmVerity: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "dm-verity"), {
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 description: "Mount verity-protected block devices in the initrd.\n\nEnabling this option allows to use `systemd-veritysetup` and\n`systemd-veritysetup-generator` in the initrd.\n",
               })),
             })),
@@ -46,22 +46,22 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             assertion: nix.thunk(() => nix.sel(config, "boot", "initrd", "systemd", "enable")),
             message: "'boot.initrd.systemd.dmVerity.enable' requires 'boot.initrd.systemd.enable' to be enabled.\n",
           })),
         ]),
         boot: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           initrd: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             availableKernelModules: nix.thunk(() => ["dm_mod", "dm_verity"]),
-            services: nix.thunk(() => ({ __proto__: pos$9, lvm: nix.thunk(() => ({ __proto__: pos$8, enable: true })) })),
+            services: nix.thunk(() => ({ [nix.POS]: pos$9, lvm: nix.thunk(() => ({ [nix.POS]: pos$8, enable: true })) })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               additionalUpstreamUnits: nix.thunk(() => ["veritysetup-pre.target", "veritysetup.target", "remote-veritysetup.target"]),
               storePaths: nix.thunk(() => [
                 nix.thunk(() => nix.str`${nix.sel(config, "boot", "initrd", "systemd", "package")}/lib/systemd/systemd-veritysetup`),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

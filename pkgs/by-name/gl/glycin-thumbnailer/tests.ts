@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const glycin_thumbnailer = nix.arg($, "glycin-thumbnailer");
   const shared_mime_info = nix.arg($, "shared-mime-info");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "glycin-thumbnailer-test",
       version: nix.thunk(() => nix.attr(glycin_thumbnailer, "version")),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           owner: "sophie-h",
           repo: "test-images",

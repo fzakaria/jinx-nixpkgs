@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.14.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "microsoft",
           repo: "kiota-python",
           tag: nix.thunk(() => nix.str`microsoft-kiota-serialization-multipart-v${version}`),
@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["kiota_serialization_multipart"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "microsoft-kiota-serialization-multipart-v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "microsoft-kiota-serialization-multipart-v" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Multipart serialization implementation for Kiota clients in Python",
         homepage: "https://github.com/microsoft/kiota-python/tree/main/packages/serialization/multipart",
         changelog: nix.thunk(() => nix.str`https://github.com/microsoft/kiota-python/releases/tag/microsoft-kiota-serialization-multipart-${nix.sel(src, "tag")}`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

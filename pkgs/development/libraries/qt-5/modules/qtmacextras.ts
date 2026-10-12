@@ -12,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const qtModule = nix.arg($, "qtModule");
   const qtbase = nix.arg($, "qtbase");
   return nix.app(qtModule, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "qtmacextras",
       propagatedBuildInputs: nix.thunk(() => [qtbase]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: [],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
       })),

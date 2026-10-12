@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkYaziPlugin = nix.arg($, "mkYaziPlugin");
   return nix.app(mkYaziPlugin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "starship.yazi",
       version: "0-unstable-2026-08-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Rolv-Apneseth",
           repo: "starship.yazi",
           rev: "ea92cf49380466f07231c952b409831e6afd2156",
           hash: "sha256-Jvoc/7YaOOppu8K2lJaVgiuBIyanRHHjEA6ZvnrFtiQ=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Starship prompt plugin for yazi",
         homepage: "https://github.com/Rolv-Apneseth/starship.yazi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -72,42 +72,42 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   const daemonSettingsFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "daemon.json", nix.thunk(() => nix.sel(cfg, "daemon", "settings"))));
   return {
-    __proto__: pos$56,
+    [nix.POS]: pos$56,
     options: nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         docker: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "This option enables docker, a daemon that manages\nlinux containers. Users in the \"docker\" group can interact with\nthe daemon (e.g. to start or stop containers) using the\n{command}`docker` command line tool.\n",
             })))),
           listenOptions: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: nix.thunk(() => ["/run/docker.sock"]),
               description: "A list of unix and tcp docker should listen to. The format follows\nListenStream as described in {manpage}`systemd.socket(5)`.\n",
             })))),
           enableOnBoot: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "When enabled dockerd is started on boot. This is required for\ncontainers which are created with the\n`--restart=always` flag to work. If this option is\ndisabled, docker might be started on demand by socket activation.\n",
             })))),
           daemon: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$5,
+                      [nix.POS]: pos$5,
                       "live-restore": nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                           default: nix.thunk(() => nix.app(nix.lookup(w, "versionOlder"), nix.thunk(() => nix.sel(config, "system", "stateVersion")), "24.11")),
                           defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "lib.versionOlder config.system.stateVersion \"24.11\"")),
@@ -117,7 +117,7 @@ export default nix.lambda((args) => (() => {
                   })))),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   ipv6: true,
                   "live-restore": true,
                   "fixed-cidr-v6": "fd00::/80",
@@ -126,19 +126,19 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           enableNvidia: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "**Deprecated**, please use {option}`hardware.nvidia-container-toolkit.enable` instead.\n\nEnable Nvidia GPU support inside docker containers.\n",
             })))),
           storageDriver: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["aufs", "btrfs", "devicemapper", "overlay", "overlay2", "zfs"]))))),
               default: null,
               description: "This option determines which Docker\n[storage driver](https://docs.docker.com/storage/storagedriver/select-storage-driver/)\nto use.\nBy default it lets docker automatically choose the preferred storage\ndriver.\nHowever, it is recommended to specify a storage driver explicitly, as\ndocker's default varies over versions.\n\n::: {.warning}\nChanging the storage driver will cause any existing containers\nand images to become inaccessible.\n:::\n",
             })))),
           logDriver: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => [
                   "none",
                   "json-file",
@@ -156,56 +156,56 @@ export default nix.lambda((args) => (() => {
               description: "This option determines which Docker log driver to use.\n",
             })))),
           extraOptions: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "separatedString"), " ")),
               default: "",
               description: "The extra command-line options to pass to\n{command}`docker` daemon.\n",
             })))),
           autoPrune: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: false,
                 description: "Whether to periodically prune Docker resources. If enabled, a\nsystemd timer will run `docker system prune -f`\nas specified by the `dates` option.\n\nNOTE: by default this does not prune volumes. Anonymous volumes\ncan be pruned by passing \"--volumes\" to [autoPrune.flags](#opt-virtualisation.docker.autoPrune.flags).\n\nTo prune all volumes (not just anonymous ones) [`autoPrune.allVolumes.enable`](#opt-virtualisation.docker.autoPrune.allVolumes.enable)\nmust be used.\n\nSee [upstream documentation](https://docs.docker.com/reference/cli/docker/system/prune/#description) for further information.\n",
               })))),
             flags: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 default: [],
                 example: nix.thunk(() => ["--all"]),
                 description: "Any additional flags passed to {command}`docker system prune`.\n",
               })))),
             dates: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 default: "weekly",
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 description: "Specification (in the format described by\n{manpage}`systemd.time(7)`) of the time at\nwhich the prune will occur.\n",
               })))),
             randomizedDelaySec: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 default: "0",
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "singleLineStr")),
                 example: "45min",
                 description: "Add a randomized delay before each auto prune.\nThe delay will be chosen between zero and this value.\nThis value must be a time span in the format specified by\n{manpage}`systemd.time(7)`\n",
               })))),
             persistent: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 default: true,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 example: false,
                 description: "Takes a boolean argument. If true, the time when the service\nunit was last triggered is stored on disk. When the timer is\nactivated, the service unit is triggered immediately if it\nwould have been triggered at least once during the time when\nthe timer was inactive. Such triggering is nonetheless\nsubject to the delay imposed by RandomizedDelaySec=. This is\nuseful to catch up on missed runs of the service when the\nsystem was powered down.\n",
               })))),
             allVolumes: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                   default: false,
                   description: "Whether to periodically prune all Docker volumes when auto pruning other docker resources\nby running {command}`docker volume prune --force --all`\n\nTo prune only anonymous volumes, instead pass `--volumes` to `autoPrune.flags`\n",
                 })))),
               flags: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                   default: [],
                   example: nix.thunk(() => ["--filter=label=<label>"]),
@@ -215,7 +215,7 @@ export default nix.lambda((args) => (() => {
           })),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "docker", nix.thunk(() => ({})))),
           extraPackages: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "with pkgs; [ criu ]")),
@@ -230,46 +230,46 @@ export default nix.lambda((args) => (() => {
     ]),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$55,
+            [nix.POS]: pos$55,
             boot: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               kernelModules: nix.thunk(() => ["bridge", "veth", "br_netfilter", "xt_nat"]),
               kernel: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 sysctl: nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   "net.ipv4.conf.all.forwarding": nix.thunk(() => nix.app(nix.lookup(w, "mkOverride"), 98n, true)),
                   "net.ipv4.conf.default.forwarding": nix.thunk(() => nix.app(nix.lookup(w, "mkOverride"), 98n, true)),
                 })),
               })),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
             })),
             users: nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               groups: nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 docker: nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   gid: nix.thunk(() => nix.sel(config, "ids", "gids", "docker")),
                 })),
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
               services: nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 docker: nix.thunk(() => ({
-                  __proto__: pos$35,
+                  [nix.POS]: pos$35,
                   wantedBy: nix.thunk(() => nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.sel(cfg, "enableOnBoot")), "multi-user.target")),
                   after: nix.thunk(() => ["network.target", "docker.socket"]),
                   requires: nix.thunk(() => ["docker.socket"]),
                   environment: proxy_env,
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$34,
+                    [nix.POS]: pos$34,
                     Type: "notify",
                     ExecStart: nix.thunk(() => [
                       "",
@@ -286,12 +286,12 @@ export default nix.lambda((args) => (() => {
                   path: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(pkgs, "kmod"))], nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.eq(nix.sel(cfg, "storageDriver"), "zfs")), nix.thunk(() => nix.sel(config, "boot", "zfs", "package"))), nix.sel(cfg, "extraPackages")))),
                 })),
                 "docker-prune": nix.thunk(() => ({
-                  __proto__: pos$38,
+                  [nix.POS]: pos$38,
                   description: "Prune docker resources",
                   restartIfChanged: false,
-                  unitConfig: nix.thunk(() => ({ __proto__: pos$36, "X-StopOnRemoval": false })),
+                  unitConfig: nix.thunk(() => ({ [nix.POS]: pos$36, "X-StopOnRemoval": false })),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$37,
+                    [nix.POS]: pos$37,
                     Type: "oneshot",
                     ExecStart: nix.thunk(() => nix.concat([
                       nix.thunk(() => nix.app(nix.sel(utils, "escapeSystemdExecArgs"), nix.thunk(() => nix.concat([
@@ -316,13 +316,13 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               sockets: nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 docker: nix.thunk(() => ({
-                  __proto__: pos$41,
+                  [nix.POS]: pos$41,
                   description: "Docker Socket for the API",
                   wantedBy: nix.thunk(() => ["sockets.target"]),
                   socketConfig: nix.thunk(() => ({
-                    __proto__: pos$40,
+                    [nix.POS]: pos$40,
                     ListenStream: nix.thunk(() => nix.sel(cfg, "listenOptions")),
                     SocketMode: "0660",
                     SocketUser: "root",
@@ -331,11 +331,11 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               timers: nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 "docker-prune": nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "autoPrune", "enable")), nix.thunk(() => ({
-                    __proto__: pos$44,
+                    [nix.POS]: pos$44,
                     timerConfig: nix.thunk(() => ({
-                      __proto__: pos$43,
+                      [nix.POS]: pos$43,
                       RandomizedDelaySec: nix.thunk(() => nix.sel(cfg, "autoPrune", "randomizedDelaySec")),
                       Persistent: nix.thunk(() => nix.sel(cfg, "autoPrune", "persistent")),
                     })),
@@ -347,32 +347,32 @@ export default nix.lambda((args) => (() => {
               ]))),
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$47,
+                [nix.POS]: pos$47,
                 assertion: nix.thunk(() => (!nix.asBool((nix.asBool(nix.sel(cfg, "enableNvidia")) && nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isx86_64")))) || nix.asBool(nix.selOr(config, () => false, "hardware", "graphics", "enable32Bit")))),
                 message: "Option enableNvidia on x86_64 requires 32-bit support libraries",
               })),
               nix.thunk(() => ({
-                __proto__: pos$48,
+                [nix.POS]: pos$48,
                 assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "autoPrune", "allVolumes", "enable")) || nix.asBool(nix.sel(cfg, "autoPrune", "enable")))),
                 message: "Option autoPrune.allVolumes.enable requires autoPrune.enable",
               })),
             ]),
             virtualisation: nix.thunk(() => ({
-              __proto__: pos$54,
+              [nix.POS]: pos$54,
               docker: nix.thunk(() => ({
-                __proto__: pos$53,
+                [nix.POS]: pos$53,
                 daemon: nix.thunk(() => ({
-                  __proto__: pos$52,
+                  [nix.POS]: pos$52,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$51,
+                    [nix.POS]: pos$51,
                     group: "docker",
                     hosts: nix.thunk(() => ["fd://"]),
                     "log-driver": nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.sel(cfg, "logDriver")))),
                     "storage-driver": nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "storageDriver"), null)), nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.sel(cfg, "storageDriver")))))),
                     runtimes: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableNvidia")), nix.thunk(() => ({
-                        __proto__: pos$50,
+                        [nix.POS]: pos$50,
                         nvidia: nix.thunk(() => ({
-                          __proto__: pos$49,
+                          [nix.POS]: pos$49,
                           path: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.app(nix.sel(lib, "getOutput"), "tools", nix.thunk(() => nix.sel(config, "hardware", "nvidia-container-toolkit", "package")))), "nvidia-container-runtime")),
                         })),
                       })))),

@@ -16,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const jheiling_js = nix.arg($, "jheiling-js");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "electron",
       version: "2016-03-07",
       idrisDeps: nix.thunk(() => [contrib, jheiling_extras, jheiling_js]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jheiling",
           repo: "idris-electron",
           rev: "f0e86f52b8e5a546a2bf714709b659c1c0b04395",
           sha256: "1rpa7yjvfpzl06h0qbk54jd2n52nmgpf7nq5aamcinqh7h5gbiwn",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Electron bindings for Idris",
         homepage: "https://github.com/jheiling/idris-electron",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),

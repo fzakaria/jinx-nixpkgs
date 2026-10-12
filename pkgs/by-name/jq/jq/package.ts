@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "jq",
       version: "1.8.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/jqlang/jq/releases/download/jq-${nix.sel(finalAttrs, "version")}/jq-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-cbjW6PX+gfbG0NEQ44kiUfbOdu0JWr0xXibm4Rk6868=",
         })))),
@@ -62,20 +62,20 @@ patchShebangs scripts/version
 `),
       postInstallCheck: "$bin/bin/jq -r '.values[1]' <<< '{\"values\":[\"hello\",\"world\"]}' | grep '^world$' > /dev/null\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         onigurumaSupport: onigurumaSupport,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
               command: "jq --version",
             })))),
         })),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$4, extraArgs: nix.thunk(() => ["--version-regex", "jq-(.+)"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--version-regex", "jq-(.+)"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         changelog: nix.thunk(() => nix.str`https://github.com/jqlang/jq/releases/tag/jq-${nix.sel(finalAttrs, "version")}`),
         description: "Lightweight and flexible command-line JSON processor",
         homepage: "https://jqlang.github.io/jq/",
@@ -93,9 +93,9 @@ patchShebangs scripts/version
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         mainProgram: "jq",
         identifiers: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           purlParts: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             type: "github",
             spec: nix.thunk(() => nix.str`jqlang/jq@jq-${nix.sel(finalAttrs, "version")}`),
           })),

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libhugetlbfs",
       version: "2.24",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/libhugetlbfs/libhugetlbfs/releases/download/${nix.sel(finalAttrs, "version")}/libhugetlbfs-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-1QHfqRyOrREGlno9OCnyunOMP6wKZcs1jtKrOHDdxe8=",
         })))),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       buildFlags: nix.thunk(() => ["libs", "tools"]),
       installTargets: nix.thunk(() => ["install", "install-docs"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/libhugetlbfs/libhugetlbfs",
         changelog: nix.thunk(() => nix.str`https://github.com/libhugetlbfs/libhugetlbfs/blob/${nix.sel(finalAttrs, "version")}/NEWS`),
         description: "Library and utilities for Linux hugepages",

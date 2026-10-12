@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const nimOverrides = nix.arg($, "nimOverrides");
   const buildNimPackage = nix.arg($, "buildNimPackage");
   const baseAttrs = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     strictDeps: true,
     enableParallelBuilding: true,
     __structuredAttrs: true,
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
     meta: nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(nim, "meta"));
       return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
       platforms: nix.thunk(() => nix.attr(from, "platforms")),
     };
@@ -47,12 +47,12 @@ export default nix.lambda((args) => (() => {
   }));
   const fodFromLockEntry = nix.thunk(() => (() => {
     const methods = nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       fetchzip: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const url = nix.arg($_1, "url");
         const sha256 = nix.arg($_1, "sha256");
-        return nix.app(nix.sel(buildPackages, "fetchzip"), nix.thunk(() => ({ __proto__: pos$3, name: "source", url: url, sha256: sha256 })));
+        return nix.app(nix.sel(buildPackages, "fetchzip"), nix.thunk(() => ({ [nix.POS]: pos$3, name: "source", url: url, sha256: sha256 })));
       })(), formals$2),
       git: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         const sha256 = nix.arg($_1, "sha256");
         const url = nix.arg($_1, "url");
         return nix.app(nix.sel(buildPackages, "fetchgit"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             fetchSubmodules: fetchSubmodules,
             leaveDotGit: leaveDotGit,
             rev: rev,
@@ -102,12 +102,12 @@ export default nix.lambda((args) => (() => {
         return nix.update((nix.asBool(nix.has(args_2, "requiredNimVersion")) ? (nix.asBool(nix.eq(nix.sel(args_2, "requiredNimVersion"), 2n)) ? nix.app(nix.sel(lib, "warn"), "`requiredNimVersion' is deprecated and will be removed in nixpkgs 26.11.\nPlease update your package to remove this.\n") : nix.builtins.throw(nix.thunk(() => nix.str`\`requiredNimVersion' ${nix.builtins.toString(nix.thunk(() => nix.sel(args_2, "requiredNimVersion")))} is not supported.
 Ensure your package supports nim 2, and remove \`requiredNimVersion'.
 `))) : {}), {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           nativeBuildInputs: nix.thunk(() => nix.concat([nim], nativeBuildInputs)),
           depsBuildBuild: nix.thunk(() => nix.concat([nim_builder], depsBuildBuild)),
           nimFlags: nix.thunk(() => nix.concat(lockFileNimFlags, nimFlags)),
           passthru: nix.thunk(() => nix.update(passthru, {
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             overrideNimAttrs: (f0) => (() => {
               const f = (self) => (super$) => (() => {
                 const x = nix.thunk(() => nix.app(f0, super$));

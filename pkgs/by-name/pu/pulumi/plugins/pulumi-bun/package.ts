@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const pulumi = nix.arg($, "pulumi");
   const pulumi_nodejs = nix.arg($, "pulumi-nodejs");
   const unwrapped = nix.thunk(() => nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "pulumi-bun-unwrapped",
       version: nix.thunk(() => nix.attr(pulumi, "version")),
       src: nix.thunk(() => nix.attr(pulumi, "src")),
@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
       ]),
     })));
   return nix.app(symlinkJoin, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pulumi-bun",
       version: nix.thunk(() => nix.attr(pulumi, "version")),
       paths: nix.thunk(() => [unwrapped, pulumi_nodejs]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, unwrapped: unwrapped })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, unwrapped: unwrapped })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.pulumi.com/docs/iac/languages-sdks/javascript/",
         description: "Language host for Pulumi programs written in TypeScript & JavaScript (Bun)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

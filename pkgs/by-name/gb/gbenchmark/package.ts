@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const glibcLocales = nix.arg($, "glibcLocales");
   const prometheus_cpp = nix.arg($, "prometheus-cpp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "gbenchmark",
       version: "1.9.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "google",
           repo: "benchmark",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "portability.patch",
             url: "https://github.com/google/benchmark/commit/b5ba9bab85d80f29a161dd634b7d234cf3722f90.patch",
             hash: "sha256-/X01AWXK0eJ59F8oSREZ7V5Cpw1y35n9uFB1mCvMOus=",
@@ -52,20 +52,20 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BENCHMARK_ENABLE_WERROR", false)),
       ]),
       env: nix.thunk(() => nix.update({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "join"), " ", nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-error=c2y-extensions"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-c++17-attribute-extensions"))))),
-      }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isGnu")), nix.thunk(() => ({ __proto__: pos$4, LANG: "en_US.UTF-8", LC_ALL: "en_US.UTF-8" }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(glibcLocales, null)), nix.thunk(() => ({
-          __proto__: pos$5,
+      }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isGnu")), nix.thunk(() => ({ [nix.POS]: pos$4, LANG: "en_US.UTF-8", LC_ALL: "en_US.UTF-8" }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(glibcLocales, null)), nix.thunk(() => ({
+          [nix.POS]: pos$5,
           LOCALE_ARCHIVE: nix.thunk(() => nix.str`${glibcLocales}/lib/locale/locale-archive`),
         })))))),
       doCheck: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "is64bit")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
-        tests: nix.thunk(() => ({ __proto__: pos$6, "prometheus-cpp": prometheus_cpp })),
+        [nix.POS]: pos$7,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$6, "prometheus-cpp": prometheus_cpp })),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Microbenchmark support library",
         homepage: "https://github.com/google/benchmark",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

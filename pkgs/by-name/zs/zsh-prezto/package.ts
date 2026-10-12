@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const bash = nix.arg($, "bash");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "zsh-prezto",
       version: "0-unstable-2025-07-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sorin-ionescu",
           repo: "prezto",
           rev: "af383940911fc3192beb6e0fd2566c52bd1ea9ba",
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "# make zshrc aware of where zsh-prezto is installed\nsed -i -e \"s|\\${ZDOTDIR:\\-\\$HOME}/.zprezto/|$out/share/zsh-prezto/|g\" runcoms/zshrc\n",
       installPhase: "mkdir -p $out/share/zsh-prezto\ncp -R ./ $out/share/zsh-prezto\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Configuration framework for Zsh",
         longDescription: "Prezto is the configuration framework for Zsh; it enriches\nthe command line interface environment with sane defaults,\naliases, functions, auto completion, and prompt themes.\n",
         homepage: "https://github.com/sorin-ionescu/prezto",

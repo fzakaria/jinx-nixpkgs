@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const directoryListingUpdater = nix.arg($, "directoryListingUpdater");
   const apple_sdk_gstreamer = nix.arg($, "apple-sdk_gstreamer");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "gst-rtsp-server",
       version: "1.28.7",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://gstreamer.freedesktop.org/src/gst-rtsp-server/gst-rtsp-server-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-3kOlmgyJoU6xwUro6B5bRcTp17H5MLDrqtNg+bXgtcQ=",
         })))),
@@ -51,17 +51,17 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs \\\n  scripts/extract-release-date-from-doap-file.py\n",
       preFixup: "moveToOutput \"lib/gstreamer-1.0/pkgconfig\" \"$dev\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ __proto__: pos$2, "odd-unstable": true })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "odd-unstable": true })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "GStreamer RTSP server",
         homepage: "https://gstreamer.freedesktop.org",
         longDescription: "A library on top of GStreamer for building an RTSP server.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           cpeParts: nix.thunk(() => nix.app(nix.sel(gstreamer, "passthru", "gstreamerCpeParts"), nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

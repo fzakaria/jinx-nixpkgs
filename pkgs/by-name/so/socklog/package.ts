@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "socklog",
       version: "2.1.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://smarden.org/socklog/socklog-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-e8ej+ejhWn55EoHAV0GkwM8N6G50hw/SxvTX55QrleY=",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "System and kernel logging services",
         homepage: "https://smarden.org/socklog/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

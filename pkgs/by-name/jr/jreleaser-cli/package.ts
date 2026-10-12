@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "jreleaser-cli";
       const version = "1.26.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/jreleaser/jreleaser/releases/download/v${version}/jreleaser-tool-provider-${version}.jar`),
           hash: "sha256-5gGFCx2hezaEiVPExFZxuBCLJbqU7os1yvN81lbkBjk=",
         }))));
@@ -30,7 +30,7 @@ makeWrapper ${jre}/bin/java $out/bin/${pname} \\
   --add-flags "-jar $out/share/java/${pname}.jar"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://jreleaser.org/",
         description: "Release projects quickly and easily",
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryBytecode"))]),
@@ -39,7 +39,7 @@ makeWrapper ${jre}/bin/java $out/bin/${pname} \\
         mainProgram: "jreleaser-cli",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

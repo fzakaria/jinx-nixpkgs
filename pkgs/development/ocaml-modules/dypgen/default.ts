@@ -21,24 +21,24 @@ export default nix.lambda((args) => (() => {
   const params = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.07")) ? (() => {
     const version = "0.2";
     const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         owner: "grain-lang",
         repo: "dypgen",
         rev: version,
         hash: "sha256-fKuO/e5YbA2B7XcghWl9pXxwvKw9YlhnmZDZcuKe3cs=",
       }))));
-    return { __proto__: pos$2, version, src };
+    return { [nix.POS]: pos$2, version, src };
   })() : (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(ocaml, "version")), "4.06")) ? {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     version: "20120619-1",
     src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         url: "http://dypgen.free.fr/dypgen-20120619-1.tar.bz2",
         sha256: "ecb53d6e469e9ec4d57ee6323ff498d45b78883ae13618492488e7c5151fdd97",
       })))),
   } : nix.builtins.throw(nix.thunk(() => nix.str`dypgen is not available for OCaml ${nix.sel(ocaml, "version")}`)))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-dypgen`),
       src: nix.thunk(() => nix.attr(params, "src")),
       version: nix.thunk(() => nix.attr(params, "version")),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "http://dypgen.free.fr",
         description: "Dypgen GLR self extensible parser generator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cecill-b")),

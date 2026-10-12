@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(ps, "setuptools")),
     ]));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "lief",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lief-project",
           repo: "LIEF",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -71,12 +71,12 @@ popd
       pythonImportsCheck: nix.thunk(() => ["lief"]),
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               versionCheck: true,
             })))),
@@ -84,7 +84,7 @@ popd
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Library to Instrument Executable Formats",
         homepage: "https://lief.quarkslab.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

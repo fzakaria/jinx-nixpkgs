@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "perf-tools",
       version: "unstable-2017-12-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "brendangregg",
           repo: "perf-tools",
           rev: "98d42a2a1493d2d1c651a5c396e015d4f082eb20",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       patchPhase: "for i in execsnoop iolatency iosnoop kernel/funcslower killsnoop opensnoop; do\n  substituteInPlace $i \\\n    --replace /usr/bin/gawk \"$(type -p gawk)\" \\\n    --replace /usr/bin/mawk /no-such-path \\\n    --replace /usr/bin/getconf \"$(type -p getconf)\" \\\n    --replace awk=awk \"awk=$(type -p gawk)\"\ndone\n\nrm -rf examples deprecated\n",
       installPhase: "d=$out/libexec/perf-tools\nmkdir -p $d $out/share\ncp -prvd . $d/\nln -s $d/bin $out/bin\nmv $d/man $out/share/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         homepage: "https://github.com/brendangregg/perf-tools",
         description: "Performance analysis tools based on Linux perf_events (aka perf) and ftrace",

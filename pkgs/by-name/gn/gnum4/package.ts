@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const gnulib = nix.arg($, "gnulib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gnum4",
       version: "1.4.21",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/m4/m4-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-3Eh+EdLwyeAVVbsa8mvk6umD7I8HJnRlBbQycYbrIfw=",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => nix.concat([nix.thunk(() => nix.str`--with-syscmd-shell=${nix.sel(stdenv, "shell")}`)], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMinGW")), "CFLAGS=-fno-stack-protector"))),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GNU M4, a macro processor",
         longDescription: "GNU M4 is an implementation of the traditional Unix macro\nprocessor.  It is mostly SVR4 compatible although it has some\nextensions (for example, handling more than 9 positional\nparameters to macros).  GNU M4 also has built-in functions for\nincluding files, running shell commands, doing arithmetic, etc.\n\nGNU M4 is a macro processor in the sense that it copies its\ninput to the output expanding macros as it goes.  Macros are\neither builtin or user-defined and can take any number of\narguments.  Besides just doing macro expansion, m4 has builtin\nfunctions for including named files, running UNIX commands,\ndoing integer arithmetic, manipulating text in various ways,\nrecursion etc...  m4 can be used either as a front-end to a\ncompiler or as a macro processor in its own right.\n",
         homepage: "https://www.gnu.org/software/m4/",

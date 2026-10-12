@@ -23,28 +23,28 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     name: "velocity",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "Tert0"))]),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           imports: nix.thunk(() => (() => {
             const mkVelocityService = (name) => (pkg) => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               systemd: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 sockets: nix.thunk(() => nix.attrsDyn({}, [
                   [nix.force(name), nix.thunk(() => ({
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     socketConfig: nix.thunk(() => ({
-                      __proto__: pos$2,
+                      [nix.POS]: pos$2,
                       ListenFIFO: nix.thunk(() => nix.str`/run/${name}.stdin`),
                       Service: nix.thunk(() => nix.str`${name}`),
                     })),
@@ -52,9 +52,9 @@ export default nix.lambda((args) => (() => {
                 ])),
                 services: nix.thunk(() => nix.attrsDyn({}, [
                   [nix.force(name), nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$4,
+                      [nix.POS]: pos$4,
                       ExecStart: nix.thunk(() => nix.str`${pkg}/bin/velocity`),
                       DynamicUser: true,
                       StateDirectory: nix.thunk(() => nix.str`${name}`),
@@ -69,12 +69,12 @@ export default nix.lambda((args) => (() => {
               })),
             });
             return [
-              nix.thunk(() => nix.app(mkVelocityService, "velocity-without-native", nix.thunk(() => nix.app(nix.sel(pkgs, "velocity", "override"), nix.thunk(() => ({ __proto__: pos$8, withVelocityNative: false })))))),
-              nix.thunk(() => nix.app(mkVelocityService, "velocity-with-native", nix.thunk(() => nix.app(nix.sel(pkgs, "velocity", "override"), nix.thunk(() => ({ __proto__: pos$9, withVelocityNative: true })))))),
+              nix.thunk(() => nix.app(mkVelocityService, "velocity-without-native", nix.thunk(() => nix.app(nix.sel(pkgs, "velocity", "override"), nix.thunk(() => ({ [nix.POS]: pos$8, withVelocityNative: false })))))),
+              nix.thunk(() => nix.app(mkVelocityService, "velocity-with-native", nix.thunk(() => nix.app(nix.sel(pkgs, "velocity", "override"), nix.thunk(() => ({ [nix.POS]: pos$9, withVelocityNative: true })))))),
             ];
           })()),
           environment: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(pkgs, "python3", "withPackages"), (p) => [nix.thunk(() => nix.sel(p, "mcstatus"))])),
             ]),

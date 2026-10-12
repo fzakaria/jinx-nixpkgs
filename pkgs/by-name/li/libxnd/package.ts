@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const libndtypes = nix.arg($, "libndtypes");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libxnd",
       version: "0.2.0-unstable-2023-11-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xnd-project",
           repo: "libxnd",
           rev: "e1a06d9f6175f4f4e1da369b7e907ad6b2952c00",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "cp libxnd/overflow.h $out/include/overflow.h\n",
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C library for managing typed memory blocks and Python container module",
         homepage: "https://xnd.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsdOriginal")),

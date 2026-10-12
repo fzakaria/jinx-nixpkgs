@@ -52,13 +52,13 @@ export default nix.lambda((args) => (() => {
   const vsqlite = nix.arg($, "vsqlite");
   const zstd = nix.arg($, "zstd");
   const mysql = nix.thunk(() => nix.sel(mysql84, "client"));
-  const gdal$ = nix.thunk(() => nix.app(nix.sel(gdal, "override"), nix.thunk(() => ({ __proto__: pos$1, libmysqlclient: mysql }))));
+  const gdal$ = nix.thunk(() => nix.app(nix.sel(gdal, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, libmysqlclient: mysql }))));
   const antlr = antlr4_13;
   const swig$ = nix.thunk(() => nix.app(nix.sel(swig, "overrideAttrs"), (prevAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "4.2.1",
       src: nix.thunk(() => nix.app(nix.sel(prevAttrs, "src", "override"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           hash: "sha256-VlUsiRZLScmbC7hZDzKqUr9481YXVwo0eXT/jy6Fda8=",
         })))),
     })));
@@ -66,29 +66,29 @@ export default nix.lambda((args) => (() => {
   const pycairo = nix.thunk(() => nix.attr(python3Packages, "pycairo"));
   const pyodbc = nix.thunk(() => nix.attr(python3Packages, "pyodbc"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "mysql-workbench",
       version: "8.0.46",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           url: nix.thunk(() => nix.str`https://cdn.mysql.com/Downloads/MySQLGUITools/mysql-workbench-community-${nix.sel(finalAttrs, "version")}-src.tar.gz`),
           hash: "sha256-sP7GYSagPpcBhmdCynvQsxJexe54Bgu6RI7apCSb9TE=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             bash: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), bash)),
             catchsegv: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), glibc, "catchsegv")),
             coreutils: nix.thunk(() => nix.app(nix.sel(lib, "getBin"), coreutils)),
             sudo: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), sudo)),
           })))),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-swig-build.patch"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             cairoDev: nix.thunk(() => nix.app(nix.sel(lib, "getDev"), cairo)),
           })))),
         nix.path(here, "./dont-search-for-antlr-jar.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             name: "python3.13.patch",
             url: "https://git.pld-linux.org/?p=packages/mysql-workbench.git;a=blob_plain;f=python-3.13.patch;h=d1425a93c41fb421603cda6edbb0514389cdc6a8;hb=bb09cb858f3b9c28df699d3b98530a6c590b5b7a",
             hash: "sha256-hLfPqZSNf3ls2WThF1SBRjV33zTUymfgDmdZVpgO22Q=",
@@ -108,7 +108,7 @@ export default nix.lambda((args) => (() => {
         libsecret,
         libssh,
         libuuid,
-        nix.thunk(() => nix.app(nix.sel(libxml2, "override"), nix.thunk(() => ({ __proto__: pos$8, enableHttp: true })))),
+        nix.thunk(() => nix.app(nix.sel(libxml2, "override"), nix.thunk(() => ({ [nix.POS]: pos$8, enableHttp: true })))),
         libzip,
         openssl,
         rapidjson,
@@ -120,7 +120,7 @@ export default nix.lambda((args) => (() => {
         pyodbc,
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat([
             "-Wno-error=deprecated-declarations",
             "-Wno-error=unused-but-set-variable=",
@@ -142,7 +142,7 @@ export default nix.lambda((args) => (() => {
 `),
       postFixup: "find -L \"$out/bin\" -type f -executable -print0 \\\n  | while IFS= read -r -d '' file; do\n  if [[ \"${file}\" != *-bin ]]; then\n    echo \"Wrapping program $file\"\n    wrapGApp \"$file\"\n  fi\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "Visual MySQL database modeling, administration and querying tool",
         longDescription: "MySQL Workbench is a modeling tool that allows you to design\nand generate MySQL databases graphically. It also has administration\nand query development modules where you can manage MySQL server instances\nand execute SQL queries.\n",
         homepage: "http://wb.mysql.com/",

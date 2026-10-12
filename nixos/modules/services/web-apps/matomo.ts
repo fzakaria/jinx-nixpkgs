@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
   const phpExecutionUnit = nix.thunk(() => nix.str`phpfpm-${pool}`);
   const databaseService = "mysql.service";
   return {
-    __proto__: pos$50,
+    [nix.POS]: pos$50,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.lookup(w, "mkRenamedOptionModule"), nix.thunk(() => ["services", "piwik", "enable"]), nix.thunk(() => ["services", "matomo", "enable"]))),
       nix.thunk(() => nix.app(nix.lookup(w, "mkRenamedOptionModule"), nix.thunk(() => ["services", "piwik", "webServerUser"]), nix.thunk(() => ["services", "matomo", "webServerUser"]))),
@@ -80,33 +80,33 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.lookup(w, "mkRenamedOptionModule"), nix.thunk(() => ["services", "matomo", "periodicArchiveProcessingUrl"]), nix.thunk(() => ["services", "matomo", "hostname"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         matomo: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Enable Matomo web analytics with php-fpm backend.\nEither the nginx option or the webServerUser option is mandatory.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "matomo", nix.thunk(() => ({})))),
           webServerUser: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: null,
               example: "lighttpd",
               description: "Name of the web server user that forwards requests to {option}`services.phpfpm.pools.<name>.socket` the fastcgi socket for Matomo if the nginx\noption is not used. Either this option or the nginx option is mandatory.\nIf you want to use another webserver than nginx, you need to set this to that server's user\nand pass fastcgi requests to `index.php`, `matomo.php` and `piwik.php` (legacy name) to this socket.\n",
             })))),
           periodicArchiveProcessing: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "Enable periodic archive processing, which generates aggregated reports from the visits.\n\nThis means that you can safely disable browser triggers for Matomo archiving,\nand safely enable to delete old visitor logs.\nBefore deleting visitor logs,\nmake sure though that you run `systemctl start matomo-archive-processing.service`\nat least once without errors if you have already collected data before.\n",
             })))),
           hostname: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: nix.thunk(() => nix.str`${user}.${nix.sel(config, "networking", "fqdnOrHostName")}`),
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), nix.thunk(() => nix.str`"${user}.\${config.${nix.sel(options, "networking", "fqdnOrHostName")}}"
@@ -115,13 +115,13 @@ export default nix.lambda((args) => (() => {
               description: "URL of the host, without https prefix. You may want to change it if you\nrun Matomo on a different URL than matomo.yourdomain.\n",
             })))),
           nginx: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
-              type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => nix.app(nix.lookup(w, "recursiveUpdate"), nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "../web-servers/nginx/vhost-options.nix"), nix.thunk(() => ({ __proto__: pos$5, config: config, lib: lib })))), nix.thunk(() => ({
-                      __proto__: pos$9,
+              [nix.POS]: pos$10,
+              type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => nix.app(nix.lookup(w, "recursiveUpdate"), nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "../web-servers/nginx/vhost-options.nix"), nix.thunk(() => ({ [nix.POS]: pos$5, config: config, lib: lib })))), nix.thunk(() => ({
+                      [nix.POS]: pos$9,
                       options: nix.thunk(() => ({
-                        __proto__: pos$8,
-                        forceSSL: nix.thunk(() => ({ __proto__: pos$6, default: true })),
-                        enableACME: nix.thunk(() => ({ __proto__: pos$7, default: true })),
+                        [nix.POS]: pos$8,
+                        forceSSL: nix.thunk(() => ({ [nix.POS]: pos$6, default: true })),
+                        enableACME: nix.thunk(() => ({ [nix.POS]: pos$7, default: true })),
                       })),
                     })))))))),
               default: null,
@@ -132,22 +132,22 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$48,
+        [nix.POS]: pos$48,
         warnings: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "nginx"), null)) && nix.asBool(!nix.eq(nix.sel(cfg, "webServerUser"), null)))), nix.thunk(() => [
             "If services.matomo.nginx is set, services.matomo.nginx.webServerUser is ignored and should be removed.",
           ]))),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             assertion: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "nginx"), null)) || nix.asBool(!nix.eq(nix.sel(cfg, "webServerUser"), null)))),
             message: "Either services.matomo.nginx or services.matomo.webServerUser is mandatory",
           })),
         ]),
         users: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [user, nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               isSystemUser: true,
               createHome: true,
               home: dataDir,
@@ -157,19 +157,19 @@ export default nix.lambda((args) => (() => {
           groups: nix.thunk(() => nix.attrsDyn({}, [[user, nix.thunk(() => ({}))]])),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           services: nix.thunk(() => nix.attrsDyn({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             "matomo-setup-update": nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               requiredBy: nix.thunk(() => [nix.thunk(() => nix.str`${phpExecutionUnit}.service`)]),
               before: nix.thunk(() => [nix.thunk(() => nix.str`${phpExecutionUnit}.service`)]),
               requires: nix.thunk(() => [databaseService]),
               after: nix.thunk(() => [databaseService]),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
-              environment: nix.thunk(() => ({ __proto__: pos$17, PIWIK_USER_PATH: dataDir })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$17, PIWIK_USER_PATH: dataDir })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 Type: "oneshot",
                 User: user,
                 UMask: "0007",
@@ -215,13 +215,13 @@ fi
 `),
             })),
             "matomo-archive-processing": nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               description: "Archive Matomo reports",
               requires: nix.thunk(() => [databaseService]),
               after: nix.thunk(() => [databaseService]),
-              environment: nix.thunk(() => ({ __proto__: pos$20, PIWIK_USER_PATH: dataDir })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$20, PIWIK_USER_PATH: dataDir })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 Type: "oneshot",
                 User: user,
                 UMask: "0007",
@@ -232,19 +232,19 @@ fi
             })),
           }, [
             [nix.force(phpExecutionUnit), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               restartTriggers: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$23, UMask: "0007" })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$23, UMask: "0007" })),
             }))],
           ])),
           timers: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             "matomo-archive-processing": nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "periodicArchiveProcessing")), nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 description: "Automatically archive Matomo reports every hour",
                 wantedBy: nix.thunk(() => ["timers.target"]),
                 timerConfig: nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   OnCalendar: "hourly",
                   Persistent: "yes",
                   AccuracySec: "10m",
@@ -253,18 +253,18 @@ fi
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$47,
+          [nix.POS]: pos$47,
           phpfpm: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             pools: nix.thunk(() => (() => {
               const socketOwner = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "nginx"), null)) ? nix.sel(config, "services", "nginx", "user") : (nix.asBool(!nix.eq(nix.sel(cfg, "webServerUser"), null)) ? nix.sel(cfg, "webServerUser") : "")));
               return nix.attrsDyn({}, [
                 [nix.force(pool), nix.thunk(() => ({
-                  __proto__: pos$32,
+                  [nix.POS]: pos$32,
                   user: user,
                   phpOptions: "error_log = 'stderr'\nlog_errors = on\n",
                   settings: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs"), (name) => nix.force(nix.lookup(w, "mkDefault")), nix.thunk(() => ({
-                      __proto__: pos$30,
+                      [nix.POS]: pos$30,
                       "listen.owner": socketOwner,
                       "listen.group": "root",
                       "listen.mode": "0660",
@@ -276,46 +276,46 @@ fi
                       "pm.max_requests": 500n,
                       catch_workers_output: true,
                     })))),
-                  phpEnv: nix.thunk(() => ({ __proto__: pos$31, PIWIK_USER_PATH: dataDir })),
+                  phpEnv: nix.thunk(() => ({ [nix.POS]: pos$31, PIWIK_USER_PATH: dataDir })),
                 }))],
               ]);
             })()),
           })),
           nginx: nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             virtualHosts: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "nginx"), null)), nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${nix.sel(cfg, "hostname")}`, nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
                     nix.thunk(() => nix.sel(cfg, "nginx")),
                     nix.thunk(() => ({
-                      __proto__: pos$45,
+                      [nix.POS]: pos$45,
                       root: nix.thunk(() => nix.app(nix.lookup(w, "mkForce"), nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share`))),
                       locations: nix.thunk(() => ({
-                        __proto__: pos$44,
-                        "/": nix.thunk(() => ({ __proto__: pos$34, index: "index.php" })),
+                        [nix.POS]: pos$44,
+                        "/": nix.thunk(() => ({ [nix.POS]: pos$34, index: "index.php" })),
                         "= /index.php": nix.thunk(() => ({
-                          __proto__: pos$35,
+                          [nix.POS]: pos$35,
                           extraConfig: nix.thunk(() => nix.str`fastcgi_pass unix:${nix.sel(fpm, "socket")};
 `),
                         })),
                         "= /matomo.php": nix.thunk(() => ({
-                          __proto__: pos$36,
+                          [nix.POS]: pos$36,
                           extraConfig: nix.thunk(() => nix.str`fastcgi_pass unix:${nix.sel(fpm, "socket")};
 `),
                         })),
                         "= /piwik.php": nix.thunk(() => ({
-                          __proto__: pos$37,
+                          [nix.POS]: pos$37,
                           extraConfig: nix.thunk(() => nix.str`fastcgi_pass unix:${nix.sel(fpm, "socket")};
 `),
                         })),
-                        "~* ^.+\\.php$": nix.thunk(() => ({ __proto__: pos$38, extraConfig: "return 403;\n" })),
-                        "~ ^/(?:core|lang|misc)/": nix.thunk(() => ({ __proto__: pos$39, extraConfig: "return 403;\n" })),
-                        "~* \\.(?:bat|git|ini|sh|txt|tpl|xml|md)$": nix.thunk(() => ({ __proto__: pos$40, extraConfig: "return 403;\n" })),
+                        "~* ^.+\\.php$": nix.thunk(() => ({ [nix.POS]: pos$38, extraConfig: "return 403;\n" })),
+                        "~ ^/(?:core|lang|misc)/": nix.thunk(() => ({ [nix.POS]: pos$39, extraConfig: "return 403;\n" })),
+                        "~* \\.(?:bat|git|ini|sh|txt|tpl|xml|md)$": nix.thunk(() => ({ [nix.POS]: pos$40, extraConfig: "return 403;\n" })),
                         "= /robots.txt": nix.thunk(() => ({
-                          __proto__: pos$41,
+                          [nix.POS]: pos$41,
                           extraConfig: "return 200 \"User-agent: *\\nDisallow: /\\n\";\n",
                         })),
-                        "= /matomo.js": nix.thunk(() => ({ __proto__: pos$42, extraConfig: "expires 1M;\n" })),
-                        "= /piwik.js": nix.thunk(() => ({ __proto__: pos$43, extraConfig: "expires 1M;\n" })),
+                        "= /matomo.js": nix.thunk(() => ({ [nix.POS]: pos$42, extraConfig: "expires 1M;\n" })),
+                        "= /piwik.js": nix.thunk(() => ({ [nix.POS]: pos$43, extraConfig: "expires 1M;\n" })),
                       })),
                     })),
                   ])))],
@@ -324,7 +324,7 @@ fi
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$49,
+      [nix.POS]: pos$49,
       doc: nix.path(here, "./matomo.md"),
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), w);

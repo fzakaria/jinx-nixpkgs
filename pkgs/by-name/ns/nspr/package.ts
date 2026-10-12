@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "nspr",
       version: "4.40",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://mozilla/nspr/releases/v${nix.sel(finalAttrs, "version")}/src/nspr-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-wMGITGJ/Pbeng/fHMUxpUiayBDaWeR0VUZ5+BXjBm9w=",
         })))),
@@ -32,21 +32,21 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev"]),
       outputBin: "dev",
       preConfigure: nix.thunk(() => nix.add("cd nspr\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace configure --replace '@executable_path/' \"$out/lib/\"\nsubstituteInPlace configure.in --replace '@executable_path/' \"$out/lib/\"\n"))),
-      env: nix.thunk(() => ({ __proto__: pos$2, HOST_CC: "cc" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, HOST_CC: "cc" })),
       depsBuildBuild: nix.thunk(() => [nix.thunk(() => nix.sel(buildPackages, "stdenv", "cc"))]),
       configureFlags: nix.thunk(() => nix.concat(["--enable-optimize", "--disable-debug"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "is64bit")), "--enable-64bit"))),
       postInstall: "find $out -name \"*.a\" -delete\nmoveToOutput share \"$dev\" # just aclocal\n",
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           firefox: nix.thunk(() => nix.attr(nixosTests, "firefox")),
           "firefox-esr": nix.thunk(() => nix.attr(nixosTests, "firefox-esr")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/mozilla/nspr/releases/tag/NSPR_${nix.app(nix.sel(lib, "concatStringsSep"), "_", nix.thunk(() => nix.app(nix.sel(lib, "splitVersion"), nix.thunk(() => nix.sel(finalAttrs, "version")))))}_RTM`),
         homepage: "https://firefox-source-docs.mozilla.org/nspr/index.html",
         description: "Netscape Portable Runtime, a platform-neutral API for system-level and libc-like functions",

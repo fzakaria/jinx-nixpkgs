@@ -16,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "bkcrack",
       version: "1.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kimci86",
           repo: "bkcrack",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-VZOHQzTsA/yfVhmrr4ISWnFif0o5an9w4gpRWS85ySU=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       nativeBuildInputs: nix.thunk(() => [cmake]),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "mkdir -p $out/bin $out/share/doc/bkcrack $out/share/licenses/bkcrack\nmv $out/bkcrack $out/bin/\nmv $out/license.txt $out/share/licenses/bkcrack\nmv $out/example $out/tools $out/readme.md $out/share/doc/bkcrack\n",
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Crack legacy zip encryption with Biham and Kocher's known plaintext attack",
         homepage: "https://github.com/kimci86/bkcrack",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

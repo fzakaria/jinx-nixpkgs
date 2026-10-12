@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const stackit_core = nix.arg($, "stackit-core");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "stackit-resourcemanager",
       version: "0.11.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "stackit_resourcemanager",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-BGAL2riV24uUzBfjIxuWHWkdADwRHZi8eb0YjdSE2NQ=",
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["stackit.resourcemanager"]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "STACKIT Resource Manager API client for Python",
         homepage: "https://github.com/stackitcloud/stackit-sdk-python",
         changelog: nix.thunk(() => nix.str`https://github.com/stackitcloud/stackit-sdk-python/blob/services/resourcemanager/v${nix.sel(finalAttrs, "version")}/services/resourcemanager/CHANGELOG.md`),

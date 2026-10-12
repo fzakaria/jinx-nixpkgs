@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "lark-cli",
       version: "1.0.88",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "larksuite",
           repo: "cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,12 +38,12 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-WClES7ilNmQ0018Qf13tNHouE/SIwh99MaewZ7VGQ2E=",
       subPackages: nix.thunk(() => ["."]),
       metaDataRelease: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: nix.thunk(() => nix.str`lark-cli-${nix.sel(finalAttrs, "version")}-linux-amd64.tar.gz`),
           url: nix.thunk(() => nix.str`https://github.com/larksuite/cli/releases/download/v${nix.sel(finalAttrs, "version")}/lark-cli-${nix.sel(finalAttrs, "version")}-linux-amd64.tar.gz`),
           hash: "sha256-SX3iCTms3SquTImP6noMpx1aRZ7VQyAudiqLyzIo7/4=",
         })))),
-      metaData: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`meta_data.json-${nix.sel(finalAttrs, "version")}`), nix.thunk(() => ({ __proto__: pos$3, nativeBuildInputs: nix.thunk(() => [python3]) })), nix.thunk(() => nix.str`tar xf ${nix.sel(finalAttrs, "metaDataRelease")} lark-cli
+      metaData: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`meta_data.json-${nix.sel(finalAttrs, "version")}`), nix.thunk(() => ({ [nix.POS]: pos$3, nativeBuildInputs: nix.thunk(() => [python3]) })), nix.thunk(() => nix.str`tar xf ${nix.sel(finalAttrs, "metaDataRelease")} lark-cli
 python3 ${nix.path(here, "./extract-meta.py")} lark-cli $out
 `))),
       postPatch: nix.thunk(() => nix.str`cp ${nix.sel(finalAttrs, "metaData")} internal/registry/meta_data.json
@@ -56,16 +56,16 @@ python3 ${nix.path(here, "./extract-meta.py")} lark-cli $out
         "-X github.com/larksuite/cli/internal/build.Date=2026-06-01",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         metaData: nix.thunk(() => nix.attr(finalAttrs, "metaData")),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             extraArgs: nix.thunk(() => ["--custom-dep", "metaDataRelease"]),
           })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "lark-cli --version",
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -73,7 +73,7 @@ python3 ${nix.path(here, "./extract-meta.py")} lark-cli $out
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "The official CLI for Lark/Feishu open platform",
         homepage: "https://github.com/larksuite/cli",
         changelog: nix.thunk(() => nix.str`https://github.com/larksuite/cli/releases/tag/v${nix.sel(finalAttrs, "src", "tag")}`),

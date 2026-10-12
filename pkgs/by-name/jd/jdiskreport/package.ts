@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       desktopName: "JDiskReport",
       genericName: "A graphical utility to visualize disk usage",
       categories: nix.thunk(() => ["Utility"]),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "jdiskreport";
       const version = "1.4.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://www.jgoodies.com/download/jdiskreport/jdiskreport-${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}.zip`),
           sha256: "0d5mzkwsbh9s9b1vyvpaawqc09b0q41l2a7pmwf7386b1fsx6d58",
         }))));
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const installPhase = "runHook preInstall\n\nunzip $src\n\njar=$(ls */*.jar)\n\nmkdir -p $out/share/java\nmv $jar $out/share/java\n\nmkdir -p $out/bin\ncat > $out/bin/jdiskreport <<EOF\n#! $SHELL -e\nexec $jre/bin/java -jar $out/share/java/$(basename $jar)\nEOF\nchmod +x $out/bin/jdiskreport\n\nrunHook postInstall\n";
       const desktopItems = nix.thunk(() => [desktopItem]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://www.jgoodies.com/freeware/jdiskreport/",
         description: "Graphical utility to visualize disk usage",
         sourceProvenance: nix.thunk(() => (() => {
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "jdiskreport",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

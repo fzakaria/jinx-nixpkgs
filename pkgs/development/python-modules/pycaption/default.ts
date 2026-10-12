@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pytest_lazy_fixture = nix.arg($, "pytest-lazy-fixture");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pycaption",
       version: "2.3.13",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pbs",
           repo: "pycaption",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,10 +34,10 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [beautifulsoup4, lxml, cssutils]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, transcript: nix.thunk(() => [nltk]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, transcript: nix.thunk(() => [nltk]) })),
       nativeCheckInputs: nix.thunk(() => [pytest_lazy_fixture, pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/pbs/pycaption/blob/${nix.sel(finalAttrs, "src", "tag")}/docs/changelog.rst`),
         description: "Closed caption converter",
         homepage: "https://github.com/pbs/pycaption",

@@ -23,28 +23,28 @@ export default nix.thunk(() => (() => {
     const lib = nix.arg($, "lib");
     const pkgs = nix.arg($, "pkgs");
     return {
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       name: "minecraft-server",
-      node: nix.thunk(() => ({ __proto__: pos$1, pkgsReadOnly: false })),
+      node: nix.thunk(() => ({ [nix.POS]: pos$1, pkgsReadOnly: false })),
       nodes: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         server: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           return {
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             environment: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "mcrcon"))]),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               "minecraft-server": nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 declarative: true,
                 enable: true,
                 eula: true,
                 serverProperties: nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   "enable-rcon": true,
                   "level-seed": seed,
                   "level-type": "flat",
@@ -55,7 +55,7 @@ export default nix.thunk(() => (() => {
                 })),
               })),
             })),
-            virtualisation: nix.thunk(() => ({ __proto__: pos$6, memorySize: 2047n })),
+            virtualisation: nix.thunk(() => ({ [nix.POS]: pos$6, memorySize: 2047n })),
           };
         })(), formals$2),
       })),

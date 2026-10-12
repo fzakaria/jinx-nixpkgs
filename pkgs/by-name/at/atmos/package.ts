@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "atmos",
       version: "1.230.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cloudposse",
           repo: "atmos",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-2iyRkQQ+NKER60jBiGrcq+QKBO8+pt3nfHm9Tn3e+iU=",
         })))),
       vendorHash: "sha256-J5TNPXzEz4gaNi2mEqkQ+t1JzmocbRRLwUwzLgAZU40=",
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       subPackages: nix.thunk(() => ["."]),
       ldflags: nix.thunk(() => [
         "-s",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "# Remove tests that depend on a network connection.\nrm -f \\\n  main_hooks_and_keychain_store_integration_test.go \\\n  main_hooks_and_store_integration_test.go \\\n  main_plan_diff_integration_test.go \\\n  pkg/atlantis/atlantis_generate_repo_config_test.go \\\n  pkg/describe/describe_affected_test.go \\\n  pkg/vender/component_vendor_test.go\n",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://atmos.tools",
         changelog: nix.thunk(() => nix.str`https://github.com/cloudposse/atmos/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Universal Tool for DevOps and Cloud Automation (works with terraform, helm, helmfile, etc)",

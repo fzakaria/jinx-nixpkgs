@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "go-passbolt-cli",
       version: "0.5.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "passbolt",
           repo: "go-passbolt-cli",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\ninstall -D $GOPATH/bin/go-passbolt-cli $out/bin/passbolt\nrunHook postInstall\n",
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd passbolt \\\n  --bash <($out/bin/passbolt completion bash) \\\n  --fish <($out/bin/passbolt completion fish) \\\n  --zsh <($out/bin/passbolt completion zsh)\n\nexport tmpDir=$(mktemp -d)\ncd $tmpDir && mkdir man && $out/bin/passbolt gendoc --type man && installManPage man/*\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI tool to interact with Passbolt, an open source password manager for teams",
         homepage: "https://github.com/passbolt/go-passbolt-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

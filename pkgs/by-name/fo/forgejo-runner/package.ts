@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
     "TestInitRepoIfRequired/clone_different_remote",
   ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["TestNewClient", "TestNewEndpointHonoursTLSEnv"]))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "forgejo-runner",
       version: "13.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "code.forgejo.org",
           owner: "forgejo",
           repo: "runner",
@@ -67,16 +67,16 @@ ln -s $out/bin/forgejo-runner $out/bin/act_runner
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/${nix.sel(finalAttrs, "meta", "mainProgram")}`),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             latest: nix.thunk(() => nix.sel(nixosTests, "forgejo", "sqlite3")),
             lts: nix.thunk(() => nix.sel(nixosTests, "forgejo-lts", "sqlite3")),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Runner for Forgejo based on act",
         homepage: "https://code.forgejo.org/forgejo/runner",
         changelog: nix.thunk(() => nix.str`https://code.forgejo.org/forgejo/runner/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

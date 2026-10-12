@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const pyyaml = nix.arg($, "pyyaml");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cflib",
       version: "0.1.31",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bitcraze",
           repo: "crazyflie-lib-python",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [udevCheckHook]),
       postInstall: "# Install udev rules\nmkdir -p $out/etc/udev/rules.d\n\ncat <<EOF > $out/etc/udev/rules.d/99-bitcraze.rules\n# Crazyradio (normal operation)\nSUBSYSTEM==\"usb\", ATTRS{idVendor}==\"1915\", ATTRS{idProduct}==\"7777\", MODE=\"0664\", GROUP=\"plugdev\"\n# Bootloader\nSUBSYSTEM==\"usb\", ATTRS{idVendor}==\"1915\", ATTRS{idProduct}==\"0101\", MODE=\"0664\", GROUP=\"plugdev\"\n# Crazyflie (over USB)\nSUBSYSTEM==\"usb\", ATTRS{idVendor}==\"0483\", ATTRS{idProduct}==\"5740\", MODE=\"0664\", GROUP=\"plugdev\"\nEOF\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library for the Crazyflie quadcopter by Bitcraze",
         homepage: "https://github.com/bitcraze/crazyflie-lib-python",
         changelog: nix.thunk(() => nix.str`https://github.com/bitcraze/crazyflie-lib-python/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

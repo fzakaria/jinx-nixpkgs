@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const p7zip = nix.arg($, "p7zip");
   const pvz_portable_unwrapped = nix.arg($, "pvz-portable-unwrapped");
   const gameAssets = nix.argOr($, "gameAssets", () => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: "https://web.archive.org/web/20220717170711/http://static-www.ec.popcap.com/binaries/popcap_downloads/PlantsVsZombiesSetup.exe",
       hash: "sha256-S0u00Z+2OeVpiYPjnXrQYcdme87BkFZWBTLHrQ1n0OQ=",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
       })),
     }))));
@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
   const limboPage = nix.argOr($, "limboPage", () => true);
   const doFixBugs = nix.argOr($, "doFixBugs", () => false);
   const unwrapped = nix.thunk(() => nix.app(nix.sel(pvz_portable_unwrapped, "override"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pvzDebug: pvzDebug,
       limboPage: limboPage,
       doFixBugs: doFixBugs,
     }))));
   const assets = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "pvz-portable-assets",
       src: gameAssets,
       nativeBuildInputs: nix.thunk(() => [p7zip]),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(symlinkJoin, (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(finalAttrs, "passthru", "unwrapped"));
       return {
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "pvz-portable",
       version: nix.thunk(() => nix.attr(from, "version")),
       meta: nix.thunk(() => nix.attr(from, "meta")),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       postBuild: "wrapProgram $out/bin/pvz-portable --add-flags -resdir=$out/share/pvz-portable\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$5, unwrapped: unwrapped, assets: assets })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, unwrapped: unwrapped, assets: assets })),
     };
     })());
 })(), formals$1);

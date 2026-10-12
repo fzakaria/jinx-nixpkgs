@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
       const pname = "fuzzy-logic-toolkit";
       const version = "0.6.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lmarkowsky",
           repo: "fuzzy-logic-toolkit",
           tag: version,
           sha256: "sha256-cNzUjhJgx6SVfy8QrKUr02HvNsAh5ItQN3+hapA5eq0=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/lmarkowsky/fuzzy-logic-toolkit",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: nix.thunk(() => (() => {
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })()),
         description: "Mostly MATLAB-compatible fuzzy logic toolkit for Octave",
       }));
-      return { __proto__: pos$3, pname, version, src, meta };
+      return { [nix.POS]: pos$3, pname, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

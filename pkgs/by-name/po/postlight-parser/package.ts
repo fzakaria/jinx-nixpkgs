@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const yarnInstallHook = nix.arg($, "yarnInstallHook");
   const nodejs = nix.arg($, "nodejs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "postlight-parser",
       version: "2.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "postlight",
           repo: "parser",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-k6m95FHeJ+iiWSeY++1zds/bo1RtNXbnv2spaY/M+L0=",
         })))),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: "sha256-Vs8bfkhEbPv33ew//HBeDnpQcyWveByHi1gUsdl2CNI=",
         })))),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       yarnBuildScript: "lint",
       postBuild: "yarn --offline run rollup -c\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/postlight/parser/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),
         homepage: "https://reader.postlight.com",
         description: "Extracts the bits that humans care about from any URL you give it",

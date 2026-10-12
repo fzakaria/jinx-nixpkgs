@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const updateAutotoolsGnuConfigScriptsHook = nix.arg($, "updateAutotoolsGnuConfigScriptsHook");
   const libiconv_1 = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.force(libiconvReal) : nix.sel(args_1, "libiconv")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libunistring",
       version: "1.4.2",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/libunistring/libunistring-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-6CZksXAGTmIzGWISayWdRS1Tsie7SpOrIAQNhG/sAdg=",
         })))),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       enableParallelChecking: false,
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.gnu.org/software/libunistring/",
         description: "Unicode string library",
         longDescription: "This library provides functions for manipulating Unicode strings\nand for manipulating C strings according to the Unicode\nstandard.\n\nGNU libunistring is for you if your application involves\nnon-trivial text processing, such as upper/lower case\nconversions, line breaking, operations on words, or more\nadvanced analysis of text.  Text provided by the user can, in\ngeneral, contain characters of all kinds of scripts.  The text\nprocessing functions provided by this library handle all scripts\nand all languages.\n\nlibunistring is for you if your application already uses the ISO\nC / POSIX <ctype.h>, <wctype.h> functions and the text it\noperates on is provided by the user and can be in any language.\n\nlibunistring is also for you if your application uses Unicode\nstrings as internal in-memory representation.\n",

@@ -35,13 +35,13 @@ export default nix.lambda((args) => (() => {
   const tomli = nix.arg($, "tomli");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ida-hcli",
       version: "0.18.5",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "HexRaysSA",
           repo: "ida-hcli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -83,11 +83,11 @@ export default nix.lambda((args) => (() => {
         "tests/lib/test_plugin_settings.py",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CLI for IDA plugin management and configuration",
         homepage: "https://github.com/HexRaysSA/ida-hcli",
         changelog: nix.thunk(() => nix.str`https://github.com/HexRaysSA/ida-hcli/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

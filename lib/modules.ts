@@ -206,16 +206,16 @@ export default nix.lambda((args) => (() => {
     const check = nix.argOr($_1, "check", () => true);
     const withWarnings = (x) => nix.app(warnIf, nix.thunk(() => nix.has(evalModulesArgs, "args")), "The args argument to evalModules is deprecated. Please set config._module.args instead.", warnIf, nix.thunk(() => nix.has(evalModulesArgs, "check")), "The check argument to evalModules is deprecated. Please set config._module.check instead.", x);
     const legacyModules = nix.thunk(() => nix.concat(nix.app(optional, nix.thunk(() => nix.has(evalModulesArgs, "args")), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         config: nix.thunk(() => ({
-          __proto__: pos$2,
-          _module: nix.thunk(() => ({ __proto__: pos$1, args: args_2 })),
+          [nix.POS]: pos$2,
+          _module: nix.thunk(() => ({ [nix.POS]: pos$1, args: args_2 })),
         })),
       }))), nix.app(optional, nix.thunk(() => nix.has(evalModulesArgs, "check")), nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         config: nix.thunk(() => ({
-          __proto__: pos$5,
-          _module: nix.thunk(() => ({ __proto__: pos$4, check: nix.thunk(() => nix.app(mkDefault, check)) })),
+          [nix.POS]: pos$5,
+          _module: nix.thunk(() => ({ [nix.POS]: pos$4, check: nix.thunk(() => nix.app(mkDefault, check)) })),
         })),
       })))));
     const regularModules = nix.thunk(() => nix.concat(modules, legacyModules));
@@ -223,30 +223,30 @@ export default nix.lambda((args) => (() => {
       const _file = "lib/modules.nix";
       const key = _file;
       const options_1 = nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         _module: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           args: nix.thunk(() => nix.app(mkOption, nix.thunk(() => nix.attrsDyn({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "raw")))),
               description: "Additional arguments passed to each module in addition to ones\nlike `lib`, `config`,\nand `pkgs`, `modulesPath`.\n\nThis option is also available to all submodules. Submodules do not\ninherit args from their parent module, nor do they provide args to\ntheir parent module or sibling submodules. The sole exception to\nthis is the argument `name` which is provided by\nparent modules to a submodule and contains the attribute name\nthe submodule is bound to, or a unique generated name if it is\nnot bound to an attribute.\n\nSome arguments are already passed by default, of which the\nfollowing *cannot* be changed with this option:\n- {var}`lib`: The nixpkgs library.\n- {var}`config`: The results of all options after merging the values from all modules together.\n- {var}`options`: The options declared in all modules.\n- {var}`specialArgs`: The `specialArgs` argument passed to `evalModules`.\n- All attributes of {var}`specialArgs`\n\n  Whereas option values can generally depend on other option values\n  thanks to laziness, this does not apply to `imports`, which\n  must be computed statically before anything else.\n\n  For this reason, callers of the module system can provide `specialArgs`\n  which are available during import resolution.\n\n  For NixOS, `specialArgs` includes\n  {var}`modulesPath`, which allows you to import\n  extra modules from the nixpkgs package tree without having to\n  somehow make the module aware of the location of the\n  `nixpkgs` or NixOS directories.\n  ```\n  { modulesPath, ... }: {\n    imports = [\n      (modulesPath + \"/profiles/minimal.nix\")\n    ];\n  }\n  ```\n\nFor NixOS, the default value for this option includes at least this argument:\n- {var}`pkgs`: The nixpkgs package set according to\n  the {option}`nixpkgs.pkgs` option.\n",
             }, [[(nix.asBool(nix.eq(prefix, [])) ? null : "internal"), true]])))),
           check: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(types, "bool")),
               internal: true,
               default: true,
               description: "Whether to check whether all option definitions have matching declarations.",
             })))),
           freeformType: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "optionType")))),
               internal: true,
               default: null,
               description: "If set, merge all definitions that don't have an associated option\ntogether using this type. The result then gets combined with the\nvalues of all declared options to produce the final `\nconfig` value.\n\nIf this is `null`, definitions without an option\nwill throw an error unless {option}`_module.check` is\nturned off.\n",
             })))),
           specialArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               readOnly: true,
               internal: true,
               description: "Externally provided module arguments that can't be modified from\nwithin a configuration, but can be used in module imports.\n",
@@ -254,19 +254,19 @@ export default nix.lambda((args) => (() => {
         })),
       }));
       const config_1 = nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         _module: nix.thunk(() => ({
-          __proto__: pos$14,
-          args: nix.thunk(() => ({ __proto__: pos$13, extendModules: extendModules, moduleType: type })),
+          [nix.POS]: pos$14,
+          args: nix.thunk(() => ({ [nix.POS]: pos$13, extendModules: extendModules, moduleType: type })),
           specialArgs: specialArgs,
         })),
       }));
-      return { __proto__: pos$16, _file, key, options: options_1, config: config_1 };
+      return { [nix.POS]: pos$16, _file, key, options: options_1, config: config_1 };
     })());
     const doCollect = nix.lambda((args_3) => (() => {
       const $_2 = nix.formals(args_3, formals$3);
       return nix.app(collectModules, class$, nix.thunk(() => nix.selOr(specialArgs, () => "", "modulesPath")), nix.thunk(() => nix.concat(regularModules, [internalModule])), nix.thunk(() => nix.update({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           lib: lib,
           options: options,
           specialArgs: specialArgs,
@@ -284,7 +284,7 @@ export default nix.lambda((args) => (() => {
       })());
       const freeformConfig = nix.thunk(() => (() => {
         const defs = nix.thunk(() => nix.builtins.map((def) => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             file: nix.thunk(() => nix.sel(def, "file")),
             value: nix.thunk(() => nix.app(setAttrByPath, nix.thunk(() => nix.sel(def, "prefix")), nix.thunk(() => nix.sel(def, "value")))),
           }), nix.thunk(() => nix.sel(merged, "unmatchedDefns"))));
@@ -338,17 +338,17 @@ under \`config' rather than \`options'.
       const specialArgs_1 = nix.argOr($_2, "specialArgs", () => ({}));
       const prefix_1 = nix.argOr($_2, "prefix", () => []);
       return nix.app(evalModules, nix.thunk(() => nix.update(evalModulesArgs, {
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           modules: nix.thunk(() => nix.concat(regularModules, modules_1)),
           specialArgs: nix.thunk(() => nix.update(nix.selOr(evalModulesArgs, () => ({}), "specialArgs"), specialArgs_1)),
           prefix: nix.thunk(() => nix.selOr(extendArgs, () => nix.selOr(evalModulesArgs, () => [], "prefix"), "prefix")),
         })));
     })(), formals$4);
-    const type = nix.thunk(() => nix.app(nix.sel(types, "submoduleWith"), nix.thunk(() => ({ __proto__: pos$20, modules: modules, specialArgs: specialArgs, class: class$ }))));
+    const type = nix.thunk(() => nix.app(nix.sel(types, "submoduleWith"), nix.thunk(() => ({ [nix.POS]: pos$20, modules: modules, specialArgs: specialArgs, class: class$ }))));
     const result = nix.thunk(() => nix.app(withWarnings, nix.thunk(() => (() => {
         const from_2 = nix.thunk(() => nix.app(doCollect, nix.thunk(() => ({}))));
         return {
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         _type: "configuration",
         options: nix.thunk(() => nix.app(checked, options)),
         config: nix.thunk(() => nix.app(checked, nix.thunk(() => nix.builtins.removeAttrs(config, nix.thunk(() => ["_module"]))))),
@@ -362,15 +362,15 @@ under \`config' rather than \`options'.
     return nix.force(result);
   })(), formals$2);
   const collectModules = (class$) => (() => {
-    const loadModule = (args_1) => (fallbackFile) => (fallbackKey) => (m) => (nix.asBool(nix.app(isFunction, m)) ? nix.app(unifyModuleSyntax, fallbackFile, fallbackKey, nix.thunk(() => nix.app(applyModuleArgs, fallbackKey, m, args_1))) : (nix.asBool(nix.app(isAttrs, m)) ? (nix.asBool(nix.eq(nix.selOr(m, () => "module", "_type"), "module")) ? nix.app(unifyModuleSyntax, fallbackFile, fallbackKey, m) : (nix.asBool((nix.asBool(nix.eq(nix.sel(m, "_type"), "if")) || nix.asBool(nix.eq(nix.sel(m, "_type"), "override")))) ? nix.app(loadModule, args_1, fallbackFile, fallbackKey, nix.thunk(() => ({ __proto__: pos$22, config: m }))) : nix.builtins.throw(nix.thunk(() => nix.app(nix.sel(messages, "not_a_module"), nix.thunk(() => ({
-          __proto__: pos$23,
+    const loadModule = (args_1) => (fallbackFile) => (fallbackKey) => (m) => (nix.asBool(nix.app(isFunction, m)) ? nix.app(unifyModuleSyntax, fallbackFile, fallbackKey, nix.thunk(() => nix.app(applyModuleArgs, fallbackKey, m, args_1))) : (nix.asBool(nix.app(isAttrs, m)) ? (nix.asBool(nix.eq(nix.selOr(m, () => "module", "_type"), "module")) ? nix.app(unifyModuleSyntax, fallbackFile, fallbackKey, m) : (nix.asBool((nix.asBool(nix.eq(nix.sel(m, "_type"), "if")) || nix.asBool(nix.eq(nix.sel(m, "_type"), "override")))) ? nix.app(loadModule, args_1, fallbackFile, fallbackKey, nix.thunk(() => ({ [nix.POS]: pos$22, config: m }))) : nix.builtins.throw(nix.thunk(() => nix.app(nix.sel(messages, "not_a_module"), nix.thunk(() => ({
+          [nix.POS]: pos$23,
           fallbackFile: fallbackFile,
           value: m,
           _type: nix.thunk(() => nix.sel(m, "_type")),
           expectedClass: class$,
           prefix: nix.thunk(() => nix.sel(args_1, "_prefix")),
         }))))))) : (nix.asBool(nix.app(isList, m)) ? (() => {
-      const defs = nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$24, file: fallbackFile, value: m }))]);
+      const defs = nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$24, file: fallbackFile, value: m }))]);
       return nix.builtins.throw(nix.thunk(() => nix.str`Module imports can't be nested lists. Perhaps you meant to remove one level of lists? Definitions: ${nix.app(showDefs, defs)}`));
     })() : nix.app(unifyModuleSyntax, nix.thunk(() => nix.builtins.toString(m)), nix.thunk(() => nix.builtins.toString(m)), nix.thunk(() => nix.app(applyModuleArgsIfFunction, nix.thunk(() => nix.builtins.toString(m)), nix.thunk(() => nix.builtins.import(m)), args_1))))));
     const checkModule = nix.thunk(() => (nix.asBool(!nix.eq(class$, null)) ? (m) => (nix.asBool((nix.asBool(nix.eq(nix.sel(m, "_class"), null)) || nix.asBool(nix.eq(nix.sel(m, "_class"), class$)))) ? nix.force(m) : nix.builtins.throw(nix.thunk(() => nix.str`The module \`${nix.selOr(m, () => nix.sel(m, "key"), "_file")}\` (class: ${nix.app(nix.sel(lib, "strings", "escapeNixString"), nix.thunk(() => nix.sel(m, "_class")))}) cannot be imported into a module evaluation that expects class ${nix.app(nix.sel(lib, "strings", "escapeNixString"), class$)}.
@@ -392,7 +392,7 @@ Help:
     })();
     const collectStructuredModules = nix.thunk(() => (() => {
       const collectResults = (modules) => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         disabled: nix.thunk(() => nix.app(concatLists, nix.thunk(() => nix.app(catAttrs, "disabled", modules)))),
         modules: modules,
       });
@@ -400,13 +400,13 @@ Help:
             const module = nix.thunk(() => nix.app(checkModule, nix.thunk(() => nix.app(loadModule, args_1, parentFile, nix.thunk(() => nix.str`${parentKey}:anon-${nix.builtins.toString(n)}`), x))));
             const collectedImports = nix.thunk(() => nix.app(collectStructuredModules, nix.thunk(() => nix.sel(module, "_file")), nix.thunk(() => nix.sel(module, "key")), nix.thunk(() => nix.sel(module, "imports")), args_1));
             return {
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               key: nix.thunk(() => nix.sel(module, "key")),
               module: module,
               modules: nix.thunk(() => nix.sel(collectedImports, "modules")),
               disabled: nix.thunk(() => nix.concat((nix.asBool(!nix.eq(nix.sel(module, "disabledModules"), [])) ? [
                 nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   file: nix.thunk(() => nix.sel(module, "_file")),
                   disabled: nix.thunk(() => nix.sel(module, "disabledModules")),
                 })),
@@ -421,11 +421,11 @@ Help:
       const isDisabledModule = nix.thunk(() => nix.app(isDisabled, modulesPath, disabled));
       const keyFilter = nix.thunk(() => nix.app(filter, (attrs) => !nix.asBool(nix.app(isDisabledModule, attrs))));
       return nix.app(catAttrs, "module", nix.thunk(() => nix.app(genericClosure, nix.thunk(() => (nix.asBool(nix.eq(disabled, [])) ? {
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             startSet: modules,
             operator: (attrs) => nix.sel(attrs, "modules"),
           } : {
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             startSet: nix.thunk(() => nix.app(keyFilter, modules)),
             operator: (attrs) => nix.app(keyFilter, nix.thunk(() => nix.sel(attrs, "modules"))),
           })))));
@@ -436,7 +436,7 @@ Help:
       const modules = nix.arg($_1, "modules");
       const isDisabledModule = nix.thunk(() => nix.app(isDisabled, modulesPath, disabled));
       const toModuleGraph = (structuredModule) => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         disabled: nix.thunk(() => nix.app(isDisabledModule, structuredModule)),
         key: nix.thunk(() => nix.attr(structuredModule, "key")),
         file: nix.thunk(() => nix.sel(structuredModule, "module", "_file")),
@@ -445,12 +445,12 @@ Help:
       return nix.builtins.map(toModuleGraph, nix.thunk(() => nix.app(filter, (x) => !nix.eq(nix.sel(x, "key"), "lib/modules.nix"), modules)));
     })(), formals$7);
     return (modulesPath) => (initialModules) => (args_1) => ({
-      __proto__: pos$31,
+      [nix.POS]: pos$31,
       modules: nix.thunk(() => nix.app(filterModules, modulesPath, nix.thunk(() => nix.app(collectStructuredModules, unknownModule, "", initialModules, args_1)))),
       graph: nix.thunk(() => nix.app(toGraph, modulesPath, nix.thunk(() => nix.app(collectStructuredModules, unknownModule, "", initialModules, args_1)))),
     });
   })();
-  const setDefaultModuleLocation = (file) => (m) => ({ __proto__: pos$32, _file: file, imports: nix.thunk(() => [m]) });
+  const setDefaultModuleLocation = (file) => (m) => ({ [nix.POS]: pos$32, _file: file, imports: nix.thunk(() => [m]) });
   const unifyModuleSyntax = nix.thunk(() => (() => {
     const attrsToRemove = nix.thunk(() => [
       "_class",
@@ -475,19 +475,19 @@ Help:
     return (file) => (key) => (m) => (() => {
       const addMeta = (config) => (nix.asBool(nix.has(m, "meta")) ? nix.app(mkMerge, nix.thunk(() => [
           config,
-          nix.thunk(() => ({ __proto__: pos$33, meta: nix.thunk(() => nix.sel(m, "meta")) })),
+          nix.thunk(() => ({ [nix.POS]: pos$33, meta: nix.thunk(() => nix.sel(m, "meta")) })),
         ])) : nix.force(config));
       const addFreeformType = (config) => (nix.asBool(nix.has(m, "freeformType")) ? nix.app(mkMerge, nix.thunk(() => [
           config,
           nix.thunk(() => ({
-            __proto__: pos$35,
-            _module: nix.thunk(() => ({ __proto__: pos$34, freeformType: nix.thunk(() => nix.sel(m, "freeformType")) })),
+            [nix.POS]: pos$35,
+            _module: nix.thunk(() => ({ [nix.POS]: pos$34, freeformType: nix.thunk(() => nix.sel(m, "freeformType")) })),
           })),
         ])) : nix.force(config));
       return (nix.asBool((nix.asBool(nix.has(m, "config")) || nix.asBool(nix.has(m, "options")))) ? (() => {
         const badAttrs = nix.thunk(() => nix.builtins.removeAttrs(m, attrsToRemove));
         return (nix.asBool(!nix.eq(badAttrs, {})) ? nix.builtins.throw(nix.thunk(() => nix.str`Module \`${key}' has an unsupported attribute \`${nix.app(head, nix.thunk(() => nix.app(attrNames, badAttrs)))}'. This is caused by introducing a top-level \`config' or \`options' attribute. Add configuration attributes immediately on the top level instead, or move all of them (namely: ${nix.builtins.toString(nix.thunk(() => nix.app(attrNames, badAttrs)))}) into the explicit \`config' attribute.`)) : {
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           _file: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.selOr(m, () => nix.force(file), "_file")))),
           _class: nix.thunk(() => nix.selOr(m, () => null, "_class")),
           key: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.selOr(m, () => nix.force(key), "key")))),
@@ -497,7 +497,7 @@ Help:
           config: nix.thunk(() => nix.app(addFreeformType, nix.thunk(() => nix.app(addMeta, nix.thunk(() => nix.selOr(m, () => ({}), "config")))))),
         });
       })() : (nix.asBool(!nix.asBool(nix.app(isAttrs, m))) ? nix.builtins.throw(nix.thunk(() => nix.str`module ${file} (${key}) does not look like a module.`)) : {
-        __proto__: pos$37,
+        [nix.POS]: pos$37,
         _file: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.selOr(m, () => nix.force(file), "_file")))),
         _class: nix.thunk(() => nix.selOr(m, () => null, "_class")),
         key: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.selOr(m, () => nix.force(key), "key")))),
@@ -522,7 +522,7 @@ Help:
     return nix.app(f, nix.thunk(() => nix.update(args_2, extraArgs)));
   })(), formals$9);
   const mergeModules = (prefix) => (modules) => nix.app(mergeModules$, prefix, modules, nix.thunk(() => nix.app(concatMap, (m) => nix.builtins.map((config) => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           file: nix.thunk(() => nix.sel(m, "_file")),
           config: config,
         }), nix.thunk(() => nix.app(pushDownProperties, nix.thunk(() => nix.sel(m, "config"))))), modules)));
@@ -533,7 +533,7 @@ Help:
 \`${nix.app(typeOf, subtree)}' rather than an attribute set.
 Did you mean to define this outside of \`options'?
 `)) : nix.app(mapAttrs, (n) => (option) => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               _file: nix.thunk(() => nix.attr(module, "_file")),
               pos: nix.thunk(() => nix.app(unsafeGetAttrPos, n, subtree)),
               options: option,
@@ -551,23 +551,23 @@ this option by e.g. referring to \`man 5 configuration.nix'!
       return nix.force(configs);
     })());
     const pushedDownDefinitionsByName = nix.thunk(() => nix.app(zipAttrsWith, (n) => nix.force(concatLists), nix.thunk(() => nix.builtins.map((module) => nix.app(mapAttrs, (n) => (value) => nix.builtins.map((config) => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               file: nix.thunk(() => nix.attr(module, "file")),
               config: config,
             }), nix.thunk(() => nix.app(pushDownProperties, value))), nix.thunk(() => nix.sel(module, "config"))), checkedConfigs))));
     const rawDefinitionsByName = nix.thunk(() => nix.app(zipAttrs, nix.thunk(() => nix.builtins.map((module) => nix.app(mapAttrs, (n) => (value) => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             file: nix.thunk(() => nix.attr(module, "file")),
             value: value,
           }), nix.thunk(() => nix.sel(module, "config"))), checkedConfigs))));
     const optionTreeToOption = (decl) => (nix.asBool(nix.app(isOption, nix.thunk(() => nix.sel(decl, "options")))) ? nix.force(decl) : nix.update(decl, {
-      __proto__: pos$45,
+      [nix.POS]: pos$45,
       options: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$44,
+          [nix.POS]: pos$44,
           type: nix.thunk(() => nix.app(nix.sel(types, "submoduleWith"), nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               modules: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$42, options: nix.thunk(() => nix.sel(decl, "options")) })),
+                nix.thunk(() => ({ [nix.POS]: pos$42, options: nix.thunk(() => nix.sel(decl, "options")) })),
               ]),
               shorthandOnlyDefinesConfig: null,
             })))),
@@ -580,7 +580,7 @@ this option by e.g. referring to \`man 5 configuration.nix'!
         return (nix.asBool(nix.app(all, isOptionDecl, decls)) ? (() => {
           const opt = nix.thunk(() => nix.app(fixupOptionType, loc, nix.thunk(() => nix.app(mergeOptionDecls, loc, decls))));
           return {
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             matchedOptions: nix.thunk(() => nix.app(evalOptionValue, loc, opt, defns$)),
             unmatchedDefns: [],
           };
@@ -589,7 +589,7 @@ this option by e.g. referring to \`man 5 configuration.nix'!
           return (nix.asBool(nix.app(all, (x) => nix.eq(nix.selOr(x, () => null, "options", "type", "name"), "submodule"), optionDecls)) ? (() => {
             const opt = nix.thunk(() => nix.app(fixupOptionType, loc, nix.thunk(() => nix.app(mergeOptionDecls, loc, nix.thunk(() => nix.builtins.map(optionTreeToOption, decls))))));
             return {
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               matchedOptions: nix.thunk(() => nix.app(evalOptionValue, loc, opt, defns$)),
               unmatchedDefns: [],
             };
@@ -603,10 +603,10 @@ ${nix.app(showRawDecls, loc, nonOptions)}`));
     const matchedOptions = nix.thunk(() => nix.app(mapAttrs, (n) => (v) => nix.sel(v, "matchedOptions"), resultsByName));
     const unmatchedDefnsByName = nix.thunk(() => nix.update(nix.app(mapAttrs, (n) => (v) => nix.sel(v, "unmatchedDefns"), resultsByName), nix.builtins.removeAttrs(rawDefinitionsByName, nix.thunk(() => nix.app(attrNames, matchedOptions)))));
     return {
-      __proto__: pos$49,
+      [nix.POS]: pos$49,
       matchedOptions: matchedOptions,
       unmatchedDefns: nix.thunk(() => (nix.asBool(nix.eq(configs, [])) ? [] : nix.app(concatLists, nix.thunk(() => nix.app(mapAttrsToList, (name) => (defs) => nix.builtins.map((def) => nix.update(def, {
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               prefix: nix.thunk(() => nix.concat([name], nix.selOr(def, () => [], "prefix"))),
             }), defs), unmatchedDefnsByName))))),
     };
@@ -632,18 +632,18 @@ ${nix.app(showRawDecls, loc, nonOptions)}`));
   const mergeOptionDecls = (loc) => nix.app(foldl$, (res) => (opt) => (() => {
       const typeSet = nix.thunk(() => (nix.asBool((nix.asBool(nix.has(res, "type")) && nix.asBool(nix.has(nix.sel(opt, "options"), "type")))) ? (() => {
         const mergedType = nix.thunk(() => nix.app(nix.sel(res, "type", "typeMerge"), nix.thunk(() => nix.sel(opt, "options", "type", "functor"))));
-        return (nix.asBool(!nix.eq(mergedType, null)) ? { __proto__: pos$50, type: mergedType } : nix.builtins.throw(nix.thunk(() => nix.str`The option \`${nix.app(showOption, loc)}' in \`${nix.sel(opt, "_file")}' is already declared in ${nix.app(showFiles, nix.thunk(() => nix.sel(res, "declarations")))}.`)));
+        return (nix.asBool(!nix.eq(mergedType, null)) ? { [nix.POS]: pos$50, type: mergedType } : nix.builtins.throw(nix.thunk(() => nix.str`The option \`${nix.app(showOption, loc)}' in \`${nix.sel(opt, "_file")}' is already declared in ${nix.app(showFiles, nix.thunk(() => nix.sel(res, "declarations")))}.`)));
       })() : {}));
       const bothHave = (k) => (nix.asBool(nix.has(res, nix.key(nix.force(k)))) && nix.asBool(nix.has(nix.sel(opt, "options"), nix.key(nix.force(k)))));
       return (nix.asBool((nix.asBool((nix.asBool((nix.asBool(nix.app(bothHave, "default")) || nix.asBool(nix.app(bothHave, "example")))) || nix.asBool(nix.app(bothHave, "description")))) || nix.asBool(nix.app(bothHave, "apply")))) ? nix.builtins.throw(nix.thunk(() => nix.str`The option \`${nix.app(showOption, loc)}' in \`${nix.sel(opt, "_file")}' is already declared in ${nix.app(showFiles, nix.thunk(() => nix.sel(res, "declarations")))}.`)) : (() => {
         const getSubModules = nix.thunk(() => nix.selOr(opt, () => null, "options", "type", "getSubModules"));
         const submodules = nix.thunk(() => (nix.asBool(!nix.eq(getSubModules, null)) ? nix.concat(nix.builtins.map(nix.thunk(() => nix.app(setDefaultModuleLocation, nix.thunk(() => nix.sel(opt, "_file")))), getSubModules), nix.sel(res, "options")) : nix.sel(res, "options")));
         return nix.update(nix.sel(opt, "options"), nix.update(res, nix.update({
-          __proto__: pos$52,
+          [nix.POS]: pos$52,
           declarations: nix.thunk(() => nix.concat(nix.sel(res, "declarations"), [nix.thunk(() => nix.sel(opt, "_file"))])),
           declarationPositions: nix.thunk(() => nix.concat(nix.sel(res, "declarationPositions"), (nix.asBool(!nix.eq(nix.sel(opt, "pos"), null)) ? [nix.thunk(() => nix.sel(opt, "pos"))] : [
             nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               file: nix.thunk(() => nix.sel(opt, "_file")),
               line: null,
               column: null,
@@ -653,7 +653,7 @@ ${nix.app(showRawDecls, loc, nonOptions)}`));
         }, typeSet)));
       })());
     })(), nix.thunk(() => ({
-      __proto__: pos$53,
+      [nix.POS]: pos$53,
       loc: loc,
       declarations: [],
       declarationPositions: [],
@@ -662,14 +662,14 @@ ${nix.app(showRawDecls, loc, nonOptions)}`));
   const evalOptionValue = (loc) => (opt) => (defs) => (() => {
     const defs$ = nix.thunk(() => (nix.asBool(nix.has(opt, "default")) ? nix.concat([
       nix.thunk(() => ({
-        __proto__: pos$54,
+        [nix.POS]: pos$54,
         file: nix.thunk(() => nix.app(head, nix.thunk(() => nix.sel(opt, "declarations")))),
         value: nix.thunk(() => nix.app(mkOptionDefault, nix.thunk(() => nix.sel(opt, "default")))),
       })),
     ], defs) : nix.force(defs)));
     const res = nix.thunk(() => (nix.asBool((nix.asBool(nix.selOr(opt, () => false, "readOnly")) && nix.asBool(nix.gt(nix.app(length, defs$), 1n)))) ? (() => {
       const separateDefs = nix.thunk(() => nix.builtins.map((def) => nix.update(def, {
-          __proto__: pos$55,
+          [nix.POS]: pos$55,
           value: nix.thunk(() => nix.sel(nix.app(mergeDefinitions, loc, nix.thunk(() => nix.sel(opt, "type")), nix.thunk(() => [def])), "mergedValue")),
         }), defs$));
       return nix.builtins.throw(nix.thunk(() => nix.str`The option \`${nix.app(showOption, loc)}' is read-only, but it's set multiple times. Definition values:${nix.app(showDefs, separateDefs)}`));
@@ -678,7 +678,7 @@ ${nix.app(showRawDecls, loc, nonOptions)}`));
       const from_2 = nix.thunk(() => nix.sel(res, "defsFinal'"));
       const from_3 = nix.thunk(() => nix.sel(res, "checkedAndMerged"));
       return {
-      __proto__: pos$56,
+      [nix.POS]: pos$56,
       value: nix.thunk(() => nix.app(addErrorContext, nix.thunk(() => nix.str`while evaluating the option \`${nix.app(showOption, loc)}':`), nix.thunk(() => (nix.asBool(nix.has(opt, "apply")) ? nix.app(nix.sel(opt, "apply"), nix.thunk(() => nix.sel(res, "mergedValue"))) : nix.sel(res, "mergedValue"))))),
       highestPrio: nix.thunk(() => nix.attr(from_2, "highestPrio")),
       definitions: nix.thunk(() => nix.app(catAttrs, "value", nix.thunk(() => nix.sel(res, "defsFinal")))),
@@ -707,12 +707,12 @@ Alternatively, this message may also occur as false positive when mixing Nixpkgs
 versions, if one Nixpkgs is between 83fed2e6..58696117 (Aug 28 - Oct 28 2025)
 `)));
   const mergeDefinitions = (loc) => (type) => (defs) => (() => {
-    const defsFinal$ = nix.thunk(() => (nix.asBool((nix.asBool(nix.eq(nix.app(length, defs), 1n)) && nix.asBool(nix.app(addErrorContext, nix.thunk(() => nix.str`while evaluating definitions from \`${nix.sel(nix.app(head, defs), "file")}':`), nix.thunk(() => !nix.asBool(nix.has(nix.sel(nix.app(head, defs), "value"), "_type"))))))) ? { __proto__: pos$57, values: defs, highestPrio: defaultOverridePriority } : (() => {
-      const defsNormalized = nix.thunk(() => nix.app(concatMap, (m) => nix.builtins.map((value) => (nix.asBool(nix.eq(nix.selOr(value, () => null, "_type"), "definition")) ? nix.force(value) : { __proto__: pos$58, file: nix.thunk(() => nix.attr(m, "file")), value: value }), nix.thunk(() => nix.app(addErrorContext, nix.thunk(() => nix.str`while evaluating definitions from \`${nix.sel(m, "file")}':`), nix.thunk(() => nix.app(dischargeProperties, nix.thunk(() => nix.sel(m, "value"))))))), defs));
+    const defsFinal$ = nix.thunk(() => (nix.asBool((nix.asBool(nix.eq(nix.app(length, defs), 1n)) && nix.asBool(nix.app(addErrorContext, nix.thunk(() => nix.str`while evaluating definitions from \`${nix.sel(nix.app(head, defs), "file")}':`), nix.thunk(() => !nix.asBool(nix.has(nix.sel(nix.app(head, defs), "value"), "_type"))))))) ? { [nix.POS]: pos$57, values: defs, highestPrio: defaultOverridePriority } : (() => {
+      const defsNormalized = nix.thunk(() => nix.app(concatMap, (m) => nix.builtins.map((value) => (nix.asBool(nix.eq(nix.selOr(value, () => null, "_type"), "definition")) ? nix.force(value) : { [nix.POS]: pos$58, file: nix.thunk(() => nix.attr(m, "file")), value: value }), nix.thunk(() => nix.app(addErrorContext, nix.thunk(() => nix.str`while evaluating definitions from \`${nix.sel(m, "file")}':`), nix.thunk(() => nix.app(dischargeProperties, nix.thunk(() => nix.sel(m, "value"))))))), defs));
       const defsFiltered = nix.thunk(() => nix.app(filterOverrides$, defsNormalized));
       const defsSorted = nix.thunk(() => (nix.asBool(nix.app(any, (def) => nix.eq(nix.selOr(def, () => "", "value", "_type"), "order"), nix.thunk(() => nix.sel(defsFiltered, "values")))) ? nix.app(sortProperties, nix.thunk(() => nix.sel(defsFiltered, "values"))) : nix.sel(defsFiltered, "values")));
       return {
-        __proto__: pos$59,
+        [nix.POS]: pos$59,
         values: defsSorted,
         highestPrio: nix.thunk(() => nix.attr(defsFiltered, "highestPrio")),
       };
@@ -730,24 +730,24 @@ versions, if one Nixpkgs is between 83fed2e6..58696117 (Aug 28 - Oct 28 2025)
       const valueMeta = nix.arg($_1, "valueMeta");
       return nix.force(args_2);
     })(), formals$10), nix.thunk(() => (nix.asBool(nix.has(nix.sel(type, "merge"), "v2")) ? (() => {
-        const r = nix.thunk(() => nix.app(checkV2MergeCoherence, loc, type, nix.thunk(() => nix.app(nix.sel(type, "merge", "v2"), nix.thunk(() => ({ __proto__: pos$60, loc: loc, defs: defsFinal }))))));
+        const r = nix.thunk(() => nix.app(checkV2MergeCoherence, loc, type, nix.thunk(() => nix.app(nix.sel(type, "merge", "v2"), nix.thunk(() => ({ [nix.POS]: pos$60, loc: loc, defs: defsFinal }))))));
         return nix.update(r, {
-          __proto__: pos$63,
+          [nix.POS]: pos$63,
           valueMeta: nix.thunk(() => nix.update(nix.sel(r, "valueMeta"), {
-            __proto__: pos$62,
-            _internal: nix.thunk(() => ({ __proto__: pos$61, type: type })),
+            [nix.POS]: pos$62,
+            _internal: nix.thunk(() => ({ [nix.POS]: pos$61, type: type })),
           })),
         });
       })() : {
-        __proto__: pos$64,
+        [nix.POS]: pos$64,
         headError: null,
         value: mergedValue,
         valueMeta: nix.thunk(() => ({})),
       }))));
     const isDefined = nix.thunk(() => !nix.eq(defsFinal, []));
-    const optionalValue = nix.thunk(() => (nix.asBool(isDefined) ? { __proto__: pos$65, value: mergedValue } : {}));
+    const optionalValue = nix.thunk(() => (nix.asBool(isDefined) ? { [nix.POS]: pos$65, value: mergedValue } : {}));
     return {
-      __proto__: pos$66,
+      [nix.POS]: pos$66,
       "defsFinal'": defsFinal$,
       defsFinal,
       mergedValue,
@@ -764,15 +764,15 @@ versions, if one Nixpkgs is between 83fed2e6..58696117 (Aug 28 - Oct 28 2025)
   const filterOverrides = (defs) => nix.sel(nix.app(filterOverrides$, defs), "values");
   const filterOverrides$ = nix.thunk(() => (() => {
     const getPrio = (def) => (nix.asBool(nix.eq(nix.selOr(def, () => "", "value", "_type"), "override")) ? nix.sel(def, "value", "priority") : defaultOverridePriority);
-    const strip = (def) => (nix.asBool(nix.eq(nix.selOr(def, () => "", "value", "_type"), "override")) ? nix.update(def, { __proto__: pos$67, value: nix.thunk(() => nix.sel(def, "value", "content")) }) : nix.force(def));
+    const strip = (def) => (nix.asBool(nix.eq(nix.selOr(def, () => "", "value", "_type"), "override")) ? nix.update(def, { [nix.POS]: pos$67, value: nix.thunk(() => nix.sel(def, "value", "content")) }) : nix.force(def));
     return (defs) => (nix.asBool(nix.eq(nix.app(length, defs), 1n)) ? {
-      __proto__: pos$68,
+      [nix.POS]: pos$68,
       values: nix.thunk(() => nix.builtins.map(strip, defs)),
       highestPrio: nix.thunk(() => nix.app(getPrio, nix.thunk(() => nix.app(head, defs)))),
     } : (() => {
       const highestPrio = nix.thunk(() => nix.app(foldl$, (prio) => (def) => nix.app(min, nix.thunk(() => nix.app(getPrio, def)), prio), 9999n, defs));
       return {
-        __proto__: pos$69,
+        [nix.POS]: pos$69,
         values: nix.thunk(() => nix.app(concatMap, (def) => (nix.asBool(nix.eq(nix.app(getPrio, def), highestPrio)) ? [nix.thunk(() => nix.app(strip, def))] : []), defs)),
         highestPrio: highestPrio,
       };
@@ -782,7 +782,7 @@ versions, if one Nixpkgs is between 83fed2e6..58696117 (Aug 28 - Oct 28 2025)
     const strip = (def) => (nix.asBool(nix.eq(nix.selOr(def, () => "", "value", "_type"), "order")) ? nix.update(def, (() => {
       const from_2 = nix.thunk(() => nix.sel(def, "value"));
       return {
-      __proto__: pos$70,
+      [nix.POS]: pos$70,
       value: nix.thunk(() => nix.sel(def, "value", "content")),
       priority: nix.thunk(() => nix.attr(from_2, "priority")),
     };
@@ -791,8 +791,8 @@ versions, if one Nixpkgs is between 83fed2e6..58696117 (Aug 28 - Oct 28 2025)
     const compare = (a) => (b) => nix.lt(nix.selOr(a, () => defaultOrderPriority, "priority"), nix.selOr(b, () => defaultOrderPriority, "priority"));
     return nix.app(sort, compare, defs$);
   })();
-  const fixupOptionType = (loc) => (opt) => (nix.asBool(nix.eq(nix.selOr(opt, () => null, "type", "getSubModules"), null)) ? (nix.asBool(nix.has(opt, "type")) ? nix.force(opt) : nix.update(opt, { __proto__: pos$71, type: nix.thunk(() => nix.sel(types, "unspecified")) })) : nix.update(opt, {
-    __proto__: pos$72,
+  const fixupOptionType = (loc) => (opt) => (nix.asBool(nix.eq(nix.selOr(opt, () => null, "type", "getSubModules"), null)) ? (nix.asBool(nix.has(opt, "type")) ? nix.force(opt) : nix.update(opt, { [nix.POS]: pos$71, type: nix.thunk(() => nix.sel(types, "unspecified")) })) : nix.update(opt, {
+    [nix.POS]: pos$72,
     type: nix.thunk(() => nix.app(nix.sel(opt, "type", "substSubModules"), nix.thunk(() => nix.sel(opt, "options")))),
     options: [],
   }));
@@ -802,7 +802,7 @@ versions, if one Nixpkgs is between 83fed2e6..58696117 (Aug 28 - Oct 28 2025)
           const def = args_1;
           const value = nix.arg($_1, "value");
           return nix.builtins.map(nix.thunk(() => nix.app(mapAttrsToList, (k) => (value_1) => nix.attrsDyn({}, [
-                [nix.force(k), nix.thunk(() => nix.update(def, { __proto__: pos$73, value: value_1 }))],
+                [nix.force(k), nix.thunk(() => nix.update(def, { [nix.POS]: pos$73, value: value_1 }))],
               ]))), nix.thunk(() => nix.app(pushDownProperties, value)));
         })(), formals$11), nix.thunk(() => nix.sel(opt, "definitionsWithLocations"))))));
     nix.assert_((nix.asBool(nix.eq(nix.sel(opt, "type", "name"), "attrsOf")) || nix.asBool(nix.eq(nix.sel(opt, "type", "name"), "lazyAttrsOf"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/modules.nix:1553:5");
@@ -811,25 +811,25 @@ versions, if one Nixpkgs is between 83fed2e6..58696117 (Aug 28 - Oct 28 2025)
         return (() => {
           const from_2 = nix.thunk(() => nix.sel(merging, "defsFinal'"));
           return {
-          __proto__: pos$74,
+          [nix.POS]: pos$74,
           value: nix.thunk(() => nix.sel(merging, "mergedValue")),
           highestPrio: nix.thunk(() => nix.attr(from_2, "highestPrio")),
         };
         })();
       })(), defsByAttr);
   })();
-  const mkIf = (condition) => (content) => ({ __proto__: pos$75, _type: "if", condition: condition, content: content });
+  const mkIf = (condition) => (content) => ({ [nix.POS]: pos$75, _type: "if", condition: condition, content: content });
   const mkAssert = (assertion) => (message) => (content) => nix.app(mkIf, nix.thunk(() => (nix.asBool(assertion) ? true : nix.builtins.throw(nix.thunk(() => nix.str`
 Failed assertion: ${message}`)))), content);
-  const mkMerge = (contents) => ({ __proto__: pos$76, _type: "merge", contents: contents });
+  const mkMerge = (contents) => ({ [nix.POS]: pos$76, _type: "merge", contents: contents });
   const mkDefinition = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$12);
     const args_2 = args_1;
     const file = nix.arg($_1, "file");
     const value = nix.arg($_1, "value");
-    return nix.update(args_2, { __proto__: pos$77, _type: "definition" });
+    return nix.update(args_2, { [nix.POS]: pos$77, _type: "definition" });
   })(), formals$12);
-  const mkOverride = (priority) => (content) => ({ __proto__: pos$78, _type: "override", priority: priority, content: content });
+  const mkOverride = (priority) => (content) => ({ [nix.POS]: pos$78, _type: "override", priority: priority, content: content });
   const mkOptionDefault = nix.thunk(() => nix.app(mkOverride, 1500n));
   const mkDefault = nix.thunk(() => nix.app(mkOverride, 1000n));
   const defaultOverridePriority = 100n;
@@ -837,21 +837,21 @@ Failed assertion: ${message}`)))), content);
   const mkForce = nix.thunk(() => nix.app(mkOverride, 50n));
   const mkVMOverride = nix.thunk(() => nix.app(mkOverride, 10n));
   const mkFixStrictness = nix.thunk(() => nix.app(warn, "lib.mkFixStrictness has no effect and will be removed. It returns its argument unmodified, so you can just remove any calls.", id));
-  const mkOrder = (priority) => (content) => ({ __proto__: pos$79, _type: "order", priority: priority, content: content });
+  const mkOrder = (priority) => (content) => ({ [nix.POS]: pos$79, _type: "order", priority: priority, content: content });
   const mapDefinitionValue = (f) => (def) => (nix.asBool(nix.has(def, "_type")) ? (nix.asBool(nix.eq(nix.sel(def, "_type"), "merge")) ? nix.update(def, {
-    __proto__: pos$80,
+    [nix.POS]: pos$80,
     contents: nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.app(mapDefinitionValue, f)), nix.thunk(() => nix.sel(def, "contents")))),
   }) : (nix.asBool(nix.eq(nix.sel(def, "_type"), "if")) ? nix.update(def, {
-    __proto__: pos$81,
+    [nix.POS]: pos$81,
     content: nix.thunk(() => nix.app(mapDefinitionValue, f, nix.thunk(() => nix.sel(def, "content")))),
   }) : (nix.asBool(nix.eq(nix.sel(def, "_type"), "override")) ? nix.update(def, {
-    __proto__: pos$82,
+    [nix.POS]: pos$82,
     content: nix.thunk(() => nix.app(mapDefinitionValue, f, nix.thunk(() => nix.sel(def, "content")))),
   }) : (nix.asBool(nix.eq(nix.sel(def, "_type"), "order")) ? nix.update(def, {
-    __proto__: pos$83,
+    [nix.POS]: pos$83,
     content: nix.thunk(() => nix.app(mapDefinitionValue, f, nix.thunk(() => nix.sel(def, "content")))),
   }) : (nix.asBool(nix.eq(nix.sel(def, "_type"), "definition")) ? nix.update(def, {
-    __proto__: pos$84,
+    [nix.POS]: pos$84,
     value: nix.thunk(() => nix.app(mapDefinitionValue, f, nix.thunk(() => nix.sel(def, "value")))),
   }) : nix.app(f, def)))))) : nix.app(f, def));
   const mapAttrsOfSubmodule = (f) => (opt) => (() => {
@@ -859,7 +859,7 @@ Failed assertion: ${message}`)))), content);
     nix.assert_((nix.asBool(nix.eq(nix.sel(opt, "type", "name"), "attrsOf")) || nix.asBool(nix.eq(nix.sel(opt, "type", "name"), "lazyAttrsOf"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/modules.nix:1759:5");
     nix.assert_(nix.eq(nix.sel(opt, "type", "nestedTypes", "elemType", "name"), "submodule"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/modules.nix:1760:5");
     return nix.app(mapAttrs, (name) => (attrMeta) => nix.app(f, name, nix.thunk(() => ({
-          __proto__: pos$85,
+          [nix.POS]: pos$85,
           cfg: nix.thunk(() => nix.sel(attrMeta, "configuration", "config")),
           opt: nix.thunk(() => nix.sel(attrMeta, "configuration", "options")),
         }))), nix.thunk(() => nix.sel(opt, "valueMeta", "attrs")));
@@ -875,24 +875,24 @@ Failed assertion: ${message}`)))), content);
     return nix.app(mkIf, nix.thunk(() => nix.sel(option, "isDefined")), nix.thunk(() => nix.app(wrap, nix.thunk(() => nix.app(mkMerge, defsWithPrio)))));
   })();
   const mkAliasIfDef = nix.thunk(() => nix.app(nix.sel(lib, "warn"), "Usage of 'mkAliasIfDef' has been deprecated. Use 'mkIf option.isDefined' instead.", (option) => nix.app(mkIf, nix.thunk(() => nix.sel(option, "isDefined")))));
-  const fixMergeModules = (modules) => (args_1) => nix.app(evalModules, nix.thunk(() => ({ __proto__: pos$86, modules: modules, args: args_1, check: false })));
+  const fixMergeModules = (modules) => (args_1) => nix.app(evalModules, nix.thunk(() => ({ [nix.POS]: pos$86, modules: modules, args: args_1, check: false })));
   const mkRemovedOptionModule = (optionName) => (replacementInstructions) => nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$13);
     const options = nix.arg($_1, "options");
     return {
-      __proto__: pos$90,
+      [nix.POS]: pos$90,
       options: nix.thunk(() => nix.app(setAttrByPath, optionName, nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$87,
+            [nix.POS]: pos$87,
             visible: false,
             apply: (x) => nix.builtins.throw(nix.thunk(() => nix.str`The option \`${nix.app(showOption, optionName)}' can no longer be used since it's been removed. ${replacementInstructions}`)),
           })))))),
       config: nix.thunk(() => ({
-        __proto__: pos$89,
+        [nix.POS]: pos$89,
         assertions: nix.thunk(() => (() => {
           const opt = nix.thunk(() => nix.app(getAttrFromPath, optionName, options));
           return [
             nix.thunk(() => ({
-              __proto__: pos$88,
+              [nix.POS]: pos$88,
               assertion: nix.thunk(() => !nix.asBool(nix.sel(opt, "isDefined"))),
               message: nix.thunk(() => nix.str`The option definition \`${nix.app(showOption, optionName)}' in ${nix.app(showFiles, nix.thunk(() => nix.sel(opt, "files")))} no longer has any effect; please remove it.
 ${replacementInstructions}
@@ -904,7 +904,7 @@ ${replacementInstructions}
     };
   })(), formals$13);
   const mkRenamedOptionModule = (from_2) => (to) => nix.app(doRename, nix.thunk(() => ({
-      __proto__: pos$91,
+      [nix.POS]: pos$91,
       from: from_2,
       to: to,
       visible: false,
@@ -917,7 +917,7 @@ ${replacementInstructions}
     const to = nix.arg($_1, "to");
     const sinceRelease = nix.arg($_1, "sinceRelease");
     return nix.app(doRename, nix.thunk(() => ({
-        __proto__: pos$92,
+        [nix.POS]: pos$92,
         from: from_2,
         to: to,
         visible: false,
@@ -930,10 +930,10 @@ ${replacementInstructions}
     const config = nix.arg($_1, "config");
     const options = nix.arg($_1, "options");
     return {
-      __proto__: pos$95,
-      options: nix.thunk(() => nix.app(foldl$, recursiveUpdate, nix.thunk(() => ({})), nix.thunk(() => nix.builtins.map((path) => nix.app(setAttrByPath, path, nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ __proto__: pos$93, visible: false, default: "_mkMergedOptionModule" }))))), from_2)))),
+      [nix.POS]: pos$95,
+      options: nix.thunk(() => nix.app(foldl$, recursiveUpdate, nix.thunk(() => ({})), nix.thunk(() => nix.builtins.map((path) => nix.app(setAttrByPath, path, nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$93, visible: false, default: "_mkMergedOptionModule" }))))), from_2)))),
       config: nix.thunk(() => nix.update({
-        __proto__: pos$94,
+        [nix.POS]: pos$94,
         warnings: nix.thunk(() => nix.app(filter, (x) => !nix.eq(x, ""), nix.thunk(() => nix.builtins.map((f) => (() => {
               const val = nix.thunk(() => nix.app(getAttrFromPath, f, config));
               const opt = nix.thunk(() => nix.app(getAttrFromPath, f, options));
@@ -943,7 +943,7 @@ ${replacementInstructions}
     };
   })(), formals$15);
   const mkChangedOptionModule = (from_2) => (to) => (changeFn) => nix.app(mkMergedOptionModule, nix.thunk(() => [from_2]), to, changeFn);
-  const mkAliasOptionModule = (from_2) => (to) => nix.app(doRename, nix.thunk(() => ({ __proto__: pos$96, from: from_2, to: to, visible: true, warn: false, use: id })));
+  const mkAliasOptionModule = (from_2) => (to) => nix.app(doRename, nix.thunk(() => ({ [nix.POS]: pos$96, from: from_2, to: to, visible: true, warn: false, use: id })));
   const mkAliasOptionModuleMD = nix.thunk(() => nix.app(nix.sel(lib, "warn"), "mkAliasOptionModuleMD is deprecated and will be removed in 26.05; please use mkAliasOptionModule.", mkAliasOptionModule));
   const mkDerivedConfig = (opt) => (f) => nix.app(mkOverride, nix.thunk(() => nix.selOr(opt, () => defaultOverridePriority, "highestPrio")), nix.thunk(() => nix.app(f, nix.thunk(() => nix.sel(opt, "value")))));
   const doRename = nix.lambda((args_1) => (() => {
@@ -966,16 +966,16 @@ ${replacementInstructions}
         return nix.selOr(opt, () => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({}))), "type");
       })());
       return {
-        __proto__: pos$100,
+        [nix.POS]: pos$100,
         options: nix.thunk(() => nix.app(setAttrByPath, from_2, nix.thunk(() => nix.update(nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$97,
+              [nix.POS]: pos$97,
               visible: visible,
               description: nix.thunk(() => nix.str`Alias of {option}\`${nix.app(showOption, to)}\`.`),
               apply: (x) => nix.app(use, nix.thunk(() => nix.app(toOf, config))),
-            }))), nix.app(optionalAttrs, nix.thunk(() => !nix.eq(toType, null)), nix.thunk(() => ({ __proto__: pos$98, type: toType }))))))),
+            }))), nix.app(optionalAttrs, nix.thunk(() => !nix.eq(toType, null)), nix.thunk(() => ({ [nix.POS]: pos$98, type: toType }))))))),
         config: nix.thunk(() => nix.app(mkIf, condition, nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
               nix.thunk(() => nix.app(optionalAttrs, nix.thunk(() => nix.has(options, "warnings")), nix.thunk(() => ({
-                  __proto__: pos$99,
+                  [nix.POS]: pos$99,
                   warnings: nix.thunk(() => nix.app(optional, nix.thunk(() => (nix.asBool(warn_1) && nix.asBool(nix.sel(fromOpt, "isDefined")))), nix.thunk(() => nix.str`The option \`${nix.app(showOption, from_2)}' defined in ${nix.app(showFiles, nix.thunk(() => nix.sel(fromOpt, "files")))} has been renamed to \`${nix.app(showOption, to)}'.`))),
                 })))),
               nix.thunk(() => (nix.asBool(withPriority) ? nix.app(mkAliasAndWrapDefsWithPriority, nix.thunk(() => nix.app(setAttrByPath, to)), fromOpt) : nix.app(mkAliasAndWrapDefinitions, nix.thunk(() => nix.app(setAttrByPath, to)), fromOpt))),
@@ -985,17 +985,17 @@ ${replacementInstructions}
   })(), formals$16);
   const importApply = (modulePath) => (staticArg) => nix.app(nix.sel(lib, "setDefaultModuleLocation"), modulePath, nix.thunk(() => nix.app(nix.builtins.import(modulePath), staticArg)));
   const importJSON = (file) => ({
-    __proto__: pos$101,
+    [nix.POS]: pos$101,
     _file: file,
     config: nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), file)),
   });
   const importTOML = (file) => ({
-    __proto__: pos$102,
+    [nix.POS]: pos$102,
     _file: file,
     config: nix.thunk(() => nix.app(nix.sel(lib, "importTOML"), file)),
   });
   const private$ = nix.thunk(() => nix.app(mapAttrs, (k) => nix.app(warn, nix.thunk(() => nix.str`External use of \`lib.modules.${k}\` is deprecated. If your use case isn't covered by non-deprecated functions, we'd like to know more and perhaps support your use case well, instead of providing access to these low level functions. In this case please open an issue in https://github.com/nixos/nixpkgs/issues/.`)), nix.thunk(() => ({
-      __proto__: pos$103,
+      [nix.POS]: pos$103,
       applyModuleArgsIfFunction: applyModuleArgsIfFunction,
       dischargeProperties: dischargeProperties,
       mergeModules: mergeModules,
@@ -1019,7 +1019,7 @@ ${replacementInstructions}
     const good = (s) => nix.str`${esc}[1;32m${s}${esc}[0m`;
     const code = (s) => nix.str`${esc}[1m${s}${esc}[0m`;
     return {
-      __proto__: pos$106,
+      [nix.POS]: pos$106,
       not_a_module: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$18);
         const fallbackFile = nix.arg($_1, "fallbackFile");
@@ -1033,7 +1033,7 @@ A module is typically loaded by adding it to the ${nix.app(code, "imports = [ ..
 Please make sure that each of the list items is a module, and not a different kind of value.
 `),
           ], nix.app(optionalMatch, nix.thunk(() => ({
-              __proto__: pos$105,
+              [nix.POS]: pos$105,
               configuration: nix.thunk(() => nix.app(trim, "If you really mean to import this configuration, instead please only import the modules that make up the configuration.\nYou may have to create a `let` binding, file or attribute to give yourself access to the relevant modules.\nWhile loading a configuration into the module system is a very sensible idea, it can not be done cleanly in practice.\n")),
               flake: nix.thunk(() => nix.app(lines, nix.thunk(() => nix.concat([
                   nix.thunk(() => nix.app(trim, nix.thunk(() => nix.str`Perhaps you forgot to select an attribute name?
@@ -1043,7 +1043,7 @@ you need to write something like
     ${nix.app(warn_1, "inputs.someflake")}${(nix.asBool(nix.eq(expectedClass, null)) ? nix.app(good, ".modules.someApp.default") : nix.app(good, nix.thunk(() => nix.str`.modules.${expectedClass}.default`)))}
 `))),
                 ], nix.app(optionalMatch, nix.thunk(() => ({
-                    __proto__: pos$104,
+                    [nix.POS]: pos$104,
                     nixos: nix.thunk(() => nix.app(trim, nix.thunk(() => nix.str`or
     ${nix.app(warn_1, "inputs.someflake")}${nix.app(good, ".nixosModules.default")}
 `))),
@@ -1056,7 +1056,7 @@ you need to write something like
     };
   })());
   return nix.update(private$, {
-    __proto__: pos$107,
+    [nix.POS]: pos$107,
     defaultOrderPriority: defaultOrderPriority,
     defaultOverridePriority: defaultOverridePriority,
     doRename: doRename,

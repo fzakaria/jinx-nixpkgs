@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const version = "0.3.9";
   const format = "wheel";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aistudio-sdk",
       version: version,
       format: format,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "aistudio_sdk",
           version: version,
           format: format,
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [bce_python_sdk, requests, tqdm, psutil, click, prettytable]),
       pythonImportsCheck: nix.thunk(() => ["aistudio_sdk"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python client library for the AIStudio API",
         homepage: "https://pypi.org/project/aistudio-sdk",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

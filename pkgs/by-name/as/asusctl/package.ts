@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const gettext = nix.arg($, "gettext");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "asusctl",
       version: "6.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OpenGamingCollective",
           repo: "asusctl",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -73,7 +73,7 @@ substituteInPlace Makefile \\
       ]),
       buildInputs: nix.thunk(() => [fontconfig, libGL, libinput, libxkbcommon, libgbm, seatd, systemd, wayland]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         RUSTFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.builtins.map((a) => nix.str`-C link-arg=${a}`, nix.thunk(() => [
               "-Wl,--push-state,--no-as-needed",
               "-lEGL",
@@ -90,7 +90,7 @@ patchelf $out/bin/rog-control-center \\
   --add-needed ${nix.app(nix.sel(lib, "getLib"), libxkbcommon)}/lib/libxkbcommon.so.0
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Control daemon, CLI tools, and a collection of crates for interacting with ASUS ROG laptops",
         homepage: "https://github.com/OpenGamingCollective/asusctl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

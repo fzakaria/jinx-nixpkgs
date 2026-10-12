@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const directoryListingUpdater = nix.arg($, "directoryListingUpdater");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gpaste",
       version: "45.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.imagination-land.org/files/gpaste/GPaste-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-seoPqmec9F4/zwmLjpAOUBBIVvLbFRMVPZ3jcloRrZE=",
         })))),
@@ -70,11 +70,11 @@ substitute "${nix.path(here, "./wrapper.js")}" "$extensionDir/prefs.js" \\
   --subst-var-by typelibDir "${nix.builtins.placeholder("out")}/lib/girepository-1.0"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ __proto__: pos$2, pname: "GPaste" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, pname: "GPaste" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/Keruspe/GPaste",
         changelog: nix.thunk(() => nix.str`https://github.com/Keruspe/GPaste/blob/v${nix.sel(finalAttrs, "version")}/NEWS`),
         description: "Clipboard management system with GNOME integration",

@@ -55,12 +55,12 @@ export default nix.lambda((args) => (() => {
         ];
       })()))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "rdc",
       version: "7.2.3",
       outputs: nix.thunk(() => nix.concat(["out"], nix.concat(nix.app(nix.sel(lib, "optionals"), buildDocs, nix.thunk(() => ["doc"])), nix.app(nix.sel(lib, "optionals"), buildTests, nix.thunk(() => ["test"]))))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ROCm",
           repo: "rocm-systems",
           tag: nix.thunk(() => nix.str`rocm-${nix.sel(finalAttrs, "version")}`),
@@ -91,11 +91,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"file(STRINGS /etc/os-release LINUX_DISTRO LIMIT_COUNT 1 REGEX \\\"NAME=\\\")\" \"set(LINUX_DISTRO \\\"NixOS\\\")\"\n",
       postInstall: nix.thunk(() => nix.add("find $out/bin -executable -type f -exec \\\n  patchelf {} --shrink-rpath --allowed-rpath-prefixes \"$NIX_STORE\" \\;\n", nix.app(nix.sel(lib, "optionalString"), buildTests, "mkdir -p $test\nmv $out/bin/rdctst_tests $test/bin\n"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ __proto__: pos$2, finalAttrs: finalAttrs })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$2, finalAttrs: finalAttrs })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Simplifies administration and addresses infrastructure challenges in cluster and datacenter environments",
         homepage: "https://github.com/ROCm/rocm-systems/tree/develop/projects/rdc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

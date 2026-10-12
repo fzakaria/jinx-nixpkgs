@@ -43,19 +43,19 @@ export default nix.lambda((args) => (() => {
   const boolToString = nix.thunk(() => nix.attr(lib, "boolToString"));
   const optionalAttrs = nix.thunk(() => nix.attr(lib, "optionalAttrs"));
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         "transfer-sh": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Easy and fast file sharing from the command-line")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "transfer-sh", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   freeformType: nix.thunk(() => (() => {
                     const w = nix.withScope(types, null);
                     return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
                 })))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 LISTENER: ":8080",
                 BASEDIR: "/var/lib/transfer.sh",
                 TLS_LISTENER_ONLY: false,
@@ -75,13 +75,13 @@ export default nix.lambda((args) => (() => {
               description: "Additional configuration for transfer-sh, see\n<https://github.com/dutchcoders/transfer.sh#usage-1>\nfor supported values.\n\nFor secrets use secretFile option instead.\n",
             })))),
           provider: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["local", "s3", "storj", "gdrive"]))),
               default: "local",
               description: "Storage providers to use",
             })))),
           secretFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               default: null,
               example: "/run/secrets/transfer-sh.env",
@@ -94,28 +94,28 @@ export default nix.lambda((args) => (() => {
       const localProvider = nix.thunk(() => nix.eq(nix.sel(cfg, "provider"), "local"));
       const stateDirectory = "/var/lib/transfer.sh";
       return nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             "transfer-sh": nix.thunk(() => ({
-              __proto__: pos$11,
-              settings: nix.thunk(() => nix.update({ __proto__: pos$9, LISTENER: nix.thunk(() => nix.app(mkDefault, ":8080")) }, nix.app(optionalAttrs, localProvider, nix.thunk(() => ({
-                  __proto__: pos$10,
+              [nix.POS]: pos$11,
+              settings: nix.thunk(() => nix.update({ [nix.POS]: pos$9, LISTENER: nix.thunk(() => nix.app(mkDefault, ":8080")) }, nix.app(optionalAttrs, localProvider, nix.thunk(() => ({
+                  [nix.POS]: pos$10,
                   BASEDIR: nix.thunk(() => nix.app(mkDefault, stateDirectory)),
                 }))))),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             services: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               "transfer-sh": nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 after: nix.thunk(() => ["network.target"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 environment: nix.thunk(() => nix.app(mapAttrs, (_) => (v) => (nix.asBool(nix.app(isBool, v)) ? nix.app(boolToString, v) : nix.builtins.toString(v)), nix.thunk(() => nix.sel(cfg, "settings")))),
                 serviceConfig: nix.thunk(() => nix.update({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   DevicePolicy: "closed",
                   DynamicUser: true,
                   ExecStart: nix.thunk(() => nix.str`${nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))} --provider ${nix.sel(cfg, "provider")}`),
@@ -137,10 +137,10 @@ export default nix.lambda((args) => (() => {
                   SystemCallFilter: nix.thunk(() => ["@system-service"]),
                   StateDirectory: nix.thunk(() => nix.builtins.baseNameOf(stateDirectory)),
                 }, nix.update(nix.app(optionalAttrs, nix.thunk(() => !nix.eq(nix.sel(cfg, "secretFile"), null)), nix.thunk(() => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     EnvironmentFile: nix.thunk(() => nix.sel(cfg, "secretFile")),
                   }))), nix.app(optionalAttrs, localProvider, nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     ReadWritePaths: nix.thunk(() => nix.sel(cfg, "settings", "BASEDIR")),
                   })))))),
               })),
@@ -149,7 +149,7 @@ export default nix.lambda((args) => (() => {
         })));
     })()),
     meta: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "ocfox"))];

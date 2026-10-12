@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.6.23";
       const pname = "gmime";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gmime/2.6/${pname}-${version}.tar.xz`),
           sha256: "0slzlzcr3h8jikpz5a5amqd0csqh2m40gdk910ws2hnaf5m6hjbi",
         }))));
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [gnupg]);
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/jstedfast/gmime/",
         description: "C/C++ library for creating, editing and parsing MIME messages and structures",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         pname,
         src,

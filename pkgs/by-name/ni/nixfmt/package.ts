@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const overrideCabal = nix.thunk(() => nix.attr(from, "overrideCabal"));
   const justStaticExecutables = nix.thunk(() => nix.attr(from, "justStaticExecutables"));
   const cabalOverrides = (drv) => ({
-    __proto__: pos$2,
-    passthru: nix.thunk(() => ({ __proto__: pos$1, updateScript: nix.path(here, "./update.sh") })),
+    [nix.POS]: pos$2,
+    passthru: nix.thunk(() => ({ [nix.POS]: pos$1, updateScript: nix.path(here, "./update.sh") })),
     teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "formatter"))]),
     changelog: nix.thunk(() => nix.str`https://github.com/NixOS/nixfmt/releases/tag/v${nix.sel(drv, "version")}`),
   });
   const lateOverrides = (finalAttrs) => (prevAttrs) => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     doInstallCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
     nativeInstallCheckInputs: nix.thunk(() => nix.concat(nix.selOr(prevAttrs, () => [], "nativeInstallCheckInputs"), [versionCheckHook])),
   });

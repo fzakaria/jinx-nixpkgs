@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   ]);
   const pkgConfigLibs = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), enableXwinGraphics, nix.thunk(() => ["x11"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(enableXwinGraphics)), nix.thunk(() => ["ncurses"]))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pmars",
       version: "0.9.5",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://www.koth.org/pmars/pmars-${nix.sel(finalAttrs, "version")}.zip`),
           stripRoot: false,
           hash: "sha256-p6iZkb0Nrcj7LtAxtS6Ics5CS9taPHbsoIdE5C1QYnI=",
@@ -48,9 +48,9 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => ["format"]),
       enableParallelBuilding: true,
       installPhase: "runHook preInstall\n\ninstall -Dm755 pmars $out/bin/pmars\n\nmkdir -p $out/share/pmars\ncp -R -t $out/share/pmars/ ../{AUTHORS,COPYING,README,config,warriors}\n\ninstallManPage ../doc/pmars.6\n\nmkdir -p $out/share/doc/pmars\ncp -t $out/share/doc/pmars/ ../doc/{primer.*,redcode.ref}\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, options: options })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, options: options })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Official Core War simulator",
         longDescription: "Portable MARS is the official Core War simulator of the ICWS and the rec.games.corewar newsgroup. pMARS serves as\na test bed for new Redcode standards and tournament styles. It has also been used in genetic algorithm experiments\nand as an assembly language teaching aid. pMARS is under active development by a group of Core War enthusiasts who\nput a lot of time into this project.\n",
         homepage: "http://www.koth.org/pmars/",

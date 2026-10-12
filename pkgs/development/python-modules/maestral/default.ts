@@ -41,12 +41,12 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "maestral",
       version: "1.9.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SamSchott",
           repo: "maestral",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -110,12 +110,12 @@ export default nix.lambda((args) => (() => {
         ])))),
       pythonImportsCheck: nix.thunk(() => ["maestral"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, ignoredVersions: "dev", "rev-prefix": "v" })))),
-        tests: nix.thunk(() => ({ __proto__: pos$3, maestral: nix.thunk(() => nix.sel(nixosTests, "maestral")) })),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, ignoredVersions: "dev", "rev-prefix": "v" })))),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, maestral: nix.thunk(() => nix.sel(nixosTests, "maestral")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Open-source Dropbox client for macOS and Linux",
         mainProgram: "maestral",
         homepage: "https://maestral.app",

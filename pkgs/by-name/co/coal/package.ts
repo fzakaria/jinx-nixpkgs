@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const qhull = nix.arg($, "qhull");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "coal",
       version: "3.0.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "coal-library",
           repo: "coal",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["dev", "out", "doc"]),
       postFixup: "moveToOutput share/ament_index \"$dev\"\nmoveToOutput share/coal \"$dev\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collision Detection Library, previously hpp-fcl",
         homepage: "https://github.com/coal-library/coal",
         changelog: nix.thunk(() => nix.str`https://github.com/coal-library/coal/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const bzip2 = nix.arg($, "bzip2");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "monetdb",
       version: "11.55.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dev.monetdb.org/downloads/sources/archive/MonetDB-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-UzBCkjtqGdUaTtWjH+Pn2ci8FWuh+I+aX+kwUFnKzf0=",
         })))),
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace cmake/monetdb-packages.cmake --replace \\\n  'get_os_release_info(LINUX_DISTRO LINUX_DISTRO_VERSION)' \\\n  'set(LINUX_DISTRO \"nixos\")'\n",
       postInstall: "rm $out/bin/monetdb_mtest.sh \\\n  $out/bin/mktest.py \\\n  $out/bin/sqlsample.php \\\n  $out/bin/sqllogictest.py \\\n  $out/bin/Mz.py \\\n  $out/bin/Mtest.py \\\n  $out/bin/sqlsample.pl \\\n  $out/bin/malsample.pl\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, monetdb: nix.thunk(() => nix.attr(nixosTests, "monetdb")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, monetdb: nix.thunk(() => nix.attr(nixosTests, "monetdb")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Open source database system",
         homepage: "https://www.monetdb.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

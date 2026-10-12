@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "SDL_sixel",
       version: "0-unstable-2016-02-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "saitoha",
           repo: "SDL1.2-SIXEL",
           rev: "ab3fccac6e34260a617be511bd8c2b2beae41952",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "enableFeature"), true, "video-sixel"))]),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/saitoha/SDL1.2-SIXEL",
         description: "SDL 1.2 patched with libsixel support",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

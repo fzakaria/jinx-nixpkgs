@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.37.1";
       const format = "other";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pypa",
           repo: pname,
           rev: version,
@@ -36,7 +36,7 @@ patch -p1 < ${nix.path(here, "./0001-tests-Rename-a-a-o-_-.py-_-.py.patch")}
       const pythonImportsCheck = nix.thunk(() => ["wheel"]);
       const pipInstallFlags = nix.thunk(() => ["--ignore-installed"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/pypa/wheel",
         description: "Built-package format for Python",
         longDescription: "This library is the reference implementation of the Python wheel packaging standard,\nas defined in PEP 427.\n\nIt has two different roles:\n\n- A setuptools extension for building wheels that provides the bdist_wheel setuptools command\n- A command line tool for working with wheel files\n\nIt should be noted that wheel is not intended to be used as a library,\nand as such there is no stable, public API.\n",
@@ -47,7 +47,7 @@ patch -p1 < ${nix.path(here, "./0001-tests-Rename-a-a-o-_-.py-_-.py.patch")}
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

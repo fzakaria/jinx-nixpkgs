@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "proxy",
       version: "1.0.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stalwartlabs",
           repo: "proxy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
           "tests::sql_store::sql_store_upsert_and_remove",
         ]), (test) => nix.str`--skip=${test}`)),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Multi-protocol e-mail migration proxy",
         longDescription: " The migration proxy sits in front of one or more mail backends and decides, on a per-account basis, which backend a given connection belongs to. It terminates IMAP, POP3, ManageSieve, SMTP submission, SMTP/LMTP and HTTP (JMAP) sessions, identifies the account behind each connection from the credentials the client already presents, looks up the destination that account is assigned to, replays the authentication to that backend, and bridges the session. Because the routing decision is made from the existing credentials, no client reconfiguration is required: users keep the same server name, ports and passwords while the proxy routes them to the correct system.\n\nIt is built for three scenarios: migrating from legacy servers (Dovecot, Cyrus and other IMAP/POP3/SMTP servers) onto Stalwart one mailbox at a time, migrating between Stalwart versions by running an old and a new deployment side by side, and acting as a cache-locality router in front of a Stalwart cluster so each account is consistently pinned to the same node.\n",
         homepage: "https://github.com/stalwartlabs/proxy",

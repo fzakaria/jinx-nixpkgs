@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         "M=$(PWD)",
       ], makeFlags));
       const meta = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Kernel module for Nvidia NIC firmware update",
         homepage: "https://github.com/Mellanox/mstflint",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         version,
         src,

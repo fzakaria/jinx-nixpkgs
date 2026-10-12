@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const libxcb = nix.arg($, "libxcb");
   const alsa_lib = nix.arg($, "alsa-lib");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "halloy",
       version: "2026.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "squidowl",
           repo: "halloy",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "org.squidowl.halloy",
             desktopName: "Halloy",
             comment: "IRC client written in Rust",
@@ -87,11 +87,11 @@ substitute \\
 makeBinaryWrapper "$out/bin/halloy" "$APP_DIR/MacOS/halloy"
 `)))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "IRC application",
         homepage: "https://github.com/squidowl/halloy",
         changelog: nix.thunk(() => nix.str`https://github.com/squidowl/halloy/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

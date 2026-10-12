@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tflint-ruleset-aws";
       const version = "0.49.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "terraform-linters",
           repo: pname,
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ ln -s $out/github.com/terraform-linters/${pname}/${version}/${pname} $out/
 rm -R $out/bin
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/terraform-linters/tflint-ruleset-aws",
         changelog: nix.thunk(() => nix.str`https://github.com/terraform-linters/tflint-ruleset-aws/blob/v${version}/CHANGELOG.md`),
         description: "TFLint ruleset plugin for Terraform AWS Provider",
@@ -49,7 +49,7 @@ rm -R $out/bin
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

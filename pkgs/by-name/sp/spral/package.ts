@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const llvmPackages = nix.arg($, "llvmPackages");
   const metis = nix.arg($, "metis");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "spral",
       version: "2025.09.18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ralna",
           repo: "spral",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,19 +47,19 @@ export default nix.lambda((args) => (() => {
         ]))),
       buildInputs: nix.thunk(() => nix.concat([
         blas,
-        nix.thunk(() => nix.app(nix.sel(hwloc, "override"), nix.thunk(() => ({ __proto__: pos$2, enableCuda: enableCuda })))),
+        nix.thunk(() => nix.app(nix.sel(hwloc, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, enableCuda: enableCuda })))),
         lapack,
         metis,
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(llvmPackages, "openmp"))])))),
       mesonFlags: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "mesonBool"), "tests", true))]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ __proto__: pos$3, LDFLAGS: "-lomp" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$3, LDFLAGS: "-lomp" })))),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Sparse Parallel Robust Algorithms Library",
         homepage: "https://github.com/ralna/spral",
         changelog: nix.thunk(() => nix.str`https://github.com/ralna/spral/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

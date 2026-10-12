@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const writeShellScript = nix.arg($, "writeShellScript");
   const nugetDeps = nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.sel(dotnetCorePackages, "fetchNupkg")), nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./deps.json")))));
   return nix.app(nix.sel(renode, "overrideAttrs"), (finalAttrs) => (old) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "renode-unstable",
       version: "1.17.0-unstable-2026-10-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "renode",
           repo: "renode",
           rev: "b039ed10ea66198afd6f68f2ec5a041e76e5e1dc",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "subtractLists"), nix.thunk(() => nix.sel(old, "passthru", "nugetDeps")), nix.thunk(() => nix.sel(old, "buildInputs"))), nugetDeps)),
       passthru: nix.thunk(() => nix.update(nix.sel(old, "passthru"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         nugetDeps: nugetDeps,
         "fetch-deps": nix.thunk(() => nix.app(writeShellScript, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage", "name")}-fetch-deps`), nix.thunk(() => nix.str`exec ${nix.sel(old, "passthru", "fetch-deps")} "\${1:-${nix.builtins.toString(nix.path(here, "./deps.json"))}}"
 `))),

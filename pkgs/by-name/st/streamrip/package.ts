@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "streamrip",
       version: "2.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nathom",
           repo: "streamrip",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
   --replace-fail '"ffmpeg"' '"${nix.app(nix.sel(lib, "getExe"), ffmpeg)}"'
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Scriptable music downloader for Qobuz, Tidal, SoundCloud, and Deezer",
         homepage: "https://github.com/nathom/streamrip",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

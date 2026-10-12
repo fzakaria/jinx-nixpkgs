@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const requests_oauthlib = nix.arg($, "requests-oauthlib");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "google-nest-sdm",
       version: "9.2.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "allenporter",
           repo: "python-google-nest-sdm",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         "test_event_manager_event_expiration_with_transcode",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module for Google Nest Device Access using the Smart Device Management API",
         homepage: "https://github.com/allenporter/python-google-nest-sdm",
         changelog: nix.thunk(() => nix.str`https://github.com/allenporter/python-google-nest-sdm/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

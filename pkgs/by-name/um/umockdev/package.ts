@@ -34,19 +34,19 @@ export default nix.lambda((args) => (() => {
   const vala = nix.arg($, "vala");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "umockdev",
       version: "0.19.3",
       outputs: nix.thunk(() => ["bin", "out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/martinpitt/umockdev/releases/download/${nix.sel(finalAttrs, "version")}/umockdev-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-RuReq29la/wJJDjX4OXfTF9R0Y46gzYMK+aAsgehoLc=",
         })))),
       patches: nix.thunk(() => [
         nix.path(here, "./hardcode-paths.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./substitute-udevadm.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             udevadm: nix.thunk(() => nix.str`${systemdMinimal}/bin/udevadm`),
           })))),
       ]),
@@ -68,18 +68,18 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.add("# Substitute the path to this derivation in the patch we apply.\nsubstituteInPlace src/umockdev-wrapper \\\n  --subst-var-by 'LIBDIR' \"${!outputLib}/lib\"\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), "substituteInPlace src/libumockdev-preload.c \\\n  --replace-fail libc.so.6 libc.so\n"))),
       preCheck: "# Our patch makes the path to the `LD_PRELOAD`ed library absolute.\n# When running tests, the library is not yet installed, though,\n# so we need to replace the absolute path with a local one during build.\n# We are using a symlink that will be overridden during installation.\nmkdir -p \"$out/lib\"\nln -s \"$PWD/libumockdev-preload.so.0\" \"$out/lib/libumockdev-preload.so.0\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         withGudev: false,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           withGudev: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (attrs) => ({
-              __proto__: pos$4,
-              passthru: nix.thunk(() => nix.update(nix.sel(attrs, "passthru"), { __proto__: pos$3, withGudev: true })),
+              [nix.POS]: pos$4,
+              passthru: nix.thunk(() => nix.update(nix.sel(attrs, "passthru"), { [nix.POS]: pos$3, withGudev: true })),
             }))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://github.com/martinpitt/umockdev",
         changelog: nix.thunk(() => nix.str`https://github.com/martinpitt/umockdev/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Mock hardware devices for creating unit tests",

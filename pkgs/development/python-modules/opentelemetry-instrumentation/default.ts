@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const wrapt = nix.arg($, "wrapt");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "opentelemetry-instrumentation",
       version: "0.64b0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "open-telemetry",
           repo: "opentelemetry-python-contrib",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["opentelemetry.instrumentation"]),
       disabledTests: nix.thunk(() => ["test_run_cmd_install", "test_run_cmd_print", "test_run_unknown_cmd"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.sel(opentelemetry_api, "updateScript")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Instrumentation Tools & Auto Instrumentation for OpenTelemetry Python",
         homepage: "https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/opentelemetry-instrumentation",
         changelog: nix.thunk(() => nix.str`https://github.com/open-telemetry/opentelemetry-python-contrib/releases/tag/v${nix.sel(finalAttrs, "src", "tag")}`),

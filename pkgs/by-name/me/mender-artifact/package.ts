@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mender-artifact",
       version: "4.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mendersoftware",
           repo: "mender-artifact",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,7 +49,7 @@ runHook postCheck
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://mender.io",
         changelog: nix.thunk(() => nix.str`https://github.com/mendersoftware/mender-artifact/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Library for managing Mender artifact files",

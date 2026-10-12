@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const jemalloc = nix.arg($, "jemalloc");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       pname: "qlever",
       version: "0.5.48",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ad-freiburg",
           repo: "qlever",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       buildInputs: nix.thunk(() => [boost, bzip2, icu, jemalloc, openssl, zlib, zstd]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-fno-semantic-interposition"]))),
       })),
       cmakeFlags: nix.thunk(() => nix.concat([
@@ -77,53 +77,53 @@ export default nix.lambda((args) => (() => {
         ];
       })())),
       passthru: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         deps: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           fsst: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               owner: "cwida",
               repo: "fsst",
               rev: "b228af6356196095eaf9f8f5654b0635f969661e",
               hash: "sha256-XuE/nalt2HEYaII9NytUs0rCLGHOUFEclO+0h7pu4V0=",
             })))),
           re2: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               owner: "google",
               repo: "re2",
               rev: "bc0faab533e2b27b85b8ad312abf061e33ed6b5d",
               hash: "sha256-cKXe8r5MUag/z+seem4Zg/gmqIQjaCY7DBxiKlrnXPs=",
             })))),
           googletest: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               owner: "google",
               repo: "googletest",
               rev: "7917641ff965959afae189afb5f052524395525c",
               hash: "sha256-Pfkx/hgtqryPz3wI0jpZwlRRco0s2FLcvUX1EgTGFIw=",
             })))),
           "nlohmann-json": nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               owner: "nlohmann",
               repo: "json",
               tag: "v3.12.0",
               hash: "sha256-cECvDOLxgX7Q9R3IE86Hj9JJUxraDQvhoyPDF03B2CY=",
             })))),
           antlr: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               owner: "antlr",
               repo: "antlr4",
               rev: "cc82115a4e7f53d71d9d905caa2c2dfa4da58899",
               hash: "sha256-DxxRL+FQFA+x0RudIXtLhewseU50aScHKSCDX7DE9bY=",
             })))),
           "range-v3": nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               owner: "joka921",
               repo: "range-v3",
               rev: "42340ef354f7b4e4660268b788e37008d9cc85aa",
               hash: "sha256-/17XLLLuEkcqeklVtqlgtu19tNTT3bLRHrU1aOPLhTw=",
             })))),
           spatialjoin: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               owner: "ad-freiburg",
               repo: "spatialjoin",
               rev: "c358e479ebb5f40df99522e69a0b52d73416020b",
@@ -131,21 +131,21 @@ export default nix.lambda((args) => (() => {
               fetchSubmodules: true,
             })))),
           ctre: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               owner: "hanickadot",
               repo: "compile-time-regular-expressions",
               rev: "e34c26ba149b9fd9c34aa0f678e39739641a0d1e",
               hash: "sha256-/44oZi6j8+a1D6ZGZpoy82GHjPtqzOvuS7d3SPbH7fs=",
             })))),
           abseil: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               owner: "abseil",
               repo: "abseil-cpp",
               rev: "93ac3a4f9ee7792af399cebd873ee99ce15aed08",
               hash: "sha256-a18+Yj9fvDigza4b2g38L96hge5feMwU6fgPmL/KVQU=",
             })))),
           s2: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               owner: "google",
               repo: "s2geometry",
               rev: "5b5eccd54a08ae03b4467e79ffbb076d0b5f221e",
@@ -157,7 +157,7 @@ export default nix.lambda((args) => (() => {
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         description: "Graph database implementing the RDF and SPARQL standards",
         homepage: "https://github.com/ad-freiburg/qlever",
         mainProgram: "qlever",

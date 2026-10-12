@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "dpapi-ng",
       version: "0.2.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jborean93",
           repo: "dpapi-ng",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,15 +36,15 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [cryptography, dnspython, pyspnego]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, kerberos: nix.thunk(() => [pyspnego]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, kerberos: nix.thunk(() => [pyspnego]) })),
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["dpapi_ng"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python DPAPI NG Decryptor for non-Windows Platforms",
         homepage: "https://github.com/jborean93/dpapi-ng",
         changelog: nix.thunk(() => nix.str`https://github.com/jborean93/dpapi-ng/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

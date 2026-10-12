@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.10";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nschloe",
           repo: "matplotx",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -35,20 +35,20 @@ export default nix.lambda((args) => (() => {
         }))));
       const propagatedBuildInputs = nix.thunk(() => [setuptools, matplotlib, numpy]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         all: nix.thunk(() => [networkx, pypng, scipy]),
         contour: nix.thunk(() => [networkx]),
         spy: nix.thunk(() => [pypng, scipy]),
       }));
       const env = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         MPLBACKEND: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "Agg")),
       }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.sel(optional_dependencies, "all")));
       const disabledTestPaths = nix.thunk(() => ["tests/test_spy.py"]);
       const pythonImportsCheck = nix.thunk(() => ["matplotx"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/nschloe/matplotx",
         description: "More styles and useful extensions for Matplotlib",
         mainProgram: "matplotx",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const lua5_1 = nix.arg($, "lua5_1");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ocaml-lua",
       version: "1.8",
       minimalOCamlVersion: "4.08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pdonadeo",
           repo: "ocaml-lua",
           rev: "f44ad50c88bf999f48a13af663051493c89d7d02",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [lua5_1]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lua bindings for OCaml",
         homepage: "https://pdonadeo.github.io/ocaml-lua",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

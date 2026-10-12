@@ -119,7 +119,7 @@ export default nix.lambda((args) => (() => {
   const makeSetupHook = nix.arg($, "makeSetupHook");
   const rustDeps = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./wraps.json")));
   const fetchDep = (dep) => nix.app(fetchCrate, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: nix.thunk(() => nix.attr(dep, "pname")),
       version: nix.thunk(() => nix.attr(dep, "version")),
       hash: nix.thunk(() => nix.attr(dep, "hash")),
@@ -135,9 +135,9 @@ export default nix.lambda((args) => (() => {
 ${packageCacheCommand}
 `)));
   const needNativeCLC = nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))));
-  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ __proto__: pos$2, lib: lib, fetchFromGitLab: fetchFromGitLab }))));
+  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, lib: lib, fetchFromGitLab: fetchFromGitLab }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: nix.thunk(() => nix.attr(common, "pname")),
       version: nix.thunk(() => nix.attr(common, "version")),
       src: nix.thunk(() => nix.attr(common, "src")),
@@ -157,7 +157,7 @@ done
       __structuredAttrs: true,
       preConfigure: nix.thunk(() => nix.str`PATH=${nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(llvmPackages, "libllvm")))}/bin:$PATH
 `),
-      env: nix.thunk(() => ({ __proto__: pos$3, MESON_PACKAGE_CACHE_DIR: packageCache })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, MESON_PACKAGE_CACHE_DIR: packageCache })),
       mesonFlags: nix.thunk(() => nix.concat([
         "--sysconfdir=/etc",
         nix.thunk(() => nix.app(nix.sel(lib, "mesonBool"), "b_ndebug", true)),
@@ -275,7 +275,7 @@ patchShebangs --host --update $out/bin/*
 patchelf --add-rpath ${vulkan_loader}/lib $out/lib/libgallium*.so $opencl/lib/libRusticlOpenCL.so
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         driverLink: nix.thunk(() => nix.attr(libglvnd, "driverLink")),
         llvmPackages: llvmPackages,
         eglPlatforms: eglPlatforms,
@@ -284,9 +284,9 @@ patchelf --add-rpath ${vulkan_loader}/lib $out/lib/libgallium*.so $opencl/lib/li
         vulkanLayers: vulkanLayers,
         drivers: nix.thunk(() => nix.app(nix.sel(lib, "warn"), "`mesa.drivers` is deprecated, use `mesa` instead", nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           outDoesNotDependOnLLVM: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               name: "mesa-does-not-depend-on-llvm",
               buildCommand: nix.thunk(() => nix.str`echo ${nix.sel(finalAttrs, "finalPackage")} >>$out
 `),
@@ -294,10 +294,10 @@ patchelf --add-rpath ${vulkan_loader}/lib $out/lib/libgallium*.so $opencl/lib/li
             })))),
         })),
         llvmpipeHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             name: "llvmpipe-hook",
-            substitutions: nix.thunk(() => ({ __proto__: pos$6, mesa: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")) })),
-            meta: nix.thunk(() => ({ __proto__: pos$7, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+            substitutions: nix.thunk(() => ({ [nix.POS]: pos$6, mesa: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")) })),
+            meta: nix.thunk(() => ({ [nix.POS]: pos$7, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
           })), nix.path(here, "./llvmpipe-hook.sh"))),
       })),
     }));

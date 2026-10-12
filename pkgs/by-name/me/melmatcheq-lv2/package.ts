@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const lv2 = nix.arg($, "lv2");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "MelMatchEQ.lv2",
       version: "0.1-unstable-2025-01-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "brummer10",
           repo: "MelMatchEQ.lv2",
           rev: "bee24593209d5c53fdafa62cb43aeeab6c5e880f",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libx11, xorgproto, cairo, lv2]),
       installFlags: nix.thunk(() => ["INSTALL_DIR=$(out)/lib/lv2"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/brummer10/MelMatchEQ.lv2",
         description: "Profiling EQ using a 26 step Mel Frequency Band",
         maintainers: nix.thunk(() => (() => {

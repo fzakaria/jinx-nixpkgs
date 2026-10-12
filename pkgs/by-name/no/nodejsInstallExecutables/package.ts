@@ -16,15 +16,15 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const jq = nix.arg($, "jq");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "nodejs-install-executables",
       propagatedBuildInputs: nix.thunk(() => [installShellFiles, makeWrapper]),
       substitutions: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         hostNode: nix.thunk(() => nix.str`${nodejs}/bin/node`),
         jq: nix.thunk(() => nix.str`${jq}/bin/jq`),
       })),
-      meta: nix.thunk(() => ({ __proto__: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
     })), nix.path(here, "./hook.sh"));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

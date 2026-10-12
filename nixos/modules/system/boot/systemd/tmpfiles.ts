@@ -64,20 +64,20 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "systemd", "tmpfiles"));
   const initrdCfg = nix.thunk(() => nix.sel(config, "boot", "initrd", "systemd", "tmpfiles"));
   const systemd = nix.thunk(() => nix.sel(config, "systemd", "package"));
-  const attrsWith$ = (placeholder) => (elemType) => nix.app(nix.sel(nix.lookup(w, "types"), "attrsWith"), nix.thunk(() => ({ __proto__: pos$1, elemType: elemType, placeholder: placeholder })));
+  const attrsWith$ = (placeholder) => (elemType) => nix.app(nix.sel(nix.lookup(w, "types"), "attrsWith"), nix.thunk(() => ({ [nix.POS]: pos$1, elemType: elemType, placeholder: placeholder })));
   const escapeArgument = nix.thunk(() => nix.app(nix.sel(lib, "strings", "escapeC"), nix.thunk(() => ["\t", "\n", "\r", " ", "\\"])));
   const hasTmpfilesPrefix = nix.thunk(() => nix.app(nix.sel(lib, "hasPrefix"), "tmpfiles.d/"));
   const removeTmpFilesPrefix = nix.thunk(() => nix.app(nix.sel(lib, "removePrefix"), "tmpfiles.d/"));
   const settingsOption = nix.thunk(() => ({
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     description: "Declare systemd-tmpfiles rules to create, delete, and clean up volatile\nand temporary files and directories.\n\nEven though the service is called `*tmp*files` you can also create\npersistent files.\n",
     example: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       "10-mypackage": nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "/var/lib/my-service/statefolder": nix.thunk(() => ({
-          __proto__: pos$3,
-          d: nix.thunk(() => ({ __proto__: pos$2, mode: "0755", user: "root", group: "root" })),
+          [nix.POS]: pos$3,
+          d: nix.thunk(() => ({ [nix.POS]: pos$2, mode: "0755", user: "root", group: "root" })),
         })),
       })),
     })),
@@ -87,11 +87,11 @@ export default nix.lambda((args) => (() => {
               const name = nix.arg($_1, "name");
               const config_1 = nix.arg($_1, "config");
               return {
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 options: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   type: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                      __proto__: pos$6,
+                      [nix.POS]: pos$6,
                       type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                       default: name,
                       defaultText: "‹tmpfiles-type›",
@@ -99,35 +99,35 @@ export default nix.lambda((args) => (() => {
                       description: "The type of operation to perform on the file.\n\nThe type consists of a single letter and optionally one or more\nmodifier characters.\n\nPlease see the upstream documentation for the available types and\nmore details:\n{manpage}`tmpfiles.d(5)`\n",
                     })))),
                   mode: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                      __proto__: pos$7,
+                      [nix.POS]: pos$7,
                       type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                       default: "-",
                       example: "0755",
                       description: "The file access mode to use when creating this file or directory.\n",
                     })))),
                   user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                      __proto__: pos$8,
+                      [nix.POS]: pos$8,
                       type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                       default: "-",
                       example: "root",
                       description: "The user of the file.\n\nThis may either be a numeric ID or a user/group name.\n\nIf omitted or when set to `\"-\"`, the user and group of the user who\ninvokes systemd-tmpfiles is used.\n",
                     })))),
                   group: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                       default: "-",
                       example: "root",
                       description: "The group of the file.\n\nThis may either be a numeric ID or a user/group name.\n\nIf omitted or when set to `\"-\"`, the user and group of the user who\ninvokes systemd-tmpfiles is used.\n",
                     })))),
                   age: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                       default: "-",
                       example: "10d",
                       description: "Delete a file when it reaches a certain age.\n\nIf a file or directory is older than the current time minus the age\nfield, it is deleted.\n\nIf set to `\"-\"` no automatic clean-up is done.\n",
                     })))),
                   argument: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                      __proto__: pos$11,
+                      [nix.POS]: pos$11,
                       type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                       default: "",
                       example: "",
@@ -142,15 +142,15 @@ export default nix.lambda((args) => (() => {
   const pathsToRules = nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (path) => (types) => nix.app(nix.lookup(w, "concatStrings"), nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (_type) => nix.app(settingsEntryToRule, path), types)))));
   const mkRuleFileContent = (paths) => nix.app(nix.lookup(w, "concatStrings"), nix.thunk(() => nix.app(pathsToRules, paths)));
   return {
-    __proto__: pos$50,
+    [nix.POS]: pos$50,
     options: nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       systemd: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         tmpfiles: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           rules: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: [],
               example: nix.thunk(() => ["d /tmp 1777 root root 10d"]),
@@ -158,7 +158,7 @@ export default nix.lambda((args) => (() => {
             })))),
           settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), settingsOption)),
           packages: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "[ pkgs.lvm2 ]")),
@@ -168,15 +168,15 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       boot: nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         initrd: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           systemd: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             tmpfiles: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => nix.update(settingsOption, {
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   description: "Similar to {option}`systemd.tmpfiles.settings` but the rules are\nonly applied by systemd-tmpfiles before `initrd-switch-root.target`.\n\nSee {manpage}`bootup(7)`.\n",
                 })))),
             })),
@@ -185,7 +185,7 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$49,
+      [nix.POS]: pos$49,
       warnings: nix.thunk(() => (() => {
         const paths = nix.thunk(() => nix.app(nix.sel(lib, "filter"), (path) => (nix.asBool(!nix.eq(path, null)) && nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), "/etc/tmpfiles.d/", path))), nix.thunk(() => nix.app(nix.builtins.map, (path) => nix.sel(path, "target"), nix.thunk(() => nix.sel(config, "boot", "initrd", "systemd", "storePaths"))))));
         return nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.gt(nix.app(nix.sel(lib, "length"), paths), 0n)), nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => [
@@ -201,7 +201,7 @@ export default nix.lambda((args) => (() => {
                     ])))), entries), paths_1), nix.thunk(() => nix.sel(cfg, "settings"))))));
       })()),
       systemd: nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         additionalUpstreamSystemUnits: nix.thunk(() => [
           "systemd-tmpfiles-clean.service",
           "systemd-tmpfiles-clean.timer",
@@ -215,9 +215,9 @@ export default nix.lambda((args) => (() => {
           "systemd-tmpfiles-setup.service",
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           "systemd-tmpfiles-resetup": nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             description: "Re-setup tmpfiles on a system that is already running.",
             requiredBy: nix.thunk(() => ["sysinit-reactivation.target"]),
             after: nix.thunk(() => ["local-fs.target", "systemd-sysusers.service", "systemd-journald.service"]),
@@ -226,9 +226,9 @@ export default nix.lambda((args) => (() => {
             restartTriggers: nix.thunk(() => [
               nix.thunk(() => nix.sel(config, "environment", "etc", "tmpfiles.d", "source")),
             ]),
-            unitConfig: nix.thunk(() => ({ __proto__: pos$25, DefaultDependencies: false })),
+            unitConfig: nix.thunk(() => ({ [nix.POS]: pos$25, DefaultDependencies: false })),
             serviceConfig: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               Type: "oneshot",
               RemainAfterExit: true,
               ExecStart: "systemd-tmpfiles --create --remove --exclude-prefix=/dev",
@@ -245,7 +245,7 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         tmpfiles: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           packages: nix.thunk(() => nix.concat([
             nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "systemd-default-tmpfiles", nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir -p $out/lib/tmpfiles.d
 cd $out/lib/tmpfiles.d
@@ -264,7 +264,7 @@ ln -s "${systemd}/example/tmpfiles.d/var.conf"
 ln -s "${systemd}/example/tmpfiles.d/x11.conf"
 `))),
             nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 name: "nixos-tmpfiles.d",
                 destination: "/lib/tmpfiles.d/00-nixos.conf",
                 text: nix.thunk(() => nix.str`# This file is created automatically and should not be modified.
@@ -286,39 +286,39 @@ ${nix.app(nix.lookup(w, "concatStringsSep"), "\n", nix.thunk(() => nix.sel(cfg, 
         })),
       })),
       environment: nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         etc: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           "tmpfiles.d": nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             source: nix.thunk(() => nix.add(nix.app(nix.sel(pkgs, "symlinkJoin"), nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 name: "tmpfiles.d",
                 paths: nix.thunk(() => nix.app(nix.builtins.map, (p) => nix.add(p, "/lib/tmpfiles.d"), nix.thunk(() => nix.sel(cfg, "packages")))),
                 postBuild: nix.thunk(() => nix.add("for i in $(cat $pathsPath); do\n  (test -d \"$i\" && test $(ls \"$i\"/*.conf | wc -l) -ge 1) || (\n    echo \"ERROR: The path '$i' from systemd.tmpfiles.packages contains no *.conf files.\"\n    exit 1\n  )\ndone\n", nix.app(nix.lookup(w, "concatMapStrings"), (name) => nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.app(hasTmpfilesPrefix, name)), nix.thunk(() => nix.str`rm -f $out/${nix.app(removeTmpFilesPrefix, name)}
 `)), nix.thunk(() => nix.sel(config, "system", "build", "etc", "passthru", "targets"))))),
               }))), "/*")),
           })),
-          mtab: nix.thunk(() => ({ __proto__: pos$34, mode: "direct-symlink", source: "/proc/mounts" })),
+          mtab: nix.thunk(() => ({ [nix.POS]: pos$34, mode: "direct-symlink", source: "/proc/mounts" })),
         })),
       })),
       boot: nix.thunk(() => ({
-        __proto__: pos$48,
+        [nix.POS]: pos$48,
         initrd: nix.thunk(() => ({
-          __proto__: pos$47,
+          [nix.POS]: pos$47,
           systemd: nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             additionalUpstreamUnits: nix.thunk(() => [
               "systemd-tmpfiles-setup-dev-early.service",
               "systemd-tmpfiles-setup-dev.service",
               "systemd-tmpfiles-setup.service",
             ]),
             services: nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               "systemd-tmpfiles-setup": nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$37,
+                  [nix.POS]: pos$37,
                   ExecStart: nix.thunk(() => [
                     "",
                     "systemd-tmpfiles --create --remove --boot --exclude-prefix=/dev --exclude-prefix=/sysroot",
@@ -326,14 +326,14 @@ ${nix.app(nix.lookup(w, "concatStringsSep"), "\n", nix.thunk(() => nix.sel(cfg, 
                 })),
               })),
               "systemd-tmpfiles-setup-sysroot": nix.thunk(() => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 description: "Create Volatile Files and Directories in the Real Root",
                 after: nix.thunk(() => ["initrd-fs.target"]),
                 before: nix.thunk(() => ["initrd.target", "shutdown.target", "initrd-switch-root.target"]),
                 conflicts: nix.thunk(() => ["shutdown.target", "initrd-switch-root.target"]),
                 wantedBy: nix.thunk(() => ["initrd.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$39,
+                  [nix.POS]: pos$39,
                   Type: "oneshot",
                   RemainAfterExit: true,
                   ExecStart: "systemd-tmpfiles --create --remove --boot --exclude-prefix=/dev --prefix=/sysroot",
@@ -346,15 +346,15 @@ ${nix.app(nix.lookup(w, "concatStringsSep"), "\n", nix.thunk(() => nix.sel(cfg, 
                     "ssh.authorized_keys.root",
                   ]),
                 })),
-                unitConfig: nix.thunk(() => ({ __proto__: pos$40, DefaultDependencies: false, RefuseManualStop: true })),
+                unitConfig: nix.thunk(() => ({ [nix.POS]: pos$40, DefaultDependencies: false, RefuseManualStop: true })),
               })),
             })),
             contents: nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               "/etc/tmpfiles.d": nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(initrdCfg, "settings"), {})), nix.thunk(() => ({
-                  __proto__: pos$44,
+                  [nix.POS]: pos$44,
                   source: nix.thunk(() => nix.app(nix.sel(pkgs, "linkFarm"), "initrd-tmpfiles.d", nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (name) => (paths) => ({
-                        __proto__: pos$43,
+                        [nix.POS]: pos$43,
                         name: nix.thunk(() => nix.str`${name}.conf`),
                         path: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), nix.thunk(() => nix.str`${name}.conf`), nix.thunk(() => nix.app(mkRuleFileContent, paths)))),
                       }), nix.thunk(() => nix.sel(initrdCfg, "settings")))))),

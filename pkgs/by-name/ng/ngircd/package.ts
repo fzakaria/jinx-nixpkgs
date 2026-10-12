@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const pam = nix.arg($, "pam");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ngircd",
       version: "28",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://ngircd.barton.de/pub/ngircd/ngircd-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-tIujIKkx1EWuM1xH+IqUBqIPXHHGI77l93VdBSLUNe4=",
         })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [zlib, pam, openssl, libiconv]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Next Generation IRC Daemon",
         mainProgram: "ngircd",
         homepage: "https://ngircd.barton.de",

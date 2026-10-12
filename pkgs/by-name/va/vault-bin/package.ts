@@ -23,21 +23,21 @@ export default nix.lambda((args) => (() => {
         const system = nix.thunk(() => nix.attr(from, "system"));
         const selectSystem = (attrs) => nix.selOr(attrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${system}`)), nix.key(nix.force(system)));
         const suffix = nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             "x86_64-linux": "linux_amd64",
             "aarch64-linux": "linux_arm64",
             "i686-linux": "linux_386",
             "aarch64-darwin": "darwin_arm64",
           }))));
         const hash = nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "x86_64-linux": "sha256-THVYezhV7TmChy8IKsE8Agx6ks4wFctuk+GevXhwRv8=",
             "aarch64-linux": "sha256-Wmlpw9gzbdCvgCwf3Nh9JPjjmDKS2P0TNYaRvKqO4fg=",
             "i686-linux": "sha256-Fdxq1r1G17kiCl7b9OBrWwkyo+VoKOvrUPf0p4wZlcs=",
             "aarch64-darwin": "sha256-+zor3j+7saG6AnuIlkJSAsCkMHYuhm0Abmt6TTu8bZI=",
           }))));
         return nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: nix.thunk(() => nix.str`https://releases.hashicorp.com/vault/${version}/vault_${version}_${suffix}.zip`),
             stripRoot: false,
             hash: hash,
@@ -51,9 +51,9 @@ export default nix.lambda((args) => (() => {
       const installCheckPhase = "runHook preInstallCheck\n$out/bin/vault --help\n$out/bin/vault version\nrunHook postInstallCheck\n";
       const dontPatchELF = true;
       const dontPatchShebangs = true;
-      const passthru = nix.thunk(() => ({ __proto__: pos$4, updateScript: nix.path(here, "./update-bin.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update-bin.sh") }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Tool for managing secrets, this binary includes the UI",
         homepage: "https://www.vaultproject.io",
         sourceProvenance: nix.thunk(() => (() => {
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["x86_64-linux", "i686-linux", "aarch64-darwin", "aarch64-linux"]),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

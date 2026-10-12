@@ -22,19 +22,19 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(haskell, "lib", "justStaticExecutables")),
     ])));
   const mkDerivationOverrides = (finalAttrs) => (oldAttrs) => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     passthru: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       tests: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         basic: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/basic.nix"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             "changelog-d": nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           })))),
       })),
     })),
     meta: nix.thunk(() => nix.update(nix.sel(oldAttrs, "meta"), {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       homepage: "https://codeberg.org/fgaz/changelog-d",
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "roberth"))]),
     })),

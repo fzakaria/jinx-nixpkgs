@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "25.8.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ludeeus",
           repo: "awesomeversion",
           tag: version,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["awesomeversion"]);
       const nativeCheckInputs = nix.thunk(() => [pytest_codspeed, pytest_snapshot, pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python module to deal with versions",
         homepage: "https://github.com/ludeeus/awesomeversion",
         changelog: nix.thunk(() => nix.str`https://github.com/ludeeus/awesomeversion/releases/tag/${nix.sel(src, "tag")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

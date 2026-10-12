@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const rope = nix.arg($, "rope");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nixpkgs-pytools",
       version: "1.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           sha256: "11skcbi1lf9qcv9j5ikifb4pakhbbygqpcmv3390j7gxsa85cn19",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [jinja2, setuptools, rope]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tools for removing the tedious nature of creating nixpkgs derivations",
         homepage: "https://github.com/nix-community/nixpkgs-pytools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

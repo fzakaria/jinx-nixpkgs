@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromCodeberg = nix.arg($, "fetchFromCodeberg");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "woodpecker-pipeline-transform",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lafriks",
           repo: "woodpecker-pipeline-transform",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-NE4KUbYA19YJPQW9quSYgm0exj3lToj9Zkiv05TgyOI=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utility to convert different pipelines to Woodpecker CI pipelines",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/lafriks/woodpecker-pipeline-transform/src/tag/v${nix.sel(finalAttrs, "version")}`),
         homepage: "https://codeberg.org/lafriks/woodpecker-pipeline-transform",

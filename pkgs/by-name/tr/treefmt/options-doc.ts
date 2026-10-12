@@ -21,17 +21,17 @@ export default nix.lambda((args) => (() => {
     const subpath = nix.thunk(() => nix.add("pkgs/by-name/tr/treefmt/modules/", nix.app(removeRoot, fileStr)));
     nix.assert_(nix.app(nix.sel(lib, "hasPrefix"), root, fileStr), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/tr/treefmt/options-doc.nix:21:5");
     return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/NixOS/nixpkgs/blob/${revision}/${subpath}`),
       name: subpath,
     };
   })();
   return nix.app(nixosOptionsDoc, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       documentType: "none",
       options: nix.thunk(() => nix.builtins.removeAttrs(nix.thunk(() => nix.sel(configuration, "options")), nix.thunk(() => ["_module"]))),
       transformOptions: (opt) => nix.update(opt, {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         declarations: nix.thunk(() => nix.builtins.map(transformDeclaration, nix.thunk(() => nix.sel(opt, "declarations")))),
       }),
     })));

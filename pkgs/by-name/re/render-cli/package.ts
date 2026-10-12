@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "render-cli";
       const version = "2.24.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "render-oss",
           repo: "cli",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const postInstall = "mv $out/bin/cli $out/bin/render\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Official command-line interface for Render cloud hosting platform",
         homepage: "https://github.com/render-oss/cli",
         changelog: nix.thunk(() => nix.str`https://github.com/render-oss/cli/releases/tag/v${version}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "render",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

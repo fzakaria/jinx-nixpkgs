@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const useSDL2 = nix.argOr($, "useSDL2", () => nix.sel(stdenv, "hostPlatform", "isDarwin"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "quakespasm",
       version: "0.96.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/quakespasm/quakespasm-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-tXjWzkpPf04mokRY8YxLzI04VK5iUuuZgu6B2V5QGA4=",
         })))),
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "quakespasm",
             exec: "quake",
             desktopName: "Quakespasm",
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Engine for iD software's Quake",
         homepage: "https://quakespasm.sourceforge.net/",
         longDescription: "QuakeSpasm is a modern, cross-platform Quake 1 engine based on FitzQuake.\nIt includes support for 64 bit CPUs and custom music playback, a new sound driver,\nsome graphical niceities, and numerous bug-fixes and other improvements.\nQuakespasm utilizes either the SDL or SDL2 frameworks, so choose which one\nworks best for you. SDL is probably less buggy, but SDL2 has nicer features\nand smoother mouse input - though no CD support.\n",

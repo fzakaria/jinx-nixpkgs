@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const ffmpeg = nix.arg($, "ffmpeg");
   const vlc = nix.arg($, "vlc");
   const vlc$ = nix.argOr($, "vlc'", () => nix.app(nix.sel(vlc, "overrideAttrs"), (old) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       buildInputs: nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), [x264])),
     })));
   const jq = nix.arg($, "jq");
   const x264 = nix.arg($, "x264");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "gopro-tool",
       version: "1.18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "juchem",
           repo: "gopro-tool",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,14 +47,14 @@ wrapProgram $out/bin/gopro-tool \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [ffmpeg, vlc$, jq]))}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "gopro-tool": nix.thunk(() => nix.attr(nixosTests, "gopro-tool")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Tool to control GoPro webcam mode in Linux (requires v4l2loopback kernel module and a firewall rule)",
         homepage: "https://github.com/juchem/gopro-tool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

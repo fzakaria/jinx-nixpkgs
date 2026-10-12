@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const headlamp_server = nix.arg($, "headlamp-server");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "headlamp-frontend",
       version: nix.thunk(() => nix.attr(headlamp_server, "version")),
       src: nix.thunk(() => nix.attr(headlamp_server, "src")),
@@ -33,7 +33,7 @@ REACT_APP_HEADLAMP_SIDEBAR_DEFAULT_OPEN=true
 EOF
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         PUBLIC_URL: "./",
         NODE_OPTIONS: "--max-old-space-size=8096",
       })),
@@ -41,7 +41,7 @@ EOF
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(headlamp_server, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         changelog: nix.thunk(() => nix.attr(from, "changelog")),

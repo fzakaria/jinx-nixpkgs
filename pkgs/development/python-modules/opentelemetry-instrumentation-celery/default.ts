@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const celery = nix.arg($, "celery");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: nix.thunk(() => nix.attr(opentelemetry_instrumentation, "version")),
       src: nix.thunk(() => nix.attr(opentelemetry_instrumentation, "src")),
       pname: "opentelemetry-instrumentation-celery",
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
         opentelemetry_instrumentation,
         opentelemetry_semantic_conventions,
       ]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$1, instruments: nix.thunk(() => [celery]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$1, instruments: nix.thunk(() => [celery]) })),
       nativeCheckInputs: nix.thunk(() => [opentelemetry_test_utils, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["opentelemetry.instrumentation.celery"]),
       meta: nix.thunk(() => nix.update(nix.sel(opentelemetry_instrumentation, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-celery",
         description: "Celery instrumentation for OpenTelemetry",
       })),

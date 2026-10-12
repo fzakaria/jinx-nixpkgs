@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const libxrender = nix.arg($, "libxrender");
   const libxcb_image = nix.arg($, "libxcb-image");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sfml",
       version: "2.6.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SFML",
           repo: "SFML",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "SFML_USE_SYSTEM_DEPS", true)),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple and fast multimedia library",
         homepage: "https://www.sfml-dev.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/SFML/SFML/blob/${nix.sel(finalAttrs, "version")}/changelog.md`),

@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "importlib_resources",
           version: version,
           hash: "sha256-ByLUxiEkicUw8qFFo0wKejtHIbyWoV+tpZMOKgt2Bwg=",
@@ -36,16 +36,16 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [importlib_metadata]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, jaraco_collections, jaraco_test]);
       const pythonImportsCheck = nix.thunk(() => ["importlib_resources"]);
-      const passthru = nix.thunk(() => ({ __proto__: pos$3, tests: nix.thunk(() => ({ __proto__: pos$2, sage: sage })) }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, tests: nix.thunk(() => ({ [nix.POS]: pos$2, sage: sage })) }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Read resources from Python packages",
         homepage: "https://importlib-resources.readthedocs.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.16";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "EnergieID",
           repo: "energyid-webhooks-py",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["energyid_webhooks"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Light weight Python package to interface with EnergyID Webhooks",
         homepage: "https://github.com/EnergieID/energyid-webhooks-py",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "dotlambda"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const smartSupport = nix.argOr($, "smartSupport", () => false);
   const libatasmart = nix.arg($, "libatasmart");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "thinkfan",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vmatare",
           repo: "thinkfan",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,7 +48,7 @@ substituteInPlace rcscripts/systemd/thinkfan.service.cmake \\
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([lm_sensors, yaml_cpp], nix.app(nix.sel(lib, "optional"), smartSupport, libatasmart))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple, lightweight fan control program",
         longDescription: "Thinkfan is a minimalist fan control program. Originally designed\nspecifically for IBM/Lenovo Thinkpads, it now supports any kind of\nsystem via the sysfs hwmon interface (/sys/class/hwmon).\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

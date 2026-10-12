@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const prelude = nix.arg($, "prelude");
   const base = nix.arg($, "base");
   return nix.app(mkPrelude, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "linear",
       dependencies: nix.thunk(() => [prelude, base]),
     })));

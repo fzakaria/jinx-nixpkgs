@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const zbar = nix.argOr($, "zbar", () => null);
   nix.assert_((!nix.asBool(testQR) || nix.asBool(!nix.eq(zbar, false))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/as/asc-key-to-qr-code-gif/package.nix:10:1");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "asc-key-to-qr-code-gif",
       version: "0-unstable-2019-01-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "yishilin14",
           repo: "asc-key-to-qr-code-gif",
           rev: "5d36a1bada8646ae0f61b04356e62ba5ef10a1aa",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       })()),
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ncp asc-to-gif.sh $out/bin/asc-to-gif\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/yishilin14/asc-key-to-qr-code-gif",
         description: "Convert ASCII-armored PGP keys to animated QR code",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

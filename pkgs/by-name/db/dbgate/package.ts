@@ -23,26 +23,26 @@ export default nix.lambda((args) => (() => {
   const pname = "dbgate";
   const version = "7.2.4";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.selOr({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       "aarch64-linux": nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: nix.thunk(() => nix.str`https://github.com/dbgate/dbgate/releases/download/v${version}/dbgate-${version}-linux_arm64.AppImage`),
         hash: "sha256-9X8AyFcKy94blybAEU/H83Ku5oFQU4piVtCTNn4mobE=",
       })),
       "x86_64-linux": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: nix.thunk(() => nix.str`https://github.com/dbgate/dbgate/releases/download/v${version}/dbgate-${version}-linux_x86_64.AppImage`),
         hash: "sha256-v3HPdY5so4IYY8tfk5mqjKOglCvcKk7uKYHV51DoiLM=",
       })),
       "aarch64-darwin": nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         url: nix.thunk(() => nix.str`https://github.com/dbgate/dbgate/releases/download/v${version}/dbgate-${version}-mac_universal.dmg`),
         hash: "sha256-GPdDglP2DVGCdchvj1Q5oLU3+DSzTccUbH5LmHGRj/M=",
       })),
     }, () => nix.builtins.throw(nix.thunk(() => nix.str`dbgate: ${nix.sel(stdenv, "hostPlatform", "system")} is unsupported.`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))))));
-  const passthru = nix.thunk(() => ({ __proto__: pos$5, updateScript: nix.path(here, "./update.sh") }));
+  const passthru = nix.thunk(() => ({ [nix.POS]: pos$5, updateScript: nix.path(here, "./update.sh") }));
   const meta = nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     description: "Database manager for MySQL, PostgreSQL, SQL Server, MongoDB, SQLite and others",
     homepage: "https://dbgate.org/",
     license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
     sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
   }));
   return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: pname,
       version: version,
       src: src,
@@ -67,9 +67,9 @@ export default nix.lambda((args) => (() => {
       unpackPhase: nix.thunk(() => nix.str`7zz x ${src}`),
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications\ncp -r *.app $out/Applications\n\nrunHook postInstall\n",
     }))) : (() => {
-    const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$8, pname: pname, src: src, version: version }))));
+    const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$8, pname: pname, src: src, version: version }))));
     return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname: pname,
         version: version,
         src: src,

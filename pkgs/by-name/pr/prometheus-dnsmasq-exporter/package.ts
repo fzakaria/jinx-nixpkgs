@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "dnsmasq_exporter";
       const version = "0.3.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "google",
           repo: "dnsmasq_exporter",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -29,16 +29,16 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-oD68TCNJKwjY3iwE/pUosMIMGOhsWj9cHC/+hq3xxI4=";
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { __proto__: pos$2, dnsmasq: nix.thunk(() => nix.attr(from, "dnsmasq")) };
+          return { [nix.POS]: pos$2, dnsmasq: nix.thunk(() => nix.attr(from, "dnsmasq")) };
         })()),
       }));
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(src, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "Dnsmasq exporter for Prometheus",
         mainProgram: "dnsmasq_exporter",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       };
       })());
-      return { __proto__: pos$5, pname, version, src, vendorHash, doCheck, passthru, meta };
+      return { [nix.POS]: pos$5, pname, version, src, vendorHash, doCheck, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

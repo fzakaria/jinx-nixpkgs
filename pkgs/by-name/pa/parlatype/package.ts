@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "parlatype",
       version: "4.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gkarsay",
           repo: "parlatype",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
       mesonFlags: nix.thunk(() => ["-Dgir=true", "-Dpocketsphinx=true"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GNOME audio player for transcription",
         mainProgram: "parlatype",
         longDescription: "Parlatype is a minimal audio player for manual speech transcription,\nwritten for the GNOME desktop environment. It plays audio sources to\ntranscribe them in your favourite text application. It’s intended to be\nuseful for journalists, students, scientists and whoever needs to\ntranscribe audio files.\n",

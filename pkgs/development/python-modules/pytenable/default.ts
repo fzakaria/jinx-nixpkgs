@@ -36,12 +36,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pytenable",
       version: "26.8.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tenable",
           repo: "pyTenable",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_assets_list_vcr", "test_events_list_vcr", "test_session_ssl_error"]),
       pythonImportsCheck: nix.thunk(() => ["tenable"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library for the Tenable.io and TenableSC API",
         homepage: "https://github.com/tenable/pyTenable",
         changelog: nix.thunk(() => nix.str`https://github.com/tenable/pyTenable/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

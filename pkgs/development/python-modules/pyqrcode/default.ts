@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "PyQRCode",
           version: version,
           sha256: "fdbf7634733e56b72e27f9bce46e4550b75a3a2c420414035cae9d9d26b234d5",
         }))));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "QR code generator written purely in Python with SVG, EPS, PNG and terminal output",
         homepage: "https://github.com/mnooner256/pyqrcode",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "dotlambda"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, format, src, doCheck, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, doCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

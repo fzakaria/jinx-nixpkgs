@@ -23,38 +23,38 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const concatStringsSep = nix.thunk(() => nix.attr(lib, "concatStringsSep"));
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     port: 9531n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       scrapeUri: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "http://localhost:8081/artifactory",
           description: "URI on which to scrape JFrog Artifactory.\n",
         })))),
       artiUsername: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.sel(types, "str")),
           description: "Username for authentication against JFrog Artifactory API.\n",
         })))),
       artiPassword: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "",
           description: "Password for authentication against JFrog Artifactory API.\nOne of the password or access token needs to be set.\n",
         })))),
       artiAccessToken: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "",
           description: "Access token for authentication against JFrog Artifactory API.\nOne of the password or access token needs to be set.\n",
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "prometheus-artifactory-exporter")}/bin/artifactory_exporter \\
   --web.listen-address ${nix.sel(cfg, "listenAddress")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))} \\
   --artifactory.scrape-uri ${nix.sel(cfg, "scrapeUri")} \\

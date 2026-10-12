@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const patchcordAddon = nix.thunk(() => nix.app(callPackage, nix.path(here, "./patchcord-addon.nix"), nix.thunk(() => ({}))));
   const goofbindAddon = nix.thunk(() => nix.app(callPackage, nix.path(here, "./goofbind-addon.nix"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "goofcord",
       version: "2.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Milkshiift",
           repo: "GoofCord",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,9 +49,9 @@ export default nix.lambda((args) => (() => {
           libxtst,
           nix.thunk(() => nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(stdenv, "cc", "cc")))),
         ]))),
-      "node-modules": nix.thunk(() => nix.app(callPackage, nix.path(here, "./node-modules.nix"), nix.thunk(() => ({ __proto__: pos$2, nodejs: nodejs_24 })))),
+      "node-modules": nix.thunk(() => nix.app(callPackage, nix.path(here, "./node-modules.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, nodejs: nodejs_24 })))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         ELECTRON_SKIP_BINARY_DOWNLOAD: 1n,
         GOOFCORD_PATCHCORD_PATH: nix.thunk(() => nix.str`${patchcordAddon}/bin/patchcord`),
         GOOFCORD_VENBIND_PATH: nix.thunk(() => nix.str`${goofbindAddon}/lib/libvenbind.so`),
@@ -101,7 +101,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "goofcord",
             genericName: "Internet Messenger",
             desktopName: "GoofCord",
@@ -115,11 +115,11 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Highly configurable and privacy-focused Discord client",
         homepage: "https://github.com/Milkshiift/GoofCord",
         downloadPage: "https://github.com/Milkshiift/GoofCord",

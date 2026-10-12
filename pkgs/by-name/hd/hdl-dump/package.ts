@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hdl-dump",
       version: "47-unstable-2022-09-19",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ps2homebrew",
           repo: "hdl-dump",
           rev: "87d3099d2ba39a15e86ebc7dc725e8eaa49f2d5f",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["RELEASE=yes"]),
       installPhase: "runHook preInstall\ninstall -Dm755 hdl_dump -t $out/bin\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/ps2homebrew/hdl-dump",
         description: "PlayStation 2 HDLoader image dump/install utility",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

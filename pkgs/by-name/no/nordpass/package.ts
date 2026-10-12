@@ -107,11 +107,11 @@ export default nix.lambda((args) => (() => {
     zlib,
   ]);
   const thisPackage = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nordpass",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`${snapBaseUrl}${snapId}_${snapVersion}.snap`),
           hash: "sha256-KIFdUwyojAYTAaBXyLAgsHxMIAfS2rK4b2xtuJjwH8A=",
         })))),
@@ -122,7 +122,7 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/opt/nordpass\"\ncp -r . \"$out/opt/nordpass/\"\n\nmkdir -p $out/bin\nln -s \"$out/opt/nordpass/nordpass\" \"$out/bin/nordpass\"\n\n# Desktop file\nmkdir -p \"$out/share/applications/\"\ncp \"$out/opt/nordpass/meta/gui/nordpass.desktop\" \"$out/share/applications/\"\n# Icon\nmkdir -p \"$out/share/icons/hicolor/512x512/apps\"\ncp \"$out/opt/nordpass/meta/gui/icon.png\" \\\n  \"$out/share/icons/hicolor/512x512/apps/nordpass.png\"\n\nsed -i -e \"s#^Icon=.*\\$#Icon=$out/share/icons/hicolor/512x512/apps/nordpass.png#\" \\\n  \"$out/share/applications/nordpass.desktop\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://nordpass.com/",
         description: "Secure and simple password manager for a stress-free online experience",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -136,7 +136,7 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.attr(thisPackage, "pname")),
       version: nix.thunk(() => nix.attr(thisPackage, "version")),
       targetPkgs: (_) => nix.concat(deps, [thisPackage]),

@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const bison = nix.arg($, "bison");
   const flex = nix.arg($, "flex");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kholidays",
       extraNativeBuildInputs: nix.thunk(() => [qttools, bison, flex]),
       extraBuildInputs: nix.thunk(() => [qtdeclarative]),

@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const extraLibraries = nix.argOr($, "extraLibraries", () => (pkgs) => []);
   const extraEnv = nix.argOr($, "extraEnv", () => ({}));
   return nix.app(nix.sel(steam, "buildRuntimeEnv"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "emerald-legacy-launcher",
       version: nix.thunk(() => nix.attr(emerald_legacy_launcher_unwrapped, "version")),
       meta: nix.thunk(() => nix.attr(emerald_legacy_launcher_unwrapped, "meta")),

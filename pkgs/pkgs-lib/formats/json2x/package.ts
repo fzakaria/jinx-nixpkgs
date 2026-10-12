@@ -11,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "json2x",
       version: "0.1.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(nix.sel(lib, "sourceByRegex"), nix.path(here, "./."), nix.thunk(() => ["^src(/.*)?$", "^Cargo\\.(lock|toml)$"]))),
-      cargoLock: nix.thunk(() => ({ __proto__: pos$1, lockFile: nix.path(here, "./Cargo.lock") })),
+      cargoLock: nix.thunk(() => ({ [nix.POS]: pos$1, lockFile: nix.path(here, "./Cargo.lock") })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

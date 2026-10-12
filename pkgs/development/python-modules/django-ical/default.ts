@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const icalendar = nix.arg($, "icalendar");
   const django_recurrence = nix.arg($, "django-recurrence");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "django-ical",
       version: "1.9.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jazzband",
           repo: "django-ical",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["django_ical"]),
       nativeCheckInputs: nix.thunk(() => [pytest_django, pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "iCal feeds for Django based on Django's syndication feed framework",
         homepage: "https://github.com/jazzband/django-ical",
         changelog: nix.thunk(() => nix.str`https://github.com/jazzband/django-ical/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.rst`),

@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const postgresqlTestExtension = nix.arg($, "postgresqlTestExtension");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "h3-pg",
       version: "4.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zachasme",
           repo: "h3-pg",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [h3_4]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           extension: nix.thunk(() => nix.app(postgresqlTestExtension, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               finalPackage: nix.thunk(() => nix.attr(finalAttrs, "finalPackage")),
               withPackages: nix.thunk(() => ["postgis"]),
               sql: "CREATE EXTENSION h3;\nCREATE EXTENSION h3_postgis CASCADE;\n\nSELECT h3_lat_lng_to_cell(POINT('37.3615593,-122.0553238'), 5);\nSELECT ST_NPoints(h3_cell_to_boundary_geometry('8a63a9a99047fff'));\n",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(postgresql, "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "PostgreSQL bindings for H3, a hierarchical hexagonal geospatial indexing system",
         homepage: "https://github.com/zachasme/h3-pg",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.5.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "googleapis",
           repo: "python-cloud-core",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [google_auth, google_api_core]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, grpc: nix.thunk(() => [grpcio, grpcio_status]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, grpc: nix.thunk(() => [grpcio, grpcio_status]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([mock, pytestCheckHook], nix.sel(optional_dependencies, "grpc")));
       const preCheck = "rm -r google\n";
       const pythonImportsCheck = nix.thunk(() => ["google.cloud"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "API Client library for Google Cloud: Core Helpers",
         homepage: "https://github.com/googleapis/python-cloud-core",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/python-cloud-core/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

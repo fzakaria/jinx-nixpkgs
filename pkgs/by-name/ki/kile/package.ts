@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const kdePackages = nix.arg($, "kdePackages");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kile",
       version: "2.9.94",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/kile/kile-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "U8Z0K9g/sJXL3ImLA/344Vq2gKgWk8yvnFB2uTrRo8o=",
         })))),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(kdePackages, "poppler")),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "User-friendly TeX/LaTeX authoring tool for the KDE desktop environment",
         homepage: "https://www.kde.org/applications/office/kile/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -12,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const age = nix.arg($, "age");
   const age_plugin_tpm = nix.arg($, "age-plugin-tpm");
   return nix.app(runCommand, "age-plugin-tpm-encrypt", nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       nativeBuildInputs: nix.thunk(() => [age, age_plugin_tpm]),
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         AGE_RECIPIENT: "age1tpm1qg86fn5esp30u9h6jy6zvu9gcsvnac09vn8jzjxt8s3qtlcv5h2x287wm36",
       })),
     })), "echo \"Hello World\" | age --encrypt --armor --recipient \"$AGE_RECIPIENT\"\ntouch $out\n");

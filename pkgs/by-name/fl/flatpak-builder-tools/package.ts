@@ -28,36 +28,36 @@ export default nix.lambda((args) => (() => {
   const enableDeno = nix.argOr($, "enableDeno", () => false);
   const version = "0-unstable-2026-09-30";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "flatpak",
       repo: "flatpak-builder-tools",
       rev: "74697c75b630d7330e77250fc13cb5ea688d9479",
       hash: "sha256-yr6RTFN/ypqLPzagrjljnY9dhrin+bfbgzhsz3RY9ps=",
     }))));
   return nix.app(buildEnv, nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       version: version,
       pname: "flatpak-builder-tools",
       paths: nix.thunk(() => nix.concat([
-        nix.thunk(() => nix.app(callPackage, nix.path(here, "./flatpak-cargo-generator.nix"), nix.thunk(() => ({ __proto__: pos$2, src: src, version: version })))),
-        nix.thunk(() => nix.app(callPackage, nix.path(here, "./flatpak-dotnet-generator.nix"), nix.thunk(() => ({ __proto__: pos$3, src: src, version: version })))),
-        nix.thunk(() => nix.app(callPackage, nix.path(here, "./flatpak-go-get-generator.nix"), nix.thunk(() => ({ __proto__: pos$4, src: src, version: version })))),
-        nix.thunk(() => nix.app(callPackage, nix.path(here, "./flatpak-gradle-generator.nix"), nix.thunk(() => ({ __proto__: pos$5, src: src, version: version })))),
-        nix.thunk(() => nix.app(callPackage, nix.path(here, "./flatpak-json2yaml.nix"), nix.thunk(() => ({ __proto__: pos$6, src: src, version: version })))),
-        nix.thunk(() => nix.app(callPackage, nix.path(here, "./flatpak-node-generator.nix"), nix.thunk(() => ({ __proto__: pos$7, src: src, version: version })))),
-        nix.thunk(() => nix.app(callPackage, nix.path(here, "./flatpak-pip-generator.nix"), nix.thunk(() => ({ __proto__: pos$8, src: src, version: version })))),
-        nix.thunk(() => nix.app(callPackage, nix.path(here, "./flatpak-poetry-generator.nix"), nix.thunk(() => ({ __proto__: pos$9, src: src, version: version })))),
+        nix.thunk(() => nix.app(callPackage, nix.path(here, "./flatpak-cargo-generator.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, src: src, version: version })))),
+        nix.thunk(() => nix.app(callPackage, nix.path(here, "./flatpak-dotnet-generator.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, src: src, version: version })))),
+        nix.thunk(() => nix.app(callPackage, nix.path(here, "./flatpak-go-get-generator.nix"), nix.thunk(() => ({ [nix.POS]: pos$4, src: src, version: version })))),
+        nix.thunk(() => nix.app(callPackage, nix.path(here, "./flatpak-gradle-generator.nix"), nix.thunk(() => ({ [nix.POS]: pos$5, src: src, version: version })))),
+        nix.thunk(() => nix.app(callPackage, nix.path(here, "./flatpak-json2yaml.nix"), nix.thunk(() => ({ [nix.POS]: pos$6, src: src, version: version })))),
+        nix.thunk(() => nix.app(callPackage, nix.path(here, "./flatpak-node-generator.nix"), nix.thunk(() => ({ [nix.POS]: pos$7, src: src, version: version })))),
+        nix.thunk(() => nix.app(callPackage, nix.path(here, "./flatpak-pip-generator.nix"), nix.thunk(() => ({ [nix.POS]: pos$8, src: src, version: version })))),
+        nix.thunk(() => nix.app(callPackage, nix.path(here, "./flatpak-poetry-generator.nix"), nix.thunk(() => ({ [nix.POS]: pos$9, src: src, version: version })))),
       ], nix.app(nix.sel(lib, "optionals"), enableDeno, nix.thunk(() => [
-          nix.thunk(() => nix.app(callPackage, nix.path(here, "./flatpak-deno-generator.nix"), nix.thunk(() => ({ __proto__: pos$10, src: src, version: version })))),
+          nix.thunk(() => nix.app(callPackage, nix.path(here, "./flatpak-deno-generator.nix"), nix.thunk(() => ({ [nix.POS]: pos$10, src: src, version: version })))),
         ])))),
       pathsToLink: nix.thunk(() => ["/bin"]),
-      derivationArgs: nix.thunk(() => ({ __proto__: pos$11, src: src, strictDeps: true })),
+      derivationArgs: nix.thunk(() => ({ [nix.POS]: pos$11, src: src, strictDeps: true })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         description: "Collection of community-contributed scripts to assist with building applications using Flatpak Builder",
         homepage: "https://github.com/flatpak/flatpak-builder-tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

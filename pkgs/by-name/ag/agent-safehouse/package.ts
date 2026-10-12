@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "safehouse";
       const version = "0.11.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eugene1g",
           repo: "agent-safehouse",
           rev: nix.thunk(() => nix.add("v", version)),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const strictDeps = true;
       const __structuredAttrs = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const buildPhase = "runHook preBuild\nscripts/generate-dist.sh\nrunHook postBuild\n";
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const doInstallCheck = true;
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Sandbox your local AI agents so they can read/write only what they need",
         homepage: "https://github.com/eugene1g/agent-safehouse",
         mainProgram: "safehouse",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

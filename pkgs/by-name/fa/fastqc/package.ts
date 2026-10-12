@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const desktopToDarwinBundle = nix.arg($, "desktopToDarwinBundle");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "fastqc",
       version: "0.12.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-TenRG2x8ivJ2HM2ZpLaJShp0yI0Qc6K5lW5/NJFAa1I",
         })))),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([makeWrapper, imagemagick], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), copyDesktopItems), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), desktopToDarwinBundle)))),
       buildInputs: nix.thunk(() => [jre, perl]),
       desktopItem: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "FastQC",
           exec: "fastqc",
           icon: "fastqc",
@@ -50,18 +50,18 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.str`makeWrapper $out/FastQC/fastqc $out/bin/fastqc --prefix PATH : ${jre}/bin
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Quality control application for high throughput sequence data",
         longDescription: "FastQC aims to provide a simple way to do some quality control checks on raw sequence data coming from high throughput sequencing pipelines. It provides a modular set of analyses which you can use to give a quick impression of whether your data has any problems of which you should be aware before doing any further analysis.\n\nThe main functions of FastQC are\n\n- Import of data from BAM, SAM or FastQ files (any variant)\n- Providing a quick overview to tell you in which areas there may be problems\n- Summary graphs and tables to quickly assess your data\n- Export of results to an HTML based permanent report\n- Offline operation to allow automated generation of reports without running the interactive application\n",
         homepage: "https://www.bioinformatics.babraham.ac.uk/projects/fastqc/",

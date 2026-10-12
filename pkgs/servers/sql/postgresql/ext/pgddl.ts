@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const postgresqlBuildExtension = nix.arg($, "postgresqlBuildExtension");
   const postgresqlTestExtension = nix.arg($, "postgresqlTestExtension");
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "pgddl",
       version: "0.31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lacanoid",
           repo: "pgddl",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,18 +32,18 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [perl]),
       preBuild: "patchShebangs --build ./bin/ ./docs\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           extension: nix.thunk(() => nix.app(postgresqlTestExtension, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               finalPackage: nix.thunk(() => nix.attr(finalAttrs, "finalPackage")),
               sql: "CREATE EXTENSION ddlx;\n\nCREATE TABLE a(i int PRIMARY KEY, j int);\n\nSELECT ddlx_create('a'::regclass);\nSELECT ddlx_drop('a'::regclass);\nSELECT ddlx_script('a'::regclass);\n",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "DDL eXtractor functions for PostgreSQL",
         homepage: "https://github.com/lacanoid/pgddl",
         changelog: nix.thunk(() => nix.str`https://github.com/lacanoid/pgddl/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -34,25 +34,25 @@ export default nix.lambda((args) => (() => {
   const vulkan_loader = nix.arg($, "vulkan-loader");
   const description = "OpenGL and Vulkan Benchmark and Stress Test";
   const versions = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "x86_64-linux": "2.10.2",
     "aarch64-linux": "2.10.1",
     "i686-linux": "2.0.16",
   }));
   const sources = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`https://gpumagick.com/downloads/files/2025/fm2/2_10_dbc69dd0a08da5ff09169a4fc759ddaa/FurMark_${nix.sel(versions, "x86_64-linux")}_linux64.7z`),
       hash: "sha256-s9AEj9r7kBhPGPU365HgxS9tEyrm7UjLtoxD21pCrts=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: nix.thunk(() => nix.str`https://gpumagick.com/downloads/files/2025/fm2/2_10_dbc69dd0a08da5ff09169a4fc759ddaa/FurMark_${nix.sel(versions, "aarch64-linux")}_arm64.7z`),
       hash: "sha256-XQuK6UgZOjwqpENkHVYsoiG9zyZAbNjR+65hj9dvAY8=",
     })),
     "i686-linux": nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       url: nix.thunk(() => nix.str`https://gpumagick.com/downloads/files/2024/furmark2/FurMark_${nix.sel(versions, "i686-linux")}_linux32.zip`),
       hash: "sha256-yXd90FgL3WbTga5x0mXT40BonA2NQtqLzRVzn4s4lLc=",
     })),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
   const is7z = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) || nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-linux"))));
   const linkLogs = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) || nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-linux"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: "furmark",
       version: nix.thunk(() => nix.selOr(versions, () => nix.sel(versions, "x86_64-linux"), nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.sel(sources, nix.key(nix.sel(stdenv, "hostPlatform", "system")))))),
@@ -79,13 +79,13 @@ export default nix.lambda((args) => (() => {
             const desktopName = name;
             const genericName = name;
             const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 url: "https://www.geeks3d.com/furmark/i/20240220-furmark-logo-02.png",
                 hash: "sha256-EqhWQgTEmF/2AcqDxgGtr2m5SMYup28hPEhI6ssFw7g=",
               }))));
             const categories = nix.thunk(() => ["System", "Monitor"]);
             return {
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               name,
               exec,
               comment,
@@ -97,18 +97,18 @@ export default nix.lambda((args) => (() => {
           })()))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         tests: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "furmark --version",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         homepage: "https://www.geeks3d.com/furmark/v2/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         mainProgram: "FurMark_GUI",

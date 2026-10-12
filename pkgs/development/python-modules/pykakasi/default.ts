@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "miurahr",
           repo: "pykakasi",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const pytestFlags = nix.thunk(() => ["--benchmark-disable"]);
       const pythonImportsCheck = nix.thunk(() => ["pykakasi"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python converter for Japanese Kana-kanji sentences into Kana-Roman",
         homepage: "https://codeberg.org/miurahr/pykakasi",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/miurahr/pykakasi/src/tag/v${version}/CHANGELOG.rst`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "kakasi",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

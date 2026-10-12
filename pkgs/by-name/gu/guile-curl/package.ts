@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const texinfo = nix.arg($, "texinfo");
   const curl = nix.arg($, "curl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "guile-curl",
       version: "0.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "spk121",
           repo: "guile-curl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       preAutoreconf: nix.thunk(() => nix.str`cp ${gettext}/share/gettext/m4/lib-{ld,link,prefix}.m4 m4
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bindings to cURL for GNU Guile",
         homepage: "https://github.com/spk121/guile-curl",
         changelog: nix.thunk(() => nix.str`https://github.com/spk121/guile-curl/releases/tag/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

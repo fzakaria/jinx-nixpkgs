@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "dn42-cacert",
       version: "0-unstable-2016-01-16",
       src: nix.path(here, "./root-ca.crt"),
@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "install -Dm644 $src $out/etc/ssl/certs/dn42-ca.crt\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "DN42 Root CA certificate",
         homepage: "https://wiki.dn42.dev/services/Certificate-Authority.md",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),

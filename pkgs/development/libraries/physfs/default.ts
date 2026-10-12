@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "physfs";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "icculus",
           repo: "physfs",
           rev: nix.thunk(() => nix.str`release-${version_1}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const doInstallCheck = true;
       const installCheckPhase = "./test_physfs --version\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://icculus.org/physfs/",
         description: "Library to provide abstract access to various archives",
         mainProgram: "test_physfs",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version: version_1,
         src,
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       };
     })()));
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     physfs_2: nix.thunk(() => nix.app(generic, "2.1.1", "sha256-hmS/bfszit3kD6B2BjnuV50XKueq2GcRaqyAKLkvfLc=")),
     physfs: nix.thunk(() => nix.app(generic, "3.2.0", "sha256-FhFIshX7G3uHEzvHGlDIrXa7Ux6ThQNzVssaENs+JMw=")),
   };

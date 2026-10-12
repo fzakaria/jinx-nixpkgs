@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
   const buildPlatform = nix.thunk(() => nix.attr(stdenv, "buildPlatform"));
   const targetPlatform = nix.thunk(() => nix.attr(stdenv, "targetPlatform"));
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     depsBuildBuild: nix.thunk(() => [nix.thunk(() => nix.sel(buildPackages, "stdenv", "cc"))]),
     nativeBuildInputs: nix.thunk(() => nix.concat([texinfo, which, autoconf269], nix.concat(nix.app(optionals, nix.thunk(() => !nix.asBool(is13)), nix.thunk(() => [gettext])), nix.concat(nix.app(optionals, nix.thunk(() => !nix.eq(perl, null)), nix.thunk(() => [perl])), nix.concat(nix.app(optionals, nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(stdenv, "targetPlatform")), null);

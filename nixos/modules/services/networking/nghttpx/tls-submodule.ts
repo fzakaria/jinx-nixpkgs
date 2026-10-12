@@ -12,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       key: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(lib, "types", "str")),
           example: "/etc/ssl/keys/mykeyfile.key",
           default: "/etc/ssl/keys/server.key",
           description: "Path to the TLS key file.\n",
         })))),
       crt: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.sel(lib, "types", "str")),
           example: "/etc/ssl/certs/mycert.crt",
           default: "/etc/ssl/certs/server.crt",

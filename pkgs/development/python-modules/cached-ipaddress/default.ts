@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const propcache = nix.arg($, "propcache");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cached-ipaddress",
       version: "1.1.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bdraco",
           repo: "cached-ipaddress",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_codspeed, pytest_cov_stub, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["cached_ipaddress"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cache construction of ipaddress objects",
         homepage: "https://github.com/bdraco/cached-ipaddress",
         changelog: nix.thunk(() => nix.str`https://github.com/bdraco/cached-ipaddress/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

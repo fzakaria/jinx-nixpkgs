@@ -18,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const libmcrypt = nix.arg($, "libmcrypt");
   const libmhash = nix.arg($, "libmhash");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libgringotts",
       version: "1.2.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://sourceforge.net/projects/gringotts.berlios/files/libgringotts-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "1ldz1lyl1aml5ci1mpnys8dg6n7khpcs4zpycak3spcpgdsnypm7",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [zlib, bzip2, libmcrypt, libmhash]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Small library to encapsulate data in an encrypted structure",
         homepage: "https://libgringotts.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

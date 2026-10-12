@@ -26,22 +26,22 @@ export default nix.lambda((args) => (() => {
   const suffixedVariables = nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "mapAttrs")), nix.thunk(() => nix.sel(cfg, "profileRelativeSessionVariables")), (envVar) => (suffixes) => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "concatMap")), nix.thunk(() => nix.sel(cfg, "profiles")), (profile) => nix.builtins.map((suffix) => nix.str`${profile}${suffix}`, suffixes))));
   const combinedSessionVars = nix.thunk(() => nix.app(nix.sel(lib, "zipAttrsWith"), (n) => nix.sel(lib, "concatLists"), nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         PATH: nix.thunk(() => [nix.thunk(() => nix.sel(config, "security", "wrapperDir"))]),
       })),
       nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (n) => nix.sel(lib, "toList"), nix.thunk(() => nix.sel(cfg, "sessionVariables")))),
       suffixedVariables,
     ])));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       environment: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         sessionVariables: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(options, "environment", "variables"));
             return {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             default: nix.thunk(() => ({})),
             description: "A set of environment variables used in the global environment.\nThese variables will be set by PAM early in the login process.\n\nThe value of each session variable can be either a string or a\nlist of strings. The latter is concatenated, interspersed with\ncolon characters.\n\nSetting a variable to `null` does nothing. You can override a\nvariable set by another module to `null` to unset it.\n\nNote, due to limitations in the PAM format values may not\ncontain the `\"` character.\n\nAlso, these variables are merged into\n[](#opt-environment.variables) and it is\ntherefore not possible to use PAM style variables such as\n`@{HOME}`.\n",
             type: nix.thunk(() => nix.attr(from, "type")),
@@ -49,10 +49,10 @@ export default nix.lambda((args) => (() => {
           };
           })()))),
         profileRelativeSessionVariables: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))))),
             example: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               PATH: nix.thunk(() => ["/bin"]),
               MANPATH: nix.thunk(() => ["/man", "/share/man"]),
             })),
@@ -61,18 +61,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       environment: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         etc: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           "environment.d/50-systemd-path.conf": nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             text: nix.thunk(() => nix.str`PATH="${nix.app(nix.sel(lib, "concatStringsSep"), ":", nix.thunk(() => nix.sel(combinedSessionVars, "PATH")))}"
 `),
           })),
           "pam/environment": nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             text: nix.thunk(() => (() => {
               const replaceEnvVars = nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["$HOME", "$USER"]), nix.thunk(() => ["@{HOME}", "@{PAM_USER}"])));
               const pamVariable = (n) => (v) => nix.str`${n}   DEFAULT="${nix.app(nix.sel(lib, "concatStringsSep"), ":", nix.thunk(() => nix.builtins.map(replaceEnvVars, nix.thunk(() => nix.app(nix.sel(lib, "toList"), v)))))}"`;

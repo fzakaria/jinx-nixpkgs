@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const gsl = nix.arg($, "gsl");
   const libqalculate = nix.arg($, "libqalculate");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "step",
       extraNativeBuildInputs: nix.thunk(() => [qttools, qtsvg, pkg_config, shared_mime_info]),
       extraBuildInputs: nix.thunk(() => [eigen, gsl, libqalculate]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "step" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "step" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

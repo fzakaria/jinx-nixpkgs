@@ -16,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const libfaketime = nix.arg($, "libfaketime");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nmstate",
       version: "2.2.57",
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "nmstate",
             repo: "nmstate",
             tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
             hash: "sha256-7X51XmoSwlIrbsdJFfTQ23bhO3bitkHXOObL6JaGpvI=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`https://github.com/nmstate/nmstate/releases/download/v${nix.sel(finalAttrs, "version")}/nmstate-vendor-${nix.sel(finalAttrs, "version")}.tar.xz`),
             hash: "sha256-stOHNezPLPjSrt/f3HmhqWMxSaSfOh/hYVGB2+l8Pb4=",
           })))),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [libfaketime]),
       postInstall: "ln -s ../target rust/target\nsource_date=$(date --utc --date=@$SOURCE_DATE_EPOCH \"+%F %T\")\nPREFIX=$out LIBDIR=$out/lib RELEASE=1 SKIP_PYTHON_INSTALL=1 faketime -f \"$source_date\" make install\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Nmstate: A Declarative Network API",
         homepage: "https://nmstate.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/nmstate/nmstate/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG`),

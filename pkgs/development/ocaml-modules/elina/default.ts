@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1";
       const pname = nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-elina`);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://files.sri.inf.ethz.ch/elina-${version}.tar.gz`),
           sha256: "1nymykskq1yx87y4xl6hl9i4q6kv0qaq25rniqgl1bfn883p1ysc",
         }))));
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const configureFlags = nix.thunk(() => nix.concat(["--use-apron", "--use-opam", "--apron-prefix", apron], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "--absolute-dylibs")));
       const createFindlibDestdir = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ETH LIbrary for Numerical Analysis",
         homepage: "https://elina.ethz.ch/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.app(nix.sel(lib, "intersectLists"), nix.thunk(() => nix.sel(ocaml, "meta", "platforms")), nix.thunk(() => nix.sel(lib, "platforms", "x86")))),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         pname,
         src,

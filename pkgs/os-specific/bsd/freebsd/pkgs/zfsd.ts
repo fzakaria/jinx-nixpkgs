@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const libsbuf = nix.arg($, "libsbuf");
   const libbsdxml = nix.arg($, "libbsdxml");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       path: "cddl/usr.sbin/zfsd",
       extraPaths: nix.thunk(() => ["sys/contrib/openzfs"]),
       clangFixup: false,
@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libgeom, libzfs, libdevdctl, libsbuf, libbsdxml]),
       MK_TESTS: "no",
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         NIX_CFLAGS_COMPILE: "-std=c++23 -Wno-nullability-completeness",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mainProgram: "zfsd",
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);

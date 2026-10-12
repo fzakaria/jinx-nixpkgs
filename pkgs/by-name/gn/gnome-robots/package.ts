@@ -35,16 +35,16 @@ export default nix.lambda((args) => (() => {
   const _experimental_update_script_combinators = nix.arg($, "_experimental-update-script-combinators");
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "gnome-robots",
       version: "50.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-robots/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-robots-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-YX5XTBX5Bhi4JJPJk51xdZatLOH/HeCq1cnDl2Yz03k=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -74,11 +74,11 @@ export default nix.lambda((args) => (() => {
       ]),
       preFixup: "# Seal GStreamer plug-ins so that we can notice when they are missing.\ngappsWrapperArgs+=(--set \"GST_PLUGIN_SYSTEM_PATH_1_0\" \"$GST_PLUGIN_SYSTEM_PATH_1_0\")\nunset GST_PLUGIN_SYSTEM_PATH_1_0\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => (() => {
-          const updateSource = nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$3, packageName: "gnome-robots" }))));
+          const updateSource = nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: "gnome-robots" }))));
           const updateLockfile = nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             command: nix.thunk(() => [
               "sh",
               "-c",
@@ -92,7 +92,7 @@ update-source-version gnome-robots --ignore-same-version --source-key=cargoDeps.
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://gitlab.gnome.org/GNOME/gnome-robots",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/gnome-robots/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),
         description: "Avoid the robots and make them crash into each other",

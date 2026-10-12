@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "kapacitor"));
   const kapacitorConf = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "kapacitord.conf",
       text: nix.thunk(() => nix.str`hostname="${nix.sel(config, "networking", "hostName")}"
 data_dir="${nix.sel(cfg, "dataDir")}"
@@ -94,106 +94,106 @@ ${nix.sel(cfg, "extraConfig")}
 `),
     }))));
   return {
-    __proto__: pos$37,
+    [nix.POS]: pos$37,
     options: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       services: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         kapacitor: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "kapacitor")),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/kapacitor",
               description: "Location where Kapacitor stores its state",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 9092n,
               description: "Port of Kapacitor",
             })))),
           bind: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "",
               example: "0.0.0.0",
               description: "Address to bind to. The default is to bind to all addresses",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               description: "These lines go into kapacitord.conf verbatim.",
               default: "",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "kapacitor",
               description: "User account under which Kapacitor runs",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "kapacitor",
               description: "Group under which Kapacitor runs",
             })))),
           taskSnapshotInterval: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Specifies how often to snapshot the task state  (in InfluxDB time units)",
               default: "1m0s",
             })))),
           loadDirectory: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               description: "Directory where to load services from, such as tasks, templates and handlers (or null to disable service loading on startup)",
               default: null,
             })))),
           defaultDatabase: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "kapacitor.defaultDatabase")),
             url: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 description: "The URL to an InfluxDB server that serves as the default database",
                 example: "http://localhost:8086",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
               })))),
             username: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 description: "The username to connect to the remote InfluxDB server",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
               })))),
             password: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 description: "The password to connect to the remote InfluxDB server",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
               })))),
           })),
           alerta: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "kapacitor alerta integration")),
             url: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 description: "The URL to the Alerta REST API",
                 default: "http://localhost:5000",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
               })))),
             token: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 description: "Default Alerta authentication token",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "",
               })))),
             environment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 description: "Default Alerta environment",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "Production",
               })))),
             origin: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 description: "Default origin of alert",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "kapacitor",
@@ -203,22 +203,22 @@ ${nix.sel(cfg, "extraConfig")}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         environment: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "kapacitor"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             settings: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               "10-kapacitor": nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "dataDir"), nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   d: nix.thunk(() => ({
-                    __proto__: pos$23,
+                    [nix.POS]: pos$23,
                     user: nix.thunk(() => nix.attr(cfg, "user")),
                     group: nix.thunk(() => nix.attr(cfg, "group")),
                   })),
@@ -227,14 +227,14 @@ ${nix.sel(cfg, "extraConfig")}
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             kapacitor: nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               description: "Kapacitor Real-Time Stream Processing Engine",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "kapacitor")}/bin/kapacitord -config ${kapacitorConf}`),
                 User: "kapacitor",
                 Group: "kapacitor",
@@ -243,20 +243,20 @@ ${nix.sel(cfg, "extraConfig")}
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           users: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             kapacitor: nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "kapacitor")),
               description: "Kapacitor user",
               home: nix.thunk(() => nix.sel(cfg, "dataDir")),
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             kapacitor: nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "kapacitor")),
             })),
           })),

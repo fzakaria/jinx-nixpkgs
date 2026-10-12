@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const depositContractSpecVersion = "0.12.1";
       const testnetDepositContractSpecVersion = "0.9.2.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sigp",
           repo: "lighthouse",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -52,17 +52,17 @@ export default nix.lambda((args) => (() => {
       ]);
       const buildInputs = nix.thunk(() => nix.concat([rust_jemalloc_sys, sqlite], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [openssl]))));
       const depositContractSpec = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/ethereum/eth2.0-specs/v${depositContractSpecVersion}/deposit_contract/contracts/validator_registration.json`),
           hash: "sha256-ZslAe1wkmkg8Tua/AmmEfBmjqMVcGIiYHwi+WssEwa8=",
         }))));
       const testnetDepositContractSpec = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/sigp/unsafe-eth2-deposit-contract/v${testnetDepositContractSpecVersion}/unsafe_validator_registration.json`),
           hash: "sha256-aeTeHRT3QtxBRSNMCITIWmx89vGtox2OzSff8vZ+RYY=",
         }))));
       const env = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         LIGHTHOUSE_DEPOSIT_CONTRACT_SPEC_URL: nix.thunk(() => nix.str`file://${depositContractSpec}`),
         LIGHTHOUSE_DEPOSIT_CONTRACT_TESTNET_URL: nix.thunk(() => nix.str`file://${testnetDepositContractSpec}`),
         OPENSSL_NO_VENDOR: true,
@@ -308,11 +308,11 @@ export default nix.lambda((args) => (() => {
           "--skip=subnet_service::tests::sync_committee_service::subscribe_and_unsubscribe",
         ]))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               package: lighthouse,
               command: "lighthouse --version",
               version: nix.thunk(() => nix.str`v${nix.sel(lighthouse, "version")}`),
@@ -322,7 +322,7 @@ export default nix.lambda((args) => (() => {
       }));
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Ethereum consensus client in Rust",
         homepage: "https://lighthouse.sigmaprime.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -337,7 +337,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) || nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "systems", "equals"), nix.thunk(() => nix.sel(stdenv, "buildPlatform")), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))))),
       }));
       return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname,
         version,
         depositContractSpecVersion,

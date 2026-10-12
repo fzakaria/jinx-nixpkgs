@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const gtk4_layer_shell = nix.arg($, "gtk4-layer-shell");
   const io = nix.arg($, "io");
   return nix.app(buildAstalModule, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "astal4",
       sourceRoot: "lib/astal/gtk4",
       buildInputs: nix.thunk(() => [io, gtk4, gtk4_layer_shell]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, description: "Astal module for GTK4 widgets" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, description: "Astal module for GTK4 widgets" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=astal4.ts.map

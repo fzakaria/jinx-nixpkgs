@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.11.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "postmarketOS",
           repo: "pmbootstrap",
           tag: version,
@@ -54,11 +54,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [git, openssl, multipath_tools, util_linux]))}`),
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Sophisticated chroot/build/flash tool to develop and install postmarketOS",
         homepage: "https://gitlab.postmarketos.org/postmarketOS/pmbootstrap",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "pmbootstrap",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

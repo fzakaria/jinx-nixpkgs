@@ -35,71 +35,71 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "lxmd"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "configobj"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         lxmd: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Enable Reticulum Network Lightweight Extensible Message Format Daemon (lxmd)")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "lxmf", nix.thunk(() => ({})))),
           packageBinaryName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "lxmd",
               description: "Name of the program to use. Useful in case of using an alternative implementation.",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(settingsFormat, "type")))),
               default: null,
               description: "Structured lxmd configuration. The generated file is copied to the state directory on service start. Use `lxmd --exampleconfig` to get an example config file.",
             })))),
           identityFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "Path to lxmd identity file. This file will be copied to the state directory on service start.",
             })))),
           rnsd: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(settingsFormat, "type")))),
                 default: null,
                 description: "Structured rnsd configuration. The generated file is copied to the state directory on service start. Use `rnsd --exampleconfig` to get an example config file.",
               })))),
             identityFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 description: "Path to rnsd identity file. This file will be copied to the state directory on service start.",
               })))),
             identities: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: nix.thunk(() => ({})),
                 description: "Map of identity names to paths of identity files.",
               })))),
           })),
           extraGroups: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "Additional groups for the lxmd service user.",
             })))),
           healthCheck: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "wait for lxmd to become healthy after startup")),
             intervalSeconds: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(lib, "types", "ints", "positive")),
                 default: 2n,
                 description: "Delay in seconds between each `lxmd --status` health check attempt.",
               })))),
             timeoutSeconds: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(lib, "types", "ints", "positive")),
                 default: 120n,
                 description: "Maximum time in seconds to wait for `lxmd --status` to succeed during startup.",
@@ -109,13 +109,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             lxmd: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "Reticulum Network Lightweight Extensible Message Format Daemon",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(config, "services", "rnsd", "enable")), nix.thunk(() => ["rnsd.service"]))),
@@ -135,7 +135,7 @@ export default nix.lambda((args) => (() => {
               })()),
               serviceConfig: nix.thunk(() => (() => {
                 const waitForHealthy = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     name: "lxmd-wait-for-health",
                     runtimeInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "lxmf"))]),
                     text: nix.thunk(() => nix.str`deadline=$((SECONDS + ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "healthCheck", "timeoutSeconds")))}))
@@ -151,7 +151,7 @@ done
 `),
                   }))));
                 return nix.update({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   DynamicUser: true,
                   StateDirectory: "lxmd",
                   SupplementaryGroups: nix.thunk(() => nix.sel(cfg, "extraGroups")),
@@ -161,7 +161,7 @@ done
                   ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), nix.thunk(() => nix.sel(cfg, "packageBinaryName")))} --config \${STATE_DIRECTORY}/lxmd --rnsconfig \${STATE_DIRECTORY}/rnsd
 `),
                 }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "healthCheck", "enable")), nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     ExecStartPost: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), waitForHealthy)),
                     TimeoutStartSec: nix.thunk(() => nix.add(nix.sel(cfg, "healthCheck", "timeoutSeconds"), 5n)),
                   }))));
@@ -171,7 +171,7 @@ done
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       doc: nix.path(here, "./lxmd.md"),
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

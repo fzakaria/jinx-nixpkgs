@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const postgresql = nix.arg($, "postgresql");
   const postgresqlBuildExtension = nix.arg($, "postgresqlBuildExtension");
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pg_relusage",
       version: "0.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "adept",
           repo: "pg_relusage",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-8hJNjQ9MaBk3J9a73l+yQMwMW/F2N8vr5PO2o+5GvYs=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "pg_relusage extension for PostgreSQL: discover and log the relations used in your statements",
         homepage: "https://github.com/adept/pg_relusage",
         maintainers: nix.thunk(() => (() => {

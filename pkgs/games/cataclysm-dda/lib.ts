@@ -15,23 +15,23 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   return (() => {
-    const buildMod = nix.thunk(() => nix.app(callPackage, nix.path(here, "./builder.nix"), nix.thunk(() => ({ __proto__: pos$1, type: "mod" }))));
-    const buildSoundPack = nix.thunk(() => nix.app(callPackage, nix.path(here, "./builder.nix"), nix.thunk(() => ({ __proto__: pos$2, type: "soundpack" }))));
-    const buildTileSet = nix.thunk(() => nix.app(callPackage, nix.path(here, "./builder.nix"), nix.thunk(() => ({ __proto__: pos$3, type: "tileset" }))));
+    const buildMod = nix.thunk(() => nix.app(callPackage, nix.path(here, "./builder.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, type: "mod" }))));
+    const buildSoundPack = nix.thunk(() => nix.app(callPackage, nix.path(here, "./builder.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, type: "soundpack" }))));
+    const buildTileSet = nix.thunk(() => nix.app(callPackage, nix.path(here, "./builder.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, type: "tileset" }))));
     const wrapCDDA = nix.thunk(() => nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({}))));
     const attachPkgs = (pkgs) => (super$) => (() => {
       const self = nix.thunk(() => nix.app(nix.sel(super$, "overrideAttrs"), (old) => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           passthru: nix.thunk(() => nix.update(nix.sel(old, "passthru"), {
-            __proto__: pos$5,
-            pkgs: nix.thunk(() => nix.app(nix.sel(pkgs, "override"), nix.thunk(() => ({ __proto__: pos$4, build: self })))),
+            [nix.POS]: pos$5,
+            pkgs: nix.thunk(() => nix.app(nix.sel(pkgs, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, build: self })))),
             withMods: nix.thunk(() => nix.app(wrapCDDA, self)),
           })),
         })));
       return nix.force(self);
     })();
     return {
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       buildMod,
       buildSoundPack,
       buildTileSet,

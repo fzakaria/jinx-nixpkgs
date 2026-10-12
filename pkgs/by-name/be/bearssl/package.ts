@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bearssl",
       version: "0.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.bearssl.org/bearssl-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "057zhgy9w4y8z2996r0pq5k2k39lpvmmvz4df8db8qa9f6hvn1b7",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), "DLL=no"))),
       installPhase: "runHook preInstall\ninstall -D build/brssl $bin/brssl\ninstall -D build/testcrypto $bin/testcrypto\ninstall -Dm644 -t $lib/lib build/libbearssl.*\ninstall -Dm644 -t $dev/include inc/*.h\ntouch $out\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.bearssl.org/",
         description: "Implementation of the SSL/TLS protocol written in C",
         longDescription: "BearSSL is an implementation of the SSL/TLS protocol (RFC 5246)\nwritten in C. It aims at offering the following features:\n\n* Be correct and secure. In particular, insecure protocol versions and\n  choices of algorithms are not supported, by design; cryptographic\n  algorithm implementations are constant-time by default.\n\n* Be small, both in RAM and code footprint. For instance, a minimal\n  server implementation may fit in about 20 kilobytes of compiled code\n  and 25 kilobytes of RAM.\n\n* Be highly portable. BearSSL targets not only “big” operating systems\n  like Linux and Windows, but also small embedded systems and even\n  special contexts like bootstrap code.\n\n* Be feature-rich and extensible. SSL/TLS has many defined cipher\n  suites and extensions; BearSSL should implement most of them, and\n  allow extra algorithm implementations to be added afterwards,\n  possibly from third parties.\n",

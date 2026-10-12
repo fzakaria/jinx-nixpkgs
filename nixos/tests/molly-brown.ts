@@ -22,10 +22,10 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const testString = "NixOS Gemini test successful";
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     name: "molly-brown",
     nodes: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       geminiServer: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
@@ -35,9 +35,9 @@ export default nix.lambda((args) => (() => {
         const cfg = nix.thunk(() => nix.sel(config, "services", "molly-brown"));
         const openssl = nix.thunk(() => nix.app(nix.sel(pkgs_1, "lib", "getExe"), nix.thunk(() => nix.sel(pkgs_1, "openssl"))));
         return {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           environment: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeScriptBin"), "test-gemini", nix.thunk(() => nix.str`#!${nix.sel(pkgs_1, "python3")}/bin/python
 
@@ -64,16 +64,16 @@ print(fp.readline().strip())
             ]),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             firewall: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "Port"))]),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             "molly-brown": nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               enable: true,
               docBase: "/var/lib/molly-brown/docs",
               certPath: "/var/lib/molly-brown/cert.pem",
@@ -81,12 +81,12 @@ print(fp.readline().strip())
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             services: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               "molly-brown": nix.thunk(() => ({
-                __proto__: pos$7,
-                serviceConfig: nix.thunk(() => ({ __proto__: pos$6, StateDirectory: "molly-brown" })),
+                [nix.POS]: pos$7,
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$6, StateDirectory: "molly-brown" })),
                 preStart: nix.thunk(() => nix.str`${openssl} genrsa -out "$STATE_DIRECTORY/key.pem"
 ${openssl} req -new \\
   -subj "/CN=${hostName}" \\

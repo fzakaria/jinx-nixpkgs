@@ -21,20 +21,20 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const psmisc = nix.arg($, "psmisc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "alsa-tools",
       version: "1.2.15",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://alsa/tools/alsa-tools-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-gASY01IzZy72f0v3TMbh034f5wwFQOLS4GLyMZ57Xfc=",
         })))),
       nativeBuildInputs: nix.thunk(() => [makeWrapper, pkg_config, fltk_1_3]),
       buildInputs: nix.thunk(() => [alsa_lib, gtk3, gtk4, psmisc]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         TOOLSET: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => [
             "as10k1",
             "envy24control",
@@ -64,7 +64,7 @@ wrapProgram $out/bin/hdajackretask \\
 runHook postFixup
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://www.alsa-project.org/",
         description: "ALSA Tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

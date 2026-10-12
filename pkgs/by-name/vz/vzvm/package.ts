@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const swift = nix.arg($, "swift");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "vzvm",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "applicative-systems",
           repo: "vzvm",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`codesign --entitlements ${nix.sel(finalAttrs, "src")}/vzvm/vzvm.entitlements -f -s - $out/bin/vzvm
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Minimal Linux VM monitor built on Apple's Virtualization.framework",
         longDescription: "vzvm boots a Linux guest from a kernel and initrd on Apple's\nVirtualization.framework, configured from a JSON file. It supports\nRosetta directory shares for running x86_64 binaries on Apple silicon, and\nforwards host TCP ports into the guest over vsock, so inbound connections need\nno guest IP discovery. Highly specialized for use as linux-builder.\n",
         homepage: "https://github.com/applicative-systems/vzvm",

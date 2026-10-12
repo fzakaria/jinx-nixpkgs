@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "usbredir";
       const version = "0.15.0";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "spice",
           repo: "usbredir",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const mesonFlags = nix.thunk(() => ["-Dgit_werror=disabled", "-Dtools=enabled", "-Dfuzzing=disabled"]);
       const outputs = nix.thunk(() => ["out", "dev"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "USB traffic redirection protocol",
         mainProgram: "usbredirect",
         homepage: "https://www.spice-space.org/usbredir.html",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "freedesktop"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

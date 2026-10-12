@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mariadb-connector-java";
       const version = "3.5.10";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mariadb-corporation",
           repo: "mariadb-connector-j",
           tag: version,
@@ -31,11 +31,11 @@ install -m444 -D target/mariadb-java-client-${version}.jar $out/share/java/maria
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "MariaDB Connector/J is used to connect applications developed in Java to MariaDB and MySQL databases",
         homepage: "https://mariadb.com/kb/en/about-mariadb-connector-j/",
         changelog: "https://mariadb.com/kb/en/mariadb-connector-j-release-notes/",
@@ -47,7 +47,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

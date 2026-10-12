@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const doxygen = nix.arg($, "doxygen");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "liblo",
       version: "0.35",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/liblo/liblo/${nix.sel(finalAttrs, "version")}/liblo-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-msxPflok8zRy6azX5Am3vWgQpG8KHzz+7Ooi1g86rhM=",
         })))),
       nativeBuildInputs: nix.thunk(() => [doxygen]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: "https://liblo.sourceforge.net/NEWS.html",
         description: "Lightweight library to handle the sending and receiving of messages according to the Open Sound Control (OSC) protocol",
         homepage: "https://sourceforge.net/projects/liblo",

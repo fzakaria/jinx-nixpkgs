@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const pyyaml = nix.arg($, "pyyaml");
   const rebulk = nix.arg($, "rebulk");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "guessit",
       version: "4.4.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "guessit",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-zKLBns2HLHXufry9wRB19a6ISILsCtZ/dCw9JfLUe+s=",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       pytestFlags: nix.thunk(() => ["--benchmark-disable"]),
       pythonImportsCheck: nix.thunk(() => ["guessit"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library that extracts as much information as possible from a video filename",
         homepage: "https://guessit-io.github.io/guessit/",
         changelog: nix.thunk(() => nix.str`https://github.com/guessit-io/guessit/raw/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

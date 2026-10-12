@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "adreaper",
       version: "1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "m0n1x90",
           repo: "ADReaper",
           rev: nix.thunk(() => nix.str`ADReaperv${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-lU39kj/uz0l7Rodsu6+UMv2o579eu1KUbutUNZni7bM=",
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), "mv $out/bin/ADReaper $out/bin/$pname\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Enumeration tool for Windows Active Directories",
         homepage: "https://github.com/m0n1x90/ADReaper",
         changelog: nix.thunk(() => nix.str`https://github.com/m0n1x90/ADReaper/releases/tag/ADReaperv${nix.sel(finalAttrs, "version")}`),

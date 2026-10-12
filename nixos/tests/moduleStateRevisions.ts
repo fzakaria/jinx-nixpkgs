@@ -14,15 +14,15 @@ export default nix.lambda((args) => (() => {
   const nixos = nix.arg($, "nixos");
   const evalModuleStateRevisions = (cfg) => nix.sel(nix.app(nixos, nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         system: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           stateVersion: nix.thunk(() => nix.sel(lib, "trivial", "release")),
         })),
       })),
       cfg,
     ])), "config", "system", "moduleStateRevisions");
-  const testModule = (path) => nix.has(nix.app(evalModuleStateRevisions, nix.thunk(() => nix.app(nix.sel(lib, "setAttrByPath"), path, nix.thunk(() => ({ __proto__: pos$3, enable: true }))))), nix.key(nix.str`${nix.builtins.concatStringsSep(".", path)}.stateRevision`));
+  const testModule = (path) => nix.has(nix.app(evalModuleStateRevisions, nix.thunk(() => nix.app(nix.sel(lib, "setAttrByPath"), path, nix.thunk(() => ({ [nix.POS]: pos$3, enable: true }))))), nix.key(nix.str`${nix.builtins.concatStringsSep(".", path)}.stateRevision`));
   nix.assert_(nix.eq(nix.app(evalModuleStateRevisions, nix.thunk(() => ({}))), {}), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/tests/moduleStateRevisions.nix:20:1");
   nix.assert_(nix.app(testModule, nix.thunk(() => ["services", "seerr"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/tests/moduleStateRevisions.nix:21:1");
   return nix.force(emptyFile);

@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const wrapQtAppsHook = nix.arg($, "wrapQtAppsHook");
   const withQt6 = nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(qtbase, "version"))), "6"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "lomiri-url-dispatcher",
       version: "0.1.5",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ubports",
           repo: "development/core/lomiri-url-dispatcher",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -121,15 +121,15 @@ wrapQtApp $out/bin/lomiri-url-dispatcher-gui
 `)))),
       postFixup: "moveToOutput share $out\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Lomiri operating environment service for requesting URLs to be opened",
         longDescription: "Allows applications to request a URL to be opened and handled by another\nprocess without seeing the list of other applications on the system or\nstarting them inside its own Application Confinement.\n",
         homepage: "https://gitlab.com/ubports/development/core/lomiri-url-dispatcher",

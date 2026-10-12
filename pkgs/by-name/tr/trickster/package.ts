@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.5";
       const rev = "4595bd6a1ae1165ef497251ad85c646dadc8a925";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "trickstercache",
           repo: "trickster",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const vendorHash = null;
       const subPackages = nix.thunk(() => ["cmd/trickster"]);
       const ldflags = nix.thunk(() => nix.concat(["-extldflags '-static'", "-s", "-w"], nix.app(nix.sel(lib, "mapAttrsToList"), (n) => (v) => nix.str`-X main.application${n}=${v}`, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           BuildTime: "1970-01-01T00:00:00+0000",
           GitCommitID: rev,
           GoVersion: nix.thunk(() => nix.str`go${nix.sel(go, "version")}}`),
@@ -39,14 +39,14 @@ export default nix.lambda((args) => (() => {
         })))));
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           trickster: nix.thunk(() => nix.attr(nixosTests, "trickster")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Reverse proxy cache and time series dashboard accelerator",
         mainProgram: "trickster",
         longDescription: "Trickster is a fully-featured HTTP Reverse Proxy Cache for HTTP\napplications like static file servers and web APIs.\n",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         rev,

@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const pname = "purescm";
   const version = nix.thunk(() => nix.sel(packageLock, "packages", nix.key(nix.str`node_modules/${pname}`), "version"));
   const package$ = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: version,
       src: nix.path(here, "./manifests"),
       dontNpmBuild: true,
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           src: nix.path(here, "./manifests"),
           hash: "sha256-ljeFcLvIET77Q0OR6O5Ok1fGnaxaKaoywpcy2aHq/6o=",
         })))),
@@ -36,14 +36,14 @@ cp -r node_modules/ $out/share/${pname}
 ln -s $out/share/${pname}/node_modules/.bin $out/bin
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: package$ })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: package$ })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Chez Scheme back-end for PureScript",
         homepage: "https://github.com/purescm/purescm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

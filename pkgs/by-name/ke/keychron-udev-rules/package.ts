@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const writeTextFile = nix.arg($, "writeTextFile");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "keychron-udev-rules",
       version: "0-unstable-2026-01-07",
       nativeBuildInputs: nix.thunk(() => [udevCheckHook]),
       src: nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: "69-keychron.rules",
           text: "KERNEL==\"hidraw*\", SUBSYSTEM==\"hidraw\", ATTRS{idVendor}==\"3434\", MODE=\"0660\", TAG+=\"uaccess\"\nKERNEL==\"event*\", SUBSYSTEM==\"input\", ENV{ID_VENDOR_ID}==\"3434\", ENV{ID_INPUT_JOYSTICK}==\"*?\", ENV{ID_INPUT_JOYSTICK}=\"\"\n",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       dontFixup: true,
       installPhase: "runHook preInstall\ninstall -Dm644 $src $out/lib/udev/rules.d/69-keychron.rules\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Keychron Keyboard Udev Rules, fixes issues with keyboard detection on Linux & permissions on Keychron Launcher",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

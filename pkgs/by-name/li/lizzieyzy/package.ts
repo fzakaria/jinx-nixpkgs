@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const maven = nix.arg($, "maven");
   return nix.app(nix.sel(maven, "buildMavenPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lizzieyzy",
       version: "2.5.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "yzyray",
           repo: "lizzieyzy",
           tag: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ runHook postInstall
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(jre, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "LizzieYzy is a GUI for Game of Go",
         mainProgram: "lizzieyzy",
         longDescription: "LizzieYzy is a graphical interface that supports multiple Go Engines such\nas Katago, LeelaZero, Leela, ZenGTP, SAI, Pachi or other GTP engines.\n",

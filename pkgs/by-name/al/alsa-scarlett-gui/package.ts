@@ -21,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "alsa-scarlett-gui",
       version: "0.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "geoffreybennett",
           repo: "alsa-scarlett-gui",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-DkfpMK0T67B4mnriignf4hx6Ifddls0rN0SxyfEsPZg=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=deprecated-declarations", "-Wno-error=discarded-qualifiers"]))),
       })),
       makeFlags: nix.thunk(() => ["DESTDIR=${out}", "PREFIX=''"]),
@@ -49,7 +49,7 @@ substituteInPlace $out/share/applications/vu.b4.alsa-scarlett-gui.desktop \\
 `),
       hardeningDisable: nix.thunk(() => ["fortify3"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GUI for alsa controls presented by Focusrite Scarlett Gen 2/3/4 Mixer Driver",
         mainProgram: "alsa-scarlett-gui",
         homepage: "https://github.com/geoffreybennett/alsa-scarlett-gui",

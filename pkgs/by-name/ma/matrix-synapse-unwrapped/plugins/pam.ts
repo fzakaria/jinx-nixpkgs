@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.3";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "14mRh4X0r",
           repo: "matrix-synapse-pam",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["pam_auth_provider"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PAM auth provider for the Synapse Matrix server",
         homepage: "https://github.com/14mRh4X0r/matrix-synapse-pam",
         license: nix.thunk(() => nix.sel(lib, "licenses", "eupl12")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

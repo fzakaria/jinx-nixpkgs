@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const bzip2 = nix.arg($, "bzip2");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mangl",
       version: "1.1.5-unstable-2024-07-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zigalenarcic",
           repo: "mangl",
           rev: "9d369fb0b9637969bbdfaafca73832fe8a31445b",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [freetype, glfw, bzip2, zlib]),
       installPhase: "runHook preInstall\n\ninstall -Dm0555 mangl -t $out/bin\ninstall -Dm0444 mangl.1 -t $out/man/man1\ninstall -Dm0444 art/mangl.svg -t $out/share/icons/hicolor/scalable/apps\ninstall -Dm0444 mangl.desktop -t $out/share/applications\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/zigalenarcic/mangl",
         description: "Graphical man page viewer based on the mandoc library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

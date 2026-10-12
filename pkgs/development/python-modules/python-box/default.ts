@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.3.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cdgriffith",
           repo: "Box",
           tag: version,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [cython, setuptools]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         all: nix.thunk(() => [msgpack, ruamel_yaml, toml]),
         yaml: nix.thunk(() => [ruamel_yaml]),
         "ruamel-yaml": nix.thunk(() => [ruamel_yaml]),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_to_yaml_ruamel"]);
       const pythonImportsCheck = nix.thunk(() => ["box"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python dictionaries with advanced dot notation access",
         homepage: "https://github.com/cdgriffith/Box",
         changelog: nix.thunk(() => nix.str`https://github.com/cdgriffith/Box/blob/${version}/CHANGES.rst`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

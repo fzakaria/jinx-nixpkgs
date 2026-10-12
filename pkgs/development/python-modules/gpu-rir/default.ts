@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const numpy = nix.arg($, "numpy");
   const scipy = nix.arg($, "scipy");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gpu-rir",
       version: "0-unstable-2025-01-20",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DavidDiazGuerra",
           repo: "gpuRIR",
           rev: "fd8af43a4a113d3c2c05f0085a0119ecb1f1a484",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       dontUsePythonImportsCheck: true,
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library for Room Impulse Response (RIR) simulation with GPU acceleration",
         homepage: "https://github.com/DavidDiazGuerra/gpuRIR",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

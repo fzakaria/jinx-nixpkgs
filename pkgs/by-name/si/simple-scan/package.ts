@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const gnome = nix.arg($, "gnome");
   const gobject_introspection = nix.arg($, "gobject-introspection");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "simple-scan",
       version: "50.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/simple-scan/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/simple-scan-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-zDK1Ya4icYLTGpRGZjLjEXI3VuOskFOMPH4qLJqqSgk=",
         })))),
@@ -68,11 +68,11 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: "simple-scan" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "simple-scan" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Simple scanning utility",
         mainProgram: "simple-scan",
         longDescription: "A really easy way to scan both documents and photos. You can crop out the\nbad parts of a photo and rotate it if it is the wrong way round. You can\nprint your scans, export them to pdf, or save them in a range of image\nformats. Basically a frontend for SANE - which is the same backend as\nXSANE uses. This means that all existing scanners will work and the\ninterface is well tested.\n",

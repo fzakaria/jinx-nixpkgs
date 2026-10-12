@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const libxml2 = nix.arg($, "libxml2");
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     pname: "gerbil-libxml",
     version: "unstable-2023-09-23",
     "git-version": "b08e5d8",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
     "version-path": "",
     softwareName: "Gerbil-LibXML",
     "pre-src": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       fun: fetchFromGitHub,
       owner: "mighty-gerbils",
       repo: "gerbil-libxml",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       sha256: "1zfccqaibwy2b3srwmwwgv91dwy1xl18cfimxhcsxl6mxvgm61pd",
     })),
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       description: "libxml bindings for Gerbil",
       homepage: "https://github.com/mighty-gerbils/gerbil-libxml",
       license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const boost = nix.arg($, "boost");
   const ladspa_header = nix.arg($, "ladspa-header");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nova-filters",
       version: "0.2-2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://klingt.org/~tim/nova-filters/nova-filters_${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-0WgxMDjhx2b39FKRwLrm8LrTO5nS0xE7+bRwQfcmBpg=",
         })))),
@@ -44,7 +44,7 @@ substituteInPlace nova/source/primitives/float.hpp \\
 `),
       nativeBuildInputs: nix.thunk(() => [scons]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "LADSPA plugins based on filters of nova",
         homepage: "http://klingt.org/~tim/nova-filters/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const allegro = nix.arg($, "allegro");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "atanks",
       version: "6.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/atanks/atanks/atanks-${nix.sel(finalAttrs, "version")}/atanks-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-vGse/J/H52JPrR2DUtcuknvg+6IWC7Jbtri9bGNwv0M=",
         })))),
       buildInputs: nix.thunk(() => [allegro]),
       makeFlags: nix.thunk(() => ["PREFIX=$(out)/", "INSTALL=install", "CXX=g++"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Atomic Tanks ballistics game",
         mainProgram: "atanks",
         homepage: "http://atanks.sourceforge.net/",

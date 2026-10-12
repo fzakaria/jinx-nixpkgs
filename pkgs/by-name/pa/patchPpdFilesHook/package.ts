@@ -16,22 +16,22 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const callPackage = nix.arg($, "callPackage");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: "patch-ppd-files",
       substitutions: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         which: nix.thunk(() => nix.app(nix.sel(lib, "getBin"), which)),
         awkscript: nix.path(here, "./patch-ppd-lines.awk"),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           test: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test.nix"), nix.thunk(() => ({})))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Setup hook to patch executable paths in ppd files",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "yarny"))]),

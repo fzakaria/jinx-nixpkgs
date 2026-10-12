@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const version = "12.1.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Clarifai",
           repo: "clarifai-python",
           tag: version,
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
         tritonclient,
         uv,
       ]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, all: nix.thunk(() => [pycocotools]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, all: nix.thunk(() => [pycocotools]) }));
       const nativeCheckInputs = nix.thunk(() => [
         nix.thunk(() => nix.sel(pkgs, "gitMinimal")),
         huggingface_hub,
@@ -107,7 +107,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["clarifai"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Clarifai Python Utilities",
         homepage: "https://github.com/Clarifai/clarifai-python",
         changelog: nix.thunk(() => nix.str`https://github.com/Clarifai/clarifai-python/releases/tag/${nix.sel(src, "tag")}`),
@@ -119,7 +119,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "clarifai",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

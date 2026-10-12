@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const flatpak = nix.arg($, "flatpak");
   const fwupd = nix.arg($, "fwupd");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "discover",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),
       extraBuildInputs: nix.thunk(() => [qtwebview, qcoro, discount, flatpak, fwupd]),

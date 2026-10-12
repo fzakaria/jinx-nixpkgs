@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => (() => {
       const frontendPname = "wealthfolio-frontend";
       const frontend = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: frontendPname,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           __structuredAttrs: true,
           strictDeps: true,
           pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               pname: frontendPname,
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -49,12 +49,12 @@ export default nix.lambda((args) => (() => {
           meta: nix.thunk(() => nix.attr(finalAttrs, "meta")),
         }))));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         __structuredAttrs: true,
         pname: "wealthfolio-server",
         version: "3.9.1",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             owner: "wealthfolio",
             repo: "wealthfolio",
             tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         buildAndTestSubdir: "apps/server",
         cargoHash: "sha256-skElXNXFcTwPv+rLKY90He8XLZfVrOJ8jYC4kL2vj9c=",
         env: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           OPENSSL_NO_VENDOR: 1n,
           SSL_CERT_FILE: nix.thunk(() => nix.str`${cacert}/etc/ssl/certs/ca-bundle.crt`),
         })),
@@ -79,12 +79,12 @@ wrapProgram $out/bin/wealthfolio-server \\
   --set WF_STATIC_DIR "$out/share/wealthfolio/dist"
 `),
         passthru: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           frontend: frontend,
           updateScript: nix.path(here, "./update.sh"),
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           description: "Self-hosted web app for Wealthfolio",
           homepage: "https://wealthfolio.app/",
           changelog: nix.thunk(() => nix.str`https://github.com/wealthfolio/wealthfolio/tag/${nix.sel(finalAttrs, "src", "tag")}`),

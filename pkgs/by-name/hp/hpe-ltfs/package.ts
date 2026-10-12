@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libxml2 = nix.arg($, "libxml2");
   const libuuid = nix.arg($, "libuuid");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "3.4.2_Z7550-02501",
       pname: "hpe-ltfs",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           owner: "nix-community",
           repo: "hpe-ltfs",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [fuse, icu66, libxml2, libuuid]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "HPE's implementation of the open-source tape filesystem standard ltfs",
         homepage: "https://support.hpe.com/hpesc/public/km/product/1009214665/Product",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

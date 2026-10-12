@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const dscheck = nix.arg($, "dscheck");
   const multicore_magic = nix.arg($, "multicore-magic");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "multicore-magic-dscheck",
       src: nix.thunk(() => nix.attr(multicore_magic, "src")),
       version: nix.thunk(() => nix.attr(multicore_magic, "version")),
       propagatedBuildInputs: nix.thunk(() => [dscheck]),
       meta: nix.thunk(() => nix.update(nix.sel(multicore_magic, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Implementation of multicore-magic API using the atomic module of DScheck to make DScheck tests possible in libraries using multicore-magic",
       })),
     })));

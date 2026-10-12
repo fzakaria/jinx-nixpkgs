@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const src = nix.thunk(() => nix.attr(sudachi_rs, "src"));
       const version = nix.thunk(() => nix.attr(sudachi_rs, "version"));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           src: src,
@@ -49,20 +49,20 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, sudachidict_core, tokenizers]);
       const pythonImportsCheck = nix.thunk(() => ["sudachipy"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.attr(sudachi_rs, "updateScript")),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          pytest: nix.thunk(() => nix.app(nix.sel(sudachipy, "overridePythonAttrs"), (_) => ({ __proto__: pos$2, doCheck: true, dontInstall: true }))),
+          [nix.POS]: pos$3,
+          pytest: nix.thunk(() => nix.app(nix.sel(sudachipy, "overridePythonAttrs"), (_) => ({ [nix.POS]: pos$2, doCheck: true, dontInstall: true }))),
         })),
       }));
       const meta = nix.thunk(() => nix.update(nix.sel(sudachi_rs, "meta"), {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/WorksApplications/sudachi.rs/tree/develop/python",
         mainProgram: "sudachipy",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         format,
         pname,
         src,

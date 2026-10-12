@@ -16,20 +16,20 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const version = "2.2.0";
   return nix.app(buildPecl, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: version,
       pname: "amqp",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "php-amqp",
           repo: "php-amqp",
           rev: nix.thunk(() => nix.str`v${version}`),
           sha256: "sha256-HgwuQWxJFno24yo26qM30Qb8s3L9mYVntvMxC2MYxTk=",
         })))),
       buildInputs: nix.thunk(() => [rabbitmq_c]),
-      env: nix.thunk(() => ({ __proto__: pos$2, AMQP_DIR: rabbitmq_c })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, AMQP_DIR: rabbitmq_c })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/php-amqp/php-amqp/releases/tag/v${version}`),
         description: "PHP extension to communicate with any AMQP compliant server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "php301")),

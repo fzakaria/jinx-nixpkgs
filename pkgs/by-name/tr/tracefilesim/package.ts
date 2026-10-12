@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tracefilesim",
       version: "unstable-2015-11-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GarCoSim",
           repo: "TraceFileSim",
           rev: "368aa6b1d6560e7ecbd16fca47000c8f528f3da2",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => ["fortify"]),
       installPhase: "mkdir --parents \"$out/bin\"\ncp ./traceFileSim \"$out/bin\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Ease the analysis of existing memory management techniques, as well as the prototyping of new memory management techniques",
         mainProgram: "traceFileSim",
         homepage: "https://github.com/GarCoSim",

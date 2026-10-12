@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const mkfontscale = nix.arg($, "mkfontscale");
   const fontDirs = nix.arg($, "fontDirs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "xquartz-system-fonts",
       buildInputs: nix.thunk(() => [mkfontscale, mkfontscale]),
       buildCommand: nix.thunk(() => nix.str`for i in ${nix.builtins.toString(fontDirs)} ; do

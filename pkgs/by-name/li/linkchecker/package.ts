@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const gettext = nix.arg($, "gettext");
   const pdfSupport = nix.argOr($, "pdfSupport", () => true);
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "linkchecker",
       version: "10.6.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linkchecker",
           repo: "linkchecker",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_timeit2"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Check websites for broken links",
         mainProgram: "linkchecker",
         homepage: "https://linkcheck.github.io/linkchecker/",

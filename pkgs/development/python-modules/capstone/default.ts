@@ -27,7 +27,7 @@ substituteInPlace setup.py --replace manylinux1 manylinux2014
       const propagatedBuildInputs = nix.thunk(() => [setuptools]);
       const checkPhase = "mv capstone capstone.hidden\npushd tests\n  patchShebangs test_*\n  make -f ../Makefile check\npopd\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: "http://www.capstone-engine.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsdOriginal")),
         description: "Python bindings for Capstone disassembly engine",
@@ -40,7 +40,7 @@ substituteInPlace setup.py --replace manylinux1 manylinux2014
         })()),
       }));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         version,
         format,

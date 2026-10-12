@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const outputs = nix.thunk(() => ["out", "dev"]);
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/pygobject/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/pygobject-${version}.tar.gz`),
           hash: "sha256-EnYOSg49BLbrleBveifjYsgm1WfqYTNzqSwAO2xw0tY=",
         }))));
@@ -46,16 +46,16 @@ export PKG_CONFIG_PATH_FOR_BUILD=${nix.app(nix.sel(lib, "getDev"), python)}/lib/
         nix.thunk(() => nix.str`-Dpython=${nix.sel(python, "pythonOnBuildForHost", "interpreter")}`),
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             packageName: "pygobject",
             attrPath: "python3.pkgs.pygobject3",
             versionPolicy: "odd-unstable",
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://pygobject.readthedocs.io/",
         description: "Python bindings for Glib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
@@ -63,7 +63,7 @@ export PKG_CONFIG_PATH_FOR_BUILD=${nix.app(nix.sel(lib, "getDev"), python)}/lib/
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         outputs,

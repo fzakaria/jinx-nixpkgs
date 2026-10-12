@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
   const wasmtime_36 = nix.arg($, "wasmtime_36");
   const fetchurl = nix.arg($, "fetchurl");
   const buildPackages = nix.arg($, "buildPackages");
-  const treesitter_parsers = nix.argOr($, "treesitter-parsers", () => nix.app(nix.builtins.import(nix.path(here, "./treesitter-parsers.nix")), nix.thunk(() => ({ __proto__: pos$1, fetchurl: fetchurl }))));
+  const treesitter_parsers = nix.argOr($, "treesitter-parsers", () => nix.app(nix.builtins.import(nix.path(here, "./treesitter-parsers.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, fetchurl: fetchurl }))));
   const fixDarwinDylibNames = nix.arg($, "fixDarwinDylibNames");
   const glibcLocales = nix.argOr($, "glibcLocales", () => null);
   const procps = nix.argOr($, "procps", () => null);
@@ -42,12 +42,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const wasmSupport = nix.argOr($, "wasmSupport", () => false);
   const lua = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), luajit)) ? nix.force(luajit) : nix.force(lua5_1)));
-  const treeSitterForNeovim = nix.thunk(() => nix.app(nix.sel(tree_sitter, "override"), nix.thunk(() => ({ __proto__: pos$2, wasmSupport: wasmSupport }))));
+  const treeSitterForNeovim = nix.thunk(() => nix.app(nix.sel(tree_sitter, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, wasmSupport: wasmSupport }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const nvim_lpeg_dylib = (luapkgs) => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? (() => {
         const luaLibDir = nix.thunk(() => nix.str`$out/lib/lua/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(luapkgs, "lua", "luaversion")))}`);
         return nix.app(nix.sel(luapkgs, "lpeg", "overrideAttrs"), (old) => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             preConfigure: "# neovim wants clang .dylib\nsubstituteInPlace Makefile \\\n  --replace-fail \"CC = gcc\" \"CC = clang\" \\\n  --replace-fail \"-bundle\" \"-dynamiclib\" \\\n  --replace-fail \"lpeg.so\" \"lpeg.dylib\"\n",
             preBuild: nix.thunk(() => nix.str`# there seems to be implicit calls to Makefile from luarocks, we need to
 # add a stage to build our dylib
@@ -79,19 +79,19 @@ mv lpeg.dylib ${luaLibDir}/lpeg.dylib
       const neovimLuaEnv = nix.thunk(() => nix.app(nix.sel(lua, "withPackages"), runtimeLuaPkgs));
       const neovimLuaEnvOnBuild = nix.thunk(() => nix.app(nix.sel(lua, "luaOnBuild", "withPackages"), nix.thunk(() => (nix.asBool(nix.sel(finalAttrs, "finalPackage", "doCheck")) ? checkLuaPkgs : runtimeLuaPkgs))));
       const codegenLua = nix.thunk(() => (nix.asBool(nix.sel(lua, "luaOnBuild", "pkgs", "isLuaJIT")) ? (() => {
-        const deterministicLuajit = nix.thunk(() => nix.app(nix.sel(lua, "luaOnBuild", "override"), nix.thunk(() => ({ __proto__: pos$4, deterministicStringIds: true, self: deterministicLuajit }))));
+        const deterministicLuajit = nix.thunk(() => nix.app(nix.sel(lua, "luaOnBuild", "override"), nix.thunk(() => ({ [nix.POS]: pos$4, deterministicStringIds: true, self: deterministicLuajit }))));
         return nix.app(nix.sel(deterministicLuajit, "withPackages"), (ps) => [
             nix.thunk(() => nix.sel(ps, "mpack")),
             nix.thunk(() => nix.app(nvim_lpeg_dylib, ps)),
           ]);
       })() : nix.sel(lua, "luaOnBuild")));
       return {
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         pname: "neovim-unwrapped",
         version: "0.12.5",
         __structuredAttrs: true,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             owner: "neovim",
             repo: "neovim",
             tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -101,18 +101,18 @@ mv lpeg.dylib ${luaLibDir}/lpeg.dylib
         patches: nix.thunk(() => [nix.path(here, "./system_rplugin_manifest.patch")]),
         lua: lua,
         "treesitter-parsers": nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (language) => (grammar) => nix.app(nix.sel(tree_sitter, "buildGrammar"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               src: nix.thunk(() => nix.attr(grammar, "src")),
               version: nix.thunk(() => nix.str`neovim-${nix.sel(finalAttrs, "version")}`),
               language: nix.thunk(() => nix.selOr(grammar, () => nix.force(language), "language")),
               location: nix.thunk(() => nix.selOr(grammar, () => null, "location")),
             }))), nix.thunk(() => nix.update(treesitter_parsers, nix.update({
-            __proto__: pos$8,
-            markdown: nix.thunk(() => nix.update(nix.sel(treesitter_parsers, "markdown"), { __proto__: pos$7, location: "tree-sitter-markdown" })),
+            [nix.POS]: pos$8,
+            markdown: nix.thunk(() => nix.update(nix.sel(treesitter_parsers, "markdown"), { [nix.POS]: pos$7, location: "tree-sitter-markdown" })),
           }, {
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             markdown_inline: nix.thunk(() => nix.update(nix.sel(treesitter_parsers, "markdown"), {
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               language: "markdown_inline",
               location: "tree-sitter-markdown-inline",
             })),
@@ -162,11 +162,11 @@ sed -i src/nvim/po/CMakeLists.txt \\
         versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/nvim`),
         doInstallCheck: true,
         passthru: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           description: "Vim text editor fork focused on extensibility and agility",
           longDescription: "Neovim is a project that seeks to aggressively refactor Vim in order to:\n- Simplify maintenance and encourage contributions\n- Split the work between multiple developers\n- Enable the implementation of new/modern user interfaces without any\n  modifications to the core source\n- Improve extensibility with a new plugin architecture\n",
           homepage: "https://neovim.io",

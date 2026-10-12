@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.8.22";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "microsoft",
           repo: "debugpy",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -51,15 +51,15 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./fix-test-pythonpath.patch"),
         nix.path(here, "./skip-attach-pid-tests.patch"),
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [
-          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-gdb.patch"), nix.thunk(() => ({ __proto__: pos$2, gdb: gdb })))),
+          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-gdb.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, gdb: gdb })))),
         ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [
-          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-lldb.patch"), nix.thunk(() => ({ __proto__: pos$3, lldb: lldb })))),
+          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-lldb.patch"), nix.thunk(() => ({ [nix.POS]: pos$3, lldb: lldb })))),
         ])))));
       const preBuild = nix.thunk(() => nix.str`(
   set -x
   cd src/debugpy/_vendored/pydevd/pydevd_attach_to_process
   $CXX linux_and_mac/attach.cpp -Ilinux_and_mac -std=c++11 -fPIC -nostartfiles ${nix.selOr({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "x86_64-linux": "-shared -o attach_linux_amd64.so",
         "i686-linux": "-shared -o attach_linux_x86.so",
         "aarch64-linux": "-shared -o attach_linux_arm64.so",
@@ -95,7 +95,7 @@ export default nix.lambda((args) => (() => {
       const __darwinAllowLocalNetworking = true;
       const pythonImportsCheck = nix.thunk(() => ["debugpy"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Implementation of the Debug Adapter Protocol for Python",
         homepage: "https://github.com/microsoft/debugpy",
         changelog: nix.thunk(() => nix.str`https://github.com/microsoft/debugpy/releases/tag/${nix.sel(src, "tag")}`),
@@ -113,7 +113,7 @@ export default nix.lambda((args) => (() => {
         ]),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

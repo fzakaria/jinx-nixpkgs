@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
   const kdePackages = nix.arg($, "kdePackages");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mat2",
       version: "0.15.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jvoisin",
           repo: "mat2",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./paths.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             exiftool: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), exiftool)),
             ffmpeg: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), ffmpeg_8)),
             kdialog: nix.thunk(() => (nix.asBool(dolphinIntegration) ? nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(kdePackages, "kdialog"))) : null)),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gdk_pixbuf, poppler_gi]),
       dependencies: nix.thunk(() => [mutagen, pygobject3, pycairo]),
       postInstall: nix.thunk(() => nix.add(nix.str`export GDK_PIXBUF_MODULE_FILE="${nix.app(nix.sel(gnome, "_gdkPixbufCacheBuilder_DO_NOT_USE"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           extraLoaders: nix.thunk(() => [librsvg, webp_pixbuf_loader]),
         })))}"
 
@@ -72,7 +72,7 @@ install -Dm 444 doc/mat2.1 -t "$out/share/man/man1"
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Handy tool to trash your metadata",
         homepage: "https://github.com/jvoisin/mat2",
         changelog: nix.thunk(() => nix.str`https://github.com/jvoisin/mat2/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

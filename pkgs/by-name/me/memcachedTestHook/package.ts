@@ -17,21 +17,21 @@ export default nix.lambda((args) => (() => {
   const memcached = nix.arg($, "memcached");
   const netcat = nix.arg($, "netcat");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: "memcached-test-hook",
       substitutions: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         memcached: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), memcached)),
         nc: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), netcat)),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           simple: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test.nix"), nix.thunk(() => ({})))),
         })),
       })),
-      meta: nix.thunk(() => ({ __proto__: pos$4, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$4, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
     })), nix.path(here, "./memcached-test-hook.sh"));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

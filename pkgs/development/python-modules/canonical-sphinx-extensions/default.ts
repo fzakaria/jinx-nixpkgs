@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.34";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "canonical_sphinx_extensions",
           version: version,
           hash: "sha256-y9wiXj4FOkOt3Pt2EFbX5xO+f8V5eaI0G6LzuGbdY0o=",
@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [beautifulsoup4, docutils, gitpython, requests, sphinx]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of Sphinx extensions used by Canonical documentation",
         homepage: "https://pypi.org/project/canonical-sphinx-extensions",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const useVSCodeRipgrep = nix.argOr($, "useVSCodeRipgrep", () => nix.sel(stdenv, "hostPlatform", "isDarwin"));
   const info = nix.thunk(() => nix.selOr(nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./info.json")), () => nix.builtins.throw(nix.thunk(() => nix.str`windsurf: unsupported system ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.str`${nix.sel(stdenv, "hostPlatform", "system")}`)));
   return nix.app(nix.sel(nix.app(buildVscode, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       commandLineArgs: commandLineArgs,
       useVSCodeRipgrep: useVSCodeRipgrep,
       version: nix.thunk(() => nix.attr(info, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       iconName: "devin-desktop",
       sourceRoot: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "Devin.app" : "Devin")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.attr(info, "url")),
           sha256: nix.thunk(() => nix.attr(info, "sha256")),
         })))),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       updateScript: nix.path(here, "./update/update.mts"),
       dontFixup: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Agentic IDE powered by AI Flow paradigm",
         longDescription: "The first agentic IDE, and then some.\nDevin Desktop is where the work of developers and AI truly flow together, allowing for a coding experience that feels like literal magic.\n",
         homepage: "https://devin.ai/desktop",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryBytecode"))]),
       })),
     }))), "overrideAttrs"), (oldAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       dontAutoPatchelf: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")),
       runtimeDependencies: nix.thunk(() => nix.concat(nix.selOr(oldAttrs, () => [], "runtimeDependencies"), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [fd])))),
       postFixup: nix.thunk(() => nix.add(nix.selOr(oldAttrs, () => "", "postFixup"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`autoPatchelf -- "$out"

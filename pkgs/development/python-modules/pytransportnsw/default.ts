@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "PyTransportNSW",
           version: version,
           sha256: "00jklgjirmc58hiaqqc2n2rgixvx91bgrd6lv6hv28k51kid10f3",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["TransportNSW"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python module to access Transport NSW information",
         homepage: "https://github.com/Dav0815/TransportNSW",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

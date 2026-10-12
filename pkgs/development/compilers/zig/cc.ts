@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const targetPrefix = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "targetPlatform"))), nix.thunk(() => nix.str`${nix.sel(stdenv, "targetPlatform", "config")}-`)));
   return nix.app(runCommand, nix.thunk(() => nix.str`zig-cc-${nix.sel(zig, "version")}`), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zig-cc",
       version: nix.thunk(() => nix.attr(zig, "version")),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
-      passthru: nix.thunk(() => ({ __proto__: pos$1, isZig: true, targetPrefix: targetPrefix })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, isZig: true, targetPrefix: targetPrefix })),
       zig: zig,
       meta: nix.thunk(() => nix.update(nix.sel(zig, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mainProgram: nix.thunk(() => nix.str`${targetPrefix}clang`),
       })),
     })), "mkdir -p $out/bin\nfor tool in cc c++ ld.lld; do\n  makeWrapper \"$zig/bin/zig\" \"$out/bin/$tool\" \\\n    --add-flags \"$tool\" \\\n    --run \"export ZIG_GLOBAL_CACHE_DIR=\\$TMPDIR/zig-cache\"\ndone\n\nln -s $out/bin/c++ $out/bin/clang++\nln -s $out/bin/cc $out/bin/clang\nln -s $out/bin/ld.lld $out/bin/ld\n");

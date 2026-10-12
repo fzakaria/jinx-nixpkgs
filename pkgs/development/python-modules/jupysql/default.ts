@@ -39,13 +39,13 @@ export default nix.lambda((args) => (() => {
   const psutil = nix.arg($, "psutil");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "jupysql",
       version: "0.11.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ploomber",
           repo: "jupysql",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         sqlparse,
       ], nix.sel(pyspark, "optional-dependencies", "connect"))),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         dev: nix.thunk(() => [
           duckdb,
           duckdb_engine,
@@ -106,9 +106,9 @@ export default nix.lambda((args) => (() => {
         "src/tests/test_widget.py",
       ]),
       pythonImportsCheck: nix.thunk(() => ["sql"]),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, skipBulkUpdate: true })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, skipBulkUpdate: true })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Better SQL in Jupyter",
         homepage: "https://github.com/ploomber/jupysql",
         changelog: nix.thunk(() => nix.str`https://github.com/ploomber/jupysql/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

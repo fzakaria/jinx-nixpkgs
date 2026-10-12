@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
   const postHook = nix.argOr($, "postHook", () => "");
   const doingAnalysis = nix.thunk(() => (nix.asBool((nix.asBool(doCoverageAnalysis) || nix.asBool(doClangAnalysis))) || nix.asBool(doCoverityAnalysis)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       doCheck: true,
       dontInstall: doingAnalysis,
       useTempPrefix: doingAnalysis,
@@ -66,7 +66,7 @@ fi
 `),
       failureHook: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(failureHook, null)), failureHook), "if test -n \"$succeedOnFailure\"; then\n    if test -n \"$keepBuildDirectory\"; then\n        KEEPBUILDDIR=\"$out/`basename $TMPDIR`\"\n        echo \"Copying build directory to $KEEPBUILDDIR\"\n        mkdir -p $KEEPBUILDDIR\n        cp -R \"$TMPDIR/\"* $KEEPBUILDDIR\n    fi\nfi\n")),
     }, nix.update(nix.builtins.removeAttrs(args_1, nix.thunk(() => ["lib"])), nix.update({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: nix.thunk(() => nix.add(name, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.has(src, "version")), nix.thunk(() => nix.str`-${nix.sel(src, "version")}`)))),
       postHook: nix.thunk(() => nix.str`. ${nix.path(here, "./functions.sh")}
 origSrc=$src
@@ -109,11 +109,11 @@ fi
       lcovExtraTraceFiles: lcovExtraTraceFiles,
       postPhases: nix.thunk(() => nix.concat(postPhases, ["finalPhase"])),
       meta: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_1, "meta")), nix.thunk(() => nix.sel(args_1, "meta"))), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: nix.thunk(() => (nix.asBool(doCoverageAnalysis) ? "Coverage analysis" : nix.str`Nix package for ${nix.sel(stdenv, "hostPlatform", "system")}`)),
       })),
     }, nix.app(nix.sel(lib, "optionalAttrs"), buildOutOfSourceTree, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         preConfigure: nix.thunk(() => nix.str`mkdir "../build"
 cd "../build"
 configureScript="../$sourceRoot/configure"

@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const boost = nix.arg($, "boost");
   const texinfo = nix.arg($, "texinfo");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "wsjtx",
       version: "3.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "WSJTX",
           repo: "wsjtx",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,14 +66,14 @@ export default nix.lambda((args) => (() => {
       ]),
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex", "^v([0-9]\\.[0-9]\\.[0-9])$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Weak-signal digital communication modes for amateur radio",
         longDescription: "WSJT-X implements communication protocols or \"modes\" called FT4, FT8, JT4,\nJT9, JT65, QRA64, ISCAT, MSK144, and WSPR, as well as one called Echo for\ndetecting and measuring your own radio signals reflected from the Moon.\nThese modes were all designed for making reliable, confirmed ham radio\ncontacts under extreme weak-signal conditions.\n",
         homepage: "https://wsjt.sourceforge.io",

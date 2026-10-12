@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const ncurses = nix.argOr($, "ncurses", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "samtools",
       version: "1.22.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/samtools/samtools/releases/download/${nix.sel(finalAttrs, "version")}/samtools-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-Aqpc0LpS4GwggAVOBZ19d6iF3+lxfDHNid/npAR+2g4=",
         })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tools for manipulating SAM/BAM/CRAM format",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "http://www.htslib.org/",

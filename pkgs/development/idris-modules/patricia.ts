@@ -14,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const specdris = nix.arg($, "specdris");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "patricia",
       version: "2017-10-27",
       idrisDeps: nix.thunk(() => [specdris]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ChShersh",
           repo: "idris-patricia",
           rev: "24724e6d0564f2f813d0d0a58f5c5db9afe35313",
           sha256: "093q3qjmr93wv8pqwk0zfm3hzf14c235k9c9ip53rhg6yzcm0yqz",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Immutable map from integer keys to values based on patricia tree. Basically persistent array",
         homepage: "https://github.com/ChShersh/idris-patricia",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

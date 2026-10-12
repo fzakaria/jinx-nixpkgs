@@ -75,13 +75,13 @@ export default nix.lambda((args) => (() => {
   const docbookFiles = nix.thunk(() => nix.str`${docbook_xsl}/share/xml/docbook-xsl/catalog.xml:${docbook_xml_dtd_45}/xml/dtd/docbook/catalog.xml`);
   const Po4a = nix.thunk(() => nix.attr(perlPackages, "Po4a"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "sssd",
       version: "2.13.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SSSD",
           repo: "sssd",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "CVE-2026-14476.patch",
             url: "https://github.com/SSSD/sssd/commit/ba207eab76ff5253662a763b9b6e9ea42f03d31b.patch?full_index=1",
             hash: "sha256-55V8RfIcGF49GGebg+pgCLPU9MGY2S/7PaOGIqwNL0w=",
@@ -99,7 +99,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev", "man"]),
       separateDebugInfo: true,
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [nix.thunk(() => nix.str`-DRENEWAL_PROG_PATH="${adcli}/bin/adcli"`)]))),
         KRB5_CONFIG: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.app(nix.sel(lib, "getDev"), libkrb5)), "krb5-config")),
         NSUPDATE: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), dnsutils, "nsupdate")),
@@ -207,9 +207,9 @@ configureFlagsArray=(
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "sssd-ldap": nix.thunk(() => nix.attr(nixosTests, "sssd-ldap")),
           "sssd-legacy-config": nix.thunk(() => nix.attr(nixosTests, "sssd-legacy-config")),
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
@@ -217,7 +217,7 @@ configureFlagsArray=(
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "System Security Services Daemon",
         homepage: "https://sssd.io/",
         changelog: nix.thunk(() => nix.str`https://sssd.io/release-notes/sssd-${nix.sel(finalAttrs, "version")}.html`),

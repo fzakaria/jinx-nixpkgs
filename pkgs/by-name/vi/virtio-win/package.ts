@@ -15,20 +15,20 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const libarchive = nix.arg($, "libarchive");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "virtio-win",
       version: "0.1.302-1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/archive-virtio/virtio-win-${nix.sel(finalAttrs, "version")}/virtio-win.iso`),
           hash: "sha256-MD965A2tSV1q5HT9xXHfWJWKTbxcN6Ui2A+aIDhnlJ0=",
         })))),
       nativeBuildInputs: nix.thunk(() => [libarchive]),
       unpackCmd: "mkdir source; bsdtar -xf $curSrc -C source",
       installPhase: "runHook preInstall\n\nmkdir -p $out\ncp -R ./. $out/\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Windows VirtIO Drivers",
         homepage: "https://docs.fedoraproject.org/en-US/quick-docs/creating-windows-virtual-machines-using-virtio-drivers/index.html",
         changelog: "https://fedorapeople.org/groups/virt/virtio-win/CHANGELOG",

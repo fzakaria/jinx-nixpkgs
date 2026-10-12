@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cert-x-gen",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Bugb-Technologies",
           repo: "cert-x-gen",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,9 +37,9 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libgit2, openssl, zlib, zstd]),
       nativeCheckInputs: nix.thunk(() => [writableTmpDirAsHomeHook]),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook, writableTmpDirAsHomeHook]),
-      env: nix.thunk(() => ({ __proto__: pos$2, OPENSSL_NO_VENDOR: true, ZSTD_SYS_USE_PKG_CONFIG: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: true, ZSTD_SYS_USE_PKG_CONFIG: true })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Polyglot execution engine and CLI for vulnerability detection using real code",
         homepage: "https://github.com/Bugb-Technologies/cert-x-gen",
         changelog: nix.thunk(() => nix.str`https://github.com/Bugb-Technologies/cert-x-gen/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

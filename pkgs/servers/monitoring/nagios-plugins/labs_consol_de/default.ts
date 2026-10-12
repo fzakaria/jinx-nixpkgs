@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
     const description = nix.arg($_1, "description");
     const buildInputs = nix.arg($_1, "buildInputs");
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname: pname,
         version: version,
         src: src,
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         postInstall: "if [[ -d $out/libexec ]]; then\n  ln -sr $out/libexec $out/bin\nfi\n",
         postFixup: "for f in $out/bin/* ; do\n  wrapProgram $f --prefix PERL5LIB : $PERL5LIB\ndone\n",
         meta: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           homepage: "https://labs.consol.de/",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
           maintainers: nix.thunk(() => (() => {
@@ -60,12 +60,12 @@ export default nix.lambda((args) => (() => {
       })));
   })(), formals$2);
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     check_mssql_health: nix.thunk(() => nix.app(generic, nix.thunk(() => (() => {
         const pname = "check-mssql-health";
         const version = "2.7.7";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             owner: "lausser",
             repo: "check_mssql_health",
             tag: version,
@@ -74,13 +74,13 @@ export default nix.lambda((args) => (() => {
           }))));
         const description = "Check plugin for Microsoft SQL Server";
         const buildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(perlPackages, "DBDsybase"))]);
-        return { __proto__: pos$4, pname, version, src, description, buildInputs };
+        return { [nix.POS]: pos$4, pname, version, src, description, buildInputs };
       })()))),
     check_nwc_health: nix.thunk(() => nix.app(generic, nix.thunk(() => (() => {
         const pname = "check-nwc-health";
         const version = "11.7";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             owner: "lausser",
             repo: "check_nwc_health",
             tag: version,
@@ -89,13 +89,13 @@ export default nix.lambda((args) => (() => {
           }))));
         const description = "Check plugin for network equipment";
         const buildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(perlPackages, "NetSNMP"))]);
-        return { __proto__: pos$6, pname, version, src, description, buildInputs };
+        return { [nix.POS]: pos$6, pname, version, src, description, buildInputs };
       })()))),
     check_ups_health: nix.thunk(() => nix.app(generic, nix.thunk(() => (() => {
         const pname = "check-ups-health";
         const version = "4.3.1.1";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             owner: "lausser",
             repo: "check_ups_health",
             tag: version,
@@ -104,7 +104,7 @@ export default nix.lambda((args) => (() => {
           }))));
         const description = "Check plugin for UPSs";
         const buildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(perlPackages, "NetSNMP"))]);
-        return { __proto__: pos$8, pname, version, src, description, buildInputs };
+        return { [nix.POS]: pos$8, pname, version, src, description, buildInputs };
       })()))),
   };
 })(), formals$1);

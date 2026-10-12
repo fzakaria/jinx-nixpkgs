@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
       "normal",
       "float",
     ]), tweaks, nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: "2026-08-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vinceliuice",
           repo: "colloid-gtk-theme",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -68,7 +68,7 @@ jdupes --quiet --link-soft --recurse $out/share
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Modern and clean Gtk theme",
         homepage: "https://github.com/vinceliuice/Colloid-gtk-theme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

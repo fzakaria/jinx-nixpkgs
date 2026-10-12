@@ -36,13 +36,13 @@ const pos$29 = nix.positions(here + "/default.nix", [["runner", 185, 11], ["test
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
-  const xla = nix.argOr($, "xla", () => nix.app(nix.sel(pkgs, "xla", "override"), nix.thunk(() => ({ __proto__: pos$1, cudaSupport: false }))));
+  const xla = nix.argOr($, "xla", () => nix.app(nix.sel(pkgs, "xla", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, cudaSupport: false }))));
   const cudaSupport = nix.argOr($, "cudaSupport", () => nix.selOr(xla, () => false, "cudaSupport"));
   const cudaPackages = nix.argOr($, "cudaPackages", () => nix.sel(pkgs, "cudaPackages"));
   const cudaRuntimeLibs = nix.argOr($, "cudaRuntimeLibs", () => []);
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
   const runner = nix.thunk(() => nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xla-pjrt-execute",
       version: nix.thunk(() => nix.attr(xla, "version")),
       dontUnpack: true,
@@ -56,10 +56,10 @@ done
 runHook postBuild
 `),
       installPhase: "runHook preInstall\ninstall -Dm755 pjrt-execute $out/bin/pjrt-execute\nrunHook postInstall\n",
-      meta: nix.thunk(() => ({ __proto__: pos$2, mainProgram: "pjrt-execute" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$2, mainProgram: "pjrt-execute" })),
     }))));
   const pjrtTester = (platform) => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: nix.thunk(() => nix.str`xla-pjrt-${platform}`),
       runtimeInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(pkgs, "coreutils")),
@@ -80,7 +80,7 @@ exec ${nix.sel(pkgs, "bash")}/bin/bash ${nix.path(here, "./pjrt-check.sh")} \\
 `),
     })));
   const ncclRunner = nix.thunk(() => nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "xla-nccl-smoke",
       version: nix.thunk(() => nix.attr(xla, "version")),
       dontUnpack: true,
@@ -97,10 +97,10 @@ $CXX -std=c++17 -Wall -Wextra -Werror -O2 \\
 runHook postBuild
 `),
       installPhase: "runHook preInstall\ninstall -Dm755 nccl-smoke $out/bin/nccl-smoke\nrunHook postInstall\n",
-      meta: nix.thunk(() => ({ __proto__: pos$5, mainProgram: "nccl-smoke" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$5, mainProgram: "nccl-smoke" })),
     }))));
   const ncclTester = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       name: "xla-nccl",
       runtimeInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(pkgs, "coreutils")),
@@ -114,7 +114,7 @@ grep -E '^PASS NCCL [0-9]+ one-rank all-reduce: 7$' "$logs/nccl.log"
 `),
     }))));
   const hloTester = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       name: "xla-hlo",
       runtimeInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(pkgs, "coreutils")),
@@ -131,9 +131,9 @@ grep -F 'Results on Host and Interpreter are close enough.' "$logs/hlo.log"
 grep -Fx '0/1 runs failed.' "$logs/hlo.log"
 `),
     }))));
-  const runtimeClosure = nix.thunk(() => nix.app(nix.sel(pkgs, "closureInfo"), nix.thunk(() => ({ __proto__: pos$9, rootPaths: nix.thunk(() => [xla]) }))));
+  const runtimeClosure = nix.thunk(() => nix.app(nix.sel(pkgs, "closureInfo"), nix.thunk(() => ({ [nix.POS]: pos$9, rootPaths: nix.thunk(() => [xla]) }))));
   const installConfig = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "xla-install-check.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         package: xla,
         cudaSupport: cudaSupport,
         closure: nix.thunk(() => nix.str`${runtimeClosure}/store-paths`),
@@ -154,7 +154,7 @@ grep -Fx '0/1 runs failed.' "$logs/hlo.log"
           ]))),
       }))))));
   const installTester = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       name: "xla-install",
       runtimeInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(pkgs, "python3")),
@@ -165,7 +165,7 @@ grep -Fx '0/1 runs failed.' "$logs/hlo.log"
       text: nix.thunk(() => nix.str`exec python3 ${nix.path(here, "./install-check.py")} ${installConfig} "$@"
 `),
     }))));
-  const check = (name) => (tester) => (features) => nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`xla-${name}`), nix.thunk(() => ({ __proto__: pos$12, requiredSystemFeatures: features })), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), tester)} "$out"
+  const check = (name) => (tester) => (features) => nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`xla-${name}`), nix.thunk(() => ({ [nix.POS]: pos$12, requiredSystemFeatures: features })), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), tester)} "$out"
 `));
   const metadata = nix.thunk(() => (() => {
     nix.assert_(nix.app(nix.sel(lib, "elem"), nix.thunk(() => nix.sel(lib, "licenses", "asl20")), nix.thunk(() => nix.sel(xla, "meta", "license"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/xl/xla/tests/default.nix:174:5");
@@ -174,12 +174,12 @@ grep -Fx '0/1 runs failed.' "$logs/hlo.log"
     return nix.app(nix.sel(pkgs, "runCommand"), "xla-metadata", nix.thunk(() => ({})), "touch \"$out\"");
   })());
   return {
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     runner: runner,
-    testers: nix.thunk(() => nix.update({ __proto__: pos$13, pjrt: nix.thunk(() => nix.app(pjrtTester, "cpu")) }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(cudaSupport)), nix.thunk(() => ({ __proto__: pos$14, hlo: hloTester, install: installTester }))), {
-      __proto__: pos$16,
+    testers: nix.thunk(() => nix.update({ [nix.POS]: pos$13, pjrt: nix.thunk(() => nix.app(pjrtTester, "cpu")) }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(cudaSupport)), nix.thunk(() => ({ [nix.POS]: pos$14, hlo: hloTester, install: installTester }))), {
+      [nix.POS]: pos$16,
       cuda: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), cudaSupport, nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           pjrt: nix.thunk(() => nix.app(pjrtTester, "cuda")),
           nccl: ncclTester,
           hlo: hloTester,
@@ -187,36 +187,36 @@ grep -Fx '0/1 runs failed.' "$logs/hlo.log"
         })))),
     }))),
     tests: nix.thunk(() => nix.update({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       cpu: nix.thunk(() => nix.app(check, "pjrt-cpu", nix.thunk(() => nix.app(pjrtTester, "cpu")), [])),
     }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(cudaSupport)), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         hlo: nix.thunk(() => nix.app(check, "hlo", hloTester, [])),
         install: nix.thunk(() => nix.app(check, "install", installTester, [])),
         metadata: metadata,
       }))), {
-      __proto__: pos$28,
+      [nix.POS]: pos$28,
       cuda: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), cudaSupport, nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           pjrt: nix.thunk(() => nix.app(check, "pjrt-cuda", nix.thunk(() => nix.app(pjrtTester, "cuda")), nix.thunk(() => ["cuda"]))),
           nccl: nix.thunk(() => nix.app(check, "nccl-cuda", ncclTester, nix.thunk(() => ["cuda"]))),
           hlo: nix.thunk(() => nix.app(check, "hlo-cuda", hloTester, nix.thunk(() => ["cuda"]))),
           install: nix.thunk(() => nix.app(check, "install-cuda", installTester, [])),
-          configure: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./cuda-configure.nix"), nix.thunk(() => ({ __proto__: pos$19, xla: xla, cudaPackages: cudaPackages })))),
+          configure: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./cuda-configure.nix"), nix.thunk(() => ({ [nix.POS]: pos$19, xla: xla, cudaPackages: cudaPackages })))),
           configureOverride: nix.thunk(() => (() => {
             const selectedCudaPackages = nix.thunk(() => nix.update(cudaPackages, {
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               cuda_nvcc: nix.thunk(() => nix.app(nix.sel(cudaPackages, "cuda_nvcc", "overrideAttrs"), (previousAttrs) => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   postInstall: nix.thunk(() => nix.add(nix.selOr(previousAttrs, () => "", "postInstall"), "echo '#define XLA_SELECTED_OUTPUT 964' > \"$out/include/xla-selected-output.h\"\n")),
                 }))),
               nccl: nix.thunk(() => nix.app(nix.sel(cudaPackages, "nccl", "overrideAttrs"), (previousAttrs) => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   postInstall: nix.thunk(() => nix.add(nix.selOr(previousAttrs, () => "", "postInstall"), "echo '#define XLA_SELECTED_NCCL_OUTPUT 1' > \"$out/include/xla-selected-nccl-output.h\"\n")),
                 }))),
             }));
-            const local = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../cuda-local.nix"), nix.thunk(() => ({ __proto__: pos$23, cudaPackages: cudaPackages }))));
-            const selectedLocal = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../cuda-local.nix"), nix.thunk(() => ({ __proto__: pos$24, cudaPackages: selectedCudaPackages }))));
+            const local = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../cuda-local.nix"), nix.thunk(() => ({ [nix.POS]: pos$23, cudaPackages: cudaPackages }))));
+            const selectedLocal = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../cuda-local.nix"), nix.thunk(() => ({ [nix.POS]: pos$24, cudaPackages: selectedCudaPackages }))));
             const replaceSelectedPaths = nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => [
                 nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(local, "cuda")))),
                 nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(local, "nccl")))),
@@ -227,12 +227,12 @@ grep -Fx '0/1 runs failed.' "$logs/hlo.log"
                 nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(selectedCudaPackages, "cuda_nvcc")))),
               ])));
             const selectedXla = nix.thunk(() => nix.app(nix.sel(xla, "overrideAttrs"), (previousAttrs) => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 preConfigure: nix.thunk(() => nix.app(replaceSelectedPaths, nix.thunk(() => nix.sel(previousAttrs, "preConfigure")))),
                 postConfigure: nix.thunk(() => nix.app(replaceSelectedPaths, nix.thunk(() => nix.sel(previousAttrs, "postConfigure")))),
               })));
             return nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./cuda-configure.nix"), nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 xla: selectedXla,
                 cudaPackages: selectedCudaPackages,
                 expectSelectedOutput: true,

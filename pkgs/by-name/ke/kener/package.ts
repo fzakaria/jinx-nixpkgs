@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nodejs = nix.arg($, "nodejs");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       __structuredAttrs: true,
       pname: "kener",
       version: "4.1.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rajnandan1",
           repo: "kener",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,12 +36,12 @@ export default nix.lambda((args) => (() => {
 `),
       postInstall: "# The build dir is not picked up by `npm pack`. Let’s copy it manually.\ncp -r build $out/lib/node_modules/kener/\n# This is needed because kener relies on type stripping for db migration and seeding.\n# But type stripping cannot occur if the caconical path contains `node_modules` anywhere, which\n# the default installed path contains. So we move the built artifacts from the standard path to\n# another, and add a symlink back, to not break anything.\nmv $out/lib/node_modules/kener $out/lib\nln -s $out/lib/kener $out/lib/node_modules/kener\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, kener: nix.thunk(() => nix.sel(nixosTests, "kener")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, kener: nix.thunk(() => nix.sel(nixosTests, "kener")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Modern, open-source status page application built with Node.js",
         homepage: "https://kener.ing",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

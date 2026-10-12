@@ -63,26 +63,26 @@ export default nix.lambda((args) => (() => {
   const configFileName = nix.thunk(() => nix.str`patroni-${nix.sel(cfg, "scope")}-${nix.sel(cfg, "name")}.yaml`);
   const configFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), configFileName, nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$47,
+    [nix.POS]: pos$47,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "patroni", "raft"]), "Raft has been deprecated by upstream.\n")),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "patroni", "raftPort"]), "Raft has been deprecated by upstream.\n")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       services: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         patroni: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Patroni")),
           postgresqlPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.postgresql_14")),
               description: "PostgreSQL package to use.\nPlugins can be enabled like this `pkgs.postgresql_14.withPackages (p: [ p.pg_safeupdate p.postgis ])`.\n",
             })))),
           postgresqlDataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"/var/lib/postgresql/${config.services.patroni.postgresqlPackage.psqlSchema}\"")),
               example: "/var/lib/postgresql/14",
@@ -90,92 +90,92 @@ export default nix.lambda((args) => (() => {
               description: "The data directory for PostgreSQL. If left as the default value\nthis directory will automatically be created before the PostgreSQL server starts, otherwise\nthe sysadmin is responsible for ensuring the directory exists with appropriate ownership\nand permissions.\n",
             })))),
           postgresqlPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 5432n,
               description: "The port on which PostgreSQL listens.\n",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: defaultUser,
               example: "postgres",
               description: "The user for the service. If left as the default value this user will automatically be created,\notherwise the sysadmin is responsible for ensuring the user exists.\n",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: defaultGroup,
               example: "postgres",
               description: "The group for the service. If left as the default value this group will automatically be created,\notherwise the sysadmin is responsible for ensuring the group exists.\n",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/patroni",
               description: "Folder where Patroni data will be written, this is where the pgpass password file will be written.\n",
             })))),
           scope: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               example: "cluster1",
               description: "Cluster name.\n",
             })))),
           name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               example: "node1",
               description: "The name of the host. Must be unique for the cluster.\n",
             })))),
           namespace: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/service",
               description: "Path within the configuration store where Patroni will keep information about the cluster.\n",
             })))),
           nodeIp: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               example: "192.168.1.1",
               description: "IP address of this node.\n",
             })))),
           otherNodesIps: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               example: nix.thunk(() => ["192.168.1.2", "192.168.1.3"]),
               description: "IP addresses of the other nodes.\n",
             })))),
           restApiPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 8008n,
               description: "The port on Patroni's REST api listens.\n",
             })))),
           softwareWatchdog: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "This will configure Patroni to use the software watchdog built into the Linux kernel\nas described in the [documentation](https://patroni.readthedocs.io/en/latest/watchdog.html#setting-up-software-watchdog-on-linux).\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.sel(format, "type")),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 bootstrap: nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   initdb: nix.thunk(() => ["encoding=UTF-8", "data-checksums"]),
                 })),
                 postgresql: nix.thunk(() => ({
-                  __proto__: pos$16,
-                  parameters: nix.thunk(() => ({ __proto__: pos$15, unix_socket_directories: "/tmp" })),
+                  [nix.POS]: pos$16,
+                  parameters: nix.thunk(() => ({ [nix.POS]: pos$15, unix_socket_directories: "/tmp" })),
                 })),
               })),
               description: "The primary patroni configuration. See the [documentation](https://patroni.readthedocs.io/en/latest/yaml_configuration.html)\nfor possible values.\nSecrets should be passed in by using the `environmentFiles` option.\n",
             })))),
           environmentFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -186,7 +186,7 @@ export default nix.lambda((args) => (() => {
               })()),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 PATRONI_REPLICATION_PASSWORD: "/secret/file",
                 PATRONI_SUPERUSER_PASSWORD: "/secret/file",
               })),
@@ -196,30 +196,30 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$45,
+        [nix.POS]: pos$45,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             assertion: nix.thunk(() => !nix.asBool((nix.asBool((nix.asBool(nix.sel(cfg, "enable")) && nix.asBool(nix.sel(config, "services", "postgresql", "enable")))) && nix.asBool(nix.eq(nix.sel(cfg, "postgresqlDataDir"), nix.sel(config, "services", "postgresql", "dataDir")))))),
             message: "Both services.patroni and services.postgresql are enabled and\nservices.patroni.postgresqlDataDir == services.postgresql.dataDir\nDisable one or the other, or configure them to use different directories.\n",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           patroni: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             settings: nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               scope: nix.thunk(() => nix.sel(cfg, "scope")),
               name: nix.thunk(() => nix.sel(cfg, "name")),
               namespace: nix.thunk(() => nix.sel(cfg, "namespace")),
               restapi: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 listen: nix.thunk(() => nix.str`${nix.sel(cfg, "nodeIp")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "restApiPort")))}`),
                 connect_address: nix.thunk(() => nix.str`${nix.sel(cfg, "nodeIp")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "restApiPort")))}`),
               })),
               postgresql: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 listen: nix.thunk(() => nix.str`${nix.sel(cfg, "nodeIp")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "postgresqlPort")))}`),
                 connect_address: nix.thunk(() => nix.str`${nix.sel(cfg, "nodeIp")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "postgresqlPort")))}`),
                 data_dir: nix.thunk(() => nix.sel(cfg, "postgresqlDataDir")),
@@ -227,7 +227,7 @@ export default nix.lambda((args) => (() => {
                 pgpass: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/pgpass`),
               })),
               watchdog: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "softwareWatchdog")), nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   mode: "required",
                   device: "/dev/watchdog",
                   safety_margin: 5n,
@@ -235,29 +235,29 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           udev: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             extraRules: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "softwareWatchdog")), nix.thunk(() => nix.str`KERNEL=="watchdog", OWNER="${nix.sel(cfg, "user")}", GROUP="${nix.sel(cfg, "group")}", MODE="0600"
 `))),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), defaultUser)), nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               patroni: nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 isSystemUser: true,
               })),
             })))),
-          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), defaultGroup)), nix.thunk(() => ({ __proto__: pos$34, patroni: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), defaultGroup)), nix.thunk(() => ({ [nix.POS]: pos$34, patroni: nix.thunk(() => ({})) })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           services: nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             patroni: nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               description: "Runners to orchestrate a high-availability PostgreSQL",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
@@ -266,7 +266,7 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "patroni"))
 `),
               serviceConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$36,
+                    [nix.POS]: pos$36,
                     User: nix.thunk(() => nix.sel(cfg, "user")),
                     Group: nix.thunk(() => nix.sel(cfg, "group")),
                     Type: "simple",
@@ -276,7 +276,7 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "patroni"))
                     KillMode: "process",
                   })),
                   nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "postgresqlDataDir"), nix.str`/var/lib/postgresql/${nix.sel(cfg, "postgresqlPackage", "psqlSchema")}`)) && nix.asBool(nix.eq(nix.sel(cfg, "dataDir"), "/var/lib/patroni")))), nix.thunk(() => ({
-                      __proto__: pos$37,
+                      [nix.POS]: pos$37,
                       StateDirectory: nix.thunk(() => nix.str`patroni postgresql postgresql/${nix.sel(cfg, "postgresqlPackage", "psqlSchema")}`),
                       StateDirectoryMode: "0750",
                     })))),
@@ -285,26 +285,26 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "patroni"))
           })),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           kernelModules: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "softwareWatchdog")), nix.thunk(() => ["softdog"]))),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$44,
+          [nix.POS]: pos$44,
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.sel(pkgs, "patroni")),
             nix.thunk(() => nix.sel(cfg, "postgresqlPackage")),
           ]),
           etc: nix.thunk(() => nix.attrsDyn({}, [
-            [nix.str`${configFileName}`, nix.thunk(() => ({ __proto__: pos$42, source: configFile }))],
+            [nix.str`${configFileName}`, nix.thunk(() => ({ [nix.POS]: pos$42, source: configFile }))],
           ])),
           sessionVariables: nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             PATRONICTL_CONFIG_FILE: nix.thunk(() => nix.str`/etc/${configFileName}`),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$46,
+      [nix.POS]: pos$46,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "phfroidmont"))]),
     })),
   };

@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const bundlerApp = nix.arg($, "bundlerApp");
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "riemann-tools",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => [
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
         "riemann-zookeeper",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "riemann-tools")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tools to submit data to Riemann",
         homepage: "https://riemann.io",
         maintainers: nix.thunk(() => (() => {

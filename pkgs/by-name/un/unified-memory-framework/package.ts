@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
   const sphinx = nix.arg($, "sphinx");
   const buildDocs = nix.argOr($, "buildDocs", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "unified-memory-framework",
       version: "1.2.0",
       nativeBuildInputs: nix.thunk(() => nix.concat([cmake, ninja, pkg_config], nix.concat(nix.app(nix.sel(lib, "optionals"), useJemalloc, nix.thunk(() => [autoconf])), nix.app(nix.sel(lib, "optionals"), buildDocs, nix.thunk(() => [python3, sphinx]))))),
       buildInputs: nix.thunk(() => nix.concat([onetbb, level_zero], nix.concat(nix.app(nix.sel(lib, "optionals"), cudaSupport, nix.thunk(() => [nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart"))])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")), nix.thunk(() => [numactl, gtest, gbenchmark]))))),
       propagatedBuildInputs: nix.thunk(() => [hwloc]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "oneapi-src",
           repo: "unified-memory-framework",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -89,7 +89,7 @@ chmod -R u+w ../jemalloc
       doCheck: true,
       dontUseNinjaCheck: true,
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(finalAttrs, "doCheck")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_LDFLAGS: nix.thunk(() => nix.str`-rpath ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [onetbb]))}`),
         })))),
       disabledTests: nix.thunk(() => [
@@ -100,7 +100,7 @@ chmod -R u+w ../jemalloc
         "test_provider_file_memory_ipc",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/oneapi-src/unified-memory-framework",
         changelog: nix.thunk(() => nix.str`https://github.com/oneapi-src/unified-memory-framework/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Library for constructing allocators and memory pools",

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "perl-debug-adapter";
       const version = "1.0.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Nihilus118",
           repo: "perl-debug-adapter",
           rev: version,
@@ -34,9 +34,9 @@ export default nix.lambda((args) => (() => {
         ":",
         nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [perlInterpreter]))),
       ]);
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, perlInterpreter: perlInterpreter }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, perlInterpreter: perlInterpreter }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Debug adapter, invokes perl -d and handles communication with VS Code or other editors",
         homepage: "https://github.com/Nihilus118/perl-debug-adapter",
         changelog: nix.thunk(() => nix.str`https://github.com/Nihilus118/perl-debug-adapter/blob/${version}/CHANGELOG.md`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "perl-debug-adapter",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

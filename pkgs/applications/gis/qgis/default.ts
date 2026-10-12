@@ -19,9 +19,9 @@ export default nix.lambda((args) => (() => {
   const qt6Packages = nix.arg($, "qt6Packages");
   const withGrass = nix.argOr($, "withGrass", () => false);
   const withServer = nix.argOr($, "withServer", () => false);
-  const qgis_unwrapped = nix.thunk(() => nix.app(nix.sel(qt6Packages, "callPackage"), nix.path(here, "./unwrapped.nix"), nix.thunk(() => ({ __proto__: pos$1, withGrass: withGrass, withServer: withServer }))));
+  const qgis_unwrapped = nix.thunk(() => nix.app(nix.sel(qt6Packages, "callPackage"), nix.path(here, "./unwrapped.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, withGrass: withGrass, withServer: withServer }))));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: nix.thunk(() => nix.attr(qgis_unwrapped, "version")),
       outputs: nix.thunk(() => nix.attr(qgis_unwrapped, "outputs")),
       pname: "qgis",
@@ -52,9 +52,9 @@ done
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => nix.str`ln -s ${nix.sel(qgis_unwrapped, "man")} $man
 `)))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         unwrapped: qgis_unwrapped,
-        tests: nix.thunk(() => ({ __proto__: pos$2, qgis: nix.thunk(() => nix.sel(nixosTests, "qgis")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, qgis: nix.thunk(() => nix.sel(nixosTests, "qgis")) })),
         updateScript: nix.thunk(() => [nix.path(here, "./update.sh"), "qgis"]),
       })),
       meta: nix.thunk(() => nix.sel(qgis_unwrapped, "meta")),

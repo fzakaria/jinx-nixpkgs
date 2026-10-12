@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const postInstall = nix.arg($, "postInstall");
   const meta = nix.arg($, "meta");
   return nix.app(deployAndroidPackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "androidsdk-tools",
       package: package$,
       os: os,

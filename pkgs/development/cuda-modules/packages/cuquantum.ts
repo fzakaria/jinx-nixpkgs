@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const cudaCapabilities = nix.thunk(() => nix.attr(backendStdenv, "cudaCapabilities"));
       const cuquantumAtLeast = nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(finalAttrs, "version"))));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         redistName: "cuquantum",
         pname: "cuquantum",
         outputs: nix.thunk(() => ["out", "dev", "include", "lib", "static"]),
@@ -35,20 +35,20 @@ export default nix.lambda((args) => (() => {
         autoPatchelfIgnoreMissingDeps: nix.thunk(() => ["libnvidia-ml.so.1"]),
         platformAssertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             message: nix.thunk(() => nix.str`cuQuantum supports CUDA compute capabilities 7.5 and newer (found ${nix.builtins.toJSON(cudaCapabilities)})`),
             assertion: nix.thunk(() => nix.app(nix.sel(lib, "all"), nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "versionAtLeast")), "7.5")), cudaCapabilities)),
           })),
         ]),
         brokenAssertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             message: nix.thunk(() => nix.add(nix.str`cuQuantum releases since 26.09.0 (found ${nix.sel(finalAttrs, "version")})`, nix.str` require cuTENSOR 2.8.0 or newer (found ${nix.sel(libcutensor, "version")})`)),
             assertion: nix.thunk(() => (!nix.asBool(nix.app(cuquantumAtLeast, "26.09")) || nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(libcutensor, "version")), "2.8")))),
           })),
         ]),
         meta: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           description: "Set of high-performance libraries and tools for accelerating quantum computing simulations at both the circuit and device level by orders of magnitude",
           longDescription: "NVIDIA cuQuantum SDK is a set of high-performance libraries and tools for accelerating quantum computing\nsimulations at both the circuit and device level by orders of magnitude.\n",
           homepage: "https://developer.nvidia.com/cuquantum-sdk",

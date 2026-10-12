@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const tesseract = nix.arg($, "tesseract");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "apvlv",
       version: "0.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "naihe2010",
           repo: "apvlv",
           tag: "v0.7.0-final",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "apvlv-cmake-4.patch",
             url: "https://github.com/naihe2010/apvlv/commit/03b9e74173e1b5cbf4451b71bed066f1b58c9c78.patch",
             hash: "sha256-OA3Qy+ECUW+Yq1FKiye+y6C01GD1ZLPbdzYK5ofM4Qg=",
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
         tesseract,
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         LANG: "C.UTF8",
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.sel(qt6Packages, "poppler", "dev")}/include/poppler`),
       })),
@@ -83,11 +83,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\n# binary\nmkdir -p $out/bin\ncp src/apvlv $out/bin/apvlv\n\n# displays pdfStartup.pdf as default pdf entry\nmkdir -p $out/share/doc/apvlv/\ncp ../Startup.pdf $out/share/doc/apvlv/Startup.pdf\n\nmkdir -p $out/etc\ncp ../apvlvrc.example $out/etc/apvlvrc\n\ninstallManPage ../apvlv.1\n\nrunHook postInstall\n",
       desktopItems: nix.thunk(() => ["../apvlv.desktop"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               command: nix.thunk(() => nix.str`QT_QPA_PLATFORM=offscreen ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))} --version`),
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               version: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}-rel`),
@@ -95,7 +95,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         changelog: nix.thunk(() => nix.str`https://github.com/naihe2010/apvlv/blob/v${nix.sel(finalAttrs, "version")}/NEWS`),
         description: "PDF viewer with Vim-like behaviour",
         homepage: "https://naihe2010.github.io/apvlv/",

@@ -24,7 +24,7 @@ version = ${nix.sel(libclang, "version")}
 packages = clang
 `)));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "clang",
       pyproject: true,
       version: nix.thunk(() => nix.attr(libclang, "version")),
@@ -40,7 +40,7 @@ echo 'Config.set_library_path("${nix.app(nix.sel(lib, "getLib"), libclang)}/lib"
 `),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => nix.update(nix.sel(libclang, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Python bindings for the C language family frontend for LLVM",
         maintainers: [],
       })),

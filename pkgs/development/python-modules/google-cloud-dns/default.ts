@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "google-cloud-dns",
       version: "0.37.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "google_cloud_dns",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-KVYp3g7p9VaeoyHfF6CYb0TZZ19zbWVJOgeBIc2+Mho=",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_quota"]),
       pythonImportsCheck: nix.thunk(() => ["google.cloud.dns"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Google Cloud DNS API client library",
         homepage: "https://cloud.google.com/dns",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/google-cloud-python/blob/google-cloud-dns-v${nix.sel(finalAttrs, "version")}/packages/google-cloud-dns/CHANGELOG.md`),

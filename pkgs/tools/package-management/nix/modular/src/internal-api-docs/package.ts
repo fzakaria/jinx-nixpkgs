@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const doxygen = nix.arg($, "doxygen");
   const version = nix.arg($, "version");
   return nix.app(mkMesonDerivation, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "nix-internal-api-docs",
       version: version,
       workDir: nix.path(here, "./."),
@@ -23,7 +23,7 @@ echo ${nix.sel(finalAttrs, "version")} > ./.version
 `),
       postInstall: "mkdir -p ${!outputDoc}/nix-support\necho \"doc internal-api-docs $out/share/doc/nix/internal-api/html\" >> ${!outputDoc}/nix-support/hydra-build-products\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       })),
     }));

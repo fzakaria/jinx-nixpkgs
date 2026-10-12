@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         const pname_1 = pname;
         const version = "0.1.1";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "digitalocean",
             repo: "prometheus-client-c",
             rev: nix.thunk(() => nix.str`v${version}`),
@@ -41,21 +41,21 @@ export default nix.lambda((args) => (() => {
         const buildInputs_1 = buildInputs;
         const patches = nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: "https://github.com/digitalocean/prometheus-client-c/commit/5fcedeb506b7d47dd7bab35797f2c3f23db6fe10.patch",
               sha256: "10hzg8v5jcgxz224kdq0nha9vs78wz098b0ys7gig2iwgrg018fy",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               url: "https://github.com/digitalocean/prometheus-client-c/commit/0c15e7e45ad0c3726593591fdd7d8f2fde845fe3.patch",
               sha256: "06899v1xz3lpsdxww4p3q7pv8nrymnibncdc472056znr5fidlp0",
             })))),
         ]);
-        const env = nix.thunk(() => ({ __proto__: pos$4, NIX_CFLAGS_COMPILE: "-fcommon" }));
+        const env = nix.thunk(() => ({ [nix.POS]: pos$4, NIX_CFLAGS_COMPILE: "-fcommon" }));
         const preConfigure = nix.thunk(() => nix.str`cd ${subdir}
 `);
         const meta = nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           homepage: "https://github.com/digitalocean/prometheus-client-c/",
           description: description,
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
           maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "cfsmp3"))]),
         }));
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           pname: pname_1,
           version,
           src,
@@ -77,9 +77,9 @@ export default nix.lambda((args) => (() => {
       })()));
   })(), formals$2);
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     libprom: nix.thunk(() => nix.app(build, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname: "libprom",
         subdir: "prom",
         description: "Prometheus Client in C",

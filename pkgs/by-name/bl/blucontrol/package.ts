@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const packages = nix.argOr($, "packages", () => (_) => []);
   const blucontrolEnv = nix.thunk(() => nix.app(nix.sel(haskellPackages, "ghcWithPackages"), (self) => nix.concat([nix.thunk(() => nix.sel(self, "blucontrol"))], nix.app(packages, self))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "blucontrol-with-packages",
       version: nix.thunk(() => nix.sel(blucontrolEnv, "version")),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       preferLocalBuild: true,
       allowSubstitutes: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Configurable blue light filter",
         mainProgram: "blucontrol",
         longDescription: "This application is a blue light filter, with the main focus on configurability.\nConfiguration is done in Haskell in the style of xmonad.\nBlucontrol makes use of monad transformers and allows monadic calculation of gamma values and recoloring. The user chooses, what will be captured in the monadic state.\n",

@@ -9,6 +9,6 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const args_1 = args;
   const git = nix.arg($, "git");
-  return nix.app(nix.sel(git, "override"), nix.thunk(() => nix.update({ __proto__: pos$1, svnSupport: true }, nix.builtins.removeAttrs(args_1, nix.thunk(() => ["git"])))));
+  return nix.app(nix.sel(git, "override"), nix.thunk(() => nix.update({ [nix.POS]: pos$1, svnSupport: true }, nix.builtins.removeAttrs(args_1, nix.thunk(() => ["git"])))));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

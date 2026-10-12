@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const gitMinimal = nix.arg($, "gitMinimal");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wtp",
       version: "2.10.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "satococoa",
           repo: "wtp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [gitMinimal]),
       preCheck: "git init .\ngit config user.name \"nixpkgs\"\ngit config user.email \"nixpkgs@example.invalid\"\ntouch .nixpkgs-wtp-test\ngit add .nixpkgs-wtp-test\ngit commit -m \"Init test repo\" >/dev/null\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Git worktree CLI with automated setup, branch tracking, and navigation",
         homepage: "https://github.com/satococoa/wtp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

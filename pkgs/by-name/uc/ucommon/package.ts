@@ -16,24 +16,24 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const gnutls = nix.arg($, "gnutls");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ucommon",
       version: "7.0.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/commoncpp/ucommon-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "6ac9f76c2af010f97e916e4bae1cece341dc64ca28e3881ff4ddc3bc334060d7",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CXXFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-std=c++14"]))),
       })),
       postPatch: "substituteInPlace test/stream.cpp \\\n  --replace 'ifndef UCOMMON_SYSRUNTIME' 'if 0'\n",
       propagatedBuildInputs: nix.thunk(() => [gnutls]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "C++ library to facilitate using C++ design patterns",
         homepage: "https://www.gnu.org/software/commoncpp/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

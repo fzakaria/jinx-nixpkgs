@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "iptools";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bd808",
           repo: "python-iptools",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,13 +30,13 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const enabledTestPaths = nix.thunk(() => ["tests/iptools/iptools_test.py"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utilities for manipulating IP addresses including a class that can be used to include CIDR network blocks in Django's INTERNAL_IPS setting",
         homepage: "https://github.com/bd808/python-iptools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd0")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         pname,
         pyproject,

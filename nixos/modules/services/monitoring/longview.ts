@@ -35,61 +35,61 @@ export default nix.lambda((args) => (() => {
   const runDir = "/run/longview";
   const configsDir = nix.thunk(() => nix.str`${runDir}/longview.d`);
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         longview: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "If enabled, system metrics will be sent to Linode LongView.\n",
             })))),
           apiKey: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "",
               example: "01234567-89AB-CDEF-0123456789ABCDEF",
               description: "Longview API key. To get this, look in Longview settings which\nare found at <https://manager.linode.com/longview/>.\n\nWarning: this secret is stored in the world-readable Nix store!\nUse {option}`apiKeyFile` instead.\n",
             })))),
           apiKeyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               example: "/run/keys/longview-api-key",
               description: "A file containing the Longview API key.\nTo get this, look in Longview settings which\nare found at <https://manager.linode.com/longview/>.\n\n{option}`apiKeyFile` takes precedence over {option}`apiKey`.\n",
             })))),
           apacheStatusUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "",
               example: "http://127.0.0.1/server-status",
               description: "The Apache status page URL. If provided, Longview will\ngather statistics from this location. This requires Apache\nmod_status to be loaded and enabled.\n",
             })))),
           nginxStatusUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "",
               example: "http://127.0.0.1/nginx_status",
               description: "The Nginx status page URL. Longview will gather statistics\nfrom this URL. This requires the Nginx stub_status module to\nbe enabled and configured at the given location.\n",
             })))),
           mysqlUser: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "",
               description: "The user for connecting to the MySQL database. If provided,\nLongview will connect to MySQL and collect statistics about\nqueries, etc. This user does not need to have been granted\nany extra privileges.\n",
             })))),
           mysqlPassword: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "",
               description: "The password corresponding to {option}`mysqlUser`.\nWarning: this is stored in cleartext in the Nix store!\nUse {option}`mysqlPasswordFile` instead.\n",
             })))),
           mysqlPasswordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               example: "/run/keys/dbpassword",
@@ -99,18 +99,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             longview: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "Longview Metrics Collection",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 Type: "forking",
                 ExecStop: nix.thunk(() => nix.str`-${nix.sel(pkgs, "coreutils")}/bin/kill -TERM $MAINPID`),
                 ExecReload: nix.thunk(() => nix.str`-${nix.sel(pkgs, "coreutils")}/bin/kill -HUP $MAINPID`),
@@ -140,22 +140,22 @@ EOF
         })()),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "apiKeyFile"), null)),
             message: "Longview needs an API key configured",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           longview: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             apiKeyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "apiKey"), "")), nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-                      __proto__: pos$17,
+                      [nix.POS]: pos$17,
                       name: "longview.key",
                       text: nix.thunk(() => nix.sel(cfg, "apiKey")),
                     })))))))))),
             mysqlPasswordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     name: "mysql-password-file",
                     text: nix.thunk(() => nix.sel(cfg, "mysqlPassword")),
                   })))))))),

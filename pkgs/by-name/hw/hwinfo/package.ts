@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const perlPackages = nix.arg($, "perlPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "hwinfo",
       version: "26.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "opensuse",
           repo: "hwinfo",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -100,29 +100,29 @@ make -C src/isdn/cdb CC=$CC_FOR_BUILD -j $NIX_BUILD_CORES isdn_cdb mk_isdnhwdb
       enableParallelBuilding: false,
       postInstall: "moveToOutput bin \"$bin\"\nmoveToOutput lib \"$lib\"\nmoveToOutput share/bash-completion \"$bin\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
           "no-usr": nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               assertion: "There should be no /usr/ paths in the binaries",
               expected: nix.thunk(() => nix.app(writeText, "expected", "if [ -x /usr/bin/lshal ] ; then\n")),
-              actual: nix.thunk(() => nix.app(runCommand, "actual", nix.thunk(() => ({ __proto__: pos$4, nativeBuildInputs: nix.thunk(() => [binutils]) })), nix.thunk(() => nix.str`strings ${nix.sel(finalAttrs, "finalPackage")}/bin/* | grep /usr/ > $out
+              actual: nix.thunk(() => nix.app(runCommand, "actual", nix.thunk(() => ({ [nix.POS]: pos$4, nativeBuildInputs: nix.thunk(() => [binutils]) })), nix.thunk(() => nix.str`strings ${nix.sel(finalAttrs, "finalPackage")}/bin/* | grep /usr/ > $out
 `))),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Hardware detection tool from openSUSE",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         homepage: "https://github.com/openSUSE/hwinfo",

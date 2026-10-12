@@ -16,10 +16,10 @@ export default nix.lambda((args) => (() => {
   const plugin = nix.arg($, "plugin");
   const venv = nix.thunk(() => nix.app(nix.sel(llm, "pythonModule", "withPackages"), (_) => [llm, plugin]));
   return nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(plugin, "pname")}-test`), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       nativeBuildInputs: nix.thunk(() => [venv, writableTmpDirAsHomeHook, yq]),
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         SSL_CERT_FILE: nix.thunk(() => nix.str`${cacert}/etc/ssl/certs/ca-bundle.crt`),
       })),
     })), nix.thunk(() => nix.str`llm plugins | yq --exit-status 'any(.name == "${nix.sel(plugin, "pname")}")'

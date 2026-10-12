@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "UkPostcodeParser",
           version: version,
           sha256: "930264efa293db80af0103a4fe9c161b06365598d24bb6fe5403f3f57c70530e",
         }))));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "UK Postcode parser",
         homepage: "https://github.com/hamstah/ukpostcodeparser",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
-      return { __proto__: pos$3, pname, version, format, src, doCheck, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, doCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

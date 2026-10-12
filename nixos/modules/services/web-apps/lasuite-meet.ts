@@ -96,12 +96,12 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "lasuite-meet"));
   const pythonEnvironment = nix.thunk(() => nix.app(mapAttrs, (_) => (value) => (nix.asBool(nix.eq(value, null)) ? "None" : (nix.asBool(nix.eq(value, true)) ? "True" : (nix.asBool(nix.eq(value, false)) ? "False" : nix.builtins.toString(value)))), nix.thunk(() => nix.sel(cfg, "settings"))));
   const commonSystemdConfig = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     after: nix.thunk(() => nix.concat(["network.target"], nix.concat(nix.app(optional, nix.thunk(() => nix.sel(cfg, "postgresql", "createLocally")), "postgresql.service"), nix.app(optional, nix.thunk(() => nix.sel(cfg, "redis", "createLocally")), "redis-lasuite-meet.service")))),
     wants: nix.thunk(() => nix.concat(nix.app(optional, nix.thunk(() => nix.sel(cfg, "postgresql", "createLocally")), "postgresql.service"), nix.app(optional, nix.thunk(() => nix.sel(cfg, "redis", "createLocally")), "redis-lasuite-meet.service"))),
     environment: pythonEnvironment,
     serviceConfig: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       StateDirectory: "lasuite-meet",
       WorkingDirectory: "/var/lib/lasuite-meet",
       User: "lasuite-meet",
@@ -139,91 +139,91 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   return {
-    __proto__: pos$70,
+    [nix.POS]: pos$70,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(mkRenamedOptionModule, nix.thunk(() => ["services", "lasuite-meet", "backendPackage"]), nix.thunk(() => ["services", "lasuite-meet", "package"]))),
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["services", "lasuite-meet", "frontendPackage"]), "services.lasuite-mette.package.frotend should be used instead")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$35,
+      [nix.POS]: pos$35,
       services: nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         "lasuite-meet": nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           enable: nix.thunk(() => nix.app(mkEnableOption, "SuiteNumérique Meet")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "lasuite-meet", nix.thunk(() => ({})))),
           addons: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["outlook"]))))),
               default: [],
               example: "[\n  \"outlook\"\n]\n",
               description: "Addons to use and configure",
             })))),
           bind: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "unix:/run/lasuite-meet/gunicorn.sock",
               example: "127.0.0.1:8000",
               description: "The path, host/port or file descriptior to bind the gunicorn socket to.\n\nSee  <https://docs.gunicorn.org/en/stable/settings.html#bind> for possible options.\n",
             })))),
-          enableNginx: nix.thunk(() => nix.update(nix.app(mkEnableOption, "enable and configure Nginx for reverse proxying"), { __proto__: pos$5, default: true })),
+          enableNginx: nix.thunk(() => nix.update(nix.app(mkEnableOption, "enable and configure Nginx for reverse proxying"), { [nix.POS]: pos$5, default: true })),
           secretKeyPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               default: null,
               description: "Path to the Django secret key.\n\nThe key can be generated using:\n```\npython3 -c 'import secrets; print(secrets.token_hex())'\n```\n\nIf not set, the secret key will be automatically generated.\n",
             })))),
           postgresql: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             createLocally: nix.thunk(() => nix.app(mkEnableOption, "Configure local PostgreSQL database server for meet")),
           })),
           redis: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             createLocally: nix.thunk(() => nix.app(mkEnableOption, "Configure local Redis cache server for meet")),
           })),
           livekit: nix.thunk(() => ({
-            __proto__: pos$12,
-            enable: nix.thunk(() => nix.update(nix.app(mkEnableOption, "Configure local livekit server"), { __proto__: pos$9, default: true })),
+            [nix.POS]: pos$12,
+            enable: nix.thunk(() => nix.update(nix.app(mkEnableOption, "Configure local livekit server"), { [nix.POS]: pos$9, default: true })),
             openFirewall: nix.thunk(() => nix.app(mkEnableOption, "Open firewall ports for livekit")),
             keyFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(lib, "types", "path")),
                 description: "LiveKit key file holding one or multiple application secrets.\nUse `livekit-server generate-keys` to generate a random key name and secret.\n\nThe file should have the YAML format `<keyname>: <secret>`.\nExample:\n`lasuite-meet: f6lQGaHtM5HfgZjIcec3cOCRfiDqIine4CpZZnqdT5cE`\n\nIndividual key/secret pairs need to be passed to clients to connect to this instance.\n",
               })))),
             settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.sel(types, "attrs")),
                 default: nix.thunk(() => ({})),
                 description: "Settings to pass to the livekit server.\n\nSee `services.livekit.settings` for more details.\n",
               })))),
           })),
           gunicorn: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             extraArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                 default: nix.thunk(() => ["--name=meet", "--workers=3"]),
                 description: "Extra arguments to pass to the gunicorn process.\n",
               })))),
           })),
           celery: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             extraArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                 default: [],
                 description: "Extra arguments to pass to the celery process.\n",
               })))),
           })),
           domain: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.sel(types, "str")),
               description: "Domain name of the meet instance.\n",
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   freeformType: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "oneOf"), nix.thunk(() => [
                           nix.thunk(() => nix.sel(types, "str")),
                           nix.thunk(() => nix.sel(types, "bool")),
@@ -231,72 +231,72 @@ export default nix.lambda((args) => (() => {
                           nix.thunk(() => nix.sel(types, "int")),
                         ]))))))),
                   options: nix.thunk(() => ({
-                    __proto__: pos$29,
+                    [nix.POS]: pos$29,
                     DJANGO_CONFIGURATION: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$18,
+                        [nix.POS]: pos$18,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         internal: true,
                         default: "Production",
                         description: "The configuration that Django will use",
                       })))),
                     DJANGO_SETTINGS_MODULE: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$19,
+                        [nix.POS]: pos$19,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         internal: true,
                         default: "meet.settings",
                         description: "The configuration module that Django will use",
                       })))),
                     DJANGO_SECRET_KEY_FILE: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$20,
+                        [nix.POS]: pos$20,
                         type: nix.thunk(() => nix.sel(types, "path")),
                         default: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "secretKeyPath"), null)) ? "/var/lib/lasuite-meet/django_secret_key" : nix.sel(cfg, "secretKeyPath"))),
                         description: "The path to the file containing Django's secret key",
                       })))),
                     DJANGO_DATA_DIR: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$21,
+                        [nix.POS]: pos$21,
                         type: nix.thunk(() => nix.sel(types, "path")),
                         default: "/var/lib/lasuite-meet",
                         description: "Path to the data directory",
                       })))),
                     DJANGO_ALLOWED_HOSTS: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$22,
+                        [nix.POS]: pos$22,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: nix.thunk(() => (nix.asBool(nix.sel(cfg, "enableNginx")) ? nix.str`localhost,127.0.0.1,${nix.sel(cfg, "domain")}` : "")),
                         defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "if cfg.enableNginx then \"localhost,127.0.0.1,${cfg.domain}\" else \"\"\n")),
                         description: "Comma-separated list of hosts that are able to connect to the server",
                       })))),
                     DB_NAME: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$23,
+                        [nix.POS]: pos$23,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: "lasuite-meet",
                         description: "Name of the database",
                       })))),
                     DB_USER: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$24,
+                        [nix.POS]: pos$24,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: "lasuite-meet",
                         description: "User of the database",
                       })))),
                     DB_HOST: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$25,
+                        [nix.POS]: pos$25,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                         default: nix.thunk(() => (nix.asBool(nix.sel(cfg, "postgresql", "createLocally")) ? "/run/postgresql" : null)),
                         description: "Host of the database",
                       })))),
                     REDIS_URL: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$26,
+                        [nix.POS]: pos$26,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                         default: nix.thunk(() => (nix.asBool(nix.sel(cfg, "redis", "createLocally")) ? nix.str`unix://${nix.sel(config, "services", "redis", "servers", "lasuite-meet", "unixSocket")}?db=0` : null)),
                         description: "URL of the redis backend",
                       })))),
                     CELERY_BROKER_URL: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$27,
+                        [nix.POS]: pos$27,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                         default: nix.thunk(() => (nix.asBool(nix.sel(cfg, "redis", "createLocally")) ? nix.str`redis+socket://${nix.sel(config, "services", "redis", "servers", "lasuite-meet", "unixSocket")}?db=1` : null)),
                         description: "URL of the redis backend for celery",
                       })))),
                     LIVEKIT_API_URL: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$28,
+                        [nix.POS]: pos$28,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                         default: nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(cfg, "enableNginx")) && nix.asBool(nix.sel(cfg, "livekit", "enable")))) ? nix.str`http://${nix.sel(cfg, "domain")}/livekit` : null)),
                         defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "if cfg.enableNginx && cfg.livekit.enable then\n  \"http://$${cfg.domain}/livekit\"\nelse\n  null\n")),
@@ -313,7 +313,7 @@ See https://github.com/suitenumerique/meet/blob/v${nix.sel(cfg, "package", "vers
 `),
             })))),
           environmentFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               default: null,
               description: "Path to environment file.\n\nThis can be useful to pass secrets to meet via tools like `agenix` or `sops`.\n",
@@ -322,14 +322,14 @@ See https://github.com/suitenumerique/meet/blob/v${nix.sel(cfg, "package", "vers
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$68,
+        [nix.POS]: pos$68,
         systemd: nix.thunk(() => ({
-          __proto__: pos$45,
+          [nix.POS]: pos$45,
           services: nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             "lasuite-meet": nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$37,
+                  [nix.POS]: pos$37,
                   description: "Meet from SuiteNumérique",
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   preStart: nix.thunk(() => nix.str`if [ ! -f .version ]; then
@@ -349,7 +349,7 @@ if [ "${nix.sel(cfg, "package", "version")}" != "$(cat .version)" ]; then
 fi
 `),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$36,
+                    [nix.POS]: pos$36,
                     RuntimeDirectory: "lasuite-meet",
                     BindReadOnlyPaths: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/static:/var/lib/lasuite-meet/static`),
                     ExecStart: nix.thunk(() => nix.app(nix.sel(utils, "escapeSystemdExecArgs"), nix.thunk(() => nix.concat([
@@ -362,11 +362,11 @@ fi
               ]))),
             "lasuite-meet-celery": nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$39,
+                  [nix.POS]: pos$39,
                   description: "Meet Celery broker from SuiteNumérique",
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$38,
+                    [nix.POS]: pos$38,
                     ExecStart: nix.thunk(() => nix.app(nix.sel(utils, "escapeSystemdExecArgs"), nix.thunk(() => nix.concat([
                         nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "celery")),
                       ], nix.concat(nix.sel(cfg, "celery", "extraArgs"), ["--app=meet.celery_app", "worker"]))))),
@@ -376,11 +376,11 @@ fi
               ]))),
             "lasuite-meet-clean-pending-files": nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$41,
+                  [nix.POS]: pos$41,
                   description: "Scheduled job to clean up pending uploads from LaSuite Meet",
                   startAt: "daily",
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$40,
+                    [nix.POS]: pos$40,
                     ExecStart: nix.thunk(() => nix.str`${nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))} clean_pending_files`),
                   })),
                 })),
@@ -388,11 +388,11 @@ fi
               ]))),
             "lasuite-meet-purge-deleted-files": nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$43,
+                  [nix.POS]: pos$43,
                   description: "Scheduled job to purge deleted files from LaSuite Meet",
                   startAt: "daily",
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$42,
+                    [nix.POS]: pos$42,
                     ExecStart: nix.thunk(() => nix.str`${nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))} purge_deleted_files`),
                   })),
                 })),
@@ -401,26 +401,26 @@ fi
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$67,
+          [nix.POS]: pos$67,
           postgresql: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "postgresql", "createLocally")), nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               enable: true,
               ensureDatabases: nix.thunk(() => ["lasuite-meet"]),
               ensureUsers: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$46, name: "lasuite-meet", ensureDBOwnership: true })),
+                nix.thunk(() => ({ [nix.POS]: pos$46, name: "lasuite-meet", ensureDBOwnership: true })),
               ]),
             })))),
           redis: nix.thunk(() => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             servers: nix.thunk(() => ({
-              __proto__: pos$49,
-              "lasuite-meet": nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "redis", "createLocally")), nix.thunk(() => ({ __proto__: pos$48, enable: true })))),
+              [nix.POS]: pos$49,
+              "lasuite-meet": nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "redis", "createLocally")), nix.thunk(() => ({ [nix.POS]: pos$48, enable: true })))),
             })),
           })),
           livekit: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "livekit", "enable")), nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(cfg, "livekit"));
               return {
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               enable: nix.thunk(() => nix.attr(from, "enable")),
               settings: nix.thunk(() => nix.attr(from, "settings")),
               keyFile: nix.thunk(() => nix.attr(from, "keyFile")),
@@ -428,38 +428,38 @@ fi
             };
             })()))),
           nginx: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enableNginx")), nix.thunk(() => ({
-              __proto__: pos$66,
+              [nix.POS]: pos$66,
               enable: true,
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "domain"), nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$56,
+                      [nix.POS]: pos$56,
                       root: nix.thunk(() => nix.sel(cfg, "package", "frontend")),
                       extraConfig: "error_page 404 = /index.html;\n",
                       locations: nix.thunk(() => ({
-                        __proto__: pos$55,
+                        [nix.POS]: pos$55,
                         "/api": nix.thunk(() => ({
-                          __proto__: pos$52,
+                          [nix.POS]: pos$52,
                           proxyPass: nix.thunk(() => nix.str`http://${nix.sel(cfg, "bind")}`),
                           recommendedProxySettings: true,
                         })),
                         "/admin": nix.thunk(() => ({
-                          __proto__: pos$53,
+                          [nix.POS]: pos$53,
                           proxyPass: nix.thunk(() => nix.str`http://${nix.sel(cfg, "bind")}`),
                           recommendedProxySettings: true,
                         })),
                         "/static": nix.thunk(() => ({
-                          __proto__: pos$54,
+                          [nix.POS]: pos$54,
                           root: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share`),
                         })),
                       })),
                     })),
                     nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "livekit", "enable")), nix.thunk(() => ({
-                        __proto__: pos$59,
+                        [nix.POS]: pos$59,
                         locations: nix.thunk(() => ({
-                          __proto__: pos$58,
+                          [nix.POS]: pos$58,
                           "/livekit": nix.thunk(() => ({
-                            __proto__: pos$57,
+                            [nix.POS]: pos$57,
                             proxyPass: nix.thunk(() => nix.str`http://localhost:${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "livekit", "settings", "port")))}`),
                             recommendedProxySettings: true,
                             proxyWebsockets: true,
@@ -468,18 +468,18 @@ fi
                         })),
                       })))),
                     nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.app(elem, "outlook", nix.thunk(() => nix.sel(cfg, "addons")))), nix.thunk(() => ({
-                        __proto__: pos$65,
+                        [nix.POS]: pos$65,
                         locations: nix.thunk(() => ({
-                          __proto__: pos$64,
+                          [nix.POS]: pos$64,
                           "= /.well-known/windows-app-web-link": nix.thunk(() => ({
-                            __proto__: pos$60,
+                            [nix.POS]: pos$60,
                             alias: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "lasuite-meet-winsows-app-web-link.json", "[{\n  \"packageFamilyName\" : \"Visio_g3z6ba6vek6vg\",\n  \"paths\" : [ \"*\" ]\n}]\n")),
                             extraConfig: "default_type application/json;\nadd_header Content-Disposition \"attachment; filename=windows-app-web-link\";\n",
                           })),
                           "= /addons/outlook/manifest.xml": nix.thunk(() => ({
-                            __proto__: pos$62,
+                            [nix.POS]: pos$62,
                             alias: nix.thunk(() => nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => ({
-                                __proto__: pos$61,
+                                [nix.POS]: pos$61,
                                 name: "lasuite-meet-manifest.xml",
                                 buildCommand: nix.thunk(() => nix.str`substitute ${nix.sel(cfg, "package", "addons", "outlook")}/manifest.xml $out \\
   --replace-fail "__APP_NAME__" "LaSuite Meet" \\
@@ -489,7 +489,7 @@ fi
                             extraConfig: "add_header Access-Control-Allow-Origin \"*\";\nadd_header Cache-Control \"no-cache, no-store, must-revalidate\";\nadd_header X-Frame-Options \"DENY\";\nadd_header Content-Security-Policy \"frame-ancestors 'none'\";\n",
                           })),
                           "/addons/outlook/": nix.thunk(() => ({
-                            __proto__: pos$63,
+                            [nix.POS]: pos$63,
                             alias: nix.thunk(() => nix.str`${nix.sel(cfg, "package", "addons", "outlook")}/`),
                             extraConfig: "error_page 404 =200 /index.html;\nadd_header Cache-Control \"no-cache, no-store, must-revalidate\";\nadd_header Pragma \"no-cache\" always;\nadd_header Expires 0 always;\n\nset $ms_domains \"https://*.live.com https://*.office.com https://*.microsoft.com https://*.office365.com https://*.sharepoint.com\";\n\nset $nonce $request_id;\n\nset $csp \"upgrade-insecure-requests; \";\nset $csp \"${csp}frame-ancestors ${ms_domains}; \";\nset $csp \"${csp}script-src 'nonce-${nonce}' 'strict-dynamic'; \";\nset $csp \"${csp}connect-src 'self' ${ms_domains}; \";\nset $csp \"${csp}frame-src 'none'; \";\nset $csp \"${csp}object-src 'none'; \";\nset $csp \"${csp}base-uri 'none'; \";\n\nadd_header Content-Security-Policy $csp;\n\nsub_filter 'NONCE_PLACEHOLDER' $nonce;\nsub_filter_once off;\n",
                           })),
@@ -501,7 +501,7 @@ fi
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$69,
+      [nix.POS]: pos$69,
       buildDocsInSandbox: false,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "soyouzpanda"))]),
     })),

@@ -22,35 +22,35 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     name: "flannel",
     nodes: nix.thunk(() => (() => {
       const flannelConfig = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         services: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           flannel: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: true,
-            backend: nix.thunk(() => ({ __proto__: pos$1, Type: "udp", Port: 8285n })),
+            backend: nix.thunk(() => ({ [nix.POS]: pos$1, Type: "udp", Port: 8285n })),
             network: "10.1.0.0/16",
             iface: "eth1",
-            etcd: nix.thunk(() => ({ __proto__: pos$2, endpoints: nix.thunk(() => ["http://etcd:2379"]) })),
+            etcd: nix.thunk(() => ({ [nix.POS]: pos$2, endpoints: nix.thunk(() => ["http://etcd:2379"]) })),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$6,
-          firewall: nix.thunk(() => ({ __proto__: pos$5, allowedUDPPorts: nix.thunk(() => [8285n]) })),
+          [nix.POS]: pos$6,
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$5, allowedUDPPorts: nix.thunk(() => [8285n]) })),
         })),
       }));
       return {
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         etcd: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           services: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             etcd: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               enable: true,
               listenClientUrls: nix.thunk(() => ["http://0.0.0.0:2379"]),
               listenPeerUrls: nix.thunk(() => ["http://0.0.0.0:2380"]),
@@ -60,8 +60,8 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$11,
-            firewall: nix.thunk(() => ({ __proto__: pos$10, allowedTCPPorts: nix.thunk(() => [2379n]) })),
+            [nix.POS]: pos$11,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$10, allowedTCPPorts: nix.thunk(() => [2379n]) })),
           })),
         })),
         node1: flannelConfig,

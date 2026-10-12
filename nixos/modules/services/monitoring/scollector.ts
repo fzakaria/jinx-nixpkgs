@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "scollector"));
-  const collectors = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "collectors", nix.thunk(() => ({ __proto__: pos$1, preferLocalBuild: true })), nix.thunk(() => nix.str`mkdir -p $out
+  const collectors = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "collectors", nix.thunk(() => ({ [nix.POS]: pos$1, preferLocalBuild: true })), nix.thunk(() => nix.str`mkdir -p $out
 ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (frequency) => (binaries) => nix.add(nix.str`mkdir -p $out/${frequency}
 `, nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.builtins.map((path) => nix.str`ln -s ${path} $out/${frequency}/$(basename ${path})`, binaries)))), nix.thunk(() => nix.sel(cfg, "collectors")))))}
 `)));
@@ -41,40 +41,40 @@ ColDir = "${collectors}"
 ${nix.sel(cfg, "extraConfig")}
 `)));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         scollector: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to run scollector.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "scollector", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "scollector",
               description: "User account under which scollector runs.\n",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "scollector",
               description: "Group account under which scollector runs.\n",
             })))),
           bosunHost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "localhost:8070",
               description: "Host and port of the bosun server that will store the collected\ndata.\n",
             })))),
           collectors: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "path")))));
@@ -84,7 +84,7 @@ ${nix.sel(cfg, "extraConfig")}
               description: "An attribute set mapping the frequency of collection to a list of\nbinaries that should be executed at that frequency. You can use \"0\"\nto run a binary forever.\n",
             })))),
           extraOpts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -94,7 +94,7 @@ ${nix.sel(cfg, "extraConfig")}
               description: "Extra scollector command line options\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Extra scollector configuration added to the end of scollector.toml\n",
@@ -103,13 +103,13 @@ ${nix.sel(cfg, "extraConfig")}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "scollector", "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             scollector: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "scollector metrics collector (part of Bosun)",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               path: nix.thunk(() => [
@@ -117,7 +117,7 @@ ${nix.sel(cfg, "extraConfig")}
                 nix.thunk(() => nix.sel(pkgs, "iproute2")),
               ]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/scollector -conf=${conf} ${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.sel(cfg, "extraOpts")))}`),
@@ -126,20 +126,20 @@ ${nix.sel(cfg, "extraConfig")}
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           users: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             scollector: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               description: "scollector user",
               group: "scollector",
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "scollector")),
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             scollector: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "scollector")),
             })),
           })),

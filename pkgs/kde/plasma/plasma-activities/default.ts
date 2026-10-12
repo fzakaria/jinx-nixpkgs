@@ -12,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const qtdeclarative = nix.arg($, "qtdeclarative");
   const boost = nix.arg($, "boost");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "plasma-activities",
       extraBuildInputs: nix.thunk(() => [qtdeclarative, boost]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "plasma-activities-cli6" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "plasma-activities-cli6" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

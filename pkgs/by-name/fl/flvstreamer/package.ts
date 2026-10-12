@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "flvstreamer",
       version: "2.1c1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://savannah/flvstreamer/source/flvstreamer-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "e90e24e13a48c57b1be01e41c9a7ec41f59953cdb862b50cf3e667429394d1ee",
         })))),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
 `),
       installPhase: "mkdir -p $out/bin\ncp flvstreamer $out/bin\ncp streams $out/bin\ncp rtmpsrv $out/bin\ncp rtmpsuck $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command-line RTMP client",
         longDescription: "flvstreamer is an open source command-line RTMP client intended to\nstream audio or video content from all types of flash or rtmp servers.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

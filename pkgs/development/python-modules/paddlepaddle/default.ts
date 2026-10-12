@@ -49,12 +49,12 @@ export default nix.lambda((args) => (() => {
   const hash = nix.thunk(() => nix.selOr(platformSources, () => nix.force(throwPython), nix.key(nix.force(pyShortVersion))));
   const platform = nix.thunk(() => nix.sel(sources, nix.key(nix.sel(stdenv, "hostPlatform", "system")), "platform"));
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://paddle-whl.bj.bcebos.com/stable/${(nix.asBool(cudaSupport) ? nix.force(cudaVersion) : "cpu")}/${pname}/${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["-"]), nix.thunk(() => ["_"]), pname)}-${version}-${pyShortVersion}-${pyShortVersion}-${platform}.whl`),
       hash: hash,
     }))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       format: format,
@@ -126,9 +126,9 @@ fixRunPath $out/${nix.sel(python, "sitePackages")}/paddle/libs/lib*.so
 sed -i '/# Check python lib installed or not./,/^fi$/d' $out/bin/paddle
 sed -i 's/^INSTALLED_VERSION=.*/INSTALLED_VERSION="${version}"/' $out/bin/paddle
 `)),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Machine Learning Framework from Industrial Practice",
         homepage: "https://github.com/PaddlePaddle/Paddle",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

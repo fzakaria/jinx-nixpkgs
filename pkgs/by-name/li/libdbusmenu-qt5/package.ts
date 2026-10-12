@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libdbusmenu-qt5";
       const version = "0.9.3+16";
       const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.launchpad.net/ubuntu/+source/libdbusmenu-qt",
           rev: nix.thunk(() => nix.str`import/${version}.04.20160218-1`),
           hash: "sha256-nXZv1m/dQv8vt+xPS7WTC8nKfbEJ45WtZ8vVBencPg0=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libsForQt5, "qtbase", "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://launchpad.net/libdbusmenu-qt",
         description: "Provides a Qt implementation of the DBusMenu spec",
         maintainers: [],
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

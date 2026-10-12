@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.58.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "adbenitez",
           repo: "deltachat2",
           tag: version,
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./paths.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             deltachatrpcserver: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), deltachat_rpc_server)),
           })))),
       ]);
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(deltachat_rpc_server, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Client library for Delta Chat core JSON-RPC interface",
         homepage: "https://github.com/adbenitez/deltachat2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

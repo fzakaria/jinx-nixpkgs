@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const git = nix.arg($, "git");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "git-bars",
       version: "0-unstable-2023-08-20",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "knadh",
           repo: "git-bars",
           rev: "8c935c75844512553ae50e396181c422504516d7",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "setuptools"))]),
       dependencies: nix.thunk(() => [git, nix.thunk(() => nix.sel(python3Packages, "setuptools"))]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/knadh/git-bars",
         description: "Utility for visualising git commit activity as bars on the terminal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -36,17 +36,17 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "lirc",
       version: "0.10.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/lirc/lirc-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-PUTsgnSIHPJi8WCAVkHwgn/8wgreDYXn5vO5Dg09Iio=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://sourceforge.net/p/lirc/tickets/339/attachment/0001-Fix-Python-bindings.patch",
             sha256: "088a39x8c1qd81qwvbiqd6crb2lk777wmrs8rdh1ga06lglyvbly",
           })))),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, help2man, libxslt, pythonEnv, pkg_config]),
       buildInputs: nix.thunk(() => [alsa_lib, systemd, libusb_compat_0_1, libftdi1, libice, libsm, libx11]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         DEVINPUT_HEADER: nix.thunk(() => nix.str`${linuxHeaders}/include/linux/input-event-codes.h`),
       })),
       configureFlags: nix.thunk(() => [
@@ -82,7 +82,7 @@ ln -s $out/${nix.sel(python3, "sitePackages")}/lirc-setup/lirc-setup $out/bin/li
 `),
       dontCheckForBrokenSymlinks: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Allows to receive and send infrared signals",
         homepage: "https://www.lirc.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

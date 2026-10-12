@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const libconfig = nix.arg($, "libconfig");
   const dejavu_fonts = nix.arg($, "dejavu_fonts");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mpd-touch-screen-gui",
       version: "0-unstable-2022-12-30",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "muesli4",
           repo: "mpd-touch-screen-gui",
           rev: "156eaebede89da2b83a98d8f9dfa46af12282fb4",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/muesli4/mpd-touch-screen-gui/pull/15/commits/ecbe6fe2d7e30b81584e1f15e3003e0dba013f24.patch",
             hash: "sha256-p4TywZl7SQrMsKGEZgcctTY5DgnIWddQSFadVpyCbTU=",
           })))),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Small MPD client that let's you view covers and has controls suitable for small touchscreens",
         homepage: "https://github.com/muesli4/mpd-touch-screen-gui",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

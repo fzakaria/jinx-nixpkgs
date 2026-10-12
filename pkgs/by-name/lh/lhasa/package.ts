@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lhasa",
       version: "0.6.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://soulsphere.org/projects/lhasa/lhasa-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-mEAVQ2f3Pp2cMZb5RKEhq005jYTpIcj+j8qKkxJ0rtc=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Free Software replacement for the Unix LHA tool",
         longDescription: "Lhasa is a Free Software replacement for the Unix LHA tool, for\ndecompressing .lzh (LHA / LHarc) and .lzs (LArc) archives. The backend for\nthe tool is a library, so that it can be reused for other purposes.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: "1.1.5",
       pname: "nanomsg",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nanomsg",
           repo: "nanomsg",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/nanomsg/nanomsg/commit/e3323f19579529d272cb1d55bd6b653c4f34c064.patch",
             hash: "sha256-URz7TAqqpKxqjgvQqNX4WNSShwiEzAvO2h0hCZ2NhVY=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/nanomsg/nanomsg/commit/eb24489839de3e2419360c67cc38842f223836d9.patch",
             hash: "sha256-yaQWWZLW4YbiI41oV0nj7zap3lEs0Gwwb9kTD6o3La8=",
           })))),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       postPatch: "substituteInPlace src/pkgconfig.in \\\n  --replace '$'{prefix}/@CMAKE_INSTALL_LIBDIR@ @CMAKE_INSTALL_FULL_LIBDIR@\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Socket library that provides several common communication patterns",
         homepage: "https://nanomsg.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -22,18 +22,18 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const romkatv_libgit2 = nix.thunk(() => nix.app(callPackage, nix.path(here, "./romkatv_libgit2.nix"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gitstatus",
       version: "1.5.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "romkatv",
           repo: "gitstatus",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           sha256: "sha256-b+9bwJ87VV6rbOPobkwMkDXGH34STjYPlt8wCRR5tEc=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(["-lz"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-liconv"))))),
       })),
       buildInputs: nix.thunk(() => [romkatv_libgit2, zlib]),
@@ -70,12 +70,12 @@ chmod +x $out/bin/gitstatus-share
       doInstallCheck: true,
       installCheckPhase: "TEMP=$(mktemp -d)\ncd \"$TEMP\"\n\ngit init\n\necho '\n  GITSTATUS_LOG_LEVEL=DEBUG\n  . $out/share/gitstatus/gitstatus.plugin.zsh || exit 1\n\n  gitstatus_stop NIX_TEST && gitstatus_start NIX_TEST\n  gitstatus_query NIX_TEST\n  if [[ $? -ne 0 ]]; then\n      print -- \"Something went wrong with gitstatus\"\n      exit 1\n  elif [[ $VCS_STATUS_RESULT != \"ok-sync\" ]]; then\n      print -- \"Not in a Git repo\"\n      exit 1\n  else\n      print -- \"OK\"\n      exit 0\n  fi\n' > .zshrc\n\n# If we try to run zsh like \"zsh -i -c true\" or \"zsh -i > output\" then job\n# control will be disabled in the shell and the gitstatus plugin script\n# will fail when it tries to set the MONITOR option. As a workaround, we\n# run zsh as a full-fledged independent process and then wait for it to\n# exit. (The \"exit\" statements in the zshrc ensure that zsh will exit\n# almost immediately after starting.)\nZDOTDIR=. zsh -d -i &\nwait $!\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         romkatv_libgit2: romkatv_libgit2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "10x faster implementation of `git status` command",
         longDescription: "To enable the included gitstatus prompt, add the appropriate line to your NixOS configuration:\n`programs.bash.promptInit = \"source $(gitstatus-share)/gitstatus.prompt.sh\";`\n`programs.zsh.promptInit = \"source $(gitstatus-share)/gitstatus.prompt.zsh\";`\n\nSee the project homepage for details on customization.\n",
         homepage: "https://github.com/romkatv/gitstatus",

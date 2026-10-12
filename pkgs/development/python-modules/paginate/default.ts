@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Pylons",
           repo: "paginate",
           rev: version,
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const disabledTests = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.12")), nix.thunk(() => ["test_wrong_collection", "test_unsliceable_sequence3"])));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python pagination module",
         homepage: "https://github.com/Pylons/paginate",
         changelog: nix.thunk(() => nix.str`https://github.com/Pylons/paginate/blob/${nix.sel(src, "rev")}/CHANGELOG.txt`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

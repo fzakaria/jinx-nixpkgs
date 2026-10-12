@@ -30,7 +30,7 @@ popd
 `);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Pulumi provider to execute commands and scripts either locally or remotely as part of the Pulumi resource model",
         mainProgram: "pulumi-resource-command",
         homepage: "https://github.com/pulumi/pulumi-command",
@@ -41,7 +41,7 @@ popd
         })()),
       }));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         owner,
         repo,
         version,

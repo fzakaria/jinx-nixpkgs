@@ -19,14 +19,14 @@ export default nix.lambda((args) => (() => {
       const pname = "mapping";
       const version = "1.4.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/octave/${pname}-${version}.tar.gz`),
           sha256: "sha256-IYiyRjnHCHhAFy5gR/dcuKWY11gSCubggQzmMAqGmhs=",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [gdal]);
       const requiredOctavePackages = nix.thunk(() => [io, geometry]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gnu-octave.github.io/packages/mapping/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: nix.thunk(() => (() => {
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         description: "Simple mapping and GIS .shp .dxf and raster file functions",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const customConfig = nix.argOr($, "customConfig", () => null);
   const patches = nix.argOr($, "patches", () => []);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tabbed",
       version: "0.9",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.suckless.org/tabbed",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-IpFbkyNNzMtESjpQNFOUdE6Tl+ezJN85T71Cm7bqljo=",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["CC:=$(CC)"]),
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://tools.suckless.org/tabbed",
         description: "Simple generic tabbed fronted to xembed aware applications",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

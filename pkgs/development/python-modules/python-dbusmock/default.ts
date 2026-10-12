@@ -31,7 +31,7 @@ ln -s "${nix.sel(bluez, "test")}/test/pbap-client" "$out/bin/pbap-client"
       const version = "0.37.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "martinpitt",
           repo: "python-dbusmock",
           tag: version,
@@ -55,7 +55,7 @@ ln -s "${nix.sel(bluez, "test")}/test/pbap-client" "$out/bin/pbap-client"
         "test_session_service_activation",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/martinpitt/python-dbusmock/releases/tag/${nix.sel(src, "tag")}`),
         description: "Mock D-Bus objects for tests",
         homepage: "https://github.com/martinpitt/python-dbusmock",
@@ -64,7 +64,7 @@ ln -s "${nix.sel(bluez, "test")}/test/pbap-client" "$out/bin/pbap-client"
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

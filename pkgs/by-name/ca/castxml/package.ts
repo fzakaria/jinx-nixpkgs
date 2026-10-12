@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const libclang = nix.thunk(() => nix.attr(llvmPackages, "libclang"));
   const llvm = nix.thunk(() => nix.attr(llvmPackages, "llvm"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "castxml",
       version: "0.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CastXML",
           repo: "CastXML",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,14 +47,14 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       checkPhase: "runHook preCheck\nctest -E 'cmd.cc-gnu-(src-cxx|c-src-c)-cmd' -j $NIX_BUILD_CORES\nrunHook postCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/CastXML/CastXML",
         description: "C-family Abstract Syntax Tree XML Output",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const disabled = nix.thunk(() => (nix.asBool(!nix.asBool(isPy3k)) || nix.asBool(nix.app(pythonAtLeast, "3.11"))));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zalando-stups",
           repo: "fullstop-cli",
           rev: version,
@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
       const preCheck = "\n    export HOME=$TEMPDIR\n  ";
       const nativeCheckInputs = nix.thunk(() => [pytest, pytest_cov_stub]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Convenience command line tool for fullstop. audit reporting",
         homepage: "https://github.com/zalando-stups/stups-fullstop-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "mschuwalow"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

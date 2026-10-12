@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
   const stdlib_shims = nix.arg($, "stdlib-shims");
   const git_binary = nix.arg($, "git-binary");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "carton-lwt",
       version: nix.thunk(() => nix.attr(carton, "version")),
       src: nix.thunk(() => nix.attr(carton, "src")),

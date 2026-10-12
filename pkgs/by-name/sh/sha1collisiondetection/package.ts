@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libtool = nix.arg($, "libtool");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sha1collisiondetection",
       version: "1.0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cr-marcstevens",
           repo: "sha1collisiondetection",
           rev: nix.thunk(() => nix.str`stable-v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       nativeBuildInputs: nix.thunk(() => [libtool, which]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library and command line tool to detect SHA-1 collision",
         longDescription: "This library and command line tool were designed as near drop-in\nreplacements for common SHA-1 libraries and sha1sum. They will\ncompute the SHA-1 hash of any given file and additionally will\ndetect cryptanalytic collision attacks against SHA-1 present in\neach file. It is very fast and takes less than twice the amount\nof time as regular SHA-1.\n",
         homepage: "https://github.com/cr-marcstevens/sha1collisiondetection",

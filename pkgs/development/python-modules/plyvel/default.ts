@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.5.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-PK9gCeT8JPv4cS0/XvPaflZJXCakiN8hYSGPw05GAZw=",
@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(pkgs, "leveldb"))], nix.app(nix.sel(lib, "optional"), isPy3k, pytest)));
       const doCheck = isPy3k;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fast and feature-rich Python interface to LevelDB",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         homepage: "https://github.com/wbolster/plyvel",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
-      return { __proto__: pos$3, pname, version, format, src, buildInputs, doCheck, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, buildInputs, doCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

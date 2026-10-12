@@ -26,26 +26,26 @@ export default nix.lambda((args) => (() => {
   const keysDirectory = "/var/keys";
   const keysMountUnit = "var-keys.mount";
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     imports: nix.thunk(() => [
       nix.path(here, "./nix-builder.nix"),
       nix.path(here, "../virtualisation/vz-vm.nix"),
     ]),
     config: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         vz: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           forwardPorts: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               host: nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 address: "127.0.0.1",
                 port: nix.thunk(() => nix.sel(cfg, "hostPort")),
               })),
-              guest: nix.thunk(() => ({ __proto__: pos$2, port: 22n })),
+              guest: nix.thunk(() => ({ [nix.POS]: pos$2, port: 22n })),
             })),
           ]),
           console: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "log")),
@@ -54,16 +54,16 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       systemd: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         services: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           "copy-builder-keys": nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             description: "Stage builder SSH keys where sshd will accept them",
             wantedBy: nix.thunk(() => ["multi-user.target"]),
             requires: nix.thunk(() => [keysMountUnit]),
             after: nix.thunk(() => [keysMountUnit]),
-            serviceConfig: nix.thunk(() => ({ __proto__: pos$6, Type: "oneshot", RemainAfterExit: true })),
+            serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$6, Type: "oneshot", RemainAfterExit: true })),
             script: nix.thunk(() => nix.str`install -d -m 0755 -o root -g root /run/builder-keys
 for key in ${keysDirectory}/*.pub; do
   [ -e "$key" ] || continue
@@ -72,7 +72,7 @@ done
 `),
           })),
           "sshd-vsock@": nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             overrideStrategy: "asDropin",
             requires: nix.thunk(() => ["copy-builder-keys.service"]),
             wants: nix.thunk(() => ["network-online.target"]),
@@ -81,9 +81,9 @@ done
         })),
       })),
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         openssh: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           authorizedKeysFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ["/run/builder-keys/%u_ed25519.pub"]))),
         })),
       })),

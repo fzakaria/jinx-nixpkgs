@@ -45,11 +45,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(enableHttp3) || nix.asBool(enableApp)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ng/nghttp2/package.nix:42:1");
   nix.assert_((!nix.asBool(enableJemalloc) || nix.asBool(enableApp)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ng/nghttp2/package.nix:43:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "nghttp2",
       version: "1.70.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/nghttp2/nghttp2/releases/download/v${nix.sel(finalAttrs, "version")}/nghttp2-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-j6yh94qpmsO8F2ina34PazbY5qYsE4GHUbHSBfAvlAU=",
         })))),
@@ -70,12 +70,12 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace ./config.guess --replace-fail /usr/bin/uname uname\n",
       postInstall: nix.thunk(() => nix.add(nix.add(nix.app(nix.sel(lib, "optionalString"), enableApp, "installShellCompletion --bash doc/bash_completion/{h2load,nghttp,nghttpd,nghttpx}\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(enableApp)), "rm -r $out/bin\n")), nix.app(nix.sel(lib, "optionalString"), enablePython, "patchShebangs $out/share/nghttp2\n"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, curl: curl, libsoup_3: libsoup_3 })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, curl: curl, libsoup_3: libsoup_3 })),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "HTTP/2 C library and tools",
         longDescription: "nghttp2 is an implementation of the HyperText Transfer Protocol version 2 in C.\nThe framing layer of HTTP/2 is implemented as a reusable C library. On top of that,\nwe have implemented an HTTP/2 client, server and proxy. We have also developed\nload test and benchmarking tools for HTTP/2.\nAn HPACK encoder and decoder are available as a public API.\nWe have Python bindings of this library, but we do not have full code coverage yet.\nAn experimental high level C++ library is also available.\n",
         homepage: "https://nghttp2.org/",

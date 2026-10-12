@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const reason = nix.arg($, "reason");
   const reason_react_ppx = nix.arg($, "reason-react-ppx");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "reason-react",
       version: nix.thunk(() => nix.attr(reason_react_ppx, "version")),
       src: nix.thunk(() => nix.attr(reason_react_ppx, "src")),
@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [reason_react_ppx, melange]),
       doCheck: true,
       preCheck: "export DUNE_CACHE=disabled\n",
-      meta: nix.thunk(() => nix.update(nix.sel(reason_react_ppx, "meta"), { __proto__: pos$1, description: "Reason bindings for React.js" })),
+      meta: nix.thunk(() => nix.update(nix.sel(reason_react_ppx, "meta"), { [nix.POS]: pos$1, description: "Reason bindings for React.js" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pname = "vscode-js-debug";
       const version = "1.140.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "microsoft",
           repo: "vscode-js-debug",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -50,22 +50,22 @@ export default nix.lambda((args) => (() => {
       const npmInstallFlags = nix.thunk(() => ["--include=dev"]);
       const preBuild = "export PATH=\"node_modules/.bin:$PATH\"\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex", "v((?!\\d{4}\\.\\d\\.\\d{3}).*)"]),
           })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           test: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-test`), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               nativeBuildInputs: nix.thunk(() => [vscode_js_debug]),
-              meta: nix.thunk(() => ({ __proto__: pos$3, timeout: 60n })),
+              meta: nix.thunk(() => ({ [nix.POS]: pos$3, timeout: 60n })),
             })), "output=$(js-debug --help 2>&1)\nif grep -Fw -- \"Usage: dapDebugServer.js [port|socket path=8123] [host=localhost]\" - <<< \"$output\"; then\n  touch $out\nelse\n  echo \"Expected help output was not found!\" >&2\n  echo \"The output was:\" >&2\n  echo \"$output\" >&2\n  exit 1\nfi\n")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "DAP-compatible JavaScript debugger",
         longDescription: "This is a [DAP](https://microsoft.github.io/debug-adapter-protocol/)-based\nJavaScript debugger. It debugs Node.js, Chrome, Edge, WebView2, VS Code\nextensions, and more. It has been the default JavaScript debugger in\nVisual Studio Code since 1.46, and is gradually rolling out in Visual\nStudio proper.\n",
         homepage: "https://github.com/microsoft/vscode-js-debug",
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version,
         src,

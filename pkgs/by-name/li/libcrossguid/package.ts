@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const libuuid = nix.arg($, "libuuid");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: nix.thunk(() => nix.add(nix.add(nix.add("lib", "crossguid"), "-"), nix.sel(finalAttrs, "version"))),
       pname: "crossguid",
       version: "2016-02-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "graeme-hill",
           repo: "crossguid",
           rev: "8f399e8bd4252be9952f3dfa8199924cc8487ca4",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "$CXX -c guid.cpp -o guid.o $CXXFLAGS -std=c++11 -DGUID_LIBUUID\n$AR rvs libcrossguid.a guid.o\n",
       installPhase: "mkdir -p $out/{lib,include}\ninstall -D -m644 libcrossguid.a \"$out/lib/libcrossguid.a\"\ninstall -D -m644 guid.h \"$out/include/guid.h\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightweight cross platform C++ GUID/UUID library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {

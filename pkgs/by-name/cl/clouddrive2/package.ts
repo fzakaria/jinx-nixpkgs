@@ -19,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const os = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "macos" : "linux"));
   const arch = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) ? "aarch64" : "x86_64"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "clouddrive2",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/cloud-fs/cloud-fs.github.io/releases/download/v${nix.sel(finalAttrs, "version")}/clouddrive-2-${os}-${arch}-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: nix.thunk(() => nix.selOr({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             "x86_64-linux": "sha256-3puaJvPjMMaZdEWrGZc56R/6HeNA0k4KOt2cd5bFTu8=",
             "aarch64-linux": "sha256-SdLQKTBjqrt3e1IbP7fDH1szm4YRZ9ADHb7K/gyQpD8=",
             "aarch64-darwin": "sha256-nn7GCanBqkyGsXI40pjagQHxR/JQcVcjUTwg8T5muac=",
@@ -36,9 +36,9 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\nmkdir -p $out/opt/clouddrive2\ncp -r wwwroot \"$out/opt/clouddrive2/wwwroot\"\ncp -r clouddrive \"$out/opt/clouddrive2/clouddrive\"\nmakeWrapper $out/opt/clouddrive2/clouddrive $out/bin/clouddrive\n\nrunHook postInstall\n",
       nativeInstallCheckPhaseInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.clouddrive2.com",
         changelog: nix.thunk(() => nix.str`https://github.com/cloud-fs/cloud-fs.github.io/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Multi-cloud drives management tool supporting mounting cloud drives locally",

@@ -20,21 +20,21 @@ export default nix.lambda((args) => (() => {
   const wrapBintoolsWith = nix.arg($, "wrapBintoolsWith");
   const overrideCC = nix.arg($, "overrideCC");
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     hook: zig,
-    "bintools-unwrapped": nix.thunk(() => nix.app(callPackage, nix.path(here, "./bintools.nix"), nix.thunk(() => ({ __proto__: pos$1, zig: zig })))),
+    "bintools-unwrapped": nix.thunk(() => nix.app(callPackage, nix.path(here, "./bintools.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, zig: zig })))),
     bintools: nix.thunk(() => nix.app(wrapBintoolsWith, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         bintools: nix.thunk(() => nix.sel(zig, "bintools-unwrapped")),
       })))),
-    "cc-unwrapped": nix.thunk(() => nix.app(callPackage, nix.path(here, "./cc.nix"), nix.thunk(() => ({ __proto__: pos$3, zig: zig })))),
+    "cc-unwrapped": nix.thunk(() => nix.app(callPackage, nix.path(here, "./cc.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, zig: zig })))),
     cc: nix.thunk(() => nix.app(wrapCCWith, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         cc: nix.thunk(() => nix.sel(zig, "cc-unwrapped")),
         bintools: nix.thunk(() => nix.sel(zig, "bintools")),
         extraPackages: [],
         nixSupport: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "cc-cflags": nix.thunk(() => [
             "-target",
             nix.thunk(() => nix.str`${nix.sel(stdenv, "targetPlatform", "system")}-${nix.sel(stdenv, "targetPlatform", "parsed", "abi", "name")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     stdenv: nix.thunk(() => nix.app(overrideCC, stdenv, nix.thunk(() => nix.sel(zig, "cc")))),
-    fetchDeps: nix.thunk(() => nix.app(callPackage, nix.path(here, "./fetcher.nix"), nix.thunk(() => ({ __proto__: pos$6, zig: zig })))),
+    fetchDeps: nix.thunk(() => nix.app(callPackage, nix.path(here, "./fetcher.nix"), nix.thunk(() => ({ [nix.POS]: pos$6, zig: zig })))),
   };
 })(), formals$1);
 //# sourceMappingURL=passthru.ts.map

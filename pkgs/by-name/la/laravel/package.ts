@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const php = nix.arg($, "php");
   const nodejs = nix.arg($, "nodejs");
   return nix.app(nix.sel(php, "buildComposerProject2"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "laravel",
       version: "5.25.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "laravel",
           repo: "installer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,9 +32,9 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/laravel \\
   --suffix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nix.thunk(() => nix.sel(php, "packages", "composer")), nodejs]))}
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Laravel application installer",
         homepage: "https://laravel.com/docs#creating-a-laravel-project",
         changelog: nix.thunk(() => nix.str`https://github.com/laravel/installer/releases/tag/v${nix.sel(finalAttrs, "version")}`),

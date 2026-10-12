@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "arp-scan";
       const version = "1.10.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "royhills",
           repo: "arp-scan",
           tag: version,
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
 done;
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ARP scanning and fingerprinting tool",
         longDescription: "Arp-scan is a command-line tool that uses the ARP protocol to discover\nand fingerprint IP hosts on the local network.\n",
         homepage: "https://github.com/royhills/arp-scan/wiki/arp-scan-User-Guide",
@@ -61,7 +61,7 @@ done;
         mainProgram: "arp-scan",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

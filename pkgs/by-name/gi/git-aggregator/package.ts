@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const gitMinimal = nix.arg($, "gitMinimal");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "git-aggregator",
       version: "4.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "acsone",
           repo: "git-aggregator",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [gitMinimal]),
       preCheck: "export HOME=\"$(mktemp -d)\"\ngit config --global user.name John\ngit config --global user.email john@localhost\ngit config --global init.defaultBranch master\ngit config --global pull.rebase false\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Manage the aggregation of git branches from different remotes to build a consolidated one",
         homepage: "https://github.com/acsone/git-aggregator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

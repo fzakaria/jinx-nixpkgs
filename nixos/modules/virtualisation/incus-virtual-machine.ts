@@ -42,9 +42,9 @@ export default nix.lambda((args) => (() => {
   const serialDevice = nix.thunk(() => (nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isx86")) ? "ttyS0" : "ttyAMA0"));
   const efiArch = nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "efiArch"));
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "lxc"))]),
     })),
     imports: nix.thunk(() => [
@@ -53,13 +53,13 @@ export default nix.lambda((args) => (() => {
       nix.path(here, "../profiles/qemu-guest.nix"),
     ]),
     config: nix.thunk(() => ({
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       system: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         build: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           qemuImage: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/make-disk-image.nix")), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               pkgs: pkgs,
               lib: lib,
               config: config,
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
               copyChannel: nix.thunk(() => nix.sel(config, "system", "installer", "channel", "enable")),
             })))),
           repartImage: nix.thunk(() => nix.app(nix.sel(config, "image", "repart", "image", "overrideAttrs"), (previousAttrs) => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(previousAttrs, "nativeBuildInputs"), [nix.thunk(() => nix.sel(pkgs, "qemu-utils"))])),
               postBuild: nix.thunk(() => nix.str`qemu-img convert -f raw -O qcow2 -c ${nix.sel(config, "image", "baseName")}.raw ${nix.sel(config, "image", "baseName")}.qcow2
 rm ${nix.sel(config, "image", "baseName")}.raw
@@ -80,31 +80,31 @@ echo "file qcow2-image $out/${nix.sel(config, "image", "baseName")}.qcow2" > $ou
         })),
       })),
       image: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         repart: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           enable: true,
           name: "nixos",
           version: null,
           sectorSize: 512n,
-          compression: nix.thunk(() => ({ __proto__: pos$6, enable: false })),
-          mkfsOptions: nix.thunk(() => ({ __proto__: pos$7, ext4: nix.thunk(() => ["-i", "8192"]) })),
+          compression: nix.thunk(() => ({ [nix.POS]: pos$6, enable: false })),
+          mkfsOptions: nix.thunk(() => ({ [nix.POS]: pos$7, ext4: nix.thunk(() => ["-i", "8192"]) })),
           partitions: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             esp: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               contents: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`/EFI/BOOT/BOOT${nix.app(nix.sel(lib, "toUpper"), efiArch)}.EFI`, nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   source: nix.thunk(() => nix.str`${nix.sel(config, "systemd", "package")}/lib/systemd/boot/efi/systemd-boot${efiArch}.efi`),
                 }))],
                 [nix.str`/EFI/Linux/${nix.sel(config, "system", "boot", "loader", "ukiFile")}`, nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   source: nix.thunk(() => nix.str`${nix.sel(config, "system", "build", "uki")}/${nix.sel(config, "system", "boot", "loader", "ukiFile")}`),
                 }))],
               ])),
               repartConfig: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 Type: "esp",
                 Format: "vfat",
                 Label: "ESP",
@@ -112,10 +112,10 @@ echo "file qcow2-image $out/${nix.sel(config, "image", "baseName")}.qcow2" > $ou
               })),
             })),
             root: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               storePaths: nix.thunk(() => [nix.thunk(() => nix.sel(config, "system", "build", "toplevel"))]),
               repartConfig: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 Type: "root",
                 Format: "ext4",
                 Label: "nixos",
@@ -127,38 +127,38 @@ echo "file qcow2-image $out/${nix.sel(config, "image", "baseName")}.qcow2" > $ou
         })),
       })),
       fileSystems: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         "/": nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           device: "/dev/disk/by-label/nixos",
           autoResize: true,
           fsType: "ext4",
         })),
-        "/boot": nix.thunk(() => ({ __proto__: pos$18, device: "/dev/disk/by-label/ESP", fsType: "vfat" })),
+        "/boot": nix.thunk(() => ({ [nix.POS]: pos$18, device: "/dev/disk/by-label/ESP", fsType: "vfat" })),
       })),
       boot: nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         growPartition: true,
         loader: nix.thunk(() => ({
-          __proto__: pos$22,
-          "systemd-boot": nix.thunk(() => ({ __proto__: pos$20, enable: true })),
-          grub: nix.thunk(() => ({ __proto__: pos$21, device: "/dev/vda" })),
+          [nix.POS]: pos$22,
+          "systemd-boot": nix.thunk(() => ({ [nix.POS]: pos$20, enable: true })),
+          grub: nix.thunk(() => ({ [nix.POS]: pos$21, device: "/dev/vda" })),
         })),
         kernelParams: nix.thunk(() => ["console=tty1", nix.thunk(() => nix.str`console=${serialDevice}`)]),
       })),
       services: nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         udev: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           extraRules: "SUBSYSTEM==\"cpu\", CONST{arch}==\"x86-64\", TEST==\"online\", ATTR{online}==\"0\", ATTR{online}=\"1\"\n",
         })),
       })),
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         incus: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           agent: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
           })),
         })),

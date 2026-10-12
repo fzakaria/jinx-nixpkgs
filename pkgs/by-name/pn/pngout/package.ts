@@ -22,29 +22,29 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const unzip = nix.arg($, "unzip");
   const platforms = nix.thunk(() => ({
-    __proto__: pos$6,
-    "aarch64-darwin": nix.thunk(() => ({ __proto__: pos$1, folder: "." })),
-    "aarch64-linux": nix.thunk(() => ({ __proto__: pos$2, folder: "aarch64", "ld-linux": "ld-linux-aarch64.so.1" })),
-    "armv7l-linux": nix.thunk(() => ({ __proto__: pos$3, folder: "armv7", "ld-linux": "ld-linux-armhf.so.3" })),
-    "i686-linux": nix.thunk(() => ({ __proto__: pos$4, folder: "i686", "ld-linux": "ld-linux.so.2" })),
-    "x86_64-linux": nix.thunk(() => ({ __proto__: pos$5, folder: "amd64", "ld-linux": "ld-linux-x86-64.so.2" })),
+    [nix.POS]: pos$6,
+    "aarch64-darwin": nix.thunk(() => ({ [nix.POS]: pos$1, folder: "." })),
+    "aarch64-linux": nix.thunk(() => ({ [nix.POS]: pos$2, folder: "aarch64", "ld-linux": "ld-linux-aarch64.so.1" })),
+    "armv7l-linux": nix.thunk(() => ({ [nix.POS]: pos$3, folder: "armv7", "ld-linux": "ld-linux-armhf.so.3" })),
+    "i686-linux": nix.thunk(() => ({ [nix.POS]: pos$4, folder: "i686", "ld-linux": "ld-linux.so.2" })),
+    "x86_64-linux": nix.thunk(() => ({ [nix.POS]: pos$5, folder: "amd64", "ld-linux": "ld-linux-x86-64.so.2" })),
   }));
   const platform = nix.thunk(() => nix.selOr(platforms, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.str`${nix.sel(stdenv, "hostPlatform", "system")}`)));
   const download = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     suffix: "20230322-mac.zip",
     hash: "sha256-Lj63k0UgYECuOg0NDs/prQHZL+UAK4oWdqZWMqVoQOE=",
   } : {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     suffix: "20200115-linux.tar.gz",
     hash: "sha256-rDi7pvDeKQM96GZTjDr6ZDQTGbaVu+OI77xf2egw6Sg=",
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "pngout",
       version: "20230322",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           hash: nix.thunk(() => nix.attr(download, "hash")),
           url: nix.thunk(() => nix.str`https://www.jonof.id.au/files/kenutils/pngout-${nix.sel(download, "suffix")}`),
         })))),
@@ -55,7 +55,7 @@ cp ${nix.sel(platform, "folder")}/pngout $out/bin
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`patchelf --set-interpreter ${nix.sel(stdenv, "cc", "libc")}/lib/${nix.sel(platform, "ld-linux")} $out/bin/pngout
 `)))),
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "Tool that aggressively optimizes the sizes of PNG images",
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);

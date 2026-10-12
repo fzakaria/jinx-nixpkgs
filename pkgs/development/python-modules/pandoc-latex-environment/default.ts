@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const hatchling = nix.arg($, "hatchling");
   const hatch_vcs = nix.arg($, "hatch-vcs");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pandoc-latex-environment",
       version: "1.2.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chdemko",
           repo: "pandoc-latex-environment",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["pandoc_latex_environment"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, pandoc]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pandoc filter for adding LaTeX environment on specific div",
         homepage: "https://github.com/chdemko/pandoc-latex-environment",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

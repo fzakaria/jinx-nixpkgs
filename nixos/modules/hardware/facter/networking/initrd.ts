@@ -24,23 +24,23 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(config, "hardware", "facter"));
   const report = nix.thunk(() => nix.attr(from, "report"));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       hardware: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         facter: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           detected: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             boot: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               initrd: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 networking: nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   kernelModules: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                      __proto__: pos$1,
+                      [nix.POS]: pos$1,
                       type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                       default: nix.thunk(() => nix.app(nix.sel(lib, "uniqueStrings"), nix.thunk(() => nix.app(nix.sel(facterLib, "collectDrivers"), nix.thunk(() => nix.selOr(report, () => [], "hardware", "network_controller")))))),
                       defaultText: "hardware dependent",
@@ -54,11 +54,11 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(config, "hardware", "facter", "enable")) && nix.asBool(nix.sel(config, "boot", "initrd", "network", "enable")))), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         boot: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           initrd: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             kernelModules: nix.thunk(() => nix.sel(config, "hardware", "facter", "detected", "boot", "initrd", "networking", "kernelModules")),
           })),
         })),

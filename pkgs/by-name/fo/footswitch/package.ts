@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const hidapi = nix.arg($, "hidapi");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "footswitch",
       version: "1.0-unstable-2023-10-10",
       __finalAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rgerganov",
           repo: "footswitch",
           rev: "b7493170ecc956ac87df2c36183253c945be2dcf",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "mkdir -p $out/bin $out/lib/udev/rules.d\n",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command line utilities for programming PCsensor and Scythe foot switches",
         homepage: "https://github.com/rgerganov/footswitch",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

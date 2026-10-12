@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const zig_0_17 = nix.arg($, "zig_0_17");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zigscient",
       version: "0.17.0",
       strictDeps: true,
@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
       deps: nix.thunk(() => nix.app(callPackage, nix.path(here, "./deps_0_17.nix"), nix.thunk(() => ({})))),
       nativeBuildInputs: nix.thunk(() => [zig_0_17]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "llogick",
           repo: "zigscient",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-tWgUZm9kW8B/tCIx5g2N4mVRiqKxLy+YuxBv0iSvLds=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Zig Language Server - A drop-in alternative to ZLS",
         mainProgram: "zigscient",
         homepage: "https://github.com/llogick/zigscient",

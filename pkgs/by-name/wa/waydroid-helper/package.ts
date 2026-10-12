@@ -38,21 +38,21 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const version = "0.2.9";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "waydroid-helper",
       repo: "waydroid-helper",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-6mVb4GPD2NCsvyaqQAOFox0rNIlyOttiaZKbHBS40Rg=",
     }))));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "waydroid-helper",
       version: version,
       src: src,
       pyproject: false,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "USE_UMOUNT_NOT_FUSERMOUNT",
             url: "https://github.com/waydroid-helper/waydroid-helper/commit/eb8ccf7a276f95b31972edbd063245704b2b5b2e.patch",
             hash: "sha256-z0PWBZTox3RpPCm8/fGYEukU0v41U7/TFcYE0Ec5Zeg=",
@@ -90,11 +90,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstallCheck: "mesonCheckPhase\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/waydroid-helper/waydroid-helper/releases/tag/${nix.sel(src, "tag")}`),
         description: "User-friendly way to configure Waydroid and install extensions, including Magisk and ARM translation",
         homepage: "https://github.com/waydroid-helper/waydroid-helper",

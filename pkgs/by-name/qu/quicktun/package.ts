@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libsodium = nix.arg($, "libsodium");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "quicktun",
       version: "2.2.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "UCIS",
           repo: "QuickTun",
           rev: "2d0c6a9cda8c21f921a5d1197aeee92e9568ca39",
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\nbash build.sh\nrunHook postBuild\n",
       installPhase: "runHook preInstall\nrm out/quicktun*tgz\ninstall -vD out/quicktun* -t $out/bin\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, quicktun: nix.thunk(() => nix.sel(nixosTests, "quicktun")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, quicktun: nix.thunk(() => nix.sel(nixosTests, "quicktun")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Very simple, yet secure VPN software",
         homepage: "http://wiki.ucis.nl/QuickTun",

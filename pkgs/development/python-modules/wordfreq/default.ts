@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wordfreq",
       version: "3.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rspeer",
           repo: "wordfreq",
           rev: "912caf64b657478d1dff1138efdc078947d54bb1",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       disabledTests: nix.thunk(() => ["test_languages", "test_japanese", "test_korean"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for looking up the frequencies of words in many languages, based on many sources of data",
         homepage: "https://github.com/rspeer/wordfreq/",
         changelog: nix.thunk(() => nix.str`https://github.com/rspeer/wordfreq/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   const pytest_cov_stub = nix.arg($, "pytest-cov-stub");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "supabase",
       version: "2.29.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "supabase",
           repo: "supabase-py",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace pyproject.toml \\\n  --replace-fail 'uv_build>=0.8.3,<0.9.0' 'uv_build>=0.8.3'\n",
       pythonImportsCheck: nix.thunk(() => ["supabase"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/supabase/supabase-py",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         changelog: nix.thunk(() => nix.str`https://github.com/supabase/supabase-py/blob/v${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

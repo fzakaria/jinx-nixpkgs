@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const domain = "sensi";
       const version = "2.2.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: owner,
           repo: domain,
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace custom_components/sensi/manifest.json \\\n  --replace-fail \"==\" \">=\"\n";
       const dependencies = nix.thunk(() => [python_socketio]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/iprak/sensi/releases/tag/v${version}`),
         description: "HomeAssistant integration for Sensi thermostat",
         homepage: "https://github.com/iprak/sensi",
         maintainers: [],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
-      return { __proto__: pos$3, owner, domain, version, src, postPatch, dependencies, meta };
+      return { [nix.POS]: pos$3, owner, domain, version, src, postPatch, dependencies, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

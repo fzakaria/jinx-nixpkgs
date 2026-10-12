@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const callPackage = nix.arg($, "callPackage");
   return nix.app(callPackage, nix.path(here, "../package.nix"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "git-credential-aol",
       scripts: nix.thunk(() => ["git-credential-aol"]),
       description: "Git credential helper for AOL accounts",

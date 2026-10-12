@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "toPythonApplication"), nix.thunk(() => nix.app(nix.sel(python3Packages, "pandera", "overridePythonAttrs"), (oldAttrs) => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         dependencies: nix.thunk(() => nix.concat(nix.sel(oldAttrs, "dependencies"), nix.app(nix.sel(lib, "concatMap"), (extra) => nix.sel(oldAttrs, "optional-dependencies", nix.key(nix.force(extra))), nix.thunk(() => ["cli", "io", "narwhals", "pandas", "polars", "pyarrow", "strategies"])))),
       }))));
 })(), formals$1);

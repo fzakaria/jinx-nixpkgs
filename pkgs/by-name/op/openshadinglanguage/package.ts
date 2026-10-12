@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const libclang = nix.thunk(() => nix.attr(llvmPackages, "libclang"));
   const llvm = nix.thunk(() => nix.attr(llvmPackages, "llvm"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "openshadinglanguage",
       version: "1.15.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AcademySoftwareFoundation",
           repo: "OpenShadingLanguage",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "openimageio"))]),
       postFixup: "substituteInPlace \"$out\"/lib/pkgconfig/*.pc \\\n  --replace '=${exec_prefix}//' '=/'\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Advanced shading language for production GI renderers",
         homepage: "http://openshadinglanguage.org",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "amarshall"))]),

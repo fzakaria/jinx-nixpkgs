@@ -6,7 +6,7 @@ const pos$1 = nix.positions(here + "/broadcom-43xx.nix", [["enableRedistributabl
 const pos$2 = nix.positions(here + "/broadcom-43xx.nix", [["hardware", 2, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$2,
-  hardware: nix.thunk(() => ({ __proto__: pos$1, enableRedistributableFirmware: true })),
+  [nix.POS]: pos$2,
+  hardware: nix.thunk(() => ({ [nix.POS]: pos$1, enableRedistributableFirmware: true })),
 }));
 //# sourceMappingURL=broadcom-43xx.ts.map

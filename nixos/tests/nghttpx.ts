@@ -34,22 +34,22 @@ export default nix.thunk(() => (() => {
   return nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     return {
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       name: "nghttpx",
       nodes: nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         webserver: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           networking: nix.thunk(() => ({
-            __proto__: pos$2,
-            firewall: nix.thunk(() => ({ __proto__: pos$1, allowedTCPPorts: nix.thunk(() => [80n]) })),
+            [nix.POS]: pos$2,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$1, allowedTCPPorts: nix.thunk(() => [80n]) })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             services: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               nginx: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 preStart: nix.thunk(() => nix.str`mkdir -p ${nginxRoot}
 echo "Hello world!" > ${nginxRoot}/hello-world.txt
 `),
@@ -57,17 +57,17 @@ echo "Hello world!" > ${nginxRoot}/hello-world.txt
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             nginx: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 server: nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   locations: nix.thunk(() => ({
-                    __proto__: pos$7,
-                    "/": nix.thunk(() => ({ __proto__: pos$6, root: nginxRoot })),
+                    [nix.POS]: pos$7,
+                    "/": nix.thunk(() => ({ [nix.POS]: pos$6, root: nginxRoot })),
                   })),
                 })),
               })),
@@ -75,29 +75,29 @@ echo "Hello world!" > ${nginxRoot}/hello-world.txt
           })),
         })),
         proxy: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           networking: nix.thunk(() => ({
-            __proto__: pos$14,
-            firewall: nix.thunk(() => ({ __proto__: pos$13, allowedTCPPorts: nix.thunk(() => [80n]) })),
+            [nix.POS]: pos$14,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$13, allowedTCPPorts: nix.thunk(() => [80n]) })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             nghttpx: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               enable: true,
               frontends: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$17,
-                  server: nix.thunk(() => ({ __proto__: pos$15, host: "*", port: 80n })),
-                  params: nix.thunk(() => ({ __proto__: pos$16, tls: "no-tls" })),
+                  [nix.POS]: pos$17,
+                  server: nix.thunk(() => ({ [nix.POS]: pos$15, host: "*", port: 80n })),
+                  params: nix.thunk(() => ({ [nix.POS]: pos$16, tls: "no-tls" })),
                 })),
               ]),
               backends: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$20,
-                  server: nix.thunk(() => ({ __proto__: pos$18, host: "webserver", port: 80n })),
+                  [nix.POS]: pos$20,
+                  server: nix.thunk(() => ({ [nix.POS]: pos$18, host: "webserver", port: 80n })),
                   patterns: nix.thunk(() => ["/"]),
-                  params: nix.thunk(() => ({ __proto__: pos$19, proto: "http/1.1" })),
+                  params: nix.thunk(() => ({ [nix.POS]: pos$19, proto: "http/1.1" })),
                 })),
               ]),
             })),

@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
     const suffix = nix.arg($_1, "suffix");
     const hash = nix.arg($_1, "hash");
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname: nix.thunk(() => nix.str`unicode-emoji-${suffix}`),
         version: version,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://www.unicode.org/Public/${version}/emoji/emoji-${suffix}.txt`),
             hash: hash,
           })))),
@@ -45,31 +45,31 @@ runHook postInstall
       })));
   })(), formals$2);
   const srcs = nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     "emoji-sequences": nix.thunk(() => nix.app(fetchData, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         suffix: "sequences",
         hash: "sha256-EsyCZ9wzy9Ee0yvPb8XcKtnHp3uuG9+6L0GxubPq2N0=",
       })))),
     "emoji-test": nix.thunk(() => nix.app(fetchData, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         suffix: "test",
         hash: "sha256-HYqUT4jXlS9+98UWf+88Z5lbyuJFQ5SXECMbA6IBrNo=",
       })))),
     "emoji-zwj-sequences": nix.thunk(() => nix.app(fetchData, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         suffix: "zwj-sequences",
         hash: "sha256-WyVEHa7SMisGjF5wzaUilGpPAnTfhkRFoZZakuX8XK0=",
       })))),
   }));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       version: version,
       pname: "unicode-emoji",
       paths: nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), srcs)),
       passthru: srcs,
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Unicode Emoji Data Files",
         homepage: "https://home.unicode.org/emoji/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unicode-30")),

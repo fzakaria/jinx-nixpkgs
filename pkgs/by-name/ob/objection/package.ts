@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
   const androidComposition = nix.thunk(() => nix.app(nix.sel(androidenv, "composeAndroidPackages"), nix.thunk(() => ({}))));
   const version = "1.12.4";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "sensepost",
       repo: "objection",
       tag: version,
@@ -42,47 +42,47 @@ export default nix.lambda((args) => (() => {
     }))));
   const fridaVersion = "17.5.1";
   const supportedPlatforms = nix.thunk(() => ({
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       fridaArch: "linux-x64",
       fridaHash: "sha256-g7uZs/fUwraIu6SZaU9kGGVuzD/nyqmXHVp0zL3jhdY=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       fridaArch: "linux-arm64",
       fridaHash: "sha256-BsCgpHS3IFMPciu9hsdu9vWwKu+pon+EtqF10NO1EAc=",
     })),
     "armv7l-linux": nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       fridaArch: "linux-armv7l",
       fridaHash: "sha256-mNl+kP+9a4AC2Tf1SM7mYL5b+j4pPz+E9R88JjLgifE=",
     })),
     "i686-linux": nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       fridaArch: "linux-ia32",
       fridaHash: "sha256-vLwf+EwWNDLznda8J+xVqp8XmuivdZ0VKgISR9YoQR0=",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       fridaArch: "darwin-arm64",
       fridaHash: "sha256-mR6HM9rmRmXhWqXA0GC4Xkdj9KVSthhtvMAzijE+j5c=",
     })),
     "x86_64-freebsd": nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       fridaArch: "freebsd-x64",
       fridaHash: "sha256-ddvUtdZJdVH9O7np04ayB/Nebxq4Raw0eAQJpFAFl6Q=",
     })),
   }));
   const currentPlatform = nix.thunk(() => nix.selOr(supportedPlatforms, () => nix.builtins.throw(nix.thunk(() => nix.str`frida Node.js binding: unsupported system ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const fridaNodeBinding = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       url: nix.thunk(() => nix.str`https://github.com/frida/frida/releases/download/${fridaVersion}/frida-v${fridaVersion}-napi-v8-${nix.sel(currentPlatform, "fridaArch")}.tar.gz`),
       hash: nix.thunk(() => nix.sel(currentPlatform, "fridaHash")),
     }))));
   const runtimeTools = nix.thunk(() => [apktool, aapt, apksigner, android_tools]);
   const agent = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "objection-agent",
       version: version,
       src: src,
@@ -96,7 +96,7 @@ tar -xzf ${fridaNodeBinding} -C node_modules/frida
       installPhase: "runHook preInstall\ninstall -Dm644 agent.js $out/agent.js\nrunHook postInstall\n",
     }))));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: "objection",
       version: version,
       src: src,
@@ -141,7 +141,7 @@ wrapProgram $out/bin/objection \\
   --prefix PATH : "$out/bin-wrapped:${nix.app(nix.sel(lib, "makeBinPath"), runtimeTools)}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         description: "Runtime mobile exploration toolkit, powered by Frida",
         longDescription: "objection is a runtime mobile exploration toolkit, powered by Frida,\nbuilt to help you assess the security posture of your mobile applications,\nwithout needing a jailbreak.\n",
         homepage: "https://github.com/sensepost/objection",

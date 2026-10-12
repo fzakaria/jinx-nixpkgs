@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const plexRaw = nix.arg($, "plexRaw");
   const dataDir = nix.argOr($, "dataDir", () => "/var/lib/plex");
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "plexmediaserver",
       version: nix.thunk(() => nix.attr(plexRaw, "version")),
       meta: nix.thunk(() => nix.attr(plexRaw, "meta")),

@@ -11,10 +11,10 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     options: nix.thunk(() => ({
-      __proto__: pos$2,
-      result: nix.thunk(() => ({ __proto__: pos$1, here: nix.thunk(() => nix.sel(lib, "types", "str")) })),
+      [nix.POS]: pos$2,
+      result: nix.thunk(() => ({ [nix.POS]: pos$1, here: nix.thunk(() => nix.sel(lib, "types", "str")) })),
     })),
   };
 })(), formals$1);

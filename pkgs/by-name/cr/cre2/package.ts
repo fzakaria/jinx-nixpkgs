@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const re2 = nix.arg($, "re2");
   const texinfo = nix.arg($, "texinfo");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cre2",
       version: "0.3.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "marcomaggi",
           repo: "cre2",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, libtool, pkg_config]),
       buildInputs: nix.thunk(() => [re2, texinfo]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lre2", "-lpthread"]))),
       })),
       configureFlags: nix.thunk(() => ["--enable-maintainer-mode"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://marcomaggi.github.io/docs/cre2.html",
         description: "C Wrapper for RE2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

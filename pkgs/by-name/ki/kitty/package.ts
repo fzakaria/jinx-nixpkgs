@@ -68,14 +68,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.49.2";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kovidgoyal",
           repo: "kitty",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-FstfBzwdh1z7Qy9zWDY7L7mpd5bxnypgqEzqeLe16fY=",
         }))));
       const goModules = nix.thunk(() => nix.sel(nix.app(buildGo126Module, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: "kitty-go-modules",
           src: src,
           version: version,
@@ -132,7 +132,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./zsh-compinit.patch"),
         nix.path(here, "./disable-test_ssh_bootstrap_with_different_launchers.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./libxkbcommon-runtime-path.patch"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             libxkbcommon: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), libxkbcommon)}/lib/libxkbcommon.so.0`),
           })))),
       ]);
@@ -145,7 +145,7 @@ export default nix.lambda((args) => (() => {
 `)));
       const hardeningDisable = nix.thunk(() => ["fortify3"]);
       const env = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         CGO_ENABLED: 0n,
         GOFLAGS: "-trimpath",
         GOTOOLCHAIN: "local",
@@ -215,15 +215,15 @@ cp -r 'shell-integration' "$shell_integration"
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             default: nix.thunk(() => nix.sel(nixosTests, "terminal-emulators", "kitty")),
           })))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://github.com/kovidgoyal/kitty",
         description: "Fast, feature-rich, GPU based terminal emulator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -244,7 +244,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version,
         pyproject,

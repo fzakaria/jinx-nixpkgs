@@ -26,10 +26,10 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const qemuName = "qemu-5.2.50";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: nix.thunk(() => nix.str`aflplusplus-${qemuName}`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AFLplusplus",
           repo: "qemuafl",
           rev: "0732e079ed3716ef0b81e708cd9dcd372238a07f",
@@ -118,7 +118,7 @@ export default nix.lambda((args) => (() => {
         "--without-default-devices",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/AFLplusplus/qemuafl",
         description: "Fork of QEMU with AFL++ instrumentation support",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

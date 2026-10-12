@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const gpgme = nix.arg($, "gpgme");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "volume_key",
       version: "0.3.11",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://pagure.io/volume_key.git",
           rev: nix.thunk(() => nix.str`volume_key-${nix.sel(finalAttrs, "version")}`),
           sha256: "1sqdbcih1c39bjiv4mm1m7acc3lfh2i2hf2r9i7rk8adfzq8awma",
@@ -48,12 +48,12 @@ export PYTHON3_CONFIG="${python3}/bin/python3-config"
         nix.thunk(() => nix.str`pythondir=$(py)/${nix.sel(python3, "sitePackages")}`),
       ]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=implicit-function-declaration", "-Wno-error=int-conversion"]))),
         })))),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library for manipulating storage volume encryption keys and storing them separately from volumes to handle forgotten passphrases, and the associated command-line tool",
         mainProgram: "volume_key",
         homepage: "https://pagure.io/volume_key/",

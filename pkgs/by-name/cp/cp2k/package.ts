@@ -74,51 +74,51 @@ export default nix.lambda((args) => (() => {
   const cudaTarget = nix.argOr($, "cudaTarget", () => "80");
   nix.assert_(nix.builtins.elem(gpuBackend, nix.thunk(() => ["none", "cuda", "rocm"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/cp/cp2k/package.nix:64:1");
   const grimmeCmake = nix.thunk(() => nix.app(nix.sel(lib, "makeScope"), newScope, (self) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       "mctc-lib": nix.thunk(() => nix.app(nix.sel(mctc_lib, "override"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           buildType: "cmake",
           jonquil: nix.thunk(() => nix.attr(self, "jonquil")),
         })))),
       "toml-f": nix.thunk(() => nix.app(nix.sel(toml_f, "override"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           buildType: "cmake",
           "test-drive": nix.thunk(() => nix.attr(self, "test-drive")),
         })))),
       dftd4: nix.thunk(() => nix.app(nix.sel(dftd4, "override"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           buildType: "cmake",
           mstore: nix.thunk(() => nix.attr(self, "mstore")),
           "mctc-lib": nix.thunk(() => nix.attr(self, "mctc-lib")),
           multicharge: nix.thunk(() => nix.attr(self, "multicharge")),
         })))),
       jonquil: nix.thunk(() => nix.app(nix.sel(jonquil, "override"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           buildType: "cmake",
           "toml-f": nix.thunk(() => nix.attr(self, "toml-f")),
           "test-drive": nix.thunk(() => nix.attr(self, "test-drive")),
         })))),
       mstore: nix.thunk(() => nix.app(nix.sel(mstore, "override"), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           buildType: "cmake",
           "mctc-lib": nix.thunk(() => nix.attr(self, "mctc-lib")),
         })))),
       multicharge: nix.thunk(() => nix.app(nix.sel(multicharge, "override"), nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           buildType: "cmake",
           "mctc-lib": nix.thunk(() => nix.attr(self, "mctc-lib")),
           mstore: nix.thunk(() => nix.attr(self, "mstore")),
         })))),
-      "test-drive": nix.thunk(() => nix.app(nix.sel(test_drive, "override"), nix.thunk(() => ({ __proto__: pos$7, buildType: "cmake" })))),
+      "test-drive": nix.thunk(() => nix.app(nix.sel(test_drive, "override"), nix.thunk(() => ({ [nix.POS]: pos$7, buildType: "cmake" })))),
       "simple-dftd3": nix.thunk(() => nix.app(nix.sel(simple_dftd3, "override"), nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           buildType: "cmake",
           "mctc-lib": nix.thunk(() => nix.attr(self, "mctc-lib")),
           mstore: nix.thunk(() => nix.attr(self, "mstore")),
           "toml-f": nix.thunk(() => nix.attr(self, "toml-f")),
         })))),
       tblite: nix.thunk(() => nix.app(nix.sel(tblite, "override"), nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           buildType: "cmake",
           "mctc-lib": nix.thunk(() => nix.attr(self, "mctc-lib")),
           mstore: nix.thunk(() => nix.attr(self, "mstore")),
@@ -128,7 +128,7 @@ export default nix.lambda((args) => (() => {
           "simple-dftd3": nix.thunk(() => nix.attr(self, "simple-dftd3")),
         })))),
       sirius: nix.thunk(() => nix.app(nix.sel(sirius, "override"), nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           "mctc-lib": nix.thunk(() => nix.attr(self, "mctc-lib")),
           "toml-f": nix.thunk(() => nix.attr(self, "toml-f")),
           multicharge: nix.thunk(() => nix.attr(self, "multicharge")),
@@ -137,13 +137,13 @@ export default nix.lambda((args) => (() => {
         })))),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       pname: "cp2k",
       version: "2026.2",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           owner: "cp2k",
           repo: "cp2k",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -225,13 +225,13 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "strings", "cmakeFeature"), "CMAKE_CUDA_ARCHITECTURES", cudaTarget)),
         ]))))),
       nativeCheckInputs: nix.thunk(() => [mpiCheckPhaseHook]),
-      passthru: nix.thunk(() => ({ __proto__: pos$13, mpi: mpi })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$13, mpi: mpi })),
       outputs: nix.thunk(() => ["out", "dev"]),
       postInstall: "mkdir -p $out/share/cp2k\ncp -r ../data/* $out/share/cp2k\n\nfor i in $out/bin/*; do\n  wrapProgram $i \\\n    --set-default CP2K_DATA_DIR $out/share/cp2k \\\n    --set-default OMP_NUM_THREADS 1\ndone\n",
       doInstallCheck: nix.thunk(() => nix.eq(gpuBackend, "none")),
       installCheckPhase: "runHook preInstallCheck\n\nfor TEST in $out/bin/{dbt_tas,dbt,libcp2k,parallel_rng_types,gx_ac}_unittest.psmp; do\n  mpirun -n 2 $TEST\ndone\n\nrunHook postInstallCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         description: "Quantum chemistry and solid state physics program",
         homepage: "https://www.cp2k.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

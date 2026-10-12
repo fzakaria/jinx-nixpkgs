@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const libsm = nix.arg($, "libsm");
   const libice = nix.arg($, "libice");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "segger-jlink-qt4",
       src: src,
       version: version,
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\n# Install libraries\nmkdir -p $out/lib\nmv libQt* $out/lib\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Bundled QT4 libraries for the J-Link Software and Documentation pack",
         homepage: "https://www.segger.com/downloads/jlink/#J-LinkSoftwareAndDocumentationPack",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

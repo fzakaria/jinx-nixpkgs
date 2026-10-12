@@ -18,17 +18,17 @@ export default nix.lambda((args) => (() => {
   const perlPackages = nix.arg($, "perlPackages");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "intltool",
       version: "0.51.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://launchpad.net/intltool/trunk/${nix.sel(finalAttrs, "version")}/+download/intltool-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1karx4sb7bnm2j67q0q74hspkfn6lqprpy5r99vkn5bb36a4viv7",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "perl5.26-regex-fixes.patch",
             urls: nix.thunk(() => [
               "https://sources.debian.org/data/main/i/intltool/0.51.0-5/debian/patches/perl5.26-regex-fixes.patch",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
 done
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Translation helper tool",
         homepage: "https://launchpad.net/intltool/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -13,9 +13,9 @@ export default nix.lambda((args) => (() => {
   const jre_minimal = nix.arg($, "jre_minimal");
   const jdk_headless = nix.arg($, "jdk_headless");
   return nix.app(nix.sel(sonar_scanner_cli, "override"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       jre: nix.thunk(() => nix.app(nix.sel(jre_minimal, "override"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           jdk: jdk_headless,
           modules: nix.thunk(() => [
             "java.base",

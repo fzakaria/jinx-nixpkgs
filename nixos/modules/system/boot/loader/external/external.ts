@@ -26,9 +26,9 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "boot", "loader", "external"));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "maintainers")), w);
         return [
@@ -39,16 +39,16 @@ export default nix.lambda((args) => (() => {
       doc: nix.path(here, "./external.md"),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       boot: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         loader: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           external: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "using an external tool to install your bootloader")),
             installHook: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                   return nix.force(nix.lookup(w_1, "path"));
@@ -60,26 +60,26 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         boot: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           loader: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             grub: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), false)),
             })),
             "systemd-boot": nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), false)),
             })),
             supportsInitrdSecrets: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), false)),
           })),
         })),
         system: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           build: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             installBootLoader: nix.thunk(() => nix.sel(cfg, "installHook")),
           })),
         })),

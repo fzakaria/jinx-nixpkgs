@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const clr = nix.arg($, "clr");
   const rocm_smi = nix.arg($, "rocm-smi");
   const hiprtc_test = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "hiprtc-type-traits-test",
       version: "0",
       dontUnpack: true,
@@ -27,14 +27,14 @@ runHook postBuild
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ncp hiprtc-test $out/bin/\nrunHook postInstall\n",
     }))));
   return nix.app(makeImpureTest, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "hiprtc-type-traits",
       testedPackage: "rocmPackages.clr",
       sandboxPaths: nix.thunk(() => ["/sys", "/dev/dri", "/dev/kfd"]),
       nativeBuildInputs: nix.thunk(() => [hiprtc_test, rocm_smi]),
       testScript: "rocm-smi\nhiprtc-test\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "rocm"))]),
       })),
     })));

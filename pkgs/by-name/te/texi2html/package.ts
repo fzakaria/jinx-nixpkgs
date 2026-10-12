@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "texi2html",
       version: "5.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://savannah/texi2html/texi2html-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-6KmLDuIMSVpquJQ5igZe9YAnLb1aFbGxnovRvInZ+fo=",
         })))),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Perl script which converts Texinfo source files to HTML output",
         mainProgram: "texi2html",
         homepage: "https://www.nongnu.org/texi2html/",

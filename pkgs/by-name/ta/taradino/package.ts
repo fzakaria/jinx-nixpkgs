@@ -26,17 +26,17 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(withSharewareData) || nix.asBool(buildShareware)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ta/taradino/package.nix:15:1");
   const datadir = "share/data/rott-shareware/";
   const sharewareData = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "http://icculus.org/rott/share/1rott13.zip",
       hash: "sha256-l0pP+mNPAabGh7LZrwcB6KOhPRSycrZpAlPVTyDXc6Y=",
       stripRoot: false,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: nix.thunk(() => nix.add("taradino", nix.app(nix.sel(lib, "optionalString"), buildShareware, "-shareware"))),
       version: "20251222",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "fabiangreffrath",
           repo: "taradino",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -55,11 +55,11 @@ export default nix.lambda((args) => (() => {
 unzip -d "$out/${datadir}" ${sharewareData}/ROTTSW13.SHR
 `))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "SDL2 port of Rise of the Triad",
         mainProgram: nix.thunk(() => nix.add("taradino", nix.app(nix.sel(lib, "optionalString"), buildShareware, "-shareware"))),
         homepage: "https://github.com/fabiangreffrath/taradino",

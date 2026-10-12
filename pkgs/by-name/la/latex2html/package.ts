@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const netpbm = nix.arg($, "netpbm");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "latex2html",
       version: "2025",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "latex2html",
           repo: "latex2html",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       configurePhase: "runHook preConfigure\n\n./configure \\\n  --prefix=\"$out\" \\\n  --without-mktexlsr \\\n  --with-texpath=$out/share/texmf/tex/latex/html\n\nrunHook postConfigure\n",
       postInstall: "for p in $out/bin/{latex2html,pstoimg}; do \\\n  wrapProgram $p --add-flags '--tmp=\"${TMPDIR:-/tmp}\"'\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "LaTeX-to-HTML translator",
         longDescription: "A Perl program that translates LaTeX into HTML (HyperText Markup\nLanguage), optionally creating separate HTML files corresponding to each\nunit (e.g., section) of the document. LaTeX2HTML proceeds by interpreting\nLaTeX (to the best of its abilities). It contains definitions from a wide\nvariety of classes and packages, and users may add further definitions by\nwriting Perl scripts that provide information about class/package\ncommands.\n",
         homepage: "https://www.ctan.org/pkg/latex2html",

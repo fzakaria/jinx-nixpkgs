@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tankerkoenig-card",
       version: "1.9.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "timmaurice",
           repo: "lovelace-tankerkoenig-card",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: "sha256-ewTbWFTnT/yz13CT0UIuW0PHLr2hDqfO66z8H0jzdAQ=",
       installPhase: "runHook preInstall\n\ninstall ./dist/tankerkoenig-card.js -Dt $out\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lovelace card to display German fuel prices from Tankerkönig",
         homepage: "https://github.com/timmaurice/lovelace-tankerkoenig-card",
         changelog: nix.thunk(() => nix.str`https://github.com/timmaurice/lovelace-tankerkoenig-card/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

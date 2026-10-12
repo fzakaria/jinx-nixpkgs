@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const dxvk_2 = nix.arg($, "dxvk_2");
   const fakeGit = nix.thunk(() => nix.app(writeShellScriptBin, "git", "if [[ \"$1\" = \"rev-parse\" ]]; then\n  echo $out\nelif [[ \"$1\" = \"rev-list\" ]]; then\n  cat $src/.gitrev\nelse\n  echo \"fakeGit: unexpected git command: $@\" >&2\n  exit 1\nfi\n"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mojoshader",
       version: "0-unstable-2026-09-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "icculus",
           repo: "mojoshader",
           rev: "ad5dff84830c2863c841f4b1f4e3df78c705b383",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [SDL2]),
       nativeBuildInputs: nix.thunk(() => [cmake, fakeGit]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${dxvk_2}/include/dxvk`),
         })))),
       cmakeFlags: nix.thunk(() => [
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib\ninstall -Dm644 libmojoshader.* -t $out/lib\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(writeScript, "update.sh", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p curl jq common-updater-scripts
 
@@ -59,7 +59,7 @@ update-source-version mojoshader 0-unstable-$date --rev=$rev
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Library to work with Direct3D shaders on alternate 3D APIs and non-Windows platforms",
         homepage: "https://icculus.org/mojoshader",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

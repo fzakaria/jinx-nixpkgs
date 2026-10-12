@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const version = "1.20230906";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "chipsalliance",
       repo: "yosys-f4pga-plugins",
       rev: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
     "xdc",
   ]);
   const static_gtest = nix.thunk(() => nix.app(nix.sel(gtest, "overrideAttrs"), (old) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       dontDisableStatic: true,
       cmakeFlags: nix.thunk(() => nix.concat(nix.sel(old, "cmakeFlags"), ["-DBUILD_SHARED_LIBS=OFF"])),
     })));
@@ -68,7 +68,7 @@ ln -s ${static_gtest}/lib source/third_party/googletest/build/lib
         ]);
         const installFlags = buildFlags;
         const meta = nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           description: nix.thunk(() => nix.str`Symbiflow ${plugin_1} plugin for Yosys`),
           license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
@@ -82,7 +82,7 @@ ln -s ${static_gtest}/lib source/third_party/googletest/build/lib
           })()),
         }));
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pname,
           src: src_1,
           version: version_1,

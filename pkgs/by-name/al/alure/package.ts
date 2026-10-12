@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const openal = nix.arg($, "openal");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "alure",
       version: "1.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://deb.debian.org/debian/pool/main/a/alure/alure_${nix.sel(finalAttrs, "version")}.orig.tar.bz2`),
           hash: "sha256-Rl5q2uaJJ746AjkDdkZi1kQE5AxMFS0WDjqIOLHXD3E=",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openal]),
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"CMAKE_MINIMUM_REQUIRED(VERSION 2.4)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utility library to help manage common tasks with OpenAL applications",
         homepage: "https://github.com/kcat/alure",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

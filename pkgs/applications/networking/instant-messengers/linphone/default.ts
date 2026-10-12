@@ -12,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const makeScopeWithSplicing$ = nix.arg($, "makeScopeWithSplicing'");
   const lib = nix.arg($, "lib");
   return nix.app(makeScopeWithSplicing$, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       otherSplices: nix.thunk(() => nix.app(generateSplicesForMkScope, "linphonePackages")),
       extra: (self) => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         mkLinphoneDerivation: nix.thunk(() => nix.sel(self, "mk-linphone-derivation")),
         linphoneSdkVersion: "5.5.13",
         linphoneSdkHash: "sha256-RsSMLO7wZ7azWF7/KcERkd5et73w0kUZpwsqj9QxZgc=",

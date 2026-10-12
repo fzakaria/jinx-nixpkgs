@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "grb",
       version: "0-unstable-2022-07-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LukeSmithxyz",
           repo: "grb",
           rev: "35a5353ab147b930c39e1ccd369791cc4c27f0df",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cli-accessible Greek Bible with the Septuagint, SBL and Apocrypha",
         homepage: "https://github.com/LukeSmithxyz/grb",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),

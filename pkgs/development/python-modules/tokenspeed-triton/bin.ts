@@ -28,28 +28,28 @@ export default nix.lambda((args) => (() => {
   const abiTag = nix.thunk(() => (nix.asBool(nix.app(pythonAtLeast, "3.12")) ? "abi3" : nix.force(pythonTag)));
   const pythonTag = nix.thunk(() => nix.str`cp${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), pythonVersion)}`);
   const hashes = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       cp310: "sha256-fkYRq6wkAavw4BwOHOt8aybu+IfRLLvrD5oU6JFTHlw=",
       cp311: "sha256-tGfvQ4M7eOqfndLnC842WevPx6N1HjTzHI/+4g0S1+U=",
       abi3: "sha256-KZ9Ygd4Go0SNjk9L/s32/58UiWk7rxYwPehBa6gsFtY=",
     })),
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       cp310: "sha256-vHTyzQZDGs5gt3dkBSaA3QGK5rDFpC0NPWk9dOTRmVw=",
       cp311: "sha256-9qMpxrtZSfKxTUdJ1ulwWUwxvTUniPtc7sjkmxffWbw=",
       abi3: "sha256-616ubE09sR4TtwWMibV+B1+n35BdQxac/bBm4WGIZCE=",
     })),
   }));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "tokenspeed-triton",
       version: "3.8.10.post20260920",
       pyproject: false,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           format: "wheel",
           pname: "tokenspeed_triton",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [zlib]),
       pythonImportsCheck: nix.thunk(() => ["tokenspeed_triton"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Language and compiler for custom Deep Learning operations",
         homepage: "https://github.com/lightseekorg/triton",
         downloadPage: "https://pypi.org/project/tokenspeed-triton/#files",

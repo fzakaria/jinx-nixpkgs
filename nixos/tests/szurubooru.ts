@@ -20,50 +20,50 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
     const lib = nix.arg($, "lib");
     const pkgs = nix.arg($, "pkgs");
     return {
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       name: "szurubooru",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "ratcornu"))];
         })()),
       })),
       nodes: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         machine: nix.thunk(() => (() => {
           const dbpass = "changeme";
           return nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const config = nix.arg($_1, "config");
             return {
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               services: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 postgresql: nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   enable: true,
                   initialScript: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "init.sql", nix.thunk(() => nix.str`CREATE USER ${nix.sel(config, "services", "szurubooru", "database", "user")} WITH PASSWORD '${dbpass}';
 CREATE DATABASE ${nix.sel(config, "services", "szurubooru", "database", "name")} WITH OWNER ${nix.sel(config, "services", "szurubooru", "database", "user")};
 `))),
                 })),
                 szurubooru: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   enable: true,
                   dataDir: "/var/lib/szurubooru",
                   server: nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     port: 6666n,
                     host: "127.0.0.1",
                     settings: nix.thunk(() => ({
-                      __proto__: pos$3,
+                      [nix.POS]: pos$3,
                       domain: "http://127.0.0.1",
                       secretFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "secret", "secret")),
                       debug: 1n,
                     })),
                   })),
                   database: nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     host: "localhost",
                     port: 5432n,
                     name: "szurubooru",

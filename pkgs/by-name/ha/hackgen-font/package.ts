@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hackgen-font",
       version: "2.10.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/yuru7/HackGen/releases/download/v${nix.sel(finalAttrs, "version")}/HackGen_v${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-cIFrYfjPLspXYfaiITmlIMes6dP9fwjJ59wD9FLO0OU=",
         })))),
       installPhase: "runHook preInstall\n\ninstall -Dm644 *.ttf -t $out/share/fonts/hackgen\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Composite font of Hack and GenJyuu-Goghic",
         homepage: "https://github.com/yuru7/HackGen",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

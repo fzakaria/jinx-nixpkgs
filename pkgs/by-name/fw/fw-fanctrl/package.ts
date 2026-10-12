@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TamtamHero",
           repo: "fw-fanctrl",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const postInstall = "mkdir -p $out/share/fw-fanctrl\ninstall -m 644 $src/src/fw_fanctrl/_resources/config.json $out/share/fw-fanctrl/config.json\ninstall -m 755 $src/services/system-sleep/fw-fanctrl-suspend $out/share/fw-fanctrl/fw-fanctrl-suspend\npatchShebangs --build $out/share/fw-fanctrl/fw-fanctrl-suspend\nsubstituteInPlace $out/share/fw-fanctrl/fw-fanctrl-suspend \\\n  --replace-fail '\"%PYTHON_SCRIPT_INSTALLATION_PATH%\"' $out/bin/fw-fanctrl\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mainProgram: "fw-fanctrl",
         homepage: "https://github.com/TamtamHero/fw-fanctrl",
         description: "Simple systemd service to better control Framework Laptop's fan(s)",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "Svenum"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

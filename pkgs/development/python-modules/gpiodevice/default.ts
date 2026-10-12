@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const gpiod = nix.arg($, "gpiod");
   const mock = nix.arg($, "mock");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gpiodevice",
       version: "0.0.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pimoroni",
           repo: "gpiodevice-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ mv "$out/${nix.sel(python, "sitePackages")}/README.md" $out/share/doc/${nix.sel(
 mv "$out/${nix.sel(python, "sitePackages")}/CHANGELOG.md" $out/share/doc/${nix.sel(finalAttrs, "pname")}/
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Helper library for working with Linux gpiochip devices",
         homepage: "https://github.com/pimoroni/gpiodevice-python",
         changelog: nix.thunk(() => nix.str`https://github.com/pimoroni/gpiodevice-python/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -38,12 +38,12 @@ export default nix.lambda((args) => (() => {
   const symlinkJoin = nix.arg($, "symlinkJoin");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "plopp",
       version: "26.9.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "scipp",
           repo: "plopp",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -69,14 +69,14 @@ export default nix.lambda((args) => (() => {
         xarray,
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         PLOPP_DATA_DIR: nix.thunk(() => (() => {
           const _version = "1";
           return nix.app(symlinkJoin, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               name: "plopp-test-data",
               paths: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (file) => (hash) => nix.app(fetchurl, nix.thunk(() => ({
-                    __proto__: pos$2,
+                    [nix.POS]: pos$2,
                     url: nix.thunk(() => nix.str`https://public.esss.dk/groups/scipp/plopp/${_version}/${file}`),
                     hash: hash,
                     downloadToTemp: true,
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
 mv $downloadedFile $out/${_version}/${file}
 `),
                   }))), nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   "nyc_taxi_data.h5": "sha256-hso8ESM+uLRf4y2CW/7dpAmm/kysAfJY3b+5vz78w4Q=",
                   "teapot.h5": "sha256-i6hOw72ce1cBT6FMQTdCEKVe0WOMOjApKperGHoPW34=",
                 })))),
@@ -94,7 +94,7 @@ mv $downloadedFile $out/${_version}/${file}
       })),
       pythonImportsCheck: nix.thunk(() => ["plopp"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Visualization library for scipp",
         homepage: "https://scipp.github.io/plopp/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

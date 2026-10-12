@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libgmpris";
       const version = "2.2.1-8";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.sonarnerd.net/src/focal/src/libgmpris_${version}.tar.gz`),
           sha256: "sha256-iyKNmg6sf+mxlY/4vt5lKdrKfJzkoCYU2j1O8uwk8K4=",
         }))));
@@ -30,7 +30,7 @@ cp ./AUTHORS $out/share/doc/${pname}
 cp ./README $out/share/doc/${pname}
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.sonarnerd.net/src/",
         description: "GMPRIS GDBus bindings GDBus bindings generated from the GMPRIS XML spec files",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
@@ -40,7 +40,7 @@ cp ./README $out/share/doc/${pname}
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

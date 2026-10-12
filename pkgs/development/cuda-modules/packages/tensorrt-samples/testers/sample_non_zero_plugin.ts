@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const mkTester = nix.arg($, "mkTester");
   const sample_data = nix.arg($, "sample-data");
   return nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(atLeast, "10")), nix.thunk(() => nix.update({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       default: nix.thunk(() => nix.app(mkTester, "sample_non_zero_plugin", nix.thunk(() => [
           "sample_non_zero_plugin",
           nix.thunk(() => nix.str`--datadir=${nix.add(nix.sel(sample_data, "outPath"), "/mnist")}`),
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
           "--fp16",
         ]))),
     }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(atLeast, "10.0.1")), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         columnOrder: nix.thunk(() => nix.app(mkTester, "sample_non_zero_plugin-columnOrder", nix.thunk(() => [
             "sample_non_zero_plugin",
             nix.thunk(() => nix.str`--datadir=${nix.add(nix.sel(sample_data, "outPath"), "/mnist")}`),

@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
   const pname = "validator-nu";
   const version = "25.12.12";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "validator",
       repo: "validator",
       rev: "7ed7f67468f7f61975dcc78891ea462fce578828",
       hash: "sha256-cdDmhRyXIdoNWhP4oqu7vRb5abuNXRqvt4P4Dzq48xY=",
     }))));
   const deps = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.str`${pname}-deps`),
       version: version,
       src: src,
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       outputHash: "sha256-8cMoLeOnKNqisezkVS2UeVW11gtkGmhvQWrbSVuqbb8=",
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: pname,
       version: version,
       src: src,
@@ -73,17 +73,17 @@ makeWrapper "${jre_headless}/bin/java" "$out/bin/vnu" \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Helps you catch problems in your HTML/CSS/SVG",
         homepage: "https://validator.github.io/validator/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -37,12 +37,12 @@ export default nix.lambda((args) => (() => {
   const spdlog = nix.arg($, "spdlog");
   const onetbb = nix.arg($, "onetbb");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       pname: "libloot",
       version: "0.25.5",
       outputs: nix.thunk(() => nix.concat(["out", "dev"], nix.app(nix.sel(lib, "optionals"), withDocs, nix.thunk(() => ["doc"])))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "loot",
           repo: "libloot",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
 `))),
       postBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withDocs, "sphinx-build -b html ../docs docs/html\n")),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         GTEST_FILTER: nix.thunk(() => (() => {
           const disabledTests = nix.thunk(() => [
             "CompareFilenames.shouldBeCaseInsensitiveAndLocaleInvariant",
@@ -92,16 +92,16 @@ export default nix.lambda((args) => (() => {
       })),
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         "testing-plugins": nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             owner: "Ortham",
             repo: "testing-plugins",
             tag: "1.6.2",
             hash: "sha256-3Aa98EwqpuGA3YlsRF8luWzXVEFO/rs6JXisXdLyIK4=",
           })))),
         "yaml-cpp-src": nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             owner: "loot",
             repo: "yaml-cpp",
             tag: "0.8.0+merge-key-support.2",
@@ -109,7 +109,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-5xbqOI4L3XCqx+4k6IcZUwOdHAfbBy7nZgRKGkRJabQ=",
           })))),
         buildRustFFIPackage: (args_1) => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => nix.update(args_1, {
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             postConfigure: nix.thunk(() => nix.str`cp -r --no-preserve=all ${nix.sel(finalAttrs, "passthru", "testing-plugins")} testing-plugins
 `),
             nativeBuildInputs: nix.thunk(() => [rust_cbindgen]),
@@ -120,7 +120,7 @@ export default nix.lambda((args) => (() => {
             const pname = "libloadorder";
             const version = "18.3.0";
             const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 owner: "Ortham",
                 repo: "libloadorder",
                 tag: version,
@@ -129,13 +129,13 @@ export default nix.lambda((args) => (() => {
             const cargoHash = "sha256-re/cKqf/CAD7feNIEuou4ZP8BNkArd5CvREx1610jig=";
             const lang = "c++";
             const header = "libloadorder.hpp";
-            return { __proto__: pos$7, pname, version, src, cargoHash, lang, header };
+            return { [nix.POS]: pos$7, pname, version, src, cargoHash, lang, header };
           })()))),
         esplugin: nix.thunk(() => nix.app(nix.sel(finalAttrs, "passthru", "buildRustFFIPackage"), nix.thunk(() => (() => {
             const pname = "esplugin";
             const version = "6.1.1";
             const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 owner: "Ortham",
                 repo: "esplugin",
                 tag: version,
@@ -144,13 +144,13 @@ export default nix.lambda((args) => (() => {
             const cargoHash = "sha256-6sY2M7kjSYB3+6+zoMxPwdl+g7ARLHm9RdSODHQR8bE=";
             const lang = "c++";
             const header = "esplugin.hpp";
-            return { __proto__: pos$9, pname, version, src, cargoHash, lang, header };
+            return { [nix.POS]: pos$9, pname, version, src, cargoHash, lang, header };
           })()))),
         "loot-condition-interpreter": nix.thunk(() => nix.app(nix.sel(finalAttrs, "passthru", "buildRustFFIPackage"), nix.thunk(() => (() => {
             const pname = "loot-condition-interpreter";
             const version = "5.3.0";
             const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 owner: "loot",
                 repo: "loot-condition-interpreter",
                 tag: version,
@@ -159,11 +159,11 @@ export default nix.lambda((args) => (() => {
             const cargoHash = "sha256-m/vRnAJyMQOosxnjSUgHIY1RCkdB5+HFVqqzYVEpgOI=";
             const lang = "c";
             const header = "loot_condition_interpreter.h";
-            return { __proto__: pos$11, pname, version, src, cargoHash, lang, header };
+            return { [nix.POS]: pos$11, pname, version, src, cargoHash, lang, header };
           })()))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         description: "C++ library for accessing LOOT's metadata and sorting functionality",
         homepage: "https://github.com/loot/libloot",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

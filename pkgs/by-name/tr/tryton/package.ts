@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const freetype = nix.arg($, "freetype");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tryton",
       version: "7.8.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-X8jJ/NXbvoKJdKep78inefILaFLjJyAmRMVfdOEb0tk=",
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["tryton"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Client of the Tryton application platform",
         mainProgram: "tryton",
         longDescription: "The client for Tryton, a three-tier high-level general purpose\napplication platform under the license GPL-3 written in Python and using\nPostgreSQL as database engine.\n\nIt is the core base of a complete business solution providing\nmodularity, scalability and security.\n",

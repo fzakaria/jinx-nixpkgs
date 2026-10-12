@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "poethepoet",
       version: "0.48.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nat-n",
           repo: "poethepoet",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,13 +37,13 @@ export default nix.lambda((args) => (() => {
       "optional-dependencies": nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(python3, "pkgs")), null);
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           poetry_plugin: nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "poetry"))]),
         };
       })()),
       pythonImportsCheck: nix.thunk(() => ["poethepoet"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Task runner that works well with poetry",
         homepage: "https://github.com/nat-n/poethepoet",
         changelog: nix.thunk(() => nix.str`https://github.com/nat-n/poethepoet/releases/tag/v${nix.sel(finalAttrs, "version")}`),

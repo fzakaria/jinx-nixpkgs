@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nebula-sans",
       version: "1.010",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://nebulasans.com/download/NebulaSans-${nix.sel(finalAttrs, "version")}.zip`),
           stripRoot: false,
           hash: "sha256-jFoHgxczU7VdZcVj7HI4OOjK28jcptu8sGOrs3O+0S0=",
         })))),
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/fonts/truetype\nmv TTF/*.ttf $out/share/fonts/truetype\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Versatile, modern, humanist sans-serif with a neutral aesthetic, designed for legibility in both digital and print applications",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "colemickens"))]),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const pname = "moonraker";
       const version = "0.10.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Arksine",
           repo: "moonraker",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -60,15 +60,15 @@ makeWrapper ${pythonEnv}/bin/python $out/bin/moonraker \\
   --add-flags "$out/lib/moonraker/moonraker.py"
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           moonraker: nix.thunk(() => nix.sel(nixosTests, "moonraker")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "API web server for Klipper",
         homepage: "https://github.com/Arksine/moonraker",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -79,7 +79,7 @@ makeWrapper ${pythonEnv}/bin/python $out/bin/moonraker \\
         mainProgram: "moonraker",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

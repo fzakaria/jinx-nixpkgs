@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const udisks = nix.arg($, "udisks");
   const gdk_pixbuf = nix.arg($, "gdk-pixbuf");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "usermount",
       version: "0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tom5760",
           repo: "usermount",
           rev: "0d6aba3c1f8fec80de502f5b92fd8b28041cc8e4",
@@ -31,10 +31,10 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [dbus, libnotify, udisks, gdk_pixbuf]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-DENABLE_NOTIFICATIONS" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-DENABLE_NOTIFICATIONS" })),
       installPhase: "mkdir -p $out/bin\nmv usermount $out/bin/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/tom5760/usermount",
         description: "Simple tool to automatically mount removable drives using UDisks2 and D-Bus",
         mainProgram: "usermount",

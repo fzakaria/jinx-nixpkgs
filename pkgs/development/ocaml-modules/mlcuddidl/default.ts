@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const camlidl = nix.arg($, "camlidl");
   const m4 = nix.arg($, "m4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-mlcuddidl`),
       version: "3.0.8",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nberth",
           repo: "mlcuddidl",
           domain: "framagit.org",
@@ -36,9 +36,9 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [ocaml, findlib, camlidl, m4]),
       buildInputs: nix.thunk(() => [camlidl]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=int-conversion" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=int-conversion" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "C library offering an interface to the CUDD BDD library for OCaml",
         homepage: "https://pop-art.inrialpes.fr/people/bjeannet/mlxxxidl-forge/mlcuddidl/index.html",
         license: nix.thunk(() => (() => {

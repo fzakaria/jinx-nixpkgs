@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mariadb_connector_c = nix.arg($, "mariadb-connector-c");
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     pname: "gerbil-mysql",
     version: "unstable-2023-09-23",
     "git-version": "ecec94c",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
     "version-path": "",
     softwareName: "Gerbil-MySQL",
     "pre-src": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       fun: fetchFromGitHub,
       owner: "mighty-gerbils",
       repo: "gerbil-mysql",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       sha256: "01506r0ivgp6cxvwracmg7pwr735ngb7899ga3lxy181lzkp6b2c",
     })),
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       description: "MySQL bindings for Gerbil",
       homepage: "https://github.com/mighty-gerbils/gerbil-mysql",
       license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

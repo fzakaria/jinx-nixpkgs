@@ -33,28 +33,28 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "matrix-hookshot-config.yml", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         "matrix-hookshot": nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "matrix-hookshot, a bridge between Matrix and project management services")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "matrix-hookshot", nix.thunk(() => ({})))),
           registrationFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "Appservice registration file.\nAs it contains secret tokens, you may not want to add this to the publicly readable Nix store.\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.writeText \"matrix-hookshot-registration\" \\'\\'\n  id: matrix-hookshot\n  as_token: aaaaaaaaaa\n  hs_token: aaaaaaaaaa\n  namespaces:\n    rooms: []\n    users:\n      - regex: \"@_webhooks_.*:foobar\"\n        exclusive: true\n\n  sender_localpart: hookshot\n  url: \"http://localhost:9993\"\n  rate_limited: false\n  \\'\\'\n")),
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "{file}`config.yml` configuration as a Nix attribute set.\n\nFor details please see the [documentation](https://matrix-org.github.io/matrix-hookshot/latest/setup/sample-configuration.html).\n",
               example: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 bridge: nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   domain: "example.com",
                   url: "http://localhost:8008",
                   mediaUrl: "https://example.com",
@@ -63,13 +63,13 @@ export default nix.lambda((args) => (() => {
                 })),
                 listeners: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     port: 9000n,
                     bindAddress: "0.0.0.0",
                     resources: nix.thunk(() => ["webhooks"]),
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     port: 9001n,
                     bindAddress: "localhost",
                     resources: nix.thunk(() => ["metrics", "provisioning"]),
@@ -78,12 +78,12 @@ export default nix.lambda((args) => (() => {
               })),
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     passFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => nix.sel(lib, "types", "path")),
                         default: "/var/lib/matrix-hookshot/passkey.pem",
                         description: "A passkey used to encrypt tokens stored inside the bridge.\nFile will be generated if not found.\n",
@@ -92,7 +92,7 @@ export default nix.lambda((args) => (() => {
                 })))),
             })))),
           serviceDependencies: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -105,13 +105,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         systemd: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             "matrix-hookshot": nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               description: "a bridge between Matrix and multiple project management services",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => nix.concat(["network-online.target"], nix.sel(cfg, "serviceDependencies"))),
@@ -122,7 +122,7 @@ export default nix.lambda((args) => (() => {
 fi
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 Type: "simple",
                 Restart: "always",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/matrix-hookshot ${configFile} ${nix.sel(cfg, "registrationFile")}`),
@@ -132,7 +132,7 @@ fi
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "flandweber"))];

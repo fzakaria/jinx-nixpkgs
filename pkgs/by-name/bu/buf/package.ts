@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "buf",
       version: "1.73.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bufbuild",
           repo: "buf",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,17 +40,17 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       installPhase: "runHook preInstall\n\n# Binaries\n# Only install required binaries, don't install testing binaries\nfor FILE in buf protoc-gen-buf-breaking protoc-gen-buf-lint; do\n  install -D -m 555 -t $out/bin $GOPATH/bin/$FILE\ndone\n\n# Completions\ninstallShellCompletion --cmd buf \\\n  --bash <($GOPATH/bin/buf completion bash) \\\n  --fish <($GOPATH/bin/buf completion fish) \\\n  --zsh <($GOPATH/bin/buf completion zsh)\n\n# Man Pages\nmkdir man && $GOPATH/bin/buf manpages man\ninstallManPage man/*\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://buf.build",
         changelog: nix.thunk(() => nix.str`https://github.com/bufbuild/buf/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Create consistent Protobuf APIs that preserve compatibility and comply with design best-practices",

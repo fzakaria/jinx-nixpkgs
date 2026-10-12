@@ -16,15 +16,15 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const mdbook = nix.arg($, "mdbook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "engage",
       version: "0.3.0",
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         ENGAGE_BOOK_PATH: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/doc/${nix.sel(finalAttrs, "pname")}`),
       })),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           domain: "gitlab.computer.surgery",
           owner: "charles",
           repo: "engage",
@@ -41,7 +41,7 @@ mkdir -p $out/share/doc
 mv public $out/share/doc/${nix.sel(finalAttrs, "pname")}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Process composer with ordering and parallelism based on directed acyclic graphs",
         mainProgram: "engage",
         homepage: "https://engage.computer.surgery",

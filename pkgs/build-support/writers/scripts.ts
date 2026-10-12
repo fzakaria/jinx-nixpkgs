@@ -85,16 +85,16 @@ export default nix.lambda((args) => (() => {
         const name = nix.thunk(() => nix.app(last, nix.thunk(() => nix.builtins.split("/", nameOrPath))));
         const path = nix.thunk(() => (nix.asBool(nameIsPath) ? nix.force(nameOrPath) : nix.str`/bin/${name}`));
         const inner = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommandLocal"), name, nix.thunk(() => nix.update({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             makeWrapperArgs: makeWrapperArgs,
             nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper]),
-            meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: name })),
+            meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: name })),
           }, (nix.asBool(nix.app(nix.sel(types, "str", "check"), content)) ? {
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             content: content,
             interpreter: interpreter,
             passAsFile: nix.thunk(() => ["content"]),
-          } : { __proto__: pos$4, interpreter: interpreter, contentPath: content }))), nix.thunk(() => nix.str`# On darwin a script cannot be used as an interpreter in a shebang but
+          } : { [nix.POS]: pos$4, interpreter: interpreter, contentPath: content }))), nix.thunk(() => nix.str`# On darwin a script cannot be used as an interpreter in a shebang but
 # there doesn't seem to be a limit to the size of shebang and multiple
 # arguments to the interpreter are allowed.
 if [[ -n "${nix.builtins.toString(nix.thunk(() => nix.sel(pkgs, "stdenvNoCC", "hostPlatform", "isDarwin")))}" ]] && isScript $interpreter
@@ -148,11 +148,11 @@ fi
         const name = nix.thunk(() => nix.app(last, nix.thunk(() => nix.builtins.split("/", nameOrPath))));
         const path = nix.thunk(() => (nix.asBool(nameIsPath) ? nix.force(nameOrPath) : nix.str`/bin/${name}`));
         const inner = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommandLocal"), name, nix.thunk(() => nix.update({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             makeWrapperArgs: makeWrapperArgs,
             nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper]),
-            meta: nix.thunk(() => ({ __proto__: pos$5, mainProgram: name })),
-          }, (nix.asBool(nix.app(nix.sel(types, "str", "check"), content)) ? { __proto__: pos$7, content: content, passAsFile: nix.thunk(() => ["content"]) } : { __proto__: pos$8, contentPath: content }))), nix.thunk(() => nix.str`${compileScript}
+            meta: nix.thunk(() => ({ [nix.POS]: pos$5, mainProgram: name })),
+          }, (nix.asBool(nix.app(nix.sel(types, "str", "check"), content)) ? { [nix.POS]: pos$7, content: content, passAsFile: nix.thunk(() => ["content"]) } : { [nix.POS]: pos$8, contentPath: content }))), nix.thunk(() => nix.str`${compileScript}
 ${nix.app(nix.sel(lib, "optionalString"), strip, nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(buildPackages, "bintools-unwrapped")))}/bin/${nix.sel(buildPackages, "bintools-unwrapped", "targetPrefix")}strip -S $out`))}
 # Sometimes binaries produced for darwin (e. g. by GHC) won't be valid
 # mach-o executables from the get-go, but need to be corrected somehow
@@ -170,27 +170,27 @@ fi
       })();
     })(), formals$3);
     const writeBash = (name) => (argsOrScript) => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "isAttrs"), argsOrScript)) && nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "isDerivation"), argsOrScript))))) ? nix.app(makeScriptWriter, nix.thunk(() => nix.update(argsOrScript, {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         interpreter: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "bashNonInteractive")))}`),
       })), name) : nix.app(makeScriptWriter, nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         interpreter: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "bashNonInteractive")))}`),
       })), name, argsOrScript));
     const writeBashBin = (name) => nix.app(writeBash, nix.thunk(() => nix.str`/bin/${name}`));
     const writeDash = (name) => (argsOrScript) => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "isAttrs"), argsOrScript)) && nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "isDerivation"), argsOrScript))))) ? nix.app(makeScriptWriter, nix.thunk(() => nix.update(argsOrScript, {
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         interpreter: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "dash")))}`),
       })), name) : nix.app(makeScriptWriter, nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         interpreter: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "dash")))}`),
       })), name, argsOrScript));
     const writeDashBin = (name) => nix.app(writeDash, nix.thunk(() => nix.str`/bin/${name}`));
     const writeFish = (name) => (argsOrScript) => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "isAttrs"), argsOrScript)) && nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "isDerivation"), argsOrScript))))) ? nix.app(makeScriptWriter, nix.thunk(() => nix.update(argsOrScript, {
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         interpreter: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "fish")))} --no-config`),
         check: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "fish")))} --no-config --no-execute`),
       })), name) : nix.app(makeScriptWriter, nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         interpreter: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "fish")))} --no-config`),
         check: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "fish")))} --no-config --no-execute`),
       })), name, argsOrScript));
@@ -202,7 +202,7 @@ fi
       const babashka = nix.argOr($_1, "babashka", () => nix.sel(pkgs, "babashka-unwrapped"));
       const check = nix.argOr($_1, "check", () => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "clj-kondo")))} --lint`);
       return nix.app(makeScriptWriter, nix.thunk(() => nix.update(nix.builtins.removeAttrs(args_2, nix.thunk(() => ["babashka"])), {
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           interpreter: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), babashka)}`),
         })), name);
     })(), formals$4);
@@ -218,21 +218,21 @@ fi
       return (content) => (() => {
         nix.assert_(nix.builtins.all(nix.thunk(() => nix.builtins.isInt), srfi), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/writers/scripts.nix:684:5");
         const finalGuile = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             name: "guile-env",
             paths: nix.thunk(() => nix.concat([guile], libraries)),
             passthru: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               siteDir: nix.thunk(() => nix.attr(guile, "siteDir")),
               siteCcacheDir: nix.thunk(() => nix.attr(guile, "siteCcacheDir")),
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               mainProgram: nix.thunk(() => nix.selOr(guile, () => "guile", "meta", "mainProgram")),
             })),
           }))));
         return nix.app(makeScriptWriter, nix.thunk(() => nix.update(nix.builtins.removeAttrs(config, nix.thunk(() => ["guile", "libraries", "r6rs", "r7rs", "srfi"])), {
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             interpreter: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), finalGuile)} \\`),
             makeWrapperArgs: nix.thunk(() => [
               "--set",
@@ -267,7 +267,7 @@ fi
       const appendIfNotSet = (el) => (list) => (nix.asBool(nix.app(elem, el, list)) ? nix.force(list) : nix.concat(list, [el]));
       const ghcArgs$ = nix.thunk(() => (nix.asBool(threadedRuntime) ? nix.app(appendIfNotSet, "-threaded", ghcArgs) : nix.force(ghcArgs)));
       return nix.app(makeBinWriter, nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           compileScript: nix.thunk(() => nix.str`cp $contentPath tmp.hs
 ${nix.app(nix.sel(ghc, "withPackages"), nix.thunk(() => nix.app(toFunction, libraries)))}/bin/ghc ${nix.app(nix.sel(lib, "escapeShellArgs"), ghcArgs$)} tmp.hs
 mv tmp $out
@@ -284,14 +284,14 @@ mv tmp $out
       const nimCompileOptions = nix.argOr($_1, "nimCompileOptions", () => ({}));
       const strip = nix.argOr($_1, "strip", () => true);
       const optionFormat = (optionName) => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         option: nix.thunk(() => nix.str`--${optionName}`),
         sep: ":",
         explicitBool: false,
       });
-      const nimCompileCmdArgs = nix.thunk(() => nix.app(nix.sel(lib, "cli", "toCommandLineShell"), optionFormat, nix.thunk(() => nix.update({ __proto__: pos$22, d: "release", nimcache: "." }, nimCompileOptions))));
+      const nimCompileCmdArgs = nix.thunk(() => nix.app(nix.sel(lib, "cli", "toCommandLineShell"), optionFormat, nix.thunk(() => nix.update({ [nix.POS]: pos$22, d: "release", nimcache: "." }, nimCompileOptions))));
       return nix.app(makeBinWriter, nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           compileScript: nix.thunk(() => nix.str`cp $contentPath tmp.nim
 ${nix.app(nix.sel(lib, "getExe"), nim)} compile ${nimCompileCmdArgs} tmp.nim
 mv tmp $out
@@ -302,7 +302,7 @@ mv tmp $out
     })(), formals$7);
     const writeNimBin = (name) => nix.app(writeNim, nix.thunk(() => nix.str`/bin/${name}`));
     const writeNu = (name) => (argsOrScript) => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "isAttrs"), argsOrScript)) && nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "isDerivation"), argsOrScript))))) ? nix.app(makeScriptWriter, nix.thunk(() => nix.update(argsOrScript, {
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         interpreter: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "nushell")))} --no-config-file
 `),
       })), name) : nix.app(writeNu, name, nix.thunk(() => ({})), argsOrScript));
@@ -312,7 +312,7 @@ mv tmp $out
       const args_2 = args_1;
       const libraries = nix.argOr($_1, "libraries", () => []);
       return nix.app(makeScriptWriter, nix.thunk(() => nix.update(nix.builtins.removeAttrs(args_2, nix.thunk(() => ["libraries"])), {
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           interpreter: nix.thunk(() => (nix.asBool(nix.eq(libraries, [])) ? nix.str`${ruby}/bin/ruby` : nix.str`${nix.app(nix.sel(ruby, "withPackages"), (ps) => nix.force(libraries))}/bin/ruby`)),
         })), name);
     })(), formals$8);
@@ -323,7 +323,7 @@ mv tmp $out
       const args_2 = args_1;
       const libraries = nix.argOr($_1, "libraries", () => []);
       return nix.app(makeScriptWriter, nix.thunk(() => nix.update(nix.builtins.removeAttrs(args_2, nix.thunk(() => ["libraries"])), {
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           interpreter: nix.thunk(() => nix.sel(lua, "interpreter")),
           check: nix.thunk(() => nix.app(writeDash, "luacheck.sh", nix.thunk(() => nix.str`exec ${nix.sel(buildLuaPackages, "luacheck")}/bin/luacheck "$1"
 `))),
@@ -339,7 +339,7 @@ mv tmp $out
       const strip = nix.argOr($_1, "strip", () => true);
       const darwinArgs = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.str`-L${nix.app(nix.sel(lib, "getLib"), libiconv)}/lib`)])));
       return nix.app(makeBinWriter, nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           compileScript: nix.thunk(() => nix.str`cp "$contentPath" tmp.rs
 PATH=${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gcc"))]))} ${rustc}/bin/rustc ${nix.app(nix.sel(lib, "escapeShellArgs"), rustcArgs)} ${nix.app(nix.sel(lib, "escapeShellArgs"), darwinArgs)} -o "$out" tmp.rs
 `),
@@ -353,7 +353,7 @@ PATH=${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nix.thunk(() => nix
       const libraries = nix.argOr($_1, "libraries", () => []);
       return (content) => (() => {
         const node_env = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             name: "node",
             paths: libraries,
             pathsToLink: nix.thunk(() => ["/lib/node_modules"]),
@@ -365,7 +365,7 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "nodejs-sli
     })(), formals$11);
     const writeJSBin = (name) => nix.app(writeJS, nix.thunk(() => nix.str`/bin/${name}`));
     const writeNginxConfig = (name) => (text) => nix.app(nix.sel(pkgs, "runCommandLocal"), name, nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         text: text,
         __structuredAttrs: true,
         nativeBuildInputs: nix.thunk(() => [gixy, nginx_config_formatter]),
@@ -375,7 +375,7 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "nodejs-sli
       const args_2 = args_1;
       const libraries = nix.argOr($_1, "libraries", () => []);
       return nix.app(makeScriptWriter, nix.thunk(() => nix.update(nix.builtins.removeAttrs(args_2, nix.thunk(() => ["libraries"])), {
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           interpreter: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(nix.sel(pkgs, "perl", "withPackages"), (p) => nix.force(libraries))))}`),
         })), name);
     })(), formals$12);
@@ -388,7 +388,7 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "nodejs-sli
       const doCheck = nix.argOr($_1, "doCheck", () => true);
       const ignoreAttribute = nix.thunk(() => nix.app(optionalString, nix.thunk(() => !nix.eq(flakeIgnore, [])), nix.thunk(() => nix.str`--ignore ${nix.app(concatMapStringsSep, ",", escapeShellArg, flakeIgnore)}`)));
       return nix.app(makeScriptWriter, nix.thunk(() => nix.update(nix.builtins.removeAttrs(args_2, nix.thunk(() => ["libraries", "flakeIgnore", "doCheck"])), {
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           interpreter: nix.thunk(() => (nix.asBool(nix.eq(libraries, [])) ? nix.sel(python, "interpreter") : nix.sel(nix.app(nix.sel(python, "withPackages"), nix.thunk(() => nix.app(toFunction, libraries))), "interpreter"))),
           check: nix.thunk(() => nix.app(optionalString, nix.thunk(() => (nix.asBool(nix.sel(python, "isPy3k")) && nix.asBool(doCheck))), nix.thunk(() => nix.app(writeDash, "pythoncheck.sh", nix.thunk(() => nix.str`exec ${nix.sel(buildPythonPackages, "flake8")}/bin/flake8 --show-source ${ignoreAttribute} "$1"
 `))))),
@@ -410,12 +410,12 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "nodejs-sli
         const fname = nix.thunk(() => nix.app(last, nix.thunk(() => nix.builtins.split("/", nameOrPath))));
         const path = nix.thunk(() => (nix.asBool(nix.app(nix.sel(strings, "hasSuffix"), ".fsx", nameOrPath)) ? nix.force(nameOrPath) : nix.str`${nameOrPath}.fsx`));
         const _nugetDeps = nix.thunk(() => nix.app(mkNugetDeps, nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             name: nix.thunk(() => nix.str`${fname}-nuget-deps`),
             nugetDeps: libraries,
           }))));
         const nuget_source = nix.thunk(() => nix.app(mkNugetSource, nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             name: nix.thunk(() => nix.str`${fname}-nuget-source`),
             description: nix.thunk(() => nix.str`Nuget source with the dependencies for ${fname}`),
             deps: nix.thunk(() => [_nugetDeps]),
@@ -433,7 +433,7 @@ script="$1"; shift
 ) > /dev/null
 ${nix.app(nix.sel(lib, "getExe"), dotnet_sdk)} fsi --quiet --nologo --readline- ${fsi_flags} "$@" < "$script"
 `)));
-        return (content) => nix.app(makeScriptWriter, nix.thunk(() => nix.update(nix.builtins.removeAttrs(args_2, nix.thunk(() => ["dotnet-sdk", "fsi-flags", "libraries"])), { __proto__: pos$34, interpreter: fsi })), path, nix.thunk(() => nix.str`#i "nuget: ${nuget_source}/lib"
+        return (content) => nix.app(makeScriptWriter, nix.thunk(() => nix.update(nix.builtins.removeAttrs(args_2, nix.thunk(() => ["dotnet-sdk", "fsi-flags", "libraries"])), { [nix.POS]: pos$34, interpreter: fsi })), path, nix.thunk(() => nix.str`#i "nuget: ${nuget_source}/lib"
 ${content}
 exit 0
 `));
@@ -442,7 +442,7 @@ exit 0
     const writeFSharp = nix.thunk(() => nix.app(makeFSharpWriter, nix.thunk(() => ({}))));
     const writeFSharpBin = (name) => nix.app(writeFSharp, nix.thunk(() => nix.str`/bin/${name}`));
     return {
-      __proto__: pos$35,
+      [nix.POS]: pos$35,
       makeScriptWriter,
       makeBinWriter,
       writeBash,

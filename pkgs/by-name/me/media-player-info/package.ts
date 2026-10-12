@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const udev = nix.arg($, "udev");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "media-player-info",
       version: "26",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "media-player-info",
           repo: "media-player-info",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-udevdir=${nix.builtins.placeholder("out")}/lib/udev`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Repository of data files describing media player capabilities",
         homepage: "https://www.freedesktop.org/wiki/Software/media-player-info/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

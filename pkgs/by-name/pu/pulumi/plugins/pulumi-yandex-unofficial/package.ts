@@ -24,9 +24,9 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X github.com/regrau/${repo}/provider/pkg/version.Version=v${version}`),
       ]);
       const __darwinAllowLocalNetworking = true;
-      const env = nix.thunk(() => ({ __proto__: pos$1, GOWORK: "off" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$1, GOWORK: "off" }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unofficial Yandex Cloud Resource Provider",
         homepage: "https://github.com/Regrau/pulumi-yandex",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: cmdRes,
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         owner,
         repo,
         version,

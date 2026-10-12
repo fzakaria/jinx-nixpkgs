@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const pyopenssl = nix.arg($, "pyopenssl");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "webauthn",
       version: "3.0.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "duo-labs",
           repo: "py_webauthn",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["webauthn"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Implementation of the WebAuthn API",
         homepage: "https://github.com/duo-labs/py_webauthn",
         changelog: nix.thunk(() => nix.str`https://github.com/duo-labs/py_webauthn/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

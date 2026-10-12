@@ -16,26 +16,26 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     name: "without-nix",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "ericson2314"))];
       })()),
     })),
-    node: nix.thunk(() => ({ __proto__: pos$2, pkgsReadOnly: false })),
+    node: nix.thunk(() => ({ [nix.POS]: pos$2, pkgsReadOnly: false })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       machine: nix.thunk(() => ({
-        __proto__: pos$6,
-        nix: nix.thunk(() => ({ __proto__: pos$3, enable: false })),
+        [nix.POS]: pos$6,
+        nix: nix.thunk(() => ({ [nix.POS]: pos$3, enable: false })),
         nixpkgs: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           overlays: nix.thunk(() => [
             (self) => (super$) => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               nix: nix.thunk(() => nix.builtins.throw("don't want to use pkgs.nix")),
               nixVersions: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (k) => nix.builtins.throw(nix.thunk(() => nix.str`don't want to use pkgs.nixVersions.${k}`)), nix.thunk(() => nix.sel(super$, "nixVersions")))),
               nix_2_3: nix.thunk(() => nix.builtins.throw("don't want to use pkgs.nix_2_3")),

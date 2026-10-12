@@ -48,56 +48,56 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const runTest = nix.arg($, "runTest");
   return {
-    __proto__: pos$37,
+    [nix.POS]: pos$37,
     declarative: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         name: "startx",
         meta: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w, "rnhmjoj"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           machine: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const pkgs_1 = nix.arg($_1, "pkgs");
             return {
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               services: nix.thunk(() => ({
-                __proto__: pos$10,
-                getty: nix.thunk(() => ({ __proto__: pos$2, autologinUser: "root" })),
+                [nix.POS]: pos$10,
+                getty: nix.thunk(() => ({ [nix.POS]: pos$2, autologinUser: "root" })),
                 xserver: nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   enable: true,
                   windowManager: nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     bspwm: nix.thunk(() => ({
-                      __proto__: pos$4,
+                      [nix.POS]: pos$4,
                       enable: true,
                       configFile: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeShellScript"), "bspwrc", "bspc config border_width 2\nbspc config window_gap 12\nbspc rule -a xclock state=floating sticky=on\n")),
                       sxhkd: nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         configFile: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "sxhkdrc", "# open a terminal\nsuper + Return\n  urxvtc\n# quit bspwm\nsuper + alt + Escape\n  bspc quit\n")),
                       })),
                     })),
                   })),
                   displayManager: nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     startx: nix.thunk(() => ({
-                      __proto__: pos$6,
+                      [nix.POS]: pos$6,
                       enable: true,
                       generateScript: true,
                       extraCommands: "xrdb -load ~/.Xresources\nxsetroot -solid '#343d46'\nxsetroot -cursor_name trek\nxclock &\n",
                     })),
                   })),
                 })),
-                urxvtd: nix.thunk(() => ({ __proto__: pos$9, enable: true })),
+                urxvtd: nix.thunk(() => ({ [nix.POS]: pos$9, enable: true })),
               })),
               environment: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 systemPackages: nix.thunk(() => (() => {
                   const w = nix.withScope(pkgs_1, null);
                   return [
@@ -107,13 +107,13 @@ export default nix.lambda((args) => (() => {
                 })()),
               })),
               programs: nix.thunk(() => ({
-                __proto__: pos$14,
-                bash: nix.thunk(() => ({ __proto__: pos$12, promptInit: "PS1='# '" })),
-                "xss-lock": nix.thunk(() => ({ __proto__: pos$13, enable: true })),
+                [nix.POS]: pos$14,
+                bash: nix.thunk(() => ({ [nix.POS]: pos$12, promptInit: "PS1='# '" })),
+                "xss-lock": nix.thunk(() => ({ [nix.POS]: pos$13, enable: true })),
               })),
               security: nix.thunk(() => ({
-                __proto__: pos$16,
-                polkit: nix.thunk(() => ({ __proto__: pos$15, enable: true })),
+                [nix.POS]: pos$16,
+                polkit: nix.thunk(() => ({ [nix.POS]: pos$15, enable: true })),
               })),
             };
           })(), formals$2),
@@ -121,47 +121,47 @@ export default nix.lambda((args) => (() => {
         testScript: "import textwrap\n\nsysu = \"env XDG_RUNTIME_DIR=/run/user/0 systemctl --user\";\nprompt = \"# \"\n\nwith subtest(\"Wait for the autologin\"):\n    machine.wait_until_tty_matches(\"1\", prompt)\n\nwith subtest(\"Setup dotfiles\"):\n    machine.execute(textwrap.dedent(\"\"\"\n      cat <<EOF > ~/.Xresources\n        urxvt*foreground: #9b9081\n        urxvt*background: #181b20\n        urxvt*scrollBar:  false\n        urxvt*title:      myterm\n        urxvt*geometry:   80x240+0+0\n        xclock*geometry:  164x164+24+440\n      EOF\n    \"\"\"))\n\nwith subtest(\"Can start the X server\"):\n    machine.send_chars(\"startx\\n\")\n    machine.wait_for_x()\n    machine.wait_for_window(\"xclock\")\n\nwith subtest(\"Graphical services are running\"):\n    machine.succeed(f\"{sysu} is-active graphical-session.target\")\n    machine.succeed(f\"{sysu} is-active urxvtd\")\n    machine.succeed(f\"{sysu} is-active xss-lock\")\n\nwith subtest(\"Can interact with the WM\"):\n    machine.wait_until_succeeds(\"pgrep sxhkd\")\n    machine.wait_until_succeeds(\"pgrep bspwm\")\n    # spawn some terminals\n    machine.send_key(\"meta_l-ret\", delay=0.5)\n    machine.send_key(\"meta_l-ret\", delay=0.5)\n    machine.send_key(\"meta_l-ret\", delay=0.5)\n    # Note: this tests that resources have beeen loaded\n    machine.wait_for_window(\"myterm\")\n    machine.screenshot(\"screenshot.png\")\n\nwith subtest(\"Can stop the X server\"):\n    # kill the WM\n    machine.send_key(\"meta_l-alt-esc\")\n    machine.wait_until_tty_matches(\"1\", prompt)\n\nwith subtest(\"Graphical session has stopped\"):\n    machine.fail(f\"{sysu} is-active graphical-session.target\")\n    machine.fail(f\"{sysu} is-active urxvtd\")\n    machine.fail(f\"{sysu} is-active xss-lock\")\n",
       })))),
     imperative: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         name: "startx-imperative",
         meta: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w, "rnhmjoj"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           machine: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$3);
             const pkgs_1 = nix.arg($_1, "pkgs");
             return {
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               services: nix.thunk(() => ({
-                __proto__: pos$28,
-                getty: nix.thunk(() => ({ __proto__: pos$21, autologinUser: "root" })),
+                [nix.POS]: pos$28,
+                getty: nix.thunk(() => ({ [nix.POS]: pos$21, autologinUser: "root" })),
                 xserver: nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   enable: true,
                   windowManager: nix.thunk(() => ({
-                    __proto__: pos$23,
-                    twm: nix.thunk(() => ({ __proto__: pos$22, enable: true })),
+                    [nix.POS]: pos$23,
+                    twm: nix.thunk(() => ({ [nix.POS]: pos$22, enable: true })),
                   })),
                   displayManager: nix.thunk(() => ({
-                    __proto__: pos$25,
-                    startx: nix.thunk(() => ({ __proto__: pos$24, enable: true, generateScript: false })),
+                    [nix.POS]: pos$25,
+                    startx: nix.thunk(() => ({ [nix.POS]: pos$24, enable: true, generateScript: false })),
                   })),
                 })),
-                urxvtd: nix.thunk(() => ({ __proto__: pos$27, enable: true })),
+                urxvtd: nix.thunk(() => ({ [nix.POS]: pos$27, enable: true })),
               })),
               programs: nix.thunk(() => ({
-                __proto__: pos$31,
-                bash: nix.thunk(() => ({ __proto__: pos$29, promptInit: "PS1='# '" })),
-                "xss-lock": nix.thunk(() => ({ __proto__: pos$30, enable: true })),
+                [nix.POS]: pos$31,
+                bash: nix.thunk(() => ({ [nix.POS]: pos$29, promptInit: "PS1='# '" })),
+                "xss-lock": nix.thunk(() => ({ [nix.POS]: pos$30, enable: true })),
               })),
               security: nix.thunk(() => ({
-                __proto__: pos$33,
-                polkit: nix.thunk(() => ({ __proto__: pos$32, enable: true })),
+                [nix.POS]: pos$33,
+                polkit: nix.thunk(() => ({ [nix.POS]: pos$32, enable: true })),
               })),
             };
           })(), formals$3),

@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const tesla_protocol = nix.arg($, "tesla-protocol");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tesla-fleet-api",
       version: "1.17.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Teslemetry",
           repo: "python-tesla-fleet-api",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["tesla_fleet_api"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library for Tesla Fleet API and Teslemetry",
         homepage: "https://github.com/Teslemetry/python-tesla-fleet-api",
         changelog: nix.thunk(() => nix.str`https://github.com/Teslemetry/python-tesla-fleet-api/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

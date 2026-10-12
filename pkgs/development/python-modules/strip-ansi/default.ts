@@ -22,14 +22,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-XWDyOcyKN/3VK0PD5m6JPUW6BCMRXbWeyg0u74Owdyk=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/gwennlbh/python-strip-ansi/commit/0ea9b418d5b21bd3d3b1b3b91fad7e66f25acb97.diff",
             hash: "sha256-Pzlc7fx4kEmM8pezu+8K7z5oV44uq/rzeByqKxHVKx0=",
           })))),
@@ -37,18 +37,18 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [poetry_core]);
       const pythonImportsCheck = nix.thunk(() => ["strip_ansi"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Strip ANSI escape sequences from a string",
         homepage: "https://pypi.org/project/strip-ansi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "_9999years"))]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

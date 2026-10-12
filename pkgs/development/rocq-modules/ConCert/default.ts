@@ -24,24 +24,24 @@ export default nix.lambda((args) => (() => {
   const version = nix.argOr($, "version", () => null);
   const w = nix.withScope(lib, null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "ConCert",
       repo: "ConCert",
       owner: "AU-COBRA",
       domain: "github.com",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (case$_1) => (out) => ({ __proto__: pos$1, case: case$_1, out: out });
+        const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$1, case: case$_1, out: out });
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [nix.thunk(() => nix.app(case$, "9.1", "1.0.1"))]), null);
       })()),
       release: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "1.0.1": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           hash: "sha256-HqbgUnGcZHkeG6qLf4qp/JT5oTPmdfOn1IJqnrloM2U=",
         })),
         "1.0.0": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           hash: "sha256-R+kWOZtR7T2LVQnHmLGDmGpLO0S76fPRWJpsO9nWqLE=",
         })),
       })),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs ./extraction/process-extraction-examples.sh",
       buildPhase: "make core\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "A framework for smart contract verification in Rocq",
         maintainers: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "maintainers")), w);

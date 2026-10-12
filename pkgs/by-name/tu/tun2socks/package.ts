@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tun2socks";
       const version = "2.7.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xjasonlyu",
           repo: "tun2socks",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X github.com/xjasonlyu/tun2socks/v2/internal/version.GitCommit=v${version}`),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/xjasonlyu/tun2socks",
         description: "Routes network traffic from any application through a proxy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
         mainProgram: "tun2socks",
       }));
-      return { __proto__: pos$3, pname, version, src, vendorHash, ldflags, meta };
+      return { [nix.POS]: pos$3, pname, version, src, vendorHash, ldflags, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

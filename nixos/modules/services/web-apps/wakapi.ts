@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
   const singleton = nix.thunk(() => nix.attr(lib, "singleton"));
   const mkRemovedOptionModule = nix.thunk(() => nix.attr(lib, "mkRemovedOptionModule"));
   return {
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["services", "wakapi", "passwordSalt"]), "Use services.wakapi.environmentFiles instead.")),
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["services", "wakapi", "passwordSaltFile"]), "Use services.wakapi.environmentFiles instead.")),
@@ -57,50 +57,50 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["services", "wakapi", "smtpPasswordFile"]), "Use services.wakapi.environmentFiles instead.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         wakapi: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Wakapi")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "wakapi", nix.thunk(() => ({})))),
           stateDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(types, "path")),
               default: "/var/lib/wakapi",
               description: "The state directory where data is stored. Will also be used as the\nworking directory for the wakapi service.\n",
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.attr(settingsFormat, "type")),
               default: nix.thunk(() => ({})),
               description: "Settings for Wakapi.\n\nSee [config.default.yml](https://github.com/muety/wakapi/blob/master/config.default.yml) for a list of all possible options.\n",
             })))),
           environmentFiles: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "path")))),
               default: [],
               description: "Use this to set `WAKAPI_PASSWORD_SALT` and `WAKAPI_MAIL_SMTP_PASS`.\n",
             })))),
           database: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             createLocally: nix.thunk(() => nix.app(mkEnableOption, "automatic database configuration.\n\n::: {.note}\nOnly PostgreSQL is supported for the time being.\n:::\n")),
             dialect: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["postgres", "sqlite3", "mysql", "cockroach", "mssql"]))))),
                 default: nix.thunk(() => nix.selOr(cfg, () => null, "settings", "db", "dialect")),
                 defaultText: "Database dialect from settings if {option}`services.wakatime.settings.db.dialect`\nis set, or `null` otherwise.\n",
                 description: "The database type to use for Wakapi.\n",
               })))),
             name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: nix.thunk(() => nix.selOr(cfg, () => "wakapi", "settings", "db", "name")),
                 defaultText: "Database name from settings if {option}`services.wakatime.settings.db.name`\nis set, or \"wakapi\" otherwise.\n",
                 description: "The name of the database to use for Wakapi.\n",
               })))),
             user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: nix.thunk(() => nix.selOr(cfg, () => "wakapi", "settings", "db", "user")),
                 defaultText: "User from settings if {option}`services.wakatime.settings.db.user`\nis set, or \"wakapi\" otherwise.\n",
@@ -111,19 +111,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             wakapi: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "Wakapi (self-hosted WakaTime-compatible backend)",
               wants: nix.thunk(() => nix.concat(["network-online.target"], nix.app(optional, nix.thunk(() => nix.eq(nix.sel(cfg, "database", "dialect"), "postgres")), "postgresql.target"))),
               after: nix.thunk(() => nix.concat(["network-online.target"], nix.app(optional, nix.thunk(() => nix.eq(nix.sel(cfg, "database", "dialect"), "postgres")), "postgresql.target"))),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 EnvironmentFile: nix.thunk(() => nix.sel(cfg, "environmentFiles")),
                 ExecStart: nix.thunk(() => nix.str`${nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))} -config ${settingsFile}`),
                 User: nix.thunk(() => nix.sel(config, "users", "users", "wakapi", "name")),
@@ -157,20 +157,20 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           wakapi: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             settings: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               env: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "production")),
             })),
           })),
           postgresql: nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(nix.sel(cfg, "database", "createLocally")) && nix.asBool(nix.eq(nix.sel(cfg, "database", "dialect"), "postgres")))), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               enable: true,
               ensureDatabases: nix.thunk(() => nix.app(singleton, nix.thunk(() => nix.sel(cfg, "database", "name")))),
               ensureUsers: nix.thunk(() => nix.app(singleton, nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   name: nix.thunk(() => nix.sel(cfg, "settings", "db", "user")),
                   ensureDBOwnership: true,
                 })))),
@@ -180,23 +180,23 @@ export default nix.lambda((args) => (() => {
         })),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "database", "createLocally")) || nix.asBool(!nix.eq(nix.sel(cfg, "settings", "db", "dialect"), null)))),
             message: "`services.wakapi.database.createLocally` is true, but a database dialect is not set!",
           })),
         ]),
         warnings: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "database", "createLocally")) && nix.asBool(!nix.eq(nix.sel(cfg, "settings", "db", "dialect"), "postgres")))), "You have enabled automatic database configuration, but the database dialect is not set to \"postgres\".\n\nThe Wakapi module only supports PostgreSQL. Please set `services.wakapi.database.createLocally`\nto `false`, or switch to \"postgres\" as your database dialect.\n")),
         users: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           users: nix.thunk(() => ({
-            __proto__: pos$22,
-            wakapi: nix.thunk(() => ({ __proto__: pos$21, group: "wakapi", createHome: false, isSystemUser: true })),
+            [nix.POS]: pos$22,
+            wakapi: nix.thunk(() => ({ [nix.POS]: pos$21, group: "wakapi", createHome: false, isSystemUser: true })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$23, wakapi: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$23, wakapi: nix.thunk(() => ({})) })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const protobuf = nix.arg($, "protobuf");
   const tango_cpp = nix.arg($, "tango-cpp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tango-database",
       version: "5.29",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tango-controls",
           repo: "TangoDatabase",
           tag: nix.thunk(() => nix.str`Database-Release-${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(mariadb, "client")),
         nix.thunk(() => nix.sel(mariadb_connector_c, "dev")),
         omniorb,
-        nix.thunk(() => nix.app(nix.sel(opentelemetry_cpp, "override"), nix.thunk(() => ({ __proto__: pos$2, enableGrpc: true, enableHttp: true })))),
+        nix.thunk(() => nix.app(nix.sel(opentelemetry_cpp, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, enableGrpc: true, enableHttp: true })))),
         protobuf,
         tango_cpp,
       ]),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`patchelf --add-rpath ${mariadb_connector_c}/lib/mariadb $out/bin/Databaseds
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tango distributed control system - database server",
         homepage: "https://gitlab.com/tango-controls/TangoDatabase",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/tango-controls/TangoDatabase/-/blob/Database-Release-${nix.sel(finalAttrs, "version")}/RELEASE_NOTES.md`),

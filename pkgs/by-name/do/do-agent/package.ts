@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "do-agent",
       version: "3.18.16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "digitalocean",
           repo: "do-agent",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postInstall: "install -Dm444 -t $out/lib/systemd/system $src/packaging/etc/systemd/system/do-agent.service\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "DigitalOcean droplet system metrics agent",
         mainProgram: "do-agent",
         longDescription: "do-agent is a program provided by DigitalOcean that collects system\nmetrics from a DigitalOcean Droplet (on which the program runs) and sends\nthem to DigitalOcean to provide resource usage graphs and alerting.\n",

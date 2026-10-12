@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const quilt = nix.arg($, "quilt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cdrkit",
       version: "1.1.11-4",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "salsa.debian.org",
           owner: "debian",
           repo: "cdrkit",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, quilt]),
       buildInputs: nix.thunk(() => nix.concat([zlib, bzip2, perl], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libcap])))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => ["-D__THROW="])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ["-Wno-error=int-conversion"])))))),
       })),
       postPatch: nix.thunk(() => nix.add("QUILT_PATCHES=debian/patches quilt push -a\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace libusal/scsi-mac-iokit.c \\\n  --replace \"IOKit/scsi-commands/SCSITaskLib.h\" \"IOKit/scsi/SCSITaskLib.h\"\nsubstituteInPlace genisoimage/sha256.c \\\n  --replace \"<endian.h>\" \"<machine/endian.h>\"\nsubstituteInPlace genisoimage/sha512.c \\\n  --replace \"<endian.h>\" \"<machine/endian.h>\"\nsubstituteInPlace genisoimage/sha256.h \\\n  --replace \"__THROW\" \"\"\nsubstituteInPlace genisoimage/sha512.h \\\n  --replace \"__THROW\" \"\"\n"))),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => ["-DBITFIELDS_HTOL=0"]))),
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Portable command-line CD/DVD recorder software, mostly compatible with cdrtools",
         longDescription: "Cdrkit is a suite of programs for recording CDs and DVDs,\nblanking CD-RW media, creating ISO-9660 filesystem images,\nextracting audio CD data, and more.  The programs included in\nthe cdrkit package were originally derived from several sources,\nmost notably mkisofs by Eric Youngdale and others, cdda2wav by\nHeiko Eissfeldt, and cdrecord by Jörg Schilling.  However,\ncdrkit is not affiliated with any of these authors; it is now an\nindependent project.\n",
         homepage: "http://cdrkit.org/",

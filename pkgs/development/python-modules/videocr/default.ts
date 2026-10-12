@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const opencv_python = nix.arg($, "opencv-python");
   const fuzzywuzzy = nix.arg($, "fuzzywuzzy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "videocr",
       version: "0.1.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-w0hPfUK4un5JAjAP7vwOAuKlsZ+zv6sFV2vD/Rl3kbI=",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["videocr"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extract hardcoded subtitles from videos using machine learning",
         homepage: "https://github.com/apm1467/videocr",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

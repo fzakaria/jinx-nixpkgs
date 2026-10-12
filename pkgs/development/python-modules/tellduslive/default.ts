@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.10.12";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "molobrakos",
           repo: "tellduslive",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["tellduslive"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python module to communicate with Telldus Live",
         homepage: "https://github.com/molobrakos/tellduslive",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "tellduslive",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

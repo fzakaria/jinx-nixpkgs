@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const bash = nix.arg($, "bash");
   const coreutils = nix.arg($, "coreutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "bees",
       version: "0.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Zygo",
           repo: "bees",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/Zygo/bees/commit/14c82dce8a7e9714d6f9cd03229e0fb55460aa25.patch",
             hash: "sha256-bAYacaS3u01XdlM/8+baD+sMuCOyYDtSis4NvTkx8jk=",
           })))),
@@ -60,11 +60,11 @@ export -f git
         "SYSTEMD_SYSTEM_UNIT_DIR=$(out)/etc/systemd/system",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, "smoke-test": nix.thunk(() => nix.sel(nixosTests, "bees")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, "smoke-test": nix.thunk(() => nix.sel(nixosTests, "bees")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/Zygo/bees",
         description: "Block-oriented BTRFS deduplication service",
         longDescription: "Best-Effort Extent-Same: bees finds not just identical files, but also identical extents within files that differ",

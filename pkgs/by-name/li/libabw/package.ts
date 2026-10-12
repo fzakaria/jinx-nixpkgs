@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libabw",
       version: "0.1.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dev-www.libreoffice.org/src/libabw/libabw-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-+iaFo0QNpuA6Zqd4SA2Ty5X2Bk5FQeWONzl2gHYP1qA=",
         })))),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [doxygen, gperf, perl, pkg_config]),
       buildInputs: nix.thunk(() => [boost, librevenge, libxml2, zlib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://wiki.documentfoundation.org/DLP/Libraries/libabw",
         description: "Library parsing abiword documents",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

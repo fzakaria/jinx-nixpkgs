@@ -23,41 +23,41 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "zsh", "autosuggestions"));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["programs", "zsh", "enableAutosuggestions"]), nix.thunk(() => ["programs", "zsh", "autosuggestions", "enable"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       programs: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         zsh: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           autosuggestions: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "zsh-autosuggestions")),
             highlightStyle: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "fg=8",
                 description: "Highlight style for suggestions ({fore,back}ground color)",
                 example: "fg=cyan",
               })))),
             strategy: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["history", "completion", "match_prev_cmd"]))))),
                 default: nix.thunk(() => ["history"]),
                 description: "`ZSH_AUTOSUGGEST_STRATEGY` is an array that specifies how suggestions should be generated.\nThe strategies in the array are tried successively until a suggestion is found.\nThere are currently three built-in strategies to choose from:\n\n- `history`: Chooses the most recent match from history.\n- `completion`: Chooses a suggestion based on what tab-completion would suggest. (requires `zpty` module)\n- `match_prev_cmd`: Like `history`, but chooses the most recent match whose preceding history item matches\n    the most recently executed command. Note that this strategy won't work as expected with ZSH options that\n    don't preserve the history order such as `HIST_IGNORE_ALL_DUPS` or `HIST_EXPIRE_DUPS_FIRST`.\n",
               })))),
             async: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Whether to fetch suggestions asynchronously",
                 example: false,
               })))),
             extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: nix.thunk(() => ({})),
                 description: "Attribute set with additional configuration values",
@@ -68,11 +68,11 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         programs: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           zsh: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             interactiveShellInit: nix.thunk(() => nix.str`source ${nix.sel(pkgs, "zsh-autosuggestions")}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="${nix.sel(cfg, "highlightStyle")}"

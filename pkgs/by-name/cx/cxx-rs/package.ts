@@ -19,17 +19,17 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "cxx-rs",
       version: "1.0.194",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dtolnay",
           repo: "cxx",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           sha256: "sha256-PIeF9VuyJOIs1x02YETKIP0+nCG3RZXLMJdFNlgAFzo=",
         })))),
-      cargoLock: nix.thunk(() => ({ __proto__: pos$2, lockFile: nix.path(here, "./Cargo.lock") })),
+      cargoLock: nix.thunk(() => ({ [nix.POS]: pos$2, lockFile: nix.path(here, "./Cargo.lock") })),
       postPatch: nix.thunk(() => nix.str`cp ${nix.path(here, "./Cargo.lock")} Cargo.lock
 `),
       cargoBuildFlags: nix.thunk(() => ["--workspace", "--exclude=demo"]),
@@ -38,14 +38,14 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "doc", "dev"]),
       postInstall: "mkdir -p $doc\ncp -r ./target/doc/* $doc\n\nmkdir -p $dev/include/rust\ninstall -D -m 0644 ./include/cxx.h $dev/include/rust\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$3, package: cxx_rs, command: "cxxbridge --version" })))),
+          [nix.POS]: pos$4,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: cxx_rs, command: "cxxbridge --version" })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Safe FFI between Rust and C++",
         mainProgram: "cxxbridge",
         homepage: "https://github.com/dtolnay/cxx",

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const domain = "openplantbook";
       const version = "1.6.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: owner,
           repo: "home-assistant-openplantbook",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [json_timeseries, openplantbook_sdk]);
       const nativeCheckInputs = nix.thunk(() => [pytest_homeassistant_custom_component, pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Integration to search and fetch data from Openplantbook.io",
         homepage: "https://github.com/Olen/home-assistant-openplantbook",
         changelog: nix.thunk(() => nix.str`https://github.com/Olen/home-assistant-openplantbook/releases/tag/${nix.sel(src, "tag")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         owner,
         domain,
         version,

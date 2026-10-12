@@ -25,18 +25,18 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "nullidentdmod"));
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         nullidentdmod: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
           return {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             enable: nix.thunk(() => nix.app(nix.lookup(w_1, "mkEnableOption"), "the nullidentdmod identd daemon")),
             userid: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
                 description: "User ID to return. Set to null to return a random string each time.",
                 default: null,
@@ -47,26 +47,26 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         systemd: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           sockets: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             nullidentdmod: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               description: "Socket for identd (NullidentdMod)",
               listenStreams: nix.thunk(() => ["113"]),
-              socketConfig: nix.thunk(() => ({ __proto__: pos$5, Accept: true })),
+              socketConfig: nix.thunk(() => ({ [nix.POS]: pos$5, Accept: true })),
               wantedBy: nix.thunk(() => ["sockets.target"]),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             "nullidentdmod@": nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "NullidentdMod service",
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 DynamicUser: true,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "nullidentdmod")}/bin/nullidentdmod${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "userid"), null)), nix.thunk(() => nix.str` ${nix.sel(cfg, "userid")}`))}`),
                 StandardInput: "socket",

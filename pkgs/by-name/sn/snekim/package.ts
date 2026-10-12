@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildNimPackage = nix.arg($, "buildNimPackage");
   const fetchFromCodeberg = nix.arg($, "fetchFromCodeberg");
   return nix.app(buildNimPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "snekim",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "annaaurora",
           repo: "snekim",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       nimFlags: nix.thunk(() => ["-d:nimraylib_now_shared"]),
       postInstall: "install -D snekim.desktop -t $out/share/applications\ninstall -D icons/hicolor/48x48/snekim.svg -t $out/share/icons/hicolor/48x48/apps\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://codeberg.org/annaaurora/snekim",
         description: "Simple implementation of the classic snake game",
         mainProgram: "snekim",

@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const cachetools = nix.arg($, "cachetools");
   const lib = nix.arg($, "lib");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "premailer",
       version: "3.10.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "peterbe",
           repo: "premailer",
           rev: "f4ded0b9701c4985e7ff5c5beda83324c264ea62",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [lxml, cssselect, cssutils, requests, cachetools]),
       pythonImportsCheck: nix.thunk(() => ["premailer"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: "https://github.com/peterbe/premailer/blob/master/CHANGES.rst",
         description: "Turns CSS blocks into style attributes",
         homepage: "https://github.com/peterbe/premailer",

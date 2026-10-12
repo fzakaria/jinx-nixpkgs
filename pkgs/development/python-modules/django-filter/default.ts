@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const pytest_django = nix.arg($, "pytest-django");
   const pytz = nix.arg($, "pytz");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "django-filter",
       version: "26.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "carltongibson",
           repo: "django-filter",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [flit_core]),
       dependencies: nix.thunk(() => [django]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, drf: nix.thunk(() => [djangorestframework]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, drf: nix.thunk(() => [djangorestframework]) })),
       pythonImportsCheck: nix.thunk(() => ["django_filters"]),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytestCheckHook, pytest_django, pytz], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
-      env: nix.thunk(() => ({ __proto__: pos$3, DJANGO_SETTINGS_MODULE: "tests.settings" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, DJANGO_SETTINGS_MODULE: "tests.settings" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Reusable Django application for allowing users to filter querysets dynamically",
         homepage: "https://github.com/carltongibson/django-filter",
         changelog: nix.thunk(() => nix.str`https://github.com/carltongibson/django-filter/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.rst`),

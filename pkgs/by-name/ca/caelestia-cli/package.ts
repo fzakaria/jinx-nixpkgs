@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const __structuredAttrs = true;
       const version = "1.1.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "caelestia-dots",
           repo: "cli",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -74,11 +74,11 @@ export default nix.lambda((args) => (() => {
         ":",
         nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "makeBinPath"), runtimeDeps)}`),
       ]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, SETUPTOOLS_SCM_PRETEND_VERSION: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, SETUPTOOLS_SCM_PRETEND_VERSION: version }));
       const postPatch = "substituteInPlace src/caelestia/subcommands/{shell.py,screenshot.py} \\\n    --replace-fail '\"qs\", \"-c\", \"caelestia\"' '\"caelestia-shell\"'\n\nsubstituteInPlace src/caelestia/subcommands/toggle.py \\\n    --replace-fail '[\"todoist\"]' '[\"todoist.desktop\"]'\n";
       const postInstall = "installShellCompletion completions/caelestia.fish\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "The main control script for the Caelestia Shell",
         homepage: "https://github.com/caelestia-dots/cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         __structuredAttrs,
         version,

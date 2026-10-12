@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "funambol-client-cpp",
       version: "9.0.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/funambol/funambol-client-sdk-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "1667gahz30i5r8kbv7w415z0hbgm6f6pln1137l5skapi1if6r73",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [zlib, curl]),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, unzip]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SyncML client sdk by Funambol project",
         homepage: "https://www.funambol.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

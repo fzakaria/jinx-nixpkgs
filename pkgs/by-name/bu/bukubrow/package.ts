@@ -17,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const sqlite = nix.arg($, "sqlite");
   const manifest = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     description: "Bukubrow extension host application",
     name: "com.samhh.bukubrow",
     path: "@out@/bin/bukubrow",
     type: "stdio",
   }));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "bukubrow-host",
       version: "5.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "SamHH",
           repo: "bukubrow-host",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,18 +37,18 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-mCPJE9WW14NtahbMnDcE+0xXl5w25dzerPy3wv78l20=",
       buildInputs: nix.thunk(() => [sqlite]),
       firefoxManifest: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.update(manifest, {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           allowed_extensions: nix.thunk(() => ["bukubrow@samhh.com"]),
         })))),
       chromeManifest: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.update(manifest, {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           allowed_origins: nix.thunk(() => ["chrome-extension://ghniladkapjacfajiooekgkfopkjblpn/"]),
         })))),
       postBuild: "printf \"%s\" \"$firefoxManifest\" > firefox.json\nsubstituteInPlace firefox.json \\\n  --replace-fail \"@out@\" \"$out\"\nprintf \"%s\" \"$chromeManifest\" > chrome.json\nsubstituteInPlace chrome.json \\\n  --replace-fail \"@out@\" \"$out\"\n",
       postInstall: "install -Dm0644 firefox.json $out/lib/mozilla/native-messaging-hosts/com.samhh.bukubrow.json\ninstall -Dm0644 chrome.json $out/etc/chromium/native-messaging-hosts/com.samhh.bukubrow.json\n",
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "WebExtension for Buku, a command-line bookmark manager",
         homepage: "https://github.com/SamHH/bukubrow-host",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

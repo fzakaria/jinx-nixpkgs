@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libfprint-2-tod1-elan",
       version: "0.0.8",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://download.lenovo.com/pccbbs/mobiles/r1slf01w.zip",
           hash: "sha256-GD/BebPto1fFLgyvpiitt+ngwEtdsnKsvdFNeSmVDmw=",
           postFetch: "unpackFile $out/*\nrm $out/*.zip\nmv * $out/\n",
@@ -31,9 +31,9 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoPatchelfHook]),
       buildInputs: nix.thunk(() => [libfprint_tod, openssl, gusb, glib]),
       installPhase: "runHook preInstall\n\ninstall -Dm444 libfprint-2-tod1-elan.so -t \"$out/lib/libfprint-2/tod-1/\"\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, driverPath: "/lib/libfprint-2/tod-1" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, driverPath: "/lib/libfprint-2/tod-1" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Elan(04f3:0c4b) driver module for libfprint-2-tod Touch OEM Driver",
         homepage: "https://support.lenovo.com/us/en/downloads/ds560939-elan-fingerprint-driver-for-ubuntu-2204-thinkpad-e14-gen-4-e15-gen-4",
         sourceProvenance: nix.thunk(() => (() => {

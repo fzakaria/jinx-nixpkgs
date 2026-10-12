@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.38.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "huggingface",
           repo: "diffusers",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
         safetensors,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         flax: nix.thunk(() => [flax, jax, jaxlib]),
         torch: nix.thunk(() => [accelerate, torch]),
         training: nix.thunk(() => [accelerate, datasets, jinja2, peft, protobuf, tensorboard]),
@@ -108,14 +108,14 @@ cat ${conftestSkipNetworkErrors} >> tests/conftest.py
         "test_wrong_adapter_name_raises_error",
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.13")), nix.thunk(() => ["test_from_save_pretrained_dynamo"]))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          pytest: nix.thunk(() => nix.app(nix.sel(diffusers, "overridePythonAttrs"), nix.thunk(() => ({ __proto__: pos$3, doCheck: true })))),
+          [nix.POS]: pos$4,
+          pytest: nix.thunk(() => nix.app(nix.sel(diffusers, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$3, doCheck: true })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "State-of-the-art diffusion models for image and audio generation in PyTorch",
         mainProgram: "diffusers-cli",
         homepage: "https://github.com/huggingface/diffusers",
@@ -127,7 +127,7 @@ cat ${conftestSkipNetworkErrors} >> tests/conftest.py
         })()),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         pyproject,

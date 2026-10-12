@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const ocamlmod = nix.arg($, "ocamlmod");
   const ocamlify = nix.arg($, "ocamlify");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "0.4.11",
       pname: "ocaml-oasis",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://download.ocamlcore.org/oasis/oasis/0.4.11/oasis-0.4.11.tar.gz",
           hash: "sha256-GLc97vTtbpqDM38ks7vi3tZSaLP/cwn8wA0l5X4dwS4=",
         })))),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Configure, build and install system for OCaml projects",
         homepage: "https://github.com/ocaml/oasis",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

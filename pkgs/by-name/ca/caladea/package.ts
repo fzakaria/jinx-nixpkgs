@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "caladea";
       const version = "20130214";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://commondatastorage.googleapis.com/chromeos-localmirror/distfiles/crosextrafonts-${version}.tar.gz`),
           hash: "sha256-xI0cL9YTycBslZw02nuDiAWeJAjSuxmEXcPtNfduTQk=",
         }))));
@@ -30,7 +30,7 @@ cp -v ${nix.path(here, "./cambria-alias.conf")} $out/etc/fonts/conf.d/30-cambria
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://openfontlibrary.org/en/font/caladea",
         description: "Serif font metric-compatible with Microsoft Cambria",
         longDescription: "Caladea is a free font that is metric-compatible with the\nMicrosoft Cambria font. Developed by Carolina Giovagnoli and\nAndrés Torresi at Huerta Tipográfica foundry.\n",
@@ -39,7 +39,7 @@ runHook postInstall
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "rycee"))]),
         priority: 10n,
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

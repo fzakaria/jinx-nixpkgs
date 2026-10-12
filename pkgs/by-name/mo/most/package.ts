@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const slang = nix.arg($, "slang");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "most",
       version: "5.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.jedsoft.org/releases/most/most-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-lFWuuPgm+oOFyFDcIr8PIs+QabPDQj+6S/LG9iJtmQM=",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [slang, ncurses]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Terminal pager similar to 'more' and 'less'",
         longDescription: "MOST is a powerful paging program for Unix, VMS, MSDOS, and win32\nsystems. Unlike other well-known paging programs most supports multiple\nwindows and can scroll left and right. Why settle for less?\n",
         homepage: "https://www.jedsoft.org/most/index.html",

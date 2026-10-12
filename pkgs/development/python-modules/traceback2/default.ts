@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const pname = "traceback2";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "0c1h3jas1jp1fdbn9z2mrgn3jj0hw1x3yhnkxp7jw34q15xcdb05",
@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [pbr, linecache2]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Backport of traceback to older supported Pythons",
         homepage: "https://pypi.org/project/traceback2/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "psfl")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         format,
         pname,

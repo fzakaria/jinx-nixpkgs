@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "rkpd2";
       const version = "2.0.8";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Zrp200",
           repo: "rkpd2",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
         }))));
       const desktopName = "Rat King Pixel Dungeon 2";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/Zrp200/rkpd2",
         downloadPage: "https://github.com/Zrp200/rkpd2/releases",
         description: "Fork of popular roguelike game Shattered Pixel Dungeon that drastically buffs heroes and thus makes the game significantly easier",
       }));
-      return { __proto__: pos$3, pname, version, src, desktopName, meta };
+      return { [nix.POS]: pos$3, pname, version, src, desktopName, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

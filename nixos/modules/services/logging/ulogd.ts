@@ -27,38 +27,38 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "ulogd"));
-  const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({ __proto__: pos$1, listsAsDuplicateKeys: true }))));
+  const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({ [nix.POS]: pos$1, listsAsDuplicateKeys: true }))));
   const settingsFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "ulogd.conf", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         ulogd: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "ulogd, a userspace logging daemon for netfilter/iptables related logging")),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               example: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 global: nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   stack: nix.thunk(() => [
                     "log1:NFLOG,base1:BASE,ifi1:IFINDEX,ip2str1:IP2STR,print1:PRINTPKT,emu1:LOGEMU",
                     "log1:NFLOG,base1:BASE,pcap1:PCAP",
                   ]),
                 })),
-                log1: nix.thunk(() => ({ __proto__: pos$3, group: 2n })),
-                pcap1: nix.thunk(() => ({ __proto__: pos$4, sync: 1n, file: "/var/log/ulogd.pcap" })),
-                emu1: nix.thunk(() => ({ __proto__: pos$5, sync: 1n, file: "/var/log/ulogd_pkts.log" })),
+                log1: nix.thunk(() => ({ [nix.POS]: pos$3, group: 2n })),
+                pcap1: nix.thunk(() => ({ [nix.POS]: pos$4, sync: 1n, file: "/var/log/ulogd.pcap" })),
+                emu1: nix.thunk(() => ({ [nix.POS]: pos$5, sync: 1n, file: "/var/log/ulogd_pkts.log" })),
               })),
               type: nix.thunk(() => nix.sel(settingsFormat, "type")),
               default: nix.thunk(() => ({})),
               description: "Configuration for ulogd. See {file}`/share/doc/ulogd/` in `pkgs.ulogd.doc`.",
             })))),
           logLevel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => [1n, 3n, 5n, 7n, 8n]))),
               default: 5n,
               description: "Log level (1 = debug, 3 = info, 5 = notice, 7 = error, 8 = fatal)",
@@ -67,19 +67,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             ulogd: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "Ulogd Daemon",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network-pre.target"]),
               before: nix.thunk(() => ["network-pre.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "ulogd")}/bin/ulogd -c ${settingsFile} --verbose --loglevel ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "logLevel")))}`),
                 ExecReload: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/kill -HUP $MAINPID`),
               })),

@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cyrus-sasl";
       const version = "2.1.28";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://github.com/cyrusimap/${pname}/releases/download/${pname}-${version}/${pname}-${version}.tar.gz`),
             nix.thunk(() => nix.str`http://www.cyrusimap.org/releases/${pname}-${version}.tar.gz`),
@@ -48,12 +48,12 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [
         nix.path(here, "./cyrus-sasl-ac-try-run-fix.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/cyrusimap/cyrus-sasl/compare/cb549ef71c5bb646fe583697ebdcaba93267a237...dfaa62392e7caecc6ecf0097b4d73738ec4fc0a8.patch",
             hash: "sha256-pc0cZqj1QoxDqgd/j/5q3vWONEPrTm4Pr6MzHlfjRCc=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://src.fedoraproject.org/rpms/cyrus-sasl/raw/388b80c6a8f93667587b4ac2e7992d0aa1c431f9/f/cyrus-sasl-2.1.28-gcc15.patch",
             hash: "sha256-AfSQXFtVh0IHG8Uw9nWMWlkQnyaX3ZMsdZLd7hTru7Q=",
           })))),
@@ -77,27 +77,27 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`CFLAGS=-I${nix.sel(libmysqlclient, "dev")}/include/mysql`),
         ])));
       const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
         }))));
       const installFlags = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["framedir=$(out)/Library/Frameworks/SASL2.framework"])));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           parsedmarc: nix.thunk(() => nix.attr(nixosTests, "parsedmarc")),
           postfix: nix.thunk(() => nix.attr(nixosTests, "postfix")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://www.cyrusimap.org/sasl",
         description: "Library for adding authentication support to connection-based protocols",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsdOriginal")),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version,
         src,

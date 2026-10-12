@@ -18,25 +18,25 @@ export default nix.lambda((args) => (() => {
       const pname = "macos";
       const version = "7.3.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "halostatue",
           repo: "fish-macos",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-VKJp+7YzqHMNniWs4aGq0gR11mPJU4gPIEgUPhdfA30=",
         }))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "MacOS functions for Fish",
         homepage: "https://github.com/halostatue/fish-macos",
         changelog: nix.thunk(() => nix.str`https://github.com/halostatue/fish-macos/blob/v${version}/CHANGELOG.md`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "samasaur"))]),
       }));
-      return { __proto__: pos$4, pname, version, src, passthru, meta };
+      return { [nix.POS]: pos$4, pname, version, src, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=macos.ts.map

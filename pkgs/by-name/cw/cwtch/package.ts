@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const lib = nix.arg($, "lib");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libcwtch",
       version: "0.3.1",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.openprivacy.ca/cwtch.im/autobindings.git",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-2cxCLn3yDIsMkZzWVzBSTYHAoqifVCdMs2ygSGe3Ggw=",
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\nmake libCwtch.so\nrunHook postBuild\n",
       installPhase: "runHook preInstall\ninstall -D build/linux/libCwtch.h -t $out/include\n# * will match either \"amd64\" or \"arm64\" depending on the platform.\ninstall -D build/linux/*/libCwtch.so $out/lib/libCwtch.so\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Decentralized, privacy-preserving, multi-party messaging protocol",
         homepage: "https://cwtch.im/",
         changelog: "https://docs.cwtch.im/changelog",

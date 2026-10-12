@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "incron";
       const version = "0.5.12";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ar-",
           repo: "incron",
           rev: nix.thunk(() => nix.str`${pname}-${version}`),
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       const installTargets = nix.thunk(() => ["install-man"]);
       const preInstall = "mkdir -p $out/bin\n\n# make install doesn't work because setuid and permissions\n# just manually install the binaries instead\ncp incrond incrontab $out/bin/\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, incron: nix.thunk(() => nix.attr(nixosTests, "incron")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, incron: nix.thunk(() => nix.attr(nixosTests, "incron")) })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Cron-like daemon which handles filesystem events",
         homepage: "https://github.com/ar-/incron",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

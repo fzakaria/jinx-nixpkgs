@@ -33,9 +33,9 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "kavita"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
-  const appsettings = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "appsettings.json", nix.thunk(() => nix.update({ __proto__: pos$1, TokenKey: "@TOKEN@" }, nix.sel(cfg, "settings")))));
+  const appsettings = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "appsettings.json", nix.thunk(() => nix.update({ [nix.POS]: pos$1, TokenKey: "@TOKEN@" }, nix.sel(cfg, "settings")))));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkChangedOptionModule"), nix.thunk(() => ["services", "kavita", "ipAdresses"]), nix.thunk(() => ["services", "kavita", "settings", "IpAddresses"]), (config_1) => (() => {
           const value = nix.thunk(() => nix.app(nix.sel(lib, "getAttrFromPath"), nix.thunk(() => ["services", "kavita", "ipAdresses"]), config_1));
@@ -44,47 +44,47 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "kavita", "port"]), nix.thunk(() => ["services", "kavita", "settings", "Port"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         kavita: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Kavita reading server")),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "kavita",
               description: "User account under which Kavita runs.",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "kavita", nix.thunk(() => ({})))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: "/var/lib/kavita",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "The directory where Kavita stores its state.",
             })))),
           tokenKeyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "A file containing the TokenKey, a secret with at 512+ bits.\nIt can be generated with `head -c 64 /dev/urandom | base64 --wrap=0`.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               default: nix.thunk(() => ({})),
               description: "Kavita configuration options, as configured in {file}`appsettings.json`.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     Port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         default: 5000n,
                         type: nix.thunk(() => nix.sel(lib, "types", "port")),
                         description: "Port to bind to.",
                       })))),
                     IpAddresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         default: "0.0.0.0,::",
                         type: nix.thunk(() => nix.sel(lib, "types", "commas")),
                         description: "IP Addresses to bind to. The default is to bind to all IPv4 and IPv6 addresses.\n",
@@ -96,13 +96,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         systemd: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             kavita: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "Kavita",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
@@ -112,7 +112,7 @@ ${nix.sel(pkgs, "replace-secret")}/bin/replace-secret '@TOKEN@' \\
   '${nix.sel(cfg, "dataDir")}/config/appsettings.json'
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 WorkingDirectory: nix.thunk(() => nix.sel(cfg, "dataDir")),
                 LoadCredential: nix.thunk(() => [nix.thunk(() => nix.str`token:${nix.sel(cfg, "tokenKeyFile")}`)]),
                 ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))),
@@ -122,7 +122,7 @@ ${nix.sel(pkgs, "replace-secret")}/bin/replace-secret '@TOKEN@' \\
             })),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d '${nix.sel(cfg, "dataDir")}'        0750 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "user")} - -`),
               nix.thunk(() => nix.str`d '${nix.sel(cfg, "dataDir")}/config' 0750 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "user")} - -`),
@@ -130,10 +130,10 @@ ${nix.sel(pkgs, "replace-secret")}/bin/replace-secret '@TOKEN@' \\
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.sel(cfg, "user"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "kavita service user",
               isSystemUser: true,
               group: nix.thunk(() => nix.sel(cfg, "user")),
@@ -144,7 +144,7 @@ ${nix.sel(pkgs, "replace-secret")}/bin/replace-secret '@TOKEN@' \\
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "misterio77"))];

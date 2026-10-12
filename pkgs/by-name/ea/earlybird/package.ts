@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const html_tidy = nix.arg($, "html-tidy");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "earlybird",
       version: "4.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "americanexpress",
           repo: "earlybird",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [poppler_utils, wv, unrtf, html_tidy]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Sensitive data detection tool capable of scanning source code repositories for passwords, key files, and more",
         mainProgram: "earlybird",
         homepage: "https://github.com/americanexpress/earlybird",

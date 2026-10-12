@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const mpi = nix.arg($, "mpi");
   const llvmPackages = nix.arg($, "llvmPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "hh-suite",
       version: "3.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "soedinglab",
           repo: "hh-suite",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-gcc13-build-issues.patch",
             url: "https://github.com/soedinglab/hh-suite/commit/cec47cba5dcd580e668b1ee507c9282fbdc8e7d7.patch",
             hash: "sha256-Msdmj9l8voPYXK0SSwUA6mEbFLBhTjjE/Kjp0VL4Kf4=",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => nix.sel(llvmPackages, "openmp"))), nix.app(nix.sel(lib, "optional"), enableMpi, mpi))),
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.8.12)\" \"cmake_minimum_required(VERSION 3.10)\"\nsubstituteInPlace lib/ffindex/CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.8.12 FATAL_ERROR)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Remote protein homology detection suite",
         homepage: "https://github.com/soedinglab/hh-suite",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

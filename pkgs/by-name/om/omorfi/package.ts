@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const zip = nix.arg($, "zip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "omorfi",
       version: "0.9.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "flammie",
           repo: "omorfi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "python311.patch",
             url: "https://github.com/flammie/omorfi/commit/9736452ae6624060dbea0876a722c3731e776357.patch",
             hash: "sha256-Q4fi5HMmO0fq8YI833vgv2EYp//9Um/xFoRk28WrUMk=",
@@ -69,7 +69,7 @@ done
         "--enable-hyphenator",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Analysis for Finnish text",
         homepage: "https://github.com/flammie/omorfi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

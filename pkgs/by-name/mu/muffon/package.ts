@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const pname = "muffon";
   const version = "2.4.0";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/staniel359/muffon/releases/download/v${version}/muffon-${version}-linux-x86_64.AppImage`),
       hash: "sha256-BrPlvHnwhMoPVm8AFa6bF8A/jCDwKUynkmxBlwPmsic=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, src: src, version: version }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, src: src, version: version }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       src: src,
       version: version,
@@ -37,7 +37,7 @@ install -m 444 -D ${appimageContents}/muffon.png \\
   $out/share/icons/hicolor/512x512/apps/muffon.png
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Advanced multi-source music streaming client",
         homepage: "https://muffon.netlify.app/",
         changelog: nix.thunk(() => nix.str`https://github.com/staniel359/muffon/releases/tag/v${version}`),

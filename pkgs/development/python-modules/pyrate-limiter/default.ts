@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const pytest_xdist = nix.arg($, "pytest-xdist");
   const redisTestHook = nix.arg($, "redisTestHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pyrate-limiter",
       version: "4.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vutran1710",
           repo: "PyrateLimiter",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [hatchling, uv_dynamic_versioning]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         all: nix.thunk(() => [filelock, redis, psycopg, psycopg_pool]),
       })),
       pytestFlags: nix.thunk(() => ["--durations=10", "-vv"]),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       pythonImportsCheck: nix.thunk(() => ["pyrate_limiter"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python Rate-Limiter using Leaky-Bucket Algorimth Family",
         homepage: "https://github.com/vutran1710/PyrateLimiter",
         changelog: nix.thunk(() => nix.str`https://github.com/vutran1710/PyrateLimiter/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

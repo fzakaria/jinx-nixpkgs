@@ -5,7 +5,7 @@ const here = nix.here(import.meta.url);
 const pos$1 = nix.positions(here + "/src-info-for-default.nix", [["downloadPage", 2, 3], ["baseName", 3, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$1,
+  [nix.POS]: pos$1,
   downloadPage: "http://www.codon.org.uk/~mjg59/libx86/downloads/?C=M;O=D",
   baseName: "libx86",
 }));

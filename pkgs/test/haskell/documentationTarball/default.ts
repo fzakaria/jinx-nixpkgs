@@ -13,10 +13,10 @@ export default nix.lambda((args) => (() => {
   const drv = nix.thunk(() => nix.sel(haskellPackages, "random"));
   const docs = nix.thunk(() => nix.app(nix.sel(pkgs, "haskell", "lib", "compose", "documentationTarball"), drv));
   return nix.app(nix.sel(pkgs, "runCommand"), "test haskell.lib.compose.documentationTarball", nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(docs, "meta"));
-        return { __proto__: pos$1, platforms: nix.thunk(() => nix.attr(from, "platforms")) };
+        return { [nix.POS]: pos$1, platforms: nix.thunk(() => nix.attr(from, "platforms")) };
       })()),
     })), nix.thunk(() => nix.str`tar xvzf "${docs}/${nix.sel(drv, "name")}-docs.tar.gz"
 

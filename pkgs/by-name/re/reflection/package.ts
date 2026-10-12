@@ -34,24 +34,24 @@ export default nix.lambda((args) => (() => {
   const blueprint_compiler = nix.arg($, "blueprint-compiler");
   const desktop_file_utils = nix.arg($, "desktop-file-utils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "reflection",
       version: "0.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "p2panda",
           repo: "reflection",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-VPfYbMAyKv+2lWJ/TcQ7Em6kbutnJQIgbBTEqOnEDcc=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-3RR/YfJsq0eaRhaVVnocV5R1fbQ6YKsQ3QVZ1dc5HsI=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$3, LIBSQLITE3_SYS_USE_PKG_CONFIG: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, LIBSQLITE3_SYS_USE_PKG_CONFIG: true })),
       strictDeps: true,
       __structuredAttrs: true,
       nativeBuildInputs: nix.thunk(() => [
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
         sqlite,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Collaborative, local-first GTK text editor",
         homepage: "https://github.com/p2panda/reflection",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

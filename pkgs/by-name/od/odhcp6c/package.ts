@@ -18,28 +18,28 @@ export default nix.lambda((args) => (() => {
   const libubox = nix.arg($, "libubox");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "odhcp6c",
       version: "0-unstable-2026-06-27",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.openwrt.org/project/odhcp6c.git",
           rev: "10a52220aec9d45803518d8cc4d63e552484ed61",
           hash: "sha256-IDBbVWs017JcrApJ3s8fjEQghWCwrK1d+E6Wp5eHNX4=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" })),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [libubox]),
       cmakeFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`-DCMAKE_INSTALL_PREFIX=${nix.builtins.placeholder("out")}`),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Embedded DHCPv6-client for OpenWrt",
         homepage: "https://openwrt.org/packages/pkgdata/odhcp6c",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

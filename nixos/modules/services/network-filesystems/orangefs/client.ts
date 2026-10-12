@@ -33,18 +33,18 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "orangefs", "client"));
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         orangefs: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           client: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "OrangeFS client daemon")),
             extraOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -53,11 +53,11 @@ export default nix.lambda((args) => (() => {
                 description: "Extra command line options for pvfs2-client.",
               })))),
             fileSystems: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 description: "The orangefs file systems to be mounted.\nThis option is preferred over using {option}`fileSystems` directly since\nthe pvfs client service needs to be running for it to be mounted.\n",
                 example: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$2,
+                    [nix.POS]: pos$2,
                     mountPoint: "/orangefs",
                     target: "tcp://server:3334/orangefs",
                   })),
@@ -67,17 +67,17 @@ export default nix.lambda((args) => (() => {
                   return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.lambda((args_1) => (() => {
                         const $_1 = nix.formals(args_1, formals$2);
                         return {
-                          __proto__: pos$7,
+                          [nix.POS]: pos$7,
                           options: nix.thunk(() => ({
-                            __proto__: pos$6,
+                            [nix.POS]: pos$6,
                             mountPoint: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$3,
+                                [nix.POS]: pos$3,
                                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                                 default: "/orangefs",
                                 description: "Mount point.",
                               })))),
                             options: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$4,
+                                [nix.POS]: pos$4,
                                 type: nix.thunk(() => (() => {
                                   const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), w);
                                   return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
                                 description: "Mount options",
                               })))),
                             target: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$5,
+                                [nix.POS]: pos$5,
                                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                                 example: "tcp://server:3334/orangefs",
                                 description: "Target URL",
@@ -101,26 +101,26 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         environment: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "orangefs"))]),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           supportedFilesystems: nix.thunk(() => ["pvfs2"]),
           kernelModules: nix.thunk(() => ["orangefs"]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           services: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             "orangefs-client": nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               requires: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 Type: "simple",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "orangefs")}/bin/pvfs2-client-core \\
    --logtype=syslog ${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.sel(cfg, "extraOptions")))}
@@ -130,7 +130,7 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           mounts: nix.thunk(() => nix.builtins.map((fs) => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               requires: nix.thunk(() => ["orangefs-client.service"]),
               after: nix.thunk(() => ["orangefs-client.service"]),
               bindsTo: nix.thunk(() => ["orangefs-client.service"]),

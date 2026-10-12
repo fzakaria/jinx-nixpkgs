@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
   const cvxopt = nix.arg($, "cvxopt");
   const cvxpy = nix.arg($, "cvxpy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "qutip",
       version: "5.3.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "qutip",
           repo: "qutip",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,13 +50,13 @@ runHook postCheck
 `),
       pythonImportsCheck: nix.thunk(() => ["qutip"]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         graphics: nix.thunk(() => [matplotlib]),
         ipython: nix.thunk(() => [ipython]),
         semidefinite: nix.thunk(() => [cvxopt, cvxpy]),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Open-source software for simulating the dynamics of closed and open quantum systems",
         homepage: "https://qutip.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/qutip/qutip/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libosmo_sigtran = nix.arg($, "libosmo-sigtran");
   const osmo_mgw = nix.arg($, "osmo-mgw");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "osmo-bsc",
       version: "1.15.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "osmocom",
           repo: "osmo-bsc",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libosmocore, libosmoabis, libosmo_netif, libosmo_sigtran, osmo_mgw]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GSM Base Station Controller",
         homepage: "https://projects.osmocom.org/projects/osmobsc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

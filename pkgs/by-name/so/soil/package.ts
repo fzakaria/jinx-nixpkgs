@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libGL = nix.arg($, "libGL");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "soil",
       version: "unstable-2020-01-04",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://web.archive.org/web/20200104042737id_/http://www.lonesock.net/files/soil.zip",
           sha256: "1c05nwbnfdgwaz8ywn7kg2xrcvrcbpdyhcfkkiiwk69zvil0pbgd",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "cd src\n$CC $NIX_CFLAGS_COMPILE -c *.c\n$AR rcs libSOIL.a *.o\n",
       installPhase: "mkdir -p $out/lib $out/include/SOIL\ncp libSOIL.a $out/lib/\ncp SOIL.h $out/include/SOIL/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple OpenGL Image Library",
         longDescription: "SOIL is a tiny C library used primarily for uploading textures\ninto OpenGL.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),

@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const pico_sdk = nix.arg($, "pico-sdk");
   const withSubmodules = nix.argOr($, "withSubmodules", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "pico-sdk",
       version: "2.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "raspberrypi",
           repo: "pico-sdk",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,18 +40,18 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/tools/pioasm`),
       installPhase: "runHook preInstall\nmkdir -p $out/lib/pico-sdk\ncp -a ../../../* $out/lib/pico-sdk/\nchmod 755 $out/lib/pico-sdk/tools/pioasm/build/pioasm\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--subpackage", "tests.withSubmodules"]),
           })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          withSubmodules: nix.thunk(() => nix.app(nix.sel(pico_sdk, "override"), nix.thunk(() => ({ __proto__: pos$3, withSubmodules: true })))),
+          [nix.POS]: pos$4,
+          withSubmodules: nix.thunk(() => nix.app(nix.sel(pico_sdk, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, withSubmodules: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "SDK provides the headers, libraries and build system necessary to write programs for the RP2040-based devices",
         homepage: "https://github.com/raspberrypi/pico-sdk",
         changelog: nix.thunk(() => nix.str`https://github.com/raspberrypi/pico-sdk/releases/tag/${nix.sel(finalAttrs, "version")}`),

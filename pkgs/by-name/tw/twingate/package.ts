@@ -26,20 +26,20 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const version = "2026.160.6555";
   const sources = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://binaries.twingate.com/client/linux/DEB/x86_64/${version}/twingate-amd64.deb`),
       hash: "sha256-Sk2pALZtcraNpca6wkDiPCvWgU0hYlSeiwwszfZeKeM=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`https://binaries.twingate.com/client/linux/DEB/aarch64/${version}/twingate-arm64.deb`),
       hash: "sha256-rK6bSSdkCNWHpOpojHn+CtZejiy6jarCb34aumBbmbs=",
     })),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "twingate",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.sel(sources, nix.key(nix.sel(stdenv, "hostPlatform", "system")))))),
@@ -48,14 +48,14 @@ export default nix.lambda((args) => (() => {
       postPatch: "while read file; do\n  substituteInPlace \"$file\" \\\n    --replace \"/usr/bin\" \"$out/bin\" \\\n    --replace \"/usr/sbin\" \"$out/bin\"\ndone < <(find etc usr/lib usr/share -type f)\n",
       installPhase: "mkdir $out\nmv etc $out/\nmv usr/bin $out/bin\nmv usr/sbin/* $out/bin\nmv usr/lib $out/lib\nmv usr/share $out/share\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           twingate: nix.thunk(() => nix.attr(nixosTests, "twingate")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Twingate Client",
         homepage: "https://twingate.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

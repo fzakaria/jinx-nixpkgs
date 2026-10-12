@@ -48,13 +48,13 @@ export default nix.lambda((args) => (() => {
       gnugrep,
     ])));
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "libexec/rc",
       MK_TESTS: "no",
       outputs: nix.thunk(() => ["out", "services"]),
       postPatch: nix.thunk(() => nix.add("substituteInPlace \"$BSDSRCDIR/libexec/rc/Makefile\" \\\n  --replace-fail /etc $out/etc \\\n  --replace-fail /libexec $out/libexec\nsubstituteInPlace \"$BSDSRCDIR/libexec/rc/rc.d/Makefile\" \\\n  --replace-fail /etc $services/etc \\\n  --replace-fail /var $services/var\n", (() => {
         const bins = nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           "/sbin/sysctl": sysctl,
           "/usr/bin/protect": protect,
           "/usr/bin/id": id,

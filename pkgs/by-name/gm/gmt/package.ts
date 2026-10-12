@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const gshhg_gmt = nix.arg($, "gshhg-gmt");
   const libxml2 = nix.arg($, "libxml2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gmt",
       version: "6.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GenericMappingTools",
           repo: "gmt",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_LDFLAGS: nix.thunk(() => nix.str`-lxml2 -L${nix.app(nix.sel(lib, "getLib"), libxml2)}/lib`),
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-implicit-function-declaration "), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(apple_sdk, "version")), "13.3")))), "-D__LAPACK_int=int"))),
       })),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "BLAS_LIBRARY", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), blas)}/lib/libblas.so`))),
         ])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.generic-mapping-tools.org",
         description: "Tools for manipulating geographic and cartesian data sets",
         longDescription: "GMT is an open-source collection of command-line tools for manipulating\ngeographic and Cartesian data sets (including filtering, trend fitting,\ngridding, projecting, etc.) and producing high-quality illustrations\nranging from simple x–y plots via contour maps to artificially illuminated\nsurfaces and 3D perspective views. It supports many map projections and\ntransformations and includes supporting data such as coastlines, rivers,\nand political boundaries and optionally country polygons.\n",

@@ -14,16 +14,16 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const version = "1.2.0";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "long-shebang",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/shlevy/long-shebang/releases/download/v${version}/long-shebang-${version}.tar.xz`),
           sha256: "10h29w1c5bm0rlscyjiz1kzb134rn92as6v4y7i8mhhmdh6mmf79",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for #! scripts with more than one argument",
         homepage: "https://github.com/shlevy/long-shebang",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

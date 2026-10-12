@@ -6,9 +6,9 @@ const pos$1 = nix.positions(here + "/shards.nix", [["url", 3, 5], ["rev", 4, 5],
 const pos$2 = nix.positions(here + "/shards.nix", [["readline", 2, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$2,
+  [nix.POS]: pos$2,
   readline: nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     url: "https://github.com/crystal-lang/crystal-readline.git",
     rev: "0fb7d186da8e1b157998d98d1c96e99699b791eb",
     sha256: "1rk27vw3ssldgnfgprwvz2gag02v4g6d6yg56b3sk9w3fn8jyyi8",

@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const gtk4_layer_shell = nix.arg($, "gtk4-layer-shell");
   const libadwaita = nix.arg($, "libadwaita");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cursor-clip",
       version: "0-unstable-2026-02-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sirulex",
           repo: "cursor-clip",
           rev: "ad677e4b65340647b95b02a3cd1d955111506695",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, glib]),
       buildInputs: nix.thunk(() => [cairo, pango, gdk_pixbuf, graphene, gtk4, gtk4_layer_shell, libadwaita]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cursor Clip - GTK4 Clipboard Manager with dynamic positioning. Features a Windows 11–style clipboard history, adapted to native GNOME design",
         homepage: "https://github.com/sirulex/cursor-clip",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const lib = nix.arg($, "lib");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dapr-cli",
       version: "1.18.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dapr",
           repo: "cli",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "mv $out/bin/cli $out/bin/dapr\n\ninstallShellCompletion --cmd dapr \\\n  --bash <($out/bin/dapr completion bash) \\\n  --zsh <($out/bin/dapr completion zsh)\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI for managing Dapr, the distributed application runtime",
         homepage: "https://dapr.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

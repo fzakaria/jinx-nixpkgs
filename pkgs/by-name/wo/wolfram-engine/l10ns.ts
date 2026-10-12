@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const majorVersion = nix.argOr($, "majorVersion", () => null);
   const allVersions = nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.builtins.map, nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         version: "14.1.0",
         lang: "en",
         language: "English",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         installer: "WolframEngine_14.1.0_LIN.sh",
       })),
       nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         version: "13.3.0",
         lang: "en",
         language: "English",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         installer: "WolframEngine_13.3.0_LINUX.sh",
       })),
       nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version: "13.2.0",
         lang: "en",
         language: "English",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         installer: "WolframEngine_13.2.0_LINUX.sh",
       })),
       nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         version: "13.1.0",
         lang: "en",
         language: "English",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         installer: "WolframEngine_13.1.0_LINUX.sh",
       })),
       nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         version: "13.0.1",
         lang: "en",
         language: "English",
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         installer: "WolframEngine_13.0.1_LINUX.sh",
       })),
       nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         version: "13.0.0",
         lang: "en",
         language: "English",
@@ -76,12 +76,12 @@ export default nix.lambda((args) => (() => {
       const sha256 = nix.arg($_1, "sha256");
       const installer = nix.arg($_1, "installer");
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         version: version,
         lang: lang_1,
         name: nix.thunk(() => nix.add(nix.str`wolfram-engine-${version}`, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(lang_1, "en")), nix.thunk(() => nix.str`-${lang_1}`)))),
         src: nix.thunk(() => nix.app(requireFile, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             name: installer,
             message: nix.thunk(() => nix.str`This nix expression requires that ${installer} is
 already part of the store. Download the file from

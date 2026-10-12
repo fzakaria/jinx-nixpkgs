@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const hatchling = nix.arg($, "hatchling");
   const pytest = nix.arg($, "pytest");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aiomisc-pytest",
       version: "2.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "aiomisc_pytest",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-cbYrkO6YRSPFfhjgdXzuVA2wY5RyEmWcG+myGZu1TGU=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["aiomisc_pytest"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pytest integration for aiomisc",
         homepage: "https://github.com/aiokitchen/aiomisc-pytest",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

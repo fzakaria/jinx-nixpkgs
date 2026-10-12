@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const domain = "epex_spot";
       const version = "4.1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mampfes",
           repo: "ha_epex_spot",
           tag: version,
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const dontConfigure = true;
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/mampfes/ha_epex_spot/releases/tag/${version}`),
         description: "This component adds electricity prices from stock exchange EPEX Spot to Home Assistant",
         homepage: "https://github.com/mampfes/ha_epex_spot",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         owner,
         domain,
         version,

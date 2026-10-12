@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "jumpapp";
       const version = "1.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mkropat",
           repo: "jumpapp",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -38,14 +38,14 @@ sed -i "2 i export PATH=${perl}/bin:\\$PATH" $out/bin/jumpappify-desktop-entry
 `;
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/mkropat/jumpapp",
         description: "Run-or-raise application switcher for any X11 desktop",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "matklad"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

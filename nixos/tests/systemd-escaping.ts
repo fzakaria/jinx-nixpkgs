@@ -30,21 +30,21 @@ done
     23n,
   ]);
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     name: "systemd-escaping",
     nodes: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       machine: nix.lambda((args_2) => (() => {
         const $_1 = nix.formals(args_2, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         const lib = nix.arg($_1, "lib");
         const utils = nix.arg($_1, "utils");
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           systemd: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             services: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               echo: nix.thunk(() => (() => {
                 nix.assert_(!nix.asBool(nix.sel(nix.builtins.tryEval(nix.thunk(() => nix.app(nix.sel(utils, "escapeSystemdExecArgs"), nix.thunk(() => [[]])))), "success")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/tests/systemd-escaping.nix:34:9");
                 nix.assert_(!nix.asBool(nix.sel(nix.builtins.tryEval(nix.thunk(() => nix.app(nix.sel(utils, "escapeSystemdExecArgs"), nix.thunk(() => [nix.thunk(() => ({}))])))), "success")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/tests/systemd-escaping.nix:35:9");
@@ -61,10 +61,10 @@ done
                 nix.assert_(!nix.asBool(nix.sel(nix.builtins.tryEval(nix.thunk(() => nix.app(nix.sel(utils, "escapeSystemdPath"), "/mnt/../foo"))), "success")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/tests/systemd-escaping.nix:50:9");
                 nix.assert_(!nix.asBool(nix.sel(nix.builtins.tryEval(nix.thunk(() => nix.app(nix.sel(utils, "escapeSystemdPath"), "."))), "success")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/tests/systemd-escaping.nix:51:9");
                 return {
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   description: "Echo to the journal",
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$1,
+                    [nix.POS]: pos$1,
                     Type: "oneshot",
                     ExecStart: nix.thunk(() => nix.str`${echoAll} ${nix.app(nix.sel(utils, "escapeSystemdExecArgs"), args_1)}
 `),

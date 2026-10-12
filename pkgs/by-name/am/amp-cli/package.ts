@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const darwin = nix.arg($, "darwin");
   const rcodesign = nix.arg($, "rcodesign");
   const platforms = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "x86_64-linux": "linux-x64-baseline",
     "aarch64-linux": "linux-arm64",
     "aarch64-darwin": "darwin-arm64",
   }));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "amp-cli",
       version: "0.0.1791107882-gfe04cc",
       src: nix.thunk(() => nix.sel(finalAttrs, "passthru", "sources", nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system")))),
@@ -62,12 +62,12 @@ runHook postInstall
       versionCheckProgramArg: "--version",
       versionCheckKeepEnvironment: nix.thunk(() => ["HOME"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         sources: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (system$) => (platform) => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               url: nix.thunk(() => nix.str`https://static.ampcode.com/cli/${nix.sel(finalAttrs, "version")}/amp-${platform}.gz`),
               hash: nix.thunk(() => nix.sel({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 "x86_64-linux": "sha256-vsJje36Dg0w9j5KBICM5bpyjQ7AUmt2cJUuH3LGUC80=",
                 "aarch64-linux": "sha256-2aI/a66uzuA/unxYtItj3HHkTQcb/zB95cWzznsEcpY=",
                 "aarch64-darwin": "sha256-Ut0Z7zgEFP6NE3HmbCIEArOVgqoHCr9ZPTHtjkInWg8=",
@@ -76,7 +76,7 @@ runHook postInstall
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "CLI for Amp, an agentic coding agent in research preview from Sourcegraph",
         homepage: "https://ampcode.com/",
         downloadPage: "https://ampcode.com/install",

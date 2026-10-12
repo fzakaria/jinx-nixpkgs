@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.47.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NabuCasa",
           repo: "snitun",
           tag: version,
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         ])));
       const pythonImportsCheck = nix.thunk(() => ["snitun"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SNI proxy with TCP multiplexer",
         changelog: nix.thunk(() => nix.str`https://github.com/NabuCasa/snitun/releases/tag/${nix.sel(src, "tag")}`),
         homepage: "https://github.com/nabucasa/snitun",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

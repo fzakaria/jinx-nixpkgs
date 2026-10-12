@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pname = "chacha20poly1305-reuseable";
   const version = "0.13.2";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bdraco",
           repo: "chacha20poly1305-reuseable",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["chacha20poly1305_reuseable"]),
       nativeCheckInputs: nix.thunk(() => [pytest_cov_stub, pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ChaCha20Poly1305 that is reuseable for asyncio",
         homepage: "https://github.com/bdraco/chacha20poly1305-reuseable",
         changelog: nix.thunk(() => nix.str`https://github.com/bdraco/chacha20poly1305-reuseable/blob/v${version}/CHANGELOG.md`),

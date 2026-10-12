@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "fail2ban",
       version: "1.1.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fail2ban",
           repo: "fail2ban",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/fail2ban/fail2ban/commit/403df4a91c8ad8f235a3cb9e17d0cc4d29c2dafd.patch",
             hash: "sha256-HI/9qaB+TMbRu/2NPwV+kVcYK03YNnzcD+iaBOlM20w=",
             excludes: nix.thunk(() => ["ChangeLog"]),
@@ -82,14 +82,14 @@ rm -r "${sitePackages}/usr"
 `)));
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           fail2ban: nix.thunk(() => nix.attr(nixosTests, "fail2ban")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://www.fail2ban.org/",
         description: "Program that scans log files for repeated failing login attempts and bans IP addresses",
         changelog: nix.thunk(() => nix.str`https://github.com/fail2ban/fail2ban/blob/${nix.sel(finalAttrs, "src", "tag")}/ChangeLog`),

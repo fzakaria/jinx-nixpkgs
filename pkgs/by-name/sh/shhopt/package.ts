@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "shhopt",
       version: "1.1.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://shh.thathost.com/pub-unix/files/shhopt-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0yd6bl6qw675sxa81nxw6plhpjf9d2ywlm8a5z66zyjf28sl7sds",
         })))),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
 `),
       installFlags: nix.thunk(() => ["INSTBASEDIR=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for parsing command line options",
         homepage: "https://shh.thathost.com/pub-unix/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "artistic1")),

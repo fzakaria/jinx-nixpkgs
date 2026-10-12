@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const libxft = nix.arg($, "libxft");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xfe",
       version: "2.1.11",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/xfe/xfe-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-6ooSp7A7wOCHZZZ/n9jipr0MXrkAkvfwIMf5x2RWqO0=",
         })))),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "sed -i s,/usr/share/xfe,$out/share/xfe, src/xfedefs.h\n",
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MS-Explorer like file manager for X",
         longDescription: "X File Explorer (Xfe) is an MS-Explorer like file manager for X.\nIt is based on the popular, but discontinued, X Win Commander, which was developed by Maxim Baranov.\nXfe aims to be the filemanager of choice for all the Unix addicts!\n",
         homepage: "https://sourceforge.net/projects/xfe/",

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const gawk = nix.arg($, "gawk");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "bullshit",
       version: "0-unstable-2018-05-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fceschmidt",
           repo: "bullshit-arch",
           rev: "d65e4bbbea76bb752842c2c464154a7b417783fa",
@@ -35,13 +35,13 @@ substituteInPlace $out/bin/bullshit \\
 runHook postFixup
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(gawk, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Nonsense phrase generator",
         mainProgram: "bullshit",
         homepage: "https://github.com/fceschmidt/bullshit-arch",

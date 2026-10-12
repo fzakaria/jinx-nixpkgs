@@ -34,30 +34,30 @@ export default nix.lambda((args) => (() => {
   const pname = "gcc";
   const version = "4.6.4";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`mirror://gnu/gcc/gcc-${version}/gcc-core-${version}.tar.gz`),
       sha256: "173kdb188qg79pcz073cj9967rs2vzanyjdjyxy9v0xb0p5sad75",
     }))));
   const ccSrc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`mirror://gnu/gcc/gcc-${version}/gcc-g++-${version}.tar.gz`),
       sha256: "1fqqk5zkmdg4vmqzdmip9i42q6b82i3f6yc0n86n9021cr7ms2k9",
     }))));
   const gmpVersion = "4.3.2";
   const gmp = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: nix.thunk(() => nix.str`mirror://gnu/gmp/gmp-${gmpVersion}.tar.gz`),
       sha256: "15rwq54fi3s11izas6g985y9jklm3xprfsmym3v1g6xr84bavqvv",
     }))));
   const mpfrVersion = "2.4.2";
   const mpfr = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       url: nix.thunk(() => nix.str`mirror://gnu/mpfr/mpfr-${mpfrVersion}.tar.gz`),
       sha256: "0dxn4904dra50xa22hi047lj8kkpr41d6vb9sd4grca880c7wv94",
     }))));
   const mpcVersion = "1.0.3";
   const mpc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       url: nix.thunk(() => nix.str`mirror://gnu/mpc/mpc-${mpcVersion}.tar.gz`),
       sha256: "1hzci2zrrd7v3g1jk35qindq05hbl0bhjcyyisq9z209xb3fqzb1",
     }))));
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
   const fakeBuildPlatform = nix.thunk(() => nix.app(nix.sel(lib, "strings", "removeSuffix"), "-musl", nix.thunk(() => nix.sel(buildPlatform, "config"))));
   const fakeHostPlatform = nix.thunk(() => nix.app(nix.sel(lib, "strings", "removeSuffix"), "-musl", nix.thunk(() => nix.sel(hostPlatform, "config"))));
   return nix.app(nix.sel(bash, "runCommand"), nix.thunk(() => nix.str`${pname}-${version}`), nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: pname,
       version: version,
       nativeBuildInputs: nix.thunk(() => [
@@ -82,16 +82,16 @@ export default nix.lambda((args) => (() => {
         gzip,
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           "get-version": (result) => nix.app(nix.sel(bash, "runCommand"), nix.thunk(() => nix.str`${pname}-get-version-${version}`), nix.thunk(() => ({})), nix.thunk(() => nix.str`${result}/bin/gcc --version
 mkdir $out
 `)),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: nix.thunk(() => nix.str`GNU Compiler Collection, version ${version}`),
         homepage: "https://gcc.gnu.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

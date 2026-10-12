@@ -16,21 +16,21 @@ export default nix.lambda((args) => (() => {
       const pname = "uuuu";
       const version = "0.4.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/uuuu/releases/download/v${version}/uuuu-${version}.tbz`),
           hash: "sha256-5+GNk9s36ZocrAjuvlDIiQTq6WF9q0M8j3h/TakrGSg=",
         }))));
       const doCheck = true;
       const duneVersion = "3";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to normalize an ISO-8859 input to Unicode code-point",
         homepage: "https://github.com/mirage/uuuu",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
         mainProgram: "uuuu.generate",
       }));
-      return { __proto__: pos$3, pname, version, src, doCheck, duneVersion, meta };
+      return { [nix.POS]: pos$3, pname, version, src, doCheck, duneVersion, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

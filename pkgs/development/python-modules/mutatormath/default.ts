@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const unicodedata2 = nix.arg($, "unicodedata2");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mutatormath",
       version: "3.0.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "MutatorMath",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           sha256: "0r1qq45np49x14zz1zwkaayqrn7m8dn2jlipjldg2ihnmpzw29w1",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [fontmath, unicodedata2, defcon]),
       checkPhase: "runHook preCheck\n\npython Lib/mutatorMath/test/run.py\n\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Piecewise linear interpolation in multiple dimensions with multiple, arbitrarily placed, masters",
         homepage: "https://github.com/LettError/MutatorMath",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

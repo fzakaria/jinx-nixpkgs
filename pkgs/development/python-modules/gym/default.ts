@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.26.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openai",
           repo: "gym",
           tag: version,
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         ]))));
       const disabledTestPaths = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["tests/utils/test_play.py"])));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Toolkit for developing and comparing your reinforcement learning agents",
         homepage: "https://www.gymlibrary.dev/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

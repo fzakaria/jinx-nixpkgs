@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const graphviz = nix.arg($, "graphviz");
   const withDoc = nix.argOr($, "withDoc", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "eigen",
       version: "5.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libeigen",
           repo: "eigen",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-doc.patch",
             url: "https://gitlab.com/libeigen/eigen/-/commit/976f15ebca3f486902c3da4c98b8f92c3c4ed7a4.diff",
             hash: "sha256-/FSXhY+/ZRKfE/aIDAgP+DoNCtH8ikUItYGmfo+QH0E=",
@@ -47,11 +47,11 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withDoc, "# Fontconfig error: No writable cache directories\nexport XDG_CACHE_HOME=\"$(mktemp -d)\"\n\ncmake --build . -t install-doc\n")),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://eigen.tuxfamily.org",
         description: "C++ template library for linear algebra: vectors, matrices, and related algorithms",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/libeigen/eigen/-/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ocaml-iso8601";
       const version = "0.2.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sagotch",
           repo: "ISO8601.ml",
           rev: version,
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const strictDeps = true;
       const createFindlibDestdir = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://ocaml-community.github.io/ISO8601.ml/",
         description: "ISO 8601 and RFC 3999 date parsing for OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

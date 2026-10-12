@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const fontconfig = nix.arg($, "fontconfig");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "oxwm",
       version: "0.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tonybanters",
           repo: "oxwm",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,9 +44,9 @@ export default nix.lambda((args) => (() => {
       versionCheckKeepEnvironment: nix.thunk(() => ["HOME"]),
       nativeInstallCheckInputs: nix.thunk(() => [writableTmpDirAsHomeHook]),
       postInstall: "install -Dm644 resources/oxwm.desktop -t $out/share/xsessions\ninstall -Dm644 resources/oxwm.1 -t $out/share/man/man1\ninstall -Dm644 templates/oxwm.lua -t $out/share/oxwm\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, providedSessions: nix.thunk(() => ["oxwm"]) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, providedSessions: nix.thunk(() => ["oxwm"]) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Dynamic window manager written in Zig, inspired by dwm",
         homepage: "https://github.com/tonybanters/oxwm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

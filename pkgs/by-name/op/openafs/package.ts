@@ -34,9 +34,9 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const withTsm = nix.argOr($, "withTsm", () => false);
   const tsm_client = nix.arg($, "tsm-client");
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./srcs.nix")), nix.thunk(() => ({ __proto__: pos$1, fetchurl: fetchurl })))), null);
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./srcs.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, fetchurl: fetchurl })))), null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "openafs",
       version: nix.thunk(() => nix.lookup(w, "version")),
       srcs: nix.thunk(() => nix.lookup(w, "srcs")),
@@ -82,11 +82,11 @@ configureFlagsArray=(
       postInstall: nix.thunk(() => nix.add("mkdir -p $doc/share/doc/openafs/{AdminGuide,QuickStartUnix,UserGuide}\ncp -r doc/txt README LICENSE $doc/share/doc/openafs\nfor d in AdminGuide QuickStartUnix UserGuide ; do\n  cp \"doc/xml/${d}\"/*.html \"$doc/share/doc/openafs/${d}\"\ndone\n\ncp src/tools/dumpscan/{afsdump_dirlist,afsdump_extract,afsdump_scan,dumptool} $out/bin\n\nrm -r $out/lib/openafs\n", nix.app(nix.sel(lib, "optionalString"), withDevdoc, "mkdir -p $devdoc/share/devhelp/openafs/doxygen\ncp -r doc/{pdf,protocol} $devdoc/share/devhelp/openafs\ncp -r doc/doxygen/output/html $devdoc/share/devhelp/openafs/doxygen\n"))),
       preFixup: "for f in \"$out\"/bin/*; do\n  if isELF \"$f\"; then\n    patchelf --shrink-rpath --allowed-rpath-prefixes \"$NIX_STORE\" \"$f\"\n  fi\ndone\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         cellservdb: nix.thunk(() => nix.app(callPackage, nix.path(here, "./cellservdb.nix"), nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         outputsToInstall: nix.thunk(() => ["out", "doc", "man"]),
         description: "Open AFS client",
         homepage: "https://www.openafs.org",

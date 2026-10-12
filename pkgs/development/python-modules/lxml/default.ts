@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const xcodebuild = nix.arg($, "xcodebuild");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "lxml",
       version: "6.1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lxml",
           repo: "lxml",
           tag: nix.thunk(() => nix.str`lxml-${nix.sel(finalAttrs, "version")}`),
@@ -37,13 +37,13 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libxml2, libxslt, zlib]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-function-pointer-types",
         })))),
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["lxml", "lxml.etree"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/lxml/lxml/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.txt`),
         description: "Pythonic binding for the libxml2 and libxslt libraries",
         homepage: "https://lxml.de",

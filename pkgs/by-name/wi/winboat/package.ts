@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const electron = electron_43;
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "winboat",
       version: "0.9.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TibixDev",
           repo: "winboat",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,18 +44,18 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace package.json \\\n  --replace-fail \"main/main.js\" \"src/main/main.ts\"\n",
       nativeBuildInputs: nix.thunk(() => [zip, makeWrapper, copyDesktopItems]),
       buildInputs: nix.thunk(() => [udev]),
-      env: nix.thunk(() => ({ __proto__: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
       npmDepsHash: "sha256-38hDI0z3lrdSvMTUZAotIuT7Kt/NZcl8UdrYpum1i1M=",
       makeCacheWritable: true,
       "guest-server": nix.thunk(() => nix.app(nix.sel(pkgsCross, "mingwW64", "callPackage"), nix.path(here, "./guest-server.nix"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           winboat: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "guest-server": nix.thunk(() => nix.sel(finalAttrs, "guest-server")),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             extraArgs: nix.thunk(() => ["--subpackage", "guest-server"]),
           })))),
       })),
@@ -91,7 +91,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: "winboat",
             desktopName: "WinBoat",
             type: "Application",
@@ -102,7 +102,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         mainProgram: "winboat",
         description: "Run Windows apps on Linux with seamless integration",
         homepage: "https://github.com/TibixDev/winboat",

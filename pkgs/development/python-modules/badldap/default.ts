@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const wcwidth = nix.arg($, "wcwidth");
   const winacl = nix.arg($, "winacl");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "badldap",
       version: "0.7.1-unstable-2025-10-28",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CravateRouge",
           repo: "badldap",
           rev: "65af61fd7daf7dc7bef9c6248553398e6f604d43",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["badldap"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "LDAP library for auditing MS AD",
         homepage: "https://github.com/CravateRouge/badldap",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

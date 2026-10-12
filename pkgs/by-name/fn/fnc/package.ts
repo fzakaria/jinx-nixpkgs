@@ -17,23 +17,23 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fnc",
       version: "0.18",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://fnc.bsdbox.org/tarball/${nix.sel(finalAttrs, "version")}/fnc-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-npS+sOxF0S/9TuFjtEFlev0HpIOsaP6zmcfopPNUehk=",
         })))),
       buildInputs: nix.thunk(() => [libiconv, ncurses, zlib]),
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ["-Wno-error=maybe-uninitialized", "-Wno-error=discarded-qualifiers"]))))),
       })),
       preInstall: "mkdir -p $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Interactive ncurses browser for Fossil repositories",
         longDescription: "An interactive ncurses browser for Fossil repositories.\n\nfnc uses libfossil to create a fossil ui experience in the terminal.\n",
         homepage: "https://fnc.bsdbox.org",

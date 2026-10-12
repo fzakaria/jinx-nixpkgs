@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
     const targets = nix.arg($_1, "targets");
     const command = nix.arg($_1, "command");
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         preBuildPhases: nix.thunk(() => ["preBuildPhase"]),
         preBuildPhase: nix.thunk(() => nix.add(nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(bazelRepoCache, null)), nix.thunk(() => nix.str`# repo_cache needs to be writeable even in air-gapped builds
 mkdir repo_cache

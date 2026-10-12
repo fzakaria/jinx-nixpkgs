@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const capnproto = nix.arg($, "capnproto");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "flowgger",
       version: "0.3.2",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-eybahv1A/AIpAXGj6/md8k+b9fu9gSchU16fnAWZP2s=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         "--skip=flowgger::encoder::ltsv_encoder::test_ltsv_full_encode_no_sd",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/awslabs/flowgger",
         description: "Fast, simple and lightweight data collector written in Rust",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

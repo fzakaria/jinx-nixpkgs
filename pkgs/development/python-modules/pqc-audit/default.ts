@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const rich = nix.arg($, "rich");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pqc-audit",
       version: "0.4.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rauleteee",
           repo: "pqc-scanner",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,15 +35,15 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [rich]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, mcp: nix.thunk(() => [mcp]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, mcp: nix.thunk(() => [mcp]) })),
       nativeCheckInputs: nix.thunk(() => [jsonschema, mcp, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["pqc_scanner"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Library to scan and audit PQC implementations for known vulnerabilities",
         homepage: "https://github.com/rauleteee/pqc-scanner",
         changelog: nix.thunk(() => nix.str`https://github.com/rauleteee/pqc-scanner/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

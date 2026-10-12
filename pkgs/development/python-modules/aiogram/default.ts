@@ -38,12 +38,12 @@ export default nix.lambda((args) => (() => {
   const redis = nix.arg($, "redis");
   const uvloop = nix.arg($, "uvloop");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "aiogram",
       version: "3.31.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aiogram",
           repo: "aiogram",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: nix.thunk(() => ["aiohttp"]),
       dependencies: nix.thunk(() => [aiofiles, aiohttp, certifi, magic_filter, pydantic]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         fast: nix.thunk(() => [aiodns, uvloop]),
         mongo: nix.thunk(() => [motor, pymongo]),
         redis: nix.thunk(() => [redis]),
@@ -73,12 +73,12 @@ export default nix.lambda((args) => (() => {
       pytestFlags: nix.thunk(() => ["-Wignore::DeprecationWarning"]),
       pythonImportsCheck: nix.thunk(() => ["aiogram"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$3, "rev-prefix": "v", ignoredVersions: "4.1" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v", ignoredVersions: "4.1" })))),
       })),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Modern and fully asynchronous framework for Telegram Bot API",
         homepage: "https://github.com/aiogram/aiogram",
         changelog: nix.thunk(() => nix.str`https://github.com/aiogram/aiogram/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

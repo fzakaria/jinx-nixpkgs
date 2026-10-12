@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "BinaryObjectScanner";
       const version = "3.3.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SabreTools",
           repo: "BinaryObjectScanner",
           tag: version,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const executables = nix.thunk(() => ["ProtectionScan", "ExtractionTool"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/SabreTools/BinaryObjectScanner",
         description: "C# protection, packer, and archive scanning library. Provides ProtectionScan and ExtractionTool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "ProtectionScan",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

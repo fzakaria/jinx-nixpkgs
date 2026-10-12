@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const vala = nix.arg($, "vala");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xmlbird",
       version: "1.2.15",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://birdfont.org/xmlbird-releases/libxmlbird-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-8GX4ijF+AxaGGFlSxRPOAoUezRG6592jOrifz/mWTRM=",
         })))),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "./build.py",
       installPhase: "./install.py",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "XML parser for Vala and C programs",
         homepage: "https://birdfont.org/xmlbird.php",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

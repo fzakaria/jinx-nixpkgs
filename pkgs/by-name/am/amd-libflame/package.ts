@@ -23,19 +23,19 @@ export default nix.lambda((args) => (() => {
   const blas64 = nix.argOr($, "blas64", () => false);
   const withAMDOpt = nix.argOr($, "withAMDOpt", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "amd-libflame",
       version: "5.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "amd",
           repo: "libflame",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-Zl9qw8pb2z7+SKJujHg3/NVt0m2gdmFE6cVXS7wGzAI=",
         })))),
       postPatch: "patchShebangs build\n\n# Enforce reproducible build compiler flags\nsubstituteInPlace CMakeLists.txt --replace '-mtune=native' \"\"\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-implicit-function-declaration" })),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, blas64: blas64 })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-implicit-function-declaration" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, blas64: blas64 })),
       nativeBuildInputs: nix.thunk(() => [cmake, gfortran, python3]),
       buildInputs: nix.thunk(() => [amd_blis, aocl_utils]),
       cmakeFlags: nix.thunk(() => nix.concat([
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withOpenMP)), "-DENABLE_MULTITHREADING=OFF"), nix.concat(nix.app(nix.sel(lib, "optional"), blas64, "-DENABLE_ILP64=ON"), nix.app(nix.sel(lib, "optional"), withAMDOpt, "-DENABLE_AMD_OPT=ON"))))),
       postInstall: "ln -s $out/lib/libflame.so $out/lib/liblapack.so.3\nln -s $out/lib/libflame.so $out/lib/liblapacke.so.3\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "LAPACK-compatible linear algebra library optimized for AMD CPUs",
         homepage: "https://developer.amd.com/amd-aocl/blas-library/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

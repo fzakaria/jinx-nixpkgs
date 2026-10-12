@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const rustc = nix.arg($, "rustc");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildPgrxExtension, (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       postgresql: postgresql,
       "cargo-pgrx": cargo_pgrx_0_17_0,
       pname: "vectorchord",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "supervc-stack",
           repo: "VectorChord",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,37 +43,37 @@ export default nix.lambda((args) => (() => {
       postInstall: "cp sql/upgrade/* $out/share/postgresql/extension/\n",
       usePgTestCheckFeature: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           extension: nix.thunk(() => nix.app(postgresqlTestExtension, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               finalPackage: nix.thunk(() => nix.attr(finalAttrs, "finalPackage")),
               withPackages: nix.thunk(() => ["pgvector"]),
               postgresqlExtraSettings: "shared_preload_libraries = 'vchord'\n",
               sql: "CREATE EXTENSION vchord CASCADE;\n\nCREATE TABLE items (id bigint PRIMARY KEY, embedding vector(3));\nINSERT INTO items (id, embedding) VALUES\n(1, '[1,2,4]'),\n(2, '[1,2,5]'),\n(3, '[0,0,3]'),\n(4, '[0,0,2]'),\n(5, '[0,0,1]');\n\nCREATE INDEX ON items USING vchordrq (embedding vector_l2_ops) WITH (options = $$\nresidual_quantization = true\n[build.internal]\nlists = [4096]\nspherical_centroids = false\n$$);\n\nSET vchordrq.probes = 1;\n",
               asserts: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   query: "SELECT extversion FROM pg_extension WHERE extname = 'vchord'",
                   expected: nix.thunk(() => nix.str`'${nix.sel(finalAttrs, "version")}'`),
                   description: "Expected installed version to match the derivation's version",
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   query: "SELECT id FROM items WHERE embedding <-> '[1,2,3]' = 1",
                   expected: "1",
                   description: "Expected vector of row with ID=1 to have an euclidean distance from [1,2,3] of 1.",
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   query: "SELECT id FROM items WHERE embedding <-> '[1,2,3]' = 2",
                   expected: "2",
                   description: "Expected vector of row with ID=2 to have an euclidean distance from [1,2,3] of 2.",
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   query: "SELECT id FROM items ORDER BY embedding <-> '[2,3,7]' LIMIT 1",
                   expected: "2",
                   description: "Expected vector of row with ID=2 to be the closest to [2,3,7].",
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         broken: nix.thunk(() => nix.app(nix.sel(lib, "warnIf"), nix.thunk(() => !nix.eq(nix.sel(finalAttrs, "version"), "1.1.1")), "Is postgresql19Packages.vectorchord still broken?", nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(postgresql, "version")), "19")))),
         changelog: nix.thunk(() => nix.str`https://github.com/supervc-stack/VectorChord/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Scalable, fast, and disk-friendly vector search in Postgres, the successor of pgvecto.rs",

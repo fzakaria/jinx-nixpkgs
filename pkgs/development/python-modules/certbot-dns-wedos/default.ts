@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: "certbot_dns_wedos",
           hash: "sha256-Sle3hoBLwVPF30caCyYtt3raY5Gs9ekg0DthvHxvB4E=",
@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [certbot, acme, requests, pytz]);
       const pythonImportsCheck = nix.thunk(() => ["certbot_dns_wedos"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Wedos DNS Authenticator plugin for Certbot",
         homepage: "https://github.com/clazzor/certbot-dns-wedos",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "tsandrini"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

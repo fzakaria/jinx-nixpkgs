@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ofono-phonesim",
       version: "unstable-2019-11-18",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.kernel.org/pub/scm/network/ofono/phonesim.git/snapshot/phonesim-adf231a84cd3708b825dc82c56e841dd7e3b4541.tar.gz",
           sha256: "1840914sz46l8h2jwa0lymw6dvgj72wq9bhp3k4v4rk6masbf6hp",
         })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`UIC=${nix.sel(libsForQt5, "qtbase", "dev")}/bin/uic`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Phone Simulator for modem testing",
         mainProgram: "phonesim",
         homepage: "https://01.org/ofono",

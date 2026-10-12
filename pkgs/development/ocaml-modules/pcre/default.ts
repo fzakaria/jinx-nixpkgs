@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const pcre = nix.arg($, "pcre");
   const dune_configurator = nix.arg($, "dune-configurator");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pcre",
       version: "8.0.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mmottl/pcre-ocaml/releases/download/${nix.sel(finalAttrs, "version")}/pcre-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-7ZvPiNeBdnrWp8BICv8J1YifL8UA3aDRYgoXhtTkRJA=",
         })))),
       buildInputs: nix.thunk(() => [dune_configurator]),
       propagatedBuildInputs: nix.thunk(() => [pcre]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://mmottl.github.io/pcre-ocaml",
         description: "Efficient C-library for pattern matching with Perl-style regular expressions in OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

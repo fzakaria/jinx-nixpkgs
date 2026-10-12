@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "carddav",
       version: "0.1-2014-02-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ljanyst",
           repo: "carddav-util",
           rev: "53b181faff5f154bcd180467dd04c0ce69405564",
@@ -45,7 +45,7 @@ cp $src/carddav.py "$pythondir"
 `),
       preFixup: "wrapProgram \"$out/bin/carddav-util.py\" \\\n  --prefix PYTHONPATH : \"$PYTHONPATH:$(toPythonPath $out)\" \\\n  --prefix PATH : \"$prefix/bin:$PATH\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/ljanyst/carddav-util",
         description: "CardDAV import/export utility",
         mainProgram: "carddav-util.py",

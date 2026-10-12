@@ -25,23 +25,23 @@ const pos$19 = nix.positions(here + "/swanctl-params.nix", [["authorities", 40, 
 export default (lib) => (() => {
   const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./param-constructors.nix")), lib)), null);
   const certParams = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     file: nix.thunk(() => nix.app(nix.lookup(w, "mkOptionalStrParam"), "Absolute path to the certificate to load. Passed as-is to the daemon, so\nit must be readable by it.\n\nConfigure either this or {option}`handle`, but not both, in one section.\n")),
     handle: nix.thunk(() => nix.app(nix.lookup(w, "mkOptionalHexParam"), "Hex-encoded CKA_ID or handle of the certificate on a token or TPM,\nrespectively.\n\nConfigure either this or {option}`file`, but not both, in one section.\n")),
     slot: nix.thunk(() => nix.app(nix.lookup(w, "mkOptionalIntParam"), "Optional slot number of the token that stores the certificate.\n")),
     module: nix.thunk(() => nix.app(nix.lookup(w, "mkOptionalStrParam"), "Optional PKCS#11 module name.\n")),
   }));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     authorities: nix.thunk(() => nix.app(nix.lookup(w, "mkAttrsOfParams"), nix.thunk(() => nix.update({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         cacert: nix.thunk(() => nix.app(nix.lookup(w, "mkOptionalStrParam"), "The certificates may use a relative path from the swanctl\n`x509ca` directory or an absolute path.\n\nConfigure one of {option}`cacert`,\n{option}`file`, or\n{option}`handle` per section.\n")),
         cert_uri_base: nix.thunk(() => nix.app(nix.lookup(w, "mkOptionalStrParam"), "Defines the base URI for the Hash and URL feature supported by\nIKEv2. Instead of exchanging complete certificates, IKEv2 allows one to\nsend an URI that resolves to the DER encoded certificate. The certificate\nURIs are built by appending the SHA1 hash of the DER encoded certificates\nto this base URI.\n")),
         crl_uris: nix.thunk(() => nix.app(nix.lookup(w, "mkCommaSepListParam"), [], "List of CRL distribution points (ldap, http, or file URI).\n")),
         ocsp_uris: nix.thunk(() => nix.app(nix.lookup(w, "mkCommaSepListParam"), [], "List of OCSP URIs.\n")),
       }, certParams)), "Section defining complementary attributes of certification authorities, each\nin its own subsection with an arbitrary yet unique name\n")),
     connections: nix.thunk(() => nix.app(nix.lookup(w, "mkAttrsOfParams"), nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         version: nix.thunk(() => nix.app(nix.lookup(w, "mkIntParam"), 2n, "IKE major version to use for connection.\n\n- 1 uses IKEv1 aka ISAKMP,\n- 2 uses IKEv2 (the default).\n- A connection using 0 accepts both IKEv1 and IKEv2 as responder,\n  and initiates the connection actively with IKEv2.\n")),
         local_addrs: nix.thunk(() => nix.app(nix.lookup(w, "mkCommaSepListParam"), [], "Local address(es) to use for IKE communication. Takes\nsingle IPv4/IPv6 addresses, DNS names, CIDR subnets or IP address ranges.\n\nAs initiator, the first non-range/non-subnet is used to initiate the\nconnection from. As responder, the local destination address must match at\nleast to one of the specified addresses, subnets or ranges.\n\nIf FQDNs are assigned they are resolved every time a configuration lookup\nis done. If DNS resolution times out, the lookup is delayed for that time.\n")),
         remote_addrs: nix.thunk(() => nix.app(nix.lookup(w, "mkCommaSepListParam"), [], "Remote address(es) to use for IKE communication. Takes\nsingle IPv4/IPv6 addresses, DNS names, CIDR subnets or IP address ranges.\n\nAs initiator, the first non-range/non-subnet is used to initiate the\nconnection to. As responder, the initiator source address must match at\nleast to one of the specified addresses, subnets or ranges.\n\nIf FQDNs are assigned they are resolved every time a configuration lookup\nis done. If DNS resolution times out, the lookup is delayed for that time.\nTo initiate a connection, at least one specific address or DNS name must\nbe specified.\n")),
@@ -75,7 +75,7 @@ export default (lib) => (() => {
         mediated_by: nix.thunk(() => nix.app(nix.lookup(w, "mkOptionalStrParam"), "The name of the connection to mediate this connection through. If given,\nthe connection will be mediated through the named mediation\nconnection. The mediation connection must have mediation enabled.\n")),
         mediation_peer: nix.thunk(() => nix.app(nix.lookup(w, "mkOptionalStrParam"), "Identity under which the peer is registered at the mediation server, that\nis, the IKE identity the other end of this connection uses as its local\nidentity on its connection to the mediation server. This is the identity\nwe request the mediation server to mediate us with. Only relevant on\nconnections that set mediated_by. If it is not given, the remote IKE\nidentity of the first authentication round of this connection will be\nused.\n")),
         local: nix.thunk(() => nix.app(nix.lookup(w, "mkPrefixedAttrsOfParams"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             round: nix.thunk(() => nix.app(nix.lookup(w, "mkIntParam"), 0n, "Optional numeric identifier by which authentication rounds are\nsorted. If not specified rounds are ordered by their position in the\nconfig file/vici message.\n")),
             certs: nix.thunk(() => nix.app(nix.lookup(w, "mkCommaSepListParam"), [], "List of certificate candidates to use for\nauthentication. The certificates may use a relative path from the\nswanctl `x509` directory or an absolute path.\n\nThe certificate used for authentication is selected based on the\nreceived certificate request payloads. If no appropriate CA can be\nlocated, the first certificate is used.\n")),
             cert: nix.thunk(() => nix.app(nix.lookup(w, "mkPrefixedAttrsOfParams"), certParams, "Section for a certificate candidate to use for\nauthentication. Certificates in certs are transmitted as binary blobs,\nthese sections offer more flexibility.\n")),
@@ -87,7 +87,7 @@ export default (lib) => (() => {
             xauth_id: nix.thunk(() => nix.app(nix.lookup(w, "mkOptionalStrParam"), "Client XAuth username used in the XAuth exchange.\n")),
           })), "Section for a local authentication round. A local authentication round\ndefines the rules how authentication is performed for the local\npeer. Multiple rounds may be defined to use IKEv2 RFC 4739 Multiple\nAuthentication or IKEv1 XAuth.\n\nEach round is defined in a section having `local` as\nprefix, and an optional unique suffix. To define a single authentication\nround, the suffix may be omitted.\n")),
         remote: nix.thunk(() => nix.app(nix.lookup(w, "mkPrefixedAttrsOfParams"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             round: nix.thunk(() => nix.app(nix.lookup(w, "mkIntParam"), 0n, "Optional numeric identifier by which authentication rounds are\nsorted. If not specified rounds are ordered by their position in the\nconfig file/vici message.\n")),
             id: nix.thunk(() => nix.app(nix.lookup(w, "mkStrParam"), "%any", "IKE identity to expect for authentication round. When using certificate\nauthentication, the IKE identity must be contained in the certificate,\neither as subject or as subjectAltName.\n")),
             eap_id: nix.thunk(() => nix.app(nix.lookup(w, "mkOptionalStrParam"), "Identity to use as peer identity during EAP authentication. If set to\n`%any` the EAP-Identity method will be used to ask the\nclient for an EAP identity.\n")),
@@ -103,7 +103,7 @@ export default (lib) => (() => {
             auth: nix.thunk(() => nix.app(nix.lookup(w, "mkStrParam"), "pubkey", "Authentication to expect from remote. See the {option}`local`\nsection's {option}`auth` keyword description about the details of\nsupported mechanisms.\n\nSince 5.4.0, to require a trustchain public key strength for the remote\nside, specify the key type followed by the minimum strength in bits (for\nexample `ecdsa-384` or\n`rsa-2048-ecdsa-256`). To limit the acceptable set of\nhashing algorithms for trustchain validation, append hash algorithms to\npubkey or a key strength definition (for example\n`pubkey-sha256-sha512`,\n`rsa-2048-sha256-sha384-sha512` or\n`rsa-2048-sha256-ecdsa-256-sha256-sha384`).\nUnless disabled in {file}`strongswan.conf`, or explicit IKEv2\nsignature constraints are configured (refer to the description of the\n{option}`local` section's {option}`auth` keyword for\ndetails), such key types and hash algorithms are also applied as\nconstraints against IKEv2 signature authentication schemes used by the\nremote side. To require RSASSA-PSS signatures use\n`rsa/pss` instead of `pubkey` or\n`rsa` as in e.g. `rsa/pss-sha256`. If\n`pubkey` or `rsa` constraints are\nconfigured RSASSA-PSS signatures will only be accepted if enabled in\n`strongswan.conf`(5).\n\nTo specify trust chain constraints for EAP-(T)TLS, append a colon to the\nEAP method, followed by the key type/size and hash algorithm as\ndiscussed above (e.g. `eap-tls:ecdsa-384-sha384`).\n")),
           })), "Section for a remote authentication round. A remote authentication round\ndefines the constraints how the peers must authenticate to use this\nconnection. Multiple rounds may be defined to use IKEv2 RFC 4739 Multiple\nAuthentication or IKEv1 XAuth.\n\nEach round is defined in a section having `remote` as\nprefix, and an optional unique suffix. To define a single authentication\nround, the suffix may be omitted.\n")),
         children: nix.thunk(() => nix.app(nix.lookup(w, "mkAttrsOfParams"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             ah_proposals: nix.thunk(() => nix.app(nix.lookup(w, "mkCommaSepListParam"), [], "AH proposals to offer for the CHILD_SA. A proposal is a set of algorithms.\nFor AH, this includes an integrity algorithm and an optional key exchange\nmethod. If a KE method is specified, CHILD_SA/Quick Mode rekeying and\ninitial negotiation uses a separate key exchange using the negotiated method\n(refer to _esp_proposals_ for details).\n\nWith peers that support multiple IKEv2 key exchanges (RFC 9370), up to seven\nadditional key exchanges may be negotiated. They can be configured by\nprefixing the algorithm keyword with **keX_** (where X is a number between\n1 and 7).\n\nFor IKEv2, multiple algorithms of the same kind can be specified in a single\nproposal, from which one gets selected. For IKEv1, only one algorithm per\nkind is allowed per proposal, more algorithms get implicitly stripped. Use\nmultiple proposals to offer different algorithm combinations with IKEv1.\n\nAlgorithm keywords get separated using dashes. The special value _default_\nforms a default proposal of supported algorithms considered safe, and is\nusually a good choice for interoperability. By default no AH proposals\nare included, instead ESP is proposed.\n")),
             esp_proposals: nix.thunk(() => nix.app(nix.lookup(w, "mkCommaSepListParam"), nix.thunk(() => ["default"]), "ESP proposals to offer for the CHILD_SA. A proposal is a set of algorithms.\nFor non-AEAD ESP proposals, this includes an integrity algorithm, an\nencryption algorithm, an optional key exchange method and an optional\nExtended Sequence Number Mode indicator. For AEAD proposals, a combined\nmode algorithm is used instead of the separate encryption/integrity\nalgorithms.\n\nIf a key exchange method is specified, CHILD_SA/Quick Mode rekeying and\ninitial negotiation use a separate key exchange using the specified method.\nHowever, for IKEv2, the keys of the CHILD_SA created implicitly with the\nIKE_SA will always be derived from the IKE_SA's key material. So any key\nexchange method specified here will only apply when the CHILD_SA is later\nrekeyed or is created with a separate CREATE_CHILD_SA exchange. A proposal\nmismatch might, therefore, not immediately be noticed when the SA is\nestablished, but may later cause rekeying to fail.\n\nWith peers that support multiple IKEv2 key exchanges (RFC 9370), up to seven\nadditional key exchanges may be negotiated. They can be configured by\nprefixing the algorithm keyword with **keX_** (where X is a number between\n1 and 7).\n\nExtended Sequence Number support may be indicated with the _esn_ and _noesn_\nvalues, both may be included to indicate support for both modes. If omitted,\n_noesn_ is assumed.\n\nFor IKEv2, multiple algorithms of the same kind can be specified in a single\nproposal, from which one gets selected. For IKEv1, only one algorithm per\nkind is allowed per proposal, more algorithms get implicitly stripped. Use\nmultiple proposals to offer different algorithm combinations with IKEv1.\n\nAlgorithm keywords get separated using dashes. The special value _default_\nforms a default proposal of supported algorithms considered safe, and is\nusually a good choice for interoperability. If no algorithms are specified\nfor AH nor ESP, the _default_ set of algorithms for ESP is included.\n")),
             sha256_96: nix.thunk(() => nix.app(nix.lookup(w, "mkYesNoParam"), nix.thunk(() => nix.lookup(w, "no")), "HMAC-SHA-256 is used with 128-bit truncation with IPsec. For\ncompatibility with implementations that incorrectly use 96-bit truncation\nthis option may be enabled to configure the shorter truncation length in\nthe kernel. This is not negotiated, so this only works with peers that\nuse the incorrect truncation length (or have this option enabled).\n")),
@@ -153,56 +153,56 @@ export default (lib) => (() => {
       })), "Section defining IKE connection configurations, each in its own subsection\nwith an arbitrary yet unique name\n")),
     secrets: nix.thunk(() => (() => {
       const mkEapXauthParams = nix.thunk(() => nix.app(nix.lookup(w, "mkPrefixedAttrsOfParams"), nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           secret: nix.thunk(() => nix.app(nix.lookup(w, "mkOptionalStrParam"), "Value of the EAP/XAuth secret. It may either be an ASCII string, a hex\nencoded string if it has a 0x prefix or a Base64 encoded string if it\nhas a 0s prefix in its value.\n")),
           id: nix.thunk(() => nix.app(nix.lookup(w, "mkPrefixedAttrsOfParam"), nix.thunk(() => nix.app(nix.lookup(w, "mkOptionalStrParam"), "")), "Identity the EAP/XAuth secret belongs to. Multiple unique identities may\nbe specified, each having an `id` prefix, if a secret\nis shared between multiple users.\n")),
         })), "EAP secret section for a specific secret. Each EAP secret is defined in a\nunique section having the `eap` prefix. EAP secrets are\nused for XAuth authentication as well.\n"));
       return {
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         eap: mkEapXauthParams,
         xauth: mkEapXauthParams,
         ntlm: nix.thunk(() => nix.app(nix.lookup(w, "mkPrefixedAttrsOfParams"), nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             secret: nix.thunk(() => nix.app(nix.lookup(w, "mkOptionalStrParam"), "Value of the NTLM secret, which is the NT Hash of the actual secret,\nthat is, MD4(UTF-16LE(secret)). The resulting 16-byte value may either\nbe given as a hex encoded string with a 0x prefix or as a Base64 encoded\nstring with a 0s prefix.\n")),
             id: nix.thunk(() => nix.app(nix.lookup(w, "mkPrefixedAttrsOfParam"), nix.thunk(() => nix.app(nix.lookup(w, "mkOptionalStrParam"), "")), "Identity the NTLM secret belongs to. Multiple unique identities may be\nspecified, each having an id prefix, if a secret is shared between\nmultiple users.\n")),
           })), "NTLM secret section for a specific secret. Each NTLM secret is defined in\na unique section having the `ntlm` prefix. NTLM secrets\nmay only be used for EAP-MSCHAPv2 authentication.\n")),
         ike: nix.thunk(() => nix.app(nix.lookup(w, "mkPrefixedAttrsOfParams"), nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             secret: nix.thunk(() => nix.app(nix.lookup(w, "mkOptionalStrParam"), "Value of the IKE preshared secret. It may either be an ASCII string, a\nhex encoded string if it has a 0x prefix or a Base64 encoded string if\nit has a 0s prefix in its value.\n")),
             id: nix.thunk(() => nix.app(nix.lookup(w, "mkPrefixedAttrsOfParam"), nix.thunk(() => nix.app(nix.lookup(w, "mkOptionalStrParam"), "")), "IKE identity the IKE preshared secret belongs to. Multiple unique\nidentities may be specified, each having an `id`\nprefix, if a secret is shared between multiple peers.\n")),
           })), "IKE preshared secret section for a specific secret. Each IKE PSK is\ndefined in a unique section having the `ike` prefix.\n")),
         ppk: nix.thunk(() => nix.app(nix.lookup(w, "mkPrefixedAttrsOfParams"), nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             secret: nix.thunk(() => nix.app(nix.lookup(w, "mkOptionalStrParam"), "Value of the PPK. It may either be an ASCII string, a hex encoded string\nif it has a `0x` prefix or a Base64 encoded string if\nit has a `0s` prefix in its value. Should have at least\n256 bits of entropy for 128-bit security.\n")),
             id: nix.thunk(() => nix.app(nix.lookup(w, "mkPrefixedAttrsOfParam"), nix.thunk(() => nix.app(nix.lookup(w, "mkOptionalStrParam"), "")), "PPK identity the PPK belongs to. Multiple unique identities may be\nspecified, each having an `id` prefix, if a secret is\nshared between multiple peers.\n")),
           })), "Postquantum Preshared Key (PPK) section for a specific secret. Each PPK is\ndefined in a unique section having the `ppk` prefix.\n")),
         private: nix.thunk(() => nix.app(nix.lookup(w, "mkPrefixedAttrsOfParams"), nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             file: nix.thunk(() => nix.app(nix.lookup(w, "mkOptionalStrParam"), "File name in the private folder for which this passphrase should be used.\n")),
             secret: nix.thunk(() => nix.app(nix.lookup(w, "mkOptionalStrParam"), "Value of decryption passphrase for private key.\n")),
           })), "Private key decryption passphrase for a key in the\n`private` folder.\n")),
         rsa: nix.thunk(() => nix.app(nix.lookup(w, "mkPrefixedAttrsOfParams"), nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             file: nix.thunk(() => nix.app(nix.lookup(w, "mkOptionalStrParam"), "File name in the `rsa` folder for which this passphrase\nshould be used.\n")),
             secret: nix.thunk(() => nix.app(nix.lookup(w, "mkOptionalStrParam"), "Value of decryption passphrase for RSA key.\n")),
           })), "Private key decryption passphrase for a key in the `rsa`\nfolder.\n")),
         ecdsa: nix.thunk(() => nix.app(nix.lookup(w, "mkPrefixedAttrsOfParams"), nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             file: nix.thunk(() => nix.app(nix.lookup(w, "mkOptionalStrParam"), "File name in the `ecdsa` folder for which this\npassphrase should be used.\n")),
             secret: nix.thunk(() => nix.app(nix.lookup(w, "mkOptionalStrParam"), "Value of decryption passphrase for ECDSA key.\n")),
           })), "Private key decryption passphrase for a key in the\n`ecdsa` folder.\n")),
         pkcs8: nix.thunk(() => nix.app(nix.lookup(w, "mkPrefixedAttrsOfParams"), nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             file: nix.thunk(() => nix.app(nix.lookup(w, "mkOptionalStrParam"), "File name in the `pkcs8` folder for which this\npassphrase should be used.\n")),
             secret: nix.thunk(() => nix.app(nix.lookup(w, "mkOptionalStrParam"), "Value of decryption passphrase for PKCS#8 key.\n")),
           })), "Private key decryption passphrase for a key in the\n`pkcs8` folder.\n")),
         pkcs12: nix.thunk(() => nix.app(nix.lookup(w, "mkPrefixedAttrsOfParams"), nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             file: nix.thunk(() => nix.app(nix.lookup(w, "mkOptionalStrParam"), "File name in the `pkcs12` folder for which this\npassphrase should be used.\n")),
             secret: nix.thunk(() => nix.app(nix.lookup(w, "mkOptionalStrParam"), "Value of decryption passphrase for PKCS#12 container.\n")),
           })), "PKCS#12 decryption passphrase for a container in the\n`pkcs12` folder.\n")),
         token: nix.thunk(() => nix.app(nix.lookup(w, "mkPrefixedAttrsOfParams"), nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             handle: nix.thunk(() => nix.app(nix.lookup(w, "mkOptionalHexParam"), "Hex-encoded CKA_ID or handle of the private key on the token or TPM,\nrespectively.\n")),
             slot: nix.thunk(() => nix.app(nix.lookup(w, "mkOptionalIntParam"), "Optional slot number to access the token.\n")),
             module: nix.thunk(() => nix.app(nix.lookup(w, "mkOptionalStrParam"), "Optional PKCS#11 module name to access the token.\n")),
@@ -211,7 +211,7 @@ export default (lib) => (() => {
       };
     })()),
     pools: nix.thunk(() => nix.app(nix.lookup(w, "mkAttrsOfParams"), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         addrs: nix.thunk(() => nix.app(nix.lookup(w, "mkOptionalStrParam"), "Addresses allocated in pool.\n\nSubnet or range defining addresses allocated in pool. Accepts a single CIDR\nsubnet defining the pool to allocate addresses from or an address range\n(<from>-<to>). If the address in CIDR notation is not the network ID of the\nsubnet (e.g. 10.1.0.5/24 instead of 10.1.0.0/24), addresses below it won't\nbe allocated to clients (they could e.g. be assigned manually to internal\nhosts like the VPN server itself). Pools must be unique and non-overlapping\n")),
         dns: nix.thunk(() => nix.app(nix.lookup(w, "mkCommaSepListParam"), [], "Address or CIDR subnets")),
         nbns: nix.thunk(() => nix.app(nix.lookup(w, "mkCommaSepListParam"), [], "Address or CIDR subnets")),

@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const csu = nix.arg($, "csu");
   const headers = nix.arg($, "headers");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       noLibc: true,
       path: "lib/libc",
       pname: "libcMinimal-netbsd",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [headers, csu]),
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-B${csu}/lib -fcommon`),
       })),
       SHLIBINSTALLDIR: "$(out)/lib",
@@ -81,7 +81,7 @@ popd
       postPatch: nix.thunk(() => nix.str`sed -i 's,/usr\\(/include/sys/syscall.h\\),${headers}\\1,g' lib/lib*/sys/Makefile.inc
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "netbsd")),
       })),
     })));

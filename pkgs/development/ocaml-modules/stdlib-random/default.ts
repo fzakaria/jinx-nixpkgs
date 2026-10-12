@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const cppo = nix.arg($, "cppo");
   const version = nix.argOr($, "version", () => "1.2.0");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "stdlib-random",
       version: version,
       minimalOCamlVersion: "4.08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ocaml",
           repo: "stdlib-random",
           tag: version,
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [cppo]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),
         description: "Compatibility library for Random number generation",
         homepage: "https://github.com/ocaml/stdlib-random",

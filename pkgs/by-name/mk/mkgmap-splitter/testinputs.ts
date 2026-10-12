@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
     const res = nix.arg($_1, "res");
     const hash = nix.arg($_1, "hash");
     return nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         hash: hash,
         url: nix.thunk(() => nix.str`https://www.mkgmap.org.uk/testinput/${res}`),
         name: nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["/"]), nix.thunk(() => ["__"]), res)),
@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   })(), formals$2);
   return [
     nix.thunk(() => nix.app(fetchTestInput, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         res: "osm/alaska-2016-12-27.osm.pbf",
         hash: "sha256-9d7DL1+wMVjve/4S/VXbe6wjaJFusfDyfn0FFc4uq0I=",
       })))),
     nix.thunk(() => nix.app(fetchTestInput, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         res: "osm/hamburg-2016-12-26.osm.pbf",
         hash: "sha256-TmvZHZgPevnwOtSB2H8BiYvoxnYpYRKC+KPyrRTxdiE=",
       })))),

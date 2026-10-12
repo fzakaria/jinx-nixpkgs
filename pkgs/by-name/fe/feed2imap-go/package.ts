@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "feed2imap-go",
       version: "1.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Necoro",
           repo: "feed2imap-go",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-3z3SPJ5xsz0LRjzOeOQnAuCpIAAtEkn9itoslvJhmTo=",
       postInstall: "rm -f $out/bin/print-cache\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Uploads rss feeds as e-mails onto an IMAP server",
         mainProgram: "feed2imap-go",
         homepage: "https://github.com/Necoro/feed2imap-go",

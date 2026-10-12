@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "netperf",
       version: "20210121",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "HewlettPackard",
           repo: "netperf",
           rev: "3bc455b23f901dae377ca0a558e1e32aa56b31c4",
@@ -30,13 +30,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fno-common.patch",
             url: "https://github.com/HewlettPackard/netperf/commit/c6a2e17fe35f0e68823451fedfdf5b1dbecddbe3.patch",
             sha256: "P/lRa6EakSalKWDTgZ7bWeGleaTLLa5UhzulxKd1xE4=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "netperf-fix-build-with-gcc15.patch",
             url: "https://salsa.debian.org/debian/netperf/-/raw/a278c7a8eb24cb45dc500393c6e8749a3427f650/debian/patches/0004-Fix-build-with-gcc-15.patch",
             hash: "sha256-fv/cx1rkUQRqyluWQKO5q5sNWPYcyZUz2NNYwalDizQ=",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--enable-demo", "CFLAGS=-D_GNU_SOURCE"]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Benchmark to measure the performance of many different types of networking",
         homepage: "https://github.com/HewlettPackard/netperf/",

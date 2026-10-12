@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const iokitUser = nix.thunk(() => nix.app(sourceRelease, "IOKitUser"));
   const xnu = nix.thunk(() => nix.app(sourceRelease, "xnu"));
   const privateHeaders = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "IOKitTools-deps-private-headers",
       buildCommand: nix.thunk(() => nix.str`install -D -t "$out/include/IOKit/" \\
   '${iokitUser}/IOKitLibPrivate.h' \\
@@ -45,17 +45,17 @@ EOF
 `),
     }))));
   return nix.app(mkAppleDerivation, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       releaseName: "IOKitTools",
       outputs: nix.thunk(() => ["out", "man"]),
       xcodeHash: "sha256-qFG4sB8NXNPTSvYTEX2E1ReOX+NcMBHrS2NuNBLO7zw=",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(apple_sdk, "privateFrameworksHook")), ncurses]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${privateHeaders}/include`),
       })),
-      meta: nix.thunk(() => ({ __proto__: pos$3, description: "IOKit tools" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$3, description: "IOKit tools" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

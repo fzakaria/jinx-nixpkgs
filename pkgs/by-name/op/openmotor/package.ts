@@ -23,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const replaceVars = nix.arg($, "replaceVars");
   const nix_update_script = nix.arg($, "nix-update-script");
-  const pyqt6 = nix.thunk(() => nix.app(nix.sel(python3Packages, "pyqt6", "override"), nix.thunk(() => ({ __proto__: pos$1, withPdf: false }))));
+  const pyqt6 = nix.thunk(() => nix.app(nix.sel(python3Packages, "pyqt6", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withPdf: false }))));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => (() => {
       const pname = "openmotor";
       const version = "0.6.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "reilleya",
           repo: "openMotor",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -81,7 +81,7 @@ substituteInPlace setup.py --replace-fail '@version@' '${version}'
 mkdir -p $out/Applications/openMotor.app/Contents/{MacOS,Resources}
 
 # Install Info.plist
-install -Dm644 ${nix.app(replaceVars, nix.path(here, "./Info.plist"), nix.thunk(() => ({ __proto__: pos$3, version: version })))} $out/Applications/openMotor.app/Contents/Info.plist
+install -Dm644 ${nix.app(replaceVars, nix.path(here, "./Info.plist"), nix.thunk(() => ({ [nix.POS]: pos$3, version: version })))} $out/Applications/openMotor.app/Contents/Info.plist
 
 # Use upstream's .icns icon
 install -Dm644 resources/oMIconCycles.icns $out/Applications/openMotor.app/Contents/Resources/openMotor.icns
@@ -97,7 +97,7 @@ ln -s $out/Applications/openMotor.app/Contents/MacOS/openMotor $out/bin/openMoto
       const pythonImportsCheck = nix.thunk(() => ["motorlib", "uilib"]);
       const desktopItems = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               name: "openmotor",
               exec: "openMotor",
               icon: "openmotor",
@@ -107,11 +107,11 @@ ln -s $out/Applications/openMotor.app/Contents/MacOS/openMotor $out/bin/openMoto
             })))),
         ])));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Open-source internal ballistics simulator for rocket motor experimenters",
         longDescription: "openMotor is an open-source internal ballistics simulator for rocket motor\nexperimenters. The software estimates a rocket motor's chamber pressure and\nthrust based on propellant properties, grain geometry, and nozzle specifications.\nIt uses the Fast Marching Method to determine how a propellant grain regresses,\nwhich allows the use of arbitrary core geometries.\n",
         homepage: "https://github.com/reilleya/openMotor",
@@ -125,7 +125,7 @@ ln -s $out/Applications/openMotor.app/Contents/MacOS/openMotor $out/bin/openMoto
         mainProgram: "openMotor",
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         pyproject,

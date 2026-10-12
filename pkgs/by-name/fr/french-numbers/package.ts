@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchCrate = nix.arg($, "fetchCrate");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "french-numbers",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-6mcqT0RZddHlzjyZzx0JGTfCRcQ2UQ3Qlmk0VVNzsnI=",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-HtgJsvl+BkvTapGxi7B/0QMEUolOw4gGndj4/9w7Z4Y=",
       cargoBuildFlags: nix.thunk(() => ["--features=cli"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Represent numbers in French language",
         homepage: "https://github.com/evenfurther/french-numbers",
         license: nix.thunk(() => (() => {

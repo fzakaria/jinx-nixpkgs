@@ -28,43 +28,43 @@ export default nix.lambda((args) => (() => {
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       boot: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         uvesafb: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(mkEnableOption, "uvesafb")),
           "gfx-mode": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "1024x768-32",
               description: "Screen resolution in modedb format. See [uvesafb](https://docs.kernel.org/fb/uvesafb.html) and [modedb](https://docs.kernel.org/fb/modedb.html) documentation for more details. The default value is a sensible default but may be not ideal for all setups.",
             })))),
           v86d: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             package: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(types, "package")),
                 description: "Which v86d package to use with uvesafb",
                 defaultText: "config.boot.kernelPackages.v86d.overrideAttrs (old: {\n          hardeningDisable = [ \"all\" ];\n        })",
-                default: nix.thunk(() => nix.app(nix.sel(config, "boot", "kernelPackages", "v86d", "overrideAttrs"), (old) => ({ __proto__: pos$2, hardeningDisable: nix.thunk(() => ["all"]) }))),
+                default: nix.thunk(() => nix.app(nix.sel(config, "boot", "kernelPackages", "v86d", "overrideAttrs"), (old) => ({ [nix.POS]: pos$2, hardeningDisable: nix.thunk(() => ["all"]) }))),
               })))),
           })),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         boot: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           initrd: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             kernelModules: nix.thunk(() => ["uvesafb"]),
             extraFiles: nix.thunk(() => ({
-              __proto__: pos$9,
-              "/usr/v86d": nix.thunk(() => ({ __proto__: pos$8, source: nix.thunk(() => nix.sel(cfg, "v86d", "package")) })),
+              [nix.POS]: pos$9,
+              "/usr/v86d": nix.thunk(() => ({ [nix.POS]: pos$8, source: nix.thunk(() => nix.sel(cfg, "v86d", "package")) })),
             })),
           })),
           kernelParams: nix.thunk(() => [

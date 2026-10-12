@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "csv2odf",
       version: "2.09",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/csv2odf/csv2odf-${nix.sel(finalAttrs, "version")}/csv2odf-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "09l0yfay89grjdzap2h11f0hcyn49np5zizg2yyp2aqgjs8ki57p",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w, "setuptools"))];
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://sourceforge.net/p/csv2odf/wiki/Main_Page/",
         description: "Convert csv files to OpenDocument Format",
         mainProgram: "csv2odf",

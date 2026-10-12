@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
   const cudaSupport = nix.argOr($, "cudaSupport", () => nix.sel(config, "cudaSupport"));
   const cudaPackages = nix.arg($, "cudaPackages");
   const autoAddDriverRunpath = nix.arg($, "autoAddDriverRunpath");
-  const effectiveMagma = nix.argOr($, "effectiveMagma", () => (nix.asBool(cudaSupport) ? nix.app(nix.sel(magma_cuda_static, "override"), nix.thunk(() => ({ __proto__: pos$1, cudaPackages: cudaPackages }))) : (nix.asBool(rocmSupport) ? nix.force(magma_hip) : nix.force(magma))));
+  const effectiveMagma = nix.argOr($, "effectiveMagma", () => (nix.asBool(cudaSupport) ? nix.app(nix.sel(magma_cuda_static, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, cudaPackages: cudaPackages }))) : (nix.asBool(rocmSupport) ? nix.force(magma_hip) : nix.force(magma))));
   const magma = nix.arg($, "magma");
   const magma_hip = nix.arg($, "magma-hip");
   const magma_cuda_static = nix.arg($, "magma-cuda-static");
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
   const psutil = nix.arg($, "psutil");
   const tritonSupport = nix.argOr($, "tritonSupport", () => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), triton));
   const triton = nix.arg($, "triton");
-  const _tritonEffective = nix.argOr($, "_tritonEffective", () => (nix.asBool(cudaSupport) ? nix.app(nix.sel(triton_cuda, "override"), nix.thunk(() => ({ __proto__: pos$2, cudaPackages: cudaPackages }))) : nix.force(triton)));
+  const _tritonEffective = nix.argOr($, "_tritonEffective", () => (nix.asBool(cudaSupport) ? nix.app(nix.sel(triton_cuda, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, cudaPackages: cudaPackages }))) : nix.force(triton)));
   const triton_cuda = nix.arg($, "triton-cuda");
   const mklDnnSupport = nix.argOr($, "mklDnnSupport", () => !nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))));
   const blas = nix.arg($, "blas");
@@ -136,7 +136,7 @@ export default nix.lambda((args) => (() => {
   const gpuTargetString = nix.thunk(() => nix.app(nix.sel(strings, "concatStringsSep"), ";", nix.thunk(() => (nix.asBool(!nix.eq(gpuTargets, [])) ? nix.force(gpuTargets) : (nix.asBool(cudaSupport) ? nix.app(gpuArchWarner, supportedCudaCapabilities, unsupportedCudaCapabilities) : (nix.asBool(rocmSupport) ? nix.app(nix.sel(lib, "lists", "subtractLists"), nix.thunk(() => ["gfx1010", "gfx1012"]), nix.thunk(() => nix.selOr(rocmPackages, () => nix.sel(rocmPackages, "clr", "gpuTargets"), "clr", "localGpuTargets"))) : nix.builtins.throw("No GPU targets specified")))))));
   const vendorComposableKernel = nix.thunk(() => (nix.asBool(rocmSupport) && nix.asBool(!nix.asBool(nix.sel(rocmPackages, "composable_kernel", "anyMfmaTarget")))));
   const rocmtoolkit_joined = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "rocm-merged",
       paths: nix.thunk(() => (() => {
         const w = nix.withScope(rocmPackages, null);
@@ -177,7 +177,7 @@ export default nix.lambda((args) => (() => {
       postBuild: "rm -rf $out/nix-support\n",
     }))));
   const brokenConditions = nix.thunk(() => nix.app(nix.sel(attrsets, "filterAttrs"), (_) => (cond) => nix.force(cond), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       "CUDA and ROCm are mutually exclusive": nix.thunk(() => (nix.asBool(cudaSupport) && nix.asBool(rocmSupport))),
       "CUDA is not targeting Linux": nix.thunk(() => (nix.asBool(cudaSupport) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux"))))),
       "Unsupported CUDA version": nix.thunk(() => (nix.asBool(cudaSupport) && nix.asBool(!nix.asBool(nix.builtins.elem(nix.thunk(() => nix.sel(cudaPackages, "cudaMajorVersion")), nix.thunk(() => ["11", "12", "13"])))))),
@@ -198,8 +198,8 @@ echo "# Update using: unroll-src [version]"
 `)));
   const stdenv$ = nix.thunk(() => (nix.asBool(cudaSupport) ? nix.sel(cudaPackages, "backendStdenv") : nix.force(stdenv)));
   const stdenv_1 = stdenv$;
-  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ __proto__: pos$5, stdenv: stdenv_1 })), (finalAttrs) => ({
-      __proto__: pos$14,
+  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, stdenv: stdenv_1 })), (finalAttrs) => ({
+      [nix.POS]: pos$14,
       pname: "torch",
       version: "2.13.0",
       pyproject: true,
@@ -207,7 +207,7 @@ echo "# Update using: unroll-src [version]"
       outputs: nix.thunk(() => ["out", "dev", "lib", "cxxdev"]),
       cudaPropagateToOutput: "cxxdev",
       src: nix.thunk(() => nix.app(callPackage, nix.path(here, "./src.nix"), nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           fetchFromGitHub: fetchFromGitHub,
           fetchFromGitLab: fetchFromGitLab,
           runCommand: runCommand,
@@ -218,7 +218,7 @@ echo "# Update using: unroll-src [version]"
           nix.path(here, "./forward-cupti-env-vars.patch"),
           nix.path(here, "./nvtx3-hpp-path-fix.patch"),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               name: "avoid-duplicate-sm_103-codegen.patch",
               url: "https://github.com/pytorch/pytorch/commit/94079bfd49e1d8a458a8d7714a8bf7379bba947a.patch",
               hash: "sha256-PFj8RihqeKTAogoCt59ikTbQ8wwpPJvUXGFlpBs8gE0=",
@@ -254,7 +254,7 @@ python tools/amd_build/build_amd.py
       dontUseCmakeConfigure: true,
       hardeningDisable: nix.thunk(() => ["fortify3"]),
       env: nix.thunk(() => nix.update({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         BUILD_NAMEDTENSOR: nix.thunk(() => nix.app(setBool, true)),
         BUILD_DOCS: nix.thunk(() => nix.app(setBool, buildDocs)),
         BUILD_TEST: nix.thunk(() => nix.app(setBool, false)),
@@ -274,8 +274,8 @@ python tools/amd_build/build_amd.py
         PYTHON_LIB_REL_PATH: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/${nix.sel(python, "sitePackages")}`),
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(["-Wno-error"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv_1, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv_1, "hostPlatform", "isAarch64")))), nix.thunk(() => ["-Wno-error=incompatible-pointer-types"])))))),
         USE_VULKAN: nix.thunk(() => nix.app(setBool, vulkanSupport)),
-      }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), vulkanSupport, nix.thunk(() => ({ __proto__: pos$9, VULKAN_SDK: nix.thunk(() => nix.sel(shaderc, "bin")) }))), nix.app(nix.sel(lib, "optionalAttrs"), rocmSupport, nix.thunk(() => ({
-          __proto__: pos$10,
+      }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), vulkanSupport, nix.thunk(() => ({ [nix.POS]: pos$9, VULKAN_SDK: nix.thunk(() => nix.sel(shaderc, "bin")) }))), nix.app(nix.sel(lib, "optionalAttrs"), rocmSupport, nix.thunk(() => ({
+          [nix.POS]: pos$10,
           AOTRITON_INSTALLED_PREFIX: nix.thunk(() => nix.str`${nix.sel(rocmPackages, "aotriton")}`),
           BUILD_AOTRITON_INTO_WHEEL: false,
           USE_FBGEMM_GENAI: nix.thunk(() => nix.app(setBool, false)),
@@ -396,7 +396,7 @@ substituteInPlace $dev/share/cmake/ATen/ATenConfig.cmake \\
       postPatchelfPhase: "while IFS= read -r -d $'\\0' elf ; do\n  for extra in $extraRunpaths ; do\n    echo patchelf \"$elf\" --add-rpath \"$extra\" >&2\n    patchelf \"$elf\" --add-rpath \"$extra\"\n  done\ndone < <(\n  find \"${!outputLib}\" \"$out\" -type f -iname '*.so' -print0\n)\n",
       requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         cudaSupport: cudaSupport,
         cudaPackages: cudaPackages,
         rocmSupport: rocmSupport,
@@ -408,10 +408,10 @@ substituteInPlace $dev/share/cmake/ATen/ATenConfig.cmake \\
         blasProvider: nix.thunk(() => nix.sel(blas, "provider")),
         triton: _tritonEffective,
         brokenConditions: brokenConditions,
-        tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "../tests"), nix.thunk(() => ({ __proto__: pos$11, rocmSupport: rocmSupport, cudaSupport: cudaSupport })))),
+        tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "../tests"), nix.thunk(() => ({ [nix.POS]: pos$11, rocmSupport: rocmSupport, cudaSupport: cudaSupport })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         changelog: nix.thunk(() => nix.str`https://github.com/pytorch/pytorch/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "PyTorch: Tensors and Dynamic neural networks in Python with strong GPU acceleration",
         homepage: "https://pytorch.org/",

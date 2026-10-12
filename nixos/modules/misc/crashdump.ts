@@ -21,27 +21,27 @@ export default nix.lambda((args) => (() => {
   const crashdump = nix.thunk(() => nix.sel(config, "boot", "crashDump"));
   const kernelParams = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.sel(crashdump, "kernelParams"))));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       boot: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         crashDump: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "If enabled, NixOS will set up a kernel that will\nboot on crash, and leave the user in systemd rescue\nto be able to save the crashed kernel dump at\n/proc/vmcore.\nIt also activates the NMI watchdog.\n",
             })))),
           reservedMemory: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: "128M",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "The amount of memory reserved for the crashdump kernel.\nIf you choose a too high value, dmesg will mention\n\"crashkernel reservation failed\".\n",
             })))),
           kernelParams: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => ["1", "boot.shell_on_fail"]),
               description: "Parameters that will be passed to the kernel kexec-ed on crash.\n",
@@ -50,9 +50,9 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(crashdump, "enable")), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         boot: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           postBootCommands: nix.thunk(() => nix.str`echo "loading crashdump kernel...";
 ${nix.sel(pkgs, "kexec-tools")}/sbin/kexec -p /run/current-system/kernel \\
 --initrd=/run/current-system/initrd \\

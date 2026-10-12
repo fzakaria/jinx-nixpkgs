@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "opsdroid_get_image_size",
           version: version,
           hash: "sha256-Cp2tvsdCZ+/86DF7FRNwx5diGcUWLYcFwQns7nYXkog=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["get_image_size"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Get image width and height given a file path using minimal dependencies",
         homepage: "https://github.com/opsdroid/image_size",
         changelog: nix.thunk(() => nix.str`https://github.com/opsdroid/image_size/releases/tag/${version}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "get-image-size",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

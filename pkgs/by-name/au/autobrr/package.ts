@@ -29,21 +29,21 @@ export default nix.lambda((args) => (() => {
   const pname = "autobrr";
   const version = "1.88.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "autobrr",
       repo: "autobrr",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-ossNvYwx4DSmcBlmyQBa8R9PMwFpy7+ywL6DupNfBVs=",
     }))));
   const autobrr_web = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.str`${pname}-web`),
       src: src,
       version: version,
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpmConfigHook, pnpm_11]),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/web`),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(autobrr_web, "pname")),
           version: nix.thunk(() => nix.attr(autobrr_web, "version")),
           src: nix.thunk(() => nix.attr(autobrr_web, "src")),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "cp -r dist $out\n",
     }))));
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: pname,
       version: version,
       src: src,
@@ -73,19 +73,19 @@ export default nix.lambda((args) => (() => {
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/autobrrctl`),
       versionCheckProgramArg: "version",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         "autobrr-web": autobrr_web,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             extraArgs: nix.thunk(() => ["--subpackage", "autobrr-web"]),
           })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           testService: nix.thunk(() => nix.sel(nixosTests, "autobrr")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Modern, easy to use download automation for torrents and usenet",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         homepage: "https://autobrr.com/",

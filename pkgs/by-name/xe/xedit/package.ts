@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "xedit";
       const version = "1.2.5";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "xorg/app",
           repo: "xedit",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         "--with-appdefaultdir=$out/share/X11/app-defaults",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple graphical text editor using Athena Widgets (Xaw)",
         homepage: "https://gitlab.freedesktop.org/xorg/app/xedit",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "xedit",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

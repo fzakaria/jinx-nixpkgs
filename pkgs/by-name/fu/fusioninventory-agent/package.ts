@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "fusioninventory-agent";
       const version = "2.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fusioninventory",
           repo: "fusioninventory-agent",
           rev: version,
@@ -90,14 +90,14 @@ done
 `);
       const outputs = nix.thunk(() => ["out"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.fusioninventory.org",
         description: "FusionInventory unified Agent for UNIX, Linux, Windows and MacOSX",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "phile314"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mpich";
       const version = "5.0.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.mpich.org/static/downloads/${version}/mpich-${version}.tar.gz`),
           hash: "sha256-kowvGNNQqRRD/oAkrQHOLGAJ6cVR4Kc+eX/FZ/EZE30=",
         }))));
@@ -74,7 +74,7 @@ remove-references-to \\
   $(find "$bin"/bin -type f)
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => (nix.asBool(pmixSupport) && nix.asBool(!nix.eq(withPm, [])))),
         description: "Implementation of the Message Passing Interface (MPI) standard",
         longDescription: "MPICH2 is a free high-performance and portable implementation of\nthe Message Passing Interface (MPI) standard, both version 1 and\nversion 2.\n",
@@ -84,7 +84,7 @@ remove-references-to \\
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

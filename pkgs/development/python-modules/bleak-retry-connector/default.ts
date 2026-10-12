@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pytest_cov_stub = nix.arg($, "pytest-cov-stub");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bleak-retry-connector",
       version: "4.7.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Bluetooth-Devices",
           repo: "bleak-retry-connector",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")),
       pythonImportsCheck: nix.thunk(() => ["bleak_retry_connector"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Connector for Bleak Clients that handles transient connection failures",
         homepage: "https://github.com/bluetooth-devices/bleak-retry-connector",
         changelog: nix.thunk(() => nix.str`https://github.com/Bluetooth-Devices/bleak-retry-connector/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

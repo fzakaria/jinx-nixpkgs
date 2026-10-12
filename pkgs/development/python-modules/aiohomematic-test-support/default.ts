@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(aiohomematic, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Support-only package for AioHomematic (tests/dev)",
         homepage: "https://github.com/SukramJ/aiohomematic/tree/devel/aiohomematic_test_support",
         license: nix.thunk(() => nix.attr(from, "license")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         version,
         src,

@@ -38,12 +38,12 @@ export default nix.lambda((args) => (() => {
   const sparsehash = nix.arg($, "sparsehash");
   const pybind11 = nix.arg($, "pybind11");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "python-mapnik",
       version: "4.1.3.unstable-2025-09-25",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mapnik",
           repo: "python-mapnik",
           rev: "4b51d57911dc6a1a9f35c62c681fbdeb56fc69d4",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
           fetchSubmodules: true,
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./find-libmapnik.patch"), nix.thunk(() => ({ __proto__: pos$2, libmapnik: nix.thunk(() => nix.str`${mapnik}/lib`) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./find-libmapnik.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, libmapnik: nix.thunk(() => nix.str`${mapnik}/lib`) })))),
       ]),
       "build-system": nix.thunk(() => [setuptools]),
       nativeBuildInputs: nix.thunk(() => [mapnik, pkg_config, pybind11]),
@@ -100,7 +100,7 @@ export XMLPARSER=libxml2
         ])))),
       pythonImportsCheck: nix.thunk(() => ["mapnik"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python bindings for Mapnik",
         homepage: "https://mapnik.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

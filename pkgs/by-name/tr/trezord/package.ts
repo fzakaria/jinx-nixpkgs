@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.33";
       const commit = "2680d5e";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "trezor",
           repo: "trezord-go",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-wXgAmZEXdM4FcMCQbAs+ydXshCAMu7nl/yVv/3sqaXE=";
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/trezor/trezord-go/commit/616473d53a8ae49f1099e36ab05a2981a08fa606.patch",
             hash: "sha256-yKTwgqWr4L6XEPV85A6D1wpRdpef8hkIbl4LrRmOyuo=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/trezor/trezord-go/commit/8ca9600d176bebf6cd2ad93ee9525a04059ee735.patch",
             hash: "sha256-jW+x/FBFEIlRGTDHWF2Oj+05KmFLtFDGJwfYFx7yTv4=",
           })))),
@@ -48,11 +48,11 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [trezor_udev_rules])));
       const ldflags = nix.thunk(() => ["-s", "-w", nix.thunk(() => nix.str`-X main.githash=${commit}`)]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
-        tests: nix.thunk(() => ({ __proto__: pos$4, trezord: nix.thunk(() => nix.attr(nixosTests, "trezord")) })),
+        [nix.POS]: pos$5,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$4, trezord: nix.thunk(() => nix.attr(nixosTests, "trezord")) })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Trezor Communication Daemon aka Trezor Bridge",
         homepage: "https://trezor.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "trezord-go",
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         commit,

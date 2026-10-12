@@ -25,39 +25,39 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     name: "chipass",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "provokateurin"))]),
         timeout: 1800n,
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           imports: nix.thunk(() => [
             nix.path(here, "./common/user-account.nix"),
             nix.path(here, "./common/x11.nix"),
           ]),
           services: nix.thunk(() => ({
-            __proto__: pos$3,
-            xserver: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+            [nix.POS]: pos$3,
+            xserver: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
           })),
           programs: nix.thunk(() => ({
-            __proto__: pos$5,
-            dconf: nix.thunk(() => ({ __proto__: pos$4, enable: true })),
+            [nix.POS]: pos$5,
+            dconf: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             etc: nix.thunk(() => ({
-              __proto__: pos$7,
-              "icewm/prefoverride": nix.thunk(() => ({ __proto__: pos$6, text: "ColorActiveTitleBar = \"rgb:FF/FF/FF\"\n" })),
+              [nix.POS]: pos$7,
+              "icewm/prefoverride": nix.thunk(() => ({ [nix.POS]: pos$6, text: "ColorActiveTitleBar = \"rgb:FF/FF/FF\"\n" })),
             })),
             systemPackages: nix.thunk(() => (() => {
               const w_1 = nix.withScope(pkgs, null);
@@ -68,16 +68,16 @@ export default nix.lambda((args) => (() => {
             })()),
           })),
           qt: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             enable: true,
             platformTheme: "gnome",
             style: "adwaita-dark",
           })),
           "test-support": nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             displayManager: nix.thunk(() => ({
-              __proto__: pos$11,
-              auto: nix.thunk(() => ({ __proto__: pos$10, user: "alice" })),
+              [nix.POS]: pos$11,
+              auto: nix.thunk(() => ({ [nix.POS]: pos$10, user: "alice" })),
             })),
           })),
         };

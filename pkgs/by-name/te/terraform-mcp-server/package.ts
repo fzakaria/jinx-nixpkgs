@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "terraform-mcp-server",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hashicorp",
           repo: "terraform-mcp-server",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Terraform Model Context Protocol (MCP) Server",
         longDescription: "The Terraform MCP Server is a Go implementation of the Model Context\nProtocol (MCP) server that provides seamless integration with Terraform\nRegistry APIs, enabling advanced automation and interaction capabilities\nfor developers and tools.\n\nThis server allows LLMs to interact with Terraform modules, providers,\nand other Terraform Registry features through structured API interactions.\n",
         homepage: "https://github.com/hashicorp/terraform-mcp-server",

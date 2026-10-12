@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
     return (nix.asBool(nix.sel(hostPlatform, "isAarch32")) ? "arm" : (nix.asBool(nix.sel(hostPlatform, "isAarch64")) ? "arm64" : (nix.asBool(nix.sel(hostPlatform, "isx86_32")) ? "x86" : (nix.asBool(nix.sel(hostPlatform, "isx86_64")) ? "x86-64" : (nix.asBool(nix.sel(hostPlatform, "isMips32")) ? "mips-le" : (nix.asBool(nix.sel(hostPlatform, "isMips64")) ? "mips64-le" : (nix.asBool(nix.sel(hostPlatform, "isPower")) ? "ppc" : (nix.asBool(nix.sel(hostPlatform, "isPower64")) ? "ppc64" : (nix.asBool(nix.sel(hostPlatform, "isRiscV32")) ? "riscv32" : (nix.asBool(nix.sel(hostPlatform, "isRiscV64")) ? "riscv64" : (nix.asBool(nix.sel(hostPlatform, "isS390")) ? "s390" : (nix.asBool(nix.sel(hostPlatform, "isS390x")) ? "s390x" : (nix.asBool(nix.sel(hostPlatform, "isLoongArch64")) ? "loongarch64" : (nix.asBool(nix.sel(hostPlatform, "isAlpha")) ? "alpha" : nix.sel(hostPlatform, "parsed", "cpu", "name")))))))))))))));
   })());
   const amendRepartDefinitions = nix.thunk(() => nix.app(runCommand, "amend-repart-definitions.py", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       depsBuildBuild: nix.thunk(() => [ruff]),
       nativeBuildInputs: nix.thunk(() => [python3, mypy]),
     })), nix.thunk(() => nix.str`install ${nix.path(here, "./amend-repart-definitions.py")} $out
@@ -64,7 +64,7 @@ ruff check $out
 mypy --strict $out
 `)));
   const fileSystemToolMapping = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     vfat: nix.thunk(() => [dosfstools, mtools]),
     ext4: nix.thunk(() => [nix.thunk(() => nix.sel(e2fsprogs, "bin"))]),
     squashfs: nix.thunk(() => [squashfs_tools]),
@@ -75,17 +75,17 @@ mypy --strict $out
     empty: [],
   }));
   const fileSystemTools = nix.thunk(() => nix.builtins.concatMap((f) => nix.sel(fileSystemToolMapping, nix.key(nix.str`${f}`)), fileSystems));
-  const compressionPkg = nix.thunk(() => nix.sel({ __proto__: pos$3, zstd: zstd, xz: xz, "zstd-seekable": zeekstd }, nix.key(nix.str`${nix.sel(compression, "algorithm")}`)));
+  const compressionPkg = nix.thunk(() => nix.sel({ [nix.POS]: pos$3, zstd: zstd, xz: xz, "zstd-seekable": zeekstd }, nix.key(nix.str`${nix.sel(compression, "algorithm")}`)));
   const compressionCommand = nix.thunk(() => nix.sel({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     zstd: nix.thunk(() => nix.str`zstd --no-progress --threads=$NIX_BUILD_CORES -${nix.builtins.toString(nix.thunk(() => nix.sel(compression, "level")))}`),
     xz: nix.thunk(() => nix.str`xz --keep --verbose --threads=$NIX_BUILD_CORES -${nix.builtins.toString(nix.thunk(() => nix.sel(compression, "level")))}`),
     "zstd-seekable": nix.thunk(() => nix.str`zeekstd --no-progress --frame-size 2M --compression-level ${nix.builtins.toString(nix.thunk(() => nix.sel(compression, "level")))}`),
   }, nix.key(nix.str`${nix.sel(compression, "algorithm")}`)));
-  return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => nix.update((nix.asBool(!nix.eq(version, null)) ? { __proto__: pos$5, pname: name, version: version } : { __proto__: pos$6, name: name }), {
-      __proto__: pos$9,
+  return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => nix.update((nix.asBool(!nix.eq(version, null)) ? { [nix.POS]: pos$5, pname: name, version: version } : { [nix.POS]: pos$6, name: name }), {
+      [nix.POS]: pos$9,
       __structuredAttrs: true,
-      unsafeDiscardReferences: nix.thunk(() => ({ __proto__: pos$7, out: true })),
+      unsafeDiscardReferences: nix.thunk(() => ({ [nix.POS]: pos$7, out: true })),
       nativeBuildInputs: nix.thunk(() => nix.concat([systemd, util_linux, fakeroot], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(compression, "enable")), nix.thunk(() => [compressionPkg])), fileSystemTools))),
       env: mkfsEnv,
       finalPartitions: finalPartitions,
@@ -130,7 +130,7 @@ done
 
 runHook postInstall
 `)),
-      passthru: nix.thunk(() => ({ __proto__: pos$8, amendRepartDefinitions: amendRepartDefinitions })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$8, amendRepartDefinitions: amendRepartDefinitions })),
     }));
 })(), formals$1);
 //# sourceMappingURL=repart-image.ts.map

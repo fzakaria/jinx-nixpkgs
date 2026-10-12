@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "midicsv",
       version: "1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.fourmilab.ch/webtools/midicsv/midicsv-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1vvhk2nf9ilfw0wchmxy8l13hbw9cnpz079nsx5srsy4nnd78nkw",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
   --replace gcc "${nix.sel(stdenv, "cc", "targetPrefix")}cc"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Losslessly translate MIDI to CSV and back",
         homepage: "https://www.fourmilab.ch/webtools/midicsv/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),

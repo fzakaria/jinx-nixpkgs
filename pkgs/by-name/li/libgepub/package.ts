@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libgepub";
       const version = "0.7.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libgepub/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/libgepub-${version}.tar.xz`),
           sha256: "WlZpWqipEy1nwHkqQPJSzgpI2dAytOGops6YrxT9Xhs=",
         }))));
@@ -36,18 +36,18 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [glib, webkitgtk_4_1, libsoup_3, libxml2, libarchive]);
       const doCheck = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: pname, versionPolicy: "none" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: pname, versionPolicy: "none" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "GObject based library for handling and rendering epub documents",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

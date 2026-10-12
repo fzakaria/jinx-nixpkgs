@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "flyway",
       version: "13.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/flyway/flyway/releases/download/flyway-${nix.sel(finalAttrs, "version")}/flyway-commandline-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-uEZCZtG4YzTBcEPvG9T9YbALbQnNfU4HFeS6MAaD2kM=",
         })))),
@@ -42,17 +42,17 @@ makeWrapper "${jre_headless}/bin/java" $out/bin/flyway \\
   --add-flags "org.flywaydb.commandline.Main"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Evolve your Database Schema easily and reliably across all your instances",
         longDescription: "The Flyway command-line tool is a standalone Flyway distribution.\nIt is primarily meant for users who wish to migrate their database from the command-line\nwithout having to integrate Flyway into their applications nor having to install a build tool.\n\nThis package is only the Community Edition of the Flyway command-line tool.\n",
         mainProgram: "flyway",

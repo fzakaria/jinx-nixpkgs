@@ -17,30 +17,30 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   const py = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       packageOverrides: (self) => (super$) => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "cyclonedx-python-lib": nix.thunk(() => nix.app(nix.sel(super$, "cyclonedx-python-lib", "overridePythonAttrs"), (oldAttrs) => (() => {
             const version = "7.6.2";
             const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 owner: "CycloneDX",
                 repo: "cyclonedx-python-lib",
                 tag: nix.thunk(() => nix.str`v${version}`),
                 hash: "sha256-nklizCiu7Nmynjd5WU5oX/v2TWy9xFVF4GkmCwFKZLI=",
               }))));
             const postPatch = "find . -name '*.py' | xargs -I{} sed -i \\\n  -e 's/serializable\\./py_serializable\\./g' \\\n  -e 's/@serializable/@py_serializable/g' \\\n  -e 's/from serializable/from py_serializable/g' \\\n  -e 's/import serializable/import py_serializable/g' \\\n  {}\n";
-            return { __proto__: pos$2, version, src, postPatch };
+            return { [nix.POS]: pos$2, version, src, postPatch };
           })())),
       }),
     }))));
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "checkov",
       version: "3.3.9",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "bridgecrewio",
           repo: "checkov",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -177,7 +177,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["checkov"]),
       postInstall: "chmod +x $out/bin/checkov\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Static code analysis tool for infrastructure-as-code",
         homepage: "https://github.com/bridgecrewio/checkov",
         changelog: nix.thunk(() => nix.str`https://github.com/bridgecrewio/checkov/releases/tag/${nix.sel(finalAttrs, "version")}`),

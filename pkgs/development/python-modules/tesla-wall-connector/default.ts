@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "einarhauks",
           repo: "tesla-wall-connector",
           tag: version,
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [aresponses, pytest_asyncio, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["tesla_wall_connector"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for communicating with a Tesla Wall Connector",
         homepage: "https://github.com/einarhauks/tesla-wall-connector",
         changelog: nix.thunk(() => nix.str`https://github.com/einarhauks/tesla-wall-connector/releases/tag/${nix.sel(src, "tag")}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

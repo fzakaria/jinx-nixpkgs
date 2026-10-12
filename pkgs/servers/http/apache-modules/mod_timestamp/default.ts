@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mod_timestamp";
       const version = "0.2.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://redwax.eu/dist/rs/${pname}-${version}.tar.gz`),
           hash: "sha256-X49gJ1wQtwQT3GOZkluxdMIY2ZRpM9Y7DZln6Ag9DvM=",
         }))));
@@ -34,17 +34,17 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./0001-DEFINE_STACK_OF-EVP_MD-seems-to-have-gone-recreate-i.patch"),
       ]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ["-Wno-error=int-conversion", "-Wno-error=implicit-function-declaration"]))))),
       }));
       const configureFlags = nix.thunk(() => nix.attr(mod_ca, "configureFlags"));
       const installFlags = nix.thunk(() => nix.attr(mod_ca, "installFlags"));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ __proto__: pos$3, url: "https://redwax.eu/dist/rs/" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, url: "https://redwax.eu/dist/rs/" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "RedWax CA service module for issuing signed timestamps",
         homepage: "https://redwax.eu",
         changelog: "https://source.redwax.eu/projects/RS/repos/mod_timestamp/browse/ChangeLog",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

@@ -26,14 +26,14 @@ export default nix.lambda((args) => (() => {
       const version = "2.7.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pygfx",
           repo: "rendercanvas",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-ht9oFB1pQu+NGQ7CIE+5iWM6NSd8gpgrSgeclGDZJDs=",
         }))));
       const postPatch = "rm -r rendercanvas/__pyinstaller\n";
-      const env = nix.thunk(() => ({ __proto__: pos$2, CI: "1" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, CI: "1" }));
       const build_system = nix.thunk(() => [flit_core]);
       const dependencies = nix.thunk(() => [numpy]);
       const nativeCheckInputs = nix.thunk(() => [
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         imageio,
         numpy,
         trio,
-        nix.thunk(() => nix.app(nix.sel(wgpu, "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$3, doInstallCheck: false })))),
+        nix.thunk(() => nix.app(nix.sel(wgpu, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$3, doInstallCheck: false })))),
       ]);
       const disabledTests = nix.thunk(() => [
         "test_offscreen_event_loop",
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/test_loop.py", "tests/test_scheduling.py"]);
       const pythonImportsCheck = nix.thunk(() => ["rendercanvas"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "One canvas API, multiple backends",
         homepage: "https://github.com/pygfx/rendercanvas",
         changelog: nix.thunk(() => nix.str`https://github.com/pygfx/rendercanvas/releases/tag/${nix.sel(src, "tag")}`),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "bengsparks"))]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

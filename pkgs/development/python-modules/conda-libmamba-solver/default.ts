@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const zstandard = nix.arg($, "zstandard");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "conda-libmamba-solver",
       version: "26.4.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "conda",
           repo: "conda-libmamba-solver",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [boltons, libmambapy, msgpack, requests, zstandard]),
       pythonRemoveDeps: nix.thunk(() => ["conda"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Libmamba based solver for conda",
         homepage: "https://github.com/conda/conda-libmamba-solver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

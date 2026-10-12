@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const linphoneSdkVersion = nix.arg($, "linphoneSdkVersion");
   const linphoneSdkHash = nix.arg($, "linphoneSdkHash");
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "BelledonneCommunications",
       repo: "linphone-sdk",
       tag: linphoneSdkVersion,
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       postFetch: "cd $out\ngit remote add origin https://github.com/BelledonneCommunications/linphone-sdk.git\ngit reset --hard HEAD\n# `external` submodules are hardcoded to resolve to BC's Gitlab instance,\n# however, since we manually package all required external modules anyway,\n# we do not need to also fetch them here.\n#\n# We also use `--jobs 1` to avoid hitting BC's rate limit for the handful of\n# hardcoded submodules that we _do_ need.\nfor submodule in $(git config --file .gitmodules --get-regexp path | awk '{print $2}' | grep -v '^external/.*$'); do\n  git submodule update --init --recursive --jobs 1 \"$submodule\"\ndone\nfind \"$out\" -name .git -type d -print0 | xargs -0 rm -rf\n",
     }))));
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
       excludeDrvArgNames: nix.thunk(() => ["sourceRoot", "version"]),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -37,14 +37,14 @@ export default nix.lambda((args) => (() => {
         const nativeBuildInputs = nix.argOr($_1, "nativeBuildInputs", () => []);
         const cmakeFlags = nix.argOr($_1, "cmakeFlags", () => []);
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: linphoneSdkVersion,
           src: src,
           nativeBuildInputs: nix.thunk(() => nix.concat([cmake], nativeBuildInputs)),
           sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/${sourceRoot}`),
           cmakeFlags: nix.thunk(() => nix.concat(["-DBUILD_SHARED_LIBS=ON"], cmakeFlags)),
           meta: nix.thunk(() => nix.update({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             homepage: "https://gitlab.linphone.org/BC/public/linphone-sdk",
             maintainers: nix.thunk(() => [
               nix.thunk(() => nix.sel(lib, "maintainers", "jluttine")),

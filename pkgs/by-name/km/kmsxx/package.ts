@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const withPython = nix.argOr($, "withPython", () => false);
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kmsxx",
       version: "2021-07-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tomba",
           repo: "kmsxx",
           fetchSubmodules: true,
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       dontUseCmakeConfigure: true,
       mesonFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withPython)), "-Dpykms=disabled")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C++11 library, utilities and python bindings for Linux kernel mode setting",
         homepage: "https://github.com/tomba/kmsxx",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

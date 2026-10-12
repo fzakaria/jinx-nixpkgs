@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const isAarch64 = nix.thunk(() => nix.attr(from, "isAarch64"));
   const isAarch64Linux = nix.thunk(() => (nix.asBool(isLinux) && nix.asBool(isAarch64)));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "translatehtml",
       version: "1.5.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "argosopentech",
           repo: "translate-html",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [writableTmpDirAsHomeHook]),
       doCheck: nix.thunk(() => !nix.asBool(isAarch64Linux)),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Translate HTML using Beautiful Soup and Argos Translate",
         homepage: "https://www.argosopentech.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

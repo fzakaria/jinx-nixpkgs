@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "prpll",
       version: "0.15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "preda",
           repo: "gpuowl",
           tag: nix.thunk(() => nix.str`v/prpll/${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace src/common.h \\\n  --replace-fail \"__float128\" \"_Float128\"\n",
       installPhase: "runHook preInstall\n\ninstallBin build-release/prpll\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Probable Prime and Lucas-Lehmer mersenne categorizer",
         longDescription: "PRPLL implements two primality tests for Mersenne numbers: PRP (\"PRobable Prime\") and LL (\"Lucas-Lehmer\") as\nthe name suggests.\nPRPLL is an OpenCL (GPU) program for primality testing Mersenne numbers.\n",
         homepage: "https://github.com/preda/gpuowl",

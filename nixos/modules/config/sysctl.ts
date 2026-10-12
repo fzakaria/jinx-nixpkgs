@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const sysctlOption = nix.thunk(() => nix.app(nix.sel(lib, "mkOptionType"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "sysctl option value",
       check: (val) => (() => {
         const checkType = (x) => (nix.asBool((nix.asBool((nix.asBool(nix.app(nix.sel(lib, "isBool"), x)) || nix.asBool(nix.app(nix.sel(lib, "isString"), x)))) || nix.asBool(nix.app(nix.sel(lib, "isInt"), x)))) || nix.asBool(nix.eq(x, null)));
@@ -42,33 +42,33 @@ export default nix.lambda((args) => (() => {
       merge: (loc) => (defs) => nix.app(nix.sel(lib, "mergeOneOption"), loc, defs),
     }))));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       boot: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         kernel: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           sysctl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => (() => {
                 const highestValueType = nix.thunk(() => nix.update(nix.sel(lib, "types", "ints", "unsigned"), {
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   merge: (loc) => (defs) => nix.app(nix.sel(lib, "foldl"), (a) => (b) => (nix.asBool(nix.eq(nix.sel(b, "value"), null)) ? null : nix.app(nix.sel(lib, "max"), a, nix.thunk(() => nix.sel(b, "value")))), 0n, defs),
                 }));
                 return nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     freeformType: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), sysctlOption)),
                     options: nix.thunk(() => ({
-                      __proto__: pos$5,
+                      [nix.POS]: pos$5,
                       "net.core.rmem_max": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$3,
+                          [nix.POS]: pos$3,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), highestValueType)),
                           default: null,
                           description: "The maximum receive socket buffer size in bytes. In case of conflicting values, the highest will be used.",
                         })))),
                       "net.core.wmem_max": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), highestValueType)),
                           default: null,
                           description: "The maximum send socket buffer size in bytes. In case of conflicting values, the highest will be used.",
@@ -84,34 +84,34 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       environment: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         etc: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           "sysctl.d/55-nixos-aslr-entropy.conf": nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             source: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "55-nixos-aslr-entropy.conf", nix.thunk(() => (() => {
                 const from = nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "kernel"));
-                return { __proto__: pos$11, configfile: nix.thunk(() => nix.attr(from, "configfile")) };
+                return { [nix.POS]: pos$11, configfile: nix.thunk(() => nix.attr(from, "configfile")) };
               })()), nix.thunk(() => nix.add("set +e\nmmap_rnd_bits_max=$(grep \"^CONFIG_ARCH_MMAP_RND_BITS_MAX=\" $configfile | grep --only-matching \"[0-9]*$\")\nset -e\nif [[ -z \"$mmap_rnd_bits_max\" ]]; then\n  echo \"Unable to determine mmap_rnd_bits_max. Check your kernel configfile is valid.\"\n  exit 1\nfi\necho \"vm.mmap_rnd_bits=$mmap_rnd_bits_max\" >> $out\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform")), null);
                   return (nix.asBool(!nix.asBool(nix.lookup(w, "is32bit"))) && nix.asBool(!nix.asBool(nix.lookup(w, "isLoongArch64"))));
                 })()), "set +e\nmmap_rnd_compat_bits_max=$(grep \"^CONFIG_ARCH_MMAP_RND_COMPAT_BITS_MAX=\" $configfile | grep --only-matching \"[0-9]*$\")\nset -e\nif [[ -z \"$mmap_rnd_compat_bits_max\" ]]; then\n  echo \"Unable to determine mmap_rnd_compat_bits_max. Check your kernel configfile is valid.\"\n  exit 1\nfi\necho \"vm.mmap_rnd_compat_bits=$mmap_rnd_compat_bits_max\" >> $out\n"))))),
           })),
           "sysctl.d/60-nixos.conf": nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             text: nix.thunk(() => nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (n) => (v) => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(v, null)), nix.thunk(() => nix.str`${n}=${(nix.asBool(nix.eq(v, false)) ? "0" : nix.builtins.toString(v))}
 `)), nix.thunk(() => nix.sel(config, "boot", "kernel", "sysctl")))))),
           })),
         })),
       })),
       systemd: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         services: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           "systemd-sysctl": nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             wantedBy: nix.thunk(() => ["multi-user.target"]),
             restartTriggers: nix.thunk(() => [
               nix.thunk(() => nix.sel(config, "environment", "etc", "sysctl.d/60-nixos.conf", "source")),
@@ -120,11 +120,11 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       boot: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         kernel: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           sysctl: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             "kernel.kptr_restrict": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 1n)),
             "vm.max_map_count": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 1048576n)),
             "fs.inotify.max_user_instances": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 524288n)),

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const ruby = nix.arg($, "ruby");
   const rubyEnv = nix.thunk(() => nix.app(nix.sel(ruby, "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "snmp"))]));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "snmpcheck",
       version: "1.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.nothink.org/codes/snmpcheck/snmpcheck-${nix.sel(finalAttrs, "version")}.rb`),
           sha256: "sha256-9xkLqbgxU1uykx+M9QsbPAH8OI/Cqn9uw6ALe23Lbq0=",
           executable: true,
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(rubyEnv, "wrappedRuby"))]),
       installPhase: "mkdir -p $out/bin\ncp $src $out/bin/snmp-check\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SNMP enumerator",
         homepage: "http://www.nothink.org/codes/snmpcheck/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

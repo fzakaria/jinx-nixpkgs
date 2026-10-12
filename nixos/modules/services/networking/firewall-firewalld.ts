@@ -23,32 +23,32 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "networking", "firewall"));
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enable")) && nix.asBool(nix.eq(nix.sel(cfg, "backend"), "firewalld")))), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             assertion: nix.thunk(() => nix.eq(nix.sel(cfg, "interfaces"), {})),
             message: "Per interface configurations is not supported with the firewalld based firewall.\nCreate zones with `services.firewalld.zones` instead.\n",
           })),
         ]),
         boot: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           kernel: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             sysctl: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               "net.ipv4.conf.all.rp_filter": nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "checkReversePath"), false)) ? 0n : (nix.asBool(nix.eq(nix.sel(cfg, "checkReversePath"), "loose")) ? 1n : 2n))),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           firewalld: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             settings: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               DefaultZone: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "nixos-fw-default")),
               LogDenied: nix.thunk(() => (nix.asBool(nix.sel(cfg, "logRefusedConnections")) ? (nix.asBool(nix.sel(cfg, "logRefusedUnicastsOnly")) ? "unicast" : "all") : "off")),
               IPv6_rpfilter: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "checkReversePath"), false)) ? "no" : (() => {
@@ -58,21 +58,21 @@ export default nix.lambda((args) => (() => {
               })())),
             })),
             zones: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               "nixos-fw-default": nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 target: nix.thunk(() => (nix.asBool(nix.sel(cfg, "rejectPackets")) ? "%%REJECT%%" : "DROP")),
                 icmpBlockInversion: true,
                 icmpBlocks: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "allowPing")), nix.thunk(() => ["echo-request"]))),
                 ports: nix.thunk(() => (() => {
-                  const f = (protocol) => (port) => ({ __proto__: pos$6, protocol: protocol, port: port });
+                  const f = (protocol) => (port) => ({ [nix.POS]: pos$6, protocol: protocol, port: port });
                   const tcpPorts = nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.app(f, "tcp")), nix.thunk(() => nix.concat(nix.sel(cfg, "allowedTCPPorts"), nix.sel(cfg, "allowedTCPPortRanges")))));
                   const udpPorts = nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.app(f, "udp")), nix.thunk(() => nix.concat(nix.sel(cfg, "allowedUDPPorts"), nix.sel(cfg, "allowedUDPPortRanges")))));
                   return nix.concat(tcpPorts, udpPorts);
                 })()),
               })),
               trusted: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 interfaces: nix.thunk(() => nix.sel(cfg, "trustedInterfaces")),
               })),
             })),

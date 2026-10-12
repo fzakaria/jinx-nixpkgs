@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const tabulate = nix.arg($, "tabulate");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sphinx-toolbox",
       version: "4.1.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "sphinx_toolbox",
           hash: "sha256-wwpPhsTCnpetsOuTN9NfUJPLlqRPScr/z31bxYqIt4E=",
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`echo '__version__: str = "${nix.sel(finalAttrs, "version")}"' > $out/${nix.sel(python, "sitePackages")}/sphinx_toolbox/__init__.py
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Box of handy tools for Sphinx",
         homepage: "https://github.com/sphinx-toolbox/sphinx-toolbox",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

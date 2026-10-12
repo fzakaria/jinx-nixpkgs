@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "12.13.0";
       const rev = "03ca49e9b419c106db29d687827c4c823d8b8ece";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tsenart",
           repo: "vegeta",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-0Ho1HYckFHaWEE6Ti3fIL/t0hBj5MnKOd4fOZx+LYiE=";
       const subPackages = nix.thunk(() => ["."]);
       const ldflags = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "mapAttrsToList"), (n) => (v) => nix.str`-X main.${n}=${v}`, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           Version: version,
           Commit: rev,
           Date: "1970-01-01T00:00:00Z",
         }))), ["-s", "-w", "-extldflags '-static'"]));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Versatile HTTP load testing tool",
         longDescription: "Vegeta is a versatile HTTP load testing tool built out of a need to drill\nHTTP services with a constant request rate. It can be used both as a\ncommand line utility and a library.\n",
         homepage: "https://github.com/tsenart/vegeta/",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "vegeta",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         rev,

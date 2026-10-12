@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.lookup(w_1, "fdl12Plus")),
     ];
   })());
-  const srcs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./srcs.nix")), nix.thunk(() => ({ __proto__: pos$1, fetchurl: fetchurl, mirror: "mirror://kde" }))));
+  const srcs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./srcs.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, fetchurl: fetchurl, mirror: "mirror://kde" }))));
   const mkDerivation = nix.thunk(() => nix.app(nix.sel(libsForQt5, "callPackage"), nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const stdenv = nix.arg($_1, "stdenv");
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
     })();
     const propagateBin = nix.thunk(() => nix.app(propagate, "bin"));
     const callPackage = nix.thunk(() => nix.app(nix.sel(self, "newScope"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         propagate: propagate,
         propagateBin: propagateBin,
         mkDerivation: (args_1) => (() => {
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
           const meta = nix.thunk(() => (() => {
             const meta_1 = nix.thunk(() => nix.selOr(args_1, () => ({}), "meta"));
             return nix.update(meta_1, {
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               homepage: nix.thunk(() => nix.selOr(meta_1, () => "https://kde.org", "homepage")),
               license: nix.thunk(() => nix.selOr(meta_1, () => nix.force(license), "license")),
               maintainers: nix.thunk(() => nix.concat(nix.selOr(meta_1, () => [], "maintainers"), maintainers)),
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
             });
           })());
           return nix.app(mkDerivation, nix.thunk(() => nix.update(args_1, {
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               pname: pname,
               meta: meta,
               outputs: outputs,
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
       }))));
     const mkThrow = (name) => nix.builtins.throw(nix.thunk(() => nix.str`libsForQt5.${name} has been removed, as KDE Frameworks 5 has reached end of life.`));
     return nix.update({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       "extra-cmake-modules": nix.thunk(() => nix.attr(kdePackages, "extra-cmake-modules")),
       attica: nix.thunk(() => nix.app(callPackage, nix.path(here, "./attica.nix"), nix.thunk(() => ({})))),
       "breeze-icons": nix.thunk(() => nix.app(callPackage, nix.path(here, "./breeze-icons.nix"), nix.thunk(() => ({})))),
@@ -132,7 +132,7 @@ export default nix.lambda((args) => (() => {
       kxmlgui: nix.thunk(() => nix.app(callPackage, nix.path(here, "./kxmlgui.nix"), nix.thunk(() => ({})))),
       frameworkintegration: nix.thunk(() => nix.app(callPackage, nix.path(here, "./frameworkintegration.nix"), nix.thunk(() => ({})))),
     }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         baloo: nix.thunk(() => nix.app(mkThrow, "baloo")),
         "bluez-qt": nix.thunk(() => nix.app(mkThrow, "bluez-qt")),
         kapidox: nix.thunk(() => nix.app(mkThrow, "kapidox")),

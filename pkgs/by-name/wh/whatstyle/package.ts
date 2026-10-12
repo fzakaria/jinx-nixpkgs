@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const llvmPackages = nix.arg($, "llvmPackages");
   const clang_unwrapped = nix.thunk(() => nix.attr(llvmPackages, "clang-unwrapped"));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "whatstyle",
       version: "0.2.0",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mikr",
           repo: "whatstyle",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ substituteInPlace whatstyle.py --replace-fail 0.1.9 ${nix.sel(finalAttrs, "versi
       nativeCheckInputs: nix.thunk(() => [clang_unwrapped]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Find a code format style that fits given source files",
         mainProgram: "whatstyle",
         homepage: "https://github.com/mikr/whatstyle",

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const wineWow64Packages = nix.arg($, "wineWow64Packages");
   const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "synthesia.png",
       url: "https://cdn.synthesia.app/images/headerIcon.png",
       hash: "sha256-M9cQqHwwjko5pchdNtIMjYwd4joIvBphAYnpw73qYzM=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "10.9";
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "synthesia",
             desktopName: "Synthesia",
             comment: nix.thunk(() => nix.sel(meta, "description")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const nativeBuildInputs = nix.thunk(() => [copyDesktopItems, nix.thunk(() => nix.sel(wineWow64Packages, "stable"))]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://cdn.synthesia.app/files/Synthesia-${version}-installer.exe`),
           hash: "sha256-BFTsbesfMqxY1731ss6S0w8BcUaoqjVrr62VeU1BfrU=",
         }))));
@@ -66,7 +66,7 @@ install -Dm644 ${icon} $out/share/icons/hicolor/48x48/apps/synthesia.png
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Fun way to learn how to play the piano",
         homepage: "https://synthesiagame.com/",
         downloadPage: "https://synthesiagame.com/download",
@@ -82,7 +82,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(wineWow64Packages, "stable", "meta", "platforms")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         desktopItems,

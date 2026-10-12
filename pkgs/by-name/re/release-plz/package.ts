@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const curl = nix.arg($, "curl");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "release-plz",
       version: "0.3.169",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "release-plz",
           repo: "release-plz",
           rev: nix.thunk(() => nix.str`release-plz-v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
   --zsh <($out/bin/${nix.sel(finalAttrs, "meta", "mainProgram")} generate-completions zsh)
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Publish Rust crates from CI with a Release PR",
         homepage: "https://release-plz.ieni.dev",
         changelog: nix.thunk(() => nix.str`https://github.com/release-plz/release-plz/blob/release-plz-v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

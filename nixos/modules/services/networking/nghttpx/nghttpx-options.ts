@@ -29,88 +29,88 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     options: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       services: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         nghttpx: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "nghttpx")),
           frontends: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.builtins.import(nix.path(here, "./frontend-submodule.nix"))))))),
               description: "A list of frontend listener specifications.\n",
               example: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$3,
-                  server: nix.thunk(() => ({ __proto__: pos$1, host: "*", port: 80n })),
-                  params: nix.thunk(() => ({ __proto__: pos$2, tls: "no-tls" })),
+                  [nix.POS]: pos$3,
+                  server: nix.thunk(() => ({ [nix.POS]: pos$1, host: "*", port: 80n })),
+                  params: nix.thunk(() => ({ [nix.POS]: pos$2, tls: "no-tls" })),
                 })),
               ]),
             })))),
           backends: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.builtins.import(nix.path(here, "./backend-submodule.nix"))))))),
               description: "A list of backend specifications.\n",
               example: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$7,
-                  server: nix.thunk(() => ({ __proto__: pos$5, host: "172.16.0.22", port: 8443n })),
+                  [nix.POS]: pos$7,
+                  server: nix.thunk(() => ({ [nix.POS]: pos$5, host: "172.16.0.22", port: 8443n })),
                   patterns: nix.thunk(() => ["/"]),
-                  params: nix.thunk(() => ({ __proto__: pos$6, proto: "http/1.1", "redirect-if-not-tls": true })),
+                  params: nix.thunk(() => ({ [nix.POS]: pos$6, proto: "http/1.1", "redirect-if-not-tls": true })),
                 })),
               ]),
             })))),
           tls: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.builtins.import(nix.path(here, "./tls-submodule.nix"))))))),
               default: null,
               description: "TLS certificate and key paths. Note that this does not enable\nTLS for a frontend listener, to do so, a frontend\nspecification must set `params.tls` to true.\n",
               example: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 key: "/etc/ssl/keys/server.key",
                 crt: "/etc/ssl/certs/server.crt",
               })),
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Extra configuration options to be appended to the generated\nconfiguration file.\n",
             })))),
           "single-process": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Run this program in a single process mode for debugging\npurpose. Without this option, nghttpx creates at least 2\nprocesses: master and worker processes. If this option is\nused, master and worker are unified into a single\nprocess. nghttpx still spawns additional process if neverbleed\nis used. In the single process mode, the signal handling\nfeature is disabled.\n\nPlease see <https://nghttp2.org/documentation/nghttpx.1.html#cmdoption-nghttpx--single-process>\n",
             })))),
           backlog: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 65536n,
               description: "Listen backlog size.\n\nPlease see <https://nghttp2.org/documentation/nghttpx.1.html#cmdoption-nghttpx--backlog>\n",
             })))),
           "backend-address-family": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["auto", "IPv4", "IPv6"]))),
               default: "auto",
               description: "Specify address family of backend connections. If \"auto\" is\ngiven, both IPv4 and IPv6 are considered. If \"IPv4\" is given,\nonly IPv4 address is considered. If \"IPv6\" is given, only IPv6\naddress is considered.\n\nPlease see <https://nghttp2.org/documentation/nghttpx.1.html#cmdoption-nghttpx--backend-address-family>\n",
             })))),
           workers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 1n,
               description: "Set the number of worker threads.\n\nPlease see <https://nghttp2.org/documentation/nghttpx.1.html#cmdoption-nghttpx-n>\n",
             })))),
           "single-thread": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Run everything in one thread inside the worker process. This\nfeature is provided for better debugging experience, or for\nthe platforms which lack thread support. If threading is\ndisabled, this option is always enabled.\n\nPlease see <https://nghttp2.org/documentation/nghttpx.1.html#cmdoption-nghttpx--single-thread>\n",
             })))),
           "rlimit-nofile": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 0n,
               description: "Set maximum number of open files (RLIMIT_NOFILE) to \\<N\\>. If 0\nis given, nghttpx does not set the limit.\n\nPlease see <https://nghttp2.org/documentation/nghttpx.1.html#cmdoption-nghttpx--rlimit-nofile>\n",

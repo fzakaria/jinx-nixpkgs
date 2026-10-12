@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "erg",
       version: "0.6.53",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "erg-lang",
           repo: "erg",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeWrapper, python3, which]),
       buildFeatures: nix.thunk(() => ["full"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         BUILD_DATE: "1970/01/01 00:00:00",
         CASE_SENSITIVE: nix.thunk(() => nix.app(nix.sel(lib, "boolToString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))),
         GIT_HASH_SHORT: nix.thunk(() => nix.sel(finalAttrs, "src", "rev")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "export HOME=$(mktemp -d)\nexport CARGO_ERG_PATH=$HOME/.erg\n",
       postInstall: "mkdir -p $out/share\nmv \"$CARGO_ERG_PATH\" $out/share/erg\n\nwrapProgram $out/bin/erg \\\n  --set-default ERG_PATH $out/share/erg\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Statically typed language that can deeply improve the Python ecosystem",
         mainProgram: "erg",
         homepage: "https://github.com/erg-lang/erg",

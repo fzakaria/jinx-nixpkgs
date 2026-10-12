@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGraalvmNativeImage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "clojure-lsp",
       version: "2026.07.06-14.34.19",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/clojure-lsp/clojure-lsp/releases/download/${nix.sel(finalAttrs, "version")}/clojure-lsp-standalone.jar`),
           hash: "sha256-GU92OeKzKm42Qy+6fMSpsSj0WInSrQVyVVFSPxZNaEY=",
         })))),
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [writableTmpDirAsHomeHook, versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Language Server Protocol (LSP) for Clojure",
         homepage: "https://github.com/clojure-lsp/clojure-lsp",
         changelog: nix.thunk(() => nix.str`https://github.com/clojure-lsp/clojure-lsp/releases/tag/${nix.sel(finalAttrs, "version")}`),

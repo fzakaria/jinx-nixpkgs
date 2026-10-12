@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const withKWallet = nix.argOr($, "withKWallet", () => true);
   const withLibsecret = nix.argOr($, "withLibsecret", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sirikali",
       version: "1.8.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mhogomchungu",
           repo: "sirikali",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         "-DBUILD_WITH_QT6=true",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Qt/C++ GUI front end to sshfs, ecryptfs-simple, gocryptfs and fscrypt",
         longDescription: "Sirikali also supports `cryfs`, but `cryfs` is no longer available in Nixpkgs.",
         homepage: "https://github.com/mhogomchungu/sirikali",

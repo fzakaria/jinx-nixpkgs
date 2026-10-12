@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kdoctor",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/Kotlin/kdoctor/releases/download/v${nix.sel(finalAttrs, "version")}/kdoctor_${nix.sel(finalAttrs, "version")}+97.zip`),
           hash: "sha256-H4lpdMf1AIU8BC+6DlvcwM1wLuEl+Hd9xBli/TGFMV4=",
         })))),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       unpackPhase: "runHook preUnpack\nunzip $src -x META-INF/*\nrunHook postUnpack\n",
       installPhase: "runHook preInstall\ninstall -Dm755 kdoctor -t $out/bin/\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Environment analysis tool for Kotlin Multiplatform Mobile",
         longDescription: "KDoctor is a command-line tool that helps to set up the environment for\nKotlin Multiplatform Mobile app development.\n",
         homepage: "https://github.com/Kotlin/kdoctor",

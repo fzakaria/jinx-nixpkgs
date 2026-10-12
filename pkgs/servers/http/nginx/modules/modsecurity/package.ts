@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const lmdb = nix.arg($, "lmdb");
   const yajl = nix.arg($, "yajl");
   return nix.app(mkNginxPlugin, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "modsecurity",
       version: "1.0.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "owasp-modsecurity",
           repo: "ModSecurity-nginx",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       buildInputs: nix.thunk(() => [curl, geoip, libmodsecurity, libxml2, lmdb, yajl]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open source, cross platform web application firewall (WAF)",
         homepage: "https://github.com/owasp-modsecurity/ModSecurity-nginx",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

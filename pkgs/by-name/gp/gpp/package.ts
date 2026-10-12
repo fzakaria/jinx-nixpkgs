@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gpp",
       version: "2.25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "logological",
           repo: "gpp",
           rev: "96c5dd8905384ea188f380f51d24cbd7fd58f642",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       installCheckPhase: "$out/bin/gpp --help",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "General-purpose preprocessor with customizable syntax",
         mainProgram: "gpp",
         homepage: "https://logological.org/gpp",

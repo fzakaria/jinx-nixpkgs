@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const dependencies = nix.thunk(() => [setuptools]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "biobakery",
           repo: "kneaddata",
           tag: version,
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const unittestFlagsArray = nix.thunk(() => ["kneaddata/tests/ '*.py'"]);
       const pythonImportsCheck = nix.thunk(() => ["kneaddata"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Quality control tool for metagenomic and metatranscriptomic sequencing data",
         homepage: "https://github.com/biobakery/kneaddata",
         changelog: "https://github.com/biobakery/kneaddata/releases",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "kneaddata",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

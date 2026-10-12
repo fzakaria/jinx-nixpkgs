@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const spdlog = nix.arg($, "spdlog");
   const yaml_cpp = nix.arg($, "yaml-cpp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ld-audit-search-mod",
       version: "0-unstable-2025-06-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "ld-audit-search-mod",
           owner: "DDoSolitary",
           rev: "261f475f154d0f1f0766d6756af9c714eeeb14ea",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "Audit module that modifies ld.so library search behavior",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

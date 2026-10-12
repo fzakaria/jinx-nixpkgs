@@ -11,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     imports: nix.thunk(() => [nix.path(here, "./installation-cd-minimal-new-kernel.nix")]),
     boot: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       supportedFilesystems: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         zfs: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), false)),
       })),
     })),

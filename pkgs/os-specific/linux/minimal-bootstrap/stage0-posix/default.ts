@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
         const from_2 = nix.thunk(() => nix.sel(self, "hex0"));
         const from_3 = nix.thunk(() => nix.sel(self, "mescc-tools-boot"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
         stage0Arch: nix.thunk(() => nix.attr(from, "stage0Arch")),
         m2libcArch: nix.thunk(() => nix.attr(from, "m2libcArch")),

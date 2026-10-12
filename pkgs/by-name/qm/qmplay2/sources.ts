@@ -15,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     qmplay2: nix.thunk(() => (() => {
       const self = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname: "qmplay2",
         version: "26.06.27",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "zaps166",
             repo: "QMPlay2",
             tag: nix.thunk(() => nix.sel(self, "version")),
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
     })()),
     "vulkan-headers-qmplay2": nix.thunk(() => (() => {
       const self = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: "vulkan-headers",
         version: "1.4.350",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             owner: "KhronosGroup",
             repo: "Vulkan-Headers",
             tag: nix.thunk(() => nix.str`v${nix.sel(self, "version")}`),
@@ -47,11 +47,11 @@ export default nix.lambda((args) => (() => {
       return nix.force(self);
     })()),
     qmvk: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "qmvk",
       version: "0-unstable-2026-06-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "zaps166",
           repo: "QmVk",
           rev: "26ef419a3b91bc11856c714b3b932c62db098bf9",

@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const common = nix.thunk(() => nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({}))));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "woodpecker-agent",
       version: nix.thunk(() => nix.attr(common, "version")),
       src: nix.thunk(() => nix.attr(common, "src")),
@@ -21,9 +21,9 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.attr(common, "postInstall")),
       vendorHash: nix.thunk(() => nix.attr(common, "vendorHash")),
       subPackages: "cmd/agent",
-      env: nix.thunk(() => ({ __proto__: pos$1, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$1, CGO_ENABLED: 0n })),
       meta: nix.thunk(() => nix.update(nix.sel(common, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Woodpecker Continuous Integration agent",
         mainProgram: "woodpecker-agent",
       })),

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tbrlpld",
           repo: "laces",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [django]);
       const pythonImportsCheck = nix.thunk(() => ["laces"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Django components that know how to render themselves",
         homepage: "https://github.com/tbrlpld/laces",
         changelog: nix.thunk(() => nix.str`https://github.com/tbrlpld/laces/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

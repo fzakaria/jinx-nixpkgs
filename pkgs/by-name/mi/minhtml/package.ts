@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchCrate = nix.arg($, "fetchCrate");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "minhtml",
       version: "0.18.1",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "minhtml",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-yrZueueww9rQXaHCeBO6d2pO58SZ8yz2a9Ia5dp7lBY=",
         })))),
       cargoHash: "sha256-TFlDbVL8JARwV/xSQ+Cbwguqnr11nw24/L0MbHJazas=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Minifier for HTML, JavaScript, and CSS",
         mainProgram: "minhtml",
         homepage: "https://github.com/wilsonzlin/minify-html",

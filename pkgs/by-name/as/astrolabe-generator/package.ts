@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "astrolabe-generator",
       version: "3.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/wymarc/astrolabe-generator/releases/download/v${nix.sel(finalAttrs, "version")}/AstrolabeGenerator-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-yTYiUEjxlfZbFNSxvF56LlUPL3kRH6QVFq4GhXN1L5A=",
         })))),
@@ -34,7 +34,7 @@ makeWrapper ${jre}/bin/java $out/bin/AstrolabeGenerator \\
   --add-flags "-jar $out/share/java/AstrolabeGenerator-${nix.sel(finalAttrs, "version")}.jar"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.astrolabeproject.com",
         description: "Java-based tool for generating EPS files for constructing astrolabes and related tools",
         sourceProvenance: nix.thunk(() => (() => {

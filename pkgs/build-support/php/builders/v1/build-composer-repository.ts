@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
     nix.assert_((nix.asBool(nix.has(previousAttrs, "composerNoPlugins")) || nix.asBool(nix.builtins.throw("mkComposerRepository expects composerNoPlugins argument."))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/php/builders/v1/build-composer-repository.nix:34:5");
     nix.assert_((nix.asBool(nix.has(previousAttrs, "composerNoScripts")) || nix.asBool(nix.builtins.throw("mkComposerRepository expects composerNoScripts argument."))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/php/builders/v1/build-composer-repository.nix:38:5");
     return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       composerNoDev: nix.thunk(() => nix.selOr(previousAttrs, () => true, "composerNoDev")),
       composerNoPlugins: nix.thunk(() => nix.selOr(previousAttrs, () => true, "composerNoPlugins")),
       composerNoScripts: nix.thunk(() => nix.selOr(previousAttrs, () => true, "composerNoScripts")),

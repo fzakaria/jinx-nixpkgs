@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const yarl = nix.arg($, "yarl");
   const zeroconf = nix.arg($, "zeroconf");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "wled",
       version: "0.23.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "frenck",
           repo: "python-wled",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +46,7 @@ substituteInPlace pyproject.toml \\
 `),
       "build-system": nix.thunk(() => [poetry_core]),
       dependencies: nix.thunk(() => [aiohttp, awesomeversion, mashumaro, orjson, python_backoff, yarl]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, cli: nix.thunk(() => [typer, zeroconf]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, cli: nix.thunk(() => [typer, zeroconf]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([
         aioresponses,
         pytest_asyncio,
@@ -58,7 +58,7 @@ substituteInPlace pyproject.toml \\
       disabledTests: nix.thunk(() => ["test_releases_command", "test_device_version_fixture"]),
       pythonImportsCheck: nix.thunk(() => ["wled"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Asynchronous Python client for WLED",
         homepage: "https://github.com/frenck/python-wled",
         changelog: nix.thunk(() => nix.str`https://github.com/frenck/python-wled/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

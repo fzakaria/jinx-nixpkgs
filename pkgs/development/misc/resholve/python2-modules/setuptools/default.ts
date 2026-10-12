@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const sdist = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const name = nix.thunk(() => nix.str`${pname}-${version}-sdist.tar.gz`);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pypa",
           repo: pname,
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -44,25 +44,25 @@ tar -czf dist/${name} -C dist/ --mtime="@$SOURCE_DATE_EPOCH" ${pname}-${version}
       const installPhase = nix.thunk(() => nix.str`echo "Moving sdist..."
 mv dist/${name} $out
 `);
-      return { __proto__: pos$2, name, src, patches, buildPhase, installPhase };
+      return { [nix.POS]: pos$2, name, src, patches, buildPhase, installPhase };
     })())));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: version,
       format: "other",
       src: sdist,
       nativeBuildInputs: nix.thunk(() => [
         bootstrapped_pip,
-        nix.thunk(() => nix.app(nix.sel(pipInstallHook, "override"), nix.thunk(() => ({ __proto__: pos$3, pip: null })))),
-        nix.thunk(() => nix.app(nix.sel(setuptoolsBuildHook, "override"), nix.thunk(() => ({ __proto__: pos$4, setuptools: null, wheel: null })))),
+        nix.thunk(() => nix.app(nix.sel(pipInstallHook, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, pip: null })))),
+        nix.thunk(() => nix.app(nix.sel(setuptoolsBuildHook, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, setuptools: null, wheel: null })))),
       ]),
       preBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows"))), "export SETUPTOOLS_INSTALL_WINDOWS_SPECIFIC_FILES=0\n")),
       pipInstallFlags: nix.thunk(() => ["--ignore-installed"]),
       catchConflicts: false,
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Utilities to facilitate the installation of Python packages",
         homepage: "https://pypi.org/project/setuptools/",
         license: nix.thunk(() => (() => {

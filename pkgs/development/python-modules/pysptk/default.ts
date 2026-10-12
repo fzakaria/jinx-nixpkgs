@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const scipy = nix.arg($, "scipy");
   const standard_pkg_resources = nix.arg($, "standard-pkg-resources");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pysptk",
       version: "1.0.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "pysptk",
           hash: "sha256-eLHJM4v3laQc3D/wP81GmcQBwyP1RjC7caGXEAeNCz8=",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_rapt_regression", "test_swipe_regression"]),
       pythonImportsCheck: nix.thunk(() => ["pysptk"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Wrapper for Speech Signal Processing Toolkit (SPTK)",
         homepage: "https://pysptk.readthedocs.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

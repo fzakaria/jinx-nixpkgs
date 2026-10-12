@@ -87,12 +87,12 @@ export default nix.lambda((args) => (() => {
   const gtk_mac_integration = nix.arg($, "gtk-mac-integration");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const gitUpdater = nix.arg($, "gitUpdater");
-  const pugixml_shared = nix.thunk(() => nix.app(nix.sel(pugixml, "override"), nix.thunk(() => ({ __proto__: pos$1, shared: true }))));
+  const pugixml_shared = nix.thunk(() => nix.app(nix.sel(pugixml, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, shared: true }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const version = "5.6.2";
       const pname = "darktable";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/darktable-org/darktable/releases/download/release-${version}/darktable-${version}.tar.xz`),
           hash: "sha256-0tqSxnBAHTULV2Qx8h5YvuQDSOH1B4IBqKG4wnBYWDQ=",
         }))));
@@ -191,16 +191,16 @@ gappsWrapperArgs+=(
       const doInstallCheck = nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             "rev-prefix": "release-",
             "odd-unstable": true,
             url: "https://github.com/darktable-org/darktable.git",
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Virtual lighttable and darkroom for photographers",
         homepage: "https://www.darktable.org",
         changelog: nix.thunk(() => nix.str`https://github.com/darktable-org/darktable/releases/tag/release-${version}`),
@@ -220,7 +220,7 @@ gappsWrapperArgs+=(
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         version,
         pname,
         src,

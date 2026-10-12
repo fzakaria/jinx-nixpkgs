@@ -58,11 +58,11 @@ export default nix.lambda((args) => (() => {
   const wavpack = nix.arg($, "wavpack");
   const kdePackages = nix.arg($, "kdePackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mixxx",
       version: "2.5.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mixxxdj",
           repo: "mixxx",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -127,7 +127,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DINSTALL_USER_UDEV_RULES=OFF", "-DBUILD_BENCH=OFF"]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "rules=\"$src/res/linux/mixxx-usb-uaccess.rules\"\nif [ ! -f \"$rules\" ]; then\n    echo \"$rules is missing, must update the Nix file.\"\n    exit 1\nfi\nmkdir -p \"$out/lib/udev/rules.d\"\ncp \"$rules\" \"$out/lib/udev/rules.d/69-mixxx-usb-uaccess.rules\"\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://mixxx.org",
         description: "Digital DJ mixing software",
         mainProgram: "mixxx",

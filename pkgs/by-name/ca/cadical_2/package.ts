@@ -9,6 +9,6 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const cadical = nix.arg($, "cadical");
   const version = nix.argOr($, "version", () => "2.2.1");
-  return nix.app(nix.sel(cadical, "override"), nix.thunk(() => ({ __proto__: pos$1, version: version })));
+  return nix.app(nix.sel(cadical, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, version: version })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

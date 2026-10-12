@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const xar = nix.arg($, "xar");
   const libiconv = nix.arg($, "libiconv");
   const startFPC = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./binary.nix")), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       stdenv: stdenv,
       fetchurl: fetchurl,
       undmg: undmg,
@@ -34,14 +34,14 @@ export default nix.lambda((args) => (() => {
       const version = "3.2.2";
       const pname = "fpc";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`mirror://sourceforge/freepascal/fpcbuild-${version}.tar.gz`),
           sha256: "85ef993043bb83f999e2212f1bca766eb71f6f973d362e2290475dbaaf50161f",
         }))));
       const buildInputs = nix.thunk(() => [startFPC, gawk]);
       const glibc = nix.thunk(() => nix.sel(stdenv, "cc", "libc", "out"));
       const patches = nix.thunk(() => nix.concat([nix.path(here, "./mark-paths.patch")], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://gitlab.com/freepascal.org/fpc/source/-/commit/a20a7e3497bccf3415bf47ccc55f133eb9d6d6a0.patch",
             hash: "sha256-xKTBwuOxOwX9KCazQbBNLhMXCqkuJgIFvlXewHY63GM=",
             stripLen: 1n,
@@ -80,9 +80,9 @@ $out/lib/fpc/*/samplecfg $out/lib/fpc/${version} $out/lib/fpc/etc/
 mkdir -p $out/etc
 $out/lib/fpc/*/samplecfg $out/lib/fpc/${version} $out/etc
 `);
-      const passthru = nix.thunk(() => ({ __proto__: pos$4, bootstrap: startFPC }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, bootstrap: startFPC }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Free Pascal Compiler from a source distribution",
         homepage: "https://www.freepascal.org",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "raskin"))]),
@@ -97,7 +97,7 @@ $out/lib/fpc/*/samplecfg $out/lib/fpc/${version} $out/etc
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isClang")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         version,
         pname,
         src,

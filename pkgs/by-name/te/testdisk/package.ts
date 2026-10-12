@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pname = "testdisk";
       const version = "7.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.cgsecurity.org/testdisk-${version}.tar.bz2`),
           hash: "sha256-+DQ74gy0ABxdkaLjvNkYOY8Arm2DEIlKWp8v64E8KD8=",
         }))));
@@ -44,10 +44,10 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.sel(libsForQt5, "qwt")),
         ]))))));
       const nativeBuildInputs = nix.thunk(() => nix.concat([pkg_config], nix.app(nix.sel(lib, "optional"), enableQt, nix.thunk(() => nix.sel(qt5, "wrapQtAppsHook")))));
-      const env = nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-unused" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-unused" }));
       const outputs = nix.thunk(() => ["out", "man", "doc"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.cgsecurity.org/wiki/Main_Page",
         downloadPage: "https://www.cgsecurity.org/wiki/TestDisk_Download",
         description: "Data recovery utilities",
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

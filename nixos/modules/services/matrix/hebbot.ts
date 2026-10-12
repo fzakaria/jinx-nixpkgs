@@ -31,35 +31,35 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "hebbot"));
   const settingsFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "config.toml", nix.thunk(() => nix.sel(cfg, "settings"))));
   const mkTemplateOption = (templateName) => nix.app(mkOption, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       type: nix.thunk(() => nix.sel(types, "path")),
       description: nix.thunk(() => nix.str`A path to the Markdown file for the ${templateName}.
 `),
     })));
   return {
-    __proto__: pos$14,
-    meta: nix.thunk(() => ({ __proto__: pos$2, maintainers: [] })),
+    [nix.POS]: pos$14,
+    meta: nix.thunk(() => ({ [nix.POS]: pos$2, maintainers: [] })),
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         hebbot: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(mkEnableOption, "hebbot")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "hebbot", nix.thunk(() => ({})))),
           botPasswordFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "path")),
               description: "A path to the password file for your bot.\n\nConsider using a path that does not end up in your Nix store\nas it would be world readable.\n",
             })))),
           templates: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             project: nix.thunk(() => nix.app(mkTemplateOption, "project template")),
             report: nix.thunk(() => nix.app(mkTemplateOption, "report template")),
             section: nix.thunk(() => nix.app(mkTemplateOption, "section template")),
           })),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(format, "type")),
               default: nix.thunk(() => ({})),
               description: "Configuration for Hebbot, see, for examples:\n\n- <https://github.com/matrix-org/twim-config/blob/master/config.toml>\n- <https://gitlab.gnome.org/Teams/Websites/thisweek.gnome.org/-/blob/main/hebbot/config.toml>\n",
@@ -68,13 +68,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         systemd: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             hebbot: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               description: "hebbot - a TWIM-style Matrix bot written in Rust",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -87,7 +87,7 @@ ln -sf ${settingsFile} ./config.toml
 ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))}
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 DynamicUser: true,
                 Restart: "on-failure",
                 LoadCredential: nix.thunk(() => nix.str`bot-password-file:${nix.sel(cfg, "botPasswordFile")}`),

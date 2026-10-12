@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const faust2jaqt = nix.arg($, "faust2jaqt");
   const faust2lv2 = nix.arg($, "faust2lv2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "shelfMultiBand",
       version: "0.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "magnetophon",
           repo: "shelfMultiBand",
           rev: nix.thunk(() => nix.str`V${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "faust2jaqt -vec -double -time -t 99999 shelfMultiBand.dsp\nfaust2jaqt -vec -double -time -t 99999 shelfMultiBandMono.dsp\nfaust2lv2 -vec -double -time -gui -t 99999 shelfMultiBandMono.dsp\nfaust2lv2 -vec -double -time -gui -t 99999 shelfMultiBand.dsp\n",
       installPhase: "mkdir -p $out/bin\nfor f in $(find . -executable -type f); do\n  cp $f $out/bin/\ndone\nmkdir -p $out/lib/lv2\ncp -r shelfMultiBand.lv2/ $out/lib/lv2\ncp -r shelfMultiBandMono.lv2/ $out/lib/lv2\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Multiband compressor made from shelving filters",
         homepage: "https://github.com/magnetophon/shelfMultiBand",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

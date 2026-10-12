@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const libusb1 = nix.arg($, "libusb1");
   const modemmanager = nix.arg($, "modemmanager");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "eg25-manager",
       version: "0.5.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mobian1",
           repo: "eg25-manager",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Manager daemon for the Quectel EG25 mobile broadband modem found on the Pine64 PinePhone and PinePhone Pro",
         homepage: "https://gitlab.com/mobian1/eg25-manager",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/mobian1/eg25-manager/-/tags/${nix.sel(finalAttrs, "version")}`),

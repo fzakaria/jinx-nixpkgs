@@ -12,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const OVMF = nix.arg($, "OVMF");
   return nix.app(nix.sel(nix.app(nix.sel(OVMF, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       projectDscPath: "OvmfPkg/OvmfXen.dsc",
       fwPrefix: "OVMF",
       metaPlatforms: nix.thunk(() => nix.builtins.filter(nix.thunk(() => nix.app(nix.sel(lib, "hasPrefix"), "x86_64-")), nix.thunk(() => nix.sel(OVMF, "meta", "platforms")))),
     }))), "overrideAttrs"), (oldAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       __structuredAttrs: true,
       pname: "OVMF-xen",
       meta: nix.thunk(() => nix.update(nix.sel(oldAttrs, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Sample UEFI firmware for Xen guests",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "xen"))]),
       })),

@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "TT2020";
       const version = "0.2.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ctrlcctrlv",
           repo: "TT2020",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const installPhase = "runHook preInstall\n\ninstall -Dm644 -t $out/share/fonts/truetype dist/*.ttf\ninstall -Dm644 -t $out/share/fonts/woff2 dist/*.woff2\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Advanced, open source, hyperrealistic, multilingual typewriter font for a new decade",
         homepage: "https://ctrlcctrlv.github.io/TT2020",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

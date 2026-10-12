@@ -45,26 +45,26 @@ export default nix.lambda((args) => (() => {
     return nix.str`pi_natives.${nix.sel(node, "platform")}-${arch}.node`;
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "omp",
       version: "18.8.7",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "can1357",
           repo: "oh-my-pi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-nWuBvVNeJW9rgrSMhx5JP4CjFFJnfuMzjOlaGDCPVUU=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-wfGvns/9Supk3QUuVfchUy7talfwhJswbLd8LWoZMXU=",
         })))),
       postPatch: "substituteInPlace packages/coding-agent/src/cli.ts \\\n  --replace-fail 'if (Bun.semver.order(Bun.version, MIN_BUN_VERSION) < 0)' 'if (false)'\n",
       node_modules: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-node_modules`),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [autoPatchelfHook])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(darwin, "autoSignDarwinBinariesHook"))]))))),
       buildInputs: nix.thunk(() => nix.concat([libopus], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [nix.thunk(() => nix.sel(stdenv, "cc", "cc", "lib"))])), nix.app(nix.sel(lib, "optionals"), pipewireSupport, nix.thunk(() => [pipewire]))))),
       dontStrip: true,
-      env: nix.thunk(() => nix.update({ __proto__: pos$4, RUSTC_BOOTSTRAP: "1" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ __proto__: pos$5, BUN_NO_CODESIGN_MACHO_BINARY: "1" }))))),
+      env: nix.thunk(() => nix.update({ [nix.POS]: pos$4, RUSTC_BOOTSTRAP: "1" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$5, BUN_NO_CODESIGN_MACHO_BINARY: "1" }))))),
       configurePhase: nix.thunk(() => nix.str`runHook preConfigure
 
 cp -R ${nix.sel(finalAttrs, "node_modules")}/* .
@@ -137,14 +137,14 @@ runHook postInstall
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [writableTmpDirAsHomeHook, versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             extraArgs: nix.thunk(() => ["--subpackage", "node_modules"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Terminal-based coding agent with multi-model support",
         homepage: "https://omp.sh",
         changelog: nix.thunk(() => nix.str`https://github.com/can1357/oh-my-pi/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "level12",
           repo: "flask-webtest",
           tag: version,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [flask_sqlalchemy, greenlet]);
       const pythonImportsCheck = nix.thunk(() => ["flask_webtest"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utilities for testing Flask applications with WebTest",
         homepage: "https://github.com/level12/flask-webtest",
         changelog: nix.thunk(() => nix.str`https://github.com/level12/flask-webtest/blob/${nix.sel(src, "rev")}/changelog.rst`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

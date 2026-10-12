@@ -72,21 +72,21 @@ export default nix.lambda((args) => (() => {
   const hasRootPrefix = nix.thunk(() => nix.app(hasPrefix, "/"));
   return (() => {
     const runCommand = (name) => (env) => nix.app(runCommandWith, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         stdenv: stdenvNoCC,
         runLocal: false,
         name: name,
         derivationArgs: env,
       })));
     const runCommandLocal = (name) => (env) => nix.app(runCommandWith, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         stdenv: stdenvNoCC,
         runLocal: true,
         name: name,
         derivationArgs: env,
       })));
     const runCommandCC = (name) => (env) => nix.app(runCommandWith, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         stdenv: stdenv,
         runLocal: false,
         name: name,
@@ -105,7 +105,7 @@ export default nix.lambda((args) => (() => {
         return (buildCommand) => nix.app(nix.sel(stdenv_1, "mkDerivation"), (finalAttrs) => (() => {
             const userAttrs = nix.thunk(() => nix.app(nix.sel(lib, "toFunction"), derivationArgs, finalAttrs));
             return nix.update(nix.attrsDyn({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               enableParallelBuilding: true,
               name: name,
               buildCommand: nix.thunk(() => nix.app(nix.sel(lib, "toFunction"), buildCommand, finalAttrs)),
@@ -122,7 +122,7 @@ export default nix.lambda((args) => (() => {
       })(), formals$2);
     })());
     const writeTextFile = nix.thunk(() => nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         constructDrv: nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")),
         excludeDrvArgNames: nix.thunk(() => ["derivationArgs"]),
         extendDrvArgs: nix.thunk(() => (() => {
@@ -144,7 +144,7 @@ export default nix.lambda((args) => (() => {
             const derivationArgs = nix.argOr($_1, "derivationArgs", () => ({}));
             const pos = nix.argOr($_1, "pos", () => nix.builtins.unsafeGetAttrPos(nix.thunk(() => (nix.asBool(!nix.eq(pname, null)) ? "pname" : "name")), args_2));
             return nix.update(nix.attrsDyn({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               pos: pos,
               name: name,
               text: text,
@@ -181,25 +181,25 @@ Ensure that the path starts with a / and specifies at least the filename.
       }))));
     const writeText = (name) => (text) => (() => {
       nix.assert_((nix.asBool(nix.app(nix.sel(lib, "strings", "isConvertibleWithToString"), text)) || nix.asBool(nix.builtins.throw(nix.thunk(() => nix.str`pkgs.writeText ${nix.app(nix.sel(lib, "strings", "escapeNixString"), name)}: The second argument should be a string, but it's a ${nix.builtins.typeOf(text)} instead.`)))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/trivial-builders/default.nix:201:5");
-      return nix.app(nix.sel(lib, "warnIf"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "isString"), text))), nix.thunk(() => nix.str`pkgs.writeText ${nix.app(nix.sel(lib, "strings", "escapeNixString"), name)}: The second argument should be a string, but it's a ${nix.builtins.typeOf(text)} instead, which is deprecated. Use \`toString\` to convert the value to a string first.`), writeTextFile, nix.thunk(() => ({ __proto__: pos$7, name: name, text: text })));
+      return nix.app(nix.sel(lib, "warnIf"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "isString"), text))), nix.thunk(() => nix.str`pkgs.writeText ${nix.app(nix.sel(lib, "strings", "escapeNixString"), name)}: The second argument should be a string, but it's a ${nix.builtins.typeOf(text)} instead, which is deprecated. Use \`toString\` to convert the value to a string first.`), writeTextFile, nix.thunk(() => ({ [nix.POS]: pos$7, name: name, text: text })));
     })();
     const writeTextDir = (path) => (text) => nix.app(writeTextFile, nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         text: text,
         name: nix.thunk(() => nix.builtins.baseNameOf(path)),
         destination: nix.thunk(() => nix.str`/${path}`),
       })));
-    const writeScript = (name) => (text) => nix.app(writeTextFile, nix.thunk(() => ({ __proto__: pos$9, name: name, text: text, executable: true })));
+    const writeScript = (name) => (text) => nix.app(writeTextFile, nix.thunk(() => ({ [nix.POS]: pos$9, name: name, text: text, executable: true })));
     const writeScriptBin = (name) => (text) => nix.app(writeTextFile, nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         name: name,
         text: text,
         executable: true,
         destination: nix.thunk(() => nix.str`/bin/${name}`),
-        meta: nix.thunk(() => ({ __proto__: pos$10, mainProgram: name })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$10, mainProgram: name })),
       })));
     const writeShellScript = (name) => (text) => nix.app(writeTextFile, nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         name: name,
         executable: true,
         text: nix.thunk(() => nix.str`#!${runtimeShell}
@@ -209,7 +209,7 @@ ${text}
 `),
       })));
     const writeShellScriptBin = (name) => (text) => nix.app(writeTextFile, nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         name: name,
         executable: true,
         destination: nix.thunk(() => nix.str`/bin/${name}`),
@@ -218,7 +218,7 @@ ${text}
 `),
         checkPhase: nix.thunk(() => nix.str`${nix.sel(stdenv, "shellDryRun")} "$target"
 `),
-        meta: nix.thunk(() => ({ __proto__: pos$13, mainProgram: name })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$13, mainProgram: name })),
       })));
     const writeShellApplication = nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$4);
@@ -236,7 +236,7 @@ ${text}
       const derivationArgs = nix.argOr($_1, "derivationArgs", () => ({}));
       const inheritPath = nix.argOr($_1, "inheritPath", () => true);
       return nix.app(writeTextFile, nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           pos: nix.thunk(() => nix.builtins.unsafeGetAttrPos("name", args_2)),
           name: name,
           meta: meta,
@@ -273,14 +273,14 @@ runHook postCheck
         })));
     })(), formals$4);
     const writeCBin = (pname) => (code) => nix.app(runCommandCC, pname, nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         pname: pname,
         code: code,
         executable: true,
         preferLocalBuild: true,
         allowSubstitutes: false,
         __structuredAttrs: true,
-        meta: nix.thunk(() => ({ __proto__: pos$16, mainProgram: pname })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$16, mainProgram: pname })),
       })), nix.thunk(() => nix.str`n=$out/bin/${pname}
 mkdir -p "$(dirname "$n")"
 printf "%s" "$code" > code.c
@@ -296,7 +296,7 @@ $CC -x c code.c -o "$n"
       const meta = nix.argOr($_1, "meta", () => ({}));
       const passthru = nix.argOr($_1, "passthru", () => ({}));
       return nix.app(runCommandLocal, name, nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           files: files,
           executable: executable,
           checkPhase: checkPhase,
@@ -305,10 +305,10 @@ $CC -x c code.c -o "$n"
           destination: destination,
         })), "file=$out$destination\nmkdir -p \"$(dirname \"$file\")\"\ncat $files > \"$file\"\n\nif [ -n \"$executable\" ]; then\n  chmod +x \"$file\"\nfi\n\neval \"$checkPhase\"\n");
     })(), formals$5);
-    const concatText = (name) => (files) => nix.app(concatTextFile, nix.thunk(() => ({ __proto__: pos$19, name: name, files: files })));
-    const concatScript = (name) => (files) => nix.app(concatTextFile, nix.thunk(() => ({ __proto__: pos$20, name: name, files: files, executable: true })));
+    const concatText = (name) => (files) => nix.app(concatTextFile, nix.thunk(() => ({ [nix.POS]: pos$19, name: name, files: files })));
+    const concatScript = (name) => (files) => nix.app(concatTextFile, nix.thunk(() => ({ [nix.POS]: pos$20, name: name, files: files, executable: true })));
     const symlinkJoin = nix.thunk(() => nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         constructDrv: nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")),
         excludeDrvArgNames: nix.thunk(() => ["postBuild", "stripPrefix", "paths", "failOnMissing"]),
         extendDrvArgs: nix.thunk(() => (() => {
@@ -329,7 +329,7 @@ $CC -x c code.c -o "$n"
             const failOnMissing = nix.argOr($_1, "failOnMissing", () => nix.eq(stripPrefix, ""));
             nix.assert_((nix.asBool((!nix.asBool(!nix.eq(stripPrefix, "")) || nix.asBool((nix.asBool(nix.app(hasRootPrefix, stripPrefix)) && nix.asBool(!nix.eq(stripPrefix, "/")))))) || nix.asBool(nix.builtins.throw("stripPrefix must be either an empty string (disable stripping behavior), or relative path prefixed with /.\n\nEnsure that the path starts with / and specifies path to the subdirectory.\n"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/trivial-builders/default.nix:604:7");
             return nix.attrsDyn({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               enableParallelBuilding: true,
               name: name,
               allowSubstitutes: allowSubstitutes,
@@ -353,7 +353,7 @@ ${postBuild}
       }))));
     const linkFarm = (name) => (entries) => (() => {
       const entries$ = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "isAttrs"), entries)) ? nix.force(entries) : (nix.asBool(nix.app(nix.sel(lib, "isList"), entries)) ? nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "reverseList"), nix.thunk(() => nix.app(map, (entry) => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               name: nix.thunk(() => nix.attr(entry, "name")),
               value: nix.thunk(() => nix.sel(entry, "path")),
             }), entries))))) : nix.builtins.throw("linkFarm entries must be either attrs or a list!"))));
@@ -361,18 +361,18 @@ ${postBuild}
 ln -s -- ${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.str`${path}`))} ${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.str`${name_1}`))}
 `, entries$));
       return nix.app(runCommand, name, nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           pos: nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "isAttrs"), entries)) && nix.asBool(!nix.eq(entries, {})))) ? nix.builtins.unsafeGetAttrPos(nix.thunk(() => nix.builtins.head(nix.thunk(() => nix.builtins.attrNames(entries)))), entries) : null)),
           preferLocalBuild: true,
           allowSubstitutes: false,
-          passthru: nix.thunk(() => ({ __proto__: pos$24, entries: entries$ })),
+          passthru: nix.thunk(() => ({ [nix.POS]: pos$24, entries: entries$ })),
         })), nix.thunk(() => nix.str`mkdir -p $out
 cd $out
 ${nix.app(nix.sel(lib, "concatStrings"), linkCommands)}
 `));
     })();
     const linkFarmFromDrvs = (name) => (drvs) => (() => {
-      const mkEntryFromDrv = (drv) => ({ __proto__: pos$26, name: nix.thunk(() => nix.sel(drv, "name")), path: drv });
+      const mkEntryFromDrv = (drv) => ({ [nix.POS]: pos$26, name: nix.thunk(() => nix.sel(drv, "name")), path: drv });
       return nix.app(linkFarm, name, nix.thunk(() => nix.app(map, mkEntryFromDrv, drvs)));
     })();
     const onlyBin = (drv) => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(drv, "name")}-only-bin`), nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir -p $out
@@ -389,7 +389,7 @@ ln -s ${nix.app(nix.sel(lib, "getBin"), drv)}/bin $out/bin
       const passthru = nix.argOr($_1, "passthru", () => ({}));
       const substitutions = nix.argOr($_1, "substitutions", () => ({}));
       return (script) => nix.app(runCommand, name, nix.thunk(() => nix.update(substitutions, {
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           pos: nix.thunk(() => nix.app(nix.sel(lib, "unsafeGetAttrPos"), "name", args_2)),
           pname: name,
           version: "26.05pre-git",
@@ -407,13 +407,13 @@ recordPropagatedDependencies
 `)))));
     })(), formals$7);
     const writeClosure = (paths) => nix.app(runCommand, "runtime-deps", nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         __structuredAttrs: true,
-        exportReferencesGraph: nix.thunk(() => ({ __proto__: pos$28, graph: paths })),
+        exportReferencesGraph: nix.thunk(() => ({ [nix.POS]: pos$28, graph: paths })),
         nativeBuildInputs: nix.thunk(() => [jq]),
       })), "jq -r \".graph | map(.path) | sort | .[]\" \"$NIX_ATTRS_JSON_FILE\" > \"$out\"\n");
     const writeDirectReferencesToFile = (path) => nix.app(runCommand, "runtime-references", nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         exportReferencesGraph: nix.thunk(() => ["graph", path]),
         path: path,
       })), "touch ./references\nwhile read p; do\n  read dummy\n  read nrRefs\n  if [[ $p == $path ]]; then\n    for ((i = 0; i < nrRefs; i++)); do\n      read ref;\n      echo $ref >>./references\n    done\n  else\n    for ((i = 0; i < nrRefs; i++)); do\n      read ref;\n    done\n  fi\ndone < graph\nsort ./references >$out\n");
@@ -423,7 +423,7 @@ recordPropagatedDependencies
       const derivations = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (n) => (v) => nix.has(v, "outputs"), context));
       const sources = nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (n) => (v) => nix.has(v, "path"), context))));
       const packages = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (name) => (value) => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           value: value,
           name: nix.thunk(() => nix.app(nix.sel(lib, "head"), nix.thunk(() => nix.builtins.match(nix.thunk(() => nix.str`${nix.builtins.storeDir}/[${nixHashChars}]+-(.*)\\.drv`), name)))),
         }), derivations));
@@ -434,7 +434,7 @@ recordPropagatedDependencies
       return (nix.asBool(nix.has(nix.builtins, "getContext")) ? nix.app(writeText, "string-references", allPathsWithContext) : nix.app(writeDirectReferencesToFile, nix.thunk(() => nix.app(writeText, "string-file", string))));
     })();
     const requireFile = nix.thunk(() => nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         constructDrv: nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")),
         excludeDrvArgNames: nix.thunk(() => ["hash", "hashMode", "message", "sha1", "sha256", "url"]),
         extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -463,7 +463,7 @@ or
           const hash_ = nix.thunk(() => (nix.asBool(!nix.eq(hash, null)) ? nix.force(hash) : (nix.asBool(!nix.eq(sha256, null)) ? nix.force(sha256) : nix.force(sha1))));
           const name_ = nix.thunk(() => (nix.asBool(nix.eq(name, null)) ? nix.builtins.baseNameOf(nix.thunk(() => nix.builtins.toString(url))) : nix.force(name)));
           return nix.update({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             outputHashMode: hashMode,
             outputHashAlgo: hashAlgo_,
             outputHash: hash_,
@@ -472,11 +472,11 @@ or
 exit 1
 `))),
             meta: nix.thunk(() => nix.update({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
             }, meta)),
           }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(name, null)), nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               pos: nix.thunk(() => nix.app(nix.sel(lib, "unsafeGetAttrPos"), "url", args_2)),
               name: nix.thunk(() => nix.app(nix.builtins.warn("providing a URL without a name is deprecated", nix.builtins.baseNameOf), nix.thunk(() => nix.builtins.toString(url)))),
             }))));
@@ -486,7 +486,7 @@ exit 1
     const copyPathToStore = nix.thunk(() => nix.app(nix.builtins.filterSource, (p) => (t) => true));
     const copyPathsToStore = nix.thunk(() => nix.app(map, copyPathToStore));
     const applyPatches = nix.thunk(() => nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-        __proto__: pos$37,
+        [nix.POS]: pos$37,
         constructDrv: nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")),
         extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$9);
@@ -497,7 +497,7 @@ exit 1
           const keepAttrs = (names) => nix.app(nix.sel(lib, "filterAttrs"), (name) => (val) => nix.app(nix.sel(lib, "elem"), name, names));
           const extraPassthru = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "isAttrs"), nix.thunk(() => nix.sel(finalAttrs, "src")))), nix.thunk(() => nix.app(keepAttrs, nix.thunk(() => ["rev", "tag", "url", "outputHash", "outputHashAlgo"]), nix.thunk(() => nix.sel(finalAttrs, "src"))))));
           return {
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             name: nix.thunk(() => nix.selOr(args_2, () => (nix.asBool(nix.builtins.isPath(nix.thunk(() => nix.sel(finalAttrs, "src")))) ? nix.add(nix.builtins.baseNameOf(nix.thunk(() => nix.sel(finalAttrs, "src"))), "-patched") : (nix.asBool((nix.asBool(nix.builtins.isAttrs(nix.thunk(() => nix.sel(finalAttrs, "src")))) && nix.asBool(nix.has(nix.sel(finalAttrs, "src"), "name")))) ? nix.add(nix.sel(finalAttrs, "src", "name"), "-patched") : nix.builtins.throw("applyPatches: please supply a `name` argument because a default name can only be computed when the `src` is a path or is an attribute set with a `name` attribute."))), "name")),
             pos: nix.thunk(() => nix.builtins.unsafeGetAttrPos("src", args_2)),
             preferLocalBuild: true,
@@ -510,7 +510,7 @@ exit 1
         })(), formals$9),
       }))));
     const emptyFile = nix.thunk(() => nix.app(runCommand, "empty-file", nix.thunk(() => ({
-        __proto__: pos$38,
+        [nix.POS]: pos$38,
         outputHash: "sha256-d6xi4mKdjkX2JFicDIv5niSzpyI0m/Hnm8GGAIU04kY=",
         outputHashMode: "recursive",
         preferLocalBuild: true,
@@ -518,7 +518,7 @@ exit 1
         __structuredAttrs: true,
       })), "touch $out"));
     const emptyDirectory = nix.thunk(() => nix.app(runCommand, "empty-directory", nix.thunk(() => ({
-        __proto__: pos$39,
+        [nix.POS]: pos$39,
         outputHashAlgo: "sha256",
         outputHashMode: "recursive",
         outputHash: "0sjjj9z1dhilhpc8pq4154czrb79z9cm044jvn75kxcjv6v5l2m5",
@@ -527,7 +527,7 @@ exit 1
         __structuredAttrs: true,
       })), "mkdir $out"));
     return {
-      __proto__: pos$40,
+      [nix.POS]: pos$40,
       runCommand,
       runCommandLocal,
       runCommandCC,

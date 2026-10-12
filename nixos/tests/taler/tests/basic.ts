@@ -14,18 +14,18 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../..
     const $ = nix.formals(args, formals$1);
     const pkgs = nix.arg($, "pkgs");
     const lib = nix.arg($, "lib");
-    const cfgNodes = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../common/nodes.nix"), nix.thunk(() => ({ __proto__: pos$1, lib: lib }))));
+    const cfgNodes = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../common/nodes.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib }))));
     return {
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: "GNU Taler Basic Test",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         maintainers: nix.thunk(() => nix.sel(lib, "teams", "ngi", "members")),
       })),
       nodes: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(cfgNodes, "nodes"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         bank: nix.thunk(() => nix.attr(from, "bank")),
         client: nix.thunk(() => nix.attr(from, "client")),
         exchange: nix.thunk(() => nix.attr(from, "exchange")),
@@ -35,7 +35,7 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../..
       testScript: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const nodes = nix.arg($_1, "nodes");
-        const cfgScripts = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../common/scripts.nix"), nix.thunk(() => ({ __proto__: pos$4, lib: lib, pkgs: pkgs, nodes: nodes }))));
+        const cfgScripts = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../common/scripts.nix"), nix.thunk(() => ({ [nix.POS]: pos$4, lib: lib, pkgs: pkgs, nodes: nodes }))));
         const CURRENCY = nix.thunk(() => nix.attr(cfgNodes, "CURRENCY"));
         const FIAT_CURRENCY = nix.thunk(() => nix.attr(cfgNodes, "FIAT_CURRENCY"));
         const commonScripts = nix.thunk(() => nix.attr(cfgScripts, "commonScripts"));

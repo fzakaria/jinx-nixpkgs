@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const mkNginxPlugin = nix.arg($, "mkNginxPlugin");
   const zstd = nix.arg($, "zstd");
   return nix.app(mkNginxPlugin, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "zstd",
       version: "0.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tokers",
           repo: "zstd-nginx-module",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-module-order.patch",
             url: "https://github.com/tokers/zstd-nginx-module/commit/f4ba115e0b0eaecde545e5f37db6aa18917d8f4b.patch",
             hash: "sha256-QCd/oBqAAdKpze903Cd119I+FSVYoEW+j38Hhg45hL8=",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [zstd]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Nginx modules for the Zstandard compression",
         homepage: "https://github.com/tokers/zstd-nginx-module",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

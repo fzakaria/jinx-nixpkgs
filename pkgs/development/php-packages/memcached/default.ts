@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "memcached";
       const version = "3.4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "php-memcached-dev",
           repo: "php-memcached",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [pkg_config]);
       const buildInputs = nix.thunk(() => [cyrus_sasl, libmemcached, zlib]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PHP extension for interfacing with memcached via libmemcached library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "php301")),
         homepage: "https://github.com/php-memcached-dev/php-memcached",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "php"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

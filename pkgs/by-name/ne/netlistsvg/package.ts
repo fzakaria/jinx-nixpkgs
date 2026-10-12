@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "netlistsvg";
       const version = "1.0.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nturley",
           repo: "netlistsvg",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,10 +35,10 @@ export default nix.lambda((args) => (() => {
       const doCheck = true;
       const checkPhase = "runHook preCheck\n\nnode --trace-warnings test/test-all.js\n\nrunHook postCheck\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          "netlistsvg-yosys-integration-test": nix.thunk(() => nix.app(runCommandLocal, "netlistsvg-yosys-integration-test", nix.thunk(() => ({ __proto__: pos$2, nativeBuildInputs: nix.thunk(() => [netlistsvg, yosys]) })), nix.thunk(() => nix.str`yosys -p "prep -top helloworld -flatten; aigmap; write_json circuit.json" ${nix.path(here, "./test.v")}
+          [nix.POS]: pos$3,
+          "netlistsvg-yosys-integration-test": nix.thunk(() => nix.app(runCommandLocal, "netlistsvg-yosys-integration-test", nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [netlistsvg, yosys]) })), nix.thunk(() => nix.str`yosys -p "prep -top helloworld -flatten; aigmap; write_json circuit.json" ${nix.path(here, "./test.v")}
 netlistsvg circuit.json -o circuit.svg
 test -s circuit.svg
 touch $out
@@ -46,7 +46,7 @@ touch $out
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Draw SVG digital circuits schematics from yosys JSON netlists",
         homepage: "https://github.com/nturley/netlistsvg",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -56,7 +56,7 @@ touch $out
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

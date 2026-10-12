@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libiconv = nix.arg($, "libiconv");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "jbz",
       version: "0.39.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nim65s",
           repo: "jbz",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-U+P2LlhmXwaZy2a2eigrg545HTuV1T01jZfUOEUQ5+w=",
       depsBuildBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "buildPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(pkgsBuildBuild, "stdenv", "cc")), libiconv]))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         runtimeDeps: nix.thunk(() => (() => {
           const w = nix.withScope(pkgsBuildBuild, null);
           return [
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Display your Just commands wrapped in Bacon",
         homepage: "https://github.com/nim65s/jbz",
         changelog: nix.thunk(() => nix.str`https://github.com/nim65s/jbz/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

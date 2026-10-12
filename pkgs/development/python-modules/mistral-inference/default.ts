@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const mistral_inference = nix.arg($, "mistral-inference");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mistral-inference",
       version: "1.6.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mistralai",
           repo: "mistral-inference",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,16 +54,16 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       disabledTests: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["test_generation_mamba"]))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         gpuCheck: nix.thunk(() => nix.app(nix.sel(mistral_inference, "overridePythonAttrs"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             requiredSystemFeatures: nix.thunk(() => ["cuda"]),
             doCheck: true,
           })))),
       })),
       pythonImportsCheck: nix.thunk(() => ["mistral_inference"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "High-performance library for running Mistral AI models on local hardware",
         homepage: "https://github.com/mistralai/mistral-inference",
         changelog: nix.thunk(() => nix.str`https://github.com/mistralai/mistral-inference/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

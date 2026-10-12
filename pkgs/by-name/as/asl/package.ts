@@ -15,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const texliveMedium = nix.arg($, "texliveMedium");
   const buildDocs = nix.argOr($, "buildDocs", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "asl",
       version: "142-bld232",
       src: nix.thunk(() => (() => {
         const pname = nix.thunk(() => nix.attr(finalAttrs, "pname"));
         const version = nix.thunk(() => nix.attr(finalAttrs, "version"));
         return nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             name: nix.thunk(() => nix.str`${pname}-${version}`),
             url: nix.thunk(() => nix.str`http://john.ccac.rwth-aachen.de:8000/ftp/as/source/c_version/asl-current-${version}.tar.bz2`),
             hash: "sha256-Q50GzXBxFMhbt5s9OgHPNH4bdqz2hhEmTnMmKowVn2E=",
@@ -41,7 +41,7 @@ substituteAll ${nix.path(here, "./Makefile-nixos.def")} Makefile.def
 mkdir -p .objdir
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://john.ccac.rwth-aachen.de:8000/as/index.html",
         description: "Portable macro cross assembler",
         longDescription: "AS is a portable macro cross assembler for a variety of microprocessors\nand -controllers. Though it is mainly targeted at embedded processors and\nsingle-board computers, you also find CPU families in the target list that\nare used in workstations and PCs.\n",

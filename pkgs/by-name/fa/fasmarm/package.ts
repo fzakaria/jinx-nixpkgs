@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fasmarm",
       version: "1.44",
       src: nix.thunk(() => nix.sel(fasm, "src")),
       fasmarmOverlay: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://arm.flatassembler.net/FASMARM_small.ZIP",
           hash: "sha256-5ZzGl/C+hHRVYVyYBRns7hl3gy+cy89Eiq+9/nokk4Q=",
         })))),
@@ -40,7 +40,7 @@ runHook postBuild
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\ncat > test.asm <<'EOF'\ninclude 'macro/armstruc.inc'\nprocessor cpu64_v8\ncode64\nmov x0,42\nEOF\nprintf '\\x40\\x05\\x80\\xd2' > expected.bin\n\n$out/bin/fasmarm test.asm test.bin\ncmp expected.bin test.bin\n\nrunHook postInstallCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "FASM-based assembler for 32-bit and 64-bit ARM processors",
         homepage: "https://arm.flatassembler.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

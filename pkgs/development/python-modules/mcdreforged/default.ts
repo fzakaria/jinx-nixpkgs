@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mcdreforged",
       version: "2.15.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MCDReforged",
           repo: "MCDReforged",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, versionCheckHook]),
       pythonRelaxDeps: nix.thunk(() => ["ruamel.yaml"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/MCDReforged/MCDReforged/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         longDescription: "MCDReforged (abbreviated as MCDR) is a tool which provides the\nmanagement ability of the Minecraft server using custom plugin\nsystem.  It doesn't need to modify or mod the original Minecraft\nserver at all.\n\nFrom in-game calculator, player high-light, to manipulate\nscoreboard, manage structure file and backup / load backup, you\ncan implement these by using MCDR and related plugins.\n",
         description: "Minecraft server control tool",

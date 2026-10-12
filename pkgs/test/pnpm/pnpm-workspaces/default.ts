@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const structuredAttrs = nix.arg($_1, "structuredAttrs");
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: nix.thunk(() => nix.str`pnpm-workspaces-${(nix.asBool(structuredAttrs) ? "structured" : "legacy")}`),
         src: nix.path(here, "./src"),
         pnpmDeps: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchPnpmDeps, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             pname: "pnpm-workspaces",
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             pnpmWorkspaces: nix.thunk(() => nix.attr(finalAttrs, "pnpmWorkspaces")),
@@ -40,9 +40,9 @@ export default nix.lambda((args) => (() => {
       }));
   })(), formals$2);
   return {
-    __proto__: pos$5,
-    legacy: nix.thunk(() => nix.app(mkTest, nix.thunk(() => ({ __proto__: pos$3, structuredAttrs: false })))),
-    structured: nix.thunk(() => nix.app(mkTest, nix.thunk(() => ({ __proto__: pos$4, structuredAttrs: true })))),
+    [nix.POS]: pos$5,
+    legacy: nix.thunk(() => nix.app(mkTest, nix.thunk(() => ({ [nix.POS]: pos$3, structuredAttrs: false })))),
+    structured: nix.thunk(() => nix.app(mkTest, nix.thunk(() => ({ [nix.POS]: pos$4, structuredAttrs: true })))),
   };
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const bash = nix.arg($, "bash");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sshlatex",
       version: "0.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "iblech",
           repo: "sshlatex",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ wrapProgram $out/bin/sshlatex --prefix PATH : "${binPath}"
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of hacks to efficiently run LaTeX via ssh",
         longDescription: "sshlatex is a tool which uploads LaTeX source files to a remote, runs\nLaTeX there, and streams the resulting PDF file to the local host.\nBecause sshlatex prestarts LaTeX with the previous run's preamble,\nthereby preloading the required LaTeX packages, it is also useful in a\npurely local setting.\n",
         homepage: "https://github.com/iblech/sshlatex",

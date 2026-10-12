@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const batteries = nix.arg($, "batteries");
   return nix.app(buildLakePackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lean4-aesop",
       version: "4.34.0-unstable-2026-09-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "leanprover-community",
           repo: "aesop",
           rev: "355695d523e41d0554926416cba2a2b3544fbbc9",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       leanPackageName: "aesop",
       leanDeps: nix.thunk(() => [batteries]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "White-box automation for Lean 4",
         homepage: "https://github.com/leanprover-community/aesop",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

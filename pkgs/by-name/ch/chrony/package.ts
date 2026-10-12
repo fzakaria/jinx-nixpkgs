@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const pps_tools = nix.arg($, "pps-tools");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "chrony",
       version: "4.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://chrony-project.org/releases/chrony-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-SSTG9TAQW81bnp4zxIoq4b/YiSIshIC8QWAREO/IZNA=",
         })))),
@@ -39,15 +39,15 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           chrony: nix.thunk(() => nix.attr(nixosTests, "chrony")),
           "chrony-ptp": nix.thunk(() => nix.attr(nixosTests, "chrony-ptp")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Sets your computer's clock from time servers on the Net",
         homepage: "https://chrony-project.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

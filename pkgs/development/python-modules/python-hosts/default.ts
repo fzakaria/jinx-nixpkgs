@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-XiU6aO6EhFVgj1g7TYMdbgg7IvjkU2DFoiwYikrB13A=",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         "test_import_from_url",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for managing a hosts file",
         longDescription: "python-hosts is a Python library for managing a hosts file. It enables you to add\nand remove entries, or import them from a file or URL.\n",
         homepage: "https://github.com/jonhadfield/python-hosts",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

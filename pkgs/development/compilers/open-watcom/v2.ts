@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const ghostscript = nix.arg($, "ghostscript");
   const withGUI = nix.argOr($, "withGUI", () => nix.sel(stdenv, "hostPlatform", "isWindows"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "passthru", "prettyName")}-unwrapped`),
       version: "0-unstable-2026-04-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "open-watcom",
           repo: "open-watcom-v2",
           rev: "e724d4a0e7cc1593ae2430e07a62352b7852dd68",
@@ -55,16 +55,16 @@ runHook postConfigure
       installPhase: "runHook preInstall\n\n./build.sh cprel\n\nrunHook postInstall\n",
       dontStrip: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         prettyName: "open-watcom-v2",
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/open-watcom/open-watcom-v2.git",
             hardcodeZeroVersion: true,
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "V2 fork of the Open Watcom suite of compilers and tools",
         longDescription: nix.thunk(() => nix.add("A fork of Open Watcom: A C/C++/Fortran compiler and assembler suite\ntargeting a multitude of architectures (x86, IA-32, Alpha AXP, MIPS,\nPowerPC) and operating systems (DOS, OS/2, Windows, Linux).\n\nMain differences from Open Watcom 1.9:\n\n- New two-phase build system - Open Watcom can be built by the host's\n  native C/C++ compiler or by itself\n- Code generator properly initializes pointers by DLL symbol addresses\n- DOS tools now support long file names (LFN) if appropriate LFN driver\n  is loaded by DOS\n- Open Watcom is ported to 64-bit hosts (Win64, Linux x64)\n- Librarian supports x64 CPU object modules and libraries\n- RDOS 32-bit C run-time compact memory model libraries are fixed\n- Resource compiler and Resource editors support Win64 executables\n- Open Watcom text editor is now self-contained, it can be used as\n  standalone tool without any requirements for any additional files or\n  configuration\n- Broken C++ compiler pre-compiled header template support is fixed\n- Many C++ compiler crashes are fixed\n- Debugger has no length limit for any used environment variable\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(withDocs)), "\nThe documentation has been excluded from this build for build time reasons. It can be found here:\nhttps://github.com/open-watcom/open-watcom-v2/wiki/Open-Watcom-Documentation\n"))),
         homepage: "https://open-watcom.github.io",

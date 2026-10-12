@@ -43,70 +43,70 @@ export default nix.lambda((args) => (() => {
   const servicesNoDB = nix.thunk(() => ["secmod-cs", "secmod-eddsa", "secmod-rsa"]);
   const configFile = nix.thunk(() => nix.sel(config, "environment", "etc", "taler/taler.conf", "source"));
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           talerComponent: talerComponent,
           servicesDB: servicesDB,
           servicesNoDB: servicesNoDB,
         })))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       services: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         taler: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           exchange: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 description: "Configuration options for the taler exchange config file.\n\nFor a list of all possible options, please see the man page [`taler-exchange.conf(5)`](https://docs.taler.net/manpages/taler-exchange.conf.5.html)\n",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => (() => {
                     const from = nix.thunk(() => nix.sel(options, "services", "taler", "settings", "type", "nestedTypes"));
                     return {
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     freeformType: nix.thunk(() => nix.attr(from, "freeformType")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       exchange: nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         CURRENCY: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$2,
+                            [nix.POS]: pos$2,
                             type: nix.thunk(() => nix.sel(lib, "types", "nonEmptyStr")),
                             description: "The currency which the exchange will operate with. This cannot be changed later.\n",
                           })))),
                         CURRENCY_ROUND_UNIT: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$3,
+                            [nix.POS]: pos$3,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: nix.thunk(() => nix.str`${nix.sel(cfg, "settings", "exchange", "CURRENCY")}:0.01`),
                             defaultText: "0.01 in {option}`CURRENCY`",
                             description: "Smallest amount in this currency that can be transferred using the underlying RTGS. For example: \"EUR:0.01\" or \"JPY:1\"\n",
                           })))),
                         DB: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$4,
+                            [nix.POS]: pos$4,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["postgres"]))),
                             default: "postgres",
                             description: "Plugin to use for the database.",
                           })))),
                         MASTER_PUBLIC_KEY: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$5,
+                            [nix.POS]: pos$5,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: "",
                             description: "Used by the exchange to verify information signed by the offline system.",
                           })))),
                         PORT: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$6,
+                            [nix.POS]: pos$6,
                             type: nix.thunk(() => nix.sel(lib, "types", "port")),
                             default: 8081n,
                             description: "Port on which the HTTP server listens.",
                           })))),
                       })),
                       "exchangedb-postgres": nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         CONFIG: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$8,
+                            [nix.POS]: pos$8,
                             type: nix.thunk(() => nix.sel(lib, "types", "nonEmptyStr")),
                             default: "postgres:///taler-exchange-httpd",
                             description: "Database connection URI.",
@@ -118,7 +118,7 @@ export default nix.lambda((args) => (() => {
                 default: nix.thunk(() => ({})),
               })))),
             denominationConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.sel(lib, "types", "lines")),
                 defaultText: "None, you must set this yourself.",
                 example: "[COIN_KUDOS-n1-t1718140083]\nVALUE = KUDOS:0.1\nDURATION_WITHDRAW = 7 days\nDURATION_SPEND = 2 years\nDURATION_LEGAL = 6 years\nFEE_WITHDRAW = KUDOS:0\nFEE_DEPOSIT = KUDOS:0.1\nFEE_REFRESH = KUDOS:0\nFEE_REFUND = KUDOS:0\nRSA_KEYSIZE = 2048\nCIPHER = RSA\n",
@@ -129,35 +129,35 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "settings", "exchange", "MASTER_PUBLIC_KEY"), "")),
             message: "You must provide `config.services.taler.exchange.settings.exchange.MASTER_PUBLIC_KEY` with the\npublic part of your master key.\n\nThis will be used by the auditor service to get information about the exchange.\nFor more information, see https://docs.taler.net/taler-auditor-manual.html#initial-configuration\n\nTo generate this key, you must run `taler-exchange-offline setup`, which will print the public key.\n",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           taler: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             includes: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writeText"), "exchange-denominations.conf", nix.thunk(() => nix.sel(cfg, "denominationConfig")))),
             ]),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           services: nix.thunk(() => nix.attrsDyn({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             "taler-exchange-wirewatch": nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               requires: nix.thunk(() => ["taler-exchange-httpd.service"]),
               after: nix.thunk(() => ["taler-exchange-httpd.service"]),
             })),
           }, [
             [nix.str`taler-${talerComponent}-dbinit`, nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               script: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "taler-exchange-dbinit")} -c ${configFile}
 `),
             }))],

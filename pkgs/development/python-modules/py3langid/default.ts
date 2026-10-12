@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-CodaAxpYqvnb2nu4KF/XXoAae9J2IW/6vgN5AdS0Sew=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace tests/test_langid.py --replace \"'langid'\" \"'$out/bin/langid'\"\nsubstituteInPlace pyproject.toml --replace-fail \\\n  'numpy >= 2.0.0' numpy\n";
       const pythonImportsCheck = nix.thunk(() => ["py3langid"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fork of the language identification tool langid.py, featuring a modernized codebase and faster execution times",
         mainProgram: "langid",
         homepage: "https://github.com/adbar/py3langid",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

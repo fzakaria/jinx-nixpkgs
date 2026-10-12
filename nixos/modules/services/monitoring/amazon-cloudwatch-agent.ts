@@ -46,17 +46,17 @@ export default nix.lambda((args) => (() => {
   const jsonFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   const configurationDirectory = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "amazon-cloudwatch-agent.d", nix.thunk(() => ({})), "mkdir $out"));
   return {
-    __proto__: pos$32,
+    [nix.POS]: pos$32,
     options: nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       services: nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         "amazon-cloudwatch-agent": nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Amazon CloudWatch Agent")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "amazon-cloudwatch-agent", nix.thunk(() => ({})))),
           commonConfigurationFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: nix.thunk(() => nix.app(nix.sel(tomlFormat, "generate"), "common-config.toml", nix.thunk(() => nix.sel(cfg, "commonConfiguration")))),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "tomlFormat.generate \"common-config.toml\" cfg.commonConfiguration")),
@@ -64,19 +64,19 @@ export default nix.lambda((args) => (() => {
               example: "/etc/amazon-cloudwatch-agent/amazon-cloudwatch-agent.json",
             })))),
           commonConfiguration: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(tomlFormat, "type")),
               default: nix.thunk(() => ({})),
               description: "See {option}`commonConfigurationFile`.\n\n{option}`commonConfigurationFile` takes precedence over {option}`commonConfiguration`.\n",
               example: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 credentials: nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   shared_credential_profile: "profile_name",
                   shared_credential_file: "/path/to/credentials",
                 })),
                 proxy: nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   http_proxy: "http_url",
                   https_proxy: "https_url",
                   no_proxy: "domain",
@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
               })),
             })))),
           configurationFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: nix.thunk(() => nix.app(nix.sel(jsonFormat, "generate"), "amazon-cloudwatch-agent.json", nix.thunk(() => nix.sel(cfg, "configuration")))),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "jsonFormat.generate \"amazon-cloudwatch-agent.json\" cfg.configuration")),
@@ -92,39 +92,39 @@ export default nix.lambda((args) => (() => {
               example: "/etc/amazon-cloudwatch-agent/amazon-cloudwatch-agent.json",
             })))),
           configuration: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               type: nix.thunk(() => nix.sel(jsonFormat, "type")),
               default: nix.thunk(() => ({})),
               description: "See {option}`configurationFile`.\n\n{option}`configurationFile` takes precedence over {option}`configuration`.\n",
               example: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 agent: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   metrics_collection_interval: 10n,
                   logfile: "/var/log/amazon-cloudwatch-agent/amazon-cloudwatch-agent.log",
                 })),
                 metrics: nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   namespace: "MyCustomNamespace",
                   metrics_collected: nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     cpu: nix.thunk(() => ({
-                      __proto__: pos$11,
+                      [nix.POS]: pos$11,
                       resource: nix.thunk(() => ["*"]),
                       measurement: nix.thunk(() => [
                         nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           name: "cpu_usage_idle",
                           rename: "CPU_USAGE_IDLE",
                           unit: "Percent",
                         })),
-                        nix.thunk(() => ({ __proto__: pos$9, name: "cpu_usage_nice", unit: "Percent" })),
+                        nix.thunk(() => ({ [nix.POS]: pos$9, name: "cpu_usage_nice", unit: "Percent" })),
                         "cpu_usage_guest",
                       ]),
                       totalcpu: false,
                       metrics_collection_interval: 10n,
                       append_dimensions: nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         customized_dimension_key_1: "customized_dimension_value_1",
                         customized_dimension_key_2: "customized_dimension_value_2",
                       })),
@@ -132,14 +132,14 @@ export default nix.lambda((args) => (() => {
                   })),
                 })),
                 logs: nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   logs_collected: nix.thunk(() => ({
-                    __proto__: pos$16,
+                    [nix.POS]: pos$16,
                     files: nix.thunk(() => ({
-                      __proto__: pos$15,
+                      [nix.POS]: pos$15,
                       collect_list: nix.thunk(() => [
                         nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           file_path: "/var/log/amazon-cloudwatch-agent/amazon-cloudwatch-agent.log",
                           log_group_name: "amazon-cloudwatch-agent.log",
                           log_stream_name: "{instance_id}",
@@ -152,20 +152,20 @@ export default nix.lambda((args) => (() => {
                   force_flush_interval: 15n,
                 })),
                 traces: nix.thunk(() => ({
-                  __proto__: pos$19,
-                  traces_collected: nix.thunk(() => ({ __proto__: pos$18, xray: nix.thunk(() => ({})), oltp: nix.thunk(() => ({})) })),
+                  [nix.POS]: pos$19,
+                  traces_collected: nix.thunk(() => ({ [nix.POS]: pos$18, xray: nix.thunk(() => ({})), oltp: nix.thunk(() => ({})) })),
                 })),
               })),
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "root",
               description: "The user that runs the Amazon CloudWatch Agent.\n",
               example: "amazon-cloudwatch-agent",
             })))),
           mode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "auto",
               description: "Amazon CloudWatch Agent mode. Indicates whether the agent is running in EC2 (\"ec2\"), on-premises (\"onPremise\"),\nor if it should guess based on metadata endpoints like IMDS or the ECS task metadata endpoint (\"auto\").\n",
@@ -175,18 +175,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         systemd: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           services: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             "amazon-cloudwatch-agent": nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               description: "Amazon CloudWatch Agent",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 Type: "simple",
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 RuntimeDirectory: "amazon-cloudwatch-agent",

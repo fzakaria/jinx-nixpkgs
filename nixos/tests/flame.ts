@@ -20,45 +20,45 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     name: "flame",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "DerGrumpf"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       machine: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         services: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           flame: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             enable: true,
             passwordFile: "/etc/flame-password",
             apps: nix.thunk(() => [
-              nix.thunk(() => ({ __proto__: pos$2, name: "Test App", url: "http://example.com" })),
+              nix.thunk(() => ({ [nix.POS]: pos$2, name: "Test App", url: "http://example.com" })),
             ]),
             categories: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 name: "Test Category",
                 bookmarks: nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$3, name: "Nixpkgs", url: "https://github.com/NixOS/nixpkgs" })),
+                  nix.thunk(() => ({ [nix.POS]: pos$3, name: "Nixpkgs", url: "https://github.com/NixOS/nixpkgs" })),
                 ]),
               })),
             ]),
-            settings: nix.thunk(() => ({ __proto__: pos$5, customTitle: "Test Flame", customUnknownKey: "test-value" })),
+            settings: nix.thunk(() => ({ [nix.POS]: pos$5, customTitle: "Test Flame", customUnknownKey: "test-value" })),
             customCSS: "body { background: #123456; }\n",
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             rules: nix.thunk(() => ["f /etc/flame-password 0400 root root - testpassword"]),
           })),
         })),

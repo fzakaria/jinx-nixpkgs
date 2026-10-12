@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const respx = nix.arg($, "respx");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "python-xbox",
       version: "0.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tr4nt0r",
           repo: "python-xbox",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatch_regex_commit, hatchling]),
       pythonRelaxDeps: nix.thunk(() => ["pydantic"]),
       dependencies: nix.thunk(() => [cryptography, httpx, ms_cv, pydantic]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, cli: nix.thunk(() => [platformdirs]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, cli: nix.thunk(() => [platformdirs]) })),
       pythonImportsCheck: nix.thunk(() => ["pythonxbox"]),
       nativeCheckInputs: nix.thunk(() => [freezegun, pytest_asyncio, pytestCheckHook, respx]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/tr4nt0r/python-xbox/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Library to authenticate with Xbox Network and use their API",
         homepage: "https://github.com/tr4nt0r/python-xbox",

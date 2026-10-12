@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const runtimeShell = nix.arg($, "runtimeShell");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "blesh",
       version: "0.4.0-devel3-unstable-2026-09-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "akinomyoga",
           repo: "ble.sh",
           rev: "d81fd54feb0d996fdff20dca27eaf0201f7015cc",
@@ -63,11 +63,11 @@ chmod +x "$out/bin/blesh-share"
 rm -rf "$out/share/blesh/cache.d" "$out/share/blesh/run"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, tagPrefix: "v", tagFormat: "v*", shallowClone: false })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, tagPrefix: "v", tagFormat: "v*", shallowClone: false })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/akinomyoga/ble.sh",
         description: "Bash Line Editor -- a full-featured line editor written in pure Bash",
         mainProgram: "blesh-share",

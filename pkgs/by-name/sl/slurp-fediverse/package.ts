@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromCodeberg = nix.arg($, "fetchFromCodeberg");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "slurp",
       version: "1.1.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vyr",
           repo: "slurp",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-i/xoMJORuJbAQW+g9H95xQ5O3811NncCgJIL9OY+B5k=",
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for exporting data from and importing data to Fediverse instances",
         homepage: "https://codeberg.org/vyr/slurp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

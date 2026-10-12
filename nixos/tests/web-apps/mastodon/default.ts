@@ -14,9 +14,9 @@ export default nix.lambda((args) => (() => {
   const handleTestOn = nix.arg($, "handleTestOn");
   const supportedSystems = nix.thunk(() => ["x86_64-linux", "i686-linux", "aarch64-linux"]);
   return {
-    __proto__: pos$3,
-    standard: nix.thunk(() => nix.app(handleTestOn, supportedSystems, nix.path(here, "./standard.nix"), nix.thunk(() => ({ __proto__: pos$1, system: system, pkgs: pkgs })))),
-    "remote-databases": nix.thunk(() => nix.app(handleTestOn, supportedSystems, nix.path(here, "./remote-databases.nix"), nix.thunk(() => ({ __proto__: pos$2, system: system, pkgs: pkgs })))),
+    [nix.POS]: pos$3,
+    standard: nix.thunk(() => nix.app(handleTestOn, supportedSystems, nix.path(here, "./standard.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, pkgs: pkgs })))),
+    "remote-databases": nix.thunk(() => nix.app(handleTestOn, supportedSystems, nix.path(here, "./remote-databases.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs })))),
   };
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

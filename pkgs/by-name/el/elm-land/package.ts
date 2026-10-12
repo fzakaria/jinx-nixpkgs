@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const nixfmt = nix.arg($, "nixfmt");
   const version = "0.20.1";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "elm-land",
       repo: "elm-land",
       rev: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const cliSubdir = "projects/cli";
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "elm-land",
       version: version,
       src: src,
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: "sha256-yb/TEw8QdGigRzu2VHBvGBoUrbq06xU3igkOBfKBm+A=",
       npmRebuildFlags: nix.thunk(() => ["--ignore-scripts"]),
       postConfigure: nix.thunk(() => nix.add(nix.app(nix.sel(elmPackages, "fetchElmDeps"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           elmPackages: nix.thunk(() => nix.builtins.import(nix.path(here, "./elm-srcs.nix"))),
           elmVersion: nix.thunk(() => nix.sel(elmPackages, "elm", "version")),
           registryDat: nix.path(here, "./registry.dat"),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
 `)),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/jerith666/elm-land/commit/f37535cd054323e3d05e0ff10bd1356f7a3ccd92.patch",
             hash: "sha256-y20LNwPdZcJ/vPPwPBox4mw2pgxNZg5DYLEa7ErEXB4=",
             relative: cliSubdir,
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-elm-land", nix.thunk(() => nix.str`set -eu -o pipefail
 
 # Update version, src and npm deps
@@ -73,7 +73,7 @@ cp registry.dat pkgs/by-name/el/elm-land/registry.dat
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Production-ready framework for building Elm applications",
         homepage: "https://github.com/elm-land/elm-land",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

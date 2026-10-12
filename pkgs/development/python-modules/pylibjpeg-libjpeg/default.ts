@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const pylibjpeg = nix.arg($, "pylibjpeg");
   const libjpeg_tools = nix.arg($, "libjpeg-tools");
   const self = nix.thunk(() => nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "pylibjpeg-libjpeg",
       version: "2.4.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pydicom",
           repo: "pylibjpeg-libjpeg",
           tag: nix.thunk(() => nix.str`v${nix.sel(self, "version")}`),
@@ -47,15 +47,15 @@ chmod u+w lib/libjpeg
       nativeCheckInputs: nix.thunk(() => [pydicom, pylibjpeg_data, pylibjpeg, pytestCheckHook]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          check: nix.thunk(() => nix.app(nix.sel(self, "overridePythonAttrs"), (_) => ({ __proto__: pos$2, doCheck: true }))),
+          [nix.POS]: pos$3,
+          check: nix.thunk(() => nix.app(nix.sel(self, "overridePythonAttrs"), (_) => ({ [nix.POS]: pos$2, doCheck: true }))),
         })),
       })),
       pythonImportsCheck: nix.thunk(() => ["libjpeg"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "JPEG, JPEG-LS and JPEG XT plugin for pylibjpeg",
         homepage: "https://github.com/pydicom/pylibjpeg-libjpeg",
         changelog: nix.thunk(() => nix.str`https://github.com/pydicom/pylibjpeg-libjpeg/releases/tag/v${nix.sel(self, "version")}`),

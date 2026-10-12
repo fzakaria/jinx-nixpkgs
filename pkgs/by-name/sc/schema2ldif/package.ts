@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "schema2ldif";
       const version = "1.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://repos.fusiondirectory.org/sources/schema2ldif/schema2ldif-${version}.tar.gz`),
           hash: "sha256-KmXdqVuINUnJ6EF5oKgk6BsT3h5ebVqss7aCl3pPjQE=",
         }))));
@@ -35,7 +35,7 @@ wrapProgram $out/bin/schema2ldif \\
    --prefix PERL5PATH : "${nix.app(nix.sel(perlPackages, "makePerlPath"), nix.thunk(() => [nix.thunk(() => nix.sel(perlPackages, "GetoptLong"))]))}"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utilities to manage schema in .schema and .ldif format",
         homepage: "https://www.fusiondirectory.org/schema2ldif-project-and-components/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -43,7 +43,7 @@ wrapProgram $out/bin/schema2ldif \\
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

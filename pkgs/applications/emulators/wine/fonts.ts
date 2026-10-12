@@ -14,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const installFonts = nix.arg($, "installFonts");
   const src = nix.thunk(() => nix.sel(nix.app(callPackage, nix.path(here, "./sources.nix"), nix.thunk(() => ({}))), "stable"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "wine-fonts",
       version: nix.thunk(() => nix.attr(src, "version")),
       sourceRoot: nix.thunk(() => nix.str`wine-${nix.sel(src, "version")}/fonts`),
       src: src,
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Microsoft replacement fonts by the Wine project",
         homepage: "https://wiki.winehq.org/Create_Fonts",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

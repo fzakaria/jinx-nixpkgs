@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.11.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "scrapy-plugins",
           repo: "scrapy-splash",
           tag: version,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["scrapy_splash"]);
       const nativeCheckInputs = nix.thunk(() => [hypothesis, pytest_twisted, pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/scrapy-plugins/scrapy-splash/blob/${nix.sel(src, "tag")}/CHANGES.rst`),
         description: "Scrapy+Splash for JavaScript integration",
         homepage: "https://github.com/scrapy-plugins/scrapy-splash",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         broken: true,
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

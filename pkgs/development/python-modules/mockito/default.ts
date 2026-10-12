@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.5.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-SYJuOQHcgm0CBOk7Ftzhxh3enTqU6tycIJqw4TAoM5M=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [numpy, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["mockito"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Spying framework",
         homepage: "https://github.com/kaste/mockito-python",
         changelog: nix.thunk(() => nix.str`https://github.com/kaste/mockito-python/blob/${version}/CHANGES.txt`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

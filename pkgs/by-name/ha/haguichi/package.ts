@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const vala = nix.arg($, "vala");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "haguichi",
       version: "1.5.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ztefn",
           repo: "haguichi",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,9 +47,9 @@ export default nix.lambda((args) => (() => {
         gtk4,
       ]),
       buildInputs: nix.thunk(() => [glib, gtk4, libadwaita, libgee, libportal_gtk4]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Graphical frontend for Hamachi on Linux",
         mainProgram: "haguichi",
         homepage: "https://haguichi.net/",

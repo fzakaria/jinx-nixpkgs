@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
   const sources = nix.thunk(() => nix.builtins.import(nix.path(here, "./source.nix")));
   const platformSources = nix.thunk(() => nix.selOr(sources, () => nix.sel(sources, "x86_64-linux"), nix.key(nix.sel(stdenvNoCC, "system"))));
   const sharedMeta = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     description: "CLI tool for managing Nordic Semiconductor devices",
     homepage: "https://www.nordicsemi.com/Products/Development-tools/nRF-Util",
     changelog: "https://docs.nordicsemi.com/bundle/nrfutil/page/guides/revision_history.html",
@@ -54,11 +54,11 @@ export default nix.lambda((args) => (() => {
   const packages = nix.thunk(() => nix.builtins.map((name) => (() => {
       const package$ = nix.thunk(() => nix.sel(platformSources, "packages", nix.key(nix.force(name))));
       return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pname: name,
           version: nix.thunk(() => nix.attr(package$, "version")),
           src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: nix.thunk(() => nix.str`https://files.nordicsemi.com/artifactory/swtools/external/nrfutil/packages/${name}/${name}-${nix.sel(platformSources, "triplet")}-${nix.sel(package$, "version")}.tar.gz`),
               hash: nix.thunk(() => nix.attr(package$, "hash")),
             })))),
@@ -71,13 +71,13 @@ export default nix.lambda((args) => (() => {
           nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
           versionCheckKeepEnvironment: nix.thunk(() => ["HOME"]),
           preVersionCheck: "export HOME=$(mktemp -d)\n",
-          meta: nix.thunk(() => nix.update(sharedMeta, { __proto__: pos$3, mainProgram: name })),
+          meta: nix.thunk(() => nix.update(sharedMeta, { [nix.POS]: pos$3, mainProgram: name })),
         }));
     })(), nix.thunk(() => nix.concat(["nrfutil"], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.has(nix.sel(platformSources, "packages"), "nrfutil-completion")), "nrfutil-completion"), extensions)))));
   return nix.app(symlinkJoin, nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(platformSources, "packages", "nrfutil"));
       return {
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "nrfutil",
       version: nix.thunk(() => nix.attr(from, "version")),
       paths: packages,
@@ -105,14 +105,14 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.has(nix.sel(platfo
       passthru: nix.thunk(() => (() => {
         const availableExtensions = nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), nix.thunk(() => nix.app(nix.sel(lib, "removeAttrs"), nix.thunk(() => nix.sel(platformSources, "packages")), nix.thunk(() => ["nrfutil", "nrfutil-completion"])))));
         return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           updateScript: nix.path(here, "./update.sh"),
           allExtensions: availableExtensions,
-          withExtensions: (extensions_1) => nix.app(nix.sel(nrfutil, "override"), nix.thunk(() => ({ __proto__: pos$5, extensions: extensions_1 }))),
-          withAllExtensions: nix.thunk(() => nix.app(nix.sel(nrfutil, "override"), nix.thunk(() => ({ __proto__: pos$6, extensions: availableExtensions })))),
+          withExtensions: (extensions_1) => nix.app(nix.sel(nrfutil, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, extensions: extensions_1 }))),
+          withAllExtensions: nix.thunk(() => nix.app(nix.sel(nrfutil, "override"), nix.thunk(() => ({ [nix.POS]: pos$6, extensions: availableExtensions })))),
         };
       })()),
-      meta: nix.thunk(() => nix.update(sharedMeta, { __proto__: pos$8, mainProgram: "nrfutil" })),
+      meta: nix.thunk(() => nix.update(sharedMeta, { [nix.POS]: pos$8, mainProgram: "nrfutil" })),
     };
     })()));
 })(), formals$1);

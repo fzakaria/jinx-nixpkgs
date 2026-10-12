@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const wget = nix.arg($, "wget");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dillo-plus",
       version: "3.3.0-unstable-2025-01-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "crossbowerbt",
           repo: "dillo-plus",
           rev: "7d093e6bddcb3338938ea5959844e62ff1f9b76f",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: "dillo",
             version: "3.0.5",
             debianRevision: "7.2",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         "INSTALL=install",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Lightweight web browser based on Dillo but with many improvements, such as: support for http, https, gemini, gopher, epub, reader mode and more",
         homepage: "https://github.com/crossbowerbt/dillo-plus",
         changelog: "https://github.com/crossbowerbt/dillo-plus/blob/main/ChangeLog",

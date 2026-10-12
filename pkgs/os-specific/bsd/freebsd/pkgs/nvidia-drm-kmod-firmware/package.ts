@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const kldxref = nix.arg($, "kldxref");
   const nvidia_drm_kmod = nix.arg($, "nvidia-drm-kmod");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "...",
       pname: "nvidia-drm-kmod-firmware",
       version: nix.thunk(() => nix.attr(nvidia_drm_kmod, "version")),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => ["pic"]),
       preConfigure: "cd firmware\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => ["x86_64-freebsd"]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributableFirmware")),
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryFirmware"))]),

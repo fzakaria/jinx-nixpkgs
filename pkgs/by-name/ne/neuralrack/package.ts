@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const xorgproto = nix.arg($, "xorgproto");
   const xxd = nix.arg($, "xxd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "neuralrack",
       version: "0.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "brummer10",
           repo: "NeuralRack",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "substituteInPlace NeuralRack/makefile \\\n  --replace-fail \"-flto=auto\" \"\" \\\n  --replace-fail \"pkg-config\" '$(PKG_CONFIG)'\n\nsubstituteInPlace libxputty/Build/Makefile \\\n  --replace-fail \"pkg-config\" '$(PKG_CONFIG)'\n\nsubstituteInPlace libxputty/Build/Makefile.base \\\n  --replace-fail \"pkg-config\" '$(PKG_CONFIG)'\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/brummer10/NeuralRack",
         description: "Neural Model and Impulse Response (IR) File loader",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

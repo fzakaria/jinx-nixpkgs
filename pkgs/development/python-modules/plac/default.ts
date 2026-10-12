@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const python = nix.arg($, "python");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "plac",
       version: "1.4.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ialbert",
           repo: "plac",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ runHook postCheck
 `),
       pythonImportsCheck: nix.thunk(() => ["plac"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Parsing the Command Line the Easy Way",
         homepage: "https://github.com/micheles/plac",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsdOriginal")),

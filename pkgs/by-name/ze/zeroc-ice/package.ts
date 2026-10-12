@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mcpp-zeroc-ice";
       const version = "2.7.2.20";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zeroc-ice",
           repo: "mcpp",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -36,13 +36,13 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = [];
       const installFlags = nix.thunk(() => nix.concat(nix.selOr(prevAttrs, () => [], "installFlags"), ["PREFIX=$(out)"]));
-      return { __proto__: pos$2, pname, version, src, patches, installFlags };
+      return { [nix.POS]: pos$2, pname, version, src, patches, installFlags };
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "zeroc-ice";
       const version = "3.7.11";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "zeroc-ice",
           repo: "ice",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
   "fully_static_ldflags="
 )
 `);
-      const env = nix.thunk(() => ({ __proto__: pos$4, NIX_CFLAGS_COMPILE: "-std=gnu++17" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$4, NIX_CFLAGS_COMPILE: "-std=gnu++17" }));
       const enableParallelBuilding = true;
       const outputs = nix.thunk(() => ["out", "bin", "dev"]);
       const doCheck = true;
@@ -85,7 +85,7 @@ runHook postCheck
       })());
       const postInstall = "mkdir -p $bin $dev/share\nmv $out/bin $bin\nmv $out/share/ice $dev/share\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://www.zeroc.com/ice.html",
         description: "Internet communications engine",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -94,7 +94,7 @@ runHook postCheck
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

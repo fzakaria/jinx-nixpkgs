@@ -50,13 +50,13 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const uvicorn = nix.arg($, "uvicorn");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pandera",
       version: "0.33.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "unionai-oss",
           repo: "pandera",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
       "optional-dependencies": nix.thunk(() => (() => {
         const dask_dataframe = nix.thunk(() => nix.concat([dask], nix.sel(dask, "optional-dependencies", "dataframe")));
         const extras = nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           cli: nix.thunk(() => [typer, rich, pyyaml]),
           strategies: nix.thunk(() => [hypothesis]),
           hypotheses: nix.thunk(() => [scipy]),
@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
           xarray: nix.thunk(() => [numpy, xarray]),
         }));
         return nix.update(extras, {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           all: nix.thunk(() => nix.app(nix.sel(lib, "concatLists"), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), extras)))),
         });
       })()),
@@ -120,7 +120,7 @@ export default nix.lambda((args) => (() => {
       ]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Light-weight, flexible, and expressive statistical data testing library",
         homepage: "https://pandera.readthedocs.io",
         changelog: nix.thunk(() => nix.str`https://github.com/unionai-oss/pandera/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "kup";
       const version = "0.10.0";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "invent.kde.org",
           owner: "system",
           repo: "kup",
@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
         }))));
       const extraBuildInputs = nix.thunk(() => [libgit2]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "pwoelfel"))]),
         teams: [],
       }));
-      return { __proto__: pos$3, pname, version, src, extraBuildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, extraBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

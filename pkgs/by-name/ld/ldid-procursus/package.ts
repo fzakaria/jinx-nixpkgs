@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libplist = nix.arg($, "libplist");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ldid-procursus",
       version: "2.1.5-procursus7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ProcursusTeam",
           repo: "ldid",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       dontConfigure: true,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-memory-issues-with-various-entitlements.patch",
             url: "https://github.com/ProcursusTeam/ldid/commit/f38a095aa0cc721c40050cb074116c153608a11b.patch",
             hash: "sha256-D5o/E2tCbuNOv2D9UVaLEx8ZiwSB/wT0hf7XaTGzxE0=",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace Makefile \\\n  --replace-fail \"pkg-config\" \"$PKG_CONFIG\"\n",
       postInstall: "installShellCompletion --cmd ldid --zsh _ldid\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         mainProgram: "ldid",
         description: "Put real or fake signatures in a Mach-O binary",
         homepage: "https://github.com/ProcursusTeam/ldid",

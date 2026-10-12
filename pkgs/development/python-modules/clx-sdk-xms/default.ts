@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "clx-sdk-xms",
       version: "1.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "clxcommunications",
           repo: "sdk-xms-python",
           rev: "8d629cd7bcaf91eaafee265a825e3c52191f1425",
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [iso8601, requests]),
       pythonImportsCheck: nix.thunk(() => ["clx.xms"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python SDK for the CLX Communications REST API (XMS) for sending and receiving SMS",
         homepage: "https://github.com/clxcommunications/sdk-xms-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

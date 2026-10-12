@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const scipy = nix.arg($, "scipy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "peft",
       version: "0.18.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "huggingface",
           repo: "peft",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -103,7 +103,7 @@ export default nix.lambda((args) => (() => {
         "tests/test_low_level_api.py",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/huggingface/peft",
         description: "State-of-the art parameter-efficient fine tuning",
         changelog: nix.thunk(() => nix.str`https://github.com/huggingface/peft/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

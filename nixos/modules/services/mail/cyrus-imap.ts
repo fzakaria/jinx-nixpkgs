@@ -97,79 +97,79 @@ export default nix.lambda((args) => (() => {
   const imapdConfig = nix.thunk(() => (() => {
     const w = nix.withScope(generators, null);
     return nix.app(nix.lookup(w, "toKeyValue"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mkKeyValue: nix.thunk(() => nix.app(nix.lookup(w, "mkKeyValueDefault"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             mkValueString: (v) => (nix.asBool(nix.app(nix.sel(nix.builtins, "isBool"), v)) ? nix.app(boolToYesNo, v) : (nix.asBool(nix.app(nix.sel(nix.builtins, "isList"), v)) ? nix.app(concatStringsSep, " ", v) : nix.app(nix.lookup(w, "mkValueStringDefault"), nix.thunk(() => ({})), v))),
           })), ": ")),
       })), nix.thunk(() => nix.sel(cfg, "imapdSettings")));
   })());
   return {
-    __proto__: pos$54,
+    [nix.POS]: pos$54,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "cyrus-imap", "sslServerCert"]), nix.thunk(() => ["services", "cyrus-imap", "imapdSettings", "tls_server_cert"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "cyrus-imap", "sslServerKey"]), nix.thunk(() => ["services", "cyrus-imap", "imapdSettings", "tls_server_key"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "cyrus-imap", "sslCACert"]), nix.thunk(() => ["services", "cyrus-imap", "imapdSettings", "tls_client_ca_file"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$39,
+      [nix.POS]: pos$39,
       services: nix.thunk(() => ({
-        __proto__: pos$38,
+        [nix.POS]: pos$38,
         "cyrus-imap": nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Cyrus IMAP, an email, contacts and calendar server")),
           debug: nix.thunk(() => nix.app(mkEnableOption, "debugging messages for the Cyrus master process")),
           listenQueue: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: int,
               default: 32n,
               description: "Socket listen queue backlog size. See {manpage}`listen(2)` for more information about a backlog.\nDefault is 32, which may be increased if you have a very high connection rate.\n",
             })))),
           tmpDBDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: path,
               default: "/run/cyrus/db",
               description: "Location where DB files are stored.\nDatabases in this directory are recreated upon startup, so ideally they should live in ephemeral storage for best performance.\n",
             })))),
           cyrusSettings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               type: nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   freeformType: nix.thunk(() => nix.app(attrsOf, nix.thunk(() => nix.app(attrsOf, nix.thunk(() => nix.app(oneOf, nix.thunk(() => [bool, int, nix.thunk(() => nix.app(listOf, str))]))))))),
                   options: nix.thunk(() => ({
-                    __proto__: pos$22,
+                    [nix.POS]: pos$22,
                     START: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         default: nix.thunk(() => ({
-                          __proto__: pos$6,
-                          recover: nix.thunk(() => ({ __proto__: pos$5, cmd: nix.thunk(() => ["ctl_cyrusdb", "-r"]) })),
+                          [nix.POS]: pos$6,
+                          recover: nix.thunk(() => ({ [nix.POS]: pos$5, cmd: nix.thunk(() => ["ctl_cyrusdb", "-r"]) })),
                         })),
                         description: "This section lists the processes to run before any SERVICES are spawned.\nThis section is typically used to initialize databases.\nMaster itself will not startup until all tasks in START have completed, so put no blocking commands here.\n",
                       })))),
                     SERVICES: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         default: nix.thunk(() => ({
-                          __proto__: pos$12,
+                          [nix.POS]: pos$12,
                           imap: nix.thunk(() => ({
-                            __proto__: pos$8,
+                            [nix.POS]: pos$8,
                             cmd: nix.thunk(() => ["imapd"]),
                             listen: "imap",
                             prefork: 0n,
                           })),
                           pop3: nix.thunk(() => ({
-                            __proto__: pos$9,
+                            [nix.POS]: pos$9,
                             cmd: nix.thunk(() => ["pop3d"]),
                             listen: "pop3",
                             prefork: 0n,
                           })),
                           lmtpunix: nix.thunk(() => ({
-                            __proto__: pos$10,
+                            [nix.POS]: pos$10,
                             cmd: nix.thunk(() => ["lmtpd"]),
                             listen: "/run/cyrus/lmtp",
                             prefork: 0n,
                           })),
                           notify: nix.thunk(() => ({
-                            __proto__: pos$11,
+                            [nix.POS]: pos$11,
                             cmd: nix.thunk(() => ["notifyd"]),
                             listen: "/run/cyrus/notify",
                             proto: "udp",
@@ -179,27 +179,27 @@ export default nix.lambda((args) => (() => {
                         description: "This section is the heart of the cyrus.conf file. It lists the processes that should be spawned to handle client connections made on certain Internet/UNIX sockets.\n",
                       })))),
                     EVENTS: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$20,
+                        [nix.POS]: pos$20,
                         default: nix.thunk(() => ({
-                          __proto__: pos$19,
-                          tlsprune: nix.thunk(() => ({ __proto__: pos$14, cmd: nix.thunk(() => ["tls_prune"]), at: 400n })),
-                          delprune: nix.thunk(() => ({ __proto__: pos$15, cmd: nix.thunk(() => ["cyr_expire", "-E", "3"]), at: 400n })),
+                          [nix.POS]: pos$19,
+                          tlsprune: nix.thunk(() => ({ [nix.POS]: pos$14, cmd: nix.thunk(() => ["tls_prune"]), at: 400n })),
+                          delprune: nix.thunk(() => ({ [nix.POS]: pos$15, cmd: nix.thunk(() => ["cyr_expire", "-E", "3"]), at: 400n })),
                           deleteprune: nix.thunk(() => ({
-                            __proto__: pos$16,
+                            [nix.POS]: pos$16,
                             cmd: nix.thunk(() => ["cyr_expire", "-E", "4", "-D", "28"]),
                             at: 430n,
                           })),
                           expungeprune: nix.thunk(() => ({
-                            __proto__: pos$17,
+                            [nix.POS]: pos$17,
                             cmd: nix.thunk(() => ["cyr_expire", "-E", "4", "-X", "28"]),
                             at: 445n,
                           })),
-                          checkpoint: nix.thunk(() => ({ __proto__: pos$18, cmd: nix.thunk(() => ["ctl_cyrusdb", "-c"]), period: 30n })),
+                          checkpoint: nix.thunk(() => ({ [nix.POS]: pos$18, cmd: nix.thunk(() => ["ctl_cyrusdb", "-c"]), period: 30n })),
                         })),
                         description: "This section lists processes that should be run at specific intervals, similar to cron jobs. This section is typically used to perform scheduled cleanup/maintenance.\n",
                       })))),
                     DAEMON: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$21,
+                        [nix.POS]: pos$21,
                         default: nix.thunk(() => ({})),
                         description: "This section lists long running daemons to start before any SERVICES are spawned. {manpage}`master(8)` will ensure that these processes are running, restarting any process which dies or forks. All listed processes will be shutdown when {manpage}`master(8)` is exiting.\n",
                       })))),
@@ -208,32 +208,32 @@ export default nix.lambda((args) => (() => {
               description: "Cyrus configuration settings. See [cyrus.conf(5)](https://www.cyrusimap.org/imap/reference/manpages/configs/cyrus.conf.html)",
             })))),
           imapdSettings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               type: nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   freeformType: nix.thunk(() => nix.app(attrsOf, nix.thunk(() => nix.app(oneOf, nix.thunk(() => [str, int, bool, nix.thunk(() => nix.app(listOf, str))]))))),
                   options: nix.thunk(() => ({
-                    __proto__: pos$29,
+                    [nix.POS]: pos$29,
                     configdirectory: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$25,
+                        [nix.POS]: pos$25,
                         type: path,
                         default: "/var/lib/cyrus",
                         description: "The pathname of the IMAP configuration directory.\n",
                       })))),
                     lmtpsocket: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$26,
+                        [nix.POS]: pos$26,
                         type: path,
                         default: "/run/cyrus/lmtp",
                         description: "Unix socket that lmtpd listens on, used by {manpage}`deliver(8)`. This should match the path specified in {manpage}`cyrus.conf(5)`.\n",
                       })))),
                     idlesocket: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$27,
+                        [nix.POS]: pos$27,
                         type: path,
                         default: "/run/cyrus/idle",
                         description: "Unix socket that idled listens on.\n",
                       })))),
                     notifysocket: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$28,
+                        [nix.POS]: pos$28,
                         type: path,
                         default: "/run/cyrus/notify",
                         description: "Unix domain socket that the mail notification daemon listens on.\n",
@@ -241,7 +241,7 @@ export default nix.lambda((args) => (() => {
                   })),
                 })))),
               default: nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 admins: nix.thunk(() => ["cyrus"]),
                 allowplaintext: true,
                 defaultdomain: "localhost",
@@ -267,26 +267,26 @@ export default nix.lambda((args) => (() => {
               description: "IMAP configuration settings. See [imapd.conf(5)](https://www.cyrusimap.org/imap/reference/manpages/configs/imapd.conf.html)",
             })))),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               type: nix.thunk(() => nix.app(nullOr, str)),
               default: null,
               description: "Cyrus IMAP user name. If this is not set, a user named `cyrus` will be created.",
             })))),
           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               type: nix.thunk(() => nix.app(nullOr, str)),
               default: null,
               description: "Cyrus IMAP group name. If this is not set, a group named `cyrus` will be created.",
             })))),
           imapdConfigFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               type: nix.thunk(() => nix.app(nullOr, path)),
               default: null,
               description: "Path to the configuration file used for cyrus-imap.",
               apply: (v) => (nix.asBool(!nix.eq(v, null)) ? nix.force(v) : nix.app(nix.sel(pkgs, "writeText"), "imapd.conf", imapdConfig)),
             })))),
           cyrusConfigFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               type: nix.thunk(() => nix.app(nullOr, path)),
               default: null,
               description: "Path to the configuration file used for Cyrus.",
@@ -296,50 +296,50 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$53,
+        [nix.POS]: pos$53,
         users: nix.thunk(() => ({
-          __proto__: pos$43,
+          [nix.POS]: pos$43,
           users: nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             cyrus: nix.thunk(() => nix.app(optionalAttrs, nix.thunk(() => nix.eq(nix.sel(cfg, "user"), null)), nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 description: "Cyrus IMAP user",
                 isSystemUser: true,
                 group: nix.thunk(() => nix.app(optionalString, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), null)), "cyrus")),
               })))),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             cyrus: nix.thunk(() => nix.app(optionalAttrs, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), null)), nix.thunk(() => ({})))),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$47,
+          [nix.POS]: pos$47,
           etc: nix.thunk(() => ({
-            __proto__: pos$46,
-            "imapd.conf": nix.thunk(() => ({ __proto__: pos$44, source: nix.thunk(() => nix.sel(cfg, "imapdConfigFile")) })),
-            "cyrus.conf": nix.thunk(() => ({ __proto__: pos$45, source: nix.thunk(() => nix.sel(cfg, "cyrusConfigFile")) })),
+            [nix.POS]: pos$46,
+            "imapd.conf": nix.thunk(() => ({ [nix.POS]: pos$44, source: nix.thunk(() => nix.sel(cfg, "imapdConfigFile")) })),
+            "cyrus.conf": nix.thunk(() => ({ [nix.POS]: pos$45, source: nix.thunk(() => nix.sel(cfg, "cyrusConfigFile")) })),
           })),
           systemPackages: nix.thunk(() => [cyrus_imapdPkg]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$52,
+          [nix.POS]: pos$52,
           services: nix.thunk(() => ({
-            __proto__: pos$51,
+            [nix.POS]: pos$51,
             "cyrus-imap": nix.thunk(() => ({
-              __proto__: pos$50,
+              [nix.POS]: pos$50,
               description: "Cyrus IMAP server",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               restartTriggers: nix.thunk(() => ["/etc/imapd.conf", "/etc/cyrus.conf"]),
               startLimitIntervalSec: 60n,
               environment: nix.thunk(() => ({
-                __proto__: pos$48,
+                [nix.POS]: pos$48,
                 CYRUS_VERBOSE: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "debug")), "1")),
                 LISTENQUEUE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "listenQueue")))),
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$49,
+                [nix.POS]: pos$49,
                 User: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "user"), null)) ? "cyrus" : nix.sel(cfg, "user"))),
                 Group: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "group"), null)) ? "cyrus" : nix.sel(cfg, "group"))),
                 Type: "simple",

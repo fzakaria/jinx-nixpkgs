@@ -88,10 +88,10 @@ ln -s ${nix.app(stateDir, hostName)} $out/share/php/kimai/var
 # Symlink local.yaml.
 ln -s ${nix.app(kimaiConfig, hostName, cfg_1)} $out/share/php/kimai/config/packages/local.yaml
 `);
-      return { __proto__: pos$1, pname, src, version, installPhase };
+      return { [nix.POS]: pos$1, pname, src, version, installPhase };
     })()));
   const kimaiConfig = (hostName) => (cfg_1) => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: nix.thunk(() => nix.str`kimai-config-${hostName}.yaml`),
       text: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "generators"), "toYAML"), nix.thunk(() => ({})), nix.thunk(() => nix.sel(cfg_1, "settings")))),
     })));
@@ -101,71 +101,71 @@ ln -s ${nix.app(kimaiConfig, hostName, cfg_1)} $out/share/php/kimai/config/packa
     const name = nix.arg($_1, "name");
     const config_1 = nix.arg($_1, "config");
     return {
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       options: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "kimai", nix.thunk(() => ({})))),
         database: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           host: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "localhost",
               description: "Database host address.",
             })))),
           port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               default: 3306n,
               description: "Database host port.",
             })))),
           name: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "kimai",
               description: "Database name.",
             })))),
           user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "kimai",
               description: "Database user.",
             })))),
           passwordFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               default: null,
               example: "/run/keys/kimai-dbpassword",
               description: "A file containing the password corresponding to\n{option}`database.user`.\n",
             })))),
           socket: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               default: null,
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "/run/mysqld/mysqld.sock")),
               description: "Path to the unix socket file to use for authentication.",
             })))),
           charset: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "utf8mb4",
               description: "Database charset.",
             })))),
           serverVersion: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: null,
               description: "MySQL *exact* version string. Not used if `createdLocally` is set,\nbut must be set otherwise. See\n<https://www.kimai.org/documentation/installation.html#column-table_name-in-where-clause-is-ambiguous>\nfor how to set this value, especially if you're using MariaDB.\n",
             })))),
           createLocally: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "Create the database and database user locally.",
             })))),
         })),
         poolConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             type: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
               return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "oneOf"), nix.thunk(() => [
@@ -175,7 +175,7 @@ ln -s ${nix.app(kimaiConfig, hostName, cfg_1)} $out/share/php/kimai/config/packa
                   ]))));
             })()),
             default: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               pm: "dynamic",
               "pm.max_children": 32n,
               "pm.start_servers": 2n,
@@ -186,14 +186,14 @@ ln -s ${nix.app(kimaiConfig, hostName, cfg_1)} $out/share/php/kimai/config/packa
             description: "Options for the Kimai PHP pool. See the documentation on `php-fpm.conf`\nfor details on configuration directives.\n",
           })))),
         settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "anything")))),
             default: nix.thunk(() => ({})),
             description: "Structural Kimai's local.yaml configuration.\nRefer to <https://www.kimai.org/documentation/local-yaml.html#localyaml>\nfor details.\n",
             example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  kimai = {\n    timesheet = {\n      rounding = {\n        default = {\n          begin = 15;\n          end = 15;\n        };\n      };\n    };\n  };\n}\n")),
           })))),
         environmentFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
             default: null,
             example: "/run/secrets/kimai.env",
@@ -203,21 +203,21 @@ ln -s ${nix.app(kimaiConfig, hostName, cfg_1)} $out/share/php/kimai/config/packa
     };
   })(), formals$2);
   return {
-    __proto__: pos$52,
+    [nix.POS]: pos$52,
     options: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       services: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         kimai: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           sites: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), siteOpts)))),
               default: nix.thunk(() => ({})),
               description: "Specification of one or more Kimai sites to serve",
             })))),
           webserver: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["nginx"]))),
               default: "nginx",
               description: "The webserver to configure for the PHP frontend.\n\nAt the moment, only `nginx` is supported. PRs are welcome for support\nfor other web servers.\n",
@@ -227,42 +227,42 @@ ln -s ${nix.app(kimaiConfig, hostName, cfg_1)} $out/share/php/kimai/config/packa
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(eachSite, {})), nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             assertions: nix.thunk(() => nix.concat(nix.app(nix.lookup(w, "mapAttrsToList"), (hostName) => (cfg_1) => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg_1, "database", "createLocally")) || nix.asBool(nix.eq(nix.sel(cfg_1, "database", "user"), user)))),
                 message: nix.thunk(() => nix.str`services.kimai.sites."${hostName}".database.user must be ${user} if the database is to be automatically provisioned`),
               }), eachSite), nix.concat(nix.app(nix.lookup(w, "mapAttrsToList"), (hostName) => (cfg_1) => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg_1, "database", "createLocally")) || nix.asBool(nix.eq(nix.sel(cfg_1, "database", "passwordFile"), null)))),
                 message: nix.thunk(() => nix.str`services.kimai.sites."${hostName}".database.passwordFile cannot be specified if services.kimai.sites."${hostName}".database.createLocally is set to true.`),
               }), eachSite), nix.app(nix.lookup(w, "mapAttrsToList"), (hostName) => (cfg_1) => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 assertion: nix.thunk(() => (!nix.asBool(!nix.asBool(nix.sel(cfg_1, "database", "createLocally"))) || nix.asBool(!nix.eq(nix.sel(cfg_1, "database", "serverVersion"), null)))),
                 message: nix.thunk(() => nix.str`services.kimai.sites."${hostName}".database.serverVersion must be specified if services.kimai.sites."${hostName}".database.createLocally is set to false.`),
               }), eachSite)))),
             services: nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               mysql: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.app(nix.lookup(w, "any"), (v) => nix.sel(v, "database", "createLocally"), nix.thunk(() => nix.app(nix.lookup(w, "attrValues"), eachSite)))), nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   enable: true,
                   package: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.sel(pkgs, "mariadb")))),
                   ensureDatabases: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (hostName) => (cfg_1) => nix.sel(cfg_1, "database", "name"), eachSite)),
                   ensureUsers: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (hostName) => (cfg_1) => ({
-                      __proto__: pos$27,
+                      [nix.POS]: pos$27,
                       name: nix.thunk(() => nix.sel(cfg_1, "database", "user")),
                       ensurePermissions: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${nix.sel(cfg_1, "database", "name")}.*`, "ALL PRIVILEGES"]])),
                     }), eachSite)),
                 })))),
               phpfpm: nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 pools: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs'"), (hostName) => (cfg_1) => nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.str`kimai-${hostName}`), nix.thunk(() => ({
-                      __proto__: pos$30,
+                      [nix.POS]: pos$30,
                       phpPackage: nix.thunk(() => nix.sel(cfg_1, "package", "php")),
                       user: user,
                       group: nix.thunk(() => nix.sel(webserver, "group")),
                       settings: nix.thunk(() => nix.update({
-                        __proto__: pos$29,
+                        [nix.POS]: pos$29,
                         "listen.owner": nix.thunk(() => nix.sel(webserver, "user")),
                         "listen.group": nix.thunk(() => nix.sel(webserver, "group")),
                       }, nix.sel(cfg_1, "poolConfig"))),
@@ -271,18 +271,18 @@ ln -s ${nix.app(kimaiConfig, hostName, cfg_1)} $out/share/php/kimai/config/packa
             })),
           })),
           nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             systemd: nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               tmpfiles: nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 rules: nix.thunk(() => nix.app(nix.lookup(w, "flatten"), nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (hostName) => (cfg_1) => [
                       nix.thunk(() => nix.str`d '${nix.app(stateDir, hostName)}' 0770 ${user} ${nix.sel(webserver, "group")} - -`),
                     ], eachSite)))),
               })),
               services: nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
                   nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs'"), (hostName) => (cfg_1) => nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.str`kimai-init-${hostName}`), nix.thunk(() => ({
-                        __proto__: pos$36,
+                        [nix.POS]: pos$36,
                         wantedBy: nix.thunk(() => ["multi-user.target"]),
                         before: nix.thunk(() => [nix.thunk(() => nix.str`phpfpm-kimai-${hostName}.service`)]),
                         after: nix.thunk(() => nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.sel(cfg_1, "database", "createLocally")), "mysql.service")),
@@ -339,7 +339,7 @@ ${nix.app(pkg, hostName, cfg_1)}/bin/console cache:warmup --env=prod
 `;
                         })()),
                         serviceConfig: nix.thunk(() => ({
-                          __proto__: pos$35,
+                          [nix.POS]: pos$35,
                           Type: "oneshot",
                           User: user,
                           Group: nix.thunk(() => nix.sel(webserver, "group")),
@@ -347,22 +347,22 @@ ${nix.app(pkg, hostName, cfg_1)}/bin/console cache:warmup --env=prod
                         })),
                       }))), eachSite)),
                   nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs'"), (hostName) => (cfg_1) => nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.str`phpfpm-kimai-${hostName}`), nix.thunk(() => ({
-                        __proto__: pos$38,
+                        [nix.POS]: pos$38,
                         serviceConfig: nix.thunk(() => ({
-                          __proto__: pos$37,
+                          [nix.POS]: pos$37,
                           EnvironmentFile: nix.thunk(() => [nix.thunk(() => nix.sel(cfg_1, "environmentFile"))]),
                         })),
                       }))), eachSite)),
                   nix.thunk(() => nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.app(nix.lookup(w, "any"), (v) => nix.sel(v, "database", "createLocally"), nix.thunk(() => nix.app(nix.lookup(w, "attrValues"), eachSite)))), nix.thunk(() => nix.attrsDyn({}, [
-                      [nix.str`${nix.sel(cfg, "webserver")}`, nix.thunk(() => ({ __proto__: pos$39, after: nix.thunk(() => ["mysql.service"]) }))],
+                      [nix.str`${nix.sel(cfg, "webserver")}`, nix.thunk(() => ({ [nix.POS]: pos$39, after: nix.thunk(() => ["mysql.service"]) }))],
                     ])))),
                 ]))),
             })),
             users: nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               users: nix.thunk(() => nix.attrsDyn({}, [
                 [user, nix.thunk(() => ({
-                  __proto__: pos$41,
+                  [nix.POS]: pos$41,
                   group: nix.thunk(() => nix.sel(webserver, "group")),
                   isSystemUser: true,
                 }))],
@@ -370,26 +370,26 @@ ${nix.app(pkg, hostName, cfg_1)}/bin/console cache:warmup --env=prod
             })),
           })),
           nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "webserver"), "nginx")), nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               services: nix.thunk(() => ({
-                __proto__: pos$50,
+                [nix.POS]: pos$50,
                 nginx: nix.thunk(() => ({
-                  __proto__: pos$49,
+                  [nix.POS]: pos$49,
                   enable: true,
                   virtualHosts: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs"), (hostName) => (cfg_1) => ({
-                      __proto__: pos$48,
+                      [nix.POS]: pos$48,
                       serverName: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), hostName)),
                       root: nix.thunk(() => nix.str`${nix.app(pkg, hostName, cfg_1)}/share/php/kimai/public`),
                       extraConfig: "index index.php;\n",
                       locations: nix.thunk(() => ({
-                        __proto__: pos$47,
+                        [nix.POS]: pos$47,
                         "/": nix.thunk(() => ({
-                          __proto__: pos$44,
+                          [nix.POS]: pos$44,
                           priority: 200n,
                           extraConfig: "try_files $uri /index.php$is_args$args;\n",
                         })),
                         "~ ^/index\\.php(/|$)": nix.thunk(() => ({
-                          __proto__: pos$45,
+                          [nix.POS]: pos$45,
                           priority: 500n,
                           extraConfig: nix.thunk(() => nix.str`fastcgi_split_path_info ^(.+\\.php)(/.+)$;
 fastcgi_pass unix:${nix.sel(config, "services", "phpfpm", "pools", nix.key(nix.str`kimai-${hostName}`), "socket")};
@@ -407,7 +407,7 @@ fastcgi_send_timeout 300;
 fastcgi_read_timeout 300;
 `),
                         })),
-                        "~ \\.php$": nix.thunk(() => ({ __proto__: pos$46, priority: 800n, extraConfig: "return 404;\n" })),
+                        "~ \\.php$": nix.thunk(() => ({ [nix.POS]: pos$46, priority: 800n, extraConfig: "return 404;\n" })),
                       })),
                     }), eachSite)),
                 })),

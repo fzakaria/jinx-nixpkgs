@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lzham",
       version: "1.0-unstable-2023-05-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "richgel999",
           repo: "lzham_codec_devel",
           rev: "d09fc6676a0313c3814457fbc76351a68f653092",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace {./,lzhamcomp/,lzhamdecomp/,lzhamdll/,lzhamtest/}CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.8)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       postInstall: "mkdir -p $out/bin\ncp lzhamtest/lzhamtest $out/bin/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lossless data compression codec with LZMA-like ratios but 1.5x-8x faster decompression speed",
         mainProgram: "lzhamtest",
         homepage: "https://github.com/richgel999/lzham_codec",

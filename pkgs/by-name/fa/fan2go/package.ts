@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const autoAddDriverRunpath = nix.arg($, "autoAddDriverRunpath");
   const enableNVML = nix.argOr($, "enableNVML", () => nix.sel(config, "cudaSupport"));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fan2go",
       version: "0.15.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "markusressel",
           repo: "fan2go",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -53,7 +53,7 @@ runHook postBuild
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), enableNVML, "patchelf --add-needed libnvidia-ml.so \"$out/bin/fan2go\"\n")),
       checkPhase: "runHook preCheck\nmake test\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple daemon providing dynamic fan speed control based on temperature sensors",
         mainProgram: "fan2go",
         homepage: "https://github.com/markusressel/fan2go",

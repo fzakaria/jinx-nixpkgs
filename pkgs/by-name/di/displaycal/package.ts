@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const argyllcms = nix.arg($, "argyllcms");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "displaycal",
       version: "3.9.19",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "displaycal",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-GHx+2VwuxwdMQh6fxY6V/EQJE4CPxer39Aj/QlMWbrw=",
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
 )
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Display calibration and characterization powered by Argyll CMS (Migrated to Python 3)",
         homepage: "https://github.com/eoyilmaz/displaycal-py3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

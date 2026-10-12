@@ -56,29 +56,29 @@ export default nix.lambda((args) => (() => {
   const rootfsImage = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.thunk(() => nix.sel(config, "sdImage", "rootFilesystemCreator")), nix.thunk(() => nix.update((() => {
       const from = nix.thunk(() => nix.sel(config, "sdImage"));
       return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       storePaths: nix.thunk(() => nix.attr(from, "storePaths")),
       compressImage: nix.thunk(() => nix.sel(config, "sdImage", "compressImage")),
       populateImageCommands: nix.thunk(() => nix.sel(config, "sdImage", "populateRootCommands")),
       volumeLabel: nix.thunk(() => nix.sel(config, "sdImage", "rootVolumeLabel")),
     };
     })(), nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(config, "sdImage", "rootPartitionUUID"), null)), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         uuid: nix.thunk(() => nix.sel(config, "sdImage", "rootPartitionUUID")),
       })))))));
   return {
-    __proto__: pos$42,
+    [nix.POS]: pos$42,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["sdImage", "bootPartitionID"]), "The FAT partition for SD image now only holds the Raspberry Pi firmware files. Use firmwarePartitionID to configure that partition's ID.")),
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["sdImage", "bootSize"]), "The boot files for SD image have been moved to the main ext4 partition. The FAT partition now only holds the Raspberry Pi firmware files. Changing its size may not be required.")),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModuleWith"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           sinceRelease: 2505n,
           from: nix.thunk(() => ["sdImage", "imageBaseName"]),
           to: nix.thunk(() => ["image", "baseName"]),
         })))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModuleWith"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           sinceRelease: 2505n,
           from: nix.thunk(() => ["sdImage", "imageName"]),
           to: nix.thunk(() => ["image", "fileName"]),
@@ -87,11 +87,11 @@ export default nix.lambda((args) => (() => {
       nix.path(here, "../../image/file-options.nix"),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       sdImage: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         storePaths: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             type: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
               return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "package")));
@@ -100,39 +100,39 @@ export default nix.lambda((args) => (() => {
             description: "Derivations to be included in the Nix store in the generated SD image.\n",
           })))),
         firmwarePartitionOffset: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
             default: 8n,
             description: "Gap in front of the /boot/firmware partition, in MiB (1024×1024 bytes).\nCan be increased to make more space for boards requiring to dd u-boot\nSPL before actual partitions.\n\nUnless you are building your own images pre-configured with an\ninstalled U-Boot, you can instead opt to delete the existing `FIRMWARE`\npartition, which is used **only** for the Raspberry Pi family of\nhardware.\n",
           })))),
         firmwarePartitionID: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             default: "0x2178694e",
             description: "Volume ID for the /boot/firmware partition on the SD card. This value\nmust be a 32-bit hexadecimal number.\n",
           })))),
         firmwarePartitionName: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             default: "FIRMWARE",
             description: "Name of the filesystem which holds the boot firmware.\n",
           })))),
         rootPartitionUUID: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
             default: null,
             example: "14e19a7b-0ae0-484d-9d54-43bd6fdc20c7",
             description: "UUID for the filesystem on the main NixOS partition on the SD card.\n",
           })))),
         rootVolumeLabel: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             default: "NIXOS_SD",
             example: "NIXOS_PENDRIVE",
             description: "Label for the NixOS root volume.\nUsually used when creating a recovery NixOS media installation\nthat avoids conflicting with previous instalation label.\n",
           })))),
         rootFilesystemCreator: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "oneOf"), nix.thunk(() => [
                 nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")),
                 nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
@@ -142,55 +142,55 @@ export default nix.lambda((args) => (() => {
             description: "The filesystem creator used for the root partition.\n",
           })))),
         rootFilesystemImage: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")),
             default: rootfsImage,
             description: "The finished root partition image with all custom fileystem modifications.\nUsed to override the filesystem creator itself.\n",
           })))),
         firmwareSize: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
             default: 30n,
             description: "Size of the /boot/firmware partition, in megabytes.\n",
           })))),
         populateFirmwareCommands: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "'' cp ${pkgs.myBootLoader}/u-boot.bin firmware/ ''")),
             description: "Shell commands to populate the ./firmware directory.\nAll files in that directory are copied to the\n/boot/firmware partition on the SD image.\n",
           })))),
         populateRootCommands: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "''${config.boot.loader.generic-extlinux-compatible.populateCmd} -c ${config.system.build.toplevel} -d ./files/boot''")),
             description: "Shell commands to populate the ./files directory.\nAll files in that directory are copied to the\nroot (/) partition on the SD image. Use this to\npopulate the ./files/boot (/boot) directory.\n",
           })))),
         preBuildCommands: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
             example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "''\n  if [ ! -w \"$root_fs\" ]; then\n    cp --no-preserve=mode \"$root_fs\" ./root-fs.img\n    root_fs=./root-fs.img\n  fi\n  resize2fs $root_fs 15G\n''\n")),
             default: "",
             description: "Shell commands to run after the root filesystem image has been\nprepared, but before the final SD image is assembled.\n\nThe path to the root filesystem image is available in the\n{var}`root_fs` shell variable. This hook can be used to modify\nthe rootfs, for example to resize it or inject additional files.\n\nNote that when {option}`sdImage.compressImage` is disabled,\n{var}`root_fs` points to a read-only store path. To modify it,\nfirst copy it to a writable location and update {var}`root_fs`\nto point to the copy.\n",
           })))),
         postBuildCommands: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
             example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "'' dd if=${pkgs.myBootLoader}/SPL of=$img bs=1024 seek=1 conv=notrunc ''")),
             default: "",
             description: "Shell commands to run after the SD image has been assembled.\n\nThe path to the image is available in the {var}`img` shell\nvariable. This hook is typically used for boards that require\nwriting a bootloader (such as u-boot SPL) to a fixed offset\nbefore the first partition.\n",
           })))),
         compressImage: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
             default: true,
             description: "Whether the SD image should be compressed using\n{command}`zstd`.\n",
           })))),
         expandOnBoot: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
             default: true,
             description: "Whether to configure the sd image to expand it's partition on boot.\n",
           })))),
         nixPathRegistrationFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             default: "/nix-path-registration",
             description: "Location of the file containing the input for nix-store --load-db once the machine has booted.\nIf overriding fileSystems.\"/\" then you should to set this to the root mount + /nix-path-registration\n",
@@ -198,36 +198,36 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$41,
-      hardware: nix.thunk(() => ({ __proto__: pos$23, enableAllHardware: true })),
+      [nix.POS]: pos$41,
+      hardware: nix.thunk(() => ({ [nix.POS]: pos$23, enableAllHardware: true })),
       fileSystems: nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         "/boot/firmware": nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           device: nix.thunk(() => nix.str`/dev/disk/by-label/${nix.sel(config, "sdImage", "firmwarePartitionName")}`),
           fsType: "vfat",
           options: nix.thunk(() => ["nofail", "noauto"]),
         })),
         "/": nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           device: nix.thunk(() => nix.str`/dev/disk/by-label/${nix.sel(config, "sdImage", "rootVolumeLabel")}`),
           fsType: "ext4",
         })),
       })),
       sdImage: nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         storePaths: nix.thunk(() => [nix.thunk(() => nix.sel(config, "system", "build", "toplevel"))]),
       })),
       image: nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         extension: nix.thunk(() => (nix.asBool(nix.sel(config, "sdImage", "compressImage")) ? "img.zst" : "img")),
         filePath: nix.thunk(() => nix.str`sd-image/${nix.sel(config, "image", "fileName")}`),
       })),
       system: nix.thunk(() => ({
-        __proto__: pos$32,
-        nixos: nix.thunk(() => ({ __proto__: pos$29, tags: nix.thunk(() => ["sd-card"]) })),
+        [nix.POS]: pos$32,
+        nixos: nix.thunk(() => ({ [nix.POS]: pos$29, tags: nix.thunk(() => ["sd-card"]) })),
         build: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           image: nix.thunk(() => nix.sel(config, "system", "build", "sdImage")),
           sdImage: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.lambda((args_1) => (() => {
               const $_1 = nix.formals(args_1, formals$2);
@@ -241,7 +241,7 @@ export default nix.lambda((args) => (() => {
               return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
                   const from = nix.thunk(() => nix.sel(config, "sdImage"));
                   return {
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   name: nix.thunk(() => nix.sel(config, "image", "fileName")),
                   nativeBuildInputs: nix.thunk(() => nix.concat([dosfstools, e2fsprogs, libfaketime, mtools, util_linux], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(config, "sdImage", "compressImage")), zstd))),
                   compressImage: nix.thunk(() => nix.attr(from, "compressImage")),
@@ -325,14 +325,14 @@ fi
         })),
       })),
       systemd: nix.thunk(() => ({
-        __proto__: pos$40,
+        [nix.POS]: pos$40,
         services: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           "expand-root-partition": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "sdImage", "expandOnBoot")), nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               description: "Grow the root partition and filesystem to fill the SD card",
               unitConfig: nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 DefaultDependencies: false,
                 ConditionPathExists: nix.thunk(() => nix.sel(config, "sdImage", "nixPathRegistrationFile")),
               })),
@@ -341,7 +341,7 @@ fi
               after: nix.thunk(() => ["local-fs.target"]),
               conflicts: nix.thunk(() => ["shutdown.target"]),
               restartIfChanged: false,
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$34, Type: "oneshot", RemainAfterExit: true })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$34, Type: "oneshot", RemainAfterExit: true })),
               script: nix.thunk(() => nix.str`# Figure out device names for the boot device and root filesystem.
 rootPart=$(${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "util-linux")), "findmnt")} -n -o SOURCE /)
 bootDevice=$(${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "util-linux")), "lsblk")} -npo PKNAME $rootPart)
@@ -357,10 +357,10 @@ ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "e2fsprogs")), 
             const from = nix.thunk(() => nix.sel(config, "sdImage"));
             const nixPathRegistrationFile = nix.thunk(() => nix.attr(from, "nixPathRegistrationFile"));
             return {
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               description: "Register Nix Store Paths",
               unitConfig: nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 DefaultDependencies: false,
                 ConditionPathExists: nixPathRegistrationFile,
               })),
@@ -374,7 +374,7 @@ ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "e2fsprogs")), 
               after: nix.thunk(() => ["local-fs.target"]),
               conflicts: nix.thunk(() => ["shutdown.target"]),
               restartIfChanged: false,
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$37, Type: "oneshot", RemainAfterExit: true })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$37, Type: "oneshot", RemainAfterExit: true })),
               script: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(config, "nix", "package", "out")), "nix-store")} --load-db < ${nixPathRegistrationFile}
 
 # nixos-rebuild also requires a "system" profile and an /etc/NIXOS tag.

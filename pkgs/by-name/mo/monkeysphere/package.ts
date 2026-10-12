@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const procps = nix.arg($, "procps");
   const openssl = nix.arg($, "openssl");
   const opensshUnsafe = nix.thunk(() => nix.app(nix.sel(openssh, "overrideAttrs"), (oldAttrs) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       patches: nix.thunk(() => nix.concat(nix.sel(oldAttrs, "patches"), [nix.path(here, "./openssh-nixos-sandbox.patch")])),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.44";
       const disallowedRequisites = nix.thunk(() => [opensshUnsafe]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`http://archive.monkeysphere.info/debian/pool/monkeysphere/m/monkeysphere/monkeysphere_${version}.orig.tar.gz`),
           sha256: "1ah7hy8r9gj96pni8azzjb85454qky5l17m3pqn37854l6grgika",
         }))));
@@ -85,7 +85,7 @@ done
 `);
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://web.monkeysphere.info/",
         description: "Leverage the OpenPGP web of trust for SSH and TLS authentication",
         longDescription: "The Monkeysphere project's goal is to extend OpenPGP's web of\ntrust to new areas of the Internet to help us securely identify\nservers we connect to, as well as each other while we work online.\nThe suite of Monkeysphere utilities provides a framework to\ntransparently leverage the web of trust for authentication of\nTLS/SSL communications through the normal use of tools you are\nfamiliar with, such as your web browser0 or secure shell.\n",
@@ -94,7 +94,7 @@ done
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         disallowedRequisites,

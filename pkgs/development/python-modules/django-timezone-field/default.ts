@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.2.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mfogel",
           repo: "django-timezone-field",
           tag: version,
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         pytz,
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Django app providing database, form and serializer fields for pytz timezone objects",
         homepage: "https://github.com/mfogel/django-timezone-field",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

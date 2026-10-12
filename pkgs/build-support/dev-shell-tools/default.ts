@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       return nix.app(nix.sel(lib, "genAttrs"), outputList, (output) => nix.builtins.unsafeDiscardStringContext(nix.thunk(() => nix.sel(outputMap, nix.key(nix.force(output)), "outPath"))));
     })(), formals$3);
     return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       valueToString,
       unstructuredDerivationInputEnv,
       derivationOutputEnv,

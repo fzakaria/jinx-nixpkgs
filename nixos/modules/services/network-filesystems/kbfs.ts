@@ -46,34 +46,34 @@ export default nix.lambda((args) => (() => {
   const wrapperDir = nix.thunk(() => nix.attr(from, "wrapperDir"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "kbfs"));
   return {
-    __proto__: pos$33,
+    [nix.POS]: pos$33,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         kbfs: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to mount the Keybase filesystem.",
             })))),
           enableRedirector: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable the Keybase root redirector service, allowing\nany user to access KBFS files via `/keybase`,\nwhich will show different contents depending on the requester.\n",
             })))),
           mountPoint: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "%h/keybase",
               example: "/keybase",
               description: "Mountpoint for the Keybase filesystem.",
             })))),
           extraFlags: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["-label kbfs", "-mount-type normal"]),
@@ -84,21 +84,21 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             systemd: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               user: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 services: nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   kbfs: nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     description: "Keybase File System",
                     wants: nix.thunk(() => nix.concat(["keybase.service"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "enableRedirector")), "keybase-redirector.service"))),
                     path: nix.thunk(() => ["/run/wrappers"]),
-                    unitConfig: nix.thunk(() => ({ __proto__: pos$8, ConditionUser: "!@system" })),
+                    unitConfig: nix.thunk(() => ({ [nix.POS]: pos$8, ConditionUser: "!@system" })),
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       Type: "notify",
                       EnvironmentFile: nix.thunk(() => ["-%E/keybase/keybase.autogen.env", "-%E/keybase/keybase.env"]),
                       ExecStartPre: nix.thunk(() => [
@@ -116,52 +116,52 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$15,
-              keybase: nix.thunk(() => ({ __proto__: pos$14, enable: true })),
+              [nix.POS]: pos$15,
+              keybase: nix.thunk(() => ({ [nix.POS]: pos$14, enable: true })),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "kbfs"))]),
             })),
           })),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableRedirector")), nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               security: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 wrappers: nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   "keybase-redirector": nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     source: nix.thunk(() => nix.str`${nix.sel(pkgs, "kbfs")}/bin/redirector`),
                   })),
                 })),
               })),
               systemd: nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 tmpfiles: nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$24,
+                    [nix.POS]: pos$24,
                     "10-kbfs": nix.thunk(() => ({
-                      __proto__: pos$23,
+                      [nix.POS]: pos$23,
                       "/keybase": nix.thunk(() => ({
-                        __proto__: pos$22,
-                        d: nix.thunk(() => ({ __proto__: pos$21, user: "root", group: "root", mode: "0755", age: "0" })),
+                        [nix.POS]: pos$22,
+                        d: nix.thunk(() => ({ [nix.POS]: pos$21, user: "root", group: "root", mode: "0755", age: "0" })),
                       })),
                     })),
                   })),
                 })),
                 user: nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   services: nix.thunk(() => ({
-                    __proto__: pos$29,
+                    [nix.POS]: pos$29,
                     "keybase-redirector": nix.thunk(() => ({
-                      __proto__: pos$28,
+                      [nix.POS]: pos$28,
                       description: "Keybase Root Redirector for KBFS",
                       wants: nix.thunk(() => ["keybase.service"]),
-                      unitConfig: nix.thunk(() => ({ __proto__: pos$26, ConditionUser: "!@system" })),
+                      unitConfig: nix.thunk(() => ({ [nix.POS]: pos$26, ConditionUser: "!@system" })),
                       serviceConfig: nix.thunk(() => ({
-                        __proto__: pos$27,
+                        [nix.POS]: pos$27,
                         EnvironmentFile: nix.thunk(() => ["-%E/keybase/keybase.autogen.env", "-%E/keybase/keybase.env"]),
                         ExecStart: nix.thunk(() => nix.str`${wrapperDir}/keybase-redirector /keybase`),
                         Restart: "on-failure",

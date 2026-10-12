@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.12";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "001wqh7gx2dv3sf7a5xsbppz9r88f5qwrp05jzjsjcm6cbcvmsz0",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [fixtures, pytestCheckHook, requests_mock, testtools]);
       const pythonImportsCheck = nix.thunk(() => ["fiblary3"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/graham33/fiblary",
         description: "Fibaro Home Center API Python Library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

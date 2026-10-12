@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const stripJavaArchivesHook = nix.arg($, "stripJavaArchivesHook");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jib-cli",
       version: "0.13.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/GoogleContainerTools/jib/releases/download/v${nix.sel(finalAttrs, "version")}-cli/jib-jre-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-3/wKpwVHVBU86GJfR4YGM5ba8pOOfLL+fKU7zwwU+Qc=",
         })))),
@@ -40,7 +40,7 @@ makeWrapper ${jre}/bin/java $out/bin/jib \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Container image builder for Java using Jib CLI",
         homepage: "https://github.com/GoogleContainerTools/jib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

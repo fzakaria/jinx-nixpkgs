@@ -36,14 +36,14 @@ export default nix.lambda((args) => (() => {
       const pname = "gnome-pomodoro";
       const version = "0.28.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "focustimerhq",
           repo: "FocusTimer",
           rev: version,
           hash: "sha256-1G0Sv6uR4rE+/TZqEM57mCdBaXoJNpC0cznY4pnPEa4=",
         }))));
       const patches = nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-schema-path.patch"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-schema-path.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version })))),
       ]);
       const preFixup = nix.thunk(() => nix.str`glib-compile-schemas ${nix.app(nix.sel(glib, "makeSchemaPath"), "$out", nix.thunk(() => nix.str`${pname}-${version}`))}
 `);
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
         sqlite,
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://gnomepomodoro.org/",
         description: "Time management utility for GNOME based on the pomodoro technique",
         mainProgram: "gnome-pomodoro",
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const bst = nix.thunk(() => nix.sel(pkgs, "buildstream"));
   const bstModule = nix.thunk(() => nix.app(nix.sel(pkgs, "python3", "pkgs", "toPythonModule"), bst));
   const samplePlugins = nix.thunk(() => nix.app(nix.sel(pkgs, "python3Packages", "buildPythonPackage"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "sample-plugins",
       version: "1.2.3",
       pyproject: true,
@@ -27,29 +27,29 @@ export default nix.lambda((args) => (() => {
       dontCheck: true,
     }))));
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     name: "buildstream",
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "shymega"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             diskSize: nix.thunk(() => nix.mul(16n, 1024n)),
             memorySize: 2048n,
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(pkgs_1, "python3", "withPackages"), (ps) => (() => {
                   const w = nix.withScope(ps, null);

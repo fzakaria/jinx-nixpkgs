@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "auto-entities";
       const version = "2.8.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Lint-Free-Technology",
           repo: "lovelace-auto-entities",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-6RA8Nr83buN+7CI2ZulgafrJhtVb3aX/WOyDMpER3yE=";
       const installPhase = "runHook preInstall\n\ninstall -D dist/auto-entities.js $out/auto-entities.js\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Automatically populate the entities-list of lovelace cards",
         homepage: "https://github.com/Lint-Free-Technology/lovelace-auto-entities",
         changelog: nix.thunk(() => nix.str`https://github.com/Lint-Free-Technology/lovelace-auto-entities/releases/tag/v${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
           ];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, npmDepsHash, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, npmDepsHash, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

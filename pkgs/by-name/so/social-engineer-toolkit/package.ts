@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "8.0.3";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "trustedsec",
           repo: "social-engineer-toolkit",
           rev: version,
@@ -52,7 +52,7 @@ substituteInPlace src/core/setcore.py \\
       ]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open-source penetration testing framework designed for social engineering",
         longDescription: "The Social-Engineer Toolkit is an open-source penetration testing framework\ndesigned for social engineering. SET has a number of custom attack vectors\nthat allow you to make a believable attack quickly.\n",
         homepage: "https://github.com/trustedsec/social-engineer-toolkit",
@@ -64,7 +64,7 @@ substituteInPlace src/core/setcore.py \\
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

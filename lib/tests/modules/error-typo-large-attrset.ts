@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const concatMapAttrs = nix.thunk(() => nix.attr(lib, "concatMapAttrs"));
   const ten = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     a: null,
     b: null,
     c: null,
@@ -32,33 +32,33 @@ export default nix.lambda((args) => (() => {
   }));
   const generatedOptions = nix.thunk(() => nix.app(concatMapAttrs, (k1) => (_) => nix.app(concatMapAttrs, (k2) => (__1) => nix.app(concatMapAttrs, (k3) => (__2) => nix.attrsDyn({}, [
           [nix.str`${k1}${k2}${k3}`, nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
             }))))],
         ]), ten), ten), ten));
   const sensibleOptions = nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
         default: false,
       })))),
     enabled: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
         default: false,
       })))),
     disable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
         default: false,
       })))),
   }));
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     options: nix.thunk(() => nix.update(generatedOptions, sensibleOptions)),
-    config: nix.thunk(() => ({ __proto__: pos$7, enble: true })),
+    config: nix.thunk(() => ({ [nix.POS]: pos$7, enble: true })),
   };
 })(), formals$1);
 //# sourceMappingURL=error-typo-large-attrset.ts.map

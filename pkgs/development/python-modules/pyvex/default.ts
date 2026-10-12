@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pycparser = nix.arg($, "pycparser");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pyvex",
       version: "9.2.154",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-a3ei2w66v18QKAofpPvDUoM42zHRHPrNQic+FE+rLKY=",
@@ -42,7 +42,7 @@ substituteInPlace pyvex_c/Makefile \\
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["pyvex"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python interface to libVEX and VEX IR",
         homepage: "https://github.com/angr/pyvex",
         license: nix.thunk(() => (() => {

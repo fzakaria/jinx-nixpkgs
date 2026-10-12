@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ipu6-drivers";
       const version = "unstable-2025-11-12";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "intel",
           repo: "ipu6-drivers",
           tag: "20251104_0740_359",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const preInstall = "sed -i -e \"s,INSTALL_MOD_DIR=,INSTALL_MOD_PATH=$out INSTALL_MOD_DIR=,\" Makefile\n";
       const installTargets = nix.thunk(() => ["modules_install"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/intel/ipu6-drivers",
         description: "IPU6 kernel driver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.app(nix.sel(kernel, "kernelOlder"), "6.10")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

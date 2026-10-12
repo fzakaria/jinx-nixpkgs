@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.43";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KenKundert",
           repo: "emborg",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -47,11 +47,11 @@ export default nix.lambda((args) => (() => {
         voluptuous,
         borgbackup,
       ]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, MISSING_DEPENDENCIES: "fuse" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, MISSING_DEPENDENCIES: "fuse" }));
       const postPatch = "patchShebangs .\n";
       const pythonImportsCheck = nix.thunk(() => ["emborg"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Interactive command line interface to Borg Backup",
         homepage: "https://github.com/KenKundert/emborg",
         changelog: nix.thunk(() => nix.str`https://github.com/KenKundert/emborg/releases/tag/${nix.sel(src, "tag")}`),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

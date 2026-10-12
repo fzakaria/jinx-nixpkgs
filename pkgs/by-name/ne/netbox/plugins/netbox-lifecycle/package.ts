@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const python = nix.arg($, "python");
   const django_polymorphic = nix.arg($, "django-polymorphic");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       __structuredAttrs: true,
       pname: "netbox-lifecycle",
       version: "1.1.10",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DanSheps",
           repo: "netbox-lifecycle",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,9 +37,9 @@ export default nix.lambda((args) => (() => {
       dontUsePythonImportsCheck: nix.thunk(() => !nix.eq(nix.sel(python, "pythonVersion"), nix.sel(netbox, "python", "pythonVersion"))),
       pythonImportsCheck: nix.thunk(() => ["netbox_lifecycle"]),
       dependencies: nix.thunk(() => [django_polymorphic]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, pluginName: "netbox_lifecycle" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, pluginName: "netbox_lifecycle" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "NetBox plugin for managing Hardware EOL/EOS, and Support Contracts",
         homepage: "https://github.com/DanSheps/netbox-lifecycle",
         changelog: nix.thunk(() => nix.str`https://github.com/DanSheps/netbox-lifecycle/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

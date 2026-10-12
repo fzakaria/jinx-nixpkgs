@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const gdk_pixbuf = nix.arg($, "gdk-pixbuf");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sameboy",
       version: "1.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LIJI32",
           repo: "SameBoy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
 `),
       postInstall: "substituteInPlace $out/share/thumbnailers/sameboy.thumbnailer \\\n  --replace-fail \"TryExec=sameboy-thumbnailer\" \"TryExec=$out/bin/sameboy-thumbnailer\" \\\n  --replace-fail \"Exec=sameboy-thumbnailer\" \"Exec=$out/bin/sameboy-thumbnailer\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://sameboy.github.io",
         description: "Game Boy, Game Boy Color, and Super Game Boy emulator",
         mainProgram: "sameboy",

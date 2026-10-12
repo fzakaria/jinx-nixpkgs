@@ -16,25 +16,25 @@ export default nix.lambda((args) => (() => {
   const jdk = nix.arg($, "jdk");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "java-hamcrest",
       version: "3.0",
       nativeBuildInputs: nix.thunk(() => [gradle]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hamcrest",
           repo: "JavaHamcrest",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-ntae6XWpD0wEs36YoPsfTl6cSR6ULl6dAJ5oZsV+ih0=",
         })))),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/share/java\"\ncp hamcrest/build/libs/*.jar \"$out/share/java\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://hamcrest.org/JavaHamcrest/",
         description: "Java library containing matchers that can be combined to create flexible expressions of intent",
         platforms: nix.thunk(() => nix.sel(jdk, "meta", "platforms")),

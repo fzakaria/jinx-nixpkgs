@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const mirage_sleep = nix.arg($, "mirage-sleep");
   const tcpip = nix.arg($, "tcpip");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "happy-eyeballs-mirage",
       src: nix.thunk(() => nix.attr(happy_eyeballs, "src")),
       version: nix.thunk(() => nix.attr(happy_eyeballs, "version")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       meta: nix.thunk(() => nix.update(nix.sel(happy_eyeballs, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Connecting to a remote host via IP version 4 or 6 using Mirage",
       })),
     })));

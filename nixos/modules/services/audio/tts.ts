@@ -28,49 +28,49 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "tts"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         tts: nix.thunk(() => (() => {
           const literalExpression = nix.thunk(() => nix.attr(lib, "literalExpression"));
           const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
           const mkEnableOption = nix.thunk(() => nix.attr(lib, "mkEnableOption"));
           const types = nix.thunk(() => nix.attr(lib, "types"));
           return {
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             servers: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.lambda((args_1) => (() => {
                       const $_1 = nix.formals(args_1, formals$2);
                       return {
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         options: nix.thunk(() => ({
-                          __proto__: pos$5,
+                          [nix.POS]: pos$5,
                           enable: nix.thunk(() => nix.app(mkEnableOption, "Coqui TTS server")),
                           port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$1,
+                              [nix.POS]: pos$1,
                               type: nix.thunk(() => nix.sel(types, "port")),
                               example: 5000n,
                               description: "Port to bind the TTS server to.\n",
                             })))),
                           model: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$2,
+                              [nix.POS]: pos$2,
                               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                               default: "tts_models/en/ljspeech/tacotron2-DDC",
                               example: null,
                               description: "Name of the model to download and use for speech synthesis.\n\nCheck `tts-server --list_models` for possible values.\n\nSet to `null` to use a custom model.\n",
                             })))),
                           useCuda: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$3,
+                              [nix.POS]: pos$3,
                               type: nix.thunk(() => nix.sel(types, "bool")),
                               default: false,
                               example: true,
                               description: "Whether to offload computation onto a CUDA compatible GPU.\n",
                             })))),
                           extraArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$4,
+                              [nix.POS]: pos$4,
                               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                               default: [],
                               description: "Extra arguments to pass to the server commandline.\n",
@@ -93,11 +93,11 @@ export default nix.lambda((args) => (() => {
       const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
       const escapeShellArgs = nix.thunk(() => nix.attr(lib, "escapeShellArgs"));
       return nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "servers"), {})), nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           systemd: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             services: nix.thunk(() => nix.app(mapAttrs$, (server) => (options) => nix.app(nameValuePair, nix.thunk(() => nix.str`tts-${server}`), nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   description: nix.thunk(() => nix.str`Coqui TTS server instance ${server}`),
                   after: nix.thunk(() => ["network-online.target"]),
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -105,9 +105,9 @@ export default nix.lambda((args) => (() => {
                     const w = nix.withScope(pkgs, null);
                     return [nix.thunk(() => nix.lookup(w, "espeak-ng"))];
                   })()),
-                  environment: nix.thunk(() => ({ __proto__: pos$11, HOME: "/var/lib/tts" })),
+                  environment: nix.thunk(() => ({ [nix.POS]: pos$11, HOME: "/var/lib/tts" })),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     DynamicUser: true,
                     User: "tts",
                     StateDirectory: "tts",

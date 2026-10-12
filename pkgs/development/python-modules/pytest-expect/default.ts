@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const u_msgpack_python = nix.arg($, "u-msgpack-python");
   const six = nix.arg($, "six");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pytest-expect",
       version: "1.1.0",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           sha256: "36b4462704450798197d090809a05f4e13649d9cba9acdc557ce9517da1fd847",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [u_msgpack_python, six]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "py.test plugin to store test expectations and mark tests based on them",
         homepage: "https://github.com/gsnedders/pytest-expect",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

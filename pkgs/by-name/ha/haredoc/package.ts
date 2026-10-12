@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const hare = nix.arg($, "hare");
   const hareHook = nix.arg($, "hareHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "haredoc",
       outputs: nix.thunk(() => ["out", "man"]),
       version: nix.thunk(() => nix.attr(hare, "version")),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(hareHook, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: "https://harelang.org/",
         description: "Hare's documentation tool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

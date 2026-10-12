@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const darwin = nix.arg($, "darwin");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ante",
       version: "0-unstable-2026-08-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jfecher",
           repo: "ante",
           rev: "626094eaa9e94654b0511194a0ecccfd962116cc",
@@ -55,7 +55,7 @@ cp -r $src/stdlib/* $ANTE_STDLIB_DIR
 )
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://antelang.org/",
         description: "Low-level functional language for exploring refinement types, lifetime inference, and algebraic effects",
         mainProgram: "ante",

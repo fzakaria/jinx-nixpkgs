@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const unzrip = nix.arg($, "unzrip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "yasashisa-gothic",
       version: "0-unstable-2014-03-13",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "http://flop.sakura.ne.jp/font/fontna-op/07Yasashisa.zip",
           hash: "sha256-JmsRvUak9FBjDw8wNA2R3lEt52/UpElleziQqa5Pm4w=",
         })))),
@@ -30,7 +30,7 @@ runHook postUnpack
 `),
       installPhase: "runHook preInstall\n\ninstall -Dm444 \"07Yasashisa/07やさしさゴシック.ttf\" -t \"$out/share/fonts/truetype\"\ninstall -Dm444 \"07Yasashisa/その他-サポート外/OpenType/YasashisaGothic.otf\" -t \"$out/share/fonts/opentype\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Free gothic style font by Fontna",
         homepage: "http://www.fontna.com/blog/379/",
         license: nix.thunk(() => (() => {

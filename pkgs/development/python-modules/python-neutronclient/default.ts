@@ -42,13 +42,13 @@ export default nix.lambda((args) => (() => {
       const version = "11.8.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openstack",
           repo: "python-neutronclient",
           tag: version,
           hash: "sha256-wf+ZTLaBEzQPRVQOZ6JaqH88ymgGIgtRKKdJi2UvKdM=",
         }))));
-      const env = nix.thunk(() => ({ __proto__: pos$2, PBR_VERSION: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PBR_VERSION: version }));
       const build_system = nix.thunk(() => [setuptools, pbr]);
       const dependencies = nix.thunk(() => [
         cliff,
@@ -79,14 +79,14 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "runHook preCheck\n\nstestr run\n\nrunHook postCheck\n";
       const pythonImportsCheck = nix.thunk(() => ["neutronclient"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python bindings for the OpenStack Networking API",
         homepage: "https://github.com/openstack/python-neutronclient/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "openstack"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

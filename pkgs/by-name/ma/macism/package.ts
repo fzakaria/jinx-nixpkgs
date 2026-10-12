@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const swift = nix.arg($, "swift");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "macism",
       version: "3.0.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "laishulu",
           repo: "macism",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-version-check",
             url: "https://github.com/laishulu/macism/commit/928f6f55e9cdaaf39ae5fe7ce7f803d608c68565.patch?full_index=1",
             hash: "sha256-9rh1bxpYMOKNumAthZBNluJbbH5HLI9PfM6hGzxGpjU=",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "--version",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Reliable CLI MacOS input source manager",
         longDescription: "This tool manages macOS input sources from the command line, ideal for\nintegration with vim and emacs(e.g. sis).\n\nmacism's main advantage over other similar tools is that it can reliably\nselect CJKV(Chinese/Japanese/Korean/Vietnamese) input source, while with\nother tools (such as input-source-switcher, im-select from smartim, swim),\nwhen you switch to CJKV input source, you will see that the input source\nicon has already changed in the menu bar, but unless you activate other\napplications and then switch back, the input source is actually still the\nsame as before.\n",
         homepage: "https://github.com/laishulu/macism",

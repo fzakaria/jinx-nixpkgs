@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
       const pname = "kchat";
       const version = "3.5.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.storage5.infomaniak.com/kchat/kchat-desktop-${version}-linux-x86_64.AppImage`),
           name: nix.thunk(() => nix.str`kchat-${version}.AppImage`),
           hash: "sha256-3vF2a0Ej/io+045SywTKCQSfteTNhxSgoVbb5oAJN1Q=",
         }))));
       const extraInstallCommands = nix.thunk(() => (() => {
-        const contents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+        const contents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
         return nix.str`mkdir -p "$out/share/applications"
 mkdir -p "$out/share/lib/kchat"
 cp -r ${contents}/{locales,resources} "$out/share/lib/kchat"
@@ -35,7 +35,7 @@ substituteInPlace $out/share/applications/kchat-desktop.desktop --replace-fail '
 `;
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Instant messaging service part of Infomaniak KSuite",
         homepage: "https://www.infomaniak.com/en/apps/download-kchat",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -45,7 +45,7 @@ substituteInPlace $out/share/applications/kchat-desktop.desktop --replace-fail '
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
         longDescription: "kChat is an instant messaging service which enables you to discuss, share and coordinate your teams in complete\nsecurity via your Internet browser, mobile phone, tablet or computer.\n",
       }));
-      return { __proto__: pos$4, pname, version, src, extraInstallCommands, meta };
+      return { [nix.POS]: pos$4, pname, version, src, extraInstallCommands, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

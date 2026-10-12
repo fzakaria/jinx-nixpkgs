@@ -28,39 +28,39 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "tdarr"));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     imports: nix.thunk(() => [nix.path(here, "./server.nix"), nix.path(here, "./node.nix")]),
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tdarr: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "Tdarr distributed transcoding system"), {
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             description: "Whether to enable Tdarr. This is a convenience option that enables both\nthe server and all configured nodes. For more granular control, use\n{option}`services.tdarr.server.enable` and configure nodes individually.\n",
           })),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "tdarr", nix.thunk(() => ({})))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/tdarr",
               description: "Base directory for Tdarr data.",
             })))),
           libraryDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               description: "Additional directories where your media library is stored",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[\n  \"/mnt/library1\"\n  \"/mnt/library2\"\n]\n")),
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "tdarr",
               description: "User account under which Tdarr runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "tdarr",
               description: "Group under which Tdarr runs.",
@@ -69,13 +69,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(cfg, "enable")) || nix.asBool(nix.sel(cfg, "server", "enable")))) || nix.asBool(!nix.eq(nix.sel(cfg, "nodes"), {})))), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         users: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           users: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             tdarr: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "tdarr")), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 isSystemUser: true,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 home: nix.thunk(() => nix.sel(cfg, "dataDir")),
@@ -83,14 +83,14 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             tdarr: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "tdarr")), nix.thunk(() => ({})))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d ${nix.sel(cfg, "dataDir")} 0750 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} -`),
             ]),
@@ -98,7 +98,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "mistyttm"))];

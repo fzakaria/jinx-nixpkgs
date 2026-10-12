@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const texinfo = nix.arg($, "texinfo");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "chsrc",
       version: "0.2.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "RubyMetric",
           repo: "chsrc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [texinfo]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 chsrc $out/bin/chsrc\ninstall -Dm644 doc/chsrc.1 -t $out/share/man/man1/\nmakeinfo doc/chsrc.texi --output=chsrc.info\ninstall -Dm644 chsrc.info -t $out/share/info/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Change Source everywhere for every software",
         homepage: "https://chsrc.run/",
         changelog: nix.thunk(() => nix.str`https://github.com/RubyMetric/chsrc/releases/tag/v${nix.sel(finalAttrs, "version")}`),

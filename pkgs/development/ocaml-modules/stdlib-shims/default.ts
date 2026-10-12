@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "stdlib-shims";
       const version = "0.3.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ocaml/${pname}/releases/download/${version}/${pname}-${version}.tbz`),
           sha256: "0jnqsv6pqp5b5g7lcjwgd75zqqvcwcl5a32zi03zg1kvj79p5gxs",
         }))));
@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Shims for forward-compatibility between versions of the OCaml standard library",
         homepage: "https://github.com/ocaml/stdlib-shims",
         license: nix.thunk(() => nix.attr(from, "license")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),
       };
       })());
-      return { __proto__: pos$3, pname, version, src, doCheck, meta };
+      return { [nix.POS]: pos$3, pname, version, src, doCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

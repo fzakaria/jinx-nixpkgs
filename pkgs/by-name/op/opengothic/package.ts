@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const vulkan_loader = nix.arg($, "vulkan-loader");
   const vulkan_validation_layers = nix.arg($, "vulkan-validation-layers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "opengothic",
       version: "1.0.3756",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Try",
           repo: "OpenGothic",
           rev: "refs/tags/v0.92",
@@ -50,9 +50,9 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`wrapProgram $out/bin/Gothic2Notr \\
   --prefix LD_PRELOAD : "${nix.app(nix.sel(lib, "getLib"), alsa_lib)}/lib/libasound.so.2"
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Open source re-implementation of Gothic 2: Night of the Raven",
         homepage: "https://github.com/Try/OpenGothic",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

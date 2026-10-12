@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KenKundert",
           repo: "quantiphy_eval",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const preBuild = "sed -i '/quantiphy>/d' ./pyproject.toml\n";
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "QuantiPhy support for evals in-line",
         homepage: "https://github.com/KenKundert/quantiphy_eval/",
         changelog: nix.thunk(() => nix.str`https://github.com/KenKundert/quantiphy_eval/releases/tag/v${version}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

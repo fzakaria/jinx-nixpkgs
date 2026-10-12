@@ -23,10 +23,10 @@ export default nix.lambda((args) => (() => {
   const _experimental_update_script_combinators = nix.arg($, "_experimental-update-script-combinators");
   const version = "5.4.0";
   const common = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     version: version,
     src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         owner: "NordSecurity",
         repo: "nordvpn-linux",
         tag: version,
@@ -41,10 +41,10 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w, "novalkun"))];
       })());
       const platforms = nix.thunk(() => nix.sel(lib, "platforms", "linux"));
-      return { __proto__: pos$2, homepage, changelog, license, maintainers, platforms };
+      return { [nix.POS]: pos$2, homepage, changelog, license, maintainers, platforms };
     })()),
     desktopItemArgs: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       categories: nix.thunk(() => ["Network"]),
       genericName: "VPN Client",
       icon: "nordvpn",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "nordvpn",
       version: version,
       src: nix.thunk(() => nix.attr(common, "src")),
@@ -63,19 +63,19 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(callPackage, nix.path(here, "./gui.nix"), common)),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         cli: nix.thunk(() => nix.app(callPackage, nix.path(here, "./cli.nix"), common)),
         gui: nix.thunk(() => nix.app(callPackage, nix.path(here, "./gui.nix"), common)),
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 extraArgs: nix.thunk(() => ["--subpackage", "cli", "--subpackage", "gui"]),
               })))),
-            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "nordvpn.gui.pubspecSource", nix.path(here, "./pubspec.lock.json")), { __proto__: pos$6, supportedFeatures: [] })),
+            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "nordvpn.gui.pubspecSource", nix.path(here, "./pubspec.lock.json")), { [nix.POS]: pos$6, supportedFeatures: [] })),
           ]))),
       })),
       meta: nix.thunk(() => nix.update(nix.sel(common, "meta"), {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "NordVPN client and GUI for Linux",
         longDescription: "NordVPN CLI and GUI applications for Linux.\nThis package currently does not support meshnet.\nAdditionally, if `networking.firewall.enable = true;`,\nthen also set `networking.firewall.checkReversePath = \"loose\";`.\nThe closed-source nordwhisper protocol is also not supported.\n",
       })),

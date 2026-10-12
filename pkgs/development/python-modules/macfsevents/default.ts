@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "MacFSEvents",
           version: version,
           hash: "sha256-v3KD8dUXdkzNyBlbIWMdu6wcUGuSC/mo6ilWsxJ2Ucs=",
         }))));
       const patches = nix.thunk(() => [nix.path(here, "./fix-packaging.patch")]);
       const build_system = nix.thunk(() => [setuptools]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-implicit-function-declaration" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-implicit-function-declaration" }));
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["fsevents"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Thread-based interface to file system observation primitives",
         homepage: "https://github.com/malthe/macfsevents",
         changelog: nix.thunk(() => nix.str`https://github.com/malthe/macfsevents/blob/${version}/CHANGES.rst`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

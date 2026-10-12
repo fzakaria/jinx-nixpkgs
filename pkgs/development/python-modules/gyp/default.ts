@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const six = nix.arg($, "six");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gyp",
       version: "unstable-2024-02-07",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitiles, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://chromium.googlesource.com/external/gyp",
           rev: "1615ec326858f8c2bd8f30b3a86ea71830409ce4",
           hash: "sha256-E+JF4uJBRka6vtjxyoMGE4IT5kSrl7Vs6WNkMQ+vNgs=",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.str`chmod +x "$out/${nix.sel(python, "sitePackages")}/gyp/mac_tool.py"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to generate native build files",
         mainProgram: "gyp",
         homepage: "https://gyp.gsrc.io",

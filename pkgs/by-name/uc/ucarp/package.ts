@@ -18,22 +18,22 @@ export default nix.lambda((args) => (() => {
   const libpcap = nix.arg($, "libpcap");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "ucarp",
       version: "1.5.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.pureftpd.org/pub/ucarp/ucarp-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "0qidz5sr55nxlmnl8kcbjsrff2j97b44h9l1dmhvvjl46iji7q7j",
         })))),
       buildInputs: nix.thunk(() => [libpcap]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fcommon" })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, ucarp: nix.thunk(() => nix.attr(nixosTests, "ucarp")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, ucarp: nix.thunk(() => nix.attr(nixosTests, "ucarp")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Userspace implementation of CARP",
         longDescription: "UCARP allows a couple of hosts to share common virtual IP addresses in\norder to provide automatic failover. It is a portable userland\nimplementation of the secure and patent-free Common Address Redundancy\nProtocol (CARP, OpenBSD's alternative to the patents-bloated VRRP).\n\nWarning: This package has not received any upstream updates for a long\ntime and can be considered as unmaintained.\n",
         license: nix.thunk(() => (() => {

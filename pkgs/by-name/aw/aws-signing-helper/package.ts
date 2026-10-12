@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const bash = nix.arg($, "bash");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aws-signing-helper",
       version: "1.8.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aws",
           repo: "rolesanywhere-credential-helper",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ runHook postCheck
 `),
       postInstall: "mv $out/bin/rolesanywhere-credential-helper $out/bin/aws_signing_helper\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "AWS Signing Helper for IAM Roles Anywhere",
         homepage: "https://github.com/aws/rolesanywhere-credential-helper",
         changelog: nix.thunk(() => nix.str`https://github.com/aws/rolesanywhere-credential-helper/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const postgresqlTestHook = nix.arg($, "postgresqlTestHook");
   const postgresql = nix.arg($, "postgresql");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "reshape",
       version: "0.8.0",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-viS//3ZFqogI0BbZ0rypo5zpQUgqKiLgK585iw3BMgM=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       postgresqlTestSetupPost: "export POSTGRES_CONNECTION_STRING=\"user=$PGUSER dbname=$PGDATABASE host=$PGHOST\"\n",
       postgresqlTestUserOptions: "LOGIN SUPERUSER",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Easy-to-use, zero-downtime schema migration tool for Postgres",
         mainProgram: "reshape",
         homepage: "https://github.com/fabianlindfors/reshape",

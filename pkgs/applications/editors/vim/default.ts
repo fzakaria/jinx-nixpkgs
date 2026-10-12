@@ -19,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const gettext = nix.arg($, "gettext");
   const pkg_config = nix.arg($, "pkg-config");
   const vimrc = nix.argOr($, "vimrc", () => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "default-vimrc",
       url: "https://raw.githubusercontent.com/archlinux/svntogit-packages/68f6d131750aa778807119e03eed70286a17b1cb/trunk/archlinux.vim",
       sha256: "18ifhv5q9prd175q3vxbqf6qyvkk6bc7d2lhqdk0q78i68kv9y0c",
     }))));
-  const common = nix.thunk(() => nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({ __proto__: pos$2, stdenv: stdenv }))));
+  const common = nix.thunk(() => nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, stdenv: stdenv }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vim",
       version: nix.thunk(() => nix.attr(common, "version")),
       outputs: nix.thunk(() => nix.attr(common, "outputs")),

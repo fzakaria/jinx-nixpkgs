@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const buildGhidraScripts = nix.arg($, "buildGhidraScripts");
   return nix.app(buildGhidraScripts, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "GhidraLib",
       version: "0.2.0-unstable-2025-10-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "msm-code",
           repo: "ghidralib",
           rev: "f3e33e444b4a8682c240c87f8754542e2e338731",
           hash: "sha256-Dz7CWHkszHq5HT/S9cBGOfkoamnf9T1l2IbaAZXEGf0=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "A Pythonic Ghidra standard library",
         homepage: "https://github.com/msm-code/ghidralib",
         maintainers: nix.thunk(() => (() => {

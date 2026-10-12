@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const ctypes = nix.arg($, "ctypes");
   const dune_configurator = nix.arg($, "dune-configurator");
-  return nix.app(nix.sel(buildDunePackage, "override"), nix.thunk(() => ({ __proto__: pos$1, stdenv: stdenv })), (finalAttrs) => ({
-      __proto__: pos$4,
+  return nix.app(nix.sel(buildDunePackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: stdenv })), (finalAttrs) => ({
+      [nix.POS]: pos$4,
       pname: "eigen",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "owlbarn",
           repo: "eigen",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [ctypes]),
       buildInputs: nix.thunk(() => [dune_configurator]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/owlbarn/eigen",
         description: "Minimal/incomplete Ocaml interface to Eigen3, mostly for Owl",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "x86_64")),

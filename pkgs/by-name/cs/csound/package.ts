@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
   const tcltk = nix.argOr($, "tcltk", () => null);
   const fltk = nix.argOr($, "fltk", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "csound",
       version: "7.0.0-beta.10",
       hardeningDisable: nix.thunk(() => ["format"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "csound",
           repo: "csound",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
           ]))))))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Library/Frameworks\nln -s $out/lib/CsoundLib64.framework $out/Library/Frameworks\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Sound design, audio synthesis, and signal processing system, providing facilities for music composition and performance on all major operating systems and platforms",
         homepage: "https://csound.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

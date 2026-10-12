@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const docbook_xsl = nix.arg($, "docbook_xsl");
   const docbook_xml_dtd_412 = nix.arg($, "docbook_xml_dtd_412");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "irker",
       version: "2017-02-12",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "esr",
           repo: "irker",
           rev: "dc0f65a7846a3922338e72d8c6140053fe914b54",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace Makefile \\\n  --replace '-o 0 -g 0' \"\"\n",
       installFlags: nix.thunk(() => ["prefix=/", "DESTDIR=$$out"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "IRC client that runs as a daemon accepting notification requests",
         homepage: "https://gitlab.com/esr/irker",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

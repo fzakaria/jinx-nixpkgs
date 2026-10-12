@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const ptime = nix.arg($, "ptime");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mirage-kv",
       version: "6.1.1",
       minimalOCamlVersion: "4.08",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/mirage-kv/releases/download/v${nix.sel(finalAttrs, "version")}/mirage-kv-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-fNXNlaDpb5zUA2rTwi5h1j4v4LQmovxG+Am6u+1guPQ=",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MirageOS signatures for key/value devices",
         homepage: "https://github.com/mirage/mirage-kv",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

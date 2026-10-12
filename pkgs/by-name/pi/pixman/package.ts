@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const __flattenIncludeHackHook = nix.arg($, "__flattenIncludeHackHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "pixman",
       version: "0.46.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`mirror://xorg/individual/lib/pixman-${nix.sel(finalAttrs, "version")}.tar.gz`),
             nix.thunk(() => nix.str`https://cairographics.org/releases/pixman-${nix.sel(finalAttrs, "version")}.tar.gz`),
@@ -58,9 +58,9 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           cairo: cairo,
           qemu: qemu,
           scribus: scribus,
@@ -68,18 +68,18 @@ export default nix.lambda((args) => (() => {
           wlroots_0_19: wlroots_0_19,
           xwayland: xwayland,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://gitlab.freedesktop.org/pixman/pixman.git",
             "rev-prefix": "pixman-",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://pixman.org",
         description: "Low-level library for pixel manipulation",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

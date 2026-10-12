@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const rtmidi = nix.arg($, "rtmidi");
   const kdePackages = nix.arg($, "kdePackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "2.5.1",
       pname: "polyphone",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "davy7125",
           repo: "polyphone",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -57,7 +57,7 @@ substituteInPlace Makefile \\
 `),
       qmakeFlags: nix.thunk(() => ["DEFINES+=USE_LOCAL_STK"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))),
         description: "Soundfont editor for creating musical instruments",
         mainProgram: "polyphone",

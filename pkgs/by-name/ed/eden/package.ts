@@ -59,16 +59,16 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const compat_list = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://raw.githubusercontent.com/flathub/org.yuzu_emu.yuzu/4abf1d239aba843180abfed58fa8541432fece5b/compatibility_list.json",
       hash: "sha256-OC22KdawYK9yKiffqc1rtgrBanVExYMi9jqhvkwMD6w=",
     }))));
   const nx_tzdb = nix.thunk(() => nix.app(callPackage, nix.path(here, "./nx_tzdb.nix"), nix.thunk(() => ({}))));
   const httplib$ = nix.thunk(() => nix.app(nix.sel(httplib, "overrideAttrs"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "0.30.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "yhirose",
           repo: "cpp-httplib",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -76,11 +76,11 @@ export default nix.lambda((args) => (() => {
         })))),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "eden",
       version: "0.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           domain: "git.eden-emu.dev",
           owner: "eden-emu",
           repo: "eden",
@@ -153,13 +153,13 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.str`qtWrapperArgs+=(--prefix LD_LIBRARY_PATH : ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [vulkan_loader, pipewire]))})
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         nx_tzdb: nx_tzdb,
         "compat-list": compat_list,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-eden", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p nix-update\n\nset -eu -o pipefail\n\nnix-update eden\nnix-update eden.nx_tzdb\n")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Switch 1 emulator derived from Yuzu and Sudachi",
         homepage: "https://eden-emu.dev/",
         mainProgram: "eden",

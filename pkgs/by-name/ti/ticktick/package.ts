@@ -26,15 +26,15 @@ export default nix.lambda((args) => (() => {
   const systemd = nix.arg($, "systemd");
   const baseUrl = "https://d2atcrkye2ik4e.cloudfront.net/download";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ticktick",
       version: "8.0.11",
       src: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`${baseUrl}/linux/linux_deb_x64/ticktick-${nix.sel(finalAttrs, "version")}-amd64.deb`),
           hash: "sha256-zXZF3n2lqdF8pTdR/giN8iQ3fubxnUYo4u5lwkJd2k4=",
         }))) : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`${baseUrl}/linux/linux_deb_arm64/ticktick-${nix.sel(finalAttrs, "version")}-arm64.deb`),
           hash: "sha256-LEiomT1Xw/5KYuSGXBH1lgPzBAI1gRxC5C/jZysPqYM=",
         }))) : nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`))))),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       unpackPhase: "runHook preUnpack\n\nmkdir -p \"$out/share\" \"$out/opt/ticktick\" \"$out/bin\"\ndpkg-deb --fsys-tarfile \"$src\" | tar --extract --directory=\"$out\"\n\nrunHook postUnpack\n",
       installPhase: "runHook preInstall\n\ncp -av $out/opt/TickTick/* $out/opt/ticktick\ncp -av $out/usr/share/* $out/share\nrm -rf $out/usr $out/opt/TickTick\nln -sf \"$out/opt/ticktick/ticktick\" \"$out/bin/ticktick\"\n\nsubstituteInPlace \"$out/share/applications/ticktick.desktop\" \\\n  --replace \"Exec=/opt/TickTick/ticktick\" \"Exec=$out/bin/ticktick\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Powerful to-do & task management app with seamless cloud synchronization across all your devices",
         homepage: "https://ticktick.com/home/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

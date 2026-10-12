@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const check = nix.arg($, "check");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libdnet",
       version: "1.18.2",
       enableParallelBuilding: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ofalk",
           repo: "libdnet",
           tag: nix.thunk(() => nix.str`libdnet-${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [check, libtool]),
       postInstall: "for i in $out/lib/*; do\n  ln -s $i $i.so\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Provides a simplified, portable interface to several low-level networking routines",
         homepage: "https://github.com/dugsong/libdnet",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

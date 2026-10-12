@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const version = "2.1-0-unstable-2025-01-18";
   const description = "Java program for drawing Feynman diagrams";
   return nix.app(nix.sel(maven, "buildMavenPackage"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "jaxodraw",
       version: version,
       src: nix.thunk(() => nix.app(fetchsvn, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://svn.code.sf.net/p/jaxodraw/code/trunk/jaxodraw",
           rev: "3346",
           hash: "sha256-jZ2Jvrysb5TeoAw5gubhtn39gMxdAGh/vTsaSIEZ7zs=",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeWrapper, copyDesktopItems]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "jaxodraw",
             desktopName: "JaxoDraw",
             exec: "jaxodraw",
@@ -56,7 +56,7 @@ install -Dm644 src/site/resources/images/top.png $out/share/icons/hicolor/128x12
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: description,
         homepage: "https://jaxodraw.sourceforge.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

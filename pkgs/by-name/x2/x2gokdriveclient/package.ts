@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const qt5 = nix.arg($, "qt5");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "x2gokdriveclient",
       version: "0.0.0.1-unstable-2024-09-10",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "git://code.x2go.org/x2gokdriveclient.git",
           rev: "ed53784a236ef4fe00adce726be492c4bf227d73",
           hash: "sha256-hWPM0bye4I34T7y2ipZOULY2+ehVanmTj4V80+lc+iw=",
@@ -47,7 +47,7 @@ substituteInPlace \\
       installTargets: nix.thunk(() => ["install_client", "install_man"]),
       qtWrapperArgs: nix.thunk(() => ["--set QT_QPA_PLATFORM xcb"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Graphical NoMachine NX3 remote desktop client (KDrive client)",
         mainProgram: "x2gokdriveclient",
         homepage: "https://x2go.org/",

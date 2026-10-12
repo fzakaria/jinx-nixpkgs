@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.8.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "google_resumable_media",
           version: version,
           hash: "sha256-8RV+2LRplNYKG8QyVE22I1IEMRNoTU4DDuAud+vpoa4=",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [google_auth, google_crc32c]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         requests: nix.thunk(() => [requests]),
         aiohttp: nix.thunk(() => [aiohttp]),
       }));
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "# prevent shadowing imports\nrm -r google\n# fixture 'authorized_transport' not found\nrm tests/system/requests/test_upload.py\n# requires network\nrm tests/system/requests/test_download.py\n";
       const pythonImportsCheck = nix.thunk(() => ["google._async_resumable_media", "google.resumable_media"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Utilities for Google Media Downloads and Resumable Uploads",
         homepage: "https://github.com/GoogleCloudPlatform/google-resumable-media-python",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/google-resumable-media-python/blob/v${version}/CHANGELOG.md`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

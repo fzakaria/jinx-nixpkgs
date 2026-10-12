@@ -22,18 +22,18 @@ export default nix.lambda((args) => (() => {
   const textlint = nix.arg($, "textlint");
   const textlint_rule_en_max_word_count = nix.arg($, "textlint-rule-en-max-word-count");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "textlint-rule-en-max-word-count",
       version: "2.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "textlint-rule",
           repo: "textlint-rule-en-max-word-count",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-ZZWN0PVHQBHcvJ53jDtD/6wLxBYmSHO7OXb5UQQAmyc=",
         })))),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: "sha256-3sEbvIfSaMz9pJalEKs7y05OVh+cKDg9jfLYmVyS53M=",
         })))),
@@ -42,15 +42,15 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nyarn --offline build\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nyarn --offline --production install\nrm -r test\nmkdir -p $out/lib/node_modules/textlint-rule-en-max-word-count\ncp -r . $out/lib/node_modules/textlint-rule-en-max-word-count/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => nix.app(nix.sel(textlint, "testPackages"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             rule: textlint_rule_en_max_word_count,
             testFile: nix.path(here, "./test.md"),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Textlint rule that specify the maximum word count of a sentence",
         homepage: "https://github.com/textlint-rule/textlint-rule-en-max-word-count",
         changelog: nix.thunk(() => nix.str`https://github.com/textlint-rule/textlint-rule-en-max-word-count/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-skRHpbkwJL5gDvglVmi6I6MPRRF2V3tpFVnqE1n30WQ=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./use_nix_unrar_path.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             unrar_lib_path: nix.thunk(() => nix.str`${unrar}/lib/libunrar${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
           })))),
       ]);
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = true;
       const pythonImportsCheck = nix.thunk(() => ["unrar"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://github.com/matiasb/python-unrar",
         changelog: nix.thunk(() => nix.str`https://github.com/matiasb/python-unrar/releases/tag/v${version}`),
         description: "Wrapper for UnRAR library, plus a rarfile module on top of it",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

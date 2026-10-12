@@ -27,20 +27,20 @@ export default nix.lambda((args) => (() => {
       const pname = "nym";
       const version = "2026.9-venaco";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nymtech",
           repo: "nym",
           tag: nix.thunk(() => nix.str`nym-binaries-v${version}`),
           hash: "sha256-s3I4yfJfewJpMSqzHXmMFzvsfQAsVNZKzIroatpnfpA=",
         }))));
       const swagger_ui = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://github.com/swagger-api/swagger-ui/archive/refs/tags/v5.17.14.zip",
           hash: "sha256-SBJE0IEgl7Efuu73n3HZQrFxYX+cn5UU5jrL4T5xzNw=",
         }))));
       const cargoHash = "sha256-ifdz+jZK9Hgezx4/Q9bDsOZOFynqE4GEFfIwXISuxp8=";
       const env = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         SWAGGER_UI_DOWNLOAD_URL: nix.thunk(() => nix.str`file://${swagger_ui}`),
         OPENSSL_NO_VENDOR: true,
         VERGEN_BUILD_TIMESTAMP: "0",
@@ -55,8 +55,8 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [openssl]);
       const checkType = "debug";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$4, "rev-prefix": "nym-binaries-v" })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, "rev-prefix": "nym-binaries-v" })))),
       }));
       const checkFlags = nix.thunk(() => [
         "--skip=ping::http::tests::resolve_host_with_valid_hostname_returns_some",
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         "--skip=ecash::tests::issued_ticketbooks::issued_ticketbooks_challenge_commitment",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Mixnet providing IP-level privacy",
         longDescription: "Nym routes IP packets through other participating nodes to hide their source and destination.\nIn contrast with Tor, it prevents timing attacks at the cost of latency.\n",
         changelog: nix.thunk(() => nix.str`https://github.com/nymtech/nym/releases/tag/nym-binaries-v${version}`),
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

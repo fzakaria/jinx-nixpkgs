@@ -35,17 +35,17 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   const settingsFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "passless.toml", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       programs: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         passless: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "passless")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "passless", nix.thunk(() => ({})))),
           users: nix.thunk(() => nix.app(nix.sel(lib, "options", "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -55,12 +55,12 @@ export default nix.lambda((args) => (() => {
               example: nix.thunk(() => ["alice"]),
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.attr(settingsFormat, "type")),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$3,
-                pass: nix.thunk(() => ({ __proto__: pos$2, "store-path": "/home/alice/.local/share/password-store" })),
+                [nix.POS]: pos$3,
+                pass: nix.thunk(() => ({ [nix.POS]: pos$2, "store-path": "/home/alice/.local/share/password-store" })),
               })),
               description: "Configuration included in `config.toml`.\n\nSee <https://github.com/pando85/passless#configuration-1> for documentation or run `passless config print` to see default configuration.\n",
             })))),
@@ -68,34 +68,34 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "programs", "passless", "enable")), nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         users: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           groups: nix.thunk(() => ({
-            __proto__: pos$9,
-            fido: nix.thunk(() => ({ __proto__: pos$8, members: nix.thunk(() => nix.sel(cfg, "users")) })),
+            [nix.POS]: pos$9,
+            fido: nix.thunk(() => ({ [nix.POS]: pos$8, members: nix.thunk(() => nix.sel(cfg, "users")) })),
           })),
           users: nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), nix.thunk(() => nix.sel(cfg, "users")), (_) => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
             }))),
         })),
-        boot: nix.thunk(() => ({ __proto__: pos$12, kernelModules: nix.thunk(() => ["uhid"]) })),
+        boot: nix.thunk(() => ({ [nix.POS]: pos$12, kernelModules: nix.thunk(() => ["uhid"]) })),
         services: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           udev: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             extraRules: "KERNEL==\"uhid\", GROUP=\"fido\", MODE=\"0660\"\n",
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           user: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             services: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               passless: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 description: "Passless FIDO2 Software Authenticator",
                 documentation: nix.thunk(() => ["https://github.com/pando85/passless"]),
                 after: nix.thunk(() => ["network-online.target"]),
@@ -103,7 +103,7 @@ export default nix.lambda((args) => (() => {
                 wantedBy: nix.thunk(() => ["default.target"]),
                 path: nix.thunk(() => [nix.thunk(() => nix.sel(config, "programs", "gnupg", "package"))]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   Type: "simple",
                   ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} --config-path ${settingsFile}`),
                   Restart: "on-failure",
@@ -118,7 +118,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "erictapen"))];

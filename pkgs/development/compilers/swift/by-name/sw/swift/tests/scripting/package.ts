@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const runCommand = nix.arg($, "runCommand");
   const swift = nix.arg($, "swift");
-  return nix.app(runCommand, "swift-test-scripting", nix.thunk(() => ({ __proto__: pos$1, nativeBuildInputs: nix.thunk(() => [swift]) })), nix.thunk(() => nix.str`swift ${nix.path(here, "./script.swift")} 10 | grep "Hello, 20.0"
+  return nix.app(runCommand, "swift-test-scripting", nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [swift]) })), nix.thunk(() => nix.str`swift ${nix.path(here, "./script.swift")} 10 | grep "Hello, 20.0"
 touch "$out"
 `));
 })(), formals$1);

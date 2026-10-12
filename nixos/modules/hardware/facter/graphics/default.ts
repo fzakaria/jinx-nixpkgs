@@ -30,30 +30,30 @@ export default nix.lambda((args) => (() => {
   const facterLib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib.nix")), lib));
   const cfg = nix.thunk(() => nix.sel(config, "hardware", "facter", "detected", "graphics"));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     imports: nix.thunk(() => [nix.path(here, "./amd.nix")]),
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       hardware: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         facter: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           detected: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             graphics: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "Enable the Graphics module"), {
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 default: nix.thunk(() => nix.gt(nix.builtins.length(nix.thunk(() => nix.selOr(config, () => [], "hardware", "facter", "report", "hardware", "monitor"))), 0n)),
                 defaultText: "hardware dependent",
               })),
             })),
             boot: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               graphics: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 kernelModules: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                     default: nix.thunk(() => nix.app(nix.sel(lib, "remove"), "nouveau", nix.thunk(() => nix.app(nix.sel(lib, "uniqueStrings"), nix.thunk(() => nix.app(nix.sel(facterLib, "collectDrivers"), nix.thunk(() => nix.selOr(config, () => [], "hardware", "facter", "report", "hardware", "graphics_card")))))))),
                     defaultText: "hardware dependent",
@@ -66,29 +66,29 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(config, "hardware", "facter", "enable")) && nix.asBool(nix.sel(cfg, "enable")))), nix.thunk(() => nix.update({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         boot: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           initrd: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             kernelModules: nix.thunk(() => nix.sel(config, "hardware", "facter", "detected", "boot", "graphics", "kernelModules")),
           })),
         })),
       }, (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(lib, "version")), "24.11pre")) ? {
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         hardware: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           opengl: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
           })),
         })),
       } : {
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         hardware: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           graphics: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
           })),
         })),

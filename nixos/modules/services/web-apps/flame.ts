@@ -83,94 +83,94 @@ done
 mkdir -p $out/data $out/public
 `)));
   const settingsFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "flame-settings.json", nix.thunk(() => nix.update(nix.app(nix.sel(lib, "filterAttrs"), (n) => (_) => !nix.eq(n, "weatherApiKeyFile"), nix.thunk(() => nix.sel(cfg, "settings"))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(nix.sel(cfg, "settings"), "greetingsSchema")), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         greetingsSchema: nix.thunk(() => nix.app(schemaToStr, nix.thunk(() => nix.sel(cfg, "settings", "greetingsSchema")))),
       }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(nix.sel(cfg, "settings"), "daySchema")), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         daySchema: nix.thunk(() => nix.app(schemaToStr, nix.thunk(() => nix.sel(cfg, "settings", "daySchema")))),
       }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(nix.sel(cfg, "settings"), "monthSchema")), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         monthSchema: nix.thunk(() => nix.app(schemaToStr, nix.thunk(() => nix.sel(cfg, "settings", "monthSchema")))),
       })))))))));
   return {
-    __proto__: pos$48,
+    [nix.POS]: pos$48,
     meta: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "DerGrumpf"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$38,
+      [nix.POS]: pos$38,
       services: nix.thunk(() => ({
-        __proto__: pos$37,
+        [nix.POS]: pos$37,
         flame: nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Flame, a self-hosted startpage for your server")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "flame", nix.thunk(() => ({})))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 5005n,
               description: "Port on which to serve the Flame web interface.",
             })))),
           passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "Path to a file containing the password to log in to Flame's settings panel.\nThis is the recommended option as it avoids storing the password in the Nix store.\nCompatible with sops-nix and agenix.\n",
               example: "/run/secrets/flame-password",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to open the firewall for the port used by Flame.",
             })))),
           customCSS: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Custom CSS injected into Flame's UI, written to\n{file}`public/flame.css` on every service start. Can also be used\nto define a fully custom theme via CSS custom properties — see\n[Flame's Custom CSS wiki page](https://github.com/pawelmalak/flame/wiki/Custom-CSS).\n",
               example: ".Home_SettingsButton__Qvn8C {\n  border-radius: 0 !important;\n}\n",
             })))),
           categories: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     options: nix.thunk(() => ({
-                      __proto__: pos$17,
+                      [nix.POS]: pos$17,
                       name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "Name of the bookmark category.",
                         })))),
                       isPinned: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: false,
                           description: "Whether the category is pinned by default.",
                         })))),
                       bookmarks: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$16,
+                          [nix.POS]: pos$16,
                           default: [],
                           description: "Bookmarks belonging to this category.",
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                                __proto__: pos$15,
+                                [nix.POS]: pos$15,
                                 options: nix.thunk(() => ({
-                                  __proto__: pos$14,
+                                  [nix.POS]: pos$14,
                                   name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$11,
+                                      [nix.POS]: pos$11,
                                       type: nix.thunk(() => nix.sel(lib, "types", "str")),
                                       description: "Name of the bookmark.",
                                     })))),
                                   url: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$12,
+                                      [nix.POS]: pos$12,
                                       type: nix.thunk(() => nix.sel(lib, "types", "str")),
                                       description: "URL of the bookmark.",
                                     })))),
                                   icon: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$13,
+                                      [nix.POS]: pos$13,
                                       type: nix.thunk(() => nix.sel(lib, "types", "str")),
                                       default: "",
                                       description: "Icon name or URL for the bookmark.",
@@ -184,44 +184,44 @@ mkdir -p $out/data $out/public
               description: "Bookmark categories and their bookmarks. When non-empty, this\nfully replaces the contents of Flame's `categories` and\n`bookmarks` tables on every service start — any bookmarks added\nthrough the web UI will not persist across restarts.\n",
               example: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   name: "Dev",
                   bookmarks: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$19, name: "GitHub", url: "https://github.com" })),
+                    nix.thunk(() => ({ [nix.POS]: pos$19, name: "GitHub", url: "https://github.com" })),
                   ]),
                 })),
               ]),
             })))),
           apps: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$28,
+                    [nix.POS]: pos$28,
                     options: nix.thunk(() => ({
-                      __proto__: pos$27,
+                      [nix.POS]: pos$27,
                       name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$22,
+                          [nix.POS]: pos$22,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "Name of the app.",
                         })))),
                       url: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$23,
+                          [nix.POS]: pos$23,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "URL of the app.",
                         })))),
                       icon: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$24,
+                          [nix.POS]: pos$24,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "cancel",
                           description: "Icon name or URL for the app.",
                         })))),
                       description: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$25,
+                          [nix.POS]: pos$25,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "",
                           description: "Short description shown for the app.",
                         })))),
                       isPinned: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$26,
+                          [nix.POS]: pos$26,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: false,
                           description: "Whether the app is pinned by default.",
@@ -231,18 +231,18 @@ mkdir -p $out/data $out/public
               default: [],
               description: "Applications shown on the dashboard. When non-empty, this fully\nreplaces the contents of Flame's `apps` table on every service\nstart — any apps added through the web UI will not persist\nacross restarts.\n",
               example: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$29, name: "Router", url: "http://192.168.1.1" })),
+                nix.thunk(() => ({ [nix.POS]: pos$29, name: "Router", url: "http://192.168.1.1" })),
               ]),
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$32,
+                    [nix.POS]: pos$32,
                     weatherApiKeyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$31,
+                        [nix.POS]: pos$31,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                         default: null,
                         description: "Path to a file containing the API key obtained from https://www.weatherapi.com used for\nFlame's weather widget.\nCompatible with sops-nix and agenix.\n",
@@ -253,7 +253,7 @@ mkdir -p $out/data $out/public
               default: nix.thunk(() => ({})),
               description: "Flame settings, written to Flame's settings JSON on every service\nstart. Accepts any key Flame's settings API supports; see\n[Flame's source](https://github.com/pawelmalak/flame/blob/master/client/src/context/context.js)\nfor the current schema, since Flame does not publish separate\nsettings documentation.\n\n`greetingsSchema`, `daySchema`, and `monthSchema` accept either a\nlist of strings or a single semicolon-separated string.\n",
               example: nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 lat: 52.52,
                 long: 13.405,
                 customTitle: "My Dashboard",
@@ -264,19 +264,19 @@ mkdir -p $out/data $out/public
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$47,
+        [nix.POS]: pos$47,
         systemd: nix.thunk(() => ({
-          __proto__: pos$44,
+          [nix.POS]: pos$44,
           services: nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             "flame-seed": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "apps"), [])) || nix.asBool(!nix.eq(nix.sel(cfg, "categories"), [])))), nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 description: "Seed Flame apps and bookmarks",
                 after: nix.thunk(() => ["flame.service"]),
                 requires: nix.thunk(() => ["flame.service"]),
                 wantedBy: nix.thunk(() => ["flame.service"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$39,
+                  [nix.POS]: pos$39,
                   Type: "oneshot",
                   RemainAfterExit: true,
                   DynamicUser: true,
@@ -293,7 +293,7 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "sqlite")))} /va
 `),
               })))),
             flame: nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               description: "Flame, a self-hosted startpage for your server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
@@ -337,7 +337,7 @@ rm -f /var/lib/flame/app/data/config.json.tmp
 chmod u+w /var/lib/flame/app/data/config.json
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 DynamicUser: true,
                 StateDirectory: nix.thunk(() => ["flame", "flame/app"]),
                 WorkingDirectory: "/var/lib/flame/app",
@@ -361,9 +361,9 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "nodejs")))
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]),
             })))),
         })),

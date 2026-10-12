@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dedup-darwin",
       version: "0.0.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ttkb-oss",
           repo: "dedup",
           tag: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ substituteInPlace Makefile --replace-fail \\
 `),
       preInstall: "# Install complains of missing directories, hence this fix.\nmkdir -p $out/{bin,share/man/man1}\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Darwin utility to replace duplicate file data with a copy-on-write clone",
         homepage: "https://github.com/ttkb-oss/dedup",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

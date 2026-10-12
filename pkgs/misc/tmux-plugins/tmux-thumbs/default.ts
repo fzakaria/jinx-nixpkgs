@@ -12,14 +12,14 @@ export default nix.lambda((args) => (() => {
   const thumbs = nix.arg($, "thumbs");
   const replaceVars = nix.arg($, "replaceVars");
   return nix.app(mkTmuxPlugin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: nix.thunk(() => nix.attr(thumbs, "version")),
       src: nix.thunk(() => nix.attr(thumbs, "src")),
       meta: nix.thunk(() => nix.attr(thumbs, "meta")),
       pluginName: nix.thunk(() => nix.sel(thumbs, "src", "repo")),
       rtpFilePath: "tmux-thumbs.tmux",
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix.patch"), nix.thunk(() => ({ __proto__: pos$1, tmuxThumbsDir: nix.thunk(() => nix.str`${thumbs}/bin`) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix.patch"), nix.thunk(() => ({ [nix.POS]: pos$1, tmuxThumbsDir: nix.thunk(() => nix.str`${thumbs}/bin`) })))),
       ]),
     })));
 })(), formals$1);

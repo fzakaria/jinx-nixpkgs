@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const kernelModuleMakeFlags = nix.arg($, "kernelModuleMakeFlags");
   const kerneldir = nix.thunk(() => nix.str`lib/modules/${nix.sel(kernel, "modDirVersion")}`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gcadapter-oc-kmod",
       version: "unstable-2021-12-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "HannesMann",
           repo: "gcadapter-oc-kmod",
           rev: "d4ddf15deb74c51dbdfc814d481ef127c371f444",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       installPhase: nix.thunk(() => nix.str`install -D {,$out/${kerneldir}/extra/}gcadapter_oc.ko
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Kernel module for overclocking the Nintendo Wii U/Mayflash GameCube adapter",
         homepage: "https://github.com/HannesMann/gcadapter-oc-kmod",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

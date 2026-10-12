@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
   const extraPatches = nix.argOr($, "extraPatches", () => []);
   const env = nix.argOr($, "env", () => ({}));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "mono",
       version: version,
       src: src,
@@ -70,7 +70,7 @@ $out/bin/cert-sync ${cacert}/etc/ssl/certs/ca-bundle.crt
 `, "ln -s $out/bin/mcs $out/bin/gmcs\n")),
       enableParallelBuilding: enableParallelBuilding,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         broken: nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version")), "6.12.0.129")))) || nix.asBool(!nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))))),
         homepage: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version")), "6.14.0")) ? "https://mono-project.com/" : "https://gitlab.winehq.org/mono/mono")),
         description: "Cross platform, open source .NET development framework",

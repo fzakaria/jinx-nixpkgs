@@ -23,17 +23,17 @@ export default nix.lambda((args) => (() => {
       const version = "0.23";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/docutils/docutils-${version}.tar.gz`),
           hash: "sha256-dG9QYDIlESgKHlDrdoRu1r8jQphLKsBNxCyqGo14eZ4=",
         }))));
       const build_system = nix.thunk(() => [flit_core]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          pytest: nix.thunk(() => nix.app(nix.sel(self, "overridePythonAttrs"), nix.thunk(() => ({ __proto__: pos$2, doCheck: true })))),
+          [nix.POS]: pos$3,
+          pytest: nix.thunk(() => nix.app(nix.sel(self, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, doCheck: true })))),
         })),
       }));
       const nativeCheckInputs = nix.thunk(() => [pillow]);
@@ -44,7 +44,7 @@ runHook postCheck
       const postFixup = "for f in $out/bin/*.py; do\n  ln -s $(basename $f) $out/bin/$(basename $f .py)\ndone\n";
       const pythonImportsCheck = nix.thunk(() => ["docutils"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Python Documentation Utilities",
         homepage: "http://docutils.sourceforge.net/",
         changelog: nix.thunk(() => nix.str`https://sourceforge.net/projects/docutils/files/docutils/${version}`),
@@ -64,7 +64,7 @@ runHook postCheck
         mainProgram: "docutils",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

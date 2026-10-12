@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-7ZYDrup+HJxlrOmSBGsWD4Ku8HRlQR4E68olWQtcazg=",
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
         "okta.request_executor",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python SDK for the Okta Management API",
         homepage: "https://github.com/okta/okta-sdk-python",
         changelog: nix.thunk(() => nix.str`https://github.com/okta/okta-sdk-python/blob/v${version}/CHANGELOG.md`),
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "wvdial",
       version: "0-unstable-2016-06-15",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitea.osmocom.org",
           owner: "retronetworking",
           repo: "wvdial",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://git.openembedded.org/meta-openembedded/plain/meta-oe/recipes-connectivity/wvdial/wvdial/typo_pon.wvdial.1.patch?h=73a68490efe05cdbec540ec6f17782816632a24d",
             hash: "sha256-fsneoB5GeKH/nxwW0z8Mk6892PtnZ3J77wP4BGo3Tj8=",
           })))),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`PPPDIR=${nix.builtins.placeholder("out")}/etc/ppp/peers`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Dialer that automatically recognises the modem",
         homepage: "https://gitea.osmocom.org/retronetworking/wvdial",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2")),

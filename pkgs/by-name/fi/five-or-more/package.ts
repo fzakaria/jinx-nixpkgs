@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const vala = nix.arg($, "vala");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "five-or-more",
       version: "48.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/five-or-more/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/five-or-more-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-2UHOLjfqZsDYDx6BeX+8u+To72WnkLPMXla58QtepaM=",
         })))),
@@ -50,11 +50,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk3, librsvg, libgnome_games_support]),
       postPatch: "chmod +x meson_post_install.py # patchShebangs requires executable file\npatchShebangs meson_post_install.py\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: "five-or-more" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "five-or-more" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://gitlab.gnome.org/GNOME/five-or-more",
         description: "Remove colored balls from the board by forming lines",
         mainProgram: "five-or-more",

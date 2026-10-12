@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cargo-rail",
       version: "0.7.0",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-L8yh47lYvXVGOr8jDZ4Gk2rIfUnr88q9OR5/iDrJua0=",
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         "--skip=workspace::context::tests::test_graph_integration",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Graph-aware monorepo orchestration for Rust workspaces",
         mainProgram: "cargo-rail",
         homepage: "https://github.com/loadingalias/cargo-rail",

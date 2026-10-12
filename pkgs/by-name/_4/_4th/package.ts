@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "4th",
       version: "3.64.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://sourceforge.net/projects/forth-4th/files/4th-${nix.sel(finalAttrs, "version")}/4th-${nix.sel(finalAttrs, "version")}-unix.tar.gz`),
           hash: "sha256-ufQiuRDPmcYzFSQf16cuZSrOEbH3itq7yZYo87zPs1g=",
         })))),
@@ -39,7 +39,7 @@ make -C sources clean
         nix.thunk(() => nix.str`MANDIR=${nix.builtins.placeholder("man")}/share/man`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://thebeez.home.xs4all.nl/4tH/index.html",
         description: "Portable Forth compiler",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

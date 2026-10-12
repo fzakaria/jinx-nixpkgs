@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.15.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "systemd",
           repo: "pystemd",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["test_version.py", "test_pickle.py"]);
       const pythonImportsCheck = nix.thunk(() => ["pystemd"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Thin Cython-based wrapper on top of libsystemd, focused on exposing the\ndbus API via sd-bus in an automated and easy to consume way\n",
         homepage: "https://github.com/facebookincubator/pystemd",
         changelog: nix.thunk(() => nix.str`https://github.com/systemd/pystemd/releases/tag/${nix.sel(src, "tag")}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const unixodbc = nix.arg($, "unixodbc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nanodbc",
       version: "2.14.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nanodbc",
           repo: "nanodbc",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ substituteInPlace CMakeLists.txt \\
       buildInputs: nix.thunk(() => [unixodbc]),
       cmakeFlags: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")) ? ["-DBUILD_STATIC_LIBS=ON"] : ["-DBUILD_SHARED_LIBS=ON"])),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/nanodbc/nanodbc",
         changelog: nix.thunk(() => nix.str`https://github.com/nanodbc/nanodbc/raw/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "Small C++ wrapper for the native C ODBC API",

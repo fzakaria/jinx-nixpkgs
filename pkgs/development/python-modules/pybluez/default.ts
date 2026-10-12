@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const bluez = nix.arg($, "bluez");
   const gattlib = nix.arg($, "gattlib");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pybluez",
       version: "unstable-2022-01-28",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pybluez",
           repo: "pybluez",
           rev: "5096047f90a1f6a74ceb250aef6243e144170f92",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["bluetooth", "bluetooth.ble"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bluetooth Python extension module",
         homepage: "https://github.com/pybluez/pybluez",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

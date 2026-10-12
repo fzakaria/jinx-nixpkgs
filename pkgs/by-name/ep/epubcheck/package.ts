@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "epubcheck",
       version: "5.3.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/w3c/epubcheck/releases/download/v${nix.sel(finalAttrs, "version")}/epubcheck-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "sha256-wROsu/s0EuNQQsbMtxWVIwDZvDozBk/kfwxhivCIRAo=",
         })))),
@@ -41,7 +41,7 @@ makeWrapper ${jre}/bin/java $out/bin/epubcheck \\
   --add-flags "-classpath $classpath com.adobe.epubcheck.tool.Checker"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/w3c/epubcheck",
         description: "Validation tool for EPUB",
         mainProgram: "epubcheck",

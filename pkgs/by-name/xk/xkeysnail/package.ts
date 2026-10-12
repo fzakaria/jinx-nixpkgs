@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "xkeysnail",
       version: "0.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mooz",
           repo: "xkeysnail",
           rev: "bf3c93b4fe6efd42893db4e6588e5ef1c4909cfb",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/mooz/xkeysnail/commit/457ab424fb32c4bfc6e6ea307752a2ce5d77853b.patch",
             hash: "sha256-yqsAfn3SibRW2clbtVwVZi1dJ8pAiXoYpittpz7S/wU=",
           })))),
@@ -53,7 +53,7 @@ makeWrapper $out/bin/xkeysnail $out/bin/xkeysnail-browser \\
 `),
       pythonImportsCheck: nix.thunk(() => ["xkeysnail"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Yet another keyboard remapping tool for X environment",
         homepage: "https://github.com/mooz/xkeysnail",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

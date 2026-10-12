@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sdb9696",
           repo: "firebase-messaging",
           tag: version,
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const pythonRelaxDeps = nix.thunk(() => ["http-ece", "protobuf"]);
       const dependencies = nix.thunk(() => [aiohttp, cryptography, http_ece, protobuf]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         docs: nix.thunk(() => [myst_parser, sphinx, sphinx_autodoc_typehints, sphinx_rtd_theme]),
       }));
       const pythonImportsCheck = nix.thunk(() => ["firebase_messaging"]);
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         pytestCheckHook,
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library to subscribe to GCM/FCM and receive notifications within a python application",
         homepage: "https://github.com/sdb9696/firebase-messaging",
         changelog: nix.thunk(() => nix.str`https://github.com/sdb9696/firebase-messaging/releases/tag/${nix.sel(src, "tag")}`),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

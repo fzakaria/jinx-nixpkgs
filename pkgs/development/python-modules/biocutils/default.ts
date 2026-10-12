@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pandas = nix.arg($, "pandas");
   const numpy = nix.arg($, "numpy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "biocutils",
       version: "0.4.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BiocPy",
           repo: "BiocUtils",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_cov_stub, pytestCheckHook, pandas, scipy]),
       pythonImportsCheck: nix.thunk(() => ["biocutils"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Miscellaneous utilities for BiocPy, mostly to mimic base functionality in R",
         homepage: "https://github.com/BiocPy/BiocUtils",
         changelog: nix.thunk(() => nix.str`https://github.com/BiocPy/biocutils/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

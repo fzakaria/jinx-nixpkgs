@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const ihm = nix.arg($, "ihm");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "modelcif",
       version: "1.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ihmwg",
           repo: "python-modelcif",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["modelcif"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python package for handling ModelCIF mmCIF and BinaryCIF files",
         homepage: "https://github.com/ihmwg/python-modelcif",
         changelog: nix.thunk(() => nix.str`https://github.com/ihmwg/python-modelcif/blob/${nix.sel(finalAttrs, "src", "tag")}/ChangeLog.rst`),

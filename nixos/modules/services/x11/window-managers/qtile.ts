@@ -33,24 +33,24 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "xserver", "windowManager", "qtile"));
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["services", "xserver", "windowManager", "qtile", "backend"]), "The qtile package now provides separate display sessions for both X11 and Wayland.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         xserver: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           windowManager: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             qtile: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "qtile")),
               package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, nix.thunk(() => ["python3", "pkgs", "qtile"]), nix.thunk(() => ({})))),
               configFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   type: nix.thunk(() => (() => {
                     const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                     return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "path")));
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
                   description: "Path to the qtile configuration file.\nIf null, $XDG_CONFIG_HOME/qtile/config.py will be used.\n",
                 })))),
               extraPackages: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "functionTo"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")))))),
                   default: (_) => [],
                   defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "python3Packages: with python3Packages; [];\n")),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
                   example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "python3Packages: with python3Packages; [\n  qtile-extras\n];\n")),
                 })))),
               finalPackage: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")),
                   visible: false,
                   readOnly: true,
@@ -80,39 +80,39 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         services: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           xserver: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             windowManager: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               qtile: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 finalPackage: nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     extraPackages: nix.thunk(() => nix.app(nix.sel(cfg, "extraPackages"), nix.thunk(() => nix.sel(cfg, "package", "pythonModule", "pkgs")))),
                   })))),
               })),
             })),
           })),
           displayManager: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             sessionPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "finalPackage"))]),
           })),
           gnome: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             "gnome-keyring": nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
             })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           etc: nix.thunk(() => ({
-            __proto__: pos$18,
-            "xdg/qtile/config.py": nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "configFile"), null)), nix.thunk(() => ({ __proto__: pos$17, source: nix.thunk(() => nix.sel(cfg, "configFile")) })))),
+            [nix.POS]: pos$18,
+            "xdg/qtile/config.py": nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "configFile"), null)), nix.thunk(() => ({ [nix.POS]: pos$17, source: nix.thunk(() => nix.sel(cfg, "configFile")) })))),
           })),
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "finalPackage"))]),
         })),

@@ -37,12 +37,12 @@ export default nix.lambda((args) => (() => {
     yt_dlp,
   ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [pulseaudio]))));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mkchromecast-unstable",
       version: "2025-12-21",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "muammar",
           repo: "mkchromecast",
           rev: "9cdc5f3f9060ef4078522366ce896356515d8e52",
@@ -76,7 +76,7 @@ substituteInPlace $out/${nix.sel(python3Packages, "python", "sitePackages")}/mkc
   --replace './bin/audiodevice' '${nix.builtins.placeholder("out")}/bin/audiodevice'
 `)))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://mkchromecast.com/",
         description: "Cast macOS and Linux Audio/Video to your Google Cast and Sonos Devices",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

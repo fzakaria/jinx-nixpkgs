@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "real-ladybug",
       version: "0.14.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LadybugDB",
           repo: "ladybug",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -73,7 +73,7 @@ TOML
       ]),
       pythonImportsCheck: nix.thunk(() => ["real_ladybug"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python bindings for LadybugDB, an embeddable property graph database management system (fork of Kuzu)",
         homepage: "https://ladybugdb.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/LadybugDB/ladybug/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

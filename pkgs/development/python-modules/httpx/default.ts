@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.28.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "encode",
           repo: "httpx",
           tag: version,
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatch_fancy_pypi_readme, hatchling]);
       const dependencies = nix.thunk(() => [anyio, certifi, httpcore, idna]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         brotli: nix.thunk(() => (nix.asBool(isPyPy) ? [brotlicffi] : [brotli])),
         cli: nix.thunk(() => [click, rich, pygments]),
         http2: nix.thunk(() => [h2]),
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
       const __darwinAllowLocalNetworking = true;
       const setupHook = nix.path(here, "./setup-hook.sh");
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/encode/httpx/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
         description: "Next generation HTTP client",
         mainProgram: "httpx",
@@ -99,7 +99,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

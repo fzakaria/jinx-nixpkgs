@@ -37,86 +37,86 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const name = "tuwunel";
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     name: name,
     nodes: nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       host1: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         services: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "matrix-tuwunel": nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enable: true,
             settings: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               global: nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 server_name: name,
                 address: nix.thunk(() => ["0.0.0.0"]),
                 allow_registration: true,
                 yes_i_am_very_very_sure_i_want_an_open_registration_server_prone_to_abuse: true,
               })),
             })),
-            extraEnvironment: nix.thunk(() => ({ __proto__: pos$3, RUST_BACKTRACE: "yes" })),
+            extraEnvironment: nix.thunk(() => ({ [nix.POS]: pos$3, RUST_BACKTRACE: "yes" })),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$7,
-          firewall: nix.thunk(() => ({ __proto__: pos$6, allowedTCPPorts: nix.thunk(() => [6167n]) })),
+          [nix.POS]: pos$7,
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$6, allowedTCPPorts: nix.thunk(() => [6167n]) })),
         })),
       })),
       host2: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         users: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           users: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             conduit: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               group: "conduit",
               home: "/var/lib/matrix-conduit",
               isSystemUser: true,
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$11, conduit: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$11, conduit: nix.thunk(() => ({})) })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           "matrix-tuwunel": nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             enable: true,
             user: "conduit",
             group: "conduit",
             stateDirectory: "matrix-conduit",
             settings: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               global: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 server_name: name,
                 address: nix.thunk(() => ["0.0.0.0"]),
                 allow_registration: true,
                 yes_i_am_very_very_sure_i_want_an_open_registration_server_prone_to_abuse: true,
               })),
             })),
-            extraEnvironment: nix.thunk(() => ({ __proto__: pos$15, RUST_BACKTRACE: "yes" })),
+            extraEnvironment: nix.thunk(() => ({ [nix.POS]: pos$15, RUST_BACKTRACE: "yes" })),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$19,
-          firewall: nix.thunk(() => ({ __proto__: pos$18, allowedTCPPorts: nix.thunk(() => [6167n]) })),
+          [nix.POS]: pos$19,
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$18, allowedTCPPorts: nix.thunk(() => [6167n]) })),
         })),
       })),
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           environment: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(pkgs_1, "writers", "writePython3Bin"), "do_test", nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   libraries: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "python3Packages", "matrix-nio"))]),
                 })), "import asyncio\nimport nio\nimport sys\n\n\nasync def main(host) -> None:\n    # Connect to server\n    client = nio.AsyncClient(f\"http://{host}:6167\", \"alice\")\n\n    # Register as user alice\n    response = await client.register(\"alice\", \"my-secret-password\")\n\n    # Log in as user alice\n    response = await client.login(\"my-secret-password\")\n\n    # Create a new room\n    response = await client.room_create(federate=False)\n    print(\"Matrix room create response:\", response)\n    assert isinstance(response, nio.RoomCreateResponse)\n    room_id = response.room_id\n\n    # Join the room\n    response = await client.join(room_id)\n    print(\"Matrix join response:\", response)\n    assert isinstance(response, nio.JoinResponse)\n\n    # Send a message to the room\n    response = await client.room_send(\n        room_id=room_id,\n        message_type=\"m.room.message\",\n        content={\n            \"msgtype\": \"m.text\",\n            \"body\": \"Hello matrix!\"\n        }\n    )\n    print(\"Matrix room send response:\", response)\n    assert isinstance(response, nio.RoomSendResponse)\n\n    # Sync responses\n    response = await client.sync(timeout=30000)\n    print(\"Matrix sync response:\", response)\n    assert isinstance(response, nio.SyncResponse)\n\n    # Check the message was received by server\n    last_message = response.rooms.join[room_id].timeline.events[-1].body\n    assert last_message == \"Hello matrix!\"\n\n    # Leave the room\n    response = await client.room_leave(room_id)\n    print(\"Matrix room leave response:\", response)\n    assert isinstance(response, nio.RoomLeaveResponse)\n\n    # Close the client\n    await client.close()\n\n\nif __name__ == \"__main__\":\n    asyncio.run(main(sys.argv[1]))\n")),
             ]),
@@ -126,7 +126,7 @@ export default nix.lambda((args) => (() => {
     })),
     testScript: "start_all()\n\nwith subtest(\"start tuwunel on host1\"):\n      host1.wait_for_unit(\"tuwunel.service\")\n      host1.wait_for_open_port(6167)\n\nwith subtest(\"start tuwunel on host2\"):\n      host1.wait_for_unit(\"tuwunel.service\")\n      host1.wait_for_open_port(6167)\n\nwith subtest(\"ensure messages can be sent to servers\"):\n      client.succeed(\"do_test host1 >&2\")\n      client.succeed(\"do_test host2 >&2\")\n",
     meta: nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "scvalex"))];

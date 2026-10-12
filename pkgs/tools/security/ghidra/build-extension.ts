@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const gradle = nix.arg($, "gradle");
   const ghidra = nix.arg($, "ghidra");
   const metaCommon = (oldMeta) => nix.update(oldMeta, {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     maintainers: nix.thunk(() => nix.concat(nix.selOr(oldMeta, () => [], "maintainers"), (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return [
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
     platforms: nix.thunk(() => nix.selOr(oldMeta, () => nix.sel(ghidra, "meta", "platforms"), "platforms")),
   });
   const buildGhidraExtension = nix.thunk(() => nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         const nativeBuildInputs = nix.argOr($_1, "nativeBuildInputs", () => []);
         const meta = nix.argOr($_1, "meta", () => ({}));
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           nativeBuildInputs: nix.thunk(() => nix.concat(nativeBuildInputs, [unzip, jdk, gradle])),
           preBuild: nix.thunk(() => nix.str`# Set project name, otherwise defaults to directory name
 echo -e '\\nrootProject.name = "${pname}"' >> settings.gradle
@@ -58,7 +58,7 @@ ${nix.selOr(args_2, () => "", "preBuild")}
       })(), formals$2),
     }))));
   const buildGhidraScripts = nix.thunk(() => nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
@@ -66,7 +66,7 @@ ${nix.selOr(args_2, () => "", "preBuild")}
         const pname = nix.arg($_1, "pname");
         const meta = nix.argOr($_1, "meta", () => ({}));
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           installPhase: nix.thunk(() => nix.str`runHook preInstall
 
 GHIDRA_HOME=$out/lib/ghidra/Ghidra/Extensions/${pname}
@@ -90,7 +90,7 @@ runHook postInstall
       })(), formals$3),
     }))));
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     buildGhidraExtension: buildGhidraExtension,
     buildGhidraScripts: buildGhidraScripts,
   };

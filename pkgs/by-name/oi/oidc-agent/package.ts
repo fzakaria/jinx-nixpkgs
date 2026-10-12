@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const help2man = nix.arg($, "help2man");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "oidc-agent",
       version: "5.3.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "indigo-dc",
           repo: "oidc-agent",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,11 +46,11 @@ export default nix.lambda((args) => (() => {
       installTargets: nix.thunk(() => ["install_bin", "install_lib", "install_conf"]),
       postFixup: "# Override with patched binary to be used by help2man\ncp -r $out/bin/* bin\nmake install_man PREFIX=$out MAN_PATH=$out/share/man PROMPT_MAN_PATH=$out/share/man WEBKITGTK=webkit2gtk-4.1\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Manage OpenID Connect tokens on the command line",
         homepage: "https://github.com/indigo-dc/oidc-agent",
         maintainers: nix.thunk(() => (() => {

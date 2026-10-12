@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchCrate = nix.arg($, "fetchCrate");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "svd2rust-form",
       version: "0.13.0",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "form",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-7+5HEyP7480UM5dydavoiclX3YTvW46V8r+Vpqt4xWk=",
         })))),
       cargoHash: "sha256-ItNBQKye1GD01KFBubMLxksv8OCWIxya/LlZ9g6Jdg8=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for splitting apart a large file with multiple modules into the idiomatic rust directory structure",
         mainProgram: "form",
         homepage: "https://github.com/djmcgill/form",

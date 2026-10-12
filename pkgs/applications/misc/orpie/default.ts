@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "orpie";
       const version = "1.6.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pelzlpj",
           repo: "orpie",
           tag: nix.thunk(() => nix.str`release-${version}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(src, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "Curses-based RPN calculator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

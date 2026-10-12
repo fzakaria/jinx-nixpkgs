@@ -58,12 +58,12 @@ or you can set the following nixpkgs config option:
 https://docs.dyalog.com/20.0/release-notes/announcements/#new-linux-platform
 `);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "dyalog",
       version: "20.0.53963",
       shortVersion: nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         sources: nix.thunk(() => (() => {
           const fetchArtifact = nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
@@ -71,21 +71,21 @@ https://docs.dyalog.com/20.0/release-notes/announcements/#new-linux-platform
             const suffix = nix.arg($_1, "suffix");
             const hash = nix.arg($_1, "hash");
             return nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 url: nix.thunk(() => nix.str`https://download.dyalog.com/download.php?file=${nix.sel(finalAttrs, "shortVersion")}/${prefix}_${nix.sel(finalAttrs, "version")}_${suffix}`),
                 hash: hash,
               })));
           })(), formals$2);
           return {
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             "x86_64-linux": nix.thunk(() => nix.app(fetchArtifact, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 prefix: "linux_64",
                 suffix: "unicode.x86_64.deb",
                 hash: "sha256-4LjB/aHK40HecgZA7YUIoY/CaCnSoMOs9OoIhong8j4=",
               })))),
             "aarch64-linux": nix.thunk(() => nix.app(fetchArtifact, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 prefix: "linux_64",
                 suffix: "unicode.aarch64.deb",
                 hash: "sha256-5uVxMK0yowLOARW+PjFDpFiUNc/0cU/5lzY8t5Z6DxY=",
@@ -151,12 +151,12 @@ done
 `, nix.app(nix.sel(lib, "optionalString"), htmlRendererSupport, nix.thunk(() => nix.str`patchelf ${dyalogHome}/libcef.so --add-needed libudev.so --add-needed libGL.so
 `)))),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         changelog: nix.thunk(() => nix.str`https://dyalog.com/dyalog/dyalog-versions/${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "shortVersion")))}.htm`),
         description: "Dyalog APL interpreter",
         homepage: "https://www.dyalog.com",
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             shortName: "dyalog",
             fullName: "Dyalog License",
             url: licenseUrl,

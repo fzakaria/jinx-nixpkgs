@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const cyclonedds = nix.arg($, "cyclonedds");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cyclonedds-cxx",
       version: "11.0.1",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eclipse-cyclonedds",
           repo: "cyclonedds-cxx",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [cyclonedds]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C++ binding for Eclipse Cyclone DDS",
         homepage: "https://cyclonedds.io/",
         license: nix.thunk(() => (() => {

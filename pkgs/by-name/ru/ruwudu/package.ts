@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ruwudu";
       const version = "3.000";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://software.sil.org/downloads/r/ruwudu/Ruwudu-${version}.zip`),
           hash: "sha256-HuuH6AWD5gym73zSsuQdQD901J6r3PkUmUTtnRxYRyg=",
         }))));
@@ -29,14 +29,14 @@ mv *.txt documentation $out/share/doc/${pname}/
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://software.sil.org/ruwudu/",
         description: "Arabic script font for a style of writing used in Niger, West Africa",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

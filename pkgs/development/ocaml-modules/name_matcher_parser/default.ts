@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const visitors = nix.arg($, "visitors");
   const zarith = nix.arg($, "zarith");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "name_matcher_parser",
       version: nix.thunk(() => nix.attr(charon, "version")),
       __structuredAttrs: true,
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [menhirLib, ppx_deriving, visitors, zarith]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Parser to define name matchers",
         homepage: "https://github.com/AeneasVerif/charon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

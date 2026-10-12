@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "https-dns-proxy";
       const version = "0-unstable-2024-11-18";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aarond10",
           repo: "https_dns_proxy",
           rev: "484bd153bb85a51df1c5bede1b091be76537e0a7",
@@ -38,7 +38,7 @@ rmdir $out/lib
 `);
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "DNS to DNS over HTTPS (DoH) proxy",
         homepage: "https://github.com/aarond10/https_dns_proxy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -50,7 +50,7 @@ rmdir $out/lib
         mainProgram: "https_dns_proxy",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

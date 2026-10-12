@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const generateSplicesForMkScope = nix.arg($, "generateSplicesForMkScope");
   const otherSplices = nix.thunk(() => nix.app(generateSplicesForMkScope, "cygwin"));
   return nix.app(makeScopeWithSplicing$, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       otherSplices: otherSplices,
       f: (self) => (() => {
         const callPackage = nix.thunk(() => nix.sel(self, "callPackage"));
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           w32api: nix.thunk(() => nix.app(callPackage, nix.path(here, "./w32api"), nix.thunk(() => ({})))),
-          "w32api-headers": nix.thunk(() => nix.app(callPackage, nix.path(here, "./w32api"), nix.thunk(() => ({ __proto__: pos$1, headersOnly: true })))),
+          "w32api-headers": nix.thunk(() => nix.app(callPackage, nix.path(here, "./w32api"), nix.thunk(() => ({ [nix.POS]: pos$1, headersOnly: true })))),
           "newlib-cygwin": nix.thunk(() => nix.app(callPackage, nix.path(here, "./newlib-cygwin"), nix.thunk(() => ({})))),
           "newlib-cygwin-nobin": nix.thunk(() => nix.app(callPackage, nix.path(here, "./newlib-cygwin/nobin.nix"), nix.thunk(() => ({})))),
-          "newlib-cygwin-headers": nix.thunk(() => nix.app(callPackage, nix.path(here, "./newlib-cygwin"), nix.thunk(() => ({ __proto__: pos$2, headersOnly: true })))),
+          "newlib-cygwin-headers": nix.thunk(() => nix.app(callPackage, nix.path(here, "./newlib-cygwin"), nix.thunk(() => ({ [nix.POS]: pos$2, headersOnly: true })))),
           cygwinDllLinkHook: nix.thunk(() => nix.app(callPackage, nix.path(here, "./cygwin-dll-link-hook"), nix.thunk(() => ({})))),
         };
       })(),

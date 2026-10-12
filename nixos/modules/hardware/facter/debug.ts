@@ -35,33 +35,33 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const extendModules = nix.arg($, "extendModules");
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       system: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         build: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           noFacter: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "unspecified")),
               description: "A version of the system closure with facter disabled",
             })))),
         })),
       })),
       hardware: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         facter: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           debug: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             nvd: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(lib, "types", "package")),
                 description: "A shell application which will produce an nvd diff of the system closure with and without facter enabled.\n",
               })))),
             "nix-diff": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(lib, "types", "package")),
                 description: "A shell application which will produce a nix-diff of the system closure with and without facter enabled.\n",
               })))),
@@ -70,24 +70,24 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       system: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         build: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           noFacter: nix.thunk(() => nix.app(extendModules, nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               modules: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   config: nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     hardware: nix.thunk(() => ({
-                      __proto__: pos$12,
+                      [nix.POS]: pos$12,
                       facter: nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         report: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ({
-                            __proto__: pos$10,
+                            [nix.POS]: pos$10,
                             system: nix.thunk(() => nix.sel(config, "nixpkgs", "hostPlatform")),
                           })))),
                       })),
@@ -99,13 +99,13 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       hardware: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         facter: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           debug: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             nvd: nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 name: "facter-nvd-diff",
                 runtimeInputs: nix.thunk(() => [
                   nix.thunk(() => nix.sel(config, "nix", "package")),
@@ -118,7 +118,7 @@ export default nix.lambda((args) => (() => {
 `),
               })))),
             "nix-diff": nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 name: "facter-nix-diff",
                 runtimeInputs: nix.thunk(() => [
                   nix.thunk(() => nix.sel(config, "nix", "package")),

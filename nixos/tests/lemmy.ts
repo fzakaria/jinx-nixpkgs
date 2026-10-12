@@ -29,10 +29,10 @@ export default nix.lambda((args) => (() => {
   const backendPort = 5678n;
   const lemmyNodeName = "server";
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     name: "lemmy",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -42,43 +42,43 @@ export default nix.lambda((args) => (() => {
       })()),
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "ngi"))]),
     })),
-    nodes: nix.thunk(() => nix.attrsDyn({ __proto__: pos$16, client: nix.thunk(() => ({})) }, [
+    nodes: nix.thunk(() => nix.attrsDyn({ [nix.POS]: pos$16, client: nix.thunk(() => ({})) }, [
       [nix.str`${lemmyNodeName}`, nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         services: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           lemmy: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             enable: true,
-            ui: nix.thunk(() => ({ __proto__: pos$2, port: uiPort })),
-            database: nix.thunk(() => ({ __proto__: pos$3, createLocally: true })),
+            ui: nix.thunk(() => ({ [nix.POS]: pos$2, port: uiPort })),
+            database: nix.thunk(() => ({ [nix.POS]: pos$3, createLocally: true })),
             settings: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               hostname: nix.thunk(() => nix.str`http://${lemmyNodeName}`),
               port: backendPort,
               setup: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 admin_username: "mightyiam",
                 site_name: "Lemmy FTW",
                 admin_email: "mightyiam@example.com",
               })),
             })),
             adminPasswordFile: nix.path("", "/etc/lemmy-admin-password.txt"),
-            caddy: nix.thunk(() => ({ __proto__: pos$6, enable: true })),
+            caddy: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           etc: nix.thunk(() => ({
-            __proto__: pos$10,
-            "lemmy-admin-password.txt": nix.thunk(() => ({ __proto__: pos$9, text: "ThisIsWhatIUseEverywhereTryIt" })),
+            [nix.POS]: pos$10,
+            "lemmy-admin-password.txt": nix.thunk(() => ({ [nix.POS]: pos$9, text: "ThisIsWhatIUseEverywhereTryIt" })),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$13,
-          firewall: nix.thunk(() => ({ __proto__: pos$12, allowedTCPPorts: nix.thunk(() => [80n]) })),
+          [nix.POS]: pos$13,
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$12, allowedTCPPorts: nix.thunk(() => [80n]) })),
         })),
-        virtualisation: nix.thunk(() => ({ __proto__: pos$14, memorySize: 2000n })),
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$14, memorySize: 2000n })),
       }))],
     ])),
     testScript: nix.thunk(() => nix.str`server = ${lemmyNodeName}

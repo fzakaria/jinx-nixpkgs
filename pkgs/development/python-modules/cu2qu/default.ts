@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version_1 = version;
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname_1,
           version: version_1,
           hash: "sha256-HfVi2ZvWBZImCI9ENwK/Uc/djMY2I/IxN0WaeNe/WAg=",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => nix.concat([defcon, fonttools], nix.sel(fonttools, "optional-dependencies", "ufo")));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/googlefonts/cu2qu/releases/tag/v${version_1}`),
         description: "Cubic-to-quadratic bezier curve conversion",
         mainProgram: "cu2qu",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: pname_1,
         version: version_1,
         pyproject,

@@ -35,89 +35,89 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "arsenik"));
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         arsenik: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "A 33-key layout that works with all keyboards.")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "arsenik", nix.thunk(() => ({})))),
           tap_timeout: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: 200n,
               description: "The key must be pressed twice in XX ms to enable repetitions.",
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
             })))),
           hold_timeout: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: 200n,
               description: "The key must be held XX ms to become a layer shift.",
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
             })))),
           long_hold_timeout: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: 300n,
               description: "Slightly higher value for typing keys, to prevent unexpected hold effect.",
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
             })))),
           mac: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: false,
               description: "Original key arrangement on your keyboard: Mac or PC.",
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             })))),
           anglemod: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: false,
               description: "Choose here if you want to add an angle mod: ZXCVB are shifted to the left.\nSee https://colemakmods.github.io/ergonomic-mods/angle.html for more details.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             })))),
           wide: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: false,
               description: "The right hand is moved one key to the right.",
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             })))),
           lt: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: false,
               description: "Enable layer-taps.",
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             })))),
           hrm: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               default: false,
               description: "Enable homerow.",
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             })))),
           lafayette: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               default: false,
               description: "Add AltGr programmation layer like Ergo‑L",
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             })))),
           num: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               default: false,
               description: "Add NumRow layer",
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             })))),
           vim: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               default: false,
               description: "Navigation layer: ESDF or HJKL?",
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             })))),
           run: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               default: "M-p",
               description: "The keyboard shortcut of your application launcher.",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
             })))),
           layout: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               default: "ergol",
               description: "Your keyboard layout. Possible values are:\nergol qwerty-lafayette qwerty azerty qwertz bepo optimot\n",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
@@ -126,21 +126,21 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "wide")) || nix.asBool(nix.sel(cfg, "anglemod")))),
             message: "service.arsenik.wide requires service.arsenik.anglemod",
           })),
           nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "hrm")) || nix.asBool(nix.sel(cfg, "lt")))),
             message: "service.arsenik.hrm requires service.arsenik.lt",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           kanata: nix.thunk(() => (() => {
             const src = nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/arsenik`);
             const defsrc = nix.thunk(() => nix.str`${(nix.asBool(nix.sel(cfg, "mac")) ? "mac" : "pc")}${(nix.asBool(nix.sel(cfg, "wide")) ? "_wide" : "")}${(nix.asBool(nix.sel(cfg, "anglemod")) ? "_anglemod" : "")}`);
@@ -149,12 +149,12 @@ export default nix.lambda((args) => (() => {
             const navigation = nix.thunk(() => nix.str`navigation${(nix.asBool(nix.sel(cfg, "vim")) ? "_vim" : "")}`);
             const alias = nix.thunk(() => nix.str`${nix.sel(cfg, "layout")}_${(nix.asBool(nix.sel(cfg, "mac")) ? "mac" : "pc")}`);
             return {
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               enable: true,
               keyboards: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 arsenik: nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   config: nix.thunk(() => nix.str`(defvar
   tap_timeout ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "tap_timeout")))}
   hold_timeout ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "hold_timeout")))}

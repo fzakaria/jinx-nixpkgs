@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const haskellPackages = nix.arg($, "haskellPackages");
   const withEnv = (env) => nix.app(nix.sel(haskellPackages, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "puppy",
       version: "1.0.0",
       src: null,
@@ -27,27 +27,27 @@ export default nix.lambda((args) => (() => {
       env: env,
     })));
   const failures = nix.thunk(() => nix.app(nix.sel(lib, "runTests"), nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       testCanSetEnv: nix.thunk(() => ({
-        __proto__: pos$3,
-        expr: nix.thunk(() => nix.sel(nix.app(withEnv, nix.thunk(() => ({ __proto__: pos$2, PUPPY: "DOGGY" }))), "drvAttrs", "PUPPY")),
+        [nix.POS]: pos$3,
+        expr: nix.thunk(() => nix.sel(nix.app(withEnv, nix.thunk(() => ({ [nix.POS]: pos$2, PUPPY: "DOGGY" }))), "drvAttrs", "PUPPY")),
         expected: "DOGGY",
       })),
       testCanSetEnvMultiple: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         expr: nix.thunk(() => (() => {
-          const env = nix.thunk(() => nix.sel(nix.app(withEnv, nix.thunk(() => ({ __proto__: pos$4, PUPPY: "DOGGY", SILLY: "GOOFY" }))), "drvAttrs"));
+          const env = nix.thunk(() => nix.sel(nix.app(withEnv, nix.thunk(() => ({ [nix.POS]: pos$4, PUPPY: "DOGGY", SILLY: "GOOFY" }))), "drvAttrs"));
           return {
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             PUPPY: nix.thunk(() => nix.attr(env, "PUPPY")),
             SILLY: nix.thunk(() => nix.attr(env, "SILLY")),
           };
         })()),
-        expected: nix.thunk(() => ({ __proto__: pos$6, PUPPY: "DOGGY", SILLY: "GOOFY" })),
+        expected: nix.thunk(() => ({ [nix.POS]: pos$6, PUPPY: "DOGGY", SILLY: "GOOFY" })),
       })),
       testCanSetEnvPassthru: nix.thunk(() => ({
-        __proto__: pos$9,
-        expr: nix.thunk(() => nix.sel(nix.app(withEnv, nix.thunk(() => ({ __proto__: pos$8, PUPPY: "DOGGY" }))), "passthru", "env", "PUPPY")),
+        [nix.POS]: pos$9,
+        expr: nix.thunk(() => nix.sel(nix.app(withEnv, nix.thunk(() => ({ [nix.POS]: pos$8, PUPPY: "DOGGY" }))), "passthru", "env", "PUPPY")),
         expected: "DOGGY",
       })),
     }))));

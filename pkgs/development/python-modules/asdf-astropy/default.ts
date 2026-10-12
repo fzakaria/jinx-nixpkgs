@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "asdf-astropy",
       version: "0.11.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "astropy",
           repo: "asdf-astropy",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       pytestFlags: nix.thunk(() => ["-Wignore::astropy.utils.data.CacheMissingWarning"]),
       pythonImportsCheck: nix.thunk(() => ["asdf_astropy"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extension library for ASDF to provide support for Astropy",
         homepage: "https://github.com/astropy/asdf-astropy",
         changelog: nix.thunk(() => nix.str`https://github.com/astropy/asdf-astropy/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.rst`),

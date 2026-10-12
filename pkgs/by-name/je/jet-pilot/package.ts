@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
       const pname = "jet-pilot";
       const version = "1.35.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/unxsist/jet-pilot/releases/download/v${version}/JET.Pilot_${version}_amd64.AppImage`),
           hash: "sha256-W1VRV29ZV8nD3wAcSNAsWguN8s+zio0lsVaZwAnCOwE=",
         }))));
-      const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+      const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Open-source Kubernetes desktop client that focuses on less clutter, speed and good looks",
         homepage: "https://jet-pilot.app/",
         changelog: "https://github.com/unxsist/jet-pilot/releases",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })()),
         mainProgram: "jet-pilot",
       }));
-      return { __proto__: pos$4, pname, version, src, appimageContents, meta };
+      return { [nix.POS]: pos$4, pname, version, src, appimageContents, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

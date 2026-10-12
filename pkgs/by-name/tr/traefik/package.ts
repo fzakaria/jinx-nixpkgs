@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGo126Module, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "traefik",
       version: "3.7.13",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/traefik/traefik/releases/download/v${nix.sel(finalAttrs, "version")}/traefik-v${nix.sel(finalAttrs, "version")}.src.tar.gz`),
           hash: "sha256-xwq4iqD0UM9xClVN4OkntEio1jGXU0JTFkXj+kpFkwE=",
           stripRoot: false,
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-jlrZ78urMkNoBtV1VcfAA++1H+XuUaUxMA8ZX4w1lhg=",
       proxyVendor: true,
       subPackages: nix.thunk(() => ["cmd/traefik"]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       preBuild: nix.thunk(() => nix.str`GOOS= GOARCH= go generate
 
 CODENAME=$(grep -Po "CODENAME \\?=\\s\\K.+$" Makefile)
@@ -41,12 +41,12 @@ ldflags+=" -X github.com/traefik/traefik/v${nix.app(nix.sel(lib, "versions", "ma
 ldflags+=" -X github.com/traefik/traefik/v${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/pkg/version.Codename=$CODENAME"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, traefik: nix.thunk(() => nix.attr(nixosTests, "traefik")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, traefik: nix.thunk(() => nix.attr(nixosTests, "traefik")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://traefik.io",
         description: "Modern reverse proxy",
         changelog: nix.thunk(() => nix.str`https://github.com/traefik/traefik/raw/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

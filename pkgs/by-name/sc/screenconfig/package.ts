@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const srandrd = nix.arg($, "srandrd");
   const feh = nix.arg($, "feh");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "screenconfig",
       version: "0.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jceb",
           repo: "screenconfig",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       })()),
       propagatedBuildInputs: nix.thunk(() => [xrandr, srandrd, feh]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Automatic configuration of connected screens/monitors",
         homepage: "https://github.com/jceb/screenconfig",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

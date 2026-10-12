@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const buildPythonPackage = nix.arg($, "buildPythonPackage");
   const i2c_tools = nix.arg($, "i2c-tools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.attr(i2c_tools, "pname")),
       version: nix.thunk(() => nix.attr(i2c_tools, "version")),
       src: nix.thunk(() => nix.attr(i2c_tools, "src")),
@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(i2c_tools, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
         description: "Wrapper for i2c-tools' smbus stuff",

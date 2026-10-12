@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libbsd = nix.arg($, "libbsd");
   const readline = nix.arg($, "readline");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rosie",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://gitlab.com/rosie-pattern-language/rosie",
           rev: "79605830e32dff33544f9ebe7d7be752c29424b5",
           sha256: "sha256-n7Tem/4ZjizfCPT21teYK2wZ/gVpgjHUim9s7soEwbM=",
@@ -35,7 +35,7 @@ touch ${nix.sel(finalAttrs, "src", "name")}/submodules/~~present~~
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`DESTDIR=${nix.builtins.placeholder("out")}`)]),
       buildInputs: nix.thunk(() => [libbsd, readline]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         homepage: "https://rosie-lang.org",
         description: "Tools for searching using parsing expression grammars",

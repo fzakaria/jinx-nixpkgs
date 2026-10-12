@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jsonld-cli",
       version: "2.0.0-unstable-2026-03-23",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "digitalbazaar",
           repo: "jsonld-cli",
           rev: "ab35bc8b00dedcd119904f56a8904721188094b1",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: "sha256-+cZX28z4aGlCQzVEBqbCNuwLhEkBjrK/gDkJ7vZdhUI=",
       dontNpmBuild: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "JSON-LD command line interface tool",
         homepage: "https://github.com/digitalbazaar/jsonld-cli",
         changelog: "https://github.com/digitalbazaar/jsonld-cli/blob/ab35bc8b00dedcd119904f56a8904721188094b1/CHANGELOG.md",

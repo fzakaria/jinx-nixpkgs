@@ -39,27 +39,27 @@ export default nix.lambda((args) => (() => {
   const templateSubmodule = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     return {
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       options: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "this template")),
         target: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             description: "Path in the container",
             type: nix.thunk(() => nix.sel(lib, "types", "path")),
           })))),
         template: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             description: ".tpl file for rendering the target",
             type: nix.thunk(() => nix.sel(lib, "types", "path")),
           })))),
         when: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             description: "Events which trigger a rewrite (create, copy)",
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
           })))),
         properties: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             description: "Additional properties",
             type: nix.thunk(() => nix.sel(lib, "types", "attrs")),
             default: nix.thunk(() => ({})),
@@ -70,37 +70,37 @@ export default nix.lambda((args) => (() => {
   const toYAML = (name) => (data) => nix.app(nix.sel(pkgs, "writeText"), name, nix.thunk(() => nix.app(nix.sel(lib, "generators", "toYAML"), nix.thunk(() => ({})), data)));
   const cfg = nix.thunk(() => nix.sel(config, "virtualisation", "lxc"));
   const templates = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "templates"), {})) ? (() => {
-    const list = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value) => nix.update({ __proto__: pos$7, name: name }, value), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (name) => (value) => nix.sel(value, "enable"), nix.thunk(() => nix.sel(cfg, "templates"))))));
+    const list = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value) => nix.update({ [nix.POS]: pos$7, name: name }, value), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (name) => (value) => nix.sel(value, "enable"), nix.thunk(() => nix.sel(cfg, "templates"))))));
     return {
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       files: nix.thunk(() => nix.builtins.map((tpl) => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           source: nix.thunk(() => nix.sel(tpl, "template")),
           target: nix.thunk(() => nix.str`/templates/${nix.sel(tpl, "name")}.tpl`),
         }), list)),
       properties: nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map((tpl) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.sel(tpl, "target")), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               when: nix.thunk(() => nix.sel(tpl, "when")),
               template: nix.thunk(() => nix.str`${nix.sel(tpl, "name")}.tpl`),
               properties: nix.thunk(() => nix.sel(tpl, "properties")),
             }))), list)))),
     };
-  })() : { __proto__: pos$11, files: [], properties: nix.thunk(() => ({})) }));
+  })() : { [nix.POS]: pos$11, files: [], properties: nix.thunk(() => ({})) }));
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     imports: nix.thunk(() => [nix.path(here, "../image/file-options.nix")]),
     meta: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "lxc"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         lxc: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           templates: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "Templates for LXC images",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), templateSubmodule)))),
               default: nix.thunk(() => ({})),
@@ -110,25 +110,25 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       system: nix.thunk(() => ({
-        __proto__: pos$23,
-        nixos: nix.thunk(() => ({ __proto__: pos$17, tags: nix.thunk(() => ["lxc", "metadata"]) })),
+        [nix.POS]: pos$23,
+        nixos: nix.thunk(() => ({ [nix.POS]: pos$17, tags: nix.thunk(() => ["lxc", "metadata"]) })),
         build: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           image: nix.thunk(() => nix.sel(config, "system", "build", "metadata")),
           metadata: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../../lib/make-system-tarball.nix"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               fileName: nix.thunk(() => nix.sel(config, "image", "baseName")),
               contents: nix.thunk(() => nix.concat([
                 nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   source: nix.thunk(() => nix.app(toYAML, "metadata.yaml", nix.thunk(() => ({
-                      __proto__: pos$19,
+                      [nix.POS]: pos$19,
                       architecture: nix.thunk(() => nix.builtins.elemAt(nix.thunk(() => nix.builtins.match("^([a-z0-9_]+).+", nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "system")))))), 0n)),
                       creation_date: 1n,
                       properties: nix.thunk(() => ({
-                        __proto__: pos$18,
+                        [nix.POS]: pos$18,
                         description: nix.thunk(() => nix.str`${nix.sel(config, "system", "nixos", "distroName")} ${nix.sel(config, "system", "nixos", "codeName")} ${nix.sel(config, "system", "nixos", "label")} ${nix.sel(pkgs, "stdenv", "hostPlatform", "system")}`),
                         os: nix.thunk(() => nix.str`${nix.sel(config, "system", "nixos", "distroId")}`),
                         release: nix.thunk(() => nix.str`${nix.sel(config, "system", "nixos", "codeName")}`),
@@ -142,7 +142,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       image: nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         extension: "tar.xz",
         filePath: nix.thunk(() => nix.str`tarball/${nix.sel(config, "image", "fileName")}`),
       })),

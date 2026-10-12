@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mystem";
       const version = "3.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.cdn.yandex.net/mystem/${pname}-${version}-linux-64bit.tar.gz`),
           sha256: "0qha7jvkdmil3jiwrpsfhkqsbkqn9dzgx3ayxwjdmv73ikmg95j6",
         }))));
@@ -26,7 +26,7 @@ install -Dm755 mystem $out/bin/mystem
 patchelf --set-interpreter $(cat ${nix.sel(stdenv, "cc")}/nix-support/dynamic-linker) $out/bin/mystem
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Morphological analysis of Russian text",
         homepage: "https://yandex.ru/dev/mystem/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -38,7 +38,7 @@ patchelf --set-interpreter $(cat ${nix.sel(stdenv, "cc")}/nix-support/dynamic-li
         platforms: nix.thunk(() => ["x86_64-linux"]),
         mainProgram: "mystem",
       }));
-      return { __proto__: pos$3, pname, version, src, buildCommand, meta };
+      return { [nix.POS]: pos$3, pname, version, src, buildCommand, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

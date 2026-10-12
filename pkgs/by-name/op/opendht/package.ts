@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const enableProxyServerAndClient = nix.argOr($, "enableProxyServerAndClient", () => false);
   const enablePushNotifications = nix.argOr($, "enablePushNotifications", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "opendht",
       version: "4.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "savoirfairelinux",
           repo: "opendht",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,11 +47,11 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), enableProxyServerAndClient, nix.thunk(() => ["-DOPENDHT_PROXY_SERVER=ON", "-DOPENDHT_PROXY_CLIENT=ON"])), nix.app(nix.sel(lib, "optionals"), enablePushNotifications, nix.thunk(() => ["-DOPENDHT_PUSH_NOTIFICATIONS=ON"])))),
       outputs: nix.thunk(() => ["out", "lib", "dev", "man"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version-regex=v(.+)"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version-regex=v(.+)"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "C++11 Kademlia distributed hash table implementation",
         homepage: "https://github.com/savoirfairelinux/opendht",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

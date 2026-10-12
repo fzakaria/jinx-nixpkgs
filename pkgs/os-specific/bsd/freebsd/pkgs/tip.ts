@@ -11,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const mkDerivation = nix.arg($, "mkDerivation");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "usr.bin/tip",
       extraPaths: nix.thunk(() => ["usr.bin/Makefile.inc"]),
       outputs: nix.thunk(() => ["out", "man", "debug"]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "tip" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "tip" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=tip.ts.map

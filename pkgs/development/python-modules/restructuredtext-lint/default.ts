@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "restructuredtext_lint",
           version: version,
           hash: "sha256-3SUgm54Lcmkp2DBjOfr3I3NKMTfbOCvPJylPoYprxSs=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const enabledTestPaths = nix.thunk(() => ["restructuredtext_lint/test/test.py"]);
       const pythonImportsCheck = nix.thunk(() => ["restructuredtext_lint"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "reStructuredText linter",
         homepage: "https://github.com/twolfson/restructuredtext-lint",
         changelog: nix.thunk(() => nix.str`https://github.com/twolfson/restructuredtext-lint/blob/${version}/CHANGELOG.rst`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "rst-lint",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

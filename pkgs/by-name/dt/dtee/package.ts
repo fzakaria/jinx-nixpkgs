@@ -28,18 +28,18 @@ export default nix.lambda((args) => (() => {
   const findutils = nix.arg($, "findutils");
   const glibcLocales = nix.arg($, "glibcLocales");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dtee",
       version: "1.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nomis",
           repo: "dtee",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-trREhITO3cY4j75mpudWhOA3GXI0Q8GkUxNq2s6154w=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       postPatch: "patchShebangs tests",
@@ -52,7 +52,7 @@ export SOURCE_DATE_EPOCH
       mesonFlags: nix.thunk(() => ["--unity on"]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Run a program with standard output and standard error copied to files",
         longDescription: "Run a program with standard output and standard error copied to files\nwhile maintaining the original standard output and standard error in\nthe original order. When invoked as \"cronty\", allows programs to be run\nfrom cron, suppressing all output unless the process outputs an error\nmessage or has a non-zero exit status whereupon the original output\nwill be written as normal and the exit code will be appended to standard\nerror.\n",
         homepage: "https://dtee.readthedocs.io/",

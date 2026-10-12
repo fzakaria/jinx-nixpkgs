@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.1.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eigenein",
           repo: "protobuf",
           tag: version,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const pytestFlags = nix.thunk(() => ["--benchmark-disable"]);
       const pythonImportsCheck = nix.thunk(() => ["pure_protobuf"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python implementation of Protocol Buffers with dataclass-based schemas",
         homepage: "https://github.com/eigenein/protobuf",
         changelog: nix.thunk(() => nix.str`https://github.com/eigenein/protobuf/releases/tag/${nix.sel(src, "tag")}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

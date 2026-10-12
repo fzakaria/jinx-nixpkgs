@@ -28,18 +28,18 @@ export default nix.lambda((args) => (() => {
   const why3 = nix.arg($, "why3");
   const yojson = nix.arg($, "yojson");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "lambdapi",
       version: "3.0.0",
       minimalOCamlVersion: "4.14",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/Deducteam/lambdapi/releases/download/${nix.sel(finalAttrs, "version")}/lambdapi-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-EGau0mGP2OakAMUUfb9V6pd86NP+LlGKxnhcZ3WhuL4=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/Deducteam/lambdapi/commit/8e27c0f668915fbd49e32bdac246d6d515a64dd0.patch",
             hash: "sha256-9CkvH1o81T9LP+IPogKGhoiIDP76/nRfq59ttU7r0fI=",
           })))),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest, dedukti]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/Deducteam/lambdapi",
         description: "Proof assistant based on the λΠ-calculus modulo rewriting",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cecill21")),

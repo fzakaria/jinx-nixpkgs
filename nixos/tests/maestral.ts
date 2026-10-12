@@ -40,51 +40,51 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     name: "maestral",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "peterhoeg"))]),
       };
     })()),
     nodes: nix.thunk(() => (() => {
       const common = (attrs) => nix.app(nix.sel(pkgs, "lib", "recursiveUpdate"), nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           systemd: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             user: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               services: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 maestral: nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   description: "Maestral Dropbox Client",
-                  serviceConfig: nix.thunk(() => ({ __proto__: pos$2, Type: "exec" })),
+                  serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$2, Type: "exec" })),
                 })),
               })),
             })),
           })),
         })), attrs);
       return {
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         cli: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           return nix.app(common, nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               systemd: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 user: nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   services: nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     maestral: nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       wantedBy: nix.thunk(() => ["default.target"]),
                       serviceConfig: nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "maestral")}/bin/maestral start --foreground`),
                       })),
                     })),
@@ -96,36 +96,36 @@ export default nix.lambda((args) => (() => {
         gui: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$3);
           return nix.app(common, nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               services: nix.thunk(() => ({
-                __proto__: pos$20,
-                xserver: nix.thunk(() => ({ __proto__: pos$14, enable: true })),
+                [nix.POS]: pos$20,
+                xserver: nix.thunk(() => ({ [nix.POS]: pos$14, enable: true })),
                 desktopManager: nix.thunk(() => ({
-                  __proto__: pos$16,
-                  plasma6: nix.thunk(() => ({ __proto__: pos$15, enable: true })),
+                  [nix.POS]: pos$16,
+                  plasma6: nix.thunk(() => ({ [nix.POS]: pos$15, enable: true })),
                 })),
                 displayManager: nix.thunk(() => ({
-                  __proto__: pos$19,
-                  sddm: nix.thunk(() => ({ __proto__: pos$17, enable: true })),
+                  [nix.POS]: pos$19,
+                  sddm: nix.thunk(() => ({ [nix.POS]: pos$17, enable: true })),
                   defaultSession: "plasma",
-                  autoLogin: nix.thunk(() => ({ __proto__: pos$18, enable: true, user: "alice" })),
+                  autoLogin: nix.thunk(() => ({ [nix.POS]: pos$18, enable: true, user: "alice" })),
                 })),
               })),
               systemd: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 user: nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   services: nix.thunk(() => ({
-                    __proto__: pos$24,
+                    [nix.POS]: pos$24,
                     maestral: nix.thunk(() => ({
-                      __proto__: pos$22,
+                      [nix.POS]: pos$22,
                       wantedBy: nix.thunk(() => ["graphical-session.target"]),
                       serviceConfig: nix.thunk(() => ({
-                        __proto__: pos$21,
+                        [nix.POS]: pos$21,
                         ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "maestral-gui")}/bin/maestral_qt`),
                       })),
                     })),
-                    "plasma-powerdevil": nix.thunk(() => ({ __proto__: pos$23, enable: false })),
+                    "plasma-powerdevil": nix.thunk(() => ({ [nix.POS]: pos$23, enable: false })),
                   })),
                 })),
               })),

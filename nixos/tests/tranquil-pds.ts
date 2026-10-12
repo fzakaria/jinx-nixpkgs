@@ -19,26 +19,26 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     name: "tranquil-pds",
     nodes: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           services: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             "tranquil-pds": nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               enable: true,
-              database: nix.thunk(() => ({ __proto__: pos$1, createLocally: true })),
+              database: nix.thunk(() => ({ [nix.POS]: pos$1, createLocally: true })),
               settings: nix.thunk(() => ({
-                __proto__: pos$4,
-                server: nix.thunk(() => ({ __proto__: pos$2, hostname: "pds", port: 8080n })),
+                [nix.POS]: pos$4,
+                server: nix.thunk(() => ({ [nix.POS]: pos$2, hostname: "pds", port: 8080n })),
                 secrets: nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   allow_insecure: true,
                   jwt_secret: "test-jwt-secret-must-be-32-chars-long",
                   dpop_secret: "test-dpop-secret-must-be-32-chars-long",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
     })),
     testScript: "machine.wait_for_unit(\"tranquil-pds.service\")\nmachine.wait_for_open_port(8080)\nmachine.succeed(\"curl --fail http://localhost:8080\")\n",
     meta: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nelind"))];

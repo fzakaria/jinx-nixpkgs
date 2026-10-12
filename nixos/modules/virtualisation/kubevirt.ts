@@ -29,55 +29,55 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     imports: nix.thunk(() => [
       nix.path(here, "../profiles/qemu-guest.nix"),
       nix.path(here, "../image/file-options.nix"),
     ]),
     config: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       fileSystems: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "/": nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           device: "/dev/disk/by-label/nixos",
           fsType: "ext4",
           autoResize: true,
         })),
       })),
       boot: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         growPartition: true,
         kernelParams: nix.thunk(() => ["console=ttyS0"]),
         loader: nix.thunk(() => ({
-          __proto__: pos$4,
-          grub: nix.thunk(() => ({ __proto__: pos$3, device: "/dev/vda" })),
+          [nix.POS]: pos$4,
+          grub: nix.thunk(() => ({ [nix.POS]: pos$3, device: "/dev/vda" })),
           timeout: 0n,
         })),
       })),
       services: nix.thunk(() => ({
-        __proto__: pos$9,
-        qemuGuest: nix.thunk(() => ({ __proto__: pos$6, enable: true })),
-        openssh: nix.thunk(() => ({ __proto__: pos$7, enable: true })),
-        "cloud-init": nix.thunk(() => ({ __proto__: pos$8, enable: true })),
+        [nix.POS]: pos$9,
+        qemuGuest: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
+        openssh: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
+        "cloud-init": nix.thunk(() => ({ [nix.POS]: pos$8, enable: true })),
       })),
       systemd: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         services: nix.thunk(() => ({
-          __proto__: pos$11,
-          "serial-getty@ttyS0": nix.thunk(() => ({ __proto__: pos$10, enable: true })),
+          [nix.POS]: pos$11,
+          "serial-getty@ttyS0": nix.thunk(() => ({ [nix.POS]: pos$10, enable: true })),
         })),
       })),
       system: nix.thunk(() => ({
-        __proto__: pos$16,
-        nixos: nix.thunk(() => ({ __proto__: pos$13, tags: nix.thunk(() => ["kubevirt"]) })),
+        [nix.POS]: pos$16,
+        nixos: nix.thunk(() => ({ [nix.POS]: pos$13, tags: nix.thunk(() => ["kubevirt"]) })),
         build: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           image: nix.thunk(() => nix.sel(config, "system", "build", "kubevirtImage")),
           kubevirtImage: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/make-disk-image.nix")), nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(config, "image"));
               return {
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               lib: lib,
               config: config,
               pkgs: pkgs,
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
             })()))),
         })),
       })),
-      image: nix.thunk(() => ({ __proto__: pos$17, extension: "qcow2" })),
+      image: nix.thunk(() => ({ [nix.POS]: pos$17, extension: "qcow2" })),
     })),
   };
 })(), formals$1);

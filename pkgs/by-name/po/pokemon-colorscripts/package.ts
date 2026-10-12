@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pokemon-colorscripts",
       version: "0-unstable-2024-10-19",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "phoneybadger",
           repo: "pokemon-colorscripts",
           rev: "5802ff67520be2ff6117a0abc78a08501f6252ad",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs --build ./install.sh\nsubstituteInPlace install.sh --replace-fail \"/usr/local\" \"$out\"\n",
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/bin\"\n./install.sh\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Scripts for Pokémon color manipulation",
         homepage: "https://gitlab.com/phoneybadger/pokemon-colorscripts",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

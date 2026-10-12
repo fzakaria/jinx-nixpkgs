@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libusb1 = nix.arg($, "libusb1");
   const libftdi1 = nix.arg($, "libftdi1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fw-ectool",
       version: "0-unstable-2024-04-23",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.howett.net",
           owner: "DHowett",
           repo: "ectool",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libusb1, libftdi1]),
       installPhase: "runHook preInstall\ninstall -Dm555 src/ectool \"$out/bin/ectool\"\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "EC-Tool adjusted for usage with framework embedded controller",
         homepage: "https://gitlab.howett.net/DHowett/ectool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

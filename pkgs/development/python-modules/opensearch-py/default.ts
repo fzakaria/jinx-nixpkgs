@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "opensearch-project",
           repo: "opensearch-py",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [nix.path(here, "./remove-delete-event-loop-fixture.patch")]);
       const nativeBuildInputs = nix.thunk(() => [setuptools]);
       const propagatedBuildInputs = nix.thunk(() => [certifi, python_dateutil, requests, six, urllib3, events]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, async: nix.thunk(() => [aiohttp]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, async: nix.thunk(() => [aiohttp]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([botocore, mock, pytest_asyncio, pytest_mock, pytestCheckHook, pyyaml, pytz], nix.sel(optional_dependencies, "async")));
       const __darwinAllowLocalNetworking = true;
       const disabledTestPaths = nix.thunk(() => [
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
           "test_redirect_success_when_allow_redirect_true",
         ]))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python low-level client for OpenSearch",
         homepage: "https://github.com/opensearch-project/opensearch-py",
         changelog: nix.thunk(() => nix.str`https://github.com/opensearch-project/opensearch-py/releases/tag/${nix.sel(src, "tag")}`),
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -17,18 +17,18 @@ export default nix.thunk(() => (() => {
     const $ = nix.formals(args, formals$1);
     const lib = nix.arg($, "lib");
     return {
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: "stalwart",
       nodes: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         main: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const pkgs = nix.arg($_1, "pkgs");
           return {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             imports: nix.thunk(() => [nix.path(here, "./stalwart-config.nix")]),
             environment: nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               systemPackages: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writePython3Bin"), "test-smtp-submission", nix.thunk(() => ({})), nix.thunk(() => nix.str`from smtplib import SMTP
 
@@ -55,7 +55,7 @@ with SMTP('localhost', 587) as smtp:
       })),
       testScript: "main.wait_for_unit(\"stalwart.service\")\nmain.wait_for_open_port(587)\nmain.wait_for_open_port(143)\nmain.wait_for_open_port(80)\n\nmain.succeed(\"test-smtp-submission\")\n\n# restart stalwart to test rocksdb compaction of existing database\nmain.succeed(\"systemctl restart stalwart.service\")\nmain.wait_for_open_port(587)\nmain.wait_for_open_port(143)\nmain.wait_for_open_port(80)\n\nmain.succeed(\"test-imap-read\")\n\nmain.succeed(\"test -d /var/cache/stalwart-mail/STALWART_WEBADMIN || test -d /var/cache/stalwart/STALWART_WEBADMIN\")\nmain.succeed(\"curl --fail http://localhost\")\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [

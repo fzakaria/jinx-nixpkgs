@@ -18,25 +18,25 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     name: "atuin",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.sel(pkgs, "atuin", "meta", "maintainers")),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       machine: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         programs: nix.thunk(() => ({
-          __proto__: pos$7,
-          bash: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
-          fish: nix.thunk(() => ({ __proto__: pos$3, enable: true })),
-          zsh: nix.thunk(() => ({ __proto__: pos$4, enable: true })),
+          [nix.POS]: pos$7,
+          bash: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+          fish: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+          zsh: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
           atuin: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             enable: true,
-            settings: nix.thunk(() => ({ __proto__: pos$5, auto_sync: false })),
+            settings: nix.thunk(() => ({ [nix.POS]: pos$5, auto_sync: false })),
           })),
         })),
       })),

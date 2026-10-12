@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   const SDL2 = nix.arg($, "SDL2");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gamepad-tool",
       version: "1.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://generalarcade.com/gamepadtool/linux/gamepadtool_${nix.sel(finalAttrs, "version")}_amd64.deb`),
           hash: "sha256-ZuB0TOyT2B5QkU1o5h3/8PL85tBq06hlz5YclRanD88=",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [SDL2, nix.thunk(() => nix.sel(qt5, "qtbase"))]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin $out/share/applications\ncp usr/bin/gamepad-tool $out/bin\ncp -r usr/share/icons $out/share/icons\nsubstitute usr/share/applications/gamepad-tool-debian.desktop \\\n  $out/share/applications/gamepad-tool.desktop \\\n  --replace-fail \"/usr/share/icons/hicolor/256x256/apps/gamepad-tool.png\" \"gamepad-tool\"\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple GUI tool to create/modify gamepad mappings for games that use SDL2 Game Controller API",
         homepage: "https://generalarcade.com/gamepadtool/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

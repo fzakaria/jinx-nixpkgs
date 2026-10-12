@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const mkLibretroCore = nix.arg($, "mkLibretroCore");
   const withProfile = nix.argOr($, "withProfile", () => "accuracy");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       core: nix.thunk(() => nix.str`bsnes-mercury-${withProfile}`),
       version: "0-unstable-2026-09-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libretro",
           repo: "bsnes-mercury",
           rev: "79d7f9de218b6ffa65a80bbdc5828532bc239232",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       makefile: "Makefile",
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`PROFILE=${withProfile}`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: nix.thunk(() => nix.str`Fork of bsnes with HLE DSP emulation restored (${withProfile} profile)`),
         homepage: "https://github.com/libretro/bsnes-mercury",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

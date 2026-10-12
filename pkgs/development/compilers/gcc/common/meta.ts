@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const teams = nix.thunk(() => nix.attr(lib, "teams"));
   const versionOlder = nix.thunk(() => nix.attr(lib, "versionOlder"));
   return {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     homepage: "https://gcc.gnu.org/",
     license: nix.thunk(() => nix.sel(licenses, "gpl3Plus")),
     description: nix.thunk(() => nix.str`GNU Compiler Collection, version ${version}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
     ]),
     mainProgram: nix.thunk(() => nix.str`${targetPrefix}gcc`),
     identifiers: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "gnu", version)),
     })),
   };

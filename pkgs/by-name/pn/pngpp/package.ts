@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const doxygen = nix.argOr($, "doxygen", () => null);
   nix.assert_((!nix.asBool(docSupport) || nix.asBool(!nix.eq(doxygen, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/pn/pngpp/package.nix:9:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pngpp",
       version: "0.2.10",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://savannah/pngpp/png++-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1qgf8j25r57wjqlnzdkm8ya5x1bmj6xjvapv8f2visqnmcbg52lr",
         })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), docSupport, "docs")),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.nongnu.org/pngpp/",
         description: "C++ wrapper for libpng library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

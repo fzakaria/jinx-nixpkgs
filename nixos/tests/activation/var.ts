@@ -11,16 +11,16 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     name: "activation-var",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nikstur"))];
       })()),
     })),
-    nodes: nix.thunk(() => ({ __proto__: pos$2, machine: nix.thunk(() => ({})) })),
+    nodes: nix.thunk(() => ({ [nix.POS]: pos$2, machine: nix.thunk(() => ({})) })),
     testScript: "assert machine.succeed(\"stat -c '%a' /var/tmp\") == \"1777\\n\"\nassert machine.succeed(\"stat -c '%a' /var/empty\") == \"555\\n\"\nassert machine.succeed(\"stat -c '%U' /var/empty\") == \"root\\n\"\nassert machine.succeed(\"stat -c '%G' /var/empty\") == \"root\\n\"\nassert \"i\" in machine.succeed(\"lsattr -d /var/empty\")\n",
   };
 })(), formals$1);

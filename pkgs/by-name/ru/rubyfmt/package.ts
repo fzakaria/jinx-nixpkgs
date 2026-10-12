@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const rust_jemalloc_sys = nix.arg($, "rust-jemalloc-sys");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "rubyfmt",
       version: "0.14.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fables-tales",
           repo: "rubyfmt",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,18 +50,18 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([zlib, libxcrypt, libyaml, rust_jemalloc_sys], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [readline, libiconv, libunwind])))),
       cargoHash: "sha256-N3Wv4iducK6p0TzH2isD9x7jdDjjIm1o5NiWmthITOc=",
       env: nix.thunk(() => nix.update({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-fdeclspec")),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.attrsDyn({}, [
           [nix.str`BINDGEN_EXTRA_CLANG_ARGS_${nix.sel(stdenv, "hostPlatform", "rust", "rustcTarget")}`, nix.thunk(() => nix.str`-isystem ${nix.sel(stdenv, "cc", "libc", "dev")}/include`)],
         ]))))),
       preFixup: "mv $out/bin/rubyfmt{-main,}\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$3, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Ruby autoformatter",
         homepage: "https://github.com/fables-tales/rubyfmt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

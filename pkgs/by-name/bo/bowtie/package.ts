@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "bowtie",
       version: "1.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BenLangmead",
           repo: "bowtie",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix_compilation_on_arm64",
             url: "https://github.com/BenLangmead/bowtie/commit/091d72f4cb69ca0713704d38bd7f9b37e6c4ff2d.patch",
             sha256: "sha256-XBvgICUBnE5HKpJ36IHTDiKjJgLFKETsIaJC46uN+2I=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "fix_include_search_path",
             url: "https://github.com/BenLangmead/bowtie/commit/c208b9db936eab0bc3ffdf0182b4f59a9017a1c4.patch",
             sha256: "sha256-772EE+oWFWXssSMabPryb0AfIS1tC10mPTRCBm7RrUs=",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [zlib]),
       installFlags: nix.thunk(() => ["prefix=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Ultrafast memory-efficient short read aligner",
         license: nix.thunk(() => nix.sel(lib, "licenses", "artistic2")),
         homepage: "https://bowtie-bio.sourceforge.net",

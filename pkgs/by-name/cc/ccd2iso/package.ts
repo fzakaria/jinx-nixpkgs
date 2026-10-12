@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ccd2iso",
       version: "0.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/ccd2iso/ccd2iso-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1z000zi7hpr2h9cabj6hzf3n6a6gd6glmm8nn36v4b8i4vzbhx7q",
         })))),
       patches: nix.thunk(() => [nix.path(here, "./include.patch")]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CloneCD to ISO converter",
         homepage: "https://sourceforge.net/projects/ccd2iso/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

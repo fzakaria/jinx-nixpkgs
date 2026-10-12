@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "meletrix-udev-rules",
       version: "0-unstable-2023-10-20",
       src: nix.thunk(() => [nix.path(here, "./meletrix.rules")]),
@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installPhase: "install -Dpm644 $src $out/lib/udev/rules.d/70-meletrix.rules\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "udev rules to configure Meletrix keyboards",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),
         maintainers: nix.thunk(() => (() => {

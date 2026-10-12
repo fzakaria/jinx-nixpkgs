@@ -9,9 +9,9 @@ const pos$2 = nix.positions(here + "/default.nix", [["lib", 5, 44]]);
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
-  const licenses = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./licenses.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib }))));
+  const licenses = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./licenses.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib }))));
   const operators = nix.thunk(() => nix.builtins.import(nix.path(here, "./operators.nix")));
-  const helpers = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./helpers.nix")), nix.thunk(() => ({ __proto__: pos$2, lib: lib }))));
+  const helpers = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./helpers.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, lib: lib }))));
   return nix.update(licenses, nix.update(operators, helpers));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

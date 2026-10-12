@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(jackSupport) || nix.asBool(!nix.eq(libjack2, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/fm/fmit/package.nix:17:1");
   nix.assert_((!nix.asBool(portaudioSupport) || nix.asBool(!nix.eq(portaudio, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/fm/fmit/package.nix:18:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fmit",
       version: "1.4.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gillesdegottex",
           repo: "fmit",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
 `),
       qmakeFlags: nix.thunk(() => nix.concat([nix.thunk(() => nix.str`PREFIXSHORTCUT=${nix.builtins.placeholder("out")}`)], nix.concat(nix.app(nix.sel(lib, "optionals"), alsaSupport, nix.thunk(() => ["CONFIG+=acs_alsa"])), nix.concat(nix.app(nix.sel(lib, "optionals"), jackSupport, nix.thunk(() => ["CONFIG+=acs_jack"])), nix.app(nix.sel(lib, "optionals"), portaudioSupport, nix.thunk(() => ["CONFIG+=acs_portaudio"])))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Free Musical Instrument Tuner",
         longDescription: "FMIT is a graphical utility for tuning musical instruments, with error\nand volume history, and advanced features.\n",
         homepage: "http://gillesdegottex.github.io/fmit/",

@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const opusfile = nix.arg($, "opusfile");
   const libopus = nix.arg($, "libopus");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wstsound",
       version: "0.3.0-unstable-2025-07-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "WindstilleTeam",
           repo: "wstsound",
           rev: "2c7b00dc1af52432185dc28c4ae87c09c9f4f444",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"COMMAND openal_info\" \"COMMAND openal-info\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Windstille Sound Library",
         homepage: "https://github.com/WindstilleTeam/wstsound",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "SchweGELBin"))]),

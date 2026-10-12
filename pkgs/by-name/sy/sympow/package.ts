@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const file = nix.arg($, "file");
   const pari = nix.arg($, "pari");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "2.023.7",
       pname: "sympow",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           group: "rezozer",
           owner: "forks",
           repo: "sympow",
@@ -39,12 +39,12 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: nix.thunk(() => nix.add("export HOME=$TMPDIR\n\"$out/bin/sympow\" -curve \"[1,2,3,4,5]\" -moddeg | grep 'Modular Degree is 464'\necho \"[1,-1,0,-79,289]\" | \"$out/bin/sympow\" -analrank | grep ^\"Analytic Rank is 4\"\n\"$out/bin/sympow\" -curve \"[1,-1,0,-79,289]\" -analrank | grep ^\"Analytic Rank is 4\"\n\"$out/bin/sympow\" -curve \"[0,1,1,-2,0]\" -analrank | grep ^\"Analytic Rank is 2\"\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64"))), "\"$out/bin/sympow\" -sp 2p16 -curve \"[1,2,3,4,5]\" | grep '8.3705'\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Compute special values of symmetric power elliptic curve L-functions",
         homepage: "https://gitlab.com/rezozer/forks/sympow",
         mainProgram: "sympow",
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             shortName: "sympow",
             fullName: "Custom, BSD-like. See COPYING file.",
           })))),

@@ -38,13 +38,13 @@ export default nix.lambda((args) => (() => {
   const rlax = nix.arg($, "rlax");
   const tensorflow = nix.arg($, "tensorflow");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "dm-haiku",
       version: "0.0.17",
       pyproject: true,
       __srtructuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "deepmind",
           repo: "dm-haiku",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [absl_py, jaxlib, jmp, numpy, tabulate]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         jax: nix.thunk(() => [jax, jaxlib]),
         flax: nix.thunk(() => [flax]),
       })),
@@ -93,11 +93,11 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pytest: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-tests`),
               doInstallCheck: true,
               dontCheckPythonMetadata: true,
@@ -105,7 +105,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Haiku is a simple neural network library for JAX developed by some of the authors of Sonnet",
         homepage: "https://github.com/deepmind/dm-haiku",
         changelog: nix.thunk(() => nix.str`https://github.com/google-deepmind/dm-haiku/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

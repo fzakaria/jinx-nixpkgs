@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const checkpoint_schedules = nix.arg($, "checkpoint-schedules");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pyadjoint-ad",
       version: "2026.9.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dolfin-adjoint",
           repo: "pyadjoint",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       enabledTestPaths: nix.thunk(() => ["tests/pyadjoint"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/dolfin-adjoint/pyadjoint",
         description: "High-level automatic differentiation library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),

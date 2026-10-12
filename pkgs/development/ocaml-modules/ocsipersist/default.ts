@@ -11,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const ocsipersist_lib = nix.arg($, "ocsipersist-lib");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "ocsipersist",
       src: nix.thunk(() => nix.attr(ocsipersist_lib, "src")),
       version: nix.thunk(() => nix.attr(ocsipersist_lib, "version")),
       propagatedBuildInputs: nix.thunk(() => [ocsipersist_lib]),
       meta: nix.thunk(() => nix.update(nix.sel(ocsipersist_lib, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Persistent key/value storage for OCaml using multiple backends",
       })),
     })));

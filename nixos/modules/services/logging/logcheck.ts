@@ -58,19 +58,19 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "logcheck"));
-  const defaultRules = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "logcheck-default-rules", nix.thunk(() => ({ __proto__: pos$1, preferLocalBuild: true })), nix.thunk(() => nix.str`cp -prd ${nix.sel(pkgs, "logcheck")}/etc/logcheck $out
+  const defaultRules = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "logcheck-default-rules", nix.thunk(() => ({ [nix.POS]: pos$1, preferLocalBuild: true })), nix.thunk(() => nix.str`cp -prd ${nix.sel(pkgs, "logcheck")}/etc/logcheck $out
 chmod u+w $out
 rm -r $out/logcheck.*
 `)));
   const rulesDir = nix.thunk(() => nix.app(nix.sel(pkgs, "symlinkJoin"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "logcheck-rules-dir",
       paths: nix.thunk(() => nix.concat([defaultRules], nix.sel(cfg, "extraRulesDirs"))),
     }))));
   const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "logcheck.conf", nix.thunk(() => nix.sel(cfg, "config"))));
   const logFiles = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "logcheck.logfiles", nix.thunk(() => nix.sel(cfg, "files"))));
   const flags = nix.thunk(() => nix.str`-r ${rulesDir} -c ${configFile} -L ${logFiles} -${levelFlag} -m ${nix.sel(cfg, "mailTo")}`);
-  const levelFlag = nix.thunk(() => nix.app(nix.sel(lib, "getAttrFromPath"), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "level"))]), nix.thunk(() => ({ __proto__: pos$3, paranoid: "p", server: "s", workstation: "w" }))));
+  const levelFlag = nix.thunk(() => nix.app(nix.sel(lib, "getAttrFromPath"), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "level"))]), nix.thunk(() => ({ [nix.POS]: pos$3, paranoid: "p", server: "s", workstation: "w" }))));
   const cronJob = nix.thunk(() => nix.str`@reboot   logcheck env PATH=/run/wrappers/bin:$PATH nice -n10 ${nix.sel(pkgs, "logcheck")}/sbin/logcheck -R ${flags}
 2 ${nix.sel(cfg, "timeOfDay")} * * * logcheck env PATH=/run/wrappers/bin:$PATH nice -n10 ${nix.sel(pkgs, "logcheck")}/sbin/logcheck ${flags}
 `);
@@ -79,7 +79,7 @@ rm -r $out/logcheck.*
     const level = nix.arg($_1, "level");
     const regex = nix.arg($_1, "regex");
     return nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         name: name,
         destination: nix.thunk(() => nix.str`/ignore.d.${level}/${name}`),
         text: nix.thunk(() => nix.str`^\\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ ${regex}
@@ -96,25 +96,25 @@ rm -r $out/logcheck.*
     const cmdline_ = nix.thunk(() => nix.builtins.unsafeDiscardStringContext(cmdline));
     const re = nix.thunk(() => (nix.asBool(!nix.eq(regex, "")) ? nix.force(regex) : (nix.asBool(nix.eq(cmdline_, "")) ? ".*" : nix.app(escapeRegex, cmdline_))));
     return nix.app(writeIgnoreRule, nix.thunk(() => nix.str`cron-${name}`), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         level: level,
         regex: nix.thunk(() => nix.str`(/usr/bin/)?cron\\[[0-9]+\\]: \\(${user}\\) CMD \\(${re}\\)$
 `),
       })));
   })(), formals$3);
   const levelOption = nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       default: "server",
       type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["workstation", "server", "paranoid"]))),
       description: "Set the logcheck level.\n",
     }))));
   const ignoreOptions = nix.thunk(() => ({
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       level: levelOption,
       regex: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           default: "",
           type: nix.thunk(() => nix.sel(lib, "types", "str")),
           description: "Regex specifying which log lines to ignore.\n",
@@ -122,23 +122,23 @@ rm -r $out/logcheck.*
     })),
   }));
   const ignoreCronOptions = nix.thunk(() => ({
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           default: "root",
           type: nix.thunk(() => nix.sel(lib, "types", "str")),
           description: "User that runs the cronjob.\n",
         })))),
       cmdline: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           default: "",
           type: nix.thunk(() => nix.sel(lib, "types", "str")),
           description: "Command line for the cron job. Will be turned into a regex for the logcheck ignore rule.\n",
         })))),
       timeArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           default: null,
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
           example: "02 06 * * *",
@@ -147,62 +147,62 @@ rm -r $out/logcheck.*
     })),
   }));
   return {
-    __proto__: pos$44,
+    [nix.POS]: pos$44,
     options: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       services: nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         logcheck: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "logcheck cron job, to mail anomalies in the system logfiles to the administrator")),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               default: "logcheck",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Username for the logcheck user.\n",
             })))),
           timeOfDay: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               default: "*",
               example: "6",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Time of day to run logcheck. A logcheck will be scheduled at xx:02 each day.\nLeave default (*) to run every hour. Of course when nothing special was logged,\nlogcheck will be silent.\n",
             })))),
           mailTo: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               default: "root",
               example: "you@domain.com",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Email address to send reports to.\n",
             })))),
           level: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               default: "server",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Set the logcheck level. Either \"workstation\", \"server\", or \"paranoid\".\n",
             })))),
           config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               default: "FQDN=1",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               description: "Config options that you would like in logcheck.conf.\n",
             })))),
           files: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               default: nix.thunk(() => ["/var/log/messages"]),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               example: nix.thunk(() => ["/var/log/messages", "/var/log/mail"]),
               description: "Which log files to check.\n",
             })))),
           extraRulesDirs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               default: [],
               example: nix.thunk(() => ["/etc/logcheck"]),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               description: "Directories with extra rules.\n",
             })))),
           ignore: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               default: nix.thunk(() => ({})),
               description: "This option defines extra ignore rules.\n",
               type: nix.thunk(() => (() => {
@@ -211,7 +211,7 @@ rm -r $out/logcheck.*
               })()),
             })))),
           ignoreCron: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               default: nix.thunk(() => ({})),
               description: "This option defines extra ignore rules for cronjobs.\n",
               type: nix.thunk(() => (() => {
@@ -220,7 +220,7 @@ rm -r $out/logcheck.*
               })()),
             })))),
           extraGroups: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               default: [],
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               example: nix.thunk(() => ["postdrop", "mongodb"]),
@@ -230,15 +230,15 @@ rm -r $out/logcheck.*
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$43,
+        [nix.POS]: pos$43,
         services: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           logcheck: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             extraRulesDirs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "mapAttrsToList"), writeIgnoreRule, nix.thunk(() => nix.sel(cfg, "ignore"))), nix.app(nix.sel(lib, "mapAttrsToList"), writeIgnoreCronRule, nix.thunk(() => nix.sel(cfg, "ignoreCron"))))),
           })),
           cron: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             systemCronJobs: nix.thunk(() => (() => {
               const withTime = (name) => nix.lambda((args_1) => (() => {
                 const $_1 = nix.formals(args_1, formals$4);
@@ -258,11 +258,11 @@ rm -r $out/logcheck.*
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           users: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "logcheck")), nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               logcheck: nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 group: "logcheck",
                 isSystemUser: true,
                 shell: "/bin/sh",
@@ -270,23 +270,23 @@ rm -r $out/logcheck.*
                 extraGroups: nix.thunk(() => nix.sel(cfg, "extraGroups")),
               })),
             })))),
-          groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "logcheck")), nix.thunk(() => ({ __proto__: pos$33, logcheck: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "logcheck")), nix.thunk(() => ({ [nix.POS]: pos$33, logcheck: nix.thunk(() => ({})) })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$42,
+          [nix.POS]: pos$42,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             settings: nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               logcheck: nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 "/var/lib/logcheck": nix.thunk(() => ({
-                  __proto__: pos$36,
-                  d: nix.thunk(() => ({ __proto__: pos$35, mode: "700", user: nix.thunk(() => nix.attr(cfg, "user")) })),
+                  [nix.POS]: pos$36,
+                  d: nix.thunk(() => ({ [nix.POS]: pos$35, mode: "700", user: nix.thunk(() => nix.attr(cfg, "user")) })),
                 })),
                 "/var/lock/logcheck": nix.thunk(() => ({
-                  __proto__: pos$38,
-                  d: nix.thunk(() => ({ __proto__: pos$37, mode: "700", user: nix.thunk(() => nix.attr(cfg, "user")) })),
+                  [nix.POS]: pos$38,
+                  d: nix.thunk(() => ({ [nix.POS]: pos$37, mode: "700", user: nix.thunk(() => nix.attr(cfg, "user")) })),
                 })),
               })),
             })),

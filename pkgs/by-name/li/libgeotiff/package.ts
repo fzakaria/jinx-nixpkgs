@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const proj = nix.arg($, "proj");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.7.4",
       pname: "libgeotiff",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OSGeo",
           repo: "libgeotiff",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => [libtiff, proj, zlib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library implementing attempt to create a tiff based interchange format for georeferenced raster imagery",
         homepage: "https://github.com/OSGeo/libgeotiff",
         changelog: nix.thunk(() => nix.str`https://github.com/OSGeo/libgeotiff/blob/${nix.sel(finalAttrs, "src", "rev")}/libgeotiff/NEWS`),

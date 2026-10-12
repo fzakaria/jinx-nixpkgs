@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libzra",
       version: "0-unstable-2020-09-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zraorg",
           repo: "zra",
           rev: "57abf2774dfc4624f14a0bc5bba71f044ce54a38",
@@ -32,7 +32,7 @@ substituteInPlace submodule/zstd/build/cmake/CMakeLists.txt \\
   --replace-fail "cmake_minimum_required(VERSION 2.8.9 FATAL_ERROR)" "cmake_minimum_required(VERSION 3.10)"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/zraorg/ZRA",
         description: "Library for ZStandard random access",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

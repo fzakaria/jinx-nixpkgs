@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const nurl = nix.arg($, "nurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "swiftpm2nix",
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -28,7 +28,7 @@ wrapProgram $out/bin/$name \\
       passthru: nix.thunk(() => nix.app(callPackage, nix.path(here, "./support.nix"), nix.thunk(() => ({})))),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Generate a Nix expression to fetch swiftpm dependencies",
         mainProgram: "swiftpm2nix",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "swift"))]),

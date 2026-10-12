@@ -25,19 +25,19 @@ export default nix.lambda((args) => (() => {
   const fts = nix.arg($, "fts");
   nix.assert_((!nix.asBool(enablePython) || nix.asBool((nix.asBool((nix.asBool(!nix.eq(swig, null)) && nix.asBool(!nix.eq(python3, null)))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/li/libselinux/package.nix:15:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "libselinux",
       version: "3.10",
       se_url: nix.thunk(() => nix.attr(libsepol, "se_url")),
       outputs: nix.thunk(() => nix.concat(["bin", "out", "dev", "man"], nix.app(nix.sel(lib, "optional"), enablePython, "py"))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "se_url")}/${nix.sel(finalAttrs, "version")}/libselinux-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-HvIWxbVvt+ClHNKQl4ehdaF+45HgRniUgHhzU56+dms=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://git.yoctoproject.org/meta-selinux/plain/recipes-security/selinux/libselinux/0003-libselinux-restore-drop-the-obsolete-LSF-transitiona.patch?id=62b9c816a5000dc01b28e78213bde26b58cbca9d",
             hash: "sha256-RiEUibLVzfiRU6N/J187Cs1iPAih87gCZrlyRVI2abU=",
           })))),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       buildInputs: nix.thunk(() => nix.concat([libsepol, pcre2, fts], nix.app(nix.sel(lib, "optionals"), enablePython, nix.thunk(() => [python3])))),
       hardeningDisable: nix.thunk(() => ["fortify"]),
-      env: nix.thunk(() => nix.update({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error -D_FILE_OFFSET_BITS=64" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "bintools", "isLLVM")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "bintools", "version")), "17")))), nix.thunk(() => ({ __proto__: pos$4, NIX_LDFLAGS: "--undefined-version" }))))),
+      env: nix.thunk(() => nix.update({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error -D_FILE_OFFSET_BITS=64" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "bintools", "isLLVM")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "bintools", "version")), "17")))), nix.thunk(() => ({ [nix.POS]: pos$4, NIX_LDFLAGS: "--undefined-version" }))))),
       makeFlags: nix.thunk(() => nix.concat([
         "PREFIX=$(out)",
         "INCDIR=$(dev)/include/selinux",
@@ -88,7 +88,7 @@ rm -vf _selinux.*${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary"
 ln -vsf selinux/_selinux.*${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}
 popd
 `))),
-      meta: nix.thunk(() => nix.update(nix.builtins.removeAttrs(nix.thunk(() => nix.sel(libsepol, "meta")), nix.thunk(() => ["outputsToInstall"])), { __proto__: pos$5, description: "SELinux core library" })),
+      meta: nix.thunk(() => nix.update(nix.builtins.removeAttrs(nix.thunk(() => nix.sel(libsepol, "meta")), nix.thunk(() => ["outputsToInstall"])), { [nix.POS]: pos$5, description: "SELinux core library" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

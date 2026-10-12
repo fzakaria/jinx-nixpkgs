@@ -31,30 +31,30 @@ export default nix.lambda((args) => (() => {
   const mkIf = nix.thunk(() => nix.attr(lib, "mkIf"));
   const concatStringsSep = nix.thunk(() => nix.attr(lib, "concatStringsSep"));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     port: 9113n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       scrapeUri: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "http://localhost/nginx_status",
           description: "Address to access the nginx status page.\nCan be enabled with services.nginx.statusPage = true.\n",
         })))),
       telemetryPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "/metrics",
           description: "Path under which to expose metrics.\n",
         })))),
       sslVerify: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.sel(types, "bool")),
           default: true,
           description: "Whether to perform certificate verification for https.\n",
         })))),
       constLabels: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
           default: [],
           example: nix.thunk(() => ["label1=value1", "label2=value2"]),
@@ -63,13 +63,13 @@ export default nix.lambda((args) => (() => {
     })),
     serviceOpts: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => nix.concat([
         nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           environment: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             CONST_LABELS: nix.thunk(() => nix.app(concatStringsSep, ",", nix.thunk(() => nix.sel(cfg, "constLabels")))),
           })),
           serviceConfig: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "prometheus-nginx-exporter")}/bin/nginx-prometheus-exporter \\
   --nginx.scrape-uri='${nix.sel(cfg, "scrapeUri")}' \\
   --${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "sslVerify"))), "no-")}nginx.ssl-verify \\
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
         })),
       ], [
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(config, "services", "nginx", "enable")), nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             after: nix.thunk(() => ["nginx.service"]),
             requires: nix.thunk(() => ["nginx.service"]),
           })))),
@@ -90,9 +90,9 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(mkRenamedOptionModule, nix.thunk(() => ["telemetryEndpoint"]), nix.thunk(() => ["telemetryPath"]))),
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["insecure"]), "This option was replaced by 'prometheus.exporters.nginx.sslVerify'.\n")),
       nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         options: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           warnings: nix.thunk(() => nix.sel(options, "warnings")),
           assertions: nix.thunk(() => nix.sel(options, "assertions")),
         })),

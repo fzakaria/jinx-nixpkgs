@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const appstream_glib = nix.arg($, "appstream-glib");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "zathura-ps",
       version: "2026.02.03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pwmt",
           repo: "zathura-ps",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,13 +46,13 @@ export default nix.lambda((args) => (() => {
         appstream_glib,
       ]),
       buildInputs: nix.thunk(() => [libspectre, zathura_core, girara]),
-      env: nix.thunk(() => ({ __proto__: pos$2, PKG_CONFIG_ZATHURA_PLUGINDIR: "lib/zathura" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, PKG_CONFIG_ZATHURA_PLUGINDIR: "lib/zathura" })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://pwmt.org/projects/zathura-ps/",
         description: "Zathura PS plugin",
         longDescription: "The zathura-ps plugin adds PS support to zathura by using the\nlibspectre library.\n",

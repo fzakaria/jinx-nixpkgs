@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hotpatch",
       version: "0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vikasnkumar",
           repo: "hotpatch",
           rev: "4b65e3f275739ea5aa798d4ad083c4cb10e29149",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./no-loader-test.patch")]),
       postPatch: "substituteInPlace CMakeLists.txt --replace-fail \\\n  'cmake_minimum_required(VERSION 2.6 FATAL_ERROR)' \\\n  'cmake_minimum_required(VERSION 4.0)'\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Hot patching executables on Linux using .so file injection",
         mainProgram: "hotpatcher",
         homepage: nix.thunk(() => nix.sel(finalAttrs, "src", "meta", "homepage")),

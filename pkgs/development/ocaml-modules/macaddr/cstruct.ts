@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const macaddr = nix.arg($, "macaddr");
   const cstruct = nix.arg($, "cstruct");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "macaddr-cstruct",
       version: nix.thunk(() => nix.attr(macaddr, "version")),
       src: nix.thunk(() => nix.attr(macaddr, "src")),
@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [macaddr, cstruct]),
       doCheck: true,
       meta: nix.thunk(() => nix.update(nix.sel(macaddr, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Library for manipulation of MAC address representations using Cstructs",
       })),
     })));

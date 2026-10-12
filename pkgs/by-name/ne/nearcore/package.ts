@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "nearcore";
       const version = "1.30.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "near",
           repo: "nearcore",
           tag: version,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
   --replace 'get_git_version()?' '"nix:${version}"'
 `);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CARGO_PROFILE_RELEASE_CODEGEN_UNITS: "1",
         CARGO_PROFILE_RELEASE_LTO: "fat",
         NEAR_RELEASE_BUILD: "release",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [pkg_config, protobuf, nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]);
       const requiredSystemFeatures = nix.thunk(() => ["big-parallel"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         broken: true,
         description: "Reference client for NEAR Protocol",
         homepage: "https://github.com/near/nearcore",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

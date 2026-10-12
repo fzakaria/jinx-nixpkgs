@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         const version = "2.2.0";
         const format = "setuptools";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`http://download.deluge-torrent.org/source/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/deluge-${version}.tar.xz`),
             hash: "sha256-ubonK1ukKq8caU5sKWKKuBbMGnAKN7rAiqy1JXFgas0=",
           }))));
@@ -90,11 +90,11 @@ rm -r $out/share/{icons,man/man1/deluge-gtk*,pixmaps}
 `)));
         const postFixup = "for f in $out/lib/systemd/system/*; do\n  substituteInPlace $f --replace /usr/bin $out/bin\ndone\n";
         const passthru = nix.thunk(() => ({
-          __proto__: pos$3,
-          tests: nix.thunk(() => ({ __proto__: pos$2, deluge: nix.thunk(() => nix.attr(nixosTests, "deluge")) })),
+          [nix.POS]: pos$3,
+          tests: nix.thunk(() => ({ [nix.POS]: pos$2, deluge: nix.thunk(() => nix.attr(nixosTests, "deluge")) })),
         }));
         const meta = nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           description: "Torrent client",
           homepage: "https://deluge-torrent.org",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -105,7 +105,7 @@ rm -r $out/share/{icons,man/man1/deluge-gtk*,pixmaps}
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         }));
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           pname: pname_1,
           version,
           format,
@@ -123,10 +123,10 @@ rm -r $out/share/{icons,man/man1/deluge-gtk*,pixmaps}
       })()));
   })(), formals$2);
   return (() => {
-    const deluge_gtk = nix.thunk(() => nix.app(generic, nix.thunk(() => ({ __proto__: pos$6, pname: "deluge-gtk", withGUI: true }))));
-    const deluged = nix.thunk(() => nix.app(generic, nix.thunk(() => ({ __proto__: pos$7, pname: "deluged", withGUI: false }))));
+    const deluge_gtk = nix.thunk(() => nix.app(generic, nix.thunk(() => ({ [nix.POS]: pos$6, pname: "deluge-gtk", withGUI: true }))));
+    const deluged = nix.thunk(() => nix.app(generic, nix.thunk(() => ({ [nix.POS]: pos$7, pname: "deluged", withGUI: false }))));
     const deluge = deluge_gtk;
-    return { __proto__: pos$8, "deluge-gtk": deluge_gtk, deluged, deluge };
+    return { [nix.POS]: pos$8, "deluge-gtk": deluge_gtk, deluged, deluge };
   })();
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

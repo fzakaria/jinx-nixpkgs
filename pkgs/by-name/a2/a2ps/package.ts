@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const gperf = nix.arg($, "gperf");
   const libpaper = nix.arg($, "libpaper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "a2ps",
       version: "4.15.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/a2ps/a2ps-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-jRORWjbrv6jnsjazUMyBrccUrLIXoY6NjGB0fArTU/k=",
         })))),
@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoconf, bison, file, perl, pkg_config]),
       buildInputs: nix.thunk(() => [boehmgc, gperf, libpaper]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-Wno-error=format-security")),
       })),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Anything to PostScript converter and pretty-printer",
         longDescription: "GNU a2ps converts files into PostScript for printing or viewing. It uses a nice default format,\nusually two pages on each physical page, borders surrounding pages, headers with useful information\n(page number, printing date, file name or supplied header), line numbering, symbol substitution as\nwell as pretty printing for a wide range of programming languages.\n",
         homepage: "https://www.gnu.org/software/a2ps/",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "gnu", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

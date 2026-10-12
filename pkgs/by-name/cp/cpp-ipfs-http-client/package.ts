@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const nlohmann_json = nix.arg($, "nlohmann_json");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cpp-ipfs-http-client",
       version: "0-unstable-2023-06-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vasild",
           repo: "cpp-ipfs-http-client",
           rev: "29a103af79ad62ef42180f54f6cd2128b4128836",
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [curl]),
       propagatedBuildInputs: nix.thunk(() => [nlohmann_json]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=range-loop-construct", "-Wno-error=deprecated-declarations"]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "IPFS C++ API client library",
         homepage: "https://github.com/vasild/cpp-ipfs-http-client",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

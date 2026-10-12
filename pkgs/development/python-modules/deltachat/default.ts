@@ -36,12 +36,12 @@ export default nix.lambda((args) => (() => {
         "deltachat.message",
       ]);
       const meta = nix.thunk(() => nix.update(nix.sel(libdeltachat, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Python bindings for the Delta Chat Core library",
         homepage: "https://github.com/deltachat/deltachat-core-rust/tree/master/python",
       }));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         version,
         src,

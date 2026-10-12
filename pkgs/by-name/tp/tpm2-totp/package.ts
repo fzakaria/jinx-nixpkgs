@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const plymouth = nix.arg($, "plymouth");
   const qrencode = nix.arg($, "qrencode");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tpm2-totp",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tpm2-software",
           repo: "tpm2-totp",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, autoconf_archive, pandoc, pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([tpm2_tss, qrencode], nix.app(nix.sel(lib, "optional"), withPlymouth, plymouth))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Attest the trustworthiness of a device against a human using time-based one-time passwords",
         homepage: "https://github.com/tpm2-software/tpm2-totp",
         changelog: nix.thunk(() => nix.str`https://github.com/tpm2-software/tpm2-totp/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

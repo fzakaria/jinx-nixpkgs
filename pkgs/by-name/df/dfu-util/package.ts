@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libusb1 = nix.arg($, "libusb1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dfu-util",
       version: "0.11",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libusb1]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dfu-util.sourceforge.net/releases/dfu-util-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-tLU7ohqC7349TEffKVKt9fpJT0mbawtXxYxdBK6P8Z4=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Device firmware update (DFU) USB programmer",
         longDescription: "dfu-util is a program that implements the host (PC) side of the USB\nDFU 1.0 and 1.1 (Universal Serial Bus Device Firmware Upgrade) protocol.\n\nDFU is intended to download and upload firmware to devices connected over\nUSB. It ranges from small devices like micro-controller boards up to mobile\nphones. With dfu-util you are able to download firmware to your device or\nupload firmware from it.\n",
         homepage: "https://dfu-util.sourceforge.net",

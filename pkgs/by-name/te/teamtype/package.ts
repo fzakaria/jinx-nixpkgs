@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const neovim = nix.arg($, "neovim");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "teamtype",
       version: "0.9.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "teamtype",
           repo: "teamtype",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-gphTpVKbmfYJSUasOCtNgyMKI9JU/if8KcH7Lu3Svjs=",
       nativeBuildInputs: nix.thunk(() => [installShellFiles, pkg_config]),
       buildInputs: nix.thunk(() => [libgit2]),
-      env: nix.thunk(() => ({ __proto__: pos$2, LIBGIT2_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, LIBGIT2_NO_VENDOR: 1n })),
       postInstall: "installManPage \\\n  target/manpages/teamtype.1 \\\n  target/manpages/teamtype-client.1 \\\n  target/manpages/teamtype-join.1 \\\n  target/manpages/teamtype-share.1\n\ninstallShellCompletion --bash target/completions/teamtype.bash\ninstallShellCompletion --zsh target/completions/_teamtype\ninstallShellCompletion --fish target/completions/teamtype.fish\n",
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
@@ -46,11 +46,11 @@ export default nix.lambda((args) => (() => {
 `),
       checkFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["--skip=watcher::"]))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Real-time co-editing of local text files",
         homepage: "https://teamtype.github.io/teamtype/",
         downloadPage: "https://github.com/teamtype/teamtype",

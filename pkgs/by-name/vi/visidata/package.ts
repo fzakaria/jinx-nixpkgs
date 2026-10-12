@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const withPcap = nix.argOr($, "withPcap", () => true);
   const withXclip = nix.argOr($, "withXclip", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "visidata",
       version: "3.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "saulpw",
           repo: "visidata",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "python dev/zsh-completion.py\ninstall -Dm644 _visidata -t $out/share/zsh/site-functions\n",
       pythonImportsCheck: nix.thunk(() => ["visidata"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Interactive terminal multitool for tabular data",
         mainProgram: "visidata",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

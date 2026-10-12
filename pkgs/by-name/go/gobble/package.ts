@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const pandoc = nix.arg($, "pandoc");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gobble",
       version: "1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "EmperorPenguin18",
           repo: "gobble",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pandoc, installShellFiles]),
       postInstall: "pandoc gobble.1.md -s -t man -o gobble.1\ninstallManPage gobble.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Rust rewrite of Devour",
         homepage: "https://github.com/EmperorPenguin18/gobble",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

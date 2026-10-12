@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
   const texinfo = nix.arg($, "texinfo");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tarlz",
       version: "0.30",
       outputs: nix.thunk(() => ["out", "man", "info"]),
       nativeBuildInputs: nix.thunk(() => [lzip, texinfo, versionCheckHook]),
       buildInputs: nix.thunk(() => [lzlib]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://savannah/lzip/tarlz/tarlz-${nix.sel(finalAttrs, "version")}.tar.lz`),
           sha256: "sha256-xjOTGUE/N/xLFVsbqKWGQKf+42SYsJXTttPBPZx/KGw=",
         })))),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.nongnu.org/lzip/tarlz.html",
         description: "Massively parallel combined implementation of the tar archiver and the lzip compressor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

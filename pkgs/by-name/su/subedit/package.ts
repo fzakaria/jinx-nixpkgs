@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const dos2unix = nix.arg($, "dos2unix");
   const file = nix.arg($, "file");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "subedit",
       version: "1.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "helixarch",
           repo: "subedit",
           rev: "74e11816d7b4813064a2434a5abc0f78f66c0e53",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`wrapProgram $out/bin/subedit --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [libuchardet, dos2unix, file]))}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/helixarch/subedit",
         description: "Command-line subtitle editor written in BASH",
         mainProgram: "subedit",

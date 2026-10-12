@@ -16,21 +16,21 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const version = "1.6.1";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "tnychn",
       repo: "mpv-discord",
       rev: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-P1UaXGboOiqrXapfLzJI6IT3esNtflkQkcNXt4Umukc=",
     }))));
   const core = nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "mpv-discord-core",
       version: version,
       src: nix.thunk(() => nix.str`${src}/mpv-discord`),
       vendorHash: "sha256-xe1jyWFQUD+Z4qBAVQ0SBY0gdxmi5XG9t29n3f/WKDs=",
     }))));
   return nix.app(buildLua, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mpv-discord",
       version: version,
       src: src,
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
   --replace-fail 'binary_path = ""' 'binary_path = "${core}/bin/mpv-discord"'
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Cross-platform Discord Rich Presence integration for mpv with no external dependencies",
         homepage: "https://github.com/tnychn/mpv-discord",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

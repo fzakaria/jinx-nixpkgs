@@ -20,35 +20,35 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     name: "powerdns-recursor",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "rnhmjoj"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       server: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         services: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           "pdns-recursor": nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: true,
-            api: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+            api: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
             exportHosts: true,
             settings: nix.thunk(() => ({
-              __proto__: pos$4,
-              webservice: nix.thunk(() => ({ __proto__: pos$3, api_key: "supersecret" })),
+              [nix.POS]: pos$4,
+              webservice: nix.thunk(() => ({ [nix.POS]: pos$3, api_key: "supersecret" })),
             })),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$8,
-          hosts: nix.thunk(() => ({ __proto__: pos$7, "192.0.2.1": nix.thunk(() => ["example.com"]) })),
+          [nix.POS]: pos$8,
+          hosts: nix.thunk(() => ({ [nix.POS]: pos$7, "192.0.2.1": nix.thunk(() => ["example.com"]) })),
         })),
       })),
     })),

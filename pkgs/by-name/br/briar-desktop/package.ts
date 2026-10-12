@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
 exec ${tor}/bin/tor "$@"
 `)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "briar-desktop",
       version: "0.6.5-beta",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://desktop.briarproject.org/jars/linux/${nix.sel(finalAttrs, "version")}/briar-desktop-linux-${nix.sel(finalAttrs, "version")}.jar`),
           hash: "sha256-YDFvM6EicHe6s7SDTiKRySCTO9IUwDrEtO373bavfmw=",
         })))),
@@ -49,7 +49,7 @@ for arch in {aarch64,armhf,x86_64}; do
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Decentralized and secure messenger",
         mainProgram: "briar-desktop",
         homepage: "https://code.briarproject.org/briar/briar-desktop",

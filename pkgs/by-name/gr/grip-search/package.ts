@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const catch2 = nix.arg($, "catch2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "grip-search",
       version: "0.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sc0ty",
           repo: "grip",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [boost]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "include-cstdint.patch",
             url: "https://github.com/sc0ty/grip/commit/da37b3c805306ee4ea617ce3f1487b8ee9876e50.patch",
             hash: "sha256-Xh++oDn5qn5NPgng7gfeCkO5FN9OmW+8fGhDLpAJfR8=",
@@ -54,7 +54,7 @@ substituteInPlace \\
   --replace-fail ' system' ""
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fast, indexed regexp search over large file trees",
         homepage: "https://github.com/sc0ty/grip",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

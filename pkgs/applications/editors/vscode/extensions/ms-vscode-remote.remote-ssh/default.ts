@@ -70,9 +70,9 @@ ${nix.app(nix.sel(lib, "optionalString"), useLocalExtensions, "# Use local exten
 # Start the server
 `);
   return nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "remote-ssh",
         publisher: "ms-vscode-remote",
         version: "0.128.0",
@@ -82,14 +82,14 @@ ${nix.app(nix.sel(lib, "optionalString"), useLocalExtensions, "# Use local exten
   --replace '# Start the server\\n' '${patch}'
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "vscode-remote-ssh": nix.thunk(() => nix.attr(nixosTests, "vscode-remote-ssh")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Use any remote machine with a SSH server as your development environment",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         maintainers: [],

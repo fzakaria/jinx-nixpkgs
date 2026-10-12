@@ -28,40 +28,40 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const php = nix.arg($, "php");
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     name: nix.thunk(() => nix.str`php-${nix.sel(php, "version")}-fpm-modular-nginx-test`),
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "aanderse"))];
       })()),
     })),
     containers: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$16,
-          environment: nix.thunk(() => ({ __proto__: pos$2, systemPackages: nix.thunk(() => [php]) })),
+          [nix.POS]: pos$16,
+          environment: nix.thunk(() => ({ [nix.POS]: pos$2, systemPackages: nix.thunk(() => [php]) })),
           services: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             nginx: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 phpfpm: nix.thunk(() => (() => {
                   const testdir = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "web/index.php", "<?php phpinfo();"));
                   return {
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     root: nix.thunk(() => nix.str`${testdir}/web`),
                     locations: nix.thunk(() => ({
-                      __proto__: pos$5,
+                      [nix.POS]: pos$5,
                       "~ \\.php$": nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         extraConfig: nix.thunk(() => nix.str`fastcgi_pass unix:${nix.sel(config, "system", "services", "php-fpm", "php-fpm", "settings", "foobar", "listen")};
 fastcgi_index index.php;
 include ${nix.sel(config, "services", "nginx", "package")}/conf/fastcgi_params;
@@ -69,7 +69,7 @@ include ${nix.sel(pkgs, "nginx")}/conf/fastcgi.conf;
 `),
                       })),
                       "/": nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         tryFiles: "$uri $uri/ index.php",
                         index: "index.php index.html index.htm",
                       })),
@@ -80,19 +80,19 @@ include ${nix.sel(pkgs, "nginx")}/conf/fastcgi.conf;
             })),
           })),
           system: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             services: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               "php-fpm": nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 imports: nix.thunk(() => [nix.thunk(() => nix.sel(php, "services", "default"))]),
                 "php-fpm": nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   package: php,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     foobar: nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       user: "nginx",
                       "listen.group": "nginx",
                       "listen.mode": "0600",

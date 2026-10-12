@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const libpanel = nix.arg($, "libpanel");
   const gtksourceview5 = nix.arg($, "gtksourceview5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "typewriter",
       version: "0.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           owner: "JanGernert",
           repo: "typewriter",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-c4wh59RNYMyK1rwoxzjhDCtnGnAxGABAu5cugV3P0zU=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [openssl, libadwaita, libpanel, gtksourceview5]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         mainProgram: "typewriter",
         description: "Create documents with typst",
         homepage: "https://gitlab.gnome.org/JanGernert/typewriter",

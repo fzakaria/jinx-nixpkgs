@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pname = "skopeo";
       const version = "1.24.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           rev: nix.thunk(() => nix.str`v${version}`),
           owner: "podman-container-tools",
           repo: "skopeo",
@@ -52,20 +52,20 @@ PREFIX=${nix.builtins.placeholder("out")} make install-binary install-docs
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [fuse_overlayfs]))}
 `))), "runHook postInstall\n"));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         policy: nix.thunk(() => nix.app(runCommand, "policy", nix.thunk(() => ({})), nix.thunk(() => nix.str`install ${src}/default-policy.json -Dt $out
 `))),
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(dockerTools, "examples"));
           return {
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: skopeo })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: skopeo })))),
           testNixFromDockerHub: nix.thunk(() => nix.attr(from, "testNixFromDockerHub")),
         };
         })()),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/podman-container-tools/skopeo/releases/tag/${nix.sel(src, "rev")}`),
         description: "Command line utility for various operations on container images and image repositories",
         mainProgram: "skopeo",
@@ -82,7 +82,7 @@ PREFIX=${nix.builtins.placeholder("out")} make install-binary install-docs
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

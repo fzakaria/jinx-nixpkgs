@@ -11,15 +11,15 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "basic-sparse",
       version: "0.1.0",
       src: nix.path(here, "./package"),
       cargoLock: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         lockFile: nix.path(here, "./package/Cargo.lock"),
         extraRegistries: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           "sparse+https://index.crates.io/": "https://static.crates.io/crates",
         })),
       })),

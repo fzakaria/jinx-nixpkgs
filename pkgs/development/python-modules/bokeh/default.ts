@@ -55,14 +55,14 @@ export default nix.lambda((args) => (() => {
       const version = "3.8.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-jn3KzCHVOQVYG1QyitJwWVT3LymX+Z/DMsHejaU6o8w=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-nodejs-npmjs-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             node_bin: nix.thunk(() => nix.str`${nodejs}/bin/node`),
             npm_bin: nix.thunk(() => nix.str`${nodejs}/bin/npm`),
           })))),
@@ -112,7 +112,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["bokeh"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Statistical and novel interactive HTML plots for Python",
         mainProgram: "bokeh",
         homepage: "https://github.com/bokeh/bokeh",
@@ -120,7 +120,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

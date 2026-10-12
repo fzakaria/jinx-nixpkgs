@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "crimson-pro",
       version: "0-unstable-2022-08-30",
       outputs: nix.thunk(() => ["out", "webfont"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Fonthausen",
           repo: "CrimsonPro",
           rev: "24e8f7bf59ec45d77c67879ad80d97e5f94c787b",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "rm Makefile\n",
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/Fonthausen/CrimsonPro",
         description: "Professionally produced redesign of Crimson by Jacques Le Bailly",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

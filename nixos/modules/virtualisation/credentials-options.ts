@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         credentials: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             description: "Credentials to pass to the VM or container using systemd's credential system.\n\nSee {manpage}`systemd.exec(5)`, {manpage}`systemd-creds(1)` and https://systemd.io/CREDENTIALS/ for more\ninformation about systemd credentials.\n",
             default: nix.thunk(() => ({})),
             example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  database-password = {\n    text = \"my-secret-password\";\n  };\n  ssl-cert = {\n    source = \"./cert.pem\";\n  };\n  binary-key = {\n    source = \"./private.der\";\n  };\n}\n")),
@@ -35,24 +35,24 @@ export default nix.lambda((args) => (() => {
                   const options = nix.arg($_1, "options");
                   const config = nix.arg($_1, "config");
                   return {
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     options: nix.thunk(() => ({
-                      __proto__: pos$3,
+                      [nix.POS]: pos$3,
                       source: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$1,
+                          [nix.POS]: pos$1,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "pathWith"), nix.thunk(() => ({})))))),
                           default: null,
                           description: "Source file on the host containing the credential data.\n",
                         })))),
                       text: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$2,
+                          [nix.POS]: pos$2,
                           default: null,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                           description: "Text content of the credential.\n\nFor binary data or when the credential content should come from\nan existing file, use `source` instead.\n\n::: {.warning}\nThe text here is stored in the host's nix store as a file.\n:::\n",
                         })))),
                     })),
                     config: nix.thunk(() => ({
-                      __proto__: pos$4,
+                      [nix.POS]: pos$4,
                       source: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(config, "text"), null)), nix.thunk(() => nix.app(nix.sel(lib, "mkDerivedConfig"), nix.thunk(() => nix.sel(options, "text")), nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), name)))))),
                     })),
                   };

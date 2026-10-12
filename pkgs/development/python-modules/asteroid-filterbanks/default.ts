@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const scipy = nix.arg($, "scipy");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "asteroid-filterbanks",
       version: "0.4.0-unstable-2024-12-02",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "asteroid-team",
           repo: "asteroid-filterbanks",
           rev: "74a13c69ba9858d57bd4936f18f3c3bd4b2d580c",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "numpy2-compat.patch",
             url: "https://github.com/asteroid-team/asteroid-filterbanks/commit/2c22e97c782f0e57e49d2beb56054c71ad5ccb08.patch",
             hash: "sha256-wBwQJzG/ET+XbV39l3UvctwhR/5TG+WgdxrPa/nyhRU=",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
           "test_stateful_pcen_jit",
         ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ["test_fb_def_and_forward_lowdim"]))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "PyTorch-based audio source separation toolkit for researchers",
         homepage: "https://github.com/asteroid-team/asteroid-filterbanks",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

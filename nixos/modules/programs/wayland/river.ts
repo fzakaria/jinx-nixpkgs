@@ -31,33 +31,33 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "river-classic"));
-  const wayland_lib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lib.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib }))));
+  const wayland_lib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lib.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib }))));
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       programs: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         "river-classic": nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "river-classic, a dynamic tiling Wayland compositor")),
           package: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "river-classic", nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               nullable: true,
               extraDescription: "If the package is not overridable with `xwaylandSupport`, then the module option\n{option}`xwayland` will have no effect.\n\nSet to `null` to not add any River package to your path.\nThis should be done if you want to use the Home Manager River module to install River.\n",
             }))), {
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             apply: (p) => (nix.asBool(nix.eq(p, null)) ? null : nix.app(nix.sel(wayland_lib, "genFinalPackage"), p, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 xwaylandSupport: nix.thunk(() => nix.sel(cfg, "xwayland", "enable")),
               })))),
           })),
           xwayland: nix.thunk(() => ({
-            __proto__: pos$6,
-            enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "XWayland"), { __proto__: pos$5, default: true })),
+            [nix.POS]: pos$6,
+            enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "XWayland"), { [nix.POS]: pos$5, default: true })),
           })),
           extraPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "package")));
@@ -85,26 +85,26 @@ export default nix.lambda((args) => (() => {
     ]),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             environment: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               systemPackages: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "package"), null)), nix.thunk(() => nix.sel(cfg, "package"))), nix.sel(cfg, "extraPackages"))),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               displayManager: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 sessionPackages: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "package"), null)), nix.thunk(() => nix.sel(cfg, "package")))),
               })),
             })),
             xdg: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               portal: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 config: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   river: nix.thunk(() => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     default: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ["wlr", "gtk"]))),
                   })),
                 })),
@@ -112,14 +112,14 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./wayland-session.nix")), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               lib: lib,
               pkgs: pkgs,
               enableXWayland: nix.thunk(() => nix.sel(cfg, "xwayland", "enable")),
             })))),
         ]))))),
     meta: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "GaetanLepage"))];

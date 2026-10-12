@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.0-unstable-2022-05-31";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "joaonc",
           repo: "pprintpp2",
           rev: "303f0652c9420f2cf0a0f4fe1907377508a17b3d",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "remove-u.patch",
             url: "https://github.com/wolever/pprintpp/commit/deec5e5efad562fc2f9084abfe249ed0c7dd65fa.patch",
             hash: "sha256-I84pnY/KyCIPPI9q0uvj64t8oPeMkgVTPEBRANkZNa4=",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["pprintpp"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Drop-in replacement for pprint that's actually pretty",
         homepage: "https://github.com/wolever/pprintpp",
         changelog: nix.thunk(() => nix.str`https://github.com/wolever/pprintpp/blob/${version}/CHANGELOG.txt`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "pypprint",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const libjack2 = nix.arg($, "libjack2");
   const libgbm = nix.arg($, "libgbm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "eudic",
       version: "13.5.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: "eudic.deb",
           url: nix.thunk(() => nix.str`https://www.eudic.net/download/eudic.deb?v=${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-UPkDRaqWF/oydH6AMo3t3PUT5VU961EPLcFb5XwOXVs=",
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\nrm -r usr/share/icons\ndesktop-file-edit usr/share/applications/eusoft-eudic.desktop \\\n  --set-key=\"Exec\" --set-value=\"eudic %F\"\nmkdir -p $out/bin\ncp -r usr/share $out/share\nmakeWrapper $out/share/eusoft-eudic/eudic $out/bin/eudic \\\n  --inherit-argv0 \\\n  --set GST_PLUGIN_PATH $out/share/eusoft-eudic/gstreamer-1.0 \\\n  --set QT_PLUGIN_PATH $out/share/eusoft-eudic/plugins\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Authoritative English Dictionary Software Essential Tools for English Learners",
         homepage: "https://www.eudic.net/v4/en/app/eudic",
         platforms: nix.thunk(() => ["x86_64-linux"]),

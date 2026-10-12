@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mobroute",
       version: "0.10.0",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~mil",
           repo: "mobroute",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "export HOME=$TMPDIR\n",
       postInstall: "mv $out/bin/{cli,mobroute}\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "General purpose public transportation router based on GTFS",
         longDescription: "Mobroute is a general purpose public transportation router\n(e.g. trip planner) Go library and CLI that works\nby directly ingesting timetable (GTFS) data from transit agencies\n(sourced from the Mobility Database).  After data has been fetched,\nrouting calculations can be run offline.\n\nOverall, Mobroute aims to offer an opensource framework\nfor integrating data-provider-agnostic GTFS public transit capabilities\n(integrated GTFS ETL, GTFS multisource support, and routing algorithm)\ninto applications to get users from point-a to point-b via public transit\nwithout comprising privacy or user freedoms.\n",
         homepage: "https://git.sr.ht/~mil/mobroute",

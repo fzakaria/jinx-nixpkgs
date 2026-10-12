@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libGLU = nix.arg($, "libGLU");
   const libGL = nix.arg($, "libGL");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       core: "melonds",
       version: "0-unstable-2026-07-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libretro",
           repo: "melonds",
           rev: "66b5d2634cd0a79030562811e6e05f5532f800ba",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       extraBuildInputs: nix.thunk(() => [libGLU, libGL]),
       makefile: "Makefile",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Port of MelonDS to libretro",
         homepage: "https://github.com/libretro/melonds",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

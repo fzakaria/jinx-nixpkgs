@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const cli11 = nix.arg($, "cli11");
   const jsoncons = nix.arg($, "jsoncons");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sail-riscv",
       version: "0.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "riscv",
           repo: "sail-riscv",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       cmakeFlags: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "ENABLE_LTO", true))]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/riscv/sail-riscv",
         description: "Formal specification of the RISC-V architecture, written in Sail",
         maintainers: nix.thunk(() => (() => {

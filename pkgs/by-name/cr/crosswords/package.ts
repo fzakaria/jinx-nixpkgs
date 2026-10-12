@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const shared_mime_info = nix.arg($, "shared-mime-info");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "crosswords",
       version: "0.3.18.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           owner: "jrb",
           repo: "crosswords",
@@ -50,11 +50,11 @@ export default nix.lambda((args) => (() => {
       mesonFlags: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "mesonBool"), "development", false))]),
       postInstall: "substituteInPlace $out/share/thumbnailers/crosswords.thumbnailer \\\n  --replace-fail \"TryExec=crosswords-thumbnailer\" \"TryExec=$out/bin/crosswords-thumbnailer\" \\\n  --replace-fail \"Exec=crosswords-thumbnailer\" \"Exec=$out/bin/crosswords-thumbnailer\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Crossword player and editor for GNOME",
         homepage: "https://gitlab.gnome.org/jrb/crosswords",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/jrb/crosswords/-/blob/${nix.sel(finalAttrs, "version")}/NEWS.md?ref_type=tags`),

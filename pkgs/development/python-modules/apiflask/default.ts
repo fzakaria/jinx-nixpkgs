@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const webargs = nix.arg($, "webargs");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "apiflask",
       version: "3.1.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "apiflask",
           repo: "apiflask",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         webargs,
       ], nix.sel(pydantic, "optional-dependencies", "email"))),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         async: nix.thunk(() => [asgiref]),
         dotenv: nix.thunk(() => [python_dotenv]),
         yaml: nix.thunk(() => [pyyaml]),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["apiflask"]),
       disabledTests: nix.thunk(() => ["test_spec_with_dict_headers"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Lightweight Python web API framework",
         homepage: "https://github.com/apiflask/apiflask",
         changelog: nix.thunk(() => nix.str`https://github.com/apiflask/apiflask/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.md`),

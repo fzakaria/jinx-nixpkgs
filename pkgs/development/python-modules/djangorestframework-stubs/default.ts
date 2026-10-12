@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.16.8";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "typeddjango",
           repo: "djangorestframework-stubs",
           tag: version,
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [uv_build]);
       const dependencies = nix.thunk(() => [django_stubs, requests, types_pyyaml, types_requests, typing_extensions]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "compatible-mypy": nix.thunk(() => nix.concat([mypy], nix.sel(django_stubs, "optional-dependencies", "compatible-mypy"))),
         coreapi: nix.thunk(() => [coreapi]),
         markdown: nix.thunk(() => [types_markdown]),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["rest_framework-stubs"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "PEP-484 stubs for Django REST Framework",
         homepage: "https://github.com/typeddjango/djangorestframework-stubs",
         changelog: nix.thunk(() => nix.str`https://github.com/typeddjango/djangorestframework-stubs/releases/tag/${nix.sel(src, "tag")}`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

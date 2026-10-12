@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const kservice = nix.arg($, "kservice");
   const qtbase = nix.arg($, "qtbase");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "kded",
       nativeBuildInputs: nix.thunk(() => [cmake, extra_cmake_modules, kdoctools, wrapGAppsHook3]),
       buildInputs: nix.thunk(() => [
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "qtWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "freebsd"))),
       })),
     })));

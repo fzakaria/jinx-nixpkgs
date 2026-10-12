@@ -22,17 +22,17 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const gtksourceview4 = nix.arg($, "gtksourceview4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "xpad",
       version: "5.8.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://launchpad.net/xpad/trunk/${nix.sel(finalAttrs, "version")}/+download/xpad-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-8mBSMIhQxAaxWtuNhqzTli7xCvIrQnuxpc/07slvguk=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://git.launchpad.net/~neil.mayhew/xpad/+git/xpad-1/patch/?id=637c7b51f1b09a28553a926f594f626d363c526a",
             hash: "sha256-ipebPkCpgj+5vvFS7QciZgH0CTZS12FdeVILfDReVsY=",
           })))),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config, wrapGAppsHook3, intltool]),
       buildInputs: nix.thunk(() => [glib, gtk3, gtksourceview4]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Sticky note application for jotting down things to remember",
         mainProgram: "xpad",
         homepage: "https://launchpad.net/xpad",

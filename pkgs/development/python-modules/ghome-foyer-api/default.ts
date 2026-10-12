@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KapJI",
           repo: "ghome-foyer-api",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonRelaxDeps = nix.thunk(() => ["protobuf"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Generated Python protobuf stubs for Google Home internal API",
         homepage: "https://github.com/KapJI/ghome-foyer-api",
         changelog: nix.thunk(() => nix.str`https://github.com/KapJI/ghome-foyer-api/releases/tag/${nix.sel(src, "tag")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

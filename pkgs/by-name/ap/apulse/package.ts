@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const logToStderr = nix.argOr($, "logToStderr", () => true);
   const oz = (x) => (nix.asBool(x) ? "1" : "0");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "apulse",
       version: "0.1.14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "i-rinat",
           repo: "apulse",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DLOG_TO_STDERR=${nix.app(oz, logToStderr)}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PulseAudio emulation for ALSA",
         homepage: "https://github.com/i-rinat/apulse",
         changelog: nix.thunk(() => nix.str`https://github.com/i-rinat/apulse/releases/tag/v${nix.sel(finalAttrs, "version")}`),

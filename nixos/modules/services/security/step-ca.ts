@@ -38,31 +38,31 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "step-ca"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$26,
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    [nix.POS]: pos$26,
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         "step-ca": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the smallstep certificate authority server")),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "opening the certificate authority server port")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "step-ca", nix.thunk(() => ({})))),
           address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               example: "127.0.0.1",
               description: "The address (without port) the certificate authority should listen at.\nThis combined with {option}`services.step-ca.port` overrides {option}`services.step-ca.settings.address`.\n",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               example: 8443n,
               description: "The port the certificate authority should listen on.\nThis combined with {option}`services.step-ca.address` overrides {option}`services.step-ca.settings.address`.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "anything")));
@@ -70,14 +70,14 @@ export default nix.lambda((args) => (() => {
               description: "Settings that go into {file}`ca.json`. See\n[the step-ca manual](https://smallstep.com/docs/step-ca/configuration)\nfor more information. The easiest way to\nconfigure this module would be to run `step ca init`\nto generate {file}`ca.json` and then import it using\n`builtins.fromJSON`.\n[This article](https://smallstep.com/docs/step-cli/basic-crypto-operations#run-an-offline-x509-certificate-authority)\nmay also be useful if you want to customize certain aspects of\ncertificate generation for your CA.\nYou need to change the database storage path to {file}`/var/lib/step-ca/db`.\n\n::: {.warning}\nThe {option}`services.step-ca.settings.address` option\nwill be ignored and overwritten by\n{option}`services.step-ca.address` and\n{option}`services.step-ca.port`.\n:::\n",
             })))),
           extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["--resolver=10.1.2.3:53", "--quiet"]),
               description: "Ad-hoc command-line arguments passed to the service at startup.",
             })))),
           intermediatePasswordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "externalPath")))),
               default: null,
               example: "/run/keys/smallstep-password",
@@ -88,23 +88,23 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "step-ca", "enable")), nix.thunk(() => (() => {
         const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "ca.json", nix.thunk(() => nix.update(nix.sel(cfg, "settings"), {
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             address: nix.thunk(() => nix.add(nix.add(nix.sel(cfg, "address"), ":"), nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port"))))),
           }))));
         return {
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           systemd: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
             services: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               "step-ca": nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 restartTriggers: nix.thunk(() => [configFile]),
-                unitConfig: nix.thunk(() => ({ __proto__: pos$11, ConditionFileNotEmpty: "" })),
+                unitConfig: nix.thunk(() => ({ [nix.POS]: pos$11, ConditionFileNotEmpty: "" })),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   Type: "notify",
                   User: "step-ca",
                   Group: "step-ca",
@@ -124,29 +124,29 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             etc: nix.thunk(() => ({
-              __proto__: pos$17,
-              "smallstep/ca.json": nix.thunk(() => ({ __proto__: pos$16, source: configFile })),
+              [nix.POS]: pos$17,
+              "smallstep/ca.json": nix.thunk(() => ({ [nix.POS]: pos$16, source: configFile })),
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             users: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               "step-ca": nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 home: "/var/lib/step-ca",
                 group: "step-ca",
                 isSystemUser: true,
               })),
             })),
-            groups: nix.thunk(() => ({ __proto__: pos$21, "step-ca": nix.thunk(() => ({})) })),
+            groups: nix.thunk(() => ({ [nix.POS]: pos$21, "step-ca": nix.thunk(() => ({})) })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]),
               })))),
           })),

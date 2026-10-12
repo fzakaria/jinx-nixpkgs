@@ -12,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "amazon-q-vscode",
         publisher: "AmazonWebServices",
         version: "2.8.0",
         hash: "sha256-QloFWdBDcFccs+SHYS9NSUjsnxr4nDFYuL/ox7JiJes=",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Amazon Q, CodeCatalyst, Local Lambda debug, SAM/CFN syntax, ECS Terminal, AWS resources",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.amazon-q-vscode",
         homepage: "https://github.com/aws/aws-toolkit-vscode",

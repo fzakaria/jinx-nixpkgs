@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "srb2",
       version: "2.2.15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "STJr",
           repo: "SRB2",
           rev: nix.thunk(() => nix.str`SRB2_release_${nix.sel(finalAttrs, "version")}`),
@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, makeWrapper, copyDesktopItems]),
       buildInputs: nix.thunk(() => [curl, game_music_emu, libpng, libopenmpt, miniupnpc, SDL2, SDL2_mixer, zlib]),
       assets: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: "srb2-data",
           version: nix.thunk(() => nix.sel(finalAttrs, "version")),
           src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: "https://git.do.srb2.org/STJr/srb2assets-public",
               rev: nix.thunk(() => nix.str`SRB2_release_${nix.sel(finalAttrs, "version")}`),
               hash: "sha256-1kwhWHzL2TbSx1rhFExbMhXqn0HMBRhR6LZiuoRx+iI=",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
             })))),
           installPhase: "runHook preInstall\n\nmkdir -p $out/share/srb2\ncp -r * $out/share/srb2\n\nrunHook postInstall\n",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$4, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$4, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       cmakeFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`-DSRB2_ASSET_DIRECTORY=${nix.sel(finalAttrs, "assets")}/share/srb2`),
         nix.thunk(() => nix.str`-DGME_INCLUDE_DIR=${game_music_emu}/include`),
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
             const categories = nix.thunk(() => ["Game"]);
             const startupWMClass = ".srb2-wrapped";
             return {
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               name,
               exec,
               icon,
@@ -100,7 +100,7 @@ wrapProgram $out/bin/srb2 --set SRB2WADDIR "${nix.sel(finalAttrs, "assets")}/sha
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Sonic Robo Blast 2 is a 3D Sonic the Hedgehog fangame based on a modified version of Doom Legacy",
         homepage: "https://www.srb2.org/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

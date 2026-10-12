@@ -18,14 +18,14 @@ export default nix.lambda((args) => (() => {
   const args_1 = nix.thunk(() => (() => {
     const version = "0.37.7";
     const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         owner: "tilt-dev",
         repo: "tilt",
         tag: nix.thunk(() => nix.str`v${version}`),
         hash: "sha256-0q27Tzb/kA2QWu7NzcrLFpl4HbGUXAosRuKx/9nanS8=",
         postFetch: nix.thunk(() => nix.str`cd $out/web
 patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             src: nix.path(here, "./yarn-fix.patch"),
             substitutions: nix.thunk(() => [
               "--replace-fail",
@@ -35,9 +35,9 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
           })))}
 `),
       }))));
-    return { __proto__: pos$3, version, src };
+    return { [nix.POS]: pos$3, version, src };
   })());
-  const tilt_assets = nix.thunk(() => nix.app(callPackage, nix.path(here, "./assets.nix"), nix.thunk(() => nix.update(args_1, { __proto__: pos$4, "yarn-berry": yarn_berry }))));
-  return nix.app(callPackage, nix.path(here, "./binary.nix"), nix.thunk(() => nix.update(args_1, { __proto__: pos$5, "tilt-assets": tilt_assets })));
+  const tilt_assets = nix.thunk(() => nix.app(callPackage, nix.path(here, "./assets.nix"), nix.thunk(() => nix.update(args_1, { [nix.POS]: pos$4, "yarn-berry": yarn_berry }))));
+  return nix.app(callPackage, nix.path(here, "./binary.nix"), nix.thunk(() => nix.update(args_1, { [nix.POS]: pos$5, "tilt-assets": tilt_assets })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

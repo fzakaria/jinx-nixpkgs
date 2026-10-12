@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
   const ujson = nix.arg($, "ujson");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cattrs",
       version: "26.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "python-attrs",
           repo: "cattrs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling, hatch_vcs]),
       dependencies: nix.thunk(() => [attrs, typing_extensions]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         ujson: nix.thunk(() => [ujson]),
         orjson: nix.thunk(() => [orjson]),
         msgpack: nix.thunk(() => [msgpack]),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["bench"]),
       pythonImportsCheck: nix.thunk(() => ["cattr"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/python-attrs/cattrs/blob/${nix.sel(finalAttrs, "src", "tag")}/HISTORY.md`),
         description: "Python custom class converters for attrs",
         homepage: "https://github.com/python-attrs/cattrs",

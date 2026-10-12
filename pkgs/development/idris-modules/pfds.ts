@@ -14,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const contrib = nix.arg($, "contrib");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pfds",
       version: "2017-09-25",
       idrisDeps: nix.thunk(() => [contrib]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "timjb",
           repo: "idris-pfds",
           rev: "9ba39348adc45388eccf6463855f42b81333620a",
           sha256: "0jbrwdpzg5hgmkfk2kj5y8lgaynl79h48qdvkl1glypfh392w35f",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Purely functional data structures in Idris",
         homepage: "https://github.com/timjb/idris-pfds",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

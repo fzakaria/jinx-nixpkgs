@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pythonAtLeast = nix.arg($, "pythonAtLeast");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "finetuning-scheduler",
       version: "2.13.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "speediedan",
           repo: "finetuning-scheduler",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       pythonRelaxDeps: nix.thunk(() => ["pytorch-lightning"]),
       dependencies: nix.thunk(() => [pytorch_lightning, torch]),
-      env: nix.thunk(() => ({ __proto__: pos$2, PACKAGE_NAME: "pytorch" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, PACKAGE_NAME: "pytorch" })),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       enabledTestPaths: nix.thunk(() => ["tests"]),
       disabledTests: nix.thunk(() => nix.concat(["test_get_lightning_requirement"], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["test_fts_dynamo_enforce_p0", "test_fts_dynamo_resume"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), nix.thunk(() => ["test_fts_frozen_bn_track_running_stats"]))))),
       pythonImportsCheck: nix.thunk(() => ["finetuning_scheduler"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "PyTorch Lightning extension for foundation model experimentation with flexible fine-tuning schedules",
         homepage: "https://finetuning-scheduler.readthedocs.io",
         changelog: nix.thunk(() => nix.str`https://github.com/speediedan/finetuning-scheduler/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

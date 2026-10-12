@@ -29,29 +29,29 @@ export default nix.lambda((args) => (() => {
   const sksOpt = nix.thunk(() => nix.sel(options, "services", "sks"));
   const webPkg = nix.thunk(() => nix.sel(cfg, "package"));
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "pgpkeyserver-lite": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "pgpkeyserver-lite on a nginx vHost proxying to a gpg keyserver")),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "pgpkeyserver-lite", nix.thunk(() => ({})))),
           hostname: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "Which hostname to set the vHost to that is proxying to sks.\n",
             })))),
           hkpAddress: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: nix.thunk(() => nix.app(nix.sel(nix.builtins, "head"), nix.thunk(() => nix.sel(sksCfg, "hkpAddress")))),
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), nix.thunk(() => nix.str`head config.${nix.sel(sksOpt, "hkpAddress")}`))),
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "Which IP address the sks-keyserver is listening on.\n",
             })))),
           hkpPort: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: nix.thunk(() => nix.sel(sksCfg, "hkpPort")),
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), nix.thunk(() => nix.str`config.${nix.sel(sksOpt, "hkpPort")}`))),
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
@@ -61,22 +61,22 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         services: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           nginx: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             enable: true,
             virtualHosts: nix.thunk(() => (() => {
               const hkpPort = nix.thunk(() => nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "hkpPort"))));
               return nix.attrsDyn({}, [
                 [nix.sel(cfg, "hostname"), nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   root: webPkg,
                   locations: nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     "/pks": nix.thunk(() => ({
-                      __proto__: pos$7,
+                      [nix.POS]: pos$7,
                       extraConfig: nix.thunk(() => nix.str`proxy_pass         http://${nix.sel(cfg, "hkpAddress")}:${hkpPort};
 proxy_pass_header  Server;
 add_header         Via "1.1 ${nix.sel(cfg, "hostname")}";

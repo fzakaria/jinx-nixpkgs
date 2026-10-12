@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const automake = nix.arg($, "automake");
   const fixDarwinDylibNames = nix.arg($, "fixDarwinDylibNames");
   return nix.app(nix.sel(ndpi, "overrideAttrs"), (finalAttrs) => (prevAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "4.14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(prevAttrs, "src"));
           return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: nix.thunk(() => nix.attr(from, "owner")),
           repo: nix.thunk(() => nix.attr(from, "repo")),
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),

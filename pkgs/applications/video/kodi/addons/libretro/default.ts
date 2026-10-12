@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const namespace = "game.libretro";
       const version = "20.1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kodi-game",
           repo: "game.libretro",
           rev: nix.thunk(() => nix.str`${version}-${rel}`),
@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const extraBuildInputs = nix.thunk(() => [tinyxml]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/kodi-game/game.libretro",
         description: "Libretro wrapper for Kodi's Game API",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "kodi"))]),
       }));
-      return { __proto__: pos$3, pname, namespace, version, src, extraBuildInputs, meta };
+      return { [nix.POS]: pos$3, pname, namespace, version, src, extraBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -114,7 +114,7 @@ export default nix.lambda((args) => (() => {
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const filteredConfig = nix.thunk(() => nix.app(converge, nix.thunk(() => nix.app(filterAttrsRecursive, (_) => (v) => !nix.asBool(nix.app(elem, v, nix.thunk(() => [null]))))), nix.thunk(() => nix.sel(cfg, "settings"))));
   const configFileUnchecked = nix.thunk(() => nix.app(nix.sel(format, "generate"), "frigate.yaml", filteredConfig));
-  const configFileChecked = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "frigate-config", nix.thunk(() => ({ __proto__: pos$1, preferLocalBuilds: true })), nix.thunk(() => nix.str`function error() {
+  const configFileChecked = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "frigate-config", nix.thunk(() => ({ [nix.POS]: pos$1, preferLocalBuilds: true })), nix.thunk(() => nix.str`function error() {
   cat << 'HEREDOC'
 
 Note that not all configurations can be reliably checked in the
@@ -136,28 +136,28 @@ ${nix.sel(cfg, "package", "python", "interpreter")} -m frigate --validate-config
   const cameraFormat = nix.thunk(() => (() => {
     const w = nix.withScope(types, null);
     return nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         freeformType: nix.thunk(() => nix.sel(format, "type")),
         options: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           ffmpeg: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             inputs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 description: "List of inputs for this camera.\n",
                 type: nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                      __proto__: pos$5,
+                      [nix.POS]: pos$5,
                       freeformType: nix.thunk(() => nix.sel(format, "type")),
                       options: nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         path: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$2,
+                            [nix.POS]: pos$2,
                             type: nix.thunk(() => nix.lookup(w, "str")),
                             example: "rtsp://192.0.2.1:554/rtsp",
                             description: "Stream URL\n",
                           })))),
                         roles: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$3,
+                            [nix.POS]: pos$3,
                             type: nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.app(nix.lookup(w, "enum"), nix.thunk(() => ["audio", "detect", "record"]))))),
                             example: nix.thunk(() => ["detect", "record"]),
                             description: "List of roles for this stream\n",
@@ -176,69 +176,69 @@ ${nix.sel(cfg, "package", "python", "interpreter")} -m frigate --validate-config
   const withCoralPCI = nix.thunk(() => nix.app(any, (d) => (nix.asBool(nix.eq(nix.sel(d, "type"), "edgetpu")) && nix.asBool(nix.app(hasPrefix, "pci", nix.thunk(() => nix.selOr(d, () => "", "device"))))), detectors));
   const withCoral = nix.thunk(() => (nix.asBool(withCoralPCI) || nix.asBool(withCoralUSB)));
   return {
-    __proto__: pos$85,
-    meta: nix.thunk(() => ({ __proto__: pos$10, buildDocsInSandbox: false })),
+    [nix.POS]: pos$85,
+    meta: nix.thunk(() => ({ [nix.POS]: pos$10, buildDocsInSandbox: false })),
     options: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       services: nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         frigate: nix.thunk(() => (() => {
           const w_1 = nix.withScope(types, null);
           return {
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             enable: nix.thunk(() => nix.app(mkEnableOption, "Frigate NVR")),
             package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "frigate", nix.thunk(() => ({})))),
             hostname: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.lookup(w_1, "str")),
                 example: "frigate.exampe.com",
                 description: "Hostname of the nginx vhost to configure.\n\nOnly nginx is supported by upstream for direct reverse proxying.\n",
               })))),
             vaapiDriver: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "enum"), nix.thunk(() => ["i965", "iHD", "nouveau", "vdpau", "nvidia", "radeonsi"]))))),
                 default: null,
                 example: "radeonsi",
                 description: "Force usage of a particular VA-API driver for video acceleration. Use together with `settings.ffmpeg.hwaccel_args`.\n\nSetting this *is not required* for VA-API to work, but it can help steer VA-API towards the correct card if you have multiple.\n\n:::{.note}\nFor VA-API to work you must enable {option}`hardware.graphics.enable` (sufficient for AMDGPU) and pass for example\n`pkgs.intel-media-driver` (required for Intel 5th Gen. and newer) into {option}`hardware.graphics.extraPackages`.\n:::\n\nSee also:\n\n- <https://docs.frigate.video/configuration/hardware_acceleration>\n- <https://docs.frigate.video/configuration/ffmpeg_presets#hwaccel-presets>\n",
               })))),
             checkConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.lookup(w_1, "bool")),
                 default: nix.thunk(() => (nix.asBool(nix.app(nix.sel(pkgs, "stdenv", "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform")))) && nix.asBool(!nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isAarch64"))))),
                 defaultText: nix.thunk(() => nix.app(literalExpression, "pkgs.stdenv.buildPlatform.canExecute pkgs.stdenv.hostPlatform && !(pkgs.stdenv.hostPlaform.isAarch64)\n")),
                 description: "Whether to check the configuration at build time.\n",
               })))),
             preCheckConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.sel(types, "lines")),
                 default: "",
                 description: "This script gets run before the config is checked. It can be used to,\ne.g., set environment variables needed or transform the config\n(available as `$out`) to make it checkable in the sandbox.\n",
               })))),
             settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 type: nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$23,
+                    [nix.POS]: pos$23,
                     freeformType: nix.thunk(() => nix.sel(format, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$22,
+                      [nix.POS]: pos$22,
                       cameras: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$15,
+                          [nix.POS]: pos$15,
                           type: nix.thunk(() => nix.app(nix.lookup(w_1, "attrsOf"), cameraFormat)),
                           description: "Attribute set of cameras configurations.\n\n<https://docs.frigate.video/configuration/cameras>\n",
                         })))),
                       database: nix.thunk(() => ({
-                        __proto__: pos$17,
+                        [nix.POS]: pos$17,
                         path: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$16,
+                            [nix.POS]: pos$16,
                             type: nix.thunk(() => nix.lookup(w_1, "path")),
                             default: "/var/lib/frigate/frigate.db",
                             description: "Path to the SQLite database used\n",
                           })))),
                       })),
                       ffmpeg: nix.thunk(() => ({
-                        __proto__: pos$19,
+                        [nix.POS]: pos$19,
                         path: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$18,
+                            [nix.POS]: pos$18,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "coercedTo"), nix.thunk(() => nix.lookup(w_1, "package")), nix.builtins.toString, nix.thunk(() => nix.lookup(w_1, "str")))),
                             default: nix.thunk(() => nix.sel(pkgs, "ffmpeg-headless")),
                             example: nix.thunk(() => nix.app(literalExpression, "pkgs.ffmpeg-full")),
@@ -246,10 +246,10 @@ ${nix.sel(cfg, "package", "python", "interpreter")} -m frigate --validate-config
                           })))),
                       })),
                       mqtt: nix.thunk(() => ({
-                        __proto__: pos$21,
+                        [nix.POS]: pos$21,
                         enabled: nix.thunk(() => nix.app(mkEnableOption, "MQTT support")),
                         host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$20,
+                            [nix.POS]: pos$20,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
                             default: null,
                             example: "mqtt.example.com",
@@ -266,11 +266,11 @@ ${nix.sel(cfg, "package", "python", "interpreter")} -m frigate --validate-config
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$84,
+        [nix.POS]: pos$84,
         services: nix.thunk(() => ({
-          __proto__: pos$63,
+          [nix.POS]: pos$63,
           nginx: nix.thunk(() => ({
-            __proto__: pos$62,
+            [nix.POS]: pos$62,
             enable: true,
             additionalModules: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "nginxModules")), null);
@@ -285,28 +285,28 @@ ${nix.sel(cfg, "package", "python", "interpreter")} -m frigate --validate-config
             recommendedGzipSettings: nix.thunk(() => nix.app(mkDefault, true)),
             mapHashBucketSize: nix.thunk(() => nix.app(mkDefault, 128n)),
             upstreams: nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               "frigate-api": nix.thunk(() => ({
-                __proto__: pos$29,
-                servers: nix.thunk(() => ({ __proto__: pos$28, "127.0.0.1:5001": nix.thunk(() => ({})) })),
+                [nix.POS]: pos$29,
+                servers: nix.thunk(() => ({ [nix.POS]: pos$28, "127.0.0.1:5001": nix.thunk(() => ({})) })),
               })),
               "frigate-mqtt-ws": nix.thunk(() => ({
-                __proto__: pos$31,
-                servers: nix.thunk(() => ({ __proto__: pos$30, "127.0.0.1:5002": nix.thunk(() => ({})) })),
+                [nix.POS]: pos$31,
+                servers: nix.thunk(() => ({ [nix.POS]: pos$30, "127.0.0.1:5002": nix.thunk(() => ({})) })),
               })),
               "frigate-jsmpeg": nix.thunk(() => ({
-                __proto__: pos$33,
-                servers: nix.thunk(() => ({ __proto__: pos$32, "127.0.0.1:8082": nix.thunk(() => ({})) })),
+                [nix.POS]: pos$33,
+                servers: nix.thunk(() => ({ [nix.POS]: pos$32, "127.0.0.1:8082": nix.thunk(() => ({})) })),
               })),
               "frigate-go2rtc": nix.thunk(() => ({
-                __proto__: pos$35,
-                servers: nix.thunk(() => ({ __proto__: pos$34, "127.0.0.1:1984": nix.thunk(() => ({})) })),
+                [nix.POS]: pos$35,
+                servers: nix.thunk(() => ({ [nix.POS]: pos$34, "127.0.0.1:1984": nix.thunk(() => ({})) })),
               })),
             })),
             proxyCachePath: nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               frigate: nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 enable: true,
                 keysZoneSize: "10m",
                 keysZoneName: "frigate_api_cache",
@@ -317,11 +317,11 @@ ${nix.sel(cfg, "package", "python", "interpreter")} -m frigate --validate-config
             })),
             virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
               [nix.str`${nix.sel(cfg, "hostname")}`, nix.thunk(() => ({
-                __proto__: pos$61,
+                [nix.POS]: pos$61,
                 locations: nix.thunk(() => ({
-                  __proto__: pos$60,
+                  [nix.POS]: pos$60,
                   "/auth": nix.thunk(() => ({
-                    __proto__: pos$39,
+                    [nix.POS]: pos$39,
                     proxyPass: "http://frigate-api/auth",
                     recommendedProxySettings: true,
                     extraConfig: nix.thunk(() => nix.str`internal;
@@ -366,80 +366,80 @@ ${nginxProxySettings}
 `),
                   })),
                   "/vod/": nix.thunk(() => ({
-                    __proto__: pos$40,
+                    [nix.POS]: pos$40,
                     extraConfig: nix.thunk(() => nix.add(nginxAuthRequest, "aio threads;\nvod hls;\n\n# Use fMP4 (fragmented MP4) instead of MPEG-TS for better performance\n# Smaller segments, faster generation, better browser compatibility\nvod_hls_container_format fmp4;\n\nsecure_token $args;\nsecure_token_types application/vnd.apple.mpegurl;\n\nadd_header Cache-Control \"no-store\";\nexpires off;\n\nkeepalive_disable safari;\n\n# vod module returns 502 for non-existent media\n# https://github.com/kaltura/nginx-vod-module/issues/468\nerror_page 502 =404 /vod-not-found;\n")),
                   })),
-                  "/vod-not-found": nix.thunk(() => ({ __proto__: pos$41, return: 404n })),
+                  "/vod-not-found": nix.thunk(() => ({ [nix.POS]: pos$41, return: 404n })),
                   "/stream/": nix.thunk(() => ({
-                    __proto__: pos$42,
+                    [nix.POS]: pos$42,
                     alias: "/var/cache/frigate/stream/",
                     extraConfig: nix.thunk(() => nix.add(nginxAuthRequest, "add_header Cache-Control \"no-store\";\nexpires off;\n\ntypes {\n    application/dash+xml mpd;\n    application/vnd.apple.mpegurl m3u8;\n    video/mp2t ts;\n    image/jpeg jpg;\n}\n")),
                   })),
                   "/clips/": nix.thunk(() => ({
-                    __proto__: pos$43,
+                    [nix.POS]: pos$43,
                     root: "/var/lib/frigate",
                     extraConfig: nix.thunk(() => nix.add(nginxAuthRequest, "types {\n    video/mp4 mp4;\n    image/jpeg jpg jpeg;\n    image/png png;\n    image/webp webp;\n}\n\nexpires 7d;\nadd_header Cache-Control \"public\";\nautoindex on;\n")),
                   })),
-                  "/cache/": nix.thunk(() => ({ __proto__: pos$44, alias: "/var/cache/frigate/", extraConfig: "internal;\n" })),
+                  "/cache/": nix.thunk(() => ({ [nix.POS]: pos$44, alias: "/var/cache/frigate/", extraConfig: "internal;\n" })),
                   "/recordings/": nix.thunk(() => ({
-                    __proto__: pos$45,
+                    [nix.POS]: pos$45,
                     root: "/var/lib/frigate",
                     extraConfig: nix.thunk(() => nix.add(nginxAuthRequest, "types {\n    video/mp4 mp4;\n}\n\nautoindex on;\nautoindex_format json;\n")),
                   })),
                   "/exports/": nix.thunk(() => ({
-                    __proto__: pos$46,
+                    [nix.POS]: pos$46,
                     root: "/var/lib/frigate",
                     extraConfig: nix.thunk(() => nix.add(nginxAuthRequest, "types {\n  video/mp4 mp4;\n}\n\nautoindex on;\nautoindex_format json;\n")),
                   })),
                   "/ws": nix.thunk(() => ({
-                    __proto__: pos$47,
+                    [nix.POS]: pos$47,
                     proxyPass: "http://frigate-mqtt-ws/",
                     recommendedProxySettings: true,
                     proxyWebsockets: true,
                     extraConfig: nix.thunk(() => nix.add(nginxAuthRequest, nginxProxySettings)),
                   })),
                   "/live/jsmpeg": nix.thunk(() => ({
-                    __proto__: pos$48,
+                    [nix.POS]: pos$48,
                     proxyPass: "http://frigate-jsmpeg/",
                     recommendedProxySettings: true,
                     proxyWebsockets: true,
                     extraConfig: nix.thunk(() => nix.add(nginxAuthRequest, nginxProxySettings)),
                   })),
                   "/live/mse/api/ws": nix.thunk(() => ({
-                    __proto__: pos$49,
+                    [nix.POS]: pos$49,
                     proxyPass: "http://frigate-go2rtc/api/ws",
                     proxyWebsockets: true,
                     recommendedProxySettings: true,
                     extraConfig: nix.thunk(() => nix.add(nix.add(nginxAuthRequest, nginxProxySettings), "limit_except GET {\n    deny  all;\n}\n")),
                   })),
                   "/live/webrtc/api/ws": nix.thunk(() => ({
-                    __proto__: pos$50,
+                    [nix.POS]: pos$50,
                     proxyPass: "http://frigate-go2rtc/api/ws",
                     proxyWebsockets: true,
                     recommendedProxySettings: true,
                     extraConfig: nix.thunk(() => nix.add(nix.add(nginxAuthRequest, nginxProxySettings), "limit_except GET {\n    deny  all;\n}\n")),
                   })),
                   "/live/webrtc/webrtc.html": nix.thunk(() => ({
-                    __proto__: pos$51,
+                    [nix.POS]: pos$51,
                     proxyPass: "http://frigate-go2rtc/webrtc.html",
                     recommendedProxySettings: true,
                     extraConfig: nix.thunk(() => nix.add(nix.add(nginxAuthRequest, nginxProxySettings), "limit_except GET {\n    deny  all;\n}\n")),
                   })),
                   "/api/go2rtc/webrtc": nix.thunk(() => ({
-                    __proto__: pos$52,
+                    [nix.POS]: pos$52,
                     proxyPass: "http://frigate-go2rtc/api/webrtc",
                     proxyWebsockets: true,
                     recommendedProxySettings: true,
                     extraConfig: nix.thunk(() => nix.add(nix.add(nginxAuthRequest, nginxProxySettings), "limit_except POST {\n    deny  all;\n}\n")),
                   })),
                   "~* /api/.*\\.(jpg|jpeg|png|webp|gif)$": nix.thunk(() => ({
-                    __proto__: pos$53,
+                    [nix.POS]: pos$53,
                     proxyPass: "http://frigate-api",
                     recommendedProxySettings: true,
                     extraConfig: nix.thunk(() => nix.add(nix.add(nginxAuthRequest, nginxProxySettings), "rewrite ^/api/(.*)$ /$1 break;\n")),
                   })),
                   "/api/": nix.thunk(() => ({
-                    __proto__: pos$54,
+                    [nix.POS]: pos$54,
                     proxyPass: "http://frigate-api/",
                     recommendedProxySettings: true,
                     extraConfig: nix.thunk(() => nix.add(nix.add(nginxAuthRequest, nginxProxySettings), nix.str`add_header Cache-Control "no-store";
@@ -506,27 +506,27 @@ location /api/version {
 `)),
                   })),
                   "/assets/": nix.thunk(() => ({
-                    __proto__: pos$55,
+                    [nix.POS]: pos$55,
                     root: nix.thunk(() => nix.sel(cfg, "package", "web")),
                     extraConfig: "access_log off;\nexpires 1y;\nadd_header Cache-Control \"public\";\n",
                   })),
                   "/fonts": nix.thunk(() => ({
-                    __proto__: pos$56,
+                    [nix.POS]: pos$56,
                     root: nix.thunk(() => nix.sel(cfg, "package", "web")),
                     extraConfig: "access_log off;\nexpires 1y;\nadd_header Cache-Control \"public\";\n",
                   })),
                   "/locales/": nix.thunk(() => ({
-                    __proto__: pos$57,
+                    [nix.POS]: pos$57,
                     root: nix.thunk(() => nix.sel(cfg, "package", "web")),
                     extraConfig: "access_log off;\nadd_header Cache-Control \"public\";\n",
                   })),
                   "~ ^/.*-([A-Za-z0-9]+)\\.webmanifest$": nix.thunk(() => ({
-                    __proto__: pos$58,
+                    [nix.POS]: pos$58,
                     root: nix.thunk(() => nix.sel(cfg, "package", "web")),
                     extraConfig: "access_log off;\nexpires 1y;\nadd_header Cache-Control \"public\";\ndefault_type application/json;\nproxy_set_header Accept-Encoding \"\";\n",
                   })),
                   "/": nix.thunk(() => ({
-                    __proto__: pos$59,
+                    [nix.POS]: pos$59,
                     root: nix.thunk(() => nix.sel(cfg, "package", "web")),
                     tryFiles: "$uri $uri.html $uri/ /index.html",
                     extraConfig: "add_header Cache-Control \"no-store\";\nexpires off;\n",
@@ -540,27 +540,27 @@ location /api/version {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$75,
+          [nix.POS]: pos$75,
           services: nix.thunk(() => ({
-            __proto__: pos$71,
+            [nix.POS]: pos$71,
             nginx: nix.thunk(() => ({
-              __proto__: pos$65,
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$64, SupplementaryGroups: nix.thunk(() => ["frigate"]) })),
+              [nix.POS]: pos$65,
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$64, SupplementaryGroups: nix.thunk(() => ["frigate"]) })),
             })),
             frigate: nix.thunk(() => ({
-              __proto__: pos$70,
+              [nix.POS]: pos$70,
               after: nix.thunk(() => ["go2rtc.service", "network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: nix.thunk(() => nix.update({
-                __proto__: pos$66,
+                [nix.POS]: pos$66,
                 CONFIG_FILE: "/run/frigate/frigate.yml",
                 HOME: "/var/lib/frigate",
                 PYTHONPATH: nix.thunk(() => nix.sel(cfg, "package", "pythonPath")),
               }, nix.update(nix.app(optionalAttrs, nix.thunk(() => !nix.eq(nix.sel(cfg, "vaapiDriver"), null)), nix.thunk(() => ({
-                  __proto__: pos$67,
+                  [nix.POS]: pos$67,
                   LIBVA_DRIVER_NAME: nix.thunk(() => nix.sel(cfg, "vaapiDriver")),
                 }))), nix.app(optionalAttrs, withCoral, nix.thunk(() => ({
-                  __proto__: pos$68,
+                  [nix.POS]: pos$68,
                   LD_LIBRARY_PATH: nix.thunk(() => nix.app(makeLibraryPath, nix.thunk(() => (() => {
                       const w_1 = nix.withScope(pkgs, null);
                       return [nix.thunk(() => nix.lookup(w_1, "libedgetpu"))];
@@ -575,7 +575,7 @@ location /api/version {
                 ], nix.app(optionals, nix.thunk(() => !nix.asBool(nix.sel(nix.lookup(w_1, "stdenv"), "hostPlatform", "isAarch64"))), nix.thunk(() => [nix.thunk(() => nix.sel(nix.lookup(w_1, "rocmPackages"), "rocminfo"))])));
               })()),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$69,
+                [nix.POS]: pos$69,
                 ExecStartPre: nix.thunk(() => nix.concat([
                   nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScript"), "frigate-clear-cache", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "findutils")))} /var/cache/frigate -not -path '/var/cache/frigate/model_cache/*' -type f -delete
 `))),
@@ -626,30 +626,30 @@ echo "Detected $(cat /run/frigate/ffmpeg-env)"
             })),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$74,
+            [nix.POS]: pos$74,
             settings: nix.thunk(() => ({
-              __proto__: pos$73,
+              [nix.POS]: pos$73,
               frigate: nix.thunk(() => nix.attrsDyn({}, [
-                [nix.str`/tmp/systemd-private-%b-${nix.sel(config, "systemd", "services", "frigate", "name")}-*/tmp/pymp-*`, nix.thunk(() => ({ __proto__: pos$72, x: nix.thunk(() => ({})) }))],
+                [nix.str`/tmp/systemd-private-%b-${nix.sel(config, "systemd", "services", "frigate", "name")}-*/tmp/pymp-*`, nix.thunk(() => ({ [nix.POS]: pos$72, x: nix.thunk(() => ({})) }))],
               ])),
             })),
           })),
         })),
         hardware: nix.thunk(() => ({
-          __proto__: pos$79,
+          [nix.POS]: pos$79,
           coral: nix.thunk(() => ({
-            __proto__: pos$78,
-            usb: nix.thunk(() => ({ __proto__: pos$76, enable: nix.thunk(() => nix.app(mkDefault, withCoralUSB)) })),
-            pcie: nix.thunk(() => ({ __proto__: pos$77, enable: nix.thunk(() => nix.app(mkDefault, withCoralPCI)) })),
+            [nix.POS]: pos$78,
+            usb: nix.thunk(() => ({ [nix.POS]: pos$76, enable: nix.thunk(() => nix.app(mkDefault, withCoralUSB)) })),
+            pcie: nix.thunk(() => ({ [nix.POS]: pos$77, enable: nix.thunk(() => nix.app(mkDefault, withCoralPCI)) })),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$83,
+          [nix.POS]: pos$83,
           users: nix.thunk(() => ({
-            __proto__: pos$81,
-            frigate: nix.thunk(() => ({ __proto__: pos$80, isSystemUser: true, group: "frigate" })),
+            [nix.POS]: pos$81,
+            frigate: nix.thunk(() => ({ [nix.POS]: pos$80, isSystemUser: true, group: "frigate" })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$82, frigate: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$82, frigate: nix.thunk(() => ({})) })),
         })),
       })))),
   };

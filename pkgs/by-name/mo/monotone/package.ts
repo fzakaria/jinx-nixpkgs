@@ -40,14 +40,14 @@ export default nix.lambda((args) => (() => {
   const perlVersion = nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), perl));
   nix.assert_(!nix.eq(perlVersion, ""), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/mo/monotone/package.nix:30:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "monotone",
       version: "1.1-unstable-2025-12-11",
       strictDeps: true,
       __structuredAttrs: true,
       enableParallelBuilding: true,
       src: nix.thunk(() => nix.app(fetchFromForgejo, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "git.lapo.it",
           owner: "lapo",
           repo: "monotone",
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
         bzip2,
         perl,
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_LDFLAGS: " -lpcre2-8 " })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: " -lpcre2-8 " })),
       postInstall: nix.thunk(() => nix.str`mkdir -p $out/share/monotone-${nix.sel(finalAttrs, "version")}
 cp -rv contrib/ $out/share/monotone-${nix.sel(finalAttrs, "version")}/contrib
 mkdir -p $out/${nix.sel(perl, "libPrefix")}/${perlVersion}
@@ -89,15 +89,15 @@ patchShebangs "$out/share/monotone-${nix.sel(finalAttrs, "version")}"
 find "$out"/share/{doc/monotone,monotone-${nix.sel(finalAttrs, "version")}}/contrib/ -type f | xargs sed -e 's@! */usr/bin/@!/usr/bin/env @; s@! */bin/bash@!/usr/bin/env bash@' -i
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           basicEndToEnd: nix.thunk(() => nix.app(runCommand, "monotone-test-end-to-end", nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
             })), "mkdir -p \"$out/share/monotone-test/log/\"\ntarget=\"$out/share/monotone-test/log/monotone-test-end-to-end.log\"\n\n(\n  export HOME=\"$PWD\"\n  set -x\n\n  mtn genkey test@localhost\n\n  mkdir a b c\n\n  mtn -d :test1 db init\n  mtn -d :test2 db init\n\n  (\n    cd a\n    mtn -d :test1 -b test setup\n    echo 123 > aaa\n    mtn add aaa\n    mtn ci -m 'add aaa'\n    mtn log\n  )\n\n  (\n    cd b\n    mtn -d :test2 sync file:///$HOME/.monotone/databases/test1.mtn'?*'\n    mtn -d :test2 co -r h:test -b test .\n    mtn up\n    echo 456 > bbb\n    mtn add bbb\n    mtn ci -m 'add bbb'\n    mtn log\n  )\n\n  (\n    cd a\n    echo 789 > ccc\n    mtn add ccc\n    mtn ci -m 'add ccc'\n    mtn log\n  )\n\n  (\n    cd c\n    mtn -d :test1 sync file:///$HOME/.monotone/databases/test2.mtn'?*'\n    mtn -d :test1 merge -b test\n    mtn -d :test1 co -r h:test -b test .\n    mtn up\n    mtn log\n    cat aaa bbb ccc | xargs | grep '123 456 789'\n  )\n\n) 2>&1 | tee \"$target\"\n")),
           "packageTests-unit": nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               pname: "monotone-test",
               doCheck: true,
               buildPhase: nix.thunk(() => nix.str` cp -iv ${nix.sel(finalAttrs, "finalPackage")}/bin/* . `),
@@ -106,7 +106,7 @@ find "$out"/share/{doc/monotone,monotone-${nix.sel(finalAttrs, "version")}}/cont
               checkPhase: "runHook preCheck\n\nmake test/unit.status -j $NIX_CORES\n\nrunHook postCheck\ngrep '^0$' test/unit.status\n",
             })))),
           "packageTests-func": nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               pname: "monotone-test",
               doCheck: true,
               nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(finalAttrs, "nativeBuildInputs"), [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))])),
@@ -125,7 +125,7 @@ find "$out"/share/{doc/monotone,monotone-${nix.sel(finalAttrs, "version")}}/cont
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Free distributed version control system",
         homepage: "https://git.lapo.it/lapo/monotone",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "raskin"))]),

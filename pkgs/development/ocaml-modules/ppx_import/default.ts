@@ -22,24 +22,24 @@ export default nix.lambda((args) => (() => {
   const ppxlib = nix.arg($, "ppxlib");
   const version = nix.argOr($, "version", () => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ppxlib, "version")), "0.36")) ? "1.12.0" : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ppxlib, "version")), "0.26")) ? "1.11.0" : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ppxlib, "version")), "0.24.0")) ? "1.9.1" : nix.builtins.throw(nix.thunk(() => nix.str`ppx_import is not available with ppxlib-${nix.sel(ppxlib, "version")}`))))));
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ppx_import",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => (() => {
             const dir = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "1.11")) ? nix.str`v${version}` : nix.str`${version}`));
             return nix.str`https://github.com/ocaml-ppx/ppx_import/releases/download/${dir}/ppx_import-${version}.tbz`;
           })()),
           hash: nix.thunk(() => nix.sel({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             "1.9.1": "sha256-0bSY4u44Ds84XPIbcT5Vt4AG/4PkzFKMl9CDGFZyIdI=",
             "1.11.0": "sha256-Jmfv1IkQoaTkyxoxp9FI0ChNESqCaoDsA7D4ZUbOrBo=",
             "1.12.0": "sha256-1vpYHFl0rEdG3hE+6BCpWmfLvdLvoEx+Jxq0DFrRdJc=",
           }, nix.key(nix.str`${version}`))),
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.5")), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/ocaml-ppx/ppx_import/commit/ddff918dc86f3d336af60ea67de4a0b5373b7409.patch",
             hash: "sha256-PenEGKPltvzJY//YoU5iNqZIYGz3vBGXZONBcwgQgjY=",
           })))))),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [ounit, ppx_deriving, ppx_sexp_conv]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Syntax extension for importing declarations from interface files",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/ocaml-ppx/ppx_import",

@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const nvidia_libs = nix.arg($, "nvidia-libs");
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       path: "...",
       pname: "nvidia-nvml",
       src: nix.thunk(() => nix.attr(nvidia_driver, "src")),
@@ -24,13 +24,13 @@ export default nix.lambda((args) => (() => {
       runtimeDependencies: nix.thunk(() => [nvidia_libs]),
       buildInputs: nix.thunk(() => [nvidia_libs]),
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         LOCALBASE: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}`),
       })),
       dontBuild: true,
       installPhase: "mkdir -p $out/bin\nmake -C nvml install\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         platforms: nix.thunk(() => ["x86_64-freebsd"]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
       })),

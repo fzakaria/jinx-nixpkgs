@@ -23,28 +23,28 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "oci"));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     imports: nix.thunk(() => [
       nix.path(here, "./oci-common.nix"),
       nix.path(here, "../image/file-options.nix"),
     ]),
     config: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         diskSize: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 1490n, nix.thunk(() => nix.mul(8n, 1024n)))),
         diskSizeAutoSupported: false,
       })),
       system: nix.thunk(() => ({
-        __proto__: pos$5,
-        nixos: nix.thunk(() => ({ __proto__: pos$2, tags: nix.thunk(() => ["oci"]) })),
+        [nix.POS]: pos$5,
+        nixos: nix.thunk(() => ({ [nix.POS]: pos$2, tags: nix.thunk(() => ["oci"]) })),
         build: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           image: nix.thunk(() => nix.sel(config, "system", "build", "OCIImage")),
           OCIImage: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/make-disk-image.nix")), nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(config, "virtualisation"));
               return {
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               config: config,
               lib: lib,
               pkgs: pkgs,
@@ -58,13 +58,13 @@ export default nix.lambda((args) => (() => {
             })()))),
         })),
       })),
-      image: nix.thunk(() => ({ __proto__: pos$6, extension: "qcow2" })),
+      image: nix.thunk(() => ({ [nix.POS]: pos$6, extension: "qcow2" })),
       systemd: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         services: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           "fetch-ssh-keys": nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             description: "Fetch authorized_keys for root user",
             wantedBy: nix.thunk(() => ["sshd.service"]),
             before: nix.thunk(() => ["sshd.service"]),
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
             ]),
             script: "mkdir -m 0700 -p /root/.ssh\nif [ -f /root/.ssh/authorized_keys ]; then\n  echo \"Authorized keys have already been downloaded\"\nelse\n  echo \"Downloading authorized keys from Instance Metadata Service v2\"\n  curl -s -S -L \\\n    -H \"Authorization: Bearer Oracle\" \\\n    -o /root/.ssh/authorized_keys \\\n    http://169.254.169.254/opc/v2/instance/metadata/ssh_authorized_keys\n  chmod 600 /root/.ssh/authorized_keys\nfi\n",
             serviceConfig: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               Type: "oneshot",
               RemainAfterExit: true,
               StandardError: "journal+console",

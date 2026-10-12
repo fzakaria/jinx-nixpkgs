@@ -20,23 +20,23 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const jre = nix.arg($, "jre");
   const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://raw.githubusercontent.com/tigerjython/tjinstall/611c56d4e765731883656a5c4b71209d72b5ab74/tjlogo64.png",
       hash: "sha256-tw3uDWLtcMHYmN6JGsEvVKLgI09v5DF27V2+OF9Z5tA=",
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "tigerjython",
       version: "2.42",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://web.archive.org/web/20260804083812/https://www.tjgroup.ch/download/TigerJython.tar.gz",
           hash: "sha256-jQUQiunrEi3cJhMV9URFeI7JKbGXL/Q2mgd2v0YWRBE=",
         })))),
       nativeBuildInputs: nix.thunk(() => [makeWrapper, copyDesktopItems]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "TigerJython",
             desktopName: "TigerJython",
             comment: "The Python IDE for beginners",
@@ -77,7 +77,7 @@ runHook postInstall
       postInstall: nix.thunk(() => nix.str`install -Dm444 ${icon} $out/share/icons/hicolor/64x64/apps/tigerjython.png
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.tigerjython.ch",
         downloadPage: "https://tigerjython.ch/en/products/download",
         description: "Simple development environment for programming in Python",

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.6";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-8Vgesn/uLe9rq2JqdUy0qL9FOmglJ7vxr5gRsGNGhAI=",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [pycryptodomex]);
       const pythonImportsCheck = nix.thunk(() => ["pyctr"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library to interact with Nintendo 3DS files",
         homepage: "https://github.com/ihaveamac/pyctr",
         changelog: nix.thunk(() => nix.str`https://github.com/ihaveamac/pyctr/blob/v${version}/CHANGELOG.md`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const bc = nix.arg($, "bc");
   const jdk = jdk8;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "adoptopenjdk-icedtea-web",
       version: "1.8.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AdoptOpenJDK",
           repo: "IcedTea-Web",
           rev: nix.thunk(() => nix.str`icedtea-web-${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       preCheck: "# Needed for the below rust-launcher tests to pass\n# dirs_paths_helper::tests::check_config_files_paths\n# dirs_paths_helper::tests::check_legacy_config_files_paths\n\nmkdir -p $HOME/.icedtea\ntouch $HOME/.icedtea/deployment.properties\n\nmkdir -p $XDG_CONFIG_HOME/icedtea-web\ntouch $XDG_CONFIG_HOME/icedtea-web/deployment.properties\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, HOME: "/build", XDG_CONFIG_HOME: "/build" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, HOME: "/build", XDG_CONFIG_HOME: "/build" })),
       configureFlags: nix.thunk(() => [
         "--with-itw-libs=DISTRIBUTION",
         nix.thunk(() => nix.str`--with-jdk-home=${nix.sel(jdk, "home")}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       mozillaPlugin: "/lib",
       postInstall: "mkdir -p $out/share/applications\ncp javaws.desktop itweb-settings.desktop policyeditor.desktop $out/share/applications\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Java web browser plugin and an implementation of Java Web Start",
         longDescription: "A Free Software web browser plugin running applets written in the Java\nprogramming language and an implementation of Java Web Start, originally\nbased on the NetX project.\n",
         homepage: "https://github.com/adoptopenjdk/icedtea-web",

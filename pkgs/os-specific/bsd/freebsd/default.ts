@@ -26,10 +26,10 @@ Branches can be selected by overriding the \`branch\` attribute on the freebsd p
 `));
   const otherSplices = nix.thunk(() => nix.app(generateSplicesForMkScope, attributePathToSplice));
   return nix.app(makeScopeWithSplicing$, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       otherSplices: otherSplices,
-      f: (self) => nix.update({ __proto__: pos$1, branch: branch }, nix.app(callPackage, nix.path(here, "./package-set.nix"), nix.thunk(() => ({
-          __proto__: pos$2,
+      f: (self) => nix.update({ [nix.POS]: pos$1, branch: branch }, nix.app(callPackage, nix.path(here, "./package-set.nix"), nix.thunk(() => ({
+          [nix.POS]: pos$2,
           sourceData: nix.thunk(() => nix.selOr(versions, () => nix.builtins.throw(nix.thunk(() => nix.app(badBranchError, nix.thunk(() => nix.sel(self, "branch"))))), nix.key(nix.sel(self, "branch")))),
           versionData: nix.thunk(() => nix.sel(self, "sourceData", "version")),
           buildFreebsd: nix.thunk(() => nix.sel(otherSplices, "selfBuildHost")),

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pngpaste",
       version: "0.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jcsalterego",
           repo: "pngpaste",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\ninstall -Dm555 pngpaste $out/bin/pngpaste\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Paste image files from clipboard to file on MacOS",
         longDescription: "Paste PNG into files on MacOS, much like pbpaste does for text.\nSupported input formats are PNG, PDF, GIF, TIF, JPEG.\nSupported output formats are PNG, GIF, JPEG, TIFF.  Output\nformats are determined by the provided filename extension,\nfalling back to PNG.\n",
         homepage: "https://github.com/jcsalterego/pngpaste",

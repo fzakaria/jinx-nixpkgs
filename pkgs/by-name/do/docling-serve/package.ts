@@ -16,16 +16,16 @@ export default nix.lambda((args) => (() => {
   const withTesserocr = nix.argOr($, "withTesserocr", () => false);
   const withRapidocr = nix.argOr($, "withRapidocr", () => false);
   return nix.update(nix.app(nix.sel(python3Packages, "toPythonApplication"), nix.thunk(() => nix.app(nix.sel(python3Packages, "docling-serve", "override"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         withUI: withUI,
         withTesserocr: withTesserocr,
         withRapidocr: withRapidocr,
       }))))), {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     passthru: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       tests: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "docling-serve": nix.thunk(() => nix.sel(nixosTests, "docling-serve")),
       })),
     })),

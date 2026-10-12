@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const libgpg_error = nix.arg($, "libgpg-error");
   const version = "0.8.9";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fsarchiver",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fdupoux",
           repo: "fsarchiver",
           rev: version,
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         libgpg_error,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "File system archiver for linux",
         longDescription: "FSArchiver is a system tool that allows you to save the contents of a\nfile-system to a compressed archive file. The file-system can be restored\non a partition which has a different size and it can be restored on a\ndifferent file-system. Unlike tar/dar, FSArchiver also creates the\nfile-system when it extracts the data to partitions. Everything is\nchecksummed in the archive in order to protect the data. If the archive is\ncorrupt, you just loose the current file, not the whole archive.\n",
         homepage: "https://www.fsarchiver.org/",

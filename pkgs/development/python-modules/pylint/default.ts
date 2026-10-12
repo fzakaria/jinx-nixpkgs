@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pylint",
       version: "4.0.6-unstable-2026-07-14",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pylint-dev",
           repo: "pylint",
           rev: "5f7e4013c004324f11eac6f310d932f505272e28",
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         "test_functional_relation_extraction",
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["test_do_not_import_files_from_local_directory"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_parallel_execution", "test_py3k_jobs_option"]))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bug and style checker for Python",
         homepage: "https://pylint.readthedocs.io/en/stable/",
         longDescription: "Pylint is a Python static code analysis tool which looks for programming errors,\nhelps enforcing a coding standard, sniffs for code smells and offers simple\nrefactoring suggestions.\nPylint is shipped with following additional commands:\n- pyreverse: an UML diagram generator\n- symilar: an independent similarities checker\n- epylint: Emacs and Flymake compatible Pylint\n",

@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const imagemagick = nix.arg($, "imagemagick");
   const platforms = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "x86_64-linux": "linux_x86_64",
     "i686-linux": "linux_x86",
     "aarch64-linux": "linux_arm64",
@@ -37,16 +37,16 @@ export default nix.lambda((args) => (() => {
   }));
   const bindir = nix.thunk(() => nix.selOr(platforms, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.str`${nix.sel(stdenv, "hostPlatform", "system")}`)));
   const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: "https://warmplace.ru/soft/sunvox/images/icon.png",
       hash: "sha256-ld2GCOhBhMThuUYBNa+2iTdY2HsYBRyApWiHTPuVgKA=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "sunvox",
       version: "2.1.4d",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://www.warmplace.ru/soft/sunvox/sunvox-${nix.sel(finalAttrs, "version")}.zip`),
             nix.thunk(() => nix.str`https://web.archive.org/web/20260501043715/https://www.warmplace.ru/soft/sunvox/sunvox-${nix.sel(finalAttrs, "version")}.zip`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       runtimeDependencies: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libjack2]))),
       desktopItems: nix.thunk(() => (() => {
         const sunvoxDesktop = (variant) => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: nix.thunk(() => nix.add("sunvox", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(variant, null)), nix.thunk(() => nix.str`-${nix.app(nix.sel(lib, "strings", "toLower"), variant)}`)))),
             exec: nix.thunk(() => nix.add("sunvox", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(variant, null)), nix.thunk(() => nix.str`_${nix.app(nix.sel(lib, "strings", "toLower"), variant)}`)))),
             desktopName: nix.thunk(() => nix.add("SunVox", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(variant, null)), nix.thunk(() => nix.str` (${variant})`)))),
@@ -102,7 +102,7 @@ ln -s $out/share/sunvox/sunvox/${bindir}/reset_sunvox $out/bin/
 makeWrapper $out/Applications/SunVox.app/Contents/MacOS/SunVox $out/bin/sunvox
 `))), "\nrunHook postInstall\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Small, fast and powerful modular synthesizer with pattern-based sequencer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
         sourceProvenance: nix.thunk(() => (() => {

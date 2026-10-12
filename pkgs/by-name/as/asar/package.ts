@@ -18,24 +18,24 @@ export default nix.lambda((args) => (() => {
   const yarnInstallHook = nix.arg($, "yarnInstallHook");
   const nodejs = nix.arg($, "nodejs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "asar",
       version: "3.2.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "electron",
           repo: "asar",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-12FP8VRDo1PQ+tiN4zhzkcfAx9zFs/0MU03t/vFo074=",
         })))),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: "sha256-/fV3hd98pl46+fgmiMH9sDQrrZgdLY1oF9c3TaIxRSg=",
         })))),
       nativeBuildInputs: nix.thunk(() => [yarnConfigHook, yarnInstallHook, nodejs]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simple extensive tar-like archive format with indexing",
         homepage: "https://github.com/electron/asar",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

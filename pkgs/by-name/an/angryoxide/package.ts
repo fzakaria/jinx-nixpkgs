@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const wayland = nix.arg($, "wayland");
   const libwifi = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "Ragnt",
       repo: "libwifi",
       rev: "71268e1898ad88b8b5d709e186836db417b33e81",
       hash: "sha256-2X/TZyLX9Tb54c6Sdla4bsWdq05NU72MVSuPvNfxySk=",
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "angryoxide",
       version: "0.9.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "Ragnt",
           repo: "AngryOxide",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ ln -s ${libwifi} libs/libwifi
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libxkbcommon, sqlite, wayland, zlib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "802.11 Attack Tool",
         changelog: nix.thunk(() => nix.str`https://github.com/Ragnt/AngryOxide/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         homepage: "https://github.com/Ragnt/AngryOxide/",

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const git = nix.arg($, "git");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fac",
       version: "2.0.0-unstable-2023-12-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mkchoi212",
           repo: "fac",
           rev: "d232b05149564701ca3a21cd1a07be2540266cb2",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
 installManPage assets/doc/fac.1
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/mkchoi212/fac/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "CUI for fixing git conflicts",
         homepage: "https://github.com/mkchoi212/fac",

@@ -19,41 +19,41 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(gcc14Stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "miranda",
       version: "2.066",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.cs.kent.ac.uk/people/staff/dat/miranda/src/mira-${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}-src.tgz`),
           sha256: "KE/FTL9YW9l7VBAgkFZlqgSM1Bt/BXT6GkkONtyKJjQ=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-makefile-variables.patch",
             url: "https://github.com/jtojnar/miranda/commit/be62d2150725a4c314aa7e3e1e75a165c90be65d.patch",
             sha256: "0r8nnr7iyzp1a3w3n6y1xi0ralqhm1ifp75yhyj3h1g229vk51a6",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "add-mkdirs-makefile.patch",
             url: "https://github.com/jtojnar/miranda/commit/048754606625975d5358e946549c41ae7b5d3428.patch",
             sha256: "1n8xv679i7s789km2dxxrs2pphyyi7vr7rhafqvmkcdmhmxk9h2a",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "c-path-fixes.patch",
             url: "https://github.com/jtojnar/miranda/commit/aea0a118a802a0da6029b781f7cfd388224263cf.patch",
             sha256: "1z3giv8fzc35a23ga9ahz9d1fbvya67kavnb8h4rv2icbzr5j5gd",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "deterministic-build.patch",
             url: "https://github.com/jtojnar/miranda/commit/daf8abb8f30ec1cca21698e3fc355578b9f7c571.patch",
             sha256: "TC/YrHrMzdlwicJ3oJ/TjwhkufmV3ypemgyqhMmVut4=",
           })))),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$6, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$6, NIX_CFLAGS_COMPILE: "-fcommon" })),
       makeFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`CC=${nix.sel(gcc14Stdenv, "cc", "targetPrefix")}cc`),
         "CFLAGS=-O2",
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
 substituteInPlace Makefile --replace strip '${nix.sel(gcc14Stdenv, "cc", "targetPrefix")}strip'
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Compiler for Miranda -- a pure, non-strict, polymorphic, higher order functional programming language",
         homepage: "https://www.cs.kent.ac.uk/people/staff/dat/miranda/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const wrapQtAppsHook = nix.arg($, "wrapQtAppsHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "qt6ct",
       version: "0.11",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "www.opencode.net",
           owner: "trialuser",
           repo: "qt6ct",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "PLUGINDIR", nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/${nix.sel(qtbase, "qtPluginPrefix")}`))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Qt6 Configuration Tool",
         homepage: "https://www.opencode.net/trialuser/qt6ct",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

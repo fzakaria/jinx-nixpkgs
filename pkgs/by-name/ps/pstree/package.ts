@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pstree";
       const version = "2.39";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://distfiles.macports.org/${pname}/${pname}-${version}.tar.gz`),
             nix.thunk(() => nix.str`https://fossies.org/linux/misc/${pname}-${version}.tar.gz`),
@@ -32,7 +32,7 @@ install -Dm0444 ${pname}.1 -t $out/share/man/man1
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Show the set of running processes as a tree",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
         maintainers: [],
@@ -41,7 +41,7 @@ runHook postInstall
         mainProgram: "pstree",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const qtdeclarative = nix.arg($, "qtdeclarative");
   const spirv_tools = nix.arg($, "spirv-tools");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kdeclarative",
       extraNativeBuildInputs: nix.thunk(() => [spirv_tools]),
       extraBuildInputs: nix.thunk(() => [qtdeclarative]),

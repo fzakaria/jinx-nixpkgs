@@ -13,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.thunk(() => nix.attr(ocamlPackages, "buildDunePackage"));
   const libabsolute = nix.thunk(() => nix.attr(ocamlPackages, "libabsolute"));
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "absolute",
       src: nix.thunk(() => nix.attr(libabsolute, "src")),
       version: nix.thunk(() => nix.attr(libabsolute, "version")),
       __structuredAttrs: true,
       buildInputs: nix.thunk(() => [libabsolute]),
       meta: nix.thunk(() => nix.update(nix.sel(libabsolute, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "A constraint solver based on abstract domains from the theory of abstract interpretation",
       })),
     })));

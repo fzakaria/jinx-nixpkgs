@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.28.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CabbageDevelopment",
           repo: "qasync",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,17 +32,17 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [uv_build]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pyqt6]);
       const pythonImportsCheck = nix.thunk(() => ["qasync"]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, QT_QPA_PLATFORM: "offscreen" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, QT_QPA_PLATFORM: "offscreen" }));
       const disabledTests = nix.thunk(() => ["test_no_stale_reference_as_argument", "test_no_stale_reference_as_result"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Allows coroutines to be used in PyQt/PySide applications by providing an implementation of the PEP 3156 event-loop",
         homepage: "https://github.com/CabbageDevelopment/qasync",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

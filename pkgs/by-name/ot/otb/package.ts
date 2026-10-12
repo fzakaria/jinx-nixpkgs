@@ -63,21 +63,21 @@ export default nix.lambda((args) => (() => {
   const itkDepsToRemove = nix.thunk(() => nix.concat(["gdcm", "libminc"], nix.app(optionals, nix.thunk(() => !nix.asBool(enableFFTW)), nix.thunk(() => ["fftw"]))));
   const itkIsInDepsToRemove = (dep) => nix.builtins.elem(nix.thunk(() => nix.sel(dep, "name")), itkDepsToRemove);
   const otbSwig = nix.thunk(() => nix.app(nix.sel(swig, "overrideAttrs"), (oldArgs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "4.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "swig",
           repo: "swig",
           tag: "v4.2.1",
           hash: "sha256-VlUsiRZLScmbC7hZDzKqUr9481YXVwo0eXT/jy6Fda8=",
         })))),
     })));
-  const otb_itk = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(itk, "override"), nix.thunk(() => ({ __proto__: pos$3, enableRtk: false }))), "overrideAttrs"), (oldArgs) => ({
-      __proto__: pos$6,
+  const otb_itk = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(itk, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, enableRtk: false }))), "overrideAttrs"), (oldArgs) => ({
+      [nix.POS]: pos$6,
       version: itkVersion,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "InsightSoftwareConsortium",
           repo: "ITK",
           tag: nix.thunk(() => nix.str`v${itkVersion}`),
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./itk-1-fftw-all.diff"),
         nix.path(here, "./itk-2-totalprogress-all.diff"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "fix-gcc13-build",
             url: "https://github.com/InsightSoftwareConsortium/ITK/commit/9a719a0d2f5f489eeb9351b0ef913c3693147a4f.patch",
             hash: "sha256-dDyqYOzo91afR8W7k2N64X6l7t6Ws1C9iuRkWHUe0fg=",
@@ -184,13 +184,13 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat(nix.selOr(oldArgs, () => [], "buildInputs"), [eigen])),
       propagatedBuildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "lists", "filter"), (pkg) => !nix.asBool(nix.app(itkIsInDepsToRemove, pkg)), nix.thunk(() => nix.selOr(oldArgs, () => [], "propagatedBuildInputs"))), nix.app(nix.sel(lib, "optionals"), enableFFTW, nix.thunk(() => [fftwFloat])))),
     })));
-  const otb_shark = nix.thunk(() => nix.app(nix.sel(shark, "override"), nix.thunk(() => ({ __proto__: pos$7, enableOpenMP: enableOpenMP }))));
+  const otb_shark = nix.thunk(() => nix.app(nix.sel(shark, "override"), nix.thunk(() => ({ [nix.POS]: pos$7, enableOpenMP: enableOpenMP }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "otb",
       version: "10.0-unstable-2025-12-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           owner: "orfeotoolbox",
           repo: "otb",
           rev: "2dd72c102a0a95794c0cc3e7da1843bc67537f6e",
@@ -237,7 +237,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       postInstall: "wrapProgram $out/bin/otbcli \\\n  --set OTB_INSTALL_DIR \"$out\" \\\n  --set OTB_APPLICATION_PATH \"$out/lib/otb/applications\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Open Source processing of remote sensing images",
         homepage: "https://www.orfeo-toolbox.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

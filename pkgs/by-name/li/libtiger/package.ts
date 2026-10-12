@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pango = nix.arg($, "pango");
   const cairo = nix.arg($, "cairo");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libtiger",
       version: "0.3.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/libtiger/libtiger-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0rj1bmr9kngrgbxrjbn4f4f9pww0wmf6viflinq7ava7zdav4hkk",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => [libkate, pango, cairo]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://code.google.com/archive/p/libtiger/",
         description: "Rendering library for Kate streams using Pango and Cairo",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

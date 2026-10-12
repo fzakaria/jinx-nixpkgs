@@ -87,59 +87,59 @@ export default nix.lambda((args) => (() => {
   const kbdcompSupport = nix.argOr($, "kbdcompSupport", () => nix.force(corebootSupport));
   const ckbcomp = nix.arg($, "ckbcomp");
   const pcSystems = nix.thunk(() => ({
-    __proto__: pos$3,
-    "i686-linux": nix.thunk(() => ({ __proto__: pos$1, target: "i386" })),
-    "x86_64-linux": nix.thunk(() => ({ __proto__: pos$2, target: "i386" })),
+    [nix.POS]: pos$3,
+    "i686-linux": nix.thunk(() => ({ [nix.POS]: pos$1, target: "i386" })),
+    "x86_64-linux": nix.thunk(() => ({ [nix.POS]: pos$2, target: "i386" })),
   }));
   const corebootSystemsBuild = nix.thunk(() => ({
-    __proto__: pos$6,
-    "i686-linux": nix.thunk(() => ({ __proto__: pos$4, target: "i386" })),
-    "x86_64-linux": nix.thunk(() => ({ __proto__: pos$5, target: "i386" })),
+    [nix.POS]: pos$6,
+    "i686-linux": nix.thunk(() => ({ [nix.POS]: pos$4, target: "i386" })),
+    "x86_64-linux": nix.thunk(() => ({ [nix.POS]: pos$5, target: "i386" })),
   }));
   const efiSystemsBuild = nix.thunk(() => ({
-    __proto__: pos$14,
-    "i686-linux": nix.thunk(() => ({ __proto__: pos$7, target: "i386" })),
-    "x86_64-linux": nix.thunk(() => ({ __proto__: pos$8, target: "x86_64" })),
-    "armv7l-linux": nix.thunk(() => ({ __proto__: pos$9, target: "arm" })),
-    "aarch64-linux": nix.thunk(() => ({ __proto__: pos$10, target: "aarch64" })),
-    "loongarch64-linux": nix.thunk(() => ({ __proto__: pos$11, target: "loongarch64" })),
-    "riscv32-linux": nix.thunk(() => ({ __proto__: pos$12, target: "riscv32" })),
-    "riscv64-linux": nix.thunk(() => ({ __proto__: pos$13, target: "riscv64" })),
+    [nix.POS]: pos$14,
+    "i686-linux": nix.thunk(() => ({ [nix.POS]: pos$7, target: "i386" })),
+    "x86_64-linux": nix.thunk(() => ({ [nix.POS]: pos$8, target: "x86_64" })),
+    "armv7l-linux": nix.thunk(() => ({ [nix.POS]: pos$9, target: "arm" })),
+    "aarch64-linux": nix.thunk(() => ({ [nix.POS]: pos$10, target: "aarch64" })),
+    "loongarch64-linux": nix.thunk(() => ({ [nix.POS]: pos$11, target: "loongarch64" })),
+    "riscv32-linux": nix.thunk(() => ({ [nix.POS]: pos$12, target: "riscv32" })),
+    "riscv64-linux": nix.thunk(() => ({ [nix.POS]: pos$13, target: "riscv64" })),
   }));
   const efiSystemsInstall = nix.thunk(() => ({
-    __proto__: pos$22,
-    "i686-linux": nix.thunk(() => ({ __proto__: pos$15, target: "i386" })),
-    "x86_64-linux": nix.thunk(() => ({ __proto__: pos$16, target: "x86_64" })),
-    "armv7l-linux": nix.thunk(() => ({ __proto__: pos$17, target: "arm" })),
-    "aarch64-linux": nix.thunk(() => ({ __proto__: pos$18, target: "arm64" })),
-    "loongarch64-linux": nix.thunk(() => ({ __proto__: pos$19, target: "loongarch64" })),
-    "riscv32-linux": nix.thunk(() => ({ __proto__: pos$20, target: "riscv32" })),
-    "riscv64-linux": nix.thunk(() => ({ __proto__: pos$21, target: "riscv64" })),
+    [nix.POS]: pos$22,
+    "i686-linux": nix.thunk(() => ({ [nix.POS]: pos$15, target: "i386" })),
+    "x86_64-linux": nix.thunk(() => ({ [nix.POS]: pos$16, target: "x86_64" })),
+    "armv7l-linux": nix.thunk(() => ({ [nix.POS]: pos$17, target: "arm" })),
+    "aarch64-linux": nix.thunk(() => ({ [nix.POS]: pos$18, target: "arm64" })),
+    "loongarch64-linux": nix.thunk(() => ({ [nix.POS]: pos$19, target: "loongarch64" })),
+    "riscv32-linux": nix.thunk(() => ({ [nix.POS]: pos$20, target: "riscv32" })),
+    "riscv64-linux": nix.thunk(() => ({ [nix.POS]: pos$21, target: "riscv64" })),
   }));
   const ieee1275SystemsBuild = nix.thunk(() => ({
-    __proto__: pos$25,
-    "x86_64-linux": nix.thunk(() => ({ __proto__: pos$23, target: "i386" })),
-    "powerpc64-linux": nix.thunk(() => ({ __proto__: pos$24, target: "powerpc" })),
+    [nix.POS]: pos$25,
+    "x86_64-linux": nix.thunk(() => ({ [nix.POS]: pos$23, target: "i386" })),
+    "powerpc64-linux": nix.thunk(() => ({ [nix.POS]: pos$24, target: "powerpc" })),
   }));
   const xenSystemsBuild = nix.thunk(() => ({
-    __proto__: pos$28,
-    "i686-linux": nix.thunk(() => ({ __proto__: pos$26, target: "i386" })),
-    "x86_64-linux": nix.thunk(() => ({ __proto__: pos$27, target: "x86_64" })),
+    [nix.POS]: pos$28,
+    "i686-linux": nix.thunk(() => ({ [nix.POS]: pos$26, target: "i386" })),
+    "x86_64-linux": nix.thunk(() => ({ [nix.POS]: pos$27, target: "x86_64" })),
   }));
   const xenPvhSystemsBuild = nix.thunk(() => ({
-    __proto__: pos$31,
-    "i686-linux": nix.thunk(() => ({ __proto__: pos$29, target: "i386" })),
-    "x86_64-linux": nix.thunk(() => ({ __proto__: pos$30, target: "i386" })),
+    [nix.POS]: pos$31,
+    "i686-linux": nix.thunk(() => ({ [nix.POS]: pos$29, target: "i386" })),
+    "x86_64-linux": nix.thunk(() => ({ [nix.POS]: pos$30, target: "i386" })),
   }));
   const inPCSystems = nix.thunk(() => nix.app(nix.sel(lib, "any"), (system) => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), system), nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), pcSystems))));
   const gnulib = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       url: "https://https.git.savannah.gnu.org/git/gnulib.git",
       rev: "9f48fb992a3d7e96610c4ce8be969cff2d61a01b",
       hash: "sha256-mzbF66SNqcSlI+xmjpKpNMwzi13yEWoc1Fl7p4snTto=",
     }))));
   const locales = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$33,
+      [nix.POS]: pos$33,
       url: nix.thunk(() => nix.str`mirror://gnu/grub/grub-${version}.tar.gz`),
       hash: "sha256-NUlE6l8Ul3i1Si9mZgND6lnvFqc74EGptHV2iCtu+As=",
     }))));
@@ -150,7 +150,7 @@ export default nix.lambda((args) => (() => {
       const pname = "grub";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           url: "https://gitlab.freedesktop.org/gnu-grub/grub.git",
           tag: nix.thunk(() => nix.str`grub-${version_1}`),
           hash: "sha256-Gkpde5CeJOQ+0p5WGwXZ2P881jxrWkuFw3Fh4lul/so=",
@@ -162,19 +162,19 @@ export default nix.lambda((args) => (() => {
           nix.path(here, "./add-hidden-menu-entries.patch"),
           nix.path(here, "./bootstrap-po-downloads.patch"),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               name: "02_fix_msmerge.patch",
               url: nix.thunk(() => nix.app(grubPatch, "c2a215245e2e7d61da4f41945222bd761679ae11")),
               hash: "sha256-vBCDej/5DVX1NQMR05kNunxbmfyKywyYQtu4tg3Q2Cs=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               name: "01_fix_kernel-img_load_offset.patch",
               url: nix.thunk(() => nix.app(grubPatch, "1dc2986c7e8480d955f87d276d31400116a21fac")),
               hash: "sha256-T1V7Rklc7RNsKTwk2gLoWHxoXUlCM0/mxcnymqUcyRg=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               name: "gcc16_make_regparm_attribute_more_conditional.patch",
               url: nix.thunk(() => nix.app(grubPatch, "9922ed133c2c754ec9f37198da2b3e3e8a4fd5ff")),
               hash: "sha256-V2vffDxL/qQ14YN5scc3CFPBFBWvkh57dc5/hWd/6F4=",
@@ -209,7 +209,7 @@ fi
       ]);
       const buildInputs = nix.thunk(() => nix.concat([ncurses, libusb_compat_0_1, freetype, lvm2, fuse3, xz, libtool, bash], nix.concat(nix.app(nix.sel(lib, "optional"), doCheck, qemu), nix.app(nix.sel(lib, "optional"), zfsSupport, zfs))));
       const strictDeps = true;
-      const env = nix.thunk(() => ({ __proto__: pos$38, NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$38, NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" }));
       const hardeningDisable = nix.thunk(() => ["all"]);
       const separateDebugInfo = nix.thunk(() => !nix.asBool(xenSupport));
       const preConfigure = nix.thunk(() => nix.add(nix.str`# Trust me, it's NEVER missing.
@@ -271,9 +271,9 @@ substituteInPlace ./configure --replace-fail '/usr/share/fonts' '${unifont}/shar
       const enableParallelBuilding = true;
       const postInstall = "# We have to do this or else closure size balloons up\n\npatchShebangs $out/lib/grub/*/modinfo.sh\nsed -i $out/lib/grub/*/modinfo.sh -e \"/grub_target_cppflags=/ s|'.*'|' '|\"\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$40,
+        [nix.POS]: pos$40,
         tests: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           "nixos-grub": nix.thunk(() => nix.sel(nixosTests, "grub")),
           "nixos-install-simple": nix.thunk(() => nix.sel(nixosTests, "installer", "simple")),
           "nixos-install-grub-uefi": nix.thunk(() => nix.sel(nixosTests, "installer", "simpleUefiGrub")),
@@ -281,7 +281,7 @@ substituteInPlace ./configure --replace-fail '/usr/share/fonts' '${unifont}/shar
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$41,
+        [nix.POS]: pos$41,
         description: "GNU GRUB, the Grand Unified Boot Loader",
         longDescription: "GNU GRUB is a Multiboot boot loader. It was derived from GRUB, GRand\nUnified Bootloader, which was originally designed and implemented by\nErich Stefan Boleyn.\n\nBriefly, the boot loader is the first software program that runs when a\ncomputer starts.  It is responsible for loading and transferring\ncontrol to the operating system kernel software (such as the Hurd or\nthe Linux).  The kernel, in turn, initializes the rest of the\noperating system (e.g., GNU).\n",
         homepage: "https://www.gnu.org/software/grub/",
@@ -290,7 +290,7 @@ substituteInPlace ./configure --replace-fail '/usr/share/fonts' '${unifont}/shar
         maintainers: [],
       }));
       return {
-        __proto__: pos$42,
+        [nix.POS]: pos$42,
         pname,
         version: version_1,
         src,

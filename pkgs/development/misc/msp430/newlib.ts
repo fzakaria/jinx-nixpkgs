@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const newlib = nix.arg($, "newlib");
   const msp430GccSupport = nix.arg($, "msp430GccSupport");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.str`msp430-${nix.sel(newlib, "pname")}`),
       version: nix.thunk(() => nix.attr(newlib, "version")),
       newlib: newlib,
@@ -27,11 +27,11 @@ ${lndir}/bin/lndir -silent $msp430GccSupport/include $out/${nix.sel(newlib, "inc
 ${lndir}/bin/lndir -silent $msp430GccSupport/lib $out/${nix.sel(newlib, "libdir")}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         incdir: nix.thunk(() => nix.attr(newlib, "incdir")),
         libdir: nix.thunk(() => nix.attr(newlib, "libdir")),
       })),
-      meta: nix.thunk(() => ({ __proto__: pos$2, platforms: nix.thunk(() => ["msp430-none"]) })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$2, platforms: nix.thunk(() => ["msp430-none"]) })),
     })));
 })(), formals$1);
 //# sourceMappingURL=newlib.ts.map

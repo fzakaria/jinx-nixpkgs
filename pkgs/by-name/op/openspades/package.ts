@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.3";
       const devPakVersion = "33";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "yvt",
           repo: "openspades",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -61,27 +61,27 @@ export default nix.lambda((args) => (() => {
       ]);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/yvt/openspades/commit/2d13704fefc475b279337e89057b117f711a35d4.diff",
             sha256: "1i7rcpjzkjhbv5pp6byzrxv7sb1iamqq5k1vyqlvkbr38k2dz0rv",
           })))),
       ]);
       const cmakeFlags = nix.thunk(() => ["-DOPENSPADES_INSTALL_BINARY=bin"]);
       const devPak = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://github.com/yvt/openspades-paks/releases/download/r${devPakVersion}/OpenSpadesDevPackage-r${devPakVersion}.zip`),
           sha256: "1bd2fyn7mlxa3xnsvzj08xjzw02baimqvmnix07blfhb78rdq9q9",
         }))));
       const notoFont = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           url: "https://github.com/yvt/openspades/releases/download/v0.1.1b/NotoFonts.pak",
           sha256: "0kaz8j85wjjnf18z0lz69xr1z8makg30jn2dzdyicd1asrj0q1jm",
         }))));
       const postPatch = "sed -i 's,^wget .*,cp $devPak \"$PAK_NAME\",' Resources/downloadpak.sh\npatchShebangs Resources\n\nsubstituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.8)\" \"cmake_minimum_required(VERSION 3.10)\" \\\n  --replace-fail \"cmake_policy(SET CMP0054 OLD)\" \"\"\nsubstituteInPlace Sources/AngelScript/projects/{cmake,cmake_addons}/CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.6)\" \"cmake_minimum_required(VERSION 3.10)\"\n";
       const postInstall = "cp $notoFont $out/share/games/openspades/Resources/\n";
-      const env = nix.thunk(() => ({ __proto__: pos$5, NIX_CFLAGS_LINK: "-lopenal" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$5, NIX_CFLAGS_LINK: "-lopenal" }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Compatible client of Ace of Spades 0.75",
         mainProgram: "openspades",
         homepage: "https://github.com/yvt/openspades/",
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) || nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))))),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         devPakVersion,

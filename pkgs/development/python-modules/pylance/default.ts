@@ -35,13 +35,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const tqdm = nix.arg($, "tqdm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pylance",
       version: "12.0.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lancedb",
           repo: "lance",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/python`),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openssl, protobuf]),
       pythonRelaxDeps: nix.thunk(() => ["lance-namespace", "pyarrow"]),
       dependencies: nix.thunk(() => [lance_namespace, numpy, pyarrow]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$3, torch: nix.thunk(() => [torch]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$3, torch: nix.thunk(() => [torch]) })),
       pythonImportsCheck: nix.thunk(() => ["lance"]),
       nativeCheckInputs: nix.thunk(() => nix.concat([
         datafusion,
@@ -117,7 +117,7 @@ export default nix.lambda((args) => (() => {
         ])))))),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python wrapper for Lance columnar format",
         homepage: "https://github.com/lancedb/lance",
         changelog: nix.thunk(() => nix.str`https://github.com/lancedb/lance/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const hash = nix.arg($, "hash");
   const metaCommon = nix.argOr($, "metaCommon", () => ({}));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mifi/lossless-cut/releases/download/v${version}/LosslessCut-win-x64.7z`),
           hash: hash,
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: "LosslessCut-win-x64",
       installPhase: "runHook preInstall\nmkdir -p \"$out/bin\" \"$out/libexec\"\ncd ..\nmv \"$sourceRoot\" \"$out/libexec\"\nln -s \"$out/libexec/$(basename \"$sourceRoot\")/LosslessCut.exe\" \"$out/bin/LosslessCut.exe\"\nrunHook postInstall\n",
       meta: nix.thunk(() => nix.update(metaCommon, {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "windows")),
         mainProgram: "LosslessCut.exe",
       })),

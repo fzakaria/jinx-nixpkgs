@@ -29,25 +29,25 @@ export default nix.lambda((args) => (() => {
   const yarnConfigHook = nix.arg($, "yarnConfigHook");
   const yarnInstallHook = nix.arg($, "yarnInstallHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "sylk",
       version: "3.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AGProjects",
           repo: "sylk-webrtc",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-AJbZDAEqGfVPuo+My8wxfFWVPelO6XK2pKsglmLyRTw=",
         })))),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/yarn.lock")),
           hash: "sha256-VY97NPnT1225l6SLyTI3qITBGF7rqE5xz6UVVucblcU=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         appOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/app/yarn.lock")),
             hash: "sha256-S9L/rveTuXF2vSqSDu+NlV5vP5f28lda/KMGU8iS1Zo=",
           })))),
@@ -112,7 +112,7 @@ done;
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "sylk",
             exec: "sylk",
             desktopName: "Sylk",
@@ -124,7 +124,7 @@ done;
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Desktop client for SylkServer, a multiparty conferencing tool",
         homepage: "https://sylkserver.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mmdbinspect",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "maxmind",
           repo: "mmdbinspect",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-qQTllOx1GRKven+zItnU9Uf0l9HfRt5b6YkloJSrDKk=",
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Look up records for one or more IPs/networks in one or more .mmdb databases",
         homepage: "https://github.com/maxmind/mmdbinspect",
         changelog: nix.thunk(() => nix.str`https://github.com/maxmind/mmdbinspect/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

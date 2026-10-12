@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.4";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "repology",
           repo: "py-libversion",
           rev: version,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "# import from $out\nrm -r libversion\n";
       const pythonImportsCheck = nix.thunk(() => ["libversion"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python bindings for libversion, which provides fast, powerful and correct generic version string comparison algorithm",
         homepage: "https://github.com/repology/py-libversion",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     imports: nix.thunk(() => [nix.path(here, "../../profiles/base.nix"), nix.path(here, "./sd-image.nix")]),
     boot: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       loader: nix.thunk(() => ({
-        __proto__: pos$3,
-        grub: nix.thunk(() => ({ __proto__: pos$1, enable: false })),
-        "generic-extlinux-compatible": nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+        [nix.POS]: pos$3,
+        grub: nix.thunk(() => ({ [nix.POS]: pos$1, enable: false })),
+        "generic-extlinux-compatible": nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
       })),
       consoleLogLevel: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 7n)),
       kernelPackages: nix.thunk(() => nix.sel(pkgs, "linuxPackages_latest")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     sdImage: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       populateFirmwareCommands: nix.thunk(() => (() => {
         const configTxt = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "config.txt", "# Prevent the firmware from smashing the framebuffer setup done by the mainline kernel\n# when attempting to show low-voltage or overtemperature warnings.\navoid_warnings=1\n\n[pi2]\nkernel=u-boot-rpi2.bin\n\n[pi3]\nkernel=u-boot-rpi3.bin\n\n# U-Boot used to need this to work, regardless of whether UART is actually used or not.\n# TODO: check when/if this can be removed.\nenable_uart=1\n"));
         return nix.str`(cd ${nix.sel(pkgs, "raspberrypifw")}/share/raspberrypi/boot && cp bootcode.bin fixup*.dat start*.elf $NIX_BUILD_TOP/firmware/)

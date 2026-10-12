@@ -38,16 +38,16 @@ export default nix.lambda((args) => (() => {
     "livegrep-reload",
   ]);
   const registry = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "bazelbuild",
       repo: "bazel-central-registry",
       rev: "0f256a72067e42d62bb568cc2619f98deed139e2",
       hash: "sha256-OcMLg0KiAQOJZLH8r+QkeQ9bxcEc4L0dCgyUv5PkLQk=",
     }))));
   const rules_js = nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "aspect-build",
           repo: "rules_js",
           rev: "v2.4.0",
@@ -57,24 +57,24 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs --build \\\n  npm/private/lifecycle/bundle.sh \\\n  npm/private/lifecycle/min/node-gyp-bin/node-gyp \\\n  npm/private/noop.sh \\\n  npm/private/versions_mirror.sh \\\n  js/private/node_wrapper.sh \\\n  js/private/npm_wrapper.sh\n\nsubstituteInPlace \\\n  npm/private/utils.bzl \\\n  npm/private/lifecycle/lifecycle-hooks.js \\\n  npm/private/lifecycle/min/index.min.js \\\n  js/private/js_binary.sh.tpl \\\n  --replace-fail '#!/usr/bin/env bash' \"#!$(type -p bash)\"\n",
     }))));
   const bazelDepsHashByBuildAndHost = nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       "x86_64-linux": "sha256-PastkoOioWqlmGFHZiZ2S1ahWZu1UBhqHIfD2M/ff6A=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       "aarch64-linux": "sha256-mNWnpmk/dNQYKnP3YbfK5ott0+41I+49aH6RhWEMOGM=",
     })),
   }));
   const bazelDepsHashByHost = nix.thunk(() => nix.selOr(bazelDepsHashByBuildAndHost, () => ({}), nix.key(nix.sel(stdenv, "buildPlatform", "system"))));
   const bazelDepsHash = nix.thunk(() => nix.selOr(bazelDepsHashByHost, () => "", nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(buildBazelPackage, nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       pname: "livegrep",
       version: "2026-02-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           owner: "livegrep",
           repo: "livegrep",
           rev: "923d5ad71dfe60900e6c2017b2fa4a5ff902ad71",
@@ -87,9 +87,9 @@ export default nix.lambda((args) => (() => {
 substituteInPlace MODULE.bazel --subst-var-by rules_js "${rules_js}"
 `),
       bazelFlags: nix.thunk(() => ["--registry", nix.thunk(() => nix.str`file://${registry}`)]),
-      env: nix.thunk(() => nix.update({ __proto__: pos$8, NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ __proto__: pos$9, LIBTOOL: nix.thunk(() => nix.str`${cctools}/bin/libtool`) }))))),
+      env: nix.thunk(() => nix.update({ [nix.POS]: pos$8, NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$9, LIBTOOL: nix.thunk(() => nix.str`${cctools}/bin/libtool`) }))))),
       fetchAttrs: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         preInstall: "# Avoid bash and $out store paths leaking into the fixed-output derivation\nrm $bazelOut/external/aspect_rules_js~~npm~npm/_exists.sh\nrm -r $bazelOut/external/rules_shell~~sh_configure~local_config_shell\n\n# Remove some non-reproducible and unused files\nrm -r $bazelOut/external/gazelle~~non_module_deps~bazel_gazelle_go_repository_cache\nrm -r $bazelOut/external/gazelle~~non_module_deps~bazel_gazelle_go_repository_tools\n",
         hash: bazelDepsHash,
       })),
@@ -97,7 +97,7 @@ substituteInPlace MODULE.bazel --subst-var-by rules_js "${rules_js}"
       bazelBuildFlags: nix.thunk(() => ["-c opt"]),
       bazelTargets: nix.thunk(() => nix.concat(nix.builtins.map((tool) => nix.str`//src/tools:${tool}`, cc_tools), nix.builtins.map((tool) => nix.str`//cmd/${tool}`, go_tools))),
       buildAttrs: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         installPhase: nix.thunk(() => nix.str`pushd "bazel-bin/src/tools"
 install -Dt "$out/bin" ${nix.builtins.toString(cc_tools)}
 popd
@@ -111,14 +111,14 @@ cp -Lr "bazel-bin/cmd/livegrep/livegrep_/livegrep.runfiles/_main/web" "$out/bin/
 `),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         rules_js: rules_js,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       strictDeps: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         description: "Livegrep is a tool, partially inspired by Google Code Search, for interactive regex search of ~gigabyte-scale source repositories.",
         homepage: "http://livegrep.com/",
         downloadPage: "https://github.com/livegrep/livegrep",

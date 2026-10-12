@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const yojson = nix.arg($, "yojson");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "atd",
       version: nix.thunk(() => nix.attr(atdgen_codec_runtime, "version")),
       src: nix.thunk(() => nix.attr(atdgen_codec_runtime, "src")),
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [cmdliner]),
       propagatedBuildInputs: nix.thunk(() => [easy_format, re, yojson]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
-        tests: nix.thunk(() => ({ __proto__: pos$1, "smoke-test": nix.thunk(() => nix.sel(nixosTests, "atd")) })),
+        [nix.POS]: pos$2,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$1, "smoke-test": nix.thunk(() => nix.sel(nixosTests, "atd")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Syntax for cross-language type definitions",
         homepage: "https://github.com/mjambon/atd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -22,14 +22,14 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const version = "0.26.1";
   const gitSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "glasskube",
       repo: "glasskube",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-M/7qfr4gpogx7cr7zh/MARZME3/4ePjVUVcjG85Ona0=",
     }))));
   const web_bundle = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: version,
       pname: "glasskube-web-bundle",
       src: gitSrc,
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const pname = "glasskube";
       const src = gitSrc;
       const vendorHash = "sha256-0cTW01f9yputdqLvpfISaS50Jeolh12OTP+NjsgXncA=";
-      const env = nix.thunk(() => ({ __proto__: pos$3, CGO_ENABLED: 0n }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$3, CGO_ENABLED: 0n }));
       const ldflags = nix.thunk(() => [
         "-s",
         "-w",
@@ -57,11 +57,11 @@ export default nix.lambda((args) => (() => {
 `);
       const postInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "# Completions\ninstallShellCompletion --cmd glasskube \\\n  --bash <($out/bin/glasskube completion bash) \\\n  --fish <($out/bin/glasskube completion fish) \\\n  --zsh <($out/bin/glasskube completion zsh)\n"));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Missing Package Manager for Kubernetes featuring a GUI and a CLI",
         homepage: "https://github.com/glasskube/glasskube",
         changelog: nix.thunk(() => nix.str`https://github.com/glasskube/glasskube/releases/tag/v${version_1}`),
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "glasskube",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         version: version_1,
         pname,
         src,

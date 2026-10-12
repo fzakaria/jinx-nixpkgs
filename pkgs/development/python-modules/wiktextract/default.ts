@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const wikitextprocessor = nix.arg($, "wikitextprocessor");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "wiktextract",
       version: "1.99.7-unstable-2026-03-26",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tatuylonen",
           repo: "wiktextract",
           rev: "f47b8fc87a0e17f4dcca68f534e73f4c6fa8e8e7",
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["wiktextract"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Wiktionary dump file parser and multilingual data extractor",
         homepage: "https://github.com/tatuylonen/wiktextract",
         license: nix.thunk(() => (() => {

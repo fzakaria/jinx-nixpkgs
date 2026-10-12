@@ -108,27 +108,27 @@ const pos$103 = nix.positions(here + "/providers.nix", [["deps", 1201, 5], ["imp
 const pos$104 = nix.positions(here + "/providers.nix", [["airbyte", 3, 3], ["akeyless", 12, 3], ["alibaba", 21, 3], ["amazon", 30, 3], ["apache_beam", 56, 3], ["apache_cassandra", 69, 3], ["apache_drill", 78, 3], ["apache_druid", 87, 3], ["apache_flink", 96, 3], ["apache_hdfs", 105, 3], ["apache_hive", 118, 3], ["apache_iceberg", 132, 3], ["apache_impala", 141, 3], ["apache_kafka", 153, 3], ["apache_kylin", 165, 3], ["apache_livy", 174, 3], ["apache_pig", 183, 3], ["apache_pinot", 192, 3], ["apache_spark", 201, 3], ["apache_tinkerpop", 215, 3], ["apprise", 224, 3], ["arangodb", 233, 3], ["asana", 242, 3], ["atlassian_jira", 251, 3], ["celery", 260, 3], ["clickhousedb", 272, 3], ["cloudant", 281, 3], ["cncf_kubernetes", 290, 3], ["cohere", 306, 3], ["common_ai", 318, 3], ["common_compat", 338, 3], ["common_io", 347, 3], ["common_messaging", 356, 3], ["common_sql", 365, 3], ["databricks", 383, 3], ["datadog", 402, 3], ["dbt_cloud", 411, 3], ["dingding", 424, 3], ["discord", 433, 3], ["docker", 442, 3], ["edge3", 454, 3], ["elasticsearch", 468, 3], ["exasol", 480, 3], ["fab", 492, 3], ["facebook", 519, 3], ["ftp", 528, 3], ["git", 537, 3], ["github", 546, 3], ["google", 555, 3], ["grpc", 611, 3], ["hashicorp", 624, 3], ["http", 636, 3], ["ibm_mq", 651, 3], ["imap", 660, 3], ["influxdb", 669, 3], ["informatica", 682, 3], ["jdbc", 691, 3], ["jenkins", 703, 3], ["keycloak", 712, 3], ["microsoft_azure", 721, 3], ["microsoft_mssql", 759, 3], ["microsoft_psrp", 771, 3], ["microsoft_winrm", 780, 3], ["mongo", 789, 3], ["mysql", 801, 3], ["neo4j", 815, 3], ["odbc", 824, 3], ["openai", 833, 3], ["openfaas", 842, 3], ["openlineage", 851, 3], ["opensearch", 863, 3], ["opsgenie", 872, 3], ["oracle", 881, 3], ["pagerduty", 893, 3], ["papermill", 902, 3], ["pgvector", 916, 3], ["pinecone", 925, 3], ["postgres", 934, 3], ["presto", 950, 3], ["qdrant", 964, 3], ["redis", 973, 3], ["salesforce", 982, 3], ["samba", 994, 3], ["segment", 1003, 3], ["sendgrid", 1012, 3], ["sftp", 1021, 3], ["singularity", 1036, 3], ["slack", 1045, 3], ["smtp", 1058, 3], ["snowflake", 1067, 3], ["sqlite", 1082, 3], ["ssh", 1091, 3], ["standard", 1103, 3], ["tableau", 1112, 3], ["telegram", 1121, 3], ["teradata", 1130, 3], ["trino", 1139, 3], ["vertica", 1148, 3], ["vespa", 1160, 3], ["weaviate", 1169, 3], ["yandex", 1182, 3], ["ydb", 1191, 3], ["zendesk", 1200, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$104,
+  [nix.POS]: pos$104,
   airbyte: nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     deps: nix.thunk(() => ["requests"]),
     imports: nix.thunk(() => ["airflow.providers.airbyte", "airflow.providers.airbyte.get_provider_info"]),
     version: "5.5.1",
   })),
   akeyless: nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     deps: [],
     imports: nix.thunk(() => ["airflow.providers.akeyless", "airflow.providers.akeyless.get_provider_info"]),
     version: "0.2.0",
   })),
   alibaba: nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     deps: nix.thunk(() => ["alibabacloud-tea-openapi"]),
     imports: nix.thunk(() => ["airflow.providers.alibaba", "airflow.providers.alibaba.get_provider_info"]),
     version: "3.3.9",
   })),
   amazon: nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     deps: nix.thunk(() => [
       "aiobotocore",
       "asgiref",
@@ -151,7 +151,7 @@ export default nix.thunk(() => ({
     version: "9.31.0",
   })),
   apache_beam: nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     deps: nix.thunk(() => ["apache-beam", "numpy", "pyarrow"]),
     imports: nix.thunk(() => [
       "airflow.providers.apache.beam",
@@ -160,7 +160,7 @@ export default nix.thunk(() => ({
     version: "6.2.3",
   })),
   apache_cassandra: nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     deps: nix.thunk(() => ["cassandra-driver"]),
     imports: nix.thunk(() => [
       "airflow.providers.apache.cassandra",
@@ -169,7 +169,7 @@ export default nix.thunk(() => ({
     version: "3.9.5",
   })),
   apache_drill: nix.thunk(() => ({
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     deps: [],
     imports: nix.thunk(() => [
       "airflow.providers.apache.drill",
@@ -178,7 +178,7 @@ export default nix.thunk(() => ({
     version: "3.3.3",
   })),
   apache_druid: nix.thunk(() => ({
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     deps: nix.thunk(() => ["pydruid"]),
     imports: nix.thunk(() => [
       "airflow.providers.apache.druid",
@@ -187,7 +187,7 @@ export default nix.thunk(() => ({
     version: "4.5.2",
   })),
   apache_flink: nix.thunk(() => ({
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     deps: nix.thunk(() => ["cryptography"]),
     imports: nix.thunk(() => [
       "airflow.providers.apache.flink",
@@ -196,7 +196,7 @@ export default nix.thunk(() => ({
     version: "1.8.5",
   })),
   apache_hdfs: nix.thunk(() => ({
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     deps: nix.thunk(() => ["fastavro", "hdfs", "pandas"]),
     imports: nix.thunk(() => [
       "airflow.providers.apache.hdfs",
@@ -205,7 +205,7 @@ export default nix.thunk(() => ({
     version: "4.12.1",
   })),
   apache_hive: nix.thunk(() => ({
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     deps: nix.thunk(() => ["jmespath", "kerberos", "pandas", "sqlalchemy"]),
     imports: nix.thunk(() => [
       "airflow.providers.apache.hive",
@@ -214,7 +214,7 @@ export default nix.thunk(() => ({
     version: "9.5.0",
   })),
   apache_iceberg: nix.thunk(() => ({
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     deps: nix.thunk(() => ["pyiceberg"]),
     imports: nix.thunk(() => [
       "airflow.providers.apache.iceberg",
@@ -223,7 +223,7 @@ export default nix.thunk(() => ({
     version: "2.0.3",
   })),
   apache_impala: nix.thunk(() => ({
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     deps: nix.thunk(() => ["kerberos", "sqlalchemy"]),
     imports: nix.thunk(() => [
       "airflow.providers.apache.impala",
@@ -232,7 +232,7 @@ export default nix.thunk(() => ({
     version: "1.9.3",
   })),
   apache_kafka: nix.thunk(() => ({
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     deps: nix.thunk(() => ["asgiref", "confluent-kafka"]),
     imports: nix.thunk(() => [
       "airflow.providers.apache.kafka",
@@ -241,7 +241,7 @@ export default nix.thunk(() => ({
     version: "1.14.0",
   })),
   apache_kylin: nix.thunk(() => ({
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     deps: [],
     imports: nix.thunk(() => [
       "airflow.providers.apache.kylin",
@@ -250,7 +250,7 @@ export default nix.thunk(() => ({
     version: "3.10.5",
   })),
   apache_livy: nix.thunk(() => ({
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     deps: nix.thunk(() => ["aiohttp"]),
     imports: nix.thunk(() => [
       "airflow.providers.apache.livy",
@@ -259,7 +259,7 @@ export default nix.thunk(() => ({
     version: "4.5.7",
   })),
   apache_pig: nix.thunk(() => ({
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     deps: [],
     imports: nix.thunk(() => [
       "airflow.providers.apache.pig",
@@ -268,7 +268,7 @@ export default nix.thunk(() => ({
     version: "4.8.5",
   })),
   apache_pinot: nix.thunk(() => ({
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     deps: [],
     imports: nix.thunk(() => [
       "airflow.providers.apache.pinot",
@@ -277,7 +277,7 @@ export default nix.thunk(() => ({
     version: "4.10.3",
   })),
   apache_spark: nix.thunk(() => ({
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     deps: nix.thunk(() => ["grpcio-status", "pyspark", "requests", "tenacity"]),
     imports: nix.thunk(() => [
       "airflow.providers.apache.spark",
@@ -286,7 +286,7 @@ export default nix.thunk(() => ({
     version: "6.2.0",
   })),
   apache_tinkerpop: nix.thunk(() => ({
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     deps: nix.thunk(() => ["gremlinpython"]),
     imports: nix.thunk(() => [
       "airflow.providers.apache.tinkerpop",
@@ -295,25 +295,25 @@ export default nix.thunk(() => ({
     version: "1.1.4",
   })),
   apprise: nix.thunk(() => ({
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     deps: nix.thunk(() => ["apprise"]),
     imports: nix.thunk(() => ["airflow.providers.apprise", "airflow.providers.apprise.get_provider_info"]),
     version: "2.3.4",
   })),
   arangodb: nix.thunk(() => ({
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     deps: nix.thunk(() => ["python-arango"]),
     imports: nix.thunk(() => ["airflow.providers.arangodb", "airflow.providers.arangodb.get_provider_info"]),
     version: "2.9.5",
   })),
   asana: nix.thunk(() => ({
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     deps: nix.thunk(() => ["asana"]),
     imports: nix.thunk(() => ["airflow.providers.asana", "airflow.providers.asana.get_provider_info"]),
     version: "2.11.4",
   })),
   atlassian_jira: nix.thunk(() => ({
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     deps: nix.thunk(() => ["atlassian-python-api"]),
     imports: nix.thunk(() => [
       "airflow.providers.atlassian.jira",
@@ -322,13 +322,13 @@ export default nix.thunk(() => ({
     version: "3.3.4",
   })),
   celery: nix.thunk(() => ({
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     deps: nix.thunk(() => ["celery", "flower"]),
     imports: nix.thunk(() => ["airflow.providers.celery", "airflow.providers.celery.get_provider_info"]),
     version: "3.20.0",
   })),
   clickhousedb: nix.thunk(() => ({
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     deps: nix.thunk(() => ["clickhouse-connect"]),
     imports: nix.thunk(() => [
       "airflow.providers.clickhousedb",
@@ -337,13 +337,13 @@ export default nix.thunk(() => ({
     version: "1.0.0",
   })),
   cloudant: nix.thunk(() => ({
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     deps: [],
     imports: nix.thunk(() => ["airflow.providers.cloudant", "airflow.providers.cloudant.get_provider_info"]),
     version: "4.3.5",
   })),
   cncf_kubernetes: nix.thunk(() => ({
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     deps: nix.thunk(() => [
       "aiofiles",
       "asgiref",
@@ -359,13 +359,13 @@ export default nix.thunk(() => ({
     version: "10.18.1",
   })),
   cohere: nix.thunk(() => ({
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     deps: nix.thunk(() => ["cohere", "fastavro"]),
     imports: nix.thunk(() => ["airflow.providers.cohere", "airflow.providers.cohere.get_provider_info"]),
     version: "1.6.6",
   })),
   common_ai: nix.thunk(() => ({
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     deps: nix.thunk(() => [
       "fastavro",
       "langchain",
@@ -385,7 +385,7 @@ export default nix.thunk(() => ({
     version: "0.5.0",
   })),
   common_compat: nix.thunk(() => ({
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     deps: nix.thunk(() => ["asgiref"]),
     imports: nix.thunk(() => [
       "airflow.providers.common.compat",
@@ -394,7 +394,7 @@ export default nix.thunk(() => ({
     version: "1.15.0",
   })),
   common_io: nix.thunk(() => ({
-    __proto__: pos$32,
+    [nix.POS]: pos$32,
     deps: [],
     imports: nix.thunk(() => [
       "airflow.providers.common.io",
@@ -403,7 +403,7 @@ export default nix.thunk(() => ({
     version: "1.7.3",
   })),
   common_messaging: nix.thunk(() => ({
-    __proto__: pos$33,
+    [nix.POS]: pos$33,
     deps: [],
     imports: nix.thunk(() => [
       "airflow.providers.common.messaging",
@@ -412,7 +412,7 @@ export default nix.thunk(() => ({
     version: "2.0.4",
   })),
   common_sql: nix.thunk(() => ({
-    __proto__: pos$34,
+    [nix.POS]: pos$34,
     deps: nix.thunk(() => [
       "datafusion",
       "methodtools",
@@ -430,7 +430,7 @@ export default nix.thunk(() => ({
     version: "2.0.1",
   })),
   databricks: nix.thunk(() => ({
-    __proto__: pos$35,
+    [nix.POS]: pos$35,
     deps: nix.thunk(() => [
       "aiohttp",
       "azure-identity",
@@ -449,13 +449,13 @@ export default nix.thunk(() => ({
     version: "7.16.1",
   })),
   datadog: nix.thunk(() => ({
-    __proto__: pos$36,
+    [nix.POS]: pos$36,
     deps: nix.thunk(() => ["datadog"]),
     imports: nix.thunk(() => ["airflow.providers.datadog", "airflow.providers.datadog.get_provider_info"]),
     version: "3.10.5",
   })),
   dbt_cloud: nix.thunk(() => ({
-    __proto__: pos$37,
+    [nix.POS]: pos$37,
     deps: nix.thunk(() => ["aiohttp", "asgiref", "tenacity"]),
     imports: nix.thunk(() => [
       "airflow.providers.dbt.cloud",
@@ -464,31 +464,31 @@ export default nix.thunk(() => ({
     version: "4.9.2",
   })),
   dingding: nix.thunk(() => ({
-    __proto__: pos$38,
+    [nix.POS]: pos$38,
     deps: [],
     imports: nix.thunk(() => ["airflow.providers.dingding", "airflow.providers.dingding.get_provider_info"]),
     version: "3.9.5",
   })),
   discord: nix.thunk(() => ({
-    __proto__: pos$39,
+    [nix.POS]: pos$39,
     deps: [],
     imports: nix.thunk(() => ["airflow.providers.discord", "airflow.providers.discord.get_provider_info"]),
     version: "3.12.3",
   })),
   docker: nix.thunk(() => ({
-    __proto__: pos$40,
+    [nix.POS]: pos$40,
     deps: nix.thunk(() => ["docker", "python-dotenv"]),
     imports: nix.thunk(() => ["airflow.providers.docker", "airflow.providers.docker.get_provider_info"]),
     version: "4.5.7",
   })),
   edge3: nix.thunk(() => ({
-    __proto__: pos$41,
+    [nix.POS]: pos$41,
     deps: nix.thunk(() => ["aiofiles", "aiohttp", "pydantic", "retryhttp"]),
     imports: nix.thunk(() => ["airflow.providers.edge3", "airflow.providers.edge3.get_provider_info"]),
     version: "4.0.0",
   })),
   elasticsearch: nix.thunk(() => ({
-    __proto__: pos$42,
+    [nix.POS]: pos$42,
     deps: nix.thunk(() => ["elasticsearch", "polars"]),
     imports: nix.thunk(() => [
       "airflow.providers.elasticsearch",
@@ -497,13 +497,13 @@ export default nix.thunk(() => ({
     version: "6.7.0",
   })),
   exasol: nix.thunk(() => ({
-    __proto__: pos$43,
+    [nix.POS]: pos$43,
     deps: nix.thunk(() => ["pandas", "sqlalchemy"]),
     imports: nix.thunk(() => ["airflow.providers.exasol", "airflow.providers.exasol.get_provider_info"]),
     version: "4.10.3",
   })),
   fab: nix.thunk(() => ({
-    __proto__: pos$44,
+    [nix.POS]: pos$44,
     deps: nix.thunk(() => [
       "authlib",
       "blinker",
@@ -527,31 +527,31 @@ export default nix.thunk(() => ({
     version: "3.7.0",
   })),
   facebook: nix.thunk(() => ({
-    __proto__: pos$45,
+    [nix.POS]: pos$45,
     deps: [],
     imports: nix.thunk(() => ["airflow.providers.facebook", "airflow.providers.facebook.get_provider_info"]),
     version: "3.9.5",
   })),
   ftp: nix.thunk(() => ({
-    __proto__: pos$46,
+    [nix.POS]: pos$46,
     deps: [],
     imports: nix.thunk(() => ["airflow.providers.ftp", "airflow.providers.ftp.get_provider_info"]),
     version: "3.15.1",
   })),
   git: nix.thunk(() => ({
-    __proto__: pos$47,
+    [nix.POS]: pos$47,
     deps: nix.thunk(() => ["gitpython"]),
     imports: nix.thunk(() => ["airflow.providers.git", "airflow.providers.git.get_provider_info"]),
     version: "0.4.0",
   })),
   github: nix.thunk(() => ({
-    __proto__: pos$48,
+    [nix.POS]: pos$48,
     deps: nix.thunk(() => ["pygithub"]),
     imports: nix.thunk(() => ["airflow.providers.github", "airflow.providers.github.get_provider_info"]),
     version: "2.11.3",
   })),
   google: nix.thunk(() => ({
-    __proto__: pos$49,
+    [nix.POS]: pos$49,
     deps: nix.thunk(() => [
       "asgiref",
       "dill",
@@ -604,13 +604,13 @@ export default nix.thunk(() => ({
     version: "22.2.0",
   })),
   grpc: nix.thunk(() => ({
-    __proto__: pos$50,
+    [nix.POS]: pos$50,
     deps: nix.thunk(() => ["google-auth", "google-auth-httplib2", "grpcio"]),
     imports: nix.thunk(() => ["airflow.providers.grpc", "airflow.providers.grpc.get_provider_info"]),
     version: "3.9.5",
   })),
   hashicorp: nix.thunk(() => ({
-    __proto__: pos$51,
+    [nix.POS]: pos$51,
     deps: nix.thunk(() => ["boto3", "hvac"]),
     imports: nix.thunk(() => [
       "airflow.providers.hashicorp",
@@ -619,31 +619,31 @@ export default nix.thunk(() => ({
     version: "4.7.1",
   })),
   http: nix.thunk(() => ({
-    __proto__: pos$52,
+    [nix.POS]: pos$52,
     deps: nix.thunk(() => ["aiohttp", "asgiref", "pydantic", "requests", "requests-toolbelt"]),
     imports: nix.thunk(() => ["airflow.providers.http", "airflow.providers.http.get_provider_info"]),
     version: "6.0.4",
   })),
   ibm_mq: nix.thunk(() => ({
-    __proto__: pos$53,
+    [nix.POS]: pos$53,
     deps: nix.thunk(() => ["asgiref"]),
     imports: nix.thunk(() => ["airflow.providers.ibm.mq", "airflow.providers.ibm.mq.get_provider_info"]),
     version: "0.1.0",
   })),
   imap: nix.thunk(() => ({
-    __proto__: pos$54,
+    [nix.POS]: pos$54,
     deps: [],
     imports: nix.thunk(() => ["airflow.providers.imap", "airflow.providers.imap.get_provider_info"]),
     version: "3.11.3",
   })),
   influxdb: nix.thunk(() => ({
-    __proto__: pos$55,
+    [nix.POS]: pos$55,
     deps: nix.thunk(() => ["influxdb-client", "influxdb3-python", "requests"]),
     imports: nix.thunk(() => ["airflow.providers.influxdb", "airflow.providers.influxdb.get_provider_info"]),
     version: "2.11.0",
   })),
   informatica: nix.thunk(() => ({
-    __proto__: pos$56,
+    [nix.POS]: pos$56,
     deps: nix.thunk(() => ["sqlglot"]),
     imports: nix.thunk(() => [
       "airflow.providers.informatica",
@@ -652,25 +652,25 @@ export default nix.thunk(() => ({
     version: "0.2.0",
   })),
   jdbc: nix.thunk(() => ({
-    __proto__: pos$57,
+    [nix.POS]: pos$57,
     deps: nix.thunk(() => ["jaydebeapi", "jpype1"]),
     imports: nix.thunk(() => ["airflow.providers.jdbc", "airflow.providers.jdbc.get_provider_info"]),
     version: "5.5.0",
   })),
   jenkins: nix.thunk(() => ({
-    __proto__: pos$58,
+    [nix.POS]: pos$58,
     deps: nix.thunk(() => ["python-jenkins"]),
     imports: nix.thunk(() => ["airflow.providers.jenkins", "airflow.providers.jenkins.get_provider_info"]),
     version: "4.2.6",
   })),
   keycloak: nix.thunk(() => ({
-    __proto__: pos$59,
+    [nix.POS]: pos$59,
     deps: nix.thunk(() => ["python-keycloak"]),
     imports: nix.thunk(() => ["airflow.providers.keycloak", "airflow.providers.keycloak.get_provider_info"]),
     version: "0.8.0",
   })),
   microsoft_azure: nix.thunk(() => ({
-    __proto__: pos$60,
+    [nix.POS]: pos$60,
     deps: nix.thunk(() => [
       "adlfs",
       "azure-batch",
@@ -708,7 +708,7 @@ export default nix.thunk(() => ({
     version: "13.5.0",
   })),
   microsoft_mssql: nix.thunk(() => ({
-    __proto__: pos$61,
+    [nix.POS]: pos$61,
     deps: nix.thunk(() => ["methodtools", "pymssql"]),
     imports: nix.thunk(() => [
       "airflow.providers.microsoft.mssql",
@@ -717,7 +717,7 @@ export default nix.thunk(() => ({
     version: "4.7.0",
   })),
   microsoft_psrp: nix.thunk(() => ({
-    __proto__: pos$62,
+    [nix.POS]: pos$62,
     deps: nix.thunk(() => ["pypsrp"]),
     imports: nix.thunk(() => [
       "airflow.providers.microsoft.psrp",
@@ -726,7 +726,7 @@ export default nix.thunk(() => ({
     version: "3.2.6",
   })),
   microsoft_winrm: nix.thunk(() => ({
-    __proto__: pos$63,
+    [nix.POS]: pos$63,
     deps: nix.thunk(() => ["pywinrm"]),
     imports: nix.thunk(() => [
       "airflow.providers.microsoft.winrm",
@@ -735,43 +735,43 @@ export default nix.thunk(() => ({
     version: "3.14.3",
   })),
   mongo: nix.thunk(() => ({
-    __proto__: pos$64,
+    [nix.POS]: pos$64,
     deps: nix.thunk(() => ["dnspython", "pymongo"]),
     imports: nix.thunk(() => ["airflow.providers.mongo", "airflow.providers.mongo.get_provider_info"]),
     version: "5.4.0",
   })),
   mysql: nix.thunk(() => ({
-    __proto__: pos$65,
+    [nix.POS]: pos$65,
     deps: nix.thunk(() => ["aiomysql", "mysql-connector-python", "mysqlclient", "pymysql"]),
     imports: nix.thunk(() => ["airflow.providers.mysql", "airflow.providers.mysql.get_provider_info"]),
     version: "6.6.1",
   })),
   neo4j: nix.thunk(() => ({
-    __proto__: pos$66,
+    [nix.POS]: pos$66,
     deps: nix.thunk(() => ["neo4j"]),
     imports: nix.thunk(() => ["airflow.providers.neo4j", "airflow.providers.neo4j.get_provider_info"]),
     version: "3.11.6",
   })),
   odbc: nix.thunk(() => ({
-    __proto__: pos$67,
+    [nix.POS]: pos$67,
     deps: nix.thunk(() => ["pyodbc"]),
     imports: nix.thunk(() => ["airflow.providers.odbc", "airflow.providers.odbc.get_provider_info"]),
     version: "4.12.3",
   })),
   openai: nix.thunk(() => ({
-    __proto__: pos$68,
+    [nix.POS]: pos$68,
     deps: nix.thunk(() => ["openai"]),
     imports: nix.thunk(() => ["airflow.providers.openai", "airflow.providers.openai.get_provider_info"]),
     version: "1.7.5",
   })),
   openfaas: nix.thunk(() => ({
-    __proto__: pos$69,
+    [nix.POS]: pos$69,
     deps: [],
     imports: nix.thunk(() => ["airflow.providers.openfaas", "airflow.providers.openfaas.get_provider_info"]),
     version: "3.9.5",
   })),
   openlineage: nix.thunk(() => ({
-    __proto__: pos$70,
+    [nix.POS]: pos$70,
     deps: nix.thunk(() => ["attrs", "sqlalchemy"]),
     imports: nix.thunk(() => [
       "airflow.providers.openlineage",
@@ -780,7 +780,7 @@ export default nix.thunk(() => ({
     version: "2.18.1",
   })),
   opensearch: nix.thunk(() => ({
-    __proto__: pos$71,
+    [nix.POS]: pos$71,
     deps: nix.thunk(() => ["opensearch-py"]),
     imports: nix.thunk(() => [
       "airflow.providers.opensearch",
@@ -789,19 +789,19 @@ export default nix.thunk(() => ({
     version: "1.10.0",
   })),
   opsgenie: nix.thunk(() => ({
-    __proto__: pos$72,
+    [nix.POS]: pos$72,
     deps: [],
     imports: nix.thunk(() => ["airflow.providers.opsgenie", "airflow.providers.opsgenie.get_provider_info"]),
     version: "5.10.4",
   })),
   oracle: nix.thunk(() => ({
-    __proto__: pos$73,
+    [nix.POS]: pos$73,
     deps: nix.thunk(() => ["numpy", "oracledb"]),
     imports: nix.thunk(() => ["airflow.providers.oracle", "airflow.providers.oracle.get_provider_info"]),
     version: "4.6.1",
   })),
   pagerduty: nix.thunk(() => ({
-    __proto__: pos$74,
+    [nix.POS]: pos$74,
     deps: [],
     imports: nix.thunk(() => [
       "airflow.providers.pagerduty",
@@ -810,7 +810,7 @@ export default nix.thunk(() => ({
     version: "5.2.6",
   })),
   papermill: nix.thunk(() => ({
-    __proto__: pos$75,
+    [nix.POS]: pos$75,
     deps: nix.thunk(() => ["ipykernel", "nbconvert", "pandas", "papermill"]),
     imports: nix.thunk(() => [
       "airflow.providers.papermill",
@@ -819,43 +819,43 @@ export default nix.thunk(() => ({
     version: "3.13.1",
   })),
   pgvector: nix.thunk(() => ({
-    __proto__: pos$76,
+    [nix.POS]: pos$76,
     deps: nix.thunk(() => ["pgvector"]),
     imports: nix.thunk(() => ["airflow.providers.pgvector", "airflow.providers.pgvector.get_provider_info"]),
     version: "1.7.2",
   })),
   pinecone: nix.thunk(() => ({
-    __proto__: pos$77,
+    [nix.POS]: pos$77,
     deps: nix.thunk(() => ["pinecone"]),
     imports: nix.thunk(() => ["airflow.providers.pinecone", "airflow.providers.pinecone.get_provider_info"]),
     version: "2.4.5",
   })),
   postgres: nix.thunk(() => ({
-    __proto__: pos$78,
+    [nix.POS]: pos$78,
     deps: nix.thunk(() => ["asyncpg", "pandas", "polars", "psycopg", "psycopg2-binary", "sqlalchemy"]),
     imports: nix.thunk(() => ["airflow.providers.postgres", "airflow.providers.postgres.get_provider_info"]),
     version: "6.8.0",
   })),
   presto: nix.thunk(() => ({
-    __proto__: pos$79,
+    [nix.POS]: pos$79,
     deps: nix.thunk(() => ["pandas", "presto-python-client", "psycopg2-binary", "sqlalchemy"]),
     imports: nix.thunk(() => ["airflow.providers.presto", "airflow.providers.presto.get_provider_info"]),
     version: "5.12.0",
   })),
   qdrant: nix.thunk(() => ({
-    __proto__: pos$80,
+    [nix.POS]: pos$80,
     deps: nix.thunk(() => ["qdrant-client"]),
     imports: nix.thunk(() => ["airflow.providers.qdrant", "airflow.providers.qdrant.get_provider_info"]),
     version: "1.5.6",
   })),
   redis: nix.thunk(() => ({
-    __proto__: pos$81,
+    [nix.POS]: pos$81,
     deps: nix.thunk(() => ["redis"]),
     imports: nix.thunk(() => ["airflow.providers.redis", "airflow.providers.redis.get_provider_info"]),
     version: "4.5.0",
   })),
   salesforce: nix.thunk(() => ({
-    __proto__: pos$82,
+    [nix.POS]: pos$82,
     deps: nix.thunk(() => ["pandas", "simple-salesforce"]),
     imports: nix.thunk(() => [
       "airflow.providers.salesforce",
@@ -864,31 +864,31 @@ export default nix.thunk(() => ({
     version: "5.14.1",
   })),
   samba: nix.thunk(() => ({
-    __proto__: pos$83,
+    [nix.POS]: pos$83,
     deps: nix.thunk(() => ["smbprotocol"]),
     imports: nix.thunk(() => ["airflow.providers.samba", "airflow.providers.samba.get_provider_info"]),
     version: "4.12.6",
   })),
   segment: nix.thunk(() => ({
-    __proto__: pos$84,
+    [nix.POS]: pos$84,
     deps: [],
     imports: nix.thunk(() => ["airflow.providers.segment", "airflow.providers.segment.get_provider_info"]),
     version: "3.9.5",
   })),
   sendgrid: nix.thunk(() => ({
-    __proto__: pos$85,
+    [nix.POS]: pos$85,
     deps: nix.thunk(() => ["sendgrid"]),
     imports: nix.thunk(() => ["airflow.providers.sendgrid", "airflow.providers.sendgrid.get_provider_info"]),
     version: "4.2.4",
   })),
   sftp: nix.thunk(() => ({
-    __proto__: pos$86,
+    [nix.POS]: pos$86,
     deps: nix.thunk(() => ["aiofiles", "asyncssh", "paramiko", "pysftp", "sshfs"]),
     imports: nix.thunk(() => ["airflow.providers.sftp", "airflow.providers.sftp.get_provider_info"]),
     version: "5.8.2",
   })),
   singularity: nix.thunk(() => ({
-    __proto__: pos$87,
+    [nix.POS]: pos$87,
     deps: nix.thunk(() => ["spython"]),
     imports: nix.thunk(() => [
       "airflow.providers.singularity",
@@ -897,19 +897,19 @@ export default nix.thunk(() => ({
     version: "3.9.4",
   })),
   slack: nix.thunk(() => ({
-    __proto__: pos$88,
+    [nix.POS]: pos$88,
     deps: nix.thunk(() => ["aiohttp", "asgiref", "slack-sdk"]),
     imports: nix.thunk(() => ["airflow.providers.slack", "airflow.providers.slack.get_provider_info"]),
     version: "9.10.2",
   })),
   smtp: nix.thunk(() => ({
-    __proto__: pos$89,
+    [nix.POS]: pos$89,
     deps: nix.thunk(() => ["aiosmtplib"]),
     imports: nix.thunk(() => ["airflow.providers.smtp", "airflow.providers.smtp.get_provider_info"]),
     version: "3.0.1",
   })),
   snowflake: nix.thunk(() => ({
-    __proto__: pos$90,
+    [nix.POS]: pos$90,
     deps: nix.thunk(() => [
       "pandas",
       "pyarrow",
@@ -924,79 +924,79 @@ export default nix.thunk(() => ({
     version: "6.14.0",
   })),
   sqlite: nix.thunk(() => ({
-    __proto__: pos$91,
+    [nix.POS]: pos$91,
     deps: [],
     imports: nix.thunk(() => ["airflow.providers.sqlite", "airflow.providers.sqlite.get_provider_info"]),
     version: "4.3.3",
   })),
   ssh: nix.thunk(() => ({
-    __proto__: pos$92,
+    [nix.POS]: pos$92,
     deps: nix.thunk(() => ["asyncssh", "paramiko"]),
     imports: nix.thunk(() => ["airflow.providers.ssh", "airflow.providers.ssh.get_provider_info"]),
     version: "5.0.3",
   })),
   standard: nix.thunk(() => ({
-    __proto__: pos$93,
+    [nix.POS]: pos$93,
     deps: [],
     imports: nix.thunk(() => ["airflow.providers.standard", "airflow.providers.standard.get_provider_info"]),
     version: "1.15.0",
   })),
   tableau: nix.thunk(() => ({
-    __proto__: pos$94,
+    [nix.POS]: pos$94,
     deps: nix.thunk(() => ["tableauserverclient"]),
     imports: nix.thunk(() => ["airflow.providers.tableau", "airflow.providers.tableau.get_provider_info"]),
     version: "5.5.0",
   })),
   telegram: nix.thunk(() => ({
-    __proto__: pos$95,
+    [nix.POS]: pos$95,
     deps: nix.thunk(() => ["python-telegram-bot"]),
     imports: nix.thunk(() => ["airflow.providers.telegram", "airflow.providers.telegram.get_provider_info"]),
     version: "4.9.5",
   })),
   teradata: nix.thunk(() => ({
-    __proto__: pos$96,
+    [nix.POS]: pos$96,
     deps: nix.thunk(() => ["sqlalchemy"]),
     imports: nix.thunk(() => ["airflow.providers.teradata", "airflow.providers.teradata.get_provider_info"]),
     version: "3.6.0",
   })),
   trino: nix.thunk(() => ({
-    __proto__: pos$97,
+    [nix.POS]: pos$97,
     deps: nix.thunk(() => ["pandas"]),
     imports: nix.thunk(() => ["airflow.providers.trino", "airflow.providers.trino.get_provider_info"]),
     version: "6.6.0",
   })),
   vertica: nix.thunk(() => ({
-    __proto__: pos$98,
+    [nix.POS]: pos$98,
     deps: nix.thunk(() => ["sqlalchemy", "vertica-python"]),
     imports: nix.thunk(() => ["airflow.providers.vertica", "airflow.providers.vertica.get_provider_info"]),
     version: "4.4.0",
   })),
   vespa: nix.thunk(() => ({
-    __proto__: pos$99,
+    [nix.POS]: pos$99,
     deps: [],
     imports: nix.thunk(() => ["airflow.providers.vespa", "airflow.providers.vespa.get_provider_info"]),
     version: "0.1.1",
   })),
   weaviate: nix.thunk(() => ({
-    __proto__: pos$100,
+    [nix.POS]: pos$100,
     deps: nix.thunk(() => ["httpx", "pandas", "weaviate-client"]),
     imports: nix.thunk(() => ["airflow.providers.weaviate", "airflow.providers.weaviate.get_provider_info"]),
     version: "3.3.5",
   })),
   yandex: nix.thunk(() => ({
-    __proto__: pos$101,
+    [nix.POS]: pos$101,
     deps: nix.thunk(() => ["grpcio"]),
     imports: nix.thunk(() => ["airflow.providers.yandex", "airflow.providers.yandex.get_provider_info"]),
     version: "4.5.0",
   })),
   ydb: nix.thunk(() => ({
-    __proto__: pos$102,
+    [nix.POS]: pos$102,
     deps: [],
     imports: nix.thunk(() => ["airflow.providers.ydb", "airflow.providers.ydb.get_provider_info"]),
     version: "2.5.3",
   })),
   zendesk: nix.thunk(() => ({
-    __proto__: pos$103,
+    [nix.POS]: pos$103,
     deps: [],
     imports: nix.thunk(() => ["airflow.providers.zendesk", "airflow.providers.zendesk.get_provider_info"]),
     version: "4.12.0",

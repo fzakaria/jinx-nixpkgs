@@ -42,17 +42,17 @@ export default nix.lambda((args) => (() => {
       const extraNativeBuildInputs = nix.argOr($_1, "extraNativeBuildInputs", () => []);
       const extraBuildInputs = nix.argOr($_1, "extraBuildInputs", () => []);
       const withGraphviz = nix.argOr($_1, "withGraphviz", () => false);
-      const graphvizPatch = nix.thunk(() => nix.selOr({ __proto__: pos$1, "0.56": nix.path(here, "./disable-graphviz-0.56.8.patch") }, () => nix.builtins.throw("no graphviz patch for this version of vala"), nix.key(nix.app(nix.sel(lib, "versions", "majorMinor"), version))));
+      const graphvizPatch = nix.thunk(() => nix.selOr({ [nix.POS]: pos$1, "0.56": nix.path(here, "./disable-graphviz-0.56.8.patch") }, () => nix.builtins.throw("no graphviz patch for this version of vala"), nix.key(nix.app(nix.sel(lib, "versions", "majorMinor"), version))));
       const disableGraphviz = nix.thunk(() => !nix.asBool(withGraphviz));
       return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
           const pname = "vala";
           const version_1 = version;
           const setupHook = nix.thunk(() => nix.app(replaceVars, nix.path(here, "./setup-hook.sh"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               apiVersion: nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), version_1)),
             }))));
           const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               url: nix.thunk(() => nix.str`mirror://gnome/sources/vala/${nix.app(nix.sel(lib, "versions", "majorMinor"), version_1)}/vala-${version_1}.tar.xz`),
               hash: hash,
             }))));
@@ -66,9 +66,9 @@ export default nix.lambda((args) => (() => {
           const enableParallelBuilding = true;
           const doCheck = false;
           const passthru = nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 attrPath: nix.thunk(() => (() => {
                   const roundUpToEven = (num) => nix.add(num, nix.app(nix.sel(lib, "mod"), num, 2n));
                   return nix.str`vala_${nix.app(nix.sel(lib, "versions", "major"), version_1)}_${nix.builtins.toString(nix.thunk(() => nix.app(roundUpToEven, nix.thunk(() => nix.app(nix.sel(lib, "toInt"), nix.thunk(() => nix.app(nix.sel(lib, "versions", "minor"), version_1)))))))}`;
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
               })))),
           }));
           const meta = nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             description: "Compiler for GObject type system",
             homepage: "https://vala.dev",
             license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
@@ -96,7 +96,7 @@ export default nix.lambda((args) => (() => {
             ]),
           }));
           return {
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             pname,
             version: version_1,
             setupHook,
@@ -117,12 +117,12 @@ export default nix.lambda((args) => (() => {
     })(), formals$2)));
   return (() => {
     const vala_0_56 = nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         version: "0.56.19",
         hash: "sha256-WtfLv8wN5htAPWeXye9gRVv769jhYq7DO1sLCXrfudU=",
       }))));
     const vala_1 = vala_0_56;
-    return { __proto__: pos$9, vala_0_56, vala: vala_1 };
+    return { [nix.POS]: pos$9, vala_0_56, vala: vala_1 };
   })();
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

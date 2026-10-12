@@ -22,19 +22,19 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "hy",
       version: "1.3.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hylang",
           repo: "hy",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-qNgPuFG/j/q1osu/IJ8JbF+l/XiCphdhUYPOKbLEgTk=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         HY_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       "build-system": nix.thunk(() => [setuptools]),
@@ -44,15 +44,15 @@ export default nix.lambda((args) => (() => {
       preCheck: "# For test_bin_hy\nexport PATH=\"$out/bin:$PATH\"\n",
       pythonImportsCheck: nix.thunk(() => ["hy"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         withPackages: (python_packages) => nix.app(nix.sel(nix.app(nix.sel(python, "withPackages"), (ps) => nix.concat(nix.app(python_packages, ps), [nix.thunk(() => nix.sel(ps, "hy"))])), "overrideAttrs"), (old) => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage", "name")}-env`),
             meta: nix.thunk(() => nix.builtins.removeAttrs(nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "meta")), nix.thunk(() => ["license"]))),
           })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "LISP dialect embedded in Python",
         homepage: "https://hylang.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/hylang/hy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

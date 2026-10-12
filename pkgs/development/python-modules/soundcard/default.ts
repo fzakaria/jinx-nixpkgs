@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pname = "soundcard";
   const version = "0.4.6";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-m0bWSib5fNfYi8/Dhcl8Bp+Xxew0BOTnwjdxWYqM9Hs=",
@@ -38,14 +38,14 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [cffi, numpy]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "vm-with-soundcard": nix.thunk(() => nix.app(nix.sel(testers, "runNixOSTest"), nix.path(here, "./test.nix"))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Pure-Python Real-Time Audio Library",
         homepage: "https://github.com/bastibe/SoundCard",
         changelog: nix.thunk(() => nix.str`https://github.com/bastibe/SoundCard/blob/${version}/README.rst#changelog`),

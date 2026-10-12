@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ttfb",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-9iuDGnUB0Oi2yZQ8zDjLSXGUbLfRP+glkJLxrDgPnpQ=",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-8CIXk7OvSRmtWP/P5teJLSW9tBPHIyhW2A/NjCC6lTo=",
       buildFeatures: nix.thunk(() => ["bin"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI-Tool to measure the TTFB (time to first byte) of HTTP(S) requests",
         mainProgram: "ttfb",
         longDescription: "ttfb measure the TTFB (time to first byte) of HTTP(S) requests. This includes data\nof intermediate steps, such as the relative and absolute timings of DNS lookup, TCP\nconnect, and TLS handshake.\n",

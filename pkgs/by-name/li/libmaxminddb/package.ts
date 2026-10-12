@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
       const pname = "libmaxminddb";
       const version = "1.13.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.add(nix.sel(meta, "homepage"), nix.str`/releases/download/${version}/libmaxminddb-${version}.tar.gz`)),
           sha256: "sha256-pmUC6nbq2+F/LNb9cIlGd3JTly0q6BV97hsjovtSgXE=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C library for working with MaxMind geolocation DB files",
         homepage: "https://github.com/maxmind/libmaxminddb",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, pname, version, src, meta };
+      return { [nix.POS]: pos$3, pname, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

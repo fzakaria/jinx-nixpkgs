@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "lavalink",
       version: "4.2.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/lavalink-devs/Lavalink/releases/download/${nix.sel(finalAttrs, "version")}/Lavalink.jar`),
           hash: "sha256-jLgB5ZEHLDaJ+v1xzPVxqVpOrTzDXfwEXhV9dj2JEZo=",
         })))),
@@ -37,16 +37,16 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), jdk)} $out/bin/lavalink \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           lavalink: nix.thunk(() => nix.attr(nixosTests, "lavalink")),
         })),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(jdk, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Standalone audio sending node based on Lavaplayer and Koe",
         longDescription: "A standalone audio sending node based on Lavaplayer and Koe. Allows for sending audio without it ever reaching any of your shards.\n\nBeing used in production by FredBoat, Dyno, LewdBot, and more.\n",
         homepage: "https://lavalink.dev/",

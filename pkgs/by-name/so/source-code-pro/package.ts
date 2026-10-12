@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
       const pname = "source-code-pro";
       const version = "2.042";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/adobe-fonts/source-code-pro/releases/download/${version}R-u%2F1.062R-i%2F1.026R-vf/OTF-source-code-pro-${version}R-u_1.062R-i.zip`),
           stripRoot: false,
           hash: "sha256-+BnfmD+AjObSoVxPvFAqbnMD2j5qf2YmbXGQtXoaiy0=",
         }))));
       const installPhase = "runHook preInstall\n\ninstall -Dm644 OTF/*.otf -t $out/share/fonts/opentype\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Monospaced font family for user interface and coding environments",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         homepage: "https://adobe-fonts.github.io/source-code-pro/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

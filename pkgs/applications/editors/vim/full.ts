@@ -60,9 +60,9 @@ export default nix.lambda((args) => (() => {
   const sodiumSupport = nix.argOr($, "sodiumSupport", () => nix.selOr(config, () => true, "vim", "sodium"));
   const lua = lua5_5;
   const nixosRuntimepath = nix.thunk(() => nix.app(writeText, "nixos-vimrc", "set nocompatible\nsyntax on\n\nfunction! NixosPluginPath()\n  let seen = {}\n  for p in reverse(split($NIX_PROFILES))\n    for d in split(glob(p . '/share/vim-plugins/*'))\n      let pluginname = substitute(d, \".*/\", \"\", \"\")\n      if !has_key(seen, pluginname)\n        exec 'set runtimepath^='.d\n        let after = d.\"/after\"\n        if isdirectory(after)\n          exec 'set runtimepath^='.after\n        endif\n        let seen[pluginname] = 1\n      endif\n    endfor\n  endfor\nendfunction\n\nexecute NixosPluginPath()\n\nif filereadable(\"/etc/vimrc\")\n  source /etc/vimrc\nelseif filereadable(\"/etc/vim/vimrc\")\n  source /etc/vim/vimrc\nendif\n"));
-  const common = nix.thunk(() => nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({ __proto__: pos$1, stdenv: stdenv }))));
+  const common = nix.thunk(() => nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: stdenv }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "vim-full",
       version: nix.thunk(() => nix.attr(common, "version")),
       outputs: nix.thunk(() => nix.attr(common, "outputs")),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => nix.attr(common, "hardeningDisable")),
       enableParallelBuilding: nix.thunk(() => nix.attr(common, "enableParallelBuilding")),
       meta: nix.thunk(() => nix.attr(common, "meta")),
-      src: nix.thunk(() => nix.builtins.getAttr(source, nix.thunk(() => ({ __proto__: pos$2, default: nix.thunk(() => nix.sel(common, "src")) })))),
+      src: nix.thunk(() => nix.builtins.getAttr(source, nix.thunk(() => ({ [nix.POS]: pos$2, default: nix.thunk(() => nix.sel(common, "src")) })))),
       patches: nix.thunk(() => [nix.path(here, "./cflags-prune.diff")]),
       configureFlags: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.str`--with-features=${features}`),
@@ -110,7 +110,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config], nix.concat(nix.app(nix.sel(lib, "optional"), wrapPythonDrv, makeWrapper), nix.concat(nix.app(nix.sel(lib, "optional"), nlsSupport, gettext), nix.concat(nix.app(nix.sel(lib, "optional"), perlSupport, perl), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(guiSupport, "gtk3")), wrapGAppsHook3), nix.app(nix.sel(lib, "optional"), waylandSupport, wayland_scanner))))))),
       buildInputs: nix.thunk(() => nix.concat([ncurses, glib], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.eq(guiSupport, "gtk2")) || nix.asBool(nix.eq(guiSupport, "gtk3")))), nix.thunk(() => [libsm, libice, libx11, libxext, libxpm, libxt, libxaw, libxau, libxmu])), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(guiSupport, "gtk2")), gtk2_x11), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(guiSupport, "gtk3")), gtk3_x11), nix.concat(nix.app(nix.sel(lib, "optional"), luaSupport, lua), nix.concat(nix.app(nix.sel(lib, "optional"), pythonSupport, python3), nix.concat(nix.app(nix.sel(lib, "optional"), tclSupport, tcl), nix.concat(nix.app(nix.sel(lib, "optional"), rubySupport, ruby), nix.app(nix.sel(lib, "optional"), sodiumSupport, libsodium)))))))))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-fdeclspec")),
       })),
       preConfigure: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), ftNixSupport, nix.thunk(() => nix.str`cp ${nix.sel(vimPlugins, "vim-nix", "src")}/ftplugin/nix.vim runtime/ftplugin/nix.vim

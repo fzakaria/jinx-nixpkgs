@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const python311 = nix.arg($, "python311");
   const wafHook = nix.arg($, "wafHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aubio",
       version: "0.4.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://aubio.org/pub/aubio-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "1npks71ljc48w6858l9bq30kaf5nph8z0v61jkfb70xb9np850nl",
         })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       wafFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), "--disable-tests")),
       postPatch: "# U was removed in python 3.11 because it had no effect\nsubstituteInPlace waflib/*.py \\\n  --replace \"m='rU\" \"m='r\" \\\n  --replace \"'rU'\" \"'r'\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for audio labelling",
         homepage: "https://aubio.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

@@ -19,14 +19,14 @@ export default nix.lambda((args) => (() => {
       const pname = "swftools";
       const version = "0.9.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://www.swftools.org/${pname}-${version}.tar.gz`),
           sha256: "1w81dyi81019a6jmnm5z7fzarswng27lg1d4k4d5llxzqszr2s5z",
         }))));
       const patches = nix.thunk(() => [nix.path(here, "./swftools.patch")]);
       const buildInputs = nix.thunk(() => [freetype, libjpeg, zlib]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of SWF manipulation and creation utilities",
         homepage: "http://www.swftools.org/about.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
           "CVE-2017-16890",
         ]),
       }));
-      return { __proto__: pos$3, pname, version, src, patches, buildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, patches, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

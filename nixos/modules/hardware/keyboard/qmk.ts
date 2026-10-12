@@ -23,15 +23,15 @@ export default nix.lambda((args) => (() => {
   const mkEnableOption = nix.thunk(() => nix.attr(lib, "mkEnableOption"));
   const mkIf = nix.thunk(() => nix.attr(lib, "mkIf"));
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       hardware: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         keyboard: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           qmk: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             enable: nix.thunk(() => nix.app(mkEnableOption, "non-root access to the firmware of QMK keyboards")),
             keychronSupport: nix.thunk(() => nix.app(mkEnableOption, "udev rules for keychron QMK based keyboards")),
           })),
@@ -39,17 +39,17 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         services: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           udev: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             packages: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(pkgs, "qmk-udev-rules"))], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "keychronSupport")), nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "keychron-udev-rules"))])))),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$8,
-          groups: nix.thunk(() => ({ __proto__: pos$7, plugdev: nix.thunk(() => ({})) })),
+          [nix.POS]: pos$8,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$7, plugdev: nix.thunk(() => ({})) })),
         })),
       })))),
   };

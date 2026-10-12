@@ -18,10 +18,10 @@ export default nix.lambda((args) => (() => {
       const pname = "xcbeautify";
       const version = "3.2.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/cpisciotta/xcbeautify/releases/download/${version}/xcbeautify-${version}-${nix.sel(stdenv, "hostPlatform", "darwinArch")}-apple-macosx.zip`),
           hash: nix.thunk(() => nix.app(nix.sel(lib, "getAttr"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "darwinArch")), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               arm64: "sha256-7TKXLkG8OqGViPiw9KAgnvcMZjrWC79K2Eot5zNV1jc=",
               x86_64: "sha256-umXo78Lr6MbxM5Oq64ig/4SSeNlIDuFJav+qPbeBrG4=",
             })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const unpackPhase = "unzip $src\n";
       const installPhase = "runHook preInstall\n\ninstall -D xcbeautify $out/bin/xcbeautify\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Little beautifier tool for xcodebuild",
         homepage: "https://github.com/cpisciotta/xcbeautify",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

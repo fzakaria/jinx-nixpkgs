@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.5";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "coolbho3k",
           repo: "manuf",
           rev: nix.thunk(() => nix.str`${version}`),
@@ -41,16 +41,16 @@ cat ${wireshark_cli}/share/wireshark/wka >> manuf/manuf
       const disabledTests = nix.thunk(() => ["test_update_update"]);
       const pythonImportsCheck = nix.thunk(() => ["manuf"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           testMacAddress: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-test`), nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), manuf)} BC:EE:7B:00:00:00 > $out
 [ "$(cat $out | tr -d '\\n')" = "Vendor(manuf='ASUSTekC', manuf_long='ASUSTek COMPUTER INC.', comment=None)" ]
 `))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/coolbho3k/manuf",
         description: "Parser library for Wireshark's OUI database",
         mainProgram: "manuf",
@@ -68,7 +68,7 @@ cat ${wireshark_cli}/share/wireshark/wka >> manuf/manuf
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         format,

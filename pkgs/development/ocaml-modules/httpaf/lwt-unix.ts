@@ -13,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const faraday_lwt_unix = nix.arg($, "faraday-lwt-unix");
   const lwt = nix.arg($, "lwt");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "httpaf-lwt-unix",
       version: nix.thunk(() => nix.attr(httpaf, "version")),
       src: nix.thunk(() => nix.attr(httpaf, "src")),
       duneVersion: "3",
       minimalOCamlVersion: "4.08",
       propagatedBuildInputs: nix.thunk(() => [faraday_lwt_unix, httpaf, lwt]),
-      meta: nix.thunk(() => nix.update(nix.sel(httpaf, "meta"), { __proto__: pos$1, description: "Lwt support for http/af" })),
+      meta: nix.thunk(() => nix.update(nix.sel(httpaf, "meta"), { [nix.POS]: pos$1, description: "Lwt support for http/af" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=lwt-unix.ts.map

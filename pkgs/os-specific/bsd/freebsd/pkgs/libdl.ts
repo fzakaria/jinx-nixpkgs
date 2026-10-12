@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const libsys = nix.arg($, "libsys");
   const csu = nix.arg($, "csu");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "lib/libdl",
       extraPaths: nix.thunk(() => [
         "libexec/rtld-elf",

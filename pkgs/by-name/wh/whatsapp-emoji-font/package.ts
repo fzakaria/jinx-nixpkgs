@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "whatsapp-emoji-linux";
       const version = "2.26.8.72-1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           tag: version,
           owner: "dmlls",
           repo: "whatsapp-emoji-linux",
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       const enableParallelBuilding = true;
       const nativeBuildInputs = nix.thunk(() => [imagemagick, nototools, pngquant, which, zopfli]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "WhatsApp Emoji for GNU/Linux",
         homepage: "https://github.com/dmlls/whatsapp-emoji-linux",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "lucasew"))]),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

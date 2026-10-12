@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const wayland_scanner = nix.arg($, "wayland-scanner");
   const libGL = nix.arg($, "libGL");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hyprlax",
       version: "2.2.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sandwichfarm",
           repo: "hyprlax",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [wayland, wayland_protocols, libGL]),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Dynamic parallax wallpaper engine with multi-compositor support for Linux",
         longDescription: "hyprlax is a GPU-accelerated Wayland wallpaper daemon with parallax effects.\n\nFeatures:\n- Buttery smooth GPU-accelerated animations with configurable FPS\n- Multi-layer parallax with depth-of-field blur effects\n- Multi-compositor support (Hyprland, Sway, River, Niri, generic Wayland)\n- Customizable per-layer easing functions, delays, and animation parameters\n- Dynamic layer management via IPC (add, remove, modify layers at runtime)\n- Lightweight native client using compositor-specific protocols\n- Seamless animation interrupts and chaining\n",
         homepage: "https://github.com/sandwichfarm/hyprlax",

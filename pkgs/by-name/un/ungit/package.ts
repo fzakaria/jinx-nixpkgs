@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ungit";
       const version = "1.5.30";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FredrikNoren",
           repo: "ungit",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
         }))));
       const npmDepsHash = "sha256-cybFoGLZYmcVg1nQ4s8CqhVDpA4zR74B+qwM0fpuIsI=";
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         ELECTRON_SKIP_BINARY_DOWNLOAD: true,
         PUPPETEER_SKIP_DOWNLOAD: true,
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/FredrikNoren/ungit/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
         description: "Git made easy",
         homepage: "https://github.com/FredrikNoren/ungit",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "ungit",
         maintainers: [],
       }));
-      return { __proto__: pos$4, pname, version, src, npmDepsHash, env, meta };
+      return { [nix.POS]: pos$4, pname, version, src, npmDepsHash, env, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

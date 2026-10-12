@@ -21,37 +21,37 @@ export default nix.lambda((args) => (() => {
   const mainPort = 9445n;
   const webPort = 9446n;
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     name: "meshtasticd",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "drupol"))]),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       machine: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         services: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           meshtasticd: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             enable: true,
             port: mainPort,
             settings: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               Lora: nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 Module: "sim",
                 DIO2_AS_RF_SWITCH: false,
                 spiSpeed: "2000000",
               })),
               Webserver: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 Port: webPort,
                 RootPath: nix.thunk(() => nix.sel(pkgs, "meshtastic-web")),
               })),
               General: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 MaxNodes: 200n,
                 MaxMessageQueue: 100n,
                 MACAddressSource: "eth0",

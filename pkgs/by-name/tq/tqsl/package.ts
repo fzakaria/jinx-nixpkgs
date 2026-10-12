@@ -22,18 +22,18 @@ export default nix.lambda((args) => (() => {
   const wxwidgets_3_2 = nix.arg($, "wxwidgets_3_2");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tqsl",
       version: "2.8.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.arrl.org/files/file/LoTW%20Instructions/tqsl-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-GC5fKsNaPbi0CbRdllBea9JlrkZo7QZHVCCcS4573zc=",
         })))),
       nativeBuildInputs: nix.thunk(() => [cmake, wrapGAppsHook3]),
       buildInputs: nix.thunk(() => [expat, openssl, zlib, lmdb, curl, sqlite, wxwidgets_3_2]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Software for using the ARRL Logbook of the World",
         mainProgram: "tqsl",
         homepage: "https://www.arrl.org/tqsl-download",

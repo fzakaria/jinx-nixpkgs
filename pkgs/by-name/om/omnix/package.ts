@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       pname: "omnix",
       version: "1.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "juspay",
           repo: "omnix",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,12 +44,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles, pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
       env: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         OMNIX_SOURCE: nix.thunk(() => nix.sel(finalAttrs, "src")),
         CACHIX_BIN: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), cachix)),
         OM_INIT_REGISTRY: nix.thunk(() => nix.str`path:${nix.sel(finalAttrs, "src")}/crates/omnix-init/registry`),
         DEVOUR_FLAKE: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             owner: "srid",
             repo: "devour-flake",
             rev: "9fe4db872c107ea217c13b24527b68d9e4a4c01b",
@@ -57,35 +57,35 @@ export default nix.lambda((args) => (() => {
           })))),
         NIX_SYSTEMS: nix.thunk(() => (() => {
           const x86_64_linux = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               owner: "nix-systems",
               repo: "x86_64-linux",
               rev: "2ecfcac5e15790ba6ce360ceccddb15ad16d08a8",
               hash: "sha256-Gtqg8b/v49BFDpDetjclCYXm8mAnTrUzR0JnE2nv5aw=",
             }))));
           const aarch64_linux = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               owner: "nix-systems",
               repo: "aarch64-linux",
               rev: "aa1ce1b64c822dff925d63d3e771113f71ada1bb",
               hash: "sha256-1Zp7TRYLXj4P5FLhQ8jBChrgAmQxR3iTypmWf9EFTnc=",
             }))));
           const x86_64_darwin = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               owner: "nix-systems",
               repo: "x86_64-darwin",
               rev: "db0463cce4cd60fb791f33a83d29a1ed53edab9b",
               hash: "sha256-+xT9B1ZbhMg/zpJqd00S06UCZb/A2URW9bqqrZ/JTOg=",
             }))));
           const aarch64_darwin = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               owner: "nix-systems",
               repo: "aarch64-darwin",
               rev: "75e6c6912484d28ebba5769b794ffa4aff653ba2",
               hash: "sha256-PHVNQ7y0EQYzujQRYoRdb96K0m1KSeAjSrbz2b75S6Q=",
             }))));
           return nix.builtins.toJSON(nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               "x86_64-linux": x86_64_linux,
               "aarch64-linux": aarch64_linux,
               "x86_64-darwin": x86_64_darwin,
@@ -93,21 +93,21 @@ export default nix.lambda((args) => (() => {
             })));
         })()),
         FALSE_FLAKE: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             owner: "boolean-option",
             repo: "false",
             rev: "d06b4794a134686c70a1325df88a6e6768c6b212",
             hash: "sha256-vLy8GQr0noEcoA+jX24FgUVBA/poV36zDWAUChN3hIY=",
           })))),
         TRUE_FLAKE: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             owner: "boolean-option",
             repo: "true",
             rev: "6ecb49143ca31b140a5273f1575746ba93c3f698",
             hash: "sha256-L9eyTL7njtPBUYmZRYFKCzQFDgua9U9oE7UwCzjZfl8=",
           })))),
         INSPECT_FLAKE: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             owner: "juspay",
             repo: "inspect",
             rev: "e82e65949d2ba5283865609b8728c50ebe7573e3",
@@ -123,11 +123,11 @@ export default nix.lambda((args) => (() => {
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/om`),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         description: "Nix companion to improve developer experience",
         homepage: "https://omnix.page",
         changelog: nix.thunk(() => nix.str`https://omnix.page/history.html#${nix.sel(finalAttrs, "version")}`),

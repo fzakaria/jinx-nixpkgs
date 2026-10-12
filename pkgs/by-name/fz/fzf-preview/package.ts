@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const w3m = nix.arg($, "w3m");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fzf-preview",
       version: "0-unstable-2026-02-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "semi710",
           repo: "fzf-preview",
           rev: "5e5a5a5c4258fa86300cb56224e31416ff7401b5",
@@ -72,7 +72,7 @@ wrapProgram $out/bin/fzf-preview \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple fzf preview script for previewing any filetype in fzf's preview window",
         longDescription: "fzf-preview is a lightweight Bash script designed to enhance the user experience\nwith fzf (fuzzy finder) by providing instant previews of files directly in the\nfzf preview pane. It supports a wide variety of filetypes—including images and\ntext—and delivers relevant file information in the terminal. The script aims to\nbe simple, fast, and highly compatible, making it a useful tool for anyone\nleveraging fzf for file navigation or search.\n",
         homepage: "https://github.com/semi710/fzf-preview",

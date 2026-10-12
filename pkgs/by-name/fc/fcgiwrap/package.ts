@@ -18,23 +18,23 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fcgiwrap",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gnosek",
           repo: "fcgiwrap",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-znAsZk+aB2XO2NK8Mjc+DLwykYKHolnVQPErlaAx3Oc=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=implicit-fallthrough" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=implicit-fallthrough" })),
       configureFlags: nix.thunk(() => ["--with-systemd", "--with-systemdsystemunitdir=$(out)/etc/systemd/system"]),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => [systemd, fcgi]),
       postPatch: "substituteInPlace configure.ac --replace libsystemd-daemon libsystemd\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/gnosek/fcgiwrap",
         description: "Simple server for running CGI applications over FastCGI",
         maintainers: [],

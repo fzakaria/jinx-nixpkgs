@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pulsarctl";
       const version = "4.0.4.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "streamnative",
           repo: "pulsarctl",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [installShellFiles]);
       const ldflags = nix.thunk(() => (() => {
         const buildVars = nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           ReleaseVersion: version,
           BuildTS: "None",
           GitHash: nix.thunk(() => nix.sel(src, "rev")),
@@ -57,12 +57,12 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const postInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd pulsarctl \\\n  --bash <($out/bin/pulsarctl completion bash) \\\n  --fish <($out/bin/pulsarctl completion fish) \\\n  --zsh <($out/bin/pulsarctl completion zsh)\n"));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: pulsarctl,
               command: "pulsarctl --version",
               version: nix.thunk(() => nix.str`v${version}`),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "CLI for Apache Pulsar written in Go",
         homepage: "https://github.com/streamnative/pulsarctl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "pulsarctl",
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

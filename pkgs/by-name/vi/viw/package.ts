@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "viw",
       version: "0-unstable-2017-10-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lpan",
           repo: "viw",
           rev: "2cf317f6d82a6fa58f284074400297b6dc0f44c2",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       checkFlags: nix.thunk(() => ["test-command", "test-buffer", "test-state"]),
       installPhase: "install -Dm 755 -t $out/bin viw\ninstall -Dm 644 -t $out/share/doc/viw README.md\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "VI Worsened, a fun and light clone of VI",
         homepage: "https://github.com/lpan/viw",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

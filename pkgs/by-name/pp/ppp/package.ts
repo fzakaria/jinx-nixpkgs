@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const withSystemd = nix.argOr($, "withSystemd", () => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), systemdLibs));
   const systemdLibs = nix.arg($, "systemdLibs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       version: "2.5.2",
       pname: "ppp",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ppp-project",
           repo: "ppp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/ppp-project/ppp/commit/05361692ee7d6260ce5c04c9fa0e5a1aa7565323.patch",
             hash: "sha256-ybuWyA1t9IJ1Sg06a0b0tin4qssr0qzmenfGoA1X0BE=",
           })))),
@@ -56,16 +56,16 @@ export default nix.lambda((args) => (() => {
       postPatch: "for file in $(find -name Makefile.linux); do\n  substituteInPlace \"$file\" --replace '-m 4550' '-m 550'\ndone\n\npatchShebangs --host \\\n  scripts/{pon,poff,plog}\n",
       enableParallelBuilding: true,
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`)]),
-      env: nix.thunk(() => ({ __proto__: pos$3, NIX_LDFLAGS: "-lcrypt" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_LDFLAGS: "-lcrypt" })),
       installFlags: nix.thunk(() => ["sysconfdir=$(out)/etc"]),
       postInstall: "install -Dm755 -t $out/bin scripts/{pon,poff,plog}\n",
       postFixup: "substituteInPlace \"$out/bin/pon\" --replace \"/usr/sbin\" \"$out/bin\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        tests: nix.thunk(() => ({ __proto__: pos$4, pppd: nix.thunk(() => nix.attr(nixosTests, "pppd")) })),
+        [nix.POS]: pos$5,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$4, pppd: nix.thunk(() => nix.attr(nixosTests, "pppd")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://ppp.samba.org",
         description: "Point-to-point implementation to provide Internet connections over serial lines",
         license: nix.thunk(() => (() => {

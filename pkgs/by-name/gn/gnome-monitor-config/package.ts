@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const cairo = nix.arg($, "cairo");
   const glib = nix.arg($, "glib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gnome-monitor-config",
       version: "0-unstable-2023-09-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jadahl",
           repo: "gnome-monitor-config",
           rev: "04b854e6411cd9ca75582c108aea63ae3c202f0e",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [cairo, glib]),
       postPatch: "substituteInPlace src/meson.build \\\n  --replace-fail \"executable('gnome-monitor-config', src\" \\\n                 \"executable('gnome-monitor-config', src, install : true\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Program to help manage GNOME monitor configuration",
         homepage: "https://github.com/jadahl/gnome-monitor-config",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildNpmPackage, (final) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "curlconverter",
       version: "4.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "curlconverter",
           repo: "curlconverter",
           tag: nix.thunk(() => nix.str`v${nix.sel(final, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       npmFlags: nix.thunk(() => ["--ignore-scripts"]),
       npmBuildScript: "compile",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Convert curl commands to Python, JavaScript and more",
         homepage: "https://curlconverter.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -13,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const lsp_bridge = nix.arg($, "lsp-bridge");
   const yasnippet = nix.arg($, "yasnippet");
   return nix.app(melpaBuild, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "acm",
       version: nix.thunk(() => nix.sel(lsp_bridge, "version")),
       src: nix.thunk(() => nix.sel(lsp_bridge, "src")),
       packageRequires: nix.thunk(() => [yasnippet]),
       files: "(\"acm/*.el\" \"acm/icons\")",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Asynchronous Completion Menu",
         homepage: "https://github.com/manateelazycat/lsp-bridge",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   nix.assert_(!nix.asBool(nix.sel(blas, "isILP64")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/wa/wannier90/package.nix:11:1");
   nix.assert_(nix.eq(nix.sel(blas, "isILP64"), nix.sel(lapack, "isILP64")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/wa/wannier90/package.nix:12:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "wannier90",
       version: "3.1.0",
       nativeBuildInputs: nix.thunk(() => [gfortran]),
       buildInputs: nix.thunk(() => [blas, lapack]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wannier-developers",
           repo: "wannier90",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "replace-obsolete-pipes-module",
             url: "https://github.com/wannier-developers/wannier90/commit/8aef6edaa4f169d45b479dc5d5c5efb8b9385a49.patch",
             hash: "sha256-6ZfHd8CVTzfaj99AA3dsJJ/EOeCZmzACAM5pe2wBo8g=",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       hardeningDisable: nix.thunk(() => ["format"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Calculation of maximally localised Wannier functions",
         homepage: "https://github.com/wannier-developers/wannier90",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

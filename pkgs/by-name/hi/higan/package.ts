@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const udev = nix.arg($, "udev");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "higan",
       version: "115-unstable-2025-08-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "higan-emu",
           repo: "higan",
           rev: "8f4df010715298455b92cfc0821ea833770a8b5a",
@@ -96,11 +96,11 @@ chmod +x $out/bin/higan-init.sh
 `;
       })()), "\nrunHook postInstall\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/higan-emu/higan",
         description: "Open-source, cycle-accurate multi-system emulator",
         longDescription: "higan is a multi-system emulator, originally developed by Near, with an\nuncompromising focus on accuracy and code readability.\n\nIt currently emulates the following systems: Famicom, Famicom Disk System,\nSuper Famicom, Super Game Boy, Game Boy, Game Boy Color, Game Boy Advance,\nGame Boy Player, SG-1000, SC-3000, Master System, Game Gear, Mega Drive,\nMega CD, PC Engine, SuperGrafx, MSX, MSX2, ColecoVision, Neo Geo Pocket,\nNeo Geo Pocket Color, WonderSwan, WonderSwan Color, SwanCrystal, Pocket\nChallenge V2.\n",

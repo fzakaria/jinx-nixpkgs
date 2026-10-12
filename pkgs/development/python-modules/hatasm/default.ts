@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pyelftools = nix.arg($, "pyelftools");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hatasm",
       version: "1.0.0-unstable-2026-01-05",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "EntySec",
           repo: "HatAsm",
           rev: "c8ec79e533a2dd489de86cefc168fce576f21f1a",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["hatasm"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Assembler and disassembler that provides support for all common architectures",
         homepage: "https://github.com/EntySec/HatAsm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

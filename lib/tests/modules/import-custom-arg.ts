@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const custom = nix.arg($, "custom");
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     imports: nix.thunk(() => nix.concat([], nix.app(nix.sel(lib, "optional"), custom, nix.path(here, "./define-enable-force.nix")))),
   };
 })(), formals$1);

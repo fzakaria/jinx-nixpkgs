@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   const pnpm = pnpm_11;
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "chiri",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chiriapp",
           repo: "chiri",
           tag: nix.thunk(() => nix.str`app-v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-BeEpTFKWr81vNBUhHOnfrJ/yNgpZGDExnaxvIbwkBMs=",
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -70,9 +70,9 @@ done
       preBuild: "unset TAURI_SIGNING_PRIVATE_KEY\nunset TAURI_SIGNING_PUBLIC_KEY\npnpm build\n",
       postInstall: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "mkdir -p $out/bin\nmakeWrapper \"$out/Applications/Chiri.app/Contents/MacOS/chiri\" \"$out/bin/chiri\"\n" : "mv $out/bin/Chiri $out/bin/chiri\nfor desktopFile in \\\n  $out/share/applications/Chiri.desktop \\\n  $out/share/applications/garden.chiri.Chiri.desktop\ndo\n  if [ -f \"$desktopFile\" ]; then\n    substituteInPlace \"$desktopFile\" \\\n      --replace-fail \"Exec=Chiri\" \"Exec=chiri\"\n  fi\ndone\n")),
       doCheck: false,
-      passthru: nix.thunk(() => ({ __proto__: pos$3, updateScript: nix_update_script })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix_update_script })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Cross-platform CalDAV task management app",
         homepage: "https://github.com/chiriapp/chiri",
         changelog: nix.thunk(() => nix.str`https://github.com/chiriapp/chiri/releases/tag/app-v${nix.sel(finalAttrs, "version")}`),

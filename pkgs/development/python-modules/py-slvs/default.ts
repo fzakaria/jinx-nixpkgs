@@ -23,14 +23,14 @@ export default nix.lambda((args) => (() => {
       const pname = "py-slvs";
       const version = "1.0.6";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "py_slvs",
           version: version,
           hash: "sha256-U6T/aXy0JTC1ptL5oBmch0ytSPmIkRA8XOi31NpArnI=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "cmake-4.patch",
             url: "https://github.com/realthunder/slvs_py/compare/ab95814...ad0e1f7.patch",
             hash: "sha256-LqDDx7uWq5VOkbE/aRu1JAau/DVfr40KK+L8PbBeGoU=",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const dontUseCmakeConfigure = true;
       const pythonImportsCheck = nix.thunk(() => ["py_slvs"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python binding of SOLVESPACE geometry constraint solver",
         homepage: "https://github.com/realthunder/slvs_py",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

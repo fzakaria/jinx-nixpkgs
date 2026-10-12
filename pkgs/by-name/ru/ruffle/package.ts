@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const withX11 = nix.argOr($, "withX11", () => true);
   const withRuffleTools = nix.argOr($, "withRuffleTools", () => false);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "ruffle",
       version: "0.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ruffle-rs",
           repo: "ruffle",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       env: nix.thunk(() => (() => {
         const commitDate = "2026-09-06";
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           VERGEN_IDEMPOTENT: "1",
           VERGEN_GIT_SHA: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           VERGEN_GIT_COMMIT_DATE: commitDate,
@@ -88,16 +88,16 @@ export default nix.lambda((args) => (() => {
         ], nix.app(nix.sel(lib, "optionals"), withX11, nix.thunk(() => [libxcursor, libxrandr, libxi, libx11, libxcb])))))),
       postInstall: nix.thunk(() => nix.add("mv $out/bin/ruffle_desktop $out/bin/ruffle\ninstall -Dm644 LICENSE.md -t $out/share/doc/ruffle\ninstall -Dm644 README.md -t $out/share/doc/ruffle\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "install -Dm644 desktop/packages/linux/rs.ruffle.Ruffle.desktop \\\n               -t $out/share/applications/\n\ninstall -Dm644 desktop/packages/linux/rs.ruffle.Ruffle.svg \\\n               -t $out/share/icons/hicolor/scalable/apps/\n\ninstall -Dm644 desktop/packages/linux/rs.ruffle.Ruffle.metainfo.xml \\\n               -t $out/share/metainfo/\n"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               name: "ruffle-update",
               runtimeInputs: nix.thunk(() => [curl, jq, nix_update]),
               text: "version=\"$( \\\n  curl https://api.github.com/repos/ruffle-rs/ruffle/releases/latest | \\\n  jq -r \".tag_name\" \\\n)\"\nexec nix-update --version \"${version#v}\" ruffle\n",
             })))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Cross platform Adobe Flash Player emulator",
         longDescription: "Ruffle is a cross platform emulator for running and preserving\nAdobe Flash content. It is capable of running ActionScript 1, 2\nand 3 programs with machine-native performance thanks to being\nwritten in the Rust programming language.\n\nAdditionally, overriding the `withRuffleTools` input to\n`true` will build all the available packages in the ruffle\nproject, including the `exporter` and `scanner` utilities.\n",
         homepage: "https://ruffle.rs/",

@@ -27,33 +27,33 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "xe-guest-utilities"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       services: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "xe-guest-utilities": nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the XenServer guest utilities daemon")),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         services: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           udev: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "xe-guest-utilities"))]),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
-          tmpfiles: nix.thunk(() => ({ __proto__: pos$6, rules: nix.thunk(() => ["d /run/xenstored 0755 - - -"]) })),
+          [nix.POS]: pos$14,
+          tmpfiles: nix.thunk(() => ({ [nix.POS]: pos$6, rules: nix.thunk(() => ["d /run/xenstored 0755 - - -"]) })),
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             "xe-daemon": nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               description: "xen daemon file",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["xe-linux-distribution.service"]),
@@ -63,14 +63,14 @@ export default nix.lambda((args) => (() => {
                 nix.thunk(() => nix.sel(pkgs, "iproute2")),
               ]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 PIDFile: "/run/xe-daemon.pid",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "xe-guest-utilities")}/bin/xe-daemon -p /run/xe-daemon.pid`),
                 ExecStop: nix.thunk(() => nix.str`${nix.sel(pkgs, "procps")}/bin/pkill -TERM -F /run/xe-daemon.pid`),
               })),
             })),
             "xe-linux-distribution": nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               description: "xen linux distribution service",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               before: nix.thunk(() => ["xend.service"]),
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
                 nix.thunk(() => nix.sel(pkgs, "gnused")),
               ]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 Type: "simple",
                 RemainAfterExit: "yes",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "xe-guest-utilities")}/bin/xe-linux-distribution /var/cache/xe-linux-distribution`),
@@ -90,13 +90,13 @@ export default nix.lambda((args) => (() => {
           })),
           mounts: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "Mount /proc/xen files",
               what: "xenfs",
               where: "/proc/xen",
               type: "xenfs",
               unitConfig: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 ConditionPathExists: "/proc/xen",
                 RefuseManualStop: "true",
               })),

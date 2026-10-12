@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "autoenv",
       version: "0-unstable-2024-10-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hyperupcall",
           repo: "autoenv",
           rev: "90241f182d6a7c96e9de8a25c1eccaf2a2d1b43a",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\nmkdir -p $out/share\ncp -R $src $out/share/autoenv\nchmod +x $out/share/autoenv\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Per-directory shell environments sourced from .env file",
         homepage: "https://github.com/hyperupcall/autoenv",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

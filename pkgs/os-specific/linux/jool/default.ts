@@ -19,16 +19,16 @@ export default nix.lambda((args) => (() => {
   const kernel = nix.arg($, "kernel");
   const kernelModuleMakeFlags = nix.arg($, "kernelModuleMakeFlags");
   const nixosTests = nix.arg($, "nixosTests");
-  const sourceAttrs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./source.nix")), nix.thunk(() => ({ __proto__: pos$1, fetchFromGitHub: fetchFromGitHub }))));
+  const sourceAttrs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./source.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, fetchFromGitHub: fetchFromGitHub }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-${nix.sel(kernel, "version")}`),
       pname: "jool",
       version: nix.thunk(() => nix.attr(sourceAttrs, "version")),
       src: nix.thunk(() => nix.sel(sourceAttrs, "src")),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(kernel, "version")), "7.2")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: "https://github.com/NICMx/Jool/commit/47a8c7426f08e50505e69eef7ff607a04fbab52e.diff",
               hash: "sha256-EcfBwFKOSFQOBWl8s5Pa2/RJg9lH1ziGzvV4ap2505M=",
             })))),
@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
       ])),
       installTargets: "modules_install",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, jool: nix.thunk(() => nix.attr(nixosTests, "jool")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, jool: nix.thunk(() => nix.attr(nixosTests, "jool")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://www.jool.mx/",
         description: "Fairly compliant SIIT and Stateful NAT64 for Linux - kernel modules",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

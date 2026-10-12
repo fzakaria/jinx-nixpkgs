@@ -32,16 +32,16 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const pkgs_1 = nix.arg($_1, "pkgs");
     return {
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       environment: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "glusterfs"))]),
       })),
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         fileSystems: nix.thunk(() => ({
-          __proto__: pos$3,
-          "/gluster": nix.thunk(() => ({ __proto__: pos$2, device: "server1:/gv0", fsType: "glusterfs" })),
+          [nix.POS]: pos$3,
+          "/gluster": nix.thunk(() => ({ [nix.POS]: pos$2, device: "server1:/gv0", fsType: "glusterfs" })),
         })),
       })),
     };
@@ -50,31 +50,31 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$3);
     const pkgs_1 = nix.arg($_1, "pkgs");
     return {
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       networking: nix.thunk(() => ({
-        __proto__: pos$7,
-        firewall: nix.thunk(() => ({ __proto__: pos$6, enable: false })),
+        [nix.POS]: pos$7,
+        firewall: nix.thunk(() => ({ [nix.POS]: pos$6, enable: false })),
       })),
       services: nix.thunk(() => ({
-        __proto__: pos$9,
-        glusterfs: nix.thunk(() => ({ __proto__: pos$8, enable: true })),
+        [nix.POS]: pos$9,
+        glusterfs: nix.thunk(() => ({ [nix.POS]: pos$8, enable: true })),
       })),
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         emptyDiskImages: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             size: 1024n,
             driveConfig: nix.thunk(() => ({
-              __proto__: pos$11,
-              deviceExtraOpts: nix.thunk(() => ({ __proto__: pos$10, serial: "data" })),
+              [nix.POS]: pos$11,
+              deviceExtraOpts: nix.thunk(() => ({ [nix.POS]: pos$10, serial: "data" })),
             })),
           })),
         ]),
         fileSystems: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           "/data": nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             device: "/dev/disk/by-id/virtio-data",
             fsType: "ext4",
             autoFormat: true,
@@ -84,10 +84,10 @@ export default nix.lambda((args) => (() => {
     };
   })(), formals$3);
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     name: "glusterfs",
     nodes: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       server1: server,
       server2: server,
       client1: client,

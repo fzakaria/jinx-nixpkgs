@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
   const from_1 = nix.thunk(() => nix.sel(lib, "strings"));
   const cmakeBool = nix.thunk(() => nix.attr(from_1, "cmakeBool"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "neuron",
       version: "8.2.7",
       pyproject: false,
@@ -71,7 +71,7 @@ for entry in $out/lib/*.so; do
 done
 `),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "neuronsimulator",
           repo: "nrn",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -79,7 +79,7 @@ done
           hash: "sha256-dmpx0Wud0IhdFvvTJuW/w1Uq6vFYaNal9n27LAqV1Qc=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simulation environment for empirically-based simulations of neurons and networks of neurons",
         longDescription: "NEURON is a simulation environment for developing and exercising models of\nneurons and networks of neurons. It is particularly well-suited to problems where\ncable properties of cells play an important role, possibly including extracellular\npotential close to the membrane), and where cell membrane properties are complex,\ninvolving many ion-specific channels, ion accumulation, and second messengers\n",
         sourceProvenance: nix.thunk(() => (() => {

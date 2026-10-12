@@ -47,29 +47,29 @@ export default nix.lambda((args) => (() => {
   const mkMerge = nix.thunk(() => nix.attr(lib, "mkMerge"));
   const clusterId = "ii5pZE5LRkSeWrnyBhMOYQ";
   const kafkaConfig = nix.thunk(() => ({
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     networking: nix.thunk(() => ({
-      __proto__: pos$2,
-      firewall: nix.thunk(() => ({ __proto__: pos$1, allowedTCPPorts: nix.thunk(() => [9092n, 9093n]) })),
+      [nix.POS]: pos$2,
+      firewall: nix.thunk(() => ({ [nix.POS]: pos$1, allowedTCPPorts: nix.thunk(() => [9092n, 9093n]) })),
     })),
     virtualisation: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       diskSize: 1024n,
       memorySize: nix.thunk(() => nix.mul(1024n, 2n)),
     })),
     environment: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "apacheKafka"))]),
     })),
     services: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       "apache-kafka": nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         enable: true,
         clusterId: nix.thunk(() => nix.str`${clusterId}`),
         formatLogDirs: true,
         settings: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           listeners: nix.thunk(() => ["PLAINTEXT://:9092", "CONTROLLER://:9093"]),
           "listener.security.protocol.map": nix.thunk(() => ["PLAINTEXT:PLAINTEXT", "CONTROLLER:PLAINTEXT"]),
           "controller.quorum.voters": nix.thunk(() => nix.app(nix.sel(lib, "imap1"), (i) => (name) => nix.str`${nix.builtins.toString(i)}@${name}:9093`, nix.thunk(() => nix.builtins.attrNames(kafkaNodes)))),
@@ -84,74 +84,74 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     systemd: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         "apache-kafka": nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           after: nix.thunk(() => ["network-online.target"]),
           requires: nix.thunk(() => ["network-online.target"]),
-          serviceConfig: nix.thunk(() => ({ __proto__: pos$8, StateDirectory: "apache-kafka" })),
+          serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$8, StateDirectory: "apache-kafka" })),
         })),
       })),
     })),
   }));
   const extraKafkaConfig = nix.thunk(() => ({
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     kafka1: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         "apache-kafka": nix.thunk(() => ({
-          __proto__: pos$14,
-          settings: nix.thunk(() => ({ __proto__: pos$13, "node.id": 1n, "broker.rack": 1n })),
+          [nix.POS]: pos$14,
+          settings: nix.thunk(() => ({ [nix.POS]: pos$13, "node.id": 1n, "broker.rack": 1n })),
         })),
       })),
     })),
     kafka2: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       services: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         "apache-kafka": nix.thunk(() => ({
-          __proto__: pos$18,
-          settings: nix.thunk(() => ({ __proto__: pos$17, "node.id": 2n, "broker.rack": 2n })),
+          [nix.POS]: pos$18,
+          settings: nix.thunk(() => ({ [nix.POS]: pos$17, "node.id": 2n, "broker.rack": 2n })),
         })),
       })),
     })),
     kafka3: nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       services: nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         "apache-kafka": nix.thunk(() => ({
-          __proto__: pos$22,
-          settings: nix.thunk(() => ({ __proto__: pos$21, "node.id": 3n, "broker.rack": 3n })),
+          [nix.POS]: pos$22,
+          settings: nix.thunk(() => ({ [nix.POS]: pos$21, "node.id": 3n, "broker.rack": 3n })),
         })),
       })),
     })),
     kafka4: nix.thunk(() => ({
-      __proto__: pos$28,
+      [nix.POS]: pos$28,
       services: nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         "apache-kafka": nix.thunk(() => ({
-          __proto__: pos$26,
-          settings: nix.thunk(() => ({ __proto__: pos$25, "node.id": 4n, "broker.rack": 3n })),
+          [nix.POS]: pos$26,
+          settings: nix.thunk(() => ({ [nix.POS]: pos$25, "node.id": 4n, "broker.rack": 3n })),
         })),
       })),
     })),
   }));
   const kafkaNodes = nix.thunk(() => nix.builtins.mapAttrs((_) => (val) => nix.app(mkMerge, nix.thunk(() => [val, kafkaConfig])), extraKafkaConfig));
   return {
-    __proto__: pos$35,
+    [nix.POS]: pos$35,
     name: "kafka-cluster",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "jpds"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$34,
+      [nix.POS]: pos$34,
       kafka1: nix.thunk(() => nix.attr(kafkaNodes, "kafka1")),
       kafka2: nix.thunk(() => nix.attr(kafkaNodes, "kafka2")),
       kafka3: nix.thunk(() => nix.attr(kafkaNodes, "kafka3")),
@@ -160,12 +160,12 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           environment: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "apacheKafka"))]),
           })),
-          virtualisation: nix.thunk(() => ({ __proto__: pos$32, diskSize: 1024n })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$32, diskSize: 1024n })),
         };
       })(), formals$2),
     })),

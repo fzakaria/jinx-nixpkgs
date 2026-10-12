@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "optipng";
       const version = "7.9.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/optipng/optipng-${version}.tar.gz`),
           hash: "sha256-wleb5YwsZtrp1jFU7cs9Qn/vZMsA7Ar/B5ydFW7Ebyk=",
         }))));
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const configureFlags = nix.thunk(() => nix.concat(["--with-system-zlib", "--with-system-libpng"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), [])));
       const postInstall = nix.thunk(() => (nix.asBool((nix.asBool(!nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows")))) ? "mv \"$out\"/bin/optipng{,.exe}\n" : null));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://optipng.sourceforge.net/",
         description: "PNG optimizer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "optipng",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

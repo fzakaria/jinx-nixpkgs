@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sqlit-tui",
       version: "1.6.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Maxteabag",
           repo: "sqlit",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
         "test_detect_strategy_pip_user_fallback",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightweight TUI for SQL Server, PostgreSQL, MySQL, SQLite, and more",
         homepage: "https://github.com/Maxteabag/sqlit",
         changelog: nix.thunk(() => nix.str`https://github.com/Maxteabag/sqlit/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

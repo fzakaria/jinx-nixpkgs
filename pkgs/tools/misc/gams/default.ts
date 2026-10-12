@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "25.0.2";
       const pname = "gams";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://d37drm4t2jghv5.cloudfront.net/distributions/${version}/linux/linux_x64_64_sfx.exe`),
           sha256: "4f95389579f33ff7c2586838a2c19021aa0746279555cbb51aa6e0efd09bd297",
         }))));
@@ -40,7 +40,7 @@ ln -s $out/share/gams/optgams.def $out/bin/optgams.def
       })());
       const postFixup = "for f in $out/share/gams/*; do\n  if [[ -x $f ]] && [[ -f $f ]] && [[ ! $f =~ .*\\.so$ ]]; then\n    if patchelf \\\n      --set-rpath \"$out/share/gams\" \\\n      --set-interpreter $(cat $NIX_CC/nix-support/dynamic-linker) $f; then\n      ln -s $f $out/bin/$(basename $f)\n    fi\n  fi\ndone\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "General Algebraic Modeling System",
         longDescription: "The General Algebraic Modeling System is a high-level modeling system for mathematical optimization.\nGAMS is designed for modeling and solving linear, nonlinear, and mixed-integer optimization problems.\n",
         homepage: "https://www.gams.com/",
@@ -53,7 +53,7 @@ ln -s $out/share/gams/optgams.def $out/bin/optgams.def
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         pname,
         src,

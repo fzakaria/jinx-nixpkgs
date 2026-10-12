@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "flockit",
       version: "2012-08-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "smerritt",
           repo: "flockit",
           rev: "5c2b2092f8edcc8e3e2eb6ef66c968675dbfa686",
@@ -35,7 +35,7 @@ EOI
 chmod +x $out/bin/flockit
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "LD_PRELOAD shim to add file locking to programs that don't do it (I'm looking at you, rsync!)",
         mainProgram: "flockit",
         longDescription: "This library and tool exists solely because rsync doesn't have file locking.\n\nIt's not used like a normal library; you don't link against it, and you\ndon't have to patch your source code to use it. It's inserted between your\nprogram and its libraries by use of LD_PRELOAD.\n\nFor example:\n\n  $ env LD_PRELOAD=$(nix-build -A pkgs.flockit)/lib/libflockit.so FLOCKIT_FILE_PREFIX=test rsync SRC DEST\n\nBesides the library a handy executable is provided which can simplify the above to:\n\n  $ $(nix-build -A pkgs.flockit)/bin/flockit test rsync SRC DEST\n\nAlso see the following blog post:\nhttps://www.swiftstack.com/blog/2012/08/15/old-school-monkeypatching/\n",

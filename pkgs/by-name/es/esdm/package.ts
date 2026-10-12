@@ -62,11 +62,11 @@ export default nix.lambda((args) => (() => {
   const linuxKernelReseedEntropyRate = nix.argOr($, "linuxKernelReseedEntropyRate", () => 512n);
   nix.assert_((nix.asBool(nix.eq(cryptoBackend, "openssl")) || nix.asBool(nix.eq(cryptoBackend, "botan"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/es/esdm/package.nix:67:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "esdm",
       version: "1.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "smuellerDD",
           repo: "esdm",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -124,7 +124,7 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       mesonBuildType: "release",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.chronox.de/esdm.html",
         description: "Entropy Source and DRNG Manager in user space",
         license: nix.thunk(() => (() => {

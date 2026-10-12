@@ -20,14 +20,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-YY/FAmEoYN6KuOPWGV6Z7zMv/8aDN/a4nllpCq0NILU=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [setuptools, setuptools_scm, wheel]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/dilshod/xlsx2csv",
         description: "Convert xlsx to csv",
         mainProgram: "xlsx2csv",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "jb55"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, pyproject, src, nativeBuildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, pyproject, src, nativeBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -18,14 +18,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.2";
       const minimalOCamlVersion = "5.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/leostera/tty/releases/download/${version}/tty-${version}.tbz`),
           hash: "sha256-eeD5Y+/QXZzFoEHvOSZj2Q74V8BK5j3Lu3Zsrj2YUUs=",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [uutf]);
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for interacting with teletype and terminal emulators",
         homepage: "https://github.com/leostera/tty",
         changelog: nix.thunk(() => nix.str`https://github.com/leostera/tty/blob/${version}/CHANGES.md`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         minimalOCamlVersion,

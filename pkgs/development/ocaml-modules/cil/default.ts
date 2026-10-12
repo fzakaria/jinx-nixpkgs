@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ocaml-cil";
       const version = "1.7.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/cil/cil-${version}.tar.gz`),
           sha256: "05739da0b0msx6kmdavr3y2bwi92jbh3szc35d7d8pdisa8g5dv9",
         }))));
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const preConfigure = "substituteInPlace Makefile.in --replace 'MACHDEPCC=gcc' 'MACHDEPCC=$(CC)'\nexport FORCE_PERL_PREFIX=1\n";
       const prefixKey = "-prefix=";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://sourceforge.net/projects/cil/",
         description: "Front-end for the C programming language that facilitates program analysis and transformation",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.selOr(ocaml, () => [], "meta", "platforms")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

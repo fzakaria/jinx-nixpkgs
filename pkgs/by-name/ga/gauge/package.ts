@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const gaugePlugins = nix.arg($, "gaugePlugins");
   const plugins = nix.argOr($, "plugins", () => []);
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gauge-wrapped",
       version: nix.thunk(() => nix.attr(gauge_unwrapped, "version")),
       dontUnpack: true,
@@ -52,8 +52,8 @@ makeWrapper ${gauge_unwrapped}/bin/gauge $out/bin/gauge \\
 `),
       nativeBuildInputs: nix.thunk(() => [gauge_unwrapped, makeWrapper, lndir]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        withPlugins: (f) => nix.app(nix.sel(gauge, "override"), nix.thunk(() => ({ __proto__: pos$1, plugins: nix.thunk(() => nix.app(f, gaugePlugins)) }))),
+        [nix.POS]: pos$4,
+        withPlugins: (f) => nix.app(nix.sel(gauge, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, plugins: nix.thunk(() => nix.app(f, gaugePlugins)) }))),
         fromManifest: (path) => (() => {
           const manifest = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), path));
           const requiredPlugins = nix.thunk(() => (() => {
@@ -64,9 +64,9 @@ makeWrapper ${gauge_unwrapped}/bin/gauge $out/bin/gauge \\
           return nix.app(nix.sel(gauge, "withPlugins"), manifestPlugins);
         })(),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           allPlugins: nix.thunk(() => nix.app(nix.sel(gaugePlugins, "testGaugePlugins"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               plugins: nix.thunk(() => nix.app(nix.sel(lib, "filter"), nix.thunk(() => nix.sel(lib, "isDerivation")), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), gaugePlugins)))),
             })))),
         })),

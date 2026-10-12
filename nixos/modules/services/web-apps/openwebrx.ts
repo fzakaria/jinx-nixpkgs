@@ -20,15 +20,15 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "openwebrx"));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       services: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         openwebrx: nix.thunk(() => (() => {
           const w = nix.withScope(lib, null);
           return {
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "OpenWebRX Web interface for Software-Defined Radios on http://localhost:8073")),
             package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "openwebrx", nix.thunk(() => ({})))),
           };
@@ -36,13 +36,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         systemd: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           services: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             openwebrx: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               path: nix.thunk(() => (() => {
                 const w = nix.withScope(pkgs, null);
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
                 ];
               })()),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/openwebrx`),
                 Restart: "always",
                 DynamicUser: true,

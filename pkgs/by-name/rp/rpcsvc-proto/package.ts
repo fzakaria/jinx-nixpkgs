@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const targetPackages = nix.arg($, "targetPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "rpcsvc-proto",
       version: "1.4.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "thkukuk",
           repo: "rpcsvc-proto",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "follow-RPCGEN_CPP-env-var",
             url: "https://github.com/thkukuk/rpcsvc-proto/commit/e772270774ff45172709e39f744cab875a816667.diff",
             sha256: "sha256-KrUD6YwdyxW9S99h4TB21ahnAOgQmQr2tYz++MIbk1Y=",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "man", "dev"]),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         RPCGEN_CPP: nix.thunk(() => nix.str`${nix.sel(stdenv, "cc", "targetPrefix")}cpp`),
       })),
       postPatch: nix.thunk(() => nix.add(nix.str`# replace fallback cpp with the target prefixed cpp
@@ -51,7 +51,7 @@ substituteInPlace rpcgen/rpc_main.c \\
   --replace '$(top_builddir)/rpcgen/rpcgen' '${nix.sel(buildPackages, "rpcsvc-proto")}/bin/rpcgen'
 `)))),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/thkukuk/rpcsvc-proto",
         description: "This package contains rpcsvc proto.x files from glibc, which are missing in libtirpc",
         longDescription: "The RPC-API has been removed from glibc. The 2.32-release-notes\n(https://sourceware.org/pipermail/libc-announce/2020/000029.html) recommend to use\n`libtirpc` and this package instead.\n",

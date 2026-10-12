@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkYaziPlugin = nix.arg($, "mkYaziPlugin");
   return nix.app(mkYaziPlugin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "yatline-githead.yazi",
       version: "0-unstable-2026-01-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "imsi32",
           repo: "yatline-githead.yazi",
           rev: "929e52cd6ff9ef0130756260ee5f0af69ce5debe",
           hash: "sha256-1r7AY0Yzr32YZl2g74ylx+1vGoNg04PMkDXnaB0X+lk=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "githead.yazi with yatline.yazi support",
         homepage: "https://github.com/imsi32/yatline-githead.yazi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

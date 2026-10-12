@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const buildDunePackage = nix.arg($, "buildDunePackage");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "res",
       version: "5.0.2",
       minimalOCamlVersion: "4.08",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mmottl/res/releases/download/${nix.sel(finalAttrs, "version")}/res-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-hQxRETCYxy7ZHah5cg+XHtH3wCj/ofq1VHxsPHu91FU=",
         })))),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for resizable, contiguous datastructures",
         homepage: "https://github.com/mmottl/res",
         changelog: nix.thunk(() => nix.str`https://github.com/mmottl/res/blob/${nix.sel(finalAttrs, "version")}/CHANGES.md`),

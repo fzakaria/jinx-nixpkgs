@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "keka",
       version: "1.6.8",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/aonez/Keka/releases/download/v${nix.sel(finalAttrs, "version")}/Keka-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-sVPoH7owX6VvKKqLrEcZww0zWpmY/pV2+LHtg683gds=",
         })))),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications $out/bin\ncp -r . $out/Applications/Keka.app\nmakeWrapper $out/Applications/Keka.app/Contents/MacOS/Keka $out/bin/keka \\\n  --add-flags \"--cli\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "macOS file archiver",
         homepage: "https://www.keka.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

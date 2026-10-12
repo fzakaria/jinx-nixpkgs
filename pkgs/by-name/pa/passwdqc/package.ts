@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pam = nix.arg($, "pam");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "passwdqc",
       version: "2.0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openwall",
           repo: "passwdqc",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "0001-fix-solaris-macos-builds.patch",
             url: "https://github.com/openwall/passwdqc/commit/fbf38229857f3d1982aa305c20da5e1ea0195b3e.patch",
             hash: "sha256-FaEWROHwFzd4ZTeKyPvuAr9vcgnHEv8MhERblIU8JC4=",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         "SHARED_LIBDIR_REL=$(out)/lib",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.openwall.com/passwdqc/",
         description: "Passphrase strength checking and enforcement",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

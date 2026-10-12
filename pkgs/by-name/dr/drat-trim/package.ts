@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "drat-trim",
       version: "2023-05-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "marijnheule",
           repo: "drat-trim",
           tag: "v05.22.2023",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "gcc-14-fix.patch",
             url: "https://github.com/marijnheule/drat-trim/commit/8186a7dc083a3951ba87e5ff35d36f1ea2c03f0d.patch",
             hash: "sha256-jgsOYcRYD2VGdOrXW9D8Jh80Nqd+Kp3d2IU+bNK1yGg=",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace Makefile --replace gcc cc\n",
       installPhase: "runHook preInstall\n\ninstall -Dt $out/bin drat-trim lrat-check\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Proof checker for unSAT proofs",
         longDescription: "DRAT-trim is a satisfiability proof checking and trimming\nutility designed to validate proofs for all known satisfiability\nsolving and preprocessing techniques.  DRAT-trim can also emit\ntrimmed formulas, optimized proofs, and TraceCheck+ dependency\ngraphs.\n\nDRAT-trim has been used as part of the judging process in the\nannual SAT Competition in recent years, in order to check\ncompeting SAT solvers' work when they claim that a SAT instance\nis unsatisfiable.\n\nThis package also contains the related tool LRAT-check, which checks a\nproof format called LRAT which extends DRAT with hint statements to speed\nup the checking process.\n",
         homepage: "https://www.cs.utexas.edu/~marijn/drat-trim/",

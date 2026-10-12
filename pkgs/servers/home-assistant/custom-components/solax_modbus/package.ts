@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const domain = "solax_modbus";
       const version = "2026.09.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wills106",
           repo: "homeassistant-solax-modbus",
           tag: version,
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const ignoreVersionRequirement = nix.thunk(() => ["tmodbus"]);
       const dependencies = nix.thunk(() => [pymodbus, tmodbus]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/wills106/homeassistant-solax-modbus/releases/tag/${version}`),
         description: "SolaX Power Modbus custom_component for Home Assistant (Supports some Ginlong Solis, Growatt, Sofar Solar, TIGO TSI & Qcells Q.Volt Hyb)",
         homepage: "https://github.com/wills106/homeassistant-solax-modbus",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         owner,
         domain,
         version,

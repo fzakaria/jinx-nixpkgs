@@ -17,19 +17,19 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   const testing = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "eclipse",
       repo: "paho.mqtt.testing",
       rev: "a4dc694010217b291ee78ee13a6d1db812f9babd",
       hash: "sha256-SQoNdkWMjnasPjpXQF2yV97MUra8gb27pc3rNoA8Rjw=",
     }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "paho-mqtt",
       version: "1.6.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "eclipse",
           repo: "paho.mqtt.python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +49,7 @@ export PYTHONPATH=".:$PYTHONPATH"
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(esphome, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/eclipse/paho.mqtt.python/blob/${nix.sel(finalAttrs, "src", "tag")}/ChangeLog.txt`),
         description: "MQTT version 5.0/3.1.1 client class",
         homepage: "https://eclipse.org/paho",

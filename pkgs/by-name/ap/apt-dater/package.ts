@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const screen = nix.arg($, "screen");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "apt-dater",
       version: "1.0.4-unstable-2026-02-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DE-IBH",
           repo: "apt-dater",
           rev: "eb3df6923262051082df2e9377516553da9ba508",
@@ -52,11 +52,11 @@ substituteInPlace build/screen_sockpath \\
       postInstall: "substituteInPlace $out/bin/adsh \\\n  --replace-fail \"apt-dater\" \"$out/bin/apt-dater\"\n",
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, tagPrefix: "v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, tagPrefix: "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/DE-IBH/apt-dater",
         description: "Terminal-based remote package update manager",
         longDescription: "Provides an ncurses frontend for managing package updates on a large\nnumber of remote hosts using SSH. It supports Debian-based managed hosts\nas well as rug (e.g. openSUSE) and yum (e.g. CentOS) based systems.\n",

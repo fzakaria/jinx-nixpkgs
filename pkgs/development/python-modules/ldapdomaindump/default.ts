@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.10.0-unstable-2025-04-06";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dirkjanm",
           repo: "ldapdomaindump",
           rev: "d559463eb29857f2660bf3867bfb9f8610d1ddb1",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["ldapdomaindump"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Active Directory information dumper via LDAP",
         homepage: "https://github.com/dirkjanm/ldapdomaindump/",
         changelog: nix.thunk(() => nix.str`https://github.com/dirkjanm/ldapdomaindump/releases/tag/${nix.sel(src, "rev")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

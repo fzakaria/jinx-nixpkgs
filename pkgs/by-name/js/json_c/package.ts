@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "json-c",
       version: "0.18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "json-c",
           repo: "json-c",
           tag: "json-c-0.18-20240915",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_APPS", false))]),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "JSON implementation in C",
         longDescription: "JSON-C implements a reference counting object model that allows you to\neasily construct JSON objects in C, output them as JSON formatted strings\nand parse JSON formatted strings back into the C representation of JSON\nobjects.\n",
         homepage: "https://github.com/json-c/json-c/wiki",

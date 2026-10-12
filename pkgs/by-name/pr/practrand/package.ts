@@ -18,19 +18,19 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const programPrefix = nix.argOr($, "programPrefix", () => "PractRand-");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "practrand",
       version: "0.96",
       __structuredAttrs: true,
       strictDeps: true,
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/pracrand/PractRand_${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-5Mr3/amLLFl7vaO1dnU89aD2BHqrg3yCvjcKt5imcuE=",
         })))),
       nativeBuildInputs: nix.thunk(() => [unzip]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-O3" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-O3" })),
       buildPhase: "runHook preBuild\n\n$CXX -Iinclude -pthread -c src/*.cpp src/RNGs/*.cpp src/RNGs/other/*.cpp\n$AR rcs libPractRand.a ./*.o\n\nfor tool in RNG_test RNG_benchmark RNG_output; do\n  $CXX -Iinclude -Itools -pthread -o \"$tool\" \"tools/$tool.cpp\" libPractRand.a\ndone\n\nrunHook postBuild\n",
       doCheck: true,
       checkPhase: "runHook preCheck\n\n./RNG_test --self_test\n\nrunHook postCheck\n",
@@ -47,11 +47,11 @@ cp -r doc/. "$out/share/doc/practrand/"
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Suite of statistical tests and pseudo-random number generators",
         homepage: "https://sourceforge.net/projects/pracrand/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),

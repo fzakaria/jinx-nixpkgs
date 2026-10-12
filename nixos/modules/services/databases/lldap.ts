@@ -57,47 +57,47 @@ export default nix.lambda((args) => (() => {
   const localPostgresql = nix.thunk(() => (nix.asBool(nix.sel(cfg, "database", "createLocally")) && nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "postgresql"))));
   const localMysql = nix.thunk(() => (nix.asBool(nix.sel(cfg, "database", "createLocally")) && nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "mariadb"))));
   return {
-    __proto__: pos$41,
+    [nix.POS]: pos$41,
     options: nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       services: nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         lldap: nix.thunk(() => (() => {
           const w = nix.withScope(lib, null);
           return {
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "lldap, a lightweight authentication server that provides an opinionated, simplified LDAP interface for authentication")),
             package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "lldap", nix.thunk(() => ({})))),
             environment: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                   return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.lookup(w_1, "str")));
                 })()),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   LLDAP_JWT_SECRET_FILE: "/run/lldap/jwt_secret",
                   LLDAP_LDAP_USER_PASS_FILE: "/run/lldap/user_password",
                 })),
                 description: "Environment variables passed to the service.\nAny config option name prefixed with `LLDAP_` takes priority over the one in the configuration file.\n",
               })))),
             environmentFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
                 default: null,
                 description: "Environment file as defined in {manpage}`systemd.exec(5)` passed to the service.\n",
               })))),
             database: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               createLocally: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                   default: true,
                   description: "Create the database and database user locally.",
                 })))),
               type: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["mariadb", "postgresql", "sqlite"]))),
                   example: "postgresql",
                   default: "sqlite",
@@ -105,64 +105,64 @@ export default nix.lambda((args) => (() => {
                 })))),
             })),
             settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 description: "Free-form settings written directly to the {file}`lldap_config.toml` file.\nRefer to <https://github.com/lldap/lldap/blob/main/lldap_config.docker_template.toml> for supported values.\n",
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                    __proto__: pos$21,
+                    [nix.POS]: pos$21,
                     freeformType: nix.thunk(() => nix.sel(format, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$20,
+                      [nix.POS]: pos$20,
                       ldap_host: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$7,
+                          [nix.POS]: pos$7,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                           description: "The host address that the LDAP server will be bound to.",
                           default: "::",
                         })))),
                       ldap_port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
                           description: "The port on which to have the LDAP server.",
                           default: 3890n,
                         })))),
                       http_host: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                           description: "The host address that the HTTP server will be bound to.",
                           default: "::",
                         })))),
                       http_port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
                           description: "The port on which to have the HTTP server, for user login and administration.",
                           default: 17170n,
                         })))),
                       http_url: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$11,
+                          [nix.POS]: pos$11,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                           description: "The public URL of the server, for password reset links.",
                           default: "http://localhost",
                         })))),
                       ldap_base_dn: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$12,
+                          [nix.POS]: pos$12,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                           description: "Base DN for LDAP.",
                           example: "dc=example,dc=com",
                         })))),
                       ldap_user_dn: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$13,
+                          [nix.POS]: pos$13,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                           description: "Admin username",
                           default: "admin",
                         })))),
                       ldap_user_email: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                           description: "Admin email.",
                           default: "admin@example.com",
                         })))),
                       database_url: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$15,
+                          [nix.POS]: pos$15,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                           default: null,
                           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "if config.services.lldap.database.createLocally\nthen\n  if cfg.database.type == \"sqlite\"\n  then \"sqlite://./users.db?mode=rwc\"\n  else if cfg.database.type == \"postgresql\"\n  then \"postgresql:///lldap?host=/run/postgresql\"\n  else if cfg.database.type == \"mariadb\"\n  then \"mysql://lldap@localhost/lldap?socket=/run/mysqld/mysqld.sock\"\nelse null\n")),
@@ -170,19 +170,19 @@ export default nix.lambda((args) => (() => {
                           example: "postgres://postgres-user:password@postgres-server/my-database",
                         })))),
                       ldap_user_pass: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$16,
+                          [nix.POS]: pos$16,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                           default: null,
                           description: "Password for default admin password.\n\nUnsecure: Use `ldap_user_pass_file` settings instead.\n",
                         })))),
                       ldap_user_pass_file: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$17,
+                          [nix.POS]: pos$17,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                           default: null,
                           description: "Path to a file containing the default admin password.\n\nIf you want to update the default admin password through this setting,\nyou must set `force_ldap_user_pass_reset` to `true`.\nOtherwise changing this setting will have no effect\nunless this is the very first time LLDAP is started and its database is still empty.\n",
                         })))),
                       force_ldap_user_pass_reset: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$18,
+                          [nix.POS]: pos$18,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "oneOf"), nix.thunk(() => [
                               nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                               nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["always"]))),
@@ -191,7 +191,7 @@ export default nix.lambda((args) => (() => {
                           description: "Force reset of the admin password.\n\nSet this setting to `\"always\"` to update the admin password when `ldap_user_pass_file` changes.\nSetting to `\"always\"` also means any password update in the UI will be overwritten next time the service restarts.\n\nThe difference between `true` and `\"always\"` is the former is intended for a one time fix\nwhile the latter is intended for a declarative workflow. In practice, the result\nis the same: the password gets reset. The only practical difference is the former\noutputs a warning message while the latter outputs an info message.\n",
                         })))),
                       jwt_secret_file: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$19,
+                          [nix.POS]: pos$19,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                           default: null,
                           description: "Path to a file containing the JWT secret.\n",
@@ -201,7 +201,7 @@ export default nix.lambda((args) => (() => {
                 apply: nix.thunk(() => nix.app(nix.sel(lib, "filterAttrsRecursive"), (_) => (v) => !nix.eq(v, null))),
               })))),
             silenceForceUserPassResetWarning: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: false,
                 description: "Disable warning when the admin password is set declaratively with the `ldap_user_pass_file` setting\nbut the `force_ldap_user_pass_reset` is set to `false`.\n\nThis can lead to the admin password to drift from the one given declaratively.\nIf that is okay for you and you want to silence the warning, set this option to `true`.\n",
@@ -211,15 +211,15 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$40,
+        [nix.POS]: pos$40,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             assertion: nix.thunk(() => (nix.asBool((nix.asBool(!nix.eq(nix.selOr(cfg, () => null, "settings", "ldap_user_pass_file"), null)) || nix.asBool(!nix.eq(nix.selOr(cfg, () => null, "settings", "ldap_user_pass"), null)))) || nix.asBool(!nix.eq(nix.selOr(cfg, () => null, "environment", "LLDAP_LDAP_USER_PASS_FILE"), null)))),
             message: "lldap: Default admin user password must be set. Please set the `ldap_user_pass` or better the `ldap_user_pass_file` setting. Alternatively, you can set the `LLDAP_LDAP_USER_PASS_FILE` environment variable.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.selOr(cfg, () => null, "settings", "ldap_user_pass_file"), null)) || nix.asBool(nix.eq(nix.selOr(cfg, () => null, "settings", "ldap_user_pass"), null)))),
             message: "lldap: Both `ldap_user_pass` and `ldap_user_pass_file` settings should not be set at the same time. Set one to `null`.",
           })),
@@ -230,30 +230,30 @@ export default nix.lambda((args) => (() => {
             "lldap: The `force_ldap_user_pass_reset` setting is set to `false` which means\nthe admin password can be changed through the UI and will drift from the one defined in your nix config.\nIt also means changing the setting `ldap_user_pass` or `ldap_user_pass_file` will have no effect on the admin password.\nEither set `force_ldap_user_pass_reset` to `\"always\"` or silence this warning by setting the option `services.lldap.silenceForceUserPassResetWarning` to `true`.\n",
           ])))),
         services: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           lldap: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             settings: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               database_url: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "sqlite")) ? "sqlite://./users.db?mode=rwc" : (nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "postgresql")) ? nix.str`postgresql:///${dbName}?host=/run/postgresql` : (nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "mariadb")) ? nix.str`mysql://${dbUser}@localhost/${dbName}?socket=/run/mysqld/mysqld.sock` : null)))))))),
             })),
           })),
           postgresql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), localPostgresql, nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               enable: true,
               ensureDatabases: nix.thunk(() => [dbName]),
               ensureUsers: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$31, name: dbUser, ensureDBOwnership: true })),
+                nix.thunk(() => ({ [nix.POS]: pos$31, name: dbUser, ensureDBOwnership: true })),
               ]),
             })))),
           mysql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), localMysql, nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               enable: true,
               package: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(pkgs, "mariadb")))),
               ensureDatabases: nix.thunk(() => [dbName]),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   name: dbUser,
                   ensurePermissions: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${dbName}.*`, "ALL PRIVILEGES"]])),
                 })),
@@ -261,11 +261,11 @@ export default nix.lambda((args) => (() => {
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           services: nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             lldap: nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               description: "Lightweight LDAP server (lldap)",
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => nix.concat(["network-online.target"], nix.concat(nix.app(nix.sel(lib, "optional"), localPostgresql, "postgresql.target"), nix.app(nix.sel(lib, "optional"), localMysql, "mysql.service")))),
@@ -280,7 +280,7 @@ fi
 `)), nix.str`exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} run --config-file ${nix.app(nix.sel(format, "generate"), "lldap_config.toml", nix.thunk(() => nix.sel(cfg, "settings")))}
 `)),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 StateDirectory: "lldap",
                 StateDirectoryMode: "0750",
                 WorkingDirectory: "%S/lldap",

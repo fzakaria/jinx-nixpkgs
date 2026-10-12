@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "warsaw",
           repo: "public",
           tag: version,
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, sybil]);
       const pythonImportsCheck = nix.thunk(() => ["public"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://gitlab.com/warsaw/public/-/blob/${version}/docs/NEWS.rst`),
         description: "Python decorator and function which populates a module's __all__ and globals",
         homepage: "https://public.readthedocs.io/",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

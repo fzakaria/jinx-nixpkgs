@@ -22,24 +22,24 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "nano"));
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       programs: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         nano: nix.thunk(() => ({
-          __proto__: pos$4,
-          enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "nano, a small user-friendly console text editor"), { __proto__: pos$1, default: true })),
+          [nix.POS]: pos$4,
+          enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "nano, a small user-friendly console text editor"), { [nix.POS]: pos$1, default: true })),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "nano", nix.thunk(() => ({})))),
           nanorc: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "The system-wide nano configuration.\nSee {manpage}`nanorc(5)`.\n",
               example: "set nowrap\nset tabstospaces\nset tabsize 2\n",
             })))),
           syntaxHighlight: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to enable syntax highlight for various languages.",
@@ -48,13 +48,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         environment: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           etc: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             nanorc: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               text: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "syntaxHighlight")), nix.thunk(() => nix.str`# load syntax highlighting files
 include "${nix.sel(cfg, "package")}/share/nano/*.nanorc"
 include "${nix.sel(cfg, "package")}/share/nano/extra/*.nanorc"

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "explosion",
           repo: "curated-tokenizers",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "# avoid local paths, relative imports wont resolve correctly\nmv curated_tokenizers/tests tests\nrm -r curated_tokenizers\n";
       const pythonImportsCheck = nix.thunk(() => ["curated_tokenizers"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightweight piece tokenization library",
         homepage: "https://github.com/explosion/curated-tokenizers",
         changelog: nix.thunk(() => nix.str`https://github.com/explosion/curated-tokenizers/releases/tag/${nix.sel(src, "tag")}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

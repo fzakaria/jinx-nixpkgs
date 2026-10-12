@@ -30,7 +30,7 @@ export default nix.thunk(() => (() => {
   const MPFR_SUM = "feced2d430dd5a97805fa289fed3fc8ff2b094c02d05287fd6133e7f1f0ec926";
   const TOOLCHAIN_DIR = nix.thunk(() => nix.str`${BASEDIR}/toolchain`);
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     BASEDIR,
     BINUTILS_URL,
     DL_DIR,

@@ -95,19 +95,19 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const writeScript = nix.arg($, "writeScript");
   const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       self: python,
       packageOverrides: (final) => (prev) => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tlsh: nix.thunk(() => nix.app(nix.sel(prev, "tlsh", "overridePythonAttrs"), nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const src = nix.arg($_1, "src");
             const version = "3.19.1";
             return {
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               version: version,
               src: nix.thunk(() => nix.app(nix.sel(src, "override"), nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   tag: version,
                   hash: "sha256-ZYEjT/yShfA4+zpbGOtaFOx1nSSOWPtMvskPhHv3c9U=",
                 })))),
@@ -123,7 +123,7 @@ export default nix.lambda((args) => (() => {
       const version = "332";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           url: nix.thunk(() => nix.str`https://diffoscope.org/archive/diffoscope-${version}.tar.bz2`),
           hash: "sha256-eNmrIxt0yQlby20WRXgKBVXZ2jNnNLpksOvr25dXJvI=",
         }))));
@@ -271,7 +271,7 @@ export DYLD_LIBRARY_PATH="${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk((
           "tests/comparators/test_sockets.py",
         ])));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-diffoscope", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p curl pcre2 common-updater-scripts
 
@@ -283,7 +283,7 @@ update-source-version ${pname} "$newVersion"
 `))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Perform in-depth comparison of files, archives, and directories",
         longDescription: "diffoscope will try to get to the bottom of what makes files or directories\ndifferent. It will recursively unpack archives of many kinds and transform\nvarious binary formats into more human readable form to compare them. It can\ncompare two tarballs, ISO images, or PDF just as easily. The differences can\nbe shown in a text or HTML report.\n\ndiffoscope is developed as part of the \"reproducible builds\" Debian\nproject and was formerly known as \"debbindiff\".\n",
         homepage: "https://diffoscope.org/",
@@ -300,7 +300,7 @@ update-source-version ${pname} "$newVersion"
         mainProgram: "diffoscope",
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version,
         pyproject,

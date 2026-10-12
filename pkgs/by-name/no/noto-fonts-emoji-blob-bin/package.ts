@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
       const pname = "noto-fonts-emoji-blob-bin";
       const version = "15.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/C1710/blobmoji/releases/download/v${version}/Blobmoji.ttf`),
           hash: "sha256-3MPWZ1A2ups171dNIiFTJ3C1vZiGy6I8ZF70aUfrePk=",
         }))));
       const dontUnpack = true;
       const installPhase = "runHook preInstall\ninstall -Dm 444 $src $out/share/fonts/blobmoji/Blobmoji.ttf\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Noto Emoji with extended Blob support",
         homepage: "https://github.com/C1710/blobmoji",
         license: nix.thunk(() => (() => {
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w_1, "jk"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, dontUnpack, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, dontUnpack, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

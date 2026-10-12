@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const mosquitto = nix.arg($, "mosquitto");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "guile-mqtt",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mdjurfeldt/guile-mqtt/releases/download/v${nix.sel(finalAttrs, "version")}/guile-mqtt-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-6+U3FHewbdI8l7r4pVCrd0DNKPy4BHHy2m/hcQ7ByBQ=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [guile, pkg_config]),
       buildInputs: nix.thunk(() => [guile, mosquitto]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Guile bindings for the libmosquitto MQTT client library",
         homepage: "https://gitlab.com/mdjurfeldt/guile-mqtt",
         license: nix.thunk(() => (() => {

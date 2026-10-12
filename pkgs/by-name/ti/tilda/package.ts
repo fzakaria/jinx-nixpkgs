@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const vte = nix.arg($, "vte");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "tilda",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lanoxx",
           repo: "tilda",
           rev: nix.thunk(() => nix.str`tilda-${nix.sel(finalAttrs, "version")}`),
@@ -39,20 +39,20 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, makeWrapper, pkg_config]),
       buildInputs: nix.thunk(() => [gettext, gtk3, libconfuse, pcre2, vte]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         LD_LIBRARY_PATH: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), expat)}/lib`),
       })),
       postPatch: "substituteInPlace configure.ac --replace-fail -std=c99 -std=gnu99\n",
       postInstall: "mkdir $out/bin/wrapped\nmv \"$out/bin/tilda\" \"$out/bin/wrapped/tilda\"\nmakeWrapper \"$out/bin/wrapped/tilda\" \"$out/bin/tilda\" \\\n    --prefix XDG_DATA_DIRS : \"$GSETTINGS_SCHEMAS_PATH\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           test: nix.thunk(() => nix.sel(nixosTests, "terminal-emulators", "tilda")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/lanoxx/tilda/",
         description: "Gtk based drop down terminal for Linux and Unix",
         mainProgram: "tilda",

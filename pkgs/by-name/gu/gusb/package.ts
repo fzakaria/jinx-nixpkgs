@@ -37,14 +37,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.9";
       const outputs = nix.thunk(() => nix.concat(["bin", "out", "dev"], nix.app(nix.sel(lib, "optionals"), withIntrospection, nix.thunk(() => ["devdoc"]))));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hughsie",
           repo: "libgusb",
           tag: version,
           hash: "sha256-piIPNLc3deToyQaajXFvM+CKh9ni8mb0P3kb+2RoJOs=",
         }))));
       const patches = nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-python-path.patch"), nix.thunk(() => ({ __proto__: pos$2, python: nix.thunk(() => nix.str`${pythonEnv}/bin/python3`) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-python-path.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, python: nix.thunk(() => nix.str`${pythonEnv}/bin/python3`) })))),
       ]);
       const strictDeps = true;
       const depsBuildBuild = nix.thunk(() => [pkg_config]);
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const postFixup = "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GLib libusb wrapper",
         mainProgram: "gusbcmd",
         homepage: "https://github.com/hughsie/libgusb",
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         outputs,

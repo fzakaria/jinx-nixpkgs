@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const hypothesis = nix.arg($, "hypothesis");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "docopt-subcommands",
       version: "4.0.0-unstable-2020-01-06",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "abingham",
           repo: "docopt-subcommands",
           rev: "5693cbac24701c53e55fa182c1d563736e6a0557",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["docopt_subcommands"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, hypothesis]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Create subcommand-based CLI programs with docopt",
         homepage: "https://github.com/abingham/docopt-subcommands",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

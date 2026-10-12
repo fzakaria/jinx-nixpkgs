@@ -18,17 +18,17 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "zap",
       version: "2.17.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/zaproxy/zaproxy/releases/download/v${nix.sel(finalAttrs, "version")}/ZAP_${nix.sel(finalAttrs, "version")}_Linux.tar.gz`),
           hash: "sha256-7+eZqqNifbaDtD8AycIQrqC3XADMjwoPBDTRK7Pd3lo=",
         })))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "zap",
             exec: "zap",
             icon: "zap",
@@ -63,7 +63,7 @@ chmod u+x  "$out/bin/zap"
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.zaproxy.org/",
         description: "Java application for web penetration testing",
         maintainers: nix.thunk(() => (() => {

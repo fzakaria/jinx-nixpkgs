@@ -31,31 +31,31 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "meme-bingo-web"));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "meme-bingo-web": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(mkEnableOption, "a web app for the meme bingo, rendered entirely on the web server and made interactive with forms.\n\nNote: The application's author suppose to run meme-bingo-web behind a reverse proxy for SSL and HTTP/3\n")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "meme-bingo-web", nix.thunk(() => ({})))),
           baseUrl: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               description: "URL to be used for the HTML \\<base\\> element on all HTML routes.\n",
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "http://localhost:41678/",
               example: "https://bingo.example.com/",
             })))),
           address: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               description: "The address the webserver will bind to.\n",
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "localhost",
               example: "::",
             })))),
           port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               description: "Port to be used for the web server.\n",
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 41678n,
@@ -66,31 +66,31 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         networking: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           firewall: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             allowedTCPPorts: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             "meme-bingo-web": nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "A web app for playing meme bingos",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 MEME_BINGO_BASE: nix.thunk(() => nix.sel(cfg, "baseUrl")),
                 MEME_BINGO_ADDRESS: nix.thunk(() => nix.sel(cfg, "address")),
                 MEME_BINGO_PORT: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))),
               })),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 User: "meme-bingo-web",
                 Group: "meme-bingo-web",
                 DynamicUser: true,

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const aw_watcher_window = nix.arg($, "aw-watcher-window");
   const extraWatchers = nix.argOr($, "extraWatchers", () => []);
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "activitywatch",
       version: nix.thunk(() => nix.attr(aw_server_rust, "version")),
       paths: nix.thunk(() => nix.concat([
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(aw_watcher_window, "out")),
       ], nix.app(nix.sel(lib, "forEach"), extraWatchers, (p) => nix.sel(p, "out")))),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Best free and open-source automated time tracker",
         homepage: "https://activitywatch.net/",
         downloadPage: "https://github.com/ActivityWatch/activitywatch/releases",

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "jellyfin_mpv_shim",
           version: version,
           hash: "sha256-ad6ZokTy8vxAVrgopK+DK9WQqOlEKssigA++68vuid4=",
@@ -57,7 +57,7 @@ done
       const pythonImportsCheck = nix.thunk(() => ["jellyfin_mpv_shim"]);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "jellyfin-mpv-shim",
             exec: "jellyfin-mpv-shim",
             icon: "jellyfin-mpv-shim",
@@ -66,7 +66,7 @@ done
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/jellyfin/jellyfin-mpv-shim",
         description: "Allows casting of videos to MPV via the jellyfin mobile and web app",
         longDescription: "Jellyfin MPV Shim is a client for the Jellyfin media server which plays media in the\nMPV media player. The application runs in the background and opens MPV only\nwhen media is cast to the player. The player supports most file formats, allowing you\nto prevent needless transcoding of your media files on the server. The player also has\nadvanced features, such as bulk subtitle updates and launching commands on events.\n",
@@ -89,7 +89,7 @@ done
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

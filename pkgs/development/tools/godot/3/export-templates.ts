@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const godot3 = nix.arg($, "godot3");
   return nix.app(nix.sel(godot3, "overrideAttrs"), (self) => (base) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "godot3-export-templates",
       godotBuildDescription: "nix export templates",
       shouldAddLinkFlagsToPulse: false,
@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       installedGodotBinName: nix.thunk(() => nix.str`linux_${nix.sel(self, "godotBuildPlatform")}_64_${nix.sel(self, "godotBuildTarget")}`),
       stripAllList: nix.thunk(() => nix.concat(nix.selOr(base, () => [], "stripAllList"), ["share/godot/templates"])),
       meta: nix.thunk(() => nix.update(nix.sel(base, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: "https://docs.godotengine.org/en/stable/development/compiling/compiling_for_x11.html#building-export-templates",
       })),
     }));

@@ -25,17 +25,17 @@ export default nix.lambda((args) => (() => {
   const autoconf = nix.arg($, "autoconf");
   const automake = nix.arg($, "automake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ldapvi",
       version: "1.7-unstable-2010-12-14",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "http://www.lichteblau.com/git/ldapvi.git",
           rev: "f1d42bad66cc4623d1ff21fbd5dddbf5009d3e40",
           sha256: "3ef3103030ecb04d7fe80180e3fd490377cf81fb2af96782323fddabc3225030",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-Wno-implicit-function-declaration",
             "-Wno-error=int-conversion",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openldap, openssl, popt, glib, libxcrypt, ncurses, readline, cyrus_sasl]),
       preConfigure: "cd ldapvi\n./autogen.sh\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Interactive LDAP client for Unix terminals",
         longDescription: "ldapvi is an interactive LDAP client for Unix terminals. Using it, you\ncan update LDAP entries with a text editor.\n",
         homepage: "http://www.lichteblau.com/ldapvi/",

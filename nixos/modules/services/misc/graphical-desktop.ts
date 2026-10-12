@@ -39,15 +39,15 @@ export default nix.lambda((args) => (() => {
   const xcfg = nix.thunk(() => nix.sel(config, "services", "xserver"));
   const dmcfg = nix.thunk(() => nix.sel(config, "services", "displayManager"));
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "graphical-desktop": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "bits and pieces required for a graphical desktop session"), {
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             default: nix.thunk(() => (nix.asBool(nix.sel(xcfg, "enable")) || nix.asBool(nix.sel(dmcfg, "enable")))),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "(config.services.xserver.enable || config.services.displayManager.enable)")),
             internal: true,
@@ -56,13 +56,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         environment: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           etc: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             "X11/xorg.conf.d/00-keyboard.conf": nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               text: nix.thunk(() => (() => {
                 const optionLine = (name) => (value) => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(!nix.eq(value, null)) && nix.asBool(!nix.eq(value, "")))), nix.thunk(() => nix.str`Option "${name}" "${value}"`));
                 return nix.str`Section "InputClass"
@@ -86,55 +86,55 @@ EndSection
           })()),
         })),
         fonts: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enableDefaultPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
         })),
         hardware: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           graphics: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
           })),
         })),
         programs: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           gnupg: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             agent: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               pinentryPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 1100n, nix.thunk(() => nix.sel(pkgs, "pinentry-gnome3")))),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           speechd: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
           })),
           pipewire: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
             pulse: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
             })),
             alsa: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           defaultUnit: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(xcfg, "autorun")) || nix.asBool(nix.sel(dmcfg, "enable")))), "graphical.target")),
         })),
         xdg: nix.thunk(() => ({
-          __proto__: pos$24,
-          autostart: nix.thunk(() => ({ __proto__: pos$20, enable: true })),
-          menus: nix.thunk(() => ({ __proto__: pos$21, enable: true })),
-          mime: nix.thunk(() => ({ __proto__: pos$22, enable: true })),
-          icons: nix.thunk(() => ({ __proto__: pos$23, enable: true })),
+          [nix.POS]: pos$24,
+          autostart: nix.thunk(() => ({ [nix.POS]: pos$20, enable: true })),
+          menus: nix.thunk(() => ({ [nix.POS]: pos$21, enable: true })),
+          mime: nix.thunk(() => ({ [nix.POS]: pos$22, enable: true })),
+          icons: nix.thunk(() => ({ [nix.POS]: pos$23, enable: true })),
         })),
       })))),
   };

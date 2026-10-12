@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cython",
       version: "3.2.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cython",
           repo: "cython",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,12 +51,12 @@ runHook postCheck
 `;
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, "pygame-ce": pygame_ce, sage: sage })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, "pygame-ce": pygame_ce, sage: sage })),
       })),
       setupHook: nix.path(here, "./setup-hook.sh"),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://cython.org",
         description: "Optimising static compiler for both the Python and the extended Cython programming languages",
         longDescription: "Cython is an optimising static compiler for both the Python programming\nlanguage and the extended Cython programming language (based on Pyrex). It\nmakes writing C extensions for Python as easy as Python itself.\n\nCython gives you the combined power of Python and C to let you:\n\n- write Python code that calls back and forth from and to C or C++ code\n  natively at any point.\n- easily tune readable Python code into plain C performance by adding\n  static type declarations, also in Python syntax.\n- use combined source code level debugging to find bugs in your Python,\n  Cython and C code.\n- interact efficiently with large data sets, e.g. using multi-dimensional\n  NumPy arrays.\n- quickly build your applications within the large, mature and widely used\n  CPython ecosystem.\n- integrate natively with existing code and data from legacy, low-level or\n  high-performance libraries and applications.\n\nThe Cython language is a superset of the Python language that additionally\nsupports calling C functions and declaring C types on variables and class\nattributes. This allows the compiler to generate very efficient C code\nfrom Cython code.\n",

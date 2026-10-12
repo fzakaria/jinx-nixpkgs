@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const maturin = nix.arg($, "maturin");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "maturin",
       version: "1.15.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PyO3",
           repo: "maturin",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,12 +37,12 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv]))),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: maturin })))),
+          [nix.POS]: pos$4,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: maturin })))),
           pyo3: nix.thunk(() => nix.app(nix.sel(python3, "pkgs", "callPackage"), nix.path(here, "./pyo3-test"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               pyproject: true,
               buildAndTestSubdir: "examples/word-count",
               preConfigure: "",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Build and publish Rust crates Python packages",
         longDescription: "Build and publish Rust crates with PyO3, rust-cpython, and\ncffi bindings as well as Rust binaries as Python packages.\n\nThis project is meant as a zero-configuration replacement for\nsetuptools-rust and Milksnake. It supports building wheels for\nPython and can upload them to PyPI.\n",
         homepage: "https://github.com/PyO3/maturin",

@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const pytest_timeout = nix.arg($, "pytest-timeout");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "uncalled-for",
       version: "0.4.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chrisguidry",
           repo: "uncalled-for",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["uncalled_for"]),
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytest_cov_stub, pytest_timeout, pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Async dependency injection for Python functions",
         homepage: "https://github.com/chrisguidry/uncalled-for",
         changelog: nix.thunk(() => nix.str`https://github.com/chrisguidry/uncalled-for/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

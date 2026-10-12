@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const clr = nix.arg($, "clr");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hiprt",
       version: "3.0.3.a1525e7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GPUOpen-LibrariesAndSDKs",
           repo: "HIPRT",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +41,7 @@ substituteInPlace hiprt/hiprt_libpath.h --replace-fail '"/opt/rocm/hip/lib/' '"$
       ]),
       postInstall: "mv $out/bin $out/lib\nln -sr $out/lib/libhiprt*64.so $out/lib/libhiprt64.so\ninstall -v -Dm644 ../scripts/bitcodes/hiprt*_amd_lib_linux.bc $out/lib/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gpuopen.com/hiprt",
         description: "Ray tracing library for HIP",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const mkKdeDerivation = nix.arg($, "mkKdeDerivation");
   const libmusicbrainz = nix.arg($, "libmusicbrainz");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "libkcddb",
       extraBuildInputs: nix.thunk(() => [libmusicbrainz]),
     })));

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.10",
       pname: "libircclient",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/libircclient/libircclient/${nix.sel(finalAttrs, "version")}/libircclient-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0b9wa0h3xc31wpqlvgxgnvqp5wgx3kwsf5s9432m5cj8ycx6zcmv",
         })))),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--enable-shared"]),
       postPatch: "substituteInPlace src/Makefile.in \\\n  --replace \"@prefix@/include\" \"@prefix@/include/libircclient\" \\\n  --replace \"@libdir@\"         \"@prefix@/lib\" \\\n  --replace \"cp \"              \"install \"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Small but extremely powerful library which implements the client IRC protocol",
         homepage: "http://www.ulduzsoft.com/libircclient/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

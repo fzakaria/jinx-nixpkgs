@@ -19,35 +19,35 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     name: "powerdns",
     nodes: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           services: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             powerdns: nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               enable: true,
               extraConfig: "launch=gmysql\ngmysql-user=pdns\nzone-cache-refresh-interval=0\n",
             })),
             mysql: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               enable: true,
               package: nix.thunk(() => nix.sel(pkgs, "mariadb")),
               ensureDatabases: nix.thunk(() => ["powerdns"]),
               ensureUsers: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   name: "pdns",
-                  ensurePermissions: nix.thunk(() => ({ __proto__: pos$2, "powerdns.*": "ALL PRIVILEGES" })),
+                  ensurePermissions: nix.thunk(() => ({ [nix.POS]: pos$2, "powerdns.*": "ALL PRIVILEGES" })),
                 })))),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [

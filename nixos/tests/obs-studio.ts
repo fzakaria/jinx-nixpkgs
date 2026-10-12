@@ -13,23 +13,23 @@ const pos$5 = nix.positions(here + "/obs-studio.nix", [["name", 4, 3], ["nodes",
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     name: "obs-studio",
     nodes: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           imports: nix.thunk(() => [
             nix.path(here, "./common/x11.nix"),
             nix.path(here, "./common/user-account.nix"),
           ]),
           programs: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "obs-studio": nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               enable: true,
               plugins: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "obs-studio-plugins")), null);

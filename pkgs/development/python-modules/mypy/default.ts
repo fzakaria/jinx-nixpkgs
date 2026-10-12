@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = isPyPy;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "python",
           repo: "mypy",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -53,16 +53,16 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/python/mypy/commit/46acbe85c0e1703ebf2e6d4c699772edcdcf4652.patch",
             hash: "sha256-KslHiKqinvvXZoxvCnZXOhCm7i8577PbSdNGudCsjZE=",
           })))),
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$3, "rev-prefix": "v" })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v" })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "nixos-test-driver": nix.thunk(() => nix.attr(nixosTests, "nixos-test-driver")),
         })),
       }));
@@ -78,12 +78,12 @@ export default nix.lambda((args) => (() => {
       ]);
       const dependencies = nix.thunk(() => [librt, mypy_extensions, pathspec, typing_extensions]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         dmypy: nix.thunk(() => [psutil]),
         reports: nix.thunk(() => [lxml]),
       }));
       const env = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         MYPY_USE_MYPYC: nix.thunk(() => nix.sel(stdenv, "buildPlatform", "is64bit")),
         MYPYC_OPT_LEVEL: 1n,
       }));
@@ -109,7 +109,7 @@ export default nix.lambda((args) => (() => {
         "mypy/test/testpep561.py",
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isi686")), nix.thunk(() => ["mypyc/test/test_run.py"]))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Optional static typing for Python",
         homepage: "https://www.mypy-lang.org",
         changelog: nix.thunk(() => nix.str`https://github.com/python/mypy/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -119,7 +119,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname,
         version,
         pyproject,

@@ -15,24 +15,24 @@ const pos$8 = nix.positions(here + "/turborepo-remote-cache.nix", [["name", 14, 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
-  const ports = nix.thunk(() => ({ __proto__: pos$1, "turborepo-remote-cache": 8080n }));
+  const ports = nix.thunk(() => ({ [nix.POS]: pos$1, "turborepo-remote-cache": 8080n }));
   const token = "myrandomtoken";
   const team = "nixos-team";
   const artifactid = "82286e93a6f84e18a8fe4770c5a88b24653e7f59";
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     name: "turborepo-remote-cache",
     nodes: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       machine: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         services: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "turborepo-remote-cache": nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: true,
             environment: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               PORT: nix.thunk(() => nix.sel(ports, "turborepo-remote-cache")),
               TURBO_TEAM: team,
               TURBO_TOKEN: token,
@@ -76,7 +76,7 @@ if out != "myartifact":
   raise Exception(f"reponse in not 'myartifact': {out}")
 `),
     meta: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ibizaman"))]),
     })),
   };

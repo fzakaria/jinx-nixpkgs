@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "trimmomatic";
       const version = "0.40";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "usadellab",
           repo: "Trimmomatic",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -40,11 +40,11 @@ makeWrapper ${nix.app(nix.sel(lib, "getBin"), jre_minimal)}/bin/java $out/bin/tr
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/usadellab/Trimmomatic/releases/tag/v${version}`),
         description: "Flexible read trimming tool for Illumina NGS data",
         longDescription: "Trimmomatic performs a variety of useful trimming tasks for illumina\npaired-end and single ended data: adapter trimming, quality trimming,\ncropping to a specified length, length filtering, quality score\nconversion.\n",
@@ -59,7 +59,7 @@ runHook postInstall
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "kupac"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

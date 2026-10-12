@@ -8,6 +8,6 @@ const pos$1 = nix.positions(here + "/package.nix", [["withExtras", 1, 37]]);
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const fontforge = nix.arg($, "fontforge");
-  return nix.app(nix.sel(fontforge, "override"), nix.thunk(() => ({ __proto__: pos$1, withExtras: true })));
+  return nix.app(nix.sel(fontforge, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withExtras: true })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

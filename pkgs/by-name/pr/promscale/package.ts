@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const promscale = nix.arg($, "promscale");
   const testers = nix.arg($, "testers");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "promscale",
       version: "0.17.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "timescale",
           repo: "promscale",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,14 +38,14 @@ export default nix.lambda((args) => (() => {
       preBuild: "# Without this build fails with\n# main module (github.com/timescale/promscale) does not contain package github.com/timescale/promscale/migration-tool/cmd/prom-migrator\nrm -r migration-tool\n",
       checkPhase: "runHook preCheck\n\n# some checks requires access to a docker daemon\nfor pkg in $(getGoDirs test | grep -Ev 'testhelpers|upgrade_tests|end_to_end_tests|util'); do\n  buildGoDir test $checkFlags \"$pkg\"\ndone\n\nrunHook postCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: promscale, command: "promscale -version" })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: promscale, command: "promscale -version" })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Open-source analytical platform for Prometheus metrics",
         mainProgram: "promscale",
         homepage: "https://github.com/timescale/promscale",

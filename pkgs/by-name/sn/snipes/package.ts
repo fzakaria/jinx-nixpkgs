@@ -17,16 +17,16 @@ export default nix.lambda((args) => (() => {
   const SDL2 = nix.arg($, "SDL2");
   const SDL2_ttf = nix.arg($, "SDL2_ttf");
   const font = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "http://kingbird.myphotos.cc/ee22d44076adb8a34d8e20df4be3730a/SnipesConsole.ttf",
       sha256: "06n8gq18js0bv4svx84ljzhs9zmi81wy0zqcqj3b4g0rsrkr20a7",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "snipes",
       version: "20240317",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "Davidebyzero",
           repo: "Snipes",
           rev: "caa2ce036a9f6461ccdb7ef8306edbd126dd4081",
@@ -44,7 +44,7 @@ install -Dm644 ${font} $out/share/snipes/SnipesConsole.ttf
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Modern port of the classic 1982 text-mode game Snipes",
         mainProgram: "snipes",
         homepage: "https://www.vogons.org/viewtopic.php?f=7&t=49073",

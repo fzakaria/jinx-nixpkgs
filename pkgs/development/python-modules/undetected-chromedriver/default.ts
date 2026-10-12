@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const selenium = nix.arg($, "selenium");
   const websockets = nix.arg($, "websockets");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "undetected-chromedriver",
       version: "3.5.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ultrafunkamsterdam",
           repo: "undetected-chromedriver",
           rev: "0aa5fbe252370b4cb2b95526add445392cad27ba",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["undetected_chromedriver"]),
       postPatch: "substituteInPlace undetected_chromedriver/patcher.py \\\n  --replace-fail \\\n    \"from distutils.version import LooseVersion\" \\\n    \"from looseversion import LooseVersion\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library for the custom Selenium ChromeDriver that passes all bot mitigation systems",
         homepage: "https://github.com/ultrafunkamsterdam/undetected-chromedriver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

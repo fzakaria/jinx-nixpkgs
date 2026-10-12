@@ -23,18 +23,18 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const libintl = nix.arg($, "libintl");
   const fetk = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fetk",
       version: "1.9.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Electrostatics",
           repo: "fetk",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-uFA1JRR05cNcUGaJj9IyGNONB2hU9IOBPzOj/HucNH4=",
         })))),
       nativeBuildInputs: nix.thunk(() => [cmake]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })))),
       cmakeFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`-DBLAS_LIBRARIES=${blas}/lib`),
         "-DBLA_STATIC=OFF",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [blas, superlu, suitesparse]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fork of the Finite Element ToolKit from fetk.org",
         homepage: "https://github.com/Electrostatics/FETK",
         changelog: nix.thunk(() => nix.str`https://github.com/Electrostatics/FETK/releases/tag/${nix.sel(finalAttrs, "version")}`),
@@ -56,11 +56,11 @@ export default nix.lambda((args) => (() => {
       })),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "apbs",
       version: "3.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "Electrostatics",
           repo: "apbs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Software for biomolecular electrostatics and solvation calculations",
         mainProgram: "apbs",
         homepage: "https://www.poissonboltzmann.org/",

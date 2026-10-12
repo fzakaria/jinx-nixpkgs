@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libhdhomerun",
       version: "20250506",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.silicondust.com/hdhomerun/libhdhomerun_${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-h5sbxHbJuT537igKhPwRV+fMR9Q+2cg5jYiorF81wDQ=",
         })))),
@@ -33,7 +33,7 @@ cp *.h $out/include/hdhomerun
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Implements the libhdhomerun protocol for use with Silicondust HDHomeRun TV tuners",
         mainProgram: "hdhomerun_config",
         homepage: "https://www.silicondust.com/support/linux",

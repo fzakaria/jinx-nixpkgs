@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const libevent = nix.arg($, "libevent");
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "openbgpd",
       version: "9.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://openbsd/OpenBGPD/openbgpd-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-tDwXLtw4D4cXHvHNE3tPzhy47sZQtUtk8YmhrlLSHHI=",
         })))),
       buildInputs: nix.thunk(() => [libevent]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Free implementation of the Border Gateway Protocol, Version 4. It allows ordinary machines to be used as routers exchanging routes with other systems speaking the BGP protocol",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
         homepage: "http://www.openbgpd.org/",

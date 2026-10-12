@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ipfs-cluster",
       version: "1.1.6",
       vendorHash: "sha256-j8eMvlmTd0SIZD/8up7wCRZkSRxDBM0coVJIKydfXhg=",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ipfs-cluster",
           repo: "ipfs-cluster",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       })()),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Allocate, replicate, and track Pins across a cluster of IPFS daemons",
         homepage: "https://ipfscluster.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

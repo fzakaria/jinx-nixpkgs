@@ -33,41 +33,41 @@ export default nix.lambda((args) => (() => {
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "config.yaml", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         meshtasticd: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Meshtastic daemon")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "meshtasticd", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: "meshtasticd",
               description: "User meshtasticd runs as.",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: "meshtasticd",
               description: "Group meshtasticd runs as.",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 4403n,
               description: "Port to listen on",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(format, "type")),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "Lora = {\n  Module = \"auto\";\n};\nWebserver = {\n  Port = 9443;\n  RootPath = pkgs.meshtastic-web;\n};\nGeneral = {\n  MaxNodes = 200;\n  MaxMessageQueue = 100;\n  MACAddressSource = \"eth0\";\n};\n")),
               description: "The Meshtastic configuration file.\n\nAn example of configuration can be found at <https://github.com/meshtastic/firmware/blob/develop/bin/config-dist.yaml>\n",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: "/var/lib/meshtasticd",
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "The data directory.\n",
@@ -76,13 +76,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         users: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "meshtasticd")), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               meshtasticd: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 home: nix.thunk(() => nix.sel(cfg, "dataDir")),
                 description: "meshtasticd-daemon privilege user",
                 group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -91,31 +91,31 @@ export default nix.lambda((args) => (() => {
               })),
             })))),
           groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "meshtasticd")), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               meshtasticd: nix.thunk(() => ({})),
               spi: nix.thunk(() => ({})),
               gpio: nix.thunk(() => ({})),
             })))),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           udev: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           services: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             meshtasticd: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               description: "Meshtastic Native Daemon",
               after: nix.thunk(() => ["network-online.target", "network.target"]),
               wants: nix.thunk(() => ["network-online.target", "network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
                 Type: "simple",

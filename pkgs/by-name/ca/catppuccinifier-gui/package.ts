@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const desktop_file_utils = nix.arg($, "desktop-file-utils");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "catppuccinifier-gui",
       version: "9.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lighttigerXIV",
           repo: "catppuccinifier",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       buildAndTestSubdir: nix.thunk(() => nix.sel(finalAttrs, "cargoRoot")),
       cargoHash: "sha256-BUXqPY3jNn4YB1avtCp6MFyN1KIYqT0b1H9drOmikj0=",
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/src/catppuccinifier-gui/yarn.lock")),
           hash: "sha256-UfQZf2raMrgPhUQVTAW+mA/nP1XjLKx0WBbYtdeD9kY=",
         })))),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [webkitgtk_4_1, gtk3, cairo, gdk_pixbuf, glib, dbus]),
       postInstall: "desktop-file-edit \"$out/share/applications/catppuccinifier-gui.desktop\" \\\n  --set-key \"Categories\" --set-value \"Graphics\" \\\n  --set-key \"Comment\" --set-value \"Apply catppuccin flavors to your wallpapers\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Apply catppuccin flavors to your wallpapers",
         homepage: "https://github.com/lighttigerXIV/catppuccinifier",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

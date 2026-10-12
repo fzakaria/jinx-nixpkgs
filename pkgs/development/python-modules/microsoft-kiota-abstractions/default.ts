@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const std_uritemplate = nix.arg($, "std-uritemplate");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "microsoft-kiota-abstractions",
       version: "1.14.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "microsoft",
           repo: "kiota-python",
           tag: nix.thunk(() => nix.str`microsoft-kiota-abstractions-v${nix.sel(finalAttrs, "version")}`),
@@ -41,12 +41,12 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_sets_datetime_values_in_path_parameters"]),
       pythonImportsCheck: nix.thunk(() => ["kiota_abstractions"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         skipBulkUpdate: true,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "microsoft-kiota-abstractions-v" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "microsoft-kiota-abstractions-v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Abstractions library for Kiota generated Python clients",
         homepage: "https://github.com/microsoft/kiota-python/tree/main/packages/abstractions/",
         changelog: nix.thunk(() => nix.str`https://github.com/microsoft/kiota-python/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

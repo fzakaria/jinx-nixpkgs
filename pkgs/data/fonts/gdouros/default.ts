@@ -25,65 +25,65 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const installFonts = nix.arg($, "installFonts");
   const fonts = nix.thunk(() => ({
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     aegan: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       version: "13.00",
       file: "Aegean.zip",
       hash: "sha256-3HmCqCMZLN6zF1N/EirQOPnHKTGHoc4aHKoZxFYTB34=",
       description: "Aegean",
     })),
     aegyptus: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "13.00",
       file: "Aegyptus.zip",
       hash: "sha256-SSAK707xhpsUTq8tSBcrzNGunCYad58amtCqAWuevnY=",
       description: "Egyptian Hieroglyphs, Coptic, Meroitic",
     })),
     akkadian: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "13.00",
       file: "Akkadian.zip",
       hash: "sha256-wXiDYyfujAs6fklOCqXq7Ms7wP5RbPlpNVwkUy7CV4k=",
       description: "Sumero-Akkadian Cuneiform",
     })),
     assyrian: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "13.00",
       file: "Assyrian.zip",
       hash: "sha256-CZj1sc89OexQ0INb7pbEu5GfE/w2E5JmhjT8cosoLSg=",
       description: "Neo-Assyrian in Unicode with OpenType",
     })),
     eemusic: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: "13.00",
       file: "EEMusic.zip",
       hash: "sha256-LxOcQOPEImw0wosxJotbOJRbe0qlK5dR+kazuhm99Kg=",
       description: "Byzantine Musical Notation in Unicode with OpenType",
     })),
     maya: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       version: "13.00",
       file: "Maya%20Hieroglyphs.zip",
       hash: "sha256-PAwF1lGqm6XVf4NQCA8AFLGU40N0Xsn5Q8x9ikHJDhY=",
       description: "Maya Hieroglyphs",
     })),
     symbola: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       version: "13.00",
       file: "Symbola.zip",
       hash: "sha256-TsHWmzkEyMa8JOZDyjvk7PDhm239oH/FNllizNFf398=",
       description: "Basic Latin, Greek, Cyrillic and many Symbol blocks of Unicode",
     })),
     textfonts: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       version: "13.00",
       file: "Textfonts.zip",
       hash: "sha256-7S3NiiyDvyYoDrLPt2z3P9bEEFOEZACv2sIHG1Tn6yI=",
       description: "Aroania, Anaktoria, Alexander, Avdira and Asea",
     })),
     unidings: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       version: "13.00",
       file: "Unidings.zip",
       hash: "sha256-WUY+Ylphep6WuzqLQ3Owv+vK5Yuu/aAkn4GOFXL0uQY=",
@@ -97,11 +97,11 @@ export default nix.lambda((args) => (() => {
     const hash = nix.arg($_1, "hash");
     const description = nix.arg($_1, "description");
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         pname: pname,
         version: version,
         src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             url: nix.thunk(() => nix.str`https://web.archive.org/web/20221006174450/https://dn-works.com/wp-content/uploads/2020/UFAS-Fonts/${file}`),
             stripRoot: false,
             hash: hash,
@@ -110,7 +110,7 @@ export default nix.lambda((args) => (() => {
         postInstall: nix.thunk(() => nix.str`install -Dm644 *.{odt,ods,pdf,xlsx} -t "$out/share/doc/${pname}" || true  # install docs if any
 `),
         meta: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           description: description,
           license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
           homepage: "https://web.archive.org/web/20221006174450/https://dn-works.com/ufas/",

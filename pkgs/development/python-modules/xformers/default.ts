@@ -42,14 +42,14 @@ export default nix.lambda((args) => (() => {
   const cudaPackages = nix.thunk(() => nix.attr(torch, "cudaPackages"));
   const cudaSupport = nix.thunk(() => nix.attr(torch, "cudaSupport"));
   const effectiveStdenv = nix.thunk(() => (nix.asBool(cudaSupport) ? nix.sel(cudaPackages, "backendStdenv") : nix.force(stdenv)));
-  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ __proto__: pos$1, stdenv: effectiveStdenv })), (finalAttrs) => ({
-      __proto__: pos$8,
+  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: effectiveStdenv })), (finalAttrs) => ({
+      [nix.POS]: pos$8,
       pname: "xformers",
       version: "0.0.35",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "facebookresearch",
           repo: "xformers",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "xformers-fix-tests-pytorch-2.13.patch",
             url: "https://github.com/facebookresearch/xformers/commit/f06b9a7b0db97a78913ca8dc1652468a0527dc80.patch",
             hash: "sha256-QE3hmwXI3yJBgRWOHKoDUaEsFO+vuqV+DTMW7sjuURU=",
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools, torch]),
       preBuild: "export MAX_JOBS=$NIX_BUILD_CORES\n",
       env: nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "optionalAttrs"), cudaSupport, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           FORCE_CUDA: 1n,
           TORCH_CUDA_ARCH_LIST: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "concatStringsSep"), ";", cudaCapabilities)}`),
         })))),
@@ -114,9 +114,9 @@ export default nix.lambda((args) => (() => {
           "test_dispatch_decoding_bmghk",
         ]))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         gpuCheck: nix.thunk(() => nix.app(nix.sel(xformers, "overridePythonAttrs"), (old) => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             requiredSystemFeatures: nix.thunk(() => ["cuda"]),
             disabledTestPaths: [],
             disabledTests: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "disabledTests"), [
@@ -134,7 +134,7 @@ export default nix.lambda((args) => (() => {
           }))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Collection of composable Transformer building blocks",
         homepage: "https://github.com/facebookresearch/xformers",
         changelog: nix.thunk(() => nix.str`https://github.com/facebookresearch/xformers/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

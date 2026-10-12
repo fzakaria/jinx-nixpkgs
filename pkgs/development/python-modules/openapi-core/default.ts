@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.23.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "p1c2u",
           repo: "openapi-core",
           tag: version,
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         jsonschema,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         aiohttp: nix.thunk(() => [aiohttp, multidict]),
         django: nix.thunk(() => [django]),
         falcon: nix.thunk(() => [falcon]),
@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
         "openapi_core.validation.response.validators",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/python-openapi/openapi-core/releases/tag/${version}`),
         description: "Client-side and server-side support for the OpenAPI Specification v3",
         homepage: "https://github.com/python-openapi/openapi-core",
@@ -95,7 +95,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

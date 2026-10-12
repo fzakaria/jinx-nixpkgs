@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
         const configureFlags = nix.argOr($_1, "configureFlags", () => []);
         const env = nix.argOr($_1, "env", () => ({}));
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: "lttng",
           nativeBuildInputs: nix.thunk(() => nix.concat(nativeBuildInputs, [swig])),
           configureFlags: nix.thunk(() => nix.concat(configureFlags, [
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
             "--disable-man-pages",
           ])),
           env: nix.thunk(() => nix.update(env, {
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             PYTHON: nix.thunk(() => nix.str`${nix.sel(python, "pythonOnBuildForHost")}/bin/python`),
             PYTHON_CONFIG: nix.thunk(() => nix.str`${nix.sel(python, "pythonOnBuildForHost")}/bin/python-config`),
           })),

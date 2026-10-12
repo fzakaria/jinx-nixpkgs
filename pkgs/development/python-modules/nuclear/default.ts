@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.8.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "igrek51",
           repo: "nuclear",
           rev: version,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/igrek51/nuclear/commit/e6930046d1312f92e231ec8e2b435bc184a75823.patch",
             hash: "sha256-roE4ZGK1TeVupJL9KQYZtY+lZtRgJ03AQNKrT1F5ajc=",
           })))),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/autocomplete/test_bash_install.py"]);
       const pythonImportsCheck = nix.thunk(() => ["nuclear"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://igrek51.github.io/nuclear/",
         description: "Binding glue for CLI Python applications",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

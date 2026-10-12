@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libevent = nix.arg($, "libevent");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       version: "1.6.45",
       pname: "memcached",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://memcached.org/files/memcached-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-02LGTm2NUocVNQHqv3yFtKdhQy+/U/XXsIXQuxZTwd0=",
         })))),
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [cyrus_sasl, libevent]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(["-Wno-error=deprecated-declarations"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-Wno-error"))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Distributed memory object caching system",
         homepage: "http://memcached.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -45,9 +45,9 @@ export default nix.lambda((args) => (() => {
         mainProgram: "memcached",
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "smoke-tests": nix.thunk(() => nix.sel(nixosTests, "memcached")),
         })),
       })),

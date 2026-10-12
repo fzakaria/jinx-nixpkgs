@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const flit_core = nix.arg($, "flit-core");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aocd-example-parser",
       version: "2025.12.12",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wimglenn",
           repo: "aocd-example-parser",
           rev: "6331ed538dcb25c6d9fd2ef679ccd361ea4ea0af",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [flit_core]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Default implementation of an example parser plugin for advent-of-code-data",
         homepage: "https://github.com/wimglenn/aocd-example-parser",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

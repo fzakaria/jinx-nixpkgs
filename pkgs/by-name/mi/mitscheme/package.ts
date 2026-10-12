@@ -31,22 +31,22 @@ export default nix.lambda((args) => (() => {
   const bootstrapFromC = nix.thunk(() => !nix.asBool((nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))));
   const arch = nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))) ? "-aarch64le" : "-x86-64"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: nix.thunk(() => nix.add("mit-scheme", nix.app(nix.sel(lib, "optionalString"), enableX11, "-x11"))),
       version: version,
       src: nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))) ? nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/mit-scheme/stable.pkg/${version}/mit-scheme-${version}-aarch64le.tar.gz`),
           sha256: "12ra9bc93x8g07impbd8jr6djjzwpb9qvh9zhxvvrba3332zx3vh",
         }))) : nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`mirror://gnu/mit-scheme/stable.pkg/${version}/mit-scheme-${version}-x86-64.tar.gz`),
           sha256: "035f92vni0vqmgj9hq2i7vwasz7crx52wll4823vhfkm1qdv5ywc",
         }))))),
       postPatch: "substituteInPlace \"src/microcode/chacha.i\" \\\n  --replace-fail \"#define\t_POSIX_C_SOURCE\t200809L\" \"\"\n",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pname: "mit-scheme",
             version: "12.1",
             debianRevision: "4",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([ncurses], nix.app(nix.sel(lib, "optionals"), enableX11, nix.thunk(() => [libx11])))),
       configurePhase: "runHook preConfigure\n(cd src && ./configure)\n(cd doc && ./configure)\nrunHook postConfigure\n",
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=array-parameter", "-Wno-error=use-after-free"]))),
       })),
       buildPhase: nix.thunk(() => nix.str` runHook preBuild
@@ -95,7 +95,7 @@ ${(nix.asBool(bootstrapFromC) ? "./etc/make-liarc.sh --prefix=$out" : "make comp
       ]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "MIT/GNU Scheme, a native code Scheme compiler",
         longDescription: "MIT/GNU Scheme is an implementation of the Scheme programming\nlanguage, providing an interpreter, compiler, source-code debugger,\nintegrated Emacs-like editor, and a large runtime library.  MIT/GNU\nScheme is best suited to programming large applications with a rapid\ndevelopment cycle.\n",
         homepage: "https://www.gnu.org/software/mit-scheme/",

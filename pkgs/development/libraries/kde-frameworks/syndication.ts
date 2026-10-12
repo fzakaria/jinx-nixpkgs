@@ -14,10 +14,10 @@ export default nix.lambda((args) => (() => {
   const extra_cmake_modules = nix.arg($, "extra-cmake-modules");
   const kcodecs = nix.arg($, "kcodecs");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "syndication",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "bkchr"))]),
       })),
       nativeBuildInputs: nix.thunk(() => [cmake, extra_cmake_modules]),

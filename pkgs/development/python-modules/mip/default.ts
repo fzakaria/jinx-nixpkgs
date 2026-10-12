@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.15.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-f28Dgc/ixSwbhkAgPaLLVpdLJuI5UN37GnazfZFvGX4=",
@@ -46,9 +46,9 @@ export default nix.lambda((args) => (() => {
       const postPatch = "# Allow newer cffi versions to be used\nsubstituteInPlace pyproject.toml --replace \"cffi==1.15.*\" \"cffi>=1.15\"\n";
       const makeWrapperArgs = nix.thunk(() => nix.app(nix.sel(lib, "optional"), gurobiSupport, nix.thunk(() => nix.str`--set GUROBI_HOME ${(nix.asBool(nix.eq(gurobiHome, null)) ? nix.sel(gurobi, "outPath") : nix.force(gurobiHome))}`)));
       const disabledTests = nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(gurobiSupport)), "gurobi"));
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, gurobipy: gurobipy, numpy: numpy }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, gurobipy: gurobipy, numpy: numpy }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://python-mip.com/",
         description: "Collection of Python tools for the modeling and solution of Mixed-Integer Linear programs (MIPs)",
         downloadPage: "https://github.com/coin-or/python-mip/releases",
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

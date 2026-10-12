@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const pname = "openthread-border-router";
   const version = "2026.09.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "openthread",
       repo: "ot-br-posix",
       tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       fetchSubmodules: true,
     }))));
   const frontendModules = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.str`${pname}-frontend`),
       version: version,
       src: nix.thunk(() => nix.str`${src}/src/web/web-service/frontend`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       dontNpmBuild: true,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: src,
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_CXX_STANDARD", "17")),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Thread border router for POSIX-based platforms",
         homepage: "https://github.com/openthread/ot-br-posix",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

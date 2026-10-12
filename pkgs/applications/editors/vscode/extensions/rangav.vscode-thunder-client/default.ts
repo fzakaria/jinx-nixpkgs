@@ -12,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "vscode-thunder-client",
         publisher: "rangav",
         version: "2.41.5",
         hash: "sha256-sP4H1pqXyRsHaQvhtV4BkYK5mgL5zKv/eQWDvv/RLls=",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightweight Rest API Client for VS Code",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=rangav.vscode-thunder-client",
         homepage: "https://github.com/thunderclient/thunder-client-support",

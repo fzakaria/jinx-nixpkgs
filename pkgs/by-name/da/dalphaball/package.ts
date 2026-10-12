@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const gfortran = nix.arg($, "gfortran");
   const gmp = nix.arg($, "gmp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dalphaball",
       version: "0-unstable-2023-06-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "outpace-bio",
           repo: "DAlphaBall",
           rev: "7b9dc05fa2a40f7ea36c6d89973d150eaed459d9",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(gfortran, "cc", "lib")), gmp]),
       installPhase: "runHook preInstall\ninstall -Dm755 DAlphaBall.gcc $out/bin/DAlphaBall\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Computes the surface area and volume of unions of many balls",
         mainProgram: "DAlphaBall",
         homepage: "https://github.com/outpace-bio/DAlphaBall",

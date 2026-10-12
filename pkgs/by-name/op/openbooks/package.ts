@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const common = nix.thunk(() => nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({}))));
   const frontend = nix.thunk(() => nix.app(callPackage, nix.path(here, "./frontend.nix"), nix.thunk(() => ({}))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "openbooks",
       version: nix.thunk(() => nix.attr(common, "version")),
       src: nix.thunk(() => nix.attr(common, "src")),
@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
 `),
       subPackages: nix.thunk(() => ["cmd/openbooks"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         frontend: frontend,
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => nix.update(nix.sel(common, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Search and Download eBooks",
         mainProgram: "openbooks",
       })),

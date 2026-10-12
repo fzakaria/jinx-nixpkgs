@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Nicoretti",
           repo: "crc",
           tag: version,
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["crc"]);
       const disabledTestPaths = nix.thunk(() => ["test/bench"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python module for calculating and verifying predefined & custom CRC's",
         homepage: "https://nicoretti.github.io/crc/",
         changelog: nix.thunk(() => nix.str`https://github.com/Nicoretti/crc/releases/tag/${version}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "crc",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

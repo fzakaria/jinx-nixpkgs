@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const check = nix.arg($, "check");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libstrophe",
       version: "0.14.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "strophe",
           repo: "libstrophe",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "pointer-cast.patch",
             url: "https://github.com/strophe/libstrophe/commit/dfb3e868248d86fc0f5553dffbb6f7c367c3c383.patch?full_index=1",
             hash: "sha256-ALr2I53hGHW3OycKDdoXkNgANSYw1kUSYGqmAHkMq5E=",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simple, lightweight C library for writing XMPP clients",
         longDescription: "libstrophe is a lightweight XMPP client library written in C. It has\nminimal dependencies and is configurable for various environments. It\nruns well on both Linux, Unix, and Windows based platforms.\n",
         homepage: "https://strophe.im/libstrophe/",

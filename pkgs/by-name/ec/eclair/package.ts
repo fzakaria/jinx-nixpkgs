@@ -19,14 +19,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.14.2";
       const revision = "3dd8d2d";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ACINQ/eclair/releases/download/v${version}/eclair-node-${version}-${revision}-bin.zip`),
           hash: "sha256-4S2xAEGc1/9cs2n/fE4weIB7+oCqzH500QyTOaZew7A=",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [jq, openjdk21]);
       const installPhase = "runHook preInstall\n\nmkdir $out\ncp -a * $out\nmv $out/bin/eclair-node.sh $out/bin/eclair-node\nrm $out/bin/eclair-node.bat\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Scala implementation of the Lightning Network",
         homepage: "https://github.com/ACINQ/eclair",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         revision,

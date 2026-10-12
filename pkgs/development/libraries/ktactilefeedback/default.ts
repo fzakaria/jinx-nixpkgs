@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const qtdeclarative = nix.arg($, "qtdeclarative");
   const qtmultimedia = nix.arg($, "qtmultimedia");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ktactilefeedback",
       version: "0-unstable-2025-07-25",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "invent.kde.org",
           owner: "jbbgameich",
           repo: "ktactilefeedback",
@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
       preInstallCheck: nix.thunk(() => nix.str`export QML2_IMPORT_PATH=$out/${nix.sel(qtbase, "qtQmlPrefix")}:${nix.app(nix.sel(lib, "getBin"), qtdeclarative)}/${nix.sel(qtbase, "qtQmlPrefix")}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tactile feedback library for Qt",
         homepage: "https://invent.kde.org/jbbgameich/ktactilefeedback",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),

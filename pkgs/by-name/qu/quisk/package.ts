@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const alsa_lib = nix.arg($, "alsa-lib");
   const pulseaudio = nix.arg($, "pulseaudio");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "quisk",
       version: "4.2.51",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-BUS9LW64AmOseedjxEA03MT9Sz9dLmOCVE2IXGovXxo=",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["quisk"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SDR transceiver for radios that use the Hermes protocol",
         longDescription: "QUISK is a Software Defined Radio (SDR) transceiver. You supply radio\nhardware that converts signals at the antenna to complex (I/Q) data at an\nintermediate frequency (IF). Data can come from a sound card, Ethernet or\nUSB. Quisk then filters and demodulates the data and sends the audio to\nyour speakers or headphones. For transmit, Quisk takes the microphone\nsignal, converts it to I/Q data and sends it to the hardware.\n\nQuisk can be used with SoftRock, Hermes Lite 2, HiQSDR, Odyssey and many\nradios that use the Hermes protocol. Quisk can connect to digital\nprograms like Fldigi and WSJT-X. Quisk can be connected to other software\nlike N1MM+ and software that uses Hamlib.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

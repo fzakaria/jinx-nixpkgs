@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const writeTextFile = nix.arg($, "writeTextFile");
   const mesa = nix.arg($, "mesa");
   return nix.app(writeTextFile, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "dri-pkgconfig-stub",
       text: nix.thunk(() => nix.str`dridriverdir=${nix.sel(mesa, "driverLink")}/lib/dri
 
@@ -22,7 +22,7 @@ Description: Nixpkgs graphics driver path stub
 `),
       destination: "/lib/pkgconfig/dri.pc",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         badPlatforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
       })),
     })));

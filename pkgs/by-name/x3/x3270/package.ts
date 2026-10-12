@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const minorVersion = "5";
   const versionSuffix = "ga5";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "x3270",
       version: nix.thunk(() => nix.str`${majorVersion}.${minorVersion}${versionSuffix}`),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://x3270.bgp.nu/download/0${majorVersion}.0${minorVersion}/suite3270-${nix.sel(finalAttrs, "version")}-src.tgz`),
           hash: "sha256-AVdvpYWYzN09Nm/r+u9h49Hek+tgqT+axrpfr4QUTG8=",
         })))),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
         readline,
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "IBM 3270 terminal emulator for the X Window System",
         homepage: "https://x3270.bgp.nu/index.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

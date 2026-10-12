@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const types_deprecated = nix.arg($, "types-deprecated");
   const types_python_dateutil = nix.arg($, "types-python-dateutil");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "standardwebhooks",
       version: "1.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-5ctm4hpjVuu5N1rrV/E0hYMyMBWAjUdafBuqpLcYBoo=",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["standardwebhooks"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Standard Webhooks",
         homepage: "https://pypi.org/project/standardwebhooks/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

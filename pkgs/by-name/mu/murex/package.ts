@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "murex",
       version: "7.2.1001",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lmorg",
           repo: "murex",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-MaBBi2Qi7s9lfRWmnYkyr7PtwzC7ZL0jmyUXzISOXVg=",
       subPackages: nix.thunk(() => ["."]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bash-like shell and scripting environment with advanced features designed for safety and productivity",
         mainProgram: "murex",
         homepage: "https://murex.rocks",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "kashw2"))];
         })()),
       })),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, shellPath: "/bin/murex" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, shellPath: "/bin/murex" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

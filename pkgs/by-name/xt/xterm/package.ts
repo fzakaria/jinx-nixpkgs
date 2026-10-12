@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const enableDecLocator = nix.argOr($, "enableDecLocator", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "xterm",
       version: "411",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://invisible-island.net/archives/xterm/xterm-${nix.sel(finalAttrs, "version")}.tgz`),
             nix.thunk(() => nix.str`https://invisible-mirror.net/archives/xterm/xterm-${nix.sel(finalAttrs, "version")}.tgz`),
@@ -76,27 +76,27 @@ export default nix.lambda((args) => (() => {
         "--with-tty-group=tty",
         "--with-app-defaults=$(out)/lib/X11/app-defaults",
       ], nix.app(nix.sel(lib, "optional"), enableDecLocator, "--enable-dec-locator"))),
-      env: nix.thunk(() => nix.update({ __proto__: pos$2, NIX_LDFLAGS: "-lXmu -lXt -lICE -lX11 -lfontconfig" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-D_GNU_SOURCE" }))))),
+      env: nix.thunk(() => nix.update({ [nix.POS]: pos$2, NIX_LDFLAGS: "-lXmu -lXt -lICE -lX11 -lfontconfig" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-D_GNU_SOURCE" }))))),
       postConfigure: "echo '#define USE_UTMP_SETGID 1'\n",
       enableParallelBuilding: true,
       postInstall: "for bin in $out/bin/*; do\n  wrapProgram $bin --set XAPPLRESDIR $out/lib/X11/app-defaults/\ndone\n\ninstall -D -t $out/share/applications xterm.desktop\ninstall -D -t $out/share/icons/hicolor/48x48/apps icons/xterm-color_48x48.xpm\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           customTest: nix.thunk(() => nix.sel(nixosTests, "xterm")),
           standardTest: nix.thunk(() => nix.sel(nixosTests, "terminal-emulators", "xterm")),
           musl: nix.thunk(() => nix.sel(pkgsCross, "musl64", "xterm")),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://github.com/ThomasDickey/xterm-snapshots.git",
             "rev-prefix": "xterm-",
             ignoredVersions: "[a-z]$",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Terminal emulator for the X Window System",
         longDescription: "The xterm program is a terminal emulator for the X Window System. It\nprovides DEC VT102/VT220 and selected features from higher-level\nterminals such as VT320/VT420/VT520 (VTxxx). It also provides Tektronix\n4014 emulation for programs that cannot use the window system directly.\nIf the underlying operating system supports terminal resizing\ncapabilities (for example, the SIGWINCH signal in systems derived from\n4.3bsd), xterm will use the facilities to notify programs running in the\nwindow whenever it is resized.\n",
         homepage: "https://invisible-island.net/xterm",

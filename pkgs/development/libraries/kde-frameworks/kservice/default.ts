@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const qtbase = nix.arg($, "qtbase");
   const shared_mime_info = nix.arg($, "shared-mime-info");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kservice",
       nativeBuildInputs: nix.thunk(() => [cmake, extra_cmake_modules, kdoctools]),
       propagatedNativeBuildInputs: nix.thunk(() => [bison, flex]),

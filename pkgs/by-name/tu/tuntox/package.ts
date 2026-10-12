@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libtoxcore = nix.arg($, "libtoxcore");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tuntox",
       version: "0.0.10.1-unstable-2025-08-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gjedeer",
           repo: "tuntox",
           rev: "4c9fc50da3f7d7b3d5e3981ede66819644e1af0d",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
   --replace-fail '$(shell git rev-parse HEAD)' "${nix.sel(finalAttrs, "src", "rev")}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tunnel TCP connections over the Tox protocol",
         mainProgram: "tuntox",
         homepage: "https://github.com/gjedeer/tuntox",

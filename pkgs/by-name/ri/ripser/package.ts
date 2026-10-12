@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(useGoogleHashmap) || nix.asBool(!nix.eq(sparsehash, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ri/ripser/package.nix:17:1");
   const version = "1.2.1";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ripser",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Ripser",
           repo: "ripser",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "c++ ripser.cpp -o ripser $buildFlags",
       installPhase: "mkdir -p $out/bin\ncp ripser $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lean C++ code for the computation of Vietoris–Rips persistence barcodes",
         mainProgram: "ripser",
         homepage: "https://github.com/Ripser/ripser",

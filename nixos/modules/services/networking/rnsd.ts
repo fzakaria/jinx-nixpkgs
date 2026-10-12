@@ -40,69 +40,69 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "rnsd"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "configobj"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         rnsd: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Enable Reticulum Network Stack Daemon (rnsd)")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "rns", nix.thunk(() => ({})))),
           packageBinaryName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "rnsd",
               description: "Name of the program to use. Useful in case of using an alternative implementation.",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(settingsFormat, "type")))),
               default: null,
               description: "Structured rnsd configuration. The generated file is copied to the dataDir on service start. Use `rnsd --exampleconfig` to get an example config file.",
             })))),
           identityFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "Path to rnsd identity file. This file will be copied to the dataDir on service start.",
             })))),
           identities: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => ({})),
               description: "Map of identity names to paths of identity files. Each identity file will be copied to $STATE_DIRECTORY/storage/identities/{name}.",
             })))),
           extraGroups: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "Additional groups for the rnsd service user. E.g., add the `dialout` group to allow rnsd to access serial devices (e.g., `/dev/ttyACM0`).",
             })))),
           healthCheck: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "wait for rnsd to become healthy after startup")),
             intervalSeconds: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(lib, "types", "ints", "positive")),
                 default: 2n,
                 description: "Delay in seconds between each `rnstatus` health check attempt.",
               })))),
             timeoutSeconds: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.sel(lib, "types", "ints", "positive")),
                 default: 120n,
                 description: "Maximum time in seconds to wait for `rnstatus` to succeed during startup.",
               })))),
           })),
           openMulticastPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to open the UDP ports (27916, 42671) used for multicast peer discovery when the AutoInterface is enabled.\n",
             })))),
           enableUdevRules: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to install udev rules for automatically symlinking RNode devices (e.g., Heltec HT-n5262, RAK4631) to /dev/rnode.",
@@ -111,15 +111,15 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         services: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           udev: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             extraRules: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableUdevRules")), nix.thunk(() => (() => {
                 const devices = nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$14, idVendor: "239a", idProduct: "8071" })),
-                  nix.thunk(() => ({ __proto__: pos$15, idVendor: "239a", idProduct: "8029" })),
+                  nix.thunk(() => ({ [nix.POS]: pos$14, idVendor: "239a", idProduct: "8071" })),
+                  nix.thunk(() => ({ [nix.POS]: pos$15, idVendor: "239a", idProduct: "8029" })),
                 ]);
                 const makeRule = (dev) => nix.str`SUBSYSTEM=="tty", ATTRS{idVendor}=="${nix.sel(dev, "idVendor")}", ATTRS{idProduct}=="${nix.sel(dev, "idProduct")}", SYMLINK+="rnode%n", MODE="0660", GROUP="dialout"
 `;
@@ -128,11 +128,11 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           services: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             rnsd: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               description: "Reticulum Network Stack Daemon",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
@@ -147,7 +147,7 @@ export default nix.lambda((args) => (() => {
               })()),
               serviceConfig: nix.thunk(() => (() => {
                 const waitForHealthy = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     name: "rnsd-wait-for-health",
                     runtimeInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "rns"))]),
                     text: nix.thunk(() => nix.str`deadline=$((SECONDS + ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "healthCheck", "timeoutSeconds")))}))
@@ -163,7 +163,7 @@ done
 `),
                   }))));
                 return nix.update({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   DynamicUser: true,
                   StateDirectory: "rnsd",
                   SupplementaryGroups: nix.thunk(() => nix.sel(cfg, "extraGroups")),
@@ -172,7 +172,7 @@ done
                   ProtectSystem: "strict",
                   ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), nix.thunk(() => nix.sel(cfg, "packageBinaryName")))} --config $STATE_DIRECTORY`),
                 }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "healthCheck", "enable")), nix.thunk(() => ({
-                    __proto__: pos$20,
+                    [nix.POS]: pos$20,
                     ExecStartPost: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), waitForHealthy)),
                     TimeoutStartSec: nix.thunk(() => nix.add(nix.sel(cfg, "healthCheck", "timeoutSeconds"), 5n)),
                   }))));
@@ -181,16 +181,16 @@ done
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openMulticastPorts")), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               extraCommands: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(config, "networking", "nftables", "enable"))), "ip46tables -A nixos-fw -p udp -m pkttype --pkt-type multicast -m multiport --dports 27916,42671 -j nixos-fw-accept\n")),
               extraInputRules: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(config, "networking", "nftables", "enable")), "meta l4proto udp pkttype multicast udp dport { 27916, 42671 } accept\n")),
             })))),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       doc: nix.path(here, "./rnsd.md"),
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

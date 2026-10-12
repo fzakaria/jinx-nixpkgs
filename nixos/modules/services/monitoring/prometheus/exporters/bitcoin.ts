@@ -24,61 +24,61 @@ export default nix.lambda((args) => (() => {
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     port: 9332n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "prometheus-bitcoin-exporter", nix.thunk(() => ({})))),
       rpcUser: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "bitcoinrpc",
           description: "RPC user name.\n",
         })))),
       rpcPasswordFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.sel(types, "path")),
           description: "File containing RPC password.\n",
         })))),
       rpcScheme: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["http", "https"]))),
           default: "http",
           description: "Whether to connect to bitcoind over http or https.\n",
         })))),
       rpcHost: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "localhost",
           description: "RPC host.\n",
         })))),
       rpcPort: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           type: nix.thunk(() => nix.sel(types, "port")),
           default: 8332n,
           description: "RPC port number.\n",
         })))),
       refreshSeconds: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           type: nix.thunk(() => nix.sel(types, "ints", "unsigned")),
           default: 300n,
           description: "How often to ask bitcoind for metrics.\n",
         })))),
       extraEnv: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "str")))),
           default: nix.thunk(() => ({})),
           description: "Extra environment variables for the exporter.\n",
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       script: nix.thunk(() => nix.str`BITCOIN_RPC_PASSWORD=$(cat ${nix.sel(cfg, "rpcPasswordFile")})
 export BITCOIN_RPC_PASSWORD
 exec ${nix.sel(cfg, "package")}/bin/bitcoind-monitor.py
 `),
       environment: nix.thunk(() => nix.update({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         BITCOIN_RPC_USER: nix.thunk(() => nix.sel(cfg, "rpcUser")),
         BITCOIN_RPC_SCHEME: nix.thunk(() => nix.sel(cfg, "rpcScheme")),
         BITCOIN_RPC_HOST: nix.thunk(() => nix.sel(cfg, "rpcHost")),

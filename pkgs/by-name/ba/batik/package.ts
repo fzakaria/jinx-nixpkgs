@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const stripJavaArchivesHook = nix.arg($, "stripJavaArchivesHook");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "batik",
       version: "1.19",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://apache/xmlgraphics/batik/binaries/batik-bin-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-1KuzhFSEv+GJqA83QZuUx35mvUuLueW/cs5wvIZe2yI=",
         })))),
@@ -40,7 +40,7 @@ for appName in rasterizer slideshow squiggle svgpp ttf2svg; do
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Java based toolkit for handling SVG",
         homepage: "https://xmlgraphics.apache.org/batik",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

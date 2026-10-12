@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "xmltoman";
       const version = "0.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "atsb",
           repo: "xmltoman",
           rev: version,
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const dontBuild = true;
       const installPhase = "runHook preInstall\n\nmkdir -p $out\nperl xmltoman xml/xmltoman.1.xml > xmltoman.1\nperl xmltoman xml/xmlmantohtml.1.xml > xmlmantohtml.1\ninstall -d $out/bin $out/share/xmltoman\ninstall -m 0755 xmltoman xmlmantohtml $out/bin\ninstall -m 0644 xmltoman.dtd xmltoman.css xmltoman.xsl $out/share/xmltoman\ninstallManPage *.1\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Two very simple scripts for converting xml to groff or html",
         homepage: "https://github.com/atsb/xmltoman",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

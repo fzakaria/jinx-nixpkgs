@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const tag = "0.3.21-unstable-2025-08-15";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "apfs",
       version: nix.thunk(() => nix.str`${tag}-${nix.sel(kernel, "version")}`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linux-apfs",
           repo: "linux-apfs-rw",
           rev: "a10279ce663bdbe4d32baef83930e5ba7d69d7df",
@@ -37,13 +37,13 @@ export default nix.lambda((args) => (() => {
         "INSTALL_MOD_PATH=$(out)",
       ])),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, apfs: nix.thunk(() => nix.sel(nixosTests, "apfs")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, apfs: nix.thunk(() => nix.sel(nixosTests, "apfs")) })),
         tag: tag,
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "APFS module for linux",
         longDescription: "The Apple File System (APFS) is the copy-on-write filesystem currently\nused on all Apple devices. This module provides a degree of experimental\nsupport on Linux.\nIf you make use of the write support, expect data corruption.\nRead-only support is somewhat more complete, with sealed volumes,\nsnapshots, and all the missing compression algorithms recently added.\nEncryption is still not in the works though.\n",
         homepage: "https://github.com/linux-apfs/linux-apfs-rw",

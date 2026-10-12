@@ -23,41 +23,41 @@ export default nix.lambda((args) => (() => {
   const rpcSecret = "supersecret";
   const rpc_listen_port = 6800n;
   const curlBody = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     jsonrpc: 2.0,
     id: 1n,
     method: "aria2.getVersion",
     params: nix.thunk(() => [nix.thunk(() => nix.str`token:${rpcSecret}`)]),
   }));
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     name: "aria2",
     nodes: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       machine: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         environment: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           etc: nix.thunk(() => ({
-            __proto__: pos$3,
-            aria2Rpc: nix.thunk(() => ({ __proto__: pos$2, text: rpcSecret })),
+            [nix.POS]: pos$3,
+            aria2Rpc: nix.thunk(() => ({ [nix.POS]: pos$2, text: rpcSecret })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           aria2: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             enable: true,
             rpcSecretFile: "/etc/aria2Rpc",
             settings: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               "rpc-listen-port": rpc_listen_port,
               "allow-overwrite": false,
               "check-integrity": true,
               "console-log-level": "warn",
               "listen-port": nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$5, from: 20000n, to: 20010n })),
-                nix.thunk(() => ({ __proto__: pos$6, from: 22222n, to: 22222n })),
+                nix.thunk(() => ({ [nix.POS]: pos$5, from: 20000n, to: 20010n })),
+                nix.thunk(() => ({ [nix.POS]: pos$6, from: 22222n, to: 22222n })),
               ]),
               "max-concurrent-downloads": 50n,
               "seed-ratio": 1.2,
@@ -75,7 +75,7 @@ print(machine.wait_until_succeeds(curl_cmd, timeout=10))
 machine.shutdown()
 `),
     meta: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "lib", "maintainers", "timhae"))]),
     })),
   };

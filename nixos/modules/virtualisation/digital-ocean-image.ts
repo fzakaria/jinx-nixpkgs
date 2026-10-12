@@ -28,26 +28,26 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "virtualisation", "digitalOceanImage"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     imports: nix.thunk(() => [
       nix.path(here, "./digital-ocean-config.nix"),
       nix.path(here, "./disk-size-option.nix"),
       nix.path(here, "../image/file-options.nix"),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModuleWith"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           sinceRelease: 2411n,
           from: nix.thunk(() => ["virtualisation", "digitalOceanImage", "diskSize"]),
           to: nix.thunk(() => ["virtualisation", "diskSize"]),
         })))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         digitalOceanImage: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           configFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "path")));
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
               description: "A path to a configuration file which will be placed at\n`/etc/nixos/configuration.nix` and be used when switching\nto a new configuration. If set to `null`, a default\nconfiguration is used that imports\n`(modulesPath + \"/virtualisation/digital-ocean-config.nix\")`.\n",
             })))),
           compressionMethod: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["gzip", "bzip2"]))),
               default: "gzip",
               example: "bzip2",
@@ -68,25 +68,25 @@ export default nix.lambda((args) => (() => {
     config: nix.thunk(() => (() => {
       const format = "qcow2";
       return {
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         image: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           extension: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ".", nix.thunk(() => [
               format,
-              nix.thunk(() => nix.sel({ __proto__: pos$7, gzip: "gz", bzip2: "bz2" }, nix.key(nix.sel(cfg, "compressionMethod")))),
+              nix.thunk(() => nix.sel({ [nix.POS]: pos$7, gzip: "gz", bzip2: "bz2" }, nix.key(nix.sel(cfg, "compressionMethod")))),
             ]))),
         })),
         system: nix.thunk(() => ({
-          __proto__: pos$13,
-          nixos: nix.thunk(() => ({ __proto__: pos$9, tags: nix.thunk(() => ["digital-ocean"]) })),
+          [nix.POS]: pos$13,
+          nixos: nix.thunk(() => ({ [nix.POS]: pos$9, tags: nix.thunk(() => ["digital-ocean"]) })),
           build: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             image: nix.thunk(() => nix.sel(config, "system", "build", "digitalOceanImage")),
             digitalOceanImage: nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "../../lib/make-disk-image.nix"), nix.thunk(() => (() => {
                 const from = nix.thunk(() => nix.sel(config, "image"));
                 const from_1 = nix.thunk(() => nix.sel(config, "virtualisation"));
                 return {
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 name: "digital-ocean-image",
                 baseName: nix.thunk(() => nix.attr(from, "baseName")),
                 diskSize: nix.thunk(() => nix.attr(from_1, "diskSize")),
@@ -96,7 +96,7 @@ export default nix.lambda((args) => (() => {
                 format: format,
                 postVM: nix.thunk(() => (() => {
                   const compress = nix.thunk(() => nix.sel({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     gzip: nix.thunk(() => nix.str`${nix.sel(pkgs, "gzip")}/bin/gzip`),
                     bzip2: nix.thunk(() => nix.str`${nix.sel(pkgs, "bzip2")}/bin/bzip2`),
                   }, nix.key(nix.sel(cfg, "compressionMethod"))));
@@ -111,7 +111,7 @@ export default nix.lambda((args) => (() => {
       };
     })()),
     meta: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "maintainers")), w);
         return [

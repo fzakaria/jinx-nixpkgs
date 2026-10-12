@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "charge-lnd",
       version: "0.3.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "accumulator",
           repo: "charge-lnd",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,9 +46,9 @@ export default nix.lambda((args) => (() => {
       postInstall: "install README.md -Dt $out/share/doc/charge-lnd\n\nwrapProgram $out/bin/charge-lnd \\\n  --set PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION \"python\"\n",
       doInstallCheck: true,
       installCheckPhase: "$out/bin/charge-lnd --help > /dev/null\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simple policy-based fee manager for lightning network daemon",
         homepage: "https://github.com/accumulator/charge-lnd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

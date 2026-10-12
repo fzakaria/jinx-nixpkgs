@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libpcap = nix.arg($, "libpcap");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mdk4",
       version: "4.2-unstable-2024-08-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aircrack-ng",
           repo: "mdk4",
           rev: "36ca143a2e6c0b75b5ec60143b0c5eddd3d2970c",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["PREFIX=$(out)", "SBINDIR=$(PREFIX)/bin"]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool that injects data into wireless networks",
         homepage: "https://github.com/aircrack-ng/mdk4",
         maintainers: nix.thunk(() => (() => {

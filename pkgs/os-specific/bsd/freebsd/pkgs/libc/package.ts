@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
   ]);
   const extraModules = nix.argOr($, "extraModules", () => []);
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "libc",
       version: nix.thunk(() => nix.attr(libcMinimal, "version")),
       paths: nix.thunk(() => nix.concat(baseModules, extraModules)),

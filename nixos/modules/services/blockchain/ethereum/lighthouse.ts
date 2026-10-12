@@ -56,107 +56,107 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "lighthouse"));
   return {
-    __proto__: pos$45,
+    [nix.POS]: pos$45,
     options: nix.thunk(() => ({
-      __proto__: pos$34,
+      [nix.POS]: pos$34,
       services: nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         lighthouse: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           beacon: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               description: "Beacon node",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   options: nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Lightouse Beacon node")),
                     dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$1,
+                        [nix.POS]: pos$1,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "/var/lib/lighthouse-beacon",
                         description: "Directory where data will be stored. Each chain will be stored under it's own specific subdirectory.\n",
                       })))),
                     address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$2,
+                        [nix.POS]: pos$2,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "0.0.0.0",
                         description: "Listen address of Beacon node.\n",
                       })))),
                     port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => nix.sel(lib, "types", "port")),
                         default: 9000n,
                         description: "Port number the Beacon node will be listening on.\n",
                       })))),
                     openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         default: false,
                         description: "Open the port in the firewall\n",
                       })))),
                     disableDepositContractSync: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         default: false,
                         description: "Explicitly disables syncing of deposit logs from the execution node.\nThis overrides any previous option that depends on it.\nUseful if you intend to run a non-validating beacon node.\n",
                       })))),
                     execution: nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "127.0.0.1",
                           description: "Listen address for the execution layer.\n",
                         })))),
                       port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$7,
+                          [nix.POS]: pos$7,
                           type: nix.thunk(() => nix.sel(lib, "types", "port")),
                           default: 8551n,
                           description: "Port number the Beacon node will be listening on for the execution layer.\n",
                         })))),
                       jwtPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "",
                           description: "Path for the jwt secret required to connect to the execution layer.\n",
                         })))),
                     })),
                     http: nix.thunk(() => ({
-                      __proto__: pos$12,
+                      [nix.POS]: pos$12,
                       enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Beacon node http api")),
                       port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           type: nix.thunk(() => nix.sel(lib, "types", "port")),
                           default: 5052n,
                           description: "Port number of Beacon node RPC service.\n",
                         })))),
                       address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$11,
+                          [nix.POS]: pos$11,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "127.0.0.1",
                           description: "Listen address of Beacon node RPC service.\n",
                         })))),
                     })),
                     metrics: nix.thunk(() => ({
-                      __proto__: pos$15,
+                      [nix.POS]: pos$15,
                       enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Beacon node prometheus metrics")),
                       address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$13,
+                          [nix.POS]: pos$13,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "127.0.0.1",
                           description: "Listen address of Beacon node metrics service.\n",
                         })))),
                       port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           type: nix.thunk(() => nix.sel(lib, "types", "port")),
                           default: 5054n,
                           description: "Port number of Beacon node metrics service.\n",
                         })))),
                     })),
                     extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$16,
+                        [nix.POS]: pos$16,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         description: "Additional arguments passed to the lighthouse beacon command.\n",
                         default: "",
@@ -166,49 +166,49 @@ export default nix.lambda((args) => (() => {
                 })))),
             })))),
           validator: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               description: "Validator node",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   options: nix.thunk(() => ({
-                    __proto__: pos$27,
+                    [nix.POS]: pos$27,
                     enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$20,
+                        [nix.POS]: pos$20,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         default: false,
                         description: "Enable Lightouse Validator node.",
                       })))),
                     dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$21,
+                        [nix.POS]: pos$21,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "/var/lib/lighthouse-validator",
                         description: "Directory where data will be stored. Each chain will be stored under it's own specific subdirectory.\n",
                       })))),
                     beaconNodes: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$22,
+                        [nix.POS]: pos$22,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: nix.thunk(() => ["http://localhost:5052"]),
                         description: "Beacon nodes to connect to.\n",
                       })))),
                     metrics: nix.thunk(() => ({
-                      __proto__: pos$25,
+                      [nix.POS]: pos$25,
                       enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Validator node prometheus metrics")),
                       address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$23,
+                          [nix.POS]: pos$23,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "127.0.0.1",
                           description: "Listen address of Validator node metrics service.\n",
                         })))),
                       port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$24,
+                          [nix.POS]: pos$24,
                           type: nix.thunk(() => nix.sel(lib, "types", "port")),
                           default: 5056n,
                           description: "Port number of Validator node metrics service.\n",
                         })))),
                     })),
                     extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$26,
+                        [nix.POS]: pos$26,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         description: "Additional arguments passed to the lighthouse validator command.\n",
                         default: "",
@@ -218,13 +218,13 @@ export default nix.lambda((args) => (() => {
                 })))),
             })))),
           network: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["mainnet", "gnosis", "chiado", "sepolia", "holesky"]))),
               default: "mainnet",
               description: "The network to connect to. Mainnet is the default ethereum network.\n",
             })))),
           extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Additional arguments passed to every lighthouse command.\n",
               default: "",
@@ -235,25 +235,25 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "beacon", "enable")) || nix.asBool(nix.sel(cfg, "validator", "enable")))), nix.thunk(() => ({
-        __proto__: pos$44,
+        [nix.POS]: pos$44,
         environment: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "beacon", "enable")), nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "beacon", "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "beacon", "port"))]))),
               allowedUDPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "beacon", "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "beacon", "port"))]))),
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$43,
+          [nix.POS]: pos$43,
           services: nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             "lighthouse-beacon": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "beacon", "enable")), nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 description: "Lighthouse beacon node (connect to P2P nodes and verify blocks)",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 after: nix.thunk(() => ["network.target"]),
@@ -274,7 +274,7 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} bea
   ${nix.sel(cfg, "extraArgs")} ${nix.sel(cfg, "beacon", "extraArgs")}
 `),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$38,
+                  [nix.POS]: pos$38,
                   LoadCredential: nix.thunk(() => nix.str`LIGHTHOUSE_JWT:${nix.sel(cfg, "beacon", "execution", "jwtPath")}`),
                   DynamicUser: true,
                   Restart: "on-failure",
@@ -300,7 +300,7 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} bea
                 })),
               })))),
             "lighthouse-validator": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "validator", "enable")), nix.thunk(() => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 description: "Lighthouse validtor node (manages validators, using data obtained from the beacon node via a HTTP API)",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 after: nix.thunk(() => ["network.target"]),
@@ -315,7 +315,7 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} val
   ${nix.sel(cfg, "extraArgs")} ${nix.sel(cfg, "validator", "extraArgs")}
 `),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$40,
+                  [nix.POS]: pos$40,
                   Restart: "on-failure",
                   StateDirectory: "lighthouse-validator",
                   ReadWritePaths: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "validator", "dataDir"))]),

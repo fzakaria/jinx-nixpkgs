@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.36.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TileDB-Inc",
           repo: "TileDB-Py",
           tag: version,
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [tiledb]);
       const propagatedBuildInputs = nix.thunk(() => [numpy]);
       const nativeCheckInputs = nix.thunk(() => [psutil, pandas, pytest, hypothesis, pyarrow]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, TILEDB_PATH: tiledb }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, TILEDB_PATH: tiledb }));
       const disabled = nix.thunk(() => !nix.asBool(isPy3k));
       const dontUseCmakeConfigure = true;
       const checkPhase = nix.thunk(() => nix.str`pushd "$TMPDIR"
@@ -55,13 +55,13 @@ popd
 `);
       const pythonImportsCheck = nix.thunk(() => ["tiledb"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python interface to the TileDB storage manager",
         homepage: "https://github.com/TileDB-Inc/TileDB-Py",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

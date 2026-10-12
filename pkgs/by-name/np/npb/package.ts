@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const nix$ = nix.thunk(() => nix.attr(nix_eval_jobs, "nix"));
   const buildCanExecuteHost = nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "npb",
       version: "1.1.3",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "samestep",
           repo: "npb",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-apnM5aLI0bXp86yvTgkUL6LnHHCEDeVD9ltovmsQ0ak=",
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), buildCanExecuteHost, installShellFiles)),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         GIT_BIN: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), git)),
         NIX_BIN: nix.thunk(() => (() => {
           nix.assert_(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(nix$, "version")), "2.35"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/np/npb/package.nix:47:7");
@@ -53,11 +53,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Nixpkgs build comparison tool",
         longDescription: "A CLI tool to generate reports on the differences in build outcomes\nbetween a pair of Nixpkgs commits.\n",
         mainProgram: "npb",

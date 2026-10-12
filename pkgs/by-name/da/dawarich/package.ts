@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const gemset = nix.argOr($, "gemset", () => nix.builtins.import(nix.path(here, "./gemset.nix")));
   const sources = nix.argOr($, "sources", () => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./sources.json")));
   const unpatchedSource = nix.argOr($, "unpatchedSource", () => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "Freika",
       repo: "dawarich",
       tag: nix.thunk(() => nix.sel(sources, "version")),
@@ -37,18 +37,18 @@ export default nix.lambda((args) => (() => {
     }))));
   const ruby = ruby_3_4;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "dawarich",
       version: nix.thunk(() => nix.attr(sources, "version")),
       src: nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: unpatchedSource,
           patches: nix.thunk(() => [nix.path(here, "./0001-build-ffi-gem.diff")]),
           postPatch: "substituteInPlace ./Gemfile \\\n  --replace-fail \"ruby File.read('.ruby-version').strip\" \"ruby '>= 3.4.0'\"\n",
         })))),
       postPatch: "# move import directory to a more convenient place, otherwise its behind systemd private tmp\nsubstituteInPlace ./app/services/imports/watcher.rb \\\n  --replace-fail 'tmp/imports/watched' 'storage/imports/watched'\n",
       dawarichGems: nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-gems-${nix.sel(finalAttrs, "version")}`),
           gemset: gemset,
           ruby: ruby,
@@ -56,12 +56,12 @@ export default nix.lambda((args) => (() => {
           gemdir: nix.thunk(() => nix.sel(finalAttrs, "src")),
         })))),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: nix.thunk(() => nix.sel(sources, "npmHash")),
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         RAILS_ENV: "production",
         NODE_ENV: "production",
         TAILWINDCSS_INSTALL_DIR: nix.thunk(() => nix.str`${tailwindcss_3}/bin`),
@@ -77,15 +77,15 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\npatchShebangs bin/\nfor b in $(ls $dawarichGems/bin/)\ndo\n  if [ ! -f bin/$b ]; then\n    ln -s $dawarichGems/bin/$b bin/$b\n  fi\ndone\n\nSECRET_KEY_BASE_DUMMY=1 bundle exec rake assets:precompile\n\nrm -rf node_modules tmp log storage\nln -s /var/log/dawarich log\nln -s /var/lib/dawarich storage\nln -s /tmp tmp\n\n# delete more files unneeded at runtime\nrm -rf docker docs screenshots package.json package-lock.json *.md *.example\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\n# tests are not needed at runtime\nrm -rf spec e2e\n# delete artifacts from patching\nrm -f *.orig\n\nmkdir -p $out\nmv .{ruby*,app_version} $out/\nmv * $out/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           dawarich: nix.thunk(() => nix.attr(nixosTests, "dawarich")),
         })),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         changelog: nix.thunk(() => nix.str`https://github.com/Freika/dawarich/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "Self-hostable alternative to Google Location History (Google Maps Timeline)",
         homepage: "https://dawarich.app/",

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const npmHooks = nix.arg($, "npmHooks");
   const nodejs = nix.arg($, "nodejs");
   return nix.app(buildLakePackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "lean4-proofwidgets",
       version: "0.0.111-unstable-2026-09-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "leanprover-community",
           repo: "ProofWidgets4",
           rev: "106ff4fafc74ef4ac99d81dbf3ab399118f497a5",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       lakeHash: null,
       nativeBuildInputs: nix.thunk(() => [nodejs, nix.thunk(() => nix.sel(npmHooks, "npmConfigHook"))]),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "lean4-proofwidgets-npm-deps",
           src: nix.thunk(() => nix.sel(finalAttrs, "src")),
           sourceRoot: "source/widget",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       npmRoot: "widget",
       postConfigure: "local realNpm\nrealNpm=\"$(type -P npm)\"\nmkdir -p \"$TMPDIR/npm-wrap\"\ncat > \"$TMPDIR/npm-wrap/npm\" <<WRAPPER\n#!/bin/sh\ncase \"\\$1\" in ci|clean-install) exit 0 ;; esac\nexec \"$realNpm\" \"\\$@\"\nWRAPPER\nchmod +x \"$TMPDIR/npm-wrap/npm\"\nexport PATH=\"$TMPDIR/npm-wrap:$PATH\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Interactive UI framework for Lean 4 proof assistants",
         homepage: "https://github.com/leanprover-community/ProofWidgets4",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

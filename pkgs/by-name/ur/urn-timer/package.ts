@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const jansson = nix.arg($, "jansson");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "urn-timer",
       version: "0-unstable-2026-01-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "paoloose",
           repo: "urn",
           rev: "e1c96fff0ee9763d35b0370deb4cbbbf805acdba",
@@ -38,15 +38,15 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk3, jansson]),
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, url: "https://github.com/paoloose/urn.git" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, url: "https://github.com/paoloose/urn.git" })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           nixosTest: nix.thunk(() => nix.sel(nixosTests, "urn-timer")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/paoloose/urn",
         description: "Split tracker / timer for speedrunning with GTK+ frontend",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

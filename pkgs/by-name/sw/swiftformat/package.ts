@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(swift, "stdenv", "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "swiftformat",
       version: "0.63.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nicklockwood",
           repo: "SwiftFormat",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,18 +35,18 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           format: nix.thunk(() => nix.app(runCommand, "swiftformat-test-format", nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
             })), "export CACHE_DIR=$(mktemp -d)\nprintf \"class Test{\\nvar a:Int=1;;\\n}\" > test.swift\nswiftformat --cache $CACHE_DIR --swiftversion 5.8 --indent 2 --locale system test.swift 2> stderr.txt\n\ngrep -Fxq \"Running SwiftFormat...\" stderr.txt\ngrep -Fxq \"1/1 files formatted.\" stderr.txt\n\ncat > expected.swift <<'EOF'\nclass Test {\n  var a: Int = 1\n}\nEOF\n\ncmp expected.swift test.swift\n\nswiftformat --cache $CACHE_DIR --swiftversion 5.8 --indent 2 --locale system test.swift 2> stderr.txt\n\ngrep -Fxq \"Running SwiftFormat...\" stderr.txt\ngrep -Fxq \"0/1 files formatted.\" stderr.txt\n\ncmp expected.swift test.swift\n\ntouch $out\n")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Code formatting and linting tool for Swift",
         homepage: "https://github.com/nicklockwood/SwiftFormat",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

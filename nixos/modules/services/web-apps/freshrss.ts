@@ -70,21 +70,21 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "freshrss"));
   const webserver = nix.thunk(() => nix.sel(config, "services", nix.key(nix.sel(cfg, "webserver"))));
   const extension_env = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "freshrss-extensions",
       paths: nix.thunk(() => nix.sel(cfg, "extensions")),
     }))));
-  const env_vars = nix.thunk(() => nix.update({ __proto__: pos$2, DATA_PATH: nix.thunk(() => nix.sel(cfg, "dataDir")) }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "extensions"), [])), nix.thunk(() => ({
-      __proto__: pos$3,
+  const env_vars = nix.thunk(() => nix.update({ [nix.POS]: pos$2, DATA_PATH: nix.thunk(() => nix.sel(cfg, "dataDir")) }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "extensions"), [])), nix.thunk(() => ({
+      [nix.POS]: pos$3,
       THIRDPARTY_EXTENSIONS_PATH: nix.thunk(() => nix.str`${extension_env}/share/freshrss`),
     }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "internalHostAllowlist"), [])), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       INTERNAL_HOST_ALLOWLIST: nix.thunk(() => nix.app(nix.lookup(w, "concatStringsSep"), " ", nix.thunk(() => nix.sel(cfg, "internalHostAllowlist")))),
     }))))));
   return {
-    __proto__: pos$57,
+    [nix.POS]: pos$57,
     meta: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "maintainers")), w);
         return [
@@ -94,15 +94,15 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       services: nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         freshrss: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "FreshRSS RSS aggregator and reader with php-fpm backend")),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "freshrss", nix.thunk(() => ({})))),
           extensions: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")))),
               default: [],
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "[]")),
@@ -110,82 +110,82 @@ export default nix.lambda((args) => (() => {
               description: "Additional extensions to be used.",
             })))),
           internalHostAllowlist: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: [],
               example: nix.thunk(() => ["rss-bridge.lan:80", "192.168.1.0/24", "127.0.0.1:8080"]),
               description: "Hosts on local and private networks that FreshRSS fetches feeds from.\n\nFreshRSS blocks requests to local and private networks, such as `127.0.0.1`, by default.\nEach entry is a `host:port` pair, a network in CIDR notation\n(`0.0.0.0/0` for any IPv4, `::/0` for any IPv6 address) or `*` for all hosts (unsafe).\n\nThis list overrides the allowlist set in the web UI.\n",
             })))),
           defaultUser: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "admin",
               description: "Default username for FreshRSS.",
               example: "eva",
             })))),
           passwordFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               default: null,
               description: "Password for the defaultUser for FreshRSS.",
               example: "/run/secrets/freshrss",
             })))),
           baseUrl: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "Default URL for FreshRSS.",
               example: "https://freshrss.example.com",
             })))),
           language: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "en",
               description: "Default language for FreshRSS.",
               example: "de",
             })))),
           database: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             type: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["sqlite", "pgsql", "mysql"]))),
                 default: "sqlite",
                 description: "Database type.",
                 example: "pgsql",
               })))),
             host: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 default: "localhost",
                 description: "Database host for FreshRSS.",
               })))),
             port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")))),
                 default: null,
                 description: "Database port for FreshRSS.",
                 example: 3306n,
               })))),
             user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 default: "freshrss",
                 description: "Database user for FreshRSS.",
               })))),
             passFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
                 default: null,
                 description: "Database password file for FreshRSS.",
                 example: "/run/secrets/freshrss",
               })))),
             name: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 default: "freshrss",
                 description: "Database name for FreshRSS.",
               })))),
             tableprefix: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 default: null,
                 description: "Database table prefix for FreshRSS.",
@@ -193,44 +193,44 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           dataDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "/var/lib/freshrss",
               description: "Default data folder for FreshRSS.",
               example: "/mnt/freshrss",
             })))),
           webserver: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["nginx", "caddy"]))),
               default: "nginx",
               description: "Whether to use nginx or caddy for virtual host management.\n\nFurther nginx configuration can be done by adapting `services.nginx.virtualHosts.<name>`.\nSee [](#opt-services.nginx.virtualHosts) for further information.\n\nFurther caddy configuration can be done by adapting `services.caddy.virtualHosts.<name>`.\nSee [](#opt-services.caddy.virtualHosts) for further information.\n",
             })))),
           virtualHost: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "freshrss",
               description: "Name of the caddy/nginx virtualhost to use and setup.\n",
             })))),
           pool: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: "freshrss",
               description: "Name of the php-fpm pool to use and setup. If not specified, a pool will be created\nwith default values.\n",
             })))),
           user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "freshrss",
               description: "User under which FreshRSS runs.",
             })))),
           authType: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["form", "http_auth", "none"]))),
               default: "form",
               description: "Authentication type for FreshRSS.",
             })))),
           api: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "API access for mobile apps and third-party clients (Google Reader API and Fever API). Users must set individual API passwords in their profile settings")),
           })),
         })),
@@ -238,7 +238,7 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => (() => {
       const defaultServiceConfig = nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         ReadWritePaths: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}`),
         DeviceAllow: "",
         LockPersonality: true,
@@ -270,22 +270,22 @@ export default nix.lambda((args) => (() => {
         WorkingDirectory: nix.thunk(() => nix.sel(cfg, "package")),
       }));
       return nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$56,
+          [nix.POS]: pos$56,
           assertions: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "authType"), "form")), nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "passwordFile"), null)),
                 message: "`passwordFile` must be supplied when using \"form\" authentication!\n",
               })),
             ]))),
           services: nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             caddy: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "webserver"), "caddy")), nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 enable: true,
                 virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                   [nix.sel(cfg, "virtualHost"), nix.thunk(() => ({
-                    __proto__: pos$32,
+                    [nix.POS]: pos$32,
                     extraConfig: nix.thunk(() => nix.str`root * ${nix.sel(config, "services", "freshrss", "package")}/p
 php_fastcgi unix/${nix.sel(config, "services", "phpfpm", "pools", "freshrss", "socket")} {
   env FRESHRSS_DATA_PATH ${nix.sel(config, "services", "freshrss", "dataDir")}
@@ -296,16 +296,16 @@ file_server
                 ])),
               })))),
             nginx: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "webserver"), "nginx")), nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 enable: true,
                 virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                   [nix.sel(cfg, "virtualHost"), nix.thunk(() => ({
-                    __proto__: pos$37,
+                    [nix.POS]: pos$37,
                     root: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/p`),
                     locations: nix.thunk(() => ({
-                      __proto__: pos$36,
+                      [nix.POS]: pos$36,
                       "~ ^.+?\\.php(/.*)?$": nix.thunk(() => ({
-                        __proto__: pos$34,
+                        [nix.POS]: pos$34,
                         extraConfig: nix.thunk(() => nix.str`fastcgi_pass unix:${nix.sel(config, "services", "phpfpm", "pools", nix.key(nix.sel(cfg, "pool")), "socket")};
 fastcgi_split_path_info ^(.+\\.php)(/.*)$;
 # By default, the variable PATH_INFO is not set under PHP-FPM
@@ -319,7 +319,7 @@ include ${nix.sel(pkgs, "nginx")}/conf/fastcgi.conf;
 `),
                       })),
                       "/": nix.thunk(() => ({
-                        __proto__: pos$35,
+                        [nix.POS]: pos$35,
                         tryFiles: "$uri $uri/ index.php",
                         index: "index.php index.html index.htm",
                       })),
@@ -328,13 +328,13 @@ include ${nix.sel(pkgs, "nginx")}/conf/fastcgi.conf;
                 ])),
               })))),
             phpfpm: nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               pools: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "pool"), null)), nix.thunk(() => nix.attrsDyn({}, [
                   [nix.sel(cfg, "pool"), nix.thunk(() => ({
-                    __proto__: pos$40,
+                    [nix.POS]: pos$40,
                     user: "freshrss",
                     settings: nix.thunk(() => ({
-                      __proto__: pos$39,
+                      [nix.POS]: pos$39,
                       "listen.owner": nix.thunk(() => nix.sel(webserver, "user")),
                       "listen.group": nix.thunk(() => nix.sel(webserver, "group")),
                       "listen.mode": "0600",
@@ -352,10 +352,10 @@ include ${nix.sel(pkgs, "nginx")}/conf/fastcgi.conf;
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             users: nix.thunk(() => nix.attrsDyn({}, [
               [nix.str`${nix.sel(cfg, "user")}`, nix.thunk(() => ({
-                __proto__: pos$43,
+                [nix.POS]: pos$43,
                 description: "FreshRSS service user",
                 isSystemUser: true,
                 group: nix.thunk(() => nix.str`${nix.sel(cfg, "user")}`),
@@ -365,16 +365,16 @@ include ${nix.sel(pkgs, "nginx")}/conf/fastcgi.conf;
             groups: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${nix.sel(cfg, "user")}`, nix.thunk(() => ({}))]])),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$55,
+            [nix.POS]: pos$55,
             tmpfiles: nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               settings: nix.thunk(() => ({
-                __proto__: pos$47,
+                [nix.POS]: pos$47,
                 "10-freshrss": nix.thunk(() => nix.attrsDyn({}, [
                   [nix.sel(cfg, "dataDir"), nix.thunk(() => ({
-                    __proto__: pos$46,
+                    [nix.POS]: pos$46,
                     d: nix.thunk(() => ({
-                      __proto__: pos$45,
+                      [nix.POS]: pos$45,
                       user: nix.thunk(() => nix.attr(cfg, "user")),
                       group: nix.thunk(() => nix.sel(config, "users", "users", nix.key(nix.sel(cfg, "user")), "group")),
                     })),
@@ -383,10 +383,10 @@ include ${nix.sel(pkgs, "nginx")}/conf/fastcgi.conf;
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$54,
+              [nix.POS]: pos$54,
               "freshrss-config": nix.thunk(() => (() => {
                 const settingsFlags = nix.thunk(() => nix.app(nix.lookup(w, "concatStringsSep"), " \\\n    ", nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (k) => (v) => nix.str`${k} ${nix.app(nix.builtins.toString, v)}`, nix.thunk(() => nix.attrsDyn({
-                      __proto__: pos$49,
+                      [nix.POS]: pos$49,
                       "--default-user": nix.thunk(() => nix.str`"${nix.sel(cfg, "defaultUser")}"`),
                       "--auth-type": nix.thunk(() => nix.str`"${nix.sel(cfg, "authType")}"`),
                       "--base-url": nix.thunk(() => nix.str`"${nix.sel(cfg, "baseUrl")}"`),
@@ -402,10 +402,10 @@ include ${nix.sel(pkgs, "nginx")}/conf/fastcgi.conf;
                       [(nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "database", "host"), null)) && nix.asBool(nix.eq(nix.sel(cfg, "database", "port"), null)))) ? "--db-host" : null), nix.thunk(() => nix.str`"${nix.sel(cfg, "database", "host")}"`)],
                     ]))))));
                 return {
-                  __proto__: pos$51,
+                  [nix.POS]: pos$51,
                   description: "Set up the state directory for FreshRSS before use",
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
-                  serviceConfig: nix.thunk(() => nix.update(defaultServiceConfig, { __proto__: pos$50, RemainAfterExit: true })),
+                  serviceConfig: nix.thunk(() => nix.update(defaultServiceConfig, { [nix.POS]: pos$50, RemainAfterExit: true })),
                   restartIfChanged: true,
                   environment: env_vars,
                   script: nix.thunk(() => (() => {
@@ -431,13 +431,13 @@ fi
                 };
               })()),
               "freshrss-updater": nix.thunk(() => ({
-                __proto__: pos$53,
+                [nix.POS]: pos$53,
                 description: "FreshRSS feed updater",
                 after: nix.thunk(() => ["freshrss-config.service"]),
                 startAt: "*:0/5",
                 environment: env_vars,
                 serviceConfig: nix.thunk(() => nix.update(defaultServiceConfig, {
-                  __proto__: pos$52,
+                  [nix.POS]: pos$52,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/app/actualize_script.php`),
                 })),
               })),

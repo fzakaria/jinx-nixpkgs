@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const systemdLibs = nix.arg($, "systemdLibs");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "rauc",
       version: "1.15.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rauc",
           repo: "rauc",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,12 +62,12 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonOption"), "systemdcatalogdir", nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/systemd/catalog`))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => ({ __proto__: pos$2, rauc: nix.thunk(() => nix.sel(nixosTests, "rauc")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, rauc: nix.thunk(() => nix.sel(nixosTests, "rauc")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Safe and secure software updates for embedded Linux",
         homepage: "https://rauc.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

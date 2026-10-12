@@ -18,17 +18,17 @@ export default nix.lambda((args) => (() => {
   const ipaddr = nix.arg($, "ipaddr");
   const logs = nix.arg($, "logs");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "happy-eyeballs",
       version: "2.0.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/roburio/happy-eyeballs/releases/download/v${nix.sel(finalAttrs, "version")}/happy-eyeballs-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-C9yLKA8FtciilZgjgvCX1MtxP/BV9pPP1/5kqN5t3Yw=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [domain_name, duration, fmt, ipaddr, logs]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Connecting to a remote host via IP version 4 or 6",
         homepage: "https://github.com/roburio/happy-eyeballs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const minorVersion = "9";
   const extraTools = nix.thunk(() => nix.add("FLOTTER prolog2dfg dfg2otter dfg2dimacs dfg2tptp", " dfg2ascii dfg2dfg tptp2dfg dimacs2dfg pgen rescmp"));
   return nix.app(nix.sel(gccStdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "spass",
       version: nix.thunk(() => nix.str`${baseVersion}.${minorVersion}`),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.spass-prover.org/download/sources/spass${baseVersion}${minorVersion}.tgz`),
           sha256: "11cyn3kcff4r79rsw2s0xm6rdb8bi0kpkazv2b48jhcms7xw75qp",
         })))),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
 install -m0755 SPASS ${extraTools} $out/bin/
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Automated theorem prover for first-order logic",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bluesnooze",
       version: "1.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/odlp/bluesnooze/releases/download/v${nix.sel(finalAttrs, "version")}/Bluesnooze.zip`),
           hash: "sha256-B1qLfPj2bU9AAsYqGYWl0/sEPj3wnn/UBeiM4kqW/rA=",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: ".",
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications\"\ncp -r Bluesnooze.app $out/Applications/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Prevents your sleeping Mac from connecting to Bluetooth accessories",
         homepage: "https://github.com/odlp/bluesnooze",
         changelog: nix.thunk(() => nix.str`https://github.com/odlp/bluesnooze/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cool-RR",
           repo: "python_toolbox",
           tag: version,
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["test_python_toolbox/test_cute_profile/test_cute_profile.py"]);
       const disabledTests = nix.thunk(() => ["test_repr"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tools for testing PySnooper",
         homepage: "https://github.com/cool-RR/python_toolbox",
         changelog: nix.thunk(() => nix.str`https://github.com/cool-RR/python_toolbox/releases/tag/${nix.sel(src, "tag")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

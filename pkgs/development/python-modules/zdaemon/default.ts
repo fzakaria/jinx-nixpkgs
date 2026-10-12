@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.2.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-8GwsfK9RnHYINPj+JuVzWVDVAX9y1cII3IsZABQFlM0=",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [manuel, unittestCheckHook, zope_testing]);
       const unittestFlagsArray = nix.thunk(() => ["src/zdaemon/tests"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Daemon process control library and tools for Unix-based systems",
         mainProgram: "zdaemon",
         homepage: "https://github.com/zopefoundation/zdaemon",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         broken: true,
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -34,50 +34,50 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "journald", "gateway"));
   const cliArgs = nix.thunk(() => nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk(() => ({})), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       system: nix.thunk(() => nix.attr(cfg, "system")),
       user: nix.thunk(() => nix.attr(cfg, "user")),
       merge: nix.thunk(() => nix.attr(cfg, "merge")),
     }))));
   const tlsOptionRemovedMessage = "systemd in Nixpkgs is built without GnuTLS, so systemd-journal-gatewayd\ncannot serve HTTPS. Use a reverse proxy (such as nginx) to terminate TLS\nin front of the gateway if you need encrypted access.\n";
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "journald", "enableHttpGateway"]), nix.thunk(() => ["services", "journald", "gateway", "enable"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "journald", "gateway", "cert"]), tlsOptionRemovedMessage)),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "journald", "gateway", "key"]), tlsOptionRemovedMessage)),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "journald", "gateway", "trust"]), tlsOptionRemovedMessage)),
     ]),
-    meta: nix.thunk(() => ({ __proto__: pos$2, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$2, maintainers: [] })),
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         journald: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           gateway: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the HTTP gateway to the journal")),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 default: 19531n,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 description: "The port to listen to.\n",
               })))),
             system: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 default: false,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 description: "Serve entries from system services and the kernel.\n\nThis has the same meaning as `--system` for {manpage}`journalctl(1)`.\n",
               })))),
             user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 default: false,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 description: "Serve entries from services for the current user.\n\nThis has the same meaning as `--user` for {manpage}`journalctl(1)`.\n",
               })))),
             merge: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 default: false,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 description: "Serve entries interleaved from all available journals, including other\nmachines.\n\nThis has the same meaning as `--merge` option for\n{manpage}`journalctl(1)`.\n",
@@ -87,16 +87,16 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           additionalUpstreamSystemUnits: nix.thunk(() => ["systemd-journal-gatewayd.socket", "systemd-journal-gatewayd.service"]),
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             "systemd-journal-gatewayd": nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 ExecStart: nix.thunk(() => [
                   "",
                   nix.thunk(() => nix.str`${nix.sel(config, "systemd", "package")}/lib/systemd/systemd-journal-gatewayd ${cliArgs}`),
@@ -105,9 +105,9 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           sockets: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             "systemd-journal-gatewayd": nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               wantedBy: nix.thunk(() => ["sockets.target"]),
               listenStreams: nix.thunk(() => [
                 "",
@@ -117,19 +117,19 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           users: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             "systemd-journal-gateway": nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "systemd-journal-gateway")),
               group: "systemd-journal-gateway",
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             "systemd-journal-gateway": nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "systemd-journal-gateway")),
             })),
           })),

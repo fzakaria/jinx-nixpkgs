@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(attrs, "project"));
   const version = nix.thunk(() => nix.attr(from, "version"));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: pname,
       version: version,
       pyproject: true,
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from_1 = nix.thunk(() => nix.sel(attrs, "project"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: nix.thunk(() => nix.attr(from_1, "description")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
         homepage: nix.thunk(() => nix.sel(attrs, "project", "urls", "Homepage")),

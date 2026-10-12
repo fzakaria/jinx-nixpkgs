@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "domain-exporter";
       const version = "1.25.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "caarlos0",
           repo: "domain_exporter",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-gBcog+hw8yKYEBH6iokO7vnfDZn7zS0N/MWOGomxJGw=";
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { __proto__: pos$2, domain: nix.thunk(() => nix.attr(from, "domain")) };
+          return { [nix.POS]: pos$2, domain: nix.thunk(() => nix.attr(from, "domain")) };
         })()),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/caarlos0/domain_exporter",
         description: "Exports the expiration time of your domains as prometheus metrics",
         mainProgram: "domain_exporter",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
           ];
         })()),
       }));
-      return { __proto__: pos$5, pname, version, src, vendorHash, doCheck, passthru, meta };
+      return { [nix.POS]: pos$5, pname, version, src, vendorHash, doCheck, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

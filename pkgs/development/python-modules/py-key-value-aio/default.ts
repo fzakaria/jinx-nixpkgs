@@ -42,13 +42,13 @@ export default nix.lambda((args) => (() => {
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "py-key-value-aio",
       version: "0.4.5",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "strawgate",
           repo: "py-key-value",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [uv_build]),
       dependencies: nix.thunk(() => [beartype, typing_extensions]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         memory: nix.thunk(() => [cachetools]),
         disk: nix.thunk(() => [diskcache, pathvalidate]),
         filetree: nix.thunk(() => [aiofile, anyio]),
@@ -76,12 +76,12 @@ export default nix.lambda((args) => (() => {
         duckdb: nix.thunk(() => [duckdb, pytz]),
         "wrappers-encryption": nix.thunk(() => [cryptography]),
       })),
-      env: nix.thunk(() => ({ __proto__: pos$3, PYTHONDONTWRITEBYTECODE: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, PYTHONDONTWRITEBYTECODE: 1n })),
       pythonImportsCheck: nix.thunk(() => ["key_value.aio"]),
       nativeCheckInputs: nix.thunk(() => nix.concat([dirty_equals, inline_snapshot, pytest_asyncio, pytestCheckHook], nix.concat(nix.sel(finalAttrs, "passthru", "optional-dependencies", "filetree"), nix.concat(nix.sel(finalAttrs, "passthru", "optional-dependencies", "memory"), nix.sel(finalAttrs, "passthru", "optional-dependencies", "pydantic"))))),
       pytestFlags: nix.thunk(() => ["tests/stores/filetree", "tests/stores/memory"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Async Key-Value",
         homepage: "https://github.com/strawgate/py-key-value",
         changelog: nix.thunk(() => nix.str`https://github.com/strawgate/py-key-value/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

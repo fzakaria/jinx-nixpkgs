@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const gluten_lwt = nix.arg($, "gluten-lwt");
   const lwt_ssl = nix.arg($, "lwt_ssl");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "gluten-lwt-unix",
       doCheck: nix.thunk(() => nix.attr(gluten, "doCheck")),
       meta: nix.thunk(() => nix.attr(gluten, "meta")),

@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const net_snmp = nix.arg($, "net-snmp");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "argus",
       version: "3.0.8.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://qosient.com/argus/src/argus-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1zzf688dbbcb5z2r9v1p28rddns6znzx35nc05ygza6lp7aknkna",
         })))),
@@ -48,7 +48,7 @@ substituteInPlace events/argus-snmp.sh \\
   --replace /usr/bin/snmpwalk ${nix.app(nix.sel(lib, "getBin"), net_snmp)}/bin/snmpwalk
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Audit Record Generation and Utilization System for networks",
         longDescription: "The Argus Project is focused on developing all\naspects of large scale network situtational awareness derived from\nnetwork activity audit. Argus, itself, is next-generation network\nflow technology, processing packets, either on the wire or in\ncaptures, into advanced network flow data. The data, its models,\nformats, and attributes are designed to support Network\nOperations, Performance and Security Management. If you need to\nknow what is going on in your network, right now or historically,\nyou will find Argus a useful tool.\n",
         homepage: "https://openargus.org",

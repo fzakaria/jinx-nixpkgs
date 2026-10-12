@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
     const schemaIdToVariableMapping = nix.arg($_1, "schemaIdToVariableMapping");
     const schemaExistsFunction = nix.argOr($_1, "schemaExistsFunction", () => null);
     return nix.app(runCommand, "hardcode-gsettings.patch", nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         src: src,
         patches: patches,
         nativeBuildInputs: nix.thunk(() => [gitMinimal, coccinelle, python3]),

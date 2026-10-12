@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const pname = "flet-client-flutter";
       const version = "0.80.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "flet-dev",
           repo: "flet",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -57,15 +57,15 @@ export default nix.lambda((args) => (() => {
         mimalloc,
       ], nix.concat(nix.sel(mpv_unwrapped, "buildInputs"), nix.sel(libplacebo, "buildInputs"))));
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=nontrivial-memcall"]))),
       }));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
-            nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$3, "rev-prefix": "v" })))),
+            nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v" })))),
             nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               command: nix.thunk(() => [
                 "env",
                 nix.thunk(() => nix.str`PATH=${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
           ]))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Framework that enables you to easily build realtime web, mobile, and desktop apps in Python. The frontend part",
         homepage: "https://flet.dev/",
         changelog: nix.thunk(() => nix.str`https://github.com/flet-dev/flet/releases/tag/v${version}`),
@@ -93,7 +93,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "flet",
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

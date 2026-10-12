@@ -36,13 +36,13 @@ export default nix.lambda((args) => (() => {
   const systemdLibs = nix.arg($, "systemdLibs");
   const systemdSupport = nix.argOr($, "systemdSupport", () => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), systemdLibs));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "at-spi2-core",
       version: "2.60.6",
       outputs: nix.thunk(() => ["out", "dev"]),
       separateDebugInfo: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/at-spi2-core/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/at-spi2-core-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-qJtkqLIXqAQr3w41y/q2Kc7uNWQNunXfV4r96ap4nVc=",
         })))),
@@ -56,8 +56,8 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "mesonBool"), "gtk2_atk_adaptor", false)),
         ]))))))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: "at-spi2-core", versionPolicy: "odd-unstable" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "at-spi2-core", versionPolicy: "odd-unstable" })))),
       })),
       postFixup: nix.thunk(() => nix.str`busLauncherWrapperArgs=(
   # Prefer dbus-daemon and dbus-broker-launch from system locations.
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
 wrapProgram "$out/libexec/at-spi-bus-launcher" "\${busLauncherWrapperArgs[@]}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Assistive Technology Service Provider Interface protocol definitions and daemon for D-Bus",
         homepage: "https://gitlab.gnome.org/GNOME/at-spi2-core",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

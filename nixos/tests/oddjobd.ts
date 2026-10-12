@@ -17,25 +17,25 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
     const pkgs = nix.arg($, "pkgs");
     const lib = nix.arg($, "lib");
     return {
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       name: "oddjobd",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "anthonyroussel"))]),
       })),
       nodes: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           return {
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             environment: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "oddjob"))]),
             })),
             programs: nix.thunk(() => ({
-              __proto__: pos$4,
-              oddjobd: nix.thunk(() => ({ __proto__: pos$3, enable: true })),
+              [nix.POS]: pos$4,
+              oddjobd: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
             })),
           };
         })(), formals$2),

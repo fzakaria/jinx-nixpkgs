@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "2.1.0-unstable-2020-06-26",
       pname: "herqq",
       strictDeps: true,
@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev"]),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/herqq`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ThomArmax",
           repo: "HUPnP",
           rev: "c8385a8846b52def7058ae3794249d6b566a41fc",
           hash: "sha256-FxN/QlLB3sZ6Vn/9VIKNUntX/B4+crQZ7t760pwFqY8=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/ThomArmax/HUPnP",
         description: "Software library for building UPnP devices and control points",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

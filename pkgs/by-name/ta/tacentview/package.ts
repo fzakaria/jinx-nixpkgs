@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libxcb = nix.arg($, "libxcb");
   const zenity = nix.arg($, "zenity");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tacentview",
       version: "1.0.46-unstable-2025-10-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bluescan",
           repo: "tacentview",
           rev: "51569b34ecd3dac9c40106b92deceb4b56feb5de",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\ninstallBin tacentview\n\nmkdir -p $out/share/tacentview\ncp -r ../Assets $out/share/tacentview/\ncp -r ../Linux/deb_template/usr/share/icons $out/share\ncp -r ../Linux/deb_template/usr/share/applications $out/share\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Image and texture viewer",
         homepage: "https://github.com/bluescan/tacentview",
         changelog: nix.thunk(() => nix.str`https://github.com/bluescan/tacentview/releases/tag/v${nix.sel(finalAttrs, "version")}`),

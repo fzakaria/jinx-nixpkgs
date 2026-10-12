@@ -21,14 +21,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ChristianKuehnel",
           repo: "btlewrap",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-cjPj+Uw/L9kq/BbxlnOCJtaBcnf9VOJKN2NJ3cmKe6U=",
         }))));
       const build_system = nix.thunk(() => [setuptools]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, bluepy: nix.thunk(() => [bluepy]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, bluepy: nix.thunk(() => [bluepy]) }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const disabledTestPaths = nix.thunk(() => [
         "test/unit_tests/test_bluepy.py",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["btlewrap"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Wrapper around different bluetooth low energy backends",
         homepage: "https://github.com/ChristianKuehnel/btlewrap",
         changelog: nix.thunk(() => nix.str`https://github.com/ChristianKuehnel/btlewrap/releases/tag/v${version}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "jamiemagee"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

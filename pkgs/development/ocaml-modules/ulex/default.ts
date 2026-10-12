@@ -20,20 +20,20 @@ export default nix.lambda((args) => (() => {
   const camlp4 = nix.arg($, "camlp4");
   const pname = "ulex";
   const param = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.02")) ? {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     version: "1.2",
     sha256: "08yf2x9a52l2y4savjqfjd2xy4pjd1rpla2ylrr9qrz1drpfw4ic",
   } : {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     version: "1.1",
     sha256: "0cmscxcmcxhlshh4jd0lzw5ffzns12x3bj7h27smbc8waxkwffhl",
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-${pname}`),
       version: nix.thunk(() => nix.attr(param, "version")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "ocaml-community",
           repo: pname,
           rev: nix.thunk(() => nix.str`v${nix.sel(param, "version")}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://opam.ocaml.org/packages/ulex/",
         description: "Lexer generator for Unicode and OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

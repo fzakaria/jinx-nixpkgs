@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mhash",
       version: "0.9.9.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/mhash/mhash-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "1w7yiljan8gf1ibiypi6hm3r363imm3sxl1j8hapjdq3m591qljn",
         })))),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./autotools-define-conflict-debian-fix.patch")]),
       configureFlags: nix.thunk(() => ["CFLAGS=-std=gnu17"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Hash algorithms library",
         longDescription: "Libmhash is a library that provides a uniform interface to several hash\nalgorithms. It supports the basics for message authentication by\nfollowing rfc2104 (HMAC). It also includes some key generation algorithms\nwhich are based on hash algorithms.\n",
         homepage: "https://mhash.sourceforge.net",

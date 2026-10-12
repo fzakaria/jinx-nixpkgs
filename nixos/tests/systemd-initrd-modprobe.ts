@@ -17,21 +17,21 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     name: "systemd-initrd-modprobe",
     nodes: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$5,
-          testing: nix.thunk(() => ({ __proto__: pos$1, initrdBackdoor: true })),
+          [nix.POS]: pos$5,
+          testing: nix.thunk(() => ({ [nix.POS]: pos$1, initrdBackdoor: true })),
           boot: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             initrd: nix.thunk(() => ({
-              __proto__: pos$3,
-              systemd: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+              [nix.POS]: pos$3,
+              systemd: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
               kernelModules: nix.thunk(() => ["tcp_hybla"]),
             })),
             extraModprobeConfig: "options tcp_hybla rtt0=42\n",

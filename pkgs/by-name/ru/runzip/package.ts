@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "1.4",
       pname: "runzip",
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       buildInputs: nix.thunk(() => [libiconv, zlib]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vlm",
           repo: "zip-fix-filename-encoding",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs tests/check-runzip.sh\n",
       configureFlags: nix.thunk(() => ["CFLAGS=-std=gnu17"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=implicit-int", "-Wno-error=incompatible-pointer-types"]))),
       })),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool to convert filename encoding inside a ZIP archive",
         homepage: "https://github.com/vlm/zip-fix-filename-encoding",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

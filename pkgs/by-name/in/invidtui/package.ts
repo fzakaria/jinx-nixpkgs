@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const ffmpeg = nix.arg($, "ffmpeg");
   const mpv = nix.arg($, "mpv");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "invidtui",
       version: "0.4.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "darkhz",
           repo: "invidtui",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
   --replace "\\"yt-dlp\\"" "\\"${nix.app(nix.sel(lib, "getBin"), yt_dlp)}/bin/yt-dlp\\""
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://darkhz.github.io/invidtui/",
         description: "Invidious TUI client",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

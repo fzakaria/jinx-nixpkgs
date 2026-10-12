@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
   const releaseName = "NIX";
   const distroPrefix = nix.thunk(() => nix.str`ghidra_${version}_${releaseName}`);
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "NationalSecurityAgency",
       repo: "Ghidra",
       rev: nix.thunk(() => nix.str`Ghidra_${version}_build`),
@@ -68,7 +68,7 @@ protobuf {
 HERE
 `);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: pname,
       version: version,
       src: src,
@@ -77,7 +77,7 @@ HERE
       patchFlags: nix.thunk(() => ["--no-backup-if-mismatch", "-p1"]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "ghidra",
             exec: "ghidra",
             icon: "ghidra",
@@ -99,7 +99,7 @@ HERE
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [xcbuild, desktopToDarwinBundle])))),
       dontStrip: true,
       __darwinAllowLocalNetworking: true,
-      mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ __proto__: pos$3, pname: pname, data: nix.path(here, "./deps.json") })))),
+      mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: pos$3, pname: pname, data: nix.path(here, "./deps.json") })))),
       gradleFlags: nix.thunk(() => nix.concat([nix.thunk(() => nix.str`-Dorg.gradle.java.home=${openjdk21}`)], nix.app(nix.sel(lib, "optionals"), isMacArm64, nix.thunk(() => [
           "-x",
           "Decompiler:linkSleighMac_x86_64Executable",
@@ -141,23 +141,23 @@ wrapProgram "${pkg_path}/support/launch.sh" \\
 `),
       passthru: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.app(nix.sel(ghidra_extensions, "override"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             ghidra: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           }))));
         return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         releaseName: releaseName,
         distroPrefix: distroPrefix,
         buildGhidraExtension: nix.thunk(() => nix.attr(from, "buildGhidraExtension")),
         buildGhidraScripts: nix.thunk(() => nix.attr(from, "buildGhidraScripts")),
         withExtensions: nix.thunk(() => nix.app(callPackage, nix.path(here, "./with-extensions.nix"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             ghidra: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           })))),
       };
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         changelog: nix.thunk(() => nix.str`https://htmlpreview.github.io/?https://github.com/NationalSecurityAgency/ghidra/blob/Ghidra_${nix.sel(finalAttrs, "version")}_build/Ghidra/Configurations/Public_Release/src/global/docs/ChangeHistory.html`),
         description: "Software reverse engineering (SRE) suite of tools",
         mainProgram: "ghidra",

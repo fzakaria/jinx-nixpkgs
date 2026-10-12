@@ -49,17 +49,17 @@ export default nix.lambda((args) => (() => {
   const withSfsexp = nix.argOr($, "withSfsexp", () => true);
   const withVim = nix.argOr($, "withVim", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "notmuch",
       version: "0.40",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://notmuchmail.org/releases/notmuch-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-S0MUu/HCAp/feTY35se7FcGxcw0ivpqgSAPJjFu8RG8=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/notmuch/notmuch/commit/f5e58cdb9b93b10ac32379b36b452532a32b8ece.patch",
             hash: "sha256-x+WHarE752IQzic/CTT26YuSi5Oox3lcQJP1FYNR6AE=",
           })))),
@@ -99,7 +99,7 @@ cp bindings/python-cffi/_notmuch_config.py ${nix.builtins.placeholder("bindingco
       postBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withSfsexp, "patchShebangs notmuch-git\n")),
       preCheck: nix.thunk(() => (() => {
         const test_database = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://notmuchmail.org/releases/test-databases/database-v1.tar.xz",
             sha256: "1lk91s00y4qy4pjh8638b5lfkgwyl282g1m27srsf7qfn58y16a2",
           }))));
@@ -125,10 +125,10 @@ done
 echo 'endif' >> $PLUG
 `)))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pythonSourceRoot: nix.thunk(() => nix.str`notmuch-${nix.sel(finalAttrs, "version")}/contrib/python-legacy`),
         gemEnv: nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "notmuch-vim-gems",
             paths: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(ruby, "gems")), null);
@@ -137,20 +137,20 @@ echo 'endif' >> $PLUG
             pathsToLink: nix.thunk(() => ["/lib", "/nix-support"]),
           })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             url: "https://git.notmuchmail.org/git/notmuch",
             ignoredVersions: "_(rc|pre).*",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Mail indexer",
         homepage: "https://notmuchmail.org/",
         changelog: nix.thunk(() => nix.str`https://notmuchmail.org/news/release-${nix.sel(finalAttrs, "version")}`),

@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gscan2pdf";
       const version = "2.13.5";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/gscan2pdf/gscan2pdf-${version}.tar.xz`),
           hash: "sha256-DUME9nI9B2+Gj+sBPj176SXfuxDc3CMXfby/Zga31fo=",
         }))));
@@ -105,7 +105,7 @@ wrapProgram "$out/bin/gscan2pdf" \\
       })()));
       const checkPhase = "# Skip a failing test, due to a change in ImageMagick:\n# https://sourceforge.net/p/gscan2pdf/bugs/439/\nrm t/04_Page.t\n\n# Skip a failing test, due to a breaking change in ImageMagick:\n# https://sourceforge.net/p/gscan2pdf/bugs/442/\n# https://github.com/ImageMagick/ImageMagick/issues/8714\nrm t/113_save_pdf_with_downsample.t\n\nexport XDG_CACHE_HOME=\"$(mktemp -d)\"\nxvfb-run -s '-screen 0 800x600x24' \\\n  make test\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GUI to produce PDFs or DjVus from scanned documents",
         homepage: "https://gscan2pdf.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -116,7 +116,7 @@ wrapProgram "$out/bin/gscan2pdf" \\
         mainProgram: "gscan2pdf",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

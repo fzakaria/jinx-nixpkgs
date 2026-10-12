@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "sif",
       version: "0-unstable-2026-10-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vmfunc",
           repo: "sif",
           rev: "89665d77a95c7cadb67c9814b05af735ce4d7f4e",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-AS+nZSM0Fnv4vs08OMLCM8jZXeE9bH4Vj/V+sfpbqRE=",
       subPackages: nix.thunk(() => ["cmd/sif"]),
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => [
         "-s",
         "-w",
@@ -40,14 +40,14 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postInstall: "installManPage man/sif.1\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version=branch", "--version-regex=(0-unstable-.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Modular pentesting toolkit written in Go",
         homepage: "https://github.com/vmfunc/sif",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

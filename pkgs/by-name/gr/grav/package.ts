@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const version = "1.7.53.5";
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "grav",
       version: version,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/getgrav/grav/releases/download/${version}/grav-admin-v${version}.zip`),
           hash: "sha256-eACObEwVHcQHJMKGY531jLxbY5Nqw8DNmFrzMs6cm+Y=",
         })))),
       patches: nix.thunk(() => [nix.path(here, "./01-nix.patch")]),
       installPhase: "runHook preInstall\nmkdir -p $out/\ncp -R . $out/\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fast, simple, and flexible, file-based web platform",
         homepage: "https://getgrav.com",
         maintainers: nix.thunk(() => (() => {

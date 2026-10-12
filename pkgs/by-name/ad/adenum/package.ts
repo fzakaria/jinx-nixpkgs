@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const john = nix.arg($, "john");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "adenum",
       version: "0-unstable-2022-04-01",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SecuProject",
           repo: "ADenum",
           rev: "0e3576eca1d987d3ef22d53fc725189bb301e804",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\n# Add shebang so we can patch it\nsed -i -e '1i#!/usr/bin/python' ADenum.py\npatchShebangs ADenum.py\ninstall -vD ADenum.py $out/bin/adenum\n\nrunHook postInstall\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to find misconfiguration through LDAP",
         mainProgram: "adenum",
         homepage: "https://github.com/SecuProject/ADenum",

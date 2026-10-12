@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const ipdb = nix.arg($, "ipdb");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cliche",
       version: "0.10.108",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kootenpv",
           repo: "cliche",
           rev: "80a9ae2e90f4493880b669d5db51f1d4038589df",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["cliche"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Build a simple command-line interface from your functions :computer:",
         mainProgram: "cliche",
         homepage: "https://github.com/kootenpv/cliche",

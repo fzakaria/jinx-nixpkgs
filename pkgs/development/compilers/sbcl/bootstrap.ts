@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sbcl-bootstrap";
       const version = nix.thunk(() => nix.attr(cfg, "version"));
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/sbcl/sbcl/${version}/sbcl-${version}-${nix.sel(cfg, "system")}-binary.tar.bz2`),
           sha256: nix.thunk(() => nix.attr(cfg, "sha256")),
         }))));
@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
       const installPhase = "mkdir -p $out/bin\ncp -p src/runtime/sbcl $out/bin\n\nmkdir -p $out/share/sbcl\ncp -p src/runtime/sbcl $out/share/sbcl\ncp -p output/sbcl.core $out/share/sbcl\nmkdir -p $out/bin\nmakeWrapper $out/share/sbcl/sbcl $out/bin/sbcl \\\n  --add-flags \"--core $out/share/sbcl/sbcl.core\"\n";
       const postFixup = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch32"))) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), "patchelf --set-interpreter $(cat $NIX_CC/nix-support/dynamic-linker) $out/share/sbcl/sbcl\n"));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

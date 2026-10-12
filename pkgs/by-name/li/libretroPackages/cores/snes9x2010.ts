@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const core = "snes9x2010";
       const version = "0-unstable-2026-09-21";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libretro",
           repo: "snes9x2010",
           rev: "fe690dd321fa5a46b5234a2bde089d2518c62b0e",
@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`GIT_VERSION=${nix.builtins.substring(0n, 7n, nix.thunk(() => nix.sel(src, "rev")))}`),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Optimized port/rewrite of SNES9x 1.52+ to Libretro",
         homepage: "https://github.com/libretro/snes9x2010",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
       }));
-      return { __proto__: pos$3, core, version, src, makeFlags, meta };
+      return { [nix.POS]: pos$3, core, version, src, makeFlags, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=snes9x2010.ts.map

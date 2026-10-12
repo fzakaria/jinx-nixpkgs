@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const systemd = nix.arg($, "systemd");
   const withSystemd = nix.argOr($, "withSystemd", () => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), systemd));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vpnc-scripts",
       version: "unstable-2026-06-29",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://gitlab.com/openconnect/vpnc-scripts.git",
           rev: "ce9e961bd0f6b867e1c7c35f78f6fb973f6ff101",
           hash: "sha256-Gbu+UCw6uSXH5pGpzLx9mc8D1/tpRNwfF5h5QdEBbYE=",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat([net_tools, gawk, coreutils, gnugrep], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [openresolv, iproute2])))))}"
 `)),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.infradead.org/openconnect/",
         description: "Script for vpnc to configure the network routing and name service",
         mainProgram: "vpnc-script",

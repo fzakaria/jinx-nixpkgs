@@ -10,12 +10,12 @@ const pos$3 = nix.positions(here + "/package.nix", [["meta", 5, 3]]);
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const llama_cpp = nix.arg($, "llama-cpp");
-  return nix.app(nix.sel(nix.app(nix.sel(llama_cpp, "override"), nix.thunk(() => ({ __proto__: pos$1, cudaSupport: true }))), "overrideAttrs"), (oldAttrs) => ({
-      __proto__: pos$3,
+  return nix.app(nix.sel(nix.app(nix.sel(llama_cpp, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, cudaSupport: true }))), "overrideAttrs"), (oldAttrs) => ({
+      [nix.POS]: pos$3,
       meta: nix.thunk(() => nix.update(nix.sel(oldAttrs, "meta"), (() => {
         const from = nix.thunk(() => nix.sel(oldAttrs, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: nix.thunk(() => nix.attr(from, "description")),
       };
       })())),

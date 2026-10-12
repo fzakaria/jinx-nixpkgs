@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
     gnutar,
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nixos-anywhere",
       version: "1.13.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nix-community",
           repo: "nixos-anywhere",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -57,7 +57,7 @@ wrapProgram $out/bin/nixos-anywhere \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), runtimeDeps)} --suffix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [openssh]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Install nixos everywhere via ssh",
         homepage: "https://github.com/nix-community/nixos-anywhere",
         mainProgram: "nixos-anywhere",

@@ -27,15 +27,15 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "ivpn"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         ivpn: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "This option enables iVPN daemon.\nThis sets {option}`networking.firewall.checkReversePath` to \"loose\", which might be undesirable for security.\n",
@@ -44,10 +44,10 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
-        boot: nix.thunk(() => ({ __proto__: pos$5, kernelModules: nix.thunk(() => ["tun"]) })),
+        [nix.POS]: pos$14,
+        boot: nix.thunk(() => ({ [nix.POS]: pos$5, kernelModules: nix.thunk(() => ["tun"]) })),
         environment: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [
@@ -57,16 +57,16 @@ export default nix.lambda((args) => (() => {
           })()),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$9,
-          iproute2: nix.thunk(() => ({ __proto__: pos$7, enable: true })),
-          firewall: nix.thunk(() => ({ __proto__: pos$8, checkReversePath: "loose" })),
+          [nix.POS]: pos$9,
+          iproute2: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$8, checkReversePath: "loose" })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             "ivpn-service": nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "iVPN daemon",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network.target", "network-online.target"]),
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
               startLimitBurst: 5n,
               startLimitIntervalSec: 20n,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "ivpn-service")}/bin/ivpn-service --logging`),
                 Restart: "always",
                 RestartSec: 1n,
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
           })),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$15, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$15, maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=ivpn.ts.map

@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const ezjsonm = nix.arg($, "ezjsonm");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ezjsonm-encoding",
       version: "2.1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/lthms/ezjsonm-encoding/releases/download/${nix.sel(finalAttrs, "version")}/ezjsonm-encoding-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-qR8Nn3pL1K33qTBLkElaqsTjLjudtI8IMe0GEK08qW4=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [ezjsonm]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Encoding combinators a la Data_encoding for Ezjsonm",
         homepage: "https://github.com/lthms/ezjsonmi-encoding",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

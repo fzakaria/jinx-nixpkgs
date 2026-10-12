@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const bcc = nix.arg($, "bcc");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ebpf-usb",
       version: "0-unstable-2022-04-03",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "francisrstokes",
           repo: "ebpf-usb",
           rev: "3ab6f0d8c6ece51bbb5cc5e05daa4008eccd70e8",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\ninstall -Dm755 ebpf-usb.py $out/bin/ebpf-usb\nrunHook postInstall\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python script for USB monitoring using eBPF",
         homepage: "https://github.com/francisrstokes/ebpf-usb",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

@@ -19,15 +19,15 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "zsh", "zsh-autoenv"));
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       programs: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         zsh: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "zsh-autoenv": nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "zsh-autoenv")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "zsh-autoenv", nix.thunk(() => ({})))),
           })),
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         programs: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           zsh: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             interactiveShellInit: nix.thunk(() => nix.str`source ${nix.sel(cfg, "package")}/share/zsh-autoenv/autoenv.zsh
 `),
           })),

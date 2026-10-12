@@ -35,16 +35,16 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   const defaultSettings = nix.thunk(() => ({
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     db: "/var/lib/strfry",
     dbParams: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maxreaders: 256n,
       mapsize: 10995116277760n,
       noReadAhead: false,
     })),
     events: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       maxEventSize: 65536n,
       rejectEventsNewerThanSeconds: 900n,
       rejectEventsOlderThanSeconds: 94608000n,
@@ -54,13 +54,13 @@ export default nix.lambda((args) => (() => {
       maxTagValSize: 1024n,
     })),
     relay: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       bind: "127.0.0.1",
       port: 7777n,
       nofiles: 1000000n,
       realIpHeader: "",
       info: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name: "strfry default",
         description: "This is a strfry instance.",
         pubkey: "",
@@ -75,10 +75,10 @@ export default nix.lambda((args) => (() => {
       queryTimesliceBudgetMicroseconds: 10000n,
       maxFilterLimit: 500n,
       maxSubsPerConnection: 20n,
-      writePolicy: nix.thunk(() => ({ __proto__: pos$4, plugin: "" })),
-      compression: nix.thunk(() => ({ __proto__: pos$5, enabled: true, slidingWindow: true })),
+      writePolicy: nix.thunk(() => ({ [nix.POS]: pos$4, plugin: "" })),
+      compression: nix.thunk(() => ({ [nix.POS]: pos$5, enabled: true, slidingWindow: true })),
       logging: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         dumpInAll: false,
         dumpInEvents: false,
         dumpInReqs: false,
@@ -86,30 +86,30 @@ export default nix.lambda((args) => (() => {
         invalidEvents: true,
       })),
       numThreads: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         ingester: 3n,
         reqWorker: 3n,
         reqMonitor: 3n,
         negentropy: 2n,
       })),
-      negentropy: nix.thunk(() => ({ __proto__: pos$8, enabled: true, maxSyncEvents: 1000000n })),
+      negentropy: nix.thunk(() => ({ [nix.POS]: pos$8, enabled: true, maxSyncEvents: 1000000n })),
     })),
   }));
   const cfg = nix.thunk(() => nix.sel(config, "services", "strfry"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "config.json", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         strfry: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "strfry")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "strfry", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(settingsFormat, "type")),
               default: defaultSettings,
               apply: nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), defaultSettings)),
@@ -120,31 +120,31 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         users: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           users: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             strfry: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               description: "Strfry daemon user",
               group: "strfry",
               isSystemUser: true,
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$17, strfry: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$17, strfry: nix.thunk(() => ({})) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           services: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             strfry: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               description: "strfry",
               wants: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} --config=${configFile} relay`),
                 User: "strfry",
                 Group: "strfry",
@@ -181,7 +181,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       doc: nix.path(here, "./strfry.md"),
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

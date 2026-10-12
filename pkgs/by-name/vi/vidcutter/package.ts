@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const qt5 = nix.arg($, "qt5");
   const version = "6.0.5.3";
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vidcutter",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ozmartian",
           repo: "vidcutter",
           tag: version,
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [ffmpeg, mediainfo]))}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Modern yet simple multi-platform video cutter and joiner",
         longDescription: "A modern, simple to use, constantly evolving and hella fast MEDIA CUTTER + JOINER\nwith frame-accurate SmartCut technology, chapter support, media stream selection for audio + subtitle channels\nand blackdetect video filter support to automatically detect scene changes or skip commercials in digital TV recordings.\n",
         homepage: "https://vidcutter.ozmartians.com/",

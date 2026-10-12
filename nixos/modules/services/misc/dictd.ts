@@ -33,21 +33,21 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "dictd"));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         dictd: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable the DICT.org dictionary server.\n",
             })))),
           DBs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "dictdDBs")), null);
@@ -65,25 +65,25 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => (() => {
       const dictdb = nix.thunk(() => nix.app(nix.sel(pkgs, "dictDBCollector"), nix.thunk(() => ({
-          __proto__: pos$7,
-          dictlist: nix.thunk(() => nix.builtins.map((x) => ({ __proto__: pos$6, name: nix.thunk(() => nix.sel(x, "name")), filename: x }), nix.thunk(() => nix.sel(cfg, "DBs")))),
+          [nix.POS]: pos$7,
+          dictlist: nix.thunk(() => nix.builtins.map((x) => ({ [nix.POS]: pos$6, name: nix.thunk(() => nix.sel(x, "name")), filename: x }), nix.thunk(() => nix.sel(cfg, "DBs")))),
         }))));
       return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           environment: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "dict"))]),
             etc: nix.thunk(() => ({
-              __proto__: pos$9,
-              "dict.conf": nix.thunk(() => ({ __proto__: pos$8, text: "server localhost\n" })),
+              [nix.POS]: pos$9,
+              "dict.conf": nix.thunk(() => ({ [nix.POS]: pos$8, text: "server localhost\n" })),
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             users: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               dictd: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 group: "dictd",
                 description: "DICT.org dictd server",
                 home: nix.thunk(() => nix.str`${dictdb}/share/dictd`),
@@ -91,27 +91,27 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             groups: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               dictd: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 gid: nix.thunk(() => nix.sel(config, "ids", "gids", "dictd")),
               })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             services: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               dictd: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 description: "DICT.org Dictionary Server",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 environment: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   LOCALE_ARCHIVE: "/run/current-system/sw/lib/locale/locale-archive",
                 })),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   SuccessExitStatus: nix.thunk(() => [143n]),
                   Type: "forking",
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "dict")}/sbin/dictd -s -c ${dictdb}/share/dictd/dictd.conf --locale en_US.UTF-8`),

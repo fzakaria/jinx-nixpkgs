@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bagel897",
           repo: "pytoolconfig",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-h21SDgVsnCDZQf5GS7sFE19L/p+OlAFZGEYKc0RHn30=",
         }))));
       const outputs = nix.thunk(() => ["out", "doc"]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, PDM_PEP517_SCM_VERSION: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PDM_PEP517_SCM_VERSION: version }));
       const nativeBuildInputs = nix.thunk(() => nix.concat([
         pdm_backend,
         docutils,
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       ], nix.sel(optional_dependencies, "doc")));
       const propagatedBuildInputs = nix.thunk(() => [packaging]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         validation: nix.thunk(() => [pydantic]),
         global: nix.thunk(() => [platformdirs]),
         doc: nix.thunk(() => [sphinx, tabulate]),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["pytoolconfig"]);
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python tool configuration",
         homepage: "https://github.com/bagel897/pytoolconfig",
         changelog: nix.thunk(() => nix.str`https://github.com/bagel897/pytoolconfig/releases/tag/v${version}`),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

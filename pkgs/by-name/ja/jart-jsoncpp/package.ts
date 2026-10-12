@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const double_conversion = nix.arg($, "double-conversion");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "json.cpp",
       version: "0-unstable-2025-10-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jart",
           repo: "json.cpp",
           rev: "6ec4e44a5bbaadbe677473378c3d2133644c58a1",
@@ -44,9 +44,9 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [double_conversion]),
       outputs: nix.thunk(() => ["out", "dev"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
@@ -58,14 +58,14 @@ export default nix.lambda((args) => (() => {
             const libs = nix.thunk(() => [nix.thunk(() => nix.str`-L${nix.sel(variables, "libdir")}`), "-ljson"]);
             const libsPrivate = nix.thunk(() => ["-ldouble-conversion"]);
             const variables = nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               includedir: nix.thunk(() => nix.str`${nix.builtins.placeholder("dev")}/include`),
               libdir: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib`),
             }));
             const from = nix.thunk(() => nix.sel(finalAttrs, "meta"));
             const description = nix.thunk(() => nix.attr(from, "description"));
             return {
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               name,
               version,
               cflags,
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
           })()))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pkgConfigModules: nix.thunk(() => ["json.cpp"]),
         description: "JSON for Classic C++",
         homepage: "https://github.com/jart/json.cpp",

@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const pytest8_3CheckHook = nix.arg($, "pytest8_3CheckHook");
   const redisTestHook = nix.arg($, "redisTestHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "django-redis",
       version: "7.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jazzband",
           repo: "django-redis",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [django, redis]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         hiredis: nix.thunk(() => nix.concat([redis], nix.sel(redis, "optional-dependencies", "hiredis"))),
         lz4: nix.thunk(() => [lz4]),
         msgpack: nix.thunk(() => [msgpack]),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_delete_pattern_with_settings_default_scan_count"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Full featured redis cache backend for Django",
         homepage: "https://github.com/jazzband/django-redis",
         changelog: nix.thunk(() => nix.str`https://github.com/jazzband/django-redis/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

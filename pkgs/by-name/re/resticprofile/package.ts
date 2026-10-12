@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const resticprofile = nix.arg($, "resticprofile");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "resticprofile",
       version: "0.33.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "creativeprojects",
           repo: "resticprofile",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,14 +55,14 @@ substituteInPlace filesearch/filesearch.go \\
       })()),
       installPhase: "runHook preInstall\n\ninstall -Dm755 $GOPATH/bin/resticprofile -t $out/bin\n\ninstallShellCompletion --cmd resticprofile \\\n    --bash <($out/bin/resticprofile generate --bash-completion) \\\n    --zsh <($out/bin/resticprofile generate --zsh-completion)\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: resticprofile, command: "resticprofile version" })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: resticprofile, command: "resticprofile version" })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/creativeprojects/resticprofile/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Configuration profiles manager for restic backup",
         homepage: "https://creativeprojects.github.io/resticprofile/",

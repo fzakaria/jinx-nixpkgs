@@ -20,25 +20,25 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.15";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-o6QBJMxo7aVse0xauSTxi1UEW4RYrKlhH1v6g/fvrv4=",
         }))));
       const postPatch = "sed -i \"/pytest-runner/d\" setup.py\n";
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, reggie: nix.thunk(() => [requests]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, reggie: nix.thunk(() => [requests]) }));
       const pythonImportsCheck = nix.thunk(() => ["opencontainers"]);
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.sel(optional_dependencies, "reggie")));
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python module for oci specifications",
         homepage: "https://github.com/vsoch/oci-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

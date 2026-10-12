@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       const version = "9.1.0";
       const minor = null;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ONLYOFFICE/DesktopEditors/releases/download/v${version}/onlyoffice-desktopeditors_amd64.deb`),
           hash: "sha256-D36E7hYCTJ9Lw9XnB8nxMGMJDJRhM+K+bviuM9uuzhk=",
         }))));
@@ -124,7 +124,7 @@ export default nix.lambda((args) => (() => {
 )
 `);
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         version,
         minor,
@@ -137,7 +137,7 @@ export default nix.lambda((args) => (() => {
       };
     })())));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: nix.thunk(() => nix.attr(derivation, "pname")),
       version: nix.thunk(() => nix.attr(derivation, "version")),
       targetPkgs: (pkgs$) => [curl, derivation, noto_fonts_cjk_sans],
@@ -148,9 +148,9 @@ cp -r ${derivation}/share/applications $out/share
 substituteInPlace $out/share/applications/onlyoffice-desktopeditors.desktop \\
     --replace-fail "/usr/bin/onlyoffice-desktopeditors" "$out/bin/onlyoffice-desktopeditors"
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Office suite that combines text, spreadsheet and presentation editors allowing to create, view and edit local documents",
         homepage: "https://www.onlyoffice.com/",
         downloadPage: "https://github.com/ONLYOFFICE/DesktopEditors/releases",

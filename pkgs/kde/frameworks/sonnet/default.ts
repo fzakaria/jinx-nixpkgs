@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const aspell = nix.arg($, "aspell");
   const hunspell = nix.arg($, "hunspell");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "sonnet",
       extraNativeBuildInputs: nix.thunk(() => [qttools, pkg_config]),
       extraBuildInputs: nix.thunk(() => [qtdeclarative, aspell, hunspell]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "parsetrigrams6" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "parsetrigrams6" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

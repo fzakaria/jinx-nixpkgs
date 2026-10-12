@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       "telescope-nvim",
     ]);
     return nix.app(nix.sel(lib, "genAttrs"), luarocksPackageNames, (name) => nix.app(buildNeovimPlugin, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           luaAttr: nix.thunk(() => nix.sel(luaPackages, nix.key(nix.force(name)))),
         }))));
   })();

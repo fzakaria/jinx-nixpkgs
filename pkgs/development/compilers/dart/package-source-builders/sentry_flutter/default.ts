@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
     const version = nix.arg($_1, "version");
     const src = nix.arg($_1, "src");
     const sentry_native = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         owner: "getsentry",
         repo: "sentry-native",
         tag: "0.9.1",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         hash: "sha256-1jyJGiIrX0TsRDzAeg3IuE1Vf5STAaG8JVxdbmPMXGQ=",
       }))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname: "sentry_flutter",
         version: version,
         src: src,

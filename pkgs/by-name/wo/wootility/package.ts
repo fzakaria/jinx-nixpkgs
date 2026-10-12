@@ -17,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const pname = "wootility";
   const version = "5.4.2";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://wootility-updates.ams3.cdn.digitaloceanspaces.com/wootility-linux/Wootility-${version}.AppImage`),
       sha256: "sha256-LgvJ8haE1BTqRPfo+5oVwcDUDVSv6Og+eQJxmDJNc2g=",
     }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: src,
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       extraInstallCommands: nix.thunk(() => (() => {
-        const contents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+        const contents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
         return nix.str`wrapProgram $out/bin/wootility \\
   --add-flags "\\\${NIXOS_OZONE_WL:+\\\${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime=true}}"
 
@@ -44,7 +44,7 @@ substituteInPlace $out/share/applications/wootility.desktop \\
         return [nix.thunk(() => nix.lookup(w, "libxkbfile"))];
       })(),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://wooting.io/wootility",
         description: "Customization and management software for Wooting keyboards",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const arch = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isi686")) ? "x86" : "x86_64"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ete-unwrapped",
       version: "0-unstable-2026-06-21",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "etfdevs",
           repo: "ETe",
           rev: "c769004c557e2afabf41f847b32cfb4762ae2521",
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Improved Wolfenstein: Enemy Territory Engine",
         homepage: "https://github.com/etfdevs/ETe",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

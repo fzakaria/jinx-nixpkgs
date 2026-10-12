@@ -23,26 +23,26 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "tuxclocker"));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["programs", "tuxclocker", "enableAMD"]), nix.thunk(() => ["hardware", "amdgpu", "overdrive", "enable"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       programs: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tuxclocker: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "TuxClocker, a hardware control and monitoring program\n")),
           enabledNVIDIADevices: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "int")))),
               default: [],
               example: nix.thunk(() => [0n, 1n]),
               description: "Enable NVIDIA GPU controls for a device by index.\nSets the `Coolbits` Xorg option to enable all TuxClocker controls.\n",
             })))),
           useUnfree: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               example: true,
@@ -54,13 +54,13 @@ export default nix.lambda((args) => (() => {
     config: nix.thunk(() => (() => {
       const package$ = nix.thunk(() => (nix.asBool(nix.sel(cfg, "useUnfree")) ? nix.sel(pkgs, "tuxclocker") : nix.sel(pkgs, "tuxclocker-without-unfree")));
       return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$11,
-          environment: nix.thunk(() => ({ __proto__: pos$6, systemPackages: nix.thunk(() => [package$]) })),
+          [nix.POS]: pos$11,
+          environment: nix.thunk(() => ({ [nix.POS]: pos$6, systemPackages: nix.thunk(() => [package$]) })),
           services: nix.thunk(() => ({
-            __proto__: pos$9,
-            dbus: nix.thunk(() => ({ __proto__: pos$7, packages: nix.thunk(() => [package$]) })),
+            [nix.POS]: pos$9,
+            dbus: nix.thunk(() => ({ [nix.POS]: pos$7, packages: nix.thunk(() => [package$]) })),
             xserver: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               config: nix.thunk(() => (() => {
                 const configSection = (i) => nix.str`Section "Device"
   Driver "nvidia"
@@ -72,7 +72,7 @@ EndSection
               })()),
             })),
           })),
-          boot: nix.thunk(() => ({ __proto__: pos$10, kernelModules: nix.thunk(() => ["msr"]) })),
+          boot: nix.thunk(() => ({ [nix.POS]: pos$10, kernelModules: nix.thunk(() => ["msr"]) })),
         })));
     })()),
   };

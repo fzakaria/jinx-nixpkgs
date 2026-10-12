@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const information = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./information.json")));
   const source = nix.thunk(() => nix.selOr(information, () => nix.builtins.throw(nix.thunk(() => nix.str`antigravity-ide: unsupported system ${nix.sel(hostPlatform, "system")}`)), "sources", nix.key(nix.str`${nix.sel(hostPlatform, "system")}`)));
   return nix.app(buildVscode, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       commandLineArgs: commandLineArgs,
       useVSCodeRipgrep: useVSCodeRipgrep,
       version: nix.thunk(() => nix.attr(information, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       libraryName: "antigravity-ide",
       iconName: "antigravity-ide",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.attr(source, "url")),
           sha256: nix.thunk(() => nix.attr(source, "sha256")),
         })))),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       tests: nix.thunk(() => ({})),
       updateScript: nix.path(here, "./update.js"),
       customizeFHSEnv: (args_1) => nix.update(args_1, {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         extraBwrapArgs: nix.thunk(() => nix.concat(nix.selOr(args_1, () => [], "extraBwrapArgs"), ["--tmpfs /opt/google/chrome"])),
         extraBuildCommands: nix.thunk(() => nix.add(nix.selOr(args_1, () => "", "extraBuildCommands"), "mkdir -p \"$out/opt/google/chrome\"\n")),
         runScript: nix.thunk(() => nix.app(writeShellScript, "antigravity-ide-wrapper", nix.thunk(() => nix.str`for candidate in google-chrome-stable google-chrome chromium-browser chromium; do
@@ -55,7 +55,7 @@ exec ${nix.sel(args_1, "runScript")} "$@"
 `))),
       }),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         mainProgram: "antigravity-ide",
         description: "Agentic development platform, evolving the IDE into the agent-first era",
         homepage: "https://antigravity.google/product/antigravity-ide",

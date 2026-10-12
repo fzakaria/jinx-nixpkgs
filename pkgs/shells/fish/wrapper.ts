@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const runtimeInputs = nix.argOr($_1, "runtimeInputs", () => []);
       const aliasesStr = nix.thunk(() => nix.builtins.concatStringsSep("\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (k) => (v) => nix.str`alias ${k} ${nix.app(nix.sel(lib, "escapeShellArg"), v)}`, shellAliases))));
       const shellAliasesFishConfig = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: "wrapfish.aliases.fish",
           destination: "/share/fish/vendor_conf.d/aliases.fish",
           text: nix.thunk(() => nix.str`status is-interactive; and begin
@@ -35,7 +35,7 @@ end
 `),
         }))));
       const localFishConfig = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "wrapfish.local.fish",
           destination: "/share/fish/vendor_conf.d/config.local.fish",
           text: localConfig,
@@ -45,7 +45,7 @@ end
       const funcPath = nix.thunk(() => nix.concat(functionDirs, nix.builtins.map(nix.thunk(() => nix.app(vendorDir, "functions")), pluginPkgs)));
       const confPath = nix.thunk(() => nix.concat(confDirs, nix.concat(nix.builtins.map(nix.thunk(() => nix.app(vendorDir, "conf")), pluginPkgs), nix.builtins.map(nix.thunk(() => nix.app(vendorDir, "conf")), nix.thunk(() => [localFishConfig, shellAliasesFishConfig])))));
       return nix.app(writeShellApplication, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           runtimeInputs: runtimeInputs,
           name: "fish",
           text: nix.thunk(() => nix.str`${fish}/bin/fish --init-command "

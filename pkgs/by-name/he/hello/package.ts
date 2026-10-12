@@ -26,19 +26,19 @@ export default nix.lambda((args) => (() => {
   const gettext = nix.arg($, "gettext");
   const gnulib = nix.arg($, "gnulib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "hello",
       version: "2.12.3",
       __structuredAttrs: true,
       strictDeps: true,
       enableParallelBuilding: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/hello/hello-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-DV9gFUOC/uELEUocNOeF2LH0kgc64tOm97FHaHs2aqA=",
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isCygwin")), nix.thunk(() => nix.sel(gnulib, "patches", "memcpy-fix-backport-250512")))),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ __proto__: pos$2, NIX_LDFLAGS: "-liconv" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-liconv" })))),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isFreeBSD")), nix.thunk(() => [gettext]))),
       doCheck: true,
       doInstallCheck: true,
@@ -46,18 +46,18 @@ export default nix.lambda((args) => (() => {
       postInstallCheck: nix.thunk(() => nix.str`stat "\${!outputBin}/bin/${nix.sel(finalAttrs, "meta", "mainProgram")}"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$3, package: hello })))),
+          [nix.POS]: pos$5,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: hello })))),
           run: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test.nix"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               hello: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Program that produces a familiar, friendly greeting",
         longDescription: "GNU Hello is a program that prints \"Hello, world!\" when you run it.\nIt is fully customizable.\n",
         homepage: "https://www.gnu.org/software/hello/manual/",
@@ -70,8 +70,8 @@ export default nix.lambda((args) => (() => {
         mainProgram: "hello",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$8,
-          cpeParts: nix.thunk(() => ({ __proto__: pos$7, vendor: "gnu" })),
+          [nix.POS]: pos$8,
+          cpeParts: nix.thunk(() => ({ [nix.POS]: pos$7, vendor: "gnu" })),
         })),
       })),
     }));

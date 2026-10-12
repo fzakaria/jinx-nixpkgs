@@ -20,19 +20,19 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const disabled = isPyPy;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "PyAudio",
           version: version,
           hash: "sha256-eN//OHm0mU0fT8ZIVkald1XG7jwZZHpJH3kKCJW9L4c=",
         }))));
       const buildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "portaudio"))]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python bindings for PortAudio",
         homepage: "https://people.csail.mit.edu/hubert/pyaudio/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
-      return { __proto__: pos$3, pname, version, format, disabled, src, buildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, format, disabled, src, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

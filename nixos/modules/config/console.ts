@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
   const makeColor = (i) => nix.app(nix.sel(lib, "concatMapStringsSep"), ",", (x) => nix.add("0x", nix.app(nix.sel(lib, "substring"), nix.thunk(() => nix.mul(2n, i)), 2n, x)));
   const isUnicode = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(config, "i18n", "defaultCharset"), "UTF-8")) || nix.asBool(nix.sel(cfg, "useXkbConfig"))));
   const optimizedKeymap = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "keymap", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "buildPackages", "kbd"))]),
       LOADKEYS_KEYMAP_PATH: nix.thunk(() => nix.str`${nix.app(consoleEnv, nix.thunk(() => nix.sel(pkgs, "kbd")))}/share/keymaps/**`),
       preferLocalBuild: true,
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
 ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(withFont) && nix.asBool(!nix.eq(nix.sel(cfg, "font"), null)))), nix.thunk(() => nix.str`FONT=${nix.sel(cfg, "font")}`))}
 `));
   const consoleEnv = (kbd) => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "console-env",
       paths: nix.thunk(() => nix.concat([kbd], nix.sel(cfg, "packages"))),
       pathsToLink: nix.thunk(() => [
@@ -72,14 +72,14 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(withFont) 
       ]),
     })));
   return {
-    __proto__: pos$37,
+    [nix.POS]: pos$37,
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       console: nix.thunk(() => ({
-        __proto__: pos$10,
-        enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "virtual console"), { __proto__: pos$3, default: true })),
+        [nix.POS]: pos$10,
+        enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "virtual console"), { [nix.POS]: pos$3, default: true })),
         font: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
               return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "str")), nix.thunk(() => nix.lookup(w, "path")))));
@@ -89,7 +89,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(withFont) 
             description: "The font used for the virtual consoles.\nCan be `null`, a font name, or a path to a PSF font file.\n\nUse `null` to let the kernel choose a built-in font.\nThe default is 8x16, and, as of Linux 5.3, Terminus 32 bold for display\nresolutions of 2560x1080 and higher.\nThese fonts cover the [IBM437][] character set.\n\n[IBM437]: https://en.wikipedia.org/wiki/Code_page_437\n",
           })))),
         keyMap: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             type: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
               return nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "str")), nix.thunk(() => nix.lookup(w, "path")));
@@ -99,7 +99,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(withFont) 
             description: "The keyboard mapping table for the virtual consoles.\n",
           })))),
         colors: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             type: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
               return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.app(nix.lookup(w, "strMatching"), "[[:xdigit:]]{6}")));
@@ -126,19 +126,19 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(withFont) 
             description: "The 16 colors palette used by the virtual consoles.\nLeave empty to use the default colors.\nColors must be in hexadecimal format and listed in\norder from color 0 to color 15.\n",
           })))),
         packages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
             default: [],
             description: "List of additional packages that provide console fonts, keymaps and\nother resources for virtual consoles use.\n",
           })))),
         useXkbConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             default: false,
             description: "If set, configure the virtual console keymap from the xserver\nkeyboard settings.\n",
           })))),
         earlySetup: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             default: false,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             description: "Enable setting virtual console options as early as possible (in initrd).\n",
@@ -147,13 +147,13 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(withFont) 
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           console: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             keyMap: nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(config, "services", "xserver"));
               const xkb = nix.thunk(() => nix.attr(from, "xkb"));
-              return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "useXkbConfig")), nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "xkb-console-keymap", nix.thunk(() => ({ __proto__: pos$12, preferLocalBuild: true })), nix.thunk(() => nix.str`'${nix.sel(pkgs, "buildPackages", "ckbcomp")}/bin/ckbcomp' \\
+              return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "useXkbConfig")), nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "xkb-console-keymap", nix.thunk(() => ({ [nix.POS]: pos$12, preferLocalBuild: true })), nix.thunk(() => nix.str`'${nix.sel(pkgs, "buildPackages", "ckbcomp")}/bin/ckbcomp' \\
   ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.has(nix.sel(config, "environment", "sessionVariables"), "XKB_CONFIG_ROOT")), nix.thunk(() => nix.str`-I${nix.sel(config, "environment", "sessionVariables", "XKB_CONFIG_ROOT")}`))} \\
   -model '${nix.sel(xkb, "model")}' -layout '${nix.sel(xkb, "layout")}' \\
   -option '${nix.sel(xkb, "options")}' -variant '${nix.sel(xkb, "variant")}' > "$out"
@@ -163,23 +163,23 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(withFont) 
         })),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 environment: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "kbd"))]),
                   etc: nix.thunk(() => ({
-                    __proto__: pos$17,
-                    "vconsole.conf": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(i18nCfg, "imperativeLocale"))), nix.thunk(() => ({ __proto__: pos$15, source: nix.thunk(() => nix.app(vconsoleConf, true)) })))),
+                    [nix.POS]: pos$17,
+                    "vconsole.conf": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(i18nCfg, "imperativeLocale"))), nix.thunk(() => ({ [nix.POS]: pos$15, source: nix.thunk(() => nix.app(vconsoleConf, true)) })))),
                     kbd: nix.thunk(() => ({
-                      __proto__: pos$16,
+                      [nix.POS]: pos$16,
                       source: nix.thunk(() => nix.str`${nix.app(consoleEnv, nix.thunk(() => nix.sel(pkgs, "kbd")))}/share`),
                     })),
                   })),
                 })),
                 boot: nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   initrd: nix.thunk(() => ({
-                    __proto__: pos$24,
+                    [nix.POS]: pos$24,
                     preLVMCommands: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable"))), nix.thunk(() => nix.app(nix.sel(lib, "mkBefore"), nix.thunk(() => nix.str`kbd_mode ${(nix.asBool(isUnicode) ? "-u" : "-a")} -C /dev/console
 printf "\\033%%${(nix.asBool(isUnicode) ? "G" : "@")}" >> /dev/console
 loadkmap < ${optimizedKeymap}
@@ -187,19 +187,19 @@ loadkmap < ${optimizedKeymap}
 ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "earlySetup")) && nix.asBool(!nix.eq(nix.sel(cfg, "font"), null)))), "setfont -C /dev/console $extraUtils/share/consolefonts/font.psf\n")}
 `))))),
                     systemd: nix.thunk(() => ({
-                      __proto__: pos$23,
+                      [nix.POS]: pos$23,
                       contents: nix.thunk(() => ({
-                        __proto__: pos$22,
+                        [nix.POS]: pos$22,
                         "/etc/vconsole.conf": nix.thunk(() => ({
-                          __proto__: pos$19,
+                          [nix.POS]: pos$19,
                           source: nix.thunk(() => nix.app(vconsoleConf, nix.thunk(() => nix.sel(cfg, "earlySetup")))),
                         })),
                         "/etc/kbd": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "earlySetup")), nix.thunk(() => ({
-                            __proto__: pos$20,
+                            [nix.POS]: pos$20,
                             source: nix.thunk(() => nix.str`${nix.app(consoleEnv, nix.thunk(() => nix.sel(config, "boot", "initrd", "systemd", "package", "kbd")))}/share`),
                           })))),
                         "/etc/kbd/keymaps": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "earlySetup"))), nix.thunk(() => ({
-                            __proto__: pos$21,
+                            [nix.POS]: pos$21,
                             source: nix.thunk(() => nix.str`${nix.app(consoleEnv, nix.thunk(() => nix.sel(config, "boot", "initrd", "systemd", "package", "kbd")))}/share/keymaps`),
                           })))),
                       })),
@@ -213,18 +213,18 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(cf
                   })),
                 })),
                 systemd: nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   additionalUpstreamSystemUnits: nix.thunk(() => ["systemd-vconsole-setup.service"]),
                   tmpfiles: nix.thunk(() => ({
-                    __proto__: pos$26,
+                    [nix.POS]: pos$26,
                     rules: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(i18nCfg, "imperativeLocale")), nix.thunk(() => [
                         nix.thunk(() => nix.str`C /etc/vconsole.conf - - - - ${nix.app(vconsoleConf, true)}`),
                       ]))),
                   })),
                   services: nix.thunk(() => ({
-                    __proto__: pos$29,
+                    [nix.POS]: pos$29,
                     "reload-systemd-vconsole-setup": nix.thunk(() => ({
-                      __proto__: pos$28,
+                      [nix.POS]: pos$28,
                       description: "Reset console on configuration changes",
                       wantedBy: nix.thunk(() => ["multi-user.target"]),
                       restartTriggers: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(i18nCfg, "imperativeLocale"))), nix.thunk(() => [
@@ -232,7 +232,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(cf
                         ])), [nix.thunk(() => nix.app(consoleEnv, nix.thunk(() => nix.sel(pkgs, "kbd"))))])),
                       reloadIfChanged: true,
                       serviceConfig: nix.thunk(() => ({
-                        __proto__: pos$27,
+                        [nix.POS]: pos$27,
                         RemainAfterExit: true,
                         ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/true`),
                         ExecReload: "/run/current-system/systemd/bin/systemctl restart systemd-vconsole-setup",
@@ -242,9 +242,9 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(cf
                 })),
               })),
               nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "colors"), [])), nix.thunk(() => ({
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   boot: nix.thunk(() => ({
-                    __proto__: pos$32,
+                    [nix.POS]: pos$32,
                     kernelParams: nix.thunk(() => [
                       nix.thunk(() => nix.str`vt.default_red=${nix.app(makeColor, 0n, nix.thunk(() => nix.sel(cfg, "colors")))}`),
                       nix.thunk(() => nix.str`vt.default_grn=${nix.app(makeColor, 1n, nix.thunk(() => nix.sel(cfg, "colors")))}`),
@@ -253,11 +253,11 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(cf
                   })),
                 })))),
               nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(cfg, "earlySetup")) && nix.asBool(!nix.eq(nix.sel(cfg, "font"), null)))) && nix.asBool(!nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable"))))), nix.thunk(() => ({
-                  __proto__: pos$36,
+                  [nix.POS]: pos$36,
                   boot: nix.thunk(() => ({
-                    __proto__: pos$35,
+                    [nix.POS]: pos$35,
                     initrd: nix.thunk(() => ({
-                      __proto__: pos$34,
+                      [nix.POS]: pos$34,
                       extraUtilsCommands: nix.thunk(() => nix.str`mkdir -p $out/share/consolefonts
 ${(nix.asBool(nix.eq(nix.app(nix.sel(lib, "substring"), 0n, 1n, nix.thunk(() => nix.sel(cfg, "font"))), "/")) ? nix.str`font="${nix.sel(cfg, "font")}"
 ` : nix.str`font="$(echo ${nix.app(consoleEnv, nix.thunk(() => nix.sel(pkgs, "kbd")))}/share/consolefonts/${nix.sel(cfg, "font")}.*)"

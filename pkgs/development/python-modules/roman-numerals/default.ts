@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const flit_core = nix.arg($, "flit-core");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "roman-numerals",
       version: "4.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AA-Turner",
           repo: "roman-numerals",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       pytestFlags: nix.thunk(() => ["-Wignore::pytest.PytestRemovedIn10Warning"]),
       pythonImportsCheck: nix.thunk(() => ["roman_numerals"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Manipulate roman numerals",
         homepage: "https://github.com/AA-Turner/roman-numerals/",
         changelog: nix.thunk(() => nix.str`https://github.com/AA-Turner/roman-numerals/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.rst`),

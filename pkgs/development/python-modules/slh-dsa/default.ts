@@ -22,18 +22,18 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "slh_dsa",
           version: version,
           hash: "sha256-p4eWMVayOFiEjFtlnsmmtH6HMfcIeYIpgdfjuB4mmAY=",
         }))));
-      const env = nix.thunk(() => ({ __proto__: pos$2, SLHDSA_BUILD_OPTIMIZED: "1" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, SLHDSA_BUILD_OPTIMIZED: "1" }));
       const postPatch = "substituteInPlace pyproject.toml \\\n  --replace-fail '\"mypy>=1.10.1\",' \"\"\n";
       const build_system = nix.thunk(() => [setuptools, mypy]);
       const pythonImportsCheck = nix.thunk(() => ["slhdsa"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_xdist]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Pure Python implementation of the SLH-DSA algorithm",
         homepage: "https://github.com/colinxu2020/slhdsa",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

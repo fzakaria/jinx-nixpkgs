@@ -68,18 +68,18 @@ export default nix.lambda((args) => (() => {
       (filesetV0) => (() => {
         const parts = nix.thunk(() => nix.app(splitRoot, nix.thunk(() => nix.sel(filesetV0, "_internalBase"))));
         return nix.update(filesetV0, {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           _internalVersion: 1n,
           _internalBaseRoot: nix.thunk(() => nix.sel(parts, "root")),
           _internalBaseComponents: nix.thunk(() => nix.app(components, nix.thunk(() => nix.sel(parts, "subpath")))),
         });
       })(),
-      (filesetV1) => nix.update(filesetV1, { __proto__: pos$2, _internalVersion: 2n }),
-      (filesetV2) => nix.update(filesetV2, { __proto__: pos$3, _internalIsEmptyWithoutBase: false, _internalVersion: 3n }),
+      (filesetV1) => nix.update(filesetV1, { [nix.POS]: pos$2, _internalVersion: 2n }),
+      (filesetV2) => nix.update(filesetV2, { [nix.POS]: pos$3, _internalIsEmptyWithoutBase: false, _internalVersion: 3n }),
     ]);
     const _noEvalMessage = "lib.fileset: Directly evaluating a file set is not supported.\n  To turn it into a usable source, use `lib.fileset.toSource`.\n  To pretty-print the contents, use `lib.fileset.trace` or `lib.fileset.traceVal`.";
     const _emptyWithoutBase = nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       _type: "fileset",
       _internalVersion: _currentVersion,
       _internalIsEmptyWithoutBase: true,
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
     const _create = (base) => (tree) => (() => {
       const parts = nix.thunk(() => nix.app(splitRoot, base));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         _type: "fileset",
         _internalVersion: _currentVersion,
         _internalIsEmptyWithoutBase: false,
@@ -100,8 +100,8 @@ export default nix.lambda((args) => (() => {
       };
     })();
     const _coerceResult = nix.thunk(() => (() => {
-      const ok = (value) => ({ __proto__: pos$6, success: true, value: value });
-      const error = (message) => ({ __proto__: pos$7, success: false, message: message });
+      const ok = (value) => ({ [nix.POS]: pos$6, success: true, value: value });
+      const error = (message) => ({ [nix.POS]: pos$7, success: false, message: message });
       return (context) => (value) => (nix.asBool(nix.eq(nix.selOr(value, () => "", "_type"), "fileset")) ? (nix.asBool(nix.gt(nix.sel(value, "_internalVersion"), _currentVersion)) ? nix.app(error, nix.thunk(() => nix.str`${context} is a file set created from a future version of the file set library with a different internal representation:
     - Internal version of the file set: ${nix.builtins.toString(nix.thunk(() => nix.sel(value, "_internalVersion")))}
     - Internal version of the library: ${nix.builtins.toString(_currentVersion)}
@@ -236,7 +236,7 @@ export default nix.lambda((args) => (() => {
     const _differenceTree = (path) => (lhs) => (rhs) => (nix.asBool((nix.asBool(nix.eq(lhs, null)) || nix.asBool(nix.app(isString, rhs)))) ? null : (nix.asBool(nix.eq(rhs, null)) ? nix.force(lhs) : nix.app(mapAttrs, (name) => (lhsValue) => nix.app(_differenceTree, nix.thunk(() => nix.add(path, nix.str`/${name}`)), lhsValue, nix.thunk(() => nix.selOr(rhs, () => null, nix.key(nix.force(name))))), nix.thunk(() => nix.app(_directoryEntries, path, lhs)))));
     const _fileFilter = (predicate) => (root) => (() => {
       const fromFile = (name) => (type) => (nix.asBool(nix.app(predicate, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           name: name,
           type: type,
           hasExt: (ext) => nix.app(hasSuffix, nix.thunk(() => nix.str`.${ext}`), name),
@@ -259,13 +259,13 @@ export default nix.lambda((args) => (() => {
     You could make this work by using a fetcher such as \`fetchGit\` instead of copying the whole repository.
     If you can't avoid copying the repo to the store, see https://github.com/NixOS/nix/issues/9292.`)) : nix.app(_singleton, path)));
       const tryFetchGit = nix.thunk(() => (() => {
-        const fetchResult = nix.thunk(() => nix.app(fetchGit, nix.thunk(() => nix.update({ __proto__: pos$9, url: path, shallow: true }, extraFetchGitAttrs))));
+        const fetchResult = nix.thunk(() => nix.app(fetchGit, nix.thunk(() => nix.update({ [nix.POS]: pos$9, url: path, shallow: true }, extraFetchGitAttrs))));
         return (nix.asBool(!nix.asBool(nix.app(pathExists, nix.thunk(() => nix.add(path, "/.git"))))) ? nix.builtins.throw(nix.thunk(() => nix.str`lib.fileset.${function$}: Expected the ${argument} (${nix.builtins.toString(path)}) to point to a local working tree of a Git repository, but it's not.`)) : nix.app(_mirrorStorePath, path, nix.thunk(() => nix.sel(fetchResult, "outPath"))));
       })());
       return (nix.asBool(!nix.asBool(nix.app(isPath, path))) ? nix.builtins.throw(nix.thunk(() => nix.str`lib.fileset.${function$}: Expected the ${argument} to be a path, but it's a ${nix.app(typeOf, path)} instead.`)) : (nix.asBool(!nix.eq(nix.app(pathType, path), "directory")) ? nix.builtins.throw(nix.thunk(() => nix.str`lib.fileset.${function$}: Expected the ${argument} (${nix.builtins.toString(path)}) to be a directory, but it's a file instead.`)) : (nix.asBool(nix.app(hasStorePathPrefix, path)) ? nix.force(tryStorePath) : nix.force(tryFetchGit))));
     })();
     return {
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       _currentVersion,
       migrations,
       _noEvalMessage,

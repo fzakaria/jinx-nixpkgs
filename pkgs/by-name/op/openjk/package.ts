@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const genericName = "Jedi Academy";
       const categories = nix.thunk(() => ["Game"]);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name,
         exec,
         icon,
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       const genericName = "Jedi Academy";
       const categories = nix.thunk(() => ["Game"]);
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name,
         exec,
         icon,
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
       const genericName = "Jedi Outcast";
       const categories = nix.thunk(() => ["Game"]);
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name,
         exec,
         icon,
@@ -84,11 +84,11 @@ export default nix.lambda((args) => (() => {
       };
     })())));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "openjk",
       version: "0-unstable-2025-10-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "JACoders",
           repo: "OpenJK",
           rev: "d1cb662f07dfa4c1999edfb5c1a86fd1c6285372",
@@ -138,11 +138,11 @@ rm -rf $out/opt
 done
 `))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Open-source engine for Star Wars Jedi Academy game",
         homepage: "https://github.com/JACoders/OpenJK",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

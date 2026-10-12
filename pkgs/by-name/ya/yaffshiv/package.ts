@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "yaffshiv",
       version: "0-unstable-2024-08-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "devttys0",
           repo: "yaffshiv",
           rev: "f6f0ef77bf79ca46aaa77bc34eda06e7b55da8e8",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [python3]),
       installPhase: "install -D -m755 src/yaffshiv $out/bin/yaffshiv\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple YAFFS file system parser and extractor",
         homepage: "https://github.com/devttys0/yaffshiv",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

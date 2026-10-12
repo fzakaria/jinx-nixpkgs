@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const src = nix.arg($, "src");
   return nix.app(runCommand, "jps-bootstrap-repository", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       outputHashAlgo: "sha256",
       outputHashMode: "recursive",
       outputHash: jpsHash,

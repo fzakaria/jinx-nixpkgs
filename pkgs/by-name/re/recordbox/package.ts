@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "recordbox",
       version: "0.11.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "edestcroix",
           repo: "Recordbox",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: "# With rustc of version 1.96.0 or later, the following error will occur:\n# `error[E0446]: private type `LyricsSaveDestination` in public interface`.\n# See also the upstream issue <https://codeberg.org/edestcroix/Recordbox/issues/258>.\nsed -i 's/enum LyricsSaveDestination/pub enum LyricsSaveDestination/' src/lyrics/edit_dialog.rs\n",
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -102,11 +102,11 @@ export default nix.lambda((args) => (() => {
       cargoCheckType: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(finalAttrs, "mesonBuildType"), "debug")) ? "release" : "debug")),
       checkPhase: "runHook preCheck\n\nmesonCheckPhase\ncargoCheckHook\n\nrunHook postCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$3, extraArgs: nix.thunk(() => ["--generate-lockfile"]) })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--generate-lockfile"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Relatively simple music player",
         homepage: "https://codeberg.org/edestcroix/Recordbox",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/edestcroix/Recordbox/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const bashNonInteractive = nix.arg($, "bashNonInteractive");
   const updateAutotoolsGnuConfigScriptsHook = nix.arg($, "updateAutotoolsGnuConfigScriptsHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "gettext",
       version: "1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/gettext/gettext-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-hdmbecmBpASHTALgNCF2z3XHaY4rUf5BAxz2Um2XTxo=",
         })))),
@@ -43,17 +43,17 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./gettext-setup-hook.sh"),
       ]),
       env: nix.thunk(() => nix.update({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         gettextNeedsLdflags: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(stdenv, "hostPlatform", "libc"), "glibc")) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isMusl"))))),
-      }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ __proto__: pos$3, am_cv_func_iconv_works: "yes" }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isSunOS")), nix.thunk(() => ({
-          __proto__: pos$4,
+      }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$3, am_cv_func_iconv_works: "yes" }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isSunOS")), nix.thunk(() => ({
+          [nix.POS]: pos$4,
           LDFLAGS: "-lm -lmd -lmp -luutil -lnvpair -lnsl -lidmap -lavl -lsec",
         })))))),
       enableParallelBuilding: true,
       enableParallelChecking: false,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Well integrated set of translation tools and documentation",
         longDescription: "Usually, programs are written and documented in English, and use\nEnglish at execution time for interacting with users.  Using a common\nlanguage is quite handy for communication between developers,\nmaintainers and users from all countries.  On the other hand, most\npeople are less comfortable with English than with their own native\nlanguage, and would rather be using their mother tongue for day to\nday's work, as far as possible.  Many would simply love seeing their\ncomputer screen showing a lot less of English, and far more of their\nown language.\n\nGNU `gettext` is an important step for the GNU Translation Project, as\nit is an asset on which we may build many other steps. This package\noffers to programmers, translators, and even users, a well integrated\nset of tools and documentation. Specifically, the GNU `gettext`\nutilities are a set of tools that provides a framework to help other\nGNU packages produce multi-lingual messages.\n",
         homepage: "https://www.gnu.org/software/gettext/",

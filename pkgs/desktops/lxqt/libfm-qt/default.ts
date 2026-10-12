@@ -30,16 +30,16 @@ export default nix.lambda((args) => (() => {
   const version = nix.argOr($, "version", () => "2.4.0");
   const qtx11extras = nix.argOr($, "qtx11extras", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libfm-qt",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "lxqt",
           repo: "libfm-qt",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: nix.thunk(() => nix.sel({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             "1.4.0": "sha256-QxPYSA7537K+/dRTxIYyg+Q/kj75rZOdzlUsmSdQcn4=",
             "2.4.0": "sha256-gfyskv/TpAdBES0+O1MrrkQqTDqtAGtDMIwv3NF7pnE=",
           }, nix.key(nix.str`${nix.sel(finalAttrs, "version")}`))),
@@ -55,12 +55,12 @@ export default nix.lambda((args) => (() => {
         menu_cache,
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), "2.0.0", nix.thunk(() => nix.sel(finalAttrs, "version")))), nix.thunk(() => [qtx11extras])))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(version, "1.4.0")), "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 3.1.0 FATAL_ERROR)\" \"cmake_minimum_required(VERSION 3.10)\"\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/lxqt/libfm-qt",
         description: "Core library of PCManFM-Qt (Qt binding for libfm)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

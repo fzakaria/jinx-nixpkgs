@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const gettext = nix.arg($, "gettext");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "duff",
       version: "2024-02-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           sha256: "9lS4th+qeglsoA+1s45uEE2UGmlE3YtSy4/uGqWKU/k=",
           rev: "c1baefa4f4d5cefbbbc7bfefc0c18356752c8a1b",
           repo: "duff",
@@ -38,7 +38,7 @@ sed '/^XGETTEXT_OPTIONS =/ s,$, --from-code=utf-8,' -i po/Makevars
 `),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Quickly find duplicate files",
         mainProgram: "duff",
         longDescription: "Duff is a Unix command-line utility for quickly finding duplicates in\na given set of files.\n",

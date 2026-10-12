@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const tempest = nix.arg($, "tempest");
   const testtools = nix.arg($, "testtools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "python-manilaclient-tests",
       version: nix.thunk(() => nix.attr(python_manilaclient, "version")),
       src: nix.thunk(() => nix.attr(python_manilaclient, "src")),

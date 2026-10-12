@@ -16,28 +16,28 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const cert = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "selfSignedCerts", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openssl"))]),
     })), "openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -nodes -subj '/CN=localhost' -days 36500\nmkdir -p $out\ncp key.pem cert.pem $out\n"));
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     name: "monica",
     nodes: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           services: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             monica: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               enable: true,
               hostname: "localhost",
               appKeyFile: nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs_1, "writeText"), "keyfile", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")}`),
               nginx: nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 forceSSL: true,
                 sslCertificate: nix.thunk(() => nix.str`${cert}/cert.pem`),
                 sslCertificateKey: nix.thunk(() => nix.str`${cert}/key.pem`),

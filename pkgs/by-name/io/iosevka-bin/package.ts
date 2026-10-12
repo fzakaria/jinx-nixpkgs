@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const variantHashes = nix.thunk(() => nix.builtins.import(nix.path(here, "./variants.nix")));
   const validVariants = nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.app(nix.sel(lib, "removePrefix"), "Iosevka")), nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.builtins.removeAttrs(variantHashes, nix.thunk(() => ["Iosevka"])))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.str`${name}-bin`),
       version: "34.9.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/be5invis/Iosevka/releases/download/v${nix.sel(finalAttrs, "version")}/PkgTTC-${name}-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: nix.thunk(() => nix.selOr(variantHashes, () => nix.builtins.throw(nix.thunk(() => nix.str`No such variant "${variant}" for package iosevka-bin.
 Valid variants are: ${nix.app(nix.sel(lib, "concatStringsSep"), ", ", validVariants)}.
@@ -36,7 +36,7 @@ Valid variants are: ${nix.app(nix.sel(lib, "concatStringsSep"), ", ", validVaria
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(iosevka, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         downloadPage: nix.thunk(() => nix.attr(from, "downloadPage")),
         description: nix.thunk(() => nix.attr(from, "description")),
@@ -48,7 +48,7 @@ Valid variants are: ${nix.app(nix.sel(lib, "concatStringsSep"), ", ", validVaria
         })()),
       };
       })()),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.path(here, "./update-bin.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update-bin.sh") })),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

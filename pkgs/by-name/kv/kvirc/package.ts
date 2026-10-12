@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const gettext = nix.arg($, "gettext");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kvirc",
       version: "2022-06-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kvirc",
           repo: "KVIrc",
           rev: "eb3fdd6b1d824f148fd6e582852dcba77fc9a271",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(libsForQt5, "wrapQtAppsHook")),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Advanced IRC Client",
         homepage: "https://www.kvirc.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

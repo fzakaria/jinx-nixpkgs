@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const re = nix.arg($, "re");
   const xmlplaylist = nix.arg($, "xmlplaylist");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lastfm",
       version: "0.3.4",
       minimalOCamlVersion: "4.08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "savonet",
           repo: "ocaml-lastfm",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       propagatedBuildInputs: nix.thunk(() => [re, xmlplaylist]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/savonet/ocaml-lastfm",
         description: "OCaml API to lastfm radio and audioscrobbler",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

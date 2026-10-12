@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const openvpn = nix.arg($, "openvpn");
   const strongswan = nix.arg($, "strongswan");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "plasma-nm",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             openvpn: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), openvpn)),
             ipsec: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), strongswan, "ipsec")),
           })))),

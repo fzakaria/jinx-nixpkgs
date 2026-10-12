@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "aqbanking";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.aquamaniac.de/rdm/attachments/download/${releaseId}/aqbanking-${version_1}.tar.gz`),
           hash: hash,
         }))));
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [gmp, gwenhywfar, libtool, libxml2, libxslt, xmlsec, zlib]);
       const nativeBuildInputs = nix.thunk(() => [pkg_config, gettext]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Interface to banking tasks, file formats and country information",
         homepage: "https://www.aquamaniac.de/rdm/",
         hydraPlatforms: [],
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version: version_1,
         src,

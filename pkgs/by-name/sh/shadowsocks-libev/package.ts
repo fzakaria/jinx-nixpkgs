@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       __structuredAttrs: true,
       strictDeps: true,
       pname: "shadowsocks-libev",
       version: "3.3.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "shadowsocks",
           repo: "shadowsocks-libev",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,19 +52,19 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace cmake/shadowsocks-libev.pc.cmake \\\n  --replace-fail '$'{prefix}/@CMAKE_INSTALL_LIBDIR@ @CMAKE_INSTALL_FULL_LIBDIR@ \\\n  --replace-fail '$'{prefix}/@CMAKE_INSTALL_INCLUDEDIR@ @CMAKE_INSTALL_FULL_INCLUDEDIR@ \\\n\n# https://github.com/dcreager/libcork/issues/173 but needs a different patch (yay vendoring)\nsubstituteInPlace libcork/src/libcork.pc.in \\\n  --replace-fail '$'{exec_prefix}/@CMAKE_INSTALL_LIBDIR@ @CMAKE_INSTALL_FULL_LIBDIR@ \\\n  --replace-fail '$'{prefix}/@CMAKE_INSTALL_INCLUDEDIR@ @CMAKE_INSTALL_FULL_INCLUDEDIR@\n",
       postInstall: "cp lib/* $out/lib\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(nixosTests, "shadowsocks"));
             return {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "basic-libev": nix.thunk(() => nix.attr(from, "basic-libev")),
             "v2ray-plugin-libev": nix.thunk(() => nix.attr(from, "v2ray-plugin-libev")),
           };
           })()))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Lightweight secured SOCKS5 proxy",
         longDescription: "Shadowsocks-libev is a lightweight secured SOCKS5 proxy for embedded devices and low-end boxes.\nIt is a port of Shadowsocks created by @clowwindy, which is maintained by @madeye and @linusyang.\n",
         homepage: "https://github.com/shadowsocks/shadowsocks-libev",

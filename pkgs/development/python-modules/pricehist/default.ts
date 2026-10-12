@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const responses = nix.arg($, "responses");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pricehist",
       version: "1.4.16",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chrisberkhout",
           repo: "pricehist",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [poetry_core]),
       nativeCheckInputs: nix.thunk(() => [responses, pytest_mock, pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command-line tool for fetching and formatting historical price data, with support for multiple data sources and output formats",
         homepage: "https://gitlab.com/chrisberkhout/pricehist",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cabextract = nix.arg($, "cabextract");
   const fontforge = nix.arg($, "fontforge");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vista-fonts",
       version: "1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "mirror://sourceforge/mscorefonts2/cabs/PowerPointViewer.exe",
           hash: "sha256-xOdTVI0wkv/X3ThJEF4KJtm1oa/kbm5mf+fGiHiTcB8=",
         })))),
@@ -60,7 +60,7 @@ done
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Some TrueType fonts from Microsoft Windows Vista (Calibri, Cambria, Candara, Consolas, Constantia, Corbel)",
         homepage: "http://www.microsoft.com/typography/ClearTypeFonts.mspx",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

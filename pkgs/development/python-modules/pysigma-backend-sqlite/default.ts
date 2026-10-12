@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const requests = nix.arg($, "requests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pysigma-backend-sqlite",
       version: "1.2.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SigmaHQ",
           repo: "pySigma-backend-sqlite",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, requests]),
       pythonImportsCheck: nix.thunk(() => ["sigma.backends.sqlite"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to support sqlite for pySigma",
         homepage: "https://github.com/SigmaHQ/pySigma-backend-sqlite",
         changelog: nix.thunk(() => nix.str`https://github.com/SigmaHQ/pySigma-backend-sqlite/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

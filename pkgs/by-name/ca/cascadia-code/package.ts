@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const useVariableFont = nix.argOr($, "useVariableFont", () => false);
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cascadia-code",
       version: "2407.24",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/microsoft/cascadia-code/releases/download/v${nix.sel(finalAttrs, "version")}/CascadiaCode-${nix.sel(finalAttrs, "version")}.zip`),
           stripRoot: false,
           hash: "sha256-bCQzGCvjSQ1TXFVC3w9VPXNtjM4h7lRvljVjX/w1TJ4=",
@@ -30,7 +30,7 @@ ${(nix.asBool(useVariableFont) ? "install -Dm644 ttf/*.ttf -t $out/share/fonts/t
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Monospaced font that includes programming ligatures and is designed to enhance the modern look and feel of the Windows Terminal",
         homepage: "https://github.com/microsoft/cascadia-code",
         changelog: nix.thunk(() => nix.str`https://github.com/microsoft/cascadia-code/raw/v${nix.sel(finalAttrs, "version")}/FONTLOG.txt`),

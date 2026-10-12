@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const pandoc = nix.arg($, "pandoc");
   const version = "0.7.3";
   const src = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       sourceName: "chrischinchilla-vscode-pandoc",
       name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "sourceName")}-${nix.sel(finalAttrs, "version")}.vsix`),
       pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "sourceName")}-vsix`),
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ChrisChinchilla",
           repo: "vscode-pandoc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,12 +41,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./add-pandoc-to-path.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pandocBin: nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [pandoc]))),
           })))),
       ]),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-1j+bDx2CiViEgLfanyx0dwLRgY1aYV9rQDWP3nDl1Bw=",
         })))),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       dontInstall: true,
     })));
   return nix.app(nix.sel(vscode_utils, "buildVscodeExtension"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "chrischinchilla-vscode-pandoc",
       version: version,
       src: src,
@@ -67,14 +67,14 @@ export default nix.lambda((args) => (() => {
       vscodeExtUniqueId: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "vscodeExtPublisher")}.${nix.sel(finalAttrs, "vscodeExtName")}`),
       buildInputs: nix.thunk(() => [pandoc]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             attrPath: "vscode-extensions.chrischinchilla.vscode-pandoc.src",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Converts Markdown files to pdf, docx, or html files using pandoc",
         homepage: "https://github.com/ChrisChinchilla/vscode-pandoc#readme",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=chrischinchilla.vscode-pandoc",

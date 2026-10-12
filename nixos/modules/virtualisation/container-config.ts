@@ -33,66 +33,66 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const w = nix.withScope(lib, null);
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(config, "boot", "isContainer")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         boot: nix.thunk(() => ({
-          __proto__: pos$3,
-          kernel: nix.thunk(() => ({ __proto__: pos$1, enable: false })),
-          modprobeConfig: nix.thunk(() => ({ __proto__: pos$2, enable: false })),
+          [nix.POS]: pos$3,
+          kernel: nix.thunk(() => ({ [nix.POS]: pos$1, enable: false })),
+          modprobeConfig: nix.thunk(() => ({ [nix.POS]: pos$2, enable: false })),
         })),
         console: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), false)),
         })),
         nix: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           optimise: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             automatic: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), false)),
           })),
         })),
         powerManagement: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), false)),
         })),
         documentation: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           nixos: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), false)),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           useHostResolvConf: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           openssh: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             startWhenNeeded: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
           })),
-          udev: nix.thunk(() => ({ __proto__: pos$12, enable: false })),
+          udev: nix.thunk(() => ({ [nix.POS]: pos$12, enable: false })),
           lvm: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
           })),
         })),
         system: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           build: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             installBootLoader: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/true`))),
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$18,
-          audit: nix.thunk(() => ({ __proto__: pos$17, enable: false })),
+          [nix.POS]: pos$18,
+          audit: nix.thunk(() => ({ [nix.POS]: pos$17, enable: false })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$20,
-          variables: nix.thunk(() => ({ __proto__: pos$19, NIX_REMOTE: "daemon" })),
+          [nix.POS]: pos$20,
+          variables: nix.thunk(() => ({ [nix.POS]: pos$19, NIX_REMOTE: "daemon" })),
         })),
       })))),
   };

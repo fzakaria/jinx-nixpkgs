@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const buildBenchmarks = nix.argOr($, "buildBenchmarks", () => false);
   const buildSamples = nix.argOr($, "buildSamples", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "hipsolver",
       version: "7.2.3",
       outputs: nix.thunk(() => nix.concat(["out"], nix.concat(nix.app(nix.sel(lib, "optionals"), buildTests, nix.thunk(() => ["test"])), nix.concat(nix.app(nix.sel(lib, "optionals"), buildBenchmarks, nix.thunk(() => ["benchmark"])), nix.app(nix.sel(lib, "optionals"), buildSamples, nix.thunk(() => ["sample"])))))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ROCm",
           repo: "rocm-libraries",
           tag: nix.thunk(() => nix.str`rocm-${nix.sel(finalAttrs, "version")}`),
@@ -53,11 +53,11 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), buildTests, nix.thunk(() => ["-DBUILD_CLIENTS_TESTS=ON"])), nix.concat(nix.app(nix.sel(lib, "optionals"), buildBenchmarks, nix.thunk(() => ["-DBUILD_CLIENTS_BENCHMARKS=ON"])), nix.app(nix.sel(lib, "optionals"), buildSamples, nix.thunk(() => ["-DBUILD_CLIENTS_SAMPLES=ON"])))))),
       postInstall: nix.thunk(() => nix.add(nix.add(nix.add(nix.app(nix.sel(lib, "optionalString"), buildTests, "mkdir -p $test/bin\nmv $out/bin/hipsolver-test $test/bin\n"), nix.app(nix.sel(lib, "optionalString"), buildBenchmarks, "mkdir -p $benchmark/bin\nmv $out/bin/hipsolver-bench $benchmark/bin\n")), nix.app(nix.sel(lib, "optionalString"), buildSamples, "mkdir -p $sample/bin\nmv clients/staging/example-* $sample/bin\npatchelf $sample/bin/example-* --shrink-rpath --allowed-rpath-prefixes \"$NIX_STORE\"\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(buildTests) || nix.asBool(buildBenchmarks))), "rmdir $out/bin\n"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ __proto__: pos$2, finalAttrs: finalAttrs })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$2, finalAttrs: finalAttrs })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "ROCm SOLVER marshalling library",
         homepage: "https://github.com/ROCm/rocm-libraries/tree/develop/projects/hipsolver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

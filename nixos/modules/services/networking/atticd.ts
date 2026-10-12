@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "atticd"));
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   const checkedConfigFile = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "checked-attic-server.toml", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       configFile: nix.thunk(() => nix.app(nix.sel(format, "generate"), "server.toml", nix.thunk(() => nix.sel(cfg, "settings")))),
     })), nix.thunk(() => nix.str`export ATTIC_SERVER_TOKEN_RS256_SECRET_BASE64="$(${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "openssl")))} genrsa -traditional 4096 | ${nix.sel(pkgs, "coreutils")}/bin/base64 -w0)"
 export ATTIC_SERVER_DATABASE_URL="sqlite://:memory:"
@@ -75,41 +75,41 @@ exec ${nix.sel(cfg, "package")}/bin/atticadm -f ${checkedConfigFile} "$@"
     return (nix.asBool((nix.asBool(nix.sel(config, "services", "postgresql", "enable")) && nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), "postgresql://", url)))) && nix.asBool(hasLocalStrings));
   })());
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         atticd: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the atticd, the Nix Binary Cache server")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "attic-server", nix.thunk(() => ({})))),
           environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               description: "Path to an EnvironmentFile containing required environment\nvariables:\n\n- ATTIC_SERVER_TOKEN_RS256_SECRET_BASE64: The base64-encoded RSA PEM PKCS1 of the\n  RS256 JWT secret. Generate it with `openssl genrsa -traditional 4096 | base64 -w0`.\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               default: null,
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               description: "The user under which attic runs.\n",
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "atticd",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               description: "The group under which attic runs.\n",
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "atticd",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               description: "Structured configurations of atticd.\nSee <https://github.com/zhaofengli/attic/blob/main/server/src/config-template.toml>\n",
               type: nix.thunk(() => nix.sel(format, "type")),
               default: nix.thunk(() => ({})),
             })))),
           mode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               description: "Mode in which to run the server.\n\n'monolithic' runs all components, and is suitable for single-node deployments.\n\n'api-server' runs only the API server, and is suitable for clustering.\n\n'garbage-collector' only runs the garbage collector periodically.\n\nA simple NixOS-based Attic deployment will typically have one 'monolithic' and any number of 'api-server' nodes.\n\nThere are several other supported modes that perform one-off operations, but these are the only ones that make sense to run via the NixOS module.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["monolithic", "api-server", "garbage-collector"]))),
               default: "monolithic",
@@ -118,47 +118,47 @@ exec ${nix.sel(cfg, "package")}/bin/atticadm -f ${checkedConfigFile} "$@"
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "environmentFile"), null)),
             message: "<option>services.atticd.environmentFile</option> is not set.\n\nRun `openssl genrsa -traditional 4096 | base64 -w0` and create a file with the following contents:\n\nATTIC_SERVER_TOKEN_RS256_SECRET=\"output from command\"\n\nThen, set `services.atticd.environmentFile` to the quoted absolute path of the file.\n",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           atticd: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             settings: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               chunking: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   "nar-size-threshold": 65536n,
                   "min-size": 16384n,
                   "avg-size": 65536n,
                   "max-size": 262144n,
                 })))),
               database: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 url: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "sqlite:///var/lib/atticd/server.db?mode=rwc")),
               })),
-              storage: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ({ __proto__: pos$13, type: "local", path: "/var/lib/atticd/storage" })))),
+              storage: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ({ [nix.POS]: pos$13, type: "local", path: "/var/lib/atticd/storage" })))),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             atticd: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => nix.concat(["network-online.target"], nix.app(nix.sel(lib, "optionals"), hasLocalPostgresDB, nix.thunk(() => ["postgresql.target"])))),
               requires: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), hasLocalPostgresDB, nix.thunk(() => ["postgresql.target"]))),
               wants: nix.thunk(() => ["network-online.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} -f ${checkedConfigFile} --mode ${nix.sel(cfg, "mode")}`),
                 EnvironmentFile: nix.thunk(() => nix.sel(cfg, "environmentFile")),
                 StateDirectory: "atticd",
@@ -203,7 +203,7 @@ exec ${nix.sel(cfg, "package")}/bin/atticadm -f ${checkedConfigFile} "$@"
             })),
           })),
         })),
-        environment: nix.thunk(() => ({ __proto__: pos$21, systemPackages: nix.thunk(() => [atticadmWrapper]) })),
+        environment: nix.thunk(() => ({ [nix.POS]: pos$21, systemPackages: nix.thunk(() => [atticadmWrapper]) })),
       })))),
   };
 })(), formals$1);

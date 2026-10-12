@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libxml2 = nix.arg($, "libxml2");
   const openbox = nix.arg($, "openbox");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "obconf",
       version: "unstable-2015-02-13",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "git://git.openbox.org/dana/obconf",
           rev: "63ec47c5e295ad4f09d1df6d92afb7e10c3fec39",
           hash: "sha256-qwm66VA/ueRMFtSUcrmuObNkz+KYgWRnmR7TnQwpxiE=",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.str`substituteInPlace configure.ac --replace-fail 2.0.4 ${nix.sel(finalAttrs, "version")}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GUI configuration tool for openbox",
         homepage: "https://openbox.org/obconf",
         changelog: "https://openbox.org/obconf_changelog",

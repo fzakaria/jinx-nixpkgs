@@ -39,15 +39,15 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "virtualisation", "azure"));
   const mlxDrivers = nix.thunk(() => ["mlx4_en", "mlx4_core", "mlx5_core"]);
   return {
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         azure: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           acceleratedNetworking: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: false,
               description: "Whether the machine's network interface has enabled accelerated networking.",
             })))),
@@ -55,63 +55,63 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
-        waagent: nix.thunk(() => ({ __proto__: pos$5, enable: true })),
+        [nix.POS]: pos$11,
+        waagent: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
         "cloud-init": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: true,
-          network: nix.thunk(() => ({ __proto__: pos$6, enable: true })),
+          network: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
         })),
         openssh: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: true,
           settings: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             PermitRootLogin: "prohibit-password",
             ClientAliveInterval: 180n,
           })),
         })),
         udev: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           extraRules: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStrings"), (i) => nix.str`ENV{DEVTYPE}=="disk", KERNEL!="sda" SUBSYSTEM=="block", SUBSYSTEMS=="scsi", KERNELS=="?:0:0:${nix.builtins.toString(i)}", ATTR{removable}=="0", SYMLINK+="disk/by-lun/${nix.builtins.toString(i)}"
 `, nix.thunk(() => nix.app(nix.sel(lib, "range"), 1n, 15n)))),
         })),
       })),
       systemd: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         services: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           "cloud-config": nix.thunk(() => ({
-            __proto__: pos$13,
-            serviceConfig: nix.thunk(() => ({ __proto__: pos$12, Restart: "on-failure" })),
+            [nix.POS]: pos$13,
+            serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$12, Restart: "on-failure" })),
           })),
         })),
         network: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           networks: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             "99-azure-unmanaged-devices.network": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "acceleratedNetworking")), nix.thunk(() => ({
-                __proto__: pos$17,
-                matchConfig: nix.thunk(() => ({ __proto__: pos$15, Driver: mlxDrivers })),
-                linkConfig: nix.thunk(() => ({ __proto__: pos$16, Unmanaged: "yes" })),
+                [nix.POS]: pos$17,
+                matchConfig: nix.thunk(() => ({ [nix.POS]: pos$15, Driver: mlxDrivers })),
+                linkConfig: nix.thunk(() => ({ [nix.POS]: pos$16, Unmanaged: "yes" })),
               })))),
           })),
         })),
       })),
       networking: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         useNetworkd: true,
         networkmanager: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           unmanaged: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "acceleratedNetworking")), nix.thunk(() => nix.builtins.map((drv) => nix.str`driver:${drv}`, mlxDrivers)))),
         })),
         hostName: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "")),
         usePredictableInterfaceNames: false,
       })),
       boot: nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         kernelParams: nix.thunk(() => [
           "console=ttyS0",
           "earlyprintk=ttyS0",
@@ -120,13 +120,13 @@ export default nix.lambda((args) => (() => {
           "boot.panic_on_fail",
         ]),
         initrd: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           kernelModules: nix.thunk(() => ["hv_vmbus", "hv_netvsc", "hv_utils", "hv_storvsc"]),
           availableKernelModules: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "acceleratedNetworking")), mlxDrivers)),
         })),
       })),
       environment: nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         systemPackages: nix.thunk(() => [
           nix.thunk(() => nix.sel(pkgs, "cryptsetup")),
           nix.thunk(() => nix.sel(pkgs, "sg3_utils")),

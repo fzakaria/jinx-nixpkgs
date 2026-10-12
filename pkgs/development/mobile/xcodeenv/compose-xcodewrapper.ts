@@ -33,7 +33,7 @@ echo "Please update your local Xcode installation to match one of the allowed ve
 exit 1
 `)));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "xcode-wrapper-impure",
         __noChroot: true,
         buildCommand: nix.thunk(() => nix.str`mkdir -p $out/bin

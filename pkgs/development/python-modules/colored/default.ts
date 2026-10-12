@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.3.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dslackw",
           repo: "colored",
           tag: version,
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const unittestFlagsArray = nix.thunk(() => ["unittests"]);
       const pythonImportsCheck = nix.thunk(() => ["colored"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple library for color and formatting to terminal",
         homepage: "https://gitlab.com/dslackw/colored",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/dslackw/colored/-/raw/${version}/CHANGES.md`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -52,11 +52,11 @@ export default nix.lambda((args) => (() => {
   const unfreeEnableDiscord = nix.argOr($, "unfreeEnableDiscord", () => false);
   const unfreeEnableRoms = nix.argOr($, "unfreeEnableRoms", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "86box",
       version: "6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "86Box",
           repo: "86Box",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -99,9 +99,9 @@ export default nix.lambda((args) => (() => {
 ln -s ${nix.sel(finalAttrs, "passthru", "roms")} $out/share/86Box/roms
 `)))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         roms: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             owner: "86Box",
             repo: "roms",
             tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -116,7 +116,7 @@ ln -s ${nix.sel(finalAttrs, "passthru", "roms")} $out/share/86Box/roms
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Emulator of x86-based machines based on PCem",
         mainProgram: "86Box",
         homepage: "https://86box.net/",

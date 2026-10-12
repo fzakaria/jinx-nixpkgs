@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const stackit_core = nix.arg($, "stackit-core");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "stackit-objectstorage",
       version: "1.5.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "stackit_objectstorage",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-UO+2jSI0BI5XjZWQsKJlGG1dDXNsk+OUm5vQqgsH2XA=",
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["stackit.objectstorage"]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "STACKIT Object Storage API client for Python",
         homepage: "https://github.com/stackitcloud/stackit-sdk-python",
         changelog: nix.thunk(() => nix.str`https://github.com/stackitcloud/stackit-sdk-python/blob/services/objectstorage/v${nix.sel(finalAttrs, "version")}/services/objectstorage/CHANGELOG.md`),

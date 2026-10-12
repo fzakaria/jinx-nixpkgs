@@ -52,12 +52,12 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const pkgs = nix.arg($, "pkgs");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "swh-core",
       version: "4.6.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.softwareheritage.org",
           group: "swh",
           owner: "devel",
@@ -121,7 +121,7 @@ export default nix.lambda((args) => (() => {
           "test_timed_no_metric",
         ]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://gitlab.softwareheritage.org/swh/devel/swh-core/-/tags/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Low-level utilities and helpers used by almost all other modules in the stack",
         homepage: "https://gitlab.softwareheritage.org/swh/devel/swh-core",

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pname = "trucky";
   const version = "3.8.2";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://web.archive.org/web/20260328182310/https://client-download.truckyapp.com/linux/latest/Trucky.AppImage",
       hash: "sha256-8F6tIyooqzjgH2+qHsaoFwJkFzzW07fjqK9znDW/AyA=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => (() => {
       const pname_1 = pname;
       const version_1 = version;
@@ -33,7 +33,7 @@ substituteInPlace $out/share/applications/trucky-electron.desktop \\
 install -Dm444 ${appimageContents}/trucky-electron.png $out/share/icons/hicolor/48x48/apps/trucky-electron.png
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "The Virtual Trucker Companion",
         homepage: "https://truckyapp.com/",
         downloadPage: "https://truckyapp.com/client-download-linux",
@@ -42,7 +42,7 @@ install -Dm444 ${appimageContents}/trucky-electron.png $out/share/icons/hicolor/
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: pname_1,
         version: version_1,
         src: src_1,

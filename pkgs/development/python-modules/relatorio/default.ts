@@ -23,21 +23,21 @@ export default nix.lambda((args) => (() => {
       const version = "0.11.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-e6CvclFrRfXR5fL2ZG1LZxTTsTRouLsDicCwvXtySGE=",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [genshi, lxml]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         chart: nix.thunk(() => [pyyaml]),
         fodt: nix.thunk(() => [python_magic]),
       }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.sel(optional_dependencies, "fodt")));
       const pythonImportsCheck = nix.thunk(() => ["relatorio"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://relatorio.tryton.org/",
         changelog: nix.thunk(() => nix.str`https://hg.tryton.org/relatorio/file/${version}/CHANGELOG`),
         description: "Templating library able to output odt and pdf files",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

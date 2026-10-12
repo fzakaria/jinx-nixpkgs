@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "acme-dns",
       version: "2.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "acme-dns",
           repo: "acme-dns",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-n3icQQkdA0nCkvthsFsUTrYg0B3t8hROL4QXgBQRbSg=",
       postInstall: "install -D -m0444 -t $out/lib/systemd/system ./acme-dns.service\nsubstituteInPlace $out/lib/systemd/system/acme-dns.service --replace-fail \"/usr/local/bin/acme-dns\" \"$out/bin/acme-dns\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "acme-dns": nix.thunk(() => nix.attr(nixosTests, "acme-dns")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Limited DNS server to handle ACME DNS challenges easily and securely",
         homepage: "https://github.com/acme-dns/acme-dns",
         changelog: nix.thunk(() => nix.str`https://github.com/acme-dns/acme-dns/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const qt5compat = nix.arg($, "qt5compat");
   const audit = nix.arg($, "audit");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "ksystemlog",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),
       extraBuildInputs: nix.thunk(() => [qt5compat, audit]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "ksystemlog" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "ksystemlog" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

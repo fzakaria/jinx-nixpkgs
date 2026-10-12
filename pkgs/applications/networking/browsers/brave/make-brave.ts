@@ -154,13 +154,13 @@ export default nix.lambda((args) => (() => {
       return nix.sel(archives, nix.key(nix.sel(stdenv, "hostPlatform", "system")));
     })());
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: pname,
         version: version,
         __structuredAttrs: true,
         strictDeps: true,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.attr(archive, "url")),
             sha256: nix.thunk(() => nix.attr(archive, "sha256")),
           })))),
@@ -173,7 +173,7 @@ export default nix.lambda((args) => (() => {
         nativeBuildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [
             dpkg,
             nix.thunk(() => nix.app(nix.sel(buildPackages, "wrapGAppsHook3", "override"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 makeWrapper: nix.thunk(() => nix.sel(buildPackages, "makeShellWrapper")),
               })))),
           ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [undmg, makeWrapper])))),
@@ -251,9 +251,9 @@ gappsWrapperArgs+=(
         installCheckPhase: nix.thunk(() => nix.str`# Bypass upstream wrapper which suppresses errors
 $out/opt/brave.com/${optName}/brave --version
 `),
-        passthru: nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.path(here, "./update.py") })),
+        passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.py") })),
         meta: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           homepage: homepage,
           description: nix.thunk(() => nix.add("Privacy-oriented browser for Desktop and Laptop computers", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(flavor, "origin")), " (Origin variant)"))),
           changelog: nix.thunk(() => nix.add(nix.str`https://github.com/brave/brave-browser/blob/master/${changelogFile}#`, nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), version))),

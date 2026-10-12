@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ivan";
       const version = "059-unstable-2025-02-20";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Attnam",
           repo: "ivan",
           rev: "0000b8621bb767b594802e663686d3a1da2c5060",
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       const hardeningDisable = nix.thunk(() => ["all"]);
       const cmakeFlags = nix.thunk(() => ["-DCMAKE_CXX_FLAGS=-DWIZARD"]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), SDL2_mixer)}/include/SDL2`),
       }));
       const ivanDesktop = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name: pname,
           exec: pname,
           icon: "ivan.png",
@@ -65,7 +65,7 @@ cp $src/Graphics/icons/shadowless.iconset/icon_512x512.png $out/share/icons/hico
 cp ${ivanDesktop}/share/applications/* $out/share/applications
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Graphical roguelike game",
         longDescription: "Iter Vehemens ad Necem (IVAN) is a graphical roguelike game, which currently\nruns in Windows, DOS, Linux, and OS X. It features advanced bodypart and\nmaterial handling, multi-colored lighting and, above all, deep gameplay.\n\nThis is a fan continuation of IVAN by members of Attnam.com\n",
         homepage: "https://attnam.com/",
@@ -75,7 +75,7 @@ cp ${ivanDesktop}/share/applications/* $out/share/applications
         mainProgram: "ivan",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

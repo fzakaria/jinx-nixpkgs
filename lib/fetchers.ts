@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
     return (hashTypes) => (() => {
       const hashNames = nix.thunk(() => nix.concat(defaultHashNames, hashTypes));
       const hashSet = nix.thunk(() => nix.app(genAttrs, hashNames, nix.thunk(() => nix.app(const$, nix.thunk(() => ({}))))));
-      return { __proto__: pos$1, hashNames, hashSet };
+      return { [nix.POS]: pos$1, hashNames, hashSet };
     })();
   })());
   const fakeH = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     hash: nix.thunk(() => nix.sel(lib, "fakeHash")),
     sha256: nix.thunk(() => nix.sel(lib, "fakeSha256")),
     sha512: nix.thunk(() => nix.sel(lib, "fakeSha512")),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
           return (nix.asBool(nix.eq(hashesAsNVPairs, [])) ? (nix.asBool(required) ? nix.builtins.throw("fetcher called without `hash`") : null) : (nix.asBool(!nix.eq(nix.app(length, hashesAsNVPairs), 1n)) ? nix.builtins.throw(nix.thunk(() => nix.str`fetcher called with mutually-incompatible arguments: ${nix.app(concatMapStringsSep, ", ", (a) => nix.sel(a, "name"), hashesAsNVPairs)}`)) : nix.app(head, hashesAsNVPairs)));
         })());
         return nix.update(nix.app(removeAttrs, args_2, hashNames), nix.app(optionalAttrs, nix.thunk(() => !nix.eq(h, null)), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             outputHashAlgo: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(h, "name"), "hash")) ? null : nix.sel(h, "name"))),
             outputHash: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(h, "value"), "")) ? nix.selOr(fakeH, () => nix.builtins.throw(nix.thunk(() => nix.str`no “fake hash” defined for ${nix.sel(h, "name")}`)), nix.key(nix.sel(h, "name"))) : nix.sel(h, "value"))),
           }))));
@@ -86,17 +86,17 @@ export default nix.lambda((args) => (() => {
         return (fetcher) => (() => {
           const fArgs = nix.thunk(() => nix.app(functionArgs, fetcher));
           const normalize = nix.thunk(() => nix.app(normalizeHash, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               hashTypes: hashTypes,
               required: nix.thunk(() => !nix.asBool(nix.sel(fArgs, "outputHash"))),
             }))));
           nix.assert_((nix.asBool(nix.has(fArgs, "outputHash")) && nix.asBool(nix.has(fArgs, "outputHashAlgo"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/fetchers.nix:223:5");
           nix.assert_(nix.eq(nix.app(intersectAttrs, fArgs, hashSet), {}), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/fetchers.nix:224:5");
-          return nix.app(setFunctionArgs, (args_2) => nix.app(fetcher, nix.thunk(() => nix.app(normalize, args_2))), nix.thunk(() => nix.update(nix.app(removeAttrs, fArgs, removedAttributes), { __proto__: pos$5, hash: nix.thunk(() => nix.sel(fArgs, "outputHash")) })));
+          return nix.app(setFunctionArgs, (args_2) => nix.app(fetcher, nix.thunk(() => nix.app(normalize, args_2))), nix.thunk(() => nix.update(nix.app(removeAttrs, fArgs, removedAttributes), { [nix.POS]: pos$5, hash: nix.thunk(() => nix.sel(fArgs, "outputHash")) })));
         })();
       })(), formals$3);
     })());
-    return { __proto__: pos$6, proxyImpureEnvVars, normalizeHash, withNormalizedHash };
+    return { [nix.POS]: pos$6, proxyImpureEnvVars, normalizeHash, withNormalizedHash };
   })();
 })(), formals$1);
 //# sourceMappingURL=fetchers.ts.map

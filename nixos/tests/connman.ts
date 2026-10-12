@@ -33,50 +33,50 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     name: "connman",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "rnhmjoj"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       router: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           imports: nix.thunk(() => [nix.path(here, "../modules/profiles/minimal.nix")]),
-          virtualisation: nix.thunk(() => ({ __proto__: pos$2, vlans: nix.thunk(() => [1n]) })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, vlans: nix.thunk(() => [1n]) })),
           boot: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             kernel: nix.thunk(() => ({
-              __proto__: pos$4,
-              sysctl: nix.thunk(() => ({ __proto__: pos$3, "net.ipv6.conf.all.forwarding": true })),
+              [nix.POS]: pos$4,
+              sysctl: nix.thunk(() => ({ [nix.POS]: pos$3, "net.ipv6.conf.all.forwarding": true })),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             useDHCP: false,
             interfaces: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               eth1: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 ipv6: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$6, address: "fd12::1", prefixLength: 64n })),
+                    nix.thunk(() => ({ [nix.POS]: pos$6, address: "fd12::1", prefixLength: 64n })),
                   ]),
                 })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             radvd: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               enable: true,
               config: "interface eth1 {\n  AdvSendAdvert on;\n  AdvManagedFlag on;\n  AdvOtherConfigFlag on;\n  prefix fd12::/64 {\n    AdvAutonomous off;\n  };\n};\n",
             })),
@@ -86,25 +86,25 @@ export default nix.lambda((args) => (() => {
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          __proto__: pos$20,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$14, vlans: nix.thunk(() => [1n]) })),
+          [nix.POS]: pos$20,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$14, vlans: nix.thunk(() => [1n]) })),
           boot: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             kernelModules: nix.thunk(() => ["mac80211_hwsim"]),
             extraModprobeConfig: "options mac80211_hwsim radios=1\n",
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             connman: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, true)),
               networkInterfaceBlacklist: nix.thunk(() => ["eth0"]),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             wireless: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, true)),
               interfaces: nix.thunk(() => ["wlan0"]),
             })),

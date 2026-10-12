@@ -63,19 +63,19 @@ installShellCompletion --cmd ${executable} \\
             ];
           })()));
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           devShell: nix.thunk(() => nix.app(mkShell, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               packages: nix.thunk(() => [python_with_pkgs]),
               shellHook: "cd pkgs/by-name/ni/nixos-rebuild-ng/src || true\n",
             })))),
           tests: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             "nixos-rebuild-specialisations": nix.thunk(() => nix.attr(nixosTests, "nixos-rebuild-specialisations")),
             "nixos-rebuild-store-path": nix.thunk(() => nix.attr(nixosTests, "nixos-rebuild-store-path")),
             "nixos-rebuild-target-host": nix.thunk(() => nix.attr(nixosTests, "nixos-rebuild-target-host")),
             repl: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/repl.nix"), nix.thunk(() => ({})))),
-            linters: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-linters`), nix.thunk(() => ({ __proto__: pos$2, nativeBuildInputs: nix.thunk(() => [python_with_pkgs]) })), nix.thunk(() => nix.str`export MYPY_CACHE_DIR="$(mktemp -d)"
+            linters: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-linters`), nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [python_with_pkgs]) })), nix.thunk(() => nix.str`export MYPY_CACHE_DIR="$(mktemp -d)"
 export RUFF_CACHE_DIR="$(mktemp -d)"
 
 pushd ${src}
@@ -93,7 +93,7 @@ touch $out
         };
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Rebuild your NixOS configuration and switch to it, on local hosts and remote",
         homepage: "https://github.com/NixOS/nixpkgs/tree/master/pkgs/by-name/ni/nixos-rebuild-ng",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -102,7 +102,7 @@ touch $out
         mainProgram: executable,
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

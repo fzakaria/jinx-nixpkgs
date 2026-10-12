@@ -36,14 +36,14 @@ export default nix.lambda((args) => (() => {
   const libxcrypt_legacy = nix.arg($, "libxcrypt-legacy");
   const bazelPackage = nix.thunk(() => nix.app(callPackage, nix.path(here, "./build-support/bazelPackage.nix"), nix.thunk(() => ({}))));
   const registry = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "bazelbuild",
       repo: "bazel-central-registry",
       rev: "0e9e0cfdb88577300cc369d0cbe81e678d0fb271",
       sha256: "sha256-YAR0tYVUdITfW/2H/LZky88nyoWTsgZf/CX4BtJ/Mwk=",
     }))));
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "bazelbuild",
       repo: "examples",
       rev: "2a8db5804341036b393ff7e1ba88edb30c8a82c7",
@@ -52,9 +52,9 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.app(callPackage, nix.path(here, "./build-support/patching.nix"), nix.thunk(() => ({}))));
   const addFilePatch = nix.thunk(() => nix.attr(from, "addFilePatch"));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     java: nix.thunk(() => nix.app(bazelPackage, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         src: src,
         registry: registry,
         sourceRoot: "source/java-tutorial",
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
           "--tool_java_runtime_version=local_jdk_21",
         ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "--spawn_strategy=local"))),
         env: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           JAVA_HOME: nix.thunk(() => nix.sel(jdk_headless, "home")),
           USE_BAZEL_VERSION: nix.thunk(() => nix.sel(bazel_9, "version")),
         })),
@@ -80,15 +80,15 @@ export default nix.lambda((args) => (() => {
         patches: nix.thunk(() => [
           nix.path(here, "./patches/examples/java-tutorial.patch"),
           nix.thunk(() => nix.app(addFilePatch, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               path: "b/rules_cc.patch",
               file: nix.path(here, "./patches/examples/rules_cc.patch"),
             })))),
         ]),
         bazelVendorDepsFOD: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           outputHash: nix.thunk(() => nix.sel({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             "aarch64-darwin": "sha256-eWWo7AiZSPSnWNaK3f8rCnu7uGiq6zoYT2YYTLrEMXY",
             "aarch64-linux": "sha256-AFG9Xyru6/m5bZrO4FPCMRnVuq4kpj2OqangxdHQXXM=",
             "x86_64-linux": "sha256-qviZ9GVXA3t3DihlBthpaMO01/oxotDlXSRYF/w/zvY=",
@@ -97,7 +97,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     cpp: nix.thunk(() => nix.app(bazelPackage, nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         src: src,
         registry: registry,
         sourceRoot: "source/cpp-tutorial/stage3",
@@ -108,21 +108,21 @@ export default nix.lambda((args) => (() => {
         nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), cctools)),
         commandArgs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["--host_cxxopt=-xc++", "--cxxopt=-xc++", "--spawn_strategy=local"]))),
         env: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           USE_BAZEL_VERSION: nix.thunk(() => nix.sel(bazel_9, "version")),
         })),
         patches: nix.thunk(() => [
           nix.path(here, "./patches/examples/cpp-tutorial.patch"),
           nix.thunk(() => nix.app(addFilePatch, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               path: "b/rules_cc.patch",
               file: nix.path(here, "./patches/examples/rules_cc.patch"),
             })))),
         ]),
         bazelRepoCacheFOD: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           outputHash: nix.thunk(() => nix.sel({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             "aarch64-darwin": "sha256-CbA4Kcn6656xnK6DkN4TZ7u1/mizA49Im9hRCU86TGs=",
             "aarch64-linux": "sha256-CbA4Kcn6656xnK6DkN4TZ7u1/mizA49Im9hRCU86TGs=",
             "x86_64-linux": "sha256-CbA4Kcn6656xnK6DkN4TZ7u1/mizA49Im9hRCU86TGs=",
@@ -131,7 +131,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     rust: nix.thunk(() => nix.app(bazelPackage, nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         src: src,
         registry: registry,
         sourceRoot: "source/rust-examples/01-hello-world",
@@ -139,7 +139,7 @@ export default nix.lambda((args) => (() => {
         targets: nix.thunk(() => ["//:bin"]),
         bazel: bazel_9,
         env: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           USE_BAZEL_VERSION: nix.thunk(() => nix.sel(bazel_9, "version")),
         })),
         installPhase: "mkdir $out\ncp bazel-bin/bin $out/hello-world\n",
@@ -150,15 +150,15 @@ export default nix.lambda((args) => (() => {
         patches: nix.thunk(() => [
           nix.path(here, "./patches/examples/rust-examples.patch"),
           nix.thunk(() => nix.app(addFilePatch, nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               path: "b/rules_cc.patch",
               file: nix.path(here, "./patches/examples/rules_cc.patch"),
             })))),
         ]),
         bazelVendorDepsFOD: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           outputHash: nix.thunk(() => nix.sel({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             "aarch64-darwin": "sha256-sO+LN53wkSpC8XYHzIKveWANhz1znOciS/F7muu7Vp0=",
             "aarch64-linux": "sha256-Ed5asDMPeSODDFzMN+kyYfwxVovRLqkUpWXyyaRPLtQ=",
             "x86_64-linux": "sha256-vU7cvmWvD/nyN8VKX66PWePw5yA/teRjUSlCcjXC+Rw=",

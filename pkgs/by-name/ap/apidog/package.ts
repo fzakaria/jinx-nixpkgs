@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const pname = "apidog";
   const version = "2.8.49";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://file-assets.apidog.com/download/${version}/Apidog-${version}.AppImage`),
       hash: "sha256-FLngkXkwo3oiDNbB0wVJFoJKs60wWCNB5wVjieq3tgQ=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "apidog",
       exec: "apidog %U",
       icon: "apidog",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       mimeTypes: nix.thunk(() => ["x-scheme-handler/apidog"]),
     }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       src: src,
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           description: "All-in-one API design, test, mock and documentation platform",
           homepage: "https://apidog.com",
           license: nix.thunk(() => nix.sel(nix.lookup(w, "licenses"), "unfree")),

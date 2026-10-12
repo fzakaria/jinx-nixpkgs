@@ -58,72 +58,72 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(xcfg,
 ${nix.sel(cfg, "extraConfig")}
 `)));
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     options: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       services: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         xserver: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           displayManager: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             lightdm: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               greeters: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 gtk: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                      __proto__: pos$1,
+                      [nix.POS]: pos$1,
                       type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                       default: true,
                       description: "Whether to enable lightdm-gtk-greeter as the lightdm greeter.\n",
                     })))),
                   theme: nix.thunk(() => ({
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "gnome-themes-extra", nix.thunk(() => ({})))),
                     name: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$2,
+                        [nix.POS]: pos$2,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         default: "Adwaita",
                         description: "Name of the theme to use for the lightdm-gtk-greeter.\n",
                       })))),
                   })),
                   iconTheme: nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "adwaita-icon-theme", nix.thunk(() => ({})))),
                     name: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         default: "Adwaita",
                         description: "Name of the icon theme to use for the lightdm-gtk-greeter.\n",
                       })))),
                   })),
                   cursorTheme: nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "adwaita-icon-theme", nix.thunk(() => ({})))),
                     name: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         default: "Adwaita",
                         description: "Name of the cursor theme to use for the lightdm-gtk-greeter.\n",
                       })))),
                     size: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                         default: 16n,
                         description: "Size of the cursor theme to use for the lightdm-gtk-greeter.\n",
                       })))),
                   })),
                   "clock-format": nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                       default: null,
                       example: "%F",
                       description: "Clock format string (as expected by strftime, e.g. \"%H:%M\")\nto use with the lightdm gtk greeter panel.\n\nIf set to null the default clock format is used.\n",
                     })))),
                   indicators: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))))),
                       default: null,
                       example: nix.thunk(() => [
@@ -139,7 +139,7 @@ ${nix.sel(cfg, "extraConfig")}
                       description: "List of allowed indicator modules to use for the lightdm gtk\ngreeter panel.\n\nBuilt-in indicators include \"~a11y\", \"~language\", \"~session\",\n\"~power\", \"~clock\", \"~host\", \"~spacer\". Unity indicators can be\nrepresented by short name (e.g. \"sound\", \"power\"), service file name,\nor absolute path.\n\nIf set to null the default indicators are used.\n",
                     })))),
                   extraConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                      __proto__: pos$11,
+                      [nix.POS]: pos$11,
                       type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
                       default: "",
                       description: "Extra configuration that should be put in the lightdm-gtk-greeter.conf\nconfiguration file.\n",
@@ -152,17 +152,17 @@ ${nix.sel(cfg, "extraConfig")}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(ldmcfg, "enable")) && nix.asBool(nix.sel(cfg, "enable")))), nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         services: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           xserver: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             displayManager: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               lightdm: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 greeter: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     package: nix.thunk(() => nix.sel(pkgs, "lightdm-gtk-greeter", "xgreeters")),
                     name: "lightdm-gtk-greeter",
                   })))),
@@ -171,11 +171,11 @@ ${nix.sel(cfg, "extraConfig")}
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           systemPackages: nix.thunk(() => [cursors, icons, theme]),
           etc: nix.thunk(() => ({
-            __proto__: pos$25,
-            "lightdm/lightdm-gtk-greeter.conf": nix.thunk(() => ({ __proto__: pos$24, source: gtkGreeterConf })),
+            [nix.POS]: pos$25,
+            "lightdm/lightdm-gtk-greeter.conf": nix.thunk(() => ({ [nix.POS]: pos$24, source: gtkGreeterConf })),
           })),
         })),
       })))),

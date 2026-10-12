@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const libiconv$ = nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isFreeBSD")))) ? nix.force(libiconvReal) : nix.force(libiconv)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "man-db",
       version: "2.13.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "man-db",
           repo: "man-db",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -91,12 +91,12 @@ done
       enableParallelBuilding: true,
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isMusl"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, nixos: nix.thunk(() => nix.sel(nixosTests, "man")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, nixos: nix.thunk(() => nix.sel(nixosTests, "man")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "http://man-db.nongnu.org",
         description: "Implementation of the standard Unix documentation system accessed using the man command",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

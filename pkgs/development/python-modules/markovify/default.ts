@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const unidecode = nix.arg($, "unidecode");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "markovify",
       version: "0.9.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jsvine",
           repo: "markovify",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["markovify"]),
       dependencies: nix.thunk(() => [unidecode]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extensible Markov chain generator",
         homepage: "https://github.com/jsvine/markovify",
         changelog: nix.thunk(() => nix.str`https://github.com/jsvine/markovify/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

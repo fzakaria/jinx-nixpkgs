@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "liborigin",
       version: "3.0.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://sourceforge.net/projects/liborigin/files/liborigin/3.0/liborigin-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-sb819y45iSrTUb7Uo+ckrubPpnMoHeoseMzrkEKnTlc=",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for reading OriginLab OPJ project files",
         homepage: "https://sourceforge.net/projects/liborigin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

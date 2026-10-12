@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
       const version = "1.20.0-unstable-2025-10-12";
       const pyproject = true;
       const env = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         SETUPTOOLS_SCM_PRETEND_VERSION: nix.thunk(() => nix.builtins.elemAt(nix.thunk(() => nix.builtins.split("-", version)), 0n)),
       }));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "tahoe-lafs",
           repo: "tahoe-lafs",
           rev: "7b96d16aba511fd34dcc0c14c9db754229e19531",
@@ -109,7 +109,7 @@ export default nix.lambda((args) => (() => {
       })());
       const checkPhase = "runHook preCheck\n\nversion=$SETUPTOOLS_SCM_PRETEND_VERSION runHook versionCheckHook\ntrial --rterrors allmydata\n\nrunHook postCheck\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Tahoe-LAFS, a decentralized, fault-tolerant, distributed storage system",
         mainProgram: "tahoe",
         longDescription: "Tahoe-LAFS is a secure, decentralized, fault-tolerant filesystem.\nThis filesystem is encrypted and spread over multiple peers in\nsuch a way that it remains available even when some of the peers\nare unavailable, malfunctioning, or malicious.\n",
@@ -117,7 +117,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => [
           nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
           nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               shortName: "tgppl10",
               fullName: "Transitive Grace Period Public Licence version 1.0",
               url: "https://github.com/tahoe-lafs/tahoe-lafs/blob/master/COPYING.TGPPL.rst",
@@ -130,7 +130,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

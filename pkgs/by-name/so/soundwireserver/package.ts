@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const portaudio = nix.arg($, "portaudio");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "soundwire",
       version: "3.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://web.archive.org/web/20211120182526/https://georgielabs.net/SoundWire_Server_linux64.tar.gz",
           hash: "sha256-TECuQ5WXpeikc9tXEE/wVBnRbdYd0OaIFFhsBRmaukA=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [portaudio]),
       installPhase: "install -D SoundWire-Server.desktop $out/share/applications/SoundWireServer.desktop\ninstall -D SoundWireServer $out/bin/SoundWireServer\ninstall -D sw-icon.xpm $out/share/icons/hicolor/256x256/apps/sw-icon.xpm\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Turn your Android device into wireless headphones / wireless speaker",
         homepage: "https://georgielabs.net/",
         maintainers: nix.thunk(() => (() => {

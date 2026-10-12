@@ -93,7 +93,7 @@ export default nix.lambda((args) => (() => {
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(source, "distro"));
       return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.attr(from, "url")),
       hash: nix.thunk(() => nix.attr(from, "hash")),
     };
@@ -101,7 +101,7 @@ export default nix.lambda((args) => (() => {
   const targetPkgs = (pkgs) => nix.concat(nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "stdenv", "cc"));
       return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       libcxx: nix.thunk(() => nix.attr(pkgs, "libcxx")),
       systemdLibs: nix.thunk(() => nix.attr(pkgs, "systemdLibs")),
       libpulseaudio: nix.thunk(() => nix.attr(pkgs, "libpulseaudio")),
@@ -149,7 +149,7 @@ export default nix.lambda((args) => (() => {
     };
     })())), nix.concat(nix.app(nix.sel(lib, "optionals"), withTTS, nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "speechd-minimal"))])), nix.app(nix.sel(lib, "optionals"), useFHSEnv, nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "nss"))]))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: version,
       src: src,
       meta: meta,
@@ -238,7 +238,7 @@ echo '{"name":"discord","main":"injector.js","private": true}' > $out/opt/${bina
 echo 'require("${moonlight}/injector.js").inject(require("path").join(__dirname, "../_app.asar"));' > $out/opt/${binaryName}/resources/app/injector.js
 `)))),
       desktopItem: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name: pname,
           exec: binaryName,
           icon: pname,
@@ -249,7 +249,7 @@ echo 'require("${moonlight}/injector.js").inject(require("path").join(__dirname,
           mimeTypes: nix.thunk(() => ["x-scheme-handler/discord"]),
           startupWMClass: "discord",
         })))),
-      passthru: nix.thunk(() => nix.update(passthru, { __proto__: pos$4, targetPkgs: targetPkgs })),
+      passthru: nix.thunk(() => nix.update(passthru, { [nix.POS]: pos$4, targetPkgs: targetPkgs })),
     }));
 })(), formals$1);
 //# sourceMappingURL=linux.ts.map

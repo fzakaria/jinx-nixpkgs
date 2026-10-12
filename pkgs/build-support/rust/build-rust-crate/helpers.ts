@@ -11,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     kernel: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "parsed", "kernel", "name")),
     abi: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "parsed", "abi", "name")),
     cpu: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "parsed", "cpu", "name")),
     updateFeatures: (f) => (up) => (functions) => nix.app(nix.sel(lib, "deepSeq"), f, nix.thunk(() => nix.app(nix.sel(lib, "foldl'"), (features) => (fun) => nix.app(fun, features), nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "recursiveUpdate"), f, up)), functions))),
-    mapFeatures: (features) => nix.app(nix.builtins.map, (fun) => nix.app(fun, nix.thunk(() => ({ __proto__: pos$1, features: features })))),
+    mapFeatures: (features) => nix.app(nix.builtins.map, (fun) => nix.app(fun, nix.thunk(() => ({ [nix.POS]: pos$1, features: features })))),
     mkFeatures: (feat) => nix.app(nix.sel(lib, "foldl"), (features) => (featureName) => (nix.asBool(nix.selOr(feat, () => false, nix.key(nix.force(featureName)))) ? nix.concat([featureName], features) : nix.force(features)), [], nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), feat))),
     include: (includedFiles) => (src) => nix.builtins.filterSource((path) => (type) => nix.app(nix.sel(lib, "any"), (f) => (() => {
           const p = nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.add(src, nix.add("/", f)))));

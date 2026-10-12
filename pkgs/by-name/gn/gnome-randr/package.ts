@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const version = "0.1.1";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gnome-randr",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "maxwellainatchi",
           repo: "gnome-randr-rust",
           rev: nix.thunk(() => nix.add("v", version)),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [dbus]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Xrandr-like CLI for configuring displays on GNOME/Wayland, on distros that don't support `wlr-randr`",
         homepage: "https://github.com/maxwellainatchi/gnome-randr-rust",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

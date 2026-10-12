@@ -80,11 +80,11 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w, "pygobject3"))];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "networkmanager",
       version: "1.58.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/releases/${nix.sel(finalAttrs, "version")}/downloads/NetworkManager-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-Jihkz9GYEj0+Xb6Rk3RBuX7pBZ1tcS4aW/uxxUZo0U0=",
         })))),
@@ -123,14 +123,14 @@ export default nix.lambda((args) => (() => {
       ]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             ethtool: ethtool,
             gnused: gnused,
             runtimeShell: runtimeShell,
           })))),
         nix.path(here, "./fix-install-paths.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "0001-networkmanager-bpf-Detect-ELF-ABI-version-on-ppc64.patch",
             url: "https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/commit/3c28325b9c63386e5313ce006267144e7f63417a.patch",
             hash: "sha256-SlyeykqL7Y11jEF+5l4aRXY2znHaSBhwV5lcmf88PGc=",
@@ -195,16 +195,16 @@ cp -r ${nix.sel(buildPackages, "networkmanager", "man")} $man
 `))),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             "odd-unstable": true,
             url: "https://gitlab.freedesktop.org/NetworkManager/NetworkManager.git",
           })))),
         tests: nix.thunk(() => nix.sel(nixosTests, "networking", "networkmanager")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://networkmanager.dev",
         description: "Network configuration and management tool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -219,7 +219,7 @@ cp -r ${nix.sel(buildPackages, "networkmanager", "man")} $man
           nix.thunk(() => nix.sel(lib, "systems", "inspect", "platformPatterns", "isStatic")),
         ]),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "gnome", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

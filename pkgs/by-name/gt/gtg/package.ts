@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const gobject_introspection = nix.arg($, "gobject-introspection");
   const xvfb_run = nix.arg($, "xvfb-run");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gtg",
       version: "0.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "getting-things-gnome",
           repo: "gtg",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "replace-imp-with-importlib.patch",
             url: "https://github.com/getting-things-gnome/gtg/commit/568a00a3296d12cf3b2846c59bc99d13ecba7d47.patch",
             hash: "sha256-i3F638ZGiKfSxVUZm6rzzPRpcIHLOO9dgV0SzNLSroI=",
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
       pyproject: false,
       checkPhase: "xvfb-run pytest ../tests/",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Personal tasks and TODO-list items organizer",
         mainProgram: "gtg",
         longDescription: "\"Getting Things GNOME\" (GTG) is a personal tasks and ToDo list organizer inspired by the \"Getting Things Done\" (GTD) methodology.\nGTG is intended to help you track everything you need to do and need to know, from small tasks to large projects.\n",

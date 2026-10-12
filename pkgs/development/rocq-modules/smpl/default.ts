@@ -24,29 +24,29 @@ export default nix.lambda((args) => (() => {
   const coq = nix.arg($, "coq");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       pname: "smpl",
       owner: "uds-psl",
       release: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         "8.10.2": nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           hash: "sha256-TUfTZKBgrSOT6piXRViHSGPE9NSj3bGx2XBIw6YCcEs=",
         })),
         "8.12": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           hash: "sha256-UQbDHLVBKYk++o+Y2B6ARYRYGglytsnXhguwMatjOHg=",
         })),
         "8.13": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           hash: "sha256-HxQBaIE2CjyfG4GoIXprfehqjsr/Z74YdodxMmrbzSg=",
         })),
         "8.14": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           hash: "sha256:0wmrc741j67ch4rkygjkrz5i9afi01diyyj69i24cmasvx4wad38",
         })),
         "8.15": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           hash: "sha256:0m9xlkdhilvqb0v4q9c4hzfwffbccd6029ks39xg7qbiq6zklpvp",
         })),
       })),
@@ -56,23 +56,23 @@ export default nix.lambda((args) => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "version")), nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               case: nix.thunk(() => nix.app(nix.lookup(w, "isEq"), "8.15")),
               out: "8.15",
             })),
             nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               case: nix.thunk(() => nix.app(nix.lookup(w, "isEq"), "8.14")),
               out: "8.14",
             })),
-            nix.thunk(() => ({ __proto__: pos$9, case: "8.13.2", out: "8.13" })),
-            nix.thunk(() => ({ __proto__: pos$10, case: "8.12.2", out: "8.12" })),
-            nix.thunk(() => ({ __proto__: pos$11, case: "8.10.2", out: "8.10.2" })),
+            nix.thunk(() => ({ [nix.POS]: pos$9, case: "8.13.2", out: "8.13" })),
+            nix.thunk(() => ({ [nix.POS]: pos$10, case: "8.12.2", out: "8.12" })),
+            nix.thunk(() => ({ [nix.POS]: pos$11, case: "8.10.2", out: "8.10.2" })),
           ]), null);
       })()),
       mlPlugin: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         description: "Coq plugin providing an extensible tactic similar to first",
         maintainers: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

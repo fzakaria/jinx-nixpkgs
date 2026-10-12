@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const libxkbcommon = nix.arg($, "libxkbcommon");
   const all_data = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./data.json")));
-  const system_map = nix.thunk(() => ({ __proto__: pos$1, "x86_64-linux": "amd64" }));
+  const system_map = nix.thunk(() => ({ [nix.POS]: pos$1, "x86_64-linux": "amd64" }));
   const data = nix.thunk(() => nix.sel(all_data, nix.key(nix.selOr(system_map, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))))));
   const baseUrl = "https://apt.enpass.io";
   const libPath = nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [
@@ -82,16 +82,16 @@ export default nix.lambda((args) => (() => {
       libxkbcommon,
     ])));
   const package$ = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: nix.thunk(() => nix.attr(data, "version")),
       pname: "enpass",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           sha256: nix.thunk(() => nix.attr(data, "sha256")),
           url: nix.thunk(() => nix.str`${baseUrl}/${nix.sel(data, "path")}`),
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Well known password manager",
         homepage: "https://www.enpass.io/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -130,9 +130,9 @@ wrapProgram $out/bin/Enpass \\
 `),
     }))));
   const updater = nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     update: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         name: "enpass-update-script",
         SCRIPT: nix.thunk(() => nix.builtins.toString(nix.path(here, "./update_script.py"))),
         buildInputs: nix.thunk(() => (() => {
@@ -150,6 +150,6 @@ wrapProgram $out/bin/Enpass \\
 `),
       })))),
   }));
-  return nix.update(package$, { __proto__: pos$7, refresh: updater });
+  return nix.update(package$, { [nix.POS]: pos$7, refresh: updater });
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

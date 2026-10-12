@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const luajit_2_0 = nix.arg($, "luajit_2_0");
   const luajit_2_1 = nix.arg($, "luajit_2_1");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "lupa",
       version: "2.8",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "scoder",
           repo: "lupa",
           tag: nix.thunk(() => nix.str`lupa-${nix.sel(finalAttrs, "version")}`),
@@ -61,9 +61,9 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [cython, setuptools]),
       pythonImportsCheck: nix.thunk(() => ["lupa"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "expected-third-party": nix.thunk(() => nix.app(runCommand, "lupa-expected-third-party", nix.thunk(() => ({})), nix.thunk(() => nix.str`declare -a expected=( lua51 lua52 lua53 lua54 lua55 luajit20 luajit21 )
 
 declare -a found_paths=( ${nix.sel(finalAttrs, "src")}/third-party/* )
@@ -80,7 +80,7 @@ fi
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Lua in Python",
         homepage: "https://github.com/scoder/lupa",
         changelog: nix.thunk(() => nix.str`https://github.com/scoder/lupa/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.rst`),

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const anki_utils = nix.arg($, "anki-utils");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(anki_utils, "buildAnkiAddon"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ajt-card-management",
       version: "26.2.21.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Ajatt-Tools",
           repo: "learn-now-button",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/card_management`),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Reset, Learn, and Grade cards from the card browser",
         longDescription: "Reset, Learn, and Grade cards from the card browser\n\nThis addon adds new buttons to the card browser.\n- The Learn now button immediately puts selected new cards in the learning queue.\n- The Grade now button lets you grade selected cards without opening Reviewer.\n- The Reset selected cards button lets you delete scheduling and learning information from selected cards.\n",
         homepage: "https://github.com/Ajatt-Tools/learn-now-button",

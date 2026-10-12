@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "golem";
       const version = "1.5.10";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "golemcloud",
           repo: "golem",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -53,11 +53,11 @@ exec /bin/git "$@"
       const versionCheckProgram = nix.thunk(() => [nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/golem-cli`)]);
       const doInstallCheck = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Open source durable computing platform that makes it easy to build and deploy highly reliable distributed systems",
         changelog: nix.thunk(() => nix.str`https://github.com/golemcloud/golem/releases/tag/${nix.sel(src, "tag")}`),
         homepage: "https://www.golem.cloud/",
@@ -69,7 +69,7 @@ exec /bin/git "$@"
         mainProgram: "golem-cli",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

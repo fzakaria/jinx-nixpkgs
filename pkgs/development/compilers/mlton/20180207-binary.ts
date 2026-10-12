@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mlton";
       const version = "20180207";
       const src = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/MLton/mlton/releases/download/on-${version}-release/${pname}-${version}-1.amd64-linux.tgz`),
           hash: "sha256-jkq9ufPvgcAbmJpmc03KKn9BicVWc6HIu61U58spmDg=",
         }))) : nix.builtins.throw("Architecture not supported")));
@@ -39,9 +39,9 @@ for e in mllex mlnlffigen mlprof mlyacc; do
   patchelf --set-rpath ${gmp}/lib $out/bin/$e
 done
 `);
-      const meta = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./meta.nix")), nix.thunk(() => ({ __proto__: pos$2, lib: lib }))));
+      const meta = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./meta.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, lib: lib }))));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_cov_stub = nix.arg($, "pytest-cov-stub");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pot",
       version: "0.9.6.post1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PythonOT",
           repo: "POT",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [cython, numpy, setuptools]),
       dependencies: nix.thunk(() => [numpy, scipy]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "backend-numpy": [],
         "backend-jax": nix.thunk(() => [jax, jaxlib]),
         "backend-cupy": [],
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["ot", "ot.lp"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python Optimal Transport Library",
         homepage: "https://pythonot.github.io/",
         downloadPage: "https://github.com/PythonOT/POT",

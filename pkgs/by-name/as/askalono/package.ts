@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchCrate = nix.arg($, "fetchCrate");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "askalono",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "askalono-cli",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-LwyUaU4m9fk+mG8FBfkbj9nBvd8KokwlV7cE7EBwk0Q=",
         })))),
       cargoHash: "sha256-ug79p75Oa5lsd9COWO2aIx3jN7de1QZggMFiOPAN5kQ=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to detect open source licenses from texts",
         homepage: "https://github.com/jpeddicord/askalono",
         changelog: nix.thunk(() => nix.str`https://github.com/jpeddicord/askalono/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

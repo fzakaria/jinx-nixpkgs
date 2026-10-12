@@ -251,18 +251,18 @@ ${overrideDescription}
     const name = nix.arg($_1, "name");
     const config_1 = nix.arg($_1, "config");
     return {
-      __proto__: pos$39,
+      [nix.POS]: pos$39,
       options: nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => nix.sel(types, "bool")),
             default: true,
             example: false,
             description: "If set to false, the user account will not be created. This is useful for when you wish to conditionally\ndisable user accounts.\n",
           })))),
         name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.app(nix.sel(types, "passwdEntry"), nix.thunk(() => nix.sel(types, "str")))),
             apply: (x) => (() => {
               nix.assert_((nix.asBool(nix.lt(nix.app(stringLength, x), 32n)) || nix.asBool(nix.builtins.abort(nix.thunk(() => nix.str`Username '${x}' is longer than 31 characters which is not allowed!`)))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/modules/config/users-groups.nix:148:13");
@@ -271,14 +271,14 @@ ${overrideDescription}
             description: "The name of the user account. If undefined, the name of the\nattribute set will be used.\n",
           })))),
         description: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => nix.app(nix.sel(types, "passwdEntry"), nix.thunk(() => nix.sel(types, "str")))),
             default: "",
             example: "Alice Q. User",
             description: "A short description of the user account, typically the\nuser's full name.  This is actually the “GECOS” or “comment”\nfield in {file}`/etc/passwd`.\n",
           })))),
         uid: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: nix.thunk(() => (() => {
               const w = nix.withScope(types, null);
               return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "int")));
@@ -287,19 +287,19 @@ ${overrideDescription}
             description: "The account UID. If the UID is null, a free UID is picked on\nactivation.\n",
           })))),
         isSystemUser: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             type: nix.thunk(() => nix.sel(types, "bool")),
             default: false,
             description: "Indicates if the user is a system user or not. This option\nonly has an effect if {option}`uid` is\n{option}`null`, in which case it determines whether\nthe user's UID is allocated in the range for system users\n(below 1000) or in the range for normal users (starting at\n1000).\nExactly one of `isNormalUser` and\n`isSystemUser` must be true.\n",
           })))),
         isNormalUser: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             type: nix.thunk(() => nix.sel(types, "bool")),
             default: false,
             description: "Indicates whether this is an account for a “real” user.\nThis automatically sets {option}`group` to `users`,\n{option}`createHome` to `true`,\n{option}`home` to {file}`/home/«username»`,\n{option}`useDefaultShell` to `true`,\nand {option}`isSystemUser` to `false`.\nExactly one of `isNormalUser` and `isSystemUser` must be true.\n",
           })))),
         group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             type: nix.thunk(() => nix.sel(types, "str")),
             apply: (x) => (() => {
               nix.assert_((nix.asBool(nix.lt(nix.app(stringLength, x), 32n)) || nix.asBool(nix.builtins.abort(nix.thunk(() => nix.str`Group name '${x}' is longer than 31 characters which is not allowed!`)))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/modules/config/users-groups.nix:211:13");
@@ -309,25 +309,25 @@ ${overrideDescription}
             description: "The user's primary group.",
           })))),
         extraGroups: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
             default: [],
             description: "The user's auxiliary groups.",
           })))),
         home: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             type: nix.thunk(() => nix.app(nix.sel(types, "passwdEntry"), nix.thunk(() => nix.sel(types, "path")))),
             default: "/var/empty",
             description: "The user's home directory.",
           })))),
         homeMode: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             type: nix.thunk(() => nix.app(nix.sel(types, "strMatching"), "[0-7]{1,5}")),
             default: "700",
             description: "The user's home directory mode in numeric format. See {manpage}`chmod(1)`. The mode is only applied if {option}`users.users.<name>.createHome` is true.",
           })))),
         cryptHomeLuks: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             type: nix.thunk(() => (() => {
               const w = nix.withScope(types, null);
               return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -336,7 +336,7 @@ ${overrideDescription}
             description: "Path to encrypted luks device that contains\nthe user's home directory.\n",
           })))),
         pamMount: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             type: nix.thunk(() => (() => {
               const w = nix.withScope(types, null);
               return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -345,7 +345,7 @@ ${overrideDescription}
             description: "Attributes for user's entry in\n{file}`pam_mount.conf.xml`.\nUseful attributes might include `path`,\n`options`, `fstype`, and `server`.\nSee <https://pam-mount.sourceforge.net/pam_mount.conf.5.html>\nfor more information.\n",
           })))),
         shell: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "either"), nix.thunk(() => nix.sel(types, "shellPackage")), nix.thunk(() => nix.app(nix.sel(types, "passwdEntry"), nix.thunk(() => nix.sel(types, "path")))))))),
             default: nix.thunk(() => nix.sel(pkgs, "shadow")),
             defaultText: nix.thunk(() => nix.app(literalExpression, "pkgs.shadow")),
@@ -353,58 +353,58 @@ ${overrideDescription}
             description: "The path to the user's shell. Can use shell derivations,\nlike `pkgs.bashInteractive`. Don’t\nforget to enable your shell in\n`programs` if necessary,\nlike `programs.zsh.enable = true;`.\n",
           })))),
         ignoreShellProgramCheck: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             type: nix.thunk(() => nix.sel(types, "bool")),
             default: false,
             description: "By default, nixos will check that programs.SHELL.enable is set to\ntrue if the user has a custom shell specified. If that behavior isn't\nrequired and there are custom overrides in place to make sure that the\nshell is functional, set this to true.\n",
           })))),
         subUidRanges: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             type: nix.thunk(() => (() => {
               const w = nix.withScope(types, null);
               return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), subordinateUidRange)));
             })()),
             default: [],
             example: nix.thunk(() => [
-              nix.thunk(() => ({ __proto__: pos$15, startUid: 1000n, count: 1n })),
-              nix.thunk(() => ({ __proto__: pos$16, startUid: 100001n, count: 65534n })),
+              nix.thunk(() => ({ [nix.POS]: pos$15, startUid: 1000n, count: 1n })),
+              nix.thunk(() => ({ [nix.POS]: pos$16, startUid: 100001n, count: 65534n })),
             ]),
             description: "Subordinate user ids that user is allowed to use.\nThey are set into {file}`/etc/subuid` and are used\nby `newuidmap` for user namespaces.\n",
           })))),
         subGidRanges: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             type: nix.thunk(() => (() => {
               const w = nix.withScope(types, null);
               return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), subordinateGidRange)));
             })()),
             default: [],
             example: nix.thunk(() => [
-              nix.thunk(() => ({ __proto__: pos$18, startGid: 100n, count: 1n })),
-              nix.thunk(() => ({ __proto__: pos$19, startGid: 1001n, count: 999n })),
+              nix.thunk(() => ({ [nix.POS]: pos$18, startGid: 100n, count: 1n })),
+              nix.thunk(() => ({ [nix.POS]: pos$19, startGid: 1001n, count: 999n })),
             ]),
             description: "Subordinate group ids that user is allowed to use.\nThey are set into {file}`/etc/subgid` and are used\nby `newgidmap` for user namespaces.\n",
           })))),
         autoSubUidGidRange: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             type: nix.thunk(() => nix.sel(types, "bool")),
             default: false,
             example: true,
             description: "Automatically allocate subordinate user and group ids for this user.\nAllocated range is currently always of size 65536.\n",
           })))),
         createHome: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             type: nix.thunk(() => nix.sel(types, "bool")),
             default: false,
             description: "Whether to create the home directory and ensure ownership as well as\npermissions to match the user.\n",
           })))),
         useDefaultShell: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             type: nix.thunk(() => nix.sel(types, "bool")),
             default: false,
             description: "If true, the user's shell will be set to\n{option}`users.defaultUserShell`.\n",
           })))),
         hashedPassword: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             type: nix.thunk(() => (() => {
               const w = nix.withScope(types, null);
               return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "passwdEntry"), nix.thunk(() => nix.lookup(w, "str")))));
@@ -417,7 +417,7 @@ ${hashedPasswordDescription}
 `),
           })))),
         password: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             type: nix.thunk(() => (() => {
               const w = nix.withScope(types, null);
               return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -432,7 +432,7 @@ ${passwordDescription}
 `),
           })))),
         hashedPasswordFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             type: nix.thunk(() => (() => {
               const w = nix.withScope(types, null);
               return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -448,7 +448,7 @@ ${passwordDescription}
 `),
           })))),
         passwordFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             type: nix.thunk(() => (() => {
               const w = nix.withScope(types, null);
               return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -458,7 +458,7 @@ ${passwordDescription}
             description: "Deprecated alias of hashedPasswordFile",
           })))),
         initialHashedPassword: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             type: nix.thunk(() => (() => {
               const w = nix.withScope(types, null);
               return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "passwdEntry"), nix.thunk(() => nix.lookup(w, "str")))));
@@ -476,7 +476,7 @@ ${hashedPasswordDescription}
 `),
           })))),
         initialPassword: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             type: nix.thunk(() => (() => {
               const w = nix.withScope(types, null);
               return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -497,20 +497,20 @@ ${passwordDescription}
 `),
           })))),
         packages: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "package")))),
             default: [],
             example: nix.thunk(() => nix.app(literalExpression, "[ pkgs.firefox pkgs.thunderbird ]")),
             description: "The set of packages that should be made available to the user.\nThis is in contrast to {option}`environment.systemPackages`,\nwhich adds packages to all users.\n",
           })))),
         expires: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "strMatching"), "[[:digit:]]{4}-[[:digit:]]{2}-[[:digit:]]{2}")))),
             default: null,
             description: "Set the date on which the user's account will no longer be\naccessible. The date is expressed in the format YYYY-MM-DD, or null\nto disable the expiry.\nA user whose account is locked must contact the system\nadministrator before being able to use the system again.\n",
           })))),
         linger: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "bool")))),
             example: true,
             default: null,
@@ -519,12 +519,12 @@ ${passwordDescription}
       })),
       config: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             name: nix.thunk(() => nix.app(mkDefault, name)),
             shell: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(config_1, "useDefaultShell")), nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.sel(cfg, "defaultUserShell")))))),
           })),
           nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(config_1, "isNormalUser")), nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               group: nix.thunk(() => nix.app(mkDefault, "users")),
               createHome: nix.thunk(() => nix.app(mkDefault, true)),
               home: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.str`${nix.sel(cfg, "defaultUserHome")}/${nix.sel(config_1, "name")}`))),
@@ -533,15 +533,15 @@ ${passwordDescription}
               isSystemUser: nix.thunk(() => nix.app(mkDefault, false)),
             })))),
           nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(cfg, "mutableUsers"))) && nix.asBool(!nix.eq(nix.sel(config_1, "initialPassword"), null)))), nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               password: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.sel(config_1, "initialPassword")))),
             })))),
           nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(cfg, "mutableUsers"))) && nix.asBool(!nix.eq(nix.sel(config_1, "initialHashedPassword"), null)))), nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               hashedPassword: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.sel(config_1, "initialHashedPassword")))),
             })))),
           nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(config_1, "isNormalUser")) && nix.asBool(nix.eq(nix.sel(config_1, "subUidRanges"), [])))) && nix.asBool(nix.eq(nix.sel(config_1, "subGidRanges"), [])))), nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               autoSubUidGidRange: nix.thunk(() => nix.app(mkDefault, true)),
             })))),
         ]))),
@@ -552,16 +552,16 @@ ${passwordDescription}
     const name = nix.arg($_1, "name");
     const config_1 = nix.arg($_1, "config");
     return {
-      __proto__: pos$45,
+      [nix.POS]: pos$45,
       options: nix.thunk(() => ({
-        __proto__: pos$43,
+        [nix.POS]: pos$43,
         name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             type: nix.thunk(() => nix.app(nix.sel(types, "passwdEntry"), nix.thunk(() => nix.sel(types, "str")))),
             description: "The name of the group. If undefined, the name of the attribute set\nwill be used.\n",
           })))),
         gid: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             type: nix.thunk(() => (() => {
               const w = nix.withScope(types, null);
               return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "int")));
@@ -570,7 +570,7 @@ ${passwordDescription}
             description: "The group GID. If the GID is null, a free GID is picked on\nactivation.\n",
           })))),
         members: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             type: nix.thunk(() => (() => {
               const w = nix.withScope(types, null);
               return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.app(nix.lookup(w, "passwdEntry"), nix.thunk(() => nix.lookup(w, "str")))));
@@ -580,23 +580,23 @@ ${passwordDescription}
           })))),
       })),
       config: nix.thunk(() => ({
-        __proto__: pos$44,
+        [nix.POS]: pos$44,
         name: nix.thunk(() => nix.app(mkDefault, name)),
         members: nix.thunk(() => nix.app(mapAttrsToList, (n) => (u) => nix.sel(u, "name"), nix.thunk(() => nix.app(filterAttrs, (n) => (u) => (nix.asBool(nix.sel(u, "enable")) && nix.asBool(nix.app(elem, nix.thunk(() => nix.sel(config_1, "name")), nix.thunk(() => nix.sel(u, "extraGroups"))))), nix.thunk(() => nix.sel(cfg, "users")))))),
       })),
     };
   })(), formals$3);
   const subordinateUidRange = nix.thunk(() => ({
-    __proto__: pos$49,
+    [nix.POS]: pos$49,
     options: nix.thunk(() => ({
-      __proto__: pos$48,
+      [nix.POS]: pos$48,
       startUid: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           type: nix.thunk(() => nix.sel(types, "int")),
           description: "Start of the range of subordinate user ids that user is\nallowed to use.\n",
         })))),
       count: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$47,
+          [nix.POS]: pos$47,
           type: nix.thunk(() => nix.sel(types, "int")),
           default: 1n,
           description: "Count of subordinate user ids",
@@ -604,16 +604,16 @@ ${passwordDescription}
     })),
   }));
   const subordinateGidRange = nix.thunk(() => ({
-    __proto__: pos$53,
+    [nix.POS]: pos$53,
     options: nix.thunk(() => ({
-      __proto__: pos$52,
+      [nix.POS]: pos$52,
       startGid: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$50,
+          [nix.POS]: pos$50,
           type: nix.thunk(() => nix.sel(types, "int")),
           description: "Start of the range of subordinate group ids that user is\nallowed to use.\n",
         })))),
       count: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$51,
+          [nix.POS]: pos$51,
           type: nix.thunk(() => nix.sel(types, "int")),
           default: 1n,
           description: "Count of subordinate group ids",
@@ -627,9 +627,9 @@ ${passwordDescription}
       const acc = nix.arg($_1, "acc");
       const id_1 = nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(getAttr, idAttr, nix.thunk(() => nix.app(getAttr, name, set))))));
       const exists = nix.thunk(() => nix.app(hasAttr, id_1, acc));
-      const newAcc = nix.thunk(() => nix.update(acc, nix.app(listToAttrs, nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$54, name: id_1, value: true }))]))));
-      return (nix.asBool(dup) ? nix.force(args_2) : (nix.asBool(exists) ? nix.app(trace, nix.thunk(() => nix.str`Duplicate ${idAttr} ${id_1}`), nix.thunk(() => ({ __proto__: pos$55, dup: true, acc: null }))) : { __proto__: pos$56, dup: false, acc: newAcc }));
-    })(), formals$4), nix.thunk(() => ({ __proto__: pos$57, dup: false, acc: nix.thunk(() => ({})) })), nix.thunk(() => nix.app(attrNames, set))), "dup"));
+      const newAcc = nix.thunk(() => nix.update(acc, nix.app(listToAttrs, nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$54, name: id_1, value: true }))]))));
+      return (nix.asBool(dup) ? nix.force(args_2) : (nix.asBool(exists) ? nix.app(trace, nix.thunk(() => nix.str`Duplicate ${idAttr} ${id_1}`), nix.thunk(() => ({ [nix.POS]: pos$55, dup: true, acc: null }))) : { [nix.POS]: pos$56, dup: false, acc: newAcc }));
+    })(), formals$4), nix.thunk(() => ({ [nix.POS]: pos$57, dup: false, acc: nix.thunk(() => ({})) })), nix.thunk(() => nix.app(attrNames, set))), "dup"));
   const uidsAreUnique = nix.thunk(() => nix.app(idsAreUnique, nix.thunk(() => nix.app(filterAttrs, (n) => (u) => !nix.eq(nix.sel(u, "uid"), null), nix.thunk(() => nix.sel(cfg, "users")))), "uid"));
   const gidsAreUnique = nix.thunk(() => nix.app(idsAreUnique, nix.thunk(() => nix.app(filterAttrs, (n) => (g) => !nix.eq(nix.sel(g, "gid"), null), nix.thunk(() => nix.sel(cfg, "groups")))), "gid"));
   const sdInitrdUidsAreUnique = nix.thunk(() => nix.app(idsAreUnique, nix.thunk(() => nix.app(filterAttrs, (n) => (u) => !nix.eq(nix.sel(u, "uid"), null), nix.thunk(() => nix.sel(config, "boot", "initrd", "systemd", "users")))), "uid"));
@@ -638,10 +638,10 @@ ${passwordDescription}
   const usersWithoutExistingGroup = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (n) => (u) => (nix.asBool(!nix.eq(nix.sel(u, "group"), "")) && nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "elem"), nix.thunk(() => nix.sel(u, "group")), groupNames)))), nix.thunk(() => nix.sel(cfg, "users"))));
   const usersWithNullShells = nix.thunk(() => nix.app(attrNames, nix.thunk(() => nix.app(filterAttrs, (name) => (cfg_1) => nix.eq(nix.sel(cfg_1, "shell"), null), nix.thunk(() => nix.sel(cfg, "users"))))));
   const spec = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "users-groups.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-        __proto__: pos$59,
+        [nix.POS]: pos$59,
         mutableUsers: nix.thunk(() => nix.attr(cfg, "mutableUsers")),
         users: nix.thunk(() => nix.app(mapAttrsToList, (_) => (u) => ({
-            __proto__: pos$58,
+            [nix.POS]: pos$58,
             name: nix.thunk(() => nix.attr(u, "name")),
             uid: nix.thunk(() => nix.attr(u, "uid")),
             group: nix.thunk(() => nix.attr(u, "group")),
@@ -668,46 +668,46 @@ ${passwordDescription}
     return nix.app(filter, nix.thunk(() => nix.sel(types, "shellPackage", "check")), shells);
   })());
   return {
-    __proto__: pos$151,
+    [nix.POS]: pos$151,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(mkAliasOptionModule, nix.thunk(() => ["users", "extraUsers"]), nix.thunk(() => ["users", "users"]))),
       nix.thunk(() => nix.app(mkAliasOptionModule, nix.thunk(() => ["users", "extraGroups"]), nix.thunk(() => ["users", "groups"]))),
       nix.thunk(() => nix.app(mkRenamedOptionModule, nix.thunk(() => ["security", "initialRootPassword"]), nix.thunk(() => ["users", "users", "root", "initialHashedPassword"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$85,
+      [nix.POS]: pos$85,
       users: nix.thunk(() => ({
-        __proto__: pos$71,
+        [nix.POS]: pos$71,
         mutableUsers: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$60,
+            [nix.POS]: pos$60,
             type: nix.thunk(() => nix.sel(types, "bool")),
             default: true,
             description: "If set to `true`, you are free to add new users and groups to the system\nwith the ordinary `useradd` and\n`groupadd` commands. On system activation, the\nexisting contents of the `/etc/passwd` and\n`/etc/group` files will be merged with the\ncontents generated from the `users.users` and\n`users.groups` options.\nThe initial password for a user will be set\naccording to `users.users`, but existing passwords\nwill not be changed.\n\n::: {.warning}\nIf set to `false`, the contents of the user and\ngroup files will simply be replaced on system activation. This also\nholds for the user passwords; all changed\npasswords will be reset according to the\n`users.users` configuration on activation.\n:::\n",
           })))),
         enforceIdUniqueness: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$61,
+            [nix.POS]: pos$61,
             type: nix.thunk(() => nix.sel(types, "bool")),
             default: true,
             description: "Whether to require that no two users/groups share the same uid/gid.\n",
           })))),
         manageLingering: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$62,
+            [nix.POS]: pos$62,
             type: nix.thunk(() => nix.sel(types, "bool")),
             default: true,
             description: "Whether to manage whether users linger or not.",
             example: false,
           })))),
         users: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$65,
+            [nix.POS]: pos$65,
             default: nix.thunk(() => ({})),
             type: nix.thunk(() => (() => {
               const w = nix.withScope(types, null);
               return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), userOpts)));
             })()),
             example: nix.thunk(() => ({
-              __proto__: pos$64,
+              [nix.POS]: pos$64,
               alice: nix.thunk(() => ({
-                __proto__: pos$63,
+                [nix.POS]: pos$63,
                 uid: 1234n,
                 description: "Alice Q. User",
                 home: "/home/alice",
@@ -720,11 +720,11 @@ ${passwordDescription}
             description: "Additional user accounts to be created automatically by the system.\nThis can also be used to set options for root.\n",
           })))),
         groups: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$68,
+            [nix.POS]: pos$68,
             default: nix.thunk(() => ({})),
             example: nix.thunk(() => ({
-              __proto__: pos$67,
-              students: nix.thunk(() => ({ __proto__: pos$66, gid: 1001n })),
+              [nix.POS]: pos$67,
+              students: nix.thunk(() => ({ [nix.POS]: pos$66, gid: 1001n })),
               hackers: nix.thunk(() => ({})),
             })),
             type: nix.thunk(() => (() => {
@@ -734,51 +734,51 @@ ${passwordDescription}
             description: "Additional groups to be created automatically by the system.\n",
           })))),
         allowNoPasswordLogin: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$69,
+            [nix.POS]: pos$69,
             type: nix.thunk(() => nix.sel(types, "bool")),
             default: false,
             description: "Disable checking that at least the `root` user or a user in the `wheel` group can log in using\na password or an SSH key.\n\nWARNING: enabling this can lock you out of your system. Enable this only if you know what are you doing.\n",
           })))),
         defaultUserHome: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$70,
+            [nix.POS]: pos$70,
             type: nix.thunk(() => nix.sel(types, "str")),
             default: "/home",
             description: "The default home directory for normal users.\n",
           })))),
       })),
       boot: nix.thunk(() => ({
-        __proto__: pos$84,
+        [nix.POS]: pos$84,
         initrd: nix.thunk(() => ({
-          __proto__: pos$83,
+          [nix.POS]: pos$83,
           systemd: nix.thunk(() => ({
-            __proto__: pos$82,
+            [nix.POS]: pos$82,
             users: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$77,
+                [nix.POS]: pos$77,
                 description: "Users to include in initrd.\n",
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.lambda((args_1) => (() => {
                       const $_1 = nix.formals(args_1, formals$5);
                       const name = nix.arg($_1, "name");
                       return {
-                        __proto__: pos$76,
+                        [nix.POS]: pos$76,
                         options: nix.thunk(() => ({
-                          __proto__: pos$75,
+                          [nix.POS]: pos$75,
                           uid: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$72,
+                              [nix.POS]: pos$72,
                               type: nix.thunk(() => nix.sel(types, "int")),
                               description: "ID of the user in initrd.\n",
                               defaultText: nix.thunk(() => nix.app(literalExpression, "config.users.users.${name}.uid")),
                               default: nix.thunk(() => nix.sel(cfg, "users", nix.key(nix.force(name)), "uid")),
                             })))),
                           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$73,
+                              [nix.POS]: pos$73,
                               type: nix.thunk(() => nix.sel(types, "singleLineStr")),
                               description: "Group the user belongs to in initrd.\n",
                               defaultText: nix.thunk(() => nix.app(literalExpression, "config.users.users.${name}.group")),
                               default: nix.thunk(() => nix.sel(cfg, "users", nix.key(nix.force(name)), "group")),
                             })))),
                           shell: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$74,
+                              [nix.POS]: pos$74,
                               type: nix.thunk(() => nix.app(nix.sel(types, "passwdEntry"), nix.thunk(() => nix.sel(types, "path")))),
                               description: "The path to the user's shell in initrd.\n",
                               default: nix.thunk(() => nix.str`${nix.sel(pkgs, "shadow")}/bin/nologin`),
@@ -789,18 +789,18 @@ ${passwordDescription}
                     })(), formals$5))))),
               })))),
             groups: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$81,
+                [nix.POS]: pos$81,
                 description: "Groups to include in initrd.\n",
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.lambda((args_1) => (() => {
                       const $_1 = nix.formals(args_1, formals$6);
                       const name = nix.arg($_1, "name");
                       return {
-                        __proto__: pos$80,
+                        [nix.POS]: pos$80,
                         options: nix.thunk(() => ({
-                          __proto__: pos$79,
+                          [nix.POS]: pos$79,
                           gid: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$78,
+                              [nix.POS]: pos$78,
                               type: nix.thunk(() => nix.sel(types, "int")),
                               description: "ID of the group in initrd.\n",
                               defaultText: nix.thunk(() => nix.app(literalExpression, "config.users.groups.${name}.gid")),
@@ -817,13 +817,13 @@ ${passwordDescription}
     config: nix.thunk(() => (() => {
       const cryptSchemeIdPatternGroup = nix.thunk(() => nix.str`(${nix.app(nix.sel(lib, "concatStringsSep"), "|", nix.thunk(() => nix.sel(pkgs, "libxcrypt", "enabledCryptSchemeIds")))})`);
       return {
-        __proto__: pos$150,
+        [nix.POS]: pos$150,
         users: nix.thunk(() => ({
-          __proto__: pos$114,
+          [nix.POS]: pos$114,
           users: nix.thunk(() => ({
-            __proto__: pos$88,
+            [nix.POS]: pos$88,
             root: nix.thunk(() => ({
-              __proto__: pos$86,
+              [nix.POS]: pos$86,
               uid: nix.thunk(() => nix.sel(ids, "uids", "root")),
               description: nix.thunk(() => nix.app(mkDefault, "System administrator")),
               home: "/root",
@@ -831,7 +831,7 @@ ${passwordDescription}
               group: "root",
             })),
             nobody: nix.thunk(() => ({
-              __proto__: pos$87,
+              [nix.POS]: pos$87,
               uid: nix.thunk(() => nix.sel(ids, "uids", "nobody")),
               isSystemUser: true,
               description: nix.thunk(() => nix.app(mkDefault, "Unprivileged account (don't use!)")),
@@ -839,39 +839,39 @@ ${passwordDescription}
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$113,
-            root: nix.thunk(() => ({ __proto__: pos$89, gid: nix.thunk(() => nix.sel(ids, "gids", "root")) })),
-            wheel: nix.thunk(() => ({ __proto__: pos$90, gid: nix.thunk(() => nix.sel(ids, "gids", "wheel")) })),
-            disk: nix.thunk(() => ({ __proto__: pos$91, gid: nix.thunk(() => nix.sel(ids, "gids", "disk")) })),
-            kmem: nix.thunk(() => ({ __proto__: pos$92, gid: nix.thunk(() => nix.sel(ids, "gids", "kmem")) })),
-            tty: nix.thunk(() => ({ __proto__: pos$93, gid: nix.thunk(() => nix.sel(ids, "gids", "tty")) })),
-            floppy: nix.thunk(() => ({ __proto__: pos$94, gid: nix.thunk(() => nix.sel(ids, "gids", "floppy")) })),
-            uucp: nix.thunk(() => ({ __proto__: pos$95, gid: nix.thunk(() => nix.sel(ids, "gids", "uucp")) })),
-            lp: nix.thunk(() => ({ __proto__: pos$96, gid: nix.thunk(() => nix.sel(ids, "gids", "lp")) })),
-            cdrom: nix.thunk(() => ({ __proto__: pos$97, gid: nix.thunk(() => nix.sel(ids, "gids", "cdrom")) })),
-            tape: nix.thunk(() => ({ __proto__: pos$98, gid: nix.thunk(() => nix.sel(ids, "gids", "tape")) })),
-            audio: nix.thunk(() => ({ __proto__: pos$99, gid: nix.thunk(() => nix.sel(ids, "gids", "audio")) })),
-            video: nix.thunk(() => ({ __proto__: pos$100, gid: nix.thunk(() => nix.sel(ids, "gids", "video")) })),
-            dialout: nix.thunk(() => ({ __proto__: pos$101, gid: nix.thunk(() => nix.sel(ids, "gids", "dialout")) })),
-            nogroup: nix.thunk(() => ({ __proto__: pos$102, gid: nix.thunk(() => nix.sel(ids, "gids", "nogroup")) })),
-            users: nix.thunk(() => ({ __proto__: pos$103, gid: nix.thunk(() => nix.sel(ids, "gids", "users")) })),
-            nixbld: nix.thunk(() => ({ __proto__: pos$104, gid: nix.thunk(() => nix.sel(ids, "gids", "nixbld")) })),
-            utmp: nix.thunk(() => ({ __proto__: pos$105, gid: nix.thunk(() => nix.sel(ids, "gids", "utmp")) })),
-            adm: nix.thunk(() => ({ __proto__: pos$106, gid: nix.thunk(() => nix.sel(ids, "gids", "adm")) })),
-            input: nix.thunk(() => ({ __proto__: pos$107, gid: nix.thunk(() => nix.sel(ids, "gids", "input")) })),
-            kvm: nix.thunk(() => ({ __proto__: pos$108, gid: nix.thunk(() => nix.sel(ids, "gids", "kvm")) })),
-            render: nix.thunk(() => ({ __proto__: pos$109, gid: nix.thunk(() => nix.sel(ids, "gids", "render")) })),
-            sgx: nix.thunk(() => ({ __proto__: pos$110, gid: nix.thunk(() => nix.sel(ids, "gids", "sgx")) })),
-            shadow: nix.thunk(() => ({ __proto__: pos$111, gid: nix.thunk(() => nix.sel(ids, "gids", "shadow")) })),
-            clock: nix.thunk(() => ({ __proto__: pos$112, gid: nix.thunk(() => nix.sel(ids, "gids", "clock")) })),
+            [nix.POS]: pos$113,
+            root: nix.thunk(() => ({ [nix.POS]: pos$89, gid: nix.thunk(() => nix.sel(ids, "gids", "root")) })),
+            wheel: nix.thunk(() => ({ [nix.POS]: pos$90, gid: nix.thunk(() => nix.sel(ids, "gids", "wheel")) })),
+            disk: nix.thunk(() => ({ [nix.POS]: pos$91, gid: nix.thunk(() => nix.sel(ids, "gids", "disk")) })),
+            kmem: nix.thunk(() => ({ [nix.POS]: pos$92, gid: nix.thunk(() => nix.sel(ids, "gids", "kmem")) })),
+            tty: nix.thunk(() => ({ [nix.POS]: pos$93, gid: nix.thunk(() => nix.sel(ids, "gids", "tty")) })),
+            floppy: nix.thunk(() => ({ [nix.POS]: pos$94, gid: nix.thunk(() => nix.sel(ids, "gids", "floppy")) })),
+            uucp: nix.thunk(() => ({ [nix.POS]: pos$95, gid: nix.thunk(() => nix.sel(ids, "gids", "uucp")) })),
+            lp: nix.thunk(() => ({ [nix.POS]: pos$96, gid: nix.thunk(() => nix.sel(ids, "gids", "lp")) })),
+            cdrom: nix.thunk(() => ({ [nix.POS]: pos$97, gid: nix.thunk(() => nix.sel(ids, "gids", "cdrom")) })),
+            tape: nix.thunk(() => ({ [nix.POS]: pos$98, gid: nix.thunk(() => nix.sel(ids, "gids", "tape")) })),
+            audio: nix.thunk(() => ({ [nix.POS]: pos$99, gid: nix.thunk(() => nix.sel(ids, "gids", "audio")) })),
+            video: nix.thunk(() => ({ [nix.POS]: pos$100, gid: nix.thunk(() => nix.sel(ids, "gids", "video")) })),
+            dialout: nix.thunk(() => ({ [nix.POS]: pos$101, gid: nix.thunk(() => nix.sel(ids, "gids", "dialout")) })),
+            nogroup: nix.thunk(() => ({ [nix.POS]: pos$102, gid: nix.thunk(() => nix.sel(ids, "gids", "nogroup")) })),
+            users: nix.thunk(() => ({ [nix.POS]: pos$103, gid: nix.thunk(() => nix.sel(ids, "gids", "users")) })),
+            nixbld: nix.thunk(() => ({ [nix.POS]: pos$104, gid: nix.thunk(() => nix.sel(ids, "gids", "nixbld")) })),
+            utmp: nix.thunk(() => ({ [nix.POS]: pos$105, gid: nix.thunk(() => nix.sel(ids, "gids", "utmp")) })),
+            adm: nix.thunk(() => ({ [nix.POS]: pos$106, gid: nix.thunk(() => nix.sel(ids, "gids", "adm")) })),
+            input: nix.thunk(() => ({ [nix.POS]: pos$107, gid: nix.thunk(() => nix.sel(ids, "gids", "input")) })),
+            kvm: nix.thunk(() => ({ [nix.POS]: pos$108, gid: nix.thunk(() => nix.sel(ids, "gids", "kvm")) })),
+            render: nix.thunk(() => ({ [nix.POS]: pos$109, gid: nix.thunk(() => nix.sel(ids, "gids", "render")) })),
+            sgx: nix.thunk(() => ({ [nix.POS]: pos$110, gid: nix.thunk(() => nix.sel(ids, "gids", "sgx")) })),
+            shadow: nix.thunk(() => ({ [nix.POS]: pos$111, gid: nix.thunk(() => nix.sel(ids, "gids", "shadow")) })),
+            clock: nix.thunk(() => ({ [nix.POS]: pos$112, gid: nix.thunk(() => nix.sel(ids, "gids", "clock")) })),
           })),
         })),
         system: nix.thunk(() => ({
-          __proto__: pos$117,
+          [nix.POS]: pos$117,
           activationScripts: nix.thunk(() => ({
-            __proto__: pos$116,
+            [nix.POS]: pos$116,
             users: nix.thunk(() => (nix.asBool((nix.asBool(!nix.asBool(nix.sel(config, "systemd", "sysusers", "enable"))) && nix.asBool(!nix.asBool(nix.sel(config, "services", "userborn", "enable"))))) ? {
-              __proto__: pos$115,
+              [nix.POS]: pos$115,
               supportsDryActivation: true,
               text: nix.thunk(() => nix.str`install -m 0700 -d /root
 install -m 0755 -d /home
@@ -888,11 +888,11 @@ ${nix.app(nix.sel(pkgs, "perl", "withPackages"), (p) => [
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$122,
+          [nix.POS]: pos$122,
           services: nix.thunk(() => ({
-            __proto__: pos$121,
+            [nix.POS]: pos$121,
             "linger-users": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "manageLingering")), nix.thunk(() => ({
-                __proto__: pos$120,
+                [nix.POS]: pos$120,
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 after: nix.thunk(() => ["systemd-logind.service"]),
                 requires: nix.thunk(() => ["systemd-logind.service"]),
@@ -902,7 +902,7 @@ ${nix.app(nix.sel(pkgs, "perl", "withPackages"), (p) => [
                   const lingeringUserNames = nix.thunk(() => nix.app(mapAttrsToList, (n) => (v) => nix.sel(v, "name"), lingeringUsers));
                   const nonLingeringUserNames = nix.thunk(() => nix.app(mapAttrsToList, (n) => (v) => nix.sel(v, "name"), nonLingeringUsers));
                   return nix.str`${nix.app(nix.sel(lib, "strings", "toShellVars"), nix.thunk(() => ({
-                      __proto__: pos$118,
+                      [nix.POS]: pos$118,
                       lingeringUserNames: lingeringUserNames,
                       nonLingeringUserNames: nonLingeringUserNames,
                     })))}
@@ -934,7 +934,7 @@ fi
 `;
                 })()),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$119,
+                  [nix.POS]: pos$119,
                   Type: "oneshot",
                   StateDirectory: "systemd/linger",
                   WorkingDirectory: "/var/lib/systemd/linger",
@@ -943,22 +943,22 @@ fi
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$126,
+          [nix.POS]: pos$126,
           systemPackages: systemShells,
           etc: nix.thunk(() => nix.app(mapAttrs$, (_) => nix.lambda((args_1) => (() => {
               const $_1 = nix.formals(args_1, formals$7);
               const packages = nix.arg($_1, "packages");
               const name = nix.arg($_1, "name");
               return {
-                __proto__: pos$125,
+                [nix.POS]: pos$125,
                 name: nix.thunk(() => nix.str`profiles/per-user/${name}`),
                 value: nix.thunk(() => ({
-                  __proto__: pos$124,
+                  [nix.POS]: pos$124,
                   source: nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => (() => {
                       const from = nix.thunk(() => nix.sel(config, "environment"));
                       const from_1 = nix.thunk(() => nix.sel(config, "system", "path"));
                       return {
-                      __proto__: pos$123,
+                      [nix.POS]: pos$123,
                       name: "user-environment",
                       paths: packages,
                       pathsToLink: nix.thunk(() => nix.attr(from, "pathsToLink")),
@@ -978,15 +978,15 @@ fi
           ]),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$136,
+          [nix.POS]: pos$136,
           initrd: nix.thunk(() => ({
-            __proto__: pos$135,
+            [nix.POS]: pos$135,
             systemd: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "boot", "initrd", "systemd", "enable")), nix.thunk(() => ({
-                __proto__: pos$134,
+                [nix.POS]: pos$134,
                 contents: nix.thunk(() => ({
-                  __proto__: pos$130,
+                  [nix.POS]: pos$130,
                   "/etc/passwd": nix.thunk(() => ({
-                    __proto__: pos$127,
+                    [nix.POS]: pos$127,
                     text: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (n) => nix.lambda((args_1) => (() => {
                           const $_1 = nix.formals(args_1, formals$8);
                           const uid = nix.arg($_1, "uid");
@@ -998,7 +998,7 @@ fi
 `),
                   })),
                   "/etc/group": nix.thunk(() => ({
-                    __proto__: pos$128,
+                    [nix.POS]: pos$128,
                     text: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (n) => nix.lambda((args_1) => (() => {
                           const $_1 = nix.formals(args_1, formals$9);
                           const gid = nix.arg($_1, "gid");
@@ -1007,21 +1007,21 @@ fi
 `),
                   })),
                   "/etc/shells": nix.thunk(() => ({
-                    __proto__: pos$129,
+                    [nix.POS]: pos$129,
                     text: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (_) => (u) => nix.sel(u, "shell"), nix.thunk(() => nix.sel(config, "boot", "initrd", "systemd", "users"))))))), "\n")),
                   })),
                 })),
                 storePaths: nix.thunk(() => [nix.thunk(() => nix.str`${nix.sel(pkgs, "shadow")}/bin/nologin`)]),
                 users: nix.thunk(() => ({
-                  __proto__: pos$132,
+                  [nix.POS]: pos$132,
                   root: nix.thunk(() => ({
-                    __proto__: pos$131,
+                    [nix.POS]: pos$131,
                     shell: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/bin/bash")),
                   })),
                   nobody: nix.thunk(() => ({})),
                 })),
                 groups: nix.thunk(() => ({
-                  __proto__: pos$133,
+                  [nix.POS]: pos$133,
                   root: nix.thunk(() => ({})),
                   nogroup: nix.thunk(() => ({})),
                   "systemd-journal": nix.thunk(() => ({})),
@@ -1045,17 +1045,17 @@ fi
         })),
         assertions: nix.thunk(() => nix.concat([
           nix.thunk(() => ({
-            __proto__: pos$137,
+            [nix.POS]: pos$137,
             assertion: nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(cfg, "enforceIdUniqueness"))) || nix.asBool((nix.asBool(uidsAreUnique) && nix.asBool(gidsAreUnique))))),
             message: "UIDs and GIDs must be unique!",
           })),
           nix.thunk(() => ({
-            __proto__: pos$138,
+            [nix.POS]: pos$138,
             assertion: nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(cfg, "enforceIdUniqueness"))) || nix.asBool((nix.asBool(sdInitrdUidsAreUnique) && nix.asBool(sdInitrdGidsAreUnique))))),
             message: "systemd initrd UIDs and GIDs must be unique!",
           })),
           nix.thunk(() => ({
-            __proto__: pos$139,
+            [nix.POS]: pos$139,
             assertion: nix.thunk(() => nix.eq(usersWithoutExistingGroup, {})),
             message: nix.thunk(() => (() => {
               const errUsers = nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), usersWithoutExistingGroup));
@@ -1068,7 +1068,7 @@ Hint: Add this to your NixOS configuration:
             })()),
           })),
           nix.thunk(() => ({
-            __proto__: pos$140,
+            [nix.POS]: pos$140,
             assertion: nix.thunk(() => (!nix.asBool(!nix.asBool(nix.sel(cfg, "mutableUsers"))) || nix.asBool(nix.eq(nix.app(length, usersWithNullShells), 0n)))),
             message: nix.thunk(() => nix.str`users.mutableUsers = false has been set,
 but found users that have their shell set to null.
@@ -1077,12 +1077,12 @@ Misconfigured users: ${nix.app(nix.sel(lib, "concatStringsSep"), " ", usersWithN
 `),
           })),
           nix.thunk(() => ({
-            __proto__: pos$141,
+            [nix.POS]: pos$141,
             assertion: nix.thunk(() => (!nix.asBool(!nix.asBool(nix.sel(cfg, "mutableUsers"))) || nix.asBool((!nix.asBool(!nix.asBool(nix.sel(cfg, "allowNoPasswordLogin"))) || nix.asBool(nix.app(any, id, nix.thunk(() => nix.concat(nix.app(mapAttrsToList, (name) => (user) => (nix.asBool((nix.asBool((nix.asBool((nix.asBool(nix.eq(name, "root")) || nix.asBool(nix.eq(nix.sel(user, "group"), "wheel")))) || nix.asBool(nix.app(elem, "wheel", nix.thunk(() => nix.sel(user, "extraGroups")))))) || nix.asBool(nix.app(elem, name, nix.thunk(() => nix.selOr(cfg, () => [], "groups", "wheel", "members")))))) && nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool(nix.app(allowsLogin, nix.thunk(() => nix.sel(user, "hashedPassword")))) || nix.asBool(!nix.eq(nix.sel(user, "password"), null)))) || nix.asBool(!nix.eq(nix.sel(user, "hashedPasswordFile"), null)))) || nix.asBool(!nix.eq(nix.sel(user, "openssh", "authorizedKeys", "keys"), [])))) || nix.asBool(!nix.eq(nix.sel(user, "openssh", "authorizedKeys", "keyFiles"), []))))), nix.thunk(() => nix.sel(cfg, "users"))), [nix.thunk(() => nix.sel(config, "security", "googleOsLogin", "enable"))])))))))),
             message: "Neither the root account nor any wheel user has a password or SSH authorized key.\nYou must set one to prevent being locked out of your system.\nIf you really want to be locked out of your system, set users.allowNoPasswordLogin = true;\nHowever you are most probably better off by setting users.mutableUsers = true; and\nmanually running passwd root to set the root password.\n",
           })),
         ], nix.concat(nix.app(flip, mapAttrsToList, nix.thunk(() => nix.sel(config, "boot", "initrd", "systemd", "users")), (name) => (user) => ({
-            __proto__: pos$142,
+            [nix.POS]: pos$142,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable")) || nix.asBool(!nix.eq(nix.builtins.baseNameOf(nix.thunk(() => nix.sel(user, "shell"))), "cryptsetup-askpass")))),
             message: nix.thunk(() => nix.str`cryptsetup-askpass is not available in systemd stage 1. Please remove it from: boot.initrd.systemd.users.${name}.shell
 
@@ -1092,13 +1092,13 @@ Use \`systemctl default\` instead; see the NixOS 26.05 release notes for details
               nix.thunk(() => (() => {
                 const nameRegex = "[a-zA-Z0-9_.][a-zA-Z0-9_.-]*";
                 return {
-                  __proto__: pos$143,
+                  [nix.POS]: pos$143,
                   assertion: nix.thunk(() => !nix.eq(nix.builtins.match(nameRegex, nix.thunk(() => nix.sel(user, "name"))), null)),
                   message: nix.thunk(() => nix.str`The username "${nix.sel(user, "name")}" is not valid, it does not match the regex "${nameRegex}".`),
                 };
               })()),
               nix.thunk(() => ({
-                __proto__: pos$144,
+                [nix.POS]: pos$144,
                 assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(user, "hashedPassword"), null)) || nix.asBool(nix.eq(nix.app(match, ".*:.*", nix.thunk(() => nix.sel(user, "hashedPassword"))), null)))),
                 message: nix.thunk(() => nix.str`The password hash of user "${nix.sel(user, "name")}" contains a ":" character.
 This is invalid and would break the login system because the fields
@@ -1106,7 +1106,7 @@ of /etc/shadow (file where hashes are stored) are colon-separated.
 Please check the value of option \`users.users."${nix.sel(user, "name")}".hashedPassword\`.`),
               })),
               nix.thunk(() => ({
-                __proto__: pos$145,
+                [nix.POS]: pos$145,
                 assertion: nix.thunk(() => (!nix.asBool((nix.asBool(nix.sel(user, "isNormalUser")) && nix.asBool(!nix.eq(nix.sel(user, "uid"), null)))) || nix.asBool(nix.ge(nix.sel(user, "uid"), 1000n)))),
                 message: nix.thunk(() => nix.str`A user cannot have a users.users.${nix.sel(user, "name")}.uid set below 1000 and set users.users.${nix.sel(user, "name")}.isNormalUser.
 Either users.users.${nix.sel(user, "name")}.isSystemUser must be set to true instead of users.users.${nix.sel(user, "name")}.isNormalUser
@@ -1114,7 +1114,7 @@ or users.users.${nix.sel(user, "name")}.uid must be changed to 1000 or above.
 `),
               })),
               nix.thunk(() => ({
-                __proto__: pos$146,
+                [nix.POS]: pos$146,
                 assertion: nix.thunk(() => (() => {
                   const isEffectivelySystemUser = nix.thunk(() => (nix.asBool(nix.sel(user, "isSystemUser")) || nix.asBool((nix.asBool((nix.asBool(!nix.eq(nix.sel(user, "uid"), null)) && nix.asBool(nix.lt(nix.sel(user, "uid"), 1000n)))) && nix.asBool(!nix.asBool(nix.sel(user, "isNormalUser")))))));
                   return nix.app(xor, isEffectivelySystemUser, nix.thunk(() => nix.sel(user, "isNormalUser")));
@@ -1123,7 +1123,7 @@ or users.users.${nix.sel(user, "name")}.uid must be changed to 1000 or above.
 `),
               })),
               nix.thunk(() => ({
-                __proto__: pos$147,
+                [nix.POS]: pos$147,
                 assertion: nix.thunk(() => !nix.eq(nix.sel(user, "group"), "")),
                 message: nix.thunk(() => nix.str`users.users.${nix.sel(user, "name")}.group is unset. This used to default to
 nogroup, but this is unsafe. For example you can create a group
@@ -1133,7 +1133,7 @@ users.groups.${nix.sel(user, "name")} = {};
 `),
               })),
               nix.thunk(() => ({
-                __proto__: pos$148,
+                [nix.POS]: pos$148,
                 assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(user, "linger"), null)) || nix.asBool(nix.sel(cfg, "manageLingering")))),
                 message: nix.thunk(() => nix.str`users.manageLingering is set to false, but
 users.users.${nix.sel(user, "name")}.linger is configured.
@@ -1149,7 +1149,7 @@ least "25.11".
 `),
               })),
             ], nix.builtins.map((shell) => ({
-                __proto__: pos$149,
+                [nix.POS]: pos$149,
                 assertion: nix.thunk(() => (!nix.asBool(!nix.asBool(nix.sel(user, "ignoreShellProgramCheck"))) || nix.asBool((!nix.asBool(nix.eq(nix.sel(user, "shell"), nix.sel(pkgs, nix.key(nix.force(shell))))) || nix.asBool(nix.eq(nix.sel(config, "programs", nix.key(nix.force(shell)), "enable"), true)))))),
                 message: nix.thunk(() => nix.str`users.users.${nix.sel(user, "name")}.shell is set to ${shell}, but
 programs.${shell}.enable is not true. This will cause the ${shell}

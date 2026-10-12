@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "x-create-mouse-void";
       const version = "0.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cas--",
           repo: "XCreateMouseVoid",
           rev: version,
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [libx11]);
       const installPhase = "runHook preInstall\nmkdir -pv $out/bin\ncp -a XCreateMouseVoid $out/bin/x-create-mouse-void\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/cas--/XCreateMouseVoid",
         description: "Creates an undecorated black window and prevents the mouse from entering that window",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
         mainProgram: "x-create-mouse-void",
       }));
-      return { __proto__: pos$3, pname, version, src, buildInputs, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, buildInputs, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

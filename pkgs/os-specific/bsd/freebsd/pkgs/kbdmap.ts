@@ -12,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const mkDerivation = nix.arg($, "mkDerivation");
   const libbsddialog = nix.arg($, "libbsddialog");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "usr.sbin/kbdmap",
       outputs: nix.thunk(() => ["out", "man", "debug"]),
       buildInputs: nix.thunk(() => [libbsddialog]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "kbdmap" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "kbdmap" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=kbdmap.ts.map

@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const writeScript = nix.arg($, "writeScript");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libxcb-util",
       version: "0.4.1",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://xorg/individual/xcb/xcb-util-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-Wr47u9jlTw+j7JRSkbfo+oz9PMzENxj4dYQw+UEm5RI=",
         })))),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libxcb]),
       propagatedBuildInputs: nix.thunk(() => [libxcb]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(writeScript, nix.thunk(() => nix.str`update-${nix.sel(finalAttrs, "pname")}`), nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p common-updater-scripts
 version="$(list-directory-versions --pname xcb-util \\
@@ -42,12 +42,12 @@ version="$(list-directory-versions --pname xcb-util \\
 update-source-version ${nix.sel(finalAttrs, "pname")} "$version"
 `))),
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "XCB utility libraries",
         longDescription: "The XCB util modules provides a number of libraries which sit on top of libxcb, the core\nX protocol library, and some of the extension libraries. These experimental libraries provide\nconvenience functions and interfaces which make the raw X protocol more usable. Some of the\nlibraries also provide client-side code which is not strictly part of the X protocol but which\nhave traditionally been provided by Xlib.\n",
         homepage: "https://gitlab.freedesktop.org/xorg/lib/libxcb-util",

@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const withManPages = nix.argOr($, "withManPages", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isi686")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "rdma-core",
       version: "65.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linux-rdma",
           repo: "rdma-core",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,15 +62,15 @@ done
 `),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
       })),
       outputChecks: nix.thunk(() => ({
-        __proto__: pos$5,
-        out: nix.thunk(() => ({ __proto__: pos$4, disallowedRequisites: nix.thunk(() => [perl]) })),
+        [nix.POS]: pos$5,
+        out: nix.thunk(() => ({ [nix.POS]: pos$4, disallowedRequisites: nix.thunk(() => [perl]) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "RDMA Core Userspace Libraries and Daemons",
         homepage: "https://github.com/linux-rdma/rdma-core",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

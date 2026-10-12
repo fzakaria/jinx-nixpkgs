@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libtool = nix.arg($, "libtool");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gerbv",
       version: "2.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gerbv",
           repo: "gerbv",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,14 +37,14 @@ export default nix.lambda((args) => (() => {
 `),
       nativeBuildInputs: nix.thunk(() => [autoconf, automake, autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(cairo, "override"), nix.thunk(() => ({ __proto__: pos$2, x11Support: true })))),
+        nix.thunk(() => nix.app(nix.sel(cairo, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, x11Support: true })))),
         gettext,
         gtk2_x11,
         libtool,
       ]),
       configureFlags: nix.thunk(() => ["--disable-update-desktop-database"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Gerber (RS-274X) viewer",
         mainProgram: "gerbv",
         homepage: "https://gerbv.github.io/",

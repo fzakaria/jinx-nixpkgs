@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const m2libc = nix.arg($, "m2libc");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mescc-tools-extra",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "oriansj",
           repo: "mescc-tools-extra",
           rev: nix.thunk(() => nix.str`Release_${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ ln -s ${m2libc}/include/M2libc M2libc
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(m2libc, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of tools written for use in bootstrapping",
         homepage: "https://github.com/oriansj/mescc-tools-extra",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

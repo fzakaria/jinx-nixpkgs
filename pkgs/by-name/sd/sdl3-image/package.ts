@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const enableSTB = nix.argOr($, "enableSTB", () => true);
   const enableImageIO = nix.argOr($, "enableImageIO", () => nix.sel(stdenv, "hostPlatform", "isDarwin"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "sdl3-image",
       version: "3.4.8",
       outputs: nix.thunk(() => ["lib", "dev", "out"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libsdl-org",
           repo: "SDL_image",
           tag: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -53,16 +53,16 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "SDLIMAGE_AVIF", nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex", "release-(3\\..*)"]),
           })))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(sdl3, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "SDL image library",
         homepage: "https://github.com/libsdl-org/SDL_image",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

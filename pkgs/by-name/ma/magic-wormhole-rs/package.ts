@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libxcb = nix.arg($, "libxcb");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "magic-wormhole-rs",
       version: "0.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "magic-wormhole",
           repo: "magic-wormhole.rs",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd wormhole-rs \\\n  --bash <($out/bin/wormhole-rs completion bash) \\\n  --fish <($out/bin/wormhole-rs completion fish) \\\n  --zsh <($out/bin/wormhole-rs completion zsh)\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Rust implementation of Magic Wormhole, with new features and enhancements",
         homepage: "https://github.com/magic-wormhole/magic-wormhole.rs",
         changelog: nix.thunk(() => nix.str`https://github.com/magic-wormhole/magic-wormhole.rs/raw/${nix.sel(finalAttrs, "version")}/changelog.md`),

@@ -38,12 +38,12 @@ export default nix.lambda((args) => (() => {
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "feedbackd",
       version: "0.8.9",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "feedbackd",
           repo: "feedbackd",
@@ -78,11 +78,11 @@ export default nix.lambda((args) => (() => {
       postFixup: "# Move developer documentation to devdoc output.\n# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nif [[ -d \"$out/share/doc\" ]]; then\n    find -L \"$out/share/doc\" -type f -regex '.*\\.devhelp2?' -print0 \\\n      | while IFS= read -r -d '' file; do\n        moveToOutput \"$(dirname \"${file/\"$out/\"/}\")\" \"$devdoc\"\n    done\nfi\n",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               versionCheck: true,
             })))),
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
       })),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Theme based Haptic, Visual and Audio Feedback",
         homepage: "https://gitlab.freedesktop.org/feedbackd/feedbackd/",
         license: nix.thunk(() => (() => {

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const dotnetCorePackages = nix.arg($, "dotnetCorePackages");
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "n-m3u8dl-re",
       version: "0.6.0-beta",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nilaoda",
           repo: "N_m3u8DL-RE",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       "dotnet-runtime": nix.thunk(() => nix.sel(dotnetCorePackages, "runtime_10_0")),
       postFixup: "ln -s $out/bin/N_m3u8DL-RE $out/bin/n-m3u8dl-re\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/nilaoda/N_m3u8DL-RE/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Cross-Platform, modern and powerful stream downloader for MPD/M3U8/ISM",
         homepage: "https://github.com/nilaoda/N_m3u8DL-RE",

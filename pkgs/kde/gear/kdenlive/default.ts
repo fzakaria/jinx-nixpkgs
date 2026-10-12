@@ -28,10 +28,10 @@ export default nix.lambda((args) => (() => {
   const frei0r = nix.arg($, "frei0r");
   const qtimageformats = nix.arg($, "qtimageformats");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kdenlive",
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dependency-paths.patch"), nix.thunk(() => ({ __proto__: pos$1, mlt: mlt, glaxnimate: glaxnimate, ffmpeg: ffmpeg_full })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dependency-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$1, mlt: mlt, glaxnimate: glaxnimate, ffmpeg: ffmpeg_full })))),
       ]),
       extraCmakeFlags: nix.thunk(() => ["-DFETCH_OTIO=0", "-DBUILD_RUN_QMLLINT=0"]),
       extraNativeBuildInputs: nix.thunk(() => [pkg_config, shared_mime_info]),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         opentimelineio,
       ]),
       qtWrapperArgs: nix.thunk(() => [nix.thunk(() => nix.str`--set FREI0R_PATH ${frei0r}/lib/frei0r-1`)]),
-      meta: nix.thunk(() => ({ __proto__: pos$2, mainProgram: "kdenlive" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$2, mainProgram: "kdenlive" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

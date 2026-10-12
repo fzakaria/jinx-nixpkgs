@@ -52,9 +52,9 @@ MAIL
     const $_1 = nix.formals(args_1, formals$2);
     const config = nix.arg($_1, "config");
     return {
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       environment: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         systemPackages: nix.thunk(() => (() => {
           const w = nix.withScope(pkgs, null);
           return [
@@ -65,20 +65,20 @@ MAIL
         })()),
       })),
       networking: nix.thunk(() => ({
-        __proto__: pos$3,
-        firewall: nix.thunk(() => ({ __proto__: pos$2, allowedTCPPorts: nix.thunk(() => [80n, 8025n]) })),
+        [nix.POS]: pos$3,
+        firewall: nix.thunk(() => ({ [nix.POS]: pos$2, allowedTCPPorts: nix.thunk(() => [80n, 8025n]) })),
         extraHosts: nix.thunk(() => nix.str`127.0.0.1 ${mailDomain} ${freescoutDomain}
 `),
       })),
       services: nix.thunk(() => ({
-        __proto__: pos$13,
-        mailhog: nix.thunk(() => ({ __proto__: pos$4, enable: true, setSendmail: false })),
-        postfix: nix.thunk(() => ({ __proto__: pos$5, enable: true })),
+        [nix.POS]: pos$13,
+        mailhog: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true, setSendmail: false })),
+        postfix: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
         dovecot2: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: true,
           settings: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             dovecot_config_version: "2.4.4",
             dovecot_storage_version: "2.4.4",
             mail_uid: "vmail",
@@ -87,18 +87,18 @@ MAIL
             mail_driver: "maildir",
             mail_home: nix.thunk(() => nix.str`${nix.sel(config, "services", "postfix", "settings", "main", "mail_spool_directory")}/{user}`),
             "passdb static": nix.thunk(() => ({
-              __proto__: pos$7,
-              fields: nix.thunk(() => ({ __proto__: pos$6, nopassword: true, allow_nets: "local,0.0.0.0/0,::/0" })),
+              [nix.POS]: pos$7,
+              fields: nix.thunk(() => ({ [nix.POS]: pos$6, nopassword: true, allow_nets: "local,0.0.0.0/0,::/0" })),
             })),
           })),
         })),
         freescout: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enable: true,
           domain: freescoutDomain,
           settings: nix.thunk(() => ({
-            __proto__: pos$11,
-            APP_KEY: nix.thunk(() => ({ __proto__: pos$10, _secret: nix.thunk(() => nix.builtins.toString(keyFile)) })),
+            [nix.POS]: pos$11,
+            APP_KEY: nix.thunk(() => ({ [nix.POS]: pos$10, _secret: nix.thunk(() => nix.builtins.toString(keyFile)) })),
             APP_FORCE_HTTPS: false,
             APP_URL: nix.thunk(() => nix.str`http://${freescoutDomain}`),
             APP_REMOTE_HOST_WHITE_LIST: "localhost,127.0.0.1,::1",
@@ -107,23 +107,23 @@ MAIL
         })),
       })),
       users: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         users: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           alice: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             isNormalUser: true,
             description: "Alice Foobar",
             password: "foobar",
             uid: 1000n,
           })),
           bob: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             isNormalUser: true,
             description: "Bob Foobar",
             password: "foobar",
           })),
-          freescout: nix.thunk(() => ({ __proto__: pos$16, password: "foobar2342" })),
+          freescout: nix.thunk(() => ({ [nix.POS]: pos$16, password: "foobar2342" })),
         })),
       })),
     };
@@ -133,29 +133,29 @@ MAIL
     const config = nix.arg($_1, "config");
     const pkgs_1 = nix.arg($_1, "pkgs");
     return {
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       imports: nix.thunk(() => [baseTestNode]),
       services: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         freescout: nix.thunk(() => ({
-          __proto__: pos$21,
-          databaseSetup: nix.thunk(() => ({ __proto__: pos$20, enable: true, kind: dbType })),
+          [nix.POS]: pos$21,
+          databaseSetup: nix.thunk(() => ({ [nix.POS]: pos$20, enable: true, kind: dbType })),
         })),
       })),
     };
   })(), formals$3);
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     name: "freescout-integration",
     meta: nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "e1mo"))];
       })()),
     })),
     containers: nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       "freescout-pgsql": nix.thunk(() => nix.app(mkContainer, "pgsql")),
       "freescout-mysql": nix.thunk(() => nix.app(mkContainer, "mysql")),
     })),

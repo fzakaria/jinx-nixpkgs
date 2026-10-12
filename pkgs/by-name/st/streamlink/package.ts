@@ -22,14 +22,14 @@ export default nix.lambda((args) => (() => {
       const version = "8.6.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-Kbp27W1pE8nmm8cw/FhLWBsoYAIq8YZhodCMja7gNkI=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./ffmpeg-path.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             ffmpeg: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), ffmpeg)),
           })))),
       ]);
@@ -68,12 +68,12 @@ export default nix.lambda((args) => (() => {
       const optional_dependencies = nix.thunk(() => (() => {
         const w_3 = nix.withScope(python3Packages, null);
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           decompress: nix.thunk(() => nix.concat(nix.sel(nix.lookup(w_3, "urllib3"), "optional-dependencies", "brotli"), nix.sel(nix.lookup(w_3, "urllib3"), "optional-dependencies", "zstd"))),
         };
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: "https://streamlink.github.io/changelog.html",
         description: "CLI for extracting streams from various websites to video player of your choosing",
         homepage: "https://streamlink.github.io/",
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

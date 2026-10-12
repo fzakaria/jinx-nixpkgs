@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const wxwidgets_3_2 = nix.arg($, "wxwidgets_3_2");
   const sox = nix.arg($, "sox");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "espeakedit",
       version: "1.48.03",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/espeak/espeakedit-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "0x8s7vpb7rw5x37yjzy1f98m4f2csdg89libb74fm36gn8ly0hli",
         })))),
@@ -49,7 +49,7 @@ done
       buildPhase: "runHook preBuild\nmake -C src\nrunHook postBuild\n",
       installPhase: "runHook preInstall\ninstall -D src/espeakedit -t $out/bin\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Phoneme editor for espeak",
         mainProgram: "espeakedit",
         homepage: "https://espeak.sourceforge.net/",

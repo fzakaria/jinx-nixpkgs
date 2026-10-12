@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const swift = nix.arg($, "swift");
   const blueSocket = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "blue-socket",
       version: "2.0.4",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Kitura",
           repo: "BlueSocket",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,8 +39,8 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nbuildDir=\"$PWD/build\"\nmkdir -p \"$buildDir\"\n\nswiftc \\\n  -O \\\n  -swift-version 5 \\\n  -emit-library \\\n  -emit-module \\\n  -module-name Socket \\\n  -emit-module-path \"$buildDir/Socket.swiftmodule\" \\\n  -Xlinker -install_name -Xlinker \"$out/lib/libSocket.dylib\" \\\n  Sources/Socket/*.swift \\\n  -o \"$buildDir/libSocket.dylib\"\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/lib/swift/macosx\"\ncp build/libSocket.dylib \"$out/lib\"\ncp build/Socket.* \"$out/lib/swift/macosx\"\n\nrunHook postInstall\n",
     })));
-  const infoPlist = (version) => nix.app(nix.sel(lib, "generators", "toPlist"), nix.thunk(() => ({ __proto__: pos$3, escape: true })), nix.thunk(() => ({
-      __proto__: pos$4,
+  const infoPlist = (version) => nix.app(nix.sel(lib, "generators", "toPlist"), nix.thunk(() => ({ [nix.POS]: pos$3, escape: true })), nix.thunk(() => ({
+      [nix.POS]: pos$4,
       CFBundleDevelopmentRegion: "en",
       CFBundleDisplayName: "SwipeAeroSpace",
       CFBundleExecutable: "SwipeAeroSpace",
@@ -59,13 +59,13 @@ export default nix.lambda((args) => (() => {
       NSHumanReadableCopyright: "©Tricster",
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "swipeaerospace",
       version: "0.3.3",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "MediosZ",
           repo: "SwipeAeroSpace",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -124,11 +124,11 @@ actool --compile "$app/Contents/Resources" \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Switch AeroSpace workspaces by swiping",
         homepage: "https://github.com/MediosZ/SwipeAeroSpace",
         license: nix.thunk(() => (() => {

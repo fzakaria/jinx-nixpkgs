@@ -30,13 +30,13 @@ export default nix.lambda((args) => (() => {
   const nurl = nix.arg($, "nurl");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
-  const get_nix_license = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./get_nix_license.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib, writeText: writeText }))));
+  const get_nix_license = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./get_nix_license.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib, writeText: writeText }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "nix-init",
       version: "0.3.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "nix-community",
           repo: "nix-init",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +56,7 @@ ln -s ${get_nix_license} data/get_nix_license.rs
 `),
       postInstall: "installManPage artifacts/nix-init.1\ninstallShellCompletion artifacts/nix-init.{bash,fish} --zsh artifacts/_nix-init\n",
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         GEN_ARTIFACTS: "artifacts",
         LIBGIT2_NO_VENDOR: true,
         LIBSQLITE3_SYS_USE_PKG_CONFIG: true,
@@ -67,11 +67,11 @@ ln -s ${get_nix_license} data/get_nix_license.rs
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Command line tool to generate Nix packages from URLs",
         mainProgram: "nix-init",
         homepage: "https://github.com/nix-community/nix-init",

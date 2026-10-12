@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "memcache";
       const version = "8.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "websupport-sk",
           repo: "pecl-memcache",
           rev: version,
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [pkg_config]);
       const buildInputs = nix.thunk(() => [zlib]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PHP extension for interfacing with memcached",
         license: nix.thunk(() => nix.sel(lib, "licenses", "php301")),
         homepage: "https://github.com/websupport-sk/pecl-memcache",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(php, "version")), "8.5")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

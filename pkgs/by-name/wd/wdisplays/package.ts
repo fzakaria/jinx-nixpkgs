@@ -21,20 +21,20 @@ export default nix.lambda((args) => (() => {
   const wayland_scanner = nix.arg($, "wayland-scanner");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wdisplays",
       version: "1.3.0",
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config, wrapGAppsHook3, wayland_scanner]),
       buildInputs: nix.thunk(() => [gtk3, libepoxy, wayland]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "artizirk",
           repo: "wdisplays",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           sha256: "sha256-y8tE3R0kGWVSqPFcT8EX2PBIwpdnyAaxICyXJ4J9NCA=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Graphical application for configuring displays in Wayland compositors",
         homepage: "https://github.com/artizirk/wdisplays",
         maintainers: nix.thunk(() => (() => {

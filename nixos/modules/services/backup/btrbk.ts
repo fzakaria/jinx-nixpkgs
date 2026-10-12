@@ -98,11 +98,11 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const name = nix.arg($_1, "name");
     const value = nix.arg($_1, "value");
-    return (nix.asBool(!nix.asBool(nix.app(isAttrs, value))) ? 0n : nix.selOr({ __proto__: pos$1, target: 1n, subvolume: 2n, volume: 3n }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unknow section '${name}'`)), nix.key(nix.force(name))));
+    return (nix.asBool(!nix.asBool(nix.app(isAttrs, value))) ? 0n : nix.selOr({ [nix.POS]: pos$1, target: 1n, subvolume: 2n, volume: 3n }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unknow section '${name}'`)), nix.key(nix.force(name))));
   })(), formals$2);
   const genConfig$ = (set) => nix.app(concatStringsSep, "\n", nix.thunk(() => nix.app(genConfig, set)));
   const genConfig = (set) => (() => {
-    const pairs = nix.thunk(() => nix.app(mapAttrsToList, (name) => (value) => ({ __proto__: pos$2, name: name, value: value }), set));
+    const pairs = nix.thunk(() => nix.app(mapAttrsToList, (name) => (value) => ({ [nix.POS]: pos$2, name: name, value: value }), set));
     const sortedPairs = nix.thunk(() => nix.app(sortOn, prioOf, pairs));
     return nix.app(concatMap, genPair, sortedPairs);
   })();
@@ -114,36 +114,36 @@ export default nix.lambda((args) => (() => {
     return (nix.asBool(!nix.asBool(nix.app(isAttrs, value))) ? [nix.thunk(() => nix.str`${name} ${value}`)] : nix.app(concatLists, nix.thunk(() => nix.app(mapAttrsToList, nix.thunk(() => nix.app(genSection, name)), value))));
   })(), formals$3);
   const sudoRule = nix.thunk(() => ({
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     users: nix.thunk(() => ["btrbk"]),
     commands: nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         command: nix.thunk(() => nix.str`${nix.sel(pkgs, "btrfs-progs")}/bin/btrfs`),
         options: nix.thunk(() => ["NOPASSWD"]),
       })),
       nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         command: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/mkdir`),
         options: nix.thunk(() => ["NOPASSWD"]),
       })),
       nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         command: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/readlink`),
         options: nix.thunk(() => ["NOPASSWD"]),
       })),
       nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         command: "/run/current-system/sw/bin/btrfs",
         options: nix.thunk(() => ["NOPASSWD"]),
       })),
       nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         command: "/run/current-system/sw/bin/mkdir",
         options: nix.thunk(() => ["NOPASSWD"]),
       })),
       nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         command: "/run/current-system/sw/bin/readlink",
         options: nix.thunk(() => ["NOPASSWD"]),
       })),
@@ -151,11 +151,11 @@ export default nix.lambda((args) => (() => {
   }));
   const sudo_doas = nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(config, "security", "sudo", "enable")) || nix.asBool(nix.sel(config, "security", "sudo-rs", "enable")))) ? "sudo" : (nix.asBool(nix.sel(config, "security", "doas", "enable")) ? "doas" : nix.builtins.throw("The btrbk nixos module needs either sudo or doas enabled in the configuration"))));
   const addDefaults = (settings) => nix.update({
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     backend: nix.thunk(() => nix.str`btrfs-progs-${sudo_doas}`),
   }, settings);
   const mkConfigFile = (name) => (settings) => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       name: nix.thunk(() => nix.str`btrbk-${name}.conf`),
       text: nix.thunk(() => nix.app(genConfig$, nix.thunk(() => nix.app(addDefaults, settings)))),
       checkPhase: nix.thunk(() => nix.str`set +e
@@ -171,7 +171,7 @@ set -e
 `),
     })));
   const streamCompressMap = nix.thunk(() => ({
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     gzip: nix.thunk(() => nix.sel(pkgs, "gzip")),
     pigz: nix.thunk(() => nix.sel(pkgs, "pigz")),
     bzip2: nix.thunk(() => nix.sel(pkgs, "bzip2")),
@@ -186,72 +186,72 @@ set -e
   const sshEnabled = nix.thunk(() => !nix.eq(nix.sel(cfg, "sshAccess"), []));
   const serviceEnabled = nix.thunk(() => !nix.eq(nix.sel(cfg, "instances"), {}));
   return {
-    __proto__: pos$66,
+    [nix.POS]: pos$66,
     meta: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "oxalica"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$40,
+      [nix.POS]: pos$40,
       services: nix.thunk(() => ({
-        __proto__: pos$39,
+        [nix.POS]: pos$39,
         btrbk: nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           extraPackages: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "Extra packages for btrbk, like compression utilities for `stream_compress`.\n\n**Note**: This option will get deprecated in future releases.\nRequired compression programs will get automatically provided to btrbk\ndepending on configured compression method in\n`services.btrbk.instances.<name>.settings` option.\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "package")))),
               default: [],
               example: nix.thunk(() => nix.app(literalExpression, "[ pkgs.xz ]")),
             })))),
           niceness: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               description: "Niceness for local instances of btrbk. Also applies to remote ones connecting via ssh when positive.",
               type: nix.thunk(() => nix.app(nix.sel(types, "ints", "between"), nix.thunk(() => nix.neg(20n)), 19n)),
               default: 10n,
             })))),
           ioSchedulingClass: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               description: "IO scheduling class for btrbk (see {manpage}`ionice(1)` for a quick description). Applies to local instances, and remote ones connecting by ssh if set to idle.",
               type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["idle", "best-effort", "realtime"]))),
               default: "best-effort",
             })))),
           instances: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               description: "Set of btrbk instances. The instance named `btrbk` is the default one.",
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                      __proto__: pos$30,
+                      [nix.POS]: pos$30,
                       options: nix.thunk(() => ({
-                        __proto__: pos$29,
+                        [nix.POS]: pos$29,
                         onCalendar: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$17,
+                            [nix.POS]: pos$17,
                             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                             default: "daily",
                             description: "How often this btrbk instance is started. See {manpage}`systemd.time(7)` for more information about the format.\nSetting it to null disables the timer, thus this instance can only be started manually.\n",
                           })))),
                         snapshotOnly: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$18,
+                            [nix.POS]: pos$18,
                             type: nix.thunk(() => nix.sel(types, "bool")),
                             default: false,
                             description: "Whether to run in snapshot only mode. This skips backup creation and deletion steps.\nUseful when you want to manually backup to an external drive that might not always be connected.\nUse `btrbk -c /path/to/conf resume` to trigger manual backups.\nMore examples [here](https://github.com/digint/btrbk#example-backups-to-usb-disk).\nSee also `snapshot` subcommand in {manpage}`btrbk(1)`.\n",
                           })))),
                         settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$28,
+                            [nix.POS]: pos$28,
                             type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                                __proto__: pos$22,
+                                [nix.POS]: pos$22,
                                 freeformType: nix.thunk(() => (() => {
-                                  const t = nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "either"), nix.thunk(() => nix.sel(types, "str")), nix.thunk(() => nix.update(t, { __proto__: pos$19, description: "instances of this type recursively" }))))));
+                                  const t = nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "either"), nix.thunk(() => nix.sel(types, "str")), nix.thunk(() => nix.update(t, { [nix.POS]: pos$19, description: "instances of this type recursively" }))))));
                                   return nix.force(t);
                                 })()),
                                 options: nix.thunk(() => ({
-                                  __proto__: pos$21,
+                                  [nix.POS]: pos$21,
                                   stream_compress: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                      __proto__: pos$20,
+                                      [nix.POS]: pos$20,
                                       description: "Compress the btrfs send stream before transferring it from/to remote locations using a\ncompression command.\n",
                                       type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["gzip", "pigz", "bzip2", "pbzip2", "bzip3", "xz", "lzo", "lz4", "zstd", "no"]))),
                                       default: "no",
@@ -260,18 +260,18 @@ set -e
                               })))),
                             default: nix.thunk(() => ({})),
                             example: nix.thunk(() => ({
-                              __proto__: pos$27,
+                              [nix.POS]: pos$27,
                               snapshot_preserve_min: "2d",
                               snapshot_preserve: "14d",
                               volume: nix.thunk(() => ({
-                                __proto__: pos$26,
+                                [nix.POS]: pos$26,
                                 "/mnt/btr_pool": nix.thunk(() => ({
-                                  __proto__: pos$25,
+                                  [nix.POS]: pos$25,
                                   target: "/mnt/btr_backup/mylaptop",
                                   subvolume: nix.thunk(() => ({
-                                    __proto__: pos$24,
+                                    [nix.POS]: pos$24,
                                     rootfs: nix.thunk(() => ({})),
-                                    home: nix.thunk(() => ({ __proto__: pos$23, snapshot_create: "always" })),
+                                    home: nix.thunk(() => ({ [nix.POS]: pos$23, snapshot_create: "always" })),
                                   })),
                                 })),
                               })),
@@ -284,27 +284,27 @@ set -e
               default: nix.thunk(() => ({})),
             })))),
           sshAccess: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               description: "SSH keys that should be able to make or push snapshots on this system remotely with btrbk",
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                      __proto__: pos$36,
+                      [nix.POS]: pos$36,
                       options: nix.thunk(() => ({
-                        __proto__: pos$35,
+                        [nix.POS]: pos$35,
                         key: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$32,
+                            [nix.POS]: pos$32,
                             type: nix.thunk(() => nix.lookup(w, "str")),
                             description: "SSH public key allowed to login as user `btrbk` to run remote backups.",
                           })))),
                         roles: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$33,
+                            [nix.POS]: pos$33,
                             type: nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.app(nix.lookup(w, "enum"), nix.thunk(() => ["info", "source", "target", "delete", "snapshot", "send", "receive"]))))),
                             example: nix.thunk(() => ["source", "info", "send"]),
                             description: "What actions can be performed with this SSH key. See ssh_filter_btrbk(1) for details",
                           })))),
                         extraArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$34,
+                            [nix.POS]: pos$34,
                             type: nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))),
                             description: "Additional arguments to pass to ssh_filter_btrbk",
                             default: [],
@@ -319,33 +319,33 @@ set -e
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(sshEnabled) || nix.asBool(serviceEnabled))), nix.thunk(() => ({
-        __proto__: pos$65,
+        [nix.POS]: pos$65,
         environment: nix.thunk(() => ({
-          __proto__: pos$43,
+          [nix.POS]: pos$43,
           systemPackages: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(pkgs, "btrbk"))], nix.sel(cfg, "extraPackages"))),
           etc: nix.thunk(() => nix.app(mapAttrs$, (name) => (instance) => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               name: nix.thunk(() => nix.str`btrbk/${name}.conf`),
               value: nix.thunk(() => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 source: nix.thunk(() => nix.app(mkConfigFile, name, nix.thunk(() => nix.sel(instance, "settings")))),
               })),
             }), nix.thunk(() => nix.sel(cfg, "instances")))),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$48,
+          [nix.POS]: pos$48,
           sudo: nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             extraRules: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(sudo_doas, "sudo")), nix.thunk(() => [sudoRule]))),
           })),
           "sudo-rs": nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             extraRules: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(sudo_doas, "sudo")), nix.thunk(() => [sudoRule]))),
           })),
           doas: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(sudo_doas, "doas")), nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               extraRules: nix.thunk(() => (() => {
-                const doasCmdNoPass = (cmd) => ({ __proto__: pos$46, users: nix.thunk(() => ["btrbk"]), cmd: cmd, noPass: true });
+                const doasCmdNoPass = (cmd) => ({ [nix.POS]: pos$46, users: nix.thunk(() => ["btrbk"]), cmd: cmd, noPass: true });
                 return [
                   nix.thunk(() => nix.app(doasCmdNoPass, nix.thunk(() => nix.str`${nix.sel(pkgs, "btrfs-progs")}/bin/btrfs`))),
                   nix.thunk(() => nix.app(doasCmdNoPass, nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/mkdir`))),
@@ -361,23 +361,23 @@ set -e
             })))),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$55,
+          [nix.POS]: pos$55,
           users: nix.thunk(() => ({
-            __proto__: pos$53,
+            [nix.POS]: pos$53,
             btrbk: nix.thunk(() => ({
-              __proto__: pos$52,
+              [nix.POS]: pos$52,
               isSystemUser: true,
               home: "/var/lib/btrbk",
               createHome: true,
               shell: nix.thunk(() => nix.str`${nix.sel(pkgs, "bash")}/bin/bash`),
               group: "btrbk",
               openssh: nix.thunk(() => ({
-                __proto__: pos$51,
+                [nix.POS]: pos$51,
                 authorizedKeys: nix.thunk(() => ({
-                  __proto__: pos$50,
+                  [nix.POS]: pos$50,
                   keys: nix.thunk(() => nix.builtins.map((v) => (() => {
                       const options = nix.thunk(() => nix.app(concatMapStringsSep, " ", (x) => nix.add("--", x), nix.thunk(() => nix.sel(v, "roles"))));
-                      const ioniceClass = nix.thunk(() => nix.sel({ __proto__: pos$49, idle: 3n, "best-effort": 2n, realtime: 1n }, nix.key(nix.sel(cfg, "ioSchedulingClass"))));
+                      const ioniceClass = nix.thunk(() => nix.sel({ [nix.POS]: pos$49, idle: 3n, "best-effort": 2n, realtime: 1n }, nix.key(nix.sel(cfg, "ioSchedulingClass"))));
                       const sudo_doas_flag = nix.thunk(() => nix.str`--${sudo_doas}`);
                       return nix.str`command="${nix.sel(pkgs, "util-linux")}/bin/ionice -t -c ${nix.builtins.toString(ioniceClass)} ${nix.app(optionalString, nix.thunk(() => nix.ge(nix.sel(cfg, "niceness"), 1n)), nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/nice -n ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "niceness")))}`))} ${nix.sel(pkgs, "btrbk")}/share/btrbk/scripts/ssh_filter_btrbk.sh ${sudo_doas_flag} ${options} ${nix.app(escapeShellArgs, nix.thunk(() => nix.sel(v, "extraArgs")))}" ${nix.sel(v, "key")}`;
                     })(), nix.thunk(() => nix.sel(cfg, "sshAccess")))),
@@ -385,12 +385,12 @@ set -e
               })),
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$54, btrbk: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$54, btrbk: nix.thunk(() => ({})) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$64,
+          [nix.POS]: pos$64,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$56,
+            [nix.POS]: pos$56,
             rules: nix.thunk(() => [
               "d /var/lib/btrbk 0750 btrbk btrbk",
               "d /var/lib/btrbk/.ssh 0700 btrbk btrbk",
@@ -398,15 +398,15 @@ set -e
             ]),
           })),
           services: nix.thunk(() => nix.app(mapAttrs$, (name) => (instance) => ({
-              __proto__: pos$60,
+              [nix.POS]: pos$60,
               name: nix.thunk(() => nix.str`btrbk-${name}`),
               value: nix.thunk(() => ({
-                __proto__: pos$59,
+                [nix.POS]: pos$59,
                 description: "Takes BTRFS snapshots and maintains retention policies.",
-                unitConfig: nix.thunk(() => ({ __proto__: pos$57, Documentation: "man:btrbk(1)" })),
+                unitConfig: nix.thunk(() => ({ [nix.POS]: pos$57, Documentation: "man:btrbk(1)" })),
                 path: nix.thunk(() => nix.concat(["/run/wrappers"], nix.concat(nix.sel(cfg, "extraPackages"), nix.app(optional, nix.thunk(() => !nix.eq(nix.sel(instance, "settings", "stream_compress"), "no")), nix.thunk(() => nix.app(getAttr, nix.thunk(() => nix.sel(instance, "settings", "stream_compress")), streamCompressMap)))))),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$58,
+                  [nix.POS]: pos$58,
                   User: "btrbk",
                   Group: "btrbk",
                   Type: "oneshot",
@@ -418,14 +418,14 @@ set -e
               })),
             }), nix.thunk(() => nix.sel(cfg, "instances")))),
           timers: nix.thunk(() => nix.app(mapAttrs$, (name) => (instance) => ({
-              __proto__: pos$63,
+              [nix.POS]: pos$63,
               name: nix.thunk(() => nix.str`btrbk-${name}`),
               value: nix.thunk(() => ({
-                __proto__: pos$62,
+                [nix.POS]: pos$62,
                 description: "Timer to take BTRFS snapshots and maintain retention policies.",
                 wantedBy: nix.thunk(() => ["timers.target"]),
                 timerConfig: nix.thunk(() => ({
-                  __proto__: pos$61,
+                  [nix.POS]: pos$61,
                   OnCalendar: nix.thunk(() => nix.sel(instance, "onCalendar")),
                   AccuracySec: "10min",
                   Persistent: true,

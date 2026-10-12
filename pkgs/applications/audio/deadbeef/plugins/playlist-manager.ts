@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const deadbeef = nix.arg($, "deadbeef");
   const gtk3 = nix.arg($, "gtk3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "deadbeef-playlist-manager-plugin",
       version: "1-unstable-2021-05-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kpcee",
           repo: "deadbeef-playlist-manager",
           rev: "b1393022b2d9ea0a19b845420146e0fc56cd9c0a",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib/deadbeef/\ncp *.so $out/lib/deadbeef/\n\nrunHook postInstall\n",
       buildFlags: nix.thunk(() => [nix.thunk(() => nix.str`CFLAGS=-I${deadbeef}/include/deadbeef`), "gtk3"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Removes duplicate and vanished files from the current playlist",
         homepage: "https://github.com/kpcee/deadbeef-playlist-manager",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

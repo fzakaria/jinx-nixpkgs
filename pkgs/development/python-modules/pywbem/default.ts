@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.9.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-tTfr6DfE/W8ifHXdGWF14QW5X66a3PGfeQRXujV1M0M=",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["pywbem"]);
       const disabledTestPaths = nix.thunk(() => ["tests/leaktest", "tests/end2endtest"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Support for the WBEM standard for systems management",
         homepage: "https://pywbem.github.io",
         changelog: nix.thunk(() => nix.str`https://github.com/pywbem/pywbem/blob/${version}/docs/changes.rst`),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

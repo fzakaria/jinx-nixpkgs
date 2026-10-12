@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const getch = nix.arg($, "getch");
   const prompt_toolkit = nix.arg($, "prompt-toolkit");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "badges",
       version: "1.0.0-unstable-2026-01-05",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "EntySec",
           repo: "Badges",
           rev: "5fdc197864ee9488281cd8d9a64170671ec88dba",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["badges"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Helpers for terminal output, interactive prompts, structured tables and ASCII world map",
         homepage: "https://github.com/EntySec/Badges",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

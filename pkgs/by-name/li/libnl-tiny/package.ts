@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libnl-tiny",
       version: "0-unstable-2025-10-20",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.openwrt.org/project/libnl-tiny.git",
           rev: "c69fb5ef80b9780fe9add345052aef9ccb5d51f4",
           hash: "sha256-QH4w++kekejvvgTye6djs0jYzcNsxfrE3XCBed+Oizo=",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       preConfigure: "sed -e 's|${prefix}/@CMAKE_INSTALL_LIBDIR@|@CMAKE_INSTALL_FULL_LIBDIR@|g' \\\n    -e 's|${prefix}/@CMAKE_INSTALL_INCLUDEDIR@|@CMAKE_INSTALL_FULL_INCLUDEDIR@|g' \\\n    -i libnl-tiny.pc.in\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tiny OpenWrt fork of libnl",
         homepage: "https://git.openwrt.org/?p=project/libnl-tiny.git;a=summary",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const tcl = nix.arg($, "tcl");
   const tk = nix.arg($, "tk");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vkeybd",
       version: "0.1.18d",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`ftp://ftp.suse.com/pub/people/tiwai/vkeybd/vkeybd-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "0107b5j1gf7dwp7qb4w2snj4bqiyps53d66qzl2rwj4jfpakws5a",
         })))),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`TCLLIB=-l${nix.sel(tcl, "libPrefix")}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Virtual MIDI keyboard",
         homepage: "https://www.alsa-project.org/~tiwai/alsa.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

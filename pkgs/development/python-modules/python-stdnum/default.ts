@@ -22,18 +22,18 @@ export default nix.lambda((args) => (() => {
       const version = "2.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "arthurdejong",
           repo: "python-stdnum",
           tag: version,
           hash: "sha256-X/VmD9bgOfs58m4YtmIdsYI5B4T0a68Wiiq2Ae27A8w=",
         }))));
       const build_system = nix.thunk(() => [setuptools]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, SOAP: nix.thunk(() => [zeep]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, SOAP: nix.thunk(() => [zeep]) }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_cov_stub]);
       const pythonImportsCheck = nix.thunk(() => ["stdnum"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python module to handle standardized numbers and codes",
         homepage: "https://arthurdejong.org/python-stdnum/",
         changelog: nix.thunk(() => nix.str`https://github.com/arthurdejong/python-stdnum/blob/${version}/ChangeLog`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

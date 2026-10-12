@@ -15,24 +15,24 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     name: "docker-tools-overlay",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "roberth"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       docker: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$3,
-            docker: nix.thunk(() => ({ __proto__: pos$2, enable: true, storageDriver: "overlay2" })),
+            [nix.POS]: pos$3,
+            docker: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, storageDriver: "overlay2" })),
           })),
         };
       })(), formals$2),

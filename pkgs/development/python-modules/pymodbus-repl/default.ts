@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pymodbus-dev",
           repo: "repl",
           tag: version,
@@ -44,14 +44,14 @@ export default nix.lambda((args) => (() => {
       const doCheck_1 = doCheck;
       const nativeCheckInputs = nix.thunk(() => [pymodbus, pytest_cov_stub, pytestCheckHook]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          pytest: nix.thunk(() => nix.app(nix.sel(pymodbus_repl, "override"), nix.thunk(() => ({ __proto__: pos$2, doCheck: true })))),
+          [nix.POS]: pos$3,
+          pytest: nix.thunk(() => nix.app(nix.sel(pymodbus_repl, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, doCheck: true })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/pymodbus-dev/repl/releases/tag/${nix.sel(src, "tag")}`),
         description: "REPL client and server for pymodbus",
         homepage: "https://github.com/pymodbus-dev/repl",
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

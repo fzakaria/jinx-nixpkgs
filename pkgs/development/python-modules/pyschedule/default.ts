@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.34";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "6bba9e9ea07906ce2dfe3cd847c1822b137f6b13e9f975c50b347312fd98e110",
@@ -26,14 +26,14 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [pulp]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Formulate and solve resource-constrained scheduling problems",
         homepage: "https://github.com/timnon/pyschedule",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

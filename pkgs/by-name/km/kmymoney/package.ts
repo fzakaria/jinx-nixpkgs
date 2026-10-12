@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const xvfb_run = nix.arg($, "xvfb-run");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kmymoney",
       version: "5.2.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://kde/stable/kmymoney/${nix.sel(finalAttrs, "version")}/kmymoney-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-QLZjnmohYQDSAkjtdPoVQgL5zN+8M1Inztwb746l03c=",
         })))),
@@ -86,7 +86,7 @@ sed -i -e '1i import sys; sys.argv = [""]' \\
   "$out/bin/.kmymoney-wrapped"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Personal finance manager for KDE",
         mainProgram: "kmymoney",
         homepage: "https://kmymoney.org/",

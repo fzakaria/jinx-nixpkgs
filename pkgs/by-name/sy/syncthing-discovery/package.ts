@@ -9,6 +9,6 @@ const pos$2 = nix.positions(here + "/package.nix", [["pname", 8, 5], ["postInsta
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const syncthing = nix.arg($, "syncthing");
-  return nix.app(nix.sel(nix.app(nix.sel(syncthing, "override"), nix.thunk(() => ({ __proto__: pos$1, target: "stdiscosrv" }))), "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$2, pname: "syncthing-discovery", postInstall: "" })));
+  return nix.app(nix.sel(nix.app(nix.sel(syncthing, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, target: "stdiscosrv" }))), "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: "syncthing-discovery", postInstall: "" })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

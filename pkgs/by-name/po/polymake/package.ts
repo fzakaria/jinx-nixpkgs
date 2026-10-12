@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const perlPackages = nix.arg($, "perlPackages");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "polymake",
       version: "4.15",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://polymake.org/lib/exe/fetch.php/download/polymake-${nix.sel(finalAttrs, "version")}-minimal.tar.bz2`),
           sha256: "sha256-MOCo+JATz3qaRO2Q2y9pxJvxgQUGZMfmvbhhxhCxvbk=",
         })))),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       ninjaFlags: nix.thunk(() => ["-C", "build/Opt"]),
       postInstall: "for i in \"$out\"/bin/*; do\n  wrapProgram \"$i\" --prefix PERL5LIB : \"$PERL5LIB\"\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Software for research in polyhedral geometry",
         homepage: "https://www.polymake.org/doku.php",
         changelog: nix.thunk(() => nix.str`https://github.com/polymake/polymake/blob/V${nix.sel(finalAttrs, "version")}/ChangeLog`),

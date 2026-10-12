@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const callPackage = nix.arg($, "callPackage");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "sanjuuni",
       version: "0.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MCJack123",
           repo: "sanjuuni",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,15 +37,15 @@ export default nix.lambda((args) => (() => {
       postPatch: "# TODO: Remove when https://github.com/MCJack123/sanjuuni/commit/778644b164c8877e56f9f5512480dde857133815 is released\nsubstituteInPlace configure \\\n  --replace-fail \"swr_alloc_set_opts\" \"swr_alloc_set_opts2\"\n",
       installPhase: "runHook preInstall\n\ninstall -Dm755 sanjuuni $out/bin/sanjuuni\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "run-on-nixos-artwork": nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/run-on-nixos-artwork.nix"), nix.thunk(() => ({})))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/MCJack123/sanjuuni",
         description: "Command-line tool that converts images and videos into a format that can be displayed in ComputerCraft",
         changelog: nix.thunk(() => nix.str`https://github.com/MCJack123/sanjuuni/releases/tag/${nix.sel(finalAttrs, "version")}`),

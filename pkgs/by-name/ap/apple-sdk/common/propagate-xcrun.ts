@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const sdkVersion = nix.arg($, "sdkVersion");
   const plists = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./plists.nix")), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       lib: lib,
       stdenvNoCC: stdenvNoCC,
       sdkVersion: sdkVersion,
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const cctools = nix.thunk(() => nix.attr(pkgsBuildHost, "cctools"));
   const xcbuild = nix.thunk(() => nix.attr(pkgsBuildHost, "xcbuild"));
   return (self) => (super$) => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     propagatedNativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(super$, () => [], "propagatedNativeBuildInputs"), [nix.thunk(() => nix.sel(xcbuild, "xcrun"))])),
     postInstall: nix.thunk(() => nix.add(nix.selOr(super$, () => "", "postInstall"), nix.str`specspath=$out/Library/Xcode/Specifications
 toolchainsPath=$out/Toolchains/XcodeDefault.xctoolchain

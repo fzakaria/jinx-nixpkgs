@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const net_tools = nix.arg($, "net-tools");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gvpe",
       version: "3.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://ftp.gnu.org/gnu/gvpe/gvpe-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-8evVctclu5QOCAdxocEIZ8NQnc2DFvYRSBRQPcux6LM=",
         })))),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
 sed -e 's@/sbin/ifconfig@${net_tools}/sbin/ifconfig@g' -i src/device-*.C
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Protected multinode virtual network",
         homepage: "http://software.schmorp.de/pkg/gvpe.html",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "raskin"))]),

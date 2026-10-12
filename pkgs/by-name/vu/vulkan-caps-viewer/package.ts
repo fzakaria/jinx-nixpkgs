@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const waylandSupport = nix.argOr($, "waylandSupport", () => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), wayland));
   const x11Support = nix.argOr($, "x11Support", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vulkan-caps-viewer",
       version: "4.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SaschaWillems",
           repo: "VulkanCapsViewer",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +44,7 @@ substituteInPlace vulkanCapsViewer.pro \\
       installFlags: nix.thunk(() => ["INSTALL_ROOT=$(out)"]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p \"$out/Applications\"\ncp -r vulkanCapsViewer.app \"$out/Applications\"\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mainProgram: "vulkanCapsViewer",
         description: "Vulkan hardware capability viewer",
         longDescription: "Client application to display hardware implementation details for GPUs supporting the Vulkan API by Khronos.\nThe hardware reports can be submitted to a public online database that allows comparing different devices, browsing available features, extensions, formats, etc.\n",

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const buildDartApplication = nix.arg($, "buildDartApplication");
   return nix.app(buildDartApplication, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "melos",
       version: "8.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "invertase",
           repo: "melos",
           tag: nix.thunk(() => nix.str`melos-v${nix.sel(finalAttrs, "version")}`),
@@ -29,15 +29,15 @@ export default nix.lambda((args) => (() => {
       pubspecLock: nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json"))),
       preBuild: "substituteInPlace packages/melos/lib/src/common/utils.dart \\\n  --replace-fail \"final melosPackageFileUri = await Isolate.resolvePackageUri(melosPackageUri);\" \"return \\\"$out\\\";\"\nsubstituteInPlace packages/melos/lib/src/common/utils.dart \\\n  --replace-fail \"return p.normalize('\\${melosPackageFileUri!.toFilePath()}/../..');\" \" \"\nsubstituteInPlace packages/melos/bin/melos.dart \\\n  --replace-fail \"__NIX_MELOS_PACKAGE_ROOT__\" \"$out\"\nmkdir --parents $out\ncp --recursive packages/melos/templates $out/\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           command: nix.thunk(() => [nix.path(here, "./update.sh"), nix.path(here, "./.")]),
           supportedFeatures: nix.thunk(() => ["commit"]),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/invertase/melos",
         description: "Tool for managing Dart projects with multiple packages",
         mainProgram: "melos",

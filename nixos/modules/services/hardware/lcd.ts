@@ -59,16 +59,16 @@ ReportToSyslog=false
 ${nix.sel(cfg, "client", "extraConfig")}
 `)));
   const serviceCfg = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     DynamicUser: true,
     Restart: "on-failure",
     Slice: "lcd.slice",
   }));
   const w = nix.withScope(lib, null);
   return {
-    __proto__: pos$34,
+    [nix.POS]: pos$34,
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_1, "peterhoeg"))];
@@ -77,86 +77,86 @@ ${nix.sel(cfg, "client", "extraConfig")}
     options: nix.thunk(() => (() => {
       const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
       return {
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         services: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           hardware: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             lcd: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               serverHost: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   type: nix.thunk(() => nix.lookup(w_1, "str")),
                   default: "localhost",
                   description: "Host on which LCDd is listening.",
                 })))),
               serverPort: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   type: nix.thunk(() => nix.lookup(w_1, "int")),
                   default: 13666n,
                   description: "Port on which LCDd is listening.",
                 })))),
               server: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 enable: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     type: nix.thunk(() => nix.lookup(w_1, "bool")),
                     default: false,
                     description: "Enable the LCD panel server (LCDd)",
                   })))),
                 openPorts: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     type: nix.thunk(() => nix.lookup(w_1, "bool")),
                     default: false,
                     description: "Open the ports in the firewall",
                   })))),
                 usbPermissions: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     type: nix.thunk(() => nix.lookup(w_1, "bool")),
                     default: false,
                     description: "Set group-write permissions on a USB device.\n\nA USB connected LCD panel will most likely require having its\npermissions modified for lcdd to write to it. Enabling this option\nsets group-write permissions on the device identified by\n{option}`services.hardware.lcd.usbVid` and\n{option}`services.hardware.lcd.usbPid`. In order to find the\nvalues, you can run the {command}`lsusb` command. Example\noutput:\n\n```\nBus 005 Device 002: ID 0403:c630 Future Technology Devices International, Ltd lcd2usb interface\n```\n\nIn this case the vendor id is 0403 and the product id is c630.\n",
                   })))),
                 usbVid: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     type: nix.thunk(() => nix.lookup(w_1, "str")),
                     default: "",
                     description: "The vendor ID of the USB device to claim.",
                   })))),
                 usbPid: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     type: nix.thunk(() => nix.lookup(w_1, "str")),
                     default: "",
                     description: "The product ID of the USB device to claim.",
                   })))),
                 usbGroup: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     type: nix.thunk(() => nix.lookup(w_1, "str")),
                     default: "dialout",
                     description: "The group to use for settings permissions. This group must exist or you will have to create it.",
                   })))),
                 extraConfig: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     type: nix.thunk(() => nix.lookup(w_1, "lines")),
                     default: "",
                     description: "Additional configuration added verbatim to the server config.",
                   })))),
               })),
               client: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 enable: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     type: nix.thunk(() => nix.lookup(w_1, "bool")),
                     default: false,
                     description: "Enable the LCD panel client (LCDproc)",
                   })))),
                 extraConfig: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     type: nix.thunk(() => nix.lookup(w_1, "lines")),
                     default: "",
                     description: "Additional configuration added verbatim to the client config.",
                   })))),
                 restartForever: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     type: nix.thunk(() => nix.lookup(w_1, "bool")),
                     default: true,
                     description: "Try restarting the client forever.",
@@ -168,53 +168,53 @@ ${nix.sel(cfg, "client", "extraConfig")}
       };
     })()),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "server", "enable")) || nix.asBool(nix.sel(cfg, "client", "enable")))), nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         networking: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           firewall: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "server", "enable")) && nix.asBool(nix.sel(cfg, "server", "openPorts")))), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "serverPort"))]))),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           udev: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             extraRules: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "server", "enable")) && nix.asBool(nix.sel(cfg, "server", "usbPermissions")))), nix.thunk(() => nix.str`ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="${nix.sel(cfg, "server", "usbVid")}", ATTRS{idProduct}=="${nix.sel(cfg, "server", "usbPid")}", MODE="660", GROUP="${nix.sel(cfg, "server", "usbGroup")}"
 `))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           services: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             lcdd: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "server", "enable")), nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 description: "LCDproc - server",
                 wantedBy: nix.thunk(() => ["lcd.target"]),
                 serviceConfig: nix.thunk(() => nix.update(serviceCfg, {
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   ExecStart: nix.thunk(() => nix.str`${pkg}/bin/LCDd -f -c ${serverCfg}`),
                   SupplementaryGroups: nix.thunk(() => nix.sel(cfg, "server", "usbGroup")),
                 })),
               })))),
             lcdproc: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "client", "enable")), nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 description: "LCDproc - client",
                 after: nix.thunk(() => ["lcdd.service"]),
                 wantedBy: nix.thunk(() => ["lcd.target"]),
                 startLimitIntervalSec: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "client", "restartForever")), 0n)),
                 serviceConfig: nix.thunk(() => nix.update(serviceCfg, {
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   ExecStart: nix.thunk(() => nix.str`${pkg}/bin/lcdproc -f -c ${clientCfg}`),
                   RestartSec: "5",
                 })),
               })))),
           })),
           targets: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             lcd: nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               description: "LCD client/server",
               after: nix.thunk(() => ["lcdd.service", "lcdproc.service"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),

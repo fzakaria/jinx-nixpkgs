@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.49";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cyberjunky",
           repo: "python-fireservicerota",
           tag: version,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["pyfireservicerota"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/cyberjunky/python-fireservicerota/releases/tag/${nix.sel(src, "tag")}`),
         description: "Python 3 API wrapper for FireServiceRota/BrandweerRooster",
         homepage: "https://github.com/cyberjunky/python-fireservicerota",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const ramalama = nix.arg($, "ramalama");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "ramalama",
       version: "0.25.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "containers",
           repo: "ramalama",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -77,28 +77,28 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       preCheck: "export PATH=\"$out/bin:$PATH\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => nix.update({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           nocontainer: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/nocontainer.nix"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               ramalama: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
-          withoutPodman: nix.thunk(() => nix.app(nix.sel(ramalama, "override"), nix.thunk(() => ({ __proto__: pos$3, withPodman: false })))),
+          withoutPodman: nix.thunk(() => nix.app(nix.sel(ramalama, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, withPodman: false })))),
         }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) || nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))))))), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             podman: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/podman.nix"), nix.thunk(() => ({})))),
           }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             mlx: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/mlx.nix"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 ramalama: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               })))),
           })))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Serving AI models locally using familiar container workflows",
         longDescription: "Ramalama is an open-source developer tool that simplifies the local\nserving of AI models from any source and facilitates their use for\ninference in production, all through the familiar language of containers\n",
         homepage: "https://ramalama.ai/",

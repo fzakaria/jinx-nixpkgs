@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_eval_jobs = nix.arg($, "nix-eval-jobs");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "colmena",
       version: "0.5.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nix-community",
           repo: "colmena",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-4Pwql4jz8nP9jOcppSoCEXryT9gN/ZWXFtzvcrjZYVA=",
       buildInputs: nix.thunk(() => [nix_eval_jobs]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_EVAL_JOBS: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix_eval_jobs)),
       })),
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         apiVersion: nix.thunk(() => nix.builtins.concatStringsSep(".", nix.thunk(() => nix.app(nix.sel(lib, "take"), 2n, nix.thunk(() => nix.app(nix.sel(lib, "splitVersion"), nix.thunk(() => nix.sel(finalAttrs, "version")))))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Simple, stateless NixOS deployment tool",
         homepage: nix.thunk(() => nix.str`https://colmena.cli.rs/${nix.sel(finalAttrs, "passthru", "apiVersion")}`),
         downloadPage: "https://github.com/nix-community/colmena",

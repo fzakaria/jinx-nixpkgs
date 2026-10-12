@@ -6,7 +6,7 @@ const pos$1 = nix.positions(here + "/define-bare-submodule-values.nix", [["neste
 const pos$2 = nix.positions(here + "/define-bare-submodule-values.nix", [["bare-submodule", 2, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$2,
-  "bare-submodule": nix.thunk(() => ({ __proto__: pos$1, nested: 42n, deep: 420n })),
+  [nix.POS]: pos$2,
+  "bare-submodule": nix.thunk(() => ({ [nix.POS]: pos$1, nested: 42n, deep: 420n })),
 }));
 //# sourceMappingURL=define-bare-submodule-values.ts.map

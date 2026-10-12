@@ -17,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const farstream = nix.arg($, "farstream");
   const dbus_glib = nix.arg($, "dbus-glib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "telepathy-farstream",
       version: "0.6.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://telepathy.freedesktop.org/releases/telepathy-farstream/telepathy-farstream-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "02ky12bb92prr5f6xmvmfq4yz2lj33li6nj4829a98hk5pr9k83g",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       propagatedBuildInputs: nix.thunk(() => [dbus_glib, telepathy_glib, farstream]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GObject-based C library that uses Telepathy GLib, Farstream and GStreamer to handle the media streaming part of channels of type Call",
         homepage: "https://telepathy.freedesktop.org/wiki/Components/Telepathy-Farstream/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

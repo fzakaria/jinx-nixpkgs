@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const disabled = nix.thunk(() => !nix.asBool(isPy3k));
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           group: "World",
           owner: "OpenPaperwork",
@@ -40,17 +40,17 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-gE0+qbHCwpDdxXFY+4rjVU2FbUSfSVrvrVMcWUk+9FU=",
         }))));
       const patches = nix.thunk(() => nix.concat([], nix.concat(nix.app(nix.sel(lib, "optional"), withTesseractSupport, nix.thunk(() => nix.app(replaceVars, nix.path(here, "./paths-tesseract.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             tesseract: tesseract,
             tesseractLibraryLocation: nix.thunk(() => nix.str`${tesseract}/lib/libtesseract${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
-          }))))), nix.app(nix.sel(lib, "optional"), withCuneiformSupport, nix.thunk(() => nix.app(replaceVars, nix.path(here, "./paths-cuneiform.patch"), nix.thunk(() => ({ __proto__: pos$3, cuneiform: cuneiform }))))))));
+          }))))), nix.app(nix.sel(lib, "optional"), withCuneiformSupport, nix.thunk(() => nix.app(replaceVars, nix.path(here, "./paths-cuneiform.patch"), nix.thunk(() => ({ [nix.POS]: pos$3, cuneiform: cuneiform }))))))));
       const propagatedBuildInputs = nix.thunk(() => [pillow]);
       const nativeBuildInputs = nix.thunk(() => [setuptools, setuptools_scm]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(src, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/World/OpenPaperwork/pyocr/-/blob/${version}/ChangeLog`),
         description: "Python wrapper for Tesseract and Cuneiform",
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         disabled,

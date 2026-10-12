@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const glib = nix.arg($, "glib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libslirp",
       version: "4.9.5",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "slirp",
           repo: "libslirp",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.str`echo ${nix.sel(finalAttrs, "version")} > .tarball-version
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://gitlab.freedesktop.org/slirp/libslirp/-/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "General purpose TCP-IP emulator",
         homepage: "https://gitlab.freedesktop.org/slirp/libslirp",

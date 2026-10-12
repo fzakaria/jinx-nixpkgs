@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
     const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
     const warnAfterVersion = (ver) => (pkg) => nix.app(nix.sel(lib, "warnIf"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), ver, nix.thunk(() => nix.sel(super$, nix.key(nix.sel(pkg, "pname")), "version")))), nix.thunk(() => nix.str`override for haskell.packages.ghc910.${nix.sel(pkg, "pname")} may no longer be needed`), pkg);
     return {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       array: null,
       base: null,
       binary: null,
@@ -62,13 +62,13 @@ export default nix.lambda((args) => (() => {
       Win32: null,
       "apply-refact": nix.thunk(() => nix.app(nix.lookup(w, "dontDistribute"), nix.thunk(() => nix.app(nix.lookup(w, "markBroken"), nix.thunk(() => nix.sel(super$, "apply-refact")))))),
       stack: nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           setupHaskellDepends: nix.thunk(() => nix.concat(nix.selOr(drv, () => [], "setupHaskellDepends"), [
             nix.thunk(() => nix.sel(self, "Cabal-syntax_3_14_2_0")),
             nix.thunk(() => nix.sel(self, "Cabal_3_14_2_0")),
           ])),
           env: nix.thunk(() => nix.update(nix.selOr(drv, () => ({}), "env"), {
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             setupCompileFlags: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => ["-hide-package", "Cabal-syntax-3.12.1.0", "-hide-package", "Cabal-3.12.1.0"]))),
           })),
         }), nix.thunk(() => nix.app(nix.sel(super$, "stack", "overrideScope"), (sself) => (ssuper) => (() => {
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
                 nix.thunk(() => nix.app(nix.lookup(w, "appendConfigureFlags"), nix.thunk(() => ["--constraint=Cabal>=3.14"]))),
               ]));
             return {
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               pantry: nix.thunk(() => nix.app(upgradeCabal, nix.thunk(() => nix.sel(ssuper, "pantry_0_11_2")))),
               "rio-prettyprint": nix.thunk(() => nix.app(upgradeCabal, nix.thunk(() => nix.sel(ssuper, "rio-prettyprint")))),
               "hackage-security": nix.thunk(() => nix.app(upgradeCabal, nix.thunk(() => nix.sel(ssuper, "hackage-security")))),

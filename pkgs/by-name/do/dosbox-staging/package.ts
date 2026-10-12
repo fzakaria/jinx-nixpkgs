@@ -42,12 +42,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const zlib_ng = nix.arg($, "zlib-ng");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "dosbox-staging",
       version: "0.82.2",
       shortRev: "f8c24f8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dosbox-staging",
           repo: "dosbox-staging",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -82,19 +82,19 @@ export default nix.lambda((args) => (() => {
       postInstall: "install -Dm644 $src/contrib/linux/org.dosbox-staging.dosbox-staging.desktop $out/share/applications/\n",
       postFixup: "mv $out/bin/dosbox $out/bin/dosbox-staging\nmakeWrapper $out/bin/dosbox-staging $out/bin/dosbox\n\npushd $man/share/man/man1/\nln -s dosbox.1.gz dosbox-staging.1.gz\npopd\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "dosbox --version",
             })))),
         })),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$4, "rev-prefix": "v" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://dosbox-staging.github.io/",
         description: "Modernized DOS emulator; DOSBox fork",
         longDescription: "DOSBox Staging is an attempt to revitalize DOSBox's development\nprocess. It's not a rewrite, but a continuation and improvement on the\nexisting DOSBox codebase while leveraging modern development tools and\npractices.\n",

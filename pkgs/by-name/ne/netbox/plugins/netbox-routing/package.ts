@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const python = nix.arg($, "python");
   const django_polymorphic = nix.arg($, "django-polymorphic");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       __structuredAttrs: true,
       pname: "netbox-routing",
       version: "0.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DanSheps",
           repo: "netbox-routing",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,9 +37,9 @@ export default nix.lambda((args) => (() => {
       dontUsePythonImportsCheck: nix.thunk(() => !nix.eq(nix.sel(python, "pythonVersion"), nix.sel(netbox, "python", "pythonVersion"))),
       pythonImportsCheck: nix.thunk(() => ["netbox_routing"]),
       dependencies: nix.thunk(() => [django_polymorphic]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, pluginName: "netbox_routing" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, pluginName: "netbox_routing" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "NetBox plugin for tracking all kinds of routing information",
         homepage: "https://github.com/DanSheps/netbox-routing",
         changelog: nix.thunk(() => nix.str`https://github.com/DanSheps/netbox-routing/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lightburn";
       const version = "1.7.08";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://release.lightburnsoftware.com/LightBurn/Release/LightBurn-v${version}/LightBurn-Linux64-v${version}.7z`),
           hash: "sha256-dG/A39/SapyS6GGSKCsHUvYN+CONul/s55HTi9Cc59g=",
         }))));
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       const unpackPhase = "7z x $src\n";
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "lightburn",
             exec: "lightburn",
             icon: "lightburn",
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
       const installPhase = "runHook preInstall\n\nmkdir -p $out/opt\ncp -ar LightBurn $out/opt/lightburn\ninstall -Dm644 $out/opt/lightburn/LightBurn.png $out/share/icons/hicolor/512x512/apps/lightburn.png\n\nrunHook postInstall\n";
       const postFixup = "mkdir $out/bin\nmakeWrapper $out/opt/lightburn/AppRun $out/bin/lightburn \\\n  --unset QT_PLUGIN_PATH \\\n  --unset QML2_IMPORT_PATH\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Layout, editing, and control software for your laser cutter",
         homepage: "https://lightburnsoftware.com",
         sourceProvenance: nix.thunk(() => (() => {
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "lightburn",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

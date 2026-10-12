@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.10.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Quansight-Labs",
           repo: "ndindex",
           tag: version,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [cython, setuptools]);
       const postPatch = "substituteInPlace pytest.ini \\\n  --replace-fail \"--flakes\" \"\"\n";
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, arrays: nix.thunk(() => [numpy]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, arrays: nix.thunk(() => [numpy]) }));
       const pythonImportsCheck = nix.thunk(() => ["ndindex"]);
       const preCheck = nix.thunk(() => nix.str`cd $out
 
@@ -53,7 +53,7 @@ EOF
       const nativeCheckInputs = nix.thunk(() => nix.concat([hypothesis, pytest_cov_stub, pytestCheckHook, sympy], nix.sel(optional_dependencies, "arrays")));
       const pytestFlags = nix.thunk(() => ["--hypothesis-profile=ci"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python library for manipulating indices of ndarrays",
         homepage: "https://github.com/Quansight-Labs/ndindex",
         changelog: nix.thunk(() => nix.str`https://github.com/Quansight-Labs/ndindex/releases/tag/${nix.sel(src, "tag")}`),
@@ -61,7 +61,7 @@ EOF
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.9";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rrooggiieerr",
           repo: "benqprojector.py",
           tag: version,
@@ -41,10 +41,10 @@ export default nix.lambda((args) => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "sephalon"))];
         })());
-        return { __proto__: pos$2, description, homepage, changelog, license, maintainers };
+        return { [nix.POS]: pos$2, description, homepage, changelog, license, maintainers };
       })());
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

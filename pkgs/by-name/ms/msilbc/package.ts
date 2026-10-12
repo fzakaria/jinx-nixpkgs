@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const linphonePackages = nix.arg($, "linphonePackages");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "msilbc",
       version: "2.1.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://savannah/linphone/plugins/sources/msilbc-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "07j02y994ybh274fp7ydjvi76h34y2c34ndwjpjfcwwr03b48cfp",
         })))),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`MEDIASTREAMER_CFLAGS=-I${nix.sel(linphonePackages, "mediastreamer2")}/include`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Mediastreamer plugin for the iLBC audio codec",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

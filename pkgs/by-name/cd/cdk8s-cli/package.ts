@@ -22,32 +22,32 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "cdk8s-cli",
       version: "2.207.64",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cdk8s-team",
           repo: "cdk8s-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-BtaYzxENteC6U7DbbQfebL8e9BWPJl+1w0j4P1702xg=",
         })))),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-6Qiz1/1/OHMiXEAAG2ggt7BJmsTNUSln0SMJs2gFMgM=",
         })))),
       nativeBuildInputs: nix.thunk(() => [yarnConfigHook, yarnBuildHook, yarnInstallHook, nodejs]),
-      env: nix.thunk(() => ({ __proto__: pos$3, SKIP_TESTS: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, SKIP_TESTS: 1n })),
       postInstall: nix.thunk(() => nix.str`substituteInPlace $out/lib/node_modules/cdk8s-cli/package.json \\
   --replace-fail '0.0.0' '${nix.sel(finalAttrs, "version")}'
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Command-line-interface for CDK for Kubernetes",
         homepage: "https://github.com/cdk8s-team/cdk8s-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

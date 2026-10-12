@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "qtpbfimageplugin";
       const version = "5.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tumic0",
           repo: "QtPBFImagePlugin",
           tag: version,
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const dontWrapQtApps = true;
       const postPatch = "# Fix plugin dir\nsubstituteInPlace pbfplugin.pro \\\n  --replace-warn \"\\$\\$[QT_INSTALL_PLUGINS]\" \"$out/$qtPluginPrefix\"\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Qt image plugin for displaying Mapbox vector tiles",
         longDescription: "QtPBFImagePlugin is a Qt image plugin that enables applications capable of\ndisplaying raster MBTiles maps or raster XYZ online maps to also display PBF\nvector tiles without (almost) any application modifications.\n",
         homepage: "https://github.com/tumic0/QtPBFImagePlugin",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

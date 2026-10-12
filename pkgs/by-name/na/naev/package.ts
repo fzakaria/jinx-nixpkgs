@@ -42,30 +42,30 @@ export default nix.lambda((args) => (() => {
   const cmark = nix.arg($, "cmark");
   const dbus = nix.arg($, "dbus");
   const lyaml = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "gvvaughan",
       repo: "lyaml",
       tag: "v6.2.8",
       hash: "sha256-ADLXi38sAs9ifQ4HJoYzgdp/dw0axGmVCtqJjpqWcmQ=",
     }))));
   const nativefiledialog_extended = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "btzy",
       repo: "nativefiledialog-extended",
       tag: "v1.2.1",
       hash: "sha256-GwT42lMZAAKSJpUJE6MYOpSLKUD5o9nSe9lcsoeXgJY=",
     }))));
   const nativefiledialog_extended_patch = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: "https://wrapdb.mesonbuild.com/v2/nativefiledialog-extended_1.2.1-1/get_patch",
       hash: "sha256-BEouiB2HTVWokrYc9VOqdnjRwPBs+us5obQ/NMqXawk=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "naev",
       version: "0.12.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "naev",
           repo: "naev",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -125,7 +125,7 @@ unzip ${nativefiledialog_extended_patch} -d $tmp
 cp -r $tmp/*/* subprojects/nativefiledialog-extended-1.2.1
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "2D action/rpg space game",
         mainProgram: "naev",
         homepage: "http://www.naev.org",

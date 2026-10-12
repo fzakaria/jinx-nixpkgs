@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.8";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-gNEI6P6GslNd1DzFwCFndVIfUvSTPYollGdqkZhQ4Y8=",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const enableParallelBuilding = true;
       const pythonImportsCheck = nix.thunk(() => ["mbientlab", "mbientlab.metawear"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python bindings for the MetaWear C++ SDK by MbientLab",
         homepage: "https://github.com/mbientlab/metawear-sdk-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

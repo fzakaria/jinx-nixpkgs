@@ -163,178 +163,178 @@ export default nix.lambda((args) => (() => {
     ])));
   return (() => {
     const unitOption = nix.thunk(() => nix.app(mkOptionType, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "systemd option",
         merge: (loc) => (defs) => (nix.asBool(nix.app(any, (def) => nix.app(isList, nix.thunk(() => nix.sel(def, "value"))), defs)) ? nix.app(concatMap, (def) => nix.app(toList, nix.thunk(() => nix.sel(def, "value"))), defs) : nix.app(mergeEqualOption, loc, defs)),
       }))));
     const sharedOptions = nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           default: true,
           type: nix.thunk(() => nix.sel(types, "bool")),
           description: "If set to false, this unit will be a symlink to\n/dev/null. This is primarily useful to prevent specific\ntemplate instances\n(e.g. `serial-getty@ttyS0`) from being\nstarted. Note that `enable=true` does not\nmake a unit start by default at boot; if you want that, see\n`wantedBy`.\n",
         })))),
       name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.sel(lib, "types", "str")),
           description: "The name of this systemd unit, including its extension.\nThis can be used to refer to this unit from other systemd units.\n",
         })))),
       overrideStrategy: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           default: "asDropinIfExists",
           type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["asDropinIfExists", "asDropin"]))),
           description: "Defines how unit configuration is provided for systemd:\n\n`asDropinIfExists` creates a unit file when no unit file is provided by the package\notherwise it creates a drop-in file named `overrides.conf`.\n\n`asDropin` creates a drop-in file named `overrides.conf`.\nMainly needed to define instances for systemd template units (e.g. `systemd-nspawn@mycontainer.service`).\n\nSee also {manpage}`systemd.unit(5)`.\n",
         })))),
       requiredBy: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           default: [],
           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), unitNameType)),
           description: "Units that require (i.e. depend on and need to go down with) this unit.\nAs discussed in the `wantedBy` option description this also creates\n`.requires` symlinks automatically.\n",
         })))),
       upheldBy: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           default: [],
           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), unitNameType)),
           description: "Keep this unit running as long as the listed units are running. This is a continuously\nenforced version of wantedBy.\n",
         })))),
       wantedBy: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           default: [],
           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), unitNameType)),
           description: "Units that want (i.e. depend on) this unit. The default method for\nstarting a unit by default at boot time is to set this option to\n`[\"multi-user.target\"]` for system services. Likewise for user units\n(`systemd.user.<name>.*`) set it to `[\"default.target\"]` to make a unit\nstart by default when the user `<name>` logs on.\n\nThis option creates a `.wants` symlink in the given target that exists\nstatelessly without the need for running `systemctl enable`.\nThe `[Install]` section described in {manpage}`systemd.unit(5)` however is\nnot supported because it is a stateful process that does not fit well\ninto the NixOS design.\n",
         })))),
       aliases: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           default: [],
           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), unitNameType)),
           description: "Aliases of that unit.",
         })))),
     }));
     const concreteUnitOptions = nix.thunk(() => nix.update(sharedOptions, {
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       text: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
           default: null,
           description: "Text of this systemd unit.",
         })))),
-      unit: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ __proto__: pos$11, internal: true, description: "The generated unit." })))),
+      unit: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$11, internal: true, description: "The generated unit." })))),
     }));
     const commonUnitOptions = nix.thunk(() => ({
-      __proto__: pos$31,
+      [nix.POS]: pos$31,
       options: nix.thunk(() => nix.update(sharedOptions, {
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         description: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             default: "",
             type: nix.thunk(() => nix.sel(types, "singleLineStr")),
             description: "Description of this unit used in systemd messages and progress indicators.",
           })))),
         documentation: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             default: [],
             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
             description: "A list of URIs referencing documentation for this unit or its configuration.",
           })))),
         requires: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             default: [],
             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), unitNameType)),
             description: "Start the specified units when this unit is started, and stop\nthis unit when the specified units are stopped or fail.\n",
           })))),
         wants: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             default: [],
             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), unitNameType)),
             description: "Start the specified units when this unit is started.\n",
           })))),
         upholds: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             default: [],
             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), unitNameType)),
             description: "Keeps the specified running while this unit is running. A continuous version of `wants`.\n",
           })))),
         after: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             default: [],
             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), unitNameType)),
             description: "If the specified units are started at the same time as\nthis unit, delay this unit until they have started.\n",
           })))),
         before: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             default: [],
             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), unitNameType)),
             description: "If the specified units are started at the same time as\nthis unit, delay them until this unit has started.\n",
           })))),
         bindsTo: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             default: [],
             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), unitNameType)),
             description: "Like ‘requires’, but in addition, if the specified units\nunexpectedly disappear, this unit will be stopped as well.\n",
           })))),
         partOf: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             default: [],
             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), unitNameType)),
             description: "If the specified units are stopped or restarted, then this\nunit is stopped or restarted as well.\n",
           })))),
         conflicts: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             default: [],
             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), unitNameType)),
             description: "If the specified units are started, then this unit is stopped\nand vice versa.\n",
           })))),
         requisite: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             default: [],
             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), unitNameType)),
             description: "Similar to requires. However if the units listed are not started,\nthey will not be started and the transaction will fail.\n",
           })))),
         unitConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             default: nix.thunk(() => ({})),
-            example: nix.thunk(() => ({ __proto__: pos$24, RequiresMountsFor: "/data" })),
+            example: nix.thunk(() => ({ [nix.POS]: pos$24, RequiresMountsFor: "/data" })),
             type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), unitOption)),
             description: "Each attribute in this set specifies an option in the\n`[Unit]` section of the unit.  See\n{manpage}`systemd.unit(5)` for details.\n",
           })))),
         onFailure: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             default: [],
             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), unitNameType)),
             description: "A list of one or more units that are activated when\nthis unit enters the \"failed\" state.\n",
           })))),
         onSuccess: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             default: [],
             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), unitNameType)),
             description: "A list of one or more units that are activated when\nthis unit enters the \"inactive\" state.\n",
           })))),
         startLimitBurst: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             type: nix.thunk(() => nix.sel(types, "int")),
             description: "Configure unit start rate limiting. Units which are started\nmore than startLimitBurst times within an interval time\ninterval are not permitted to start any more.\n",
           })))),
         startLimitIntervalSec: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             type: nix.thunk(() => nix.sel(types, "int")),
             description: "Configure unit start rate limiting. Units which are started\nmore than startLimitBurst times within an interval time\ninterval are not permitted to start any more.\n",
           })))),
       })),
     }));
     const stage2CommonUnitOptions = nix.thunk(() => ({
-      __proto__: pos$35,
+      [nix.POS]: pos$35,
       imports: nix.thunk(() => [commonUnitOptions]),
       options: nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         restartTriggers: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             default: [],
             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "unspecified")))),
             description: "An arbitrary list of items such as derivations.  If any item\nin the list changes between reconfigurations, the service will\nbe restarted.\n",
           })))),
         reloadTriggers: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             default: [],
             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), unitOption)),
             description: "An arbitrary list of items such as derivations.  If any item\nin the list changes between reconfigurations, the service will\nbe reloaded.  If anything but a reload trigger changes in the\nunit file, the unit will be restarted instead.\n",
@@ -347,11 +347,11 @@ export default nix.lambda((args) => (() => {
       const name = nix.arg($_1, "name");
       const config = nix.arg($_1, "config");
       return {
-        __proto__: pos$70,
+        [nix.POS]: pos$70,
         options: nix.thunk(() => ({
-          __proto__: pos$51,
+          [nix.POS]: pos$51,
           environment: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
@@ -361,11 +361,11 @@ export default nix.lambda((args) => (() => {
                         nix.thunk(() => nix.lookup(w, "package")),
                       ]))))));
               })()),
-              example: nix.thunk(() => ({ __proto__: pos$36, PATH: "/foo/bar/bin", LANG: "nl_NL.UTF-8" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$36, PATH: "/foo/bar/bin", LANG: "nl_NL.UTF-8" })),
               description: "Environment variables passed to the service's processes.",
             })))),
           path: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               default: [],
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
@@ -377,69 +377,69 @@ export default nix.lambda((args) => (() => {
               description: "Packages added to the service's {env}`PATH`\nenvironment variable.  Both the {file}`bin`\nand {file}`sbin` subdirectories of each\npackage are added.\n",
             })))),
           enableDefaultPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               default: true,
               type: nix.thunk(() => nix.sel(types, "bool")),
               description: "Whether to append a minimal default {env}`PATH` environment variable to the service, containing common system utilities.\n",
             })))),
           serviceConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$40, RestartSec: 5n })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$40, RestartSec: 5n })),
               type: nix.thunk(() => nix.app(nix.sel(types, "addCheck"), nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), unitOption)), checkService)),
               description: "Each attribute in this set specifies an option in the\n`[Service]` section of the unit.  See\n{manpage}`systemd.service(5)` for details.\n",
             })))),
           enableStrictShellChecks: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               type: nix.thunk(() => nix.sel(types, "bool")),
               description: "Enable running `shellcheck` on the generated scripts for this unit.\n\nWhen enabled, scripts generated by the unit will be checked with\n`shellcheck` and any errors or warnings will cause the build to\nfail.\n\nThis affects all scripts that have been created through the\n`script`, `reload`, `preStart`, `postStart`, `preStop` and\n`postStop` options for systemd services. This does not affect\ncommand lines passed directly to `ExecStart`, `ExecReload`,\n`ExecStartPre`, `ExecStartPost`, `ExecStop` or `ExecStopPost`.\n",
               defaultText: nix.thunk(() => nix.app(literalExpression, "config.systemd.enableStrictShellChecks")),
             })))),
           script: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               type: nix.thunk(() => nix.sel(types, "lines")),
               default: "",
               description: "Shell commands executed as the service's main process.",
             })))),
           scriptArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "",
               example: "%i",
               description: "Arguments passed to the main process script.\nCan contain specifiers (`%` placeholders expanded by systemd, see {manpage}`systemd.unit(5)`).\n",
             })))),
           preStart: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               type: nix.thunk(() => nix.sel(types, "lines")),
               default: "",
               description: "Shell commands executed before the service's main process\nis started.\n",
             })))),
           postStart: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               type: nix.thunk(() => nix.sel(types, "lines")),
               default: "",
               description: "Shell commands executed after the service's main process\nis started.\n",
             })))),
           reload: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               type: nix.thunk(() => nix.sel(types, "lines")),
               default: "",
               description: "Shell commands executed when the service's main process\nis reloaded.\n",
             })))),
           preStop: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               type: nix.thunk(() => nix.sel(types, "lines")),
               default: "",
               description: "Shell commands executed to stop the service.\n",
             })))),
           postStop: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               type: nix.thunk(() => nix.sel(types, "lines")),
               default: "",
               description: "Shell commands executed after the service's main process\nhas exited.\n",
             })))),
           jobScripts: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$50,
+              [nix.POS]: pos$50,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "coercedTo"), nix.thunk(() => nix.lookup(w, "path")), singleton, nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "path")))));
@@ -452,101 +452,101 @@ export default nix.lambda((args) => (() => {
         config: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
             nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(config, "preStart"), "")), nix.thunk(() => (() => {
                 const jobScripts = nix.thunk(() => nix.app(makeJobScript, nix.thunk(() => ({
-                    __proto__: pos$52,
+                    [nix.POS]: pos$52,
                     name: nix.thunk(() => nix.str`${name}-pre-start`),
                     text: nix.thunk(() => nix.sel(config, "preStart")),
                     enableStrictShellChecks: nix.thunk(() => nix.attr(config, "enableStrictShellChecks")),
                   }))));
-                const serviceConfig = nix.thunk(() => ({ __proto__: pos$53, ExecStartPre: nix.thunk(() => [jobScripts]) }));
-                return { __proto__: pos$54, jobScripts, serviceConfig };
+                const serviceConfig = nix.thunk(() => ({ [nix.POS]: pos$53, ExecStartPre: nix.thunk(() => [jobScripts]) }));
+                return { [nix.POS]: pos$54, jobScripts, serviceConfig };
               })()))),
             nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(config, "script"), "")), nix.thunk(() => (() => {
                 const jobScripts = nix.thunk(() => nix.app(makeJobScript, nix.thunk(() => ({
-                    __proto__: pos$55,
+                    [nix.POS]: pos$55,
                     name: nix.thunk(() => nix.str`${name}-start`),
                     text: nix.thunk(() => nix.sel(config, "script")),
                     enableStrictShellChecks: nix.thunk(() => nix.attr(config, "enableStrictShellChecks")),
                   }))));
                 const serviceConfig = nix.thunk(() => ({
-                  __proto__: pos$56,
+                  [nix.POS]: pos$56,
                   ExecStart: nix.thunk(() => nix.add(nix.add(jobScripts, " "), nix.sel(config, "scriptArgs"))),
                 }));
-                return { __proto__: pos$57, jobScripts, serviceConfig };
+                return { [nix.POS]: pos$57, jobScripts, serviceConfig };
               })()))),
             nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(config, "postStart"), "")), nix.thunk(() => (() => {
                 const jobScripts = nix.thunk(() => nix.app(makeJobScript, nix.thunk(() => ({
-                    __proto__: pos$58,
+                    [nix.POS]: pos$58,
                     name: nix.thunk(() => nix.str`${name}-post-start`),
                     text: nix.thunk(() => nix.sel(config, "postStart")),
                     enableStrictShellChecks: nix.thunk(() => nix.attr(config, "enableStrictShellChecks")),
                   }))));
-                const serviceConfig = nix.thunk(() => ({ __proto__: pos$59, ExecStartPost: nix.thunk(() => [jobScripts]) }));
-                return { __proto__: pos$60, jobScripts, serviceConfig };
+                const serviceConfig = nix.thunk(() => ({ [nix.POS]: pos$59, ExecStartPost: nix.thunk(() => [jobScripts]) }));
+                return { [nix.POS]: pos$60, jobScripts, serviceConfig };
               })()))),
             nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(config, "reload"), "")), nix.thunk(() => (() => {
                 const jobScripts = nix.thunk(() => nix.app(makeJobScript, nix.thunk(() => ({
-                    __proto__: pos$61,
+                    [nix.POS]: pos$61,
                     name: nix.thunk(() => nix.str`${name}-reload`),
                     text: nix.thunk(() => nix.sel(config, "reload")),
                     enableStrictShellChecks: nix.thunk(() => nix.attr(config, "enableStrictShellChecks")),
                   }))));
-                const serviceConfig = nix.thunk(() => ({ __proto__: pos$62, ExecReload: jobScripts }));
-                return { __proto__: pos$63, jobScripts, serviceConfig };
+                const serviceConfig = nix.thunk(() => ({ [nix.POS]: pos$62, ExecReload: jobScripts }));
+                return { [nix.POS]: pos$63, jobScripts, serviceConfig };
               })()))),
             nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(config, "preStop"), "")), nix.thunk(() => (() => {
                 const jobScripts = nix.thunk(() => nix.app(makeJobScript, nix.thunk(() => ({
-                    __proto__: pos$64,
+                    [nix.POS]: pos$64,
                     name: nix.thunk(() => nix.str`${name}-pre-stop`),
                     text: nix.thunk(() => nix.sel(config, "preStop")),
                     enableStrictShellChecks: nix.thunk(() => nix.attr(config, "enableStrictShellChecks")),
                   }))));
-                const serviceConfig = nix.thunk(() => ({ __proto__: pos$65, ExecStop: jobScripts }));
-                return { __proto__: pos$66, jobScripts, serviceConfig };
+                const serviceConfig = nix.thunk(() => ({ [nix.POS]: pos$65, ExecStop: jobScripts }));
+                return { [nix.POS]: pos$66, jobScripts, serviceConfig };
               })()))),
             nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(config, "postStop"), "")), nix.thunk(() => (() => {
                 const jobScripts = nix.thunk(() => nix.app(makeJobScript, nix.thunk(() => ({
-                    __proto__: pos$67,
+                    [nix.POS]: pos$67,
                     name: nix.thunk(() => nix.str`${name}-post-stop`),
                     text: nix.thunk(() => nix.sel(config, "postStop")),
                     enableStrictShellChecks: nix.thunk(() => nix.attr(config, "enableStrictShellChecks")),
                   }))));
-                const serviceConfig = nix.thunk(() => ({ __proto__: pos$68, ExecStopPost: jobScripts }));
-                return { __proto__: pos$69, jobScripts, serviceConfig };
+                const serviceConfig = nix.thunk(() => ({ [nix.POS]: pos$68, ExecStopPost: jobScripts }));
+                return { [nix.POS]: pos$69, jobScripts, serviceConfig };
               })()))),
           ]))),
       };
     })(), formals$2);
     const stage2ServiceOptions = nix.thunk(() => ({
-      __proto__: pos$77,
+      [nix.POS]: pos$77,
       imports: nix.thunk(() => [stage2CommonUnitOptions, serviceOptions]),
       options: nix.thunk(() => ({
-        __proto__: pos$76,
+        [nix.POS]: pos$76,
         restartIfChanged: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$71,
+            [nix.POS]: pos$71,
             type: nix.thunk(() => nix.sel(types, "bool")),
             default: true,
             description: "Whether the service should be restarted during a NixOS\nconfiguration switch if its definition has changed.\n",
           })))),
         reloadIfChanged: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$72,
+            [nix.POS]: pos$72,
             type: nix.thunk(() => nix.sel(types, "bool")),
             default: false,
             description: "Whether the service should be reloaded during a NixOS\nconfiguration switch if its definition has changed.  If\nenabled, the value of {option}`restartIfChanged` is\nignored.\n\nThis option should not be used anymore in favor of\n{option}`reloadTriggers` which allows more granular\ncontrol of when a service is reloaded and when a service\nis restarted.\n",
           })))),
         stopIfChanged: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$73,
+            [nix.POS]: pos$73,
             type: nix.thunk(() => nix.sel(types, "bool")),
             default: true,
             description: "If set, a changed unit is restarted by calling\n{command}`systemctl stop` in the old configuration,\nthen {command}`systemctl start` in the new one.\nOtherwise, it is restarted in a single step using\n{command}`systemctl restart` in the new configuration.\nThe latter is less correct because it runs the\n`ExecStop` commands from the new\nconfiguration.\n",
           })))),
         notSocketActivated: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$74,
+            [nix.POS]: pos$74,
             type: nix.thunk(() => nix.sel(types, "bool")),
             default: false,
             description: "If set, a changed unit is never assumed to be\nsocket-activated on configuration switch, even if\nit might have associated socket units. Instead, the unit\nwill be restarted (or stopped/started) as if it had no\nassociated sockets.\n",
           })))),
         startAt: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$75,
+            [nix.POS]: pos$75,
             type: nix.thunk(() => (() => {
               const w = nix.withScope(types, null);
               return nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "str")), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))));
@@ -559,183 +559,183 @@ export default nix.lambda((args) => (() => {
       })),
     }));
     const stage1ServiceOptions = nix.thunk(() => ({
-      __proto__: pos$78,
+      [nix.POS]: pos$78,
       imports: nix.thunk(() => [stage1CommonUnitOptions, serviceOptions]),
     }));
     const socketOptions = nix.thunk(() => ({
-      __proto__: pos$84,
+      [nix.POS]: pos$84,
       options: nix.thunk(() => ({
-        __proto__: pos$83,
+        [nix.POS]: pos$83,
         listenStreams: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$79,
+            [nix.POS]: pos$79,
             default: [],
             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.app(nix.sel(types, "coercedTo"), nix.thunk(() => nix.sel(types, "port")), nix.builtins.toString, nix.thunk(() => nix.sel(types, "str")))))),
             example: nix.thunk(() => ["0.0.0.0:993", "/run/my-socket"]),
             description: "For each item in this list, a `ListenStream`\noption in the `[Socket]` section will be created.\n",
           })))),
         listenDatagrams: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$80,
+            [nix.POS]: pos$80,
             default: [],
             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
             example: nix.thunk(() => ["0.0.0.0:993", "/run/my-socket"]),
             description: "For each item in this list, a `ListenDatagram`\noption in the `[Socket]` section will be created.\n",
           })))),
         socketConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$82,
+            [nix.POS]: pos$82,
             default: nix.thunk(() => ({})),
-            example: nix.thunk(() => ({ __proto__: pos$81, ListenStream: "/run/my-socket" })),
+            example: nix.thunk(() => ({ [nix.POS]: pos$81, ListenStream: "/run/my-socket" })),
             type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), unitOption)),
             description: "Each attribute in this set specifies an option in the\n`[Socket]` section of the unit.  See\n{manpage}`systemd.socket(5)` for details.\n",
           })))),
       })),
     }));
     const stage2SocketOptions = nix.thunk(() => ({
-      __proto__: pos$85,
+      [nix.POS]: pos$85,
       imports: nix.thunk(() => [stage2CommonUnitOptions, socketOptions]),
     }));
     const stage1SocketOptions = nix.thunk(() => ({
-      __proto__: pos$86,
+      [nix.POS]: pos$86,
       imports: nix.thunk(() => [stage1CommonUnitOptions, socketOptions]),
     }));
     const timerOptions = nix.thunk(() => ({
-      __proto__: pos$90,
+      [nix.POS]: pos$90,
       options: nix.thunk(() => ({
-        __proto__: pos$89,
+        [nix.POS]: pos$89,
         timerConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$88,
+            [nix.POS]: pos$88,
             default: nix.thunk(() => ({})),
-            example: nix.thunk(() => ({ __proto__: pos$87, OnCalendar: "Sun 14:00:00", Unit: "foo.service" })),
+            example: nix.thunk(() => ({ [nix.POS]: pos$87, OnCalendar: "Sun 14:00:00", Unit: "foo.service" })),
             type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), unitOption)),
             description: "Each attribute in this set specifies an option in the\n`[Timer]` section of the unit.  See\n{manpage}`systemd.timer(5)` and\n{manpage}`systemd.time(7)` for details.\n",
           })))),
       })),
     }));
     const stage2TimerOptions = nix.thunk(() => ({
-      __proto__: pos$91,
+      [nix.POS]: pos$91,
       imports: nix.thunk(() => [stage2CommonUnitOptions, timerOptions]),
     }));
     const stage1TimerOptions = nix.thunk(() => ({
-      __proto__: pos$92,
+      [nix.POS]: pos$92,
       imports: nix.thunk(() => [stage1CommonUnitOptions, timerOptions]),
     }));
     const pathOptions = nix.thunk(() => ({
-      __proto__: pos$96,
+      [nix.POS]: pos$96,
       options: nix.thunk(() => ({
-        __proto__: pos$95,
+        [nix.POS]: pos$95,
         pathConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$94,
+            [nix.POS]: pos$94,
             default: nix.thunk(() => ({})),
-            example: nix.thunk(() => ({ __proto__: pos$93, PathChanged: "/some/path", Unit: "changedpath.service" })),
+            example: nix.thunk(() => ({ [nix.POS]: pos$93, PathChanged: "/some/path", Unit: "changedpath.service" })),
             type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), unitOption)),
             description: "Each attribute in this set specifies an option in the\n`[Path]` section of the unit.  See\n{manpage}`systemd.path(5)` for details.\n",
           })))),
       })),
     }));
     const stage2PathOptions = nix.thunk(() => ({
-      __proto__: pos$97,
+      [nix.POS]: pos$97,
       imports: nix.thunk(() => [stage2CommonUnitOptions, pathOptions]),
     }));
     const stage1PathOptions = nix.thunk(() => ({
-      __proto__: pos$98,
+      [nix.POS]: pos$98,
       imports: nix.thunk(() => [stage1CommonUnitOptions, pathOptions]),
     }));
     const mountOptions = nix.thunk(() => ({
-      __proto__: pos$106,
+      [nix.POS]: pos$106,
       options: nix.thunk(() => ({
-        __proto__: pos$105,
+        [nix.POS]: pos$105,
         what: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$99,
+            [nix.POS]: pos$99,
             example: "/dev/sda1",
             type: nix.thunk(() => nix.sel(types, "str")),
             description: "Absolute path of device node, file or other resource. (Mandatory)",
           })))),
         where: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$100,
+            [nix.POS]: pos$100,
             example: "/mnt",
             type: nix.thunk(() => nix.sel(types, "str")),
             description: "Absolute path of a directory of the mount point.\nWill be created if it doesn't exist. (Mandatory)\n",
           })))),
         type: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$101,
+            [nix.POS]: pos$101,
             default: "",
             example: "ext4",
             type: nix.thunk(() => nix.sel(types, "str")),
             description: "File system type.",
           })))),
         options: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$102,
+            [nix.POS]: pos$102,
             default: "",
             example: "noatime",
             type: nix.thunk(() => nix.sel(types, "commas")),
             description: "Options used to mount the file system.",
           })))),
         mountConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$104,
+            [nix.POS]: pos$104,
             default: nix.thunk(() => ({})),
-            example: nix.thunk(() => ({ __proto__: pos$103, DirectoryMode: "0775" })),
+            example: nix.thunk(() => ({ [nix.POS]: pos$103, DirectoryMode: "0775" })),
             type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), unitOption)),
             description: "Each attribute in this set specifies an option in the\n`[Mount]` section of the unit.  See\n{manpage}`systemd.mount(5)` for details.\n",
           })))),
       })),
     }));
     const stage2MountOptions = nix.thunk(() => ({
-      __proto__: pos$107,
+      [nix.POS]: pos$107,
       imports: nix.thunk(() => [stage2CommonUnitOptions, mountOptions]),
     }));
     const stage1MountOptions = nix.thunk(() => ({
-      __proto__: pos$108,
+      [nix.POS]: pos$108,
       imports: nix.thunk(() => [stage1CommonUnitOptions, mountOptions]),
     }));
     const automountOptions = nix.thunk(() => ({
-      __proto__: pos$113,
+      [nix.POS]: pos$113,
       options: nix.thunk(() => ({
-        __proto__: pos$112,
+        [nix.POS]: pos$112,
         where: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$109,
+            [nix.POS]: pos$109,
             example: "/mnt",
             type: nix.thunk(() => nix.sel(types, "str")),
             description: "Absolute path of a directory of the mount point.\nWill be created if it doesn't exist. (Mandatory)\n",
           })))),
         automountConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$111,
+            [nix.POS]: pos$111,
             default: nix.thunk(() => ({})),
-            example: nix.thunk(() => ({ __proto__: pos$110, DirectoryMode: "0775" })),
+            example: nix.thunk(() => ({ [nix.POS]: pos$110, DirectoryMode: "0775" })),
             type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), unitOption)),
             description: "Each attribute in this set specifies an option in the\n`[Automount]` section of the unit.  See\n{manpage}`systemd.automount(5)` for details.\n",
           })))),
       })),
     }));
     const stage2AutomountOptions = nix.thunk(() => ({
-      __proto__: pos$114,
+      [nix.POS]: pos$114,
       imports: nix.thunk(() => [stage2CommonUnitOptions, automountOptions]),
     }));
     const stage1AutomountOptions = nix.thunk(() => ({
-      __proto__: pos$115,
+      [nix.POS]: pos$115,
       imports: nix.thunk(() => [stage1CommonUnitOptions, automountOptions]),
     }));
     const sliceOptions = nix.thunk(() => ({
-      __proto__: pos$119,
+      [nix.POS]: pos$119,
       options: nix.thunk(() => ({
-        __proto__: pos$118,
+        [nix.POS]: pos$118,
         sliceConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$117,
+            [nix.POS]: pos$117,
             default: nix.thunk(() => ({})),
-            example: nix.thunk(() => ({ __proto__: pos$116, MemoryMax: "2G" })),
+            example: nix.thunk(() => ({ [nix.POS]: pos$116, MemoryMax: "2G" })),
             type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), unitOption)),
             description: "Each attribute in this set specifies an option in the\n`[Slice]` section of the unit.  See\n{manpage}`systemd.slice(5)` for details.\n",
           })))),
       })),
     }));
     const stage2SliceOptions = nix.thunk(() => ({
-      __proto__: pos$120,
+      [nix.POS]: pos$120,
       imports: nix.thunk(() => [stage2CommonUnitOptions, sliceOptions]),
     }));
     const stage1SliceOptions = nix.thunk(() => ({
-      __proto__: pos$121,
+      [nix.POS]: pos$121,
       imports: nix.thunk(() => [stage1CommonUnitOptions, sliceOptions]),
     }));
     return {
-      __proto__: pos$122,
+      [nix.POS]: pos$122,
       unitOption,
       sharedOptions,
       concreteUnitOptions,

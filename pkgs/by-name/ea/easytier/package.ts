@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const bash = nix.arg($, "bash");
   const iproute2 = nix.arg($, "iproute2");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "easytier",
       version: "2.6.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "EasyTier",
           repo: "EasyTier",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,29 +51,29 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd easytier-cli \\\n  --bash <($out/bin/easytier-cli gen-autocomplete bash) \\\n  --fish <($out/bin/easytier-cli gen-autocomplete fish) \\\n  --zsh <($out/bin/easytier-cli gen-autocomplete zsh)\ninstallShellCompletion --cmd easytier-core \\\n  --bash <($out/bin/easytier-core --gen-autocomplete bash) \\\n  --fish <($out/bin/easytier-core --gen-autocomplete fish) \\\n  --zsh <($out/bin/easytier-core --gen-autocomplete zsh)\n")),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           easytier: nix.thunk(() => nix.attr(nixosTests, "easytier")),
           "easytier-modular": nix.thunk(() => nix.attr(nixosTests, "easytier-modular")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         services: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           default: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             imports: nix.thunk(() => [
-              nix.thunk(() => nix.app(nix.sel(lib, "modules", "importApply"), nix.path(here, "./service.nix"), nix.thunk(() => ({ __proto__: pos$3, formats: formats, bash: bash, iproute2: iproute2 })))),
+              nix.thunk(() => nix.app(nix.sel(lib, "modules", "importApply"), nix.path(here, "./service.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, formats: formats, bash: bash, iproute2: iproute2 })))),
             ]),
             easytier: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })),
           })),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         homepage: "https://github.com/EasyTier/EasyTier",
         changelog: nix.thunk(() => nix.str`https://github.com/EasyTier/EasyTier/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Simple, decentralized mesh VPN with WireGuard support",

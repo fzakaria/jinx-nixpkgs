@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const gtk3 = nix.arg($, "gtk3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gsimplecal",
       version: "2.5.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dmedvinsky",
           repo: "gsimplecal",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk3]),
       preConfigure: "./autogen.sh",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://dmedvinsky.github.io/gsimplecal/",
         description: "Lightweight calendar application written in C++ using GTK",
         longDescription: "gsimplecal was intentionally made for use with tint2 panel in the\nopenbox environment to be launched upon clock click, but of course it\nwill work without it. In fact, binding the gsimplecal to some hotkey in\nyou window manager will probably make you happy. The thing is that when\nit is started it first shows up, when you run it again it closes the\nrunning instance. In that way it is very easy to integrate anywhere. No\nneed to write some wrapper scripts or whatever.\n\nAlso, you can configure it to not only show the calendar, but also\ndisplay multiple clocks for different world time zones.\n",

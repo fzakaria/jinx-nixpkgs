@@ -19,17 +19,17 @@ export default nix.lambda((args) => (() => {
   const libmediainfo = nix.arg($, "libmediainfo");
   const jdk17 = nix.arg($, "jdk17");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ums",
       version: "13.2.1",
       src: nix.thunk(() => (() => {
         const selectSystem = (attrs) => nix.selOr(attrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")));
-        const arch = nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({ __proto__: pos$1, "x86_64-linux": "x86_64", "aarch64-linux": "arm64" }))));
+        const arch = nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({ [nix.POS]: pos$1, "x86_64-linux": "x86_64", "aarch64-linux": "arm64" }))));
         return nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: nix.thunk(() => nix.str`mirror://sourceforge/project/unimediaserver/${nix.sel(finalAttrs, "version")}/UMS-${nix.sel(finalAttrs, "version")}-${arch}.tgz`),
             hash: nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 "x86_64-linux": "sha256-MGi5S0jA9WVh7PuNei5hInUVZLcypJu8izwWJpDi42s=",
                 "aarch64-linux": "sha256-9x1M1rZxwg65RdMmxQ2geeF0yXrukQ3dQPXKfQ2GRIw=",
               })))),
@@ -53,7 +53,7 @@ makeWrapper $out/UMS.sh $out/bin/ums \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Universal Media Server: a DLNA-compliant UPnP Media Server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

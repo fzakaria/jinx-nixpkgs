@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libburn",
       version: "1.5.8",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "dev.lovelyhq.com",
           owner: "libburnia",
           repo: "libburn",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "man"]),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://dev.lovelyhq.com/libburnia/web/wiki",
         description: "Library by which preformatted data get onto optical media: CD, DVD, BD (Blu-Ray)",
         changelog: nix.thunk(() => nix.str`https://dev.lovelyhq.com/libburnia/libburn/src/tag/${nix.sel(finalAttrs, "src", "rev")}/ChangeLog`),

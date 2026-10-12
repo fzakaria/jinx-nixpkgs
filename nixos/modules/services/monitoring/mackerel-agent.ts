@@ -37,42 +37,42 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "mackerel-agent"));
   const settingsFmt = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         "mackerel-agent": nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "mackerel.io agent")),
           runAsRoot: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "running as root")),
           autoRetirement: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "retiring the host upon OS shutdown\n")),
           apiKeyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               example: "/run/keys/mackerel-api-key",
               description: "Path to file containing the Mackerel API key. The file should contain a\nsingle line of the following form:\n\n`apikey = \"EXAMPLE_API_KEY\"`\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               description: "Options for mackerel-agent.conf.\n\nDocumentation:\n<https://mackerel.io/docs/entry/spec/agent>\n",
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$2, verbose: false, silent: false })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$2, verbose: false, silent: false })),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   freeformType: nix.thunk(() => nix.sel(settingsFmt, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     host_status: nix.thunk(() => ({
-                      __proto__: pos$5,
+                      [nix.POS]: pos$5,
                       on_start: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$3,
+                          [nix.POS]: pos$3,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["working", "standby", "maintenance", "poweroff"]))),
                           description: "Host status after agent startup.",
                           default: "working",
                         })))),
                       on_stop: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["working", "standby", "maintenance", "poweroff"]))),
                           description: "Host status after agent shutdown.",
                           default: "poweroff",
@@ -86,28 +86,28 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         environment: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [nix.thunk(() => nix.lookup(w, "mackerel-agent"))];
           })()),
           etc: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             "mackerel-agent/mackerel-agent.conf": nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               source: nix.thunk(() => nix.app(nix.sel(settingsFmt, "generate"), "mackerel-agent.conf", nix.thunk(() => nix.sel(cfg, "settings")))),
             })),
-            "mackerel-agent/conf.d/api-key.conf": nix.thunk(() => ({ __proto__: pos$13, source: nix.thunk(() => nix.sel(cfg, "apiKeyFile")) })),
+            "mackerel-agent/conf.d/api-key.conf": nix.thunk(() => ({ [nix.POS]: pos$13, source: nix.thunk(() => nix.sel(cfg, "apiKeyFile")) })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           "mackerel-agent": nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             settings: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               root: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/var/lib/mackerel-agent")),
               pidfile: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/run/mackerel-agent/mackerel-agent.pid")),
               include: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/etc/mackerel-agent/conf.d/*.conf")),
@@ -115,21 +115,21 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           services: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             "mackerel-agent": nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               description: "mackerel.io agent",
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target", "nss-lookup.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 MACKEREL_PLUGIN_WORKDIR: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "%C/mackerel-agent")),
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 DynamicUser: nix.thunk(() => !nix.asBool(nix.sel(cfg, "runAsRoot"))),
                 PrivateTmp: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                 CacheDirectory: "mackerel-agent",

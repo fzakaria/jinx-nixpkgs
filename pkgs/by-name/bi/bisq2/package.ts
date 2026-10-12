@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
   const socat = nix.arg($, "socat");
   const unzip = nix.arg($, "unzip");
   const version = "2.1.13";
-  const jdk = nix.thunk(() => nix.app(nix.sel(zulu25, "override"), nix.thunk(() => ({ __proto__: pos$1, enableJavaFX: true }))));
+  const jdk = nix.thunk(() => nix.app(nix.sel(zulu25, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableJavaFX: true }))));
   const argumentFile = nix.thunk(() => nix.builtins.toFile("app.args", nix.thunk(() => nix.str`-Djpackage.app-version=${version}
 -classpath
 @out@/lib/app/desktop-app-launcher.jar:@classpath@
@@ -49,14 +49,14 @@ export default nix.lambda((args) => (() => {
 exec "${nix.app(nix.sel(lib, "getExe"), jdk)}" @@out@/lib/app.args ${args_1} bisq.desktop_app_launcher.DesktopAppLauncher "$@"
 `));
   const publicKey = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     E222AA02: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: nix.thunk(() => nix.str`https://github.com/bisq-network/bisq2/releases/download/v${version}/E222AA02.asc`),
         hash: "sha256-31uBpe/+0QQwFyAsoCt1TUWRm0PHfCFOGOx1M16efoE=",
       })))),
     "387C8307": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         url: nix.thunk(() => nix.str`https://github.com/bisq-network/bisq2/releases/download/v${version}/387C8307.asc`),
         hash: "sha256-PrRYZLT0xv82dUscOBgQGKNf6zwzWUDhriAffZbNpmI=",
       })))),
@@ -64,11 +64,11 @@ exec "${nix.app(nix.sel(lib, "getExe"), jdk)}" @@out@/lib/app.args ${args_1} bis
   const binPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils, tor])));
   const libraryPath = nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [nix.thunk(() => nix.sel(stdenv, "cc", "cc")), libv4l])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       version: version,
       pname: "bisq2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           url: nix.thunk(() => nix.str`https://github.com/bisq-network/bisq2/releases/download/v${version}/Bisq-${version}.deb`),
           hash: "sha256-B708w9aC5ERXCE1QnIMPkvl8clJbhyKW7+GC7Fdkyno=",
           nativeBuildInputs: nix.thunk(() => [gnupg]),
@@ -86,7 +86,7 @@ mv $downloadedFile $out
 `),
         })))),
       signature: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           url: nix.thunk(() => nix.str`https://github.com/bisq-network/bisq2/releases/download/v${version}/Bisq-${version}.deb.asc`),
           hash: "sha256-8FQ/HVWYENCbqtG4MD40QF6eQp3iUyqPNfZkRMAUc2A=",
         })))),
@@ -102,7 +102,7 @@ mv $downloadedFile $out
       ]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             name: "bisq2",
             exec: "bisq2",
             icon: "bisq2",
@@ -111,7 +111,7 @@ mv $downloadedFile $out
             categories: nix.thunk(() => ["Network", "P2P"]),
           })))),
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             name: "bisq2-hidpi",
             exec: "bisq2-hidpi",
             icon: "bisq2",
@@ -154,16 +154,16 @@ done;
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         "webcam-app": nix.thunk(() => nix.app(callPackage, nix.path(here, "./webcam-app.nix"), nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             jdk: jdk,
             libraryPath: libraryPath,
             bisq2: nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "out")),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         description: "Decentralized bitcoin exchange network",
         homepage: "https://bisq.network",
         mainProgram: "bisq2",

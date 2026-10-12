@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const gnome_shell = nix.arg($, "gnome-shell");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "arc-theme",
       version: "20221218-unstable-2025-10-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jnsh",
           repo: "arc-theme",
           rev: "94ac8c7d67d68de0cc688bbd4c3105b9815b446e",
@@ -42,8 +42,8 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs meson/install-file.py\n",
       preBuild: "# Shut up inkscape's warnings about creating profile directory\nexport HOME=\"$TMPDIR\"\n",
       env: nix.thunk(() => ({
-        __proto__: pos$3,
-        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ __proto__: pos$2, fontDirectories: [] })))),
+        [nix.POS]: pos$3,
+        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$2, fontDirectories: [] })))),
       })),
       mesonFlags: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mesonOption"), "themes", nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ",", nix.thunk(() => [
@@ -61,11 +61,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonBool"), "gnome_shell_gresource", true)),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$4, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Flat theme with transparent elements for GTK 3, GTK 2 and Gnome Shell",
         homepage: "https://github.com/jnsh/arc-theme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

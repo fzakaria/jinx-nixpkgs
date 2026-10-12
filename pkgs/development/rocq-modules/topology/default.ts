@@ -29,41 +29,41 @@ export default nix.lambda((args) => (() => {
   const zorns_lemma = nix.arg($, "zorns-lemma");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       pname: "topology",
       releaseRev: (v) => nix.str`v${v}`,
       release: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         "10.2.0": nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           hash: "sha256-xLi3uRQBKL9KiLd4FBnbTPxh8TjdN8IEW/1D7n2B+xY=",
         })),
         "9.0.0": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           hash: "sha256:03lgy53xg9pmrdd3d8qb4087k5qjnk260655svp6d79x4p2lxr8c",
         })),
         "8.12.0": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           hash: "sha256-ypHmHwzwZ6MQPYwuS3QyZmVOEPUCSbO2lhVaA6TypgQ=",
         })),
         "8.10.0": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           hash: "sha256-mCLF3JYIiO3AEW9yvlcLeF7zN4SjW3LG+Y5vYB0l55A=",
         })),
         "8.9.0": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           hash: "sha256-ZJh1BM34iZOQ75zqLIA+KtBjO2y33y0UpAw/ydCWQYc=",
         })),
         "8.8.0": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           hash: "sha256-Yfm3UymEP1e+BKMNPhdRFLdFhynMirtQ8E0HXnRiqHU=",
         })),
         "8.7.0": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           hash: "sha256-qcZQKvMRs5wWIAny8ciF9TrmEQfKKO9fWhwIRL+s7VA=",
         })),
         "8.6.0": nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           hash: "sha256-eu/dBEFo3y6vnXlJljUD4hds6+qgAPQVvsuspyGHcj8=",
         })),
       })),
@@ -72,25 +72,25 @@ export default nix.lambda((args) => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.12", "8.18")),
               out: "10.2.0",
             })),
             nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.10", "8.16")),
               out: "9.0.0",
             })),
-            nix.thunk(() => ({ __proto__: pos$12, case: "8.9", out: "8.9.0" })),
-            nix.thunk(() => ({ __proto__: pos$13, case: "8.8", out: "8.8.0" })),
-            nix.thunk(() => ({ __proto__: pos$14, case: "8.7", out: "8.7.0" })),
-            nix.thunk(() => ({ __proto__: pos$15, case: "8.6", out: "8.6.0" })),
+            nix.thunk(() => ({ [nix.POS]: pos$12, case: "8.9", out: "8.9.0" })),
+            nix.thunk(() => ({ [nix.POS]: pos$13, case: "8.8", out: "8.8.0" })),
+            nix.thunk(() => ({ [nix.POS]: pos$14, case: "8.7", out: "8.7.0" })),
+            nix.thunk(() => ({ [nix.POS]: pos$15, case: "8.6", out: "8.6.0" })),
           ]), null);
       })()),
       propagatedBuildInputs: nix.thunk(() => [zorns_lemma]),
       useDuneifVersion: nix.thunk(() => nix.app(nix.sel(lib, "versions", "isGe"), "9.0")),
       meta: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         description: "General topology in Coq",
         longDescription: "This library develops some of the basic concepts and results of\ngeneral topology in Coq.\n",
         maintainers: nix.thunk(() => (() => {

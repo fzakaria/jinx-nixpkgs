@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const udev = nix.arg($, "udev");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libudev0-shim",
       version: "1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "archlinux",
           repo: "libudev0-shim",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [udev]),
       installPhase: "name=\"$(echo libudev.so.*)\"\ninstall -Dm755 \"$name\" \"$out/lib/$name\"\nln -s \"$name\" \"$out/lib/libudev.so.0\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Shim to preserve libudev.so.0 compatibility",
         homepage: "https://github.com/archlinux/libudev0-shim",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

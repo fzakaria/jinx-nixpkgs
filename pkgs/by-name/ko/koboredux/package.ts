@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
   const pname = "koboredux";
   const version = "0.7.5.1";
   const main_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "olofson",
       repo: "koboredux",
       tag: nix.thunk(() => nix.str`v${version}`),
       sha256: "09h9r65z8bar2z89s09j6px0gdq355kjf38rmd85xb2aqwnm6xig",
     }))));
   const assets_src = nix.thunk(() => nix.app(fetchItchIo, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: nix.thunk(() => nix.str`koboredux-${version}-Linux.tar.bz2`),
       gameUrl: "https://olofson.itch.io/kobo-redux",
       sha256: "11bmicx9i11m4c3dp19jsql0zy4rjf5a28x4hd2wl8h3bf8cdgav",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       const sourceRoot = nix.thunk(() => nix.sel(main_src, "name"));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/olofson/koboredux/commit/cf92b8a61d002ccaa9fbcda7a96dab08a681dee4.patch",
             sha256: "0dwhvis7ghf3mgzjd2rwn8hk3ndlgfwwcqaq581yc5rwd73v6vw4",
           })))),
@@ -63,7 +63,7 @@ cp -r ../koboredux-${version_1}-Linux/gfx/redux_fullscreen data/gfx/
       const nativeBuildInputs = nix.thunk(() => [cmake, pkg_config]);
       const buildInputs = nix.thunk(() => [SDL2, SDL2_image, audiality2]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: nix.thunk(() => nix.add("Frantic 80's style 2D shooter, similar to XKobo and Kobo Deluxe", nix.app(optionalString, nix.thunk(() => !nix.asBool(useProprietaryAssets)), " (built without proprietary assets)"))),
         mainProgram: "kobord",
         longDescription: nix.thunk(() => nix.add("Kobo Redux is a frantic 80's style 2D shooter, inspired by the look and\nfeel of 90's arcade cabinets. The gameplay is fast and unforgiving,\nalthough with less of the frustrating quirkiness of the actual games\nof the 80's. A true challenge in the spirit of the arcade era!\n", nix.app(optionalString, nix.thunk(() => !nix.asBool(useProprietaryAssets)), "\nThis version replaces the official proprietary assets with placeholders.\nFor the full experience, consider installing \"koboredux\" instead.\n"))),
@@ -79,7 +79,7 @@ cp -r ../koboredux-${version_1}-Linux/gfx/redux_fullscreen data/gfx/
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: pname_1,
         version: version_1,
         src,

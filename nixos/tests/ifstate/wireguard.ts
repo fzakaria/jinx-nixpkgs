@@ -42,53 +42,53 @@ export default nix.thunk(() => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         imports: nix.thunk(() => [nix.path(here, "../../modules/profiles/minimal.nix")]),
         virtualisation: nix.thunk(() => ({
-          __proto__: pos$3,
-          interfaces: nix.thunk(() => ({ __proto__: pos$2, eth1: nix.thunk(() => ({ __proto__: pos$1, vlan: 1n })) })),
+          [nix.POS]: pos$3,
+          interfaces: nix.thunk(() => ({ [nix.POS]: pos$2, eth1: nix.thunk(() => ({ [nix.POS]: pos$1, vlan: 1n })) })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           firewall: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             interfaces: nix.thunk(() => ({
-              __proto__: pos$5,
-              eth1: nix.thunk(() => ({ __proto__: pos$4, allowedUDPPorts: nix.thunk(() => [51820n]) })),
+              [nix.POS]: pos$5,
+              eth1: nix.thunk(() => ({ [nix.POS]: pos$4, allowedUDPPorts: nix.thunk(() => [51820n]) })),
             })),
           })),
           ifstate: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             enable: true,
             settings: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               namespaces: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 outside: nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   interfaces: nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     eth1: nix.thunk(() => ({
-                      __proto__: pos$8,
+                      [nix.POS]: pos$8,
                       addresses: nix.thunk(() => [nix.thunk(() => nix.str`2001:0db8:a::${nix.builtins.toString(id)}/64`)]),
-                      link: nix.thunk(() => ({ __proto__: pos$7, state: "up", kind: "physical" })),
+                      link: nix.thunk(() => ({ [nix.POS]: pos$7, state: "up", kind: "physical" })),
                     })),
                   })),
                 })),
               })),
               interfaces: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 wg0: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   addresses: nix.thunk(() => [nix.thunk(() => nix.str`2001:0db8:b::${nix.builtins.toString(id)}/64`)]),
-                  link: nix.thunk(() => ({ __proto__: pos$12, state: "up", kind: "wireguard", bind_netns: "outside" })),
+                  link: nix.thunk(() => ({ [nix.POS]: pos$12, state: "up", kind: "wireguard", bind_netns: "outside" })),
                   wireguard: nix.thunk(() => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     private_key: nix.thunk(() => nix.str`!include ${nix.app(nix.sel(pkgs, "writeText"), "wg_priv.key", wgPriv)}`),
                     listen_port: 51820n,
                     peers: nix.thunk(() => nix.attrsDyn({}, [
                       [nix.str`${wgPeerPubKey}`, nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         endpoint: nix.thunk(() => nix.str`[2001:0db8:a::${nix.builtins.toString(wgPeerId)}]:51820`),
                         allowedips: nix.thunk(() => ["::/0"]),
                       }))],
@@ -97,8 +97,8 @@ export default nix.thunk(() => (() => {
                 })),
               })),
               routing: nix.thunk(() => ({
-                __proto__: pos$18,
-                routes: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$17, to: "2001:0db8:b::/64", dev: "wg0" }))]),
+                [nix.POS]: pos$18,
+                routes: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$17, to: "2001:0db8:b::/64", dev: "wg0" }))]),
               })),
             })),
           })),
@@ -107,19 +107,19 @@ export default nix.thunk(() => (() => {
     })(), formals$2);
   })(), formals$1);
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     name: "ifstate-wireguard",
     nodes: nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       foo: nix.thunk(() => nix.app(mkNode, nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           id: 1n,
           wgPriv: "6KmLyTyrN9OZIOCkdpiAwoVoeSiwvyI+mtn1wooKSEU=",
           wgPeerPubKey: "olFuE7u5pVwSeWLFtrXSvD8+aCDBiKNKCLjLb/dgXiA=",
           wgPeerId: 2n,
         })))),
       bar: nix.thunk(() => nix.app(mkNode, nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           id: 2n,
           wgPriv: "QN89cvFD0C8z1MSpUaJa1YBXt2MaIQegVkEYROi71Fg=",
           wgPeerPubKey: "5qeKbAGc7wh9Xg0MoMXqXCSmp9TawmtI1bVk/vp3Cn4=",

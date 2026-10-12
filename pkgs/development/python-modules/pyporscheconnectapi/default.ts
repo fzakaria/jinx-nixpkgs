@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const rich = nix.arg($, "rich");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pyporscheconnectapi",
       version: "0.2.9",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CJNE",
           repo: "pyporscheconnectapi",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["pyporscheconnectapi"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python client library for Porsche Connect API",
         homepage: "https://github.com/CJNE/pyporscheconnectapi",
         changelog: nix.thunk(() => nix.str`https://github.com/CJNE/pyporscheconnectapi/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const libredirect = nix.arg($, "libredirect");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pomo",
       version: "1.2.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Bahaaio",
           repo: "pomo",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       preCheck: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`export NIX_REDIRECTS=/etc/protocols=${iana_etc}/etc/protocols:/etc/services=${iana_etc}/etc/services
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Customizable TUI Pomodoro timer with ASCII art, progress bar, notifications, and stats",
         homepage: "https://github.com/Bahaaio/pomo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

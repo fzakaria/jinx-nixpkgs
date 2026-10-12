@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gnss-sdr";
       const version = "0.0.21";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gnss-sdr",
           repo: "gnss-sdr",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -87,14 +87,14 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "LAPACK_LIBRARIES", "-llapack")),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open source Global Navigation Satellite Systems software-defined receiver",
         homepage: "https://gnss-sdr.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

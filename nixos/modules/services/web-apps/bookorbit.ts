@@ -55,60 +55,60 @@ export default nix.lambda((args) => (() => {
   const postgresqlPackage = nix.thunk(() => nix.sel(config, "services", "postgresql", "package"));
   const environment = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (k) => (v) => nix.str`${k}=${(nix.asBool(nix.builtins.isInt(v)) ? nix.builtins.toString(v) : nix.force(v))}`, nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (v) => !nix.eq(v, null), nix.thunk(() => nix.sel(cfg, "environment"))))));
   return {
-    __proto__: pos$35,
+    [nix.POS]: pos$35,
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         bookorbit: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           enable: nix.thunk(() => nix.app(mkEnableOption, "BookOrbit")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "bookorbit", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "bookorbit",
               description: "User account under which BookOrbit runs.",
             })))),
           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "bookorbit",
               description: "Group under which BookOrbit runs.",
             })))),
           openFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Open the appropriate ports in the firewall for BookOrbit.",
             })))),
           createDatabaseLocally: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: true,
               description: "Create the database locally.",
             })))),
           environment: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   freeformType: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "str")))),
                   options: nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     APP_DATA_PATH: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: "/var/lib/bookorbit",
                         description: "Data storage directory.",
                       })))),
                     PORT: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => nix.sel(types, "port")),
                         default: 3000n,
                         description: "TCP port for the BookOrbit server.",
                       })))),
                     DATABASE_URL: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: nix.thunk(() => (nix.asBool(nix.sel(cfg, "createDatabaseLocally")) ? "postgresql:///bookorbit?host=/run/postgresql&user=bookorbit" : "")),
                         defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "if cfg.createDatabaseLocally then \"postgresql:///bookorbit?host=/run/postgresql&user=bookorbit\" else \"\"")),
@@ -118,7 +118,7 @@ export default nix.lambda((args) => (() => {
                 })))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 APP_URL: "https://bookorbit.example.com",
                 JWT_SECRET: "change-me",
                 SETUP_BOOTSTRAP_TOKEN: "change-me",
@@ -126,7 +126,7 @@ export default nix.lambda((args) => (() => {
               description: "Environment variables to pass to the BookOrbit service.\nSee <https://bookorbit.app/installation.html#configuration> for available options.\n",
             })))),
           environmentFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               example: "/run/secrets/bookorbit",
               default: null,
@@ -136,14 +136,14 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         users: nix.thunk(() => ({
-          __proto__: pos$19,
-          groups: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "bookorbit")), nix.thunk(() => ({ __proto__: pos$16, bookorbit: nix.thunk(() => ({})) })))),
+          [nix.POS]: pos$19,
+          groups: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "bookorbit")), nix.thunk(() => ({ [nix.POS]: pos$16, bookorbit: nix.thunk(() => ({})) })))),
           users: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "bookorbit")), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               bookorbit: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 description: "bookorbit Daemon user",
                 isSystemUser: true,
@@ -151,18 +151,18 @@ export default nix.lambda((args) => (() => {
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           services: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             bookorbit: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               description: "BookOrbit",
               after: nix.thunk(() => ["network-online.target", "postgresql.target", "bookorbit-migrate.service"]),
               requires: nix.thunk(() => ["bookorbit-migrate.service"]),
               wants: nix.thunk(() => ["network-online.target", "postgresql.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
                 ExecStart: nix.thunk(() => nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))),
@@ -198,9 +198,9 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             "postgresql-setup": nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 ExecStartPost: nix.thunk(() => (() => {
                   const extensions = nix.thunk(() => ["uuid-ossp", "pg_trgm", "vector"]);
                   const sqlFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "bookorbit-pgext-setup.sql", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (ext) => nix.str`CREATE EXTENSION IF NOT EXISTS "${ext}";`, extensions)}
@@ -213,12 +213,12 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             "bookorbit-migrate": nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               description: "BookOrbit database migration",
               after: nix.thunk(() => ["postgresql.target"]),
               wants: nix.thunk(() => ["postgresql.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 Type: "oneshot",
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -229,9 +229,9 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           postgresql: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "createDatabaseLocally")), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               enable: true,
               extensions: (ps) => (() => {
                 const w = nix.withScope(ps, null);
@@ -239,20 +239,20 @@ export default nix.lambda((args) => (() => {
               })(),
               ensureDatabases: nix.thunk(() => ["bookorbit"]),
               ensureUsers: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$28, name: "bookorbit", ensureDBOwnership: true })),
+                nix.thunk(() => ({ [nix.POS]: pos$28, name: "bookorbit", ensureDBOwnership: true })),
               ]),
             })))),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           firewall: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "environment", "PORT"))]))),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$34,
+      [nix.POS]: pos$34,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "iv-nn"))];

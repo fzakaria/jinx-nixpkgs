@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "t-rex";
       const version = "0.15.0-alpha3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "t-rex-tileserver",
           repo: "t-rex",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [pkg_config, nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]);
       const buildInputs = nix.thunk(() => [gdal, openssl]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Vector tile server specialized on publishing MVT tiles",
         homepage: "https://t-rex.bbox.earth/",
         changelog: nix.thunk(() => nix.str`https://github.com/t-rex-tileserver/t-rex/blob/v${version}/CHANGELOG.md`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         broken: true,
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

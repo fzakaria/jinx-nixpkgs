@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const pantalaimonInstanceName = "testing";
   const runWithOpenSSL = (file) => (cmd) => nix.app(nix.sel(pkgs, "runCommand"), file, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openssl"))]),
     })), cmd);
   const ca_key = nix.thunk(() => nix.app(runWithOpenSSL, "ca-key.pem", "openssl genrsa -out $out 2048"));
@@ -43,22 +43,22 @@ export default nix.lambda((args) => (() => {
   -days 365
 `)));
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     name: "pantalaimon",
     nodes: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             "pantalaimon-headless": nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               instances: nix.thunk(() => nix.attrsDyn({}, [
                 [pantalaimonInstanceName, nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   homeserver: "https://localhost:8448",
                   listenAddress: "0.0.0.0",
                   listenPort: 8888n,
@@ -68,25 +68,25 @@ export default nix.lambda((args) => (() => {
               ])),
             })),
             "matrix-synapse": nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 listeners: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     port: 8448n,
                     bind_addresses: nix.thunk(() => ["127.0.0.1", "::1"]),
                     type: "http",
                     tls: true,
                     x_forwarded: false,
                     resources: nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$4, names: nix.thunk(() => ["client"]), compress: true })),
-                      nix.thunk(() => ({ __proto__: pos$5, names: nix.thunk(() => ["federation"]), compress: false })),
+                      nix.thunk(() => ({ [nix.POS]: pos$4, names: nix.thunk(() => ["client"]), compress: true })),
+                      nix.thunk(() => ({ [nix.POS]: pos$5, names: nix.thunk(() => ["federation"]), compress: false })),
                     ]),
                   })),
                 ]),
-                database: nix.thunk(() => ({ __proto__: pos$7, name: "sqlite3" })),
+                database: nix.thunk(() => ({ [nix.POS]: pos$7, name: "sqlite3" })),
                 tls_certificate_path: nix.thunk(() => nix.str`${cert}`),
                 tls_private_key_path: nix.thunk(() => nix.str`${key}`),
               })),

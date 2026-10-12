@@ -37,13 +37,13 @@ export default nix.lambda((args) => (() => {
   const urllib3 = nix.arg($, "urllib3");
   const validators = nix.arg($, "validators");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pymisp",
       version: "2.5.34.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MISP",
           repo: "PyMISP",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [poetry_core]),
       dependencies: nix.thunk(() => [deprecated, python_dateutil, requests]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         brotli: nix.thunk(() => [urllib3]),
         docs: nix.thunk(() => [docutils, myst_parser, sphinx, sphinx_autodoc_typehints]),
         email: nix.thunk(() => [extract_msg, oletools, rtfde]),
@@ -87,11 +87,11 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["pymisp"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python library using the MISP Rest API",
         homepage: "https://github.com/MISP/PyMISP",
         changelog: nix.thunk(() => nix.str`https://github.com/MISP/PyMISP/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.txt`),

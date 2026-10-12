@@ -18,17 +18,17 @@ export default nix.lambda((args) => (() => {
   const ffmpeg = nix.arg($, "ffmpeg");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ffms",
       version: "5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FFMS",
           repo: "ffms2",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           sha256: "sha256-Ildl8hbKSFGh4MUBK+k8uYMDrOZD9NSMdPAWIIaGy4E=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-fPIC" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fPIC" })),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       preAutoreconf: "mkdir src/config\n",
       buildInputs: nix.thunk(() => [ffmpeg, zlib]),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
 ln -s $out/lib/libffms2${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")} $out/lib/vapoursynth/libffms2${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/FFMS/ffms2",
         description: "FFmpeg based source library for easy frame accurate access",
         mainProgram: "ffmsindex",

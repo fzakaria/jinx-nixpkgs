@@ -21,21 +21,21 @@ export default nix.lambda((args) => (() => {
   const wineWow64Packages = nix.arg($, "wineWow64Packages");
   const wine = nix.thunk(() => nix.sel(wineWow64Packages, "stable"));
   const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "winbox.png",
       url: "https://aur.archlinux.org/cgit/aur.git/plain/winbox.png?h=winbox",
       hash: "sha256-YD6u2N+1thRnEsXO6AHm138fRda9XEtUX5+EGTg004A=",
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "winbox",
       version: "3.43",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (nix.asBool(nix.builtins.elem("i686-linux", nix.thunk(() => nix.sel(wine, "meta", "platforms")))) ? {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://download.mikrotik.com/routeros/winbox/${nix.sel(finalAttrs, "version")}/winbox.exe`),
           hash: "sha256-pAOOTgmjQoXI2o2MKTDuOOpb7q0rb/zWATDNyAMOLms=",
         } : {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://download.mikrotik.com/routeros/winbox/${nix.sel(finalAttrs, "version")}/winbox64.exe`),
           hash: "sha256-W0HPUf2B6NCCaH9rUiFZz0q6IubfjtxIZyHU4JUHtuk=",
         })))),
@@ -54,7 +54,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "winbox",
             desktopName: "Winbox",
             comment: "GUI administration for Mikrotik RouterOS",
@@ -64,7 +64,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Graphical configuration utility for RouterOS-based devices",
         homepage: "https://mikrotik.com",
         downloadPage: "https://mikrotik.com/download",

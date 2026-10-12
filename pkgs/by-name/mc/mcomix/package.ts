@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const pdfSupport = nix.argOr($, "pdfSupport", () => true);
   const unrarSupport = nix.argOr($, "unrarSupport", () => false);
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "mcomix",
       version: "3.1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/mcomix/mcomix-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-oQqq7XvAfet0796Tv5qKJ+G8vxgkoFGbJkz+5YK+zvg=",
         })))),
@@ -59,14 +59,14 @@ export default nix.lambda((args) => (() => {
 `),
       postInstall: "cp -a share $out/\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: mcomix })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: mcomix })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Comic book reader and image viewer",
         mainProgram: "mcomix",
         longDescription: "User-friendly, customizable image viewer, specifically designed to handle\ncomic books and manga supporting a variety of container formats\n(including CBR, CBZ, CB7, CBT, LHA and PDF)\n",

@@ -29,19 +29,19 @@ export default nix.lambda((args) => (() => {
   const programs = nix.argOr($, "programs", () => ({}));
   const rebuildMan = nix.argOr($, "rebuildMan", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "cryptsetup",
       version: "2.8.8",
       outputs: nix.thunk(() => ["bin", "out", "dev", "man"]),
       separateDebugInfo: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.add(nix.str`mirror://kernel/linux/utils/cryptsetup/v${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/`, nix.str`cryptsetup-${nix.sel(finalAttrs, "version")}.tar.xz`)),
           hash: "sha256-Os+mhfLdf8yDLgt3vHCTqn2lVKUc6Nr7tBOOqoVO7jU=",
         })))),
       patches: nix.thunk(() => [nix.path(here, "./relative-token-path.patch")]),
       postPatch: "patchShebangs tests\n\n# O_DIRECT is filesystem dependent and fails in a sandbox (on tmpfs)\n# and on several filesystem types (btrfs, zfs) without sandboxing.\n# Remove it, see discussion in #46151\nsubstituteInPlace tests/unit-utils-io.c --replace \"| O_DIRECT\" \"\"\n",
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isGNU")) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))))), nix.thunk(() => ({ __proto__: pos$2, NIX_LDFLAGS: "-lgcc_s" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isGNU")) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))))), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-lgcc_s" })))),
       configureFlags: nix.thunk(() => nix.concat([
         "--with-crypto_backend=openssl",
         "--disable-ssh-token",
@@ -52,14 +52,14 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isMusl"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           nixos: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (name) => (_value) => nix.app(nix.sel(lib, "hasPrefix"), "luks", name), nix.thunk(() => nix.sel(nixosTests, "installer")))))))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://gitlab.com/cryptsetup/cryptsetup/",
         description: "LUKS for dm-crypt",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/cryptsetup/cryptsetup/-/raw/v${nix.sel(finalAttrs, "version")}/docs/v${nix.sel(finalAttrs, "version")}-ReleaseNotes`),
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
           return nix.force(nix.lookup(w_1, "linux"));
         })()),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "cryptsetup_project", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

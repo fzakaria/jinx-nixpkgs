@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libcap = nix.arg($, "libcap");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cpu-energy-meter",
       version: "1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sosy-lab",
           repo: "cpu-energy-meter",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,10 +30,10 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libcap]),
       nativeBuildInputs: nix.thunk(() => [udevCheckHook]),
       doInstallCheck: true,
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fcommon" })),
       postInstall: "install -Dm444 -t $out/etc/udev/rules.d $src/debian/additional_files/59-msr.rules\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool for measuring energy consumption of Intel CPUs",
         homepage: "https://github.com/sosy-lab/cpu-energy-meter",
         changelog: "https://github.com/sosy-lab/cpu-energy-meter/blob/main/CHANGELOG.md",

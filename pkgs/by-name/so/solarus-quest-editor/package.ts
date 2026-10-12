@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const glm = nix.arg($, "glm");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "solarus-quest-editor",
       version: nix.thunk(() => nix.attr(solarus, "version")),
       src: nix.thunk(() => nix.add(nix.sel(solarus, "src"), "/editor")),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "SOLARUS_QLEMENTINE_LOCAL_PATH", nix.thunk(() => nix.str`${nix.sel(qlementine, "src")}`))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Editor for the Zelda-like ARPG game engine, Solarus",
         mainProgram: "solarus-editor",
         longDescription: "Solarus is a game engine for Zelda-like ARPG games written in lua.\nMany full-fledged games have been written for the engine.\nGames can be created easily using the editor.\n",

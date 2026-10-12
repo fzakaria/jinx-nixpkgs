@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const gtest = nix.arg($, "gtest");
   const memtailor = nix.arg($, "memtailor");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mathic",
       version: "1.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Macaulay2",
           repo: "mathic",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C++ library of fast data structures designed for use in Groebner basis computation",
         longDescription: "Mathic is a C++ library of fast data structures designed for use in\nGroebner basis computation. This includes data structures for ordering\nS-pairs, performing divisor queries and ordering polynomial terms during\npolynomial reduction.  With Mathic you get to use highly optimized code\nwith little effort so that you can focus more of your time on whatever\npart of your Groebner basis implementation that you are interested in.\nThe data structures use templates to allow you to use them with whatever\nrepresentation of monomials/terms and coefficients that your code uses.\nIn fact the only places where Mathic defines its own monomials/terms is\nin the test code and example code. Currently only dense representations\nof terms/monomials are suitable since Mathic will frequently ask \"what is\nthe exponent of variable number x in this term/monomial?\".\n",
         homepage: "https://github.com/Macaulay2/mathic",

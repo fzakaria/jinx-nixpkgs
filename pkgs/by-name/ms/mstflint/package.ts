@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const onlyFirmwareUpdater = nix.argOr($, "onlyFirmwareUpdater", () => false);
   const enableDPA = nix.argOr($, "enableDPA", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mstflint",
       version: "4.37.0-1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Mellanox",
           repo: nix.thunk(() => nix.sel(finalAttrs, "pname")),
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -68,7 +68,7 @@ export INSTALL_BASEDIR=$out
       hardeningDisable: nix.thunk(() => ["format"]),
       dontDisableStatic: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open source version of Mellanox Firmware Tools (MFT)",
         homepage: "https://github.com/Mellanox/mstflint",
         license: nix.thunk(() => (() => {

@@ -24,23 +24,23 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const bootstrap_version = "3.9.2";
   const cosmocc_zip = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/jart/cosmopolitan/releases/download/${bootstrap_version}/cosmocc-${bootstrap_version}.zip`),
       sha256: "sha256-9P8Tr2X80wnz8c/QQnWZb7f3KkiXcmYoqMnPcy6FAZM=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "cosmopolitan",
       version: "4.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "jart",
           repo: "cosmopolitan",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-NaWQK7SkqS3rrGG95dEjq8ptXogYU4bNndoXPU2rXnM=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ __proto__: pos$3, coreutils: coreutils })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$3, coreutils: coreutils })))),
       ]),
       nativeBuildInputs: nix.thunk(() => [bintools_unwrapped, unzip]),
       strictDeps: true,
@@ -68,14 +68,14 @@ unzip -qo ${cosmocc_zip} -d .cosmocc/${bootstrap_version}
       })()),
       installPhase: "runHook preInstall\n\nmkdir -p $out/{include,lib}\ninstall o//cosmopolitan.a o//libc/crt/crt.o o//ape/ape.{o,lds} o//ape/ape-no-modify-self.o $out/lib\ncp -RT . \"$dist\"\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         cosmocc: nix.thunk(() => nix.app(callPackage, nix.path(here, "./cosmocc.nix"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             cosmopolitan: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://justine.lol/cosmopolitan/",
         description: "Your build-once run-anywhere c library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

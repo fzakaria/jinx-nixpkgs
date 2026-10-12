@@ -40,17 +40,17 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     name: "trafficserver",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "midchildan"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       ats: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
@@ -60,54 +60,54 @@ export default nix.lambda((args) => (() => {
         const group = nix.thunk(() => nix.sel(config, "users", "groups", "trafficserver", "name"));
         const healthchecks = nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "healthchecks.conf", "/status /tmp/ats.status text/plain 200 500\n"));
         return {
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             trafficserver: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               enable: true,
               records: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 proxy: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   config: nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     http: nix.thunk(() => ({
-                      __proto__: pos$2,
+                      [nix.POS]: pos$2,
                       server_ports: "80 80:ipv6",
                       push_method_enabled: 1n,
                       wait_for_cache: 2n,
                     })),
                     hostdb: nix.thunk(() => ({
-                      __proto__: pos$4,
-                      host_file: nix.thunk(() => ({ __proto__: pos$3, path: "/etc/hosts" })),
+                      [nix.POS]: pos$4,
+                      host_file: nix.thunk(() => ({ [nix.POS]: pos$3, path: "/etc/hosts" })),
                     })),
-                    log: nix.thunk(() => ({ __proto__: pos$5, max_space_mb_headroom: 0n })),
+                    log: nix.thunk(() => ({ [nix.POS]: pos$5, max_space_mb_headroom: 0n })),
                   })),
                 })),
               })),
               plugins: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   path: "healthchecks.so",
                   arg: nix.thunk(() => nix.builtins.toString(healthchecks)),
                 })),
-                nix.thunk(() => ({ __proto__: pos$10, path: "xdebug.so" })),
+                nix.thunk(() => ({ [nix.POS]: pos$10, path: "xdebug.so" })),
               ]),
               remap: "map http://httpbin.test http://httpbin\nmap http://pristine-host-hdr.test http://httpbin \\\n  @plugin=conf_remap.so \\\n  @pparam=proxy.config.url_remap.pristine_host_hdr=1\nmap http://ats/tspush http://httpbin/cache \\\n  @plugin=conf_remap.so \\\n  @pparam=proxy.config.http.cache.required_headers=0\n",
               storage: "/dev/vdb volume=1\n",
             })),
             udev: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               extraRules: nix.thunk(() => nix.str`KERNEL=="vdb", OWNER="${user}", GROUP="${group}"
 `),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$15,
-            firewall: nix.thunk(() => ({ __proto__: pos$14, allowedTCPPorts: nix.thunk(() => [80n]) })),
+            [nix.POS]: pos$15,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$14, allowedTCPPorts: nix.thunk(() => [80n]) })),
           })),
-          virtualisation: nix.thunk(() => ({ __proto__: pos$16, emptyDiskImages: nix.thunk(() => [256n]) })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$16, emptyDiskImages: nix.thunk(() => [256n]) })),
         };
       })(), formals$2),
       httpbin: nix.lambda((args_1) => (() => {
@@ -123,26 +123,26 @@ export default nix.lambda((args) => (() => {
             ];
           })()));
         return {
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           systemd: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             services: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               httpbin: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 enable: true,
                 after: nix.thunk(() => ["network.target"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   ExecStart: nix.thunk(() => nix.str`${python}/bin/gunicorn -b 0.0.0.0:80 httpbin:app -k gevent`),
                 })),
               })),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$23,
-            firewall: nix.thunk(() => ({ __proto__: pos$22, allowedTCPPorts: nix.thunk(() => [80n]) })),
+            [nix.POS]: pos$23,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$22, allowedTCPPorts: nix.thunk(() => [80n]) })),
           })),
         };
       })(), formals$3),
@@ -151,9 +151,9 @@ export default nix.lambda((args) => (() => {
         const pkgs_1 = nix.arg($_1, "pkgs");
         const lib = nix.arg($_1, "lib");
         return {
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           environment: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             systemPackages: nix.thunk(() => (() => {
               const w_1 = nix.withScope(pkgs_1, null);
               return [nix.thunk(() => nix.lookup(w_1, "curl"))];

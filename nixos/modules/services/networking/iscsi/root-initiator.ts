@@ -34,70 +34,70 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "boot", "iscsi-initiator"));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       boot: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         "iscsi-initiator": nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
           return {
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             name: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 description: "Name of the iSCSI initiator to boot from. Note, booting from iscsi\nrequires networkd based networking.\n",
                 default: null,
                 example: "iqn.2020-08.org.linux-iscsi.initiatorhost:example",
                 type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
               })))),
             discoverPortal: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 description: "iSCSI portal to boot from.\n",
                 default: null,
                 example: "192.168.1.1:3260",
                 type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
               })))),
             discoverType: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 description: "Target discovery type.\nChange this if you want to discover your targes via an iSNS server\nor use the targets provided via firmware settings.\nSee {manpage}`iscsiadm(8)`.\n",
                 default: "sendtargets",
                 example: "sendtargets",
                 type: nix.thunk(() => nix.app(nix.lookup(w_1, "enum"), nix.thunk(() => ["st", "sendtargets", "isns", "fw"]))),
               })))),
             target: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 description: "Name of the iSCSI target to boot from.\n",
                 default: null,
                 example: "iqn.2020-08.org.linux-iscsi.targethost:example",
                 type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
               })))),
             logLevel: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 description: "Higher numbers elicits more logs.\n",
                 default: 1n,
                 example: 8n,
                 type: nix.thunk(() => nix.lookup(w_1, "int")),
               })))),
             loginAll: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 description: "Do not log into a specific target on the portal, but to all that we discover.\nThis overrides setting target.\n",
                 type: nix.thunk(() => nix.lookup(w_1, "bool")),
                 default: false,
               })))),
             extraIscsiCommands: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 description: "Extra iscsi commands to run in the initrd.",
                 default: "",
                 type: nix.thunk(() => nix.lookup(w_1, "lines")),
               })))),
             extraConfig: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 description: "Extra lines to append to /etc/iscsid.conf",
                 default: null,
                 type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "lines")))),
               })))),
             extraConfigFile: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 description: "Append an additional file's contents to `/etc/iscsid.conf`. Use a non-store path\nand store passwords in this file. Note: the file specified here must be available\nin the initrd, see: `boot.initrd.secrets`.\n",
                 default: null,
                 type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
@@ -107,13 +107,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "name"), null)), nix.thunk(() => ({
-        __proto__: pos$21,
-        networking: nix.thunk(() => ({ __proto__: pos$13, useNetworkd: true, useDHCP: false })),
+        [nix.POS]: pos$21,
+        networking: nix.thunk(() => ({ [nix.POS]: pos$13, useNetworkd: true, useDHCP: false })),
         boot: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           initrd: nix.thunk(() => ({
-            __proto__: pos$15,
-            network: nix.thunk(() => ({ __proto__: pos$14, enable: true, flushBeforeStage2: false })),
+            [nix.POS]: pos$15,
+            network: nix.thunk(() => ({ [nix.POS]: pos$14, enable: true, flushBeforeStage2: false })),
             kernelModules: nix.thunk(() => ["iscsi_tcp"]),
             extraUtilsCommands: nix.thunk(() => nix.str`copy_bin_and_libs ${nix.sel(pkgs, "openiscsi")}/bin/iscsid
 copy_bin_and_libs ${nix.sel(pkgs, "openiscsi")}/bin/iscsiadm
@@ -168,21 +168,21 @@ pkill -9 iscsid
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           openiscsi: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             enable: true,
             name: nix.thunk(() => nix.attr(cfg, "name")),
           })),
         })),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "loginAll")) || nix.asBool(nix.eq(nix.sel(cfg, "target"), null)))),
             message: "iSCSI target name is set while login on all portals is enabled.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             assertion: nix.thunk(() => !nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable"))),
             message: "systemd stage 1 does not support iscsi yet.",
           })),

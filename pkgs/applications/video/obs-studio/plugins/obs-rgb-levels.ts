@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "obs-rgb-levels";
       const version = "1.0.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wimpysworld",
           repo: "obs-rgb-levels",
           rev: version,
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(obs_studio, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple OBS Studio filter to adjust RGB levels",
         homepage: "https://github.com/wimpysworld/obs-rgb-levels",
         maintainers: nix.thunk(() => (() => {
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
       };
       })());
-      return { __proto__: pos$3, pname, version, src, nativeBuildInputs, buildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=obs-rgb-levels.ts.map

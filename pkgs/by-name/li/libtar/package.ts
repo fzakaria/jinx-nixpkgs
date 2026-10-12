@@ -19,24 +19,24 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       version: "1.2.20",
       pname: "libtar",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "git://repo.or.cz/libtar.git",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           sha256: "1pjsqnqjaqgkzf1j8m6y5h76bwprffsjjj6gk8rh2fjsha14rqn9",
         })))),
       patches: nix.thunk(() => (() => {
         const fp = (name) => (sha256) => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`https://sources.debian.net/data/main/libt/libtar/1.2.20-4/debian/patches/${name}.patch`),
             sha256: sha256,
           })));
         return [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               name: "no_static_buffers.patch",
               url: "https://src.fedoraproject.org/rpms/libtar/raw/e25b692fc7ceaa387dafb865b472510754f51bd2/f/libtar-1.2.20-no-static-buffer.patch",
               sha256: "sha256-QcWOgdkNlALb+YDVneT1zCNAMf4d8IUm2kUUUy2VvJs=",
@@ -45,13 +45,13 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(fp, "CVE-2013-4420", "0d010190bqgr2ggy02qwxvjaymy9a22jmyfwdfh4086v876cbxpq")),
           nix.thunk(() => nix.app(fp, "th_get_size-unsigned-int", "1ravbs5yrfac98mnkrzciw9hd2fxq4dc07xl3wx8y2pv1bzkwm41")),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               name: "CVE-2021-33643_CVE-2021-33644.patch",
               url: "https://src.fedoraproject.org/rpms/libtar/raw/e25b692fc7ceaa387dafb865b472510754f51bd2/f/libtar-1.2.20-CVE-2021-33643-CVE-2021-33644.patch",
               sha256: "sha256-HdjotTvKJNntkdcV+kR08Ht/MyNeB6qUT0qo67BBOVA=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               name: "CVE-2021-33645_CVE-2021-33646_CVE-2021-33640.patch",
               url: "https://src.fedoraproject.org/rpms/libtar/raw/e25b692fc7ceaa387dafb865b472510754f51bd2/f/libtar-1.2.20-CVE-2021-33645-CVE-2021-33646.patch",
               sha256: "sha256-p9DEFAL5Y+Ldy5c9Wj9h/BSg4TDxIxCjCQJD+wGQ7oI=",
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["CFLAGS=-std=gnu17"]),
       postPatch: "substituteInPlace libtar/Makefile.in \\\n  --replace-fail '@INSTALL_PROGRAM@ -s' '@INSTALL_PROGRAM@'\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "C library for manipulating POSIX tar files",
         mainProgram: "libtar",
         homepage: "https://repo.or.cz/libtar",

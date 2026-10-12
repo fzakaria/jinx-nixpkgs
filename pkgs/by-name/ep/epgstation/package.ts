@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "epgstation";
       const version = "2.6.20";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "l3tnun",
           repo: "EPGStation",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [
         nix.path(here, "./use-mysql-over-domain-socket.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/midchildan/EPGStation/commit/5d6cad746b7d9b6d246adcdecf9c991b77c9d89e.patch",
             sha256: "sha256-9a8VUjczlyQHVO7w9MYorPIZunAuBuif1HNmtp1yMk8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/midchildan/EPGStation/commit/c948e833e485c2b7cb7fb33b953cca1e20de3a70.patch",
             sha256: "sha256-nM6KkVRURuQFZLXZ2etLU1a1+BoaJnfjngo07TFbe58=",
           })))),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [bash]);
       const nativeBuildInputs = nix.thunk(() => [installShellFiles, makeWrapper, python3]);
       const clientDir = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pname: nix.thunk(() => nix.str`${pname}-client`),
           version: version,
           src: src,
@@ -104,7 +104,7 @@ popd
 `;
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "DVR software compatible with Mirakurun",
         homepage: "https://github.com/l3tnun/EPGStation",
@@ -116,7 +116,7 @@ popd
         mainProgram: "epgstation",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

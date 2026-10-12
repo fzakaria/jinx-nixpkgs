@@ -19,19 +19,19 @@ export default nix.lambda((args) => (() => {
       const version = "1.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: "pymysql_sa",
           sha256: "a2676bce514a29b2d6ab418812259b0c2f7564150ac53455420a20bd7935314a",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [pymysql, sqlalchemy]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PyMySQL dialect for SQL Alchemy",
         homepage: "https://pypi.org/project/pymysql_sa/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
-      return { __proto__: pos$3, pname, version, format, src, propagatedBuildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, propagatedBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

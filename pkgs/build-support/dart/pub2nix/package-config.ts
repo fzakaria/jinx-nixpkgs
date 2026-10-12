@@ -21,10 +21,10 @@ export default nix.lambda((args) => (() => {
     const packages = nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), dependencies, (dependency) => (() => {
         const src = nix.thunk(() => nix.sel(dependencySources, nix.key(nix.force(dependency))));
         const packageRoot = nix.thunk(() => nix.attr(src, "packageRoot"));
-        return { __proto__: pos$1, src, packageRoot };
+        return { [nix.POS]: pos$1, src, packageRoot };
       })()));
     return nix.app(runCommand, nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(pname, null)), nix.thunk(() => nix.str`${pname}-`))}package-config.json`), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         packages: packages,
         nativeBuildInputs: nix.thunk(() => [jq, yq]),
         __structuredAttrs: true,

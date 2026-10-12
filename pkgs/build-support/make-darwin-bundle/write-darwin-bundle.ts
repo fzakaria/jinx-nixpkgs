@@ -11,8 +11,8 @@ export default nix.lambda((args) => (() => {
   const writeScriptBin = nix.arg($, "writeScriptBin");
   const lib = nix.arg($, "lib");
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
-  const pListText = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toPlist"), nix.thunk(() => ({ __proto__: pos$1, escape: true })), nix.thunk(() => ({
-      __proto__: pos$2,
+  const pListText = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toPlist"), nix.thunk(() => ({ [nix.POS]: pos$1, escape: true })), nix.thunk(() => ({
+      [nix.POS]: pos$2,
       CFBundleDevelopmentRegion: "English",
       CFBundleExecutable: "$name",
       CFBundleIconFile: "$icon",

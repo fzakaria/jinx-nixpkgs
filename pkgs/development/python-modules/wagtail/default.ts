@@ -41,20 +41,20 @@ export default nix.lambda((args) => (() => {
   const willow = nix.arg($, "willow");
   const callPackage = nix.arg($, "callPackage");
   const django_treebeard$ = nix.thunk(() => nix.app(nix.sel(django_treebeard, "overridePythonAttrs"), (old) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "5.3.1",
       src: nix.thunk(() => nix.app(nix.sel(old, "src", "override"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           hash: "sha256-s2s/cN1daeST9YxvjwJSH4mbT/gg5/J3n4F6g+S15Rc=",
         })))),
     })));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "wagtail",
       version: "7.4.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "wagtail",
           repo: "wagtail",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(npmHooks, "npmConfigHook")), nodejs]),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-Z2VOMqsNIBybJpfYxAq2dkmS2vwd8Yuhu7MCFyqNxdI=",
         })))),
@@ -90,15 +90,15 @@ export default nix.lambda((args) => (() => {
       ], nix.sel(willow, "optional-dependencies", "heif"))),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           wagtail: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
         })),
       })),
       pythonImportsCheck: nix.thunk(() => ["wagtail"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Django content management system focused on flexibility and user experience",
         mainProgram: "wagtail",
         homepage: "https://github.com/wagtail/wagtail",

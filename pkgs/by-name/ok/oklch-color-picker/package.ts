@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "oklch-color-picker",
       version: "2.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eero-lehtinen",
           repo: "oklch-color-picker",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,14 +45,14 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       postInstall: nix.thunk(() => nix.str`install -Dm444 assets/icon.png $out/share/icons/hicolor/512x512/apps/${nix.sel(finalAttrs, "meta", "mainProgram")}.png
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: nix.thunk(() => nix.sel(finalAttrs, "meta", "mainProgram")),
             exec: nix.thunk(() => nix.sel(finalAttrs, "meta", "mainProgram")),
             icon: nix.thunk(() => nix.sel(finalAttrs, "meta", "mainProgram")),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Color picker for Oklch",
         longDescription: "A standalone color picker application using the Oklch\ncolorspace (based on Oklab)\n",
         homepage: "https://github.com/eero-lehtinen/oklch-color-picker",

@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const xvfb_run = nix.arg($, "xvfb-run");
   const replaceDbusService = (pkg) => (name) => nix.str`--replace-fail "\\\${DBUS_SERVICES_DIR}/${name}" "${pkg}/share/dbus-1/services/${name}"`;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "lomiri-history-service",
       version: "0.7",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ubports",
           repo: "development/core/history-service",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -84,15 +84,15 @@ export QT_PLUGIN_PATH=${nix.app(nix.sel(lib, "getBin"), qtbase)}/${nix.sel(qtbas
 export HOME=$PWD
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Service that provides call log and conversation history",
         longDescription: "History service provides the database and an API to store/retrieve the call log (used by dialer-app) and the sms/mms history (used by messaging-app).\n\nSee as well telepathy-ofono for incoming message events.\n\nDatabase location: ~/.local/share/history-service/history.sqlite\n",
         homepage: "https://gitlab.com/ubports/development/core/lomiri-history-service",

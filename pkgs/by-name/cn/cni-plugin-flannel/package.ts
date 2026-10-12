@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cni-plugin-flannel";
       const version = "1.9.1-flannel3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "flannel-io",
           repo: "cni-plugin",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const doInstallCheck = true;
       const installCheckPhase = "runHook preInstallCheck\n$out/bin/flannel 2>&1 | fgrep -q $version\nrunHook postInstallCheck\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Network fabric for containers designed to work in conjunction with flannel",
         mainProgram: "flannel",
         homepage: "https://github.com/flannel-io/cni-plugin/",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const writeCueValidator = nix.arg($, "writeCueValidator");
   const runCommand = nix.arg($, "runCommand");
   const writeText = nix.arg($, "writeText");
-  const validator = nix.thunk(() => nix.app(writeCueValidator, nix.thunk(() => nix.app(writeText, "schema.cue", "#Def1: {\n  field1: string\n}\n")), nix.thunk(() => ({ __proto__: pos$1, document: "#Def1" }))));
+  const validator = nix.thunk(() => nix.app(writeCueValidator, nix.thunk(() => nix.app(writeText, "schema.cue", "#Def1: {\n  field1: string\n}\n")), nix.thunk(() => ({ [nix.POS]: pos$1, document: "#Def1" }))));
   return nix.app(runCommand, "cue-validation", nix.thunk(() => ({})), nix.thunk(() => nix.str`cat > valid.json <<EOF
 { "field1": "abc" }
 EOF

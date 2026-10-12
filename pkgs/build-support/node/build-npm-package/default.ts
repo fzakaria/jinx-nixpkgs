@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const cctools = nix.arg($, "cctools");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         const npmWorkspace = nix.argOr($_1, "npmWorkspace", () => null);
         const nodejs_1 = nix.argOr($_1, "nodejs", () => nix.sel(topLevelArgs, "nodejs"));
         const npmDeps = nix.argOr($_1, "npmDeps", () => nix.app(fetchNpmDeps, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             forceGitDeps: forceGitDeps,
             forceEmptyCache: forceEmptyCache,
             src: src,
@@ -68,12 +68,12 @@ export default nix.lambda((args) => (() => {
         const npmConfigHook = nix.argOr($_1, "npmConfigHook", () => null);
         const npmBuildHook = nix.argOr($_1, "npmBuildHook", () => null);
         const npmInstallHook = nix.argOr($_1, "npmInstallHook", () => null);
-        const npmHooks = nix.thunk(() => nix.app(nix.sel(buildPackages, "npmHooks", "override"), nix.thunk(() => ({ __proto__: pos$2, nodejs: nodejs_1 }))));
+        const npmHooks = nix.thunk(() => nix.app(nix.sel(buildPackages, "npmHooks", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, nodejs: nodejs_1 }))));
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           npmDeps: npmDeps,
           npmBuildScript: npmBuildScript,
-          env: nix.thunk(() => nix.update(nix.selOr(args_2, () => ({}), "env"), { __proto__: pos$3, NIX_NPM_FETCHER_VERSION: npmDepsFetcherVersion })),
+          env: nix.thunk(() => nix.update(nix.selOr(args_2, () => ({}), "env"), { [nix.POS]: pos$3, NIX_NPM_FETCHER_VERSION: npmDepsFetcherVersion })),
           nativeBuildInputs: nix.thunk(() => nix.concat(nativeBuildInputs, nix.concat([
             nodejs_1,
             nix.thunk(() => (nix.asBool(!nix.eq(npmConfigHook, null)) ? nix.force(npmConfigHook) : nix.sel(npmHooks, "npmConfigHook"))),
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
           strictDeps: true,
           dontStrip: nix.thunk(() => nix.selOr(args_2, () => true, "dontStrip")),
           meta: nix.thunk(() => nix.update(nix.selOr(args_2, () => ({}), "meta"), {
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             platforms: nix.thunk(() => nix.selOr(args_2, () => nix.sel(nodejs_1, "meta", "platforms"), "meta", "platforms")),
           })),
         };

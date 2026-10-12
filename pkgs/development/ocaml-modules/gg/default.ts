@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const homepage = "https://erratique.ch/software/gg";
   const version = "1.0.0";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-gg`),
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`${homepage}/releases/gg-${version}.tbz`),
           sha256: "sha256:0j7bpj8k17csnz6v6frkz9aycywsb7xmznnb31g8rbfk3626f3ci",
         })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Basic types for computer graphics in OCaml",
         longDescription: "Gg is an OCaml module providing basic types for computer graphics. It\ndefines types and functions for floats, vectors, points, sizes,\nmatrices, quaternions, axis aligned boxes, colors, color spaces, and\nraster data.\n",
         homepage: homepage,

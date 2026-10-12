@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "kristall";
       const version = "0.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ikskuh",
           repo: "kristall",
           rev: nix.thunk(() => nix.str`V${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libsForQt5, "qtmultimedia", "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Graphical small-internet client, supports gemini, http, https, gopher, finger",
         mainProgram: "kristall",
         homepage: "https://random-projects.net/projects/kristall.gemini",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

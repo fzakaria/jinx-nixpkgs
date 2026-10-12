@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const tqdm = nix.arg($, "tqdm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "templateflow",
       version: "25.1.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "templateflow",
           repo: "python-client",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["templateflow"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://templateflow.org/python-client",
         description: "Python API to query TemplateFlow via pyBIDS",
         changelog: nix.thunk(() => nix.str`https://github.com/templateflow/python-client/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

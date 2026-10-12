@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.19.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PyCQA",
           repo: "flake8-import-order",
           tag: version,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [flake8, pycodestyle, pylama, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["flake8_import_order"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Flake8 and pylama plugin that checks the ordering of import statements",
         homepage: "https://github.com/PyCQA/flake8-import-order",
         changelog: nix.thunk(() => nix.str`https://github.com/PyCQA/flake8-import-order/blob/${version}/CHANGELOG.rst`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

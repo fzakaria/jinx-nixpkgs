@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const udunits = nix.arg($, "udunits");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nco",
       version: "5.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nco",
           repo: "nco",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +44,7 @@ substituteInPlace src/nco/nco_fl_utl.c \\
       makeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.str`LIBTOOL=${libtool}/bin/libtool`)]))),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "NetCDF Operator toolkit",
         homepage: "https://nco.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

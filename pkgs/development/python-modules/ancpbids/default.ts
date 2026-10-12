@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ANCPLabOldenburg",
           repo: "ancp-bids",
           tag: version,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const enabledTestPaths = nix.thunk(() => ["tests/auto"]);
       const disabledTests = nix.thunk(() => ["test_fetch_dataset"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://ancpbids.readthedocs.io",
         description: "Read/write/validate/query BIDS datasets",
         changelog: nix.thunk(() => nix.str`https://github.com/ANCPLabOldenburg/ancp-bids/releases/tag/${nix.sel(src, "tag")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

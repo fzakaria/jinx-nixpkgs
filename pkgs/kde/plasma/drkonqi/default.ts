@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const replaceVars = nix.arg($, "replaceVars");
   const gdb$ = nix.thunk(() => nix.app(nix.sel(gdb, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       hostCpuOnly: true,
       python3: nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (ps) => [
           nix.thunk(() => nix.sel(ps, "psutil")),
@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
         ])),
     }))));
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "drkonqi",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             gdb: nix.thunk(() => nix.str`${gdb$}/bin/gdb`),
             "eu-unstrip": nix.thunk(() => nix.str`${elfutils}/bin/eu-unstrip`),
           })))),

@@ -67,54 +67,54 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
     const password = "zw4SqYVdcsXUfRX8aaFX";
     const registrationTokenFile = "/etc/peertube-runner-registration-token";
     return {
-      __proto__: pos$52,
+      [nix.POS]: pos$52,
       name: "peertube",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return nix.concat([nix.thunk(() => nix.lookup(w, "izorkin"))], nix.sel(lib, "teams", "ngi", "members"));
         })()),
       })),
       nodes: nix.thunk(() => ({
-        __proto__: pos$51,
+        [nix.POS]: pos$51,
         database: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           networking: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             interfaces: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               eth1: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 ipv4: nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$2, address: "192.168.2.10", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: pos$2, address: "192.168.2.10", prefixLength: 24n })),
                   ]),
                 })),
               })),
             })),
-            firewall: nix.thunk(() => ({ __proto__: pos$6, allowedTCPPorts: nix.thunk(() => [5432n, 31638n]) })),
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$6, allowedTCPPorts: nix.thunk(() => [5432n, 31638n]) })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             postgresql: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               enable: true,
               enableTCPIP: true,
               ensureDatabases: nix.thunk(() => ["peertube_test"]),
               ensureUsers: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$8, name: "peertube_test", ensureDBOwnership: true })),
+                nix.thunk(() => ({ [nix.POS]: pos$8, name: "peertube_test", ensureDBOwnership: true })),
               ]),
               authentication: "hostnossl peertube_test peertube_test 192.168.2.11/32 md5\n",
               initialScript: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "postgresql_init.sql", "CREATE ROLE peertube_test LOGIN PASSWORD '0gUN0C1mgST6czvjZ8T9';\n")),
             })),
             redis: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               servers: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 peertube: nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   enable: true,
                   bind: "0.0.0.0",
                   requirePass: "turrQfaQwnanGbcsdhxy",
@@ -128,92 +128,92 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
           const $_1 = nix.formals(args_1, formals$2);
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             environment: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               etc: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 "peertube/password-init-root": nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   text: nix.thunk(() => nix.str`PT_INITIAL_ROOT_PASSWORD=${password}
 `),
                 })),
                 "peertube/secrets-peertube": nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   text: "063d9c60d519597acef26003d5ecc32729083965d09181ef3949200cbe5f09ee\n",
                 })),
-                "peertube/password-posgressql-db": nix.thunk(() => ({ __proto__: pos$17, text: "0gUN0C1mgST6czvjZ8T9\n" })),
-                "peertube/password-redis-db": nix.thunk(() => ({ __proto__: pos$18, text: "turrQfaQwnanGbcsdhxy\n" })),
+                "peertube/password-posgressql-db": nix.thunk(() => ({ [nix.POS]: pos$17, text: "0gUN0C1mgST6czvjZ8T9\n" })),
+                "peertube/password-redis-db": nix.thunk(() => ({ [nix.POS]: pos$18, text: "turrQfaQwnanGbcsdhxy\n" })),
               })),
             })),
             networking: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               interfaces: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 eth1: nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   ipv4: nix.thunk(() => ({
-                    __proto__: pos$22,
+                    [nix.POS]: pos$22,
                     addresses: nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$21, address: "192.168.2.11", prefixLength: 24n })),
+                      nix.thunk(() => ({ [nix.POS]: pos$21, address: "192.168.2.11", prefixLength: 24n })),
                     ]),
                   })),
                 })),
               })),
               extraHosts: nix.thunk(() => nix.str`192.168.2.11 ${domain}
 `),
-              firewall: nix.thunk(() => ({ __proto__: pos$25, allowedTCPPorts: nix.thunk(() => [port]) })),
+              firewall: nix.thunk(() => ({ [nix.POS]: pos$25, allowedTCPPorts: nix.thunk(() => [port]) })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               peertube: nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 enable: true,
                 localDomain: domain,
                 enableWebHttps: false,
                 serviceEnvironmentFile: "/etc/peertube/password-init-root",
-                secrets: nix.thunk(() => ({ __proto__: pos$27, secretsFile: "/etc/peertube/secrets-peertube" })),
+                secrets: nix.thunk(() => ({ [nix.POS]: pos$27, secretsFile: "/etc/peertube/secrets-peertube" })),
                 database: nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   host: "192.168.2.10",
                   name: "peertube_test",
                   user: "peertube_test",
                   passwordFile: "/etc/peertube/password-posgressql-db",
                 })),
                 redis: nix.thunk(() => ({
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   host: "192.168.2.10",
                   port: 31638n,
                   passwordFile: "/etc/peertube/password-redis-db",
                 })),
                 settings: nix.thunk(() => ({
-                  __proto__: pos$32,
-                  listen: nix.thunk(() => ({ __proto__: pos$30, hostname: "0.0.0.0" })),
-                  instance: nix.thunk(() => ({ __proto__: pos$31, name: "PeerTube Test Server" })),
+                  [nix.POS]: pos$32,
+                  listen: nix.thunk(() => ({ [nix.POS]: pos$30, hostname: "0.0.0.0" })),
+                  instance: nix.thunk(() => ({ [nix.POS]: pos$31, name: "PeerTube Test Server" })),
                 })),
               })),
             })),
           };
         })(), formals$2),
         client: nix.thunk(() => ({
-          __proto__: pos$50,
+          [nix.POS]: pos$50,
           environment: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs, "jq")),
               nix.thunk(() => nix.sel(pkgs, "peertube", "cli")),
             ]),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             interfaces: nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               eth1: nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 ipv4: nix.thunk(() => ({
-                  __proto__: pos$38,
+                  [nix.POS]: pos$38,
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$37, address: "192.168.2.12", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: pos$37, address: "192.168.2.12", prefixLength: 24n })),
                   ]),
                 })),
               })),
@@ -222,21 +222,21 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
 `),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             "peertube-runner": nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               enable: true,
               enabledJobTypes: nix.thunk(() => ["video-studio-transcoding"]),
               instancesToRegister: nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 testServer1: nix.thunk(() => ({
-                  __proto__: pos$42,
+                  [nix.POS]: pos$42,
                   url: url,
                   registrationTokenFile: registrationTokenFile,
                   runnerName: "I'm a test!!!",
                 })),
                 testServer2: nix.thunk(() => ({
-                  __proto__: pos$43,
+                  [nix.POS]: pos$43,
                   url: url,
                   registrationTokenFile: registrationTokenFile,
                   runnerName: "I'm also a test...",
@@ -246,11 +246,11 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$49,
+            [nix.POS]: pos$49,
             services: nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               "peertube-runner": nix.thunk(() => ({
-                __proto__: pos$47,
+                [nix.POS]: pos$47,
                 wantedBy: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
               })),
             })),

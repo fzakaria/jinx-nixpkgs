@@ -44,12 +44,12 @@ export default nix.lambda((args) => (() => {
   const libverto = nix.arg($, "libverto");
   const staticOnly = nix.argOr($, "staticOnly", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       pname: "krb5",
       version: "1.22.2",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://kerberos.org/dist/krb5/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/krb5-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-MkP/vI6k1Kwi3cfdKh3FTFeHTEBki2D/lwCXY1VOrxM=",
         })))),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./CVE-2026-40355-and-CVE-2026-40356.patch"),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isFreeBSD")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: "fix-missing-ENODATA.patch",
               url: "https://cgit.freebsd.org/ports/plain/security/krb5-122/files/patch-lib_krad_packet.c?id=0501f716c4aff7880fde56e42d641ef504593b7d",
               extraPrefix: "",
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "lib", "dev"]),
       prefix: nix.thunk(() => nix.builtins.placeholder("lib")),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add("-std=gnu17 -Wno-error=discarded-qualifiers", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), " -fcommon"))),
       })),
       configureFlags: nix.thunk(() => nix.concat([
@@ -96,14 +96,14 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doCheck: false,
       outputChecks: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         lib: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           disallowedRequisites: nix.thunk(() => [bashNonInteractive]),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         changelog: nix.thunk(() => nix.str`https://web.mit.edu/Kerberos/krb5-${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/`),
         description: "MIT Kerberos 5",
         homepage: "http://web.mit.edu/kerberos/",
@@ -111,18 +111,18 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "unix"), nix.sel(lib, "platforms", "windows"))),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         implementation: "krb5",
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(python3, "pkgs"));
           return {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           kerberos: nix.thunk(() => nix.attr(nixosTests, "kerberos")),
           "requests-credssp": nix.thunk(() => nix.attr(from, "requests-credssp")),
-          bind: nix.thunk(() => nix.app(nix.sel(bind, "override"), nix.thunk(() => ({ __proto__: pos$7, enableGSSAPI: true })))),
-          curl: nix.thunk(() => nix.app(nix.sel(curl, "override"), nix.thunk(() => ({ __proto__: pos$8, gssSupport: true })))),
-          openssh: nix.thunk(() => nix.app(nix.sel(openssh, "override"), nix.thunk(() => ({ __proto__: pos$9, withKerberos: true })))),
-          postgresql: nix.thunk(() => nix.app(nix.sel(postgresql, "override"), nix.thunk(() => ({ __proto__: pos$10, gssSupport: true })))),
+          bind: nix.thunk(() => nix.app(nix.sel(bind, "override"), nix.thunk(() => ({ [nix.POS]: pos$7, enableGSSAPI: true })))),
+          curl: nix.thunk(() => nix.app(nix.sel(curl, "override"), nix.thunk(() => ({ [nix.POS]: pos$8, gssSupport: true })))),
+          openssh: nix.thunk(() => nix.app(nix.sel(openssh, "override"), nix.thunk(() => ({ [nix.POS]: pos$9, withKerberos: true })))),
+          postgresql: nix.thunk(() => nix.app(nix.sel(postgresql, "override"), nix.thunk(() => ({ [nix.POS]: pos$10, gssSupport: true })))),
         };
         })()),
       })),

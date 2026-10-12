@@ -24,29 +24,29 @@ export default nix.lambda((args) => (() => {
   const roslyn = nix.arg($, "roslyn");
   const dotnet_sdk = nix.thunk(() => nix.sel(dotnetCorePackages, "sdk_8_0-source"));
   const xplat = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://github.com/mono/msbuild/releases/download/v16.9.0/mono_msbuild_6.12.0.137.zip",
       sha256: "1wnzbdpk4s9bmawlh359ak2b8zi0sgx1qvcjnvfncr1wsck53v7q",
     }))));
   const from = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "extensions"));
   const sharedLibrary = nix.thunk(() => nix.attr(from, "sharedLibrary"));
   const mkPackage = (attrs) => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => nix.app(nix.sel(dotnetCorePackages, "addNuGetDeps"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         nugetDeps: nix.path(here, "./deps.json"),
-        overrideFetchAttrs: (a) => ({ __proto__: pos$2, dontBuild: false }),
+        overrideFetchAttrs: (a) => ({ [nix.POS]: pos$2, dontBuild: false }),
       })), attrs, finalAttrs));
   return nix.app(mkPackage, nix.thunk(() => (() => {
       const pname = "msbuild";
       const version = "16.10.1+xamarinxplat.2021.05.26.14.00";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           url: nix.thunk(() => nix.str`https://download.mono-project.com/sources/msbuild/msbuild-${version}.tar.xz`),
           sha256: "05ghqqkdj4s3d0xkp7mkdzjig5zj3k6ajx71j0g2wv6rdbvg6899",
         }))));
       const nativeBuildInputs = nix.thunk(() => [dotnet_sdk, mono, unzip, makeWrapper]);
       const buildInputs = nix.thunk(() => [glibcLocales]);
       const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           LOCALE_ARCHIVE: nix.thunk(() => nix.str`${glibcLocales}/lib/locale/locale-archive`),
         }))));
       const postPatch = nix.thunk(() => nix.str`# not patchShebangs, there is /bin/bash in the body of the script as well
@@ -128,7 +128,7 @@ EOF
     ${mono}/bin/mono Helloworld.exe | grep "Hello, world!"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Mono version of Microsoft Build Engine, the build platform for .NET, and Visual Studio",
         mainProgram: "msbuild",
         homepage: "https://github.com/mono/msbuild",
@@ -147,7 +147,7 @@ EOF
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

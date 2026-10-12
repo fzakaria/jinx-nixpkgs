@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "unicode-character-database";
       const version = "17.0.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.unicode.org/Public/${version}/ucd/UCD.zip`),
           sha256: "sha256-IGbRkJsuqTkWzgktocDuSAjqPvhAfJS08U9bfrJj0o4=",
         }))));
@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
       const sourceRoot = ".";
       const installPhase = "runHook preInstall\n\nmkdir -p $out/share/unicode\ncp -r * $out/share/unicode\nrm $out/share/unicode/env-vars\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unicode Character Database",
         homepage: "https://www.unicode.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unicode-30")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

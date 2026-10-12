@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
-  const dhcpcd = nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(config, "boot", "isContainer"))) ? nix.sel(pkgs, "dhcpcd") : nix.app(nix.sel(pkgs, "dhcpcd", "override"), nix.thunk(() => ({ __proto__: pos$1, withUdev: false })))));
+  const dhcpcd = nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(config, "boot", "isContainer"))) ? nix.sel(pkgs, "dhcpcd") : nix.app(nix.sel(pkgs, "dhcpcd", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withUdev: false })))));
   const cfg = nix.thunk(() => nix.sel(config, "networking", "dhcpcd"));
   const interfaces = nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(config, "networking", "interfaces"))));
   const enableDHCP = nix.thunk(() => (nix.asBool(nix.sel(config, "networking", "dhcpcd", "enable")) && nix.asBool((nix.asBool(nix.sel(config, "networking", "useDHCP")) || nix.asBool(nix.app(nix.sel(lib, "any"), (i) => nix.eq(nix.sel(i, "useDHCP"), true), interfaces))))));
@@ -78,7 +78,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(allowInterface
 
 # Immediately fork to background if specified, otherwise wait for IP address to be assigned
 ${nix.sel({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       background: "background",
       any: "waitip",
       ipv4: "waitip 4",
@@ -96,70 +96,70 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "setHostn
 ${nix.sel(cfg, "extraConfig")}
 `)));
   return {
-    __proto__: pos$32,
+    [nix.POS]: pos$32,
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       networking: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         dhcpcd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to enable dhcpcd for device configuration. This is mainly to\nexplicitly disable dhcpcd (for example when using networkd).\n",
             })))),
           persistent: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to leave interfaces configured on dhcpcd daemon\nshutdown. Set to true if you have your root or store mounted\nover the network or this machine accepts SSH connections\nthrough DHCP interfaces and clients should be notified when\nit shuts down.\n",
             })))),
           setHostname: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to set the machine hostname based on the information\nreceived from the DHCP server.\n\n::: {.note}\nThe hostname will be changed only if the current one is\nthe empty string, `localhost` or `nixos`.\n\nPolkit ([](#opt-security.polkit.enable)) is also required.\n:::\n",
             })))),
           denyInterfaces: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "Disable the DHCP client for any interface whose name matches\nany of the shell glob patterns in this list. The purpose of\nthis option is to blacklist virtual interfaces such as those\ncreated by Xen, libvirt, LXC, etc.\n",
             })))),
           allowInterfaces: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))))),
               default: null,
               description: "Enable the DHCP client for any interface whose name matches\nany of the shell glob patterns in this list. Any interface not\nexplicitly matched by this pattern will be denied. This pattern only\napplies when non-null.\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Literal string to append to the config file generated for dhcpcd.\n",
             })))),
           IPv6rs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "bool")))),
               default: null,
               description: "Force enable or disable solicitation and receipt of IPv6 Router Advertisements.\nThis is required, for example, when using a static unique local IPv6 address (ULA)\nand global IPv6 address auto-configuration with SLAAC.\n",
             })))),
           allowSetuid: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to relax the security sandbox to allow running setuid\nbinaries (e.g. `sudo`) in the dhcpcd hooks.\n",
             })))),
           runHook: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               example: "if [[ $reason =~ BOUND ]]; then echo $interface: Routers are $new_routers - were $old_routers; fi",
               description: "Shell code that will be run after all other hooks. See\n`man dhcpcd-run-hooks` for details on what is possible.\n\n::: {.note}\nTo use sudo or similar tools in your script you may have to set:\n\n    networking.dhcpcd.allowSetuid = true;\n\nIn addition, as most of the filesystem is inaccessible to dhcpcd\nby default, you may want to define some exceptions, e.g.\n\n    systemd.services.dhcpcd.serviceConfig.ReadOnlyPaths = [\n      \"/run/user/1000/bus\"  # to send desktop notifications\n    ];\n:::\n",
             })))),
           wait: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["background", "any", "ipv4", "ipv6", "both", "if-carrier-up"]))),
               default: "any",
               description: "This option specifies when the dhcpcd service will fork to background.\nIf set to \"background\", dhcpcd will fork to background immediately.\nIf set to \"ipv4\" or \"ipv6\", dhcpcd will wait for the corresponding IP\naddress to be assigned. If set to \"any\", dhcpcd will wait for any type\n(IPv4 or IPv6) to be assigned. If set to \"both\", dhcpcd will wait for\nboth an IPv4 and an IPv6 address before forking.\nThe option \"if-carrier-up\" is equivalent to \"any\" if either ethernet\nis plugged or WiFi is powered, and to \"background\" otherwise.\n",
@@ -168,16 +168,16 @@ ${nix.sel(cfg, "extraConfig")}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), enableDHCP, nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             dhcpcd: nix.thunk(() => (() => {
               const cfgN = nix.thunk(() => nix.sel(config, "networking"));
               const hasDefaultGatewaySet = nix.thunk(() => (nix.asBool((nix.asBool(!nix.eq(nix.sel(cfgN, "defaultGateway"), null)) && nix.asBool(!nix.eq(nix.sel(cfgN, "defaultGateway", "address"), "")))) && nix.asBool((nix.asBool(!nix.asBool(nix.sel(cfgN, "enableIPv6"))) || nix.asBool((nix.asBool(!nix.eq(nix.sel(cfgN, "defaultGateway6"), null)) && nix.asBool(!nix.eq(nix.sel(cfgN, "defaultGateway6", "address"), ""))))))));
               return {
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 description: "DHCP Client",
                 documentation: nix.thunk(() => ["man:dhcpcd(8)"]),
                 wantedBy: nix.thunk(() => nix.concat(["multi-user.target"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(hasDefaultGatewaySet)), "network-online.target"))),
@@ -191,9 +191,9 @@ ${nix.sel(cfg, "extraConfig")}
                   nix.thunk(() => nix.sel(config, "networking", "resolvconf", "package")),
                 ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "setHostname")), nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScriptBin"), "hostname", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(config, "systemd", "package")), "hostnamectl")} set-hostname --transient $1
 `)))))),
-                unitConfig: nix.thunk(() => ({ __proto__: pos$16, ConditionCapability: "CAP_NET_ADMIN" })),
+                unitConfig: nix.thunk(() => ({ [nix.POS]: pos$16, ConditionCapability: "CAP_NET_ADMIN" })),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   Type: "forking",
                   PIDFile: "/run/dhcpcd/pid",
                   SupplementaryGroups: nix.thunk(() => nix.app(nix.sel(lib, "optional"), useResolvConf, "resolvconf")),
@@ -239,29 +239,29 @@ ${nix.sel(cfg, "extraConfig")}
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           users: nix.thunk(() => ({
-            __proto__: pos$22,
-            dhcpcd: nix.thunk(() => ({ __proto__: pos$21, isSystemUser: true, group: "dhcpcd" })),
+            [nix.POS]: pos$22,
+            dhcpcd: nix.thunk(() => ({ [nix.POS]: pos$21, isSystemUser: true, group: "dhcpcd" })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$23, dhcpcd: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$23, dhcpcd: nix.thunk(() => ({})) })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           systemPackages: nix.thunk(() => [dhcpcd]),
           etc: nix.thunk(() => ({
-            __proto__: pos$26,
-            "dhcpcd.exit-hook": nix.thunk(() => ({ __proto__: pos$25, text: nix.thunk(() => nix.sel(cfg, "runHook")) })),
+            [nix.POS]: pos$26,
+            "dhcpcd.exit-hook": nix.thunk(() => ({ [nix.POS]: pos$25, text: nix.thunk(() => nix.sel(cfg, "runHook")) })),
           })),
         })),
         powerManagement: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           resumeCommands: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "systemd", "services", "dhcpcd", "enable")), "# Tell dhcpcd to rebind its interfaces if it's running.\n/run/current-system/systemd/bin/systemctl reload dhcpcd.service\n")),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           polkit: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "resolved", "enable")), "polkit.addRule(function(action, subject) {\n    if (action.id == 'org.freedesktop.resolve1.revert' ||\n        action.id == 'org.freedesktop.resolve1.set-dns-servers' ||\n        action.id == 'org.freedesktop.resolve1.set-domains') {\n        if (subject.user == 'dhcpcd') {\n            return polkit.Result.YES;\n        }\n    }\n});\n")),
                 nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "setHostname")), "polkit.addRule(function(action, subject) {\n    if (action.id == 'org.freedesktop.hostname1.set-hostname' &&\n        subject.user == 'dhcpcd') {\n        return polkit.Result.YES;\n    }\n});\n")),

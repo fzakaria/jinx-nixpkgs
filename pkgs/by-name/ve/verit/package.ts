@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const flex = nix.arg($, "flex");
   const bison = nix.arg($, "bison");
   return nix.app(nix.sel(gccStdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "veriT",
       version: "2021.06.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://verit.loria.fr/download/2021.06.2/verit-2021.06.2-rmx.tar.gz",
           sha256: "1yjvvxnsix0rhilc81ycx1s85dymq366c6zh1hwwd8qxp7k1zca2",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`LEX=${flex}/bin/flex`)]),
       preInstall: "mkdir -p $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open, trustable and efficient SMT-solver",
         homepage: "https://verit.loria.fr/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

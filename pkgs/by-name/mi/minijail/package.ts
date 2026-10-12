@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libcap = nix.arg($, "libcap");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "minijail",
       version: "2026.05.18",
       src: nix.thunk(() => nix.app(fetchFromGitiles, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://chromium.googlesource.com/chromiumos/platform/minijail",
           tag: nix.thunk(() => nix.str`linux-v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-15TQnTFIx2DSdAQZPCVhBPs8a+V6YV3IrA1LqfMWcRQ=",
@@ -43,7 +43,7 @@ installManPage minijail0.1 minijail0.5
 `),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://chromium.googlesource.com/chromiumos/platform/minijail/+/refs/heads/main/README.md",
         description: "Sandboxing library and application using Linux namespaces and capabilities",
         changelog: nix.thunk(() => nix.str`https://chromium.googlesource.com/chromiumos/platform/minijail/+/refs/tags/linux-v${nix.sel(finalAttrs, "version")}`),

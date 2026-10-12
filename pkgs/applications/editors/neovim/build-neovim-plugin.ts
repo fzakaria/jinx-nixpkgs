@@ -20,14 +20,14 @@ export default nix.lambda((args) => (() => {
     const luaAttr = nix.argOr($_1, "luaAttr", () => nix.sel(lua, "pkgs", nix.key(nix.app(normalizeName, nix.thunk(() => nix.sel(attrs, "pname"))))));
     const originalLuaDrv = nix.thunk(() => (nix.asBool(nix.eq(nix.app(nix.sel(lib, "typeOf"), luaAttr), "string")) ? nix.app(nix.sel(lib, "warn"), "luaAttr as string is deprecated since September 2024. Pass a lua derivation directly ( e.g., `buildNeovimPlugin { luaAttr = lua.pkgs.plenary-nvim; }`)", nix.thunk(() => nix.sel(lua, "pkgs", nix.key(nix.app(normalizeName, luaAttr))))) : nix.force(luaAttr)));
     const luaDrv = nix.thunk(() => nix.app(nix.sel(originalLuaDrv, "overrideAttrs"), (old) => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         version: nix.thunk(() => nix.selOr(attrs, () => nix.sel(old, "version"), "version")),
         __intentionallyOverridingVersion: true,
         rockspecVersion: nix.thunk(() => nix.sel(old, "rockspecVersion")),
-        luarocksConfig: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "luarocksConfig"), { __proto__: pos$1, lua_modules_path: "lua", lib_modules_path: "lua" })),
+        luarocksConfig: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "luarocksConfig"), { [nix.POS]: pos$1, lua_modules_path: "lua", lib_modules_path: "lua" })),
       })));
     const finalDrv = nix.thunk(() => nix.app(toVimPlugin, nix.thunk(() => nix.app(nix.sel(luaDrv, "overrideAttrs"), (old) => nix.update(attrs, {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "nativeBuildInputs"), [nix.thunk(() => nix.sel(lua, "pkgs", "luarocksMoveDataFolder"))])),
           version: nix.thunk(() => (nix.asBool(nix.has(attrs, "version")) ? nix.str`${nix.sel(originalLuaDrv, "version")}-unstable-${nix.sel(attrs, "version")}` : nix.sel(originalLuaDrv, "version"))),
           __intentionallyOverridingVersion: true,

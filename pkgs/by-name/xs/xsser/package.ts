@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "xsser",
       version: "1.9",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "epsylon",
           repo: "xsser",
           tag: nix.thunk(() => nix.str`xsser-v${nix.sel(finalAttrs, "version")}`),
@@ -60,11 +60,11 @@ install -Dm644 core/fuzzing/dorks.txt "$out/${nix.sel(python3Packages, "python",
       preFixup: nix.thunk(() => nix.str`makeWrapperArgs+=(--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [geckodriver, curl]))})
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Automatic framework to detect, exploit and report XSS vulnerabilities in web-based applications",
         homepage: "https://github.com/epsylon/xsser",
         changelog: nix.thunk(() => nix.str`https://github.com/epsylon/xsser/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

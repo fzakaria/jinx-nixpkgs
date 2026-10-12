@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "inflow";
       const version = "1.0.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stephen-huan",
           repo: "inflow",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,18 +31,18 @@ export default nix.lambda((args) => (() => {
       const buildPhase = "runHook preBuild\n\n$CXX -Wall -Wpedantic -Wextra -O3 -o inflow inflow.cpp\n\nrunHook postBuild\n";
       const installPhase = "runHook preInstall\n\ninstall -Dm755 inflow -t $out/bin\n\nrunHook postInstall\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           reflowWithLineLength: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-test`), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               nativeBuildInputs: nix.thunk(() => [inflow]),
               buildInputs: nix.thunk(() => [diffutils]),
             })), "cat <<EOF > input.txt\nxxxxx xxx xxx xxxx xxxxxxxxx xx x xxxxxxxxx x xxxx xxxx xxxxxxx xxxxxxxx xxx\nxxxxxxxxx xxxxxxxx xx xx xxxxx xxxxx xxxx xx x xxxx xx xxxxxxxx xxxxxxxx xxxx\nxxx xxxx xxxx xxx xxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxx xxx xxxxx xx xxxx x xxxx\nxxxxxxxx xxxx xxxx xx xxxxx xxxx xxxxx xxxx xxxxxxxxx xxx xxxxxxxxxxx xxxxxx\nxxx xxxxxxxxx xxxx xxxx xx x xx xxxx xxx xxxx xx xxx xxx xxxxxxxxxxx xxxx xxxxx\nx xxxxx xxxxxxx xxxxxxx xx xx xxxxxx xx xxxxx\nEOF\n\ninflow 72 < input.txt > actual.txt\n\ncat <<EOF > expected.txt\nxxxxx xxx xxx xxxx xxxxxxxxx xx x xxxxxxxxx x xxxx xxxx xxxxxxx\nxxxxxxxx xxx xxxxxxxxx xxxxxxxx xx xx xxxxx xxxxx xxxx xx x xxxx\nxx xxxxxxxx xxxxxxxx xxxx xxx xxxx xxxx xxx xxxxxxxxxxxxxxxxxxx\nxxxxxxxxxxxxx xxx xxxxx xx xxxx x xxxx xxxxxxxx xxxx xxxx xx xxxxx\nxxxx xxxxx xxxx xxxxxxxxx xxx xxxxxxxxxxx xxxxxx xxx xxxxxxxxx\nxxxx xxxx xx x xx xxxx xxx xxxx xx xxx xxx xxxxxxxxxxx xxxx xxxxx\nx xxxxx xxxxxxx xxxxxxx xx xx xxxxxx xx xxxxx\nEOF\n\nif ! cmp --silent expected.txt actual.txt\nthen\n  echo \"Error: actual.txt and expected.txt are different\"\n  diff actual.txt expected.txt\n  exit 1\nfi\n\ntouch $out\n")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Variance-optimal paragraph formatter",
         homepage: "https://github.com/stephen-huan/inflow",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

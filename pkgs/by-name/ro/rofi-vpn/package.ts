@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const networkmanager = nix.arg($, "networkmanager");
   const rofi_unwrapped = nix.arg($, "rofi-unwrapped");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rofi-vpn",
       version: "0.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DamienCassou",
           repo: "rofi-vpn",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ runHook postInstall
 `),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Rofi-based interface to enable VPN connections with NetworkManager",
         homepage: "https://gitlab.com/DamienCassou/rofi-vpn",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

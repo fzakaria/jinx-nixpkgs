@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libxv = nix.arg($, "libxv");
   const libpng = nix.arg($, "libpng");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "qemacs",
       version: "6.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "qemacs",
           repo: "qemacs",
           rev: "0e90c181078f3d85d0d44d985d541184223668e1",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preInstall: "mkdir -p $out/bin $out/man\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://bellard.org/qemacs/",
         description: "Very small but powerful UNIX editor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

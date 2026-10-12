@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.15.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "allure_python_commons",
           version: version,
           hash: "sha256-tCqW1gdvsyPJ5DZF37hMBXT2utCg4AXZJWQBXNFy1WQ=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [attrs, pluggy]);
       const pythonImportsCheck = nix.thunk(() => ["allure", "allure_commons"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Common engine for all modules. It is useful for make integration with your homemade frameworks",
         homepage: "https://github.com/allure-framework/allure-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

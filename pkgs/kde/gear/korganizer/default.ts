@@ -11,10 +11,10 @@ export default nix.lambda((args) => (() => {
   const mkKdeDerivation = nix.arg($, "mkKdeDerivation");
   const qttools = nix.arg($, "qttools");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "korganizer",
       extraBuildInputs: nix.thunk(() => [qttools]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "korganizer" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "korganizer" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

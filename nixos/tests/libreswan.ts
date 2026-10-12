@@ -54,24 +54,24 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const tunnelConfig = nix.thunk(() => ({
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     services: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       libreswan: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         enable: true,
         connections: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           tunnel: "leftid=@alice\nleft=fd::a\nrightid=@bob\nright=fd::b\nauthby=secret\nauto=add\n",
         })),
       })),
     })),
     environment: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       etc: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "ipsec.d/tunnel.secrets": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           text: "@alice @bob : PSK \"j1JbIi9WY07rxwcNQ6nbyThKCf9DGxWOyokXIQcAQUnafsNTUJxfsxwk9WYK8fHj\"",
           mode: "600",
         })),
@@ -79,116 +79,116 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   const baseNetwork = nix.thunk(() => ({
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     extraHosts: nix.thunk(() => nix.app(nix.sel(lib, "mkVMOverride"), "fd::a alice\nfd::b bob\nfd::e eve\n")),
     useDHCP: false,
     interfaces: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       eth1: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         ipv4: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkVMOverride"), [])),
         })),
         ipv6: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkVMOverride"), [])),
         })),
       })),
       eth2: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         ipv4: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkVMOverride"), [])),
         })),
         ipv6: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkVMOverride"), [])),
         })),
       })),
     })),
-    firewall: nix.thunk(() => ({ __proto__: pos$15, allowedUDPPorts: nix.thunk(() => [1234n]) })),
+    firewall: nix.thunk(() => ({ [nix.POS]: pos$15, allowedUDPPorts: nix.thunk(() => [1234n]) })),
   }));
   const addRoute = (a) => (b) => ({
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     interfaces: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       eth1: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         ipv6: nix.thunk(() => ({
-          __proto__: pos$19,
-          addresses: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$17, address: a, prefixLength: 64n }))]),
+          [nix.POS]: pos$19,
+          addresses: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$17, address: a, prefixLength: 64n }))]),
           routes: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$18, address: b, prefixLength: 128n, via: "fd::e" })),
+            nix.thunk(() => ({ [nix.POS]: pos$18, address: b, prefixLength: 128n, via: "fd::e" })),
           ]),
         })),
       })),
     })),
   });
   return {
-    __proto__: pos$42,
+    [nix.POS]: pos$42,
     name: "libreswan",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "rnhmjoj"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$41,
+      [nix.POS]: pos$41,
       alice: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return nix.update({
-          __proto__: pos$25,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$24, vlans: nix.thunk(() => [1n]) })),
+          [nix.POS]: pos$25,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$24, vlans: nix.thunk(() => [1n]) })),
           networking: nix.thunk(() => nix.update(baseNetwork, nix.app(addRoute, "fd::a", "fd::b"))),
         }, tunnelConfig);
       })(), formals$2),
       bob: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return nix.update({
-          __proto__: pos$27,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$26, vlans: nix.thunk(() => [2n]) })),
+          [nix.POS]: pos$27,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$26, vlans: nix.thunk(() => [2n]) })),
           networking: nix.thunk(() => nix.update(baseNetwork, nix.app(addRoute, "fd::b", "fd::a"))),
         }, tunnelConfig);
       })(), formals$3),
       eve: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$4);
         return {
-          __proto__: pos$40,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$28, vlans: nix.thunk(() => [1n, 2n]) })),
+          [nix.POS]: pos$40,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$28, vlans: nix.thunk(() => [1n, 2n]) })),
           networking: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
               baseNetwork,
               nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 interfaces: nix.thunk(() => ({
-                  __proto__: pos$32,
+                  [nix.POS]: pos$32,
                   br0: nix.thunk(() => ({
-                    __proto__: pos$31,
+                    [nix.POS]: pos$31,
                     ipv6: nix.thunk(() => ({
-                      __proto__: pos$30,
+                      [nix.POS]: pos$30,
                       addresses: nix.thunk(() => [
-                        nix.thunk(() => ({ __proto__: pos$29, address: "fd::e", prefixLength: 64n })),
+                        nix.thunk(() => ({ [nix.POS]: pos$29, address: "fd::e", prefixLength: 64n })),
                       ]),
                     })),
                   })),
                 })),
                 bridges: nix.thunk(() => ({
-                  __proto__: pos$34,
-                  br0: nix.thunk(() => ({ __proto__: pos$33, interfaces: nix.thunk(() => ["eth1", "eth2"]) })),
+                  [nix.POS]: pos$34,
+                  br0: nix.thunk(() => ({ [nix.POS]: pos$33, interfaces: nix.thunk(() => ["eth1", "eth2"]) })),
                 })),
               })),
             ]))),
           environment: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "tcpdump"))]),
           })),
           boot: nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             kernel: nix.thunk(() => ({
-              __proto__: pos$38,
-              sysctl: nix.thunk(() => ({ __proto__: pos$37, "net.ipv6.conf.all.forwarding": true })),
+              [nix.POS]: pos$38,
+              sysctl: nix.thunk(() => ({ [nix.POS]: pos$37, "net.ipv6.conf.all.forwarding": true })),
             })),
           })),
         };

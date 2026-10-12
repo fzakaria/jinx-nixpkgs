@@ -37,17 +37,17 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const gpuTargets = nix.argOr($, "gpuTargets", () => nix.selOr(clr, () => nix.sel(clr, "gpuTargets"), "localGpuTargets"));
   const rocmtoolkit_merged = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "rocmtoolkit-merged",
       paths: nix.thunk(() => [rocm_core, rocm_runtime, rocm_device_libs, roctracer, rocdbgapi, clr]),
       postBuild: "rm -rf $out/nix-support\n",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "rocprofiler",
       version: "7.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "ROCm",
           repo: "rocm-systems",
           tag: nix.thunk(() => nix.str`rocm-${nix.sel(finalAttrs, "version")}`),
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
       ]),
       propagatedBuildInputs: nix.thunk(() => [rocmtoolkit_merged]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         CXXFLAGS: nix.thunk(() => nix.str`-I${libpciaccess}/include -I${nix.sel(numactl, "dev")}/include -I${rocmtoolkit_merged}/include -I${nix.sel(elfutils, "dev")}/include -w`),
       })),
       cmakeFlags: nix.thunk(() => [
@@ -115,12 +115,12 @@ ln -s ${clr}/bin/rocm_agent_enumerator $out/bin/rocm_agent_enumerator
   --add-needed libhsa-amd-aqlprofile64.so
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ __proto__: pos$4, finalAttrs: finalAttrs })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$4, finalAttrs: finalAttrs })))),
         "rocmtoolkit-merged": rocmtoolkit_merged,
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Profiling with perf-counters and derived metrics",
         homepage: "https://github.com/ROCm/rocm-systems/tree/develop/projects/rocprofiler",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

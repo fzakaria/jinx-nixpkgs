@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const enablePython = nix.argOr($, "enablePython", () => false);
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libplist",
       version: "2.7.0",
       outputs: nix.thunk(() => nix.concat(["bin", "dev", "out"], nix.app(nix.sel(lib, "optional"), enablePython, "py"))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libimobiledevice",
           repo: "libplist",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), enablePython, nix.thunk(() => nix.str`moveToOutput "lib/${nix.sel(python3, "libPrefix")}" "$py"
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to handle Apple Property List format in binary or XML",
         homepage: "https://github.com/libimobiledevice/libplist",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

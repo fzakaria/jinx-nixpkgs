@@ -23,17 +23,17 @@ export default nix.lambda((args) => (() => {
       const version = "0.43.1";
       const rev = nix.thunk(() => nix.str`v${version}`);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         repoVersion: "18",
         tests: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           kubo: nix.thunk(() => nix.attr(nixosTests, "kubo")),
           ipget: nix.thunk(() => nix.attr(nixosTests, "ipget")),
           repoVersion: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-repoVersion.nix"), nix.thunk(() => ({})))),
         })),
       }));
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://github.com/ipfs/kubo/releases/download/${rev}/kubo-source.tar.gz`),
           hash: "sha256-Rw+Q1VHzT/ZbUzKZ6PVe09Ly0GL9FcmY6lPQlbrD7SY=",
         }))));
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace 'misc/systemd/ipfs.service' \\\n  --replace-fail '/usr/local/bin/ipfs' \"$out/bin/ipfs\"\nsubstituteInPlace 'misc/systemd/ipfs-hardened.service' \\\n  --replace-fail '/usr/local/bin/ipfs' \"$out/bin/ipfs\"\n";
       const postInstall = nix.thunk(() => nix.add("install --mode=444 -D 'misc/systemd/ipfs-api.socket' \"$systemd_unit/etc/systemd/system/ipfs-api.socket\"\ninstall --mode=444 -D 'misc/systemd/ipfs-gateway.socket' \"$systemd_unit/etc/systemd/system/ipfs-gateway.socket\"\ninstall --mode=444 -D 'misc/systemd/ipfs.service' \"$systemd_unit/etc/systemd/system/ipfs.service\"\n\ninstall --mode=444 -D 'misc/systemd/ipfs-api.socket' \"$systemd_unit_hardened/etc/systemd/system/ipfs-api.socket\"\ninstall --mode=444 -D 'misc/systemd/ipfs-gateway.socket' \"$systemd_unit_hardened/etc/systemd/system/ipfs-gateway.socket\"\ninstall --mode=444 -D 'misc/systemd/ipfs-hardened.service' \"$systemd_unit_hardened/etc/systemd/system/ipfs.service\"\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd ipfs \\\n  --bash <($out/bin/ipfs commands completion bash) \\\n  --fish <($out/bin/ipfs commands completion fish) \\\n  --zsh <($out/bin/ipfs commands completion zsh)\n")));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "IPFS implementation in Go",
         homepage: "https://ipfs.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/ipfs/kubo/releases/tag/${rev}`),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         rev,

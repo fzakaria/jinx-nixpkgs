@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const buildPlatformTools = nix.thunk(() => ["pse2unic", "adobe2h"]);
   const tex = nix.thunk(() => nix.app(nix.sel(texliveInfraOnly, "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "collection-fontsrecommended"))]));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "catdvi",
       version: "0.14",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => (() => {
             const w = nix.withScope(finalAttrs, null);
             return nix.str`http://downloads.sourceforge.net/catdvi/catdvi-${nix.lookup(w, "version")}.tar.bz2`;
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://sources.debian.org/data/main/c/catdvi/0.14-14/debian/patches/03_kpathsea_version_string_declaration.diff",
             hash: "sha256-d3CPDxXdVVLNtKkN0rC2G02dh/bJrRll/nVzQNggwkk=",
           })))),
@@ -71,7 +71,7 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (tool) => nix.str`cp ${tool
 ln -s ${tex}/share/texmf-var $out/share/texmf
 `)),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://catdvi.sourceforge.net",
         description: "DVI to plain text translator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

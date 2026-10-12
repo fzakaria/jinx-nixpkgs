@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const torch = nix.arg($, "torch");
   const torchvision = nix.arg($, "torchvision");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "webdataset",
       version: "1.0.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "webdataset",
           repo: "webdataset",
           rev: "0773837ecd298587fc89c4f944ef346ef1a6b619",
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         "test_unbatched",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "High-performance Python-based I/O system for large (and small) deep learning problems, with strong support for PyTorch",
         mainProgram: "widsindex",
         homepage: "https://github.com/webdataset/webdataset",

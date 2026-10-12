@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "dracut",
       version: "112",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dracut-ng",
           repo: "dracut",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "CVE-2026-15816.patch",
             url: "https://github.com/dracut-ng/dracut/commit/c4d555716d569038ca38365741e94ee07908f261.patch?full_index=1",
             hash: "sha256-UpeoiMyQgvwMNOjX39v0IQSIlwvM+MczyPKPRWmT6vQ=",
@@ -97,11 +97,11 @@ wrapProgram $out/bin/lsinitrd --set PATH ${nix.app(nix.sel(lib, "makeBinPath"), 
         ]))}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://dracut-ng.github.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/dracut-ng/dracut/blob/${nix.sel(finalAttrs, "src", "tag")}/NEWS.md`),
         description: "Event driven initramfs infrastructure",

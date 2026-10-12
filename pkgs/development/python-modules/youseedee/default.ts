@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-b5gxBIr/mowzlG4/N0C22S1XTq0NAGTq1/+iMUfxD18=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-use-packaged-unicode-data.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             ucd_dir: nix.thunk(() => nix.str`${unicode_character_database}/share/unicode`),
           })))),
       ]);
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [filelock, requests, platformdirs]);
       const checkPhase = "runHook preCheck\npython -m youseedee 0x078A | grep -qE \"Block\\s+Thaana\"\nrunHook postCheck\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python library for querying the Unicode Character Database",
         homepage: "https://github.com/simoncozens/youseedee",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

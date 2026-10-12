@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const pantheon = nix.arg($, "pantheon");
   const libxtst = nix.arg($, "libxtst");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "snippetpixie",
       version: "1.5.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ianmjones",
           repo: "snippetpixie",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -70,11 +70,11 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       postPatch: "chmod +x meson/post_install.py\npatchShebangs meson/post_install.py\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Your little expandable text snippet helper",
         longDescription: "Your little expandable text snippet helper.\n\nSave your often used text snippets and then expand them whenever you type their abbreviation.\n\nFor example:- \"spr`\" expands to \"Snippet Pixie rules!\"\n\nFor non-accessible applications such as browsers and Electron apps, there's a shortcut (default is Ctrl+`) for opening a search window that pastes the selected snippet.\n",
         homepage: "https://www.snippetpixie.com",

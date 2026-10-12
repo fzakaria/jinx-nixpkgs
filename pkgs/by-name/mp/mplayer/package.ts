@@ -89,36 +89,36 @@ export default nix.lambda((args) => (() => {
     const dir = "http://www.mplayerhq.hu/MPlayer/releases/codecs/";
     const version = "20071007";
     return (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: nix.thunk(() => nix.str`${dir}/essential-${version}.tar.bz2`),
         sha256: "18vls12n12rjw0mzw4pkp9vpcfmd1c21rzha19d7zil4hn7fs2ic",
       }))) : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: nix.thunk(() => nix.str`${dir}/essential-amd64-${version}.tar.bz2`),
         sha256: "13xf5b92w1ra5hw00ck151lypbmnylrnznq9hhb0sj36z5wz290x",
       }))) : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "powerpc-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         url: nix.thunk(() => nix.str`${dir}/essential-ppc-${version}.tar.bz2`),
         sha256: "18mlj8dp4wnz42xbhdk1jlz2ygra6fbln9wyrcyvynxh96g1871z",
       }))) : null)));
   })());
   const codecs = nix.thunk(() => (nix.asBool(!nix.eq(codecs_src, null)) ? nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "MPlayer-codecs-essential",
       src: codecs_src,
       installPhase: "mkdir $out\ncp -prv * $out\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
       })),
     }))) : null));
   const crossBuild = nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "mplayer",
       version: "1.5-unstable-2024-12-21",
       src: nix.thunk(() => nix.app(fetchsvn, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           url: "svn://svn.mplayerhq.hu/mplayer/trunk",
           rev: "38668",
           hash: "sha256-ezWYBkhiSBgf/SeTrO6sKGbL/IrX+82KXCIlqYMEtgY=",
@@ -171,10 +171,10 @@ rm -rf ffmpeg
       preConfigure: "configureFlagsArray+=(\n  \"--cc=$CC\"\n  \"--host-cc=$CC_FOR_BUILD\"\n  \"--as=$AS\"\n  \"--nm=$NM\"\n  \"--ar=$AR\"\n  \"--ranlib=$RANLIB\"\n  \"--windres=$WINDRES\"\n)\n",
       postConfigure: "echo CONFIG_MPEGAUDIODSP=yes >> config.mak\n",
       env: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           NIX_CFLAGS_COMPILE: "-Wno-int-conversion -Wno-incompatible-function-pointer-types",
         }))), {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), fontconfigSupport, nix.thunk(() => ["-lfontconfig"])), nix.concat(nix.app(nix.sel(lib, "optionals"), fribidiSupport, nix.thunk(() => ["-lfribidi"])), nix.concat(nix.app(nix.sel(lib, "optionals"), x11Support, nix.thunk(() => ["-lX11", "-lXext"])), nix.concat(nix.app(nix.sel(lib, "optionals"), x264Support, nix.thunk(() => ["-lx264"])), ["-lfreetype"]))))))),
       })),
       installTargets: nix.thunk(() => nix.concat(["install"], nix.app(nix.sel(lib, "optional"), x11Support, "install-gui"))),
@@ -190,7 +190,7 @@ fi
       doInstallCheck: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Movie player that supports many video formats",
         homepage: "http://mplayerhq.hu",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

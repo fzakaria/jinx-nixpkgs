@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const wrapperDir = nix.argOr($, "wrapperDir", () => "/run/wrappers/bin");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "davfs2",
       version: "1.7.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://savannah/davfs2/davfs2-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-pTaBYetQVWUdfl6BgMFgbaleeMlBtruKkobfeSPPy6k=",
         })))),
@@ -34,15 +34,15 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./fix-sysconfdir.patch"),
         nix.path(here, "./disable-suid.patch"),
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-umount_davfs-substitute-ps-command.patch"), nix.thunk(() => ({ __proto__: pos$2, ps: nix.thunk(() => nix.str`${procps}/bin/ps`) })))),
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0002-Make-sure-that-the-setuid-wrapped-umount-is-invoked.patch"), nix.thunk(() => ({ __proto__: pos$3, wrapperDir: wrapperDir })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-umount_davfs-substitute-ps-command.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, ps: nix.thunk(() => nix.str`${procps}/bin/ps`) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0002-Make-sure-that-the-setuid-wrapped-umount-is-invoked.patch"), nix.thunk(() => ({ [nix.POS]: pos$3, wrapperDir: wrapperDir })))),
       ]),
       configureFlags: nix.thunk(() => [
         "--sysconfdir=/etc",
         nix.thunk(() => nix.str`--with-neon=${nix.app(nix.sel(lib, "getLib"), neon)}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://savannah.nongnu.org/projects/davfs2",
         description: "Mount WebDAV shares like a typical filesystem",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

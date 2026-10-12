@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const cmakeFlags = nix.argOr($, "cmakeFlags", () => nix.sel(units_llnl, "cmakeFlags"));
   const ninja = nix.arg($, "ninja");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.attr(units_llnl, "pname")),
       version: nix.thunk(() => nix.attr(units_llnl, "version")),
       src: nix.thunk(() => nix.attr(units_llnl, "src")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "UNITS_BUILD_PYTHON_LIBRARY", true)),
       ])),
       doCheck: false,
-      passthru: nix.thunk(() => ({ __proto__: pos$1, "top-level": units_llnl })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, "top-level": units_llnl })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

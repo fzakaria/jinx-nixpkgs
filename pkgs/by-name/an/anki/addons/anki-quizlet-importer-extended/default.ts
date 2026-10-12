@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const anki_utils = nix.arg($, "anki-utils");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(anki_utils, "buildAnkiAddon"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "anki-quizlet-importer-extended",
       version: "2026.06.08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sviatoslav-lebediev",
           repo: "anki-quizlet-importer-extended",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-f8Y2Tp3Wo41rKhz/YX602xhxvR7xWUOfvjIKuprt/bo=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Import Quizlet Decks into Anki",
         homepage: "https://ankiweb.net/shared/info/1362209126",
         downloadPage: "https://github.com/sviatoslav-lebediev/anki-quizlet-importer-extended",

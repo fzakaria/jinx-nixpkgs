@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libimobiledevice = nix.arg($, "libimobiledevice");
   const libusb1 = nix.arg($, "libusb1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "usbmuxd",
       version: "1.1.1+date=2025-12-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libimobiledevice",
           repo: "usbmuxd",
           rev: "3ded00c9985a5108cfc7591a309f9a23d57a8cba",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/libimobiledevice/usbmuxd",
         description: "Socket daemon to multiplex connections from and to iOS devices",
         longDescription: "usbmuxd stands for \"USB multiplexing daemon\". This daemon is in charge of\nmultiplexing connections over USB to an iOS device. To users, it means\nyou can sync your music, contacts, photos, etc. over USB. To developers, it\nmeans you can connect to any listening localhost socket on the device. usbmuxd\nis not used for tethering data transfer which uses a dedicated USB interface as\na virtual network device. Multiple connections to different TCP ports can happen\nin parallel. The higher-level layers are handled by libimobiledevice.\n",

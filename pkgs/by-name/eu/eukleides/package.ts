@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const texinfo = nix.arg($, "texinfo");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "eukleides",
       version: "1.5.4",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "salsa.debian.org",
           owner: "georgesk",
           repo: "eukleides",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./gs-allowpstransparency.patch"),
         nix.path(here, "./texinfo-escape.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://salsa.debian.org/georgesk/eukleides/-/raw/debian/1.5.4-6/debian/patches/fixes-for-gcc15.patch",
             hash: "sha256-MVC2bkMGkkDqF/kg8MPvOYacUOXshaG2RZ0a9UVXLSI=",
           })))),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [bison, flex, texinfo, makeWrapper]),
       buildInputs: nix.thunk(() => [getopt, readline]),
       preConfigure: "substituteInPlace Makefile \\\n  --replace-fail mktexlsr true\n\nsubstituteInPlace doc/Makefile \\\n  --replace-fail ginstall-info install-info\n\nsubstituteInPlace Config \\\n  --replace-fail '/usr/local' \"$out\" \\\n  --replace-fail '$(SHARE_DIR)/texmf' \"$tex\"\n",
-      env: nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-fcommon" })),
       preBuild: "mkdir build/eukleides_build\nmkdir build/euktopst_build\n",
       enableParallelBuilding: true,
       preInstall: "mkdir -p $out/bin\n",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
 `),
       outputs: nix.thunk(() => ["out", "doc", "tex"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tlDeps: (ps) => [
           nix.thunk(() => nix.sel(ps, "collection-pstricks")),
           nix.thunk(() => nix.sel(ps, "epstopdf")),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Geometry Drawing Language",
         homepage: "http://www.eukleides.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -24,14 +24,14 @@ export default nix.lambda((args) => (() => {
       const pname = "networkaudiod";
       const version = "4.1.1-46";
       const src = nix.thunk(() => nix.selOr({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://www.signalyst.eu/bins/naa/linux/buster/${pname}_${version}_amd64.deb`),
             sha256: "sha256-un5VcCnvCCS/KWtW991Rt9vz3flYilERmRNooEsKCkA=",
           })))),
         "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`https://www.signalyst.eu/bins/naa/linux/buster/${pname}_${version}_arm64.deb`),
             sha256: "sha256-fjSCWX9VYhVJ43N2kSqd5gfTtDJ1UiH4j5PJ9I5Skag=",
           })))),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const installPhase = "runHook preInstall\n\n# main executable\nmkdir -p $out/bin\ncp ./usr/sbin/networkaudiod $out/bin\n\n# systemd service file\nmkdir -p $out/lib/systemd/system\ncp ./lib/systemd/system/networkaudiod.service $out/lib/systemd/system\n\n# documentation\nmkdir -p $out/share/doc/networkaudiod\ncp -r ./usr/share/doc/networkaudiod $out/share/doc/\n\nrunHook postInstall\n";
       const postInstall = "substituteInPlace $out/lib/systemd/system/networkaudiod.service \\\n  --replace /usr/sbin/networkaudiod $out/bin/networkaudiod\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.signalyst.com/index.html",
         description: "Network Audio Adapter daemon",
         sourceProvenance: nix.thunk(() => (() => {
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "networkaudiod",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

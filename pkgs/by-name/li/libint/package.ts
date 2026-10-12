@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
   const pname = "libint";
   const version = "2.11.2";
   const meta = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     description: "Library for the evaluation of molecular integrals of many-body operators over Gaussian functions",
     homepage: "https://github.com/evaleev/libint",
     license: nix.thunk(() => (() => {
@@ -85,11 +85,11 @@ export default nix.lambda((args) => (() => {
     platforms: nix.thunk(() => ["x86_64-linux"]),
   }));
   const codeGen = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "evaleev",
           repo: "libint",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -122,7 +122,7 @@ cp libint-${version}.tgz $out/.
       meta: meta,
     }))));
   const codeComp = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.str`${codeGen}/libint-${version}.tgz`),

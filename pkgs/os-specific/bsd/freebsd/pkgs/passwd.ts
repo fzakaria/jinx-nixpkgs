@@ -12,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const mkDerivation = nix.arg($, "mkDerivation");
   const libpam = nix.arg($, "libpam");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "usr.bin/passwd",
       buildInputs: nix.thunk(() => [libpam]),
       outputs: nix.thunk(() => ["out", "man", "debug"]),
       postPatch: "sed -E -i -e '/BINOWN|BINMODE|PRECIOUSPROG/d' $BSDSRCDIR/usr.bin/passwd/Makefile\n",
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "passwd" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "passwd" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=passwd.ts.map

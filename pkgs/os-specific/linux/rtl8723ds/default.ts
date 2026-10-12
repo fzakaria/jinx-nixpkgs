@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const kernel = nix.arg($, "kernel");
   const bc = nix.arg($, "bc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rtl8723ds",
       version: nix.thunk(() => nix.str`${nix.sel(kernel, "version")}-unstable-2023-11-14`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lwfinger",
           repo: "rtl8723ds",
           rev: "52e593e8c889b68ba58bd51cbdbcad7fe71362e4",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
 `),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Linux driver for RTL8723DS",
         homepage: "https://github.com/lwfinger/rtl8723ds",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

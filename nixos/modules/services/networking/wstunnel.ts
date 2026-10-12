@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "wstunnel"));
   const argsFormat = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     type: nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(lib, "types"));
       const attrsOf = nix.thunk(() => nix.attr(from, "attrsOf"));
@@ -96,12 +96,12 @@ export default nix.lambda((args) => (() => {
     return nix.str`${host}:${nix.builtins.toString(port)}`;
   })(), formals$2);
   const commonOptions = nix.thunk(() => ({
-    __proto__: pos$5,
-    enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "this `wstunnel` instance"), { __proto__: pos$2, default: true })),
+    [nix.POS]: pos$5,
+    enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "this `wstunnel` instance"), { [nix.POS]: pos$2, default: true })),
     package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "wstunnel", nix.thunk(() => ({})))),
-    autoStart: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "starting this wstunnel instance automatically"), { __proto__: pos$3, default: true })),
+    autoStart: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "starting this wstunnel instance automatically"), { [nix.POS]: pos$3, default: true })),
     environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Environment file to be passed to the systemd service.\nUseful for passing secrets to the service to prevent them from being\nworld-readable in the Nix store.\nNote however that the secrets are passed to `wstunnel` through\nthe command line, which makes them locally readable for all users of\nthe system at runtime.\n",
         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
         default: null,
@@ -115,7 +115,7 @@ export default nix.lambda((args) => (() => {
       const config_1 = nix.arg($_1, "config");
       const certConfig = nix.thunk(() => nix.sel(outerConfig, "security", "acme", "certs", nix.key(nix.sel(config_1, "useACMEHost"))));
       return {
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         imports: nix.thunk(() => nix.concat([
           nix.path(here, "../../misc/assertions.nix"),
           nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["enableHTTPS"]), nix.thunk(() => ["listen", "enableHTTPS"]))),
@@ -128,26 +128,26 @@ export default nix.lambda((args) => (() => {
             "tlsKey",
           ])))),
         options: nix.thunk(() => nix.update(commonOptions, {
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           listen: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "Address and port to listen on.\nSetting the port to a value below 1024 will also give the process\nthe required `CAP_NET_BIND_SERVICE` capability.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   options: nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         description: "The hostname.",
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                       })))),
                     port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         description: "The port.",
                         type: nix.thunk(() => nix.sel(lib, "types", "port")),
                       })))),
                     enableHTTPS: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         description: "Use HTTPS for the tunnel server.",
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         default: true,
@@ -158,7 +158,7 @@ export default nix.lambda((args) => (() => {
                 const $_2 = nix.formals(args_2, formals$4);
                 const config_2 = nix.arg($_2, "config");
                 return {
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   host: "0.0.0.0",
                   port: nix.thunk(() => (nix.asBool(nix.sel(config_2, "enableHTTPS")) ? 443n : 80n)),
                 };
@@ -166,52 +166,52 @@ export default nix.lambda((args) => (() => {
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{ config, ... }:\n{\n  host = \"0.0.0.0\";\n  port = if config.enableHTTPS then 443 else 80;\n}\n")),
             })))),
           useACMEHost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "Use a certificate generated by the NixOS ACME module for the given host.\nNote that this will not generate a new certificate - you will need to do so with `security.acme.certs`.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               example: "example.com",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   freeformType: nix.thunk(() => nix.sel(argsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$20,
+                    [nix.POS]: pos$20,
                     "restrict-to": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$19,
+                        [nix.POS]: pos$19,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                              __proto__: pos$17,
+                              [nix.POS]: pos$17,
                               options: nix.thunk(() => ({
-                                __proto__: pos$16,
+                                [nix.POS]: pos$16,
                                 host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                    __proto__: pos$14,
+                                    [nix.POS]: pos$14,
                                     description: "The hostname.",
                                     type: nix.thunk(() => nix.sel(lib, "types", "str")),
                                   })))),
                                 port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                    __proto__: pos$15,
+                                    [nix.POS]: pos$15,
                                     description: "The port.",
                                     type: nix.thunk(() => nix.sel(lib, "types", "port")),
                                   })))),
                               })),
                             })))))),
                         default: [],
-                        example: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$18, host: "127.0.0.1", port: 51820n }))]),
+                        example: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$18, host: "127.0.0.1", port: 51820n }))]),
                         description: "Restrictions on the connections that the server will accept.\nFor more flexibility, and the possibility to also allow reverse tunnels,\nlook into the `restrict-config` option that takes a path to a yaml file.\n",
                       })))),
                   })),
                 })))),
               default: nix.thunk(() => ({})),
               description: "Command line arguments to pass to `wstunnel`.\nAttributes of the form `argName = true;` will be translated to `--argName`,\nand `argName = \\\"value\\\"` to `--argName value`.\n",
-              example: nix.thunk(() => ({ __proto__: pos$22, someNewOption: true, someNewOptionWithValue: "someValue" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$22, someNewOption: true, someNewOptionWithValue: "someValue" })),
             })))),
         })),
         config: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(config_1, "useACMEHost"), null)), nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               "tls-certificate": nix.thunk(() => nix.str`${nix.sel(certConfig, "directory")}/fullchain.pem`),
               "tls-private-key": nix.thunk(() => nix.str`${nix.sel(certConfig, "directory")}/key.pem`),
             })))),
@@ -223,7 +223,7 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$5);
     const config_1 = nix.arg($_1, "config");
     return {
-      __proto__: pos$36,
+      [nix.POS]: pos$36,
       imports: nix.thunk(() => nix.concat([nix.path(here, "../../misc/assertions.nix")], nix.app(nix.sel(lib, "map"), (option) => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => [option]), "The wstunnel module now uses RFC-42-style settings, please modify your config accordingly\n"), nix.thunk(() => [
           "extraArgs",
           "websocketPingInterval",
@@ -239,50 +239,50 @@ export default nix.lambda((args) => (() => {
           "customHeaders",
         ])))),
       options: nix.thunk(() => nix.update(commonOptions, {
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         connectTo: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             description: "Server address and port to connect to.",
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             example: "https://wstunnel.server.com:8443",
           })))),
         addNetBind: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Whether add CAP_NET_BIND_SERVICE to the tunnel service, this should be enabled if you want to bind port < 1024")),
         settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 freeformType: nix.thunk(() => nix.sel(argsFormat, "type")),
                 options: nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   "http-headers": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                      __proto__: pos$30,
+                      [nix.POS]: pos$30,
                       type: nix.thunk(() => nix.app(nix.sel(lib, "types", "coercedTo"), nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (n) => (v) => nix.str`${n}:${v}`)), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))))),
                       default: nix.thunk(() => ({})),
-                      example: nix.thunk(() => ({ __proto__: pos$29, "X-Some-Header": "some-value" })),
+                      example: nix.thunk(() => ({ [nix.POS]: pos$29, "X-Some-Header": "some-value" })),
                       description: "Custom headers to send in the upgrade request\n",
                     })))),
                 })),
               })))),
             default: nix.thunk(() => ({})),
             description: "Command line arguments to pass to `wstunnel`.\nAttributes of the form `argName = true;` will be translated to `--argName`,\nand `argName = \\\"value\\\"` to `--argName value`.\n",
-            example: nix.thunk(() => ({ __proto__: pos$33, someNewOption: true, someNewOptionWithValue: "someValue" })),
+            example: nix.thunk(() => ({ [nix.POS]: pos$33, someNewOption: true, someNewOptionWithValue: "someValue" })),
           })))),
       })),
     };
   })(), formals$5);
   const generateServerUnit = (name) => (serverCfg) => ({
-    __proto__: pos$40,
+    [nix.POS]: pos$40,
     name: nix.thunk(() => nix.str`wstunnel-server-${name}`),
     value: nix.thunk(() => (() => {
       const certConfig = nix.thunk(() => nix.sel(config, "security", "acme", "certs", nix.key(nix.sel(serverCfg, "useACMEHost"))));
       return {
-        __proto__: pos$39,
+        [nix.POS]: pos$39,
         description: nix.thunk(() => nix.str`wstunnel server - ${name}`),
         requires: nix.thunk(() => ["network.target", "network-online.target"]),
         after: nix.thunk(() => ["network.target", "network-online.target"]),
         wantedBy: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(serverCfg, "autoStart")), "multi-user.target")),
         serviceConfig: nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           Type: "exec",
           EnvironmentFile: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(serverCfg, "environmentFile"), null)), nix.thunk(() => nix.sel(serverCfg, "environmentFile")))),
           DynamicUser: true,
@@ -304,7 +304,7 @@ export default nix.lambda((args) => (() => {
           RestartMaxDelaySec: "5min",
           ExecStart: nix.thunk(() => (() => {
             const convertedSettings = nix.thunk(() => nix.update(nix.sel(serverCfg, "settings"), {
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               "restrict-to": nix.thunk(() => nix.app(nix.sel(lib, "map"), hostPortToString, nix.thunk(() => nix.sel(serverCfg, "settings", "restrict-to")))),
             }));
             return nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(serverCfg, "package")))} \\
@@ -318,16 +318,16 @@ export default nix.lambda((args) => (() => {
     })()),
   });
   const generateClientUnit = (name) => (clientCfg) => ({
-    __proto__: pos$43,
+    [nix.POS]: pos$43,
     name: nix.thunk(() => nix.str`wstunnel-client-${name}`),
     value: nix.thunk(() => ({
-      __proto__: pos$42,
+      [nix.POS]: pos$42,
       description: nix.thunk(() => nix.str`wstunnel client - ${name}`),
       requires: nix.thunk(() => ["network.target", "network-online.target"]),
       after: nix.thunk(() => ["network.target", "network-online.target"]),
       wantedBy: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(clientCfg, "autoStart")), "multi-user.target")),
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$41,
+        [nix.POS]: pos$41,
         Type: "exec",
         EnvironmentFile: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(clientCfg, "environmentFile"), null)), nix.thunk(() => nix.sel(clientCfg, "environmentFile")))),
         DynamicUser: true,
@@ -355,42 +355,42 @@ export default nix.lambda((args) => (() => {
     })),
   });
   return {
-    __proto__: pos$61,
+    [nix.POS]: pos$61,
     options: nix.thunk(() => ({
-      __proto__: pos$55,
+      [nix.POS]: pos$55,
       services: nix.thunk(() => ({
-        __proto__: pos$54,
+        [nix.POS]: pos$54,
         wstunnel: nix.thunk(() => ({
-          __proto__: pos$53,
+          [nix.POS]: pos$53,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "wstunnel")),
           servers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               description: "`wstunnel` servers to set up.",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), serverSubmodule)))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$48,
+                [nix.POS]: pos$48,
                 "wg-tunnel": nix.thunk(() => ({
-                  __proto__: pos$47,
-                  listen: nix.thunk(() => ({ __proto__: pos$44, host: "0.0.0.0", port: 8080n, enableHTTPS: true })),
+                  [nix.POS]: pos$47,
+                  listen: nix.thunk(() => ({ [nix.POS]: pos$44, host: "0.0.0.0", port: 8080n, enableHTTPS: true })),
                   settings: nix.thunk(() => ({
-                    __proto__: pos$46,
+                    [nix.POS]: pos$46,
                     "tls-certificate": "/var/lib/secrets/fullchain.pem",
                     "tls-private-key": "/var/lib/secrets/key.pem",
-                    "restrict-to": nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$45, host: "127.0.0.1", port: 51820n }))]),
+                    "restrict-to": nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$45, host: "127.0.0.1", port: 51820n }))]),
                   })),
                 })),
               })),
             })))),
           clients: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$52,
+              [nix.POS]: pos$52,
               description: "`wstunnel` clients to set up.",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), clientSubmodule)))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$51,
+                [nix.POS]: pos$51,
                 "wg-tunnel": nix.thunk(() => ({
-                  __proto__: pos$50,
+                  [nix.POS]: pos$50,
                   connectTo: "wss://wstunnel.server.com:8443",
                   localToRemote: nix.thunk(() => ["tcp://1212:google.com:443", "tcp://2:n.lan:4?proxy_protocol"]),
                   remoteToLocal: nix.thunk(() => ["socks5://[::1]:1212", "unix://wstunnel.sock:g.com:443"]),
@@ -401,20 +401,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$59,
+        [nix.POS]: pos$59,
         systemd: nix.thunk(() => ({
-          __proto__: pos$56,
+          [nix.POS]: pos$56,
           services: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mapAttrs'"), generateServerUnit, nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (v) => nix.sel(v, "enable"), nix.thunk(() => nix.sel(cfg, "servers"))))), nix.app(nix.sel(lib, "mapAttrs'"), generateClientUnit, nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (v) => nix.sel(v, "enable"), nix.thunk(() => nix.sel(cfg, "clients"))))))),
         })),
         assertions: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (serverCfg) => ({
-            __proto__: pos$57,
+            [nix.POS]: pos$57,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(serverCfg, "listen", "enableHTTPS")) || nix.asBool((nix.asBool(!nix.eq(nix.sel(serverCfg, "useACMEHost"), null)) || nix.asBool((nix.asBool(!nix.eq(nix.selOr(serverCfg, () => null, "settings", "tls-certificate"), null)) && nix.asBool(!nix.eq(nix.selOr(serverCfg, () => null, "settings", "tls-private-key"), null)))))))),
             message: nix.thunk(() => nix.str`If services.wstunnel.servers."${name}".listen.enableHTTPS is set to true, either services.wstunnel.servers."${name}".useACMEHost or both services.wstunnel.servers."${name}".settings.tls-private-key and services.wstunnel.servers."${name}".settings.tls-certificate need to be set.
 `),
           }), nix.thunk(() => nix.sel(cfg, "servers"))), nix.concat(nix.app(nix.sel(lib, "foldlAttrs"), (assertions) => (_) => (server) => nix.concat(assertions, nix.sel(server, "assertions")), [], nix.thunk(() => nix.sel(cfg, "servers"))), nix.concat(nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (clientCfg) => (() => {
             const isListAttrDefined = (settings) => (attr) => !nix.eq(nix.selOr(settings, () => [], nix.key(nix.force(attr))), []);
             return {
-              __proto__: pos$58,
+              [nix.POS]: pos$58,
               assertion: nix.thunk(() => (nix.asBool(nix.app(isListAttrDefined, nix.thunk(() => nix.sel(clientCfg, "settings")), "local-to-remote")) || nix.asBool(nix.app(isListAttrDefined, nix.thunk(() => nix.sel(clientCfg, "settings")), "remote-to-local")))),
               message: nix.thunk(() => nix.str`Either one of services.wstunnel.clients."${name}".settings.local-to-remote or services.wstunnel.clients."${name}".settings.remote-to-local must be set.
 `),
@@ -423,7 +423,7 @@ export default nix.lambda((args) => (() => {
         warnings: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "foldlAttrs"), (warnings) => (_) => (server) => nix.concat(warnings, nix.sel(server, "warnings")), [], nix.thunk(() => nix.sel(cfg, "servers"))), nix.app(nix.sel(lib, "foldlAttrs"), (warnings) => (_) => (client) => nix.concat(warnings, nix.sel(client, "warnings")), [], nix.thunk(() => nix.sel(cfg, "clients"))))),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$60,
+      [nix.POS]: pos$60,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

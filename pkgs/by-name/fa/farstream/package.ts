@@ -22,18 +22,18 @@ export default nix.lambda((args) => (() => {
   const gobject_introspection = nix.arg($, "gobject-introspection");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "farstream",
       version: "0.2.9",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.freedesktop.org/software/farstream/releases/farstream/farstream-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0yzlh9jf47a3ir40447s7hlwp98f9yr8z4gcm0vjwz6g6cj12zfb",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitlab.freedesktop.org/farstream/farstream/-/commit/54987d44.diff",
             sha256: "02pka68p2j1wg7768rq7afa5wl9xv82wp86q7izrmwwnxdmz4zyg",
           })))),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.freedesktop.org/wiki/Software/Farstream",
         description: "Audio/Video Communications Framework formerly known as farsight",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

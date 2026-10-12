@@ -66,13 +66,13 @@ export default nix.lambda((args) => (() => {
   const structlog = nix.arg($, "structlog");
   const testcontainers = nix.arg($, "testcontainers");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "logfire",
       version: "4.37.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pydantic",
           repo: "logfire",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/pydantic/logfire/commit/c7ff8beec3a674a2b096fcd9395159723de4cc67.patch",
             hash: "sha256-HdPT1cYOUiyjJBUYC5yoVRjC+gWyCMvo1MpOSL32lPM=",
             excludes: nix.thunk(() => ["uv.lock"]),
@@ -98,7 +98,7 @@ export default nix.lambda((args) => (() => {
         typing_extensions,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         aiohttp: nix.thunk(() => [opentelemetry_instrumentation_aiohttp_client]),
         "aiohttp-client": nix.thunk(() => [opentelemetry_instrumentation_aiohttp_client]),
         asgi: nix.thunk(() => [opentelemetry_instrumentation_asgi]),
@@ -160,7 +160,7 @@ export default nix.lambda((args) => (() => {
         "tests/otel_integrations/test_openai_agents.py",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: "https://logfire.pydantic.dev/docs/release-notes",
         description: "Uncomplicated Observability for Python and beyond",
         downloadPage: nix.thunk(() => nix.str`https://github.com/pydantic/logfire/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

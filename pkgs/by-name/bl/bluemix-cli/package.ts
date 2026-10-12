@@ -17,19 +17,19 @@ export default nix.lambda((args) => (() => {
       const pname = "bluemix-cli";
       const version = "0.8.0";
       const src = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`linux32-${version}.tar.gz`),
           url: nix.thunk(() => nix.str`https://clis.ng.bluemix.net/download/bluemix-cli/${version}/linux32`),
           sha256: "1ryngbjlw59x33rfd32bcz49r93a1q1g92jh7xmi9vydgqnzsifh",
         }))) : nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: nix.thunk(() => nix.str`linux64-${version}.tar.gz`),
           url: nix.thunk(() => nix.str`https://clis.ng.bluemix.net/download/bluemix-cli/${version}/linux64`),
           sha256: "056zbaca430ldcn0s86vy40m5abvwpfrmvqybbr6fjwfv9zngywx",
         })))));
       const installPhase = "install -m755 -D -t $out/bin bin/ibmcloud bin/ibmcloud-analytics\ninstall -m755 -D -t $out/bin/cfcli bin/cfcli/cf\nln -sv $out/bin/ibmcloud $out/bin/bx\nln -sv $out/bin/ibmcloud $out/bin/bluemix\ninstall -D -t \"$out/share/bash-completion/completions\" bx/bash_autocomplete\ninstall -D -t \"$out/share/zsh/site-functions\" bx/zsh_autocomplete\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Administration CLI for IBM BlueMix",
         homepage: "https://console.bluemix.net/docs/cli/index.html",
         downloadPage: "https://console.bluemix.net/docs/cli/reference/bluemix_cli/download_cli.html#download_install",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         ]),
         platforms: nix.thunk(() => ["x86_64-linux", "i686-linux"]),
       }));
-      return { __proto__: pos$4, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$4, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

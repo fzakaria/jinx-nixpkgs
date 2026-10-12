@@ -18,17 +18,17 @@ export default nix.lambda((args) => (() => {
       const version = nix.arg($_1, "version");
       const postgresqlHash = nix.arg($_1, "postgresqlHash");
       return nix.app(buildGoModule, (finalAttrs) => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: "zabbix-agent2-plugin-postgresql",
           version: version,
           src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               url: nix.thunk(() => nix.str`https://cdn.zabbix.com/zabbix-agent2-plugins/sources/postgresql/zabbix-agent2-plugin-postgresql-${nix.sel(finalAttrs, "version")}.tar.gz`),
               hash: postgresqlHash,
             })))),
           vendorHash: null,
           meta: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             description: "Required tool for Zabbix agent integrated PostgreSQL monitoring",
             mainProgram: "postgresql",
             homepage: "https://www.zabbix.com/integrations/postgresql",

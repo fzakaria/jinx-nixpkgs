@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const soundfont_fluid = nix.arg($, "soundfont-fluid");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zmusic",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ZDoom",
           repo: "ZMusic",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "DYN_SNDFILE", false)),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GZDoom's music system as a standalone library",
         homepage: "https://github.com/ZDoom/ZMusic",
         license: nix.thunk(() => (() => {

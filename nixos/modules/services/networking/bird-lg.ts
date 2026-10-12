@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
   const frontend_args = nix.thunk(() => (() => {
     const fe = nix.thunk(() => nix.sel(cfg, "frontend"));
     return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       "--servers": nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ",", nix.thunk(() => nix.sel(fe, "servers")))),
       "--domain": nix.thunk(() => nix.sel(fe, "domain")),
       "--listen": nix.thunk(() => nix.app(stringOrConcat, ",", nix.thunk(() => nix.sel(fe, "listenAddresses")))),
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
   const proxy_args = nix.thunk(() => (() => {
     const px = nix.thunk(() => nix.sel(cfg, "proxy"));
     return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       "--allowed": nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ",", nix.thunk(() => nix.sel(px, "allowedIPs")))),
       "--bird": nix.thunk(() => nix.sel(px, "birdSocket")),
       "--listen": nix.thunk(() => nix.app(stringOrConcat, ",", nix.thunk(() => nix.sel(px, "listenAddresses")))),
@@ -95,35 +95,35 @@ export default nix.lambda((args) => (() => {
   const filterNull = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (v) => (nix.asBool((nix.asBool(!nix.eq(v, "")) && nix.asBool(!nix.eq(v, null)))) && nix.asBool(!nix.eq(v, [])))));
   const argsAttrToList = (args_1) => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value) => nix.add(nix.str`${name} `, nix.app(mkArgValue, value)), nix.thunk(() => nix.app(filterNull, args_1)));
   return {
-    __proto__: pos$48,
+    [nix.POS]: pos$48,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "bird-lg", "frontend", "listenAddress"]), nix.thunk(() => ["services", "bird-lg", "frontend", "listenAddresses"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "bird-lg", "proxy", "listenAddress"]), nix.thunk(() => ["services", "bird-lg", "proxy", "listenAddresses"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$35,
+      [nix.POS]: pos$35,
       services: nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         "bird-lg": nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "bird-lg", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "bird-lg",
               description: "User to run the service.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "bird-lg",
               description: "Group to run the service.",
             })))),
           frontend: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Bird Looking Glass Frontend Webserver")),
             listenAddresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "str")), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))));
@@ -132,103 +132,103 @@ export default nix.lambda((args) => (() => {
                 description: "Address to listen on.",
               })))),
             proxyPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 8000n,
                 description: "Port bird-lg-proxy is running on.",
               })))),
             domain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 example: "dn42.lantian.pub",
                 description: "Server name domain suffixes.",
               })))),
             servers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 example: nix.thunk(() => ["gigsgigscloud", "hostdare"]),
                 description: "Server name prefixes.",
               })))),
             whois: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "whois.verisign-grs.com",
                 description: "Whois server for queries.",
               })))),
             dnsInterface: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "asn.cymru.com",
                 description: "DNS zone to query ASN information.",
               })))),
             bgpMapInfo: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: nix.thunk(() => ["asn", "as-name", "ASName", "descr"]),
                 description: "Information displayed in bgpmap.",
               })))),
             titleBrand: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "Bird-lg Go",
                 description: "Prefix of page titles in browser tabs.",
               })))),
             netSpecificMode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "",
                 example: "dn42",
                 description: "Apply network-specific changes for some networks.",
               })))),
             protocolFilter: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: [],
                 example: nix.thunk(() => ["ospf"]),
                 description: "Information displayed in bgpmap.",
               })))),
             nameFilter: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "",
                 example: "^ospf",
                 description: "Protocol names to hide in summary tables (RE2 syntax),",
               })))),
             timeout: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => nix.sel(lib, "types", "int")),
                 default: 120n,
                 description: "Time before request timed out, in seconds.",
               })))),
             navbar: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               brand: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                   default: "Bird-lg Go",
                   description: "Brand to show in the navigation bar .",
                 })))),
               brandURL: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                   default: "/",
                   description: "URL of the brand to show in the navigation bar.",
                 })))),
               allServers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                   default: "ALL Servers",
                   description: "Text of 'All server' button in the navigation bar.",
                 })))),
               allServersURL: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                   default: "all",
                   description: "URL of 'All servers' button.",
                 })))),
             })),
             extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -238,10 +238,10 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           proxy: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Bird Looking Glass Proxy")),
             listenAddresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "str")), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))));
@@ -250,29 +250,29 @@ export default nix.lambda((args) => (() => {
                 description: "Address to listen on.",
               })))),
             allowedIPs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: [],
                 example: nix.thunk(() => ["192.168.25.52", "192.168.25.53", "192.168.0.0/24"]),
                 description: "List of IPs or networks to allow (default all allowed).",
               })))),
             birdSocket: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "/var/run/bird/bird.ctl",
                 description: "Bird control socket path.",
               })))),
             traceroute: nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               binary: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                   default: nix.thunk(() => nix.str`${nix.sel(pkgs, "traceroute")}/bin/traceroute`),
                   defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${pkgs.traceroute}/bin/traceroute\"")),
                   description: "Traceroute's binary path.",
                 })))),
               flags: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   type: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                     return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -281,14 +281,14 @@ export default nix.lambda((args) => (() => {
                   description: "Flags for traceroute process",
                 })))),
               rawOutput: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                   default: false,
                   description: "Display traceroute output in raw format.",
                 })))),
             })),
             extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -301,19 +301,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$46,
+      [nix.POS]: pos$46,
       systemd: nix.thunk(() => ({
-        __proto__: pos$41,
+        [nix.POS]: pos$41,
         services: nix.thunk(() => ({
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           "bird-lg-frontend": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "frontend", "enable")), nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               enable: true,
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               description: "Bird Looking Glass Frontend Webserver",
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 Type: "simple",
                 Restart: "on-failure",
                 ProtectSystem: "full",
@@ -328,13 +328,13 @@ export default nix.lambda((args) => (() => {
 `),
             })))),
           "bird-lg-proxy": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "proxy", "enable")), nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               enable: true,
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               description: "Bird Looking Glass Proxy",
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 Type: "simple",
                 Restart: "on-failure",
                 ProtectSystem: "full",
@@ -351,15 +351,15 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "frontend", "enable")) || nix.asBool(nix.sel(cfg, "proxy", "enable")))), nix.thunk(() => ({
-          __proto__: pos$45,
+          [nix.POS]: pos$45,
           groups: nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             "bird-lg": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "bird-lg")), nix.thunk(() => ({})))),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             "bird-lg": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "bird-lg")), nix.thunk(() => ({
-                __proto__: pos$43,
+                [nix.POS]: pos$43,
                 description: "Bird Looking Glass user",
                 extraGroups: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(config, "services", "bird", "enable")), nix.thunk(() => ["bird"]))),
                 group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -369,7 +369,7 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     meta: nix.thunk(() => ({
-      __proto__: pos$47,
+      [nix.POS]: pos$47,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

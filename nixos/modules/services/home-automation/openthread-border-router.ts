@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
   const utils = nix.arg($, "utils");
   const cfg = nix.thunk(() => nix.sel(config, "services", "openthread-border-router"));
   const logLevelMappings = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     emerg: 0n,
     alert: 1n,
     crit: 2n,
@@ -70,9 +70,9 @@ export default nix.lambda((args) => (() => {
   }));
   const logLevel = nix.thunk(() => nix.app(nix.sel(lib, "getAttr"), nix.thunk(() => nix.sel(cfg, "logLevel")), logLevelMappings));
   return {
-    __proto__: pos$46,
+    [nix.POS]: pos$46,
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -83,106 +83,106 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       services: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         "openthread-border-router": nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the OpenThread Border Router")),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to open the firewall for the REST API and web interface ports.",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "openthread-border-router", nix.thunk(() => ({})))),
           backboneInterfaces: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => ["eth0"]),
               description: "The network interfaces on which to advertise the thread ipv6 mesh prefix. Can be specified multiple times.",
             })))),
           interfaceName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "wpan0",
               description: "The network interface to create for thread packets.",
             })))),
           logLevel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), logLevelMappings)))),
               default: "err",
               description: "The level to use when logging messages.",
             })))),
           rest: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             listenAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "127.0.0.1",
                 description: "The address on which to listen for REST API requests.",
                 example: "::",
               })))),
             listenPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 8081n,
                 description: "The port on which to listen for REST API requests. Warning: the web interface relies on this value being set to 8081.",
               })))),
           })),
           web: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the web interface")),
             listenAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "127.0.0.1",
                 description: "The address on which the web interface should listen.",
                 example: "::",
               })))),
             listenPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 8082n,
                 description: "The port on which the web interface should listen.",
               })))),
           })),
           radio: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             device: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
                 description: "The device name of the serial port of the radio device.\nIgnored if {option}`services.openthread-border-router.radio.url` is set.\n",
               })))),
             baudRate: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.sel(lib, "types", "ints", "positive")),
                 default: 115200n,
                 description: "The baud rate of the radio device.\nIgnored if {option}`services.openthread-border-router.radio.url` is set.\n",
               })))),
             flowControl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Enable hardware flow control.\nIgnored if {option}`services.openthread-border-router.radio.url` is set.\n",
               })))),
             urlQueryString: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "",
                 description: "Extra URL query string parameters.\nIgnored if {option}`services.openthread-border-router.radio.url` is set.\n",
                 example: "bus-latency=100&region=ca",
               })))),
             url: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 description: "The URL of the radio device to use.",
                 example: "spinel+hdlc+uart:///dev/ttyUSB0?uart-baudrate=460800&uart-flow-control",
               })))),
             extraDevices: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: [],
                 description: "Extra devices to add to the radio device.",
@@ -190,7 +190,7 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "Extra arguments to pass to the otbr-agent daemon.",
@@ -200,10 +200,10 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$45,
+        [nix.POS]: pos$45,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             assertion: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "radio", "device"), null)) || nix.asBool(!nix.eq(nix.sel(cfg, "radio", "url"), null)))),
             message: "services.openthread-border-router requires either radio.device or radio.url to be set.",
           })),
@@ -212,11 +212,11 @@ export default nix.lambda((args) => (() => {
 port has been changed to ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "rest", "listenPort")))}. Some features will be broken.
 `))),
         services: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           "openthread-border-router": nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             radio: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               url: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "radio", "device"), null)), nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.add(nix.str`spinel+hdlc+uart://${nix.sel(cfg, "radio", "device")}?`, nix.app(nix.sel(lib, "concatStringsSep"), "&", nix.thunk(() => nix.concat([
                       nix.thunk(() => nix.str`uart-baudrate=${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "radio", "baudRate")))}`),
                     ], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "radio", "flowControl")), "uart-flow-control"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "radio", "urlQueryString"), "")), nix.thunk(() => nix.sel(cfg, "radio", "urlQueryString"))))))))))))),
@@ -224,37 +224,37 @@ port has been changed to ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "r
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$30,
-          groups: nix.thunk(() => ({ __proto__: pos$29, otbr: nix.thunk(() => ({})) })),
+          [nix.POS]: pos$30,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$29, otbr: nix.thunk(() => ({})) })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           enableIPv6: true,
           firewall: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             allowedTCPPorts: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => nix.sel(cfg, "rest", "listenPort"))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "openFirewall")) && nix.asBool(nix.sel(cfg, "web", "enable")))), nix.thunk(() => nix.sel(cfg, "web", "listenPort"))))),
           })),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           kernel: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             sysctl: nix.thunk(() => nix.update({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               "net.ipv4.conf.all.forwarding": 1n,
               "net.ipv6.conf.all.forwarding": 1n,
             }, nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), (iface) => [
                   nix.thunk(() => ({
-                    __proto__: pos$34,
+                    [nix.POS]: pos$34,
                     name: nix.thunk(() => nix.str`net.ipv6.conf.${iface}.accept_ra`),
                     value: 2n,
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$35,
+                    [nix.POS]: pos$35,
                     name: nix.thunk(() => nix.str`net.ipv6.conf.${iface}.accept_ra_rt_info_max_plen`),
                     value: 64n,
                   })),
@@ -262,18 +262,18 @@ port has been changed to ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "r
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$44,
+          [nix.POS]: pos$44,
           services: nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             "otbr-agent": nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               description: "OpenThread Border Router Agent",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               requires: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target"]),
-              environment: nix.thunk(() => ({ __proto__: pos$38, THREAD_IF: nix.thunk(() => nix.sel(cfg, "interfaceName")) })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$38, THREAD_IF: nix.thunk(() => nix.sel(cfg, "interfaceName")) })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 Group: "otbr",
                 ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.app(nix.sel(lib, "concatLists"), nix.thunk(() => [
                       nix.thunk(() => [
@@ -319,12 +319,12 @@ port has been changed to ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "r
               })),
             })),
             "otbr-web": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "web", "enable")), nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 description: "OpenThread Border Router Web Interface",
                 after: nix.thunk(() => ["otbr-agent.service"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$41,
+                  [nix.POS]: pos$41,
                   Group: "otbr",
                   ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.app(nix.sel(lib, "concatLists"), nix.thunk(() => [
                         nix.thunk(() => [

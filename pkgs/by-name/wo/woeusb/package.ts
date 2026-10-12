@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const wget = nix.arg($, "wget");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "5.2.4",
       pname: "woeusb",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "WoeUSB",
           repo: "WoeUSB",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -74,7 +74,7 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Create bootable USB disks from Windows ISO images",
         homepage: "https://github.com/WoeUSB/WoeUSB",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

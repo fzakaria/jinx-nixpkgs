@@ -17,22 +17,22 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "confluent-cli",
       version: "4.78.0",
       src: nix.thunk(() => (() => {
         const selectSystem = (attrs) => nix.selOr(attrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")));
         const system = nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             "x86_64-linux": "linux_amd64",
             "aarch64-linux": "linux_arm64",
             "aarch64-darwin": "darwin_arm64",
           }))));
         return nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: nix.thunk(() => nix.str`https://s3-us-west-2.amazonaws.com/confluent.cloud/confluent-cli/archives/${nix.sel(finalAttrs, "version")}/confluent_${nix.sel(finalAttrs, "version")}_${system}.tar.gz`),
             hash: nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 "x86_64-linux": "sha256-qucQOGtmjkJV9+kTUOcA69J8AnMYxzdNaML5NnHEkiA=",
                 "aarch64-linux": "sha256-mFJeF4IGPpkpvA+nKBGmVrFuavsqOm1QZEKzY2Q9PbM=",
                 "aarch64-darwin": "sha256-uezaNQ+ZRTbcYxQmwGWMR9yjD3vdvFAYRR4b4mnYH6g=",
@@ -42,9 +42,9 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [autoPatchelfHook]))),
       dontStrip: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       installPhase: "runHook preInstall\n\nmkdir -p $out/{bin,share/doc/confluent-cli}\ncp confluent $out/bin/\ncp LICENSE $out/share/doc/confluent-cli/\ncp -r legal $out/share/doc/confluent-cli/\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Confluent CLI",
         homepage: "https://docs.confluent.io/confluent-cli/current/overview.html",
         sourceProvenance: nix.thunk(() => (() => {

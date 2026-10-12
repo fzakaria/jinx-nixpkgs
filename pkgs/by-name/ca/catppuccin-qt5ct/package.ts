@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "catppuccin-qt5ct",
       version: "0-unstable-2025-03-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "catppuccin",
           repo: "qt5ct",
           rev: "cb585307edebccf74b8ae8f66ea14f21e6666535",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\nmkdir -p $out/share/qt{5,6}ct\ncp -r themes $out/share/qt5ct/colors\ncp -r themes $out/share/qt6ct/colors\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Soothing pastel theme for qt5ct & qt6ct",
         homepage: "https://github.com/catppuccin/qt5ct",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

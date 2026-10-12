@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const kwidgetsaddons = nix.arg($, "kwidgetsaddons");
   const qtx11extras = nix.arg($, "qtx11extras");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kjobwidgets",
       nativeBuildInputs: nix.thunk(() => [cmake, extra_cmake_modules, qttools]),
       buildInputs: nix.thunk(() => [kcoreaddons, kwidgetsaddons, qtx11extras]),

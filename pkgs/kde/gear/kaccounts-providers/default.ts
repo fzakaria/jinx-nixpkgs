@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const qtdeclarative = nix.arg($, "qtdeclarative");
   const qtwebengine = nix.arg($, "qtwebengine");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kaccounts-providers",
       extraNativeBuildInputs: nix.thunk(() => [intltool]),
       extraBuildInputs: nix.thunk(() => [qtdeclarative, qtwebengine]),

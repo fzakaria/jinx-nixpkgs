@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "2025.04.14";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jrfonseca",
           repo: "gprof2dot",
           tag: version,
@@ -37,7 +37,7 @@ ${nix.sel(python, "interpreter")} tests/test.py --python bash --gprof2dot $out/b
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python script to convert the output from many profilers into a dot graph",
         mainProgram: "gprof2dot",
         homepage: "https://github.com/jrfonseca/gprof2dot",
@@ -49,7 +49,7 @@ runHook postCheck
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

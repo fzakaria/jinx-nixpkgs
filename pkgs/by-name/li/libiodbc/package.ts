@@ -18,21 +18,21 @@ export default nix.lambda((args) => (() => {
   const gtk2 = nix.arg($, "gtk2");
   const useGTK = nix.argOr($, "useGTK", () => nix.selOr(config, () => false, "libiodbc", "gtk"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libiodbc",
       version: "3.52.16",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/iodbc/libiodbc-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-OJizLQeWE2D28s822zYDa3GaIw5HZGklioDzIkPoRfo=",
         })))),
       configureFlags: nix.thunk(() => ["--disable-libodbc"]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), useGTK, nix.thunk(() => [gtk2]))),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       preBuild: "export NIX_LDFLAGS_BEFORE=\"-rpath $out/lib\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "iODBC driver manager",
         homepage: "https://www.iodbc.org",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

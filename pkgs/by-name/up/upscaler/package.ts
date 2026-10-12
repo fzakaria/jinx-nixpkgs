@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const upscayl_ncnn = nix.arg($, "upscayl-ncnn");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "upscaler",
       version: "1.6.5",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           owner: "World",
           repo: "Upscaler",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-+u17fUdYMCuDS4vgayZCpj9KO5o/x5PaUYT2jbNmMUw=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       postPatch: nix.thunk(() => nix.str`substituteInPlace upscaler/window.py \\
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       makeWrapperArgs: nix.thunk(() => ["${gappsWrapperArgs[@]}"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Upscale and enhance images",
         homepage: "https://tesk.page/upscaler",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

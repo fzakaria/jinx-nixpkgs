@@ -25,34 +25,34 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const config = nix.arg($, "config");
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     imports: nix.thunk(() => [nix.path(here, "./user-account.nix"), nix.path(here, "./x11.nix")]),
     "test-support": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       displayManager: nix.thunk(() => ({
-        __proto__: pos$2,
-        auto: nix.thunk(() => ({ __proto__: pos$1, user: "alice" })),
+        [nix.POS]: pos$2,
+        auto: nix.thunk(() => ({ [nix.POS]: pos$1, user: "alice" })),
       })),
     })),
     systemd: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       user: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         targets: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "xdg-desktop-autostart": nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             wantedBy: nix.thunk(() => ["graphical-session.target"]),
             after: nix.thunk(() => ["graphical-session.target"]),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           monado: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             requires: nix.thunk(() => ["graphical-session.target"]),
             environment: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               SIMULATED_ENABLE: "1",
               SIMULATED_LEFT: "simple",
               SIMULATED_RIGHT: "simple",
@@ -64,13 +64,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     hardware: nix.thunk(() => ({
-      __proto__: pos$12,
-      graphics: nix.thunk(() => ({ __proto__: pos$11, enable: true })),
+      [nix.POS]: pos$12,
+      graphics: nix.thunk(() => ({ [nix.POS]: pos$11, enable: true })),
     })),
     services: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       monado: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         enable: true,
         defaultRuntime: true,
         forceDefaultRuntime: true,

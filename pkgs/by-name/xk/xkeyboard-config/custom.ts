@@ -60,7 +60,7 @@ w
 EOF
 `;
     return nix.app(nix.sel(xkeyboard_config, "overrideAttrs"), (old) => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(old, "nativeBuildInputs"), [automake, ed])),
         postPatch: nix.thunk(() => nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), patchIn, layouts)))),
       }));

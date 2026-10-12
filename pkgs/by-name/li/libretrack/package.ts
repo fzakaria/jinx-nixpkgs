@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libretrack";
       const version = "1.7.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "proninyaroslav",
           repo: "libretrack",
           tag: version,
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const pubspecLock = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json")));
       const gitHashes = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         receive_sharing_intent: "sha256-YsvnLOZvYZMyKx3J596Q3/hY2Fn/AFT6nhLTTHdMFOE=",
       }));
       const postPatch = nix.thunk(() => nix.str`substituteInPlace linux/CMakeLists.txt \\
@@ -36,12 +36,12 @@ export default nix.lambda((args) => (() => {
 `);
       const nativeBuildInputs = nix.thunk(() => [libappindicator]);
       const env = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         CXXFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-deprecated-literal-operator"]))),
       }));
       const postInstall = "substituteInPlace snap/gui/org.proninyaroslav.libretrack.desktop \\\n  --replace-fail 'Icon=${SNAP}/meta/gui/libretrack.png' 'Icon=libretrack' \\\n\ninstall -Dm644 snap/gui/org.proninyaroslav.libretrack.desktop -t $out/share/applications\ninstall -Dm644 linux/icons/app-icon.svg $out/share/icons/hicolor/scalable/apps/libretrack.svg\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Private, cross-platform package tracking app",
         homepage: "https://github.com/proninyaroslav/libretrack",
         changelog: nix.thunk(() => nix.str`https://github.com/proninyaroslav/libretrack/releases/tag/${version}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

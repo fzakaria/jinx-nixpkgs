@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const zlib = nix.arg($, "zlib");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "klayout",
       pyproject: true,
       version: nix.thunk(() => nix.attr(klayout, "version")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         zlib,
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         KLAYOUT_QT_VERSION: "6",
         HAVE_QT6: "1",
         HAVE_PNG: "1",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       })),
       pythonImportsCheck: nix.thunk(() => ["klayout"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "KLayout’s Python API",
         homepage: "https://github.com/KLayout/klayout",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

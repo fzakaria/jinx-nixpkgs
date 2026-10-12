@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         const pname_1 = pname;
         const version = "1.5.4";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "sigstore",
             repo: "rekor",
             rev: nix.thunk(() => nix.str`v${version}`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
   --zsh <($out/bin/${pname_1} completion zsh)
 `)));
         const meta = nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           description: description,
           homepage: "https://github.com/sigstore/rekor",
           changelog: nix.thunk(() => nix.str`https://github.com/sigstore/rekor/releases/tag/v${version}`),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
           })()),
         }));
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: pname_1,
           version,
           src,
@@ -81,15 +81,15 @@ export default nix.lambda((args) => (() => {
       })()));
   })(), formals$2);
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     "rekor-cli": nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: "rekor-cli",
         packageToBuild: "cmd/rekor-cli",
         description: "CLI client for Sigstore, the Signature Transparency Log",
       })))),
     "rekor-server": nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: "rekor-server",
         packageToBuild: "cmd/rekor-server",
         description: "Sigstore server, the Signature Transparency Log",

@@ -21,25 +21,25 @@ export default nix.lambda((args) => (() => {
   const mkRenamedOptionModule = nix.thunk(() => nix.attr(lib, "mkRenamedOptionModule"));
   const literalExpression = nix.thunk(() => nix.attr(lib, "literalExpression"));
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(mkRenamedOptionModule, nix.thunk(() => ["controlSocketPaths"]), nix.thunk(() => ["targets"]))),
     ]),
     port: 9547n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       targets: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
           example: nix.thunk(() => nix.app(literalExpression, "[\n  \"/run/kea/kea-dhcp4.socket\"\n  \"/run/kea/kea-dhcp6.socket\"\n  \"http://127.0.0.1:8547\"\n]\n")),
           description: "Paths or URLs to the Kea control socket.\n",
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       after: nix.thunk(() => ["kea-dhcp4-server.service", "kea-dhcp6-server.service"]),
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         User: "kea",
         DynamicUser: true,
         ExecStart: nix.thunk(() => nix.app(nix.sel(utils, "escapeSystemdExecArgs"), nix.thunk(() => nix.concat([

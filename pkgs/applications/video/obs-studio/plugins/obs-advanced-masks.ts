@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "obs-advanced-masks";
       const version = "1.1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FiniteSingularity",
           repo: "obs-advanced-masks",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [cmake]);
       const postInstall = "rm -rf \"$out/share\"\nmkdir -p \"$out/share/obs\"\nmv \"$out/data/obs-plugins\" \"$out/share/obs\"\nrm -rf \"$out/obs-plugins\" \"$out/data\"\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Advanced Masking Plugin for OBS",
         homepage: "https://github.com/FiniteSingularity/obs-advanced-masks",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

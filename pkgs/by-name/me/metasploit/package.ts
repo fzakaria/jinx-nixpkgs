@@ -22,17 +22,17 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const python3 = nix.arg($, "python3");
   const env = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       ruby: ruby,
       name: "metasploit-bundler-env",
       gemdir: nix.path(here, "./."),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "metasploit-framework",
       version: "6.5.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "rapid7",
           repo: "metasploit-framework",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -71,11 +71,11 @@ makeWrapper ${env}/bin/bundle $out/bin/msf-pattern_offset \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "msfconsole-version": nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "HOME=/tmp msfconsole -q -x 'version;exit'",
             })))),
@@ -83,7 +83,7 @@ runHook postInstall
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Metasploit Framework - a collection of exploits",
         homepage: "https://docs.metasploit.com/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

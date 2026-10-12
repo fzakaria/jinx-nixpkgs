@@ -53,22 +53,22 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const nix_update_script = nix.arg($, "nix-update-script");
   const cef = nix.thunk(() => nix.app(nix.sel(cef_binary, "override"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "135.0.17",
       gitRevision: "cbc1c5b",
       chromiumVersion: "135.0.7049.52",
       srcHashes: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         "aarch64-linux": "sha256-LK5JvtcmuwCavK7LnWmMF2UDpM5iIZOmsuZS/t9koDs=",
         "x86_64-linux": "sha256-JKwZgOYr57GuosM31r1Lx3DczYs35HxtuUs5fxPsTcY=",
       })),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "linux-wallpaperengine",
       version: "0.0.1-unstable-2026-06-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "Almamu",
           repo: "linux-wallpaperengine",
           rev: "b016d7d1fdcf4e5fd2f9c9fa420a8aaa07fee02d",
@@ -114,11 +114,11 @@ export default nix.lambda((args) => (() => {
       postInstall: "rm -rf $out/bin $out/lib $out/include\nchmod 755 $out/share/linux-wallpaperengine/linux-wallpaperengine\nmkdir $out/bin\nln -s $out/share/linux-wallpaperengine/linux-wallpaperengine $out/bin/linux-wallpaperengine\n",
       preFixup: "find $out/share/linux-wallpaperengine -type f -exec file {} \\; | grep 'ELF' | cut -d: -f1 | while read -r elf_file; do\n  patchelf --shrink-rpath --allowed-rpath-prefixes \"$NIX_STORE\" \"$elf_file\"\ndone\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$4, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Wallpaper Engine backgrounds for Linux",
         homepage: "https://github.com/Almamu/linux-wallpaperengine",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

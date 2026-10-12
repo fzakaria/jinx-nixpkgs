@@ -8,6 +8,6 @@ const pos$1 = nix.positions(here + "/package.nix", [["withAdditionalGuestAgents"
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lima = nix.arg($, "lima");
-  return nix.app(nix.sel(lima, "override"), nix.thunk(() => ({ __proto__: pos$1, withAdditionalGuestAgents: true })));
+  return nix.app(nix.sel(lima, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withAdditionalGuestAgents: true })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

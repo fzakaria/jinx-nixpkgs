@@ -22,9 +22,9 @@ export default nix.lambda((args) => (() => {
     const name = nix.arg($_1, "name");
     const commands = nix.arg($_1, "commands");
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: name,
-        meta: nix.thunk(() => ({ __proto__: pos$1, timeout: 60n })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 60n })),
         buildCommand: nix.thunk(() => nix.str`echo -e '.decl A(X: number)\\n.output A\\nA(1).' > A.dl
 ${commands}
 [ "$(cat A.csv)" = "1" ]
@@ -33,21 +33,21 @@ touch $out
       })));
   })(), formals$2);
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     interpret: nix.thunk(() => nix.app(simpleTest, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name: "souffle-test-interpret",
         commands: nix.thunk(() => nix.str`${souffle}/bin/souffle A.dl`),
       })))),
     "compile-in-one-step": nix.thunk(() => nix.app(simpleTest, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         name: "souffle-test-compile-in-one-step",
         commands: nix.thunk(() => nix.str`${souffle}/bin/souffle -o A A.dl
 ./A
 `),
       })))),
     "compile-in-two-steps": nix.thunk(() => nix.app(simpleTest, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         name: "souffle-test-compile-in-two-steps",
         commands: nix.thunk(() => nix.str`${souffle}/bin/souffle -g A.cpp A.dl
 ${souffle}/bin/souffle-compile.py A.cpp -o A

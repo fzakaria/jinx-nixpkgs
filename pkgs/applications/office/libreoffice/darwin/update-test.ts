@@ -10,12 +10,12 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.builtins.findFile(nix.builtins.nixPath, "nixpkgs")), nix.thunk(() => ({}))));
   const nixt = nix.arg($, "nixt");
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./update-utils.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: nix.thunk(() => nix.attr(pkgs, "lib")) }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./update-utils.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: nix.thunk(() => nix.attr(pkgs, "lib")) }))));
   const extractLatestVersionFromHtml = nix.thunk(() => nix.attr(from, "extractLatestVersionFromHtml"));
   const extractSha256FromHtml = nix.thunk(() => nix.attr(from, "extractSha256FromHtml"));
   const getLatestStableVersion = nix.thunk(() => nix.attr(from, "getLatestStableVersion"));
   return nix.app(nix.sel(nixt, "mkSuite"), "LibreOffice Updater", nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       "should extract latest stable version from html": nix.thunk(() => (() => {
         const latestVersionHtmlMock = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"\n\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\n<head>\n<title>Index of /libreoffice/stable</title>\n<link rel=\"stylesheet\" href=\"/mirrorbrain.css\" type=\"text/css\" />\n</head>\n<body>\n<h1>Index of /libreoffice/stable</h1>\n<table><tr><th>&nbsp;</th><th><a href=\"?C=N;O=D\">Name</a></th><th><a href=\"?C=M;O=A\">Last modified</a></th><th><a href=\"?C=S;O=A\">Size</a></th><th>Metadata</th></tr><tr><th colspan=\"5\"><hr /></th></tr>\n<tr><td valign=\"top\">&nbsp;</td><td><a href=\"/libreoffice/\">Parent Directory</a></td><td>&nbsp;</td><td align=\"right\">  - </td><td>&nbsp;</td></tr>\n<tr><td valign=\"top\">&nbsp;</td><td><a href=\"7.2.7/\">7.2.7/</a></td><td align=\"right\">10-Mar-2022 11:12  </td><td align=\"right\">  - </td><td>&nbsp;</td></tr>\n<tr><td valign=\"top\">&nbsp;</td><td><a href=\"7.3.3/\">7.3.3/</a></td><td align=\"right\">12-May-2022 10:06  </td><td align=\"right\">  - </td><td>&nbsp;</td></tr>\n<tr><td valign=\"top\">&nbsp;</td><td><a href=\"7.2.6/\">7.2.6/</a></td><td align=\"right\">05-May-2022 07:57  </td><td align=\"right\">  - </td><td>&nbsp;</td></tr>\n<tr><th colspan=\"5\"><hr /></th></tr>\n</table>\n<address>Apache Server at <a href=\"mailto:hostmaster@documentfoundation.org\">download.documentfoundation.org</a> Port 80</address>\n<br/><address><a href=\"http://mirrorbrain.org/\">MirrorBrain</a> powered by <a href=\"http://httpd.apache.org/\">Apache</a></address>\n</body></html>\n";
         const actual = nix.thunk(() => nix.app(extractLatestVersionFromHtml, latestVersionHtmlMock));

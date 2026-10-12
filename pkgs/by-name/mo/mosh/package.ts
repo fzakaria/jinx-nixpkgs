@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const libutempter = nix.arg($, "libutempter");
   const withClient = nix.argOr($, "withClient", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mosh",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mobile-shell",
           repo: "mosh",
           rev: nix.thunk(() => nix.str`mosh-${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +55,7 @@ substituteInPlace scripts/mosh.pl \\
       configureFlags: nix.thunk(() => nix.concat(["--enable-completion"], nix.app(nix.sel(lib, "optional"), withUtempter, "--with-utempter"))),
       postInstall: nix.thunk(() => (nix.asBool(withClient) ? "wrapProgram $out/bin/mosh --prefix PERL5LIB : $PERL5LIB\n" : "rm $out/bin/mosh\nrm $out/bin/mosh-client\nrm -r $out/share/{man,bash-completion}\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://mosh.org/",
         description: "Mobile shell (ssh replacement)",
         longDescription: "Remote terminal application that allows roaming, supports intermittent\nconnectivity, and provides intelligent local echo and line editing of\nuser keystrokes.\n\nMosh is a replacement for SSH. It's more robust and responsive,\nespecially over Wi-Fi, cellular, and long-distance links.\n",

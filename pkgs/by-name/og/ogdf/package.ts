@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const doxygen = nix.arg($, "doxygen");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ogdf",
       version: "2023.09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ogdf",
           repo: "ogdf",
           tag: "elderberry-202309",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         "-DOGDF_WARNING_ERRORS=OFF",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open Graph Drawing Framework/Open Graph algorithms and Data structure Framework",
         homepage: "http://www.ogdf.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

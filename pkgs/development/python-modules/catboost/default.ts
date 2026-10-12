@@ -42,7 +42,7 @@ runHook postBuild
       const pythonImportsCheck = nix.thunk(() => ["catboost"]);
       const meta = nix.thunk(() => nix.sel(catboost, "meta"));
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         pname,
         version,
         src,

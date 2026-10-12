@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const libgcc = nix.arg($, "libgcc");
   const csu = nix.arg($, "csu");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "lib/libiconv_modules",
       extraPaths: nix.thunk(() => ["lib/libc/iconv"]),
       outputs: nix.thunk(() => ["out", "debug"]),

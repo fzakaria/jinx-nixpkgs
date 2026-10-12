@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const git_version_1 = git_version;
       const bootstrap = nix.thunk(() => nix.sel(gambit_support, "gambit-bootstrap"));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         src: src_1,
         version: version_1,
         "git-version": git_version_1,
@@ -98,7 +98,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(gambit_params,
       const dontStrip = true;
       const meta = nix.thunk(() => nix.sel(gambit_support, "meta"));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         src: src_1,
         version: version_1,

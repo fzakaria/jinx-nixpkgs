@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "piqi";
       const name = nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-${pname}-${version}`);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alavrik",
           repo: pname,
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const postBuild = "make -C piqilib piqilib.cma";
       const installTargets = nix.thunk(() => ["install", "ocaml-install"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/alavrik/piqi",
         description: "Universal schema language and a collection of tools built around it",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.0")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         pname,
         name,

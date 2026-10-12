@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "apg",
       version: "2.3.0b-unstable-2015-01-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wilx",
           repo: "apg",
           rev: "7ecdbac79156c8864fa3ff8d61e9f1eb264e56c2",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       buildInputs: nix.thunk(() => [openssl]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tools for random password generation",
         longDescription: " APG (Automated Password Generator) is the tool set for random\n password generation.\n\n Standalone version\n\n   Generates some random words of required type and prints them\n   to standard output.\n\n Network version\n\n   APG server: When client's request is arrived generates some\n   random words of predefined type and send them to client over\n   the network (according to RFC0972).\n\n   APG client: Sends the password generation request to the APG\n   server, wait for generated Passwords arrival and then prints\n   them to the standard output.\n\nAdvantages\n\n  * Built-in ANSI X9.17 RNG (Random Number Generator) (CAST/SHA1)\n  * Built-in password quality checking system (it has support for\n    Bloom filter for faster access)\n  * Two Password Generation Algorithms:\n      1. Pronounceable Password Generation Algorithm (according to\n         NIST FIPS 181)\n      2. Random Character Password Generation Algorithm with 35\n         configurable modes of operation\n  * Configurable password length parameters\n  * Configurable amount of generated passwords\n  * Ability to initialize RNG with user string\n  * Support for /dev/random\n  * Ability to crypt() generated passwords and print them as\n    additional output\n  * Special parameters to use APG in script\n  * Ability to log password generation requests for network version\n  * Ability to control APG service access using tcpd\n  * Ability to use password generation service from any type of box\n    (Mac, WinXX, etc.) that connected to network\n  * Ability to enforce remote users to use only allowed type of\n    password generation\n",
         homepage: "https://github.com/wilx/apg",

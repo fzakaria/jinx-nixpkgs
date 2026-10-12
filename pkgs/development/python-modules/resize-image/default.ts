@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pillow = nix.arg($, "pillow");
   const python_resize_image = nix.arg($, "python-resize-image");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "resize-image",
       version: "0.4.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-nlJvyKSUKUNLcleBfrNH3wKh0Q97+d8laIa5POm7IeM=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["resize"]),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Commandline utility to resize an image",
         homepage: "https://github.com/jaymu53/resize-image",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

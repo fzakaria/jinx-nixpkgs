@@ -51,13 +51,13 @@ export default nix.lambda((args) => (() => {
   const asdcplib = nix.thunk(() => nix.app(callPackage, nix.path(here, "./asdcplib.nix"), nix.thunk(() => ({}))));
   const libttf = nix.thunk(() => nix.app(callPackage, nix.path(here, "./libttf.nix"), nix.thunk(() => ({}))));
   const libsub = nix.thunk(() => nix.app(callPackage, nix.path(here, "./libsub.nix"), nix.thunk(() => ({}))));
-  const libdcp = nix.thunk(() => nix.app(callPackage, nix.path(here, "./libdcp.nix"), nix.thunk(() => ({ __proto__: pos$1, libcxml: libcxml, asdcplib: asdcplib }))));
+  const libdcp = nix.thunk(() => nix.app(callPackage, nix.path(here, "./libdcp.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, libcxml: libcxml, asdcplib: asdcplib }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dcpomatic",
       version: "2.18.50",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://git.carlh.net/git/dcpomatic",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-qYzV8tXISGCYAzoJJDhx/xDZAS4HD8VwE3Z0CsCjIZs=",
@@ -110,7 +110,7 @@ ln -s ${libdcp}/share/libdcp $out/share/libdcp
       __structuredAttrs: true,
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Convert video, audio and subtitles into DCP",
         homepage: "https://dcpomatic.com/",
         downloadPage: "https://git.carlh.net/cgit/dcpomatic",

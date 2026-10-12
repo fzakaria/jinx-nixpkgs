@@ -8,7 +8,7 @@ const pos$1 = nix.positions(here + "/disable-define-enable-string-path.nix", [["
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     disabledModules: nix.thunk(() => [
       nix.thunk(() => nix.builtins.toString(nix.path(here, "./define-enable.nix"))),
     ]),

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const btrfs_progs = nix.arg($, "btrfs-progs");
   const lvm2 = nix.arg($, "lvm2");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dockle",
       version: "0.4.15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "goodwithtech",
           repo: "dockle",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ $out/bin/dockle --version | grep "dockle version ${nix.sel(finalAttrs, "version"
 runHook postInstallCheck
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://containers.goodwith.tech",
         changelog: nix.thunk(() => nix.str`https://github.com/goodwithtech/dockle/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Container Image Linter for Security",

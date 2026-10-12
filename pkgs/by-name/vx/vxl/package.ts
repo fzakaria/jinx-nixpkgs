@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libpng = nix.arg($, "libpng");
   const libjpeg = nix.arg($, "libjpeg");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vxl",
       version: "3.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vxl",
           repo: "vxl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), nix.thunk(() => ["-DCMAKE_CTEST_ARGUMENTS='-E vgl_test_frustum_3d'"]))),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C++ Libraries for Computer Vision Research and Implementation",
         homepage: "https://vxl.sourceforge.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "see-cat",
       version: "0.10.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "guilhermeprokisch",
           repo: "see",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-gwvkcjnSGwnXDUL898zZ6bsiI7kAWHBCyEhFMZjwpdA=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cute cat(1) for the terminal",
         longDescription: "see is a powerful file visualization tool for the terminal, offering\nadvanced code viewing capabilities, Markdown rendering, and\nmore. It provides syntax highlighting, emoji support, and image\nrendering capabilities, offering a visually appealing way to view\nvarious file types directly in your console.\n",
         homepage: "https://github.com/guilhermeprokisch/see",

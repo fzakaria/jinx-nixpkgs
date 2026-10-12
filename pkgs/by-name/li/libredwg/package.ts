@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const python = nix.argOr($, "python", () => null);
   const isPython3 = nix.thunk(() => (nix.asBool(enablePython) && nix.asBool(nix.app(nix.sel(python, "pythonAtLeast"), "3"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libredwg",
       version: "0.14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LibreDWG",
           repo: "libredwg",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,7 +49,7 @@ cp ${printVersion} build-aux/git-version-gen
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux"))),
       nativeCheckInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), enablePython, nix.thunk(() => [libxml2, nix.thunk(() => nix.sel(libxml2, "dev"))]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Free implementation of the DWG file format",
         homepage: "https://savannah.gnu.org/projects/libredwg/",
         maintainers: nix.thunk(() => (() => {

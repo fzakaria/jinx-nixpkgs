@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "isa-l",
       version: "2.32.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "intel",
           repo: "isa-l",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, nasm]),
       buildInputs: nix.thunk(() => [zlib]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [nix.thunk(() => nix.str`-DVERSION="${nix.sel(finalAttrs, "version")}"`)]))),
       })),
       cmakeFlags: nix.thunk(() => [
@@ -55,24 +55,24 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           igzip: nix.thunk(() => nix.app(runCommand, "test-isa-l-igzip", nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
-              sample: nix.thunk(() => nix.app(runCommand, "nixpkgs-lib.nar", nix.thunk(() => ({ __proto__: pos$3, nativeBuildInputs: nix.thunk(() => [nix$]) })), nix.thunk(() => nix.str`nix nar --extra-experimental-features nix-command pack ${nix.add(nix.sel(pkgs, "path"), "/lib")} > "$out"
+              sample: nix.thunk(() => nix.app(runCommand, "nixpkgs-lib.nar", nix.thunk(() => ({ [nix.POS]: pos$3, nativeBuildInputs: nix.thunk(() => [nix$]) })), nix.thunk(() => nix.str`nix nar --extra-experimental-features nix-command pack ${nix.add(nix.sel(pkgs, "path"), "/lib")} > "$out"
 `))),
               meta: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 description: "Cross validation of igzip provided by isa-l with gzip",
               })),
             })), "HASH_ORIGINAL=\"$(cat \"$sample\" | sha256sum | cut -d\" \" -f1)\"\nHASH_COMPRESSION_TEST=\"$(igzip -c \"$sample\" | gzip -d -c | sha256sum | cut -d\" \" -f1)\"\nHASH_DECOMPRESSION_TEST=\"$(gzip -c \"$sample\" | igzip -d -c | sha256sum | cut -d\" \" -f1)\"\nif [[ \"$HASH_COMPRESSION_TEST\" != \"$HASH_ORIGINAL\" ]] || [[ \"$HASH_DECOMPRESSION_TEST\" != \"$HASH_ORIGINAL\" ]]; then\n  if [[ \"HASH_COMPRESSION_TEST\" != \"$HASH_ORIGINAL\" ]]; then\n    echo \"The igzip-compressed file does not decompress to the original file.\" 1>&2\n  fi\n  if [[ \"HASH_DECOMPRESSION_TEST\" != \"$HASH_ORIGINAL\" ]]; then\n    echo \"igzip does not decompress the gzip-compressed archive to the original file.\" 1>&2\n  fi\n  echo \"SHA256 checksums:\" 1>&2\n  printf '  original file:\\t%s\\n' \"$HASH_ORIGINAL\" 1>&2\n  printf '  compression test:\\t%s\\n' \"$HASH_COMPRESSION_TEST\" 1>&2\n  printf '  decompression test:\\t%s\\n' \"$HASH_DECOMPRESSION_TEST\" 1>&2\n  exit 1\nfi\ntouch \"$out\"\n")),
         })),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$7, "rev-prefix": "v" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$7, "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Collection of optimised low-level functions targeting storage applications",
         mainProgram: "igzip",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

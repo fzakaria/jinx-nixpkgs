@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const lndir = nix.arg($, "lndir");
   const clapper_enhancers = nix.arg($, "clapper-enhancers");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "clapper",
       version: nix.thunk(() => nix.attr(clapper_unwrapped, "version")),
       meta: nix.thunk(() => nix.attr(clapper_unwrapped, "meta")),

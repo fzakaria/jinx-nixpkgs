@@ -13,19 +13,19 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gendarme",
       version: "0.4",
       minimalOCamlVersion: "4.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bensmrs",
           repo: "gendarme",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-yiHBAhnWYntv+5fKG7Sa1RqsnvWIsW0YDqp+uAzpg/s=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Marshalling library for OCaml",
         homepage: "https://github.com/bensmrs/gendarme",
         changelog: nix.thunk(() => nix.str`https://github.com/bensmrs/gendarme/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

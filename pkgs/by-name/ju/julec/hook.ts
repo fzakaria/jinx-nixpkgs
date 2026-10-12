@@ -12,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const julec = nix.arg($, "julec");
   const makeSetupHook = nix.arg($, "makeSetupHook");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "julec-hook",
       propagatedBuildInputs: nix.thunk(() => [julec]),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(julec, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       };

@@ -20,18 +20,18 @@ export default nix.lambda((args) => (() => {
   const mixRelease = nix.arg($, "mixRelease");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(mixRelease, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "expert",
       version: "0.1.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "expert-lsp",
           repo: "expert",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-AgI5Cg0ZJp8Ia28mXSdIUNwQ2riEpddmvPtOW83gvmw=",
         })))),
       mixFodDeps: nix.thunk(() => nix.app(fetchMixDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.str`mix-deps-${nix.sel(finalAttrs, "pname")}`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })))),
       mixReleaseName: "plain",
       engineDeps: nix.thunk(() => nix.app(fetchMixDeps, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: "mix-deps-expert-engine",
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -54,13 +54,13 @@ cd apps/expert
       postInstall: "mv $out/bin/plain $out/bin/expert\n\nwrapProgram $out/bin/expert --add-flag \"eval\" --add-flag \"System.no_halt(true); Application.ensure_all_started(:xp_expert)\"\n",
       removeCookie: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$4, extraArgs: nix.thunk(() => ["--subpackage=engineDeps"]) })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--subpackage=engineDeps"]) })))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(erlang, "meta"));
         return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://github.com/expert-lsp/expert",
         changelog: nix.thunk(() => nix.str`https://github.com/expert-lsp/expert/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "Official Elixir Language Server Protocol implementation",

@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const binutils_unwrapped_all_targets = nix.arg($, "binutils-unwrapped-all-targets");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libbfd",
       version: nix.thunk(() => nix.attr(binutils_unwrapped_all_targets, "version")),
       dontUnpack: true,
@@ -24,14 +24,14 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(binutils_unwrapped_all_targets, "lib")),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         src: nix.thunk(() => nix.attr(binutils_unwrapped_all_targets, "src")),
         dev: nix.thunk(() => nix.attr(binutils_unwrapped_all_targets, "dev")),
         "plugin-api-header": nix.thunk(() => nix.attr(binutils_unwrapped_all_targets, "plugin-api-header")),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for manipulating containers of machine code",
         longDescription: "BFD is a library which provides a single interface to read and write\nobject files, executables, archive files, and core files in any format.\nIt is associated with GNU Binutils, and elsewhere often distributed with\nit.\n",
         homepage: "https://www.gnu.org/software/binutils/",

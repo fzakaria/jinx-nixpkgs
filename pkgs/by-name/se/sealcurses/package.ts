@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const the_foundation = nix.arg($, "the-foundation");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sealcurses",
       version: "0-unstable-2026-03-22",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "git.skyjake.fi",
           owner: "skyjake",
           repo: "sealcurses",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [ncurses, the_foundation]),
       cmakeFlags: nix.thunk(() => ["-DCMAKE_INSTALL_LIBDIR=lib"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SDL Emulation and Adaptation Layer for Curses (ncursesw)",
         homepage: "https://git.skyjake.fi/skyjake/sealcurses",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.8.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alisaifee",
           repo: "limits",
           tag: version,
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatchling, hatch_vcs]);
       const dependencies = nix.thunk(() => [deprecated, importlib_resources, packaging, typing_extensions]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "async-memcached": nix.thunk(() => [pymemcache]),
         "async-mongodb": nix.thunk(() => [motor]),
         "async-redis": nix.thunk(() => [coredis]),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         rediscluster: nix.thunk(() => [redis]),
         valkey: nix.thunk(() => [valkey]),
       }));
-      const env = nix.thunk(() => ({ __proto__: pos$3, PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$3, PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([
         flaky,
         hiro,
@@ -96,7 +96,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/benchmarks/test_storage.py"]);
       const pythonImportsCheck = nix.thunk(() => ["limits"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Rate limiting using various strategies and storage backends such as redis & memcached",
         homepage: "https://github.com/alisaifee/limits",
         changelog: nix.thunk(() => nix.str`https://github.com/alisaifee/limits/releases/tag/${nix.sel(src, "tag")}`),
@@ -107,7 +107,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

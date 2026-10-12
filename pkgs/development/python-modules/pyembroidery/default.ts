@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pname = "pyembroidery";
   const version = "1.5.1-unstable-2024-06-26";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "inkstitch",
           repo: "pyembroidery",
           rev: "b603b8d2b2bf91b5b0823a8a619562de5fd756e7",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       disabledTests: nix.thunk(() => ["test_generic_write_gcode", "test_jef_trims_commands"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library for the reading and writing of embroidery files",
         homepage: "https://github.com/inkstitch/pyembroidery",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "python-poetry",
           repo: "poetry-plugin-shell",
           tag: version,
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [pexpect, shellingham]);
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytest_mock, pytest_xdist, pytestCheckHook], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(darwin, "ps"))]))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/python-poetry/poetry-plugin-shell/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
         description: "Poetry plugin to run subshell with virtual environment activated",
         homepage: "https://github.com/python-poetry/poetry-plugin-shell",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

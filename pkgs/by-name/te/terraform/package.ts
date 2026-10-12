@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pname = "terraform";
       const version = "1.16.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hashicorp",
           repo: "terraform",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-1NR5xhfZrHvG8VUwAJMgKCRvfs2AA8y5KPB/IYQiQB0=";
       const patches = nix.thunk(() => [nix.path(here, "./provider-path-0_15.patch")]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CGO_ENABLED: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "1" : "0")),
       }));
       const ldflags = nix.thunk(() => ["-s", "-w", "-X 'github.com/hashicorp/terraform/version.dev=no'"]);
@@ -54,12 +54,12 @@ substituteInPlace vendor/github.com/bgentry/speakeasy/speakeasy_unix.go \\
       const preCheck = "export HOME=$TMPDIR\nexport TF_SKIP_REMOTE_TESTS=1\n";
       const subPackages = nix.thunk(() => ["."]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         plugins: plugins,
-        tests: nix.thunk(() => ({ __proto__: pos$3, terraform_plugins_test: terraform_plugins_test })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, terraform_plugins_test: terraform_plugins_test })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Tool for building, changing, and versioning infrastructure",
         homepage: "https://www.terraform.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/hashicorp/terraform/blob/v${version}/CHANGELOG.md`),
@@ -79,7 +79,7 @@ substituteInPlace vendor/github.com/bgentry/speakeasy/speakeasy_unix.go \\
         mainProgram: "terraform",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,
@@ -100,7 +100,7 @@ substituteInPlace vendor/github.com/bgentry/speakeasy/speakeasy_unix.go \\
   const terraform_plugins_test = nix.thunk(() => (() => {
     const mainTf = nix.thunk(() => nix.app(writeText, "main.tf", "resource \"random_id\" \"test\" {}\n"));
     const terraform = nix.thunk(() => nix.app(nix.sel(nix.app(pluggable, package$), "withPlugins"), (p) => [nix.thunk(() => nix.sel(p, "hashicorp_random"))]));
-    const test = nix.thunk(() => nix.app(runCommand, "terraform-plugin-test", nix.thunk(() => ({ __proto__: pos$7, buildInputs: nix.thunk(() => [terraform]) })), nix.thunk(() => nix.str`set -e
+    const test = nix.thunk(() => nix.app(runCommand, "terraform-plugin-test", nix.thunk(() => ({ [nix.POS]: pos$7, buildInputs: nix.thunk(() => [terraform]) })), nix.thunk(() => nix.str`set -e
 # make it fail outside of sandbox
 export HTTP_PROXY=http://127.0.0.1:0 HTTPS_PROXY=https://127.0.0.1:0
 cp ${mainTf} main.tf
@@ -114,7 +114,7 @@ touch $out
       const actualPlugins = nix.thunk(() => nix.app(plugins_1, nix.thunk(() => nix.sel(terraform, "plugins"))));
       const wrapperInputs = nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.app(nix.sel(lib, "catAttrs"), "propagatedBuildInputs", nix.thunk(() => nix.builtins.filter((x) => !nix.eq(x, null), actualPlugins))))))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         withPlugins: (newplugins) => nix.app(withPlugins, (x) => nix.concat(nix.app(newplugins, x), actualPlugins)),
         full: nix.thunk(() => nix.app(withPlugins, (p) => nix.app(nix.sel(lib, "filter"), nix.thunk(() => nix.sel(lib, "isDerivation")), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(p, "actualProviders"))))))),
         overrideDerivation: (f) => nix.app(nix.sel(nix.app(pluggable, nix.thunk(() => nix.app(nix.sel(terraform, "overrideDerivation"), f))), "withPlugins"), plugins_1),
@@ -122,10 +122,10 @@ touch $out
         override: (x) => nix.app(nix.sel(nix.app(pluggable, nix.thunk(() => nix.app(nix.sel(terraform, "override"), x))), "withPlugins"), plugins_1),
       }));
       return (nix.asBool(nix.eq(actualPlugins, [])) ? nix.app(nix.sel(terraform, "overrideAttrs"), (orig) => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           passthru: nix.thunk(() => nix.update(nix.sel(orig, "passthru"), passthru)),
         })) : nix.app(nix.sel(lib, "appendToName"), "with-plugins", nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             meta: nix.thunk(() => nix.attr(terraform, "meta")),
             pname: nix.thunk(() => nix.attr(terraform, "pname")),
             version: nix.thunk(() => nix.attr(terraform, "version")),

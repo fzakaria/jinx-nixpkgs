@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const txt2man = nix.arg($, "txt2man");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "axel",
       version: "2.17.14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "axel-download-accelerator",
           repo: "axel",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => [nix.thunk(() => nix.str`ETCDIR=${nix.builtins.placeholder("out")}/etc`)]),
       postInstall: "mkdir -p $out/share/doc\ncp doc/axelrc.example $out/share/doc/axelrc.example\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Console downloading program with some features for parallel connections for faster downloading",
         homepage: "https://github.com/axel-download-accelerator/axel",
         maintainers: nix.thunk(() => (() => {

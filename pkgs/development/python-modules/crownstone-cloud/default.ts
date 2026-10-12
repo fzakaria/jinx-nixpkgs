@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.11";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "crownstone_cloud",
           version: version,
           hash: "sha256-s84pK52uMupxQfdMldV14V3nj+yVku1Vw13CRX4o08U=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["crownstone_cloud"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python module for communicating with Crownstone Cloud and devices",
         homepage: "https://github.com/Crownstone-Community/crownstone-lib-python-cloud",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

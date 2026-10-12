@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const audioBackend = nix.argOr($, "audioBackend", () => "pulseaudio");
   nix.assert_(nix.app(nix.sel(lib, "assertOneOf"), "audioBackend", audioBackend, nix.thunk(() => ["alsa", "pulseaudio"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/fl/flite/package.nix:12:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "flite",
       version: "2.2",
       outputs: nix.thunk(() => ["bin", "dev", "lib", "out"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "festvox",
           repo: "flite",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,26 +39,26 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/festvox/flite/commit/54c65164840777326bbb83517568e38a128122ef.patch",
             hash: "sha256-hvKzdX7adiqd9D+9DbnfNdqEULg1Hhqe1xElYxNM1B8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://raw.githubusercontent.com/freebsd/freebsd-ports/0d316feccaf89c1bd804d6001274426a7135c93a/audio/flite/files/patch-configure",
             hash: "sha256-D2wOtmHFcuA8JRtIds03yPrBGtMuhLJHuufEQdpcB58=",
             extraPrefix: "",
           })))),
       ]),
-      buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.selOr({ __proto__: pos$4, alsa: alsa_lib, pulseaudio: libpulseaudio }, () => nix.builtins.throw(nix.thunk(() => nix.str`${audioBackend} is not a supported backend!`)), nix.key(nix.force(audioBackend)))))),
+      buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.selOr({ [nix.POS]: pos$4, alsa: alsa_lib, pulseaudio: libpulseaudio }, () => nix.builtins.throw(nix.thunk(() => nix.str`${audioBackend} is not a supported backend!`)), nix.key(nix.force(audioBackend)))))),
       configureFlags: nix.thunk(() => nix.concat(["--enable-shared"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [nix.thunk(() => nix.str`--with-audio=${audioBackend}`)])))),
       enableParallelBuilding: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               command: "flite --help",
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Small, fast run-time speech synthesis engine",
         homepage: "http://www.festvox.org/flite/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsdOriginal")),

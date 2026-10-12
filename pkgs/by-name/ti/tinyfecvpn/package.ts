@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tinyfecvpn",
       version: "20230206.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wangyu-",
           repo: "tinyfecvpn",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       patchPhase: "runHook prePatch\nfind . -type f -name \"makefile\" -exec sed \"s/ -static/ -g/g\" -i \\{\\} \\;\nrunHook postPatch\n",
       installPhase: "runHook preInstall\ninstall -Dm755 tinyvpn $out/bin/tinyvpn\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/wangyu-/tinyfecVPN",
         description: "VPN Designed for Lossy Links, with Build-in Forward Error Correction(FEC) Support",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

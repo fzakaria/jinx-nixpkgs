@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "colorless";
       const version = "109";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://software.kimmo.suominen.com/colorless-${version}.tar.gz`),
           sha256: "039a140fa11cf153cc4d03e4f753b7ff142cab88ff116b7600ccf9edee81927c",
         }))));
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const postInstall = "install -Dm644 -t $out/share/doc/colorless LICENSE README.md\n";
       const strictDeps = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://kimmo.suominen.com/sw/colorless",
         description: "Enable colorised command output and pipe it to less",
         longDescription: "colorless is a wrapper that enables colorised output of commands and\npipes the output to less(1).\n",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "colorless",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

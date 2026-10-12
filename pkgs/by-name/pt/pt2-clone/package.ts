@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const alsa_lib = nix.arg($, "alsa-lib");
   const SDL2 = nix.arg($, "SDL2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pt2-clone",
       version: "1.92",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "8bitbubsy",
           repo: "pt2-clone",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([SDL2], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), alsa_lib))),
       postInstall: "install -Dm444 \"$src/release/other/Freedesktop.org Resources/ProTracker 2 clone.desktop\" \\\n  $out/share/applications/pt2-clone.desktop\ninstall -Dm444 \"$src/release/other/Freedesktop.org Resources/ProTracker 2 clone.png\" \\\n  $out/share/icons/hicolor/512x512/apps/pt2-clone.png\n# gtk-update-icon-cache does not like whitespace. Note that removing this\n# will not make the build fail, but it will make the NixOS test fail.\nsubstituteInPlace $out/share/applications/pt2-clone.desktop \\\n  --replace-fail \"Icon=ProTracker 2 clone\" Icon=pt2-clone\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "pt2-clone-opens": nix.thunk(() => nix.sel(nixosTests, "pt2-clone")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Highly accurate clone of the classic ProTracker 2.3D software for Amiga",
         homepage: "https://16-bits.org/pt2.php",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

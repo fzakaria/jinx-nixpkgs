@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libxext = nix.arg($, "libxext");
   const libice = nix.arg($, "libice");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lwm",
       version: "1.2.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.jfc.org.uk/files/lwm/lwm-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1bcdr173f0gl61fyl43p3gr145angci7lvjqb8rl00y9f9amvh3y",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "sed -i 's|^LOCAL_LIBRARIES.*|& $(ICELIB)|' Imakefile\nxmkmf\n",
       installPhase: "install -dm755 $out/bin $out/share/man/man1\ninstall -m755 lwm $out/bin/lwm\ninstall -m644 lwm.man $out/share/man/man1/lwm.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightweight Window Manager",
         longDescription: "lwm is a window manager for X that tries to keep out of your face. There\nare no icons, no button bars, no icon docks, no root menus, no nothing: if\nyou want all that, then other programs can provide it. There's no\nconfigurability either: if you want that, you want a different window\nmanager; one that helps your operating system in its evil conquest of your\ndisc space and its annexation of your physical memory.\n",
         homepage: "http://www.jfc.org.uk/software/lwm.html",

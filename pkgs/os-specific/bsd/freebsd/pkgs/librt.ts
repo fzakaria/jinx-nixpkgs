@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const libthr = nix.arg($, "libthr");
   const csu = nix.arg($, "csu");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "lib/librt",
       extraPaths: nix.thunk(() => ["lib/libc/include", "lib/libc/Versions.def"]),
       outputs: nix.thunk(() => ["out", "debug"]),
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [include, libcMinimal, libgcc, libthr, libsys]),
       preBuild: nix.thunk(() => nix.str`export NIX_CFLAGS_COMPILE="$NIX_CFLAGS_COMPILE -B${csu}/lib"
 `),
-      env: nix.thunk(() => ({ __proto__: pos$1, MK_TESTS: "no" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$1, MK_TESTS: "no" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=librt.ts.map

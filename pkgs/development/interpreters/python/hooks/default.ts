@@ -121,13 +121,13 @@ export default (self) => (dontUse) => (() => {
   const pythonCheckInterpreter = nix.thunk(() => nix.sel(nix.lookup(w, "python"), "interpreter"));
   const setuppy = nix.path(here, "../run_setup.py");
   return {
-    __proto__: pos$82,
+    [nix.POS]: pos$82,
     makePythonHook: nix.thunk(() => (() => {
       const defaultArgs = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         passthru: nix.thunk(() => ({
-          __proto__: pos$2,
-          provides: nix.thunk(() => ({ __proto__: pos$1, setupHook: true })),
+          [nix.POS]: pos$2,
+          provides: nix.thunk(() => ({ [nix.POS]: pos$1, setupHook: true })),
         })),
       }));
       return (args) => nix.app(nix.sel(nix.lookup(w, "pkgs"), "makeSetupHook"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "lib"), "recursiveUpdate"), defaultArgs, args)));
@@ -138,32 +138,32 @@ export default (self) => (dontUse) => (() => {
         const gnutar = nix.arg($, "gnutar");
         const lbzip2 = nix.arg($, "lbzip2");
         return nix.app(makePythonHook, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "conda-install-hook",
             propagatedBuildInputs: nix.thunk(() => [gnutar, lbzip2]),
-            substitutions: nix.thunk(() => ({ __proto__: pos$4, pythonSitePackages: pythonSitePackages })),
+            substitutions: nix.thunk(() => ({ [nix.POS]: pos$4, pythonSitePackages: pythonSitePackages })),
           })), nix.path(here, "./conda-install-hook.sh"));
       })(), formals$1), nix.thunk(() => ({})))),
     condaUnpackHook: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.lambda((args) => (() => {
         const $ = nix.formals(args, formals$2);
         const makePythonHook = nix.arg($, "makePythonHook");
-        return nix.app(makePythonHook, nix.thunk(() => ({ __proto__: pos$6, name: "conda-unpack-hook" })), nix.path(here, "./conda-unpack-hook.sh"));
+        return nix.app(makePythonHook, nix.thunk(() => ({ [nix.POS]: pos$6, name: "conda-unpack-hook" })), nix.path(here, "./conda-unpack-hook.sh"));
       })(), formals$2), nix.thunk(() => ({})))),
     eggBuildHook: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.lambda((args) => (() => {
         const $ = nix.formals(args, formals$3);
         const makePythonHook = nix.arg($, "makePythonHook");
-        return nix.app(makePythonHook, nix.thunk(() => ({ __proto__: pos$7, name: "egg-build-hook.sh" })), nix.path(here, "./egg-build-hook.sh"));
+        return nix.app(makePythonHook, nix.thunk(() => ({ [nix.POS]: pos$7, name: "egg-build-hook.sh" })), nix.path(here, "./egg-build-hook.sh"));
       })(), formals$3), nix.thunk(() => ({})))),
     eggInstallHook: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.lambda((args) => (() => {
         const $ = nix.formals(args, formals$4);
         const makePythonHook = nix.arg($, "makePythonHook");
         const setuptools = nix.arg($, "setuptools");
         return nix.app(makePythonHook, nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             name: "egg-install-hook.sh",
             propagatedBuildInputs: nix.thunk(() => [setuptools]),
             substitutions: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               pythonInterpreter: pythonInterpreter,
               pythonSitePackages: pythonSitePackages,
             })),
@@ -172,7 +172,7 @@ export default (self) => (dontUse) => (() => {
     eggUnpackHook: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.lambda((args) => (() => {
         const $ = nix.formals(args, formals$5);
         const makePythonHook = nix.arg($, "makePythonHook");
-        return nix.app(makePythonHook, nix.thunk(() => ({ __proto__: pos$10, name: "egg-unpack-hook.sh" })), nix.path(here, "./egg-unpack-hook.sh"));
+        return nix.app(makePythonHook, nix.thunk(() => ({ [nix.POS]: pos$10, name: "egg-unpack-hook.sh" })), nix.path(here, "./egg-unpack-hook.sh"));
       })(), formals$5), nix.thunk(() => ({})))),
     pipBuildHook: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.lambda((args) => (() => {
         const $ = nix.formals(args, formals$6);
@@ -180,11 +180,11 @@ export default (self) => (dontUse) => (() => {
         const pip = nix.arg($, "pip");
         const wheel = nix.arg($, "wheel");
         return nix.app(makePythonHook, nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             name: "pip-build-hook.sh",
             propagatedBuildInputs: nix.thunk(() => [pip, wheel]),
             substitutions: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               pythonInterpreter: pythonInterpreter,
               pythonSitePackages: pythonSitePackages,
             })),
@@ -196,29 +196,29 @@ export default (self) => (dontUse) => (() => {
         const build = nix.arg($, "build");
         const wheel = nix.arg($, "wheel");
         return nix.app(makePythonHook, nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             name: "pypa-build-hook.sh",
             propagatedBuildInputs: nix.thunk(() => [wheel]),
-            substitutions: nix.thunk(() => ({ __proto__: pos$13, build: build })),
+            substitutions: nix.thunk(() => ({ [nix.POS]: pos$13, build: build })),
             passthru: nix.thunk(() => ({
-              __proto__: pos$15,
-              tests: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./pypa-build-hook-test.nix"), nix.thunk(() => ({ __proto__: pos$14, pythonOnBuildForHost: pythonOnBuildForHost })))),
+              [nix.POS]: pos$15,
+              tests: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./pypa-build-hook-test.nix"), nix.thunk(() => ({ [nix.POS]: pos$14, pythonOnBuildForHost: pythonOnBuildForHost })))),
             })),
           })), nix.path(here, "./pypa-build-hook.sh"));
       })(), formals$7), nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(pythonOnBuildForHost, "pkgs"));
-        return { __proto__: pos$17, build: nix.thunk(() => nix.attr(from, "build")) };
+        return { [nix.POS]: pos$17, build: nix.thunk(() => nix.attr(from, "build")) };
       })()))),
     pipInstallHook: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.lambda((args) => (() => {
         const $ = nix.formals(args, formals$8);
         const makePythonHook = nix.arg($, "makePythonHook");
         const pip = nix.arg($, "pip");
         return nix.app(makePythonHook, nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             name: "pip-install-hook",
             propagatedBuildInputs: nix.thunk(() => [pip]),
             substitutions: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               pythonInterpreter: pythonInterpreter,
               pythonSitePackages: pythonSitePackages,
             })),
@@ -229,11 +229,11 @@ export default (self) => (dontUse) => (() => {
         const makePythonHook = nix.arg($, "makePythonHook");
         const installer = nix.arg($, "installer");
         return nix.app(makePythonHook, nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             name: "pypa-install-hook",
             propagatedBuildInputs: nix.thunk(() => [installer]),
             substitutions: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               pythonInterpreter: pythonInterpreter,
               pythonSitePackages: pythonSitePackages,
               python: nix.thunk(() => nix.sel(nix.lookup(w, "python"), "interpreter")),
@@ -241,16 +241,16 @@ export default (self) => (dontUse) => (() => {
           })), nix.path(here, "./pypa-install-hook.sh"));
       })(), formals$9), nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(pythonOnBuildForHost, "pkgs"));
-        return { __proto__: pos$22, installer: nix.thunk(() => nix.attr(from, "installer")) };
+        return { [nix.POS]: pos$22, installer: nix.thunk(() => nix.attr(from, "installer")) };
       })()))),
     pyprojectVersionPatchHook: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.lambda((args) => (() => {
         const $ = nix.formals(args, formals$10);
         const makePythonHook = nix.arg($, "makePythonHook");
         return nix.app(makePythonHook, nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             name: "pyproject-version-patch-hook.sh",
             substitutions: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               pythonInterpreter: nix.thunk(() => nix.sel(nix.app(nix.sel(pythonOnBuildForHost, "withPackages"), (ps) => [
                   nix.thunk(() => nix.sel(ps, "packaging")),
                   nix.thunk(() => nix.sel(ps, "tomlkit")),
@@ -258,7 +258,7 @@ export default (self) => (dontUse) => (() => {
               script: nix.path(here, "./pyproject-version-patch-hook.py"),
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(nix.lookup(w, "lib"), "maintainers", "dotlambda"))]),
             })),
           })), nix.path(here, "./pyproject-version-patch-hook.sh"));
@@ -270,104 +270,104 @@ export default (self) => (dontUse) => (() => {
         const testers = nix.arg($, "testers");
         const objprint = nix.arg($, "objprint");
         return nix.app(makePythonHook, nix.thunk(() => ({
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             name: "pytest-check-hook",
             propagatedBuildInputs: nix.thunk(() => [pytest]),
-            substitutions: nix.thunk(() => ({ __proto__: pos$26, pythonCheckInterpreter: pythonCheckInterpreter })),
+            substitutions: nix.thunk(() => ({ [nix.POS]: pos$26, pythonCheckInterpreter: pythonCheckInterpreter })),
             passthru: nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               tests: nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 basic: nix.thunk(() => nix.app(nix.sel(objprint, "overridePythonAttrs"), (previousPythonAttrs) => ({
-                    __proto__: pos$27,
+                    [nix.POS]: pos$27,
                     pname: nix.thunk(() => nix.str`test-pytestCheckHook-basic-${nix.sel(previousPythonAttrs, "pname")}`),
                   }))),
                 disabledTests: nix.thunk(() => nix.app(nix.sel(objprint, "overridePythonAttrs"), (previousPythonAttrs) => ({
-                    __proto__: pos$28,
+                    [nix.POS]: pos$28,
                     pname: nix.thunk(() => nix.str`test-pytestCheckHook-disabledTests-${nix.sel(previousPythonAttrs, "pname")}`),
                     disabledTests: nix.thunk(() => nix.concat(["test_print"], nix.selOr(previousPythonAttrs, () => [], "disabledTests"))),
                   }))),
                 "disabledTests-expression": nix.thunk(() => nix.app(nix.sel(objprint, "overridePythonAttrs"), (previousPythonAttrs) => ({
-                    __proto__: pos$29,
+                    [nix.POS]: pos$29,
                     __structuredAttrs: true,
                     pname: nix.thunk(() => nix.str`test-pytestCheckHook-disabledTests-expression-${nix.sel(previousPythonAttrs, "pname")}`),
                     disabledTests: nix.thunk(() => nix.concat(["TestBasic and test_print", "test_str"], nix.selOr(previousPythonAttrs, () => [], "disabledTests"))),
                   }))),
                 disabledTestPaths: nix.thunk(() => nix.app(nix.sel(objprint, "overridePythonAttrs"), (previousPythonAttrs) => ({
-                    __proto__: pos$30,
+                    [nix.POS]: pos$30,
                     pname: nix.thunk(() => nix.str`test-pytestCheckHook-disabledTestPaths-${nix.sel(previousPythonAttrs, "pname")}`),
                     disabledTestPaths: nix.thunk(() => nix.concat(["tests/test_basic.py"], nix.selOr(previousPythonAttrs, () => [], "disabledTestPaths"))),
                   }))),
                 "disabledTestPaths-nonexistent": nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), nix.thunk(() => nix.app(nix.sel(objprint, "overridePythonAttrs"), (previousPythonAttrs) => ({
-                      __proto__: pos$31,
+                      [nix.POS]: pos$31,
                       pname: nix.thunk(() => nix.str`test-pytestCheckHook-disabledTestPaths-nonexistent-${nix.sel(previousPythonAttrs, "pname")}`),
                       disabledTestPaths: nix.thunk(() => nix.concat(["tests/test_foo.py"], nix.selOr(previousPythonAttrs, () => [], "disabledTestPaths"))),
                     }))))),
                 "disabledTestPaths-item": nix.thunk(() => nix.app(nix.sel(objprint, "overridePythonAttrs"), (previousPythonAttrs) => ({
-                    __proto__: pos$32,
+                    [nix.POS]: pos$32,
                     pname: nix.thunk(() => nix.str`test-pytestCheckHook-disabledTestPaths-item-${nix.sel(previousPythonAttrs, "pname")}`),
                     disabledTestPaths: nix.thunk(() => nix.concat(["tests/test_basic.py::TestBasic"], nix.selOr(previousPythonAttrs, () => [], "disabledTestPaths"))),
                   }))),
                 "disabledTestPaths-glob": nix.thunk(() => nix.app(nix.sel(objprint, "overridePythonAttrs"), (previousPythonAttrs) => ({
-                    __proto__: pos$33,
+                    [nix.POS]: pos$33,
                     pname: nix.thunk(() => nix.str`test-pytestCheckHook-disabledTestPaths-glob-${nix.sel(previousPythonAttrs, "pname")}`),
                     disabledTestPaths: nix.thunk(() => nix.concat(["tests/test_obj*.py"], nix.selOr(previousPythonAttrs, () => [], "disabledTestPaths"))),
                   }))),
                 "disabledTestPaths-glob-nonexistent": nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), nix.thunk(() => nix.app(nix.sel(objprint, "overridePythonAttrs"), (previousPythonAttrs) => ({
-                      __proto__: pos$34,
+                      [nix.POS]: pos$34,
                       pname: nix.thunk(() => nix.str`test-pytestCheckHook-disabledTestPaths-glob-nonexistent-${nix.sel(previousPythonAttrs, "pname")}`),
                       disabledTestPaths: nix.thunk(() => nix.concat(["tests/test_foo*.py"], nix.selOr(previousPythonAttrs, () => [], "disabledTestPaths"))),
                     }))))),
                 enabledTests: nix.thunk(() => nix.app(nix.sel(objprint, "overridePythonAttrs"), (previousPythonAttrs) => ({
-                    __proto__: pos$35,
+                    [nix.POS]: pos$35,
                     pname: nix.thunk(() => nix.str`test-pytestCheckHook-enabledTests-${nix.sel(previousPythonAttrs, "pname")}`),
                     enabledTests: nix.thunk(() => nix.concat(["TestBasic"], nix.selOr(previousPythonAttrs, () => [], "disabledTests"))),
                   }))),
                 "enabledTests-expression": nix.thunk(() => nix.app(nix.sel(objprint, "overridePythonAttrs"), (previousPythonAttrs) => ({
-                    __proto__: pos$36,
+                    [nix.POS]: pos$36,
                     __structuredAttrs: true,
                     pname: nix.thunk(() => nix.str`test-pytestCheckHook-enabledTests-expression-${nix.sel(previousPythonAttrs, "pname")}`),
                     enabledTests: nix.thunk(() => nix.concat(["TestBasic and test_print", "test_str"], nix.selOr(previousPythonAttrs, () => [], "disabledTests"))),
                   }))),
                 "enabledTests-disabledTests": nix.thunk(() => nix.app(nix.sel(objprint, "overridePythonAttrs"), (previousPythonAttrs) => ({
-                    __proto__: pos$37,
+                    [nix.POS]: pos$37,
                     pname: nix.thunk(() => nix.str`test-pytestCheckHook-enabledTests-disabledTests-${nix.sel(previousPythonAttrs, "pname")}`),
                     enabledTests: nix.thunk(() => nix.concat(["TestBasic"], nix.selOr(previousPythonAttrs, () => [], "disabledTests"))),
                     disabledTests: nix.thunk(() => nix.concat(["test_print"], nix.selOr(previousPythonAttrs, () => [], "disabledTests"))),
                   }))),
                 enabledTestPaths: nix.thunk(() => nix.app(nix.sel(objprint, "overridePythonAttrs"), (previousPythonAttrs) => ({
-                    __proto__: pos$38,
+                    [nix.POS]: pos$38,
                     pname: nix.thunk(() => nix.str`test-pytestCheckHook-enabledTestPaths-${nix.sel(previousPythonAttrs, "pname")}`),
                     enabledTestPaths: nix.thunk(() => nix.concat(["tests/test_basic.py"], nix.selOr(previousPythonAttrs, () => [], "enabledTestPaths"))),
                   }))),
                 "enabledTestPaths-nonexistent": nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), nix.thunk(() => nix.app(nix.sel(objprint, "overridePythonAttrs"), (previousPythonAttrs) => ({
-                      __proto__: pos$39,
+                      [nix.POS]: pos$39,
                       pname: nix.thunk(() => nix.str`test-pytestCheckHook-enabledTestPaths-nonexistent-${nix.sel(previousPythonAttrs, "pname")}`),
                       enabledTestPaths: nix.thunk(() => nix.concat(["tests/test_foo.py"], nix.selOr(previousPythonAttrs, () => [], "enabledTestPaths"))),
                     }))))),
                 "enabledTestPaths-dir": nix.thunk(() => nix.app(nix.sel(objprint, "overridePythonAttrs"), (previousPythonAttrs) => ({
-                    __proto__: pos$40,
+                    [nix.POS]: pos$40,
                     pname: nix.thunk(() => nix.str`test-pytestCheckHook-enabledTestPaths-dir-${nix.sel(previousPythonAttrs, "pname")}`),
                     enabledTestPaths: nix.thunk(() => nix.concat(["tests"], nix.selOr(previousPythonAttrs, () => [], "enabledTestPaths"))),
                   }))),
                 "enabledTestPaths-dir-disabledTestPaths": nix.thunk(() => nix.app(nix.sel(objprint, "overridePythonAttrs"), (previousPythonAttrs) => ({
-                    __proto__: pos$41,
+                    [nix.POS]: pos$41,
                     pname: nix.thunk(() => nix.str`test-pytestCheckHook-enabledTestPaths-dir-disabledTestPaths-${nix.sel(previousPythonAttrs, "pname")}`),
                     enabledTestPaths: nix.thunk(() => nix.concat(["tests"], nix.selOr(previousPythonAttrs, () => [], "enabledTestPaths"))),
                     disabledTestPaths: nix.thunk(() => nix.concat(["tests/test_basic.py"], nix.selOr(previousPythonAttrs, () => [], "disabledTestPaths"))),
                   }))),
                 "enabledTestPaths-glob": nix.thunk(() => nix.app(nix.sel(objprint, "overridePythonAttrs"), (previousPythonAttrs) => ({
-                    __proto__: pos$42,
+                    [nix.POS]: pos$42,
                     pname: nix.thunk(() => nix.str`test-pytestCheckHook-enabledTestPaths-glob-${nix.sel(previousPythonAttrs, "pname")}`),
                     enabledTestPaths: nix.thunk(() => nix.concat(["tests/test_obj*.py"], nix.selOr(previousPythonAttrs, () => [], "enabledTestPaths"))),
                   }))),
                 "enabledTestPaths-glob-nonexistent": nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), nix.thunk(() => nix.app(nix.sel(objprint, "overridePythonAttrs"), (previousPythonAttrs) => ({
-                      __proto__: pos$43,
+                      [nix.POS]: pos$43,
                       pname: nix.thunk(() => nix.str`test-pytestCheckHook-enabledTestPaths-glob-nonexistent-${nix.sel(previousPythonAttrs, "pname")}`),
                       enabledTestPaths: nix.thunk(() => nix.concat(["tests/test_foo*.py"], nix.selOr(previousPythonAttrs, () => [], "enabledTestPaths"))),
                     }))))),
                 "enabledTestPaths-item": nix.thunk(() => nix.app(nix.sel(objprint, "overridePythonAttrs"), (previousPythonAttrs) => ({
-                    __proto__: pos$44,
+                    [nix.POS]: pos$44,
                     pname: nix.thunk(() => nix.str`test-pytestCheckHook-enabledTestPaths-item-${nix.sel(previousPythonAttrs, "pname")}`),
                     enabledTestPaths: nix.thunk(() => nix.concat(["tests/test_basic.py::TestBasic"], nix.selOr(previousPythonAttrs, () => [], "enabledTestPaths"))),
                   }))),
@@ -380,21 +380,21 @@ export default (self) => (dontUse) => (() => {
         const makePythonHook = nix.arg($, "makePythonHook");
         const setuptools = nix.arg($, "setuptools");
         return nix.app(makePythonHook, nix.thunk(() => ({
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             name: "python-catch-conflicts-hook",
             substitutions: nix.thunk(() => (() => {
               const useLegacyHook = nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "lib"), "versionOlder"), nix.thunk(() => nix.sel(nix.lookup(w, "python"), "pythonVersion")), "3"));
               return nix.update({
-                __proto__: pos$48,
+                [nix.POS]: pos$48,
                 pythonInterpreter: pythonInterpreter,
                 pythonSitePackages: pythonSitePackages,
                 catchConflicts: nix.thunk(() => (nix.asBool(useLegacyHook) ? nix.path(here, "../catch_conflicts/catch_conflicts_py2.py") : nix.path(here, "../catch_conflicts/catch_conflicts.py"))),
-              }, nix.app(nix.sel(nix.lookup(w, "lib"), "optionalAttrs"), useLegacyHook, nix.thunk(() => ({ __proto__: pos$49, setuptools: setuptools }))));
+              }, nix.app(nix.sel(nix.lookup(w, "lib"), "optionalAttrs"), useLegacyHook, nix.thunk(() => ({ [nix.POS]: pos$49, setuptools: setuptools }))));
             })()),
             passthru: nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               tests: nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./python-catch-conflicts-hook-tests.nix"), nix.thunk(() => ({
-                  __proto__: pos$50,
+                  [nix.POS]: pos$50,
                   pythonOnBuildForHost: pythonOnBuildForHost,
                   runCommand: runCommand,
                   lib: nix.thunk(() => nix.lookup(w, "lib")),
@@ -409,10 +409,10 @@ export default (self) => (dontUse) => (() => {
         const $ = nix.formals(args, formals$13);
         const makePythonHook = nix.arg($, "makePythonHook");
         return nix.app(makePythonHook, nix.thunk(() => ({
-            __proto__: pos$54,
+            [nix.POS]: pos$54,
             name: "python-imports-check-hook.sh",
             substitutions: nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               pythonCheckInterpreter: pythonCheckInterpreter,
               pythonSitePackages: pythonSitePackages,
             })),
@@ -422,16 +422,16 @@ export default (self) => (dontUse) => (() => {
         const $ = nix.formals(args, formals$14);
         const makePythonHook = nix.arg($, "makePythonHook");
         return nix.app(makePythonHook, nix.thunk(() => ({
-            __proto__: pos$57,
+            [nix.POS]: pos$57,
             name: "python-metadata-check-hook.sh",
             substitutions: nix.thunk(() => ({
-              __proto__: pos$55,
+              [nix.POS]: pos$55,
               pythonInterpreter: pythonInterpreter,
               pythonSitePackages: pythonSitePackages,
               pythonWithPackaging: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "lib"), "getExe"), nix.thunk(() => nix.app(nix.sel(pythonOnBuildForHost, "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "packaging"))])))),
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(nix.lookup(w, "lib"), "maintainers", "dotlambda"))]),
             })),
           })), nix.path(here, "./python-metadata-check-hook.sh"));
@@ -441,10 +441,10 @@ export default (self) => (dontUse) => (() => {
         const makePythonHook = nix.arg($, "makePythonHook");
         const buildPackages = nix.arg($, "buildPackages");
         return nix.app(makePythonHook, nix.thunk(() => ({
-            __proto__: pos$59,
+            [nix.POS]: pos$59,
             name: "python-namespaces-hook.sh",
             substitutions: nix.thunk(() => ({
-              __proto__: pos$58,
+              [nix.POS]: pos$58,
               pythonSitePackages: pythonSitePackages,
               findutils: nix.thunk(() => nix.attr(buildPackages, "findutils")),
             })),
@@ -453,16 +453,16 @@ export default (self) => (dontUse) => (() => {
     pythonOutputDistHook: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.lambda((args) => (() => {
         const $ = nix.formals(args, formals$16);
         const makePythonHook = nix.arg($, "makePythonHook");
-        return nix.app(makePythonHook, nix.thunk(() => ({ __proto__: pos$60, name: "python-output-dist-hook" })), nix.path(here, "./python-output-dist-hook.sh"));
+        return nix.app(makePythonHook, nix.thunk(() => ({ [nix.POS]: pos$60, name: "python-output-dist-hook" })), nix.path(here, "./python-output-dist-hook.sh"));
       })(), formals$16), nix.thunk(() => ({})))),
     pythonRecompileBytecodeHook: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.lambda((args) => (() => {
         const $ = nix.formals(args, formals$17);
         const makePythonHook = nix.arg($, "makePythonHook");
         return nix.app(makePythonHook, nix.thunk(() => ({
-            __proto__: pos$62,
+            [nix.POS]: pos$62,
             name: "python-recompile-bytecode-hook",
             substitutions: nix.thunk(() => ({
-              __proto__: pos$61,
+              [nix.POS]: pos$61,
               pythonInterpreter: pythonInterpreter,
               pythonSitePackages: pythonSitePackages,
               compileArgs: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "lib"), "concatStringsSep"), " ", nix.thunk(() => nix.concat(["-q", "-f", "-i -"], nix.app(nix.sel(nix.lookup(w, "lib"), "optionals"), nix.thunk(() => nix.lookup(w, "isPy3k")), nix.thunk(() => ["-j $NIX_BUILD_CORES"])))))),
@@ -475,10 +475,10 @@ export default (self) => (dontUse) => (() => {
         const makePythonHook = nix.arg($, "makePythonHook");
         const wheel = nix.arg($, "wheel");
         return nix.app(makePythonHook, nix.thunk(() => ({
-            __proto__: pos$64,
+            [nix.POS]: pos$64,
             name: "python-relax-deps-hook",
             substitutions: nix.thunk(() => ({
-              __proto__: pos$63,
+              [nix.POS]: pos$63,
               pythonInterpreter: pythonInterpreter,
               pythonSitePackages: pythonSitePackages,
               wheel: wheel,
@@ -488,15 +488,15 @@ export default (self) => (dontUse) => (() => {
     pythonRemoveBinBytecodeHook: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.lambda((args) => (() => {
         const $ = nix.formals(args, formals$19);
         const makePythonHook = nix.arg($, "makePythonHook");
-        return nix.app(makePythonHook, nix.thunk(() => ({ __proto__: pos$65, name: "python-remove-bin-bytecode-hook" })), nix.path(here, "./python-remove-bin-bytecode-hook.sh"));
+        return nix.app(makePythonHook, nix.thunk(() => ({ [nix.POS]: pos$65, name: "python-remove-bin-bytecode-hook" })), nix.path(here, "./python-remove-bin-bytecode-hook.sh"));
       })(), formals$19), nix.thunk(() => ({})))),
     pythonRemoveTestsDirHook: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.lambda((args) => (() => {
         const $ = nix.formals(args, formals$20);
         const makePythonHook = nix.arg($, "makePythonHook");
         return nix.app(makePythonHook, nix.thunk(() => ({
-            __proto__: pos$67,
+            [nix.POS]: pos$67,
             name: "python-remove-tests-dir-hook",
-            substitutions: nix.thunk(() => ({ __proto__: pos$66, pythonSitePackages: pythonSitePackages })),
+            substitutions: nix.thunk(() => ({ [nix.POS]: pos$66, pythonSitePackages: pythonSitePackages })),
           })), nix.path(here, "./python-remove-tests-dir-hook.sh"));
       })(), formals$20), nix.thunk(() => ({})))),
     pythonRuntimeDepsCheckHook: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.lambda((args) => (() => {
@@ -504,11 +504,11 @@ export default (self) => (dontUse) => (() => {
         const makePythonHook = nix.arg($, "makePythonHook");
         const packaging = nix.arg($, "packaging");
         return nix.app(makePythonHook, nix.thunk(() => ({
-            __proto__: pos$69,
+            [nix.POS]: pos$69,
             name: "python-runtime-deps-check-hook.sh",
             propagatedBuildInputs: nix.thunk(() => [packaging]),
             substitutions: nix.thunk(() => ({
-              __proto__: pos$68,
+              [nix.POS]: pos$68,
               pythonInterpreter: pythonInterpreter,
               pythonSitePackages: pythonSitePackages,
               hook: nix.path(here, "./python-runtime-deps-check-hook.py"),
@@ -521,11 +521,11 @@ export default (self) => (dontUse) => (() => {
         const setuptools = nix.arg($, "setuptools");
         const wheel = nix.arg($, "wheel");
         return nix.app(makePythonHook, nix.thunk(() => ({
-            __proto__: pos$71,
+            [nix.POS]: pos$71,
             name: "setuptools-build-hook",
             propagatedBuildInputs: nix.thunk(() => [setuptools, wheel]),
             substitutions: nix.thunk(() => ({
-              __proto__: pos$70,
+              [nix.POS]: pos$70,
               pythonInterpreter: pythonInterpreter,
               setuppy: setuppy,
               setuptools_has_parallel: nix.thunk(() => (nix.asBool(!nix.eq(setuptools, null)) && nix.asBool(nix.app(nix.sel(nix.lookup(w, "lib"), "versionAtLeast"), nix.thunk(() => nix.sel(setuptools, "version")), "69")))),
@@ -536,19 +536,19 @@ export default (self) => (dontUse) => (() => {
         const $ = nix.formals(args, formals$23);
         const makePythonHook = nix.arg($, "makePythonHook");
         return nix.app(makePythonHook, nix.thunk(() => ({
-            __proto__: pos$73,
+            [nix.POS]: pos$73,
             name: "stestr-check-hook",
             propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "stestr"))]),
-            substitutions: nix.thunk(() => ({ __proto__: pos$72, pythonCheckInterpreter: pythonCheckInterpreter })),
+            substitutions: nix.thunk(() => ({ [nix.POS]: pos$72, pythonCheckInterpreter: pythonCheckInterpreter })),
           })), nix.path(here, "./stestr-check-hook.sh"));
       })(), formals$23), nix.thunk(() => ({})))),
     unittestCheckHook: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.lambda((args) => (() => {
         const $ = nix.formals(args, formals$24);
         const makePythonHook = nix.arg($, "makePythonHook");
         return nix.app(makePythonHook, nix.thunk(() => ({
-            __proto__: pos$75,
+            [nix.POS]: pos$75,
             name: "unittest-check-hook",
-            substitutions: nix.thunk(() => ({ __proto__: pos$74, pythonCheckInterpreter: pythonCheckInterpreter })),
+            substitutions: nix.thunk(() => ({ [nix.POS]: pos$74, pythonCheckInterpreter: pythonCheckInterpreter })),
           })), nix.path(here, "./unittest-check-hook.sh"));
       })(), formals$24), nix.thunk(() => ({})))),
     venvShellHook: nix.thunk(() => nix.app(nix.lookup(w, "disabledIf"), nix.thunk(() => !nix.asBool(nix.lookup(w, "isPy3k"))), nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.lambda((args) => (() => {
@@ -556,10 +556,10 @@ export default (self) => (dontUse) => (() => {
           const makePythonHook = nix.arg($, "makePythonHook");
           const ensureNewerSourcesForZipFilesHook = nix.arg($, "ensureNewerSourcesForZipFilesHook");
           return nix.app(makePythonHook, nix.thunk(() => ({
-              __proto__: pos$77,
+              [nix.POS]: pos$77,
               name: "venv-shell-hook",
               propagatedBuildInputs: nix.thunk(() => [ensureNewerSourcesForZipFilesHook]),
-              substitutions: nix.thunk(() => ({ __proto__: pos$76, pythonInterpreter: pythonInterpreter })),
+              substitutions: nix.thunk(() => ({ [nix.POS]: pos$76, pythonInterpreter: pythonInterpreter })),
             })), nix.path(here, "./venv-shell-hook.sh"));
         })(), formals$25), nix.thunk(() => ({})))))),
     wheelUnpackHook: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.lambda((args) => (() => {
@@ -567,7 +567,7 @@ export default (self) => (dontUse) => (() => {
         const makePythonHook = nix.arg($, "makePythonHook");
         const wheel = nix.arg($, "wheel");
         return nix.app(makePythonHook, nix.thunk(() => ({
-            __proto__: pos$78,
+            [nix.POS]: pos$78,
             name: "wheel-unpack-hook.sh",
             propagatedBuildInputs: nix.thunk(() => [wheel]),
           })), nix.path(here, "./wheel-unpack-hook.sh"));
@@ -575,7 +575,7 @@ export default (self) => (dontUse) => (() => {
     wrapPython: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../wrap-python.nix"), nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "buildPackages"));
         return {
-        __proto__: pos$79,
+        [nix.POS]: pos$79,
         makeWrapper: nix.thunk(() => nix.attr(from, "makeWrapper")),
       };
       })()))),
@@ -584,14 +584,14 @@ export default (self) => (dontUse) => (() => {
         const makePythonHook = nix.arg($, "makePythonHook");
         const installShellFiles = nix.arg($, "installShellFiles");
         return nix.app(makePythonHook, nix.thunk(() => ({
-            __proto__: pos$81,
+            [nix.POS]: pos$81,
             name: nix.thunk(() => nix.str`python${nix.sel(nix.lookup(w, "python"), "pythonVersion")}-sphinx-hook`),
             propagatedBuildInputs: nix.thunk(() => [
               nix.thunk(() => nix.sel(pythonOnBuildForHost, "pkgs", "sphinx")),
               installShellFiles,
             ]),
             substitutions: nix.thunk(() => ({
-              __proto__: pos$80,
+              [nix.POS]: pos$80,
               sphinxBuild: nix.thunk(() => nix.str`${nix.sel(pythonOnBuildForHost, "pkgs", "sphinx")}/bin/sphinx-build`),
             })),
           })), nix.path(here, "./sphinx-hook.sh"));

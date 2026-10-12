@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const fftwFloat = nix.arg($, "fftwFloat");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dab_lib",
       version: "0.8-unstable-2023-03-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "JvanKatwijk",
           repo: "dab-cmdline",
           rev: "d615e2ba085f91dc7764cc28dfc4c9df49ee1a93",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       buildInputs: nix.thunk(() => [faad2, fftwFloat, zlib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "DAB/DAB+ decoding library",
         homepage: "https://github.com/JvanKatwijk/dab-cmdline",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

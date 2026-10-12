@@ -20,16 +20,16 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "bash"));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       programs: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         bash: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           completion: nix.thunk(() => ({
-            __proto__: pos$2,
-            enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "Bash completion for all interactive bash shells"), { __proto__: pos$1, default: true })),
+            [nix.POS]: pos$2,
+            enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "Bash completion for all interactive bash shells"), { [nix.POS]: pos$1, default: true })),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "bash-completion", nix.thunk(() => ({})))),
           })),
         })),
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["programs", "bash", "enableCompletion"]), nix.thunk(() => ["programs", "bash", "completion", "enable"]))),
     ]),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "completion", "enable")), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         programs: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           bash: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             promptPluginInit: nix.thunk(() => nix.str`# Check whether we're running a version of Bash that has support for
 # programmable completion. If we do, enable all modules installed in
 # the system and user profile in obsolete /etc/bash_completion.d/

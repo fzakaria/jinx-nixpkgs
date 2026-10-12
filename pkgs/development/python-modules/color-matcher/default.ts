@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pname = "color-matcher";
   const version = "0.6.0";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-e6igB4LD5eWTHdp7H7nFcqzoLeDGyXZUQyt8/gqnSEM=",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "ln -s */requires.txt requirements.txt\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Package enabling color transfer across images",
         homepage: "https://github.com/hahnec/color-matcher",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

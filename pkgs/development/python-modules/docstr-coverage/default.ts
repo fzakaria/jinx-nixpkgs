@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pytest_mock = nix.arg($, "pytest-mock");
   const version = "2.3.2";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "docstr-coverage",
       version: version,
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "HunterMcGushion",
           repo: "docstr_coverage",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, pytest_mock]),
       disabledTests: nix.thunk(() => ["test_set_config_defaults_with_ignore_patterns", "config_specifier_w_ignore"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Docstring coverage analysis and rating for Python",
         mainProgram: "docstr-coverage",
         homepage: "https://github.com/HunterMcGushion/docstr_coverage",

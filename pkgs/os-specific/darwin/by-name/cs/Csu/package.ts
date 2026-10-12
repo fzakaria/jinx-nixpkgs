@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const mkAppleDerivation = nix.arg($, "mkAppleDerivation");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(mkAppleDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       releaseName: "Csu",
       makeFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}clang`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./setup-hooks/add-Csu-lib-path.sh"),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Common startup stubs for Darwin",
         badPlatforms: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "systems", "inspect", "patterns", "isAarch"))]),
       })),

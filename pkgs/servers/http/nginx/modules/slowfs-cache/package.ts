@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const mkNginxPlugin = nix.arg($, "mkNginxPlugin");
   return nix.app(mkNginxPlugin, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "slowfs-cache",
       version: "1.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FRiCKLE",
           repo: "ngx_slowfs_cache",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-uddV7vlc7SqnRp5L36+yr6wGylNjwxsq/kNzdgVQ378=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Adds ability to cache static files",
         homepage: "https://github.com/friCKLE/ngx_slowfs_cache",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

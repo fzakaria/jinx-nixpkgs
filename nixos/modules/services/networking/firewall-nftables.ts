@@ -30,29 +30,29 @@ export default nix.lambda((args) => (() => {
   const ifaceSet = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ", ", nix.thunk(() => nix.builtins.map((x) => nix.str`"${x}"`, nix.thunk(() => nix.sel(cfg, "trustedInterfaces"))))));
   const portsToNftSet = (ports) => (portRanges) => nix.app(nix.sel(lib, "concatStringsSep"), ", ", nix.thunk(() => nix.concat(nix.builtins.map((x) => nix.builtins.toString(x), ports), nix.builtins.map((x) => nix.str`${nix.builtins.toString(nix.thunk(() => nix.sel(x, "from")))}-${nix.builtins.toString(nix.thunk(() => nix.sel(x, "to")))}`, portRanges))));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       networking: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         firewall: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           extraInputRules: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               example: "ip6 saddr { fc00::/7, fe80::/10 } tcp dport 24800 accept",
               description: "Additional nftables rules to be appended to the input-allow\nchain.\n\nThis option only works with the nftables based firewall.\n",
             })))),
           extraForwardRules: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               example: "iifname wg0 accept",
               description: "Additional nftables rules to be appended to the forward-allow\nchain.\n\nThis option only works with the nftables based firewall.\n",
             })))),
           extraReversePathFilterRules: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               example: "fib daddr . mark . iif type local accept",
@@ -62,41 +62,41 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enable")) && nix.asBool(nix.eq(nix.sel(cfg, "backend"), "nftables")))), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             assertion: nix.thunk(() => nix.eq(nix.sel(cfg, "extraCommands"), "")),
             message: nix.thunk(() => nix.str`extraCommands is incompatible with the nftables based firewall: ${nix.sel(cfg, "extraCommands")}`),
           })),
           nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             assertion: nix.thunk(() => nix.eq(nix.sel(cfg, "extraStopCommands"), "")),
             message: nix.thunk(() => nix.str`extraStopCommands is incompatible with the nftables based firewall: ${nix.sel(cfg, "extraStopCommands")}`),
           })),
           nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "pingLimit"), null)) || nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), "--", nix.thunk(() => nix.sel(cfg, "pingLimit"))))))),
             message: "nftables syntax like \"2/second\" should be used in networking.firewall.pingLimit",
           })),
           nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             assertion: nix.thunk(() => nix.eq(nix.sel(config, "networking", "nftables", "rulesetFile"), null)),
             message: "networking.nftables.rulesetFile conflicts with the firewall",
           })),
         ]),
         environment: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "nixos-firewall-tool"))]),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           nftables: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             tables: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               "nixos-fw": nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 family: "inet",
                 content: nix.thunk(() => nix.str`set temp-ports {
   comment "Temporarily opened ports"

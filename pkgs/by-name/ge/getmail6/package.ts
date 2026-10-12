@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "getmail6",
       version: "6.20.01",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "getmail6",
           repo: "getmail6",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["getmailcore"]),
       postPatch: "# getmail spends a lot of effort to build an absolute path for\n# documentation installation; too bad it is counterproductive now\nsed -e '/datadir or prefix,/d' -i setup.py\nsed -e 's,/usr/bin/getmail,$(dirname $0)/getmail,' -i getmails\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Program for retrieving mail",
         homepage: "https://getmail6.org",
         changelog: nix.thunk(() => nix.str`https://github.com/getmail6/getmail6/blob/${nix.sel(finalAttrs, "src", "tag")}/docs/CHANGELOG`),

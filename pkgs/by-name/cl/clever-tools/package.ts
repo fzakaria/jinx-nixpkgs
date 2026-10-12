@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.1.0";
       const nodejs = nodejs_24;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CleverCloud",
           repo: "clever-tools",
           rev: version,
@@ -44,7 +44,7 @@ runHook postInstall
 `);
       const postInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd clever \\\n  --bash <($out/bin/clever --bash-autocomplete-script $out/bin/clever) \\\n  --zsh <($out/bin/clever --zsh-autocomplete-script $out/bin/clever)\n"));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/CleverCloud/clever-tools",
         changelog: nix.thunk(() => nix.str`https://github.com/CleverCloud/clever-tools/blob/${version}/CHANGELOG.md`),
         description: "Deploy on Clever Cloud and control your applications, add-ons, services from command line",
@@ -53,7 +53,7 @@ runHook postInstall
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "floriansanderscc"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         nodejs,

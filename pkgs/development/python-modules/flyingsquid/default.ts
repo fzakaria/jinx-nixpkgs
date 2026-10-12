@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pname = "flyingsquid";
   const version = "0.0.0a0";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "HazyResearch",
           repo: "flyingsquid",
           rev: "28a713a9ac501b7597c2489468ae189943d00685",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["flyingsquid"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "More interactive weak supervision with FlyingSquid",
         homepage: "https://github.com/HazyResearch/flyingsquid",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

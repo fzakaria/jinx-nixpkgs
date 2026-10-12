@@ -14,25 +14,25 @@ const pos$9 = nix.positions(here + "/chrony.nix", [["machine", 4, 9]]);
 const pos$10 = nix.positions(here + "/chrony.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 12, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$10,
+  [nix.POS]: pos$10,
   name: "chrony",
   nodes: nix.thunk(() => ({
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     machine: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$2,
-        chrony: nix.thunk(() => ({ __proto__: pos$1, enable: true })),
+        [nix.POS]: pos$2,
+        chrony: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
       })),
       specialisation: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         hardened: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           configuration: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             environment: nix.thunk(() => ({
-              __proto__: pos$4,
-              memoryAllocator: nix.thunk(() => ({ __proto__: pos$3, provider: "graphene-hardened" })),
+              [nix.POS]: pos$4,
+              memoryAllocator: nix.thunk(() => ({ [nix.POS]: pos$3, provider: "graphene-hardened" })),
             })),
           })),
         })),

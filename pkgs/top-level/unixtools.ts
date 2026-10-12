@@ -63,19 +63,19 @@ export default nix.lambda((args) => (() => {
     const bin = nix.thunk(() => nix.str`${nix.app(getBin, provider)}/bin/${cmd}`);
     const manDir = nix.thunk(() => nix.str`${nix.app(getOutput, "man", provider)}/share/man`);
     return nix.app(runCommand, nix.thunk(() => nix.str`${cmd}-${nix.sel(provider, "name")}`), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         meta: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           mainProgram: cmd,
           priority: 10n,
           platforms: nix.thunk(() => nix.selOr(platforms, () => nix.sel(platforms, "all"), nix.key(nix.sel(stdenv, "hostPlatform", "parsed", "kernel", "name")))),
         })),
         version: nix.thunk(() => nix.attr(provider, "version")),
         pname: nix.thunk(() => nix.attr(provider, "pname")),
-        passthru: nix.thunk(() => nix.update({ __proto__: pos$2, provider: provider }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.builtins.hasAttr("binlore", providers)), nix.thunk(() => ({
-            __proto__: pos$4,
+        passthru: nix.thunk(() => nix.update({ [nix.POS]: pos$2, provider: provider }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.builtins.hasAttr("binlore", providers)), nix.thunk(() => ({
+            [nix.POS]: pos$4,
             binlore: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               out: nix.thunk(() => nix.app(nix.sel(binlore, "synthesize"), nix.thunk(() => nix.app(getBin, nix.thunk(() => nix.sel(bins, nix.key(nix.force(cmd)))))), nix.thunk(() => nix.sel(providers, "binlore")))),
             })),
           }))))),
@@ -100,7 +100,7 @@ fi
   const more_compat = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.sel(pkgs, "less", "name")), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "less"));
       return {
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       version: nix.thunk(() => nix.attr(from, "version")),
       pname: nix.thunk(() => nix.attr(from, "pname")),
     };
@@ -108,96 +108,96 @@ fi
 ln -s ${nix.sel(pkgs, "less")}/bin/less $out/bin/more
 `)));
   const bins = nix.thunk(() => nix.app(mapAttrs, singleBinary, nix.thunk(() => ({
-      __proto__: pos$38,
+      [nix.POS]: pos$38,
       arp: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         linux: nix.thunk(() => nix.sel(pkgs, "net-tools")),
         darwin: nix.thunk(() => nix.sel(pkgs, "darwin", "network_cmds")),
         freebsd: nix.thunk(() => nix.sel(pkgs, "freebsd", "arp")),
       })),
       col: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         linux: nix.thunk(() => nix.sel(pkgs, "util-linux")),
         darwin: nix.thunk(() => nix.sel(pkgs, "darwin", "text_cmds")),
       })),
       column: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         linux: nix.thunk(() => nix.sel(pkgs, "util-linux")),
         darwin: nix.thunk(() => nix.sel(pkgs, "darwin", "text_cmds")),
       })),
-      eject: nix.thunk(() => ({ __proto__: pos$10, linux: nix.thunk(() => nix.sel(pkgs, "util-linux")) })),
+      eject: nix.thunk(() => ({ [nix.POS]: pos$10, linux: nix.thunk(() => nix.sel(pkgs, "util-linux")) })),
       getconf: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         linux: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "libc"), "glibc")) ? nix.sel(pkgs, "libc") : nix.sel(pkgs, "netbsd", "getconf"))),
         darwin: nix.thunk(() => nix.sel(pkgs, "darwin", "system_cmds")),
         binlore: "execer cannot bin/getconf\n",
       })),
       getent: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         linux: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "libc"), "glibc")) ? nix.sel(pkgs, "libc", "getent") : nix.sel(pkgs, "netbsd", "getent"))),
         darwin: nix.thunk(() => nix.sel(pkgs, "netbsd", "getent")),
         freebsd: nix.thunk(() => nix.sel(pkgs, "freebsd", "getent")),
         openbsd: nix.thunk(() => nix.sel(pkgs, "openbsd", "getent")),
       })),
       getopt: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         linux: nix.thunk(() => nix.sel(pkgs, "util-linux")),
         darwin: nix.thunk(() => nix.sel(pkgs, "getopt")),
       })),
       fdisk: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         linux: nix.thunk(() => nix.sel(pkgs, "util-linux")),
         darwin: nix.thunk(() => nix.sel(pkgs, "darwin", "diskdev_cmds")),
         freebsd: nix.thunk(() => nix.sel(pkgs, "freebsd", "fdisk")),
       })),
       fsck: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         linux: nix.thunk(() => nix.sel(pkgs, "util-linux")),
         darwin: nix.thunk(() => nix.sel(pkgs, "darwin", "diskdev_cmds")),
       })),
       hexdump: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         linux: nix.thunk(() => nix.sel(pkgs, "util-linuxMinimal")),
         darwin: nix.thunk(() => nix.sel(pkgs, "darwin", "shell_cmds")),
       })),
       hostname: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         linux: nix.thunk(() => nix.sel(pkgs, "hostname-debian")),
         darwin: nix.thunk(() => nix.sel(pkgs, "darwin", "shell_cmds")),
         freebsd: nix.thunk(() => nix.sel(pkgs, "freebsd", "bin")),
         openbsd: nix.thunk(() => nix.sel(pkgs, "openbsd", "hostname")),
       })),
       ifconfig: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         linux: nix.thunk(() => nix.sel(pkgs, "net-tools")),
         darwin: nix.thunk(() => nix.sel(pkgs, "darwin", "network_cmds")),
         freebsd: nix.thunk(() => nix.sel(pkgs, "freebsd", "ifconfig")),
         openbsd: nix.thunk(() => nix.sel(pkgs, "openbsd", "ifconfig")),
       })),
       killall: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         linux: nix.thunk(() => nix.sel(pkgs, "psmisc")),
         darwin: nix.thunk(() => nix.sel(pkgs, "darwin", "shell_cmds")),
       })),
       locale: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         linux: nix.thunk(() => nix.sel(pkgs, "glibc")),
         darwin: nix.thunk(() => nix.sel(pkgs, "darwin", "adv_cmds")),
         freebsd: nix.thunk(() => nix.sel(pkgs, "freebsd", "locale")),
         binlore: "execer cannot bin/locale\n",
       })),
       logger: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         linux: nix.thunk(() => nix.sel(pkgs, "util-linux")),
         darwin: nix.thunk(() => nix.sel(pkgs, "darwin", "remote_cmds")),
       })),
       more: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         linux: nix.thunk(() => nix.sel(pkgs, "util-linux")),
         darwin: more_compat,
       })),
       mount: nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         linux: nix.thunk(() => nix.sel(pkgs, "util-linux")),
         darwin: nix.thunk(() => nix.sel(pkgs, "darwin", "diskdev_cmds")),
         freebsd: nix.thunk(() => nix.sel(freebsd, "mount")),
@@ -205,19 +205,19 @@ ln -s ${nix.sel(pkgs, "less")}/bin/less $out/bin/more
         binlore: "execer cannot bin/mount\n",
       })),
       netstat: nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         linux: nix.thunk(() => nix.sel(pkgs, "net-tools")),
         darwin: nix.thunk(() => nix.sel(pkgs, "darwin", "network_cmds")),
         freebsd: nix.thunk(() => nix.sel(pkgs, "freebsd", "netstat")),
       })),
       ping: nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         linux: nix.thunk(() => nix.sel(pkgs, "iputils")),
         darwin: nix.thunk(() => nix.sel(pkgs, "darwin", "network_cmds")),
         freebsd: nix.thunk(() => nix.sel(freebsd, "ping")),
       })),
       ps: nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         linux: nix.thunk(() => nix.sel(pkgs, "procps")),
         darwin: nix.thunk(() => nix.sel(pkgs, "darwin", "ps")),
         freebsd: nix.thunk(() => nix.sel(pkgs, "freebsd", "bin")),
@@ -225,31 +225,31 @@ ln -s ${nix.sel(pkgs, "less")}/bin/less $out/bin/more
         binlore: "execer cannot bin/ps\n",
       })),
       quota: nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         linux: nix.thunk(() => nix.sel(pkgs, "linuxquota")),
         darwin: nix.thunk(() => nix.sel(pkgs, "darwin", "diskdev_cmds")),
       })),
       route: nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         linux: nix.thunk(() => nix.sel(pkgs, "net-tools")),
         darwin: nix.thunk(() => nix.sel(pkgs, "darwin", "network_cmds")),
         freebsd: nix.thunk(() => nix.sel(pkgs, "freebsd", "route")),
         openbsd: nix.thunk(() => nix.sel(pkgs, "openbsd", "route")),
       })),
       script: nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         linux: nix.thunk(() => nix.sel(pkgs, "util-linux")),
         darwin: nix.thunk(() => nix.sel(pkgs, "darwin", "shell_cmds")),
       })),
       sysctl: nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         linux: nix.thunk(() => nix.sel(pkgs, "procps")),
         darwin: nix.thunk(() => nix.sel(pkgs, "darwin", "system_cmds")),
         freebsd: nix.thunk(() => nix.sel(pkgs, "freebsd", "sysctl")),
         openbsd: nix.thunk(() => nix.sel(pkgs, "openbsd", "sysctl")),
       })),
       top: nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         linux: nix.thunk(() => nix.sel(pkgs, "procps")),
         darwin: nix.thunk(() => nix.sel(pkgs, "darwin", "top")),
         freebsd: nix.thunk(() => nix.sel(pkgs, "freebsd", "top")),
@@ -257,44 +257,44 @@ ln -s ${nix.sel(pkgs, "less")}/bin/less $out/bin/more
         binlore: "execer cannot bin/top\n",
       })),
       umount: nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         linux: nix.thunk(() => nix.sel(pkgs, "util-linux")),
         darwin: nix.thunk(() => nix.sel(pkgs, "darwin", "diskdev_cmds")),
       })),
       whereis: nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         linux: nix.thunk(() => nix.sel(pkgs, "util-linux")),
         darwin: nix.thunk(() => nix.sel(pkgs, "darwin", "shell_cmds")),
       })),
       wall: nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         linux: nix.thunk(() => nix.sel(pkgs, "util-linux")),
         darwin: nix.thunk(() => nix.sel(pkgs, "darwin", "remote_cmds")),
       })),
       watch: nix.thunk(() => ({
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         linux: nix.thunk(() => nix.sel(pkgs, "procps")),
         darwin: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../os-specific/linux/procps-ng"), nix.thunk(() => ({})))),
         freebsd: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../os-specific/linux/procps-ng"), nix.thunk(() => ({})))),
         openbsd: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../os-specific/linux/procps-ng"), nix.thunk(() => ({})))),
       })),
       write: nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         linux: nix.thunk(() => nix.sel(pkgs, "util-linux")),
         darwin: nix.thunk(() => nix.sel(pkgs, "darwin", "basic_cmds")),
       })),
       xxd: nix.thunk(() => ({
-        __proto__: pos$37,
+        [nix.POS]: pos$37,
         linux: nix.thunk(() => nix.sel(pkgs, "tinyxxd")),
         darwin: nix.thunk(() => nix.sel(pkgs, "tinyxxd")),
         freebsd: nix.thunk(() => nix.sel(pkgs, "tinyxxd")),
       })),
     }))));
-  const makeCompat = (pname) => (paths) => nix.app(buildEnv, nix.thunk(() => ({ __proto__: pos$39, paths: paths, pname: pname, version: version })));
+  const makeCompat = (pname) => (paths) => nix.app(buildEnv, nix.thunk(() => ({ [nix.POS]: pos$39, paths: paths, pname: pname, version: version })));
   const compat = nix.thunk(() => (() => {
     const w = nix.withScope(bins, null);
     return nix.app(mapAttrs, makeCompat, nix.thunk(() => ({
-        __proto__: pos$40,
+        [nix.POS]: pos$40,
         procps: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "ps")),
           nix.thunk(() => nix.lookup(w, "sysctl")),

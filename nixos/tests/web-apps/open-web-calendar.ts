@@ -30,36 +30,36 @@ export default nix.lambda((args) => (() => {
   const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "../common/acme/server/snakeoil-certs.nix")));
   const serverDomain = nix.thunk(() => nix.sel(certs, "domain"));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     name: "open-web-calendar",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "erictapen"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         const lib = nix.arg($_1, "lib");
         return {
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           services: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             "open-web-calendar": nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               enable: true,
               domain: serverDomain,
-              calendarSettings: nix.thunk(() => ({ __proto__: pos$2, title: "My custom title" })),
+              calendarSettings: nix.thunk(() => ({ [nix.POS]: pos$2, title: "My custom title" })),
             })),
             nginx: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${serverDomain}`, nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   enableACME: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), false)),
                   sslCertificate: nix.thunk(() => nix.sel(certs, nix.key(nix.str`${serverDomain}`), "cert")),
                   sslCertificateKey: nix.thunk(() => nix.sel(certs, nix.key(nix.str`${serverDomain}`), "key")),
@@ -68,19 +68,19 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           security: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             pki: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               certificateFiles: nix.thunk(() => [nix.thunk(() => nix.sel(certs, "ca", "cert"))]),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             hosts: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               "::1": nix.thunk(() => [nix.thunk(() => nix.str`${serverDomain}`)]),
             })),
-            firewall: nix.thunk(() => ({ __proto__: pos$10, allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$10, allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
           })),
         };
       })(), formals$2),
@@ -89,17 +89,17 @@ export default nix.lambda((args) => (() => {
         const pkgs_1 = nix.arg($_1, "pkgs");
         const nodes = nix.arg($_1, "nodes");
         return {
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           networking: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             hosts: nix.thunk(() => nix.attrsDyn({}, [
               [nix.str`${nix.sel(nodes, "server", "networking", "primaryIPAddress")}`, nix.thunk(() => [nix.thunk(() => nix.str`${serverDomain}`)])],
             ])),
           })),
           security: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             pki: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               certificateFiles: nix.thunk(() => [nix.thunk(() => nix.sel(certs, "ca", "cert"))]),
             })),
           })),

@@ -25,33 +25,33 @@ export default nix.lambda((args) => (() => {
   const pcmciautils = nix.thunk(() => nix.app(nix.sel(pkgs, "pcmciautils", "overrideAttrs"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(config, "hardware", "pcmcia"));
       return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       firmware: nix.thunk(() => nix.attr(from, "firmware")),
       config: nix.thunk(() => nix.attr(from, "config")),
     };
     })())));
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       hardware: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pcmcia: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enable this option to support PCMCIA card.\n",
             })))),
           firmware: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: [],
               description: "List of firmware used to handle specific PCMCIA card.\n",
             })))),
           config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               description: "Path to the configuration file which maps the memory, IRQs\nand ports used by the PCMCIA hardware.\n",
@@ -60,13 +60,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "hardware", "pcmcia", "enable")), nix.thunk(() => ({
-        __proto__: pos$12,
-        boot: nix.thunk(() => ({ __proto__: pos$8, kernelModules: nix.thunk(() => ["pcmcia"]) })),
+        [nix.POS]: pos$12,
+        boot: nix.thunk(() => ({ [nix.POS]: pos$8, kernelModules: nix.thunk(() => ["pcmcia"]) })),
         services: nix.thunk(() => ({
-          __proto__: pos$10,
-          udev: nix.thunk(() => ({ __proto__: pos$9, packages: nix.thunk(() => [pcmciautils]) })),
+          [nix.POS]: pos$10,
+          udev: nix.thunk(() => ({ [nix.POS]: pos$9, packages: nix.thunk(() => [pcmciautils]) })),
         })),
-        environment: nix.thunk(() => ({ __proto__: pos$11, systemPackages: nix.thunk(() => [pcmciautils]) })),
+        environment: nix.thunk(() => ({ [nix.POS]: pos$11, systemPackages: nix.thunk(() => [pcmciautils]) })),
       })))),
   };
 })(), formals$1);

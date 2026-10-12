@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const openapi_schema_validator = nix.arg($, "openapi-schema-validator");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "voluptuous-openapi",
       version: "0.4.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "home-assistant-libs",
           repo: "voluptuous-openapi",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [openapi_schema_validator, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["voluptuous_openapi"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/home-assistant-libs/voluptuous-openapi/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Convert voluptuous schemas to OpenAPI Schema object",
         homepage: "https://github.com/home-assistant-libs/voluptuous-openapi",

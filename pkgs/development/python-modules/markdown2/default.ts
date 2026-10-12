@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.5.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "trentm",
           repo: "python-markdown2",
           tag: version,
@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["markdown2"]);
       const nativeCheckInputs = nix.thunk(() => [pytest7CheckHook]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         code_syntax_highlighting: nix.thunk(() => [pygments]),
         wavedrom: nix.thunk(() => [wavedrom]),
         latex: nix.thunk(() => [latex2mathml]),
         all: nix.thunk(() => nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.app(nix.sel(lib, "removeAttrs"), optional_dependencies, nix.thunk(() => ["all"]))))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/trentm/python-markdown2/blob/${nix.sel(src, "tag")}/CHANGES.md`),
         description: "Fast and complete Python implementation of Markdown",
         mainProgram: "markdown2",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

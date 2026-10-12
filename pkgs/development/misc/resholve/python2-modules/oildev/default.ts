@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "2024-02-26";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "oilshell",
           repo: "oil",
           rev: "f730c79e2dcde4bc08e85a718951cfa42102bd01",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
           postFetch: "rm -rf $out/{Python-2.7.13,metrics,py-yajl,rfc,gold,web,testdata,services,demo}\n",
         }))));
       const patchSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "abathur",
           repo: "nix-py-dev-oil",
           rev: "v0.20.0.0",
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         "oil.tools.ysh_ify",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
           return [
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

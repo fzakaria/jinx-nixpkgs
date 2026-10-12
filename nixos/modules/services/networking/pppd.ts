@@ -34,50 +34,50 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "pppd"));
   return {
-    __proto__: pos$21,
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    [nix.POS]: pos$21,
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         pppd: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "pppd")),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "ppp", nix.thunk(() => ({})))),
           peers: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               default: nix.thunk(() => ({})),
               description: "pppd peers.",
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.lambda((args_1) => (() => {
                     const $_1 = nix.formals(args_1, formals$2);
                     const name = nix.arg($_1, "name");
                     return {
-                      __proto__: pos$7,
+                      [nix.POS]: pos$7,
                       options: nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         name: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$2,
+                            [nix.POS]: pos$2,
                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                             default: name,
                             example: "dialup",
                             description: "Name of the PPP peer.",
                           })))),
                         enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$3,
+                            [nix.POS]: pos$3,
                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                             default: true,
                             example: false,
                             description: "Whether to enable this PPP peer.",
                           })))),
                         autostart: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$4,
+                            [nix.POS]: pos$4,
                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                             default: true,
                             example: false,
                             description: "Whether the PPP session is automatically started at boot time.",
                           })))),
                         config: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$5,
+                            [nix.POS]: pos$5,
                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
                             default: "",
                             description: "pppd configuration for this peer, see the {manpage}`pppd(8)` man page.",
@@ -92,15 +92,15 @@ export default nix.lambda((args) => (() => {
     config: nix.thunk(() => (() => {
       const enabledConfigs = nix.thunk(() => nix.app(nix.lookup(w, "filter"), (f) => nix.sel(f, "enable"), nix.thunk(() => nix.app(nix.lookup(w, "attrValues"), nix.thunk(() => nix.sel(cfg, "peers"))))));
       const mkEtc = (peerCfg) => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         name: nix.thunk(() => nix.str`ppp/peers/${nix.sel(peerCfg, "name")}`),
-        value: nix.thunk(() => ({ __proto__: pos$12, text: nix.thunk(() => nix.sel(peerCfg, "config")) })),
+        value: nix.thunk(() => ({ [nix.POS]: pos$12, text: nix.thunk(() => nix.sel(peerCfg, "config")) })),
       });
       const mkSystemd = (peerCfg) => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         name: nix.thunk(() => nix.str`pppd-${nix.sel(peerCfg, "name")}`),
         value: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           restartTriggers: nix.thunk(() => [
             nix.thunk(() => nix.sel(config, "environment", "etc", nix.key(nix.str`ppp/peers/${nix.sel(peerCfg, "name")}`), "source")),
           ]),
@@ -108,14 +108,14 @@ export default nix.lambda((args) => (() => {
           wants: nix.thunk(() => ["network.target"]),
           after: nix.thunk(() => ["network-pre.target"]),
           environment: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             LD_PRELOAD: nix.thunk(() => nix.str`${nix.sel(pkgs, "libredirect")}/lib/libredirect.so`),
             NIX_REDIRECTS: "/var/run=/run/pppd",
           })),
           serviceConfig: nix.thunk(() => (() => {
             const capabilities = nix.thunk(() => ["CAP_BPF", "CAP_SYS_TTY_CONFIG", "CAP_NET_ADMIN", "CAP_NET_RAW"]);
             return {
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               Type: "notify",
               ExecStart: nix.thunk(() => nix.str`${nix.app(nix.lookup(w, "getBin"), nix.thunk(() => nix.sel(cfg, "package")))}/sbin/pppd call ${nix.sel(peerCfg, "name")} up_sdnotify nolog`),
               Restart: "always",
@@ -162,9 +162,9 @@ export default nix.lambda((args) => (() => {
       const etcFiles = nix.thunk(() => nix.app(nix.lookup(w, "listToAttrs"), nix.thunk(() => nix.app(nix.builtins.map, mkEtc, enabledConfigs))));
       const systemdConfigs = nix.thunk(() => nix.app(nix.lookup(w, "listToAttrs"), nix.thunk(() => nix.app(nix.builtins.map, mkSystemd, enabledConfigs))));
       return nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$20,
-          environment: nix.thunk(() => ({ __proto__: pos$18, etc: etcFiles })),
-          systemd: nix.thunk(() => ({ __proto__: pos$19, services: systemdConfigs })),
+          [nix.POS]: pos$20,
+          environment: nix.thunk(() => ({ [nix.POS]: pos$18, etc: etcFiles })),
+          systemd: nix.thunk(() => ({ [nix.POS]: pos$19, services: systemdConfigs })),
         })));
     })()),
   };

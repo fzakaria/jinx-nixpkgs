@@ -70,43 +70,43 @@ export default nix.lambda((args) => (() => {
   const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const mkMassRebuild = (args_1) => nix.app(mkOption, nix.thunk(() => nix.update(nix.builtins.removeAttrs(args_1, nix.thunk(() => ["feature"])), {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       type: nix.thunk(() => nix.selOr(args_1, () => nix.sel(types, "bool"), "type")),
       default: nix.thunk(() => nix.selOr(args_1, () => false, "default")),
       description: nix.thunk(() => nix.add(nix.selOr(args_1, () => nix.str`Whether to ${nix.sel(args_1, "feature")} while building nixpkgs packages.
 `, "description"), "Changing the default may cause a mass rebuild.\n")),
     })));
   const options = nix.thunk(() => ({
-    __proto__: pos$48,
+    [nix.POS]: pos$48,
     _module: nix.thunk(() => ({
-      __proto__: pos$3,
-      args: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ __proto__: pos$2, internal: true })))),
+      [nix.POS]: pos$3,
+      args: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$2, internal: true })))),
     })),
     warnings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
         default: [],
         internal: true,
       })))),
     assertions: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "anything")))),
         default: [],
         internal: true,
       })))),
     attrPathsDisallowedForInternalUse: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               options: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 attrPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                     description: "Attribute path to disallow.\n",
                   })))),
                 reason: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                     default: null,
                     example: "it's dangerous.",
@@ -119,48 +119,48 @@ export default nix.lambda((args) => (() => {
         description: "List of attribute paths that may not be used by other packages in Nixpkgs.\n\nShould usually only be defined by Nixpkgs CI.\n",
       })))),
     warnUndeclaredOptions: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         description: "Whether to warn when `config` contains an unrecognized attribute.",
         type: nix.thunk(() => nix.sel(types, "bool")),
         default: false,
       })))),
     fetchedSourceNameDefault: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["source", "versioned", "full"]))),
         default: "source",
         description: "This controls the default derivation `name` attribute set by the\n`fetch*` (`fetchzip`, `fetchFromGitHub`, etc) functions.\n\nPossible values and the resulting `.name`:\n\n- `\"source\"` -> `\"source\"`\n- `\"versioned\"` -> `\"${repo}-${rev}-source\"`\n- `\"full\"` -> `\"${repo}-${rev}-${fetcherName}-source\"`\n\nThe default `\"source\"` is the best choice for minimal rebuilds, it\nwill ignore any non-hash changes (like branches being renamed, source\nURLs changing, etc) at the cost of `/nix/store` being easily\ncache-poisoned (see [NixOS/nix#969](https://github.com/NixOS/nix/issues/969)).\n\nSetting this to `\"versioned\"` greatly helps with discoverability of\nsources in `/nix/store` and makes cache-poisoning of `/nix/store` much\nharder, at the cost of a single mass-rebuild for all `src`\nderivations, and an occasional rebuild when a source changes some of\nits non-hash attributes.\n\nSetting this to `\"full\"` is similar to setting it to `\"versioned\"`,\nbut the use of `fetcherName` in the derivation name will force a\nrebuild when `src` switches between `fetch*` functions, thus forcing\n`nix` to check new derivation's `outputHash`, which is useful for\ndebugging.\n\nAlso, `\"full\"` is useful for easy collection and tracking of\nstatistics of where the packages you use are hosted.\n\nIf you are a developer, you should probably set this to at\nleast`\"versioned\"`.\n\nChanging the default will cause a mass rebuild.\n",
       })))),
     gitConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "anything")))))),
         description: "The default [git configuration](https://git-scm.com/docs/git-config#_variables) for all [`pkgs.fetchgit`](#fetchgit) calls.\n\nAmong many other potential uses, this can be used to override URLs to point to local mirrors.\n\nChanging this will not cause any rebuilds because `pkgs.fetchgit` produces a [fixed-output derivation](https://nix.dev/manual/nix/stable/glossary.html?highlight=fixed-output%20derivation#gloss-fixed-output-derivation).\n\nTo set the configuration file directly, use the [`gitConfigFile`](#opt-gitConfigFile) option instead.\n\nTo set the configuration file for individual calls, use `fetchgit { gitConfigFile = \"...\"; }`.\n",
         default: nix.thunk(() => ({})),
         example: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           url: nix.thunk(() => ({
-            __proto__: pos$14,
-            "https://my-github-mirror.local": nix.thunk(() => ({ __proto__: pos$13, insteadOf: nix.thunk(() => ["https://github.com"]) })),
+            [nix.POS]: pos$14,
+            "https://my-github-mirror.local": nix.thunk(() => ({ [nix.POS]: pos$13, insteadOf: nix.thunk(() => ["https://github.com"]) })),
           })),
         })),
       })))),
     gitConfigFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
         description: "A path to a [git configuration](https://git-scm.com/docs/git-config#_variables) file, to be used for all [`pkgs.fetchgit`](#fetchgit) calls.\n\nThis overrides the [`gitConfig`](#opt-gitConfig) option, see its documentation for more details.\n",
         default: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(config, "gitConfig"), {})) ? nix.builtins.toFile("gitconfig", nix.thunk(() => nix.app(nix.sel(lib, "generators", "toGitINI"), nix.thunk(() => nix.sel(config, "gitConfig"))))) : null)),
       })))),
     npmRegistryOverrides: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "str")))),
         description: "The default npm registry overrides for all `fetchNpmDeps` calls, as an attribute set.\n\nFor each attribute, all files fetched from the host corresponding to the name will instead be fetched from the host (and sub-path) specified in the value.\n\nFor example, an override like `\"registry.npmjs.org\" = \"my-mirror.local/registry.npmjs.org\"` will replace a URL like `https://registry.npmjs.org/foo.tar.gz` with `https://my-mirror.local/registry.npmjs.org/foo.tar.gz`.\n\nTo set the string directly, see [`npmRegistryOverridesString`](#opt-npmRegistryOverridesString).\n",
         default: nix.thunk(() => ({})),
         example: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           "registry.npmjs.org": "my-mirror.local/registry.npmjs.org",
         })),
       })))),
     npmRegistryOverridesString: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         type: nix.thunk(() => nix.app(nix.sel(types, "addCheck"), nix.thunk(() => nix.sel(types, "str")), (s) => (() => {
             const j = nix.thunk(() => nix.builtins.fromJSON(s));
             return (nix.asBool(nix.app(nix.sel(lib, "isAttrs"), j)) && nix.asBool(nix.app(nix.sel(lib, "all"), nix.thunk(() => nix.builtins.isString), nix.thunk(() => nix.builtins.attrValues(j)))));
@@ -168,33 +168,33 @@ export default nix.lambda((args) => (() => {
         description: "A string containing a string with a JSON representation of npm registry overrides for `fetchNpmDeps`.\n\nThis overrides the [`npmRegistryOverrides`](#opt-npmRegistryOverrides) option, see its documentation for more details.\n",
         default: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.sel(config, "npmRegistryOverrides")))),
       })))),
-    doCheckByDefault: nix.thunk(() => nix.app(mkMassRebuild, nix.thunk(() => ({ __proto__: pos$21, feature: "run `checkPhase` by default" })))),
-    strictDepsByDefault: nix.thunk(() => nix.app(mkMassRebuild, nix.thunk(() => ({ __proto__: pos$22, feature: "set `strictDeps` to true by default" })))),
-    structuredAttrsByDefault: nix.thunk(() => nix.app(mkMassRebuild, nix.thunk(() => ({ __proto__: pos$23, feature: "set `__structuredAttrs` to true by default" })))),
+    doCheckByDefault: nix.thunk(() => nix.app(mkMassRebuild, nix.thunk(() => ({ [nix.POS]: pos$21, feature: "run `checkPhase` by default" })))),
+    strictDepsByDefault: nix.thunk(() => nix.app(mkMassRebuild, nix.thunk(() => ({ [nix.POS]: pos$22, feature: "set `strictDeps` to true by default" })))),
+    structuredAttrsByDefault: nix.thunk(() => nix.app(mkMassRebuild, nix.thunk(() => ({ [nix.POS]: pos$23, feature: "set `__structuredAttrs` to true by default" })))),
     enableParallelBuildingByDefault: nix.thunk(() => nix.app(mkMassRebuild, nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         feature: "set `enableParallelBuilding` to true by default",
       })))),
     configurePlatformsByDefault: nix.thunk(() => nix.app(mkMassRebuild, nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         feature: "set `configurePlatforms` to `[\"build\" \"host\"]` by default",
       })))),
-    contentAddressedByDefault: nix.thunk(() => nix.app(mkMassRebuild, nix.thunk(() => ({ __proto__: pos$26, feature: "set `__contentAddressed` to true by default" })))),
+    contentAddressedByDefault: nix.thunk(() => nix.app(mkMassRebuild, nix.thunk(() => ({ [nix.POS]: pos$26, feature: "set `__contentAddressed` to true by default" })))),
     allowAliases: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         type: nix.thunk(() => nix.sel(types, "bool")),
         default: true,
         description: "Whether to expose old attribute names for compatibility.\n\nThe recommended setting is to enable this, as it\nimproves backward compatibility, easing updates.\n\nThe only reason to disable aliases is for continuous\nintegration purposes. For instance, Nixpkgs should\nnot depend on aliases in its internal code. Projects\nthat aren't Nixpkgs should be cautious of instantly\nremoving all usages of aliases, as migrating too soon\ncan break compatibility with the stable Nixpkgs releases.\n",
       })))),
     allowUnfree: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         type: nix.thunk(() => nix.sel(types, "bool")),
         default: false,
         defaultText: nix.thunk(() => nix.app(literalExpression, "false || builtins.getEnv \"NIXPKGS_ALLOW_UNFREE\" == \"1\"")),
         description: "Whether to allow unfree packages.\n\nSee [Installing unfree packages](https://nixos.org/manual/nixpkgs/stable/#sec-allow-unfree) in the NixOS manual.\n",
       })))),
     allowUnfreePackages: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         type: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
           return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -204,46 +204,46 @@ export default nix.lambda((args) => (() => {
         description: "Allows specific unfree packages to be used.\n\nThis option composes with `nixpkgs.config.allowUnfreePredicate` by also allowing the listed package names.\n\nUnlike `nixpkgs.config.allowUnfreePredicate`, this option merges additively, similar to `environment.systemPackages`.\nThis enables defining allowed unfree packages in multiple modules, close to where they are used.\n\nThis avoids the need to centralize all unfree package declarations or globally enable unfree packages via\n`nixpkgs.config.allowUnfree = true`.\n",
       })))),
     allowBroken: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         type: nix.thunk(() => nix.sel(types, "bool")),
         default: false,
         defaultText: nix.thunk(() => nix.app(literalExpression, "false || builtins.getEnv \"NIXPKGS_ALLOW_BROKEN\" == \"1\"")),
         description: "Whether to allow broken packages.\n\nSee [Installing broken packages](https://nixos.org/manual/nixpkgs/stable/#sec-allow-broken) in the NixOS manual.\n",
       })))),
     allowUnsupportedSystem: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         type: nix.thunk(() => nix.sel(types, "bool")),
         default: false,
         defaultText: nix.thunk(() => nix.app(literalExpression, "false || builtins.getEnv \"NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM\" == \"1\"")),
         description: "Whether to allow unsupported packages.\n\nSee [Installing packages on unsupported systems](https://nixos.org/manual/nixpkgs/stable/#sec-allow-unsupported-system) in the NixOS manual.\n",
       })))),
     allowVariants: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         type: nix.thunk(() => nix.sel(types, "bool")),
         default: true,
         description: "Whether to expose the nixpkgs variants.\n\nVariants are instances of the current nixpkgs instance with different stdenvs or other applied options.\nThis allows for using different toolchains, libcs, or global build changes across nixpkgs.\nDisabling can ensure nixpkgs is only building for the platform which you specified.\n",
       })))),
-    cudaSupport: nix.thunk(() => nix.app(mkMassRebuild, nix.thunk(() => ({ __proto__: pos$33, feature: "build packages with CUDA support by default" })))),
+    cudaSupport: nix.thunk(() => nix.app(mkMassRebuild, nix.thunk(() => ({ [nix.POS]: pos$33, feature: "build packages with CUDA support by default" })))),
     cudaCapabilities: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
         default: [],
         description: "A list of CUDA capabilities to build for.\n\nPackages may use this option to control device code generation to\ntake advantage of architecture-specific functionality, speed up\ncompile times by producing less device code, or slim package closures.\n\nFor example, you can build for Ada Lovelace GPUs with\n`cudaCapabilities = [ \"8.9\" ];`.\n\nIf not provided, the default value is calculated per-package set,\nderived from a list of GPUs supported by that CUDA version.\n\nSee the [CUDA section](https://nixos.org/manual/nixpkgs/stable/#cuda) in\nthe Nixpkgs manual for more information.\n",
       })))),
     cudaForwardCompat: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         type: nix.thunk(() => nix.sel(types, "bool")),
         default: true,
         description: "Whether to enable PTX support for future hardware.\n\nWhen enabled, packages will include PTX code that can be JIT-compiled\nfor GPUs newer than those explicitly targeted by `cudaCapabilities`.\n",
       })))),
     enableCudaDriverCompat: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         type: nix.thunk(() => nix.sel(types, "bool")),
         default: false,
         description: "Whether to enable the cuda_compat package which provides user mode backports of newer kernel\nmode driver functionality.\nOnly enable this if your host driver is older than the driver provided by the default\ncudaPackages package set.\n",
       })))),
     replaceBootstrapFiles: nix.thunk(() => nix.app(mkMassRebuild, nix.thunk(() => ({
-        __proto__: pos$37,
+        [nix.POS]: pos$37,
         type: nix.thunk(() => nix.app(nix.sel(types, "functionTo"), nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "package")))))),
         default: nix.thunk(() => nix.sel(lib, "id")),
         defaultText: nix.thunk(() => nix.app(literalExpression, "lib.id")),
@@ -251,83 +251,83 @@ export default nix.lambda((args) => (() => {
         example: nix.thunk(() => nix.app(literalExpression, "prevFiles:\nlet\n  replacements = {\n    \"sha256-YQlr088HPoVWBU2jpPhpIMyOyoEDZYDw1y60SGGbUM0=\" = import <nix/fetchurl.nix> {\n      url = \"(custom glibc linux x86_64 bootstrap-tools.tar.xz)\";\n      hash = \"(...)\";\n    };\n    \"sha256-QrTEnQTBM1Y/qV9odq8irZkQSD9uOMbs2Q5NgCvKCNQ=\" = import <nix/fetchurl.nix> {\n      url = \"(custom glibc linux x86_64 busybox)\";\n      hash = \"(...)\";\n      executable = true;\n    };\n  };\nin\nbuiltins.mapAttrs (name: prev: replacements.${prev.outputHash} or prev) prevFiles\n")),
       })))),
     replaceStdenv: nix.thunk(() => nix.app(mkMassRebuild, nix.thunk(() => ({
-        __proto__: pos$38,
+        [nix.POS]: pos$38,
         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "functionTo"), nix.thunk(() => nix.sel(types, "package")))))),
         default: null,
         defaultText: nix.thunk(() => nix.app(literalExpression, "null")),
         description: "A function to replace the standard environment (stdenv).\n\nThe function receives an attribute set with `pkgs` and should return\na stdenv derivation.\n\nThis can be used to globally replace the stdenv with a custom one,\nfor example to use ccache or distcc.\n",
         example: nix.thunk(() => nix.app(literalExpression, "{ pkgs }: pkgs.ccacheStdenv")),
       })))),
-    rocmSupport: nix.thunk(() => nix.app(mkMassRebuild, nix.thunk(() => ({ __proto__: pos$39, feature: "build packages with ROCm support by default" })))),
+    rocmSupport: nix.thunk(() => nix.app(mkMassRebuild, nix.thunk(() => ({ [nix.POS]: pos$39, feature: "build packages with ROCm support by default" })))),
     showDerivationWarnings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$40,
+        [nix.POS]: pos$40,
         type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["maintainerless"]))))),
         default: [],
         description: "Which warnings to display for potentially dangerous\nor deprecated values passed into `stdenv.mkDerivation`.\n\nA list of warnings can be found in\n[/pkgs/stdenv/generic/check-meta.nix](https://github.com/NixOS/nixpkgs/blob/master/pkgs/stdenv/generic/check-meta.nix).\n\nThis is not a stable interface; warnings may be added, changed\nor removed without prior notice.\n",
       })))),
     checkMeta: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$41,
+        [nix.POS]: pos$41,
         type: nix.thunk(() => nix.sel(types, "bool")),
         default: false,
         description: "Whether to check that the `meta` attribute of derivations are correct during evaluation time.\n",
       })))),
     recursionMode: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$42,
+        [nix.POS]: pos$42,
         type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["hydra", "eval", "search"]))),
         default: "eval",
         description: "In which way to recurse through Nixpkgs. In most cases you want keep this as the default.\nYou can use this to emulate how `hydra` and `search` are going through Nixpkgs.\n",
       })))),
     hashedMirrors: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$43,
+        [nix.POS]: pos$43,
         type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
         default: nix.thunk(() => ["https://tarballs.nixos.org"]),
         description: "The set of content-addressed/hashed mirror URLs used by [`pkgs.fetchurl`](#sec-pkgs-fetchers-fetchurl).\nIn case `pkgs.fetchurl` can't download from the given URLs,\nit will try the hashed mirrors based on the expected output hash.\n\nSee [`copy-tarballs.pl`](https://github.com/NixOS/nixpkgs/blob/a2d829eaa7a455eaa3013c45f6431e705702dd46/maintainers/scripts/copy-tarballs.pl)\nfor more details on how hashed mirrors are constructed.\n",
       })))),
     rewriteURL: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$44,
+        [nix.POS]: pos$44,
         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "functionTo"), nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))))))),
         description: "A hook to rewrite/filter URLs before they are fetched.\n\nThe function is passed the URL as a string, and is expected to return a new URL, or null if the given URL should not be attempted.\n\nThis function is applied _prior_ to resolving mirror:// URLs.\n\nThe intended use is to allow URL rewriting to insert company-internal mirrors, or work around company firewalls and similar network restrictions.\n",
         default: null,
         example: nix.thunk(() => nix.app(literalExpression, "{\n  # Use Nix like it's 2024! ;-)\n  rewriteURL = url: \"https://web.archive.org/web/2024/${url}\";\n}\n")),
       })))),
     microsoftVisualStudioLicenseAccepted: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$45,
+        [nix.POS]: pos$45,
         type: nix.thunk(() => nix.sel(types, "bool")),
         default: false,
         defaultText: nix.thunk(() => nix.app(literalExpression, "false || builtins.getEnv \"NIXPKGS_ALLOW_UNFREE\" == \"1\"")),
         description: "If the Microsoft Visual Studio license has been accepted.\n\nPlease read https://www.visualstudio.com/license-terms/mt644918/ and enable this config if you accept.\n",
       })))),
     allowDeprecatedx86_64Darwin: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$46,
+        [nix.POS]: pos$46,
         type: nix.thunk(() => nix.app(nix.sel(types, "either"), nix.thunk(() => nix.sel(types, "bool")), nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["force"]))))),
         default: false,
         description: "Set to `\"force\"` to allow evaluating for the `x86_64-darwin`\nplatform despite its deprecation in Nixpkgs 26.11.\n\nThis is not expected to function, and Hydra will not build\nbinaries for the platform. It is provided only as an escape\nhatch for custom setups, and comes with no support.\n\nSee the [release notes](#x86_64-darwin-26.11) for more\ninformation.\n",
       })))),
-    problems: nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "../stdenv/generic/problems.nix")), nix.thunk(() => ({ __proto__: pos$47, lib: lib }))), "configOptions")),
+    problems: nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "../stdenv/generic/problems.nix")), nix.thunk(() => ({ [nix.POS]: pos$47, lib: lib }))), "configOptions")),
   }));
   return {
-    __proto__: pos$56,
+    [nix.POS]: pos$56,
     freeformType: nix.thunk(() => (() => {
       const t = nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "raw"))));
       return nix.update(t, {
-        __proto__: pos$50,
+        [nix.POS]: pos$50,
         merge: (loc) => (defs) => (() => {
           const r = nix.thunk(() => nix.app(nix.sel(t, "merge"), loc, defs));
-          return nix.update(r, { __proto__: pos$49, _undeclared: r });
+          return nix.update(r, { [nix.POS]: pos$49, _undeclared: r });
         })(),
       });
     })()),
     options: options,
     config: nix.thunk(() => ({
-      __proto__: pos$55,
+      [nix.POS]: pos$55,
       warnings: nix.thunk(() => nix.concat(nix.app(optionals, nix.thunk(() => nix.sel(config, "warnUndeclaredOptions")), nix.thunk(() => nix.app(mapAttrsToList, (k) => (v) => nix.str`undeclared Nixpkgs option set: config.${k}`, nix.thunk(() => nix.selOr(config, () => ({}), "_undeclared"))))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(config, "showDerivationWarnings"), [])), "`config.showDerivationWarnings = [ \"maintainerless\" ]` is deprecated, use `config.problems` instead:\n\n  config.problems.matchers = [ { kind = \"maintainerless\"; handler = \"warn\"; } ];\n\nSee this page for more details: https://nixos.org/manual/nixpkgs/unstable#sec-problems\n"))),
       assertions: nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), (matcher) => nix.sel(matcher, "assertions"), nix.thunk(() => nix.sel(config, "problems", "matchers")))),
       problems: nix.thunk(() => ({
-        __proto__: pos$54,
+        [nix.POS]: pos$54,
         matchers: nix.thunk(() => [
-          nix.thunk(() => ({ __proto__: pos$51, kind: "broken", handler: "error" })),
-          nix.thunk(() => ({ __proto__: pos$52, kind: "removal", handler: "warn" })),
-          nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), "maintainerless", nix.thunk(() => nix.sel(config, "showDerivationWarnings")))), nix.thunk(() => ({ __proto__: pos$53, kind: "maintainerless", handler: "warn" })))),
+          nix.thunk(() => ({ [nix.POS]: pos$51, kind: "broken", handler: "error" })),
+          nix.thunk(() => ({ [nix.POS]: pos$52, kind: "removal", handler: "warn" })),
+          nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), "maintainerless", nix.thunk(() => nix.sel(config, "showDerivationWarnings")))), nix.thunk(() => ({ [nix.POS]: pos$53, kind: "maintainerless", handler: "warn" })))),
         ]),
       })),
     })),

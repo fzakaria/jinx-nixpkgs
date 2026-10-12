@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const readline = nix.arg($, "readline");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "readline",
       version: "0.2",
       minimalOCamlVersion: "4.14",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.inria.fr",
           owner: "acg",
           repo: "dev/readline-ocaml",
@@ -32,7 +32,7 @@ echo "(-L${nix.app(nix.sel(lib, "getOutput"), "lib", readline)}/lib -lreadline)"
 `),
       propagatedBuildInputs: nix.thunk(() => [readline]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OCaml bindings for GNU Readline",
         homepage: "https://acg.gitlabpages.inria.fr/dev/readline-ocaml/readline/index.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cecill20")),

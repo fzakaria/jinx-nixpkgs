@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const gmp = nix.arg($, "gmp");
   const ecm = nix.arg($, "ecm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "msieve",
       version: "1056",
       src: nix.thunk(() => nix.app(fetchsvn, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "svn://svn.code.sf.net/p/msieve/code/trunk",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-6ErVn4pYPMG5VFjOQURLsHNpN0pGdp55+rjY8988onU=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./savefile_t-pointer-type.patch")]),
       buildInputs: nix.thunk(() => [zlib, gmp, ecm]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         ECM: nix.thunk(() => (nix.asBool(nix.eq(ecm, null)) ? "0" : "1")),
       })),
       makeFlags: nix.thunk(() => [
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       installPhase: "mkdir -p $out/bin/\ncp msieve $out/bin/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "C library implementing a suite of algorithms to factor large integers",
         mainProgram: "msieve",

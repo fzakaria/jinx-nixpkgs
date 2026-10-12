@@ -13,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const makeInstalledTest = nix.arg($, "makeInstalledTest");
   return nix.app(makeInstalledTest, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       tested: nix.thunk(() => nix.sel(pkgs, "libxmlb")),
       testConfig: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         environment: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           variables: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             G_TEST_SRCDIR: nix.thunk(() => nix.str`${nix.sel(pkgs, "libxmlb", "installedTests")}/libexec/installed-tests/libxmlb`),
           })),
         })),

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6";
       const duneVersion = "3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sanette",
           repo: pname,
           rev: version,
@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [dune_configurator]);
       const propagatedBuildInputs = nix.thunk(() => [SDL2, SDL2_mixer, tsdl]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SDL2_mixer bindings to go with Tsdl",
         homepage: "https://github.com/sanette/tsdl-mixer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         duneVersion,

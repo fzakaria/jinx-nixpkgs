@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const pname = "couchbase";
   const version = "3.2.2";
   return nix.app(buildPecl, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "couchbase",
           repo: "php-couchbase",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -33,10 +33,10 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--with-couchbase"]),
       buildInputs: nix.thunk(() => [libcouchbase, zlib]),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./libcouchbase.patch"), nix.thunk(() => ({ __proto__: pos$2, libcouchbase: libcouchbase })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./libcouchbase.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, libcouchbase: libcouchbase })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/couchbase/php-couchbase/releases/tag/v${version}`),
         description: "Couchbase Server PHP extension",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

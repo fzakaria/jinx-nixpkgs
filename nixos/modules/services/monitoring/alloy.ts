@@ -24,9 +24,9 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const cfg = nix.thunk(() => nix.sel(config, "services", "alloy"));
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -36,21 +36,21 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         alloy: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Grafana Alloy")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "grafana-alloy", nix.thunk(() => ({})))),
           configPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/etc/alloy",
               description: "Alloy configuration file/directory path.\n\nWe default to `/etc/alloy` here, and expect the user to configure a\nconfiguration file via `environment.etc.\"alloy/config.alloy\"`.\n\nThis allows config reload, contrary to specifying a store path.\n\nAll `.alloy` files in the same directory (ignoring subdirs) are also\nhonored and are added to `systemd.services.alloy.reloadTriggers` to\nenable config reload during nixos-rebuild switch.\n\nThis can also point to another directory containing `*.alloy` files, or\na single Alloy file in the Nix store (at the cost of reload).\n\nComponent names must be unique across all Alloy configuration files, and\nconfiguration blocks must not be repeated.\n\nAlloy will continue to run if subsequent reloads of the configuration\nfile fail, potentially marking components as unhealthy depending on\nthe nature of the failure. When this happens, Alloy will continue\nfunctioning in the last valid state.\n",
             })))),
           environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
               description: "EnvironmentFile as defined in {manpage}`systemd.exec(5)`.\n",
             })))),
           extraFlags: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -73,18 +73,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         systemd: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             alloy: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               reloadTriggers: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (_) => (v) => nix.selOr(v, () => null, "source"), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (n) => (_) => (nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), "alloy/", n)) && nix.asBool(nix.app(nix.sel(lib, "hasSuffix"), ".alloy", n))), nix.thunk(() => nix.sel(config, "environment", "etc")))))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 Restart: "always",
                 DynamicUser: true,
                 RestartSec: 2n,

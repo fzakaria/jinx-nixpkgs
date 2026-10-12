@@ -19,16 +19,16 @@ export default nix.lambda((args) => (() => {
   const coreSha256 = nix.argOr($, "coreSha256", () => "0pkb2nmml0blrfiqpc46xpjc2dw927i89k1lfyqx827wanhc704x");
   const w = nix.withScope(python3Packages, null);
   const core = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/xoseperez/espurna/releases/download/${coreVersion}/espurna-${coreVersion}-espurna-core-${coreSize}.bin`),
       sha256: coreSha256,
     }))));
   return nix.app(nix.lookup(w, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sonota-unstable",
       version: "2018-10-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "mirko",
           repo: "SonOTA",
           rev: "d7f4b353858aae7ac403f95475a35560fb7ffeae",
@@ -52,7 +52,7 @@ cp ${core} $out/share/sonota/static/image_arduino.bin
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Flash Itead Sonoff devices with custom firmware via original OTA mechanism",
         homepage: nix.thunk(() => nix.sel(finalAttrs, "src", "meta", "homepage")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

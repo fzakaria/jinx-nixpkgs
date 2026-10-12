@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const libGL = nix.arg($, "libGL");
   const libGLU = nix.arg($, "libGLU");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "liquidwar6",
       version: "0.6.3902",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/liquidwar6/liquidwar6-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1976nnl83d8wspjhb5d5ivdvdxgb8lp34wp54jal60z4zad581fn",
         })))),
@@ -79,14 +79,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       hardeningDisable: nix.thunk(() => ["format"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error", "-std=gnu17", "-DNO_SDL_GLEXT"]))),
       })),
       configureFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`CFLAGS=-I${nix.app(nix.sel(lib, "getDev"), SDL)}/include/SDL`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Quick tactics game",
         homepage: "https://www.gnu.org/software/liquidwar6/",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "raskin"))]),

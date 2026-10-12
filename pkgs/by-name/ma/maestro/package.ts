@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const jre_headless = nix.arg($, "jre_headless");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "maestro",
       version: "2.11.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mobile-dev-inc/maestro/releases/download/cli-${nix.sel(finalAttrs, "version")}/maestro.zip`),
           hash: "sha256-U4RZPLTnoQZInnWoIdFX3UP05Djfa8MIty6CxoXhKDo=",
         })))),
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`wrapProgram $out/bin/maestro --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [jre_headless]))}"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-maestro", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p curl jq common-updater-scripts\nset -o errexit -o nounset -o pipefail\n\nNEW_VERSION=$(curl --silent https://api.github.com/repos/mobile-dev-inc/maestro/releases | jq 'first(.[].tag_name | ltrimstr(\"cli-\") | select(contains(\"dev.\") | not))' --raw-output)\n\nupdate-source-version \"maestro\" \"$NEW_VERSION\" --print-changes\n")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Mobile UI Automation tool",
         homepage: "https://maestro.mobile.dev/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

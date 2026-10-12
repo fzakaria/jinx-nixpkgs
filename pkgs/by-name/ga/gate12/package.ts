@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const buildVST3 = nix.argOr($, "buildVST3", () => true);
   const buildLV2 = nix.argOr($, "buildLV2", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gate12",
       version: "1.3.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tiagolr",
           repo: "gate12",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`-DCMAKE_OSX_ARCHITECTURES=${nix.sel(stdenv, "hostPlatform", "darwinArch")}`),
         ])))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-ffat-lto-objects"]))))),
       })),
       installPhase: nix.thunk(() => nix.str`runHook preInstall
@@ -77,7 +77,7 @@ popd
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Trance gate / volume shaper",
         homepage: "https://github.com/tiagolr/gate12",
         changelog: nix.thunk(() => nix.str`https://github.com/tiagolr/gate12/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -26,28 +26,28 @@ export default nix.lambda((args) => (() => {
   const readline = nix.arg($, "readline");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "wcc",
       version: "0.0.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "endrazine",
           repo: "wcc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-cg8rf8R3xYNJTJhrDfIdVAUR/OOd6JjB0NYHRosUzvU=",
           fetchSubmodules: true,
         })))),
-      cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "importCargoLock"), nix.thunk(() => ({ __proto__: pos$2, lockFile: nix.path(here, "./Cargo.lock") })))),
+      cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "importCargoLock"), nix.thunk(() => ({ [nix.POS]: pos$2, lockFile: nix.path(here, "./Cargo.lock") })))),
       nativeBuildInputs: nix.thunk(() => [cargo, nix.thunk(() => nix.sel(rustPlatform, "cargoSetupHook"))]),
       buildInputs: nix.thunk(() => [capstone, libbfd, libelf, libiberty, readline]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/endrazine/wcc/commit/4bea2dac8b49d82e4f72e42027d74fc654380f7b.patch?full_index=1",
             hash: "sha256-RK0ue8hdK/G+njwGmWpaewclRHprO8aBdZ9vBGQIQOc=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/endrazine/wcc/commit/3dfd28cb53b4766032e1113cf508bf2f5dce87d5.patch?full_index=1",
             hash: "sha256-7RsU3XJvJ2gvNsB1O/pvOrmd+3/wNfoOZj0JVlgJA8o=",
           })))),
@@ -61,7 +61,7 @@ sed -i -e '/stropts.h>/d' src/wsh/include/libwitch/wsh.h
 sed -i '/wsh-static/d' src/wsh/Makefile
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
       })),
       installFlags: nix.thunk(() => ["DESTDIR=$(out)"]),
@@ -72,7 +72,7 @@ sed -i '/wsh-static/d' src/wsh/Makefile
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://github.com/endrazine/wcc",
         description: "Witchcraft compiler collection: tools to convert and script ELF files",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

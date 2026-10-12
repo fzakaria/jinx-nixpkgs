@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const qtsvg = nix.arg($, "qtsvg");
   const cmake = nix.arg($, "cmake");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ldutils",
       version: "1.15",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ldutils-projects",
           repo: "ldutils",
           rev: "4fc416f694ce888c5bd4c4432a7730bb6260475c",
@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       qmakeFlags: nix.thunk(() => ["ldutils.pro"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         LDUTILS_LIB: nix.thunk(() => nix.builtins.placeholder("out")),
         LDUTILS_INCLUDE: nix.thunk(() => nix.builtins.placeholder("out")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Headers and link library for other ldutils projects",
         homepage: "https://gitlab.com/ldutils-projects/ldutils",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

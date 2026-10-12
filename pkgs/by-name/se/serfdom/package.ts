@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.10.2";
       const rev = "a2bba5676d6e37953715ea10e583843793a0c507";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hashicorp",
           repo: "serf",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -26,10 +26,10 @@ export default nix.lambda((args) => (() => {
         }))));
       const vendorHash = "sha256-aNAbE8yFp8HUgdRtt/3eVz4VAaqSTPB4XKKLl1o7YRc=";
       const subPackages = nix.thunk(() => ["cmd/serf"]);
-      const ldflags = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (n) => (v) => nix.str`-X github.com/hashicorp/serf/version.${n}=${v}`, nix.thunk(() => ({ __proto__: pos$2, GitCommit: rev, Version: version, VersionPrerelease: "" }))));
+      const ldflags = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (n) => (v) => nix.str`-X github.com/hashicorp/serf/version.${n}=${v}`, nix.thunk(() => ({ [nix.POS]: pos$2, GitCommit: rev, Version: version, VersionPrerelease: "" }))));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Service orchestration and management tool",
         mainProgram: "serf",
         longDescription: "Serf is a decentralized solution for service discovery and orchestration\nthat is lightweight, highly available, and fault tolerant.\n",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         rev,

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ssrc",
       version: "1.33",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "shibatch",
           repo: "SSRC",
           rev: "4adf75116dfc0ef709fef74a0e2f3360bd15007f",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "mkdir -p $out/bin\ncp ssrc ssrc_hp $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "High quality audio sampling rate converter",
         longDescription: "This program converts sampling rates of PCM wav files. This\nprogram also has a function to apply dither to its output and\nextend perceived dynamic range.\n\nSampling rates of 44.1kHz and 48kHz are popularly used, but the\nratio between these two frequencies is 147:160, which are not\nsmall numbers. As a result, sampling rate conversion without\ndegradation of sound quality requires filter with very large\norder, and it is difficult to have both quality and speed. This\nprogram quickly converts between these sampling frequencies\nwithout audible degradation.\n",
         version: nix.thunk(() => nix.sel(finalAttrs, "version")),

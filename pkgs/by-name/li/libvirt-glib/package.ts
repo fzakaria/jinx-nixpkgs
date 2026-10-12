@@ -29,18 +29,18 @@ export default nix.lambda((args) => (() => {
   const gtk_doc = nix.arg($, "gtk-doc");
   const docbook_xsl_nons = nix.arg($, "docbook-xsl-nons");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libvirt-glib",
       version: "5.0.0",
       outputs: nix.thunk(() => nix.concat(["out", "dev"], nix.app(nix.sel(lib, "optional"), withDocs, "devdoc"))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://libvirt.org/sources/glib/libvirt-glib-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "m/7DRjgkFqNXXYcpm8ZBsqRkqlGf2bEofjGKpDovO4s=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "relax-max-stack-size-limit.patch",
             url: "https://gitlab.com/libvirt/libvirt-glib/-/commit/062f21ccaa810087637ae24e0eb69f1a0f0a45f5.patch",
             hash: "sha256-6mvINDd1HYS7oZsyNiyEwdNJfK5I5nPx86TRMq2RevA=",
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "introspection", withIntrospection)),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Wrapper library of libvirt for glib-based applications",
         longDescription: "libvirt-glib wraps libvirt to provide a high-level object-oriented API better\nsuited for glib-based applications, via three libraries:\n\n- libvirt-glib    - GLib main loop integration & misc helper APIs\n- libvirt-gconfig - GObjects for manipulating libvirt XML documents\n- libvirt-gobject - GObjects for managing libvirt objects\n",
         homepage: "https://libvirt.org/",

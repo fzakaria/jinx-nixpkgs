@@ -12,14 +12,14 @@ export default nix.lambda((args) => (() => {
   const linol = nix.arg($, "linol");
   const lwt = nix.arg($, "lwt");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "linol-lwt",
       version: nix.thunk(() => nix.attr(linol, "version")),
       src: nix.thunk(() => nix.attr(linol, "src")),
       patches: nix.thunk(() => nix.attr(linol, "patches")),
       propagatedBuildInputs: nix.thunk(() => [linol, lwt]),
       meta: nix.thunk(() => nix.update(nix.sel(linol, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "LSP server library (with Lwt for concurrency)",
       })),
     })));

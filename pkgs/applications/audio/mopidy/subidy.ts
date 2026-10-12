@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const pythonPackages = nix.arg($, "pythonPackages");
   const mopidy = nix.arg($, "mopidy");
   return nix.app(nix.sel(pythonPackages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mopidy-subidy",
       version: "1.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Prior99",
           repo: "mopidy-subidy",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pythonPackages, "pytestCheckHook"))]),
       pythonImportsCheck: nix.thunk(() => ["mopidy_subidy"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.mopidy.com/",
         description: "Mopidy extension for playing music from a Subsonic-compatible Music Server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

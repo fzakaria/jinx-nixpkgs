@@ -30,32 +30,32 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     name: "gnupg",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "rnhmjoj"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           imports: nix.thunk(() => [nix.path(here, "../modules/profiles/minimal.nix")]),
           users: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             users: nix.thunk(() => ({
-              __proto__: pos$3,
-              alice: nix.thunk(() => ({ __proto__: pos$2, isNormalUser: true })),
+              [nix.POS]: pos$3,
+              alice: nix.thunk(() => ({ [nix.POS]: pos$2, isNormalUser: true })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$6,
-            openssh: nix.thunk(() => ({ __proto__: pos$5, enable: true })),
+            [nix.POS]: pos$6,
+            openssh: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
           })),
         };
       })(), formals$2),
@@ -63,28 +63,28 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           imports: nix.thunk(() => [nix.path(here, "../modules/profiles/minimal.nix")]),
           users: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             users: nix.thunk(() => ({
-              __proto__: pos$9,
-              alice: nix.thunk(() => ({ __proto__: pos$8, isNormalUser: true })),
+              [nix.POS]: pos$9,
+              alice: nix.thunk(() => ({ [nix.POS]: pos$8, isNormalUser: true })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$12,
-            getty: nix.thunk(() => ({ __proto__: pos$11, autologinUser: "alice" })),
+            [nix.POS]: pos$12,
+            getty: nix.thunk(() => ({ [nix.POS]: pos$11, autologinUser: "alice" })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             shellInit: "# preset a key passphrase in gpg-agent\npreset_key() {\n  # find all keys\n  case \"$1\" in\n    ssh) grips=$(awk '/^[0-9A-F]/{print $1}' \"${GNUPGHOME:-$HOME/.gnupg}/sshcontrol\") ;;\n    pgp) grips=$(gpg --with-keygrip --list-secret-keys | awk '/Keygrip/{print $3}') ;;\n  esac\n\n  # try to preset the passphrase for each key found\n  for grip in $grips; do\n    \"$(gpgconf --list-dirs libexecdir)/gpg-preset-passphrase\" -c -P \"$2\" \"$grip\"\n  done\n}\n",
           })),
           programs: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             gnupg: nix.thunk(() => ({
-              __proto__: pos$15,
-              agent: nix.thunk(() => ({ __proto__: pos$14, enable: true, enableSSHSupport: true })),
+              [nix.POS]: pos$15,
+              agent: nix.thunk(() => ({ [nix.POS]: pos$14, enable: true, enableSSHSupport: true })),
             })),
           })),
         };

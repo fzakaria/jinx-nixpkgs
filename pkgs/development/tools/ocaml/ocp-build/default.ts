@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-ocp-build`);
       const version = "1.99.21";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OCamlPro",
           repo: "ocp-build",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/OCamlPro/ocp-build/commit/104e4656ca6dba9edb03b62539c9f1e10abcaae8.patch",
             sha256: "0sbyi4acig9q8x1ky4hckfg5pm2nad6zasi51ravaf1spgl148c2",
           })))),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Build tool for OCaml",
         longDescription: "ocp-build is a build system for OCaml application, based on simple\ndescriptions of packages. ocp-build combines the descriptions of\npackages, and optimize the parallel compilation of files depending on\nthe number of cores and the automatically-inferred dependencies\nbetween source files.\n",
         homepage: "https://www.typerex.org/ocp-build.html",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

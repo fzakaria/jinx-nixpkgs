@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const requests_oauthlib = nix.arg($, "requests-oauthlib");
   const requests = nix.arg($, "requests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "garth",
       version: "0.8.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-9y7fvv4YwQgeWJjKj8FlSKc6CfyrQ2S4SSIXzjP3SeM=",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         "test_default_callback_calls_logfire",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Garmin SSO auth and connect client",
         homepage: "https://github.com/matin/garth",
         changelog: nix.thunk(() => nix.str`https://github.com/matin/garth/releases/tag/${nix.sel(finalAttrs, "version")}`),

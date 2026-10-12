@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
   const myst_parser = nix.arg($, "myst-parser");
   const pydata_sphinx_theme = nix.arg($, "pydata-sphinx-theme");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "jupyterlite-sphinx",
       version: "0.23.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jupyterlite",
           repo: "jupyterlite-sphinx",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         sphinx,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         dev: nix.thunk(() => [hatch]),
         docs: nix.thunk(() => [myst_parser, pydata_sphinx_theme]),
       })),
@@ -59,14 +59,14 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["jupyterlite_sphinx"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         deps: nix.thunk(() => ({
-          __proto__: pos$4,
-          jupytext: nix.thunk(() => nix.app(nix.sel(jupytext, "overridePythonAttrs"), (oldAttrs) => ({ __proto__: pos$3, doCheck: false }))),
+          [nix.POS]: pos$4,
+          jupytext: nix.thunk(() => nix.app(nix.sel(jupytext, "overridePythonAttrs"), (oldAttrs) => ({ [nix.POS]: pos$3, doCheck: false }))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Sphinx extension that integrates JupyterLite within your Sphinx documentation",
         homepage: "https://github.com/jupyterlite/jupyterlite-sphinx",
         changelog: nix.thunk(() => nix.str`https://github.com/jupyterlite/jupyterlite-sphinx/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const version = "5.1.1";
   const versionPrefix = nix.thunk(() => nix.str`gz-cmake${nix.app(nix.sel(lib, "versions", "major"), version)}`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gz-cmake",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gazebosim",
           repo: "gz-cmake",
           tag: nix.thunk(() => nix.str`${versionPrefix}_${nix.sel(finalAttrs, "version")}`),
@@ -47,15 +47,15 @@ substituteInPlace examples/CMakeLists.txt \\
       ]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         skipBulkUpdates: true,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex=gz-cmake(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "CMake modules to build Gazebo projects",
         homepage: "https://github.com/gazebosim/gz-cmake",
         changelog: nix.thunk(() => nix.str`https://github.com/gazebosim/gz-cmake/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dockbarx",
       version: "1.0-beta4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xuzhen",
           repo: "dockbarx",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "glib-compile-schemas $out/share/glib-2.0/schemas\n",
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/xuzhen/dockbarx",
         description: "Lightweight taskbar/panel replacement which works as a stand-alone dock",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

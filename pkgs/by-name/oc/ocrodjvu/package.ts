@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.14";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FriedrichFroebel",
           repo: "ocrodjvu",
           tag: version,
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const unittestFlagsArray = nix.thunk(() => ["tests", "-v"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Wrapper for OCR systems that allows you to perform OCR on DjVu files",
         homepage: "https://github.com/FriedrichFroebel/ocrodjvu",
         changelog: nix.thunk(() => nix.str`https://github.com/FriedrichFroebel/ocrodjvu/blob/${version}/doc/changelog`),
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "ocrodjvu",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

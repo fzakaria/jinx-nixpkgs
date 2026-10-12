@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "newt";
       const version = "0.52.24";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://releases.pagure.org/newt/newt-${version}.tar.gz`),
           sha256: "sha256-Xe1+Ih+F9kJSHEmxgmyN4ZhFqjcrr11jClF3S1RPvbs=",
         }))));
@@ -44,7 +44,7 @@ substituteInPlace Makefile.in \\
       const nativeBuildInputs = nix.thunk(() => [python3]);
       const buildInputs = nix.thunk(() => nix.concat([slang, popt], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [gettext]))));
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(["-lncurses"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [
               nix.thunk(() => nix.str`-L${python3}/lib`),
               nix.thunk(() => nix.str`-lpython${nix.sel(python3, "pythonVersion")}`),
@@ -62,16 +62,16 @@ install_name_tool -change libnewt.so.${version} $out/lib/libnewt.so.${version} \
 set +x
 `)));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pythonModule: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(python3, "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "snack"))]), "overrideAttrs"), nix.lambda((args_1) => (() => {
               const $_1 = nix.formals(args_1, formals$2);
               const _prevAttrs = args_1;
               const nativeBuildInputs_1 = nix.arg($_1, "nativeBuildInputs");
               const postBuild = nix.arg($_1, "postBuild");
               return {
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 nativeBuildInputs: nix.thunk(() => nix.concat(nativeBuildInputs_1, [nix.thunk(() => nix.sel(python3, "pkgs", "pythonImportsCheckHook"))])),
                 pythonImportsCheck: nix.thunk(() => ["snack"]),
                 postBuild: nix.thunk(() => nix.add(postBuild, "runPhase pythonImportsCheckPhase\n")),
@@ -80,7 +80,7 @@ set +x
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Library for color text mode, widget based user interfaces",
         mainProgram: "whiptail",
         homepage: "https://pagure.io/newt",
@@ -93,7 +93,7 @@ set +x
         })()),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

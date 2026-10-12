@@ -62,65 +62,65 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "engelsystem"));
   return {
-    __proto__: pos$43,
+    [nix.POS]: pos$43,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(mkRenamedOptionModule, nix.thunk(() => ["services", "engelsystem", "config"]), nix.thunk(() => ["services", "engelsystem", "settings"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         engelsystem: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enable: nix.thunk(() => nix.app(mkEnableOption, "engelsystem, an online tool for coordinating volunteers and shifts on large events")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "engelsystem", nix.thunk(() => ({})))),
           domain: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(types, "str")),
               example: "engelsystem.example.com",
               description: "Domain to serve on.",
             })))),
           createDatabase: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: true,
               description: "Whether to create a local database automatically.\nThis will override every database setting in {option}`services.engelsystem.settings`.\n",
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(types, "attrs")),
               default: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 database: nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   host: "localhost",
                   database: "engelsystem",
                   username: "engelsystem",
                 })),
               })),
               example: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 maintenance: false,
                 database: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   host: "database.example.com",
                   database: "engelsystem",
                   username: "engelsystem",
-                  password: nix.thunk(() => ({ __proto__: pos$5, _secret: "/var/keys/engelsystem/database" })),
+                  password: nix.thunk(() => ({ [nix.POS]: pos$5, _secret: "/var/keys/engelsystem/database" })),
                 })),
                 email: nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   driver: "smtp",
                   host: "smtp.example.com",
                   port: 587n,
                   from: nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     address: "engelsystem@example.com",
                     name: "example engelsystem",
                   })),
                   encryption: "tls",
                   username: "engelsystem@example.com",
-                  password: nix.thunk(() => ({ __proto__: pos$8, _secret: "/var/keys/engelsystem/mail" })),
+                  password: nix.thunk(() => ({ [nix.POS]: pos$8, _secret: "/var/keys/engelsystem/mail" })),
                 })),
                 autoarrive: true,
                 min_password_length: 6n,
@@ -132,31 +132,31 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$42,
+        [nix.POS]: pos$42,
         services: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           mysql: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "createDatabase")), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               enable: true,
               package: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.sel(pkgs, "mariadb")))),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   name: "engelsystem",
-                  ensurePermissions: nix.thunk(() => ({ __proto__: pos$15, "engelsystem.*": "ALL PRIVILEGES" })),
+                  ensurePermissions: nix.thunk(() => ({ [nix.POS]: pos$15, "engelsystem.*": "ALL PRIVILEGES" })),
                 })),
               ]),
               ensureDatabases: nix.thunk(() => ["engelsystem"]),
             })))),
           phpfpm: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             pools: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               engelsystem: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 user: "engelsystem",
                 settings: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (v) => nix.app(nix.sel(lib, "mkDefault"), v), nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     "listen.owner": nix.thunk(() => nix.sel(config, "services", "nginx", "user")),
                     pm: "dynamic",
                     "pm.max_children": 32n,
@@ -172,20 +172,20 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           nginx: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             enable: true,
             virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
               [nix.str`${nix.sel(cfg, "domain")}`, nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 locations: nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   "/": nix.thunk(() => ({
-                    __proto__: pos$22,
+                    [nix.POS]: pos$22,
                     root: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/php/engelsystem/public`),
                     extraConfig: "index index.php;\ntry_files $uri $uri/ /index.php?$args;\nautoindex off;\n",
                   })),
                   "~ \\.php$": nix.thunk(() => ({
-                    __proto__: pos$23,
+                    [nix.POS]: pos$23,
                     root: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/php/engelsystem/public`),
                     extraConfig: nix.thunk(() => nix.str`fastcgi_pass unix:${nix.sel(config, "services", "phpfpm", "pools", "engelsystem", "socket")};
 fastcgi_index index.php;
@@ -200,23 +200,23 @@ include ${nix.sel(config, "services", "nginx", "package")}/conf/fastcgi.conf;
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           etc: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             "engelsystem/config.php": nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "config.php", "<?php\nreturn json_decode(file_get_contents(\"/var/lib/engelsystem/config.json\"), true);\n")),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           services: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             "engelsystem-init": nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$31, Type: "oneshot" })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$31, Type: "oneshot" })),
               script: nix.thunk(() => (() => {
                 const genConfigScript = nix.thunk(() => nix.app(nix.sel(pkgs, "writeScript"), "engelsystem-gen-config.sh", nix.thunk(() => nix.app(nix.sel(utils, "genJqSecretsReplacementSnippet"), nix.thunk(() => nix.sel(cfg, "settings")), "config.json"))));
                 return nix.str`umask 077
@@ -230,10 +230,10 @@ chown -R engelsystem .
               })()),
             })),
             "engelsystem-migrate": nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 Type: "oneshot",
                 User: "engelsystem",
                 Group: "engelsystem",
@@ -252,22 +252,22 @@ fi
 `),
               after: nix.thunk(() => ["engelsystem-init.service", "mysql.service"]),
             })),
-            "phpfpm-engelsystem": nix.thunk(() => ({ __proto__: pos$35, after: nix.thunk(() => ["engelsystem-migrate.service"]) })),
+            "phpfpm-engelsystem": nix.thunk(() => ({ [nix.POS]: pos$35, after: nix.thunk(() => ["engelsystem-migrate.service"]) })),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           users: nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             engelsystem: nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               isSystemUser: true,
               createHome: true,
               home: "/var/lib/engelsystem/storage",
               group: "engelsystem",
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$40, engelsystem: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$40, engelsystem: nix.thunk(() => ({})) })),
         })),
       })))),
   };

@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const ruby = nix.arg($, "ruby");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "qpid-cpp",
       version: "1.39.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://apache/qpid/cpp/${nix.sel(finalAttrs, "version")}/qpid-cpp-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-eYDQ6iHVV1WUFFdyHGnbqGIjE9CrhHzh0jP7amjoDSE=",
         })))),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [boost183, libuuid, ruby]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "python3-managementgen",
             url: "https://github.com/apache/qpid-cpp/commit/0e558866e90ef3d5becbd2f6d5630a6a6dc43a5d.patch",
             hash: "sha256-pV6xx8Nrys/ZxIO0Z/fARH0ELqcSdTXLPsVXYUd3f70=",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "sed -i '/managementgen/d' CMakeLists.txt\nsed -i '/ENV/d' src/CMakeLists.txt\nsed -i '/management/d' CMakeLists.txt\n\nsubstituteInPlace {./,examples/}CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.8.7 FATAL_ERROR)\" \"cmake_minimum_required(VERSION 3.10)\"\nsubstituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_policy(SET CMP0022 OLD)\" \"\"\n",
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat([
             "-Wno-error=maybe-uninitialized",
             "-Wno-template-body",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
           ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ["-Wno-error=deprecated-copy"])))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://qpid.apache.org",
         description: "AMQP message broker and a C++ messaging API",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -36,23 +36,23 @@ export default nix.lambda((args) => (() => {
   const mkDefault = nix.thunk(() => nix.attr(lib, "mkDefault"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "iio-niri"));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "iio-niri": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(mkEnableOption, "IIO-Niri")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "iio-niri", nix.thunk(() => ({})))),
           niriUnit: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(types, "nonEmptyStr")),
               default: "niri.service",
               description: "The Niri **user** service unit to bind IIO-Niri's **user** service unit to.",
             })))),
           extraArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: [],
               description: "Extra arguments to pass to `iio-niri listen`.",
@@ -61,33 +61,33 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         hardware: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           sensor: nix.thunk(() => ({
-            __proto__: pos$7,
-            iio: nix.thunk(() => ({ __proto__: pos$6, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+            [nix.POS]: pos$7,
+            iio: nix.thunk(() => ({ [nix.POS]: pos$6, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           user: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             services: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               "iio-niri": nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 description: "IIO-Niri",
                 wantedBy: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "niriUnit"))]),
                 bindsTo: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "niriUnit"))]),
                 partOf: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "niriUnit"))]),
                 after: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "niriUnit"))]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   Type: "simple",
                   ExecStart: nix.thunk(() => nix.str`${nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))} listen ${nix.app(escapeShellArgs, nix.thunk(() => nix.sel(cfg, "extraArgs")))}`),
                   Restart: "on-failure",
@@ -98,7 +98,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "zhaithizaliel"))];

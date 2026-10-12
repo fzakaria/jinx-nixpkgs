@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(php, "buildComposerProject2"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "loops-server",
       version: "1.0.0-beta.14",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "joinloops",
           repo: "loops-server",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       ]),
       vendorHash: "sha256-fUsGb5ljj48SuFHWUHZsalXhurWsWtgI+eVEZvB799k=",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-5kl0qsn9c94wL02loFZKwy42AZijYNMRljK26n52MjI=",
         })))),
@@ -50,15 +50,15 @@ export default nix.lambda((args) => (() => {
       postBuild: "npm run build\n",
       postInstall: "srcDir=\"$out/share/php/loops-server\"\nmkdir -p $out\nfor item in \\\n  app \\\n  config \\\n  database \\\n  lang \\\n  public \\\n  resources \\\n  routes \\\n  vendor \\\n  artisan \\\n  composer.json\ndo\n  cp -r \"$srcDir/$item\" \"$out/$item\"\ndone\n\ncp -r $srcDir/bootstrap $out/bootstrap-static\ncp -r $srcDir/storage $out/storage-static\n\nln -s /run/loops-server/storage $out/storage\nln -s /run/loops-server/storage/app/public $out/public/storage\nln -s /run/loops-server/storage/app/public/videos $out/public/videos\nln -s /run/loops-server/.env $out/.env\nln -s /run/loops-server $out/bootstrap\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "loops-server": nix.thunk(() => nix.attr(nixosTests, "loops-server")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Federated short video sharing platform",
         changelog: nix.thunk(() => nix.str`https://github.com/joinloops/loops-server/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         homepage: "https://joinloops.org",

@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "firefoxpwa-unwrapped",
       version: "2.20.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "filips123",
           repo: "PWAsForFirefox",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ sed -i $'s;DISTRIBUTION_VERSION = \\'0.0.0\\';DISTRIBUTION_VERSION = \\'${nix.se
       nativeBuildInputs: nix.thunk(() => [installShellFiles, makeWrapper, pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         FFPWA_EXECUTABLES: "",
         FFPWA_SYSDATA: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/firefoxpwa`),
       })),
@@ -89,9 +89,9 @@ wrapProgram $out/bin/firefoxpwa-connector \\
 mkdir $out/lib/firefoxpwa
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           firefoxpwa: nix.thunk(() => nix.sel(nixosTests, "firefoxpwa")),
         })),
         binaryName: "firefoxpwa",
@@ -105,7 +105,7 @@ mkdir $out/lib/firefoxpwa
         withSndio: nix.thunk(() => nix.attr(firefoxRuntime, "withSndio")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Tool to install, manage and use Progressive Web Apps (PWAs) in Mozilla Firefox (native component)",
         longDescription: "Progressive Web Apps (PWAs) are web apps that use web APIs and features along\nwith progressive enhancement strategy to bring a native app-like user experience\nto cross-platform web applications. Although Firefox supports many of Progressive\nWeb App APIs, it does not support functionality to install them as a standalone\nsystem app with an app-like experience.\n\nThis project creates a custom modified Firefox runtime to allow websites to be\ninstalled as standalone apps and provides a console tool and browser extension\nto install, manage and use them.\n\nThis package contains only the native part of the PWAsForFirefox project. You\nshould also install the browser extension if you haven't already. You can download\nit from the [Firefox Add-ons](https://addons.mozilla.org/firefox/addon/pwas-for-firefox/)\nwebsite.\n\nTo install the package on NixOS, you need to add the following options:\n\n```\nprograms.firefox.nativeMessagingHosts.packages = [ pkgs.firefoxpwa ];\nenvironment.systemPackages = [ pkgs.firefoxpwa ];\n```\n\nAs it needs to be both in the `PATH` and in the `nativeMessagingHosts` to make it\npossible for the extension to detect and use it.\n",
         homepage: "https://pwasforfirefox.filips.si/",

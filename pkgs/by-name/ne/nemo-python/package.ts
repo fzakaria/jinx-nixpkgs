@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const nemo = nix.arg($, "nemo");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "nemo-python",
       version: "6.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linuxmint",
           repo: "nemo-extensions",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,15 +50,15 @@ substituteInPlace meson.build \\
   --replace "get_option('prefix'), get_option('libdir')" "'${python3}/lib'"
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PKG_CONFIG_LIBNEMO_EXTENSION_EXTENSIONDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/${nix.sel(nemo, "extensiondir")}`),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         nemoPythonExtensionDeps: nix.thunk(() => [nix.thunk(() => nix.sel(python3, "pkgs", "pygobject3"))]),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/linuxmint/nemo-extensions/tree/master/nemo-python",
         description: "Python bindings for the Nemo extension library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const haskellPackages = nix.arg($, "haskellPackages");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nix-script",
       version: "2020-03-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bennofs",
           repo: "nix-script",
           rev: "7706b45429ff22c35bab575734feb2926bf8840b",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nmkdir -p $out/bin\nghc -O2 $src/nix-script.hs -o $out/bin/nix-script -odir . -hidir .\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nln -s $out/bin/nix-script $out/bin/nix-scripti\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Shebang for running inside nix-shell",
         homepage: "https://github.com/bennofs/nix-script",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -22,18 +22,18 @@ export default nix.lambda((args) => (() => {
   const fzf = nix.arg($, "fzf");
   const path = nix.thunk(() => [ffmpeg, pandoc, poppler_utils, ripgrep, zip, fzf]);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ripgrep-all",
       version: "0.10.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "phiresky",
           repo: "ripgrep-all",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-fDSetB2UGzth+3KkCKsXUHj3y08RSfQ2nCKDa8OurW4=",
         })))),
       cargoHash: "sha256-v+lLCI2ti/xL8hcGkm/xDDN9qk0G9MgtijE8xYnhC68=",
-      env: nix.thunk(() => ({ __proto__: pos$2, RUSTFLAGS: "-C debuginfo=none" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTFLAGS: "-C debuginfo=none" })),
       nativeBuildInputs: nix.thunk(() => [makeWrapper, poppler_utils]),
       nativeCheckInputs: path,
       postInstall: nix.thunk(() => nix.str`for bin in $out/bin/*; do
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/phiresky/ripgrep-all/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),
         description: "Ripgrep, but also search in PDFs, E-Books, Office documents, zip, tar.gz, and more",
         longDescription: "Ripgrep, but also search in PDFs, E-Books, Office documents, zip, tar.gz, etc.\n\nrga is a line-oriented search tool that allows you to look for a regex in\na multitude of file types. rga wraps the awesome ripgrep and enables it\nto search in pdf, docx, sqlite, jpg, movie subtitles (mkv, mp4), etc.\n",

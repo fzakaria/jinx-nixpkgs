@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pybind11 = nix.arg($, "pybind11");
   const kissfft = nix.arg($, "kissfft");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "kaldi-native-fbank",
       version: "1.22.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "csukuangfj",
           repo: "kaldi-native-fbank",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [pybind11]),
       dontUseCmakeConfigure: true,
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         KALDI_NATIVE_FBANK_CMAKE_ARGS: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => [
             nix.thunk(() => nix.str`-DFETCHCONTENT_SOURCE_DIR_KISSFFT=${nix.sel(kissfft, "src")}`),
             nix.thunk(() => nix.str`-DFETCHCONTENT_SOURCE_DIR_PYBIND11=${nix.sel(pybind11, "src")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       })),
       pythonImportsCheck: nix.thunk(() => ["kaldi_native_fbank"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Kaldi-compatible online fbank extractor without external dependencies",
         homepage: "https://github.com/csukuangfj/kaldi-native-fbank",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

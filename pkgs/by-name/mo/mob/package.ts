@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const espeak_ng = nix.arg($, "espeak-ng");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mob",
       version: "5.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "remotemobprogramming",
           repo: "mob",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
   --set MOB_VOICE_COMMAND "${nix.app(nix.sel(lib, "getBin"), espeak_ng)}/bin/espeak"
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for smooth git handover",
         mainProgram: "mob",
         homepage: "https://github.com/remotemobprogramming/mob",

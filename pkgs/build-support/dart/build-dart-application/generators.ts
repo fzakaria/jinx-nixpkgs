@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const packageConfig = nix.arg($_2, "packageConfig");
       const extraSetupCommands = nix.argOr($_2, "extraSetupCommands", () => "");
       return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => nix.update(drvArgs, {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`${name}-package-config-with-root.json`),
           nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(drvArgs, () => [], "nativeBuildInputs"), nix.concat(nix.selOr(args_2, () => [], "nativeBuildInputs"), [jq, yq]))),
           dontBuild: true,
@@ -67,7 +67,7 @@ runHook postInstall
           })()),
         })));
     })(), formals$3);
-    return { __proto__: pos$2, linkPackageConfig: linkPackageConfig };
+    return { [nix.POS]: pos$2, linkPackageConfig: linkPackageConfig };
   })(), formals$2);
 })(), formals$1);
 //# sourceMappingURL=generators.ts.map

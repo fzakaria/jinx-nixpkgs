@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const unionFind = nix.arg($, "unionFind");
   const why3 = nix.arg($, "why3");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "frama-c-luncov",
       version: "0.2.6",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "git.frama-c.com",
           group: "pub",
           owner: "ltest",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [menhir]),
       propagatedBuildInputs: nix.thunk(() => [dune_site, frama_c, unionFind, why3]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Luncov plugin of Frama-C, part of the LTest suite",
         homepage: "https://frama-c.com/fc-plugins/ltest.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2")),

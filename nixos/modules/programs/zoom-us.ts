@@ -17,24 +17,24 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       programs: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "zoom-us": nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "zoom.us video conferencing application")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "zoom-us", nix.thunk(() => ({})))),
         })),
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       environment: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         systemPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "programs", "zoom-us", "enable")), nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => nix.app(nix.sel(config, "programs", "zoom-us", "package", "override"), (prev) => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 pulseaudioSupport: nix.thunk(() => nix.selOr(prev, () => (nix.asBool(nix.sel(config, "services", "pulseaudio", "enable")) || nix.asBool((nix.asBool(nix.sel(config, "services", "pipewire", "enable")) && nix.asBool(nix.sel(config, "services", "pipewire", "pulse", "enable"))))), "pulseaudioSupport")),
                 plasma6XdgDesktopPortalSupport: nix.thunk(() => nix.selOr(prev, () => nix.sel(config, "services", "desktopManager", "plasma6", "enable"), "plasma6XdgDesktopPortalSupport")),
                 lxqtXdgDesktopPortalSupport: nix.thunk(() => nix.selOr(prev, () => nix.sel(config, "xdg", "portal", "lxqt", "enable"), "lxqtXdgDesktopPortalSupport")),

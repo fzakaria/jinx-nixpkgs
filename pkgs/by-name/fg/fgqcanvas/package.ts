@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const qt5 = nix.arg($, "qt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fgqcanvas",
       version: "0-unstable-2024-02-11",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.code.sf.net/p/flightgear/flightgear",
           rev: "3168828949d6b42959ccee6c202b8895493edb2b",
           hash: "sha256-QiIMkrzaB/ljVf6c+RJNFWKLZa84cIjYPO5nxEFDqjg=",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       configurePhase: "runHook preConfigure\ncd utils/fgqcanvas/\nmkdir -p build\ncd build\nqmake -makefile ../fgcanvas.pro CONFIG+=\"release\" QMAKE_CXXFLAGS+=' -Wno-deprecated-copy -Wno-deprecated -Wno-deprecated-declarations'\nrunHook postConfigure\n",
       installPhase: "runHook preInstall\nmkdir -p $out/bin\nmv fgqcanvas $out/bin/\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://sourceforge.net/p/flightgear/flightgear/ci/next/tree/utils/fgqcanvas/README.md",
         description: "Qt-based remote canvas application for FlightGear",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
     })()));
   const binPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [ghostscript, qpdf, poppler_utils])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pdf-sign",
       version: "0-unstable-2024-07-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "svenssonaxel",
           repo: "pdf-sign",
           rev: "6c373e3df2ac53af74ea84c3b5f299b13d7dae9c",
@@ -48,7 +48,7 @@ done
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to visually sign PDF files",
         homepage: "https://github.com/svenssonaxel/pdf-sign",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -16,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const buildLua = nix.arg($, "buildLua");
   const mpv_unwrapped = nix.arg($, "mpv-unwrapped");
   return nix.app(buildLua, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mpv-thumbfast",
       version: "0-unstable-2026-06-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "po5",
           repo: "thumbfast",
           rev: "0f711de3138c9bd6718209d819ac54022c23ded2",
           hash: "sha256-LVeEtzOMVSgBqN9z6VQLZnxXfrOUoQPOWazVXmj3ZFY=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
         extraWrapperArgs: nix.thunk(() => [
           "--prefix",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         ]),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "High-performance on-the-fly thumbnailer for mpv",
         homepage: "https://github.com/po5/thumbfast",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

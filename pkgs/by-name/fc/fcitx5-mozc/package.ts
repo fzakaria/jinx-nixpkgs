@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const unzip = nix.arg($, "unzip");
   return nix.app(buildBazelPackage, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "fcitx5-mozc",
       version: "2.30.5544.102",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fcitx",
           repo: "mozc",
           fetchSubmodules: true,
@@ -51,21 +51,21 @@ sed -i -e 's|^\\(LINUX_MOZC_SERVER_DIR = \\).\\+|\\1"${mozc}/lib/mozc"|' src/con
       bazelFlags: nix.thunk(() => ["--config", "oss_linux", "--compilation_mode", "opt"]),
       bazelTargets: nix.thunk(() => ["unix/fcitx5:fcitx5-mozc.so", "unix/icons"]),
       fetchAttrs: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         preInstall: "# Remove reference to buildInput\nrm -rf $bazelOut/external/fcitx5\n# Remove reference to the host platform\nrm -rv \"$bazelOut\"/external/host_platform\n",
         hash: "sha256-ZjrXMQwxlaU5YGZtBZ+D2XBQHnOk+zV+a9cmkf3U5NU=",
       })),
       preConfigure: "cd src\n",
       buildAttrs: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         installPhase: "runHook preInstall\n\ninstall -Dm444 ../LICENSE $out/share/licenses/fcitx5-mozc/LICENSE\ninstall -Dm444 data/installer/credits_en.html $out/share/licenses/fcitx5-mozc/Submodules\n\ninstall -Dm555 bazel-bin/unix/fcitx5/fcitx5-mozc.so $out/lib/fcitx5/fcitx5-mozc.so\ninstall -Dm444 unix/fcitx5/mozc-addon.conf $out/share/fcitx5/addon/mozc.conf\ninstall -Dm444 unix/fcitx5/mozc.conf $out/share/fcitx5/inputmethod/mozc.conf\n\nfor pofile in unix/fcitx5/po/*.po; do\n  filename=$(basename $pofile)\n  lang=${filename/.po/}\n  mofile=${pofile/.po/.mo}\n  msgfmt $pofile -o $mofile\n  install -Dm444 $mofile $out/share/locale/$lang/LC_MESSAGES/fcitx5-mozc.mo\ndone\n\nmsgfmt --xml -d unix/fcitx5/po/ --template unix/fcitx5/org.fcitx.Fcitx5.Addon.Mozc.metainfo.xml.in -o unix/fcitx5/org.fcitx.Fcitx5.Addon.Mozc.metainfo.xml\ninstall -Dm444 unix/fcitx5/org.fcitx.Fcitx5.Addon.Mozc.metainfo.xml $out/share/metainfo/org.fcitx.Fcitx5.Addon.Mozc.metainfo.xml\n\ncd bazel-bin/unix\n\nunzip -o icons.zip\n\n# These are relative symlinks, they will always resolve to files within $out\n\ninstall -Dm444 mozc.png $out/share/icons/hicolor/128x128/apps/org.fcitx.Fcitx5.fcitx_mozc.png\nln -s org.fcitx.Fcitx5.fcitx_mozc.png $out/share/icons/hicolor/128x128/apps/fcitx_mozc.png\n\nfor svg in \\\n  alpha_full.svg \\\n  alpha_half.svg \\\n  direct.svg \\\n  hiragana.svg \\\n  katakana_full.svg \\\n  katakana_half.svg \\\n  outlined/dictionary.svg \\\n  outlined/properties.svg \\\n  outlined/tool.svg\ndo\n  name=$(basename -- $svg)\n  path=$out/share/icons/hicolor/scalable/apps\n  prefix=org.fcitx.Fcitx5.fcitx_mozc\n\n  install -Dm444 $svg $path/$prefix_$name\n  ln -s $prefix_$name $path/fcitx_mozc_$name\ndone\n\nrunHook postInstall\n",
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ __proto__: pos$4, fcitx5: nix.thunk(() => nix.attr(nixosTests, "fcitx5")) })))),
+        [nix.POS]: pos$5,
+        tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ [nix.POS]: pos$4, fcitx5: nix.thunk(() => nix.attr(nixosTests, "fcitx5")) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Mozc - a Japanese Input Method Editor designed for multi-platform",
         homepage: "https://github.com/fcitx/mozc",
         license: nix.thunk(() => (() => {

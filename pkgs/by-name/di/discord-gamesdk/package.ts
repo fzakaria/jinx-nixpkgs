@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "discord-gamesdk";
       const version = "3.2.1";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dl-game-sdk.discordapp.net/${version}/discord_game_sdk.zip`),
           hash: "sha256-83DgL9y3lHLLJ8vgL3EOVk2Tjcue64N+iuDj/UpSdLc=",
           stripRoot: false,
@@ -38,7 +38,7 @@ runHook postInstall
 `;
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://discord.com/developers/docs/game-sdk/sdk-starter-guide",
         description: "Library to allow other programs to interact with the Discord desktop application",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -53,7 +53,7 @@ runHook postInstall
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-darwin", "x86_64-windows"]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -24,13 +24,13 @@ export default nix.lambda((args) => (() => {
   return nix.app(buildPythonPackage, (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "scs"));
       return {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "scs",
       version: nix.thunk(() => nix.attr(from, "version")),
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bodono",
           repo: "scs-python",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from_1 = nix.thunk(() => nix.sel(pkgs, "scs", "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python interface for SCS: Splitting Conic Solver",
         longDescription: "Solves convex cone programs via operator splitting.\nCan solve: linear programs (LPs), second-order cone programs (SOCPs), semidefinite programs (SDPs),\nexponential cone programs (ECPs), and power cone programs (PCPs), or problems with any combination of those cones.\n",
         homepage: nix.thunk(() => nix.attr(from_1, "homepage")),

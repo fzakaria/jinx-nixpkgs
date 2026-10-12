@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.21.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: "parametrize_from_file",
           hash: "sha256-keKsnkMyk9du7TGvJhZXP2EpLqOKkz8vxrRzWXyGg0U=",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["parametrize_from_file"]);
       const disabledTests = nix.thunk(() => ["test_load_suite_params_err"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Read unit test parameters from config files",
         homepage: "https://github.com/kalekundert/parametrize_from_file",
         changelog: nix.thunk(() => nix.str`https://github.com/kalekundert/parametrize_from_file/blob/v${version}/CHANGELOG.md`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

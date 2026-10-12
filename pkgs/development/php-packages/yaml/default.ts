@@ -12,14 +12,14 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const libyaml = nix.arg($, "libyaml");
   return nix.app(buildPecl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "yaml",
       version: "2.2.5",
       sha256: "sha256-DHUbSJdJ+/AgcdWwxr/rJsS4Y8Zo74lxHs+VBzkb33E=",
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-yaml=${nix.sel(libyaml, "dev")}`)]),
       buildInputs: nix.thunk(() => [libyaml]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "YAML-1.1 parser and emitter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/php/pecl-file_formats-yaml",

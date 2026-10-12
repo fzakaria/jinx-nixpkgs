@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const pretty = nix.arg($, "pretty");
   const process = nix.arg($, "process");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "distribution-nixpkgs",
       version: "1.7.1.1-unstable-2026-03-30",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://github.com/NixOS/cabal2nix/archive/41239bcc0622a0975c6705a03a44dfeffeb56f23.tar.gz",
           sha256: "01qj6cvaif0810v83r6izcj1bbfpcqqxw4wybq04qsq92sqybpw2",
         })))),

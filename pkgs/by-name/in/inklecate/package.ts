@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "inklecate";
       const version = "1.2.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "inkle",
           repo: "ink",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const executables = nix.thunk(() => ["inklecate"]);
       const dotnet_sdk = nix.thunk(() => nix.sel(dotnetCorePackages, "sdk_8_0"));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Compiler for ink, inkle's scripting language",
         mainProgram: "inklecate",
         longDescription: "Inklecate is a command-line compiler for ink, inkle's open source\nscripting language for writing interactive narrative\n",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -28,25 +28,25 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     name: "chhoto-url",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "defelo"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       machine: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         services: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "chhoto-url": nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: true,
-            settings: nix.thunk(() => ({ __proto__: pos$2, port: 8000n })),
+            settings: nix.thunk(() => ({ [nix.POS]: pos$2, port: 8000n })),
             environmentFiles: nix.thunk(() => [
               nix.thunk(() => nix.builtins.toFile("chhoto-url.env", "api_key=api_key\npassword=password\n")),
             ]),
@@ -55,32 +55,32 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     interactive: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       nodes: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         machine: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           networking: nix.thunk(() => ({
-            __proto__: pos$8,
-            firewall: nix.thunk(() => ({ __proto__: pos$7, allowedTCPPorts: nix.thunk(() => [8000n]) })),
+            [nix.POS]: pos$8,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$7, allowedTCPPorts: nix.thunk(() => [8000n]) })),
           })),
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             forwardPorts: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 from: "host",
-                host: nix.thunk(() => ({ __proto__: pos$9, port: 8000n })),
-                guest: nix.thunk(() => ({ __proto__: pos$10, port: 8000n })),
+                host: nix.thunk(() => ({ [nix.POS]: pos$9, port: 8000n })),
+                guest: nix.thunk(() => ({ [nix.POS]: pos$10, port: 8000n })),
               })),
             ]),
           })),
         })),
       })),
-      sshBackdoor: nix.thunk(() => ({ __proto__: pos$15, enable: true })),
+      sshBackdoor: nix.thunk(() => ({ [nix.POS]: pos$15, enable: true })),
       defaults: nix.thunk(() => ({
-        __proto__: pos$17,
-        virtualisation: nix.thunk(() => ({ __proto__: pos$16, graphics: false })),
+        [nix.POS]: pos$17,
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$16, graphics: false })),
       })),
     })),
     testScript: nix.thunk(() => nix.str`import json

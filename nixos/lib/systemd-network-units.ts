@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
 ${nix.app(attrsToSection, nix.thunk(() => nix.sel(def, "matchConfig")))}
 `));
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     linkToUnit: (def) => nix.add(nix.add(nix.app(commonMatchText, def), nix.str`[Link]
 ${nix.app(attrsToSection, nix.thunk(() => nix.sel(def, "linkConfig")))}
 `), nix.sel(def, "extraConfig")),

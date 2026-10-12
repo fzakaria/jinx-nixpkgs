@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jishaku",
       version: "2.6.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Gorialis",
           repo: "jishaku",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, pytest_asyncio]),
       pythonImportsCheck: nix.thunk(() => ["jishaku", "jishaku.repl", "jishaku.features"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Debugging and testing cog for discord.py bots",
         homepage: "https://jishaku.readthedocs.io/en/latest",
         changelog: nix.thunk(() => nix.str`https://github.com/Gorialis/jishaku/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

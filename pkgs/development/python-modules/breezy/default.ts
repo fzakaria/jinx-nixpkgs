@@ -45,13 +45,13 @@ export default nix.lambda((args) => (() => {
       const version = "3.3.21";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "breezy-team",
           repo: "breezy",
           tag: nix.thunk(() => nix.str`brz-${version}`),
           hash: "sha256-S8YHFEWiSnkBFO75jMuEcvVZSnoV9SGCH/Ueodq2zow=",
         }))));
-      const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "importCargoLock"), nix.thunk(() => ({ __proto__: pos$2, lockFile: nix.path(here, "./Cargo.lock") }))));
+      const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "importCargoLock"), nix.thunk(() => ({ [nix.POS]: pos$2, lockFile: nix.path(here, "./Cargo.lock") }))));
       const postPatch = nix.thunk(() => nix.str`ln -s ${nix.path(here, "./Cargo.lock")} Cargo.lock
 `);
       const nativeBuildInputs = nix.thunk(() => [
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
         urllib3,
       ], nix.concat(nix.sel(optional_dependencies, "launchpad"), nix.concat(nix.sel(optional_dependencies, "fastimport"), nix.sel(optional_dependencies, "github")))));
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         launchpad: nix.thunk(() => [launchpadlib]),
         fastimport: nix.thunk(() => [fastimport]),
         github: nix.thunk(() => [pygithub]),
@@ -84,14 +84,14 @@ export default nix.lambda((args) => (() => {
       const postInstall = "wrapProgram $out/bin/brz --prefix PYTHONPATH : \"$PYTHONPATH\"\n\n# symlink for bazaar compatibility\nln -s \"$out/bin/brz\" \"$out/bin/bzr\"\n\ninstallShellCompletion --cmd brz --bash contrib/bash/brz\n";
       const pythonImportsCheck = nix.thunk(() => ["breezy", "breezy.bzr.rio"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$4, package: breezy, command: "HOME=$TMPDIR brz --version" })))),
+          [nix.POS]: pos$5,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$4, package: breezy, command: "HOME=$TMPDIR brz --version" })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Friendly distributed version control system",
         homepage: "https://www.breezy-vcs.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/breezy-team/breezy/blob/${nix.sel(src, "tag")}/doc/en/release-notes/brz-${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}.txt`),
@@ -100,7 +100,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "brz",
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version,
         pyproject,

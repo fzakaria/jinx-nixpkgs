@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const libwebp = nix.arg($, "libwebp");
   const pango = nix.arg($, "pango");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "windowmaker",
       version: "0.96.0",
       src: nix.thunk(() => nix.app(fetchFromRepoOrCz, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "wmaker-crm",
           rev: nix.thunk(() => nix.str`wmaker-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-6DS5KztCNWPQL6/qJ5vlkOup2ourxSNf6LLTFYpPWi8=",
@@ -63,11 +63,11 @@ export default nix.lambda((args) => (() => {
       ]),
       configureFlags: nix.thunk(() => ["--enable-modelock", "--enable-randr", "--enable-webp", "--with-x"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         dockapps: nix.thunk(() => nix.app(callPackage, nix.path(here, "./dockapps"), nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://windowmaker.org/",
         description: "NeXTSTEP-like window manager",
         longDescription: "Window Maker is an X11 window manager originally designed to provide\nintegration support for the GNUstep Desktop Environment. In every way\npossible, it reproduces the elegant look and feel of the NEXTSTEP user\ninterface. It is fast, feature rich, easy to configure, and easy to\nuse. It is also free software, with contributions being made by\nprogrammers from around the world.\n",

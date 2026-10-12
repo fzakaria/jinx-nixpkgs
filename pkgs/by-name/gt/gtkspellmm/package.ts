@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gtkspellmm";
       const version = "3.0.5";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.add("mirror://sourceforge/project/gtkspell/gtkspellmm/", nix.str`gtkspellmm-${version}.tar.xz`)),
           sha256: "0i8mxwyfv5mskachafa4qlh315q0cfph7s66s1s34nffadbmm1sv",
         }))));
@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [pkg_config]);
       const buildInputs = nix.thunk(() => [gtk3, glib, glibmm_2_4, gtkmm3]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C++ binding for the gtkspell library",
         homepage: "https://gtkspell.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

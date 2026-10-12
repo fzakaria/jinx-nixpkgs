@@ -22,22 +22,22 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const binutils = nix.arg($, "binutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "lp_solve",
       version: "5.5.2.14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lp-solve",
           repo: "lp_solve",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-mCYstt0vEGZk7rjcXmxqZjYTviF8xfg1mvA4jqKCYgE=",
         })))),
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [binutils])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [cctools, fixDarwinDylibNames])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => [nix.thunk(() => nix.sel(darwin, "autoSignDarwinBinariesHook"))]))))),
-      env: nix.thunk(() => nix.update({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=implicit-int" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))), nix.thunk(() => ({ __proto__: pos$3, NIX_LDFLAGS: "-headerpad_max_install_names" }))))),
+      env: nix.thunk(() => nix.update({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=implicit-int" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))), nix.thunk(() => ({ [nix.POS]: pos$3, NIX_LDFLAGS: "-headerpad_max_install_names" }))))),
       dontConfigure: true,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-fix-cross-compilation.patch"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             emulator: nix.thunk(() => nix.str`${nix.app(nix.sel(stdenv, "hostPlatform", "emulator"), buildPackages)}`),
           })))),
       ]),
@@ -53,7 +53,7 @@ runHook postBuild
       })()),
       installPhase: "runHook preInstall\n\ninstall -d -m755 $out/bin $out/lib $out/include/lpsolve\ninstall -m755 lp_solve/bin/*/lp_solve -t $out/bin\ninstall -m644 lpsolve55/bin/*/liblpsolve* -t $out/lib\ninstall -m644 lp_*.h -t $out/include/lpsolve\n\nrm $out/lib/liblpsolve*.a\nrm $out/include/lpsolve/lp_solveDLL.h  # A Windows header\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Mixed Integer Linear Programming (MILP) solver",
         mainProgram: "lp_solve",
         homepage: "https://github.com/lp-solve/lp_solve",

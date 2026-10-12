@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const exiftool = nix.arg($, "exiftool");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "pict-rs",
       version: "0.5.24",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "git.asonix.dog",
           owner: "asonix",
           repo: "pict-rs",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-W4Bj+juON8mPyXDHgFpTBBFOvQlmYIKihXHBHwelah4=",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PROTOC: nix.thunk(() => nix.str`${protobuf}/bin/protoc`),
         PROTOC_INCLUDE: nix.thunk(() => nix.str`${protobuf}/include`),
       })),
@@ -45,14 +45,14 @@ export default nix.lambda((args) => (() => {
     --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [imagemagick, ffmpeg, exiftool]))}"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "pict-rs": nix.thunk(() => nix.attr(nixosTests, "pict-rs")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Simple image hosting service",
         mainProgram: "pict-rs",

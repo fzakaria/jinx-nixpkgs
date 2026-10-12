@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const ffmpeg_avcodec = nix.arg($, "ffmpeg-avcodec");
   const ffmpeg = nix.arg($, "ffmpeg");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "ffmpeg-swresample",
       minimalOCamlVersion: "4.12",
       version: nix.thunk(() => nix.attr(ffmpeg_base, "version")),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [dune_configurator]),
       propagatedBuildInputs: nix.thunk(() => [ffmpeg_avutil, ffmpeg_avcodec, nix.thunk(() => nix.sel(ffmpeg, "dev"))]),
       doCheck: true,
-      meta: nix.thunk(() => nix.update(nix.sel(ffmpeg_base, "meta"), { __proto__: pos$1, description: "Bindings for the ffmpeg swresample library" })),
+      meta: nix.thunk(() => nix.update(nix.sel(ffmpeg_base, "meta"), { [nix.POS]: pos$1, description: "Bindings for the ffmpeg swresample library" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=ffmpeg-swresample.ts.map

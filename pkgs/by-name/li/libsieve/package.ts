@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "2.3.1",
       pname: "libsieve",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/downloads/sodabrew/libsieve/libsieve-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1gllhl9hbmc86dq3k98d4kjs5bwk0p2rlk7ywqj3fjn7jw6mbhcj",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Interpreter for RFC 3028 Sieve and various extensions",
         homepage: "https://github.com/sodabrew/libsieve",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

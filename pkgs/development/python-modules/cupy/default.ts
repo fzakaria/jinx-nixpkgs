@@ -22,16 +22,16 @@ export default nix.lambda((args) => (() => {
   const numpy = nix.arg($, "numpy");
   const cuda_pathfinder = nix.arg($, "cuda-pathfinder");
   return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       stdenv: nix.thunk(() => nix.sel(cudaPackages, "backendStdenv")),
     })), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cupy",
       version: "14.2.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "cupy",
           repo: "cupy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -95,7 +95,7 @@ substituteInPlace cupy/cuda/compiler.py \\
     "return '${nix.app(nix.sel(lib, "getOutput"), "static", nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart")))}/lib/libcudadevrt.a'"
 `)),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-L${nix.app(nix.sel(lib, "getOutput"), "stubs", nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart")))}/lib/stubs`),
           ]))),
@@ -131,7 +131,7 @@ substituteInPlace cupy/cuda/compiler.py \\
       pythonImportsCheck: nix.thunk(() => ["cupy", "cupy_backends", "cupyx"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "NumPy-compatible matrix library accelerated by CUDA",
         homepage: "https://cupy.chainer.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/cupy/cupy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

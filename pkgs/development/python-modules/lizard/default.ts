@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pathspec = nix.arg($, "pathspec");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lizard",
       version: "1.24.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "terryyin",
           repo: "lizard",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["test/test_languages/testFortran.py"]),
       pythonImportsCheck: nix.thunk(() => ["lizard"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/terryyin/lizard/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Code analyzer without caring the C/C++ header files",
         mainProgram: "lizard",

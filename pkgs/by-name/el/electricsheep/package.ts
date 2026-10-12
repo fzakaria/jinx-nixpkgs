@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const libGL = nix.arg($, "libGL");
   const glee = nix.arg($, "glee");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "electricsheep",
       version: "3.0.2-unstable-2024-02-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "scottdraves",
           repo: "electricsheep",
           rev: "5fbbb684752be06ccbea41639968aa7f1cc678dd",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./boost-1.85.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitweb.gentoo.org/repo/proj/guru.git/plain/app-misc/electricsheep/files/electricsheep-boost-system-r1.patch?id=b9f2c3c92d29ed57491a88e45dc8a99bbc73fc15",
             hash: "sha256-wCRT0pSC9w+XXAbeCTukvPMu5mVeGdfwnkBieMmBIwA=",
             extraPrefix: "",
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["CXXFLAGS+=\"-DGL_GLEXT_PROTOTYPES\""]),
       preBuild: "sed -i \"s|/usr|$out|\" Makefile\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Electric Sheep, a distributed screen saver for evolving artificial organisms",
         homepage: "https://electricsheep.org/",
         maintainers: [],

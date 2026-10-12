@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const nspr = nix.arg($, "nspr");
   const nss = nix.arg($, "nss");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cider-2",
       version: "4.0.17",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://repo.cider.sh/apt/pool/main/cider-v${nix.sel(finalAttrs, "version")}-linux-x64.deb`),
           hash: "sha256-CanpS0yydWOkGKp/8SIVSJ7EavFUs9xBxUgmL9AUXJU=",
         })))),
@@ -58,9 +58,9 @@ makeWrapper $out/lib/cider/Cider $out/bin/cider-2 \\
 runHook postInstall
 `),
       postFixup: "mv $out/share/applications/cider.desktop $out/share/applications/cider-2.desktop\nsubstituteInPlace $out/share/applications/cider-2.desktop \\\n  --replace-fail Exec=cider Exec=cider-2 \\\n  --replace-fail Icon=cider Icon=cider-2\n\ninstall -Dm444 $out/share/pixmaps/cider.png \\\n  $out/share/icons/hicolor/256x256/apps/cider-2.png\n\nrm -r $out/share/{pixmaps,lintian}\nrm $out/lib/cider/resources/Cider{,.flatpak}.desktop\nrm $out/lib/cider/resources/public/icon{.icns,-osx-previous.icns,.ico}\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./updater.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./updater.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Powerful music player that allows you listen to your favorite tracks with style",
         homepage: "https://cider.sh",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.95.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alanjds",
           repo: "drf-nested-routers",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [djangorestframework]);
       const nativeCheckInputs = nix.thunk(() => [ipdb, pytestCheckHook, pytest_django]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/alanjds/drf-nested-routers",
         changelog: nix.thunk(() => nix.str`https://github.com/alanjds/drf-nested-routers/blob/v${version}/CHANGELOG.md`),
         description: "Provides routers and fields to create nested resources in the Django Rest Framework",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

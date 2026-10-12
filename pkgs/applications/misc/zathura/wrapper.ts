@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
   ]);
   const stdenv = nix.arg($, "stdenv");
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: nix.thunk(() => nix.attr(zathura_core, "version")),
       pname: "zathura-with-plugins",
       paths: nix.thunk(() => (() => {
@@ -57,7 +57,7 @@ substitute "${nix.sel(zathura_core, "out")}/${fishCompletion}" "$out/${fishCompl
 `);
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: "https://pwmt.org/projects/zathura",
         description: "Highly customizable and functional PDF viewer",
         longDescription: "Zathura is a highly customizable and functional PDF viewer based on the\npoppler rendering library and the GTK toolkit. The idea behind zathura\nis an application that provides a minimalistic and space saving interface\nas well as an easy usage that mainly focuses on keyboard interaction.\n",

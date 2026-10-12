@@ -74,78 +74,78 @@ export default nix.lambda((args) => (() => {
   const configurationYaml = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "dendrite.yaml", nix.thunk(() => nix.sel(cfg, "settings"))));
   const workingDir = "/var/lib/dendrite";
   return {
-    __proto__: pos$60,
+    [nix.POS]: pos$60,
     options: nix.thunk(() => ({
-      __proto__: pos$52,
+      [nix.POS]: pos$52,
       services: nix.thunk(() => ({
-        __proto__: pos$51,
+        [nix.POS]: pos$51,
         dendrite: nix.thunk(() => ({
-          __proto__: pos$50,
+          [nix.POS]: pos$50,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "matrix.org dendrite")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "dendrite", nix.thunk(() => ({})))),
           httpPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "port")))),
               default: 8008n,
               description: "The port to listen for HTTP requests on.\n",
             })))),
           httpsPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "port")))),
               default: null,
               description: "The port to listen for HTTPS requests on.\n",
             })))),
           tlsCert: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               example: "/var/lib/dendrite/server.cert",
               default: null,
               description: "The path to the TLS certificate.\n\n```\n  nix-shell -p dendrite --command \"generate-keys --tls-cert server.crt --tls-key server.key\"\n```\n",
             })))),
           tlsKey: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               example: "/var/lib/dendrite/server.key",
               default: null,
               description: "The path to the TLS key.\n\n```\n  nix-shell -p dendrite --command \"generate-keys --tls-cert server.crt --tls-key server.key\"\n```\n",
             })))),
           environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               example: "/var/lib/dendrite/registration_secret",
               default: null,
               description: "Environment file as defined in {manpage}`systemd.exec(5)`.\nSecrets may be passed to the service without adding them to the world-readable\nNix store, by specifying placeholder variables as the option value in Nix and\nsetting these variables accordingly in the environment file. Currently only used\nfor the registration secret to allow secure registration when\nclient_api.registration_disabled is true.\n\n```\n  # snippet of dendrite-related config\n  services.dendrite.settings.client_api.registration_shared_secret = \"$REGISTRATION_SHARED_SECRET\";\n```\n\n```\n  # content of the environment file\n  REGISTRATION_SHARED_SECRET=verysecretpassword\n```\n\nNote that this file needs to be available on the host on which\n`dendrite` is running.\n",
             })))),
           loadCredential: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["private_key:/path/to/my_private_key"]),
               description: "This can be used to pass secrets to the systemd service without adding them to\nthe nix store.\nTo use the example setting, see the example of\n{option}`services.dendrite.settings.global.private_key`.\nSee the LoadCredential section of systemd.exec manual for more information.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$47,
+                  [nix.POS]: pos$47,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$46,
+                    [nix.POS]: pos$46,
                     global: nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       server_name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$7,
+                          [nix.POS]: pos$7,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           example: "example.com",
                           description: "The domain name of the server, with optional explicit port.\nThis is used by remote servers to connect to this server.\nThis is also the last part of your UserID.\n",
                         })))),
                       private_key: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "either"), nix.thunk(() => nix.sel(lib, "types", "path")), nix.thunk(() => nix.app(nix.sel(lib, "types", "strMatching"), "^\\$CREDENTIALS_DIRECTORY/.+")))),
                           example: "$CREDENTIALS_DIRECTORY/private_key",
                           description: "The path to the signing private key file, used to sign\nrequests and events.\n\n```\n  nix-shell -p dendrite --command \"generate-keys --private-key matrix_key.pem\"\n```\n",
                         })))),
                       trusted_third_party_id_servers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                           example: nix.thunk(() => ["matrix.org"]),
                           default: nix.thunk(() => ["matrix.org", "vector.im"]),
@@ -153,11 +153,11 @@ export default nix.lambda((args) => (() => {
                         })))),
                     })),
                     app_service_api: nix.thunk(() => ({
-                      __proto__: pos$13,
+                      [nix.POS]: pos$13,
                       database: nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         connection_string: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$11,
+                            [nix.POS]: pos$11,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: "file:federationapi.db",
                             description: "Database for the Appservice API.\n",
@@ -165,20 +165,20 @@ export default nix.lambda((args) => (() => {
                       })),
                     })),
                     client_api: nix.thunk(() => ({
-                      __proto__: pos$15,
+                      [nix.POS]: pos$15,
                       registration_disabled: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: true,
                           description: "Whether to disable user registration to the server\nwithout the shared secret.\n",
                         })))),
                     })),
                     federation_api: nix.thunk(() => ({
-                      __proto__: pos$18,
+                      [nix.POS]: pos$18,
                       database: nix.thunk(() => ({
-                        __proto__: pos$17,
+                        [nix.POS]: pos$17,
                         connection_string: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$16,
+                            [nix.POS]: pos$16,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: "file:federationapi.db",
                             description: "Database for the Federation API.\n",
@@ -186,11 +186,11 @@ export default nix.lambda((args) => (() => {
                       })),
                     })),
                     key_server: nix.thunk(() => ({
-                      __proto__: pos$21,
+                      [nix.POS]: pos$21,
                       database: nix.thunk(() => ({
-                        __proto__: pos$20,
+                        [nix.POS]: pos$20,
                         connection_string: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$19,
+                            [nix.POS]: pos$19,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: "file:keyserver.db",
                             description: "Database for the Key Server (for end-to-end encryption).\n",
@@ -198,11 +198,11 @@ export default nix.lambda((args) => (() => {
                       })),
                     })),
                     relay_api: nix.thunk(() => ({
-                      __proto__: pos$24,
+                      [nix.POS]: pos$24,
                       database: nix.thunk(() => ({
-                        __proto__: pos$23,
+                        [nix.POS]: pos$23,
                         connection_string: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$22,
+                            [nix.POS]: pos$22,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: "file:relayapi.db",
                             description: "Database for the Relay Server.\n",
@@ -210,29 +210,29 @@ export default nix.lambda((args) => (() => {
                       })),
                     })),
                     media_api: nix.thunk(() => ({
-                      __proto__: pos$28,
+                      [nix.POS]: pos$28,
                       database: nix.thunk(() => ({
-                        __proto__: pos$26,
+                        [nix.POS]: pos$26,
                         connection_string: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$25,
+                            [nix.POS]: pos$25,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: "file:mediaapi.db",
                             description: "Database for the Media API.\n",
                           })))),
                       })),
                       base_path: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$27,
+                          [nix.POS]: pos$27,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: nix.thunk(() => nix.str`${workingDir}/media_store`),
                           description: "Storage path for uploaded media.\n",
                         })))),
                     })),
                     room_server: nix.thunk(() => ({
-                      __proto__: pos$31,
+                      [nix.POS]: pos$31,
                       database: nix.thunk(() => ({
-                        __proto__: pos$30,
+                        [nix.POS]: pos$30,
                         connection_string: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$29,
+                            [nix.POS]: pos$29,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: "file:roomserver.db",
                             description: "Database for the Room Server.\n",
@@ -240,27 +240,27 @@ export default nix.lambda((args) => (() => {
                       })),
                     })),
                     sync_api: nix.thunk(() => ({
-                      __proto__: pos$37,
+                      [nix.POS]: pos$37,
                       database: nix.thunk(() => ({
-                        __proto__: pos$33,
+                        [nix.POS]: pos$33,
                         connection_string: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$32,
+                            [nix.POS]: pos$32,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: "file:syncserver.db",
                             description: "Database for the Sync API.\n",
                           })))),
                       })),
                       search: nix.thunk(() => ({
-                        __proto__: pos$36,
+                        [nix.POS]: pos$36,
                         enabled: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Dendrite's full-text search engine")),
                         index_path: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$34,
+                            [nix.POS]: pos$34,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: nix.thunk(() => nix.str`${workingDir}/searchindex`),
                             description: "The path the search index will be created in.\n",
                           })))),
                         language: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$35,
+                            [nix.POS]: pos$35,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: "en",
                             description: "The language most likely to be used on the server - used when indexing, to\nensure the returned results match expectations. A full list of possible languages\ncan be found at <https://github.com/blevesearch/bleve/tree/master/analysis/lang>\n",
@@ -268,20 +268,20 @@ export default nix.lambda((args) => (() => {
                       })),
                     })),
                     user_api: nix.thunk(() => ({
-                      __proto__: pos$42,
+                      [nix.POS]: pos$42,
                       account_database: nix.thunk(() => ({
-                        __proto__: pos$39,
+                        [nix.POS]: pos$39,
                         connection_string: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$38,
+                            [nix.POS]: pos$38,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: "file:userapi_accounts.db",
                             description: "Database for the User API, accounts.\n",
                           })))),
                       })),
                       device_database: nix.thunk(() => ({
-                        __proto__: pos$41,
+                        [nix.POS]: pos$41,
                         connection_string: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$40,
+                            [nix.POS]: pos$40,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: "file:userapi_devices.db",
                             description: "Database for the User API, devices.\n",
@@ -289,11 +289,11 @@ export default nix.lambda((args) => (() => {
                       })),
                     })),
                     mscs: nix.thunk(() => ({
-                      __proto__: pos$45,
+                      [nix.POS]: pos$45,
                       database: nix.thunk(() => ({
-                        __proto__: pos$44,
+                        [nix.POS]: pos$44,
                         connection_string: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$43,
+                            [nix.POS]: pos$43,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: "file:mscs.db",
                             description: "Database for exerimental MSC's.\n",
@@ -306,7 +306,7 @@ export default nix.lambda((args) => (() => {
               description: "Configuration for dendrite, see:\n<https://github.com/matrix-org/dendrite/blob/main/dendrite-sample.yaml>\nfor available options with which to populate settings.\n",
             })))),
           openRegistration: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Allow open registration without secondary verification (reCAPTCHA).\n",
@@ -315,30 +315,30 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$59,
+        [nix.POS]: pos$59,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$53,
+            [nix.POS]: pos$53,
             assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, "httpsPort"), null)) || nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "tlsCert"), null)) && nix.asBool(!nix.eq(nix.sel(cfg, "tlsKey"), null)))))),
             message: "If Dendrite is configured to use https, tlsCert and tlsKey must be provided.\n\nnix-shell -p dendrite --command \"generate-keys --tls-cert server.crt --tls-key server.key\"\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$54,
+            [nix.POS]: pos$54,
             assertion: nix.thunk(() => !nix.asBool(nix.has(nix.sel(cfg, "settings", "sync_api", "search"), "enable"))),
             message: "The `services.dendrite.settings.sync_api.search.enable` option\nhas been renamed to `services.dendrite.settings.sync_api.search.enabled`.\n",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$58,
+          [nix.POS]: pos$58,
           services: nix.thunk(() => ({
-            __proto__: pos$57,
+            [nix.POS]: pos$57,
             dendrite: nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               description: "Dendrite Matrix homeserver",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$55,
+                [nix.POS]: pos$55,
                 Type: "simple",
                 DynamicUser: true,
                 StateDirectory: "dendrite",

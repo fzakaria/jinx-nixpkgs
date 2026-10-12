@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const nlsSupport = nix.argOr($, "nlsSupport", () => false);
   const gettext = nix.arg($, "gettext");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "libpq",
       version: "18.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "postgres",
           repo: "postgres",
           rev: "refs/tags/REL_18_6",
@@ -51,9 +51,9 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       outputs: nix.thunk(() => ["out", "dev"]),
       outputChecks: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         out: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           disallowedReferences: nix.thunk(() => ["dev"]),
           disallowedRequisites: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(stdenv, "cc"))], nix.builtins.map(nix.thunk(() => nix.sel(lib, "getDev")), nix.thunk(() => nix.builtins.filter((drv) => nix.has(drv, "dev"), nix.thunk(() => nix.sel(finalAttrs, "buildInputs"))))))),
         })),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
       separateDebugInfo: true,
       buildFlags: nix.thunk(() => ["submake-libpgport", "submake-libpq"]),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         CFLAGS: nix.thunk(() => nix.add("-fdata-sections -ffunction-sections", (nix.asBool(nix.sel(stdenv, "cc", "isClang")) ? " -flto" : " -fmerge-constants -Wl,--gc-sections"))),
         NIX_CFLAGS_COMPILE: "-UUSE_PRIVATE_ENCODING_FUNCS",
       })),
@@ -84,12 +84,12 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")) ? "touch $out/empty" : nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.selOr(finalAttrs, () => false, "dontDisableStatic"))), "rm -rfv $dev/lib/*.a"))),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pg_config: nix.thunk(() => nix.app(nix.sel(buildPackages, "callPackage"), nix.path(here, "./pg_config.nix"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             finalPackage: nix.thunk(() => nix.attr(finalAttrs, "finalPackage")),
             outputs: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               out: nix.thunk(() => nix.app(nix.sel(lib, "getOutput"), "out", nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
             })),
           })))),
@@ -97,7 +97,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(postgresql, "meta"));
         return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),
         teams: nix.thunk(() => nix.attr(from, "teams")),

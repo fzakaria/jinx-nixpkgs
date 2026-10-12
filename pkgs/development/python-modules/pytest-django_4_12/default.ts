@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pytest = nix.arg($, "pytest");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pytest-django",
       version: "4.12.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "pytest_django",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-35TsgZqDyJecj23hPZzfvnbowh05Rzz+K0DJ/Jvjx1g=",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "# bring pytest_django_test module into PYTHONPATH\nexport PYTHONPATH=\"$PWD:$PYTHONPATH\"\n\n# test the lightweight sqlite flavor\nexport DJANGO_SETTINGS_MODULE=\"pytest_django_test.settings_sqlite\"\n",
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/pytest-dev/pytest-django/blob/v${nix.sel(finalAttrs, "version")}/docs/changelog.rst`),
         description: "Pytest plugin for testing of Django applications",
         homepage: "https://pytest-django.readthedocs.org/en/latest/",

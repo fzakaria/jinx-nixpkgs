@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const gradle = nix.arg($, "gradle");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "crossfire-gridarta",
       version: "2025-04",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.code.sf.net/p/gridarta/gridarta",
           rev: "9ff39a63071fc76141117eac97a27c07d312cfb5",
           hash: "sha256-UotvRJey0SXhKjyKo0L7MiDtqvsBOUcT0315fkAKwb0=",
@@ -40,7 +40,7 @@ makeWrapper ${jre}/bin/java $out/bin/crossfire-gridarta \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Map and archetype editor for the Crossfire free MMORPG",
         homepage: "http://crossfire.real-time.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

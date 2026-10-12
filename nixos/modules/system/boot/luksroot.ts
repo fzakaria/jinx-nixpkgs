@@ -523,26 +523,26 @@ See:
 - https://www.freedesktop.org/software/systemd/man/crypttab.html
 `;
   return {
-    __proto__: pos$89,
+    [nix.POS]: pos$89,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["boot", "initrd", "luks", "enable"]), "")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$58,
+      [nix.POS]: pos$58,
       boot: nix.thunk(() => ({
-        __proto__: pos$57,
+        [nix.POS]: pos$57,
         initrd: nix.thunk(() => ({
-          __proto__: pos$56,
+          [nix.POS]: pos$56,
           luks: nix.thunk(() => ({
-            __proto__: pos$55,
+            [nix.POS]: pos$55,
             mitigateDMAAttacks: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: true,
                 description: "Unless enabled, encryption keys can be easily recovered by an attacker with physical\naccess to any machine with PCMCIA, ExpressCard, ThunderBolt or FireWire port.\nMore information is available at <https://en.wikipedia.org/wiki/DMA_attack>.\n\nThis option blacklists FireWire drivers, but doesn't remove them. You can manually\nload the drivers if you need to use a FireWire device, but don't forget to unload them!\n",
               })))),
             cryptoModules: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 default: nix.thunk(() => [
                   "aes",
@@ -563,25 +563,25 @@ See:
                 description: "A list of cryptographic kernel modules needed to decrypt the root device(s).\nThe default includes all common modules.\n",
               })))),
             forceLuksSupportInInitrd: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: false,
                 internal: true,
                 description: "Whether to configure luks support in the initrd, when no luks\ndevices are configured.\n",
               })))),
             reusePassphrases: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: true,
                 description: "When opening a new LUKS device try reusing last successful\npassphrase.\n\nUseful for mounting a number of devices that use the same\npassphrase without retyping it several times.\n\nSuch setup can be useful if you use {command}`cryptsetup luksSuspend`.\nDifferent LUKS devices will still have\ndifferent master keys even when using the same passphrase.\n",
               })))),
             devices: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$50,
+                [nix.POS]: pos$50,
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   luksroot: nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     device: "/dev/disk/by-uuid/430e9eff-d852-4f68-aa3b-2fa3599ebe08",
                   })),
                 })),
@@ -593,11 +593,11 @@ See:
                         const config_1 = nix.arg($_1, "config");
                         const name = nix.arg($_1, "name");
                         return {
-                          __proto__: pos$49,
+                          [nix.POS]: pos$49,
                           options: nix.thunk(() => ({
-                            __proto__: pos$47,
+                            [nix.POS]: pos$47,
                             name: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$7,
+                                [nix.POS]: pos$7,
                                 visible: false,
                                 default: name,
                                 example: "luksroot",
@@ -605,99 +605,99 @@ See:
                                 description: "Name of the unencrypted device in {file}`/dev/mapper`.",
                               })))),
                             device: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$8,
+                                [nix.POS]: pos$8,
                                 example: "/dev/disk/by-uuid/430e9eff-d852-4f68-aa3b-2fa3599ebe08",
                                 type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
                                 description: "Path of the underlying encrypted block device.",
                               })))),
                             header: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$9,
+                                [nix.POS]: pos$9,
                                 default: null,
                                 example: "/root/header.img",
                                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")))),
                                 description: "The name of the file or block device that\nshould be used as header for the encrypted device.\n",
                               })))),
                             keyFile: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$10,
+                                [nix.POS]: pos$10,
                                 default: null,
                                 example: "/dev/sdb1",
                                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")))),
                                 description: "The name of the file (can be a raw device or a partition) that\nshould be used as the decryption key for the encrypted device. If\nnot specified, you will be prompted for a passphrase instead.\n",
                               })))),
                             tryEmptyPassphrase: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$11,
+                                [nix.POS]: pos$11,
                                 default: false,
                                 type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "bool")),
                                 description: "If keyFile fails then try an empty passphrase first before\nprompting for password.\n",
                               })))),
                             keyFileTimeout: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$12,
+                                [nix.POS]: pos$12,
                                 default: null,
                                 example: 5n,
                                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "int")))),
                                 description: "The amount of time in seconds for a keyFile to appear before\ntiming out and trying passwords.\n",
                               })))),
                             keyFileSize: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$13,
+                                [nix.POS]: pos$13,
                                 default: null,
                                 example: 4096n,
                                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "int")))),
                                 description: "The size of the key file. Use this if only the beginning of the\nkey file should be used as a key (often the case if a raw device\nor partition is used as key file). If not specified, the whole\n`keyFile` will be used decryption, instead of just\nthe first `keyFileSize` bytes.\n",
                               })))),
                             keyFileOffset: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$14,
+                                [nix.POS]: pos$14,
                                 default: null,
                                 example: 4096n,
                                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "int")))),
                                 description: "The offset of the key file. Use this in combination with\n`keyFileSize` to use part of a file as key file\n(often the case if a raw device or partition is used as a key file).\nIf not specified, the key begins at the first byte of\n`keyFile`.\n",
                               })))),
                             preLVM: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$15,
+                                [nix.POS]: pos$15,
                                 default: true,
                                 type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "bool")),
                                 description: "Whether the luksOpen will be attempted before LVM scan or after it.",
                               })))),
                             allowDiscards: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$16,
+                                [nix.POS]: pos$16,
                                 default: false,
                                 type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "bool")),
                                 description: "Whether to allow TRIM requests to the underlying device. This option\nhas security implications; please read the LUKS documentation before\nactivating it.\nThis option is incompatible with authenticated encryption (dm-crypt\nstacked over dm-integrity).\n",
                               })))),
                             bypassWorkqueues: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$17,
+                                [nix.POS]: pos$17,
                                 default: false,
                                 type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "bool")),
                                 description: "Whether to bypass dm-crypt's internal read and write workqueues.\nEnabling this should improve performance on SSDs; see\n[here](https://wiki.archlinux.org/index.php/Dm-crypt/Specialties#Disable_workqueue_for_increased_solid_state_drive_(SSD)_performance)\nfor more information. Needs Linux 5.9 or later.\n",
                               })))),
                             fallbackToPassword: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$18,
+                                [nix.POS]: pos$18,
                                 default: false,
                                 type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "bool")),
                                 description: "Whether to fallback to interactive passphrase prompt if the keyfile\ncannot be found. This will prevent unattended boot should the keyfile\ngo missing.\n",
                               })))),
                             gpgCard: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$24,
+                                [nix.POS]: pos$24,
                                 default: null,
                                 description: "The option to use this LUKS device with a GPG encrypted luks password by the GPG Smartcard.\nIf null (the default), GPG-Smartcard will be disabled for this device.\n",
                                 type: nix.thunk(() => (() => {
                                   const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w_1, "types")), w_1);
                                   return nix.app(nix.lookup(w_2, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_2, "submodule"), nix.thunk(() => ({
-                                        __proto__: pos$23,
+                                        [nix.POS]: pos$23,
                                         options: nix.thunk(() => ({
-                                          __proto__: pos$22,
+                                          [nix.POS]: pos$22,
                                           gracePeriod: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                                              __proto__: pos$19,
+                                              [nix.POS]: pos$19,
                                               default: 10n,
                                               type: nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "int")),
                                               description: "Time in seconds to wait for the GPG Smartcard.",
                                             })))),
                                           encryptedPass: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                                              __proto__: pos$20,
+                                              [nix.POS]: pos$20,
                                               type: nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "path")),
                                               description: "Path to the GPG encrypted passphrase.",
                                             })))),
                                           publicKey: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                                              __proto__: pos$21,
+                                              [nix.POS]: pos$21,
                                               type: nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "path")),
                                               description: "Path to the Public Key.",
                                             })))),
@@ -706,16 +706,16 @@ See:
                                 })()),
                               })))),
                             fido2: nix.thunk(() => ({
-                              __proto__: pos$29,
+                              [nix.POS]: pos$29,
                               credential: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$25,
+                                  [nix.POS]: pos$25,
                                   default: null,
                                   example: "f1d00200d8dc783f7fb1e10ace8da27f8312d72692abfca2f7e4960a73f48e82e1f7571f6ebfcee9fb434f9886ccc8fcc52a6614d8d2",
                                   type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")))),
                                   description: "The FIDO2 credential ID.",
                                 })))),
                               credentials: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$26,
+                                  [nix.POS]: pos$26,
                                   default: [],
                                   example: nix.thunk(() => [
                                     "f1d00200d8dc783f7fb1e10ace8da27f8312d72692abfca2f7e4960a73f48e82e1f7571f6ebfcee9fb434f9886ccc8fcc52a6614d8d2",
@@ -724,80 +724,80 @@ See:
                                   description: "List of FIDO2 credential IDs.\n\nUse this if you have multiple FIDO2 keys you want to use for the same luks device.\n",
                                 })))),
                               gracePeriod: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$27,
+                                  [nix.POS]: pos$27,
                                   default: 10n,
                                   type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "int")),
                                   description: "Time in seconds to wait for the FIDO2 key.",
                                 })))),
                               passwordLess: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$28,
+                                  [nix.POS]: pos$28,
                                   default: false,
                                   type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "bool")),
                                   description: "Defines whatever to use an empty string as a default salt.\n\nEnable only when your device is PIN protected, such as [Trezor](https://trezor.io/).\n",
                                 })))),
                             })),
                             yubikey: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$42,
+                                [nix.POS]: pos$42,
                                 default: null,
                                 description: "The options to use for this LUKS device in YubiKey-PBA.\nIf null (the default), YubiKey-PBA will be disabled for this device.\n",
                                 type: nix.thunk(() => (() => {
                                   const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w_1, "types")), w_1);
                                   return nix.app(nix.lookup(w_2, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_2, "submodule"), nix.thunk(() => ({
-                                        __proto__: pos$41,
+                                        [nix.POS]: pos$41,
                                         options: nix.thunk(() => ({
-                                          __proto__: pos$40,
+                                          [nix.POS]: pos$40,
                                           twoFactor: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                                              __proto__: pos$30,
+                                              [nix.POS]: pos$30,
                                               default: true,
                                               type: nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "bool")),
                                               description: "Whether to use a passphrase and a YubiKey (true), or only a YubiKey (false).",
                                             })))),
                                           slot: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                                              __proto__: pos$31,
+                                              [nix.POS]: pos$31,
                                               default: 2n,
                                               type: nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "int")),
                                               description: "Which slot on the YubiKey to challenge.",
                                             })))),
                                           saltLength: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                                              __proto__: pos$32,
+                                              [nix.POS]: pos$32,
                                               default: 16n,
                                               type: nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "int")),
                                               description: "Length of the new salt in byte (64 is the effective maximum).",
                                             })))),
                                           keyLength: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                                              __proto__: pos$33,
+                                              [nix.POS]: pos$33,
                                               default: 64n,
                                               type: nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "int")),
                                               description: "Length of the LUKS slot key derived with PBKDF2 in byte.",
                                             })))),
                                           iterationStep: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                                              __proto__: pos$34,
+                                              [nix.POS]: pos$34,
                                               default: 0n,
                                               type: nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "int")),
                                               description: "How much the iteration count for PBKDF2 is increased at each successful authentication.",
                                             })))),
                                           gracePeriod: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                                              __proto__: pos$35,
+                                              [nix.POS]: pos$35,
                                               default: 10n,
                                               type: nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "int")),
                                               description: "Time in seconds to wait for the YubiKey.",
                                             })))),
                                           storage: nix.thunk(() => ({
-                                            __proto__: pos$39,
+                                            [nix.POS]: pos$39,
                                             device: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                                                __proto__: pos$36,
+                                                [nix.POS]: pos$36,
                                                 default: "/dev/sda1",
                                                 type: nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "path")),
                                                 description: "An unencrypted device that will temporarily be mounted in stage-1.\nMust contain the current salt to create the challenge for this LUKS device.\n",
                                               })))),
                                             fsType: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                                                __proto__: pos$37,
+                                                [nix.POS]: pos$37,
                                                 default: "vfat",
                                                 type: nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "str")),
                                                 description: "The filesystem of the unencrypted device.",
                                               })))),
                                             path: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                                                __proto__: pos$38,
+                                                [nix.POS]: pos$38,
                                                 default: "/crypt-storage/default",
                                                 type: nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "str")),
                                                 description: "Absolute path of the salt on the unencrypted device with\nthat device's root directory as \"/\".\n",
@@ -808,21 +808,21 @@ See:
                                 })()),
                               })))),
                             preOpenCommands: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$43,
+                                [nix.POS]: pos$43,
                                 type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "lines")),
                                 default: "",
                                 example: "mkdir -p /tmp/persistent\nmount -t zfs rpool/safe/persistent /tmp/persistent\n",
                                 description: "Commands that should be run right before we try to mount our LUKS device.\nThis can be useful, if the keys needed to open the drive is on another partition.\n",
                               })))),
                             postOpenCommands: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$44,
+                                [nix.POS]: pos$44,
                                 type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "lines")),
                                 default: "",
                                 example: "umount /tmp/persistent\n",
                                 description: "Commands that should be run right after we have mounted our LUKS device.\n",
                               })))),
                             crypttabExtraOpts: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$45,
+                                [nix.POS]: pos$45,
                                 type: nix.thunk(() => (() => {
                                   const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w_1, "types")), w_1);
                                   return nix.app(nix.lookup(w_2, "listOf"), nix.thunk(() => nix.lookup(w_2, "singleLineStr")));
@@ -832,7 +832,7 @@ See:
                                 description: "Only used with systemd stage 1.\n\nExtra options to append to the last column of the generated crypttab file.\n",
                               })))),
                             timeout: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$46,
+                                [nix.POS]: pos$46,
                                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "ints", "positive")))),
                                 default: nix.thunk(() => nix.sel(luks, "timeout")),
                                 defaultText: "{option}`boot.initrd.luks.timeout`",
@@ -840,7 +840,7 @@ See:
                               })))),
                           })),
                           config: nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(clevis, "enable")) && nix.asBool(nix.app(nix.lookup(w_1, "hasAttr"), name, nix.thunk(() => nix.sel(clevis, "devices")))))), nix.thunk(() => ({
-                              __proto__: pos$48,
+                              [nix.POS]: pos$48,
                               preOpenCommands: nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(systemd, "enable"))), nix.thunk(() => nix.str`mkdir -p /clevis-${name}
 mount -t ramfs none /clevis-${name}
 clevis decrypt < /etc/clevis/${name}.jwe > /clevis-${name}/decrypted
@@ -855,25 +855,25 @@ clevis decrypt < /etc/clevis/${name}.jwe > /clevis-${name}/decrypted
                 })()),
               })))),
             gpgSupport: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$51,
+                [nix.POS]: pos$51,
                 default: false,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 description: "Enables support for authenticating with a GPG encrypted password.\n",
               })))),
             yubikeySupport: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$52,
+                [nix.POS]: pos$52,
                 default: false,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 description: "Enables support for authenticating with a YubiKey on LUKS devices.\nSee the NixOS wiki for information on how to properly setup a LUKS device\nand a YubiKey to work with this feature.\n",
               })))),
             fido2Support: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$53,
+                [nix.POS]: pos$53,
                 default: false,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 description: "Enables support for authenticating with FIDO2 devices.\n",
               })))),
             timeout: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$54,
+                [nix.POS]: pos$54,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "ints", "positive")))),
                 default: null,
                 description: "The amount of time in seconds to wait on the passphrase prompt.\nIf the timeout is reached, the system will power off.\n",
@@ -883,78 +883,78 @@ clevis decrypt < /etc/clevis/${name}.jwe > /clevis-${name}/decrypted
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(luks, "devices"), {})) || nix.asBool(nix.sel(luks, "forceLuksSupportInInitrd")))), nix.thunk(() => ({
-        __proto__: pos$88,
+        [nix.POS]: pos$88,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$59,
+            [nix.POS]: pos$59,
             assertion: nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(luks, "gpgSupport")) && nix.asBool(nix.sel(luks, "yubikeySupport"))))),
             message: "YubiKey and GPG Card may not be used at the same time.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$60,
+            [nix.POS]: pos$60,
             assertion: nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(luks, "gpgSupport")) && nix.asBool(nix.sel(luks, "fido2Support"))))),
             message: "FIDO2 and GPG Card may not be used at the same time.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$61,
+            [nix.POS]: pos$61,
             assertion: nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(luks, "fido2Support")) && nix.asBool(nix.sel(luks, "yubikeySupport"))))),
             message: "FIDO2 and YubiKey may not be used at the same time.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$62,
+            [nix.POS]: pos$62,
             assertion: nix.thunk(() => (!nix.asBool(nix.app(nix.lookup(w, "any"), (dev) => nix.sel(dev, "bypassWorkqueues"), nix.thunk(() => nix.app(nix.lookup(w, "attrValues"), nix.thunk(() => nix.sel(luks, "devices")))))) || nix.asBool(nix.app(nix.lookup(w, "versionAtLeast"), nix.thunk(() => nix.sel(kernelPackages, "kernel", "version")), "5.9")))),
             message: "boot.initrd.luks.devices.<name>.bypassWorkqueues is not supported for kernels older than 5.9",
           })),
           nix.thunk(() => ({
-            __proto__: pos$63,
+            [nix.POS]: pos$63,
             assertion: nix.thunk(() => (!nix.asBool(!nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable"))) || nix.asBool(nix.app(nix.lookup(w, "all"), (x) => nix.eq(nix.sel(x, "keyFileTimeout"), null), nix.thunk(() => nix.app(nix.lookup(w, "attrValues"), nix.thunk(() => nix.sel(luks, "devices")))))))),
             message: "boot.initrd.luks.devices.<name>.keyFileTimeout is only supported for systemd initrd",
           })),
           nix.thunk(() => ({
-            __proto__: pos$64,
+            [nix.POS]: pos$64,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable")) || nix.asBool(nix.app(nix.lookup(w, "all"), (dev) => !nix.asBool(nix.sel(dev, "fallbackToPassword")), nix.thunk(() => nix.app(nix.lookup(w, "attrValues"), nix.thunk(() => nix.sel(luks, "devices")))))))),
             message: "boot.initrd.luks.devices.<name>.fallbackToPassword is implied by systemd stage 1.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$65,
+            [nix.POS]: pos$65,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable")) || nix.asBool(nix.app(nix.lookup(w, "all"), (dev) => nix.sel(dev, "preLVM"), nix.thunk(() => nix.app(nix.lookup(w, "attrValues"), nix.thunk(() => nix.sel(luks, "devices")))))))),
             message: "boot.initrd.luks.devices.<name>.preLVM has no effect with systemd stage 1. It can be safely removed from your configuration, and systemd will discover LVM devices automatically at runtime, whether they come before or after LUKS. The preLVM option will be removed in 26.11 along with scripted stage 1.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$66,
+            [nix.POS]: pos$66,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable")) || nix.asBool(nix.eq(nix.sel(options, "boot", "initrd", "luks", "reusePassphrases", "highestPrio"), defaultPrio)))),
             message: "boot.initrd.luks.reusePassphrases has no effect with systemd stage 1.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$67,
+            [nix.POS]: pos$67,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable")) || nix.asBool(nix.app(nix.lookup(w, "all"), (dev) => (nix.asBool(nix.eq(nix.sel(dev, "preOpenCommands"), "")) && nix.asBool(nix.eq(nix.sel(dev, "postOpenCommands"), ""))), nix.thunk(() => nix.app(nix.lookup(w, "attrValues"), nix.thunk(() => nix.sel(luks, "devices")))))))),
             message: "boot.initrd.luks.devices.<name>.preOpenCommands and postOpenCommands is not supported by systemd stage 1. Please bind a service to cryptsetup.target or cryptsetup-pre.target instead.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$68,
+            [nix.POS]: pos$68,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable")) || nix.asBool(!nix.asBool(nix.sel(luks, "gpgSupport"))))),
             message: nix.thunk(() => nix.app(systemdStage1HardwareKeyAssertionMessage, "boot.initrd.luks.gpgSupport")),
           })),
           nix.thunk(() => ({
-            __proto__: pos$69,
+            [nix.POS]: pos$69,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable")) || nix.asBool(!nix.asBool(nix.sel(luks, "fido2Support"))))),
             message: nix.thunk(() => nix.app(systemdStage1HardwareKeyAssertionMessage, "boot.initrd.luks.fido2Support")),
           })),
           nix.thunk(() => ({
-            __proto__: pos$70,
+            [nix.POS]: pos$70,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable")) || nix.asBool(!nix.asBool(nix.sel(luks, "yubikeySupport"))))),
             message: nix.thunk(() => nix.app(systemdStage1HardwareKeyAssertionMessage, "boot.initrd.luks.yubikeySupport")),
           })),
         ]),
         boot: nix.thunk(() => ({
-          __proto__: pos$84,
+          [nix.POS]: pos$84,
           blacklistedKernelModules: nix.thunk(() => nix.app(nix.lookup(w, "optionals"), nix.thunk(() => nix.sel(luks, "mitigateDMAAttacks")), nix.thunk(() => ["firewire_ohci", "firewire_core", "firewire_sbp2"]))),
           initrd: nix.thunk(() => ({
-            __proto__: pos$83,
+            [nix.POS]: pos$83,
             availableKernelModules: nix.thunk(() => nix.concat(["dm_mod", "dm_crypt"], nix.concat(nix.sel(luks, "cryptoModules"), nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.app(nix.sel(nix.builtins, "elem"), "xts", nix.thunk(() => nix.sel(luks, "cryptoModules")))), "ecb")))),
             extraUtilsCommands: nix.thunk(() => (() => {
               const pbkdf2_sha512 = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommandCC"), "pbkdf2-sha512", nix.thunk(() => ({
-                  __proto__: pos$71,
+                  [nix.POS]: pos$71,
                   buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openssl"))]),
                 })), nix.thunk(() => nix.str`mkdir -p "$out/bin"
 cc -O3 -lcrypto ${nix.path(here, "./pbkdf2-sha512.c")} -o "$out/bin/pbkdf2-sha512"
@@ -1002,13 +1002,13 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.sel(luks, "gpgSup
 ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.sel(luks, "fido2Support")), "$out/bin/fido2luks --version\n")}
 `))),
             systemd: nix.thunk(() => ({
-              __proto__: pos$80,
+              [nix.POS]: pos$80,
               contents: nix.thunk(() => ({
-                __proto__: pos$73,
-                "/etc/crypttab": nix.thunk(() => ({ __proto__: pos$72, source: stage1Crypttab })),
+                [nix.POS]: pos$73,
+                "/etc/crypttab": nix.thunk(() => ({ [nix.POS]: pos$72, source: stage1Crypttab })),
               })),
               extraBin: nix.thunk(() => ({
-                __proto__: pos$74,
+                [nix.POS]: pos$74,
                 "systemd-cryptsetup": nix.thunk(() => nix.str`${nix.sel(config, "boot", "initrd", "systemd", "package")}/bin/systemd-cryptsetup`),
               })),
               additionalUpstreamUnits: nix.thunk(() => ["cryptsetup-pre.target", "cryptsetup.target", "remote-cryptsetup.target"]),
@@ -1023,7 +1023,7 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.sel(luks, "fido2S
                 const devicesWithTimeout = nix.thunk(() => nix.app(nix.lookup(w, "filterAttrs"), (_) => (dev) => !nix.eq(nix.sel(dev, "timeout"), null), nix.thunk(() => nix.sel(luks, "devices"))));
                 return nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
                     nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(clevis, "enable")) && nix.asBool(nix.sel(systemd, "enable")))), nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs'"), (name) => (_) => nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.str`cryptsetup-clevis-${name}`), nix.thunk(() => ({
-                            __proto__: pos$77,
+                            [nix.POS]: pos$77,
                             wantedBy: nix.thunk(() => [
                               nix.thunk(() => nix.str`systemd-cryptsetup@${nix.app(nix.sel(utils, "escapeSystemdPath"), name)}.service`),
                             ]),
@@ -1040,19 +1040,19 @@ umask 277
 clevis decrypt < /etc/clevis/${name}.jwe > /clevis-${name}/decrypted
 `),
                             conflicts: nix.thunk(() => ["initrd-switch-root.target", "shutdown.target"]),
-                            unitConfig: nix.thunk(() => ({ __proto__: pos$75, DefaultDependencies: "no" })),
+                            unitConfig: nix.thunk(() => ({ [nix.POS]: pos$75, DefaultDependencies: "no" })),
                             serviceConfig: nix.thunk(() => ({
-                              __proto__: pos$76,
+                              [nix.POS]: pos$76,
                               Type: "oneshot",
                               RemainAfterExit: true,
                               ExecStop: nix.thunk(() => nix.str`${nix.sel(config, "boot", "initrd", "systemd", "package", "util-linux")}/bin/umount /clevis-${name}`),
                             })),
                           }))), devicesWithClevis)))),
                     nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(systemd, "enable")), nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs'"), (name) => (dev) => nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.str`systemd-cryptsetup@${nix.app(nix.sel(utils, "escapeSystemdPath"), name)}`), nix.thunk(() => ({
-                            __proto__: pos$79,
+                            [nix.POS]: pos$79,
                             overrideStrategy: "asDropin",
                             unitConfig: nix.thunk(() => ({
-                              __proto__: pos$78,
+                              [nix.POS]: pos$78,
                               JobTimeoutSec: nix.thunk(() => nix.sel(dev, "timeout")),
                               JobTimeoutAction: "poweroff",
                             })),
@@ -1061,8 +1061,8 @@ clevis decrypt < /etc/clevis/${name}.jwe > /clevis-${name}/decrypted
               })()),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$82,
-              lvm: nix.thunk(() => ({ __proto__: pos$81, enable: true })),
+              [nix.POS]: pos$82,
+              lvm: nix.thunk(() => ({ [nix.POS]: pos$81, enable: true })),
             })),
             preFailCommands: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable"))), postCommands)),
             preLVMCommands: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable"))), nix.thunk(() => nix.add(nix.add(nix.add(commonFunctions, preCommands), nix.app(nix.lookup(w, "concatStrings"), nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), openCommand, preLVM)))), postCommands)))),
@@ -1070,11 +1070,11 @@ clevis decrypt < /etc/clevis/${name}.jwe > /clevis-${name}/decrypted
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$86,
-          lvm: nix.thunk(() => ({ __proto__: pos$85, enable: true })),
+          [nix.POS]: pos$86,
+          lvm: nix.thunk(() => ({ [nix.POS]: pos$85, enable: true })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$87,
+          [nix.POS]: pos$87,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "cryptsetup"))]),
         })),
       })))),

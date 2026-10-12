@@ -21,17 +21,17 @@ export default nix.lambda((args) => (() => {
       const version = "1.9.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "websocket_client",
           version: version,
           hash: "sha256-noE2JLbrYZmZqX3HlYRpIXwxdjErOhakvRvH4IpG7Jg=",
         }))));
       const build_system = nix.thunk(() => [setuptools]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, optional: nix.thunk(() => [python_socks]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, optional: nix.thunk(() => [python_socks]) }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["websocket"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Websocket client for Python",
         homepage: "https://github.com/websocket-client/websocket-client",
         changelog: nix.thunk(() => nix.str`https://github.com/websocket-client/websocket-client/blob/v${version}/ChangeLog`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "wsdump",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

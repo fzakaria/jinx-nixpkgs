@@ -51,10 +51,10 @@ export default nix.lambda((args) => (() => {
   const mkRenamedOptionModule = nix.thunk(() => nix.attr(lib, "mkRenamedOptionModule"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "snapserver"));
-  const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({ __proto__: pos$1, listsAsDuplicateKeys: true }))));
+  const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({ [nix.POS]: pos$1, listsAsDuplicateKeys: true }))));
   const configFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "snapserver.conf", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$33,
+    [nix.POS]: pos$33,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(mkRenamedOptionModule, nix.thunk(() => ["services", "snapserver", "listenAddress"]), nix.thunk(() => ["services", "snapserver", "settings", "tcp-streaming", "bind_to_address"]))),
       nix.thunk(() => nix.app(mkRenamedOptionModule, nix.thunk(() => ["services", "snapserver", "port"]), nix.thunk(() => ["services", "snapserver", "settings", "tcp-streaming", "port"]))),
@@ -74,26 +74,26 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["services", "snapserver", "streams"]), "Configure `services.snapserver.settings.stream.source` instead")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       services: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         snapserver: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           enable: nix.thunk(() => nix.app(mkEnableOption, "snapserver")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "snapcast", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               default: nix.thunk(() => ({})),
               description: "Snapserver configuration.\n\nRefer to the [example configuration](https://github.com/badaix/snapcast/blob/develop/server/etc/snapserver.conf) for possible options.\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   freeformType: nix.thunk(() => nix.sel(format, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     stream: nix.thunk(() => ({
-                      __proto__: pos$3,
+                      [nix.POS]: pos$3,
                       source: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$2,
+                          [nix.POS]: pos$2,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(types, null);
                             return nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "str")), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))));
@@ -103,51 +103,51 @@ export default nix.lambda((args) => (() => {
                         })))),
                     })),
                     "tcp-streaming": nix.thunk(() => ({
-                      __proto__: pos$7,
-                      enabled: nix.thunk(() => nix.update(nix.app(mkEnableOption, "streaming via TCP"), { __proto__: pos$4, default: true })),
+                      [nix.POS]: pos$7,
+                      enabled: nix.thunk(() => nix.update(nix.app(mkEnableOption, "streaming via TCP"), { [nix.POS]: pos$4, default: true })),
                       bind_to_address: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$5,
+                          [nix.POS]: pos$5,
                           default: "::",
                           description: "Address to listen on for snapclient connections.\n",
                         })))),
                       port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           type: nix.thunk(() => nix.sel(types, "port")),
                           default: 1704n,
                           description: "Port to listen on for snapclient connections.\n",
                         })))),
                     })),
                     "tcp-control": nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       enabled: nix.thunk(() => nix.app(mkEnableOption, "the TCP JSON-RPC")),
                       bind_to_address: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           default: "::",
                           description: "Address to listen on for snapclient connections.\n",
                         })))),
                       port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           type: nix.thunk(() => nix.sel(types, "port")),
                           default: 1705n,
                           description: "Port to listen on for snapclient connections.\n",
                         })))),
                     })),
                     http: nix.thunk(() => ({
-                      __proto__: pos$14,
+                      [nix.POS]: pos$14,
                       enabled: nix.thunk(() => nix.app(mkEnableOption, "the HTTP JSON-RPC")),
                       bind_to_address: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$11,
+                          [nix.POS]: pos$11,
                           default: "::",
                           description: "Address to listen on for snapclient connections.\n",
                         })))),
                       port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$12,
+                          [nix.POS]: pos$12,
                           type: nix.thunk(() => nix.sel(types, "port")),
                           default: 1780n,
                           description: "Port to listen on for snapclient connections.\n",
                         })))),
                       doc_root: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$13,
+                          [nix.POS]: pos$13,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -161,7 +161,7 @@ export default nix.lambda((args) => (() => {
                 })))),
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to automatically open the specified ports in the firewall.\n",
@@ -170,27 +170,27 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         environment: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           etc: nix.thunk(() => ({
-            __proto__: pos$23,
-            "snapserver.conf": nix.thunk(() => ({ __proto__: pos$22, source: configFile })),
+            [nix.POS]: pos$23,
+            "snapserver.conf": nix.thunk(() => ({ [nix.POS]: pos$22, source: configFile })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           services: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             snapserver: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               after: nix.thunk(() => ["network.target", "nss-lookup.target"]),
               description: "Snapserver",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               before: nix.thunk(() => ["mpd.service", "mopidy.service"]),
               restartTriggers: nix.thunk(() => [configFile]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 DynamicUser: true,
                 ExecStart: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
                     nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "snapserver")),
@@ -214,15 +214,15 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           firewall: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             allowedTCPPorts: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "openFirewall")) && nix.asBool(nix.sel(cfg, "settings", "tcp-streaming", "enabled")))), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "tcp-streaming", "port"))])), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "openFirewall")) && nix.asBool(nix.sel(cfg, "settings", "tcp-control", "enabled")))), nix.thunk(() => nix.sel(cfg, "settings", "tcp-control", "port"))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "openFirewall")) && nix.asBool(nix.sel(cfg, "settings", "http", "enabled")))), nix.thunk(() => nix.sel(cfg, "settings", "http", "port")))))),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "tobim"))];

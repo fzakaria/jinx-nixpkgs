@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fixDarwinDylibNames = nix.arg($, "fixDarwinDylibNames");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "btor2tools",
       version: "0-unstable-2025-09-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hwmcc",
           repo: "btor2tools",
           rev: "d33c73ff1d173f1bfac8ba6b1c6d68ba62c55f8e",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev", "lib"]),
       cmakeFlags: nix.thunk(() => nix.concat(["-DCMAKE_SKIP_BUILD_RPATH=ON"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["-DCMAKE_BUILD_WITH_INSTALL_NAME_DIR=ON"])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Generic parser and tool package for the BTOR2 format",
         homepage: "https://github.com/hwmcc/btor2tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

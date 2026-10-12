@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nwjs = nix.arg($, "nwjs");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "onlykey",
       version: "5.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "trustcrypto",
           repo: "OnlyKey-App",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/trustcrypto/OnlyKey-App/commit/b8918cec80f5feda50c24a0aec3d6fb914ea8481.patch",
             hash: "sha256-ULMZI7fo5SJGrfCRqZzZVoGOTDQ8q/NG/uXMjNkQ+qk=",
           })))),
       ]),
       desktopItem: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name: "onlykey",
           exec: "onlykey",
           icon: "onlykey",
@@ -73,11 +73,11 @@ makeWrapper ${nwjs}/bin/nw "$out/bin/onlykey" \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Setup and configure OnlyKey",
         homepage: "https://github.com/trustcrypto/OnlyKey-App",
         changelog: nix.thunk(() => nix.str`https://github.com/trustcrypto/OnlyKey-App/releases/tag/v${nix.sel(finalAttrs, "version")}`),

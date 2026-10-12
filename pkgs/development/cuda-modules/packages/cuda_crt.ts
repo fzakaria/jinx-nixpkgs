@@ -14,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const cudaOlder = nix.arg($, "cudaOlder");
   const glibc = nix.arg($, "glibc");
   return nix.app(buildRedist, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       redistName: "cuda",
       pname: "cuda_crt",
       outputs: nix.thunk(() => ["out"]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.app(cudaOlder, "13.2")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(glibc, "version")), "2.42")))), "nixLog \"Patching math_functions.h rsqrt signatures to match glibc's ones\"\nsubstituteInPlace \"${!outputInclude:?}/include/crt/math_functions.h\" \\\n  --replace-fail \\\n    \"rsqrt(double x);\" \\\n    \"rsqrt(double x) noexcept (true);\" \\\n  --replace-fail \\\n    \"rsqrtf(float x);\" \\\n    \"rsqrtf(float x) noexcept (true);\"\n\nnixLog \"Patching math_functions.hpp rsqrt signatures to match glibc's ones\"\nsubstituteInPlace \"${!outputInclude:?}/include/crt/math_functions.hpp\" \\\n  --replace-fail \\\n    \"__func__(double rsqrt(const double a))\" \\\n    \"__func__(double rsqrt(const double a) throw())\" \\\n  --replace-fail \\\n    \"__func__(float rsqrtf(const float a))\" \\\n    \"__func__(float rsqrtf(const float a) throw())\"\n")),
       brokenAssertions: nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           message: "cannot use libc++ on x86_64-linux",
           assertion: nix.thunk(() => (!nix.asBool(nix.eq(nix.sel(backendStdenv, "hostNixSystem"), "x86_64-linux")) || nix.asBool(nix.eq(nix.sel(backendStdenv, "cc", "libcxx"), null)))),
         })),

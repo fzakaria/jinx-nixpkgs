@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const leveldb = nix.arg($, "leveldb");
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     pname: "gerbil-leveldb",
     version: "unstable-2023-09-23",
     "git-version": "c62e47f",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
     "version-path": "",
     softwareName: "Gerbil-LevelDB",
     "pre-src": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       fun: fetchFromGitHub,
       owner: "mighty-gerbils",
       repo: "gerbil-leveldb",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       sha256: "177zn1smv2zq97mlryf8fi7v5gbjk07v5i0dix3r2wsanphaawvl",
     })),
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       description: "LevelDB bindings for Gerbil",
       homepage: "https://github.com/mighty-gerbils/gerbil-leveldb",
       license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

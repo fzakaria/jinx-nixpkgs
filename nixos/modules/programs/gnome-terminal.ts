@@ -24,42 +24,42 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "gnome-terminal"));
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       programs: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "gnome-terminal": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "GNOME Terminal")),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         environment: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gnome-terminal"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           dbus: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gnome-terminal"))]),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gnome-terminal"))]),
         })),
         programs: nix.thunk(() => ({
-          __proto__: pos$11,
-          bash: nix.thunk(() => ({ __proto__: pos$9, vteIntegration: true })),
-          zsh: nix.thunk(() => ({ __proto__: pos$10, vteIntegration: true })),
+          [nix.POS]: pos$11,
+          bash: nix.thunk(() => ({ [nix.POS]: pos$9, vteIntegration: true })),
+          zsh: nix.thunk(() => ({ [nix.POS]: pos$10, vteIntegration: true })),
         })),
       })))),
   };

@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const raylib = nix.arg($, "raylib");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "raygui",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/tjammer/raylib-ocaml/releases/download/${nix.sel(finalAttrs, "version")}/raygui-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-PQcVTAQKeTPkOOHk5w3O3Tz0n7jLvkIo3Urvrk66eMs=",
         })))),
       patches: nix.thunk(() => nix.attr(raylib, "patches")),
       propagatedBuildInputs: nix.thunk(() => [raylib]),
-      meta: nix.thunk(() => nix.update(nix.sel(raylib, "meta"), { __proto__: pos$2, description: "OCaml bindings for raygui" })),
+      meta: nix.thunk(() => nix.update(nix.sel(raylib, "meta"), { [nix.POS]: pos$2, description: "OCaml bindings for raygui" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=raygui.ts.map

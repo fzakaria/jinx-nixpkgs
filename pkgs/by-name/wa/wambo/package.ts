@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wambo",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-3EwNC78DhSXbVFSg6q+66yge4S1m5icJ5nOhoy9qsRI=",
         })))),
       cargoHash: "sha256-rFUZGP9pH5J3iXGTyjdtDjS+wiWo5pD3X9eUtIivp2c=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "All-in-one tool to convert decimal/bin/oct/hex and interpret bits as integers",
         mainProgram: "wambo",
         longDescription: "wambo is a binary that can easily shows you a numeric value in all important numeral systems\n(bin, hex, dec) + interprets the input as both signed and unsigned values (from i8 to i64,\nincluding f32 and f64). It also easily calculates you mibibytes to bytes, kilobytes to gibibytes,\nand so on.\n",

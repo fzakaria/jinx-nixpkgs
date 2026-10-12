@@ -31,52 +31,52 @@ export default nix.lambda((args) => (() => {
   const sshCfg = nix.thunk(() => nix.sel(config, "programs", "ssh"));
   const sshOpts = nix.thunk(() => nix.sel(options, "programs", "ssh"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         gnome: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "gcr-ssh-agent": nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 default: nix.thunk(() => nix.sel(config, "services", "gnome", "gnome-keyring", "enable")),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.gnome.gnome-keyring.enable")),
                 example: true,
                 description: "Whether to enable GCR SSH agent.",
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               })))),
-            package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "GCR", nix.thunk(() => ({ __proto__: pos$3, default: nix.thunk(() => ["gcr_4"]) })))),
+            package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "GCR", nix.thunk(() => ({ [nix.POS]: pos$3, default: nix.thunk(() => ["gcr_4"]) })))),
           })),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         assertions: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             assertion: nix.thunk(() => !nix.asBool(nix.sel(sshCfg, "startAgent"))),
             message: nix.thunk(() => nix.str`\`${nix.sel(sshOpts, "startAgent")}' (defined in ${nix.app(nix.sel(lib, "showFiles"), nix.thunk(() => nix.sel(sshOpts, "startAgent", "files")))}) and \`${nix.sel(opts, "enable")}' (defined in ${nix.app(nix.sel(lib, "showFiles"), nix.thunk(() => nix.sel(opts, "enable", "files")))}) cannot both be enabled at the same time.
 These options conflict because only one SSH agent can be installed at a time.`),
           })))),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           user: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             services: nix.thunk(() => ({
-              __proto__: pos$10,
-              "gcr-ssh-agent": nix.thunk(() => ({ __proto__: pos$9, wantedBy: nix.thunk(() => ["default.target"]) })),
+              [nix.POS]: pos$10,
+              "gcr-ssh-agent": nix.thunk(() => ({ [nix.POS]: pos$9, wantedBy: nix.thunk(() => ["default.target"]) })),
             })),
             sockets: nix.thunk(() => ({
-              __proto__: pos$12,
-              "gcr-ssh-agent": nix.thunk(() => ({ __proto__: pos$11, wantedBy: nix.thunk(() => ["sockets.target"]) })),
+              [nix.POS]: pos$12,
+              "gcr-ssh-agent": nix.thunk(() => ({ [nix.POS]: pos$11, wantedBy: nix.thunk(() => ["sockets.target"]) })),
             })),
           })),
         })),

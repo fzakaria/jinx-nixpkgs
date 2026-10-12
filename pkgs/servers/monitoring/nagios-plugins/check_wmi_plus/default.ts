@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "check-wmi-plus";
       const version = "1.65";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "speartail",
           repo: "checkwmiplus",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -90,7 +90,7 @@ $out/bin/check_wmi_plus.pl --help | txt2man -d 1970-01-01 -s 1 -t check_wmi_plus
 gzip $out/share/man/man1/check_wmi_plus.1
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Sensu/nagios plugin using WMI to query Windows hosts",
         homepage: "https://edcint.co.nz/checkwmiplus/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -101,7 +101,7 @@ gzip $out/share/man/man1/check_wmi_plus.1
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

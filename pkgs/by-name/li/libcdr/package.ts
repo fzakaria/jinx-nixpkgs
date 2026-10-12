@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const cppunit = nix.arg($, "cppunit");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libcdr",
       version: "0.1.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dev-www.libreoffice.org/src/libcdr-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-97tqvdfyJoIPKIqT3Y0HdZgzwCUNniAq+Q+bMSxGZaM=",
         })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library providing ability to interpret and import Corel Draw drawings into various applications",
         homepage: "https://wiki.documentfoundation.org/DLP/Libraries/libcdr",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

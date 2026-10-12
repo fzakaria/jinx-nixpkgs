@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cxx-rust-cssparser";
       const version = "1.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "invent.kde.org",
           owner: "libraries",
           repo: "cxx-rust-cssparser",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const extraBuildInputs = nix.thunk(() => [corrosion]);
       const cargoRoot = "rust";
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const dontWrapQtApps = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
           return [
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

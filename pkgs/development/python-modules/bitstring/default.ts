@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.3.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "scott-griffiths",
           repo: "bitstring",
           tag: nix.thunk(() => nix.str`bitstring-${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/test_bits.py", "tests/test_fp8.py", "tests/test_mxfp.py"]);
       const pythonImportsCheck = nix.thunk(() => ["bitstring"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module for binary data manipulation",
         homepage: "https://github.com/scott-griffiths/bitstring",
         changelog: nix.thunk(() => nix.str`https://github.com/scott-griffiths/bitstring/releases/tag/${nix.sel(src, "tag")}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

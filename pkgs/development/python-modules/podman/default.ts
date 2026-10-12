@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const urllib3 = nix.arg($, "urllib3");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "podman",
       version: "5.8.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "containers",
           repo: "podman-py",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [requests, urllib3]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, progress_bar: nix.thunk(() => [rich]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, progress_bar: nix.thunk(() => [rich]) })),
       nativeCheckInputs: nix.thunk(() => [fixtures, pytestCheckHook, requests_mock, writableTmpDirAsHomeHook]),
       pythonImportsCheck: nix.thunk(() => ["podman"]),
       disabledTests: nix.thunk(() => [
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         "podman/tests/integration/test_volumes.py",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python bindings for Podman's RESTful API",
         homepage: "https://github.com/containers/podman-py",
         changelog: nix.thunk(() => nix.str`https://github.com/containers/podman-py/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

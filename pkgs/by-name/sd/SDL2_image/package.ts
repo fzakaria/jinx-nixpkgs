@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const enableSTB = nix.argOr($, "enableSTB", () => true);
   const enableSdltest = nix.argOr($, "enableSdltest", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "SDL2_image",
       version: "2.8.12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.libsdl.org/projects/SDL_image/release/SDL2_image-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-OT9e+1BTbsE8pPSv+2nMmWbTw/lp5sXnAfrd+fl4U4E=",
         })))),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SDL image library",
         homepage: "https://github.com/libsdl-org/SDL_image",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

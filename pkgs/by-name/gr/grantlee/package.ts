@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.3.1";
       const grantleePluginPrefix = nix.thunk(() => nix.str`lib/grantlee/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}`);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "steveire",
           repo: "grantlee",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(qt5, "qtbase", "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Qt5 port of Django template system",
         longDescription: "Grantlee is a plugin based String Template system written using the Qt\nframework. The goals of the project are to make it easier for application\ndevelopers to separate the structure of documents from the data they\ncontain, opening the door for theming.\n\nThe syntax is intended to follow the syntax of the Django template system,\nand the design of Django is reused in Grantlee.",
         homepage: "https://github.com/steveire/grantlee",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         grantleePluginPrefix,

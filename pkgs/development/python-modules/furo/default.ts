@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
     return nix.add(nix.add(nix.add(nix.add(nix.app(nix.sel(lib, "lists", "elemAt"), versionComponents, 0n), "."), nix.app(dropLeadingZero, nix.thunk(() => nix.app(nix.sel(lib, "lists", "elemAt"), versionComponents, 1n)))), "."), nix.app(dropLeadingZero, nix.thunk(() => nix.app(nix.sel(lib, "lists", "elemAt"), versionComponents, 2n))));
   })());
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "pradyunsg",
       repo: "furo",
       tag: version,
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const web_bin = nix.thunk(() => (() => {
     const web_bin_src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname: pname,
         version: pypiVersion,
         format: "wheel",
@@ -53,13 +53,13 @@ export default nix.lambda((args) => (() => {
         python: "py3",
         hash: "sha256-uw6tUwn5UAEwZlomvuh2k8Qc5Nvf+GTb+2sNrkZz0k8=",
       }))));
-    return nix.app(runCommand, nix.thunk(() => nix.str`${pname}-web-bin`), nix.thunk(() => ({ __proto__: pos$3, nativeBuildInputs: nix.thunk(() => [unzip]) })), nix.thunk(() => nix.str`mkdir $out
+    return nix.app(runCommand, nix.thunk(() => nix.str`${pname}-web-bin`), nix.thunk(() => ({ [nix.POS]: pos$3, nativeBuildInputs: nix.thunk(() => [unzip]) })), nix.thunk(() => nix.str`mkdir $out
 unzip ${web_bin_src}
 cp -rv furo/theme/furo/static/{scripts,styles} $out/
 `));
   })());
   const web_native = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.str`${pname}-web`),
       version: version,
       src: src,
@@ -85,9 +85,9 @@ popd
       const pythonRelaxDeps = nix.thunk(() => ["sphinx"]);
       const dependencies = nix.thunk(() => [accessible_pygments, beautifulsoup4, pygments, sphinx, sphinx_basic_ng]);
       const pythonImportsCheck = nix.thunk(() => ["furo"]);
-      const passthru = nix.thunk(() => ({ __proto__: pos$5, web: web }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$5, web: web }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Clean customizable documentation theme for Sphinx",
         homepage: "https://github.com/pradyunsg/furo",
         changelog: nix.thunk(() => nix.str`https://github.com/pradyunsg/furo/blob/${version_1}/docs/changelog.md`),
@@ -98,7 +98,7 @@ popd
         })()),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname: pname_1,
         version: version_1,
         src: src_1,

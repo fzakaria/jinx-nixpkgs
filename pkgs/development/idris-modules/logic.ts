@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const bifunctors = nix.arg($, "bifunctors");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "logic",
       version: "2016-12-02",
       idrisDeps: nix.thunk(() => [bifunctors]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "yurrriq",
           repo: "idris-logic",
           rev: "e0bed57e17fde1237fe0358cb77b25f488a04d2f",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Propositional logic tools, inspired by the Coq standard library",
         homepage: "https://github.com/yurrriq/idris-logic",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

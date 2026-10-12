@@ -34,12 +34,12 @@ export default nix.lambda((args) => (() => {
   const buildId = "5921";
   const rev = "9324c1098132ccba752a466c924481be39ea6965";
   return nix.app(buildDotnetModule, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "olympus-unwrapped",
       version: version,
       strictDeps: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           rev: rev,
           owner: "EverestAPI",
           repo: "Olympus",
@@ -70,9 +70,9 @@ makeWrapper ${phome}/find-love $out/bin/olympus \\
 bsdtar --format zip --strip-components 1 -cf ${phome}/olympus.love src
 `),
       postInstall: "install -Dm644 lib-linux/olympus.desktop $out/share/applications/olympus.desktop\ninstall -Dm644 src/data/icon.png $out/share/icons/hicolor/128x128/apps/olympus.png\ninstall -Dm644 LICENSE $out/share/licenses/olympus/LICENSE\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Cross-platform GUI Everest installer and Celeste mod manager",
         homepage: "https://github.com/EverestAPI/Olympus",
         downloadPage: "https://everestapi.github.io/#olympus",

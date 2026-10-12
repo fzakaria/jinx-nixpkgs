@@ -21,19 +21,19 @@ export default nix.lambda((args) => (() => {
   const mdcat = nix.arg($, "mdcat");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "lumen",
       version: "2.32.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jnsahaj",
           repo: "lumen",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-wTkg7NGCCON1P422q5/76rodIBqDeWIY07J4pRo8Q8k=",
         })))),
       cargoHash: "sha256-ZXw7KEvf1sUHWIM5R4Th2SmekTX6rGXznAq3mtcf3Zo=",
-      env: nix.thunk(() => ({ __proto__: pos$2, OPENSSL_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: 1n })),
       nativeBuildInputs: nix.thunk(() => [makeWrapper, pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
       postFixup: nix.thunk(() => nix.str`wrapProgram $out/bin/lumen --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [fzf, mdcat]))}
@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
         "--skip=vcs::git::tests::test_working_copy_parent_ref_returns_head",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Fast terminal diff viewer and code review TUI",
         homepage: "https://github.com/jnsahaj/lumen",
         changelog: nix.thunk(() => nix.str`https://github.com/jnsahaj/lumen/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

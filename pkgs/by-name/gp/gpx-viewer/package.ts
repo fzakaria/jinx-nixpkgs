@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gpx-viewer";
       const version = "0.5.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DaveDavenport",
           repo: "gpx-viewer",
           rev: version,
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/DaveDavenport/gpx-viewer/commit/12ed6003bdad840586351bdb4e00c18719873c0e.patch",
             hash: "sha256-2/r0M3Yxj+vWgny1Pd5G7NYMb0uC/ByZ7y3tqLVccOc=",
           })))),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [gdl, libchamplain_libsoup3, adwaita_icon_theme, libxml2]);
       const hardeningDisable = nix.thunk(() => ["format"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://blog.sarine.nl/tag/gpxviewer/",
         description: "Simple tool to visualize tracks and waypoints stored in a gpx file",
         mainProgram: "gpx-viewer",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

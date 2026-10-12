@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const runAllTests = nix.argOr($, "runAllTests", () => false);
   const psautohint = nix.arg($, "psautohint");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "psautohint",
       version: "2.4.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "adobe-type-tools",
           repo: "psautohint",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,14 +55,14 @@ sed -i '/setup(/a \\     version="${nix.sel(finalAttrs, "version")}",' setup.py
           "test_hashmap_no_version",
         ]))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          fullTestsuite: nix.thunk(() => nix.app(nix.sel(psautohint, "override"), nix.thunk(() => ({ __proto__: pos$2, runAllTests: true })))),
+          [nix.POS]: pos$3,
+          fullTestsuite: nix.thunk(() => nix.app(nix.sel(psautohint, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, runAllTests: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Script to normalize the XML and other data inside of a UFO",
         homepage: "https://github.com/adobe-type-tools/psautohint",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

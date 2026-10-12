@@ -32,19 +32,19 @@ export default nix.lambda((args) => (() => {
   const electron = electron_43;
   const nodejs = nodejs_22;
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "super-productivity",
       version: "19.1.0",
       nodejs: nodejs,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "super-productivity",
           repo: "super-productivity",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-iWiWVUGr3qGcfYqCJg9hkXSTM1eWarYZgWspj3+Bn0Q=",
         })))),
       npmDeps: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.app(nix.sel(lib, "fetchers", "normalizeHash"), nix.thunk(() => ({})), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pname: "super-productivity-deps",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
             __structuredAttrs: true,
             strictDeps: true,
             env: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               FORCE_EMPTY_CACHE: true,
               NPM_FETCHER_VERSION: "2",
               SSL_CERT_FILE: nix.thunk(() => nix.str`${cacert}/etc/ssl/certs/ca-bundle.crt`),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       npmDepsFetcherVersion: 2n,
       cargoRoot: "electron/wayland-idle-helper",
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-u/GjzX8zykIqJlMR/611ADX2EcD1cb4Qr94EkI2sdlA=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
         CHROMEDRIVER_SKIP_DOWNLOAD: "true",
       })),
@@ -126,7 +126,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: "superproductivity",
             desktopName: "Super Productivity",
             exec: "superproductivity %U",
@@ -139,11 +139,11 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "To Do List / Time Tracker with Jira Integration",
         longDescription: "Experience the best ToDo app for digital professionals and get more done!\nSuper Productivity comes with integrated time-boxing and time tracking capabilities\nand you can load your task from your calendars and from\nJira, Gitlab, GitHub, Open Project and others all into a single ToDo list.\n",
         homepage: "https://super-productivity.com",

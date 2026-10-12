@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "complete-alias";
       const version = "1.18.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cykerway",
           repo: "complete-alias",
           tag: version,
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const buildPhase = "runHook preBuild\n\n# required for the patchShebangs setup hook\nchmod +x complete_alias\n\npatchShebangs complete_alias\n\nrunHook postBuild\n";
       const installPhase = "runHook preInstall\n\nmkdir -p $out/bin\ncp -r complete_alias \"$out\"/bin\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Automagical shell alias completion",
         homepage: "https://github.com/cykerway/complete-alias",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })()),
         mainProgram: "complete_alias",
       }));
-      return { __proto__: pos$3, pname, version, src, buildPhase, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, buildPhase, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

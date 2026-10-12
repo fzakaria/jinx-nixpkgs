@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const meson = nix.arg($, "meson");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mmdoc",
       version: "0.26.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ryantm",
           repo: "mmdoc",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [ninja, meson, pkg_config, xxd]),
       buildInputs: nix.thunk(() => [cmark_gfm, libfastjson, libzip]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Minimal Markdown Documentation",
         mainProgram: "mmdoc",
         homepage: "https://github.com/ryantm/mmdoc",

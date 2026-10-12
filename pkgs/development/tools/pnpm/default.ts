@@ -18,9 +18,9 @@ export default nix.lambda((args) => (() => {
   const mapAttrs$ = nix.thunk(() => nix.attr(lib, "mapAttrs'"));
   const nameValuePair = nix.thunk(() => nix.attr(lib, "nameValuePair"));
   const variants = nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     "10_29_2": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       version: "10.29.2",
       hash: "sha256-hAL2daH0zJ1PJ7v6s1wtSi4dfrATHfA9rQlhnoZnTQw=",
       knownVulnerabilities: nix.thunk(() => [
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     "10_34_0": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "10.34.0",
       hash: "sha256-WOFDJYhx31FYm2UcBiBdq+xIdmpdu6PCWZm2m1C+WY4=",
       knownVulnerabilities: nix.thunk(() => [
@@ -55,23 +55,23 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     "10": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "10.34.5",
       hash: "sha256-zLXEecqxsAYhMlv+fUyaioAx56Ul1ySeJ17L7IGwjbI=",
     })),
     "11": nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "11.27.0",
       hash: "sha256-QKMlFaJVB/jyJt+74lOA4vBTlEwuzGTAwcuYtBy7ke8=",
     })),
     "12": nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: "12.9.0",
       srcHash: "sha256-lcs9nh9GIKfy5QYabUCj/pIpePAjLeeKBlu4UKm8zgM=",
       cargoHash: "sha256-NGefDu4dGMC2RGrTPeYBuRrG+Gb8jnx9+SbyK8WPd9E=",
     })),
   }));
-  const callPnpmNode = (variant) => nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => nix.update(variant, { __proto__: pos$7, nodejs: null })));
+  const callPnpmNode = (variant) => nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => nix.update(variant, { [nix.POS]: pos$7, nodejs: null })));
   const callPnpmRust = nix.thunk(() => nix.app(callPackage, nix.path(here, "./generic-rust.nix")));
   const callPnpm = (variant) => (nix.asBool(nix.has(variant, "cargoHash")) ? nix.app(callPnpmRust, variant) : nix.app(callPnpmNode, variant));
   const mkPnpm = (versionSuffix) => (variant) => nix.app(nameValuePair, nix.thunk(() => nix.str`pnpm_${versionSuffix}`), nix.thunk(() => nix.app(callPnpm, variant)));

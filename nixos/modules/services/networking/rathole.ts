@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "rathole"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   const py_toml_merge = nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writePython3Bin"), "py-toml-merge", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       libraries: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "python3Packages")), null);
         return [
@@ -40,41 +40,41 @@ export default nix.lambda((args) => (() => {
       })()),
     })), "import argparse\nfrom pathlib import Path\nfrom typing import Any\n\nimport tomli_w\nimport tomllib\nfrom mergedeep import merge\n\nparser = argparse.ArgumentParser(description=\"Merge multiple TOML files\")\nparser.add_argument(\n    \"files\",\n    type=Path,\n    nargs=\"+\",\n    help=\"List of TOML files to merge\",\n)\n\nargs = parser.parse_args()\nmerged: dict[str, Any] = {}\n\nfor file in args.files:\n    with open(file, \"rb\") as fh:\n        loaded_toml = tomllib.load(fh)\n        merged = merge(merged, loaded_toml)\n\nprint(tomli_w.dumps(merged))\n"));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         rathole: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Rathole")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "rathole", nix.thunk(() => ({})))),
           role: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["server", "client"]))),
               description: "Select whether rathole needs to be run as a `client` or a `server`.\nServer is a machine with a public IP and client is a device behind NAT,\nbut running some services that need to be exposed to the Internet.\n",
             })))),
           credentialsFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/dev/null",
               description: "Path to a TOML file to be merged with the settings.\nUseful to set secret config parameters like tokens, which\nshould not appear in the Nix Store.\n",
               example: "/var/lib/secrets/rathole/config.toml",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(settingsFormat, "type")),
               default: nix.thunk(() => ({})),
               description: "Rathole configuration, for options reference\nsee the [example](https://github.com/rapiz1/rathole?tab=readme-ov-file#configuration) on GitHub.\nBoth server and client configurations can be specified at the same time, regardless of the selected role.\n",
               example: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 server: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   bind_addr: "0.0.0.0:2333",
                   services: nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     my_nas_ssh: nix.thunk(() => ({
-                      __proto__: pos$4,
+                      [nix.POS]: pos$4,
                       token: "use_a_secret_that_only_you_know",
                       bind_addr: "0.0.0.0:5202",
                     })),
@@ -86,13 +86,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             rathole: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               requires: nix.thunk(() => ["network.target"]),
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -108,7 +108,7 @@ ${nix.app(nix.sel(lib, "getExe"), py_toml_merge)} ${configFile} '${nix.sel(cfg, 
 `))));
                 const mergedConfigName = "merged.toml";
                 return {
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   Type: "simple",
                   Restart: "on-failure",
                   RestartSec: 5n,
@@ -149,7 +149,7 @@ ${nix.app(nix.sel(lib, "getExe"), py_toml_merge)} ${configFile} '${nix.sel(cfg, 
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "xokdvium"))];

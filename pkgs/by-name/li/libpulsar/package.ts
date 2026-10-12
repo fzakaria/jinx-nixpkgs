@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const gtestSupport = nix.argOr($, "gtestSupport", () => false);
   const protobuf = protobuf_21;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libpulsar",
       version: "4.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "apache",
           repo: "pulsar-client-cpp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
 $CXX test.cc -L $out/lib -I $out/include -lpulsar -o test
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Apache Pulsar C++ library",
         homepage: "https://pulsar.apache.org/docs/next/client-libraries-cpp/",
         changelog: nix.thunk(() => nix.str`https://github.com/apache/pulsar-client-cpp/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

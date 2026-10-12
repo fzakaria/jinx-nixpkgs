@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const pname = "fiddler-everywhere";
   const version = "8.2.0";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://downloads.getfiddler.com/linux/fiddler-everywhere-${version}.AppImage`),
       hash: "sha256-cP9DEnDUj0m3DJ71ASe3b3AH7ljUHOdw4bkQrHkey6I=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       src: src,
@@ -40,11 +40,11 @@ substituteInPlace $out/share/applications/fiddler-everywhere.desktop \\
 wrapProgram $out/bin/fiddler-everywhere --set DESKTOPINTEGRATION false
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-fiddler-everywhere", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p curl pcre2 common-updater-scripts\n\nset -eu -o pipefail\n\nversion=\"$(curl -si https://api.getfiddler.com/linux/latest-linux \\\n  | grep -Fi 'Location:' \\\n  | pcre2grep -o1 'https://downloads.getfiddler.com/linux/fiddler-everywhere-(([0-9]\\.?)+).AppImage')\"\nupdate-source-version fiddler-everywhere \"$version\"\n")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Web debugging proxy by Telerik",
         homepage: "https://www.telerik.com/fiddler/fiddler-everywhere",
         downloadPage: "https://www.telerik.com/download/fiddler-everywhere",

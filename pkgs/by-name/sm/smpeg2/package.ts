@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const SDL2 = nix.arg($, "SDL2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "smpeg2",
       version: "2.0.0-unstable-2022-05-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "icculus",
           repo: "smpeg",
           rev: "c5793e5f3f2765fc09c24380d7e92136a0e33d3b",
@@ -39,7 +39,7 @@ wrapProgram $dev/bin/smpeg2-config \\
 `),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://icculus.org/smpeg/",
         description: "SDL2 MPEG Player Library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2")),

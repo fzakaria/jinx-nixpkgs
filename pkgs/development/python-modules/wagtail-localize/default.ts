@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
   const pname = "wagtail-localize";
   const version = "1.14.5";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       repo: "wagtail-localize",
       owner: "wagtail",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-3T3o2whNNWSbsggNhPI6vnxeONGpNdD2/BMiFl/nWmo=",
     }))));
   const assets = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.str`${pname}-assets`),
       npmDepsHash: "sha256-5TKYDFYF8H1UrSUWeKDd/lf0Twk1mVKrPL9ywsdSdz4=",
       NODE_OPTIONS: "--openssl-legacy-provider",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const build_system = nix.thunk(() => [flit_core]);
       const dependencies = nix.thunk(() => [django, polib, typing_extensions, wagtail, wagtail_modeladmin]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$3, google: nix.thunk(() => [google_cloud_translate]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$3, google: nix.thunk(() => [google_cloud_translate]) }));
       const nativeCheckInputs = nix.thunk(() => [dj_database_url, django_rq, freezegun, google_cloud_translate]);
       const preBuild = nix.thunk(() => nix.str`cp -r ${assets}/src/wagtail_localize/static src/wagtail_localize/
 `);
@@ -62,7 +62,7 @@ ${nix.sel(python, "interpreter")} testmanage.py test
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Translation plugin for Wagtail CMS",
         homepage: "https://github.com/wagtail/wagtail-localize",
         changelog: nix.thunk(() => nix.str`https://github.com/wagtail/wagtail-localize/blob/${nix.sel(src_1, "tag")}/CHANGELOG.md`),
@@ -73,7 +73,7 @@ runHook postCheck
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: pname_1,
         version: version_1,
         src: src_1,

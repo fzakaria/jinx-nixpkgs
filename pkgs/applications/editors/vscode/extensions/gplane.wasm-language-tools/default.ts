@@ -13,9 +13,9 @@ export default nix.lambda((args) => (() => {
   const vscode_utils = nix.arg($, "vscode-utils");
   const wasm_language_tools = nix.arg($, "wasm-language-tools");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         publisher: "gplane",
         name: "wasm-language-tools",
         version: "1.21.0",
@@ -26,7 +26,7 @@ ln -s ${wasm_language_tools}/bin bin
 runHook postBuild
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Language support of WebAssembly",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=gplane.wasm-language-tools",
         homepage: "https://github.com/g-plane/vscode-wasm",

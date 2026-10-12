@@ -28,15 +28,15 @@ export default nix.lambda((args) => (() => {
   const etcdUtlVendorHash = "sha256-bhnYxDB8xB7As938IVlvHAViqxlLKIDjye17VD5tPiQ=";
   const etcdServerVendorHash = "sha256-p0ka3KRlfaQmK3UPwjNICdtqjixgvs1oTQWxY0pOrq8=";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "etcd-io",
       repo: "etcd",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: etcdSrcHash,
     }))));
-  const env = nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n }));
+  const env = nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n }));
   const meta = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     description: "Distributed reliable key-value store for the most critical data of a distributed system",
     downloadPage: "https://github.com/etcd-io/etcd",
     license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
     platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "darwin"), nix.sel(lib, "platforms", "linux"))),
   }));
   const etcdserver = nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "etcdserver",
       env: env,
       meta: meta,
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       ldflags: nix.thunk(() => ["-X go.etcd.io/etcd/api/v3/version.GitSHA=GitNotFound"]),
     }))));
   const etcdutl = nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "etcdutl",
       env: env,
       meta: meta,
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "for shell in bash fish zsh; do\n  installShellCompletion --cmd etcdutl \\\n    --$shell <($out/bin/etcdutl completion $shell)\ndone\n")),
     }))));
   const etcdctl = nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "etcdctl",
       env: env,
       meta: meta,
@@ -86,13 +86,13 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "for shell in bash fish zsh; do\n  installShellCompletion --cmd etcdctl \\\n    --$shell <($out/bin/etcdctl completion $shell)\ndone\n")),
     }))));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "etcd",
       meta: meta,
       version: version,
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
-        deps: nix.thunk(() => ({ __proto__: pos$7, etcdserver: etcdserver, etcdutl: etcdutl, etcdctl: etcdctl })),
+        [nix.POS]: pos$8,
+        deps: nix.thunk(() => ({ [nix.POS]: pos$7, etcdserver: etcdserver, etcdutl: etcdutl, etcdctl: etcdctl })),
         tests: nix.thunk(() => nix.sel(nixosTests, "etcd", "3_6")),
         updateScript: nix.path(here, "./update.sh"),
       })),

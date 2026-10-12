@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "markdown-code-runner",
       version: "0.5.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "drupol",
           repo: "markdown-code-runner",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Configurable Markdown code runner that executes and optionally replaces code blocks using external commands",
         longDescription: "markdown-code-runner is a command-line tool that scans Markdown files for fenced code blocks,\nexecutes them using per-language configuration, and optionally replaces the block content\nwith the command output.\n\nIt is useful for documentation that stays in sync with linters, formatters, or scripts.\nThe tool supports placeholder substitution, configurable replace/check modes, and CI-friendly validation.\n",
         homepage: "https://github.com/drupol/markdown-code-runner",

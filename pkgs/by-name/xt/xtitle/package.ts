@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libxcb_wm = nix.arg($, "libxcb-wm");
   const git = nix.arg($, "git");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xtitle",
       version: "0.4.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "baskerville",
           repo: "xtitle",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "sed -i \"s|/usr/local|$out|\" Makefile\n",
       buildInputs: nix.thunk(() => [libxcb, git, libxcb_util, libxcb_wm]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Outputs X window titles",
         homepage: "https://github.com/baskerville/xtitle",
         maintainers: nix.thunk(() => (() => {

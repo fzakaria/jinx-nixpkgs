@@ -18,28 +18,28 @@ export default nix.lambda((args) => (() => {
   const ramalama = nix.arg($, "ramalama");
   const modelData = nix.thunk(() => nix.builtins.fromJSON(nix.thunk(() => nix.builtins.readFile(nix.path(here, "./mlx-model-files.json")))));
   const modelFiles = nix.thunk(() => nix.builtins.map((file) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: nix.thunk(() => nix.attr(file, "name")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://huggingface.co/${nix.sel(modelData, "repo")}/resolve/${nix.sel(modelData, "revision")}/${nix.sel(file, "name")}`),
           hash: nix.thunk(() => nix.attr(file, "hash")),
         })))),
     }), nix.thunk(() => nix.sel(modelData, "files"))));
   const refFile = nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "v1.0.1",
       hash: nix.thunk(() => nix.sel(modelData, "revision")),
       path: "",
       files: nix.thunk(() => nix.builtins.map((file) => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           hash: nix.thunk(() => nix.sel(file, "name")),
           name: nix.thunk(() => nix.attr(file, "name")),
           type: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "hasSuffix"), ".safetensors", nix.thunk(() => nix.sel(file, "name")))) ? "safetensor" : "other")),
         }), nix.thunk(() => nix.sel(modelData, "files")))),
     }))));
-  return nix.app(nix.sel(nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({ __proto__: pos$5, ramalama: ramalama }))), "mkServeTest"), nix.thunk(() => ({
-      __proto__: pos$6,
+  return nix.app(nix.sel(nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({ [nix.POS]: pos$5, ramalama: ramalama }))), "mkServeTest"), nix.thunk(() => ({
+      [nix.POS]: pos$6,
       name: "ramalama-mlx-test",
       runtime: "mlx",
       port: 18081n,

@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const gitBranch = "develop";
   const gitTag = "0.9.3";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "antimony",
       version: "0.9.3-unstable-2025-10-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mkeeter",
           repo: "antimony",
           rev: gitRev,
@@ -64,7 +64,7 @@ install -Dm644 ${nix.path(here, "./mimetype.xml")} $out/share/mime/packages/anti
       ]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "antimony",
             desktopName: "Antimony",
             comment: "Tree-based Modeler",
@@ -82,7 +82,7 @@ install -Dm644 ${nix.path(here, "./mimetype.xml")} $out/share/mime/packages/anti
         nix.thunk(() => nix.str`-DGITBRANCH=${gitBranch}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Computer-aided design (CAD) tool from a parallel universe",
         mainProgram: "antimony",
         homepage: "https://github.com/mkeeter/antimony",

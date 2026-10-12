@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "py-libhdate",
           repo: "py-libhdate",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,13 +35,13 @@ export default nix.lambda((args) => (() => {
       const pythonRelaxDeps = nix.thunk(() => ["astral"]);
       const build_system = nix.thunk(() => [pdm_backend]);
       const dependencies = nix.thunk(() => [num2words]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, astral: nix.thunk(() => [astral]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, astral: nix.thunk(() => [astral]) }));
       const nativeCheckInputs = nix.thunk(() => [hypothesis, pytest_timeout, pytest_xdist, pytestCheckHook, syrupy]);
       const pytestFlags = nix.thunk(() => ["--snapshot-warn-unused"]);
       const enabledTestPaths = nix.thunk(() => ["tests"]);
       const pythonImportsCheck = nix.thunk(() => ["hdate"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python module for Jewish/Hebrew date and Zmanim",
         homepage: "https://github.com/py-libhdate/py-libhdate",
         changelog: nix.thunk(() => nix.str`https://github.com/py-libhdate/py-libhdate/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

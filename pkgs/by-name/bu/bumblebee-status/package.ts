@@ -20,15 +20,15 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const plugins = nix.argOr($, "plugins", () => (p) => []);
   const version = "2.2.0";
-  const allPlugins = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => (value) => nix.update(value, { __proto__: pos$1, name: name }), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./plugins.nix")), nix.thunk(() => ({ __proto__: pos$2, pkgs: pkgs, python3: python3 }))))));
+  const allPlugins = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => (value) => nix.update(value, { [nix.POS]: pos$1, name: name }), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./plugins.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, pkgs: pkgs, python3: python3 }))))));
   const selectedPlugins = nix.thunk(() => nix.app(plugins, allPlugins));
   return nix.app(nix.sel(python3, "pkgs", "buildPythonPackage"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "bumblebee-status",
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "tobi-wan-kenobi",
           repo: "bumblebee-status",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/tobi-wan-kenobi/bumblebee-status/commit/2fe8f1ff1444daf155b18318005f33a76a5d64b4.patch",
             hash: "sha256-BC1cgQDMJkhuEgq8NJ28521CHbEfqIMueHkFXXlZz2w=",
           })))),
@@ -77,7 +77,7 @@ find $out -name "__pycache__" -type d | xargs rm -rv
 cp -r ./themes $out/${nix.sel(python3, "sitePackages")}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Modular, theme-able status line generator for the i3 window manager",
         homepage: "https://github.com/tobi-wan-kenobi/bumblebee-status",
         mainProgram: "bumblebee-status",

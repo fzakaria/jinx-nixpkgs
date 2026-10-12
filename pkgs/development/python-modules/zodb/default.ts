@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const zope_testing = nix.arg($, "zope-testing");
   const zope_testrunner = nix.arg($, "zope-testrunner");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zodb",
       version: "6.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zopefoundation",
           repo: "zodb",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: nix.thunk(() => nix.str`${nix.sel(python, "interpreter")} -m zope.testrunner --test-path=src []
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Zope Object Database: object database and persistence",
         homepage: "https://zodb-docs.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/zopefoundation/ZODB/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.rst`),

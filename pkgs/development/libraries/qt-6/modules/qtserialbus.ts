@@ -12,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const qtbase = nix.arg($, "qtbase");
   const qtserialport = nix.arg($, "qtserialport");
   return nix.app(qtModule, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "qtserialbus",
       propagatedBuildInputs: nix.thunk(() => [qtbase, qtserialport]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "canbusutil" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "canbusutil" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=qtserialbus.ts.map

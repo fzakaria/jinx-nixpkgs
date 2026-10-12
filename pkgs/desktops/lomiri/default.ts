@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const packages = (self) => (() => {
     const callPackage = nix.thunk(() => nix.attr(self, "callPackage"));
     return nix.update({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       "lomiri-schemas": nix.thunk(() => nix.app(callPackage, nix.path(here, "./data/lomiri-schemas"), nix.thunk(() => ({})))),
       "lomiri-sounds": nix.thunk(() => nix.app(callPackage, nix.path(here, "./data/lomiri-sounds"), nix.thunk(() => ({})))),
       "lomiri-wallpapers": nix.thunk(() => nix.app(callPackage, nix.path(here, "./data/lomiri-wallpapers"), nix.thunk(() => ({})))),
@@ -38,24 +38,24 @@ export default nix.lambda((args) => (() => {
       "gsettings-qt": nix.thunk(() => nix.app(callPackage, nix.path(here, "./development/gsettings-qt"), nix.thunk(() => ({})))),
       "lomiri-api": nix.thunk(() => nix.app(callPackage, nix.path(here, "./development/lomiri-api"), nix.thunk(() => ({})))),
       "lomiri-app-launch": nix.thunk(() => nix.app(callPackage, nix.path(here, "./development/lomiri-app-launch"), nix.thunk(() => ({})))),
-      "lomiri-action-api": nix.thunk(() => nix.app(callPackage, nix.path(here, "./qml/lomiri-action-api"), nix.thunk(() => ({ __proto__: pos$1, withDocumentation: nix.thunk(() => !nix.asBool(useQt6)) })))),
+      "lomiri-action-api": nix.thunk(() => nix.app(callPackage, nix.path(here, "./qml/lomiri-action-api"), nix.thunk(() => ({ [nix.POS]: pos$1, withDocumentation: nix.thunk(() => !nix.asBool(useQt6)) })))),
       "lomiri-notifications": nix.thunk(() => nix.app(callPackage, nix.path(here, "./qml/lomiri-notifications"), nix.thunk(() => ({})))),
       "lomiri-push-qml": nix.thunk(() => nix.app(callPackage, nix.path(here, "./qml/lomiri-push-qml"), nix.thunk(() => ({})))),
       "lomiri-ui-extras": nix.thunk(() => nix.app(callPackage, nix.path(here, "./qml/lomiri-ui-extras"), nix.thunk(() => ({})))),
       "lomiri-ui-toolkit": nix.thunk(() => nix.app(callPackage, nix.path(here, "./qml/lomiri-ui-toolkit"), nix.thunk(() => ({})))),
       "qqc2-suru-style": nix.thunk(() => nix.app(callPackage, nix.path(here, "./qml/qqc2-suru-style"), nix.thunk(() => ({})))),
       biometryd: nix.thunk(() => nix.app(callPackage, nix.path(here, "./services/biometryd"), nix.thunk(() => ({})))),
-      "lomiri-content-hub": nix.thunk(() => nix.app(callPackage, nix.path(here, "./services/lomiri-content-hub"), nix.thunk(() => ({ __proto__: pos$2, withDocumentation: nix.thunk(() => !nix.asBool(useQt6)) })))),
-      "lomiri-download-manager": nix.thunk(() => nix.app(callPackage, nix.path(here, "./services/lomiri-download-manager"), nix.thunk(() => ({ __proto__: pos$3, withDocumentation: nix.thunk(() => !nix.asBool(useQt6)) })))),
+      "lomiri-content-hub": nix.thunk(() => nix.app(callPackage, nix.path(here, "./services/lomiri-content-hub"), nix.thunk(() => ({ [nix.POS]: pos$2, withDocumentation: nix.thunk(() => !nix.asBool(useQt6)) })))),
+      "lomiri-download-manager": nix.thunk(() => nix.app(callPackage, nix.path(here, "./services/lomiri-download-manager"), nix.thunk(() => ({ [nix.POS]: pos$3, withDocumentation: nix.thunk(() => !nix.asBool(useQt6)) })))),
       "lomiri-indicator-network": nix.thunk(() => nix.app(callPackage, nix.path(here, "./services/lomiri-indicator-network"), nix.thunk(() => ({})))),
       "lomiri-thumbnailer": nix.thunk(() => nix.app(callPackage, nix.path(here, "./services/lomiri-thumbnailer"), nix.thunk(() => ({})))),
       "lomiri-url-dispatcher": nix.thunk(() => nix.app(callPackage, nix.path(here, "./services/lomiri-url-dispatcher"), nix.thunk(() => ({})))),
       mediascanner2: nix.thunk(() => nix.app(callPackage, nix.path(here, "./services/mediascanner2"), nix.thunk(() => ({})))),
     }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), useQt6, nix.thunk(() => ({
-        __proto__: pos$6,
-        "morph-browser": nix.thunk(() => nix.app(callPackage, nix.path(here, "./applications/morph-browser"), nix.thunk(() => ({ __proto__: pos$5, withDocumentation: nix.thunk(() => !nix.asBool(useQt6)) })))),
+        [nix.POS]: pos$6,
+        "morph-browser": nix.thunk(() => nix.app(callPackage, nix.path(here, "./applications/morph-browser"), nix.thunk(() => ({ [nix.POS]: pos$5, withDocumentation: nix.thunk(() => !nix.asBool(useQt6)) })))),
       }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(useQt6)), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         lomiri: nix.thunk(() => nix.app(callPackage, nix.path(here, "./applications/lomiri"), nix.thunk(() => ({})))),
         "lomiri-calculator-app": nix.thunk(() => nix.app(callPackage, nix.path(here, "./applications/lomiri-calculator-app"), nix.thunk(() => ({})))),
         "lomiri-calendar-app": nix.thunk(() => nix.app(callPackage, nix.path(here, "./applications/lomiri-calendar-app"), nix.thunk(() => ({})))),
@@ -78,13 +78,13 @@ export default nix.lambda((args) => (() => {
         "lomiri-settings-components": nix.thunk(() => nix.app(callPackage, nix.path(here, "./qml/lomiri-settings-components"), nix.thunk(() => ({})))),
         "hfd-service": nix.thunk(() => nix.app(callPackage, nix.path(here, "./services/hfd-service"), nix.thunk(() => ({})))),
         "lomiri-history-service": nix.thunk(() => nix.app(callPackage, nix.path(here, "./services/lomiri-history-service"), nix.thunk(() => ({})))),
-        "lomiri-indicator-datetime": nix.thunk(() => nix.app(nix.sel(ayatana_indicator_datetime, "override"), nix.thunk(() => ({ __proto__: pos$7, enableLomiriFeatures: true })))),
+        "lomiri-indicator-datetime": nix.thunk(() => nix.app(nix.sel(ayatana_indicator_datetime, "override"), nix.thunk(() => ({ [nix.POS]: pos$7, enableLomiriFeatures: true })))),
         "lomiri-polkit-agent": nix.thunk(() => nix.app(callPackage, nix.path(here, "./services/lomiri-polkit-agent"), nix.thunk(() => ({})))),
         "lomiri-telephony-service": nix.thunk(() => nix.app(callPackage, nix.path(here, "./services/lomiri-telephony-service"), nix.thunk(() => ({})))),
       })))));
   })();
   return nix.update(nix.app(nix.sel(lib, "makeScope"), nix.thunk(() => nix.sel(qtPackages, "newScope")), packages), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(config, "allowAliases")) && nix.asBool(!nix.asBool(useQt6)))), nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       "content-hub": nix.thunk(() => nix.app(nix.sel(lib, "warnOnInstantiate"), "`content-hub` was renamed to `lomiri-content-hub`.", nix.thunk(() => nix.sel(pkgs, "lomiri", "lomiri-content-hub")))),
       "history-service": nix.thunk(() => nix.app(nix.sel(lib, "warnOnInstantiate"), "`history-service` was renamed to `lomiri-history-service`.", nix.thunk(() => nix.sel(pkgs, "lomiri", "lomiri-history-service")))),
       "lomiri-system-settings-security-privacy": nix.thunk(() => nix.app(nix.sel(lib, "warnOnInstantiate"), "`lomiri-system-settings-security-privacy` upstream was merged into `lomiri-system-settings`. Please use `pkgs.lomiri.lomiri-system-settings-unwrapped` if you need to directly access the plugins that belonged to this project.", nix.thunk(() => nix.sel(pkgs, "lomiri", "lomiri-system-settings-unwrapped")))),

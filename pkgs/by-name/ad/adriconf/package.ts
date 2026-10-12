@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const libgbm = nix.arg($, "libgbm");
   const pciutils = nix.arg($, "pciutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "adriconf",
       version: "2.7.3",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "mesa",
           repo: "adriconf",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DENABLE_UNIT_TESTS=off"]),
       postInstall: "install -Dm444 ../flatpak/org.freedesktop.adriconf.metainfo.xml \\\n  -t $out/share/metainfo/\ninstall -Dm444 ../flatpak/org.freedesktop.adriconf.desktop \\\n  -t $out/share/applications/\ninstall -Dm444 ../flatpak/org.freedesktop.adriconf.png \\\n  -t $out/share/icons/hicolor/256x256/apps/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gitlab.freedesktop.org/mesa/adriconf/",
         changelog: nix.thunk(() => nix.str`https://gitlab.freedesktop.org/mesa/adriconf/-/releases/v${nix.sel(finalAttrs, "version")}`),
         description: "GUI tool used to configure open source graphics drivers",

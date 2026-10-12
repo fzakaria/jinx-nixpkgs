@@ -18,23 +18,23 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     name: "initrd-network",
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           imports: nix.thunk(() => [nix.path(here, "../modules/profiles/minimal.nix")]),
           boot: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             initrd: nix.thunk(() => ({
-              __proto__: pos$4,
-              systemd: nix.thunk(() => ({ __proto__: pos$2, enable: false })),
+              [nix.POS]: pos$4,
+              systemd: nix.thunk(() => ({ [nix.POS]: pos$2, enable: false })),
               network: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 enable: true,
                 postCommands: "ip addr show\nip route show\nip addr | grep 10.0.2.15 || exit 1\nping -c1 10.0.2.2 || exit 1\n",
               })),

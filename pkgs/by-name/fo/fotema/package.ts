@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const glycin_loaders = nix.arg($, "glycin-loaders");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "fotema",
       version: "2.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "blissd",
           repo: "fotema",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,11 +51,11 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [nix.path(here, "./cargo-lock-bump-ffmpeg-next.patch")]),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
               patches: nix.thunk(() => nix.attr(finalAttrs, "patches")),
             })))),
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
       ]),
       strictDeps: true,
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         OPENSSL_NO_VENDOR: true,
         ORT_LIB_LOCATION: nix.thunk(() => nix.str`${onnxruntime}/lib`),
         ORT_STRATEGY: "system",
@@ -99,11 +99,11 @@ export default nix.lambda((args) => (() => {
 )
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Photo gallery for Linux",
         homepage: "https://github.com/blissd/fotema",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

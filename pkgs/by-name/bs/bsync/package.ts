@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const findutils = nix.arg($, "findutils");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bsync",
       version: "0-unstable-2023-12-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dooblem",
           repo: "bsync",
           rev: "25f77730750720ad68b0ab2773e79d9ca98c3647",
@@ -41,7 +41,7 @@ wrapProgram $out/bin/bsync \\
 runHook postFixup
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/dooblem/bsync",
         description: "Bidirectional Synchronization using Rsync",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

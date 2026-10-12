@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vk-cli",
       version: "0.7.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/vk-cli/vk/releases/download/${nix.sel(finalAttrs, "version")}/vk-${nix.sel(finalAttrs, "version")}-64-bin.7z`),
           sha256: "sha256-Y40oLjddunrd7ZF1JbCcgjSCn8jFTubq69jhAVxInXw=",
         })))),
@@ -38,7 +38,7 @@ install -D vk-cli --target-directory=$out/bin/
   --set-rpath "${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [curl, glibc]))}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Console (ncurses) client for vk.com written in D",
         mainProgram: "vk-cli",
         homepage: "https://github.com/vk-cli/vk",

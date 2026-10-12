@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const wayland = nix.arg($, "wayland");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "wl-tray-bridge",
       version: "0-unstable-2026-02-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mahkoh",
           repo: "wl-tray-bridge",
           rev: "04cb349720f266917b5490e4a02f08d6ddf3f233",
@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`patchelf --add-rpath ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [wayland]))} $out/bin/wl-tray-bridge
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Bridges the gap between the StatusNotifierItem protocols and wayland compositors implementing jay-tray-v1",
         homepage: "https://github.com/mahkoh/wl-tray-bridge",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

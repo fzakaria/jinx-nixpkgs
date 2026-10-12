@@ -31,62 +31,62 @@ export default nix.lambda((args) => (() => {
   const mkIf = nix.thunk(() => nix.attr(lib, "mkIf"));
   const teams = nix.thunk(() => nix.attr(lib, "teams"));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(teams, "gnome"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         gnome: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "gnome-browser-connector": nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             enable: nix.thunk(() => nix.app(mkEnableOption, "native host connector for the GNOME Shell browser extension, a DBus service\nallowing to install GNOME Shell extensions from a web browser\n")),
           })),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(config, "services", "gnome", "gnome-browser-connector", "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         environment: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           etc: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             "chromium/native-messaging-hosts/org.gnome.browser_connector.json": nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               source: nix.thunk(() => nix.str`${nix.sel(pkgs, "gnome-browser-connector")}/etc/chromium/native-messaging-hosts/org.gnome.browser_connector.json`),
             })),
             "opt/chrome/native-messaging-hosts/org.gnome.browser_connector.json": nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               source: nix.thunk(() => nix.str`${nix.sel(pkgs, "gnome-browser-connector")}/etc/opt/chrome/native-messaging-hosts/org.gnome.browser_connector.json`),
             })),
             "chromium/native-messaging-hosts/org.gnome.chrome_gnome_shell.json": nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               source: nix.thunk(() => nix.str`${nix.sel(pkgs, "gnome-browser-connector")}/etc/chromium/native-messaging-hosts/org.gnome.chrome_gnome_shell.json`),
             })),
             "opt/chrome/native-messaging-hosts/org.gnome.chrome_gnome_shell.json": nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               source: nix.thunk(() => nix.str`${nix.sel(pkgs, "gnome-browser-connector")}/etc/opt/chrome/native-messaging-hosts/org.gnome.chrome_gnome_shell.json`),
             })),
           })),
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gnome-browser-connector"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           dbus: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gnome-browser-connector"))]),
           })),
         })),
         programs: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           firefox: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             nativeMessagingHosts: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gnome-browser-connector"))]),
             })),
           })),

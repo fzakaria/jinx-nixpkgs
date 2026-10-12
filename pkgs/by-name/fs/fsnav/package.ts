@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libGLU = nix.arg($, "libGLU");
   const freeglut = nix.arg($, "freeglut");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fsnav",
       version: "0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jtsiomb",
           repo: "fsnav",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preInstall: "mkdir -p $out/bin\nmkdir -p $out/share/fsnav\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "3D filesystem navigator inspired by SGI FSN",
         homepage: "https://github.com/jtsiomb/fsnav",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

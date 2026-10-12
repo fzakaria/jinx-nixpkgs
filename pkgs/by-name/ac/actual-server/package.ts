@@ -28,10 +28,10 @@ export default nix.lambda((args) => (() => {
   const yarn_berry_4 = nix.arg($, "yarn-berry_4");
   const nixosTests = nix.arg($, "nixosTests");
   const nodejs = nodejs_24;
-  const yarn_berry = nix.thunk(() => nix.app(nix.sel(yarn_berry_4, "override"), nix.thunk(() => ({ __proto__: pos$1, nodejs: nodejs }))));
+  const yarn_berry = nix.thunk(() => nix.app(nix.sel(yarn_berry_4, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, nodejs: nodejs }))));
   const version = "26.10.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "actualbudget-actual-source",
       owner: "actualbudget",
       repo: "actual",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-jBh6mrYVVX7dNz5rv/VO766ezIuwBmXbtRSKgUOkahc=",
     }))));
   const translations = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "actualbudget-translations-source",
       owner: "actualbudget",
       repo: "translations",
@@ -47,19 +47,19 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-e/NN5u4h5m5sO/xPLC9oO0Q5tXH+Irm3lmUheVdf+N0=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       srcs: nix.thunk(() => [src, translations]),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/`),
       nativeBuildInputs: nix.thunk(() => nix.concat([
         yarn_berry,
         nodejs,
-        nix.thunk(() => nix.app(nix.sel(yarn_berry, "yarnBerryConfigHook", "override"), nix.thunk(() => ({ __proto__: pos$4, nodejs: nodejs })))),
+        nix.thunk(() => nix.app(nix.sel(yarn_berry, "yarnBerryConfigHook", "override"), nix.thunk(() => ({ [nix.POS]: pos$4, nodejs: nodejs })))),
         nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "setuptools"))])),
         makeBinaryWrapper,
         git,
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [cctools, xcbuild])))),
       env: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
         NODE_JQ_SKIP_INSTALL_BINARY: "true",
         SHARP_IGNORE_GLOBAL_LIBVIPS: "1",
@@ -94,7 +94,7 @@ cat <<< $(${nix.app(nix.sel(lib, "getExe"), jq)} '.dependenciesMeta."sharp".buil
       buildPhase: "runHook preBuild\n\nexport HOME=$(mktemp -d)\n\n# lage hashes source files via `git ls-tree HEAD`, so it needs a repo with\n# at least one commit.\ngit -c init.defaultBranch=main init -q\ngit add -A\ngit -c user.email=nix@localhost -c user.name=nix commit -q --allow-empty -m \"snapshot\"\n\nyarn build:server\nyarn workspace @actual-app/sync-server build\n\nrunHook postBuild\n",
       missingHashes: nix.path(here, "./missing-hashes.json"),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           hash: "sha256-NYjJeQWeDsLsEme/gIkZzgwWaqpQNSfLeYgZHaPTuH8=",
@@ -129,7 +129,7 @@ makeBinaryWrapper ${nix.app(nix.sel(lib, "getExe"), nodejs)} "$out/bin/actual-se
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         offlineCache: nix.thunk(() => nix.attr(finalAttrs, "offlineCache")),
         env: nix.thunk(() => nix.attr(finalAttrs, "env")),
         translations: translations,
@@ -137,7 +137,7 @@ runHook postInstall
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         changelog: "https://actualbudget.org/docs/releases",
         description: "Super fast privacy-focused app for managing your finances",
         homepage: "https://actualbudget.org/",

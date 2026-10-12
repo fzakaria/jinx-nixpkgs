@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
     const installIcons = nix.argOr($_1, "installIcons", () => false);
     const passthru = nix.argOr($_1, "passthru", () => ({}));
     const platform = nix.thunk(() => nix.selOr({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       "x86_64-linux": "linux_x64",
       "aarch64-linux": "linux_arm64",
       "aarch64-darwin": "darwin_arm64",
@@ -90,11 +90,11 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`${handbrake}/bin/HandBrakeCLI`),
         ]))))))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname: pname,
         version: "2.87.01",
         src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`https://storage.tdarr.io/versions/${nix.sel(finalAttrs, "version")}/${platform}/${componentName}.zip`),
             sha256: nix.thunk(() => nix.selOr(hashes, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported platform: ${platform}`)), nix.key(nix.force(platform)))),
             stripRoot: false,
@@ -161,7 +161,7 @@ done
 `))), "")),
         desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [
             nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 desktopName: nix.thunk(() => nix.str`Tdarr ${componentUpper} Tray`),
                 name: nix.thunk(() => nix.str`Tdarr ${componentUpper} Tray`),
                 exec: nix.thunk(() => nix.str`${pname}-tray`),
@@ -172,16 +172,16 @@ done
               })))),
           ]))),
         passthru: nix.thunk(() => nix.update({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           updateScript: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             command: nix.thunk(() => [nix.path(here, "./update-hashes.sh")]),
             supportedFeatures: nix.thunk(() => ["commit"]),
           })),
-          tests: nix.thunk(() => ({ __proto__: pos$5, nixos: nix.thunk(() => nix.sel(nixosTests, "tdarr")) })),
+          tests: nix.thunk(() => ({ [nix.POS]: pos$5, nixos: nix.thunk(() => nix.sel(nixosTests, "tdarr")) })),
         }, passthru)),
         meta: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           description: nix.thunk(() => nix.str`Distributed transcode automation ${component} using FFmpeg/HandBrake`),
           homepage: "https://tdarr.io",
           license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

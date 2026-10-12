@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const libjack2 = nix.arg($, "libjack2");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jack_autoconnect",
       version: "0-unstable-2021-02-01",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kripton",
           repo: "jack_autoconnect",
           rev: "fe0c8f69149e30979e067646f80b9d326341c02b",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\nmkdir -p -- \"$out/bin\"\ncp -- jack_autoconnect \"$out/bin\"\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/kripton/jack_autoconnect",
         description: "Tiny application that reacts on port registrations by clients and connects them",
         mainProgram: "jack_autoconnect",

@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
   const alsa_lib = nix.arg($, "alsa-lib");
   const libpulseaudio = nix.arg($, "libpulseaudio");
   const joltphysics_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "jrouwe",
       repo: "JoltPhysics",
       rev: "c10d9b2a8ee134fb5e72de1a0f26f8c9cc8f6382",
@@ -50,11 +50,11 @@ export default nix.lambda((args) => (() => {
     curl,
   ]);
   return nix.app(nix.sel(gcc14Stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "lovr",
       version: "0.18.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "bjornbytes",
           repo: "lovr",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -113,7 +113,7 @@ runHook postInstall
 `),
       dontUseCmakeInstall: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "An open source framework for rapidly building immersive 3D experiences",
         homepage: "https://lovr.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

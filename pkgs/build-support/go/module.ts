@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
       excludeDrvArgNames: nix.thunk(() => ["overrideModAttrs"]),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -40,14 +40,14 @@ export default nix.lambda((args) => (() => {
         const GOFLAGS = nix.argOr($_1, "GOFLAGS", () => []);
         const buildTestBinaries = nix.argOr($_1, "buildTestBinaries", () => false);
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           modRoot: modRoot,
           vendorHash: vendorHash,
           deleteVendor: deleteVendor,
           proxyVendor: proxyVendor,
           goSum: goSum,
           goModules: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(finalAttrs, "vendorHash"), null)) ? "" : nix.app(nix.sel(nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               name: nix.thunk(() => (() => {
                 const prefix = nix.thunk(() => nix.str`${nix.selOr(finalAttrs, () => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}`, "name")}-`);
                 const suffix = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(finalAttrs, "goSum"), null)), nix.thunk(() => nix.str`-${nix.app(nix.sel(lib, "removeSuffix"), "-go.sum", nix.thunk(() => nix.app(nix.sel(lib, "removePrefix"), nix.thunk(() => nix.str`${nix.builtins.storeDir}/`), nix.thunk(() => nix.sel(finalAttrs, "goSum")))))}`)));
@@ -102,7 +102,7 @@ runHook postInstall
             })())))),
           nativeBuildInputs: nix.thunk(() => nix.concat([go], nativeBuildInputs)),
           env: nix.thunk(() => nix.update(nix.selOr(args_2, () => ({}), "env"), {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             GOOS: nix.thunk(() => nix.attr(go, "GOOS")),
             GOARCH: nix.thunk(() => nix.attr(go, "GOARCH")),
             GOTOOLCHAIN: "local",
@@ -182,12 +182,12 @@ done
           allowGoReference: allowGoReference,
           disallowedReferences: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(finalAttrs, "allowGoReference"))), go)),
           passthru: nix.thunk(() => nix.update({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             go: go,
             overrideModAttrs: nix.thunk(() => nix.app(nix.sel(lib, "toExtension"), overrideModAttrs)),
           }, passthru)),
           meta: nix.thunk(() => nix.update({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             platforms: nix.thunk(() => nix.selOr(go, () => nix.sel(lib, "platforms", "all"), "meta", "platforms")),
           }, meta)),
         };

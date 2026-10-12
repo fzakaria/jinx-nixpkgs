@@ -20,18 +20,18 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const withTerminalSupport = nix.argOr($, "withTerminalSupport", () => true);
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "app2unit",
       version: "1.4.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Vladimir-csp",
           repo: "app2unit",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           sha256: "sha256-TIY+/9ekGub+10uyqXy5aYU+2NLysMtaQnD1PIjBCFA=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       nativeBuildInputs: nix.thunk(() => [scdoc, installShellFiles]),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
                  'A2U__TERMINAL_HANDLER=${nix.app(nix.sel(lib, "getExe"), xdg_terminal_exec)}'
 `)))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Launches Desktop Entries as Systemd user units",
         homepage: "https://github.com/Vladimir-csp/app2unit",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

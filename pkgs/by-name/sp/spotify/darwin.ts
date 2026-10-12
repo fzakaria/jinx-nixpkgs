@@ -18,20 +18,20 @@ export default nix.lambda((args) => (() => {
   const updateScript = nix.arg($, "updateScript");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: "1.2.98.301",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://web.archive.org/web/20260829115632/https://download.scdn.co/SpotifyARM64.dmg",
           hash: "sha256-iFLqFQXKPkeCHfzB6hshbZDWjumKN2u4Bj7lvl8waUY=",
         })))),
       nativeBuildInputs: nix.thunk(() => [undmg]),
       sourceRoot: ".",
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications\ncp -r *.app $out/Applications\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: updateScript })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: updateScript })),
       meta: nix.thunk(() => nix.update(meta, {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [

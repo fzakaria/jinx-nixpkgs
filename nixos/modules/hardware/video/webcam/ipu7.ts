@@ -31,16 +31,16 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const cfg = nix.thunk(() => nix.sel(config, "hardware", "ipu7"));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       hardware: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         ipu7: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(mkEnableOption, "support for Intel IPU7/MIPI cameras")),
           platform: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["ipu7x", "ipu75xa"]))),
               description: "Choose the version for your hardware platform. The IPU reports which one\nit is through its PCI ID, visible as the Multimedia controller in lspci.\n\n- ipu7x (Lunar Lake, PCI 8086:645d)\n  Sensor list: https://github.com/intel/ipu7-camera-hal/tree/main/config/linux/ipu7x/sensors\n- ipu75xa (Panther Lake, PCI 8086:b05d)\n  Sensor list: https://github.com/intel/ipu7-camera-hal/tree/main/config/linux/ipu75xa/sensors\n",
             })))),
@@ -48,16 +48,16 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         boot: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           extraModulePackages: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(config, "boot", "kernelPackages")), null);
             return [nix.thunk(() => nix.lookup(w, "ipu7-drivers"))];
           })()),
         })),
         hardware: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           firmware: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [
@@ -67,24 +67,24 @@ export default nix.lambda((args) => (() => {
           })()),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           udev: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             extraRules: "SUBSYSTEM==\"intel-ipu7-psys\", MODE=\"0660\", GROUP=\"video\"\n",
           })),
           "v4l2-relayd": nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             instances: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               ipu7: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 enable: nix.thunk(() => nix.app(mkDefault, true)),
                 cardLabel: nix.thunk(() => nix.app(mkDefault, "Intel MIPI Camera")),
                 extraPackages: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "gst_all_1")), null);
                   return nix.concat(nix.app(optional, nix.thunk(() => nix.eq(nix.sel(cfg, "platform"), "ipu7x")), nix.thunk(() => nix.lookup(w, "icamerasrc-ipu7x"))), nix.app(optional, nix.thunk(() => nix.eq(nix.sel(cfg, "platform"), "ipu75xa")), nix.thunk(() => nix.lookup(w, "icamerasrc-ipu75xa"))));
                 })()),
-                input: nix.thunk(() => ({ __proto__: pos$8, pipeline: "icamerasrc", format: "NV12" })),
+                input: nix.thunk(() => ({ [nix.POS]: pos$8, pipeline: "icamerasrc", format: "NV12" })),
               })),
             })),
           })),

@@ -21,22 +21,22 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const faasPlatform = (platform) => (() => {
     const cpuName = nix.thunk(() => nix.sel(platform, "parsed", "cpu", "name"));
-    return nix.selOr({ __proto__: pos$1, aarch64: "arm64", armv7l: "armhf", armv6l: "armhf" }, () => nix.force(cpuName), nix.key(nix.force(cpuName)));
+    return nix.selOr({ [nix.POS]: pos$1, aarch64: "arm64", armv7l: "armhf", armv6l: "armhf" }, () => nix.force(cpuName), nix.key(nix.force(cpuName)));
   })();
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "faas-cli",
       version: "0.18.12",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "openfaas",
           repo: "faas-cli",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-I7P30c7rEVqemgUu/1AtM6jq2f4KB8xyDpjGBMvkLRU=",
         })))),
       vendorHash: null,
-      env: nix.thunk(() => ({ __proto__: pos$3, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, CGO_ENABLED: 0n })),
       subPackages: nix.thunk(() => ["."]),
       ldflags: nix.thunk(() => [
         "-s",
@@ -56,7 +56,7 @@ installShellCompletion --cmd metal \\
       versionCheckProgramArg: "version",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Official CLI for OpenFaaS",
         mainProgram: "faas-cli",
         homepage: "https://github.com/openfaas/faas-cli",

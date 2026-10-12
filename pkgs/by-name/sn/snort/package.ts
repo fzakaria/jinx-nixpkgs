@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "snort",
       version: "3.12.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "snort3",
           repo: "snort3",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -54,11 +54,11 @@ export default nix.lambda((args) => (() => {
       ]),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Network intrusion prevention and detection system (IDS/IPS)",
         homepage: "https://www.snort.org",
         maintainers: nix.thunk(() => (() => {

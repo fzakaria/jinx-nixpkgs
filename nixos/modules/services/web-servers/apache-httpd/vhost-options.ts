@@ -53,43 +53,43 @@ export default nix.lambda((args) => (() => {
   const nameValuePair = nix.thunk(() => nix.attr(lib, "nameValuePair"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    __proto__: pos$39,
+    [nix.POS]: pos$39,
     options: nix.thunk(() => ({
-      __proto__: pos$36,
+      [nix.POS]: pos$36,
       hostName: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: name,
           description: "Canonical hostname for the server.",
         })))),
       serverAliases: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
           default: [],
           example: nix.thunk(() => ["www.example.org", "www.example.org:8080", "example.org"]),
           description: "Additional names of virtual hosts served by this virtual host configuration.\n",
         })))),
       listen: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           type: nix.thunk(() => (() => {
             const w = nix.withScope(types, null);
             return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   options: nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => nix.sel(types, "port")),
                         description: "Port to listen on",
                       })))),
                     ip: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: "*",
                         description: "IP to listen on. 0.0.0.0 for IPv4 only, * for all.",
                       })))),
                     ssl: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: nix.thunk(() => nix.sel(types, "bool")),
                         default: false,
                         description: "Whether to enable SSL (https) support.",
@@ -99,14 +99,14 @@ export default nix.lambda((args) => (() => {
           })()),
           default: [],
           example: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$8, ip: "195.154.1.1", port: 443n, ssl: true })),
-            nix.thunk(() => ({ __proto__: pos$9, ip: "192.154.1.1", port: 80n })),
-            nix.thunk(() => ({ __proto__: pos$10, ip: "*", port: 8080n })),
+            nix.thunk(() => ({ [nix.POS]: pos$8, ip: "195.154.1.1", port: 443n, ssl: true })),
+            nix.thunk(() => ({ [nix.POS]: pos$9, ip: "192.154.1.1", port: 80n })),
+            nix.thunk(() => ({ [nix.POS]: pos$10, ip: "*", port: 8080n })),
           ]),
           description: "Listen addresses and ports for this virtual host.\n\n::: {.note}\nThis option overrides `addSSL`, `forceSSL` and `onlySSL`.\n\nIf you only want to set the addresses manually and not the ports, take a look at `listenAddresses`.\n:::\n",
         })))),
       listenAddresses: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           type: nix.thunk(() => (() => {
             const w = nix.withScope(types, null);
             return nix.app(nix.lookup(w, "nonEmptyListOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -116,102 +116,102 @@ export default nix.lambda((args) => (() => {
           example: nix.thunk(() => ["127.0.0.1"]),
         })))),
       enableSSL: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           type: nix.thunk(() => nix.sel(types, "bool")),
           visible: false,
           default: false,
         })))),
       addSSL: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           type: nix.thunk(() => nix.sel(types, "bool")),
           default: false,
           description: "Whether to enable HTTPS in addition to plain HTTP. This will set defaults for\n`listen` to listen on all interfaces on the respective default\nports (80, 443).\n",
         })))),
       onlySSL: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           type: nix.thunk(() => nix.sel(types, "bool")),
           default: false,
           description: "Whether to enable HTTPS and reject plain HTTP connections. This will set\ndefaults for `listen` to listen on all interfaces on port 443.\n",
         })))),
       forceSSL: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           type: nix.thunk(() => nix.sel(types, "bool")),
           default: false,
           description: "Whether to add a separate nginx server block that permanently redirects (301)\nall plain HTTP traffic to HTTPS. This will set defaults for\n`listen` to listen on all interfaces on the respective default\nports (80, 443), where the non-SSL listens are used for the redirect vhosts.\n",
         })))),
       enableACME: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           type: nix.thunk(() => nix.sel(types, "bool")),
           default: false,
           description: "Whether to ask Let's Encrypt to sign a certificate for this vhost.\nAlternately, you can use an existing certificate through {option}`useACMEHost`.\n",
         })))),
       useACMEHost: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
           default: null,
           description: "A host of an existing Let's Encrypt certificate to use.\nThis is useful if you have many subdomains and want to avoid hitting the\n[rate limit](https://letsencrypt.org/docs/rate-limits).\nAlternately, you can generate a certificate through {option}`enableACME`.\n*Note that this option does not create any certificates, nor it does add subdomains to existing ones – you will need to create them manually using [](#opt-security.acme.certs).*\n",
         })))),
       acmeRoot: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
           default: "/var/lib/acme/acme-challenge",
           description: "Directory for the acme challenge which is PUBLIC, don't put certs or keys in here.\nSet to null to inherit from config.security.acme.\n",
         })))),
       sslServerCert: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           type: nix.thunk(() => nix.sel(types, "path")),
           example: "/var/host.cert",
           description: "Path to server SSL certificate.",
         })))),
       sslServerKey: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           type: nix.thunk(() => nix.sel(types, "path")),
           example: "/var/host.key",
           description: "Path to server SSL certificate key.",
         })))),
       sslServerChain: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
           default: null,
           example: "/var/ca.pem",
           description: "Path to server SSL chain file.",
         })))),
       http2: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           type: nix.thunk(() => nix.sel(types, "bool")),
           default: true,
           description: "Whether to enable HTTP 2. HTTP/2 is supported in all multi-processing modules that come with httpd. *However, if you use the prefork mpm, there will\nbe severe restrictions.* Refer to <https://httpd.apache.org/docs/2.4/howto/http2.html#mpm-config> for details.\n",
         })))),
       adminAddr: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
           default: null,
           example: "admin@example.org",
           description: "E-mail address of the server administrator.",
         })))),
       documentRoot: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
           default: null,
           example: "/data/webserver/docs",
           description: "The path of Apache's document root directory.  If left undefined,\nan empty directory in the Nix store will be used as root.\n",
         })))),
       servedDirs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "attrs")))),
           default: [],
           example: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$26, urlPath: "/nix", dir: "/home/eelco/Dev/nix-homepage" })),
+            nix.thunk(() => ({ [nix.POS]: pos$26, urlPath: "/nix", dir: "/home/eelco/Dev/nix-homepage" })),
           ]),
           description: "This option provides a simple way to serve static directories.\n",
         })))),
       servedFiles: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "attrs")))),
           default: [],
           example: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               urlPath: "/foo/bar.png",
               file: "/home/eelco/some-file.png",
             })),
@@ -219,41 +219,41 @@ export default nix.lambda((args) => (() => {
           description: "This option provides a simple way to serve individual, static files.\n\n::: {.note}\nThis option has been deprecated and will be removed in a future\nversion of NixOS. You can achieve the same result by making use of\nthe `locations.<name>.alias` option.\n:::\n",
         })))),
       extraConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           type: nix.thunk(() => nix.sel(types, "lines")),
           default: "",
           example: "<Directory /home>\n  Options FollowSymlinks\n  AllowOverride All\n</Directory>\n",
           description: "These lines go to httpd.conf verbatim. They will go after\ndirectories and directory aliases defined by default.\n",
         })))),
       enableUserDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           type: nix.thunk(() => nix.sel(types, "bool")),
           default: false,
           description: "Whether to enable serving {file}`~/public_html` as\n`/~«username»`.\n",
         })))),
       globalRedirect: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
           default: null,
           example: "http://newserver.example.org/",
           description: "If set, all requests for this host are redirected permanently to\nthe given URL.\n",
         })))),
       logFormat: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "common",
           example: "combined",
           description: "Log format for Apache's log files. Possible values are: combined, common, referer, agent.\n",
         })))),
       robotsEntries: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           type: nix.thunk(() => nix.sel(types, "lines")),
           default: "",
           example: "Disallow: /foo/",
           description: "Specification of pages to be ignored by web crawlers. See <http://www.robotstxt.org/> for details.\n",
         })))),
       locations: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           type: nix.thunk(() => (() => {
             const w = nix.withScope(types, null);
             return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./location-options.nix"))))));
@@ -264,8 +264,8 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$38,
-      locations: nix.thunk(() => nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((elem) => nix.app(nameValuePair, nix.thunk(() => nix.sel(elem, "urlPath")), nix.thunk(() => ({ __proto__: pos$37, alias: nix.thunk(() => nix.sel(elem, "file")) }))), nix.thunk(() => nix.sel(config, "servedFiles")))))),
+      [nix.POS]: pos$38,
+      locations: nix.thunk(() => nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((elem) => nix.app(nameValuePair, nix.thunk(() => nix.sel(elem, "urlPath")), nix.thunk(() => ({ [nix.POS]: pos$37, alias: nix.thunk(() => nix.sel(elem, "file")) }))), nix.thunk(() => nix.sel(config, "servedFiles")))))),
     })),
   };
 })(), formals$1);

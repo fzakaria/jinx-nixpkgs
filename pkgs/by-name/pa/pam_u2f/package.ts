@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pam_u2f",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://developers.yubico.com/pam-u2f/Releases/pam_u2f-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-pZknzqOOqNkaaDagTiD8Yp7d5CBLFggvcD9ts3jpxjQ=",
         })))),
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       preConfigure: "configureFlagsArray+=(\"--with-pam-dir=$out/lib/security\")\n",
       postConfigure: "cat > fuzz/Makefile <<EOF\nall:\ninstall:\nEOF\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, pam_u2f: nix.thunk(() => nix.sel(nixosTests, "pam-u2f")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, pam_u2f: nix.thunk(() => nix.sel(nixosTests, "pam-u2f")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://developers.yubico.com/pam-u2f/",
         description: "PAM module for allowing authentication with a U2F device",
         changelog: nix.thunk(() => nix.str`https://github.com/Yubico/pam-u2f/raw/pam_u2f-${nix.sel(finalAttrs, "version")}/NEWS`),

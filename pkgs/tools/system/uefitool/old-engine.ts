@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "uefitool";
       const version = "0.28.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           hash: "sha256-StqrOMsKst2X2yQQ/Xl7iLAuA4QXEOyj2KtE7ZtoUNg=",
           owner: "LongSoft",
           repo: "uefitool",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const buildPhase = "bash unixbuild.sh\n";
       const installPhase = "mkdir -p \"$out\"/bin\ncp UEFITool UEFIReplace/UEFIReplace UEFIPatch/UEFIPatch \"$out\"/bin\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "UEFI firmware image viewer and editor",
         homepage: "https://github.com/LongSoft/uefitool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "UEFITool",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

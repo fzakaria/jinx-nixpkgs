@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const openfst = nix.arg($, "openfst");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "opengrm-ngram",
       version: "1.3.16",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://www.openfst.org/twiki/pub/GRM/NGramDownload/ngram-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-pcwP0VVW8H+0Y2Fsmh4WaH4whPPJlE3WyBI4VJfsES4=",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openfst]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to make and modify n-gram language models encoded as weighted finite-state transducers",
         homepage: "https://www.openfst.org/twiki/bin/view/GRM/NGramLibrary",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

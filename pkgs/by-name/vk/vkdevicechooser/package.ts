@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const jq = nix.arg($, "jq");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vkdevicechooser",
       version: "1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jiriks74",
           repo: "vkdevicechooser",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       setupHook: nix.thunk(() => nix.app(writeText, "setup-hook", "addToSearchPath XDG_DATA_DIRS @out@/share\n")),
       preFixup: "for f in \"$out\"/share/vulkan/explicit_layer.d/*.json \"$out\"/share/vulkan/implicit_layer.d/*.json; do\n  jq <\"$f\" >tmp.json \".layer.library_path = \\\"$out/lib/\\\" + .layer.library_path\"\n  mv tmp.json \"$f\"\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Vulkan layer to force a specific device to be used",
         homepage: "https://github.com/aejsmith/vkdevicechooser",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

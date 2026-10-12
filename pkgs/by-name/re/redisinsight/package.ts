@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const electron = electron_41;
   const nodejs = nodejs_slim_24;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "redisinsight",
       version: "3.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "redis",
           repo: "RedisInsight",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,14 +42,14 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [nix.path(here, "./remove-cpu-features.patch")]),
       baseOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: nix.thunk(() => nix.str`redisinsight-${nix.sel(finalAttrs, "version")}-base-offline-cache`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           patches: nix.thunk(() => nix.attr(finalAttrs, "patches")),
           hash: "sha256-lfCasq3C0jD4wNpguxSOxwrR0Sx3ZfwK95Ib31TShSQ=",
         })))),
       innerOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name: nix.thunk(() => nix.str`redisinsight-${nix.sel(finalAttrs, "version")}-inner-offline-cache`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           patches: nix.thunk(() => nix.attr(finalAttrs, "patches")),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-vdBSquVsIeMh5eZMRxYdVz3iuhM27RgEtI6FZqjCP74=",
         })))),
       apiOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           name: nix.thunk(() => nix.str`redisinsight-${nix.sel(finalAttrs, "version")}-api-offline-cache`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           patches: nix.thunk(() => nix.attr(finalAttrs, "patches")),
@@ -145,7 +145,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "redisinsight",
             exec: "redisinsight %u",
             icon: "redisinsight",
@@ -157,7 +157,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Developer GUI for Redis",
         homepage: "https://github.com/redis/RedisInsight",
         license: nix.thunk(() => nix.sel(lib, "licenses", "sspl")),

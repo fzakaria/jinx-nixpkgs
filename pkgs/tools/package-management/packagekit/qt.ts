@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "packagekit-qt";
       const version = "1.1.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hughsie",
           repo: "PackageKit-Qt",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [cmake, pkg_config, qttools]);
       const dontWrapQtApps = true;
       const meta = nix.thunk(() => nix.update(nix.sel(packagekit, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "System to facilitate installing and updating packages - Qt",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

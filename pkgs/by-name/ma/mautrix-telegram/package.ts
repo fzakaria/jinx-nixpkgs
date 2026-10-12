@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const withE2BE = nix.argOr($, "withE2BE", () => true);
   const tulir_telethon = nix.thunk(() => nix.app(nix.sel(python3, "pkgs", "buildPythonPackage"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "tulir_telethon",
       version: "1.99.0a6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tulir",
           repo: "Telethon",
           tag: "v1.99.0a6",
@@ -44,12 +44,12 @@ export default nix.lambda((args) => (() => {
       dontUsePytestCheck: true,
     }))));
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "mautrix-telegram",
       version: "0.15.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "mautrix",
           repo: "telegram",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w_1, "commonmark")),
           nix.thunk(() => nix.lookup(w_1, "aiohttp")),
           nix.thunk(() => nix.lookup(w_1, "yarl")),
-          nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "mautrix"), "override"), nix.thunk(() => ({ __proto__: pos$4, withOlm: withE2BE })))),
+          nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "mautrix"), "override"), nix.thunk(() => ({ [nix.POS]: pos$4, withOlm: withE2BE })))),
           tulir_telethon,
           nix.thunk(() => nix.lookup(w_1, "asyncpg")),
           nix.thunk(() => nix.lookup(w_1, "mako")),
@@ -94,7 +94,7 @@ export default nix.lambda((args) => (() => {
       })()),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/mautrix/telegram",
         description: "Matrix-Telegram hybrid puppeting/relaybot bridge",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libiconv = nix.arg($, "libiconv");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "wireguard-exporter",
       version: "3.6.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MindFlavor",
           repo: "prometheus_wireguard_exporter",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
       postPatch: "# drop hardcoded linker names, fixing static build\nrm .cargo/config.toml\n",
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv]))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { __proto__: pos$2, wireguard: nix.thunk(() => nix.attr(from, "wireguard")) };
+          return { [nix.POS]: pos$2, wireguard: nix.thunk(() => nix.attr(from, "wireguard")) };
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Prometheus exporter for WireGuard, written in Rust",
         homepage: "https://github.com/MindFlavor/prometheus_wireguard_exporter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

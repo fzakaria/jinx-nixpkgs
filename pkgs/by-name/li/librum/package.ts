@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const qt6 = nix.arg($, "qt6");
   const desktopToDarwinBundle = nix.arg($, "desktopToDarwinBundle");
-  const mupdf_cxx = nix.thunk(() => nix.app(nix.sel(mupdf, "override"), nix.thunk(() => ({ __proto__: pos$1, enableCxx: true }))));
+  const mupdf_cxx = nix.thunk(() => nix.app(nix.sel(mupdf, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableCxx: true }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "librum",
       version: "0.12.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "Librum-Reader",
           repo: "Librum",
           tag: nix.thunk(() => nix.str`v.${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./use_mupdf_in_nixpkgs.patch"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             nixMupdfLibPath: nix.thunk(() => nix.str`${nix.sel(mupdf_cxx, "out")}/lib`),
             nixMupdfIncludePath: nix.thunk(() => nix.str`${nix.sel(mupdf_cxx, "dev")}/include`),
           })))),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(qt6, "qtsvg")),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [nix.thunk(() => nix.sel(qt6, "qtwayland"))])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Application designed to make reading enjoyable and straightforward",
         longDescription: "Librum is an application designed to make reading enjoyable\nand straightforward for everyone. It's not just an e-book\nreader. With Librum, you can manage your own online library\nand access it from any device anytime, anywhere. It has\nfeatures like note-taking, AI tooling, and highlighting,\nwhile offering customization to make it as personal as you\nwant! Librum also provides free access to over 70,000 books\nand personal reading statistics while being free and\ncompletely open source.\n",
         homepage: "https://librumreader.com",

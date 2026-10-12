@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const tzdata = nix.arg($, "tzdata");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "starship",
       version: "1.26.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "starship",
           repo: "starship",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => [writableTmpDirAsHomeHook]))),
-      env: nix.thunk(() => ({ __proto__: pos$2, TZDIR: nix.thunk(() => nix.str`${tzdata}/share/zoneinfo`) })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, TZDIR: nix.thunk(() => nix.str`${tzdata}/share/zoneinfo`) })),
       postInstall: nix.thunk(() => nix.add("presetdir=$out/share/starship/presets/\nmkdir -p $presetdir\ncp docs/public/presets/toml/*.toml $presetdir\ninstall -Dm644 .github/config-schema.json $out/share/starship/config-schema.json\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "hostPlatform", "emulatorAvailable"), buildPackages)), nix.thunk(() => (() => {
           const emulator = nix.thunk(() => nix.app(nix.sel(stdenv, "hostPlatform", "emulator"), buildPackages));
           return nix.str`installShellCompletion --cmd starship \\
@@ -49,18 +49,18 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-IO/H75FKU3/2oAJ8AKerGujMDfun8w4fV7gETMxWOt0=",
       nativeCheckInputs: nix.thunk(() => [gitMinimal, writableTmpDirAsHomeHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         jsonschema: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           config: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/share/starship/config-schema.json`),
         })),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           starship: nix.thunk(() => nix.attr(nixosTests, "starship")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Minimal, blazing fast, and extremely customizable prompt for any shell",
         homepage: "https://starship.rs",
         downloadPage: "https://github.com/starship/starship",

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "i2pd-tools",
       version: "2.58.0-unstable-2026-04-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PurpleI2P",
           repo: "i2pd-tools",
           rev: "34944bbd5d0bab34694b1f57edba4b5a783f8b7b",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [zlib, openssl, boost]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\nfor bin in \\\n    routerinfo keygen vain keyinfo regaddr \\\n    regaddr_3ld regaddralias x25519 famtool autoconf_i2pd \\\n    verifyhost offlinekeys b33address i2pbase64;\ndo\n  install -Dm755 $bin -t $out/bin\ndone\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Toolsuite to work with keys and eepsites",
         homepage: "https://github.com/PurpleI2P/i2pd-tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

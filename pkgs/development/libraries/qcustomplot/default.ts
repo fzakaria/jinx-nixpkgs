@@ -19,19 +19,19 @@ export default nix.lambda((args) => (() => {
   const qtbase = nix.arg($, "qtbase");
   const qmake = nix.arg($, "qmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "qcustomplot",
       version: "2.1.1",
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "ecme2",
             repo: "QCustomPlot",
             tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
             hash: "sha256-BW8H/vDbhK3b8t8oB92icEBemzcdRdrIz2aKqlUi6UU=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`https://www.qcustomplot.com/release/${nix.sel(finalAttrs, "version")}/QCustomPlot-source.tar.gz`),
             hash: "sha256-Xi0i3sd5248B81fL2yXlT7z5ca2u516ujXrSRESHGC8=",
           })))),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: ".",
       buildInputs: nix.thunk(() => [qtbase]),
       nativeBuildInputs: nix.thunk(() => nix.concat([qmake], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [fixDarwinDylibNames])))),
-      env: nix.thunk(() => ({ __proto__: pos$3, LANG: "C.UTF-8" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, LANG: "C.UTF-8" })),
       qmakeFlags: nix.thunk(() => ["sharedlib/sharedlib-compilation/sharedlib-compilation.pro"]),
       dontWrapQtApps: true,
       postUnpack: "cp -rv source/* .\ncp -rv qcustomplot-source/* .\n",
@@ -52,7 +52,7 @@ cp -av libqcustomplot*${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLib
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://qtcustomplot.com/",
         description: "Qt C++ widget for plotting and data visualization",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

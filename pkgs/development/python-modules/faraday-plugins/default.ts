@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const tabulate = nix.arg($, "tabulate");
   const tldextract = nix.arg($, "tldextract");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "faraday-plugins",
       version: "1.31.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "infobyte",
           repo: "faraday_plugins",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["faraday_plugins"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Security tools report parsers for Faraday",
         homepage: "https://github.com/infobyte/faraday_plugins",
         changelog: nix.thunk(() => nix.str`https://github.com/infobyte/faraday_plugins/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

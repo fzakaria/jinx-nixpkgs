@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "sysprof",
       version: "50.0",
       outputs: nix.thunk(() => ["out", "lib", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/sysprof/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/sysprof-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-qs5E6Q6Q9sNLsvvsjMtHuPgRAwgJeNZXWSh4Q8Mp1To=",
         })))),
@@ -70,12 +70,12 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       mesonFlags: nix.thunk(() => ["-Dsystemdunitdir=lib/systemd/system", "-Dinstall-static=false"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: "sysprof" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "sysprof" })))),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "System-wide profiler for Linux",
         homepage: "https://gitlab.gnome.org/GNOME/sysprof",
         longDescription: "Sysprof is a sampling CPU profiler for Linux that uses the perf_event_open\nsystem call to profile the entire system, not just a single\napplication.  Sysprof handles shared libraries and applications\ndo not need to be recompiled.  In fact they don't even have to\nbe restarted.\n",

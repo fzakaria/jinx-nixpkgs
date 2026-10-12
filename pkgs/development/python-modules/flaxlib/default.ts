@@ -40,17 +40,17 @@ fi
       const build_system = nix.thunk(() => [nanobind, ninja, scikit_build_core]);
       const nativeBuildInputs = nix.thunk(() => [cmake, pkg_config]);
       const env = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         CMAKE_PREFIX_PATH: nix.thunk(() => nix.str`${nanobind}/${nix.sel(python, "sitePackages")}/nanobind`),
       }));
       const pythonImportsCheck = nix.thunk(() => ["flaxlib"]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.attr(flax, "updateScript")),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Rust library used internally by flax",
         homepage: "https://github.com/google/flax/tree/main/flaxlib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -60,7 +60,7 @@ fi
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

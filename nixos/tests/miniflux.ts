@@ -63,55 +63,55 @@ ADMIN_PASSWORD=${password}
   const postgresPasswordFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "pgpass", nix.thunk(() => nix.str`*:*:*:*:${postgresPassword}
 `)));
   return {
-    __proto__: pos$34,
+    [nix.POS]: pos$34,
     name: "miniflux",
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$33,
+      [nix.POS]: pos$33,
       default: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           security: nix.thunk(() => ({
-            __proto__: pos$3,
-            apparmor: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+            [nix.POS]: pos$3,
+            apparmor: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$5,
-            miniflux: nix.thunk(() => ({ __proto__: pos$4, enable: true, adminCredentialsFile: adminCredentialsFile })),
+            [nix.POS]: pos$5,
+            miniflux: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true, adminCredentialsFile: adminCredentialsFile })),
           })),
         };
       })(), formals$2),
       withoutSudo: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           security: nix.thunk(() => ({
-            __proto__: pos$9,
-            apparmor: nix.thunk(() => ({ __proto__: pos$7, enable: true })),
-            sudo: nix.thunk(() => ({ __proto__: pos$8, enable: false })),
+            [nix.POS]: pos$9,
+            apparmor: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
+            sudo: nix.thunk(() => ({ [nix.POS]: pos$8, enable: false })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$11,
-            miniflux: nix.thunk(() => ({ __proto__: pos$10, enable: true, adminCredentialsFile: adminCredentialsFile })),
+            [nix.POS]: pos$11,
+            miniflux: nix.thunk(() => ({ [nix.POS]: pos$10, enable: true, adminCredentialsFile: adminCredentialsFile })),
           })),
         };
       })(), formals$3),
       customized: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$4);
         return {
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           security: nix.thunk(() => ({
-            __proto__: pos$14,
-            apparmor: nix.thunk(() => ({ __proto__: pos$13, enable: true })),
+            [nix.POS]: pos$14,
+            apparmor: nix.thunk(() => ({ [nix.POS]: pos$13, enable: true })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             miniflux: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               enable: true,
               config: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 CLEANUP_FREQUENCY: "48",
                 LISTEN_ADDR: nix.thunk(() => nix.str`localhost:${nix.builtins.toString(port)}`),
               })),
@@ -126,11 +126,11 @@ ADMIN_PASSWORD=${password}
         const pkgs_1 = nix.arg($_1, "pkgs");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           services: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             postgresql: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               enable: true,
               initialScript: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "init-postgres", nix.thunk(() => nix.str`CREATE USER miniflux WITH PASSWORD '${postgresPassword}';
 CREATE DATABASE miniflux WITH OWNER miniflux;
@@ -140,9 +140,9 @@ CREATE DATABASE miniflux WITH OWNER miniflux;
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             firewall: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               allowedTCPPorts: nix.thunk(() => [
                 nix.thunk(() => nix.sel(config, "services", "postgresql", "settings", "port")),
               ]),
@@ -153,31 +153,31 @@ CREATE DATABASE miniflux WITH OWNER miniflux;
       externalDb: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$6);
         return {
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           security: nix.thunk(() => ({
-            __proto__: pos$25,
-            apparmor: nix.thunk(() => ({ __proto__: pos$24, enable: true })),
+            [nix.POS]: pos$25,
+            apparmor: nix.thunk(() => ({ [nix.POS]: pos$24, enable: true })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             miniflux: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               enable: true,
               createDatabaseLocally: false,
               adminCredentialsFile: adminCredentialsFile,
               config: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 DATABASE_URL: "user=miniflux host=postgresTcp dbname=miniflux sslmode=disable",
                 PGPASSFILE: "/run/miniflux/pgpass",
               })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             services: nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               miniflux: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 preStart: nix.thunk(() => nix.str`cp ${postgresPasswordFile} /run/miniflux/pgpass
 chmod 600 /run/miniflux/pgpass
 `),

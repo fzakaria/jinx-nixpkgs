@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libxtst = nix.arg($, "libxtst");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bucklespring",
       version: "1.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zevv",
           repo: "bucklespring",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(legacy)), nix.thunk(() => ["libinput=1"]))),
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/wav\ncp -r $src/wav $out/share/.\ninstall -D ./buckle.desktop $out/share/applications/buckle.desktop\ninstall -D ./buckle $out/bin/buckle\nwrapProgram $out/bin/buckle --add-flags \"-p $out/share/wav\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Nostalgia bucklespring keyboard sound",
         mainProgram: "buckle",
         longDescription: "When built with libinput (wayland or bare console),\nusers need to be in the input group to use this:\n<code>users.users.alice.extraGroups = [ \"input\" ];</code>\n",

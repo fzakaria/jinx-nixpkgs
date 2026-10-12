@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkLibretroCore = nix.arg($, "mkLibretroCore");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       core: "mednafen-pce-fast",
       version: "0-unstable-2026-09-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libretro",
           repo: "beetle-pce-fast-libretro",
           rev: "1c693c630121366f0b819d785762f1ce5b3a68d0",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       makefile: "Makefile",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Port of Mednafen's PC Engine fast core to libretro",
         homepage: "https://github.com/libretro/beetle-pce-fast-libretro",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

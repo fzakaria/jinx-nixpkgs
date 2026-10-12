@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const libsoup_3 = nix.arg($, "libsoup_3");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libmsgraph",
       version: "0.3.4",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/msgraph/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/msgraph-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-BzHs5rArMu7/u72Y79x3vAPd0gZR7q46Q0Pwh5sE1sc=",
         })))),
@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [glib, gnome_online_accounts, json_glib, libsoup_3]),
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc/msgraph-1\" \"$devdoc\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, attrPath: "libmsgraph", packageName: "msgraph" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, attrPath: "libmsgraph", packageName: "msgraph" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Library to access MS Graph API for Office 365",
         homepage: "https://gitlab.gnome.org/GNOME/msgraph",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/msgraph/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),

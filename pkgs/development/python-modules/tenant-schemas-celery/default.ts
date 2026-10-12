@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "maciej-gol",
           repo: "tenant-schemas-celery",
           tag: version,
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [celery]);
       const pythonImportsCheck = nix.thunk(() => ["tenant_schemas_celery"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Celery application implementation that allows celery tasks to cooperate with multi-tenancy provided by django-tenant-schemas and django-tenants packages",
         homepage: "https://github.com/maciej-gol/tenant-schemas-celery",
         changelog: nix.thunk(() => nix.str`https://github.com/maciej-gol/tenant-schemas-celery/releases/tag/${nix.sel(src, "tag")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

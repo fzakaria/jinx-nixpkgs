@@ -16,24 +16,24 @@ export default nix.lambda((args) => (() => {
   const autopen = nix.arg($, "autopen");
   const uefiSigningKey = nix.argOr($, "uefiSigningKey", () => nix.sel(autopen, "testSigningKey"));
   return nix.app(mkSignedPackages, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       uefiSigningKey: uefiSigningKey,
       uefiCertificate: nix.thunk(() => nix.app(nix.sel(autopen, "x509", "mkSelfSignedCertificate"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           name: "insecure-test-uefi-certificate",
           signingKey: uefiSigningKey,
           certificateParams: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             purpose: "code-signing",
             commonName: "INSECURE TEST CERTIFICATE, DO NOT TRUST",
             notBefore: "1970-01-01T00:00:00Z",
             lifetimeDays: 1n,
           })),
-          passthru: nix.thunk(() => ({ __proto__: pos$2, signingKey: uefiSigningKey })),
+          passthru: nix.thunk(() => ({ [nix.POS]: pos$2, signingKey: uefiSigningKey })),
           meta: nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(autopen, "meta"));
             return {
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             description: "Insecure test UEFI Secure Boot certificate",
             license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             platforms: nix.thunk(() => nix.attr(from, "platforms")),

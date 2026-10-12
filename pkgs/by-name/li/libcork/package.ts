@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const check = nix.arg($, "check");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libcork",
       version: "1.0.0--rc3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dcreager",
           repo: "libcork",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,7 +48,7 @@ substituteInPlace CMakeLists.txt \\
       doCheck: false,
       postInstall: "ln -s $out/lib/libcork.so $out/lib/libcork.so.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         homepage: "https://github.com/dcreager/libcork",
         description: "Simple, easily embeddable cross-platform C library",

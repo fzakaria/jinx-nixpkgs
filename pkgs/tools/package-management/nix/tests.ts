@@ -23,8 +23,8 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const self_attribute_name = nix.arg($, "self_attribute_name");
   return nix.update({
-    __proto__: pos$3,
-    srcVersion: nix.thunk(() => nix.app(runCommand, "nix-src-version", nix.thunk(() => ({ __proto__: pos$1, version: version })), nix.thunk(() => nix.str`# This file is an implementation detail, but it's a good sanity check
+    [nix.POS]: pos$3,
+    srcVersion: nix.thunk(() => nix.app(runCommand, "nix-src-version", nix.thunk(() => ({ [nix.POS]: pos$1, version: version })), nix.thunk(() => nix.str`# This file is an implementation detail, but it's a good sanity check
 # If upstream changes that, we'll have to adapt.
 srcVersion=$(cat ${src}/.version)
 echo "Version in nix nix expression: $version"
@@ -32,14 +32,14 @@ echo "Version in nix.src: $srcVersion"
 ${(nix.asBool(nix.eq(self_attribute_name, "git")) ? "majorMinor() {\n  echo \"$1\" | sed -n -e 's/\\([0-9]*\\.[0-9]*\\).*/\\1/p'\n}\nif (set -x; [ \"$(majorMinor \"$version\")\" != \"$(majorMinor \"$srcVersion\")\" ]); then\n  echo \"Version mismatch!\"\n  exit 1\nfi\n" : "stripSuffix() {\n  echo \"$1\" | sed 's/+.*//'\n}\nif [ \"$(stripSuffix \"$version\")\" != \"$(stripSuffix \"$srcVersion\")\" ]; then\n  echo \"Version mismatch!\"\n  exit 1\nfi\n")}
 touch $out
 `))),
-    "nixpkgs-lib": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../../lib/tests/test-with-nix.nix")), nix.thunk(() => ({ __proto__: pos$2, lib: lib, pkgs: pkgs, nix: nix$ })))),
+    "nixpkgs-lib": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../../lib/tests/test-with-nix.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, lib: lib, pkgs: pkgs, nix: nix$ })))),
   }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       misc: nix.thunk(() => nix.sel(nixosTests, "nix-misc", "default")),
       upgrade: nix.thunk(() => nix.sel(nixosTests, "nix-upgrade")),
       simpleUefiSystemdBoot: nix.thunk(() => nix.sel(nixosTests, "installer", "simpleUefiSystemdBoot")),
     }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       nixi686: nix.thunk(() => nix.sel(pkgsi686Linux, "nixVersions", nix.key(nix.force(self_attribute_name)))),
     })))));
 })(), formals$1);

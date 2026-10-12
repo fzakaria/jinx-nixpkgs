@@ -1045,12 +1045,12 @@ export default nix.thunk(() => (() => {
   const versions = nix.thunk(() => nix.attr(lib, "versions"));
   const xor = nix.thunk(() => nix.attr(lib, "xor"));
   const testingThrow = (expr) => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     expr: nix.thunk(() => nix.builtins.tryEval(nix.thunk(() => nix.builtins.seq(expr, "didn't throw")))),
-    expected: nix.thunk(() => ({ __proto__: pos$1, success: false, value: false })),
+    expected: nix.thunk(() => ({ [nix.POS]: pos$1, success: false, value: false })),
   });
   const testingEval = (expr) => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     expr: nix.thunk(() => nix.sel(nix.builtins.tryEval(expr), "success")),
     expected: true,
   });
@@ -1059,23 +1059,23 @@ export default nix.thunk(() => (() => {
     const name = nix.arg($, "name");
     const expected = nix.arg($, "expected");
     const drv = nix.thunk(() => nix.app(nix.builtins.derivation, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         name: nix.thunk(() => nix.app(nix.sel(strings, "sanitizeDerivationName"), name)),
         builder: "x",
         system: "x",
       }))));
     return {
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       expr: nix.thunk(() => nix.builtins.seq(nix.thunk(() => nix.sel(drv, "drvPath")), nix.thunk(() => nix.sel(drv, "name")))),
       expected: expected,
     };
   })(), formals$1);
-  const dummyDerivation = nix.thunk(() => nix.app(nix.builtins.derivation, nix.thunk(() => ({ __proto__: pos$6, name: "name", builder: "builder", system: "system" }))));
+  const dummyDerivation = nix.thunk(() => nix.app(nix.builtins.derivation, nix.thunk(() => ({ [nix.POS]: pos$6, name: "name", builder: "builder", system: "system" }))));
   const aPathLiteral = nix.path(here, "./misc.nix");
   return nix.app(runTests, nix.thunk(() => ({
-      __proto__: pos$914,
+      [nix.POS]: pos$914,
       testFunctionArgsMakeOverridable: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         expr: nix.thunk(() => nix.app(functionArgs, nix.thunk(() => nix.app(makeOverridable, nix.lambda((args) => (() => {
               const $ = nix.formals(args, formals$2);
               const a = nix.arg($, "a");
@@ -1083,18 +1083,18 @@ export default nix.thunk(() => (() => {
               const c = nix.argOr($, "c", () => null);
               return {};
             })(), formals$2))))),
-        expected: nix.thunk(() => ({ __proto__: pos$7, a: false, b: false, c: true })),
+        expected: nix.thunk(() => ({ [nix.POS]: pos$7, a: false, b: false, c: true })),
       })),
       testFunctionArgsMakeOverridableOverride: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         expr: nix.thunk(() => nix.app(functionArgs, nix.thunk(() => nix.sel(nix.app(makeOverridable, nix.lambda((args) => (() => {
               const $ = nix.formals(args, formals$3);
               const a = nix.arg($, "a");
               const b = nix.arg($, "b");
               const c = nix.argOr($, "c", () => null);
               return {};
-            })(), formals$3), nix.thunk(() => ({ __proto__: pos$9, a: 1n, b: 2n }))), "override")))),
-        expected: nix.thunk(() => ({ __proto__: pos$10, a: false, b: false, c: true })),
+            })(), formals$3), nix.thunk(() => ({ [nix.POS]: pos$9, a: 1n, b: 2n }))), "override")))),
+        expected: nix.thunk(() => ({ [nix.POS]: pos$10, a: false, b: false, c: true })),
       })),
       testOverridePreserveFunctionMetadata: nix.thunk(() => (() => {
         const toCallableAttrs = (f) => nix.app(setFunctionArgs, f, nix.thunk(() => nix.app(functionArgs, f)));
@@ -1104,53 +1104,53 @@ export default nix.thunk(() => (() => {
           return nix.update(nix.app(toCallableAttrs, nix.lambda((args_1) => (() => {
               const $_1 = nix.formals(args_1, formals$5);
               const b = nix.argOr($_1, "b", () => 5n);
-              return { __proto__: pos$12, a: a, b: b };
-            })(), formals$5)), { __proto__: pos$13, a: a, c: 7n });
+              return { [nix.POS]: pos$12, a: a, b: b };
+            })(), formals$5)), { [nix.POS]: pos$13, a: a, c: 7n });
         })(), formals$4);
         const construct0 = nix.thunk(() => nix.app(makeOverridable, constructDefinition, nix.thunk(() => ({}))));
         const construct1 = nix.thunk(() => nix.app(makeOverridable, construct0));
-        const construct0p = nix.thunk(() => nix.app(nix.sel(construct0, "override"), nix.thunk(() => ({ __proto__: pos$14, a: 11n }))));
-        const construct1p = nix.thunk(() => nix.app(nix.sel(construct1, "override"), nix.thunk(() => ({ __proto__: pos$15, a: 11n }))));
+        const construct0p = nix.thunk(() => nix.app(nix.sel(construct0, "override"), nix.thunk(() => ({ [nix.POS]: pos$14, a: 11n }))));
+        const construct1p = nix.thunk(() => nix.app(nix.sel(construct1, "override"), nix.thunk(() => ({ [nix.POS]: pos$15, a: 11n }))));
         return {
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           expr: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             "construct-metadata": nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               a: nix.thunk(() => nix.attr(construct1, "a")),
               c: nix.thunk(() => nix.attr(construct1, "c")),
             })),
             "construct-overridden-metadata": nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               v: nix.thunk(() => nix.sel(construct0p, "a")),
               a: nix.thunk(() => nix.attr(construct1p, "a")),
               c: nix.thunk(() => nix.attr(construct1p, "c")),
             })),
             "construct-overridden-result-overrider": nix.thunk(() => ({
-              __proto__: pos$26,
-              "result-overriders-exist": nix.thunk(() => nix.app(mapAttrs, (_) => (f) => nix.has(nix.app(f, nix.thunk(() => ({}))), "override"), nix.thunk(() => ({ __proto__: pos$18, construct1: construct1, construct1p: construct1p })))),
+              [nix.POS]: pos$26,
+              "result-overriders-exist": nix.thunk(() => nix.app(mapAttrs, (_) => (f) => nix.has(nix.app(f, nix.thunk(() => ({}))), "override"), nix.thunk(() => ({ [nix.POS]: pos$18, construct1: construct1, construct1p: construct1p })))),
               "result-overrider-functionality": nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 overridden: nix.thunk(() => (() => {
-                  const from = nix.thunk(() => nix.app(nix.sel(nix.app(construct1p, nix.thunk(() => ({}))), "override"), nix.thunk(() => ({ __proto__: pos$19, b: 13n }))));
+                  const from = nix.thunk(() => nix.app(nix.sel(nix.app(construct1p, nix.thunk(() => ({}))), "override"), nix.thunk(() => ({ [nix.POS]: pos$19, b: 13n }))));
                   return {
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   a: nix.thunk(() => nix.attr(from, "a")),
                   b: nix.thunk(() => nix.attr(from, "b")),
                 };
                 })()),
                 direct: nix.thunk(() => (() => {
-                  const from = nix.thunk(() => nix.app(construct1p, nix.thunk(() => ({ __proto__: pos$21, b: 13n }))));
+                  const from = nix.thunk(() => nix.app(construct1p, nix.thunk(() => ({ [nix.POS]: pos$21, b: 13n }))));
                   return {
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   a: nix.thunk(() => nix.attr(from, "a")),
                   b: nix.thunk(() => nix.attr(from, "b")),
                 };
                 })()),
                 v: nix.thunk(() => (() => {
-                  const from = nix.thunk(() => nix.app(construct0p, nix.thunk(() => ({ __proto__: pos$23, b: 13n }))));
+                  const from = nix.thunk(() => nix.app(construct0p, nix.thunk(() => ({ [nix.POS]: pos$23, b: 13n }))));
                   return {
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   a: nix.thunk(() => nix.attr(from, "a")),
                   b: nix.thunk(() => nix.attr(from, "b")),
                 };
@@ -1159,40 +1159,40 @@ export default nix.thunk(() => (() => {
             })),
           })),
           expected: nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             "construct-metadata": nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               a: nix.thunk(() => nix.attr(construct0, "a")),
               c: nix.thunk(() => nix.attr(construct0, "c")),
             })),
             "construct-overridden-metadata": nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               v: 11n,
               a: nix.thunk(() => nix.attr(construct0p, "a")),
               c: nix.thunk(() => nix.attr(construct0p, "c")),
             })),
             "construct-overridden-result-overrider": nix.thunk(() => ({
-              __proto__: pos$37,
-              "result-overriders-exist": nix.thunk(() => ({ __proto__: pos$30, construct1: true, construct1p: true })),
+              [nix.POS]: pos$37,
+              "result-overriders-exist": nix.thunk(() => ({ [nix.POS]: pos$30, construct1: true, construct1p: true })),
               "result-overrider-functionality": nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 overridden: nix.thunk(() => (() => {
-                  const from = nix.thunk(() => nix.app(construct0p, nix.thunk(() => ({ __proto__: pos$31, b: 13n }))));
+                  const from = nix.thunk(() => nix.app(construct0p, nix.thunk(() => ({ [nix.POS]: pos$31, b: 13n }))));
                   return {
-                  __proto__: pos$32,
+                  [nix.POS]: pos$32,
                   a: nix.thunk(() => nix.attr(from, "a")),
                   b: nix.thunk(() => nix.attr(from, "b")),
                 };
                 })()),
                 direct: nix.thunk(() => (() => {
-                  const from = nix.thunk(() => nix.app(construct0p, nix.thunk(() => ({ __proto__: pos$33, b: 13n }))));
+                  const from = nix.thunk(() => nix.app(construct0p, nix.thunk(() => ({ [nix.POS]: pos$33, b: 13n }))));
                   return {
-                  __proto__: pos$34,
+                  [nix.POS]: pos$34,
                   a: nix.thunk(() => nix.attr(from, "a")),
                   b: nix.thunk(() => nix.attr(from, "b")),
                 };
                 })()),
-                v: nix.thunk(() => ({ __proto__: pos$35, a: 11n, b: 13n })),
+                v: nix.thunk(() => ({ [nix.POS]: pos$35, a: 11n, b: 13n })),
               })),
             })),
           })),
@@ -1205,9 +1205,9 @@ export default nix.thunk(() => (() => {
           const b = nix.arg($, "b");
           return {};
         })(), formals$6);
-        const f$ = nix.thunk(() => nix.app(callPackageWith, nix.thunk(() => ({ __proto__: pos$40, a: 1n, b: 2n })), f, nix.thunk(() => ({}))));
+        const f$ = nix.thunk(() => nix.app(callPackageWith, nix.thunk(() => ({ [nix.POS]: pos$40, a: 1n, b: 2n })), f, nix.thunk(() => ({}))));
         return {
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           expr: nix.thunk(() => nix.app(functionArgs, nix.thunk(() => nix.sel(f$, "override")))),
           expected: nix.thunk(() => nix.app(functionArgs, f)),
         };
@@ -1217,33 +1217,33 @@ export default nix.thunk(() => (() => {
           const $ = nix.formals(args, formals$7);
           const a = nix.argOr($, "a", () => 0n);
           const b = nix.arg($, "b");
-          return { __proto__: pos$42, nested: nix.thunk(() => ({})) };
+          return { [nix.POS]: pos$42, nested: nix.thunk(() => ({})) };
         })(), formals$7);
-        const f$ = nix.thunk(() => nix.app(callPackagesWith, nix.thunk(() => ({ __proto__: pos$43, a: 1n, b: 2n })), f, nix.thunk(() => ({}))));
+        const f$ = nix.thunk(() => nix.app(callPackagesWith, nix.thunk(() => ({ [nix.POS]: pos$43, a: 1n, b: 2n })), f, nix.thunk(() => ({}))));
         return {
-          __proto__: pos$44,
+          [nix.POS]: pos$44,
           expr: nix.thunk(() => nix.app(functionArgs, nix.thunk(() => nix.sel(f$, "nested", "override")))),
           expected: nix.thunk(() => nix.app(functionArgs, f)),
         };
       })()),
-      testId: nix.thunk(() => ({ __proto__: pos$45, expr: nix.thunk(() => nix.app(id, 1n)), expected: 1n })),
+      testId: nix.thunk(() => ({ [nix.POS]: pos$45, expr: nix.thunk(() => nix.app(id, 1n)), expected: 1n })),
       testConst: nix.thunk(() => ({
-        __proto__: pos$46,
+        [nix.POS]: pos$46,
         expr: nix.thunk(() => nix.app(const$, 2n, 3n)),
         expected: 2n,
       })),
       testPipe: nix.thunk(() => ({
-        __proto__: pos$47,
+        [nix.POS]: pos$47,
         expr: nix.thunk(() => nix.app(pipe, 2n, nix.thunk(() => [(x) => nix.add(x, 2n), (x) => nix.mul(x, 2n)]))),
         expected: 8n,
       })),
       testPipeEmpty: nix.thunk(() => ({
-        __proto__: pos$48,
+        [nix.POS]: pos$48,
         expr: nix.thunk(() => nix.app(pipe, 2n, [])),
         expected: 2n,
       })),
       testPipeStrings: nix.thunk(() => ({
-        __proto__: pos$49,
+        [nix.POS]: pos$49,
         expr: nix.thunk(() => nix.app(pipe, nix.thunk(() => [3n, 4n]), nix.thunk(() => [
             nix.thunk(() => nix.app(nix.builtins.map, nix.builtins.toString)),
             nix.thunk(() => nix.app(nix.builtins.map, (s) => nix.add(s, "\n"))),
@@ -1252,12 +1252,12 @@ export default nix.thunk(() => (() => {
         expected: "3\n4\n",
       })),
       testAnd: nix.thunk(() => ({
-        __proto__: pos$50,
+        [nix.POS]: pos$50,
         expr: nix.thunk(() => nix.app(and, true, false)),
         expected: false,
       })),
       testXor: nix.thunk(() => ({
-        __proto__: pos$51,
+        [nix.POS]: pos$51,
         expr: nix.thunk(() => [
           nix.thunk(() => nix.app(xor, true, false)),
           nix.thunk(() => nix.app(xor, true, true)),
@@ -1267,12 +1267,12 @@ export default nix.thunk(() => (() => {
         expected: nix.thunk(() => [true, false, false, true]),
       })),
       testComposeExtensions: nix.thunk(() => ({
-        __proto__: pos$55,
+        [nix.POS]: pos$55,
         expr: nix.thunk(() => (() => {
-          const obj = nix.thunk(() => nix.app(makeExtensible, (self) => ({ __proto__: pos$52, foo: nix.thunk(() => nix.sel(self, "bar")) })));
-          const f = (self) => (super$) => ({ __proto__: pos$53, bar: false, baz: true });
+          const obj = nix.thunk(() => nix.app(makeExtensible, (self) => ({ [nix.POS]: pos$52, foo: nix.thunk(() => nix.sel(self, "bar")) })));
+          const f = (self) => (super$) => ({ [nix.POS]: pos$53, bar: false, baz: true });
           const g = (self) => (super$) => ({
-            __proto__: pos$54,
+            [nix.POS]: pos$54,
             bar: nix.thunk(() => nix.selOr(super$, () => false, "baz")),
           });
           const f_o_g = nix.thunk(() => nix.app(composeExtensions, f, g));
@@ -1282,9 +1282,9 @@ export default nix.thunk(() => (() => {
         expected: true,
       })),
       testComposeManyExtensions0: nix.thunk(() => ({
-        __proto__: pos$57,
+        [nix.POS]: pos$57,
         expr: nix.thunk(() => (() => {
-          const obj = nix.thunk(() => nix.app(makeExtensible, (self) => ({ __proto__: pos$56, foo: true })));
+          const obj = nix.thunk(() => nix.app(makeExtensible, (self) => ({ [nix.POS]: pos$56, foo: true })));
           const emptyComposition = nix.thunk(() => nix.app(composeManyExtensions, []));
           const composed = nix.thunk(() => nix.app(nix.sel(obj, "extend"), emptyComposition));
           return nix.sel(composed, "foo");
@@ -1292,18 +1292,18 @@ export default nix.thunk(() => (() => {
         expected: true,
       })),
       testComposeManyExtensions: nix.thunk(() => (() => {
-        const f = (self) => (super$) => ({ __proto__: pos$58, bar: false, baz: true });
+        const f = (self) => (super$) => ({ [nix.POS]: pos$58, bar: false, baz: true });
         const g = (self) => (super$) => ({
-          __proto__: pos$59,
+          [nix.POS]: pos$59,
           bar: nix.thunk(() => nix.selOr(super$, () => false, "baz")),
         });
         const h = (self) => (super$) => ({
-          __proto__: pos$60,
+          [nix.POS]: pos$60,
           qux: nix.thunk(() => nix.selOr(super$, () => false, "bar")),
         });
-        const obj = nix.thunk(() => nix.app(makeExtensible, (self) => ({ __proto__: pos$61, foo: nix.thunk(() => nix.sel(self, "qux")) })));
+        const obj = nix.thunk(() => nix.app(makeExtensible, (self) => ({ [nix.POS]: pos$61, foo: nix.thunk(() => nix.sel(self, "qux")) })));
         return {
-          __proto__: pos$62,
+          [nix.POS]: pos$62,
           expr: nix.thunk(() => (() => {
             const composition = nix.thunk(() => nix.app(composeManyExtensions, nix.thunk(() => [f, g, h])));
             const composed = nix.thunk(() => nix.app(nix.sel(obj, "extend"), composition));
@@ -1313,59 +1313,59 @@ export default nix.thunk(() => (() => {
         };
       })()),
       testBitAnd: nix.thunk(() => ({
-        __proto__: pos$63,
+        [nix.POS]: pos$63,
         expr: nix.thunk(() => nix.app(bitAnd, 3n, 10n)),
         expected: 2n,
       })),
       testBitOr: nix.thunk(() => ({
-        __proto__: pos$64,
+        [nix.POS]: pos$64,
         expr: nix.thunk(() => nix.app(bitOr, 3n, 10n)),
         expected: 11n,
       })),
       testBitXor: nix.thunk(() => ({
-        __proto__: pos$65,
+        [nix.POS]: pos$65,
         expr: nix.thunk(() => nix.app(bitXor, 3n, 10n)),
         expected: 9n,
       })),
       testToHexString: nix.thunk(() => ({
-        __proto__: pos$66,
+        [nix.POS]: pos$66,
         expr: nix.thunk(() => nix.app(toHexString, 250n)),
         expected: "FA",
       })),
       testFromHexStringFirstExample: nix.thunk(() => ({
-        __proto__: pos$67,
+        [nix.POS]: pos$67,
         expr: nix.thunk(() => nix.app(fromHexString, "FF")),
         expected: 255n,
       })),
       testFromHexStringMaximum: nix.thunk(() => ({
-        __proto__: pos$68,
+        [nix.POS]: pos$68,
         expr: nix.thunk(() => nix.app(fromHexString, "7fffffffffffffff")),
         expected: 9223372036854775807n,
       })),
       testFromHexStringLeadingZeroes: nix.thunk(() => ({
-        __proto__: pos$69,
+        [nix.POS]: pos$69,
         expr: nix.thunk(() => nix.app(fromHexString, "00ffffffffffffff")),
         expected: 72057594037927935n,
       })),
       testFromHexStringWithPrefix: nix.thunk(() => ({
-        __proto__: pos$70,
+        [nix.POS]: pos$70,
         expr: nix.thunk(() => nix.app(fromHexString, "0xf")),
         expected: 15n,
       })),
       testFromHexStringMixedCase: nix.thunk(() => ({
-        __proto__: pos$71,
+        [nix.POS]: pos$71,
         expr: nix.thunk(() => nix.app(fromHexString, "eEeEe")),
         expected: 978670n,
       })),
       testToBaseDigits: nix.thunk(() => ({
-        __proto__: pos$72,
+        [nix.POS]: pos$72,
         expr: nix.thunk(() => nix.app(toBaseDigits, 2n, 6n)),
         expected: nix.thunk(() => [1n, 1n, 0n]),
       })),
       testFunctionArgsFunctor: nix.thunk(() => ({
-        __proto__: pos$75,
+        [nix.POS]: pos$75,
         expr: nix.thunk(() => nix.app(functionArgs, nix.thunk(() => ({
-            __proto__: pos$73,
+            [nix.POS]: pos$73,
             __functor: (self) => nix.lambda((args) => (() => {
               const $ = nix.formals(args, formals$8);
               const a = nix.arg($, "a");
@@ -1373,61 +1373,61 @@ export default nix.thunk(() => (() => {
               return null;
             })(), formals$8),
           })))),
-        expected: nix.thunk(() => ({ __proto__: pos$74, a: false, b: false })),
+        expected: nix.thunk(() => ({ [nix.POS]: pos$74, a: false, b: false })),
       })),
       testFunctionArgsSetFunctionArgs: nix.thunk(() => ({
-        __proto__: pos$78,
-        expr: nix.thunk(() => nix.app(functionArgs, nix.thunk(() => nix.app(setFunctionArgs, (args) => nix.sel(args, "x"), nix.thunk(() => ({ __proto__: pos$76, x: false })))))),
-        expected: nix.thunk(() => ({ __proto__: pos$77, x: false })),
+        [nix.POS]: pos$78,
+        expr: nix.thunk(() => nix.app(functionArgs, nix.thunk(() => nix.app(setFunctionArgs, (args) => nix.sel(args, "x"), nix.thunk(() => ({ [nix.POS]: pos$76, x: false })))))),
+        expected: nix.thunk(() => ({ [nix.POS]: pos$77, x: false })),
       })),
       testJoin: nix.thunk(() => ({
-        __proto__: pos$79,
+        [nix.POS]: pos$79,
         expr: nix.thunk(() => nix.app(join, ",", nix.thunk(() => ["a", "b", "c"]))),
         expected: "a,b,c",
       })),
       testConcatMapStrings: nix.thunk(() => ({
-        __proto__: pos$80,
+        [nix.POS]: pos$80,
         expr: nix.thunk(() => nix.app(concatMapStrings, (x) => nix.add(x, ";"), nix.thunk(() => ["a", "b", "c"]))),
         expected: "a;b;c;",
       })),
       testConcatStringsSep: nix.thunk(() => ({
-        __proto__: pos$81,
+        [nix.POS]: pos$81,
         expr: nix.thunk(() => nix.app(concatStringsSep, ",", nix.thunk(() => ["a", "b", "c"]))),
         expected: "a,b,c",
       })),
       testConcatMapAttrsStringSepExamples: nix.thunk(() => ({
-        __proto__: pos$83,
-        expr: nix.thunk(() => nix.app(concatMapAttrsStringSep, "\n", (name) => (value) => nix.str`${name}: foo-${value}`, nix.thunk(() => ({ __proto__: pos$82, a: "0.1.0", b: "0.2.0" })))),
+        [nix.POS]: pos$83,
+        expr: nix.thunk(() => nix.app(concatMapAttrsStringSep, "\n", (name) => (value) => nix.str`${name}: foo-${value}`, nix.thunk(() => ({ [nix.POS]: pos$82, a: "0.1.0", b: "0.2.0" })))),
         expected: "a: foo-0.1.0\nb: foo-0.2.0",
       })),
       testConcatLines: nix.thunk(() => ({
-        __proto__: pos$84,
+        [nix.POS]: pos$84,
         expr: nix.thunk(() => nix.app(concatLines, nix.thunk(() => ["a", "b", "c"]))),
         expected: "a\nb\nc\n",
       })),
       testConcatLinesEmpty: nix.thunk(() => ({
-        __proto__: pos$85,
+        [nix.POS]: pos$85,
         expr: nix.thunk(() => nix.app(concatLines, [])),
         expected: "",
       })),
       testMakeIncludePathWithPkgs: nix.thunk(() => ({
-        __proto__: pos$94,
+        [nix.POS]: pos$94,
         expr: nix.thunk(() => nix.app(makeIncludePath, nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$88,
-              dev: nix.thunk(() => ({ __proto__: pos$86, outPath: "/dev" })),
-              out: nix.thunk(() => ({ __proto__: pos$87, outPath: "/out" })),
+              [nix.POS]: pos$88,
+              dev: nix.thunk(() => ({ [nix.POS]: pos$86, outPath: "/dev" })),
+              out: nix.thunk(() => ({ [nix.POS]: pos$87, outPath: "/out" })),
               outPath: "/default",
             })),
             nix.thunk(() => ({
-              __proto__: pos$90,
-              out: nix.thunk(() => ({ __proto__: pos$89, outPath: "/out" })),
+              [nix.POS]: pos$90,
+              out: nix.thunk(() => ({ [nix.POS]: pos$89, outPath: "/out" })),
               outPath: "/default",
             })),
-            nix.thunk(() => ({ __proto__: pos$91, outPath: "/default" })),
+            nix.thunk(() => ({ [nix.POS]: pos$91, outPath: "/default" })),
             nix.thunk(() => ({
-              __proto__: pos$93,
-              dev: nix.thunk(() => ({ __proto__: pos$92, outPath: "/dev" })),
+              [nix.POS]: pos$93,
+              dev: nix.thunk(() => ({ [nix.POS]: pos$92, outPath: "/dev" })),
               outPath: "/default",
               outputSpecified: true,
             })),
@@ -1435,35 +1435,35 @@ export default nix.thunk(() => (() => {
         expected: "/dev/include:/out/include:/default/include:/default/include",
       })),
       testMakeIncludePathWithEmptyList: nix.thunk(() => ({
-        __proto__: pos$95,
+        [nix.POS]: pos$95,
         expr: nix.thunk(() => nix.app(makeIncludePath, [])),
         expected: "",
       })),
       testMakeIncludePathWithOneString: nix.thunk(() => ({
-        __proto__: pos$96,
+        [nix.POS]: pos$96,
         expr: nix.thunk(() => nix.app(makeIncludePath, nix.thunk(() => ["/usr"]))),
         expected: "/usr/include",
       })),
       testMakeIncludePathWithManyString: nix.thunk(() => ({
-        __proto__: pos$97,
+        [nix.POS]: pos$97,
         expr: nix.thunk(() => nix.app(makeIncludePath, nix.thunk(() => ["/usr", "/usr/local"]))),
         expected: "/usr/include:/usr/local/include",
       })),
       testReplaceStringString: nix.thunk(() => ({
-        __proto__: pos$98,
+        [nix.POS]: pos$98,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "replaceString"), ".", "_", "v1.2.3")),
         expected: "v1_2_3",
       })),
       testReplicateString: nix.thunk(() => ({
-        __proto__: pos$99,
+        [nix.POS]: pos$99,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "replicate"), 5n, "hello")),
         expected: "hellohellohellohellohello",
       })),
       testTrimString: nix.thunk(() => ({
-        __proto__: pos$108,
+        [nix.POS]: pos$108,
         expr: nix.thunk(() => (() => {
           const testValues = (f) => nix.app(mapAttrs, (_) => nix.force(f), nix.thunk(() => ({
-              __proto__: pos$100,
+              [nix.POS]: pos$100,
               empty: "",
               cr: "\r",
               lf: "\n",
@@ -1477,16 +1477,16 @@ export default nix.thunk(() => (() => {
               "multiline-crlf": "  Hello,\r\n  world!  ",
             })));
           return {
-            __proto__: pos$103,
-            leading: nix.thunk(() => nix.app(testValues, nix.thunk(() => nix.app(nix.sel(strings, "trimWith"), nix.thunk(() => ({ __proto__: pos$101, start: true })))))),
-            trailing: nix.thunk(() => nix.app(testValues, nix.thunk(() => nix.app(nix.sel(strings, "trimWith"), nix.thunk(() => ({ __proto__: pos$102, end: true })))))),
+            [nix.POS]: pos$103,
+            leading: nix.thunk(() => nix.app(testValues, nix.thunk(() => nix.app(nix.sel(strings, "trimWith"), nix.thunk(() => ({ [nix.POS]: pos$101, start: true })))))),
+            trailing: nix.thunk(() => nix.app(testValues, nix.thunk(() => nix.app(nix.sel(strings, "trimWith"), nix.thunk(() => ({ [nix.POS]: pos$102, end: true })))))),
             both: nix.thunk(() => nix.app(testValues, nix.thunk(() => nix.sel(strings, "trim")))),
           };
         })()),
         expected: nix.thunk(() => ({
-          __proto__: pos$107,
+          [nix.POS]: pos$107,
           leading: nix.thunk(() => ({
-            __proto__: pos$104,
+            [nix.POS]: pos$104,
             empty: "",
             cr: "",
             lf: "",
@@ -1500,7 +1500,7 @@ export default nix.thunk(() => (() => {
             "multiline-crlf": "Hello,\r\n  world!  ",
           })),
           trailing: nix.thunk(() => ({
-            __proto__: pos$105,
+            [nix.POS]: pos$105,
             empty: "",
             cr: "",
             lf: "",
@@ -1514,7 +1514,7 @@ export default nix.thunk(() => (() => {
             "multiline-crlf": "  Hello,\r\n  world!",
           })),
           both: nix.thunk(() => ({
-            __proto__: pos$106,
+            [nix.POS]: pos$106,
             empty: "",
             cr: "",
             lf: "",
@@ -1530,232 +1530,232 @@ export default nix.thunk(() => (() => {
         })),
       })),
       testSplitStringsSimple: nix.thunk(() => ({
-        __proto__: pos$109,
+        [nix.POS]: pos$109,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "splitString"), ".", "a.b.c.d")),
         expected: nix.thunk(() => ["a", "b", "c", "d"]),
       })),
       testSplitStringsEmpty: nix.thunk(() => ({
-        __proto__: pos$110,
+        [nix.POS]: pos$110,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "splitString"), ".", "a..b")),
         expected: nix.thunk(() => ["a", "", "b"]),
       })),
       testSplitStringsOne: nix.thunk(() => ({
-        __proto__: pos$111,
+        [nix.POS]: pos$111,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "splitString"), ":", "a.b")),
         expected: nix.thunk(() => ["a.b"]),
       })),
       testSplitStringsNone: nix.thunk(() => ({
-        __proto__: pos$112,
+        [nix.POS]: pos$112,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "splitString"), ".", "")),
         expected: nix.thunk(() => [""]),
       })),
       testSplitStringsFirstEmpty: nix.thunk(() => ({
-        __proto__: pos$113,
+        [nix.POS]: pos$113,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "splitString"), "/", "/a/b/c")),
         expected: nix.thunk(() => ["", "a", "b", "c"]),
       })),
       testSplitStringsLastEmpty: nix.thunk(() => ({
-        __proto__: pos$114,
+        [nix.POS]: pos$114,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "splitString"), ":", "2001:db8:0:0042::8a2e:370:")),
         expected: nix.thunk(() => ["2001", "db8", "0", "0042", "", "8a2e", "370", ""]),
       })),
       testSplitStringsRegex: nix.thunk(() => ({
-        __proto__: pos$115,
+        [nix.POS]: pos$115,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "splitString"), "\\[{}]()^$?*+|.", "A\\[{}]()^$?*+|.B")),
         expected: nix.thunk(() => ["A", "B"]),
       })),
       testSplitStringBySimpleDelimiter: nix.thunk(() => ({
-        __proto__: pos$116,
+        [nix.POS]: pos$116,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "splitStringBy"), (prev) => (curr) => nix.builtins.elem(curr, nix.thunk(() => [".", "-"])), false, "foo.bar-baz")),
         expected: nix.thunk(() => ["foo", "bar", "baz"]),
       })),
       testSplitStringByLeadingDelimiter: nix.thunk(() => ({
-        __proto__: pos$117,
+        [nix.POS]: pos$117,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "splitStringBy"), (prev) => (curr) => nix.builtins.elem(curr, nix.thunk(() => ["."])), false, ".foo.bar.baz")),
         expected: nix.thunk(() => ["", "foo", "bar", "baz"]),
       })),
       testSplitStringByTrailingDelimiter: nix.thunk(() => ({
-        __proto__: pos$118,
+        [nix.POS]: pos$118,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "splitStringBy"), (prev) => (curr) => nix.builtins.elem(curr, nix.thunk(() => ["."])), false, "foo.bar.baz.")),
         expected: nix.thunk(() => ["foo", "bar", "baz", ""]),
       })),
       testSplitStringByMultipleConsecutiveDelimiters: nix.thunk(() => ({
-        __proto__: pos$119,
+        [nix.POS]: pos$119,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "splitStringBy"), (prev) => (curr) => nix.builtins.elem(curr, nix.thunk(() => ["."])), false, "foo...bar")),
         expected: nix.thunk(() => ["foo", "", "", "bar"]),
       })),
       testSplitStringByKeepingSplitChar: nix.thunk(() => ({
-        __proto__: pos$120,
+        [nix.POS]: pos$120,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "splitStringBy"), (prev) => (curr) => nix.builtins.elem(curr, nix.thunk(() => ["."])), true, "foo.bar.baz")),
         expected: nix.thunk(() => ["foo", ".bar", ".baz"]),
       })),
       testSplitStringByCaseTransition: nix.thunk(() => ({
-        __proto__: pos$121,
+        [nix.POS]: pos$121,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "splitStringBy"), (prev) => (curr) => (nix.asBool(!nix.eq(nix.builtins.match("[a-z]", prev), null)) && nix.asBool(!nix.eq(nix.builtins.match("[A-Z]", curr), null))), true, "fooBarBaz")),
         expected: nix.thunk(() => ["foo", "Bar", "Baz"]),
       })),
       testSplitStringByEmptyString: nix.thunk(() => ({
-        __proto__: pos$122,
+        [nix.POS]: pos$122,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "splitStringBy"), (prev) => (curr) => nix.builtins.elem(curr, nix.thunk(() => ["."])), false, "")),
         expected: nix.thunk(() => [""]),
       })),
       testSplitStringByComplexPredicate: nix.thunk(() => ({
-        __proto__: pos$123,
+        [nix.POS]: pos$123,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "splitStringBy"), (prev) => (curr) => (nix.asBool((nix.asBool((nix.asBool(!nix.eq(prev, "")) && nix.asBool(!nix.eq(curr, "")))) && nix.asBool(!nix.eq(nix.builtins.match("[0-9]", prev), null)))) && nix.asBool(!nix.eq(nix.builtins.match("[a-z]", curr), null))), true, "123abc456def")),
         expected: nix.thunk(() => ["123", "abc456", "def"]),
       })),
       testSplitStringByUpperCaseStart: nix.thunk(() => ({
-        __proto__: pos$124,
+        [nix.POS]: pos$124,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "splitStringBy"), (prev) => (curr) => !nix.eq(nix.builtins.match("[A-Z]", curr), null), true, "FooBarBaz")),
         expected: nix.thunk(() => ["", "Foo", "Bar", "Baz"]),
       })),
       testEscapeShellArg: nix.thunk(() => ({
-        __proto__: pos$125,
+        [nix.POS]: pos$125,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "escapeShellArg"), "esc'ape\nme")),
         expected: "'esc'\\''ape\nme'",
       })),
       testEscapeShellArgEmpty: nix.thunk(() => ({
-        __proto__: pos$126,
+        [nix.POS]: pos$126,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "escapeShellArg"), "")),
         expected: "''",
       })),
       testEscapeShellArgs: nix.thunk(() => ({
-        __proto__: pos$127,
+        [nix.POS]: pos$127,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "escapeShellArgs"), nix.thunk(() => ["one", "two three", "four'five"]))),
         expected: "one 'two three' 'four'\\''five'",
       })),
       testEscapeShellArgsUnicode: nix.thunk(() => ({
-        __proto__: pos$128,
+        [nix.POS]: pos$128,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "escapeShellArg"), "á")),
         expected: "'á'",
       })),
       testEscapeNixIdentifierNoQuote: nix.thunk(() => ({
-        __proto__: pos$129,
+        [nix.POS]: pos$129,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "escapeNixIdentifier"), "foo")),
         expected: "foo",
       })),
       testEscapeNixIdentifierNumber: nix.thunk(() => ({
-        __proto__: pos$130,
+        [nix.POS]: pos$130,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "escapeNixIdentifier"), "1foo")),
         expected: "\"1foo\"",
       })),
       testEscapeNixIdentifierKeyword: nix.thunk(() => ({
-        __proto__: pos$131,
+        [nix.POS]: pos$131,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "escapeNixIdentifier"), "assert")),
         expected: "\"assert\"",
       })),
       testSplitStringsDerivation: nix.thunk(() => ({
-        __proto__: pos$132,
+        [nix.POS]: pos$132,
         expr: nix.thunk(() => nix.app(nix.sel(lib, "dropEnd"), 1n, nix.thunk(() => nix.app(nix.sel(strings, "splitString"), "/", dummyDerivation)))),
         expected: nix.thunk(() => nix.app(nix.sel(strings, "splitString"), "/", nix.thunk(() => nix.builtins.storeDir))),
       })),
       testSplitVersionSingle: nix.thunk(() => ({
-        __proto__: pos$133,
+        [nix.POS]: pos$133,
         expr: nix.thunk(() => nix.app(nix.sel(versions, "splitVersion"), "1")),
         expected: nix.thunk(() => ["1"]),
       })),
       testSplitVersionDouble: nix.thunk(() => ({
-        __proto__: pos$134,
+        [nix.POS]: pos$134,
         expr: nix.thunk(() => nix.app(nix.sel(versions, "splitVersion"), "1.2")),
         expected: nix.thunk(() => ["1", "2"]),
       })),
       testSplitVersionTriple: nix.thunk(() => ({
-        __proto__: pos$135,
+        [nix.POS]: pos$135,
         expr: nix.thunk(() => nix.app(nix.sel(versions, "splitVersion"), "1.2.3")),
         expected: nix.thunk(() => ["1", "2", "3"]),
       })),
       testPadVersionLess: nix.thunk(() => ({
-        __proto__: pos$136,
+        [nix.POS]: pos$136,
         expr: nix.thunk(() => nix.app(nix.sel(versions, "pad"), 3n, "1.2")),
         expected: "1.2.0",
       })),
       testPadVersionLessExtra: nix.thunk(() => ({
-        __proto__: pos$137,
+        [nix.POS]: pos$137,
         expr: nix.thunk(() => nix.app(nix.sel(versions, "pad"), 3n, "1.3-rc1")),
         expected: "1.3.0-rc1",
       })),
       testPadVersionMore: nix.thunk(() => ({
-        __proto__: pos$138,
+        [nix.POS]: pos$138,
         expr: nix.thunk(() => nix.app(nix.sel(versions, "pad"), 3n, "1.2.3.4")),
         expected: "1.2.3",
       })),
       testIsFunctionStr: nix.thunk(() => ({
-        __proto__: pos$139,
+        [nix.POS]: pos$139,
         expr: nix.thunk(() => nix.app(isFunction, "a")),
         expected: false,
       })),
       testIsFunctionInt: nix.thunk(() => ({
-        __proto__: pos$140,
+        [nix.POS]: pos$140,
         expr: nix.thunk(() => nix.app(isFunction, 0n)),
         expected: false,
       })),
       testIsFunctionFloat: nix.thunk(() => ({
-        __proto__: pos$141,
+        [nix.POS]: pos$141,
         expr: nix.thunk(() => nix.app(isFunction, 0.4)),
         expected: false,
       })),
       testIsFunctionPath: nix.thunk(() => ({
-        __proto__: pos$142,
+        [nix.POS]: pos$142,
         expr: nix.thunk(() => nix.app(isFunction, nix.path(here, "./."))),
         expected: false,
       })),
       testIsFunctionList: nix.thunk(() => ({
-        __proto__: pos$143,
+        [nix.POS]: pos$143,
         expr: nix.thunk(() => nix.app(isFunction, [])),
         expected: false,
       })),
       testIsFunctionAttrs: nix.thunk(() => ({
-        __proto__: pos$144,
+        [nix.POS]: pos$144,
         expr: nix.thunk(() => nix.app(isFunction, nix.thunk(() => ({})))),
         expected: false,
       })),
       testIsFunctionBool: nix.thunk(() => ({
-        __proto__: pos$145,
+        [nix.POS]: pos$145,
         expr: nix.thunk(() => nix.app(isFunction, false)),
         expected: false,
       })),
       testIsFunctionDerivation: nix.thunk(() => ({
-        __proto__: pos$146,
+        [nix.POS]: pos$146,
         expr: nix.thunk(() => nix.app(isFunction, nix.thunk(() => nix.app(nix.builtins.derivation, nix.thunk(() => ({})))))),
         expected: false,
       })),
       testIsFunctionNull: nix.thunk(() => ({
-        __proto__: pos$147,
+        [nix.POS]: pos$147,
         expr: nix.thunk(() => nix.app(isFunction, null)),
         expected: false,
       })),
       testIsFunctionFunction: nix.thunk(() => ({
-        __proto__: pos$148,
+        [nix.POS]: pos$148,
         expr: nix.thunk(() => nix.app(isFunction, isFunction)),
         expected: true,
       })),
       testIsFunctionAttrsWithValidFunctor: nix.thunk(() => ({
-        __proto__: pos$150,
-        expr: nix.thunk(() => nix.app(isFunction, nix.thunk(() => ({ __proto__: pos$149, __functor: (_) => (__1) => null })))),
+        [nix.POS]: pos$150,
+        expr: nix.thunk(() => nix.app(isFunction, nix.thunk(() => ({ [nix.POS]: pos$149, __functor: (_) => (__1) => null })))),
         expected: true,
       })),
       testIsFunctionDrvWithValidFunctor: nix.thunk(() => ({
-        __proto__: pos$152,
-        expr: nix.thunk(() => nix.app(isFunction, nix.thunk(() => nix.update(nix.app(nix.builtins.derivation, nix.thunk(() => ({}))), { __proto__: pos$151, __functor: (_) => (__1) => null })))),
+        [nix.POS]: pos$152,
+        expr: nix.thunk(() => nix.app(isFunction, nix.thunk(() => nix.update(nix.app(nix.builtins.derivation, nix.thunk(() => ({}))), { [nix.POS]: pos$151, __functor: (_) => (__1) => null })))),
         expected: true,
       })),
       testIsFunctionAttrsWithFunctorArity1: nix.thunk(() => ({
-        __proto__: pos$154,
-        expr: nix.thunk(() => nix.app(isFunction, nix.thunk(() => ({ __proto__: pos$153, __functor: (_) => null })))),
+        [nix.POS]: pos$154,
+        expr: nix.thunk(() => nix.app(isFunction, nix.thunk(() => ({ [nix.POS]: pos$153, __functor: (_) => null })))),
         expected: false,
       })),
       testIsFunctionAttrsWithNonFunctionFunctor: nix.thunk(() => ({
-        __proto__: pos$156,
-        expr: nix.thunk(() => nix.app(isFunction, nix.thunk(() => ({ __proto__: pos$155, __functor: null })))),
+        [nix.POS]: pos$156,
+        expr: nix.thunk(() => nix.app(isFunction, nix.thunk(() => ({ [nix.POS]: pos$155, __functor: null })))),
         expected: false,
       })),
       testIsStorePath: nix.thunk(() => ({
-        __proto__: pos$161,
+        [nix.POS]: pos$161,
         expr: nix.thunk(() => (() => {
           const goodPath = nix.thunk(() => nix.str`${nix.builtins.storeDir}/d945ibfx9x185xf04b890y4f9g3cbb63-python-2.7.11`);
           const goodCAPath = "/1121rp0gvr1qya7hvy925g5kjwg66acz6sn1ra1hca09f1z5dsab";
           return {
-            __proto__: pos$158,
+            [nix.POS]: pos$158,
             storePath: nix.thunk(() => nix.app(isStorePath, goodPath)),
             storePathDerivation: nix.thunk(() => nix.app(isStorePath, dummyDerivation)),
             storePathAppendix: nix.thunk(() => nix.app(isStorePath, nix.thunk(() => nix.str`${goodPath}/bin/python`))),
@@ -1766,7 +1766,7 @@ export default nix.thunk(() => (() => {
             caPathAppendix: nix.thunk(() => nix.app(isStorePath, nix.thunk(() => nix.str`${goodCAPath}/bin/python`))),
             caAsPath: nix.thunk(() => nix.app(isStorePath, nix.thunk(() => nix.add(nix.path("", "/."), goodCAPath)))),
             otherVals: nix.thunk(() => ({
-              __proto__: pos$157,
+              [nix.POS]: pos$157,
               attrset: nix.thunk(() => nix.app(isStorePath, nix.thunk(() => ({})))),
               list: nix.thunk(() => nix.app(isStorePath, [])),
               int: nix.thunk(() => nix.app(isStorePath, 42n)),
@@ -1774,7 +1774,7 @@ export default nix.thunk(() => (() => {
           };
         })()),
         expected: nix.thunk(() => ({
-          __proto__: pos$160,
+          [nix.POS]: pos$160,
           storePath: true,
           storePathDerivation: true,
           storePathAppendix: false,
@@ -1784,25 +1784,25 @@ export default nix.thunk(() => (() => {
           caPathAppendix: false,
           caAsPath: true,
           otherPath: false,
-          otherVals: nix.thunk(() => ({ __proto__: pos$159, attrset: false, list: false, int: false })),
+          otherVals: nix.thunk(() => ({ [nix.POS]: pos$159, attrset: false, list: false, int: false })),
         })),
       })),
       testEscapeXML: nix.thunk(() => ({
-        __proto__: pos$162,
+        [nix.POS]: pos$162,
         expr: nix.thunk(() => nix.app(escapeXML, "\"test\" 'test' < & >")),
         expected: "&quot;test&quot; &apos;test&apos; &lt; &amp; &gt;",
       })),
       testToShellVars: nix.thunk(() => ({
-        __proto__: pos$167,
+        [nix.POS]: pos$167,
         expr: nix.thunk(() => nix.str`${nix.app(toShellVars, nix.thunk(() => ({
-            __proto__: pos$166,
+            [nix.POS]: pos$166,
             STRing01: "just a 'string'",
             _array_: nix.thunk(() => ["with", "more strings"]),
-            assoc: nix.thunk(() => ({ __proto__: pos$163, "with some": "strings\npossibly newlines\n" })),
-            drv: nix.thunk(() => ({ __proto__: pos$164, outPath: "/drv", foo: "ignored attribute" })),
+            assoc: nix.thunk(() => ({ [nix.POS]: pos$163, "with some": "strings\npossibly newlines\n" })),
+            drv: nix.thunk(() => ({ [nix.POS]: pos$164, outPath: "/drv", foo: "ignored attribute" })),
             path: aPathLiteral,
             stringable: nix.thunk(() => ({
-              __proto__: pos$165,
+              [nix.POS]: pos$165,
               __toString: (_) => "hello toString",
               bar: "ignored attribute",
             })),
@@ -1819,72 +1819,72 @@ stringable='hello toString'
 `),
       })),
       testHasInfixFalse: nix.thunk(() => ({
-        __proto__: pos$168,
+        [nix.POS]: pos$168,
         expr: nix.thunk(() => nix.app(hasInfix, "c", "abde")),
         expected: false,
       })),
       testHasInfixTrue: nix.thunk(() => ({
-        __proto__: pos$169,
+        [nix.POS]: pos$169,
         expr: nix.thunk(() => nix.app(hasInfix, "c", "abcde")),
         expected: true,
       })),
       testHasInfixDerivation: nix.thunk(() => ({
-        __proto__: pos$170,
+        [nix.POS]: pos$170,
         expr: nix.thunk(() => nix.app(hasInfix, "name", dummyDerivation)),
         expected: true,
       })),
       testHasInfixPath: nix.thunk(() => ({
-        __proto__: pos$171,
+        [nix.POS]: pos$171,
         expr: nix.thunk(() => nix.app(hasInfix, "tests", nix.path(here, "./."))),
         expected: true,
       })),
       testHasInfixPathStoreDir: nix.thunk(() => ({
-        __proto__: pos$172,
+        [nix.POS]: pos$172,
         expr: nix.thunk(() => nix.app(hasInfix, nix.thunk(() => nix.builtins.storeDir), nix.path(here, "./."))),
         expected: true,
       })),
       testHasInfixToString: nix.thunk(() => ({
-        __proto__: pos$174,
-        expr: nix.thunk(() => nix.app(hasInfix, "a", nix.thunk(() => ({ __proto__: pos$173, __toString: (_) => "a" })))),
+        [nix.POS]: pos$174,
+        expr: nix.thunk(() => nix.app(hasInfix, "a", nix.thunk(() => ({ [nix.POS]: pos$173, __toString: (_) => "a" })))),
         expected: true,
       })),
       testRemovePrefixExample1: nix.thunk(() => ({
-        __proto__: pos$175,
+        [nix.POS]: pos$175,
         expr: nix.thunk(() => nix.app(removePrefix, "foo.", "foo.bar.baz")),
         expected: "bar.baz",
       })),
       testRemovePrefixExample2: nix.thunk(() => ({
-        __proto__: pos$176,
+        [nix.POS]: pos$176,
         expr: nix.thunk(() => nix.app(removePrefix, "xxx", "foo.bar.baz")),
         expected: "foo.bar.baz",
       })),
       testRemovePrefixEmptyPrefix: nix.thunk(() => ({
-        __proto__: pos$177,
+        [nix.POS]: pos$177,
         expr: nix.thunk(() => nix.app(removePrefix, "", "foo")),
         expected: "foo",
       })),
       testRemovePrefixEmptyString: nix.thunk(() => ({
-        __proto__: pos$178,
+        [nix.POS]: pos$178,
         expr: nix.thunk(() => nix.app(removePrefix, "foo", "")),
         expected: "",
       })),
       testRemovePrefixEmptyBoth: nix.thunk(() => ({
-        __proto__: pos$179,
+        [nix.POS]: pos$179,
         expr: nix.thunk(() => nix.app(removePrefix, "", "")),
         expected: "",
       })),
       testNormalizePath: nix.thunk(() => ({
-        __proto__: pos$180,
+        [nix.POS]: pos$180,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "normalizePath"), "//a/b//c////d/")),
         expected: "/a/b/c/d/",
       })),
       testCharToInt: nix.thunk(() => ({
-        __proto__: pos$181,
+        [nix.POS]: pos$181,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "charToInt"), "A")),
         expected: 65n,
       })),
       testEscapeC: nix.thunk(() => ({
-        __proto__: pos$182,
+        [nix.POS]: pos$182,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "escapeC"), nix.thunk(() => ["\n", " "]), "Hello World\n")),
         expected: "Hello\\x20World\\x0a",
       })),
@@ -1897,28 +1897,28 @@ stringable='hello toString'
           nix.thunk(() => nix.eq("%20%3F%26%3D%23%2B%25%21%3C%3E%23%22%7B%7D%7C%5C%5E%5B%5D%60%09%3A%2F%40%24%27%28%29%2A%2C%3B", nix.app(nix.sel(strings, "escapeURL"), " ?&=#+%!<>#\"{}|\\^[]`\t:/@$'()*,;"))),
         ]))),
       testToSentenceCase: nix.thunk(() => ({
-        __proto__: pos$183,
+        [nix.POS]: pos$183,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "toSentenceCase"), "hello world")),
         expected: "Hello world",
       })),
       testToSentenceCasePath: nix.thunk(() => nix.app(testingThrow, nix.thunk(() => nix.app(nix.sel(strings, "toSentenceCase"), nix.path(here, "./."))))),
       testToCamelCase: nix.thunk(() => ({
-        __proto__: pos$184,
+        [nix.POS]: pos$184,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "toCamelCase"), "hello world")),
         expected: "helloWorld",
       })),
       testToCamelCaseFromKebab: nix.thunk(() => ({
-        __proto__: pos$185,
+        [nix.POS]: pos$185,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "toCamelCase"), "hello-world")),
         expected: "helloWorld",
       })),
       testToCamelCaseFromSnake: nix.thunk(() => ({
-        __proto__: pos$186,
+        [nix.POS]: pos$186,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "toCamelCase"), "hello_world")),
         expected: "helloWorld",
       })),
       testToCamelCaseFromPascal: nix.thunk(() => ({
-        __proto__: pos$187,
+        [nix.POS]: pos$187,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "toCamelCase"), "HelloWorld")),
         expected: "helloWorld",
       })),
@@ -1937,19 +1937,19 @@ stringable='hello toString'
           nix.thunk(() => nix.eq(nix.neg(1n), nix.app(toInt, " -1 "))),
         ]))),
       testToIntFails: nix.thunk(() => nix.app(testAllTrue, nix.thunk(() => [
-          nix.thunk(() => nix.eq(nix.builtins.tryEval(nix.thunk(() => nix.app(toInt, ""))), { __proto__: pos$188, success: false, value: false })),
-          nix.thunk(() => nix.eq(nix.builtins.tryEval(nix.thunk(() => nix.app(toInt, "123 123"))), { __proto__: pos$189, success: false, value: false })),
-          nix.thunk(() => nix.eq(nix.builtins.tryEval(nix.thunk(() => nix.app(toInt, "0 123"))), { __proto__: pos$190, success: false, value: false })),
-          nix.thunk(() => nix.eq(nix.builtins.tryEval(nix.thunk(() => nix.app(toInt, " 0d "))), { __proto__: pos$191, success: false, value: false })),
-          nix.thunk(() => nix.eq(nix.builtins.tryEval(nix.thunk(() => nix.app(toInt, " 1d "))), { __proto__: pos$192, success: false, value: false })),
-          nix.thunk(() => nix.eq(nix.builtins.tryEval(nix.thunk(() => nix.app(toInt, " d0 "))), { __proto__: pos$193, success: false, value: false })),
-          nix.thunk(() => nix.eq(nix.builtins.tryEval(nix.thunk(() => nix.app(toInt, "00"))), { __proto__: pos$194, success: false, value: false })),
-          nix.thunk(() => nix.eq(nix.builtins.tryEval(nix.thunk(() => nix.app(toInt, "01"))), { __proto__: pos$195, success: false, value: false })),
-          nix.thunk(() => nix.eq(nix.builtins.tryEval(nix.thunk(() => nix.app(toInt, "002"))), { __proto__: pos$196, success: false, value: false })),
-          nix.thunk(() => nix.eq(nix.builtins.tryEval(nix.thunk(() => nix.app(toInt, " 002 "))), { __proto__: pos$197, success: false, value: false })),
-          nix.thunk(() => nix.eq(nix.builtins.tryEval(nix.thunk(() => nix.app(toInt, " foo "))), { __proto__: pos$198, success: false, value: false })),
-          nix.thunk(() => nix.eq(nix.builtins.tryEval(nix.thunk(() => nix.app(toInt, " foo 123 "))), { __proto__: pos$199, success: false, value: false })),
-          nix.thunk(() => nix.eq(nix.builtins.tryEval(nix.thunk(() => nix.app(toInt, " foo123 "))), { __proto__: pos$200, success: false, value: false })),
+          nix.thunk(() => nix.eq(nix.builtins.tryEval(nix.thunk(() => nix.app(toInt, ""))), { [nix.POS]: pos$188, success: false, value: false })),
+          nix.thunk(() => nix.eq(nix.builtins.tryEval(nix.thunk(() => nix.app(toInt, "123 123"))), { [nix.POS]: pos$189, success: false, value: false })),
+          nix.thunk(() => nix.eq(nix.builtins.tryEval(nix.thunk(() => nix.app(toInt, "0 123"))), { [nix.POS]: pos$190, success: false, value: false })),
+          nix.thunk(() => nix.eq(nix.builtins.tryEval(nix.thunk(() => nix.app(toInt, " 0d "))), { [nix.POS]: pos$191, success: false, value: false })),
+          nix.thunk(() => nix.eq(nix.builtins.tryEval(nix.thunk(() => nix.app(toInt, " 1d "))), { [nix.POS]: pos$192, success: false, value: false })),
+          nix.thunk(() => nix.eq(nix.builtins.tryEval(nix.thunk(() => nix.app(toInt, " d0 "))), { [nix.POS]: pos$193, success: false, value: false })),
+          nix.thunk(() => nix.eq(nix.builtins.tryEval(nix.thunk(() => nix.app(toInt, "00"))), { [nix.POS]: pos$194, success: false, value: false })),
+          nix.thunk(() => nix.eq(nix.builtins.tryEval(nix.thunk(() => nix.app(toInt, "01"))), { [nix.POS]: pos$195, success: false, value: false })),
+          nix.thunk(() => nix.eq(nix.builtins.tryEval(nix.thunk(() => nix.app(toInt, "002"))), { [nix.POS]: pos$196, success: false, value: false })),
+          nix.thunk(() => nix.eq(nix.builtins.tryEval(nix.thunk(() => nix.app(toInt, " 002 "))), { [nix.POS]: pos$197, success: false, value: false })),
+          nix.thunk(() => nix.eq(nix.builtins.tryEval(nix.thunk(() => nix.app(toInt, " foo "))), { [nix.POS]: pos$198, success: false, value: false })),
+          nix.thunk(() => nix.eq(nix.builtins.tryEval(nix.thunk(() => nix.app(toInt, " foo 123 "))), { [nix.POS]: pos$199, success: false, value: false })),
+          nix.thunk(() => nix.eq(nix.builtins.tryEval(nix.thunk(() => nix.app(toInt, " foo123 "))), { [nix.POS]: pos$200, success: false, value: false })),
         ]))),
       testToIntBase10: nix.thunk(() => nix.app(testAllTrue, nix.thunk(() => [
           nix.thunk(() => nix.eq(123n, nix.app(toIntBase10, "123"))),
@@ -1977,34 +1977,34 @@ stringable='hello toString'
           nix.thunk(() => nix.eq(nix.neg(1n), nix.app(toIntBase10, " -1 "))),
         ]))),
       testToIntBase10Fails: nix.thunk(() => nix.app(testAllTrue, nix.thunk(() => [
-          nix.thunk(() => nix.eq(nix.builtins.tryEval(nix.thunk(() => nix.app(toIntBase10, ""))), { __proto__: pos$201, success: false, value: false })),
-          nix.thunk(() => nix.eq(nix.builtins.tryEval(nix.thunk(() => nix.app(toIntBase10, "123 123"))), { __proto__: pos$202, success: false, value: false })),
-          nix.thunk(() => nix.eq(nix.builtins.tryEval(nix.thunk(() => nix.app(toIntBase10, "0 123"))), { __proto__: pos$203, success: false, value: false })),
-          nix.thunk(() => nix.eq(nix.builtins.tryEval(nix.thunk(() => nix.app(toIntBase10, " 0d "))), { __proto__: pos$204, success: false, value: false })),
-          nix.thunk(() => nix.eq(nix.builtins.tryEval(nix.thunk(() => nix.app(toIntBase10, " 1d "))), { __proto__: pos$205, success: false, value: false })),
-          nix.thunk(() => nix.eq(nix.builtins.tryEval(nix.thunk(() => nix.app(toIntBase10, " d0 "))), { __proto__: pos$206, success: false, value: false })),
-          nix.thunk(() => nix.eq(nix.builtins.tryEval(nix.thunk(() => nix.app(toIntBase10, " foo "))), { __proto__: pos$207, success: false, value: false })),
-          nix.thunk(() => nix.eq(nix.builtins.tryEval(nix.thunk(() => nix.app(toIntBase10, " foo 123 "))), { __proto__: pos$208, success: false, value: false })),
-          nix.thunk(() => nix.eq(nix.builtins.tryEval(nix.thunk(() => nix.app(toIntBase10, " foo 00123 "))), { __proto__: pos$209, success: false, value: false })),
-          nix.thunk(() => nix.eq(nix.builtins.tryEval(nix.thunk(() => nix.app(toIntBase10, " foo00123 "))), { __proto__: pos$210, success: false, value: false })),
+          nix.thunk(() => nix.eq(nix.builtins.tryEval(nix.thunk(() => nix.app(toIntBase10, ""))), { [nix.POS]: pos$201, success: false, value: false })),
+          nix.thunk(() => nix.eq(nix.builtins.tryEval(nix.thunk(() => nix.app(toIntBase10, "123 123"))), { [nix.POS]: pos$202, success: false, value: false })),
+          nix.thunk(() => nix.eq(nix.builtins.tryEval(nix.thunk(() => nix.app(toIntBase10, "0 123"))), { [nix.POS]: pos$203, success: false, value: false })),
+          nix.thunk(() => nix.eq(nix.builtins.tryEval(nix.thunk(() => nix.app(toIntBase10, " 0d "))), { [nix.POS]: pos$204, success: false, value: false })),
+          nix.thunk(() => nix.eq(nix.builtins.tryEval(nix.thunk(() => nix.app(toIntBase10, " 1d "))), { [nix.POS]: pos$205, success: false, value: false })),
+          nix.thunk(() => nix.eq(nix.builtins.tryEval(nix.thunk(() => nix.app(toIntBase10, " d0 "))), { [nix.POS]: pos$206, success: false, value: false })),
+          nix.thunk(() => nix.eq(nix.builtins.tryEval(nix.thunk(() => nix.app(toIntBase10, " foo "))), { [nix.POS]: pos$207, success: false, value: false })),
+          nix.thunk(() => nix.eq(nix.builtins.tryEval(nix.thunk(() => nix.app(toIntBase10, " foo 123 "))), { [nix.POS]: pos$208, success: false, value: false })),
+          nix.thunk(() => nix.eq(nix.builtins.tryEval(nix.thunk(() => nix.app(toIntBase10, " foo 00123 "))), { [nix.POS]: pos$209, success: false, value: false })),
+          nix.thunk(() => nix.eq(nix.builtins.tryEval(nix.thunk(() => nix.app(toIntBase10, " foo00123 "))), { [nix.POS]: pos$210, success: false, value: false })),
         ]))),
       testFilter: nix.thunk(() => ({
-        __proto__: pos$211,
+        [nix.POS]: pos$211,
         expr: nix.thunk(() => nix.app(filter, (x) => !nix.eq(x, "a"), nix.thunk(() => ["a", "b", "c", "a"]))),
         expected: nix.thunk(() => ["b", "c"]),
       })),
       testIfilter0Example: nix.thunk(() => ({
-        __proto__: pos$212,
+        [nix.POS]: pos$212,
         expr: nix.thunk(() => nix.app(ifilter0, (i) => (v) => (nix.asBool(nix.eq(i, 0n)) || nix.asBool(nix.gt(v, 2n))), nix.thunk(() => [1n, 2n, 3n]))),
         expected: nix.thunk(() => [1n, 3n]),
       })),
       testIfilter0Empty: nix.thunk(() => ({
-        __proto__: pos$213,
+        [nix.POS]: pos$213,
         expr: nix.thunk(() => nix.app(ifilter0, (i) => (v) => nix.builtins.abort("shouldn't be evaluated!"), [])),
         expected: [],
       })),
       testIfilter0IndexOnly: nix.thunk(() => ({
-        __proto__: pos$214,
+        [nix.POS]: pos$214,
         expr: nix.thunk(() => nix.app(length, nix.thunk(() => nix.app(ifilter0, (i) => (v) => nix.eq(nix.app(mod, i, 2n), 0n), nix.thunk(() => [
               nix.thunk(() => nix.builtins.throw("0")),
               nix.thunk(() => nix.builtins.throw("1")),
@@ -2014,17 +2014,17 @@ stringable='hello toString'
         expected: 2n,
       })),
       testIfilter0All: nix.thunk(() => ({
-        __proto__: pos$215,
+        [nix.POS]: pos$215,
         expr: nix.thunk(() => nix.app(ifilter0, (i) => (v) => true, nix.thunk(() => [10n, 11n, 12n, 13n, 14n, 15n]))),
         expected: nix.thunk(() => [10n, 11n, 12n, 13n, 14n, 15n]),
       })),
       testIfilter0First: nix.thunk(() => ({
-        __proto__: pos$216,
+        [nix.POS]: pos$216,
         expr: nix.thunk(() => nix.app(ifilter0, (i) => (v) => nix.eq(i, 0n), nix.thunk(() => [10n, 11n, 12n, 13n, 14n, 15n]))),
         expected: nix.thunk(() => [10n]),
       })),
       testIfilter0Last: nix.thunk(() => ({
-        __proto__: pos$217,
+        [nix.POS]: pos$217,
         expr: nix.thunk(() => nix.app(ifilter0, (i) => (v) => nix.eq(i, 5n), nix.thunk(() => [10n, 11n, 12n, 13n, 14n, 15n]))),
         expected: nix.thunk(() => [15n]),
       })),
@@ -2033,9 +2033,9 @@ stringable='hello toString'
         const assoc = nix.thunk(() => nix.app(f, nix.thunk(() => nix.builtins.add)));
         const nonAssoc = nix.thunk(() => nix.app(f, nix.thunk(() => nix.builtins.sub)));
         return {
-          __proto__: pos$220,
+          [nix.POS]: pos$220,
           expr: nix.thunk(() => ({
-            __proto__: pos$218,
+            [nix.POS]: pos$218,
             assocRight: nix.thunk(() => nix.app(assoc, foldr)),
             assocRightIsLeft: nix.thunk(() => nix.eq(nix.app(assoc, foldr), nix.app(assoc, foldl))),
             nonAssocRight: nix.thunk(() => nix.app(nonAssoc, foldr)),
@@ -2043,7 +2043,7 @@ stringable='hello toString'
             nonAssocRightIsNotLeft: nix.thunk(() => !nix.eq(nix.app(nonAssoc, foldl), nix.app(nonAssoc, foldr))),
           })),
           expected: nix.thunk(() => ({
-            __proto__: pos$219,
+            [nix.POS]: pos$219,
             assocRight: 5050n,
             assocRightIsLeft: true,
             nonAssocRight: 50n,
@@ -2053,27 +2053,27 @@ stringable='hello toString'
         };
       })()),
       "testFoldl'Empty": nix.thunk(() => ({
-        __proto__: pos$221,
+        [nix.POS]: pos$221,
         expr: nix.thunk(() => nix.app(foldl$, (acc) => (el) => nix.builtins.abort("operation not called"), 0n, [])),
         expected: 0n,
       })),
       "testFoldl'IntegerAdding": nix.thunk(() => ({
-        __proto__: pos$222,
+        [nix.POS]: pos$222,
         expr: nix.thunk(() => nix.app(foldl$, (acc) => (el) => nix.add(acc, el), 0n, nix.thunk(() => [1n, 2n, 3n]))),
         expected: 6n,
       })),
       "testFoldl'NonDeep": nix.thunk(() => ({
-        __proto__: pos$223,
+        [nix.POS]: pos$223,
         expr: nix.thunk(() => nix.app(take, 3n, nix.thunk(() => nix.app(foldl$, (acc) => (el) => nix.concat([el], acc), nix.thunk(() => [nix.thunk(() => nix.builtins.abort("unevaluated list entry"))]), nix.thunk(() => [1n, 2n, 3n]))))),
         expected: nix.thunk(() => [3n, 2n, 1n]),
       })),
       "testFoldl'StrictInitial": nix.thunk(() => ({
-        __proto__: pos$224,
+        [nix.POS]: pos$224,
         expr: nix.thunk(() => nix.sel(nix.builtins.tryEval(nix.thunk(() => nix.app(foldl$, (acc) => (el) => nix.force(el), nix.thunk(() => nix.builtins.throw("hello")), []))), "success")),
         expected: false,
       })),
       "testFoldl'Large": nix.thunk(() => ({
-        __proto__: pos$225,
+        [nix.POS]: pos$225,
         expr: nix.thunk(() => nix.app(foldl$, (acc) => (el) => nix.add(acc, el), 0n, nix.thunk(() => nix.app(range, 0n, 100000n)))),
         expected: 5000050000n,
       })),
@@ -2125,90 +2125,90 @@ stringable='hello toString'
           ]));
       })()),
       testListHasPrefixExample1: nix.thunk(() => ({
-        __proto__: pos$226,
+        [nix.POS]: pos$226,
         expr: nix.thunk(() => nix.app(nix.sel(lists, "hasPrefix"), nix.thunk(() => [1n, 2n]), nix.thunk(() => [1n, 2n, 3n, 4n]))),
         expected: true,
       })),
       testListHasPrefixExample2: nix.thunk(() => ({
-        __proto__: pos$227,
+        [nix.POS]: pos$227,
         expr: nix.thunk(() => nix.app(nix.sel(lists, "hasPrefix"), nix.thunk(() => [0n, 1n]), nix.thunk(() => [1n, 2n, 3n, 4n]))),
         expected: false,
       })),
       testListHasPrefixLazy: nix.thunk(() => ({
-        __proto__: pos$228,
+        [nix.POS]: pos$228,
         expr: nix.thunk(() => nix.app(nix.sel(lists, "hasPrefix"), nix.thunk(() => [1n]), nix.thunk(() => [1n, nix.thunk(() => nix.builtins.abort("lib.lists.hasPrefix is not lazy"))]))),
         expected: true,
       })),
       testListHasPrefixEmptyPrefix: nix.thunk(() => ({
-        __proto__: pos$229,
+        [nix.POS]: pos$229,
         expr: nix.thunk(() => nix.app(nix.sel(lists, "hasPrefix"), [], nix.thunk(() => [1n, 2n]))),
         expected: true,
       })),
       testListHasPrefixEmptyList: nix.thunk(() => ({
-        __proto__: pos$230,
+        [nix.POS]: pos$230,
         expr: nix.thunk(() => nix.app(nix.sel(lists, "hasPrefix"), nix.thunk(() => [1n, 2n]), [])),
         expected: false,
       })),
       testListRemovePrefixExample1: nix.thunk(() => ({
-        __proto__: pos$231,
+        [nix.POS]: pos$231,
         expr: nix.thunk(() => nix.app(nix.sel(lists, "removePrefix"), nix.thunk(() => [1n, 2n]), nix.thunk(() => [1n, 2n, 3n, 4n]))),
         expected: nix.thunk(() => [3n, 4n]),
       })),
       testListRemovePrefixExample2: nix.thunk(() => ({
-        __proto__: pos$232,
+        [nix.POS]: pos$232,
         expr: nix.thunk(() => nix.sel(nix.builtins.tryEval(nix.thunk(() => nix.app(nix.sel(lists, "removePrefix"), nix.thunk(() => [0n, 1n]), nix.thunk(() => [1n, 2n, 3n, 4n])))), "success")),
         expected: false,
       })),
       testListRemovePrefixEmptyPrefix: nix.thunk(() => ({
-        __proto__: pos$233,
+        [nix.POS]: pos$233,
         expr: nix.thunk(() => nix.app(nix.sel(lists, "removePrefix"), [], nix.thunk(() => [1n, 2n]))),
         expected: nix.thunk(() => [1n, 2n]),
       })),
       testListRemovePrefixEmptyList: nix.thunk(() => ({
-        __proto__: pos$234,
+        [nix.POS]: pos$234,
         expr: nix.thunk(() => nix.sel(nix.builtins.tryEval(nix.thunk(() => nix.app(nix.sel(lists, "removePrefix"), nix.thunk(() => [1n, 2n]), []))), "success")),
         expected: false,
       })),
       testFoldAttrs: nix.thunk(() => ({
-        __proto__: pos$238,
+        [nix.POS]: pos$238,
         expr: nix.thunk(() => nix.app(foldAttrs, (n) => (a) => nix.concat([n], a), [], nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$235, a: 2n, b: 7n })),
-            nix.thunk(() => ({ __proto__: pos$236, a: 3n, c: 8n })),
+            nix.thunk(() => ({ [nix.POS]: pos$235, a: 2n, b: 7n })),
+            nix.thunk(() => ({ [nix.POS]: pos$236, a: 3n, c: 8n })),
           ]))),
         expected: nix.thunk(() => ({
-          __proto__: pos$237,
+          [nix.POS]: pos$237,
           a: nix.thunk(() => [2n, 3n]),
           b: nix.thunk(() => [7n]),
           c: nix.thunk(() => [8n]),
         })),
       })),
       testListCommonPrefixExample1: nix.thunk(() => ({
-        __proto__: pos$239,
+        [nix.POS]: pos$239,
         expr: nix.thunk(() => nix.app(nix.sel(lists, "commonPrefix"), nix.thunk(() => [1n, 2n, 3n, 4n, 5n, 6n]), nix.thunk(() => [1n, 2n, 4n, 8n]))),
         expected: nix.thunk(() => [1n, 2n]),
       })),
       testListCommonPrefixExample2: nix.thunk(() => ({
-        __proto__: pos$240,
+        [nix.POS]: pos$240,
         expr: nix.thunk(() => nix.app(nix.sel(lists, "commonPrefix"), nix.thunk(() => [1n, 2n, 3n]), nix.thunk(() => [1n, 2n, 3n, 4n, 5n]))),
         expected: nix.thunk(() => [1n, 2n, 3n]),
       })),
       testListCommonPrefixExample3: nix.thunk(() => ({
-        __proto__: pos$241,
+        [nix.POS]: pos$241,
         expr: nix.thunk(() => nix.app(nix.sel(lists, "commonPrefix"), nix.thunk(() => [1n, 2n, 3n]), nix.thunk(() => [4n, 5n, 6n]))),
         expected: [],
       })),
       testListCommonPrefixEmpty: nix.thunk(() => ({
-        __proto__: pos$242,
+        [nix.POS]: pos$242,
         expr: nix.thunk(() => nix.app(nix.sel(lists, "commonPrefix"), [], nix.thunk(() => [1n, 2n, 3n]))),
         expected: [],
       })),
       testListCommonPrefixSame: nix.thunk(() => ({
-        __proto__: pos$243,
+        [nix.POS]: pos$243,
         expr: nix.thunk(() => nix.app(nix.sel(lists, "commonPrefix"), nix.thunk(() => [1n, 2n, 3n]), nix.thunk(() => [1n, 2n, 3n]))),
         expected: nix.thunk(() => [1n, 2n, 3n]),
       })),
       testListCommonPrefixLazy: nix.thunk(() => ({
-        __proto__: pos$244,
+        [nix.POS]: pos$244,
         expr: nix.thunk(() => nix.app(nix.sel(lists, "commonPrefix"), nix.thunk(() => [1n]), nix.thunk(() => [
             1n,
             nix.thunk(() => nix.builtins.abort("lib.lists.commonPrefix shouldn't evaluate this")),
@@ -2218,38 +2218,38 @@ stringable='hello toString'
       testListCommonPrefixLong: nix.thunk(() => (() => {
         const longList = nix.thunk(() => nix.app(genList, (n) => nix.force(n), 100000n));
         return {
-          __proto__: pos$245,
+          [nix.POS]: pos$245,
           expr: nix.thunk(() => nix.app(nix.sel(lists, "commonPrefix"), longList, longList)),
           expected: longList,
         };
       })()),
       testListCommonPrefixLengthExample1: nix.thunk(() => ({
-        __proto__: pos$246,
+        [nix.POS]: pos$246,
         expr: nix.thunk(() => nix.app(nix.sel(lists, "commonPrefixLength"), nix.thunk(() => [1n, 2n, 3n, 4n, 5n, 6n]), nix.thunk(() => [1n, 2n, 4n, 8n]))),
         expected: 2n,
       })),
       testListCommonPrefixLengthExample2: nix.thunk(() => ({
-        __proto__: pos$247,
+        [nix.POS]: pos$247,
         expr: nix.thunk(() => nix.app(nix.sel(lists, "commonPrefixLength"), nix.thunk(() => [1n, 2n, 3n]), nix.thunk(() => [1n, 2n, 3n, 4n, 5n]))),
         expected: 3n,
       })),
       testListCommonPrefixLengthExample3: nix.thunk(() => ({
-        __proto__: pos$248,
+        [nix.POS]: pos$248,
         expr: nix.thunk(() => nix.app(nix.sel(lists, "commonPrefixLength"), nix.thunk(() => [1n, 2n, 3n]), nix.thunk(() => [4n, 5n, 6n]))),
         expected: 0n,
       })),
       testListCommonPrefixLengthEmpty: nix.thunk(() => ({
-        __proto__: pos$249,
+        [nix.POS]: pos$249,
         expr: nix.thunk(() => nix.app(nix.sel(lists, "commonPrefixLength"), [], nix.thunk(() => [1n, 2n, 3n]))),
         expected: 0n,
       })),
       testListCommonPrefixLengthSame: nix.thunk(() => ({
-        __proto__: pos$250,
+        [nix.POS]: pos$250,
         expr: nix.thunk(() => nix.app(nix.sel(lists, "commonPrefixLength"), nix.thunk(() => [1n, 2n, 3n]), nix.thunk(() => [1n, 2n, 3n]))),
         expected: 3n,
       })),
       testListCommonPrefixLengthLazy: nix.thunk(() => ({
-        __proto__: pos$251,
+        [nix.POS]: pos$251,
         expr: nix.thunk(() => nix.app(nix.sel(lists, "commonPrefixLength"), nix.thunk(() => [1n]), nix.thunk(() => [
             1n,
             nix.thunk(() => nix.builtins.abort("lib.lists.commonPrefixLength shouldn't evaluate this")),
@@ -2259,164 +2259,164 @@ stringable='hello toString'
       testListCommonPrefixLengthLong: nix.thunk(() => (() => {
         const longList = nix.thunk(() => nix.app(genList, (n) => nix.force(n), 100000n));
         return {
-          __proto__: pos$252,
+          [nix.POS]: pos$252,
           expr: nix.thunk(() => nix.app(nix.sel(lists, "commonPrefixLength"), longList, longList)),
           expected: 100000n,
         };
       })()),
       testSort: nix.thunk(() => ({
-        __proto__: pos$253,
+        [nix.POS]: pos$253,
         expr: nix.thunk(() => nix.app(sort, nix.thunk(() => nix.builtins.lessThan), nix.thunk(() => [40n, 2n, 30n, 42n]))),
         expected: nix.thunk(() => [2n, 30n, 40n, 42n]),
       })),
       testSortOn: nix.thunk(() => ({
-        __proto__: pos$254,
+        [nix.POS]: pos$254,
         expr: nix.thunk(() => nix.app(sortOn, stringLength, nix.thunk(() => ["aa", "b", "cccc"]))),
         expected: nix.thunk(() => ["b", "aa", "cccc"]),
       })),
       testSortOnEmpty: nix.thunk(() => ({
-        __proto__: pos$255,
+        [nix.POS]: pos$255,
         expr: nix.thunk(() => nix.app(sortOn, nix.thunk(() => nix.builtins.throw("nope")), [])),
         expected: [],
       })),
       testSortOnIncomparable: nix.thunk(() => ({
-        __proto__: pos$259,
+        [nix.POS]: pos$259,
         expr: nix.thunk(() => nix.builtins.map((x) => nix.app(nix.sel(x, "f"), nix.thunk(() => nix.sel(x, "ok"))), nix.thunk(() => nix.app(sortOn, (x) => nix.sel(x, "ok"), nix.thunk(() => [
-              nix.thunk(() => ({ __proto__: pos$256, ok: 1n, f: (x) => nix.force(x) })),
-              nix.thunk(() => ({ __proto__: pos$257, ok: 3n, f: (x) => nix.add(x, 3n) })),
-              nix.thunk(() => ({ __proto__: pos$258, ok: 2n, f: (x) => nix.force(x) })),
+              nix.thunk(() => ({ [nix.POS]: pos$256, ok: 1n, f: (x) => nix.force(x) })),
+              nix.thunk(() => ({ [nix.POS]: pos$257, ok: 3n, f: (x) => nix.add(x, 3n) })),
+              nix.thunk(() => ({ [nix.POS]: pos$258, ok: 2n, f: (x) => nix.force(x) })),
             ]))))),
         expected: nix.thunk(() => [1n, 2n, 6n]),
       })),
       testReplaceString: nix.thunk(() => ({
-        __proto__: pos$260,
+        [nix.POS]: pos$260,
         expr: nix.thunk(() => nix.app(replaceString, "world", "Nix", "Hello, world!")),
         expected: "Hello, Nix!",
       })),
       testReplicate: nix.thunk(() => ({
-        __proto__: pos$261,
+        [nix.POS]: pos$261,
         expr: nix.thunk(() => nix.app(replicate, 3n, "a")),
         expected: nix.thunk(() => ["a", "a", "a"]),
       })),
       testToIntShouldConvertStringToInt: nix.thunk(() => ({
-        __proto__: pos$262,
+        [nix.POS]: pos$262,
         expr: nix.thunk(() => nix.app(toInt, "27")),
         expected: 27n,
       })),
       testToIntShouldThrowErrorIfItCouldNotConvertToInt: nix.thunk(() => ({
-        __proto__: pos$264,
+        [nix.POS]: pos$264,
         expr: nix.thunk(() => nix.builtins.tryEval(nix.thunk(() => nix.app(toInt, "\"foo\"")))),
-        expected: nix.thunk(() => ({ __proto__: pos$263, success: false, value: false })),
+        expected: nix.thunk(() => ({ [nix.POS]: pos$263, success: false, value: false })),
       })),
       testHasAttrByPathTrue: nix.thunk(() => ({
-        __proto__: pos$267,
-        expr: nix.thunk(() => nix.app(hasAttrByPath, nix.thunk(() => ["a", "b"]), nix.thunk(() => ({ __proto__: pos$266, a: nix.thunk(() => ({ __proto__: pos$265, b: "yey" })) })))),
+        [nix.POS]: pos$267,
+        expr: nix.thunk(() => nix.app(hasAttrByPath, nix.thunk(() => ["a", "b"]), nix.thunk(() => ({ [nix.POS]: pos$266, a: nix.thunk(() => ({ [nix.POS]: pos$265, b: "yey" })) })))),
         expected: true,
       })),
       testHasAttrByPathFalse: nix.thunk(() => ({
-        __proto__: pos$270,
-        expr: nix.thunk(() => nix.app(hasAttrByPath, nix.thunk(() => ["a", "b"]), nix.thunk(() => ({ __proto__: pos$269, a: nix.thunk(() => ({ __proto__: pos$268, c: "yey" })) })))),
+        [nix.POS]: pos$270,
+        expr: nix.thunk(() => nix.app(hasAttrByPath, nix.thunk(() => ["a", "b"]), nix.thunk(() => ({ [nix.POS]: pos$269, a: nix.thunk(() => ({ [nix.POS]: pos$268, c: "yey" })) })))),
         expected: false,
       })),
       testHasAttrByPathNonStrict: nix.thunk(() => ({
-        __proto__: pos$271,
+        [nix.POS]: pos$271,
         expr: nix.thunk(() => nix.app(hasAttrByPath, [], nix.thunk(() => nix.builtins.throw("do not use")))),
         expected: true,
       })),
       testLongestValidPathPrefix_empty_empty: nix.thunk(() => ({
-        __proto__: pos$272,
+        [nix.POS]: pos$272,
         expr: nix.thunk(() => nix.app(nix.sel(attrsets, "longestValidPathPrefix"), [], nix.thunk(() => ({})))),
         expected: [],
       })),
       testLongestValidPathPrefix_empty_nonStrict: nix.thunk(() => ({
-        __proto__: pos$273,
+        [nix.POS]: pos$273,
         expr: nix.thunk(() => nix.app(nix.sel(attrsets, "longestValidPathPrefix"), [], nix.thunk(() => nix.builtins.throw("do not use")))),
         expected: [],
       })),
       testLongestValidPathPrefix_zero: nix.thunk(() => ({
-        __proto__: pos$275,
-        expr: nix.thunk(() => nix.app(nix.sel(attrsets, "longestValidPathPrefix"), nix.thunk(() => ["a", nix.thunk(() => nix.builtins.throw("do not use"))]), nix.thunk(() => ({ __proto__: pos$274, d: null })))),
+        [nix.POS]: pos$275,
+        expr: nix.thunk(() => nix.app(nix.sel(attrsets, "longestValidPathPrefix"), nix.thunk(() => ["a", nix.thunk(() => nix.builtins.throw("do not use"))]), nix.thunk(() => ({ [nix.POS]: pos$274, d: null })))),
         expected: [],
       })),
       testLongestValidPathPrefix_zero_b: nix.thunk(() => ({
-        __proto__: pos$276,
+        [nix.POS]: pos$276,
         expr: nix.thunk(() => nix.app(nix.sel(attrsets, "longestValidPathPrefix"), nix.thunk(() => ["z", "z"]), "remarkably harmonious")),
         expected: [],
       })),
       testLongestValidPathPrefix_one: nix.thunk(() => ({
-        __proto__: pos$278,
-        expr: nix.thunk(() => nix.app(nix.sel(attrsets, "longestValidPathPrefix"), nix.thunk(() => ["a", "b", "c"]), nix.thunk(() => ({ __proto__: pos$277, a: null })))),
+        [nix.POS]: pos$278,
+        expr: nix.thunk(() => nix.app(nix.sel(attrsets, "longestValidPathPrefix"), nix.thunk(() => ["a", "b", "c"]), nix.thunk(() => ({ [nix.POS]: pos$277, a: null })))),
         expected: nix.thunk(() => ["a"]),
       })),
       testLongestValidPathPrefix_two: nix.thunk(() => ({
-        __proto__: pos$281,
-        expr: nix.thunk(() => nix.app(nix.sel(attrsets, "longestValidPathPrefix"), nix.thunk(() => ["a", "b", "c"]), nix.thunk(() => ({ __proto__: pos$280, a: nix.thunk(() => ({ __proto__: pos$279, b: null })) })))),
+        [nix.POS]: pos$281,
+        expr: nix.thunk(() => nix.app(nix.sel(attrsets, "longestValidPathPrefix"), nix.thunk(() => ["a", "b", "c"]), nix.thunk(() => ({ [nix.POS]: pos$280, a: nix.thunk(() => ({ [nix.POS]: pos$279, b: null })) })))),
         expected: nix.thunk(() => ["a", "b"]),
       })),
       testLongestValidPathPrefix_three: nix.thunk(() => ({
-        __proto__: pos$285,
+        [nix.POS]: pos$285,
         expr: nix.thunk(() => nix.app(nix.sel(attrsets, "longestValidPathPrefix"), nix.thunk(() => ["a", "b", "c"]), nix.thunk(() => ({
-            __proto__: pos$284,
-            a: nix.thunk(() => ({ __proto__: pos$283, b: nix.thunk(() => ({ __proto__: pos$282, c: null })) })),
+            [nix.POS]: pos$284,
+            a: nix.thunk(() => ({ [nix.POS]: pos$283, b: nix.thunk(() => ({ [nix.POS]: pos$282, c: null })) })),
           })))),
         expected: nix.thunk(() => ["a", "b", "c"]),
       })),
       testLongestValidPathPrefix_three_extra: nix.thunk(() => ({
-        __proto__: pos$290,
+        [nix.POS]: pos$290,
         expr: nix.thunk(() => nix.app(nix.sel(attrsets, "longestValidPathPrefix"), nix.thunk(() => ["a", "b", "c"]), nix.thunk(() => ({
-            __proto__: pos$289,
+            [nix.POS]: pos$289,
             a: nix.thunk(() => ({
-              __proto__: pos$288,
+              [nix.POS]: pos$288,
               b: nix.thunk(() => ({
-                __proto__: pos$287,
-                c: nix.thunk(() => ({ __proto__: pos$286, d: nix.thunk(() => nix.builtins.throw("nope")) })),
+                [nix.POS]: pos$287,
+                c: nix.thunk(() => ({ [nix.POS]: pos$286, d: nix.thunk(() => nix.builtins.throw("nope")) })),
               })),
             })),
           })))),
         expected: nix.thunk(() => ["a", "b", "c"]),
       })),
       testFindFirstIndexExample1: nix.thunk(() => ({
-        __proto__: pos$291,
+        [nix.POS]: pos$291,
         expr: nix.thunk(() => nix.app(nix.sel(lists, "findFirstIndex"), (x) => nix.gt(x, 3n), nix.thunk(() => nix.builtins.abort("index found, so a default must not be evaluated")), nix.thunk(() => [1n, 6n, 4n]))),
         expected: 1n,
       })),
       testFindFirstIndexExample2: nix.thunk(() => ({
-        __proto__: pos$292,
+        [nix.POS]: pos$292,
         expr: nix.thunk(() => nix.app(nix.sel(lists, "findFirstIndex"), (x) => nix.gt(x, 9n), "a very specific default", nix.thunk(() => [1n, 6n, 4n]))),
         expected: "a very specific default",
       })),
       testFindFirstIndexEmpty: nix.thunk(() => ({
-        __proto__: pos$293,
+        [nix.POS]: pos$293,
         expr: nix.thunk(() => nix.app(nix.sel(lists, "findFirstIndex"), nix.thunk(() => nix.builtins.abort("when the list is empty, the predicate is not needed")), null, [])),
         expected: null,
       })),
       testFindFirstIndexSingleMatch: nix.thunk(() => ({
-        __proto__: pos$294,
+        [nix.POS]: pos$294,
         expr: nix.thunk(() => nix.app(nix.sel(lists, "findFirstIndex"), (x) => nix.eq(x, 5n), null, nix.thunk(() => [5n]))),
         expected: 0n,
       })),
       testFindFirstIndexSingleDefault: nix.thunk(() => ({
-        __proto__: pos$295,
+        [nix.POS]: pos$295,
         expr: nix.thunk(() => nix.app(nix.sel(lists, "findFirstIndex"), (x) => false, null, nix.thunk(() => [
             nix.thunk(() => nix.builtins.abort("if the predicate doesn't access the value, it must not be evaluated")),
           ]))),
         expected: null,
       })),
       testFindFirstIndexNone: nix.thunk(() => ({
-        __proto__: pos$297,
+        [nix.POS]: pos$297,
         expr: nix.thunk(() => nix.builtins.tryEval(nix.thunk(() => nix.app(nix.sel(lists, "findFirstIndex"), (x) => nix.eq(x, 2n), null, nix.thunk(() => [
               1n,
               nix.thunk(() => nix.builtins.throw("the last element must be evaluated when there's no match")),
             ]))))),
-        expected: nix.thunk(() => ({ __proto__: pos$296, success: false, value: false })),
+        expected: nix.thunk(() => ({ [nix.POS]: pos$296, success: false, value: false })),
       })),
       testFindFirstIndexBig: nix.thunk(() => ({
-        __proto__: pos$298,
+        [nix.POS]: pos$298,
         expr: nix.thunk(() => nix.app(nix.sel(lists, "findFirstIndex"), (x) => nix.eq(x, 1000000n), null, nix.thunk(() => nix.app(range, 0n, 1000000n)))),
         expected: 1000000n,
       })),
       testFindFirstIndexLazy: nix.thunk(() => ({
-        __proto__: pos$299,
+        [nix.POS]: pos$299,
         expr: nix.thunk(() => nix.app(nix.sel(lists, "findFirstIndex"), (x) => nix.eq(x, 1n), null, nix.thunk(() => [
             1n,
             nix.thunk(() => nix.builtins.abort("list elements after the match must not be evaluated")),
@@ -2424,135 +2424,135 @@ stringable='hello toString'
         expected: 0n,
       })),
       testFindFirstExample1: nix.thunk(() => ({
-        __proto__: pos$300,
+        [nix.POS]: pos$300,
         expr: nix.thunk(() => nix.app(nix.sel(lists, "findFirst"), (x) => nix.gt(x, 3n), 7n, nix.thunk(() => [1n, 6n, 4n]))),
         expected: 6n,
       })),
       testFindFirstExample2: nix.thunk(() => ({
-        __proto__: pos$301,
+        [nix.POS]: pos$301,
         expr: nix.thunk(() => nix.app(nix.sel(lists, "findFirst"), (x) => nix.gt(x, 9n), 7n, nix.thunk(() => [1n, 6n, 4n]))),
         expected: 7n,
       })),
       testAllUnique_true: nix.thunk(() => ({
-        __proto__: pos$302,
+        [nix.POS]: pos$302,
         expr: nix.thunk(() => nix.app(allUnique, nix.thunk(() => [3n, 2n, 4n, 1n]))),
         expected: true,
       })),
       testAllUnique_false: nix.thunk(() => ({
-        __proto__: pos$303,
+        [nix.POS]: pos$303,
         expr: nix.thunk(() => nix.app(allUnique, nix.thunk(() => [3n, 2n, 3n, 4n]))),
         expected: false,
       })),
       testUniqueStrings_empty: nix.thunk(() => ({
-        __proto__: pos$304,
+        [nix.POS]: pos$304,
         expr: nix.thunk(() => nix.app(uniqueStrings, [])),
         expected: [],
       })),
       testUniqueStrings_singles: nix.thunk(() => ({
-        __proto__: pos$305,
+        [nix.POS]: pos$305,
         expr: nix.thunk(() => nix.app(uniqueStrings, nix.thunk(() => ["all", "unique", "already"]))),
         expected: nix.thunk(() => ["all", "already", "unique"]),
       })),
       testUniqueStrings_allDuplicates: nix.thunk(() => ({
-        __proto__: pos$306,
+        [nix.POS]: pos$306,
         expr: nix.thunk(() => nix.app(uniqueStrings, nix.thunk(() => ["dup", "dup", "dup"]))),
         expected: nix.thunk(() => ["dup"]),
       })),
       testUniqueStrings_some_duplicates: nix.thunk(() => ({
-        __proto__: pos$307,
+        [nix.POS]: pos$307,
         expr: nix.thunk(() => nix.app(uniqueStrings, nix.thunk(() => ["foo", "foo", "bar", "bar", "baz"]))),
         expected: nix.thunk(() => ["bar", "baz", "foo"]),
       })),
       testUniqueStrings_unicode: nix.thunk(() => ({
-        __proto__: pos$308,
+        [nix.POS]: pos$308,
         expr: nix.thunk(() => nix.app(uniqueStrings, nix.thunk(() => ["café", "@", "#", "@", "#", "$", "😎", "😎", "🙃", "", ""]))),
         expected: nix.thunk(() => ["", "#", "$", "@", "café", "😎", "🙃"]),
       })),
       testGenAttrs: nix.thunk(() => ({
-        __proto__: pos$310,
+        [nix.POS]: pos$310,
         expr: nix.thunk(() => nix.app(nix.sel(attrsets, "genAttrs"), nix.thunk(() => ["foo", "bar"]), (name) => nix.add("x_", name))),
-        expected: nix.thunk(() => ({ __proto__: pos$309, foo: "x_foo", bar: "x_bar" })),
+        expected: nix.thunk(() => ({ [nix.POS]: pos$309, foo: "x_foo", bar: "x_bar" })),
       })),
       "testGenAttrs'": nix.thunk(() => ({
-        __proto__: pos$312,
+        [nix.POS]: pos$312,
         expr: nix.thunk(() => nix.app(nix.sel(attrsets, "genAttrs'"), nix.thunk(() => ["foo", "bar"]), (s) => nix.app(nameValuePair, nix.thunk(() => nix.add("x_", s)), nix.thunk(() => nix.add("y_", s))))),
-        expected: nix.thunk(() => ({ __proto__: pos$311, x_foo: "y_foo", x_bar: "y_bar" })),
+        expected: nix.thunk(() => ({ [nix.POS]: pos$311, x_foo: "y_foo", x_bar: "y_bar" })),
       })),
       "testGenAttrs'Example2": nix.thunk(() => ({
-        __proto__: pos$315,
-        expr: nix.thunk(() => nix.app(nix.sel(attrsets, "genAttrs'"), nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$313, x: "foo", y: "baz" }))]), (s) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.add("x_", nix.sel(s, "x"))), nix.thunk(() => nix.add("y_", nix.sel(s, "y")))))),
-        expected: nix.thunk(() => ({ __proto__: pos$314, x_foo: "y_baz" })),
+        [nix.POS]: pos$315,
+        expr: nix.thunk(() => nix.app(nix.sel(attrsets, "genAttrs'"), nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$313, x: "foo", y: "baz" }))]), (s) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.add("x_", nix.sel(s, "x"))), nix.thunk(() => nix.add("y_", nix.sel(s, "y")))))),
+        expected: nix.thunk(() => ({ [nix.POS]: pos$314, x_foo: "y_baz" })),
       })),
       "testGenAttrs'ConflictingName": nix.thunk(() => ({
-        __proto__: pos$317,
+        [nix.POS]: pos$317,
         expr: nix.thunk(() => nix.app(nix.sel(attrsets, "genAttrs'"), nix.thunk(() => ["foo", "bar", "baz"]), (s) => nix.app(nameValuePair, "foo", s))),
-        expected: nix.thunk(() => ({ __proto__: pos$316, foo: "foo" })),
+        expected: nix.thunk(() => ({ [nix.POS]: pos$316, foo: "foo" })),
       })),
       testConcatMapAttrs: nix.thunk(() => ({
-        __proto__: pos$320,
-        expr: nix.thunk(() => nix.app(concatMapAttrs, (name) => (value) => nix.attrsDyn({}, [[nix.force(name), value], [nix.add(name, value), value]]), nix.thunk(() => ({ __proto__: pos$318, foo: "bar", foobar: "baz" })))),
-        expected: nix.thunk(() => ({ __proto__: pos$319, foo: "bar", foobar: "baz", foobarbaz: "baz" })),
+        [nix.POS]: pos$320,
+        expr: nix.thunk(() => nix.app(concatMapAttrs, (name) => (value) => nix.attrsDyn({}, [[nix.force(name), value], [nix.add(name, value), value]]), nix.thunk(() => ({ [nix.POS]: pos$318, foo: "bar", foobar: "baz" })))),
+        expected: nix.thunk(() => ({ [nix.POS]: pos$319, foo: "bar", foobar: "baz", foobarbaz: "baz" })),
       })),
       testConcatMapAttrsDuplicates: nix.thunk(() => ({
-        __proto__: pos$324,
-        expr: nix.thunk(() => nix.app(concatMapAttrs, (name) => (value) => ({ __proto__: pos$321, final: value }), nix.thunk(() => ({ __proto__: pos$322, a: 1n, b: 2n })))),
-        expected: nix.thunk(() => ({ __proto__: pos$323, final: 2n })),
+        [nix.POS]: pos$324,
+        expr: nix.thunk(() => nix.app(concatMapAttrs, (name) => (value) => ({ [nix.POS]: pos$321, final: value }), nix.thunk(() => ({ [nix.POS]: pos$322, a: 1n, b: 2n })))),
+        expected: nix.thunk(() => ({ [nix.POS]: pos$323, final: 2n })),
       })),
       testFilterAttrs: nix.thunk(() => ({
-        __proto__: pos$333,
+        [nix.POS]: pos$333,
         expr: nix.thunk(() => nix.app(filterAttrs, (n) => (v) => (nix.asBool(!nix.eq(n, "a")) && nix.asBool(nix.eq(nix.selOr(v, () => false, "hello"), true))), nix.thunk(() => ({
-            __proto__: pos$329,
-            a: nix.thunk(() => ({ __proto__: pos$325, hello: true })),
-            b: nix.thunk(() => ({ __proto__: pos$326, hello: true })),
-            c: nix.thunk(() => ({ __proto__: pos$327, hello: true, world: false })),
-            d: nix.thunk(() => ({ __proto__: pos$328, hello: false })),
+            [nix.POS]: pos$329,
+            a: nix.thunk(() => ({ [nix.POS]: pos$325, hello: true })),
+            b: nix.thunk(() => ({ [nix.POS]: pos$326, hello: true })),
+            c: nix.thunk(() => ({ [nix.POS]: pos$327, hello: true, world: false })),
+            d: nix.thunk(() => ({ [nix.POS]: pos$328, hello: false })),
           })))),
         expected: nix.thunk(() => ({
-          __proto__: pos$332,
-          b: nix.thunk(() => ({ __proto__: pos$330, hello: true })),
-          c: nix.thunk(() => ({ __proto__: pos$331, hello: true, world: false })),
+          [nix.POS]: pos$332,
+          b: nix.thunk(() => ({ [nix.POS]: pos$330, hello: true })),
+          c: nix.thunk(() => ({ [nix.POS]: pos$331, hello: true, world: false })),
         })),
       })),
       testFoldlAttrs: nix.thunk(() => ({
-        __proto__: pos$342,
+        [nix.POS]: pos$342,
         expr: nix.thunk(() => ({
-          __proto__: pos$339,
+          [nix.POS]: pos$339,
           example: nix.thunk(() => nix.app(foldlAttrs, (acc) => (name) => (value) => ({
-              __proto__: pos$334,
+              [nix.POS]: pos$334,
               sum: nix.thunk(() => nix.add(nix.sel(acc, "sum"), value)),
               names: nix.thunk(() => nix.concat(nix.sel(acc, "names"), [name])),
-            }), nix.thunk(() => ({ __proto__: pos$335, sum: 0n, names: [] })), nix.thunk(() => ({ __proto__: pos$336, foo: 1n, bar: 10n })))),
+            }), nix.thunk(() => ({ [nix.POS]: pos$335, sum: 0n, names: [] })), nix.thunk(() => ({ [nix.POS]: pos$336, foo: 1n, bar: 10n })))),
           emptySet: nix.thunk(() => nix.app(foldlAttrs, nix.thunk(() => nix.builtins.throw("function not needed")), 123n, nix.thunk(() => ({})))),
           valuesNotNeeded: nix.thunk(() => nix.app(foldlAttrs, (acc) => (_name) => (_v) => nix.force(acc), 3n, nix.thunk(() => ({
-              __proto__: pos$337,
+              [nix.POS]: pos$337,
               z: nix.thunk(() => nix.builtins.throw("value z not needed")),
               a: nix.thunk(() => nix.builtins.throw("value a not needed")),
             })))),
-          trivialAcc: nix.thunk(() => nix.app(foldlAttrs, (acc) => (_name) => (v) => nix.add(nix.mul(acc, 10n), v), 1n, nix.thunk(() => ({ __proto__: pos$338, z: 1n, a: 2n })))),
+          trivialAcc: nix.thunk(() => nix.app(foldlAttrs, (acc) => (_name) => (v) => nix.add(nix.mul(acc, 10n), v), 1n, nix.thunk(() => ({ [nix.POS]: pos$338, z: 1n, a: 2n })))),
         })),
         expected: nix.thunk(() => ({
-          __proto__: pos$341,
-          example: nix.thunk(() => ({ __proto__: pos$340, sum: 11n, names: nix.thunk(() => ["bar", "foo"]) })),
+          [nix.POS]: pos$341,
+          example: nix.thunk(() => ({ [nix.POS]: pos$340, sum: 11n, names: nix.thunk(() => ["bar", "foo"]) })),
           emptySet: 123n,
           valuesNotNeeded: 3n,
           trivialAcc: 121n,
         })),
       })),
       testMergeAttrsListExample1: nix.thunk(() => ({
-        __proto__: pos$346,
+        [nix.POS]: pos$346,
         expr: nix.thunk(() => nix.app(nix.sel(attrsets, "mergeAttrsList"), nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$343, a: 0n, b: 1n })),
-            nix.thunk(() => ({ __proto__: pos$344, c: 2n, d: 3n })),
+            nix.thunk(() => ({ [nix.POS]: pos$343, a: 0n, b: 1n })),
+            nix.thunk(() => ({ [nix.POS]: pos$344, c: 2n, d: 3n })),
           ]))),
-        expected: nix.thunk(() => ({ __proto__: pos$345, a: 0n, b: 1n, c: 2n, d: 3n })),
+        expected: nix.thunk(() => ({ [nix.POS]: pos$345, a: 0n, b: 1n, c: 2n, d: 3n })),
       })),
       testMergeAttrsListExample2: nix.thunk(() => ({
-        __proto__: pos$350,
+        [nix.POS]: pos$350,
         expr: nix.thunk(() => nix.app(nix.sel(attrsets, "mergeAttrsList"), nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$347, a: 0n })),
-            nix.thunk(() => ({ __proto__: pos$348, a: 1n })),
+            nix.thunk(() => ({ [nix.POS]: pos$347, a: 0n })),
+            nix.thunk(() => ({ [nix.POS]: pos$348, a: 1n })),
           ]))),
-        expected: nix.thunk(() => ({ __proto__: pos$349, a: 1n })),
+        expected: nix.thunk(() => ({ [nix.POS]: pos$349, a: 1n })),
       })),
       testMergeAttrsListExampleMany: nix.thunk(() => (() => {
         const list = nix.thunk(() => nix.app(genList, (n) => nix.app(listToAttrs, nix.thunk(() => nix.app(genList, (m) => (() => {
@@ -2560,146 +2560,146 @@ stringable='hello toString'
                 return nix.app(nameValuePair, str, str);
               })(), 100n))), 100n));
         return {
-          __proto__: pos$351,
+          [nix.POS]: pos$351,
           expr: nix.thunk(() => nix.app(nix.sel(attrsets, "mergeAttrsList"), list)),
           expected: nix.thunk(() => nix.app(foldl$, mergeAttrs, nix.thunk(() => ({})), list)),
         };
       })()),
       testRecursiveUpdateUntil: nix.thunk(() => ({
-        __proto__: pos$358,
+        [nix.POS]: pos$358,
         expr: nix.thunk(() => nix.app(recursiveUpdateUntil, (path) => (l) => (r) => nix.eq(path, ["foo"]), nix.thunk(() => ({
-            __proto__: pos$353,
-            foo: nix.thunk(() => ({ __proto__: pos$352, bar: 1n, baz: 2n })),
+            [nix.POS]: pos$353,
+            foo: nix.thunk(() => ({ [nix.POS]: pos$352, bar: 1n, baz: 2n })),
             bar: 3n,
           })), nix.thunk(() => ({
-            __proto__: pos$355,
-            foo: nix.thunk(() => ({ __proto__: pos$354, bar: 1n, quz: 2n })),
+            [nix.POS]: pos$355,
+            foo: nix.thunk(() => ({ [nix.POS]: pos$354, bar: 1n, quz: 2n })),
             baz: 4n,
           })))),
         expected: nix.thunk(() => ({
-          __proto__: pos$357,
-          foo: nix.thunk(() => ({ __proto__: pos$356, bar: 1n, quz: 2n })),
+          [nix.POS]: pos$357,
+          foo: nix.thunk(() => ({ [nix.POS]: pos$356, bar: 1n, quz: 2n })),
           bar: 3n,
           baz: 4n,
         })),
       })),
       testMatchAttrsMatchingExact: nix.thunk(() => ({
-        __proto__: pos$363,
+        [nix.POS]: pos$363,
         expr: nix.thunk(() => nix.app(matchAttrs, nix.thunk(() => ({
-            __proto__: pos$360,
-            cpu: nix.thunk(() => ({ __proto__: pos$359, bits: 64n })),
+            [nix.POS]: pos$360,
+            cpu: nix.thunk(() => ({ [nix.POS]: pos$359, bits: 64n })),
           })), nix.thunk(() => ({
-            __proto__: pos$362,
-            cpu: nix.thunk(() => ({ __proto__: pos$361, bits: 64n })),
+            [nix.POS]: pos$362,
+            cpu: nix.thunk(() => ({ [nix.POS]: pos$361, bits: 64n })),
           })))),
         expected: true,
       })),
       testMatchAttrsMismatch: nix.thunk(() => ({
-        __proto__: pos$368,
+        [nix.POS]: pos$368,
         expr: nix.thunk(() => nix.app(matchAttrs, nix.thunk(() => ({
-            __proto__: pos$365,
-            cpu: nix.thunk(() => ({ __proto__: pos$364, bits: 128n })),
+            [nix.POS]: pos$365,
+            cpu: nix.thunk(() => ({ [nix.POS]: pos$364, bits: 128n })),
           })), nix.thunk(() => ({
-            __proto__: pos$367,
-            cpu: nix.thunk(() => ({ __proto__: pos$366, bits: 64n })),
+            [nix.POS]: pos$367,
+            cpu: nix.thunk(() => ({ [nix.POS]: pos$366, bits: 64n })),
           })))),
         expected: false,
       })),
       testMatchAttrsMatchingImplicit: nix.thunk(() => ({
-        __proto__: pos$372,
-        expr: nix.thunk(() => nix.app(matchAttrs, nix.thunk(() => ({ __proto__: pos$369, cpu: nix.thunk(() => ({})) })), nix.thunk(() => ({
-            __proto__: pos$371,
-            cpu: nix.thunk(() => ({ __proto__: pos$370, bits: 64n })),
+        [nix.POS]: pos$372,
+        expr: nix.thunk(() => nix.app(matchAttrs, nix.thunk(() => ({ [nix.POS]: pos$369, cpu: nix.thunk(() => ({})) })), nix.thunk(() => ({
+            [nix.POS]: pos$371,
+            cpu: nix.thunk(() => ({ [nix.POS]: pos$370, bits: 64n })),
           })))),
         expected: true,
       })),
       testMatchAttrsMissingAttrs: nix.thunk(() => ({
-        __proto__: pos$374,
-        expr: nix.thunk(() => nix.app(matchAttrs, nix.thunk(() => ({ __proto__: pos$373, cpu: nix.thunk(() => ({})) })), nix.thunk(() => ({})))),
+        [nix.POS]: pos$374,
+        expr: nix.thunk(() => nix.app(matchAttrs, nix.thunk(() => ({ [nix.POS]: pos$373, cpu: nix.thunk(() => ({})) })), nix.thunk(() => ({})))),
         expected: false,
       })),
       testOverrideExistingEmpty: nix.thunk(() => ({
-        __proto__: pos$376,
-        expr: nix.thunk(() => nix.app(overrideExisting, nix.thunk(() => ({})), nix.thunk(() => ({ __proto__: pos$375, a: 1n })))),
+        [nix.POS]: pos$376,
+        expr: nix.thunk(() => nix.app(overrideExisting, nix.thunk(() => ({})), nix.thunk(() => ({ [nix.POS]: pos$375, a: 1n })))),
         expected: nix.thunk(() => ({})),
       })),
       testOverrideExistingDisjoint: nix.thunk(() => ({
-        __proto__: pos$380,
-        expr: nix.thunk(() => nix.app(overrideExisting, nix.thunk(() => ({ __proto__: pos$377, b: 2n })), nix.thunk(() => ({ __proto__: pos$378, a: 1n })))),
-        expected: nix.thunk(() => ({ __proto__: pos$379, b: 2n })),
+        [nix.POS]: pos$380,
+        expr: nix.thunk(() => nix.app(overrideExisting, nix.thunk(() => ({ [nix.POS]: pos$377, b: 2n })), nix.thunk(() => ({ [nix.POS]: pos$378, a: 1n })))),
+        expected: nix.thunk(() => ({ [nix.POS]: pos$379, b: 2n })),
       })),
       testOverrideExistingOverride: nix.thunk(() => ({
-        __proto__: pos$384,
-        expr: nix.thunk(() => nix.app(overrideExisting, nix.thunk(() => ({ __proto__: pos$381, a: 3n, b: 2n })), nix.thunk(() => ({ __proto__: pos$382, a: 1n })))),
-        expected: nix.thunk(() => ({ __proto__: pos$383, a: 1n, b: 2n })),
+        [nix.POS]: pos$384,
+        expr: nix.thunk(() => nix.app(overrideExisting, nix.thunk(() => ({ [nix.POS]: pos$381, a: 3n, b: 2n })), nix.thunk(() => ({ [nix.POS]: pos$382, a: 1n })))),
+        expected: nix.thunk(() => ({ [nix.POS]: pos$383, a: 1n, b: 2n })),
       })),
       testListAttrsReverse: nix.thunk(() => (() => {
         const exampleAttrs = nix.thunk(() => ({
-          __proto__: pos$385,
+          [nix.POS]: pos$385,
           foo: 1n,
           bar: "asdf",
           baz: nix.thunk(() => [1n, 3n, 3n, 7n]),
           fnord: null,
         }));
-        const exampleSingletonList = nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$386, name: "foo", value: 1n }))]);
+        const exampleSingletonList = nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$386, name: "foo", value: 1n }))]);
         return {
-          __proto__: pos$392,
+          [nix.POS]: pos$392,
           expr: nix.thunk(() => ({
-            __proto__: pos$389,
+            [nix.POS]: pos$389,
             isReverseToListToAttrs: nix.thunk(() => nix.eq(nix.builtins.listToAttrs(nix.thunk(() => nix.app(attrsToList, exampleAttrs))), exampleAttrs)),
             isReverseToAttrsToList: nix.thunk(() => nix.eq(nix.app(attrsToList, nix.thunk(() => nix.builtins.listToAttrs(exampleSingletonList))), exampleSingletonList)),
             testDuplicatePruningBehaviour: nix.thunk(() => nix.app(attrsToList, nix.thunk(() => nix.builtins.listToAttrs(nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$387, name: "a", value: 2n })),
-                  nix.thunk(() => ({ __proto__: pos$388, name: "a", value: 1n })),
+                  nix.thunk(() => ({ [nix.POS]: pos$387, name: "a", value: 2n })),
+                  nix.thunk(() => ({ [nix.POS]: pos$388, name: "a", value: 1n })),
                 ]))))),
           })),
           expected: nix.thunk(() => ({
-            __proto__: pos$391,
+            [nix.POS]: pos$391,
             isReverseToAttrsToList: true,
             isReverseToListToAttrs: true,
-            testDuplicatePruningBehaviour: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$390, name: "a", value: 2n }))]),
+            testDuplicatePruningBehaviour: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$390, name: "a", value: 2n }))]),
           })),
         };
       })()),
-      testAttrsToListsCanDealWithFunctions: nix.thunk(() => nix.app(testingEval, nix.thunk(() => nix.app(attrsToList, nix.thunk(() => ({ __proto__: pos$393, someFunc: (a) => nix.add(a, 1n) })))))),
+      testAttrsToListsCanDealWithFunctions: nix.thunk(() => nix.app(testingEval, nix.thunk(() => nix.app(attrsToList, nix.thunk(() => ({ [nix.POS]: pos$393, someFunc: (a) => nix.add(a, 1n) })))))),
       testFix: nix.thunk(() => ({
-        __proto__: pos$396,
+        [nix.POS]: pos$396,
         expr: nix.thunk(() => nix.app(fix, (x) => ({
-            __proto__: pos$394,
+            [nix.POS]: pos$394,
             a: nix.thunk(() => (nix.asBool(nix.has(x, "a")) ? "a" : "b")),
           }))),
-        expected: nix.thunk(() => ({ __proto__: pos$395, a: "a" })),
+        expected: nix.thunk(() => ({ [nix.POS]: pos$395, a: "a" })),
       })),
       testToExtension: nix.thunk(() => ({
-        __proto__: pos$408,
+        [nix.POS]: pos$408,
         expr: nix.thunk(() => [
-          nix.thunk(() => nix.app(fix, (final) => ({ __proto__: pos$397, a: 0n, c: nix.thunk(() => nix.sel(final, "a")) }))),
-          nix.thunk(() => nix.app(fix, nix.thunk(() => nix.app(extends$, nix.thunk(() => nix.app(toExtension, nix.thunk(() => ({ __proto__: pos$398, a: 1n, b: 2n })))), (final) => ({ __proto__: pos$399, a: 0n, c: nix.thunk(() => nix.sel(final, "a")) }))))),
-          nix.thunk(() => nix.app(fix, nix.thunk(() => nix.app(extends$, nix.thunk(() => nix.app(toExtension, (prev) => ({ __proto__: pos$400, a: 1n, b: nix.thunk(() => nix.sel(prev, "a")) }))), (final) => ({ __proto__: pos$401, a: 0n, c: nix.thunk(() => nix.sel(final, "a")) }))))),
+          nix.thunk(() => nix.app(fix, (final) => ({ [nix.POS]: pos$397, a: 0n, c: nix.thunk(() => nix.sel(final, "a")) }))),
+          nix.thunk(() => nix.app(fix, nix.thunk(() => nix.app(extends$, nix.thunk(() => nix.app(toExtension, nix.thunk(() => ({ [nix.POS]: pos$398, a: 1n, b: 2n })))), (final) => ({ [nix.POS]: pos$399, a: 0n, c: nix.thunk(() => nix.sel(final, "a")) }))))),
+          nix.thunk(() => nix.app(fix, nix.thunk(() => nix.app(extends$, nix.thunk(() => nix.app(toExtension, (prev) => ({ [nix.POS]: pos$400, a: 1n, b: nix.thunk(() => nix.sel(prev, "a")) }))), (final) => ({ [nix.POS]: pos$401, a: 0n, c: nix.thunk(() => nix.sel(final, "a")) }))))),
           nix.thunk(() => nix.app(fix, nix.thunk(() => nix.app(extends$, nix.thunk(() => nix.app(toExtension, (final) => (prev) => ({
-                  __proto__: pos$402,
+                  [nix.POS]: pos$402,
                   a: 1n,
                   b: nix.thunk(() => nix.sel(prev, "a")),
                   c: nix.thunk(() => nix.add(nix.sel(final, "a"), 1n)),
-                }))), (final) => ({ __proto__: pos$403, a: 0n, c: nix.thunk(() => nix.sel(final, "a")) }))))),
+                }))), (final) => ({ [nix.POS]: pos$403, a: 0n, c: nix.thunk(() => nix.sel(final, "a")) }))))),
         ]),
         expected: nix.thunk(() => [
-          nix.thunk(() => ({ __proto__: pos$404, a: 0n, c: 0n })),
-          nix.thunk(() => ({ __proto__: pos$405, a: 1n, b: 2n, c: 1n })),
-          nix.thunk(() => ({ __proto__: pos$406, a: 1n, b: 0n, c: 1n })),
-          nix.thunk(() => ({ __proto__: pos$407, a: 1n, b: 0n, c: 2n })),
+          nix.thunk(() => ({ [nix.POS]: pos$404, a: 0n, c: 0n })),
+          nix.thunk(() => ({ [nix.POS]: pos$405, a: 1n, b: 2n, c: 1n })),
+          nix.thunk(() => ({ [nix.POS]: pos$406, a: 1n, b: 0n, c: 1n })),
+          nix.thunk(() => ({ [nix.POS]: pos$407, a: 1n, b: 0n, c: 2n })),
         ]),
       })),
       testMkKeyValueDefault: nix.thunk(() => ({
-        __proto__: pos$409,
+        [nix.POS]: pos$409,
         expr: nix.thunk(() => nix.app(nix.sel(generators, "mkKeyValueDefault"), nix.thunk(() => ({})), ":", "f:oo", "bar")),
         expected: "f\\:oo:bar",
       })),
       testMkValueString: nix.thunk(() => ({
-        __proto__: pos$412,
+        [nix.POS]: pos$412,
         expr: nix.thunk(() => (() => {
           const vals = nix.thunk(() => ({
-            __proto__: pos$410,
+            [nix.POS]: pos$410,
             int: 42n,
             string: "fo\"o",
             bool: true,
@@ -2709,7 +2709,7 @@ stringable='hello toString'
           return nix.app(mapAttrs, nix.thunk(() => nix.app(const$, nix.thunk(() => nix.app(nix.sel(generators, "mkValueStringDefault"), nix.thunk(() => ({})))))), vals);
         })()),
         expected: nix.thunk(() => ({
-          __proto__: pos$411,
+          [nix.POS]: pos$411,
           int: "42",
           string: "fo\"o",
           bool: "true",
@@ -2718,50 +2718,50 @@ stringable='hello toString'
         })),
       })),
       testToKeyValue: nix.thunk(() => ({
-        __proto__: pos$414,
-        expr: nix.thunk(() => nix.app(nix.sel(generators, "toKeyValue"), nix.thunk(() => ({})), nix.thunk(() => ({ __proto__: pos$413, key: "value", "other=key": "baz" })))),
+        [nix.POS]: pos$414,
+        expr: nix.thunk(() => nix.app(nix.sel(generators, "toKeyValue"), nix.thunk(() => ({})), nix.thunk(() => ({ [nix.POS]: pos$413, key: "value", "other=key": "baz" })))),
         expected: "key=value\nother\\=key=baz\n",
       })),
       testToINIEmpty: nix.thunk(() => ({
-        __proto__: pos$415,
+        [nix.POS]: pos$415,
         expr: nix.thunk(() => nix.app(nix.sel(generators, "toINI"), nix.thunk(() => ({})), nix.thunk(() => ({})))),
         expected: "",
       })),
       testToINIEmptySection: nix.thunk(() => ({
-        __proto__: pos$417,
-        expr: nix.thunk(() => nix.app(nix.sel(generators, "toINI"), nix.thunk(() => ({})), nix.thunk(() => ({ __proto__: pos$416, foo: nix.thunk(() => ({})), bar: nix.thunk(() => ({})) })))),
+        [nix.POS]: pos$417,
+        expr: nix.thunk(() => nix.app(nix.sel(generators, "toINI"), nix.thunk(() => ({})), nix.thunk(() => ({ [nix.POS]: pos$416, foo: nix.thunk(() => ({})), bar: nix.thunk(() => ({})) })))),
         expected: "[bar]\n\n[foo]\n",
       })),
       testToINIDuplicateKeys: nix.thunk(() => ({
-        __proto__: pos$422,
-        expr: nix.thunk(() => nix.app(nix.sel(generators, "toINI"), nix.thunk(() => ({ __proto__: pos$418, listsAsDuplicateKeys: true })), nix.thunk(() => ({
-            __proto__: pos$421,
-            foo: nix.thunk(() => ({ __proto__: pos$419, bar: true })),
-            baz: nix.thunk(() => ({ __proto__: pos$420, qux: nix.thunk(() => [1n, false]) })),
+        [nix.POS]: pos$422,
+        expr: nix.thunk(() => nix.app(nix.sel(generators, "toINI"), nix.thunk(() => ({ [nix.POS]: pos$418, listsAsDuplicateKeys: true })), nix.thunk(() => ({
+            [nix.POS]: pos$421,
+            foo: nix.thunk(() => ({ [nix.POS]: pos$419, bar: true })),
+            baz: nix.thunk(() => ({ [nix.POS]: pos$420, qux: nix.thunk(() => [1n, false]) })),
           })))),
         expected: "[baz]\nqux=1\nqux=false\n\n[foo]\nbar=true\n",
       })),
       testToINIDefaultEscapes: nix.thunk(() => ({
-        __proto__: pos$425,
+        [nix.POS]: pos$425,
         expr: nix.thunk(() => nix.app(nix.sel(generators, "toINI"), nix.thunk(() => ({})), nix.thunk(() => ({
-            __proto__: pos$424,
-            "no [ and ] allowed unescaped": nix.thunk(() => ({ __proto__: pos$423, "and also no = in keys": 42n })),
+            [nix.POS]: pos$424,
+            "no [ and ] allowed unescaped": nix.thunk(() => ({ [nix.POS]: pos$423, "and also no = in keys": 42n })),
           })))),
         expected: "[no \\[ and \\] allowed unescaped]\nand also no \\= in keys=42\n",
       })),
       testToINIDefaultFull: nix.thunk(() => ({
-        __proto__: pos$429,
+        [nix.POS]: pos$429,
         expr: nix.thunk(() => nix.app(nix.sel(generators, "toINI"), nix.thunk(() => ({})), nix.thunk(() => ({
-            __proto__: pos$428,
-            "section 1": nix.thunk(() => ({ __proto__: pos$426, attribute1: 5n, x: "Me-se JarJar Binx", boolean: false })),
-            "foo[]": nix.thunk(() => ({ __proto__: pos$427, "he\\h=he": "this is okay" })),
+            [nix.POS]: pos$428,
+            "section 1": nix.thunk(() => ({ [nix.POS]: pos$426, attribute1: 5n, x: "Me-se JarJar Binx", boolean: false })),
+            "foo[]": nix.thunk(() => ({ [nix.POS]: pos$427, "he\\h=he": "this is okay" })),
           })))),
         expected: "[foo\\[\\]]\nhe\\h\\=he=this is okay\n\n[section 1]\nattribute1=5\nboolean=false\nx=Me-se JarJar Binx\n",
       })),
       testToINIWithGlobalSectionEmpty: nix.thunk(() => ({
-        __proto__: pos$431,
+        [nix.POS]: pos$431,
         expr: nix.thunk(() => nix.app(nix.sel(generators, "toINIWithGlobalSection"), nix.thunk(() => ({})), nix.thunk(() => ({
-            __proto__: pos$430,
+            [nix.POS]: pos$430,
             globalSection: nix.thunk(() => ({})),
             sections: nix.thunk(() => ({})),
           })))),
@@ -2769,52 +2769,52 @@ stringable='hello toString'
       })),
       testToINIWithGlobalSectionGlobalEmptyIsTheSameAsToINI: nix.thunk(() => (() => {
         const sections = nix.thunk(() => ({
-          __proto__: pos$434,
-          "section 1": nix.thunk(() => ({ __proto__: pos$432, attribute1: 5n, x: "Me-se JarJar Binx" })),
-          foo: nix.thunk(() => ({ __proto__: pos$433, "he\\h=he": "this is okay" })),
+          [nix.POS]: pos$434,
+          "section 1": nix.thunk(() => ({ [nix.POS]: pos$432, attribute1: 5n, x: "Me-se JarJar Binx" })),
+          foo: nix.thunk(() => ({ [nix.POS]: pos$433, "he\\h=he": "this is okay" })),
         }));
         return {
-          __proto__: pos$436,
-          expr: nix.thunk(() => nix.app(nix.sel(generators, "toINIWithGlobalSection"), nix.thunk(() => ({})), nix.thunk(() => ({ __proto__: pos$435, globalSection: nix.thunk(() => ({})), sections: sections })))),
+          [nix.POS]: pos$436,
+          expr: nix.thunk(() => nix.app(nix.sel(generators, "toINIWithGlobalSection"), nix.thunk(() => ({})), nix.thunk(() => ({ [nix.POS]: pos$435, globalSection: nix.thunk(() => ({})), sections: sections })))),
           expected: nix.thunk(() => nix.app(nix.sel(generators, "toINI"), nix.thunk(() => ({})), sections)),
         };
       })()),
       testToINIWithGlobalSectionFull: nix.thunk(() => ({
-        __proto__: pos$442,
+        [nix.POS]: pos$442,
         expr: nix.thunk(() => nix.app(nix.sel(generators, "toINIWithGlobalSection"), nix.thunk(() => ({})), nix.thunk(() => ({
-            __proto__: pos$441,
-            globalSection: nix.thunk(() => ({ __proto__: pos$437, foo: "bar", test: false })),
+            [nix.POS]: pos$441,
+            globalSection: nix.thunk(() => ({ [nix.POS]: pos$437, foo: "bar", test: false })),
             sections: nix.thunk(() => ({
-              __proto__: pos$440,
-              "section 1": nix.thunk(() => ({ __proto__: pos$438, attribute1: 5n, x: "Me-se JarJar Binx" })),
-              foo: nix.thunk(() => ({ __proto__: pos$439, "he\\h=he": "this is okay" })),
+              [nix.POS]: pos$440,
+              "section 1": nix.thunk(() => ({ [nix.POS]: pos$438, attribute1: 5n, x: "Me-se JarJar Binx" })),
+              foo: nix.thunk(() => ({ [nix.POS]: pos$439, "he\\h=he": "this is okay" })),
             })),
           })))),
         expected: "foo=bar\ntest=false\n\n[foo]\nhe\\h\\=he=this is okay\n\n[section 1]\nattribute1=5\nx=Me-se JarJar Binx\n",
       })),
       testToGitINI: nix.thunk(() => ({
-        __proto__: pos$452,
+        [nix.POS]: pos$452,
         expr: nix.thunk(() => nix.app(nix.sel(generators, "toGitINI"), nix.thunk(() => ({
-            __proto__: pos$451,
+            [nix.POS]: pos$451,
             user: nix.thunk(() => ({
-              __proto__: pos$443,
+              [nix.POS]: pos$443,
               email: "user@example.org",
               name: "John Doe",
               signingKey: "00112233445566778899AABBCCDDEEFF",
             })),
-            gpg: nix.thunk(() => ({ __proto__: pos$444, program: "path-to-gpg" })),
-            tag: nix.thunk(() => ({ __proto__: pos$445, gpgSign: true })),
-            include: nix.thunk(() => ({ __proto__: pos$446, path: "~/path/to/config.inc" })),
+            gpg: nix.thunk(() => ({ [nix.POS]: pos$444, program: "path-to-gpg" })),
+            tag: nix.thunk(() => ({ [nix.POS]: pos$445, gpgSign: true })),
+            include: nix.thunk(() => ({ [nix.POS]: pos$446, path: "~/path/to/config.inc" })),
             includeIf: nix.thunk(() => ({
-              __proto__: pos$448,
-              "gitdif:~/src/dir": nix.thunk(() => ({ __proto__: pos$447, path: "~/path/to/conditional.inc" })),
+              [nix.POS]: pos$448,
+              "gitdif:~/src/dir": nix.thunk(() => ({ [nix.POS]: pos$447, path: "~/path/to/conditional.inc" })),
             })),
             extra: nix.thunk(() => ({
-              __proto__: pos$450,
+              [nix.POS]: pos$450,
               boolean: true,
               integer: 38n,
               name: "value",
-              subsection: nix.thunk(() => ({ __proto__: pos$449, value: "test" })),
+              subsection: nix.thunk(() => ({ [nix.POS]: pos$449, value: "test" })),
             })),
           })))),
         expected: nix.thunk(() => nix.str`[extra]
@@ -2844,38 +2844,38 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
 `),
       })),
       testToJSONSimple: nix.thunk(() => (() => {
-        const val = nix.thunk(() => ({ __proto__: pos$453, foobar: nix.thunk(() => ["baz", 1n, 2n, 3n]) }));
+        const val = nix.thunk(() => ({ [nix.POS]: pos$453, foobar: nix.thunk(() => ["baz", 1n, 2n, 3n]) }));
         return {
-          __proto__: pos$454,
+          [nix.POS]: pos$454,
           expr: nix.thunk(() => nix.app(nix.sel(generators, "toJSON"), nix.thunk(() => ({})), val)),
           expected: nix.thunk(() => nix.builtins.toJSON(val)),
         };
       })()),
       testToYAMLSimple: nix.thunk(() => (() => {
         const val = nix.thunk(() => ({
-          __proto__: pos$457,
+          [nix.POS]: pos$457,
           list: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$455, one: 1n })),
-            nix.thunk(() => ({ __proto__: pos$456, two: 2n })),
+            nix.thunk(() => ({ [nix.POS]: pos$455, one: 1n })),
+            nix.thunk(() => ({ [nix.POS]: pos$456, two: 2n })),
           ]),
           all: 42n,
         }));
         return {
-          __proto__: pos$458,
+          [nix.POS]: pos$458,
           expr: nix.thunk(() => nix.app(nix.sel(generators, "toYAML"), nix.thunk(() => ({})), val)),
           expected: nix.thunk(() => nix.builtins.toJSON(val)),
         };
       })()),
       testToPretty: nix.thunk(() => (() => {
         const deriv = nix.thunk(() => nix.app(nix.builtins.derivation, nix.thunk(() => ({
-            __proto__: pos$459,
+            [nix.POS]: pos$459,
             name: "test",
             builder: "/bin/sh",
             system: "aarch64-linux",
           }))));
         return {
-          __proto__: pos$464,
-          expr: nix.thunk(() => nix.app(mapAttrs, nix.thunk(() => nix.app(const$, nix.thunk(() => nix.app(nix.sel(generators, "toPretty"), nix.thunk(() => ({ __proto__: pos$460, multiline: false })))))), nix.thunk(() => (() => {
+          [nix.POS]: pos$464,
+          expr: nix.thunk(() => nix.app(mapAttrs, nix.thunk(() => nix.app(const$, nix.thunk(() => nix.app(nix.sel(generators, "toPretty"), nix.thunk(() => ({ [nix.POS]: pos$460, multiline: false })))))), nix.thunk(() => (() => {
               const int = 42n;
               const float = 0.1337;
               const bool = true;
@@ -2893,11 +2893,11 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
               })(), formals$9);
               const list = nix.thunk(() => [3n, 4n, function$, nix.thunk(() => [false])]);
               const emptylist = [];
-              const attrs = nix.thunk(() => ({ __proto__: pos$461, assert: false, foo: null, "foo b/ar": "baz" }));
+              const attrs = nix.thunk(() => ({ [nix.POS]: pos$461, assert: false, foo: null, "foo b/ar": "baz" }));
               const emptyattrs = nix.thunk(() => ({}));
               const drv = deriv;
               return {
-                __proto__: pos$462,
+                [nix.POS]: pos$462,
                 int,
                 float,
                 bool,
@@ -2932,7 +2932,7 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
             const emptyattrs = "{ }";
             const drv = nix.thunk(() => nix.str`<derivation ${nix.sel(deriv, "name")}>`);
             return {
-              __proto__: pos$463,
+              [nix.POS]: pos$463,
               int,
               float,
               bool,
@@ -2953,24 +2953,24 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
         };
       })()),
       testToPrettyLimit: nix.thunk(() => (() => {
-        const a = nix.thunk(() => ({ __proto__: pos$465, b: 1n, c: a }));
+        const a = nix.thunk(() => ({ [nix.POS]: pos$465, b: 1n, c: a }));
         return {
-          __proto__: pos$467,
-          expr: nix.thunk(() => nix.app(nix.sel(generators, "toPretty"), nix.thunk(() => ({})), nix.thunk(() => nix.app(nix.sel(generators, "withRecursion"), nix.thunk(() => ({ __proto__: pos$466, throwOnDepthLimit: false, depthLimit: 2n })), a)))),
+          [nix.POS]: pos$467,
+          expr: nix.thunk(() => nix.app(nix.sel(generators, "toPretty"), nix.thunk(() => ({})), nix.thunk(() => nix.app(nix.sel(generators, "withRecursion"), nix.thunk(() => ({ [nix.POS]: pos$466, throwOnDepthLimit: false, depthLimit: 2n })), a)))),
           expected: "{\n  b = 1;\n  c = {\n    b = \"<unevaluated>\";\n    c = {\n      b = \"<unevaluated>\";\n      c = \"<unevaluated>\";\n    };\n  };\n}",
         };
       })()),
       testToPrettyLimitThrow: nix.thunk(() => (() => {
-        const a = nix.thunk(() => ({ __proto__: pos$468, b: 1n, c: a }));
+        const a = nix.thunk(() => ({ [nix.POS]: pos$468, b: 1n, c: a }));
         return {
-          __proto__: pos$470,
-          expr: nix.thunk(() => nix.sel(nix.builtins.tryEval(nix.thunk(() => nix.app(nix.sel(generators, "toPretty"), nix.thunk(() => ({})), nix.thunk(() => nix.app(nix.sel(generators, "withRecursion"), nix.thunk(() => ({ __proto__: pos$469, depthLimit: 2n })), a))))), "success")),
+          [nix.POS]: pos$470,
+          expr: nix.thunk(() => nix.sel(nix.builtins.tryEval(nix.thunk(() => nix.app(nix.sel(generators, "toPretty"), nix.thunk(() => ({})), nix.thunk(() => nix.app(nix.sel(generators, "withRecursion"), nix.thunk(() => ({ [nix.POS]: pos$469, depthLimit: 2n })), a))))), "success")),
           expected: false,
         };
       })()),
       testWithRecursionDealsWithFunctors: nix.thunk(() => (() => {
         const functor = nix.thunk(() => ({
-          __proto__: pos$471,
+          [nix.POS]: pos$471,
           __functor: (self) => nix.lambda((args) => (() => {
             const $ = nix.formals(args, formals$10);
             const a_1 = nix.arg($, "a");
@@ -2979,33 +2979,33 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
           })(), formals$10),
         }));
         const a = nix.thunk(() => ({
-          __proto__: pos$473,
+          [nix.POS]: pos$473,
           value: "1234",
           b: functor,
-          c: nix.thunk(() => ({ __proto__: pos$472, d: functor })),
+          c: nix.thunk(() => ({ [nix.POS]: pos$472, d: functor })),
         }));
         return {
-          __proto__: pos$475,
-          expr: nix.thunk(() => nix.app(nix.sel(generators, "toPretty"), nix.thunk(() => ({})), nix.thunk(() => nix.app(nix.sel(generators, "withRecursion"), nix.thunk(() => ({ __proto__: pos$474, depthLimit: 1n, throwOnDepthLimit: false })), a)))),
+          [nix.POS]: pos$475,
+          expr: nix.thunk(() => nix.app(nix.sel(generators, "toPretty"), nix.thunk(() => ({})), nix.thunk(() => nix.app(nix.sel(generators, "withRecursion"), nix.thunk(() => ({ [nix.POS]: pos$474, depthLimit: 1n, throwOnDepthLimit: false })), a)))),
           expected: "{\n  b = <function, args: {a, b}>;\n  c = {\n    d = \"<unevaluated>\";\n  };\n  value = \"<unevaluated>\";\n}",
         };
       })()),
       testToPrettyMultiline: nix.thunk(() => ({
-        __proto__: pos$480,
+        [nix.POS]: pos$480,
         expr: nix.thunk(() => nix.app(mapAttrs, nix.thunk(() => nix.app(const$, nix.thunk(() => nix.app(nix.sel(generators, "toPretty"), nix.thunk(() => ({})))))), nix.thunk(() => ({
-            __proto__: pos$478,
+            [nix.POS]: pos$478,
             list: nix.thunk(() => [3n, 4n, nix.thunk(() => [false])]),
             attrs: nix.thunk(() => ({
-              __proto__: pos$477,
+              [nix.POS]: pos$477,
               foo: null,
-              bar: nix.thunk(() => ({ __proto__: pos$476, foo: "baz" })),
+              bar: nix.thunk(() => ({ [nix.POS]: pos$476, foo: "baz" })),
             })),
             newlinestring: "\n",
             multilinestring: "hello\n${there}\nte''st\n",
             "multilinestring'": "hello\nthere\ntest",
           })))),
         expected: nix.thunk(() => ({
-          __proto__: pos$479,
+          [nix.POS]: pos$479,
           list: "[\n  3\n  4\n  [\n    false\n  ]\n]",
           attrs: "{\n  bar = {\n    foo = \"baz\";\n  };\n  foo = null;\n}",
           newlinestring: "''\n  \n''",
@@ -3014,24 +3014,24 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
         })),
       })),
       testToPrettyAllowPrettyValues: nix.thunk(() => ({
-        __proto__: pos$483,
-        expr: nix.thunk(() => nix.app(nix.sel(generators, "toPretty"), nix.thunk(() => ({ __proto__: pos$481, allowPrettyValues: true })), nix.thunk(() => ({
-            __proto__: pos$482,
+        [nix.POS]: pos$483,
+        expr: nix.thunk(() => nix.app(nix.sel(generators, "toPretty"), nix.thunk(() => ({ [nix.POS]: pos$481, allowPrettyValues: true })), nix.thunk(() => ({
+            [nix.POS]: pos$482,
             __pretty: (v) => nix.add(nix.add("«", v), "»"),
             val: "foo",
           })))),
         expected: "«foo»",
       })),
       testToPlistUnescaped: nix.thunk(() => ({
-        __proto__: pos$490,
+        [nix.POS]: pos$490,
         expr: nix.thunk(() => nix.app(mapAttrs, nix.thunk(() => nix.app(const$, nix.thunk(() => nix.app(nix.sel(generators, "toPlist"), nix.thunk(() => ({})))))), nix.thunk(() => ({
-            __proto__: pos$488,
+            [nix.POS]: pos$488,
             value: nix.thunk(() => ({
-              __proto__: pos$487,
+              [nix.POS]: pos$487,
               nested: nix.thunk(() => ({
-                __proto__: pos$486,
+                [nix.POS]: pos$486,
                 values: nix.thunk(() => ({
-                  __proto__: pos$485,
+                  [nix.POS]: pos$485,
                   int: 42n,
                   float: 0.1337,
                   bool: true,
@@ -3042,7 +3042,7 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
                   null_: null,
                   list: nix.thunk(() => [3n, 4n, "test"]),
                   emptylist: [],
-                  attrs: nix.thunk(() => ({ __proto__: pos$484, foo: null, "foo b/ar": "baz" })),
+                  attrs: nix.thunk(() => ({ [nix.POS]: pos$484, foo: null, "foo b/ar": "baz" })),
                   emptyattrs: nix.thunk(() => ({})),
                   "keys are not <escaped>": "and < neither are string values",
                 })),
@@ -3050,20 +3050,20 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
             })),
           })))),
         expected: nix.thunk(() => ({
-          __proto__: pos$489,
+          [nix.POS]: pos$489,
           value: nix.thunk(() => nix.builtins.readFile(nix.path(here, "./test-to-plist-unescaped-expected.plist"))),
         })),
       })),
       testToPlistEscaped: nix.thunk(() => ({
-        __proto__: pos$498,
-        expr: nix.thunk(() => nix.app(mapAttrs, nix.thunk(() => nix.app(const$, nix.thunk(() => nix.app(nix.sel(generators, "toPlist"), nix.thunk(() => ({ __proto__: pos$491, escape: true })))))), nix.thunk(() => ({
-            __proto__: pos$496,
+        [nix.POS]: pos$498,
+        expr: nix.thunk(() => nix.app(mapAttrs, nix.thunk(() => nix.app(const$, nix.thunk(() => nix.app(nix.sel(generators, "toPlist"), nix.thunk(() => ({ [nix.POS]: pos$491, escape: true })))))), nix.thunk(() => ({
+            [nix.POS]: pos$496,
             value: nix.thunk(() => ({
-              __proto__: pos$495,
+              [nix.POS]: pos$495,
               nested: nix.thunk(() => ({
-                __proto__: pos$494,
+                [nix.POS]: pos$494,
                 values: nix.thunk(() => ({
-                  __proto__: pos$493,
+                  [nix.POS]: pos$493,
                   int: 42n,
                   float: 0.1337,
                   bool: true,
@@ -3074,7 +3074,7 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
                   null_: null,
                   list: nix.thunk(() => [3n, 4n, "test"]),
                   emptylist: [],
-                  attrs: nix.thunk(() => ({ __proto__: pos$492, foo: null, "foo b/ar": "baz" })),
+                  attrs: nix.thunk(() => ({ [nix.POS]: pos$492, foo: null, "foo b/ar": "baz" })),
                   emptyattrs: nix.thunk(() => ({})),
                   "keys are <escaped>": "and < so are string values",
                 })),
@@ -3082,83 +3082,83 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
             })),
           })))),
         expected: nix.thunk(() => ({
-          __proto__: pos$497,
+          [nix.POS]: pos$497,
           value: nix.thunk(() => nix.builtins.readFile(nix.path(here, "./test-to-plist-escaped-expected.plist"))),
         })),
       })),
       testToLuaEmptyAttrSet: nix.thunk(() => ({
-        __proto__: pos$499,
+        [nix.POS]: pos$499,
         expr: nix.thunk(() => nix.app(nix.sel(generators, "toLua"), nix.thunk(() => ({})), nix.thunk(() => ({})))),
         expected: "{}",
       })),
       testToLuaEmptyList: nix.thunk(() => ({
-        __proto__: pos$500,
+        [nix.POS]: pos$500,
         expr: nix.thunk(() => nix.app(nix.sel(generators, "toLua"), nix.thunk(() => ({})), [])),
         expected: "{}",
       })),
       testToLuaListOfVariousTypes: nix.thunk(() => ({
-        __proto__: pos$501,
+        [nix.POS]: pos$501,
         expr: nix.thunk(() => nix.app(nix.sel(generators, "toLua"), nix.thunk(() => ({})), nix.thunk(() => [null, 43n, 3.14159, true]))),
         expected: "{\n  nil,\n  43,\n  3.14159,\n  true\n}",
       })),
       testToLuaString: nix.thunk(() => ({
-        __proto__: pos$502,
+        [nix.POS]: pos$502,
         expr: nix.thunk(() => nix.app(nix.sel(generators, "toLua"), nix.thunk(() => ({})), "double-quote (\") and single quotes (')")),
         expected: "\"double-quote (\\\") and single quotes (')\"",
       })),
       testToLuaAttrsetWithLuaInline: nix.thunk(() => ({
-        __proto__: pos$504,
+        [nix.POS]: pos$504,
         expr: nix.thunk(() => nix.app(nix.sel(generators, "toLua"), nix.thunk(() => ({})), nix.thunk(() => ({
-            __proto__: pos$503,
+            [nix.POS]: pos$503,
             x: nix.thunk(() => nix.app(nix.sel(generators, "mkLuaInline"), "\"abc\" .. \"def\"")),
           })))),
         expected: "{\n  [\"x\"] = (\"abc\" .. \"def\")\n}",
       })),
       testToLuaAttrsetWithSpaceInKey: nix.thunk(() => ({
-        __proto__: pos$506,
-        expr: nix.thunk(() => nix.app(nix.sel(generators, "toLua"), nix.thunk(() => ({})), nix.thunk(() => ({ __proto__: pos$505, "some space and double-quote (\")": 42n })))),
+        [nix.POS]: pos$506,
+        expr: nix.thunk(() => nix.app(nix.sel(generators, "toLua"), nix.thunk(() => ({})), nix.thunk(() => ({ [nix.POS]: pos$505, "some space and double-quote (\")": 42n })))),
         expected: "{\n  [\"some space and double-quote (\\\")\"] = 42\n}",
       })),
       testToLuaWithoutMultiline: nix.thunk(() => ({
-        __proto__: pos$508,
-        expr: nix.thunk(() => nix.app(nix.sel(generators, "toLua"), nix.thunk(() => ({ __proto__: pos$507, multiline: false })), nix.thunk(() => [41n, 43n]))),
+        [nix.POS]: pos$508,
+        expr: nix.thunk(() => nix.app(nix.sel(generators, "toLua"), nix.thunk(() => ({ [nix.POS]: pos$507, multiline: false })), nix.thunk(() => [41n, 43n]))),
         expected: "{ 41, 43 }",
       })),
       testToLuaEmptyBindings: nix.thunk(() => ({
-        __proto__: pos$510,
-        expr: nix.thunk(() => nix.app(nix.sel(generators, "toLua"), nix.thunk(() => ({ __proto__: pos$509, asBindings: true })), nix.thunk(() => ({})))),
+        [nix.POS]: pos$510,
+        expr: nix.thunk(() => nix.app(nix.sel(generators, "toLua"), nix.thunk(() => ({ [nix.POS]: pos$509, asBindings: true })), nix.thunk(() => ({})))),
         expected: "",
       })),
       testToLuaBindings: nix.thunk(() => ({
-        __proto__: pos$514,
-        expr: nix.thunk(() => nix.app(nix.sel(generators, "toLua"), nix.thunk(() => ({ __proto__: pos$511, asBindings: true })), nix.thunk(() => ({
-            __proto__: pos$513,
+        [nix.POS]: pos$514,
+        expr: nix.thunk(() => nix.app(nix.sel(generators, "toLua"), nix.thunk(() => ({ [nix.POS]: pos$511, asBindings: true })), nix.thunk(() => ({
+            [nix.POS]: pos$513,
             x1: 41n,
-            _y: nix.thunk(() => ({ __proto__: pos$512, a: 43n })),
+            _y: nix.thunk(() => ({ [nix.POS]: pos$512, a: 43n })),
           })))),
         expected: "_y = {\n  [\"a\"] = 43\n}\nx1 = 41\n",
       })),
       testToLuaPartialTableBindings: nix.thunk(() => ({
-        __proto__: pos$517,
-        expr: nix.thunk(() => nix.app(nix.sel(generators, "toLua"), nix.thunk(() => ({ __proto__: pos$515, asBindings: true })), nix.thunk(() => ({ __proto__: pos$516, "x.y": 42n })))),
+        [nix.POS]: pos$517,
+        expr: nix.thunk(() => nix.app(nix.sel(generators, "toLua"), nix.thunk(() => ({ [nix.POS]: pos$515, asBindings: true })), nix.thunk(() => ({ [nix.POS]: pos$516, "x.y": 42n })))),
         expected: "x.y = 42\n",
       })),
       testToLuaIndentedBindings: nix.thunk(() => ({
-        __proto__: pos$521,
-        expr: nix.thunk(() => nix.app(nix.sel(generators, "toLua"), nix.thunk(() => ({ __proto__: pos$518, asBindings: true, indent: "  " })), nix.thunk(() => ({ __proto__: pos$520, x: nix.thunk(() => ({ __proto__: pos$519, y: 42n })) })))),
+        [nix.POS]: pos$521,
+        expr: nix.thunk(() => nix.app(nix.sel(generators, "toLua"), nix.thunk(() => ({ [nix.POS]: pos$518, asBindings: true, indent: "  " })), nix.thunk(() => ({ [nix.POS]: pos$520, x: nix.thunk(() => ({ [nix.POS]: pos$519, y: 42n })) })))),
         expected: "  x = {\n    [\"y\"] = 42\n  }\n",
       })),
-      testToLuaBindingsWithSpace: nix.thunk(() => nix.app(testingThrow, nix.thunk(() => nix.app(nix.sel(generators, "toLua"), nix.thunk(() => ({ __proto__: pos$522, asBindings: true })), nix.thunk(() => ({ __proto__: pos$523, "with space": 42n })))))),
-      testToLuaBindingsWithLeadingDigit: nix.thunk(() => nix.app(testingThrow, nix.thunk(() => nix.app(nix.sel(generators, "toLua"), nix.thunk(() => ({ __proto__: pos$524, asBindings: true })), nix.thunk(() => ({ __proto__: pos$525, "11eleven": 42n })))))),
+      testToLuaBindingsWithSpace: nix.thunk(() => nix.app(testingThrow, nix.thunk(() => nix.app(nix.sel(generators, "toLua"), nix.thunk(() => ({ [nix.POS]: pos$522, asBindings: true })), nix.thunk(() => ({ [nix.POS]: pos$523, "with space": 42n })))))),
+      testToLuaBindingsWithLeadingDigit: nix.thunk(() => nix.app(testingThrow, nix.thunk(() => nix.app(nix.sel(generators, "toLua"), nix.thunk(() => ({ [nix.POS]: pos$524, asBindings: true })), nix.thunk(() => ({ [nix.POS]: pos$525, "11eleven": 42n })))))),
       testToLuaBasicExample: nix.thunk(() => ({
-        __proto__: pos$529,
+        [nix.POS]: pos$529,
         expr: nix.thunk(() => nix.app(nix.sel(generators, "toLua"), nix.thunk(() => ({})), nix.thunk(() => ({
-            __proto__: pos$528,
+            [nix.POS]: pos$528,
             cmd: nix.thunk(() => ["typescript-language-server", "--stdio"]),
             settings: nix.thunk(() => ({
-              __proto__: pos$527,
+              [nix.POS]: pos$527,
               workspace: nix.thunk(() => ({
-                __proto__: pos$526,
+                [nix.POS]: pos$526,
                 library: nix.thunk(() => nix.app(nix.sel(generators, "mkLuaInline"), "vim.api.nvim_get_runtime_file(\"\", true)")),
               })),
             })),
@@ -3166,10 +3166,10 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
         expected: "{\n  [\"cmd\"] = {\n    \"typescript-language-server\",\n    \"--stdio\"\n  },\n  [\"settings\"] = {\n    [\"workspace\"] = {\n      [\"library\"] = (vim.api.nvim_get_runtime_file(\"\", true))\n    }\n  }\n}",
       })),
       testToGNUCommandLine: nix.thunk(() => ({
-        __proto__: pos$532,
+        [nix.POS]: pos$532,
         expr: nix.thunk(() => nix.app(nix.sel(cli, "toGNUCommandLine"), nix.thunk(() => ({})), nix.thunk(() => ({
-            __proto__: pos$531,
-            data: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ __proto__: pos$530, id: 0n })))),
+            [nix.POS]: pos$531,
+            data: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$530, id: 0n })))),
             X: "PUT",
             retry: 3n,
             "retry-delay": null,
@@ -3192,10 +3192,10 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
         ]),
       })),
       testToGNUCommandLineSeparator: nix.thunk(() => ({
-        __proto__: pos$536,
-        expr: nix.thunk(() => nix.app(nix.sel(cli, "toGNUCommandLine"), nix.thunk(() => ({ __proto__: pos$533, optionValueSeparator: "=" })), nix.thunk(() => ({
-            __proto__: pos$535,
-            data: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ __proto__: pos$534, id: 0n })))),
+        [nix.POS]: pos$536,
+        expr: nix.thunk(() => nix.app(nix.sel(cli, "toGNUCommandLine"), nix.thunk(() => ({ [nix.POS]: pos$533, optionValueSeparator: "=" })), nix.thunk(() => ({
+            [nix.POS]: pos$535,
+            data: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$534, id: 0n })))),
             X: "PUT",
             retry: 3n,
             "retry-delay": null,
@@ -3213,10 +3213,10 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
         ]),
       })),
       testToGNUCommandLineShell: nix.thunk(() => ({
-        __proto__: pos$539,
+        [nix.POS]: pos$539,
         expr: nix.thunk(() => nix.app(nix.sel(cli, "toGNUCommandLineShell"), nix.thunk(() => ({})), nix.thunk(() => ({
-            __proto__: pos$538,
-            data: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ __proto__: pos$537, id: 0n })))),
+            [nix.POS]: pos$538,
+            data: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$537, id: 0n })))),
             X: "PUT",
             retry: 3n,
             "retry-delay": null,
@@ -3227,23 +3227,23 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
         expected: "-X PUT --data '{\"id\":0}' --retry 3 --url https://example.com/foo --url https://example.com/bar --verbose",
       })),
       testToCommandLine: nix.thunk(() => ({
-        __proto__: pos$543,
+        [nix.POS]: pos$543,
         expr: nix.thunk(() => (() => {
           const optionFormat = (optionName) => ({
-            __proto__: pos$540,
+            [nix.POS]: pos$540,
             option: nix.thunk(() => nix.str`-${optionName}`),
             sep: "=",
             explicitBool: true,
           });
           return nix.app(nix.sel(cli, "toCommandLine"), optionFormat, nix.thunk(() => ({
-              __proto__: pos$542,
+              [nix.POS]: pos$542,
               v: true,
               verbose: nix.thunk(() => [true, true, false, null]),
               i: ".bak",
               testsuite: nix.thunk(() => ["unit", "integration"]),
               e: nix.thunk(() => ["s/a/b/", "s/b/c/"]),
               n: false,
-              data: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ __proto__: pos$541, id: 0n })))),
+              data: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$541, id: 0n })))),
             })));
         })()),
         expected: nix.thunk(() => [
@@ -3261,16 +3261,16 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
         ]),
       })),
       testToCommandLineGNU: nix.thunk(() => ({
-        __proto__: pos$546,
+        [nix.POS]: pos$546,
         expr: nix.thunk(() => nix.app(nix.sel(cli, "toCommandLineGNU"), nix.thunk(() => ({})), nix.thunk(() => ({
-            __proto__: pos$545,
+            [nix.POS]: pos$545,
             v: true,
             verbose: nix.thunk(() => [true, true, false, null]),
             i: ".bak",
             testsuite: nix.thunk(() => ["unit", "integration"]),
             e: nix.thunk(() => ["s/a/b/", "s/b/c/"]),
             n: false,
-            data: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ __proto__: pos$544, id: 0n })))),
+            data: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$544, id: 0n })))),
           })))),
         expected: nix.thunk(() => [
           "--data={\"id\":0}",
@@ -3284,53 +3284,53 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
           "--verbose",
         ]),
       })),
-      testSanitizeDerivationNameLeadingDots: nix.thunk(() => nix.app(testSanitizeDerivationName, nix.thunk(() => ({ __proto__: pos$547, name: "..foo", expected: "foo" })))),
-      testSanitizeDerivationNameUnicode: nix.thunk(() => nix.app(testSanitizeDerivationName, nix.thunk(() => ({ __proto__: pos$548, name: "fö", expected: "f-" })))),
+      testSanitizeDerivationNameLeadingDots: nix.thunk(() => nix.app(testSanitizeDerivationName, nix.thunk(() => ({ [nix.POS]: pos$547, name: "..foo", expected: "foo" })))),
+      testSanitizeDerivationNameUnicode: nix.thunk(() => nix.app(testSanitizeDerivationName, nix.thunk(() => ({ [nix.POS]: pos$548, name: "fö", expected: "f-" })))),
       testSanitizeDerivationNameAscii: nix.thunk(() => nix.app(testSanitizeDerivationName, nix.thunk(() => ({
-          __proto__: pos$549,
+          [nix.POS]: pos$549,
           name: " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~",
           expected: "-+--.-0123456789-=-?-ABCDEFGHIJKLMNOPQRSTUVWXYZ-_-abcdefghijklmnopqrstuvwxyz-",
         })))),
       testSanitizeDerivationNameTooLong: nix.thunk(() => nix.app(testSanitizeDerivationName, nix.thunk(() => ({
-          __proto__: pos$550,
+          [nix.POS]: pos$550,
           name: "This string is loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong",
           expected: "loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong",
         })))),
       testSanitizeDerivationNameTooLongWithInvalid: nix.thunk(() => nix.app(testSanitizeDerivationName, nix.thunk(() => ({
-          __proto__: pos$551,
+          [nix.POS]: pos$551,
           name: "Hello there aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa &&&&&&&&",
           expected: "there-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-",
         })))),
-      testSanitizeDerivationNameEmpty: nix.thunk(() => nix.app(testSanitizeDerivationName, nix.thunk(() => ({ __proto__: pos$552, name: "", expected: "unknown" })))),
+      testSanitizeDerivationNameEmpty: nix.thunk(() => nix.app(testSanitizeDerivationName, nix.thunk(() => ({ [nix.POS]: pos$552, name: "", expected: "unknown" })))),
       "test: submodule definitions aren't unchecked when evaluating submodule documentation": nix.thunk(() => ({
-        __proto__: pos$561,
+        [nix.POS]: pos$561,
         expr: nix.thunk(() => (() => {
           const module = nix.lambda((args) => (() => {
             const $ = nix.formals(args, formals$11);
             const lib_1 = nix.arg($, "lib");
             return {
-              __proto__: pos$555,
+              [nix.POS]: pos$555,
               options: nix.thunk(() => ({
-                __proto__: pos$554,
+                [nix.POS]: pos$554,
                 foo: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$553,
+                    [nix.POS]: pos$553,
                     type: nix.thunk(() => nix.app(nix.sel(lib_1, "types", "submodule"), submodule)),
                   })))),
               })),
             };
           })(), formals$11);
           const submodule = nix.thunk(() => ({
-            __proto__: pos$559,
+            [nix.POS]: pos$559,
             options: nix.thunk(() => ({
-              __proto__: pos$557,
-              bar: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ __proto__: pos$556, type: nix.thunk(() => nix.sel(lib, "types", "int")) })))),
+              [nix.POS]: pos$557,
+              bar: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$556, type: nix.thunk(() => nix.sel(lib, "types", "int")) })))),
             })),
             config: nix.thunk(() => ({
-              __proto__: pos$558,
+              [nix.POS]: pos$558,
               submoduleWrong: nix.thunk(() => nix.builtins.throw("yikes")),
             })),
           }));
-          const options = nix.thunk(() => nix.sel(nix.app(evalModules, nix.thunk(() => ({ __proto__: pos$560, modules: nix.thunk(() => [module]) }))), "options"));
+          const options = nix.thunk(() => nix.sel(nix.app(evalModules, nix.thunk(() => ({ [nix.POS]: pos$560, modules: nix.thunk(() => [module]) }))), "options"));
           const renderableOpts = nix.thunk(() => nix.app(filter, (o) => !nix.asBool(nix.sel(o, "internal")), nix.thunk(() => nix.app(optionAttrSetToDocList, options))));
           return nix.builtins.deepSeq(renderableOpts, nix.thunk(() => nix.builtins.map((o) => nix.sel(o, "loc"), renderableOpts)));
         })()),
@@ -3341,22 +3341,22 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
         ]),
       })),
       testFreeformOptions: nix.thunk(() => ({
-        __proto__: pos$570,
+        [nix.POS]: pos$570,
         expr: nix.thunk(() => (() => {
           const submodule = nix.lambda((args) => (() => {
             const $ = nix.formals(args, formals$12);
             const lib_1 = nix.arg($, "lib");
             return {
-              __proto__: pos$565,
+              [nix.POS]: pos$565,
               freeformType: nix.thunk(() => nix.app(nix.sel(lib_1, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib_1, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$563,
+                    [nix.POS]: pos$563,
                     options: nix.thunk(() => ({
-                      __proto__: pos$562,
+                      [nix.POS]: pos$562,
                       bar: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({})))),
                     })),
                   })))))),
               options: nix.thunk(() => ({
-                __proto__: pos$564,
+                [nix.POS]: pos$564,
                 bar: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({})))),
               })),
             };
@@ -3365,17 +3365,17 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
             const $ = nix.formals(args, formals$13);
             const lib_1 = nix.arg($, "lib");
             return {
-              __proto__: pos$568,
+              [nix.POS]: pos$568,
               options: nix.thunk(() => ({
-                __proto__: pos$567,
+                [nix.POS]: pos$567,
                 foo: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$566,
+                    [nix.POS]: pos$566,
                     type: nix.thunk(() => nix.app(nix.sel(lib_1, "types", "submodule"), submodule)),
                   })))),
               })),
             };
           })(), formals$13);
-          const options = nix.thunk(() => nix.sel(nix.app(evalModules, nix.thunk(() => ({ __proto__: pos$569, modules: nix.thunk(() => [module]) }))), "options"));
+          const options = nix.thunk(() => nix.sel(nix.app(evalModules, nix.thunk(() => ({ [nix.POS]: pos$569, modules: nix.thunk(() => [module]) }))), "options"));
           const locs = nix.thunk(() => nix.app(filter, (o) => !nix.asBool(nix.sel(o, "internal")), nix.thunk(() => nix.app(optionAttrSetToDocList, options))));
           return nix.builtins.map((o) => nix.sel(o, "loc"), locs);
         })()),
@@ -3387,34 +3387,34 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
         ]),
       })),
       testEmptyValueOption: nix.thunk(() => ({
-        __proto__: pos$579,
+        [nix.POS]: pos$579,
         expr: nix.thunk(() => (() => {
           const module = nix.lambda((args) => (() => {
             const $ = nix.formals(args, formals$14);
             const lib_1 = nix.arg($, "lib");
             return {
-              __proto__: pos$575,
+              [nix.POS]: pos$575,
               options: nix.thunk(() => ({
-                __proto__: pos$574,
+                [nix.POS]: pos$574,
                 "empty-value": nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$573,
+                    [nix.POS]: pos$573,
                     type: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOptionType"), nix.thunk(() => ({
-                        __proto__: pos$572,
+                        [nix.POS]: pos$572,
                         name: "propagate-empty-value-to-default",
-                        emptyValue: nix.thunk(() => ({ __proto__: pos$571, value: 2n })),
+                        emptyValue: nix.thunk(() => ({ [nix.POS]: pos$571, value: 2n })),
                       })))),
                   })))),
               })),
             };
           })(), formals$14);
-          const eval$ = nix.thunk(() => nix.app(evalModules, nix.thunk(() => ({ __proto__: pos$576, modules: nix.thunk(() => [module]) }))));
+          const eval$ = nix.thunk(() => nix.app(evalModules, nix.thunk(() => ({ [nix.POS]: pos$576, modules: nix.thunk(() => [module]) }))));
           return nix.app(filter, (o) => nix.eq(nix.sel(o, "name"), "empty-value"), nix.thunk(() => nix.app(optionAttrSetToDocList, nix.thunk(() => nix.sel(eval$, "options")))));
         })()),
         expected: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$578,
+            [nix.POS]: pos$578,
             declarations: [],
-            default: nix.thunk(() => ({ __proto__: pos$577, _type: "literalExpression", text: "2" })),
+            default: nix.thunk(() => ({ [nix.POS]: pos$577, _type: "literalExpression", text: "2" })),
             description: null,
             internal: false,
             loc: nix.thunk(() => ["empty-value"]),
@@ -3426,22 +3426,22 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
         ]),
       })),
       testDocOptionVisiblity: nix.thunk(() => ({
-        __proto__: pos$605,
+        [nix.POS]: pos$605,
         expr: nix.thunk(() => (() => {
           const submodule = nix.lambda((args) => (() => {
             const $ = nix.formals(args, formals$15);
             const lib_1 = nix.arg($, "lib");
             return {
-              __proto__: pos$583,
+              [nix.POS]: pos$583,
               freeformType: nix.thunk(() => nix.app(nix.sel(lib_1, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib_1, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$581,
+                    [nix.POS]: pos$581,
                     options: nix.thunk(() => ({
-                      __proto__: pos$580,
+                      [nix.POS]: pos$580,
                       bar: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({})))),
                     })),
                   })))))),
               options: nix.thunk(() => ({
-                __proto__: pos$582,
+                [nix.POS]: pos$582,
                 foo: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({})))),
               })),
             };
@@ -3450,43 +3450,43 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
             const $ = nix.formals(args, formals$16);
             const lib_1 = nix.arg($, "lib");
             return {
-              __proto__: pos$590,
+              [nix.POS]: pos$590,
               options: nix.thunk(() => ({
-                __proto__: pos$589,
+                [nix.POS]: pos$589,
                 shallow: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$584,
+                    [nix.POS]: pos$584,
                     type: nix.thunk(() => nix.app(nix.sel(lib_1, "types", "submodule"), submodule)),
                     visible: "shallow",
                   })))),
                 transparent: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$585,
+                    [nix.POS]: pos$585,
                     type: nix.thunk(() => nix.app(nix.sel(lib_1, "types", "submodule"), submodule)),
                     visible: "transparent",
                   })))),
                 true: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$586,
+                    [nix.POS]: pos$586,
                     type: nix.thunk(() => nix.app(nix.sel(lib_1, "types", "submodule"), submodule)),
                     visible: true,
                   })))),
                 false: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$587,
+                    [nix.POS]: pos$587,
                     type: nix.thunk(() => nix.app(nix.sel(lib_1, "types", "submodule"), submodule)),
                     visible: false,
                   })))),
                 internal: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$588,
+                    [nix.POS]: pos$588,
                     type: nix.thunk(() => nix.app(nix.sel(lib_1, "types", "submodule"), submodule)),
                     internal: true,
                   })))),
               })),
             };
           })(), formals$16);
-          const options = nix.thunk(() => nix.sel(nix.app(evalModules, nix.thunk(() => ({ __proto__: pos$591, modules: nix.thunk(() => [module]) }))), "options"));
+          const options = nix.thunk(() => nix.sel(nix.app(evalModules, nix.thunk(() => ({ [nix.POS]: pos$591, modules: nix.thunk(() => [module]) }))), "options"));
           return nix.app(pipe, options, nix.thunk(() => [
               optionAttrSetToDocList,
               nix.thunk(() => nix.app(filter, (opt) => !nix.asBool(nix.builtins.elem("_module", nix.thunk(() => nix.sel(opt, "loc")))))),
               nix.thunk(() => nix.app(nix.builtins.map, (opt) => nix.app(nameValuePair, nix.thunk(() => nix.sel(opt, "name")), nix.thunk(() => ({
-                    __proto__: pos$592,
+                    [nix.POS]: pos$592,
                     visible: nix.thunk(() => nix.attr(opt, "visible")),
                     internal: nix.thunk(() => nix.attr(opt, "internal")),
                   }))))),
@@ -3494,41 +3494,41 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
             ]));
         })()),
         expected: nix.thunk(() => ({
-          __proto__: pos$604,
-          shallow: nix.thunk(() => ({ __proto__: pos$593, visible: true, internal: false })),
-          transparent: nix.thunk(() => ({ __proto__: pos$594, visible: false, internal: false })),
-          "transparent.foo": nix.thunk(() => ({ __proto__: pos$595, visible: true, internal: false })),
-          "transparent.<name>.bar": nix.thunk(() => ({ __proto__: pos$596, visible: true, internal: false })),
-          true: nix.thunk(() => ({ __proto__: pos$597, visible: true, internal: false })),
-          "true.foo": nix.thunk(() => ({ __proto__: pos$598, visible: true, internal: false })),
-          "true.<name>.bar": nix.thunk(() => ({ __proto__: pos$599, visible: true, internal: false })),
-          false: nix.thunk(() => ({ __proto__: pos$600, visible: false, internal: false })),
-          internal: nix.thunk(() => ({ __proto__: pos$601, visible: true, internal: true })),
-          "internal.foo": nix.thunk(() => ({ __proto__: pos$602, visible: true, internal: false })),
-          "internal.<name>.bar": nix.thunk(() => ({ __proto__: pos$603, visible: true, internal: false })),
+          [nix.POS]: pos$604,
+          shallow: nix.thunk(() => ({ [nix.POS]: pos$593, visible: true, internal: false })),
+          transparent: nix.thunk(() => ({ [nix.POS]: pos$594, visible: false, internal: false })),
+          "transparent.foo": nix.thunk(() => ({ [nix.POS]: pos$595, visible: true, internal: false })),
+          "transparent.<name>.bar": nix.thunk(() => ({ [nix.POS]: pos$596, visible: true, internal: false })),
+          true: nix.thunk(() => ({ [nix.POS]: pos$597, visible: true, internal: false })),
+          "true.foo": nix.thunk(() => ({ [nix.POS]: pos$598, visible: true, internal: false })),
+          "true.<name>.bar": nix.thunk(() => ({ [nix.POS]: pos$599, visible: true, internal: false })),
+          false: nix.thunk(() => ({ [nix.POS]: pos$600, visible: false, internal: false })),
+          internal: nix.thunk(() => ({ [nix.POS]: pos$601, visible: true, internal: true })),
+          "internal.foo": nix.thunk(() => ({ [nix.POS]: pos$602, visible: true, internal: false })),
+          "internal.<name>.bar": nix.thunk(() => ({ [nix.POS]: pos$603, visible: true, internal: false })),
         })),
       })),
       testAttrsWithName: nix.thunk(() => ({
-        __proto__: pos$614,
+        [nix.POS]: pos$614,
         expr: nix.thunk(() => (() => {
           const eval$ = nix.thunk(() => nix.app(evalModules, nix.thunk(() => ({
-              __proto__: pos$613,
+              [nix.POS]: pos$613,
               modules: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$612,
+                  [nix.POS]: pos$612,
                   options: nix.thunk(() => ({
-                    __proto__: pos$611,
+                    [nix.POS]: pos$611,
                     foo: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$610,
+                        [nix.POS]: pos$610,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsWith"), nix.thunk(() => ({
-                            __proto__: pos$609,
+                            [nix.POS]: pos$609,
                             placeholder: "MyCustomPlaceholder",
                             elemType: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                                __proto__: pos$608,
+                                [nix.POS]: pos$608,
                                 options: nix.thunk(() => ({
-                                  __proto__: pos$607,
+                                  [nix.POS]: pos$607,
                                   bar: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$606,
+                                      [nix.POS]: pos$606,
                                       type: nix.thunk(() => nix.sel(lib, "types", "int")),
                                       default: 42n,
                                     })))),
@@ -3546,101 +3546,101 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
         expected: nix.thunk(() => ["foo", "<MyCustomPlaceholder>", "bar"]),
       })),
       testShowOptionWithPlaceholder: nix.thunk(() => ({
-        __proto__: pos$615,
+        [nix.POS]: pos$615,
         expr: nix.thunk(() => nix.app(nix.sel(lib, "showOption"), nix.thunk(() => ["<name>", "<myName>", "*", "{foo}"]))),
         expected: "<name>.<myName>.*.\"{foo}\"",
       })),
       testCartesianProductOfEmptySet: nix.thunk(() => ({
-        __proto__: pos$616,
+        [nix.POS]: pos$616,
         expr: nix.thunk(() => nix.app(cartesianProduct, nix.thunk(() => ({})))),
         expected: nix.thunk(() => [nix.thunk(() => ({}))]),
       })),
       testCartesianProductOfOneSet: nix.thunk(() => ({
-        __proto__: pos$621,
-        expr: nix.thunk(() => nix.app(cartesianProduct, nix.thunk(() => ({ __proto__: pos$617, a: nix.thunk(() => [1n, 2n, 3n]) })))),
+        [nix.POS]: pos$621,
+        expr: nix.thunk(() => nix.app(cartesianProduct, nix.thunk(() => ({ [nix.POS]: pos$617, a: nix.thunk(() => [1n, 2n, 3n]) })))),
         expected: nix.thunk(() => [
-          nix.thunk(() => ({ __proto__: pos$618, a: 1n })),
-          nix.thunk(() => ({ __proto__: pos$619, a: 2n })),
-          nix.thunk(() => ({ __proto__: pos$620, a: 3n })),
+          nix.thunk(() => ({ [nix.POS]: pos$618, a: 1n })),
+          nix.thunk(() => ({ [nix.POS]: pos$619, a: 2n })),
+          nix.thunk(() => ({ [nix.POS]: pos$620, a: 3n })),
         ]),
       })),
       testCartesianProductOfTwoSets: nix.thunk(() => ({
-        __proto__: pos$625,
-        expr: nix.thunk(() => nix.app(cartesianProduct, nix.thunk(() => ({ __proto__: pos$622, a: nix.thunk(() => [1n]), b: nix.thunk(() => [10n, 20n]) })))),
+        [nix.POS]: pos$625,
+        expr: nix.thunk(() => nix.app(cartesianProduct, nix.thunk(() => ({ [nix.POS]: pos$622, a: nix.thunk(() => [1n]), b: nix.thunk(() => [10n, 20n]) })))),
         expected: nix.thunk(() => [
-          nix.thunk(() => ({ __proto__: pos$623, a: 1n, b: 10n })),
-          nix.thunk(() => ({ __proto__: pos$624, a: 1n, b: 20n })),
+          nix.thunk(() => ({ [nix.POS]: pos$623, a: 1n, b: 10n })),
+          nix.thunk(() => ({ [nix.POS]: pos$624, a: 1n, b: 20n })),
         ]),
       })),
       testCartesianProductOfTwoSetsWithOneEmpty: nix.thunk(() => ({
-        __proto__: pos$627,
-        expr: nix.thunk(() => nix.app(cartesianProduct, nix.thunk(() => ({ __proto__: pos$626, a: [], b: nix.thunk(() => [10n, 20n]) })))),
+        [nix.POS]: pos$627,
+        expr: nix.thunk(() => nix.app(cartesianProduct, nix.thunk(() => ({ [nix.POS]: pos$626, a: [], b: nix.thunk(() => [10n, 20n]) })))),
         expected: [],
       })),
       testCartesianProductOfThreeSets: nix.thunk(() => ({
-        __proto__: pos$656,
+        [nix.POS]: pos$656,
         expr: nix.thunk(() => nix.app(cartesianProduct, nix.thunk(() => ({
-            __proto__: pos$628,
+            [nix.POS]: pos$628,
             a: nix.thunk(() => [1n, 2n, 3n]),
             b: nix.thunk(() => [10n, 20n, 30n]),
             c: nix.thunk(() => [100n, 200n, 300n]),
           })))),
         expected: nix.thunk(() => [
-          nix.thunk(() => ({ __proto__: pos$629, a: 1n, b: 10n, c: 100n })),
-          nix.thunk(() => ({ __proto__: pos$630, a: 1n, b: 10n, c: 200n })),
-          nix.thunk(() => ({ __proto__: pos$631, a: 1n, b: 10n, c: 300n })),
-          nix.thunk(() => ({ __proto__: pos$632, a: 1n, b: 20n, c: 100n })),
-          nix.thunk(() => ({ __proto__: pos$633, a: 1n, b: 20n, c: 200n })),
-          nix.thunk(() => ({ __proto__: pos$634, a: 1n, b: 20n, c: 300n })),
-          nix.thunk(() => ({ __proto__: pos$635, a: 1n, b: 30n, c: 100n })),
-          nix.thunk(() => ({ __proto__: pos$636, a: 1n, b: 30n, c: 200n })),
-          nix.thunk(() => ({ __proto__: pos$637, a: 1n, b: 30n, c: 300n })),
-          nix.thunk(() => ({ __proto__: pos$638, a: 2n, b: 10n, c: 100n })),
-          nix.thunk(() => ({ __proto__: pos$639, a: 2n, b: 10n, c: 200n })),
-          nix.thunk(() => ({ __proto__: pos$640, a: 2n, b: 10n, c: 300n })),
-          nix.thunk(() => ({ __proto__: pos$641, a: 2n, b: 20n, c: 100n })),
-          nix.thunk(() => ({ __proto__: pos$642, a: 2n, b: 20n, c: 200n })),
-          nix.thunk(() => ({ __proto__: pos$643, a: 2n, b: 20n, c: 300n })),
-          nix.thunk(() => ({ __proto__: pos$644, a: 2n, b: 30n, c: 100n })),
-          nix.thunk(() => ({ __proto__: pos$645, a: 2n, b: 30n, c: 200n })),
-          nix.thunk(() => ({ __proto__: pos$646, a: 2n, b: 30n, c: 300n })),
-          nix.thunk(() => ({ __proto__: pos$647, a: 3n, b: 10n, c: 100n })),
-          nix.thunk(() => ({ __proto__: pos$648, a: 3n, b: 10n, c: 200n })),
-          nix.thunk(() => ({ __proto__: pos$649, a: 3n, b: 10n, c: 300n })),
-          nix.thunk(() => ({ __proto__: pos$650, a: 3n, b: 20n, c: 100n })),
-          nix.thunk(() => ({ __proto__: pos$651, a: 3n, b: 20n, c: 200n })),
-          nix.thunk(() => ({ __proto__: pos$652, a: 3n, b: 20n, c: 300n })),
-          nix.thunk(() => ({ __proto__: pos$653, a: 3n, b: 30n, c: 100n })),
-          nix.thunk(() => ({ __proto__: pos$654, a: 3n, b: 30n, c: 200n })),
-          nix.thunk(() => ({ __proto__: pos$655, a: 3n, b: 30n, c: 300n })),
+          nix.thunk(() => ({ [nix.POS]: pos$629, a: 1n, b: 10n, c: 100n })),
+          nix.thunk(() => ({ [nix.POS]: pos$630, a: 1n, b: 10n, c: 200n })),
+          nix.thunk(() => ({ [nix.POS]: pos$631, a: 1n, b: 10n, c: 300n })),
+          nix.thunk(() => ({ [nix.POS]: pos$632, a: 1n, b: 20n, c: 100n })),
+          nix.thunk(() => ({ [nix.POS]: pos$633, a: 1n, b: 20n, c: 200n })),
+          nix.thunk(() => ({ [nix.POS]: pos$634, a: 1n, b: 20n, c: 300n })),
+          nix.thunk(() => ({ [nix.POS]: pos$635, a: 1n, b: 30n, c: 100n })),
+          nix.thunk(() => ({ [nix.POS]: pos$636, a: 1n, b: 30n, c: 200n })),
+          nix.thunk(() => ({ [nix.POS]: pos$637, a: 1n, b: 30n, c: 300n })),
+          nix.thunk(() => ({ [nix.POS]: pos$638, a: 2n, b: 10n, c: 100n })),
+          nix.thunk(() => ({ [nix.POS]: pos$639, a: 2n, b: 10n, c: 200n })),
+          nix.thunk(() => ({ [nix.POS]: pos$640, a: 2n, b: 10n, c: 300n })),
+          nix.thunk(() => ({ [nix.POS]: pos$641, a: 2n, b: 20n, c: 100n })),
+          nix.thunk(() => ({ [nix.POS]: pos$642, a: 2n, b: 20n, c: 200n })),
+          nix.thunk(() => ({ [nix.POS]: pos$643, a: 2n, b: 20n, c: 300n })),
+          nix.thunk(() => ({ [nix.POS]: pos$644, a: 2n, b: 30n, c: 100n })),
+          nix.thunk(() => ({ [nix.POS]: pos$645, a: 2n, b: 30n, c: 200n })),
+          nix.thunk(() => ({ [nix.POS]: pos$646, a: 2n, b: 30n, c: 300n })),
+          nix.thunk(() => ({ [nix.POS]: pos$647, a: 3n, b: 10n, c: 100n })),
+          nix.thunk(() => ({ [nix.POS]: pos$648, a: 3n, b: 10n, c: 200n })),
+          nix.thunk(() => ({ [nix.POS]: pos$649, a: 3n, b: 10n, c: 300n })),
+          nix.thunk(() => ({ [nix.POS]: pos$650, a: 3n, b: 20n, c: 100n })),
+          nix.thunk(() => ({ [nix.POS]: pos$651, a: 3n, b: 20n, c: 200n })),
+          nix.thunk(() => ({ [nix.POS]: pos$652, a: 3n, b: 20n, c: 300n })),
+          nix.thunk(() => ({ [nix.POS]: pos$653, a: 3n, b: 30n, c: 100n })),
+          nix.thunk(() => ({ [nix.POS]: pos$654, a: 3n, b: 30n, c: 200n })),
+          nix.thunk(() => ({ [nix.POS]: pos$655, a: 3n, b: 30n, c: 300n })),
         ]),
       })),
       testMapCartesianProductOfOneSet: nix.thunk(() => ({
-        __proto__: pos$658,
+        [nix.POS]: pos$658,
         expr: nix.thunk(() => nix.app(mapCartesianProduct, nix.lambda((args) => (() => {
             const $ = nix.formals(args, formals$17);
             const a = nix.arg($, "a");
             return nix.mul(a, 2n);
-          })(), formals$17), nix.thunk(() => ({ __proto__: pos$657, a: nix.thunk(() => [1n, 2n, 3n]) })))),
+          })(), formals$17), nix.thunk(() => ({ [nix.POS]: pos$657, a: nix.thunk(() => [1n, 2n, 3n]) })))),
         expected: nix.thunk(() => [2n, 4n, 6n]),
       })),
       testMapCartesianProductOfTwoSets: nix.thunk(() => ({
-        __proto__: pos$660,
+        [nix.POS]: pos$660,
         expr: nix.thunk(() => nix.app(mapCartesianProduct, nix.lambda((args) => (() => {
             const $ = nix.formals(args, formals$18);
             const a = nix.arg($, "a");
             const b = nix.arg($, "b");
             return nix.add(a, b);
-          })(), formals$18), nix.thunk(() => ({ __proto__: pos$659, a: nix.thunk(() => [1n]), b: nix.thunk(() => [10n, 20n]) })))),
+          })(), formals$18), nix.thunk(() => ({ [nix.POS]: pos$659, a: nix.thunk(() => [1n]), b: nix.thunk(() => [10n, 20n]) })))),
         expected: nix.thunk(() => [11n, 21n]),
       })),
       testMapCartesianProcutOfTwoSetsWithOneEmpty: nix.thunk(() => ({
-        __proto__: pos$662,
-        expr: nix.thunk(() => nix.app(mapCartesianProduct, (x) => nix.add(nix.sel(x, "a"), nix.sel(x, "b")), nix.thunk(() => ({ __proto__: pos$661, a: [], b: nix.thunk(() => [10n, 20n]) })))),
+        [nix.POS]: pos$662,
+        expr: nix.thunk(() => nix.app(mapCartesianProduct, (x) => nix.add(nix.sel(x, "a"), nix.sel(x, "b")), nix.thunk(() => ({ [nix.POS]: pos$661, a: [], b: nix.thunk(() => [10n, 20n]) })))),
         expected: [],
       })),
       testMapCartesianProductOfThreeSets: nix.thunk(() => ({
-        __proto__: pos$664,
+        [nix.POS]: pos$664,
         expr: nix.thunk(() => nix.app(mapCartesianProduct, nix.lambda((args) => (() => {
             const $ = nix.formals(args, formals$19);
             const a = nix.arg($, "a");
@@ -3648,7 +3648,7 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
             const c = nix.arg($, "c");
             return nix.add(nix.add(a, b), c);
           })(), formals$19), nix.thunk(() => ({
-            __proto__: pos$663,
+            [nix.POS]: pos$663,
             a: nix.thunk(() => [1n, 2n, 3n]),
             b: nix.thunk(() => [10n, 20n, 30n]),
             c: nix.thunk(() => [100n, 200n, 300n]),
@@ -3684,48 +3684,48 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
         ]),
       })),
       testMapAttrsToListRecursive: nix.thunk(() => ({
-        __proto__: pos$672,
+        [nix.POS]: pos$672,
         expr: nix.thunk(() => nix.app(mapAttrsToListRecursive, (p) => (v) => nix.str`${nix.app(concatStringsSep, ".", p)}=${v}`, nix.thunk(() => ({
-            __proto__: pos$671,
-            a: nix.thunk(() => ({ __proto__: pos$665, b: "A" })),
+            [nix.POS]: pos$671,
+            a: nix.thunk(() => ({ [nix.POS]: pos$665, b: "A" })),
             c: nix.thunk(() => ({
-              __proto__: pos$667,
+              [nix.POS]: pos$667,
               d: "B",
-              e: nix.thunk(() => ({ __proto__: pos$666, f: "C", g: "D" })),
+              e: nix.thunk(() => ({ [nix.POS]: pos$666, f: "C", g: "D" })),
             })),
             h: nix.thunk(() => ({
-              __proto__: pos$670,
-              i: nix.thunk(() => ({ __proto__: pos$669, j: nix.thunk(() => ({ __proto__: pos$668, k: "E" })) })),
+              [nix.POS]: pos$670,
+              i: nix.thunk(() => ({ [nix.POS]: pos$669, j: nix.thunk(() => ({ [nix.POS]: pos$668, k: "E" })) })),
             })),
           })))),
         expected: nix.thunk(() => ["a.b=A", "c.d=B", "c.e.f=C", "c.e.g=D", "h.i.j.k=E"]),
       })),
       testMapAttrsToListRecursiveWithLists: nix.thunk(() => ({
-        __proto__: pos$677,
+        [nix.POS]: pos$677,
         expr: nix.thunk(() => nix.app(mapAttrsToListRecursive, (p) => (v) => nix.force(v), nix.thunk(() => ({
-            __proto__: pos$676,
+            [nix.POS]: pos$676,
             a: [],
-            b: nix.thunk(() => ({ __proto__: pos$673, c: nix.thunk(() => [[]]) })),
+            b: nix.thunk(() => ({ [nix.POS]: pos$673, c: nix.thunk(() => [[]]) })),
             d: nix.thunk(() => ({
-              __proto__: pos$675,
-              e: nix.thunk(() => ({ __proto__: pos$674, f: nix.thunk(() => [nix.thunk(() => [[]])]) })),
+              [nix.POS]: pos$675,
+              e: nix.thunk(() => ({ [nix.POS]: pos$674, f: nix.thunk(() => [nix.thunk(() => [[]])]) })),
             })),
           })))),
         expected: nix.thunk(() => [[], nix.thunk(() => [[]]), nix.thunk(() => [nix.thunk(() => [[]])])]),
       })),
       testMapAttrsToListRecursiveCond: nix.thunk(() => ({
-        __proto__: pos$685,
+        [nix.POS]: pos$685,
         expr: nix.thunk(() => nix.app(mapAttrsToListRecursiveCond, (p) => (as) => !nix.asBool(nix.has(as, "stop")), (p) => (v) => nix.force(v), nix.thunk(() => ({
-            __proto__: pos$682,
-            a: nix.thunk(() => ({ __proto__: pos$678, b: "A" })),
+            [nix.POS]: pos$682,
+            a: nix.thunk(() => ({ [nix.POS]: pos$678, b: "A" })),
             c: nix.thunk(() => ({
-              __proto__: pos$681,
+              [nix.POS]: pos$681,
               d: "B",
               e: nix.thunk(() => ({
-                __proto__: pos$680,
+                [nix.POS]: pos$680,
                 stop: null,
                 f: "C",
-                g: nix.thunk(() => ({ __proto__: pos$679, h: "D" })),
+                g: nix.thunk(() => ({ [nix.POS]: pos$679, h: "D" })),
               })),
             })),
           })))),
@@ -3733,55 +3733,55 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
           "A",
           "B",
           nix.thunk(() => ({
-            __proto__: pos$684,
+            [nix.POS]: pos$684,
             stop: null,
             f: "C",
-            g: nix.thunk(() => ({ __proto__: pos$683, h: "D" })),
+            g: nix.thunk(() => ({ [nix.POS]: pos$683, h: "D" })),
           })),
         ]),
       })),
       testMapAttrsToListRecursiveCondPath: nix.thunk(() => ({
-        __proto__: pos$696,
+        [nix.POS]: pos$696,
         expr: nix.thunk(() => nix.app(mapAttrsToListRecursiveCond, (p) => (as) => nix.lt(nix.app(length, p), 2n), (p) => (v) => nix.force(v), nix.thunk(() => ({
-            __proto__: pos$692,
-            a: nix.thunk(() => ({ __proto__: pos$686, b: "A" })),
+            [nix.POS]: pos$692,
+            a: nix.thunk(() => ({ [nix.POS]: pos$686, b: "A" })),
             c: nix.thunk(() => ({
-              __proto__: pos$688,
+              [nix.POS]: pos$688,
               d: "B",
-              e: nix.thunk(() => ({ __proto__: pos$687, f: "C", g: "D" })),
+              e: nix.thunk(() => ({ [nix.POS]: pos$687, f: "C", g: "D" })),
             })),
             h: nix.thunk(() => ({
-              __proto__: pos$691,
-              i: nix.thunk(() => ({ __proto__: pos$690, j: nix.thunk(() => ({ __proto__: pos$689, k: "E" })) })),
+              [nix.POS]: pos$691,
+              i: nix.thunk(() => ({ [nix.POS]: pos$690, j: nix.thunk(() => ({ [nix.POS]: pos$689, k: "E" })) })),
             })),
           })))),
         expected: nix.thunk(() => [
           "A",
           "B",
-          nix.thunk(() => ({ __proto__: pos$693, f: "C", g: "D" })),
-          nix.thunk(() => ({ __proto__: pos$695, j: nix.thunk(() => ({ __proto__: pos$694, k: "E" })) })),
+          nix.thunk(() => ({ [nix.POS]: pos$693, f: "C", g: "D" })),
+          nix.thunk(() => ({ [nix.POS]: pos$695, j: nix.thunk(() => ({ [nix.POS]: pos$694, k: "E" })) })),
         ]),
       })),
       testShowAttrPathExample: nix.thunk(() => ({
-        __proto__: pos$697,
+        [nix.POS]: pos$697,
         expr: nix.thunk(() => nix.app(showAttrPath, nix.thunk(() => ["foo", "10", "bar"]))),
         expected: "foo.\"10\".bar",
       })),
       testShowAttrPathEmpty: nix.thunk(() => ({
-        __proto__: pos$698,
+        [nix.POS]: pos$698,
         expr: nix.thunk(() => nix.app(showAttrPath, [])),
         expected: "<root attribute path>",
       })),
       testShowAttrPathVarious: nix.thunk(() => ({
-        __proto__: pos$699,
+        [nix.POS]: pos$699,
         expr: nix.thunk(() => nix.app(showAttrPath, nix.thunk(() => [".", "foo", "2", "a2-b", "_bc'de"]))),
         expected: "\".\".foo.\"2\".a2-b._bc'de",
       })),
       testGroupBy: nix.thunk(() => ({
-        __proto__: pos$701,
+        [nix.POS]: pos$701,
         expr: nix.thunk(() => nix.app(groupBy, (n) => nix.builtins.toString(nix.thunk(() => nix.app(mod, n, 5n))), nix.thunk(() => nix.app(range, 0n, 16n)))),
         expected: nix.thunk(() => ({
-          __proto__: pos$700,
+          [nix.POS]: pos$700,
           "0": nix.thunk(() => [0n, 5n, 10n, 15n]),
           "1": nix.thunk(() => [1n, 6n, 11n, 16n]),
           "2": nix.thunk(() => [2n, 7n, 12n]),
@@ -3790,267 +3790,267 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
         })),
       })),
       "testGroupBy'": nix.thunk(() => ({
-        __proto__: pos$703,
+        [nix.POS]: pos$703,
         expr: nix.thunk(() => nix.app(groupBy$, nix.thunk(() => nix.builtins.add), 0n, (x) => nix.app(boolToString, nix.thunk(() => nix.gt(x, 2n))), nix.thunk(() => [5n, 1n, 2n, 3n, 4n]))),
-        expected: nix.thunk(() => ({ __proto__: pos$702, false: 3n, true: 12n })),
+        expected: nix.thunk(() => ({ [nix.POS]: pos$702, false: 3n, true: 12n })),
       })),
       testUpdateManyAttrsByPathExample: nix.thunk(() => ({
-        __proto__: pos$715,
+        [nix.POS]: pos$715,
         expr: nix.thunk(() => nix.app(updateManyAttrsByPath, nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$705,
+              [nix.POS]: pos$705,
               path: nix.thunk(() => ["a", "b"]),
-              update: (old) => ({ __proto__: pos$704, d: nix.thunk(() => nix.sel(old, "c")) }),
+              update: (old) => ({ [nix.POS]: pos$704, d: nix.thunk(() => nix.sel(old, "c")) }),
             })),
             nix.thunk(() => ({
-              __proto__: pos$706,
+              [nix.POS]: pos$706,
               path: nix.thunk(() => ["a", "b", "c"]),
               update: (old) => nix.add(old, 1n),
             })),
-            nix.thunk(() => ({ __proto__: pos$707, path: nix.thunk(() => ["x", "y"]), update: (old) => "xy" })),
+            nix.thunk(() => ({ [nix.POS]: pos$707, path: nix.thunk(() => ["x", "y"]), update: (old) => "xy" })),
           ]), nix.thunk(() => ({
-            __proto__: pos$710,
-            a: nix.thunk(() => ({ __proto__: pos$709, b: nix.thunk(() => ({ __proto__: pos$708, c: 0n })) })),
+            [nix.POS]: pos$710,
+            a: nix.thunk(() => ({ [nix.POS]: pos$709, b: nix.thunk(() => ({ [nix.POS]: pos$708, c: 0n })) })),
           })))),
         expected: nix.thunk(() => ({
-          __proto__: pos$714,
-          a: nix.thunk(() => ({ __proto__: pos$712, b: nix.thunk(() => ({ __proto__: pos$711, d: 1n })) })),
-          x: nix.thunk(() => ({ __proto__: pos$713, y: "xy" })),
+          [nix.POS]: pos$714,
+          a: nix.thunk(() => ({ [nix.POS]: pos$712, b: nix.thunk(() => ({ [nix.POS]: pos$711, d: 1n })) })),
+          x: nix.thunk(() => ({ [nix.POS]: pos$713, y: "xy" })),
         })),
       })),
       testUpdateManyAttrsByPathNone: nix.thunk(() => ({
-        __proto__: pos$716,
+        [nix.POS]: pos$716,
         expr: nix.thunk(() => nix.app(updateManyAttrsByPath, [], "something")),
         expected: "something",
       })),
       testUpdateManyAttrsByPathSingleIncrement: nix.thunk(() => ({
-        __proto__: pos$718,
+        [nix.POS]: pos$718,
         expr: nix.thunk(() => nix.app(updateManyAttrsByPath, nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$717, path: [], update: (old) => nix.add(old, 1n) })),
+            nix.thunk(() => ({ [nix.POS]: pos$717, path: [], update: (old) => nix.add(old, 1n) })),
           ]), 0n)),
         expected: 1n,
       })),
       testUpdateManyAttrsByPathMultipleIncrements: nix.thunk(() => ({
-        __proto__: pos$722,
+        [nix.POS]: pos$722,
         expr: nix.thunk(() => nix.app(updateManyAttrsByPath, nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$719, path: [], update: (old) => nix.add(old, "a") })),
-            nix.thunk(() => ({ __proto__: pos$720, path: [], update: (old) => nix.add(old, "b") })),
-            nix.thunk(() => ({ __proto__: pos$721, path: [], update: (old) => nix.add(old, "c") })),
+            nix.thunk(() => ({ [nix.POS]: pos$719, path: [], update: (old) => nix.add(old, "a") })),
+            nix.thunk(() => ({ [nix.POS]: pos$720, path: [], update: (old) => nix.add(old, "b") })),
+            nix.thunk(() => ({ [nix.POS]: pos$721, path: [], update: (old) => nix.add(old, "c") })),
           ]), "")),
         expected: "abc",
       })),
       testUpdateManyAttrsByPathLazy: nix.thunk(() => ({
-        __proto__: pos$725,
+        [nix.POS]: pos$725,
         expr: nix.thunk(() => nix.app(updateManyAttrsByPath, nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$723,
+              [nix.POS]: pos$723,
               path: [],
               update: (old) => nix.add(old, nix.builtins.throw("nope")),
             })),
-            nix.thunk(() => ({ __proto__: pos$724, path: [], update: (old) => "untainted" })),
+            nix.thunk(() => ({ [nix.POS]: pos$724, path: [], update: (old) => "untainted" })),
           ]), nix.thunk(() => nix.builtins.throw("start")))),
         expected: "untainted",
       })),
       testUpdateManyAttrsByPathDeep: nix.thunk(() => ({
-        __proto__: pos$739,
+        [nix.POS]: pos$739,
         expr: nix.thunk(() => nix.app(updateManyAttrsByPath, nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$726,
+              [nix.POS]: pos$726,
               path: nix.thunk(() => ["a", "b", "c"]),
               update: (old) => nix.add(old, 1n),
             })),
           ]), nix.thunk(() => ({
-            __proto__: pos$732,
+            [nix.POS]: pos$732,
             a: nix.thunk(() => ({
-              __proto__: pos$729,
-              b: nix.thunk(() => ({ __proto__: pos$727, c: 0n, z: 0n })),
-              y: nix.thunk(() => ({ __proto__: pos$728, z: 0n })),
+              [nix.POS]: pos$729,
+              b: nix.thunk(() => ({ [nix.POS]: pos$727, c: 0n, z: 0n })),
+              y: nix.thunk(() => ({ [nix.POS]: pos$728, z: 0n })),
             })),
-            x: nix.thunk(() => ({ __proto__: pos$731, y: nix.thunk(() => ({ __proto__: pos$730, z: 0n })) })),
+            x: nix.thunk(() => ({ [nix.POS]: pos$731, y: nix.thunk(() => ({ [nix.POS]: pos$730, z: 0n })) })),
           })))),
         expected: nix.thunk(() => ({
-          __proto__: pos$738,
+          [nix.POS]: pos$738,
           a: nix.thunk(() => ({
-            __proto__: pos$735,
-            b: nix.thunk(() => ({ __proto__: pos$733, c: 1n, z: 0n })),
-            y: nix.thunk(() => ({ __proto__: pos$734, z: 0n })),
+            [nix.POS]: pos$735,
+            b: nix.thunk(() => ({ [nix.POS]: pos$733, c: 1n, z: 0n })),
+            y: nix.thunk(() => ({ [nix.POS]: pos$734, z: 0n })),
           })),
-          x: nix.thunk(() => ({ __proto__: pos$737, y: nix.thunk(() => ({ __proto__: pos$736, z: 0n })) })),
+          x: nix.thunk(() => ({ [nix.POS]: pos$737, y: nix.thunk(() => ({ [nix.POS]: pos$736, z: 0n })) })),
         })),
       })),
       testUpdateManyAttrsByPathNestedBeforehand: nix.thunk(() => ({
-        __proto__: pos$747,
+        [nix.POS]: pos$747,
         expr: nix.thunk(() => nix.app(updateManyAttrsByPath, nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$741,
+              [nix.POS]: pos$741,
               path: nix.thunk(() => ["a"]),
-              update: (old) => nix.update(old, { __proto__: pos$740, x: nix.thunk(() => nix.sel(old, "b")) }),
+              update: (old) => nix.update(old, { [nix.POS]: pos$740, x: nix.thunk(() => nix.sel(old, "b")) }),
             })),
             nix.thunk(() => ({
-              __proto__: pos$742,
+              [nix.POS]: pos$742,
               path: nix.thunk(() => ["a", "b"]),
               update: (old) => nix.add(old, 1n),
             })),
-          ]), nix.thunk(() => ({ __proto__: pos$744, a: nix.thunk(() => ({ __proto__: pos$743, b: 0n })) })))),
+          ]), nix.thunk(() => ({ [nix.POS]: pos$744, a: nix.thunk(() => ({ [nix.POS]: pos$743, b: 0n })) })))),
         expected: nix.thunk(() => ({
-          __proto__: pos$746,
-          a: nix.thunk(() => ({ __proto__: pos$745, b: 1n, x: 1n })),
+          [nix.POS]: pos$746,
+          a: nix.thunk(() => ({ [nix.POS]: pos$745, b: 1n, x: 1n })),
         })),
       })),
       testCommonPrefixLengthEmpty: nix.thunk(() => ({
-        __proto__: pos$748,
+        [nix.POS]: pos$748,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "commonPrefixLength"), "", "hello")),
         expected: 0n,
       })),
       testCommonPrefixLengthSame: nix.thunk(() => ({
-        __proto__: pos$749,
+        [nix.POS]: pos$749,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "commonPrefixLength"), "hello", "hello")),
         expected: 5n,
       })),
       testCommonPrefixLengthDiffering: nix.thunk(() => ({
-        __proto__: pos$750,
+        [nix.POS]: pos$750,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "commonPrefixLength"), "hello", "hey")),
         expected: 2n,
       })),
       testCommonSuffixLengthEmpty: nix.thunk(() => ({
-        __proto__: pos$751,
+        [nix.POS]: pos$751,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "commonSuffixLength"), "", "hello")),
         expected: 0n,
       })),
       testCommonSuffixLengthSame: nix.thunk(() => ({
-        __proto__: pos$752,
+        [nix.POS]: pos$752,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "commonSuffixLength"), "hello", "hello")),
         expected: 5n,
       })),
       testCommonSuffixLengthDiffering: nix.thunk(() => ({
-        __proto__: pos$753,
+        [nix.POS]: pos$753,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "commonSuffixLength"), "test", "rest")),
         expected: 3n,
       })),
       testLevenshteinEmpty: nix.thunk(() => ({
-        __proto__: pos$754,
+        [nix.POS]: pos$754,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "levenshtein"), "", "")),
         expected: 0n,
       })),
       testLevenshteinOnlyAdd: nix.thunk(() => ({
-        __proto__: pos$755,
+        [nix.POS]: pos$755,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "levenshtein"), "", "hello there")),
         expected: 11n,
       })),
       testLevenshteinOnlyRemove: nix.thunk(() => ({
-        __proto__: pos$756,
+        [nix.POS]: pos$756,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "levenshtein"), "hello there", "")),
         expected: 11n,
       })),
       testLevenshteinOnlyTransform: nix.thunk(() => ({
-        __proto__: pos$757,
+        [nix.POS]: pos$757,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "levenshtein"), "abcdef", "ghijkl")),
         expected: 6n,
       })),
       testLevenshteinMixed: nix.thunk(() => ({
-        __proto__: pos$758,
+        [nix.POS]: pos$758,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "levenshtein"), "kitchen", "sitting")),
         expected: 5n,
       })),
       testLevenshteinAtMostZeroFalse: nix.thunk(() => ({
-        __proto__: pos$759,
+        [nix.POS]: pos$759,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "levenshteinAtMost"), 0n, "foo", "boo")),
         expected: false,
       })),
       testLevenshteinAtMostZeroTrue: nix.thunk(() => ({
-        __proto__: pos$760,
+        [nix.POS]: pos$760,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "levenshteinAtMost"), 0n, "foo", "foo")),
         expected: true,
       })),
       testLevenshteinAtMostOneFalse: nix.thunk(() => ({
-        __proto__: pos$761,
+        [nix.POS]: pos$761,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "levenshteinAtMost"), 1n, "car", "ct")),
         expected: false,
       })),
       testLevenshteinAtMostOneTrue: nix.thunk(() => ({
-        __proto__: pos$762,
+        [nix.POS]: pos$762,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "levenshteinAtMost"), 1n, "car", "cr")),
         expected: true,
       })),
       testLevenshteinAtMostTwoIsEmpty: nix.thunk(() => ({
-        __proto__: pos$763,
+        [nix.POS]: pos$763,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "levenshteinAtMost"), 2n, "", "")),
         expected: true,
       })),
       testLevenshteinAtMostTwoIsZero: nix.thunk(() => ({
-        __proto__: pos$764,
+        [nix.POS]: pos$764,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "levenshteinAtMost"), 2n, "abcdef", "abcdef")),
         expected: true,
       })),
       testLevenshteinAtMostTwoIsOne: nix.thunk(() => ({
-        __proto__: pos$765,
+        [nix.POS]: pos$765,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "levenshteinAtMost"), 2n, "abcdef", "abddef")),
         expected: true,
       })),
       testLevenshteinAtMostTwoDiff0False: nix.thunk(() => ({
-        __proto__: pos$766,
+        [nix.POS]: pos$766,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "levenshteinAtMost"), 2n, "abcdef", "aczyef")),
         expected: false,
       })),
       testLevenshteinAtMostTwoDiff0Outer: nix.thunk(() => ({
-        __proto__: pos$767,
+        [nix.POS]: pos$767,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "levenshteinAtMost"), 2n, "abcdef", "zbcdez")),
         expected: true,
       })),
       testLevenshteinAtMostTwoDiff0DelLeft: nix.thunk(() => ({
-        __proto__: pos$768,
+        [nix.POS]: pos$768,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "levenshteinAtMost"), 2n, "abcdef", "bcdefz")),
         expected: true,
       })),
       testLevenshteinAtMostTwoDiff0DelRight: nix.thunk(() => ({
-        __proto__: pos$769,
+        [nix.POS]: pos$769,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "levenshteinAtMost"), 2n, "abcdef", "zabcde")),
         expected: true,
       })),
       testLevenshteinAtMostTwoDiff1False: nix.thunk(() => ({
-        __proto__: pos$770,
+        [nix.POS]: pos$770,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "levenshteinAtMost"), 2n, "abcdef", "bddez")),
         expected: false,
       })),
       testLevenshteinAtMostTwoDiff1DelLeft: nix.thunk(() => ({
-        __proto__: pos$771,
+        [nix.POS]: pos$771,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "levenshteinAtMost"), 2n, "abcdef", "bcdez")),
         expected: true,
       })),
       testLevenshteinAtMostTwoDiff1DelRight: nix.thunk(() => ({
-        __proto__: pos$772,
+        [nix.POS]: pos$772,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "levenshteinAtMost"), 2n, "abcdef", "zbcde")),
         expected: true,
       })),
       testLevenshteinAtMostTwoDiff2False: nix.thunk(() => ({
-        __proto__: pos$773,
+        [nix.POS]: pos$773,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "levenshteinAtMost"), 2n, "hello", "hxo")),
         expected: false,
       })),
       testLevenshteinAtMostTwoDiff2True: nix.thunk(() => ({
-        __proto__: pos$774,
+        [nix.POS]: pos$774,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "levenshteinAtMost"), 2n, "hello", "heo")),
         expected: true,
       })),
       testLevenshteinAtMostTwoDiff3: nix.thunk(() => ({
-        __proto__: pos$775,
+        [nix.POS]: pos$775,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "levenshteinAtMost"), 2n, "hello", "ho")),
         expected: false,
       })),
       testLevenshteinAtMostThreeFalse: nix.thunk(() => ({
-        __proto__: pos$776,
+        [nix.POS]: pos$776,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "levenshteinAtMost"), 3n, "hello", "Holla!")),
         expected: false,
       })),
       testLevenshteinAtMostThreeTrue: nix.thunk(() => ({
-        __proto__: pos$777,
+        [nix.POS]: pos$777,
         expr: nix.thunk(() => nix.app(nix.sel(strings, "levenshteinAtMost"), 3n, "hello", "Holla")),
         expected: true,
       })),
       testLazyDerivationIsLazyInDerivationForAttrNames: nix.thunk(() => ({
-        __proto__: pos$779,
+        [nix.POS]: pos$779,
         expr: nix.thunk(() => nix.app(attrNames, nix.thunk(() => nix.app(lazyDerivation, nix.thunk(() => ({
-              __proto__: pos$778,
+              [nix.POS]: pos$778,
               derivation: nix.thunk(() => nix.builtins.throw("not lazy enough")),
             })))))),
         expected: nix.thunk(() => [
@@ -4066,27 +4066,27 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
         ]),
       })),
       testLazyDerivationIsLazyInDerivationForPassthruAttr: nix.thunk(() => ({
-        __proto__: pos$782,
+        [nix.POS]: pos$782,
         expr: nix.thunk(() => nix.sel(nix.app(lazyDerivation, nix.thunk(() => ({
-            __proto__: pos$781,
+            [nix.POS]: pos$781,
             derivation: nix.thunk(() => nix.builtins.throw("not lazy enough")),
-            passthru: nix.thunk(() => ({ __proto__: pos$780, tests: "whatever is in tests" })),
+            passthru: nix.thunk(() => ({ [nix.POS]: pos$780, tests: "whatever is in tests" })),
           }))), "tests")),
         expected: "whatever is in tests",
       })),
       testLazyDerivationIsLazyInDerivationForPassthruAttr2: nix.thunk(() => ({
-        __proto__: pos$785,
+        [nix.POS]: pos$785,
         expr: nix.thunk(() => nix.sel(nix.app(lazyDerivation, nix.thunk(() => ({
-            __proto__: pos$784,
+            [nix.POS]: pos$784,
             derivation: nix.thunk(() => nix.builtins.throw("not lazy enough")),
-            passthru: nix.thunk(() => ({ __proto__: pos$783, foo: "whatever is in foo" })),
+            passthru: nix.thunk(() => ({ [nix.POS]: pos$783, foo: "whatever is in foo" })),
           }))), "foo")),
         expected: "whatever is in foo",
       })),
       testLazyDerivationIsLazyInDerivationForMeta: nix.thunk(() => ({
-        __proto__: pos$787,
+        [nix.POS]: pos$787,
         expr: nix.thunk(() => nix.sel(nix.app(lazyDerivation, nix.thunk(() => ({
-            __proto__: pos$786,
+            [nix.POS]: pos$786,
             derivation: nix.thunk(() => nix.builtins.throw("not lazy enough")),
             meta: "whatever is in meta",
           }))), "meta")),
@@ -4094,7 +4094,7 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
       })),
       testLazyDerivationReturnsDerivationAttrs: nix.thunk(() => (() => {
         const derivation = nix.thunk(() => ({
-          __proto__: pos$788,
+          [nix.POS]: pos$788,
           type: "derivation",
           outputs: nix.thunk(() => ["out"]),
           out: "test out",
@@ -4106,32 +4106,32 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
           meta: "test meta",
         }));
         return {
-          __proto__: pos$790,
-          expr: nix.thunk(() => nix.app(lazyDerivation, nix.thunk(() => ({ __proto__: pos$789, derivation: derivation })))),
+          [nix.POS]: pos$790,
+          expr: nix.thunk(() => nix.app(lazyDerivation, nix.thunk(() => ({ [nix.POS]: pos$789, derivation: derivation })))),
           expected: derivation,
         };
       })()),
       testOptionalDrvAttr: nix.thunk(() => (() => {
         const mkDerivation = (args) => nix.app(nix.builtins.derivation, nix.thunk(() => nix.update(args, {
-            __proto__: pos$791,
+            [nix.POS]: pos$791,
             builder: "builder",
             system: "system",
             __ignoreNulls: true,
           })));
         return {
-          __proto__: pos$794,
+          [nix.POS]: pos$794,
           expr: nix.thunk(() => nix.sel(nix.app(mkDerivation, nix.thunk(() => ({
-              __proto__: pos$792,
+              [nix.POS]: pos$792,
               name: "foo",
               x: nix.thunk(() => nix.app(optionalDrvAttr, true, 1n)),
               y: nix.thunk(() => nix.app(optionalDrvAttr, false, 1n)),
             }))), "drvPath")),
-          expected: nix.thunk(() => nix.sel(nix.app(mkDerivation, nix.thunk(() => ({ __proto__: pos$793, name: "foo", x: 1n }))), "drvPath")),
+          expected: nix.thunk(() => nix.sel(nix.app(mkDerivation, nix.thunk(() => ({ [nix.POS]: pos$793, name: "foo", x: 1n }))), "drvPath")),
         };
       })()),
       testLazyDerivationMultiOutputReturnsDerivationAttrs: nix.thunk(() => (() => {
         const derivation = nix.thunk(() => ({
-          __proto__: pos$796,
+          [nix.POS]: pos$796,
           type: "derivation",
           outputs: nix.thunk(() => ["out", "dev"]),
           dev: "test dev",
@@ -4141,24 +4141,24 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
           drvPath: "test drvPath",
           name: "test name",
           system: "test system",
-          meta: nix.thunk(() => ({ __proto__: pos$795, position: "/hi:23" })),
+          meta: nix.thunk(() => ({ [nix.POS]: pos$795, position: "/hi:23" })),
         }));
         return {
-          __proto__: pos$800,
+          [nix.POS]: pos$800,
           expr: nix.thunk(() => nix.app(lazyDerivation, nix.thunk(() => ({
-              __proto__: pos$799,
+              [nix.POS]: pos$799,
               derivation: derivation,
               outputs: nix.thunk(() => ["out", "dev"]),
               passthru: nix.thunk(() => ({
-                __proto__: pos$798,
-                meta: nix.thunk(() => ({ __proto__: pos$797, position: "/hi:23" })),
+                [nix.POS]: pos$798,
+                meta: nix.thunk(() => ({ [nix.POS]: pos$797, position: "/hi:23" })),
               })),
             })))),
           expected: derivation,
         };
       })()),
       testTypeDescriptionInt: nix.thunk(() => ({
-        __proto__: pos$801,
+        [nix.POS]: pos$801,
         expr: nix.thunk(() => nix.sel((() => {
           const w = nix.withScope(types, null);
           return nix.force(nix.lookup(w, "int"));
@@ -4166,7 +4166,7 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
         expected: "signed integer",
       })),
       testTypeDescriptionIntsPositive: nix.thunk(() => ({
-        __proto__: pos$802,
+        [nix.POS]: pos$802,
         expr: nix.thunk(() => nix.sel((() => {
           const w = nix.withScope(types, null);
           return nix.sel(nix.lookup(w, "ints"), "positive");
@@ -4174,7 +4174,7 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
         expected: "positive integer, meaning >0",
       })),
       testTypeDescriptionIntsPositiveOrEnumAuto: nix.thunk(() => ({
-        __proto__: pos$803,
+        [nix.POS]: pos$803,
         expr: nix.thunk(() => nix.sel((() => {
           const w = nix.withScope(types, null);
           return nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.sel(nix.lookup(w, "ints"), "positive")), nix.thunk(() => nix.app(nix.lookup(w, "enum"), nix.thunk(() => ["auto"]))));
@@ -4182,7 +4182,7 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
         expected: "positive integer, meaning >0, or value \"auto\" (singular enum)",
       })),
       testTypeDescriptionListOfPositive: nix.thunk(() => ({
-        __proto__: pos$804,
+        [nix.POS]: pos$804,
         expr: nix.thunk(() => nix.sel((() => {
           const w = nix.withScope(types, null);
           return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "ints"), "positive")));
@@ -4190,7 +4190,7 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
         expected: "list of (positive integer, meaning >0)",
       })),
       testTypeDescriptionListOfInt: nix.thunk(() => ({
-        __proto__: pos$805,
+        [nix.POS]: pos$805,
         expr: nix.thunk(() => nix.sel((() => {
           const w = nix.withScope(types, null);
           return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "int")));
@@ -4198,7 +4198,7 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
         expected: "list of signed integer",
       })),
       testTypeDescriptionListOfListOfInt: nix.thunk(() => ({
-        __proto__: pos$806,
+        [nix.POS]: pos$806,
         expr: nix.thunk(() => nix.sel((() => {
           const w = nix.withScope(types, null);
           return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "int")))));
@@ -4206,7 +4206,7 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
         expected: "list of list of signed integer",
       })),
       testTypeDescriptionListOfEitherStrOrBool: nix.thunk(() => ({
-        __proto__: pos$807,
+        [nix.POS]: pos$807,
         expr: nix.thunk(() => nix.sel((() => {
           const w = nix.withScope(types, null);
           return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "str")), nix.thunk(() => nix.lookup(w, "bool")))));
@@ -4214,7 +4214,7 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
         expected: "list of (string or boolean)",
       })),
       testTypeDescriptionEitherListOfStrOrBool: nix.thunk(() => ({
-        __proto__: pos$808,
+        [nix.POS]: pos$808,
         expr: nix.thunk(() => nix.sel((() => {
           const w = nix.withScope(types, null);
           return nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "bool")))), nix.thunk(() => nix.lookup(w, "str")));
@@ -4222,7 +4222,7 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
         expected: "(list of boolean) or string",
       })),
       testTypeDescriptionEitherStrOrListOfBool: nix.thunk(() => ({
-        __proto__: pos$809,
+        [nix.POS]: pos$809,
         expr: nix.thunk(() => nix.sel((() => {
           const w = nix.withScope(types, null);
           return nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "str")), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "bool")))));
@@ -4230,7 +4230,7 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
         expected: "string or list of boolean",
       })),
       testTypeDescriptionOneOfListOfStrOrBool: nix.thunk(() => ({
-        __proto__: pos$810,
+        [nix.POS]: pos$810,
         expr: nix.thunk(() => nix.sel((() => {
           const w = nix.withScope(types, null);
           return nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -4241,7 +4241,7 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
         expected: "(list of boolean) or string",
       })),
       testTypeDescriptionOneOfListOfStrOrBoolOrNumber: nix.thunk(() => ({
-        __proto__: pos$811,
+        [nix.POS]: pos$811,
         expr: nix.thunk(() => nix.sel((() => {
           const w = nix.withScope(types, null);
           return nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -4253,7 +4253,7 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
         expected: "(list of boolean) or string or signed integer or floating point number",
       })),
       testTypeDescriptionEitherListOfBoolOrEitherStringOrNumber: nix.thunk(() => ({
-        __proto__: pos$812,
+        [nix.POS]: pos$812,
         expr: nix.thunk(() => nix.sel((() => {
           const w = nix.withScope(types, null);
           return nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "bool")))), nix.thunk(() => nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "str")), nix.thunk(() => nix.lookup(w, "number")))));
@@ -4261,7 +4261,7 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
         expected: "(list of boolean) or string or signed integer or floating point number",
       })),
       testTypeDescriptionEitherEitherListOfBoolOrStringOrNumber: nix.thunk(() => ({
-        __proto__: pos$813,
+        [nix.POS]: pos$813,
         expr: nix.thunk(() => nix.sel((() => {
           const w = nix.withScope(types, null);
           return nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "bool")))), nix.thunk(() => nix.lookup(w, "str")))), nix.thunk(() => nix.lookup(w, "number")));
@@ -4269,7 +4269,7 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
         expected: "(list of boolean) or string or signed integer or floating point number",
       })),
       testTypeDescriptionEitherNullOrBoolOrString: nix.thunk(() => ({
-        __proto__: pos$814,
+        [nix.POS]: pos$814,
         expr: nix.thunk(() => nix.sel((() => {
           const w = nix.withScope(types, null);
           return nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "bool")))), nix.thunk(() => nix.lookup(w, "str")));
@@ -4277,7 +4277,7 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
         expected: "null or boolean or string",
       })),
       testTypeDescriptionEitherListOfEitherBoolOrStrOrInt: nix.thunk(() => ({
-        __proto__: pos$815,
+        [nix.POS]: pos$815,
         expr: nix.thunk(() => nix.sel((() => {
           const w = nix.withScope(types, null);
           return nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "bool")), nix.thunk(() => nix.lookup(w, "str")))))), nix.thunk(() => nix.lookup(w, "int")));
@@ -4285,7 +4285,7 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
         expected: "(list of (boolean or string)) or signed integer",
       })),
       testTypeDescriptionEitherIntOrListOrEitherBoolOrStr: nix.thunk(() => ({
-        __proto__: pos$816,
+        [nix.POS]: pos$816,
         expr: nix.thunk(() => nix.sel((() => {
           const w = nix.withScope(types, null);
           return nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "int")), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "bool")), nix.thunk(() => nix.lookup(w, "str")))))));
@@ -4293,10 +4293,10 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
         expected: "signed integer or list of (boolean or string)",
       })),
       testTypeFunctionToPropagateFunctionArgs: nix.thunk(() => ({
-        __proto__: pos$820,
+        [nix.POS]: pos$820,
         expr: nix.thunk(() => nix.app(nix.sel(lib, "functionArgs"), nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(types, "functionTo"), nix.thunk(() => nix.sel(types, "null"))), "merge"), [], nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$817,
+                [nix.POS]: pos$817,
                 value: nix.lambda((args) => (() => {
                   const $ = nix.formals(args, formals$20);
                   const a = nix.arg($, "a");
@@ -4305,7 +4305,7 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
                 })(), formals$20),
               })),
               nix.thunk(() => ({
-                __proto__: pos$818,
+                [nix.POS]: pos$818,
                 value: nix.lambda((args) => (() => {
                   const $ = nix.formals(args, formals$21);
                   const b = nix.arg($, "b");
@@ -4314,12 +4314,12 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
                 })(), formals$21),
               })),
             ]))))),
-        expected: nix.thunk(() => ({ __proto__: pos$819, a: false, b: false, c: true })),
+        expected: nix.thunk(() => ({ [nix.POS]: pos$819, a: false, b: false, c: true })),
       })),
       "testGetExe'Output": nix.thunk(() => ({
-        __proto__: pos$822,
+        [nix.POS]: pos$822,
         expr: nix.thunk(() => nix.app(getExe$, nix.thunk(() => ({
-            __proto__: pos$821,
+            [nix.POS]: pos$821,
             type: "derivation",
             out: "somelonghash",
             bin: "somelonghash",
@@ -4327,33 +4327,33 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
         expected: "somelonghash/bin/executable",
       })),
       testGetExeOutput: nix.thunk(() => ({
-        __proto__: pos$825,
+        [nix.POS]: pos$825,
         expr: nix.thunk(() => nix.app(getExe, nix.thunk(() => ({
-            __proto__: pos$824,
+            [nix.POS]: pos$824,
             type: "derivation",
             out: "somelonghash",
             bin: "somelonghash",
-            meta: nix.thunk(() => ({ __proto__: pos$823, mainProgram: "mainProgram" })),
+            meta: nix.thunk(() => ({ [nix.POS]: pos$823, mainProgram: "mainProgram" })),
           })))),
         expected: "somelonghash/bin/mainProgram",
       })),
       "testGetExe'FailureFirstArg": nix.thunk(() => nix.app(testingThrow, nix.thunk(() => nix.app(getExe$, "not a derivation", "executable")))),
-      "testGetExe'FailureSecondArg": nix.thunk(() => nix.app(testingThrow, nix.thunk(() => nix.app(getExe$, nix.thunk(() => ({ __proto__: pos$826, type: "derivation" })), "dir/executable")))),
+      "testGetExe'FailureSecondArg": nix.thunk(() => nix.app(testingThrow, nix.thunk(() => nix.app(getExe$, nix.thunk(() => ({ [nix.POS]: pos$826, type: "derivation" })), "dir/executable")))),
       testGetDarwinAppOutput: nix.thunk(() => ({
-        __proto__: pos$829,
+        [nix.POS]: pos$829,
         expr: nix.thunk(() => nix.app(getDarwinApp, nix.thunk(() => ({
-            __proto__: pos$828,
+            [nix.POS]: pos$828,
             type: "derivation",
             out: "somelonghash",
             bin: "somelonghash",
-            meta: nix.thunk(() => ({ __proto__: pos$827, mainDarwinApp: "mainDarwinApp.app" })),
+            meta: nix.thunk(() => ({ [nix.POS]: pos$827, mainDarwinApp: "mainDarwinApp.app" })),
           })))),
         expected: "somelonghash/Applications/mainDarwinApp.app",
       })),
       "testGetDarwinApp'Output": nix.thunk(() => ({
-        __proto__: pos$831,
+        [nix.POS]: pos$831,
         expr: nix.thunk(() => nix.app(getDarwinApp$, nix.thunk(() => ({
-            __proto__: pos$830,
+            [nix.POS]: pos$830,
             type: "derivation",
             out: "somelonghash",
             bin: "somelonghash",
@@ -4361,9 +4361,9 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
         expected: "somelonghash/Applications/app.app",
       })),
       "testGetDarwinApp'FailureFirstArg": nix.thunk(() => nix.app(testingThrow, nix.thunk(() => nix.app(getDarwinApp$, "not a derivation", "executable")))),
-      "testGetDarwinApp'FailureSecondArg": nix.thunk(() => nix.app(testingThrow, nix.thunk(() => nix.app(getDarwinApp$, nix.thunk(() => ({ __proto__: pos$832, type: "derivation" })), "dir/executable")))),
+      "testGetDarwinApp'FailureSecondArg": nix.thunk(() => nix.app(testingThrow, nix.thunk(() => nix.app(getDarwinApp$, nix.thunk(() => ({ [nix.POS]: pos$832, type: "derivation" })), "dir/executable")))),
       testGetLicenseFromSpdxIdOrExamples: nix.thunk(() => ({
-        __proto__: pos$833,
+        [nix.POS]: pos$833,
         expr: nix.thunk(() => [
           nix.thunk(() => nix.app(getLicenseFromSpdxIdOr, "MIT", null)),
           nix.thunk(() => nix.app(getLicenseFromSpdxIdOr, "mIt", null)),
@@ -4379,71 +4379,71 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
       })),
       testGetLicenseFromSpdxIdOrThrow: nix.thunk(() => nix.app(testingThrow, nix.thunk(() => nix.app(getLicenseFromSpdxIdOr, "MY LICENSE", nix.thunk(() => nix.builtins.throw("No SPDX ID matches MY LICENSE")))))),
       testPlatformMatch: nix.thunk(() => ({
-        __proto__: pos$835,
-        expr: nix.thunk(() => nix.app(nix.sel(meta, "platformMatch"), nix.thunk(() => ({ __proto__: pos$834, system: "x86_64-linux" })), "x86_64-linux")),
+        [nix.POS]: pos$835,
+        expr: nix.thunk(() => nix.app(nix.sel(meta, "platformMatch"), nix.thunk(() => ({ [nix.POS]: pos$834, system: "x86_64-linux" })), "x86_64-linux")),
         expected: true,
       })),
       testPlatformMatchAttrs: nix.thunk(() => ({
-        __proto__: pos$836,
+        [nix.POS]: pos$836,
         expr: nix.thunk(() => nix.app(nix.sel(meta, "platformMatch"), nix.thunk(() => nix.app(nix.sel(systems, "elaborate"), "x86_64-linux")), nix.thunk(() => nix.sel(nix.app(nix.sel(systems, "elaborate"), "x86_64-linux"), "parsed")))),
         expected: true,
       })),
       testPlatformMatchNoMatch: nix.thunk(() => ({
-        __proto__: pos$838,
-        expr: nix.thunk(() => nix.app(nix.sel(meta, "platformMatch"), nix.thunk(() => ({ __proto__: pos$837, system: "x86_64-freebsd" })), "x86_64-linux")),
+        [nix.POS]: pos$838,
+        expr: nix.thunk(() => nix.app(nix.sel(meta, "platformMatch"), nix.thunk(() => ({ [nix.POS]: pos$837, system: "x86_64-freebsd" })), "x86_64-linux")),
         expected: false,
       })),
       testPlatformMatchMissingSystem: nix.thunk(() => ({
-        __proto__: pos$839,
+        [nix.POS]: pos$839,
         expr: nix.thunk(() => nix.app(nix.sel(meta, "platformMatch"), nix.thunk(() => ({})), "x86_64-linux")),
         expected: false,
       })),
       testPackagesFromDirectoryRecursive: nix.thunk(() => ({
-        __proto__: pos$844,
+        [nix.POS]: pos$844,
         expr: nix.thunk(() => nix.app(packagesFromDirectoryRecursive, nix.thunk(() => ({
-            __proto__: pos$840,
+            [nix.POS]: pos$840,
             callPackage: (path) => (overrides) => nix.app(nix.builtins.import(path), overrides),
             directory: nix.path(here, "./packages-from-directory/plain"),
           })))),
         expected: nix.thunk(() => ({
-          __proto__: pos$843,
+          [nix.POS]: pos$843,
           a: "a",
           b: "b",
           c: "c",
           "my-namespace": nix.thunk(() => ({
-            __proto__: pos$842,
+            [nix.POS]: pos$842,
             d: "d",
             e: "e",
             f: "f",
-            "my-sub-namespace": nix.thunk(() => ({ __proto__: pos$841, g: "g", h: "h" })),
+            "my-sub-namespace": nix.thunk(() => ({ [nix.POS]: pos$841, g: "g", h: "h" })),
           })),
         })),
       })),
       testPackagesFromDirectoryRecursiveStringDirectory: nix.thunk(() => ({
-        __proto__: pos$849,
+        [nix.POS]: pos$849,
         expr: nix.thunk(() => nix.app(packagesFromDirectoryRecursive, nix.thunk(() => ({
-            __proto__: pos$845,
+            [nix.POS]: pos$845,
             callPackage: (path) => (overrides) => nix.app(nix.builtins.import(path), overrides),
             directory: nix.thunk(() => nix.builtins.toString(nix.path(here, "./packages-from-directory/plain"))),
           })))),
         expected: nix.thunk(() => ({
-          __proto__: pos$848,
+          [nix.POS]: pos$848,
           a: "a",
           b: "b",
           c: "c",
           "my-namespace": nix.thunk(() => ({
-            __proto__: pos$847,
+            [nix.POS]: pos$847,
             d: "d",
             e: "e",
             f: "f",
-            "my-sub-namespace": nix.thunk(() => ({ __proto__: pos$846, g: "g", h: "h" })),
+            "my-sub-namespace": nix.thunk(() => ({ [nix.POS]: pos$846, g: "g", h: "h" })),
           })),
         })),
       })),
       testPackagesFromDirectoryRecursiveTopLevelPackageNix: nix.thunk(() => ({
-        __proto__: pos$851,
+        [nix.POS]: pos$851,
         expr: nix.thunk(() => nix.app(packagesFromDirectoryRecursive, nix.thunk(() => ({
-            __proto__: pos$850,
+            [nix.POS]: pos$850,
             callPackage: (path) => (overrides) => nix.app(nix.builtins.import(path), overrides),
             directory: nix.path(here, "./packages-from-directory/plain/c"),
           })))),
@@ -4452,7 +4452,7 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
       testMergeTypesSimple: nix.thunk(() => (() => {
         const mergedType = nix.thunk(() => nix.app(nix.sel(types, "mergeTypes"), nix.thunk(() => nix.sel(types, "str")), nix.thunk(() => nix.sel(types, "str"))));
         return {
-          __proto__: pos$852,
+          [nix.POS]: pos$852,
           expr: nix.thunk(() => nix.sel(mergedType, "name")),
           expected: "str",
         };
@@ -4460,7 +4460,7 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
       testMergeTypesFail: nix.thunk(() => (() => {
         const mergedType = nix.thunk(() => nix.app(nix.sel(types, "mergeTypes"), nix.thunk(() => nix.sel(types, "str")), nix.thunk(() => nix.sel(types, "int"))));
         return {
-          __proto__: pos$853,
+          [nix.POS]: pos$853,
           expr: nix.thunk(() => nix.app(nix.sel(types, "isType"), "merge-error", mergedType)),
           expected: true,
         };
@@ -4470,9 +4470,9 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
         const enumXY = nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["X", "Y"])));
         const merged = nix.thunk(() => nix.app(nix.sel(lib, "types", "mergeTypes"), enumAB, enumXY));
         return {
-          __proto__: pos$856,
+          [nix.POS]: pos$856,
           expr: nix.thunk(() => ({
-            __proto__: pos$854,
+            [nix.POS]: pos$854,
             checkA: nix.thunk(() => nix.app(nix.sel(merged, "check"), "A")),
             checkB: nix.thunk(() => nix.app(nix.sel(merged, "check"), "B")),
             checkX: nix.thunk(() => nix.app(nix.sel(merged, "check"), "X")),
@@ -4480,7 +4480,7 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
             checkC: nix.thunk(() => nix.app(nix.sel(merged, "check"), "C")),
           })),
           expected: nix.thunk(() => ({
-            __proto__: pos$855,
+            [nix.POS]: pos$855,
             checkA: true,
             checkB: true,
             checkX: true,
@@ -4493,38 +4493,38 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
         const makeScope = nix.thunk(() => nix.attr(lib, "makeScope"));
         const emptyScope = nix.thunk(() => nix.app(makeScope, nix.thunk(() => nix.sel(lib, "callPackageWith")), (_) => ({})));
         return {
-          __proto__: pos$861,
+          [nix.POS]: pos$861,
           expr: nix.thunk(() => nix.app(nix.sel(lib, "filterAttrsRecursive"), (name) => (value) => !nix.asBool(nix.app(nix.sel(lib, "elem"), name, nix.thunk(() => ["callPackage", "newScope", "overrideScope", "packages"]))), nix.thunk(() => nix.app(packagesFromDirectoryRecursive, nix.thunk(() => ({
-                __proto__: pos$857,
+                [nix.POS]: pos$857,
                 callPackage: nix.thunk(() => nix.attr(emptyScope, "callPackage")),
                 newScope: nix.thunk(() => nix.attr(emptyScope, "newScope")),
                 directory: nix.path(here, "./packages-from-directory/scope"),
               })))))),
           expected: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-              __proto__: pos$860,
+              [nix.POS]: pos$860,
               a: "a",
               b: "b",
               c: "c",
               "my-namespace": nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-                  __proto__: pos$859,
+                  [nix.POS]: pos$859,
                   d: "d",
                   e: "e",
                   f: "f",
-                  "my-sub-namespace": nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({ __proto__: pos$858, g: "g", h: "h" })))),
+                  "my-sub-namespace": nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({ [nix.POS]: pos$858, g: "g", h: "h" })))),
                 })))),
             })))),
         };
       })()),
       testMakeScopeDefaultCallPackage: nix.thunk(() => (() => {
         const scope = nix.thunk(() => nix.app(nix.sel(lib, "makeScope"), nix.thunk(() => nix.sel(lib, "callPackageWith")), (self) => ({
-            __proto__: pos$862,
+            [nix.POS]: pos$862,
             foo: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.lambda((args) => (() => {
                 const $ = nix.formals(args, formals$22);
                 return "foo-value";
               })(), formals$22), nix.thunk(() => ({})))),
           })));
         return {
-          __proto__: pos$863,
+          [nix.POS]: pos$863,
           expr: nix.thunk(() => nix.sel(scope, "foo")),
           expected: "foo-value",
         };
@@ -4532,7 +4532,7 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
       testMakeScopeOverrideCallPackage: nix.thunk(() => (() => {
         const customCallPackage = (_self) => (fn) => (args) => nix.add(nix.app(fn, args), "-custom");
         const scope = nix.thunk(() => nix.app(nix.sel(lib, "makeScope"), nix.thunk(() => nix.sel(lib, "callPackageWith")), (self) => ({
-            __proto__: pos$864,
+            [nix.POS]: pos$864,
             callPackage: nix.thunk(() => nix.app(customCallPackage, self)),
             foo: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.lambda((args) => (() => {
                 const $ = nix.formals(args, formals$23);
@@ -4540,7 +4540,7 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
               })(), formals$23), nix.thunk(() => ({})))),
           })));
         return {
-          __proto__: pos$865,
+          [nix.POS]: pos$865,
           expr: nix.thunk(() => nix.sel(scope, "foo")),
           expected: "foo-value-custom",
         };
@@ -4548,7 +4548,7 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
       testMakeScopeOverrideCallPackagePersistsThroughOverrideScope: nix.thunk(() => (() => {
         const customCallPackage = (_self) => (fn) => (args) => nix.add(nix.app(fn, args), "-custom");
         const scope = nix.thunk(() => nix.app(nix.sel(lib, "makeScope"), nix.thunk(() => nix.sel(lib, "callPackageWith")), (self) => ({
-            __proto__: pos$866,
+            [nix.POS]: pos$866,
             callPackage: nix.thunk(() => nix.app(customCallPackage, self)),
             foo: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.lambda((args) => (() => {
                 const $ = nix.formals(args, formals$24);
@@ -4556,71 +4556,71 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
               })(), formals$24), nix.thunk(() => ({})))),
           })));
         const overridden = nix.thunk(() => nix.app(nix.sel(scope, "overrideScope"), (_final) => (_prev) => ({
-            __proto__: pos$867,
+            [nix.POS]: pos$867,
             bar: nix.thunk(() => nix.app(nix.sel(scope, "callPackage"), nix.lambda((args) => (() => {
                 const $ = nix.formals(args, formals$25);
                 return "bar-value";
               })(), formals$25), nix.thunk(() => ({})))),
           })));
         return {
-          __proto__: pos$870,
+          [nix.POS]: pos$870,
           expr: nix.thunk(() => ({
-            __proto__: pos$868,
+            [nix.POS]: pos$868,
             foo: nix.thunk(() => nix.attr(overridden, "foo")),
             bar: nix.thunk(() => nix.attr(overridden, "bar")),
           })),
-          expected: nix.thunk(() => ({ __proto__: pos$869, foo: "foo-value-custom", bar: "bar-value-custom" })),
+          expected: nix.thunk(() => ({ [nix.POS]: pos$869, foo: "foo-value-custom", bar: "bar-value-custom" })),
         };
       })()),
       testFilesystemResolveDefaultNixFile1: nix.thunk(() => ({
-        __proto__: pos$871,
+        [nix.POS]: pos$871,
         expr: nix.thunk(() => nix.app(nix.sel(lib, "filesystem", "resolveDefaultNix"), nix.path(here, "./foo.nix"))),
         expected: nix.path(here, "./foo.nix"),
       })),
       testFilesystemResolveDefaultNixFile2: nix.thunk(() => ({
-        __proto__: pos$872,
+        [nix.POS]: pos$872,
         expr: nix.thunk(() => nix.app(nix.sel(lib, "filesystem", "resolveDefaultNix"), nix.path(here, "./default.nix"))),
         expected: nix.path(here, "./default.nix"),
       })),
       testFilesystemResolveDefaultNixDir1: nix.thunk(() => ({
-        __proto__: pos$873,
+        [nix.POS]: pos$873,
         expr: nix.thunk(() => nix.app(nix.sel(lib, "filesystem", "resolveDefaultNix"), nix.path(here, "./."))),
         expected: nix.path(here, "./default.nix"),
       })),
       testFilesystemResolveDefaultNixFile1_toString: nix.thunk(() => ({
-        __proto__: pos$874,
+        [nix.POS]: pos$874,
         expr: nix.thunk(() => nix.app(nix.sel(lib, "filesystem", "resolveDefaultNix"), nix.thunk(() => nix.builtins.toString(nix.path(here, "./foo.nix"))))),
         expected: nix.thunk(() => nix.builtins.toString(nix.path(here, "./foo.nix"))),
       })),
       testFilesystemResolveDefaultNixFile2_toString: nix.thunk(() => ({
-        __proto__: pos$875,
+        [nix.POS]: pos$875,
         expr: nix.thunk(() => nix.app(nix.sel(lib, "filesystem", "resolveDefaultNix"), nix.thunk(() => nix.builtins.toString(nix.path(here, "./default.nix"))))),
         expected: nix.thunk(() => nix.builtins.toString(nix.path(here, "./default.nix"))),
       })),
       testFilesystemResolveDefaultNixDir1_toString: nix.thunk(() => ({
-        __proto__: pos$876,
+        [nix.POS]: pos$876,
         expr: nix.thunk(() => nix.app(nix.sel(lib, "filesystem", "resolveDefaultNix"), nix.thunk(() => nix.builtins.toString(nix.path(here, "./."))))),
         expected: nix.thunk(() => nix.builtins.toString(nix.path(here, "./default.nix"))),
       })),
       testFilesystemResolveDefaultNixDir1_toString2: nix.thunk(() => ({
-        __proto__: pos$877,
+        [nix.POS]: pos$877,
         expr: nix.thunk(() => nix.app(nix.sel(lib, "filesystem", "resolveDefaultNix"), nix.thunk(() => nix.builtins.toString(nix.path(here, "./."))))),
         expected: nix.thunk(() => nix.add(nix.builtins.toString(nix.path(here, "./.")), "/default.nix")),
       })),
       testFilesystemResolveDefaultNixNonExistent: nix.thunk(() => ({
-        __proto__: pos$878,
+        [nix.POS]: pos$878,
         expr: nix.thunk(() => nix.app(nix.sel(lib, "filesystem", "resolveDefaultNix"), "/non-existent/this/does/not/exist/for/real/please-dont-mess-with-your-local-fs")),
         expected: "/non-existent/this/does/not/exist/for/real/please-dont-mess-with-your-local-fs",
       })),
       testFilesystemResolveDefaultNixNonExistentDir: nix.thunk(() => ({
-        __proto__: pos$879,
+        [nix.POS]: pos$879,
         expr: nix.thunk(() => nix.app(nix.sel(lib, "filesystem", "resolveDefaultNix"), "/non-existent/this/does/not/exist/for/real/please-dont-mess-with-your-local-fs/")),
         expected: "/non-existent/this/does/not/exist/for/real/please-dont-mess-with-your-local-fs/default.nix",
       })),
       testRenameCrossIndexFrom: nix.thunk(() => ({
-        __proto__: pos$882,
+        [nix.POS]: pos$882,
         expr: nix.thunk(() => nix.app(nix.sel(lib, "renameCrossIndexFrom"), "pkgs", nix.thunk(() => ({
-            __proto__: pos$880,
+            [nix.POS]: pos$880,
             pkgsBuildBuild: "dummy-build-build",
             pkgsBuildHost: "dummy-build-host",
             pkgsBuildTarget: "dummy-build-target",
@@ -4629,7 +4629,7 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
             pkgsTargetTarget: "dummy-target-target",
           })))),
         expected: nix.thunk(() => ({
-          __proto__: pos$881,
+          [nix.POS]: pos$881,
           buildBuild: "dummy-build-build",
           buildHost: "dummy-build-host",
           buildTarget: "dummy-build-target",
@@ -4639,9 +4639,9 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
         })),
       })),
       testRenameCrossIndexTo: nix.thunk(() => ({
-        __proto__: pos$885,
+        [nix.POS]: pos$885,
         expr: nix.thunk(() => nix.app(nix.sel(lib, "renameCrossIndexTo"), "self", nix.thunk(() => ({
-            __proto__: pos$883,
+            [nix.POS]: pos$883,
             buildBuild: "dummy-build-build",
             buildHost: "dummy-build-host",
             buildTarget: "dummy-build-target",
@@ -4650,7 +4650,7 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
             targetTarget: "dummy-target-target",
           })))),
         expected: nix.thunk(() => ({
-          __proto__: pos$884,
+          [nix.POS]: pos$884,
           selfBuildBuild: "dummy-build-build",
           selfBuildHost: "dummy-build-host",
           selfBuildTarget: "dummy-build-target",
@@ -4660,9 +4660,9 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
         })),
       })),
       testMapCrossIndex: nix.thunk(() => ({
-        __proto__: pos$888,
+        [nix.POS]: pos$888,
         expr: nix.thunk(() => nix.app(nix.sel(lib, "mapCrossIndex"), (x) => nix.mul(x, 10n), nix.thunk(() => ({
-            __proto__: pos$886,
+            [nix.POS]: pos$886,
             buildBuild: 1n,
             buildHost: 2n,
             buildTarget: 3n,
@@ -4671,7 +4671,7 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
             targetTarget: 6n,
           })))),
         expected: nix.thunk(() => ({
-          __proto__: pos$887,
+          [nix.POS]: pos$887,
           buildBuild: 10n,
           buildHost: 20n,
           buildTarget: 30n,
@@ -4681,9 +4681,9 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
         })),
       })),
       testMapCrossIndexString: nix.thunk(() => ({
-        __proto__: pos$891,
+        [nix.POS]: pos$891,
         expr: nix.thunk(() => nix.app(nix.sel(lib, "mapCrossIndex"), (x) => nix.str`prefix-${x}`, nix.thunk(() => ({
-            __proto__: pos$889,
+            [nix.POS]: pos$889,
             buildBuild: "bb",
             buildHost: "bh",
             buildTarget: "bt",
@@ -4692,7 +4692,7 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
             targetTarget: "tt",
           })))),
         expected: nix.thunk(() => ({
-          __proto__: pos$890,
+          [nix.POS]: pos$890,
           buildBuild: "prefix-bb",
           buildHost: "prefix-bh",
           buildTarget: "prefix-bt",
@@ -4702,14 +4702,14 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
         })),
       })),
       testReplaceElemAt: nix.thunk(() => ({
-        __proto__: pos$892,
+        [nix.POS]: pos$892,
         expr: nix.thunk(() => nix.app(nix.sel(lib, "replaceElemAt"), nix.thunk(() => [1n, 2n, 3n]), 1n, "a")),
         expected: nix.thunk(() => [1n, "a", 3n]),
       })),
       testReplaceElemAtOutOfRange: nix.thunk(() => nix.app(testingThrow, nix.thunk(() => nix.app(nix.sel(lib, "replaceElemAt"), nix.thunk(() => [1n, 2n, 3n]), 5n, "a")))),
       testReplaceElemAtNegative: nix.thunk(() => nix.app(testingThrow, nix.thunk(() => nix.app(nix.sel(lib, "replaceElemAt"), nix.thunk(() => [1n, 2n, 3n]), nix.thunk(() => nix.neg(1n)), "a")))),
       testIsFree: nix.thunk(() => ({
-        __proto__: pos$893,
+        [nix.POS]: pos$893,
         expr: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "isFree"), nix.thunk(() => nix.app(nix.sel(lib, "licenses", "AND"), nix.thunk(() => [
               nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               nix.thunk(() => nix.app(nix.sel(lib, "licenses", "OR"), nix.thunk(() => [
@@ -4722,7 +4722,7 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
         expected: true,
       })),
       testIsUnfree: nix.thunk(() => ({
-        __proto__: pos$894,
+        [nix.POS]: pos$894,
         expr: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "isFree"), nix.thunk(() => nix.app(nix.sel(lib, "licenses", "AND"), nix.thunk(() => [
               nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               nix.thunk(() => nix.app(nix.sel(lib, "licenses", "OR"), nix.thunk(() => [nix.thunk(() => nix.sel(lib, "licenses", "unfree"))]))),
@@ -4732,7 +4732,7 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
         expected: false,
       })),
       testIsRedistributable: nix.thunk(() => ({
-        __proto__: pos$895,
+        [nix.POS]: pos$895,
         expr: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "isRedistributable"), nix.thunk(() => nix.app(nix.sel(lib, "licenses", "AND"), nix.thunk(() => [
               nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               nix.thunk(() => nix.app(nix.sel(lib, "licenses", "OR"), nix.thunk(() => [
@@ -4745,7 +4745,7 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
         expected: true,
       })),
       testIsUnredistributable: nix.thunk(() => ({
-        __proto__: pos$896,
+        [nix.POS]: pos$896,
         expr: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "isRedistributable"), nix.thunk(() => nix.app(nix.sel(lib, "licenses", "AND"), nix.thunk(() => [
               nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               nix.thunk(() => nix.app(nix.sel(lib, "licenses", "OR"), nix.thunk(() => [nix.thunk(() => nix.sel(lib, "licenses", "unfree"))]))),
@@ -4755,7 +4755,7 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
         expected: false,
       })),
       testContainsLicenses: nix.thunk(() => ({
-        __proto__: pos$897,
+        [nix.POS]: pos$897,
         expr: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "containsLicenses"), nix.thunk(() => [nix.thunk(() => nix.sel(lib, "licenses", "mit"))]), nix.thunk(() => nix.app(nix.sel(lib, "licenses", "AND"), nix.thunk(() => [
               nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               nix.thunk(() => nix.app(nix.sel(lib, "licenses", "OR"), nix.thunk(() => [
@@ -4768,7 +4768,7 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
         expected: true,
       })),
       testToSPDX: nix.thunk(() => ({
-        __proto__: pos$898,
+        [nix.POS]: pos$898,
         expr: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "toSPDX"), nix.thunk(() => nix.app(nix.sel(lib, "licenses", "AND"), nix.thunk(() => [
               nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               nix.thunk(() => nix.app(nix.sel(lib, "licenses", "OR"), nix.thunk(() => [
@@ -4781,7 +4781,7 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
         expected: "MIT AND (LicenseRef-nixos-free OR LicenseRef-nixos-unfree) AND (Apache-2.0 WITH LLVM-exception) AND EUPL-1.1+",
       })),
       testEvaluateProperty: nix.thunk(() => ({
-        __proto__: pos$899,
+        [nix.POS]: pos$899,
         expr: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "evaluateProperty"), (x) => nix.sel(x, "deprecated"), true, nix.thunk(() => nix.app(nix.sel(lib, "licenses", "AND"), nix.thunk(() => [
               nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               nix.thunk(() => nix.app(nix.sel(lib, "licenses", "OR"), nix.thunk(() => [
@@ -4794,62 +4794,62 @@ ${"\t"}signingKey = "00112233445566778899AABBCCDDEEFF"
         expected: false,
       })),
       testMapDefinitionValuePlain: nix.thunk(() => ({
-        __proto__: pos$900,
+        [nix.POS]: pos$900,
         expr: nix.thunk(() => nix.app(nix.sel(lib, "modules", "mapDefinitionValue"), (x) => nix.add(x, 1n), 5n)),
         expected: 6n,
       })),
       testMapDefinitionValueMkForce: nix.thunk(() => ({
-        __proto__: pos$901,
+        [nix.POS]: pos$901,
         expr: nix.thunk(() => nix.app(nix.sel(lib, "modules", "mapDefinitionValue"), (x) => nix.add(x, 1n), nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), 5n)))),
         expected: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), 6n)),
       })),
       testMapDefinitionValueMkDefault: nix.thunk(() => ({
-        __proto__: pos$902,
+        [nix.POS]: pos$902,
         expr: nix.thunk(() => nix.app(nix.sel(lib, "modules", "mapDefinitionValue"), (x) => nix.add(x, 1n), nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 5n)))),
         expected: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 6n)),
       })),
       testMapDefinitionValueMkOrder: nix.thunk(() => ({
-        __proto__: pos$903,
+        [nix.POS]: pos$903,
         expr: nix.thunk(() => nix.app(nix.sel(lib, "modules", "mapDefinitionValue"), (x) => nix.add(x, 1n), nix.thunk(() => nix.app(nix.sel(lib, "mkOrder"), 500n, 5n)))),
         expected: nix.thunk(() => nix.app(nix.sel(lib, "mkOrder"), 500n, 6n)),
       })),
       testMapDefinitionValueMkOverrideNested: nix.thunk(() => ({
-        __proto__: pos$904,
+        [nix.POS]: pos$904,
         expr: nix.thunk(() => nix.app(nix.sel(lib, "modules", "mapDefinitionValue"), (x) => nix.add(x, 1n), nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.app(nix.sel(lib, "mkOrder"), 500n, 5n)))))),
         expected: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.app(nix.sel(lib, "mkOrder"), 500n, 6n)))),
       })),
       testMapDefinitionValueMkIf: nix.thunk(() => ({
-        __proto__: pos$905,
+        [nix.POS]: pos$905,
         expr: nix.thunk(() => nix.app(nix.sel(lib, "modules", "mapDefinitionValue"), (x) => nix.add(x, 1n), nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), true, 5n)))),
         expected: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), true, 6n)),
       })),
       testMapDefinitionValueMkMerge: nix.thunk(() => ({
-        __proto__: pos$906,
+        [nix.POS]: pos$906,
         expr: nix.thunk(() => nix.app(nix.sel(lib, "modules", "mapDefinitionValue"), (x) => nix.add(x, 1n), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [5n, 10n]))))),
         expected: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [6n, 11n]))),
       })),
       testMapDefinitionValueMkDefinition: nix.thunk(() => ({
-        __proto__: pos$909,
-        expr: nix.thunk(() => nix.app(nix.sel(lib, "modules", "mapDefinitionValue"), (x) => nix.add(x, 1n), nix.thunk(() => nix.app(nix.sel(lib, "mkDefinition"), nix.thunk(() => ({ __proto__: pos$907, file: "test", value: 5n })))))),
-        expected: nix.thunk(() => nix.app(nix.sel(lib, "mkDefinition"), nix.thunk(() => ({ __proto__: pos$908, file: "test", value: 6n })))),
+        [nix.POS]: pos$909,
+        expr: nix.thunk(() => nix.app(nix.sel(lib, "modules", "mapDefinitionValue"), (x) => nix.add(x, 1n), nix.thunk(() => nix.app(nix.sel(lib, "mkDefinition"), nix.thunk(() => ({ [nix.POS]: pos$907, file: "test", value: 5n })))))),
+        expected: nix.thunk(() => nix.app(nix.sel(lib, "mkDefinition"), nix.thunk(() => ({ [nix.POS]: pos$908, file: "test", value: 6n })))),
       })),
       testMapDefinitionValueDeep: nix.thunk(() => ({
-        __proto__: pos$910,
+        [nix.POS]: pos$910,
         expr: nix.thunk(() => nix.app(nix.sel(lib, "modules", "mapDefinitionValue"), (x) => nix.add(x, 1n), nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), true, nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.app(nix.sel(lib, "mkOrder"), 500n, 5n)))))))),
         expected: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), true, nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.app(nix.sel(lib, "mkOrder"), 500n, 6n)))))),
       })),
       testMapDefinitionValueAllNested: nix.thunk(() => ({
-        __proto__: pos$913,
+        [nix.POS]: pos$913,
         expr: nix.thunk(() => nix.app(nix.sel(lib, "modules", "mapDefinitionValue"), (x) => nix.add(x, 1n), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), true, nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.app(nix.sel(lib, "mkOrder"), 500n, nix.thunk(() => nix.app(nix.sel(lib, "mkDefinition"), nix.thunk(() => ({
-                        __proto__: pos$911,
+                        [nix.POS]: pos$911,
                         file: "test",
                         value: nix.thunk(() => nix.app(nix.sel(lib, "mkBefore"), 5n)),
                       })))))))))),
             ]))))),
         expected: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), true, nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.app(nix.sel(lib, "mkOrder"), 500n, nix.thunk(() => nix.app(nix.sel(lib, "mkDefinition"), nix.thunk(() => ({
-                      __proto__: pos$912,
+                      [nix.POS]: pos$912,
                       file: "test",
                       value: nix.thunk(() => nix.app(nix.sel(lib, "mkBefore"), 6n)),
                     })))))))))),

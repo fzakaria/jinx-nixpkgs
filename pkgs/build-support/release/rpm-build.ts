@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const vmTools = nix.arg($, "vmTools");
   return nix.app(nix.sel(vmTools, "buildRPM"), nix.thunk(() => nix.update(nix.builtins.removeAttrs(args_1, nix.thunk(() => ["vmTools"])), {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: nix.thunk(() => nix.add(nix.add(nix.add(name, "-"), nix.sel(diskImage, "name")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.has(src, "version")), nix.thunk(() => nix.str`-${nix.sel(src, "version")}`)))),
       preBuild: nix.thunk(() => nix.str`. ${nix.path(here, "./functions.sh")}
 propagateImageName
@@ -23,7 +23,7 @@ src=$(findTarball $src)
 `),
       postInstall: "declare -a rpms rpmNames\nfor i in $out/rpms/*/*.rpm; do\n  if echo $i | grep -vq \"\\.src\\.rpm$\"; then\n    echo \"file rpm $i\" >> $out/nix-support/hydra-build-products\n    rpms+=($i)\n    rpmNames+=(\"$(rpm -qp \"$i\")\")\n  fi\ndone\n\necho \"installing ${rpms[*]}...\"\nrpm -Up ${rpms[*]} --excludepath /nix/store\n\neval \"$postRPMInstall\"\n\necho \"uninstalling ${rpmNames[*]}...\"\nrpm -e ${rpmNames[*]} --nodeps\n\nfor i in $out/rpms/*/*.src.rpm; do\n  echo \"file srpm $i\" >> $out/nix-support/hydra-build-products\ndone\n\nfor rpmdir in $extraRPMs ; do\n  echo \"file rpm-extra $(ls $rpmdir/rpms/*/*.rpm | grep -v 'src\\.rpm' | sort | head -1)\" >> $out/nix-support/hydra-build-products\ndone\n",
       meta: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_1, "meta")), nix.thunk(() => nix.sel(args_1, "meta"))), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: nix.thunk(() => nix.str`RPM package for ${nix.sel(diskImage, "fullName")}`),
       })),
     })));

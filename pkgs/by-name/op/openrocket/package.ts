@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const stripJavaArchivesHook = nix.arg($, "stripJavaArchivesHook");
   const jdk = jdk17;
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "openrocket",
       version: "23.09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openrocket",
           repo: "openrocket",
           tag: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +46,7 @@ makeWrapper ${jdk}/bin/java $out/bin/openrocket \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/openrocket/openrocket/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),
         description: "Model-rocketry aerodynamics and trajectory simulation software",
         homepage: "https://openrocket.info",

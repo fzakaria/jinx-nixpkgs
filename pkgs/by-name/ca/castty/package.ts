@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libsoundio = nix.arg($, "libsoundio");
   const lame = nix.arg($, "lame");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "castty",
       version: "0-unstable-2020-11-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dhobsd",
           repo: "castty",
           rev: "333a2bafd96d56cd0bb91577ae5ba0f7d81b3d99",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         "PREFIX=$(out)",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI tool to record audio-enabled screencasts of your terminal, for the web",
         homepage: "https://github.com/dhobsd/castty",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

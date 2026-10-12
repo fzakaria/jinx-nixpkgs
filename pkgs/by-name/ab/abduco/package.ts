@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const rev = "8c32909a159aaa9484c82b71f05b7a73321eb491";
   const defaultUserConfig = nix.thunk(() => nix.app(writeText, "config.def.h", conf));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "abduco",
       version: "0.6.0-unstable-2020-04-30",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://github.com/martanne/abduco/archive/${rev}.tar.gz`),
             nix.thunk(() => nix.str`https://git.sr.ht/~martanne/abduco/archive/${rev}.tar.gz`),
@@ -38,26 +38,26 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "man"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "use-XDG-directory-scheme-by-default",
             url: "https://github.com/martanne/abduco/commit/0e9a00312ac9777edcb169122144762e3611287b.patch",
             hash: "sha256-4NkIflbRkUpS5XTM/fxBaELpvlZ4S5lecRa8jk0XC9g=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "exit-code-when-attaching-to-dead-session",
             url: "https://github.com/martanne/abduco/commit/972ca8ab949ee342569dbd66b47cc4a17b28247b.patch",
             hash: "sha256-8hios0iKYDOmt6Bi5NNM9elTflGudnG2xgPF1pSkHI0=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "report-pixel-sizes-to-child-processes",
             url: "https://github.com/martanne/abduco/commit/a1e222308119b3251f00b42e1ddff74a385d4249.patch",
             hash: "sha256-eiF0A4IqJrrvXxjBYtltuVNpxQDv/iQPO+K7Y8hWBGg=",
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "http://brain-dump.org/projects/abduco",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
         description: "Allows programs to be run independently from its controlling terminal",

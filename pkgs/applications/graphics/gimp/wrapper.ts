@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
     ]))));
   const majorVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(gimp, "version"))));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "gimp-with-plugins",
       version: nix.thunk(() => nix.attr(gimp, "version")),
       outputs: nix.thunk(() => ["out", "man"]),
@@ -42,7 +42,7 @@ done
 ln -s ${nix.sel(gimp, "man")} $man
 `),
       meta: nix.thunk(() => nix.update(nix.sel(gimp, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: nix.thunk(() => nix.str`${nix.sel(gimp, "meta", "description")} with plugins`),
         longDescription: nix.thunk(() => nix.str`Plugins:
 

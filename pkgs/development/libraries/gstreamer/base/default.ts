@@ -60,13 +60,13 @@ export default nix.lambda((args) => (() => {
   const directoryListingUpdater = nix.arg($, "directoryListingUpdater");
   const apple_sdk_gstreamer = nix.arg($, "apple-sdk_gstreamer");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "gst-plugins-base",
       version: "1.28.7",
       outputs: nix.thunk(() => ["out", "dev"]),
       separateDebugInfo: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-7W5UEPSW0XGBh2OvImXnl3FUvH+bgn6YrPjFvtId1ac=",
         })))),
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
       mesonFlags: nix.thunk(() => (() => {
         const enabledGlWinSys = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), enableX11, "x11"), nix.concat(nix.app(nix.sel(lib, "optional"), enableWayland, "wayland"), nix.app(nix.sel(lib, "optional"), enableCocoa, "cocoa"))));
         return nix.concat(nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "mesonEnable")), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             orc: true,
             "orc-compiler": true,
             nls: true,
@@ -119,21 +119,21 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       preFixup: "moveToOutput \"lib/gstreamer-1.0/pkgconfig\" \"$dev\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         glEnabled: enableGl,
         waylandEnabled: enableWayland,
-        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ __proto__: pos$3, "odd-unstable": true })))),
+        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "odd-unstable": true })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               versionCheck: true,
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Base GStreamer plug-ins and helper libraries",
         homepage: "https://gstreamer.freedesktop.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),
@@ -156,7 +156,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "tmarkus"))];
         })()),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           cpeParts: nix.thunk(() => nix.app(nix.sel(gstreamer, "passthru", "gstreamerCpeParts"), nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

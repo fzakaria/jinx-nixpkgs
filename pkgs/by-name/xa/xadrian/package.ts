@@ -21,15 +21,15 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "xadrian",
       version: "1.5.1",
       src: nix.thunk(() => (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")) ? nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/kayahr/xadrian/releases/download/xadrian-${nix.sel(finalAttrs, "version")}/xadrian-${nix.sel(finalAttrs, "version")}-macosx.zip`),
           hash: "sha256-nCkhlC/nrTxCMd2jO+avkFlXD98a+rFvD6uoCfcZ3PU=",
         }))) : nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/kayahr/xadrian/releases/download/xadrian-${nix.sel(finalAttrs, "version")}/xadrian-${nix.sel(finalAttrs, "version")}-unix.tar.bz2`),
           hash: "sha256-MVWvYbI9V9s0CbmM6DXmWZEu0kdn9ZIpNcnJZhkDsjU=",
         }))))),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([unzip], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")), nix.thunk(() => [makeBinaryWrapper])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin"))), nix.thunk(() => [makeWrapper, copyDesktopItems]))))),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin"))), nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               name: "xadrian",
               desktopName: "Xadrian",
               exec: "xadrian",
@@ -75,7 +75,7 @@ makeWrapper ${jdk8}/bin/java $out/bin/xadrian \\
   --add-flags "-jar $out/share/xadrian/xadrian.jar"
 `)), "runHook postInstall\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Factory complex calculator for X3: Terran Conflict and X3: Albion Prelude",
         homepage: "https://github.com/kayahr/xadrian",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -14,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const bifunctors = nix.arg($, "bifunctors");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lens",
       version: "2017-09-25",
       idrisDeps: nix.thunk(() => [bifunctors]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "HuwCampbell",
           repo: "idris-lens",
           rev: "421aa76c19607693ac2f23003dc0fe82c1a3760a",
           sha256: "1q6lmhrwd1qg18s253sim4hg2a2wk5439p3izy1f9ygi6pv4a6mk",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "van Laarhoven lenses for Idris",
         homepage: "https://github.com/HuwCampbell/idris-lens",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

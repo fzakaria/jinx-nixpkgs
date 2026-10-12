@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const callPackage = nix.arg($, "callPackage");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "nushell",
       version: "0.115.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nushell",
           repo: "nushell",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -79,18 +79,18 @@ runHook postCheck
       nativeCheckInputs: nix.thunk(() => [versionCheckHook, writableTmpDirAsHomeHook]),
       checkInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [curlMinimal])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [openssl])))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         shellPath: "/bin/nu",
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        withPlugins: (plugins) => nix.app(callPackage, nix.path(here, "./with-plugins.nix"), nix.thunk(() => ({ __proto__: pos$2, plugins: plugins }))),
+        withPlugins: (plugins) => nix.app(callPackage, nix.path(here, "./with-plugins.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, plugins: plugins }))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           withPlugins: nix.thunk(() => nix.app(callPackage, nix.path(here, "./plugins/test-with-plugins.nix"), nix.thunk(() => ({})))),
           pluginCompat: nix.thunk(() => nix.app(callPackage, nix.path(here, "./plugins/test-plugin-compat.nix"), nix.thunk(() => ({})))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Modern shell written in Rust",
         homepage: "https://www.nushell.sh/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

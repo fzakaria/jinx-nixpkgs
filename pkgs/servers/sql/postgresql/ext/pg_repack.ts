@@ -22,28 +22,28 @@ export default nix.lambda((args) => (() => {
   const postgresqlTestExtension = nix.arg($, "postgresqlTestExtension");
   const testers = nix.arg($, "testers");
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "pg_repack",
       version: "1.5.3",
       buildInputs: nix.thunk(() => nix.sel(postgresql, "buildInputs")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "reorg",
           repo: "pg_repack",
           tag: nix.thunk(() => nix.str`ver_${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-Ufh/dKrKumRKeQ/CpwvxbjAmgILAn04BduPZMRvS+nU=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "ver_" })))),
+        [nix.POS]: pos$6,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "ver_" })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
           extension: nix.thunk(() => nix.app(postgresqlTestExtension, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               finalPackage: nix.thunk(() => nix.attr(finalAttrs, "finalPackage")),
               sql: "CREATE EXTENSION pg_repack;",
             })))),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(postgresql, "meta"));
         return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Reorganize tables in PostgreSQL databases with minimal locks",
         longDescription: "pg_repack is a PostgreSQL extension which lets you remove bloat from tables and indexes, and optionally restore\nthe physical order of clustered indexes. Unlike CLUSTER and VACUUM FULL it works online, without holding an\nexclusive lock on the processed tables during processing. pg_repack is efficient to boot,\nwith performance comparable to using CLUSTER directly.\n",
         homepage: "https://github.com/reorg/pg_repack",

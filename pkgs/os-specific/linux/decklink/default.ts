@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const blackmagic_desktop_video = nix.arg($, "blackmagic-desktop-video");
   const kernel = nix.arg($, "kernel");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "decklink",
       src: nix.thunk(() => nix.attr(blackmagic_desktop_video, "src")),
       version: nix.thunk(() => nix.attr(blackmagic_desktop_video, "version")),
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         KERNELDIR: nix.thunk(() => nix.str`${nix.sel(kernel, "dev")}/lib/modules/${nix.sel(kernel, "modDirVersion")}/build`),
         INSTALL_MOD_PATH: nix.thunk(() => nix.builtins.placeholder("out")),
       })),
@@ -36,7 +36,7 @@ sourceRoot=$moduleRoot
       buildPhase: "runHook preBuild\nmake -C $moduleRoot/blackmagic-$bmVersion -j$NIX_BUILD_CORES\nmake -C $moduleRoot/blackmagic-io-$bmVersion -j$NIX_BUILD_CORES\nrunHook postBuild\n",
       installPhase: "runHook preInstall\nmake -C $KERNELDIR M=$moduleRoot/blackmagic-$bmVersion modules_install\nmake -C $KERNELDIR M=$moduleRoot/blackmagic-io-$bmVersion modules_install\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.blackmagicdesign.com/support/family/capture-and-playback",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "naxdy"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

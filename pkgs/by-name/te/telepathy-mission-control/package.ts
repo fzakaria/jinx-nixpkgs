@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const gtk_doc = nix.arg($, "gtk-doc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "telepathy-mission-control",
       version: "5.16.6",
       outputs: nix.thunk(() => ["out", "lib", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://telepathy.freedesktop.org/releases/telepathy-mission-control/telepathy-mission-control-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0ibs575pfr0wmhfcw6ln6iz7gw2y45l3bah11rksf6g9jlwsxy1d",
         })))),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
   --prefix XDG_DATA_DIRS : "$GSETTINGS_SCHEMAS_PATH"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Account manager and channel dispatcher for the Telepathy framework",
         homepage: "https://telepathy.freedesktop.org/components/telepathy-mission-control/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

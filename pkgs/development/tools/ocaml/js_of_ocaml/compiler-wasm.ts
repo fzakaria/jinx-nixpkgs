@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const sedlex = nix.arg($, "sedlex");
   const yojson = nix.arg($, "yojson");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "wasm_of_ocaml-compiler",
       version: nix.thunk(() => nix.attr(js_of_ocaml_compiler, "version")),
       src: nix.thunk(() => nix.attr(js_of_ocaml_compiler, "src")),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [js_of_ocaml_compiler, menhirLib, sedlex, yojson]),
       dontStrip: true,
       meta: nix.thunk(() => nix.update(nix.sel(js_of_ocaml_compiler, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Compiler from OCaml bytecode to WebAssembly",
         mainProgram: "wasm_of_ocaml",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "stepbrobd"))]),

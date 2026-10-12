@@ -22,19 +22,19 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chrisjsewell",
           repo: "virtual-glob",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-ocCa8m7mPPvzOZHPrraSEdSJZwRJoYO/Q7nyDbhIFu8=",
         }))));
       const build_system = nix.thunk(() => [flit_core]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, testing: nix.thunk(() => [pytest]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, testing: nix.thunk(() => [pytest]) }));
       const pythonImportsCheck = nix.thunk(() => ["virtual_glob"]);
       const disabledTests = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.13")), nix.thunk(() => ["test_baseline_pathlib"])));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Globbing of virtual file systems",
         homepage: "https://pypi.org/project/virtual_glob/",
         maintainers: nix.thunk(() => (() => {
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

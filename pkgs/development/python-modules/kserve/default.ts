@@ -56,13 +56,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const tomlkit = nix.arg($, "tomlkit");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "kserve",
       version: "0.21.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kserve",
           repo: "kserve",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -114,7 +114,7 @@ export default nix.lambda((args) => (() => {
         uvicorn,
       ], nix.sel(uvicorn, "optional-dependencies", "standard"))),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         storage: nix.thunk(() => [kserve_storage]),
         logging: nix.thunk(() => [asgi_logger]),
         ray: nix.thunk(() => nix.concat([ray], nix.sel(ray, "optional-dependencies", "serve"))),
@@ -167,7 +167,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_local_path_with_out_dir_not_exist"])))),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Standardized Serverless ML Inference Platform on Kubernetes",
         homepage: "https://github.com/kserve/kserve/tree/master/python/kserve",
         changelog: nix.thunk(() => nix.str`https://github.com/kserve/kserve/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

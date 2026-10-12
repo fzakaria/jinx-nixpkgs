@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const faircamp = nix.arg($, "faircamp");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "faircamp",
       version: "1.7.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "simonrepp",
           repo: "faircamp",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,15 +43,15 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [ffmpeg]))}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           wav: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-wav.nix"), nix.thunk(() => ({})))),
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: faircamp })))),
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: faircamp })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Self-hostable, statically generated bandcamp alternative",
         mainProgram: "faircamp",
         longDescription: "Faircamp takes a directory on your disk - your Catalog - and from it\nproduces a fancy-looking (and technically simple and completely static)\nwebsite, which presents your music in a way similar to how popular\ncommercial service bandcamp does it.\n\nYou can upload the files faircamp generates to any webspace - no database\nand no programming language support (PHP or such) is required. If your\nwebspace supports SSH access, faircamp can be configured to upload your\nwebsite for you automatically, otherwise you can use FTP or whichever\nmeans you prefer to do that manually.\n",

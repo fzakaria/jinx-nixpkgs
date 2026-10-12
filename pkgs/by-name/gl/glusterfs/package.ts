@@ -98,11 +98,11 @@ export default nix.lambda((args) => (() => {
     xfsprogs,
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "glusterfs",
       version: "11.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gluster",
           repo: "glusterfs",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -184,17 +184,17 @@ wrapProgram $out/libexec/glusterfs/glusterfind/brickfind.py --set PATH "$GLUSTER
 wrapProgram $out/libexec/glusterfs/glusterfind/changelog.py --set PATH "$GLUSTER_PATH" --set PYTHONPATH "$GLUSTER_PYTHONPATH" --set LD_LIBRARY_PATH "$GLUSTER_LD_LIBRARY_PATH"
 `),
       doInstallCheck: true,
-      env: nix.thunk(() => ({ __proto__: pos$2, DETERMINISTIC_BUILD: 1n, PYTHONHASHSEED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, DETERMINISTIC_BUILD: 1n, PYTHONHASHSEED: 0n })),
       installCheckPhase: "# Tests that the above programs work without import errors.\n# For testing it manually in a shell you may want to substitute `$out` with `$(dirname $(readlink -f $(which gluster)))/../`.\n$out/bin/glusterd --help\n# $out/bin/gluster help # can't do this because even `gluster help` tries to write to `/var/log/glusterfs/cli.log`\n$out/bin/gluster-eventsapi --help\n$out/bin/gluster-georep-sshkey --help\n$out/bin/gluster-mountbroker --help\n$out/bin/glusterfind --help\n# gfid_to_path.py doesn't accept --help, and it requires different arguments\n# (a dir as single argument) than the usage prints when stdin is not a TTY.\n# The `echo \"\"` is just so that stdin is not a TTY even if you try this line\n# on a real TTY for testing purposes.\necho \"\" | (mkdir -p nix-test-dir-for-gfid_to_path && touch b && $out/libexec/glusterfs/gfind_missing_files/gfid_to_path.py nix-test-dir-for-gfid_to_path)\n$out/share/glusterfs/scripts/eventsdash.py --help\n\n# this gets falsely loaded as module by glusterfind\nrm -r $out/bin/conf.py\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           glusterfs: nix.thunk(() => nix.sel(nixosTests, "glusterfs")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Distributed storage system",
         homepage: "https://www.gluster.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

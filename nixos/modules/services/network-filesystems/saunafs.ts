@@ -74,9 +74,9 @@ export default nix.lambda((args) => (() => {
     })());
     const valueToString = (val) => (nix.asBool(nix.app(nix.sel(lib, "isList"), val)) ? nix.app(nix.sel(lib, "concatStringsSep"), listSep, nix.thunk(() => nix.builtins.map((x) => nix.app(valueToString, x), val))) : (nix.asBool(nix.app(nix.sel(lib, "isBool"), val)) ? (nix.asBool(val) ? "1" : "0") : nix.builtins.toString(val)));
     return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       type: nix.thunk(() => (() => {
-        const valueType = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "types", "oneOf"), nix.thunk(() => nix.concat([nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), valueType))], allowedTypes))), { __proto__: pos$1, description: "Flat key-value file" }));
+        const valueType = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "types", "oneOf"), nix.thunk(() => nix.concat([nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), valueType))], allowedTypes))), { [nix.POS]: pos$1, description: "Flat key-value file" }));
         return nix.app(nix.sel(lib, "types", "attrsOf"), valueType);
       })()),
       generate: (name) => (value) => nix.app(nix.sel(pkgs, "writeText"), name, nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (key) => (val) => nix.str`${key} = ${nix.app(valueToString, val)}`, value))))),
@@ -91,12 +91,12 @@ fi
   const metaloggerCfg = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "sfsmetalogger.cfg", nix.thunk(() => nix.sel(cfg, "metalogger", "settings"))));
   const chunkserverCfg = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "sfschunkserver.cfg", nix.thunk(() => nix.sel(cfg, "chunkserver", "settings"))));
   const systemdService = (name) => (extraConfig) => (configFile) => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     wantedBy: nix.thunk(() => ["multi-user.target"]),
     wants: nix.thunk(() => ["network-online.target"]),
     after: nix.thunk(() => ["network.target", "network-online.target"]),
     serviceConfig: nix.thunk(() => nix.update({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       Type: "forking",
       ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "saunafs")}/bin/sfs${name} -c ${configFile} start`),
       ExecStop: nix.thunk(() => nix.str`${nix.sel(pkgs, "saunafs")}/bin/sfs${name} -c ${configFile} stop`),
@@ -104,39 +104,39 @@ fi
     }, extraConfig)),
   });
   return {
-    __proto__: pos$51,
+    [nix.POS]: pos$51,
     options: nix.thunk(() => ({
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       services: nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         saunafs: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           masterHost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: null,
               description: "IP or hostname name of master host.",
             })))),
           sfsUser: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "saunafs",
               description: "Run daemons as user.",
             })))),
           client: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Saunafs client")),
           })),
           master: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 description: "Enable Saunafs master daemon.\n\nYou need to run `sfsmaster-init` on a freshly installed master server to\ninitialize the `DATA_PATH` directory.\n",
                 default: false,
               })))),
             exports: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -146,20 +146,20 @@ fi
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ \"* / rw,alldirs,admin,maproot=0:0\" ];\n")),
               })))),
             openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 description: "Whether to automatically open the necessary ports in the firewall.",
                 default: false,
               })))),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$12,
+                      [nix.POS]: pos$12,
                       DATA_PATH: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$11,
+                          [nix.POS]: pos$11,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "/var/lib/saunafs/master",
                           description: "Data storage directory.",
@@ -170,17 +170,17 @@ fi
               })))),
           })),
           metalogger: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Saunafs metalogger daemon")),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$17,
+                      [nix.POS]: pos$17,
                       DATA_PATH: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$16,
+                          [nix.POS]: pos$16,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "/var/lib/saunafs/metalogger",
                           description: "Data storage directory",
@@ -191,16 +191,16 @@ fi
               })))),
           })),
           chunkserver: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Saunafs chunkserver daemon")),
             openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 description: "Whether to automatically open the necessary ports in the firewall.",
                 default: false,
               })))),
             hdds: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -210,14 +210,14 @@ fi
                 description: "Mount points to be used by chunkserver for storage (see {manpage}`sfshdd.cfg(5)`).\n\nNote, that these mount points must writeable by the user defined by the saunafs user.\n",
               })))),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$25,
+                    [nix.POS]: pos$25,
                     freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$24,
+                      [nix.POS]: pos$24,
                       DATA_PATH: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$23,
+                          [nix.POS]: pos$23,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "/var/lib/saunafs/chunkserver",
                           description: "Directory for chunck meta data",
@@ -231,34 +231,34 @@ fi
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool(nix.sel(cfg, "client", "enable")) || nix.asBool(nix.sel(cfg, "master", "enable")))) || nix.asBool(nix.sel(cfg, "metalogger", "enable")))) || nix.asBool(nix.sel(cfg, "chunkserver", "enable")))), nix.thunk(() => ({
-        __proto__: pos$50,
+        [nix.POS]: pos$50,
         warnings: nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "sfsUser"), "root")), "Running saunafs services as root is not recommended.")),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           saunafs: nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             master: nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               settings: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "master", "enable")), nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   WORKING_USER: nix.thunk(() => nix.sel(cfg, "sfsUser")),
                   EXPORTS_FILENAME: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "sfsexports.cfg", nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.sel(cfg, "master", "exports")))))))),
                 })))),
             })),
             metalogger: nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               settings: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "metalogger", "enable")), nix.thunk(() => ({
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   WORKING_USER: nix.thunk(() => nix.sel(cfg, "sfsUser")),
                   MASTER_HOST: nix.thunk(() => nix.sel(cfg, "masterHost")),
                 })))),
             })),
             chunkserver: nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               settings: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "chunkserver", "enable")), nix.thunk(() => ({
-                  __proto__: pos$35,
+                  [nix.POS]: pos$35,
                   WORKING_USER: nix.thunk(() => nix.sel(cfg, "sfsUser")),
                   MASTER_HOST: nix.thunk(() => nix.sel(cfg, "masterHost")),
                   HDD_CONF_FILENAME: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "sfshdd.cfg", nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.sel(cfg, "chunkserver", "hdds")))))))),
@@ -267,10 +267,10 @@ fi
           })),
         })),
         users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "sfsUser"), "root")) && nix.asBool((nix.asBool((nix.asBool(nix.sel(cfg, "master", "enable")) || nix.asBool(nix.sel(cfg, "metalogger", "enable")))) || nix.asBool(nix.sel(cfg, "chunkserver", "enable")))))), nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             users: nix.thunk(() => nix.attrsDyn({}, [
               [nix.str`${nix.sel(cfg, "sfsUser")}`, nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 isSystemUser: true,
                 description: "saunafs daemon user",
                 group: "saunafs",
@@ -279,32 +279,32 @@ fi
             groups: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${nix.sel(cfg, "sfsUser")}`, nix.thunk(() => ({}))]])),
           })))),
         environment: nix.thunk(() => ({
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           systemPackages: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "client", "enable")), nix.thunk(() => nix.sel(pkgs, "saunafs"))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "master", "enable")), initTool))),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$43,
+          [nix.POS]: pos$43,
           firewall: nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             allowedTCPPorts: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "master", "openFirewall")), nix.thunk(() => [9419n, 9420n, 9421n])), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "chunkserver", "openFirewall")), 9422n))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$49,
+          [nix.POS]: pos$49,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             rules: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "master", "enable")), nix.thunk(() => nix.str`d ${nix.sel(cfg, "master", "settings", "DATA_PATH")} 0700 ${nix.sel(cfg, "sfsUser")} ${nix.sel(cfg, "sfsUser")} -`)), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "metalogger", "enable")), nix.thunk(() => nix.str`d ${nix.sel(cfg, "metalogger", "settings", "DATA_PATH")} 0700 ${nix.sel(cfg, "sfsUser")} ${nix.sel(cfg, "sfsUser")} -`)), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "chunkserver", "enable")), nix.thunk(() => nix.str`d ${nix.sel(cfg, "chunkserver", "settings", "DATA_PATH")} 0700 ${nix.sel(cfg, "sfsUser")} ${nix.sel(cfg, "sfsUser")} -`))))),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             "sfs-master": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "master", "enable")), nix.thunk(() => nix.app(systemdService, "master", nix.thunk(() => ({
-                  __proto__: pos$45,
+                  [nix.POS]: pos$45,
                   TimeoutStartSec: 1800n,
                   TimeoutStopSec: 1800n,
                   Restart: "no",
                 })), masterCfg)))),
-            "sfs-metalogger": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "metalogger", "enable")), nix.thunk(() => nix.app(systemdService, "metalogger", nix.thunk(() => ({ __proto__: pos$46, Restart: "on-abort" })), metaloggerCfg)))),
-            "sfs-chunkserver": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "chunkserver", "enable")), nix.thunk(() => nix.app(systemdService, "chunkserver", nix.thunk(() => ({ __proto__: pos$47, Restart: "on-abort" })), chunkserverCfg)))),
+            "sfs-metalogger": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "metalogger", "enable")), nix.thunk(() => nix.app(systemdService, "metalogger", nix.thunk(() => ({ [nix.POS]: pos$46, Restart: "on-abort" })), metaloggerCfg)))),
+            "sfs-chunkserver": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "chunkserver", "enable")), nix.thunk(() => nix.app(systemdService, "chunkserver", nix.thunk(() => ({ [nix.POS]: pos$47, Restart: "on-abort" })), chunkserverCfg)))),
           })),
         })),
       })))),

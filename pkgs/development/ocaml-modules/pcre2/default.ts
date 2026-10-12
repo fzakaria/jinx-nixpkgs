@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pcre2 = nix.arg($, "pcre2");
   const version = nix.argOr($, "version", () => "8.0.4");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pcre2",
       version: version,
       minimalOCamlVersion: "4.08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "camlp5",
           repo: "pcre2-ocaml",
           tag: version,
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [dune_configurator]),
       propagatedBuildInputs: nix.thunk(() => [pcre2]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OCaml bindings to PCRE",
         homepage: "https://github.com/camlp5/pcre2-ocaml/",
         changelog: nix.thunk(() => nix.str`https://raw.githubusercontent.com/camlp5/pcre2-ocaml/refs/tags/${version}/CHANGES.md`),

@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const atk = nix.arg($, "atk");
   const fluxbox = nix.arg($, "fluxbox");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fluxboxlauncher",
       version: "0.2.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mothsart",
           repo: "fluxboxlauncher",
           rev: "0.2.1",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       })()),
       postInstall: "install -Dm444 fluxboxlauncher.desktop -t $out/share/applications\ninstall -Dm444 fluxboxlauncher.svg -t $out/share/icons/hicolor/scalable/apps\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Gui editor (gtk) to configure applications launching on a fluxbox session",
         mainProgram: "fluxboxlauncher",
         homepage: "https://github.com/mothsART/fluxboxlauncher",

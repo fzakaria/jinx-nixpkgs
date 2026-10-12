@@ -30,32 +30,32 @@ export default nix.lambda((args) => (() => {
   const snakeOilPrivateKey = nix.thunk(() => nix.attr(from, "snakeOilPrivateKey"));
   const snakeOilPublicKey = nix.thunk(() => nix.attr(from, "snakeOilPublicKey"));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     name: "locate",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "chkno"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       a: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         environment: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [nix.thunk(() => nix.lookup(w, "sshfs"))];
           })()),
         })),
         virtualisation: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           fileSystems: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             "/ssh": nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               device: "alice@b:/",
               fsType: "fuse.sshfs",
               options: nix.thunk(() => [
@@ -69,26 +69,26 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$7,
-          locate: nix.thunk(() => ({ __proto__: pos$6, enable: true, interval: "*:*:0/5" })),
+          [nix.POS]: pos$7,
+          locate: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true, interval: "*:*:0/5" })),
         })),
       })),
       b: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         services: nix.thunk(() => ({
-          __proto__: pos$10,
-          openssh: nix.thunk(() => ({ __proto__: pos$9, enable: true })),
+          [nix.POS]: pos$10,
+          openssh: nix.thunk(() => ({ [nix.POS]: pos$9, enable: true })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           users: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             alice: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               isNormalUser: true,
               openssh: nix.thunk(() => ({
-                __proto__: pos$12,
-                authorizedKeys: nix.thunk(() => ({ __proto__: pos$11, keys: nix.thunk(() => [snakeOilPublicKey]) })),
+                [nix.POS]: pos$12,
+                authorizedKeys: nix.thunk(() => ({ [nix.POS]: pos$11, keys: nix.thunk(() => [snakeOilPublicKey]) })),
               })),
             })),
           })),

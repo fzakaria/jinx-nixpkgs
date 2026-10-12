@@ -13,10 +13,10 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const passthruFun = nix.arg($, "passthruFun");
   return nix.app(callPackage, nix.path(here, "./default.nix"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "2.1.1785763465",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LuaJIT",
           repo: "LuaJIT",
           rev: "1edc3e52b67eaf6ce5f809be8e17d6862594b8bc",

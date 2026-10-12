@@ -34,17 +34,17 @@ export default nix.lambda((args) => (() => {
   const filterUsers = (x) => (nix.asBool(nix.builtins.isString(x)) ? nix.has(nix.sel(config, "users", "users"), nix.key(nix.force(x))) : (nix.asBool(nix.builtins.isInt(x)) ? nix.force(x) : nix.builtins.throw("filterUsers expects string (username) or int (UID)")));
   const uid = (x) => (nix.asBool(nix.builtins.isString(x)) ? nix.sel(config, "users", "users", nix.key(nix.force(x)), "uid") : (nix.asBool(nix.builtins.isInt(x)) ? nix.force(x) : nix.builtins.throw("uid expects string (username) or int (UID)")));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       programs: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         benchexec: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "BenchExec")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "options", "mkPackageOption"), pkgs, "benchexec", nix.thunk(() => ({})))),
           users: nix.thunk(() => nix.app(nix.sel(lib, "options", "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "str")), nix.thunk(() => nix.lookup(w, "int")))));
@@ -66,54 +66,54 @@ For more information, see <https://github.com/sosy-lab/benchexec/blob/3.18/doc/I
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         assertions: nix.thunk(() => nix.concat(nix.builtins.map((user) => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             assertion: nix.thunk(() => nix.has(nix.sel(config, "users", "users"), nix.key(nix.force(user)))),
             message: nix.thunk(() => nix.str`The user '${user}' intends to use BenchExec (via \`${nix.sel(opt, "users")}\`), but is not configured via \`${nix.sel(options, "users", "users")}\`.
 `),
           }), nix.thunk(() => nix.builtins.filter(nix.thunk(() => nix.builtins.isString), nix.thunk(() => nix.sel(cfg, "users"))))), nix.builtins.map((id) => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             assertion: nix.thunk(() => nix.sel(config, "users", "mutableUsers")),
             message: nix.thunk(() => nix.str`The user with UID '${id}' intends to use BenchExec (via \`${nix.sel(opt, "users")}\`), but mutable users are disabled via \`${nix.sel(options, "users", "mutableUsers")}\`.
 `),
           }), nix.thunk(() => nix.builtins.filter(nix.thunk(() => nix.builtins.isInt), nix.thunk(() => nix.sel(cfg, "users"))))))),
         environment: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           services: nix.thunk(() => nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((user) => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 name: nix.thunk(() => nix.str`user@${nix.builtins.toString(nix.thunk(() => nix.app(uid, user)))}`),
                 value: nix.thunk(() => ({
-                  __proto__: pos$9,
-                  serviceConfig: nix.thunk(() => ({ __proto__: pos$8, Delegate: "yes" })),
+                  [nix.POS]: pos$9,
+                  serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$8, Delegate: "yes" })),
                   overrideStrategy: "asDropin",
                 })),
               }), nix.thunk(() => nix.builtins.filter(filterUsers, nix.thunk(() => nix.sel(cfg, "users")))))))),
         })),
         virtualisation: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           lxc: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             lxcfs: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
             })),
           })),
         })),
         programs: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           "cpu-energy-meter": nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "lorenzleutgeb"))];

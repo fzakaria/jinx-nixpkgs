@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const libpulseaudio = nix.arg($, "libpulseaudio");
   const libx11 = nix.arg($, "libx11");
   const aprilAsr = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "april-asr",
       owner: "abb128",
       repo: "april-asr",
@@ -35,18 +35,18 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-/cOZ2EcZu/Br9v0ComxnOegcEtlC9e8FYt3XHfah7mE=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "livecaptions",
       version: "0.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "abb128",
           repo: "LiveCaptions",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-bLWJQgZopuQ0t2pexazUTj1+C2weRMrL3PUhIHZ0W5M=",
         })))),
       model: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name: "april-english-dev-01110_en.april",
           url: "https://april.sapples.net/april-english-dev-01110_en.april",
           hash: "sha256-d+uV0PpPdwijfoaMImUwHubELcsl5jymPuo9nLrbwfM=",
@@ -69,7 +69,7 @@ ln -s ${aprilAsr} source/subprojects/april-asr
 )
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Linux Desktop application that provides live captioning",
         homepage: "https://github.com/abb128/LiveCaptions",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

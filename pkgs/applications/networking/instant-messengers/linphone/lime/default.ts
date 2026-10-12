@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const mkLinphoneDerivation = nix.arg($, "mkLinphoneDerivation");
   return nix.app(mkLinphoneDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "lime",
       buildInputs: nix.thunk(() => [bctoolbox, belle_sip, bc_soci, sqlite]),
       cmakeFlags: nix.thunk(() => ["-DENABLE_UNIT_TESTS=NO"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "End-to-end encryption library for instant messaging. Part of the Linphone project",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
       })),

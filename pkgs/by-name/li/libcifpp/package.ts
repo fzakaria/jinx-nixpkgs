@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const eigen = nix.arg($, "eigen");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libcifpp",
       version: "8.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PDB-REDO",
           repo: "libcifpp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [boost, eigen, zlib]),
       postInstall: "mkdir -p $out/share/libcifpp\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Manipulate mmCIF and PDB files",
         homepage: "https://github.com/PDB-REDO/libcifpp",
         changelog: nix.thunk(() => nix.str`https://github.com/PDB-REDO/libcifpp/releases/tag/v${nix.sel(finalAttrs, "version")}`),

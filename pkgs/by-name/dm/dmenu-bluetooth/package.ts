@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const dmenu = nix.arg($, "dmenu");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dmenu-bluetooth",
       version: "0-unstable-2023-07-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Layerex",
           repo: "dmenu-bluetooth",
           rev: "96e2e3e1dd7ea2d2ab0c20bf21746aba8d70cc46",
@@ -39,11 +39,11 @@ wrapProgram $out/bin/dmenu-bluetooth \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Script that generates a dmenu menu that uses bluetoothctl to connect to bluetooth devices and display status info",
         mainProgram: "dmenu-bluetooth",
         homepage: "https://github.com/Layerex/dmenu-bluetooth",

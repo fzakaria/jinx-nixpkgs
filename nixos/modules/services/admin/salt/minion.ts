@@ -26,23 +26,23 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "services", "salt", "minion"));
   const fullConfig = nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       default_include: "/var/lib/salt/minion.d/*.conf",
       pki_dir: "/var/lib/salt/pki/minion",
     })), nix.thunk(() => nix.sel(cfg, "configuration"))));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         salt: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           minion: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Salt configuration management system minion service")),
             configuration: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(lib, "types", "attrs")),
                 default: nix.thunk(() => ({})),
                 description: "Salt minion configuration as Nix attribute set.\nSee <https://docs.saltstack.com/en/latest/ref/configuration/minion.html>\nfor details.\n",
@@ -52,13 +52,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         environment: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           etc: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             "salt/minion": nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "minion", nix.thunk(() => nix.builtins.toJSON(fullConfig)))),
             })),
           })),
@@ -68,11 +68,11 @@ export default nix.lambda((args) => (() => {
           })()),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             "salt-minion": nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "Salt Minion",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
                 return [nix.thunk(() => nix.lookup(w, "util-linux"))];
               })()),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "salt")}/bin/salt-minion`),
                 LimitNOFILE: 8192n,
                 Type: "notify",

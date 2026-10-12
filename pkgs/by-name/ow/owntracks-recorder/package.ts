@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const owntracks_recorder = nix.arg($, "owntracks-recorder");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "owntracks-recorder",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "owntracks",
           repo: "recorder",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,11 +51,11 @@ export default nix.lambda((args) => (() => {
       configurePhase: "runHook preConfigure\n\ncp config.mk.in config.mk\n\nsubstituteInPlace config.mk \\\n  --replace \"INSTALLDIR = /usr/local\" \"INSTALLDIR = $out\" \\\n  --replace \"DOCROOT = /var/spool/owntracks/recorder/htdocs\" \"DOCROOT = $out/htdocs\" \\\n  --replace \"WITH_LUA ?= no\" \"WITH_LUA ?= yes\" \\\n  --replace \"WITH_ENCRYPT ?= no\" \"WITH_ENCRYPT ?= yes\"\n\nrunHook postConfigure\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\n\ninstall -m 0755 ot-recorder $out/bin\ninstall -m 0755 ocat $out/bin\n\ncp -r docroot $out/htdocs\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: owntracks_recorder,
               command: "ocat --version",
               version: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Store and access data published by OwnTracks apps",
         homepage: "https://github.com/owntracks/recorder",
         changelog: nix.thunk(() => nix.str`https://github.com/owntracks/recorder/releases/tag/${nix.sel(finalAttrs, "version")}`),

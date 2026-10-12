@@ -17,22 +17,22 @@ export default nix.lambda((args) => (() => {
   const oniguruma = nix.arg($, "oniguruma");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "openapi-tui",
       version: "0.10.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zaghaghi",
           repo: "openapi-tui",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-rC0lfWZpiiAAShyVDqr1gKTeWmWC+gVp4UmL96Y81mE=",
         })))),
       cargoHash: "sha256-911ARjYvTNqLVVUWxATbtiKXOC9AqalFvDvp/qAef1Q=",
-      env: nix.thunk(() => ({ __proto__: pos$2, RUSTONIG_SYSTEM_LIBONIG: true, OPENSSL_NO_VENDOR: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTONIG_SYSTEM_LIBONIG: true, OPENSSL_NO_VENDOR: true })),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [openssl, oniguruma]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Terminal UI to list, browse and run APIs defined with openapi spec",
         homepage: "https://github.com/zaghaghi/openapi-tui",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

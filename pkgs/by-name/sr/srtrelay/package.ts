@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const srt = nix.arg($, "srt");
   const ffmpeg = nix.arg($, "ffmpeg");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "srtrelay",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "voc",
           repo: "srtrelay",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [srt]),
       nativeCheckInputs: nix.thunk(() => [ffmpeg]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Streaming-Relay for the SRT-protocol",
         homepage: "https://github.com/voc/srtrelay",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

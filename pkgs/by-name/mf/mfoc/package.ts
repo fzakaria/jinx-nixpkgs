@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libnfc = nix.arg($, "libnfc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mfoc",
       version: "0.10.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nfc-tools",
           repo: "mfoc",
           rev: nix.thunk(() => nix.str`mfoc-${nix.sel(finalAttrs, "version")}`),
@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/nfc-tools/mfoc/commit/f13efb0a6deb1d97ba945d555a6a5d6be89b593f.patch",
             sha256: "109gqzp8rdsjvj0nra686vy0dpd2bl6q5v9m4v98cpxkbz496450",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/nfc-tools/mfoc/commit/00eae36f891bc4580103e3b54f0bb5228af2cdef.patch",
             sha256: "1w56aj96g776f37j53jmf3hk21x4mqik3l2bmghrdp8drixc8bzk",
           })))),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => [libnfc]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Mifare Classic Offline Cracker",
         mainProgram: "mfoc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

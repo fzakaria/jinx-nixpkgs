@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const buildFishPlugin = nix.arg($, "buildFishPlugin");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildFishPlugin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bobthefisher",
       version: "0-unstable-2023-10-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Scrumplex",
           repo: "bobthefisher",
           rev: "f4179a14b087c7fbfc2e892da429adad40a39e44",
           sha256: "sha256-l1DHSZa40BX2/4GCjm5E53UOeFEnMioWbZtCW14WX6k=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Powerline-style, Git-aware fish theme optimized for awesome (fork of bobthefish)",
         homepage: "https://github.com/Scrumplex/bobthefisher",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

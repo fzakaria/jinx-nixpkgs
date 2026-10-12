@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const texinfo = nix.arg($, "texinfo");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "guile-goblins",
       version: "0.18.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://spritely.institute/files/releases/guile-goblins/guile-goblins-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-KrgWQOV9PpfoSi0KcxDrZdzxR1AD9PODpSfhylEART4=",
         })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["GUILE_AUTO_COMPILE=0"]),
       doCheck: nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64"))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Spritely Goblins for Guile",
         homepage: "https://spritely.institute/goblins/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

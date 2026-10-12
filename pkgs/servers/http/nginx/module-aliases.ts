@@ -5,7 +5,7 @@ const here = nix.here(import.meta.url);
 const pos$1 = nix.positions(here + "/module-aliases.nix", [["auth-a2aclr", 6, 3], ["fastcgi-cache-purge", 7, 3], ["fluentd", 8, 3], ["http_proxy_connect_module_v24", 9, 3], ["http_proxy_connect_module_v25", 10, 3], ["modsecurity-nginx", 11, 3], ["naxsi", 12, 3], ["ngx_aws_auth", 13, 3], ["opentracing", 14, 3], ["pagespeed", 15, 3], ["statsd", 16, 3]]);
 
 export default (self) => ({
-  __proto__: pos$1,
+  [nix.POS]: pos$1,
   "auth-a2aclr": nix.thunk(() => nix.builtins.throw("auth-a2aclr was removed because its upstream is unmaintained and its pinned arpa2common dependency no longer builds")),
   "fastcgi-cache-purge": nix.thunk(() => nix.builtins.throw("fastcgi-cache-purge was renamed to cache-purge")),
   fluentd: nix.thunk(() => nix.builtins.throw("fluentd was removed due to lack of maintenance")),

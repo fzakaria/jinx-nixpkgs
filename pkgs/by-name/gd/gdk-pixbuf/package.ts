@@ -36,12 +36,12 @@ export default nix.lambda((args) => (() => {
   const withIntrospection = nix.argOr($, "withIntrospection", () => (nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), gobject_introspection)) && nix.asBool(nix.app(nix.sel(stdenv, "hostPlatform", "emulatorAvailable"), buildPackages))));
   const gobject_introspection = nix.arg($, "gobject-introspection");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "gdk-pixbuf",
       version: "2.44.8",
       outputs: nix.thunk(() => nix.concat(["out", "dev", "man"], nix.concat(nix.app(nix.sel(lib, "optional"), withIntrospection, "devdoc"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), "installedTests")))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gdk-pixbuf/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gdk-pixbuf-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-kZ9SlRKWGhLoHNS0tGakjDkzRp5/mjEMZRPNT7JSujw=",
         })))),
@@ -75,10 +75,10 @@ ${nix.app(nix.sel(stdenv, "hostPlatform", "emulator"), buildPackages)} $dev/bin/
       setupHook: nix.path(here, "./setup-hook.sh"),
       separateDebugInfo: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: "gdk-pixbuf", versionPolicy: "odd-unstable" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gdk-pixbuf", versionPolicy: "odd-unstable" })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           installedTests: nix.thunk(() => nix.sel(nixosTests, "installed-tests", "gdk-pixbuf")),
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
@@ -86,7 +86,7 @@ ${nix.app(nix.sel(stdenv, "hostPlatform", "emulator"), buildPackages)} $dev/bin/
         moduleDir: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "passthru", "binaryDir")}/loaders`),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Library for image loading and manipulation",
         homepage: "https://gitlab.gnome.org/GNOME/gdk-pixbuf",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

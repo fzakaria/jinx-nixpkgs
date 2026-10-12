@@ -22,30 +22,30 @@ export default nix.lambda((args) => (() => {
   const mkEnableOption = nix.thunk(() => nix.attr(lib, "mkEnableOption"));
   const mkIf = nix.thunk(() => nix.attr(lib, "mkIf"));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       services: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "systembus-notify": nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(mkEnableOption, "System bus notification support\n\nWARNING: enabling this option (while convenient) should *not* be done on a\nmachine where you do not trust the other users as it allows any other\nlocal user to DoS your session by spamming notifications\n")),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         systemd: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           packages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [nix.thunk(() => nix.lookup(w, "systembus-notify"))];
           })()),
           user: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             services: nix.thunk(() => ({
-              __proto__: pos$5,
-              "systembus-notify": nix.thunk(() => ({ __proto__: pos$4, wantedBy: nix.thunk(() => ["graphical-session.target"]) })),
+              [nix.POS]: pos$5,
+              "systembus-notify": nix.thunk(() => ({ [nix.POS]: pos$4, wantedBy: nix.thunk(() => ["graphical-session.target"]) })),
             })),
           })),
         })),

@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const ninja = nix.arg($, "ninja");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rp",
       version: "2.1.4",
       nativeBuildInputs: nix.thunk(() => [cmake, ninja]),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [nix.thunk(() => nix.sel(stdenv, "cc", "libc", "static"))]))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "0vercl0k",
           repo: "rp",
           rev: "a60f8117443e421bb572df890341b5a0f982c267",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
 cp rp-${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "osx" : "lin")} $out/bin/rp
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fast C++ ROP gadget finder for PE/ELF/Mach-O x86/x64/ARM/ARM64 binaries",
         homepage: "https://github.com/0vercl0k/rp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

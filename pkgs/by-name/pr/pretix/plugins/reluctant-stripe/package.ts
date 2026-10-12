@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const pretix_plugin_build = nix.arg($, "pretix-plugin-build");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pretix-reluctant-stripe",
       version: "0-unstable-2023-08-03",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "metarheinmain",
           repo: "pretix-reluctant-stripe",
           rev: "ae2d770442553e5fc00815ff4521a8fd2c113fd9",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["pretix_reluctant_stripe"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Nudge users to not use Stripe as a payment provider",
         homepage: "https://github.com/metarheinmain/pretix-reluctant-stripe",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

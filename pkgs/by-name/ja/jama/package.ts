@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "jama";
       const version = "1.2.5";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://math.nist.gov/tnt/jama125.zip",
           sha256: "031ns526fvi2nv7jzzv02i7i5sjcyr0gj884i3an67qhsx8vyckl",
         }))));
@@ -29,14 +29,14 @@ unzip "$src"
 `);
       const installPhase = "mkdir -p $out/include\ncp *.h $out/include\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://math.nist.gov/tnt/",
         description: "JAMA/C++ Linear Algebra Package: Java-like matrix C++ templates",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

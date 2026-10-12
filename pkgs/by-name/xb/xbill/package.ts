@@ -25,28 +25,28 @@ export default nix.lambda((args) => (() => {
   const motif = nix.arg($, "motif");
   const imagemagick = nix.arg($, "imagemagick");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "xbill",
       version: "2.1",
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, copyDesktopItems, imagemagick]),
       buildInputs: nix.thunk(() => [libx11, libxpm, libxt, motif]),
-      env: nix.thunk(() => ({ __proto__: pos$1, NIX_CFLAGS_LINK: "-lXpm" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$1, NIX_CFLAGS_LINK: "-lXpm" })),
       configureFlags: nix.thunk(() => ["--with-x", "--enable-motif"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`http://www.xbill.org/download/xbill-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Dv3/8c4t9wt6FWActIjNey65GNIdeOh3vXc/ESlFYI0=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://raw.githubusercontent.com/gentoo/gentoo/7c2c329a5a80781a9aaca24221675a0db66fd244/games-arcade/xbill/files/xbill-2.1-clang16.patch",
             hash: "sha256-Eg8qbSOdUoENcYruH6hSVIHcORkJeP8FXvp09cj/IXA=",
           })))),
       ]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "xbill",
             exec: "xbill",
             icon: "xbill",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       postInstallCheck: "$out/bin/xbill --version\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Protect a computer network from getting infected",
         homepage: "http://www.xbill.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl1Only")),

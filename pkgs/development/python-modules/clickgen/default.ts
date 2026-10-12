@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const python = nix.arg($, "python");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "clickgen",
       version: "2.2.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ful1e5",
           repo: "clickgen",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ cp -R src/clickgen/scripts $out/${nix.sel(python, "sitePackages")}/clickgen/scri
 `),
       pythonImportsCheck: nix.thunk(() => ["clickgen"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/ful1e5/clickgen",
         description: "Hassle-free cursor building toolbox",
         longDescription: "clickgen is API for building X11 and Windows Cursors from\n.png files. clickgen is using anicursorgen and xcursorgen under the hood.\n",

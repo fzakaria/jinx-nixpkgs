@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.9.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-Oa2eueG5NdaDj0s67k1ucttl31YC9v7amY27T+jeCxk=",
@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const pythonRemoveDeps = nix.thunk(() => ["fixtures"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Set of extensions to the Python standard library's unit testing framework",
         homepage: "https://github.com/testing-cabal/testtools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

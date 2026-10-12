@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const libogg = nix.argOr($, "libogg", () => null);
   const prePatch = nix.argOr($, "prePatch", () => "");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "celt",
       version: version,
       src: src,
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([], nix.app(nix.sel(lib, "optional"), liboggSupport, libogg))),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Ultra-low delay audio codec",
         homepage: "https://gitlab.xiph.org/xiph/celt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

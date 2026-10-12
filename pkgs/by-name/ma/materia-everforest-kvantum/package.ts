@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "materia-everforest-kvantum",
       version: "0-unstable-2024-01-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "binEpilo",
           repo: "materia-everforest-kvantum",
           rev: "391eb1d917dab900dc1ef16ffdff1a4546308ee4",
@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/Kvantum\ncp -a MateriaEverforestDark $out/share/Kvantum\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Everforest theme for Kvantum",
         homepage: "https://github.com/binEpilo/materia-everforest-kvantum",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

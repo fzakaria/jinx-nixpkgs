@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const pname = "tiktoken";
   const version = "0.12.0";
   const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: pname,
       version: version,
       hash: "sha256-sYun7isJOGOXj8sU90s3B83I1NTTg2hTzn7GB3ITmTE=",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
   const postPatch = nix.thunk(() => nix.str`cp ${nix.path(here, "./Cargo.lock")} Cargo.lock
 `);
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: src,
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       pyproject: true,
       "build-system": nix.thunk(() => [setuptools, setuptools_rust]),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["tiktoken"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fast BPE tokeniser for use with OpenAI's models",
         homepage: "https://github.com/openai/tiktoken",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

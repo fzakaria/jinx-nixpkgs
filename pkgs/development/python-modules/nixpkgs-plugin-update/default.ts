@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const ruff = nix.arg($, "ruff");
   const mypy = nix.arg($, "mypy");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nixpkgs-plugin-update",
       version: "0.1.0",
       pyproject: true,
@@ -27,9 +27,9 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [gitpython, packaging]),
       nativeCheckInputs: nix.thunk(() => [ruff, mypy]),
       postInstallCheck: "ruff check\nmypy\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$1, updateScript: null })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, updateScript: null })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for updating plugin collections in Nixpkgs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {

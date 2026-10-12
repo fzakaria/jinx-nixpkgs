@@ -41,30 +41,30 @@ export default nix.lambda((args) => (() => {
     const config = nix.arg($_1, "config");
     const pkgs = nix.arg($_1, "pkgs");
     return {
-      __proto__: pos$11,
-      virtualisation: nix.thunk(() => ({ __proto__: pos$1, useBootLoader: true, useEFIBoot: true })),
+      [nix.POS]: pos$11,
+      virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, useBootLoader: true, useEFIBoot: true })),
       system: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         boot: nix.thunk(() => ({
-          __proto__: pos$3,
-          extraInitrd: nix.thunk(() => ({ __proto__: pos$2, paths: nix.thunk(() => [extraInitrdPath]) })),
+          [nix.POS]: pos$3,
+          extraInitrd: nix.thunk(() => ({ [nix.POS]: pos$2, paths: nix.thunk(() => [extraInitrdPath]) })),
         })),
       })),
       boot: nix.thunk(() => ({
-        __proto__: pos$10,
-        loader: nix.thunk(() => ({ __proto__: pos$5, timeout: 2n })),
+        [nix.POS]: pos$10,
+        loader: nix.thunk(() => ({ [nix.POS]: pos$5, timeout: 2n })),
         initrd: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           systemd: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             mounts: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 what: "/canary.txt",
                 where: "/sysroot/run/canary.txt",
                 type: "none",
                 options: "bind",
-                unitConfig: nix.thunk(() => ({ __proto__: pos$6, DefaultDependencies: false })),
+                unitConfig: nix.thunk(() => ({ [nix.POS]: pos$6, DefaultDependencies: false })),
                 requiredBy: nix.thunk(() => ["initrd-fs.target"]),
                 before: nix.thunk(() => ["initrd-fs.target"]),
               })),
@@ -76,32 +76,32 @@ export default nix.lambda((args) => (() => {
   })(), formals$2);
   const extraInitrdPath = "custom.cpio";
   const canaryCpio = (pkgs) => nix.app(nix.sel(pkgs, "runCommand"), "canary.cpio", nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "cpio"))]),
     })), "echo canary > canary.txt\nfind . -print0 | cpio --null -o --format=newc > $out\n");
   const testScript = "machine.wait_for_unit(\"multi-user.target\")\n\n# Check that the extra cpio archive is on the ESP\nmachine.succeed(\"test -e /boot/custom.cpio\")\n\n# Check that the initrd that we booted with contained the file from\n# the extra initrd and our initrd mount unit bound it into sysroot\nassert machine.succeed(\"cat /run/canary.txt\").strip() == \"canary\"\n";
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     "systemd-boot": nix.thunk(() => nix.app(runTest, nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           name: "systemd-boot-extra-initrd",
           nodes: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             machine: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$4);
               const config = nix.arg($_2, "config");
               return {
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 imports: nix.thunk(() => [common]),
                 boot: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   loader: nix.thunk(() => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     "systemd-boot": nix.thunk(() => ({
-                      __proto__: pos$13,
+                      [nix.POS]: pos$13,
                       enable: true,
                       extraInstallCommands: nix.thunk(() => nix.str`cp ${nix.app(canaryCpio, pkgs)} ${nix.sel(config, "boot", "loader", "efi", "efiSysMountPoint")}/${extraInitrdPath}
 `),
@@ -115,23 +115,23 @@ export default nix.lambda((args) => (() => {
         };
       })(), formals$3))),
     limine: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         name: "limine-extra-initrd",
         nodes: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           machine: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$5);
             const pkgs = nix.arg($_1, "pkgs");
             const config = nix.arg($_1, "config");
             return {
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               imports: nix.thunk(() => [common]),
               boot: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 loader: nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   limine: nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     enable: true,
                     efiSupport: true,
                     enableEditor: true,

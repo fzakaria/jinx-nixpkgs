@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "everest-mons",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "mons",
           hash: "sha256-E1yBTwZ4T2C3sXoLGz0kAcvas0q8tO6Aaiz3SHrT4ZE=",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       })()),
       preCheck: "export HOME=$TMPDIR\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://mons.coloursofnoise.ca/",
         description: "Commandline Everest installer and mod manager for Celeste",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

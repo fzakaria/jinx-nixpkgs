@@ -63,9 +63,9 @@ export default nix.lambda((args) => (() => {
   const bool = (b) => (nix.asBool((nix.asBool(!nix.eq(b, null)) && nix.asBool(b))) ? "1" : "0");
   const optionalSetting = (s) => (setting) => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(s, null)), nix.thunk(() => nix.str`${setting} ${s}`));
   const lookup = (attrs) => (key) => (default$) => (nix.asBool(nix.has(attrs, "key")) ? nix.sel(attrs, nix.key(nix.str`${key}`)) : nix.force(default$));
-  const inactivePenaltyOptions = nix.thunk(() => ({ __proto__: pos$1, spectator: "1", "spectator/kick": "2", kick: "3" }));
-  const skillLevelOptions = nix.thunk(() => ({ __proto__: pos$2, casual: "0", normal: "1", competitive: "2" }));
-  const tournamentModeOptions = nix.thunk(() => ({ __proto__: pos$3, disable: "0", enable: "1", restrictSpectators: "2" }));
+  const inactivePenaltyOptions = nix.thunk(() => ({ [nix.POS]: pos$1, spectator: "1", "spectator/kick": "2", kick: "3" }));
+  const skillLevelOptions = nix.thunk(() => ({ [nix.POS]: pos$2, casual: "0", normal: "1", competitive: "2" }));
+  const tournamentModeOptions = nix.thunk(() => ({ [nix.POS]: pos$3, disable: "0", enable: "1", restrictSpectators: "2" }));
   const teeworldsConf = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "teeworlds.cfg", nix.thunk(() => nix.str`sv_port ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}
 sv_register ${nix.app(bool, nix.thunk(() => nix.sel(cfg, "register")))}
 sv_name ${nix.sel(cfg, "name")}
@@ -128,221 +128,221 @@ sv_vote_kick_min ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "game", "v
 ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.sel(cfg, "extraOptions")))}
 `)));
   return {
-    __proto__: pos$49,
+    [nix.POS]: pos$49,
     options: nix.thunk(() => ({
-      __proto__: pos$41,
+      [nix.POS]: pos$41,
       services: nix.thunk(() => ({
-        __proto__: pos$40,
+        [nix.POS]: pos$40,
         teeworlds: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Teeworlds Server")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "teeworlds-server", nix.thunk(() => ({})))),
           openPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to open firewall ports for Teeworlds.",
             })))),
           name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "unnamed server",
               description: "Name of the server.\n",
             })))),
           register: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               example: true,
               default: false,
               description: "Whether the server registers as a public server in the global server list. This is disabled by default for privacy reasons.\n",
             })))),
           motd: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "The server's message of the day text.\n",
             })))),
           password: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "Password to connect to the server.\n",
             })))),
           rconPassword: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "Password to access the remote console. If not set, a randomly generated one is displayed in the server log.\n",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 8303n,
               description: "Port the server will listen on.\n",
             })))),
           extraOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "Extra configuration lines for the {file}`teeworlds.cfg`. See [Teeworlds Documentation](https://www.teeworlds.com/?page=docs&wiki=server_settings).\n",
               example: nix.thunk(() => ["sv_map dm1", "sv_gametype dm"]),
             })))),
           server: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             bindAddr: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 description: "The address the server will bind to.\n",
               })))),
             enableHighBandwidth: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to enable high bandwidth mode on LAN servers. This will double the amount of bandwidth required for running the server.\n",
               })))),
             hostName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 description: "Hostname for the server.\n",
               })))),
             inactivePenalty: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["spectator", "spectator/kick", "kick"]))),
                 example: "spectator",
                 default: "spectator/kick",
                 description: "Specify what to do when a client goes inactive (see [](#opt-services.teeworlds.server.inactiveTime)).\n\n- `spectator`: send the client into spectator mode\n\n- `spectator/kick`: send the client into a free spectator slot, otherwise kick the client\n\n- `kick`: kick the client\n",
               })))),
             kickInactiveSpectators: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to kick inactive spectators.\n",
               })))),
             inactiveTime: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
                 default: 3n,
                 description: "The amount of minutes a client has to idle before it is considered inactive.\n",
               })))),
             maxClients: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
                 default: 12n,
                 description: "The maximum amount of clients that can be connected to the server at the same time.\n",
               })))),
             maxClientsPerIP: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
                 default: 12n,
                 description: "The maximum amount of clients with the same IP address that can be connected to the server at the same time.\n",
               })))),
             skillLevel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["casual", "normal", "competitive"]))),
                 default: "normal",
                 description: "The skill level shown in the server browser.\n",
               })))),
             enableSpamProtection: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Whether to enable chat spam protection.\n",
               })))),
           })),
           game: nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             gameType: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 example: "ctf",
                 default: "dm",
                 description: "The game type to use on the server.\n\nThe default gametypes are `dm`, `tdm`, `ctf`, `lms`, and `lts`.\n",
               })))),
             map: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 example: "ctf5",
                 default: "dm1",
                 description: "The map to use on the server.\n",
               })))),
             swapTeams: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Whether to swap teams each round.\n",
               })))),
             enableReadyMode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to enable \"ready mode\"; where players can pause/unpause the game\nand start the game in warmup, using their ready state.\n",
               })))),
             playerSlots: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
                 default: 8n,
                 description: "The amount of slots to reserve for players (as opposed to spectators).\n",
               })))),
             enablePowerups: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Whether to allow powerups such as the ninja.\n",
               })))),
             scoreLimit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
                 example: 400n,
                 default: 20n,
                 description: "The score limit needed to win a round.\n",
               })))),
             restrictSpectators: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to restrict access to information such as health, ammo and armour in spectator mode.\n",
               })))),
             enableTeamDamage: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to enable team damage; whether to allow team mates to inflict damage on one another.\n",
               })))),
             timeLimit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
                 default: 0n,
                 description: "Time limit of the game. In cases of equal points, there will be sudden death.\nSetting this to 0 disables a time limit.\n",
               })))),
             tournamentMode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["disable", "enable", "restrictSpectators"]))),
                 default: "disable",
                 description: "Whether to enable tournament mode. In tournament mode, players join as spectators.\nIf this is set to `restrictSpectators`, tournament mode is enabled but spectator chat is restricted.\n",
               })))),
             enableVoteKick: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Whether to enable voting to kick players.\n",
               })))),
             voteKickBanTime: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
                 default: 5n,
                 description: "The amount of minutes that a player is banned for if they get kicked by a vote.\n",
               })))),
             voteKickMinimumPlayers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
                 default: 5n,
                 description: "The minimum amount of players required to start a kick vote.\n",
               })))),
           })),
           environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               example: "/var/lib/teeworlds/teeworlds.env",
@@ -352,25 +352,25 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.sel(cfg, "
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$48,
+        [nix.POS]: pos$48,
         networking: nix.thunk(() => ({
-          __proto__: pos$43,
+          [nix.POS]: pos$43,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openPorts")), nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               allowedUDPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]),
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$47,
+          [nix.POS]: pos$47,
           services: nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             teeworlds: nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               description: "Teeworlds Server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 DynamicUser: true,
                 RuntimeDirectory: "teeworlds",
                 RuntimeDirectoryMode: "0700",

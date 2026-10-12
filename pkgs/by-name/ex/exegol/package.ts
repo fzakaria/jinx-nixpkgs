@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const xhost = nix.arg($, "xhost");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "exegol",
       version: "5.1.13",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ThePorgs",
           repo: "Exegol",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["exegol"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fully featured and community-driven hacking environment",
         longDescription: "Exegol is a community-driven hacking environment, powerful and yet\nsimple enough to be used by anyone in day to day engagements. Exegol is\nthe best solution to deploy powerful hacking environments securely,\neasily, professionally. Exegol fits pentesters, CTF players, bug bounty\nhunters, researchers, beginners and advanced users, defenders, from\nstylish macOS users and corporate Windows pros to UNIX-like power users.\n",
         homepage: "https://github.com/ThePorgs/Exegol",
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
           return [
             nix.thunk(() => nix.lookup(w_2, "gpl3Only")),
             nix.thunk(() => nix.app(nix.lookup(w_2, "mkLicense"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 shortName: "esl10",
                 fullName: "Exegol Software License (ESL) - Version 1.0",
                 url: "https://docs.exegol.com/legal/software-license",

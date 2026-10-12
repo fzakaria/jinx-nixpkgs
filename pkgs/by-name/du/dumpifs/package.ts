@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dumpifs",
       version: "0-unstable-2020-05-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "askac",
           repo: "dumpifs",
           rev: "b7bac90e8312eca2796f2003a52791899eb8dcd9",
@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./package.patch")]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 dumpifs exMifsLz4 exMifsLzo fixdecifs fixencifs uuu zzz -t $out/bin\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool for those who are interested in hacking MIB2 firmware",
         homepage: "https://github.com/askac/dumpifs",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

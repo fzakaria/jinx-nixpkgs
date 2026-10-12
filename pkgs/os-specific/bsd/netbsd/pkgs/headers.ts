@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const sys_headers = nix.arg($, "sys-headers");
   const libpthread_headers = nix.arg($, "libpthread-headers");
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "netbsd-headers-9.2",
       paths: nix.thunk(() => [include, sys_headers, libpthread_headers]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "netbsd")),
       })),
     })));

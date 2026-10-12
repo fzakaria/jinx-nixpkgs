@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const re2 = nix.arg($, "re2");
   const zlib = nix.arg($, "zlib");
   return nix.app(mkNginxPlugin, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "otel",
       version: "0.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nginxinc",
           repo: "nginx-otel",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,15 +54,15 @@ export default nix.lambda((args) => (() => {
       preConfigure: nix.thunk(() => nix.str`export NGX_OTEL_CMAKE_OPTS="-DNGX_OTEL_GRPC=package -DNGX_OTEL_SDK=package -DNGX_OTEL_PROTO_DIR=${nix.sel(opentelemetry_cpp, "opentelemetry-proto")} -DCMAKE_LIBRARY_OUTPUT_DIRECTORY=$out/modules"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        forNginx: nix.thunk(() => ({ __proto__: pos$2, dontUseCmakeConfigure: true })),
+        [nix.POS]: pos$4,
+        forNginx: nix.thunk(() => ({ [nix.POS]: pos$2, dontUseCmakeConfigure: true })),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "nginx-otel": nix.thunk(() => nix.attr(nixosTests, "nginx-otel")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "OpenTelemetry support for nginx",
         homepage: "https://github.com/nginxinc/nginx-otel",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

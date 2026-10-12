@@ -35,12 +35,12 @@ export default nix.thunk(() => (() => {
     const pname = "mes";
     const version = "0.27.1";
     const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: nix.thunk(() => nix.str`mirror://gnu/mes/mes-${version}.tar.gz`),
         hash: "sha256-GDpA6kfqSfih470bnRLmdjdNZNY7x557wa59Zz398l0=",
       }))));
-    const nyacc = nix.thunk(() => nix.app(callPackage, nix.path(here, "./nyacc.nix"), nix.thunk(() => ({ __proto__: pos$2, nyacc: nyacc }))));
-    const intptr = nix.thunk(() => nix.sel({ __proto__: pos$3, "i686-linux": "int", "x86_64-linux": "long" }, nix.key(nix.sel(buildPlatform, "system"))));
+    const nyacc = nix.thunk(() => nix.app(callPackage, nix.path(here, "./nyacc.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, nyacc: nyacc }))));
+    const intptr = nix.thunk(() => nix.sel({ [nix.POS]: pos$3, "i686-linux": "int", "x86_64-linux": "long" }, nix.key(nix.sel(buildPlatform, "system"))));
     const uintptr = nix.thunk(() => nix.str`unsigned ${intptr}`);
     const config_h = nix.thunk(() => nix.builtins.toFile("config.h", nix.thunk(() => nix.str`#ifndef _MES_CONFIG_H
 #undef SYSTEM_LIBC
@@ -59,7 +59,7 @@ typedef ${intptr} ptrdiff_t;
 #endif
 #endif
 `)));
-    const arch = nix.thunk(() => nix.sel({ __proto__: pos$4, "i686-linux": "x86", "x86_64-linux": "x86_64" }, nix.key(nix.sel(buildPlatform, "system"))));
+    const arch = nix.thunk(() => nix.sel({ [nix.POS]: pos$4, "i686-linux": "x86", "x86_64-linux": "x86_64" }, nix.key(nix.sel(buildPlatform, "system"))));
     const sources = nix.thunk(() => nix.sel(sourcesJson, nix.key(nix.str`${arch}.linux.mescc`)));
     const libc_mini_SOURCES = nix.thunk(() => nix.attr(sources, "libc_mini_SOURCES"));
     const libmescc_SOURCES = nix.thunk(() => nix.attr(sources, "libmescc_SOURCES"));
@@ -68,14 +68,14 @@ typedef ${intptr} ptrdiff_t;
     const libc_tcc_SOURCES = nix.thunk(() => nix.str`${nix.sel(sources, "libc_tcc_SOURCES")} lib/linux/symlink.c`);
     const setjmp_x86_64 = nix.path(here, "./setjmp_x86_64.c");
     const meta = nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       description: "Scheme interpreter and C compiler for bootstrapping",
       homepage: "https://www.gnu.org/software/mes",
       license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "minimal-bootstrap"))]),
       platforms: nix.thunk(() => ["i686-linux", "x86_64-linux"]),
     }));
-    const srcPost = nix.thunk(() => nix.app(nix.sel(kaem, "runCommand"), nix.thunk(() => nix.str`${pname}-src-${version}`), nix.thunk(() => ({ __proto__: pos$6, outputs: nix.thunk(() => ["out", "bin"]), meta: meta })), nix.thunk(() => nix.str`# Unpack source
+    const srcPost = nix.thunk(() => nix.app(nix.sel(kaem, "runCommand"), nix.thunk(() => nix.str`${pname}-src-${version}`), nix.thunk(() => ({ [nix.POS]: pos$6, outputs: nix.thunk(() => ["out", "bin"]), meta: meta })), nix.thunk(() => nix.str`# Unpack source
 ungz --file ${src} --output mes.tar
 mkdir \${out}
 cd \${out}
@@ -234,11 +234,11 @@ chmod 555 \${bin}/bin/mes-m2
       nix.thunk(() => nix.str`${srcPrefix}/include/linux/${arch}`),
     ]);
     const CC = nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat([cc], ccArgs))));
-    const crt1 = nix.thunk(() => nix.app(nix.sel(kaem, "runCommand"), nix.thunk(() => nix.str`${pname}-crt1-${version}`), nix.thunk(() => ({ __proto__: pos$7, meta: meta })), nix.thunk(() => nix.str`mkdir \${out}
+    const crt1 = nix.thunk(() => nix.app(nix.sel(kaem, "runCommand"), nix.thunk(() => nix.str`${pname}-crt1-${version}`), nix.thunk(() => ({ [nix.POS]: pos$7, meta: meta })), nix.thunk(() => nix.str`mkdir \${out}
 cd \${out}
 ${CC} -c ${srcPrefix}/lib/linux/${arch}-mes-mescc/crt1.c
 `)));
-    const mkLib = (libname) => (sources_1) => nix.app(nix.sel(kaem, "runCommand"), nix.thunk(() => nix.str`${pname}-${libname}-${version}`), nix.thunk(() => ({ __proto__: pos$8, meta: meta })), nix.thunk(() => nix.str`cd ${srcPost}/mes-${version}
+    const mkLib = (libname) => (sources_1) => nix.app(nix.sel(kaem, "runCommand"), nix.thunk(() => nix.str`${pname}-${libname}-${version}`), nix.thunk(() => ({ [nix.POS]: pos$8, meta: meta })), nix.thunk(() => nix.str`cd ${srcPost}/mes-${version}
 LIBDIR=\${out}/lib
 mkdir -p \${LIBDIR}
 catm \${LIBDIR}/${libname}.c ${sources_1}
@@ -251,13 +251,13 @@ ${CC} -c -o \${LIBDIR}/${libname}.a \${LIBDIR}/${libname}.s
     const libc = nix.thunk(() => nix.app(mkLib, "libc", libc_SOURCES));
     const libc_tcc = nix.thunk(() => nix.app(mkLib, "libc+tcc", libc_tcc_SOURCES));
     const libs = nix.thunk(() => nix.app(nix.sel(kaem, "runCommand"), nix.thunk(() => nix.str`${pname}-m2-libs-${version}`), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         pname: pname,
         version: version,
         passthru: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           tests: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             "get-version": (result) => nix.app(nix.sel(kaem, "runCommand"), nix.thunk(() => nix.str`${pname}-get-version-${version}`), nix.thunk(() => ({})), nix.thunk(() => nix.str`${result}/bin/mes --version
 mkdir \${out}
 `)),
@@ -293,13 +293,13 @@ cp ${libc_tcc}/lib/libc+tcc.s \${LIBDIR}/${arch}-mes
       const objs = nix.thunk(() => nix.app(filter, isString, nix.thunk(() => nix.app(split, " ", mes_SOURCES))));
       const removeSrcPrefix = nix.thunk(() => nix.app(nix.sel(lib, "removePrefix"), "src/"));
       return nix.app(nix.sel(kaem, "runCommand"), nix.thunk(() => nix.str`${pname}-${version}`), nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           pname: pname,
           version: version,
           passthru: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             tests: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               "get-version": (result) => nix.app(nix.sel(kaem, "runCommand"), nix.thunk(() => nix.str`${pname}-get-version-${version}`), nix.thunk(() => ({})), nix.thunk(() => nix.str`${result}/bin/mes --version
 mkdir \${out}
 `)),
@@ -330,7 +330,7 @@ ${nix.sel(srcPost, "bin")}/bin/mes-m2 -e main ${nix.sel(srcPost, "bin")}/bin/mes
 `));
     })());
     return {
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       src: src,
       srcPost: srcPost,
       srcPrefix: srcPrefix,

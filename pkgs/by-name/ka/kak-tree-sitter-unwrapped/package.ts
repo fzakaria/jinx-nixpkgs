@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const kak_tree_sitter_unwrapped = nix.arg($, "kak-tree-sitter-unwrapped");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "kak-tree-sitter-unwrapped",
       version: "3.2.2",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~hadronized",
           repo: "kak-tree-sitter",
           rev: nix.thunk(() => nix.str`kak-tree-sitter-v${nix.sel(finalAttrs, "version")}`),
@@ -31,15 +31,15 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-5hCBFQsZpUyPlgO/iUmBXmdcC5ceG1w4IiB27oBxRxQ=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: kak_tree_sitter_unwrapped })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: kak_tree_sitter_unwrapped })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://git.sr.ht/~hadronized/kak-tree-sitter",
         description: "Server that interfaces tree-sitter with kakoune",
         mainProgram: "kak-tree-sitter",

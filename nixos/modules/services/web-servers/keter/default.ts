@@ -44,9 +44,9 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "keter"));
   const yaml = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$32,
+    [nix.POS]: pos$32,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "jappie"))];
@@ -57,46 +57,46 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "keter", "keterPackage"]), nix.thunk(() => ["services", "keter", "package"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       services: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         keter: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "keter, a web app deployment manager.\nNote that this module only support loading of webapps:\nKeep an old app running and swap the ports when the new one is booted\n")),
           root: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/var/lib/keter",
               description: "Mutable state folder for keter",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, nix.thunk(() => ["haskellPackages", "keter"]), nix.thunk(() => ({})))),
           globalKeterConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   freeformType: nix.thunk(() => nix.sel(yaml, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     "ip-from-header": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         default: true,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         description: "You want that ip-from-header in the nginx setup case. It allows nginx setting the original ip address rather then it being localhost (due to reverse proxying)",
                       })))),
                     listeners: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$9,
-                        default: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$4, host: "*", port: 6981n }))]),
+                        [nix.POS]: pos$9,
+                        default: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$4, host: "*", port: 6981n }))]),
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                              __proto__: pos$8,
+                              [nix.POS]: pos$8,
                               options: nix.thunk(() => ({
-                                __proto__: pos$7,
+                                [nix.POS]: pos$7,
                                 host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                    __proto__: pos$5,
+                                    [nix.POS]: pos$5,
                                     type: nix.thunk(() => nix.sel(lib, "types", "str")),
                                     description: "host",
                                   })))),
                                 port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                    __proto__: pos$6,
+                                    [nix.POS]: pos$6,
                                     type: nix.thunk(() => nix.sel(lib, "types", "port")),
                                     description: "port",
                                   })))),
@@ -105,7 +105,7 @@ export default nix.lambda((args) => (() => {
                         description: "You want that ip-from-header in\nthe nginx setup case.\nIt allows nginx setting the original ip address rather\nthen it being localhost (due to reverse proxying).\nHowever if you configure keter to accept connections\ndirectly you may want to set this to false.",
                       })))),
                     "rotate-logs": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         default: false,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         description: "emits keter logs and it's applications to stderr.\nwhich allows journald to capture them.\nSet to true to let keter put the logs in files\n(useful on non systemd systems, this is the old approach\nwhere keter handled log management)",
@@ -115,33 +115,33 @@ export default nix.lambda((args) => (() => {
               description: "Global config for keter, see <https://github.com/snoyberg/keter/blob/master/etc/keter-config.yaml> for reference",
             })))),
           bundle: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             appName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "myapp",
                 description: "The name keter assigns to this bundle",
               })))),
             executable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.sel(lib, "types", "path")),
                 description: "The executable to be run",
               })))),
             domain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "example.com",
                 description: "The domain keter will bind to",
               })))),
             publicScript: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "",
                 description: "Allows loading of public environment variables,\nthese are emitted to the log so it shouldn't contain secrets.\n",
                 example: "ADMIN_EMAIL=hi@example.com",
               })))),
             secretScript: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "",
                 description: "Allows loading of private environment variables",
@@ -154,12 +154,12 @@ export default nix.lambda((args) => (() => {
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => (() => {
         const incoming = nix.thunk(() => nix.str`${nix.sel(cfg, "root")}/incoming`);
         const globalKeterConfigFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             name: "keter-config.yml",
-            text: nix.thunk(() => nix.app(nix.sel(lib, "generators", "toYAML"), nix.thunk(() => ({})), nix.thunk(() => nix.update(nix.sel(cfg, "globalKeterConfig"), { __proto__: pos$23, root: nix.thunk(() => nix.sel(cfg, "root")) })))),
+            text: nix.thunk(() => nix.app(nix.sel(lib, "generators", "toYAML"), nix.thunk(() => ({})), nix.thunk(() => nix.update(nix.sel(cfg, "globalKeterConfig"), { [nix.POS]: pos$23, root: nix.thunk(() => nix.sel(cfg, "root")) })))),
           }))));
         const bundle = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./bundle.nix"), nix.thunk(() => nix.update(nix.sel(cfg, "bundle"), {
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             keterExecutable: executable,
             keterDomain: nix.thunk(() => nix.sel(cfg, "bundle", "domain")),
           }))));
@@ -170,24 +170,24 @@ ${nix.sel(cfg, "bundle", "publicScript")}
 exec ${nix.sel(cfg, "bundle", "executable")}
 `)));
         return {
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           systemd: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             services: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               keter: nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 description: "keter app loader",
                 script: nix.thunk(() => nix.str`set -xe
 mkdir -p ${incoming}
 ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} ${globalKeterConfigFile};
 `),
                 wantedBy: nix.thunk(() => ["multi-user.target", "nginx.service"]),
-                serviceConfig: nix.thunk(() => ({ __proto__: pos$26, Restart: "always", RestartSec: "10s" })),
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$26, Restart: "always", RestartSec: "10s" })),
                 after: nix.thunk(() => ["network.target", "local-fs.target", "postgresql.target"]),
               })),
               "load-keter-bundle": nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 description: "load keter bundle into incoming folder",
                 after: nix.thunk(() => ["keter.service"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),

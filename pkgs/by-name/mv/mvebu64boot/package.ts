@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mvebu64boot",
       version: "0-unstable-2022-10-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pali",
           repo: "mvebu64boot",
           rev: "e7ca70eff2dc278607cc07f6654bbddacb2e4ff6",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [ncurses]),
       installPhase: "runHook preInstall\ninstall -D mvebu64boot $out/bin/mvebu64boot\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Boot 64-bit Marvell EBU SoC over UART",
         homepage: "https://github.com/pali/mvebu64boot",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

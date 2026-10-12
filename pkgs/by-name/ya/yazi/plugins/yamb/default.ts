@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkYaziPlugin = nix.arg($, "mkYaziPlugin");
   return nix.app(mkYaziPlugin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "yamb.yazi",
       version: "0-unstable-2026-08-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "h-hg",
           repo: "yamb.yazi",
           rev: "971b85862a1a2c5b8133da88b0dd4569adff296e",
           hash: "sha256-pbwKj4NuIiBMyuRVtbOYWBREZbyg1mKLoCWIAkxrygc=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Yet another bookmarks plugins. It supports persistence, jumping by a key, jumping by fzf.",
         homepage: "https://github.com/h-hg/yamb.yazi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const nodeModules = (finalAttrs) => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-node_modules`),
       version: nix.thunk(() => nix.attr(finalAttrs, "version")),
       src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -44,13 +44,13 @@ export default nix.lambda((args) => (() => {
     })));
   const targetDirName = nix.thunk(() => nix.add((nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")) ? "cli-darwin-" : "cli-linux-"), (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isx86_64")) ? "x64" : "arm64")));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "cline",
       version: "3.0.68",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "cline",
           repo: "cline",
           tag: nix.thunk(() => nix.str`cli-v${nix.sel(finalAttrs, "version")}`),
@@ -92,16 +92,16 @@ runHook postInstall
       versionCheckProgramArg: "--version",
       versionCheckKeepEnvironment: "HOME PATH",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version-regex", "^cli-v(.*)", "--subpackage", "node_modules"]),
           })))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(bun, "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Autonomous coding agent CLI for the terminal",
         longDescription: "Cline is an open-source autonomous AI coding agent that runs inside\nyour editor or terminal. It reads files, writes code, runs terminal\ncommands, and fixes errors while keeping you in control through structured\nplan-and-act steps.\n",
         homepage: "https://cline.bot",

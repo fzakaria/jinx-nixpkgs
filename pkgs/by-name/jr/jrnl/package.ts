@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const jrnl = nix.arg($, "jrnl");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "jrnl",
       version: "4.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jrnl-org",
           repo: "jrnl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,25 +59,25 @@ export default nix.lambda((args) => (() => {
         return [
           nix.thunk(() => nix.lookup(w_2, "pytest-bdd")),
           nix.thunk(() => nix.lookup(w_2, "pytest-xdist")),
-          nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "pytestCheckHook"), "override"), nix.thunk(() => ({ __proto__: pos$2, pytest: nix.thunk(() => nix.lookup(w_2, "pytest_7")) })))),
+          nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "pytestCheckHook"), "override"), nix.thunk(() => ({ [nix.POS]: pos$2, pytest: nix.thunk(() => nix.lookup(w_2, "pytest_7")) })))),
           nix.thunk(() => nix.lookup(w_2, "toml")),
         ];
       })()),
       preCheck: "export HOME=$(mktemp -d);\n",
       pythonImportsCheck: nix.thunk(() => ["jrnl"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: jrnl,
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Command line journal application that stores your journal in a plain text file",
         homepage: "https://jrnl.sh/",
         changelog: nix.thunk(() => nix.str`https://github.com/jrnl-org/jrnl/releases/tag/v${nix.sel(finalAttrs, "version")}`),

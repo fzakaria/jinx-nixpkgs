@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const melpaBuild = nix.arg($, "melpaBuild");
   return nix.app(melpaBuild, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "color-theme-solarized",
       ename: "solarized-theme",
       version: "0-unstable-2023-02-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sellout",
           repo: "emacs-color-theme-solarized",
           rev: "b186e5d62d0b83cbf5cf38f7eb7a199dea9a3ee3",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       files: "(:defaults (:exclude \"color-theme-solarized-pkg.el\"))",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://ethanschoonover.com/solarized",
         description: "Precision colors for machines and people; Emacs implementation",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

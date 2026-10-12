@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const platform = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? "64bit" : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")) ? "32bit" : nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)))));
   const libPath = nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [cups])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cups-kyocera",
       version: "1.1203",
       dontPatchELF: true,
       dontStrip: true,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://web.archive.org/web/20220709011705/https://cdn.kyostatics.net/dlc/ru/driver/all/linuxdrv_1_1203_fs-1x2xmfp.-downloadcenteritem-Single-File.downloadcenteritem.tmp/LinuxDrv_1.1203_FS-1x2xMFP.zip",
           sha256: "0z1pbgidkibv4j21z0ys8cq1lafc6687syqa07qij2qd8zp15wiz",
         })))),
@@ -45,7 +45,7 @@ runHook postInstall
 `),
       ppdFileCommands: nix.thunk(() => ["rastertokpsl"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CUPS drivers for several Kyocera FS-{1020,1025,1040,1060,1120,1125} printers",
         homepage: "https://www.kyoceradocumentsolutions.ru/index/service_support/download_center.false.driver.FS1040._.EN.html#",
         sourceProvenance: nix.thunk(() => (() => {

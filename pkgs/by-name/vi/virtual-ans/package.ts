@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "virtual-ans";
       const version = "3.0.3";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://warmplace.ru/soft/ans/virtual_ans-${version}.zip`),
           hash: "sha256-QrYWTRYCh1YYJFtBukC2kUNoiRlsAJOD1NdB9rcx7yM=",
         }))));
@@ -49,7 +49,7 @@ ln -s $out/${startScript} $out/bin/virtual-ans
       const startScript = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_32")) ? "START_LINUX_X86" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) ? "START_LINUX_X86_64" : nix.builtins.throw(nix.thunk(() => nix.str`Unsupported platform: ${nix.sel(stdenv, "hostPlatform", "linuxArch")}.`)))));
       const linuxExecutable = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_32")) ? "pixilang_linux_x86" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) ? "pixilang_linux_x86_64" : "")));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Photoelectronic microtonal/spectral musical instrument",
         longDescription: "Virtual ANS is a software simulator of the unique Russian synthesizer ANS\n- photoelectronic musical instrument created by Evgeny Murzin from 1938 to\n1958. The ANS made it possible to draw music in the form of a spectrogram\n(sonogram), without live instruments and performers. It was used by\nStanislav Kreichi, Alfred Schnittke, Edward Artemiev and other Soviet\ncomposers in their experimental works. You can also hear the sound of the\nANS in Andrei Tarkovsky's movies Solaris, The Mirror, Stalker.\n\nThe simulator extends the capabilities of the original instrument. Now\nit's a full-featured graphics editor where you can convert sound into an\nimage, load and play pictures, draw microtonal/spectral music and create\nsome unusual deep atmospheric sounds. This app is for everyone who loves\nexperiments and is looking for something new.\n\nKey features:\n\n+ unlimited number of pure tone generators;\n+ powerful sonogram editor - you can draw the spectrum and play it at the same time;\n+ any sound (from a WAV file or a Microphone/Line-in) can be converted to image (sonogram) and vice versa;\n+ support for MIDI devices;\n+ polyphonic synth mode with MIDI mapping;\n+ supported file formats: WAV, AIFF, PNG, JPEG, GIF;\n+ supported sound systems: ASIO, DirectSound, MME, ALSA, OSS, JACK, Audiobus, IAA.\n",
         homepage: "https://warmplace.ru/soft/ans/",
@@ -65,7 +65,7 @@ ln -s $out/${startScript} $out/bin/virtual-ans
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

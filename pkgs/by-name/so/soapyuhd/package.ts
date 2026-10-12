@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const boost = nix.arg($, "boost");
   const soapysdr = nix.arg($, "soapysdr");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "soapyuhd",
       version: "0.4.1-unstable-2026-09-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pothosware",
           repo: "SoapyUHD",
           rev: "c695089c9d139f90465d2025d8dcb2ef26fa00f0",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => [nix.thunk(() => nix.str`-DSoapySDR_DIR=${soapysdr}/share/cmake/SoapySDR/`)]),
       postPatch: "sed -i \"s:DESTINATION .*uhd/modules:DESTINATION $out/lib/uhd/modules:\" CMakeLists.txt\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/pothosware/SoapyUHD",
         description: "SoapySDR plugin for UHD devices",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

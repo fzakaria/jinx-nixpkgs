@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const version = "1.3.3-24926468";
   const urlVersion = nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["-"]), version));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "necesse-server",
       version: version,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://necesse.pwn.sh/server/necesse-server-linux64-${urlVersion}.zip`),
           hash: "sha256-aql6KgkuA8lwCkt4DOgekvNyBMtP885SnOH8VK979vc=",
         })))),
@@ -39,9 +39,9 @@ chmod +x $out/bin/necesse-server
 
 runHook postInstall
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://necessegame.com/server/",
         description: "Dedicated server for Necesse",
         sourceProvenance: nix.thunk(() => (() => {

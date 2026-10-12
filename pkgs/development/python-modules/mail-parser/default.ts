@@ -20,19 +20,19 @@ export default nix.lambda((args) => (() => {
   const pytest_mock = nix.arg($, "pytest-mock");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mail-parser",
       version: "4.8.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SpamScope",
           repo: "mail-parser",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-eiLnNTkBanoJkBthOLsblL0VEWNUKtGV1c2obMuUXJA=",
         })))),
       "build-system": nix.thunk(() => [hatchling]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, outlook: nix.thunk(() => [extract_msg]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, outlook: nix.thunk(() => [extract_msg]) })),
       pythonImportsCheck: nix.thunk(() => ["mailparser"]),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytest_cov_stub, pytest_mock, pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
       postCheck: nix.thunk(() => nix.str`${nix.sel(python, "interpreter")} -m mailparser -v
@@ -42,7 +42,7 @@ ${nix.sel(python, "interpreter")} -m mailparser -f tests/mails/mail_outlook_1 -j
 cat tests/mails/mail_malformed_3 | ${nix.sel(python, "interpreter")} -m mailparser -k -j
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/SpamScope/mail-parser/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Mail parser for python 2 and 3",
         mainProgram: "mail-parser",

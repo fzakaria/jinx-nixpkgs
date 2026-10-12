@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const runTest = nix.arg($, "runTest");
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       basic: nix.thunk(() => nix.app(runTest, nix.path(here, "./basic.nix"))),
       e2e: nix.thunk(() => nix.app(runTest, nix.path(here, "./e2e.nix"))),
       postgres: nix.thunk(() => nix.app(runTest, nix.path(here, "./postgres.nix"))),

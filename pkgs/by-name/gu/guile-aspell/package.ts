@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const aspell = nix.arg($, "aspell");
   const texinfo = nix.arg($, "texinfo");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "guile-aspell",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "spk121",
           repo: "guile-aspell",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [guile]),
       propagatedBuildInputs: nix.thunk(() => [aspell]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Guile bindings for the aspell library",
         homepage: "https://github.com/spk121/guile-aspell",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

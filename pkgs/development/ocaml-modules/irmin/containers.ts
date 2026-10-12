@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const alcotest_lwt = nix.arg($, "alcotest-lwt");
   const cacert = nix.arg($, "cacert");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "irmin-containers",
       src: nix.thunk(() => nix.attr(ppx_irmin, "src")),
       version: nix.thunk(() => nix.attr(ppx_irmin, "version")),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [irmin, irmin_fs, ppx_irmin, lwt, mtime]),
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest, alcotest_lwt, cacert]),
-      meta: nix.thunk(() => nix.update(nix.sel(ppx_irmin, "meta"), { __proto__: pos$1, description: "Mergeable Irmin data structures" })),
+      meta: nix.thunk(() => nix.update(nix.sel(ppx_irmin, "meta"), { [nix.POS]: pos$1, description: "Mergeable Irmin data structures" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=containers.ts.map

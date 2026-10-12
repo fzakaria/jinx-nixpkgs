@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   const lua = luajitPackages;
   const unwrapped = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "knot-resolver_5",
       version: "5.7.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://knot-resolver.nic.cz/release/knot-resolver-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "e9367304b41a32e9290cb339a0f968b5c590d0453c2b1f26af79268bba08e46c",
         })))),
@@ -94,7 +94,7 @@ done
       ]),
       installCheckPhase: "meson test --print-errorlogs --no-suite snowflake\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Caching validating DNS resolver, from .cz domain registry",
         homepage: "https://knot-resolver.cz",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -104,7 +104,7 @@ done
       })),
     })));
   const wrapped_full = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.sel(unwrapped, "name")), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       buildInputs: nix.thunk(() => (() => {
         const w = nix.withScope(luajitPackages, null);

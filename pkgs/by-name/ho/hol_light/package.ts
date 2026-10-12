@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const ocamlPath = nix.thunk(() => nix.app(nix.sel(lib, "makeSearchPath"), nix.thunk(() => nix.str`/lib/ocaml/${nix.sel(ocaml, "version")}/site-lib`), nix.thunk(() => [camlp5, camlp_streams, fmt, pcre2, zarith])));
   const stublibsPath = nix.thunk(() => nix.app(nix.sel(lib, "makeSearchPath"), nix.thunk(() => nix.str`/lib/ocaml/${nix.sel(ocaml, "version")}/site-lib/stublibs`), nix.thunk(() => [zarith, pcre2])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hol_light",
       version: "0-unstable-2026-09-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jrh13",
           repo: "hol-light",
           rev: "72f2059e632021b940636156925a7500a3f253fd",
@@ -64,7 +64,7 @@ ln -s hol_light "$out/bin/hol.sh"
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Interactive theorem prover based on Higher-Order Logic",
         homepage: "http://www.cl.cam.ac.uk/~jrh13/hol-light/",
         mainProgram: "hol_light",

@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "26.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "environ-config",
           owner: "hynek",
           tag: version,
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, moto]);
       const pythonImportsCheck = nix.thunk(() => ["environ"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python Application Configuration With Environment Variables",
         homepage: "https://github.com/hynek/environ-config",
         changelog: nix.thunk(() => nix.str`https://github.com/hynek/environ-config/releases/tag/${version}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

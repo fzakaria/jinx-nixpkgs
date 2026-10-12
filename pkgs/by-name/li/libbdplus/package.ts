@@ -16,17 +16,17 @@ export default nix.lambda((args) => (() => {
   const libgpg_error = nix.arg($, "libgpg-error");
   const gettext = nix.arg($, "gettext");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libbdplus",
       version: "0.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://get.videolan.org/libbdplus/${nix.sel(finalAttrs, "version")}/libbdplus-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-uT7qPq7zPW6RVdLDSwaMUFSTqlpJNuYydPQ0KrD0Clg=",
         })))),
       buildInputs: nix.thunk(() => [libgcrypt, libgpg_error, gettext]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.videolan.org/developers/libbdplus.html",
         description: "Library to access BD+ protected Blu-Ray disks",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

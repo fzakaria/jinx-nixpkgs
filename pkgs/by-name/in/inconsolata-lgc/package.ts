@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "inconsolata-lgc";
       const version = "1.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MihailJP",
           repo: "Inconsolata-LGC",
           rev: "8adfef7a7316fcd2e9a5857054c7cdb2babeb35d",
@@ -29,7 +29,7 @@ find . -name '*.otf' -exec install -m444 -Dt $out/share/fonts/opentype {} \\;
 install -m444 -Dt $out/share/doc/${pname}-${version} LICENSE README
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fork of Inconsolata font, with proper support of Cyrillic and Greek",
         longDescription: "Inconsolata is one of the most suitable font for programmers created by Raph\nLevien. Since the original Inconsolata does not contain Cyrillic alphabet,\nit was slightly inconvenient for not a few programmers from Russia.\n\nInconsolata LGC is a modified version of Inconsolata with added the Cyrillic\nalphabet which directly descends from Inconsolata Hellenic supporting modern\nGreek.\n\nInconsolata LGC is licensed under SIL OFL.\n\n\nInconsolata LGC changes:\n* Cyrillic glyphs added.\n* Italic and Bold font added.\n\nChanges inherited from Inconsolata Hellenic:\n* Greek glyphs.\n\nChanges inherited from Inconsolata-dz:\n* Straight quotation marks.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
@@ -39,7 +39,7 @@ install -m444 -Dt $out/share/doc/${pname}-${version} LICENSE README
           return [nix.thunk(() => nix.lookup(w, "avnik"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, nativeBuildInputs, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

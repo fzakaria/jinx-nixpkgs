@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const jdk8 = nix.arg($, "jdk8");
   const unzrip = nix.arg($, "unzrip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xmage",
       version: "1.4.60-dev_2026-06-28_13-19",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://xmage.today/files/mage-full_${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "sha256-n6g38rE19ZSyipoOp3cnLTsJirLRXeLF1ft7gvx3bVs=",
         })))),
@@ -40,7 +40,7 @@ chmod +x $out/bin/xmage
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Magic Another Game Engine",
         mainProgram: "xmage",
         sourceProvenance: nix.thunk(() => (() => {

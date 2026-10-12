@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const libnotify = nix.arg($, "libnotify");
   const satty = nix.arg($, "satty");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hyprquickframe",
       version: "1.1.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Ronin-CK",
           repo: "HyprQuickFrame",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +49,7 @@ makeWrapper ${quickshell}/bin/quickshell $out/bin/hyprquickframe \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Quickshell-based screenshot utility for Hyprland",
         homepage: "https://github.com/Ronin-CK/HyprQuickFrame",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

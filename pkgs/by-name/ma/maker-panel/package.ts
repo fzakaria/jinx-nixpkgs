@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const go_md2man = nix.arg($, "go-md2man");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "maker-panel",
       version: "0.12.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "twitchyliquid64",
           repo: "maker-panel",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       postBuild: "go-md2man --in docs/spec-reference.md --out maker-panel.5\n",
       postInstall: "installManPage maker-panel.5\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Make mechanical PCBs by combining shapes together",
         homepage: "https://github.com/twitchyliquid64/maker-panel",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

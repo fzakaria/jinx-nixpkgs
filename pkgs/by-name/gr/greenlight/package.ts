@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
   const ruby = ruby_3_3;
   const nodejs = nodejs_26;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "greenlight",
       version: "3.8.2.4",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bigbluebutton",
           repo: "greenlight",
           tag: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -51,12 +51,12 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(finalAttrs, "rubyEnv", "wrappedRuby")),
       ]),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-aTDd6+mc3DIE5FiaPVjjorJ0r8RfodhEVCs3o2zHbZk=",
         })))),
       rubyEnv: nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name: nix.thunk(() => nix.str`greenlight-env-${nix.sel(finalAttrs, "version")}`),
           ruby: ruby,
           gemfile: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/Gemfile`),
@@ -68,10 +68,10 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nexport BUNDLE_WITHOUT=development:test\nexport SECRET_KEY_BASE=1\nbundle exec rails assets:precompile\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/greenlight $out/bin\ncp -r app bin config config.ru db lib public vendor Gemfile Gemfile.lock Rakefile $out/share/greenlight/\nln -s $out/share/greenlight/lib $out/lib\nln -s $out/share/greenlight/bin $out/bin\nln -sf /tmp $out/share/greenlight/tmp\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         rubyEnv: nix.thunk(() => nix.attr(finalAttrs, "rubyEnv")),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           greenlight: nix.thunk(() => nix.attr(nixosTests, "greenlight")),
         })),
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
           ]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "End-user web interface for BigBlueButton server",
         homepage: "https://github.com/bigbluebutton/greenlight",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

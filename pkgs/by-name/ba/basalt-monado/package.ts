@@ -36,13 +36,13 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const cudaPackages = nix.arg($, "cudaPackages");
   const enableCuda = nix.argOr($, "enableCuda", () => nix.sel(config, "cudaSupport"));
-  const opencv$ = nix.thunk(() => nix.app(nix.sel(opencv, "override"), nix.thunk(() => ({ __proto__: pos$1, enableGtk3: true }))));
+  const opencv$ = nix.thunk(() => nix.app(nix.sel(opencv, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableGtk3: true }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "basalt-monado",
       version: "0-unstable-2025-09-25",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           domain: "gitlab.freedesktop.org",
           owner: "mateosss",
           repo: "basalt",
@@ -78,11 +78,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "EIGEN_ROOT", nix.thunk(() => nix.str`${eigen}/include/eigen3`))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Fork of Basalt improved for tracking XR devices with Monado",
         homepage: "https://gitlab.freedesktop.org/mateosss/basalt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

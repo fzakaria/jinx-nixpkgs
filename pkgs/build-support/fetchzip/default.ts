@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const glibcLocalesUtf8 = nix.arg($, "glibcLocalesUtf8");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       constructDrv: fetchurl,
       excludeDrvArgNames: nix.thunk(() => ["extraPostFetch", "extension", "stripRoot"]),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         const derivationArgs = nix.argOr($_1, "derivationArgs", () => ({}));
         const tmpFilename = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(finalAttrs, "extension"), null)) ? nix.str`download.${nix.sel(finalAttrs, "extension")}` : nix.builtins.baseNameOf(nix.thunk(() => (nix.asBool(!nix.eq(url, "")) ? nix.force(url) : nix.builtins.head(urls))))));
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: name,
           recursiveHash: true,
           downloadToTemp: true,
@@ -51,7 +51,7 @@ chmod -R +w "$unpackDir"
 ${(nix.asBool(!nix.eq(extraPostFetch, "")) ? nix.app(nix.sel(lib, "warn"), "use 'postFetch' instead of 'extraPostFetch' with 'fetchzip' and 'fetchFromGitHub' or 'fetchFromGitLab'.", extraPostFetch) : nix.force(extraPostFetch))}
 chmod 755 "$out"
 `)),
-          derivationArgs: nix.thunk(() => nix.update(derivationArgs, { __proto__: pos$1, extension: extension, stripRoot: stripRoot })),
+          derivationArgs: nix.thunk(() => nix.update(derivationArgs, { [nix.POS]: pos$1, extension: extension, stripRoot: stripRoot })),
         };
       })(), formals$2),
     })));

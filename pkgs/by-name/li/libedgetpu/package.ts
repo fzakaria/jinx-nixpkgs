@@ -27,23 +27,23 @@ export default nix.lambda((args) => (() => {
   const flatbuffers_23_5_26 = nix.thunk(() => nix.app(nix.sel(flatbuffers, "overrideAttrs"), (oldAttrs) => (() => {
       const version = "23.5.26";
       const cmakeFlags = nix.thunk(() => nix.concat(nix.selOr(oldAttrs, () => [], "cmakeFlags"), ["-DFLATBUFFERS_BUILD_SHAREDLIB=ON"]));
-      const env = nix.thunk(() => nix.update(nix.selOr(oldAttrs, () => ({}), "env"), { __proto__: pos$1, NIX_CXXSTDLIB_COMPILE: "-std=c++17" }));
+      const env = nix.thunk(() => nix.update(nix.selOr(oldAttrs, () => ({}), "env"), { [nix.POS]: pos$1, NIX_CXXSTDLIB_COMPILE: "-std=c++17" }));
       const configureFlags = nix.thunk(() => nix.concat(nix.selOr(oldAttrs, () => [], "configureFlags"), ["--enable-shared"]));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "google",
           repo: "flatbuffers",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-e+dNPNbCHYDXUS/W+hMqf/37fhVgEGzId6rhP3cToTE=",
         }))));
-      return { __proto__: pos$3, version, cmakeFlags, env, configureFlags, src };
+      return { [nix.POS]: pos$3, version, cmakeFlags, env, configureFlags, src };
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "libedgetpu",
       version: "0-unstable-2024-03-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "google-coral",
           repo: "libedgetpu",
           rev: "e35aed18fea2e2d25d98352e5a5bd357c170bd4d",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "fix-makefile-to-compile-with-latest-tensorflow.patch",
             url: "https://patch-diff.githubusercontent.com/raw/google-coral/libedgetpu/pull/66.patch",
             hash: "sha256-mMODpQmikfXtsQvtgh26cy97EiykYNLngSjidOBt/3I=",
@@ -62,17 +62,17 @@ export default nix.lambda((args) => (() => {
       postPatch: "# Use dedicated group for coral devices\nsubstituteInPlace debian/edgetpu-accelerator.rules \\\n  --replace-fail \"plugdev\" \"coral\"\n",
       makeFlags: nix.thunk(() => ["-f", "makefile_build/Makefile", "libedgetpu"]),
       buildInputs: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(abseil_cpp, "override"), nix.thunk(() => ({ __proto__: pos$6, cxxStandard: "17" })))),
+        nix.thunk(() => nix.app(nix.sel(abseil_cpp, "override"), nix.thunk(() => ({ [nix.POS]: pos$6, cxxStandard: "17" })))),
         libusb1,
         flatbuffers_23_5_26,
       ]),
       doInstallCheck: true,
       nativeBuildInputs: nix.thunk(() => [xxd]),
       env: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         NIX_CXXSTDLIB_COMPILE: "-std=c++17",
         TFROOT: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             owner: "tensorflow",
             repo: "tensorflow",
             rev: "v2.16.1",
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       installPhase: "runHook preInstall\ninstall -Dm555 out/direct/k8/libedgetpu.so.1.0 -t $out/lib\nln -s $out/lib/libedgetpu.so.1.0 $out/lib/libedgetpu.so.1\ninstall -Dm444 debian/edgetpu-accelerator.rules $out/lib/udev/rules.d/99-edgetpu-accelerator.rules\ninstall -Dm444 tflite/public/*.h -t $out/include\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         homepage: "https://github.com/google-coral/libedgetpu",
         description: "Userspace level runtime driver for Coral devices",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

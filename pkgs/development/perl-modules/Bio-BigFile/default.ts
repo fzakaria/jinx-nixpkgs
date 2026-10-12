@@ -26,17 +26,17 @@ export default nix.lambda((args) => (() => {
       const pname = "Bio-BigFile";
       const version = "1.07";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://cpan/authors/id/L/LD/LDS/Bio-BigFile-${version}.tar.gz`),
           sha256: "277b66ce8acbdd52399e2c5a0cf4e3bd5c74c12b94877cd383d0c4c97740d16d",
         }))));
       const env = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         KENT_SRC: nix.thunk(() => nix.app(nix.sel(kent, "overrideAttrs"), (old) => (() => {
             const pname_1 = "kent";
             const version_1 = "335";
             const src_1 = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 owner: "ucscGenomeBrowser",
                 repo: "kent",
                 rev: nix.thunk(() => nix.str`v${version_1}_base`),
@@ -46,13 +46,13 @@ export default nix.lambda((args) => (() => {
               nix.path(here, "./kent-utils.patch"),
               nix.path(here, "./kent-316e4fd40f53c96850128fd65097a42623d1e736.patch"),
             ]);
-            return { __proto__: pos$3, pname: pname_1, version: version_1, src: src_1, patches };
+            return { [nix.POS]: pos$3, pname: pname_1, version: version_1, src: src_1, patches };
           })())),
       }));
       const buildInputs = nix.thunk(() => [BioPerl, IOString, libpng, libmysqlclient, openssl]);
       const hardeningDisable = nix.thunk(() => ["format"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://metacpan.org/dist/Bio-BigFile",
         description: "Manipulate Jim Kent's BigWig and BigBed index files for genomic features",
         license: nix.thunk(() => nix.sel(lib, "licenses", "artistic2")),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

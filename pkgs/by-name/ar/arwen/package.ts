@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "arwen",
       version: "0.0.5-unstable-2026-04-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nichmor",
           repo: "arwen",
           rev: "696351a8c208315b0dfd4a1e5c37288a689ccd2e",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-bj7YB7xNlfdrYYZv3CDuqkm+/pg+C1KwizPTlNqQWt8=",
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cross-platform patching of shared libraries in Rust",
         longDescription: "Arwen is a command-line utility and Rust library designed to modify\nexecutable files and shared libraries.\n\nSpecifically, it targets the ELF format (commonly used on Linux, BSD, and\nother Unix-like systems) and the Mach-O format (used on macOS and iOS).\n\nIt allows you to inspect and rewrite various properties within these\nfiles that influence how they load and link with other libraries at\nruntime.\n\nThink of arwen as a modern, unified, Rust-based alternative to the\nwidely-used patchelf (for ELF files) and install_name_tool (for Mach-O\nfiles). It combines the core functionalities of both into a single tool.\n",
         homepage: "https://github.com/nichmor/arwen",

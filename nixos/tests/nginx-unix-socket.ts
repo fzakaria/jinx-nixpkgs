@@ -24,46 +24,46 @@ export default nix.lambda((args) => (() => {
   const defaultNginxSocketPath = "/var/run/nginx/default-test.sock";
   const nginxSocketPath = "/var/run/nginx/test.sock";
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     name: "nginx-unix-socket",
     nodes: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       webserver: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         const lib = nix.arg($_1, "lib");
         return {
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             nginx: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               enable: true,
               defaultListen: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   addr: nix.thunk(() => nix.str`unix:${defaultNginxSocketPath}`),
                 })),
               ]),
               virtualHosts: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 defaultLocalhost: nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   serverName: "defaultLocalhost",
                   locations: nix.thunk(() => ({
-                    __proto__: pos$3,
-                    "/default": nix.thunk(() => ({ __proto__: pos$2, return: "200 'bar'" })),
+                    [nix.POS]: pos$3,
+                    "/default": nix.thunk(() => ({ [nix.POS]: pos$2, return: "200 'bar'" })),
                   })),
                 })),
                 localhost: nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   serverName: "localhost",
                   listen: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$5, addr: nix.thunk(() => nix.str`unix:${nginxSocketPath}`) })),
+                    nix.thunk(() => ({ [nix.POS]: pos$5, addr: nix.thunk(() => nix.str`unix:${nginxSocketPath}`) })),
                   ]),
                   locations: nix.thunk(() => ({
-                    __proto__: pos$7,
-                    "/test": nix.thunk(() => ({ __proto__: pos$6, return: "200 'foo'" })),
+                    [nix.POS]: pos$7,
+                    "/test": nix.thunk(() => ({ [nix.POS]: pos$6, return: "200 'foo'" })),
                   })),
                 })),
               })),

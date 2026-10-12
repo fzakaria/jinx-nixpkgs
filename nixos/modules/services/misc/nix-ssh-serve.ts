@@ -32,40 +32,40 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "nix", "sshServe"));
   const command = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "protocol"), "ssh")) ? nix.str`nix-store --serve ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "write")), "--write")}` : "nix-daemon --stdio"));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       nix: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         sshServe: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable serving the Nix store as a remote store via SSH.",
             })))),
           write: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable writing to the Nix store as a remote store via SSH. Note: by default, the sshServe user is named nix-ssh and is not a trusted-user. nix-ssh should be added to the {option}`nix.sshServe.trusted` option in most use cases, such as allowing remote building of derivations to anonymous people based on ssh key",
             })))),
           trusted: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to add nix-ssh to the nix.settings.trusted-users",
             })))),
           keys: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["ssh-dss AAAAB3NzaC1k... alice@example.org"]),
               description: "A list of SSH public keys allowed to access the binary cache via SSH.",
             })))),
           protocol: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["ssh", "ssh-ng"]))),
               default: "ssh",
               description: "The specific Nix-over-SSH protocol to use.",
@@ -74,36 +74,36 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         users: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           users: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             "nix-ssh": nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "Nix SSH store user",
               isSystemUser: true,
               group: "nix-ssh",
               shell: nix.thunk(() => nix.sel(pkgs, "bashInteractive")),
               openssh: nix.thunk(() => ({
-                __proto__: pos$10,
-                authorizedKeys: nix.thunk(() => ({ __proto__: pos$9, keys: nix.thunk(() => nix.sel(cfg, "keys")) })),
+                [nix.POS]: pos$10,
+                authorizedKeys: nix.thunk(() => ({ [nix.POS]: pos$9, keys: nix.thunk(() => nix.sel(cfg, "keys")) })),
               })),
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$13, "nix-ssh": nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$13, "nix-ssh": nix.thunk(() => ({})) })),
         })),
         nix: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           settings: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             "trusted-users": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "trusted")), nix.thunk(() => ["nix-ssh"]))),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           openssh: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             enable: true,
             extraConfig: nix.thunk(() => nix.str`Match User nix-ssh
   AllowAgentForwarding no

@@ -34,19 +34,19 @@ export default nix.lambda((args) => (() => {
       const pname = "xunlei-uos";
       const version = nix.thunk(() => nix.sel(sources, "version"));
       const src = nix.thunk(() => nix.selOr({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.sel(sources, "amd64_url")),
             hash: nix.thunk(() => nix.sel(sources, "amd64_hash")),
           })))),
         "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.sel(sources, "arm64_url")),
             hash: nix.thunk(() => nix.sel(sources, "arm64_hash")),
           })))),
         "loongarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: nix.thunk(() => nix.sel(sources, "loongarch64_url")),
             hash: nix.thunk(() => nix.sel(sources, "loongarch64_hash")),
           })))),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [dpkg, autoPatchelfHook]);
       const installPhase = "runHook preInstall\n\nmkdir -p $out/lib\ncp -r opt/apps/com.xunlei.download/files $out/lib/xunlei\ncp -r opt/apps/com.xunlei.download/entries $out/share\nmv $out/share/icons/hicolor/scalable/apps/com.thunder.download.svg \\\n  $out/share/icons/hicolor/scalable/apps/com.xunlei.download.svg\nsubstituteInPlace $out/share/applications/com.xunlei.download.desktop \\\n  --replace-fail \"Categories=net\" \"Categories=Network\" \\\n  --replace-fail \"/opt/apps/com.xunlei.download/files/start.sh\" \"xunlei-uos\" \\\n  --replace-fail \"/opt/apps/com.xunlei.download/entries/icons/hicolor/256x256/apps/com.xunlei.download.png\" \"com.xunlei.download\"\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Download manager supporting HTTP, FTP, BitTorrent, and eDonkey network protocols",
         homepage: "https://www.xunlei.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux", "loongarch64-linux"]),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
       };
     })())));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: nix.thunk(() => nix.attr(xunlei_unwrapped, "pname")),
       version: nix.thunk(() => nix.attr(xunlei_unwrapped, "version")),
       meta: nix.thunk(() => nix.attr(xunlei_unwrapped, "meta")),
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
       extraInstallCommands: nix.thunk(() => nix.str`mkdir -p $out
 ln -s ${xunlei_unwrapped}/share $out/share
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$7, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$7, updateScript: nix.path(here, "./update.sh") })),
       includeClosures: true,
       targetPkgs: (pkgs) => [zenity],
     })));

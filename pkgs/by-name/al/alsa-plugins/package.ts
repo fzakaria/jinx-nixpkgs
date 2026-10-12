@@ -25,17 +25,17 @@ export default nix.lambda((args) => (() => {
   const speexdsp = nix.arg($, "speexdsp");
   const directoryListingUpdater = nix.arg($, "directoryListingUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "alsa-plugins",
       version: "1.2.12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://alsa/plugins/alsa-plugins-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-e9ioPTBOji2GoliV2Nyw7wJFqN8y4nGVnNvcavObZvI=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "ffmpeg-9-compatibility.patch",
             url: "https://gitlab.archlinux.org/archlinux/packaging/packages/alsa-plugins/-/raw/7f250af93b76e9b3d552af509beb8ea1356114d1/ffmpeg9.patch",
             hash: "sha256-heAl6Ym3iYI8mhuuQpwBpc0FeFYsQZRHx4UUvqiVtBo=",
@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [alsa_lib, ffmpeg, libjack2, libogg, libpulseaudio, speexdsp]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ __proto__: pos$3, url: "https://alsa-project.org/files/pub/plugins/" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, url: "https://alsa-project.org/files/pub/plugins/" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Various plugins for ALSA",
         homepage: "https://alsa-project.org/",
         license: nix.thunk(() => (() => {

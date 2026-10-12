@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const kclvm = nix.arg($, "kclvm");
   const rustc = nix.arg($, "rustc");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kclvm_cli",
       version: "0.11.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kcl-lang",
           repo: "kcl",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       cargoPatches: nix.thunk(() => [nix.path(here, "./cargo_lock.patch")]),
       buildInputs: nix.thunk(() => [kclvm, rustc]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "High-performance implementation of KCL written in Rust that uses LLVM as the compiler backend",
         homepage: "https://github.com/kcl-lang/kcl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -25,19 +25,19 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const writers = nix.arg($, "writers");
   const py = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       self: py,
-      packageOverrides: (_final) => (prev) => ({ __proto__: pos$1, django: nix.thunk(() => nix.sel(prev, "django_6")) }),
+      packageOverrides: (_final) => (prev) => ({ [nix.POS]: pos$1, django: nix.thunk(() => nix.sel(prev, "django_6")) }),
     }))));
   const extraBuildInputs = nix.thunk(() => nix.app(plugins, nix.thunk(() => nix.sel(py, "pkgs"))));
   return nix.app(nix.sel(py, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       __structuredAttrs: true,
       pname: "netbox",
       version: "4.7.1",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "netbox-community",
           repo: "netbox",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -103,18 +103,18 @@ ${nix.sel(py, "pythonOnBuildForHost", "interpreter")} -m mkdocs build
       passthru: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(py, "pkgs"));
         return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         python: py,
         pythonPath: nix.thunk(() => nix.app(nix.sel(py, "pkgs", "makePythonPath"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "dependencies")))),
         gunicorn: nix.thunk(() => nix.attr(from, "gunicorn")),
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           netbox: nix.thunk(() => nix.attr(nixosTests, "netbox")),
           satisfiesBaseRequirements: nix.thunk(() => nix.app(runCommand, "test-netbox-satisfies-base-requirements", nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               nativeBuildInputs: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(writers, "writePython3Bin"), "test-netbox-requirements", nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     libraries: nix.thunk(() => nix.concat(nix.sel(finalAttrs, "passthru", "dependencies"), [
                       nix.thunk(() => nix.sel(py, "pkgs", "packaging")),
                       nix.thunk(() => nix.sel(finalAttrs, "passthru", "gunicorn")),
@@ -129,7 +129,7 @@ touch $out
         plugins: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "makeExtensible"), (self) => nix.app(nix.sel(lib, "packagesFromDirectoryRecursive"), nix.thunk(() => (() => {
                 const from_1 = nix.thunk(() => nix.sel(py, "pkgs"));
                 return {
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 callPackage: nix.thunk(() => nix.attr(from_1, "callPackage")),
                 directory: nix.path(here, "./plugins"),
               };
@@ -137,7 +137,7 @@ touch $out
       };
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         homepage: "https://github.com/netbox-community/netbox",
         changelog: nix.thunk(() => nix.str`https://github.com/netbox-community/netbox/blob/${nix.sel(finalAttrs, "src", "tag")}/docs/release-notes/version-${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}.md`),
         description: "IP address management (IPAM) and data center infrastructure management (DCIM) tool",

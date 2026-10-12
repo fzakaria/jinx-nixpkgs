@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libbfio = nix.arg($, "libbfio");
   const libguytools = nix.arg($, "libguytools");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "guymager",
       version: "0.8.13",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/guymager/guymager/LatestSource/guymager-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-xDsQ/d6fyfLOr4uXpdoqMljfFrVgQTUu0t2e5opcaRg=",
         })))),
@@ -56,7 +56,7 @@ substituteInPlace org.freedesktop.guymager.policy guymager.pro main.cpp guymager
 `),
       installPhase: "runHook preInstall\nmkdir -p $out/{bin,share}\nmake clean\nrm -rf *.cpp *.h *.pro\ncp -aR . \"$out/share/guymager/\"\nmakeWrapper $out/share/guymager/guymager $out/bin/guymager\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Forensic imager for media acquisition",
         mainProgram: "guymager",
         homepage: "https://guymager.sourceforge.io",

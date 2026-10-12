@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const vorbis_tools = nix.arg($, "vorbis-tools");
   const pulseaudio = nix.arg($, "pulseaudio");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pulseaudio-dlna",
       version: "unstable-2021-11-09",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Cygn",
           repo: "pulseaudio-dlna",
           rev: "637a2e7bba2277137c5f12fb58e63100dab7cbe6",
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       ]),
       checkPhase: "$out/bin/pulseaudio-dlna --help > /dev/null\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightweight streaming server which brings DLNA / UPNP and Chromecast support to PulseAudio and Linux",
         mainProgram: "pulseaudio-dlna",
         homepage: "https://github.com/Cygn/pulseaudio-dlna",

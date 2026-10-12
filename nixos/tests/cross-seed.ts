@@ -23,35 +23,35 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const apiKey = "twentyfourcharacterskey!";
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     name: "cross-seed",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "pta2002"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         const config = nix.arg($_1, "config");
         const cfg = nix.thunk(() => nix.sel(config, "services", "cross-seed"));
         return {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           systemd: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             tmpfiles: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               settings: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 "0-cross-seed-test": nix.thunk(() => nix.attrsDyn({}, [
                   [nix.str`${nix.sel(cfg, "settings", "torrentDir")}`, nix.thunk(() => ({
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     d: nix.thunk(() => ({
-                      __proto__: pos$2,
+                      [nix.POS]: pos$2,
                       user: nix.thunk(() => nix.attr(cfg, "user")),
                       group: nix.thunk(() => nix.attr(cfg, "group")),
                       mode: "700",
@@ -62,17 +62,17 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             "cross-seed": nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 torrentDir: "/var/lib/torrents",
                 torznab: [],
                 useClientTorrents: false,
               })),
-              settingsFile: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))), "generate"), "secrets.json", nix.thunk(() => ({ __proto__: pos$8, apiKey: apiKey })))),
+              settingsFile: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))), "generate"), "secrets.json", nix.thunk(() => ({ [nix.POS]: pos$8, apiKey: apiKey })))),
             })),
           })),
         };

@@ -17,20 +17,20 @@ export default nix.lambda((args) => (() => {
   const pname = "nyacc";
   const version = "1.09.1";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`mirror://savannah/nyacc/nyacc-${version}.tar.gz`),
       hash: "sha256-DsmuU34NlReBpQ3jx5KayXqFwdS16F5dUVQuN1ECJxc=",
     }))));
   return nix.app(nix.sel(kaem, "runCommand"), nix.thunk(() => nix.str`${pname}-${version}`), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         guilePath: nix.thunk(() => nix.str`${nyacc}/share/${pname}-${version}/module`),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Modules for generating parsers and lexical analyzers",
         longDescription: "Not Yet Another Compiler Compiler is a set of guile modules for\ngenerating computer language parsers and lexical analyzers.\n",
         homepage: "https://savannah.nongnu.org/projects/nyacc",

@@ -41,27 +41,27 @@ export default nix.lambda((args) => (() => {
   const headless = nix.argOr($, "headless", () => false);
   const version = "2026.7.1343.0";
   const sources = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: nix.thunk(() => nix.str`cloudflare-warp_${version}_amd64.deb`),
         url: nix.thunk(() => nix.str`https://downloads.cloudflareclient.com/v1/download/noble-intel/version/${version}`),
         hash: "sha256-C0u01lhECaHPBDHPIc+yOlDYyHepwCBzJxEaHAV7EF4=",
       })))),
     "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: nix.thunk(() => nix.str`cloudflare-warp_${version}_arm64.deb`),
         url: nix.thunk(() => nix.str`https://downloads.cloudflareclient.com/v1/download/noble-arm/version/${version}`),
         hash: "sha256-NT9VUPzTn7dTKyCn+0v81ekN9EKhzeojR2P096amQTQ=",
       })))),
     "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         url: nix.thunk(() => nix.str`https://downloads.cloudflareclient.com/v1/download/macos/version/${version}`),
         hash: "sha256-tmUwWC8ejsE2bNhFkMBr5SzCnXLOux+wh3nZ9BBDKd4=",
       })))),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       version: version,
       pname: nix.thunk(() => nix.add("cloudflare-warp", nix.app(nix.sel(lib, "optionalString"), headless, "-headless"))),
       src: nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
@@ -107,10 +107,10 @@ wrapProgram $out/bin/warp-taskbar --prefix LD_LIBRARY_PATH : $out/lib/warp/lib
       doInstallCheck: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")),
       dontCheckForBrokenSymlinks: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         sources: sources,
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               name: "update-cloudflare-warp",
               runtimeInputs: nix.thunk(() => [curl, jq, ripgrep, common_updater_scripts]),
               text: nix.thunk(() => nix.str`new_version="$(
@@ -129,7 +129,7 @@ done
             })))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         changelog: nix.thunk(() => nix.str`https://github.com/cloudflare/cloudflare-docs/blob/production/src/content/warp-releases/linux/ga/${nix.sel(finalAttrs, "version")}.yaml`),
         description: nix.thunk(() => nix.add("Replaces the connection between your device and the Internet with a modern, optimized, protocol", nix.app(nix.sel(lib, "optionalString"), headless, " (headless version)"))),
         homepage: "https://pkg.cloudflareclient.com/",

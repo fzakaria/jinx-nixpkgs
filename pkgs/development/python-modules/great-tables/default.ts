@@ -36,12 +36,12 @@ export default nix.lambda((args) => (() => {
   const shiny = nix.arg($, "shiny");
   const syrupy = nix.arg($, "syrupy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "great-tables",
       version: "0.21.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "posit-dev",
           repo: "great-tables",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_html_string_generated_inline_css"])))),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for rendering and formatting dataframes",
         homepage: "https://github.com/posit-dev/great-tables",
         changelog: nix.thunk(() => nix.str`https://github.com/posit-dev/great-tables/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

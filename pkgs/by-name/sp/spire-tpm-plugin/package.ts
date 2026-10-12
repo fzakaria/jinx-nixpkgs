@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const xxd = nix.arg($, "xxd");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "spire-tpm-plugin",
       version: "1.11.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "spiffe",
           repo: "spire-tpm-plugin",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,12 +34,12 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openssl]),
       nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(openssl, "bin")), tpm2_tools, xxd]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Provides agent and server plugins for SPIRE to allow TPM 2-based node attestation",
         homepage: "https://github.com/spiffe/spire-tpm-plugin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

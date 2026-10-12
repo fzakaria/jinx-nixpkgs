@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rhasspy",
           repo: "gruut",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -67,9 +67,9 @@ export default nix.lambda((args) => (() => {
         numpy,
         python_crfsuite,
       ], nix.sel(optional_dependencies, "en")));
-      const optional_dependencies = nix.thunk(() => nix.update({ __proto__: pos$2, train: nix.thunk(() => [pydub, rapidfuzz]) }, nix.app(nix.sel(lib, "genAttrs"), langPkgs, (lang) => [
+      const optional_dependencies = nix.thunk(() => nix.update({ [nix.POS]: pos$2, train: nix.thunk(() => [pydub, rapidfuzz]) }, nix.app(nix.sel(lib, "genAttrs"), langPkgs, (lang) => [
           nix.thunk(() => nix.app(callPackage, nix.path(here, "./language-pack.nix"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               lang: lang,
               version: version,
               src: src,
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_lexicon_external", "test_fa", "test_ar"]);
       const pythonImportsCheck = nix.thunk(() => ["gruut"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Tokenizer, text cleaner, and phonemizer for many human languages",
         mainProgram: "gruut",
         homepage: "https://github.com/rhasspy/gruut",
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "tts"))]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

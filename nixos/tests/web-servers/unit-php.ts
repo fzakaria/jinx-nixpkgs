@@ -27,39 +27,39 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const testdir = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "www/info.php", "<?php phpinfo();"));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     name: "unit-php-test",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "izorkin"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const lib = nix.arg($_1, "lib");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             unit: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               enable: true,
               config: nix.thunk(() => nix.app(nix.sel(pkgs_1, "lib", "strings", "toJSON"), nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   listeners: nix.thunk(() => ({
-                    __proto__: pos$3,
-                    "*:9081": nix.thunk(() => ({ __proto__: pos$2, application: "php_82" })),
+                    [nix.POS]: pos$3,
+                    "*:9081": nix.thunk(() => ({ [nix.POS]: pos$2, application: "php_82" })),
                   })),
                   applications: nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     php_82: nix.thunk(() => ({
-                      __proto__: pos$5,
+                      [nix.POS]: pos$5,
                       type: "php 8.2",
                       processes: 1n,
                       user: "testuser",
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
                       root: nix.thunk(() => nix.str`${testdir}/www`),
                       index: "info.php",
                       options: nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         file: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "unit", "usedPhp82")}/lib/php.ini`),
                       })),
                     })),
@@ -76,14 +76,14 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             users: nix.thunk(() => ({
-              __proto__: pos$11,
-              testuser: nix.thunk(() => ({ __proto__: pos$10, isSystemUser: true, uid: 1080n, group: "testgroup" })),
+              [nix.POS]: pos$11,
+              testuser: nix.thunk(() => ({ [nix.POS]: pos$10, isSystemUser: true, uid: 1080n, group: "testgroup" })),
             })),
             groups: nix.thunk(() => ({
-              __proto__: pos$13,
-              testgroup: nix.thunk(() => ({ __proto__: pos$12, gid: 1080n })),
+              [nix.POS]: pos$13,
+              testgroup: nix.thunk(() => ({ [nix.POS]: pos$12, gid: 1080n })),
             })),
           })),
         };

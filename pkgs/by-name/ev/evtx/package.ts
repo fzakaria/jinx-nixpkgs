@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "evtx",
       version: "0.12.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "omerbenamram",
           repo: "evtx",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         "--skip=wevt_templates_research::wevt_dll_wevtsvc",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Parser for the Windows XML Event Log (EVTX) format",
         homepage: "https://github.com/omerbenamram/evtx",
         changelog: nix.thunk(() => nix.str`https://github.com/omerbenamram/evtx/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

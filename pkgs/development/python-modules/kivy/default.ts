@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const filetype = nix.arg($, "filetype");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "kivy",
       version: "2.3.1-unstable-2026-07-11",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kivy",
           repo: "kivy",
           rev: "d8e642fec15894ce338b0c9773c3f58b41b75f09",
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         })())))))),
       dependencies: nix.thunk(() => [kivy_garden, docutils, pygments, requests, filetype]),
       env: nix.thunk(() => nix.update({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         KIVY_NO_CONFIG: 1n,
         KIVY_NO_ARGS: 1n,
         KIVY_NO_FILELOG: 1n,
@@ -72,14 +72,14 @@ export default nix.lambda((args) => (() => {
               nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getInclude"), nix.thunk(() => nix.sel(stdenv, "cc", "libcxx")))}/include/c++/v1`),
             ])))))),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           KIVY_ANGLE_INCLUDE_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getInclude"), angle)}/include`),
           KIVY_ANGLE_LIB_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), angle)}/lib`),
         }))))),
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["kivy"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Library for rapid development of hardware-accelerated multitouch applications",
         homepage: "https://github.com/kivy/kivy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

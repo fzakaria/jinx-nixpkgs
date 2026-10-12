@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vttest",
       version: "20251205",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://invisible-mirror.net/archives/vttest/vttest-${nix.sel(finalAttrs, "version")}.tgz`),
             nix.thunk(() => nix.str`https://invisible-island.net/archives/vttest/vttest-${nix.sel(finalAttrs, "version")}.tgz`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
           sha256: "sha256-zWiG+a7+aj9sVm+mEnGlVxCQGnGEnGML9TdqqYS/d8w=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tests the compatibility of so-called 'VT100-compatible' terminals",
         homepage: "https://invisible-island.net/vttest/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

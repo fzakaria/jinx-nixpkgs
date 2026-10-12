@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const dotnet = nix.thunk(() => nix.sel(dotnetCorePackages, "dotnet_10"));
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "yafc-ce",
       version: "2.20.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Yafc-CE",
           repo: "yafc-ce",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       executables: nix.thunk(() => ["Yafc"]),
       runtimeDeps: nix.thunk(() => [SDL2, SDL2_ttf, SDL2_image]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Powerful Factorio calculator/analyser that works with mods, Community Edition",
         longDescription: "Yet Another Factorio Calculator or YAFC is a planner and analyzer.\nThe main goal of YAFC is to help with heavily modded Factorio games.\n\nYAFC Community Edition is an updated and actively-maintained version of the original YAFC.\n",
         homepage: "https://github.com/Yafc-CE/yafc-ce",

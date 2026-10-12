@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "arjun",
       version: "2.2.7-unstable-2025-02-20",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "s0md3v",
           repo: "Arjun",
           rev: "d1fb995cb1e064d4e171d83f19f6af79b0a3c5ce",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["arjun"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "HTTP parameter discovery suite",
         homepage: "https://github.com/s0md3v/Arjun",
         changelog: nix.thunk(() => nix.str`https://github.com/s0md3v/Arjun/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

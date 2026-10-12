@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.17";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xhtml2pdf",
           repo: "xhtml2pdf",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_document_cannot_identify_image", "test_document_with_broken_image"]);
       const pythonImportsCheck = nix.thunk(() => ["xhtml2pdf", "xhtml2pdf.pisa"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/xhtml2pdf/xhtml2pdf/releases/tag/${nix.sel(src, "tag")}`),
         description: "PDF generator using HTML and CSS",
         homepage: "https://github.com/xhtml2pdf/xhtml2pdf",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

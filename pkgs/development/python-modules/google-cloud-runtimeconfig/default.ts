@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.36.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "google_cloud_runtimeconfig",
           version: version,
           hash: "sha256-+pDFyELolBTJfz/RIoNbGNHC30tyKhZ7D6XiQTKO2t0=",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "rm -r google\n";
       const pythonImportsCheck = nix.thunk(() => ["google.cloud.runtimeconfig"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Google Cloud RuntimeConfig API client library",
         homepage: "https://github.com/googleapis/python-runtimeconfig",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/python-runtimeconfig/blob/v${version}/CHANGELOG.md`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

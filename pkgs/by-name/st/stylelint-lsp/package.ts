@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const stylelint_lsp = nix.arg($, "stylelint-lsp");
   const pnpm = pnpm_11;
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "stylelint-lsp",
       version: "2.0.1-unstable-2026-07-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bmatcuk",
           repo: "stylelint-lsp",
           rev: "0362a26ffaf1879b9ec02e2a52a11792a2d4f8d4",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [nodejs_slim, pnpmConfigHook, pnpmBuildHook, pnpm]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -49,10 +49,10 @@ export default nix.lambda((args) => (() => {
       preInstall: "# remove unnecessary files\nCI=true pnpm --ignore-scripts prune --prod\nrm -rf node_modules/.pnpm/typescript*\nfind -type f \\( -name \"*.ts\" -o -name \"*.map\" \\) -exec rm -rf {} +\n# https://github.com/pnpm/pnpm/issues/3645\nfind node_modules -xtype l -delete\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/{bin,lib/stylelint-lsp}\nmv {dist,node_modules} $out/lib/stylelint-lsp\n\nchmod a+x $out/lib/stylelint-lsp/dist/index.js\npatchShebangs $out/lib/stylelint-lsp/dist/index.js\nln -s $out/lib/stylelint-lsp/dist/index.js $out/bin/stylelint-lsp\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$3, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           smoke: nix.thunk(() => nix.app(runCommand, "stylelint-lsp-smoke-test", nix.thunk(() => ({})), nix.thunk(() => nix.str`INIT_REQUEST='{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"processId":null,"rootUri":"file:///tmp","workspaceFolders":[{"uri":"file:///tmp","name":"test"}],"capabilities":{}}}'
 CONTENT_LENGTH=\${#INIT_REQUEST}
 
@@ -69,7 +69,7 @@ touch $out
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Stylelint Language Server",
         homepage: "https://github.com/bmatcuk/stylelint-lsp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

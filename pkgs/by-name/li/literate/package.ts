@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildDubPackage = nix.arg($, "buildDubPackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildDubPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "literate",
       version: "0-unstable-2021-01-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zyedidia",
           repo: "Literate",
           rev: "7004dffec0cff3068828514eca72172274fd3f7d",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "make d-files\n",
       installPhase: "runHook preInstall\ninstall -Dm755 bin/lit -t $out/bin\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Literate programming tool for any language",
         homepage: "https://zyedidia.github.io/literate/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

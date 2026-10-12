@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.7.4";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "a646096dd3114ee8a7c6f30363f38c288ec56c4e032c8fc7e681792b604dd122",
@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["monkeyhex"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Small library to assist users of the python shell who work in contexts where printed numbers are more usefully viewed in hexadecimal",
         homepage: "https://github.com/rhelmot/monkeyhex",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "pamplemousse"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

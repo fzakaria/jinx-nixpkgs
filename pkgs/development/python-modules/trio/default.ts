@@ -28,8 +28,8 @@ export default nix.lambda((args) => (() => {
   const pytest_trio = nix.arg($, "pytest-trio");
   const pyyaml = nix.arg($, "pyyaml");
   const trustme = nix.arg($, "trustme");
-  const pytest_trio$ = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(pytest_trio, "override"), nix.thunk(() => ({ __proto__: pos$1, trio: null }))), "overrideAttrs"), nix.thunk(() => ({
-      __proto__: pos$2,
+  const pytest_trio$ = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(pytest_trio, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, trio: null }))), "overrideAttrs"), nix.thunk(() => ({
+      [nix.POS]: pos$2,
       dontCheckRuntimeDeps: true,
       doCheck: false,
       pythonImportsCheck: [],
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.33.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "python-trio",
           repo: "trio",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const disabledTestPaths = nix.thunk(() => ["src/trio/_tests/tools/test_gen_exports.py"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/python-trio/trio/blob/${nix.sel(src, "tag")}/docs/source/history.rst`),
         description: "Async/await-native I/O library for humans and snake people",
         homepage: "https://github.com/python-trio/trio",
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

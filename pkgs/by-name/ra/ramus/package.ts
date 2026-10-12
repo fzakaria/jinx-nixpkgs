@@ -20,20 +20,20 @@ export default nix.lambda((args) => (() => {
   const libxext = nix.arg($, "libxext");
   const libGL = nix.arg($, "libGL");
   const self = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ramus",
       version: "2.0.2",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Vitaliy-Yakovchuk",
           repo: "ramus",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-2rbcUqM0YgwPLo8lNFCRJQDlHZQEivB3GRG/iIlwXiQ=",
         })))),
       nativeBuildInputs: nix.thunk(() => [gradle, makeWrapper]),
-      mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ __proto__: pos$2, pkg: finalAttrs, data: nix.path(here, "./deps.json") })))),
+      mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: pos$2, pkg: finalAttrs, data: nix.path(here, "./deps.json") })))),
       doCheck: false,
       postPatch: "sed -i \"/plugins {/,/^}/d\" build.gradle\nsed -i \"/^dependencies {/,/^}/d\" build.gradle\nsed -i \"/^izpack {/,/^}/d\" build.gradle\nsed -i \"s|org.dockingframes:docking-frames-common:1.1.2-SNAPSHOT|org.dockingframes:docking-frames-common:1.1.1|g\" \\\n  gui-framework-core/build.gradle\nsed -i \"/    maven {/{N;N;/freehep/d}\" client/build.gradle\nsed -i \"s/sourceCompatibility = 1\\.6/sourceCompatibility = 8/\" build.gradle\nsed -i \"s/targetCompatibility = 1\\.6/targetCompatibility = 8/\" build.gradle\n",
       gradleBuildTask: "copyFiles",
@@ -50,7 +50,7 @@ makeWrapper ${jre}/bin/java $out/bin/ramus \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Java-based IDEF0 and DFD modelling tool",
         longDescription: "Ramus is a desktop application for creating IDEF0 functional decomposition\ndiagrams and Data Flow Diagrams (DFD). It is written in Java/Swing and\nsupports saving/loading projects in its own XML-based format.\n",
         homepage: "https://github.com/Vitaliy-Yakovchuk/ramus",

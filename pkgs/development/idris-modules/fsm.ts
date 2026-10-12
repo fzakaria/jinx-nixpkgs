@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fsm",
       version: "2017-04-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ctford",
           repo: "flying-spaghetti-monster",
           rev: "9253db1048d155b9d72dd5319f0a2072b574d406",
           sha256: "0n1kqpxysl3dji0zd8c47ir4144s0n3pb8i1mqp6ylma3r7rlg1l",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Comonads for Idris",
         homepage: "https://github.com/ctford/flying-spaghetti-monster",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

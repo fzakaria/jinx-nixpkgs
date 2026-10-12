@@ -39,11 +39,11 @@ EVEREST_TMPDIR=${writableDir}
 ${launchEnv}
 `));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "celeste-unwrapped",
       version: version,
       src: nix.thunk(() => (nix.asBool(nix.eq(overrideSrc, null)) ? nix.app(fetchItchIo, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: "celeste-linux.zip",
           gameUrl: downloadPage,
           upload: "12748042",
@@ -53,7 +53,7 @@ ${launchEnv}
       nativeBuildInputs: nix.thunk(() => [unzip, yq, makeWrapper, copyDesktopItems]),
       desktopItems: nix.thunk(() => (nix.asBool(!nix.eq(desktopItems, null)) ? nix.force(desktopItems) : [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "Celeste",
             desktopName: "Celeste",
             genericName: "Celeste",
@@ -109,7 +109,7 @@ ln -s "${writableDir}"/{Mods,LogHistory,CrashLogs,${everestLogFilename}} -t ${ph
 `)), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(writableDir, null)), nix.thunk(() => nix.str`ln -s "${writableDir}/log.txt" -t ${phome}
 `)))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         downloadPage: downloadPage,
         description: description,
         homepage: "https://www.celestegame.com",

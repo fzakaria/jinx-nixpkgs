@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_cov_stub = nix.arg($, "pytest-cov-stub");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tiered-debug",
       version: "1.5.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "untergeek",
           repo: "tiered-debug",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["tiered_debug"]),
       disabledTests: nix.thunk(() => ["test_add_handler", "test_log_with_default_stacklevel"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python logging helper module that allows for multiple tiers of debug logging",
         homepage: "https://github.com/untergeek/tiered-debug",
         changelog: nix.thunk(() => nix.str`https://github.com/untergeek/tiered-debug/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

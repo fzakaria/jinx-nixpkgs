@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.9";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Freed-Wu",
           repo: "help2man",
           rev: version,
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.13")), nix.thunk(() => ["test_help"])));
       const pythonImportsCheck = nix.thunk(() => ["help2man"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Convert --help and --version to man page",
         homepage: "https://github.com/Freed-Wu/help2man",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "help2man",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

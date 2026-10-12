@@ -17,21 +17,21 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libESMTP",
       version: "1.1.0",
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
       mesonFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "libc"), "glibc")), "-Dc_args=-D_DEFAULT_SOURCE")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libesmtp",
           repo: "libESMTP",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           sha256: "1bhh8hlsl9597x0bnfl563k2c09b61qnkb9mfyqcmzlq63m1zw5y",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for Posting Electronic Mail",
         longDescription: "libESMTP is an SMTP client library which manages submission of electronic mail\nvia a preconfigured Mail Transport Agent (MTA) such as Exim or Postfix.\nIt implements many SMTP extensions including TLS for security\nand PIPELINING for high performance.\n",
         homepage: "https://libesmtp.github.io/",

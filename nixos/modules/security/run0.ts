@@ -34,27 +34,27 @@ export default nix.lambda((args) => (() => {
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   const cfg = nix.thunk(() => nix.sel(config, "security", "run0"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       security: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         run0: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(mkEnableOption, "support for run0")),
           persistentAuth: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             enable: nix.thunk(() => nix.app(mkEnableOption, "persistent authentication for sessions.\nTimeout configurable via {option}`security.polkit.settings.Polkitd.ExpirationSeconds`\n")),
             enableRemote: nix.thunk(() => nix.app(mkEnableOption, "persistent authentication for remote sessions")),
           })),
           wheelNeedsPassword: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether users of the `wheel` group must\nprovide a password to run commands as super user via {command}`run0`.\n",
             })))),
           "sudo-shim": nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: nix.thunk(() => nix.app(mkEnableOption, "make {command}`sudo` an alias to {command}`run0`.")),
             package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "run0-sudo-shim", nix.thunk(() => ({})))),
           })),
@@ -66,33 +66,33 @@ export default nix.lambda((args) => (() => {
     ]),
     config: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           assertions: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               assertion: nix.thunk(() => (!nix.asBool(!nix.asBool(nix.sel(cfg, "wheelNeedsPassword"))) || nix.asBool(nix.sel(cfg, "enable")))),
               message: "`security.run0.enable` is currently disabled, but is required for the `security.run0.wheelNeedsPassword` option to take effect",
             })),
             nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "enableSudoAlias")) || nix.asBool(nix.sel(cfg, "enable")))),
               message: "`security.run0.enableSudoAlias` depends on `security.run0.enable`, which is disabled.",
             })),
           ]),
         })),
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "sudo-shim", "enable")) || nix.asBool((nix.asBool(!nix.asBool(nix.sel(config, "security", "sudo", "enable"))) && nix.asBool(!nix.asBool(nix.sel(config, "security", "sudo-rs", "enable"))))))),
                 message: "`security.run0.sudo-shim.enable` cannot be enabled if `security.sudo` or `security.sudo-rs` are enabled.",
               })),
             ]),
             security: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               polkit: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 enable: true,
                 extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "concatLines"), nix.thunk(() => [
                     nix.thunk(() => nix.app(optionalString, nix.thunk(() => !nix.asBool(nix.sel(cfg, "wheelNeedsPassword"))), "polkit.addRule(function(action, subject) {\n  if (action.id == \"org.freedesktop.systemd1.manage-units\" && subject.isInGroup(\"wheel\")) {\n    return polkit.Result.YES;\n  }\n});\n")),
@@ -106,13 +106,13 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               systemPackages: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "sudo-shim", "enable")), nix.thunk(() => nix.sel(cfg, "sudo-shim", "package")))),
             })),
           })))),
       ]))),
     meta: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

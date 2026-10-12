@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const numactl = nix.arg($, "numactl");
   const nlohmann_json = nix.arg($, "nlohmann_json");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mscclpp",
       version: "unstable-2024-12-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "microsoft",
           repo: "mscclpp",
           rev: "ee75caf365a27b9ab7521cfdda220b55429e5c37",
@@ -42,8 +42,8 @@ export default nix.lambda((args) => (() => {
         "-DFETCHCONTENT_TRY_FIND_PACKAGE_MODE=ALWAYS",
         nix.thunk(() => nix.str`-DFETCHCONTENT_SOURCE_DIR_JSON=${nix.sel(nlohmann_json, "src")}`),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$2, ROCM_PATH: clr })),
-      meta: nix.thunk(() => ({ __proto__: pos$3, homepage: "https://github.com/microsoft/mscclpp" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, ROCM_PATH: clr })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$3, homepage: "https://github.com/microsoft/mscclpp" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

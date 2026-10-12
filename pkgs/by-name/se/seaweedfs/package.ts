@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "seaweedfs",
       version: "4.48",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "seaweedfs",
           repo: "seaweedfs",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       tags: nix.thunk(() => ["elastic", "gocdk", "rclone", "sqlite", "tarantool", "tikv", "ydb"]),
       ldflags: nix.thunk(() => nix.concat(["-s"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ["-extldflags=-static"])))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CGO_ENABLED: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? 1n : 0n)),
         GODEBUG: "http2client=0",
       })),
@@ -48,11 +48,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "version",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Simple and highly scalable distributed file system",
         longDescription: "SeaweedFS is a versatile and efficient storage system designed to meet the\nneeds of modern sysadmins managing a mix of blob, object, file, and data\nwarehouse storage requirements. Its architecture guarantees fast access\ntimes, with constant-time (O(1)) disk seeks, regardless of the size of the\ndataset. This makes it an excellent choice for environments where speed\nand efficiency are critical.\n",
         homepage: "https://github.com/seaweedfs/seaweedfs",

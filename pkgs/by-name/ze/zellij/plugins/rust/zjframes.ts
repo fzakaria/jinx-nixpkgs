@@ -10,12 +10,12 @@ const pos$3 = nix.positions(here + "/zjframes.nix", [["pname", 7, 3], ["meta", 9
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
-  const zjstatus = nix.thunk(() => nix.app(callPackage, nix.path(here, "./zjstatus.nix"), nix.thunk(() => ({ __proto__: pos$1, _binaryName: "zjframes" }))));
+  const zjstatus = nix.thunk(() => nix.app(callPackage, nix.path(here, "./zjstatus.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, _binaryName: "zjframes" }))));
   return nix.app(nix.sel(zjstatus, "overrideAttrs"), (old) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zjframes",
       meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Toggle Zellij pane frames based on different conditions",
       })),
     }));

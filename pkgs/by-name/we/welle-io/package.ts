@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const withFlac = nix.argOr($, "withFlac", () => true);
   const flac = nix.arg($, "flac");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "welle-io",
       version: "2.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AlbrechtL",
           repo: "welle.io",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "cmake3_16.patch",
             url: "https://github.com/AlbrechtL/welle.io/commit/c7581c251b5fe2408b45365e0f2c5efc7f01fd19.patch",
             hash: "sha256-e282lwCstwsRFGCtFT39CBn1jTvkA9bxa5t6Nk8mc98=",
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optional"), withFlac, flac))),
       cmakeFlags: nix.thunk(() => nix.concat(["-DRTLSDR=true", "-DSOAPYSDR=true"], nix.concat(nix.app(nix.sel(lib, "optional"), withFlac, "-DFLAC=true"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`-DBUNDLE_INSTALL_DIR=${nix.builtins.placeholder("out")}/Applications`))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "DAB/DAB+ Software Radio",
         homepage: "https://www.welle.io/",
         maintainers: nix.thunk(() => (() => {

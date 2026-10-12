@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
   const enablePython = nix.argOr($, "enablePython", () => false);
   nix.assert_((nix.asBool(!nix.asBool(nix.sel(blas, "isILP64"))) && nix.asBool(!nix.asBool(nix.sel(lapack, "isILP64")))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/gm/gmsh/package.nix:32:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gmsh",
       version: "4.15.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://gmsh.info/src/gmsh-${nix.sel(finalAttrs, "version")}-source.tgz`),
           hash: "sha256-vj9m8iXSe6n6AU8H6DFpKF2ooFGw6KtxA9iAZrOb3T4=",
         })))),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "gmsh",
             exec: "gmsh",
             comment: nix.thunk(() => nix.sel(finalAttrs, "meta", "description")),
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => (() => {
         const logo = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://salsa.debian.org/science-team/gmsh/-/raw/d2d8b4e3488c7b0f51879f809f624b537b4bd28f/debian/gmsh.svg",
             hash: "sha256-p69Cju3bn1ShWmESOSOmJj0x3IYDGI9oD25SFTh2GLo=",
           }))));
@@ -95,7 +95,7 @@ mv $out/lib/*.dist-info $out/${nix.sel(python3Packages, "python", "sitePackages"
       })()),
       pythonImportsCheck: nix.thunk(() => ["gmsh"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Three-dimensional finite element mesh generator",
         mainProgram: "gmsh",
         homepage: "https://gmsh.info/",

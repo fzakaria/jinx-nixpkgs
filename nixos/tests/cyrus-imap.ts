@@ -32,24 +32,24 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     name: "cyrus-imap",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "moraxyc"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           environment: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [
@@ -59,59 +59,59 @@ export default nix.lambda((args) => (() => {
             })()),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             saslauthd: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               enable: true,
               config: "DESC=\"SASL Authentication Daemon\"\nNAME=\"saslauthd\"\nMECH_OPTIONS=\"\"\nTHREADS=5\nSTART=yes\nOPTIONS=\"-c -m /run/saslauthd\"\n",
             })),
             "cyrus-imap": nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               enable: true,
               cyrusSettings: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 START: nix.thunk(() => ({
-                  __proto__: pos$5,
-                  recover: nix.thunk(() => ({ __proto__: pos$4, cmd: nix.thunk(() => ["ctl_cyrusdb", "-r"]) })),
+                  [nix.POS]: pos$5,
+                  recover: nix.thunk(() => ({ [nix.POS]: pos$4, cmd: nix.thunk(() => ["ctl_cyrusdb", "-r"]) })),
                 })),
                 EVENTS: nix.thunk(() => ({
-                  __proto__: pos$11,
-                  tlsprune: nix.thunk(() => ({ __proto__: pos$6, cmd: nix.thunk(() => ["tls_prune"]), at: 400n })),
-                  delprune: nix.thunk(() => ({ __proto__: pos$7, cmd: nix.thunk(() => ["cyr_expire", "-E", "3"]), at: 400n })),
+                  [nix.POS]: pos$11,
+                  tlsprune: nix.thunk(() => ({ [nix.POS]: pos$6, cmd: nix.thunk(() => ["tls_prune"]), at: 400n })),
+                  delprune: nix.thunk(() => ({ [nix.POS]: pos$7, cmd: nix.thunk(() => ["cyr_expire", "-E", "3"]), at: 400n })),
                   deleteprune: nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     cmd: nix.thunk(() => ["cyr_expire", "-E", "4", "-D", "28"]),
                     at: 430n,
                   })),
                   expungeprune: nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     cmd: nix.thunk(() => ["cyr_expire", "-E", "4", "-X", "28"]),
                     at: 445n,
                   })),
-                  checkpoint: nix.thunk(() => ({ __proto__: pos$10, cmd: nix.thunk(() => ["ctl_cyrusdb", "-c"]), period: 30n })),
+                  checkpoint: nix.thunk(() => ({ [nix.POS]: pos$10, cmd: nix.thunk(() => ["ctl_cyrusdb", "-c"]), period: 30n })),
                 })),
                 SERVICES: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   http: nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     cmd: nix.thunk(() => ["httpd"]),
                     listen: "80",
                     prefork: 0n,
                   })),
                   imap: nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     cmd: nix.thunk(() => ["imapd"]),
                     listen: "143",
                     prefork: 0n,
                   })),
                   lmtpunix: nix.thunk(() => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     cmd: nix.thunk(() => ["lmtpd"]),
                     listen: "/run/cyrus/lmtp",
                     prefork: 0n,
                   })),
                   notify: nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     cmd: nix.thunk(() => ["notifyd"]),
                     listen: "/run/cyrus/notify",
                     proto: "udp",

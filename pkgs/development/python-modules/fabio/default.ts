@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "2025.10.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-wZdjvPoCp4pQfz2RS1ZKiZfIimqntPh/nbTOf6OX0lY=",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "patchShebangs --build version.py\n";
       const dependencies = nix.thunk(() => [numpy, lxml, h5py, hdf5plugin, pillow, tomli]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: "https://github.com/silx-kit/fabio/blob/main/doc/source/Changelog.rst",
         description: "I/O library for images produced by 2D X-ray detector",
         homepage: "https://github.com/silx-kit/fabio",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "pmiddend"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

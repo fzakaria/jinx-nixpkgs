@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rstudio",
           repo: "pins-python",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         xxhash,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         aws: nix.thunk(() => [s3fs]),
         azure: nix.thunk(() => [adlfs]),
         gcs: nix.thunk(() => [gcsfs]),
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
         "pins/tests/test_rsconnect_api.py",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Module to publishes data, models and other Python objects",
         homepage: "https://github.com/rstudio/pins-python",
         changelog: nix.thunk(() => nix.str`https://github.com/rstudio/pins-python/releases/tag/${nix.sel(src, "tag")}`),
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

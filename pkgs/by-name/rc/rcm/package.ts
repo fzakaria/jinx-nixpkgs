@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rcm",
       version: "1.3.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://thoughtbot.github.io/rcm/dist/rcm-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-9P37xFHR+1dkUxKQogKgqHH2uBujwBprdsSUNchQgKU=",
         })))),
       patches: nix.thunk(() => [nix.path(here, "./fix-rcmlib-path.patch")]),
       postPatch: "for f in bin/*.in; do\n  substituteInPlace $f --subst-var-by rcm $out\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/thoughtbot/rcm",
         description: "Management Suite for Dotfiles",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

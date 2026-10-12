@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(lib, "pipe"), nix.thunk(() => nix.sel(haskellPackages, "spago-legacy")), nix.thunk(() => [
       nix.thunk(() => nix.sel(haskell, "lib", "compose", "justStaticExecutables")),
       nix.thunk(() => nix.app(nix.sel(haskell, "lib", "compose", "overrideCabal"), (oldAttrs) => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           changelog: nix.thunk(() => nix.str`https://github.com/purescript/spago-legacy/releases/tag/${nix.sel(oldAttrs, "version")}`),
           passthru: nix.thunk(() => nix.update(nix.selOr(oldAttrs, () => ({}), "passthru"), {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             updateScript: nix.path(here, "./update.sh"),
             tests: nix.thunk(() => nix.app(runCommand, "spago-legacy-tests", nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 __noChroot: true,
                 nativeBuildInputs: nix.thunk(() => [cacert, git, nodejs, purescript, spago_legacy]),
               })), "# spago expects HOME to be set because it creates a cache file under\n# home.\nHOME=$(pwd)\n\nspago --verbose init\nspago --verbose build\nspago --verbose test\n\ntouch $out\n")),

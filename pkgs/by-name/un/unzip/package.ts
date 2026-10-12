@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const enableNLS = nix.argOr($, "enableNLS", () => false);
   const libnatspec = nix.arg($, "libnatspec");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "unzip",
       version: "6.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/infozip/unzip${nix.app(nix.sel(lib, "replaceString"), ".", "", nix.thunk(() => nix.sel(finalAttrs, "version")))}.tar.gz`),
           hash: "sha256-A22WmRZG0ESe0KqVLk++IbR2zplKvCduSdMOaGcIvTc=",
         })))),
@@ -44,19 +44,19 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./CVE-2018-18384.patch"),
         nix.path(here, "./dont-hardcode-cc.patch"),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/madler/unzip/commit/41beb477c5744bc396fa1162ee0c14218ec12213.patch",
             name: "CVE-2019-13232-1.patch",
             sha256: "04jzd6chg9fw4l5zadkfsrfm5llrd7vhd1dgdjjd29nrvkrjyn14",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/madler/unzip/commit/47b3ceae397d21bf822bc2ac73052a4b1daf8e1c.patch",
             name: "CVE-2019-13232-2.patch",
             sha256: "0iy2wcjyvzwrjk02iszwcpg85fkjxs1bvb9isvdiywszav4yjs32",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/madler/unzip/commit/6d351831be705cc26d897db44f878a978f4138fc.patch",
             name: "CVE-2019-13232-3.patch",
             sha256: "1jvs7dkdqs97qnsqc6hk088alhv8j4c638k65dbib9chh40jd7pf",
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./implicit-declarations-fix.patch"),
         nix.path(here, "./CVE-2021-4217.patch"),
       ], nix.app(nix.sel(lib, "optional"), enableNLS, nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/app-arch/unzip/files/unzip-6.0-natspec.patch?id=56bd759df1d0c750a065b8c845e93d5dfa6b549d",
             name: "unzip-6.0-natspec.patch",
             sha256: "67ab260ae6adf8e7c5eda2d1d7846929b43562943ec4aff629bd7018954058b1",
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       makefile: "unix/Makefile",
       env: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(["-lbz2"], nix.app(nix.sel(lib, "optionals"), enableNLS, nix.thunk(() => ["-lnatspec"])))))),
       })),
       buildFlags: nix.thunk(() => nix.concat(["generic", "D_USE_BZ2=-DUSE_BZIP2", "L_BZ2=-lbz2"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ["LOCAL_UNZIP=-DNO_LCHMOD"])))),
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
       setupHook: nix.path(here, "./setup-hook.sh"),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "http://www.info-zip.org",
         description: "Extraction utility for archives compressed in .zip format",
         license: nix.thunk(() => nix.sel(lib, "licenses", "info-zip")),

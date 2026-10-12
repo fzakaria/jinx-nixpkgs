@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.4.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "timmo001",
           repo: "system-bridge-connector",
           tag: version,
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         "test_wait_for_response_timeout",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/timmo001/system-bridge-connector/releases/tag/${version}`),
         description: "This is the connector package for the System Bridge project",
         homepage: "https://github.com/timmo001/system-bridge-connector",
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

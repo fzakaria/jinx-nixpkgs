@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const libxcrypt = nix.arg($, "libxcrypt");
   const util_linux = nix.arg($, "util-linux");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => nix.attrsDyn({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "inetutils",
       version: "2.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/inetutils/inetutils-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-oVa+HN48XA/+/CYhgNk2mmBIQIeQeqVUxieH0vQOwIY=",
         })))),
@@ -38,26 +38,26 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./inetutils-1_9-PATH_PROCNET_DEV.patch"),
         nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.path(here, "./tests-libls-2.sh.patch") : nix.path(here, "./tests-libls.sh.patch"))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "CVE-2026-24061_1.patch",
             url: "https://codeberg.org/inetutils/inetutils/commit/fd702c02497b2f398e739e3119bed0b23dd7aa7b.patch",
             hash: "sha256-d/FdQyLD0gYr+erFqKDr8Okf04DFXknFaN03ls2aonQ=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "CVE-2026-24061_2.patch",
             url: "https://codeberg.org/inetutils/inetutils/commit/ccba9f748aa8d50a38d7748e2e60362edd6a32cc.patch",
             hash: "sha256-ws+ed5vb7kVMHEbqK7yj6FUT355pTv2RZEYuXs5M7Io=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "CVE-2026-28372.patch",
             url: "https://codeberg.org/inetutils/inetutils/commit/4db2f19f4caac03c7f4da6363c140bd70df31386.patch",
             excludes: nix.thunk(() => ["NEWS.md", "THANKS"]),
             hash: "sha256-ASgcaNC+yo3Hth4M32IVbD3jFt8mxcGtLfl+ULNt4Ag=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "CVE-2026-32746.patch",
             url: "https://codeberg.org/inetutils/inetutils/commit/6864598a29b652a6b69a958f5cd1318aa2b258af.patch",
             excludes: nix.thunk(() => ["NEWS.md"]),
@@ -84,7 +84,7 @@ profile $out/bin/ping {
   include <abstractions/base>
   include <abstractions/consoles>
   include <abstractions/nameservice>
-  include "${nix.app(apparmorRulesFromClosure, nix.thunk(() => ({ __proto__: pos$6, name: "ping" })), nix.thunk(() => [nix.thunk(() => nix.sel(stdenv, "cc", "libc"))]))}"
+  include "${nix.app(apparmorRulesFromClosure, nix.thunk(() => ({ [nix.POS]: pos$6, name: "ping" })), nix.thunk(() => [nix.thunk(() => nix.sel(stdenv, "cc", "libc"))]))}"
   capability net_raw,
   network inet raw,
   network inet6 raw,
@@ -94,7 +94,7 @@ profile $out/bin/ping {
 EOF
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Collection of common network programs",
         longDescription: "The GNU network utilities suite provides the\nfollowing tools: ftp(d), hostname, ifconfig, inetd, logger, ping, rcp,\nrexec(d), rlogin(d), rsh(d), syslogd, talk(d), telnet(d), tftp(d),\ntraceroute, uucpd, and whois.\n",
         homepage: "https://www.gnu.org/software/inetutils/",

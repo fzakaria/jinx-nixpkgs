@@ -20,24 +20,24 @@ export default nix.lambda((args) => (() => {
   const openscad = nix.arg($, "openscad");
   const libName = nix.argOr($, "libName", () => null);
   return nix.app(buildOpenSCADPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "dotscad",
       version: "3.3",
       libName: nix.thunk(() => (nix.asBool(nix.eq(libName, null)) ? "dotSCAD" : nix.force(libName))),
       installTargets: nix.thunk(() => ["src/*"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "JustinSDK",
           repo: "dotSCAD",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-kDT9vDCMMJs65aiQJXSxqhwy0GOo7FJbcIHPUtCSajQ=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             functionality: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`test-functionality-${nix.sel(finalAttrs, "name")}`), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 nativeBuildInputs: nix.thunk(() => [
                   nix.thunk(() => nix.app(nix.sel(openscad, "withPackages"), (ps) => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))])),
                 ]),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Reduce the burden of mathematics when playing OpenSCAD",
         longDescription: "dotSCAD's upstream installation instructions can cause namespace\nconflicts. This package installs it under a `dotSCAD/` namespace, so\nimport paths in the upstream documentation may differ. More info at\nhttps://wiki.nixos.org/wiki/OpenSCAD#Namespace_conflicting_libraries\n",
         homepage: "https://github.com/JustinSDK/dotSCAD",

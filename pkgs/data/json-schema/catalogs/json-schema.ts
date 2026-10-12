@@ -17,27 +17,27 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const newCatalog = nix.arg($, "newCatalog");
   return nix.app(newCatalog, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       name: "json-schema",
       displayName: "JSON Schema Metaschemas",
       groups: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "JSON Schema": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "http://json-schema.org/draft-04/schema#": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               name: "json-schema-draft-04",
               url: "https://json-schema.org/draft-04/schema",
               hash: "sha256-4UidC0dV8CeTMCWR0/y48Htok6gqlPJIlfjk7fEbguI=",
             })))),
           "http://json-schema.org/draft-06/schema#": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: "json-schema-draft-06",
               url: "https://json-schema.org/draft-06/schema",
               hash: "sha256-AGTogLohS/8c7lEeZ4++SMmCbdNZ6R4kI/w23mey6+E=",
             })))),
           "http://json-schema.org/draft-07/schema#": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               name: "json-schema-draft-07",
               url: "https://json-schema.org/draft-07/schema",
               hash: "sha256-aS4dFl5Hr8tfEbLOHGOWNf+oNANdbstrzzCHSB2uhAQ=",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "roberth"))];

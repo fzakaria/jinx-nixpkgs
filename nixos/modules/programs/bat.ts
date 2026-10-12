@@ -43,32 +43,32 @@ export default nix.lambda((args) => (() => {
   const listOf = nix.thunk(() => nix.attr(types, "listOf"));
   const package$ = nix.thunk(() => nix.attr(types, "package"));
   const cfg = nix.thunk(() => nix.sel(config, "programs", "bat"));
-  const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "keyValue"), nix.thunk(() => ({ __proto__: pos$1, listsAsDuplicateKeys: true }))));
+  const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "keyValue"), nix.thunk(() => ({ [nix.POS]: pos$1, listsAsDuplicateKeys: true }))));
   const generate = nix.thunk(() => nix.attr(settingsFormat, "generate"));
   const type = nix.thunk(() => nix.attr(settingsFormat, "type"));
   const recursiveToString = (value) => (nix.asBool(nix.app(isList, value)) ? nix.builtins.map(recursiveToString, value) : (nix.asBool(nix.app(isBool, value)) ? nix.app(boolToString, value) : nix.app(escapeShellArg, nix.thunk(() => nix.builtins.toString(value)))));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       programs: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         bat: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(mkEnableOption, "`bat`, a {manpage}`cat(1)` clone with wings")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "bat", nix.thunk(() => ({})))),
           extraPackages: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: [],
               example: nix.thunk(() => nix.app(literalExpression, "with pkgs.bat-extras; [\n  batdiff\n  batman\n  prettybat\n];\n")),
               description: "Extra `bat` scripts to be added to the system configuration.\n",
               type: nix.thunk(() => nix.app(listOf, package$)),
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 theme: "TwoDark",
                 "italic-text": "always",
                 paging: "never",
@@ -82,14 +82,14 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         environment: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           systemPackages: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(cfg, "package"))], nix.sel(cfg, "extraPackages"))),
           etc: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             "bat/config": nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               source: nix.thunk(() => nix.app(generate, "bat-config", nix.thunk(() => nix.app(mapAttrs$, (name) => (value) => nix.app(nameValuePair, nix.thunk(() => nix.add("--", name)), nix.thunk(() => nix.app(recursiveToString, value))), nix.thunk(() => nix.sel(cfg, "settings")))))),
             })),
           })),
@@ -97,24 +97,24 @@ export default nix.lambda((args) => (() => {
         programs: nix.thunk(() => (() => {
           const shellInit = (shell) => nix.app(concatMapStrings, (pkg) => nix.app(nix.sel(pkg, "shellInit"), shell), nix.thunk(() => nix.sel(cfg, "extraPackages")));
           return {
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             bash: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.asBool(nix.sel(config, "programs", "fish", "enable"))), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 interactiveShellInit: nix.thunk(() => nix.app(shellInit, "bash")),
               })))),
             fish: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(config, "programs", "fish", "enable")), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 interactiveShellInit: nix.thunk(() => nix.app(shellInit, "fish")),
               })))),
             zsh: nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(config, "programs", "fish", "enable"))) && nix.asBool(nix.sel(config, "programs", "zsh", "enable")))), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 interactiveShellInit: nix.thunk(() => nix.app(shellInit, "zsh")),
               })))),
           };
         })()),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(maintainers, null);
         return [nix.thunk(() => nix.lookup(w, "sigmasquadron"))];

@@ -13,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const buildNimPackage = nix.arg($, "buildNimPackage");
   return nix.app(buildNimPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nph",
       version: "0.7.0",
       postPatch: nix.thunk(() => nix.str`substituteInPlace src/nph.nim \\
   --replace-fail 'git describe --long --dirty --always --tags' "echo ${nix.sel(finalAttrs, "version")}"
 `),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "arnetheduck",
           repo: "nph",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       lockFile: nix.path(here, "./lock.json"),
       checkPhase: "runHook preCheck\n\n$out/bin/nph tests/before\ndiff tests/before tests/after -x \"*.yaml\"\n\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Opinionated code formatter for Nim",
         homepage: "https://github.com/arnetheduck/nph",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "klayout",
       version: "0.30.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KLayout",
           repo: "klayout",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -74,22 +74,22 @@ export default nix.lambda((args) => (() => {
       postBuild: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "install -Dm444 etc/klayout.desktop -t $out/share/applications\ninstall -Dm444 etc/logo.png $out/share/icons/hicolor/256x256/apps/klayout.png\n\ninstallBin $out/lib/klayout\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications\nmv $out/lib/klayout.app $out/Applications/\n"))),
       preFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "exec_name=$out/Applications/klayout.app/Contents/MacOS/klayout\n\nfor lib in $out/lib/libklayout_*.0.dylib; do\n  base_name=$(basename $lib)\n  install_name_tool -change \"$base_name\" \"@rpath/$base_name\" \"$exec_name\"\ndone\n\nwrapQtApp \"$out/Applications/klayout.app/Contents/MacOS/klayout\"\n")),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-parentheses"]))),
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-headerpad_max_install_names")),
       })),
       dontInstall: true,
       hardeningDisable: nix.thunk(() => ["format"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pythonPackage: nix.thunk(() => nix.sel(python3Packages, "klayout")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "High performance layout viewer and editor with support for GDS and OASIS",
         mainProgram: "klayout",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

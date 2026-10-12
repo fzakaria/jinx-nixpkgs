@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const meta = nix.arg($, "meta");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "azure-sdk-for-cpp-messaging-eventhubs",
       version: "1.0.0-beta.10",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Azure",
           repo: "azure-sdk-for-cpp",
           tag: "azure-messaging-eventhubs_1.0.0-beta.10",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, ninja]),
       propagatedBuildInputs: nix.thunk(() => [core, core_amqp]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         AZURE_SDK_DISABLE_AUTO_VCPKG: 1n,
         NIX_CFLAGS_COMPILE: "-Wno-error",
       })),
@@ -46,14 +46,14 @@ export default nix.lambda((args) => (() => {
       postInstall: "moveToOutput \"share\" \"$dev\"\nmoveToOutput \"share/$(basename \"$sourceRoot\")-cpp/copyright\" \"$out\"\n",
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version-regex", "azure-messaging-eventhubs_(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => nix.update(meta, {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Azure Event Hubs Client Package for C++",
         changelog: "https://github.com/Azure/azure-sdk-for-cpp/blob/main/sdk/eventhubs/azure-messaging-eventhubs/CHANGELOG.md",
       })),

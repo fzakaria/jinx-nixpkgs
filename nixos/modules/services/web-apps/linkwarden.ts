@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const mkEnableOption = nix.thunk(() => nix.attr(lib, "mkEnableOption"));
   const commonServiceConfig = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     Type: "simple",
     Restart: "on-failure",
     RestartSec: 3n,
@@ -92,54 +92,54 @@ export default nix.lambda((args) => (() => {
     RestrictSUIDSGID: true,
   }));
   const secret = nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.update(nix.sel(types, "str"), {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       check: (it) => (nix.asBool(nix.app(nix.sel(lib, "isString"), it)) && nix.asBool(nix.app(nix.sel(lib, "types", "path", "check"), it))),
     }))));
   const startupScript = (arg) => (nix.asBool(nix.eq(nix.sel(cfg, "secretFiles"), {})) ? nix.add(nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))}`, arg) : nix.app(nix.sel(pkgs, "writeShellScript"), "linkwarden-env", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "strings", "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "mapAttrsToList"), (key) => (path) => nix.str`export ${key}=$(< "${path}")`, nix.thunk(() => nix.sel(cfg, "secretFiles")))))}
 ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))}${arg}
 `)));
   return {
-    __proto__: pos$48,
+    [nix.POS]: pos$48,
     options: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       services: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         linkwarden: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Linkwarden")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "linkwarden", nix.thunk(() => ({})))),
           storageLocation: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "path")),
               default: "/var/lib/linkwarden",
               description: "Directory used to store media files. If it is not the default, the directory has to be created manually such that the linkwarden user is able to read and write to it.",
             })))),
           cacheLocation: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(types, "path")),
               default: "/var/cache/linkwarden",
               description: "Directory used as cache. If it is not the default, the directory has to be created manually such that the linkwarden user is able to read and write to it.",
             })))),
           enableRegistration: nix.thunk(() => nix.app(mkEnableOption, "registration for new users")),
           environment: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$5, PAGINATION_TAKE_COUNT: "50" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$5, PAGINATION_TAKE_COUNT: "50" })),
               description: "Extra configuration environment variables. Refer to the [documentation](https://docs.linkwarden.app/self-hosting/environment-variables) for options.\n",
             })))),
           environmentFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: secret,
               example: "/run/secrets/linkwarden",
               default: null,
               description: "Path of a file with extra environment variables to be loaded from disk.\nThis file is not added to the nix store, so it can be used to pass secrets to linkwarden.\nRefer to the [documentation](https://docs.linkwarden.app/self-hosting/environment-variables) for options.\n\nLinkwarden needs at least a nextauth secret. To set a database password use POSTGRES_PASSWORD:\n```\nNEXTAUTH_SECRET=<secret>\nPOSTGRES_PASSWORD=<pass>\n```\n",
             })))),
           secretFiles: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), secret)),
               example: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 POSTGRES_PASSWORD: "/run/secrets/linkwarden_postgres_passwd",
                 NEXTAUTH_SECRET: "/run/secrets/linkwarden_secret",
               })),
@@ -147,59 +147,59 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))}${ar
               description: "Attribute set containing paths to files to add to the environment of linkwarden.\nThe files are not added to the nix store, so they can be used to pass secrets to linkwarden.\nRefer to the [documentation](https://docs.linkwarden.app/self-hosting/environment-variables) for options.\n\nLinkwarden needs at least a nextauth secret. To set a database password use POSTGRES_PASSWORD:\n```\nNEXTAUTH_SECRET=<secret>\nPOSTGRES_PASSWORD=<pass>\n```\n",
             })))),
           host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "localhost",
               description: "The host that Linkwarden will listen on.",
             })))),
           port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 3000n,
               description: "The port that Linkwarden will listen on.",
             })))),
           openFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Whether to open the Linkwarden port in the firewall",
             })))),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "linkwarden",
               description: "The user Linkwarden should run as.",
             })))),
           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "linkwarden",
               description: "The group Linkwarden should run as.",
             })))),
           database: nix.thunk(() => ({
-            __proto__: pos$20,
-            createLocally: nix.thunk(() => nix.update(nix.app(mkEnableOption, "the automatic creation of the database for Linkwarden."), { __proto__: pos$15, default: true })),
+            [nix.POS]: pos$20,
+            createLocally: nix.thunk(() => nix.update(nix.app(mkEnableOption, "the automatic creation of the database for Linkwarden."), { [nix.POS]: pos$15, default: true })),
             name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "linkwarden",
                 description: "The name of the Linkwarden database.",
               })))),
             host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "/run/postgresql",
                 example: "localhost",
                 description: "Hostname or address of the postgresql server. If an absolute path is given here, it will be interpreted as a unix socket path.",
               })))),
             port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 type: nix.thunk(() => nix.sel(types, "port")),
                 default: 5432n,
                 description: "Port of the postgresql server.",
               })))),
             user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "linkwarden",
                 description: "The database user for Linkwarden.",
@@ -209,38 +209,38 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))}${ar
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$47,
+        [nix.POS]: pos$47,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "database", "createLocally")) || nix.asBool(nix.eq(nix.sel(cfg, "database", "name"), nix.sel(cfg, "database", "user"))))),
             message: "The postgres module requires the database name and the database user name to be the same.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             assertion: nix.thunk(() => (!nix.asBool(nix.eq(nix.sel(cfg, "environmentFile"), null)) || nix.asBool(nix.has(nix.sel(cfg, "secretFiles"), "NEXTAUTH_SECRET")))),
             message: "Linkwarden needs at least a nextauth secret to run.\nUse either the environmentFile or secretFiles.NEXTAUTH_SECRET to provide one.\n",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           postgresql: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               enable: true,
               ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "database", "name"))]),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   name: nix.thunk(() => nix.sel(cfg, "database", "user")),
                   ensureDBOwnership: true,
-                  ensureClauses: nix.thunk(() => ({ __proto__: pos$26, login: true })),
+                  ensureClauses: nix.thunk(() => ({ [nix.POS]: pos$26, login: true })),
                 })),
               ]),
             })))),
           linkwarden: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             environment: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               LINKWARDEN_HOST: nix.thunk(() => nix.sel(cfg, "host")),
               LINKWARDEN_PORT: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))),
               LINKWARDEN_CACHE_DIR: nix.thunk(() => nix.sel(cfg, "cacheLocation")),
@@ -256,60 +256,60 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))}${ar
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           firewall: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             allowedTCPPorts: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           services: nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             linkwarden: nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               description: "Linkwarden (Self-hosted collaborative bookmark manager to collect, organize, and preserve webpages, articles, and more...)",
               requires: nix.thunk(() => nix.concat(["network-online.target"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ["postgresql.target"])))),
               after: nix.thunk(() => nix.concat(["network-online.target"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ["postgresql.target"])))),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: nix.thunk(() => nix.update(nix.sel(cfg, "environment"), {
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 CHROME_CONFIG_HOME: nix.thunk(() => nix.sel(cfg, "cacheLocation")),
               })),
-              serviceConfig: nix.thunk(() => nix.update(commonServiceConfig, { __proto__: pos$35, ExecStart: nix.thunk(() => nix.app(startupScript, "")) })),
+              serviceConfig: nix.thunk(() => nix.update(commonServiceConfig, { [nix.POS]: pos$35, ExecStart: nix.thunk(() => nix.app(startupScript, "")) })),
             })),
             "linkwarden-worker": nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               description: "Linkwarden (worker process)",
               requires: nix.thunk(() => nix.concat(["network-online.target", "linkwarden.service"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ["postgresql.target"])))),
               after: nix.thunk(() => nix.concat(["network-online.target", "linkwarden.service"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ["postgresql.target"])))),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: nix.thunk(() => nix.update(nix.sel(cfg, "environment"), {
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 CHROME_CONFIG_HOME: nix.thunk(() => nix.sel(cfg, "cacheLocation")),
               })),
               serviceConfig: nix.thunk(() => nix.update(commonServiceConfig, {
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 ExecStart: nix.thunk(() => nix.app(startupScript, " worker")),
               })),
             })),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$45,
+          [nix.POS]: pos$45,
           users: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "linkwarden")), nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               linkwarden: nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 name: "linkwarden",
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 isSystemUser: true,
               })),
             })))),
-          groups: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "linkwarden")), nix.thunk(() => ({ __proto__: pos$44, linkwarden: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "linkwarden")), nix.thunk(() => ({ [nix.POS]: pos$44, linkwarden: nix.thunk(() => ({})) })))),
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w, "jvanbruegge"))];

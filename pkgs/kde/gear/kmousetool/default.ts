@@ -12,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const qtmultimedia = nix.arg($, "qtmultimedia");
   const libxt = nix.arg($, "libxt");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "kmousetool",
       extraBuildInputs: nix.thunk(() => [qtmultimedia, libxt]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "kmousetool" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "kmousetool" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

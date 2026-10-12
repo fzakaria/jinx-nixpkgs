@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pytest_mypy_plugins = nix.arg($, "pytest-mypy-plugins");
   const mypy = nix.arg($, "mypy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "obspec",
       version: "0.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "developmentseed",
           repo: "obspec",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       preCheck: nix.thunk(() => nix.str`export MYPYPATH=$out/${nix.sel(python, "sitePackages")}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Object storage interface definitions for Python",
         homepage: "http://developmentseed.org/obspec/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

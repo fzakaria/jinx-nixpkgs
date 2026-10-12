@@ -31,13 +31,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_cov_stub = nix.arg($, "pytest-cov-stub");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sentence-transformers",
       version: "6.1.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "huggingface",
           repo: "sentence-transformers",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       "optional-dependencies": nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(transformers, "optional-dependencies"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         image: nix.thunk(() => nix.sel(transformers, "optional-dependencies", "vision")),
         audio: nix.thunk(() => nix.attr(from, "audio")),
         video: nix.thunk(() => nix.attr(from, "video")),
@@ -187,7 +187,7 @@ export default nix.lambda((args) => (() => {
         "tests/util/test_hard_negatives.py",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Multilingual Sentence & Image Embeddings with BERT",
         homepage: "https://github.com/huggingface/sentence-transformers",
         changelog: nix.thunk(() => nix.str`https://github.com/huggingface/sentence-transformers/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

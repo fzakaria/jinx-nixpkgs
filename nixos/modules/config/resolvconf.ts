@@ -44,7 +44,7 @@ resolv_conf_options='${nix.app(nix.sel(lib, "concatStringsSep"), " ", resolvconf
 name_servers='127.0.0.1${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(config, "networking", "enableIPv6")), " ::1")}'
 `))), nix.sel(cfg, "extraConfig")));
   return {
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["networking", "dnsSingleRequest"]), nix.thunk(() => ["networking", "resolvconf", "dnsSingleRequest"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["networking", "dnsExtensionMechanism"]), nix.thunk(() => ["networking", "resolvconf", "dnsExtensionMechanism"]))),
@@ -53,58 +53,58 @@ name_servers='127.0.0.1${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() =>
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["networking", "resolvconf", "useHostResolvConf"]), "This option was never used for anything anyways")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       networking: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         resolvconf: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether DNS configuration is managed by resolvconf.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
               default: nix.thunk(() => nix.sel(pkgs, "openresolv")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.openresolv")),
               description: "The package that provides the system-wide resolvconf command. Defaults to `openresolv`\nif this module is enabled. Otherwise, can be used by other modules (for example {option}`services.resolved`) to\nprovide a compatibility layer.\n\nThis option generally shouldn't be set by the user.\n",
             })))),
           dnsSingleRequest: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Recent versions of glibc will issue both ipv4 (A) and ipv6 (AAAA)\naddress queries at the same time, from the same port. Sometimes upstream\nrouters will systemically drop the ipv4 queries. The symptom of this problem is\nthat 'getent hosts example.com' only returns ipv6 (or perhaps only ipv4) addresses. The\nworkaround for this is to specify the option 'single-request' in\n/etc/resolv.conf. This option enables that.\n",
             })))),
           dnsExtensionMechanism: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Enable the `edns0` option in {file}`resolv.conf`. With\nthat option set, `glibc` supports use of the extension mechanisms for\nDNS (EDNS) specified in RFC 2671. The most popular user of that feature is DNSSEC,\nwhich does not work without it.\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               example: "libc=NO",
               description: "Extra configuration to append to {file}`resolvconf.conf`.\n",
             })))),
           extraOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["ndots:1", "rotate"]),
               description: "Set the options in {file}`/etc/resolv.conf`.\n",
             })))),
           useLocalResolver: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Use local DNS server for resolving.\n",
             })))),
           subscriberFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: [],
               description: "Files written by resolvconf updates\n",
@@ -115,45 +115,45 @@ name_servers='127.0.0.1${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() =>
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           environment: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             etc: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               "resolvconf.conf": nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 text: nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(cfg, "enable"))) ? "echo \"resolvconf is disabled on this system but was used anyway:\" >&2\necho \"$0 $*\" >&2\nexit 1\n" : nix.force(configText))),
               })),
             })),
           })),
         })),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 assertion: nix.thunk(() => !nix.asBool(nix.has(nix.sel(config, "environment", "etc"), "resolv.conf"))),
                 message: "networking.resolvconf.enable is true but environment.etc.\"resolv.conf\"\nis also set. Set networking.resolvconf.enable = false if another\nservice manages /etc/resolv.conf.\n",
               })),
             ]),
             users: nix.thunk(() => ({
-              __proto__: pos$18,
-              groups: nix.thunk(() => ({ __proto__: pos$17, resolvconf: nix.thunk(() => ({})) })),
+              [nix.POS]: pos$18,
+              groups: nix.thunk(() => ({ [nix.POS]: pos$17, resolvconf: nix.thunk(() => ({})) })),
             })),
             networking: nix.thunk(() => ({
-              __proto__: pos$20,
-              resolvconf: nix.thunk(() => ({ __proto__: pos$19, subscriberFiles: nix.thunk(() => ["/etc/resolv.conf"]) })),
+              [nix.POS]: pos$20,
+              resolvconf: nix.thunk(() => ({ [nix.POS]: pos$19, subscriberFiles: nix.thunk(() => ["/etc/resolv.conf"]) })),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               services: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 resolvconf: nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   description: "resolvconf update",
                   before: nix.thunk(() => ["network-pre.target"]),
                   wants: nix.thunk(() => ["network-pre.target"]),
@@ -161,7 +161,7 @@ name_servers='127.0.0.1${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() =>
                   restartTriggers: nix.thunk(() => [
                     nix.thunk(() => nix.sel(config, "environment", "etc", "resolvconf.conf", "source")),
                   ]),
-                  serviceConfig: nix.thunk(() => ({ __proto__: pos$22, Type: "oneshot", RemainAfterExit: true })),
+                  serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$22, Type: "oneshot", RemainAfterExit: true })),
                   script: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} -u
 chgrp resolvconf ${nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.sel(cfg, "subscriberFiles")))}
 chmod g=u ${nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.sel(cfg, "subscriberFiles")))}

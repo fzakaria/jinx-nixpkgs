@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "qcomicbook",
       version: "0.9.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stolowski",
           repo: "QComicBook",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "cmake-4-compatibility.patch",
             url: "https://github.com/stolowski/QComicBook/commit/424a188f63171842ce8fad86fa85c4e03e405618.patch?full_index=1",
             hash: "sha256-q0X2i21JgtBfRfyMGpuUyB9GtIiWiFo6IWME6EBMSwk=",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "substituteInPlace $out/share/applications/*.desktop \\\n  --replace \"Exec=qcomicbook\" \"Exec=$out/bin/qcomicbook\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/stolowski/QComicBook",
         description: "Comic book reader in Qt5",
         mainProgram: "qcomicbook",

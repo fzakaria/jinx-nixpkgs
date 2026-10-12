@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const gettext = nix.arg($, "gettext");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gdmap",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sjohannes",
           repo: "gdmap",
           tag: "v1.4.0",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config, wrapGAppsHook3]),
       buildInputs: nix.thunk(() => [gtk3, cairo, libxml2, gettext]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gitlab.com/sjohannes/gdmap",
         description: "Tool to visualize disk space (GTK 3 port of Original)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

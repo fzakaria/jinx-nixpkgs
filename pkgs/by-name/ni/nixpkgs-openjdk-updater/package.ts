@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nixpkgs_openjdk_updater = nix.arg($, "nixpkgs-openjdk-updater");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "nixpkgs-openjdk-updater",
       version: "0.1.0",
       pyproject: true,
@@ -34,23 +34,23 @@ export default nix.lambda((args) => (() => {
       preCheck: "ruff format --check\nruff check\npyright\n",
       postCheck: "$out/bin/nixpkgs-openjdk-updater --help >/dev/null\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         openjdkSource: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const sourceFile = nix.arg($_1, "sourceFile");
           const featureVersionPrefix = nix.arg($_1, "featureVersionPrefix");
           const sourceInfo = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), sourceFile));
           return {
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 owner: nix.thunk(() => nix.attr(sourceInfo, "owner")),
                 repo: nix.thunk(() => nix.attr(sourceInfo, "repo")),
                 rev: nix.thunk(() => nix.attr(sourceInfo, "rev")),
                 hash: nix.thunk(() => nix.attr(sourceInfo, "hash")),
               })))),
             updateScript: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               command: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nixpkgs_openjdk_updater)),
                 "--source-file",
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         })(), formals$2),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Updater for Nixpkgs OpenJDK packages",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "fromSource"))]),

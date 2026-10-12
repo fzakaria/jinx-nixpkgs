@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const enableExamples = nix.argOr($, "enableExamples", () => false);
   const enableDocs = nix.argOr($, "enableDocs", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "2.1",
       pname: "openmvg",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openmvg",
           repo: "openmvg",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -75,11 +75,11 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: false,
       hardeningDisable: nix.thunk(() => ["all"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library for computer-vision scientists and targeted for the Multiple View Geometry community",
         homepage: "https://openmvg.readthedocs.io/en/latest/",
         downloadPage: "https://github.com/openMVG/openMVG",

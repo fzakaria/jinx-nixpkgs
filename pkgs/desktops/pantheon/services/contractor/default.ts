@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "contractor";
       const version = "0.3.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "elementary",
           repo: "contractor",
           rev: version,
@@ -38,15 +38,15 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [dbus, meson, ninja, pkg_config, python3, vala, wrapGAppsHook3]);
       const buildInputs = nix.thunk(() => [glib, glib_networking, libgee]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PKG_CONFIG_DBUS_1_SESSION_BUS_SERVICES_DIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/dbus-1/services`),
       }));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Desktop-wide extension service used by elementary OS",
         homepage: "https://github.com/elementary/contractor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "contractor",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

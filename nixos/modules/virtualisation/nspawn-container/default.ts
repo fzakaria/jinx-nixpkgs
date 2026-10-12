@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const cfg = nix.thunk(() => nix.sel(config, "virtualisation"));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     imports: nix.thunk(() => [nix.path(here, "../credentials-options.nix")]),
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         cmdline: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
             default: [],
             example: nix.thunk(() => [
@@ -45,17 +45,17 @@ export default nix.lambda((args) => (() => {
             description: "Command line arguments to pass to the init process (likely systemd).\nUseful for debugging.\n",
           })))),
         rootDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.sel(types, "str")),
             default: nix.thunk(() => nix.str`./${nix.sel(config, "system", "name")}-root`),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"./${config.system.name}-root\"")),
             description: "Path to a directory for the root filesystem for the container.\nThe directory will be created on startup if it does not\nexist.\n",
           })))),
         "systemd-nspawn": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "systemd", nix.thunk(() => ({})))),
           options: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: [],
               example: nix.thunk(() => ["--bind=/home:/home"]),
@@ -65,19 +65,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$14,
-      boot: nix.thunk(() => ({ __proto__: pos$7, isNspawnContainer: true })),
+      [nix.POS]: pos$14,
+      boot: nix.thunk(() => ({ [nix.POS]: pos$7, isNspawnContainer: true })),
       assertions: nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           assertion: nix.thunk(() => nix.eq(nix.sel(config, "specialisation"), {})),
           message: "Setting 'specialisation' is disallowed for systemd-nspawn container configurations.\nActivating a specialisation requires creating SUID wrappers (e.g., for 'sudo'),\nwhich is prohibited within the Nix build sandbox where the test is run.\n",
         })),
       ]),
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         "systemd-nspawn": nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           options: nix.thunk(() => nix.concat([
             "--private-network",
             nix.thunk(() => nix.str`--machine=${nix.sel(config, "system", "name")}`),
@@ -92,13 +92,13 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       system: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         build: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           nspawn: nix.thunk(() => (() => {
             const run_nspawn = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./run-nspawn"), nix.thunk(() => ({}))));
             const commandLineOptions = nix.thunk(() => nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk(() => ({})), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 "container-name": nix.thunk(() => nix.sel(config, "system", "name")),
                 "root-dir": nix.thunk(() => nix.sel(cfg, "rootDir")),
                 "interfaces-json": nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(cfg, "allInterfaces")))))),

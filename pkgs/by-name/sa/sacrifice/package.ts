@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pythia = nix.arg($, "pythia");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sacrifice",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://www.hepforge.org/archive/agile/Sacrifice-1.0.0.tar.gz",
           sha256: "10bvpq63kmszy1habydwncm0j1dgvam0fkrmvkgbkvf804dcjp6g",
         })))),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
 `)),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Standalone contribution to AGILe for steering Pythia 8",
         mainProgram: "run-pythia",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

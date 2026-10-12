@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const requests_mock = nix.arg($, "requests-mock");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "notifications-python-client",
       version: "12.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alphagov",
           repo: "notifications-python-client",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [freezegun, mock, pytest_mock, pytestCheckHook, requests_mock]),
       pythonImportsCheck: nix.thunk(() => ["notifications_python_client"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python client for the GOV.UK Notify API",
         homepage: "https://github.com/alphagov/notifications-python-client",
         changelog: nix.thunk(() => nix.str`https://github.com/alphagov/notifications-python-client/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const git = nix.arg($, "git");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "directx-shader-compiler",
       version: "1.10.2605.37",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "microsoft",
           repo: "DirectXShaderCompiler",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\nmkdir -p $out/bin $out/lib $dev/include\nmv bin/{dxc,dxv}* $out/bin/\nmv lib/lib*.so* lib/lib*.*dylib $out/lib/\ncp -r $src/include/dxc $dev/include/\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Compiler to compile HLSL programs into DXIL and SPIR-V",
         homepage: "https://github.com/microsoft/DirectXShaderCompiler",
         platforms: nix.thunk(() => (() => {

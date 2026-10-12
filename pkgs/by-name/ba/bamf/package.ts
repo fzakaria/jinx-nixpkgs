@@ -34,12 +34,12 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const withDocs = nix.argOr($, "withDocs", () => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "bamf",
       version: "0.5.6",
       outputs: nix.thunk(() => nix.concat(["out", "dev"], nix.app(nix.sel(lib, "optionals"), withDocs, nix.thunk(() => ["devdoc"])))),
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.launchpad.net/~unity-team/bamf",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           sha256: "7U+2GcuDjPU8quZjkd8bLADGlG++tl6wSo0mUQkjAXQ=",
@@ -71,13 +71,13 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       strictDeps: true,
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-DGLIB_DISABLE_DEPRECATION_WARNINGS" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-DGLIB_DISABLE_DEPRECATION_WARNINGS" })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$3, ignoredVersions: ".ubuntu.*" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, ignoredVersions: ".ubuntu.*" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Application matching framework",
         longDescription: "Removes the headache of applications matching\ninto a simple DBus daemon and c wrapper library.\n",
         homepage: "https://launchpad.net/bamf",

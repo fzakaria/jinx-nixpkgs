@@ -5,7 +5,7 @@ const here = nix.here(import.meta.url);
 const pos$1 = nix.positions(here + "/meta-maintainers.nix", [["imports", 6, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$1,
+  [nix.POS]: pos$1,
   imports: nix.thunk(() => [nix.path(here, "../../lib/modules/generic/meta-maintainers.nix")]),
 }));
 //# sourceMappingURL=meta-maintainers.ts.map

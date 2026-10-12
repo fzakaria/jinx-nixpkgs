@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const kernel = nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "kernel"));
   const allowedValues = nix.thunk(() => ["min_power", "max_performance", "medium_power", "med_power_with_dipm"]);
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       powerManagement: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         scsiLinkPolicy: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             default: null,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), allowedValues)))),
             description: "SCSI link power management policy. The kernel default is\n\"max_performance\".\n\n\"med_power_with_dipm\" is supported by kernel versions\n4.15 and newer.\n",
@@ -35,16 +35,16 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(cfg, null)), nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         assertions: nix.thunk(() => nix.app(nix.lookup(w, "singleton"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             assertion: nix.thunk(() => (!nix.asBool(nix.eq(cfg, "med_power_with_dipm")) || nix.asBool(nix.app(nix.lookup(w, "versionAtLeast"), nix.thunk(() => nix.sel(kernel, "version")), "4.15")))),
             message: "med_power_with_dipm is not supported for kernels older than 4.15",
           })))),
         services: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           udev: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             extraRules: nix.thunk(() => nix.str`SUBSYSTEM=="scsi_host", ACTION=="add", KERNEL=="host*", ATTR{link_power_management_policy}="${cfg}"
 `),
           })),

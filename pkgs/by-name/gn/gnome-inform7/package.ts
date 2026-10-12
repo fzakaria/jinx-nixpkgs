@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const gst_all_1 = nix.arg($, "gst_all_1");
   const ratify = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "ratify",
       version: "0-unstable-2021-02-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ptomato",
           repo: "ratify",
           rev: "f4d2d60ec73d5588e953650b3879e69a727f30ca",
@@ -64,11 +64,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk3, vala, gtk_doc]),
     }))));
   const chimara = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "chimara",
       version: "0.9.1-unstable-2021-04-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "chimara",
           repo: "Chimara",
           rev: "9934b142af508c75c0f1eed597990f39495b1af4",
@@ -99,11 +99,11 @@ export default nix.lambda((args) => (() => {
       preConfigure: "patchShebangs build-aux/meson_post_install.py\n",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "gnome-inform7",
       version: "6M62-unstable-2021-04-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "ptomato",
           repo: "inform7-ide",
           rev: "c37e045c159692aae2e4e79b917e5f96cfefa66a",
@@ -134,7 +134,7 @@ export default nix.lambda((args) => (() => {
 patchShebangs build-aux/* src/generate-resource-xml.{py,sh}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         broken: true,
         description: "Inform 7 for the Gnome platform",
         longDescription: "This version of Inform 7 for the Gnome platform was created by Philip Chimento, based on a design by Graham Nelson and Andrew Hunter.\n",

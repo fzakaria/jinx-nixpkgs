@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const xunit_viewer = nix.arg($, "xunit-viewer");
   const version = "10.6.1";
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "xunit-viewer",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lukejpreston",
           repo: "xunit-viewer",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -33,16 +33,16 @@ export default nix.lambda((args) => (() => {
         })))),
       npmDepsHash: "sha256-6PV0+G1gzUWUjOfwRtVeALVFFiwkCAB33yB9W0PCGfc=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: xunit_viewer, version: "unknown" })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: xunit_viewer, version: "unknown" })))),
           example: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test/example.nix"), nix.thunk(() => ({})))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "View your xunit results using JavaScript",
         homepage: "https://lukejpreston.github.io/xunit-viewer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

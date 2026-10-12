@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nps",
       version: "0.2.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OleMussmann",
           repo: "nps",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-dJA9fOU06txPAx5kMl7aGoFeKo7UXqB7X+viUfJqG/M=",
       nativeCheckInputs: nix.thunk(() => [nix$]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Cache the nix package list, query and sort results by relevance",
         longDescription: "Find SEARCH_TERM in available nix packages and sort results by relevance.\n\nList up to three columns, the latter two being optional:\nPACKAGE_NAME  <PACKAGE_VERSION>  <PACKAGE_DESCRIPTION>\n\nMatches are sorted by type. Show 'indirect' matches first, then 'direct' matches, and finally 'exact' matches.\n\n  indirect  fooSEARCH_TERMbar (SEARCH_TERM appears in any column)\n  direct    SEARCH_TERMbar (PACKAGE_NAME starts with SEARCH_TERM)\n  exact     SEARCH_TERM (PACKAGE_NAME is exactly SEARCH_TERM)\n",
         changelog: nix.thunk(() => nix.str`https://github.com/OleMussmann/nps/releases/tag/v${nix.sel(finalAttrs, "version")}`),

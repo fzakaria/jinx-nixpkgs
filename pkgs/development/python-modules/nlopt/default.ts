@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const python = nix.arg($, "python");
   return nix.app(toPythonModule, nix.thunk(() => nix.app(nix.sel(pkgs, "nlopt", "override"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         withPython: true,
         python3: python,
         python3Packages: nix.thunk(() => nix.sel(python, "pkgs")),

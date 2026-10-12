@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jitterentropy",
       version: "3.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "smuellerDD",
           repo: "jitterentropy-library",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DINTERNAL_TIMER=OFF"]),
       hardeningDisable: nix.thunk(() => ["fortify", "fortify3"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Provides a noise source using the CPU execution timing jitter",
         homepage: "https://github.com/smuellerDD/jitterentropy-library",
         changelog: nix.thunk(() => nix.str`https://github.com/smuellerDD/jitterentropy-library/raw/v${nix.sel(finalAttrs, "version")}/CHANGES.md`),

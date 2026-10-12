@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mpris-timer",
       version: "2.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "efogdev",
           repo: "mpris-timer",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
       tags: nix.thunk(() => ["wayland"]),
       postInstall: "mv $out/bin/{cmd,mpris-timer}\ninstall -Dm644 internal/ui/res/icon.svg $out/share/icons/hicolor/scalable/apps/io.github.efogdev.mpris-timer.svg\ninstall -Dm644 misc/io.github.efogdev.mpris-timer.desktop -t $out/share/applications\ninstall -Dm644 misc/io.github.efogdev.mpris-timer.metainfo.xml -t $out/share/metainfo\ninstall -Dm644 misc/io.github.efogdev.mpris-timer.gschema.xml -t $out/share/glib-2.0/schemas\nglib-compile-schemas $out/share/glib-2.0/schemas\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Timer app with seamless GNOME integration",
         homepage: "https://github.com/efogdev/mpris-timer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

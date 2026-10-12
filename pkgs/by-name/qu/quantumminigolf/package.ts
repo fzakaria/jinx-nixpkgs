@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const SDL = nix.arg($, "SDL");
   const SDL_ttf = nix.arg($, "SDL_ttf");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "quantumminigolf",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/quantumminigolf/quantumminigolf/${nix.sel(finalAttrs, "version")}/quantumminigolf-${nix.sel(finalAttrs, "version")}.src.tar.gz`),
           sha256: "sha256-Y3LUGk6pAuNGVOYkc0WYDbgJFtwJJn+aLRHmCKY7W5k=",
         })))),
@@ -32,7 +32,7 @@ sed -re 's@"(gfx|fonts|tracks)/@"'"$out"'/share/quantumminigolf/\\1/@g' -i *.cpp
 `),
       installPhase: "mkdir -p \"$out\"/{share/doc,share/quantumminigolf,bin}\ncp README THANKS LICENSE \"$out/share/doc\"\ncp -r fonts gfx tracks \"$out/share/quantumminigolf\"\ncp quantumminigolf \"$out/bin\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Quantum mechanics-based minigolf-like game",
         mainProgram: "quantumminigolf",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

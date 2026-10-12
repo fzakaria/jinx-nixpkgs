@@ -16,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const lightyear = nix.arg($, "lightyear");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ipkgparser",
       version: "2017-11-14",
       idrisDeps: nix.thunk(() => [contrib, effects, lightyear]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "emptyflash",
           repo: "idris-ipkg-parser",
           rev: "35cc2f54d4f3b3710f637d0a8c897bfbb32fe183",
           sha256: "0vn3pigqddfy7cld0386hxzdv2nkl8mdpsx97hvyvqzrdpz4wl2q",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Parser for Idris iPkg files written in Idris using Lightyear",
         homepage: "https://github.com/emptyflash/idris-ipkg-parser",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "brainrape"))]),

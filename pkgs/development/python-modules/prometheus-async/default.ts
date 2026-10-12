@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "26.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hynek",
           repo: "prometheus-async",
           rev: version,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatch_vcs, hatchling]);
       const dependencies = nix.thunk(() => [prometheus_client, typing_extensions, wrapt]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         aiohttp: nix.thunk(() => [aiohttp]),
         consul: nix.thunk(() => [aiohttp]),
         twisted: nix.thunk(() => [twisted]),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_asyncio]);
       const pythonImportsCheck = nix.thunk(() => ["prometheus_async"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Async helpers for prometheus_client",
         homepage: "https://github.com/hynek/prometheus-async",
         changelog: nix.thunk(() => nix.str`https://github.com/hynek/prometheus-async/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

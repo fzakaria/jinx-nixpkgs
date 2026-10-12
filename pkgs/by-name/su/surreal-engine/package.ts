@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const waylandpp = nix.arg($, "waylandpp");
   const libxkbcommon = nix.arg($, "libxkbcommon");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "surreal-engine",
       version: "0-unstable-2024-11-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dpjudas",
           repo: "SurrealEngine",
           rev: "087fa2af7fd0ce51702dd4024b4ae15a88222678",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Reimplementation of the original Unreal Engine",
         mainProgram: "SurrealEngine",
         homepage: "https://github.com/dpjudas/SurrealEngine",

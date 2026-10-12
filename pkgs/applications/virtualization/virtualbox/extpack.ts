@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
         return value;
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Oracle Extension pack for VirtualBox",
         license: nix.thunk(() => nix.sel(lib, "licenses", "virtualbox-puel")),
         homepage: "https://www.virtualbox.org/",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
-      return { __proto__: pos$2, pname, version, name, url, sha256, meta };
+      return { [nix.POS]: pos$2, pname, version, name, url, sha256, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=extpack.ts.map

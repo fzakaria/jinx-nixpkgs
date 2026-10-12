@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const domain = "mass_queue";
       const version = "0.10.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: owner,
           repo: "mass_queue",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [aiocache, music_assistant_client]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/droans/mass_queue/releases/tag/${nix.sel(src, "tag")}`),
         description: "Actions to control player queues for Music Assistant",
         homepage: "https://github.com/droans/mass_queue",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
-      return { __proto__: pos$3, owner, domain, version, src, dependencies, doCheck, meta };
+      return { [nix.POS]: pos$3, owner, domain, version, src, dependencies, doCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

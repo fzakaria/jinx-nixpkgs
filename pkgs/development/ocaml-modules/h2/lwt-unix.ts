@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const gluten_lwt_unix = nix.arg($, "gluten-lwt-unix");
   const faraday_lwt_unix = nix.arg($, "faraday-lwt-unix");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "h2-lwt-unix",
       src: nix.thunk(() => nix.attr(h2, "src")),
       version: nix.thunk(() => nix.attr(h2, "version")),
       propagatedBuildInputs: nix.thunk(() => [gluten_lwt_unix, faraday_lwt_unix, h2_lwt]),
-      meta: nix.thunk(() => nix.update(nix.sel(h2, "meta"), { __proto__: pos$1, description: "Lwt Unix support for h2" })),
+      meta: nix.thunk(() => nix.update(nix.sel(h2, "meta"), { [nix.POS]: pos$1, description: "Lwt Unix support for h2" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=lwt-unix.ts.map

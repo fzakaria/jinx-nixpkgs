@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
   const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     options: nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(lib, "types"));
       const bool = nix.thunk(() => nix.attr(from, "bool"));
@@ -58,36 +58,36 @@ export default nix.lambda((args) => (() => {
       const listOf = nix.thunk(() => nix.attr(from, "listOf"));
       const str = nix.thunk(() => nix.attr(from, "str"));
       return {
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         services: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           "yggdrasil-jumper": nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             enable: nix.thunk(() => nix.app(mkEnableOption, "the Yggdrasil Jumper system service")),
             retrieveListenAddresses: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: bool,
                 default: true,
                 description: "Automatically retrieve listen addresses from the Yggdrasil router configuration.\n\nSee `yggdrasil_listen` option in Yggdrasil Jumper configuration.\n",
               })))),
             appendListenAddresses: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: bool,
                 default: true,
                 description: "Append Yggdrasil router configuration with listeners on loopback\naddresses (`127.0.0.1`) and preselected ports to support peering\nusing client-server protocols like `quic` and `tls`.\n\nSee `Listen` option in Yggdrasil router configuration.\n",
               })))),
             detectWireguard: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: bool,
                 default: true,
                 description: "Control whether `settings.wireguard = true` should automatically\nprovide CAP_NET_ADMIN capability and make the necessary packages\navailable to Yggdrasil Jumper service.\n",
               })))),
             settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(format, "type")),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   listen_port: 9999n,
                   whitelist: nix.thunk(() => ["<IPv6 address of a remote node>"]),
                   wireguard: true,
@@ -95,7 +95,7 @@ export default nix.lambda((args) => (() => {
                 description: "Configuration for Yggdrasil Jumper as a Nix attribute set.\n",
               })))),
             extraConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: lines,
                 default: "",
                 example: "listen_port = 9999;\nwhitelist = [\n  \"<IPv6 address of a remote node>\"\n];\n",
@@ -103,13 +103,13 @@ export default nix.lambda((args) => (() => {
               })))),
             package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "yggdrasil-jumper", nix.thunk(() => ({})))),
             logLevel: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.app(enum$, nix.thunk(() => ["off", "error", "warn", "info", "debug", "trace"]))),
                 default: "info",
                 description: "Set logging verbosity for Yggdrasil Jumper.\n",
               })))),
             extraArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.app(listOf, str)),
                 default: [],
                 description: "Extra command line arguments for Yggdrasil Jumper.\n",
@@ -138,48 +138,48 @@ cat ${jumperSettings} ${jumperExtraConfig} \\
   | ${nix.sel(cfg, "package")}/bin/yggdrasil-jumper --validate --config -
 `)));
       return nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           assertions: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               assertion: nix.thunk(() => nix.sel(config, "services", "yggdrasil", "enable")),
               message: "`services.yggdrasil.enable` must be true for `yggdrasil-jumper` to operate",
             })),
           ]),
           services: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             yggdrasil: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               settings: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 Listen: nix.thunk(() => (() => {
-                  const prot_port = nix.thunk(() => ({ __proto__: pos$13, tls: 11814n, quic: 11814n }));
+                  const prot_port = nix.thunk(() => ({ [nix.POS]: pos$13, tls: 11814n, quic: 11814n }));
                   return nix.app(mkIf, nix.thunk(() => (nix.asBool(nix.sel(cfg, "retrieveListenAddresses")) && nix.asBool(nix.sel(cfg, "appendListenAddresses")))), nix.thunk(() => nix.app(mapAttrsToList, (prot) => (port) => nix.str`${prot}://127.0.0.1:${nix.builtins.toString(port)}`, prot_port)));
                 })()),
               })),
             })),
             "yggdrasil-jumper": nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               settings: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 yggdrasil_admin_listen: nix.thunk(() => ["unix:///run/yggdrasil/yggdrasil.sock"]),
                 yggdrasil_listen: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "retrieveListenAddresses")), nix.thunk(() => nix.app(filter, (a) => !nix.asBool(nix.app(hasPrefix, "tcp://", a)), nix.thunk(() => nix.sel(config, "services", "yggdrasil", "settings", "Listen")))))),
               })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             services: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               "yggdrasil-jumper": nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 description: "Yggdrasil Jumper Service",
                 after: nix.thunk(() => ["yggdrasil.service"]),
-                unitConfig: nix.thunk(() => ({ __proto__: pos$19, BindsTo: nix.thunk(() => ["yggdrasil.service"]) })),
+                unitConfig: nix.thunk(() => ({ [nix.POS]: pos$19, BindsTo: nix.thunk(() => ["yggdrasil.service"]) })),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 path: wgExtraPkgs,
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   User: "yggdrasil",
                   DynamicUser: true,
                   ExecStartPre: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/sleep 5`),
@@ -206,13 +206,13 @@ cat ${jumperSettings} ${jumperExtraConfig} \\
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         })));
     })()),
     meta: nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "one-d-wide"))];

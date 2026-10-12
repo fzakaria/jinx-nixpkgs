@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const doctest = nix.arg($, "doctest");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "foonathan-memory",
       version: "0.7-4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "foonathan",
           repo: "memory",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./0001-Use-system-doctest.patch.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "size-suffixes-cannot-have-a-space.patch",
             url: "https://github.com/foonathan/memory/commit/0f5ebe9f4ac2d2ad106d596c993d13e107b27820.patch?full_index=1",
             hash: "sha256-RtLGDe6ZQ4CQD25pjS20+SZLhxGSrm/A7cO6VUgPbfo=",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [doctest]),
       postInstall: "mkdir -p $out/lib/cmake\nmv $out/lib/foonathan_memory/cmake $out/lib/cmake/foonathan_memory\nrmdir $out/lib/foonathan_memory\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://memory.foonathan.net/",
         changelog: nix.thunk(() => nix.str`https://github.com/foonathan/memory/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),
         description: "STL compatible C++ memory allocator library",

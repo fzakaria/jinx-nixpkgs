@@ -27,51 +27,51 @@ const pos$18 = nix.positions(here + "/dolibarr.nix", [["name", 3, 3], ["meta", 4
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     name: "dolibarr",
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       nginx_mysql: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           services: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             dolibarr: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               enable: true,
               domain: "localhost",
-              nginx: nix.thunk(() => ({ __proto__: pos$2, forceSSL: false, enableACME: false })),
-              database: nix.thunk(() => ({ __proto__: pos$3, type: "mysql" })),
+              nginx: nix.thunk(() => ({ [nix.POS]: pos$2, forceSSL: false, enableACME: false })),
+              database: nix.thunk(() => ({ [nix.POS]: pos$3, type: "mysql" })),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$7,
-            firewall: nix.thunk(() => ({ __proto__: pos$6, allowedTCPPorts: nix.thunk(() => [80n]) })),
+            [nix.POS]: pos$7,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$6, allowedTCPPorts: nix.thunk(() => [80n]) })),
           })),
         };
       })(), formals$2),
       h2o_postgresql: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             dolibarr: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               enable: true,
               domain: "localhost",
               h2o: nix.thunk(() => ({
-                __proto__: pos$10,
-                acme: nix.thunk(() => ({ __proto__: pos$9, enable: false })),
+                [nix.POS]: pos$10,
+                acme: nix.thunk(() => ({ [nix.POS]: pos$9, enable: false })),
               })),
-              database: nix.thunk(() => ({ __proto__: pos$11, type: "postgresql" })),
+              database: nix.thunk(() => ({ [nix.POS]: pos$11, type: "postgresql" })),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$15,
-            firewall: nix.thunk(() => ({ __proto__: pos$14, allowedTCPPorts: nix.thunk(() => [80n]) })),
+            [nix.POS]: pos$15,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$14, allowedTCPPorts: nix.thunk(() => [80n]) })),
           })),
         };
       })(), formals$3),

@@ -16,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const libtool = nix.arg($, "libtool");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libbfio",
       version: "20240414",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/libyal/libbfio/releases/download/${nix.sel(finalAttrs, "version")}/libbfio-alpha-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-xxMHOSVpGyw5rGXhU1tIOTKwt9yVw0KrPdYby0AEdv8=",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [gettext, libtool]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to provide basic file input/output abstraction",
         homepage: "https://github.com/libyal/libbfio",
         license: nix.thunk(() => (() => {

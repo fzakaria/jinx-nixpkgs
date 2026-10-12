@@ -32,44 +32,44 @@ export default nix.lambda((args) => (() => {
   const mergedConfigFile = "/run/zwave-js/config.json";
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         "zwave-js": nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the zwave-js server on boot")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "zwave-js-server", nix.thunk(() => ({})))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 3000n,
               description: "Port for the server to listen on.\n",
             })))),
           serialPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "Serial port device path for Z-Wave controller.\n",
               example: "/dev/ttyUSB0",
             })))),
           secretsConfigFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "JSON file containing secret keys. A dummy example:\n\n```\n{\n  \"securityKeys\": {\n    \"S0_Legacy\": \"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\",\n    \"S2_Unauthenticated\": \"BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB\",\n    \"S2_Authenticated\": \"CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC\",\n    \"S2_AccessControl\": \"DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD\"\n  }\n}\n```\n\nSee\n<https://zwave-js.github.io/node-zwave-js/#/getting-started/security-s2>\nfor details. This file will be merged with the module-generated config\nfile (taking precedence).\n\nZ-Wave keys can be generated with:\n\n  {command}`< /dev/urandom tr -dc A-F0-9 | head -c32 ;echo`\n\n\n::: {.warning}\nA file in the nix store should not be used since it will be readable to\nall users.\n:::\n",
               example: "/secrets/zwave-js-keys.json",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     storage: nix.thunk(() => ({
-                      __proto__: pos$5,
+                      [nix.POS]: pos$5,
                       cacheDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           type: nix.thunk(() => nix.sel(lib, "types", "path")),
                           default: "/var/cache/zwave-js",
                           readOnly: true,
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
               description: "Configuration settings for the generated config file.\n\nThis config is combined with the contents of `secretsConfigFile` and\npassed to zwave-js-server via `--config`. The project's README [1]\nstates that the config must follow the Z-Wave JS config format [2].\n\n[1]: https://github.com/zwave-js/zwave-js-server/tree/master\n[2]: https://zwave-js.github.io/node-zwave-js/#/api/driver?id=zwaveoptions\n\n::: {.warning}\nSecrets should go in `secretsConfigFile`. The contents of `settings` is\nwritten to the nix store, which is world-readable.\n:::\n",
             })))),
           extraFlags: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -95,20 +95,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             "zwave-js": nix.thunk(() => (() => {
               const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "zwave-js-config.json", nix.thunk(() => nix.sel(cfg, "settings"))));
               return {
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 after: nix.thunk(() => ["network.target"]),
                 description: "Z-Wave JS Server",
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   ExecStartPre: nix.thunk(() => nix.str`/bin/sh -c "${nix.sel(pkgs, "jq")}/bin/jq -s '.[0] * .[1]' ${configFile} %d/secrets.json > ${mergedConfigFile}"
 `),
                   LoadCredential: nix.thunk(() => nix.str`secrets.json:${nix.sel(cfg, "secretsConfigFile")}`),
@@ -153,7 +153,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "graham33"))];

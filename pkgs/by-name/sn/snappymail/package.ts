@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "snappymail";
       const version = "2.38.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/the-djmaze/snappymail/releases/download/v${version}/snappymail-${version}.tar.gz`),
           sha256: "sha256-cfHYqQZcyc993QZPXEfMeyVctw5qVnE2R/xz1LeeM+w=",
         }))));
@@ -34,7 +34,7 @@ rm -rf $out/{data,env-vars,_include.php}
 cp ${includeScript} $out/include.php
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple, modern & fast web-based email client",
         homepage: "https://snappymail.eu",
         changelog: nix.thunk(() => nix.str`https://github.com/the-djmaze/snappymail/blob/v${version}/CHANGELOG.md`),
@@ -47,7 +47,7 @@ cp ${includeScript} $out/include.php
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

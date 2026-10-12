@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const librandombytes = nix.arg($, "librandombytes");
   const libcpucycles = nix.arg($, "libcpucycles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "lib25519",
       version: "20260614",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://lib25519.cr.yp.to/lib25519-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-k6hVfUckgrRGVmvbt5SW3Vg1woscGzPBpOYnfYx5t44=",
         })))),
@@ -46,12 +46,12 @@ runHook postConfigure
       doInstallCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       installCheckPhase: "runHook preInstallCheck\n$out/bin/lib25519-test\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "lib25519-test | head -n 2 | grep version",
               version: nix.thunk(() => nix.str`lib25519 version ${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +61,7 @@ runHook postConfigure
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libcpucycles, "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://lib25519.cr.yp.to",
         description: "Microlibrary for X25519/Ed25519 cryptography",
         changelog: "https://lib25519.cr.yp.to/download.html",

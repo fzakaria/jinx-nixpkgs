@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sl1-to-photon";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cab404",
           repo: "SL1toPhoton",
           rev: "7edc6ea99818622f5d49ac7af80ddd4916b8c19f",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const installPhase = nix.thunk(() => nix.str`install -D -m 0755 SL1_to_Photon.py $out/bin/${pname}
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "cab404"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         description: "Tool for converting Slic3r PE's SL1 files to Photon files for the Anycubic Photon 3D-Printer",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "sl1-to-photon",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version: version_1,
         src,

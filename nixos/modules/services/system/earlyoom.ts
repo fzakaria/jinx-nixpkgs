@@ -44,68 +44,68 @@ export default nix.lambda((args) => (() => {
   const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    __proto__: pos$23,
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    [nix.POS]: pos$23,
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         earlyoom: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           enable: nix.thunk(() => nix.app(mkEnableOption, "early out of memory killing")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "earlyoom", nix.thunk(() => ({})))),
           freeMemThreshold: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(types, "ints", "between"), 1n, 100n)),
               default: 10n,
               description: "Minimum available memory (in percent).\n\nIf the available memory falls below this threshold (and the analog is true for\n{option}`freeSwapThreshold`) the killing begins.\nSIGTERM is sent first to the process that uses the most memory; then, if the available\nmemory falls below {option}`freeMemKillThreshold` (and the analog is true for\n{option}`freeSwapKillThreshold`), SIGKILL is sent.\n\nSee [README](https://github.com/rfjakob/earlyoom#command-line-options) for details.\n",
             })))),
           freeMemKillThreshold: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "ints", "between"), 1n, 100n)))),
               default: null,
               description: "Minimum available memory (in percent) before sending SIGKILL.\nIf unset, this defaults to half of {option}`freeMemThreshold`.\n\nSee the description of [](#opt-services.earlyoom.freeMemThreshold).\n",
             })))),
           freeSwapThreshold: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(types, "ints", "between"), 1n, 100n)),
               default: 10n,
               description: "Minimum free swap space (in percent) before sending SIGTERM.\n\nSee the description of [](#opt-services.earlyoom.freeMemThreshold).\n",
             })))),
           freeSwapKillThreshold: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "ints", "between"), 1n, 100n)))),
               default: null,
               description: "Minimum free swap space (in percent) before sending SIGKILL.\nIf unset, this defaults to half of {option}`freeSwapThreshold`.\n\nSee the description of [](#opt-services.earlyoom.freeMemThreshold).\n",
             })))),
           enableDebugInfo: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Enable debugging messages.\n",
             })))),
           enableNotifications: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Send notifications about killed processes via the system d-bus.\n\nWARNING: enabling this option (while convenient) should *not* be done on a\nmachine where you do not trust the other users as it allows any other\nlocal user to DoS your session by spamming notifications.\n\nTo actually see the notifications in your GUI session, you need to have\n`systembus-notify` running as your user, which this\noption handles by enabling {option}`services.systembus-notify`.\n\nSee [README](https://github.com/rfjakob/earlyoom#notifications) for details.\n",
             })))),
           killHook: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               default: null,
               example: nix.thunk(() => nix.app(literalExpression, "pkgs.writeShellScript \"earlyoom-kill-hook\" ''\n  echo \"Process $EARLYOOM_NAME ($EARLYOOM_PID) was killed\" >> /path/to/log\n''\n")),
               description: "An absolute path to an executable to be run for each process killed.\nSome environment variables are available, see\n[README](https://github.com/rfjakob/earlyoom#notifications) and\n[the man page](https://github.com/rfjakob/earlyoom/blob/master/MANPAGE.md#-n-pathtoscript)\nfor details.\n\nWARNING: earlyoom is running in a sandbox with ProtectSystem=\"strict\"\nby default, so filesystem write is also prohibited for the hook.\nIf you want to change these protection rules, override the systemd\nservice via `systemd.services.earlyoom.serviceConfig.ProtectSystem`.\n",
             })))),
           reportInterval: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(types, "int")),
               default: 3600n,
               example: 0n,
               description: "Interval (in seconds) at which a memory report is printed (set to 0 to disable).",
             })))),
           extraArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: [],
               example: nix.thunk(() => ["-g", "--prefer", "(^|/)(java|chromium)$"]),
@@ -120,29 +120,29 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["services", "earlyoom", "ignoreOOMScoreAdjust"]), "This option is deprecated and ignored by earlyoom since 1.7.\n")),
     ]),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         services: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           "systembus-notify": nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             enable: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.sel(cfg, "enableNotifications")))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             earlyoom: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               overrideStrategy: "asDropin",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               path: nix.thunk(() => nix.app(optionals, nix.thunk(() => nix.sel(cfg, "enableNotifications")), nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "dbus"))]))),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$16, EnvironmentFile: "" })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$16, EnvironmentFile: "" })),
               environment: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 EARLYOOM_ARGS: nix.thunk(() => nix.add(nix.add(nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk(() => ({})), nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     m: nix.thunk(() => nix.add(nix.str`${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "freeMemThreshold")))}`, nix.app(optionalString, nix.thunk(() => !nix.eq(nix.sel(cfg, "freeMemKillThreshold"), null)), nix.thunk(() => nix.str`,${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "freeMemKillThreshold")))}`)))),
                     s: nix.thunk(() => nix.add(nix.str`${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "freeSwapThreshold")))}`, nix.app(optionalString, nix.thunk(() => !nix.eq(nix.sel(cfg, "freeSwapKillThreshold"), null)), nix.thunk(() => nix.str`,${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "freeSwapKillThreshold")))}`)))),
                     r: nix.thunk(() => nix.str`${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "reportInterval")))}`),

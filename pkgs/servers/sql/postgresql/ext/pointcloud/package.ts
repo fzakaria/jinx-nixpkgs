@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const zlib = nix.arg($, "zlib");
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "pointcloud",
       version: "1.2.5",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pgpointcloud",
           repo: "pointcloud",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,35 +58,35 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "cd doc\nmake man\ninstallManPage build/man/pgpointcloud.1\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         tests: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           extension: nix.thunk(() => nix.app(postgresqlTestExtension, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               finalPackage: nix.thunk(() => nix.attr(finalAttrs, "finalPackage")),
               withPackages: nix.thunk(() => ["postgis"]),
               sql: nix.thunk(() => nix.builtins.readFile(nix.path(here, "./tests.sql"))),
               asserts: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   query: "pc_version()",
                   expected: nix.thunk(() => nix.str`'${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}.${nix.app(nix.sel(lib, "versions", "minor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}.${nix.app(nix.sel(lib, "versions", "patch"), nix.thunk(() => nix.sel(finalAttrs, "version")))}'`),
                   description: "pc_version() returns correct values.",
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   query: "pc_postgis_version()",
                   expected: nix.thunk(() => nix.str`'${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}.${nix.app(nix.sel(lib, "versions", "minor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}.${nix.app(nix.sel(lib, "versions", "patch"), nix.thunk(() => nix.sel(finalAttrs, "version")))}'`),
                   description: "pc_postgis_version() returns correct values.",
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   query: "SELECT PC_AsText('010100000064CEFFFF94110000703000000400'::pcpoint)",
                   expected: "'{\"pcid\":1,\"pt\":[-127,45,124,4]}'",
                   description: "Creating a point and displaying as text returns correct string",
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   query: "SELECT ST_AsText(PC_MakePoint(1, ARRAY[-127, 45, 124.0, 4.0])::geometry)",
                   expected: "'POINT Z (-127 45 124)'",
                   description: "Casting a pcpoint to a postgis geometry works",
@@ -98,7 +98,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(postgresql, "meta"));
         return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "PostgreSQL extension for storing point cloud (LIDAR) data",
         longDescription: "# pgPointcloud - A PostgreSQL extension for storing point cloud (LIDAR) data.\n\nLIDAR point cloud are becoming more and more available. Devices are easy to get, not too expensive, and provide very accurate 3D points. pgPointCLoud is an open source PostgreSQL extension for storing point cloud data and use it with PostGIS. It is very easy to use, robust and efficient.\n\nBy storing LIDAR points in a PostgreSQL database, pgPointcloud eases many problems and allows a good integration with other geo-spatial data (vector, raster) into one common framework : PostGIS.\n",
         homepage: "https://pgpointcloud.github.io/pointcloud/",

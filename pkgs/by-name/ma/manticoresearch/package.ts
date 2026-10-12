@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const columnar = nix.thunk(() => nix.app(callPackage, nix.path(here, "./columnar.nix"), nix.thunk(() => ({}))));
   const uni_algo = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "uni-algo",
       version: "0.7.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "manticoresoftware",
           repo: "uni-algo",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unicode Algorithms Implementation for C/C++",
         homepage: "https://github.com/manticoresoftware/uni-algo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -60,11 +60,11 @@ export default nix.lambda((args) => (() => {
       })),
     })));
   const cctz = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "manticore-cctz",
       version: "0-unstable-2024-05-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "manticoresoftware",
           repo: "cctz",
           rev: "cf11f758e2532161c9e21c3ec2461b0fafb15853",
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       cmakeBuildDir: "build_dir",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Library for translating between absolute and civil times using the rules of a time zone",
         homepage: "https://github.com/manticoresoftware/cctz",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -82,11 +82,11 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   const xxhash = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "manticore-xxhash",
       version: "0.8.2-unstable-2024-07-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           owner: "manticoresoftware",
           repo: "xxHash",
           rev: "72997b0070a031c063f86a308aec77ae742706d3",
@@ -94,7 +94,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Extremely fast non-cryptographic hash algorithm",
         homepage: "https://github.com/manticoresoftware/xxhash",
         license: nix.thunk(() => (() => {
@@ -108,11 +108,11 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       pname: "manticoresearch",
       version: "15.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           owner: "manticoresoftware",
           repo: "manticoresearch",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -165,11 +165,11 @@ mkdir $out/share/manticore/modules
 cp ${columnar}/share/manticore/modules/* $out/share/manticore/modules
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         tests: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               package: manticoresearch,
               command: "searchd --version",
@@ -177,7 +177,7 @@ cp ${columnar}/share/manticore/modules/* $out/share/manticore/modules
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         description: "Easy to use open source fast database for search",
         homepage: "https://manticoresearch.com",
         changelog: nix.thunk(() => nix.str`https://github.com/manticoresoftware/manticoresearch/releases/tag/${nix.sel(finalAttrs, "version")}`),

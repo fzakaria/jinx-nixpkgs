@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fltk = nix.arg($, "fltk");
   const libjpeg = nix.arg($, "libjpeg");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "5.1",
       pname: "seaview",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`ftp://pbil.univ-lyon1.fr/pub/mol_phylogeny/seaview/archive/seaview_${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-tL9YQB4wgUOCyCWxOkw+6oyinDFO1cSh9DRZt47W+Ys=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       patchPhase: nix.thunk(() => nix.str`sed -i 's#PATH=/bin:/usr/bin rm#'${coreutils}/bin/rm'#' seaview.cxx`),
       installPhase: "mkdir -p $out/bin; cp seaview $out/bin",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GUI for molecular phylogeny",
         mainProgram: "seaview",
         longDescription: "SeaView is a multiplatform, graphical user interface for multiple sequence alignment and molecular phylogeny.\n  - SeaView reads and writes various file formats (NEXUS, MSF, CLUSTAL, FASTA, PHYLIP, MASE, Newick) of DNA and protein sequences and of phylogenetic trees.\n  - SeaView drives programs muscle or Clustal Omega for multiple sequence alignment, and also allows to use any external alignment algorithm able to read and write FASTA-formatted files.\n  - Seaview drives the Gblocks program to select blocks of evolutionarily conserved sites.\n  - SeaView computes phylogenetic trees by\n    + parsimony, using PHYLIP's dnapars/protpars algorithm,\n    + distance, with NJ or BioNJ algorithms on a variety of evolutionary distances,\n    + maximum likelihood, driving program PhyML 3.1.\n  - Seaview can use the Transfer Bootstrap Expectation method to compute the bootstrap support of PhyML and distance trees.\n  - SeaView prints and draws phylogenetic trees on screen, SVG, PDF or PostScript files.\n  - SeaView allows to download sequences from EMBL/GenBank/UniProt using the Internet.\n\nSeaview is published in:\n\n    Gouy M., Guindon S. & Gascuel O. (2010) SeaView version 4 : a multiplatform graphical user interface for sequence alignment and phylogenetic tree building. Molecular Biology and Evolution 27(2):221-224.\n",

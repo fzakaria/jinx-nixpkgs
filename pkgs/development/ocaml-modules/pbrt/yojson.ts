@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const base64 = nix.arg($, "base64");
   const yojson = nix.arg($, "yojson");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "pbrt_yojson",
       version: nix.thunk(() => nix.attr(pbrt, "version")),
       src: nix.thunk(() => nix.attr(pbrt, "src")),
       propagatedBuildInputs: nix.thunk(() => [pbrt, base64, yojson]),
       meta: nix.thunk(() => nix.update(nix.sel(pbrt, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Runtime library for ocaml-protoc to support JSON encoding/decoding",
       })),
     })));

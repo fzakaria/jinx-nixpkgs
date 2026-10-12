@@ -74,7 +74,7 @@ fi
 runHook postInstall
 `);
           const passthru = nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             updateScript: nix.thunk(() => (nix.asBool(fromSource) ? nix.app(nix_update_script, nix.thunk(() => ({}))) : nix.app(writeShellScript, nix.thunk(() => nix.str`update-${nix.sel(attrs, "pname")}`), nix.thunk(() => nix.str`set -euo pipefail
 version=$(${nix.app(nix.sel(lib, "getExe"), curl)} -sSf https://extensions.bulwarkmail.org/api/v1/extension/${pluginName} \\
   | ${nix.app(nix.sel(lib, "getExe"), jq)} -r '.data.versions[].version' \\
@@ -82,26 +82,26 @@ version=$(${nix.app(nix.sel(lib, "getExe"), curl)} -sSf https://extensions.bulwa
 exec ${nix.app(nix.sel(lib, "getExe"), nix_update)} bulwark-plugins.${pluginName} --version="$version"
 `)))),
           }));
-          return { __proto__: pos$2, pluginName, strictDeps, installPhase, passthru };
+          return { [nix.POS]: pos$2, pluginName, strictDeps, installPhase, passthru };
         })());
       })());
   })();
   return {
-    __proto__: pos$39,
+    [nix.POS]: pos$39,
     mkBulwarkPlugin: mkBulwarkPlugin,
     "calendar-agenda": nix.thunk(() => nix.app(mkBulwarkPlugin, (finalAttrs) => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: "bulwark-plugin-calendar-agenda",
         version: "1.2.1",
         src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: nix.thunk(() => nix.str`https://extensions.bulwarkmail.org/api/v1/bundle/calendar-agenda/${nix.sel(finalAttrs, "version")}`),
             hash: "sha256-p6RIndNGifU70JadAbWmTT5RE2kOgEVmXKCaa6CkFp0=",
             extension: "zip",
             stripRoot: false,
           })))),
         meta: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           description: "Shows an agenda of your upcoming calendar events in the sidebar",
           homepage: "https://extensions.bulwarkmail.org/extension/calendar-agenda",
           license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -112,18 +112,18 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix_update)} bulwark-plugins.${pluginName
         })),
       }))),
     "external-link-warning": nix.thunk(() => nix.app(mkBulwarkPlugin, (finalAttrs) => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname: "bulwark-plugin-external-link-warning",
         version: "1.2.1",
         src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             url: nix.thunk(() => nix.str`https://extensions.bulwarkmail.org/api/v1/bundle/external-link-warning/${nix.sel(finalAttrs, "version")}`),
             hash: "sha256-FHq3l5yhVpwcgzbXMI7L5l6+wVwRODm56SJSFQuaRAY=",
             extension: "zip",
             stripRoot: false,
           })))),
         meta: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           description: "Warns before opening external links to unknown domains",
           homepage: "https://extensions.bulwarkmail.org/extension/external-link-warning",
           license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -134,18 +134,18 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix_update)} bulwark-plugins.${pluginName
         })),
       }))),
     "external-mail-warning": nix.thunk(() => nix.app(mkBulwarkPlugin, (finalAttrs) => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         pname: "bulwark-plugin-external-mail-warning",
         version: "1.3.1",
         src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             url: nix.thunk(() => nix.str`https://extensions.bulwarkmail.org/api/v1/bundle/external-mail-warning/${nix.sel(finalAttrs, "version")}`),
             hash: "sha256-J0+WCqc8GGw8txZ1g/4JhnivcLA5iuZOQdlXuUSJMxA=",
             extension: "zip",
             stripRoot: false,
           })))),
         meta: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           description: "Warns before sending email to recipients outside your safe-domain list",
           homepage: "https://extensions.bulwarkmail.org/extension/external-mail-warning",
           license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -156,18 +156,18 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix_update)} bulwark-plugins.${pluginName
         })),
       }))),
     gravatar: nix.thunk(() => nix.app(mkBulwarkPlugin, (finalAttrs) => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         pname: "bulwark-plugin-gravatar",
         version: "1.3.1",
         src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             url: nix.thunk(() => nix.str`https://extensions.bulwarkmail.org/api/v1/bundle/gravatar/${nix.sel(finalAttrs, "version")}`),
             hash: "sha256-Rz+xgBw4mfQcdGvQnPLrrW5i4nDQYwMt5Y37gZ2WxyE=",
             extension: "zip",
             stripRoot: false,
           })))),
         meta: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           description: "Resolves Gravatar profile pictures for email contacts via the avatar transform hook",
           homepage: "https://extensions.bulwarkmail.org/extension/gravatar",
           license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -178,18 +178,18 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix_update)} bulwark-plugins.${pluginName
         })),
       }))),
     "impersonation-notice": nix.thunk(() => nix.app(mkBulwarkPlugin, (finalAttrs) => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         pname: "bulwark-plugin-impersonation-notice",
         version: "1.2.5",
         src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             url: nix.thunk(() => nix.str`https://extensions.bulwarkmail.org/api/v1/bundle/impersonation-notice/${nix.sel(finalAttrs, "version")}`),
             hash: "sha256-BuE+51gOAMFAsfrRK8O+1SNJ2G/L1NQ9WBYZZq7tlko=",
             extension: "zip",
             stripRoot: false,
           })))),
         meta: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           description: "Shows a persistent top-of-app banner when the active session is a Stalwart master-user impersonation",
           homepage: "https://extensions.bulwarkmail.org/extension/impersonation-notice",
           license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -200,18 +200,18 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix_update)} bulwark-plugins.${pluginName
         })),
       }))),
     "jitsi-meet": nix.thunk(() => nix.app(mkBulwarkPlugin, (finalAttrs) => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         pname: "bulwark-plugin-jitsi-meet",
         version: "1.0.1",
         src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             url: nix.thunk(() => nix.str`https://extensions.bulwarkmail.org/api/v1/bundle/jitsi-meet/${nix.sel(finalAttrs, "version")}`),
             hash: "sha256-8HYA5Ihi3D9ia4RxxM/J3lfB1qxB3LDyVYx4TDTNSJo=",
             extension: "zip",
             stripRoot: false,
           })))),
         meta: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           description: "Adds a 'Add Jitsi Meeting' button to calendar events",
           homepage: "https://extensions.bulwarkmail.org/extension/jitsi-meet",
           license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -222,18 +222,18 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix_update)} bulwark-plugins.${pluginName
         })),
       }))),
     libravatar: nix.thunk(() => nix.app(mkBulwarkPlugin, (finalAttrs) => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         pname: "bulwark-plugin-libravatar",
         version: "1.0.0",
         src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             url: nix.thunk(() => nix.str`https://extensions.bulwarkmail.org/api/v1/bundle/libravatar/${nix.sel(finalAttrs, "version")}`),
             hash: "sha256-R0AfJJv6IjeFyFUN4L4JA25VvrkLYb1FFAo5IMqxQzU=",
             extension: "zip",
             stripRoot: false,
           })))),
         meta: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           description: "Resolves Libravatar profile pictures for email contacts via the avatar transform hook",
           homepage: "https://extensions.bulwarkmail.org/extension/libravatar",
           license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -244,11 +244,11 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix_update)} bulwark-plugins.${pluginName
         })),
       }))),
     openpgp: nix.thunk(() => nix.app(mkBulwarkPlugin, (finalAttrs) => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         pname: "bulwark-plugin-openpgp",
         version: "1.1.6",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             owner: "samuelmiller36",
             repo: "bulwark-gpg",
             tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -256,7 +256,7 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix_update)} bulwark-plugins.${pluginName
           })))),
         npmDepsHash: "sha256-rIPl4HIETiZjnfDwORf/lauqN/nbVjLy0a29nm3+bHo=",
         meta: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           description: "End-to-end OpenPGP (GnuPG-compatible) for webmail",
           homepage: "https://github.com/samuelmiller36/bulwark-gpg",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -267,11 +267,11 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix_update)} bulwark-plugins.${pluginName
         })),
       }))),
     "pgp-true-end-to-end": nix.thunk(() => nix.app(mkBulwarkPlugin, (finalAttrs) => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         pname: "bulwark-plugin-pgp-true-end-to-end",
         version: "2.0.0",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             owner: "paulhenry46",
             repo: "pgp-plugin",
             tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -279,7 +279,7 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix_update)} bulwark-plugins.${pluginName
           })))),
         npmDepsHash: "sha256-O84i5VyIJ+MlhQAJhXRjmlzmwPl910HTFwFWg/vzrUE=",
         meta: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           description: "End-to-end OpenPGP for webmail",
           homepage: "https://github.com/paulhenry46/pgp-plugin",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -290,18 +290,18 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix_update)} bulwark-plugins.${pluginName
         })),
       }))),
     "quick-notes": nix.thunk(() => nix.app(mkBulwarkPlugin, (finalAttrs) => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         pname: "bulwark-plugin-quick-notes",
         version: "1.0.0",
         src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             url: nix.thunk(() => nix.str`https://extensions.bulwarkmail.org/api/v1/bundle/quick-notes/${nix.sel(finalAttrs, "version")}`),
             hash: "sha256-Hh9tTuL0OGSxZWUj2seYD6038ny1DubInpSdtAntOgU=",
             extension: "zip",
             stripRoot: false,
           })))),
         meta: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           description: "Per-email sticky notes in the sidebar — jot notes while reading emails",
           homepage: "https://extensions.bulwarkmail.org/extension/quick-notes",
           license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -312,18 +312,18 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix_update)} bulwark-plugins.${pluginName
         })),
       }))),
     smime: nix.thunk(() => nix.app(mkBulwarkPlugin, (finalAttrs) => ({
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         pname: "bulwark-plugin-smime",
         version: "1.0.2",
         src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             url: nix.thunk(() => nix.str`https://extensions.bulwarkmail.org/api/v1/bundle/smime/${nix.sel(finalAttrs, "version")}`),
             hash: "sha256-BGOOkZu3EHCo4uM+g4B81B+6BoXGLlq++hfbevfpWVc=",
             extension: "zip",
             stripRoot: false,
           })))),
         meta: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           description: "End-to-end S/MIME for webmail",
           homepage: "https://extensions.bulwarkmail.org/extension/smime",
           license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -334,18 +334,18 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix_update)} bulwark-plugins.${pluginName
         })),
       }))),
     "spam-score": nix.thunk(() => nix.app(mkBulwarkPlugin, (finalAttrs) => ({
-        __proto__: pos$38,
+        [nix.POS]: pos$38,
         pname: "bulwark-plugin-spam-score",
         version: "1.0.0",
         src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             url: nix.thunk(() => nix.str`https://extensions.bulwarkmail.org/api/v1/bundle/spam-score/${nix.sel(finalAttrs, "version")}`),
             hash: "sha256-JmT/r4Xhn9NiiAnPfya6EqWvpW3wpJFXjNpzmznMDcE=",
             extension: "zip",
             stripRoot: false,
           })))),
         meta: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           description: "Adds a Spam Analysis section to a message's \"More details\" panel",
           homepage: "https://extensions.bulwarkmail.org/extension/spam-score",
           license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

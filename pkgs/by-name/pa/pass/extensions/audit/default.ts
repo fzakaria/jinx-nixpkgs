@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "roddhjav",
           repo: "pass-audit",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -54,7 +54,7 @@ patchShebangs audit.bash
       const postInstall = "mkdir -p $out/lib/password-store/extensions\ninstall -m777 audit.bash $out/lib/password-store/extensions/audit.bash\ncp -r share $out/\nbuildPythonPath \"$out $dependencies\"\nwrapProgram $out/lib/password-store/extensions/audit.bash \\\n  --prefix PYTHONPATH : \"$PYTHONPATH\" \\\n  --run \"export COMMAND\"\n";
       const pythonImportsCheck = nix.thunk(() => ["pass_audit"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pass extension for auditing your password repository",
         homepage: "https://github.com/roddhjav/pass-audit",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -65,7 +65,7 @@ patchShebangs audit.bash
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

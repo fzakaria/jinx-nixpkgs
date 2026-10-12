@@ -26,32 +26,32 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     name: "git-pages-modular-service",
     nodes: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           environment: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "curl"))]),
           })),
           system: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             services: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               "git-pages": nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 imports: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "git-pages", "services", "default"))]),
                 "git-pages": nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     server: nix.thunk(() => ({
-                      __proto__: pos$2,
+                      [nix.POS]: pos$2,
                       pages: "tcp/:3000",
                       caddy: "tcp/:3001",
                       metrics: "tcp/:3002",
@@ -59,26 +59,26 @@ export default nix.lambda((args) => (() => {
                   })),
                 })),
                 systemd: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   service: nix.thunk(() => ({
-                    __proto__: pos$6,
-                    environment: nix.thunk(() => ({ __proto__: pos$5, PAGES_INSECURE: "1" })),
+                    [nix.POS]: pos$6,
+                    environment: nix.thunk(() => ({ [nix.POS]: pos$5, PAGES_INSECURE: "1" })),
                   })),
                 })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             caddy: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               enable: true,
               configFile: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "Caddyfile", "{\n    admin off\n    persist_config off\n    auto_https disable_redirects\n    on_demand_tls {\n        permission http http://localhost:3001\n    }\n}\nhttps://, http:// {\n  tls {\n      on_demand\n  }\n  reverse_proxy http://localhost:3000\n}\n")),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$14,
-            firewall: nix.thunk(() => ({ __proto__: pos$13, allowedTCPPorts: nix.thunk(() => [80n]) })),
+            [nix.POS]: pos$14,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$13, allowedTCPPorts: nix.thunk(() => [80n]) })),
           })),
         };
       })(), formals$2),

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
     const fetchAll = nix.argOr($_1, "fetchAll", () => false);
     const hash = nix.argOr($_1, "hash", () => nix.sel(lib, "fakeHash"));
     return nix.app(runCommand, nix.thunk(() => nix.str`${name}-zig-deps`), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         src: src,
         fetchAll: fetchAll,
         nativeBuildInputs: nix.thunk(() => [zig]),

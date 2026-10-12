@@ -34,48 +34,48 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "hledger-web"));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         "hledger-web": nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "hledger-web service")),
           serveApi: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "serving only the JSON web API, without the web UI")),
           host: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "127.0.0.1",
               description: "Address to listen on.\n",
             })))),
           port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               default: 5000n,
               example: 80n,
               description: "Port to listen on.\n",
             })))),
           allow: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["view", "add", "edit", "sandstorm"]))),
               default: "view",
               description: "User's access level for changing data.\n\n* view: view only permission.\n* add: view and add permissions.\n* edit: view, add, and edit permissions.\n* sandstorm: permissions from the `X-Sandstorm-Permissions` request header.\n",
             })))),
           stateDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               default: "/var/lib/hledger-web",
               description: "Path the service has access to. If left as the default value this\ndirectory will automatically be created before the hledger-web server\nstarts, otherwise the sysadmin is responsible for ensuring the\ndirectory exists with appropriate ownership and permissions.\n",
             })))),
           journalFiles: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: nix.thunk(() => [".hledger.journal"]),
               description: "Paths to journal files relative to {option}`services.hledger-web.stateDir`.\n",
             })))),
           baseUrl: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
               description: "Base URL, when sharing over a network.\n",
             })))),
           extraOptions: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: [],
               example: nix.thunk(() => ["--forecast"]),
@@ -98,13 +98,13 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["services", "hledger-web", "capabilities"]), "This option has been replaced by new option `services.hledger-web.allow`.")),
     ]),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         users: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           users: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             hledger: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               name: "hledger",
               group: "hledger",
               isSystemUser: true,
@@ -112,12 +112,12 @@ export default nix.lambda((args) => (() => {
               useDefaultShell: true,
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$13, hledger: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$13, hledger: nix.thunk(() => ({})) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           services: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             "hledger-web": nix.thunk(() => (() => {
               const serverArgs = nix.thunk(() => (() => {
                 const w_1 = nix.withScope(cfg, w);
@@ -131,7 +131,7 @@ export default nix.lambda((args) => (() => {
                   ], nix.concat(nix.app(nix.builtins.map, (f) => nix.str`--file=${nix.lookup(w_1, "stateDir")}/${f}`, nix.thunk(() => nix.sel(cfg, "journalFiles"))), nix.lookup(w_1, "extraOptions")))));
               })());
               return {
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 description: "hledger-web - web-app for the hledger accounting tool.",
                 documentation: nix.thunk(() => [
                   "info:hledger-web",
@@ -142,7 +142,7 @@ export default nix.lambda((args) => (() => {
                 after: nix.thunk(() => ["network.target"]),
                 serviceConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$15,
+                      [nix.POS]: pos$15,
                       ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "hledger-web")}/bin/hledger-web ${serverArgs}`),
                       Restart: "always",
                       WorkingDirectory: nix.thunk(() => nix.sel(cfg, "stateDir")),
@@ -150,7 +150,7 @@ export default nix.lambda((args) => (() => {
                       Group: "hledger",
                       PrivateTmp: true,
                     })),
-                    nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "stateDir"), "/var/lib/hledger-web")), nix.thunk(() => ({ __proto__: pos$16, StateDirectory: "hledger-web" })))),
+                    nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "stateDir"), "/var/lib/hledger-web")), nix.thunk(() => ({ [nix.POS]: pos$16, StateDirectory: "hledger-web" })))),
                   ]))),
               };
             })()),
@@ -158,7 +158,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), w);
         return [

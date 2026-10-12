@@ -37,10 +37,10 @@ export default nix.lambda((args) => (() => {
   const withApcModbus = nix.argOr($, "withApcModbus", () => false);
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const libmodbus$ = nix.thunk(() => nix.app(nix.sel(libmodbus, "overrideAttrs"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "3.1.11-withUsbRTU-NUT",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "networkupstools",
           repo: "libmodbus",
           rev: "8b9bdcde6938f85415098af74b720b7ad5ed74b4",
@@ -50,18 +50,18 @@ export default nix.lambda((args) => (() => {
     })));
   const modbus = nix.thunk(() => (nix.asBool(withApcModbus) ? nix.force(libmodbus$) : nix.force(libmodbus)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "nut",
       version: "2.8.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://networkupstools.org/source/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/nut-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-ATC6gup58Euk80xSSahZQ5d+/ZhO199q7BpRjVo1lPg=",
         })))),
       patches: nix.thunk(() => [
         nix.path(here, "./nutshutdown-conf-default.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             avahi: nix.thunk(() => nix.str`${avahi}/lib`),
             freeipmi: nix.thunk(() => nix.str`${freeipmi}/lib`),
             libgpiod: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? nix.str`${libgpiod_1}/lib` : "/homeless-shelter")),
@@ -107,7 +107,7 @@ substituteInPlace $out/lib/systemd/system/nut-driver-enumerator.path \\
 rm $out/etc/udev/rules.d/52-nut-ipmipsu.rules
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Network UPS Tools",
         longDescription: "Network UPS Tools is a collection of programs which provide a common\ninterface for monitoring and administering UPS, PDU and SCD hardware.\nIt uses a layered approach to connect all of the parts.\n",
         homepage: "https://networkupstools.org/",

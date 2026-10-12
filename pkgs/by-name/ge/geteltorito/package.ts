@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const ronn = nix.arg($, "ronn");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "geteltorito",
       version: "0.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://userpages.uni-koblenz.de/~krienke/ftp/noarch/geteltorito/geteltorito-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1gkbm9ahj2mgqrkrfpibzclsriqgsbsvjh19fr815vpd9f6snkxv",
         })))),
@@ -50,7 +50,7 @@ ronn --roff README.new --pipe > $out/man/man1/geteltorito.1
 install -vD geteltorito $out/bin/geteltorito
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extract the initial/default boot image from a CD image if existent",
         homepage: "https://userpages.uni-koblenz.de/~krienke/ftp/noarch/geteltorito/",
         maintainers: [],

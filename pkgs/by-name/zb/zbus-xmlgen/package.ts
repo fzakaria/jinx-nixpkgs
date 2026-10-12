@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const rustfmt = nix.arg($, "rustfmt");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zbus_xmlgen",
       version: "5.4.1",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-jfK+p5+DoxeGzzti984OZx527xiETtKuWQfLBnXrIAk=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
     --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [rustfmt]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://crates.io/crates/zbus_xmlgen",
         description: "D-Bus XML interface Rust code generator",
         mainProgram: "zbus-xmlgen",

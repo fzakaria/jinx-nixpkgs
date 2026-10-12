@@ -32,31 +32,31 @@ export default nix.lambda((args) => (() => {
   const minizip = nix.arg($, "minizip");
   const ffmpeg_8 = nix.arg($, "ffmpeg_8");
   return {
-    __proto__: pos$13,
-    brotli: nix.thunk(() => ({ __proto__: pos$1, package: brotli, path: "third_party/brotli/BUILD.gn" })),
+    [nix.POS]: pos$13,
+    brotli: nix.thunk(() => ({ [nix.POS]: pos$1, package: brotli, path: "third_party/brotli/BUILD.gn" })),
     fontconfig: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       package: fontconfig,
       path: "third_party/fontconfig/BUILD.gn",
     })),
     freetype: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       package: freetype,
       path: "build/config/freetype/freetype.gni",
     })),
     "harfbuzz-ng": nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       package: harfbuzz,
       path: "third_party/harfbuzz-ng/harfbuzz.gni",
     })),
-    jsoncpp: nix.thunk(() => ({ __proto__: pos$5, package: jsoncpp, path: "third_party/jsoncpp/BUILD.gn" })),
-    icu: nix.thunk(() => ({ __proto__: pos$6, package: icu, path: "third_party/icu/BUILD.gn" })),
-    libpng: nix.thunk(() => ({ __proto__: pos$7, package: libpng, path: "third_party/libpng/BUILD.gn" })),
-    libwebp: nix.thunk(() => ({ __proto__: pos$8, package: libwebp, path: "third_party/libwebp/BUILD.gn" })),
-    libxml: nix.thunk(() => ({ __proto__: pos$9, package: libxml2, path: "third_party/libxml/BUILD.gn" })),
-    libxslt: nix.thunk(() => ({ __proto__: pos$10, package: libxslt, path: "third_party/libxslt/BUILD.gn" })),
-    zlib: nix.thunk(() => ({ __proto__: pos$11, package: minizip, path: "third_party/zlib/BUILD.gn" })),
-    ffmpeg: nix.thunk(() => ({ __proto__: pos$12, package: ffmpeg_8, path: "third_party/ffmpeg/BUILD.gn" })),
+    jsoncpp: nix.thunk(() => ({ [nix.POS]: pos$5, package: jsoncpp, path: "third_party/jsoncpp/BUILD.gn" })),
+    icu: nix.thunk(() => ({ [nix.POS]: pos$6, package: icu, path: "third_party/icu/BUILD.gn" })),
+    libpng: nix.thunk(() => ({ [nix.POS]: pos$7, package: libpng, path: "third_party/libpng/BUILD.gn" })),
+    libwebp: nix.thunk(() => ({ [nix.POS]: pos$8, package: libwebp, path: "third_party/libwebp/BUILD.gn" })),
+    libxml: nix.thunk(() => ({ [nix.POS]: pos$9, package: libxml2, path: "third_party/libxml/BUILD.gn" })),
+    libxslt: nix.thunk(() => ({ [nix.POS]: pos$10, package: libxslt, path: "third_party/libxslt/BUILD.gn" })),
+    zlib: nix.thunk(() => ({ [nix.POS]: pos$11, package: minizip, path: "third_party/zlib/BUILD.gn" })),
+    ffmpeg: nix.thunk(() => ({ [nix.POS]: pos$12, package: ffmpeg_8, path: "third_party/ffmpeg/BUILD.gn" })),
   };
 })(), formals$1);
 //# sourceMappingURL=mkSystemLibraries.ts.map

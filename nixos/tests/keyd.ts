@@ -42,18 +42,18 @@ mv  ${resultFile}.tmp ${resultFile}
     const default$ = nix.arg($_1, "default");
     const test = nix.arg($_1, "test");
     return nix.app(runTest, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         name: name,
         nodes: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           machine: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             services: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               keyd: nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 enable: true,
-                keyboards: nix.thunk(() => ({ __proto__: pos$1, default: default$ })),
+                keyboards: nix.thunk(() => ({ [nix.POS]: pos$1, default: default$ })),
               })),
             })),
           })),
@@ -89,20 +89,20 @@ run_test_case("openvt -sw --", "${name}", test["press"], test["expect"])
       })));
   })(), formals$2);
   return nix.app(nix.sel(lib, "mapAttrs"), mkKeyboardTest, nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       "swap-ab_and_ctrl-as-shift": nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         test: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           press: nix.thunk(() => ["a", "ctrl-b", "c", "alt_r-h"]),
           expect: nix.thunk(() => ["b", "A", "c", "q"]),
         })),
         default: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           settings: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             main: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               a: "b",
               b: "a",
               control: "oneshot(shift)",

@@ -32,16 +32,16 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const rsync = nix.arg($, "rsync");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "surge",
       version: "1.9.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/surge-synthesizer/releases/releases/download/${nix.sel(finalAttrs, "version")}/SurgeSrc_${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-k7x+s84OpazARlHWXEP1aC57+o3uEduAzYDeyBwlTgE=",
         })))),
       extraContent: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "surge-synthesizer",
           repo: "surge-extra-content",
           rev: "afc591cc06d9adc3dc8dc515a55c66873fa10296",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/surge-synthesizer/surge/commit/7a552038bab4b000d188ae425aa97963dc91db17.patch",
             hash: "sha256-5Flf0uJqEK6e+sadB+vr6phdvvdZYXcFFfm4ywhAeW0=",
             name: "glibc_build_fix.patch",
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
         rsync,
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         NIX_CFLAGS_COMPILE: "-Wno-deprecated",
         NIX_LDFLAGS: "-z noexecstack",
       })),
@@ -87,7 +87,7 @@ substituteInPlace libs/libsamplerate/CMakeLists.txt \\
       doInstallCheck: true,
       installCheckPhase: "export HOME=$(mktemp -d)\nexport SURGE_DISABLE_NETWORK_TESTS=TRUE\nbuild/surge-headless\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "LV2 & VST3 synthesizer plug-in (previously released as Vember Audio\nSurge)\n",
         homepage: "https://surge-synthesizer.github.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

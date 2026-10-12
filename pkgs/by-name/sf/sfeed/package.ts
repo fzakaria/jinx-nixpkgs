@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sfeed",
       version: "2.4",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "git://git.codemadness.org/sfeed",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-4ItAZ3HYmFc/OlUErAhUANm/BkeCIHvPtriWn9N29lg=",
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => nix.concat(["RANLIB:=$(RANLIB)", "SFEED_CURSES_LDFLAGS:=-lncurses"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "COMPATOBJ:="))),
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-D_DARWIN_C_SOURCE")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://codemadness.org/sfeed-simple-feed-parser.html",
         description: "RSS and Atom parser (and some format programs)",
         longDescription: "It converts RSS or Atom feeds from XML to a TAB-separated file. There are\nformatting programs included to convert this TAB-separated format to\nvarious other formats. There are also some programs and scripts included\nto import and export OPML and to fetch, filter, merge and order feed\nitems.\n",

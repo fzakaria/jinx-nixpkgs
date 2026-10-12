@@ -13,20 +13,20 @@ export default nix.lambda((args) => (() => {
   const mkAppleDerivation = nix.arg($, "mkAppleDerivation");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const privateHeaders = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "removefile-deps-private-headers",
       buildCommand: "mkdir -p \"$out/include/apfs\"\n# APFS group is 'J' per https://github.com/apple-oss-distributions/xnu/blob/94d3b452840153a99b38a3a9659680b2a006908e/bsd/vfs/vfs_fsevents.c#L1054\ncat <<EOF > \"$out/include/apfs/apfs_fsctl.h\"\n#pragma once\n#include <stdint.h>\n#include <sys/ioccom.h>\nstruct xdstream_obj_id {\n  char* xdi_name;\n  uint64_t xdi_xdtream_obj_id;\n};\n#define APFS_CLEAR_PURGEABLE 0\n#define APFSIOC_MARK_PURGEABLE _IOWR('J', 68, uint64_t)\n#define APFSIOC_XDSTREAM_OBJ_ID _IOR('J', 35, struct xdstream_obj_id)\nEOF\n",
     }))));
   return nix.app(mkAppleDerivation, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       releaseName: "removefile",
       outputs: nix.thunk(() => ["out", "dev", "man"]),
       xcodeHash: "sha256-7dNq0nE2MmFM9U+epTrkCoM1lrswm98m3RWuLDsAuDk=",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${privateHeaders}/include`),
       })),
-      meta: nix.thunk(() => ({ __proto__: pos$3, description: "Darwin file removing library" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$3, description: "Darwin file removing library" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

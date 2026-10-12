@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const unixtools = nix.arg($, "unixtools");
   const version = "0.31.0";
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "step-cli",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "smallstep",
           repo: "cli",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [openssl, nix.thunk(() => nix.sel(unixtools, "xxd"))]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd step \\\n  --bash <($out/bin/step completion bash) \\\n  --zsh <($out/bin/step completion zsh) \\\n  --fish <($out/bin/step completion fish)\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Zero trust swiss army knife for working with X509, OAuth, JWT, OATH OTP, etc",
         homepage: "https://smallstep.com/cli/",
         changelog: nix.thunk(() => nix.str`https://github.com/smallstep/cli/blob/v${version}/CHANGELOG.md`),

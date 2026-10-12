@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       const version = "26.4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "twisted",
           repo: "twisted",
           tag: nix.thunk(() => nix.str`twisted-${version}`),
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "twisted-replace-pyopenssl-x509req-with-cryptography-csr.patch",
             url: "https://github.com/twisted/twisted/commit/5b4601c9965ffc92d6aa952b8c05127d5ac37307.patch",
             hash: "sha256-mbSZOvzinfUolfOHJl+vEdAEGjy8OF2S/SrTsAbvjIw=",
@@ -93,7 +93,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const postPatch = nix.thunk(() => (() => {
         const skippedTests = nix.thunk(() => nix.update({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "src/twisted/conch/test/test_cftp.py": nix.thunk(() => [
             "ListingTests.test_localeIndependent",
             "ListingTests.test_newSingleDigitDayOfMonth",
@@ -115,11 +115,11 @@ export default nix.lambda((args) => (() => {
           "src/twisted/trial/test/test_script.py": nix.thunk(() => ["AutoJobsTests.test_cpuCount"]),
           "src/twisted/internet/test/test_unix.py": nix.thunk(() => ["UNIXTestsBuilder.test_sendFileDescriptorTriggersPauseProducing"]),
         }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(pythonAtLeast, "3.12")), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             "src/twisted/trial/_dist/test/test_workerreporter.py": nix.thunk(() => ["WorkerReporterTests.test_addSkipPyunit"]),
             "src/twisted/trial/_dist/test/test_worker.py": nix.thunk(() => ["LocalWorkerAMPTests.test_runSkip"]),
           }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(pythonOlder, "3.13")), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             "src/twisted/web/test/test_tap.py": nix.thunk(() => [
               "ServiceTests.test_HTTPSFailureOnMissingSSL",
               "ServiceTests.test_HTTPSFailureOnMissingSSL",
@@ -149,13 +149,13 @@ export default nix.lambda((args) => (() => {
               "HashedPasswordOnDiskDatabaseTests.testHashedCredentials",
             ]),
           }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(pythonAtLeast, "3.13")), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             "src/twisted/web/test/test_flatten.py": nix.thunk(() => [
               "FlattenerErrorTests.test_asynchronousFlattenError",
               "FlattenerErrorTests.test_cancel",
             ]),
           }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             "src/twisted/internet/test/test_process.py": nix.thunk(() => [
               "ProcessTestsBuilder_AsyncioSelectorReactorTests.test_openFileDescriptors",
               "ProcessTestsBuilder_SelectReactorTests.test_openFileDescriptors",
@@ -184,7 +184,7 @@ ${nix.sel(python, "interpreter")} -m twisted.trial -j1 twisted
 runHook postCheck
 `);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         conch: nix.thunk(() => [appdirs, bcrypt, cryptography]),
         http2: nix.thunk(() => [h2, priority]),
         serial: nix.thunk(() => [pyserial]),
@@ -192,9 +192,9 @@ runHook postCheck
         tls: nix.thunk(() => [idna, pyopenssl, service_identity]),
       }));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         tests: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           "cassandra-driver": cassandra_driver,
           klein: klein,
           "magic-wormhole": magic_wormhole,
@@ -210,7 +210,7 @@ runHook postCheck
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         changelog: nix.thunk(() => nix.str`https://github.com/twisted/twisted/blob/twisted-${version}/NEWS.rst`),
         homepage: "https://github.com/twisted/twisted",
         description: "Asynchronous networking framework written in Python",
@@ -218,7 +218,7 @@ runHook postCheck
         maintainers: [],
       }));
       return {
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         pname,
         version,
         pyproject,

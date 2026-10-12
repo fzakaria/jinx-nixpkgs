@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const double_conversion = nix.arg($, "double-conversion");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "wdt",
       version: "1.27.1612021-unstable-2026-09-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "facebook",
           repo: "wdt",
           rev: "15ff798e01fb192fbdbf093d26d10933ffe46df5",
@@ -38,12 +38,12 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./fix-glog-include.patch")]),
       cmakeFlags: nix.thunk(() => ["-DWDT_USE_SYSTEM_FOLLY=ON"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, tagPrefix: "v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, tagPrefix: "v" })))),
       })),
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 3.2)\" \"cmake_minimum_required(VERSION 3.10)\" \\\n  --replace-fail \"find_package(Boost COMPONENTS system filesystem REQUIRED)\" \\\n    \"find_package(Boost COMPONENTS filesystem REQUIRED)\" \\\n  --replace-fail \"set(CMAKE_CXX_STANDARD 17)\" \"set(CMAKE_CXX_STANDARD 20)\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Warp speed Data Transfer",
         homepage: "https://github.com/facebook/wdt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

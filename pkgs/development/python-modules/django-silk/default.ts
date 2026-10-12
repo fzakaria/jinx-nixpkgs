@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.6.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jazzband",
           repo: "django-silk",
           tag: version,
@@ -76,7 +76,7 @@ substituteInPlace setup.py \\
       const pythonImportsCheck = nix.thunk(() => ["silk"]);
       const preCheck = "export DB_ENGINE=sqlite3 DB_NAME=':memory:'\n\ncd project\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Silky smooth profiling for the Django Framework",
         homepage: "https://github.com/jazzband/django-silk",
         changelog: nix.thunk(() => nix.str`https://github.com/jazzband/django-silk/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -87,7 +87,7 @@ substituteInPlace setup.py \\
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

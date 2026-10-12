@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const fediwall_unwrapped = nix.arg($, "fediwall-unwrapped");
   const conf = nix.argOr($, "conf", () => ({}));
   return (nix.asBool(nix.eq(conf, {})) ? nix.force(fediwall_unwrapped) : nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "fediwall",
       version: nix.thunk(() => nix.attr(fediwall_unwrapped, "version")),
       meta: nix.thunk(() => nix.attr(fediwall_unwrapped, "meta")),

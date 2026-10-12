@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
   const pymupdf_fonts = nix.arg($, "pymupdf-fonts");
   const nix_update_script = nix.arg($, "nix-update-script");
   const mupdf_cxx = nix.thunk(() => nix.app(nix.sel(mupdf, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       enableOcr: true,
       enableCxx: true,
       enablePython: true,
@@ -47,12 +47,12 @@ export default nix.lambda((args) => (() => {
   const mupdf_cxx_lib = nix.thunk(() => nix.app(toPythonModule, nix.thunk(() => nix.app(nix.sel(lib, "getLib"), mupdf_cxx))));
   const mupdf_cxx_dev = nix.thunk(() => nix.app(nix.sel(lib, "getDev"), mupdf_cxx));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "pymupdf",
       version: "1.27.2.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "pymupdf",
           repo: "PyMuPDF",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [mupdf_cxx_lib]),
       buildInputs: nix.thunk(() => [freetype, harfbuzz, openjpeg, jbig2dec, libjpeg_turbo, gumbo]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         PYMUPDF_SETUP_MUPDF_BUILD: "",
         PYMUPDF_SETUP_LIBCLANG: "clang",
         PYMUPDF_MUPDF_LIB: nix.thunk(() => nix.str`${mupdf_cxx_lib}/lib`),
@@ -164,14 +164,14 @@ done
       pythonImportsCheck: nix.thunk(() => ["pymupdf", "fitz"]),
       preCheck: "export PATH=\"$out/bin:$PATH\";\n\n# Fixes at least one test; see:\n# * <https://github.com/pymupdf/PyMuPDF/blob/refs/tags/1.25.1/scripts/sysinstall.py#L390>\n# * <https://github.com/pymupdf/PyMuPDF/blob/refs/tags/1.25.1/tests/test_pixmap.py#L425-L428>\nexport PYMUPDF_SYSINSTALL_TEST=1\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             extraArgs: nix.thunk(() => ["--version-regex=([\\d]+\\.[\\d]+\\.[\\d]+(\\.[\\d]+)?)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Python bindings for MuPDF's rendering library",
         homepage: "https://github.com/pymupdf/PyMuPDF",
         changelog: nix.thunk(() => nix.str`https://github.com/pymupdf/PyMuPDF/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "iaito",
       version: "6.2.0",
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "radareorg",
             repo: "iaito",
             tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
             name: "main",
           })))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             owner: "radareorg",
             repo: "iaito-translations",
             rev: "e66b3a962a7fc7dfd730764180011ecffbb206bf",
@@ -65,9 +65,9 @@ xvfb-run -a ${nix.builtins.placeholder("out")}/bin/iaito -v | grep "${nix.sel(fi
 runHook postCheck
 `),
       doInstallCheck: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Official radare2 GUI",
         longDescription: "iaito is the official graphical interface for radare2, a libre reverse\nengineering framework.\n",
         homepage: "https://radare.org/n/iaito.html",

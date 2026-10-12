@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const ipaddr = nix.arg($, "ipaddr");
   const ipaddr_sexp = nix.arg($, "ipaddr-sexp");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "conduit",
       version: "8.0.0",
       minimalOCamlVersion: "4.13",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/ocaml-conduit/releases/download/v${nix.sel(finalAttrs, "version")}/conduit-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-CmPZEIZbVHOJOhcM2lH2E4j0iOz0xLLtf+nsTiz2b2E=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [astring, ipaddr, ipaddr_sexp, sexplib0, uri, ppx_sexp_conv]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Network connection establishment library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
         maintainers: nix.thunk(() => (() => {

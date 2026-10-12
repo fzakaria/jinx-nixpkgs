@@ -47,11 +47,11 @@ export default nix.lambda((args) => (() => {
       const version = nix.arg($_1, "version");
       const hash = nix.arg($_1, "hash");
       return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: "zabbix-server",
           version: version,
           src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               url: nix.thunk(() => nix.str`https://cdn.zabbix.com/zabbix/sources/stable/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/zabbix-${version}.tar.gz`),
               hash: hash,
             })))),
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
           preAutoreconf: "for i in $(find . -type f -name \"*.m4\"); do\n  substituteInPlace $i \\\n    --replace 'test -x \"$PKG_CONFIG\"' 'type -P \"$PKG_CONFIG\" >/dev/null'\ndone\n",
           postInstall: nix.thunk(() => nix.add(nix.add("mkdir -p $out/share/zabbix/database/\ncp -r include $out/\n", nix.app(optionalString, mysqlSupport, "mkdir -p $out/share/zabbix/database/mysql\ncp -prvd database/mysql/*.sql $out/share/zabbix/database/mysql/\n")), nix.app(optionalString, postgresqlSupport, "mkdir -p $out/share/zabbix/database/postgresql\ncp -prvd database/postgresql/*.sql $out/share/zabbix/database/postgresql/\n\nmkdir -p $out/share/zabbix/database/postgresql/timescaledb\ncp -prvd database/postgresql/timescaledb/schema.sql $out/share/zabbix/database/postgresql/timescaledb/schema.sql\n"))),
           meta: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             description: "Enterprise-class open source distributed monitoring solution",
             homepage: "https://www.zabbix.com/",
             license: nix.thunk(() => (nix.asBool(nix.ge(nix.app(nix.sel(lib, "versions", "major"), version), "7")) ? nix.sel(lib, "licenses", "agpl3Only") : nix.sel(lib, "licenses", "gpl2Plus"))),

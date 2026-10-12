@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const unifdef = nix.arg($, "unifdef");
   return nix.app(mkAppleDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "xnuHeaders",
       releaseName: "xnu",
       postPatch: nix.thunk(() => nix.str`rm bsd/sys/make_symbol_aliasing.sh
@@ -64,7 +64,7 @@ patchShebangs .
         python3,
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         ARCHS: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "darwinArch")),
         ARCH_CONFIGS: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "darwinArch")),
         PLATFORM: "MacOSX",

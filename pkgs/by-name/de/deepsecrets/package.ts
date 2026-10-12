@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "deepsecrets",
       version: "1.0.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "avito-tech",
           repo: "deepsecrets",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_1_cli", "test_config", "test_basic_info"]),
       pythonImportsCheck: nix.thunk(() => ["deepsecrets"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Secrets scanner that understands code",
         homepage: "https://github.com/avito-tech/deepsecrets",
         changelog: nix.thunk(() => nix.str`https://github.com/avito-tech/deepsecrets/releases/tag/v${nix.sel(finalAttrs, "version")}`),

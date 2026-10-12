@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "clarkperkins",
           repo: "click-shell",
           tag: version,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest_click, pytestCheckHook, writableTmpDirAsHomeHook]);
       const pythonImportsCheck = nix.thunk(() => ["click_shell"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extension to click that easily turns your click app into a shell utility",
         longDescription: "This is an extension to click that easily turns your click app into a\nshell utility. It is built on top of the built in python cmd module,\nwith modifications to make it work with click. It adds a 'shell' mode\nwith command completion to any click app.\n",
         homepage: "https://github.com/clarkperkins/click-shell",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

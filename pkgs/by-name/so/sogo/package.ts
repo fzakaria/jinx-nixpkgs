@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sogo";
       const version = "5.12.11";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Alinto",
           repo: "sogo",
           rev: nix.thunk(() => nix.str`SOGo-${version}`),
@@ -83,7 +83,7 @@ find . -type f -name GNUmakefile -exec sed -i "s:\\\\$.GNUSTEP_MAKEFILES.:$PWD/m
 `);
       const configureFlags = nix.thunk(() => ["--disable-debug", "--with-ssl=ssl", "--enable-mfa"]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types -Wno-error=int-conversion -Wno-error=implicit-int -Wno-error=return-type",
       }));
       const preFixup = nix.thunk(() => nix.str`# Create gnustep.conf
@@ -108,11 +108,11 @@ for bin in $out/bin/*; do
 done
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, sogo: nix.thunk(() => nix.sel(nixosTests, "sogo")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, sogo: nix.thunk(() => nix.sel(nixosTests, "sogo")) })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Very fast and scalable modern collaboration suite (groupware)",
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
@@ -129,7 +129,7 @@ done
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

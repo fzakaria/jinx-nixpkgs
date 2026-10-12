@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "osmo-hnodeb";
       const version = "0.1.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "osmocom",
           repo: "osmo-hnodeb",
           rev: version,
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Upper layers implementation of HomeNodeB for 3G/UMTS",
         mainProgram: "osmo-hnodeb",
         homepage: "https://osmocom.org/projects/osmo-hnodeb",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

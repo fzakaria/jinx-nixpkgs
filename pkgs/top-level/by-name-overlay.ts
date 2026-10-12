@@ -16,7 +16,7 @@ export default (baseDirectory) => (() => {
   const namesForShard = (shard) => (type) => (nix.asBool(!nix.eq(type, "directory")) ? {} : nix.app(mapAttrs, (name) => (_) => nix.add(baseDirectory, nix.str`/${shard}/${name}/package.nix`), nix.thunk(() => nix.app(readDir, nix.thunk(() => nix.add(baseDirectory, nix.str`/${shard}`))))));
   const packageFiles = nix.thunk(() => nix.app(mergeAttrsList, nix.thunk(() => nix.app(mapAttrsToList, namesForShard, nix.thunk(() => nix.app(readDir, baseDirectory))))));
   return (self) => (super$) => nix.update({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     _internalCallByNamePackageFile: nix.thunk(() => nix.app(flip, nix.thunk(() => nix.sel(self, "callPackage")), nix.thunk(() => ({})))),
   }, nix.app(mapAttrs, (name) => nix.sel(self, "_internalCallByNamePackageFile"), packageFiles));
 })();

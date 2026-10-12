@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "eliza",
       version: "0-unstable-2026-09-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "anthay",
           repo: "ELIZA",
           rev: "4ac38e6694526f2a5c849014d3312a20cdddf842",
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n$CXX -std=c++20 -pedantic -o eliza ./src/eliza.cpp\nrunHook postBuild\n",
       installPhase: "runHook preInstall\ninstall -Dm544 ./eliza $out/bin/eliza\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch=master"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch=master"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "C++ simulation of Joseph Weizenbaum’s 1966 ELIZA",
         longDescription: "This is an implementation in C++ of ELIZA that attempts to be as close\nto the original as possible.\nIt was made to closely follow Joseph Weizenbaum’s description of his program\ngiven in his January 1966 Communications of the ACM paper, and later changed\nto follow the ELIZA source code found on 2021 and the SLIP programming\nfunction HASH(D,N) found on 2022.\nIt is controlled by a script identical to the one given in the appendix of\nthe 1966 paper.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),

@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "2025.8.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CNES",
           repo: "pangeo-pyinterp",
           tag: version,
@@ -59,7 +59,7 @@ substituteInPlace src/pyinterp/__init__.py \\
       const disabledTests = nix.thunk(() => nix.concat(["test_bounding_box", "test_geohash", "test_encoding", "test_neighbors"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), nix.thunk(() => ["test_quadrivariate"]))));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library for optimized geo-referenced interpolation",
         homepage: "https://github.com/CNES/pangeo-pyinterp",
         changelog: nix.thunk(() => nix.str`https://github.com/CNES/pangeo-pyinterp/releases/tag/${nix.sel(src, "tag")}`),
@@ -70,7 +70,7 @@ substituteInPlace src/pyinterp/__init__.py \\
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

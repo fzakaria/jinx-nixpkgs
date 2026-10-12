@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.6.3";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "waydroid",
           repo: "waydroid",
           tag: version,
@@ -77,11 +77,11 @@ substituteInPlace $out/lib/waydroid/tools/helpers/run.py $out/lib/waydroid/tools
   --replace-fail '"sh"' '"${runtimeShell}"'
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Container-based approach to boot a full Android system on a regular GNU/Linux system",
         mainProgram: "waydroid",
         homepage: "https://github.com/waydroid/waydroid",
@@ -93,7 +93,7 @@ substituteInPlace $out/lib/waydroid/tools/helpers/run.py $out/lib/waydroid/tools
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

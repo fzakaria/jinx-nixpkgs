@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "powertop-macos",
       version: "1.3.7",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/kDolphin/PowerTop/releases/download/v${nix.sel(finalAttrs, "version")}/PowerTop.zip`),
           hash: "sha256-rwzwCIwyXI9RKSFC4OaNGJZS16zeaw1WpY8ntctDssQ=",
         })))),
@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), rcodesign)} sign "$out/Applications/PowerTop.app"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/kDolphin/PowerTop/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Menu bar app for monitoring MacBook power usage",
         homepage: "https://github.com/kDolphin/PowerTop",

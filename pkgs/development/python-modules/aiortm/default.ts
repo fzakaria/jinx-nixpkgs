@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const typer = nix.arg($, "typer");
   const yarl = nix.arg($, "yarl");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "aiortm",
       version: "0.20.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MartinHjelmare",
           repo: "aiortm",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: nix.thunk(() => ["typer"]),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [aiohttp, ciso8601, mashumaro, yarl]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, cli: nix.thunk(() => [typer]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, cli: nix.thunk(() => [typer]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([
         aioresponses,
         aiointercept,
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))))),
       pythonImportsCheck: nix.thunk(() => ["aiortm"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library for the Remember the Milk API",
         homepage: "https://github.com/MartinHjelmare/aiortm",
         changelog: nix.thunk(() => nix.str`https://github.com/MartinHjelmare/aiortm/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

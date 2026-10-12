@@ -17,21 +17,21 @@ export default nix.lambda((args) => (() => {
   const johnny_reborn_engine = nix.arg($, "johnny-reborn-engine");
   const makeWrapper = nix.arg($, "makeWrapper");
   const sounds = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "nivs1978",
       repo: "Johnny-Castaway-Open-Source",
       rev: "be6afefd43a3334acc66fc9d777c162c8bfb9558",
       hash: "sha256-rtZVCn4KbEBVwaSQ4HZhMoDEI5Q9IPj9SZywgAx0MPY=",
     }))));
   const resources = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "scrantic-source",
       url: "https://archive.org/download/johnny-castaway-screensaver/scrantic-run.zip",
       hash: "sha256-Q9chCYReOQEmkTyIkYo+D+OXYUqxPNOOEEmiFh8yaw4=",
       stripRoot: false,
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "johnny-reborn",
       version: nix.thunk(() => nix.attr(johnny_reborn_engine, "version")),
       srcs: nix.thunk(() => [sounds, resources]),
@@ -56,7 +56,7 @@ runHook postInstall
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(johnny_reborn_engine, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Open-source engine for the classic \"Johnny Castaway\" screensaver (ready to use, with resources)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         maintainers: nix.thunk(() => (() => {

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "filius";
       const version = "2.14.0";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "filius1",
           repo: "filius",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -49,11 +49,11 @@ runHook postInstall
 `);
       const postInstall = "install -Dm444 src/deb/application-filius-project.xml $out/share/mime/packages/application-filius-project.xml\n\nfor size in {32,64,96}; do\n  install -Dm444 src/deb/icons/hicolor/\"$size\"x\"$size\"/apps/filius.png $out/share/icons/hicolor/\"$size\"x\"$size\"/apps/filius.png\n  install -Dm444 src/deb/icons/hicolor/\"$size\"x\"$size\"/apps/filius.png $out/share/icons/hicolor/\"$size\"x\"$size\"/mimetypes/filius.png\ndone\n\nmkdir -p $out/share/man/man1/\ncp src/deb/filius.1 $out/share/man/man1/\n\nmkdir -p $out/share/applications\ncp src/deb/filius.desktop $out/share/applications/\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.lernsoftware-filius.de/",
         downloadPage: "https://www.lernsoftware-filius.de/Herunterladen",
         description: "A computer network simulator for secondary schools",
@@ -74,7 +74,7 @@ runHook postInstall
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "fromSource"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

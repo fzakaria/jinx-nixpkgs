@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mfc465cnlpr";
       const version = "1.0.1-1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf006132/${pname}-${version}.i386.deb`),
           sha256: "cfe0289510bf36bee6014286ea78b1ebc6bbb948dbfd3aee02f0664a7743f99b",
         }))));
@@ -46,7 +46,7 @@ wrapProgram $dir/lpd/psconvertij2 \\
 chmod -R a+w $dir/inf/
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Brother MFC-465CN LPR printer driver",
         homepage: "http://www.brother.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -57,7 +57,7 @@ chmod -R a+w $dir/inf/
         platforms: nix.thunk(() => ["i686-linux", "x86_64-linux"]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

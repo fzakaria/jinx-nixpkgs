@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.9";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Patrowl",
           repo: "Patrowl4py",
           rev: version,
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["patrowl4py"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python API Client for PatrOwl",
         homepage: "https://github.com/Patrowl/Patrowl4py",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

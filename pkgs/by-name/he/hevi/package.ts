@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const zig_0_16 = nix.arg($, "zig_0_16");
   const zig = zig_0_16;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hevi",
       version: "1.1.0-unstable-2026-05-03",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "arnauc",
           repo: "hevi",
           rev: "3c6f08ec73ac56673321f0449d4ae0a74b7674a9",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(zig, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Hex viewer",
         homepage: "https://codeberg.org/arnauc/hevi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

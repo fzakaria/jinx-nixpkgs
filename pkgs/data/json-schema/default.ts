@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const jsonSchemaCatalogs = nix.thunk(() => nix.app(nix.sel(lib, "makeScope"), newScope, (self) => nix.update((() => {
       const from_1 = nix.thunk(() => nix.sel(nix.app(nix.sel(self, "callPackage"), nix.path(here, "./lib.nix"), nix.thunk(() => ({}))), "lib"));
       return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       newCatalog: nix.thunk(() => nix.attr(from_1, "newCatalog")),
       tests: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
     };
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
           [nix.app(removeSuffix, ".nix", k), nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.thunk(() => nix.add(nix.path(here, "./catalogs"), nix.str`/${k}`)), nix.thunk(() => ({}))))],
         ]))), nix.thunk(() => nix.builtins.readDir(nix.path(here, "./catalogs")))))));
   return {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     jsonSchemaCatalogs: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), jsonSchemaCatalogs)),
   };
 })(), formals$1);

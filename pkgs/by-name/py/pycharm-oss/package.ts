@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const stdenv = nix.arg($, "stdenv");
   const src = nix.thunk(() => nix.app(nix.sel(jetbrains, "mkJetBrainsSource"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "2025.3.3",
       buildNumber: "253.31033.139",
       buildType: "pycharm",
@@ -38,13 +38,13 @@ export default nix.lambda((args) => (() => {
         "packages.jetbrains.team/maven/p/kt/bootstrap",
       ]),
       "kotlin-jps-plugin": nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         version: "2.2.20",
         hash: "sha256-+jGghK2+yq+YFm5zT7ob+WTgTiJnHXAjDtlZjOzSISQ=",
       })),
     }))));
   return nix.app(nix.sel(jetbrains, "mkJetBrainsProduct"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       src: src,
       fsnotifier: fsnotifier,
       version: nix.thunk(() => nix.attr(src, "version")),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.sel(python3, "pkgs", "setuptools")),
         ]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.jetbrains.com/pycharm/",
         description: "Free Python IDE from JetBrains (built from source)",
         longDescription: "Python IDE with complete set of tools for productive development with Python programming language.\nIn addition, the IDE provides high-class capabilities for professional Web development with Django framework and Google App Engine.\nIt has powerful coding assistance, navigation, a lot of refactoring features, tight integration with various Version Control Systems, Unit testing and powerful Debugger.\n",

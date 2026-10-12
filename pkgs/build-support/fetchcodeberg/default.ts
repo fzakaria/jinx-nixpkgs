@@ -9,6 +9,6 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const fetchFromGitea = nix.arg($, "fetchFromGitea");
-  return nix.app(nix.sel(lib, "makeOverridable"), (args_1) => nix.app(fetchFromGitea, nix.thunk(() => nix.update({ __proto__: pos$1, domain: "codeberg.org", functionName: "fetchFromCodeberg" }, args_1))));
+  return nix.app(nix.sel(lib, "makeOverridable"), (args_1) => nix.app(fetchFromGitea, nix.thunk(() => nix.update({ [nix.POS]: pos$1, domain: "codeberg.org", functionName: "fetchFromCodeberg" }, args_1))));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

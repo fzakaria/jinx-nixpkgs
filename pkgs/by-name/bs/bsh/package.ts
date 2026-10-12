@@ -11,14 +11,14 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(fetchurl, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}.jar`),
       pname: "bsh",
       version: "2.1.1",
       url: nix.thunk(() => nix.str`https://github.com/beanshell/beanshell/releases/download/${nix.sel(finalAttrs, "version")}/bsh-${nix.sel(finalAttrs, "version")}.jar`),
       hash: "sha256-cRksu+Seeiac/LoF3Fy5WcM7myba/NYmbKMoi0YfhqM=",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       })),
     }));

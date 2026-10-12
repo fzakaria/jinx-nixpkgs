@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
   const libavif_0_11 = nix.thunk(() => nix.app(nix.sel(libavif, "overrideAttrs"), nix.thunk(() => (() => {
       const version = "0.11.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AOMediaCodec",
           repo: "libavif",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -87,14 +87,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = [];
       const doCheck = false;
-      return { __proto__: pos$2, version, src, patches, doCheck };
+      return { [nix.POS]: pos$2, version, src, patches, doCheck };
     })())));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "ansel",
       version: "0-unstable-2026-06-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "aurelienpierreeng",
           repo: "ansel",
           rev: "2a9850bdc393d88f799b2cb3d80f22757d467d3e",
@@ -170,11 +170,11 @@ export default nix.lambda((args) => (() => {
       preFixup: "gappsWrapperArgs+=(\n  --prefix LD_LIBRARY_PATH \":\" \"$out/lib/ansel\"\n)\n",
       cmakeFlags: nix.thunk(() => ["-DBINARY_PACKAGE_BUILD=1"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$4, hardcodeZeroVersion: true })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Darktable fork minus the bloat plus some design vision",
         homepage: "https://ansel.photos/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

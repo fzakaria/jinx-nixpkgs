@@ -28,21 +28,21 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "nix", "optimise"));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       nix: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         optimise: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           automatic: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Automatically run the nix store optimiser at a specific time.",
             })))),
           dates: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: nix.thunk(() => ["03:45"]),
               apply: nix.thunk(() => nix.sel(lib, "toList")),
               type: nix.thunk(() => (() => {
@@ -52,14 +52,14 @@ export default nix.lambda((args) => (() => {
               description: "Specification (in the format described by\n{manpage}`systemd.time(7)`) of the time at\nwhich the optimiser will run.\n",
             })))),
           randomizedDelaySec: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: "1800",
               type: nix.thunk(() => nix.sel(lib, "types", "singleLineStr")),
               example: "45min",
               description: "Add a randomized delay before the optimizer will run.\nThe delay will be chosen between zero and this value.\nThis value must be a time span in the format specified by\n{manpage}`systemd.time(7)`\n",
             })))),
           persistent: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: true,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               example: false,
@@ -69,28 +69,28 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       assertions: nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "automatic")) || nix.asBool(nix.sel(config, "nix", "enable")))),
           message: "nix.optimise.automatic requires nix.enable",
         })),
       ]),
       systemd: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "nix", "enable")), nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             "nix-optimise": nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "Nix Store Optimiser",
               unitConfig: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 ConditionACPower: true,
                 ConditionPathIsReadWrite: "/nix/var/nix/daemon-socket",
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(config, "nix", "package")), "nix-store")} --optimise`),
                 Nice: 19n,
                 CPUSchedulingPolicy: "idle",
@@ -101,11 +101,11 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           timers: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             "nix-optimise": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "automatic")), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 timerConfig: nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   RandomizedDelaySec: nix.thunk(() => nix.sel(cfg, "randomizedDelaySec")),
                   Persistent: nix.thunk(() => nix.sel(cfg, "persistent")),
                 })),

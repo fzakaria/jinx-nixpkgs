@@ -8,7 +8,7 @@ const pos$1 = nix.positions(here + "/run-build-phase-hooks.nix", [["buildPhase",
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return (self) => (super$) => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     buildPhase: nix.thunk(() => nix.str`runHook preBuild
 ${nix.selOr(super$, () => "", "buildPhase")}
 runHook postBuild

@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const jsoncpp = nix.arg($, "jsoncpp");
   const sexp_cpp = nix.arg($, "sexp-cpp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "priocpp",
       version: "0.0.0-unstable-2025-07-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Grumbel",
           repo: "priocpp",
           rev: "b2664449adcaed93f609e3ea1fb68f8295390ce9",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Property I/O for C++",
         homepage: "https://github.com/Grumbel/priocpp",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "SchweGELBin"))]),

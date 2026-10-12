@@ -63,33 +63,33 @@ export default nix.lambda((args) => (() => {
   const fetchNpmDeps = nix.arg($, "fetchNpmDeps");
   const config = nix.arg($, "config");
   return {
-    __proto__: pos$39,
+    [nix.POS]: pos$39,
     "prefetch-npm-deps": nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         pname: "prefetch-npm-deps",
         version: nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "importTOML"), nix.path(here, "./Cargo.toml")), "package", "version")),
         src: nix.thunk(() => nix.app(nix.sel(lib, "cleanSourceWith"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             src: nix.path(here, "./."),
             filter: (name) => (type) => (() => {
               const name$ = nix.thunk(() => nix.builtins.baseNameOf(name));
               return (nix.asBool(!nix.eq(name$, "default.nix")) && nix.asBool(!nix.eq(name$, "target")));
             })(),
           })))),
-        cargoLock: nix.thunk(() => ({ __proto__: pos$2, lockFile: nix.path(here, "./Cargo.lock") })),
+        cargoLock: nix.thunk(() => ({ [nix.POS]: pos$2, lockFile: nix.path(here, "./Cargo.lock") })),
         nativeBuildInputs: nix.thunk(() => [makeWrapper, pkg_config]),
         buildInputs: nix.thunk(() => [curl]),
         postInstall: nix.thunk(() => nix.str`wrapProgram "$out/bin/prefetch-npm-deps" --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gnutar, gzip]))}
 `),
         passthru: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           tests: nix.thunk(() => (() => {
             const makeTestSrc = nix.lambda((args_1) => (() => {
               const $_1 = nix.formals(args_1, formals$2);
               const name = nix.arg($_1, "name");
               const src = nix.arg($_1, "src");
               return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   name: nix.thunk(() => nix.str`${name}-src`),
                   src: src,
                   buildCommand: "mkdir -p $out\ncp $src $out/package-lock.json\n",
@@ -104,72 +104,72 @@ export default nix.lambda((args) => (() => {
               const forceEmptyCache = nix.argOr($_1, "forceEmptyCache", () => false);
               const npmRegistryOverridesString = nix.argOr($_1, "npmRegistryOverridesString", () => "{}");
               return nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchNpmDeps, nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   name: name,
                   hash: hash,
                   forceGitDeps: forceGitDeps,
                   forceEmptyCache: forceEmptyCache,
                   npmRegistryOverridesString: npmRegistryOverridesString,
-                  src: nix.thunk(() => nix.app(makeTestSrc, nix.thunk(() => ({ __proto__: pos$4, name: name, src: src })))),
+                  src: nix.thunk(() => nix.app(makeTestSrc, nix.thunk(() => ({ [nix.POS]: pos$4, name: name, src: src })))),
                 })));
             })(), formals$3);
             return {
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               lockfileV1: nix.thunk(() => nix.app(makeTest, nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   name: "lockfile-v1",
                   src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                      __proto__: pos$6,
+                      [nix.POS]: pos$6,
                       url: "https://raw.githubusercontent.com/jellyfin/jellyfin-web/v10.8.4/package-lock.json",
                       hash: "sha256-uQmc+S+V1co1Rfc4d82PpeXjmd1UqdsG492ADQFcZGA=",
                     })))),
                   hash: "sha256-wca1QvxUw3OrLStfYN9Co6oVBR1LbfcNUKlDqvObps4=",
                 })))),
               lockfileV2: nix.thunk(() => nix.app(makeTest, nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   name: "lockfile-v2",
                   src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                      __proto__: pos$8,
+                      [nix.POS]: pos$8,
                       url: "https://raw.githubusercontent.com/jesec/flood/v4.7.0/package-lock.json",
                       hash: "sha256-qS29tq5QPnGxV+PU40VgMAtdwVLtLyyhG2z9GMeYtC4=",
                     })))),
                   hash: "sha256-tuEfyePwlOy2/mOPdXbqJskO6IowvAP4DWg8xSZwbJw=",
                 })))),
               hashPrecedence: nix.thunk(() => nix.app(makeTest, nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   name: "hash-precedence",
                   src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       url: "https://raw.githubusercontent.com/matrix-org/matrix-appservice-irc/0.34.0/package-lock.json",
                       hash: "sha256-1+0AQw9EmbHiMPA/H8OP8XenhrkhLRYBRhmd1cNPFjk=",
                     })))),
                   hash: "sha256-oItUls7AXcCECuyA+crQO6B0kv4toIr8pBubNwB7kAM=",
                 })))),
               hostedGitDeps: nix.thunk(() => nix.app(makeTest, nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   name: "hosted-git-deps",
                   src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                      __proto__: pos$12,
+                      [nix.POS]: pos$12,
                       url: "https://cyberchaos.dev/yuka/trainsearch/-/raw/e3cba6427e8ecfd843d0f697251ddaf5e53c2327/package-lock.json",
                       hash: "sha256-X9mCwPqV5yP0S2GonNvpYnLSLJMd/SUIked+hMRxDpA=",
                     })))),
                   hash: "sha256-tEdElWJ+KBTxBobzXBpPopQSwK2usGW/it1+yfbVzBw=",
                 })))),
               linkDependencies: nix.thunk(() => nix.app(makeTest, nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   name: "link-dependencies",
                   src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                      __proto__: pos$14,
+                      [nix.POS]: pos$14,
                       url: "https://raw.githubusercontent.com/evcc-io/evcc/0.106.3/package-lock.json",
                       hash: "sha256-6ZTBMyuyPP/63gpQugggHhKVup6OB4hZ2rmSvPJ0yEs=",
                     })))),
                   hash: "sha256-VzQhArHoznYSXUT7l9HkJV4yoSOmoP8eYTLel1QwmB4=",
                 })))),
               emptyCache: nix.thunk(() => nix.app(makeTest, nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   name: "empty-cache",
                   src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                      __proto__: pos$16,
+                      [nix.POS]: pos$16,
                       url: "https://raw.githubusercontent.com/bufbuild/protobuf-es/v1.2.1/package-lock.json",
                       hash: "sha256-UdBUEb4YRHsbvyjymIyjemJEiaI9KQRirqt+SFSK0wA=",
                     })))),
@@ -177,10 +177,10 @@ export default nix.lambda((args) => (() => {
                   forceEmptyCache: true,
                 })))),
               etherpadLite1818: nix.thunk(() => nix.app(makeTest, nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   name: "etherpad-lite-1.8.18",
                   src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                      __proto__: pos$18,
+                      [nix.POS]: pos$18,
                       url: "https://raw.githubusercontent.com/ether/etherpad-lite/1.8.18/src/package-lock.json",
                       hash: "sha256-1fGNxYJi1I4cXK/jinNG+Y6tPEOhP3QAqWOBEQttS9E=",
                     })))),
@@ -188,42 +188,42 @@ export default nix.lambda((args) => (() => {
                   forceGitDeps: true,
                 })))),
               jitsiMeet9111: nix.thunk(() => nix.app(makeTest, nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   name: "jitsi-meet-9111",
                   src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                      __proto__: pos$20,
+                      [nix.POS]: pos$20,
                       url: "https://raw.githubusercontent.com/jitsi/jitsi-meet/stable/jitsi-meet_9111/package-lock.json",
                       hash: "sha256-NU+eQD4WZ4BMur8uX79uk8wUPsZvIT02KhPWHTmaihk=",
                     })))),
                   hash: "sha256-FhxlJ0HdJMPiWe7+n1HaGLWOr/2HJEPwiS65uqXZM8Y=",
                 })))),
               npmRegistryOverrides: nix.thunk(() => nix.app(makeTest, nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   name: "npm-registry-overrides",
                   src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                      __proto__: pos$22,
+                      [nix.POS]: pos$22,
                       url: "https://cyberchaos.dev/yuka/trainsearch/-/raw/e3cba6427e8ecfd843d0f697251ddaf5e53c2327/package-lock.json",
                       postFetch: "sed -i 's/registry.npmjs.org/broken.link/' $out",
                       hash: "sha256-Qo24ei1d9Ql4zCLjQJ04zVgS4qhBUpew9NZrhrsBds4=",
                     })))),
-                  npmRegistryOverridesString: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ __proto__: pos$23, "broken.link": "https://registry.npmjs.org" })))),
+                  npmRegistryOverridesString: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$23, "broken.link": "https://registry.npmjs.org" })))),
                   hash: "sha256-QGObVDd9qVtf/U78+ayP6RHVWsU+HXhg70BFblQ1PZs=",
                 })))),
               fileDependenciesV1: nix.thunk(() => nix.app(makeTest, nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   name: "file-dependencies-lockfile-v1",
                   src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                      __proto__: pos$25,
+                      [nix.POS]: pos$25,
                       url: "https://raw.githubusercontent.com/elbywan/wretch/970b19e0fcc3dd219b9f3fc247d8f34cc01979c6/package-lock.json",
                       hash: "sha256-3vTMxc9M2TeiclUFYbG5eTzavSAXjAzz6N5v/1VM4Bc=",
                     })))),
                   hash: "sha256-4wTohTVWF49iQvdaUxNhwplfTVb53yFnAaUVA2xIXrc=",
                 })))),
               fileDependenciesV3: nix.thunk(() => nix.app(makeTest, nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   name: "file-dependencies-lockfile-v3",
                   src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                      __proto__: pos$27,
+                      [nix.POS]: pos$27,
                       url: "https://raw.githubusercontent.com/alam00000/bentopdf/146e3f07d4111e309d0b29bb949e78e44454be3b/package-lock.json",
                       hash: "sha256-9Ea5ctJYbClxStYNhSfSpsO/P99/4CQK58PLK5e6PoQ=",
                     })))),
@@ -233,7 +233,7 @@ export default nix.lambda((args) => (() => {
           })()),
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           description: "Prefetch dependencies from npm (for use with `fetchNpmDeps`)",
           mainProgram: "prefetch-npm-deps",
           maintainers: nix.thunk(() => (() => {
@@ -253,11 +253,11 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.argOr($_1, "nativeBuildInputs", () => []);
       const npmRegistryOverridesString = nix.argOr($_1, "npmRegistryOverridesString", () => nix.sel(config, "npmRegistryOverridesString"));
       const fetcherVersion = nix.argOr($_1, "fetcherVersion", () => 1n);
-      const hash_ = nix.thunk(() => (nix.asBool(!nix.eq(hash, "")) ? { __proto__: pos$33, outputHash: hash } : { __proto__: pos$34, outputHash: "", outputHashAlgo: "sha256" }));
-      const forceGitDeps_ = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), forceGitDeps, nix.thunk(() => ({ __proto__: pos$35, FORCE_GIT_DEPS: true }))));
-      const forceEmptyCache_ = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), forceEmptyCache, nix.thunk(() => ({ __proto__: pos$36, FORCE_EMPTY_CACHE: true }))));
+      const hash_ = nix.thunk(() => (nix.asBool(!nix.eq(hash, "")) ? { [nix.POS]: pos$33, outputHash: hash } : { [nix.POS]: pos$34, outputHash: "", outputHashAlgo: "sha256" }));
+      const forceGitDeps_ = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), forceGitDeps, nix.thunk(() => ({ [nix.POS]: pos$35, FORCE_GIT_DEPS: true }))));
+      const forceEmptyCache_ = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), forceEmptyCache, nix.thunk(() => ({ [nix.POS]: pos$36, FORCE_EMPTY_CACHE: true }))));
       return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => nix.update(args_2, nix.update({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           name: name,
           nativeBuildInputs: nix.thunk(() => nix.concat(nativeBuildInputs, [prefetch_npm_deps])),
           buildPhase: nix.thunk(() => nix.str`runHook preBuild
@@ -286,7 +286,7 @@ runHook postBuild
           dontInstall: true,
           impureEnvVars: nix.thunk(() => nix.concat(nix.sel(lib, "fetchers", "proxyImpureEnvVars"), ["NIX_NPM_TOKENS"])),
           env: nix.thunk(() => nix.update({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             NIX_NPM_REGISTRY_OVERRIDES: npmRegistryOverridesString,
             NPM_FETCHER_VERSION: nix.thunk(() => (() => {
               const validFetcherVersions = nix.thunk(() => [1n, 2n]);

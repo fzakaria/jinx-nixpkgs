@@ -20,26 +20,26 @@ export default nix.lambda((args) => (() => {
   const rustc = nix.arg($, "rustc");
   const range_typed_integers = nix.arg($, "range-typed-integers");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "skytemple-rust",
       version: "1.8.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SkyTemple",
           repo: "skytemple-rust",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-yJ78P00h4SITVuDnIh5IIlWkoed/VtIw3NB8ETB95bk=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-9OgUuuMuo2l4YsZMhBZJBqKqbNwj1W4yidoogjcNgm8=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         GETTEXT_SYSTEM: true,
         PYO3_USE_ABI3_FORWARD_COMPATIBILITY: 1n,
       })),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["skytemple_rust"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Binary Rust extensions for SkyTemple",
         homepage: "https://github.com/SkyTemple/skytemple-rust",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

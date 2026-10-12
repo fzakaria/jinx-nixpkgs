@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const writeScriptBin = nix.arg($, "writeScriptBin");
   const fake_dconf = nix.thunk(() => nix.app(writeScriptBin, "dconf", "echo -n"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "flat-remix-gnome",
       version: "20250926",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "daniruiz",
           repo: "flat-remix-gnome",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "mkdir -p $out/share/gnome-shell/\ntouch $out/share/gnome-shell/gnome-shell-theme.gresource\n",
       postInstall: "rm $out/share/gnome-shell/gnome-shell-theme.gresource.old\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GNOME Shell theme inspired by material design",
         homepage: "https://drasite.com/flat-remix-gnome",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),

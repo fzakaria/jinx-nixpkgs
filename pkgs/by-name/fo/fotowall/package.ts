@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const strictDeps = true;
       const __structuredAttrs = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fotowall",
           repo: "fotowall",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(qt6, "qtsvg")),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pictures collage & creativity tool",
         homepage: "https://github.com/fotowall/fotowall",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "fotowall",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         strictDeps,

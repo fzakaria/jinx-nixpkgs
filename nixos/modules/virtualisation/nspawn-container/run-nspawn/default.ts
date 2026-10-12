@@ -9,6 +9,6 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const python3Packages = nix.arg($, "python3Packages");
   const systemd = nix.arg($, "systemd");
-  return nix.app(nix.sel(python3Packages, "callPackage"), nix.path(here, "./package.nix"), nix.thunk(() => ({ __proto__: pos$1, systemd: systemd })));
+  return nix.app(nix.sel(python3Packages, "callPackage"), nix.path(here, "./package.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, systemd: systemd })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

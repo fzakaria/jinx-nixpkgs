@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "2024.01.30.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "metabrainz",
           repo: "listenbrainz-matching-tools",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["lb_matching_tools"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ListenBrainz tools for matching metadata to and from MusicBrainz",
         homepage: "https://github.com/metabrainz/listenbrainz-matching-tools",
         changelog: nix.thunk(() => nix.str`https://github.com/metabrainz/listenbrainz-matching-tools/releases/tag/${nix.sel(src, "tag")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "ngi"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

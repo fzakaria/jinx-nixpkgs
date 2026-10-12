@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const shapely = nix.arg($, "shapely");
   const tqdm = nix.arg($, "tqdm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "photutils",
       version: "3.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "astropy",
           repo: "photutils",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cython, extension_helpers, numpy]),
       dependencies: nix.thunk(() => [astropy, numpy, scipy]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         all: nix.thunk(() => [
           bottleneck,
           gwcs,
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["photutils"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Astropy package for source detection and photometry",
         homepage: "https://github.com/astropy/photutils",
         changelog: nix.thunk(() => nix.str`https://github.com/astropy/photutils/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.rst`),

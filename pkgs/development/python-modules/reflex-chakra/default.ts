@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const reflex = nix.arg($, "reflex");
   const uv_dynamic_versioning = nix.arg($, "uv-dynamic-versioning");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "reflex-chakra",
       version: "0.8.2post1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "reflex-dev",
           repo: "reflex-chakra",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Chakra Implementation in Reflex",
         homepage: "https://github.com/reflex-dev/reflex-chakra",
         changelog: nix.thunk(() => nix.str`https://github.com/reflex-dev/reflex-chakra/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

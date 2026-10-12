@@ -16,22 +16,22 @@ export default nix.lambda((args) => (() => {
   const gfortran = nix.arg($, "gfortran");
   const mpi = nix.arg($, "mpi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "1.10",
       pname: "DL_POLY_Classic",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://ccpforge.cse.rl.ac.uk/gf/download/frsrelease/574/8924/dl_class_1.10.tar.gz",
           sha256: "1r76zvln3bwycxlmqday0sqzv5j260y7mdh66as2aqny6jzd5ld7",
         })))),
       nativeBuildInputs: nix.thunk(() => [gfortran]),
       buildInputs: nix.thunk(() => [mpi]),
       configurePhase: "runHook preConfigure\n\ncd source\ncp -v ../build/MakePAR Makefile\n\nrunHook postConfigure\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-fallow-argument-mismatch" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fallow-argument-mismatch" })),
       buildPhase: "make dlpoly\n",
       installPhase: "mkdir -p $out/bin\ncp -v ../execute/DLPOLY.X $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.ccp5.ac.uk/DL_POLY_C",
         description: "DL_POLY Classic is a general purpose molecular dynamics simulation package",
         mainProgram: "DLPOLY.X",

@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const colobot_data = nix.thunk(() => nix.app(callPackage, nix.path(here, "./data.nix"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "colobot",
       version: "0.2.2-alpha",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "colobot",
           repo: "colobot",
           tag: nix.thunk(() => nix.str`colobot-gold-${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/colobot/colobot/commit/1561854b03500d39955c66971c9c98de1937d7e6.patch",
             relative: "colobot-app/src",
             extraPrefix: "src/app/",
@@ -74,7 +74,7 @@ for contents in ${colobot_data}/share/games/colobot/*; do
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://colobot.info/",
         description: "Real-time strategy game with programmable bots",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

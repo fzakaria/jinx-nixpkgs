@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const test_images = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "imageio",
       repo: "test_images",
       rev: "f676c96b1af7e04bb1eed1e4551e058eb2f14acd",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.38.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "imageio",
           repo: "imageio",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [numpy, pillow]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         bsdf: [],
         dicom: [],
         feisem: [],
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/test_freeimage.py"]);
       const preCheck = "export IMAGEIO_USERDIR=$(mktemp -d)\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Library for reading and writing a wide range of image, video, scientific, and volumetric data formats",
         homepage: "https://imageio.readthedocs.io",
         changelog: nix.thunk(() => nix.str`https://github.com/imageio/imageio/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

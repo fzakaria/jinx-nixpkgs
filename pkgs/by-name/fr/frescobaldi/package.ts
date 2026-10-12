@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.0.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "frescobaldi",
           repo: "frescobaldi",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const dontWrapQtApps = true;
       const makeWrapperArgs = nix.thunk(() => ["${qtWrapperArgs[@]}"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://frescobaldi.org/",
         description: "LilyPond sheet music text editor",
         longDescription: "Powerful text editor with syntax highlighting and automatic completion,\nMusic view with advanced Point & Click, Midi player to proof-listen\nLilyPond-generated MIDI files, Midi capturing to enter music,\nPowerful Score Wizard to quickly setup a music score, Snippet Manager\nto store and apply text snippets, templates or scripts, Use multiple\nversions of LilyPond, automatically selects the correct version, Built-in\nLilyPond documentation browser and built-in User Guide, Smart\nlayout-control functions like coloring specific objects in the PDF,\nMusicXML import, Modern user interface with configurable colors,\nfonts and keyboard shortcuts\n",
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "frescobaldi",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const python_dateutil = nix.arg($, "python-dateutil");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aio-georss-gdacs",
       version: "2026.6.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "exxamalte",
           repo: "python-aio-georss-gdacs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [aiointercept, aioresponses, pytest_asyncio, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["aio_georss_gdacs"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library for accessing GeoRSS feeds",
         homepage: "https://github.com/exxamalte/python-aio-georss-gdacs",
         changelog: nix.thunk(() => nix.str`https://github.com/exxamalte/python-aio-georss-gdacs/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

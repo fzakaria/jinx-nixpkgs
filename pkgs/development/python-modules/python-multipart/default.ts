@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const gradio = nix.arg($, "gradio");
   const starlette = nix.arg($, "starlette");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "python-multipart",
       version: "0.0.32",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Kludex",
           repo: "python-multipart",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,9 +38,9 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["python_multipart"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, pyyaml]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "asgi-csrf": asgi_csrf,
           connexion: connexion,
           fastapi: fastapi,
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/Kludex/python-multipart/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "Streaming multipart parser for Python",
         homepage: "https://github.com/Kludex/python-multipart",

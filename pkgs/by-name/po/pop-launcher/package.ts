@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libqalculate = nix.arg($, "libqalculate");
   const libxkbcommon = nix.arg($, "libxkbcommon");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pop-launcher",
       version: "1.2.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pop-os",
           repo: "launcher",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -59,7 +59,7 @@ substituteInPlace plugins/src/terminal/mod.rs \\
     --replace-fail '/usr/bin/gnome-terminal' 'gnome-terminal'
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Modular IPC-based desktop launcher service",
         homepage: "https://github.com/pop-os/launcher",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

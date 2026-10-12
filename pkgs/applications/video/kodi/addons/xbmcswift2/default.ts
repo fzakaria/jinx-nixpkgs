@@ -18,21 +18,21 @@ export default nix.lambda((args) => (() => {
       const namespace = "script.module.xbmcswift2";
       const version = "19.0.7";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "XBMC-Addons",
           repo: namespace,
           rev: version,
           sha256: "sha256-Z+rHz3wncoNvV1pwhRzJFB/X0H6wdfwg88otVh27wg8=",
         }))));
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, pythonPath: "lib" }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, pythonPath: "lib" }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/XBMC-Addons/script.module.xbmcswift2",
         description: "Framework to ease development of Kodi addons",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "kodi"))]),
       }));
-      return { __proto__: pos$4, pname, namespace, version, src, passthru, meta };
+      return { [nix.POS]: pos$4, pname, namespace, version, src, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -18,34 +18,34 @@ export default nix.lambda((args) => (() => {
   const darwin = nix.arg($, "darwin");
   const cudaPackages = nix.arg($, "cudaPackages");
   const mkFFmpeg = (initArgs) => (ffmpegVariant) => nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => nix.update({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       xcode: nix.thunk(() => nix.attr(darwin, "xcode")),
       cuda_cudart: nix.thunk(() => nix.attr(cudaPackages, "cuda_cudart")),
       cuda_nvcc: nix.thunk(() => nix.attr(cudaPackages, "cuda_nvcc")),
       libnpp: nix.thunk(() => nix.attr(cudaPackages, "libnpp")),
-    }, nix.update(initArgs, { __proto__: pos$2, ffmpegVariant: ffmpegVariant }))));
+    }, nix.update(initArgs, { [nix.POS]: pos$2, ffmpegVariant: ffmpegVariant }))));
   const v4 = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     version: "4.4.8",
     hash: "sha256-byCiCiuwrikID6hCe0CD2KyPVUYuGmas5Zs0fd6dJRQ=",
   }));
   const v6 = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     version: "6.1.6",
     hash: "sha256-7Mu0D9AVR+rVfqtZMmNV9EUNpUyMr09p/PuET0muS0U=",
   }));
   const v7 = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     version: "7.1.5",
     hash: "sha256-DjmW5LeI9OJmPeIh61znAns4+kolxwKguEvKawgxy8I=",
   }));
   const v8 = nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     version: "8.1.2",
     hash: "sha256-wJ3c8VVo/tK84K7bKYs/UWcln4mSO+tf/w5NLNjKhiI=",
   }));
   const v9 = nix.thunk(() => ({
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     version: "9.0.1",
     hash: "sha256-9Vnryl9jSSXRfvt2jPsNp7vHWL0KYdWA29D2zDRAZ+0=",
   }));
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
     const ffmpeg_headless = ffmpeg_9_headless;
     const ffmpeg_full = ffmpeg_9_full;
     return {
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       ffmpeg_4,
       "ffmpeg_4-headless": ffmpeg_4_headless,
       "ffmpeg_4-full": ffmpeg_4_full,

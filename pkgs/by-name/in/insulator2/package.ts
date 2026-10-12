@@ -34,18 +34,18 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "insulator2",
       version: "2.14.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "andrewinci",
           repo: "insulator2",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-QCoDiFEgVuF/+MqgzcMTXqjC/nDA+A2v3l01kZyviDs=",
           postFetch: nix.thunk(() => nix.str`cd $out
 patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               src: nix.path(here, "./yarn-fix.patch"),
               substitutions: nix.thunk(() => [
                 "--replace-fail",
@@ -57,13 +57,13 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
         })))),
       missingHashes: nix.path(here, "./missing-hashes.json"),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry_4, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           hash: "sha256-2w1fMVwQFClyrpNmJrjJoDqbU2nxRZh9NkBIcMUEjec=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -86,13 +86,13 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
         nix.thunk(() => nix.sel(yarn_berry_4, "yarnBerryConfigHook")),
       ]),
       buildInputs: nix.thunk(() => [cyrus_sasl, freetype, libsoup_3, openssl, webkitgtk_4_1, curl]),
-      env: nix.thunk(() => ({ __proto__: pos$5, OPENSSL_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$5, OPENSSL_NO_VENDOR: 1n })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Client UI to inspect Kafka topics, consume, produce and much more",
         homepage: "https://github.com/andrewinci/insulator2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

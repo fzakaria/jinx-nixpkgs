@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
       const pname = "stm32cubemx";
       const version = "6.18.1";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://sw-center.st.com/packs/resource/library/stm32cube_mx_v${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), version)}-lin.zip`),
           hash: "sha256-Enpc4HFLjQRwovk8/9xCpDZZrmcRLlblY/RNqXbMbsM=",
           stripRoot: false,
         }))));
       const nativeBuildInputs = nix.thunk(() => [fdupes, icoutils, imagemagick]);
       const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "STM32CubeMX",
           exec: "stm32cubemx",
           desktopName: "STM32CubeMX",
@@ -82,7 +82,7 @@ else
 fi
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Graphical tool for configuring STM32 microcontrollers and microprocessors",
         longDescription: "A graphical tool that allows a very easy configuration of STM32\nmicrocontrollers and microprocessors, as well as the generation of the\ncorresponding initialization C code for the Arm® Cortex®-M core or a\npartial Linux® Device Tree for Arm® Cortex®-A core), through a\nstep-by-step process.\n",
         homepage: "https://www.st.com/en/development-tools/stm32cubemx.html",
@@ -101,7 +101,7 @@ fi
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,
@@ -112,7 +112,7 @@ fi
       };
     })())));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: nix.thunk(() => nix.attr(package$, "pname")),
       version: nix.thunk(() => nix.attr(package$, "version")),
       meta: nix.thunk(() => nix.attr(package$, "meta")),

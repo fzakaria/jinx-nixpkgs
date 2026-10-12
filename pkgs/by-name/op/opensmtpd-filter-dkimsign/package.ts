@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const mandoc = nix.arg($, "mandoc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "opensmtpd-filter-dkimsign",
       version: "0.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://imperialat.at/releases/filter-dkimsign-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-O18NtAuSNg82uKnUx+R4h3e1IBSElTrFWBBkr2AYNsM=",
         })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         "BINDIR=/libexec/smtpd/",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OpenSMTPD filter for DKIM signing",
         homepage: "http://imperialat.at/dev/filter-dkimsign/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

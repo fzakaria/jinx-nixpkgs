@@ -23,14 +23,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "fb4195aaabfc01586863f60d3190b5cb1bf8f12622fd597e23e48768dad6bde8",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/bivab/smbus-cffi/commit/ba79ae174a9d84e767d95f165c43ee212b1bbb92.patch",
             hash: "sha256-WtRuK5y6fWDEhm0Xy5XqS5yCkn7vXXYtjlOjS90gla4=",
           })))),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["test/test_smbus_integration.py"]);
       const nativeCheckInputs = nix.thunk(() => [py, pytestCheckHook, pyserial]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python module for SMBus access through Linux I2C /dev interface",
         homepage: "https://github.com/bivab/smbus-cffi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w, "numpy"))];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "vigra",
       version: "1.12.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ukoethe",
           repo: "vigra",
           tag: nix.thunk(() => nix.str`Version-${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["-"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         boost,
         fftw,
         fftwSinglePrec,
-        nix.thunk(() => nix.app(nix.sel(hdf5, "override"), nix.thunk(() => ({ __proto__: pos$2, apiVersion: "v110" })))),
+        nix.thunk(() => nix.app(nix.sel(hdf5, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, apiVersion: "v110" })))),
         libaec,
         libjpeg,
         libpng,
@@ -67,11 +67,11 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")), nix.thunk(() => ["-DCMAKE_CXX_FLAGS=-fPIC", "-DCMAKE_C_FLAGS=-fPIC"])))),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           check: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (previousAttrs) => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
             }))),
         })),
@@ -80,7 +80,7 @@ ${nix.app(nix.sel(lib, "getExe"), nix_update)} vigra --version $latestVersion
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Novel computer vision C++ library with customizable algorithms and data structures",
         mainProgram: "vigra-config",
         homepage: "https://ukoethe.github.io/vigra/",

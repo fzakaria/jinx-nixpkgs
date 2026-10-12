@@ -26,21 +26,21 @@ export default nix.lambda((args) => (() => {
   const gnome_menus = nix.arg($, "gnome-menus");
   const replaceVars = nix.arg($, "replaceVars");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "gnome-shell-extensions",
       version: "50.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-shell-extensions/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-shell-extensions-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-ofHWxSjS0pJuh02+nbFuu7nRiVZPil2++bMWqwSPodE=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix_gmenu.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             gmenu_path: nix.thunk(() => nix.str`${gnome_menus}/lib/girepository-1.0`),
           })))),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix_gtop.patch"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             gtop_path: nix.thunk(() => nix.str`${libgtop}/lib/girepository-1.0`),
           })))),
       ]),
@@ -67,11 +67,11 @@ for f in $extensiondir/*; do
 done
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$4, packageName: "gnome-shell-extensions" })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$4, packageName: "gnome-shell-extensions" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://gitlab.gnome.org/GNOME/gnome-shell-extensions",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/gnome-shell-extensions/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),
         description: "Modify and extend GNOME Shell functionality and behavior",

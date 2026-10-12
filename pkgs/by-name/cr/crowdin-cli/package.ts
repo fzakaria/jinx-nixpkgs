@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "crowdin-cli",
       version: "4.15.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/crowdin/crowdin-cli/releases/download/${nix.sel(finalAttrs, "version")}/crowdin-cli.zip`),
           hash: "sha256-bgmGDssSfwXWERuHrT+5Ied+nX26x/LSH5S3UZ4WCUg=",
         })))),
@@ -47,17 +47,17 @@ makeWrapper ${jre}/bin/java $out/bin/crowdin \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         mainProgram: "crowdin",
         homepage: "https://github.com/crowdin/crowdin-cli/",
         description: "Command-line client for the Crowdin API",

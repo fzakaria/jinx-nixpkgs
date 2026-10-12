@@ -23,19 +23,19 @@ export default nix.lambda((args) => (() => {
       const version = "3.2.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lmfit",
           repo: "uncertainties",
           tag: version,
           hash: "sha256-XfEiE27azEBNCZ6sIBncJI1cYocoXwgxEkclVgR5O34=",
         }))));
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, arrays: nix.thunk(() => [numpy]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, arrays: nix.thunk(() => [numpy]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook, scipy], nix.sel(optional_dependencies, "arrays")));
       const disabledTests = nix.thunk(() => ["test_repeated_summation_complexity"]);
       const pythonImportsCheck = nix.thunk(() => ["uncertainties"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://uncertainties.readthedocs.io/",
         description: "Transparent calculations with uncertainties on the quantities involved (aka error propagation)",
         maintainers: nix.thunk(() => (() => {
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

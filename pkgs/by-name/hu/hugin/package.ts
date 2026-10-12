@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
   const wxGTK$ = nix.argOr($, "wxGTK'", () => nix.force(wxwidgets_3_2));
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hugin",
       version: "2025.0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/hugin/hugin-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-fPjrM6aohIzH+Bb69LyIOJIoiD1VExNtzLXLJDkSq3k=",
         })))),
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://hugin.sourceforge.io/",
         description: "Toolkit for stitching photographs and assembling panoramas, together with an easy to use graphical front end",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

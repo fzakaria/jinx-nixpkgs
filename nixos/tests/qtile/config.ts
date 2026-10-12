@@ -11,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "qtile-extras-config",
       version: "0.0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://raw.githubusercontent.com/qtile/qtile/v0.28.1/libqtile/resources/default_config.py",
           hash: "sha256-Y5W277CWVNSi4BdgEW/f7Px/MMjnN9W9TDqdOncVwPc=",
         })))),

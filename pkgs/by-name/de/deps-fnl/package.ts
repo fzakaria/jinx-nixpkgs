@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "deps.fnl";
       const version = "0.2.6";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "andreyorst",
           repo: "deps.fnl",
           tag: version,
@@ -37,7 +37,7 @@ chmod +x $out/bin/deps
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Dependency and PATH manager for Fennel",
         homepage: "https://gitlab.com/andreyorst/deps.fnl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -48,7 +48,7 @@ runHook postInstall
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, pname, version, src, dontBuild, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, dontBuild, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

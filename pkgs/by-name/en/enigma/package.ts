@@ -27,17 +27,17 @@ export default nix.lambda((args) => (() => {
   const xercesc = nix.arg($, "xercesc");
   const xdg_utils = nix.arg($, "xdg-utils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "enigma",
       version: "1.30",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/Enigma-Game/Enigma/releases/download/${nix.sel(finalAttrs, "version")}/Enigma-${nix.sel(finalAttrs, "version")}-src.tar.gz`),
           hash: "sha256-rmS5H7wrEJcAcdDXjtW07enuOGjeLm6VaVRvxYQ3+K8=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/Enigma-Game/Enigma/pull/70/commits/d25051eb6228c885e779a9674f8ee3979da30663.patch",
             hash: "sha256-L5C4NCZDDUKji9Tg4geKaiw3CkSY6rCoawqGKqR4dFM=",
           })))),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
 wrapProgram $out/bin/enigma --suffix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [xdg_utils]))}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Puzzle game inspired by Oxyd on the Atari ST and Rock'n'Roll on the Amiga",
         mainProgram: "enigma",
         license: nix.thunk(() => (() => {

@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const gobject_introspection = nix.arg($, "gobject-introspection");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "i3ipc-glib",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "altdesktop",
           repo: "i3ipc-glib",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libxcb, json_glib, xorgproto]),
       preAutoreconf: "gtkdocize\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C interface library to i3wm",
         homepage: "https://github.com/altdesktop/i3ipc-glib",
         maintainers: nix.thunk(() => (() => {

@@ -24,23 +24,23 @@ export default nix.lambda((args) => (() => {
       const pname = "libotf";
       const version = "0.9.16";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://savannah/m17n/${pname}-${version}.tar.gz`),
           sha256: "0sq6g3xaxw388akws6qrllp3kp2sxgk2dv4j79k6mm52rnihrnv8",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://salsa.debian.org/debian/libotf/-/raw/1be04cedf887720eb8f5efb3594dc2cefd96b1f1/debian/patches/0002-use-pkg-config-not-freetype-config.patch",
             sha256: "sha256-VV9iGoNWIEie6UiLLTJBD+zxpvj0acgqkcBeAN1V6Kc=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://salsa.debian.org/debian/libotf/-/raw/1be04cedf887720eb8f5efb3594dc2cefd96b1f1/debian/patches/0001-do-not-add-flags-for-required-packages-to-pc-file.patch",
             sha256: "sha256-3kzqNPAHNVJQ1F4fyifq3AqLdChWli/k7wOq+ha+iDs=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://salsa.debian.org/debian/libotf/-/raw/1be04cedf887720eb8f5efb3594dc2cefd96b1f1/debian/patches/0001-libotf-config-modify-to-support-multi-arch.patch",
             sha256: "sha256-SUlI87h+MtYWWtrAegzAnSds8JhxZwTJltDcj/se/Qc=",
           })))),
@@ -55,7 +55,7 @@ substituteInPlace $dev/bin/libotf-config \\
   --replace "pkg-config" "${pkg_config}/bin/pkg-config"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://www.nongnu.org/m17n/",
         description: "Multilingual text processing library (libotf)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
@@ -66,7 +66,7 @@ substituteInPlace $dev/bin/libotf-config \\
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

@@ -21,26 +21,26 @@ export default nix.lambda((args) => (() => {
   const texliveTeTeX = nix.arg($, "texliveTeTeX");
   const version = "1.1";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "tfc",
       repo: "pandoc-drawio-filter",
       rev: version,
       sha256: "sha256-2XJSAfxqEmmamWIAM3vZqi0mZjUUugmR3zWw8Imjadk=",
     }))));
   const pandoc_drawio_filter = nix.thunk(() => nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       format: "setuptools",
       pname: "pandoc-drawio-filter",
       src: src,
       version: version,
       propagatedBuildInputs: nix.thunk(() => [drawio_headless, nix.thunk(() => nix.sel(python3Packages, "pandocfilters"))]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "example-doc": nix.thunk(() => (() => {
             const env = nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               nativeBuildInputs: nix.thunk(() => [pandoc, pandoc_drawio_filter, texliveTeTeX]),
             }));
             return nix.app(runCommand, "$pandoc-drawio-filter-example-doc.pdf", env, nix.thunk(() => nix.str`cp -r ${src}/example/* .
@@ -50,7 +50,7 @@ pandoc -F pandoc-drawio example.md -T pdf -o $out
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/tfc/pandoc-drawio-filter",
         description: "Pandoc filter which converts draw.io diagrams to PDF",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

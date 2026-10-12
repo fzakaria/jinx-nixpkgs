@@ -31,23 +31,23 @@ export default nix.lambda((args) => (() => {
   const ui_version = "OSS-v2.7.12";
   const libflux_version = "0.196.1";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "influxdata",
       repo: "influxdb",
       rev: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-FwvcKxCozMqJulDDCFDgp7MYJwMq/9XZ6g2q2lIgFc0=",
     }))));
   const ui = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`https://github.com/influxdata/ui/releases/download/${ui_version}/build.tar.gz`),
       hash: "sha256-aC+GYMaxYKkY9GMaeRx22hQ3xi3kfWpaTLC9ajqOaAA=",
     }))));
   const flux = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libflux",
       version: libflux_version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "influxdata",
           repo: "flux",
           rev: nix.thunk(() => nix.str`v${libflux_version}`),
@@ -74,7 +74,7 @@ substituteInPlace $out/pkgconfig/flux.pc \\
       __structuredAttrs: true,
     })));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "influxdb",
       version: version,
       src: src,
@@ -82,7 +82,7 @@ substituteInPlace $out/pkgconfig/flux.pc \\
       vendorHash: "sha256-B4w8+UaewujKVr98MFhRh2c6UMOdB+TE/mOT+cy2pHk=",
       subPackages: nix.thunk(() => ["cmd/influxd", "cmd/telemetryd"]),
       env: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         PKG_CONFIG_PATH: nix.thunk(() => nix.str`${flux}/pkgconfig`),
       })),
       postPatch: "# use go-bindata from environment\nsubstituteInPlace static/static.go \\\n  --replace-fail 'go run github.com/kevinburke/go-bindata/' \"\"\n",
@@ -112,14 +112,14 @@ popd
         nix.thunk(() => nix.str`-X main.version=${version}`),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           influxdb2: nix.thunk(() => nix.attr(nixosTests, "influxdb2")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Open-source distributed time series database",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://influxdata.com/",

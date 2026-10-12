@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const libsamplerate = nix.arg($, "libsamplerate");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "alsa-oss",
       version: "1.1.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://alsa/oss-lib/alsa-oss-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-ZK3O9ZJ+hI0uAk5kxL+FtvOVlk2ZdOxhkFrky4011o4=",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--disable-xmlto"]),
       installFlags: nix.thunk(() => ["ASOUND_STATE_DIR=$(TMPDIR)/dummy"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.alsa-project.org/",
         description: "ALSA, the Advanced Linux Sound Architecture alsa-oss emulation",
         mainProgram: "aoss",

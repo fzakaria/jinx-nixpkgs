@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const abcm2ps = nix.arg($, "abcm2ps");
   const ghostscript = nix.arg($, "ghostscript");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "easyabc",
       version: "1.3.8.7-unstable-2025-01-12",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jwdj",
           repo: "easyabc",
           rev: "2cfa74d138d485523cae9b889186add3a249f2e4",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcoded-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             fluidsynth: nix.thunk(() => nix.str`${fluidsynth}/lib/libfluidsynth.so`),
             soundfont: nix.thunk(() => nix.str`${soundfont_fluid}/share/soundfonts/FluidR3_GM2-2.sf2`),
             ghostscript: nix.thunk(() => nix.str`${ghostscript}/bin/gs`),
@@ -69,7 +69,7 @@ makeWrapper ${nix.sel(python3, "interpreter")} $out/bin/easyabc \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "ABC music notation editor",
         mainProgram: "easyabc",
         homepage: "https://easyabc.sourceforge.net/",

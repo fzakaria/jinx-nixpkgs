@@ -20,22 +20,22 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "gdk-pixbuf"));
   const loadersCache = nix.thunk(() => nix.app(nix.sel(pkgs, "gnome", "_gdkPixbufCacheBuilder_DO_NOT_USE"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       extraLoaders: nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.sel(cfg, "modulePackages")))),
     }))));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "xserver", "gdk-pixbuf"]), nix.thunk(() => ["programs", "gdk-pixbuf"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       programs: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "gdk-pixbuf": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           modulePackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: [],
               description: "Packages providing GDK-Pixbuf modules, for cache generation.",
@@ -44,10 +44,10 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "modulePackages"), [])), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         environment: nix.thunk(() => ({
-          __proto__: pos$7,
-          sessionVariables: nix.thunk(() => ({ __proto__: pos$6, GDK_PIXBUF_MODULE_FILE: loadersCache })),
+          [nix.POS]: pos$7,
+          sessionVariables: nix.thunk(() => ({ [nix.POS]: pos$6, GDK_PIXBUF_MODULE_FILE: loadersCache })),
         })),
       })))),
   };

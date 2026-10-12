@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const ocl_icd = nix.arg($, "ocl-icd");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "opencl-cts",
       version: "2025-08-21-00",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KhronosGroup",
           repo: "OpenCL-CTS",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "mv \"$out/bin/${cmakeBuildType:-Release}\"/* \"$out\"/bin/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OpenCL Conformance Test Suite",
         homepage: "https://github.com/KhronosGroup/OpenCL-CTS",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

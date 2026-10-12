@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cargo-update",
       version: "22.1.1",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-aq6l2tDWwvARdRgFJ1dTrWnh4XSy8uM32GdACVtzjQ8=",
@@ -38,9 +38,9 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([libgit2, libssh2, openssl, zlib], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [curl])))),
       postBuild: "# Man pages contain non-ASCII, so explicitly set encoding to UTF-8.\nHOME=$TMPDIR \\\nRUBYOPT=\"-E utf-8:utf-8\" \\\n  ronn -r --organization=\"cargo-update developers\" man/*.md\n",
       postInstall: "installManPage man/*.1\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, LIBGIT2_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, LIBGIT2_NO_VENDOR: 1n })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Cargo subcommand for checking and applying updates to installed executables",
         homepage: "https://github.com/nabijaczleweli/cargo-update",
         changelog: nix.thunk(() => nix.str`https://github.com/nabijaczleweli/cargo-update/releases/tag/v${nix.sel(finalAttrs, "version")}`),

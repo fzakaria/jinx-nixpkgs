@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.16.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "JessicaTegner",
           repo: "pypandoc",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./static-pandoc-path.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pandoc: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), pandoc)}/bin/pandoc`),
             pandocVersion: nix.thunk(() => nix.sel(pandoc, "version")),
           })))),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [texliveSmall, pandocfilters]);
       const pythonImportsCheck = nix.thunk(() => ["pypandoc"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Thin wrapper for pandoc",
         homepage: "https://github.com/JessicaTegner/pypandoc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "trivy",
       version: "0.74.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aquasecurity",
           repo: "trivy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
         "-s",
         nix.thunk(() => nix.str`-X=github.com/aquasecurity/trivy/pkg/version/app.ver=${nix.sel(finalAttrs, "version")}`),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$2, GOEXPERIMENT: "jsonv2" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, GOEXPERIMENT: "jsonv2" })),
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doCheck: false,
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd trivy \\\n  --bash <($out/bin/trivy completion bash) \\\n  --fish <($out/bin/trivy completion fish) \\\n  --zsh <($out/bin/trivy completion zsh)\n")),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simple and comprehensive vulnerability scanner for containers, suitable for CI",
         homepage: "https://github.com/aquasecurity/trivy",
         changelog: nix.thunk(() => nix.str`https://github.com/aquasecurity/trivy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

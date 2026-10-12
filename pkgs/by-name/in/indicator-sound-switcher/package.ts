@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const keybinder3 = nix.arg($, "keybinder3");
   const gdk_pixbuf = nix.arg($, "gdk-pixbuf");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "indicator-sound-switcher",
       version: "2.3.10.1",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "yktoo",
           repo: "indicator-sound-switcher",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         keybinder3,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Sound input/output selector indicator for Linux",
         mainProgram: "indicator-sound-switcher",
         homepage: "https://yktoo.com/en/software/sound-switcher-indicator/",

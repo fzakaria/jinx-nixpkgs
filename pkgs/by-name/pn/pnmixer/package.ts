@@ -21,14 +21,14 @@ export default nix.lambda((args) => (() => {
   const libnotify = nix.arg($, "libnotify");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pnmixer",
       version: "0.7.2",
       strictDeps: true,
       __structuredAttrs: true,
       enableParallelBuilding: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nicklan",
           repo: "pnmixer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config, gettext]),
       buildInputs: nix.thunk(() => [alsa_lib, gtk3, glib, libnotify, libx11]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/nicklan/pnmixer",
         description: "ALSA volume mixer for the system tray",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

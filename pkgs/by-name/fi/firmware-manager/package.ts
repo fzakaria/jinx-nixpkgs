@@ -26,14 +26,14 @@ export default nix.lambda((args) => (() => {
       const pname = "firmware-manager";
       const version = "0.1.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pop-os",
           repo: "firmware-manager",
           rev: version,
           hash: "sha256-Q+LJJ4xK583fAcwuOFykt6GKT0rVJgmTt+zUX4o4Tm4=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [openssl, gtk3, udev]);
       const makeFlags = nix.thunk(() => ["prefix=$(out)"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Graphical frontend for firmware management",
         homepage: "https://github.com/pop-os/firmware-manager",
         license: nix.thunk(() => (() => {
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

@@ -16,25 +16,25 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "idnkit",
       version: "2.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://jprs.co.jp/idn/idnkit-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-JtBxF2UAQqtGk/DgCWAnXVihvnc+bRPFA7o4RxDz6X4=",
         })))),
       buildInputs: nix.thunk(() => [libiconv]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://jprs.co.jp/idn/index-e.html",
         description: "Provides functionalities about i18n domain name processing",
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             shortName: "oscl11",
             fullName: "Open Source Code License version 1.1",
             url: "https://jprs.co.jp/idn/idnkit2-OSCL.txt",

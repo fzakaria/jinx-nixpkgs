@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const protobuf = nix.arg($, "protobuf");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "protobuf",
       version: "6.33.6",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-pnaNJSSDEsKXVYr5ap+ckp6MTO4GWcsH54BzEJXzgTU=",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`rm $out/${nix.sel(python, "sitePackages")}/google/__init__.py
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Protocol Buffers are Google's data interchange format",
         homepage: "https://developers.google.com/protocol-buffers/",
         changelog: nix.thunk(() => nix.str`https://github.com/protocolbuffers/protobuf/releases/v${nix.builtins.substring(2n, nix.thunk(() => nix.neg(1n)), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),

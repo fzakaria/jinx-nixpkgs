@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "erlang-language-platform";
       const version = "2026-08-10";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/WhatsApp/erlang-language-platform/releases/download/${version}/${release_name}.tar.gz`),
           hash: nix.thunk(() => nix.sel(hashes, nix.key(nix.force(release_name)))),
         }))));
@@ -39,9 +39,9 @@ export default nix.lambda((args) => (() => {
         ])));
       const sourceRoot = ".";
       const installPhase = "runHook preInstall\ninstall -m755 -D elp $out/bin/elp\nrunHook postInstall\n";
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "IDE-first library for the semantic analysis of Erlang code, including LSP server, linting and refactoring tools",
         homepage: "https://github.com/WhatsApp/erlang-language-platform/",
         license: nix.thunk(() => (() => {
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

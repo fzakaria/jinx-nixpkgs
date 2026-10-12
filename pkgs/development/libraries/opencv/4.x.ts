@@ -146,21 +146,21 @@ export default nix.lambda((args) => (() => {
   const stdenv_1 = nix.thunk(() => nix.builtins.throw("Use effectiveStdenv instead"));
   const effectiveStdenv = nix.thunk(() => (nix.asBool(enableCuda) ? nix.sel(cudaPackages, "backendStdenv") : nix.sel(inputs, "stdenv")));
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "opencv",
       repo: "opencv",
       tag: version,
       hash: "sha256-h9gpSf+xf/OafQSCYq3JYBt/ShnxafSG7WbxesTjM/A=",
     }))));
   const contribSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "opencv",
       repo: "opencv_contrib",
       tag: version,
       hash: "sha256-8YRCq1H9afb1a0pVevH0x61SMW4dTpLAno/P9A6bOIg=",
     }))));
   const testDataSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       owner: "opencv",
       repo: "opencv_extra",
       tag: version,
@@ -168,9 +168,9 @@ export default nix.lambda((args) => (() => {
     }))));
   const buildContrib = nix.thunk(() => (nix.asBool((nix.asBool(enableContrib) || nix.asBool(enableTesseract))) || nix.asBool(enableOvis)));
   const ippicv = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     src: nix.thunk(() => nix.add(nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         owner: "opencv",
         repo: "opencv_3rdparty",
         rev: "c934a2a15a6df020446ac3dfa07e3acf72b63a8f",
@@ -183,16 +183,16 @@ export default nix.lambda((args) => (() => {
     dst: ".cache/ippicv",
   }));
   const vgg = nix.thunk(() => ({
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         owner: "opencv",
         repo: "opencv_3rdparty",
         rev: "fccf7cd6a4b12079f73bbfb21745f9babcd4eb1d",
         hash: "sha256-fjdGM+CxV1QX7zmF2AiR9NDknrP2PjyaxtjT21BVLmU=",
       })))),
     files: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       "vgg_generated_48.i": "e8d0dcd54d1bcfdc29203d011a797179",
       "vgg_generated_64.i": "7126a5d9a8884ebca5aea5d63d677225",
       "vgg_generated_80.i": "7cd47228edec52b6d82f46511af325c5",
@@ -201,16 +201,16 @@ export default nix.lambda((args) => (() => {
     dst: ".cache/xfeatures2d/vgg",
   }));
   const boostdesc = nix.thunk(() => ({
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         owner: "opencv",
         repo: "opencv_3rdparty",
         rev: "34e4206aef44d50e6bbcd0ab06354b52e7466d26",
         sha256: "13yig1xhvgghvxspxmdidss5lqiikpjr0ddm83jsi0k85j92sn62",
       })))),
     files: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       "boostdesc_bgm.i": "0ea90e7a8f3f7876d450e4149c97c74f",
       "boostdesc_bgm_bi.i": "232c966b13651bd0e46a1497b0852191",
       "boostdesc_bgm_hd.i": "324426a24fa56ad9c5b8e3e0b3e5303e",
@@ -222,42 +222,42 @@ export default nix.lambda((args) => (() => {
     dst: ".cache/xfeatures2d/boostdesc",
   }));
   const face = nix.thunk(() => ({
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         owner: "opencv",
         repo: "opencv_3rdparty",
         rev: "8afa57abc8229d611c4937165d20e2a2d9fc5a12",
         hash: "sha256-m9yF4kfmpRJybohdRwUTmboeU+SbZQ6F6gm32PDWNBg=",
       })))),
     files: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       "face_landmark_model.dat": "7505c44ca4eb54b4ab1e4777cb96ac05",
     })),
     dst: ".cache/data",
   }));
   const ade = nix.thunk(() => (() => {
     const src_1 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         url: nix.thunk(() => nix.str`https://github.com/opencv/ade/archive/${name}`),
         hash: "sha256-O+Yshk3N2Lkl6S9qWxWnoDmBngSms88IiCfwjPLMB78=",
       }))));
     const name = "v0.1.2e.zip";
     const md5 = "962ce79e0b95591f226431f7b5f152cd";
     const dst = ".cache/ade";
-    return { __proto__: pos$16, src: src_1, name, md5, dst };
+    return { [nix.POS]: pos$16, src: src_1, name, md5, dst };
   })());
   const wechat_qrcode = nix.thunk(() => ({
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         owner: "opencv",
         repo: "opencv_3rdparty",
         rev: "a8b69ccc738421293254aec5ddb38bd523503252",
         hash: "sha256-/n6zHwf0Rdc4v9o4rmETzow/HTv+81DnHP+nL56XiTY=",
       })))),
     files: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       "detect.caffemodel": "238e2b2d6f3c18d6c3a30de0c31e23cf",
       "detect.prototxt": "6fb4976b32695f9f5c6305c19f12537d",
       "sr.caffemodel": "cbfcd60361a73beb8c583eea7e8e6664",
@@ -285,12 +285,12 @@ ln -s "${src_1}" "${dst}/${md5}-${name}"
 `;
   })(), formals$3);
   const withOpenblas = nix.thunk(() => (nix.asBool(enableBlas) && nix.asBool(nix.eq(nix.sel(blas, "provider", "pname"), "openblas"))));
-  const openblas_ = nix.thunk(() => nix.app(nix.sel(blas, "provider", "override"), nix.thunk(() => ({ __proto__: pos$20, singleThreaded: true }))));
+  const openblas_ = nix.thunk(() => nix.app(nix.sel(blas, "provider", "override"), nix.thunk(() => ({ [nix.POS]: pos$20, singleThreaded: true }))));
   const from_4 = nix.thunk(() => nix.sel(cudaPackages, "flags"));
   const cmakeCudaArchitecturesString = nix.thunk(() => nix.attr(from_4, "cmakeCudaArchitecturesString"));
   const cudaCapabilities = nix.thunk(() => nix.attr(from_4, "cudaCapabilities"));
   return nix.app(nix.sel(effectiveStdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$35,
+      [nix.POS]: pos$35,
       pname: "opencv",
       version: version,
       src: src,
@@ -303,7 +303,7 @@ ln -s "${src_1}" "${dst}/${md5}-${name}"
         nix.path(here, "./0001-cmake-OpenCVUtils.cmake-invalidate-Nix-store-paths-b.patch"),
       ], nix.app(optionals, enableCuda, nix.thunk(() => nix.concat([nix.path(here, "./cuda_opt_flow.patch")], nix.concat(nix.app(optionals, nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "4.14.0")), nix.thunk(() => [
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 name: "videostab-add-missing-include-to-fix-build-failure",
                 url: "https://github.com/opencv/opencv_contrib/commit/054007b78c8288ef2fd040e77dc0cf2e45f70c15.patch",
                 stripLen: 2n,
@@ -312,7 +312,7 @@ ln -s "${src_1}" "${dst}/${md5}-${name}"
               })))),
           ])), nix.app(optionals, nix.thunk(() => nix.app(nix.sel(cudaPackages, "cudaAtLeast"), "13.2")), nix.thunk(() => [
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 name: "fix-cuda-13-2-compat",
                 url: "https://github.com/opencv/opencv_contrib/commit/f2854f4f5e7b67d4e073ea002ae0174d437e2962.patch",
                 stripLen: 2n,
@@ -349,7 +349,7 @@ ${nix.app(installExtraFiles, wechat_qrcode)}
           nix.thunk(() => nix.sel(pythonPackages, "setuptools")),
         ], nix.app(optionals, nix.thunk(() => nix.eq(nix.sel(effectiveStdenv, "hostPlatform"), nix.sel(effectiveStdenv, "buildPlatform"))), nix.thunk(() => [nix.thunk(() => nix.sel(pythonPackages, "pythonImportsCheckHook"))]))))), nix.app(optionals, enableCuda, nix.thunk(() => [nix.thunk(() => nix.sel(cudaPackages, "cuda_nvcc"))]))))),
       env: nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         OpenBLAS_HOME: nix.thunk(() => nix.app(optionalString, withOpenblas, nix.thunk(() => nix.sel(openblas_, "dev")))),
         OpenBLAS: nix.thunk(() => nix.app(optionalString, withOpenblas, openblas_)),
       })),
@@ -411,22 +411,22 @@ ${nix.app(installExtraFiles, wechat_qrcode)}
       postInstall: nix.thunk(() => nix.add(nix.add(nix.add("sed -i \"s|{exec_prefix}/$out|{exec_prefix}|;s|{prefix}/$out|{prefix}|\" \\\n  \"$out/lib/pkgconfig/opencv4.pc\"\nmkdir \"$cxxdev\"\n", nix.app(optionalString, nix.thunk(() => !nix.asBool(enableCuda)), "mkdir -p \"$cxxdev/nix-support\"\necho \"${!outputDev}\" >> \"$cxxdev/nix-support/propagated-build-inputs\"\n")), nix.app(optionalString, enableCuda, "substituteInPlace \"$out/lib/cmake/opencv4/OpenCVConfig.cmake\" \\\n  --replace-fail \\\n    'find_host_package(CUDA ${OpenCV_CUDA_VERSION} EXACT REQUIRED)' \\\n    'find_host_package(CUDAToolkit REQUIRED)' \\\n  --replace-fail \\\n    'message(FATAL_ERROR \"OpenCV static library was compiled with CUDA' \\\n    'message(\"OpenCV static library was compiled with CUDA'\n")), nix.app(optionalString, enablePython, "pushd $NIX_BUILD_TOP/$sourceRoot/modules/python/package\npython -m pip wheel --verbose --no-index --no-deps --no-clean --no-build-isolation --wheel-dir dist .\n\npushd dist\npython -m pip install ./*.whl --no-index --no-warn-script-location --prefix=\"$out\" --no-cache\n\npopd\npopd\n"))),
       pythonImportsCheck: nix.thunk(() => ["cv2", "cv2.sfm"]),
       passthru: nix.thunk(() => nix.update({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         cudaSupport: enableCuda,
         tests: nix.thunk(() => nix.update({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           "gst-plugins-bad": nix.thunk(() => nix.attr(gst_all_1, "gst-plugins-bad")),
         }, nix.update(nix.app(optionalAttrs, nix.thunk(() => !nix.asBool(nix.sel(effectiveStdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             qimgv: qimgv,
-            withIpp: nix.thunk(() => nix.app(nix.sel(opencv4, "override"), nix.thunk(() => ({ __proto__: pos$25, enableIpp: true })))),
+            withIpp: nix.thunk(() => nix.app(nix.sel(opencv4, "override"), nix.thunk(() => ({ [nix.POS]: pos$25, enableIpp: true })))),
           }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => !nix.asBool(enablePython)), nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             pythonEnabled: nix.thunk(() => nix.sel(pythonPackages, "opencv4")),
           }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => !nix.eq(nix.sel(effectiveStdenv, "buildPlatform"), "x86_64-darwin")), nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             "opencv4-tests": nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 enableGStreamer: enableGStreamer,
                 enableGtk3: enableGtk3,
                 runAccuracyTests: runAccuracyTests,
@@ -435,12 +435,12 @@ ${nix.app(installExtraFiles, wechat_qrcode)}
                 opencv4: opencv4,
               })))),
           }))), nix.app(optionalAttrs, enableCuda, nix.thunk(() => ({
-            __proto__: pos$31,
-            "no-libstdcxx-errors": nix.thunk(() => nix.app(callPackage, nix.path(here, "./libstdcxx-test.nix"), nix.thunk(() => ({ __proto__: pos$30, attrName: "opencv4" })))),
+            [nix.POS]: pos$31,
+            "no-libstdcxx-errors": nix.thunk(() => nix.app(callPackage, nix.path(here, "./libstdcxx-test.nix"), nix.thunk(() => ({ [nix.POS]: pos$30, attrName: "opencv4" })))),
           })))))))),
-      }, nix.app(optionalAttrs, enablePython, nix.thunk(() => ({ __proto__: pos$33, pythonPath: [] }))))),
+      }, nix.app(optionalAttrs, enablePython, nix.thunk(() => ({ [nix.POS]: pos$33, pythonPath: [] }))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         description: "Open Computer Vision Library with more than 500 algorithms",
         homepage: "https://opencv.org/",
         license: nix.thunk(() => (nix.asBool(enableUnfree) ? nix.sel(lib, "licenses", "unfree") : nix.sel(lib, "licenses", "bsd3"))),

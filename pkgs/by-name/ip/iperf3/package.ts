@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const lksctp_tools = nix.arg($, "lksctp-tools");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "iperf",
       version: "3.21",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://downloads.es.net/pub/iperf/iperf-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ZW5EBevWIBId587KPq9DqI956huFfQQaagsTFIAazdg=",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev", "lib", "man"]),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: "https://git.alpinelinux.org/aports/plain/main/iperf3/remove-pg-flags.patch?id=7f979fc51ae31d5c695d8481ba84a4afc5080efb",
               name: "remove-pg-flags.patch",
               hash: "sha256-cT3etRWaNRQrw7Gz4oTp6L5SJdKI/lrDywhYelzVf3w=",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         ]))),
       postInstall: "ln -s $out/bin/iperf3 $out/bin/iperf\nln -s $man/share/man/man1/iperf3.1 $man/share/man/man1/iperf.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://software.es.net/iperf/",
         description: "Tool to measure IP bandwidth using UDP or TCP",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const xcbutilxrm = nix.arg($, "xcbutilxrm");
   const libxcb_util = nix.arg($, "libxcb-util");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "2.13.c.5",
       pname: "i3lock-color",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PandorasFox",
           repo: "i3lock-color",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => ["PREFIX=${out}", "SYSCONFDIR=${out}/etc", "MANDIR=${out}/share/man"]),
       postInstall: "mv $out/bin/i3lock $out/bin/i3lock-color\nln -s $out/bin/i3lock-color $out/bin/i3lock\nmv $out/share/man/man1/i3lock.1 $out/share/man/man1/i3lock-color.1\nsed -i 's/\\(^\\|\\s\\|\"\\)i3lock\\(\\s\\|$\\)/\\1i3lock-color\\2/g' $out/share/man/man1/i3lock-color.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple screen locker like slock, enhanced version with extra configuration options",
         longDescription: "Simple screen locker. After locking, a colored background (default: white) or\na configurable image is shown, and a ring-shaped unlock-indicator gives feedback\nfor every keystroke. After entering your password, the screen is unlocked again.\n\ni3lock-color is forked from i3lock (https://i3wm.org/i3lock/) with the following\nenhancements / additional configuration options:\n\n- indicator:\n  - shape: ring or bar\n  - size: configurable\n  - all colors: configurable\n  - all texts: configurable\n  - visibility: can be always visible, can be restricted to some screens\n\n- background: optionally show a blurred screen instead of a single color\n\n- more information: show text at configurable positions:\n  - clock: time/date with configurable format\n  - keyboard-layout\n",
         homepage: "https://github.com/PandorasFox/i3lock-color",

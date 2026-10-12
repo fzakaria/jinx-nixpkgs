@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   const build2 = nix.arg($, "build2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libstudxml",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.codesynthesis.com/libstudxml/libstudxml.git",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-WMqO03ShZ5h3gqe3VQmdxE6JT4799kfdDbsqHVBzReI=",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [build2]),
       postInstall: "chmod +x \"$out\"/lib/*\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Streaming XML pull parser and streaming XML serializer implementation for modern, standard C++",
         homepage: "https://www.codesynthesis.com/projects/libstudxml/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

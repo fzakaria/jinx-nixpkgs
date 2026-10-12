@@ -38,29 +38,29 @@ export default nix.lambda((args) => (() => {
   const commandLineArgs = nix.argOr($, "commandLineArgs", () => "");
   const genericUpdater = nix.arg($, "genericUpdater");
   const archive = nix.thunk(() => nix.selOr({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "BombSquad_Linux_x86_64",
       hash: "sha256-zKZpRsyBCTYDJbTwjaP/HFXfYvD9zBhetUGzriB9754=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "BombSquad_Linux_Arm64",
       hash: "sha256-Q87KbQqwEOaMiJ4uSgZ3eD8AYKQCoJWPzq7rt9Nu9Co=",
     })),
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`${nix.sel(stdenv, "targetPlatform", "system")} is unsupported.`)), nix.key(nix.sel(stdenv, "targetPlatform", "system"))));
   const bombsquadIcon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       url: "https://files.ballistica.net/bombsquad/promo/BombSquadIcon.png",
       hash: "sha256-MfOvjVmjhLejrJmdLo/goAM9DTGubnYGhlN6uF2GugA=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "bombsquad",
       version: "1.7.63",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           url: nix.thunk(() => nix.str`https://files.ballistica.net/bombsquad/builds/old/${nix.sel(archive, "name")}_${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: nix.thunk(() => nix.attr(archive, "hash")),
         })))),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoPatchelfHook, copyDesktopItems, makeBinaryWrapper]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: "bombsquad",
             genericName: "bombsquad",
             desktopName: "BombSquad",
@@ -99,11 +99,11 @@ install -Dm444 ${bombsquadIcon} $out/share/icons/bombsquad.png
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         updateScript: nix.thunk(() => nix.app(genericUpdater, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             versionLister: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   name: "bombsquad-versionLister",
                   runtimeInputs: nix.thunk(() => [curl, gnugrep, gnused]),
                   text: "curl -sL \"https://files.ballistica.net/bombsquad/builds/CHANGELOG.md\" \\\n    | grep -oP '^### \\K\\d+\\.\\d+\\.\\d+' \\\n    | sed -n 2p\n",
@@ -111,7 +111,7 @@ runHook postInstall
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "Free, multiplayer, arcade-style game for up to eight players that combines elements of fighting games and first-person shooters (FPS)",
         homepage: "https://ballistica.net",
         changelog: "https://ballistica.net/downloads?display=changelog",

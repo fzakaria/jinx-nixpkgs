@@ -28,17 +28,17 @@ export default nix.lambda((args) => (() => {
     "LyraY",
   ]);
   const buildScriptPatch = nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "use-more-flexible-build-script.patch",
       url: "https://github.com/KiranWells/Lyra-Cursors/commit/2735acb37a51792388497c666cc28370660217cb.patch?full_index=1",
       hash: "sha256-KCT4zNdep1TB7Oa4qrPw374ahT30o9/QrNTEgobp8zM=",
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "lyra-cursors",
       version: "0-unstable-2021-12-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "yeyushengfan258",
           repo: "Lyra-Cursors",
           rev: "c096c54034f95bd35699b3226250e5c5ec015d9a",
@@ -59,7 +59,7 @@ runHook postBuild
 `),
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/icons\nmv dist/*-cursors $out/share/icons\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Cursor theme inspired by macOS and based on capitaine-cursors",
         homepage: "https://github.com/yeyushengfan258/Lyra-Cursors",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

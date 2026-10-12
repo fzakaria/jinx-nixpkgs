@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const speechd_minimal = nix.arg($, "speechd-minimal");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(qtModule, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "qtspeech",
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [speechd_minimal]))),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),

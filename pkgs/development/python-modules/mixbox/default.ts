@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CybOXProject",
           repo: "mixbox",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const enabledTestPaths = nix.thunk(() => ["test/*.py"]);
       const disabledTests = nix.thunk(() => ["test_serialize_datetime_as_date", "test_preferred_prefixes"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library of common code leveraged by cybox, maec and stix",
         homepage: "https://github.com/CybOXProject/mixbox",
         changelog: nix.thunk(() => nix.str`https://github.com/CybOXProject/mixbox/releases/tag/v${version}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

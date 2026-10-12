@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const libglut = nix.arg($, "libglut");
   const libglvnd = nix.arg($, "libglvnd");
   return nix.app(buildRedist, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       redistName: "cuda",
       pname: "cuda_demo_suite",
       buildInputs: nix.thunk(() => [libcufft, libcurand, libGLU, libglut, libglvnd]),
       outputs: nix.thunk(() => ["out"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Pre-built applications which use CUDA",
         longDescription: "The CUDA Demo Suite contains pre-built applications which use CUDA. These applications demonstrate the\ncapabilities and details of NVIDIA GPUs.\n",
         homepage: "https://docs.nvidia.com/cuda/demo-suite",

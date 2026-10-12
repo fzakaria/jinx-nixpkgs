@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const procps = nix.arg($, "procps");
   const curl = nix.arg($, "curl");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "terminusdb-tests",
       src: nix.thunk(() => nix.attr(terminusdb, "src")),
       version: nix.thunk(() => nix.attr(terminusdb, "version")),

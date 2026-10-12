@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tilemaker",
       version: "3.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "systemed",
           repo: "tilemaker",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,14 +39,14 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [boost, lua5_5, protobuf_21, rapidjson, shapelib, sqlite, zlib]),
       cmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "PROTOBUF_PROTOC_EXECUTABLE", nix.thunk(() => nix.str`${nix.sel(buildPackages, "protobuf")}/bin/protoc`))))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [nix.thunk(() => nix.str`-DTM_VERSION=${nix.sel(finalAttrs, "version")}`)]))),
       })),
       postInstall: "install -Dm644 ../resources/*.{json,lua} -t $out/share/tilemaker\ncp -r ../server/static $out/share/tilemaker\n",
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Make OpenStreetMap vector tiles without the stack",
         homepage: "https://tilemaker.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/systemed/tilemaker/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

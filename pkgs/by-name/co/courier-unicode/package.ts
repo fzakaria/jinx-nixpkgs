@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "courier-unicode",
       version: "2.6.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/courier/courier-unicode/${nix.sel(finalAttrs, "version")}/courier-unicode-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-Cu0jScW2LeDTPM+MI1J6rkHa+VoDyAVMiN5Prvjaigg=",
         })))),
       nativeBuildInputs: nix.thunk(() => [perl]),
       outputs: nix.thunk(() => ["out", "dev"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.courier-mta.org/unicode/",
         description: "Courier Unicode Library is used by most other Courier packages",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

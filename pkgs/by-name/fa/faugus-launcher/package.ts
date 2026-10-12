@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const xdg_utils = nix.arg($, "xdg-utils");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "faugus-launcher",
       version: "2.4.2",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Faugus",
           repo: "faugus-launcher",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -80,11 +80,11 @@ substituteInPlace faugus/path_manager.py \\
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["faugus"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simple and lightweight app for running Windows games using UMU-Launcher",
         homepage: "https://github.com/Faugus/faugus-launcher",
         changelog: nix.thunk(() => nix.str`https://github.com/Faugus/faugus-launcher/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

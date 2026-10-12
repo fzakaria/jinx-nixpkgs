@@ -31,83 +31,83 @@ export default nix.lambda((args) => (() => {
   const installFonts = nix.arg($, "installFonts");
   const fonts = nix.thunk(() => [
     nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "andale",
       hash: "sha256-BST+QpUa3Dp+uHDjLwkgMTxx8XDIWbX3cNgrTuER6XA=",
     })),
     nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "arial",
       hash: "sha256-hSl6TRRunIesb3SCJzS97l9LKnItfqpYS38sv3b0ePY=",
     })),
     nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "arialb",
       hash: "sha256-pCXw/7ahpe3luXntYXf09PT972rnwwKnt3IO8zL+wKg=",
     })),
     nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "comic",
       hash: "sha256-nG3z/u/eJtTkHUpP5dsqifkSOncllNf1mv0GJiXNIE4=",
     })),
     nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: "courie",
       hash: "sha256-u1EdhhZV3eh5rlUuuGsTTW+uZ8tYUC5v9z7F2RUfM4Q=",
     })),
     nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       name: "georgi",
       hash: "sha256-LCx9zaZgbqXPCJGPt80/M1np6EM43GkAE/IM1C6TAwE=",
     })),
     nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       name: "impact",
       hash: "sha256-YGHvO3QB2WQvXf218rN2qhRmP2J15gpRIHrU+s8vzPs=",
     })),
     nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       name: "times",
       hash: "sha256-21ZZXsbvXT3lwkmU8AHwOyoT43zuJ7wlxY9vQ+j4B6s=",
     })),
     nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       name: "trebuc",
       hash: "sha256-WmkNm7hRC+G4tP5J8fIxllH+UbvlR3Xd3djvC9B/2sk=",
     })),
     nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       name: "webdin",
       hash: "sha256-ZFlbWrwQgPuoYQxcNPq1hjQI6Aaq/oRlPKhXW+0X11o=",
     })),
     nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       name: "verdan",
       hash: "sha256-wcthJV42MWZ5TkdmTi8hr446JstjRuuNKuL6hd1arZY=",
     })),
     nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       name: "wd97vwr",
       hash: "sha256-9hEmptF7LRJqfzGxQlBNzkk095icVfHBPGR3s/6As9I=",
     })),
   ]);
   const eula = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       url: "https://corefonts.sourceforge.net/eula.htm",
       hash: "sha256-LOgNEsM+dANEreP2LsFi+pAnBNDMFB9Pg+KJAahlC6s=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       pname: "corefonts",
       version: "1",
       env: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         exes: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.builtins.map(nix.lambda((args_1) => (() => {
               const $_1 = nix.formals(args_1, formals$2);
               const name = nix.arg($_1, "name");
               const hash = nix.arg($_1, "hash");
               return nix.app(fetchurl, nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   url: nix.thunk(() => nix.str`mirror://sourceforge/corefonts/the%20fonts/final/${name}32.exe`),
                   hash: hash,
                 })));
@@ -177,7 +177,7 @@ done
 `),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         homepage: "https://corefonts.sourceforge.net/",
         description: "Microsoft's TrueType core fonts for the Web",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

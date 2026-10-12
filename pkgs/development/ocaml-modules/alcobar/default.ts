@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const uucp = nix.arg($, "uucp");
   const uunf = nix.arg($, "uunf");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "alcobar",
       version: "0.3.1",
       minimalOCamlVersion: "4.10",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/samoht/alcobar/releases/download/v${nix.sel(finalAttrs, "version")}/alcobar-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-V2UnvLrtf+XXkp7uFlrIpxg6+fZqwhCS/J7C3Nw+eVU=",
         })))),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [calendar, fpath, pprint, uucp, uunf]),
       doCheck: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.0")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Crowbar with an Alcotest-compatible API",
         homepage: "https://github.com/samoht/alcobar",
         changelog: nix.thunk(() => nix.str`https://github.com/samoht/alcobar/blob/v${nix.sel(finalAttrs, "version")}/CHANGES.md`),

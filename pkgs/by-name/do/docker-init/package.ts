@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "docker-init",
       version: "1.4.0",
       tag: "175267",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://desktop.docker.com/linux/main/amd64/${nix.sel(finalAttrs, "tag")}/docker-desktop-x86_64.pkg.tar.zst`),
           hash: "sha256-pxxlSN2sQqlPUzUPufcK8T+pvdr0cK+9hWTYzwMJv5I=",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       unpackPhase: "runHook preUnpack\ntar --zstd -xvf $src\nrunHook postUnpack\n",
       installPhase: "runHook preInstall\nmkdir -p $out/{bin,libexec/docker/cli-plugins}\n\ncp usr/lib/docker/cli-plugins/docker-init $out/libexec/docker/cli-plugins\nln -s $out/libexec/docker/cli-plugins/docker-init $out/bin/docker-init\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Creates Docker-related starter files for your project",
         homepage: "https://docs.docker.com/reference/cli/docker/init",
         downloadPage: "https://docs.docker.com/desktop/release-notes",

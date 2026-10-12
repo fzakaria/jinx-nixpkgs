@@ -190,28 +190,28 @@ export default nix.lambda((args) => (() => {
   const baseDir = "/var/lib/hydra";
   const hydraConf = nix.thunk(() => nix.app(nix.sel(pkgs, "writeScript"), "hydra.conf", nix.thunk(() => nix.sel(cfg, "extraConfig"))));
   const hydraEnv = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     HYDRA_DATABASE_URL: nix.thunk(() => nix.sel(cfg, "dbUrl")),
     HYDRA_CONFIG: nix.thunk(() => nix.str`${baseDir}/hydra.conf`),
     HYDRA_DATA: nix.thunk(() => nix.str`${baseDir}`),
   }));
   const dbUrlWithAppName = (name) => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["%"]), nix.thunk(() => ["%%"]), nix.thunk(() => nix.add(nix.add(nix.sel(cfg, "dbUrl"), (nix.asBool(nix.app(nix.sel(lib, "hasInfix"), "?", nix.thunk(() => nix.sel(cfg, "dbUrl")))) ? "&" : "?")), nix.str`application_name=${name}`)));
   const env = nix.thunk(() => nix.update({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     NIX_REMOTE: "daemon",
     PGPASSFILE: nix.thunk(() => nix.str`${baseDir}/pgpass`),
   }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "smtpHost"), null)), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       EMAIL_SENDER_TRANSPORT: "SMTP",
       EMAIL_SENDER_TRANSPORT_host: nix.thunk(() => nix.sel(cfg, "smtpHost")),
     }))), nix.update(hydraEnv, nix.sel(cfg, "extraEnv")))));
   const serverEnv = nix.thunk(() => nix.update(env, nix.update({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     HYDRA_TRACKER: nix.thunk(() => nix.sel(cfg, "tracker")),
     XDG_CACHE_HOME: nix.thunk(() => nix.str`${baseDir}/www/.cache`),
     COLUMNS: "80",
     PGPASSFILE: nix.thunk(() => nix.str`${baseDir}/pgpass-www`),
-  }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "debugServer")), nix.thunk(() => ({ __proto__: pos$5, DBIC_TRACE: "1" }))))));
+  }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "debugServer")), nix.thunk(() => ({ [nix.POS]: pos$5, DBIC_TRACE: "1" }))))));
   const localDbUrl = "postgres://hydra@%2Frun%2Fpostgresql:5432/hydra";
   const haveLocalDB = nix.thunk(() => nix.eq(nix.sel(cfg, "dbUrl"), localDbUrl));
   const hydra_package = nix.thunk(() => (() => {
@@ -239,29 +239,29 @@ for path in ${nix.app(nix.sel(lib, "concatStringsSep"), " ", paths)}; do
   fi
 done
 `);
-        return { __proto__: pos$6, name, nativeBuildInputs, paths, postBuild };
+        return { [nix.POS]: pos$6, name, nativeBuildInputs, paths, postBuild };
       })()));
   })());
   return {
-    __proto__: pos$175,
+    [nix.POS]: pos$175,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "hydra", "dbi"]), "Use `services.hydra.dbUrl`, which takes a postgres:// URL instead of a DBI string.\n")),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "hydra", "buildMachinesFiles"]), "The queue runner no longer reads Nix build machines files. Builders now\nconnect to it via gRPC, see `services.hydra-builder`.\n")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$105,
+      [nix.POS]: pos$105,
       services: nix.thunk(() => ({
-        __proto__: pos$104,
+        [nix.POS]: pos$104,
         hydra: nix.thunk(() => ({
-          __proto__: pos$103,
+          [nix.POS]: pos$103,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to run Hydra services.\n",
             })))),
           dbUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: localDbUrl,
               example: "postgres://foo@postgres.example.org:5432/hydra",
@@ -270,16 +270,16 @@ done
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "hydra", nix.thunk(() => ({})))),
           evaluatorPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "hydra-evaluator", nix.thunk(() => ({})))),
           evaluatorSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "Settings for the evaluator, written to\n{file}`/etc/hydra/evaluator.toml`.\n",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   freeformType: nix.thunk(() => nix.sel(toml, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     max_concurrent_evals: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         type: nix.thunk(() => nix.sel(lib, "types", "ints", "positive")),
                         default: 4n,
                         description: "How many jobsets to evaluate at once.",
@@ -288,38 +288,38 @@ done
                 })))),
             })))),
           ws: nix.thunk(() => ({
-            __proto__: pos$25,
-            enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "the WebSocket server streaming live build logs to the web interface"), { __proto__: pos$13, default: true, example: false })),
+            [nix.POS]: pos$25,
+            enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "the WebSocket server streaming live build logs to the web interface"), { [nix.POS]: pos$13, default: true, example: false })),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "hydra-ws", nix.thunk(() => ({})))),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 description: "Settings for the WebSocket server, written to\n{file}`/etc/hydra/ws.toml`.\n",
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     options: nix.thunk(() => ({
-                      __proto__: pos$18,
+                      [nix.POS]: pos$18,
                       dbUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           type: nix.thunk(() => nix.sel(lib, "types", "singleLineStr")),
                           default: nix.thunk(() => nix.sel(cfg, "dbUrl")),
                           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.hydra.dbUrl")),
                           description: "PostgreSQL database URL.",
                         })))),
                       maxDbConnections: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$15,
+                          [nix.POS]: pos$15,
                           type: nix.thunk(() => nix.sel(lib, "types", "ints", "positive")),
                           default: 128n,
                           description: "Maximum number of PostgreSQL connections.",
                         })))),
                       idleGrace: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$16,
+                          [nix.POS]: pos$16,
                           type: nix.thunk(() => nix.sel(lib, "types", "int")),
                           default: 128n,
                           description: "Idle grace period in seconds before a log tail is stopped.",
                         })))),
                       hydraDataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$17,
+                          [nix.POS]: pos$17,
                           type: nix.thunk(() => nix.sel(lib, "types", "path")),
                           default: baseDir,
                           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`"${baseDir}"`))),
@@ -329,21 +329,21 @@ done
                   })))),
               })))),
             bind: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   type: nix.thunk(() => nix.sel(lib, "types", "singleLineStr")),
                   default: "[::1]",
                   description: "Address the WebSocket listener binds to.",
                 })))),
               port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   type: nix.thunk(() => nix.sel(lib, "types", "port")),
                   default: 9283n,
                   description: "Port the WebSocket listener binds to.",
                 })))),
               unixSocket: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                   default: null,
                   example: "/run/hydra-ws.sock",
@@ -352,56 +352,56 @@ done
             })),
           })),
           adHoc: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to enable hydra-ad-hoc, an experimental service presenting Hydra\nas one big Nix daemon. It serves the Nix daemon protocol on\n{option}`services.hydra.adHoc.socketPath`, and derivations realised\nthrough it are built by the queue runner as Hydra builds of a hidden\n`adhoc/adhoc` jobset.\n\nMembers of the `hydra-ad-hoc` group can use the socket. Until the\ndaemon has its own access control, they are effectively trusted Nix\nusers on this machine, so grant membership as carefully as\n{option}`nix.settings.trusted-users`.\n",
               })))),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "hydra-ad-hoc", nix.thunk(() => ({})))),
             socketPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 type: nix.thunk(() => nix.sel(lib, "types", "path")),
                 default: "/run/hydra-ad-hoc/socket",
                 description: "Unix socket clients connect to, e.g. with\n`nix-store --store unix:///run/hydra-ad-hoc/socket --realise ...`.\n",
               })))),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 description: "Settings for hydra-ad-hoc, written to {file}`/etc/hydra/ad-hoc.toml`.\n",
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$34,
+                    [nix.POS]: pos$34,
                     options: nix.thunk(() => ({
-                      __proto__: pos$33,
+                      [nix.POS]: pos$33,
                       dbUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$28,
+                          [nix.POS]: pos$28,
                           type: nix.thunk(() => nix.sel(lib, "types", "singleLineStr")),
                           default: nix.thunk(() => nix.sel(cfg, "dbUrl")),
                           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.hydra.dbUrl")),
                           description: "PostgreSQL database URL.",
                         })))),
                       maxDbConnections: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$29,
+                          [nix.POS]: pos$29,
                           type: nix.thunk(() => nix.sel(lib, "types", "ints", "positive")),
                           default: 4n,
                           description: "Maximum number of PostgreSQL connections.",
                         })))),
                       upstreamSocket: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$30,
+                          [nix.POS]: pos$30,
                           type: nix.thunk(() => nix.sel(lib, "types", "path")),
                           default: "/nix/var/nix/daemon-socket/socket",
                           description: "Upstream nix-daemon socket that read operations and `.drv` uploads\nare proxied to.\n",
                         })))),
                       storeDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$31,
+                          [nix.POS]: pos$31,
                           type: nix.thunk(() => nix.sel(lib, "types", "path")),
                           default: nix.thunk(() => nix.builtins.storeDir),
                           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "builtins.storeDir")),
                           description: "Nix store directory.",
                         })))),
                       hydraDataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$32,
+                          [nix.POS]: pos$32,
                           type: nix.thunk(() => nix.sel(lib, "types", "path")),
                           default: baseDir,
                           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`"${baseDir}"`))),
@@ -412,263 +412,263 @@ done
               })))),
           })),
           hydraURL: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "The base URL for the Hydra webserver instance. Used for links in emails.\n",
             })))),
           listenHost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "*",
               example: "localhost",
               description: "The hostname or address to listen on or `*` to listen\non all interfaces.\n",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 3000n,
               description: "TCP port the web server should listen to.\n",
             })))),
           minimumDiskFree: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 0n,
               description: "Threshold of minimum disk space (GiB) to determine if the queue runner should run or not.\n",
             })))),
           minimumDiskFreeEvaluator: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 0n,
               description: "Threshold of minimum disk space (GiB) to determine if the evaluator should run or not.\n",
             })))),
           notificationSender: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Sender email address used for email notifications.\n",
             })))),
           smtpHost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               example: "localhost",
               description: "Hostname of the SMTP server to use to send email.\n",
             })))),
           tracker: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "",
               description: "Piece of HTML that is included on all pages.\n",
             })))),
           logo: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "Path to a file containing the logo of your Hydra instance.\n",
             })))),
           debugServer: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to run the server in debug mode.",
             })))),
           maxServers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 25n,
               description: "Maximum number of starman workers to spawn.",
             })))),
           minSpareServers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 4n,
               description: "Minimum number of spare starman workers to keep.",
             })))),
           maxSpareServers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 5n,
               description: "Maximum number of spare starman workers to keep.",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$50,
+              [nix.POS]: pos$50,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               description: "Extra lines for the Hydra configuration.",
             })))),
           extraEnv: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => ({})),
               description: "Extra environment variables for Hydra.",
             })))),
           gcRootsDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$52,
+              [nix.POS]: pos$52,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/nix/var/nix/gcroots/hydra",
               description: "Directory that holds Hydra garbage collector roots.",
             })))),
           useSubstitutes: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to use binary caches for downloading store paths. Note that\nbinary substitutions trigger (a potentially large number of) additional\nHTTP requests that slow down the queue monitor thread significantly.\nAlso, this Hydra instance will serve those downloaded store paths to\nits users with its own signature attached as if it had built them\nitself, so don't enable this feature unless your active binary caches\nare absolute trustworthy.\n",
             })))),
           queueRunner: nix.thunk(() => ({
-            __proto__: pos$102,
+            [nix.POS]: pos$102,
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "hydra-queue-runner", nix.thunk(() => ({})))),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$87,
+                [nix.POS]: pos$87,
                 description: "Reloadable settings for the queue runner, written to\n{file}`/etc/hydra/queue-runner.toml`.\n",
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$86,
+                    [nix.POS]: pos$86,
                     options: nix.thunk(() => ({
-                      __proto__: pos$85,
+                      [nix.POS]: pos$85,
                       hydraDataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$54,
+                          [nix.POS]: pos$54,
                           type: nix.thunk(() => nix.sel(lib, "types", "path")),
                           default: baseDir,
                           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`"${baseDir}"`))),
                           description: "Hydra data directory.",
                         })))),
                       dbUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$55,
+                          [nix.POS]: pos$55,
                           type: nix.thunk(() => nix.sel(lib, "types", "singleLineStr")),
                           default: nix.thunk(() => nix.sel(cfg, "dbUrl")),
                           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.hydra.dbUrl")),
                           description: "PostgreSQL database URL.",
                         })))),
                       maxDbConnections: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$56,
+                          [nix.POS]: pos$56,
                           type: nix.thunk(() => nix.sel(lib, "types", "ints", "positive")),
                           default: 128n,
                           description: "Maximum number of PostgreSQL connections.",
                         })))),
                       machineSortFn: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$57,
+                          [nix.POS]: pos$57,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["SpeedFactorOnly", "CpuCoreCountWithSpeedFactor", "BogomipsWithSpeedFactor"]))),
                           default: "SpeedFactorOnly",
                           description: "Function used to sort machines.",
                         })))),
                       machineFreeFn: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$58,
+                          [nix.POS]: pos$58,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["Dynamic", "DynamicWithMaxJobLimit", "Static"]))),
                           default: "Static",
                           description: "Function used to determine \"idle\" machines.",
                         })))),
                       stepSortFn: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$59,
+                          [nix.POS]: pos$59,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["Legacy", "WithRdeps", "WithCriticalPath"]))),
                           default: "WithRdeps",
                           description: "Function used to sort steps.",
                         })))),
                       dispatchTriggerTimerInS: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$60,
+                          [nix.POS]: pos$60,
                           type: nix.thunk(() => nix.sel(lib, "types", "int")),
                           default: 120n,
                           description: "Interval in seconds at which the dispatcher is triggered. A\nvalue <= 0 disables the timer, leaving the dispatcher to be\ntriggered by queue changes only.\n",
                         })))),
                       queueTriggerTimerInS: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$61,
+                          [nix.POS]: pos$61,
                           type: nix.thunk(() => nix.sel(lib, "types", "int")),
                           default: nix.thunk(() => nix.neg(1n)),
                           description: "Interval in seconds at which the queue is triggered. A value\n<= 0 disables the timer, leaving the queue to be triggered by\nPostgreSQL notifications only.\n",
                         })))),
                       remoteStoreAddr: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$62,
+                          [nix.POS]: pos$62,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "singleLineStr")))),
                           default: [],
                           description: "Remote store addresses.",
                         })))),
                       useSubstitutes: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$63,
+                          [nix.POS]: pos$63,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: nix.thunk(() => nix.sel(cfg, "useSubstitutes")),
                           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.hydra.useSubstitutes")),
                           description: "Whether to substitute paths instead of building them.",
                         })))),
                       rootsDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$64,
+                          [nix.POS]: pos$64,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                           default: nix.thunk(() => nix.sel(cfg, "gcRootsDir")),
                           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.hydra.gcRootsDir")),
                           description: "Directory holding the garbage collector roots.",
                         })))),
                       maxRetries: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$65,
+                          [nix.POS]: pos$65,
                           type: nix.thunk(() => nix.sel(lib, "types", "ints", "positive")),
                           default: 5n,
                           description: "Maximum number of retries for a build step.",
                         })))),
                       retryInterval: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$66,
+                          [nix.POS]: pos$66,
                           type: nix.thunk(() => nix.sel(lib, "types", "ints", "positive")),
                           default: 60n,
                           description: "Interval in seconds after which a step may be retried.",
                         })))),
                       retryBackoff: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$67,
+                          [nix.POS]: pos$67,
                           type: nix.thunk(() => nix.sel(lib, "types", "float")),
                           default: 3.0,
                           description: "Additional backoff on top of {option}`retryInterval`.",
                         })))),
                       maxUnsupportedTimeInS: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$68,
+                          [nix.POS]: pos$68,
                           type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
                           default: 120n,
                           description: "Time in seconds after which unsupported steps are aborted.",
                         })))),
                       stopQueueRunAfterInS: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$69,
+                          [nix.POS]: pos$69,
                           type: nix.thunk(() => nix.sel(lib, "types", "int")),
                           default: 60n,
                           description: "Seconds after which a queue run is interrupted early. A value\n<= 0 lets queue runs go on for as long as they need.\n",
                         })))),
                       maxConcurrentDownloads: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$70,
+                          [nix.POS]: pos$70,
                           type: nix.thunk(() => nix.sel(lib, "types", "ints", "positive")),
                           default: 5n,
                           description: "Maximum number of concurrent downloads per build. Raising this\nraises the queue runner's memory usage.\n",
                         })))),
                       concurrentUploadLimit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$71,
+                          [nix.POS]: pos$71,
                           type: nix.thunk(() => nix.sel(lib, "types", "ints", "positive")),
                           default: 5n,
                           description: "Maximum number of concurrent uploads to S3.",
                         })))),
                       tokenPaths: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$72,
+                          [nix.POS]: pos$72,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))))),
                           default: null,
                           description: "Paths of the accepted authentication tokens.",
                         })))),
                       enableFodChecker: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$73,
+                          [nix.POS]: pos$73,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: false,
                           description: "Whether to enable the fixed-output derivation checker, which\ncollects FODs in a separate queue and schedules them on\nmachines advertising the mandatory `FOD` feature.\n",
                         })))),
                       usePresignedUploads: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$74,
+                          [nix.POS]: pos$74,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: false,
                           description: "Whether builders upload to S3 themselves instead of the queue\nrunner. Requires an S3 remote store as well as substitution on\nthe builders, see {option}`forcedSubstituters`.\n",
                         })))),
                       overflowStore: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$79,
+                          [nix.POS]: pos$79,
                           default: null,
                           description: "Overflow S3 store. Steps referenced only by the listed jobsets\nare uploaded there instead of to the default store.\n",
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                                __proto__: pos$78,
+                                [nix.POS]: pos$78,
                                 options: nix.thunk(() => ({
-                                  __proto__: pos$77,
+                                  [nix.POS]: pos$77,
                                   store: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$75,
+                                      [nix.POS]: pos$75,
                                       type: nix.thunk(() => nix.sel(lib, "types", "singleLineStr")),
                                       example: "s3://overflow?region=eu-west-1",
                                       description: "S3 store URI of the overflow bucket.",
                                     })))),
                                   jobsets: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$76,
+                                      [nix.POS]: pos$76,
                                       type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "singleLineStr")))),
                                       default: [],
                                       example: nix.thunk(() => ["nixpkgs:trunk"]),
@@ -678,31 +678,31 @@ done
                               })))))),
                         })))),
                       forcedSubstituters: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$80,
+                          [nix.POS]: pos$80,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "singleLineStr")))),
                           default: [],
                           description: "Substituters every builder is required to have. Builders that\ndo not enable `useSubstitutes` with these substituters are\nrejected.\n",
                         })))),
                       maxOutputSize: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$81,
+                          [nix.POS]: pos$81,
                           type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
                           default: 0n,
                           description: "Per-output NAR size limit in bytes. Builds exceeding it fail\nwith `NarSizeLimitExceeded`. 0 disables the check.\n",
                         })))),
                       maxSilentTime: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$82,
+                          [nix.POS]: pos$82,
                           type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
                           default: 3600n,
                           description: "Default maximum silent time in seconds for builds without\n`meta.maxSilent`. Also used as a floor for dependency-only\nsteps.\n",
                         })))),
                       buildTimeout: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$83,
+                          [nix.POS]: pos$83,
                           type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
                           default: 36000n,
                           description: "Default build timeout in seconds for builds without\n`meta.timeout`. Also used as a floor for dependency-only\nsteps.\n",
                         })))),
                       maxLogSize: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$84,
+                          [nix.POS]: pos$84,
                           type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
                           default: nix.thunk(() => nix.mul(nix.mul(64n, 1024n), 1024n)),
                           description: "Maximum build log size in bytes before a build fails with\n`LogLimitExceeded`.\n",
@@ -711,21 +711,21 @@ done
                   })))),
               })))),
             grpc: nix.thunk(() => ({
-              __proto__: pos$91,
+              [nix.POS]: pos$91,
               address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$88,
+                  [nix.POS]: pos$88,
                   type: nix.thunk(() => nix.sel(lib, "types", "singleLineStr")),
                   default: "[::1]",
                   description: "Address the gRPC listener binds to. Must be reachable from\nmachines running {option}`services.hydra-builder`.\n",
                 })))),
               port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$89,
+                  [nix.POS]: pos$89,
                   type: nix.thunk(() => nix.sel(lib, "types", "port")),
                   default: 50051n,
                   description: "Port the gRPC listener binds to.",
                 })))),
               unixSocket: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$90,
+                  [nix.POS]: pos$90,
                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                   default: null,
                   example: "/run/hydra-queue-runner-grpc.sock",
@@ -733,40 +733,40 @@ done
                 })))),
             })),
             rest: nix.thunk(() => ({
-              __proto__: pos$94,
+              [nix.POS]: pos$94,
               address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$92,
+                  [nix.POS]: pos$92,
                   type: nix.thunk(() => nix.sel(lib, "types", "singleLineStr")),
                   default: "[::1]",
                   description: "Address the REST listener binds to.",
                 })))),
               port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$93,
+                  [nix.POS]: pos$93,
                   type: nix.thunk(() => nix.sel(lib, "types", "port")),
                   default: 8080n,
                   description: "Port the REST listener binds to.",
                 })))),
             })),
             mtls: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$100,
+                [nix.POS]: pos$100,
                 default: null,
                 description: "mTLS material used to authenticate builders.",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                      __proto__: pos$99,
+                      [nix.POS]: pos$99,
                       options: nix.thunk(() => ({
-                        __proto__: pos$98,
+                        [nix.POS]: pos$98,
                         serverCertPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$95,
+                            [nix.POS]: pos$95,
                             type: nix.thunk(() => nix.sel(lib, "types", "path")),
                             description: "Server certificate path.",
                           })))),
                         serverKeyPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$96,
+                            [nix.POS]: pos$96,
                             type: nix.thunk(() => nix.sel(lib, "types", "path")),
                             description: "Server key path.",
                           })))),
                         clientCaCertPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$97,
+                            [nix.POS]: pos$97,
                             type: nix.thunk(() => nix.sel(lib, "types", "path")),
                             description: "Client CA certificate path.",
                           })))),
@@ -774,7 +774,7 @@ done
                     })))))),
               })))),
             awsCredentialsFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$101,
+                [nix.POS]: pos$101,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
                 description: "Path to an AWS credentials file, exported as\n`AWS_SHARED_CREDENTIALS_FILE` to the queue runner.\n",
@@ -784,33 +784,33 @@ done
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$174,
+        [nix.POS]: pos$174,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$106,
+            [nix.POS]: pos$106,
             assertion: nix.thunk(() => (nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "maxServers"), 0n)) && nix.asBool(!nix.eq(nix.sel(cfg, "maxSpareServers"), 0n)))) && nix.asBool(!nix.eq(nix.sel(cfg, "minSpareServers"), 0n)))),
             message: "services.hydra.{minSpareServers,maxSpareServers,minSpareServers} cannot be 0",
           })),
           nix.thunk(() => ({
-            __proto__: pos$107,
+            [nix.POS]: pos$107,
             assertion: nix.thunk(() => nix.lt(nix.sel(cfg, "minSpareServers"), nix.sel(cfg, "maxSpareServers"))),
             message: "services.hydra.minSpareServers cannot be bigger than services.hydra.maxSpareServers",
           })),
         ]),
         users: nix.thunk(() => ({
-          __proto__: pos$116,
+          [nix.POS]: pos$116,
           groups: nix.thunk(() => ({
-            __proto__: pos$109,
+            [nix.POS]: pos$109,
             hydra: nix.thunk(() => ({
-              __proto__: pos$108,
+              [nix.POS]: pos$108,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "hydra")),
             })),
             "hydra-ad-hoc": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "adHoc", "enable")), nix.thunk(() => ({})))),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$115,
+            [nix.POS]: pos$115,
             hydra: nix.thunk(() => ({
-              __proto__: pos$110,
+              [nix.POS]: pos$110,
               description: "Hydra",
               group: "hydra",
               home: baseDir,
@@ -818,7 +818,7 @@ done
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "hydra")),
             })),
             "hydra-queue-runner": nix.thunk(() => ({
-              __proto__: pos$111,
+              [nix.POS]: pos$111,
               description: "Hydra queue runner",
               group: "hydra",
               useDefaultShell: true,
@@ -826,19 +826,19 @@ done
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "hydra-queue-runner")),
             })),
             "hydra-ws": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "ws", "enable")), nix.thunk(() => ({
-                __proto__: pos$112,
+                [nix.POS]: pos$112,
                 description: "Hydra WebSocket server",
                 group: "hydra",
                 isSystemUser: true,
               })))),
             "hydra-ad-hoc": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "adHoc", "enable")), nix.thunk(() => ({
-                __proto__: pos$113,
+                [nix.POS]: pos$113,
                 description: "Hydra ad hoc build daemon",
                 group: "hydra",
                 isSystemUser: true,
               })))),
             "hydra-www": nix.thunk(() => ({
-              __proto__: pos$114,
+              [nix.POS]: pos$114,
               description: "Hydra web server",
               group: "hydra",
               useDefaultShell: true,
@@ -847,9 +847,9 @@ done
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$119,
+          [nix.POS]: pos$119,
           hydra: nix.thunk(() => ({
-            __proto__: pos$117,
+            [nix.POS]: pos$117,
             extraConfig: nix.thunk(() => nix.str`using_frontend_proxy = 1
 base_uri = ${nix.sel(cfg, "hydraURL")}
 notification_sender = ${nix.sel(cfg, "notificationSender")}
@@ -862,55 +862,55 @@ queue_runner_endpoint = http://${nix.sel(queueRunnerCfg, "rest", "address")}:${n
 `),
           })),
           postgresql: nix.thunk(() => ({
-            __proto__: pos$118,
+            [nix.POS]: pos$118,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), haveLocalDB, true)),
             identMap: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), haveLocalDB, nix.thunk(() => nix.add(nix.add("hydra hydra hydra\nhydra hydra-queue-runner hydra\nhydra hydra-www hydra\nhydra root hydra\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "ws", "enable")), "hydra hydra-ws hydra\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "adHoc", "enable")), "hydra hydra-ad-hoc hydra\n"))))),
             authentication: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), haveLocalDB, "local all hydra peer map=hydra\n")),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$125,
+          [nix.POS]: pos$125,
           systemPackages: nix.thunk(() => [hydra_package]),
           variables: hydraEnv,
           etc: nix.thunk(() => ({
-            __proto__: pos$124,
+            [nix.POS]: pos$124,
             "hydra/queue-runner.toml": nix.thunk(() => ({
-              __proto__: pos$120,
+              [nix.POS]: pos$120,
               source: nix.thunk(() => nix.app(nix.sel(toml, "generate"), "queue-runner.toml", nix.thunk(() => nix.app(nix.sel(lib, "filterAttrsRecursive"), (_) => (v) => !nix.eq(v, null), nix.thunk(() => nix.sel(queueRunnerCfg, "settings")))))),
             })),
             "hydra/ws.toml": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "ws", "enable")), nix.thunk(() => ({
-                __proto__: pos$121,
+                [nix.POS]: pos$121,
                 source: nix.thunk(() => nix.app(nix.sel(toml, "generate"), "ws.toml", nix.thunk(() => nix.app(nix.sel(lib, "filterAttrsRecursive"), (_) => (v) => !nix.eq(v, null), nix.thunk(() => nix.sel(cfg, "ws", "settings")))))),
               })))),
             "hydra/ad-hoc.toml": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "adHoc", "enable")), nix.thunk(() => ({
-                __proto__: pos$122,
+                [nix.POS]: pos$122,
                 source: nix.thunk(() => nix.app(nix.sel(toml, "generate"), "ad-hoc.toml", nix.thunk(() => nix.app(nix.sel(lib, "filterAttrsRecursive"), (_) => (v) => !nix.eq(v, null), nix.thunk(() => nix.sel(cfg, "adHoc", "settings")))))),
               })))),
             "hydra/evaluator.toml": nix.thunk(() => ({
-              __proto__: pos$123,
+              [nix.POS]: pos$123,
               source: nix.thunk(() => nix.app(nix.sel(toml, "generate"), "evaluator.toml", nix.thunk(() => nix.sel(cfg, "evaluatorSettings")))),
             })),
           })),
         })),
         nix: nix.thunk(() => ({
-          __proto__: pos$129,
+          [nix.POS]: pos$129,
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$126,
+                [nix.POS]: pos$126,
                 "keep-outputs": true,
                 "keep-derivations": true,
                 "trusted-users": nix.thunk(() => ["hydra-queue-runner"]),
               })),
-              nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "adHoc", "enable")), nix.thunk(() => ({ __proto__: pos$127, "trusted-users": nix.thunk(() => ["hydra-ad-hoc"]) })))),
-              nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), nix.thunk(() => nix.sel(config, "nix", "package", "out")))), "2.4pre")), nix.thunk(() => ({ __proto__: pos$128, "gc-check-reachability": false })))),
+              nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "adHoc", "enable")), nix.thunk(() => ({ [nix.POS]: pos$127, "trusted-users": nix.thunk(() => ["hydra-ad-hoc"]) })))),
+              nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), nix.thunk(() => nix.sel(config, "nix", "package", "out")))), "2.4pre")), nix.thunk(() => ({ [nix.POS]: pos$128, "gc-check-reachability": false })))),
             ]))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$173,
+          [nix.POS]: pos$173,
           slices: nix.thunk(() => ({
-            __proto__: pos$131,
+            [nix.POS]: pos$131,
             "system-hydra": nix.thunk(() => ({
-              __proto__: pos$130,
+              [nix.POS]: pos$130,
               description: "Hydra CI Server Slice",
               documentation: nix.thunk(() => [
                 nix.thunk(() => nix.str`file://${nix.sel(cfg, "package")}/share/doc/hydra/index.html`),
@@ -919,14 +919,14 @@ queue_runner_endpoint = http://${nix.sel(queueRunnerCfg, "rest", "address")}:${n
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$163,
+            [nix.POS]: pos$163,
             "hydra-init": nix.thunk(() => ({
-              __proto__: pos$134,
+              [nix.POS]: pos$134,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               requires: nix.thunk(() => nix.app(nix.sel(lib, "optional"), haveLocalDB, "postgresql.target")),
               after: nix.thunk(() => nix.app(nix.sel(lib, "optional"), haveLocalDB, "postgresql.target")),
               environment: nix.thunk(() => nix.update(env, {
-                __proto__: pos$132,
+                [nix.POS]: pos$132,
                 HYDRA_DATABASE_URL: nix.thunk(() => nix.app(dbUrlWithAppName, "hydra-init")),
               })),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "util-linux"))]),
@@ -976,7 +976,7 @@ chown hydra:hydra ${nix.sel(cfg, "gcRootsDir")}
 chmod 2775 ${nix.sel(cfg, "gcRootsDir")}
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$133,
+                [nix.POS]: pos$133,
                 ExecStart: nix.thunk(() => nix.str`${hydra_package}/bin/hydra-init`),
                 PermissionsStartOnly: true,
                 User: "hydra",
@@ -986,7 +986,7 @@ chmod 2775 ${nix.sel(cfg, "gcRootsDir")}
               })),
             })),
             "hydra-server": nix.thunk(() => ({
-              __proto__: pos$137,
+              [nix.POS]: pos$137,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               requires: nix.thunk(() => ["hydra-init.service"]),
               after: nix.thunk(() => ["hydra-init.service"]),
@@ -995,12 +995,12 @@ chmod 2775 ${nix.sel(cfg, "gcRootsDir")}
                 nix.thunk(() => nix.sel(pkgs, "bzip2")),
               ]),
               environment: nix.thunk(() => nix.update(serverEnv, {
-                __proto__: pos$135,
+                [nix.POS]: pos$135,
                 HYDRA_DATABASE_URL: nix.thunk(() => nix.app(dbUrlWithAppName, "hydra-server")),
               })),
               restartTriggers: nix.thunk(() => [hydraConf]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$136,
+                [nix.POS]: pos$136,
                 ExecStart: nix.thunk(() => nix.add(nix.add(nix.str`@${hydra_package}/bin/hydra-server hydra-server -f -h '${nix.sel(cfg, "listenHost")}' `, nix.str`-p ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))} --min_spare_servers ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "minSpareServers")))} --max_spare_servers ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "maxSpareServers")))} `), nix.str`--max_servers ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "maxServers")))} --max_requests 100 ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "debugServer")), "-d")}`)),
                 User: "hydra-www",
                 PermissionsStartOnly: true,
@@ -1009,7 +1009,7 @@ chmod 2775 ${nix.sel(cfg, "gcRootsDir")}
               })),
             })),
             "hydra-queue-runner": nix.thunk(() => ({
-              __proto__: pos$141,
+              [nix.POS]: pos$141,
               description: "Hydra queue runner",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               requires: nix.thunk(() => [
@@ -1023,16 +1023,16 @@ chmod 2775 ${nix.sel(cfg, "gcRootsDir")}
                 nix.thunk(() => nix.sel(config, "environment", "etc", "hydra/queue-runner.toml", "source")),
               ]),
               environment: nix.thunk(() => nix.update({
-                __proto__: pos$138,
+                [nix.POS]: pos$138,
                 NIX_REMOTE: "daemon",
                 RUST_BACKTRACE: "1",
                 HOME: "/run/hydra-queue-runner",
               }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(queueRunnerCfg, "awsCredentialsFile"), null)), nix.thunk(() => ({
-                  __proto__: pos$139,
+                  [nix.POS]: pos$139,
                   AWS_SHARED_CREDENTIALS_FILE: nix.thunk(() => nix.sel(queueRunnerCfg, "awsCredentialsFile")),
                 }))))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$140,
+                [nix.POS]: pos$140,
                 Type: "notify",
                 Restart: "always",
                 RestartSec: "5s",
@@ -1095,7 +1095,7 @@ chmod 2775 ${nix.sel(cfg, "gcRootsDir")}
               })),
             })),
             "hydra-ws": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "ws", "enable")), nix.thunk(() => ({
-                __proto__: pos$143,
+                [nix.POS]: pos$143,
                 description: "Hydra WebSocket server",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 requires: nix.thunk(() => ["hydra-ws.socket"]),
@@ -1104,7 +1104,7 @@ chmod 2775 ${nix.sel(cfg, "gcRootsDir")}
                   nix.thunk(() => nix.sel(config, "environment", "etc", "hydra/ws.toml", "source")),
                 ]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$142,
+                  [nix.POS]: pos$142,
                   Type: "notify",
                   Restart: "always",
                   RestartSec: "5s",
@@ -1149,7 +1149,7 @@ chmod 2775 ${nix.sel(cfg, "gcRootsDir")}
                 })),
               })))),
             "hydra-ad-hoc": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "adHoc", "enable")), nix.thunk(() => ({
-                __proto__: pos$146,
+                [nix.POS]: pos$146,
                 description: "Hydra ad hoc build daemon",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 requires: nix.thunk(() => ["nix-daemon.socket", "hydra-ad-hoc.socket"]),
@@ -1157,9 +1157,9 @@ chmod 2775 ${nix.sel(cfg, "gcRootsDir")}
                 restartTriggers: nix.thunk(() => [
                   nix.thunk(() => nix.sel(config, "environment", "etc", "hydra/ad-hoc.toml", "source")),
                 ]),
-                environment: nix.thunk(() => ({ __proto__: pos$144, RUST_BACKTRACE: "1" })),
+                environment: nix.thunk(() => ({ [nix.POS]: pos$144, RUST_BACKTRACE: "1" })),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$145,
+                  [nix.POS]: pos$145,
                   Type: "notify",
                   Restart: "always",
                   RestartSec: "5s",
@@ -1206,7 +1206,7 @@ chmod 2775 ${nix.sel(cfg, "gcRootsDir")}
                 })),
               })))),
             "hydra-evaluator": nix.thunk(() => ({
-              __proto__: pos$149,
+              [nix.POS]: pos$149,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               requires: nix.thunk(() => ["hydra-init.service"]),
               wants: nix.thunk(() => ["network-online.target"]),
@@ -1221,11 +1221,11 @@ chmod 2775 ${nix.sel(cfg, "gcRootsDir")}
                 nix.thunk(() => nix.sel(config, "environment", "etc", "hydra/evaluator.toml", "source")),
               ]),
               environment: nix.thunk(() => nix.update(env, {
-                __proto__: pos$147,
+                [nix.POS]: pos$147,
                 HYDRA_DATABASE_URL: nix.thunk(() => nix.app(dbUrlWithAppName, "hydra-evaluator")),
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$148,
+                [nix.POS]: pos$148,
                 ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => [
                     nix.thunk(() => nix.str`@${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "evaluatorPackage")))}`),
                     "hydra-evaluator",
@@ -1245,15 +1245,15 @@ chmod 2775 ${nix.sel(cfg, "gcRootsDir")}
               })),
             })),
             "hydra-update-gc-roots": nix.thunk(() => ({
-              __proto__: pos$152,
+              [nix.POS]: pos$152,
               requires: nix.thunk(() => ["hydra-init.service"]),
               after: nix.thunk(() => ["hydra-init.service"]),
               environment: nix.thunk(() => nix.update(env, {
-                __proto__: pos$150,
+                [nix.POS]: pos$150,
                 HYDRA_DATABASE_URL: nix.thunk(() => nix.app(dbUrlWithAppName, "hydra-update-gc-roots")),
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$151,
+                [nix.POS]: pos$151,
                 ExecStart: nix.thunk(() => nix.str`@${hydra_package}/bin/hydra-update-gc-roots hydra-update-gc-roots`),
                 User: "hydra",
                 Slice: "system-hydra.slice",
@@ -1261,34 +1261,34 @@ chmod 2775 ${nix.sel(cfg, "gcRootsDir")}
               startAt: "2,14:15",
             })),
             "hydra-send-stats": nix.thunk(() => ({
-              __proto__: pos$155,
+              [nix.POS]: pos$155,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["hydra-init.service"]),
               environment: nix.thunk(() => nix.update(env, {
-                __proto__: pos$153,
+                [nix.POS]: pos$153,
                 HYDRA_DATABASE_URL: nix.thunk(() => nix.app(dbUrlWithAppName, "hydra-send-stats")),
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$154,
+                [nix.POS]: pos$154,
                 ExecStart: nix.thunk(() => nix.str`@${hydra_package}/bin/hydra-send-stats hydra-send-stats`),
                 User: "hydra",
                 Slice: "system-hydra.slice",
               })),
             })),
             "hydra-notify": nix.thunk(() => ({
-              __proto__: pos$158,
+              [nix.POS]: pos$158,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               requires: nix.thunk(() => ["hydra-init.service"]),
               after: nix.thunk(() => ["hydra-init.service"]),
               restartTriggers: nix.thunk(() => [hydraConf]),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "zstd"))]),
               environment: nix.thunk(() => nix.update(env, {
-                __proto__: pos$156,
+                [nix.POS]: pos$156,
                 PGPASSFILE: nix.thunk(() => nix.str`${baseDir}/pgpass-queue-runner`),
                 HYDRA_DATABASE_URL: nix.thunk(() => nix.app(dbUrlWithAppName, "hydra-notify")),
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$157,
+                [nix.POS]: pos$157,
                 ExecStart: nix.thunk(() => nix.str`@${hydra_package}/bin/hydra-notify hydra-notify`),
                 User: "hydra-queue-runner",
                 Restart: "always",
@@ -1297,7 +1297,7 @@ chmod 2775 ${nix.sel(cfg, "gcRootsDir")}
               })),
             })),
             "hydra-check-space": nix.thunk(() => ({
-              __proto__: pos$160,
+              [nix.POS]: pos$160,
               script: nix.thunk(() => nix.str`if [ $(($(stat -f -c '%a' /nix/store) * $(stat -f -c '%S' /nix/store))) -lt $((${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "minimumDiskFree")))} * 1024**3)) ]; then
     echo "stopping Hydra queue runner due to lack of free space..."
     systemctl stop hydra-queue-runner
@@ -1308,10 +1308,10 @@ if [ $(($(stat -f -c '%a' /nix/store) * $(stat -f -c '%S' /nix/store))) -lt $(($
 fi
 `),
               startAt: "*:0/5",
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$159, Slice: "system-hydra.slice" })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$159, Slice: "system-hydra.slice" })),
             })),
             "hydra-compress-logs": nix.thunk(() => ({
-              __proto__: pos$162,
+              [nix.POS]: pos$162,
               path: nix.thunk(() => [
                 nix.thunk(() => nix.sel(pkgs, "bzip2")),
                 nix.thunk(() => nix.sel(pkgs, "zstd")),
@@ -1326,50 +1326,50 @@ fi
 find ${baseDir}/build-logs -ignore_readdir_race -type f -name "*.drv" -mtime +3 -size +0c -print0 | xargs -0 -r "\${compressionCmd[@]}" --force --quiet
 `),
               startAt: "Sun 01:45",
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$161, Slice: "system-hydra.slice" })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$161, Slice: "system-hydra.slice" })),
             })),
           })),
           sockets: nix.thunk(() => ({
-            __proto__: pos$172,
+            [nix.POS]: pos$172,
             "hydra-queue-runner-rest": nix.thunk(() => ({
-              __proto__: pos$165,
+              [nix.POS]: pos$165,
               description: "Hydra queue runner REST socket",
               wantedBy: nix.thunk(() => ["sockets.target"]),
               socketConfig: nix.thunk(() => ({
-                __proto__: pos$164,
+                [nix.POS]: pos$164,
                 ListenStream: nix.thunk(() => nix.str`${nix.sel(queueRunnerCfg, "rest", "address")}:${nix.builtins.toString(nix.thunk(() => nix.sel(queueRunnerCfg, "rest", "port")))}`),
                 FileDescriptorName: "rest",
                 Service: "hydra-queue-runner.service",
               })),
             })),
             "hydra-queue-runner-grpc": nix.thunk(() => ({
-              __proto__: pos$167,
+              [nix.POS]: pos$167,
               description: "Hydra queue runner gRPC socket",
               wantedBy: nix.thunk(() => ["sockets.target"]),
               socketConfig: nix.thunk(() => ({
-                __proto__: pos$166,
+                [nix.POS]: pos$166,
                 ListenStream: nix.thunk(() => nix.app(nix.sel(lib, "defaultTo"), nix.thunk(() => nix.str`${nix.sel(queueRunnerCfg, "grpc", "address")}:${nix.builtins.toString(nix.thunk(() => nix.sel(queueRunnerCfg, "grpc", "port")))}`), nix.thunk(() => nix.sel(queueRunnerCfg, "grpc", "unixSocket")))),
                 FileDescriptorName: "grpc",
                 Service: "hydra-queue-runner.service",
               })),
             })),
             "hydra-ws": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "ws", "enable")), nix.thunk(() => ({
-                __proto__: pos$169,
+                [nix.POS]: pos$169,
                 description: "Hydra WebSocket socket",
                 wantedBy: nix.thunk(() => ["sockets.target"]),
                 socketConfig: nix.thunk(() => ({
-                  __proto__: pos$168,
+                  [nix.POS]: pos$168,
                   ListenStream: nix.thunk(() => nix.app(nix.sel(lib, "defaultTo"), nix.thunk(() => nix.str`${nix.sel(cfg, "ws", "bind", "address")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "ws", "bind", "port")))}`), nix.thunk(() => nix.sel(cfg, "ws", "bind", "unixSocket")))),
                   FileDescriptorName: "ws",
                   Service: "hydra-ws.service",
                 })),
               })))),
             "hydra-ad-hoc": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "adHoc", "enable")), nix.thunk(() => ({
-                __proto__: pos$171,
+                [nix.POS]: pos$171,
                 description: "Hydra ad hoc build daemon socket",
                 wantedBy: nix.thunk(() => ["sockets.target"]),
                 socketConfig: nix.thunk(() => ({
-                  __proto__: pos$170,
+                  [nix.POS]: pos$170,
                   ListenStream: nix.thunk(() => nix.sel(cfg, "adHoc", "socketPath")),
                   SocketUser: "hydra-ad-hoc",
                   SocketGroup: "hydra-ad-hoc",

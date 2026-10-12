@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const imcfg = nix.thunk(() => nix.sel(config, "i18n", "inputMethod"));
   const cfg = nix.thunk(() => nix.sel(imcfg, "ibus"));
-  const ibusPackage = nix.thunk(() => nix.app(nix.sel(pkgs, "ibus-with-plugins", "override"), nix.thunk(() => ({ __proto__: pos$1, plugins: nix.thunk(() => nix.sel(cfg, "engines")) }))));
+  const ibusPackage = nix.thunk(() => nix.app(nix.sel(pkgs, "ibus-with-plugins", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, plugins: nix.thunk(() => nix.sel(cfg, "engines")) }))));
   const ibusEngine = nix.thunk(() => nix.app(nix.sel(lib, "types", "mkOptionType"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(lib, "types", "package"));
       return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "ibus-engine",
       descriptionClass: nix.thunk(() => nix.attr(from, "descriptionClass")),
       merge: nix.thunk(() => nix.attr(from, "merge")),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
     })())));
   const impanel = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "panel"), null)), nix.thunk(() => nix.str`--panel=${nix.sel(cfg, "panel")}`)));
   const ibusAutostart = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "autostart-ibus-daemon",
       destination: "/etc/xdg/autostart/ibus-daemon.desktop",
       text: nix.thunk(() => nix.str`[Desktop Entry]
@@ -62,20 +62,20 @@ NotShowIn=GNOME;KDE;
 `),
     }))));
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["programs", "ibus", "plugins"]), nix.thunk(() => ["i18n", "inputMethod", "ibus", "engines"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       i18n: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         inputMethod: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           ibus: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             engines: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "listOf"), ibusEngine);
@@ -89,7 +89,7 @@ NotShowIn=GNOME;KDE;
                 })()),
               })))),
             panel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -99,7 +99,7 @@ NotShowIn=GNOME;KDE;
                 description: "Replace the IBus panel with another panel.",
               })))),
             waylandFrontend: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Use the Wayland input method frontend.\nThis doesn't set `GTK_IM_MODULE` and `QT_IM_MODULE` environment variables.\nSee [Using Fcitx 5 on Wayland](https://fcitx-im.org/wiki/Using_Fcitx_5_on_Wayland#GTK_IM_MODULE).\n",
@@ -109,33 +109,33 @@ NotShowIn=GNOME;KDE;
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(imcfg, "enable")) && nix.asBool(nix.eq(nix.sel(imcfg, "type"), "ibus")))), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         i18n: nix.thunk(() => ({
-          __proto__: pos$12,
-          inputMethod: nix.thunk(() => ({ __proto__: pos$11, package: ibusPackage })),
+          [nix.POS]: pos$12,
+          inputMethod: nix.thunk(() => ({ [nix.POS]: pos$11, package: ibusPackage })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           systemPackages: nix.thunk(() => [ibusAutostart]),
-          variables: nix.thunk(() => nix.update({ __proto__: pos$13, XMODIFIERS: "@im=ibus" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "waylandFrontend"))), nix.thunk(() => ({ __proto__: pos$14, GTK_IM_MODULE: "ibus", QT_IM_MODULE: "ibus" }))))),
+          variables: nix.thunk(() => nix.update({ [nix.POS]: pos$13, XMODIFIERS: "@im=ibus" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "waylandFrontend"))), nix.thunk(() => ({ [nix.POS]: pos$14, GTK_IM_MODULE: "ibus", QT_IM_MODULE: "ibus" }))))),
         })),
         programs: nix.thunk(() => ({
-          __proto__: pos$17,
-          dconf: nix.thunk(() => ({ __proto__: pos$16, enable: true, packages: nix.thunk(() => [ibusPackage]) })),
+          [nix.POS]: pos$17,
+          dconf: nix.thunk(() => ({ [nix.POS]: pos$16, enable: true, packages: nix.thunk(() => [ibusPackage]) })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$19,
-          dbus: nix.thunk(() => ({ __proto__: pos$18, packages: nix.thunk(() => [ibusPackage]) })),
+          [nix.POS]: pos$19,
+          dbus: nix.thunk(() => ({ [nix.POS]: pos$18, packages: nix.thunk(() => [ibusPackage]) })),
         })),
         xdg: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           portal: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             extraPortals: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "xdg", "portal", "enable")), nix.thunk(() => [ibusPackage]))),
           })),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$23, buildDocsInSandbox: false })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$23, buildDocsInSandbox: false })),
   };
 })(), formals$1);
 //# sourceMappingURL=ibus.ts.map

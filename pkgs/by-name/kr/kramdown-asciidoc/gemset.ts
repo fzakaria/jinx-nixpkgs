@@ -13,14 +13,14 @@ const pos$8 = nix.positions(here + "/gemset.nix", [["groups", 40, 5], ["platform
 const pos$9 = nix.positions(here + "/gemset.nix", [["kramdown", 2, 3], ["kramdown-asciidoc", 13, 3], ["kramdown-parser-gfm", 28, 3], ["rexml", 39, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$9,
+  [nix.POS]: pos$9,
   kramdown: nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     dependencies: nix.thunk(() => ["rexml"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1ic14hdcqxn821dvzki99zhmcy130yhv5fqfffkcf87asv5mnbmn",
       type: "gem",
@@ -28,12 +28,12 @@ export default nix.thunk(() => ({
     version: "2.4.0",
   })),
   "kramdown-asciidoc": nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     dependencies: nix.thunk(() => ["kramdown", "kramdown-parser-gfm", "rexml"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1j7qbpq6zhgcf9ykhz5r1wlr3r8fls6hvhdisxzz4v35rni5kwp9",
       type: "gem",
@@ -41,12 +41,12 @@ export default nix.thunk(() => ({
     version: "2.1.0",
   })),
   "kramdown-parser-gfm": nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     dependencies: nix.thunk(() => ["kramdown"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0a8pb3v951f4x7h968rqfsa19c8arz21zw1vaj42jza22rap8fgv",
       type: "gem",
@@ -54,11 +54,11 @@ export default nix.thunk(() => ({
     version: "1.1.0",
   })),
   rexml: nix.thunk(() => ({
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "05i8518ay14kjbma550mv0jm8a6di8yp5phzrd8rj44z9qnrlrp0",
       type: "gem",

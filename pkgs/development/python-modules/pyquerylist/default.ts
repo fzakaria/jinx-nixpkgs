@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pyquerylist",
       version: "0-unstable-2025-03-03",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "markmuetz",
           repo: "pyquerylist",
           rev: "1de783a7eddbe0726c6bf49c90153f1130c18ef8",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["pyquerylist"]),
       nativeCheckInputs: nix.thunk(() => [coverage, flake8, pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extension of base Python list that you can query",
         homepage: "https://github.com/markmuetz/pyquerylist",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

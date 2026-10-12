@@ -33,16 +33,16 @@ export default nix.lambda((args) => (() => {
       const attrs = nix.thunk(() => (nix.asBool(nix.builtins.isFunction(fnOrAttrs)) ? nix.app(fnOrAttrs, finalAttrs) : nix.force(fnOrAttrs)));
       const deps = nix.thunk(() => (nix.asBool(nix.eq(nugetDeps, null)) ? [] : (nix.asBool(nix.app(nix.sel(lib, "isDerivation"), nugetDeps)) ? [nugetDeps] : (nix.asBool(nix.app(nix.sel(lib, "isList"), nugetDeps)) ? nix.force(nugetDeps) : (nix.asBool(nix.app(nix.sel(lib, "hasSuffix"), ".nix", nugetDeps)) ? (() => {
         nix.assert_(nix.app(nix.sel(lib, "isPath"), nugetDeps), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/dotnet/add-nuget-deps/default.nix:49:7");
-        return nix.app(callPackage, nugetDeps, nix.thunk(() => ({ __proto__: pos$1, fetchNuGet: fetchNupkg })));
+        return nix.app(callPackage, nugetDeps, nix.thunk(() => ({ [nix.POS]: pos$1, fetchNuGet: fetchNupkg })));
       })() : nix.builtins.map(fetchNupkg, nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nugetDeps))))))));
       const finalPackage = nix.thunk(() => nix.sel(finalAttrs, "finalPackage"));
       return nix.update(attrs, {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         buildInputs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "buildInputs"), deps)),
-        passthru: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "passthru"), nix.update({ __proto__: pos$2, nugetDeps: deps }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.eq(nugetDeps, null)) || nix.asBool(nix.app(nix.sel(lib, "isPath"), nugetDeps)))), nix.thunk(() => (() => {
+        passthru: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "passthru"), nix.update({ [nix.POS]: pos$2, nugetDeps: deps }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.eq(nugetDeps, null)) || nix.asBool(nix.app(nix.sel(lib, "isPath"), nugetDeps)))), nix.thunk(() => (() => {
             const fetch_drv = nix.thunk(() => (() => {
               const pkg$ = nix.thunk(() => nix.app(nix.sel(finalPackage, "overrideAttrs"), (old) => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   buildInputs: nix.thunk(() => nix.selOr(attrs, () => [], "buildInputs")),
                   nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "nativeBuildInputs"), [cacert])),
                   keepNugetConfig: true,
@@ -58,11 +58,11 @@ export default nix.lambda((args) => (() => {
             const fetch_deps = nix.thunk(() => (() => {
               const drv = nix.thunk(() => nix.builtins.unsafeDiscardOutputDependency(nix.thunk(() => nix.sel(fetch_drv, "drvPath"))));
               const innerScript = nix.thunk(() => nix.app(replaceVarsWith, nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   src: nix.path(here, "./fetch-deps.sh"),
                   isExecutable: true,
                   replacements: nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     binPath: nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nixfmt, nuget_to_json]))),
                   })),
                 }))));
@@ -73,7 +73,7 @@ echo 'fetching dependencies for' ${nix.app(nix.sel(lib, "escapeShellArg"), nix.t
 
 # this needs to be before TMPDIR is changed, so the output isn't deleted
 # if it uses mktemp
-${nix.app(nix.sel(lib, "toShellVars"), nix.thunk(() => ({ __proto__: pos$6, defaultDepsFile: defaultDepsFile })))}
+${nix.app(nix.sel(lib, "toShellVars"), nix.thunk(() => ({ [nix.POS]: pos$6, defaultDepsFile: defaultDepsFile })))}
 depsFile=$(realpath "\${1:-$defaultDepsFile}")
 
 export TMPDIR
@@ -91,7 +91,7 @@ NIX_BUILD_SHELL=${nix.app(nix.sel(lib, "escapeShellArg"), runtimeShell)} ${nix$}
   --pure --keep NUGET_HTTP_CACHE_PATH --run 'source '${nix.app(nix.sel(lib, "escapeShellArg"), innerScript)}' '"\${depsFile@Q}" "${drv}"
 `));
             })());
-            return { __proto__: pos$7, "fetch-drv": fetch_drv, "fetch-deps": fetch_deps };
+            return { [nix.POS]: pos$7, "fetch-drv": fetch_drv, "fetch-deps": fetch_deps };
           })()))))),
       });
     })();

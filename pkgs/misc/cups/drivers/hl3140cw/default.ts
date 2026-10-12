@@ -25,23 +25,23 @@ export default nix.lambda((args) => (() => {
   const gawk = nix.arg($, "gawk");
   const version = "1.1.4-0";
   const cupsdeb = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf007070/hl3140cwcupswrapper-${version}.i386.deb`),
       sha256: "a76281828ca6ee86c63034673577fadcf5f24e8ed003213bdbb6bf47a7aced6f",
     }))));
   const srcdir = nix.thunk(() => nix.str`hl3140cw_cupswrapper_GPL_source_${version}`);
   const cupssrc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf006740/${srcdir}.tar.gz`),
       sha256: "1wp85rbvbar6rqqkaffymxjpls6jx9m9230dlrpqwy5akiaxf0rl",
     }))));
   const lprdeb = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: "https://support.brother.com/g/b/files/dlf/dlf007068/hl3140cwlpr-1.1.2-1.i386.deb",
       sha256: "601f392b52ed7080f71b780181823bb8f6abfd0591146b452ba1f23e21f9f865",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cups-brother-hl3140cw",
       version: version,
       nativeBuildInputs: nix.thunk(() => [makeWrapper, dpkg]),
@@ -88,7 +88,7 @@ wrapProgram $out/opt/brother/Printers/hl3140cw/cupswrapper/cupswrapperhl3140cw \
   --prefix PATH ":" ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gnused, coreutils, gawk]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "http://www.brother.com/",
         description: "Brother hl3140cw printer driver",
         sourceProvenance: nix.thunk(() => (() => {

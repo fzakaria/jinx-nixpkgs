@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const singularity = nix.arg($, "singularity");
   const defaultSingularity = singularity;
   return nix.app(nix.sel(lib, "makeExtensible"), (final) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       buildImage: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const name = nix.arg($_1, "name");
@@ -47,14 +47,14 @@ ${runScript}
 `)));
         const runScriptReferences = nix.thunk(() => (nix.asBool(nix.has(nix.builtins, "getContext")) ? nix.app(nix.sel(lib, "splitString"), "\n", nix.thunk(() => nix.sel(nix.app(writeStringReferencesToFile, nix.thunk(() => nix.sel(runScriptFile, "text"))), "text"))) : [nix.thunk(() => nix.app(writeDirectReferencesToFile, runScriptFile))]));
         const result = nix.thunk(() => nix.app(nix.sel(vmTools, "runInLinuxVM"), nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${projectName}-image-${name}.sif`), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               __structuredAttrs: true,
               nativeBuildInputs: nix.thunk(() => [singularity_1, e2fsprogs, util_linux]),
               strictDeps: true,
               contents: contents,
               layerClosure: nix.thunk(() => nix.app(writeClosure, nix.thunk(() => nix.concat([bashInteractive], nix.concat(runScriptReferences, contents))))),
               preVM: nix.thunk(() => nix.app(nix.sel(vmTools, "createEmptyImage"), nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   size: diskSize,
                   fullName: nix.thunk(() => nix.str`${projectName}-run-disk`),
                   destination: "disk-image",

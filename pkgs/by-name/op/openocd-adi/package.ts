@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(openocd, "overrideAttrs"), (finalAttrs) => (old) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "openocd-adi",
       version: "0.12.0-1.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "analogdevicesinc",
           repo: "openocd",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(old, "nativeBuildInputs"), [autoreconfHook])),
       meta: nix.thunk(() => nix.update(nix.sel(openocd, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ADI fork of OpenOCD",
         homepage: "https://github.com/analogdevicesinc/openocd",
         maintainers: nix.thunk(() => (() => {

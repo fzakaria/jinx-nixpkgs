@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const platform = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-linux")) ? "asimd" : "avx2"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mlucas",
       version: "21.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "primesearch",
           repo: "Mlucas",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gmp]),
       postPatch: "chmod +x makemake.sh\npatchShebangs makemake.sh\n",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
@@ -49,7 +49,7 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Open-source program for primality testing of Mersenne numbers",
         longDescription: "This program may be used to test any suitable number as you wish, but it is preferable that you do so in a coordinated fashion,\nas part of the Great Internet Mersenne Prime Search (GIMPS). Note that on x86 processors Mlucas is not as efficient\nas the main GIMPS client, George Woltman's Prime95 program (a.k.a. mprime for the linux version),\nbut that program is not 100% open-source. Prime95 is also only available for platforms based on the\nx86 processor architecture. The help.txt file in the Github repo includes a variety of usage information\nnot covered in the original README.\n",
         homepage: "https://github.com/primesearch/Mlucas",

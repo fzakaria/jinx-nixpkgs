@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const buildInputs = nix.argOr($_1, "buildInputs", () => []);
     return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       postPatch: "if [ \"$pname\" == \"flutter-tools\" ]; then\n  substituteInPlace lib/src/ios/xcodeproj.dart \\\n    --replace-fail arm64e arm64\nfi\n",
     };
   })(), formals$2);

@@ -16,25 +16,25 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "plantuml-server",
       version: "1.2026.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/plantuml/plantuml-server/releases/download/v${nix.sel(finalAttrs, "version")}/plantuml-v${nix.sel(finalAttrs, "version")}.war`),
           hash: "sha256-QfFnGVFKyRtxfkcXc0TcSUWnbvsqhUkmalJeKHOra/Q=",
         })))),
       dontUnpack: true,
       postInstall: "mkdir -p \"$out/webapps\"\ncp \"$src\" \"$out/webapps/plantuml.war\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "plantuml-server": nix.thunk(() => nix.attr(nixosTests, "plantuml-server")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Web application to generate UML diagrams on-the-fly",
         homepage: "https://plantuml.com/",
         sourceProvenance: nix.thunk(() => (() => {

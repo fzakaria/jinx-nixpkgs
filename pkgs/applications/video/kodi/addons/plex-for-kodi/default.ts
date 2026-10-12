@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const namespace = "script.plex";
       const version = "0.7.9-rev4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pannal",
           repo: "plex-for-kodi",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -33,20 +33,20 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [nix.path(here, "./plex-template-dir.patch")]);
       const propagatedBuildInputs = nix.thunk(() => [six, requests, kodi_six]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(addonUpdateScript, nix.thunk(() => ({ __proto__: pos$2, attrPath: "kodi.packages.plex" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(addonUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$2, attrPath: "kodi.packages.plex" })))),
       }));
       const postInstall = nix.thunk(() => nix.str`mv /build/source/addon.xml $out${addonDir}/${namespace}/
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.plex.tv",
         description: "Unofficial Plex for Kodi add-on",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         maintainers: nix.thunk(() => nix.sel(lib, "teams", "kodi", "members")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         namespace,
         version,

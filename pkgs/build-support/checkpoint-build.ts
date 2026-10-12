@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const mktemp = nix.thunk(() => nix.attr(buildPackages, "mktemp"));
   const rsync = nix.thunk(() => nix.attr(buildPackages, "rsync"));
   const mkCheckpointBuild = (drv) => (checkpointArtifacts) => nix.app(nix.sel(drv, "overrideAttrs"), (old) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       preBuild: nix.thunk(() => nix.add(nix.selOr(old, () => "", "preBuild"), nix.str`set +e
 sourceDifferencePatchFile=$(${mktemp}/bin/mktemp)
 diff -ur ${checkpointArtifacts}/sources ./ > "$sourceDifferencePatchFile"
@@ -31,10 +31,10 @@ rm "$sourceDifferencePatchFile"
 `)),
     }));
   return nix.update({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     mkCheckpointBuild: mkCheckpointBuild,
     prepareCheckpointBuild: (drv) => nix.app(nix.sel(drv, "overrideAttrs"), (old) => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         outputs: nix.thunk(() => ["out"]),
         name: nix.thunk(() => nix.add(nix.sel(drv, "name"), "-checkpointArtifacts")),
         preBuild: nix.thunk(() => nix.add(nix.selOr(old, () => "", "preBuild"), "mkdir -p $out/sources\ncp -r ./* $out/sources/\n")),
@@ -44,7 +44,7 @@ rm "$sourceDifferencePatchFile"
         doDist: false,
       })),
   }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       mkCheckpointedBuild: nix.thunk(() => nix.app(nix.sel(lib, "warn"), "`mkCheckpointedBuild` is deprecated, use `mkCheckpointBuild` instead!", mkCheckpointBuild)),
     }))));
 })(), formals$1);

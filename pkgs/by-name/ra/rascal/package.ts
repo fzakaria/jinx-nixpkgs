@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const jdk = nix.arg($, "jdk");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rascal",
       version: "0.33.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://update.rascal-mpl.org/console/rascal-${nix.sel(finalAttrs, "version")}.jar`),
           sha256: "sha256-8m7+ME0mu9LEMzklkz1CZ9s7ZCMjoA5oreICFSpb4S8=",
         })))),
@@ -31,7 +31,7 @@ makeWrapper ${jdk}/bin/java $out/bin/rascal \\
   --add-flags "-jar ${nix.sel(finalAttrs, "src")}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.rascal-mpl.org/",
         description: "Command-line REPL for the Rascal metaprogramming language",
         mainProgram: "rascal",

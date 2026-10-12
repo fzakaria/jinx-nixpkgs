@@ -13,13 +13,13 @@ const pos$8 = nix.positions(here + "/gemset.nix", [["groups", 38, 5], ["platform
 const pos$9 = nix.positions(here + "/gemset.nix", [["cmdparse", 2, 3], ["geom2d", 12, 3], ["hexapdf", 22, 3], ["openssl", 37, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$9,
+  [nix.POS]: pos$9,
   cmdparse: nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0f87jny4zk21iyrkyyw4kpnq8ymrwjay02ipagwapimy237cmigp",
       type: "gem",
@@ -27,11 +27,11 @@ export default nix.thunk(() => ({
     version: "3.0.7",
   })),
   geom2d: nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1nafcfznjqycxd062cais64ydgl99xddh4zy4hp7bwn4j3m9h2ga",
       type: "gem",
@@ -39,12 +39,12 @@ export default nix.thunk(() => ({
     version: "0.4.1",
   })),
   hexapdf: nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     dependencies: nix.thunk(() => ["cmdparse", "geom2d", "openssl"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "13dbscnf7c3jlghlkgl01b7hzgx2ps26m57qmhyv5g626n342i4c",
       type: "gem",
@@ -52,11 +52,11 @@ export default nix.thunk(() => ({
     version: "1.0.2",
   })),
   openssl: nix.thunk(() => ({
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "054d6ybgjdzxw567m7rbnd46yp6gkdbc5ihr536vxd3p15vbhjrw",
       type: "gem",

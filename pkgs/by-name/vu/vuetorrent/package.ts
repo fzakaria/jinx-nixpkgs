@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "vuetorrent";
       const version = "2.35.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "VueTorrent",
           repo: "VueTorrent",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-szloFJfkV8W/bl0Bi0NqvD0g1SBN55t1xvgMHM/71o4=";
       const installPhase = "runHook preInstall\n\nmkdir -p $out/share\ncp -r vuetorrent $out/share/vuetorrent\n\nrunHook postInstall\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Full-featured BitTorrent client written in Vue",
         homepage: "https://github.com/VueTorrent/VueTorrent",
         changelog: nix.thunk(() => nix.str`https://github.com/VueTorrent/VueTorrent/releases/tag/${nix.sel(src, "tag")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

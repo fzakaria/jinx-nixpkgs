@@ -23,30 +23,30 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform"));
   const system = nix.thunk(() => nix.attr(from, "system"));
   const pypiMeta = nix.thunk(() => nix.selOr({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       hash: "sha256-owM+l9+L3BgfhJaTPoTVcVjJ34ot3MakuAPKCl9dhLc=",
       platform: "manylinux1_x86_64",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       hash: "sha256-EoHA1lQQUdJyA/wFcNfBb/oZk3PM+sKMPcOfxFJcP28=",
       platform: "manylinux2014_aarch64",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       hash: "sha256-nNmLnZx98FEBcVibRFtorpiElvY9ws54R0nfZcYHO34=",
       platform: "macosx_11_0_arm64",
     })),
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${system}`)), nix.key(nix.force(system))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "frida-python",
       version: version,
       format: format,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           pname: "frida",
           version: version,
           format: format,
@@ -57,9 +57,9 @@ export default nix.lambda((args) => (() => {
           dist: "cp37",
         })))),
       pythonImportsCheck: nix.thunk(() => ["frida", "frida._frida"]),
-      passthru: nix.thunk(() => ({ __proto__: pos$6, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$6, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Dynamic instrumentation toolkit for developers, reverse-engineers, and security researchers (Python bindings)",
         homepage: "https://www.frida.re",
         license: nix.thunk(() => (() => {

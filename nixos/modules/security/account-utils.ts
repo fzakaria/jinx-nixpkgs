@@ -43,28 +43,28 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "security", "account-utils"));
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       security: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         "account-utils": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the account-utils implementation of Unix user authentication and management")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "account-utils", nix.thunk(() => ({})))),
           extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "nonEmptyStr")))),
               default: [],
               example: nix.thunk(() => ["--debug", "-v"]),
               description: "List of arguments to pass to the socket activated service executables.\n::: {.note}\nThis is passed to both pwupdd and pwaccessd, which support identical flags.\n:::\n",
             })))),
           pwaccessd: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 description: "Options for pwaccessd.\nSee {manpage}`pwaccessd.conf(5)` for available options.\n",
-                type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({ __proto__: pos$2, freeformType: nix.thunk(() => nix.sel(format, "type")) })))),
+                type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({ [nix.POS]: pos$2, freeformType: nix.thunk(() => nix.sel(format, "type")) })))),
                 default: nix.thunk(() => ({})),
               })))),
           })),
@@ -72,54 +72,54 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         security: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           pam: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             pam_unixModulePath: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/lib/security/pam_unix_ng.so`),
             enableLegacySettings: false,
             services: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               "pwupd-passwd": nix.thunk(() => ({})),
               "pwupd-chsh": nix.thunk(() => ({})),
               "pwupd-chfn": nix.thunk(() => ({})),
             })),
           })),
           wrappers: nix.thunk(() => ({
-            __proto__: pos$15,
-            newuidmap: nix.thunk(() => ({ __proto__: pos$10, enable: false })),
-            newgidmap: nix.thunk(() => ({ __proto__: pos$11, enable: false })),
-            chsh: nix.thunk(() => ({ __proto__: pos$12, enable: false })),
-            passwd: nix.thunk(() => ({ __proto__: pos$13, enable: false })),
-            unix_chkpwd: nix.thunk(() => ({ __proto__: pos$14, enable: false })),
+            [nix.POS]: pos$15,
+            newuidmap: nix.thunk(() => ({ [nix.POS]: pos$10, enable: false })),
+            newgidmap: nix.thunk(() => ({ [nix.POS]: pos$11, enable: false })),
+            chsh: nix.thunk(() => ({ [nix.POS]: pos$12, enable: false })),
+            passwd: nix.thunk(() => ({ [nix.POS]: pos$13, enable: false })),
+            unix_chkpwd: nix.thunk(() => ({ [nix.POS]: pos$14, enable: false })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           sockets: nix.thunk(() => ({
-            __proto__: pos$20,
-            pwaccessd: nix.thunk(() => ({ __proto__: pos$17, wantedBy: nix.thunk(() => ["sockets.target"]) })),
+            [nix.POS]: pos$20,
+            pwaccessd: nix.thunk(() => ({ [nix.POS]: pos$17, wantedBy: nix.thunk(() => ["sockets.target"]) })),
             pwupdd: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               wantedBy: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(config, "users", "mutableUsers")), "sockets.target")),
             })),
-            newidmapd: nix.thunk(() => ({ __proto__: pos$19, wantedBy: nix.thunk(() => ["sockets.target"]) })),
+            newidmapd: nix.thunk(() => ({ [nix.POS]: pos$19, wantedBy: nix.thunk(() => ["sockets.target"]) })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             "pwupdd@": nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               environment: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 PWUPDD_OPTS: nix.thunk(() => nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.sel(cfg, "extraArgs")))),
               })),
             })),
             pwaccessd: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               environment: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 LD_LIBRARY_PATH: nix.thunk(() => nix.sel(config, "system", "nssModules", "path")),
                 PWACCESSD_OPTS: nix.thunk(() => nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.sel(cfg, "extraArgs")))),
               })),
@@ -127,12 +127,12 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             "account-utils/pwaccessd.conf": nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               source: nix.thunk(() => nix.app(nix.sel(format, "generate"), "pwaccessd.conf", nix.thunk(() => nix.sel(cfg, "pwaccessd", "settings")))),
             })),
           })),

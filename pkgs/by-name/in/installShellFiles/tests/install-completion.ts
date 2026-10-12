@@ -12,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const runCommandLocal = nix.arg($, "runCommandLocal");
   return nix.app(runCommandLocal, "install-shell-files--install-completion", nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       })),
     })), "echo foo > foo\necho bar > bar\necho baz > baz\necho qux > qux.zsh\necho quux > quux\necho quokka > quokka\n\ninstallShellCompletion \\\n  --bash foo bar \\\n  --zsh baz qux.zsh \\\n  --fish quux \\\n  --nushell quokka\n\ncmp foo $out/share/bash-completion/completions/foo\ncmp bar $out/share/bash-completion/completions/bar\ncmp baz $out/share/zsh/site-functions/_baz\ncmp qux.zsh $out/share/zsh/site-functions/_qux\ncmp quux $out/share/fish/vendor_completions.d/quux\ncmp quokka $out/share/nushell/vendor/autoload/quokka\n");

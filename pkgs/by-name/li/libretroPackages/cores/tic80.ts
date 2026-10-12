@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const mkLibretroCore = nix.arg($, "mkLibretroCore");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       core: "tic80",
       version: "0-unstable-2026-04-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libretro",
           repo: "tic-80",
           rev: "cef5c5be6658106c9ca7a98b3e9a1e5e2ff30888",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "cd core",
       postBuild: "cd lib",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Port of TIC-80 to libretro",
         homepage: "https://github.com/libretro/tic-80",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

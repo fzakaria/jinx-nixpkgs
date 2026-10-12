@@ -64,20 +64,20 @@ export default nix.lambda((args) => (() => {
   const ovrCompatSearchPaths = nix.argOr($, "ovrCompatSearchPaths", () => nix.str`${xrizer}/lib/xrizer:${opencomposite}/lib/opencomposite`);
   const clientLibOnly = nix.argOr($, "clientLibOnly", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "wivrn",
       version: "26.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wivrn",
           repo: "wivrn",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-/kXgbku/4EeYY5YTwtY71csgxOP8bRACLqOvKXolg5g=",
         })))),
       monado: nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               domain: "gitlab.freedesktop.org",
               owner: "monado",
               repo: "monado",
@@ -167,7 +167,7 @@ wrapQtApp "$out/bin/wivrn-dashboard" \\
 `))),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(clientLibOnly)), nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               name: "WiVRn Server",
               desktopName: "WiVRn Server",
               genericName: "WiVRn Server",
@@ -179,11 +179,11 @@ wrapQtApp "$out/bin/wivrn-dashboard" \\
             })))),
         ]))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "OpenXR streaming application to a standalone headset",
         homepage: "https://github.com/WiVRn/WiVRn/",
         changelog: nix.thunk(() => nix.str`https://github.com/WiVRn/WiVRn/releases/tag/v${nix.sel(finalAttrs, "version")}`),

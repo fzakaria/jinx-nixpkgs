@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.9.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-7n1BEj88mREFDqLC2sEHVo3EOy07DHVXozISw5jq0w8=",
@@ -30,9 +30,9 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [setuptools]);
       const doCheck = false;
       const propagatedBuildInputs = nix.thunk(() => [ptyprocess]);
-      const passthru = nix.thunk(() => ({ __proto__: pos$3, tests: nix.thunk(() => ({ __proto__: pos$2, sage: sage })) }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, tests: nix.thunk(() => ({ [nix.POS]: pos$2, sage: sage })) }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "http://www.noah.org/wiki/Pexpect",
         description: "Automate interactive console applications such as ssh, ftp, etc",
         downloadPage: "https://github.com/pexpect/pexpect",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         longDescription: "Pexpect is similar to the Don Libes \"Expect\" system, but Pexpect\nas a different interface that is easier to understand. Pexpect\nis basically a pattern matching system. It runs programs and\nwatches output. When output matches a given pattern Pexpect can\nrespond as if a human were typing responses. Pexpect can be used\nfor automation, testing, and screen scraping. Pexpect can be\nused for automating interactive console applications such as\nssh, ftp, passwd, telnet, etc. It can also be used to control\nweb applications via \"lynx\", \"w3m\", or some other text-based web\nbrowser. Pexpect is pure Python. Unlike other Expect-like\nmodules for Python Pexpect does not require TCL or Expect nor\ndoes it require C extensions to be compiled. It should work on\nany platform that supports the standard Python pty module.\n",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

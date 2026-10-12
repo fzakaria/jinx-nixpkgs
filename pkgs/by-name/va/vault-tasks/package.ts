@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "0.13.0";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "vault-tasks",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "louis-thevenet",
           repo: "vault-tasks",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -43,11 +43,11 @@ installShellCompletion --cmd vault-tasks \\
 `;
       })())),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "TUI Markdown Task Manager",
         longDescription: "vault-tasks is a TUI Markdown task manager.\nIt will parse any Markdown file or vault and display the tasks it contains.\n",
         homepage: "https://github.com/louis-thevenet/vault-tasks",

@@ -27,46 +27,46 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     name: "bees",
     nodes: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             emptyDiskImages: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 size: 4096n,
                 driveConfig: nix.thunk(() => ({
-                  __proto__: pos$2,
-                  deviceExtraOpts: nix.thunk(() => ({ __proto__: pos$1, serial: "aux1" })),
+                  [nix.POS]: pos$2,
+                  deviceExtraOpts: nix.thunk(() => ({ [nix.POS]: pos$1, serial: "aux1" })),
                 })),
               })),
               nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 size: 4096n,
                 driveConfig: nix.thunk(() => ({
-                  __proto__: pos$5,
-                  deviceExtraOpts: nix.thunk(() => ({ __proto__: pos$4, serial: "aux2" })),
+                  [nix.POS]: pos$5,
+                  deviceExtraOpts: nix.thunk(() => ({ [nix.POS]: pos$4, serial: "aux2" })),
                 })),
               })),
             ]),
             fileSystems: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               "/aux1": nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 device: "/dev/disk/by-id/virtio-aux1",
                 fsType: "btrfs",
                 autoFormat: true,
               })),
               "/aux2": nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 device: "/dev/disk/by-id/virtio-aux2",
                 fsType: "btrfs",
                 autoFormat: true,
@@ -74,13 +74,13 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             beesd: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               filesystems: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 aux1: nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   spec: "/dev/disk/by-id/virtio-aux1",
                   hashTableSizeMB: 16n,
                   verbosity: "debug",

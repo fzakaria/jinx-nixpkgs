@@ -12,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "code-spell-checker-french",
         publisher: "streetsidesoftware",
         version: "0.4.4",
         hash: "sha256-9BVSQFysgKPKp1e6noSv2szVSQvYH7nOuphJeiso55s=",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: "https://marketplace.visualstudio.com/items/streetsidesoftware.code-spell-checker-french/changelog",
         description: "French dictionary extension for VS Code",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker-french",

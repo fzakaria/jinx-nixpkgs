@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const trio = nix.arg($, "trio");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pycrdt-store",
       version: "0.1.5",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "y-crdt",
           repo: "pycrdt-store",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       disabledTestMarks: nix.thunk(() => ["flaky"]),
       pythonImportsCheck: nix.thunk(() => ["pycrdt.store"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Persistent storage for pycrdt",
         homepage: "https://github.com/y-crdt/pycrdt-store",
         changelog: nix.thunk(() => nix.str`https://github.com/y-crdt/pycrdt-store/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

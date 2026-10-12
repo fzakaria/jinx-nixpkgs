@@ -29,26 +29,26 @@ export default nix.lambda((args) => (() => {
   const sdkVer = nix.argOr($, "sdkVer", () => null);
   const productBuildVer = nix.argOr($, "productBuildVer", () => null);
   const googletest = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "google",
       repo: "googletest",
       rev: "43359642a1c16ad3f4fc575c7edd0cb935810815",
       sha256: "sha256-mKjXaawFHSRrbJBtADJ1Pdk6vtuD+ax0HFk6YaBSnXg=",
     }))));
   const linenoise = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "antirez",
       repo: "linenoise",
       rev: "c894b9e59f02203dbe4e2be657572cf88c4230c3",
       sha256: "sha256-nKxwWuSqr89lvI9Y3QAW5Mo7/iFfMNj/OOQVeA/FWnE=",
     }))));
   return nix.app(nix.sel(stdenv$, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "xcbuild",
       outputs: nix.thunk(() => ["out", "xcrun"]),
       version: "0.1.1-unstable-2019-11-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "facebookarchive",
           repo: "xcbuild",
           rev: "dbaee552d2f13640773eb1ad3c79c0d2aca7229c",
@@ -67,7 +67,7 @@ cp -r --no-preserve=all ${linenoise} ThirdParty/linenoise
 `),
       postPatch: nix.thunk(() => nix.add(nix.add("substituteInPlace Libraries/pbxbuild/Sources/Tool/TouchResolver.cpp \\\n  --replace-fail \"/usr/bin/touch\" \"touch\"\nsubstituteInPlace Libraries/pbxbuild/Sources/Tool/MakeDirectoryResolver.cpp \\\n  --replace-fail \"/bin/mkdir\" \"mkdir\"\nsubstituteInPlace Libraries/pbxbuild/Sources/Tool/SymlinkResolver.cpp \\\n  --replace-fail \"/bin/ln\" \"ln\"\nsubstituteInPlace Libraries/pbxbuild/Sources/Tool/ScriptResolver.cpp \\\n  --replace-fail \"/bin/sh\" \"sh\"\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv$, "hostPlatform", "isDarwin"))), "# Fix build on gcc-13 due to missing includes\nsed -e '1i #include <cstdint>' -i \\\n  Libraries/libutil/Headers/libutil/Permissions.h \\\n  Libraries/pbxbuild/Headers/pbxbuild/Tool/AuxiliaryFile.h \\\n  Libraries/pbxbuild/Headers/pbxbuild/Tool/Invocation.h\n\n# Avoid a glibc >= 2.25 deprecation warning that gets fatal via -Werror.\nsed 1i'#include <sys/sysmacros.h>' \\\n  -i Libraries/xcassets/Headers/xcassets/Slot/SystemVersion.h\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv$, "hostPlatform", "isDarwin")), "# Apple Open Sourced LZFSE, but not libcompression, and it isn't\n# part of an impure framework we can add\nsubstituteInPlace Libraries/libcar/Sources/Rendition.cpp \\\n  --replace \"#if HAVE_LIBCOMPRESSION\" \"#if 0\"\n"))),
       strictDeps: true,
-      env: nix.thunk(() => ({ __proto__: pos$4, NIX_CFLAGS_COMPILE: "-Wno-error" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$4, NIX_CFLAGS_COMPILE: "-Wno-error" })),
       cmakeFlags: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_POLICY_VERSION_MINIMUM", "3.10")),
       ]),
@@ -76,11 +76,11 @@ cp -r --no-preserve=all ${linenoise} ThirdParty/linenoise
       postInstall: "mv $out/usr/* $out\nrmdir $out/usr\ncp liblinenoise.* $out/lib/\n\nmkdir -p \"$xcrun/bin\"\nln -s \"$out/bin/xcrun\" \"$xcrun/bin/xcrun\"\n\n# xcbuild and xcrun support absolute paths, but they can’t find the SDK with the way it’s set up in\n# the store. Fortunately, the combination of `DEVELOPER_DIR` and a plain `SDKROOT` is enough.\nwrapProgram \"$out/bin/xcbuild\" --set SDKROOT macosx\nwrapProgram \"$out/bin/xcrun\" --set SDKROOT macosx\n",
       __structuredAttrs: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         xcbuild: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Xcode-compatible build tool",
         homepage: "https://github.com/facebookarchive/xcbuild",
         license: nix.thunk(() => (() => {

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const mkNginxPlugin = nix.arg($, "mkNginxPlugin");
   return nix.app(mkNginxPlugin, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "echo",
       version: "0.65",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: "echo",
           owner: "openresty",
           repo: "echo-nginx-module",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-DiukXNS1ZoKVMnDD/65DZxxQSS/lAKZ5b0Pp0Hs6MTc=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Brings echo, sleep, time, exec and more shell-style goodies to Nginx",
         homepage: "https://github.com/openresty/echo-nginx-module",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

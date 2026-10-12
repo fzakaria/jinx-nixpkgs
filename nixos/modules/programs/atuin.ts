@@ -48,60 +48,60 @@ export default nix.lambda((args) => (() => {
   const tomlFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   const settingsFile = nix.thunk(() => nix.app(nix.sel(tomlFormat, "generate"), "atuin-config", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$34,
+    [nix.POS]: pos$34,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       programs: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         atuin: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "atuin")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "atuin", nix.thunk(() => ({})))),
           enableBashIntegration: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "Bash integration"), {
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             default: nix.thunk(() => nix.sel(config, "programs", "bash", "enable")),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.programs.bash.enable")),
           })),
           enableZshIntegration: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "Zsh integration"), {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             default: nix.thunk(() => nix.sel(config, "programs", "zsh", "enable")),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.programs.zsh.enable")),
           })),
           enableFishIntegration: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "Fish integration"), {
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             default: nix.thunk(() => nix.sel(config, "programs", "fish", "enable")),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.programs.fish.enable")),
           })),
           flags: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["--disable-up-arrow", "--disable-ctrl-r"]),
               description: "Flags to append to the shell hook.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(tomlFormat, "type")),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  auto_sync = true;\n  sync_frequency = \"5m\";\n  sync_address = \"https://api.atuin.sh\";\n  search_mode = \"prefix\";\n}\n")),
               description: "Configuration written to {file}`/etc/atuin/config.toml`.\n\nSee <https://docs.atuin.sh/latest/configuration/config/> for the full list\nof options.\n",
             })))),
           daemon: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "the Atuin daemon"), {
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isLinux")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.stdenv.hostPlatform.isLinux")),
             })),
             logLevel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["trace", "debug", "info", "warn", "error"]))),
                 default: "info",
                 description: "Log level for the Atuin daemon.\n",
               })))),
           })),
           themes: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "oneOf"), nix.thunk(() => [
                     nix.thunk(() => nix.sel(tomlFormat, "type")),
                     nix.thunk(() => nix.sel(lib, "types", "path")),
@@ -115,59 +115,59 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         environment: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
-          variables: nix.thunk(() => ({ __proto__: pos$13, ATUIN_CONFIG_DIR: "/etc/atuin" })),
+          variables: nix.thunk(() => ({ [nix.POS]: pos$13, ATUIN_CONFIG_DIR: "/etc/atuin" })),
           etc: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "settings"), {})), nix.thunk(() => ({
-                  __proto__: pos$15,
-                  "atuin/config.toml": nix.thunk(() => ({ __proto__: pos$14, source: settingsFile })),
+                  [nix.POS]: pos$15,
+                  "atuin/config.toml": nix.thunk(() => ({ [nix.POS]: pos$14, source: settingsFile })),
                 })))),
               nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "themes"), {})), nix.thunk(() => nix.app(nix.sel(nix.builtins, "mapAttrs'"), (name) => (theme) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`atuin/themes/${name}.toml`), nix.thunk(() => ({
-                      __proto__: pos$16,
+                      [nix.POS]: pos$16,
                       source: nix.thunk(() => (nix.asBool(nix.builtins.isString(theme)) ? nix.app(nix.sel(pkgs, "writeText"), nix.thunk(() => nix.str`atuin-theme-${name}`), theme) : (nix.asBool((nix.asBool(nix.builtins.isPath(theme)) || nix.asBool(nix.app(nix.sel(lib, "isStorePath"), theme)))) ? nix.force(theme) : nix.app(nix.sel(tomlFormat, "generate"), nix.thunk(() => nix.str`atuin-theme-${name}`), theme)))),
                     }))), nix.thunk(() => nix.sel(cfg, "themes")))))),
             ]))),
         })),
         programs: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           bash: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             interactiveShellInit: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableBashIntegration")), nix.thunk(() => nix.str`if [[ :$SHELLOPTS: =~ :(vi|emacs): ]]; then
   eval "$(${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} init bash ${nix.app(escapeShellArgs, nix.thunk(() => nix.sel(cfg, "flags")))})"
 fi
 `))),
           })),
           zsh: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             interactiveShellInit: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableZshIntegration")), nix.thunk(() => nix.str`if [[ $options[zle] = on ]]; then
   eval "$(${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} init zsh ${nix.app(escapeShellArgs, nix.thunk(() => nix.sel(cfg, "flags")))})"
 fi
 `))),
           })),
           fish: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             interactiveShellInit: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableFishIntegration")), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} init fish ${nix.app(escapeShellArgs, nix.thunk(() => nix.sel(cfg, "flags")))} | source
 `))),
           })),
         })),
         systemd: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "daemon", "enable")) && nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isLinux")))), nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             user: nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               services: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 "atuin-daemon": nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   unitConfig: nix.thunk(() => ({
-                    __proto__: pos$22,
+                    [nix.POS]: pos$22,
                     Description: "Atuin daemon",
                     Requires: nix.thunk(() => ["atuin-daemon.socket"]),
                   })),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$23,
+                    [nix.POS]: pos$23,
                     ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} daemon start`),
                     Environment: nix.thunk(() => [nix.thunk(() => nix.str`ATUIN_LOG=${nix.sel(cfg, "daemon", "logLevel")}`)]),
                     Restart: "on-failure",
@@ -177,12 +177,12 @@ fi
                 })),
               })),
               sockets: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 "atuin-daemon": nix.thunk(() => ({
-                  __proto__: pos$28,
-                  unitConfig: nix.thunk(() => ({ __proto__: pos$26, Description: "Atuin daemon socket" })),
+                  [nix.POS]: pos$28,
+                  unitConfig: nix.thunk(() => ({ [nix.POS]: pos$26, Description: "Atuin daemon socket" })),
                   socketConfig: nix.thunk(() => ({
-                    __proto__: pos$27,
+                    [nix.POS]: pos$27,
                     ListenStream: "%t/atuin/atuin.sock",
                     SocketMode: "0640",
                     DirectoryMode: "0740",
@@ -195,7 +195,7 @@ fi
           })))),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$33,
+      [nix.POS]: pos$33,
       maintainers: nix.thunk(() => nix.sel(cfg, "package", "meta", "maintainers")),
     })),
   };

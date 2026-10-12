@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "recoverdm",
       version: "0.20-9",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "salsa.debian.org",
           owner: "pkg-security-team",
           repo: "recoverdm",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "mkdir -p $out/bin\n",
       postInstall: "installManPage recoverdm.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Recover damaged CD DVD and disks with bad sectors",
         mainProgram: "recoverdm",
         homepage: "https://salsa.debian.org/pkg-security-team/recoverdm",

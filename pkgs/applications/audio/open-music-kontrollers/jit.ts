@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const additionalBuildInputs = nix.thunk(() => [lv2, fontconfig, libvterm_neovim]);
       const description = "Just-in-Time C/Rust compiler embedded in an LV2 plugin";
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         pname,
         version,
         url,

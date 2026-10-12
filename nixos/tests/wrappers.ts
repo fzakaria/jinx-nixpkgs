@@ -26,36 +26,36 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const userUid = 1000n;
   const usersGid = 100n;
-  const busybox = (pkgs_1) => nix.app(nix.sel(pkgs_1, "busybox", "override"), nix.thunk(() => ({ __proto__: pos$1, extraConfig: "CONFIG_FEATURE_SUID n" })));
+  const busybox = (pkgs_1) => nix.app(nix.sel(pkgs_1, "busybox", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, extraConfig: "CONFIG_FEATURE_SUID n" })));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     name: "wrappers",
     nodes: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           ids: nix.thunk(() => ({
-            __proto__: pos$3,
-            gids: nix.thunk(() => ({ __proto__: pos$2, users: usersGid })),
+            [nix.POS]: pos$3,
+            gids: nix.thunk(() => ({ [nix.POS]: pos$2, users: usersGid })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             users: nix.thunk(() => ({
-              __proto__: pos$5,
-              regular: nix.thunk(() => ({ __proto__: pos$4, uid: userUid, isNormalUser: true })),
+              [nix.POS]: pos$5,
+              regular: nix.thunk(() => ({ [nix.POS]: pos$4, uid: userUid, isNormalUser: true })),
             })),
           })),
           security: nix.thunk(() => ({
-            __proto__: pos$13,
-            apparmor: nix.thunk(() => ({ __proto__: pos$7, enable: true })),
+            [nix.POS]: pos$13,
+            apparmor: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
             wrappers: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               disabled: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 enable: false,
                 owner: "root",
                 group: "root",
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
                 program: "disabled_busybox",
               })),
               suidRoot: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 owner: "root",
                 group: "root",
                 setuid: true,
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
                 program: "suid_root_busybox",
               })),
               sgidRoot: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 owner: "root",
                 group: "root",
                 setgid: true,
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
                 program: "sgid_root_busybox",
               })),
               withChown: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 owner: "root",
                 group: "root",
                 source: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "libcap")}/bin/capsh`),

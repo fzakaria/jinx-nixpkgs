@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "recipe-scrapers",
       version: "15.12.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hhursev",
           repo: "recipe-scrapers",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,20 +39,20 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [beautifulsoup4, extruct, isodate, language_tags, regex]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, online: nix.thunk(() => [requests]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, online: nix.thunk(() => [requests]) })),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, responses]),
       disabledTests: nix.thunk(() => ["test_instructions"]),
       pythonImportsCheck: nix.thunk(() => ["recipe_scrapers"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           mealie: nix.thunk(() => nix.attr(nixosTests, "mealie")),
           "tandoor-recipes": nix.thunk(() => nix.attr(nixosTests, "tandoor-recipes")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Python package for scraping recipes data",
         homepage: "https://github.com/hhursev/recipe-scrapers",
         changelog: nix.thunk(() => nix.str`https://github.com/hhursev/recipe-scrapers/releases/tag/${nix.sel(finalAttrs, "version")}`),

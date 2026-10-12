@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cloudflare-ddns",
       version: "1.16.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "favonia",
           repo: "cloudflare-ddns",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-JSd5daOIWblugMq7zmeNEdBiX6cMgNyib4SkCus6yJQ=",
       subPackages: nix.thunk(() => ["cmd/ddns"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Dynamic DNS (DDNS) client for Cloudflare",
         longDescription: "A feature-rich and robust Cloudflare DDNS updater with a small footprint.\nThe program will detect your machine’s public IP addresses and update DNS records using the Cloudflare API.\n",
         homepage: "https://github.com/favonia/cloudflare-ddns",

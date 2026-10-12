@@ -13,20 +13,20 @@ export default nix.lambda((args) => (() => {
   const buildOpenSCADPackage = nix.arg($, "buildOpenSCADPackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildOpenSCADPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bosl",
       version: "unstable-2023-02-19",
       libName: "BOSL",
       installTargets: nix.thunk(() => ["*.scad"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "revarbat",
           repo: "BOSL",
           rev: "4ce427a8a38786e5f74b728c1e33d9fe7d4904d2",
           hash: "sha256-24vqGt0TPe09K1WTP8fDX2Wx4MlsDnigzx7Ha0mXCOg=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "The Belfry OpenScad Library - A library of tools, shapes, and helpers to make OpenScad easier to use.",
         homepage: "https://github.com/revarbat/BOSL",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

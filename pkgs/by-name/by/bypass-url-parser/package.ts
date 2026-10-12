@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bypass-url-parser",
       version: "0.4.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "laluka",
           repo: "bypass-url-parser",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "# Some tests need the binary\nexport PATH=$out/bin:$PATH\n",
       disabledTests: nix.thunk(() => ["test_sample_usage", "test_sample_cli_usage"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool that tests URL bypasses to reach a 40X protected page",
         homepage: "https://github.com/laluka/bypass-url-parser",
         changelog: nix.thunk(() => nix.str`https://github.com/laluka/bypass-url-parser/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

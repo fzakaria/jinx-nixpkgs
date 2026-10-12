@@ -19,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const metacoq = nix.arg($, "metacoq");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "ElmExtraction",
       repo: "coq-elm-extraction",
       owner: "AU-COBRA",
       domain: "github.com",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (coq_1) => (mc) => (out) => ({ __proto__: pos$1, cases: nix.thunk(() => [coq_1, mc]), out: out });
+        const case$ = (coq_1) => (mc) => (out) => ({ [nix.POS]: pos$1, cases: nix.thunk(() => [coq_1, mc]), out: out });
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => [
             nix.thunk(() => nix.sel(coq, "coq-version")),
             nix.thunk(() => nix.sel(metacoq, "version")),
@@ -35,13 +35,13 @@ export default nix.lambda((args) => (() => {
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "0.1.0": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           hash: "sha256:EWjubBHsxAl2HuRAfJI3B9qzP2mj89eh0CUc8y7/7Ds=",
         })),
         "0.1.1": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           hash: "sha256:SDSyXqtOQlW9m9yH8OC909fsC/ePhKkSiY+BoQE76vk=",
         })),
       })),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(coq, "ocamlPackages", "findlib")), metacoq]),
       postPatch: "patchShebangs ./tests/process-extraction-examples.sh",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Framework for extracting Coq programs to Elm",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

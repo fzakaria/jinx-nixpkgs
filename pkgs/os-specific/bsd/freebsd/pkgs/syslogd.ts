@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const libcapsicum = nix.arg($, "libcapsicum");
   const libnv = nix.arg($, "libnv");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "usr.sbin/syslogd",
       extraPaths: nix.thunk(() => ["usr.bin/wall", "sys/sys"]),
       buildInputs: nix.thunk(() => [libcasper, libcapsicum, libnv]),
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       MK_PPP: "no",
       MK_TESTS: "no",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "FreeBSD syslog daemon",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

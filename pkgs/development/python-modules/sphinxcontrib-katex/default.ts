@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.11";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "sphinxcontrib_katex",
           version: version,
           hash: "sha256-LTKyENILvuRRpR0ZZF9v719VaLmlTigTr/uW76ZhI4o=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["sphinxcontrib.katex"]);
       const pythonNamespaces = nix.thunk(() => ["sphinxcontrib"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Sphinx extension using KaTeX to render math in HTML",
         homepage: "https://github.com/hagenw/sphinxcontrib-katex",
         changelog: nix.thunk(() => nix.str`https://github.com/hagenw/sphinxcontrib-katex/blob/v${version}/CHANGELOG.rst`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

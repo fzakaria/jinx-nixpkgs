@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libxt = nix.arg($, "libxt");
   const libxtst = nix.arg($, "libxtst");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "remote-touchpad",
       version: "1.5.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "unrud",
           repo: "remote-touchpad",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       tags: nix.thunk(() => ["portal,x11"]),
       vendorHash: "sha256-M2VhhU5+iyqtMaN7Qt9SAdiEe77bdkW4sZELqwcXF5g=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Control mouse and keyboard from the web browser of a smartphone",
         mainProgram: "remote-touchpad",
         homepage: "https://github.com/unrud/remote-touchpad",

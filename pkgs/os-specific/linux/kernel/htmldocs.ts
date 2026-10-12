@@ -20,14 +20,14 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "linux-kernel-latest-htmldocs",
       version: nix.thunk(() => nix.attr(linux_latest, "version")),
       src: nix.thunk(() => nix.attr(linux_latest, "src")),
       postPatch: "patchShebangs \\\n  Documentation/sphinx/parse-headers.pl \\\n  scripts/{get_abi.pl,get_feat.pl,kernel-doc,sphinx-pre-install} \\\n  tools/docs/sphinx-pre-install \\\n  tools/net/ynl/pyynl/ynl_gen_rst.py\n",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
-        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ __proto__: pos$1, fontDirectories: [] })))),
+        [nix.POS]: pos$2,
+        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$1, fontDirectories: [] })))),
       })),
       nativeBuildInputs: nix.thunk(() => [
         graphviz,
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(linux_latest, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Linux kernel html documentation",
         homepage: "https://www.kernel.org/doc/htmldocs/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

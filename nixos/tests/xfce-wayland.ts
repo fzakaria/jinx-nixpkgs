@@ -18,38 +18,38 @@ const formals$2 = { args: { nodes: false }, ellipsis: true };
 const pos$12 = nix.positions(here + "/xfce-wayland.nix", [["name", 2, 3], ["nodes", 4, 3], ["enableOCR", 27, 3], ["testScript", 29, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$12,
+  [nix.POS]: pos$12,
   name: "xfce-wayland",
   nodes: nix.thunk(() => ({
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     machine: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
       const pkgs = nix.arg($, "pkgs");
       return {
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
         services: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           xserver: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: true,
             displayManager: nix.thunk(() => ({
-              __proto__: pos$2,
-              lightdm: nix.thunk(() => ({ __proto__: pos$1, enable: true })),
+              [nix.POS]: pos$2,
+              lightdm: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
             })),
             desktopManager: nix.thunk(() => ({
-              __proto__: pos$4,
-              xfce: nix.thunk(() => ({ __proto__: pos$3, enable: true, enableWaylandSession: true })),
+              [nix.POS]: pos$4,
+              xfce: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true, enableWaylandSession: true })),
             })),
           })),
           displayManager: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             defaultSession: "xfce-wayland",
-            autoLogin: nix.thunk(() => ({ __proto__: pos$6, enable: true, user: "alice" })),
+            autoLogin: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true, user: "alice" })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "wlrctl"))]),
         })),
       };

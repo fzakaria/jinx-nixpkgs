@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zsh-artisan",
       version: "0-unstable-2025-12-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jessarcher",
           repo: "zsh-artisan",
           rev: "4063d53fd310f715c7a8fb7d4e133812ef0b3128",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       installPhase: "runHook preInstall\n\ninstall -D artisan.plugin.zsh --target-directory=$out/share/zsh-artisan\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Laravel artisan plugin for zsh",
         longDescription: "Laravel artisan plugin for zsh to help you to run artisan from anywhere in the project tree,\nwith auto-completion, and it can automatically open files created by artisan!\n",
         homepage: "https://github.com/jessarcher/zsh-artisan",

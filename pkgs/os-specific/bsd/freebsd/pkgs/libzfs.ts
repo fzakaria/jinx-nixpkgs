@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
     "libzfs",
   ]);
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "cddl/lib/libzfs",
       extraPaths: nix.thunk(() => [
         "cddl/Makefile.inc",
@@ -52,7 +52,7 @@ make -C $BSDSRCDIR/cddl/lib/${libname} $makeFlags install
 `))),
       outputs: nix.thunk(() => ["out", "debug"]),
       MK_TESTS: "no",
-      meta: nix.thunk(() => ({ __proto__: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "cddl")) })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "cddl")) })),
     })));
 })(), formals$1);
 //# sourceMappingURL=libzfs.ts.map

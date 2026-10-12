@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "gridtracker2",
       version: "2.260723.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gridtracker.org",
           repo: "gridtracker2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
         })))),
       npmDepsHash: "sha256-5h3bswjVf/8JHhwHRFTUfydN7XXtWbxNHTZ0mLL7RT8=",
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper, copyDesktopItems]),
-      env: nix.thunk(() => ({ __proto__: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: true })),
       makeCacheWritable: true,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "GridTracker2",
             desktopName: "GridTracker2",
             exec: "gridtracker2 %U",
@@ -81,11 +81,11 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), electron)} $out/bin/gridtracker2 \
   --inherit-argv0
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications $out/bin\ncp -r dist/mac*/GridTracker2.app $out/Applications\nln -s $out/Applications/GridTracker2.app/Contents/MacOS/GridTracker2 $out/bin/gridtracker2\n")), "runHook postInstall\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Warehouse of amateur radio information",
         homepage: "https://gridtracker.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -21,15 +21,15 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const kernel = nix.thunk(() => nix.sel(config, "boot", "kernelPackages"));
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       hardware: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         nvidiaOptimus: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           disable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Completely disable the NVIDIA graphics card and use the\nintegrated graphics processor instead.\n",
@@ -38,9 +38,9 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "hardware", "nvidiaOptimus", "disable")), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         boot: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           blacklistedKernelModules: nix.thunk(() => [
             "nouveau",
             "nvidia",
@@ -53,15 +53,15 @@ export default nix.lambda((args) => (() => {
           extraModulePackages: nix.thunk(() => [nix.thunk(() => nix.sel(kernel, "bbswitch"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           services: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             bbswitch: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               description: "Disable NVIDIA Card",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 Type: "oneshot",
                 RemainAfterExit: true,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(kernel, "bbswitch")}/bin/discrete_vga_poweroff`),

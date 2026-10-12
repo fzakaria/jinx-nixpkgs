@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libsndfile = nix.arg($, "libsndfile");
   const volk = nix.arg($, "volk");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sigutils",
       version: "unstable-2022-07-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BatchDrake",
           repo: "sigutils",
           rev: "1d7559d427aadd253dd825eef26bf15e54860c5f",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       buildInputs: nix.thunk(() => [fftwSinglePrec, libsndfile, volk]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Small signal processing utility library",
         homepage: "https://github.com/BatchDrake/sigutils",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bacnet-stack",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bacnet-stack",
           repo: "bacnet-stack",
           tag: nix.thunk(() => nix.str`bacnet-stack-${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       postInstall: "mkdir -p $out/bin\nfind . -maxdepth 2 -type f -executable -not -name '*.so*' -not -name '*.a' \\\n  -exec cp -t $out/bin {} +\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "BACnet open source protocol stack for embedded systems, Linux, and Windows",
         homepage: "https://github.com/bacnet-stack/bacnet-stack",
         changelog: nix.thunk(() => nix.str`https://github.com/bacnet-stack/bacnet-stack/blob/bacnet-stack-${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

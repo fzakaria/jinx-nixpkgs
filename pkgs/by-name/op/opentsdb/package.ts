@@ -66,10 +66,10 @@ export default nix.lambda((args) => (() => {
   const jdk = jdk8;
   const jre = nix.thunk(() => nix.sel(jdk8, "jre"));
   const artifacts = nix.thunk(() => ({
-    __proto__: pos$34,
+    [nix.POS]: pos$34,
     apache: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           groupId: "org.apache.commons",
           artifactId: "commons-math3",
           version: "3.6.1",
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
     ]),
     guava: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           groupId: "com.google.guava",
           artifactId: "guava",
           version: "18.0",
@@ -87,21 +87,21 @@ export default nix.lambda((args) => (() => {
     ]),
     gwt: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           groupId: "com.google.gwt",
           artifactId: "gwt-dev",
           version: "2.6.1",
           hash: "sha256-iS8VpnMPuxE9L9hkTJVtW5Tqgw2TIYei47zRvkdoK0o=",
         })))),
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           groupId: "com.google.gwt",
           artifactId: "gwt-user",
           version: "2.6.1",
           hash: "sha256-3IlJ+b6C0Gmuh7aAFg9+ldgvZCdfJmTB8qcdC4HZC9g=",
         })))),
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           groupId: "net.opentsdb",
           artifactId: "opentsdb-gwt-theme",
           version: "1.0.0",
@@ -110,7 +110,7 @@ export default nix.lambda((args) => (() => {
     ]),
     hamcrest: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           url: "mirror://maven/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar",
           groupId: "org.hamcrest",
           artifactId: "hamcrest-core",
@@ -120,7 +120,7 @@ export default nix.lambda((args) => (() => {
     ]),
     hbase: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           groupId: "org.hbase",
           artifactId: "asynchbase",
           version: "1.8.2",
@@ -129,21 +129,21 @@ export default nix.lambda((args) => (() => {
     ]),
     jackson: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           groupId: "com.fasterxml.jackson.core",
           artifactId: "jackson-annotations",
           version: "2.14.1",
           hash: "sha256-0lW0uGP/jscUqPlvpVw0Yh1D27grgtP1dHZJakwJ4ec=",
         })))),
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           groupId: "com.fasterxml.jackson.core",
           artifactId: "jackson-core",
           version: "2.14.1",
           hash: "sha256-ARQYfilrNMkxwb+eWoQVK2K/q30YL1Yj85gtwto15SY=",
         })))),
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           groupId: "com.fasterxml.jackson.core",
           artifactId: "jackson-databind",
           version: "2.14.1",
@@ -152,7 +152,7 @@ export default nix.lambda((args) => (() => {
     ]),
     javacc: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           groupId: "net.java.dev.javacc",
           artifactId: "javacc",
           version: "6.1.2",
@@ -161,7 +161,7 @@ export default nix.lambda((args) => (() => {
     ]),
     javassist: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           groupId: "org.javassist",
           artifactId: "javassist",
           version: "3.21.0-GA",
@@ -170,14 +170,14 @@ export default nix.lambda((args) => (() => {
     ]),
     jexl: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           groupId: "commons-logging",
           artifactId: "commons-logging",
           version: "1.2",
           hash: "sha256-2t3qHqC+D1aXirMAa4rJKDSv7vvZt+TmMW/KV98PpjY=",
         })))),
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           groupId: "org.apache.commons",
           artifactId: "commons-jexl",
           version: "2.1.1",
@@ -186,7 +186,7 @@ export default nix.lambda((args) => (() => {
     ]),
     jgrapht: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           groupId: "org.jgrapht",
           artifactId: "jgrapht-core",
           version: "0.9.1",
@@ -195,7 +195,7 @@ export default nix.lambda((args) => (() => {
     ]),
     junit: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           groupId: "junit",
           artifactId: "junit",
           version: "4.11",
@@ -204,28 +204,28 @@ export default nix.lambda((args) => (() => {
     ]),
     kryo: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           groupId: "org.ow2.asm",
           artifactId: "asm",
           version: "4.0",
           hash: "sha256-+y3ekCCke7AkxD2d4KlOc6vveTvwjwE1TMl8stLiqVc=",
         })))),
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           groupId: "com.esotericsoftware.kryo",
           artifactId: "kryo",
           version: "2.21.1",
           hash: "sha256-adEG73euU3sZBp9WUQNLZBN6Y3UAZXTAxjsuvDuy7q4=",
         })))),
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           groupId: "com.esotericsoftware.minlog",
           artifactId: "minlog",
           version: "1.2",
           hash: "sha256-pnjLGqj10D2QHJksdXQYQdmKm8PVXa0C6E1lMVxOYPI=",
         })))),
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           groupId: "com.esotericsoftware.reflectasm",
           artifactId: "reflectasm",
           version: "1.07",
@@ -235,14 +235,14 @@ export default nix.lambda((args) => (() => {
     ]),
     logback: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           groupId: "ch.qos.logback",
           artifactId: "logback-classic",
           version: "1.3.4",
           hash: "sha256-uGal2myLeOFVxn/M11YoYNC1/Hdric2WjC8/Ljf8OgI=",
         })))),
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           groupId: "ch.qos.logback",
           artifactId: "logback-core",
           version: "1.3.4",
@@ -251,7 +251,7 @@ export default nix.lambda((args) => (() => {
     ]),
     mockito: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           groupId: "org.mockito",
           artifactId: "mockito-core",
           version: "1.9.5",
@@ -260,7 +260,7 @@ export default nix.lambda((args) => (() => {
     ]),
     netty: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           groupId: "io.netty",
           artifactId: "netty",
           version: "3.10.6.Final",
@@ -269,7 +269,7 @@ export default nix.lambda((args) => (() => {
     ]),
     objenesis: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           groupId: "org.objenesis",
           artifactId: "objenesis",
           version: "1.3",
@@ -278,7 +278,7 @@ export default nix.lambda((args) => (() => {
     ]),
     powermock: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           groupId: "org.powermock",
           artifactId: "powermock-mockito-release-full",
           version: "1.5.4",
@@ -288,7 +288,7 @@ export default nix.lambda((args) => (() => {
     ]),
     protobuf: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           groupId: "com.google.protobuf",
           artifactId: "protobuf-java",
           version: "2.5.0",
@@ -297,14 +297,14 @@ export default nix.lambda((args) => (() => {
     ]),
     slf4j: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           groupId: "org.slf4j",
           artifactId: "log4j-over-slf4j",
           version: "2.0.6",
           hash: "sha256-QHMpiJioL0KeHr2iNaMUc7G0jDR94ShnNbtnkiUm6uQ=",
         })))),
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           groupId: "org.slf4j",
           artifactId: "slf4j-api",
           version: "2.0.6",
@@ -313,7 +313,7 @@ export default nix.lambda((args) => (() => {
     ]),
     suasync: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           groupId: "com.stumbleupon",
           artifactId: "async",
           version: "1.4.0",
@@ -322,14 +322,14 @@ export default nix.lambda((args) => (() => {
     ]),
     "validation-api": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           groupId: "javax.validation",
           artifactId: "validation-api",
           version: "1.0.0.GA",
           hash: "sha256-5FnzE+vG2ySD+M6q05rwcIY2G0dPqS5A9ELo3l2Yldw=",
         })))),
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           groupId: "javax.validation",
           artifactId: "validation-api",
           version: "1.0.0.GA",
@@ -339,7 +339,7 @@ export default nix.lambda((args) => (() => {
     ]),
     zookeeper: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           groupId: "org.apache.zookeeper",
           artifactId: "zookeeper",
           version: "3.4.6",
@@ -348,11 +348,11 @@ export default nix.lambda((args) => (() => {
     ]),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$44,
+      [nix.POS]: pos$44,
       pname: "opentsdb",
       version: "2.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           owner: "OpenTSDB",
           repo: "opentsdb",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -360,43 +360,43 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             name: "bump-deps.0.patch",
             url: "https://github.com/OpenTSDB/opentsdb/commit/2f4bbfba2f9a32f9295123e8b90adba022c11ece.patch",
             hash: "sha256-4LpR4O8mNiJZQ7PUmAzFdkZAaF8i9/ZM5NhQ+8AJgSw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             name: "bump-deps.1.patch",
             url: "https://github.com/OpenTSDB/opentsdb/commit/8c6a86ddbc367c7e4e2877973b70f77c105c6158.patch",
             hash: "sha256-LZHqDOhwO/Gfgu870hJ6/uxnmigv7RP8OFe2a7Ug5SM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             name: "bump-deps.2.patch",
             url: "https://github.com/OpenTSDB/opentsdb/commit/9b62442ba5c006376f57ef250fb7debe1047c3bf.patch",
             hash: "sha256-2VjI9EkirKj4h7xhUtWdnKxJG0Noz3Hk5njm3pYEU1g=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             name: "CVE-2023-25826.prerequisite.0.patch",
             url: "https://github.com/OpenTSDB/opentsdb/commit/a82a4f85f0fc1af554a104f28cc495451b26b1f6.patch",
             hash: "sha256-GgoRZUGdKthK+ZwMpgSQQ4V2oHyqi8SwWGZT571gltQ=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             name: "CVE-2023-25826.prerequisite.1.patch",
             url: "https://github.com/OpenTSDB/opentsdb/commit/22b27ea30a859a6dbdcd65fcdf61190d46e1b677.patch",
             hash: "sha256-pXo6U7d4iy2squAiFvV2iDAQcNDdrl0pIOQEXfkJ3a8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             name: "CVE-2023-25826.patch",
             url: "https://github.com/OpenTSDB/opentsdb/commit/07c4641471c6f5c2ab5aab615969e97211eb50d9.patch",
             hash: "sha256-88gIOhAhLCQC/UesIdYtjf0UgKNfnO0W2icyoMmiC3U=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             name: "CVE-2023-25827.patch",
             url: "https://github.com/OpenTSDB/opentsdb/commit/fa88d3e4b5369f9fb73da384fab0b23e246309ba.patch",
             hash: "sha256-FJHUiEmGhBIHoyOwNZtUWA36ENbrqDkUT8HfccmMSe8=",
@@ -412,7 +412,7 @@ export default nix.lambda((args) => (() => {
   --set JAVA "${jre}/bin/java"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$43,
+        [nix.POS]: pos$43,
         description: "Time series database with millisecond precision",
         homepage: "http://opentsdb.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

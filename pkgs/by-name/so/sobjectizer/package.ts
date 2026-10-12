@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const buildExamples = nix.argOr($, "buildExamples", () => false);
   nix.assert_((!nix.asBool(buildExamples) || nix.asBool(withStatic)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/so/sobjectizer/package.nix:14:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "sobjectizer",
       version: "5.8.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Stiffstream",
           repo: "sobjectizer",
           tag: nix.thunk(() => nix.str`v.${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "tests-do-not-require-static-library.patch",
             url: "https://github.com/Stiffstream/sobjectizer/commit/10eb34c65ccdaa4fea62d0c4354b83104256370d.patch",
             hash: "sha256-a2g6jDGDC/y8cmbAD0KtVQKhVS5ZAjKtMhbAUyoQIvg=",
@@ -50,11 +50,11 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: withShared,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix.sel(pkgs, "nix-update-script"), nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/Stiffstream/sobjectizer/tree/master",
         changelog: nix.thunk(() => nix.str`https://github.com/Stiffstream/sobjectizer/releases/tag/v.${nix.sel(finalAttrs, "version")}`),
         description: "Implementation of Actor, Publish-Subscribe, and CSP models in one rather small C++ framework",

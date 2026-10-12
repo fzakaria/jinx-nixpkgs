@@ -42,16 +42,16 @@ export default nix.lambda((args) => (() => {
   nix.assert_(nix.builtins.isBool(enableDefaultConfig), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/me/meshtasticd/package.nix:30:1");
   const version = "2.7.23.b246bcd";
   const platformio_deps_native = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/meshtastic/firmware/releases/download/v${version}/platformio-deps-native-tft-${version}.zip`),
       hash: "sha256-Jr8/KnzNedGvMfMEjrqBv5HwKZS0jZpHFfp/saQEnng=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "meshtasticd",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "meshtastic",
           repo: "firmware",
           hash: "sha256-oNV6ZP5aSAFBcn9Y+yEzVTtMKg40eXcvDw5LlyZAft4=",
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         libarchive,
         pkg_config,
         nix.thunk(() => nix.app(nix.sel(platformio_core, "overridePythonAttrs"), (oldAttrs) => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             dependencies: nix.thunk(() => nix.concat(nix.sel(oldAttrs, "dependencies"), [nix.thunk(() => nix.sel(python3Packages, "grpcio-tools"))])),
           }))),
         writableTmpDirAsHomeHook,
@@ -115,14 +115,14 @@ done
       preVersionCheck: nix.thunk(() => nix.str`version="${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}.${nix.app(nix.sel(lib, "versions", "minor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}.${nix.app(nix.sel(lib, "versions", "patch"), nix.thunk(() => nix.sel(finalAttrs, "version")))}"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           meshtasticd: nix.thunk(() => nix.attr(nixosTests, "meshtasticd")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Meshtastic daemon for communicating with Meshtastic devices",
         longDescription: "This package has `udev` rules installed as part of the package.\nAdd `services.udev.packages = [ pkgs.meshtasticd ]` into your NixOS\nconfiguration to enable them.\n\nTo enable the default configuration, set the `enableDefaultConfig` parameter to true.\n",
         homepage: "https://github.com/meshtastic/firmware",

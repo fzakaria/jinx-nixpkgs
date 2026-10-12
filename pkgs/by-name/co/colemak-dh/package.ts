@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "colemak-dh",
       version: "0-unstable-2022-08-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ColemakMods",
           repo: "mod-dh",
           rev: "e846a5bd24d59ed15ba70b3a9d5363a38ca51d09",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/keymaps/i386/\ngzip -r ./console\ncp -r ./console $out/share/keymaps/i386/colemak\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://colemakmods.github.io/mod-dh",
         description: "Colemak mod for more comfortable typing",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),

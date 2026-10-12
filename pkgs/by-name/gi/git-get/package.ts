@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const config_module = "git-get/pkg/cfg";
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "git-get",
       version: "0.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "grdl",
           repo: "git-get",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,11 +40,11 @@ ldflags+=" -X ${config_module}.date=$(cat SOURCE_DATE_EPOCH)"
       ]),
       preInstall: "mv \"$GOPATH/bin/cmd\" \"$GOPATH/bin/git-get\"\nln -s ./git-get \"$GOPATH/bin/git-list\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Better way to clone, organize and manage multiple git repositories",
         homepage: "https://github.com/grdl/git-get",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

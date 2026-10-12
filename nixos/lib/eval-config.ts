@@ -33,41 +33,41 @@ export default nix.lambda((args) => (() => {
   const optional = nix.thunk(() => nix.attr(lib, "optional"));
   const warn = nix.thunk(() => nix.attr(lib, "warn"));
   const evalModulesMinimal = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./default.nix")), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       lib: lib,
-      featureFlags: nix.thunk(() => ({ __proto__: pos$1, minimalModules: nix.thunk(() => ({})) })),
+      featureFlags: nix.thunk(() => ({ [nix.POS]: pos$1, minimalModules: nix.thunk(() => ({})) })),
     }))), "evalModules"));
   const pkgsModule = nix.thunk(() => (() => {
     const _file = nix.path(here, "./eval-config.nix");
     const key = _file;
     const config = nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => nix.concat(nix.app(optional, nix.thunk(() => !nix.eq(system, null)), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           nixpkgs: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             system: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), system)),
           })),
         }))), nix.app(optional, nix.thunk(() => !nix.eq(pkgs, null)), nix.thunk(() => ({
-          __proto__: pos$6,
-          nixpkgs: nix.thunk(() => ({ __proto__: pos$5, pkgs: pkgs })),
+          [nix.POS]: pos$6,
+          nixpkgs: nix.thunk(() => ({ [nix.POS]: pos$5, pkgs: pkgs })),
         })))))));
-    return { __proto__: pos$7, _file, key, config };
+    return { [nix.POS]: pos$7, _file, key, config };
   })());
   const withWarnings = nix.thunk(() => (nix.asBool(nix.has(specialArgs, "pkgs")) ? nix.app(warn, "You have set specialArgs.pkgs, which means that options like nixpkgs.config\nand nixpkgs.overlays will be ignored. If you wish to reuse an already created\npkgs, which you know is configured correctly for this NixOS configuration,\nplease import the `nixosModules.readOnlyPkgs` module from the nixpkgs flake or\n`(modulesPath + \"/misc/nixpkgs/read-only.nix\"), and set `{ nixpkgs.pkgs = <your pkgs>; }`.\nThis properly disables the ignored options to prevent future surprises.\n") : (x) => nix.force(x)));
   const userModules = nix.thunk(() => (nix.asBool(nix.eq(modulesLocation, null)) ? nix.force(modules) : nix.builtins.map(nix.thunk(() => nix.app(nix.sel(lib, "setDefaultModuleLocation"), modulesLocation)), modules)));
   const noUserModules = nix.thunk(() => nix.app(evalModulesMinimal, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       prefix: prefix,
       specialArgs: specialArgs,
       modules: nix.thunk(() => nix.concat(baseModules, nix.concat(extraModules, [pkgsModule, modulesModule]))),
     }))));
   const modulesModule = nix.thunk(() => ({
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     config: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       _module: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         args: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           noUserModules: noUserModules,
           baseModules: baseModules,
           extraModules: extraModules,
@@ -76,11 +76,11 @@ export default nix.lambda((args) => (() => {
       })),
     })),
   }));
-  const nixosWithUserModules = nix.thunk(() => nix.app(nix.sel(noUserModules, "extendModules"), nix.thunk(() => ({ __proto__: pos$13, modules: userModules }))));
+  const nixosWithUserModules = nix.thunk(() => nix.app(nix.sel(noUserModules, "extendModules"), nix.thunk(() => ({ [nix.POS]: pos$13, modules: userModules }))));
   const withExtraAttrs = (configuration) => nix.update(configuration, (() => {
     const from = nix.thunk(() => nix.sel(configuration, "_module", "args"));
     return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     pkgs: nix.thunk(() => nix.attr(from, "pkgs")),
     lib: lib,
     extendModules: (args_1) => nix.app(withExtraAttrs, nix.thunk(() => nix.app(nix.sel(configuration, "extendModules"), args_1))),

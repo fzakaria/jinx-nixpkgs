@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.14.1";
       const outputs = nix.thunk(() => ["out", "dev"]);
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "reproducible-builds",
           repo: "strip-nondeterminism",
           domain: "salsa.debian.org",
@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
       const installCheckPhase = "runHook preInstallCheck\n($out/bin/strip-nondeterminism --help 2>&1 | grep -q \"verbose\") || (echo \"'$out/bin/strip-nondeterminism --help' failed\" && exit 1)\nrunHook postInstallCheck\n";
       const doInstallCheck = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Perl module for stripping bits of non-deterministic information",
         mainProgram: "strip-nondeterminism",
         homepage: "https://reproducible-builds.org/",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         outputs,

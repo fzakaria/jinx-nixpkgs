@@ -29,27 +29,27 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "keyValue"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "clatd.conf", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         clatd: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "clatd")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "clatd", nix.thunk(() => ({})))),
           enableNetworkManagerIntegration: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "NetworkManager integration"), {
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             default: nix.thunk(() => nix.sel(config, "networking", "networkmanager", "enable")),
             defaultText: "config.networking.networkmanager.enable",
           })),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.lambda((args_1) => (() => {
                   const $_1 = nix.formals(args_1, formals$2);
                   const name = nix.arg($_1, "name");
                   return {
-                    __proto__: pos$2,
+                    [nix.POS]: pos$2,
                     freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   };
                 })(), formals$2))),
@@ -61,13 +61,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         systemd: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           services: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             clatd: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               description: "464XLAT CLAT daemon",
               documentation: nix.thunk(() => ["man:clatd(8)"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
               wants: nix.thunk(() => ["network-online.target"]),
               startLimitIntervalSec: 0n,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/clatd -c ${configFile}`),
                 CapabilityBoundingSet: nix.thunk(() => ["CAP_NET_ADMIN"]),
                 LockPersonality: true,
@@ -101,12 +101,12 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           networkmanager: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             dispatcherScripts: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "enableNetworkManagerIntegration")), nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   type: "basic",
                   source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScript"), "restart-clatd", nix.thunk(() => nix.str`[ "$DEVICE_IFACE" = "${nix.selOr(cfg, () => "clat", "settings", "clat-dev")}" ] && exit 0
 [ "$2" != "up" ] && [ "$2" != "down" ] && exit 0

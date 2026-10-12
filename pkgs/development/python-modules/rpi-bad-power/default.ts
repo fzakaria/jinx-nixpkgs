@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pname = "rpi-bad-power";
   const version = "0.1.0";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "shenxn",
           repo: "rpi-bad-power",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["rpi_bad_power"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library to detect bad power supply on Raspberry Pi",
         homepage: "https://github.com/shenxn/rpi-bad-power",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

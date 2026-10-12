@@ -34,28 +34,28 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "nebula-lighthouse-service"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "nebula-lighthouse-service": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "nebula-lighthouse-service")),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "nebula-lighthouse",
               description: "The user and group to run nebula-lighthouse-service as.\n",
               example: "nebula-lighthouse",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(settingsFormat, "type")),
               default: nix.thunk(() => ({})),
               description: "Configuration for nebula-lighthouse-service.\n",
               example: nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 "max-port": 65535n,
                 "min-port": 49152n,
                 "webserver.ip": "127.0.0.1",
@@ -66,13 +66,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         services: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           "nebula-lighthouse-service": nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             settings: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               "min-port": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 49152n)),
               "max-port": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 65535n)),
               "webserver.port": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 8080n)),
@@ -81,27 +81,27 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           etc: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             "nebula-lighthouse-service/config.yaml": nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               source: nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "nebula-lighthouse-service-config.yaml", nix.thunk(() => nix.sel(cfg, "settings")))),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             "nebula-lighthouse-service": nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "Run nebula-lighthouse-service",
               wants: nix.thunk(() => ["basic.target"]),
               after: nix.thunk(() => ["basic.target", "network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 Type: "exec",
                 Restart: "always",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "nebula-lighthouse-service")}/bin/nebula-lighthouse-service`),
@@ -113,10 +113,10 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.sel(cfg, "user"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               group: nix.thunk(() => nix.sel(cfg, "user")),
               description: "nebula-lighthouse-service user",
               isSystemUser: true,
@@ -126,7 +126,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "bloominstrong"))];

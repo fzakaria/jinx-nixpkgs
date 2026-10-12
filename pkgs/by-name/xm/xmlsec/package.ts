@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const runCommandCC = nix.arg($, "runCommandCC");
   const writeText = nix.arg($, "writeText");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "xmlsec",
       version: "1.3.12",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://www.aleksey.com/xmlsec/download/xmlsec1-${nix.sel(finalAttrs, "version")}.tar.gz`),
             nix.thunk(() => nix.str`https://www.aleksey.com/xmlsec/download/older-releases/xmlsec1-${nix.sel(finalAttrs, "version")}.tar.gz`),
@@ -55,12 +55,12 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--enable-soap"]),
       postInstall: "moveToOutput \"bin/xmlsec1-config\" \"$dev\"\nmoveToOutput \"lib/xmlsec1Conf.sh\" \"$dev\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "python-xmlsec": nix.thunk(() => nix.sel(python3Packages, "xmlsec")),
           "libxmlsec1-crypto": nix.thunk(() => nix.app(runCommandCC, "libxmlsec1-crypto-test", nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               nativeBuildInputs: nix.thunk(() => [pkg_config]),
               buildInputs: nix.thunk(() => [
                 nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
@@ -78,7 +78,7 @@ touch $out
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "XML Security Library in C based on libxml2",
         homepage: "https://www.aleksey.com/xmlsec/",
         downloadPage: "https://www.aleksey.com/xmlsec/download.html",

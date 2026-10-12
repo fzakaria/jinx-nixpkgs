@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const numpy = nix.arg($, "numpy");
   const pillow = nix.arg($, "pillow");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ipycanvas",
       version: "0.14.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jupyter-widgets-contrib",
           repo: "ipycanvas",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,12 +36,12 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.str`echo '__version__ = "{${nix.sel(finalAttrs, "version")}}"' > ipycanvas/_version.py
 `),
       "build-system": nix.thunk(() => [hatch, hatch_build_scripts, hatch_nodejs_version, hatchling, jupyterlab]),
-      env: nix.thunk(() => ({ __proto__: pos$2, HATCH_BUILD_NO_HOOKS: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, HATCH_BUILD_NO_HOOKS: true })),
       dependencies: nix.thunk(() => [ipywidgets, numpy, pillow]),
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["ipycanvas"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Expose the browser's Canvas API to IPython",
         homepage: "https://ipycanvas.readthedocs.io",
         changelog: nix.thunk(() => nix.str`https://github.com/jupyter-widgets-contrib/ipycanvas/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

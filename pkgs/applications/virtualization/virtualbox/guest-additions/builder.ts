@@ -37,18 +37,18 @@ export default nix.lambda((args) => (() => {
   const platform = nix.arg($, "platform");
   const buildType = "release";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "VirtualBox-GuestAdditions-builder",
       version: nix.thunk(() => nix.str`${virtualboxVersion}${virtualboxSubVersion}`),
       virtualboxVersion: virtualboxVersion,
       virtualboxSubVersion: virtualboxSubVersion,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.virtualbox.org/virtualbox/${nix.sel(finalAttrs, "virtualboxVersion")}/VirtualBox-${nix.sel(finalAttrs, "virtualboxVersion")}${nix.sel(finalAttrs, "virtualboxSubVersion")}.tar.bz2`),
           sha256: virtualboxSha256,
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types -Wno-error=implicit-function-declaration",
       })),
       nativeBuildInputs: nix.thunk(() => [

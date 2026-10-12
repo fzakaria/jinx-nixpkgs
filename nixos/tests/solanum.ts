@@ -26,37 +26,37 @@ export default nix.thunk(() => (() => {
     const pkgs = nix.arg($, "pkgs");
     const lib = nix.arg($, "lib");
     return {
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       name: "solanum",
       nodes: nix.thunk(() => nix.update(nix.attrsDyn({}, [
         [nix.str`${server}`, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           networking: nix.thunk(() => ({
-            __proto__: pos$2,
-            firewall: nix.thunk(() => ({ __proto__: pos$1, allowedTCPPorts: nix.thunk(() => [ircPort]) })),
+            [nix.POS]: pos$2,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$1, allowedTCPPorts: nix.thunk(() => [ircPort]) })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             solanum: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               enable: true,
               motd: "The default MOTD doesn't contain the word \"nixos\" in it.\nThis one does.\n",
             })),
           })),
         }))],
       ]), nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map((client) => nix.app(nix.sel(lib, "nameValuePair"), client, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
               systemd: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 services: nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   ii: nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     requires: nix.thunk(() => ["network.target"]),
                     wantedBy: nix.thunk(() => ["default.target"]),
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$6,
+                      [nix.POS]: pos$6,
                       Type: "simple",
                       ExecPreStartPre: nix.thunk(() => nix.str`mkdir -p ${iiDir}`),
                       ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(pkgs, "ii")))}/bin/ii -n ${client} -s ${server} -i ${iiDir}

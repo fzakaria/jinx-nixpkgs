@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "django-compressor",
           repo: "django-compressor",
           tag: version,
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [django, django_appconf, rcssmin, rjsmin]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, DJANGO_SETTINGS_MODULE: "compressor.test_settings" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, DJANGO_SETTINGS_MODULE: "compressor.test_settings" }));
       const nativeCheckInputs = nix.thunk(() => [
         beautifulsoup4,
         brotli,
@@ -52,14 +52,14 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_css_mtimes", "test_calmjs_filter"]);
       const pythonImportsCheck = nix.thunk(() => ["compressor"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Compresses linked and inline JavaScript or CSS into single cached files",
         homepage: "https://django-compressor.readthedocs.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/django-compressor/django-compressor/blob/${version}/docs/changelog.txt`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

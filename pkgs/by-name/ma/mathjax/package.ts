@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mathjax",
       version: "4.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mathjax",
           repo: "mathjax",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib/node_modules/mathjax\nmv * $out/lib/node_modules/mathjax\n# This is a MathJax v3 compat shim, notably still needed for sagemath\nln -s $out/lib/node_modules/mathjax $out/lib/node_modules/mathjax/es5\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/mathjax/MathJax/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Beautiful and accessible math in all browsers",
         homepage: "https://www.mathjax.org/",

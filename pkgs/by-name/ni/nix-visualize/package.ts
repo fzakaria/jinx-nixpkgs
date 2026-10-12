@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const nix$ = nix.arg($, "nix");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.0.5-unstable-2024-01-17",
       pname: "nix-visualize",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "craigmbooth",
           repo: "nix-visualize",
           rev: "5b9beae330ac940df56433d347494505e2038904",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["nix_visualize"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Generate dependency graphs of a given nix package",
         mainProgram: "nix-visualize",
         homepage: "https://github.com/craigmbooth/nix-visualize",

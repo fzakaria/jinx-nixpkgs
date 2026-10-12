@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const scdoc = nix.arg($, "scdoc");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "postprocessd",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~martijnbraam",
           repo: "postprocessd",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libexif, libjpeg, libraw, libtiff, opencv4]),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Queueing megapixels post-processor",
         homepage: "https://git.sr.ht/~martijnbraam/postprocessd",
         changelog: nix.thunk(() => nix.str`https://git.sr.ht/~martijnbraam/postprocessd/refs/${nix.sel(finalAttrs, "version")}`),

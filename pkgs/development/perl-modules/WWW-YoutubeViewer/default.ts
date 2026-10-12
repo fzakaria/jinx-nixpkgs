@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "WWW-YoutubeViewer";
       const version = "3.11.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "trizen",
           repo: "youtube-viewer",
           rev: version,
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
         }))));
       const propagatedBuildInputs = nix.thunk(() => [LWP, LWPProtocolHttps, DataDump, JSON]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Lightweight application for searching and streaming videos from YouTube",
         homepage: "https://github.com/trizen/youtube-viewer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "artistic2")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
         mainProgram: "youtube-viewer",
       }));
-      return { __proto__: pos$4, pname, version, src, propagatedBuildInputs, passthru, meta };
+      return { [nix.POS]: pos$4, pname, version, src, propagatedBuildInputs, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

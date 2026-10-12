@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const libxml2 = nix.arg($, "libxml2");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mailspring-mailcore2",
       src: src,
       version: version,
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         zlib,
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         CXXFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-std=gnu++17", "-Wno-error=incompatible-pointer-types"]))),
         CFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=incompatible-pointer-types"]))),
       })),
@@ -62,7 +62,7 @@ substituteInPlace CMakeLists.txt \\
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "# Tell CMake to build with Objective C if the file is C, otherwise Objective C++ if the file is C++.\nsubstituteInPlace CMakeLists.txt \\\n  --replace-fail \"project (mailcore2)\" \"project (mailcore2 C CXX OBJC OBJCXX)\nadd_compile_options(\\\"$<$<COMPILE_LANGUAGE:C>:-xobjective-c>\\\" \\\"$<$<COMPILE_LANGUAGE:CXX>:-xobjective-c++>\\\")\"\n\n# Fix old tidy header reference\nsubstituteInPlace src/core/basetypes/MCHTMLCleaner.cpp \\\n  --replace-fail \"buffio.h\" \"tidybuffio.h\"\n"))),
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib $out/include\n\ncp src/libMailCore.* $out/lib/\n\ncp -r src/include/MailCore $out/include/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Modified fork of the mailcore2 asynchronous C++ framework",
         homepage: "https://github.com/Foundry376/Mailspring-Sync",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

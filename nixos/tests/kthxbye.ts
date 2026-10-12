@@ -28,46 +28,46 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     name: "kthxbye",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "nukaduka"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           environment: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             systemPackages: nix.thunk(() => (() => {
               const w_1 = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w_1, "prometheus-alertmanager"))];
             })()),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             prometheus: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               enable: true,
               globalConfig: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 scrape_interval: "5s",
                 scrape_timeout: "5s",
                 evaluation_interval: "5s",
               })),
               scrapeConfigs: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   job_name: "prometheus",
                   scrape_interval: "5s",
                   static_configs: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$4, targets: nix.thunk(() => ["localhost:9090"]) })),
+                    nix.thunk(() => ({ [nix.POS]: pos$4, targets: nix.thunk(() => ["localhost:9090"]) })),
                   ]),
                 })),
               ]),
@@ -76,20 +76,20 @@ export default nix.lambda((args) => (() => {
               ]),
               alertmanagers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   static_configs: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$6, targets: nix.thunk(() => ["localhost:9093"]) })),
+                    nix.thunk(() => ({ [nix.POS]: pos$6, targets: nix.thunk(() => ["localhost:9093"]) })),
                   ]),
                 })),
               ]),
               alertmanager: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 enable: true,
                 openFirewall: true,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   route: nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     receiver: "test",
                     group_wait: "5s",
                     group_interval: "5s",
@@ -97,16 +97,16 @@ export default nix.lambda((args) => (() => {
                   })),
                   receivers: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       name: "test",
-                      webhook_configs: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$9, url: "http://localhost:1234" }))]),
+                      webhook_configs: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$9, url: "http://localhost:1234" }))]),
                     })),
                   ]),
                 })),
               })),
             })),
             kthxbye: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               enable: true,
               openFirewall: true,
               extendIfExpiringIn: "30s",

@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pname = "roccat-tools";
       const version = "5.9.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/roccat/${pname}-${version}.tar.bz2`),
           sha256: "sha256-6bgyr5l7FF1HzPjT5aJSL7xickHJ9jZ73Ulrx3+tQ1o=",
         }))));
@@ -59,7 +59,7 @@ substituteInPlace CMakeLists.txt \\
         "-DLIBDIR=lib",
       ]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-I${nix.sel(harfbuzz, "dev")}/include/harfbuzz`),
             "-fcommon",
@@ -67,14 +67,14 @@ substituteInPlace CMakeLists.txt \\
       }));
       const doInstallCheck = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tools to configure ROCCAT devices",
         homepage: "https://roccat.sourceforge.net/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

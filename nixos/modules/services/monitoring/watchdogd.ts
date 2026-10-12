@@ -33,49 +33,49 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "watchdogd"));
   const mkPluginOpts = (plugin) => (defWarn) => (defCrit) => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     enabled: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), nix.thunk(() => nix.str`watchdogd plugin ${plugin}`))),
     interval: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
         default: 300n,
         description: "Amount of seconds between every poll.\n",
       })))),
     logmark: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
         default: false,
         description: "Whether to log current stats every poll interval.\n",
       })))),
     warning: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         type: nix.thunk(() => nix.sel(lib, "types", "numbers", "nonnegative")),
         default: defWarn,
         description: "The high watermark level. Alert sent to log.\n",
       })))),
     critical: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         type: nix.thunk(() => nix.sel(lib, "types", "numbers", "nonnegative")),
         default: defCrit,
         description: "The critical watermark level. Alert sent to log, followed by reboot or script action.\n",
       })))),
   });
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         watchdogd: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "watchdogd, an advanced system & process supervisor")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "watchdogd", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     freeformType: nix.thunk(() => (() => {
                       const valueType = nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
                           nix.thunk(() => nix.lookup(w, "bool")),
@@ -86,21 +86,21 @@ export default nix.lambda((args) => (() => {
                       return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "either"), valueType, nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), valueType)))));
                     })()),
                     options: nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       timeout: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "ints", "unsigned")),
                           default: 15n,
                           description: "The WDT timeout before reset.\n",
                         })))),
                       interval: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$7,
+                          [nix.POS]: pos$7,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "ints", "unsigned")),
                           default: 5n,
                           description: "The kick interval, i.e. how often {manpage}`watchdogd(8)` should reset the WDT timer.\n",
                         })))),
                       "safe-exit": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                           default: true,
                           description: "With {var}`safeExit` enabled, the daemon will ask the driver to disable the WDT before exiting.\nHowever, some WDT drivers (or hardware) may not support this.\n",
@@ -134,22 +134,22 @@ ${s}
 `)))));
       const watchdogdConf = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "watchdogd.conf", nix.thunk(() => nix.app(toConfig, nix.thunk(() => nix.sel(cfg, "settings"))))));
       return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           environment: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             services: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               watchdogd: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 documentation: nix.thunk(() => ["man:watchdogd(8)", "man:watchdogd.conf(5)"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 description: "Advanced system & process supervisor",
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   Type: "simple",
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/watchdogd -n -f ${watchdogdConf}`),
                 })),
@@ -159,7 +159,7 @@ ${s}
         })));
     })()),
     meta: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "vifino"))];

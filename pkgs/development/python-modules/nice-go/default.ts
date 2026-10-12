@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "IceBotYT",
           repo: "nice-go",
           tag: version,
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["nice_go"]);
       const nativeCheckInputs = nix.thunk(() => [pytest_aiohttp, pytest_asyncio, pytest_cov_stub, pytestCheckHook, syrupy]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/IceBotYT/nice-go/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
         description: "Control various Nice access control products",
         homepage: "https://github.com/IceBotYT/nice-go",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

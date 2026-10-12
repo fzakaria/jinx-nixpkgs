@@ -21,17 +21,17 @@ export default nix.lambda((args) => (() => {
   const simdImplementation = nix.argOr($, "simdImplementation", () => "none");
   const ucd_version = "17.0.0";
   const ucd_src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://www.unicode.org/Public/${ucd_version}/ucd/UCD.zip`),
       hash: "sha256-k2OFy8xPvn+Bboyr1EsmZNeVDOglvk2kSZ+H17YaX60=",
       stripRoot: false,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libunicode",
       version: "0.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "contour-terminal",
           repo: "libunicode",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "LIBUNICODE_UCD_DIR", nix.thunk(() => nix.str`${ucd_src}`))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Modern C++20 Unicode library",
         homepage: "https://github.com/contour-terminal/libunicode",
         mainProgram: "unicode-query",

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const sdl3 = nix.arg($, "sdl3");
   const useSDL3 = nix.argOr($, "useSDL3", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fna3d",
       version: "26.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FNA-XNA",
           repo: "FNA3D",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => (nix.asBool(useSDL3) ? [sdl3] : [SDL2])),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Accuracy-focused XNA4 reimplementation for open platforms",
         homepage: "https://fna-xna.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

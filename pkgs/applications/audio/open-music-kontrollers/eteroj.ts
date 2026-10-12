@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const args_1 = args;
   const callPackage = nix.arg($, "callPackage");
   return nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => nix.update(args_1, {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "eteroj",
       version: "0.10.0",
       sha256: "18iv1sdwm0g6b53shsylj6bf3svmvvy5xadhfsgb4xg39qr07djz",

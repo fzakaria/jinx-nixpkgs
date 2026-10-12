@@ -120,11 +120,11 @@ ${nix.sel(cfg, "qemu", "verbatimConfig")}
   const dirName = "libvirt";
   const subDirs = (list) => nix.concat([dirName], nix.app(nix.builtins.map, (e) => nix.str`${dirName}/${e}`, list));
   const swtpmModule = nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       options: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
             default: false,
             description: "Allows libvirtd to use swtpm to create an emulated TPM.\n",
@@ -133,45 +133,45 @@ ${nix.sel(cfg, "qemu", "verbatimConfig")}
       })),
     }))));
   const qemuModule = nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       options: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "qemu", nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             extraDescription: "`pkgs.qemu` can emulate alien architectures (e.g. aarch64 on x86)\n`pkgs.qemu_kvm` saves disk space allowing to emulate only host architectures.\n",
           })))),
         runAsRoot: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
             default: true,
             description: "If true,  libvirtd runs qemu as root.\nIf false, libvirtd runs qemu as unprivileged user qemu-libvirtd.\nChanging this option to false may cause file permission issues\nfor existing guests. To fix these, manually change ownership\nof affected files in /var/lib/libvirt/qemu to qemu-libvirtd.\n",
           })))),
         verbatimConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
             default: "namespaces = []\n",
             description: "Contents written to the qemu configuration file, qemu.conf.\nMake sure to include a proper namespace configuration when\nsupplying custom configuration.\n",
           })))),
         ovmf: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 options: nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                      __proto__: pos$7,
+                      [nix.POS]: pos$7,
                       type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")))),
                       default: null,
                       internal: true,
                     })))),
                   package: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                      __proto__: pos$8,
+                      [nix.POS]: pos$8,
                       type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")))),
                       default: null,
                       internal: true,
                     })))),
                   packages: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")))))),
                       default: null,
                       internal: true,
@@ -183,13 +183,13 @@ ${nix.sel(cfg, "qemu", "verbatimConfig")}
             description: "This submodule is deprecated and has been removed",
           })))),
         swtpm: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             type: swtpmModule,
             default: nix.thunk(() => ({})),
             description: "QEMU's swtpm options.\n",
           })))),
         vhostUserPackages: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")))),
             default: [],
             example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ pkgs.virtiofsd ]")),
@@ -198,35 +198,35 @@ ${nix.sel(cfg, "qemu", "verbatimConfig")}
       })),
     }))));
   const hooksModule = nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       options: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         daemon: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
             default: nix.thunk(() => ({})),
             description: "Hooks that will be placed under /var/lib/libvirt/hooks/daemon.d/\nand called for daemon start/shutdown/SIGHUP events.\nPlease see <https://libvirt.org/hooks.html> for documentation.\n",
           })))),
         qemu: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
             default: nix.thunk(() => ({})),
             description: "Hooks that will be placed under /var/lib/libvirt/hooks/qemu.d/\nand called for qemu domains begin/end/migrate events.\nPlease see <https://libvirt.org/hooks.html> for documentation.\n",
           })))),
         lxc: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
             default: nix.thunk(() => ({})),
             description: "Hooks that will be placed under /var/lib/libvirt/hooks/lxc.d/\nand called for lxc domains begin/end events.\nPlease see <https://libvirt.org/hooks.html> for documentation.\n",
           })))),
         libxl: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
             default: nix.thunk(() => ({})),
             description: "Hooks that will be placed under /var/lib/libvirt/hooks/libxl.d/\nand called for libxl-handled xen domains begin/end events.\nPlease see <https://libvirt.org/hooks.html> for documentation.\n",
           })))),
         network: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
             default: nix.thunk(() => ({})),
             description: "Hooks that will be placed under /var/lib/libvirt/hooks/network.d/\nand called for networks begin/end events.\nPlease see <https://libvirt.org/hooks.html> for documentation.\n",
@@ -234,17 +234,17 @@ ${nix.sel(cfg, "qemu", "verbatimConfig")}
       })),
     }))));
   const nssModule = nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       options: nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
             default: false,
             description: "This option enables the older libvirt NSS module. This method uses\nDHCP server records, therefore is dependent on the hostname provided\nby the guest.\nPlease see <https://libvirt.org/nss.html> for more information.\n",
           })))),
         enableGuest: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
             default: false,
             description: "This option enables the newer libvirt_guest NSS module. This module\nuses the libvirt guest name instead of the hostname of the guest.\nPlease see <https://libvirt.org/nss.html> for more information.\n",
@@ -252,7 +252,7 @@ ${nix.sel(cfg, "qemu", "verbatimConfig")}
       })),
     }))));
   const qemuOvmfMetadata = nix.thunk(() => nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$28,
+      [nix.POS]: pos$28,
       name: "qemu-ovmf-metadata",
       version: nix.thunk(() => nix.sel(cfg, "qemu", "package", "version")),
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "qemu", "package"))]),
@@ -265,7 +265,7 @@ substituteInPlace $out/*.json \\
 `),
     }))));
   return {
-    __proto__: pos$96,
+    [nix.POS]: pos$96,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["virtualisation", "libvirtd", "enableKVM"]), "Set the option `virtualisation.libvirtd.qemu.package' instead.")),
       nix.thunk(() => nix.app(nix.lookup(w, "mkRenamedOptionModule"), nix.thunk(() => ["virtualisation", "libvirtd", "qemuPackage"]), nix.thunk(() => ["virtualisation", "libvirtd", "qemu", "package"]))),
@@ -276,100 +276,100 @@ substituteInPlace $out/*.json \\
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["virtualisation", "libvirtd", "qemuOvmfPackage"]), "The 'virtualisation.libvirtd.qemuOvmfPackage' option has been removed. All OVMF images distributed with QEMU are now available by default.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$46,
+      [nix.POS]: pos$46,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$45,
+        [nix.POS]: pos$45,
         libvirtd: nix.thunk(() => ({
-          __proto__: pos$44,
+          [nix.POS]: pos$44,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "This option enables libvirtd, a daemon that manages\nvirtual machines. Users in the \"libvirtd\" group can interact with\nthe daemon (e.g. to start or stop VMs) using the\n{command}`virsh` command line tool, among others.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "libvirt", nix.thunk(() => ({})))),
           extraConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               description: "Extra contents appended to the libvirtd configuration file,\nlibvirtd.conf.\n",
             })))),
           extraOptions: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: [],
               example: nix.thunk(() => ["--verbose"]),
               description: "Extra command line arguments passed to libvirtd on startup.\n",
             })))),
           onBoot: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["start", "ignore"]))),
               default: "start",
               description: "Specifies the action to be done to / on the guests when the host boots.\nThe \"start\" option starts all guests that were running prior to shutdown\nregardless of their autostart settings. The \"ignore\" option will not\nstart the formerly running guest on boot. However, any guest marked as\nautostart will still be automatically started by libvirtd.\n",
             })))),
           onShutdown: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["shutdown", "suspend"]))),
               default: "suspend",
               description: "When shutting down / restarting the host what method should\nbe used to gracefully halt the guests. Setting to \"shutdown\"\nwill cause an ACPI shutdown of each guest. \"suspend\" will\nattempt to save the state of the guests ready to restore on boot.\n",
             })))),
           parallelShutdown: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "ints", "unsigned")),
               default: 0n,
               description: "Number of guests that will be shutdown concurrently, taking effect when onShutdown\nis set to \"shutdown\". If set to 0, guests will be shutdown one after another.\nNumber of guests on shutdown at any time will not exceed number set in this\nvariable.\n",
             })))),
           shutdownTimeout: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "ints", "unsigned")),
               default: 300n,
               description: "Number of seconds we're willing to wait for a guest to shut down.\nIf parallel shutdown is enabled, this timeout applies as a timeout\nfor shutting down all guests on a single URI defined in the variable URIS.\nIf this is 0, then there is no time out (use with caution, as guests might not\nrespond to a shutdown request).\n",
             })))),
           startDelay: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "ints", "unsigned")),
               default: 0n,
               description: "Number of seconds to wait between each guest start.\nIf set to 0, all guests will start up in parallel.\n",
             })))),
           allowedBridges: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: nix.thunk(() => ["virbr0"]),
               description: "List of bridge devices that can be used by qemu:///session\n",
             })))),
           qemu: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               type: qemuModule,
               default: nix.thunk(() => ({})),
               description: "QEMU related options.\n",
             })))),
           hooks: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               type: hooksModule,
               default: nix.thunk(() => ({})),
               description: "Hooks related options.\n",
             })))),
           nss: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               type: nssModule,
               default: nix.thunk(() => ({})),
               description: "libvirt NSS module options.\n",
             })))),
           sshProxy: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "Whether to configure OpenSSH to use the [SSH Proxy](https://libvirt.org/ssh-proxy.html).\n",
             })))),
           firewallBackend: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["iptables", "nftables"]))),
               default: nix.thunk(() => (nix.asBool(nix.sel(config, "networking", "nftables", "enable")) ? "nftables" : "iptables")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "if config.networking.nftables.enable then \"nftables\" else \"iptables\"")),
               description: "The backend used to setup virtual network firewall rules.\n",
             })))),
           dbus: nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "exposing libvirtd APIs over D-Bus")),
             package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "libvirt-dbus", nix.thunk(() => ({})))),
           })),
@@ -377,29 +377,29 @@ substituteInPlace $out/*.json \\
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$95,
+        [nix.POS]: pos$95,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             assertion: nix.thunk(() => nix.sel(config, "security", "polkit", "enable")),
             message: "The libvirtd module currently requires Polkit to be enabled ('security.polkit.enable = true').",
           })),
           nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             assertion: nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "filterAttrs"), (n) => (v) => !nix.eq(v, null), nix.thunk(() => nix.sel(cfg, "qemu", "ovmf"))), {})),
             message: "The 'virtualisation.libvirtd.qemu.ovmf' submodule has been removed. All OVMF images distributed with QEMU are now available by default.",
           })),
         ]),
         environment: nix.thunk(() => ({
-          __proto__: pos$52,
+          [nix.POS]: pos$52,
           etc: nix.thunk(() => ({
-            __proto__: pos$51,
+            [nix.POS]: pos$51,
             "qemu/bridge.conf": nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               text: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (e) => nix.str`allow ${e}`, nix.thunk(() => nix.sel(cfg, "allowedBridges")))),
             })),
             ethertypes: nix.thunk(() => ({
-              __proto__: pos$50,
+              [nix.POS]: pos$50,
               source: nix.thunk(() => nix.str`${nix.sel(pkgs, "iptables")}/etc/ethertypes`),
             })),
           })),
@@ -413,51 +413,51 @@ substituteInPlace $out/*.json \\
             ];
           })()),
         })),
-        boot: nix.thunk(() => ({ __proto__: pos$53, kernelModules: nix.thunk(() => ["tun"]) })),
+        boot: nix.thunk(() => ({ [nix.POS]: pos$53, kernelModules: nix.thunk(() => ["tun"]) })),
         users: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               users: nix.thunk(() => ({
-                __proto__: pos$55,
+                [nix.POS]: pos$55,
                 "qemu-libvirtd": nix.thunk(() => ({
-                  __proto__: pos$54,
+                  [nix.POS]: pos$54,
                   uid: nix.thunk(() => nix.sel(config, "ids", "uids", "qemu-libvirtd")),
                   isNormalUser: false,
                   group: "qemu-libvirtd",
                 })),
               })),
               groups: nix.thunk(() => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 libvirtd: nix.thunk(() => ({
-                  __proto__: pos$56,
+                  [nix.POS]: pos$56,
                   gid: nix.thunk(() => nix.sel(config, "ids", "gids", "libvirtd")),
                 })),
                 "qemu-libvirtd": nix.thunk(() => ({
-                  __proto__: pos$57,
+                  [nix.POS]: pos$57,
                   gid: nix.thunk(() => nix.sel(config, "ids", "gids", "qemu-libvirtd")),
                 })),
               })),
             })),
             nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "dbus", "enable")), nix.thunk(() => ({
-                __proto__: pos$63,
+                [nix.POS]: pos$63,
                 users: nix.thunk(() => ({
-                  __proto__: pos$61,
+                  [nix.POS]: pos$61,
                   libvirtdbus: nix.thunk(() => ({
-                    __proto__: pos$60,
+                    [nix.POS]: pos$60,
                     isSystemUser: true,
                     group: "libvirtdbus",
                     description: "Libvirt D-Bus bridge",
                   })),
                 })),
-                groups: nix.thunk(() => ({ __proto__: pos$62, libvirtdbus: nix.thunk(() => ({})) })),
+                groups: nix.thunk(() => ({ [nix.POS]: pos$62, libvirtdbus: nix.thunk(() => ({})) })),
               })))),
           ]))),
         security: nix.thunk(() => ({
-          __proto__: pos$67,
+          [nix.POS]: pos$67,
           wrappers: nix.thunk(() => ({
-            __proto__: pos$65,
+            [nix.POS]: pos$65,
             "qemu-bridge-helper": nix.thunk(() => ({
-              __proto__: pos$64,
+              [nix.POS]: pos$64,
               setuid: true,
               owner: "root",
               group: "root",
@@ -465,37 +465,37 @@ substituteInPlace $out/*.json \\
             })),
           })),
           polkit: nix.thunk(() => ({
-            __proto__: pos$66,
+            [nix.POS]: pos$66,
             enable: true,
             extraConfig: "polkit.addRule(function(action, subject) {\n  if (action.id == \"org.libvirt.unix.manage\" &&\n    subject.isInGroup(\"libvirtd\")) {\n    return polkit.Result.YES;\n  }\n});\n",
           })),
         })),
         programs: nix.thunk(() => ({
-          __proto__: pos$69,
+          [nix.POS]: pos$69,
           ssh: nix.thunk(() => ({
-            __proto__: pos$68,
+            [nix.POS]: pos$68,
             extraConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "sshProxy")), nix.thunk(() => nix.str`Include ${nix.sel(cfg, "package")}/etc/ssh/ssh_config.d/30-libvirt-ssh-proxy.conf
 `))),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$72,
+          [nix.POS]: pos$72,
           firewalld: nix.thunk(() => ({
-            __proto__: pos$70,
+            [nix.POS]: pos$70,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
           dbus: nix.thunk(() => ({
-            __proto__: pos$71,
+            [nix.POS]: pos$71,
             packages: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "dbus", "enable")), nix.thunk(() => nix.sel(cfg, "dbus", "package")))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$92,
+          [nix.POS]: pos$92,
           packages: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(cfg, "package"))], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "dbus", "enable")), nix.thunk(() => nix.sel(cfg, "dbus", "package"))))),
           services: nix.thunk(() => ({
-            __proto__: pos$85,
+            [nix.POS]: pos$85,
             "libvirtd-config": nix.thunk(() => ({
-              __proto__: pos$74,
+              [nix.POS]: pos$74,
               description: "Libvirt Virtual Machine Management Daemon - configuration",
               script: nix.thunk(() => nix.str`# Copy default libvirt network config .xml files to /var/lib
 # Files modified by the user will not be overwritten
@@ -539,7 +539,7 @@ ${nix.app(nix.lookup(w, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.l
 `, nix.thunk(() => nix.app(nix.lookup(w, "attrNames"), nix.thunk(() => nix.sel(cfg, "hooks")))))))}
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$73,
+                [nix.POS]: pos$73,
                 Type: "oneshot",
                 RuntimeDirectoryPreserve: "yes",
                 LogsDirectory: nix.thunk(() => nix.app(subDirs, nix.thunk(() => ["qemu"]))),
@@ -548,12 +548,12 @@ ${nix.app(nix.lookup(w, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.l
               })),
             })),
             libvirtd: nix.thunk(() => ({
-              __proto__: pos$77,
+              [nix.POS]: pos$77,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               requires: nix.thunk(() => ["libvirtd-config.service"]),
               after: nix.thunk(() => nix.concat(["libvirtd-config.service"], nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.sel(vswitch, "enable")), "ovs-vswitchd.service"))),
               environment: nix.thunk(() => ({
-                __proto__: pos$75,
+                [nix.POS]: pos$75,
                 LIBVIRTD_ARGS: nix.thunk(() => nix.app(nix.lookup(w, "escapeShellArgs"), nix.thunk(() => nix.concat(["--config", configFile, "--timeout", "120"], nix.sel(cfg, "extraOptions"))))),
               })),
               path: nix.thunk(() => nix.concat([
@@ -561,7 +561,7 @@ ${nix.app(nix.lookup(w, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.l
                 nix.thunk(() => nix.sel(pkgs, "netcat")),
               ], nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.sel(vswitch, "enable")), nix.thunk(() => nix.sel(vswitch, "package"))), nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.sel(cfg, "qemu", "swtpm", "enable")), nix.thunk(() => nix.sel(cfg, "qemu", "swtpm", "package")))))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$76,
+                [nix.POS]: pos$76,
                 Type: "notify",
                 KillMode: "process",
                 Restart: "no",
@@ -571,11 +571,11 @@ ${nix.app(nix.lookup(w, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.l
               enableStrictShellChecks: true,
             })),
             virtchd: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform")), nix.thunk(() => nix.sel(pkgs, "cloud-hypervisor")))), nix.thunk(() => ({
-                __proto__: pos$78,
+                [nix.POS]: pos$78,
                 path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "cloud-hypervisor"))]),
               })))),
             "libvirt-guests": nix.thunk(() => ({
-              __proto__: pos$80,
+              [nix.POS]: pos$80,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["libvirtd.service"]),
               path: nix.thunk(() => (() => {
@@ -588,7 +588,7 @@ ${nix.app(nix.lookup(w, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.l
               })()),
               restartIfChanged: false,
               environment: nix.thunk(() => ({
-                __proto__: pos$79,
+                [nix.POS]: pos$79,
                 ON_BOOT: nix.thunk(() => nix.str`${nix.sel(cfg, "onBoot")}`),
                 ON_SHUTDOWN: nix.thunk(() => nix.str`${nix.sel(cfg, "onShutdown")}`),
                 PARALLEL_SHUTDOWN: nix.thunk(() => nix.str`${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "parallelShutdown")))}`),
@@ -597,45 +597,45 @@ ${nix.app(nix.lookup(w, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.l
               })),
             })),
             virtlogd: nix.thunk(() => ({
-              __proto__: pos$82,
+              [nix.POS]: pos$82,
               description: "Virtual machine log manager",
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$81,
+                [nix.POS]: pos$81,
                 ExecStart: nix.thunk(() => nix.str`@${nix.sel(cfg, "package")}/sbin/virtlogd virtlogd`),
               })),
               restartIfChanged: false,
             })),
             virtlockd: nix.thunk(() => ({
-              __proto__: pos$84,
+              [nix.POS]: pos$84,
               description: "Virtual machine lock manager",
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$83,
+                [nix.POS]: pos$83,
                 ExecStart: nix.thunk(() => nix.str`@${nix.sel(cfg, "package")}/sbin/virtlockd virtlockd`),
               })),
               restartIfChanged: false,
             })),
           })),
           sockets: nix.thunk(() => ({
-            __proto__: pos$89,
+            [nix.POS]: pos$89,
             virtlogd: nix.thunk(() => ({
-              __proto__: pos$86,
+              [nix.POS]: pos$86,
               description: "Virtual machine log manager socket",
               wantedBy: nix.thunk(() => ["sockets.target"]),
               listenStreams: nix.thunk(() => [nix.thunk(() => nix.str`/run/${dirName}/virtlogd-sock`)]),
             })),
             virtlockd: nix.thunk(() => ({
-              __proto__: pos$87,
+              [nix.POS]: pos$87,
               description: "Virtual machine lock manager socket",
               wantedBy: nix.thunk(() => ["sockets.target"]),
               listenStreams: nix.thunk(() => [nix.thunk(() => nix.str`/run/${dirName}/virtlockd-sock`)]),
             })),
-            libvirtd: nix.thunk(() => ({ __proto__: pos$88, wantedBy: nix.thunk(() => ["sockets.target"]) })),
+            libvirtd: nix.thunk(() => ({ [nix.POS]: pos$88, wantedBy: nix.thunk(() => ["sockets.target"]) })),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$91,
+            [nix.POS]: pos$91,
             rules: nix.thunk(() => (() => {
               const vhostUserCollection = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-                  __proto__: pos$90,
+                  [nix.POS]: pos$90,
                   name: "vhost-user",
                   paths: nix.thunk(() => nix.sel(cfg, "qemu", "vhostUserPackages")),
                   pathsToLink: nix.thunk(() => ["/share/qemu/vhost-user"]),
@@ -648,10 +648,10 @@ ${nix.app(nix.lookup(w, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.l
           })),
         })),
         system: nix.thunk(() => ({
-          __proto__: pos$94,
+          [nix.POS]: pos$94,
           nssModules: nix.thunk(() => nix.app(nix.lookup(w, "optional"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "nss", "enable")) || nix.asBool(nix.sel(cfg, "nss", "enableGuest")))), nix.thunk(() => nix.sel(cfg, "package")))),
           nssDatabases: nix.thunk(() => ({
-            __proto__: pos$93,
+            [nix.POS]: pos$93,
             hosts: nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "nss", "enable")), nix.thunk(() => nix.app(nix.lookup(w, "mkOrder"), 430n, nix.thunk(() => ["libvirt"]))))),
                 nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "nss", "enableGuest")), nix.thunk(() => nix.app(nix.lookup(w, "mkOrder"), 432n, nix.thunk(() => ["libvirt_guest"]))))),

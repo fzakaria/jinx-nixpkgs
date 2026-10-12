@@ -16,26 +16,26 @@ export default nix.lambda((args) => (() => {
   const hostPkgs = nix.arg($, "hostPkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     name: "linux-builder-vz-store-gc",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.sel(hostPkgs, "darwin", "linux-builder-vz", "meta", "maintainers")),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       machine: nix.thunk(() => ({
-        __proto__: pos$5,
-        nix: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+        [nix.POS]: pos$5,
+        nix: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
         virtualisation: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           diskImage: null,
           useNixStoreImage: true,
           writableStore: true,
           writableStoreUseTmpfs: false,
           emptyDiskImages: nix.thunk(() => [1024n]),
           fileSystems: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../modules/virtualisation/vz-vm-file-systems.nix")), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               lib: lib,
               diskImage: "./nixos.qcow2",
               sharedDirectories: nix.thunk(() => ({})),

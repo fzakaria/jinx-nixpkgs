@@ -65,7 +65,7 @@ rm ${nix.sel(cfg, "dataDir")}/cache/*.php
 ${artisan} config:cache
 `)));
   const commonServiceConfig = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     Type: "oneshot",
     User: user,
     Group: group,
@@ -99,54 +99,54 @@ ${artisan} config:cache
     PrivateUsers: true,
   }));
   return {
-    __proto__: pos$39,
+    [nix.POS]: pos$39,
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         "firefly-iii-data-importer": nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Firefly III Data Importer")),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: defaultUser,
               description: "User account under which firefly-iii-data-importer runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: defaultGroup,
               description: "Group under which firefly-iii-data-importer runs.\nWhile this also changes which group has access to the phpfpm socket,\nchanging {option}`services.firefly-iii-data-importer.poolConfig.\"listen.group\"`\nis preferred.\n",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/firefly-iii-data-importer",
               description: "The place where firefly-iii data importer stores its state.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
               default: nix.thunk(() => nix.sel(pkgs, "firefly-iii-data-importer")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.firefly-iii-data-importer")),
               description: "The firefly-iii-data-importer package served by php-fpm and the webserver of choice.\nThis option can be used to point the webserver to the correct root. It\nmay also be used to set the package to a different version, say a\ndevelopment version.\n",
-              apply: (firefly_iii_data_importer) => nix.app(nix.sel(firefly_iii_data_importer, "override"), (prev) => ({ __proto__: pos$5, dataDir: nix.thunk(() => nix.sel(cfg, "dataDir")) })),
+              apply: (firefly_iii_data_importer) => nix.app(nix.sel(firefly_iii_data_importer, "override"), (prev) => ({ [nix.POS]: pos$5, dataDir: nix.thunk(() => nix.sel(cfg, "dataDir")) })),
             })))),
           enableNginx: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable nginx or not. If enabled, an nginx virtual host will\nbe created for access to firefly-iii data importer. If not enabled, then you may use\n`${config.services.firefly-iii-data-importer.package}` as your document root in\nwhichever webserver you wish to setup.\n",
             })))),
           virtualHost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "localhost",
               description: "The hostname at which you wish firefly-iii-data-importer to be served. If you have\nenabled nginx using `services.firefly-iii-data-importer.enableNginx` then this will\nbe used.\n",
             })))),
           poolConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "oneOf"), nix.thunk(() => [
                     nix.thunk(() => nix.sel(lib, "types", "str")),
                     nix.thunk(() => nix.sel(lib, "types", "int")),
@@ -157,12 +157,12 @@ ${artisan} config:cache
               description: "Options for the Firefly III Data Importer PHP pool. See the documentation on <literal>php-fpm.conf</literal>\nfor details on configuration directives.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               default: nix.thunk(() => ({})),
               description: "Options for firefly-iii data importer configuration. Refer to\n<https://github.com/firefly-iii/data-importer/blob/main/.env.example> for\ndetails on supported values. All <option>_FILE values supported by\nupstream are supported here.\n\nAPP_URL will be the same as `services.firefly-iii-data-importer.virtualHost` if the\nformer is unset in `services.firefly-iii-data-importer.settings`.\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  APP_ENV = \"local\";\n  LOG_CHANNEL = \"syslog\";\n  FIREFLY_III_ACCESS_TOKEN= = \"/var/secrets/firefly-iii-access-token.txt\";\n}\n")),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   freeformType: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "oneOf"), nix.thunk(() => [
                         nix.thunk(() => nix.sel(lib, "types", "str")),
                         nix.thunk(() => nix.sel(lib, "types", "int")),
@@ -174,21 +174,21 @@ ${artisan} config:cache
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$38,
+        [nix.POS]: pos$38,
         services: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           phpfpm: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             pools: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               "firefly-iii-data-importer": nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 user: user,
                 group: group,
                 phpPackage: nix.thunk(() => nix.sel(cfg, "package", "phpPackage")),
                 phpOptions: "log_errors = on\n",
                 settings: nix.thunk(() => nix.update({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   "listen.mode": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "0660")),
                   "listen.owner": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enableNginx")) ? nix.sel(config, "services", "nginx", "user") : nix.force(user))))),
                   "listen.group": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enableNginx")) ? nix.sel(config, "services", "nginx", "group") : nix.force(group))))),
@@ -203,25 +203,25 @@ ${artisan} config:cache
             })),
           })),
           nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableNginx")), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               enable: true,
               recommendedTlsSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
               recommendedOptimisation: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
               recommendedGzipSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "virtualHost"), nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   root: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/public`),
                   locations: nix.thunk(() => ({
-                    __proto__: pos$21,
+                    [nix.POS]: pos$21,
                     "/": nix.thunk(() => ({
-                      __proto__: pos$19,
+                      [nix.POS]: pos$19,
                       tryFiles: "$uri $uri/ /index.php?$query_string",
                       index: "index.php",
                       extraConfig: "sendfile off;\n",
                     })),
                     "~ \\.php$": nix.thunk(() => ({
-                      __proto__: pos$20,
+                      [nix.POS]: pos$20,
                       extraConfig: nix.thunk(() => nix.str`include ${nix.sel(config, "services", "nginx", "package")}/conf/fastcgi_params ;
 fastcgi_param SCRIPT_FILENAME $request_filename;
 fastcgi_param modHeadersAvailable true;
@@ -234,29 +234,29 @@ fastcgi_pass unix:${nix.sel(config, "services", "phpfpm", "pools", "firefly-iii-
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           services: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             "firefly-iii-data-importer-setup": nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               requiredBy: nix.thunk(() => ["phpfpm-firefly-iii-data-importer.service"]),
               before: nix.thunk(() => ["phpfpm-firefly-iii-data-importer.service"]),
               serviceConfig: nix.thunk(() => nix.update({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 ExecStart: data_importer_maintenance,
                 RemainAfterExit: true,
               }, commonServiceConfig)),
               unitConfig: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 JoinsNamespaceOf: "phpfpm-firefly-iii-data-importer.service",
               })),
               restartTriggers: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
             })),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             settings: nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               "10-firefly-iii-data-importer": nix.thunk(() => nix.update(nix.app(nix.sel(lib, "attrsets", "genAttrs"), nix.thunk(() => [
                   nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/storage`),
                   nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/storage/app`),
@@ -276,22 +276,22 @@ fastcgi_pass unix:${nix.sel(config, "services", "phpfpm", "pools", "firefly-iii-
                   nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/storage/uploads`),
                   nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/cache`),
                 ]), (n) => ({
-                  __proto__: pos$30,
-                  d: nix.thunk(() => ({ __proto__: pos$29, group: group, mode: "0710", user: user })),
+                  [nix.POS]: pos$30,
+                  d: nix.thunk(() => ({ [nix.POS]: pos$29, group: group, mode: "0710", user: user })),
                 })), nix.attrsDyn({}, [
                 [nix.str`${nix.sel(cfg, "dataDir")}`, nix.thunk(() => ({
-                  __proto__: pos$32,
-                  d: nix.thunk(() => ({ __proto__: pos$31, group: group, mode: "0700", user: user })),
+                  [nix.POS]: pos$32,
+                  d: nix.thunk(() => ({ [nix.POS]: pos$31, group: group, mode: "0700", user: user })),
                 }))],
               ]))),
             })),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(user, defaultUser)), nix.thunk(() => nix.attrsDyn({}, [
               [defaultUser, nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 description: "Firefly-iii Data Importer service user",
                 group: group,
                 isSystemUser: true,

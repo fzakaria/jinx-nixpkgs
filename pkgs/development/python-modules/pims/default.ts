@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const moviepy = nix.arg($, "moviepy");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pims",
       version: "0.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "soft-matter",
           repo: "pims",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [slicerator, imageio, numpy, packaging, tifffile]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         extras: nix.thunk(() => [jinja2, jpype1, matplotlib, moviepy, scikit_image]),
       })),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytestCheckHook], nix.sel(finalAttrs, "passthru", "optional-dependencies", "extras"))),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["TestVideo_ImageIO"]),
       disabledTestPaths: nix.thunk(() => ["pims/tests/test_display.py", "pims/tests/test_bioformats.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Module to load video and sequential images in various formats",
         homepage: "https://github.com/soft-matter/pims",
         changelog: nix.thunk(() => nix.str`https://github.com/soft-matter/pims/releases/tag/v${nix.sel(finalAttrs, "version")}`),

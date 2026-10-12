@@ -24,13 +24,13 @@ export default nix.lambda((args) => (() => {
   const xvfb_run = nix.arg($, "xvfb-run");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dogtail",
       version: "0.9.11",
       format: "setuptools",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://gitlab.com/dogtail/dogtail/raw/released/dogtail-0.9.10.tar.gz",
           sha256: "EGyxYopupfXPYtTL9mm9ujZorvh8AGaNXVKBPWsGy3c=",
         })))),
@@ -50,7 +50,7 @@ runHook postCheck
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GUI test tool and automation framework that uses Accessibility technologies to communicate with desktop applications",
         homepage: "https://gitlab.com/dogtail/dogtail",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

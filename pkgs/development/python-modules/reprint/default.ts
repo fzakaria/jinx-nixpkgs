@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Yinzo",
           repo: "reprint",
           rev: nix.thunk(() => nix.str`${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [colorama, six]);
       const pythonImportsCheck = nix.thunk(() => ["reprint"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module for binding variables and refreshing multi-line output in terminal",
         homepage: "https://github.com/Yinzo/reprint",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

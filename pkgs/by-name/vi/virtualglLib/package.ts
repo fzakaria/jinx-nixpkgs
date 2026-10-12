@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const opencl_clhpp = nix.arg($, "opencl-clhpp");
   const ocl_icd = nix.arg($, "ocl-icd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "virtualgl-lib",
       version: "3.0.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/virtualgl/VirtualGL-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-OIEbwAQ71yOuHIzM+iaK7QkUJrKg6sXpGuFQOUPjM2w=",
         })))),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       ]),
       fixupPhase: "substituteInPlace $out/bin/vglrun \\\n  --replace \"LD_PRELOAD=libvglfaker\" \"LD_PRELOAD=$out/lib/libvglfaker\" \\\n  --replace \"LD_PRELOAD=libdlfaker\" \"LD_PRELOAD=$out/lib/libdlfaker\" \\\n  --replace \"LD_PRELOAD=libgefaker\" \"LD_PRELOAD=$out/lib/libgefaker\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.virtualgl.org/",
         description: "X11 GL rendering in a remote computer with full 3D hw acceleration",
         license: nix.thunk(() => (() => {

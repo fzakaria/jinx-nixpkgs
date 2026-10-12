@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const curl = nix.arg($, "curl");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "curl",
       version: "0.10.0",
       minimalOCamlVersion: "4.11",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ygrek/ocurl/releases/download/${nix.sel(finalAttrs, "version")}/curl-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-wU4hX9p/lCkqdY2a6Q97y8IVZMkZGQBkAR/M3PehKRQ=",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [curl]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bindings to libcurl",
         homepage: "https://ygrek.org/p/ocurl/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

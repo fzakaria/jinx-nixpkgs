@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const fmt = nix.arg($, "fmt");
   const logs = nix.arg($, "logs");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "metrics-rusage",
       src: nix.thunk(() => nix.attr(metrics, "src")),
       version: nix.thunk(() => nix.attr(metrics, "version")),
@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [fmt, logs, metrics]),
       doCheck: true,
       meta: nix.thunk(() => nix.update(nix.sel(metrics, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Resource usage (getrusage) sources for the Metrics library",
       })),
     })));

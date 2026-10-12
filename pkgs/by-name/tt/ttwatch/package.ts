@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const protobufc = nix.arg($, "protobufc");
   const enableUnsafe = nix.argOr($, "enableUnsafe", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ttwatch",
       version: "2020-06-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ryanbinns",
           repo: "ttwatch",
           rev: "260aff5869fd577d788d86b546399353d9ff72c1",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       preFixup: "chmod +x $out/bin/ttbin2mysports\n",
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required (VERSION 2.8)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/ryanbinns/ttwatch",
         description: "Linux TomTom GPS Watch Utilities",
         maintainers: nix.thunk(() => (() => {

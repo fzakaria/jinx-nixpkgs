@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.15";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchhg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "http://hg.code.sf.net/p/ruamel-yaml-clib/code",
           rev: version,
           hash: "sha256-SnMELcG2L2ei3UjImljjG1sSCHHROhXYcLe5kAR6h8E=",
@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [cython]);
       const preBuild = "cython _ruamel_yaml.pyx -3 --module-name _ruamel_yaml -I.";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "YAML parser/emitter that supports roundtrip preservation of comments, seq/map flow style, and map key order",
         homepage: "https://sourceforge.net/projects/ruamel-yaml-clib/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

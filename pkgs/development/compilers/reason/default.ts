@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const cmdliner = nix.arg($, "cmdliner");
   const dune_build_info = nix.arg($, "dune-build-info");
   const param = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ppxlib, "version")), "0.36")) ? {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     version: "3.18.0",
     hash: "sha256-T7pqFvVFUbeOHZDrLBZ/bulkyvU4O8LS+TzszH5k3EQ=",
   } : {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     version: "3.15.0",
     hash: "sha256-7D0gJfQ5Hw0riNIFPmJ6haoa3dnFEyDp5yxpDgX7ZqY=",
   }));
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const version = nix.thunk(() => nix.attr(param, "version"));
       const minimalOCamlVersion = "4.11";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://github.com/reasonml/reason/releases/download/${version}/reason-${version}.tbz`),
           hash: nix.thunk(() => nix.attr(param, "hash")),
         }))));
@@ -48,14 +48,14 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => nix.concat([dune_build_info, fix, menhirSdk, merlin_extend], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "3.17")), cmdliner)));
       const propagatedBuildInputs = nix.thunk(() => [ppxlib, menhirLib]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           hello: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/hello"), nix.thunk(() => ({})))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://reasonml.github.io/",
         downloadPage: "https://github.com/reasonml/reason",
         description: "User-friendly programming language built on OCaml",
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         minimalOCamlVersion,

@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const udev = nix.arg($, "udev");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "wayle",
       version: "0.7.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wayle-rs",
           repo: "wayle",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
       preFixup: "# so wayle could access wayle-settings binary\ngappsWrapperArgs+=( --suffix PATH : $out/bin )\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "com.wayle.settings.desktop",
             type: "Application",
             desktopName: "Wayle Settings",
@@ -85,11 +85,11 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Wayland Elements - A compositor agnostic shell with extensive customization",
         homepage: "https://github.com/wayle-rs/wayle/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

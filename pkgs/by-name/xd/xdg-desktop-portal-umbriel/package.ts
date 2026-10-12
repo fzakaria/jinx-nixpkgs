@@ -30,13 +30,13 @@ export default nix.lambda((args) => (() => {
   const gtk4 = nix.arg($, "gtk4");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "xdg-desktop-portal-umbriel",
       version: "0-unstable-2026-09-26",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "noctalia-dev",
           repo: "xdg-desktop-portal-umbriel",
           rev: "d6bd72cabd83e3084fb2f2e24898d8ffa4a8c24f",
@@ -58,11 +58,11 @@ export default nix.lambda((args) => (() => {
       ]),
       mesonBuildType: "release",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/noctalia-dev/xdg-desktop-portal-umbriel",
         description: "xdg-desktop-portal backend for the Umbriel compositor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

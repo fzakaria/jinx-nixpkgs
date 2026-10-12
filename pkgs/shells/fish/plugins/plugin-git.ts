@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
       const pname = "plugin-git";
       const version = "0.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jhillyerd",
           repo: "plugin-git",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-2+CX9ZGNkois7h3m30VG19Cf4ykRdoiPpEVxJMk75I4=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Git plugin for fish (similar to oh-my-zsh git)",
         homepage: "https://github.com/jhillyerd/plugin-git",
         changelog: nix.thunk(() => nix.str`https://github.com/jhillyerd/plugin-git/releases/tag/v${version}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
           ];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, meta };
+      return { [nix.POS]: pos$3, pname, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=plugin-git.ts.map

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "iconpack-jade";
       const version = "1.25";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "madmaxms",
           repo: "iconpack-jade",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const dontDropIconThemeCache = true;
       const installPhase = "mkdir -p $out/share/icons\ncp -a Jade* $out/share/icons\n\nfor theme in $out/share/icons/*; do\n  gtk-update-icon-cache $theme\ndone\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Icon pack based upon Faenza and Mint-X",
         homepage: "https://github.com/madmaxms/iconpack-jade",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "romildo"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

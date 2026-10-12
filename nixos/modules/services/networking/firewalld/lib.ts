@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const optional = nix.argOr($_1, "optional", () => false);
     return nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         type: nix.thunk(() => (() => {
           const type = nix.thunk(() => nix.app(either, port, nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 options: nix.thunk(() => ({
-                  __proto__: pos$3,
-                  from: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ __proto__: pos$1, type: port })))),
-                  to: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ __proto__: pos$2, type: port })))),
+                  [nix.POS]: pos$3,
+                  from: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$1, type: port })))),
+                  to: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$2, type: port })))),
                 })),
               }))))));
           return (nix.asBool(optional) ? nix.app(nullOr, type) : nix.force(type));
@@ -45,21 +45,21 @@ export default nix.lambda((args) => (() => {
       })));
   })(), formals$2);
   const protocolOption = nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       type: nix.thunk(() => nix.app(enum$, nix.thunk(() => ["tcp", "udp", "sctp", "dccp"]))),
       description: "",
     }))));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     mkPortOption: mkPortOption,
     protocolOption: protocolOption,
     toXmlAttrs: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (name) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.add("@", name))))),
     mkXmlAttr: (name) => (value) => nix.attrsDyn({}, [[nix.str`@${name}`, value]]),
     filterNullAttrs: nix.thunk(() => nix.app(nix.sel(lib, "filterAttrsRecursive"), (_) => (value) => !nix.eq(value, null))),
     portProtocolOptions: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       options: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         port: nix.thunk(() => nix.app(mkPortOption, nix.thunk(() => ({})))),
         protocol: protocolOption,
       })),

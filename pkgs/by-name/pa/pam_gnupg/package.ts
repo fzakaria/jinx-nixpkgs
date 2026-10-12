@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pam = nix.arg($, "pam");
   const gnupg = nix.arg($, "gnupg");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pam_gnupg",
       version: "0.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cruegge",
           repo: "pam-gnupg",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [pam, gnupg]),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unlock GnuPG keys on login",
         longDescription: "A PAM module that hands over your login password to gpg-agent. This can\nbe useful if you are using a GnuPG-based password manager like pass.\n",
         homepage: "https://github.com/cruegge/pam-gnupg",

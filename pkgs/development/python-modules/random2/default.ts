@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const doCheck = nix.thunk(() => !nix.asBool(isPyPy));
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           extension: "zip",
@@ -29,18 +29,18 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/strichter/random2/pull/3/commits/1bac6355d9c65de847cc445d782c466778b94fbd.patch",
             sha256: "064137pg1ilv3f9r10123lqbqz45070jca8pjjyp6gpfd0yk74pi",
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://pypi.org/pypi/random2/",
         description: "Python 3 compatible Python 2 `random` Module",
         license: nix.thunk(() => nix.sel(lib, "licenses", "psfl")),
       }));
-      return { __proto__: pos$4, pname, version, format, doCheck, src, patches, meta };
+      return { [nix.POS]: pos$4, pname, version, format, doCheck, src, patches, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

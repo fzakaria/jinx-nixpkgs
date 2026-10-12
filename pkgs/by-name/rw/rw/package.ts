@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rw",
       version: "1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://sortix.org/rw/release/rw-portable-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "50009730e36991dfe579716f91f4f616f5ba05ffb7bf69c03d41bf305ed93b6d",
         })))),
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://sortix.org/rw",
         description: "Block device and byte copying program similar to dd",
         longDescription: "rw is a command line program which copies information between files\nor byte streams. The rw command is designed to be a replacement for\ndd with standard style command line flags.\n",

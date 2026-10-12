@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const pluginPaths = nix.thunk(() => nix.builtins.map((p) => nix.str`${p}/${nix.sel(python, "sitePackages")}/dnf-plugins`, plugins));
   const dnf4_unwrapped = dnf4;
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dnf4",
       version: nix.thunk(() => nix.attr(dnf4_unwrapped, "version")),
       outputs: nix.thunk(() => ["out", "man", "py"]),
@@ -36,9 +36,9 @@ cp -R ${nix.sel(dnf4_unwrapped, "man")} $man
 runHook postInstall
 `),
       postFixup: "wrapPythonPrograms\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$1, unwrapped: dnf4_unwrapped })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, unwrapped: dnf4_unwrapped })),
       meta: nix.thunk(() => nix.update(nix.sel(dnf4_unwrapped, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         priority: nix.thunk(() => nix.sub(nix.selOr(dnf4_unwrapped, () => nix.sel(lib, "meta", "defaultPriority"), "meta", "priority"), 1n)),
       })),
     })));

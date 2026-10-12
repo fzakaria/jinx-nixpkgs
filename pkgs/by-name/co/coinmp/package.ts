@@ -16,17 +16,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "coinmp",
       version: "1.8.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.coin-or.org/download/source/CoinMP/CoinMP-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-NFn7DMvdOTQnRGhDOJhKxMwVP7BDT0yujPdL1nSQo40=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/coin-or/Cgl/commit/57d8c71cd50dc27a89eaeb4672499bca55f1fd72.patch",
             extraPrefix: "Cgl/",
             stripLen: 1n,
@@ -37,10 +37,10 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./0001-use-static_cast-for-static-cast-fixes-319.patch"),
       ]),
       enableParallelBuilding: true,
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({ __proto__: pos$3, CXXFLAGS: "-std=c++14" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({ [nix.POS]: pos$3, CXXFLAGS: "-std=c++14" })))),
       hardeningDisable: nix.thunk(() => ["format"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://projects.coin-or.org/CoinMP/",
         description: "COIN-OR lightweight API for COIN-OR libraries CLP, CBC, and CGL",
         maintainers: nix.thunk(() => (() => {

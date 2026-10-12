@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const libGLU = nix.arg($, "libGLU");
   const libGL = nix.arg($, "libGL");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "stardust",
       version: "0.1.13",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://iwar.free.fr/spip/IMG/gz/stardust-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-t5cykB5zHYYj4tlk9QDhL7YQVgEScBZw9OIVXz5NOqc=",
         })))),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => ["format"]),
       postConfigure: "substituteInPlace config.h \\\n  --replace-fail '#define PACKAGE \"\"' '#define PACKAGE \"stardust\"'\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Space flight simulator",
         homepage: "http://iwar.free.fr/spip/rubrique2.html",
         mainProgram: "stardust",

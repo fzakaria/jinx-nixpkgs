@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const nim = nix.arg($, "nim");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(buildNimPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "balls",
       version: "5.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "disruptek",
           repo: "balls",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
 `;
       })()),
       meta: nix.thunk(() => nix.update(nix.sel(finalAttrs, "src", "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Testing framework with balls",
         homepage: "https://github.com/disruptek/balls",
         mainProgram: "balls",

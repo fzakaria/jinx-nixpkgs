@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const coq = nix.arg($, "coq");
   const simple_io = nix.arg($, "simple-io");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "coq-simple-io-test",
       src: nix.thunk(() => nix.attr(simple_io, "src")),
       version: nix.thunk(() => nix.attr(simple_io, "version")),

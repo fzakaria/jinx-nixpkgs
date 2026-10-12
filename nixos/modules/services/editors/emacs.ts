@@ -36,34 +36,34 @@ else
 fi
 `)));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         emacs: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable a user service for the Emacs daemon. Use `emacsclient` to connect to the\ndaemon. If `true`, {var}`services.emacs.install` is\nconsidered `true`.\n",
             })))),
           install: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to install a user service for the Emacs daemon. Once\nthe service is started, use emacsclient to connect to the\ndaemon.\n\nThe service must be manually started for each user with\n\"systemctl --user start emacs\" or globally through\n{var}`services.emacs.enable`.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "emacs", nix.thunk(() => ({})))),
           defaultEditor: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "When enabled, configures emacsclient to be the default editor\nusing the EDITOR environment variable.\n",
             })))),
           startWithGraphical: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: nix.thunk(() => nix.sel(config, "services", "xserver", "enable")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.xserver.enable")),
@@ -73,42 +73,42 @@ fi
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enable")) || nix.asBool(nix.sel(cfg, "install")))), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           user: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             services: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               emacs: nix.thunk(() => nix.update({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 description: "Emacs: the extensible, self-documenting text editor",
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   Type: "notify",
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "runtimeShell")} -c 'source ${nix.sel(config, "system", "build", "setEnvironment")}; exec ${nix.sel(cfg, "package")}/bin/emacs --fg-daemon'`),
                   SuccessExitStatus: 15n,
                   Restart: "always",
                 })),
-                unitConfig: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "startWithGraphical")), nix.thunk(() => ({ __proto__: pos$9, After: "graphical-session.target" })))),
+                unitConfig: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "startWithGraphical")), nix.thunk(() => ({ [nix.POS]: pos$9, After: "graphical-session.target" })))),
                 restartIfChanged: false,
               }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   wantedBy: nix.thunk(() => (nix.asBool(nix.sel(cfg, "startWithGraphical")) ? ["graphical-session.target"] : ["default.target"])),
                 }))))),
             })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package")), editorScript]),
           sessionVariables: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             EDITOR: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "defaultEditor")), nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 900n, "emacseditor")))),
           })),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$18, doc: nix.path(here, "./emacs.md") })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$18, doc: nix.path(here, "./emacs.md") })),
   };
 })(), formals$1);
 //# sourceMappingURL=emacs.ts.map

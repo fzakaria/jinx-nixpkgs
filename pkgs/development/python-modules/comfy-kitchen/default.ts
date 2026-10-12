@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const comfyui = nix.arg($, "comfyui");
   const cudaPackages = nix.thunk(() => nix.attr(torch, "cudaPackages"));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "comfy-kitchen",
       version: "0.2.35",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Comfy-Org",
           repo: "comfy-kitchen",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--config-setting=--cuda-archs="${nix.app(nix.sel(lib, "concatMapStringsSep"), ";", nix.thunk(() => nix.sel(cudaPackages, "flags", "dropDots")), nix.thunk(() => nix.sel(torch, "cudaCapabilities")))}"`),
       ] : ["-C--global-option=--no-cuda"])),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), cudaSupport, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           CUDA_HOME: nix.thunk(() => nix.sel(cudaPackages, "cuda_nvcc")),
         })))),
       doCheck: false,
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(comfyui, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fast kernel library for ComfyUI with multiple compute backends",
         homepage: "https://github.com/Comfy-Org/comfy-kitchen",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

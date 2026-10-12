@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       packageOverrides: (self) => (super$) => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         lark010: nix.thunk(() => nix.app(nix.sel(super$, "lark", "overridePythonAttrs"), (old) => (() => {
             const version = "0.10.0";
             const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 owner: "lark-parser",
                 repo: "lark",
                 tag: version,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
               }))));
             const patches = [];
             const disabledTestPaths = nix.thunk(() => ["tests/test_nearley/test_nearley.py"]);
-            return { __proto__: pos$2, version, src, patches, disabledTestPaths };
+            return { [nix.POS]: pos$2, version, src, patches, disabledTestPaths };
           })())),
       }),
       self: python,
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "bath_open_instrumentation_group",
           repo: "sca2d",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       })());
       const pythonImportsCheck = nix.thunk(() => ["sca2d"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Experimental static code analyser for OpenSCAD",
         mainProgram: "sca2d",
         homepage: "https://gitlab.com/bath_open_instrumentation_group/sca2d",
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         pyproject,

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(appimageTools, "wrapType2"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "archon-lite",
       version: "9.6.80",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/RPGLogs/Uploaders-archon-lite/releases/download/v${nix.sel(finalAttrs, "version")}/archon-lite-v${nix.sel(finalAttrs, "version")}.AppImage`),
           hash: "sha256-LiP0PAEShUWHokMJ0AjRniYZjpnEhl7SUz2tkJKnd80=",
         })))),
@@ -33,11 +33,11 @@ substituteInPlace $out/share/applications/archon-lite.desktop \\
   --replace-fail "Exec=AppRun --no-sandbox" "Exec=archon-lite"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Application for uploading MMORPG combat logs",
         homepage: "https://www.archon.gg/download",
         downloadPage: nix.thunk(() => nix.str`https://github.com/RPGLogs/Uploaders-archon-lite/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const ppxlib = nix.arg($, "ppxlib");
   const dune_configurator = nix.arg($, "dune-configurator");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ppx_deriving_protobuf",
       version: "3.0.0",
       duneVersion: "3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ocaml-ppx/ppx_deriving_protobuf/releases/download/v${nix.sel(finalAttrs, "version")}/ppx_deriving_protobuf-v${nix.sel(finalAttrs, "version")}.tbz`),
           sha256: "1dc1vxnkd0cnrgac5v3zbaj2lq1d2w8118mp1cmsdxylp06yz1sj",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [ppxlib, dune_configurator]),
       propagatedBuildInputs: nix.thunk(() => [ppx_deriving]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/ocaml-ppx/ppx_deriving_protobuf",
         description: "Protocol Buffers codec generator for OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

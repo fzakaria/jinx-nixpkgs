@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const spirv_tools = nix.arg($, "spirv-tools");
   const config = nix.arg($, "config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "glslang",
       version: "16.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KhronosGroup",
           repo: "glslang",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,14 +46,14 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isLittleEndian"))), nix.thunk(() => ["glslang-gtests"]))),
       postInstall: "# add a symlink for backwards compatibility\nln -s $bin/bin/glslang $bin/bin/glslangValidator\n",
       passthru: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "spirv-tools": nix.thunk(() => nix.builtins.throw("'glslang' no longer pins to specific 'spirv-tools'")),
           "spirv-headers": nix.thunk(() => nix.builtins.throw("'glslang' no longer pins to specific 'spirv-headers'")),
         })))),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         changelog: nix.thunk(() => nix.str`https://github.com/KhronosGroup/glslang/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.md`),
         description: "Khronos reference front-end for GLSL and ESSL",

@@ -16,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       "bare-submodule": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.app(nix.sel(types, "submoduleWith"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               modules: [],
               shorthandOnlyDefinesConfig: nix.thunk(() => nix.sel(config, "shorthandOnlyDefinesConfig")),
             })))),
           default: nix.thunk(() => ({})),
         })))),
-      shorthandOnlyDefinesConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ __proto__: pos$3, default: false })))),
+      shorthandOnlyDefinesConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$3, default: false })))),
     })),
   };
 })(), formals$1);

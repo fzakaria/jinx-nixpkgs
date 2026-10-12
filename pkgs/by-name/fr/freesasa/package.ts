@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const json_c = nix.arg($, "json_c");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "freesasa",
       version: "2.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mittinatten",
           repo: "freesasa",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-linker-error.patch",
             url: "https://github.com/mittinatten/freesasa/commit/d5898c13af0f272697726c567a22f1c48af53d62.patch",
             includes: nix.thunk(() => ["src/Makefile.am"]),
@@ -47,17 +47,17 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, libtool, pkg_config]),
       buildInputs: nix.thunk(() => [json_c, libxml2]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "C-library for calculating Solvent Accessible Surface Areas",
         homepage: "https://github.com/mittinatten/freesasa",
         changelog: nix.thunk(() => nix.str`https://github.com/mittinatten/freesasa/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

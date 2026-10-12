@@ -16,23 +16,23 @@ export default nix.lambda((args) => (() => {
   const gfortran = nix.arg($, "gfortran");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "QCDNUM",
       version: "18-00-00",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://www.nikhef.nl/user/h24/qcdnum-files/download/qcdnum${nix.builtins.replaceStrings(nix.thunk(() => ["-"]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.tar.gz`),
           hash: "sha256-4Qj5JreEA1LkCAunGRTTQD7YEYNk+HcQ4iH97DIO4gA=",
         })))),
       nativeBuildInputs: nix.thunk(() => [gfortran]),
       buildInputs: nix.thunk(() => [zlib]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         FFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-std=legacy"]))),
       })),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Very fast QCD evolution program written in FORTRAN77",
         mainProgram: "qcdnum-config",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

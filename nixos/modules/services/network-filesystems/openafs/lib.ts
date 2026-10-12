@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   const cellServDBMemberType = nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       options: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         ip: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => nix.sel(types, "str")),
             default: "",
             example: "1.2.3.4",
             description: "IP Address of a database server",
           })))),
         dnsname: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.sel(types, "str")),
             default: "",
             example: "afs.example.org",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const cellServDBCellType = nix.thunk(() => nix.app(nix.sel(types, "listOf"), cellServDBMemberType));
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     mkCellServDB: nix.thunk(() => nix.app(concatMapAttrsStringSep, "", (cellName) => (db) => nix.add(nix.add(nix.str`>${cellName}
 `, nix.app(concatStringsSep, "\n", nix.thunk(() => nix.builtins.map((dbm) => nix.app(optionalString, nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(dbm, "ip"), "")) && nix.asBool(!nix.eq(nix.sel(dbm, "dnsname"), "")))), nix.thunk(() => nix.str`${nix.sel(dbm, "ip")} #${nix.sel(dbm, "dnsname")}`)), db)))), "\n"))),
     cellServDBType: (thisCell) => nix.app(nix.sel(types, "coercedTo"), nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "anything")))), (m) => nix.attrsDyn({}, [[nix.str`${thisCell}`, m]]), nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), cellServDBCellType))),

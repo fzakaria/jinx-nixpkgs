@@ -14,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const dune_site = nix.arg($, "dune-site");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "caqti-driver-sqlite3",
       version: nix.thunk(() => nix.attr(caqti, "version")),
       src: nix.thunk(() => nix.attr(caqti, "src")),
       propagatedBuildInputs: nix.thunk(() => [caqti, sqlite3]),
       checkInputs: nix.thunk(() => [alcotest, dune_site]),
       doCheck: true,
-      meta: nix.thunk(() => nix.update(nix.sel(caqti, "meta"), { __proto__: pos$1, description: "Sqlite3 driver for Caqti using C bindings" })),
+      meta: nix.thunk(() => nix.update(nix.sel(caqti, "meta"), { [nix.POS]: pos$1, description: "Sqlite3 driver for Caqti using C bindings" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=driver-sqlite3.ts.map

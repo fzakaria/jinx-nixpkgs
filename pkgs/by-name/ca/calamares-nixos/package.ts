@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const calamares = nix.arg($, "calamares");
   const calamares_nixos_extensions = nix.arg($, "calamares-nixos-extensions");
   return nix.app(nix.sel(calamares, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       extraWrapperArgs: nix.thunk(() => [
         nix.thunk(() => nix.str`--prefix XDG_DATA_DIRS : ${calamares_nixos_extensions}/share`),
         nix.thunk(() => nix.str`--prefix XDG_CONFIG_DIRS : ${calamares_nixos_extensions}/etc`),

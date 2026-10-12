@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const ffmpeg = nix.arg($, "ffmpeg");
   return nix.app(buildDotnetModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bms-to-osu",
       version: "2.5-unstable-2025-01-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "QingQiz",
           repo: "BmsToOsu",
           rev: "e6b9dbf44ccdda7db15bf28e32d1fc1e5431319f",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       executables: nix.thunk(() => ["BmsToOsu"]),
       runtimeDeps: nix.thunk(() => [ncurses]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Convert BMS files to osu! beatmap files",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
         maintainers: nix.thunk(() => (() => {

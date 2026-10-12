@@ -18,25 +18,25 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const lib = nix.arg($, "lib");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "before-after",
       version: "1.0.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "before_after",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-x9T5uLi7UgldoUxLnFnqaz9bnqn9zop7/HLsrg9aP4U=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/c-oreills/before_after/commit/cf3925148782c8c290692883d1215ae4d2c35c3c.diff",
             hash: "sha256-FYCpLxcOLolNPiKzHlgrArCK/QKCwzag+G74wGhK4dc=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/c-oreills/before_after/commit/11c0ecc7e8a2f90a762831e216c1bc40abfda43a.diff",
             hash: "sha256-8YJumF/U8H+hc7rLZLy3UhXHdYJmcuN+O8kMx8yqMJ0=",
           })))),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["before_after"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Sugar over the Mock library to help test race conditions",
         homepage: "https://github.com/c-oreills/before_after",
         maintainers: [],

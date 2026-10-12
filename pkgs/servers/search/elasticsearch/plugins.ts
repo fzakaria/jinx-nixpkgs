@@ -56,149 +56,149 @@ ES_HOME=$out ${elasticsearch}/bin/elasticsearch-plugin install --batch -v file:/
 rm $out/lib $out/modules
 `);
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(a, {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         installPhase: installPhase,
         pname: nix.thunk(() => nix.str`elasticsearch-${pluginName}`),
         dontUnpack: true,
         sourceRoot: ".",
         nativeBuildInputs: nix.thunk(() => [unzip]),
         meta: nix.thunk(() => nix.update(nix.sel(a, "meta"), {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           platforms: nix.thunk(() => nix.sel(elasticsearch, "meta", "platforms")),
           maintainers: nix.thunk(() => nix.selOr(a, () => [], "meta", "maintainers")),
         })),
       })));
   })(), formals$2);
   return nix.update({
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     "analysis-icu": nix.thunk(() => nix.app(esPlugin, nix.thunk(() => (() => {
         const name = nix.thunk(() => nix.str`elasticsearch-analysis-icu-${version}`);
         const pluginName = "analysis-icu";
         const version = esVersion;
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: nix.thunk(() => nix.str`https://artifacts.elastic.co/downloads/elasticsearch-plugins/${pluginName}/${pluginName}-${version}.zip`),
             hash: nix.thunk(() => (nix.asBool(nix.eq(version, "7.17.27")) ? "sha256-HGHhcWj+6IWZ9kQCGJD7HmmvwqYV1zjN0tCsEpN4IAA=" : nix.builtins.throw(nix.thunk(() => nix.str`unsupported version ${version} for plugin ${pluginName}`)))),
           }))));
         const meta = nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           homepage: "https://github.com/elastic/elasticsearch/tree/master/plugins/analysis-icu",
           description: "ICU Analysis plugin integrates the Lucene ICU module into elasticsearch",
           license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         }));
-        return { __proto__: pos$5, name, pluginName, version, src, meta };
+        return { [nix.POS]: pos$5, name, pluginName, version, src, meta };
       })()))),
     "analysis-kuromoji": nix.thunk(() => nix.app(esPlugin, nix.thunk(() => (() => {
         const pluginName = "analysis-kuromoji";
         const version = esVersion;
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             url: nix.thunk(() => nix.str`https://artifacts.elastic.co/downloads/elasticsearch-plugins/${pluginName}/${pluginName}-${version}.zip`),
             hash: nix.thunk(() => (nix.asBool(nix.eq(version, "7.17.27")) ? "sha256-j0WXuGmE3bRNBnDx/uWxfWrIUrdatDt52ASj8m3mrVg=" : nix.builtins.throw(nix.thunk(() => nix.str`unsupported version ${version} for plugin ${pluginName}`)))),
           }))));
         const meta = nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           homepage: "https://github.com/elastic/elasticsearch/tree/master/plugins/analysis-kuromoji",
           description: "Japanese (kuromoji) Analysis plugin integrates Lucene kuromoji analysis module into Elasticsearch",
           license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         }));
-        return { __proto__: pos$8, pluginName, version, src, meta };
+        return { [nix.POS]: pos$8, pluginName, version, src, meta };
       })()))),
     "analysis-phonetic": nix.thunk(() => nix.app(esPlugin, nix.thunk(() => (() => {
         const pluginName = "analysis-phonetic";
         const version = esVersion;
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             url: nix.thunk(() => nix.str`https://artifacts.elastic.co/downloads/elasticsearch-plugins/${pluginName}/${pluginName}-${version}.zip`),
             hash: nix.thunk(() => (nix.asBool(nix.eq(version, "7.17.27")) ? "sha256-X8b8z9LznJQ24aF9GugRuDz1c9buqT7QGS3jhuDbYBM=" : nix.builtins.throw(nix.thunk(() => nix.str`unsupported version ${version} for plugin ${pluginName}`)))),
           }))));
         const meta = nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           homepage: "https://github.com/elastic/elasticsearch/tree/master/plugins/analysis-phonetic",
           description: "Phonetic Analysis plugin integrates phonetic token filter analysis with elasticsearch",
           license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         }));
-        return { __proto__: pos$11, pluginName, version, src, meta };
+        return { [nix.POS]: pos$11, pluginName, version, src, meta };
       })()))),
     "analysis-smartcn": nix.thunk(() => nix.app(esPlugin, nix.thunk(() => (() => {
         const pluginName = "analysis-smartcn";
         const version = esVersion;
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             url: nix.thunk(() => nix.str`https://artifacts.elastic.co/downloads/elasticsearch-plugins/${pluginName}/${pluginName}-${version}.zip`),
             hash: nix.thunk(() => (nix.asBool(nix.eq(version, "7.17.27")) ? "sha256-0hHHkywdpjKqzZ9vFqQ9B2aLCky17AYzFcSiaz/zGSw=" : nix.builtins.throw(nix.thunk(() => nix.str`unsupported version ${version} for plugin ${pluginName}`)))),
           }))));
         const meta = nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           homepage: "https://github.com/elastic/elasticsearch/tree/master/plugins/analysis-smartcn",
           description: "Smart Chinese Analysis plugin integrates Lucene Smart Chinese analysis module into Elasticsearch",
           license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         }));
-        return { __proto__: pos$14, pluginName, version, src, meta };
+        return { [nix.POS]: pos$14, pluginName, version, src, meta };
       })()))),
     "discovery-ec2": nix.thunk(() => nix.app(esPlugin, nix.thunk(() => (() => {
         const pluginName = "discovery-ec2";
         const version = esVersion;
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             url: nix.thunk(() => nix.str`https://artifacts.elastic.co/downloads/elasticsearch-plugins/${pluginName}/${pluginName}-${version}.zip`),
             hash: nix.thunk(() => (nix.asBool(nix.eq(version, "7.17.27")) ? "sha256-44p0Pn0mYKR5hWtC8jdaUbh9mbUGiHN9PK98ZT1jQFY=" : nix.builtins.throw(nix.thunk(() => nix.str`unsupported version ${version} for plugin ${pluginName}`)))),
           }))));
         const meta = nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           homepage: "https://github.com/elastic/elasticsearch/tree/master/plugins/discovery-ec2",
           description: "EC2 discovery plugin uses the AWS API for unicast discovery",
           license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         }));
-        return { __proto__: pos$17, pluginName, version, src, meta };
+        return { [nix.POS]: pos$17, pluginName, version, src, meta };
       })()))),
     "ingest-attachment": nix.thunk(() => nix.app(esPlugin, nix.thunk(() => (() => {
         const pluginName = "ingest-attachment";
         const version = esVersion;
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             url: nix.thunk(() => nix.str`https://artifacts.elastic.co/downloads/elasticsearch-plugins/${pluginName}/${pluginName}-${version}.zip`),
             hash: nix.thunk(() => (nix.asBool(nix.eq(version, "7.17.27")) ? "sha256-i+fGO7Ic2Wm/COfPGeRhiJ99Os+rLRYgs/pSepQr68g=" : nix.builtins.throw(nix.thunk(() => nix.str`unsupported version ${version} for plugin ${pluginName}`)))),
           }))));
         const meta = nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           homepage: "https://github.com/elastic/elasticsearch/tree/master/plugins/ingest-attachment",
           description: "Ingest processor that uses Apache Tika to extract contents",
           license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         }));
-        return { __proto__: pos$20, pluginName, version, src, meta };
+        return { [nix.POS]: pos$20, pluginName, version, src, meta };
       })()))),
     "repository-s3": nix.thunk(() => nix.app(esPlugin, nix.thunk(() => (() => {
         const pluginName = "repository-s3";
         const version = esVersion;
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             url: nix.thunk(() => nix.str`https://artifacts.elastic.co/downloads/elasticsearch-plugins/${pluginName}/${pluginName}-${esVersion}.zip`),
             hash: nix.thunk(() => (nix.asBool(nix.eq(version, "7.17.27")) ? "sha256-o2T0Dd2RqVh99wDPJMEvpnEpFFjz0lQrN9yAVJfiSGY=" : nix.builtins.throw(nix.thunk(() => nix.str`unsupported version ${version} for plugin ${pluginName}`)))),
           }))));
         const meta = nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           homepage: "https://github.com/elastic/elasticsearch/tree/master/plugins/repository-s3",
           description: "S3 repository plugin adds support for using AWS S3 as a repository for Snapshot/Restore",
           license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         }));
-        return { __proto__: pos$23, pluginName, version, src, meta };
+        return { [nix.POS]: pos$23, pluginName, version, src, meta };
       })()))),
     "repository-gcs": nix.thunk(() => nix.app(esPlugin, nix.thunk(() => (() => {
         const pluginName = "repository-gcs";
         const version = esVersion;
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             url: nix.thunk(() => nix.str`https://artifacts.elastic.co/downloads/elasticsearch-plugins/${pluginName}/${pluginName}-${esVersion}.zip`),
             hash: nix.thunk(() => (nix.asBool(nix.eq(version, "7.17.27")) ? "sha256-CWyQuzf2fP9BSIUWL/jxkxrXwdvHyujEINDNhY3FKNI=" : nix.builtins.throw(nix.thunk(() => nix.str`unsupported version ${version} for plugin ${pluginName}`)))),
           }))));
         const meta = nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           homepage: "https://github.com/elastic/elasticsearch/tree/master/plugins/repository-gcs",
           description: "GCS repository plugin adds support for using Google Cloud Storage as a repository for Snapshot/Restore",
           license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         }));
-        return { __proto__: pos$26, pluginName, version, src, meta };
+        return { [nix.POS]: pos$26, pluginName, version, src, meta };
       })()))),
     "search-guard": nix.thunk(() => (() => {
       const majorVersion = nix.thunk(() => nix.app(nix.sel(lib, "head"), nix.thunk(() => nix.builtins.splitVersion(esVersion))));
@@ -206,21 +206,21 @@ rm $out/lib $out/modules
           const pluginName = "search-guard";
           const version = nix.thunk(() => (nix.asBool(nix.eq(esVersion, "7.17.27")) ? nix.str`${esVersion}-53.10.0` : nix.builtins.throw(nix.thunk(() => nix.str`unsupported version ${esVersion} for plugin ${pluginName}`))));
           const src = nix.thunk(() => (nix.asBool(nix.eq(esVersion, "7.17.27")) ? nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               url: nix.thunk(() => nix.str`https://maven.search-guard.com/search-guard-suite-release/com/floragunn/search-guard-suite-plugin/${version}/search-guard-suite-plugin-${version}.zip`),
               hash: "sha256-M1yJ8OD+mDq2uEiK6pvsMxUQMrg6o5A4xEPX8nDt1Rs=",
             }))) : nix.builtins.throw(nix.thunk(() => nix.str`unsupported version ${version} for plugin ${pluginName}`))));
           const meta = nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             homepage: "https://search-guard.com",
             description: "Elasticsearch plugin that offers encryption, authentication, and authorisation",
             license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
           }));
-          return { __proto__: pos$29, pluginName, version, src, meta };
+          return { [nix.POS]: pos$29, pluginName, version, src, meta };
         })()));
     })()),
   }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-      __proto__: pos$31,
+      [nix.POS]: pos$31,
       "analysis-lemmagen": nix.thunk(() => nix.builtins.throw("elasticsearchPlugins.analysis-lemmagen has been removed due to being broken for more than a year; see RFC 180")),
     }))));
 })(), formals$1);

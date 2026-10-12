@@ -18,19 +18,19 @@ export default nix.lambda((args) => (() => {
   const doCheck = nix.argOr($, "doCheck", () => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.08"));
   const version = "1.6.0";
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "stringext",
       version: version,
       duneVersion: "3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/rgrinberg/stringext/releases/download/${version}/stringext-${version}.tbz`),
           sha256: "1sh6nafi3i9773j5mlwwz3kxfzdjzsfqj2qibxhigawy5vazahfv",
         })))),
       checkInputs: nix.thunk(() => [ounit, qtest]),
       doCheck: doCheck,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/rgrinberg/stringext",
         description: "Extra string functions for OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

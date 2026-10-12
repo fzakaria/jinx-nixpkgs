@@ -40,13 +40,13 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "weasyprint",
       version: "69.0",
       pyproject: true,
       __darwinAllowLocalNetworking: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Kozea",
           repo: "WeasyPrint",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./library-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             fontconfig: nix.thunk(() => nix.str`${nix.sel(fontconfig, "lib")}/lib/libfontconfig${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
             gobject: nix.thunk(() => nix.str`${nix.sel(glib, "out")}/lib/libgobject-2.0${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
             harfbuzz: nix.thunk(() => nix.str`${nix.sel(harfbuzz, "out")}/lib/libharfbuzz${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
             pangoft2: nix.thunk(() => nix.str`${nix.sel(pango, "out")}/lib/libpangoft2-1.0${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "fix-unicode-test",
             url: "https://github.com/Kozea/WeasyPrint/commit/b2efb459fbe7f7fd35ab9078734121cb87d3d65a.patch?full_index=1",
             hash: "sha256-uixfpg9fvkdNmSTqz/M1c1vkV/mJDqOs7zDAunn2rEY=",
@@ -98,11 +98,11 @@ export default nix.lambda((args) => (() => {
         "test_2d_transform",
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         FONTCONFIG_FILE: nix.thunk(() => nix.str`${nix.sel(fontconfig, "out")}/etc/fonts/fonts.conf`),
       })),
       preCheck: nix.thunk(() => nix.str`export FONTCONFIG_FILE=${nix.app(makeFontsConf, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           fontDirectories: nix.thunk(() => [twemoji_color_font]),
           impureFontDirectories: [],
         })))}
@@ -112,7 +112,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["weasyprint"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         changelog: nix.thunk(() => nix.str`https://github.com/Kozea/WeasyPrint/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Converts web documents to PDF",
         homepage: "https://weasyprint.org/",

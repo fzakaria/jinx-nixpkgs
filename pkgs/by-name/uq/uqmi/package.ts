@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libubox = nix.arg($, "libubox");
   const json_c = nix.arg($, "json_c");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "uqmi",
       version: "unstable-2025-07-30",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.openwrt.org/project/uqmi.git",
           rev: "7914da43cddaaf6cfba116260c81e6e9adffd5ab",
           hash: "sha256-Ny5Jd/6N1nTcv2GGP1YLFe+ljn15sUQJVAEVPvYtz3M=",
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, perl]),
       buildInputs: nix.thunk(() => [libubox, json_c]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ["-Wno-error=unknown-warning-option"]))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tiny QMI command line utility",
         homepage: "https://git.openwrt.org/?p=project/uqmi.git;a=summary",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

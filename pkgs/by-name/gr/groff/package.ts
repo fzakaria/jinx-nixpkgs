@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
   const bison = nix.arg($, "bison");
   const bashNonInteractive = nix.arg($, "bashNonInteractive");
   const urw_fonts = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "groff-urw-base35-fonts",
       owner: "ArtifexSoftware",
       repo: "urw-base35-fonts",
@@ -49,11 +49,11 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "getOutput"), "perl", nix.thunk(() => nix.sel(buildPackages, "groff")))),
     ])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "groff",
       version: "1.24.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`mirror://gnu/groff/groff-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-dOKBl5W2r/QxrqyYPWOpyJaO6roqLrp9+LpMe0Hnz9g=",
         })))),
@@ -112,7 +112,7 @@ moveToOutput lib/groff/grog $perl
 find $perl/ -type f -print0 | xargs --null sed -i 's|${nix.sel(buildPackages, "perl")}|${perl}|'
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.gnu.org/software/groff/",
         description: "GNU Troff, a typesetting package that reads plain text and produces formatted output",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(makeScope, newScope, (self) => (() => {
       const callPackage = nix.thunk(() => nix.sel(self, "callPackage"));
       const buildOctavePackage = nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/interpreters/octave/build-octave-package.nix"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           lib: lib,
           stdenv: stdenv,
           octave: octave,
@@ -48,12 +48,12 @@ export default nix.lambda((args) => (() => {
       return nix.update((() => {
         const from = nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/interpreters/octave/hooks"), nix.thunk(() => ({}))));
         return {
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         buildOctavePackage: buildOctavePackage,
         computeRequiredOctavePackages: computeRequiredOctavePackages,
         writeRequiredOctavePackagesHook: nix.thunk(() => nix.attr(from, "writeRequiredOctavePackagesHook")),
         arduino: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/octave-modules/arduino"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "arduino-core-unwrapped": nix.thunk(() => nix.attr(pkgs, "arduino-core-unwrapped")),
           })))),
         audio: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/octave-modules/audio"), nix.thunk(() => ({})))),
@@ -75,12 +75,12 @@ export default nix.lambda((args) => (() => {
         fpl: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/octave-modules/fpl"), nix.thunk(() => ({})))),
         "fuzzy-logic-toolkit": nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/octave-modules/fuzzy-logic-toolkit"), nix.thunk(() => ({})))),
         ga: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/octave-modules/ga"), nix.thunk(() => ({})))),
-        general: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/octave-modules/general"), nix.thunk(() => ({ __proto__: pos$3, nettle: nix.thunk(() => nix.sel(pkgs, "nettle")) })))),
+        general: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/octave-modules/general"), nix.thunk(() => ({ [nix.POS]: pos$3, nettle: nix.thunk(() => nix.sel(pkgs, "nettle")) })))),
         generate_html: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/octave-modules/generate_html"), nix.thunk(() => ({})))),
         geometry: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/octave-modules/geometry"), nix.thunk(() => ({})))),
-        gsl: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/octave-modules/gsl"), nix.thunk(() => ({ __proto__: pos$4, gsl: nix.thunk(() => nix.attr(pkgs, "gsl")) })))),
+        gsl: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/octave-modules/gsl"), nix.thunk(() => ({ [nix.POS]: pos$4, gsl: nix.thunk(() => nix.attr(pkgs, "gsl")) })))),
         image: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/octave-modules/image"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             gnuplot: nix.thunk(() => nix.attr(pkgs, "gnuplot")),
             makeFontsConf: nix.thunk(() => nix.attr(pkgs, "makeFontsConf")),
             writableTmpDirAsHomeHook: nix.thunk(() => nix.attr(pkgs, "writableTmpDirAsHomeHook")),
@@ -89,13 +89,13 @@ export default nix.lambda((args) => (() => {
         "instrument-control": nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/octave-modules/instrument-control"), nix.thunk(() => ({})))),
         interval: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/octave-modules/interval"), nix.thunk(() => ({})))),
         io: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/octave-modules/io"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             enableJava: nix.thunk(() => nix.attr(octave, "enableJava")),
           })))),
         "linear-algebra": nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/octave-modules/linear-algebra"), nix.thunk(() => ({})))),
         lssa: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/octave-modules/lssa"), nix.thunk(() => ({})))),
         ltfat: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/octave-modules/ltfat"), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             fftw: nix.thunk(() => nix.attr(octave, "fftw")),
             fftwSinglePrec: nix.thunk(() => nix.attr(octave, "fftwSinglePrec")),
             portaudio: nix.thunk(() => nix.attr(octave, "portaudio")),
@@ -106,11 +106,11 @@ export default nix.lambda((args) => (() => {
         mapping: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/octave-modules/mapping"), nix.thunk(() => ({})))),
         matgeom: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/octave-modules/matgeom"), nix.thunk(() => ({})))),
         miscellaneous: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/octave-modules/miscellaneous"), nix.thunk(() => ({})))),
-        msh: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/octave-modules/msh"), nix.thunk(() => ({ __proto__: pos$8, dolfin: null })))),
+        msh: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/octave-modules/msh"), nix.thunk(() => ({ [nix.POS]: pos$8, dolfin: null })))),
         mvn: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/octave-modules/mvn"), nix.thunk(() => ({})))),
         nan: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/octave-modules/nan"), nix.thunk(() => ({})))),
         ncarray: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/octave-modules/ncarray"), nix.thunk(() => ({})))),
-        netcdf: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/octave-modules/netcdf"), nix.thunk(() => ({ __proto__: pos$9, netcdf: nix.thunk(() => nix.attr(pkgs, "netcdf")) })))),
+        netcdf: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/octave-modules/netcdf"), nix.thunk(() => ({ [nix.POS]: pos$9, netcdf: nix.thunk(() => nix.attr(pkgs, "netcdf")) })))),
         nurbs: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/octave-modules/nurbs"), nix.thunk(() => ({})))),
         ocl: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/octave-modules/ocl"), nix.thunk(() => ({})))),
         octclip: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/octave-modules/octclip"), nix.thunk(() => ({})))),
@@ -127,18 +127,18 @@ export default nix.lambda((args) => (() => {
         stk: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/octave-modules/stk"), nix.thunk(() => ({})))),
         strings: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/octave-modules/strings"), nix.thunk(() => ({})))),
         struct: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/octave-modules/struct"), nix.thunk(() => ({})))),
-        symbolic: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/octave-modules/symbolic"), nix.thunk(() => ({ __proto__: pos$10, python: nix.thunk(() => nix.attr(octave, "python")) })))),
+        symbolic: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/octave-modules/symbolic"), nix.thunk(() => ({ [nix.POS]: pos$10, python: nix.thunk(() => nix.attr(octave, "python")) })))),
         tsa: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/octave-modules/tsa"), nix.thunk(() => ({})))),
         video: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/octave-modules/video"), nix.thunk(() => ({})))),
         windows: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/octave-modules/windows"), nix.thunk(() => ({})))),
         zeromq: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/octave-modules/zeromq"), nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             zeromq: nix.thunk(() => nix.attr(pkgs, "zeromq")),
             autoreconfHook: nix.thunk(() => nix.attr(pkgs, "autoreconfHook")),
           })))),
       };
       })(), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           "fem-fenics": nix.thunk(() => nix.builtins.throw("octavePackages.fem-fenics has been removed due to being broken for more than a year; see RFC 180")),
           "level-set": nix.thunk(() => nix.builtins.throw("octavePackages.level-set has been removed due to being broken for more than a year; see RFC 180")),
           parallel: nix.thunk(() => nix.builtins.throw("octavePackages.parallel has been removed due to being broken for more than a year; see RFC 180")),

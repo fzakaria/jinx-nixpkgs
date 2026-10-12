@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const withNcurses = nix.argOr($, "withNcurses", () => false);
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "gpm",
       version: "1.20.7-unstable-2020-06-17",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "telmich",
           repo: "gpm",
           rev: "e82d1a653ca94aa4ed12441424da6ce780b1e530",
@@ -44,12 +44,12 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => ["format"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/kaction/gpm/commit/217b4fe4c9b62298a4e9a54c1f07e3b52b013a09.patch",
             hash: "sha256-OIXrWJZXor6xXrCLqAYrAIWAWY1p9tVoC5/AG0WA5Lg=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "parallel-install.patch",
             url: "https://github.com/telmich/gpm/commit/a88fb82a7afe96e872bb31c554e9ad5888f5a451.patch",
             hash: "sha256-3ZpDI6NlW8SGlGhIGwLErcvZkYazC5G2xPtwudKHMjw=",
@@ -66,11 +66,11 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       postInstall: "if test -e \"$out/lib/libgpm.so.2\"; then\n  ln -sv \"$out/lib/libgpm.so.2\" \"$out/lib/libgpm.so\"\nelse\n  rm -f \"$out/lib/libgpm.so.2\"\nfi\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        tests: nix.thunk(() => ({ __proto__: pos$4, static: nix.thunk(() => nix.sel(pkgsStatic, "gpm")) })),
+        [nix.POS]: pos$5,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$4, static: nix.thunk(() => nix.sel(pkgsStatic, "gpm")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://www.nico.schottelius.org/software/gpm/",
         description: "Daemon that provides mouse support on the Linux console",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

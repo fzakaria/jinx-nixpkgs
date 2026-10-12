@@ -35,19 +35,19 @@ export default nix.lambda((args) => (() => {
   const cudaSupport = nix.argOr($, "cudaSupport", () => nix.sel(config, "cudaSupport"));
   const rapidocr_onnxruntime = nix.arg($, "rapidocr-onnxruntime");
   const models = nix.thunk(() => nix.add(nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://github.com/RapidAI/RapidOCR/releases/download/v1.1.0/required_for_whl_v1.3.0.zip",
       hash: "sha256-j/0nzyvu/HfNTt5EZ+2Phe5dkyPOdQw/OZTz0yS63aA=",
       stripRoot: false,
     }))), "/required_for_whl_v1.3.0/resources/models"));
   const isNotAarch64Linux = nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "rapidocr-onnxruntime",
       version: "1.4.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "RapidAI",
           repo: "RapidOCR",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/python`),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./setup-py-override-version-checking.patch"), nix.thunk(() => ({ __proto__: pos$3, version: nix.thunk(() => nix.attr(finalAttrs, "version")) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./setup-py-override-version-checking.patch"), nix.thunk(() => ({ [nix.POS]: pos$3, version: nix.thunk(() => nix.attr(finalAttrs, "version")) })))),
       ]),
       postPatch: nix.thunk(() => nix.str`mv setup_onnxruntime.py setup.py
 
@@ -83,17 +83,17 @@ echo "from .rapidocr_onnxruntime.main import RapidOCR, VisRes" > __init__.py
       disabledTests: nix.thunk(() => ["test_long_img"]),
       doCheck: nix.thunk(() => (nix.asBool(!nix.asBool(cudaSupport)) && nix.asBool(isNotAarch64Linux))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         skipBulkUpdate: true,
         gpuCheck: nix.thunk(() => nix.app(nix.sel(rapidocr_onnxruntime, "overridePythonAttrs"), (old) => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             requiredSystemFeatures: nix.thunk(() => ["cuda"]),
             doCheck: true,
             disabledTests: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "disabledTests"), nix.app(nix.sel(lib, "optionals"), cudaSupport, nix.thunk(() => ["test_ort_cuda_warning"])))),
           }))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         changelog: nix.thunk(() => nix.str`https://github.com/RapidAI/RapidOCR/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Cross platform OCR Library based on OnnxRuntime",
         homepage: "https://github.com/RapidAI/RapidOCR",

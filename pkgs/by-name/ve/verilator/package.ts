@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const gdb = nix.arg($, "gdb");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "verilator",
       version: "5.052",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "verilator",
           repo: "verilator",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,13 +62,13 @@ substituteInPlace bin/verilator --replace-fail "/bin/sh" "${bash}/bin/sh"
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace src/flexfix \\\n  --replace-fail 'if platform.system() == \"Darwin\":' 'if False:'\n"))),
       preCheck: "export PATH=$PWD/bin:$PATH\n",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         VERILATOR_SRC_VERSION: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
         SYSTEMC_INCLUDE: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), systemc)}/include`),
         SYSTEMC_LIBDIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), systemc)}/lib`),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/verilator/verilator/blob/${nix.sel(finalAttrs, "src", "tag")}/Changes`),
         description: "Fast and robust (System)Verilog simulator/compiler and linter",
         homepage: "https://www.veripool.org/verilator",

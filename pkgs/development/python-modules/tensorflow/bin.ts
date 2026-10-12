@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
   const cuda = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), cudaSupport, nix.thunk(() => (nix.asBool(isCudaJetson) ? "_jetson" : "_gpu"))));
   const key = nix.thunk(() => nix.str`${nix.sel(stdenv, "system")}_${pyVerNoDot}${cuda}`);
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.add("tensorflow", nix.app(nix.sel(lib, "optionalString"), cudaSupport, "-gpu"))),
       version: nix.thunk(() => nix.sel(packages, nix.key(nix.str`${nix.add("version", nix.app(nix.sel(lib, "optionalString"), isCudaJetson, "_jetson"))}`))),
       format: "wheel",
@@ -164,7 +164,7 @@ done
 `)))),
       pythonImportsCheck: nix.thunk(() => ["tensorflow", "tensorflow.python", "tensorflow.python.framework"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Computation using data flow graphs for scalable machine learning",
         homepage: "http://tensorflow.org",
         sourceProvenance: nix.thunk(() => (() => {

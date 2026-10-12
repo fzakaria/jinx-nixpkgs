@@ -24,20 +24,20 @@ export default nix.lambda((args) => (() => {
   const wine64 = nix.arg($, "wine64");
   const buildPlatform = nix.thunk(() => nix.attr(stdenv, "buildPlatform"));
   return nix.update({
-    __proto__: pos$3,
-    version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$1, package: cloudflared, command: "cloudflared help" })))),
-    "refuses-to-autoupdate": nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`cloudflared-${version}-refuses-to-autoupdate`), nix.thunk(() => ({ __proto__: pos$2, nativeBuildInputs: nix.thunk(() => [cloudflared]) })), "set -e\ncloudflared update 2>&1 | tee output.txt\nif ! grep \"cloudflared was installed by nixpkgs\" output.txt\nthen\n  echo \"cloudflared's output didn't contain the package manager name\"\n  exit 1\nfi\nmkdir $out\n")),
+    [nix.POS]: pos$3,
+    version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$1, package: cloudflared, command: "cloudflared help" })))),
+    "refuses-to-autoupdate": nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`cloudflared-${version}-refuses-to-autoupdate`), nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [cloudflared]) })), "set -e\ncloudflared update 2>&1 | tee output.txt\nif ! grep \"cloudflared was installed by nixpkgs\" output.txt\nthen\n  echo \"cloudflared's output didn't contain the package manager name\"\n  exit 1\nfi\nmkdir $out\n")),
   }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(buildPlatform, "isLinux")) && nix.asBool((nix.asBool(nix.sel(buildPlatform, "isi686")) || nix.asBool(nix.sel(buildPlatform, "isx86_64")))))), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       "runs-through-wine": nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`cloudflared-${version}-runs-through-wine`), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           nativeBuildInputs: nix.thunk(() => [wine]),
           exe: nix.thunk(() => nix.str`${nix.sel(pkgsCross, "mingw32", "cloudflared")}/bin/cloudflared.exe`),
         })), "export HOME=\"$(mktemp -d)\"\nwine $exe help\nmkdir $out\n")),
     }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(buildPlatform, "isLinux")) && nix.asBool(nix.sel(buildPlatform, "isx86_64")))), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       "runs-through-wine64": nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`cloudflared-${version}-runs-through-wine64`), nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           nativeBuildInputs: nix.thunk(() => [wine64]),
           exe: nix.thunk(() => nix.str`${nix.sel(pkgsCross, "mingwW64", "cloudflared")}/bin/cloudflared.exe`),
         })), "export HOME=\"$(mktemp -d)\"\nwine $exe help\nmkdir $out\n")),

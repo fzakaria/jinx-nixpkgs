@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const fetchPnpmDeps = nix.arg($, "fetchPnpmDeps");
   const artalk = nix.arg($, "artalk");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.str`${nix.sel(artalk, "pname")}-frontend`),
       src: nix.thunk(() => nix.attr(artalk, "src")),
       version: nix.thunk(() => nix.attr(artalk, "version")),
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpmConfigHook, pnpm_10]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-rs3isWKlV+RGA3shYZZpNImn9xJ67vpXoJmQoO6y2cE=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CHOKIDAR_USEPOLLING: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")), "true")),
       })),
       buildPhase: "runHook preBuild\n\npnpm build:all\npnpm build:plugin-kit\npnpm build:auth\n\nrunHook postBuild\n",

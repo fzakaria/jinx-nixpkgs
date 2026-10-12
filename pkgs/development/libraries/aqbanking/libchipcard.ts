@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libchipcard";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.aquamaniac.de/rdm/attachments/download/${releaseId}/libchipcard-${version_1}.tar.gz`),
           hash: hash,
         }))));
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [gwenhywfar, pcsclite, zlib]);
       const makeFlags = nix.thunk(() => ["crypttokenplugindir=$(out)/lib/gwenhywfar/plugins/ct"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for access to chipcards",
         homepage: "https://www.aquamaniac.de/rdm/projects/libchipcard",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version: version_1,
         src,

@@ -34,18 +34,18 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const children = nix.thunk(() => nix.app(mapAttrs, (childName) => (childConfig) => nix.sel(childConfig, "configuration", "system", "build", "toplevel"), nix.thunk(() => nix.sel(config, "specialisation"))));
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       isSpecialisation: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
           internal: true,
           default: false,
           description: "Whether this system is a specialisation of another.",
         })))),
       specialisation: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           default: nix.thunk(() => ({})),
           example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{ fewJobsManyCores.configuration = { nix.settings = { core = 0; max-jobs = 1; }; }; }")),
           description: "Additional configurations to build. If\n`inheritParentConfig` is true, the system\nwill be based on the overall system configuration.\n\nTo switch to a specialised configuration\n(e.g. `fewJobsManyCores`) at runtime, run:\n\n```\nsudo /run/current-system/specialisation/fewJobsManyCores/bin/switch-to-configuration test\n```\n",
@@ -54,22 +54,22 @@ export default nix.lambda((args) => (() => {
                 const local = args_1;
                 const extend = nix.thunk(() => (nix.asBool(nix.sel(local, "config", "inheritParentConfig")) ? nix.force(extendModules) : nix.sel(noUserModules, "extendModules")));
                 return {
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   options: nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     inheritParentConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$2,
+                        [nix.POS]: pos$2,
                         type: nix.thunk(() => nix.sel(types, "bool")),
                         default: true,
                         description: "Include the entire system's configuration. Set to false to make a completely differently configured system.",
                       })))),
                     configuration: nix.thunk(() => nix.app(mkOption, nix.thunk(() => (() => {
                         const from = nix.thunk(() => nix.app(extend, nix.thunk(() => ({
-                            __proto__: pos$3,
+                            [nix.POS]: pos$3,
                             modules: nix.thunk(() => [nix.path(here, "./no-clone.nix")]),
                           }))));
                         return {
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         default: nix.thunk(() => ({})),
                         description: "Arbitrary NixOS configuration.\n\nAnything you can add to a normal NixOS configuration, you can add\nhere, including imports and config values, although nested\nspecialisations will be ignored.\n",
                         visible: "shallow",
@@ -82,22 +82,22 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       assertions: nix.thunk(() => nix.app(mapAttrsToList, (name) => (_) => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           assertion: nix.thunk(() => !nix.asBool(nix.app(hasInfix, "/", name))),
           message: nix.thunk(() => nix.str`Specialisation names must not contain forward slashes.
 Invalid specialisation name: ${name}
 `),
         }), nix.thunk(() => nix.sel(config, "specialisation")))),
       system: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         systemBuilderCommands: nix.thunk(() => nix.str`mkdir $out/specialisation
 ${nix.app(concatStringsSep, "\n", nix.thunk(() => nix.app(mapAttrsToList, (name) => (path) => nix.str`ln -s ${path} $out/specialisation/${nix.app(escapeShellArg, name)}`, children)))}
 `),
       })),
     })),
-    meta: nix.thunk(() => ({ __proto__: pos$12, buildDocsInSandbox: false })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$12, buildDocsInSandbox: false })),
   };
 })(), formals$1);
 //# sourceMappingURL=specialisation.ts.map

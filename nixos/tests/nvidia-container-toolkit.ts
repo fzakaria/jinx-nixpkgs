@@ -65,11 +65,11 @@ check_directory_referential_integrity "${nix.sel(pkgs, "addDriverRunpath", "driv
 check_directory_referential_integrity "/usr/local/nvidia" || exit 1
 `)));
   const testContainerImage = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "buildImage"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "cdi-test",
       tag: "latest",
       config: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         Cmd: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "getExe"), testCDIScript))]),
       })),
       copyToRoot: nix.thunk(() => (() => {
@@ -82,10 +82,10 @@ check_directory_referential_integrity "/usr/local/nvidia" || exit 1
     }))));
   const emptyCDISpec = "{\n  \"cdiVersion\": \"0.5.0\",\n  \"kind\": \"nvidia.com/gpu\",\n  \"devices\": [\n    {\n      \"name\": \"all\",\n      \"containerEdits\": {\n        \"deviceNodes\": [\n          {\n            \"path\": \"/dev/urandom\"\n          }\n        ],\n        \"hooks\": [],\n        \"mounts\": []\n      }\n    }\n  ],\n  \"containerEdits\": {\n    \"deviceNodes\": [],\n    \"hooks\": [],\n    \"mounts\": []\n  }\n}\n";
   const nvidia_container_toolkit = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     enable: true,
     package: nix.thunk(() => nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: "nvidia-ctk-dummy",
         version: "1.0.0",
         dontUnpack: true,
@@ -101,17 +101,17 @@ cat "$out/share/nvidia-container-toolkit/spec.json"
 EOF
 chmod +x $out/bin/nvidia-ctk
 `),
-        meta: nix.thunk(() => ({ __proto__: pos$3, mainProgram: "nvidia-ctk" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$3, mainProgram: "nvidia-ctk" })),
       })))),
     suppressNvidiaDriverAssertion: true,
   }));
   return {
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     name: "nvidia-container-toolkit",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "ereslibre")),
           nix.thunk(() => nix.lookup(w, "christoph-heiss")),
@@ -122,80 +122,80 @@ chmod +x $out/bin/nvidia-ctk
       const $_1 = nix.formals(args_1, formals$2);
       const config = nix.arg($_1, "config");
       return {
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         environment: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           systemPackages: nix.thunk(() => (() => {
             const w_1 = nix.withScope(pkgs, null);
             return [nix.thunk(() => nix.lookup(w_1, "jq"))];
           })()),
         })),
         virtualisation: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           diskSize: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 10240n)),
           containers: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             containersConf: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               settings: nix.thunk(() => ({
-                __proto__: pos$9,
-                engine: nix.thunk(() => ({ __proto__: pos$8, cdi_spec_dirs: nix.thunk(() => ["/var/run/cdi"]) })),
+                [nix.POS]: pos$9,
+                engine: nix.thunk(() => ({ [nix.POS]: pos$8, cdi_spec_dirs: nix.thunk(() => ["/var/run/cdi"]) })),
               })),
             })),
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
           })),
         })),
         hardware: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           "nvidia-container-toolkit": nvidia_container_toolkit,
           nvidia: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             open: true,
             package: nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "nvidiaPackages", "stable", "open")),
           })),
           graphics: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
           })),
         })),
       };
     })(), formals$2),
     nodes: nix.thunk(() => ({
-      __proto__: pos$28,
+      [nix.POS]: pos$28,
       "no-gpus": nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         virtualisation: nix.thunk(() => ({
-          __proto__: pos$18,
-          containers: nix.thunk(() => ({ __proto__: pos$17, enable: false })),
+          [nix.POS]: pos$18,
+          containers: nix.thunk(() => ({ [nix.POS]: pos$17, enable: false })),
         })),
       })),
       "one-gpu": nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           environment: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             systemPackages: nix.thunk(() => (() => {
               const w_1 = nix.withScope(pkgs_1, null);
               return [nix.thunk(() => nix.lookup(w_1, "podman"))];
             })()),
           })),
           hardware: nix.thunk(() => ({
-            __proto__: pos$22,
-            graphics: nix.thunk(() => ({ __proto__: pos$21, enable: true })),
+            [nix.POS]: pos$22,
+            graphics: nix.thunk(() => ({ [nix.POS]: pos$21, enable: true })),
           })),
         };
       })(), formals$3),
       "one-gpu-invalid-host-paths": nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         hardware: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           "nvidia-container-toolkit": nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             mounts: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 hostPath: "/non-existant-path",
                 containerPath: "/some/path",
               })),

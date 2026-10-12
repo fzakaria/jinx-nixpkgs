@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.4.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "EuleMitKeule",
           repo: "eq3btsmart",
           tag: version,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["eq3btsmart"]);
       const nativeCheckInputs = nix.thunk(() => [pytest_asyncio, pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/EuleMitKeule/eq3btsmart/releases/tag/${nix.sel(src, "tag")}`),
         description: "Python library that allows interaction with eQ-3 Bluetooth smart thermostats",
         homepage: "https://github.com/EuleMitKeule/eq3btsmart",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

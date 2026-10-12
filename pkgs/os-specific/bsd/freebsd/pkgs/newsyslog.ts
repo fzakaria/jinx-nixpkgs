@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const compatIfNeeded = nix.arg($, "compatIfNeeded");
   const libsbuf = nix.arg($, "libsbuf");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "usr.sbin/newsyslog",
       buildInputs: nix.thunk(() => nix.concat(compatIfNeeded, [libsbuf])),
       postPatch: "sed -E -i -e '/^SUBDIR/d' $BSDSRCDIR/usr.sbin/newsyslog/Makefile\n",

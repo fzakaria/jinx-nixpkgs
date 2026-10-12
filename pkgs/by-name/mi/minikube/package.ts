@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
   const OVMF = nix.arg($, "OVMF");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "minikube",
       version: "1.38.1",
       __structuredAttrs: true,
       vendorHash: "sha256-Oy8cM/foZKC83PxqkJW+o8vVYJhszKxXs9l2eks7FN4=",
       doCheck: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kubernetes",
           repo: "minikube",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -79,7 +79,7 @@ runHook postInstall
       versionCheckProgramArg: "version",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://minikube.sigs.k8s.io",
         description: "Tool that makes it easy to run Kubernetes locally",
         mainProgram: "minikube",

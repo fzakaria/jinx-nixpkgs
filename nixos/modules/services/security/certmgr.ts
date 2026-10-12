@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
   const specs = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (n) => (v) => (() => {
       const name = nix.thunk(() => nix.add(n, ".json"));
       const path = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "isAttrs"), v)) ? nix.app(nix.sel(pkgs, "writeText"), name, nix.thunk(() => nix.builtins.toJSON(v))) : nix.force(v)));
-      return { __proto__: pos$1, name, path };
+      return { [nix.POS]: pos$1, name, path };
     })(), nix.thunk(() => nix.sel(cfg, "specs"))));
   const allSpecs = nix.thunk(() => nix.app(nix.sel(pkgs, "linkFarm"), "certmgr.d", specs));
   const certmgrYaml = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "certmgr.yaml", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         dir: allSpecs,
         default_remote: nix.thunk(() => nix.sel(cfg, "defaultRemote")),
         svcmgr: nix.thunk(() => nix.sel(cfg, "svcManager")),
@@ -56,84 +56,84 @@ export default nix.lambda((args) => (() => {
       }))))));
   const specPaths = nix.thunk(() => nix.builtins.map(nix.builtins.dirOf, nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), (spec) => (nix.asBool(nix.app(nix.sel(lib, "isAttrs"), spec)) ? nix.app(nix.sel(lib, "collect"), nix.thunk(() => nix.sel(lib, "isString")), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrsRecursive"), (n) => (v) => (nix.asBool(nix.app(nix.sel(lib, "isAttrs"), v)) || nix.asBool(nix.eq(n, "path"))), spec))) : [spec]), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(cfg, "specs"))))))));
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     options: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       services: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         certmgr: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "certmgr")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "certmgr", nix.thunk(() => ({})))),
           defaultRemote: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "127.0.0.1:8888",
               description: "The default CA host:port to use.",
             })))),
           validMin: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: "72h",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "The interval before a certificate expires to start attempting to renew it.",
             })))),
           renewInterval: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: "30m",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "How often to check certificate expirations and how often to update the cert_next_expires metric.",
             })))),
           metricsAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: "127.0.0.1",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "The address for the Prometheus HTTP endpoint.",
             })))),
           metricsPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: 9488n,
               type: nix.thunk(() => nix.sel(lib, "types", "ints", "u16")),
               description: "The port for the Prometheus HTTP endpoint.",
             })))),
           specs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  exampleCert =\n  let\n    domain = \"example.com\";\n    secret = name: \"/var/lib/secrets/${name}.pem\";\n  in {\n    service = \"nginx\";\n    action = \"reload\";\n    authority = {\n      file.path = secret \"ca\";\n    };\n    certificate = {\n      path = secret domain;\n    };\n    private_key = {\n      owner = \"root\";\n      group = \"root\";\n      mode = \"0600\";\n      path = secret \"${domain}-key\";\n    };\n    request = {\n      CN = domain;\n      hosts = [ \"mail.${domain}\" \"www.${domain}\" ];\n      key = {\n        algo = \"rsa\";\n        size = 2048;\n      };\n      names = {\n        O = \"Example Organization\";\n        C = \"USA\";\n      };\n    };\n  };\n  otherCert = \"/var/certmgr/specs/other-cert.json\";\n}\n")),
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "path")), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                        __proto__: pos$15,
+                        [nix.POS]: pos$15,
                         options: nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           service: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$8,
+                              [nix.POS]: pos$8,
                               type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")))),
                               default: null,
                               description: "The service on which to perform \\<action\\> after fetching.",
                             })))),
                           action: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$9,
+                              [nix.POS]: pos$9,
                               type: nix.thunk(() => nix.app(nix.lookup(w, "addCheck"), nix.thunk(() => nix.lookup(w, "str")), (x) => (nix.asBool(nix.eq(nix.sel(cfg, "svcManager"), "command")) || nix.asBool(nix.app(nix.sel(lib, "elem"), x, nix.thunk(() => ["restart", "reload", "nop"])))))),
                               default: "nop",
                               description: "The action to take after fetching.",
                             })))),
                           authority: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$10,
+                              [nix.POS]: pos$10,
                               type: nix.thunk(() => nix.lookup(w, "attrs")),
                               description: "certmgr spec authority object.",
                             })))),
                           certificate: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$11,
+                              [nix.POS]: pos$11,
                               type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "attrs")))),
                               description: "certmgr spec certificate object.",
                             })))),
                           private_key: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$12,
+                              [nix.POS]: pos$12,
                               type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "attrs")))),
                               description: "certmgr spec private_key object.",
                             })))),
                           request: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$13,
+                              [nix.POS]: pos$13,
                               type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "attrs")))),
                               description: "certmgr spec request object.",
                             })))),
@@ -143,7 +143,7 @@ export default nix.lambda((args) => (() => {
               description: "Certificate specs as described by:\n<https://github.com/cloudflare/certmgr#certificate-specs>\nThese will be added to the Nix store, so they will be world readable.\n",
             })))),
           svcManager: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               default: "systemd",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["circus", "command", "dummy", "openrc", "systemd", "sysv"]))),
               description: "This specifies the service manager to use for restarting or reloading services.\nSee: <https://github.com/cloudflare/certmgr#certmgryaml>.\nFor how to use the \"command\" service manager in particular,\nsee: <https://github.com/cloudflare/certmgr#command-svcmgr-and-how-to-use-it>.\n",
@@ -152,32 +152,32 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "specs"), {})),
             message: "Certmgr specs cannot be empty.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             assertion: nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "any"), nix.thunk(() => nix.app(nix.sel(lib, "hasAttrByPath"), nix.thunk(() => ["authority", "auth_key"]))), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(cfg, "specs"))))))),
             message: "Inline services.certmgr.specs are added to the Nix store rendering them world readable.\nSpecify paths as specs, if you want to use include auth_key - or use the auth_key_file option.\"\n",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           services: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             certmgr: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               description: "certmgr",
               path: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "svcManager"), "command")), nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "bash"))]))),
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 Restart: "always",
                 RestartSec: "10s",
                 ExecStartPre: nix.thunk(() => [

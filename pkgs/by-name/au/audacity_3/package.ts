@@ -64,11 +64,11 @@ export default nix.lambda((args) => (() => {
   const libpng = nix.arg($, "libpng");
   const libjpeg = nix.arg($, "libjpeg");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "audacity",
       version: "3.7.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "audacity",
           repo: "audacity",
           rev: nix.thunk(() => nix.str`Audacity-${nix.sel(finalAttrs, "version")}`),
@@ -160,7 +160,7 @@ substituteInPlace scripts/build/macOS/fix_bundle.py \\
   --set-default GDK_BACKEND x11
 `)), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/{Applications,bin}\nmv $out/Audacity.app $out/Applications/\nmakeWrapper $out/Applications/Audacity.app/Contents/MacOS/Audacity $out/bin/audacity\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Sound editor with graphical UI",
         mainProgram: "audacity",
         homepage: "https://www.audacityteam.org",

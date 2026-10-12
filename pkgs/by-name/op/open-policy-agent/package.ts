@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const enableWasmEval = nix.argOr($, "enableWasmEval", () => false);
   nix.assert_((!nix.asBool((nix.asBool(enableWasmEval) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))) || nix.asBool(nix.builtins.throw("building with wasm on darwin is failing in nixpkgs"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/op/open-policy-agent/package.nix:11:1");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "open-policy-agent",
       version: "1.19.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "open-policy-agent",
           repo: "opa",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -78,7 +78,7 @@ runHook postInstallCheck
 `),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mainProgram: "opa",
         homepage: "https://www.openpolicyagent.org",
         changelog: nix.thunk(() => nix.str`https://github.com/open-policy-agent/opa/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

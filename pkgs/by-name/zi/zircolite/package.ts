@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zircolite",
       version: "2.40.0",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wagga40",
           repo: "Zircolite",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -56,7 +56,7 @@ makeWrapper ${nix.sel(python3, "interpreter")} $out/bin/zircolite \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SIGMA-based detection tool for EVTX, Auditd, Sysmon and other logs",
         mainProgram: "zircolite",
         homepage: "https://github.com/wagga40/Zircolite",

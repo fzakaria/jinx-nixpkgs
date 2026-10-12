@@ -28,34 +28,34 @@ export default nix.lambda((args) => (() => {
   const generators = nix.arg($, "generators");
   const imcfg = nix.thunk(() => nix.sel(config, "i18n", "inputMethod"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["i18n", "inputMethod", "kime", "config"]), "Use i18n.inputMethod.kime.* instead")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       i18n: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         inputMethod: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           kime: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             daemonModules: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["Xim", "Wayland", "Indicator"]))))),
                 default: nix.thunk(() => ["Xim", "Wayland", "Indicator"]),
                 example: nix.thunk(() => ["Xim", "Indicator"]),
                 description: "List of enabled daemon modules\n",
               })))),
             iconColor: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["Black", "White"]))),
                 default: "Black",
                 example: "White",
                 description: "Color of the indicator icon\n",
               })))),
             extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(lib, "types", "lines")),
                 default: "",
                 description: nix.thunk(() => nix.str`extra kime configuration. Refer to <https://github.com/Riey/kime/blob/v${nix.sel(pkgs, "kime", "version")}/docs/CONFIGURATION.md> for details on supported values.
@@ -66,23 +66,23 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(imcfg, "enable")) && nix.asBool(nix.eq(nix.sel(imcfg, "type"), "kime")))), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         i18n: nix.thunk(() => ({
-          __proto__: pos$9,
-          inputMethod: nix.thunk(() => ({ __proto__: pos$8, package: nix.thunk(() => nix.sel(pkgs, "kime")) })),
+          [nix.POS]: pos$9,
+          inputMethod: nix.thunk(() => ({ [nix.POS]: pos$8, package: nix.thunk(() => nix.sel(pkgs, "kime")) })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           variables: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             GTK_IM_MODULE: "kime",
             QT_IM_MODULE: "kime",
             XMODIFIERS: "@im=kime",
           })),
           etc: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             "xdg/kime/config.yaml": nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               text: nix.thunk(() => nix.add(nix.str`daemon:
   modules: [${nix.app(nix.sel(lib, "concatStringsSep"), ",", nix.thunk(() => nix.sel(imcfg, "kime", "daemonModules")))}]
 indicator:
@@ -92,7 +92,7 @@ indicator:
           })),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$15, buildDocsInSandbox: false })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$15, buildDocsInSandbox: false })),
   };
 })(), formals$1);
 //# sourceMappingURL=kime.ts.map

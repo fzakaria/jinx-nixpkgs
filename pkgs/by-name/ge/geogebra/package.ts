@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const pname = "geogebra";
   const version = "5-0-785-0";
   const srcIcon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://web.archive.org/web/20200227000442if_/https://static.geogebra.org/images/geogebra-logo.svg",
       hash: "sha256-Vd7Wteya04JJT4WNirXe8O1sfVKUgc0hKGOy7d47Xgc=",
     }))));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "geogebra",
       exec: "geogebra",
       icon: "geogebra",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       mimeTypes: nix.thunk(() => ["application/vnd.geogebra.file", "application/vnd.geogebra.tool"]),
     }))));
   const meta = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     description: "Dynamic mathematics software with graphics, algebra and spreadsheets",
     longDescription: "Dynamic mathematics software for all levels of education that brings\ntogether geometry, algebra, spreadsheets, graphing, statistics and\ncalculus in one easy-to-use package.\n",
     homepage: "https://www.geogebra.org/",
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
     hydraPlatforms: [],
   }));
   const linuxPkg = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       meta: meta,
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
       desktopItem: desktopItem,
       preferLocalBuild: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://download.geogebra.org/installers/5.0/GeoGebra-Linux-Portable-${version}.tar.bz2`),
             nix.thunk(() => nix.str`https://web.archive.org/web/20230627211902/https://download.geogebra.org/installers/5.0/GeoGebra-Linux-Portable-${version}.tar.bz2`),
@@ -110,13 +110,13 @@ install -Dm644 "${srcIcon}" \\
 `),
     }))));
   const darwinPkg = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: pname,
       version: version,
       meta: meta,
       preferLocalBuild: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://download.geogebra.org/installers/5.0/GeoGebra-MacOS-Installer-withJava-${version}-x64.zip`),
             nix.thunk(() => nix.str`https://web.archive.org/web/20230627211427/https://download.geogebra.org/installers/5.0/GeoGebra-MacOS-Installer-withJava-${version}-x64.zip`),

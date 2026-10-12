@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const numlockx = nix.arg($, "numlockx");
   const xapp_symbolic_icons = nix.arg($, "xapp-symbolic-icons");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "lightdm-slick-greeter",
       version: "2.2.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linuxmint",
           repo: "slick-greeter",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -77,17 +77,17 @@ gappsWrapperArgs+=(
 )
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         xgreeters: nix.thunk(() => nix.app(linkFarm, "lightdm-slick-greeter-xgreeters", nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               path: nix.thunk(() => nix.str`${lightdm_slick_greeter}/share/xgreeters/slick-greeter.desktop`),
               name: "lightdm-slick-greeter.desktop",
             })),
           ]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Slick-looking LightDM greeter",
         homepage: "https://github.com/linuxmint/slick-greeter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

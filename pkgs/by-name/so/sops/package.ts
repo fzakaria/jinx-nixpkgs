@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const age = nix.arg($, "age");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "sops",
       version: "3.13.3",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "getsops",
           repo: nix.thunk(() => nix.sel(finalAttrs, "pname")),
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,14 +46,14 @@ installShellCompletion --cmd sops --zsh ${nix.path(here, "./zsh_autocomplete")}
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        withAgePlugins: (filter) => nix.app(runCommand, nix.thunk(() => nix.str`sops-${nix.sel(finalAttrs, "version")}-with-age-plugins`), nix.thunk(() => ({ __proto__: pos$2, nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`makeWrapper ${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))}/bin/sops $out/bin/sops \\
+        withAgePlugins: (filter) => nix.app(runCommand, nix.thunk(() => nix.str`sops-${nix.sel(finalAttrs, "version")}-with-age-plugins`), nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`makeWrapper ${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))}/bin/sops $out/bin/sops \\
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.app(filter, nix.thunk(() => nix.sel(age, "passthru", "plugins")))))}"
 `)),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://getsops.io/",
         description: "Simple and flexible tool for managing secrets",
         changelog: nix.thunk(() => nix.str`https://github.com/getsops/sops/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

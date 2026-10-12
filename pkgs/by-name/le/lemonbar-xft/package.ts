@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libxcb = nix.arg($, "libxcb");
   const libxft = nix.arg($, "libxft");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lemonbar-xft",
       version: "2.0-unstable-2020-09-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "drscream",
           repo: "lemonbar-xft",
           rev: "481e12363e2a0fe0ddd2176a8e003392be90ed02",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libxcb, libxft, perl]),
       installFlags: nix.thunk(() => ["DESTDIR=$(out)", "PREFIX="]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightweight xcb based bar with XFT-support",
         mainProgram: "lemonbar",
         homepage: "https://github.com/drscream/lemonbar-xft",

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const gnutls = nix.arg($, "gnutls");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(gccStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: "2.2",
       pname: "nullmailer",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://untroubled.org/nullmailer/nullmailer-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0md8cf90fl2yf3zh9njjy42a673v4j4ygyq95xg7fzkygdigm1lq",
         })))),
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       postInstall: "rm -rf $out/var/ $out/etc/\nmv $out/$out/* $out/\nrmdir $out/$out\n",
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, nixos: nix.thunk(() => nix.sel(nixosTests, "nullmailer")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, nixos: nix.thunk(() => nix.sel(nixosTests, "nullmailer")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "http://untroubled.org/nullmailer/",
         description: "A sendmail/qmail/etc replacement MTA for hosts which relay to a fixed set of smart relays.\nIt is designed to be simple to configure, secure, and easily extendable.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

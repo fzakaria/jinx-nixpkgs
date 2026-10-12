@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
     })()));
   const nvidia_x11 = nix.thunk(() => nix.sel(linuxPackages, "nvidia_x11"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gwe",
       version: "0.15.9",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "leinardi",
           repo: "gwe",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -79,7 +79,7 @@ makeWrapper ${pythonEnv}/bin/python $out/bin/gwe \\
   \${gappsWrapperArgs[@]}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "System utility designed to provide information, control the fans and overclock your NVIDIA card",
         homepage: "https://gitlab.com/leinardi/gwe",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

@@ -22,10 +22,10 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     name: "containers",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "jfly"))];
@@ -33,29 +33,29 @@ export default nix.lambda((args) => (() => {
       hydraPlatforms: [],
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       n1: nix.thunk(() => ({
-        __proto__: pos$3,
-        virtualisation: nix.thunk(() => ({ __proto__: pos$2, vlans: nix.thunk(() => [1n]) })),
+        [nix.POS]: pos$3,
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, vlans: nix.thunk(() => [1n]) })),
       })),
       n2: nix.thunk(() => ({
-        __proto__: pos$5,
-        virtualisation: nix.thunk(() => ({ __proto__: pos$4, vlans: nix.thunk(() => [2n]) })),
+        [nix.POS]: pos$5,
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$4, vlans: nix.thunk(() => [2n]) })),
       })),
     })),
     containers: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       c1: nix.thunk(() => ({
-        __proto__: pos$8,
-        virtualisation: nix.thunk(() => ({ __proto__: pos$7, vlans: nix.thunk(() => [1n]) })),
+        [nix.POS]: pos$8,
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$7, vlans: nix.thunk(() => [1n]) })),
       })),
       c2: nix.thunk(() => ({
-        __proto__: pos$10,
-        virtualisation: nix.thunk(() => ({ __proto__: pos$9, vlans: nix.thunk(() => [2n]) })),
+        [nix.POS]: pos$10,
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$9, vlans: nix.thunk(() => [2n]) })),
       })),
       c12: nix.thunk(() => ({
-        __proto__: pos$12,
-        virtualisation: nix.thunk(() => ({ __proto__: pos$11, vlans: nix.thunk(() => [1n, 2n]) })),
+        [nix.POS]: pos$12,
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$11, vlans: nix.thunk(() => [1n, 2n]) })),
       })),
     })),
     testScript: "c1.start()\nc2.start()\nc12.start()\n\nc1.succeed(\"echo hello > /hello.txt\")\nc1.copy_from_machine(\"/hello.txt\")\n\nc1.systemctl(\"start network-online.target\")\nc2.systemctl(\"start network-online.target\")\nc12.systemctl(\"start network-online.target\")\nc1.wait_for_unit(\"network-online.target\")\nc2.wait_for_unit(\"network-online.target\")\nc12.wait_for_unit(\"network-online.target\")\n\n# Confirm containers in vlan 1 can talk to each other.\nc1.succeed(\"ping -c 1 c12\")\nc12.succeed(\"ping -c 1 c1\")\n\n# Confirm containers in vlan 2 can talk to each other.\nc2.succeed(\"ping -c 1 c12\")\nc12.succeed(\"ping -c 1 c2\")\n\n# Confirm containers in separate vlans cannot talk to each other.\nc1.fail(\"ping -c 1 -W 1 c2\")\n\nn1.start()\nn2.start()\nn1.systemctl(\"start network-online.target\")\nn2.systemctl(\"start network-online.target\")\nn1.wait_for_unit(\"network-online.target\")\nn2.wait_for_unit(\"network-online.target\")\n\n# Confirm containers and nodes in the same vlan can talk to each other.\nc1.succeed(\"ping -c 1 n1\")\nn1.succeed(\"ping -c 1 c1\")\nc2.succeed(\"ping -c 1 n2\")\nn2.succeed(\"ping -c 1 c2\")\n\n# Confirm containers and nodes in different vlans cannot talk to each other.\nc1.fail(\"ping -c 1 -W 1 n2\")\nn1.fail(\"ping -c 1 -W 1 c2\")\nc2.fail(\"ping -c 1 -W 1 n1\")\nn2.fail(\"ping -c 1 -W 1 c1\")\n",

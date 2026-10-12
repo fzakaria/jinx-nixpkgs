@@ -52,29 +52,29 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "beszel", "agent"));
   const hasVideoDriver = (driver) => nix.builtins.elem(driver, nix.thunk(() => nix.sel(config, "services", "xserver", "videoDrivers")));
   const gpuCollectors = nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     amd_sysfs: nix.thunk(() => ({})),
     intel_sysfs: nix.thunk(() => ({})),
     intel_gpu_top: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       package: nix.thunk(() => nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(pkgs, "intel-gpu-tools")))),
       deviceAllow: nix.thunk(() => ["char-drm rw"]),
       capabilities: nix.thunk(() => ["CAP_PERFMON"]),
       systemCalls: nix.thunk(() => ["perf_event_open"]),
     })),
     "nvidia-smi": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       package: nix.thunk(() => nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(config, "hardware", "nvidia", "package")))),
       deviceAllow: nix.thunk(() => ["char-nvidia* rw"]),
     })),
-    nvml: nix.thunk(() => ({ __proto__: pos$3, deviceAllow: nix.thunk(() => ["char-nvidia* rw"]) })),
+    nvml: nix.thunk(() => ({ [nix.POS]: pos$3, deviceAllow: nix.thunk(() => ["char-nvidia* rw"]) })),
     nvtop: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       package: nix.thunk(() => nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(pkgs, "nvtopPackages", "full")))),
       deviceAllow: nix.thunk(() => ["char-nvidia* rw", "char-drm rw"]),
     })),
     "rocm-smi": nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       package: nix.thunk(() => nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(pkgs, "rocmPackages", "rocm-smi")))),
       deviceAllow: nix.thunk(() => ["char-drm rw", "char-kfd rw"]),
     })),
@@ -87,9 +87,9 @@ export default nix.lambda((args) => (() => {
   const deviceAllowList = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "smartmon", "enable")) && nix.asBool(!nix.eq(nix.sel(cfg, "smartmon", "deviceAllow"), [])))), nix.thunk(() => nix.builtins.map((device) => nix.str`${device} r`, nix.thunk(() => nix.sel(cfg, "smartmon", "deviceAllow"))))), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(cfg, "smartmon", "enable"))) || nix.asBool(!nix.eq(nix.sel(cfg, "smartmon", "deviceAllow"), [])))), nix.thunk(() => nix.concat(nix.app(collectorAttrs, "deviceAllow"), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(config, "boot", "zfs", "enabled")), nix.thunk(() => ["/dev/zfs rw"])))))));
   const serviceCapabilities = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "smartmon", "enable")), nix.thunk(() => ["CAP_SYS_RAWIO", "CAP_SYS_ADMIN"])), nix.app(collectorAttrs, "capabilities")));
   return {
-    __proto__: pos$40,
+    [nix.POS]: pos$40,
     meta: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -99,29 +99,29 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       services: nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         beszel: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           agent: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "beszel agent")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "beszel", nix.thunk(() => ({})))),
             dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(lib, "types", "path")),
                 default: "/var/lib/beszel-agent",
                 description: "Data directory of beszel-agent.",
               })))),
             openFirewall: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), ""), {
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "Whether to open the firewall port (default 45876).",
             })),
             smartmon: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   default: false,
                   example: true,
                   description: "Include services.beszel.agent.smartmon.package in the Beszel agent path for disk monitoring and add the agent to the disk group.",
@@ -129,7 +129,7 @@ export default nix.lambda((args) => (() => {
                 })))),
               package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "smartmontools", nix.thunk(() => ({})))),
               deviceAllow: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                   default: [],
                   example: nix.thunk(() => ["/dev/sda", "/dev/sdb", "/dev/nvme0"]),
@@ -137,26 +137,26 @@ export default nix.lambda((args) => (() => {
                 })))),
             })),
             environment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     freeformType: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                     options: nix.thunk(() => ({
-                      __proto__: pos$16,
+                      [nix.POS]: pos$16,
                       SKIP_SYSTEMD: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$13,
+                          [nix.POS]: pos$13,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: false,
                           description: "Whether to disable systemd service monitoring.\nEnabling this option will skip systemd tracking and its setup in NixOS.\n",
                         })))),
                       SKIP_GPU: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: false,
                           description: "Whether to disable GPU monitoring.\nEnabling this option will skip GPU tracking.\n",
                         })))),
                       GPU_COLLECTOR: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$15,
+                          [nix.POS]: pos$15,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                             return nix.app(nix.lookup(w, "coercedTo"), nix.thunk(() => nix.lookup(w, "str")), (value) => nix.app(nix.builtins.map, nix.thunk(() => nix.sel(lib, "trim")), nix.thunk(() => nix.app(nix.sel(lib, "splitString"), ",", value))), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.app(nix.lookup(w, "enum"), nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), gpuCollectors)))))));
@@ -172,13 +172,13 @@ export default nix.lambda((args) => (() => {
                 description: "Environment variables for configuring the beszel-agent service.\nThis field will end up public in /nix/store, for secret values (such as `KEY`) use `environmentFile`.\n\nSee <https://www.beszel.dev/guide/environment-variables#agent> for available options.\n",
               })))),
             environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
                 description: "File path containing environment variables for configuring the beszel-agent service in the format of an EnvironmentFile. See {manpage}`systemd.exec(5)`.\n",
               })))),
             extraPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
                 default: [],
                 description: "Extra packages to add to beszel path (such as nvidia-smi or rocm-smi).\n",
@@ -188,45 +188,45 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$39,
+        [nix.POS]: pos$39,
         services: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           udev: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             extraRules: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "smartmon", "enable")), "# Change NVMe devices to disk group ownership for S.M.A.R.T. monitoring\nKERNEL==\"nvme[0-9]*\", GROUP=\"disk\", MODE=\"0660\"\n")),
           })),
           dbus: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             packages: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "environment", "SKIP_SYSTEMD"))), nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "share/dbus-1/system.d/beszel-agent.conf", "<?xml version=\"1.0\" encoding=\"UTF-8\"?> <!-- -*- XML -*- -->\n\n<!DOCTYPE busconfig PUBLIC\n          \"-//freedesktop//DTD D-BUS Bus Configuration 1.0//EN\"\n          \"http://www.freedesktop.org/standards/dbus/1.0/busconfig.dtd\">\n\n<busconfig>\n  <policy user=\"beszel-agent\">\n    <allow\n      send_destination=\"org.freedesktop.systemd1\"\n      send_type=\"method_call\"\n      send_path=\"/org/freedesktop/systemd1\"\n      send_interface=\"org.freedesktop.systemd1.Manager\"\n      send_member=\"ListUnits\"\n    />\n  </policy>\n</busconfig>\n")),
               ]))),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           users: nix.thunk(() => ({
-            __proto__: pos$29,
-            "beszel-agent": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "environment", "SKIP_SYSTEMD"))), nix.thunk(() => ({ __proto__: pos$28, isSystemUser: true, group: "beszel-agent" })))),
+            [nix.POS]: pos$29,
+            "beszel-agent": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "environment", "SKIP_SYSTEMD"))), nix.thunk(() => ({ [nix.POS]: pos$28, isSystemUser: true, group: "beszel-agent" })))),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             "beszel-agent": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "environment", "SKIP_SYSTEMD"))), nix.thunk(() => ({})))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           services: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             "beszel-agent": nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               description: "Beszel Server Monitoring Agent",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target"]),
-              environment: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (value) => (nix.asBool(nix.app(nix.sel(lib, "isBool"), value)) ? nix.app(nix.sel(lib, "boolToString"), value) : (nix.asBool(nix.app(nix.sel(lib, "isList"), value)) ? nix.app(nix.sel(lib, "concatStringsSep"), ",", value) : nix.force(value))), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (value) => !nix.eq(value, []), nix.thunk(() => nix.update(nix.sel(cfg, "environment"), { __proto__: pos$32, DATA_DIR: nix.thunk(() => nix.sel(cfg, "dataDir")) })))))),
+              environment: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (value) => (nix.asBool(nix.app(nix.sel(lib, "isBool"), value)) ? nix.app(nix.sel(lib, "boolToString"), value) : (nix.asBool(nix.app(nix.sel(lib, "isList"), value)) ? nix.app(nix.sel(lib, "concatStringsSep"), ",", value) : nix.force(value))), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (value) => !nix.eq(value, []), nix.thunk(() => nix.update(nix.sel(cfg, "environment"), { [nix.POS]: pos$32, DATA_DIR: nix.thunk(() => nix.sel(cfg, "dataDir")) })))))),
               path: nix.thunk(() => nix.concat(nix.sel(cfg, "extraPath"), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "smartmon", "enable")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "smartmon", "package"))])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(config, "boot", "zfs", "enabled")), nix.thunk(() => [nix.thunk(() => nix.sel(config, "boot", "zfs", "package"))])), gpuPackages)))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/beszel-agent
 `),
                 EnvironmentFile: nix.thunk(() => nix.sel(cfg, "environmentFile")),
@@ -264,9 +264,9 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           firewall: nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [
                 nix.thunk(() => (nix.asBool(nix.builtins.hasAttr("PORT", nix.thunk(() => nix.sel(cfg, "environment")))) ? nix.app(nix.sel(lib, "strings", "toInt"), nix.thunk(() => nix.sel(cfg, "environment", "PORT"))) : 45876n)),
               ]))),

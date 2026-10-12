@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "try",
       version: "0.2.0-unstable-2025-02-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "binpash",
           repo: "try",
           rev: "67052d8f20725f3cdc22ffaec33f7b7c14f1eb6b",
@@ -48,7 +48,7 @@ runHook postInstall
       preVersionCheck: "export version=0.2.0\n",
       versionCheckProgramArg: "-v",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/binpash/try",
         description: "Lets you run a command and inspect its effects before changing your live system",
         mainProgram: "try",

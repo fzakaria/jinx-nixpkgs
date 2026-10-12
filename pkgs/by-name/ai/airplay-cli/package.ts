@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const host = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? "linux" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "macos" : nix.builtins.throw("libraop does not support this platform, yet"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "airplay-cli",
       version: "0.5.5",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "music-assistant",
           repo: "airplay-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ substituteInPlace libraop/crosstools/src/cross_ssl.c \\
 cp bin/cliairplay-${host}-${nix.sel(stdenv, "hostPlatform", "uname", "processor")} $out/bin/cliairplay
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unified command-line binary for streaming to AirPlay 1 (RAOP) and AirPlay 2 devices",
         homepage: "https://github.com/music-assistant/airplay-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

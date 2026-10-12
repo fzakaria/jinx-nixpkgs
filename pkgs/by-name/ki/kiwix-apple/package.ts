@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const undmg = nix.arg($, "undmg");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "kiwix-apple",
       version: "3.16.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.kiwix.org/release/kiwix-macos/kiwix-macos_${nix.sel(finalAttrs, "version")}.dmg`),
           hash: "sha256-Z1grFsJmCtTTZP8whjAISD8YJwrU0yieZ5ycxDzciGE=",
         })))),
@@ -34,9 +34,9 @@ cp -r Kiwix.app $out/Applications
 makeWrapper $out/Applications/Kiwix.app/Contents/MacOS/Kiwix $out/bin/${nix.sel(finalAttrs, "meta", "mainProgram")}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => [
               "--url=https://github.com/kiwix/kiwix-apple",
               "--version-regex=(.*\\..*\\..*)",
@@ -44,7 +44,7 @@ makeWrapper $out/Applications/Kiwix.app/Contents/MacOS/Kiwix $out/bin/${nix.sel(
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/kiwix/kiwix-apple/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "Offline reader for Web content",
         downloadPage: "https://get.kiwix.org/en/solutions/applications/kiwix-reader/",

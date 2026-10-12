@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkYaziPlugin = nix.arg($, "mkYaziPlugin");
   return nix.app(mkYaziPlugin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "convert.yazi",
       version: "0-unstable-2025-06-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "atareao",
           repo: "convert.yazi",
           rev: "ce060d9d17e4466d7956213d68a7a74d24ecfdc5",
           hash: "sha256-kCXjwtcOQZbE+S9PgJrBmlzBcdprSGtfiS2Flxe2olw=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Convert between image formats using ImageMagick",
         homepage: "https://github.com/atareao/convert.yazi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

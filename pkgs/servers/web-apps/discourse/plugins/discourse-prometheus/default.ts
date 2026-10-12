@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const mkDiscoursePlugin = nix.arg($, "mkDiscoursePlugin");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(mkDiscoursePlugin, nix.thunk(() => ({
-      __proto__: pos$4,
-      bundlerEnvArgs: nix.thunk(() => ({ __proto__: pos$1, gemdir: nix.path(here, "./.") })),
+      [nix.POS]: pos$4,
+      bundlerEnvArgs: nix.thunk(() => ({ [nix.POS]: pos$1, gemdir: nix.path(here, "./.") })),
       name: "discourse-prometheus",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "discourse",
           repo: "discourse-prometheus",
           rev: "8850b2ee1acb69266f8697c3741f34cca80cad61",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./spec-import-fix-abi-version.patch"),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/discourse/discourse-prometheus",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         description: "Official Discourse Plugin for Prometheus Monitoring",

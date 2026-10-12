@@ -32,7 +32,7 @@ export default nix.thunk(() => (() => {
       nix.assert_((nix.asBool(!nix.eq(hash, "")) || nix.asBool(!nix.eq(sha256, ""))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/fetchurl/boot.nix:43:1");
       nix.assert_((!nix.asBool(!nix.eq(hash, "")) || nix.asBool(nix.eq(sha256, ""))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/fetchurl/boot.nix:44:1");
       return nix.app(nix.builtins.import(nix.builtins.findFile(nix.builtins.nixPath, "nix/fetchurl.nix")), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           system: system,
           hash: hash,
           sha256: sha256,

@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const majorVersion = nix.argOr($, "majorVersion", () => "9");
   const sources = nix.thunk(() => nix.app(callPackage, nix.path(here, "./sources.nix"), nix.thunk(() => ({}))));
   const pick = nix.thunk(() => nix.sel({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "8": nix.thunk(() => nix.sel(sources, "nv-codec-headers-8")),
     "9": nix.thunk(() => nix.sel(sources, "nv-codec-headers-9")),
     "10": nix.thunk(() => nix.sel(sources, "nv-codec-headers-10")),
@@ -24,14 +24,14 @@ export default nix.lambda((args) => (() => {
     "12": nix.thunk(() => nix.sel(sources, "nv-codec-headers-12")),
   }, nix.key(nix.force(majorVersion))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.attr(pick, "pname")),
       version: nix.thunk(() => nix.attr(pick, "version")),
       src: nix.thunk(() => nix.attr(pick, "src")),
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, sources: sources })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, sources: sources })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: nix.thunk(() => nix.str`FFmpeg version of headers for NVENC - major version ${nix.sel(pick, "version")}`),
         homepage: "https://ffmpeg.org/",
         downloadPage: "https://git.videolan.org/?p=ffmpeg/nv-codec-headers.git",

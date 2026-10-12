@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.2.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-2mx/zHvve7ATLcIEb3TsZROx/m8MgOVSjWMNFLfEhJ0=",
@@ -38,10 +38,10 @@ export default nix.lambda((args) => (() => {
       const doCheck = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux"));
       const nativeCheckInputs = nix.thunk(() => [configobj, pytestCheckHook, postgresqlTestHook, postgresql]);
       const pytestFlags = nix.thunk(() => ["-vvv"]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, PGDATABASE: "_test_db", PGUSER: "postgres" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PGDATABASE: "_test_db", PGUSER: "postgres" }));
       const disabledTests = nix.thunk(() => ["test_slash_d_view_verbose", "test_slash_ddp", "test_slash_ddp_pattern"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Meta-commands handler for Postgres Database",
         homepage: "https://github.com/dbcli/pgspecial",
         changelog: nix.thunk(() => nix.str`https://github.com/dbcli/pgspecial/releases/tag/v${version}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "SuperSandro2000"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

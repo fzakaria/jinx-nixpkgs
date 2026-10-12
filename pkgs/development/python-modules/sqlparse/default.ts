@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-4g1KmwuFhf32OxDTAGbHyUxden7EfIiaLYOjyqk/8o4=",
@@ -35,16 +35,16 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const postInstall = "installManPage docs/sqlformat.1\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           django: django,
           "django-silk": django_silk,
           pgadmin4: pgadmin4,
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Non-validating SQL parser for Python",
         longDescription: "Provides support for parsing, splitting and formatting SQL statements.\n",
         homepage: "https://github.com/andialbrecht/sqlparse",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "sqlformat",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

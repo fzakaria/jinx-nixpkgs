@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "wprecon";
       const version = "2.4.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ffx64",
           repo: "wprecon",
           rev: version,
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-FYdsLcW6FYxSgixZ5US9cBPABOAVwidC3ejUNbs1lbA=";
       const postFixup = "# Rename binary\nmv $out/bin/cli $out/bin/wprecon\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "WordPress vulnerability recognition tool",
         homepage: "https://github.com/ffx64/wprecon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "fab"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, vendorHash, postFixup, meta };
+      return { [nix.POS]: pos$3, pname, version, src, vendorHash, postFixup, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

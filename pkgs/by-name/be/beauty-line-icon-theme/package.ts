@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const jdupes = nix.arg($, "jdupes");
   const kdePackages = nix.arg($, "kdePackages");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "BeautyLine",
       version: "2.4",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "garuda-linux",
           repo: "themes-and-settings/artwork/beautyline",
           rev: "0df6f5df71c19496f9a873f8a52fbb5e84e95b12",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       dontWrapQtApps: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/icons/BeautyLine\ncp -r * $out/share/icons/BeautyLine/\ngtk-update-icon-cache $out/share/icons/BeautyLine\n\njdupes --link-soft --recurse $out/share\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "BeautyLine icon theme",
         homepage: "https://www.gnome-look.org/p/1425426/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

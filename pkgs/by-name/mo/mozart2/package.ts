@@ -26,17 +26,17 @@ export default nix.lambda((args) => (() => {
   const tk = nix.arg($, "tk");
   const stdenv = nix.thunk(() => nix.sel(llvmPackages, "stdenv"));
   const bootcompiler = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://github.com/layus/mozart2/releases/download/v2.0.0-beta.1/bootcompiler.jar",
       hash: "sha256-X8Lby0vhsFO0IWZw2r5aXFRRWCaMaBXQMfn9B5EK8ME=",
     }))));
   const emacs = emacs_nox;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mozart2",
       version: "2.0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/mozart/mozart2/releases/download/v${nix.sel(finalAttrs, "version")}/mozart2-${nix.sel(finalAttrs, "version")}-Source.zip`),
           hash: "sha256-lLYEC+SvSGbMqkIDFOCzG5g0XKy0gNXYQT3+78tPTdU=",
         })))),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./patch-limits.diff"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "remove-uses-of-deprecated-boost-apis.patch",
             url: "https://github.com/mozart/mozart2/commit/4256d3a9122e1cbb01400a1807bdee66088ff274.patch",
             hash: "sha256-AnOrBnxoCxqis+RdCsq8EKBg//jcNHSOFYUvf7vh+Hc=",
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [boost183, gmp, emacs, tcl, tk]),
       postPatch: "substituteInPlace {vm,.}/CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.8)\" \"cmake_minimum_required(VERSION 3.10)\"\nsubstituteInPlace vm/vm/test/gtest/{googletest,.}/CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.6.4)\" \"cmake_minimum_required(VERSION 3.10)\"\nsubstituteInPlace bootcompiler/CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.6)\" \"cmake_minimum_required(VERSION 3.10)\"\nsubstituteInPlace {boosthost,opi,wish,stdlib}/CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.8.6)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Open source implementation of Oz 3",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

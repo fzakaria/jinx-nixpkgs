@@ -10,12 +10,12 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildRedist = nix.arg($, "buildRedist");
   return nix.app(buildRedist, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       redistName: "cuda",
       pname: "cuda_opencl",
       outputs: nix.thunk(() => ["out", "dev", "include", "lib"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Low-level API for heterogeneous computing that runs on CUDA-powered GPUs",
         longDescription: "OpenCL™ (Open Computing Language) is a low-level API for heterogeneous computing that runs on CUDA-powered GPUs.\nUsing the OpenCL API, developers can launch compute kernels written using a limited subset of the C programming\nlanguage on a GPU.\n",
         homepage: "https://developer.nvidia.com/opencl",

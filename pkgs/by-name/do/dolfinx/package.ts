@@ -29,17 +29,17 @@ export default nix.lambda((args) => (() => {
   const catch2_3 = nix.arg($, "catch2_3");
   const withParmetis = nix.argOr($, "withParmetis", () => false);
   const dolfinxPackages = nix.thunk(() => nix.app(nix.sel(petsc, "petscPackages", "overrideScope"), (final) => (prev) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       slepc: nix.thunk(() => nix.app(nix.sel(final, "callPackage"), nix.thunk(() => nix.sel(slepc, "override")), nix.thunk(() => ({})))),
       adios2: nix.thunk(() => nix.app(nix.sel(final, "callPackage"), nix.thunk(() => nix.sel(adios2, "override")), nix.thunk(() => ({})))),
       kahip: nix.thunk(() => nix.app(nix.sel(final, "callPackage"), nix.thunk(() => nix.sel(kahip, "override")), nix.thunk(() => ({})))),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       version: "0.11.0.post0",
       pname: "dolfinx",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "fenics",
           repo: "dolfinx",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -74,11 +74,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_INSTALL_INCLUDEDIR", "include")),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           unittests: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-unittests`),
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -92,7 +92,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://fenicsproject.org",
         downloadPage: "https://github.com/fenics/dolfinx",
         description: "Computational environment of FEniCSx and implements the FEniCS Problem Solving Environment in C++ and Python",

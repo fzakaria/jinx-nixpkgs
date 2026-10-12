@@ -17,16 +17,16 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const playerglobal_ver = "27.0";
   const playerglobal = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://fpdownload.macromedia.com/get/flashplayer/updaters/27/playerglobal27_0.swc",
       sha256: "0qw2bgls8qsmp80j8vpd4c7s0c8anlrk0ac8z42w89bajcdbwk2f",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "apache-flex-sdk",
       version: "4.16.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`mirror://apache/flex/${nix.sel(finalAttrs, "version")}/binaries/apache-flex-sdk-${nix.sel(finalAttrs, "version")}-bin.tar.gz`),
           sha256: "13iq16dqvgcpb0p35x66hzxsq5pkbr2lbwr766nnqiryinnagz8p",
         })))),
@@ -55,7 +55,7 @@ cp ${playerglobal} $t/frameworks/libs/player/${playerglobal_ver}/playerglobal.sw
 `),
       dontFixup: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Flex SDK for Adobe Flash / ActionScript",
         homepage: "https://flex.apache.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

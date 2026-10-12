@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
   const libxcursor = nix.arg($, "libxcursor");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sumo",
       version: "1.28.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eclipse-sumo",
           repo: "sumo",
           tag: nix.thunk(() => nix.str`v${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
         libxrender,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SUMO traffic simulator",
         longDescription: "Eclipse SUMO is an open source, highly\nportable, microscopic and continuous traffic simulation package\ndesigned to handle large networks. It allows for intermodal\nsimulation including pedestrians and comes with a large set of\ntools for scenario creation.\n",
         homepage: "https://github.com/eclipse/sumo",

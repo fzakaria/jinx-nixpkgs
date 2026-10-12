@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const setuptools_80 = nix.arg($, "setuptools_80");
   const toolz = nix.arg($, "toolz");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "moddb",
       version: "0.12.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ClementJ18",
           repo: "moddb",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["moddb"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python scrapper to access ModDB mods, games and more as objects",
         homepage: "https://github.com/ClementJ18/moddb",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

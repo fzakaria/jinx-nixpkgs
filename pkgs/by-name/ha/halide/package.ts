@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const ctestCheckHook = nix.arg($, "ctestCheckHook");
   nix.assert_((nix.asBool(nix.eq(nix.sel(blas, "implementation"), "openblas")) && nix.asBool(nix.eq(nix.sel(lapack, "implementation"), "openblas"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ha/halide/package.nix:28:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "halide",
       version: "21.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "halide",
           repo: "Halide",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,12 +49,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/halide/Halide/commit/acb58504f0ce02e07b8b9008668c8779d3561ec8.patch?full_index=1",
             hash: "sha256-n9avTYe8JFYQKeJQBQQV9xoOoYp0imXD2GQgifRym/A=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/halide/Halide/commit/1b9be55dfaa162fad6a3ed3c6e8d83f966ce8af1.patch?full_index=1",
             hash: "sha256-5f6Q2Q1pvimlFV3lCcMzIHMIze6A8TmnMjVpQ8/ceyg=",
           })))),
@@ -111,7 +111,7 @@ rmdir $lib/lib/python3/
           nix.thunk(() => nix.sel(python3Packages, "imageio")),
         ]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "C++ based language for image processing and computational photography",
         homepage: "https://halide-lang.org",
         changelog: nix.thunk(() => nix.str`https://github.com/halide/Halide/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

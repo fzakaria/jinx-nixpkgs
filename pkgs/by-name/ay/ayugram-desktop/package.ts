@@ -17,15 +17,15 @@ export default nix.lambda((args) => (() => {
   const telegram_desktop = nix.arg($, "telegram-desktop");
   const withWebkit = nix.argOr($, "withWebkit", () => true);
   return nix.app(nix.sel(telegram_desktop, "override"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ayugram-desktop",
       withWebkit: withWebkit,
       unwrapped: nix.thunk(() => nix.app(nix.sel(telegram_desktop, "unwrapped", "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pname: "ayugram-desktop-unwrapped",
           version: "7.2.9",
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               owner: "AyuGram",
               repo: "AyuGramDesktop",
               tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
               fetchSubmodules: true,
             })))),
           passthru: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
           })),
           meta: nix.thunk(() => nix.update(nix.sel(previousAttrs, "meta"), {
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             mainProgram: "AyuGram",
             description: "Desktop Telegram client with good customization and Ghost mode",
             longDescription: "The best that could be in the world of Telegram clients.\nAyuGram is a Telegram client with a very pleasant features.\n",

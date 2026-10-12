@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const lz4 = nix.arg($, "lz4");
   const workspacesclient = nix.thunk(() => nix.app(callPackage, nix.path(here, "./workspacesclient.nix"), nix.thunk(() => ({}))));
   const custom_lsb_release = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "lsb_release",
       text: "# \"Fake\" lsb_release script\n# This only exists so that \"lsb_release -r\" will return the below string\n# when placed in the $PATH\n\nif [ \"$#\" -ne 1 ] || [ \"$1\" != \"-r\" ] ; then\n    echo \"Expected only '-r' argument\"\n    exit 1\nfi\n\necho \"Release: 24.04\"\n",
     }))));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "aws-workspaces",
       version: nix.thunk(() => nix.attr(workspacesclient, "version")),
       runScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), workspacesclient)),

@@ -31,19 +31,19 @@ export default nix.lambda((args) => (() => {
   const pname = "quickwit";
   const version = "0.8.2";
   const yarnOfflineCache = nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       yarnLock: nix.thunk(() => nix.str`${src}/quickwit/quickwit-ui/yarn.lock`),
       hash: "sha256-HppK9ycUxCOIagvzCmE+VfcmfMQfPIC8WeWM6WbA6fQ=",
     }))));
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "quickwit-oss",
       repo: "quickwit",
       rev: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-OrCO0mCFmhYBdpr4Gps56KJJ37uuJpV6ZJHWspOScyw=",
     }))));
   const quickwit_ui = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "quickwit-ui",
       src: nix.thunk(() => nix.str`${src}/quickwit/quickwit-ui`),
       nativeBuildInputs: nix.thunk(() => [nodejs, yarn, fixup_yarn_lock]),
@@ -71,10 +71,10 @@ cp -r ${quickwit_ui}/* quickwit-ui/build
 `);
       const buildInputs = nix.thunk(() => [rust_jemalloc_sys]);
       const cargoLock = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         lockFile: nix.path(here, "./Cargo.lock"),
         outputHashes: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "chitchat-0.8.0": "sha256-6K2noPoFaDnOxQIEV1WbmVPfRGwlI/WS1OWSBH2qb1Q=",
           "mrecordlog-0.4.0": "sha256-9LIVs+BqK9FLSfHL3vm9LL+/FXIXJ6v617QLv4luQik=",
           "ownedbytes-0.6.0": "sha256-in18/NYYIgUiZ9sm8NgJlebWidRp34DR7AhOD1Nh0aw=",
@@ -84,16 +84,16 @@ cp -r ${quickwit_ui}/* quickwit-ui/build
         })),
       }));
       const env = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         CARGO_PROFILE_RELEASE_LTO: "fat",
         CARGO_PROFILE_RELEASE_CODEGEN_UNITS: "1",
         PROTOC: nix.thunk(() => nix.str`${protobuf}/bin/protoc`),
         PROTOC_INCLUDE: nix.thunk(() => nix.str`${protobuf}/include`),
       }));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         tests: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           quickwit: nix.thunk(() => nix.attr(nixosTests, "quickwit")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
@@ -122,7 +122,7 @@ cp -r ${quickwit_ui}/* quickwit-ui/build
         "--skip=io::tests::test_controlled_writer_limited_sync",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         broken: true,
         description: "Sub-second search & analytics engine on cloud storage",
         homepage: "https://quickwit.io/",
@@ -134,7 +134,7 @@ cp -r ${quickwit_ui}/* quickwit-ui/build
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         pname: pname_1,
         version: version_1,
         src: src_1,

@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const pkgs = nix.arg($, "pkgs");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "cue",
       version: "0.17.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cue-lang",
           repo: "cue",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,19 +47,19 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd cue \\\n  --bash <($out/bin/cue completion bash) \\\n  --fish <($out/bin/cue completion fish) \\\n  --zsh <($out/bin/cue completion zsh)\n")),
       passthru: nix.thunk(() => (() => {
         const cue = nix.thunk(() => nix.sel(finalAttrs, "finalPackage"));
-        const writeCueValidator = nix.thunk(() => nix.app(callPackage, nix.path(here, "./validator.nix"), nix.thunk(() => ({ __proto__: pos$2, cue: cue }))));
+        const writeCueValidator = nix.thunk(() => nix.app(callPackage, nix.path(here, "./validator.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, cue: cue }))));
         return {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           writeCueValidator: writeCueValidator,
           tests: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             validation: nix.thunk(() => nix.app(nix.sel(tests, "cue-validation", "override"), nix.thunk(() => ({
-                __proto__: pos$4,
-                pkgs: nix.thunk(() => nix.app(nix.sel(pkgs, "extend"), (_) => (__1) => ({ __proto__: pos$3, writeCueValidator: writeCueValidator }))),
+                [nix.POS]: pos$4,
+                pkgs: nix.thunk(() => nix.app(nix.sel(pkgs, "extend"), (_) => (__1) => ({ [nix.POS]: pos$3, writeCueValidator: writeCueValidator }))),
               })))),
-            "test-001-all-good": nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/001-all-good.nix"), nix.thunk(() => ({ __proto__: pos$5, cue: cue })))),
+            "test-001-all-good": nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/001-all-good.nix"), nix.thunk(() => ({ [nix.POS]: pos$5, cue: cue })))),
             version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 package: cue,
                 command: "cue version",
                 version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         };
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Data constraint language which aims to simplify tasks involving defining and using data",
         homepage: "https://cuelang.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

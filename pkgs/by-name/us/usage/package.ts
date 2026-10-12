@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const usage = nix.arg($, "usage");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "usage",
       version: "6.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jdx",
           repo: "usage",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,15 +43,15 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [nodejs, bashInteractive]),
       postInstall: nix.thunk(() => nix.add("installManPage ./cli/assets/usage.1\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd usage \\\n  --bash <($out/bin/usage --completions bash) \\\n  --fish <($out/bin/usage --completions fish) \\\n  --zsh <($out/bin/usage --completions zsh)\n"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: usage })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: usage })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://usage.jdx.dev",
         description: "Specification for CLIs",
         changelog: nix.thunk(() => nix.str`https://github.com/jdx/usage/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const ncurses5 = nix.arg($, "ncurses5");
   const taskwarrior2 = nix.arg($, "taskwarrior2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "2020-12-17",
       pname: "tasknc",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lharding",
           repo: "tasknc",
           rev: "a182661fbcc097a933d5e8cce3922eb1734a563e",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "ncurses-6.3.patch",
             url: "https://github.com/lharding/tasknc/commit/f74ea0641e9bf287acf22fac9f6eeea571b01800.patch",
             sha256: "18a90zj85sw2zfnfcv055nvi0lx3h8lcgsyabdfk94ksn78pygrv",
@@ -50,7 +50,7 @@ DESTDIR=$out PREFIX= MANPREFIX=/share/man make install
 wrapProgram $out/bin/tasknc --prefix PATH : ${taskwarrior2}/bin
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/lharding/tasknc",
         description: "Ncurses wrapper around taskwarrior",
         mainProgram: "tasknc",

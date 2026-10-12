@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "9.2.154";
   const binaries = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "angr",
       repo: "binaries",
       tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const version_1 = version;
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "angr",
           repo: "cle",
           tag: nix.thunk(() => nix.str`v${version_1}`),
@@ -61,11 +61,11 @@ cp -r ${binaries} $HOME/binaries
       ]);
       const pythonImportsCheck = nix.thunk(() => ["cle"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python loader for many binary formats",
         homepage: "https://github.com/angr/cle",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -75,7 +75,7 @@ cp -r ${binaries} $HOME/binaries
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version: version_1,
         pyproject,

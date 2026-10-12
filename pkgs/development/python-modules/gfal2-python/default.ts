@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.13.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cern-fts",
           repo: "gfal2-python",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -37,12 +37,12 @@ export default nix.lambda((args) => (() => {
       const dontConfigure = true;
       const pythonImportsCheck = nix.thunk(() => ["gfal2"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         gfal2: gfal2,
-        tests: nix.thunk(() => nix.update({ __proto__: pos$2, "gfal2-util": gfal2_util }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(gfal2_util, null)), nix.thunk(() => nix.selOr(gfal2_util, () => ({}), "tests"))))),
+        tests: nix.thunk(() => nix.update({ [nix.POS]: pos$2, "gfal2-util": gfal2_util }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(gfal2_util, null)), nix.thunk(() => nix.selOr(gfal2_util, () => ({}), "tests"))))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python binding for gfal2",
         homepage: "https://github.com/cern-fts/gfal2-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         format,

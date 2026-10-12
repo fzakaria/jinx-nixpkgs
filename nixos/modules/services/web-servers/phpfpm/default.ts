@@ -57,7 +57,7 @@ ${nix.app(nix.lookup(w, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.l
 ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(poolOpts_1, "extraConfig"), null)), nix.thunk(() => nix.sel(poolOpts_1, "extraConfig")))}
 `));
   const phpIni = (poolOpts_1) => nix.app(nix.sel(pkgs, "runCommand"), "php.ini", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       phpOptions: nix.thunk(() => nix.attr(poolOpts_1, "phpOptions")),
       preferLocalBuild: true,
       __structuredAttrs: true,
@@ -70,37 +70,37 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(poolO
     const name = nix.arg($_1, "name");
     const poolOpts_1 = nix.thunk(() => nix.sel(cfg, "pools", nix.key(nix.force(name))));
     return {
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       options: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         socket: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             readOnly: true,
             description: "Path to the unix socket file on which to accept FastCGI requests.\n\n::: {.note}\nThis option is read-only and managed by NixOS.\n:::\n",
             example: nix.thunk(() => nix.str`${runtimeDir}/<name>.sock`),
           })))),
         listen: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             default: "",
             example: "/path/to/unix/socket",
             description: "The address on which to accept FastCGI requests.\n",
           })))),
         phpPackage: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")),
             default: nix.thunk(() => nix.sel(cfg, "phpPackage")),
             defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "config.services.phpfpm.phpPackage")),
             description: "The PHP package to use for running this PHP-FPM pool.\n",
           })))),
         phpOptions: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
             description: "\"Options appended to the PHP configuration file {file}`php.ini` used for this PHP-FPM pool.\"\n",
           })))),
         phpEnv: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             type: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
               return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -110,17 +110,17 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(poolO
             example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  HOSTNAME = \"$HOSTNAME\";\n  TMP = \"/tmp\";\n  TMPDIR = \"/tmp\";\n  TEMP = \"/tmp\";\n}\n")),
           })))),
         user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             description: "User account under which this pool runs.",
           })))),
         group: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             description: "Group account under which this pool runs.",
           })))),
         settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             type: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
               return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "oneOf"), nix.thunk(() => [
@@ -134,7 +134,7 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(poolO
             example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  \"pm\" = \"dynamic\";\n  \"pm.max_children\" = 75;\n  \"pm.start_servers\" = 10;\n  \"pm.min_spare_servers\" = 5;\n  \"pm.max_spare_servers\" = 20;\n  \"pm.max_requests\" = 500;\n}\n")),
           })))),
         extraConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             type: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
               return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "lines")));
@@ -144,12 +144,12 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(poolO
           })))),
       })),
       config: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         socket: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(poolOpts_1, "listen"), "")) ? nix.str`${runtimeDir}/${name}.sock` : nix.sel(poolOpts_1, "listen"))),
         group: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.sel(poolOpts_1, "user")))),
         phpOptions: nix.thunk(() => nix.app(nix.lookup(w, "mkBefore"), nix.thunk(() => nix.sel(cfg, "phpOptions")))),
         settings: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs"), (name_1) => nix.force(nix.lookup(w, "mkDefault")), nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             listen: nix.thunk(() => nix.sel(poolOpts_1, "socket")),
             user: nix.thunk(() => nix.sel(poolOpts_1, "user")),
             group: nix.thunk(() => nix.sel(poolOpts_1, "group")),
@@ -158,19 +158,19 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(poolO
     };
   })(), formals$2);
   return {
-    __proto__: pos$33,
+    [nix.POS]: pos$33,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["services", "phpfpm", "poolConfigs"]), "Use services.phpfpm.pools instead.")),
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["services", "phpfpm", "phpIni"]), "")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       services: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         phpfpm: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "oneOf"), nix.thunk(() => [
@@ -183,7 +183,7 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(poolO
               description: "PHP-FPM global directives. Refer to the \"List of global php-fpm.conf directives\" section of\n<https://www.php.net/manual/en/install.fpm.configuration.php>\nfor details. Note that settings names must be enclosed in quotes (e.g.\n`\"pm.max_children\"` instead of `pm.max_children`).\nYou need not specify the options `error_log` or\n`daemonize` here, since they are generated by NixOS.\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "lines")));
@@ -193,14 +193,14 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(poolO
             })))),
           phpPackage: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "php", nix.thunk(() => ({})))),
           phpOptions: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               example: "date.timezone = \"CET\"\n",
               description: "Options appended to the PHP configuration file {file}`php.ini`.\n",
             })))),
           pools: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), poolOpts)))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  mypool = {\n    user = \"php\";\n    group = \"php\";\n    phpPackage = pkgs.php;\n    settings = {\n      \"pm\" = \"dynamic\";\n      \"pm.max_children\" = 75;\n      \"pm.start_servers\" = 10;\n      \"pm.min_spare_servers\" = 5;\n      \"pm.max_spare_servers\" = 20;\n      \"pm.max_requests\" = 500;\n    };\n  }\n}")),
@@ -210,33 +210,33 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(poolO
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "pools"), {})), nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         warnings: nix.thunk(() => nix.concat(nix.app(nix.lookup(w, "mapAttrsToList"), (pool) => (poolOpts_1) => nix.str`Using config.services.phpfpm.pools.${pool}.listen is deprecated and will become unsupported in a future release. Please reference the read-only option config.services.phpfpm.pools.${pool}.socket to access the path of your socket.
 `, nix.thunk(() => nix.app(nix.lookup(w, "filterAttrs"), (pool) => (poolOpts_1) => !nix.eq(nix.sel(poolOpts_1, "listen"), ""), nix.thunk(() => nix.sel(cfg, "pools"))))), nix.concat(nix.app(nix.lookup(w, "mapAttrsToList"), (pool) => (poolOpts_1) => nix.str`Using config.services.phpfpm.pools.${pool}.extraConfig is deprecated and will become unsupported in a future release. Please migrate your configuration to config.services.phpfpm.pools.${pool}.settings.
 `, nix.thunk(() => nix.app(nix.lookup(w, "filterAttrs"), (pool) => (poolOpts_1) => !nix.eq(nix.sel(poolOpts_1, "extraConfig"), null), nix.thunk(() => nix.sel(cfg, "pools"))))), nix.app(nix.lookup(w, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "extraConfig"), null)), "Using config.services.phpfpm.extraConfig is deprecated and will become unsupported in a future release. Please migrate your configuration to config.services.phpfpm.settings.\n")))),
         services: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           phpfpm: nix.thunk(() => ({
-            __proto__: pos$23,
-            settings: nix.thunk(() => ({ __proto__: pos$22, error_log: "syslog", daemonize: false })),
+            [nix.POS]: pos$23,
+            settings: nix.thunk(() => ({ [nix.POS]: pos$22, error_log: "syslog", daemonize: false })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           slices: nix.thunk(() => ({
-            __proto__: pos$26,
-            "system-phpfpm": nix.thunk(() => ({ __proto__: pos$25, description: "PHP FastCGI Process Manager Slice" })),
+            [nix.POS]: pos$26,
+            "system-phpfpm": nix.thunk(() => ({ [nix.POS]: pos$25, description: "PHP FastCGI Process Manager Slice" })),
           })),
           targets: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             phpfpm: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               description: "PHP FastCGI Process manager pools target",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
             })),
           })),
           services: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs'"), (pool) => (poolOpts_1) => nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.str`phpfpm-${pool}`), nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 description: nix.thunk(() => nix.str`PHP FastCGI Process Manager service for pool ${pool}`),
                 after: nix.thunk(() => ["network.target"]),
                 wantedBy: nix.thunk(() => ["phpfpm.target"]),
@@ -246,7 +246,7 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(poolO
                   const cfgFile = nix.thunk(() => nix.app(fpmCfgFile, pool, poolOpts_1));
                   const iniFile = nix.thunk(() => nix.app(phpIni, poolOpts_1));
                   return {
-                    __proto__: pos$29,
+                    [nix.POS]: pos$29,
                     Slice: "system-phpfpm.slice",
                     PrivateDevices: true,
                     PrivateTmp: true,

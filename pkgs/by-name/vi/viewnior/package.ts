@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const libheif = nix.arg($, "libheif");
   const libjxl = nix.arg($, "libjxl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "viewnior-gtk3",
       version: "1.8-unstable-2023-11-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Artturin",
           repo: "Viewnior",
           rev: "23ce6e5630b24509d8009f17a833ad9e59b85fab",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [gtk3, libpng, exiv2, lcms, shared_mime_info, glib, gdk_pixbuf, perl]),
       postInstall: nix.thunk(() => nix.str`export GDK_PIXBUF_MODULE_FILE="${nix.app(nix.sel(gnome, "_gdkPixbufCacheBuilder_DO_NOT_USE"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           extraLoaders: nix.thunk(() => [
             webp_pixbuf_loader,
             librsvg,
@@ -73,7 +73,7 @@ gappsWrapperArgs+=(
 )
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fast and simple image viewer",
         longDescription: "Viewnior is inspired by big projects like Eye of Gnome, because of it's\nusability and richness,and by GPicView, because of it's lightweight design and\nminimal interface. So here comes Viewnior - small and light, with no compromise\nwith the quality of it's functions. The program is made with better integration\nin mind (follows Gnome HIG2).\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

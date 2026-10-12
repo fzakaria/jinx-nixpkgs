@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const exiftool = nix.arg($, "exiftool");
   const zoxide = nix.arg($, "zoxide");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "superfile",
       version: "1.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "yorukot",
           repo: "superfile",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,11 +44,11 @@ touch "$HOME/test-file"
 ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p \"$HOME/.Trash\"\n")}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Pretty fancy and modern terminal file manager",
         homepage: "https://github.com/yorukot/superfile",
         changelog: nix.thunk(() => nix.str`https://github.com/yorukot/superfile/blob/${nix.sel(finalAttrs, "src", "tag")}/changelog.md`),

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const podofo = nix.arg($, "podofo");
   const imagemagick = nix.arg($, "imagemagick");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pdfmixtool",
       version: "1.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "scarpetta",
           repo: "pdfmixtool",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         podofo,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Application to split, merge, rotate and mix PDF files",
         mainProgram: "pdfmixtool",
         homepage: "https://gitlab.com/scarpetta/pdfmixtool",

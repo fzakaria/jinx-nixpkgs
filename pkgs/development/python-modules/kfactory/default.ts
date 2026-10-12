@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
   const pytest_regressions = nix.arg($, "pytest-regressions");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kfactory",
       version: "2.5.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gdsfactory",
           repo: "kfactory",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -119,7 +119,7 @@ export default nix.lambda((args) => (() => {
         "tests/test_spiral.py",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "KLayout API implementation of gdsfactory",
         homepage: "https://github.com/gdsfactory/kfactory",
         changelog: nix.thunk(() => nix.str`https://github.com/gdsfactory/kfactory/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

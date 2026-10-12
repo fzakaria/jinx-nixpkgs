@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wimglenn",
           repo: "advent-of-code-data",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["test_main_user_ambiguous"])));
       const pythonImportsCheck = nix.thunk(() => ["aocd"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Get your Advent of Code data with a single import statement",
         homepage: "https://github.com/wimglenn/advent-of-code-data",
         changelog: nix.thunk(() => nix.str`https://github.com/wimglenn/advent-of-code-data/releases/tag/${nix.sel(src, "tag")}`),
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

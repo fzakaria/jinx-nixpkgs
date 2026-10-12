@@ -25,25 +25,25 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const partsSha = "73bc0559bb8399b2f895d68f032e41d7efc720c0";
   const parts = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "fritzing",
       repo: "fritzing-parts",
       rev: partsSha,
       hash: "sha256-2aXvSXWjQliEChQGhcCicOVoAqeNdeq69wQVYQsd2ew=",
     }))));
   const svgpp = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "svgpp",
       repo: "svgpp",
       tag: "v1.3.1",
       hash: "sha256-nW0ns06XWfUi22nOKZzFKgAOHVIlQqChW8HxUDOFMh4=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "fritzing",
       version: "1.0.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "fritzing",
           repo: "fritzing-app",
           rev: "04e5bb0241e8f1de24d0fce9be070041c6d5b68e",
@@ -88,7 +88,7 @@ mkdir parts
 cp -a ${parts}/* parts/
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.concat([
             nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(kdePackages, "quazip")))}/include/QuaZip-Qt${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(qt6, "qtbase", "version")))}-${nix.sel(kdePackages, "quazip", "version")}`),
             nix.thunk(() => nix.str`-I${svgpp}/include`),
@@ -102,7 +102,7 @@ cp -a ${parts}/* parts/
       preFixup: "qtWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       postFixup: "# generate the parts.db file\nQT_QPA_PLATFORM=offscreen \"$out/bin/Fritzing\" \\\n  -db \"$out/share/fritzing/parts/parts.db\" \\\n  -pp \"$out/share/fritzing/parts\" \\\n  -folder \"$out/share/fritzing\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Open source prototyping tool for Arduino-based projects",
         homepage: "https://fritzing.org",
         license: nix.thunk(() => (() => {

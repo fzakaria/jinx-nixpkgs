@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const flit_core = nix.arg($, "flit-core");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pylibjpeg-data",
       version: "unstable-2024-03-28",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pydicom",
           repo: "pylibjpeg-data",
           rev: "8253566715800a7fc3d4d949abab102c8172bca0",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["ljdata", "ljdata.ds", "ljdata.jpg"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "JPEG and DICOM data used for testing pylibjpeg",
         homepage: "https://github.com/pydicom/pylibjpeg-data",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "wireless-regdb";
       const version = "2026.09.03";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.kernel.org/pub/software/network/wireless-regdb/wireless-regdb-${version}.tar.xz`),
           hash: "sha256-si4JASJ7ggzRwoCr5oGhW3c6UQOl4Q3EQulOuzTL9Y0=",
         }))));
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
         "PREFIX=",
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Wireless regulatory database for CRDA",
         homepage: "https://wireless.docs.kernel.org/en/latest/en/developers/regulatory/wireless-regdb.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "fpletz"))];
         })()),
       }));
-      return { __proto__: pos$4, pname, version, src, dontBuild, makeFlags, passthru, meta };
+      return { [nix.POS]: pos$4, pname, version, src, dontBuild, makeFlags, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

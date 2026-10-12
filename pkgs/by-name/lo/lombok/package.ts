@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const jdk = nix.arg($, "jdk");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lombok",
       version: "1.18.46",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://projectlombok.org/downloads/lombok-${nix.sel(finalAttrs, "version")}.jar`),
           sha256: "sha256-AfexoBXjPiti1fXzcFMwY1erFBX9GB/Lp3lPXRmMESY=",
         })))),
@@ -33,7 +33,7 @@ makeWrapper ${jdk}/bin/java $bin/bin/lombok \\
   --add-flags lombok.launch.Main
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library that can write a lot of boilerplate for your Java project",
         mainProgram: "lombok",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gi-crystal";
       const version = "0.25.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hugopl",
           repo: "gi-crystal",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       const doInstallCheck = false;
       const installPhase = "runHook preInstall\n\nmkdir $out\ncp -r * $out\n\nrunHook postInstall\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "GI Crystal is a binding generator used to generate Crystal bindings for GObject based libraries using GObject Introspection",
         homepage: "https://github.com/hugopl/gi-crystal",
         mainProgram: "gi-crystal",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

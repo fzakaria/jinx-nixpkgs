@@ -48,11 +48,11 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w, "FileFcntlLock"))];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "exim",
       version: "4.100.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://ftp.exim.org/pub/exim/exim4/exim-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-6ftB9nJKWxNtZMnRnbxfJklK+Hmj5+MZD5Fjnqp5+g0=",
         })))),
@@ -131,7 +131,7 @@ runHook postConfigure
 `),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin $out/share/man/man8\ncp doc/exim.8 $out/share/man/man8\n\n( cd build-Linux-*\n  cp exicyclog exim_checkaccess exim_dumpdb exim_lock exim_tidydb \\\n    exipick exiqsumm exigrep exim_dbmbuild exim exim_fixdb eximstats \\\n    exinext exiqgrep exiwhat \\\n    $out/bin )\n\n( cd $out/bin\n  for i in mailq newaliases rmail rsmtp runq sendmail; do\n    ln -s exim $i\n  done )\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://exim.org/",
         description: "Mail transfer agent (MTA)",
         license: nix.thunk(() => (() => {

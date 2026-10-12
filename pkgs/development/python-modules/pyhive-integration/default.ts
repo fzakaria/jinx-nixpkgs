@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pyquery = nix.arg($, "pyquery");
   const loguru = nix.arg($, "loguru");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pyhive-integration",
       version: "1.0.9",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Pyhass",
           repo: "Pyhiveapi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       postBuild: "# pyhiveapi accesses $HOME upon importing\nexport HOME=$TMPDIR\n",
       pythonImportsCheck: nix.thunk(() => ["pyhiveapi"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library to interface with the Hive API",
         homepage: "https://github.com/Pyhass/Pyhiveapi",
         changelog: nix.thunk(() => nix.str`https://github.com/Pyhass/Pyhiveapi/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

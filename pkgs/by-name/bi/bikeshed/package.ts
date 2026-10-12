@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bikeshed",
       version: "7.0.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-s+NHSOHqJl89/sB5b3SWS+dT7WpsSv9tedoOfuDA2ls=",
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "$out/bin/bikeshed test\n",
       pythonImportsCheck: nix.thunk(() => ["bikeshed"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Preprocessor for anyone writing specifications that converts source files into actual specs",
         mainProgram: "bikeshed",
         longDescription: "Bikeshed is a pre-processor for spec documents, turning a source document\n(containing only the actual spec content, plus several shorthands for linking\nto terms and other things) into a final spec document, with appropriate boilerplate,\nbibliography, indexes, etc all filled in. It's used on specs for CSS\nand many other W3C working groups, WHATWG, the C++ standards committee, and elsewhere!\n",

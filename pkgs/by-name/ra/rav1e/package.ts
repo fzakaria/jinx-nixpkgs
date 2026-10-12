@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const rav1e = nix.arg($, "rav1e");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "rav1e",
       version: "0.8.1",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-GCfh2v3w5C8h4GuPKkTMUAhPspT1W0drrRpELCJWeTI=",
@@ -41,15 +41,15 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`${nix.sel(buildPackages, "rust", "envVars", "setEnv")} cargo cinstall --release --frozen --prefix=${nix.builtins.placeholder("out")} --target ${nix.sel(stdenv, "hostPlatform", "rust", "rustcTarget")}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: rav1e })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: rav1e })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Fastest and safest AV1 encoder",
         longDescription: "rav1e is an AV1 video encoder. It is designed to eventually cover all use\ncases, though in its current form it is most suitable for cases where\nlibaom (the reference encoder) is too slow.\nFeatures: https://github.com/xiph/rav1e#features\n",
         homepage: "https://github.com/xiph/rav1e",

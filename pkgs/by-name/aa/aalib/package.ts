@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "aalib",
       version: "1.4rc5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/aa-project/aalib-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1vkh19gb76agvh4h87ysbrgy82hrw88lnsvhynjf4vng629dmpgv",
         })))),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-ncurses=${nix.sel(ncurses, "dev")}`),
       ]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
         })))),
       postInstall: nix.thunk(() => nix.str`mkdir -p $dev/bin
@@ -41,7 +41,7 @@ mv $bin/bin/aalib-config $dev/bin/aalib-config
 substituteInPlace $out/lib/libaa.la --replace-fail "${nix.sel(ncurses, "dev")}/lib" "${nix.sel(ncurses, "out")}/lib"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "ASCII art graphics library",
         homepage: "https://aa-project.sourceforge.net/aalib/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

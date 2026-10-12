@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const bintools = nix.arg($, "bintools");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tlaplus-toolbox",
       version: "1.7.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://tla.msr-inria.inria.fr/tlatoolbox/branches/${nix.sel(finalAttrs, "version")}/products/TLAToolbox-${nix.sel(finalAttrs, "version")}-linux.gtk.x86_64.zip`),
           hash: "sha256-eYK2cXJvLIQfkK+onromwhNfAmzWSyCZXCsEORxkjaU=",
         })))),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "TLA+Toolbox",
             exec: "tla-toolbox",
             icon: "tla-toolbox",
@@ -80,7 +80,7 @@ done
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://research.microsoft.com/en-us/um/people/lamport/tla/toolbox.html",
         description: "IDE for the TLA+ tools",
         mainProgram: "tla-toolbox",

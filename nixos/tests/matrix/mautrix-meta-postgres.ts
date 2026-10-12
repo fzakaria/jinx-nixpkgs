@@ -47,46 +47,46 @@ export default nix.lambda((args) => (() => {
   const asToken = "this-is-my-totally-randomly-generated-as-token";
   const hsToken = "this-is-my-totally-randomly-generated-hs-token";
   return {
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     name: "mautrix-meta-postgres",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.sel(pkgs, "mautrix-meta", "meta", "maintainers")),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           services: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             postgresql: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               enable: true,
               ensureUsers: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$2, name: "mautrix-meta-instagram", ensureDBOwnership: true })),
+                nix.thunk(() => ({ [nix.POS]: pos$2, name: "mautrix-meta-instagram", ensureDBOwnership: true })),
               ]),
               ensureDatabases: nix.thunk(() => ["mautrix-meta-instagram"]),
             })),
             "matrix-synapse": nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$8,
-                database: nix.thunk(() => ({ __proto__: pos$4, name: "sqlite3" })),
+                [nix.POS]: pos$8,
+                database: nix.thunk(() => ({ [nix.POS]: pos$4, name: "sqlite3" })),
                 enable_registration: true,
                 enable_registration_without_verification: true,
                 listeners: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     bind_addresses: nix.thunk(() => ["0.0.0.0"]),
                     port: 8008n,
                     resources: nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$5, compress: true, names: nix.thunk(() => ["client"]) })),
-                      nix.thunk(() => ({ __proto__: pos$6, compress: false, names: nix.thunk(() => ["federation"]) })),
+                      nix.thunk(() => ({ [nix.POS]: pos$5, compress: true, names: nix.thunk(() => ["client"]) })),
+                      nix.thunk(() => ({ [nix.POS]: pos$6, compress: false, names: nix.thunk(() => ["federation"]) })),
                     ]),
                     tls: false,
                     type: "http",
@@ -95,33 +95,33 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             "mautrix-meta": nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               instances: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 instagram: nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   enable: true,
                   environmentFile: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "my-secrets", nix.thunk(() => nix.str`AS_TOKEN=${asToken}
 HS_TOKEN=${hsToken}
 `))),
                   settings: nix.thunk(() => ({
-                    __proto__: pos$16,
-                    homeserver: nix.thunk(() => ({ __proto__: pos$10, address: homeserverUrl, domain: homeserverDomain })),
+                    [nix.POS]: pos$16,
+                    homeserver: nix.thunk(() => ({ [nix.POS]: pos$10, address: homeserverUrl, domain: homeserverDomain })),
                     appservice: nix.thunk(() => ({
-                      __proto__: pos$12,
+                      [nix.POS]: pos$12,
                       port: 8009n,
                       as_token: "$AS_TOKEN",
                       hs_token: "$HS_TOKEN",
-                      bot: nix.thunk(() => ({ __proto__: pos$11, username: botUserName, avatar: "" })),
+                      bot: nix.thunk(() => ({ [nix.POS]: pos$11, username: botUserName, avatar: "" })),
                     })),
                     database: nix.thunk(() => ({
-                      __proto__: pos$13,
+                      [nix.POS]: pos$13,
                       type: "postgres",
                       uri: "postgres:///mautrix-meta-instagram?host=/var/run/postgresql",
                     })),
-                    encryption: nix.thunk(() => ({ __proto__: pos$14, allow: false, default: false, require: false })),
+                    encryption: nix.thunk(() => ({ [nix.POS]: pos$14, allow: false, default: false, require: false })),
                     bridge: nix.thunk(() => ({
-                      __proto__: pos$15,
+                      [nix.POS]: pos$15,
                       permissions: nix.thunk(() => nix.attrsDyn({}, [[nix.str`@${userName}:server`, "user"]])),
                     })),
                   })),
@@ -130,19 +130,19 @@ HS_TOKEN=${hsToken}
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             services: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               "mautrix-meta-instagram": nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 wants: nix.thunk(() => ["postgres.service"]),
                 after: nix.thunk(() => ["postgres.service"]),
               })),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$25,
-            firewall: nix.thunk(() => ({ __proto__: pos$24, allowedTCPPorts: nix.thunk(() => [8008n, 8009n]) })),
+            [nix.POS]: pos$25,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$24, allowedTCPPorts: nix.thunk(() => [8008n, 8009n]) })),
           })),
         };
       })(), formals$2),
@@ -150,12 +150,12 @@ HS_TOKEN=${hsToken}
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           environment: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(pkgs_1, "writers", "writePython3Bin"), "do_test", nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   libraries: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "python3Packages", "matrix-nio"))]),
                   flakeIgnore: nix.thunk(() => ["E501"]),
                 })), nix.thunk(() => nix.str`import sys

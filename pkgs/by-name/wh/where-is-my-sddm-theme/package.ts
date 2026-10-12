@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const user_cfg = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(formats, "ini"), nix.thunk(() => ({}))), "generate"), "theme.conf.user", themeConfig));
   const validVariants = nix.thunk(() => ["qt5", "qt6"]);
   return nix.app(nix.sel(lib, "checkListOfEnum"), "where-is-my-sddm-theme: variant", validVariants, variants, nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "where-is-my-sddm-theme",
       version: "1.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stepanzubkov",
           repo: "where-is-my-sddm-theme",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
 `)))))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), "qt5", variants)), nix.thunk(() => nix.add("cp -r where_is_my_sddm_theme_qt5/ $out/share/sddm/themes/\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "isAttrs"), themeConfig)), nix.thunk(() => nix.str`ln -sf ${user_cfg} $out/share/sddm/themes/where_is_my_sddm_theme_qt5/theme.conf.user
 `))))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Most minimalistic SDDM theme among all themes",
         homepage: "https://github.com/stepanzubkov/where-is-my-sddm-theme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

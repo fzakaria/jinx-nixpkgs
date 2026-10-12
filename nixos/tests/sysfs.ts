@@ -22,25 +22,25 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     name: "sysfs",
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       machine: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         boot: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           kernel: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             sysfs: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               kernel: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 mm: nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   transparent_hugepage: nix.thunk(() => ({
-                    __proto__: pos$2,
+                    [nix.POS]: pos$2,
                     enabled: "always",
                     defrag: "defer",
                     shmem_enabled: "within_size",
@@ -48,10 +48,10 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               block: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 "*": nix.thunk(() => ({
-                  __proto__: pos$6,
-                  queue: nix.thunk(() => ({ __proto__: pos$5, scheduler: "none" })),
+                  [nix.POS]: pos$6,
+                  queue: nix.thunk(() => ({ [nix.POS]: pos$5, scheduler: "none" })),
                 })),
               })),
             })),

@@ -26,32 +26,32 @@ export default nix.lambda((args) => (() => {
     const name = nix.arg($_1, "name");
     const type = nix.arg($_1, "type");
     return nix.app(runTest, nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         name: nix.thunk(() => nix.str`writefreely-${name}`),
         nodes: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           machine: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
             const config = nix.arg($_2, "config");
             const pkgs = nix.arg($_2, "pkgs");
             return {
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               services: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 writefreely: nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   enable: true,
                   host: "localhost:3000",
-                  admin: nix.thunk(() => ({ __proto__: pos$1, name: "nixos" })),
+                  admin: nix.thunk(() => ({ [nix.POS]: pos$1, name: "nixos" })),
                   database: nix.thunk(() => ({
-                    __proto__: pos$2,
+                    [nix.POS]: pos$2,
                     type: type,
                     createLocally: nix.thunk(() => nix.eq(type, "mysql")),
                     passwordFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "db-pass", "pass")),
                   })),
                   settings: nix.thunk(() => ({
-                    __proto__: pos$4,
-                    server: nix.thunk(() => ({ __proto__: pos$3, port: 3000n })),
+                    [nix.POS]: pos$4,
+                    server: nix.thunk(() => ({ [nix.POS]: pos$3, port: 3000n })),
                   })),
                 })),
               })),
@@ -62,9 +62,9 @@ export default nix.lambda((args) => (() => {
       })));
   })(), formals$2);
   return {
-    __proto__: pos$12,
-    sqlite: nix.thunk(() => nix.app(writefreelyTest, nix.thunk(() => ({ __proto__: pos$10, name: "sqlite", type: "sqlite3" })))),
-    mysql: nix.thunk(() => nix.app(writefreelyTest, nix.thunk(() => ({ __proto__: pos$11, name: "mysql", type: "mysql" })))),
+    [nix.POS]: pos$12,
+    sqlite: nix.thunk(() => nix.app(writefreelyTest, nix.thunk(() => ({ [nix.POS]: pos$10, name: "sqlite", type: "sqlite3" })))),
+    mysql: nix.thunk(() => nix.app(writefreelyTest, nix.thunk(() => ({ [nix.POS]: pos$11, name: "mysql", type: "mysql" })))),
   };
 })(), formals$1);
 //# sourceMappingURL=writefreely.ts.map

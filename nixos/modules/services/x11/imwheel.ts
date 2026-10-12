@@ -28,25 +28,25 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "xserver", "imwheel"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         xserver: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           imwheel: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "IMWheel service")),
             extraOptions: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 default: nix.thunk(() => ["--buttons=45"]),
                 example: nix.thunk(() => ["--debug"]),
                 description: "Additional command-line arguments to pass to\n{command}`imwheel`.\n",
               })))),
             rules: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  \".*\" = ''\n    None,      Up,   Button4, 8\n    None,      Down, Button5, 8\n    Shift_L,   Up,   Shift_L|Button4, 4\n    Shift_L,   Down, Shift_L|Button5, 4\n    Control_L, Up,   Control_L|Button4\n    Control_L, Down, Control_L|Button5\n  '';\n}\n")),
@@ -57,32 +57,32 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         environment: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "imwheel"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             "X11/imwheel/imwheelrc": nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "imwheelrc", nix.thunk(() => nix.app(nix.lookup(w, "concatStringsSep"), "\n\n", nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (rule) => (conf) => nix.str`"${rule}"
 ${conf}`, nix.thunk(() => nix.sel(cfg, "rules")))))))),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           user: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             services: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               imwheel: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 description: "imwheel service",
                 wantedBy: nix.thunk(() => ["graphical-session.target"]),
                 partOf: nix.thunk(() => ["graphical-session.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   ExecStart: nix.thunk(() => nix.add(nix.str`${nix.sel(pkgs, "imwheel")}/bin/imwheel `, nix.app(nix.lookup(w, "escapeShellArgs"), nix.thunk(() => nix.concat(["--detach", "--kill"], nix.sel(cfg, "extraOptions")))))),
                   ExecStop: nix.thunk(() => nix.str`${nix.sel(pkgs, "procps")}/bin/pkill imwheel`),
                   RestartSec: 3n,

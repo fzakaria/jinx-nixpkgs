@@ -5,7 +5,7 @@ const here = nix.here(import.meta.url);
 const pos$1 = nix.positions(here + "/disable-foo.nix", [["disabledModules", 3, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$1,
+  [nix.POS]: pos$1,
   disabledModules: nix.thunk(() => [nix.path(here, "./foo.nix")]),
 }));
 //# sourceMappingURL=disable-foo.ts.map

@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const polkit = nix.arg($, "polkit");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mousepad",
       version: "0.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.xfce.org",
           owner: "apps",
           repo: "mousepad",
@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([glib, gspell, gtk3, gtksourceview4, libxfce4ui, xfconf], nix.app(nix.sel(lib, "optionals"), enablePolkit, nix.thunk(() => [polkit])))),
       mesonFlags: nix.thunk(() => ["-Dkeyfile-settings=true"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "mousepad-" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "mousepad-" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Simple text editor for Xfce",
         homepage: "https://gitlab.xfce.org/apps/mousepad",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

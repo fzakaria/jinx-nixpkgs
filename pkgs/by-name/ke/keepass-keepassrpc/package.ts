@@ -17,16 +17,16 @@ export default nix.lambda((args) => (() => {
   const mono = nix.arg($, "mono");
   const version = "1.16.0";
   const drv = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "keepassrpc",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/kee-org/keepassrpc/releases/download/v${version}/KeePassRPC.plgx`),
           hash: "sha256-p5dYluCrXAKhBhlm6sQ3QQE3gLMJzEZsHXwGnVeXFos=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "KeePassRPC plugin that needs to be installed inside KeePass in order for Kee to be able to connect your browser to your passwords",
         homepage: "https://github.com/kee-org/keepassrpc",
         platforms: nix.thunk(() => ["x86_64-linux"]),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -p $out/lib/dotnet/keepass/\ncp $src $out/lib/dotnet/keepass/\n",
     }))));
   return nix.app(buildEnv, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.attr(drv, "pname")),
       version: nix.thunk(() => nix.attr(drv, "version")),
       paths: nix.thunk(() => [mono, drv]),

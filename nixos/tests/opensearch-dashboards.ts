@@ -21,25 +21,25 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
     const pkgs = nix.arg($, "pkgs");
     const lib = nix.arg($, "lib");
     return {
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       name: "opensearch-dashboards",
-      meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
       nodes: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         machine: nix.thunk(() => ({
-          __proto__: pos$10,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$2, memorySize: 4096n })),
+          [nix.POS]: pos$10,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, memorySize: 4096n })),
           services: nix.thunk(() => ({
-            __proto__: pos$9,
-            opensearch: nix.thunk(() => ({ __proto__: pos$3, enable: true })),
+            [nix.POS]: pos$9,
+            opensearch: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
             "opensearch-dashboards": nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               enable: true,
-              package: nix.thunk(() => nix.app(nix.sel(pkgs, "opensearch-dashboards", "override"), nix.thunk(() => ({ __proto__: pos$4, disableSecurity: true })))),
+              package: nix.thunk(() => nix.app(nix.sel(pkgs, "opensearch-dashboards", "override"), nix.thunk(() => ({ [nix.POS]: pos$4, disableSecurity: true })))),
               settings: nix.thunk(() => ({
-                __proto__: pos$7,
-                server: nix.thunk(() => ({ __proto__: pos$5, host: "0.0.0.0", port: 5601n })),
-                opensearch: nix.thunk(() => ({ __proto__: pos$6, hosts: nix.thunk(() => ["http://localhost:9200"]) })),
+                [nix.POS]: pos$7,
+                server: nix.thunk(() => ({ [nix.POS]: pos$5, host: "0.0.0.0", port: 5601n })),
+                opensearch: nix.thunk(() => ({ [nix.POS]: pos$6, hosts: nix.thunk(() => ["http://localhost:9200"]) })),
               })),
             })),
           })),

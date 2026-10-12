@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const pname = "pulseaudio-ctl";
   const version = "1.70";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "graysky2",
           repo: "pulseaudio-ctl",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -44,7 +44,7 @@ substituteInPlace common/${pname}.in \\
   --prefix PATH : ${path}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Control pulseaudio volume from the shell or mapped to keyboard shortcuts. No need for alsa-utils",
         mainProgram: "pulseaudio-ctl",
         homepage: "https://bbs.archlinux.org/viewtopic.php?id=124513",

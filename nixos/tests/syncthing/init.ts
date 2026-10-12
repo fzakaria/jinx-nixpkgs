@@ -21,10 +21,10 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const testId = "7CFNTQM-IMTJBHJ-3UWRDIU-ZGQJFR6-VCXZ3NB-XUH3KZO-N52ITXR-LAIYUAU";
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     name: "syncthing-init",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -34,29 +34,29 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     containers: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       machine: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         services: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           syncthing: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             enable: true,
             settings: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               devices: nix.thunk(() => ({
-                __proto__: pos$3,
-                testDevice: nix.thunk(() => ({ __proto__: pos$2, id: testId })),
+                [nix.POS]: pos$3,
+                testDevice: nix.thunk(() => ({ [nix.POS]: pos$2, id: testId })),
               })),
               folders: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 testFolder: nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   path: "/tmp/test",
                   devices: nix.thunk(() => ["testDevice"]),
                 })),
               })),
-              gui: nix.thunk(() => ({ __proto__: pos$6, user: "guiUser" })),
+              gui: nix.thunk(() => ({ [nix.POS]: pos$6, user: "guiUser" })),
             })),
           })),
         })),

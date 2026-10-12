@@ -12,27 +12,27 @@ const pos$6 = nix.positions(here + "/postfix-raise-smtpd-tls-security-level.nix"
 const pos$7 = nix.positions(here + "/postfix-raise-smtpd-tls-security-level.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 41, 3]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.thunk(() => ({
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     name: "postfix",
     nodes: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       machine: nix.lambda((args) => (() => {
         const $ = nix.formals(args, formals$1);
         const pkgs = nix.arg($, "pkgs");
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           imports: nix.thunk(() => [nix.path(here, "common/user-account.nix")]),
           services: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             postfix: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               enable: true,
               enableSubmissions: true,
-              submissionsOptions: nix.thunk(() => ({ __proto__: pos$1, smtpd_tls_security_level: "none" })),
+              submissionsOptions: nix.thunk(() => ({ [nix.POS]: pos$1, smtpd_tls_security_level: "none" })),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             systemPackages: nix.thunk(() => (() => {
               const checkConfig = nix.thunk(() => nix.app(nix.sel(pkgs, "writeScriptBin"), "check-config", nix.thunk(() => nix.str`#!${nix.sel(pkgs, "python3", "interpreter")}
 import sys

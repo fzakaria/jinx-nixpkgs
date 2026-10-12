@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const eigen = nix.arg($, "eigen");
   const libGL = nix.arg($, "libGL");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "openbrf",
       version: "unstable-2016-01-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cfcohen",
           repo: "openbrf",
           rev: "4bdc66e38def5e5184f5379c84a7558b7484c70a",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-build-against-newer-vcglib.patch",
             url: "https://github.com/cfcohen/openbrf/commit/6d82a25314a393e72bfbe2ffc3965bcac407df4c.patch",
             hash: "sha256-rNxAw6Le6QXMSirIAMhMmqVgNJLq6osnEOhWrY3mTpM=",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(libsForQt5, "qtbase")), vcg, glew, eigen]),
       qmakeFlags: nix.thunk(() => ["openBrf.pro"]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-isystem ${nix.app(nix.sel(lib, "getDev"), eigen)}/include/eigen3`),
       })),
       postPatch: nix.thunk(() => nix.str`sed -i 's,^VCGLIB .*,VCGLIB = ${vcg}/include,' openBrf.pro
@@ -71,7 +71,7 @@ ln -s "$out/share/openBrf/openBrf" "$out/bin/openBrf"
 `),
       dontPatchELF: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Tool to edit resource files (BRF)",
         mainProgram: "openBrf",
         homepage: "https://github.com/cfcohen/openbrf",

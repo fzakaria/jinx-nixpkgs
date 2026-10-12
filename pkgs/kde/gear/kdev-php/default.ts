@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const mkKdeDerivation = nix.arg($, "mkKdeDerivation");
   const kdevelop_pg_qt = nix.arg($, "kdevelop-pg-qt");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kdev-php",
       extraNativeBuildInputs: nix.thunk(() => [kdevelop_pg_qt]),
     })));

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "qwerty-fr",
       version: "0.7.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "qwerty-fr",
           repo: "qwerty-fr",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "mkdir -p $out/share/X11/xkb/symbols\ncp $src/linux/us_qwerty-fr $out/share/X11/xkb/symbols\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Qwerty keyboard layout with French accents",
         changelog: nix.thunk(() => nix.str`https://github.com/qwerty-fr/qwerty-fr/blob/v${nix.sel(finalAttrs, "version")}/linux/debian/changelog`),
         homepage: "https://github.com/qwerty-fr/qwerty-fr",

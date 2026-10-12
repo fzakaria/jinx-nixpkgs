@@ -23,9 +23,9 @@ export default nix.lambda((args) => (() => {
       const extraLdflags = nix.thunk(() => [
         nix.thunk(() => nix.str`-X=github.com/${owner}/${repo}/provider/pkg/version.Version=${version}`),
       ]);
-      const pythonArgs = nix.thunk(() => ({ __proto__: pos$1, pname: "pulumiverse_talos" }));
+      const pythonArgs = nix.thunk(() => ({ [nix.POS]: pos$1, pname: "pulumiverse_talos" }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Talos Linux resource package, providing IaC configuration of Talos k8s clusters",
         mainProgram: cmdRes,
         homepage: "https://www.pulumi.com/registry/packages/talos/",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         owner,
         repo,
         version,

@@ -51,81 +51,81 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$40,
+    [nix.POS]: pos$40,
     name: "systemd-networkd-dhcpserver",
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$39,
+      [nix.POS]: pos$39,
       router: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$28,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$2, vlans: nix.thunk(() => [1n]) })),
+          [nix.POS]: pos$28,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, vlans: nix.thunk(() => [1n]) })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             services: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               "systemd-networkd": nix.thunk(() => ({
-                __proto__: pos$4,
-                environment: nix.thunk(() => ({ __proto__: pos$3, SYSTEMD_LOG_LEVEL: "debug" })),
+                [nix.POS]: pos$4,
+                environment: nix.thunk(() => ({ [nix.POS]: pos$3, SYSTEMD_LOG_LEVEL: "debug" })),
               })),
             })),
             network: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               netdevs: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 br0: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   enable: true,
-                  netdevConfig: nix.thunk(() => ({ __proto__: pos$6, Name: "br0", Kind: "bridge" })),
+                  netdevConfig: nix.thunk(() => ({ [nix.POS]: pos$6, Name: "br0", Kind: "bridge" })),
                   extraConfig: "[Bridge]\nVLANFiltering=yes\nDefaultPVID=none\n",
                 })),
                 vlan2: nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   enable: true,
-                  netdevConfig: nix.thunk(() => ({ __proto__: pos$8, Name: "vlan2", Kind: "vlan" })),
-                  vlanConfig: nix.thunk(() => ({ __proto__: pos$9, Id: 2n })),
+                  netdevConfig: nix.thunk(() => ({ [nix.POS]: pos$8, Name: "vlan2", Kind: "vlan" })),
+                  vlanConfig: nix.thunk(() => ({ [nix.POS]: pos$9, Id: 2n })),
                 })),
               })),
               networks: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 "01-eth1": nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   name: "eth1",
-                  networkConfig: nix.thunk(() => ({ __proto__: pos$12, Bridge: "br0" })),
-                  bridgeVLANs: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$13, PVID: 2n, EgressUntagged: 2n }))]),
+                  networkConfig: nix.thunk(() => ({ [nix.POS]: pos$12, Bridge: "br0" })),
+                  bridgeVLANs: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$13, PVID: 2n, EgressUntagged: 2n }))]),
                 })),
                 "02-br0": nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   name: "br0",
                   networkConfig: nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     DHCPServer: true,
                     Address: "10.0.0.1/24",
                     VLAN: nix.thunk(() => ["vlan2"]),
                   })),
-                  dhcpServerConfig: nix.thunk(() => ({ __proto__: pos$16, PoolOffset: 100n, PoolSize: 1n })),
+                  dhcpServerConfig: nix.thunk(() => ({ [nix.POS]: pos$16, PoolOffset: 100n, PoolSize: 1n })),
                   bridgeVLANs: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$17, PVID: 1n, EgressUntagged: 1n })),
-                    nix.thunk(() => ({ __proto__: pos$18, VLAN: 2n })),
+                    nix.thunk(() => ({ [nix.POS]: pos$17, PVID: 1n, EgressUntagged: 1n })),
+                    nix.thunk(() => ({ [nix.POS]: pos$18, VLAN: 2n })),
                   ]),
                 })),
                 "02-vlan2": nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   name: "vlan2",
-                  networkConfig: nix.thunk(() => ({ __proto__: pos$20, DHCPServer: true, Address: "10.0.2.1/24" })),
-                  dhcpServerConfig: nix.thunk(() => ({ __proto__: pos$21, PoolOffset: 100n, PoolSize: 1n })),
+                  networkConfig: nix.thunk(() => ({ [nix.POS]: pos$20, DHCPServer: true, Address: "10.0.2.1/24" })),
+                  dhcpServerConfig: nix.thunk(() => ({ [nix.POS]: pos$21, PoolOffset: 100n, PoolSize: 1n })),
                 })),
               })),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             useNetworkd: true,
             useDHCP: false,
-            firewall: nix.thunk(() => ({ __proto__: pos$26, enable: false })),
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$26, enable: false })),
           })),
         };
       })(), formals$2),
@@ -134,26 +134,26 @@ export default nix.lambda((args) => (() => {
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$38,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$29, vlans: nix.thunk(() => [1n]) })),
+          [nix.POS]: pos$38,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$29, vlans: nix.thunk(() => [1n]) })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             services: nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               "systemd-networkd": nix.thunk(() => ({
-                __proto__: pos$31,
-                environment: nix.thunk(() => ({ __proto__: pos$30, SYSTEMD_LOG_LEVEL: "debug" })),
+                [nix.POS]: pos$31,
+                environment: nix.thunk(() => ({ [nix.POS]: pos$30, SYSTEMD_LOG_LEVEL: "debug" })),
               })),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             useNetworkd: true,
             useDHCP: false,
-            firewall: nix.thunk(() => ({ __proto__: pos$34, enable: false })),
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$34, enable: false })),
             interfaces: nix.thunk(() => ({
-              __proto__: pos$36,
-              eth1: nix.thunk(() => ({ __proto__: pos$35, useDHCP: true })),
+              [nix.POS]: pos$36,
+              eth1: nix.thunk(() => ({ [nix.POS]: pos$35, useDHCP: true })),
             })),
           })),
         };

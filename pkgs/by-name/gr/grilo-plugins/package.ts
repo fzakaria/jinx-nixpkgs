@@ -48,13 +48,13 @@ export default nix.lambda((args) => (() => {
       const pname = "grilo-plugins";
       const version = "0.3.18";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/grilo-plugins/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/grilo-plugins-${version}.tar.xz`),
           sha256: "jjznTucXw8Mi0MsPjfJrsJFAKKXQFuKAVf+0nMmkbF4=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./chromaprint-gst-plugins.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             load_plugins: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStrings"), (plugin) => nix.str`gst_registry_scan_path(gst_registry_get(), "${nix.app(nix.sel(lib, "getLib"), plugin)}/lib/gstreamer-1.0");`, nix.thunk(() => (() => {
                 const w = nix.withScope(gst_all_1, null);
                 return [
@@ -90,11 +90,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(gst_all_1, "gstreamer")),
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$3, packageName: pname, versionPolicy: "none" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: pname, versionPolicy: "none" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://gitlab.gnome.org/GNOME/grilo-plugins",
         description: "Collection of plugins for the Grilo framework",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),
@@ -102,7 +102,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

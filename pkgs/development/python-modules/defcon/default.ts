@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const fontpens = nix.arg($, "fontpens");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "defcon",
       version: "0.12.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-Jd/n/QFSzPKSyxkNGSikfViImcILBGhUKT4DnhyT5eA=",
@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["defcon"]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pens: nix.thunk(() => [fontpens]),
         lxml: nix.thunk(() => nix.concat([fonttools], nix.sel(fonttools, "optional-dependencies", "lxml"))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Set of UFO based objects for use in font editing applications",
         homepage: "https://github.com/robotools/defcon",
         changelog: nix.thunk(() => nix.str`https://github.com/robotools/defcon/releases/tag/${nix.sel(finalAttrs, "version")}`),

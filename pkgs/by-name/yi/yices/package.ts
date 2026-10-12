@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const libpoly = nix.arg($, "libpoly");
   const ncurses5 = nix.arg($, "ncurses5");
-  const gmp_static = nix.thunk(() => nix.app(nix.sel(gmp, "override"), nix.thunk(() => ({ __proto__: pos$1, withStatic: true }))));
+  const gmp_static = nix.thunk(() => nix.app(nix.sel(gmp, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withStatic: true }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "yices",
       version: "2.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "SRI-CSL",
           repo: "yices2",
           tag: nix.thunk(() => nix.str`yices-${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       nativeCheckInputs: nix.thunk(() => [ncurses5]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "High-performance theorem prover and SMT solver",
         homepage: "https://yices.csl.sri.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const leptonica = nix.arg($, "leptonica");
   const tesseract4 = nix.arg($, "tesseract4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "qt-box-editor",
       version: "unstable-2019-07-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zdenop",
           repo: "qt-box-editor",
           rev: "cba2929dabc6c715acd1a282ba161fee914c87f6",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "sed -i '/allheaders.h/a#include <leptonica/pix_internal.h>' src/TessTools.h\n\nsubstituteInPlace qt-box-editor.pro \\\n  --replace '-llept' '-lleptonica'\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Editor of tesseract-ocr box files",
         mainProgram: "qt-box-editor-1.12rc1",
         homepage: "https://github.com/zdenop/qt-box-editor",

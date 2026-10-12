@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const pname = "ansible";
   const version = "14.4.0";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-8LO4hx1vTk7dfkd2OxgUSjLCFfc1VpvkTEmnDgSJNRk=",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       dontStrip: true,
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Radically simple IT automation",
         mainProgram: "ansible-community",
         homepage: "https://www.ansible.com",

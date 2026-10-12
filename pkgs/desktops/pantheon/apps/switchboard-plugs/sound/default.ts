@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pname = "switchboard-plug-sound";
       const version = "8.0.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "elementary",
           repo: "settings-sound",
           tag: version,
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [granite7, gtk4, libadwaita, libcanberra, libgee, pulseaudio, switchboard]);
       const strictDeps = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Switchboard Sound Plug",
         homepage: "https://github.com/elementary/settings-sound",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "pantheon"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

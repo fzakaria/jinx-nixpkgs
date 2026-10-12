@@ -16,21 +16,21 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "prometheus", "exporters", "borgmatic"));
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     port: 9996n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(lib, "types", "path")),
           default: "/etc/borgmatic/config.yaml",
           description: "The path to the borgmatic config file\n",
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         DynamicUser: false,
         ProtectSystem: false,
         ProtectHome: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), false)),

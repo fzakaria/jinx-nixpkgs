@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.11.0b25";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-GzrTqpkiKJjWBuZ7ez707BGZez9wXB96psygDQykO6c=",
@@ -41,7 +41,7 @@ EOF
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["libpcap"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python binding for the libpcap C library",
         longDescription: "Python libpcap module is a low-level binding for libpcap C library.\n\nIt is an effort to allow python programs full access to the API provided by the well known libpcap Unix C library and by its implementations provided under Win32 systems by such packet capture systems as: Npcap, WinPcap\n\nlibpcap is a lightweight Python package, based on the ctypes library.\n\nIt is fully compliant implementation of the original C libpcap from 1.0.0 up to 1.9.0 API and the WinPcap’s 4.1.3 libpcap (1.0.0rel0b) API by implementing whole its functionality in a clean Python instead of C.\n",
         homepage: "https://github.com/karpierz/libpcap/",
@@ -53,7 +53,7 @@ EOF
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

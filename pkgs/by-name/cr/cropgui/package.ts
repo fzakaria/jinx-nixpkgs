@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libjpeg = nix.arg($, "libjpeg");
   const exiftool = nix.arg($, "exiftool");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cropgui",
       version: "0.9",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jepler",
           repo: "cropgui",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +51,7 @@ makeWrapper $out/${nix.sel(python3Packages, "python", "sitePackages")}/cropgui.p
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Gtk frontend for lossless cropping of jpeg images",
         homepage: "https://codeberg.org/jepler/cropgui",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

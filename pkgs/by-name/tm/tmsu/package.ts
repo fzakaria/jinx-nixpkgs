@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tmsu",
       version: "0.7.5-unstable-2024-06-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "oniony",
           repo: "tmsu",
           rev: "0bf4b8031cbeffc0347007d85647062953e90571",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: "# can't do \"mv TMSU tmsu\" on case-insensitive filesystems\nmv $out/bin/{TMSU,tmsu.tmp}\nmv $out/bin/{tmsu.tmp,tmsu}\n\ninstallManPage misc/man/tmsu.1\ninstallShellCompletion --bash misc/bash/tmsu\ninstallShellCompletion --zsh misc/zsh/_tmsu\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.tmsu.org",
         description: "Tool for tagging your files using a virtual filesystem",
         maintainers: nix.thunk(() => (() => {

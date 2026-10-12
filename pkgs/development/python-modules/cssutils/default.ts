@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.15.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jaraco",
           repo: "cssutils",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["website.logging"]);
       const pythonImportsCheck = nix.thunk(() => ["cssutils"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CSS Cascading Style Sheets library for Python",
         homepage: "https://github.com/jaraco/cssutils",
         changelog: nix.thunk(() => nix.str`https://github.com/jaraco/cssutils/blob/${nix.sel(src, "tag")}/NEWS.rst`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

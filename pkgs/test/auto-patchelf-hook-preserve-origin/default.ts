@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const foo = nix.thunk(() => nix.sel(tests, "stdenv-inputs", "foo"));
   const bar = nix.thunk(() => nix.sel(tests, "stdenv-inputs", "bar"));
   const lib_check = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "lib-check-bundle",
       buildInputs: nix.thunk(() => [foo, bar]),
       nativeBuildInputs: nix.thunk(() => [patchelf]),
@@ -43,7 +43,7 @@ $out/bin/lib-check
       ]),
     }))));
   const lib_check_autopatchelfed = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "lib-check-autopatchelfed",
       nativeBuildInputs: nix.thunk(() => [autoPatchelfHook]),
       autoPatchelfFlags: nix.thunk(() => ["--preserve-origin"]),
@@ -54,18 +54,18 @@ cp -R ${lib_check}/* $out
       disallowedReferences: nix.thunk(() => [lib_check, "out"]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: "auto-patchelf-hook-preserve-origin",
       buildCommand: nix.thunk(() => nix.str`# Ensure the binary still works
 ${lib_check_autopatchelfed}/bin/lib-check
 touch $out
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "lib-check": lib_check,
         "lib-check-autopatchelfed": lib_check_autopatchelfed,
       })),

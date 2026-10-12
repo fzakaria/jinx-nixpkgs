@@ -82,29 +82,29 @@ export default nix.lambda((args) => (() => {
   const stdenv$ = nix.thunk(() => (nix.asBool(cudaSupport) ? nix.sel(cudaPackages, "backendStdenv") : nix.force(stdenv)));
   const buildDepsTag = "v2026.910.121303";
   const ffmpegArch = nix.thunk(() => nix.selOr({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "x86_64-linux": "Linux-x86_64",
     "aarch64-linux": "Linux-aarch64",
     "aarch64-darwin": "Darwin-arm64",
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`sunshine: unsupported system ${nix.sel(stdenv, "hostPlatform", "system")} for prebuilt ffmpeg`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const ffmpegPrebuilt = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: nix.thunk(() => nix.str`https://github.com/LizardByte/build-deps/releases/download/${buildDepsTag}/${ffmpegArch}-ffmpeg.tar.gz`),
       hash: nix.thunk(() => nix.sel({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "x86_64-linux": "sha256-1S57XfkJa+qEYQLmifWyT9ul0SASFhSk1lkk2timnOY=",
         "aarch64-linux": "sha256-1HnlNem4AbcJkhZA8x5hC1/4cCqL8bJDjXNkHCI5IYw=",
         "aarch64-darwin": "sha256-jtBnSo0rn0VCnbfB90by1iBE4zvmtE86Wz2x+PolGmw=",
       }, nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
     }))));
   return nix.app(nix.sel(stdenv$, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "sunshine",
       version: "2026.914.233613",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "LizardByte",
           repo: "Sunshine",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -112,7 +112,7 @@ export default nix.lambda((args) => (() => {
           fetchSubmodules: true,
         })))),
       ui: nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "sunshine-ui",
@@ -220,7 +220,7 @@ substituteInPlace packaging/linux/app-dev.lizardbyte.app.Sunshine.service.in \\
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "SUNSHINE_BUILD_HOMEBREW", true)),
         ])))))),
       env: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         BUILD_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
         BRANCH: "master",
         COMMIT: nix.thunk(() => nix.sel(finalAttrs, "src", "rev")),
@@ -237,15 +237,15 @@ substituteInPlace packaging/linux/app-dev.lizardbyte.app.Sunshine.service.in \\
       doInstallCheck: isLinux,
       nativeInstallCheckInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), isLinux, nix.thunk(() => [udevCheckHook]))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         tests: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           sunshine: nix.thunk(() => nix.attr(nixosTests, "sunshine")),
         })),
         updateScript: nix.path(here, "./updater.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Game stream host for Moonlight",
         homepage: "https://github.com/LizardByte/Sunshine",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

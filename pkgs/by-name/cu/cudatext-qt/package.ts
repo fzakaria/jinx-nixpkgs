@@ -8,6 +8,6 @@ const pos$1 = nix.positions(here + "/package.nix", [["widgetset", 3, 21]]);
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const cudatext = nix.arg($, "cudatext");
-  return nix.app(nix.sel(cudatext, "override"), nix.thunk(() => ({ __proto__: pos$1, widgetset: "qt5" })));
+  return nix.app(nix.sel(cudatext, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, widgetset: "qt5" })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

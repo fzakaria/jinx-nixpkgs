@@ -35,9 +35,9 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "services", "envfs"));
   const mounts = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "/usr/bin": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       device: "none",
       fsType: "envfs",
       options: nix.thunk(() => [
@@ -50,33 +50,33 @@ ln -s ${nix.sel(config, "environment", "binsh")} $out/sh
       ]),
     })),
     "/bin": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       device: "/usr/bin",
       fsType: "none",
       options: nix.thunk(() => ["bind", "nofail"]),
     })),
   }));
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         envfs: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "Envfs filesystem"), {
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             description: "Fuse filesystem that returns symlinks to executables based on the PATH\nof the requesting process. This is useful to execute shebangs on NixOS\nthat assume hard coded locations in locations like /bin or /usr/bin\netc.\n",
           })),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
               default: nix.thunk(() => nix.sel(pkgs, "envfs")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.envfs")),
               description: "Which package to use for the envfs.",
             })))),
           extraFallbackPathCommands: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               example: "ln -s $''{pkgs.bash}/bin/bash $out/bash",
@@ -86,39 +86,39 @@ ln -s ${nix.sel(config, "environment", "binsh")} $out/sh
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         environment: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         fileSystems: nix.thunk(() => (nix.asBool(nix.has(nix.sel(config, "virtualisation", "qemu"), "package")) ? nix.app(nix.sel(lib, "mkVMOverride"), mounts) : nix.force(mounts))),
         system: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           activationScripts: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             usrbinenv: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "")),
             binsh: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "")),
           })),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           initrd: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             systemd: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               tmpfiles: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 settings: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "boot", "initrd", "systemd", "enable")), nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     "50-envfs": nix.thunk(() => ({
-                      __proto__: pos$17,
+                      [nix.POS]: pos$17,
                       "/sysroot/usr/bin": nix.thunk(() => ({
-                        __proto__: pos$14,
-                        d: nix.thunk(() => ({ __proto__: pos$13, group: "root", mode: "0755", user: "root" })),
+                        [nix.POS]: pos$14,
+                        d: nix.thunk(() => ({ [nix.POS]: pos$13, group: "root", mode: "0755", user: "root" })),
                       })),
                       "/sysroot/bin": nix.thunk(() => ({
-                        __proto__: pos$16,
-                        d: nix.thunk(() => ({ __proto__: pos$15, group: "root", mode: "0755", user: "root" })),
+                        [nix.POS]: pos$16,
+                        d: nix.thunk(() => ({ [nix.POS]: pos$15, group: "root", mode: "0755", user: "root" })),
                       })),
                     })),
                   })))),

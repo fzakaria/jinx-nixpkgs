@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const libdecor = nix.arg($, "libdecor");
   const glslang = nix.arg($, "glslang");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mesa-demos",
       version: "9.0.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://archive.mesa3d.org/demos/mesa-demos-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-MEaj0mp7BRr3690lel8jv+sWDK1u2VIynN/x6fHtSWs=",
         })))),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(mesa, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
         description: "Collection of demos and test programs for OpenGL and Mesa",

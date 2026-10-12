@@ -18,26 +18,26 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     name: "console-xkb-and-i18n",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "doronbehar"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       x: nix.thunk(() => ({
-        __proto__: pos$7,
-        i18n: nix.thunk(() => ({ __proto__: pos$2, defaultLocale: "eo" })),
-        console: nix.thunk(() => ({ __proto__: pos$3, useXkbConfig: true })),
+        [nix.POS]: pos$7,
+        i18n: nix.thunk(() => ({ [nix.POS]: pos$2, defaultLocale: "eo" })),
+        console: nix.thunk(() => ({ [nix.POS]: pos$3, useXkbConfig: true })),
         services: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           xserver: nix.thunk(() => ({
-            __proto__: pos$5,
-            xkb: nix.thunk(() => ({ __proto__: pos$4, layout: "us", variant: "colemak" })),
+            [nix.POS]: pos$5,
+            xkb: nix.thunk(() => ({ [nix.POS]: pos$4, layout: "us", variant: "colemak" })),
           })),
         })),
       })),

@@ -36,13 +36,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const testpath = nix.arg($, "testpath");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "ipython",
       version: "9.14.0",
       outputs: nix.thunk(() => ["out", "man"]),
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-byf/Dx2eoFDgVR9xVovEs02KuleejxEcW0F19ErGtKo=",
@@ -60,14 +60,14 @@ export default nix.lambda((args) => (() => {
         stack_data,
         traitlets,
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonOlder, "3.12")), nix.thunk(() => [typing_extensions])))),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, matplotlib: nix.thunk(() => [matplotlib]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, matplotlib: nix.thunk(() => [matplotlib]) })),
       pythonImportsCheck: nix.thunk(() => ["IPython"]),
       preCheck: "export HOME=$TMPDIR\n\n# doctests try to fetch an image from the internet\nsubstituteInPlace pyproject.toml \\\n  --replace-fail '\"--ipdoctest-modules\",' '\"--ipdoctest-modules\", \"--ignore=IPython/core/display.py\",'\n",
       nativeCheckInputs: nix.thunk(() => [pickleshare, pytest_asyncio, pytestCheckHook, testpath]),
       disabledTests: nix.thunk(() => nix.concat(["test_debug_magic_passes_through_generators", "test_nest_embed"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_clipboard_get"])))),
-      passthru: nix.thunk(() => ({ __proto__: pos$4, tests: nix.thunk(() => ({ __proto__: pos$3, sage: sage })) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, tests: nix.thunk(() => ({ [nix.POS]: pos$3, sage: sage })) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "IPython: Productive Interactive Computing",
         downloadPage: "https://github.com/ipython/ipython/",
         homepage: "https://ipython.readthedocs.io/en/stable/",

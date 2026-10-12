@@ -105,25 +105,25 @@ EOF
 `;
   })(), formals$2);
   const luajit_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "RocksLabs",
       repo: "LuaJIT",
       rev: "02dfcc34e93e57ac96e566d123c66ee01e650299",
       hash: "sha256-HINP9nahXHTManDMAAJBOUlSSxv5JZhlHs96HHkE7qE=",
     }))));
-  const zlib_ng$ = nix.thunk(() => nix.app(nix.sel(zlib_ng, "override"), nix.thunk(() => ({ __proto__: pos$2, withZlibCompat: true }))));
-  const rocksdb$ = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(rocksdb, "override"), nix.thunk(() => ({ __proto__: pos$3, zlib: zlib_ng$, enableJemalloc: true }))), "overrideAttrs"), (oldAttrs) => ({
-      __proto__: pos$4,
+  const zlib_ng$ = nix.thunk(() => nix.app(nix.sel(zlib_ng, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, withZlibCompat: true }))));
+  const rocksdb$ = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(rocksdb, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, zlib: zlib_ng$, enableJemalloc: true }))), "overrideAttrs"), (oldAttrs) => ({
+      [nix.POS]: pos$4,
       cmakeFlags: nix.thunk(() => nix.concat(nix.selOr(oldAttrs, () => [], "cmakeFlags"), [nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "WITH_TBB", true))])),
       buildInputs: nix.thunk(() => nix.concat(nix.selOr(oldAttrs, () => [], "buildInputs"), [onetbb])),
       hardeningDisable: nix.thunk(() => nix.concat(nix.selOr(oldAttrs, () => [], "hardeningDisable"), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["libcxxhardeningfast"])))),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$53,
+      [nix.POS]: pos$53,
       pname: "kvrocks",
       version: "2.17.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "apache",
           repo: "kvrocks",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -132,22 +132,22 @@ EOF
       __structuredAttrs: true,
       postPatch: nix.thunk(() => nix.str`# Replace FetchContent-based cmake files with system library finders
 ${nix.app(mkCmakeFile, "rocksdb", nix.thunk(() => ({
-          __proto__: pos$8,
-          pkgConfig: nix.thunk(() => ({ __proto__: pos$6, varName: "ROCKSDB", modules: "rocksdb" })),
+          [nix.POS]: pos$8,
+          pkgConfig: nix.thunk(() => ({ [nix.POS]: pos$6, varName: "ROCKSDB", modules: "rocksdb" })),
           libraries: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               name: "rocksdb_with_headers",
               linkLibs: "PkgConfig::ROCKSDB",
             })),
           ]),
         })))}
 ${nix.app(mkCmakeFile, "libevent", nix.thunk(() => ({
-          __proto__: pos$11,
-          pkgConfig: nix.thunk(() => ({ __proto__: pos$9, varName: "LIBEVENT", modules: "libevent libevent_pthreads" })),
+          [nix.POS]: pos$11,
+          pkgConfig: nix.thunk(() => ({ [nix.POS]: pos$9, varName: "LIBEVENT", modules: "libevent libevent_pthreads" })),
           libraries: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               name: "event_with_headers",
               linkLibs: "PkgConfig::LIBEVENT",
             })),
@@ -159,73 +159,73 @@ ${nix.app(mkCmakeFile, "libevent", nix.thunk(() => ({
             "endif()",
           ]),
         })))}
-${nix.app(mkCmakeFile, "fmt", nix.thunk(() => ({ __proto__: pos$12, findPackage: "fmt" })))}
+${nix.app(mkCmakeFile, "fmt", nix.thunk(() => ({ [nix.POS]: pos$12, findPackage: "fmt" })))}
 ${nix.app(mkCmakeFile, "fast_float", nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           findPackage: "FastFloat",
           libraries: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$13, name: "fast_float", target: "FastFloat::fast_float" })),
+            nix.thunk(() => ({ [nix.POS]: pos$13, name: "fast_float", target: "FastFloat::fast_float" })),
           ]),
         })))}
-${nix.app(mkCmakeFile, "spdlog", nix.thunk(() => ({ __proto__: pos$15, findPackage: "spdlog" })))}
+${nix.app(mkCmakeFile, "spdlog", nix.thunk(() => ({ [nix.POS]: pos$15, findPackage: "spdlog" })))}
 ${nix.app(mkCmakeFile, "snappy", nix.thunk(() => ({
-          __proto__: pos$18,
-          pkgConfig: nix.thunk(() => ({ __proto__: pos$16, varName: "SNAPPY", modules: "snappy" })),
+          [nix.POS]: pos$18,
+          pkgConfig: nix.thunk(() => ({ [nix.POS]: pos$16, varName: "SNAPPY", modules: "snappy" })),
           libraries: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$17, name: "snappy", target: "PkgConfig::SNAPPY" })),
+            nix.thunk(() => ({ [nix.POS]: pos$17, name: "snappy", target: "PkgConfig::SNAPPY" })),
           ]),
         })))}
 ${nix.app(mkCmakeFile, "lz4", nix.thunk(() => ({
-          __proto__: pos$21,
-          pkgConfig: nix.thunk(() => ({ __proto__: pos$19, varName: "LZ4", modules: "liblz4" })),
+          [nix.POS]: pos$21,
+          pkgConfig: nix.thunk(() => ({ [nix.POS]: pos$19, varName: "LZ4", modules: "liblz4" })),
           libraries: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$20, name: "lz4", target: "PkgConfig::LZ4" })),
+            nix.thunk(() => ({ [nix.POS]: pos$20, name: "lz4", target: "PkgConfig::LZ4" })),
           ]),
         })))}
 ${nix.app(mkCmakeFile, "zstd", nix.thunk(() => ({
-          __proto__: pos$24,
-          pkgConfig: nix.thunk(() => ({ __proto__: pos$22, varName: "ZSTD", modules: "libzstd" })),
+          [nix.POS]: pos$24,
+          pkgConfig: nix.thunk(() => ({ [nix.POS]: pos$22, varName: "ZSTD", modules: "libzstd" })),
           libraries: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$23, name: "zstd", target: "PkgConfig::ZSTD" })),
+            nix.thunk(() => ({ [nix.POS]: pos$23, name: "zstd", target: "PkgConfig::ZSTD" })),
           ]),
         })))}
 ${nix.app(mkCmakeFile, "zlib", nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           findPackage: "ZLIB",
           libraries: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$25, name: "zlib_with_headers", linkLibs: "ZLIB::ZLIB" })),
+            nix.thunk(() => ({ [nix.POS]: pos$25, name: "zlib_with_headers", linkLibs: "ZLIB::ZLIB" })),
           ]),
         })))}
 ${nix.app(mkCmakeFile, "tbb", nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           findPackage: "TBB",
-          libraries: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$27, name: "tbb", target: "TBB::tbb" }))]),
+          libraries: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$27, name: "tbb", target: "TBB::tbb" }))]),
         })))}
 ${nix.app(mkCmakeFile, "gtest", nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           findPackage: "GTest",
           libraries: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               name: "gtest_main",
               linkLibs: "GTest::gtest_main GTest::gtest",
             })),
-            nix.thunk(() => ({ __proto__: pos$30, name: "gmock", linkLibs: "GTest::gmock GTest::gtest" })),
+            nix.thunk(() => ({ [nix.POS]: pos$30, name: "gmock", linkLibs: "GTest::gmock GTest::gtest" })),
           ]),
         })))}
 ${nix.app(mkCmakeFile, "xxhash", nix.thunk(() => ({
-          __proto__: pos$34,
-          pkgConfig: nix.thunk(() => ({ __proto__: pos$32, varName: "XXHASH", modules: "libxxhash" })),
+          [nix.POS]: pos$34,
+          pkgConfig: nix.thunk(() => ({ [nix.POS]: pos$32, varName: "XXHASH", modules: "libxxhash" })),
           libraries: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$33, name: "xxhash", target: "PkgConfig::XXHASH" })),
+            nix.thunk(() => ({ [nix.POS]: pos$33, name: "xxhash", target: "PkgConfig::XXHASH" })),
           ]),
         })))}
 ${nix.app(mkCmakeFile, "jemalloc", nix.thunk(() => ({
-          __proto__: pos$37,
-          pkgConfig: nix.thunk(() => ({ __proto__: pos$35, varName: "JEMALLOC", modules: "jemalloc" })),
+          [nix.POS]: pos$37,
+          pkgConfig: nix.thunk(() => ({ [nix.POS]: pos$35, varName: "JEMALLOC", modules: "jemalloc" })),
           libraries: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               name: "jemalloc",
               linkLibs: "PkgConfig::JEMALLOC",
               compileDefs: "ENABLE_JEMALLOC",
@@ -233,23 +233,23 @@ ${nix.app(mkCmakeFile, "jemalloc", nix.thunk(() => ({
           ]),
         })))}
 ${nix.app(mkCmakeFile, "jsoncons", nix.thunk(() => ({
-          __proto__: pos$39,
-          libraries: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$38, name: "jsoncons" }))]),
+          [nix.POS]: pos$39,
+          libraries: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$38, name: "jsoncons" }))]),
         })))}
 ${nix.app(mkCmakeFile, "span", nix.thunk(() => ({
-          __proto__: pos$41,
-          libraries: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$40, name: "span-lite" }))]),
+          [nix.POS]: pos$41,
+          libraries: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$40, name: "span-lite" }))]),
         })))}
 ${nix.app(mkCmakeFile, "trie", nix.thunk(() => ({
-          __proto__: pos$43,
-          libraries: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$42, name: "tsl_hat_trie" }))]),
+          [nix.POS]: pos$43,
+          libraries: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$42, name: "tsl_hat_trie" }))]),
         })))}
 ${nix.app(mkCmakeFile, "pegtl", nix.thunk(() => ({
-          __proto__: pos$45,
-          libraries: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$44, name: "pegtl" }))]),
+          [nix.POS]: pos$45,
+          libraries: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$44, name: "pegtl" }))]),
         })))}
-${nix.app(mkCmakeFile, "rangev3", nix.thunk(() => ({ __proto__: pos$46, findPackage: "range-v3" })))}
-${nix.app(mkCmakeFile, "cpptrace", nix.thunk(() => ({ __proto__: pos$47, findPackage: "cpptrace" })))}
+${nix.app(mkCmakeFile, "rangev3", nix.thunk(() => ({ [nix.POS]: pos$46, findPackage: "range-v3" })))}
+${nix.app(mkCmakeFile, "cpptrace", nix.thunk(() => ({ [nix.POS]: pos$47, findPackage: "cpptrace" })))}
 
 # Remove static linking flags and git requirement
 substituteInPlace CMakeLists.txt \\
@@ -300,22 +300,22 @@ cmakeFlagsArray+=("-DFETCHCONTENT_SOURCE_DIR_LUAJIT=$TMPDIR/luajit")
       ]),
       installPhase: "runHook preInstall\ninstall -Dm755 kvrocks -t $out/bin\ninstall -Dm755 kvrocks2redis -t $out/bin\ninstall -Dm644 $src/kvrocks.conf -t $out/etc\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$51,
+        [nix.POS]: pos$51,
         hook: nix.thunk(() => nix.app(callPackage, nix.path(here, "./hook.nix"), nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             kvrocks: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$50,
+          [nix.POS]: pos$50,
           kvrocks: nix.thunk(() => nix.attr(nixosTests, "kvrocks")),
           hook: nix.thunk(() => nix.app(callPackage, nix.path(here, "./hook-test.nix"), nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               kvrocks: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$52,
+        [nix.POS]: pos$52,
         description: "Distributed key value NoSQL database that uses RocksDB as storage engine and is compatible with Redis protocol",
         homepage: "https://kvrocks.apache.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

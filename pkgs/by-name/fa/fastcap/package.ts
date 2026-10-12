@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const texliveMedium = nix.arg($, "texliveMedium");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fastcap",
       version: "2.0-18Sep92",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.rle.mit.edu/cpg/codes/fastcap-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-fnmC6WNd7xk8fphxkMZUq2+Qz+2mWIP2lvBUBAmUvHI",
           stripRoot: false,
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       dontConfigure: true,
       makeFlags: nix.thunk(() => ["RM=rm", "SHELL=sh", "all"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-Wno-error=implicit-function-declaration",
             "-Wno-error=return-mismatch",
@@ -60,7 +60,7 @@ mv examples $out/share/fastcap
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Multipole-accelerated capacitance extraction program",
         longDescription: "Fastcap is  a three dimensional capacitance extraction program that\ncompute self and mutual capacitances between conductors of arbitrary\nshapes, sizes and orientations.\n",
         homepage: "https://www.rle.mit.edu/cpg/research_codes.htm",

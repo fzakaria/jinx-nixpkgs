@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "podiff",
       version: "1.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "ftp://download.gnu.org.ua/pub/release/podiff/podiff-1.4.tar.gz",
           sha256: "sha256-IxUx87CxdhWh8MqdcSo8GWaG358aZBaIx0oldK94sio=",
         })))),
       patchPhase: "sed \"s#PREFIX=/usr#PREFIX=$out#g\" -i Makefile\nmkdir -p $out/bin\nmkdir -p $out/share/man/man1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Finds differences in translations between two PO files, or revisions",
         mainProgram: "podiff",
         homepage: "http://puszcza.gnu.org.ua/software/podiff",

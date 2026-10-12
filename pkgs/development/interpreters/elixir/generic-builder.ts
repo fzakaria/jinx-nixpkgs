@@ -55,10 +55,10 @@ See https://hexdocs.pm/elixir/${version}/compatibility-and-deprecations.html
     return (nix.asBool((nix.asBool(!nix.asBool(nix.sel(config, "allowAliases"))) && nix.asBool(!nix.asBool(bothAssert)))) ? null : (() => {
       nix.assert_(nix.app(assertMsg, bothAssert, compatibilityMsg), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/interpreters/elixir/generic-builder.nix:70:3");
       return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           pname: "elixir",
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               owner: "elixir-lang",
               repo: "elixir",
               rev: nix.thunk(() => nix.str`v${version}`),
@@ -69,7 +69,7 @@ See https://hexdocs.pm/elixir/${version}/compatibility-and-deprecations.html
           nativeBuildInputs: nix.thunk(() => [makeWrapper]),
           buildInputs: nix.thunk(() => [erlang]),
           env: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             LANG: "C.UTF-8",
             LC_TYPE: "C.UTF-8",
             DESTDIR: nix.thunk(() => nix.builtins.placeholder("out")),
@@ -92,9 +92,9 @@ substituteInPlace $out/bin/mix \\
   --replace "/usr/bin/env elixir" "${elixirShebang}"
 `),
           passthru: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 extraArgs: nix.thunk(() => [
                   "--version-regex",
                   nix.thunk(() => nix.str`v(${nix.app(nix.sel(lib, "versions", "major"), version)}\\.${nix.app(nix.sel(lib, "versions", "minor"), version)}\\.[0-9\\-rc.]+)`),
@@ -104,7 +104,7 @@ substituteInPlace $out/bin/mix \\
               })))),
           })),
           meta: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             homepage: "https://elixir-lang.org/",
             description: "Functional, meta-programming aware language built on top of the Erlang VM",
             changelog: nix.thunk(() => nix.str`https://github.com/elixir-lang/elixir/releases/tag/v${version}`),

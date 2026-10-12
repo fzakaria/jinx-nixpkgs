@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "quintom-cursor-theme",
       version: "unstable-2019-10-24",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Burning_Cube",
           repo: "quintom-cursor-theme",
           rev: "d23e57333e816033cf20481bdb47bb1245ed5d4d",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "mkdir -p $out/share/icons\nfor theme in \"Quintom_Ink\" \"Quintom_Snow\"; do\n  cp -r \"$theme Cursors/$theme\" $out/share/icons/\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cursor theme designed to look decent",
         homepage: "https://gitlab.com/Burning_Cube/quintom-cursor-theme",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

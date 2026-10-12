@@ -59,13 +59,13 @@ export default nix.lambda((args) => (() => {
   const qoi = nix.arg($, "qoi");
   const bashNonInteractive = nix.arg($, "bashNonInteractive");
   const windowSystems = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     all: nix.thunk(() => nix.concat(nix.sel(windowSystems, "x11"), nix.sel(windowSystems, "wayland"))),
     x11: nix.thunk(() => [libxcb, libx11]),
     wayland: nix.thunk(() => [wayland, wayland_scanner, wayland_protocols]),
   }));
   const backends = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     libtiff: libtiff,
     libpng: libpng,
     librsvg: librsvg,
@@ -82,12 +82,12 @@ export default nix.lambda((args) => (() => {
   nix.assert_(nix.app(nix.sel(lib, "assertOneOf"), "withWindowSystem", withWindowSystem, nix.thunk(() => nix.builtins.attrNames(windowSystems))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/im/imv/package.nix:85:1");
   nix.assert_(nix.builtins.all((b) => nix.app(nix.sel(lib, "assertOneOf"), "each backend", b, nix.thunk(() => nix.builtins.attrNames(backends))), withBackends), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/im/imv/package.nix:87:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "imv",
       version: "5.0.1",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "~exec64",
           repo: "imv",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -108,7 +108,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "-v",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Command line image viewer for tiling window managers",
         homepage: "https://sr.ht/~exec64/imv/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

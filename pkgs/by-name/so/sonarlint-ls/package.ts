@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sonarlint-ls";
       const version = "4.15.0.78211";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SonarSource",
           repo: "sonarlint-language-server",
           rev: version,
@@ -60,11 +60,11 @@ runHook postInstall
       const preVersionCheck = nix.thunk(() => nix.str`export version=${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}`);
       const versionCheckProgramArg = "-V";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => (() => {
           const pkgFile = nix.thunk(() => nix.builtins.toString(nix.path(here, "./package.nix")));
           return nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 name: nix.thunk(() => nix.str`update-${pname}`),
                 runtimeInputs: nix.thunk(() => [curl, common_updater_scripts, jq, gnused]),
                 text: nix.thunk(() => nix.str`if [ -z "\${GITHUB_TOKEN:-}" ]; then
@@ -92,7 +92,7 @@ sed -i "0,/mvnHash *= *\\"[^\\"]*\\"/{s#mvnHash = \\"[^\\"]*\\"#mvnHash = \\"$NE
         })()),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Sonarlint language server",
         mainProgram: "sonarlint-ls",
         homepage: "https://github.com/SonarSource/sonarlint-language-server",
@@ -106,7 +106,7 @@ sed -i "0,/mvnHash *= *\\"[^\\"]*\\"/{s#mvnHash = \\"[^\\"]*\\"#mvnHash = \\"$NE
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

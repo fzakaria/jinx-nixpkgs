@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchPypi = nix.arg($, "fetchPypi");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "alibuild",
       version: "1.17.44",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-hLFbxJVOWp1j8pV2v3h7UBZ691EONGb5HNIDrizyq6E=",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       })()),
       postPatch: "# strip setuptools_scm upper bound limit\nsubstituteInPlace pyproject.toml \\\n  --replace-fail \"setuptools_scm[toml]>=6.2,<10\" \"setuptools_scm[toml]>=6.2\"\nsubstituteInPlace setup.py \\\n  --replace-fail \"setuptools_scm>=6.2,<10\" \"setuptools_scm>=6.2\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://alisw.github.io/alibuild/",
         description: "Build tool for ALICE experiment software",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

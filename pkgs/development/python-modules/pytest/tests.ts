@@ -33,7 +33,7 @@ find $out/lib -name "*opt-2.pyc" -delete
 runHook postCheck
 `);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         pname,
         version,
         pyproject,

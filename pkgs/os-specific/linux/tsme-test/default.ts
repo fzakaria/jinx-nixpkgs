@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const kernel = nix.arg($, "kernel");
   const kernelModuleMakeFlags = nix.arg($, "kernelModuleMakeFlags");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tsme-test",
       version: nix.thunk(() => nix.str`${nix.sel(kernel, "version")}-unstable-2026-02-09`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AMDESE",
           repo: "mem-encryption-tests",
           rev: "361bf41092aec06d7f6e7be239a62bc5a5ff2c66",
@@ -35,7 +35,7 @@ install -Dm644 -t $out/lib/modules/${nix.sel(kernel, "modDirVersion")}/extra tsm
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Kernel driver to test the status of AMD TSME (Transparent Secure Memory Encryption)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         maintainers: nix.thunk(() => (() => {

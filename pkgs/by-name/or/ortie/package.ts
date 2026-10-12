@@ -28,28 +28,28 @@ export default nix.lambda((args) => (() => {
   const nativeTls = nix.thunk(() => nix.builtins.elem("native-tls", buildFeatures));
   const notify = nix.thunk(() => nix.builtins.elem("notify", buildFeatures));
   const dbus$ = nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))) ? nix.app(nix.sel(dbus, "overrideAttrs"), (old) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       env: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "env"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.selOr(old, () => "", "env", "NIX_CFLAGS_COMPILE"), " -mno-outline-atomics")),
       })),
     })) : nix.force(dbus)));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       __structuredAttrs: true,
       buildNoDefaultFeatures: buildNoDefaultFeatures,
       pname: "ortie",
       version: "2.1.0",
       cargoHash: "sha256-ZAW+Coyv1DVmF2HWr7CmFMtQT9hNaS+1koWoZCJ+Wsc=",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "pimalaya",
           repo: "ortie",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-5KRXPIDYBfF/2fNnrJur8WdfLYvgtJWlTWA7YD8yYWg=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(notify) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows"))))), nix.thunk(() => nix.add(nix.add("-rpath ", nix.app(nix.sel(lib, "getLib"), dbus$)), "/lib")))),
         OPENSSL_NO_VENDOR: 1n,
       })),
@@ -65,7 +65,7 @@ ${exe} completions -d "$out"/share/completions bash elvish fish powershell zsh
       })()),
       cargoTestFlags: nix.thunk(() => ["--bins"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "CLI to manage OAuth 2.0 tokens",
         mainProgram: "ortie",
         homepage: "https://github.com/pimalaya/ortie",

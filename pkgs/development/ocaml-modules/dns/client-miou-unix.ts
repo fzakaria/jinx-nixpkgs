@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const happy_eyeballs = nix.arg($, "happy-eyeballs");
   const happy_eyeballs_miou_unix = nix.arg($, "happy-eyeballs-miou-unix");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "dns-client-miou-unix",
       src: nix.thunk(() => nix.attr(dns, "src")),
       version: nix.thunk(() => nix.attr(dns, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         happy_eyeballs_miou_unix,
       ]),
       doCheck: true,
-      meta: nix.thunk(() => nix.update(nix.sel(dns_client, "meta"), { __proto__: pos$1, description: "DNS client API for Miou" })),
+      meta: nix.thunk(() => nix.update(nix.sel(dns_client, "meta"), { [nix.POS]: pos$1, description: "DNS client API for Miou" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=client-miou-unix.ts.map

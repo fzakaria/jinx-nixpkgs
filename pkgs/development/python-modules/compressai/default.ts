@@ -34,12 +34,12 @@ export default nix.lambda((args) => (() => {
   const plotly = nix.arg($, "plotly");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "compressai",
       version: "1.2.8",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "InterDigitalInc",
           repo: "CompressAI",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         tqdm,
         typing_extensions,
       ]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, tutorials: nix.thunk(() => [ipywidgets, jupyter]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, tutorials: nix.thunk(() => [ipywidgets, jupyter]) })),
       pythonImportsCheck: nix.thunk(() => ["compressai", "compressai._CXX"]),
       preCheck: "rm -rf compressai\n",
       nativeCheckInputs: nix.thunk(() => [plotly, pytestCheckHook]),
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
           "tests/test_plot.py::test_plot[plotly-ms-ssim-rgb]",
         ]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "PyTorch library and evaluation platform for end-to-end compression research",
         homepage: "https://github.com/InterDigitalInc/CompressAI",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3Clear")),

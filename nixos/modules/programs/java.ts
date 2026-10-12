@@ -24,32 +24,32 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "java"));
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       programs: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         java: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "java"), {
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             description: "Install and setup the Java development kit.\n\n::: {.note}\nThis adds JAVA_HOME to the global environment, by sourcing the\njdk's setup-hook on shell init. It is equivalent to starting a shell\nthrough 'nix-shell -p jdk', or roughly the following system-wide\nconfiguration:\n\n    environment.variables.JAVA_HOME = ${pkgs.jdk.home}/lib/openjdk;\n    environment.systemPackages = [ pkgs.jdk ];\n:::\n",
           })),
-          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "jdk", nix.thunk(() => ({ __proto__: pos$2, example: "jre" })))),
+          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "jdk", nix.thunk(() => ({ [nix.POS]: pos$2, example: "jre" })))),
           binfmt: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "binfmt to execute java jar's and classes")),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         boot: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           binfmt: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             registrations: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "binfmt")), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 "java-class": nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   recognitionType: "extension",
                   magicOrExtension: "class",
                   interpreter: nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScript"), "java-class-wrapper", nix.thunk(() => nix.str`test -e ${nix.sel(cfg, "package")}/nix-support/setup-hook && source ${nix.sel(cfg, "package")}/nix-support/setup-hook
@@ -59,7 +59,7 @@ $JAVA_HOME/bin/java -classpath "$classpath" "$class" "\${@:2}"
 `))),
                 })),
                 "java-jar": nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   recognitionType: "extension",
                   magicOrExtension: "jar",
                   interpreter: nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScript"), "java-jar-wrapper", nix.thunk(() => nix.str`test -e ${nix.sel(cfg, "package")}/nix-support/setup-hook && source ${nix.sel(cfg, "package")}/nix-support/setup-hook
@@ -70,7 +70,7 @@ $JAVA_HOME/bin/java -jar "$@"
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           shellInit: nix.thunk(() => nix.str`test -e ${nix.sel(cfg, "package")}/nix-support/setup-hook && . ${nix.sel(cfg, "package")}/nix-support/setup-hook
 `),

@@ -10,13 +10,13 @@ const pos$4 = nix.positions(here + "/default.nix", [["trivial", 53, 7], ["fixedP
 export default nix.thunk(() => (() => {
   const makeExtensible$ = (rattrs) => (() => {
     const self = nix.thunk(() => nix.update(nix.app(rattrs, self), {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       extend: (f) => nix.app(nix.sel(lib, "makeExtensible"), nix.thunk(() => nix.app(nix.sel(lib, "extends"), f, rattrs))),
     }));
     return nix.force(self);
   })();
   const lib = nix.thunk(() => nix.app(makeExtensible$, (self) => (() => {
-      const callLibs = (file) => nix.app(nix.builtins.import(file), nix.thunk(() => ({ __proto__: pos$2, lib: self })));
+      const callLibs = (file) => nix.app(nix.builtins.import(file), nix.thunk(() => ({ [nix.POS]: pos$2, lib: self })));
       return (() => {
         const from = nix.thunk(() => nix.sel(self, "trivial"));
         const from_1 = nix.thunk(() => nix.sel(self, "fixedPoints"));
@@ -40,7 +40,7 @@ export default nix.thunk(() => (() => {
         const from_19 = nix.thunk(() => nix.sel(self, "network", "ipv6"));
         const from_20 = nix.thunk(() => nix.sel(self, "flakes"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         trivial: nix.thunk(() => nix.app(callLibs, nix.path(here, "./trivial.nix"))),
         fixedPoints: nix.thunk(() => nix.app(callLibs, nix.path(here, "./fixed-points.nix"))),
         attrsets: nix.thunk(() => nix.app(callLibs, nix.path(here, "./attrsets.nix"))),
@@ -69,7 +69,7 @@ export default nix.thunk(() => (() => {
         services: nix.thunk(() => nix.app(callLibs, nix.path(here, "./services/lib.nix"))),
         importService: nix.thunk(() => nix.app(nix.sel(self, "modules", "importApply"), nix.path(here, "./services/service.nix"))),
         genericModules: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "meta-maintainers": nix.path(here, "./modules/generic/meta-maintainers.nix"),
           assertions: nix.path(here, "./modules/generic/assertions.nix"),
         })),

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const help2man = nix.arg($, "help2man");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.7.679",
       pname: "fatsort",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/fatsort/fatsort-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-EBL1UTgmOdaeGU6r++mTQu3nyFaxzWeIKH+d/UvY0SI=",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\ninstall -D -m 755 ./src/fatsort   $out/bin/fatsort\ninstall -D -m 644 ./man/fatsort.1 $out/man/man1/fatsort.1\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://fatsort.sourceforge.net/",
         description: "Sorts FAT partition table, for devices that don't do sorting of files",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "kovirobi"))]),

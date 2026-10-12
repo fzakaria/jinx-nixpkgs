@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.14a1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "PyOgg",
           version: version,
           hash: "sha256-gpSzSqWckCAMRjDCzEpbhEByCRQejl0GnXpb41jpQmI=",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const patchFlags = nix.thunk(() => ["-p1", "--binary"]);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./pyogg-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             flacLibPath: nix.thunk(() => nix.str`${nix.sel(flac, "out")}/lib/libFLAC${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
             oggLibPath: nix.thunk(() => nix.str`${libogg}/lib/libogg${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
             vorbisLibPath: nix.thunk(() => nix.str`${libvorbis}/lib/libvorbis${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Xiph.org's Ogg Vorbis, Opus and FLAC for Python",
         homepage: "https://github.com/Zuzu-Typ/PyOgg",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

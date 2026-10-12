@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "switchaudio-osx";
       const version = "1.2.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "deweller",
           repo: "switchaudio-osx",
           tag: version,
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [nix.path(here, "./001-macos-legacy-support.patch")]);
       const installPhase = "runHook preInstall\n\n# for some reason binary is located in Products/ rather than in build/\ninstall -Dm755 Products/Release/SwitchAudioSource $out/bin/SwitchAudioSource\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command-line utility to manage audio input/output devices on macOS",
         homepage: "https://github.com/deweller/switchaudio-osx",
         mainProgram: "SwitchAudioSource",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

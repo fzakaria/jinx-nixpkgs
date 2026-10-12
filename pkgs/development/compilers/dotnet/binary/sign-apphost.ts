@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const sigtool = nix.thunk(() => nix.app(callPackage, nix.path(here, "../sigtool.nix"), nix.thunk(() => ({}))));
   return nix.app(replaceVars, nix.path(here, "./sign-apphost.proj"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       codesign: nix.thunk(() => nix.str`${sigtool}/bin/codesign`),
     })));
 })(), formals$1);

@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
       const pname = "nomachine-client";
       const version = nix.thunk(() => nix.str`${versionMajor}.${versionMinor}`);
       const src = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.nomachine.com/download/${versionMajor}/Linux/nomachine_${version}_${versionBuild_x86_64}_x86_64.tar.gz`),
           sha256: "sha256-8f4ZL3Ko5VunojXLvTS9P3oB+ZVCSYIA0GIjM8VpUO4=",
         }))) : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://download.nomachine.com/download/${versionMajor}/Linux/nomachine_${version}_${versionBuild_i686}_i686.tar.gz`),
           sha256: "sha256-Yr0bw7PW34Nga8vj3TxdFFyDiVVnHJ6lBdNskOyQ8m8=",
         }))) : nix.builtins.throw(nix.thunk(() => nix.str`NoMachine client is not supported on ${nix.sel(stdenv, "hostPlatform", "system")}`)))));
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const dontBuild = true;
       const dontStrip = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "NoMachine remote desktop client (nxplayer)",
         homepage: "https://www.nomachine.com/",
         mainProgram: "nxplayer",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "binaryNativeCode"))];
         })()),
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             shortName: "noMachine",
             fullName: "NoMachine End User License Agreement, version 9",
             url: "https://www.nomachine.com/licensing/nomachine-end-user-license-agreement",
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["x86_64-linux", "i686-linux"]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

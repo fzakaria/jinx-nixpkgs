@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const protobuf = nix.arg($, "protobuf");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hamtransfer",
       version: "0-unstable-2024-04-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ThomasHabets",
           repo: "hamtransfer",
           rev: "6b0ac28e0b8cdcc3ac9aba9cd6115e48c4f26c1e",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [sqlite]),
       postInstall: "mv $out/bin/downloader $out/bin/hamtransfer-downloader\nmv $out/bin/uploader $out/bin/hamtransfer-uploader\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for transferring files over amateur radio using modern techniques",
         homepage: "https://github.com/ThomasHabets/hamtransfer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

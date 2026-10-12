@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.4.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Yelp",
           repo: "bravado-core",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["bravado_core"]);
       const disabledTestPaths = nix.thunk(() => ["tests/profiling", "tests/spec/Spec"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for adding Swagger support to clients and servers",
         homepage: "https://github.com/Yelp/bravado-core",
         changelog: nix.thunk(() => nix.str`https://github.com/Yelp/bravado-core/blob/v${version}/CHANGELOG.rst`),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

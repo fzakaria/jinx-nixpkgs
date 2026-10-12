@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const influxdb2_server = nix.arg($, "influxdb2-server");
   const influxdb2_cli = nix.arg($, "influxdb2-cli");
   return nix.app(buildEnv, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "influxdb2",
       paths: nix.thunk(() => [influxdb2_server, influxdb2_cli]),
     })));

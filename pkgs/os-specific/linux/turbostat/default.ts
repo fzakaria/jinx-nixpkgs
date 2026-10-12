@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const kernel = nix.arg($, "kernel");
   const libcap = nix.arg($, "libcap");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "turbostat",
       src: nix.thunk(() => nix.attr(kernel, "src")),
       version: nix.thunk(() => nix.attr(kernel, "version")),
@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
       postPatch: "cd tools/power/x86/turbostat\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Report processor frequency and idle statistics",
         mainProgram: "turbostat",
         homepage: "https://www.kernel.org/",

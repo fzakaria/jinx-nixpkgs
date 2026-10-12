@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "linux-firmware";
       const version = "20260916";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kernel-firmware",
           repo: "linux-firmware",
           tag: version,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const makeFlags = nix.thunk(() => ["DESTDIR=$(out)"]);
       const dontFixup = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Binary firmware collection packaged by kernel.org",
         homepage: "https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributableFirmware")),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

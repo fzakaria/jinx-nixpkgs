@@ -11,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const grafanaPlugin = nix.arg($, "grafanaPlugin");
   const lib = nix.arg($, "lib");
   return nix.app(grafanaPlugin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "fetzerch-sunandmoon-datasource",
       version: "0.3.3",
       zipHash: "sha256-IJe1OiPt9MxqqPymuH0K27jToSb92M0P4XGZXvk0paE=",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Calculates the position of Sun and Moon as well as the Moon illumination using SunCalc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {

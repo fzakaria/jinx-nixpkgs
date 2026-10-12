@@ -17,52 +17,52 @@ export default nix.thunk(() => (() => {
   const prefix = "https://sources.debian.org/data/main/p/plotutils/2.6-15/debian/patches";
   return [
     nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`${prefix}/01_AC_PROG_CXX.diff`),
       sha256: "0ka2iazhc8bkq10iwjhd2d89h0qzrv1pzflkb6d7bj6nd75zrssb",
     })),
     nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`${prefix}/10_repair_postscript`),
       sha256: "0br09qxwkp6kbgq1wrz886h0ddfq74jfyismc9vbs5karfa8c22j",
     })),
     nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: nix.thunk(() => nix.str`${prefix}/11_manpages_sb_macro`),
       sha256: "01vvhznw5z7lb7afwgw53cwg8w676s4v30kychlrl8kn5yks94qs",
     })),
     nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       url: nix.thunk(() => nix.str`${prefix}/14_manpage_spline`),
       sha256: "0087ryzs0fvqcr6ghbiq263hyzxx3a83ywhdgcsm7mh06zb9k1q7",
     })),
     nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       url: nix.thunk(() => nix.str`${prefix}/20_svg_attribute_syntax`),
       sha256: "0vy089w00x2zh87igv3dcqq7kggqxpc4javb694pa5xl5bvddnqk",
     })),
     nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       url: nix.thunk(() => nix.str`${prefix}/21_plot2svg_test.diff`),
       sha256: "0lv8hj9fiqj6z72pnaw3imk3164n1kcy5ym0j9jl2pn3a19p1jmb",
     })),
     nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       url: nix.thunk(() => nix.str`${prefix}/25_libpng15`),
       sha256: "0944mvwbp10fr27b6bp8xgiq3568lrp18bxcgppl7yfanz9b74mf",
     })),
     nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       url: nix.thunk(() => nix.str`${prefix}/30_hershey_glyphs`),
       sha256: "01lrpxji95v3qd3hs0rqdcmxz7khvn7axv12y56p8r232dxd5nd0",
     })),
     nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       url: nix.thunk(() => nix.str`${prefix}/35_spline.test.error.diff`),
       sha256: "013d2xndf728ycdviib8q11zdms4c18dm2qfgc764wb6580zd08k",
     })),
     nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       url: nix.thunk(() => nix.str`${prefix}/42_plotutils-gcc15.patch`),
       sha256: "0rlb282kn9l2jgwb94975d3difbh6bwpyks1860by43yk5sczm3n",
     })),

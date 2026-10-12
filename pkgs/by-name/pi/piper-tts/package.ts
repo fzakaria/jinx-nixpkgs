@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const withJapanese = nix.argOr($, "withJapanese", () => true);
   const withTrain = nix.argOr($, "withTrain", () => true);
   const espeak_ng$ = nix.thunk(() => nix.app(nix.sel(espeak_ng, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       asyncSupport: false,
       klattSupport: false,
       mbrolaSupport: false,
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.8.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "OHF-Voice",
           repo: "piper1-gpl",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [pkg_config]);
       const dontUseCmakeConfigure = true;
       const env = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         CMAKE_ARGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "UCD_STATIC_LIB", nix.thunk(() => nix.str`${nix.sel(espeak_ng$, "ucd-tools")}/libucd.a`))),
           ]))),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
         ], nix.concat(nix.app(nix.sel(lib, "optionals"), withAlignment, nix.thunk(() => nix.sel(optional_dependencies, "alignment"))), nix.concat(nix.app(nix.sel(lib, "optionals"), withHTTP, nix.thunk(() => nix.sel(optional_dependencies, "http"))), nix.concat(nix.app(nix.sel(lib, "optionals"), withJapanese, nix.thunk(() => nix.sel(optional_dependencies, "ja"))), nix.app(nix.sel(lib, "optionals"), withTrain, nix.thunk(() => nix.sel(optional_dependencies, "train")))))));
       })());
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         alignment: nix.thunk(() => (() => {
           const w_2 = nix.withScope(python3Packages, null);
           return [nix.thunk(() => nix.lookup(w_2, "onnx"))];
@@ -116,7 +116,7 @@ cp -Rv src/piper/train/vits $train/
       const disabledTests = nix.thunk(() => ["test_training_phonemize_matches_inference_with_vowel_clusters"]);
       const pythonImportsCheck = nix.thunk(() => ["piper", "piper.tashkeel", "piper.hebrew", "piper.train", "piper.train.vits"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/OHF-Voice/piper1-gpl/releases/tag/v${version}`),
         description: "Fast, local neural text to speech system",
         homepage: "https://github.com/OHF-Voice/piper1-gpl",
@@ -128,7 +128,7 @@ cp -Rv src/piper/train/vits $train/
         mainProgram: "piper",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

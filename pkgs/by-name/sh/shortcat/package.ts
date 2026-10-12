@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "shortcat";
       const version = "0.12.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://files.shortcat.app/releases/v${version}/Shortcat.zip`),
           sha256: "sha256-jmp9mBMYID0Zcu/o6ICYPS8QGHhSwcLz072jG3zR2mM=",
         }))));
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [unzip]);
       const installPhase = "mkdir -p $out/Applications/Shortcat.app\ncp -R . $out/Applications/Shortcat.app\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Manipulate macOS masterfully, minus the mouse",
         homepage: "https://shortcat.app/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

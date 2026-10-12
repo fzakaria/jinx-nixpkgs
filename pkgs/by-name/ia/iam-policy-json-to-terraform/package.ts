@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "iam-policy-json-to-terraform",
       version: "1.9.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "flosell",
           repo: "iam-policy-json-to-terraform",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-HOeMkyH7voQAXCRCdfpv/Cy9oLJDY+DXwh4h2yFf7Nk=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Small tool to convert an IAM Policy in JSON format into a Terraform aws_iam_policy_document",
         homepage: "https://github.com/flosell/iam-policy-json-to-terraform",
         changelog: nix.thunk(() => nix.str`https://github.com/flosell/iam-policy-json-to-terraform/releases/tag/${nix.sel(finalAttrs, "version")}`),

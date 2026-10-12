@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         const godot = nix.thunk(() => nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(attrs, "default"));
             return {
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             updateScript: updateScript,
             version: nix.thunk(() => nix.attr(attrs, "version")),
             hash: nix.thunk(() => nix.attr(attrs, "hash")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         const godot_mono = nix.thunk(() => nix.app(nix.sel(godot, "override"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(attrs, "mono"));
             return {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             withMono: true,
             exportTemplatesHash: nix.thunk(() => nix.attr(from, "exportTemplatesHash")),
             nugetDeps: nix.thunk(() => nix.attr(from, "nugetDeps")),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         const export_templates_bin = nix.thunk(() => nix.sel(godot, "export-templates-bin"));
         const export_templates_mono_bin = nix.thunk(() => nix.sel(godot_mono, "export-templates-bin"));
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           godot,
           "godot-mono": godot_mono,
           "export-template": export_template,
@@ -96,7 +96,7 @@ export default nix.lambda((args) => (() => {
     const godot_mono = nix.thunk(() => nix.sel(godotPackages, "godot-mono"));
     const godot_export_templates_bin = nix.thunk(() => nix.sel(godotPackages, "export-templates-bin"));
     return {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       godot3,
       "godot3-export-templates": godot3_export_templates,
       "godot3-headless": godot3_headless,

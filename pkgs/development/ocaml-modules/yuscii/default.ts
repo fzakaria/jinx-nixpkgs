@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const minimalOCamlVersion = "4.03";
       const duneVersion = "3";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/yuscii/releases/download/v${version}/yuscii-v${version}.tbz`),
           sha256: "0idywlkw0fbakrxv65swnr5bj7f2vns9kpay7q03gzlv82p670hy",
         }))));
@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
       const checkInputs = nix.thunk(() => [alcotest, fmt, uutf]);
       const doCheck = nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.08"));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple mapper between UTF-7 to Unicode according RFC2152",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/mirage/yuscii",
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         minimalOCamlVersion,

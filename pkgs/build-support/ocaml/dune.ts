@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const dune_2 = nix.arg($, "dune_2");
   const dune_3 = nix.arg($, "dune_3");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
       excludeDrvArgNames: nix.thunk(() => ["minimalOCamlVersion", "duneVersion"]),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
         const Dune = nix.thunk(() => (() => {
           const dune_version = nix.thunk(() => nix.selOr(args_2, () => "3", "duneVersion"));
           return nix.sel({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             "1": nix.thunk(() => nix.builtins.throw("Support for dune version 1 has been removed")),
             "2": dune_2,
             "3": dune_3,
           }, nix.key(nix.str`${dune_version}`));
         })());
         return (nix.asBool((nix.asBool(nix.has(args_2, "minimalOCamlVersion")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(ocaml, "version")), nix.thunk(() => nix.sel(args_2, "minimalOCamlVersion")))))) ? nix.builtins.throw(nix.thunk(() => nix.str`${pname}-${version} is not available for OCaml ${nix.sel(ocaml, "version")}`)) : {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-${pname}-${nix.sel(finalAttrs, "version")}`),
           strictDeps: true,
           enableParallelBuilding: enableParallelBuilding,
@@ -60,7 +60,7 @@ dune runtest -p ${nix.app(nix.sel(lib, "concatStringsSep"), ",", dunePackages)} 
 runHook postCheck
 `, "checkPhase")),
           meta: nix.thunk(() => nix.update(nix.selOr(args_2, () => ({}), "meta"), {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             platforms: nix.thunk(() => nix.selOr(args_2, () => nix.sel(ocaml, "meta", "platforms"), "meta", "platforms")),
           })),
         });

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libwpd";
       const version = "0.8.14";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/libwpd/libwpd-${version}.tar.gz`),
           sha256: "1syli6i5ma10cwzpa61a18pyjmianjwsf6pvmvzsh5md6yk4yx01",
         }))));
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [glib, libgsf, libxml2]);
       const nativeBuildInputs = nix.thunk(() => [pkg_config, bzip2]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for importing WordPerfect documents",
         homepage: "https://libwpd.sourceforge.net",
         license: nix.thunk(() => (() => {
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

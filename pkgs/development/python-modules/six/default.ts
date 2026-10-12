@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.17.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "benjaminp",
           repo: "six",
           tag: version,
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), isPyPy, nix.thunk(() => ["test_six.py::test_move_items"])));
       const pythonImportsCheck = nix.thunk(() => ["six"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/benjaminp/six/blob/${version}/CHANGES`),
         description: "Python 2 and 3 compatibility library",
         homepage: "https://github.com/benjaminp/six",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

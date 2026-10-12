@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const zfs = nix.arg($, "zfs");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "booster",
       version: "0.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "anatol",
           repo: "booster",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,7 +46,7 @@ wrapProgram $out/bin/init --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"),
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fast and secure initramfs generator",
         homepage: "https://github.com/anatol/booster",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

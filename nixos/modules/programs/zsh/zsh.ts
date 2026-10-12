@@ -45,22 +45,22 @@ export default nix.lambda((args) => (() => {
   const compInitArgs = nix.thunk(() => (nix.asBool(nix.sel(cfg, "disableCompInitDumpFile")) ? " -D" : nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "compInitDumpFile"), null)), nix.thunk(() => nix.str` -d "${nix.sel(cfg, "compInitDumpFile")}"`))));
   const zshStartupNotes = "# Note that generated /etc/zprofile and /etc/zshrc files do a lot of\n# non-standard setup to make zsh usable with no configuration by default.\n#\n# Which means that unless you explicitly meticulously override everything\n# generated, interactions between your ~/.zshrc and these files are likely\n# to be rather surprising.\n#\n# Note however, that you can disable loading of the generated /etc/zprofile\n# and /etc/zshrc (you can't disable loading of /etc/zshenv, but it is\n# designed to not set anything surprising) by setting `no_global_rcs` option\n# in ~/.zshenv:\n#\n#   echo setopt no_global_rcs >> ~/.zshenv\n#\n# See \"STARTUP/SHUTDOWN FILES\" section of zsh(1) for more info.\n";
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     options: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       programs: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         zsh: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: false,
               description: "Whether to configure zsh as an interactive shell. To enable zsh for\na particular user, use the {option}`users.users.<name?>.shell`\noption for that user. To enable zsh system-wide use the\n{option}`users.defaultUserShell` option.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "zsh", nix.thunk(() => ({})))),
           shellAliases: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: nix.thunk(() => ({})),
               description: "Set of aliases for zsh shell, which overrides {option}`environment.shellAliases`.\nSee {option}`environment.shellAliases` for an option format description.\n",
               type: nix.thunk(() => (() => {
@@ -69,82 +69,82 @@ export default nix.lambda((args) => (() => {
               })()),
             })))),
           shellInit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: "",
               description: "Shell script code called during zsh shell initialisation.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
             })))),
           loginShellInit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: "",
               description: "Shell script code called during zsh login shell initialisation.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
             })))),
           interactiveShellInit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: "",
               description: "Shell script code called during interactive zsh shell initialisation.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
             })))),
           promptInit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: "# Note that to manually override this in ~/.zshrc you should run `prompt off`\n# before setting your PS1 and etc. Otherwise this will likely to interact with\n# your ~/.zshrc configuration in unexpected ways as the default prompt sets\n# a lot of different prompt variables.\nautoload -U promptinit && promptinit && prompt suse && setopt prompt_sp\n",
               description: "Shell script code used to initialise the zsh prompt.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
             })))),
           histSize: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: 2000n,
               description: "Change history size.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
             })))),
           histFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               default: "$HOME/.zsh_history",
               description: "Change history file.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
             })))),
           setOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => ["HIST_IGNORE_DUPS", "SHARE_HISTORY", "HIST_FCNTL_LOCK"]),
               example: nix.thunk(() => ["EXTENDED_HISTORY", "RM_STAR_WAIT"]),
               description: "Configure zsh options. See\n{manpage}`zshoptions(1)`.\n",
             })))),
           enableCompletion: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               default: true,
               description: "Enable zsh completion for all interactive zsh shells.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             })))),
           enableBashCompletion: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               default: false,
               description: "Enable compatibility with bash's programmable completion system.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             })))),
           enableGlobalCompInit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               default: nix.thunk(() => nix.sel(cfg, "enableCompletion")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`config.${nix.sel(opt, "enableCompletion")}`))),
               description: "Enable execution of compinit call for all interactive zsh shells.\n\nThis option can be disabled if the user wants to extend its\n`fpath` and a custom `compinit`\ncall in the local config is required.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             })))),
           compInitDumpFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               default: null,
               example: "$XDG_CACHE_HOME/zsh/zcompdump",
               description: "Path passed to {command}`compinit` with the\n`-d` option to set the completion dump file location.\nIf unset, `compinit` uses its default dump file.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             })))),
           disableCompInitDumpFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               default: false,
               description: "Disable reading and writing the completion dump file\nby passing the `-D` option to {command}`compinit`.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             })))),
           enableLsColors: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               default: true,
               description: "Enable extra colors in directory listings (used by `ls` and `tree`).\n",
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
@@ -153,20 +153,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         programs: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           zsh: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             shellAliases: nix.thunk(() => nix.builtins.mapAttrs((name) => nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(cfge, "shellAliases")))),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           etc: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             zshenv: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               text: nix.thunk(() => nix.str`# /etc/zshenv: DO NOT EDIT -- this file has been generated automatically.
 # This file is read for all shells.
 
@@ -197,7 +197,7 @@ fi
 `),
             })),
             zprofile: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               text: nix.thunk(() => nix.str`# /etc/zprofile: DO NOT EDIT -- this file has been generated automatically.
 # This file is read for login shells.
 #
@@ -219,7 +219,7 @@ fi
 `),
             })),
             zshrc: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               text: nix.thunk(() => nix.str`# /etc/zshrc: DO NOT EDIT -- this file has been generated automatically.
 # This file is read for interactive shells.
 #
@@ -281,7 +281,7 @@ fi
 `),
             })),
             zinputrc: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               text: nix.thunk(() => nix.builtins.readFile(nix.path(here, "./zinputrc"))),
             })),
           })),

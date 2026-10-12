@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mpenning",
           repo: "ciscoconfparse2",
           tag: version,
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         "testValues_save_as_01",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module to parse, audit, query, build and modify device configurations",
         homepage: "https://github.com/mpenning/ciscoconfparse2",
         changelog: nix.thunk(() => nix.str`https://github.com/mpenning/ciscoconfparse2/blob/${nix.sel(src, "tag")}/CHANGES.md`),
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(hier_config, "version")), "3")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

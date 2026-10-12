@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const sexplib0 = nix.arg($, "sexplib0");
   const zarith = nix.arg($, "zarith");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kdl",
       version: "0.2.0",
       minimalOCamlVersion: "4.14",
@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [ppx_expect, zarith]),
       doCheck: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eilvelia",
           repo: "ocaml-kdl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-0MiJe0XbWAlS2NvGxLplsgVfCNaA/7iCMx4+F+6FAtM=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OCaml implementation of the KDL Document Language v2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
         maintainers: nix.thunk(() => (() => {

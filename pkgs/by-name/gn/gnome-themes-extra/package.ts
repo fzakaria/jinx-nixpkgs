@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
       const pname = "gnome-themes-extra";
       const version = "3.28";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-themes-extra/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/gnome-themes-extra-${version}.tar.xz`),
           hash: "sha256-fEugv/AB8G2Jg8/BBa2qxC3x0SZ6JZF5ingLrFV6WBk=",
         }))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: pname })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: pname })))),
       }));
       const nativeBuildInputs = nix.thunk(() => [pkg_config, intltool, gtk3]);
       const buildInputs = nix.thunk(() => [gtk3, librsvg, pango, atk, gtk2, gdk_pixbuf]);
@@ -43,12 +43,12 @@ export default nix.lambda((args) => (() => {
       const dontDropIconThemeCache = true;
       const postInstall = "gtk-update-icon-cache \"$out\"/share/icons/HighContrast\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

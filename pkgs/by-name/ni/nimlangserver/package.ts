@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.14.0";
       const lockFile = nix.path(here, "./lock.json");
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nim-lang",
           repo: "langserver",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const doCheck = false;
       const meta = nix.thunk(() => nix.update(nix.sel(final, "src", "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Nim language server implementation (based on nimsuggest)",
         homepage: "https://github.com/nim-lang/langserver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "daylinmorgan"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, lockFile, src, doCheck, meta };
+      return { [nix.POS]: pos$3, pname, version, lockFile, src, doCheck, meta };
     })());
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

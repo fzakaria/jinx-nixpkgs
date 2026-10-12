@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zopefoundation",
           repo: "zope.component",
           tag: version,
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [zope_event, zope_hookable, zope_interface]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         hook: [],
         persistentregistry: nix.thunk(() => [persistent]),
         security: nix.thunk(() => [zope_location, zope_proxy, zope_security]),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "rm src/zope/component/tests/test_interface.py\n";
       const pythonNamespaces = nix.thunk(() => ["zope"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/zopefoundation/zope.component",
         description: "Zope Component Architecture",
         changelog: nix.thunk(() => nix.str`https://github.com/zopefoundation/zope.component/blob/${version}/CHANGES.rst`),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "qdrant",
       version: "1.18.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "qdrant",
           repo: "qdrant",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-QG4HMADZmOu5ilFZBqogdrwBaBegoqNP9GvsDddUYbs=",
       nativeBuildInputs: nix.thunk(() => [protobuf, nix.thunk(() => nix.sel(rustPlatform, "bindgenHook")), pkg_config]),
       buildInputs: nix.thunk(() => [openssl, rust_jemalloc_sys, rust_jemalloc_sys_unprefixed]),
-      env: nix.thunk(() => ({ __proto__: pos$2, OPENSSL_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: 1n })),
       nativeCheckInputs: nix.thunk(() => [cacert]),
       checkFlags: nix.thunk(() => ["--skip=common::metrics::procfs_metrics::test_child_processes"]),
       auditable: false,
@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Vector Search Engine for the next generation of AI applications",
         longDescription: "Expects a config file at config/config.yaml with content similar to\nhttps://github.com/qdrant/qdrant/blob/master/config/config.yaml\n",
         homepage: "https://github.com/qdrant/qdrant",

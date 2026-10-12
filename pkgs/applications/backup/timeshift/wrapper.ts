@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const lndir = nix.arg($, "lndir");
   const shared_mime_info = nix.arg($, "shared-mime-info");
   return (timeshift_unwrapped) => (runtimeDeps) => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: nix.thunk(() => nix.attr(timeshift_unwrapped, "pname")),
       version: nix.thunk(() => nix.attr(timeshift_unwrapped, "version")),
       outputs: nix.thunk(() => nix.attr(timeshift_unwrapped, "outputs")),

@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const game_music_emu = nix.arg($, "game-music-emu");
   const enableSdltest = nix.argOr($, "enableSdltest", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "SDL2_mixer",
       version: "2.8.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libsdl-org",
           repo: "SDL_mixer",
           rev: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "withFeatureAs"), true, "timidity-cfg", nix.thunk(() => nix.str`${timidity}/share/timidity/timidity.cfg`))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/libsdl-org/SDL_mixer",
         description: "SDL multi-channel audio mixer library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

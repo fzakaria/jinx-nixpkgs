@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const pname = "glade";
       const version = "3.40.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/glade/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/glade-${version}.tar.xz`),
           sha256: "McmtrqhJlyq5UXtWThmsGZd8qXdYsQntwxZwCPU+PZw=",
         }))));
@@ -72,11 +72,11 @@ export default nix.lambda((args) => (() => {
       ]);
       const postPatch = "substituteInPlace meson.build \\\n  --replace 'webkit2gtk-4.0' 'webkit2gtk-4.1'\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: pname })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: pname })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://gitlab.gnome.org/GNOME/glade",
         description: "User interface designer for GTK applications",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),
@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const strip_nondeterminism = nix.arg($, "strip-nondeterminism");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "wireworld",
       version: "unstable-2023-05-09",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "blinry",
           repo: "wireworld",
           rev: "03b82bf5d604d6d4ad3c07b224583de6c396fd17",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems, makeWrapper, strip_nondeterminism, zip]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "Wireworld",
             exec: "Wireworld",
             comment: "",
@@ -51,7 +51,7 @@ makeWrapper ${love}/bin/love $out/bin/Wireworld \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fascinating electronics logic puzzles, game where you'll learn how to build clocks, diodes, and logic gates",
         homepage: "https://gitlab.com/blinry/wireworld",
         mainProgram: "Wireworld",

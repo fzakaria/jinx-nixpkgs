@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const faraday = nix.arg($, "faraday");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "httpun",
       src: nix.thunk(() => nix.attr(httpun_types, "src")),
       version: nix.thunk(() => nix.attr(httpun_types, "version")),
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest]),
       meta: nix.thunk(() => nix.update(nix.sel(httpun_types, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "High-performance, memory-efficient, and scalable HTTP library for OCaml",
       })),
     })));

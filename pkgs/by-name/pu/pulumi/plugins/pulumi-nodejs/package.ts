@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const python3 = nix.arg($, "python3");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "pulumi-nodejs",
       version: nix.thunk(() => nix.attr(pulumi, "version")),
       src: nix.thunk(() => nix.attr(pulumi, "src")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [bash]),
       postInstall: "cp -t \"$out/bin\" \\\n  ../../dist/pulumi-resource-pulumi-nodejs\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: "https://www.pulumi.com/docs/iac/languages-sdks/javascript/",
         description: "Language host for Pulumi programs written in TypeScript & JavaScript (Node.js)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

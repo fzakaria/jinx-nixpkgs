@@ -5,7 +5,7 @@ const here = nix.here(import.meta.url);
 const pos$1 = nix.positions(here + "/9.6.7.nix", [["version", 2, 3], ["sha256", 3, 3]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common-hadrian.nix")), nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     version: "9.6.7",
     sha256: "sha256-0FO/bOHViKdc/oyTFiaUhunY+4nc32/ZKDb6Lj32EwU=",
   }))));

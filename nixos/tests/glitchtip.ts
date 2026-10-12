@@ -37,10 +37,10 @@ export default nix.lambda((args) => (() => {
   const domain = "glitchtip.local";
   const url = nix.thunk(() => nix.str`http://${domain}`);
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     name: "glitchtip",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -50,20 +50,20 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           services: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             glitchtip: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               enable: true,
-              nginx: nix.thunk(() => ({ __proto__: pos$2, createLocally: true, domain: domain })),
+              nginx: nix.thunk(() => ({ [nix.POS]: pos$2, createLocally: true, domain: domain })),
               settings: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 GLITCHTIP_DOMAIN: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), url)),
                 CSRF_TRUSTED_ORIGINS: nix.thunk(() => nix.str`${url},http://localhost:8000`),
               })),
@@ -72,44 +72,44 @@ export default nix.lambda((args) => (() => {
               ]),
             })),
             nginx: nix.thunk(() => ({
-              __proto__: pos$6,
-              virtualHosts: nix.thunk(() => nix.attrsDyn({}, [[domain, nix.thunk(() => ({ __proto__: pos$5, forceSSL: false }))]])),
+              [nix.POS]: pos$6,
+              virtualHosts: nix.thunk(() => nix.attrsDyn({}, [[domain, nix.thunk(() => ({ [nix.POS]: pos$5, forceSSL: false }))]])),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "sentry-cli"))]),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$10,
-            hosts: nix.thunk(() => ({ __proto__: pos$9, "127.0.0.1": nix.thunk(() => [domain]) })),
+            [nix.POS]: pos$10,
+            hosts: nix.thunk(() => ({ [nix.POS]: pos$9, "127.0.0.1": nix.thunk(() => [domain]) })),
           })),
         };
       })(), formals$2),
     })),
     interactive: nix.thunk(() => ({
-      __proto__: pos$24,
-      sshBackdoor: nix.thunk(() => ({ __proto__: pos$13, enable: true })),
+      [nix.POS]: pos$24,
+      sshBackdoor: nix.thunk(() => ({ [nix.POS]: pos$13, enable: true })),
       defaults: nix.thunk(() => ({
-        __proto__: pos$15,
-        virtualisation: nix.thunk(() => ({ __proto__: pos$14, graphics: false })),
+        [nix.POS]: pos$15,
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$14, graphics: false })),
       })),
       nodes: nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         machine: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           networking: nix.thunk(() => ({
-            __proto__: pos$17,
-            firewall: nix.thunk(() => ({ __proto__: pos$16, allowedTCPPorts: nix.thunk(() => [80n]) })),
+            [nix.POS]: pos$17,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$16, allowedTCPPorts: nix.thunk(() => [80n]) })),
           })),
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             forwardPorts: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 from: "host",
-                host: nix.thunk(() => ({ __proto__: pos$18, port: 8000n })),
-                guest: nix.thunk(() => ({ __proto__: pos$19, port: 80n })),
+                host: nix.thunk(() => ({ [nix.POS]: pos$18, port: 8000n })),
+                guest: nix.thunk(() => ({ [nix.POS]: pos$19, port: 80n })),
               })),
             ]),
           })),

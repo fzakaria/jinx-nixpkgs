@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const upterm = nix.arg($, "upterm");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "upterm",
       version: "0.29.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "owenthereal",
           repo: "upterm",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,12 +43,12 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.add("# force go to build for build arch rather than host arch during cross-compiling\nCGO_ENABLED=0 GOOS= GOARCH= go run cmd/gendoc/main.go\ninstallManPage etc/man/man*/*\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "for cmd in upterm uptermd; do\n  installShellCompletion --cmd $cmd \\\n    --bash <($out/bin/$cmd completion bash) \\\n    --fish <($out/bin/$cmd completion fish) \\\n    --zsh <($out/bin/$cmd completion zsh)\ndone\n"))),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           uptermd: nix.thunk(() => nix.attr(nixosTests, "uptermd")),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: upterm,
               command: "HOME=$PWD upterm version",
               version: nix.thunk(() => nix.str`Upterm version ${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       })),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Secure terminal-session sharing",
         homepage: "https://upterm.dev",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

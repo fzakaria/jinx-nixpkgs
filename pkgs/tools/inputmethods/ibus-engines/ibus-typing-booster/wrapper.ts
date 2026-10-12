@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   ]);
   const hunspellDirs = nix.thunk(() => nix.app(nix.sel(lib, "makeSearchPath"), "share/hunspell", nix.thunk(() => nix.app(nix.sel(lib, "attrVals"), langs, hunspellDicts))));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.str`${nix.sel(typing_booster, "name")}-with-hunspell`),
       paths: nix.thunk(() => [typing_booster]),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),

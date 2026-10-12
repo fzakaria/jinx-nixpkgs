@@ -31,15 +31,15 @@ export default nix.lambda((args) => (() => {
   const enableStatic = nix.argOr($, "enableStatic", () => nix.sel(stdenv, "hostPlatform", "isStatic"));
   const variant = nix.argOr($, "variant", () => "main");
   const sources = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "lts-36": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       version: "36.0.17",
       hash: "sha256-+zwOVdidbJs8IWL1vwghkwvWwaYOQ5LvVlY2BGs0Lbg=",
       cargoHash: "sha256-V64KmH4M/biKmMZh/kT8nd4v8xOlHjOoWEO9RCWyX1c=",
     })),
     main: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "49.0.2",
       hash: "sha256-XwJOxAswT93KPPe1/Vv2DHHeNRUhfq68x2giRDQmK9o=",
       cargoHash: "sha256-TjVJ0M5LFAsxHUFF88fHvSAzKqq7ZqPT2zOSnQ8X16o=",
@@ -48,11 +48,11 @@ export default nix.lambda((args) => (() => {
   const source = nix.thunk(() => nix.sel(sources, nix.key(nix.force(variant))));
   const hasPythonBinding = nix.thunk(() => nix.eq(variant, "main"));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "wasmtime",
       version: nix.thunk(() => nix.sel(source, "version")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "bytecodealliance",
           repo: "wasmtime",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -89,22 +89,22 @@ cp -r target/${cargoShortTarget}/release/build/wasmtime-c-api-impl-*/out/include
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), hasPythonBinding, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             "python3-wasmtime": nix.thunk(() => nix.sel(python3, "pkgs", "wasmtime")),
           })))),
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => nix.concat([
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 extraArgs: nix.thunk(() => ["--version-regex", "^v(\\d+\\.\\d+\\.\\d+)$"]),
               })))),
           ], nix.app(nix.sel(lib, "optionals"), hasPythonBinding, nix.thunk(() => [
-              nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$7, attrPath: "python3.pkgs.wasmtime" })))),
+              nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$7, attrPath: "python3.pkgs.wasmtime" })))),
             ])))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Standalone JIT-style runtime for WebAssembly, using Cranelift",
         homepage: "https://wasmtime.dev/",
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "WITH"), nix.thunk(() => nix.sel(lib, "licenses", "asl20")), nix.thunk(() => nix.sel(lib, "licenses", "llvm-exception")))),

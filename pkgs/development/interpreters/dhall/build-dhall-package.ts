@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
     const cacheDhall = nix.thunk(() => nix.str`${cache}/dhall`);
     const dataDhall = nix.thunk(() => nix.str`${data}/dhall`);
     const sourceFile = "source.dhall";
-    return nix.app(runCommand, name, nix.thunk(() => ({ __proto__: pos$1, dependencies: dependencies })), nix.thunk(() => nix.str`set -eu
+    return nix.app(runCommand, name, nix.thunk(() => ({ [nix.POS]: pos$1, dependencies: dependencies })), nix.thunk(() => nix.str`set -eu
 
 mkdir -p ${cacheDhall}
 
@@ -58,7 +58,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(source)), 
 ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(documentationRoot, null)), nix.thunk(() => nix.str`mkdir -p $out/${dataDhall}
 
 XDG_DATA_HOME=$out/${data} ${dhall_docs}/bin/dhall-docs --output-link $out/docs ${nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk(() => ({})), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "base-import-url": baseImportUrl,
             input: documentationRoot,
             "package-name": name,

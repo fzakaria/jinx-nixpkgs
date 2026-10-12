@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cmph",
       version: "2.0.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://deac-ams.dl.sourceforge.net/project/cmph/v${nix.sel(finalAttrs, "version")}/cmph-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Nl8egFZADUYPHue/r9vzfV7mx46PRyO/SzwIHIlzPx4=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Free minimal perfect hash C library, providing several algorithms in the literature in a consistent, ease to use, API",
         homepage: "https://sourceforge.net/projects/cmph/",
         license: nix.thunk(() => (() => {

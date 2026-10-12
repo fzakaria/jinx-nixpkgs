@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "python_snappy",
           version: version,
           hash: "sha256-QCFsG637LTiseB7LFiodDsQPjul0fmELz+/fp5SGzuM=",
@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [cramjam]);
       const nativeCheckInputs = nix.thunk(() => [unittestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library for the snappy compression library from Google",
         homepage: "https://github.com/intake/python-snappy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

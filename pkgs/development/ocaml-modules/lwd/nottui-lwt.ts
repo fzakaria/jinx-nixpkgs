@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const lwt = nix.arg($, "lwt");
   const nottui = nix.arg($, "nottui");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "nottui-lwt",
       version: nix.thunk(() => nix.attr(lwd, "version")),
       src: nix.thunk(() => nix.attr(lwd, "src")),
       propagatedBuildInputs: nix.thunk(() => [lwt, nottui]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Run Nottui UIs in Lwt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "alizter"))]),

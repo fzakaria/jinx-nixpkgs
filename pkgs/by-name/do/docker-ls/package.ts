@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const docker = nix.arg($, "docker");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "docker-ls",
       version: "0.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mayflower",
           repo: "docker-ls",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-UulcjQOLEIP++eoYQTEIbCJW51jyE312dMxB8+AKcdU=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tools for browsing and manipulating docker registries",
         longDescription: "Docker-ls is a set of CLI tools for browsing and manipulating docker registries.\nIn particular, docker-ls can handle authentication and display the sha256 content digests associated\nwith tags.\n",
         homepage: "https://github.com/mayflower/docker-ls",

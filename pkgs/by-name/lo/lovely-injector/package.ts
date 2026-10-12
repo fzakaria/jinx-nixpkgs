@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const version = "0.9.0";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "lovely-injector",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ethangreen-dev",
           repo: "lovely-injector",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,10 +32,10 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-4ECH8E/GuV2NYvvjSkanmj4gPIahY40HlCrhR2aFJ5M=",
       cargoBuildFlags: nix.thunk(() => ["--package", "lovely-unix"]),
       doCheck: false,
-      env: nix.thunk(() => ({ __proto__: pos$2, RUSTC_BOOTSTRAP: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTC_BOOTSTRAP: 1n })),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Runtime lua injector for games built with LÖVE",
         longDescription: "Lovely is a lua injector which embeds code into a LÖVE 2d game at runtime.\nUnlike executable patchers, mods can be installed, updated, and removed over and over again without requiring a partial or total game reinstallation.\nThis is accomplished through in-process lua API detouring and an easy to use (and distribute) patch system.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

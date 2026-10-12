@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "agustif",
           repo: "llm-lmstudio",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -36,12 +36,12 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools, wheel]);
       const dependencies = nix.thunk(() => [httpx, llm, requests]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         test: nix.thunk(() => [pytest, pytest_asyncio, pytest_mock, pytest_vcr]),
       }));
       const pythonImportsCheck = nix.thunk(() => ["llm_lmstudio"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Plugin to use local models via LM Studio API with https://llm.datasette.io",
         homepage: "https://github.com/agustif/llm-lmstudio",
         changelog: nix.thunk(() => nix.str`https://github.com/agustif/llm-lmstudio/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

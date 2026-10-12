@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
     const args_2 = args_1;
     const url = nix.arg($_1, "url");
     const hash = nix.arg($_1, "hash");
-    return nix.update(nix.app(nix.sel(pkgs, "fetchurl"), nix.thunk(() => ({ __proto__: pos$1, url: url, hash: hash }))), args_2);
+    return nix.update(nix.app(nix.sel(pkgs, "fetchurl"), nix.thunk(() => ({ [nix.POS]: pos$1, url: url, hash: hash }))), args_2);
   })(), formals$2);
   const fetchFromGitHub = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$3);
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
     const repo = nix.arg($_1, "repo");
     const rev = nix.arg($_1, "rev");
     const hash = nix.arg($_1, "hash");
-    return nix.update(nix.app(nix.sel(pkgs, "fetchFromGitHub"), nix.thunk(() => ({ __proto__: pos$2, owner: owner, repo: repo, rev: rev, hash: hash }))), args_2);
+    return nix.update(nix.app(nix.sel(pkgs, "fetchFromGitHub"), nix.thunk(() => ({ [nix.POS]: pos$2, owner: owner, repo: repo, rev: rev, hash: hash }))), args_2);
   })(), formals$3);
   const fetchFromGitLab = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$4);
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
     const rev = nix.arg($_1, "rev");
     const hash = nix.arg($_1, "hash");
     return nix.update(nix.app(nix.sel(pkgs, "fetchFromGitLab"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         domain: domain,
         owner: owner,
         repo: repo,
@@ -84,13 +84,13 @@ source ${nix.path(here, "./update-lib.sh")}
 `);
   const patches_binutils_2_44_fix_wine_older_than_10_2 = nix.thunk(() => [
     nix.thunk(() => nix.app(nix.sel(pkgs, "fetchpatch"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         name: "ntdll-use-signed-type",
         url: "https://gitlab.winehq.org/wine/wine/-/commit/fd59962827a715d321f91c9bdb43f3e61f9ebbc.patch",
         hash: "sha256-PvFom9NJ32XZO1gYor9Cuk8+eaRFvmG572OAtNx1tks=",
       })))),
     nix.thunk(() => nix.app(nix.sel(pkgs, "fetchpatch"), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         name: "winebuild-avoid using-idata-section",
         url: "https://gitlab.winehq.org/wine/wine/-/commit/c9519f68ea04915a60704534ab3afec5ec1b8fd7.patch",
         hash: "sha256-vA58SfAgCXoCT+NB4SRHi85AnI4kj9S2deHGp4L36vI=",
@@ -98,7 +98,7 @@ source ${nix.path(here, "./update-lib.sh")}
   ]);
   const patches_add_truncf_to_the_import_library = nix.thunk(() => [
     nix.thunk(() => nix.app(nix.sel(pkgs, "fetchpatch"), nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         name: "add-truncf-to-the-import-library.patch",
         url: "https://gitlab.winehq.org/wine/wine/-/commit/ed66bd5c97ecc17c42a4942dafac7d406c1e5120.patch",
         hash: "sha256-mn0fRZ840MYk1WZsBLcachUzyNmBUSlvf50t9jFGXp0=",
@@ -106,7 +106,7 @@ source ${nix.path(here, "./update-lib.sh")}
   ]);
   const patches_add_dll_accept_device_paths_wine_older_than_11_1 = nix.thunk(() => [
     nix.thunk(() => nix.app(nix.sel(pkgs, "fetchpatch"), nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         name: "add-dll-accept-device-paths",
         url: "https://gitlab.winehq.org/wine/wine/-/commit/401910ae25a11032f2da7baa1666d71e8bca2496.patch",
         hash: "sha256-2726u9/vhhx39Tq7vOw24hslmeyZZEbxRRqe7JMFvCU",
@@ -122,19 +122,19 @@ source ${nix.path(here, "./update-lib.sh")}
             const version_1 = "2.47.4";
             const url_1 = nix.thunk(() => nix.str`https://dl.winehq.org/wine/wine-gecko/${version_1}/wine-gecko-${version_1}-x86.msi`);
             const hash_1 = "sha256-Js7MR3BrCRkI9/gUvdsHTGG+uAYzGOnvxaf3iYV3k9Y=";
-            return { __proto__: pos$8, version: version_1, url: url_1, hash: hash_1 };
+            return { [nix.POS]: pos$8, version: version_1, url: url_1, hash: hash_1 };
           })())));
         const gecko64 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
             const version_1 = "2.47.4";
             const url_1 = nix.thunk(() => nix.str`https://dl.winehq.org/wine/wine-gecko/${version_1}/wine-gecko-${version_1}-x86_64.msi`);
             const hash_1 = "sha256-5ZC32YijLWqkzx2Ko6o9M3Zv3Uz0yJwtzCCV7LKNBm8=";
-            return { __proto__: pos$9, version: version_1, url: url_1, hash: hash_1 };
+            return { [nix.POS]: pos$9, version: version_1, url: url_1, hash: hash_1 };
           })())));
         const mono = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
             const version_1 = "10.0.0";
             const url_1 = nix.thunk(() => nix.str`https://dl.winehq.org/wine/wine-mono/${version_1}/wine-mono-${version_1}-x86.msi`);
             const hash_1 = "sha256-26ynPl0J96OnwVetBCia+cpHw87XAS1GVEpgcEaQK4c=";
-            return { __proto__: pos$10, version: version_1, url: url_1, hash: hash_1 };
+            return { [nix.POS]: pos$10, version: version_1, url: url_1, hash: hash_1 };
           })())));
         const patches = nix.thunk(() => nix.concat([nix.path(here, "./cert-path.patch")], patches_add_dll_accept_device_paths_wine_older_than_11_1));
         const updateScript = nix.thunk(() => nix.app(writeShellScript, "update-wine-stable", nix.thunk(() => nix.str`${updateScriptPreamble}
@@ -150,7 +150,7 @@ fi
 do_update
 `)));
         return {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           version,
           url,
           hash,
@@ -167,7 +167,7 @@ do_update
         const hash = "sha256-xigvbU2uzxHzq5+aK2xZj2e+fijDY7osroo8RLYR56Q=";
         const patches = nix.thunk(() => [nix.path(here, "./cert-path.patch")]);
         const staging = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             version: version,
             hash: "sha256-KZCkra0y3XFNrbD2lZ+YUCLyq1POC30Sd4sGCJZuwgQ=",
             domain: "gitlab.winehq.org",
@@ -180,19 +180,19 @@ do_update
             const version_1 = "2.47.4";
             const url_1 = nix.thunk(() => nix.str`https://dl.winehq.org/wine/wine-gecko/${version_1}/wine-gecko-${version_1}-x86.msi`);
             const hash_1 = "sha256-Js7MR3BrCRkI9/gUvdsHTGG+uAYzGOnvxaf3iYV3k9Y=";
-            return { __proto__: pos$13, version: version_1, url: url_1, hash: hash_1 };
+            return { [nix.POS]: pos$13, version: version_1, url: url_1, hash: hash_1 };
           })())));
         const gecko64 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
             const version_1 = "2.47.4";
             const url_1 = nix.thunk(() => nix.str`https://dl.winehq.org/wine/wine-gecko/${version_1}/wine-gecko-${version_1}-x86_64.msi`);
             const hash_1 = "sha256-5ZC32YijLWqkzx2Ko6o9M3Zv3Uz0yJwtzCCV7LKNBm8=";
-            return { __proto__: pos$14, version: version_1, url: url_1, hash: hash_1 };
+            return { [nix.POS]: pos$14, version: version_1, url: url_1, hash: hash_1 };
           })())));
         const mono = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
             const version_1 = "11.3.0";
             const url_1 = nix.thunk(() => nix.str`https://dl.winehq.org/wine/wine-mono/${version_1}/wine-mono-${version_1}-x86.msi`);
             const hash_1 = "sha256-3y38FmXCURiC58q9Vur9DAo9lOWn6G+Wknf2wYnUGNM=";
-            return { __proto__: pos$15, version: version_1, url: url_1, hash: hash_1 };
+            return { [nix.POS]: pos$15, version: version_1, url: url_1, hash: hash_1 };
           })())));
         const updateScript = nix.thunk(() => nix.app(writeShellScript, "update-wine-unstable", nix.thunk(() => nix.str`${updateScriptPreamble}
 major=\${UPDATE_NIX_OLD_VERSION%%.*}
@@ -213,7 +213,7 @@ autobump unstable.mono "$latest_mono"
 do_update
 `)));
         return {
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           version,
           url,
           hash,
@@ -231,7 +231,7 @@ do_update
         const hash = "sha256-REK0f/2bLqRXEA427V/U5vTYKdnbeaJeYFF1qYjKL/8=";
         const patches = nix.thunk(() => nix.concat([nix.path(here, "./cert-path.patch")], nix.concat(patches_binutils_2_44_fix_wine_older_than_10_2, patches_add_truncf_to_the_import_library)));
         const staging = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             version: version,
             hash: "sha256-FDNszRUvM1ewE9Ij4EkuihaX0Hf0eTb5r7KQHMdCX3U=",
             domain: "gitlab.winehq.org",
@@ -244,22 +244,22 @@ do_update
             const version_1 = "2.47.4";
             const url_1 = nix.thunk(() => nix.str`https://dl.winehq.org/wine/wine-gecko/${version_1}/wine-gecko-${version_1}-x86.msi`);
             const hash_1 = "sha256-Js7MR3BrCRkI9/gUvdsHTGG+uAYzGOnvxaf3iYV3k9Y=";
-            return { __proto__: pos$18, version: version_1, url: url_1, hash: hash_1 };
+            return { [nix.POS]: pos$18, version: version_1, url: url_1, hash: hash_1 };
           })())));
         const gecko64 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
             const version_1 = "2.47.4";
             const url_1 = nix.thunk(() => nix.str`https://dl.winehq.org/wine/wine-gecko/${version_1}/wine-gecko-${version_1}-x86_64.msi`);
             const hash_1 = "sha256-5ZC32YijLWqkzx2Ko6o9M3Zv3Uz0yJwtzCCV7LKNBm8=";
-            return { __proto__: pos$19, version: version_1, url: url_1, hash: hash_1 };
+            return { [nix.POS]: pos$19, version: version_1, url: url_1, hash: hash_1 };
           })())));
         const mono = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
             const version_1 = "9.3.0";
             const url_1 = nix.thunk(() => nix.str`https://dl.winehq.org/wine/wine-mono/${version_1}/wine-mono-${version_1}-x86.msi`);
             const hash_1 = "sha256-bKLArtCW/57CD69et2xrfX3oLZqIdax92fB5O/nD/TA=";
-            return { __proto__: pos$20, version: version_1, url: url_1, hash: hash_1 };
+            return { [nix.POS]: pos$20, version: version_1, url: url_1, hash: hash_1 };
           })())));
         return {
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           version,
           url,
           hash,
@@ -286,9 +286,9 @@ autobump winetricks "$latest_winetricks" 'nix-prefetch-url --unpack'
 
 do_update
 `)));
-        return { __proto__: pos$22, version, hash, owner, repo, rev, updateScript };
+        return { [nix.POS]: pos$22, version, hash, owner, repo, rev, updateScript };
       })())));
-    return { __proto__: pos$23, stable, unstable, yabridge, wayland, winetricks };
+    return { [nix.POS]: pos$23, stable, unstable, yabridge, wayland, winetricks };
   })();
 })(), formals$1);
 //# sourceMappingURL=sources.ts.map

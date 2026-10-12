@@ -45,12 +45,12 @@ export default nix.lambda((args) => (() => {
   const tree_sitter = nix.arg($, "tree-sitter");
   const typing_inspect = nix.arg($, "typing-inspect");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "llama-index-core",
       version: "0.14.25",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "run-llama",
           repo: "llama_index",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -142,7 +142,7 @@ cp -r ${nix.sel(nltk_data, "punkt")}/tokenizers/punkt/* llama_index/core/_static
         "test_str",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Data framework for your LLM applications",
         homepage: "https://github.com/run-llama/llama_index/",
         changelog: nix.thunk(() => nix.str`https://github.com/run-llama/llama_index/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

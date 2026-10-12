@@ -43,13 +43,13 @@ export default nix.lambda((args) => (() => {
   const apple_sdk_gstreamer = nix.arg($, "apple-sdk_gstreamer");
   const hasElfutils = nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), elfutils));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "gstreamer",
       version: "1.28.7",
       outputs: nix.thunk(() => ["bin", "out", "dev"]),
       separateDebugInfo: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://gstreamer.freedesktop.org/src/gstreamer/gstreamer-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-eHMpssV1jiKKcdkmptz5YLzqrMo8rdY4dLpmXfzaAT4=",
         })))),
@@ -85,22 +85,22 @@ export default nix.lambda((args) => (() => {
       preFixup: "moveToOutput \"lib/gstreamer-1.0/pkgconfig\" \"$dev\"\nmoveToOutput \"share/bash-completion\" \"$bin\"\n",
       setupHook: nix.path(here, "./setup-hook.sh"),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
-        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ __proto__: pos$3, "odd-unstable": true })))),
+        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "odd-unstable": true })))),
         gstreamerCpeParts: nix.thunk(() => (() => {
           const commonGstreamerVersion = nix.thunk(() => nix.sel(finalAttrs, "version"));
           return (version) => nix.app(nix.sel(lib, "warnIf"), nix.thunk(() => !nix.eq(version, commonGstreamerVersion)), nix.thunk(() => nix.str`Detected mismatch between common GStreamer version (${commonGstreamerVersion}) and version used for gstreamerCpeParts (${version}).
 Note that GStreamer uses a common CPE identifier for its components.
 Having a deviating version is unusual, but may occur e.g. if overriding a subset of GStreamer libraries.
-`), nix.thunk(() => nix.update(nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "gstreamer", version), { __proto__: pos$4, product: "gstreamer" })));
+`), nix.thunk(() => nix.update(nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "gstreamer", version), { [nix.POS]: pos$4, product: "gstreamer" })));
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Open source multimedia framework",
         homepage: "https://gstreamer.freedesktop.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),
@@ -111,7 +111,7 @@ Having a deviating version is unusual, but may occur e.g. if overriding a subset
           return [nix.thunk(() => nix.lookup(w, "tmarkus"))];
         })()),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           cpeParts: nix.thunk(() => nix.app(nix.sel(finalAttrs, "passthru", "gstreamerCpeParts"), nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

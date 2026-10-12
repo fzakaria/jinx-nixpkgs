@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "meow",
       version: "2.1.5",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           crateName: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-cli`),
           sha256: "sha256-6tf4/KRZj+1zlxnNgz3kw/HYR2QKg0kEwu+TbKah3e8=",
@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-Z3qAeIAiLJEHsqlDLvQXzX287dZSLhPg2V6clfI0Egs=",
       postInstall: "mv $out/bin/meow-cli $out/bin/meow\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Print ASCII cats to your terminal",
         homepage: "https://github.com/PixelSergey/meow",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const sqlite3 = nix.arg($, "sqlite3");
   const ocsigen_server = nix.arg($, "ocsigen_server");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "ocsipersist-sqlite",
       version: nix.thunk(() => nix.attr(ocsipersist, "version")),
       src: nix.thunk(() => nix.attr(ocsipersist, "src")),
       propagatedBuildInputs: nix.thunk(() => [logs, sqlite3, ocsipersist]),
       meta: nix.thunk(() => nix.update(nix.sel(ocsipersist, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Persistent key/value storage for OCaml using SQLite",
       })),
     })));

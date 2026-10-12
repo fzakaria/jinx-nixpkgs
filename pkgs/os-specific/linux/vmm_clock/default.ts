@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "vmm_clock";
       const version = "0.2.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "voutilad",
           repo: "vmm_clock",
           rev: version,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`KERNELDIR=${nix.sel(kernel, "dev")}/lib/modules/${nix.sel(kernel, "modDirVersion")}/build`),
       ]));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Experimental implementation of a kvmclock-derived clocksource for Linux guests under OpenBSD's hypervisor",
         homepage: "https://github.com/voutilad/vmm_clock",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       }));
       const enableParallelBuilding = true;
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

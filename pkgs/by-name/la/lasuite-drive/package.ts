@@ -24,14 +24,14 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const version = "0.19.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "suitenumerique",
       repo: "drive",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-y9lvGYTIxpuTA0mFDl616JxX+RF5+5Ea8k/NWlLjrZk=",
     }))));
   const meta = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     homepage: "https://github.com/suitenumerique/drive",
     changelog: nix.thunk(() => nix.str`https://github.com/suitenumerique/drive/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
     license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -41,15 +41,15 @@ export default nix.lambda((args) => (() => {
     })()),
     platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
   }));
-  const mail = nix.thunk(() => nix.app(callPackage, nix.path(here, "./mail.nix"), nix.thunk(() => ({ __proto__: pos$3, src: src, version: version, meta: meta }))));
-  const frontend = nix.thunk(() => nix.app(callPackage, nix.path(here, "./frontend.nix"), nix.thunk(() => ({ __proto__: pos$4, src: src, version: version, meta: meta }))));
+  const mail = nix.thunk(() => nix.app(callPackage, nix.path(here, "./mail.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, src: src, version: version, meta: meta }))));
+  const frontend = nix.thunk(() => nix.app(callPackage, nix.path(here, "./frontend.nix"), nix.thunk(() => ({ [nix.POS]: pos$4, src: src, version: version, meta: meta }))));
   const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       self: python,
-      packageOverrides: (self) => (super$) => ({ __proto__: pos$5, django: nix.thunk(() => nix.sel(super$, "django_5")) }),
+      packageOverrides: (self) => (super$) => ({ [nix.POS]: pos$5, django: nix.thunk(() => nix.sel(super$, "django_5")) }),
     }))));
   return nix.app(nix.sel(python, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "lasuite-drive",
       pyproject: true,
       version: version,
@@ -135,17 +135,17 @@ ln -sv ${mail}/ $out/${nix.sel(python, "sitePackages")}/core/templates/mail
 `;
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         mail: mail,
         frontend: frontend,
         tests: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           "login-upload-and-download-file": nix.thunk(() => nix.sel(nixosTests, "lasuite-drive")),
         })),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => nix.update(meta, {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "A collaborative file sharing and document management platform that scales. Built with Django and React. Opensource alternative to Sharepoint or Google Drive",
         mainProgram: "drive",
       })),

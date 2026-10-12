@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.23";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Johannes11833",
           repo: "rclone_python",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-rclone-path.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             rclone: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), rclone)),
           })))),
       ]);
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/test_link.py", "tests/test_version.py"]);
       const pythonImportsCheck = nix.thunk(() => ["rclone_python"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/Johannes11833/rclone_python/releases/tag/${nix.sel(src, "tag")}`),
         description: "Python wrapper for rclone",
         homepage: "https://github.com/Johannes11833/rclone_python",
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

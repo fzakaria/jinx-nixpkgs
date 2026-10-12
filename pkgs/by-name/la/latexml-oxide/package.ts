@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const texliveBasic = nix.arg($, "texliveBasic");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       __structuredAttrs: true,
       pname: "latexml-oxide",
       version: "0.7.6",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "latexml",
           hash: "sha256-2OIQ8gv0wSJEk1QNKHYQOOXbzfilW45WX9bzHKOSu7c=",
@@ -39,12 +39,12 @@ export default nix.lambda((args) => (() => {
         texliveBasic,
       ]),
       buildInputs: nix.thunk(() => [libxml2, libxslt]),
-      env: nix.thunk(() => ({ __proto__: pos$2, KPATHSEA_SKIP_TOOLCHAIN_CHECK: 1n, RUSTC_BOOTSTRAP: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, KPATHSEA_SKIP_TOOLCHAIN_CHECK: 1n, RUSTC_BOOTSTRAP: 1n })),
       postInstall: nix.thunk(() => (nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))) ? "mkdir -p \"$out\"/share/latexml-oxide/resources/dumps\n(\n  cd \"$out\"/share/latexml-oxide\n  \"$out\"/bin/latexml_oxide --init=plain.tex\n  \"$out\"/bin/latexml_oxide --init=latex.ltx\n)\n" : nix.str`mkdir -p "$out"/share/latexml-oxide/resources/dumps
 cp "${nix.sel(buildPackages, "latexml-oxide")}"/share/latexml-oxide/resources/dumps/*.txt "$out"/share/latexml-oxide/resources/dumps
 `)),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "TeX to XML/HTML/ePub converter: a LaTeXML reimplementation in Rust",
         homepage: "https://crates.io/crates/latexml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),

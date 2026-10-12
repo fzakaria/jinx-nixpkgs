@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ettercap",
       version: "0.8.4-unstable-2025-07-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Ettercap",
           repo: "ettercap",
           rev: "26ef2d2e1432b866460f9c4ddf9e4dce3db1a5ab",
@@ -66,11 +66,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DGTK3_GLIBCONFIG_INCLUDE_DIR=${nix.sel(glib, "out")}/lib/glib-2.0/include`),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [nix.thunk(() => nix.str`-I${nix.sel(harfbuzz, "dev")}/include/harfbuzz`)]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Comprehensive suite for man in the middle attacks",
         longDescription: "Ettercap is a comprehensive suite for man in the middle attacks. It\nfeatures sniffing of live connections, content filtering on the fly and\nmany other interesting tricks. It supports active and passive dissection\nof many protocols and includes many features for network and host\nanalysis.\n",
         homepage: "https://www.ettercap-project.org/",

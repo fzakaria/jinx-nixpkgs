@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.7.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-3Z/7vWnQnLB+bnqM+A/ShwP9xtO5Am+HVrScvjMUZ2s=",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [rply]);
       const checkPhase = nix.thunk(() => nix.str`${nix.sel(python, "interpreter")} test.py`);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/djc/rnc2rng",
         description: "Compact to regular syntax conversion library for RELAX NG schemata",
         mainProgram: "rnc2rng",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

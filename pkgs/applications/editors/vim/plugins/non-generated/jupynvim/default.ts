@@ -20,23 +20,23 @@ export default nix.lambda((args) => (() => {
   const vimUtils = nix.arg($, "vimUtils");
   const version = "0.4.5";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "sheng-tse",
       repo: "jupynvim",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-G8vyhsTfHtbE7foqj1HNJNMg3TYeO/Nd4ofRS+SVPUo=",
     }))));
   const jupynvim_core = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jupynvim-core",
       version: version,
       src: src,
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/core`),
       cargoHash: "sha256-7zMuo7evZrer8CXAwbrZtLv/LdOuoZK95sMgyqs5P0I=",
-      meta: nix.thunk(() => ({ __proto__: pos$2, mainProgram: "jupynvim-core" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$2, mainProgram: "jupynvim-core" })),
     }))));
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "jupynvim",
       version: version,
       src: src,
@@ -46,12 +46,12 @@ substituteInPlace $out/lua/jupynvim/backend/connect.lua \\
                  '"${nix.app(nix.sel(lib, "getExe"), jupynvim_core)}"'
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$4, attrPath: "vimPlugins.jupynvim.jupynvim-core" })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, attrPath: "vimPlugins.jupynvim.jupynvim-core" })))),
         "jupynvim-core": jupynvim_core,
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Jupyter notebooks in Neovim with native cell rendering and kernel execution",
         homepage: "https://github.com/sheng-tse/jupynvim",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

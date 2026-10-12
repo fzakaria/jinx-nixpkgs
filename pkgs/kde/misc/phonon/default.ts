@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "phonon";
       const version = "4.12.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://kde/stable/phonon/${version}/phonon-${version}.tar.xz`),
           hash: "sha256-Mof/4PvMLUqhNj+eFXRzAtCwgAkP525fIR2AnstD85o=",
         }))));
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "PHONON_BUILD_EXPERIMENTAL", false)),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
           return [
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "phononsettings",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

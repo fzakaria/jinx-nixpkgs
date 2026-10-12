@@ -51,40 +51,40 @@ export default nix.lambda((args) => (() => {
   const toIniJson = nix.thunk(() => (() => {
     const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "generators")), w);
     return nix.app(nix.lookup(w_1, "toINI"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mkKeyValue: nix.thunk(() => nix.app(nix.lookup(w_1, "mkKeyValueDefault"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             mkValueString: nix.thunk(() => nix.sel(nix.builtins, "toJSON")),
           })), "=")),
       })));
   })());
   const toConfigFile = (name) => (cfg$) => (nix.asBool(!nix.eq(nix.sel(cfg$, "configFile"), null)) ? nix.sel(cfg$, "configFile") : nix.app(nix.sel(pkgs, "writeText"), nix.thunk(() => nix.str`vdirsyncer-${name}.conf`), nix.thunk(() => nix.app(toIniJson, nix.thunk(() => nix.update({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         general: nix.thunk(() => nix.update(nix.sel(cfg$, "config", "general"), {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           status_path: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg$, "config", "statusPath"), null)) ? nix.str`/var/lib/vdirsyncer/${name}` : nix.sel(cfg$, "config", "statusPath"))),
         })),
       }, nix.update(nix.app(nix.lookup(w, "mapAttrs'"), (name_1) => nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.str`pair ${name_1}`)), nix.thunk(() => nix.sel(cfg$, "config", "pairs"))), nix.app(nix.lookup(w, "mapAttrs'"), (name_1) => nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.str`storage ${name_1}`)), nix.thunk(() => nix.sel(cfg$, "config", "storages"))))))))));
   const userUnitConfig = (name) => (cfg$) => ({
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     serviceConfig: nix.thunk(() => nix.update({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       User: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg$, "user"), null)) ? "vdirsyncer" : nix.sel(cfg$, "user"))),
       Group: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg$, "group"), null)) ? "vdirsyncer" : nix.sel(cfg$, "group"))),
-    }, nix.update(nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg$, "user"), null)), nix.thunk(() => ({ __proto__: pos$6, DynamicUser: true, ProtectHome: true }))), nix.update(nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg$, "additionalGroups"), [])), nix.thunk(() => ({
-        __proto__: pos$7,
+    }, nix.update(nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg$, "user"), null)), nix.thunk(() => ({ [nix.POS]: pos$6, DynamicUser: true, ProtectHome: true }))), nix.update(nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg$, "additionalGroups"), [])), nix.thunk(() => ({
+        [nix.POS]: pos$7,
         SupplementaryGroups: nix.thunk(() => nix.sel(cfg$, "additionalGroups")),
       }))), nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg$, "config", "statusPath"), null)), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         StateDirectory: nix.thunk(() => nix.str`vdirsyncer/${name}`),
         StateDirectoryMode: "0700",
       }))))))),
   });
   const commonUnitConfig = nix.thunk(() => ({
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     after: nix.thunk(() => ["network.target"]),
     serviceConfig: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       Type: "oneshot",
       PrivateTmp: true,
       NoNewPrivileges: true,
@@ -101,83 +101,83 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   return {
-    __proto__: pos$37,
+    [nix.POS]: pos$37,
     options: nix.thunk(() => ({
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       services: nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         vdirsyncer: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "vdirsyncer")),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "vdirsyncer", nix.thunk(() => ({})))),
           jobs: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               description: "vdirsyncer job configurations",
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                    __proto__: pos$26,
+                    [nix.POS]: pos$26,
                     options: nix.thunk(() => ({
-                      __proto__: pos$25,
-                      enable: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mkEnableOption"), "this vdirsyncer job"), { __proto__: pos$12, default: true, example: false })),
+                      [nix.POS]: pos$25,
+                      enable: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mkEnableOption"), "this vdirsyncer job"), { [nix.POS]: pos$12, default: true, example: false })),
                       user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$13,
+                          [nix.POS]: pos$13,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                           default: null,
                           description: "User account to run vdirsyncer as, otherwise as a systemd\ndynamic user\n",
                         })))),
                       group: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                           default: null,
                           description: "group to run vdirsyncer as",
                         })))),
                       additionalGroups: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$15,
+                          [nix.POS]: pos$15,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                           default: [],
                           description: "additional groups to add the dynamic user to",
                         })))),
                       forceDiscover: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$16,
+                          [nix.POS]: pos$16,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                           default: false,
                           description: "Run `yes | vdirsyncer discover` prior to `vdirsyncer sync`\n",
                         })))),
                       timerConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$18,
+                          [nix.POS]: pos$18,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "attrs")),
-                          default: nix.thunk(() => ({ __proto__: pos$17, OnBootSec: "1h", OnUnitActiveSec: "6h" })),
+                          default: nix.thunk(() => ({ [nix.POS]: pos$17, OnBootSec: "1h", OnUnitActiveSec: "6h" })),
                           description: "systemd timer configuration",
                         })))),
                       configFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$19,
+                          [nix.POS]: pos$19,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
                           default: null,
                           description: "existing configuration file",
                         })))),
                       config: nix.thunk(() => ({
-                        __proto__: pos$24,
+                        [nix.POS]: pos$24,
                         statusPath: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$20,
+                            [nix.POS]: pos$20,
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                             default: null,
                             defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "/var/lib/vdirsyncer/${attrName}")),
                             description: "vdirsyncer's status path",
                           })))),
                         general: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$21,
+                            [nix.POS]: pos$21,
                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "attrs")),
                             default: nix.thunk(() => ({})),
                             description: "general configuration",
                           })))),
                         pairs: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$22,
+                            [nix.POS]: pos$22,
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "attrs")))),
                             default: nix.thunk(() => ({})),
                             description: "vdirsyncer pair configurations",
                             example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  my_contacts = {\n    a = \"my_cloud_contacts\";\n    b = \"my_local_contacts\";\n    collections = [ \"from a\" ];\n    conflict_resolution = \"a wins\";\n    metadata = [ \"color\" \"displayname\" ];\n  };\n};\n")),
                           })))),
                         storages: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$23,
+                            [nix.POS]: pos$23,
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "attrs")))),
                             default: nix.thunk(() => ({})),
                             description: "vdirsyncer storage configurations",
@@ -191,21 +191,21 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         systemd: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           services: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs'"), (name) => (cfg$) => nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.str`vdirsyncer@${name}`), nix.thunk(() => nix.app(nix.lookup(w, "foldr"), nix.thunk(() => nix.lookup(w, "recursiveUpdate")), nix.thunk(() => ({})), nix.thunk(() => [
                   commonUnitConfig,
                   nix.thunk(() => nix.app(userUnitConfig, name, cfg$)),
                   nix.thunk(() => ({
-                    __proto__: pos$33,
+                    [nix.POS]: pos$33,
                     description: nix.thunk(() => nix.str`synchronize calendars and contacts (${name})`),
                     environment: nix.thunk(() => ({
-                      __proto__: pos$31,
+                      [nix.POS]: pos$31,
                       VDIRSYNCER_CONFIG: nix.thunk(() => nix.app(toConfigFile, name, cfg$)),
                     })),
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$32,
+                      [nix.POS]: pos$32,
                       ExecStart: nix.thunk(() => nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.sel(cfg$, "forceDiscover")), nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScript"), "vdirsyncer-discover-yes", nix.thunk(() => nix.str`set -e
 yes | ${nix.sel(cfg, "package")}/bin/vdirsyncer discover
 `)))), [nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/vdirsyncer sync`)])),
@@ -213,7 +213,7 @@ yes | ${nix.sel(cfg, "package")}/bin/vdirsyncer discover
                   })),
                 ])))), nix.thunk(() => nix.app(nix.lookup(w, "filterAttrs"), (name) => (cfg$) => nix.sel(cfg$, "enable"), nix.thunk(() => nix.sel(cfg, "jobs")))))),
           timers: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs'"), (name) => (cfg$) => nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.str`vdirsyncer@${name}`), nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 wantedBy: nix.thunk(() => ["timers.target"]),
                 description: nix.thunk(() => nix.str`synchronize calendars and contacts (${name})`),
                 timerConfig: nix.thunk(() => nix.attr(cfg$, "timerConfig")),

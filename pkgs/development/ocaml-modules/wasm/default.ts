@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const menhir = nix.arg($, "menhir");
   const buildDunePackage = nix.arg($, "buildDunePackage");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wasm",
       version: "2.0.2",
       minimalOCamlVersion: "4.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "WebAssembly",
           repo: "spec",
           tag: nix.thunk(() => nix.str`opam-${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       postUnpack: "cd \"$sourceRoot/interpreter\"\nexport sourceRoot=$PWD\n",
       nativeBuildInputs: nix.thunk(() => [menhir]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to read and write WebAssembly (Wasm) files and manipulate their AST",
         mainProgram: "wasm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

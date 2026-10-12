@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const starlette = nix.arg($, "starlette");
   const structlog = nix.arg($, "structlog");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "langgraph-runtime-inmem",
       version: "0.34.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "langgraph_runtime_inmem",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-DgyDoLsWDpnSF8CBPLRtQtpQ5LazZrSozkrbRIOX4xo=",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["langgraph_runtime_inmem"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Inmem implementation for the LangGraph API server",
         homepage: "https://pypi.org/project/langgraph-runtime-inmem/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "elastic20")),

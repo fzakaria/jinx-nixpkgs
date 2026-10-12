@@ -65,35 +65,35 @@ install -D ${module_name}.so $out/lib/znc/${module_name}.so
 runHook postInstall
 `);
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(a, {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         buildPhase: buildPhase,
         installPhase: installPhase,
         nativeBuildInputs: nix.thunk(() => [python3, which, cmake, pkg_config]),
         dontUseCmakeConfigure: true,
         buildInputs: nix.thunk(() => nix.sel(znc, "buildInputs")),
-        passthru: nix.thunk(() => ({ __proto__: pos$1, module_name: module_name })),
+        passthru: nix.thunk(() => ({ [nix.POS]: pos$1, module_name: module_name })),
         meta: nix.thunk(() => nix.update(nix.sel(a, "meta"), {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         })),
       })));
   })(), formals$2);
   return {
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     backlog: nix.thunk(() => nix.app(zncDerivation, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname: "znc-backlog",
         version: "0-unstable-2018-08-24",
         module_name: "backlog",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             owner: "FruitieX",
             repo: "znc-backlog",
             rev: "44314a6aca0409ae59b0d841807261be1159fff4",
             hash: "sha256-yhoMuwXul6zq4VPGn810PlFwiCUIvvV6wkQupE3svOQ=",
           })))),
         meta: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           description: "Request backlog for IRC channels",
           homepage: "https://github.com/fruitiex/znc-backlog/",
           license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -101,19 +101,19 @@ runHook postInstall
         })),
       })))),
     clientbuffer: nix.thunk(() => nix.app(zncDerivation, nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname: "znc-clientbuffer",
         version: "0-unstable-2021-05-30",
         module_name: "clientbuffer",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             owner: "CyberShadow",
             repo: "znc-clientbuffer",
             rev: "9a7465b413b53408f5d7af86e84b1d08efb6bec0",
             hash: "sha256-pAj4Iot0RFuNJOLSZFaXoH5BPb4vf0H8KPfIoo0kbig=",
           })))),
         meta: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           description: "ZNC module for client specific buffers",
           homepage: "https://github.com/CyberShadow/znc-clientbuffer",
           license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -127,19 +127,19 @@ runHook postInstall
         })),
       })))),
     clientaway: nix.thunk(() => nix.app(zncDerivation, nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         pname: "znc-clientaway",
         version: "0-unstable-2017-04-28",
         module_name: "clientaway",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             owner: "kylef-archive",
             repo: "znc-contrib",
             rev: "f6724a4a3b16b050088adde0cbeed74f189e5044",
             hash: "sha256-KBd78ucRFbgV/jILS1OSsZqqKyjT4RmBfiBTKX8bbUY=",
           })))),
         meta: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           description: "ZNC clientaway module",
           homepage: "https://github.com/kylef-archive/znc-contrib",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
@@ -147,19 +147,19 @@ runHook postInstall
         })),
       })))),
     fish: nix.thunk(() => nix.app(zncDerivation, nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         pname: "znc-fish",
         version: "0-unstable-2017-06-26",
         module_name: "fish",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             owner: "oilslump",
             repo: "znc-fish",
             rev: "7d91467dbb195f7b591567911210523c6087662e",
             hash: "sha256-VW/je7vDc9arbrj848T0bbeqP9qx7Az5SMOVecLrxc8=",
           })))),
         meta: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           description: "ZNC FiSH module",
           homepage: "https://github.com/oilslump/znc-fish",
           maintainers: [],
@@ -167,19 +167,19 @@ runHook postInstall
         })),
       })))),
     ignore: nix.thunk(() => nix.app(zncDerivation, nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         pname: "znc-ignore",
         version: "0-unstable-2017-04-28",
         module_name: "ignore",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             owner: "kylef",
             repo: "znc-contrib",
             rev: "f6724a4a3b16b050088adde0cbeed74f189e5044",
             hash: "sha256-KBd78ucRFbgV/jILS1OSsZqqKyjT4RmBfiBTKX8bbUY=",
           })))),
         meta: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           description: "ZNC ignore module",
           homepage: "https://github.com/kylef/znc-contrib",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
@@ -191,14 +191,14 @@ runHook postInstall
         const version = "1.2.2";
         const module_name = "palaver";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             owner: "cocodelabs",
             repo: "znc-palaver",
             tag: version,
             hash: "sha256-8W3uF1PrLQiEZm7JaFrpqmJLSFioa4F4qlM1J6Zua8U=",
           }))));
         const meta = nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           description: "Palaver ZNC module",
           homepage: "https://github.com/cocodelabs/znc-palaver",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -207,41 +207,41 @@ runHook postInstall
             return [nix.thunk(() => nix.lookup(w, "szlend"))];
           })()),
         }));
-        return { __proto__: pos$21, pname, version, module_name, src, meta };
+        return { [nix.POS]: pos$21, pname, version, module_name, src, meta };
       })()))),
     playback: nix.thunk(() => nix.app(zncDerivation, nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         pname: "znc-playback",
         version: "0-unstable-2020-05-10",
         module_name: "playback",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             owner: "jpnurmi",
             repo: "znc-playback",
             rev: "8dd128bfe2b24b2cc6a9ea2e2d28bfaa28d2a833",
             hash: "sha256-/hmwhrWDYGzjfmTeCB4mk+FABAJNZvREnuxzvzl6uo4=",
           })))),
         meta: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           description: "Advanced playback module for ZNC",
           homepage: "https://github.com/jpnurmi/znc-playback",
           license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         })),
       })))),
     privmsg: nix.thunk(() => nix.app(zncDerivation, nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         pname: "znc-privmsg",
         version: "0-unstable-2017-04-28",
         module_name: "privmsg",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             owner: "kylef",
             repo: "znc-contrib",
             rev: "f6724a4a3b16b050088adde0cbeed74f189e5044",
             hash: "sha256-KBd78ucRFbgV/jILS1OSsZqqKyjT4RmBfiBTKX8bbUY=",
           })))),
         meta: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           description: "ZNC privmsg module",
           homepage: "https://github.com/kylef/znc-contrib",
           license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -252,20 +252,20 @@ runHook postInstall
         const version = "1.1.0";
         const module_name = "push";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             owner: "jreese",
             repo: "znc-push",
             tag: nix.thunk(() => nix.str`v${version}`),
             hash: "sha256-OS2nIU/DlESpJT82cWhb75TizSO7LQr74CMz09ulKyQ=",
           }))));
         const meta = nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           description: "Push notification service module for ZNC",
           homepage: "https://github.com/jreese/znc-push",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
           maintainers: [],
         }));
-        return { __proto__: pos$30, pname, version, module_name, src, meta };
+        return { [nix.POS]: pos$30, pname, version, module_name, src, meta };
       })()))),
   };
 })(), formals$1);

@@ -11,25 +11,25 @@ const pos$5 = nix.positions(here + "/nixops.nix", [["deployment", 10, 7], ["impo
 const pos$6 = nix.positions(here + "/nixops.nix", [["network", 2, 3], ["server", 7, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$6,
+  [nix.POS]: pos$6,
   network: nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     description: "Legacy Network using <nixpkgs> and legacy state.",
-    storage: nix.thunk(() => ({ __proto__: pos$1, legacy: nix.thunk(() => ({})) })),
+    storage: nix.thunk(() => ({ [nix.POS]: pos$1, legacy: nix.thunk(() => ({})) })),
   })),
   server: nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const lib = nix.arg($, "lib");
     const pkgs = nix.arg($, "pkgs");
     return {
-      __proto__: pos$5,
-      deployment: nix.thunk(() => ({ __proto__: pos$3, targetEnv: "none" })),
+      [nix.POS]: pos$5,
+      deployment: nix.thunk(() => ({ [nix.POS]: pos$3, targetEnv: "none" })),
       imports: nix.thunk(() => [
         nix.path(here, "./base-configuration.nix"),
         nix.thunk(() => nix.app(nix.sel(lib, "modules", "importJSON"), nix.path(here, "./server-network.json"))),
       ]),
       environment: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         systemPackages: nix.thunk(() => [
           nix.thunk(() => nix.sel(pkgs, "hello")),
           nix.thunk(() => nix.sel(pkgs, "figlet")),

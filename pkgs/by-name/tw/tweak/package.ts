@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tweak",
       version: "3.02",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.chiark.greenend.org.uk/~sgtatham/tweak/tweak-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "06js54pr5hwpwyxj77zs5s40n5aqvaw48dkj7rid2d47pyqijk2v",
         })))),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "substituteInPlace Makefile --replace '$(DESTDIR)/usr/local' $out",
       makeFlags: nix.thunk(() => ["CC:=$(CC)", "LINK:=$(CC)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Efficient hex editor",
         homepage: "http://www.chiark.greenend.org.uk/~sgtatham/tweak",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

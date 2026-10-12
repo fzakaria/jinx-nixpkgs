@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cutecom",
       version: "0.60.0-RC1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cutecom",
           repo: "cutecom",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, nix.thunk(() => nix.sel(qt6, "wrapQtAppsHook"))]),
       postInstall: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "mkdir -p $out/Applications\n" : "cd ..\nmkdir -p \"$out\"/share/{applications,icons/hicolor/scalable/apps,man/man1}\ncp cutecom.desktop \"$out/share/applications\"\ncp images/cutecom.svg \"$out/share/icons/hicolor/scalable/apps\"\ncp cutecom.1 \"$out/share/man/man1\"\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Graphical serial terminal",
         homepage: "https://gitlab.com/cutecom/cutecom/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

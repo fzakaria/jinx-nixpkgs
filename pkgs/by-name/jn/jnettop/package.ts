@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const glib = nix.arg($, "glib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "jnettop",
       version: "0.13.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://jnettop.kubs.info/dist/jnettop-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1855np7c4b0bqzhf1l1dyzxb90fpnvrirdisajhci5am6als31z9",
         })))),
@@ -34,12 +34,12 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./no-dns-resolution.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://sources.debian.net/data/main/j/jnettop/0.13.0-1/debian/patches/0001-Use-64-bit-integers-for-byte-totals-support-bigger-u.patch",
             sha256: "1b0alc12sj8pzcb66f8xslbqlbsvq28kz34v6jfhbb1q25hyr7jg",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "ncurses-6.3.patch",
             url: "https://sourceforge.net/p/jnettop/patches/5/attachment/jnettop-0.13.0-ncurses-6.3.patch",
             sha256: "1a0g3bal6f2fh1sq9q5kfwljrnskfvrhdzhjadcds34gzsr26v7x",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preConfigure: "autoconf ",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Network traffic visualizer",
         longDescription: "Jnettop is a traffic visualiser, which captures traffic going\nthrough the host it is running from and displays streams sorted\nby bandwidth they use.\n",
         homepage: "https://sourceforge.net/projects/jnettop/",

@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const wrapQtAppsHook = nix.thunk(() => nix.attr(libsForQt5, "wrapQtAppsHook"));
   const qtwayland = nix.thunk(() => nix.attr(libsForQt5, "qtwayland"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mgba",
       version: "0.10.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mgba-emu",
           repo: "mgba",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "qtWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://mgba.io",
         description: "Modern GBA emulator with a focus on accuracy",
         longDescription: "mGBA is a new Game Boy Advance emulator written in C.\n\nThe project started in April 2013 with the goal of being fast enough to\nrun on lower end hardware than other emulators support, without\nsacrificing accuracy or portability. Even in the initial version, games\ngenerally play without problems. It is loosely based on the previous\nGBA.js emulator, although very little of GBA.js can still be seen in mGBA.\n\nOther goals include accurate enough emulation to provide a development\nenvironment for homebrew software, a good workflow for tool-assist\nrunners, and a modern feature set for emulators that older emulators may\nnot support.\n",

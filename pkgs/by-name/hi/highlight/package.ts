@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const gcc = nix.arg($, "gcc");
   const self = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "highlight",
       version: "4.21",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "saalen",
           repo: "highlight",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ install -m644 extras/swig/highlight.{so,pm} $out/${nix.sel(perl, "libPrefix")}
 make -C extras/swig clean # Clean up intermediate files.
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Source code highlighting tool",
         mainProgram: "highlight",
         homepage: "http://www.andre-simon.de/doku/highlight/en/highlight.php",

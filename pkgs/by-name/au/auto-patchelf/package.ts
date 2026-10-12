@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pythonEnv = nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "pyelftools"))]));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "auto-patchelf",
       version: "0-unstable-2024-08-14",
       buildInputs: nix.thunk(() => [pythonEnv]),
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ninstall -Dm755 auto-patchelf.py $out/bin/auto-patchelf\n\nrunHook postInstall\n",
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Automatically patch ELF binaries using patchelf",
         mainProgram: "auto-patchelf",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

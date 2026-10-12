@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cfdg";
       const version = "3.4.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MtnViewJohn",
           repo: "context-free",
           rev: nix.thunk(() => nix.str`Version${version}`),
@@ -41,7 +41,7 @@ cp *.txt $out/share/doc/${pname}-${version}
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Context-free design grammar - a tool for graphics generation",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -53,7 +53,7 @@ runHook postInstall
         mainProgram: "cfdg",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

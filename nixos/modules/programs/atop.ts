@@ -43,25 +43,25 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "atop"));
   return {
-    __proto__: pos$32,
+    [nix.POS]: pos$32,
     options: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       programs: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         atop: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Atop, a tool for monitoring system resources")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "atop", nix.thunk(() => ({})))),
           netatop: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to install and enable the netatop kernel module.\nNote: this sets the kernel taint flag \"O\" for loading out-of-tree modules.\n",
               })))),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(lib, "types", "package")),
                 default: nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "netatop")),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.boot.kernelPackages.netatop")),
@@ -69,70 +69,70 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           atopgpu: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to install and enable the atopgpud daemon to get information about\nNVIDIA gpus.\n",
               })))),
           })),
           setuidWrapper: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to install a setuid wrapper for Atop. This is required to use some of\nthe features as non-root user (e.g.: ipc information, netatop, atopgpu).\nAtop tries to drop the root privileges shortly after starting.\n",
               })))),
           })),
           atopService: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Whether to enable the atop service responsible for storing statistics for\nlong-term analysis.\n",
               })))),
           })),
           atopRotateTimer: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Whether to enable the atop-rotate timer, which restarts the atop service\ndaily to make sure the data files are rotate.\n",
               })))),
           })),
           atopacctService: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Whether to enable the atopacct service which manages process accounting.\nThis allows Atop to gather data about processes that disappeared in between\ntwo refresh intervals.\n",
               })))),
           })),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(lib, "types", "attrs")),
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$14, flags: "a1f", interval: 5n })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$14, flags: "a1f", interval: 5n })),
               description: "Parameters to be written to {file}`/etc/atoprc`.\n",
             })))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => (() => {
-        const atop = nix.thunk(() => (nix.asBool(nix.sel(cfg, "atopgpu", "enable")) ? nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({ __proto__: pos$19, withAtopgpu: true }))) : nix.sel(cfg, "package")));
+        const atop = nix.thunk(() => (nix.asBool(nix.sel(cfg, "atopgpu", "enable")) ? nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({ [nix.POS]: pos$19, withAtopgpu: true }))) : nix.sel(cfg, "package")));
         return {
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           environment: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             etc: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "settings"), {})), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 atoprc: nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   text: nix.thunk(() => nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (n) => (v) => nix.str`${n} ${nix.builtins.toString(v)}
 `, nix.thunk(() => nix.sel(cfg, "settings")))))),
                 })),
@@ -143,7 +143,7 @@ export default nix.lambda((args) => (() => {
             ]),
           })),
           boot: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             extraModulePackages: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "netatop", "enable")), nix.thunk(() => nix.sel(cfg, "netatop", "package")))),
             ]),
@@ -151,7 +151,7 @@ export default nix.lambda((args) => (() => {
           systemd: nix.thunk(() => (() => {
             const mkSystemd = (type) => (name) => (restartTriggers) => nix.attrsDyn({}, [
               [nix.force(name), nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 restartTriggers: restartTriggers,
                 wantedBy: nix.thunk(() => [
                   nix.thunk(() => (nix.asBool(nix.eq(type, "services")) ? "multi-user.target" : (nix.asBool(nix.eq(type, "timers")) ? "timers.target" : null))),
@@ -161,16 +161,16 @@ export default nix.lambda((args) => (() => {
             const mkService = nix.thunk(() => nix.app(mkSystemd, "services"));
             const mkTimer = nix.thunk(() => nix.app(mkSystemd, "timers"));
             return {
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               packages: nix.thunk(() => [
                 atop,
                 nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "netatop", "enable")), nix.thunk(() => nix.sel(cfg, "netatop", "package")))),
               ]),
               services: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                   nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "atopService", "enable")), nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.app(mkService, "atop", nix.thunk(() => [atop]))), nix.thunk(() => ({
-                        __proto__: pos$26,
+                        [nix.POS]: pos$26,
                         atop: nix.thunk(() => ({
-                          __proto__: pos$25,
+                          [nix.POS]: pos$25,
                           preStart: nix.thunk(() => nix.str`set -e -u
 shopt -s nullglob
 rm -f "$LOGPATH"/atop_*.new
@@ -197,11 +197,11 @@ done
             };
           })()),
           security: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             wrappers: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "setuidWrapper", "enable")), nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 atop: nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   setuid: true,
                   owner: "root",
                   group: "root",

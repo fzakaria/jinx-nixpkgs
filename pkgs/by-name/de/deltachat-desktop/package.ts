@@ -39,36 +39,36 @@ export default nix.lambda((args) => (() => {
   const deltachat_rpc_server$ = nix.thunk(() => nix.app(nix.sel(deltachat_rpc_server, "overrideAttrs"), nix.thunk(() => (() => {
       const version = "2.62.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chatmail",
           repo: "core",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-qjbxxcOvHkb8g4IMWXYXmnYhbEx3G5ptiysOvpTcCCI=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: "chatmail-core",
           version: version,
           src: src,
           hash: "sha256-ceXhO8/k3+dphPQ74S+ZgEZzUWjgqBm6wcePvTqxHrE=",
         }))));
-      return { __proto__: pos$3, version, src, cargoDeps };
+      return { [nix.POS]: pos$3, version, src, cargoDeps };
     })())));
   const electron = electron_43;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: "deltachat-desktop",
       version: "2.62.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "deltachat",
           repo: "deltachat-desktop",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-9n10t0wTraJCFD9S73JTLTj+xMMHaU28e+qrr6GMcqA=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => nix.concat([yq, makeWrapper, nodejs, pkg_config, pnpmConfigHook, pnpm_10, python3], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [copyDesktopItems])))),
       env: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
         SKIP_FUSES: true,
         VERSION_INFO_GIT_REF: nix.thunk(() => nix.sel(finalAttrs, "src", "tag")),
@@ -128,7 +128,7 @@ install -Dt "$out/share/icons/hicolor/scalable/apps" images/tray/deltachat.svg
 runHook postInstall
 `),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             name: "deltachat",
             exec: "deltachat %u",
             icon: "deltachat",
@@ -146,14 +146,14 @@ runHook postInstall
             ]),
           })))))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         tests: nix.thunk(() => ({
-          __proto__: pos$9,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$8, package: deltachat_desktop })))),
+          [nix.POS]: pos$9,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$8, package: deltachat_desktop })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         description: "Email-based instant messaging for Desktop",
         homepage: "https://github.com/deltachat/deltachat-desktop",
         changelog: nix.thunk(() => nix.str`https://github.com/deltachat/deltachat-desktop/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

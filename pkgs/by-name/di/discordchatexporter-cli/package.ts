@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "discordchatexporter-cli",
       version: "2.48",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tyrrrz",
           repo: "discordchatexporter",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,9 +34,9 @@ export default nix.lambda((args) => (() => {
       postFixup: "ln -s $out/bin/DiscordChatExporter.Cli $out/bin/discordchatexporter-cli\n",
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./updater.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./updater.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/Tyrrrz/DiscordChatExporter/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Tool to export Discord chat logs to a file",
         homepage: "https://github.com/Tyrrrz/DiscordChatExporter",

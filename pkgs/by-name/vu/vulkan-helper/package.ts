@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const vulkan_loader = nix.arg($, "vulkan-loader");
   const addDriverRunpath = nix.arg($, "addDriverRunpath");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vulkan-helper",
       version: "0-unstable-2023-12-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "imLinguin",
           repo: "vulkan-helper-rs",
           rev: "04b290c92febcfd6293fcf4730ce3bba55cd9ce0",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
 addDriverRunpath $out/bin/vulkan-helper
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple CLI app used to interface with basic Vulkan APIs",
         homepage: "https://github.com/imLinguin/vulkan-helper-rs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

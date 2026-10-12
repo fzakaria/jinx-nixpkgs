@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "goocanvas",
       version: "2.0.4",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/goocanvas/2.0/goocanvas-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "141fm7mbqib0011zmkv3g8vxcjwa7hypmq71ahdyhnj2sjvy4a67",
         })))),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk3, cairo, glib]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "goocanvas-2.0.4-Fix-building-with-GCC-14.patch",
             hash: "sha256-9uqqC1uKZF9TDz5dfDTKSRCmjEiuvqkLnZ9w6U+q2TI=",
             url: "https://src.fedoraproject.org/rpms/goocanvas2/raw/e799612a277262a0c6bd03db10a6ee9ca7871b9c/f/goocanvas-2.0.4-Fix-building-with-GCC-14.patch",
@@ -48,14 +48,14 @@ export default nix.lambda((args) => (() => {
       ]),
       configureFlags: nix.thunk(() => ["--disable-python"]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         PKG_CONFIG_GOBJECT_INTROSPECTION_1_0_GIRDIR: "$(dev)/share/gir-1.0",
         PKG_CONFIG_GOBJECT_INTROSPECTION_1_0_TYPELIBDIR: "$(out)/lib/girepository-1.0",
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             attrPath: nix.thunk(() => nix.str`goocanvas_${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
             packageName: "goocanvas",
             versionPolicy: "odd-unstable",
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Canvas widget for GTK based on the the Cairo 2D library",
         homepage: "https://gitlab.gnome.org/Archive/goocanvas",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2")),

@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const packages = nix.arg($, "packages");
   const xmonadEnv = nix.thunk(() => nix.app(ghcWithPackages, (self) => nix.concat([nix.thunk(() => nix.sel(self, "xmonad"))], nix.app(packages, self))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "xmonad-with-packages",
       version: nix.thunk(() => nix.attr(xmonadEnv, "version")),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),

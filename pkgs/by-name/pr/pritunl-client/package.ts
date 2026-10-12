@@ -37,14 +37,14 @@ export default nix.lambda((args) => (() => {
   const withWireguard = nix.argOr($, "withWireguard", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   const version = "1.4.4752.50";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "pritunl",
       repo: "pritunl-client",
       rev: version,
       sha256: "sha256-BJWm+nuqt9+wqmFsYqJap9vHvMQIusCnH4k8UzBjfbs=",
     }))));
   const cli = nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pritunl-cli",
       version: version,
       src: src,
@@ -52,12 +52,12 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-2QR6WDg/y4fScK5Z/Z+M3H8G5Rlwi2RlrkhNBv6mYM0=",
       postInstall: "mv $out/bin/cli $out/bin/pritunl-client\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
     }))));
   const service = nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "pritunl-client-service",
       version: version,
       src: src,
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.add("mv $out/bin/service $out/bin/pritunl-client-service\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "mkdir -p $out/lib/systemd/system/\ncp $src/resources_linux/pritunl-client.service $out/lib/systemd/system/\nsubstituteInPlace $out/lib/systemd/system/pritunl-client.service \\\n  --replace-warn \"/usr\" \"$out\"\n"))),
       postFixup: nix.thunk(() => (() => {
         const hookScriptsDeps = nix.thunk(() => nix.concat([coreutils, which, gnused, gnugrep], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [openresolv, systemd, iproute2]))));
-        const openvpn_wrapped = nix.thunk(() => nix.app(runCommand, "openvpn-wrapped", nix.thunk(() => ({ __proto__: pos$4, nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`mkdir -p $out/bin
+        const openvpn_wrapped = nix.thunk(() => nix.app(runCommand, "openvpn-wrapped", nix.thunk(() => ({ [nix.POS]: pos$4, nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`mkdir -p $out/bin
 makeWrapper ${openvpn}/bin/openvpn $out/bin/openvpn \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), hookScriptsDeps)} \\
   --add-flags "--setenv PATH \\$PATH"
@@ -81,12 +81,12 @@ makeWrapper ${openvpn}/bin/openvpn $out/bin/openvpn \\
 `));
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "pritunl-client",
       version: version,
       src: src,
@@ -117,11 +117,11 @@ substituteInPlace $out/share/applications/pritunl-client-electron.desktop \\
   --replace-fail "/usr/lib/pritunl_client_electron/Pritunl" "$out/bin/pritunl-client-electron"
 `))), "# install shell completions for pritunl-client\ninstallShellCompletion --cmd pritunl-client \\\n  --bash <($out/bin/pritunl-client completion bash) \\\n  --fish <($out/bin/pritunl-client completion fish) \\\n  --zsh <($out/bin/pritunl-client completion zsh)\n\nrunHook postInstall\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Pritunl OpenVPN client",
         homepage: "https://client.pritunl.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

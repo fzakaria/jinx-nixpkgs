@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "ipatool",
       version: "2.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "majd",
           repo: "ipatool",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,12 +42,12 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postInstall: "installShellCompletion --cmd ipatool \\\n  --bash <($out/bin/ipatool completion bash) \\\n  --fish <($out/bin/ipatool completion fish) \\\n  --zsh <($out/bin/ipatool completion zsh)\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               package: ipatool,
               command: "ipatool --version",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Command-line tool that allows searching and downloading app packages (known as ipa files) from the iOS App Store",
         homepage: "https://github.com/majd/ipatool",
         changelog: nix.thunk(() => nix.str`https://github.com/majd/ipatool/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const symlinkJoin = nix.arg($, "symlinkJoin");
   const writeTextDir = nix.arg($, "writeTextDir");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tree-sitter-config",
       version: "1.0.0",
       pyproject: true,
       "build-system": nix.thunk(() => [hatchling]),
       src: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "tree-sitter-config-source",
           paths: nix.thunk(() => [
             nix.thunk(() => nix.app(writeTextDir, "pyproject.toml", nix.thunk(() => nix.str`[build-system]
@@ -38,7 +38,7 @@ name = "tree_sitter_config"
 version = "${nix.sel(finalAttrs, "version")}"
 `))),
             nix.thunk(() => nix.app(runCommand, "tree_sitter_config/__init__.py", nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 nativeBuildInputs: nix.thunk(() => [datamodel_code_generator]),
               })), nix.thunk(() => nix.str`mkdir -p $out/tree_sitter_config
 datamodel-codegen \\
@@ -53,7 +53,7 @@ datamodel-codegen \\
       pythonImportsCheck: nix.thunk(() => ["tree_sitter_config"]),
       dependencies: nix.thunk(() => nix.concat([pydantic], nix.sel(pydantic, "optional-dependencies", "email"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python types for tree-sitter.json",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {

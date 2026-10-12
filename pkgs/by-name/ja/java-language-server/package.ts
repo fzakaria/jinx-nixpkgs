@@ -18,17 +18,17 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const platform = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? "linux" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "mac" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows")) ? "windows" : nix.builtins.throw("unsupported platform")))));
   return nix.app(nix.sel(maven, "buildMavenPackage"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "java-language-server",
       version: "0.2.49",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "georgewfraser",
           repo: "java-language-server",
           rev: "58daaa29a0e2fe22764283607da6801cf8b493b9",
           hash: "sha256-rHtnsZxcZKq1IGZJXE8nkv2iyS09kuNlqaVsRWpMwjM=",
         })))),
-      mvnFetchExtraArgs: nix.thunk(() => ({ __proto__: pos$2, dontConfigure: true })),
+      mvnFetchExtraArgs: nix.thunk(() => ({ [nix.POS]: pos$2, dontConfigure: true })),
       mvnJdk: jdk25_headless,
       mvnHash: "sha256-mSjz5OM/tMZuiX4kmB1DprvQuIP4EzeDpAr4oQ5T11s=",
       nativeBuildInputs: nix.thunk(() => [jdk25_headless, makeWrapper]),
@@ -53,7 +53,7 @@ makeWrapper $out/share/java/java-language-server/lang_server_${platform}.sh $out
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Java language server based on v3.0 of the protocol and implemented using the Java compiler API",
         mainProgram: "java-language-server",
         homepage: "https://github.com/georgewfraser/java-language-server",

@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ltfat";
       const version = "2.6.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ltfat/ltfat/releases/download/v${version}/${pname}-${version}-of.tar.gz`),
           sha256: "sha256-FMDZ8XFhLG7KDoUjtXvafekg6tSltwBaO0+//jMzJj4=",
         }))));
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         jdk,
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: "The Large Time-Frequency Analysis Toolbox",
         homepage: "https://gnu-octave.github.io/packages/ltfat/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         longDescription: "The Large Time/Frequency Analysis Toolbox (LTFAT) is a Matlab/Octave\ntoolbox for working with time-frequency analysis, wavelets and signal\nprocessing. It is intended both as an educational and a computational\ntool. The toolbox provides a large number of linear transforms including\nGabor and wavelet transforms along with routines for constructing windows\n(filter prototypes) and routines for manipulating coefficients.\n",
         broken: true,
       }));
-      return { __proto__: pos$3, pname, version, src, buildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

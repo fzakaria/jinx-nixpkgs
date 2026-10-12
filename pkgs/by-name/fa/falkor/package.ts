@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const commandLineArgs = nix.argOr($, "commandLineArgs", () => "");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "falkor",
       version: "0.1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://github.com/Team-Falkor/falkor/releases/download/v0.1.0-alpha/Falkor.deb",
           hash: "sha256-L1EBJ49+g7n6NtKs1BTBD30glL/K0SerL/k5Dl2SgqM=",
         })))),
@@ -43,7 +43,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), electron)} $out/bin/falkor \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Electron-based gaming hub",
         homepage: "https://github.com/Team-Falkor/falkor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

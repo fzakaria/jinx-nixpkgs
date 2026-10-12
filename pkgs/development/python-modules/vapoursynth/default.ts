@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const unittestCheckHook = nix.arg($, "unittestCheckHook");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vapoursynth",
       format: "setuptools",
       version: nix.thunk(() => nix.attr(vapoursynth, "version")),
@@ -25,9 +25,9 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [unittestCheckHook]),
       unittestFlagsArray: nix.thunk(() => ["-s", "test", "-p", "'*test.py'"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         withPlugins: (plugins) => nix.app(nix.sel(python, "pkgs", "vapoursynth", "override"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             vapoursynth: nix.thunk(() => nix.app(nix.sel(vapoursynth, "withPlugins"), plugins)),
           }))),
       })),

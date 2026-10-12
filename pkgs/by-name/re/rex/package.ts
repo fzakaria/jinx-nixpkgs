@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "Rex";
       const version = "1.14.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://cpan/authors/id/F/FE/FERKI/Rex-${version}.tar.gz`),
           hash: "sha256-An0wQu+UC2dZDlmJ6W8irh5nunRIlcXdPbVpwFE3Alw=",
         }))));
@@ -47,22 +47,22 @@ export default nix.lambda((args) => (() => {
       })());
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/RexOps/Rex/commit/c71f3b255dac8f929abea46913798f132566af55.patch",
             hash: "sha256-S2tF3IZ96QrxDN3HfBk7RWDZcEwukQYAkSId51dATiU=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/RexOps/Rex/commit/2782e80bb9789d3afb42e08904c28a4366a58334.patch",
             hash: "sha256-htm39fF2tumG5b5E1ZBRX5n3vRaZZZzn2lfSN1omP8s=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/RexOps/Rex/commit/ec72c8d1fdddf9116afdb21091100fe7cc20f41a.patch",
             hash: "sha256-a/Sns2f596dbAWbuIveNldc/V3MwR08/ocXVgx0Tbcw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://github.com/RexOps/Rex/commit/f0b312f42178e7e4271b5b010c00efb5cdba2970.patch",
             hash: "sha256-n/+huVCM8zpgx2LZgMB41PPIYgNhF6AK8+4FGPQH+FU=",
           })))),
@@ -105,7 +105,7 @@ installShellCompletion --name _rex --zsh ./share/rex-tab-completion.zsh
 installShellCompletion --name rex --bash ./share/rex-tab-completion.bash
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://www.rexify.org",
         description: "Friendly automation framework",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -115,7 +115,7 @@ installShellCompletion --name rex --bash ./share/rex-tab-completion.bash
         })()),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

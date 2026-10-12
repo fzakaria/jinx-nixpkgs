@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const nix_update = nix.arg($, "nix-update");
   const version = "1.3.2";
   const withSubprojects = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "sources-with-subprojects",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vivictorg",
           repo: "vivictpp",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       outputHash: "sha256-RQRlH+wByWRfVyVR/kjjUm9/fLXUupd2yRK80FogzRM=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "vivictpp",
       version: version,
       src: withSubprojects,
@@ -57,13 +57,13 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [SDL2, libx11, SDL2_ttf, freetype, harfbuzz, ffmpeg, zlib]),
       preConfigure: "patchShebangs .\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-vivictpp", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix_update)} vivictpp.src
 ${nix.app(nix.sel(lib, "getExe"), nix_update)} vivictpp --version skip
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Easy to use tool for subjective comparison of the visual quality of different encodings of the same video source",
         homepage: "https://github.com/vivictorg/vivictpp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

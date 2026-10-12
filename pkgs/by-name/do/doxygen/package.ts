@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const fmt = nix.arg($, "fmt");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "doxygen",
       version: "1.17.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "doxygen",
           repo: "doxygen",
           tag: nix.thunk(() => nix.str`Release_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "examples"]),
       postInstall: "cp -r ../examples $examples\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         homepage: "https://www.doxygen.nl",
         changelog: "https://www.doxygen.nl/manual/changelog.html",

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libredirect = nix.arg($, "libredirect");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zarf",
       version: "0.83.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zarf-dev",
           repo: "zarf",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))), nix.thunk(() => nix.str`export NIX_REDIRECTS=/etc/protocols=${iana_etc}/etc/protocols:/etc/services=${iana_etc}/etc/services`)), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "export K9S_LOGS_DIR=$(mktemp -d)\ninstallShellCompletion --cmd zarf \\\n  --bash <($out/bin/zarf completion bash) \\\n  --fish <($out/bin/zarf completion fish) \\\n  --zsh  <($out/bin/zarf completion zsh)\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "DevSecOps for Air Gap & Limited-Connection Systems. https://zarf.dev",
         mainProgram: "zarf",
         homepage: "https://zarf.dev",

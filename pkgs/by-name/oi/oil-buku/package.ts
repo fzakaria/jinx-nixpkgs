@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "oil-buku";
       const version = "0.3.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AndreiUlmeyda",
           repo: "oil",
           rev: version,
@@ -44,7 +44,7 @@ substituteInPlace src/format-columns.awk --replace \\
     --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [peco]))}
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Search-as-you-type cli frontend for the buku bookmarks manager using peco",
         homepage: "https://github.com/AndreiUlmeyda/oil",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -53,7 +53,7 @@ substituteInPlace src/format-columns.awk --replace \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         const src_1 = nix.thunk(() => nix.attr(attrs, "src"));
         const name = nix.thunk(() => nix.str`${toolName}-${version_1}`);
         const meta = nix.thunk(() => nix.update({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           homepage: "http://bitscope.com/software/",
           sourceProvenance: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
@@ -56,7 +56,7 @@ cp -a usr/* "$out/"
 ${nix.app(wrapBinary, libs, nix.thunk(() => nix.sel(attrs, "toolName")))}
 `, "installPhase"));
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           version: version_1,
           src: src_1,
           name,
@@ -69,12 +69,12 @@ ${nix.app(wrapBinary, libs, nix.thunk(() => nix.sel(attrs, "toolName")))}
         };
       })())));
     return nix.update(nix.app(buildFHSEnv, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: nix.thunk(() => nix.sel(attrs, "toolName")),
         version: nix.thunk(() => nix.attr(attrs, "version")),
         runScript: nix.thunk(() => nix.str`${nix.sel(pkg, "outPath")}/bin/${nix.sel(attrs, "toolName")}`),
       }))), {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       meta: nix.thunk(() => nix.attr(pkg, "meta")),
       name: nix.thunk(() => nix.attr(pkg, "name")),
     });

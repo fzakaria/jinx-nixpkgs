@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.9";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: "radio_beam",
           hash: "sha256-m1/qe8ybJlQyE3hGM7MugWMMnAhVB3t6v0tGz42E5kQ=",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, matplotlib, pytest_astropy]);
       const pythonImportsCheck = nix.thunk(() => ["radio_beam"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tools for Beam IO and Manipulation",
         homepage: "http://radio-astro-tools.github.io",
         changelog: nix.thunk(() => nix.str`https://github.com/radio-astro-tools/radio-beam/releases/tag/v${version}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

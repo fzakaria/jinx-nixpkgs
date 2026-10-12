@@ -24,10 +24,10 @@ export default nix.lambda((args) => (() => {
     const rootPaths = nix.arg($_1, "rootPaths");
     nix.assert_(nix.app(nix.sel(lib, "elem"), compression, nix.thunk(() => ["none", "xz", "zstd"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/binary-cache/default.nix:24:1");
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: name,
         __structuredAttrs: true,
-        exportReferencesGraph: nix.thunk(() => ({ __proto__: pos$1, closure: rootPaths })),
+        exportReferencesGraph: nix.thunk(() => ({ [nix.POS]: pos$1, closure: rootPaths })),
         preferLocalBuild: true,
         nativeBuildInputs: nix.thunk(() => nix.concat([coreutils, jq, python3, nix$], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(compression, "xz")), xz), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(compression, "zstd")), zstd)))),
         buildCommand: nix.thunk(() => nix.str`mkdir -p $out/nar

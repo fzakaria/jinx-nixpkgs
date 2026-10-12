@@ -29,30 +29,30 @@ export default nix.lambda((args) => (() => {
   const jenkinsCfg = nix.thunk(() => nix.sel(config, "services", "jenkins"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "jenkins", "jobBuilder"));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         jenkins: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           jobBuilder: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the Jenkins Job Builder (JJB) service. It\nallows defining jobs for Jenkins in a declarative manner.\n\nJobs managed through the Jenkins WebUI (or by other means) are left\nunchanged.\n\nNote that it really is declarative configuration; if you remove a\npreviously defined job, the corresponding job directory will be\ndeleted.\n\nPlease see the Jenkins Job Builder documentation for more info:\n<https://jenkins-job-builder.readthedocs.io/>\n")),
             accessUser: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 default: "admin",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "User id in Jenkins used to reload config.\n",
               })))),
             accessToken: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 default: "",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "User token in Jenkins used to reload config.\nWARNING: This token will be world readable in the Nix store. To keep\nit secret, use the {option}`accessTokenFile` option instead.\n",
               })))),
             accessTokenFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 default: nix.thunk(() => nix.str`${nix.sel(config, "services", "jenkins", "home")}/secrets/initialAdminPassword`),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${config.services.jenkins.home}/secrets/initialAdminPassword\"")),
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
@@ -60,21 +60,21 @@ export default nix.lambda((args) => (() => {
                 description: "File containing the API token for the {option}`accessUser`\nuser.\n",
               })))),
             yamlJobs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 default: "",
                 type: nix.thunk(() => nix.sel(lib, "types", "lines")),
                 example: "- job:\n    name: jenkins-job-test-1\n    builders:\n      - shell: echo 'Hello world!'\n",
                 description: "Job descriptions for Jenkins Job Builder in YAML format.\n",
               })))),
             jsonJobs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 default: [],
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[\n  ''\n    [ { \"job\":\n        { \"name\": \"jenkins-job-test-2\",\n          \"builders\": [ \"shell\": \"echo 'Hello world!'\" ]\n        }\n      }\n    ]\n  ''\n]\n")),
                 description: "Job descriptions for Jenkins Job Builder in JSON format.\n",
               })))),
             nixJobs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 default: [],
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "attrs")))),
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ { job =\n    { name = \"jenkins-job-test-3\";\n      builders = [\n        { shell = \"echo 'Hello world!'\"; }\n      ];\n    };\n  }\n]\n")),
@@ -85,10 +85,10 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(jenkinsCfg, "enable")) && nix.asBool(nix.sel(cfg, "enable")))), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             assertion: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "accessUser"), "")) ? (nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "accessToken"), "")) && nix.asBool(nix.eq(nix.sel(cfg, "accessTokenFile"), "")))) || nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "accessToken"), "")) && nix.asBool(!nix.eq(nix.sel(cfg, "accessTokenFile"), ""))))) : true)),
             message: nix.thunk(() => nix.str`One of accessToken and accessTokenFile options must be non-empty
 strings, but not both. Current values:
@@ -98,11 +98,11 @@ strings, but not both. Current values:
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             "jenkins-job-builder": nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "Jenkins Job Builder Service",
               after: nix.thunk(() => ["jenkins.service"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -206,7 +206,7 @@ done
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "accessUser"), "")), reloadScript));
               })()),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 Type: "oneshot",
                 User: nix.thunk(() => nix.sel(jenkinsCfg, "user")),
                 RuntimeDirectory: "jenkins-job-builder",

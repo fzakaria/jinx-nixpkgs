@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "tt-rss",
       version: "0-unstable-2025-11-01",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://github.com/tt-rss/tt-rss.git",
           rev: "912162ad811869af334232d32fe6c79b3cf095ca",
           hash: "sha256-2U9V4MTWGNZzdVr9AlH/S7KdBGPap+mm5/KieWLcF1A=",
@@ -39,12 +39,12 @@ echo "${nix.sel(finalAttrs, "version")}" > $out/version_static.txt
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$2, "tt-rss": nix.thunk(() => nix.attr(nixosTests, "tt-rss")) })),
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$3, hardcodeZeroVersion: true })))),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, "tt-rss": nix.thunk(() => nix.attr(nixosTests, "tt-rss")) })),
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Web-based news feed (RSS/Atom) aggregator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         homepage: "https://tt-rss.org",

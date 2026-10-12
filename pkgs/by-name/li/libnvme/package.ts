@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const systemd = nix.arg($, "systemd");
   const withDocs = nix.argOr($, "withDocs", () => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libnvme",
       version: "1.16.1",
       outputs: nix.thunk(() => nix.concat(["out"], nix.app(nix.sel(lib, "optionals"), withDocs, nix.thunk(() => ["man"])))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linux-nvme",
           repo: "libnvme",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +57,7 @@ substituteInPlace test/sysfs/tree-diff.sh test/config/config-diff.sh \\
       preConfigure: "export KBUILD_BUILD_TIMESTAMP=\"$(date -u -d @$SOURCE_DATE_EPOCH)\"\n",
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isMusl"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C Library for NVM Express on Linux",
         homepage: "https://github.com/linux-nvme/libnvme",
         maintainers: nix.thunk(() => (() => {

@@ -28,21 +28,21 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "nix", "gc"));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       nix: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         gc: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           automatic: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Automatically run the garbage collector at a specific time.",
             })))),
           dates: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "singleLineStr")), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))));
@@ -53,21 +53,21 @@ export default nix.lambda((args) => (() => {
               description: "How often or when garbage collection is performed. For most desktop and server systems\na sufficient garbage collection is once a week.\n\nThis value must be a calendar event in the format specified by\n{manpage}`systemd.time(7)`.\n",
             })))),
           randomizedDelaySec: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: "0",
               type: nix.thunk(() => nix.sel(lib, "types", "singleLineStr")),
               example: "45min",
               description: "Add a randomized delay before each garbage collection.\nThe delay will be chosen between zero and this value.\nThis value must be a time span in the format specified by\n{manpage}`systemd.time(7)`\n",
             })))),
           persistent: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: true,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               example: false,
               description: "Takes a boolean argument. If true, the time when the service\nunit was last triggered is stored on disk. When the timer is\nactivated, the service unit is triggered immediately if it\nwould have been triggered at least once during the time when\nthe timer was inactive. Such triggering is nonetheless\nsubject to the delay imposed by RandomizedDelaySec=. This is\nuseful to catch up on missed runs of the service when the\nsystem was powered down.\n",
             })))),
           options: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: "",
               example: "--max-freed $((64 * 1024**3))",
               type: nix.thunk(() => nix.sel(lib, "types", "singleLineStr")),
@@ -77,33 +77,33 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       assertions: nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "automatic")) || nix.asBool(nix.sel(config, "nix", "enable")))),
           message: "nix.gc.automatic requires nix.enable",
         })),
       ]),
       systemd: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         services: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           "nix-gc": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "nix", "enable")), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "Nix Garbage Collector",
               script: nix.thunk(() => nix.str`exec ${nix.sel(config, "nix", "package", "out")}/bin/nix-collect-garbage ${nix.sel(cfg, "options")}`),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$10, Type: "oneshot" })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$10, Type: "oneshot" })),
               startAt: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "automatic")), nix.thunk(() => nix.sel(cfg, "dates")))),
               restartIfChanged: false,
             })))),
         })),
         timers: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           "nix-gc": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "automatic")), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               timerConfig: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 RandomizedDelaySec: nix.thunk(() => nix.sel(cfg, "randomizedDelaySec")),
                 Persistent: nix.thunk(() => nix.sel(cfg, "persistent")),
               })),

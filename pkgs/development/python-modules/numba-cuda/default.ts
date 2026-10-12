@@ -42,16 +42,16 @@ export default nix.lambda((args) => (() => {
   const cudartInclude = nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getInclude"), nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart")))}/include`);
   const ccclInclude = nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getInclude"), nix.thunk(() => nix.sel(cudaPackages, "cccl")))}/include`);
   return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       stdenv: nix.thunk(() => nix.sel(cudaPackages, "backendStdenv")),
     })), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "numba-cuda",
       version: "0.30.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "NVIDIA",
           repo: "numba-cuda",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./nvidia-libs-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             cudartInclude: cudartInclude,
             cccl: ccclInclude,
             libcudart: nix.thunk(() => nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart")))),
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
 `)),
       "build-system": nix.thunk(() => [numpy, setuptools]),
       dependencies: nix.thunk(() => [cuda_bindings, cuda_core, cuda_pathfinder, numba, packaging]),
-      env: nix.thunk(() => ({ __proto__: pos$4, NUMBA_ENABLE_CUDASIM: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$4, NUMBA_ENABLE_CUDASIM: "1" })),
       pythonImportsCheck: nix.thunk(() => ["numba_cuda"]),
       nativeCheckInputs: nix.thunk(() => [
         cffi,
@@ -94,21 +94,21 @@ export default nix.lambda((args) => (() => {
 `), "mv conftest.py numba_cuda_pytest_plugin.py\n"), "echo \"import os; os.environ['NIX_PYTHONPATH'] = '$NIX_PYTHONPATH'\" \\\n  > nix_pythonpath_plugin.py\n")),
       pytestFlags: nix.thunk(() => ["-pnix_pythonpath_plugin", "-pnumba_cuda_pytest_plugin", "-ofilterwarnings="]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         gpuCheck: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (old) => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             requiredSystemFeatures: nix.thunk(() => ["cuda"]),
             nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(old, "nativeBuildInputs"), [
               nix.thunk(() => nix.sel(cudaPackages, "cuda_cuobjdump")),
               nix.thunk(() => nix.sel(cudaPackages, "cuda_nvcc")),
             ])),
             buildInputs: nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), [nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart"))])),
-            env: nix.thunk(() => nix.update(nix.sel(old, "env"), { __proto__: pos$5, NUMBA_ENABLE_CUDASIM: "0" })),
+            env: nix.thunk(() => nix.update(nix.sel(old, "env"), { [nix.POS]: pos$5, NUMBA_ENABLE_CUDASIM: "0" })),
             preCheck: nix.thunk(() => nix.add(nix.sel(old, "preCheck"), "make GPU_CC=$(python -c \\\n  'from numba import cuda; print(\"%d%d\" % cuda.get_current_device().compute_capability)')\n")),
           }))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "The CUDA target for Numba",
         homepage: "https://github.com/NVIDIA/numba-cuda",
         changelog: nix.thunk(() => nix.str`https://github.com/NVIDIA/numba-cuda/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

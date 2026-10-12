@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const samba = nix.arg($, "samba");
   const gtest = nix.arg($, "gtest");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gnome-commander",
       version: "1.18.6",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           owner: "GNOME",
           repo: "gnome-commander",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [gtest]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fast and powerful twin-panel file manager for the Linux desktop",
         homepage: "https://gcmd.github.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

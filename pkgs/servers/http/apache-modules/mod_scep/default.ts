@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mod_scep";
       const version = "0.2.4";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://redwax.eu/dist/rs/${pname}-${version}.tar.gz`),
           hash: "sha256-HFPQ1A3ULtT2MduIQZS1drdQvCdZqJqKpOsJLEw67sI=",
         }))));
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       const configureFlags = nix.thunk(() => nix.attr(mod_ca, "configureFlags"));
       const installFlags = nix.thunk(() => nix.attr(mod_ca, "installFlags"));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ __proto__: pos$2, url: "https://redwax.eu/dist/rs/" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, url: "https://redwax.eu/dist/rs/" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "RedWax CA service modules for SCEP (Automatic ceritifcate issue/renewal)",
         homepage: "https://redwax.eu",
         changelog: "https://source.redwax.eu/projects/RS/repos/mod_scep/browse/ChangeLog",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

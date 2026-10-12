@@ -22,14 +22,14 @@ export default nix.lambda((args) => (() => {
     const cleanupCmds = nix.argOr($_1, "cleanupCmds", () => "");
     const shell = nix.argOr($_1, "shell", () => nix.str`${nix.sel(pkgs, "bashInteractive")}/bin/bash --norc`);
     return nix.app(mkDerivation, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         buildInputs: buildInputs,
         propagatedBuildInputs: propagatedBuildInputs,
         name: nix.thunk(() => nix.str`env-${name}`),
         phases: nix.thunk(() => ["buildPhase", "fixupPhase"]),
         setupNew: nix.path(here, "../../stdenv/generic/setup.sh"),
         buildPhase: nix.thunk(() => (() => {
-          const initialPath = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../stdenv/generic/common-path.nix")), nix.thunk(() => ({ __proto__: pos$1, pkgs: pkgs }))));
+          const initialPath = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../stdenv/generic/common-path.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, pkgs: pkgs }))));
           return nix.str`set -x
 mkdir -p "$out/dev-envs" "$out/nix-support" "$out/bin"
 s="$out/nix-support/setup-new-modified"

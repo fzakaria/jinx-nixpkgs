@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const c_siphash = nix.arg($, "c-siphash");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.8",
       pname: "siphash24",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dnicolodi",
           repo: "python-siphash24",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["test.py"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/dnicolodi/python-siphash24",
         description: "Streaming-capable SipHash Implementation",
         changelog: nix.thunk(() => nix.str`https://github.com/dnicolodi/python-siphash24/releases/tag/v${nix.sel(finalAttrs, "version")}`),

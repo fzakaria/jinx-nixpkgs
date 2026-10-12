@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const pname = "celeste64";
       const version = "1.1.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "Celeste64",
           owner: "ExOK",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
       const postInstall = "export ICON_DIR=$out/share/icons/hicolor/256x256/apps\nmkdir -p $ICON_DIR\n\ncp -r $src/Content $out/lib/$pname/\ncp $src/Content/Models/Sources/logo1.png $ICON_DIR/Celeste64.png\n";
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "Celeste64",
             exec: "Celeste64",
             comment: nix.thunk(() => nix.sel(meta, "description")),
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
           return [
@@ -95,7 +95,7 @@ export default nix.lambda((args) => (() => {
         downloadPage: "https://maddymakesgamesinc.itch.io/celeste64",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

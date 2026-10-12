@@ -41,12 +41,12 @@ export default nix.lambda((args) => (() => {
     const dmdBootstrap = nix.argOr($_1, "dmdBootstrap", () => nix.app(callPackage, nix.path(here, "./bootstrap.nix"), nix.thunk(() => ({}))));
     const dmdBin = nix.argOr($_1, "dmdBin", () => nix.str`${dmdBootstrap}/bin`);
     const dmdConfFile = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name: "dmd.conf",
         text: nix.thunk(() => nix.app(nix.sel(lib, "generators", "toINI"), nix.thunk(() => ({})), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             Environment: nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               DFLAGS: nix.thunk(() => nix.str`-I@out@/include/dmd -L-L@out@/lib -fPIC ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(targetPackages, "stdenv", "cc", "isClang"))), "-L--export-dynamic")}`),
             })),
           })))),
@@ -55,13 +55,13 @@ export default nix.lambda((args) => (() => {
     const osname = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "osx" : nix.sel(stdenv, "hostPlatform", "parsed", "kernel", "name")));
     const pathToDmd = nix.thunk(() => nix.str`\${NIX_BUILD_TOP}/dmd/generated/${osname}/release/${bits}/dmd`);
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname: "dmd",
         version: version,
         enableParallelBuilding: true,
         srcs: nix.thunk(() => [
           nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               owner: "dlang",
               repo: "dmd",
               rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
               name: "dmd",
             })))),
           nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               owner: "dlang",
               repo: "phobos",
               rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
         hardeningDisable: nix.thunk(() => ["fortify"]),
         patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "2.088.0")), nix.thunk(() => [
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 url: "https://github.com/dlang/dmd/commit/c4d33e5eb46c123761ac501e8c52f33850483a8a.patch",
                 stripLen: 1n,
                 extraPrefix: "dmd/",
@@ -149,9 +149,9 @@ runHook postInstall
         preFixup: nix.thunk(() => nix.str`find $out/bin -type f -exec ${removeReferencesTo}/bin/remove-references-to -t ${dmdBin}/dmd '{}' +
 `),
         disallowedReferences: nix.thunk(() => [dmdBootstrap]),
-        passthru: nix.thunk(() => ({ __proto__: pos$7, dmdBootstrap: dmdBootstrap })),
+        passthru: nix.thunk(() => ({ [nix.POS]: pos$7, dmdBootstrap: dmdBootstrap })),
         meta: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           description: "Official reference compiler for the D language",
           homepage: "https://dlang.org/",
           changelog: nix.thunk(() => nix.str`https://dlang.org/changelog/${nix.sel(finalAttrs, "version")}.html`),

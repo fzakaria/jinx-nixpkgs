@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fs-uae-launcher",
       version: "3.1.70",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://fs-uae.net/files/FS-UAE-Launcher/Stable/${nix.sel(finalAttrs, "version")}/fs-uae-launcher-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-yvJ8sa44V13SEUJ6C9SgS+N2ZFH5+20TTL2ICY9A36c=",
         })))),
@@ -52,7 +52,7 @@ ln -s ${fsuae}/bin/fs-uae-device-helper $out/bin
 ln -s ${fsuae}/share/fs-uae $out/share/fs-uae
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://fs-uae.net",
         description: "Graphical front-end for the FS-UAE emulator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

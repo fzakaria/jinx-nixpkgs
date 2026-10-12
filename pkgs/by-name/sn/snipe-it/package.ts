@@ -18,14 +18,14 @@ export default nix.lambda((args) => (() => {
   const php84 = nix.arg($, "php84");
   const php = php84;
   return nix.app(nix.sel(php, "buildComposerProject2"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "snipe-it",
       version: "8.7.2",
       patches: nix.thunk(() => [
         nix.path(here, "./0001-Fix-backup-restoration-when-using-a-unix-socket.patch"),
       ]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "grokability",
           repo: "snipe-it",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,12 +51,12 @@ chmod +x $snipe_it_out/artisan
 substituteInPlace $snipe_it_out/config/database.php --replace-fail "env('DB_DUMP_PATH', '/usr/local/bin')" "env('DB_DUMP_PATH', '${mariadb}/bin')"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         tests: nix.thunk(() => nix.sel(nixosTests, "snipe-it")),
         phpPackage: php,
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Free open source IT asset/license management system",
         longDescription: "Snipe-IT was made for IT asset management, to enable IT departments to track\nwho has which laptop, when it was purchased, which software licenses and accessories\nare available, and so on.\nDetails for snipe-it can be found on the official website at https://snipeitapp.com/.\n",
         homepage: "https://snipeitapp.com/",

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const linux_doc = nix.arg($, "linux-doc");
   const libxcb = nix.arg($, "libxcb");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "systeroid",
       version: "0.4.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "orhun",
           repo: "systeroid",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libxcb]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "More powerful alternative to sysctl(8) with a terminal user interface",
         homepage: "https://github.com/orhun/systeroid",
         changelog: nix.thunk(() => nix.str`https://github.com/orhun/systeroid/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

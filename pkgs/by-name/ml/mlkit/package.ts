@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const mlton = nix.arg($, "mlton");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mlkit",
       version: "4.7.22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "melsman",
           repo: "mlkit",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       dontCheckForBrokenSymlinks: true,
       checkPhase: "runHook preCheck\necho ==== Running MLKit test suite: test ====\nmake -C test_dev test\necho ==== Running MLKit test suite: test_prof ====\nmake -C test_dev test_prof\necho ==== Running Barry test suite ====\nmake -C test/barry\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Standard ML Compiler and Toolkit",
         homepage: "https://elsman.com/mlkit/",
         changelog: nix.thunk(() => nix.str`https://github.com/melsman/mlkit/blob/v${nix.sel(finalAttrs, "version")}/NEWS.md`),

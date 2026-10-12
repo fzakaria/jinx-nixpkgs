@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gede";
       const version = "2.22.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jhn98032",
           repo: "gede",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -44,7 +44,7 @@ wrapProgram $out/bin/gede \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [ctags, gdb]))}
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Graphical frontend (GUI) to GDB",
         mainProgram: "gede",
         homepage: "http://gede.dexar.se",
@@ -56,7 +56,7 @@ wrapProgram $out/bin/gede \\
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

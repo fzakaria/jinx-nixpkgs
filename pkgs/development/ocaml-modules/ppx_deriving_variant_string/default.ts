@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const ppxlib = nix.arg($, "ppxlib");
   const ounit2 = nix.arg($, "ounit2");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ppx_deriving_variant_string",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ahrefs/ppx_deriving_variant_string/releases/download/${nix.sel(finalAttrs, "version")}/ppx_deriving_variant_string-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-24m53iwGHbRfTzxiAN055CJ3zLzZ4Syl2Wi28UDlTBQ=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.12")),
       checkInputs: nix.thunk(() => [ounit2]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/ahrefs/ppx_deriving_variant_string",
         description: "OCaml PPX deriver that generates converters between regular or polymorphic variants and strings.",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

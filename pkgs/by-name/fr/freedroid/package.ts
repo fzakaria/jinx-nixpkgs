@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pname = "freedroid";
       const version = "1.2.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ReinhardPrix",
           repo: "FreedroidClassic",
           rev: nix.thunk(() => nix.str`release-${version}`),
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [copyDesktopItems, imagemagick, autoreconfHook]);
       const buildInputs = nix.thunk(() => [SDL, SDL_image, SDL_gfx, SDL_mixer, libjpeg, libpng, libvorbis, zlib]);
       const postPatch = "touch NEWS\n";
-      const env = nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" }));
       const postInstall = "mkdir -p $out/share/icons/hicolor/32x32/apps\nconvert graphics/paraicon.bmp $out/share/icons/hicolor/32x32/apps/freedroid.png\n";
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: pname,
             exec: pname,
             icon: pname,
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Clone of the classic game 'Paradroid' on Commodore 64",
         mainProgram: "freedroid",
         homepage: "https://github.com/ReinhardPrix/FreedroidClassic",
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

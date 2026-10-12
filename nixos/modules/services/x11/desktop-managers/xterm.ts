@@ -26,19 +26,19 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "xserver", "desktopManager", "xterm"));
   const xSessionEnabled = nix.thunk(() => nix.sel(config, "services", "xserver", "enable"));
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         xserver: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           desktopManager: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             xterm: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                   default: nix.thunk(() => (nix.asBool(nix.app(nix.lookup(w, "versionOlder"), nix.thunk(() => nix.sel(config, "system", "stateVersion")), "19.09")) && nix.asBool(xSessionEnabled))),
                   defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "versionOlder config.system.stateVersion \"19.09\" && config.services.xserver.enable;")),
@@ -50,15 +50,15 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         services: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           xserver: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             desktopManager: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               session: nix.thunk(() => nix.app(nix.lookup(w, "singleton"), nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   name: "xterm",
                   start: nix.thunk(() => nix.str`${nix.sel(pkgs, "xterm")}/bin/xterm -ls &
 waitPID=$!
@@ -68,7 +68,7 @@ waitPID=$!
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "xterm"))]),
         })),
       })))),

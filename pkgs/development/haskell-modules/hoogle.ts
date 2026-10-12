@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
     const docPackages = nix.thunk(() => nix.app(nix.sel(lib, "closePropagation"), nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.app(nix.sel(lib, "getOutput"), "doc")), packages))));
     const databasePath = "share/doc/hoogle/default.hoo";
     return nix.app(nix.sel(buildPackages, "stdenv", "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         name: "hoogle-with-packages",
         buildInputs: nix.thunk(() => [ghc, hoogle]),
         preferLocalBuild: true,
@@ -51,7 +51,7 @@ done
 echo importing other packages
 ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (el) => nix.str`ln -sfn ${nix.sel(el, "haddockDir")} "$out/share/doc/hoogle/${nix.sel(el, "name")}"
 `, nix.thunk(() => nix.app(nix.sel(lib, "filter"), (el) => !nix.eq(nix.sel(el, "haddockDir"), null), nix.thunk(() => nix.builtins.map((p) => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 haddockDir: nix.thunk(() => (nix.asBool(nix.has(p, "haddockDir")) ? nix.app(nix.sel(p, "haddockDir"), p) : null)),
                 name: nix.thunk(() => nix.sel(p, "pname")),
               }), docPackages)))))}
@@ -86,12 +86,12 @@ chmod +x $out/bin/hoogle
 `),
         __structuredAttrs: true,
         passthru: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           isHaskellLibrary: false,
           docPackages: docPackages,
           database: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/${databasePath}`),
           tests: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "can-search-database": nix.thunk(() => nix.app(runCommand, "can-search-database", nix.thunk(() => ({})), nix.thunk(() => nix.str`# This succeeds even if no results are found, but \`Prelude.map\` should
 # always be available.
 ${nix.sel(finalAttrs, "finalPackage")}/bin/hoogle search Prelude.map > $out
@@ -100,7 +100,7 @@ ${nix.sel(finalAttrs, "finalPackage")}/bin/hoogle search Prelude.map > $out
           })),
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           description: "Local Hoogle database",
           platforms: nix.thunk(() => nix.sel(ghc, "meta", "platforms")),
           hydraPlatforms: nix.thunk(() => (() => {

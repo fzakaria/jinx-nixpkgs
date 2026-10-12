@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(buildGhidraExtension, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ghidra-firmware-utils",
       version: "2026.01.14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "al3xtjames",
           repo: "ghidra-firmware-utils",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-FEjcqsisMvmNCQikon/3EEkLEtgKmGRBl/WwZebP+/A=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Ghidra utilities for analyzing PC firmware",
         homepage: "https://github.com/al3xtjames/ghidra-firmware-utils",
         downloadPage: nix.thunk(() => nix.str`https://github.com/al3xtjames/ghidra-firmware-utils/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hb-honeypot",
       version: "0-unstable-2024-02-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "D3vil0p3r",
           repo: "hb-honeypot",
           rev: "06ca7336bfb7deca54eae2cee239496d26f21b5b",
@@ -34,7 +34,7 @@ makeWrapper ${perl}/bin/perl $out/bin/hb-honeypot \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Script that listens on TCP port 443 and responds with completely bogus SSL heartbeat responses",
         mainProgram: "hb-honeypot",
         homepage: "https://github.com/D3vil0p3r/hb-honeypot",

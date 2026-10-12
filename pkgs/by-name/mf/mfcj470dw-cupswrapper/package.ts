@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mfcj470dw-cupswrapper";
       const version = "3.0.0-1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf006866/mfcj470dw_cupswrapper_GPL_source_${version}.tar.gz`),
           sha256: "b88f9b592723a00c024129560367f40a560ca3cba06fd99512ab368dd6855853",
         }))));
@@ -55,7 +55,7 @@ ln -s ${mfcj470dwlpr}/lib/cups/filter/brother_lpdwrapper_mfcj470dw $FILTERFOLDER
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.brother.com/",
         description: "Brother MFC-J470DW CUPS wrapper driver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -64,7 +64,7 @@ runHook postInstall
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "yochai"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

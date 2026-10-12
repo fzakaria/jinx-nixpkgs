@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mutt-wizard";
       const version = "3.3.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LukeSmithxyz",
           repo: "mutt-wizard",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -24,13 +24,13 @@ export default nix.lambda((args) => (() => {
         }))));
       const makeFlags = nix.thunk(() => ["PREFIX=$(out)"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "System for automatically configuring mutt and isync",
         homepage: "https://github.com/LukeSmithxyz/mutt-wizard",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
-      return { __proto__: pos$3, pname, version, src, makeFlags, meta };
+      return { [nix.POS]: pos$3, pname, version, src, makeFlags, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

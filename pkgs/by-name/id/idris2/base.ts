@@ -9,6 +9,6 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const mkPrelude = nix.arg($, "mkPrelude");
   const prelude = nix.arg($, "prelude");
-  return nix.app(mkPrelude, nix.thunk(() => ({ __proto__: pos$1, name: "base", dependencies: nix.thunk(() => [prelude]) })));
+  return nix.app(mkPrelude, nix.thunk(() => ({ [nix.POS]: pos$1, name: "base", dependencies: nix.thunk(() => [prelude]) })));
 })(), formals$1);
 //# sourceMappingURL=base.ts.map

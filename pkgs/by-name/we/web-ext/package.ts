@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "web-ext";
       const version = "10.7.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mozilla",
           repo: "web-ext",
           rev: version,
@@ -29,16 +29,16 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-ygV+NcwX77G3hnyjJEdoJWiMgQXUl9+vNylWRzL/zcQ=";
       const npmBuildFlags = nix.thunk(() => ["--production"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           help: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-tests`), nix.thunk(() => ({})), nix.thunk(() => nix.str`${web_ext}/bin/web-ext --help
 touch $out
 `))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Command line tool to help build, run, and test web extensions",
         homepage: "https://github.com/mozilla/web-ext",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
@@ -46,7 +46,7 @@ touch $out
         maintainers: [],
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

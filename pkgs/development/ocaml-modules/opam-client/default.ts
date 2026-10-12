@@ -18,14 +18,14 @@ export default nix.lambda((args) => (() => {
   const opam_state = nix.arg($, "opam-state");
   const re = nix.arg($, "re");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "opam-client",
       src: nix.thunk(() => nix.attr(opam, "src")),
       version: nix.thunk(() => nix.attr(opam, "version")),
       configureFlags: nix.thunk(() => ["--disable-checks"]),
       propagatedBuildInputs: nix.thunk(() => [base64, cmdliner, opam_repository, opam_solver, opam_state, re]),
       meta: nix.thunk(() => nix.update(nix.sel(opam, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Actions on the opam root, switches, installations, and front-end",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
   const poppler = nix.arg($, "poppler");
   const udev = nix.arg($, "udev");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fbida",
       version: "2.15-1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kraxel",
           repo: "fbida",
           tag: nix.thunk(() => nix.str`fbida-${nix.sel(finalAttrs, "version")}`),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       patchPhase: "runHook prePatch\n\npatchShebangs scripts/*.pl\npatchShebangs scripts/*.sh\n\nsed -i -E \\\n  -e '/^jpeg_run[[:space:]]*=.*$/d' \\\n  -e \"/^jpeg_ver[[:space:]]*=.*$/c\\\\jpeg_ver = '62'\" \\\n  meson.build\n\nrunHook postPatch\n",
       makeFlags: nix.thunk(() => ["HOST=nix"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Image viewing and manipulation programs including fbi, fbgs, ida, exiftran and thumbnail.cgi",
         homepage: "https://www.kraxel.org/blog/linux/fbida/",
         downloadPage: "https://gitlab.com/kraxel/fbida/",

@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sound-juicer";
       const version = "3.40.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/sound-juicer/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/sound-juicer-${version}.tar.xz`),
           sha256: "LuiCdEORvrTG1koPaCX7dlUQtwbsK3BL+0LkKvquHeY=",
         }))));
@@ -57,11 +57,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(gst_all_1, "gst-libav")),
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: pname })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: pname })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Gnome CD Ripper",
         mainProgram: "sound-juicer",
         homepage: "https://gitlab.gnome.org/GNOME/sound-juicer",
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

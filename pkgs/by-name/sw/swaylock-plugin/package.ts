@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const wayland_protocols = nix.arg($, "wayland-protocols");
   const wayland_scanner = nix.arg($, "wayland-scanner");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "swaylock-plugin",
       version: "1.8.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mstoeckl",
           repo: "swaylock-plugin",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -60,11 +60,11 @@ export default nix.lambda((args) => (() => {
 `),
       mesonFlags: nix.thunk(() => ["-Dpam=enabled", "-Dgdk-pixbuf=enabled", "-Dman-pages=enabled"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Screen locker for Wayland, forked from swaylock",
         longDescription: "swaylock-plugin is a fork of swaylock, a screen locking utility for Wayland compositors.\nOn top of the usual swaylock features, it allow you to use a\nsubcommand to generate the lockscreen background.\n\nImportant note: You need to set \"security.pam.services.swaylock-plugin = {};\" manually.\n",
         homepage: "https://github.com/mstoeckl/swaylock-plugin",

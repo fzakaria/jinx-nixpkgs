@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.9.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "omnilib",
           repo: "ufmt",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -49,14 +49,14 @@ export default nix.lambda((args) => (() => {
         usort,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         lsp: nix.thunk(() => [pygls]),
         ruff: nix.thunk(() => [ruff_api]),
       }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([unittestCheckHook, versionCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["ufmt"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Safe, atomic formatting with black and usort",
         homepage: "https://github.com/omnilib/ufmt",
         changelog: nix.thunk(() => nix.str`https://github.com/omnilib/ufmt/blob/v${version}/CHANGELOG.md`),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "ufmt",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

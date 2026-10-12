@@ -46,48 +46,48 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.str`-httpAuth.username=${nix.sel(cfg, "basicAuthUsername")}`),
     ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(cfg, "basicAuthPasswordFile"), null)), nix.thunk(() => ["-httpAuth.password=file://%d/basic_auth_password"])))));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         victoriatraces: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(mkEnableOption, "VictoriaTraces is an open source distributed traces storage and query engine from VictoriaMetrics")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "victoriatraces", nix.thunk(() => ({})))),
           listenAddress: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: ":10428",
               type: nix.thunk(() => nix.sel(types, "str")),
               description: "TCP address to listen for incoming http requests.\n",
             })))),
           stateDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "victoriatraces",
               description: "Directory below `/var/lib` to store VictoriaTraces data.\nThis directory will be created automatically using systemd's StateDirectory mechanism.\n",
             })))),
           retentionPeriod: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "7d",
               example: "30d",
               description: "Retention period for trace data. Data older than retentionPeriod is automatically deleted.\n",
             })))),
           basicAuthUsername: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "Basic Auth username used to protect VictoriaTraces instance by authorization\n",
             })))),
           basicAuthPasswordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "File that contains the Basic Auth password used to protect VictoriaTraces instance by authorization\n",
             })))),
           extraOptions: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: [],
               example: nix.thunk(() => nix.app(literalExpression, "[\n  \"-loggerLevel=WARN\"\n  \"-retention.maxDiskSpaceUsageBytes=1073741824\"\n]\n")),
@@ -97,26 +97,26 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             assertion: nix.thunk(() => (nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "basicAuthUsername"), null)) && nix.asBool(nix.eq(nix.sel(cfg, "basicAuthPasswordFile"), null)))) || nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "basicAuthUsername"), null)) && nix.asBool(!nix.eq(nix.sel(cfg, "basicAuthPasswordFile"), null)))))),
             message: "Both basicAuthUsername and basicAuthPasswordFile must be set together to enable basicAuth functionality, or neither should be set.",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             victoriatraces: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "VictoriaTraces distributed traces database",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               startLimitBurst: 5n,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => [
                     nix.thunk(() => nix.app(escapeShellArgs, nix.thunk(() => nix.concat(startCLIList, [
                         nix.thunk(() => nix.str`-retentionPeriod=${nix.sel(cfg, "retentionPeriod")}`),

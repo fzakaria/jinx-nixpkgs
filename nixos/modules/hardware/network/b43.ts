@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const kernelVersion = nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "kernel", "version"));
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       networking: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         enableB43Firmware: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             default: false,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             description: "Turn on this option if you want firmware for the NICs supported by the b43 module.\n",
@@ -31,9 +31,9 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "networking", "enableB43Firmware")), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         hardware: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           firmware: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "b43Firmware_5_1_138"))]),
         })),
       })))),

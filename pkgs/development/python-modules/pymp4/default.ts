@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const construct = nix.arg($, "construct");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pymp4",
       version: "1.4.0-unstable-2023-08-07",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "devine-dl",
           repo: "pymp4",
           rev: "33dc5d620f361cb49d713b60dcb2686ab8696f91",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["pymp4"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library for parsing and manipulating MP4 files",
         homepage: "https://github.com/devine-dl/pymp4",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

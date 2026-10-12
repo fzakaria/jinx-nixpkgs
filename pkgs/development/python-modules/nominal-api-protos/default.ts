@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1073.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: "nominal_api_protos",
           hash: "sha256-jI7V34IyfY6bwzUvcOi6tdQI+OkJRMdhmNq0rosMjR4=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [protobuf, grpcio, grpcio_tools]);
       const pythonImportsCheck = nix.thunk(() => ["nominal_api_protos"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Generated protobuf client for the Nominal API",
         homepage: "https://pypi.org/project/nominal-api-protos/",
         maintainers: nix.thunk(() => (() => {
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

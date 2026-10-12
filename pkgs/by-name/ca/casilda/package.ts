@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const wlroots_0_20 = nix.arg($, "wlroots_0_20");
   const libxkbcommon = nix.arg($, "libxkbcommon");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "casilda",
       version: "1.2.2",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           owner: "jpu",
           repo: "casilda",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [gtk4]),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gitlab.gnome.org/jpu/casilda",
         description: "Simple Wayland compositor widget for Gtk 4 which can be used to embed other processes windows in Gtk 4 application",
         maintainers: nix.thunk(() => (() => {

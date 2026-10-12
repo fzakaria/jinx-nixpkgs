@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pname = "yubioath-flutter";
       const version = "7.4.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Yubico",
           repo: "yubioath-flutter",
           tag: version,
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const pubspecLock = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json")));
       const gitHashes = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         window_manager: "sha256-WKcNwEOthXj1S2lKlpdhy+r8JZslVqhwY2ywXeTSBEs=",
       }));
       const postPatch = nix.thunk(() => nix.str`rm -f pubspec.lock
@@ -75,16 +75,16 @@ substituteInPlace "$out/share/applications/com.yubico.yubioath.desktop" \\
       const extraWrapProgramArgs = nix.thunk(() => nix.str`--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gnome_screenshot]))}
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$7,
-        helper: nix.thunk(() => nix.app(nix.sel(python3Packages, "callPackage"), nix.path(here, "./helper.nix"), nix.thunk(() => ({ __proto__: pos$3, src: src, version: version, meta: meta })))),
-        pubspecSource: nix.thunk(() => nix.app(runCommand, "pubspec.lock.json", nix.thunk(() => ({ __proto__: pos$4, src: src, nativeBuildInputs: nix.thunk(() => [yq_go]) })), "yq eval --output-format=json --prettyPrint $src/pubspec.lock > \"$out\"\n")),
+        [nix.POS]: pos$7,
+        helper: nix.thunk(() => nix.app(nix.sel(python3Packages, "callPackage"), nix.path(here, "./helper.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, src: src, version: version, meta: meta })))),
+        pubspecSource: nix.thunk(() => nix.app(runCommand, "pubspec.lock.json", nix.thunk(() => ({ [nix.POS]: pos$4, src: src, nativeBuildInputs: nix.thunk(() => [yq_go]) })), "yq eval --output-format=json --prettyPrint $src/pubspec.lock > \"$out\"\n")),
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
-            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$5, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
-            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "yubioath-flutter.pubspecSource", nix.path(here, "./pubspec.lock.json")), { __proto__: pos$6, supportedFeatures: [] })),
+            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$5, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
+            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "yubioath-flutter.pubspecSource", nix.path(here, "./pubspec.lock.json")), { [nix.POS]: pos$6, supportedFeatures: [] })),
           ]))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Yubico Authenticator for Desktop",
         mainProgram: "yubioath-flutter",
         homepage: "https://github.com/Yubico/yubioath-flutter",
@@ -99,7 +99,7 @@ substituteInPlace "$out/share/applications/com.yubico.yubioath.desktop" \\
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux"]),
       }));
       return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname,
         version,
         src,

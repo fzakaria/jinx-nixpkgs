@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const gst_all_1 = nix.arg($, "gst_all_1");
   const frei0r = nix.arg($, "frei0r");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "kamoso",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),
       extraBuildInputs: nix.thunk(() => [
         kirigami_addons,
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-base")),
-        nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-good", "override"), nix.thunk(() => ({ __proto__: pos$1, qt6Support: true })))),
+        nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-good", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, qt6Support: true })))),
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-bad")),
       ]),
       qtWrapperArgs: nix.thunk(() => [nix.thunk(() => nix.str`--set FREI0R_PATH ${frei0r}/lib/frei0r-1`)]),

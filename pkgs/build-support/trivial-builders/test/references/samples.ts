@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const hello = nix.arg($, "hello");
   const zlib = nix.arg($, "zlib");
   return {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     figlet: figlet,
     hello: hello,
     zlib: zlib,
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
     helloRef: nix.thunk(() => nix.app(writeText, "hi", nix.thunk(() => nix.str`hello ${hello}`))),
     helloRefDup: nix.thunk(() => nix.app(writeText, "hi", nix.thunk(() => nix.str`hello ${hello}`))),
     path: nix.path(here, "./apath.txt"),
-    pathLike: nix.thunk(() => ({ __proto__: pos$1, outPath: nix.path(here, "./apath.txt") })),
+    pathLike: nix.thunk(() => ({ [nix.POS]: pos$1, outPath: nix.path(here, "./apath.txt") })),
     helloFigletRef: nix.thunk(() => nix.app(writeText, "hi", nix.thunk(() => nix.str`hello ${hello} ${figlet}`))),
     selfRef: nix.thunk(() => nix.app(runCommand, "self-ref-1", nix.thunk(() => ({})), "echo $out >$out")),
     selfRef2: nix.thunk(() => nix.app(runCommand, "self-ref-2", nix.thunk(() => ({})), nix.thunk(() => nix.str`echo "${figlet}, $out" >$out`))),

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "communi",
       version: "3.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "communi",
           repo: "communi-desktop",
           rev: "5d813dc6e64a623cd5d78f024c8a0720a5155a28",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "# Nix qmake does not add the bundle rpath by default.\ninstall_name_tool \\\n  -add_rpath @executable_path/../Frameworks \\\n  $out/Applications/Communi.app/Contents/MacOS/Communi\n\n# Do not remove until wrapQtAppsHook doesn't wrap dylibs in app bundles anymore\nwrapQtApp $out/Applications/Communi.app/Contents/MacOS/Communi\n" : "substituteInPlace \"$out/share/applications/communi.desktop\" \\\n  --replace \"/usr/bin\" \"$out/bin\"\n")),
       preFixup: "rm -rf lib\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple and elegant cross-platform IRC client",
         mainProgram: "communi",
         homepage: "https://github.com/communi/communi-desktop",

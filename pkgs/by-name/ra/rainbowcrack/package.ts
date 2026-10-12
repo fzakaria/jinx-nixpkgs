@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "rainbowcrack";
       const version = "1.8";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://project-rainbowcrack.com/rainbowcrack-${version}-linux64.zip`),
           hash: "sha256-xMC9teHiDvBY/VHV63TsNQjdcuLqHGeXUyjHvRTO9HQ=",
         }))));
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const installPhase = "install -Dm644 $out/rainbowcrack-1.8-linux64/*.txt $out/share/rainbowcrack\ninstall -Dm755 $out/rainbowcrack-1.8-linux64/rt* $out/rainbowcrack-1.8-linux64/rcrack $out/bin\nchmod +x $out/bin/*\nrm -rf $out/rainbowcrack-1.8-linux64\n";
       const runtimeDependencies = nix.thunk(() => [alglib]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Rainbow table generator used for password cracking",
         homepage: "http://project-rainbowcrack.com",
         maintainers: nix.thunk(() => (() => {
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["x86_64-linux64"]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

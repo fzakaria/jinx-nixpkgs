@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.10";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jeffkaufman",
           repo: "icdiff",
           tag: nix.thunk(() => nix.str`release-${version}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Improved colorized diff",
         homepage: "https://github.com/jeffkaufman/icdiff",
         changelog: nix.thunk(() => nix.str`https://github.com/jeffkaufman/icdiff/releases/tag/release-${version}/CHANGELOG.md`),
@@ -58,7 +58,7 @@ runHook postCheck
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

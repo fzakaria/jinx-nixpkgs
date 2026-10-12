@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
     const meta = nix.argOr($_1, "meta", () => ({}));
     const shellInit = nix.argOr($_1, "shellInit", () => null);
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => nix.update(nix.app(cleanArgs, args_2), {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: name,
         version: nix.thunk(() => nix.attr(core, "version")),
         src: core,
@@ -65,16 +65,16 @@ cp -p bin/${name} $out/bin/${name}
 `);
           })(), formals$3);
           return {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             shellInit: (shell) => (nix.asBool(nix.eq(shellInit, null)) ? "" : nix.app(initScript, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 program: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
                 shell: shell,
                 flags: nix.thunk(() => nix.selOr(shellInit, () => [], "flags")),
               })))),
           };
         })()),
-        meta: nix.thunk(() => nix.update(nix.sel(core, "meta"), nix.update({ __proto__: pos$3, mainProgram: name }, meta))),
+        meta: nix.thunk(() => nix.update(nix.sel(core, "meta"), nix.update({ [nix.POS]: pos$3, mainProgram: name }, meta))),
       }));
   })(), formals$2);
 })(), formals$1);

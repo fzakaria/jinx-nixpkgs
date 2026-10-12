@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
       const pname = "ostree-rs-ext";
       const version = "0.10.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ostreedev",
           repo: "ostree-rs-ext",
           rev: nix.thunk(() => nix.str`ostree-ext-v${version}`),
           hash: "sha256-kk/icUevzKMpAQ6IoruUxuKwTxXHlKLrr63Hch1w7po=",
         }))));
-      const cargoLock = nix.thunk(() => ({ __proto__: pos$2, lockFile: nix.path(here, "./Cargo.lock") }));
+      const cargoLock = nix.thunk(() => ({ [nix.POS]: pos$2, lockFile: nix.path(here, "./Cargo.lock") }));
       const postPatch = nix.thunk(() => nix.str`ln -s ${nix.path(here, "./Cargo.lock")} Cargo.lock
 `);
       const nativeBuildInputs = nix.thunk(() => [pkg_config, makeWrapper]);
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       const postInstall = nix.thunk(() => nix.str`wrapProgram "$out/bin/${nix.sel(meta, "mainProgram")}" --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [util_linux, skopeo, gnutar, ostree, ima_evm_utils]))}
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Rust library with higher level APIs on top of the core ostree API",
         homepage: "https://github.com/ostreedev/ostree-rs-ext",
         license: nix.thunk(() => (() => {
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "ostree-ext-cli",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

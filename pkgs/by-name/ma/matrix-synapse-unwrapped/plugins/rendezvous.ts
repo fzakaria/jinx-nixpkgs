@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.12";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "matrix-org",
           repo: "rust-http-rendezvous-server",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = nix.thunk(() => nix.str`cp ${nix.path(here, "./rendezvous-Cargo.lock")} Cargo.lock
 `);
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const buildAndTestSubdir = "synapse";
       const pythonImportsCheck = nix.thunk(() => ["matrix_http_rendezvous_synapse"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Implementation of MSC3886: Simple rendezvous capability",
         homepage: "https://github.com/matrix-org/rust-http-rendezvous-server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

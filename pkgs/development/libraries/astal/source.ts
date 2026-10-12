@@ -15,19 +15,19 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const originalDrv = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "Aylur",
       repo: "astal",
       rev: "fd94e333c8bd45557291c805f1df79d5f787d590",
       hash: "sha256-flVUft590tsDX9z97O4DzVFg6zvOOmGeYhPeDdaP1DI=",
     }))));
   return nix.app(nix.sel(originalDrv, "overrideAttrs"), (final) => (prev) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: nix.thunk(() => nix.str`${nix.sel(final, "pname")}-${nix.sel(final, "version")}`),
       pname: "astal-source",
       version: "0-unstable-2026-07-19",
       meta: nix.thunk(() => nix.update(nix.sel(prev, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Building blocks for creating custom desktop shells (source)",
         longDescription: "Please don't use this package directly, use one of subpackages in\n`astal` namespace. This package is just a `fetchFromGitHub`, which is\nreused between all subpackages.\n",
         maintainers: nix.thunk(() => (() => {
@@ -37,8 +37,8 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       })),
       passthru: nix.thunk(() => nix.update(nix.sel(prev, "passthru"), {
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$3, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
         src: originalDrv,
       })),
     }));

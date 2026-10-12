@@ -20,15 +20,15 @@ export default nix.lambda((args) => (() => {
   const help2man = nix.arg($, "help2man");
   const m4 = nix.arg($, "m4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "flex",
       version: "2.5.35",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/westes/flex/archive/flex-${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["-"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.tar.gz`),
           hash: "sha256-9XM3gfdIODfcZ338TpMCIxbc5lpOTIJV4KQt1KM1AHI=",
         })))),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })))),
       postPatch: "patchShebangs tests\n",
       nativeBuildInputs: nix.thunk(() => [flex, bison, texinfo, help2man, autoreconfHook]),
       propagatedBuildInputs: nix.thunk(() => [m4]),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         branch: "2.5.35",
         homepage: "https://flex.sourceforge.net/",
         description: "Fast lexical analyser generator",

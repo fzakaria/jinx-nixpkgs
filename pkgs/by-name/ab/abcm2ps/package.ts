@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const pango = nix.arg($, "pango");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "abcm2ps",
       version: "8.14.18",
       src: nix.thunk(() => nix.app(fetchfossil, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://chiselapp.com/user/moinejf/repository/abcm2ps",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-2nmKjLEZ9dTk+oE16gBm9iheVlLvQFvcdc5FPcxaq6M=",
@@ -34,18 +34,18 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [docutils, pkg_config]),
       buildInputs: nix.thunk(() => [freetype, pango]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "abcm2ps -V",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "http://moinejf.free.fr/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
         description: "Command line program which converts ABC to music sheet in PostScript or SVG format",

@@ -21,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const libb64 = nix.arg($, "libb64");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "msgpack-tools",
       version: "0.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ludocode",
           repo: "msgpack-tools",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-RT85vw6QeVkuNC2mtoT/BJyU0rdQVfz6ZBJf+ouY8vk=",
         })))),
       mpack: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://github.com/ludocode/mpack/archive/df17e83f0fa8571b9cd0d8ccf38144fa90e244d1.tar.gz",
           hash: "sha256-hyiXygbAHnNgF4TIg+DemBvtdBnSgJ7fAhknVuL+T/c=",
         })))),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./cmake-v4.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./use-nix-deps.patch"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             rapidjson: nix.thunk(() => nix.str`${rapidjson}`),
             libb64: nix.thunk(() => nix.str`${libb64}`),
           })))),
@@ -54,7 +54,7 @@ cp ${nix.sel(finalAttrs, "mpack")} $sourceRoot/contrib/mpack-df17e83f0fa8571b9cd
       versionCheckProgramArg: "-v",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Command-line tools for converting between MessagePack and JSON",
         homepage: "https://github.com/ludocode/msgpack-tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

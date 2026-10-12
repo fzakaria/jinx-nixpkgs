@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const year = "2017";
   const minor = "a";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "man-pages-posix",
       version: nix.thunk(() => nix.str`${year}${minor}`),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://kernel/linux/docs/man-pages/man-pages-posix/man-pages-posix-${year}-${minor}.tar.xz`),
           sha256: "ce67bb25b5048b20dad772e405a83f4bc70faf051afa289361c81f9660318bc3",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`MANDIR=${nix.builtins.placeholder("out")}/share/man`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "POSIX man-pages (0p, 1p, 3p)",
         homepage: "https://www.kernel.org/doc/man-pages/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

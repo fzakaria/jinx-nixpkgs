@@ -22,27 +22,27 @@ export default nix.lambda((args) => (() => {
       const pname = "bibtex-tidy";
       const version = "1.14.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FlamingTempura",
           repo: "bibtex-tidy",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-sMgy29deEfc3DFSC0Z4JZCeNAFpBKNYj+mJnFI1pSY4=",
         }))));
       const npmDepsHash = "sha256-FKde5/ZZcS5g0fUaDjhRlKGLiS8kk1PvkZw9PUmvAAE=";
-      const env = nix.thunk(() => ({ __proto__: pos$2, PUPPETEER_SKIP_DOWNLOAD: true }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PUPPETEER_SKIP_DOWNLOAD: true }));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: bibtex_tidy,
               version: nix.thunk(() => nix.str`v${version}`),
             })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         changelog: nix.thunk(() => nix.str`https://github.com/FlamingTempura/bibtex-tidy/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
         description: "Cleaner and Formatter for BibTeX files",
         mainProgram: "bibtex-tidy",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "bertof"))];
         })()),
       }));
-      return { __proto__: pos$7, pname, version, src, npmDepsHash, env, passthru, meta };
+      return { [nix.POS]: pos$7, pname, version, src, npmDepsHash, env, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

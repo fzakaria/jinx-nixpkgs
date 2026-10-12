@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ethtool",
       version: "7.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://kernel/software/network/ethtool/ethtool-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-TXjCbtwCVbyS9LmVtf1mEI11/5Zu1GlPYCWm03C8JJY=",
         })))),
@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libmnl]),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-ethtool", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p curl pcre2 common-updater-scripts\n\nset -eu -o pipefail\n\n# Expect the text in format of '<a href=\"ethtool-VER.tar.xz\">...</a>'\n# The page always lists versions newest to oldest. Pick the first one.\nnew_version=\"$(curl -s https://mirrors.edge.kernel.org/pub/software/network/ethtool/ |\n    pcre2grep -o1 '<a href=\"ethtool-([0-9.]+)[.]tar[.]xz\">' |\n    head -n1)\"\nupdate-source-version ethtool \"$new_version\"\n")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Utility for controlling network drivers and hardware",
         homepage: "https://www.kernel.org/pub/software/network/ethtool/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

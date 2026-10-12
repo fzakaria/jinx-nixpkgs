@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const libelf = nix.arg($, "libelf");
   const libprocstat = nix.arg($, "libprocstat");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "lib/librtld_db",
       extraPaths: nix.thunk(() => ["lib/libproc/libproc.h"]),
       outputs: nix.thunk(() => ["out", "man", "debug"]),

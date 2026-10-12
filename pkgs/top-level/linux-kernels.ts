@@ -58,15 +58,15 @@ export default nix.lambda((args) => (() => {
   const packageAliases = nix.thunk(() => nix.attr(linuxKernel, "packageAliases"));
   const vanillaPackages = nix.thunk(() => nix.attr(linuxKernel, "vanillaPackages"));
   return {
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     kernelPatches: nix.thunk(() => nix.app(callPackage, nix.path(here, "../os-specific/linux/kernel/patches.nix"), nix.thunk(() => ({})))),
     kernels: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(nix.sel(lib, "makeExtensible"), (self) => (() => {
           const w = nix.withScope(self, null);
           const callPackage_1 = nix.thunk(() => nix.app(newScope, self));
           return nix.update({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             linux_6_1: nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../os-specific/linux/kernel/mainline.nix"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 branch: "6.1",
                 kernelPatches: nix.thunk(() => [
                   nix.thunk(() => nix.sel(kernelPatches, "bridge_stp_helper")),
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
                 ]),
               })))),
             linux_6_6: nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../os-specific/linux/kernel/mainline.nix"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 branch: "6.6",
                 kernelPatches: nix.thunk(() => [
                   nix.thunk(() => nix.sel(kernelPatches, "bridge_stp_helper")),
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
                 ]),
               })))),
             linux_6_12: nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../os-specific/linux/kernel/mainline.nix"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 branch: "6.12",
                 kernelPatches: nix.thunk(() => [
                   nix.thunk(() => nix.sel(kernelPatches, "bridge_stp_helper")),
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
                 ]),
               })))),
             linux_6_18: nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../os-specific/linux/kernel/mainline.nix"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 branch: "6.18",
                 kernelPatches: nix.thunk(() => [
                   nix.thunk(() => nix.sel(kernelPatches, "bridge_stp_helper")),
@@ -99,7 +99,7 @@ export default nix.lambda((args) => (() => {
                 ]),
               })))),
             linux_7_2: nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../os-specific/linux/kernel/mainline.nix"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 branch: "7.2",
                 kernelPatches: nix.thunk(() => [
                   nix.thunk(() => nix.sel(kernelPatches, "bridge_stp_helper")),
@@ -108,7 +108,7 @@ export default nix.lambda((args) => (() => {
               })))),
             linux_testing: nix.thunk(() => (() => {
               const testing = nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../os-specific/linux/kernel/mainline.nix"), nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   branch: "testing",
                   kernelPatches: nix.thunk(() => [
                     nix.thunk(() => nix.sel(kernelPatches, "bridge_stp_helper")),
@@ -121,7 +121,7 @@ export default nix.lambda((args) => (() => {
             linux_default: nix.thunk(() => nix.sel(packageAliases, "linux_default", "kernel")),
             linux_latest: nix.thunk(() => nix.sel(packageAliases, "linux_latest", "kernel")),
             linux_zen: nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../os-specific/linux/kernel/zen-kernels.nix"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 kernelPatches: nix.thunk(() => [
                   nix.thunk(() => nix.sel(kernelPatches, "bridge_stp_helper")),
                   nix.thunk(() => nix.sel(kernelPatches, "request_key_helper")),
@@ -129,7 +129,7 @@ export default nix.lambda((args) => (() => {
               })))),
             xanmodKernels: nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../os-specific/linux/kernel/xanmod-kernels.nix"))),
             linux_xanmod: nix.thunk(() => nix.app(nix.lookup(w, "xanmodKernels"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 variant: "lts",
                 kernelPatches: nix.thunk(() => [
                   nix.thunk(() => nix.sel(kernelPatches, "bridge_stp_helper")),
@@ -137,7 +137,7 @@ export default nix.lambda((args) => (() => {
                 ]),
               })))),
             linux_xanmod_stable: nix.thunk(() => nix.app(nix.lookup(w, "xanmodKernels"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 variant: "main",
                 kernelPatches: nix.thunk(() => [
                   nix.thunk(() => nix.sel(kernelPatches, "bridge_stp_helper")),
@@ -145,7 +145,7 @@ export default nix.lambda((args) => (() => {
                 ]),
               })))),
             linux_xanmod_latest: nix.thunk(() => nix.app(nix.lookup(w, "xanmodKernels"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 variant: "main",
                 kernelPatches: nix.thunk(() => [
                   nix.thunk(() => nix.sel(kernelPatches, "bridge_stp_helper")),
@@ -153,7 +153,7 @@ export default nix.lambda((args) => (() => {
                 ]),
               })))),
           }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               linux_lqx: nix.thunk(() => nix.app(nix.builtins.throw, "linux_lqx has been removed due to lack of maintenance")),
               linux_libre: nix.thunk(() => nix.app(nix.builtins.throw, "linux_libre has been removed due to lack of maintenance")),
               linux_latest_libre: nix.thunk(() => nix.app(nix.builtins.throw, "linux_latest_libre has been removed due to lack of maintenance")),
@@ -202,7 +202,7 @@ export default nix.lambda((args) => (() => {
         const w = nix.withScope(self, null);
         const callPackage_1 = nix.thunk(() => nix.app(newScope, self));
         return nix.update({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           callPackage: callPackage_1,
           kernel: kernel_,
           stdenv: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "kernel")), "stdenv")),
@@ -232,7 +232,7 @@ export default nix.lambda((args) => (() => {
           bcachefs: nix.thunk(() => nix.app(callPackage_1, nix.thunk(() => nix.sel(pkgs, "bcachefs-tools", "kernelModule")), nix.thunk(() => ({})))),
           ch9344: nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../os-specific/linux/ch9344"), nix.thunk(() => ({})))),
           chipsec: nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../by-name/ch/chipsec/package.nix"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               kernel: nix.thunk(() => nix.lookup(w, "kernel")),
               withDriver: true,
             })))),
@@ -244,7 +244,7 @@ export default nix.lambda((args) => (() => {
           digimend: nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../os-specific/linux/digimend"), nix.thunk(() => ({})))),
           "dpdk-kmods": nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../os-specific/linux/dpdk-kmods"), nix.thunk(() => ({})))),
           ecapture: nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../by-name/ec/ecapture/package.nix"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               withNonBTF: true,
               kernel: nix.thunk(() => nix.lookup(w, "kernel")),
             })))),
@@ -354,7 +354,7 @@ export default nix.lambda((args) => (() => {
           vhba: nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../by-name/cd/cdemu-daemon/vhba.nix"), nix.thunk(() => ({})))),
           virtio_vmmci: nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../os-specific/linux/virtio_vmmci"), nix.thunk(() => ({})))),
           virtualbox: nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../os-specific/linux/virtualbox"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               virtualbox: nix.thunk(() => nix.sel(pkgs, "virtualboxHardened")),
             })))),
           virtualboxGuestAdditions: nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../applications/virtualization/virtualbox/guest-additions"), nix.thunk(() => ({})))),
@@ -369,19 +369,19 @@ export default nix.lambda((args) => (() => {
           "ryzen-smu": nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../os-specific/linux/ryzen-smu"), nix.thunk(() => ({})))),
           zenpower: nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../os-specific/linux/zenpower"), nix.thunk(() => ({})))),
           zfs_2_3: nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../os-specific/linux/zfs/2_3.nix"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               configFile: "kernel",
               pkgs: pkgs,
               kernel: nix.thunk(() => nix.lookup(w, "kernel")),
             })))),
           zfs_2_4: nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../os-specific/linux/zfs/2_4.nix"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               configFile: "kernel",
               pkgs: pkgs,
               kernel: nix.thunk(() => nix.lookup(w, "kernel")),
             })))),
           zfs_unstable: nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../os-specific/linux/zfs/unstable.nix"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               configFile: "kernel",
               pkgs: pkgs,
               kernel: nix.thunk(() => nix.lookup(w, "kernel")),
@@ -398,7 +398,7 @@ export default nix.lambda((args) => (() => {
           "tsme-test": nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../os-specific/linux/tsme-test"), nix.thunk(() => ({})))),
           "xpad-noone": nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../os-specific/linux/xpad-noone"), nix.thunk(() => ({})))),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             zfs: nix.thunk(() => nix.app(nix.builtins.throw, "linuxPackages.zfs has been removed, use zfs_* instead, or linuxPackages.${pkgs.zfs.kernelModuleAttribute}")),
             zfs_2_1: nix.thunk(() => nix.app(nix.builtins.throw, "zfs_2_1 has been removed")),
             ati_drivers_x11: nix.thunk(() => nix.app(nix.builtins.throw, "ati drivers are no longer supported by any kernel >=4.1")),
@@ -425,14 +425,14 @@ export default nix.lambda((args) => (() => {
           }))));
       })()), "extend"), nix.thunk(() => nix.app(nix.sel(lib, "fixedPoints", "composeManyExtensions"), kernelPackagesExtensions))),
     vanillaPackages: nix.thunk(() => nix.update({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       linux_6_1: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(packagesFor, nix.thunk(() => nix.sel(kernels, "linux_6_1")))))),
       linux_6_6: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(packagesFor, nix.thunk(() => nix.sel(kernels, "linux_6_6")))))),
       linux_6_12: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(packagesFor, nix.thunk(() => nix.sel(kernels, "linux_6_12")))))),
       linux_6_18: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(packagesFor, nix.thunk(() => nix.sel(kernels, "linux_6_18")))))),
       linux_7_2: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(packagesFor, nix.thunk(() => nix.sel(kernels, "linux_7_2")))))),
     }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         linux_4_19: nix.thunk(() => nix.builtins.throw("linux 4.19 was removed because it will reach its end of life within 24.11")),
         linux_5_4: nix.thunk(() => nix.builtins.throw("linux 5.4 was removed because it will reach its end of life within 25.11")),
         linux_5_10: nix.thunk(() => nix.builtins.throw("linux 5.10 was removed because it will reach its end of life within 26.11")),
@@ -450,14 +450,14 @@ export default nix.lambda((args) => (() => {
         linux_7_1: nix.thunk(() => nix.builtins.throw("linux 7.1 was removed because it has reached its end of life upstream")),
       }))))),
     packages: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.update(vanillaPackages, nix.update({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         linux_testing: nix.thunk(() => nix.app(packagesFor, nix.thunk(() => nix.sel(kernels, "linux_testing")))),
         linux_zen: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(packagesFor, nix.thunk(() => nix.sel(kernels, "linux_zen")))))),
         linux_xanmod: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(packagesFor, nix.thunk(() => nix.sel(kernels, "linux_xanmod")))))),
         linux_xanmod_stable: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(packagesFor, nix.thunk(() => nix.sel(kernels, "linux_xanmod_stable")))))),
         linux_xanmod_latest: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(packagesFor, nix.thunk(() => nix.sel(kernels, "linux_xanmod_latest")))))),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           linux_lqx: nix.thunk(() => nix.builtins.throw("linux_lqx has been removed due to lack of maintenance")),
           linux_libre: nix.thunk(() => nix.builtins.throw("linux_libre has been removed due to lack of maintenance")),
           linux_latest_libre: nix.thunk(() => nix.builtins.throw("linux_latest_libre has been removed due to lack of maintenance")),
@@ -487,11 +487,11 @@ export default nix.lambda((args) => (() => {
           linux_rt_6_6: nix.thunk(() => nix.builtins.throw("linux_rt_6_6 has been removed due to lack of maintenance")),
         })))))))),
     packageAliases: nix.thunk(() => nix.update({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       linux_default: nix.thunk(() => nix.sel(packages, "linux_6_18")),
       linux_latest: nix.thunk(() => nix.sel(packages, "linux_7_2")),
     }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         linux_mptcp: nix.thunk(() => nix.builtins.throw("'linux_mptcp' has been moved to https://github.com/teto/mptcp-flake")),
         linux_rt_default: nix.thunk(() => nix.builtins.throw("linux_rt_default has been removed due to lack of maintenance")),
         linux_rt_latest: nix.thunk(() => nix.builtins.throw("linux_rt_latest has been removed due to lack of maintenance")),
@@ -505,7 +505,7 @@ export default nix.lambda((args) => (() => {
       const configfile = nix.arg($_1, "configfile");
       const allowImportFromDerivation = nix.argOr($_1, "allowImportFromDerivation", () => false);
       return nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(packagesFor, nix.thunk(() => nix.app(manualConfig, nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               version: version,
               src: src,
               modDirVersion: modDirVersion,
@@ -521,7 +521,7 @@ export default nix.lambda((args) => (() => {
       const makeTarget = nix.argOr($_1, "makeTarget", () => "defconfig");
       const name = nix.argOr($_1, "name", () => "kernel.config");
       return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           name: name,
           src: src,
           depsBuildBuild: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(buildPackages, "stdenv", "cc"))], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "4.16")), nix.thunk(() => [

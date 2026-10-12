@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const mkDerivation = nix.arg($, "mkDerivation");
   const make_rules = nix.arg($, "make-rules");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "usr.bin/make",
       postPatch: nix.thunk(() => nix.add(nix.sel(make_rules, "postPatch"), "# make needs this to pick up our sys make files\nappendToVar NIX_CFLAGS_COMPILE \"-D_PATH_DEFSYSPATH=\\\"$out/share/mk\\\"\"\n")),
       postInstall: "make -C $BSDSRCDIR/share/mk FILESDIR=$out/share/mk install\n",

@@ -37,13 +37,13 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const buildWebViewerFeatures = nix.argOr($, "buildWebViewerFeatures", () => ["map_view"]);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "rerun",
       version: "0.38.1",
       __structuredAttrs: true,
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rerun-io",
           repo: "rerun",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
         const resourceDir = nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), clang_unwrapped)}/lib/clang/${majorVersion}`);
         const includeDir = nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(llvmPackages, "libclang")))}/lib/clang/${majorVersion}/include`);
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           CC_wasm32_unknown_unknown: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), clang_unwrapped)),
           CFLAGS_wasm32_unknown_unknown: nix.thunk(() => nix.str`-isystem ${includeDir} -resource-dir ${resourceDir}`),
         };
@@ -99,15 +99,15 @@ cp $src/rerun_cpp/download_and_build_arrow.cmake $dev/lib/cmake/rerun_sdk/
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "rerun-sdk": nix.thunk(() => nix.attr(python3Packages, "rerun-sdk")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Visualize streams of multimodal data. Fast, easy to use, and simple to integrate. Built in Rust using egui. Includes C++ SDK",
         homepage: "https://github.com/rerun-io/rerun",
         changelog: nix.thunk(() => nix.str`https://github.com/rerun-io/rerun/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

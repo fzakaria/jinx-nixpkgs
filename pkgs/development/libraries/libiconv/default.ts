@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const enableShared = nix.argOr($, "enableShared", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")));
   const enableDarwinABICompat = nix.argOr($, "enableDarwinABICompat", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libiconv",
       version: "1.19",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/libiconv/libiconv-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-iN2WqMBGTsoUT8eRrmDNMc2O54Mh5nOX4l/AlcShmqY=",
         })))),
@@ -41,12 +41,12 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "enableFeature"), enableShared, "shared")),
       ], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isFreeBSD")), "--with-pic"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isCygwin")), "gl_cv_clean_version_stddef=yes")))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         setupHooks: nix.thunk(() => nix.attr(finalAttrs, "setupHooks")),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Iconv(3) implementation",
         longDescription: "Some programs, like mailers and web browsers, must be able to convert\nbetween a given text encoding and the user's encoding.  Other programs\ninternally store strings in Unicode, to facilitate internal processing,\nand need to convert between internal string representation (Unicode)\nand external string representation (a traditional encoding) when they\nare doing I/O.  GNU libiconv is a conversion library for both kinds of\napplications.\n",
         homepage: "https://www.gnu.org/software/libiconv/",

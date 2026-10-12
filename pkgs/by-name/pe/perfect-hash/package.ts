@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "perfect-hash",
       version: "0.4.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ilanschnell",
           repo: "perfect-hash",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       })()),
       postInstall: "mkdir -p $out/share/doc/perfect-hash\ncp README.md $out/share/doc/perfect-hash\ncp -r examples $out/share/doc/perfect-hash\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Minimal perfect hash function generator",
         mainProgram: "perfect-hash",
         longDescription: "Generate a minimal perfect hash function for a given set of keys.\nA given code template is filled with parameters, such that the\noutput is code which implements the hash function. Templates can\neasily be constructed for any programming language.\n",

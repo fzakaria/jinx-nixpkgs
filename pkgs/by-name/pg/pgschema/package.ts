@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const postgresql = nix.arg($, "postgresql");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pgschema",
       version: "1.13.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pgplex",
           repo: "pgschema",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       proxyVendor: true,
       vendorHash: "sha256-tHz0R2NWxoecWKML8Q71Z0LZDM9DHH+bTHO3K+ekNG8=",
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: "0" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: "0" })),
       ldflags: nix.thunk(() => [
         "-s",
         "-w",
@@ -45,11 +45,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Terraform-style, declarative Postgres schema migration",
         homepage: "https://github.com/pgplex/pgschema",
         changelog: nix.thunk(() => nix.str`https://github.com/pgplex/pgschema/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

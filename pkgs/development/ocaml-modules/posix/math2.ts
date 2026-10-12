@@ -11,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const posix_base = nix.arg($, "posix-base");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "posix-math2",
       src: nix.thunk(() => nix.attr(posix_base, "src")),
       version: nix.thunk(() => nix.attr(posix_base, "version")),
       propagatedBuildInputs: nix.thunk(() => [posix_base]),
-      meta: nix.thunk(() => nix.update(nix.sel(posix_base, "meta"), { __proto__: pos$1, description: "Bindings for posix math" })),
+      meta: nix.thunk(() => nix.update(nix.sel(posix_base, "meta"), { [nix.POS]: pos$1, description: "Bindings for posix math" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=math2.ts.map

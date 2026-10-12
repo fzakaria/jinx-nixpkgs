@@ -42,14 +42,14 @@ export default nix.lambda((args) => (() => {
         "ipkgName",
         "extraBuildInputs",
       ])), {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       meta: nix.thunk(() => nix.update(nix.sel(attrs, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.selOr(attrs, () => nix.sel(idris, "meta", "platforms"), "meta", "platforms")),
       })),
     }));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: nix.thunk(() => nix.str`idris-${pname}`),
         version: version,
         buildInputs: nix.thunk(() => nix.concat([idris_with_packages, gmp], extraBuildInputs)),

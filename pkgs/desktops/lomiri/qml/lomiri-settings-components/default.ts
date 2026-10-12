@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const qtbase = nix.arg($, "qtbase");
   const qtdeclarative = nix.arg($, "qtdeclarative");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "lomiri-settings-components",
       version: "1.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ubports",
           repo: "development/core/lomiri-settings-components",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,11 +43,11 @@ substituteInPlace CMakeLists.txt \\
       dontWrapQtApps: true,
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "QML settings components for the Lomiri Desktop Environment",
         homepage: "https://gitlab.com/ubports/development/core/lomiri-settings-components",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/core/lomiri-settings-components/-/blob/${nix.sel(finalAttrs, "version")}/ChangeLog`),

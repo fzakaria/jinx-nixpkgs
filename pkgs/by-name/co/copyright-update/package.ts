@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "copyright-update";
       const version = "2025.0404";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`${pname}-${version}-src`),
           owner: "jaalto",
           repo: "project--copyright-update",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [perl]);
       const installFlags = nix.thunk(() => ["INSTALL=install", "prefix=$(out)"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/jaalto/project--copyright-update",
         description: "Updates the copyright information in a set of files",
         mainProgram: "copyright-update",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "rycee"))]),
       }));
-      return { __proto__: pos$3, pname, version, src, buildInputs, installFlags, meta };
+      return { [nix.POS]: pos$3, pname, version, src, buildInputs, installFlags, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

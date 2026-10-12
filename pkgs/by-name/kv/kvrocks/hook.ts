@@ -13,10 +13,10 @@ export default nix.lambda((args) => (() => {
   const kvrocks = nix.arg($, "kvrocks");
   const valkey = nix.arg($, "valkey");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "kvrocks-test-hook",
       substitutions: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         cli: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), valkey, "redis-cli")),
         server: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), kvrocks, "kvrocks")),
       })),

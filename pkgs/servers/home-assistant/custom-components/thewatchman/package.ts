@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const domain = "watchman";
       const version = "0.8.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dummylabs",
           repo: "thewatchman",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest_cov_stub, pytest_homeassistant_custom_component, pytestCheckHook]);
       const disabledTests = nix.thunk(() => ["test_automations_parsing", "test_debounce_rescan"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Keep track of missing entities and services in your config files",
         homepage: "https://github.com/dummylabs/thewatchman",
         maintainers: nix.thunk(() => (() => {
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         owner,
         domain,
         version,

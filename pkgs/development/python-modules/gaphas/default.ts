@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.1.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-XdawWTHzhWqWtiMmm1AYcjG0q/e5hJ9I9+7FKJhWNpY=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [pycairo, pygobject3, typing_extensions]);
       const pythonImportsCheck = nix.thunk(() => ["gaphas"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GTK+ based diagramming widget",
         homepage: "https://github.com/gaphor/gaphas",
         changelog: nix.thunk(() => nix.str`https://github.com/gaphor/gaphas/releases/tag/${version}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

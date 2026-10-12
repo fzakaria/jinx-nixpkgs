@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const webgl = nix.arg($, "webgl");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "html",
       version: "2017-04-23",
       idrisDeps: nix.thunk(() => [idrisscript, hrtime, webgl]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pierrebeaucamp",
           repo: "idris-html",
           rev: "f59ecc560d7008ba26dda83f11319bb24ed6c508",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postUnpack: "sed -i \"s/hrTime/hrtime/g\" source/html.ipkg\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Idris library to interact with HTML",
         homepage: "https://github.com/pierrebeaucamp/idris-html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

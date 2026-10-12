@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "battery-toolkit",
       version: "1.8",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mhaeuser/Battery-Toolkit/releases/download/${nix.sel(finalAttrs, "version")}/Battery-Toolkit-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-gsEXTE+pM+rsBhTeup7cWcUljY8u0T+ETON7JeA6g1A=",
           stripRoot: false,
         })))),
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications\"\ncp -R \"Battery Toolkit.app\" \"$out/Applications/\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Control the platform power state of your Apple Silicon Mac",
         longDescription: "Battery Toolkit allows you to control battery charging behavior on Apple Silicon Macs.\nFeatures include setting upper and lower charge limits, disabling the power adapter,\nand manual control over charging state.\n",
         homepage: "https://github.com/mhaeuser/Battery-Toolkit",

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libmcrypt = nix.arg($, "libmcrypt");
   const libmhash = nix.arg($, "libmhash");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "2.6.8",
       pname: "mcrypt",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/mcrypt/MCrypt/${nix.sel(finalAttrs, "version")}/mcrypt-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-UUWqhE5UzKid2rb7fdnllSgR2NeHxPS/J+smHmwYIJg=",
         })))),
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [libmcrypt, libmhash]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Replacement for old UNIX crypt(1)",
         longDescription: "mcrypt, and the accompanying libmcrypt, are intended to be replacements\nfor the old Unix crypt, except that they are under the GPL and support an\never-wider range of algorithms and modes.\n",
         homepage: "https://mcrypt.sourceforge.net",

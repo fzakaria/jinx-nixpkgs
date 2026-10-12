@@ -33,22 +33,22 @@ export default nix.lambda((args) => (() => {
   const go = nix.arg($, "go");
   const modprobeVersion = "550.54.14";
   const patchedModprobe = nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       src: nix.thunk(() => nix.app(nix.sel(nvidia_modprobe, "src", "override"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: modprobeVersion,
           hash: "sha256-iBRMkvOXacs/llTtvc/ZC5i/q9gc8lMuUHxMbu8A+Kg=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./modprobe.patch"), nix.thunk(() => ({ __proto__: pos$2, modprobeVersion: modprobeVersion })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./modprobe.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, modprobeVersion: modprobeVersion })))),
       ]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "libnvidia-container",
       version: "1.20.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "NVIDIA",
           repo: "libnvidia-container",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,11 +56,11 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-ldcache-don-t-use-ldcache.patch"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             driverLink: nix.thunk(() => nix.attr(addDriverRunpath, "driverLink")),
           })))),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0002-nvc-nvidia-docker-compatible-binary-lookups.patch"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             driverLink: nix.thunk(() => nix.attr(addDriverRunpath, "driverLink")),
           })))),
       ]),
@@ -112,7 +112,7 @@ done
       enableParallelBuilding: true,
       preBuild: "HOME=\"$(mktemp -d)\"\n",
       env: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getInclude"), libtirpc)}/include/tirpc`),
             "-DWITH_TIRPC",
@@ -138,7 +138,7 @@ wrapProgram $out/bin/nvidia-container-cli --prefix LD_LIBRARY_PATH : ${libraryPa
       })()),
       disallowedReferences: nix.thunk(() => [go]),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         homepage: "https://github.com/NVIDIA/libnvidia-container",
         description: "NVIDIA container runtime library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

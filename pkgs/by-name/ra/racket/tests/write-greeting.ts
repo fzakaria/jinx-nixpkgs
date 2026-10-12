@@ -9,6 +9,6 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const runCommandLocal = nix.arg($, "runCommandLocal");
   const racket = nix.arg($, "racket");
-  return nix.app(runCommandLocal, "racket-test-write-greeting", nix.thunk(() => ({ __proto__: pos$1, nativeBuildInputs: nix.thunk(() => [racket]) })), "expectation=\"Hello, world!\"\n\nracket -f - <<EOF\n(with-output-to-file (getenv \"out\")\n  (lambda ()\n    (display \"Hello, world!\")\n    (newline)))\nEOF\n\noutput=\"$(cat $out)\"\n\nif test \"$output\" != \"$expectation\"; then\n    echo \"output mismatch: expected ${expectation}, but got ${output}\"\n    exit 1\nfi\n");
+  return nix.app(runCommandLocal, "racket-test-write-greeting", nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [racket]) })), "expectation=\"Hello, world!\"\n\nracket -f - <<EOF\n(with-output-to-file (getenv \"out\")\n  (lambda ()\n    (display \"Hello, world!\")\n    (newline)))\nEOF\n\noutput=\"$(cat $out)\"\n\nif test \"$output\" != \"$expectation\"; then\n    echo \"output mismatch: expected ${expectation}, but got ${output}\"\n    exit 1\nfi\n");
 })(), formals$1);
 //# sourceMappingURL=write-greeting.ts.map

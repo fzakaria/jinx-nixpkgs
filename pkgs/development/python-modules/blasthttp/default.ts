@@ -25,19 +25,19 @@ export default nix.lambda((args) => (() => {
   const rustc = nix.arg($, "rustc");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "blasthttp",
       version: "0.10.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-UDTqxGTFMGaV9UpDRo65OqqavTZq4UIyC3K5t+e9W9s=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: "# The bundled .cargo/config.toml sets OPENSSL_DIR to a relative path\nrm .cargo/config.toml\n",
       __darwinAllowLocalNetworking: true,
-      env: nix.thunk(() => ({ __proto__: pos$3, OPENSSL_NO_VENDOR: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, OPENSSL_NO_VENDOR: "1" })),
       "build-system": nix.thunk(() => [
         cargo,
         pkg_config,
@@ -62,11 +62,11 @@ export default nix.lambda((args) => (() => {
           "test_redirect_onto_no_proxy_host_reevaluates_to_direct",
         ]))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Offensive-first HTTP library",
         homepage: "https://pypi.org/project/blasthttp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

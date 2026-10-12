@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const withWebServer = nix.argOr($, "withWebServer", () => true);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "zellij-unwrapped",
       version: "0.45.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zellij-org",
           repo: "zellij",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: nix.thunk(() => nix.add("substituteInPlace Cargo.toml \\\n  --replace-fail ', \"vendored_curl\"' \"\"\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(withWebServer)), "substituteInPlace Cargo.toml \\\n  --replace-fail ', \"web_server_capability\"' \"\"\n"))),
       cargoHash: "sha256-rCK7FyAUIjUq6dxEw9YBaGm29xYvlYjX0b1xHU03XVU=",
-      env: nix.thunk(() => ({ __proto__: pos$2, LIBSSH2_SYS_USE_PKG_CONFIG: 1n, OPENSSL_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, LIBSSH2_SYS_USE_PKG_CONFIG: 1n, OPENSSL_NO_VENDOR: 1n })),
       nativeBuildInputs: nix.thunk(() => [
         installShellFiles,
         pkg_config,
@@ -51,11 +51,11 @@ export default nix.lambda((args) => (() => {
       installCheckPhase: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "libc"), "glibc")), "runHook preInstallCheck\n\nldd \"$out/bin/zellij\" | grep libcurl.so\n\nrunHook postInstallCheck\n")),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd zellij \\\n  --bash <($out/bin/zellij setup --generate-completion bash) \\\n  --fish <($out/bin/zellij setup --generate-completion fish) \\\n  --zsh <($out/bin/zellij setup --generate-completion zsh)\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Terminal workspace with batteries included",
         homepage: "https://zellij.dev/",
         changelog: nix.thunk(() => nix.str`https://github.com/zellij-org/zellij/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

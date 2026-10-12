@@ -20,16 +20,16 @@ export default nix.lambda((args) => (() => {
       const version = "18.1.8";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-R8F0oYaUGugw8E3tdqNERgC+Z9Xl+4KCw3g/umccTts=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [setuptools]);
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, python: python }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, python: python }));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Portable tool for executing LLVM and Clang style test suites",
         mainProgram: "lit",
         homepage: "http://llvm.org/docs/CommandGuide/lit.html",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

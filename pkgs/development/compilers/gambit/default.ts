@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
       const version = "4.9.5";
       const git_version = nix.thunk(() => nix.str`v${version}`);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://gambitscheme.org/4.9.5/gambit-v4_9_5.tgz",
           sha256: "sha256-4o74218OexFZcgwVAFPcq498TK4fDlyDiUR5cHP4wdw=",
         }))));
-      return { __proto__: pos$2, version, "git-version": git_version, src };
+      return { [nix.POS]: pos$2, version, "git-version": git_version, src };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

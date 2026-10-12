@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const ocaml = nix.arg($, "ocaml");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "coq2html",
       version: "1.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xavierleroy",
           repo: "coq2html",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [ocaml]),
       installPhase: "mkdir -p $out/bin\ncp coq2html $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "HTML documentation generator for Coq source files",
         longDescription: "coq2html is an HTML documentation generator for Coq source files. It is\nan alternative to the standard coqdoc documentation generator\ndistributed along with Coq. The major feature of coq2html is its ability\nto fold proof scripts: in the generated HTML, proof scripts are\ninitially hidden, but can be revealed one by one by clicking on the\n\"Proof\" keyword.\n",
         homepage: "https://github.com/xavierleroy/coq2html",

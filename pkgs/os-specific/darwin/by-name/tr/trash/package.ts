@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.2";
       const pname = "trash";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ali-rantakari",
           repo: "trash",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
       const buildPhase = "make all docs";
       const installPhase = "mkdir -p $out/bin\nmkdir -p $out/share/man/man1\ninstall -m 0755 trash $out/bin\ninstall -m 0444 trash.1 $out/share/man/man1\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/ali-rantakari/trash",
         description: "Small command-line program for OS X that moves files or\n    folders to the trash.",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         pname,
         src,

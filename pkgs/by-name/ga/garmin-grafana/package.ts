@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "arpanghosh8453",
           repo: "garmin-grafana",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -46,11 +46,11 @@ export default nix.lambda((args) => (() => {
       const dontCheckRuntimeDeps = true;
       const postInstall = "install -Dt $out/share/grafana-dashboards -m644 Grafana_Dashboard/Garmin-Grafana-Dashboard.json\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "grafana-dashboard": nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/grafana-dashboards/Garmin-Grafana-Dashboard.json`),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Export Garmin data to InfluxDB",
         longDescription: "A Python script to fetch Garmin health data and populate that in an InfluxDB database,\nfor visualizing long-term health trends with Grafana\n",
         homepage: "https://github.com/arpanghosh8453/garmin-grafana",
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

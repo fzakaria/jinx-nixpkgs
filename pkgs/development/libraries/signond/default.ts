@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const wrapQtAppsHook = nix.arg($, "wrapQtAppsHook");
   const doxygen = nix.arg($, "doxygen");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "signond",
       version: "8.61-unstable-2023-11-24",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nicolasfella",
           repo: "signond",
           rev: "c8ad98249af541514ff7a81634d3295e712f1a39",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [qtbase]),
       preConfigure: "substituteInPlace src/signond/signond.pro \\\n  --replace \"/etc\" \"@out@/etc\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gitlab.com/accounts-sso/signond",
         description: "Signon Daemon for Qt",
         maintainers: [],

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const gpgme = nix.arg($, "gpgme");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "phrasendrescher",
       version: "1.2.2c",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://leidecker.info/projects/phrasendrescher/phrasendrescher-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "18vg6h294219v14x5zqm8ddmq5amxlbz7pw81lcmpz8v678kwyph",
         })))),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "-h",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Modular and multi processing pass phrase cracking tool",
         homepage: "https://leidecker.info/projects/phrasendrescher/index.shtml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

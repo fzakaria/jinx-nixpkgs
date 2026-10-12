@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "prometheus-fail2ban-exporter",
       version: "0.10.3",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hctrdev",
           repo: "fail2ban-prometheus-exporter",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-ogdRXbS1EG402qlnj5SfuI/1P/Pi0+xwJrJsc6vwdds=",
       ldflags: nix.thunk(() => ["-s"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collect and export metrics on Fail2Ban",
         homepage: "https://gitlab.com/hctrdev/fail2ban-prometheus-exporter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

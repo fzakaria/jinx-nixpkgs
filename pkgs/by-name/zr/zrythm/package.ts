@@ -76,11 +76,11 @@ export default nix.lambda((args) => (() => {
   const zix = nix.arg($, "zix");
   const zstd = nix.arg($, "zstd");
   const carla_unstable = nix.thunk(() => nix.app(nix.sel(carla, "overrideAttrs"), (oldAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "carla",
       version: "unstable-2024-04-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "falkTX",
           repo: "carla",
           rev: "948991d7b5104280c03960925908e589c77b169a",
@@ -88,16 +88,16 @@ export default nix.lambda((args) => (() => {
         })))),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "zrythm",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://www.zrythm.org/releases/zrythm-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-qI1UEIeIJdYQcOWMjJa55DaWjDIabx56dSwjhm64ROM=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-zrythm", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p curl common-updater-scripts\n\nversion=\"$(curl -s https://www.zrythm.org/releases/ | grep -o -m 1 'href=\"zrythm-[^\"]*\\.tar\\.xz\"' | head -1 | sed 's/href=\"zrythm-\\(.*\\)\\.tar\\.xz\"/\\1/')\"\nupdate-source-version zrythm \"$version\"\n")),
       })),
       nativeBuildInputs: nix.thunk(() => [
@@ -177,7 +177,7 @@ export default nix.lambda((args) => (() => {
         "-Drtmidi=enabled",
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lfftw3_threads", "-lfftw3f_threads"]))),
         GUILE_AUTO_COMPILE: 0n,
       })),
@@ -195,7 +195,7 @@ patchShebangs ext/sh-manpage-completions/run.sh scripts/generic_guile_wrap.sh \\
 )
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://www.zrythm.org",
         description: "Automated and intuitive digital audio workstation",
         maintainers: nix.thunk(() => (() => {

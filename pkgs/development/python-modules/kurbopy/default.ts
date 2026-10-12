@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.13.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-JiXNgUeY2booOp1zaWtCuEqdyp/CxXy4rUo5kKmq0eQ=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(rustPlatform, "maturinBuildHook")),
       ]);
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const preCheck = "# pytestCheckHook puts . at the front of Python's sys.path, due to:\n# https://github.com/NixOS/nixpkgs/issues/255262\n# So we need to prevent pytest from trying to import kurbopy from\n# ./kurbopy, which contains the sources but not the newly built module.\n# We want it to import kurbopy from the nix store via $PYTHONPATH instead.\nrm -r kurbopy\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python wrapper around the Rust kurbo library for 2D curve manipulation",
         homepage: "https://github.com/simoncozens/kurbopy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

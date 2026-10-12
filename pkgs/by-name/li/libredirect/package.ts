@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const llvmPackages = nix.arg($, "llvmPackages");
   const coreutils = nix.arg($, "coreutils");
   return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")) ? nix.builtins.throw("libredirect is not available on static builds.\n\nPlease fix your derivation to not depend on libredirect on static\nbuilds, using something like following:\n\n  nativeBuildInputs =\n    lib.optional (!stdenv.buildPlatform.isStatic) libredirect;\n\nand disable tests as necessary, although fixing tests to work without\nlibredirect is even better.\n\nlibredirect uses LD_PRELOAD feature of dynamic loader and does not\nwork on static builds where dynamic loader is not used.\n") : nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "libredirect",
       version: "0",
       unpackPhase: nix.thunk(() => nix.str`cp ${nix.path(here, "./libredirect.c")} libredirect.c
@@ -65,7 +65,7 @@ runHook postInstall
 )
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         description: "LD_PRELOAD library to intercept and rewrite the paths in glibc calls",
         longDescription: "libredirect is an LD_PRELOAD library to intercept and rewrite the paths in\nglibc calls based on the value of $NIX_REDIRECTS, a colon-separated list\nof path prefixes to be rewritten, e.g. \"/src=/dst:/usr/=/nix/store/\".\n",

@@ -20,20 +20,20 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.3";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "1bwdp24fmriffwx91aigs9k162albb51iskp23nc939z893q23py",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [cryptography, python_axolotl_curve25519, protobuf]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/tgalal/python-axolotl",
         description: "Python port of libaxolotl-android",
         maintainers: [],
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
       }));
-      return { __proto__: pos$3, pname, version, format, src, propagatedBuildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, propagatedBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

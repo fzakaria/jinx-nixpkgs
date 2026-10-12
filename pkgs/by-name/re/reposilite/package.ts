@@ -20,16 +20,16 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const plugins = nix.argOr($, "plugins", () => []);
   const pluginsDir = nix.thunk(() => nix.app(linkFarm, "reposilite-plugins", nix.thunk(() => nix.builtins.map((p) => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: nix.thunk(() => nix.add(nix.sel(nix.builtins.parseDrvName(nix.thunk(() => nix.sel(p, "name"))), "name"), ".jar")),
         path: nix.thunk(() => nix.selOr(p, () => nix.force(p), "outPath")),
       }), plugins))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "Reposilite",
       version: "3.6.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://maven.reposilite.com/releases/com/reposilite/reposilite/${nix.sel(finalAttrs, "version")}/reposilite-${nix.sel(finalAttrs, "version")}-all.jar`),
           hash: "sha256-fJc8Et98svDcVtibcGSoVeJaLJl1qb1eO+2OxfeVqA8=",
         })))),
@@ -45,14 +45,14 @@ makeWrapper ${jre_headless}/bin/java $out/bin/reposilite \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => nix.sel(nixosTests, "reposilite")),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(jre_headless, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Lightweight and easy-to-use repository management software dedicated for the Maven based artifacts in the JVM ecosystem",
         homepage: "https://github.com/dzikoysk/reposilite",
         sourceProvenance: nix.thunk(() => (() => {

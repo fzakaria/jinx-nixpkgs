@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libzip = nix.arg($, "libzip");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libgourou",
       version: "0.8.9",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "forge.soutade.fr",
           owner: "soutade",
           repo: "libgourou",
@@ -48,7 +48,7 @@ installManPage utils/man/*.1
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Implementation of Adobe's ADEPT protocol for ePub/PDF DRM",
         homepage: "https://forge.soutade.fr/soutade/libgourou",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

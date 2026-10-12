@@ -18,25 +18,25 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "fim-rs",
       version: "0.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Achiefs",
           repo: "fim",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-xJzglrNB5rqaRQTgRFIl8/AXjeDwFPykIE5LJwJ3cX4=",
         })))),
-      cargoLock: nix.thunk(() => ({ __proto__: pos$2, lockFile: nix.path(here, "./Cargo.lock") })),
+      cargoLock: nix.thunk(() => ({ [nix.POS]: pos$2, lockFile: nix.path(here, "./Cargo.lock") })),
       postPatch: nix.thunk(() => nix.str`ln -s ${nix.path(here, "./Cargo.lock")} Cargo.lock
 `),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [bzip2, zstd]),
-      env: nix.thunk(() => ({ __proto__: pos$3, ZSTD_SYS_USE_PKG_CONFIG: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, ZSTD_SYS_USE_PKG_CONFIG: true })),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Host-based file integrity monitoring tool",
         longDescription: "FIM is a File Integrity Monitoring tool that tracks any event over your\nfiles. It is capable of keeping historical data of your files. It checks\nthe filesystem changes in the background.\n\nFIM is the fastest alternative to other software like Ossec, which\nperforms file integrity monitoring. It could integrate with other\nsecurity tools. The produced data can be ingested and analyzed with\ntools like ElasticSearch/OpenSearch.\n",
         homepage: "https://github.com/Achiefs/fim",

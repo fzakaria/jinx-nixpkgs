@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const optLibffado = nix.thunk(() => (nix.asBool(libOnly) ? null : nix.app(shouldUsePkg, libffado)));
   const optAlsaLib = nix.thunk(() => (nix.asBool(libOnly) ? null : nix.app(shouldUsePkg, alsa_lib)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: nix.thunk(() => nix.str`${prefix}jack2`),
       version: "1.9.22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jackaudio",
           repo: "jack2",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([libsamplerate, optDbus, optPythonDBus, optLibffado, optAlsaLib], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(optDbus, null)), nix.thunk(() => [expat])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [aften])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isFreeBSD")), nix.thunk(() => [nix.thunk(() => nix.sel(freebsd, "libsysinfo"))])))))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "jack2-waf2.0.26.patch",
             url: "https://github.com/jackaudio/jack2/commit/250420381b1a6974798939ad7104ab1a4b9a9994.patch",
             hash: "sha256-M/H72lLTeddefqth4BSkEfySZRYMIzLErb7nIgVN0u8=",
@@ -67,14 +67,14 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => (nix.asBool(libOnly) ? "rm -rf $out/{bin,share}\nrm -rf $out/lib/{jack,libjacknet*,libjackserver*}\n" : nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(optDbus, null)), "wrapProgram $out/bin/jack_control --set PYTHONPATH $PYTHONPATH\n"))),
       postFixup: "substituteInPlace \"$dev/lib/pkgconfig/jack.pc\" \\\n  --replace-fail \"$out/include\" \"$dev/include\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "JACK audio connection kit, version 2 with jackdbus",
         homepage: "https://jackaudio.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

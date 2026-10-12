@@ -36,26 +36,26 @@ export default nix.lambda((args) => (() => {
   const pname = "github-copilot-app";
   const version = "1.1.23";
   const sources = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: nix.thunk(() => nix.str`https://github.com/github/app/releases/download/v${version}/GitHub-Copilot-linux-x64.deb`),
         hash: "sha256-HWNnLEliPzGzq8YySicZHNJqzoUr+9PxsRWdCw3pBmM=",
       })))),
     "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: nix.thunk(() => nix.str`https://github.com/github/app/releases/download/v${version}/GitHub-Copilot-linux-arm64.deb`),
         hash: "sha256-ah2XDAM4HE/myCdVoJ8ErCIAmpw2F8yvO87P5El9RLY=",
       })))),
     "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         url: nix.thunk(() => nix.str`https://github.com/github/app/releases/download/v${version}/GitHub-Copilot-darwin-arm64.dmg`),
         hash: "sha256-f7QvkGpuDMixBZF4DJKyK9zmaig5LgGOqcNyucqZALw=",
       })))),
   }));
   const src = nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: pname,
       version: version,
       src: src,
@@ -84,12 +84,12 @@ export default nix.lambda((args) => (() => {
       sourceRoot: ".",
       installPhase: nix.thunk(() => nix.add(nix.add("runHook preInstall\n", (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "mkdir -p $out/Applications\ncp -r *.app $out/Applications/\n\nmkdir -p $out/bin\nln -s \"$out/Applications/\"*.app/Contents/MacOS/git-credential-copilot \"$out\"/bin/git-credential-copilot\nln -s \"$out/Applications/\"*.app/Contents/MacOS/github \"$out\"/bin/github-copilot-app\n" : "mkdir -p $out/bin $out/share $out/lib\n\ncp -r usr/share/* $out/share/\ncp -r usr/lib/* $out/lib/\n\n# Rename the main executable from github to github-copilot-app to avoid conflicts\nmv usr/bin/github $out/bin/github-copilot-app\ncp usr/bin/git-credential-copilot $out/bin/\n\n# Update desktop file to use the new executable name\nsubstituteInPlace $out/share/applications/*.desktop \\\n  --replace-fail \"Exec=github\" \"Exec=github-copilot-app\" \\\n  --replace-fail \"StartupWMClass=github\" \"StartupWMClass=github-copilot-app\"\n")), "runHook postInstall\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         sources: sources,
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Agent-native desktop experience for GitHub repositories",
         homepage: "https://github.com/github/app",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

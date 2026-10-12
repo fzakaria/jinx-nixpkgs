@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const snippetexpanderd = nix.arg($, "snippetexpanderd");
   const snippetexpanderx = nix.arg($, "snippetexpanderx");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       src: nix.thunk(() => nix.attr(snippetexpanderd, "src")),
       version: nix.thunk(() => nix.attr(snippetexpanderd, "version")),
       pname: "snippetexpandergui",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
 )
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         broken: true,
         description: "Your little expandable text snippet helper GUI",
         homepage: "https://snippetexpander.org",

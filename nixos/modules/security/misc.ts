@@ -34,44 +34,44 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$25,
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    [nix.POS]: pos$25,
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["security", "virtualization", "flushL1DataCache"]), nix.thunk(() => ["security", "virtualisation", "flushL1DataCache"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["security", "unprivilegedUsernsClone"]), "to disable or enable unprivileged user namespaces please use\nthe sysctl \"user.max_user_namespaces\".\n")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       security: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         allowUserNamespaces: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             default: true,
             description: "Whether to allow creation of user namespaces.\n\nThe motivation for disabling user namespaces is the potential\npresence of code paths where the kernel's permission checking\nlogic fails to account for namespacing, instead permitting a\nnamespaced process to act outside the namespace with the same\nprivileges as it would have inside it.  This is particularly\ndamaging in the common case of running as root within the namespace.\n\nWhen user namespace creation is disallowed, attempting to create a\nuser namespace fails with \"no space left on device\" (ENOSPC).\nroot may re-enable user namespace creation at runtime.\n",
           })))),
         protectKernelImage: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             default: false,
             description: "Whether to prevent replacing the running kernel image.\n",
           })))),
         allowSimultaneousMultithreading: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             default: true,
             description: "Whether to allow SMT/hyperthreading.  Disabling SMT means that only\nphysical CPU cores will be usable at runtime, potentially at\nsignificant performance cost.\n\nThe primary motivation for disabling SMT is to mitigate the risk of\nleaking data between threads running on the same CPU core (due to\ne.g., shared caches).  This attack vector is unproven.\n\nDisabling SMT is a supplement to the L1 data cache flushing mitigation\n(see [](#opt-security.virtualisation.flushL1DataCache))\nversus malicious VM guests (SMT could \"bring back\" previously flushed\ndata).\n",
           })))),
         forcePageTableIsolation: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             default: false,
             description: "Whether to force-enable the Page Table Isolation (PTI) Linux kernel\nfeature even on CPU models that claim to be safe from Meltdown.\n\nThis hardening feature is most beneficial to systems that run untrusted\nworkloads that rely on address space isolation for security.\n",
           })))),
         virtualisation: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           flushL1DataCache: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["never", "cond", "always"]))))),
               default: null,
               description: "Whether the hypervisor should flush the L1 data cache before\nentering guests.\nSee also [](#opt-security.allowSimultaneousMultithreading).\n\n- `null`: uses the kernel default\n- `\"never\"`: disables L1 data cache flushing entirely.\n  May be appropriate if all guests are trusted.\n- `\"cond\"`: flushes L1 data cache only for pre-determined\n  code paths.  May leak information about the host address space\n  layout.\n- `\"always\"`: flushes L1 data cache every time the hypervisor\n  enters the guest.  May incur significant performance cost.\n",
@@ -81,48 +81,48 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(config, "security", "allowUserNamespaces"))), nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             boot: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               kernel: nix.thunk(() => ({
-                __proto__: pos$11,
-                sysctl: nix.thunk(() => ({ __proto__: pos$10, "user.max_user_namespaces": 0n })),
+                [nix.POS]: pos$11,
+                sysctl: nix.thunk(() => ({ [nix.POS]: pos$10, "user.max_user_namespaces": 0n })),
               })),
             })),
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 assertion: nix.thunk(() => (!nix.asBool(nix.sel(config, "nix", "settings", "sandbox")) || nix.asBool(nix.sel(config, "security", "allowUserNamespaces")))),
                 message: "`nix.settings.sandbox = true` conflicts with `!security.allowUserNamespaces`.",
               })),
             ]),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "security", "protectKernelImage")), nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             boot: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               kernelParams: nix.thunk(() => ["nohibernate"]),
               kernel: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 sysctl: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   "kernel.kexec_load_disabled": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                 })),
               })),
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(config, "security", "allowSimultaneousMultithreading"))), nix.thunk(() => ({
-            __proto__: pos$20,
-            boot: nix.thunk(() => ({ __proto__: pos$19, kernelParams: nix.thunk(() => ["nosmt"]) })),
+            [nix.POS]: pos$20,
+            boot: nix.thunk(() => ({ [nix.POS]: pos$19, kernelParams: nix.thunk(() => ["nosmt"]) })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "security", "forcePageTableIsolation")), nix.thunk(() => ({
-            __proto__: pos$22,
-            boot: nix.thunk(() => ({ __proto__: pos$21, kernelParams: nix.thunk(() => ["pti=on"]) })),
+            [nix.POS]: pos$22,
+            boot: nix.thunk(() => ({ [nix.POS]: pos$21, kernelParams: nix.thunk(() => ["pti=on"]) })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(config, "security", "virtualisation", "flushL1DataCache"), null)), nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             boot: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               kernelParams: nix.thunk(() => [
                 nix.thunk(() => nix.str`kvm-intel.vmentry_l1d_flush=${nix.sel(config, "security", "virtualisation", "flushL1DataCache")}`),
               ]),

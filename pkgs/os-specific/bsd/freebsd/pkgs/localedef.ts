@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const makeMinimal = nix.arg($, "makeMinimal");
   const install = nix.arg($, "install");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "usr.bin/localedef",
       extraPaths: nix.thunk(() => nix.concat(["lib/libc/locale", "lib/libc/stdtime"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isFreeBSD"))), nix.thunk(() => ["."])))),
       nativeBuildInputs: nix.thunk(() => [bsdSetupHook, byacc, freebsdSetupHook, makeMinimal, install]),
@@ -28,7 +28,7 @@ export NIX_LDFLAGS="$NIX_LDFLAGS -L${compat}/lib"
 `))),
       MK_TESTS: "no",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
     })));

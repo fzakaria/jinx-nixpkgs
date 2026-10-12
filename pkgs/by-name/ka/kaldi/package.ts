@@ -31,18 +31,18 @@ export default nix.lambda((args) => (() => {
   const writeShellScript = nix.arg($, "writeShellScript");
   nix.assert_((nix.asBool(nix.eq(nix.sel(blas, "implementation"), "openblas")) && nix.asBool(nix.eq(nix.sel(lapack, "implementation"), "openblas"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ka/kaldi/package.nix:20:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "kaldi",
       version: "0-unstable-2025-09-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kaldi-asr",
           repo: "kaldi",
           rev: "e02e35f0254bb033fab73d1df99fc34123e31d56",
           sha256: "sha256-ZnVSQTETrMeU+pkqy50ldAe8g1pbnG7VS1utcUy28ls=",
         })))),
       postPatch: nix.thunk(() => nix.str`cp ${nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://raw.githubusercontent.com/rhasspy/rhasspy-speech/8a7bcc977d9c12fed89ab990089ed64524e54d2a/kaldi/src/online2bin/online2-cli-nnet3-decode-faster.cc",
           hash: "sha256-eKItaomBw3xE9unVuMSmzUwJfnpfLExxusKW+bhvaJI=",
         })))} src/online2bin/online2-cli-nnet3-decode-faster.cc
@@ -64,11 +64,11 @@ substituteInPlace src/online2bin/Makefile \\
       postInstall: "mkdir -p $out/share/kaldi\ncp -r ../egs $out/share/kaldi\n",
       dontCheckForBrokenSymlinks: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         sources: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           openfst: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               owner: "kkm000",
               repo: "openfst",
               rev: "338225416178ac36b8002d70387f5556e44c8d05",
@@ -90,7 +90,7 @@ ${common_updater_scripts}/bin/update-source-version kaldi.sources.openfst "$hash
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Speech Recognition Toolkit",
         homepage: "https://kaldi-asr.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

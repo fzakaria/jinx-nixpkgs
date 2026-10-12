@@ -26,61 +26,61 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     system: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       etc: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         overlay: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
         })),
       })),
       tools: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "nixos-generate-config": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
         })),
       })),
       forbiddenDependenciesRegexes: nix.thunk(() => ["perl"]),
     })),
     services: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       userborn: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
       })),
     })),
     boot: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       loader: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         grub: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
         })),
       })),
     })),
     environment: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       defaultPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), [])),
     })),
     documentation: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       info: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
       })),
       nixos: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
       })),
     })),
     programs: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       "command-not-found": nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
       })),
     })),

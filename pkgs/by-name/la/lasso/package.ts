@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const xmlsec = nix.arg($, "xmlsec");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lasso",
       version: "2.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "git.entrouvert.org",
           owner: "entrouvert",
           repo: "lasso",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       ]),
       configurePhase: "./configure --with-pkg-config=$PKG_CONFIG_PATH \\\n            --disable-perl \\\n            --prefix=$out\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://lasso.entrouvert.org/",
         description: "Liberty Alliance Single Sign-On library",
         changelog: nix.thunk(() => nix.str`https://git.entrouvert.org/entrouvert/lasso/raw/tag/v${nix.sel(finalAttrs, "version")}/NEWS`),

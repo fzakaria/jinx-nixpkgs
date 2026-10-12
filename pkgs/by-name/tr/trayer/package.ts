@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "trayer";
       const version = "1.1.8";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sargon",
           repo: "trayer-srg",
           rev: nix.thunk(() => nix.str`${pname}-${version}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "patchShebangs configure\n";
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix_function_dec.patch",
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/x11-misc/trayer-srg/files/trayer-srg-1.1.8-fix-define.patch?id=94ae89d1b044c24138d5c8903df68e9654a5462f",
             hash: "sha256-LighVaBDePheBO+dWG6JHhm/Y6sxdtvTrBar8VrPRH4=",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [gdk_pixbuf, gtk2]);
       const makeFlags = nix.thunk(() => ["PREFIX=$(out)"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/sargon/trayer-srg",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         description: "Lightweight GTK2-based systray for UNIX desktop",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "trayer",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

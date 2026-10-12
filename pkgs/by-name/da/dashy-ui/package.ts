@@ -32,24 +32,24 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const settings = nix.argOr($, "settings", () => ({}));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "dashy-ui",
       version: "4.6.14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lissy93",
           repo: "dashy",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-/1B4aswxso8dPuu+YjVo8Qbor3dDQBjK943b2ySX74c=",
         })))),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/yarn.lock")),
           hash: "sha256-FxSGlP12hyF4d0VeSfc3MeJNDTpSDvAStua6Q21Hoag=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, dashy: nix.thunk(() => nix.sel(nixosTests, "dashy")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, dashy: nix.thunk(() => nix.sel(nixosTests, "dashy")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       preBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(settings, {})), nix.thunk(() => nix.str`echo "Writing settings override..."
@@ -59,10 +59,10 @@ yarn validate-config --offline
       installPhase: "mkdir $out\ncp -R dist/* $out\n",
       nativeBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(yarnConfigHook, "override"), nix.thunk(() => ({
-            __proto__: pos$8,
-            "fixup-yarn-lock": nix.thunk(() => nix.app(nix.sel(fixup_yarn_lock, "override"), nix.thunk(() => ({ __proto__: pos$5, "nodejs-slim": nodejs_slim_24 })))),
-            "prefetch-yarn-deps": nix.thunk(() => nix.app(nix.sel(prefetch_yarn_deps, "override"), nix.thunk(() => ({ __proto__: pos$6, "nodejs-slim": nodejs_slim_24 })))),
-            yarn: nix.thunk(() => nix.app(nix.sel(yarn, "override"), nix.thunk(() => ({ __proto__: pos$7, nodejs: nodejs_24 })))),
+            [nix.POS]: pos$8,
+            "fixup-yarn-lock": nix.thunk(() => nix.app(nix.sel(fixup_yarn_lock, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, "nodejs-slim": nodejs_slim_24 })))),
+            "prefetch-yarn-deps": nix.thunk(() => nix.app(nix.sel(prefetch_yarn_deps, "override"), nix.thunk(() => ({ [nix.POS]: pos$6, "nodejs-slim": nodejs_slim_24 })))),
+            yarn: nix.thunk(() => nix.app(nix.sel(yarn, "override"), nix.thunk(() => ({ [nix.POS]: pos$7, nodejs: nodejs_24 })))),
           })))),
         yarnBuildHook,
         nodejs_24,
@@ -70,7 +70,7 @@ yarn validate-config --offline
       ]),
       doDist: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Open source, highly customizable, easy-to-use, privacy-respecting dashboard app",
         homepage: "https://dashy.to",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

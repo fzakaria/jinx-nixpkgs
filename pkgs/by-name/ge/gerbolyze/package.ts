@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const resvg = nix.arg($, "resvg");
   const version = "3.2.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "jaseg",
       repo: "gerbolyze",
       tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const preInstall = "mkdir -p $out/bin\n";
       const installFlags = nix.thunk(() => ["PREFIX=$(out)"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SVG-flatten SVG downconverter",
         homepage: "https://github.com/jaseg/gerbolyze",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version: version_1,
         src: src_1,
         pname,
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       };
     })())));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       version: version,
       src: src,
       pname: "gerbolyze",
@@ -94,11 +94,11 @@ export default nix.lambda((args) => (() => {
   --replace-fail "'gerbolyze'" "'${nix.builtins.placeholder("out")}/bin/gerbolyze'"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$4, "rev-prefix": "v" })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Directly render SVG overlays into Gerber and Excellon files",
         homepage: "https://github.com/jaseg/gerbolyze",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

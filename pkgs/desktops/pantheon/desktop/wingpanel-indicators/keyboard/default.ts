@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pname = "wingpanel-indicator-keyboard";
       const version = "2.4.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "elementary",
           repo: "wingpanel-indicator-keyboard",
           rev: version,
@@ -40,18 +40,18 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             gkbd_keyboard_display: nix.thunk(() => nix.str`${libgnomekbd}/bin/gkbd-keyboard-display`),
           })))),
       ]);
       const nativeBuildInputs = nix.thunk(() => [meson, ninja, libxml2, pkg_config, vala]);
       const buildInputs = nix.thunk(() => [granite, gtk3, ibus, libgee, wingpanel, xkeyboard_config]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Keyboard Indicator for Wingpanel",
         homepage: "https://github.com/elementary/wingpanel-indicator-keyboard",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "pantheon"))]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

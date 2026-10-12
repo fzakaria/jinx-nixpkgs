@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch2 = nix.arg($, "fetchpatch2");
   const libjodycode = nix.arg($, "libjodycode");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "jdupes",
       version: "1.31.1",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jbruchon",
           repo: "jdupes",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "use-stat-time-macros-for-compatibility-reasons.patch",
             url: "https://codeberg.org/jbruchon/jdupes/commit/464f72c82f2ce81dd33bfb5381f1bcf148da4091.patch",
             hash: "sha256-/B6iNAG3Fsmot5MGSBMs99QnAc/bFZJjPtnbiq21QZg=",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postInstall: "install -Dm444 -t $out/share/doc/jdupes CHANGES.txt LICENSE.txt README.md\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Powerful duplicate file finder and an enhanced fork of 'fdupes'",
         longDescription: "jdupes is a program for identifying and taking actions upon\nduplicate files. This fork known as 'jdupes' is heavily modified\nfrom and improved over the original.\n",
         homepage: "https://codeberg.org/jbruchon/jdupes",

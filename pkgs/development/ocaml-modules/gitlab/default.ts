@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const iso8601 = nix.arg($, "iso8601");
   const stringext = nix.arg($, "stringext");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gitlab",
       version: "0.1.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tmcgilchrist",
           repo: "ocaml-gitlab",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [uri, cohttp_lwt, atdgen_runtime, yojson, iso8601]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/tmcgilchrist/ocaml-gitlab",
         description: "Native OCaml bindings to Gitlab REST API v4",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

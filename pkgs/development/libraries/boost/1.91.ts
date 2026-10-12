@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
       const src = nix.thunk(() => (() => {
         const underVersion = nix.thunk(() => nix.app(nix.sel(lib, "replaceString"), ".", "_", version));
         return nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             urls: nix.thunk(() => [
               nix.thunk(() => nix.str`https://archives.boost.io/release/${version}/source/boost_${underVersion}.tar.bz2`),
             ]),
             sha256: "de5e6b0e4913395c6bdfa90537febd9028ea4c0735d2cdb0cd9b45d5f51264f5",
           })));
       })());
-      return { __proto__: pos$2, version, src };
+      return { [nix.POS]: pos$2, version, src };
     })())));
 })(), formals$1);
 //# sourceMappingURL=1.91.ts.map

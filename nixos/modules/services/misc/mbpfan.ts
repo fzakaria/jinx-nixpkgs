@@ -37,61 +37,61 @@ export default nix.lambda((args) => (() => {
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({}))));
   const cfgfile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "mbpfan.ini", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         mbpfan: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "mbpfan, fan controller daemon for Apple Macs and MacBooks")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "mbpfan", nix.thunk(() => ({})))),
           verbose: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "If true, sets the log level to verbose.",
             })))),
           aggressive: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "If true, favors higher default fan speeds.",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               default: nix.thunk(() => ({})),
               description: "INI configuration for Mbpfan.",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   freeformType: nix.thunk(() => nix.sel(format, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     general: nix.thunk(() => ({
-                      __proto__: pos$7,
+                      [nix.POS]: pos$7,
                       low_temp: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$3,
+                          [nix.POS]: pos$3,
                           type: nix.thunk(() => nix.sel(lib, "types", "int")),
                           default: nix.thunk(() => (nix.asBool(nix.sel(cfg, "aggressive")) ? 55n : 63n)),
                           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "55")),
                           description: "If temperature is below this, fans will run at minimum speed.",
                         })))),
                       high_temp: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           type: nix.thunk(() => nix.sel(lib, "types", "int")),
                           default: nix.thunk(() => (nix.asBool(nix.sel(cfg, "aggressive")) ? 58n : 66n)),
                           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "58")),
                           description: "If temperature is above this, fan speed will gradually increase.",
                         })))),
                       max_temp: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$5,
+                          [nix.POS]: pos$5,
                           type: nix.thunk(() => nix.sel(lib, "types", "int")),
                           default: nix.thunk(() => (nix.asBool(nix.sel(cfg, "aggressive")) ? 78n : 86n)),
                           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "78")),
                           description: "If temperature is above this, fans will run at maximum speed.",
                         })))),
                       polling_interval: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           type: nix.thunk(() => nix.sel(lib, "types", "int")),
                           default: 1n,
                           description: "The polling interval.",
@@ -112,22 +112,22 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "mbpfan", "maxFanSpeed"]), nix.thunk(() => ["services", "mbpfan", "settings", "general", "max_fan1_speed"]))),
     ]),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$22,
-        boot: nix.thunk(() => ({ __proto__: pos$14, kernelModules: nix.thunk(() => ["coretemp", "applesmc"]) })),
+        [nix.POS]: pos$22,
+        boot: nix.thunk(() => ({ [nix.POS]: pos$14, kernelModules: nix.thunk(() => ["coretemp", "applesmc"]) })),
         environment: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$16,
-            "mbpfan.conf": nix.thunk(() => ({ __proto__: pos$15, source: cfgfile })),
+            [nix.POS]: pos$16,
+            "mbpfan.conf": nix.thunk(() => ({ [nix.POS]: pos$15, source: cfgfile })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           services: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             mbpfan: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               description: "A fan manager daemon for MacBook Pro",
               wantedBy: nix.thunk(() => ["sysinit.target"]),
               after: nix.thunk(() => ["sysinit.target"]),
@@ -135,7 +135,7 @@ export default nix.lambda((args) => (() => {
                 nix.thunk(() => nix.sel(config, "environment", "etc", "mbpfan.conf", "source")),
               ]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 Type: "simple",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/mbpfan -f${verbose}`),
                 ExecReload: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/kill -HUP $MAINPID`),

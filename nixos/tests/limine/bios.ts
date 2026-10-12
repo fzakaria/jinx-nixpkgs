@@ -17,10 +17,10 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     name: "bios",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -31,17 +31,17 @@ export default nix.lambda((args) => (() => {
       platforms: nix.thunk(() => ["i686-linux", "x86_64-linux"]),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$6,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$2, useBootLoader: true, useBIOSBoot: true })),
+          [nix.POS]: pos$6,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, useBootLoader: true, useBIOSBoot: true })),
           boot: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             loader: nix.thunk(() => ({
-              __proto__: pos$4,
-              limine: nix.thunk(() => ({ __proto__: pos$3, enable: true, efiSupport: false })),
+              [nix.POS]: pos$4,
+              limine: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true, efiSupport: false })),
               timeout: 0n,
             })),
           })),

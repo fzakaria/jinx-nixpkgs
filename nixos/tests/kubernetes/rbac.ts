@@ -35,28 +35,28 @@ const pos$28 = nix.positions(here + "/rbac.nix", [["singlenode", 202, 3], ["mult
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({ __proto__: pos$1, system: system }))));
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./base.nix")), nix.thunk(() => ({ __proto__: pos$2, system: system })))), null);
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system }))));
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./base.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system })))), null);
   const roServiceAccount = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "ro-service-account.json", nix.thunk(() => nix.app(nix.sel(nix.builtins, "toJSON"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         kind: "ServiceAccount",
         apiVersion: "v1",
-        metadata: nix.thunk(() => ({ __proto__: pos$3, name: "read-only", namespace: "default" })),
+        metadata: nix.thunk(() => ({ [nix.POS]: pos$3, name: "read-only", namespace: "default" })),
       }))))));
   const roRoleBinding = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "ro-role-binding.json", nix.thunk(() => nix.app(nix.sel(nix.builtins, "toJSON"), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         apiVersion: "rbac.authorization.k8s.io/v1",
         kind: "RoleBinding",
-        metadata: nix.thunk(() => ({ __proto__: pos$5, name: "read-pods", namespace: "default" })),
+        metadata: nix.thunk(() => ({ [nix.POS]: pos$5, name: "read-pods", namespace: "default" })),
         roleRef: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           apiGroup: "rbac.authorization.k8s.io",
           kind: "Role",
           name: "pod-reader",
         })),
         subjects: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             kind: "ServiceAccount",
             name: "read-only",
             namespace: "default",
@@ -64,13 +64,13 @@ export default nix.lambda((args) => (() => {
         ]),
       }))))));
   const roRole = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "ro-role.json", nix.thunk(() => nix.app(nix.sel(nix.builtins, "toJSON"), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         apiVersion: "rbac.authorization.k8s.io/v1",
         kind: "Role",
-        metadata: nix.thunk(() => ({ __proto__: pos$9, name: "pod-reader", namespace: "default" })),
+        metadata: nix.thunk(() => ({ [nix.POS]: pos$9, name: "pod-reader", namespace: "default" })),
         rules: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             apiGroups: nix.thunk(() => [""]),
             resources: nix.thunk(() => ["pods"]),
             verbs: nix.thunk(() => ["get", "list", "watch"]),
@@ -78,21 +78,21 @@ export default nix.lambda((args) => (() => {
         ]),
       }))))));
   const kubectlPod = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "kubectl-pod.json", nix.thunk(() => nix.app(nix.sel(nix.builtins, "toJSON"), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         kind: "Pod",
         apiVersion: "v1",
         metadata: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           name: "kubectl",
           namespace: "default",
-          labels: nix.thunk(() => ({ __proto__: pos$12, name: "kubectl" })),
+          labels: nix.thunk(() => ({ [nix.POS]: pos$12, name: "kubectl" })),
         })),
         spec: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           serviceAccountName: "read-only",
           containers: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               name: "kubectl",
               image: "kubectl:latest",
               command: nix.thunk(() => ["/bin/tail", "-f"]),
@@ -103,21 +103,21 @@ export default nix.lambda((args) => (() => {
         })),
       }))))));
   const kubectlPod2 = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "kubectl-pod-2.json", nix.thunk(() => nix.app(nix.sel(nix.builtins, "toJSON"), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         kind: "Pod",
         apiVersion: "v1",
         metadata: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           name: "kubectl-2",
           namespace: "default",
-          labels: nix.thunk(() => ({ __proto__: pos$17, name: "kubectl-2" })),
+          labels: nix.thunk(() => ({ [nix.POS]: pos$17, name: "kubectl-2" })),
         })),
         spec: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           serviceAccountName: "read-only",
           containers: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               name: "kubectl-2",
               image: "kubectl:latest",
               command: nix.thunk(() => ["/bin/tail", "-f"]),
@@ -131,20 +131,20 @@ export default nix.lambda((args) => (() => {
 cp ${nix.sel(pkgs, "kubernetes")}/bin/kubectl $out/bin/kubectl
 `)));
   const kubectlImage = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "buildImage"), nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       name: "kubectl",
       tag: "latest",
       copyToRoot: nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           name: "image-root",
           pathsToLink: nix.thunk(() => ["/bin"]),
           paths: nix.thunk(() => [copyKubectl, nix.thunk(() => nix.sel(pkgs, "busybox")), kubectlPod2]),
         })))),
-      config: nix.thunk(() => ({ __proto__: pos$23, Entrypoint: nix.thunk(() => ["/bin/sh"]) })),
+      config: nix.thunk(() => ({ [nix.POS]: pos$23, Entrypoint: nix.thunk(() => ["/bin/sh"]) })),
     }))));
-  const base = nix.thunk(() => ({ __proto__: pos$25, name: "rbac" }));
+  const base = nix.thunk(() => ({ [nix.POS]: pos$25, name: "rbac" }));
   const singlenode = nix.thunk(() => nix.update(base, {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     test: nix.thunk(() => nix.str`machine1.wait_until_succeeds("kubectl get node machine1.my.zyx | grep -w Ready")
 
 machine1.wait_until_succeeds(
@@ -172,7 +172,7 @@ machine1.fail("kubectl exec kubectl -- kubectl delete pods -l name=kubectl")
 `),
   }));
   const multinode = nix.thunk(() => nix.update(base, {
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     test: nix.thunk(() => nix.str`# Node token exchange
 machine1.wait_until_succeeds(
     "cp -f /var/lib/cfssl/apitoken.secret /tmp/shared/apitoken.secret"
@@ -208,7 +208,7 @@ machine1.fail("kubectl exec kubectl -- kubectl delete pods -l name=kubectl")
 `),
   }));
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     singlenode: nix.thunk(() => nix.app(nix.lookup(w, "mkKubernetesSingleNodeTest"), singlenode)),
     multinode: nix.thunk(() => nix.app(nix.lookup(w, "mkKubernetesMultiNodeTest"), multinode)),
   };

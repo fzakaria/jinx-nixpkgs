@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cpuid",
       version: "20260503",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://etallen.com/cpuid/cpuid-${nix.sel(finalAttrs, "version")}.src.tar.gz`),
           sha256: "sha256-juEPtI1KogxISnXWhSiDcQKG7Sl1wxS9ptCwODkIy/4=",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       patchPhase: "sed -i -e 's,/usr/,/,' Makefile\n",
       installPhase: "make install BUILDROOT=$out\n\nif [ ! -x $out/bin/cpuid ]; then\n  echo Failed to properly patch Makefile.\n  exit 1\nfi\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Linux tool to dump x86 CPUID information about the CPU",
         longDescription: "cpuid dumps detailed information about the CPU(s) gathered from the CPUID\ninstruction, and also determines the exact model of CPU(s). It supports\nIntel, AMD, VIA, Hygon, and Zhaoxin CPUs, as well as older Transmeta,\nCyrix, UMC, NexGen, Rise, and SiS CPUs.\n",
         homepage: "http://etallen.com/cpuid.html",

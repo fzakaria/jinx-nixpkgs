@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const jinja2 = nix.arg($, "jinja2");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tiptapy",
       version: "0.20.0-unstable-2024-06-14",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stckme",
           repo: "tiptapy",
           rev: "f34ed358b1b3448721b791150f4f104347a416bf",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["tiptapy"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library that generates HTML output from JSON export of tiptap editor",
         homepage: "https://github.com/stckme/tiptapy",
         changelog: "https://github.com/stckme/tiptapy/blob/master/CHANGELOG.rst",

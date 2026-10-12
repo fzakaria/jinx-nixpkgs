@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const updateAutotoolsGnuConfigScriptsHook = nix.arg($, "updateAutotoolsGnuConfigScriptsHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "gdbm",
       version: "1.26",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/gdbm/gdbm-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-aiRQShTeSnRBA9y5Nr6Xbfb76IzP8mBl5UwcR5RvSl4=",
         })))),
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "buildPlatform", "isCygwin")), "substituteInPlace tests/Makefile.in \\\n  --replace-fail '_LDADD = ../src/libgdbm.la ../compat/libgdbm_compat.la' \\\n                 '_LDADD = ../compat/libgdbm_compat.la ../src/libgdbm.la'\nsubstituteInPlace tests/testsuite.at\n  --replace-fail 'm4_include([dbmfetch03.at])' \"\"\n")),
       postInstall: "install -dm755 ${!outputDev}/include/gdbm\npushd ${!outputDev}/include/gdbm\nln -s ../dbm.h dbm.h\nln -s ../gdbm.h gdbm.h\nln -s ../ndbm.h ndbm.h\npopd\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "gdbmtool --version",
             })))),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://www.gnu.org/software/gdbm/",
         description: "GNU dbm key/value database library",
         longDescription: "GNU dbm (or GDBM, for short) is a library of database functions that use\nextensible hashing and work similar to the standard UNIX dbm. These\nroutines are provided to a programmer needing to create and manipulate a\nhashed database.\n\nThe basic use of GDBM is to store key/data pairs in a data file. Each\nkey must be unique and each key is paired with only one data item.\n\nThe library provides primitives for storing key/data pairs, searching and\nretrieving the data by its key and deleting a key along with its data.\nIt also support sequential iteration over all key/data pairs in a\ndatabase.\n\nFor compatibility with programs using old UNIX dbm function, the package\nalso provides traditional dbm and ndbm interfaces.\n",

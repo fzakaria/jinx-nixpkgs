@@ -23,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const protobuf = nix.arg($, "protobuf");
   const pydantic = nix.arg($, "pydantic");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mlflow-tracing",
       version: nix.thunk(() => nix.attr(mlflow, "version")),
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mlflow",
           repo: "mlflow",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(mlflow, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open-Source SDK for observability and monitoring GenAI applications",
         homepage: "https://github.com/mlflow/mlflow/tree/master/libs/tracing",
         license: nix.thunk(() => nix.attr(from, "license")),

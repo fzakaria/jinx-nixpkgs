@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const options = nix.arg($, "options");
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     config: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       set: nix.thunk(() => nix.update({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         value: nix.thunk(() => (nix.asBool(nix.has(options, "set", "enable")) ? 360n : 7n)),
-      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(options, "set", "enable")), nix.thunk(() => ({ __proto__: pos$2, enable: true }))))),
+      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(options, "set", "enable")), nix.thunk(() => ({ [nix.POS]: pos$2, enable: true }))))),
     })),
   };
 })(), formals$1);

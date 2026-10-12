@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "php-fpm_exporter";
       const version = "2.2.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hipages",
           repo: "php-fpm_exporter",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -38,17 +38,17 @@ export default nix.lambda((args) => (() => {
 `);
       const postInstall = "installShellCompletion --cmd php-fpm_exporter \\\n  --bash <($out/bin/php-fpm_exporter completion bash) \\\n  --fish <($out/bin/php-fpm_exporter completion fish) \\\n  --zsh <($out/bin/php-fpm_exporter completion zsh)\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             version: version,
             package: prometheus_php_fpm_exporter,
             command: "php-fpm_exporter version",
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/hipages/php-fpm_exporter",
         description: "Prometheus exporter for PHP-FPM",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "php-fpm_exporter",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const solc = nix.arg($, "solc");
   const withSolc = nix.argOr($, "withSolc", () => false);
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "slither-analyzer",
       version: "0.11.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "crytic",
           repo: "slither",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         "slither.vyper_parsing",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Static Analyzer for Solidity",
         longDescription: "Slither is a Solidity static analysis framework written in Python 3. It\nruns a suite of vulnerability detectors, prints visual information about\ncontract details, and provides an API to easily write custom analyses.\n",
         homepage: "https://github.com/trailofbits/slither",

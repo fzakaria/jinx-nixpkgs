@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const bash = nix.arg($, "bash");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mkuimage",
       version: "0-unstable-2026-04-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "u-root",
           repo: "mkuimage",
           rev: "72394cd98f39c9190dcc4f2a601902d43af1ae6e",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-PmfHdl0GG84kPPUgKiLwhKvcgbbwJLFMnX1cI//U5T8=",
       subPackages: nix.thunk(() => ["cmd/gentpldeps", "cmd/mkuimage"]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: "0" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: "0" })),
       ldflags: nix.thunk(() => ["-s"]),
       doCheck: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")),
       preCheck: nix.thunk(() => nix.str`substituteInPlace ./cmd/mkuimage/main_test.go \\
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
   --replace-fail '-files=/bin/bash' '-files=${bash}/bin/bash'
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Create small Go-based root file systems -- with support for CPIOs and (TBD) Docker images",
         homepage: "https://github.com/u-root/mkuimage",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "2.2.8",
       pname: "libpaper",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/rrthomas/libpaper/releases/download/v${nix.sel(finalAttrs, "version")}/libpaper-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-HjMFcWkBkYdOykFex2iJ3RG6uYh6IwLWo2Zc0IHE13s=",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "mkdir -p $out/etc\necho letter > $out/etc/papersize\n",
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/rrthomas/libpaper/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Library for handling paper characteristics",
         homepage: "https://github.com/rrthomas/libpaper",

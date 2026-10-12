@@ -21,28 +21,28 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "libfrida-core",
       version: "17.18.0",
       src: nix.thunk(() => nix.selOr(finalAttrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)), "passthru", "sources", nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system")))),
       dontUnpack: true,
       installPhase: "runHook preInstall\nmkdir -p $out/include $out/lib\ntar -xf $src -C .\ninstall -Dm755 libfrida-core.a -t $out/lib\ninstall -Dm644 frida-core.h -t $out/include\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         sources: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               url: nix.thunk(() => nix.str`https://github.com/frida/frida/releases/download/${nix.sel(finalAttrs, "version")}/frida-core-devkit-${nix.sel(finalAttrs, "version")}-linux-x86_64.tar.xz`),
               hash: "sha256-NVfE1VcY2UtCE5TxN9uWqZeQFHI4i+3kzJf80qWbgDc=",
             })))),
           "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: nix.thunk(() => nix.str`https://github.com/frida/frida/releases/download/${nix.sel(finalAttrs, "version")}/frida-core-devkit-${nix.sel(finalAttrs, "version")}-linux-arm64.tar.xz`),
               hash: "sha256-Nl8QKGiYEkc5PoPQWeneEUqIjTyQnuIa+8nZl8QkxKI=",
             })))),
           "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               url: nix.thunk(() => nix.str`https://github.com/frida/frida/releases/download/${nix.sel(finalAttrs, "version")}/frida-core-devkit-${nix.sel(finalAttrs, "version")}-macos-arm64.tar.xz`),
               hash: "sha256-MmyRjD67EUjiRQMNvCIcP/hYB1zdt6W/N0JBg/idEu4=",
             })))),
@@ -60,7 +60,7 @@ done
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Frida core library intended for static linking into bindings",
         homepage: "https://frida.re/",
         changelog: "https://frida.re/news/",

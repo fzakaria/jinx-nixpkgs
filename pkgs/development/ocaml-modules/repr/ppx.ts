@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const hex = nix.arg($, "hex");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "ppx_repr",
       src: nix.thunk(() => nix.attr(repr, "src")),
       version: nix.thunk(() => nix.attr(repr, "version")),
       propagatedBuildInputs: nix.thunk(() => [ppx_deriving, ppxlib, repr]),
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest, hex]),
-      meta: nix.thunk(() => nix.update(nix.sel(repr, "meta"), { __proto__: pos$1, description: "PPX deriver for type representations" })),
+      meta: nix.thunk(() => nix.update(nix.sel(repr, "meta"), { [nix.POS]: pos$1, description: "PPX deriver for type representations" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=ppx.ts.map

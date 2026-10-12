@@ -22,17 +22,17 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "smokeping",
       version: "2.9.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://oss.oetiker.ch/smokeping/pub/smokeping-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-8b41v8zCuhyfdfdtIisptXAk7+icW1ZLhsGjfOLR3bE=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://src.fedoraproject.org/rpms/smokeping/raw/4ebf1921706a5a29c758fdce2f59cc35652c944a/f/smokeping-2.8.2-no-3rd-party.patch",
             hash: "sha256-97rQ4m9HHl3lIpQyjZvu+gZSrNIB2pckxmopCQAQPp0=",
           })))),
@@ -60,14 +60,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       postInstall: "mv $out/htdocs/smokeping.fcgi.dist $out/htdocs/smokeping.fcgi\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           smokeping: nix.thunk(() => nix.sel(nixosTests, "smokeping")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Network latency collector",
         homepage: "https://oss.oetiker.ch/smokeping",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

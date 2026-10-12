@@ -23,43 +23,43 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     name: "echoip",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "defelo"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       machine: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         services: nix.thunk(() => ({
-          __proto__: pos$3,
-          whoami: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+          [nix.POS]: pos$3,
+          whoami: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
         })),
       })),
     })),
     interactive: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       nodes: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         machine: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           networking: nix.thunk(() => ({
-            __proto__: pos$7,
-            firewall: nix.thunk(() => ({ __proto__: pos$6, allowedTCPPorts: nix.thunk(() => [8000n]) })),
+            [nix.POS]: pos$7,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$6, allowedTCPPorts: nix.thunk(() => [8000n]) })),
           })),
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             forwardPorts: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 from: "host",
-                host: nix.thunk(() => ({ __proto__: pos$8, port: 8000n })),
-                guest: nix.thunk(() => ({ __proto__: pos$9, port: 8000n })),
+                host: nix.thunk(() => ({ [nix.POS]: pos$8, port: 8000n })),
+                guest: nix.thunk(() => ({ [nix.POS]: pos$9, port: 8000n })),
               })),
             ]),
           })),

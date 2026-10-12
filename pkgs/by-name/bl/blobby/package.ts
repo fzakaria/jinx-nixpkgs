@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "blobby-volley",
       version: "1.1.1-unstable-2025-07-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "danielknobe",
           repo: "blobbyvolley2",
           rev: "9bc797f0fade4766f2d98f8cf4db0a8a7b82a950",
@@ -43,7 +43,7 @@ substituteAll "${nix.path(here, "./blobby.sh")}" "$out/bin/blobby"
 chmod a+x "$out/bin/blobby"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Volleyball game",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

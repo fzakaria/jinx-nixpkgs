@@ -67,18 +67,18 @@ export default nix.lambda((args) => (() => {
   const enableExecutable = nix.argOr($, "enableExecutable", () => true);
   const enableWsi = nix.argOr($, "enableWsi", () => false);
   const frogShaders = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "misyltoad",
       repo: "GamescopeShaders",
       rev: "v0.1",
       hash: "sha256-gR1AeAHV/Kn4ntiEDUSPxASLMFusV6hgSGrTbMCBUZA=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "gamescope",
       version: "3.16.31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "ValveSoftware",
           repo: "gamescope",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -89,12 +89,12 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./shaders-path.patch"),
         nix.path(here, "./gamescopereaper.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/ValveSoftware/gamescope/commit/4ce1a91fb219f570b0871071a2ec8ac97d90c0bc.diff",
             hash: "sha256-O358ScIIndfkc1S0A8g2jKvFWoCzcXB/g6lRJamqOI4=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/ValveSoftware/gamescope/commit/d49a2aded261030e649fee42ad295f1ef56b736b.diff",
             hash: "sha256-Uh08ZRaV912ZOsl1DMpbVLxIgh4jEXevgihQf2W9KFk=",
           })))),
@@ -164,11 +164,11 @@ mkdir -p $out/share/gamescope/reshade
 cp -r ${frogShaders}/* $out/share/gamescope/reshade/
 `))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "SteamOS session compositing window manager",
         homepage: "https://github.com/ValveSoftware/gamescope",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

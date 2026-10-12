@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "zsh-system-clipboard";
       const version = "0.8.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kutsan",
           repo: "zsh-system-clipboard",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const installPhase = nix.thunk(() => nix.str`install -D zsh-system-clipboard.zsh $out/share/zsh/${pname}/zsh-system-clipboard.zsh
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/kutsan/zsh-system-clipboard",
         description: "Plugin that adds key bindings support for ZLE (Zsh Line Editor) clipboard operations for vi emulation keymaps",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, pname, version, src, strictDeps, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, strictDeps, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

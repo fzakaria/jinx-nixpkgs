@@ -38,13 +38,13 @@ export default nix.lambda((args) => (() => {
   const externalEtc = nix.argOr($, "externalEtc", () => "/etc");
   const removeReferencesTo = nix.arg($, "removeReferencesTo");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "xrootd",
       version: "6.0.2",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xrootd",
           repo: "xrootd",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -85,15 +85,15 @@ ln -s ${nix.app(nix.sel(lib, "escapeShellArg"), externalEtc)} "$out/etc"
 `))),
       dontPatchELF: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         fetchxrd: nix.thunk(() => nix.app(callPackage, nix.path(here, "./fetchxrd.nix"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             xrootd: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "test-xrdcp": nix.thunk(() => nix.app(nix.sel(finalAttrs, "passthru", "fetchxrd"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               pname: "xrootd-test-xrdcp",
               version: nix.thunk(() => nix.add(nix.add(nix.sel(finalAttrs, "version"), "-"), nix.builtins.substring(nix.thunk(() => nix.add(nix.builtins.stringLength(nix.thunk(() => nix.builtins.storeDir)), 1n)), 32n, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}`)))),
               url: "root://eospublic.cern.ch//eos/opendata/alice/2010/LHC10h/000138275/ESD/0000/AliESDs.root",
@@ -102,7 +102,7 @@ ln -s ${nix.app(nix.sel(lib, "escapeShellArg"), externalEtc)} "$out/etc"
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "High performance, scalable fault tolerant data access",
         homepage: "https://xrootd.slac.stanford.edu",
         changelog: nix.thunk(() => nix.str`https://github.com/xrootd/xrootd/releases/tag/v${nix.sel(finalAttrs, "version")}`),

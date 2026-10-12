@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tree-sitter-grammars",
           repo: "tree-sitter-yaml",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-BX6TOfAZLW+0h2TNsgsLC9K2lfirraCWlBN2vCKiXQ4=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: src,
           hash: "sha256-mrLuGmauboKHHk0zADPXpwgZfc83syXk0jmD93Y9Jq4=",
         }))));
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
         rustc,
         setuptools,
       ]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$3, core: nix.thunk(() => [tree_sitter]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$3, core: nix.thunk(() => [tree_sitter]) }));
       const pythonImportsCheck = nix.thunk(() => ["tree_sitter_yaml"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, tree_sitter]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "YAML grammar for tree-sitter",
         homepage: "https://github.com/tree-sitter-grammars/tree-sitter-yaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

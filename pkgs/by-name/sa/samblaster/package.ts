@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "samblaster",
       version: "0.1.26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GregoryFaust",
           repo: "samblaster",
           rev: nix.thunk(() => nix.str`v.${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`CPP=${nix.sel(stdenv, "cc", "targetPrefix")}c++`)]),
       installPhase: "mkdir -p $out/bin\ncp samblaster $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for marking duplicates and extracting discordant/split reads from SAM/BAM files",
         mainProgram: "samblaster",
         maintainers: nix.thunk(() => (() => {

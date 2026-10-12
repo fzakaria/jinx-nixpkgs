@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const rclone = nix.arg($, "rclone");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ludusavi",
       version: "0.31.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mtkennerly",
           repo: "ludusavi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -90,7 +90,7 @@ wrapProgram $out/bin/ludusavi --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPat
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Backup tool for PC game saves",
         homepage: "https://github.com/mtkennerly/ludusavi",
         changelog: nix.thunk(() => nix.str`https://github.com/mtkennerly/ludusavi/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

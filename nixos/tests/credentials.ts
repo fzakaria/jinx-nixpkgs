@@ -30,51 +30,51 @@ export default nix.lambda((args) => (() => {
   const secret = "foo\nbar\nbaz\n";
   const secret_file = "bar";
   const common_credentials = nix.thunk(() => ({
-    __proto__: pos$5,
-    "secret-default-mechanism": nix.thunk(() => ({ __proto__: pos$1, text: "default-mechanism" })),
+    [nix.POS]: pos$5,
+    "secret-default-mechanism": nix.thunk(() => ({ [nix.POS]: pos$1, text: "default-mechanism" })),
     "secret-file-nix-store": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "secret-file-nix-store", secret_file)),
     })),
-    "secret-file-host": nix.thunk(() => ({ __proto__: pos$3, source: "./secret-file-host" })),
-    "secret-file-host-binary": nix.thunk(() => ({ __proto__: pos$4, source: "./secret-file-host-binary" })),
+    "secret-file-host": nix.thunk(() => ({ [nix.POS]: pos$3, source: "./secret-file-host" })),
+    "secret-file-host-binary": nix.thunk(() => ({ [nix.POS]: pos$4, source: "./secret-file-host-binary" })),
   }));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     name: nix.thunk(() => nix.str`credentials-${mechanism}`),
     meta: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "arianvp"))];
       })()),
     })),
     requiredFeatures: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       devnet: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), false)),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       vm: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         virtualisation: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           credentials: nix.thunk(() => nix.update(common_credentials, {
-            __proto__: pos$9,
-            secret: nix.thunk(() => ({ __proto__: pos$8, mechanism: mechanism, text: secret })),
+            [nix.POS]: pos$9,
+            secret: nix.thunk(() => ({ [nix.POS]: pos$8, mechanism: mechanism, text: secret })),
           })),
         })),
       })),
     })),
     containers: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       container: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         virtualisation: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           credentials: nix.thunk(() => nix.update(common_credentials, {
-            __proto__: pos$14,
-            secret: nix.thunk(() => ({ __proto__: pos$13, text: secret })),
+            [nix.POS]: pos$14,
+            secret: nix.thunk(() => ({ [nix.POS]: pos$13, text: secret })),
           })),
         })),
       })),

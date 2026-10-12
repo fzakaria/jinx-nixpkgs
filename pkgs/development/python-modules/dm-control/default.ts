@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
   const tqdm = nix.arg($, "tqdm");
   const etils = nix.arg($, "etils");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dm-control",
       version: "1.0.48",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "google-deepmind",
           repo: "dm_control",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["dm_control"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/google-deepmind/dm_control/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Google DeepMind's software stack for physics-based simulation and Reinforcement Learning environments, using MuJoCo",
         homepage: "https://github.com/google-deepmind/dm_control",

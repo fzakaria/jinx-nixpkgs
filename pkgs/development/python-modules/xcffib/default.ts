@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.12.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-Q0Ut5QnBJk1bzqS8Alyhv2gnLSQO8m0zQLRuEfY9PUo=",
@@ -40,7 +40,7 @@ substituteInPlace xcffib/__init__.py \\
       const pythonImportsCheck = nix.thunk(() => ["xcffib"]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Drop in replacement for xpyb, an XCB python binding",
         homepage: "https://github.com/tych0/xcffib",
         changelog: nix.thunk(() => nix.str`https://github.com/tych0/xcffib/releases/tag/v${version}`),
@@ -52,7 +52,7 @@ substituteInPlace xcffib/__init__.py \\
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -48,11 +48,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(enableGuile) || nix.asBool(!nix.eq(guile, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/el/elinks/package.nix:38:1");
   nix.assert_((!nix.asBool(enablePython) || nix.asBool(!nix.eq(python, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/el/elinks/package.nix:39:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "elinks",
       version: "0.20.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rkd77",
           repo: "elinks",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -77,10 +77,10 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), gettext), nix.concat(nix.app(nix.sel(lib, "optional"), enableGuile, guile), nix.concat(nix.app(nix.sel(lib, "optional"), enablePython, python), nix.app(nix.sel(lib, "optional"), enablePerl, perl)))))),
       nativeBuildInputs: nix.thunk(() => [meson, ninja, gettext, perl, python3, pkg_config, xmlto]),
       env: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           C_INCLUDE_PATH: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getInclude"), gpm)}/include`),
           LIBRARY_PATH: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), gpm)}/lib`),
-        }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ __proto__: pos$3, LDFLAGS: "-liconv" }))))),
+        }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$3, LDFLAGS: "-liconv" }))))),
       strictDeps: true,
       __structuredAttrs: true,
       mesonFlags: nix.thunk(() => nix.concat(nix.builtins.map((f) => nix.app(nix.sel(lib, "mesonBool"), f, true), nix.thunk(() => [
@@ -109,11 +109,11 @@ substituteInPlace doc/tools/asciidoc/docbook.conf \\
 `),
       preConfigure: "mesonFlags+=(\"-Dsource-date-epoch=$SOURCE_DATE_EPOCH\")\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$4, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Full-featured text-mode web browser",
         mainProgram: "elinks",
         homepage: "https://github.com/rkd77/elinks",

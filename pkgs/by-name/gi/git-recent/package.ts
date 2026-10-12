@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const gnused = nix.arg($, "gnused");
   const gawk = nix.arg($, "gawk");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "git-recent",
       version: "2.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "paulirish",
           repo: "git-recent",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +56,7 @@ installManPage man/man1/git-recent.1
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/paulirish/git-recent",
         description: "See your latest local git branches, formatted real fancy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

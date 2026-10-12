@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const ohex = nix.arg($, "ohex");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kdf",
       version: "1.1.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/robur-coop/kdf/releases/download/v${nix.sel(finalAttrs, "version")}/kdf-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-oyfh2qstNn11svuoX16CeIYpUiX5TAnmjiSi4qdQgQA=",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest, ohex]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Key Derivation Functions: HKDF RFC 5869, PBKDF RFC 2898, SCRYPT RFC 7914",
         homepage: "https://github.com/robur-coop/kdf",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

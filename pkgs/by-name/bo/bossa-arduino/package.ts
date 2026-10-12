@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
       const pname = "bossa-arduino";
       const version = "1.9.1-arduino2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "arduino",
           repo: "BOSSA",
           tag: version,
           sha256: "sha256-sBJ6QMd7cTClDnGCeOU0FT6IczEjqqRxCD7kef5GuY8=",
         }))));
-      return { __proto__: pos$2, pname, version, src };
+      return { [nix.POS]: pos$2, pname, version, src };
     })());
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

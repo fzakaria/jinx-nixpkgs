@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
   const mkDerivation = nix.thunk(() => nix.attr(haskellPackages, "mkDerivation"));
   const version = "1.12.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "tamarin-prover",
       repo: "tamarin-prover",
       tag: version,
       hash: "sha256-yXJIJENygr/lmkrVap4ohb8Pua4kri+yaD/Dy0Hpwn4=",
     }))));
   const common = (pname) => (src_1) => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     pname: pname,
     version: version,
     src: src_1,
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
 cp --remove-destination ${src}/Setup.hs .;
 `);
   const tamarin_prover_utils = nix.thunk(() => nix.app(mkDerivation, nix.thunk(() => nix.update(nix.app(common, "tamarin-prover-utils", nix.thunk(() => nix.add(src, "/lib/utils"))), {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       postPatch: replaceSymlinks,
       libraryHaskellDepends: nix.thunk(() => (() => {
         const w = nix.withScope(haskellPackages, null);
@@ -71,7 +71,7 @@ cp --remove-destination ${src}/Setup.hs .;
       })()),
     }))));
   const tamarin_prover_term = nix.thunk(() => nix.app(mkDerivation, nix.thunk(() => nix.update(nix.app(common, "tamarin-prover-term", nix.thunk(() => nix.add(src, "/lib/term"))), {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       postPatch: replaceSymlinks,
       libraryHaskellDepends: nix.thunk(() => nix.concat((() => {
         const w = nix.withScope(haskellPackages, null);
@@ -82,7 +82,7 @@ cp --remove-destination ${src}/Setup.hs .;
       })(), [tamarin_prover_utils])),
     }))));
   const tamarin_prover_theory = nix.thunk(() => nix.app(mkDerivation, nix.thunk(() => nix.update(nix.app(common, "tamarin-prover-theory", nix.thunk(() => nix.add(src, "/lib/theory"))), {
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       postPatch: replaceSymlinks,
       doHaddock: false,
       libraryHaskellDepends: nix.thunk(() => nix.concat((() => {
@@ -99,7 +99,7 @@ cp --remove-destination ${src}/Setup.hs .;
       })(), [tamarin_prover_utils, tamarin_prover_term])),
     }))));
   const tamarin_prover_sapic = nix.thunk(() => nix.app(mkDerivation, nix.thunk(() => nix.update(nix.app(common, "tamarin-prover-sapic", nix.thunk(() => nix.add(src, "/lib/sapic"))), {
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       postPatch: nix.thunk(() => nix.str`cp --remove-destination ${src}/LICENSE .`),
       doHaddock: false,
       libraryHaskellDepends: nix.thunk(() => nix.concat((() => {
@@ -108,7 +108,7 @@ cp --remove-destination ${src}/Setup.hs .;
       })(), [tamarin_prover_theory])),
     }))));
   const tamarin_prover_accountability = nix.thunk(() => nix.app(mkDerivation, nix.thunk(() => nix.update(nix.app(common, "tamarin-prover-accountability", nix.thunk(() => nix.add(src, "/lib/accountability"))), {
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       postPatch: nix.thunk(() => nix.str`cp --remove-destination ${src}/LICENSE .`),
       doHaddock: false,
       libraryHaskellDepends: nix.thunk(() => nix.concat((() => {
@@ -117,7 +117,7 @@ cp --remove-destination ${src}/Setup.hs .;
       })(), [tamarin_prover_utils, tamarin_prover_term, tamarin_prover_theory])),
     }))));
   const tamarin_prover_export = nix.thunk(() => nix.app(mkDerivation, nix.thunk(() => nix.update(nix.app(common, "tamarin-prover-export", nix.thunk(() => nix.add(src, "/lib/export"))), {
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       postPatch: nix.thunk(() => nix.str`cp --remove-destination ${src}/LICENSE .`),
       doHaddock: false,
       libraryHaskellDepends: nix.thunk(() => [
@@ -128,7 +128,7 @@ cp --remove-destination ${src}/Setup.hs .;
       ]),
     }))));
   const tamarin_frontend = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "tamarin-frontend",
       version: version,
       src: src,
@@ -137,7 +137,7 @@ cp --remove-destination ${src}/Setup.hs .;
       installPhase: "mkdir -p $out\ncp dist/* $out/\n",
     }))));
   return nix.app(mkDerivation, nix.thunk(() => nix.update(nix.app(common, "tamarin-prover", src), {
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       isLibrary: false,
       isExecutable: true,
       doHaddock: false,

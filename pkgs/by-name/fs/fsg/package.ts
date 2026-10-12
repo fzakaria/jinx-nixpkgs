@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "fsg";
       const version = "4.4";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`fsg-src-${version}.tar.gz`),
           url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/ctrlcctrlv/wxsand/5716c16b655ca3670e7acd76372b43763bec20d1/fsg-src-${version}-ORIGINAL.tar.gz`),
           sha256: "1756y01rkvd3f1pkj88jqh83fqcfl2fy0c48mcq53pjzln9ycv8c",
@@ -45,14 +45,14 @@ echo -e '#!${runtimeShell}\\nLC_ALL=C '$out'/libexec/sand "$@"' >$out/bin/fsg
 chmod a+x $out/bin/fsg
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cellular automata engine tuned towards the likes of Falling Sand",
         mainProgram: "fsg",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "raskin"))]),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

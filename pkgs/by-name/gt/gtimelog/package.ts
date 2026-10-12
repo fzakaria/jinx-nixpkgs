@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const libsoup_3 = nix.arg($, "libsoup_3");
   const libsecret = nix.arg($, "libsecret");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gtimelog",
       version: "0.12.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gtimelog",
           repo: "gtimelog",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       postInstall: "install -Dm644 gtimelog.desktop $out/share/applications/gtimelog.desktop\ninstall -Dm644 src/gtimelog/gtimelog.png $out/share/icons/hicolor/48x48/apps/gtimelog.png\ninstall -Dm644 src/gtimelog/gtimelog-large.png $out/share/icons/hicolor/256x256/apps/gtimelog.png\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Time tracking app",
         mainProgram: "gtimelog",
         longDescription: "GTimeLog is a small time tracking application for GNOME.\nIt's main goal is to be as unintrusive as possible.\n\nTo run gtimelog successfully on a system that does not have full GNOME\ninstalled, the following NixOS options should be set:\n- programs.dconf.enable = true;\n",

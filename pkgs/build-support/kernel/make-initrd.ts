@@ -33,9 +33,9 @@ export default nix.thunk(() => (() => {
     const uInitrdCompression = nix.argOr($, "uInitrdCompression", () => null);
     nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => (nix.asBool((nix.asBool(nix.eq(makeUInitrd, null)) && nix.asBool(nix.eq(uInitrdArch, null)))) && nix.asBool(nix.eq(uInitrdCompression, null)))), "makeInitrd: U‐Boot legacy image support has been removed as it is deprecated upstream and ARMv5 kernels no longer default to uImage"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/kernel/make-initrd.nix:71:1");
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         __structuredAttrs: true,
-        unsafeDiscardReferences: nix.thunk(() => ({ __proto__: pos$1, out: true })),
+        unsafeDiscardReferences: nix.thunk(() => ({ [nix.POS]: pos$1, out: true })),
         name: name,
         extension: extension,
         prepend: prepend,
@@ -45,9 +45,9 @@ export default nix.thunk(() => (() => {
         objects: nix.thunk(() => nix.builtins.map((x) => nix.sel(x, "object"), contents)),
         symlinks: nix.thunk(() => nix.builtins.map((x) => nix.sel(x, "symlink"), contents)),
         suffices: nix.thunk(() => nix.builtins.map((x) => (nix.asBool(nix.has(x, "suffix")) ? nix.sel(x, "suffix") : "none"), contents)),
-        closureInfo: nix.thunk(() => nix.str`${nix.app(nix.sel(pkgsBuildHost, "closureInfo"), nix.thunk(() => ({ __proto__: pos$2, rootPaths: nix.thunk(() => nix.sel(finalAttrs, "objects")) })))}`),
+        closureInfo: nix.thunk(() => nix.str`${nix.app(nix.sel(pkgsBuildHost, "closureInfo"), nix.thunk(() => ({ [nix.POS]: pos$2, rootPaths: nix.thunk(() => nix.sel(finalAttrs, "objects")) })))}`),
         passthru: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           compressorExecutableFunction: _compressorFunction,
           compressorArgs: _compressorArgsReal,
         })),

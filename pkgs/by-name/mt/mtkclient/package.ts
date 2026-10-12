@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.4.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bkerler",
           repo: "mtkclient",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const postInstall = "install -Dm444 Setup/Linux/52-mtk.rules -t $out/lib/udev/rules.d\n";
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "mtkclient",
             desktopName: "MTKClient",
             comment: "Mediatek Flash and Repair Utility",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "MTK reverse engineering and flash tool",
         homepage: "https://github.com/bkerler/mtkclient",
         mainProgram: "mtk",
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "timschumi"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

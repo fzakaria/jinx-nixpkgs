@@ -23,27 +23,27 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "config.yml", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     port: 9427n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       telemetryPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "/metrics",
           description: "Path under which to expose metrics.\n",
         })))),
       settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.sel(settingsFormat, "type")),
           default: nix.thunk(() => ({})),
           description: "Configuration for ping_exporter, see\n<https://github.com/czerwonk/ping_exporter>\nfor supported values.\n",
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         CapabilityBoundingSet: nix.thunk(() => ["CAP_NET_RAW"]),
         AmbientCapabilities: nix.thunk(() => ["CAP_NET_RAW"]),
         ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "prometheus-ping-exporter")}/bin/ping_exporter \\

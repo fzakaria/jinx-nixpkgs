@@ -25,33 +25,33 @@ export default nix.lambda((args) => (() => {
   const options = nix.arg($, "options");
   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       fooDeclarations: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           default: nix.thunk(() => nix.sel(nix.app(nix.sel(options, "free", "type", "getSubOptions"), []), "_freeformOptions", "foo", "declarations")),
         })))),
       free: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           type: nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               config: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 _module: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   freeformType: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                       nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                            __proto__: pos$3,
+                            [nix.POS]: pos$3,
                             options: nix.thunk(() => ({
-                              __proto__: pos$2,
+                              [nix.POS]: pos$2,
                               foo: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({})))),
                             })),
                           })))))),
                       nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                            __proto__: pos$5,
+                            [nix.POS]: pos$5,
                             options: nix.thunk(() => ({
-                              __proto__: pos$4,
+                              [nix.POS]: pos$4,
                               bar: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({})))),
                             })),
                           })))))),
@@ -62,11 +62,11 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       free: nix.thunk(() => ({
-        __proto__: pos$13,
-        xxx: nix.thunk(() => ({ __proto__: pos$11, foo: 10n })),
-        yyy: nix.thunk(() => ({ __proto__: pos$12, bar: 10n })),
+        [nix.POS]: pos$13,
+        xxx: nix.thunk(() => ({ [nix.POS]: pos$11, foo: 10n })),
+        yyy: nix.thunk(() => ({ [nix.POS]: pos$12, bar: 10n })),
       })),
     })),
   };

@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const fixup_yarn_lock = nix.arg($, "fixup-yarn-lock");
   const yarn = nix.arg($, "yarn");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "shepherd",
       version: "1.16.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "shepherd-tools",
           repo: "shepherd",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-LY8Vde4YpGuKnQ5UnSOpsQDY7AOyZRziUrfZb5dRiX4=",
         })))),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: "sha256-tJXJ8ePr5ArAV+0JcuJsTo/B2PUcgsXfZrSDCpna/9k=",
         })))),
@@ -50,7 +50,7 @@ makeWrapper "${nodejs}/bin/node" "$out/bin/shepherd" \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/shepherd-tools/shepherd/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),
         description: "Utility for applying code changes across many repositories",
         homepage: "https://github.com/shepherd-tools/shepherd",

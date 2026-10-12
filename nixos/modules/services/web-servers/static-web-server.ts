@@ -31,32 +31,32 @@ export default nix.lambda((args) => (() => {
   const toml = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   const configFilePath = nix.thunk(() => nix.app(nix.sel(toml, "generate"), "config.toml", nix.thunk(() => nix.sel(cfg, "configuration"))));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         "static-web-server": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Static Web Server")),
           listen: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: "[::]:8787",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "The {manpage}`systemd.socket(5)` \"ListenStream\" used in static-web-server.socket.\nThis is equivalent to SWS's \"host\" and \"port\" options.\nSee here for specific syntax: <https://www.freedesktop.org/software/systemd/man/systemd.socket.html#ListenStream=>\n",
             })))),
           root: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "The location of files for SWS to serve. Equivalent to SWS's \"root\" config value.\nNOTE: This folder must exist before starting SWS.\n",
             })))),
           configuration: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.sel(toml, "type")),
               example: nix.thunk(() => ({
-                __proto__: pos$4,
-                general: nix.thunk(() => ({ __proto__: pos$3, "log-level": "error", "directory-listing": true })),
+                [nix.POS]: pos$4,
+                general: nix.thunk(() => ({ [nix.POS]: pos$3, "log-level": "error", "directory-listing": true })),
               })),
               description: "Configuration for Static Web Server. See\n<https://static-web-server.net/configuration/config-file/>.\nNOTE: Don't set \"host\", \"port\", or \"root\" here. They will be ignored.\nUse the top-level \"listen\" and \"root\" options instead.\n",
             })))),
@@ -64,29 +64,29 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         environment: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "static-web-server"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "static-web-server"))]),
           sockets: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             "static-web-server": nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               wantedBy: nix.thunk(() => ["sockets.target"]),
               listenStreams: nix.thunk(() => ["", nix.thunk(() => nix.sel(cfg, "listen"))]),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             "static-web-server": nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 EnvironmentFile: nix.thunk(() => [""]),
                 ExecStart: nix.thunk(() => [
                   "",
@@ -101,7 +101,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "mac-chaffee"))];

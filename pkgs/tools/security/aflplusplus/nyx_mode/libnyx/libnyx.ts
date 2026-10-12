@@ -15,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const aflplusplus = nix.arg($, "aflplusplus");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: nix.thunk(() => nix.builtins.readFile(nix.thunk(() => nix.add(nix.sel(aflplusplus, "src"), "/nyx_mode/LIBNYX_VERSION")))),
       pname: "libnyx",
       src: nix.thunk(() => nix.sel(aflplusplus, "src")),
       postUnpack: nix.thunk(() => nix.str`sourceRoot="$sourceRoot/nyx_mode/libnyx/libnyx"
 cp ${nix.path(here, "./Cargo.lock")} "$sourceRoot/Cargo.lock"
 `),
-      cargoLock: nix.thunk(() => ({ __proto__: pos$1, lockFile: nix.path(here, "./Cargo.lock") })),
+      cargoLock: nix.thunk(() => ({ [nix.POS]: pos$1, lockFile: nix.path(here, "./Cargo.lock") })),
       doCheck: false,
       installPhase: nix.thunk(() => nix.str`runHook preInstall
 mkdir -p $out/lib
@@ -30,7 +30,7 @@ cp "target/${nix.sel(stdenv, "hostPlatform", "rust", "rustcTarget")}/release/lib
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/nyx-fuzz/libnyx",
         description: "Rust library to build hypervisor-based snapshot fuzzers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

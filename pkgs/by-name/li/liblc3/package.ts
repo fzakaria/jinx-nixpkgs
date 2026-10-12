@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const name = "liblc3";
   const version = "1.1.3";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: name,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "google",
           repo: "liblc3",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev"]),
       nativeBuildInputs: nix.thunk(() => [meson, ninja]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "LC3 (Low Complexity Communication Codec) is an efficient low latency audio codec",
         homepage: "https://github.com/google/liblc3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -37,12 +37,12 @@ export default nix.lambda((args) => (() => {
   const pyyaml_include = nix.arg($, "pyyaml-include");
   const questionary = nix.arg($, "questionary");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "copier",
       version: "9.17.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "copier-org",
           repo: "copier",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-Bv3jXePZwF6fbOcMq1eNPrRZiCXXp0598t6qQJXol1o=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         POETRY_DYNAMIC_VERSIONING_BYPASS: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       "build-system": nix.thunk(() => [hatchling, hatch_vcs]),
@@ -78,11 +78,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--suffix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [git]))}`),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Library and command-line utility for rendering projects templates",
         homepage: "https://copier.readthedocs.io",
         changelog: nix.thunk(() => nix.str`https://github.com/copier-org/copier/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const cunit = nix.arg($, "cunit");
   const libxcrypt = nix.arg($, "libxcrypt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dcap",
       version: "2.47.14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dCache",
           repo: "dcap",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [cunit]),
       outputs: nix.thunk(() => ["bin", "dev", "out", "man", "doc"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "dCache access protocol client library",
         homepage: "https://github.com/dCache/dcap",

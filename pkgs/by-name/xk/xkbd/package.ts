@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "xkbd";
       const version = "0.8.18";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mahatma-kaganovich",
           repo: "xkbd",
           rev: nix.thunk(() => nix.str`${pname}-${version}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const nativeBuildInputs = nix.thunk(() => [autoreconfHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/mahatma-kaganovich/xkbd",
         description: "On-screen soft keyboard for X11",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         mainProgram: "xkbd",
       }));
-      return { __proto__: pos$3, pname, version, src, buildInputs, nativeBuildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, buildInputs, nativeBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

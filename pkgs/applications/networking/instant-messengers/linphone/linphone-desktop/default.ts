@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
   const zxing_cpp = nix.arg($, "zxing-cpp");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const grammars = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "belr-grammars",
       paths: nix.thunk(() => (() => {
         const grammarPackages = nix.thunk(() => [belle_sip, belcard, liblinphone]);
@@ -46,11 +46,11 @@ export default nix.lambda((args) => (() => {
       })()),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "linphone-desktop",
       version: "6.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           domain: "gitlab.linphone.org",
           owner: "public",
           group: "BC",
@@ -116,7 +116,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DLINPHONEAPP_VERSION=${nix.sel(finalAttrs, "version")}`),
         "-DENABLE_UPDATE_CHECK=OFF",
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-fpermissive" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-fpermissive" })),
       preConfigure: "# custom \"find\" modules are causing issues during build,\n# as they are blinding cmake to nix dependencies\nrm -rf cmake/Modules\n",
       preInstall: "mkdir -p $out/share/linphone\nmkdir -p $out/share/belr\n",
       preFixup: "qtWrapperArgs+=(\n  \"${gappsWrapperArgs[@]}\"\n  --unset QML2_IMPORT_PATH\n  --set MEDIASTREAMER_PLUGINS_DIR $out/lib/mediastreamer/plugins\n)\n",
@@ -135,7 +135,7 @@ mkdir -p $out/share/sounds/linphone/
 ln -s ${liblinphone}/share/sounds/linphone/rings $out/share/sounds/linphone/rings
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.linphone.org/",
         description: "Open source SIP phone for voice/video calls and instant messaging",
         mainProgram: "linphone",

@@ -23,22 +23,22 @@ export default nix.lambda((args) => (() => {
   const utils = nix.arg($, "utils");
   const cfg = nix.thunk(() => nix.sel(config, "services", "freefall"));
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         freefall: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to protect HP/Dell laptop hard drives (not SSDs) in free fall.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "freefall", nix.thunk(() => ({})))),
           devices: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => ["/dev/sda"]),
               description: "Device paths to all internal spinning hard drives.\n",
@@ -51,12 +51,12 @@ export default nix.lambda((args) => (() => {
         nix.assert_(!nix.eq(dev, ""), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/modules/services/hardware/freefall.nix:42:9");
         const dev$ = nix.thunk(() => nix.app(nix.sel(utils, "escapeSystemdPath"), dev));
         return nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`freefall-${dev$}`), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             description: nix.thunk(() => nix.str`Free-fall protection for ${dev}`),
             after: nix.thunk(() => [nix.thunk(() => nix.str`${dev$}.device`)]),
             wantedBy: nix.thunk(() => [nix.thunk(() => nix.str`${dev$}.device`)]),
             serviceConfig: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/freefall ${dev}`),
               Restart: "on-failure",
               Type: "forking",
@@ -64,13 +64,13 @@ export default nix.lambda((args) => (() => {
           })));
       })();
       return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           environment: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             services: nix.thunk(() => nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map(mkService, nix.thunk(() => nix.sel(cfg, "devices")))))),
           })),
         })));

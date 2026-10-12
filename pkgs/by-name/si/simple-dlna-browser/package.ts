@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const socat = nix.arg($, "socat");
   const wget = nix.arg($, "wget");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "simple-dlna-browser",
       version: "0-unstable-2023-01-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "javier-lopez",
           repo: "learn",
           sparseCheckout: nix.thunk(() => ["sh/tools/simple-dlna-browser"]),
@@ -45,7 +45,7 @@ makeWrapper $outputWrapped $outputWrapper \\
 sed -i -e 's/PROGNAME=".*"/PROGNAME="simple-dlna-browser"/' $outputWrapped
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Query dlna media servers",
         longDescription: "A bash script that allows simple interactions with [DLNA] media servers.\nIt is a light-weight, CLI alternative to [VLC], [Kodi], and other players.\n\n[DLNA]: https://en.wikipedia.org/wiki/Digital_Living_Network_Alliance\n[Kodi]: https://kodi.tv/\n[VLC]: https://www.videolan.org/vlc/\n",
         homepage: "https://github.com/javier-lopez/learn/blob/master/sh/tools/simple-dlna-browser",

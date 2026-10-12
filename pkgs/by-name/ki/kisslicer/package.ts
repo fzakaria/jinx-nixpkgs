@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "kisslicer";
       const version = "1.6.3";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.kisslicer.com/uploads/1/5/3/8/15381852/kisslicer_linux64_${version}_release.zip`),
           sha256: "1xmywj5jrcsqv1d5x3mphhvafs4mfm9l12npkhk7l03qxbwg9j82",
           stripRoot: false,
@@ -38,7 +38,7 @@ wrapProgram $out/bin/KISSlicer \\
   --run "mkdir -p ${inidir}"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Convert STL files into Gcode",
         homepage: "http://www.kisslicer.com",
         sourceProvenance: nix.thunk(() => (() => {
@@ -50,7 +50,7 @@ wrapProgram $out/bin/KISSlicer \\
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

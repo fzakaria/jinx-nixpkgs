@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "rtl8189es";
       const version = "2025-09-26";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jwrdegoede",
           repo: "rtl8189ES_linux",
           rev: "0a5d04114fac3c9f48a343cb905fbb6a3f9f5df5",
@@ -42,7 +42,7 @@ substituteInPlace ./Makefile --replace '$(MODDESTDIR)' "$out/lib/modules/${nix.s
 `);
       const postInstall = "nuke-refs $out/lib/modules/*/kernel/net/wireless/*.ko\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Driver for Realtek rtl8189es",
         homepage: "https://github.com/jwrdegoede/rtl8189ES_linux",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -53,7 +53,7 @@ substituteInPlace ./Makefile --replace '$(MODDESTDIR)' "$out/lib/modules/${nix.s
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name,
         pname,
         version,

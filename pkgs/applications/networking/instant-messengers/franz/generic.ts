@@ -123,7 +123,7 @@ wrapProgramShell $out/opt/${name}/${pname_1} \\
   "\${gappsWrapperArgs[@]}"
 `);
         return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname_1,
           version: version_1,
           src: src_1,

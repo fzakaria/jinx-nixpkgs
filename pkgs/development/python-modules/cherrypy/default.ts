@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const version = "18.10.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-bHDnjuETAOiyHAdnxUKuaxAqScrFz9Tj4xPXu5B8WJE=",
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
       const __darwinAllowLocalNetworking = true;
       const pythonImportsCheck = nix.thunk(() => ["cherrypy"]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         json: nix.thunk(() => [simplejson]),
         memcached_session: nix.thunk(() => [python_memcached]),
         routes_dispatcher: nix.thunk(() => [routes]),
@@ -96,7 +96,7 @@ export default nix.lambda((args) => (() => {
         xcgi: [],
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Object-oriented HTTP framework",
         mainProgram: "cherryd",
         homepage: "https://cherrypy.dev/",
@@ -105,7 +105,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

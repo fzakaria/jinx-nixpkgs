@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const latestKernel = nix.argOr($, "latestKernel", () => false);
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     name: "disable-installer-tools",
     nodes: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         const lib = nix.arg($_1, "lib");
         return {
-          __proto__: pos$3,
-          system: nix.thunk(() => ({ __proto__: pos$1, disableInstallerTools: true })),
-          environment: nix.thunk(() => ({ __proto__: pos$2, defaultPackages: [] })),
+          [nix.POS]: pos$3,
+          system: nix.thunk(() => ({ [nix.POS]: pos$1, disableInstallerTools: true })),
+          environment: nix.thunk(() => ({ [nix.POS]: pos$2, defaultPackages: [] })),
         };
       })(), formals$2),
     })),

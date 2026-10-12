@@ -16,23 +16,23 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const calamares_nixos_autostart = nix.thunk(() => nix.app(nix.sel(pkgs, "makeAutostartItem"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "calamares",
       package: nix.thunk(() => nix.sel(pkgs, "calamares-nixos")),
     }))));
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     imports: nix.thunk(() => [nix.path(here, "./installation-cd-graphical-base.nix")]),
     security: nix.thunk(() => ({
-      __proto__: pos$3,
-      polkit: nix.thunk(() => ({ __proto__: pos$2, enablePkexecWrapper: true })),
+      [nix.POS]: pos$3,
+      polkit: nix.thunk(() => ({ [nix.POS]: pos$2, enablePkexecWrapper: true })),
     })),
     programs: nix.thunk(() => ({
-      __proto__: pos$5,
-      "partition-manager": nix.thunk(() => ({ __proto__: pos$4, enable: true })),
+      [nix.POS]: pos$5,
+      "partition-manager": nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
     })),
     environment: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       systemPackages: nix.thunk(() => (() => {
         const w = nix.withScope(pkgs, null);
         return [
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
     })),
-    i18n: nix.thunk(() => ({ __proto__: pos$7, supportedLocales: nix.thunk(() => ["all"]) })),
+    i18n: nix.thunk(() => ({ [nix.POS]: pos$7, supportedLocales: nix.thunk(() => ["all"]) })),
   };
 })(), formals$1);
 //# sourceMappingURL=installation-cd-graphical-calamares.ts.map

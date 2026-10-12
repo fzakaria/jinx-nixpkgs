@@ -116,11 +116,11 @@ export default nix.lambda((args) => (() => {
     const staticContentChartDir = nix.thunk(() => nix.str`/var/lib/rancher/${name}/server/static/charts`);
     const manifestFormat = nix.thunk(() => (nix.asBool(jsonManifests) ? nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))) : nix.app(nix.sel(pkgs, "formats", "yaml_1_2"), nix.thunk(() => ({})))));
     const mkManifestTarget = (name_1) => (nix.asBool((nix.asBool((nix.asBool(nix.app(nix.sel(lib, "hasSuffix"), ".yaml", name_1)) || nix.asBool(nix.app(nix.sel(lib, "hasSuffix"), ".yml", name_1)))) || nix.asBool(nix.app(nix.sel(lib, "hasSuffix"), ".json", name_1)))) ? nix.force(name_1) : (nix.asBool(jsonManifests) ? nix.add(name_1, ".json") : nix.add(name_1, ".yaml")));
-    const mkManifestSource = (name_1) => (manifests) => nix.app(nix.sel(manifestFormat, "generate"), name_1, nix.thunk(() => (nix.asBool(nix.builtins.isList(manifests)) ? { __proto__: pos$1, apiVersion: "v1", kind: "List", items: manifests } : nix.force(manifests))));
+    const mkManifestSource = (name_1) => (manifests) => nix.app(nix.sel(manifestFormat, "generate"), name_1, nix.thunk(() => (nix.asBool(nix.builtins.isList(manifests)) ? { [nix.POS]: pos$1, apiVersion: "v1", kind: "List", items: manifests } : nix.force(manifests))));
     const duplicateManifests = nix.thunk(() => nix.app(nix.sel(lib, "intersectLists"), nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.sel(cfg, "autoDeployCharts")))), nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.sel(cfg, "manifests"))))));
     const duplicateCharts = nix.thunk(() => nix.app(nix.sel(lib, "intersectLists"), nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.sel(cfg, "autoDeployCharts")))), nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.sel(cfg, "charts"))))));
     const fromYaml = (path) => nix.builtins.fromJSON(nix.thunk(() => nix.builtins.readFile(nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`${path}-converted.json`), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "yq-go"))]),
           })), nix.thunk(() => nix.str`yq --no-colors --output-format json ${path} > $out
 `))))));
@@ -138,9 +138,9 @@ export default nix.lambda((args) => (() => {
       const pullCmd = nix.thunk(() => (nix.asBool(isOci) ? nix.force(repo) : nix.str`--repo ${repo} ${name_1}`));
       const name$ = nix.thunk(() => (nix.asBool(isOci) ? nix.str`${repo}-${version}` : nix.str`${repo}-${name_1}-${version}`));
       return nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.app(cleanHelmChartName, nix.thunk(() => nix.str`${name$}.tgz`))), nix.thunk(() => (() => {
-          const from = nix.thunk(() => nix.app(nix.sel(lib, "fetchers", "normalizeHash"), nix.thunk(() => ({})), nix.thunk(() => ({ __proto__: pos$3, hash: hash }))));
+          const from = nix.thunk(() => nix.app(nix.sel(lib, "fetchers", "normalizeHash"), nix.thunk(() => ({})), nix.thunk(() => ({ [nix.POS]: pos$3, hash: hash }))));
           return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           outputHash: nix.thunk(() => nix.attr(from, "outputHash")),
           outputHashAlgo: nix.thunk(() => nix.attr(from, "outputHashAlgo")),
           impureEnvVars: nix.thunk(() => nix.sel(lib, "fetchers", "proxyImpureEnvVars")),
@@ -162,12 +162,12 @@ mv ./*.tgz $out
       const chartValues = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "isPath"), nix.thunk(() => nix.sel(value, "values")))) ? nix.app(fromYaml, nix.thunk(() => nix.sel(value, "values"))) : nix.sel(value, "values")));
       const valuesContent = nix.thunk(() => nix.builtins.toJSON(chartValues));
       return nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           apiVersion: "helm.cattle.io/v1",
           kind: "HelmChart",
-          metadata: nix.thunk(() => ({ __proto__: pos$5, name: name_1, namespace: "kube-system" })),
+          metadata: nix.thunk(() => ({ [nix.POS]: pos$5, name: name_1, namespace: "kube-system" })),
           spec: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             valuesContent: valuesContent,
             targetNamespace: nix.thunk(() => nix.attr(value, "targetNamespace")),
             createNamespace: nix.thunk(() => nix.attr(value, "createNamespace")),
@@ -177,7 +177,7 @@ mv ./*.tgz $out
         })), nix.thunk(() => nix.sel(value, "extraFieldDefinitions")));
     })();
     const mkAutoDeployChartManifest = (name_1) => (value) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       target: nix.thunk(() => nix.app(mkManifestTarget, name_1)),
       enable: nix.thunk(() => nix.attr(value, "enable")),
       package: nix.thunk(() => nix.attr(value, "package")),
@@ -187,43 +187,43 @@ mv ./*.tgz $out
         const $_2 = nix.formals(args_2, formals$4);
         const config_1 = nix.arg($_2, "config");
         return {
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           options: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 example: false,
                 description: "Whether to enable the installation of this Helm chart. Note that setting\nthis option to `false` will not uninstall the chart from the cluster, if\nit was previously installed. Please use the the `--disable` flag or `.skip`\nfiles to delete/disable Helm charts, as mentioned in the\n[docs](https://docs.k3s.io/installation/packaged-components#disabling-manifests).\n",
               })))),
             repo: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(lib, "types", "nonEmptyStr")),
                 example: "https://kubernetes.github.io/ingress-nginx",
                 description: "The repo of the Helm chart. Only has an effect if `package` is not set.\nThe Helm chart is fetched during build time and placed as a `.tgz` archive on the\nfilesystem.\n",
               })))),
             name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.sel(lib, "types", "nonEmptyStr")),
                 example: "ingress-nginx",
                 description: "The name of the Helm chart. Only has an effect if `package` is not set.\nThe Helm chart is fetched during build time and placed as a `.tgz` archive on the\nfilesystem.\n",
               })))),
             version: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.sel(lib, "types", "nonEmptyStr")),
                 example: "4.7.0",
                 description: "The version of the Helm chart. Only has an effect if `package` is not set.\nThe Helm chart is fetched during build time and placed as a `.tgz` archive on the\nfilesystem.\n",
               })))),
             hash: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 example: "sha256-ej+vpPNdiOoXsaj1jyRpWLisJgWo8EqX+Z5VbpSjsPA=",
                 default: "",
                 description: "The hash of the packaged Helm chart. Only has an effect if `package` is not set.\nThe Helm chart is fetched during build time and placed as a `.tgz` archive on the\nfilesystem.\n",
               })))),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "path")), nix.thunk(() => nix.lookup(w, "package")));
@@ -232,36 +232,36 @@ mv ./*.tgz $out
                 description: "The packaged Helm chart. Overwrites the options `repo`, `name`, `version`\nand `hash` in case of conflicts.\n",
               })))),
             targetNamespace: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.sel(lib, "types", "nonEmptyStr")),
                 default: "default",
                 example: "kube-system",
                 description: "The namespace in which the Helm chart gets installed.",
               })))),
             createNamespace: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 example: true,
                 description: "Whether to create the target namespace if not present.",
               })))),
             values: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "path")), nix.thunk(() => nix.lookup(w, "attrs")));
                 })()),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   replicaCount: 3n,
                   hostName: "my-host",
-                  server: nix.thunk(() => ({ __proto__: pos$17, name: "nginx", port: 80n })),
+                  server: nix.thunk(() => ({ [nix.POS]: pos$17, name: "nginx", port: 80n })),
                 })),
                 description: "Override default chart values via Nix expressions. This is equivalent to setting\nvalues in a `values.yaml` file.\n\n**WARNING**: The values (including secrets!) specified here are exposed unencrypted\nin the world-readable nix store.\n",
               })))),
             extraDeploy: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "path")), nix.thunk(() => nix.lookup(w, "attrs")))));
@@ -271,13 +271,13 @@ mv ./*.tgz $out
                 description: "List of extra Kubernetes manifests to deploy with this Helm chart.",
               })))),
             extraFieldDefinitions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 type: nix.thunk(() => nix.attr(manifestFormat, "type")),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   spec: nix.thunk(() => ({
-                    __proto__: pos$21,
+                    [nix.POS]: pos$21,
                     bootstrap: true,
                     helmVersion: "v2",
                     backOffLimit: 3n,
@@ -292,9 +292,9 @@ for possible fields.
               })))),
           })),
           config: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.app(fetchHelm, nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   repo: nix.thunk(() => nix.attr(config_1, "repo")),
                   name: nix.thunk(() => nix.attr(config_1, "name")),
                   version: nix.thunk(() => nix.attr(config_1, "version")),
@@ -309,17 +309,17 @@ for possible fields.
         const config_1 = nix.arg($_2, "config");
         const options = nix.arg($_2, "options");
         return {
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           options: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Whether this manifest file should be generated.",
               })))),
             target: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 type: nix.thunk(() => nix.sel(lib, "types", "nonEmptyStr")),
                 example: "manifest.yaml",
                 description: nix.thunk(() => nix.str`Name of the symlink (relative to {file}\`${manifestDir}\`).
@@ -327,7 +327,7 @@ Defaults to the attribute name.
 `),
               })))),
             content: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "attrs")), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "attrs")))))));
@@ -336,14 +336,14 @@ Defaults to the attribute name.
                 description: "Content of the manifest file. A single attribute set will\ngenerate a single document YAML file. A list of attribute sets\nwill generate multiple documents separated by `---` in a single\nYAML file.\n",
               })))),
             source: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 type: nix.thunk(() => nix.sel(lib, "types", "path")),
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "./manifests/app.yaml")),
                 description: "Path of the source `.yaml` file.\n",
               })))),
           })),
           config: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             target: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.app(mkManifestTarget, name_1)))),
             source: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(config_1, "content"), null)), nix.thunk(() => (() => {
                 const name$ = nix.thunk(() => nix.add(nix.str`${name_1}-manifest-`, nix.builtins.baseNameOf(name_1)));
@@ -354,33 +354,33 @@ Defaults to the attribute name.
         };
       })(), formals$5)));
     return {
-      __proto__: pos$86,
+      [nix.POS]: pos$86,
       paths: nix.thunk(() => ({
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         manifestDir: manifestDir,
         imageDir: imageDir,
         containerdConfigTemplateFile: containerdConfigTemplateFile,
         staticContentChartDir: staticContentChartDir,
       })),
       options: nix.thunk(() => ({
-        __proto__: pos$65,
+        [nix.POS]: pos$65,
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), name)),
         package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, name, nix.thunk(() => ({})))),
         role: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             description: nix.thunk(() => nix.str`Whether ${name} should run as a server or agent.`),
             default: "server",
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["server", "agent"]))),
           })))),
         serverAddr: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             description: nix.thunk(() => nix.str`The ${name} server to connect to, used to join a cluster.`),
             example: "https://10.0.0.10:6443",
             default: "",
           })))),
         token: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             description: nix.thunk(() => nix.str`The ${name} token to use when connecting to a server.
 
@@ -390,13 +390,13 @@ If this is undesired use the tokenFile option instead.
             default: "",
           })))),
         tokenFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
             description: nix.thunk(() => nix.str`File path containing the ${name} token to use when connecting to a server.`),
             default: null,
           })))),
         agentToken: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             description: nix.thunk(() => nix.str`The ${name} token agents can use to connect to the server.
 This option only makes sense on server nodes (\`role = server\`).
@@ -407,7 +407,7 @@ If this is undesired use the tokenFile option instead.
             default: "",
           })))),
         agentTokenFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
             description: nix.thunk(() => nix.str`File path containing the ${name} token agents can use to connect to the server.
 This option only makes sense on server nodes (\`role = server\`).
@@ -415,7 +415,7 @@ This option only makes sense on server nodes (\`role = server\`).
             default: null,
           })))),
         extraFlags: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             description: nix.thunk(() => nix.str`Extra flags to pass to the ${name} command.`),
             type: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -425,62 +425,62 @@ This option only makes sense on server nodes (\`role = server\`).
             example: nix.thunk(() => ["--etcd-expose-metrics", "--cluster-cidr 10.24.0.0/16"]),
           })))),
         environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
             description: nix.thunk(() => nix.str`File path containing environment variables for configuring the ${name} service in the format of an EnvironmentFile. See {manpage}\`systemd.exec(5)\`.
 `),
             default: null,
           })))),
         configPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
             default: null,
             description: nix.thunk(() => nix.str`File path containing the ${name} YAML config. This is useful when the config is generated (for example on boot).`),
           })))),
         disable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             description: "Disable default components via the `--disable` flag.",
             default: [],
           })))),
         nodeName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             description: "Node name.",
             default: null,
           })))),
         nodeLabel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             description: "Registering and starting kubelet with set of labels.",
             default: [],
           })))),
         nodeTaint: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             description: "Registering kubelet with set of taints.",
             default: [],
           })))),
         nodeIP: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$49,
+            [nix.POS]: pos$49,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             description: "IPv4/IPv6 addresses to advertise for node.",
             default: null,
           })))),
         nodeExternalIP: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             description: "IPv4/IPv6 external addresses to advertise for node.",
             default: null,
           })))),
         selinux: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$51,
+            [nix.POS]: pos$51,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             description: "Enable SELinux in containerd.",
             default: false,
           })))),
         manifests: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), manifestModule)),
             default: nix.thunk(() => ({})),
             example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  deployment.source = ../manifests/deployment.yaml;\n  my-service = {\n    enable = false;\n    target = \"app-service.yaml\";\n    content = {\n      apiVersion = \"v1\";\n      kind = \"Service\";\n      metadata = {\n        name = \"app-service\";\n      };\n      spec = {\n        selector = {\n          \"app.kubernetes.io/name\" = \"MyApp\";\n        };\n        ports = [\n          {\n            name = \"name-of-service-port\";\n            protocol = \"TCP\";\n            port = 80;\n            targetPort = \"http-web-svc\";\n          }\n        ];\n      };\n    };\n  };\n\n  nginx.content = [\n    {\n      apiVersion = \"v1\";\n      kind = \"Pod\";\n      metadata = {\n        name = \"nginx\";\n        labels = {\n          \"app.kubernetes.io/name\" = \"MyApp\";\n        };\n      };\n      spec = {\n        containers = [\n          {\n            name = \"nginx\";\n            image = \"nginx:1.14.2\";\n            ports = [\n              {\n                containerPort = 80;\n                name = \"http-web-svc\";\n              }\n            ];\n          }\n        ];\n      };\n    }\n    {\n      apiVersion = \"v1\";\n      kind = \"Service\";\n      metadata = {\n        name = \"nginx-service\";\n      };\n      spec = {\n        selector = {\n          \"app.kubernetes.io/name\" = \"MyApp\";\n        };\n        ports = [\n          {\n            name = \"name-of-service-port\";\n            protocol = \"TCP\";\n            port = 80;\n            targetPort = \"http-web-svc\";\n          }\n        ];\n      };\n    }\n  ];\n};\n")),
@@ -499,7 +499,7 @@ to deploy conflicting manifests.
 `),
           })))),
         containerdConfigTemplate: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$53,
+            [nix.POS]: pos$53,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             default: null,
             example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "# Base config\n{{ template \"base\" . }}\n\n# Add a custom runtime\n[plugins.\"io.containerd.grpc.v1.cri\".containerd.runtimes.\"custom\"]\n  runtime_type = \"io.containerd.runc.v2\"\n[plugins.\"io.containerd.grpc.v1.cri\".containerd.runtimes.\"custom\".options]\n  BinaryName = \"/path/to/custom-container-runtime\"\n")),
@@ -509,7 +509,7 @@ See the docs on [configuring containerd](https://docs.${name}.io/advanced#config
 `),
           })))),
         images: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$54,
+            [nix.POS]: pos$54,
             type: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
               return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "package")));
@@ -522,17 +522,17 @@ by the ${name} agent. This option only makes sense on nodes with an enabled agen
 `),
           })))),
         gracefulNodeShutdown: nix.thunk(() => ({
-          __proto__: pos$57,
+          [nix.POS]: pos$57,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "graceful node shutdowns where the kubelet attempts to detect\nnode system shutdown and terminates pods running on the node. See the\n[documentation](https://kubernetes.io/docs/concepts/cluster-administration/node-shutdown/#graceful-node-shutdown)\nfor further information.\n")),
           shutdownGracePeriod: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$55,
+              [nix.POS]: pos$55,
               type: nix.thunk(() => nix.sel(lib, "types", "nonEmptyStr")),
               default: "30s",
               example: "1m30s",
               description: "Specifies the total duration that the node should delay the shutdown by. This is the total\ngrace period for pod termination for both regular and critical pods.\n",
             })))),
           shutdownGracePeriodCriticalPods: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               type: nix.thunk(() => nix.sel(lib, "types", "nonEmptyStr")),
               default: "10s",
               example: "15s",
@@ -540,14 +540,14 @@ by the ${name} agent. This option only makes sense on nodes with an enabled agen
             })))),
         })),
         extraKubeletConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$59,
+            [nix.POS]: pos$59,
             type: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
               return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "anything")));
             })()),
             default: nix.thunk(() => ({})),
             example: nix.thunk(() => ({
-              __proto__: pos$58,
+              [nix.POS]: pos$58,
               podsPerCore: 3n,
               memoryThrottlingFactor: 0.69,
               containerLogMaxSize: "5Mi",
@@ -555,24 +555,24 @@ by the ${name} agent. This option only makes sense on nodes with an enabled agen
             description: "Extra configuration to add to the kubelet's configuration file. The subset of the kubelet's\nconfiguration that can be configured via a file is defined by the\n[KubeletConfiguration](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/)\nstruct. See the\n[documentation](https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/)\nfor further information.\n",
           })))),
         extraKubeProxyConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$62,
+            [nix.POS]: pos$62,
             type: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
               return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "anything")));
             })()),
             default: nix.thunk(() => ({})),
             example: nix.thunk(() => ({
-              __proto__: pos$61,
+              [nix.POS]: pos$61,
               mode: "nftables",
               clientConnection: nix.thunk(() => ({
-                __proto__: pos$60,
+                [nix.POS]: pos$60,
                 kubeconfig: nix.thunk(() => nix.str`/var/lib/rancher/${name}/agent/kubeproxy.kubeconfig`),
               })),
             })),
             description: "Extra configuration to add to the kube-proxy's configuration file. The subset of the kube-proxy's\nconfiguration that can be configured via a file is defined by the\n[KubeProxyConfiguration](https://kubernetes.io/docs/reference/config-api/kube-proxy-config.v1alpha1/)\nstruct. Note that the kubeconfig param will be overriden by `clientConnection.kubeconfig`, so you must\nset the `clientConnection.kubeconfig` option if you want to use `extraKubeProxyConfig`.\n",
           })))),
         autoDeployCharts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$63,
+            [nix.POS]: pos$63,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), autoDeployChartsModule)),
             apply: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), mkAutoDeployChartManifest)),
             default: nix.thunk(() => ({})),
@@ -591,7 +591,7 @@ to deploy conflicting manifests.
 `),
           })))),
         charts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$64,
+            [nix.POS]: pos$64,
             type: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
               return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "path")), nix.thunk(() => nix.lookup(w, "package")))));
@@ -607,57 +607,57 @@ to deploy Helm charts. This option only makes sense on server nodes (\`role = se
           })))),
       })),
       config: nix.thunk(() => ({
-        __proto__: pos$85,
+        [nix.POS]: pos$85,
         warnings: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "role"), "server")) && nix.asBool(!nix.eq(nix.sel(cfg, "manifests"), {})))), nix.thunk(() => nix.str`${name}: Auto deploying manifests are only installed on server nodes (role == server), they will be ignored by this node.`)), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "role"), "server")) && nix.asBool(!nix.eq(nix.sel(cfg, "autoDeployCharts"), {})))), nix.thunk(() => nix.str`${name}: Auto deploying Helm charts are only installed on server nodes (role == server), they will be ignored by this node.`)), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(duplicateManifests, [])), nix.thunk(() => nix.str`${name}: The following auto deploying charts are overriden by manifests of the same name: ${nix.builtins.toString(duplicateManifests)}.`)), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(duplicateCharts, [])), nix.thunk(() => nix.str`${name}: The following auto deploying charts are overriden by charts of the same name: ${nix.builtins.toString(duplicateCharts)}.`)), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "role"), "server")) && nix.asBool(!nix.eq(nix.sel(cfg, "charts"), {})))), nix.thunk(() => nix.str`${name}: Helm charts are only made available to the cluster on server nodes (role == server), they will be ignored by this node.`)), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "role"), "agent")) && nix.asBool(nix.eq(nix.sel(cfg, "configPath"), null)))) && nix.asBool(nix.eq(nix.sel(cfg, "serverAddr"), "")))), nix.thunk(() => nix.str`${name}: serverAddr or configPath (with 'server' key) should be set if role is 'agent'`)), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "role"), "agent")) && nix.asBool(nix.eq(nix.sel(cfg, "configPath"), null)))) && nix.asBool(nix.eq(nix.sel(cfg, "tokenFile"), null)))) && nix.asBool(nix.eq(nix.sel(cfg, "token"), "")))), nix.thunk(() => nix.str`${name}: token, tokenFile or configPath (with 'token' or 'token-file' keys) should be set if role is 'agent'`)), nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "role"), "agent")) && nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "agentTokenFile"), null)) || nix.asBool(!nix.eq(nix.sel(cfg, "agentToken"), "")))))), nix.thunk(() => nix.str`${name}: agentToken and agentTokenFile should not be set if role is 'agent'`)))))))))),
         environment: nix.thunk(() => ({
-          __proto__: pos$66,
+          [nix.POS]: pos$66,
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.sel(config, "services", nix.key(nix.force(name)), "package")),
           ]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$84,
+          [nix.POS]: pos$84,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$78,
+            [nix.POS]: pos$78,
             settings: nix.thunk(() => nix.attrsDyn({}, [
               [nix.str`10-${name}`, nix.thunk(() => (() => {
                 const enabledManifests = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (v) => nix.sel(v, "enable"), nix.thunk(() => nix.update(nix.sel(cfg, "autoDeployCharts"), nix.sel(cfg, "manifests")))));
                 const mkManifestRule = (manifest) => ({
-                  __proto__: pos$69,
+                  [nix.POS]: pos$69,
                   name: nix.thunk(() => nix.str`${manifestDir}/${nix.sel(manifest, "target")}`),
                   value: nix.thunk(() => ({
-                    __proto__: pos$68,
+                    [nix.POS]: pos$68,
                     "L+": nix.thunk(() => ({
-                      __proto__: pos$67,
+                      [nix.POS]: pos$67,
                       argument: nix.thunk(() => nix.str`${nix.sel(manifest, "source")}`),
                     })),
                   })),
                 });
                 const agentImagesDir = nix.thunk(() => nix.app(nix.sel(pkgs, "linkFarm"), nix.thunk(() => nix.str`${name}-agent-images`), nix.thunk(() => nix.builtins.map((image) => ({
-                      __proto__: pos$70,
+                      [nix.POS]: pos$70,
                       name: nix.thunk(() => nix.builtins.unsafeDiscardStringContext(nix.thunk(() => nix.builtins.baseNameOf(image)))),
                       path: image,
                     }), nix.thunk(() => nix.sel(cfg, "images"))))));
                 const helmCharts = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "concatMapAttrs"), (n) => (v) => nix.attrsDyn({}, [[nix.force(n), nix.thunk(() => nix.sel(v, "package"))]]), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (v) => nix.sel(v, "enable"), nix.thunk(() => nix.sel(cfg, "autoDeployCharts"))))), nix.sel(cfg, "charts")));
                 const mkChartTarget = (name_1) => (nix.asBool(nix.app(nix.sel(lib, "hasSuffix"), ".tgz", name_1)) ? nix.force(name_1) : nix.add(name_1, ".tgz"));
                 const mkChartRule = (target) => (source) => ({
-                  __proto__: pos$73,
+                  [nix.POS]: pos$73,
                   name: nix.thunk(() => nix.str`${staticContentChartDir}/${nix.app(mkChartTarget, target)}`),
                   value: nix.thunk(() => ({
-                    __proto__: pos$72,
-                    "L+": nix.thunk(() => ({ __proto__: pos$71, argument: nix.thunk(() => nix.str`${source}`) })),
+                    [nix.POS]: pos$72,
+                    "L+": nix.thunk(() => ({ [nix.POS]: pos$71, argument: nix.thunk(() => nix.str`${source}`) })),
                   })),
                 });
                 return nix.update(nix.app(nix.sel(lib, "mapAttrs'"), (_) => (v) => nix.app(mkManifestRule, v), enabledManifests), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "images"), [])), nix.thunk(() => nix.attrsDyn({}, [
                     [nix.str`${imageDir}/nixos`, nix.thunk(() => ({
-                      __proto__: pos$75,
-                      "L+": nix.thunk(() => ({ __proto__: pos$74, argument: nix.thunk(() => nix.str`${agentImagesDir}`) })),
+                      [nix.POS]: pos$75,
+                      "L+": nix.thunk(() => ({ [nix.POS]: pos$74, argument: nix.thunk(() => nix.str`${agentImagesDir}`) })),
                     }))],
                   ]))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "containerdConfigTemplate"), null)), nix.thunk(() => nix.attrsDyn({}, [
                     [nix.force(containerdConfigTemplateFile), nix.thunk(() => ({
-                      __proto__: pos$77,
+                      [nix.POS]: pos$77,
                       "L+": nix.thunk(() => ({
-                        __proto__: pos$76,
+                        [nix.POS]: pos$76,
                         argument: nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "writeText"), "config.toml.tmpl", nix.thunk(() => nix.sel(cfg, "containerdConfigTemplate")))}`),
                       })),
                     }))],
@@ -670,30 +670,30 @@ to deploy Helm charts. This option only makes sense on server nodes (\`role = se
               const kubeletParams = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "gracefulNodeShutdown", "enable")), nix.thunk(() => (() => {
                   const from = nix.thunk(() => nix.sel(cfg, "gracefulNodeShutdown"));
                   return {
-                  __proto__: pos$79,
+                  [nix.POS]: pos$79,
                   shutdownGracePeriod: nix.thunk(() => nix.attr(from, "shutdownGracePeriod")),
                   shutdownGracePeriodCriticalPods: nix.thunk(() => nix.attr(from, "shutdownGracePeriodCriticalPods")),
                 };
                 })())), nix.sel(cfg, "extraKubeletConfig")));
               const kubeletConfig = nix.thunk(() => nix.app(nix.sel(manifestFormat, "generate"), nix.thunk(() => nix.str`${name}-kubelet-config`), nix.thunk(() => nix.update({
-                  __proto__: pos$80,
+                  [nix.POS]: pos$80,
                   apiVersion: "kubelet.config.k8s.io/v1beta1",
                   kind: "KubeletConfiguration",
                 }, kubeletParams))));
               const kubeProxyConfig = nix.thunk(() => nix.app(nix.sel(manifestFormat, "generate"), nix.thunk(() => nix.str`${name}-kubeProxy-config`), nix.thunk(() => nix.update({
-                  __proto__: pos$81,
+                  [nix.POS]: pos$81,
                   apiVersion: "kubeproxy.config.k8s.io/v1alpha1",
                   kind: "KubeProxyConfiguration",
                 }, nix.sel(cfg, "extraKubeProxyConfig")))));
               return {
-                __proto__: pos$83,
+                [nix.POS]: pos$83,
                 description: nix.thunk(() => nix.str`${name} service`),
                 after: nix.thunk(() => ["firewall.service", "network-online.target"]),
                 wants: nix.thunk(() => ["firewall.service", "network-online.target"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 path: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(config, "boot", "zfs", "enabled")), nix.thunk(() => nix.sel(config, "boot", "zfs", "package")))),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$82,
+                  [nix.POS]: pos$82,
                   Type: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "role"), "agent")) ? "exec" : "notify")),
                   KillMode: "process",
                   Delegate: "yes",
@@ -717,10 +717,10 @@ to deploy Helm charts. This option only makes sense on server nodes (\`role = se
     };
   })(), formals$2);
   return {
-    __proto__: pos$89,
+    [nix.POS]: pos$89,
     imports: nix.thunk(() => (() => {
       const args_1 = nix.thunk(() => ({
-        __proto__: pos$87,
+        [nix.POS]: pos$87,
         config: config,
         lib: lib,
         mkRancherModule: mkRancherModule,
@@ -731,7 +731,7 @@ to deploy Helm charts. This option only makes sense on server nodes (\`role = se
       ];
     })()),
     meta: nix.thunk(() => ({
-      __proto__: pos$88,
+      [nix.POS]: pos$88,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "k3s"))]),
       maintainers: nix.thunk(() => nix.sel(pkgs, "rke2", "meta", "maintainers")),
     })),

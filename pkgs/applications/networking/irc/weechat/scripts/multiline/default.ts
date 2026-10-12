@@ -17,23 +17,23 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const PodParser = nix.arg($, "PodParser");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "multiline",
       version: "0.6.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://raw.githubusercontent.com/weechat/scripts/5f073d966e98d54344a91be4f5afc0ec9e2697dc/perl/multiline.pl",
           sha256: "sha256-TXbU2Q7Tm8iTwOQqrWpqHXuKrjoBFLyUWRsH+TsR9Lo=",
         })))),
       dontUnpack: true,
       prePatch: "cp $src multiline.pl\n",
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./libpath.patch"), nix.thunk(() => ({ __proto__: pos$2, env: PodParser })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./libpath.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, env: PodParser })))),
       ]),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, scripts: nix.thunk(() => ["multiline.pl"]) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, scripts: nix.thunk(() => ["multiline.pl"]) })),
       installPhase: "runHook preInstall\n\ninstall -D multiline.pl $out/share/multiline.pl\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Multi-line edit box",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: [],

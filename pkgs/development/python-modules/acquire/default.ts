@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.22";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fox-it",
           repo: "acquire",
           tag: version,
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const dependencies = nix.thunk(() => [defusedxml, dissect_cstruct, dissect_target]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         full: nix.thunk(() => nix.concat([dissect_target, minio, pycryptodome, requests, requests_toolbelt, rich], nix.sel(dissect_target, "optional-dependencies", "full"))),
       }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.sel(optional_dependencies, "full")));
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["acquire"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool to quickly gather forensic artifacts from disk images or a live system",
         homepage: "https://github.com/fox-it/acquire",
         changelog: nix.thunk(() => nix.str`https://github.com/fox-it/acquire/releases/tag/${nix.sel(src, "tag")}`),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

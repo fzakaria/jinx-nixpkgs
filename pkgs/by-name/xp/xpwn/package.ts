@@ -20,18 +20,18 @@ export default nix.lambda((args) => (() => {
   const libusb_compat_0_1 = nix.arg($, "libusb-compat-0_1");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "xpwn",
       version: "0.5.8-unstable-2024-04-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "planetbeing",
           repo: "xpwn",
           rev: "20c32e5c12d1b22a9d55a59a0ff6267f539b77f4",
           hash: "sha256-wOSIaeNjZOKoeL4padP6UWY1O75qqHuFuSMrdCOLI2s=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-fcommon", "-Wno-implicit-int", "-Wno-incompatible-pointer-types"]))),
       })),
       preConfigure: "rm BUILD # otherwise `mkdir build` fails on case insensitive file systems\nsed -r -i \\\n  -e 's/(install.*TARGET.*DESTINATION )\\.\\)/\\1bin)/' \\\n  -e 's!(install.*(FILE|DIR).*DESTINATION )([^)]*)!\\1share/xpwn/\\3!' \\\n  */CMakeLists.txt\nsed -i -e '/install/d' CMakeLists.txt\n",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [zlib, libpng, bzip2, libusb_compat_0_1, openssl]),
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.6)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         homepage: "http://planetbeing.lighthouseapp.com/projects/15246-xpwn",
         description: "Custom NOR firmware loader/IPSW generator for the iPhone",

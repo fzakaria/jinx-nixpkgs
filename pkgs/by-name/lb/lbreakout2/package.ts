@@ -20,17 +20,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "lbreakout2",
       version: "2.6.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/lgames/lbreakout2-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-kQTWF1VT2jRC3GpfxAemaeL1r/Pu3F0wQJ6wA7enjW8=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://sources.debian.org/data/main/l/lbreakout2/2.6.5-2/debian/patches/sdl_fix_pauses.patch",
             hash: "sha256-ycsuxfokpOblLky42MwtJowdEp7v5dZRMFIR4id4ZBI=",
           })))),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [SDL, SDL_mixer, libintl, libpng, zlib]),
       hardeningDisable: nix.thunk(() => ["fortify"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://lgames.sourceforge.net/LBreakout2/",
         description: "Breakout clone from the LGames series",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

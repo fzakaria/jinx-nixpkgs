@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libinfinity";
       const version = "0.7.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/gobby/libinfinity/releases/download/${version}/libinfinity-${version}.tar.gz`),
           sha256: "17i3g61hxz9pzl3ryd1yr15142r25m06jfzjrpdy7ic1b8vjjw3f",
         }))));
@@ -54,11 +54,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "withFeature"), avahiSupport, "avahi")),
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         infinoted: nix.thunk(() => nix.str`${nix.sel(self, "bin")}/bin/infinoted-${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}`),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://gobby.github.io/",
         description: "Implementation of the Infinote protocol written in GObject-based C",
         mainProgram: "infinoted-0.7",
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

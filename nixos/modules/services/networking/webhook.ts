@@ -53,18 +53,18 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const name = nix.arg($_1, "name");
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         freeformType: nix.thunk(() => nix.sel(hookFormat, "type")),
         options: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           id: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: name,
               description: "The ID of your hook. This value is used to create the HTTP endpoint (`protocol://yourserver:port/prefix/${id}`).\n",
             })))),
           "execute-command": nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "The command that should be executed when the hook is triggered.",
             })))),
@@ -73,71 +73,71 @@ export default nix.lambda((args) => (() => {
     })(), formals$2)));
   const hookFiles = nix.thunk(() => nix.concat(nix.app(nix.lookup(w, "mapAttrsToList"), (name) => (hook) => nix.app(nix.sel(hookFormat, "generate"), nix.thunk(() => nix.str`webhook-${name}.json`), nix.thunk(() => [hook])), nix.thunk(() => nix.sel(cfg, "hooks"))), nix.app(nix.lookup(w, "mapAttrsToList"), (name) => (hook) => nix.app(nix.sel(pkgs, "writeText"), nix.thunk(() => nix.str`webhook-${name}.json.tmpl`), nix.thunk(() => nix.str`[${hook}]`)), nix.thunk(() => nix.sel(cfg, "hooksTemplated")))));
   return {
-    __proto__: pos$35,
+    [nix.POS]: pos$35,
     options: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       services: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         webhook: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "[Webhook](https://github.com/adnanh/webhook), a server written in Go that allows you to create HTTP endpoints (hooks),\nwhich execute configured commands for any person or service that knows the URL\n")),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "webhook", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: defaultUser,
               description: "Webhook will be run under this user.\n\nIf set, you must create this user yourself!\n",
             })))),
           group: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: defaultUser,
               description: "Webhook will be run under this group.\n\nIf set, you must create this group yourself!\n",
             })))),
           ip: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "0.0.0.0",
               description: "The IP webhook should serve hooks on.\n\nThe default means it can be reached on any interface if `openFirewall = true`.\n",
             })))),
           port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               default: 9000n,
               description: "The port webhook should be reachable from.",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Open the configured port in the firewall for external ingress traffic.\nPreferably the Webhook server is instead put behind a reverse proxy.\n",
             })))),
           enableTemplates: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: nix.thunk(() => !nix.eq(nix.sel(cfg, "hooksTemplated"), {})),
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "hooksTemplated != {}")),
               description: "Enable the generated hooks file to be parsed as a Go template.\nSee [the documentation](https://github.com/adnanh/webhook/blob/master/docs/Templates.md) for more information.\n",
             })))),
           urlPrefix: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "hooks",
               description: "The URL path prefix to use for served hooks (`protocol://yourserver:port/${prefix}/hook-id`).\n",
             })))),
           hooks: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), hookType)),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 echo: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   "execute-command": "echo",
                   "response-message": "Webhook is reachable!",
                 })),
                 "redeploy-webhook": nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   "execute-command": "/var/scripts/redeploy.sh",
                   "command-working-directory": "/var/webhook",
                 })),
@@ -145,30 +145,30 @@ export default nix.lambda((args) => (() => {
               description: "The actual configuration of which hooks will be served.\n\nRead more on the [project homepage] and on the [hook definition] page.\nAt least one hook needs to be configured.\n\n[hook definition]: https://github.com/adnanh/webhook/blob/master/docs/Hook-Definition.md\n[project homepage]: https://github.com/adnanh/webhook#configuration\n",
             })))),
           hooksTemplated: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 "echo-template": "{\n  \"id\": \"echo-template\",\n  \"execute-command\": \"echo\",\n  \"response-message\": \"{{ getenv \"MESSAGE\" }}\"\n}\n",
               })),
               description: "Same as {option}`hooks`, but these hooks are specified as literal strings instead of Nix values,\nand hence can include [template syntax](https://github.com/adnanh/webhook/blob/master/docs/Templates.md)\nwhich might not be representable as JSON.\n\nTemplate syntax requires the {option}`enableTemplates` option to be set to `true`, which is\ndone by default if this option is set.\n",
             })))),
           verbose: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "Whether to show verbose output.",
             })))),
           extraArgs: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: [],
               example: nix.thunk(() => ["-secure"]),
               description: "These are arguments passed to the webhook command in the systemd service.\nYou can find the available arguments and options in the [documentation][parameters].\n\n[parameters]: https://github.com/adnanh/webhook/blob/master/docs/Webhook-Parameters.md\n",
             })))),
           environment: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: nix.thunk(() => ({})),
               description: "Extra environment variables passed to webhook.",
@@ -177,27 +177,27 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         assertions: nix.thunk(() => (() => {
           const overlappingHooks = nix.thunk(() => nix.app(nix.sel(nix.builtins, "intersectAttrs"), nix.thunk(() => nix.sel(cfg, "hooks")), nix.thunk(() => nix.sel(cfg, "hooksTemplated"))));
           return [
             nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               assertion: nix.thunk(() => !nix.eq(hookFiles, [])),
               message: "At least one hook needs to be configured for webhook to run.",
             })),
             nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               assertion: nix.thunk(() => nix.eq(overlappingHooks, {})),
               message: nix.thunk(() => nix.str`\`services.webhook.hooks\` and \`services.webhook.hooksTemplated\` have overlapping attribute(s): ${nix.app(nix.lookup(w, "concatStringsSep"), ", ", nix.thunk(() => nix.app(nix.sel(nix.builtins, "attrNames"), overlappingHooks)))}`),
             })),
           ];
         })()),
         users: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           users: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), defaultUser)), nix.thunk(() => nix.attrsDyn({}, [
               [defaultUser, nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 isSystemUser: true,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 description: "Webhook daemon user",
@@ -206,24 +206,24 @@ export default nix.lambda((args) => (() => {
           groups: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "user"), defaultUser)) && nix.asBool(nix.eq(nix.sel(cfg, "group"), defaultUser)))), nix.thunk(() => nix.attrsDyn({}, [[defaultUser, nix.thunk(() => ({}))]])))),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           firewall: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           services: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             webhook: nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               description: "Webhook service",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: nix.thunk(() => nix.update(nix.sel(config, "networking", "proxy", "envVars"), nix.sel(cfg, "environment"))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 Restart: "on-failure",
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),

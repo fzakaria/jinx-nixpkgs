@@ -34,25 +34,25 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const skiaCanvasVersion = "3.0.8";
   const skiaCanvasTriplet = nix.thunk(() => nix.selOr({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "x86_64-linux": "linux-x64-glibc",
     "aarch64-linux": "linux-arm64-glibc",
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported skia-canvas platform ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const skiaCanvasPrebuild = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: nix.thunk(() => nix.str`https://github.com/samizdatco/skia-canvas/releases/download/v${skiaCanvasVersion}/${skiaCanvasTriplet}.gz`),
       hash: nix.thunk(() => nix.sel({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "x86_64-linux": "sha256-9FklKQWZ1LfLUhHBI/re4nvImddVZpbi4zPQ76xpN7I=",
         "aarch64-linux": "sha256-BmXQemDAXZEqL9FFmus3cU6wRFwveEhAdjhUbD0uGnA=",
       }, nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
     }))));
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "documenso",
       version: "2.14.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "documenso",
           repo: "documenso",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
       ]),
       npmRebuildFlags: nix.thunk(() => ["--ignore-scripts"]),
       env: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1",
         PRISMA_QUERY_ENGINE_LIBRARY: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), prisma_engines_6)}/lib/libquery_engine.node`),
         PRISMA_QUERY_ENGINE_BINARY: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), prisma_engines_6, "query-engine")),
@@ -114,7 +114,7 @@ EOF
       postInstall: "# These optional prebuilds are for musl libc and can make autoPatchelf link\n# glibc addons against incompatible vendored libraries.\nrm -rf $out/node_modules/*musl* $out/node_modules/@*/*musl*\nrm -rf $out/node_modules/@datadog/pprof/prebuilds/linuxmusl-*\nrm -rf $out/node_modules/aws-crt/dist/bin/linux-*-musl\n",
       preFixup: "rm -Rf $out/lib/node_modules/@documenso/root/node_modules/@documenso/assets\nrm -Rf $out/lib/node_modules/@documenso/root/node_modules/@documenso/lib\nrm -Rf $out/lib/node_modules/@documenso/root/node_modules/@documenso/documentation\nrm -Rf $out/lib/node_modules/@documenso/root/node_modules/@documenso/prettier-config\nrm -Rf $out/lib/node_modules/@documenso/root/node_modules/@documenso/signing\nrm -Rf $out/lib/node_modules/@documenso/root/node_modules/@documenso/ui\nrm -Rf $out/lib/node_modules/@documenso/root/node_modules/@documenso/eslint-config\nrm -Rf $out/lib/node_modules/@documenso/root/node_modules/@documenso/tailwind-config\nrm -Rf $out/lib/node_modules/@documenso/root/node_modules/@documenso/email\nrm -Rf $out/lib/node_modules/@documenso/root/node_modules/@documenso/prisma\nrm -Rf $out/lib/node_modules/@documenso/root/node_modules/@documenso/remix\nrm -Rf $out/lib/node_modules/@documenso/root/node_modules/@documenso/openpage-api\nrm -Rf $out/lib/node_modules/@documenso/root/node_modules/@documenso/api\nrm -Rf $out/lib/node_modules/@documenso/root/node_modules/@documenso/tsconfig\nrm -Rf $out/lib/node_modules/@documenso/root/node_modules/@documenso/app-tests\nrm -Rf $out/lib/node_modules/@documenso/root/node_modules/@documenso/trpc\nrm -Rf $out/lib/node_modules/@documenso/root/node_modules/@documenso/ee\nrm -Rf $out/lib/node_modules/@documenso/root/node_modules/@documenso/auth\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Open Source DocuSign Alternative",
         homepage: "https://github.com/documenso/documenso",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "8.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zopefoundation",
           repo: "zope.testbrowser",
           tag: version,
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         "zope.testbrowser.wsgi",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/zopefoundation/zope.testbrowser/blob/${nix.sel(src, "rev")}/CHANGES.rst`),
         description: "Programmable browser for functional black-box tests",
         homepage: "https://github.com/zopefoundation/zope.testbrowser",
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

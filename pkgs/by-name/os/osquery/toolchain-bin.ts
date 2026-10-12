@@ -17,27 +17,27 @@ export default nix.lambda((args) => (() => {
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   const version = "1.1.0";
   const dist = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/osquery/osquery-toolchain/releases/download/${version}/osquery-toolchain-${version}-x86_64.tar.xz`),
       hash: "sha256-irekR8a0d+T64+ZObgblsLoc4kVBmb6Gv0Qf8dLDCMk=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`https://github.com/osquery/osquery-toolchain/releases/download/${version}/osquery-toolchain-${version}-aarch64.tar.xz`),
       hash: "sha256-cQlx9AtO6ggIQqHowa+42wQ4YCMCN4Gb+0qqVl2JElw=",
     })),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: "osquery-toolchain-bin",
       version: version,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => nix.sel(dist, nix.key(nix.sel(stdenv, "hostPlatform", "system")))))),
       nativeBuildInputs: nix.thunk(() => [autoPatchelfHook]),
       installPhase: "mkdir $out\ncp -r * $out\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "LLVM-based toolchain for Linux designed to build a portable osquery",
         homepage: "https://github.com/osquery/osquery-toolchain",
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux"]),

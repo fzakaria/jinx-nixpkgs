@@ -16,17 +16,17 @@ export default nix.lambda((args) => (() => {
   const libmikmod = nix.arg($, "libmikmod");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mikmod",
       version: "3.2.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/mikmod/mikmod-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-IUwQqjAZgHoesmsscJWS9j28wAtymFqoak+3rDzYuQE=",
         })))),
       buildInputs: nix.thunk(() => [libmikmod, ncurses]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tracker music player for the terminal",
         homepage: "http://mikmod.shlomifish.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

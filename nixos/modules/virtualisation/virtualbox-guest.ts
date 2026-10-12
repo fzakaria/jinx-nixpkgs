@@ -63,76 +63,76 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "virtualisation", "virtualbox", "guest"));
   const mkVirtualBoxUserService = (serviceArgs) => (verbose) => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     description: nix.thunk(() => nix.str`VirtualBox Guest User Services ${serviceArgs}`),
     wantedBy: nix.thunk(() => ["graphical-session.target"]),
     partOf: nix.thunk(() => ["graphical-session.target"]),
     startLimitBurst: 20n,
-    unitConfig: nix.thunk(() => ({ __proto__: pos$1, ConditionVirtualization: "oracle" })),
+    unitConfig: nix.thunk(() => ({ [nix.POS]: pos$1, ConditionVirtualization: "oracle" })),
     preStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "bash")}/bin/bash -c "if [ -z $DISPLAY ]; then exit 1; fi"`),
     serviceConfig: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       ExecStart: nix.thunk(() => nix.add(nix.add(nix.str`@${nix.sel(cfg, "package")}/bin/VBoxClient`, nix.app(nix.sel(lib, "strings", "optionalString"), verbose, " --verbose")), nix.str` --foreground ${serviceArgs}`)),
       RestartSec: 2n,
       Restart: "always",
     })),
   });
   const mkVirtualBoxUserX11OnlyService = (serviceArgs) => (verbose) => nix.update(nix.app(mkVirtualBoxUserService, serviceArgs, verbose), {
-    __proto__: pos$5,
-    unitConfig: nix.thunk(() => ({ __proto__: pos$4, ConditionEnvironment: "XDG_SESSION_TYPE=x11" })),
+    [nix.POS]: pos$5,
+    unitConfig: nix.thunk(() => ({ [nix.POS]: pos$4, ConditionEnvironment: "XDG_SESSION_TYPE=x11" })),
   });
   return {
-    __proto__: pos$52,
+    [nix.POS]: pos$52,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["virtualisation", "virtualbox", "guest", "draganddrop"]), nix.thunk(() => ["virtualisation", "virtualbox", "guest", "dragAndDrop"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         virtualbox: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           guest: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 default: false,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 description: "Whether to enable the VirtualBox service and other guest additions.",
               })))),
-            package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), nix.thunk(() => nix.sel(config, "boot", "kernelPackages")), "virtualboxGuestAdditions", nix.thunk(() => ({ __proto__: pos$7, pkgsText: "config.boot.kernelPackages" })))),
+            package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), nix.thunk(() => nix.sel(config, "boot", "kernelPackages")), "virtualboxGuestAdditions", nix.thunk(() => ({ [nix.POS]: pos$7, pkgsText: "config.boot.kernelPackages" })))),
             clipboard: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 default: true,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 description: "Whether to enable clipboard support.",
               })))),
             seamless: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 default: true,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 description: "Whether to enable seamless mode. When activated windows from the guest appear next to the windows of the host.",
               })))),
             dragAndDrop: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 default: true,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 description: "Whether to enable drag and drop support.",
               })))),
             verbose: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 default: false,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 description: "Whether to verbose logging for guest services.",
               })))),
             vboxsf: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 default: true,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 description: "Whether to load vboxsf",
               })))),
             use3rdPartyModules: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 default: true,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 description: "Whether to use the kernel modules provided by VirtualBox instead of the ones from the upstream kernel.",
@@ -143,57 +143,57 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 assertion: nix.thunk(() => (nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isx86")) || nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isAarch64")))),
                 message: nix.thunk(() => nix.str`Virtualbox not currently supported on ${nix.sel(pkgs, "stdenv", "hostPlatform", "system")}`),
               })),
             ]),
             environment: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
             })),
             boot: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               extraModulePackages: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "use3rdPartyModules")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]))),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               services: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 virtualbox: nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   description: "VirtualBox Guest Services",
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   requires: nix.thunk(() => ["dev-vboxguest.device"]),
                   after: nix.thunk(() => ["dev-vboxguest.device"]),
-                  unitConfig: nix.thunk(() => ({ __proto__: pos$21, ConditionVirtualization: "oracle" })),
+                  unitConfig: nix.thunk(() => ({ [nix.POS]: pos$21, ConditionVirtualization: "oracle" })),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$22,
+                    [nix.POS]: pos$22,
                     ExecStart: nix.thunk(() => nix.str`@${nix.sel(cfg, "package")}/bin/VBoxService VBoxService --foreground`),
                   })),
                 })),
               })),
               user: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 services: nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   virtualboxClientVmsvga: nix.thunk(() => nix.app(mkVirtualBoxUserService, "--vmsvga-session", nix.thunk(() => nix.sel(cfg, "verbose")))),
                 })),
               })),
             })),
             users: nix.thunk(() => ({
-              __proto__: pos$29,
-              groups: nix.thunk(() => ({ __proto__: pos$28, vboxuserdev: nix.thunk(() => ({})) })),
+              [nix.POS]: pos$29,
+              groups: nix.thunk(() => ({ [nix.POS]: pos$28, vboxuserdev: nix.thunk(() => ({})) })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               udev: nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 packages: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-                      __proto__: pos$30,
+                      [nix.POS]: pos$30,
                       name: "virtualboxGuestAdditions",
                       text: "# /dev/vboxuser is necessary for VBoxClient to work\nKERNEL==\"vboxuser\", OWNER=\"root\", GROUP=\"vboxuserdev\", MODE=\"0660\", TAG+=\"uaccess\"\n\n# Allow systemd dependencies on vboxguest.\nSUBSYSTEM==\"misc\", KERNEL==\"vboxguest\", TAG+=\"systemd\"\n",
                       destination: "/etc/udev/rules.d/70-virtualboxGuestAdditions.rules",
@@ -202,57 +202,57 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "vboxsf")), nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               boot: nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 supportedFilesystems: nix.thunk(() => ["vboxsf"]),
-                initrd: nix.thunk(() => ({ __proto__: pos$34, supportedFilesystems: nix.thunk(() => ["vboxsf"]) })),
+                initrd: nix.thunk(() => ({ [nix.POS]: pos$34, supportedFilesystems: nix.thunk(() => ["vboxsf"]) })),
               })),
               users: nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 groups: nix.thunk(() => ({
-                  __proto__: pos$37,
+                  [nix.POS]: pos$37,
                   vboxsf: nix.thunk(() => ({
-                    __proto__: pos$36,
+                    [nix.POS]: pos$36,
                     gid: nix.thunk(() => nix.sel(config, "ids", "gids", "vboxsf")),
                   })),
                 })),
               })),
             })))),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "clipboard")), nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               systemd: nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 user: nix.thunk(() => ({
-                  __proto__: pos$41,
+                  [nix.POS]: pos$41,
                   services: nix.thunk(() => ({
-                    __proto__: pos$40,
+                    [nix.POS]: pos$40,
                     virtualboxClientClipboard: nix.thunk(() => nix.app(mkVirtualBoxUserService, "--clipboard", nix.thunk(() => nix.sel(cfg, "verbose")))),
                   })),
                 })),
               })),
             })))),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "seamless")), nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               systemd: nix.thunk(() => ({
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 user: nix.thunk(() => ({
-                  __proto__: pos$45,
+                  [nix.POS]: pos$45,
                   services: nix.thunk(() => ({
-                    __proto__: pos$44,
+                    [nix.POS]: pos$44,
                     virtualboxClientSeamless: nix.thunk(() => nix.app(mkVirtualBoxUserX11OnlyService, "--seamless", nix.thunk(() => nix.sel(cfg, "verbose")))),
                   })),
                 })),
               })),
             })))),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "dragAndDrop")), nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               systemd: nix.thunk(() => ({
-                __proto__: pos$50,
+                [nix.POS]: pos$50,
                 user: nix.thunk(() => ({
-                  __proto__: pos$49,
+                  [nix.POS]: pos$49,
                   services: nix.thunk(() => ({
-                    __proto__: pos$48,
+                    [nix.POS]: pos$48,
                     virtualboxClientDragAndDrop: nix.thunk(() => nix.app(mkVirtualBoxUserService, "--draganddrop", nix.thunk(() => nix.sel(cfg, "verbose")))),
                   })),
                 })),

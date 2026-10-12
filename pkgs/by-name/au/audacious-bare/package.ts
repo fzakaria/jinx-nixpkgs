@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "audacious";
       const version = "4.6.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "audacious-media-player",
           repo: "audacious",
           rev: nix.thunk(() => nix.str`${pname}-${version}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
 ln -s ${audacious_plugins}/share/audacious/Skins $out/share/audacious/
 `)));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightweight and versatile audio player",
         homepage: "https://audacious-media-player.org",
         downloadPage: "https://github.com/audacious-media-player/audacious",
@@ -64,7 +64,7 @@ ln -s ${audacious_plugins}/share/audacious/Skins $out/share/audacious/
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

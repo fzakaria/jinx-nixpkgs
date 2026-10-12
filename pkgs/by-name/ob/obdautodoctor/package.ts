@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const kdePackages = nix.arg($, "kdePackages");
   const bluez = nix.arg($, "bluez");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "obdautodoctor",
       version: "5.1.8",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://cdn2.obdautodoctor.com/release/obd-auto-doctor_${nix.sel(finalAttrs, "version")}_amd64.tar.gz`),
           hash: "sha256-3qht1G2Qi+IhL/x9MMEAwM0exCav5iKtnZXTl6cwx3E=",
         })))),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ninstall -D obdautodoctor $out/bin/obdautodoctor\ninstall -D obdautodoctor.png $out/share/icons/hicolor/128x128/apps/obdautodoctor.png\n\ninstall -D license.txt $out/share/licenses/obdautodoctor/license.txt\ninstall -D lgpl-3.0.txt $out/share/licenses/obdautodoctor/lgpl-3.0.txt\n\nrunHook postInstall\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "obdautodoctor",
             desktopName: "OBD Auto Doctor",
             comment: "OBD Car Diagnostics Software",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Diagnose problems, reset the Check Engine Light, and monitor your car's performance with ease",
         homepage: "https://www.obdautodoctor.com/",
         platforms: nix.thunk(() => ["x86_64-linux"]),

@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const iconv = nix.arg($, "iconv");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "lesspipe",
       version: "2.20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wofr06",
           repo: "lesspipe",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,13 +52,13 @@ export default nix.lambda((args) => (() => {
 substituteInPlace $out/bin/lesspipe.sh --replace 'nodash strings' "nodash ${binutils_unwrapped}/bin/strings"
 
 ${nix.app(nix.sel(resholve, "phraseSolution"), "lesspipe.sh", nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           scripts: nix.thunk(() => ["bin/lesspipe.sh"]),
           interpreter: nix.thunk(() => nix.str`${bash}/bin/bash`),
           inputs: nix.thunk(() => [coreutils, file, gnugrep, gnused, gnutar, iconv, procps, ncurses]),
           keep: nix.thunk(() => ["$prog", "$c1", "$c2", "$c3", "$c4", "$c5", "$cmd", "$colorizer", "$HOME"]),
           fake: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             external: nix.thunk(() => [
               "cpio",
               "isoinfo",
@@ -144,13 +144,13 @@ ${nix.app(nix.sel(resholve, "phraseSolution"), "lesspipe.sh", nix.thunk(() => ({
           ]),
         })))}
 ${nix.app(nix.sel(resholve, "phraseSolution"), "lesscomplete", nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           scripts: nix.thunk(() => ["bin/lesscomplete"]),
           interpreter: nix.thunk(() => nix.str`${bash}/bin/bash`),
           inputs: nix.thunk(() => [coreutils, file, gnugrep, gnused, gnutar]),
           keep: nix.thunk(() => ["$prog", "$c1", "$c2", "$c3", "$c4", "$c5", "$cmd"]),
           fake: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             external: nix.thunk(() => [
               "cpio",
               "isoinfo",
@@ -181,7 +181,7 @@ ${nix.app(nix.sel(resholve, "phraseSolution"), "lesscomplete", nix.thunk(() => (
         })))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Preprocessor for less",
         longDescription: "Usually lesspipe.sh is called as an input filter to less. With the help\nof that filter less will display the uncompressed contents of compressed\n(gzip, bzip2, compress, rar, 7-zip, lzip, xz or lzma) files. For files\ncontaining archives and directories, a table of contents will be\ndisplayed (e.g tar, ar, rar, jar, rpm and deb formats). Other supported\nformats include nroff, pdf, ps, dvi, shared library, MS word, OASIS\n(e.g. Openoffice), NetCDF, html, mp3, jpg, png, iso images, MacOSX bom,\nplist and archive formats, perl storable data and gpg encrypted files.\nThis does require additional helper programs being installed.\n",
         mainProgram: "lesspipe.sh",

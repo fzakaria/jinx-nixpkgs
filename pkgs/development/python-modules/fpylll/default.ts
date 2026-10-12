@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fplll",
           repo: "fpylll",
           tag: version,
@@ -41,9 +41,9 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [numpy, cysignals]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const preCheck = "# Since upstream introduced --doctest-modules in\n# https://github.com/fplll/fpylll/commit/9732fdb40cf1bd43ad1f60762ec0a8401743fc79,\n# it is necessary to ignore import mismatches. Not sure why, but the files\n# should be identical anyway.\nexport PY_IGNORE_IMPORTMISMATCH=1\n";
-      const passthru = nix.thunk(() => ({ __proto__: pos$3, tests: nix.thunk(() => ({ __proto__: pos$2, sage: sage })) }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, tests: nix.thunk(() => ({ [nix.POS]: pos$2, sage: sage })) }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python interface for fplll",
         changelog: nix.thunk(() => nix.str`https://github.com/fplll/fpylll/releases/tag/${nix.sel(src, "tag")}`),
         homepage: "https://github.com/fplll/fpylll",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

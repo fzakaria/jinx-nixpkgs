@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cargo-benchcmp",
       version: "0.4.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BurntSushi",
           repo: "cargo-benchcmp",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,17 +31,17 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-Dpn3MbU56zX4vibG0pw5LuQEwvC6Uqzse1GCRHWyAEw=",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-test-binary-path.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             shortTarget: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "rust", "rustcTarget")),
           })))),
       ]),
       checkFlags: nix.thunk(() => ["--skip=different_input_colored"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Small utility to compare Rust micro-benchmarks",
         mainProgram: "cargo-benchcmp",
         homepage: "https://github.com/BurntSushi/cargo-benchcmp",

@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
     "etc/opt/edge/native-messaging-hosts",
   ]);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ff2mpv-rust",
       version: "1.1.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ryze312",
           repo: "ff2mpv-rust",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,7 +47,7 @@ do
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Native messaging host for ff2mpv written in Rust",
         homepage: "https://github.com/ryze312/ff2mpv-rust",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -98,11 +98,11 @@ export default nix.lambda((args) => (() => {
     const filename = nix.thunk(() => nix.str`android-studio-${version}-linux.tar.gz`);
     const source = nix.thunk(() => nix.sel(sources, nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
     const androidStudio = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: nix.thunk(() => nix.str`${pname}-unwrapped`),
         version: version,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.attr(source, "url")),
             sha256: nix.thunk(() => nix.sel(source, "sha256Hash")),
           })))),
@@ -182,10 +182,10 @@ wrapProgram $out/bin/studio \\
 # AS launches LLDBFrontend with a custom LD_LIBRARY_PATH
 wrapProgram $(find $out -name LLDBFrontend) --prefix LD_LIBRARY_PATH : "${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [ncurses5, zlib]))}"
 `),
-        meta: nix.thunk(() => ({ __proto__: pos$2, mainProgram: "studio" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$2, mainProgram: "studio" })),
       }))));
     const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         name: pname,
         exec: pname,
         icon: pname,
@@ -196,7 +196,7 @@ wrapProgram $(find $out -name LLDBFrontend) --prefix LD_LIBRARY_PATH : "${nix.ap
         startupWMClass: "jetbrains-studio",
       }))));
     const fhsEnv = nix.thunk(() => nix.app(buildFHSEnv, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: nix.thunk(() => nix.str`${pname}-fhs-env`),
         version: version,
         multiPkgs: (pkgs) => [
@@ -211,7 +211,7 @@ ln -s ${cacert}/etc/ssl/certs $out/etc/pki/tls/certs
       const androidStudio_1 = nix.arg($_2, "androidStudio");
       const androidSdk = nix.argOr($_2, "androidSdk", () => null);
       return nix.app(runCommand, nix.thunk(() => nix.str`${pname}-${version}`), nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           pname: pname,
           version: version,
           startScript: nix.thunk(() => (() => {
@@ -253,9 +253,9 @@ exec ${nix.app(nix.sel(lib, "getExe"), fhsEnv)} ${nix.app(nix.sel(lib, "getExe")
           preferLocalBuild: true,
           allowSubstitutes: false,
           passthru: nix.thunk(() => (() => {
-            const withSdk = (androidSdk_1) => nix.app(mkAndroidStudioWrapper, nix.thunk(() => ({ __proto__: pos$6, androidStudio: androidStudio_1, androidSdk: androidSdk_1 })));
+            const withSdk = (androidSdk_1) => nix.app(mkAndroidStudioWrapper, nix.thunk(() => ({ [nix.POS]: pos$6, androidStudio: androidStudio_1, androidSdk: androidSdk_1 })));
             return {
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               unwrapped: androidStudio_1,
               full: nix.thunk(() => nix.app(withSdk, nix.thunk(() => nix.sel(androidenv, "androidPkgs", "androidsdk")))),
               withSdk: withSdk,
@@ -273,7 +273,7 @@ ln -s ${androidStudio_1}/bin/studio.png $out/share/pixmaps/${pname}.png
 ln -s ${desktopItem}/share/applications $out/share/applications
 `));
     })(), formals$3);
-    return nix.app(mkAndroidStudioWrapper, nix.thunk(() => ({ __proto__: pos$9, androidStudio: androidStudio })));
+    return nix.app(mkAndroidStudioWrapper, nix.thunk(() => ({ [nix.POS]: pos$9, androidStudio: androidStudio })));
   })(), formals$2);
 })(), formals$1);
 //# sourceMappingURL=linux.ts.map

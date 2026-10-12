@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const hatchling = nix.arg($, "hatchling");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "django-dbbackup",
       version: "5.3.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Archmonger",
           repo: "django-dbbackup",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         writableTmpDirAsHomeHook,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Management commands to help backup and restore your project database and media files",
         homepage: "https://github.com/Archmonger/django-dbbackup",
         changelog: nix.thunk(() => nix.str`https://github.com/Archmonger/django-dbbackup/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -38,19 +38,19 @@ export default (nvidia_x11) => (sha256) => nix.lambda((args) => (() => {
   const withGtk2 = nix.argOr($, "withGtk2", () => false);
   const withGtk3 = nix.argOr($, "withGtk3", () => true);
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "NVIDIA",
       repo: "nvidia-settings",
       rev: nix.thunk(() => nix.sel(nvidia_x11, "settingsVersion")),
       sha256: sha256,
     }))));
   const meta = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     homepage: "https://www.nvidia.com/object/unix.html",
     platforms: nix.thunk(() => nix.sel(nvidia_x11, "meta", "platforms")),
   }));
   const libXNVCtrl = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libXNVCtrl",
       version: nix.thunk(() => nix.sel(nvidia_x11, "settingsVersion")),
       src: src,
@@ -62,7 +62,7 @@ export default (nvidia_x11) => (sha256) => nix.lambda((args) => (() => {
       ]),
       installPhase: "mkdir -p $out/lib\nmkdir -p $out/include/NVCtrl\n\ncp libXNVCtrl.a $out/lib\ncp NVCtrl.h     $out/include/NVCtrl\ncp NVCtrlLib.h  $out/include/NVCtrl\ncp -P libXNVCtrl.so* $out/lib\n",
       meta: nix.thunk(() => nix.update(meta, {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "NVIDIA NV-CONTROL X extension",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
@@ -70,16 +70,16 @@ export default (nvidia_x11) => (sha256) => nix.lambda((args) => (() => {
   const runtimeDependencies = nix.thunk(() => [libglvnd, libxrandr, libxv]);
   const runtimeLibraryPath = nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), runtimeDependencies));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "nvidia-settings",
       version: nix.thunk(() => nix.sel(nvidia_x11, "settingsVersion")),
       src: src,
       patches: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(nvidia_x11, "settingsVersion")), "440")), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://github.com/NVIDIA/nvidia-settings/commit/a7c1f5fce6303a643fadff7d85d59934bd0cf6b6.patch",
             hash: "sha256-ZwF3dRTYt/hO8ELg9weoz1U/XcU93qiJL2d1aq1Jlak=",
           }))))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(nvidia_x11, "settingsVersion")), "515.43.04")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(nvidia_x11, "settingsVersion")), "545.29")))), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             url: "https://github.com/NVIDIA/nvidia-settings/pull/99/commits/2e0575197e2b3247deafd2a48f45afc038939a06.patch",
             hash: "sha256-wKuO5CUTUuwYvsP46Pz+6fI0yxLNpZv8qlbL0TFkEFE=",
           }))))))),
@@ -108,9 +108,9 @@ export default (nvidia_x11) => (sha256) => nix.lambda((args) => (() => {
 
 addDriverRunpath $out/bin/$binaryName
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$7, libXNVCtrl: libXNVCtrl })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$7, libXNVCtrl: libXNVCtrl })),
       meta: nix.thunk(() => nix.update(meta, {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Settings application for NVIDIA graphics cards",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
         mainProgram: "nvidia-settings",

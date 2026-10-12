@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const buildGhidraExtension = nix.arg($, "buildGhidraExtension");
   const ghidra = nix.arg($, "ghidra");
   return nix.app(buildGhidraExtension, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "machinelearning",
       version: nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), ghidra)),
       src: nix.thunk(() => nix.str`${ghidra}/lib/ghidra/Extensions/Ghidra/${nix.sel(ghidra, "distroPrefix")}_MachineLearning.zip`),
@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ghidra, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),
         description: "Finds functions using ML",

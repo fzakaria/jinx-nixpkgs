@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "lalrpop",
       version: "0.22.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lalrpop",
           repo: "lalrpop",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-3Lm25X2QQQ4+3Spe6Nz5PkIvFcgwHQ+hqAdjsFesgro=",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./use-correct-binary-path-in-tests.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             target_triple: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "rust", "rustcTarget")),
           })))),
       ]),
       buildAndTestSubdir: "lalrpop",
       checkPhase: "buildAndTestSubdir=lalrpop-test cargoCheckHook\ncargoCheckHook\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "LR(1) parser generator for Rust",
         homepage: "https://github.com/lalrpop/lalrpop",
         changelog: nix.thunk(() => nix.str`https://github.com/lalrpop/lalrpop/blob/${nix.sel(finalAttrs, "src", "rev")}/RELEASES.md`),

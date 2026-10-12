@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mm-common";
       const version = "1.0.8";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/mm-common/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/mm-common-${version}.tar.xz`),
           sha256: "sYnuY26DnRLADavvrgmf1IirI1jewk0mR2HAEZULAqk=",
         }))));
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [meson, python3, ninja]);
       const buildInputs = nix.thunk(() => [python3, bash]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: pname, versionPolicy: "none" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: pname, versionPolicy: "none" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Common build files of GLib/GTK C++ bindings",
         longDescription: "The mm-common module provides the build infrastructure and utilities\nshared among the GNOME C++ binding libraries. It is only a required\ndependency for building the C++ bindings from the gnome.org version\ncontrol repository. An installation of mm-common is not required for\nbuilding tarball releases, unless configured to use maintainer-mode.\n",
         homepage: "https://gitlab.gnome.org/GNOME/mm-common",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

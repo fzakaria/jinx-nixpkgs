@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "torrserver";
       const version = "145.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "YouROK",
           repo: "TorrServer",
           tag: nix.thunk(() => nix.str`MatriX.${version}`),
@@ -35,7 +35,7 @@ wrapProgram $out/bin/torrserver \\
   --set PATH ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [ffmpeg]))}
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple and powerful tool for streaming torrents",
         homepage: "https://github.com/YouROK/TorrServer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -45,7 +45,7 @@ wrapProgram $out/bin/torrserver \\
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

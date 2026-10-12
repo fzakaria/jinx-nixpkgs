@@ -91,21 +91,21 @@ export default nix.lambda((args) => (() => {
   const hunspellTargetDirs = "$out/opt/Pulsar/resources/app.asar.unpacked/node_modules/spellchecker/vendor/hunspell_dictionaries";
   const hunspellCopyCommands = nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (lang) => nix.str`cp -r ${lang}/* ${hunspellTargetDirs};`, hunspellDirs));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "pulsar",
       version: "1.132.1",
       src: nix.thunk(() => nix.selOr(finalAttrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), "passthru", "srcs", nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         srcs: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               url: nix.thunk(() => nix.str`https://github.com/pulsar-edit/pulsar/releases/download/v${nix.sel(finalAttrs, "version")}/Linux.pulsar-${nix.sel(finalAttrs, "version")}.tar.gz`),
               hash: "sha256-66kubyDMEHgRdT38TTESMIZ+wQPPXWHBc0jYY3aMSkU=",
             })))),
           "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: nix.thunk(() => nix.str`https://github.com/pulsar-edit/pulsar/releases/download/v${nix.sel(finalAttrs, "version")}/ARM.Linux.pulsar-${nix.sel(finalAttrs, "version")}-arm64.tar.gz`),
               hash: "sha256-MTWqUlbfjJlIQVy0YBLbenMzA7Xgnkr34nr2t8nhofc=",
             })))),
@@ -216,7 +216,7 @@ cp ${nix.path(here, "./pulsar.nemo_action")} $out/share/nemo/actions/pulsar.nemo
 `)))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "Pulsar",
             desktopName: "Pulsar",
             exec: "pulsar",
@@ -228,7 +228,7 @@ cp ${nix.path(here, "./pulsar.nemo_action")} $out/share/nemo/actions/pulsar.nemo
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Community-led Hyper-Hackable Text Editor",
         longDescription: "A Community-led Hyper-Hackable Text Editor, Forked from Atom, built on Electron.\nDesigned to be deeply customizable, but still approachable using the default configuration.\n",
         homepage: "https://github.com/pulsar-edit/pulsar",

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const useDefaultExtensions = nix.argOr($, "useDefaultExtensions", () => true);
   const selectedExtensions = nix.thunk(() => nix.concat(extensions, nix.app(nix.sel(lib, "optionals"), useDefaultExtensions, nix.thunk(() => [atril, caja_extensions, engrampa]))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: nix.thunk(() => nix.str`${nix.sel(caja, "pname")}-with-extensions`),
       version: nix.thunk(() => nix.attr(caja, "version")),
       outputs: nix.thunk(() => nix.attr(caja, "outputs")),

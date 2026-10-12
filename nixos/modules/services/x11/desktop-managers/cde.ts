@@ -47,20 +47,20 @@ export default nix.lambda((args) => (() => {
   const xcfg = nix.thunk(() => nix.sel(config, "services", "xserver"));
   const cfg = nix.thunk(() => nix.sel(xcfg, "desktopManager", "cde"));
   return {
-    __proto__: pos$34,
+    [nix.POS]: pos$34,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         xserver: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           desktopManager: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             cde: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Common Desktop Environment")),
               extraPackages: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   type: nix.thunk(() => (() => {
                     const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                     return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "package")));
@@ -89,20 +89,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(xcfg, "enable")) && nix.asBool(nix.sel(cfg, "enable")))), nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         environment: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           systemPackages: nix.thunk(() => nix.sel(cfg, "extraPackages")),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$14,
-          rpcbind: nix.thunk(() => ({ __proto__: pos$8, enable: true })),
+          [nix.POS]: pos$14,
+          rpcbind: nix.thunk(() => ({ [nix.POS]: pos$8, enable: true })),
           xinetd: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             enable: true,
             services: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 name: "cmsd",
                 protocol: "udp",
                 user: "root",
@@ -112,12 +112,12 @@ export default nix.lambda((args) => (() => {
             ]),
           })),
           xserver: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             desktopManager: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               session: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   name: "CDE",
                   start: nix.thunk(() => nix.str`exec ${nix.sel(pkgs, "cdesktopenv")}/bin/Xsession
 `),
@@ -127,15 +127,15 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$16,
-          groups: nix.thunk(() => ({ __proto__: pos$15, mail: nix.thunk(() => ({})) })),
+          [nix.POS]: pos$16,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$15, mail: nix.thunk(() => ({})) })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           wrappers: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             dtmail: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               setgid: true,
               owner: "root",
               group: "mail",
@@ -144,23 +144,23 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             settings: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               "10-cde": nix.thunk(() => ({
-                __proto__: pos$28,
-                "/var/dt": nix.thunk(() => ({ __proto__: pos$21, d: nix.thunk(() => ({ __proto__: pos$20, mode: "0755" })) })),
-                "/var/dt/tmp": nix.thunk(() => ({ __proto__: pos$23, d: nix.thunk(() => ({ __proto__: pos$22, mode: "1777" })) })),
-                "/var/dt/appconfig": nix.thunk(() => ({ __proto__: pos$25, d: nix.thunk(() => ({ __proto__: pos$24, mode: "0755" })) })),
-                "/var/dt/appconfig/appmanager": nix.thunk(() => ({ __proto__: pos$27, d: nix.thunk(() => ({ __proto__: pos$26, mode: "1777" })) })),
+                [nix.POS]: pos$28,
+                "/var/dt": nix.thunk(() => ({ [nix.POS]: pos$21, d: nix.thunk(() => ({ [nix.POS]: pos$20, mode: "0755" })) })),
+                "/var/dt/tmp": nix.thunk(() => ({ [nix.POS]: pos$23, d: nix.thunk(() => ({ [nix.POS]: pos$22, mode: "1777" })) })),
+                "/var/dt/appconfig": nix.thunk(() => ({ [nix.POS]: pos$25, d: nix.thunk(() => ({ [nix.POS]: pos$24, mode: "0755" })) })),
+                "/var/dt/appconfig/appmanager": nix.thunk(() => ({ [nix.POS]: pos$27, d: nix.thunk(() => ({ [nix.POS]: pos$26, mode: "1777" })) })),
               })),
             })),
           })),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$33, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$33, maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=cde.ts.map

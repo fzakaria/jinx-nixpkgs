@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const jre_headless = nix.arg($, "jre_headless");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "purpur",
       version: "1.21.10r2535",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://api.purpurmc.org/v2/purpur/${nix.builtins.replaceStrings(nix.thunk(() => ["r"]), nix.thunk(() => ["/"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}/download`),
           sha256: "sha256-QVl4Nnewi2OVeC5hUMsoZGxw7ZiLeUjAngGqWl6Q9Ug=",
         })))),
@@ -36,14 +36,14 @@ makeWrapper ${jre_headless}/bin/java $out/bin/minecraft-server \\
 `),
       dontUnpack: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "minecraft-server": nix.thunk(() => nix.attr(nixosTests, "minecraft-server")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Drop-in replacement for Minecraft Paper servers",
         longDescription: "Purpur is a drop-in replacement for Minecraft Paper servers designed for configurability, new fun and exciting\ngameplay features, and performance built on top of Airplane.\n",
         homepage: "https://purpurmc.org/",

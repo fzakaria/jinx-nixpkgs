@@ -12,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const deathtrapArgs = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (k) => (_) => nix.builtins.throw(nix.thunk(() => nix.str`The module system is too strict, accessing an unused option's ${k} mkOption-attribute.`)), nix.thunk(() => nix.app(nix.sel(lib, "functionArgs"), nix.thunk(() => nix.sel(lib, "mkOption"))))));
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     options: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       value: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
           default: nix.thunk(() => ({})),
         })))),

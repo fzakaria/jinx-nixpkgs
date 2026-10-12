@@ -30,19 +30,19 @@ export default nix.lambda((args) => (() => {
   const udev = nix.arg($, "udev");
   const unzip = nix.arg($, "unzip");
   const availableBinaries = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       platform: "linux-x64",
       hash: "sha256-RkuHmZWKQOQKERQ/b86oIYF8QAd90tanzkREtKoj7eM=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       platform: "linux-arm64",
       hash: "sha256-me1xSE0Laa+3cfQ5Vx17pZZ8z3BtUU9SnOYWcuA26R4=",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       platform: "darwin-arm64",
       hash: "sha256-3ZPSwjLFUG8QaIsj7XgvwrA4TTXm3StGdSTd3qg0TJ4=",
     })),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cypress";
       const version = "15.19.0";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           url: nix.thunk(() => nix.str`https://cdn.cypress.io/desktop/${version}/${platform}/cypress.zip`),
           hash: hash,
           stripRoot: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => nix.concat([unzip, makeShellWrapper], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(darwin, "autoSignDarwinBinariesHook"))])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [
           autoPatchelfHook,
           nix.thunk(() => nix.app(nix.sel(buildPackages, "wrapGAppsHook3", "override"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               makeWrapper: nix.thunk(() => nix.sel(buildPackages, "makeShellWrapper")),
             })))),
         ])))));
@@ -86,12 +86,12 @@ runHook postInstall
 `);
       const postFixup = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), "# exit with 1 after 25.05\nmakeWrapper $out/opt/cypress/Cypress $out/bin/Cypress \\\n  --run 'echo \"Warning: Use the lowercase cypress executable instead of the capitalized one.\"'\n"));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({})),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Fast, easy and reliable testing for anything that runs in a browser",
         homepage: "https://www.cypress.io",
         mainProgram: "Cypress",
@@ -113,7 +113,7 @@ runHook postInstall
         knownVulnerabilities: nix.thunk(() => ["Uses Electron 37.6.0, EOL on October 4, 2025, Several CVEs known."]),
       }));
       return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname,
         version,
         src,

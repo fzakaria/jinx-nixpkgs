@@ -16,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const bytes = nix.arg($, "bytes");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "http",
       version: "2018-02-25",
       idrisDeps: nix.thunk(() => [contrib, lightyear, bytes]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "uwap",
           repo: "idris-http",
           rev: "dc4a31543f87c0bc44cbaa98192f0303cd8dd82e",
           sha256: "1abrwi5ikymff4g7a0g5wskycvhpnn895z1z1bz9r71ks554ypl8",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "HTTP library for idris",
         homepage: "https://github.com/uwap/idris-http",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

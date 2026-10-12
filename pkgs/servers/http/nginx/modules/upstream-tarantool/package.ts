@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const msgpuck = nix.arg($, "msgpuck");
   const yajl = nix.arg($, "yajl");
   return nix.app(mkNginxPlugin, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "upstream-tarantool",
       version: "2.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tarantool",
           repo: "nginx_upstream_module",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(msgpuck, "dev")), yajl]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tarantool NginX upstream module (REST, JSON API, websockets, load balancing)",
         homepage: "https://github.com/tarantool/nginx_upstream_module",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

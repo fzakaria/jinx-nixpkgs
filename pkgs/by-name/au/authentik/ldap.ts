@@ -14,16 +14,16 @@ export default nix.lambda((args) => (() => {
   const apiGoVendorHook = nix.arg($, "apiGoVendorHook");
   const vendorHash = nix.arg($, "vendorHash");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "authentik-ldap-outpost",
       version: nix.thunk(() => nix.attr(authentik, "version")),
       src: nix.thunk(() => nix.attr(authentik, "src")),
       vendorHash: vendorHash,
       nativeBuildInputs: nix.thunk(() => [apiGoVendorHook]),
-      env: nix.thunk(() => ({ __proto__: pos$1, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$1, CGO_ENABLED: 0n })),
       subPackages: nix.thunk(() => ["cmd/ldap"]),
       meta: nix.thunk(() => nix.update(nix.sel(authentik, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Authentik ldap outpost. Needed for the external ldap API",
         homepage: "https://goauthentik.io/docs/providers/ldap/",
         mainProgram: "ldap",

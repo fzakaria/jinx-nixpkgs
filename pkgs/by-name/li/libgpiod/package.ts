@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const enable_tools = nix.argOr($, "enable-tools", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libgpiod",
       version: "2.2.4",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.kernel.org/pub/scm/libs/libgpiod/libgpiod.git",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-PtkJZ9p6r6S47RjiCRv4cVmlY4BHdB6FCMJ+M/IPnw0=",
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
         "--enable-bindings-cxx",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v", allowedVersions: "^[0-9\\.]+$" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v", allowedVersions: "^[0-9\\.]+$" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "C library and tools for interacting with the linux GPIO character device",
         longDescription: "Since linux 4.8 the GPIO sysfs interface is deprecated. User space should use\nthe character device instead. This library encapsulates the ioctl calls and\ndata structures behind a straightforward API.\n",
         homepage: "https://git.kernel.org/pub/scm/libs/libgpiod/libgpiod.git/about/",

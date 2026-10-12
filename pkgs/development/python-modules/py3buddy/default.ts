@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "armijnhemel",
           repo: "py3buddy",
           rev: version,
@@ -38,7 +38,7 @@ runHook postInstall
 `);
       const postInstall = "install -D 99-ibuddy.rules $out/lib/udev/rules.d/99-ibuddy.rules\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Code to work with the iBuddy MSN figurine",
         homepage: "https://github.com/armijnhemel/py3buddy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -48,7 +48,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

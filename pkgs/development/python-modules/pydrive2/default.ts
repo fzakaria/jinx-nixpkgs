@@ -28,18 +28,18 @@ export default nix.lambda((args) => (() => {
       const version = "1.21.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-ZJuE1gxje8cUZIUDlTWqjxJUrRVkI3OfB+XTJQdEfBM=",
         }))));
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const dependencies = nix.thunk(() => [google_api_python_client, oauth2client, pyopenssl, pyyaml]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, fsspec: nix.thunk(() => [appdirs, fsspec, funcy, tqdm]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, fsspec: nix.thunk(() => [appdirs, fsspec, funcy, tqdm]) }));
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["pydrive2"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Google Drive API Python wrapper library",
         homepage: "https://github.com/iterative/PyDrive2",
         changelog: nix.thunk(() => nix.str`https://github.com/iterative/PyDrive2/releases/tag/${version}`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

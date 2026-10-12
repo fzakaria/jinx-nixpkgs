@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pname = "colombe";
   const version = "0.12.1";
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       minimalOCamlVersion: "4.03",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/colombe/releases/download/v${version}/colombe-${version}.tbz`),
           hash: "sha256-6LHsxHUe5zGuNvgcIpJjg17gmx4QrKiO4UDIZcTB2CM=",
         })))),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest, crowbar]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SMTP protocol according to RFC5321 without extensions",
         homepage: "https://github.com/mirage/colombe",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

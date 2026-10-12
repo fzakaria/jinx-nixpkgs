@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const numpy = nix.arg($, "numpy");
   const wrapt = nix.arg($, "wrapt");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dm-tree",
       version: "0.1.10",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "deepmind",
           repo: "tree",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [absl_py, attrs, numpy, wrapt]),
       pythonImportsCheck: nix.thunk(() => ["tree"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library for working with nested data structures",
         homepage: "https://github.com/deepmind/tree",
         changelog: nix.thunk(() => nix.str`https://github.com/google-deepmind/tree/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "galaxis",
       version: "1.13",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "esr",
           repo: "galaxis",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "sed -i -E '/[[:space:]]*xmlto/ s|xmlto|xmlto --skip-validation|' Makefile\n",
       installPhase: "runHook preInstall\nmkdir -p $out/bin $man/share/man/man6\ninstall -Dm755 galaxis -t $out/bin/\ninstall -Dm644 galaxis.6 -t $man/share/man/man6\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Rescue lifeboats lost in interstellar space",
         longDescription: "Lifeboats from a crippled interstellar liner are adrift in a starfield. To\nfind them, you can place probes that look in all eight compass directions\nand tell you how many lifeboats they see. If you drop a probe directly on\na lifeboat it will be revealed immediately. Your objective: find the\nlifeboats as quickly as possible, before the stranded passengers run out\nof oxygen!\n\nThis is a UNIX-hosted, curses-based clone of the nifty little Macintosh\nfreeware game Galaxis. It doesn't have the super-simple, point-and-click\ninterface of the original, but compensates by automating away some of the\ngame's simpler deductions.\n",
         homepage: "http://catb.org/~esr/galaxis/",

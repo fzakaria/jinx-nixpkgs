@@ -21,17 +21,17 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const requireFile = nix.arg($, "requireFile");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "brotato",
       version: "1.1.13.2",
       src: nix.thunk(() => nix.app(requireFile, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: "Brotato.pck",
           url: "https://store.epicgames.com/en-US/p/brotato-ed4097",
           hash: "sha256-/k/rnypHS3Gtj5nHb1cnx1JvCiJAKe+1JxlXolWksS0=",
         })))),
       srcIcon: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "brotato.icns",
           url: "https://shared.fastly.steamstatic.com/community_assets/images/apps/1942280/c096e6b30bcb9749183fe5d1b78f77de7ae89383.icns",
           hash: "sha256-6ZZ1kqdOjqwIByrX1Bqrhy2yMaShlsbsEhuDBTK77gw=",
@@ -53,7 +53,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "brotato",
             desktopName: "Brotato",
             exec: "brotato",
@@ -64,7 +64,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Only potato capable of handling 6 weapons at the same time",
         homepage: "https://www.blobfishgames.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

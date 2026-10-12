@@ -30,22 +30,22 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "xdg-desktop-portal-wlr.ini", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$16,
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    [nix.POS]: pos$16,
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       xdg: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         portal: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           wlr: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "desktop portal for wlroots-based desktops.\n\nThis will add the `xdg-desktop-portal-wlr` package into\nthe {option}`xdg.portal.extraPortals` option, and provide the\nconfiguration file\n")),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 description: "Configuration for `xdg-desktop-portal-wlr`.\n\nSee {manpage}`xdg-desktop-portal-wlr(5)` for supported\nvalues.\n",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$2,
+                    [nix.POS]: pos$2,
                     freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   })))),
                 default: nix.thunk(() => ({})),
@@ -56,21 +56,21 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         xdg: nix.thunk(() => ({
-          __proto__: pos$9,
-          portal: nix.thunk(() => ({ __proto__: pos$8, enable: true, extraPortals: nix.thunk(() => [package$]) })),
+          [nix.POS]: pos$9,
+          portal: nix.thunk(() => ({ [nix.POS]: pos$8, enable: true, extraPortals: nix.thunk(() => [package$]) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           user: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             services: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               "xdg-desktop-portal-wlr": nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   ExecStart: nix.thunk(() => [
                     "",
                     nix.thunk(() => nix.str`${package$}/libexec/xdg-desktop-portal-wlr --config=${configFile}`),

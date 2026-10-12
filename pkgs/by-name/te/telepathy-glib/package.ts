@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const glibcLocales = nix.arg($, "glibcLocales");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "telepathy-glib",
       version: "0.24.2",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://telepathy.freedesktop.org/releases/telepathy-glib/telepathy-glib-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sKN013HN0IESXzjDq9B5ZXZCMBxxpUPVVeK/IZGSc/A=",
         })))),
@@ -38,19 +38,19 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glibcLocales]),
       propagatedBuildInputs: nix.thunk(() => [dbus_glib, glib]),
       configureFlags: nix.thunk(() => ["--enable-vala-bindings"]),
-      env: nix.thunk(() => ({ __proto__: pos$2, LC_ALL: "en_US.UTF-8" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, LC_ALL: "en_US.UTF-8" })),
       enableParallelBuilding: true,
       preConfigure: "substituteInPlace telepathy-glib/telepathy-glib.pc.in --replace Requires.private Requires\n",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "fix-incompatible-pointer-types.patch",
             url: "https://github.com/TelepathyIM/telepathy-glib/commit/72412c944b771f3214ddc40fa9dea82cea3a5651.patch",
             hash: "sha256-NXQel0eS7zK6FRbJcPsPXCQxos0xT8EN102vX94M5Vo=",
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://telepathy.freedesktop.org",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         license: nix.thunk(() => (() => {

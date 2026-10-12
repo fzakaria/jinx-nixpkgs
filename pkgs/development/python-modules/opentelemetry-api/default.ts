@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.43.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "open-telemetry",
           repo: "opentelemetry-python",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,14 +40,14 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["opentelemetry"]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(writeScript, "update.sh", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p nix-update\n\nset -eu -o pipefail\nnix-update --version-regex 'v(.*)' python3Packages.opentelemetry-api\nnix-update python3Packages.opentelemetry-instrumentation\n")),
         tests: nix.thunk(() => nix.attrsDyn({}, [
-          [nix.sel(self, "pname"), nix.thunk(() => nix.app(nix.sel(self, "overridePythonAttrs"), nix.thunk(() => ({ __proto__: pos$2, doCheck: true }))))],
+          [nix.sel(self, "pname"), nix.thunk(() => nix.app(nix.sel(self, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, doCheck: true }))))],
         ])),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/open-telemetry/opentelemetry-python/tree/main/opentelemetry-api",
         description: "OpenTelemetry Python API",
         changelog: nix.thunk(() => nix.str`https://github.com/open-telemetry/opentelemetry-python/releases/tag/${nix.sel(src, "tag")}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "natsukium"))]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

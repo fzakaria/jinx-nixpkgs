@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkYaziPlugin = nix.arg($, "mkYaziPlugin");
   return nix.app(mkYaziPlugin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bypass.yazi",
       version: "0-unstable-2026-05-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Rolv-Apneseth",
           repo: "bypass.yazi",
           rev: "4a0c70ec9122d884deb659ff620af0098314c136",
           hash: "sha256-kho114UcjV90BDghZxUn2gZXtjY0tsE+C9ttlQZli6U=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Yazi plugin for skipping directories with only a single sub-directory",
         homepage: "https://github.com/Rolv-Apneseth/bypass.yazi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

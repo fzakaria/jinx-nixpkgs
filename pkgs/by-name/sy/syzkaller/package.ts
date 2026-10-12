@@ -15,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const go = nix.arg($, "go");
   const ncurses = nix.arg($, "ncurses");
-  const cpus = nix.thunk(() => ({ __proto__: pos$1, x86_64: "amd64", i686: "386", aarch64: "arm64" }));
+  const cpus = nix.thunk(() => ({ [nix.POS]: pos$1, x86_64: "amd64", i686: "386", aarch64: "arm64" }));
   const targetSystem = nix.thunk(() => nix.app(nix.sel(lib, "systems", "parse", "mkSystemFromString"), nix.thunk(() => nix.sel(stdenv, "targetPlatform", "system"))));
   const targetOS = nix.thunk(() => nix.sel(targetSystem, "kernel", "name"));
   const targetArch = nix.thunk(() => nix.sel(cpus, nix.key(nix.sel(targetSystem, "cpu", "name"))));
   const targetVMArch = nix.thunk(() => nix.sel(cpus, nix.key(nix.sel(nix.app(nix.sel(lib, "systems", "parse", "mkSystemFromString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system"))), "cpu", "name"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "syzkaller",
       version: "0-unstable-2024-01-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "google",
           repo: "syzkaller",
           rev: "67d7ec0a69193b2acbb8cdb5109d5505a9128ac5",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       ]),
       dontInstall: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Unsupervised, coverage-guided kernel fuzzer",
         homepage: "https://github.com/google/syzkaller",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const runTest = nix.arg($, "runTest");
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     posix: nix.thunk(() => nix.app(runTest, nix.path(here, "./posix.nix"))),
     sftp: nix.thunk(() => nix.app(runTest, nix.path(here, "./sftp.nix"))),
   };

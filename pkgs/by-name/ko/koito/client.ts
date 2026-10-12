@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const gzip = nix.arg($, "gzip");
   const yarn = yarn_berry_4;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "koito-frontend",
       src: src,
       version: version,
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/client`),
       missingHashes: nix.path(here, "./missing-hashes.json"),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           sourceRoot: nix.thunk(() => nix.attr(finalAttrs, "sourceRoot")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),

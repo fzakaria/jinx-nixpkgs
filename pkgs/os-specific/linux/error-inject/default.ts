@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const flex = nix.arg($, "flex");
   const rasdaemon = nix.arg($, "rasdaemon");
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     "edac-inject": nix.thunk(() => nix.sel(rasdaemon, "inject")),
     "mce-inject": nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
         const pname = "mce-inject";
         const version = "4cbe46321b4a81365ff3aafafe63967264dbfec5";
         const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://git.kernel.org/pub/scm/utils/cpu/mce/mce-inject.git/snapshot/mce-inject-${version}.tar.gz`),
             sha256: "0gjapg2hrlxp8ssrnhvc19i3r1xpcnql7xv0zjgbv09zyha08g6z",
           }))));
@@ -34,14 +34,14 @@ export default nix.lambda((args) => (() => {
         const makeFlags = nix.thunk(() => [nix.thunk(() => nix.str`destdir=${nix.builtins.placeholder("out")}`)]);
         const postInstall = "mkdir $out/sbin\nmv $out/usr/sbin/mce-inject $out/sbin/mce-inject\n\nmkdir $out/test\ncp test/* $out/test/.\n";
         const meta = nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           description: "MCE error injection tool",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
           maintainers: [],
         }));
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname,
           version,
           src,
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         const pname = "aer-inject";
         const version = "9bd5e2c7886fca72f139cd8402488a2235957d41";
         const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: nix.thunk(() => nix.str`https://git.kernel.org/pub/scm/linux/kernel/git/gong.chen/aer-inject.git/snapshot/aer-inject-${version}.tar.gz`),
             sha256: "0bh6mzpk2mr4xidkammmkfk21b4dbq793qjg25ryyxd1qv0c6cg4",
           }))));
@@ -63,14 +63,14 @@ export default nix.lambda((args) => (() => {
         const makeFlags = nix.thunk(() => [nix.thunk(() => nix.str`DESTDIR=${nix.builtins.placeholder("out")}`)]);
         const postInstall = "mkdir $out/bin\nmv $out/usr/local/aer-inject $out/bin/aer-inject\n\nmkdir -p $out/examples\ncp examples/* $out/examples/.\n";
         const meta = nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           description: "PCIE AER error injection tool",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
           maintainers: [],
         }));
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           pname,
           version,
           src,

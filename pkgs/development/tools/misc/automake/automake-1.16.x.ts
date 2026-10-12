@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const autoconf = nix.arg($, "autoconf");
   const updateAutotoolsGnuConfigScriptsHook = nix.arg($, "updateAutotoolsGnuConfigScriptsHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "automake",
       version: "1.16.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/automake/automake-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-8B1YzW2dd/vcqetLvV6tGYgij9tz1veiAfX41rEYtGk=",
         })))),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       dontPatchShebangs: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         branch: "1.16",
         homepage: "https://www.gnu.org/software/automake/",
         description: "GNU standard-compliant makefile generator",

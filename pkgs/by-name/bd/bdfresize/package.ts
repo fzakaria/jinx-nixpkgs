@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "bdfresize",
       version: "1.5",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://openlab.ring.gr.jp/efont/dist/tools/bdfresize/bdfresize-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-C4ZLJIn6vVeVUCpNwMu0vdfQQ3qUz4EVIcPob9NejP0=",
         })))),
@@ -26,9 +26,9 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./fix-configure.patch"),
         nix.path(here, "./remove-malloc-declaration.patch"),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-D__GNU_LIBRARY__" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-D__GNU_LIBRARY__" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool to resize BDF fonts",
         homepage: "http://openlab.ring.gr.jp/efont/dist/tools/bdfresize/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const toxiproxy = nix.arg($, "toxiproxy");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "toxiproxy",
       version: "2.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Shopify",
           repo: "toxiproxy",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,17 +43,17 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "mv $out/bin/cli $out/bin/toxiproxy-cli\nmv $out/bin/server $out/bin/toxiproxy-server\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           cliVersion: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               package: toxiproxy,
               command: nix.thunk(() => nix.str`${toxiproxy}/bin/toxiproxy-cli -version`),
             })))),
           serverVersion: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               package: toxiproxy,
               command: nix.thunk(() => nix.str`${toxiproxy}/bin/toxiproxy-server -version`),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         changelog: nix.thunk(() => nix.str`https://github.com/Shopify/toxiproxy/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Proxy for for simulating network conditions",
         homepage: "https://github.com/Shopify/toxiproxy",

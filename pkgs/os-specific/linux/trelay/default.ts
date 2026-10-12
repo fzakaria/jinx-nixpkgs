@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const kmod = nix.arg($, "kmod");
   const version = "22.03.5";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "trelay",
       version: nix.thunk(() => nix.str`${version}-${nix.sel(kernel, "version")}`),
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.openwrt.org/openwrt/openwrt.git",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-5f9LvaZUxtfTpTR268QMkEmHUpn/nct+MVa44SBGT5c=",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         "INSTALL_MOD_PATH=$(out)",
       ])),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "For relaying IP packets between two devices to build an IP bridge between them",
         longDescription: "A kernel module that relays ethernet packets between two devices (similar to a bridge),\nbut without any MAC address checks.\n\nThis makes it possible to bridge client mode or ad-hoc mode wifi devices to ethernet VLANs,\nassuming the remote end uses the same source MAC address as the device that packets are\nsupposed to exit from.\n",
         homepage: "https://github.com/openwrt/openwrt/tree/main/package/kernel/trelay",

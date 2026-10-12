@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const qtdeclarative = nix.arg($, "qtdeclarative");
   const openssl = nix.arg($, "openssl");
   return nix.app(qtModule, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "qtwebsockets",
       propagatedBuildInputs: nix.thunk(() => [qtbase, qtdeclarative]),
       buildInputs: nix.thunk(() => [openssl]),

@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const ttaenc = nix.arg($, "ttaenc");
   const withFaac = nix.argOr($, "withFaac", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "flacon",
       version: "13.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "flacon",
           repo: "flacon",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--prefix PATH : ${nix.sel(finalAttrs, "bin_path")}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extracts audio tracks from an audio CD image to separate tracks",
         longDescription: "Flacon extracts individual tracks from one big audio file containing the\nentire album of music and saves them as separate audio files. To do this,\nit uses information from the appropriate CUE file. Besides, Flacon makes\nit possible to conveniently revise or specify tags both for all tracks\nat once or for each tag separately.\n\nSupported input formats: WAV, FLAC, APE, WavPack, True Audio (TTA)\nSupported output formats: FLAC, WAV, WavPack, AAC, OGG or MP3\n",
         mainProgram: "flacon",

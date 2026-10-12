@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.8.10";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Pylons",
           repo: "webob",
           tag: version,
@@ -37,18 +37,18 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["webob"]);
       const disabledTestPaths = nix.thunk(() => ["tests/test_in_wsgiref.py", "tests/test_client_functional.py"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, pyramid: pyramid, routes: routes, tokenlib: tokenlib })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, pyramid: pyramid, routes: routes, tokenlib: tokenlib })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "WSGI request and response object",
         homepage: "https://webob.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

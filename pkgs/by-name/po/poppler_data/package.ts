@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const poppler = nix.arg($, "poppler");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "poppler-data",
       version: "0.4.12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://poppler.freedesktop.org/poppler-data-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "yDW2QKQM41fhuDZmqr2V7f+iTd3dSbja/2OtuFHNq3Q=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(poppler, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://poppler.freedesktop.org/",
         description: "Encoding files for Poppler, a PDF rendering library",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

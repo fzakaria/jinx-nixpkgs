@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "imap-mailstat-exporter";
       const version = "0.7.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bt909",
           repo: "imap-mailstat-exporter",
           tag: nix.thunk(() => nix.str`${version}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-9rxlXhlQ269E6xtreMrDphqscaZj+IrfsNmssF/C78U=";
       const nativeBuildInputs = nix.thunk(() => [installShellFiles]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Export Prometheus-style metrics about how many emails you have in your INBOX and in additional configured folders",
         mainProgram: "imap-mailstat-exporter",
         homepage: "https://github.com/bt909/imap-mailstat-exporter",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
-      return { __proto__: pos$3, pname, version, src, vendorHash, nativeBuildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, vendorHash, nativeBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const neovim_unwrapped = nix.arg($, "neovim-unwrapped");
   const luaWithPackages = nix.thunk(() => nix.app(nix.sel(luajit, "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "json"))]));
   return nix.app(buildPythonApplication, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "vim-plugins-updater",
       version: "0.1",
       pyproject: false,
@@ -44,7 +44,7 @@ wrapPythonPrograms
 `),
       shellHook: "export PYTHONPATH=pkgs/applications/editors/vim/plugins:$PYTHONPATH\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         mainProgram: "vim-plugins-updater",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),

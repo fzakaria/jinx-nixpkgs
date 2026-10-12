@@ -23,18 +23,18 @@ export default nix.lambda((args) => (() => {
     const src = nix.arg($_1, "src");
     const sqlcipher = nix.thunk(() => (() => {
       const system_alias = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         "aarch64-linux": "arm64.linux",
         "x86_64-linux": "x64.linux",
       }));
       return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           name: "libsqlcipher.so",
           src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               url: nix.thunk(() => nix.str`https://github.com/simolus3/sqlite3.dart/releases/download/sqlite3-${version}/libsqlcipher.${nix.selOr(system_alias, () => nix.builtins.throw("Unsupported system for pub 'sqlite3' ('sqlcipher' dependency)\nPlease add the system alias mapping if it exists, note that you will also have to add used version hashes for that system below"), nix.key(nix.sel(stdenv, "hostPlatform", "system")))}.so`),
               sha256: nix.thunk(() => nix.selOr({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 "_3_7_0-aarch64-linux": "sha256-XzJyz2ThlbdsvsiORjJuTO2bzi4YbUuwqvC/dspnLvA=",
                 "_3_7_0-x86_64-linux": "sha256-ncTXhpLnz7shUSvmBkmLknrRpxPAexho/wMEp1Sja3I=",
                 "_3_5_0-aarch64-linux": "sha256-m2Op1KowdxErQ9nFa1+0TIshwjBSdXdrnlsyO4mULos=",
@@ -49,7 +49,7 @@ is the same with existing versions, add an alias here.
         })));
     })());
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: "sqlite3",
         version: version,
         src: src,

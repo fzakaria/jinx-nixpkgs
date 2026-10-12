@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "audiothekar";
       const version = "1.0.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fxsth",
           repo: "audiothekar",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,9 +34,9 @@ export default nix.lambda((args) => (() => {
       const dotnet_runtime = nix.thunk(() => nix.sel(dotnetCorePackages, "runtime_8_0"));
       const postInstall = nix.thunk(() => nix.str`install -m 644 -D -t "$out/share/doc/${pname}" License.md
 `);
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Download-Client für die ARD-Audiothek",
         longDescription: "Audiothekar is a command line client to browse and download programs from\nGerman public broadcast online offering at https://www.ardaudiothek.de/.\n",
         homepage: "https://github.com/fxsth/Audiothekar",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "audiothekar-cli",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

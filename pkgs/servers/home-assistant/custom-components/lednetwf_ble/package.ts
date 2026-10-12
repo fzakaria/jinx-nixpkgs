@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "2.0.0";
   return nix.app(buildHomeAssistantComponent, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       owner: "8none1",
       domain: "lednetwf_ble",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "8none1",
           repo: "lednetwf_ble",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [bluetooth_sensor_state_data, bleak_retry_connector, bleak]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Home Assistant custom integration for LEDnetWF devices",
         homepage: "https://github.com/8none1/lednetwf_ble",
         changelog: nix.thunk(() => nix.str`https://github.com/8none1/lednetwf_ble/releases/tag/v${version}`),

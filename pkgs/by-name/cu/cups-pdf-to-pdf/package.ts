@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cups-pdf-to-pdf",
       version: "0-unstable-2021-12-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alexivkin",
           repo: "CUPS-PDF-to-PDF",
           rev: "c14428c2ca8e95371daad7db6d11c84046b1a2d4",
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n$CC -O9 -s cups-pdf.c -o cups-pdf -lcups\nrunHook postBuild\n",
       installPhase: "runHook preInstall\ninstall -Dt $out/lib/cups/backend cups-pdf\ninstall -Dm 0644 -t $out/etc/cups cups-pdf.conf\ninstall -Dm 0644 -t $out/share/cups/model *.ppd\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, vmtest: nix.thunk(() => nix.sel(nixosTests, "cups-pdf")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, vmtest: nix.thunk(() => nix.sel(nixosTests, "cups-pdf")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "CUPS backend that turns print jobs into searchable PDF files",
         homepage: "https://github.com/alexivkin/CUPS-PDF-to-PDF",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

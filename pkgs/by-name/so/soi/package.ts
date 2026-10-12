@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libGL = nix.arg($, "libGL");
   const SDL = nix.arg($, "SDL");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "soi",
       version: "0.1.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/soi/Spheres%20of%20Influence-${nix.sel(finalAttrs, "version")}-Source.tar.bz2`),
           name: nix.thunk(() => nix.str`soi-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "03c3wnvhd42qh8mi68lybf8nv6wzlm1nx16d6pdcn2jzgx1j2lzd",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       ]),
       patches: nix.thunk(() => [nix.path(here, "./cmake-4-build.patch")]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Physics-based puzzle game",
         mainProgram: "soi",
         maintainers: nix.thunk(() => (() => {

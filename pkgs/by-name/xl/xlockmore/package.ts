@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "xlockmore";
       const version = "5.89";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://sillycycle.com/xlock/xlockmore-${version}.tar.xz`),
           sha256: "sha256-UlWXrKCgZIZ5i+kltvBBRrtZVkMkhpD0WAe2+joN7V0=",
           curlOpts: "--user-agent 'Mozilla/5.0'",
@@ -50,7 +50,7 @@ sed -i 's,/usr/,/no-such-dir/,g' configure.ac
       })());
       const hardeningDisable = nix.thunk(() => ["format"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Screen locker for the X Window System",
         homepage: "http://sillycycle.com/xlockmore.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -62,7 +62,7 @@ sed -i 's,/usr/,/no-such-dir/,g' configure.ac
         mainProgram: "xlock",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const net_snmp = nix.arg($, "net-snmp");
   const snmpcheck = nix.arg($, "snmpcheck");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "nmapautomator",
       version: "0-unstable-2021-04-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "21y4d",
           repo: "nmapAutomator",
           rev: "c5e15de8429c78aa5923010145dfac0996aba9e1",
@@ -84,11 +84,11 @@ wrapProgram $out/bin/nmapAutomator \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch=master"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch=master"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Nmap script to automate the process of enumeration & recon",
         homepage: "https://github.com/21y4d/nmapAutomator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

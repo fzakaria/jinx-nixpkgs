@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "etelemetry",
       version: "0.3.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sensein",
           repo: "etelemetry-client",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["etelemetry", "etelemetry.client", "etelemetry.config"]),
       disabledTests: nix.thunk(() => ["test_etrequest", "test_get_project", "test_check_available"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightweight python client to communicate with the etelemetry server",
         homepage: "https://github.com/sensein/etelemetry-client",
         changelog: nix.thunk(() => nix.str`https://github.com/sensein/etelemetry-client/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

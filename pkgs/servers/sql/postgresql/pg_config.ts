@@ -17,16 +17,16 @@ export default nix.lambda((args) => (() => {
   const finalPackage = nix.arg($, "finalPackage");
   const outputs = nix.arg($, "outputs");
   return nix.app(replaceVarsWith, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "pg_config",
       src: nix.path(here, "./pg_config.sh"),
       dir: "bin",
       isExecutable: true,
       replacements: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         runtimeShell: runtimeShell,
         "pg_config.env": nix.thunk(() => nix.app(replaceVarsWith, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             name: "pg_config.env",
             src: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), finalPackage)}/nix-support/pg_config.env`),
             replacements: outputs,

@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lugaru";
       const version = "1.2";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "osslugaru",
           repo: "lugaru",
           rev: version,
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const cmakeFlags = nix.thunk(() => ["-DSYSTEM_INSTALL=ON"]);
       const postPatch = "substituteInPlace CMakeLists.txt --replace-fail \\\n  \"cmake_minimum_required(VERSION 3.0)\" \\\n  \"cmake_minimum_required(VERSION 3.10)\" \\\n--replace-fail \\\n  \"cmake_policy(SET CMP0004 OLD)\" \"\"\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Third person ninja rabbit fighting game",
         mainProgram: "lugaru",
         homepage: "https://osslugaru.gitlab.io",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(licenses, "gpl2Plus")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

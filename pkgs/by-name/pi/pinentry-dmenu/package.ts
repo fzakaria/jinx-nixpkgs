@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const libconfig = nix.arg($, "libconfig");
   const libgpg_error = nix.arg($, "libgpg-error");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pinentry-dmenu",
       version: "0.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ritze",
           repo: "pinentry-dmenu",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preConfigure: "makeFlagsArray+=(\n  PREFIX=\"$out\"\n  CC=\"$CC\"\n  # default config.mk hardcodes dependent libraries and include paths\n  INCS=\"`$PKG_CONFIG --cflags fontconfig x11 xft xinerama`\"\n  LIBS=\"`$PKG_CONFIG --libs   fontconfig x11 xft xinerama`\"\n)\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pinentry implementation based on dmenu",
         homepage: "https://github.com/ritze/pinentry-dmenu",
         changelog: nix.thunk(() => nix.str`https://github.com/ritze/pinentry-dmenu/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.25.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jiaaro",
           repo: "pydub",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,13 +33,13 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-assertions.patch",
             url: "https://github.com/jiaaro/pydub/commit/66c1bf7813ae8621a71484fdcdf609734c0d8efd.patch",
             hash: "sha256-3OIzvTgGK3r4/s5y7izHvouB4uJEmjO6cgKvegtTf7A=",
           })))),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./ffmpeg-fix-path.patch"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             ffmpeg: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), ffmpeg)),
             ffplay: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), ffmpeg, "ffplay")),
             ffprobe: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), ffmpeg, "ffprobe")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["pydub", "pydub.audio_segment", "pydub.playback"]);
       const enabledTestPaths = nix.thunk(() => ["test/test.py"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Manipulate audio with a simple and easy high level interface",
         homepage: "http://pydub.com",
         changelog: nix.thunk(() => nix.str`https://github.com/jiaaro/pydub/blob/v${version}/CHANGELOG.md`),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

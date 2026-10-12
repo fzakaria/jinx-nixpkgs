@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pinentry-mac";
       const version = "1.1.1.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GPGTools",
           repo: "pinentry",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -51,7 +51,7 @@ substituteInPlace macosx/copyInfoPlist.sh \\
       const installPhase = "mkdir -p $out/Applications $out/bin\nmv macosx/pinentry-mac.app $out/Applications\n\n# Compatibility with `lib.getExe`\nmakeWrapper $out/Applications/pinentry-mac.app/Contents/MacOS/pinentry-mac $out/bin/pinentry-mac\n";
       const enableParallelBuilding = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         binaryPath: "Applications/pinentry-mac.app/Contents/MacOS/pinentry-mac",
         updateScript: nix.thunk(() => nix.app(nix.sel(writers, "writeBash"), "update-pinentry-mac", nix.thunk(() => nix.str`set -euxo pipefail
 
@@ -81,7 +81,7 @@ main
 `))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Pinentry for GPG on Mac",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         homepage: "https://github.com/GPGTools/pinentry",
@@ -89,7 +89,7 @@ main
         mainProgram: "pinentry-mac",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

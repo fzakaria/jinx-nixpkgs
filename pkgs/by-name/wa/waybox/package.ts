@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const wayland_scanner = nix.arg($, "wayland-scanner");
   const wlroots_0_19 = nix.arg($, "wlroots_0_19");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "waybox",
       version: "0.2.2-unstable-2026-01-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wizbright",
           repo: "waybox",
           rev: "044ce8f7c05720a319984eb569ee713923637940",
@@ -57,11 +57,11 @@ export default nix.lambda((args) => (() => {
       ]),
       strictDeps: true,
       dontUseCmakeConfigure: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$2, providedSessions: nix.thunk(() => ["waybox"]) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, providedSessions: nix.thunk(() => ["waybox"]) })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(wayland, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/wizbright/waybox",
         description: "Openbox clone on Wayland",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

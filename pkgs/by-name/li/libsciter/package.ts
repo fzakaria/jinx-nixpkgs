@@ -24,26 +24,26 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(stdenv, "targetPlatform"));
   const system = nix.thunk(() => nix.attr(from, "system"));
   const src = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       urlPath: "x64",
       sha256: "a1682fbf55e004f1862d6ace31b5220121d20906bdbf308d0a9237b451e4db86",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       urlPath: "arm64",
       sha256: "sha256-bqGPbvtOM8/A6acDbFJGGf4kzKo/4S/bWcH/XvxVySU=",
     })),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "libsciter",
       version: "4.4.8.23-bis",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
           const from_1 = nix.thunk(() => nix.sel(src, nix.key(nix.force(system))));
           return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           url: nix.thunk(() => nix.str`https://github.com/c-smile/sciter-sdk/raw/524a90ef7eab16575df9496f7e4c374bbd5fb1fe/bin.lnx/${nix.sel(src, nix.key(nix.force(system)), "urlPath")}/libsciter-gtk.so`),
           sha256: nix.thunk(() => nix.attr(from_1, "sha256")),
         };
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       dontUnpack: true,
       installPhase: "runHook preInstall\n\ninstall -m755 -D $src $out/lib/libsciter-gtk.so\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://sciter.com",
         description: "Embeddable HTML/CSS/JavaScript engine for modern UI development",
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux"]),

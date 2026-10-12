@@ -38,16 +38,16 @@ export default nix.lambda((args) => (() => {
   const findutils = nix.arg($, "findutils");
   const gawk = nix.arg($, "gawk");
   const tclWithTk = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "tcl-with-tk",
       paths: nix.thunk(() => [tcl, tk, nix.thunk(() => nix.sel(tk, "dev"))]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "openpbs",
       version: "23.06.06-unstable-2026-04-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "openpbs",
           repo: "openpbs",
           rev: "e395fe79388d5f77908eeb80e3bb73d848315449",
@@ -84,7 +84,7 @@ find $out/bin/ $out/sbin/ $out/libexec/ $out/lib/ -type f -exec file "{}" + |
   xargs patchelf --add-needed libmunge.so --add-rpath ${munge}/lib
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "HPC workload manager and job scheduler for desktops, clusters, and clouds",
         homepage: "https://www.openpbs.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

@@ -17,15 +17,15 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   const python3 = nix.arg($, "python3");
-  const platform = nix.thunk(() => nix.selOr({ __proto__: pos$1, "aarch64-linux": "armlinux64", "x86_64-linux": "linux64" }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
+  const platform = nix.thunk(() => nix.selOr({ [nix.POS]: pos$1, "aarch64-linux": "armlinux64", "x86_64-linux": "linux64" }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "gurobi";
       const version = "13.0.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://packages.gurobi.com/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/gurobi${version}_${platform}.tar.gz`),
           hash: nix.thunk(() => nix.selOr({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "aarch64-linux": "sha256-8Hlw047emSVkhHXat1K3qBwvIYVHknc0QLgfIZ0aMiQ=",
             "x86_64-linux": "sha256-LhaQNTWi22fBvhTwdd+lMs8dTVlh10LR+YlBVtj0xvE=",
           }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
       const makeFlags = nix.thunk(() => ["--directory=src/build"]);
       const installPhase = "runHook preInstall\n\nmkdir -p $out/bin\ncp bin/* $out/bin/\n\nmkdir -p $out/include\ncp include/gurobi*.h $out/include/\n\nmkdir -p $out/lib\ncp lib/*.jar $out/lib/\ncp lib/libGurobiJni*.so $out/lib/\ncp lib/libgurobi*.so* $out/lib/\ncp lib/libgurobi*.a $out/lib/\ncp src/build/*.a $out/lib/\n\nmkdir -p $out/share/java\nln -s $out/lib/gurobi.jar $out/share/java/\nln -s $out/lib/gurobi-javadoc.jar $out/share/java/\n\nrunHook postInstall\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         libSuffix: nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), version)))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Optimization solver for mathematical programming",
         homepage: "https://www.gurobi.com",
         sourceProvenance: nix.thunk(() => (() => {
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

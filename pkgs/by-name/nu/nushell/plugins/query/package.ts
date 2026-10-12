@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const curl = nix.arg($, "curl");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nu_plugin_query",
       version: nix.thunk(() => nix.attr(nushell, "version")),
       src: nix.thunk(() => nix.attr(nushell, "src")),
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openssl, curl]),
       buildAndTestSubdir: "crates/nu_plugin_query",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$1, extraArgs: nix.thunk(() => ["--version=skip"]) })))),
+        [nix.POS]: pos$2,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$1, extraArgs: nix.thunk(() => ["--version=skip"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Nushell plugin to query JSON, XML, and various web data",
         mainProgram: "nu_plugin_query",
         homepage: nix.thunk(() => nix.str`https://github.com/nushell/nushell/tree/${nix.sel(finalAttrs, "version")}/crates/nu_plugin_query`),

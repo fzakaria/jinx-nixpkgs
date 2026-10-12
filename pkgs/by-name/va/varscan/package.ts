@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "varscan";
       const version = "2.4.6";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/dkoboldt/varscan/raw/master/VarScan.v${version}.jar`),
           sha256: "sha256-6CcjC0epbKsDXFxxeOUImSGh4cjR5INqawL/iOOkwqs=",
         }))));
@@ -31,7 +31,7 @@ mkdir -p $out/bin
 makeWrapper ${jre}/bin/java $out/bin/varscan --add-flags "-jar $out/libexec/varscan/varscan.jar"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Variant calling and somatic mutation/CNV detection for next-generation sequencing data",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         homepage: "https://github.com/dkoboldt/varscan",
@@ -46,7 +46,7 @@ makeWrapper ${jre}/bin/java $out/bin/varscan --add-flags "-jar $out/libexec/vars
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

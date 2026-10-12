@@ -32,8 +32,8 @@ export default nix.lambda((args) => (() => {
   const packageSet = nix.argOr($, "packageSet", () => nix.builtins.import(nix.path(here, "../..")));
   const scrubJobs = nix.argOr($, "scrubJobs", () => true);
   const nixpkgsArgs = nix.argOr($, "nixpkgsArgs", () => ({
-    __proto__: pos$2,
-    config: nix.thunk(() => ({ __proto__: pos$1, allowAliases: false, allowUnfree: false, inHydra: true })),
+    [nix.POS]: pos$2,
+    config: nix.thunk(() => ({ [nix.POS]: pos$1, allowAliases: false, allowUnfree: false, inHydra: true })),
     __allowFileset: false,
   }));
   const lib = nix.thunk(() => nix.builtins.import(nix.path(here, "../../lib")));
@@ -57,30 +57,30 @@ export default nix.lambda((args) => (() => {
   const subtractLists = nix.thunk(() => nix.attr(lib, "subtractLists"));
   const systems = nix.thunk(() => nix.attr(lib, "systems"));
   const pkgs = nix.thunk(() => nix.app(packageSet, nix.thunk(() => nix.app(recursiveUpdate, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         system: system,
-        config: nix.thunk(() => ({ __proto__: pos$3, allowUnsupportedSystem: true })),
+        config: nix.thunk(() => ({ [nix.POS]: pos$3, allowUnsupportedSystem: true })),
       })), nixpkgsArgs))));
   const hydraJob$ = nix.thunk(() => (nix.asBool(scrubJobs) ? nix.force(hydraJob) : nix.force(id)));
   const mkPkgsFor = (crossSystem) => (() => {
-    const packageSet$ = (args_1) => nix.app(packageSet, nix.thunk(() => nix.update(args_1, nix.update({ __proto__: pos$5, crossSystem: crossSystem }, nixpkgsArgs))));
-    const pkgs_x86_64_linux = nix.thunk(() => nix.app(packageSet$, nix.thunk(() => ({ __proto__: pos$6, system: "x86_64-linux" }))));
-    const pkgs_i686_linux = nix.thunk(() => nix.app(packageSet$, nix.thunk(() => ({ __proto__: pos$7, system: "i686-linux" }))));
-    const pkgs_aarch64_linux = nix.thunk(() => nix.app(packageSet$, nix.thunk(() => ({ __proto__: pos$8, system: "aarch64-linux" }))));
-    const pkgs_riscv64_linux = nix.thunk(() => nix.app(packageSet$, nix.thunk(() => ({ __proto__: pos$9, system: "riscv64-linux" }))));
-    const pkgs_aarch64_darwin = nix.thunk(() => nix.app(packageSet$, nix.thunk(() => ({ __proto__: pos$10, system: "aarch64-darwin" }))));
-    const pkgs_armv6l_linux = nix.thunk(() => nix.app(packageSet$, nix.thunk(() => ({ __proto__: pos$11, system: "armv6l-linux" }))));
-    const pkgs_armv7l_linux = nix.thunk(() => nix.app(packageSet$, nix.thunk(() => ({ __proto__: pos$12, system: "armv7l-linux" }))));
-    const pkgs_x86_64_freebsd = nix.thunk(() => nix.app(packageSet$, nix.thunk(() => ({ __proto__: pos$13, system: "x86_64-freebsd" }))));
-    const pkgs_i686_freebsd = nix.thunk(() => nix.app(packageSet$, nix.thunk(() => ({ __proto__: pos$14, system: "i686-freebsd" }))));
-    const pkgs_i686_cygwin = nix.thunk(() => nix.app(packageSet$, nix.thunk(() => ({ __proto__: pos$15, system: "i686-cygwin" }))));
-    const pkgs_x86_64_cygwin = nix.thunk(() => nix.app(packageSet$, nix.thunk(() => ({ __proto__: pos$16, system: "x86_64-cygwin" }))));
+    const packageSet$ = (args_1) => nix.app(packageSet, nix.thunk(() => nix.update(args_1, nix.update({ [nix.POS]: pos$5, crossSystem: crossSystem }, nixpkgsArgs))));
+    const pkgs_x86_64_linux = nix.thunk(() => nix.app(packageSet$, nix.thunk(() => ({ [nix.POS]: pos$6, system: "x86_64-linux" }))));
+    const pkgs_i686_linux = nix.thunk(() => nix.app(packageSet$, nix.thunk(() => ({ [nix.POS]: pos$7, system: "i686-linux" }))));
+    const pkgs_aarch64_linux = nix.thunk(() => nix.app(packageSet$, nix.thunk(() => ({ [nix.POS]: pos$8, system: "aarch64-linux" }))));
+    const pkgs_riscv64_linux = nix.thunk(() => nix.app(packageSet$, nix.thunk(() => ({ [nix.POS]: pos$9, system: "riscv64-linux" }))));
+    const pkgs_aarch64_darwin = nix.thunk(() => nix.app(packageSet$, nix.thunk(() => ({ [nix.POS]: pos$10, system: "aarch64-darwin" }))));
+    const pkgs_armv6l_linux = nix.thunk(() => nix.app(packageSet$, nix.thunk(() => ({ [nix.POS]: pos$11, system: "armv6l-linux" }))));
+    const pkgs_armv7l_linux = nix.thunk(() => nix.app(packageSet$, nix.thunk(() => ({ [nix.POS]: pos$12, system: "armv7l-linux" }))));
+    const pkgs_x86_64_freebsd = nix.thunk(() => nix.app(packageSet$, nix.thunk(() => ({ [nix.POS]: pos$13, system: "x86_64-freebsd" }))));
+    const pkgs_i686_freebsd = nix.thunk(() => nix.app(packageSet$, nix.thunk(() => ({ [nix.POS]: pos$14, system: "i686-freebsd" }))));
+    const pkgs_i686_cygwin = nix.thunk(() => nix.app(packageSet$, nix.thunk(() => ({ [nix.POS]: pos$15, system: "i686-cygwin" }))));
+    const pkgs_x86_64_cygwin = nix.thunk(() => nix.app(packageSet$, nix.thunk(() => ({ [nix.POS]: pos$16, system: "x86_64-cygwin" }))));
     return (system_1) => (nix.asBool(nix.eq(system_1, "x86_64-linux")) ? nix.force(pkgs_x86_64_linux) : (nix.asBool(nix.eq(system_1, "i686-linux")) ? nix.force(pkgs_i686_linux) : (nix.asBool(nix.eq(system_1, "aarch64-linux")) ? nix.force(pkgs_aarch64_linux) : (nix.asBool(nix.eq(system_1, "riscv64-linux")) ? nix.force(pkgs_riscv64_linux) : (nix.asBool(nix.eq(system_1, "aarch64-darwin")) ? nix.force(pkgs_aarch64_darwin) : (nix.asBool(nix.eq(system_1, "armv6l-linux")) ? nix.force(pkgs_armv6l_linux) : (nix.asBool(nix.eq(system_1, "armv7l-linux")) ? nix.force(pkgs_armv7l_linux) : (nix.asBool(nix.eq(system_1, "x86_64-freebsd")) ? nix.force(pkgs_x86_64_freebsd) : (nix.asBool(nix.eq(system_1, "i686-freebsd")) ? nix.force(pkgs_i686_freebsd) : (nix.asBool(nix.eq(system_1, "i686-cygwin")) ? nix.force(pkgs_i686_cygwin) : (nix.asBool(nix.eq(system_1, "x86_64-cygwin")) ? nix.force(pkgs_x86_64_cygwin) : nix.builtins.abort(nix.thunk(() => nix.str`unsupported system type: ${system_1}`)))))))))))));
   })();
   const pkgsFor = nix.thunk(() => nix.app(pkgsForCross, null));
   const pkgsForCross = nix.thunk(() => (() => {
     const examplesByConfig = nix.thunk(() => nix.app(flip, mapAttrs$, nix.thunk(() => nix.sel(systems, "examples")), (_) => (crossSystem) => nix.app(nameValuePair, nix.thunk(() => nix.sel(crossSystem, "config")), nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           crossSystem: crossSystem,
           pkgsFor: nix.thunk(() => nix.app(mkPkgsFor, crossSystem)),
         })))));
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
     })();
   })());
   const supportedMatches = nix.thunk(() => (() => {
-    const supportedPlatforms = nix.thunk(() => nix.builtins.map((system_1) => nix.app(nix.sel(systems, "elaborate"), nix.thunk(() => ({ __proto__: pos$18, system: system_1 }))), supportedSystems));
+    const supportedPlatforms = nix.thunk(() => nix.builtins.map((system_1) => nix.app(nix.sel(systems, "elaborate"), nix.thunk(() => ({ [nix.POS]: pos$18, system: system_1 }))), supportedSystems));
     return (metaPatterns) => (() => {
       const anyMatch = (platform) => nix.app(any, nix.thunk(() => nix.app(nix.sel(meta, "platformMatch"), platform)), metaPatterns);
       const matchingPlatforms = nix.thunk(() => nix.app(filter, anyMatch, supportedPlatforms));
@@ -110,12 +110,12 @@ export default nix.lambda((args) => (() => {
   const testOnCross = (crossSystem) => (metaPatterns) => (f) => nix.app(forMatchingSystems, metaPatterns, (system_1) => nix.app(hydraJob$, nix.thunk(() => nix.app(f, nix.thunk(() => nix.app(pkgsForCross, crossSystem, system_1))))));
   const mapTestOn = nix.thunk(() => nix.app(_mapTestOnHelper, id, null));
   const _mapTestOnHelper = (f) => (crossSystem) => nix.app(mapAttrsRecursive, (path) => (metaPatterns) => nix.app(testOnCross, crossSystem, metaPatterns, (pkgs_1) => nix.app(f, nix.thunk(() => nix.app(getAttrFromPath, path, pkgs_1)))));
-  const mapTestOnCross = nix.thunk(() => nix.app(_mapTestOnHelper, nix.thunk(() => nix.app(addMetaAttrs, nix.thunk(() => ({ __proto__: pos$19, maintainers: crossMaintainers }))))));
+  const mapTestOnCross = nix.thunk(() => nix.app(_mapTestOnHelper, nix.thunk(() => nix.app(addMetaAttrs, nix.thunk(() => ({ [nix.POS]: pos$19, maintainers: crossMaintainers }))))));
   const recursiveMapPackages = (f) => nix.app(mapAttrs, (name) => (value) => (nix.asBool(nix.app(isDerivation, value)) ? nix.app(f, value) : (nix.asBool((nix.asBool(nix.selOr(value, () => false, "recurseForDerivations")) || nix.asBool(nix.selOr(value, () => false, "recurseForRelease")))) ? nix.app(recursiveMapPackages, f, value) : [])));
   const getPlatforms = (drv) => nix.selOr(drv, () => nix.app(subtractLists, nix.thunk(() => nix.selOr(drv, () => [], "meta", "badPlatforms")), nix.thunk(() => nix.selOr(drv, () => nix.force(supportedSystems), "meta", "platforms"))), "meta", "hydraPlatforms");
   const packagePlatforms = nix.thunk(() => nix.app(recursiveMapPackages, getPlatforms));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     unix: nix.thunk(() => nix.attr(platforms, "unix")),
     linux: nix.thunk(() => nix.attr(platforms, "linux")),
     darwin: nix.thunk(() => nix.attr(platforms, "darwin")),

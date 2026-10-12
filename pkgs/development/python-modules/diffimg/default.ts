@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const pythonAtLeast = nix.arg($, "pythonAtLeast");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "diffimg",
       version: "0.3.0",
       __structureAttrs: true,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nicolashahn",
           repo: "diffimg",
           rev: "b82f0bb416f100f9105ccccf1995872b29302461",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["diffimg/test.py"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Differentiate images in python - get a ratio or percentage difference, and generate a diff image",
         homepage: "https://github.com/nicolashahn/diffimg",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

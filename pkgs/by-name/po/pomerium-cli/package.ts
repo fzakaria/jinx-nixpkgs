@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const id = nix.thunk(() => nix.attr(lib, "id"));
   const mapAttrsToList = nix.thunk(() => nix.attr(lib, "mapAttrsToList"));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pomerium-cli",
       version: "0.33.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pomerium",
           repo: "cli",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,9 +33,9 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["cmd/pomerium-cli"]),
       ldflags: nix.thunk(() => (() => {
         const setVars = nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "github.com/pomerium/cli/version": nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             Version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
             BuildMeta: "nixpkgs",
             ProjectName: "pomerium-cli",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       })()),
       installPhase: "runHook preInstall\n\ninstall -Dm0755 $GOPATH/bin/pomerium-cli $out/bin/pomerium-cli\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://pomerium.io",
         description: "Client-side helper for Pomerium authenticating reverse proxy",
         mainProgram: "pomerium-cli",

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const withPulseaudio = nix.argOr($, "withPulseaudio", () => false);
   const pulseaudio = nix.arg($, "pulseaudio");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "swayrbar",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~tsdh",
           repo: "swayr",
           tag: nix.thunk(() => nix.str`swayrbar-${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : "$out/bin:${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [pulseaudio]))}"
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Status command for sway's swaybar implementing the swaybar-protocol",
         homepage: "https://git.sr.ht/~tsdh/swayr#a-idswayrbarswayrbara",
         changelog: "https://git.sr.ht/~tsdh/swayr/tree/main/item/swayrbar/NEWS.md",

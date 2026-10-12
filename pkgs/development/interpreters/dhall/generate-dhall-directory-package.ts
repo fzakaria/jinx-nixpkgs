@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const file = nix.argOr($_1, "file", () => "package.dhall");
       const document = nix.argOr($_1, "document", () => false);
       return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: "dhall-directory-package.nix",
           buildCommand: nix.thunk(() => nix.str`dhall-to-nixpkgs directory --fixed-output-derivations --file "${file}" "${src}" ${nix.app(nix.sel(lib, "optionalString"), document, "--document")} > $out
 `),

@@ -173,7 +173,7 @@ export default nix.lambda((args) => (() => {
   const options = nix.arg($, "options");
   const w = nix.withScope(lib, null);
   const qemu_common = nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "../../lib/qemu-common.nix"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       lib: nix.thunk(() => nix.attr(pkgs, "lib")),
       stdenv: nix.thunk(() => nix.attr(pkgs, "stdenv")),
     }))));
@@ -185,23 +185,23 @@ export default nix.lambda((args) => (() => {
   const driveOptions = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     return {
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       options: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         driveExtraOpts: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
             default: nix.thunk(() => ({})),
             description: "Extra options passed to drive flag.",
           })))),
         deviceExtraOpts: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
             default: nix.thunk(() => ({})),
             description: "Extra options passed to device flag.",
           })))),
         name: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
             default: null,
             description: "A name for the drive. Must be unique in the drives list. Not passed to qemu.",
@@ -224,8 +224,8 @@ export default nix.lambda((args) => (() => {
     const drvId = nix.thunk(() => nix.str`drive${nix.app(nix.builtins.toString, idx)}`);
     const mkKeyValue = nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "generators"), "mkKeyValueDefault"), nix.thunk(() => ({})), "="));
     const mkOpts = (opts) => nix.app(nix.lookup(w, "concatStringsSep"), ",", nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), mkKeyValue, opts)));
-    const driveOpts = nix.thunk(() => nix.app(mkOpts, nix.thunk(() => nix.update(driveExtraOpts, { __proto__: pos$7, index: idx, id: drvId, if: "none", file: file }))));
-    const deviceOpts = nix.thunk(() => nix.app(mkOpts, nix.thunk(() => nix.update(deviceExtraOpts, { __proto__: pos$8, drive: drvId }))));
+    const driveOpts = nix.thunk(() => nix.app(mkOpts, nix.thunk(() => nix.update(driveExtraOpts, { [nix.POS]: pos$7, index: idx, id: drvId, if: "none", file: file }))));
+    const deviceOpts = nix.thunk(() => nix.app(mkOpts, nix.thunk(() => nix.update(deviceExtraOpts, { [nix.POS]: pos$8, drive: drvId }))));
     const device = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "qemu", "diskInterface"), "scsi")) ? nix.str`-device lsi53c895a -device scsi-hd,${deviceOpts}` : nix.str`-device virtio-blk-pci,${deviceOpts}`));
     return nix.str`-drive ${driveOpts} ${device}`;
   })(), formals$4);
@@ -284,10 +284,10 @@ fi
 ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "useNixStoreImage")), nix.thunk(() => nix.str`echo "Creating Nix store image..."
 
 ${nix.app(nix.builtins.import, nix.path(here, "../../lib/erofs-store-image.nix"), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         hostPkgs: hostPkgs,
         storePaths: nix.thunk(() => nix.str`${nix.app(nix.sel(hostPkgs, "closureInfo"), nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             rootPaths: nix.thunk(() => [nix.thunk(() => nix.sel(config, "system", "build", "toplevel")), regInfo]),
           })))}/store-paths`),
         label: nixStoreFilesystemLabel,
@@ -397,7 +397,7 @@ ${nix.app(nix.sel(lib, "concatLines"), nix.thunk(() => nix.app(nix.sel(lib, "map
 
 # Start QEMU.
 exec ${nix.app(nix.sel(qemu_common, "qemuBinaryWith"), nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       qemuPkg: qemu,
       forceAccel: nix.thunk(() => nix.sel(cfg, "qemu", "forceAccel")),
     })))} \\
@@ -412,7 +412,7 @@ exec ${nix.app(nix.sel(qemu_common, "qemuBinaryWith"), nix.thunk(() => ({
     "$@"
 `);
   const from = nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "../../lib/store-registration-info.nix"), nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       hostPkgs: hostPkgs,
       rootPaths: nix.thunk(() => nix.sel(config, "virtualisation", "additionalPaths")),
     }))));
@@ -424,7 +424,7 @@ exec ${nix.app(nix.sel(qemu_common, "qemuBinaryWith"), nix.thunk(() => ({
   const nixStoreFilesystemLabel = "nix-store";
   const rootDriveSerialAttr = "root";
   const systemImage = nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "../../lib/make-disk-image.nix"), nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       pkgs: pkgs,
       config: config,
       lib: lib,
@@ -433,7 +433,7 @@ exec ${nix.app(nix.sel(qemu_common, "qemuBinaryWith"), nix.thunk(() => ({
       onlyNixStore: false,
       label: rootFilesystemLabel,
       partitionTableType: nix.thunk(() => nix.app(selectPartitionTableLayout, nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           useBIOSBoot: nix.thunk(() => nix.attr(cfg, "useBIOSBoot")),
           useDefaultFilesystems: nix.thunk(() => nix.attr(cfg, "useDefaultFilesystems")),
           useEFIBoot: nix.thunk(() => nix.attr(cfg, "useEFIBoot")),
@@ -446,7 +446,7 @@ exec ${nix.app(nix.sel(qemu_common, "qemuBinaryWith"), nix.thunk(() => ({
       OVMF: nix.thunk(() => nix.sel(cfg, "efi", "OVMF")),
     }))));
   return {
-    __proto__: pos$156,
+    [nix.POS]: pos$156,
     imports: nix.thunk(() => [
       nix.path(here, "../profiles/qemu-guest.nix"),
       nix.path(here, "./disk-size-option.nix"),
@@ -460,25 +460,25 @@ exec ${nix.app(nix.sel(qemu_common, "qemuBinaryWith"), nix.thunk(() => ({
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["virtualisation", "nixStore9pCache"]), "The 9p cache mode for the Nix store is no longer configurable.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$96,
+      [nix.POS]: pos$96,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$95,
+        [nix.POS]: pos$95,
         fileSystems: nix.thunk(() => nix.sel(options, "fileSystems")),
         memorySize: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "ints", "positive")),
             default: 1024n,
             description: "The memory size of the virtual machine in MiB (1024×1024 bytes).\n",
           })))),
         diskImage: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
             default: nix.thunk(() => nix.str`./${nix.sel(config, "system", "name")}.qcow2`),
             defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "\"./${config.system.name}.qcow2\"")),
             description: "Path to the disk image containing the root filesystem.\nThe image will be created on startup if it does not\nexist.\n\nIf null, a tmpfs will be used as the root filesystem and\nthe VM's state will not be persistent.\n",
           })))),
         bootLoaderDevice: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
             default: nix.thunk(() => nix.str`/dev/disk/by-id/virtio-${rootDriveSerialAttr}`),
             defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), nix.thunk(() => nix.str`/dev/disk/by-id/virtio-${rootDriveSerialAttr}`))),
@@ -486,7 +486,7 @@ exec ${nix.app(nix.sel(qemu_common, "qemuBinaryWith"), nix.thunk(() => ({
             description: "The path (inside th VM) to the device to boot from when legacy booting.\n",
           })))),
         bootPartition: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
             default: nix.thunk(() => (nix.asBool(nix.sel(cfg, "useEFIBoot")) ? nix.str`/dev/disk/by-label/${espFilesystemLabel}` : (nix.asBool(nix.sel(cfg, "useBIOSBoot")) ? "/dev/disk/by-label/BOOT" : null))),
             defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), nix.thunk(() => nix.str`if cfg.useEFIBoot then "/dev/disk/by-label/${espFilesystemLabel}"
@@ -496,7 +496,7 @@ else null`))),
             description: "The path (inside the VM) to the device containing the EFI System Partition (ESP).\n\nIf you are *not* booting from a UEFI firmware, this value is, by\ndefault, `null`. The ESP is mounted to `boot.loader.efi.efiSysMountpoint`.\n",
           })))),
         rootDevice: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
             default: nix.thunk(() => nix.str`/dev/disk/by-label/${rootFilesystemLabel}`),
             defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), nix.thunk(() => nix.str`/dev/disk/by-label/${rootFilesystemLabel}`))),
@@ -504,18 +504,18 @@ else null`))),
             description: "The path (inside the VM) to the device containing the root filesystem.\n",
           })))),
         emptyDiskImages: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$25,
-            type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "coercedTo"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "ints", "positive")), (size) => ({ __proto__: pos$20, size: size }), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                    __proto__: pos$24,
+            [nix.POS]: pos$25,
+            type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "coercedTo"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "ints", "positive")), (size) => ({ [nix.POS]: pos$20, size: size }), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
+                    [nix.POS]: pos$24,
                     options: nix.thunk(() => ({
-                      __proto__: pos$23,
+                      [nix.POS]: pos$23,
                       size: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$21,
+                          [nix.POS]: pos$21,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "ints", "positive")),
                           description: "The size of the disk in MiB",
                         })))),
                       driveConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$22,
+                          [nix.POS]: pos$22,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), driveOptions)),
                           default: nix.thunk(() => ({})),
                           description: "Drive configuration to pass to {option}`virtualisation.qemu.drives`",
@@ -526,45 +526,45 @@ else null`))),
             description: "Additional disk images to provide to the VM. The value is\na list of size in MiB (1024×1024 bytes) of each disk. These disks are\nwriteable by the VM.\n",
           })))),
         graphics: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
             default: true,
             description: "Whether to run QEMU with a graphics window, or in nographic mode.\nSerial console will be enabled on both settings, but this will\nchange the preferred console.\n",
           })))),
         resolution: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             type: nix.thunk(() => nix.sel(options, "services", "xserver", "resolutions", "type", "nestedTypes", "elemType")),
-            default: nix.thunk(() => ({ __proto__: pos$27, x: 1024n, y: 768n })),
+            default: nix.thunk(() => ({ [nix.POS]: pos$27, x: 1024n, y: 768n })),
             description: "The resolution of the virtual machine display (relevant only if virtualised machine uses grub bootloader).\n",
           })))),
         cores: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "ints", "positive")),
             default: 1n,
             description: "Specify the number of cores the guest is permitted to use.\nThe number can be higher than the available cores on the\nhost system.\n",
           })))),
         sharedDirectories: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                  __proto__: pos$35,
+                  [nix.POS]: pos$35,
                   options: nix.thunk(() => ({
-                    __proto__: pos$34,
+                    [nix.POS]: pos$34,
                     source: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$30,
+                        [nix.POS]: pos$30,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         description: "The path of the directory to share, can be a shell variable",
                       })))),
                     target: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$31,
+                        [nix.POS]: pos$31,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
                         description: "The mount point of the directory inside the virtual machine",
                       })))),
                     writable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), ""), {
-                      __proto__: pos$32,
+                      [nix.POS]: pos$32,
                       description: "Whether the directory is writable on the host and guest.",
                     })),
                     cache: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$33,
+                        [nix.POS]: pos$33,
                         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["auto", "always", "metadata", "never"]))),
                         default: "auto",
                         description: "Cache policy for the virtiofs daemon.\n\nFor details refer to the [virtiofsd documentation](https://virtio-fs.gitlab.io/virtiofsd/doc/virtiofsd/passthrough/enum.CachePolicy.html).\n\nEffective on Linux hosts only.\nIgnored when using VirtFS (9P) (the default on non-Linux hosts).\n",
@@ -573,59 +573,59 @@ else null`))),
                 })))))),
             default: nix.thunk(() => ({})),
             example: nix.thunk(() => ({
-              __proto__: pos$37,
-              "my-share": nix.thunk(() => ({ __proto__: pos$36, source: "/path/to/be/shared", target: "/mnt/shared" })),
+              [nix.POS]: pos$37,
+              "my-share": nix.thunk(() => ({ [nix.POS]: pos$36, source: "/path/to/be/shared", target: "/mnt/shared" })),
             })),
             description: "An attributes set of directories that will be shared with the\nvirtual machine using virtiofs on Linux hosts and VirtFS (9P filesystem\nover VirtIO) on other hosts. The attribute name will be used as the\nmount tag.\n",
           })))),
         additionalPaths: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
             default: [],
             description: "A list of paths whose closure should be made available to\nthe VM.\n\nWhen the Nix store is mounted from the host, the closure is registered\nin the Nix database in the VM. All other paths in the host Nix store\nappear in the guest Nix store as well, but are considered garbage\n(because they are not registered in the Nix database of the guest).\n\nWhen {option}`virtualisation.useNixStoreImage` is\nset, the closure is copied to the Nix store image.\n",
           })))),
         forwardPorts: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                  __proto__: pos$49,
+                  [nix.POS]: pos$49,
                   options: nix.thunk(() => ({
-                    __proto__: pos$48,
+                    [nix.POS]: pos$48,
                     from: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$40,
+                        [nix.POS]: pos$40,
                         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["host", "guest"]))),
                         default: "host",
                         description: "Controls the direction in which the ports are mapped:\n\n- `\"host\"` means traffic from the host ports\n  is forwarded to the given guest port.\n- `\"guest\"` means traffic from the guest ports\n  is forwarded to the given host port.\n",
                       })))),
                     proto: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$41,
+                        [nix.POS]: pos$41,
                         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["tcp", "udp"]))),
                         default: "tcp",
                         description: "The protocol to forward.",
                       })))),
                     host: nix.thunk(() => ({
-                      __proto__: pos$44,
+                      [nix.POS]: pos$44,
                       address: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$42,
+                          [nix.POS]: pos$42,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                           default: "",
                           description: "The IPv4 address of the host.",
                         })))),
                       port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$43,
+                          [nix.POS]: pos$43,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
                           description: "The host port to be mapped.",
                         })))),
                     })),
                     guest: nix.thunk(() => ({
-                      __proto__: pos$47,
+                      [nix.POS]: pos$47,
                       address: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$45,
+                          [nix.POS]: pos$45,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                           default: "",
                           description: "The IPv4 address on the guest VLAN.",
                         })))),
                       port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$46,
+                          [nix.POS]: pos$46,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
                           description: "The guest port to be mapped.",
                         })))),
@@ -637,29 +637,29 @@ else null`))),
             description: "When using the SLiRP user networking (default), this option allows to\nforward ports to/from the host/guest.\n\n::: {.warning}\nIf the NixOS firewall on the virtual machine is enabled, you also\nhave to open the guest ports to enable the traffic between host and\nguest.\n:::\n\n::: {.note}\nCurrently QEMU supports only IPv4 forwarding.\n:::\n",
           })))),
         restrictNetwork: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$51,
+            [nix.POS]: pos$51,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
             default: false,
             example: true,
             description: "If this option is enabled, the guest will be isolated, i.e. it will\nnot be able to contact the host and no guest IP packets will be\nrouted over the host to the outside. This option does not affect\nany explicitly set forwarding rules.\n",
           })))),
         writableStore: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
             default: nix.thunk(() => nix.sel(cfg, "mountHostNixStore")),
             defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "cfg.mountHostNixStore")),
             description: "If enabled, the Nix store in the VM is made writable by\nlayering an overlay filesystem on top of the host's Nix\nstore.\n\nBy default, this is enabled if you mount a host Nix store.\n",
           })))),
         writableStoreUseTmpfs: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$53,
+            [nix.POS]: pos$53,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
             default: true,
             description: "Use a tmpfs for the writable store instead of writing to the VM's\nown filesystem.\n",
           })))),
         host: nix.thunk(() => ({
-          __proto__: pos$55,
+          [nix.POS]: pos$55,
           pkgs: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$54,
+              [nix.POS]: pos$54,
               type: nix.thunk(() => nix.sel(options, "nixpkgs", "pkgs", "type")),
               default: pkgs,
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "pkgs")),
@@ -668,16 +668,16 @@ else null`))),
             })))),
         })),
         qemu: nix.thunk(() => ({
-          __proto__: pos$70,
+          [nix.POS]: pos$70,
           enableSharedMemory: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: useVirtiofs,
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "hostPkgs.stdenv.hostPlatform.isLinux")),
               description: "Enable shared memory",
             })))),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$57,
+              [nix.POS]: pos$57,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")),
               default: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(hostPkgs, "stdenv", "hostPlatform", "qemuArch"), nix.sel(pkgs, "stdenv", "hostPlatform", "qemuArch"))) ? nix.sel(hostPkgs, "qemu_kvm") : nix.sel(hostPkgs, "qemu"))),
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "if hostPkgs.stdenv.hostPlatform.qemuArch == pkgs.stdenv.hostPlatform.qemuArch then config.virtualisation.host.pkgs.qemu_kvm else config.virtualisation.host.pkgs.qemu")),
@@ -685,20 +685,20 @@ else null`))),
               description: "QEMU package to use.",
             })))),
           forceAccel: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$58,
+              [nix.POS]: pos$58,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether to force the use of hardware-accelerated virtualisation.\nWhen enabled, QEMU will not fall back to the slower software\nemulation (TCG) and will instead error out if the accelerator is not\navailable.\n",
             })))),
           options: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: [],
               example: nix.thunk(() => ["-vga std"]),
               description: "Options passed to QEMU.\nSee [QEMU User Documentation](https://www.qemu.org/docs/master/system/qemu-manpage) for a complete list.\n",
             })))),
           consoles: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$60,
+              [nix.POS]: pos$60,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: nix.thunk(() => (() => {
                 const consoles_1 = nix.thunk(() => [
@@ -711,7 +711,7 @@ else null`))),
               description: "The output console devices to pass to the kernel command line via the\n`console` parameter, the primary console is the last\nitem of this list.\n\nBy default it enables both serial console and\n`tty0`. The preferred console (last one) is based on\nthe value of {option}`virtualisation.graphics`.\n",
             })))),
           networkingOptions: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$61,
+              [nix.POS]: pos$61,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: [],
               example: nix.thunk(() => [
@@ -721,14 +721,14 @@ else null`))),
               description: "Networking-related command-line options that should be passed to qemu.\nThe default is to use userspace networking (SLiRP).\nSee the [QEMU Wiki on Networking](https://wiki.qemu.org/Documentation/Networking) for details.\n\nIf you override this option, be advised to keep\n`${QEMU_NET_OPTS:+,$QEMU_NET_OPTS}` (as seen in the example)\nto keep the default runtime behaviour.\n",
             })))),
           drives: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$65,
+              [nix.POS]: pos$65,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                    __proto__: pos$64,
+                    [nix.POS]: pos$64,
                     imports: nix.thunk(() => [driveOptions]),
                     options: nix.thunk(() => ({
-                      __proto__: pos$63,
+                      [nix.POS]: pos$63,
                       file: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$62,
+                          [nix.POS]: pos$62,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                           description: "The file image used for this drive.",
                         })))),
@@ -737,52 +737,52 @@ else null`))),
               description: "Drives passed to qemu.",
             })))),
           diskInterface: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$66,
+              [nix.POS]: pos$66,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["virtio", "scsi", "ide"]))),
               default: "virtio",
               example: "scsi",
               description: "The interface used for the virtual hard disks.",
             })))),
           guestAgent: nix.thunk(() => ({
-            __proto__: pos$68,
+            [nix.POS]: pos$68,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$67,
+                [nix.POS]: pos$67,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: true,
                 description: "Enable the Qemu guest agent.\n",
               })))),
           })),
           virtioKeyboard: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$69,
+              [nix.POS]: pos$69,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "Enable the virtio-keyboard device.\n",
             })))),
         })),
         useNixStoreImage: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$71,
+            [nix.POS]: pos$71,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
             default: false,
             description: "Build and use a disk image for the Nix store, instead of\naccessing the host's one.\n\nFor applications which do a lot of reads from the store,\nthis can drastically improve performance, but at the cost of\ndisk space and image build time.\n\nThe Nix store image is built just-in-time right before the VM is\nstarted. Because it does not produce another derivation, the image is\nnot cached between invocations and never lands in the store or binary\ncache.\n\nIf you want a full disk image with a partition table and a root\nfilesystem instead of only a store image, enable\n{option}`virtualisation.useBootLoader` instead.\n",
           })))),
         mountHostNixStore: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$72,
+            [nix.POS]: pos$72,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
             default: nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(cfg, "useNixStoreImage"))) && nix.asBool(!nix.asBool(nix.sel(cfg, "useBootLoader"))))),
             defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "!cfg.useNixStoreImage && !cfg.useBootLoader")),
             description: "Mount the host Nix store via a virtual filesystem.\n",
           })))),
         directBoot: nix.thunk(() => ({
-          __proto__: pos$75,
+          [nix.POS]: pos$75,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$73,
+              [nix.POS]: pos$73,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: nix.thunk(() => !nix.asBool(nix.sel(cfg, "useBootLoader"))),
               defaultText: "!cfg.useBootLoader",
               description: "If enabled, the virtual machine will boot directly into the kernel instead of through a bootloader.\nRead more about this feature in the [QEMU documentation on Direct Linux Boot](https://qemu-project.gitlab.io/qemu/system/linuxboot.html)\n\nThis is enabled by default.\nIf you want to test netboot, consider disabling this option.\nEnable a bootloader with {option}`virtualisation.useBootLoader` if you need.\n\nRelevant parameters such as those set in `boot.initrd` and `boot.kernelParams` are also passed to QEMU.\nAdditional parameters can be supplied on invocation through the environment variable `$QEMU_KERNEL_PARAMS`.\nThey are added to the `-append` option, see [QEMU User Documentation](https://www.qemu.org/docs/master/system/qemu-manpage) for details\nFor example, to let QEMU use the parent terminal as the serial console, set `QEMU_KERNEL_PARAMS=\"console=ttyS0\"`.\n\nThis will not (re-)boot correctly into a system that has switched to a different configuration on disk.\n",
             })))),
           initrd: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$74,
+              [nix.POS]: pos$74,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: nix.thunk(() => nix.str`${nix.sel(config, "system", "build", "initialRamdisk")}/${nix.sel(config, "system", "boot", "loader", "initrdFile")}`),
               defaultText: "${config.system.build.initialRamdisk}/${config.system.boot.loader.initrdFile}",
@@ -790,47 +790,47 @@ else null`))),
             })))),
         })),
         useBootLoader: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$76,
+            [nix.POS]: pos$76,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
             default: false,
             description: "Use a boot loader to boot the system.\nThis allows, among other things, testing the boot loader.\n\nIf disabled, the kernel and initrd are directly booted,\nforgoing any bootloader.\n\nCheck the documentation on {option}`virtualisation.directBoot.enable` for details.\n",
           })))),
         installBootLoader: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$77,
+            [nix.POS]: pos$77,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
             default: nix.thunk(() => (nix.asBool(nix.sel(cfg, "useBootLoader")) && nix.asBool(nix.sel(cfg, "useDefaultFilesystems")))),
             defaultText: "cfg.useBootLoader && cfg.useDefaultFilesystems",
             description: "Install boot loader to target image.\n\nThis is best-effort and may break with unconventional partition setups.\nUse `virtualisation.useDefaultFilesystems` for a known-working configuration.\n",
           })))),
         useBIOSBoot: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mkEnableOption"), null), {
-          __proto__: pos$78,
+          [nix.POS]: pos$78,
           description: "If enabled for legacy MBR VMs, the VM image will have a separate boot\npartition mounted at /boot.\nuseBIOSBoot is ignored if useEFIBoot == true.\n",
         })),
         useEFIBoot: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$79,
+            [nix.POS]: pos$79,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
             default: false,
             description: "If enabled, the virtual machine will provide a EFI boot\nmanager.\nuseEFIBoot is ignored if useBootLoader == false.\n",
           })))),
         efi: nix.thunk(() => ({
-          __proto__: pos$83,
+          [nix.POS]: pos$83,
           OVMF: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "OVMFFull", nix.thunk(() => ({})))),
           firmware: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$80,
+              [nix.POS]: pos$80,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               default: nix.thunk(() => nix.sel(cfg, "efi", "OVMF", "firmware")),
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "cfg.efi.OVMF.firmware")),
               description: "Firmware binary for EFI implementation, defaults to OVMF.\n",
             })))),
           variables: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$81,
+              [nix.POS]: pos$81,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               default: nix.thunk(() => nix.sel(cfg, "efi", "OVMF", "variables")),
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "cfg.efi.OVMF.variables")),
               description: "Platform-specific flash binary for EFI variables, implementation-dependent to the EFI firmware.\nDefaults to OVMF.\n",
             })))),
           keepVariables: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$82,
+              [nix.POS]: pos$82,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: nix.thunk(() => nix.sel(cfg, "useBootLoader")),
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "cfg.useBootLoader")),
@@ -838,14 +838,14 @@ else null`))),
             })))),
         })),
         tpm: nix.thunk(() => ({
-          __proto__: pos$87,
+          [nix.POS]: pos$87,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "a TPM device in the virtual machine with a driver, using swtpm")),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), nix.thunk(() => nix.sel(cfg, "host", "pkgs")), "swtpm", nix.thunk(() => ({})))),
           deviceModel: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$85,
+              [nix.POS]: pos$85,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: nix.thunk(() => nix.selOr({
-                __proto__: pos$84,
+                [nix.POS]: pos$84,
                 "i686-linux": "tpm-tis",
                 "x86_64-linux": "tpm-tis",
                 "ppc64-linux": "tpm-spapr",
@@ -857,7 +857,7 @@ else null`))),
               description: "QEMU device model for the TPM, uses the appropriate default based on th guest platform system and the package passed.",
             })))),
           provisioning: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$86,
+              [nix.POS]: pos$86,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: null,
               description: "Script to provision the TPM before control is handed off to the VM.\n\n`TPM2TOOLS_TCTI` will be provided to configure tpm2-tools to use the\nswtpm instance transparently.\n`TCTI` is also provided as a generic value, consumer is expected to\nre-export it however it may need (`TPM2OPENSSL_TCTI`, `TPM2_PKCS11_TCTI`,\n...).\n",
@@ -865,31 +865,31 @@ else null`))),
             })))),
         })),
         useDefaultFilesystems: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$88,
+            [nix.POS]: pos$88,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
             default: true,
             description: "If enabled, the boot disk of the virtual machine will be\nformatted and mounted with the default filesystems for\ntesting. Swap devices and LUKS will be disabled.\n\nIf disabled, a root filesystem has to be specified and\nformatted (for example in the initial ramdisk).\n",
           })))),
         bios: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$89,
+            [nix.POS]: pos$89,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")))),
             default: null,
             description: "An alternate BIOS (such as `qboot`) with which to start the VM.\nShould contain a file named `bios.bin`.\nIf `null`, QEMU's builtin SeaBIOS will be used.\n",
           })))),
         useHostCerts: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$90,
+            [nix.POS]: pos$90,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
             default: false,
             description: "If enabled, when `NIX_SSL_CERT_FILE` is set on the host,\npass the CA certificates from the host to the VM.\n",
           })))),
         credentials: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$94,
+            [nix.POS]: pos$94,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$93,
+                  [nix.POS]: pos$93,
                   options: nix.thunk(() => ({
-                    __proto__: pos$92,
+                    [nix.POS]: pos$92,
                     mechanism: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$91,
+                        [nix.POS]: pos$91,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["fw_cfg", "smbios"]))),
                         default: nix.thunk(() => (nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isx86")) ? "smbios" : "fw_cfg")),
                         defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "if pkgs.stdenv.hostPlatform.isx86 then \"smbios\" else \"fw_cfg\"")),
@@ -901,17 +901,17 @@ else null`))),
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$154,
+      [nix.POS]: pos$154,
       assertions: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "concatLists"), nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "imap")), nix.thunk(() => nix.sel(cfg, "forwardPorts")), (i) => (rule) => [
             nix.thunk(() => ({
-              __proto__: pos$97,
+              [nix.POS]: pos$97,
               assertion: nix.thunk(() => (!nix.asBool(nix.eq(nix.sel(rule, "from"), "guest")) || nix.asBool(nix.eq(nix.sel(rule, "proto"), "tcp")))),
               message: nix.thunk(() => nix.str`Invalid virtualisation.forwardPorts.<entry ${nix.app(nix.builtins.toString, i)}>.proto:
   Guest forwarding supports only TCP connections.
 `),
             })),
             nix.thunk(() => ({
-              __proto__: pos$98,
+              [nix.POS]: pos$98,
               assertion: nix.thunk(() => (!nix.asBool(nix.eq(nix.sel(rule, "from"), "guest")) || nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), "10.0.2.", nix.thunk(() => nix.sel(rule, "guest", "address")))))),
               message: nix.thunk(() => nix.str`Invalid virtualisation.forwardPorts.<entry ${nix.app(nix.builtins.toString, i)}>.guest.address:
   The address must be in the default VLAN (10.0.2.0/24).
@@ -919,32 +919,32 @@ else null`))),
             })),
           ]))), [
         nix.thunk(() => ({
-          __proto__: pos$99,
+          [nix.POS]: pos$99,
           assertion: nix.thunk(() => (!nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "is32bit")) || nix.asBool(nix.lt(nix.sel(cfg, "memorySize"), 2047n)))),
           message: "virtualisation.memorySize is above 2047, but qemu is only able to allocate 2047 MiB RAM on 32bit max.\n",
         })),
         nix.thunk(() => ({
-          __proto__: pos$100,
+          [nix.POS]: pos$100,
           assertion: nix.thunk(() => (nix.asBool(nix.sel(cfg, "directBoot", "enable")) || nix.asBool(nix.eq(nix.sel(cfg, "directBoot", "initrd"), nix.sel(options, "virtualisation", "directBoot", "initrd", "default"))))),
           message: "You changed the default of `virtualisation.directBoot.initrd` but you are not\nusing QEMU direct boot. This initrd will not be used in your current\nboot configuration.\n\nEither do not mutate `virtualisation.directBoot.initrd` or enable direct boot.\n\nIf you have a more advanced usecase, please open an issue or a pull request.\n",
         })),
         nix.thunk(() => ({
-          __proto__: pos$101,
+          [nix.POS]: pos$101,
           assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "installBootLoader")) || nix.asBool(nix.sel(config, "system", "switch", "enable")))),
           message: "`system.switch.enable` must be enabled for `virtualisation.installBootLoader` to work.\nPlease enable it in your configuration.\n",
         })),
       ])),
       warnings: nix.thunk(() => nix.app(nix.lookup(w, "optional"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "directBoot", "enable")) && nix.asBool(nix.sel(cfg, "useBootLoader")))), "You enabled direct boot and a bootloader, QEMU will not boot your bootloader, rendering\n`useBootLoader` useless. You might want to disable one of those options.\n")),
       boot: nix.thunk(() => ({
-        __proto__: pos$107,
+        [nix.POS]: pos$107,
         loader: nix.thunk(() => ({
-          __proto__: pos$104,
+          [nix.POS]: pos$104,
           limine: nix.thunk(() => ({
-            __proto__: pos$102,
+            [nix.POS]: pos$102,
             biosDevice: nix.thunk(() => nix.sel(cfg, "bootLoaderDevice")),
           })),
           grub: nix.thunk(() => ({
-            __proto__: pos$103,
+            [nix.POS]: pos$103,
             device: nix.thunk(() => nix.app(nix.lookup(w, "mkVMOverride"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "useEFIBoot")) ? "nodev" : nix.sel(cfg, "bootLoaderDevice"))))),
             gfxmodeBios: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.sel(cfg, "resolution")), w);
@@ -954,21 +954,21 @@ else null`))),
           supportsInitrdSecrets: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "useBootLoader"))), nix.thunk(() => nix.app(nix.lookup(w, "mkVMOverride"), false)))),
         })),
         initrd: nix.thunk(() => ({
-          __proto__: pos$106,
+          [nix.POS]: pos$106,
           availableKernelModules: nix.thunk(() => nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.eq(nix.sel(cfg, "qemu", "diskInterface"), "scsi")), "sym53c8xx"), nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.sel(cfg, "tpm", "enable")), "tpm_tis"))),
           luks: nix.thunk(() => ({
-            __proto__: pos$105,
+            [nix.POS]: pos$105,
             devices: nix.thunk(() => nix.app((nix.asBool(nix.sel(cfg, "useDefaultFilesystems")) ? nix.force(nix.lookup(w, "mkVMOverride")) : nix.force(nix.lookup(w, "mkDefault"))), nix.thunk(() => ({})))),
           })),
         })),
       })),
       systemd: nix.thunk(() => ({
-        __proto__: pos$112,
+        [nix.POS]: pos$112,
         services: nix.thunk(() => ({
-          __proto__: pos$111,
+          [nix.POS]: pos$111,
           "register-nix-paths": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "nix", "enable")), nix.thunk(() => ({
-              __proto__: pos$110,
-              unitConfig: nix.thunk(() => ({ __proto__: pos$108, DefaultDependencies: false })),
+              [nix.POS]: pos$110,
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$108, DefaultDependencies: false })),
               wantedBy: nix.thunk(() => ["sysinit.target"]),
               before: nix.thunk(() => [
                 "sysinit.target",
@@ -980,7 +980,7 @@ else null`))),
               conflicts: nix.thunk(() => ["shutdown.target"]),
               restartIfChanged: false,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$109,
+                [nix.POS]: pos$109,
                 Type: "oneshot",
                 RemainAfterExit: true,
                 User: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(config, "nix", "daemonUser"), "root")), nix.thunk(() => nix.sel(config, "nix", "daemonUser")))),
@@ -994,32 +994,32 @@ fi
         })),
       })),
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$139,
+        [nix.POS]: pos$139,
         additionalPaths: nix.thunk(() => [nix.thunk(() => nix.sel(config, "system", "build", "toplevel"))]),
         sharedDirectories: nix.thunk(() => ({
-          __proto__: pos$117,
+          [nix.POS]: pos$117,
           "nix-store": nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "mountHostNixStore")), nix.thunk(() => ({
-              __proto__: pos$113,
+              [nix.POS]: pos$113,
               source: nix.thunk(() => nix.sel(nix.builtins, "storeDir")),
               target: "/nix/.ro-store",
               cache: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), useVirtiofs, "always")),
             })))),
           xchg: nix.thunk(() => ({
-            __proto__: pos$114,
+            [nix.POS]: pos$114,
             source: "\"$TMPDIR\"/xchg",
             target: "/tmp/xchg",
             writable: true,
           })),
           shared: nix.thunk(() => ({
-            __proto__: pos$115,
+            [nix.POS]: pos$115,
             source: "\"${SHARED_DIR:-$TMPDIR/xchg}\"",
             target: "/tmp/shared",
             writable: true,
           })),
-          certs: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "useHostCerts")), nix.thunk(() => ({ __proto__: pos$116, source: "\"$TMPDIR\"/certs", target: "/etc/ssl/certs" })))),
+          certs: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "useHostCerts")), nix.thunk(() => ({ [nix.POS]: pos$116, source: "\"$TMPDIR\"/certs", target: "/etc/ssl/certs" })))),
         })),
         qemu: nix.thunk(() => ({
-          __proto__: pos$126,
+          [nix.POS]: pos$126,
           networkingOptions: nix.thunk(() => (() => {
             const forwardingOptions = nix.thunk(() => nix.app(nix.lookup(w, "flip"), nix.thunk(() => nix.lookup(w, "concatMapStrings")), nix.thunk(() => nix.sel(cfg, "forwardPorts")), nix.lambda((args_1) => (() => {
                 const $_1 = nix.formals(args_1, formals$6);
@@ -1080,27 +1080,27 @@ fi
           drives: nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
               nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "diskImage"), null)), nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$120,
+                    [nix.POS]: pos$120,
                     name: "root",
                     file: "\"$NIX_DISK_IMAGE\"",
-                    driveExtraOpts: nix.thunk(() => ({ __proto__: pos$118, cache: "writeback", werror: "report" })),
-                    deviceExtraOpts: nix.thunk(() => ({ __proto__: pos$119, bootindex: "1", serial: rootDriveSerialAttr })),
+                    driveExtraOpts: nix.thunk(() => ({ [nix.POS]: pos$118, cache: "writeback", werror: "report" })),
+                    deviceExtraOpts: nix.thunk(() => ({ [nix.POS]: pos$119, bootindex: "1", serial: rootDriveSerialAttr })),
                   })),
                 ]))),
               nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "useNixStoreImage")), nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$123,
+                    [nix.POS]: pos$123,
                     name: "nix-store",
                     file: "\"$TMPDIR\"/store.img",
-                    deviceExtraOpts: nix.thunk(() => ({ __proto__: pos$121, bootindex: "2" })),
-                    driveExtraOpts: nix.thunk(() => ({ __proto__: pos$122, format: "raw" })),
+                    deviceExtraOpts: nix.thunk(() => ({ [nix.POS]: pos$121, bootindex: "2" })),
+                    driveExtraOpts: nix.thunk(() => ({ [nix.POS]: pos$122, format: "raw" })),
                   })),
                 ]))),
               nix.thunk(() => nix.app(nix.lookup(w, "imap0"), (idx) => (imgCfg) => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$125,
+                      [nix.POS]: pos$125,
                       file: nix.thunk(() => nix.str`$(pwd)/empty${nix.app(nix.builtins.toString, idx)}.qcow2`),
-                      driveExtraOpts: nix.thunk(() => ({ __proto__: pos$124, werror: "report" })),
+                      driveExtraOpts: nix.thunk(() => ({ [nix.POS]: pos$124, werror: "report" })),
                     })),
                     nix.thunk(() => nix.sel(imgCfg, "driveConfig")),
                   ])), nix.thunk(() => nix.sel(cfg, "emptyDiskImages")))),
@@ -1109,10 +1109,10 @@ fi
         diskSizeAutoSupported: false,
         fileSystems: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (tag) => (share) => ({
-                __proto__: pos$128,
+                [nix.POS]: pos$128,
                 name: nix.thunk(() => nix.sel(share, "target")),
                 value: nix.thunk(() => ({
-                  __proto__: pos$127,
+                  [nix.POS]: pos$127,
                   device: tag,
                   fsType: nix.thunk(() => (nix.asBool(useVirtiofs) ? "virtiofs" : "9p")),
                   neededForBoot: true,
@@ -1125,19 +1125,19 @@ fi
                 })),
               }), nix.thunk(() => nix.sel(cfg, "sharedDirectories")))),
             nix.thunk(() => nix.attrsDyn({
-              __proto__: pos$138,
+              [nix.POS]: pos$138,
               "/": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "useDefaultFilesystems")), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "diskImage"), null)) ? {
-                  __proto__: pos$129,
+                  [nix.POS]: pos$129,
                   device: "tmpfs",
                   fsType: "tmpfs",
                   options: nix.thunk(() => ["mode=755"]),
                 } : {
-                  __proto__: pos$130,
+                  [nix.POS]: pos$130,
                   device: nix.thunk(() => nix.sel(cfg, "rootDevice")),
                   fsType: "ext4",
                 })))),
               "/tmp": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "boot", "tmp", "useTmpfs")), nix.thunk(() => ({
-                  __proto__: pos$131,
+                  [nix.POS]: pos$131,
                   device: "tmpfs",
                   fsType: "tmpfs",
                   neededForBoot: true,
@@ -1150,35 +1150,35 @@ fi
                   ]),
                 })))),
               "/nix/store": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "useNixStoreImage")) || nix.asBool(nix.sel(cfg, "mountHostNixStore")))), nix.thunk(() => (nix.asBool(nix.sel(cfg, "writableStore")) ? {
-                  __proto__: pos$133,
+                  [nix.POS]: pos$133,
                   overlay: nix.thunk(() => ({
-                    __proto__: pos$132,
+                    [nix.POS]: pos$132,
                     lowerdir: nix.thunk(() => ["/nix/.ro-store"]),
                     upperdir: "/nix/.rw-store/upper",
                     workdir: "/nix/.rw-store/work",
                   })),
                 } : {
-                  __proto__: pos$134,
+                  [nix.POS]: pos$134,
                   device: "/nix/.ro-store",
                   fsType: "none",
                   options: nix.thunk(() => ["bind"]),
                 })))),
               "/nix/.ro-store": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "useNixStoreImage")), nix.thunk(() => ({
-                  __proto__: pos$135,
+                  [nix.POS]: pos$135,
                   device: nix.thunk(() => nix.str`/dev/disk/by-label/${nixStoreFilesystemLabel}`),
                   fsType: "erofs",
                   neededForBoot: true,
                   options: nix.thunk(() => ["ro"]),
                 })))),
               "/nix/.rw-store": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "writableStore")) && nix.asBool(nix.sel(cfg, "writableStoreUseTmpfs")))), nix.thunk(() => ({
-                  __proto__: pos$136,
+                  [nix.POS]: pos$136,
                   fsType: "tmpfs",
                   options: nix.thunk(() => ["mode=0755"]),
                   neededForBoot: true,
                 })))),
             }, [
               [nix.str`${nix.sel(config, "boot", "loader", "efi", "efiSysMountPoint")}`, nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "useBootLoader")) && nix.asBool(!nix.eq(nix.sel(cfg, "bootPartition"), null)))), nix.thunk(() => ({
-                  __proto__: pos$137,
+                  [nix.POS]: pos$137,
                   device: nix.thunk(() => nix.sel(cfg, "bootPartition")),
                   fsType: "vfat",
                 }))))],
@@ -1186,42 +1186,42 @@ fi
           ]))),
       })),
       security: nix.thunk(() => ({
-        __proto__: pos$141,
+        [nix.POS]: pos$141,
         pki: nix.thunk(() => ({
-          __proto__: pos$140,
+          [nix.POS]: pos$140,
           installCACerts: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "useHostCerts")), false)),
         })),
       })),
       fileSystems: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "fileSystems"), {})), nix.thunk(() => nix.app(nix.lookup(w, "mkVMOverride"), nix.thunk(() => nix.sel(cfg, "fileSystems")))))),
       swapDevices: nix.thunk(() => nix.app((nix.asBool(nix.sel(cfg, "useDefaultFilesystems")) ? nix.force(nix.lookup(w, "mkVMOverride")) : nix.force(nix.lookup(w, "mkDefault"))), [])),
       services: nix.thunk(() => ({
-        __proto__: pos$146,
-        timesyncd: nix.thunk(() => ({ __proto__: pos$142, enable: false })),
+        [nix.POS]: pos$146,
+        timesyncd: nix.thunk(() => ({ [nix.POS]: pos$142, enable: false })),
         qemuGuest: nix.thunk(() => ({
-          __proto__: pos$143,
+          [nix.POS]: pos$143,
           enable: nix.thunk(() => nix.sel(cfg, "qemu", "guestAgent", "enable")),
         })),
         xserver: nix.thunk(() => ({
-          __proto__: pos$144,
+          [nix.POS]: pos$144,
           videoDrivers: nix.thunk(() => nix.app(nix.lookup(w, "mkVMOverride"), nix.thunk(() => ["modesetting"]))),
           defaultDepth: nix.thunk(() => nix.app(nix.lookup(w, "mkVMOverride"), 0n)),
           resolutions: nix.thunk(() => nix.app(nix.lookup(w, "mkVMOverride"), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "resolution"))]))),
           monitorSection: "# Set a higher refresh rate so that resolutions > 800x600 work.\nHorizSync 30-140\nVertRefresh 50-160\n",
         })),
         connman: nix.thunk(() => ({
-          __proto__: pos$145,
+          [nix.POS]: pos$145,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkVMOverride"), false)),
         })),
       })),
       system: nix.thunk(() => ({
-        __proto__: pos$150,
+        [nix.POS]: pos$150,
         build: nix.thunk(() => ({
-          __proto__: pos$149,
+          [nix.POS]: pos$149,
           vm: nix.thunk(() => nix.app(nix.sel(hostPkgs, "runCommand"), "nixos-vm", nix.thunk(() => ({
-              __proto__: pos$148,
+              [nix.POS]: pos$148,
               preferLocalBuild: true,
               meta: nix.thunk(() => ({
-                __proto__: pos$147,
+                [nix.POS]: pos$147,
                 mainProgram: nix.thunk(() => nix.str`run-${nix.sel(config, "system", "name")}-vm`),
               })),
             })), nix.thunk(() => nix.str`mkdir -p $out/bin
@@ -1252,16 +1252,16 @@ ln -s ${nix.app(nix.sel(hostPkgs, "writeScript"), "run-nixos-vm", startVM)} $out
         })()),
       })),
       networking: nix.thunk(() => ({
-        __proto__: pos$153,
+        [nix.POS]: pos$153,
         wireless: nix.thunk(() => ({
-          __proto__: pos$151,
+          [nix.POS]: pos$151,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkVMOverride"), false)),
         })),
-        dhcpcd: nix.thunk(() => ({ __proto__: pos$152, extraConfig: "noarp" })),
+        dhcpcd: nix.thunk(() => ({ [nix.POS]: pos$152, extraConfig: "noarp" })),
         usePredictableInterfaceNames: false,
       })),
     })),
-    meta: nix.thunk(() => ({ __proto__: pos$155, buildDocsInSandbox: false })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$155, buildDocsInSandbox: false })),
   };
 })(), formals$1);
 //# sourceMappingURL=qemu-vm.ts.map

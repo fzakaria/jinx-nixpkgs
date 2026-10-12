@@ -34,30 +34,30 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "systemd", "shutdownRamfs"));
   const ramfsContents = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "shutdown-ramfs-contents.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.sel(cfg, "storePaths"))))));
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       systemd: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         shutdownRamfs: nix.thunk(() => ({
-          __proto__: pos$6,
-          enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "pivoting back to an initramfs for shutdown"), { __proto__: pos$1, default: true })),
+          [nix.POS]: pos$6,
+          enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "pivoting back to an initramfs for shutdown"), { [nix.POS]: pos$1, default: true })),
           contents: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               description: "Set of files that have to be linked into the shutdown ramfs",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  \"/lib/systemd/system-shutdown/zpool-sync-shutdown\".source = writeShellScript \"zpool\" \"exec ${zfs}/bin/zpool sync\"\n}\n")),
               type: nix.thunk(() => nix.sel(utils, "systemdUtils", "types", "initrdContents")),
             })))),
           storePaths: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               description: "Store paths to copy into the shutdown ramfs as well.\n",
               type: nix.thunk(() => nix.sel(utils, "systemdUtils", "types", "initrdStorePath")),
               default: [],
             })))),
           shell: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), ""), {
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: nix.thunk(() => nix.sel(config, "environment", "shell", "enable")),
               internal: true,
               description: "Whether to enable a shell in the shutdown ramfs.\n\nIn contrast to `environment.shell.enable`, this option actually\nstrictly disables all shells in the shutdown ramfs because they're not\ncopied into it anymore. Paths that use a shell (e.g. via the `script`\noption), will break if this option is set.\n\nOnly set this option if you're sure that you can recover from potential\nissues.\n",
@@ -67,23 +67,23 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         systemd: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           shutdownRamfs: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             contents: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               "/shutdown": nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 source: nix.thunk(() => nix.str`${nix.sel(config, "systemd", "package")}/lib/systemd/systemd-shutdown`),
               })),
               "/etc/initrd-release": nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 source: nix.thunk(() => nix.sel(config, "environment", "etc", "os-release", "source")),
               })),
               "/etc/os-release": nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 source: nix.thunk(() => nix.sel(config, "environment", "etc", "os-release", "source")),
               })),
             })),
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
           })),
           mounts: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               what: "tmpfs",
               where: "/run/initramfs",
               type: "tmpfs",
@@ -99,20 +99,20 @@ export default nix.lambda((args) => (() => {
             })),
           ]),
           services: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             "generate-shutdown-ramfs": nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               description: "Generate shutdown ramfs",
               wantedBy: nix.thunk(() => ["shutdown.target"]),
               before: nix.thunk(() => ["shutdown.target"]),
               unitConfig: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 DefaultDependencies: false,
                 RequiresMountsFor: "/run/initramfs",
                 ConditionFileIsExecutable: nix.thunk(() => ["!/run/initramfs/shutdown"]),
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 Type: "oneshot",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "makeInitrdNGTool")}/bin/make-initrd-ng ${ramfsContents} /run/initramfs`),
                 ProtectSystem: "strict",

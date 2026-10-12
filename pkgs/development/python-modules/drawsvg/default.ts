@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pwkit = nix.arg($, "pwkit");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "drawsvg",
       version: "2.4.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cduck",
           repo: "drawsvg",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         all: nix.thunk(() => [cairosvg, imageio, imageio_ffmpeg, numpy, pwkit]),
         raster: nix.thunk(() => [cairosvg, imageio, imageio_ffmpeg, numpy]),
         color: nix.thunk(() => [numpy, pwkit]),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["drawsvg"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Programmatically generate SVG (vector) images, animations, and interactive Jupyter widgets",
         homepage: "https://github.com/cduck/drawsvg",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

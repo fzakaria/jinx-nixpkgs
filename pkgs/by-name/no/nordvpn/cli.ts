@@ -30,10 +30,10 @@ export default nix.lambda((args) => (() => {
   const systemdMinimal = nix.arg($, "systemdMinimal");
   const wireguard_tools = nix.arg($, "wireguard-tools");
   const patchedOpenvpn = nix.thunk(() => nix.app(nix.sel(openvpn, "overrideAttrs"), (old) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       patches: nix.thunk(() => (() => {
         const tunnelblickSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "Tunnelblick",
             repo: "Tunnelblick",
             tag: "v6.0beta09",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       })()),
     })));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       src: src,
       version: version,
       pname: "nordvpn-cli",
@@ -87,7 +87,7 @@ substituteInPlace daemon/vpn/openvpn/config.go \\
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => nix.update(desktopItemArgs, {
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             comment: "Handles NordVPN OAuth browser login callbacks.",
             desktopName: "NordVPN CLI",
             exec: "nordvpn click %u",
@@ -98,7 +98,7 @@ substituteInPlace daemon/vpn/openvpn/config.go \\
           })))),
       ]),
       meta: nix.thunk(() => nix.update(meta, {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "NordVPN command-line client and daemon",
         longDescription: "Contains the nordvpn client and nordvpnd daemon.\nEven if you intend to use the GUI only, you'd need this package.\n",
         mainProgram: "nordvpn",

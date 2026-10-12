@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const icu = nix.arg($, "icu");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xerces-c",
       version: "3.3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://apache/xerces/c/3/sources/xerces-c-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-lVXx0G+CmH+7RliGJwVRV0BBT9NLTbatLtdqLcCNO94=",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--disable-sse2", "--enable-netaccessor-curl", "--enable-transcoder-icu"]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://xerces.apache.org/xerces-c/",
         description: "Validating XML parser written in a portable subset of C++",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

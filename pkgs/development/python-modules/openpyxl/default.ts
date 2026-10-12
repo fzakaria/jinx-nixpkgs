@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.1.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "foss.heptapod.net",
           owner: "openpyxl",
           repo: "openpyxl",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_iterparse"]);
       const pythonImportsCheck = nix.thunk(() => ["openpyxl"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library to read/write Excel 2010 xlsx/xlsm files",
         homepage: "https://openpyxl.readthedocs.org",
         changelog: nix.thunk(() => nix.str`https://foss.heptapod.net/openpyxl/openpyxl/-/blob/${version}/doc/changes.rst`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

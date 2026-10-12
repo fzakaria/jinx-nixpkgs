@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "9.10.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "python_cinderclient",
           version: version,
           hash: "sha256-+4Vub0OCpMhNgvAEFePGZRS3PhLZRnmTUYK6T4ZRCRY=",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "runHook preCheck\n\nstestr run\n\nrunHook postCheck\n";
       const pythonImportsCheck = nix.thunk(() => ["cinderclient"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OpenStack Block Storage API Client Library",
         mainProgram: "cinder",
         homepage: "https://github.com/openstack/python-cinderclient",
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "openstack"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

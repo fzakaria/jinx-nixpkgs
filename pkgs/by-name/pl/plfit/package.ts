@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const swig = nix.arg($, "swig");
   nix.assert_((!nix.asBool(withPython) || nix.asBool(!nix.eq(python, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/pl/plfit/package.nix:12:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "plfit",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ntamas",
           repo: "plfit",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => [nix.thunk(() => nix.sel(llvmPackages, "openmp"))]))),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fitting power-law distributions to empirical data",
         homepage: "https://github.com/ntamas/plfit",
         changelog: nix.thunk(() => nix.str`https://github.com/ntamas/plfit/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

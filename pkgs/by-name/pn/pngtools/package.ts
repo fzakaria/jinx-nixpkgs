@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const libpng12 = nix.arg($, "libpng12");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pngtools",
       version: "0-unstable-2022-03-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mikalstill",
           repo: "pngtools",
           rev: "1ccca3a0f3f6882661bbafbfb62feb774ca195d1",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       buildInputs: nix.thunk(() => [libpng12]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/mikalstill/pngtools",
         description: "PNG manipulation tools",
         maintainers: nix.thunk(() => (() => {

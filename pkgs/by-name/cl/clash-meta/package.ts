@@ -10,11 +10,11 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const mihomo = nix.arg($, "mihomo");
   return nix.app(nix.sel(mihomo, "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "clash-meta",
       postInstall: nix.thunk(() => nix.str`mv $out/bin/${nix.sel(previousAttrs, "meta", "mainProgram")} $out/bin/${nix.sel(finalAttrs, "meta", "mainProgram")}
 `),
-      meta: nix.thunk(() => nix.update(nix.sel(previousAttrs, "meta"), { __proto__: pos$1, mainProgram: "clash-meta" })),
+      meta: nix.thunk(() => nix.update(nix.sel(previousAttrs, "meta"), { [nix.POS]: pos$1, mainProgram: "clash-meta" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

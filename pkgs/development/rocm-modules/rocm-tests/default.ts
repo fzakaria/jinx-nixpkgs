@@ -26,40 +26,40 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const availableRocmDrvs = nix.thunk(() => nix.app(nix.sel(lib, "pipe"), rocmPackages, nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value) => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: name,
           evaluated: nix.thunk(() => nix.builtins.tryEval(value)),
         }))),
       nix.thunk(() => nix.app(nix.builtins.filter, (x) => nix.sel(x, "evaluated", "success"))),
       nix.thunk(() => nix.app(nix.builtins.map, (x) => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: nix.thunk(() => nix.attr(x, "name")),
           value: nix.thunk(() => nix.sel(x, "evaluated", "value")),
         }))),
       nix.thunk(() => nix.app(nix.builtins.filter, (x) => (nix.asBool(nix.app(nix.sel(lib, "isDerivation"), nix.thunk(() => nix.sel(x, "value")))) && nix.asBool(nix.selOr(x, () => true, "value", "meta", "available"))))),
     ])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       name: "rocm-tests",
       nativeBuildInputs: nix.thunk(() => [clr]),
       src: emptyDirectory,
       postInstall: "mkdir -p $out",
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         tests: nix.thunk(() => ({
-          __proto__: pos$7,
-          ollama: nix.thunk(() => nix.app(nix.sel(ollama, "override"), nix.thunk(() => ({ __proto__: pos$3, rocmPackages: rocmPackages, acceleration: "rocm" })))),
+          [nix.POS]: pos$7,
+          ollama: nix.thunk(() => nix.app(nix.sel(ollama, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, rocmPackages: rocmPackages, acceleration: "rocm" })))),
           rocmPackagesDerivations: nix.thunk(() => nix.app(linkFarm, "rocmPackagesDerivations", nix.thunk(() => nix.builtins.map((x) => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 name: nix.thunk(() => nix.sel(x, "name")),
                 path: nix.thunk(() => nix.sel(x, "value")),
               }), availableRocmDrvs)))),
           torch: nix.thunk(() => nix.app(nix.sel(python3Packages, "torch", "override"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               rocmPackages: rocmPackages,
               rocmSupport: true,
               cudaSupport: false,
-              "magma-hip": nix.thunk(() => nix.app(nix.sel(magma_hip, "override"), nix.thunk(() => ({ __proto__: pos$5, rocmPackages: rocmPackages })))),
+              "magma-hip": nix.thunk(() => nix.app(nix.sel(magma_hip, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, rocmPackages: rocmPackages })))),
             })))),
         })),
       })),

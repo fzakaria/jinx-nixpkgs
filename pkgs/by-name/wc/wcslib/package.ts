@@ -15,16 +15,16 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const flex = nix.arg($, "flex");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "wcslib",
       version: "8.10",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`ftp://ftp.atnf.csiro.au/pub/software/wcslib/wcslib-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-s5TTMG2ppSQQ8FYTaRFJblmbXEjxz/LyIVY2lwd7vY0=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-include stdio.h")),
       })),
       nativeBuildInputs: nix.thunk(() => [flex]),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "man"]),
       postInstall: "rm $out/share/doc/wcslib/wcslib\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.atnf.csiro.au/people/mcalabre/WCS/",
         description: "World Coordinate System library for astronomy",
         longDescription: "Library for world coordinate systems for spherical geometries\nand their conversion to image coordinate systems. This is the\nstandard library for this purpose in astronomy.\n",

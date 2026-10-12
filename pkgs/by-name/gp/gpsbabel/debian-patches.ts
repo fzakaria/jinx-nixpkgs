@@ -12,27 +12,27 @@ export default nix.thunk(() => (() => {
   const prefix = "https://sources.debian.org/data/main/g/gpsbabel/1.8.0+ds-4/debian/patches";
   return [
     nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`${prefix}/gpsbabelfe_disable_version_check`),
       sha256: "1kk1iq4mbmldl1jjvd4bphr0165rgn2gpqdyyd1vq8v8wjx942sb",
     })),
     nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`${prefix}/gpsbabelfe_opt-in-for-usage-data-reporting`),
       sha256: "0dr3jyn8sxx9vw3w11gir6jvshlda0ldmhlq4aq313xn6d1j8qv2",
     })),
     nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: nix.thunk(() => nix.str`${prefix}/gpsbabelfe_do-not-check-for-newer-version`),
       sha256: "0kmmxcq1k9p84v9cjagda1cqcc9p7p48i104l3z6clc17zixwgai",
     })),
     nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       url: nix.thunk(() => nix.str`${prefix}/htmldoc-location`),
       sha256: "0nk3gz3l0q68d7blzfkbkvr630xy8y7vlxalnzlbdigqcx7lk54f",
     })),
     nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       url: nix.thunk(() => nix.str`${prefix}/Disable-donation-nagging`),
       sha256: "11j2ffa0hn5cy8xw98jndkf735ar39sf6rl28bn91pxd38xyaz5b",
     })),

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const virt_viewer = nix.arg($, "virt-viewer");
   const makeWrapper = nix.arg($, "makeWrapper");
   const virt_manager_without_menu = nix.thunk(() => nix.app(nix.sel(virt_viewer, "overrideAttrs"), (oldAttrs) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       patches: nix.thunk(() => nix.concat(nix.sel(oldAttrs, "patches"), [
         nix.path(here, "./0001-Remove-menu-bar.patch"),
         nix.path(here, "./0002-Do-not-grab-keyboard-mouse.patch"),
@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
       ])),
     })));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "appvm",
       version: "0.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "jollheef",
           repo: "appvm",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nix$, virt_manager_without_menu]))}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Nix-based app VMs",
         homepage: "https://code.dumpstack.io/tools/appvm",
         maintainers: nix.thunk(() => (() => {

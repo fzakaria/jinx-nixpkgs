@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
       const domain = "daikin_onecta";
       const version = "4.6.19";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jwillemsen",
           repo: "daikin_onecta",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-8VEURHJk3A449Y0HeUF+1cSsXlfZJHFFK3cg2Ero/Ec=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/jwillemsen/daikin_onecta/releases/tag/v${version}`),
         description: "Home Assistant Integration for devices supported by the Daikin Onecta App",
         homepage: "https://github.com/jwillemsen/daikin_onecta",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })()),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
       }));
-      return { __proto__: pos$3, owner, domain, version, src, meta };
+      return { [nix.POS]: pos$3, owner, domain, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

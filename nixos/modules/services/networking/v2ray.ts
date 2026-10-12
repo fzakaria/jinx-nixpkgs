@@ -31,37 +31,37 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const json = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         v2ray: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether to run v2ray server.\n\nEither `configFile` or `config` must be specified.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "v2ray", nix.thunk(() => ({})))),
           configFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: null,
               example: "/etc/v2ray/config.json",
               description: "The absolute path to the configuration file.\n\nEither `configFile` or `config` must be specified.\n\nSee <https://www.v2fly.org/en_US/v5/config/overview.html>.\n",
             })))),
           config: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(json, "type")))),
               default: null,
               example: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 inbounds: nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$3, port: 1080n, listen: "127.0.0.1", protocol: "http" })),
+                  nix.thunk(() => ({ [nix.POS]: pos$3, port: 1080n, listen: "127.0.0.1", protocol: "http" })),
                 ]),
-                outbounds: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$4, protocol: "freedom" }))]),
+                outbounds: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$4, protocol: "freedom" }))]),
               })),
               description: "The configuration object.\n\nEither `configFile` or `config` must be specified.\n\nSee <https://www.v2fly.org/en_US/v5/config/overview.html>.\n",
             })))),
@@ -71,35 +71,35 @@ export default nix.lambda((args) => (() => {
     config: nix.thunk(() => (() => {
       const cfg = nix.thunk(() => nix.sel(config, "services", "v2ray"));
       const configFile = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "configFile"), null)) ? nix.sel(cfg, "configFile") : nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           name: "v2ray.json",
           text: nix.thunk(() => nix.app(nix.sel(nix.builtins, "toJSON"), nix.thunk(() => nix.sel(cfg, "config")))),
           checkPhase: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/v2ray test -c $out
 `),
         })))));
       return nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           assertions: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               assertion: nix.thunk(() => !nix.eq(nix.eq(nix.sel(cfg, "configFile"), null), nix.eq(nix.sel(cfg, "config"), null))),
               message: "Either but not both `configFile` and `config` should be specified for v2ray.",
             })),
           ]),
           environment: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             etc: nix.thunk(() => ({
-              __proto__: pos$13,
-              "v2ray/config.json": nix.thunk(() => ({ __proto__: pos$12, source: configFile })),
+              [nix.POS]: pos$13,
+              "v2ray/config.json": nix.thunk(() => ({ [nix.POS]: pos$12, source: configFile })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
             services: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               v2ray: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 restartTriggers: nix.thunk(() => [
                   nix.thunk(() => nix.sel(config, "environment", "etc", "v2ray/config.json", "source")),
                 ]),

@@ -10,9 +10,9 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     hardware: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       firmware: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "zd1211fw"))]),
     })),
   };

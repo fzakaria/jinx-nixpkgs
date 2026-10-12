@@ -39,7 +39,7 @@ VERSION=v${version} go generate cmd/${cmdRes}/main.go
       const fetchSubmodules = true;
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Native Azure Pulumi Provider",
         mainProgram: "pulumi-resource-azure-native",
         homepage: "https://github.com/pulumi/pulumi-azure-native",
@@ -50,7 +50,7 @@ VERSION=v${version} go generate cmd/${cmdRes}/main.go
         })()),
       }));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         owner,
         repo,
         version,

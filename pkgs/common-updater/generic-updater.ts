@@ -139,7 +139,7 @@ fi
 echo "" >> ${fileForGitCommands}
 `)));
     return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "generic-update-script",
       command: nix.thunk(() => [
         updateScript,

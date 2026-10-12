@@ -22,10 +22,10 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     name: "gophernicus",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -35,39 +35,39 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     containers: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const options = nix.arg($_1, "options");
         return {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           environment: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "phetch"))];
             })()),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             users: nix.thunk(() => ({
-              __proto__: pos$5,
-              alice: nix.thunk(() => ({ __proto__: pos$3, homeMode: "755" })),
-              bob: nix.thunk(() => ({ __proto__: pos$4, homeMode: "755" })),
+              [nix.POS]: pos$5,
+              alice: nix.thunk(() => ({ [nix.POS]: pos$3, homeMode: "755" })),
+              bob: nix.thunk(() => ({ [nix.POS]: pos$4, homeMode: "755" })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             gophernicus: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               enable: true,
               domain: "localhost",
               path: nix.thunk(() => nix.concat(nix.sel(options, "services", "gophernicus", "path", "default"), [
                 nix.thunk(() => nix.app(nix.sel(pkgs, "writeScriptBin"), "hello", "printf \"aaaaaaa\\n\"")),
               ])),
               filters: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 txt: nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScript"), "gophernicus-test-filter-script", "cat \"$1\"\necho \"world\"\n")),
                 php: nix.thunk(() => nix.str`${nix.sel(pkgs, "php")}/bin/php`),
               })),

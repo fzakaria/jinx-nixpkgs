@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const gmp = nix.arg($, "gmp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ratpoints",
       version: "2.2.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.mathe2.uni-bayreuth.de/stoll/programs/ratpoints-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-2A4VIhkKHhIvey3i78Je+qyQf1XzdjXY2t3Q0Yqv/ZM=",
         })))),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => ["INSTALL_DIR=$(out)"]),
       preInstall: "mkdir -p \"$out\"/{bin,share,lib,include}",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Program to find rational points on hyperelliptic curves",
         mainProgram: "ratpoints",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

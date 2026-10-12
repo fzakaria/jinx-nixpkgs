@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mago",
       version: "1.50.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "carthage-software",
           repo: "mago",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
           forceFetchGit: true,
         })))),
       cargoHash: "sha256-oIxNpmw3q1DvBlaURUl8+AKud+gbGk8jD9Vw8utVRO4=",
-      env: nix.thunk(() => ({ __proto__: pos$2, OPENSSL_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: 1n })),
       nativeBuildInputs: nix.thunk(() => [installShellFiles, pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd mago \\\n  --bash <(\"$out/bin/mago\" generate-completions bash) \\\n  --zsh <(\"$out/bin/mago\" generate-completions zsh) \\\n  --fish <(\"$out/bin/mago\" generate-completions fish)\n")),
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/carthage-software/mago/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Toolchain for PHP that aims to provide a set of tools to help developers write better code",
         homepage: "https://github.com/carthage-software/mago",

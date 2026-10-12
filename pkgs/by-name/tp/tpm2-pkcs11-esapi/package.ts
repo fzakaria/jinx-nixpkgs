@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const args_1 = args;
   const tpm2_pkcs11 = nix.arg($, "tpm2-pkcs11");
   return nix.app(nix.sel(tpm2_pkcs11, "override"), nix.thunk(() => nix.update(args_1, {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       fapiSupport: false,
       extraDescription: "Disables FAPI support, as if TPM2_PKCS11_BACKEND were always set to 'esysdb'.",
     })));

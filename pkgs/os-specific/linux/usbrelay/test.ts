@@ -24,52 +24,52 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../..
     const $ = nix.formals(args, formals$1);
     const pkgs = nix.arg($, "pkgs");
     return {
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       name: "usbrelayd",
       nodes: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         machine: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             qemu: nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               options: nix.thunk(() => ["-device qemu-xhci", "-device usb-host,vendorid=0x16c0,productid=0x05df"]),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$7,
-            usbrelayd: nix.thunk(() => ({ __proto__: pos$3, enable: true })),
+            [nix.POS]: pos$7,
+            usbrelayd: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
             mosquitto: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               enable: true,
               listeners: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   acl: nix.thunk(() => ["pattern readwrite #"]),
                   omitPasswordAuth: true,
-                  settings: nix.thunk(() => ({ __proto__: pos$4, allow_anonymous: true })),
+                  settings: nix.thunk(() => ({ [nix.POS]: pos$4, allow_anonymous: true })),
                 })),
               ]),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             services: nix.thunk(() => ({
-              __proto__: pos$9,
-              usbrelayd: nix.thunk(() => ({ __proto__: pos$8, after: nix.thunk(() => ["mosquitto.service"]) })),
+              [nix.POS]: pos$9,
+              usbrelayd: nix.thunk(() => ({ [nix.POS]: pos$8, after: nix.thunk(() => ["mosquitto.service"]) })),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs, "usbrelay")),
               nix.thunk(() => nix.sel(pkgs, "mosquitto")),
             ]),
           })),
           documentation: nix.thunk(() => ({
-            __proto__: pos$13,
-            nixos: nix.thunk(() => ({ __proto__: pos$12, enable: false })),
+            [nix.POS]: pos$13,
+            nixos: nix.thunk(() => ({ [nix.POS]: pos$12, enable: false })),
           })),
         })),
       })),

@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
   const pname = "rqbit";
   const version = "9.0.1";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "ikatson",
       repo: "rqbit",
       rev: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-biF8AtHl2aYdxmuu0UNqN3Id2R0WoCOb5nKpdhCnKNY=",
     }))));
   const rqbit_webui = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "rqbit-webui",
       version: version,
       src: src,
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out/dist\ncp -r ./crates/librqbit/webui/dist/** $out/dist\n\nrunHook postInstall\n",
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: pname,
       version: version,
       src: src,
@@ -67,13 +67,13 @@ cp -R ${rqbit_webui}/dist/** crates/librqbit/webui/dist
       ]),
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         webui: rqbit_webui,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$3, extraArgs: nix.thunk(() => ["--subpackage", "webui"]) })))),
-        tests: nix.thunk(() => ({ __proto__: pos$4, testService: nix.thunk(() => nix.sel(nixosTests, "rqbit")) })),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--subpackage", "webui"]) })))),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$4, testService: nix.thunk(() => nix.sel(nixosTests, "rqbit")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Bittorrent client in Rust",
         homepage: "https://github.com/ikatson/rqbit",
         changelog: nix.thunk(() => nix.str`https://github.com/ikatson/rqbit/releases/tag/v${version}`),

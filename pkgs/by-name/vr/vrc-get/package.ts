@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vrc-get",
       version: "1.9.2",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-7Remfn9U+yDvKuxLaeKAW+1Xqjz6dmm/nuxEIZwkZAg=",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
 `));
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command line client of VRChat Package Manager, the main feature of VRChat Creator Companion (VCC)",
         homepage: "https://github.com/vrc-get/vrc-get",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

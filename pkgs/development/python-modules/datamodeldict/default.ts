@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const uv_build = nix.arg($, "uv-build");
   const xmltodict = nix.arg($, "xmltodict");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "datamodeldict",
       version: "0.9.10",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "usnistgov",
           repo: "DataModelDict",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["DataModelDict"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Class allowing for data models equivalently represented as Python dictionaries, JSON, and XML",
         homepage: "https://github.com/usnistgov/DataModelDict/",
         changelog: nix.thunk(() => nix.str`https://github.com/usnistgov/DataModelDict/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

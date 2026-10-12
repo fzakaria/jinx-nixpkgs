@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "goofys",
       version: "0.24.0-unstable-2022-04-21",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kahing",
           repo: "goofys",
           rev: "829d8e5ce20faa3f9f6f054077a14325e00e9249",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       preVersionCheck: "export version=0.24.0\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/kahing/goofys",
         description: "High-performance, POSIX-ish Amazon S3 file system written in Go",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.thunk(() => nix.app(newScope, self));
   const stable = nix.thunk(() => (() => {
     const tiles = nix.thunk(() => nix.app(callPackage, nix.path(here, "./stable.nix"), nix.thunk(() => ({}))));
-    const curses = nix.thunk(() => nix.app(nix.sel(tiles, "override"), nix.thunk(() => ({ __proto__: pos$1, tiles: false }))));
-    return { __proto__: pos$2, tiles, curses };
+    const curses = nix.thunk(() => nix.app(nix.sel(tiles, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, tiles: false }))));
+    return { [nix.POS]: pos$2, tiles, curses };
   })());
   const git = nix.thunk(() => (() => {
     const tiles = nix.thunk(() => nix.app(callPackage, nix.path(here, "./git.nix"), nix.thunk(() => ({}))));
-    const curses = nix.thunk(() => nix.app(nix.sel(tiles, "override"), nix.thunk(() => ({ __proto__: pos$3, tiles: false }))));
-    return { __proto__: pos$4, tiles, curses };
+    const curses = nix.thunk(() => nix.app(nix.sel(tiles, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, tiles: false }))));
+    return { [nix.POS]: pos$4, tiles, curses };
   })());
   const lib = nix.thunk(() => nix.app(callPackage, nix.path(here, "./lib.nix"), nix.thunk(() => ({}))));
   const pkgs = nix.thunk(() => nix.app(callPackage, nix.path(here, "./pkgs"), nix.thunk(() => ({}))));
   const self = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     callPackage: callPackage,
     stable: stable,
     git: git,

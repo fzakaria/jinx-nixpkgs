@@ -34,36 +34,36 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "amazonImage"));
   const amiBootMode = nix.thunk(() => (nix.asBool(nix.sel(config, "ec2", "efi")) ? "uefi" : "legacy-bios"));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     imports: nix.thunk(() => [
       nix.path(here, "../../../modules/virtualisation/amazon-image.nix"),
       nix.path(here, "../../../modules/virtualisation/disk-size-option.nix"),
       nix.path(here, "../../../modules/image/file-options.nix"),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModuleWith"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           sinceRelease: 2411n,
           from: nix.thunk(() => ["amazonImage", "sizeMB"]),
           to: nix.thunk(() => ["virtualisation", "diskSize"]),
         })))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModuleWith"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           sinceRelease: 2505n,
           from: nix.thunk(() => ["amazonImage", "name"]),
           to: nix.thunk(() => ["image", "baseName"]),
         })))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       amazonImage: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         contents: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             example: nix.thunk(() => nix.app(literalExpression, "[ { source = pkgs.memtest86 + \"/memtest.bin\";\n    target = \"boot/memtest.bin\";\n  }\n]\n")),
             default: [],
             description: "This option lists files to be copied to fixed locations in the\ngenerated image. Glob patterns work.\n",
           })))),
         format: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["raw", "qcow2", "vpc"]))),
             default: "vpc",
             description: "The image format to output",
@@ -71,17 +71,17 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         diskSize: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 1490n, nix.thunk(() => nix.mul(4n, 1024n)))),
         diskSizeAutoSupported: nix.thunk(() => !nix.asBool(nix.sel(config, "ec2", "zfs", "enable"))),
       })),
       system: nix.thunk(() => ({
-        __proto__: pos$13,
-        nixos: nix.thunk(() => ({ __proto__: pos$8, tags: nix.thunk(() => ["amazon"]) })),
+        [nix.POS]: pos$13,
+        nixos: nix.thunk(() => ({ [nix.POS]: pos$8, tags: nix.thunk(() => ["amazon"]) })),
         build: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           image: nix.thunk(() => nix.sel(config, "system", "build", "amazonImage")),
           amazonImage: nix.thunk(() => (() => {
             const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "configuration.nix", nix.thunk(() => nix.str`{ modulesPath, ... }: {
@@ -93,7 +93,7 @@ networking.hostId = "${nix.sel(config, "networking", "hostId")}";
 }
 `)));
             const zfsBuilder = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../lib/make-multi-disk-zfs-image.nix")), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 lib: lib,
                 config: config,
                 configFile: configFile,
@@ -104,7 +104,7 @@ networking.hostId = "${nix.sel(config, "networking", "hostId")}";
                 includeChannel: true,
                 bootSize: 1000n,
                 rootSize: nix.thunk(() => nix.sel(config, "virtualisation", "diskSize")),
-                rootPoolProperties: nix.thunk(() => ({ __proto__: pos$9, ashift: 12n, autoexpand: "on" })),
+                rootPoolProperties: nix.thunk(() => ({ [nix.POS]: pos$9, ashift: 12n, autoexpand: "on" })),
                 datasets: nix.thunk(() => nix.sel(config, "ec2", "zfs", "datasets")),
                 postVM: nix.thunk(() => nix.str` extension=\${rootDiskImage##*.}
  friendlyName=$out/${nix.sel(config, "image", "baseName")}
@@ -140,7 +140,7 @@ ${nix.sel(pkgs, "jq")}/bin/jq -n \\
                 const from_1 = nix.thunk(() => nix.sel(config, "image"));
                 const from_2 = nix.thunk(() => nix.sel(config, "virtualisation"));
                 return {
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 lib: lib,
                 config: config,
                 configFile: configFile,
@@ -178,12 +178,12 @@ ${nix.sel(pkgs, "jq")}/bin/jq -n \\
         })),
       })),
       image: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         extension: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "format"), "vpc")) ? "vhd" : nix.sel(cfg, "format"))),
       })),
     })),
     meta: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "arianvp"))];

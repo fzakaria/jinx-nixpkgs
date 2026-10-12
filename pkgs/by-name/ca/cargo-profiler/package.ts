@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const cargoHash = "sha256-GrHH98jcJaEkCzHe1hoVAeZvTvE0kXdp0bPTIiiOYss=";
   const buildRustPackage = nix.thunk(() => nix.attr(rustPlatform, "buildRustPackage"));
   return nix.app(buildRustPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
-      src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({ __proto__: pos$1, owner: owner, rev: rev, hash: hash, repo: "cargo-profiler" })))),
+      src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({ [nix.POS]: pos$1, owner: owner, rev: rev, hash: hash, repo: "cargo-profiler" })))),
       cargoHash: cargoHash,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cargo subcommand for profiling Rust binaries",
         mainProgram: "cargo-profiler",
         homepage: "https://github.com/svenstaro/cargo-profiler",

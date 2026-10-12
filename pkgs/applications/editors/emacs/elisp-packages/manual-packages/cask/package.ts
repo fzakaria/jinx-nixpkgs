@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       const emacsBuiltinDeps = nix.thunk(() => ["cl-lib", "eieio"]);
       const depsMod = nix.thunk(() => nix.builtins.concatStringsSep(" ", nix.thunk(() => nix.concat(nix.builtins.map((x) => nix.sel(x, "ename"), nixpkgDependencies), emacsBuiltinDeps))));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: "cask",
         version: "0.9.1",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             name: nix.thunk(() => nix.str`cask-source-${nix.sel(finalAttrs, "version")}`),
             owner: "cask",
             repo: "cask",
@@ -67,7 +67,7 @@ substituteInPlace cask-bootstrap.el \\
 `),
         postInstall: "installBin bin/cask\n",
         meta: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           homepage: "https://github.com/cask/cask",
           description: "Project management for Emacs",
           longDescription: "Cask is a project management tool for Emacs that helps automate the\npackage development cycle; development, dependencies, testing, building,\npackaging and more.\n",

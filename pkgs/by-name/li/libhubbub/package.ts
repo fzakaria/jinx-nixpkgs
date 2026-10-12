@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const netsurf_buildsystem = nix.arg($, "netsurf-buildsystem");
   const libparserutils = nix.arg($, "libparserutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libhubbub",
       version: "0.3.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.netsurf-browser.org/libs/releases/libhubbub-${nix.sel(finalAttrs, "version")}-src.tar.gz`),
           hash: "sha256-isHm9fPUjAUUHVk5FxlTQpDFnNAp78JJ60/brBAs1aU=",
         })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(netsurf_buildsystem, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.netsurf-browser.org/projects/hubbub/",
         description: "HTML5 parser library for netsurf browser",
         longDescription: "Hubbub is an HTML5 compliant parsing library, written in C. It was\ndeveloped as part of the NetSurf project and is available for use by other\nsoftware under the MIT licence.\n\nThe HTML5 specification defines a parsing algorithm, based on the\nbehaviour of mainstream browsers, which provides instructions for how to\nparse all markup, both valid and invalid. As a result, Hubbub parses web\ncontent well.\n",

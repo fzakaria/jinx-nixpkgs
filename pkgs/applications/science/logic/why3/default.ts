@@ -27,10 +27,10 @@ export default nix.lambda((args) => (() => {
       const pname = "why3";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://why3.gitlabpages.inria.fr/releases/${pname}-${version_1}.tar.gz`),
           hash: nix.thunk(() => nix.sel({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             "1.8.2": "sha256-t9ES7dW8zmvM4AI9K8g06yrhocQteupE/6Ek1km1C+o=",
             "1.7.2": "sha256-VaSG/FiO2MDdSSFXGJJrIylQx0LPwtT8AF7TpPVZhCQ=",
             "1.6.0": "sha256-hFvM6kHScaCtcHCc6Vezl9CR7BFbiKPoTEh7kj0ZJxw=",
@@ -85,11 +85,11 @@ export default nix.lambda((args) => (() => {
       const installTargets = nix.thunk(() => ["install", "install-lib"]);
       const postInstall = "mkdir -p $dev/lib\nmv $out/lib/ocaml $dev/lib/\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         withProvers: nix.thunk(() => nix.app(callPackage, nix.path(here, "./with-provers.nix"), nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Platform for deductive program verification",
         homepage: "https://why3.lri.fr/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
@@ -103,7 +103,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version: version_1,
         src,

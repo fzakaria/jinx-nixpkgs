@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   return (() => {
     const version = "2.6.13";
     const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         owner: "TandoorRecipes",
         repo: "recipes",
         tag: version,
@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       }))));
     const yarnHash = "sha256-EpmFGyuWZeqzdi8wPX7ABjfJKWP8r5qqpdfNKdOFiso=";
     const meta = nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       homepage: "https://tandoor.dev/",
       changelog: nix.thunk(() => nix.str`https://github.com/TandoorRecipes/recipes/releases/tag/${version}`),
       license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
     }));
-    return { __proto__: pos$3, version, src, yarnHash, meta };
+    return { [nix.POS]: pos$3, version, src, yarnHash, meta };
   })();
 })(), formals$1);
 //# sourceMappingURL=common.ts.map

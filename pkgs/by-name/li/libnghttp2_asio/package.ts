@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const boost186 = nix.arg($, "boost186");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libnghttp2_asio",
       version: "0-unstable-2022-08-11",
       outputs: nix.thunk(() => ["out", "dev", "doc"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nghttp2",
           repo: "nghttp2-asio",
           rev: "e877868abe06a83ed0a6ac6e245c07f6f20866b5",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [boost186, nghttp2, openssl]),
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 3.0)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "High level HTTP/2 C++ library",
         longDescription: "libnghttp2_asio is C++ library built on top of libnghttp2\nand provides high level abstraction API to build HTTP/2\napplications. It depends on the Boost::ASIO library and\nOpenSSL. libnghttp2_asio provides both client and server APIs.\n",
         homepage: "https://github.com/nghttp2/nghttp2-asio",

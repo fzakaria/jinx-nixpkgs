@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const tabulate = nix.arg($, "tabulate");
   const typeguard = nix.arg($, "typeguard");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "renault-api",
       version: "0.5.13",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hacf-fr",
           repo: "renault-api",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [poetry_core]),
       dependencies: nix.thunk(() => [aiohttp, cryptography, marshmallow_dataclass, pyjwt]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, cli: nix.thunk(() => [click, dateparser, tabulate]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, cli: nix.thunk(() => [click, dateparser, tabulate]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([aiointercept, pytest_asyncio, pytestCheckHook, syrupy_6, typeguard], nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))))),
       pythonImportsCheck: nix.thunk(() => ["renault_api"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python library to interact with the Renault API",
         homepage: "https://github.com/hacf-fr/renault-api",
         changelog: nix.thunk(() => nix.str`https://github.com/hacf-fr/renault-api/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

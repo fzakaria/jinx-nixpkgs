@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const kdePackages = nix.arg($, "kdePackages");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "collabora-desktop",
       version: "25.04.9.2-2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CollaboraOnline",
           repo: "online",
           tag: nix.thunk(() => nix.str`coda-${nix.sel(finalAttrs, "version")}`),
@@ -70,7 +70,7 @@ substituteInPlace browser/css/spreadsheet.css \\
         nix.thunk(() => nix.sel(python3, "pkgs", "polib")),
         rsync,
         nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "qtlibexec",
             src: nix.thunk(() => nix.sel(kdePackages, "qtbase")),
             buildPhase: nix.thunk(() => nix.str`mkdir -p $out
@@ -109,9 +109,9 @@ ln -s ${nix.sel(kdePackages, "qtbase")}/libexec $out/bin
 python3 scripts/insert-coda-license.py $out/LICENSE.html CODA-THIRDPARTYLICENSES.html
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             unpackPhase: "true",
             postPatch: nix.thunk(() => nix.str`cp ${nix.path(here, "./package-lock.json")} package-lock.json
 `),
@@ -120,12 +120,12 @@ python3 scripts/insert-coda-license.py $out/LICENSE.html CODA-THIRDPARTYLICENSES
         npmRoot: "browser",
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
-        libreoffice: nix.thunk(() => nix.app(nix.sel(libreoffice_collabora, "override"), nix.thunk(() => ({ __proto__: pos$5, variant: "collabora-coda", withFonts: true })))),
+        [nix.POS]: pos$6,
+        libreoffice: nix.thunk(() => nix.app(nix.sel(libreoffice_collabora, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, variant: "collabora-coda", withFonts: true })))),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         changelog: "https://www.collaboraonline.com/blog/",
         description: "Collaborative Office for desktop, based on LibreOffice technology",
         homepage: "https://www.collaboraonline.com/collabora-office/",

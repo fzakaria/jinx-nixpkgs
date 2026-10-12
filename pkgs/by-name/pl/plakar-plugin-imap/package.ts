@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "plakar-plugin-imap",
       version: "1.1.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PlakarKorp",
           repo: "integrations",
           tag: nix.thunk(() => nix.str`imap/v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ mv "$out/bin/store" "$dest/imapStorage"
 rmdir "$out/bin" 2>/dev/null || true
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Plakar IMAP integration (storage, importer, exporter)",
         homepage: "https://github.com/PlakarKorp/integrations",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

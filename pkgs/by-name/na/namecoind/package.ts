@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const darwin = nix.arg($, "darwin");
   const withWallet = nix.argOr($, "withWallet", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "namecoind",
       version: "31.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "namecoin",
           repo: "namecoin-core",
           tag: nix.thunk(() => nix.str`nc${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkFlags: nix.thunk(() => ["LC_ALL=en_US.UTF-8"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Decentralized open source information registration and transfer system based on the Bitcoin cryptocurrency",
         homepage: "https://namecoin.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -25,9 +25,9 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.1";
       const gemdir = nix.path(here, "./.");
       const gemConfig = nix.thunk(() => nix.update(defaultGemConfig, {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "ronin-code-asm": (attrs) => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           dontBuild: false,
           postPatch: nix.thunk(() => nix.str`substituteInPlace lib/ronin/code/asm/program.rb \\
   --replace "YASM::Command.run(" "YASM::Command.run(
@@ -37,12 +37,12 @@ export default nix.lambda((args) => (() => {
       }));
       const postBuild = "shopt -s extglob\nrm -f $out/bin/!(ronin*)\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "ronin")),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: ronin,
               command: "ronin --version",
               version: nix.thunk(() => nix.str`ronin ${version}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Free and Open Source Ruby toolkit for security research and development",
         homepage: "https://ronin-rb.dev",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         gemdir,

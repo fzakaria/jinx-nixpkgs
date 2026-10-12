@@ -58,20 +58,20 @@ config.nix:
 [2]: https://www.segger.com/purchase/licensing/
 `)))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/se/segger-jlink/package.nix:31:5");
     return nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: url,
         hash: nix.thunk(() => nix.attr(platform, "hash")),
         curlOpts: "--data accept_license_agreement=accepted",
       })));
   })());
-  const qt4_bundled = nix.thunk(() => nix.app(callPackage, nix.path(here, "./qt4-bundled.nix"), nix.thunk(() => ({ __proto__: pos$2, src: src, version: version }))));
+  const qt4_bundled = nix.thunk(() => nix.app(callPackage, nix.path(here, "./qt4-bundled.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, src: src, version: version }))));
   const buildAttrsLinux = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     nativeBuildInputs: nix.thunk(() => nix.concat([autoPatchelfHook], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(headless)), nix.thunk(() => [copyDesktopItems])))),
     buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(headless)), nix.thunk(() => [qt4_bundled]))),
     appendRunpaths: nix.thunk(() => [nix.thunk(() => nix.str`${udev}/lib`)]),
     desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(headless)), nix.thunk(() => nix.builtins.map((entry) => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: entry,
             exec: entry,
             icon: "applications-utilities",
@@ -119,7 +119,7 @@ runHook postInstall
 `),
   }));
   const buildAttrsDarwin = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     nativeBuildInputs: nix.thunk(() => [cpio, gzip, makeWrapper, rsync, xar]),
     unpackPhase: "runHook preUnpack\n\nxar -xf $src\n\nrunHook postUnpack\n",
     installPhase: nix.thunk(() => nix.str`runHook preInstall
@@ -149,15 +149,15 @@ runHook postInstall
   }));
   const buildAttrs = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? nix.force(buildAttrsLinux) : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.force(buildAttrsDarwin) : nix.builtins.throw("platform not supported"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => nix.update(buildAttrs, {
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "segger-jlink",
       src: src,
       version: version,
       dontConfigure: true,
       dontBuild: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$6, updateScript: nix.path(here, "./update.py") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$6, updateScript: nix.path(here, "./update.py") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "J-Link Software and Documentation pack",
         homepage: "https://www.segger.com/downloads/jlink/#J-LinkSoftwareAndDocumentationPack",
         changelog: "https://www.segger.com/downloads/jlink/ReleaseNotes_JLink.html",

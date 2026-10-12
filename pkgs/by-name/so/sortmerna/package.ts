@@ -20,18 +20,18 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const rocksdb = rocksdb_8_3;
   const concurrentqueue = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "cameron314",
       repo: "concurrentqueue",
       tag: "v1.0.4",
       hash: "sha256-MkhlDme6ZwKPuRINhfpv7cxliI2GU3RmTfC6O0ke/IQ=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sortmerna",
       version: "4.3.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "sortmerna",
           repo: "sortmerna",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./ssw-stdbool.patch")]),
       postPatch: "# Fix missing pthread dependency for the main binary.\nsubstituteInPlace src/sortmerna/CMakeLists.txt \\\n  --replace-fail \"target_link_libraries(sortmerna\" \\\n    \"target_link_libraries(sortmerna Threads::Threads\"\n\n# Fix gcc-13 build by adding missing <cstdint> includes:\n#   https://github.com/sortmerna/sortmerna/issues/412\nsed -e '1i #include <cstdint>' -i include/kseq_load.hpp\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tools for filtering, mapping, and OTU-picking from shotgun genomics data",
         mainProgram: "sortmerna",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

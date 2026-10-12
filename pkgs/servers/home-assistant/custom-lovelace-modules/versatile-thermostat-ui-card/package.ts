@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "versatile-thermostat-ui-card";
       const version = "3.4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jmcollin78",
           repo: "versatile-thermostat-ui-card",
           rev: nix.thunk(() => nix.str`${version}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-PRgt6s+5dGHzn0pnZJDVXBKMXM+4wwYtRTdl0QwA9Dw=";
       const installPhase = "runHook preInstall\n\nmkdir $out\ninstall -m0644 dist/versatile-thermostat-ui-card.js $out\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/jmcollin78/versatile-thermostat-ui-card/releases/tag/${version}`),
         description: "Home Assistant card for the Versatile Thermostat integration",
         homepage: "https://github.com/jmcollin78/versatile-thermostat-ui-card",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const kernel = nix.arg($, "kernel");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dddvb",
       version: "0.9.40a",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DigitalDevices",
           repo: "dddvb",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: "sed -i '/depmod/d' Makefile\n",
       nativeBuildInputs: nix.thunk(() => nix.sel(kernel, "moduleBuildDependencies")),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-format-security" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-format-security" })),
       makeFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`KDIR=${nix.sel(kernel, "dev")}/lib/modules/${nix.sel(kernel, "modDirVersion")}/build`),
         "MDIR=$(out)",
       ]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/DigitalDevices/dddvb",
         description: "Device driver for all Digital Devices DVB demodulator and modulator cards",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

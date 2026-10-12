@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const vimUtils = nix.arg($, "vimUtils");
   const parinfer_rust = nix.arg($, "parinfer-rust");
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: nix.thunk(() => nix.attr(parinfer_rust, "pname")),
       version: nix.thunk(() => nix.attr(parinfer_rust, "version")),
       meta: nix.thunk(() => nix.attr(parinfer_rust, "meta")),

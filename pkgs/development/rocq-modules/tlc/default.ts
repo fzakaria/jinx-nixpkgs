@@ -25,65 +25,65 @@ export default nix.lambda((args) => (() => {
   const stdlib = nix.arg($, "stdlib");
   const version = nix.argOr($, "version", () => null);
   return nix.app(nix.sel(nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: "tlc",
       owner: "charguer",
       version: version,
-      displayVersion: nix.thunk(() => ({ __proto__: pos$1, tlc: false })),
+      displayVersion: nix.thunk(() => ({ [nix.POS]: pos$1, tlc: false })),
       defaultVersion: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.13", "8.16")),
               out: "20211215",
             })),
             nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.12", "8.13")),
               out: "20210316",
             })),
             nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.10", "8.12")),
               out: "20200328",
             })),
             nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.6", "8.12")),
               out: "20181116",
             })),
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         "20211215": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           hash: "sha256:0m4d4jhdcyq8p2gpz9j3nd6jqzmz2bjmbpc0q06b38b8i550mamp",
         })),
         "20210316": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           hash: "sha256:1hlavnx20lxpf2iydbbxqmim9p8wdwv4phzp9ypij93yivih0g4a",
         })),
         "20200328": nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           hash: "sha256:16vzild9gni8zhgb3qhmka47f8zagdh03k6nssif7drpim8233lx",
         })),
         "20181116": nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           hash: "sha256:032lrbkxqm9d3fhf6nv1kq2z0mqd3czv3ijlbsjwnfh12xck4vpl",
         })),
       })),
       propagatedBuildInputs: nix.thunk(() => [stdlib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         homepage: "http://www.chargueraud.org/softs/tlc/",
         description: "Non-constructive library for Coq",
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),
       })),
     }))), "overrideAttrs"), (x) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(x, "version")), "20210316")) && nix.asBool(!nix.eq(nix.sel(x, "version"), "dev")))), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         installFlags: nix.thunk(() => [
           nix.thunk(() => nix.str`CONTRIB=$(out)/lib/coq/${nix.sel(coq, "coq-version")}/user-contrib`),
         ]),

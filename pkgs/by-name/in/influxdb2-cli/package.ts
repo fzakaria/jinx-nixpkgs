@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const version = "2.8.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "influxdata",
       repo: "influx-cli",
       rev: nix.thunk(() => nix.str`v${version}`),
       sha256: "sha256-3DCvWaiGLw9OSs/b9za1jgrPDo2Txw5b5h46ElTMEks=",
     }))));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "influx-cli",
       version: version,
       src: src,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd influx \\\n  --bash <($out/bin/influx completion bash) \\\n  --zsh  <($out/bin/influx completion zsh)\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI for managing resources in InfluxDB v2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://influxdata.com/",

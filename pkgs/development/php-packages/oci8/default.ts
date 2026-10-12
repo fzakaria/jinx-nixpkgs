@@ -16,20 +16,20 @@ export default nix.lambda((args) => (() => {
   const oracle_instantclient = nix.arg($, "oracle-instantclient");
   const php = nix.arg($, "php");
   const versionData = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(php, "version")), "8.1")) ? {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     version: "3.0.1",
     sha256: "108ds92620dih5768z19hi0jxfa7wfg5hdvyyvpapir87c0ap914",
   } : (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(php, "version")), "8.2")) ? {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     version: "3.2.1",
     sha256: "sha256-zyF703DzRZDBhlNFFt/dknmZ7layqhgjG1/ZDN+PEsg=",
   } : {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     version: "3.4.1",
     sha256: "sha256-xtYSvHUNVR38FblpNG9qZxZ/REHwiUOtqj5/2l2Q3Ss=",
   })));
   return nix.app(buildPecl, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "oci8",
       version: nix.thunk(() => nix.attr(versionData, "version")),
       sha256: nix.thunk(() => nix.attr(versionData, "sha256")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.str`sed -i -e 's|OCISDKMANINC=\`.*$|OCISDKMANINC="${nix.sel(oracle_instantclient, "dev")}/include"|' config.m4
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Extension for Oracle Database",
         license: nix.thunk(() => nix.sel(lib, "licenses", "php301")),
         homepage: "https://pecl.php.net/package/oci8",

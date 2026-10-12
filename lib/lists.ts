@@ -71,9 +71,9 @@ export default nix.lambda((args) => (() => {
       return (nix.asBool(nix.lt(resultIndex, 0n)) ? nix.force(default$) : nix.force(resultIndex));
     })();
     const findFirst = nix.thunk(() => (() => {
-      const init_1 = nix.thunk(() => ({ __proto__: pos$1, found: false }));
+      const init_1 = nix.thunk(() => ({ [nix.POS]: pos$1, found: false }));
       return (pred) => (default$) => (list) => (() => {
-        const result = nix.thunk(() => nix.app(foldl$, (acc) => (el) => (nix.asBool((nix.asBool(!nix.asBool(nix.sel(acc, "found"))) && nix.asBool(nix.app(pred, el)))) ? { __proto__: pos$2, found: true, value: el } : nix.force(acc)), init_1, list));
+        const result = nix.thunk(() => nix.app(foldl$, (acc) => (el) => (nix.asBool((nix.asBool(!nix.asBool(nix.sel(acc, "found"))) && nix.asBool(nix.app(pred, el)))) ? { [nix.POS]: pos$2, found: true, value: el } : nix.force(acc)), init_1, list));
         return (nix.asBool(nix.sel(result, "found")) ? nix.sel(result, "value") : nix.force(default$));
       })();
     })());
@@ -94,7 +94,7 @@ export default nix.lambda((args) => (() => {
           ]));
         })(), nix.thunk(() => ({}))), "groupBy"));
     const zipListsWith = (f) => (fst) => (snd) => nix.app(genList, (n) => nix.app(f, nix.thunk(() => nix.app(elemAt, fst, n)), nix.thunk(() => nix.app(elemAt, snd, n))), nix.thunk(() => nix.app(min, nix.thunk(() => nix.app(length, fst)), nix.thunk(() => nix.app(length, snd)))));
-    const zipLists = nix.thunk(() => nix.app(zipListsWith, (fst) => (snd) => ({ __proto__: pos$3, fst: fst, snd: snd })));
+    const zipLists = nix.thunk(() => nix.app(zipListsWith, (fst) => (snd) => ({ [nix.POS]: pos$3, fst: fst, snd: snd })));
     const reverseList = (xs) => (() => {
       const lastIndex = nix.thunk(() => nix.sub(nix.app(length, xs), 1n));
       return nix.app(genList, (n) => nix.app(elemAt, xs, nix.thunk(() => nix.sub(lastIndex, n))), nix.thunk(() => nix.add(lastIndex, 1n)));
@@ -103,7 +103,7 @@ export default nix.lambda((args) => (() => {
       const dfs$ = (us) => (visited) => (rest) => (() => {
         const c = nix.thunk(() => nix.app(filter, (x) => nix.app(before, x, us), visited));
         const b = nix.thunk(() => nix.app(partition, (x) => nix.app(before, x, us), rest));
-        return (nix.asBool((nix.asBool(stopOnCycles) && nix.asBool(!nix.eq(c, [])))) ? { __proto__: pos$4, cycle: us, loops: c, visited: visited, rest: rest } : (nix.asBool(nix.eq(nix.sel(b, "right"), [])) ? { __proto__: pos$5, minimal: us, visited: visited, rest: rest } : nix.app(dfs$, nix.thunk(() => nix.app(head, nix.thunk(() => nix.sel(b, "right")))), nix.thunk(() => nix.concat([us], visited)), nix.thunk(() => nix.concat(nix.app(tail, nix.thunk(() => nix.sel(b, "right"))), nix.sel(b, "wrong"))))));
+        return (nix.asBool((nix.asBool(stopOnCycles) && nix.asBool(!nix.eq(c, [])))) ? { [nix.POS]: pos$4, cycle: us, loops: c, visited: visited, rest: rest } : (nix.asBool(nix.eq(nix.sel(b, "right"), [])) ? { [nix.POS]: pos$5, minimal: us, visited: visited, rest: rest } : nix.app(dfs$, nix.thunk(() => nix.app(head, nix.thunk(() => nix.sel(b, "right")))), nix.thunk(() => nix.concat([us], visited)), nix.thunk(() => nix.concat(nix.app(tail, nix.thunk(() => nix.sel(b, "right"))), nix.sel(b, "wrong"))))));
       })();
       return nix.app(dfs$, nix.thunk(() => nix.app(head, list)), [], nix.thunk(() => nix.app(tail, list)));
     })();
@@ -112,12 +112,12 @@ export default nix.lambda((args) => (() => {
       const recurse = (list) => (() => {
         const dfsthis = nix.thunk(() => nix.app(dfs, list));
         const toporest = nix.thunk(() => nix.app(recurse, nix.thunk(() => nix.concat(nix.sel(dfsthis, "visited"), nix.sel(dfsthis, "rest")))));
-        return (nix.asBool(nix.lt(nix.app(length, list), 2n)) ? { __proto__: pos$6, result: list } : (nix.asBool(nix.has(dfsthis, "cycle")) ? {
-          __proto__: pos$7,
+        return (nix.asBool(nix.lt(nix.app(length, list), 2n)) ? { [nix.POS]: pos$6, result: list } : (nix.asBool(nix.has(dfsthis, "cycle")) ? {
+          [nix.POS]: pos$7,
           cycle: nix.thunk(() => nix.concat(nix.app(reverseList, nix.thunk(() => nix.sel(dfsthis, "visited"))), [nix.thunk(() => nix.sel(dfsthis, "cycle"))])),
           loops: nix.thunk(() => nix.attr(dfsthis, "loops")),
         } : (nix.asBool(nix.has(toporest, "cycle")) ? nix.force(toporest) : {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           result: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(dfsthis, "minimal"))], nix.sel(toporest, "result"))),
         })));
       })();
@@ -187,7 +187,7 @@ export default nix.lambda((args) => (() => {
       return nix.app(genList, (i) => (nix.asBool(nix.eq(i, idx)) ? nix.force(newElem) : nix.app(elemAt, list, i)), nix.thunk(() => nix.app(length, list)));
     })();
     return {
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       head,
       tail,
       length,

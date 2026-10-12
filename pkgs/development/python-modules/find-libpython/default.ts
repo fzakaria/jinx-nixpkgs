@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ktbarrett",
           repo: "find_libpython",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["find_libpython"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Finds the libpython associated with your environment, wherever it may be hiding",
         changelog: nix.thunk(() => nix.str`https://github.com/ktbarrett/find_libpython/releases/tag/${nix.sel(src, "tag")}`),
         homepage: "https://github.com/ktbarrett/find_libpython",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "find_libpython",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

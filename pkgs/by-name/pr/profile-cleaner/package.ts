@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const bc = nix.arg($, "bc");
   const file = nix.arg($, "file");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "2.46",
       pname: "profile-cleaner",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "graysky2",
           repo: "profile-cleaner",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ wrapProgram $out/bin/profile-cleaner \\
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [parallel, sqlite, bc, file]))}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Reduces browser profile sizes by cleaning their sqlite databases",
         longDescription: "Use profile-cleaner to reduce the size of browser profiles by organizing\ntheir sqlite databases using sqlite3's vacuum and reindex functions. The\nterm \"browser\" is used loosely since profile-cleaner happily works on\nsome email clients and newsreaders too.\n",
         homepage: "https://github.com/graysky2/profile-cleaner",

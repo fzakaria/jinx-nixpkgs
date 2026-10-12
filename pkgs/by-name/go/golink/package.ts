@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "golink",
       version: "1.0.0-unstable-2026-07-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tailscale",
           repo: "golink",
           rev: "30223ca66c2dad29356b6266254e1bf4af921f28",
@@ -28,17 +28,17 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-7Ykb2YPrHwwBrWuufFwGTT9mQFzIRkiBiNlLvqpr+wo=",
       overrideModAttrs: (old) => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         postBuild: nix.thunk(() => nix.str`patch -p0 < ${nix.path(here, "./darwin-sandbox-fix.patch")}
 `),
       }),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Private shortlink service for tailnets",
         homepage: "https://github.com/tailscale/golink",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

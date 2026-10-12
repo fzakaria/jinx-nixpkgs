@@ -39,12 +39,12 @@ export default nix.lambda((args) => (() => {
   const gst_plugins_ugly = nix.arg($, "gst-plugins-ugly");
   const apple_sdk_gstreamer = nix.arg($, "apple-sdk_gstreamer");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "gst-plugins-ugly",
       version: "1.28.7",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://gstreamer.freedesktop.org/src/gst-plugins-ugly/gst-plugins-ugly-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-K2gRcN3CK2soPK/u1I9CfDChcFaXSmqe0TfDVOD3cww=",
         })))),
@@ -68,21 +68,21 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs \\\n  scripts/extract-release-date-from-doap-file.py\n",
       preFixup: "moveToOutput \"lib/gstreamer-1.0/pkgconfig\" \"$dev\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          lgplOnly: nix.thunk(() => nix.app(nix.sel(gst_plugins_ugly, "override"), nix.thunk(() => ({ __proto__: pos$2, enableGplPlugins: false })))),
+          [nix.POS]: pos$3,
+          lgplOnly: nix.thunk(() => nix.app(nix.sel(gst_plugins_ugly, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, enableGplPlugins: false })))),
         })),
-        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ __proto__: pos$4, "odd-unstable": true })))),
+        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, "odd-unstable": true })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Gstreamer Ugly Plugins",
         homepage: "https://gstreamer.freedesktop.org",
         longDescription: "a set of plug-ins that have good quality and correct functionality,\nbut distributing them might pose problems.  The license on either\nthe plug-ins or the supporting libraries might not be how we'd\nlike. The code might be widely known to present patent problems.\n",
         license: nix.thunk(() => (nix.asBool(enableGplPlugins) ? nix.sel(lib, "licenses", "gpl2Plus") : nix.sel(lib, "licenses", "lgpl2Plus"))),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           cpeParts: nix.thunk(() => nix.app(nix.sel(gstreamer, "passthru", "gstreamerCpeParts"), nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

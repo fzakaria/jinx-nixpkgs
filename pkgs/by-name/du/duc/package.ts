@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const enableCairo = nix.argOr($, "enableCairo", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   nix.assert_((!nix.asBool(enableCairo) || nix.asBool((nix.asBool(!nix.eq(cairo, null)) && nix.asBool(!nix.eq(pango, null))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/du/duc/package.nix:14:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "duc",
       version: "1.4.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zevv",
           repo: "duc",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([tokyocabinet, ncurses], nix.app(nix.sel(lib, "optionals"), enableCairo, nix.thunk(() => [cairo, pango])))),
       configureFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(enableCairo)), nix.thunk(() => ["--disable-x11", "--disable-cairo"]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://duc.zevv.nl/",
         description: "Collection of tools for inspecting and visualizing disk usage",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

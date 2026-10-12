@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const oslotest = nix.arg($, "oslotest");
   const stestr = nix.arg($, "stestr");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "oslotest-tests",
       version: nix.thunk(() => nix.attr(oslotest, "version")),
       src: nix.thunk(() => nix.attr(oslotest, "src")),

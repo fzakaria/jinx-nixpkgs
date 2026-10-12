@@ -22,25 +22,25 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "uvcvideo"));
-  const uvcdynctrl_udev_rules = (packages) => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./uvcdynctrl-udev-rules.nix"), nix.thunk(() => ({ __proto__: pos$1, drivers: packages, udevDebug: false })));
+  const uvcdynctrl_udev_rules = (packages) => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./uvcdynctrl-udev-rules.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, drivers: packages, udevDebug: false })));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         uvcvideo: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           dynctrl: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to enable {command}`uvcvideo` dynamic controls.\n\nNote that enabling this brings the {command}`uvcdynctrl` tool\ninto your environment and register all dynamic controls from\nspecified {command}`packages` to the {command}`uvcvideo` driver.\n",
               })))),
             packages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ pkgs.tiscamera ]")),
                 description: "List of packages containing {command}`uvcvideo` dynamic controls\nrules. All files found in\n{file}`«pkg»/share/uvcdynctrl/data`\nwill be included.\n\nNote that these will serve as input to the {command}`libwebcam`\npackage which through its own {command}`udev` rule will register\nthe dynamic controls from specified packages to the {command}`uvcvideo`\ndriver.\n",
@@ -51,18 +51,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "dynctrl", "enable")), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         services: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           udev: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             packages: nix.thunk(() => [
               nix.thunk(() => nix.app(uvcdynctrl_udev_rules, nix.thunk(() => nix.sel(cfg, "dynctrl", "packages")))),
             ]),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libwebcam"))]),
         })),
       })))),

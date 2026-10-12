@@ -20,24 +20,24 @@ export default nix.lambda((args) => (() => {
   const inInitrd = nix.thunk(() => nix.selOr(config, () => false, "boot", "initrd", "supportedFilesystems", "cifs"));
   const mount_cifs = nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(pkgs, "cifs-utils")))}/sbin/mount.cifs`);
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     config: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       system: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         fsPackages: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.selOr(config, () => false, "boot", "supportedFilesystems", "cifs")), nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "cifs-utils"))]))),
       })),
       boot: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         initrd: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           availableKernelModules: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), inInitrd, nix.thunk(() => ["cifs", "nls_utf8", "hmac", "md4", "ecb", "des_generic", "sha256"]))),
           extraUtilsCommands: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => (nix.asBool(inInitrd) && nix.asBool(!nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable"))))), nix.thunk(() => nix.str`copy_bin_and_libs ${mount_cifs}
 `))),
           systemd: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraBin: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               "mount.cifs": nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), inInitrd, mount_cifs)),
             })),
           })),

@@ -55,10 +55,10 @@ export default nix.lambda((args) => (() => {
     const projectFiles = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(projectFile, null)), nix.thunk(() => nix.app(nix.sel(lib, "toList"), projectFile))));
     const testProjectFiles = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(testProjectFile, null)), nix.thunk(() => nix.app(nix.sel(lib, "toList"), testProjectFile))));
     const platforms = nix.thunk(() => (nix.asBool(nix.has(args_2, "meta", "platforms")) ? nix.app(nix.sel(lib, "intersectLists"), nix.thunk(() => nix.sel(args_2, "meta", "platforms")), nix.thunk(() => nix.sel(dotnet_sdk_1, "meta", "platforms"))) : nix.sel(dotnet_sdk_1, "meta", "platforms")));
-    const hook = nix.thunk(() => nix.app(callPackage, nix.path(here, "./hook"), nix.thunk(() => ({ __proto__: pos$1, "dotnet-runtime": dotnet_runtime }))));
+    const hook = nix.thunk(() => nix.app(callPackage, nix.path(here, "./hook"), nix.thunk(() => ({ [nix.POS]: pos$1, "dotnet-runtime": dotnet_runtime }))));
     const systemToDotnetRid = nix.thunk(() => nix.attr(dotnetCorePackages, "systemToDotnetRid"));
     return nix.update(args_2, {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       dotnetInstallPath: installPath,
       dotnetExecutables: executables,
       dotnetBuildType: buildType,
@@ -101,7 +101,7 @@ export default nix.lambda((args) => (() => {
       dontStrip: nix.thunk(() => nix.selOr(args_2, () => true, "dontStrip")),
       dontWrapGApps: nix.thunk(() => nix.selOr(args_2, () => true, "dontWrapGApps")),
       propagatedSandboxProfile: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(dotnet_runtime, null)), nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(dotnet_runtime, "__propagatedSandboxProfile")))))),
-      meta: nix.thunk(() => nix.update(nix.selOr(args_2, () => ({}), "meta"), { __proto__: pos$2, platforms: platforms })),
+      meta: nix.thunk(() => nix.update(nix.selOr(args_2, () => ({}), "meta"), { [nix.POS]: pos$2, platforms: platforms })),
     });
   })(), formals$2);
   return (fnOrAttrs) => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => (() => {
@@ -128,12 +128,12 @@ export default nix.lambda((args) => (() => {
           "dotnet-sdk",
         ])));
       return (nix.asBool(!nix.eq(nugetDeps, null)) ? nix.app(addNuGetDeps, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           nugetDeps: nugetDeps,
           overrideFetchAttrs: (old) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.selOr(args$, () => null, "runtimeId"), null)), nix.thunk(() => (() => {
               const dotnetRuntimeIds = nix.thunk(() => nix.builtins.map((system) => nix.app(nix.sel(dotnetCorePackages, "systemToDotnetRid"), system), nix.thunk(() => nix.sel(meta, "platforms"))));
               const buildInputs = nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), nix.app(nix.sel(lib, "concatLists"), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.app(nix.sel(lib, "getAttrs"), dotnetRuntimeIds, nix.thunk(() => nix.sel(dotnet_sdk_1, "targetPackages")))))))));
-              return { __proto__: pos$4, dotnetRuntimeIds, buildInputs };
+              return { [nix.POS]: pos$4, dotnetRuntimeIds, buildInputs };
             })())),
         })), args$$, finalAttrs) : nix.force(args$$));
     })());

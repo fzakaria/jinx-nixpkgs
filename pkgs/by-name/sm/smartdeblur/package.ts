@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fftw = nix.arg($, "fftw");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "smartdeblur",
       version: "0-unstable-2018-10-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Y-Vladimir",
           repo: "SmartDeblur",
           rev: "5af573c7048ac49ef68e638f3405d3a571b96a8b",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(libsForQt5, "qtbase")), fftw]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 ./SmartDeblur -t $out/bin\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/Y-Vladimir/SmartDeblur",
         description: "Tool for restoring blurry and defocused images",
         mainProgram: "SmartDeblur",

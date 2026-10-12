@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const sdl12_compat = nix.arg($, "sdl12-compat");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "blackvoxel",
       version: "2.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Blackvoxel",
           repo: "Blackvoxel",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "install -Dm644 blackvoxel.png $out/share/icons/blackvoxel.png\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "blackvoxel",
             desktopName: "Blackvoxel",
             exec: "blackvoxel",
@@ -55,11 +55,11 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Sci-Fi game with industry and automation",
         homepage: "https://www.blackvoxel.com",
         changelog: nix.thunk(() => nix.str`https://github.com/Blackvoxel/Blackvoxel/releases/tag/${nix.sel(finalAttrs, "version")}`),

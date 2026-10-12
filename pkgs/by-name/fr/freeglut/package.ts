@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "freeglut",
       version: "3.8.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/freeglut/freeglut-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Z03K/yUBDgnkUK7EWLiHDZ6YxG+ZU420V6tlmzIdmYk=",
         })))),
@@ -41,14 +41,14 @@ export default nix.lambda((args) => (() => {
           "-DFREEGLUT_BUILD_DEMOS:BOOL=OFF",
         ]))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Create and manage windows containing OpenGL contexts",
         longDescription: "FreeGLUT is an open source alternative to the OpenGL Utility Toolkit\n(GLUT) library. GLUT (and hence FreeGLUT) allows the user to create and\nmanage windows containing OpenGL contexts on a wide range of platforms\nand also read the mouse, keyboard and joystick functions. FreeGLUT is\nintended to be a full replacement for GLUT, and has only a few\ndifferences.\n",
         homepage: "https://freeglut.sourceforge.net/",

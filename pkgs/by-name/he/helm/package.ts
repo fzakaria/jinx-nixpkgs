@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const libGLU = nix.arg($, "libGLU");
   const libGL = nix.arg($, "libGL");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "helm",
       version: "0.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mtytel",
           repo: "helm",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,21 +59,21 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CXXFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-DHAVE_LROUND", "-fpermissive"]))),
       })),
       enableParallelBuilding: true,
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`DESTDIR=${nix.builtins.placeholder("out")}`)]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/mtytel/helm/commit/cb611a80bd5a36d31bfc31212ebbf79aa86c6f08.patch",
             hash: "sha256-s0eiE5RziZGdInSUOYWR7duvQnFmqf8HO+E7lnVCQsQ=",
           })))),
       ]),
       postPatch: "substituteInPlace Makefile \\\n  --replace-fail \"usr/\" \"\"\n\nsubstituteInPlace src/common/load_save.cpp \\\n  --replace-fail \"/usr/share/\" \"$out/share/\"\n\nsubstituteInPlace JUCE/modules/juce_audio_formats/codecs/flac/libFLAC/cpu.c \\\n  --replace-fail \"__sigemptyset(&sigill_sse.sa_mask);\" \"sigemptyset(&sigill_sse.sa_mask);\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://tytel.org/helm",
         description: "Free, cross-platform, polyphonic synthesizer",
         longDescription: "A free, cross-platform, polyphonic synthesizer.\nFeatures:\n  32 voice polyphony\n  Interactive visual interface\n  Powerful modulation system with live visual feedback\n  Dual oscillators with cross modulation and up to 15 oscillators each\n  Unison and Harmony mode for oscillators\n  Oscillator feedback and saturation for waveshaping\n  12 different waveforms\n  7 filter types with keytracking\n  2 monophonic and 1 polyphonic LFO\n  Step sequencer\n  Lots of modulation sources including polyphonic aftertouch\n  Simple arpeggiator\n  Effects: Formant filter, stutter, delay\n",

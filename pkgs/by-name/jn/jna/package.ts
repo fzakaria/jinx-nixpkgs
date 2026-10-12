@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const jdk = nix.arg($, "jdk");
   const stripJavaArchivesHook = nix.arg($, "stripJavaArchivesHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jna",
       version: "5.19.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "java-native-access",
           repo: "jna",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\nrm -r dist # remove prebuilt files\nant dist\nrunHook postBuild\n",
       installPhase: "runHook preInstall\ninstall -Dm444 -t $out/share/java dist/jna{,-platform}.jar\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/java-native-access/jna/blob/${nix.sel(finalAttrs, "version")}/CHANGES.md`),
         description: "Java Native Access",
         homepage: "https://github.com/java-native-access/jna",

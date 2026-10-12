@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const mesa = nix.arg($, "mesa");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "glew",
       version: "2.3.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/glew/glew-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-tkeQ+UuSas1+j4TF1gAKhstDlnvR5oiwMIkHl5nJ6Ik=",
         })))),
@@ -40,14 +40,14 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => nix.concat(["-DBUILD_SHARED_LIBS=ON"], nix.app(nix.sel(lib, "optional"), enableEGL, "-DGLEW_EGL=ON"))),
       postInstall: "moveToOutput lib/cmake \"${!outputDev}\"\nmoveToOutput lib/pkgconfig \"${!outputDev}\"\n\ncat >> \"${!outputDev}\"/lib/cmake/glew/glew-config.cmake <<EOF\n# nixpkg's workaround for a cmake bug\n# https://discourse.cmake.org/t/the-findglew-cmake-module-does-not-set-glew-libraries-in-some-cases/989/3\nset(GLEW_VERSION \"$version\")\nset(GLEW_LIBRARIES GLEW::glew\\${_glew_target_postfix})\nget_target_property(GLEW_INCLUDE_DIRS GLEW::glew\\${_glew_target_postfix} INTERFACE_INCLUDE_DIRECTORIES)\nset_target_properties(GLEW::GLEW\\${_glew_target_postfix} PROPERTIES\n    IMPORTED_LINK_INTERFACE_LIBRARIES_RELEASE \"\"\n    IMPORTED_IMPLIB_RELEASE \"GLEW\"\n    IMPORTED_IMPLIB_DEBUG \"GLEW\"\n)\nEOF\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "OpenGL extension loading library for C/C++",
         homepage: "https://glew.sourceforge.net/",
         license: nix.thunk(() => (() => {

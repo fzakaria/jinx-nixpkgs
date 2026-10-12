@@ -16,8 +16,8 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(lib, "meta"));
   const getExe$ = nix.thunk(() => nix.attr(from, "getExe'"));
   return nix.app(writeShellApplication, nix.thunk(() => ({
-      __proto__: pos$2,
-      derivationArgs: nix.thunk(() => ({ __proto__: pos$1, __structuredAttrs: true, strictDeps: true })),
+      [nix.POS]: pos$2,
+      derivationArgs: nix.thunk(() => ({ [nix.POS]: pos$1, __structuredAttrs: true, strictDeps: true })),
       name: nix.thunk(() => nix.str`${cudaNamePrefix}-tests-cudnn-frontend-samples`),
       runtimeInputs: nix.thunk(() => [nix.thunk(() => nix.sel(cudnn_frontend, "samples")), jq]),
       text: nix.thunk(() => nix.str`args=( "${nix.app(getExe$, nix.thunk(() => nix.sel(cudnn_frontend, "samples")), "samples")}" )

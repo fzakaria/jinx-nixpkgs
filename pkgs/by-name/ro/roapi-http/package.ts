@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "roapi-http",
       version: "0.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "roapi",
           repo: "roapi",
           rev: nix.thunk(() => nix.str`roapi-http-v${nix.sel(finalAttrs, "version")}`),
@@ -30,10 +30,10 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildNoDefaultFeatures: true,
       buildFeatures: nix.thunk(() => ["rustls"]),
-      env: nix.thunk(() => ({ __proto__: pos$2, RUSTFLAGS: "--cap-lints warn" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTFLAGS: "--cap-lints warn" })),
       checkFlags: nix.thunk(() => ["--skip=test_http2"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Create full-fledged APIs for static datasets without writing a single line of code",
         homepage: "https://roapi.github.io/docs/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

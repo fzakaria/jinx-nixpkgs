@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "gophernicus",
       version: "3.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gophernicus",
           repo: "gophernicus",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -72,7 +72,7 @@ sed -E -i '/^\\s+(chown|chmod)/d' Makefile.in
         nix.thunk(() => nix.str`--os=${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "mac" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? "linux" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isBSD")) ? "freebsd" : "autodetected")))}`),
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), systemdSupport, nix.thunk(() => ["--listener=systemd"])), nix.concat(nix.app(nix.sel(lib, "optionals"), xinetdSupport, nix.thunk(() => ["--listener=xinetd"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["--listener=mac"])))))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           HOSTCC: nix.thunk(() => nix.str`${nix.sel(buildPackages, "stdenv", "cc")}/bin/cc`),
           CC: nix.thunk(() => nix.str`${nix.sel(stdenv, "cc", "targetPrefix")}cc`),
         })))),
@@ -84,12 +84,12 @@ sed -E -i '/^\\s+(chown|chmod)/d' Makefile.in
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "-v",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => ({ __proto__: pos$3, nixos: nix.thunk(() => nix.sel(nixosTests, "gophernicus")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, nixos: nix.thunk(() => nix.sel(nixosTests, "gophernicus")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Modern full-featured (and hopefully) secure gopher daemon",
         homepage: "https://gophernicus.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/gophernicus/gophernicus/blob/${nix.sel(finalAttrs, "src", "tag")}/changelog`),

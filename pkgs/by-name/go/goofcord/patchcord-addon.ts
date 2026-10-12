@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "patchcord",
       version: "0-unstable-2026-03-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Milkshiift",
           repo: "patchcord",
           rev: "cb0d3d48f0c217e9621c48c576ec340fdfd9b9b7",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-/IbHvs9SEuulNcWkihwFwaFcqMM0rdFBVjCWgUu7dys=",
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Patcher for GoofCord",
         homepage: "https://github.com/Milkshiift/patchcord",
         license: nix.thunk(() => nix.sel(lib, "licenses", "osl3")),

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mozlz4a",
       version: "2022-03-19",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://gist.githubusercontent.com/Tblue/62ff47bef7f894e92ed5/raw/c12fce199a97ecb214eb913cc5d762eac2e92c57/mozlz4a.py",
           hash: "sha256-Igj9u6TmV+nIuSg8gI8zD4hTb/Iiog/3aB3DDk0Lqkg=",
         })))),
@@ -34,7 +34,7 @@ echo "'${python3}/bin/python' '$out/${nix.sel(python3, "sitePackages")}/mozlz4a.
 chmod a+x "$out/bin/mozlz4a"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Compression/decompression utility",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
         maintainers: nix.thunk(() => (() => {

@@ -9,6 +9,6 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const runCommandLocal = nix.arg($, "runCommandLocal");
   const maid = nix.arg($, "maid");
-  return nix.app(runCommandLocal, "test-maid-run", nix.thunk(() => ({ __proto__: pos$1, nativeBuildInputs: nix.thunk(() => [maid]) })), "mkdir -p $out/test\nexport HOME=$out\ncd $out\ntouch test/a.iso test/b.txt\ncat > rules.rb <<EOF\n  Maid.rules do\n    rule 'ISO' do\n      trash(dir('test/*.iso'))\n    end\n  end\nEOF\nmaid clean --rules rules.rb --force\n[ -f test/b.txt ] && [ ! -f test/a.iso ]\n");
+  return nix.app(runCommandLocal, "test-maid-run", nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [maid]) })), "mkdir -p $out/test\nexport HOME=$out\ncd $out\ntouch test/a.iso test/b.txt\ncat > rules.rb <<EOF\n  Maid.rules do\n    rule 'ISO' do\n      trash(dir('test/*.iso'))\n    end\n  end\nEOF\nmaid clean --rules rules.rb --force\n[ -f test/b.txt ] && [ ! -f test/a.iso ]\n");
 })(), formals$1);
 //# sourceMappingURL=test.ts.map

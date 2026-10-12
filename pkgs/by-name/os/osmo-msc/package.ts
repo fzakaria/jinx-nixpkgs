@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const osmo_hlr = nix.arg($, "osmo-hlr");
   const lksctp_tools = nix.arg($, "lksctp-tools");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "osmo-msc",
       version: "1.16.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "osmocom",
           repo: "osmo-msc",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       ]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Osmocom implementation of 3GPP Mobile Switching Centre (MSC)",
         mainProgram: "osmo-msc",
         homepage: "https://osmocom.org/projects/osmomsc/wiki",

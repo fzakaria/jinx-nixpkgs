@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const tmx2lua = nix.arg($, "tmx2lua");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "hawkthorne-journey",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hawkthorne",
           repo: "hawkthorne-journey",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +46,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "hawkthorne",
             exec: "hawkthorne",
             icon: "hawkthorne",
@@ -56,7 +56,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Journey to the Center of Hawkthorne - Community Fan Game",
         homepage: "https://projecthawkthorne.com",
         changelog: nix.thunk(() => nix.str`https://github.com/hawkthorne/hawkthorne-journey/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -103,12 +103,12 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w, "luasocket"))];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "mpv",
       version: "0.41.0",
       outputs: nix.thunk(() => ["out", "dev", "doc", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mpv-player",
           repo: "mpv",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -162,23 +162,23 @@ popd
       doInstallCheck: true,
       dontVersionCheck: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         luaEnv: luaEnv,
         lua: lua,
         vapoursynthSupport: vapoursynthSupport,
         vapoursynth: vapoursynth,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           mpv: nix.thunk(() => nix.attr(nixosTests, "mpv")),
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               moduleNames: nix.thunk(() => ["mpv"]),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://mpv.io",
         description: "General-purpose media player, fork of MPlayer and mplayer2",
         longDescription: "mpv is a free and open-source general-purpose video player, based on the\nMPlayer and mplayer2 projects, with great improvements above both.\n",

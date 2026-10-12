@@ -16,30 +16,30 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const fetchurl = nix.arg($, "fetchurl");
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     ath_regd_optional: nix.thunk(() => (() => {
       const name = "ath_regd_optional";
       const patch = nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.add(name, ".patch")),
           url: "https://github.com/openwrt/openwrt/raw/ed2015c38617ed6624471e77f27fbb0c58c8c660/package/kernel/mac80211/patches/ath/402-ath_regd_optional.patch",
           sha256: "1ssDXSweHhF+pMZyd6kSrzeW60eb6MO6tlf0il17RC0=",
           postFetch: "sed -i 's/CPTCFG_/CONFIG_/g' $out\nsed -i '/--- a\\/local-symbols/,$d' $out\n",
         }))));
-      return { __proto__: pos$2, name, patch };
+      return { [nix.POS]: pos$2, name, patch };
     })()),
     bridge_stp_helper: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "bridge-stp-helper",
       patch: nix.path(here, "./bridge-stp-helper.patch"),
     })),
     request_key_helper: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "request-key-helper",
       patch: nix.path(here, "./request-key-helper.patch"),
     })),
     libbpf_C23_compat: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: "c23-compat-libbpf",
       patch: nix.path(here, "./C23-compat-6.1.patch"),
     })),

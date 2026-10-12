@@ -55,21 +55,21 @@ export default nix.lambda((args) => (() => {
   const settingsFileUnformatted = nix.thunk(() => nix.app(nix.sel(format, "generate"), "discord-config-unsubstituted.yaml", nix.thunk(() => nix.sel(cfg, "settings"))));
   const default_token = "This value is generated when generating the registration";
   const settingsDefault = nix.thunk(() => ({
-    __proto__: pos$9,
-    homeserver: nix.thunk(() => ({ __proto__: pos$1, address: "", domain: "" })),
+    [nix.POS]: pos$9,
+    homeserver: nix.thunk(() => ({ [nix.POS]: pos$1, address: "", domain: "" })),
     appservice: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       address: "http://localhost:29334",
       hostname: "0.0.0.0",
       port: 29334n,
       database: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         type: "sqlite3",
         uri: nix.thunk(() => nix.str`file:${defaultDataDir}/mautrix-discord.db?_txlock=immediate`),
       })),
       id: "discord",
       bot: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         username: "discordbot",
         displayname: "Discord bridge bot",
         avatar: "mxc://maunium.net/nIdEykemnwdisvHbpxflpDlC",
@@ -78,29 +78,29 @@ export default nix.lambda((args) => (() => {
       hs_token: default_token,
     })),
     bridge: nix.thunk(() => ({
-      __proto__: pos$6,
-      permissions: nix.thunk(() => ({ __proto__: pos$5, "*": "relay" })),
+      [nix.POS]: pos$6,
+      permissions: nix.thunk(() => ({ [nix.POS]: pos$5, "*": "relay" })),
     })),
     logging: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       min_level: "info",
       writers: nix.thunk(() => [
-        nix.thunk(() => ({ __proto__: pos$7, type: "stdout", format: "pretty-colored", time_format: " " })),
+        nix.thunk(() => ({ [nix.POS]: pos$7, type: "stdout", format: "pretty-colored", time_format: " " })),
       ]),
     })),
   }));
   return {
-    __proto__: pos$36,
+    [nix.POS]: pos$36,
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         "mautrix-discord": nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Mautrix-Discord, a Matrix-Discord puppeting/relay-bot bridge")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "mautrix-discord", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               apply: nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), settingsDefault)),
               type: nix.thunk(() => nix.sel(format, "type")),
               default: settingsDefault,
@@ -108,21 +108,21 @@ export default nix.lambda((args) => (() => {
               description: "{file}`config.yaml` configuration as a Nix attribute set.\n\nConfiguration options should match those described in\n[example-config.yaml](https://github.com/mautrix/discord/blob/main/example-config.yaml).\n\nSecret tokens should be specified using {option}`environmentFile`\ninstead of this world-readable attribute set.\n",
             })))),
           registerToSynapse: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: nix.thunk(() => nix.sel(config, "services", "matrix-synapse", "enable")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.matrix-synapse.enable")),
               description: "Whether to add the bridge's app service registration file to\n`services.matrix-synapse.settings.app_service_config_files`.\n",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: defaultDataDir,
               defaultText: defaultDataDir,
               description: "Directory to store the bridge's data.",
             })))),
           environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "File containing environment variables for secret substitution.\nVariables in the config like `$VARIABLE` will be replaced.\n",
@@ -131,56 +131,56 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             assertion: nix.thunk(() => (nix.asBool(!nix.eq(nix.selOr(cfg, () => "", "settings", "homeserver", "address"), "")) && nix.asBool(!nix.eq(nix.selOr(cfg, () => "", "settings", "homeserver", "domain"), "")))),
             message: "services.mautrix-discord.settings.homeserver.{address,domain} must be set.",
           })),
         ]),
         users: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           users: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             "mautrix-discord": nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               isSystemUser: true,
               group: "mautrix-discord",
               home: dataDir,
               description: "Mautrix-Discord bridge user",
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$20, "mautrix-discord": nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$20, "mautrix-discord": nix.thunk(() => ({})) })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           "matrix-synapse": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "registerToSynapse")), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               settings: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 app_service_config_files: nix.thunk(() => [registrationFile]),
               })),
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d ${nix.sel(cfg, "dataDir")} 770 mautrix-discord mautrix-discord -`),
             ]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             "matrix-synapse": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "registerToSynapse")), nix.thunk(() => ({
-                __proto__: pos$27,
-                serviceConfig: nix.thunk(() => ({ __proto__: pos$26, SupplementaryGroups: nix.thunk(() => ["mautrix-discord"]) })),
+                [nix.POS]: pos$27,
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$26, SupplementaryGroups: nix.thunk(() => ["mautrix-discord"]) })),
                 wants: nix.thunk(() => ["mautrix-discord-registration.service"]),
                 after: nix.thunk(() => ["mautrix-discord-registration.service"]),
               })))),
             "mautrix-discord-registration": nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               description: "Mautrix-Discord registration generation service",
               wantedBy: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "registerToSynapse")), nix.thunk(() => ["multi-user.target"]))),
               before: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "registerToSynapse")), nix.thunk(() => ["matrix-synapse.service"]))),
@@ -257,7 +257,7 @@ umask $old_umask
 chmod 640 '${registrationFile}'
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 Type: "oneshot",
                 RemainAfterExit: true,
                 UMask: "027",
@@ -273,7 +273,7 @@ chmod 640 '${registrationFile}'
               restartTriggers: nix.thunk(() => [settingsFileUnformatted]),
             })),
             "mautrix-discord": nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               description: "Mautrix-Discord, a Matrix-Discord puppeting/relaybot bridge",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => nix.concat(["network-online.target"], serviceDependencies)),
@@ -283,7 +283,7 @@ chmod 640 '${registrationFile}'
                 nix.thunk(() => nix.sel(pkgs, "ffmpeg-headless")),
               ]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 Type: "simple",
                 User: "mautrix-discord",
                 Group: "mautrix-discord",
@@ -320,7 +320,7 @@ chmod 640 '${registrationFile}'
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$35,
+      [nix.POS]: pos$35,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "mistyttm"))];

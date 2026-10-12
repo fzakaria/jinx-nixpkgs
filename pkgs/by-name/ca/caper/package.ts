@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const gnum4 = nix.arg($, "gnum4");
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "caper",
       version: "0.9",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "niksu",
           repo: "caper",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\nCAPER_WITH_ENGLISH=yes bash build.sh caper.native\nrunHook postBuild\n",
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ncp caper.native $out/bin/caper\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for understanding and processing pcap (packet capture) expressions",
         longDescription: "Caper is a tool for understanding and processing \"pcap expressions\" (also known as *tcpdump filters*) which are used for network packet analysis.\nCaper can be used for:\n* Expanding out pcap expressions \"in full\" to understand their implicit features.\n* Reasoning about whether two expressions accept the same set of packets, or how their accepted packets differ.\n* Converting pcap expressions into BPF programs.\n* Converting between pcap expressions and English.\n\nMore info can be found in the Caper paper (https://www.nik.network/caper/pcap_semantics.pdf).\n",
         homepage: "https://gitlab.com/niksu/caper",

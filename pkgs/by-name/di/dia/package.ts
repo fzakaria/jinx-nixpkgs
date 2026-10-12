@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const xpm_pixbuf = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xpm-pixbuf",
       version: "0-unstable-2024-05-24",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           owner: "ZanderBrown",
           repo: "xpm-pixbuf",
@@ -47,17 +47,17 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config]),
       buildInputs: nix.thunk(() => [gdk_pixbuf]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
         homepage: "https://gitlab.gnome.org/ZanderBrown/xpm-pixbuf",
       })),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "dia",
       version: "0.97.2-unstable-2026-07-24",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           domain: "gitlab.gnome.org",
           owner: "GNOME",
           repo: "dia",
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([graphene, gtk3, libxml2, libxslt, python3, poppler, xpm_pixbuf], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [gtk_mac_integration_gtk3])))),
       postInstall: "substituteInPlace $out/share/thumbnailers/org.gnome.Dia.thumbnailer \\\n  --replace-fail \"TryExec=dia\" \"TryExec=$out/bin/dia\" \\\n  --replace-fail \"Exec=dia\" \"Exec=$out/bin/dia\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Gnome Diagram drawing software",
         mainProgram: "dia",
         homepage: "https://wiki.gnome.org/Apps/Dia",

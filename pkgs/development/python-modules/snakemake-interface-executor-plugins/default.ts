@@ -23,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const snakemake_executor_plugin_cluster_generic = nix.arg($, "snakemake-executor-plugin-cluster-generic");
   const snakemake_interface_executor_plugins = nix.arg($, "snakemake-interface-executor-plugins");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "snakemake-interface-executor-plugins",
       version: "9.4.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "snakemake",
           repo: "snakemake-interface-executor-plugins",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,14 +42,14 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["tests/tests.py"]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          pytest: nix.thunk(() => nix.app(nix.sel(snakemake_interface_executor_plugins, "overridePythonAttrs"), nix.thunk(() => ({ __proto__: pos$2, doCheck: true })))),
+          [nix.POS]: pos$3,
+          pytest: nix.thunk(() => nix.app(nix.sel(snakemake_interface_executor_plugins, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, doCheck: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Stable interface for interactions between Snakemake and its executor plugins",
         homepage: "https://github.com/snakemake/snakemake-interface-executor-plugins",
         changelog: nix.thunk(() => nix.str`https://github.com/snakemake/snakemake-interface-executor-plugins/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

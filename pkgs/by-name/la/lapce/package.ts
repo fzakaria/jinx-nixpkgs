@@ -47,11 +47,11 @@ export default nix.lambda((args) => (() => {
       wayland,
     ])));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "lapce",
       version: "0.4.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lapce",
           repo: "lapce",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-BFaR8jWdET2nInBkKZhnoqLCB1dnXH3pywkD1Cv5SuE=",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         OPENSSL_NO_VENDOR: 1n,
         RELEASE_TAG_NAME: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
       })),
@@ -75,11 +75,11 @@ patchelf --add-rpath "${nix.app(nix.sel(lib, "makeLibraryPath"), rpathLibs)}" $o
 ` : "mkdir $out/Applications\ncp -r extra/macos/Lapce.app $out/Applications\nln -s $out/bin $out/Applications/Lapce.app/Contents/MacOS\n")),
       dontPatchELF: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Lightning-fast and Powerful Code Editor written in Rust",
         homepage: "https://github.com/lapce/lapce",
         changelog: nix.thunk(() => nix.str`https://github.com/lapce/lapce/releases/tag/v${nix.sel(finalAttrs, "version")}`),

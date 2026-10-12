@@ -15,14 +15,14 @@ export default nix.lambda((args) => (() => {
   return nix.update(nix.app(nix.sel(lib, "makeScope"), nix.thunk(() => nix.sel(pkgs, "newScope")), (self) => (() => {
       const callPackage = nix.thunk(() => nix.attr(self, "callPackage"));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({})))),
         _gdkPixbufCacheBuilder_DO_NOT_USE: nix.thunk(() => nix.app(callPackage, nix.path(here, "./gdk-pixbuf-cache-builder.nix"), nix.thunk(() => ({})))),
-        gvfs: nix.thunk(() => nix.app(nix.sel(pkgs, "gvfs", "override"), nix.thunk(() => ({ __proto__: pos$1, gnomeSupport: true })))),
+        gvfs: nix.thunk(() => nix.app(nix.sel(pkgs, "gvfs", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, gnomeSupport: true })))),
         "nixos-gsettings-overrides": nix.thunk(() => nix.app(callPackage, nix.path(here, "./nixos/gsettings-overrides"), nix.thunk(() => ({})))),
       };
     })()), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       "libgnome-keyring": nix.thunk(() => nix.builtins.throw("The ‘gnome.libgnome-keyring’ was moved to top-level. Please use ‘pkgs.libgnome-keyring’ directly.")),
       libchamplain: nix.thunk(() => nix.builtins.throw("The ‘gnome.libchamplain’ was removed as unused. Please use ‘pkgs.libchamplain’ directly.")),
       libsoup: nix.thunk(() => nix.builtins.throw("The ‘gnome.libsoup’ was removed as unused. Please use ‘pkgs.libsoup’.")),

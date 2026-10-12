@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "2023.8.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "awkward_pandas",
           version: version,
           hash: "sha256-Vre3NSQVAkI6ya+0nbDdO7WQWlGlPN/kdunUMWqXX94=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["awkward_pandas"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Awkward Array Pandas Extension",
         homepage: "https://pypi.org/project/awkward-pandas/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

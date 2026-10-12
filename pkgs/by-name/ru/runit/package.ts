@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const static$ = nix.argOr($, "static", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "runit",
       version: "2.3.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://smarden.org/runit/${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Y08jyMTR1EAEO+D+ko3fkEYmKJ6Xv+fFgm6TqvLMb+k=",
         })))),
@@ -40,7 +40,7 @@ echo ${nix.sel(stdenv, "cc", "targetPrefix")}cc ${nix.app(nix.sel(lib, "optional
 `),
       installPhase: "mkdir -p $out/bin\ncp -t $out/bin $(< ../package/commands)\n\nmkdir -p $man/share/man\ncp -r ../man $man/share/man/man8\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "UNIX init scheme with service supervision",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         homepage: "http://smarden.org/runit",

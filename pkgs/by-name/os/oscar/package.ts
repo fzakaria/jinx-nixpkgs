@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "oscar",
       version: "2.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CrimsonNape",
           repo: "oscar-sql",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,14 +52,14 @@ substituteInPlace Building/Linux/OSCAR20.desktop \\
       qmakeFlags: nix.thunk(() => ["OSCAR_QT.pro"]),
       installPhase: "runHook preInstall\ninstall -Dm755 oscar/OSCAR20 -t \"$out/bin\"\n# help browser was removed 'temporarily' in https://gitlab.com/pholy/OSCAR-code/-/commit/57c3e4c33ccdd2d0eddedbc24c0e4f2969da3841\n# install -Dm644 oscar/Help/* -t \"$out/share/OSCAR20/Help\"\ninstall -Dm644 oscar/Html/* -t \"$out/share/OSCAR20/Html\"\ninstall -Dm644 oscar/Translations/* -t \"$out/share/OSCAR20/Translations\"\ninstall -Dm644 Building/Linux/OSCAR20.png -t \"$out/share/icons/hicolor/48x48/apps\"\ninstall -Dm644 Building/Linux/OSCAR20.svg -t \"$out/share/icons/hicolor/scalable/apps\"\ninstall -Dm644 Building/Linux/OSCAR20.desktop -t \"$out/share/applications\"\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex", "^v([0-9.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.sleepfiles.com/OSCAR/",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/CrimsonNape/oscar-sql/-/raw/${nix.sel(finalAttrs, "src", "tag")}/Htmldocs/release_notes.html`),
         description: "Software for reviewing and exploring data produced by CPAP and related machines used in the treatment of sleep apnea",

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sculpin";
       const version = "3.3.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sculpin",
           repo: "sculpin",
           tag: version,
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(php, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PHP static site generator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/sculpin/sculpin",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "sculpin",
       };
       })());
-      return { __proto__: pos$3, __structuredAttrs, pname, version, src, vendorHash, meta };
+      return { [nix.POS]: pos$3, __structuredAttrs, pname, version, src, vendorHash, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const bashNonInteractive = nix.arg($, "bashNonInteractive");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "keyutils",
       version: "1.6.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://git.kernel.org/pub/scm/linux/kernel/git/dhowells/keyutils.git/snapshot/keyutils-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ph1XBhNq5MBb1I+GGGvP29iN2L1RB+Phlckkz8Gzm7Q=",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./0001-Remove-unused-function-after_eq.patch"),
         nix.path(here, "./pkg-config-static.patch"),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://lore.kernel.org/keyrings/20230301134250.301819-1-hi@alyssa.is/raw",
             sha256: "1cbgwxq28fw5ldh38ngcs7xiqvpnmrw0hw9zzhbhb1hdxkavrc1s",
           })))),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "lib", "dev", "man"]),
       postPatch: "# https://github.com/archlinux/svntogit-packages/blob/packages/keyutils/trunk/reproducible.patch\nsubstituteInPlace Makefile \\\n  --replace-fail \\\n    'VCPPFLAGS\t:= -DPKGBUILD=\"\\\"$(shell date -u +%F)\\\"\"' \\\n    'VCPPFLAGS\t:= -DPKGBUILD=\"\\\"$(date -ud \"@$SOURCE_DATE_EPOCH\" +%F)\\\"\"'\n",
       enableParallelBuilding: true,
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "useLLVM")), nix.thunk(() => ({ __proto__: pos$3, NIX_LDFLAGS: "--undefined-version" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "useLLVM")), nix.thunk(() => ({ [nix.POS]: pos$3, NIX_LDFLAGS: "--undefined-version" })))),
       installFlags: nix.thunk(() => [
         "ETCDIR=$(out)/etc",
         "BINDIR=$(out)/bin",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       ]),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://people.redhat.com/dhowells/keyutils/",
         description: "Tools used to control the Linux kernel key management system",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

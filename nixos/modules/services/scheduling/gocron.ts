@@ -48,21 +48,21 @@ export default nix.lambda((args) => (() => {
   const defaultGroup = "gocron";
   const timeZone = nix.thunk(() => nix.sel(config, "time", "timeZone"));
   const hardeningOptions = nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       description: "Configuration for hardening the systemd service.",
       type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           options: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             ProtectHome: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 description: "Whether to make the home directories inaccessible to the service.\nSee <link xlink:href=\"https://www.freedesktop.org/software/systemd/man/latest/systemd.exec.html#ProtectHome=\"/> for more details.\n",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "either"), nix.thunk(() => nix.sel(lib, "types", "str")), nix.thunk(() => nix.sel(lib, "types", "bool")))),
                 default: true,
                 example: "read-only",
               })))),
             ProtectSystem: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 description: "Whether to make several system directories inaccessible to the service.\nSee <link xlink:href=\"https://www.freedesktop.org/software/systemd/man/latest/systemd.exec.html#ProtectSystem=\"/> for more details.\n",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "either"), nix.thunk(() => nix.sel(lib, "types", "str")), nix.thunk(() => nix.sel(lib, "types", "bool")))),
                 default: true,
@@ -72,41 +72,41 @@ export default nix.lambda((args) => (() => {
         })))),
     }))));
   return {
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         gocron: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "gocron, a task scheduler")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: nix.thunk(() => nix.sel(pkgs, "gocron")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.gocron")),
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
               description: "gocron package to use.\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               description: "Whether to open the firewall port to access the web ui.",
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               description: "Unix User to run the server under",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: defaultUser,
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "Unix Group to run the server under",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: defaultGroup,
             })))),
           extraGroups: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["backup"]),
@@ -114,7 +114,7 @@ export default nix.lambda((args) => (() => {
             })))),
           hardening: hardeningOptions,
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(settingsFormat, "type")),
               default: nix.thunk(() => ({})),
               description: "Configuration for gocron, see\n<link xlink:href=\"https://github.com/flohoss/gocron/blob/main/config/config.yaml\"/>\nfor supported settings.\n",
@@ -123,43 +123,43 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             assertion: nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "hasAttr"), "software", nix.thunk(() => nix.sel(cfg, "settings"))))),
             message: "Software installation configuration is only supported for traditional distros by upstream.",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           gocron: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             settings: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               time_zone: nix.thunk(() => (nix.asBool(!nix.eq(timeZone, null)) ? nix.force(timeZone) : nix.app(nix.sel(lib, "mkDefault"), "Etc/UTC"))),
               server: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 address: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "127.0.0.1")),
                 port: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 8156n)),
               })),
               db: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 location: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/var/lib/gocron")),
               })),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           services: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             gocron: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "gocron")))} --config '${gocronConf}'`),
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -198,17 +198,17 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           firewall: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "server", "port"))]))),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.sel(cfg, "user"), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               isSystemUser: true,
               group: nix.thunk(() => nix.attr(cfg, "group")),
             }))],
@@ -216,7 +216,7 @@ export default nix.lambda((args) => (() => {
           groups: nix.thunk(() => nix.attrsDyn({}, [[nix.sel(cfg, "group"), nix.thunk(() => ({}))]])),
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           buildDocsInSandbox: true,
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const libutil = nix.arg($, "libutil");
   const libxo = nix.arg($, "libxo");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "sbin/mount",
       buildInputs: nix.thunk(() => [libutil, libxo]),
     })));

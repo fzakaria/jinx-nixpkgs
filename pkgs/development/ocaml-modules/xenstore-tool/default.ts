@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const xenstore = nix.arg($, "xenstore");
   const lwt = nix.arg($, "lwt");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "xenstore-tool",
       src: nix.thunk(() => nix.attr(xenstore_transport, "src")),
       version: nix.thunk(() => nix.attr(xenstore_transport, "version")),
       buildInputs: nix.thunk(() => [camlp_streams, xenstore_transport, xenstore, lwt]),
       meta: nix.thunk(() => nix.update(nix.sel(xenstore_transport, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Command line tool for interfacing with xenstore",
       })),
     })));

@@ -45,72 +45,72 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "ytdl-sub"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "defelo"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       services: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         "ytdl-sub": nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "ytdl-sub", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "ytdl-sub",
               description: "User account under which ytdl-sub runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "ytdl-sub",
               description: "Group under which ytdl-sub runs.",
             })))),
           instances: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               default: nix.thunk(() => ({})),
               description: "Configuration for ytdl-sub instances.",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.lambda((args_1) => (() => {
                     const $_1 = nix.formals(args_1, formals$2);
                     const name = nix.arg($_1, "name");
                     return {
-                      __proto__: pos$18,
+                      [nix.POS]: pos$18,
                       options: nix.thunk(() => ({
-                        __proto__: pos$14,
+                        [nix.POS]: pos$14,
                         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "ytdl-sub instance")),
                         schedule: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$4,
+                            [nix.POS]: pos$4,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                             description: "How often to run ytdl-sub. See {manpage}`systemd.time(7)` for the format.",
                             default: null,
                             example: "0/6:0",
                           })))),
                         readWritePaths: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$5,
+                            [nix.POS]: pos$5,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                             description: "List of paths that ytdl-sub can write to.\n",
                             default: [],
                           })))),
                         config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$10,
+                            [nix.POS]: pos$10,
                             type: nix.thunk(() => nix.sel(settingsFormat, "type")),
                             description: "Configuration for ytdl-sub. See <https://ytdl-sub.readthedocs.io/en/latest/config_reference/config_yaml.html> for more information.",
                             default: nix.thunk(() => ({})),
                             example: nix.thunk(() => ({
-                              __proto__: pos$9,
+                              [nix.POS]: pos$9,
                               presets: nix.thunk(() => ({
-                                __proto__: pos$8,
+                                [nix.POS]: pos$8,
                                 "YouTube Playlist": nix.thunk(() => ({
-                                  __proto__: pos$7,
+                                  [nix.POS]: pos$7,
                                   download: "{subscription_value}",
                                   output_options: nix.thunk(() => ({
-                                    __proto__: pos$6,
+                                    [nix.POS]: pos$6,
                                     output_directory: "YouTube",
                                     file_name: "{channel}/{playlist_title}/{playlist_index_padded}_{title}.{ext}",
                                     maintain_download_archive: true,
@@ -120,25 +120,25 @@ export default nix.lambda((args) => (() => {
                             })),
                           })))),
                         subscriptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$13,
+                            [nix.POS]: pos$13,
                             type: nix.thunk(() => nix.sel(settingsFormat, "type")),
                             description: "Subscriptions for ytdl-sub. See <https://ytdl-sub.readthedocs.io/en/latest/config_reference/subscription_yaml.html> for more information.",
                             default: nix.thunk(() => ({})),
                             example: nix.thunk(() => ({
-                              __proto__: pos$12,
+                              [nix.POS]: pos$12,
                               "YouTube Playlist": nix.thunk(() => ({
-                                __proto__: pos$11,
+                                [nix.POS]: pos$11,
                                 "Some Playlist": "https://www.youtube.com/playlist?list=...",
                               })),
                             })),
                           })))),
                       })),
                       config: nix.thunk(() => ({
-                        __proto__: pos$17,
+                        [nix.POS]: pos$17,
                         config: nix.thunk(() => ({
-                          __proto__: pos$16,
+                          [nix.POS]: pos$16,
                           configuration: nix.thunk(() => ({
-                            __proto__: pos$15,
+                            [nix.POS]: pos$15,
                             working_directory: nix.thunk(() => nix.str`/run/ytdl-sub/${nix.app(nix.sel(utils, "escapeSystemdPath"), name)}`),
                           })),
                         })),
@@ -150,21 +150,21 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "instances"), {})), nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         systemd: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           services: nix.thunk(() => (() => {
             const mkService = (name) => (instance) => (() => {
               const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "config.yaml", nix.thunk(() => nix.sel(instance, "config"))));
               const subscriptionsFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "subscriptions.yaml", nix.thunk(() => nix.sel(instance, "subscriptions"))));
               return nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`ytdl-sub-${nix.app(nix.sel(utils, "escapeSystemdPath"), name)}`), nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   enable: nix.thunk(() => nix.attr(instance, "enable")),
                   wants: nix.thunk(() => ["network-online.target"]),
                   after: nix.thunk(() => ["network-online.target"]),
                   startAt: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(instance, "schedule"), null)), nix.thunk(() => nix.sel(instance, "schedule")))),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$23,
+                    [nix.POS]: pos$23,
                     User: nix.thunk(() => nix.sel(cfg, "user")),
                     Group: nix.thunk(() => nix.sel(cfg, "group")),
                     RuntimeDirectory: nix.thunk(() => nix.str`ytdl-sub/${nix.app(nix.sel(utils, "escapeSystemdPath"), name)}`),
@@ -200,16 +200,16 @@ export default nix.lambda((args) => (() => {
           })()),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "ytdl-sub")), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               "ytdl-sub": nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 isSystemUser: true,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
               })),
             })))),
-          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "ytdl-sub")), nix.thunk(() => ({ __proto__: pos$28, "ytdl-sub": nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "ytdl-sub")), nix.thunk(() => ({ [nix.POS]: pos$28, "ytdl-sub": nix.thunk(() => ({})) })))),
         })),
       })))),
   };

@@ -23,19 +23,19 @@ export default nix.lambda((args) => (() => {
   const version = "0.28.1";
   const tag = nix.thunk(() => nix.str`electron-v${version}-tetrio-v${nix.sel(tetrio_desktop, "version")}`);
   const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "UniQMG",
       repo: "tetrio-plus",
       tag: tag,
       hash: "sha256-+yOqHH/RtzjVKHVpVsw2RhECMskCyAyWnjBJNslbGaw=",
     }))));
   const offlineCache = nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       yarnLock: nix.thunk(() => nix.str`${src}/resources/desktop-ci/yarn.lock`),
       hash: "sha256-ZU4ObEpJwnC71V5IemG5XWNbX/xvlWdKsXulus7ec5A=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tetrio-plus",
       version: version,
       src: src,
@@ -82,7 +82,7 @@ runHook postBuild
 `),
       installPhase: "runHook preInstall\n\nasar pack out $out\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Modified TETR.IO desktop app.asar with many customization tools",
         longDescription: "To use this, `override` the `withTetrioPlus` attribute of `tetrio-desktop`.\n",
         homepage: "https://gitlab.com/UniQMG/tetrio-plus",

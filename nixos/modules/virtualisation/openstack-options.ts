@@ -26,35 +26,35 @@ export default nix.lambda((args) => (() => {
   const literalExpression = nix.thunk(() => nix.attr(lib, "literalExpression"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       openstack: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         zfs: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: false,
               internal: true,
               description: "Whether the OpenStack instance uses a ZFS root.\n",
             })))),
           datasets: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               description: "Datasets to create under the `tank` and `boot` zpools.\n\n**NOTE:** This option is used only at image creation time, and\ndoes not attempt to declaratively create or manage datasets\non an existing system.\n",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     options: nix.thunk(() => ({
-                      __proto__: pos$4,
+                      [nix.POS]: pos$4,
                       mount: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$2,
+                          [nix.POS]: pos$2,
                           description: "Where to mount this dataset.",
                           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                           default: null,
                         })))),
                       properties: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$3,
+                          [nix.POS]: pos$3,
                           description: "Properties to set on this dataset.",
                           type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "str")))),
                           default: nix.thunk(() => ({})),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
             })))),
         })),
         efi: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             default: nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isAarch64")),
             defaultText: nix.thunk(() => nix.app(literalExpression, "pkgs.stdenv.hostPlatform.isAarch64")),
             internal: true,
@@ -73,14 +73,14 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "openstack", "zfs", "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         networking: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           hostId: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "00000000")),
         })),
         fileSystems: nix.thunk(() => (() => {
           const mountable = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (value) => !nix.eq(nix.selOr(value, () => null, "mount"), null), nix.thunk(() => nix.sel(config, "openstack", "zfs", "datasets"))));
-          return nix.app(nix.sel(lib, "mapAttrs'"), (dataset) => (opts) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.sel(opts, "mount")), nix.thunk(() => ({ __proto__: pos$12, device: dataset, fsType: "zfs" }))), mountable);
+          return nix.app(nix.sel(lib, "mapAttrs'"), (dataset) => (opts) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.sel(opts, "mount")), nix.thunk(() => ({ [nix.POS]: pos$12, device: dataset, fsType: "zfs" }))), mountable);
         })()),
       })))),
   };

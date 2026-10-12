@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const electron = electron_39;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       pname: "logseq",
       version: "0.10.15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "logseq",
           repo: "logseq",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -54,16 +54,16 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-git-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             cljs_time_src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 owner: "logseq",
                 repo: "cljs-time",
                 rev: "5704fbf48d3478eedcf24d458c8964b3c2fd59a9",
                 hash: "sha256-IApL+SEm7AhbTN7J/1KiAKTx7rd53hchRh3jmPQ412g=",
               })))),
             bb_tasks_src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 owner: "logseq",
                 repo: "bb-tasks",
                 rev: "70d3edeb287f5cec7192e642549a401f7d6d4263",
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./bump-yauzl.patch"),
       ]),
       mavenRepo: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           name: nix.thunk(() => nix.str`logseq-${nix.sel(finalAttrs, "version")}-maven-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           patches: nix.thunk(() => nix.attr(finalAttrs, "patches")),
@@ -89,14 +89,14 @@ export default nix.lambda((args) => (() => {
           outputHashAlgo: "sha256",
         })))),
       yarnOfflineCacheRoot: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           name: nix.thunk(() => nix.str`logseq-${nix.sel(finalAttrs, "version")}-yarn-deps-root`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           patches: nix.thunk(() => nix.attr(finalAttrs, "patches")),
           hash: "sha256-xfAJ38shd92KdRfh/P7BH4eolZHQmzl4raoH1aZpGRk=",
         })))),
       yarnOfflineCacheStaticResources: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           name: nix.thunk(() => nix.str`logseq-${nix.sel(finalAttrs, "version")}-yarn-deps-static-resources`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           patches: nix.thunk(() => nix.attr(finalAttrs, "patches")),
@@ -104,7 +104,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-TFisR5GwcKmuddGhe0i6rAmr2wDWzed/mXnxVGARYK0=",
         })))),
       yarnOfflineCacheAmplify: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           name: nix.thunk(() => nix.str`logseq-${nix.sel(finalAttrs, "version")}-yarn-deps-amplify`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           patches: nix.thunk(() => nix.attr(finalAttrs, "patches")),
@@ -112,7 +112,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-IOhSwIf5goXCBDGHCqnsvWLf3EUPqq75xfQg55snIp4=",
         })))),
       yarnOfflineCacheTldraw: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           name: nix.thunk(() => nix.str`logseq-${nix.sel(finalAttrs, "version")}-yarn-deps-tldraw`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           patches: nix.thunk(() => nix.attr(finalAttrs, "patches")),
@@ -145,7 +145,7 @@ export default nix.lambda((args) => (() => {
           ])));
       })()),
       dontYarnInstallDeps: true,
-      env: nix.thunk(() => ({ __proto__: pos$10, ELECTRON_SKIP_BINARY_DOWNLOAD: "1", CI: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$10, ELECTRON_SKIP_BINARY_DOWNLOAD: "1", CI: "1" })),
       postConfigure: nix.thunk(() => nix.str`yarnOfflineCache="$yarnOfflineCacheRoot" yarnConfigHook
 
 cp resources/package.json static/package.json
@@ -240,7 +240,7 @@ makeWrapper $out/Applications/Logseq.app/Contents/MacOS/Logseq $out/bin/logseq
 `))), "runHook postInstall\n")),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             name: "Logseq",
             desktopName: "Logseq",
             exec: "logseq %U",
@@ -253,7 +253,7 @@ makeWrapper $out/Applications/Logseq.app/Contents/MacOS/Logseq $out/bin/logseq
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         description: "Privacy-first, open-source platform for knowledge management and collaboration",
         homepage: "https://github.com/logseq/logseq",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

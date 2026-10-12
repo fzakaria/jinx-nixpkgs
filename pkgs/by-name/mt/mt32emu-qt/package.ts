@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const libjack2 = nix.arg($, "libjack2");
   const qt6Packages = nix.arg($, "qt6Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "mt32emu-qt",
       version: "1.12.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "munt",
           repo: "munt",
           tag: nix.thunk(() => nix.str`mt32emu_qt_${nix.app(nix.sel(lib, "replaceString"), ".", "_", nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -56,16 +56,16 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir $out/Applications\nmv $out/bin/mt32emu-qt.app $out/Applications/\nln -s $out/{Applications/mt32emu-qt.app/Contents/MacOS,bin}/mt32emu-qt\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         unfixVersionScript: nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "unfix-mt32emu-qt-version",
             runtimeInputs: nix.thunk(() => [nix$]),
             text: "export UPDATE_NIX_ATTR_PATH=\"${UPDATE_NIX_ATTR_PATH:-mt32emu-qt}\"\n\npreUpdateScriptVersion=\"$(nix-instantiate . --eval --strict -A \"$UPDATE_NIX_ATTR_PATH.version\" | cut -d'\"' -f2)\"\nunfixedVersion=\"${preUpdateScriptVersion//\\./_}\"\n\npkgFile=\"$(nix-instantiate --eval -E \"with import ./. {}; (builtins.unsafeGetAttrPos \\\"version\\\" $UPDATE_NIX_ATTR_PATH).file\" | cut -d'\"' -f2)\"\n\nsed -i -e \"s/version = \\\"$preUpdateScriptVersion\\\"/version = \\\"$unfixedVersion\\\"/g\" \"$pkgFile\"\n",
           })))),
-        updateTagScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$3, "rev-prefix": "mt32emu_qt_" })))),
+        updateTagScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "mt32emu_qt_" })))),
         fixVersionScript: nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "fix-mt32emu-qt-version",
             runtimeInputs: nix.thunk(() => [nix$]),
             text: "export UPDATE_NIX_ATTR_PATH=\"${UPDATE_NIX_ATTR_PATH:-mt32emu-qt}\"\n\npostUpdateScriptVersion=\"$(nix-instantiate . --eval --strict -A \"$UPDATE_NIX_ATTR_PATH.version\" | cut -d'\"' -f2)\"\nfixedVersion=\"${postUpdateScriptVersion//_/.}\"\n\npkgFile=\"$(nix-instantiate --eval -E \"with import ./. {}; (builtins.unsafeGetAttrPos \\\"version\\\" $UPDATE_NIX_ATTR_PATH).file\" | cut -d'\"' -f2)\"\n\nsed -i -e \"s/version = \\\"$postUpdateScriptVersion\\\"/version = \\\"$fixedVersion\\\"/g\" \"$pkgFile\"\n",
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
           ]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://munt.sourceforge.net/",
         description: "Synthesizer application built on Qt and libmt32emu",
         mainProgram: "mt32emu-qt",

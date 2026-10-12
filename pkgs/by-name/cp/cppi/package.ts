@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cppi",
       version: "1.18",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/cppi/cppi-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-EqUFuYhj9sXPH3SfkIC+O0Kz6sWjW1ljDme+pyQTZMo=",
         })))),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://savannah.gnu.org/projects/cppi/",
         description: "C preprocessor directive indenter",
         mainProgram: "cppi",

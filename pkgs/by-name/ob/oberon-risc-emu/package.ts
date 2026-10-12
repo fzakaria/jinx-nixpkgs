@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const SDL2 = nix.arg($, "SDL2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "oberon-risc-emu",
       version: "2016.1-unstable-2020-08-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pdewacht",
           repo: "oberon-risc-emu",
           rev: "26c8ac5737c71811803c87ad51f1f0d6e62e71fe",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [SDL2]),
       installPhase: "mkdir -p $out/bin\nmv risc $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/pdewacht/oberon-risc-emu/",
         description: "Emulator for the Oberon RISC machine",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

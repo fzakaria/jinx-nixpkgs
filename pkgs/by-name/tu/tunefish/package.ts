@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const libxrandr = nix.arg($, "libxrandr");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tunefish",
       version: "0-unstable-2021-12-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jpcima",
           repo: "tunefish",
           rev: "c801c6cab63bb9e78e38ed69bd92024f2c667f00",
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib/{lv2,vst,vst3}\n\npushd src/tunefish4/Builds/LinuxMakefile/build\ncp -r \"Tunefish4.lv2\" $out/lib/lv2\ncp -r \"Tunefish4.vst3\" $out/lib/vst3\ncp \"Tunefish4.so\" $out/lib/vst\npopd\n\nrunHook postInstall\n",
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://tunefish-synth.com/",
         description: "Virtual analog synthesizer LV2 plugin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

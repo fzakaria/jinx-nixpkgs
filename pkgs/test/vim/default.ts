@@ -25,15 +25,15 @@ export default nix.lambda((args) => (() => {
   const vimPlugins = nix.arg($, "vimPlugins");
   const pkgs = nix.arg($, "pkgs");
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-      __proto__: pos$13,
-      vim_empty_config: nix.thunk(() => nix.app(nix.sel(vimUtils, "vimrcFile"), nix.thunk(() => ({ __proto__: pos$1, beforePlugins: "", customRC: "" })))),
+      [nix.POS]: pos$13,
+      vim_empty_config: nix.thunk(() => nix.app(nix.sel(vimUtils, "vimrcFile"), nix.thunk(() => ({ [nix.POS]: pos$1, beforePlugins: "", customRC: "" })))),
       test_vim_with_vim_nix_using_plug: nix.thunk(() => nix.app(nix.sel(vim_full, "customize"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           name: "vim-with-vim-addon-nix-using-plug",
           vimrcConfig: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             plug: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               plugins: nix.thunk(() => (() => {
                 const w = nix.withScope(vimPlugins, null);
                 return [nix.thunk(() => nix.lookup(w, "vim-nix"))];
@@ -42,14 +42,14 @@ export default nix.lambda((args) => (() => {
           })),
         })))),
       test_vim_with_vim_nix: nix.thunk(() => nix.app(nix.sel(vim_full, "customize"), nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           name: "vim-with-vim-addon-nix",
           vimrcConfig: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             packages: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               myVimPackage: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 start: nix.thunk(() => (() => {
                   const w = nix.withScope(vimPlugins, null);
                   return [nix.thunk(() => nix.lookup(w, "vim-nix"))];
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         })))),
       test_vim_plugin_dont_unpack: nix.thunk(() => (() => {
         const plugin = nix.thunk(() => nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             pname: "vim-plugin-dont-unpack-test",
             version: "0",
             src: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "probe.vim", "")),
@@ -76,8 +76,8 @@ mkdir -p "$out"
       })()),
       "test-all-plugins-have-vimPlugin-true": nix.thunk(() => (() => {
         const pkgsNoAliases = nix.thunk(() => nix.app(nix.sel(pkgs, "extend"), (self) => (prev) => ({
-            __proto__: pos$11,
-            config: nix.thunk(() => nix.update(nix.sel(prev, "config"), { __proto__: pos$10, allowAliases: false })),
+            [nix.POS]: pos$11,
+            config: nix.thunk(() => nix.update(nix.sel(prev, "config"), { [nix.POS]: pos$10, allowAliases: false })),
           })));
         const vimPluginsNoAliases = nix.thunk(() => nix.sel(pkgsNoAliases, "vimPlugins"));
         nix.assert_(nix.eq(nix.app(nix.sel(lib, "attrNames"), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (name) => (elem) => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "isDerivation"), elem)) && nix.asBool(!nix.eq(name, "corePlugins")))) && nix.asBool(!nix.eq(nix.selOr(elem, () => false, "passthru", "vimPlugin"), true))), vimPluginsNoAliases))), []), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/test/vim/default.nix:63:5");
@@ -85,7 +85,7 @@ mkdir -p "$out"
       })()),
       test_vim_plugin_install_phase: nix.thunk(() => (() => {
         const plugin = nix.thunk(() => nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             pname: "vim-plugin-install-phase-test",
             version: "0",
             src: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "vim-plugin-install-phase-test-src", nix.thunk(() => ({})), "mkdir -p $out/plugin $out/extra\ntouch $out/plugin/probe.vim $out/extra/unwanted\n")),

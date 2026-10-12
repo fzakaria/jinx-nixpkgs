@@ -12,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   const util_linux = nix.arg($, "util-linux");
-  const mkFuse = (args_1) => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), args_1)), nix.thunk(() => ({ __proto__: pos$1, "util-linux": util_linux })));
+  const mkFuse = (args_1) => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), args_1)), nix.thunk(() => ({ [nix.POS]: pos$1, "util-linux": util_linux })));
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     fuse_2: nix.thunk(() => nix.app(mkFuse, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         version: "2.9.9",
         hash: "sha256-dgjM6M7xk5MHi9xPyCyvF0vq0KM8UCsEYBcMhkrdvfs=",
       })))),
     fuse_3: nix.thunk(() => nix.app(mkFuse, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version: "3.18.2",
         hash: "sha256-QArQMSStVxwUo6CgU2JlXBdFWjzlGXfZk1AVGLGeE70=",
       })))),

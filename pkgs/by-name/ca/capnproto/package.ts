@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const nix_update_script = nix.arg($, "nix-update-script");
   const empty_libgcc_eh = nix.thunk(() => nix.app(nix.sel(clangStdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "empty-libgcc_eh",
       version: "0",
       dontUnpack: true,
@@ -34,7 +34,7 @@ ${nix.sel(clangStdenv, "cc", "targetPrefix")}ar r "$out"/lib/libgcc_eh.a
       const pname = "capnproto";
       const version = "1.4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "capnproto",
           repo: "capnproto",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -48,14 +48,14 @@ ${nix.sel(clangStdenv, "cc", "targetPrefix")}ar r "$out"/lib/libgcc_eh.a
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "WITH_FIBERS", true)),
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_BUILD_TYPE", "None")),
       ]);
-      const env = nix.thunk(() => ({ __proto__: pos$3, CXXFLAGS: "-std=c++20" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$3, CXXFLAGS: "-std=c++20" }));
       const separateDebugInfo = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://capnproto.org/",
         description: "Cap'n Proto cerealization protocol",
         longDescription: "Cap’n Proto is an insanely fast data interchange format and\ncapability-based RPC system. Think JSON, except binary. Or think Protocol\nBuffers, except faster.\n",
@@ -64,7 +64,7 @@ ${nix.sel(clangStdenv, "cc", "targetPrefix")}ar r "$out"/lib/libgcc_eh.a
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "lix"))]),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

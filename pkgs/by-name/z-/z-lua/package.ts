@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const lua52Packages = nix.arg($, "lua52Packages");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "z-lua",
       version: "1.8.25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "skywind3000",
           repo: "z.lua",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ ln -s $out/bin/z.lua $out/bin/z
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/skywind3000/z.lua",
         description: "New cd command that helps you navigate faster by learning your habits",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

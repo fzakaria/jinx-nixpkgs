@@ -15,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const version = nix.arg($, "version");
   const withPluginCAPI = nix.arg($, "withPluginCAPI");
   return nix.app(mkMesonLibrary, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "nix-expr-c",
       version: version,
       workDir: nix.path(here, "./."),
       propagatedBuildInputs: nix.thunk(() => [nix_store_c, nix_expr]),
       mesonFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), version)), "2.35")), nix.thunk(() => nix.app(nix.sel(lib, "mesonBool"), "plugin-c-api", withPluginCAPI)))),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "unix"), nix.sel(lib, "platforms", "windows"))),
       })),
     }));

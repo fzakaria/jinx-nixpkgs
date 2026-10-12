@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.16";
       const underscoredVersion = nix.thunk(() => nix.app(nix.sel(lib, "strings", "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dajobe",
           repo: "raptor",
           rev: nix.thunk(() => nix.str`${pname}_${underscoredVersion}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "libxml2-2.11.patch",
             url: "https://github.com/dajobe/raptor/commit/4dbc4c1da2a033c497d84a1291c46f416a9cac51.patch",
             hash: "sha256-fHfvncGymzMtxjwtakCNSr/Lem12UPIHAAcAac648w4=",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [curl, libxml2, libxslt]);
       const postPatch = "substituteInPlace CMakeLists.txt \\\n  --replace-fail \\\n    'CMAKE_MINIMUM_REQUIRED(VERSION 2.8.7)' \\\n    'CMAKE_MINIMUM_REQUIRED(VERSION 3.10)'\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "RDF Parser Toolkit",
         mainProgram: "rapper",
         homepage: "https://librdf.org/raptor",
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         underscoredVersion,

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.22.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OpenCyphal",
           repo: "pydsdl",
           tag: version,
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const enabledTestPaths = nix.thunk(() => ["pydsdl/_test.py"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to process Cyphal DSDL",
         longDescription: "PyDSDL is a Cyphal DSDL compiler front-end implemented in Python. It accepts\na DSDL namespace at the input and produces a well-annotated abstract syntax\ntree (AST) at the output, evaluating all constant expressions in the process.\nAll DSDL features defined in the Cyphal Specification are supported. The\nlibrary should, in theory, work on any platform and with any Python\nimplementation.\n",
         homepage: "https://pydsdl.readthedocs.io/",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

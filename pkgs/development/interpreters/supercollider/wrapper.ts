@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const supercollider = nix.arg($, "supercollider");
   const plugins = nix.arg($, "plugins");
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.str`supercollider-with-plugins-${nix.sel(supercollider, "version")}`),
       paths: nix.thunk(() => nix.concat([supercollider], plugins)),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),

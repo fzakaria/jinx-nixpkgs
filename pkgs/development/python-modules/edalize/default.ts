@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.8";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "olofk",
           repo: "edalize",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +39,7 @@ patchShebangs tests/mock_commands/vsim
 `);
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const propagatedBuildInputs = nix.thunk(() => [jinja2]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, reporting: nix.thunk(() => [pandas, pyparsing]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, reporting: nix.thunk(() => [pandas, pyparsing]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook, which, yosys], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["edalize"]);
       const disabledTests = nix.thunk(() => [
@@ -80,7 +80,7 @@ patchShebangs tests/mock_commands/vsim
         "tests/test_xsim.py",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Abstraction library for interfacing EDA tools",
         mainProgram: "el_docker",
         homepage: "https://github.com/olofk/edalize",
@@ -92,7 +92,7 @@ patchShebangs tests/mock_commands/vsim
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
       excludeDrvArgNames: nix.thunk(() => ["packages", "inputsFrom"]),
       extendDrvArgs: (_finalAttrs) => nix.lambda((args_1) => (() => {
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
         const inputsFrom = nix.argOr($_1, "inputsFrom", () => []);
         const mergeInputs = (name_1) => nix.concat(nix.selOr(attrs, () => [], nix.key(nix.force(name_1))), nix.app(nix.sel(lib, "subtractLists"), inputsFrom, nix.thunk(() => nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.app(nix.sel(lib, "catAttrs"), name_1, inputsFrom))))));
         return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: name,
           buildInputs: nix.thunk(() => nix.app(mergeInputs, "buildInputs")),
           nativeBuildInputs: nix.thunk(() => nix.concat(packages, nix.app(mergeInputs, "nativeBuildInputs"))),

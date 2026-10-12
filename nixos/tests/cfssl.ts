@@ -27,39 +27,39 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     name: "cfssl",
     nodes: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const lib = nix.arg($_1, "lib");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           networking: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             firewall: nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(config, "services", "cfssl", "port"))]),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$4,
-            cfssl: nix.thunk(() => ({ __proto__: pos$3, enable: true })),
+            [nix.POS]: pos$4,
+            cfssl: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             services: nix.thunk(() => ({
-              __proto__: pos$11,
-              cfssl: nix.thunk(() => ({ __proto__: pos$5, after: nix.thunk(() => ["cfssl-init.service"]) })),
+              [nix.POS]: pos$11,
+              cfssl: nix.thunk(() => ({ [nix.POS]: pos$5, after: nix.thunk(() => ["cfssl-init.service"]) })),
               "cfssl-init": nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 description: "Initialize the cfssl CA",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   User: "cfssl",
                   Type: "oneshot",
                   WorkingDirectory: nix.thunk(() => nix.sel(config, "services", "cfssl", "dataDir")),
@@ -67,12 +67,12 @@ export default nix.lambda((args) => (() => {
                 script: nix.thunk(() => (() => {
                   const w = nix.withScope(pkgs_1, null);
                   return nix.str`${nix.lookup(w, "cfssl")}/bin/cfssl genkey -initca ${nix.app(nix.sel(pkgs_1, "writeText"), "ca.json", nix.thunk(() => nix.app(nix.sel(nix.builtins, "toJSON"), nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         hosts: nix.thunk(() => ["ca.example.com"]),
-                        key: nix.thunk(() => ({ __proto__: pos$7, algo: "rsa", size: 4096n })),
+                        key: nix.thunk(() => ({ [nix.POS]: pos$7, algo: "rsa", size: 4096n })),
                         names: nix.thunk(() => [
                           nix.thunk(() => ({
-                            __proto__: pos$8,
+                            [nix.POS]: pos$8,
                             C: "US",
                             L: "San Francisco",
                             O: "Internet Widgets, LLC",
@@ -97,13 +97,13 @@ export default nix.lambda((args) => (() => {
 `));
       })());
       const csr = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "csr.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             CN: "www.example.com",
             hosts: nix.thunk(() => ["example.com", "www.example.com"]),
-            key: nix.thunk(() => ({ __proto__: pos$15, algo: "rsa", size: 2048n })),
+            key: nix.thunk(() => ({ [nix.POS]: pos$15, algo: "rsa", size: 2048n })),
             names: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 C: "US",
                 L: "San Francisco",
                 O: "Example Company, LLC",

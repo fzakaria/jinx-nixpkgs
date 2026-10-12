@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
       const pname = "railway-wallet";
       const version = "5.24.21";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/Railway-Wallet/Railway-Wallet/releases/download/v${version}/Railway.linux.x86_64.AppImage`),
           hash: "sha256-21Z9ulzYGIjntAHuA3t7Bl5yIqM7y39jALM4tDBa0Qw=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Private DeFi wallet for Linux",
         homepage: "https://www.railway.xyz",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
-      return { __proto__: pos$3, pname, version, src, meta };
+      return { [nix.POS]: pos$3, pname, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

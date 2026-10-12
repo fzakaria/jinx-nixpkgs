@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libGLU = nix.arg($, "libGLU");
   const libGL = nix.arg($, "libGL");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vrpn",
       version: "07.36",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vrpn",
           repo: "vrpn",
           rev: nix.thunk(() => nix.str`version_${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, unzip]),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libGLU, libGL]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Virtual Reality Peripheral Network",
         longDescription: "The Virtual-Reality Peripheral Network (VRPN) is a set of classes\nwithin a library and a set of servers that are designed to implement\na network-transparent interface between application programs and the\nset of physical devices (tracker, etc.) used in a virtual-reality\n(VR) system.\n",
         homepage: "https://github.com/vrpn/vrpn",

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const ghostscript_headless = nix.arg($, "ghostscript_headless");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "u2ps",
       version: "1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "arsv",
           repo: "u2ps",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -27,9 +27,9 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: "# Fix for newer C standards\nsubstituteInPlace u2ps.h \\\n  --replace-fail \"typedef unsigned char bool;\" \"#include <stdbool.h>\"\n",
       buildInputs: nix.thunk(() => [ghostscript_headless]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Unicode text to postscript converter",
         homepage: "https://github.com/arsv/u2ps",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

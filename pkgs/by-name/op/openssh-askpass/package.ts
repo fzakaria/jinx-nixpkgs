@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "openssh-askpass",
       src: nix.thunk(() => nix.attr(openssh, "src")),
       version: nix.thunk(() => nix.attr(openssh, "version")),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       dontConfigure: true,
       installPhase: "runHook preInstall\nmkdir -p $out/libexec\ncp -a gnome-ssh-askpass3 $out/libexec/gtk-ssh-askpass\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "A passphrase dialog for OpenSSH and GTK",
         homepage: "https://www.openssh.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

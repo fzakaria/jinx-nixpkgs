@@ -110,16 +110,16 @@ export default nix.lambda((args) => (() => {
   const runTest = nix.arg($, "runTest");
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
   const ipv6Only = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     networking: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       useDHCP: false,
       interfaces: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         eth1: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           ipv4: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkVMOverride"), [])),
           })),
         })),
@@ -127,16 +127,16 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   const ipv4Only = nix.thunk(() => ({
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     networking: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       useDHCP: false,
       interfaces: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         eth1: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           ipv6: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkVMOverride"), [])),
           })),
         })),
@@ -144,13 +144,13 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   const webserver = (ip) => (msg) => ({
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     systemd: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         webserver: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           description: "Mock webserver",
           wants: nix.thunk(() => ["network-online.target"]),
           wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -166,33 +166,33 @@ done
       })),
     })),
     networking: nix.thunk(() => ({
-      __proto__: pos$15,
-      firewall: nix.thunk(() => ({ __proto__: pos$14, allowedTCPPorts: nix.thunk(() => [80n]) })),
+      [nix.POS]: pos$15,
+      firewall: nix.thunk(() => ({ [nix.POS]: pos$14, allowedTCPPorts: nix.thunk(() => [80n]) })),
     })),
   });
   return {
-    __proto__: pos$100,
+    [nix.POS]: pos$100,
     siit: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        __proto__: pos$52,
+        [nix.POS]: pos$52,
         name: "jool-siit",
         meta: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w, "rnhmjoj"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          __proto__: pos$51,
+          [nix.POS]: pos$51,
           relay: nix.thunk(() => ({
-            __proto__: pos$34,
-            virtualisation: nix.thunk(() => ({ __proto__: pos$18, vlans: nix.thunk(() => [1n, 2n]) })),
+            [nix.POS]: pos$34,
+            virtualisation: nix.thunk(() => ({ [nix.POS]: pos$18, vlans: nix.thunk(() => [1n, 2n]) })),
             boot: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               kernel: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 sysctl: nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   "net.ipv6.conf.all.forwarding": 1n,
                   "net.ipv4.conf.all.forwarding": 1n,
                 })),
@@ -200,60 +200,60 @@ done
               kernelPackages: nix.thunk(() => nix.sel(pkgs, "linuxPackages_latest")),
             })),
             networking: nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               useDHCP: false,
               interfaces: nix.thunk(() => nix.app(nix.sel(lib, "mkVMOverride"), nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   eth1: nix.thunk(() => ({
-                    __proto__: pos$24,
+                    [nix.POS]: pos$24,
                     ipv6: nix.thunk(() => ({
-                      __proto__: pos$23,
+                      [nix.POS]: pos$23,
                       addresses: nix.thunk(() => [
-                        nix.thunk(() => ({ __proto__: pos$22, address: "fd::198.51.100.1", prefixLength: 120n })),
+                        nix.thunk(() => ({ [nix.POS]: pos$22, address: "fd::198.51.100.1", prefixLength: 120n })),
                       ]),
                     })),
                   })),
                   eth2: nix.thunk(() => ({
-                    __proto__: pos$27,
+                    [nix.POS]: pos$27,
                     ipv4: nix.thunk(() => ({
-                      __proto__: pos$26,
+                      [nix.POS]: pos$26,
                       addresses: nix.thunk(() => [
-                        nix.thunk(() => ({ __proto__: pos$25, address: "192.0.2.1", prefixLength: 24n })),
+                        nix.thunk(() => ({ [nix.POS]: pos$25, address: "192.0.2.1", prefixLength: 24n })),
                       ]),
                     })),
                   })),
                 })))),
               jool: nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 enable: true,
                 siit: nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   default: nix.thunk(() => ({
-                    __proto__: pos$30,
-                    global: nix.thunk(() => ({ __proto__: pos$29, pool6: "fd::/96" })),
+                    [nix.POS]: pos$30,
+                    global: nix.thunk(() => ({ [nix.POS]: pos$29, pool6: "fd::/96" })),
                   })),
                 })),
               })),
             })),
           })),
           alice: nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             imports: nix.thunk(() => [ipv6Only, nix.thunk(() => nix.app(webserver, 6n, "Hello, Bob!"))]),
-            virtualisation: nix.thunk(() => ({ __proto__: pos$35, vlans: nix.thunk(() => [1n]) })),
+            virtualisation: nix.thunk(() => ({ [nix.POS]: pos$35, vlans: nix.thunk(() => [1n]) })),
             networking: nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               interfaces: nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 eth1: nix.thunk(() => ({
-                  __proto__: pos$39,
+                  [nix.POS]: pos$39,
                   ipv6: nix.thunk(() => ({
-                    __proto__: pos$38,
+                    [nix.POS]: pos$38,
                     addresses: nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$36, address: "fd::198.51.100.8", prefixLength: 120n })),
+                      nix.thunk(() => ({ [nix.POS]: pos$36, address: "fd::198.51.100.8", prefixLength: 120n })),
                     ]),
                     routes: nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$37,
+                        [nix.POS]: pos$37,
                         address: "fd::192.0.2.0",
                         prefixLength: 120n,
                         via: "fd::198.51.100.1",
@@ -265,23 +265,23 @@ done
             })),
           })),
           bob: nix.thunk(() => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             imports: nix.thunk(() => [ipv4Only, nix.thunk(() => nix.app(webserver, 4n, "Hello, Alice!"))]),
-            virtualisation: nix.thunk(() => ({ __proto__: pos$43, vlans: nix.thunk(() => [2n]) })),
+            virtualisation: nix.thunk(() => ({ [nix.POS]: pos$43, vlans: nix.thunk(() => [2n]) })),
             networking: nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               interfaces: nix.thunk(() => ({
-                __proto__: pos$48,
+                [nix.POS]: pos$48,
                 eth1: nix.thunk(() => ({
-                  __proto__: pos$47,
+                  [nix.POS]: pos$47,
                   ipv4: nix.thunk(() => ({
-                    __proto__: pos$46,
+                    [nix.POS]: pos$46,
                     addresses: nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$44, address: "192.0.2.16", prefixLength: 24n })),
+                      nix.thunk(() => ({ [nix.POS]: pos$44, address: "192.0.2.16", prefixLength: 24n })),
                     ]),
                     routes: nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$45,
+                        [nix.POS]: pos$45,
                         address: "198.51.100.0",
                         prefixLength: 24n,
                         via: "192.0.2.1",
@@ -296,26 +296,26 @@ done
         testScript: "start_all()\n\nrelay.wait_for_unit(\"jool-siit-default.service\")\nalice.wait_for_unit(\"network-addresses-eth1.service\")\nbob.wait_for_unit(\"network-addresses-eth1.service\")\n\nwith subtest(\"Alice and Bob can't ping each other\"):\n  relay.systemctl(\"stop jool-siit-default.service\")\n  alice.fail(\"ping -c1 fd::192.0.2.16\")\n  bob.fail(\"ping -c1 198.51.100.8\")\n\nwith subtest(\"Alice and Bob can ping using the relay\"):\n  relay.systemctl(\"start jool-siit-default.service\")\n  alice.wait_until_succeeds(\"ping -c1 fd::192.0.2.16\")\n  bob.wait_until_succeeds(\"ping -c1 198.51.100.8\")\n\nwith subtest(\"Alice can connect to Bob's webserver\"):\n  bob.wait_for_open_port(80)\n  alice.succeed(\"curl -vvv http://[fd::192.0.2.16] >&2\")\n  alice.succeed(\"curl --fail -s http://[fd::192.0.2.16] | grep -q Alice\")\n\nwith subtest(\"Bob can connect to Alices's webserver\"):\n  alice.wait_for_open_port(80)\n  bob.succeed(\"curl --fail -s http://198.51.100.8 | grep -q Bob\")\n",
       })))),
     nat64: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        __proto__: pos$99,
+        [nix.POS]: pos$99,
         name: "jool-nat64",
         meta: nix.thunk(() => ({
-          __proto__: pos$53,
+          [nix.POS]: pos$53,
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w, "rnhmjoj"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          __proto__: pos$98,
+          [nix.POS]: pos$98,
           router: nix.thunk(() => ({
-            __proto__: pos$74,
-            virtualisation: nix.thunk(() => ({ __proto__: pos$54, vlans: nix.thunk(() => [1n, 2n]) })),
+            [nix.POS]: pos$74,
+            virtualisation: nix.thunk(() => ({ [nix.POS]: pos$54, vlans: nix.thunk(() => [1n, 2n]) })),
             boot: nix.thunk(() => ({
-              __proto__: pos$57,
+              [nix.POS]: pos$57,
               kernel: nix.thunk(() => ({
-                __proto__: pos$56,
+                [nix.POS]: pos$56,
                 sysctl: nix.thunk(() => ({
-                  __proto__: pos$55,
+                  [nix.POS]: pos$55,
                   "net.ipv6.conf.all.forwarding": 1n,
                   "net.ipv4.conf.all.forwarding": 1n,
                 })),
@@ -323,39 +323,39 @@ done
               kernelPackages: nix.thunk(() => nix.sel(pkgs, "linuxPackages_latest")),
             })),
             networking: nix.thunk(() => ({
-              __proto__: pos$73,
+              [nix.POS]: pos$73,
               useDHCP: false,
               interfaces: nix.thunk(() => nix.app(nix.sel(lib, "mkVMOverride"), nix.thunk(() => ({
-                  __proto__: pos$64,
+                  [nix.POS]: pos$64,
                   eth1: nix.thunk(() => ({
-                    __proto__: pos$60,
+                    [nix.POS]: pos$60,
                     ipv6: nix.thunk(() => ({
-                      __proto__: pos$59,
+                      [nix.POS]: pos$59,
                       addresses: nix.thunk(() => [
-                        nix.thunk(() => ({ __proto__: pos$58, address: "2001:db8::1", prefixLength: 96n })),
+                        nix.thunk(() => ({ [nix.POS]: pos$58, address: "2001:db8::1", prefixLength: 96n })),
                       ]),
                     })),
                   })),
                   eth2: nix.thunk(() => ({
-                    __proto__: pos$63,
+                    [nix.POS]: pos$63,
                     ipv4: nix.thunk(() => ({
-                      __proto__: pos$62,
+                      [nix.POS]: pos$62,
                       addresses: nix.thunk(() => [
-                        nix.thunk(() => ({ __proto__: pos$61, address: "203.0.113.1", prefixLength: 24n })),
+                        nix.thunk(() => ({ [nix.POS]: pos$61, address: "203.0.113.1", prefixLength: 24n })),
                       ]),
                     })),
                   })),
                 })))),
               jool: nix.thunk(() => ({
-                __proto__: pos$72,
+                [nix.POS]: pos$72,
                 enable: true,
                 nat64: nix.thunk(() => ({
-                  __proto__: pos$71,
+                  [nix.POS]: pos$71,
                   default: nix.thunk(() => ({
-                    __proto__: pos$70,
+                    [nix.POS]: pos$70,
                     bib: nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$65,
+                        [nix.POS]: pos$65,
                         protocol: "TCP",
                         "ipv4 address": "203.0.113.1#80",
                         "ipv6 address": "2001:db8::9#80",
@@ -363,25 +363,25 @@ done
                     ]),
                     pool4: nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$66,
+                        [nix.POS]: pos$66,
                         protocol: "TCP",
                         prefix: "203.0.113.1/32",
                         "port range": "20000-29999",
                       })),
                       nix.thunk(() => ({
-                        __proto__: pos$67,
+                        [nix.POS]: pos$67,
                         protocol: "UDP",
                         prefix: "203.0.113.1/32",
                         "port range": "20000-29999",
                       })),
                       nix.thunk(() => ({
-                        __proto__: pos$68,
+                        [nix.POS]: pos$68,
                         protocol: "ICMP",
                         prefix: "203.0.113.1/32",
                         "port range": "20000-29999",
                       })),
                       nix.thunk(() => ({
-                        __proto__: pos$69,
+                        [nix.POS]: pos$69,
                         protocol: "TCP",
                         prefix: "203.0.113.1/32",
                         "port range": "80",
@@ -393,23 +393,23 @@ done
             })),
           })),
           client: nix.thunk(() => ({
-            __proto__: pos$82,
+            [nix.POS]: pos$82,
             imports: nix.thunk(() => [ipv6Only]),
-            virtualisation: nix.thunk(() => ({ __proto__: pos$75, vlans: nix.thunk(() => [1n]) })),
+            virtualisation: nix.thunk(() => ({ [nix.POS]: pos$75, vlans: nix.thunk(() => [1n]) })),
             networking: nix.thunk(() => ({
-              __proto__: pos$81,
+              [nix.POS]: pos$81,
               interfaces: nix.thunk(() => ({
-                __proto__: pos$80,
+                [nix.POS]: pos$80,
                 eth1: nix.thunk(() => ({
-                  __proto__: pos$79,
+                  [nix.POS]: pos$79,
                   ipv6: nix.thunk(() => ({
-                    __proto__: pos$78,
+                    [nix.POS]: pos$78,
                     addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => [
-                        nix.thunk(() => ({ __proto__: pos$76, address: "2001:db8::8", prefixLength: 96n })),
+                        nix.thunk(() => ({ [nix.POS]: pos$76, address: "2001:db8::8", prefixLength: 96n })),
                       ]))),
                     routes: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => [
                         nix.thunk(() => ({
-                          __proto__: pos$77,
+                          [nix.POS]: pos$77,
                           address: "64:ff9b::",
                           prefixLength: 96n,
                           via: "2001:db8::1",
@@ -421,23 +421,23 @@ done
             })),
           })),
           homeserver: nix.thunk(() => ({
-            __proto__: pos$90,
+            [nix.POS]: pos$90,
             imports: nix.thunk(() => [ipv6Only, nix.thunk(() => nix.app(webserver, 6n, "Hello from IPv6!"))]),
-            virtualisation: nix.thunk(() => ({ __proto__: pos$83, vlans: nix.thunk(() => [1n]) })),
+            virtualisation: nix.thunk(() => ({ [nix.POS]: pos$83, vlans: nix.thunk(() => [1n]) })),
             networking: nix.thunk(() => ({
-              __proto__: pos$89,
+              [nix.POS]: pos$89,
               interfaces: nix.thunk(() => ({
-                __proto__: pos$88,
+                [nix.POS]: pos$88,
                 eth1: nix.thunk(() => ({
-                  __proto__: pos$87,
+                  [nix.POS]: pos$87,
                   ipv6: nix.thunk(() => ({
-                    __proto__: pos$86,
+                    [nix.POS]: pos$86,
                     addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => [
-                        nix.thunk(() => ({ __proto__: pos$84, address: "2001:db8::9", prefixLength: 96n })),
+                        nix.thunk(() => ({ [nix.POS]: pos$84, address: "2001:db8::9", prefixLength: 96n })),
                       ]))),
                     routes: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => [
                         nix.thunk(() => ({
-                          __proto__: pos$85,
+                          [nix.POS]: pos$85,
                           address: "64:ff9b::",
                           prefixLength: 96n,
                           via: "2001:db8::1",
@@ -449,19 +449,19 @@ done
             })),
           })),
           server: nix.thunk(() => ({
-            __proto__: pos$97,
+            [nix.POS]: pos$97,
             imports: nix.thunk(() => [ipv4Only, nix.thunk(() => nix.app(webserver, 4n, "Hello from IPv4!"))]),
-            virtualisation: nix.thunk(() => ({ __proto__: pos$91, vlans: nix.thunk(() => [2n]) })),
+            virtualisation: nix.thunk(() => ({ [nix.POS]: pos$91, vlans: nix.thunk(() => [2n]) })),
             networking: nix.thunk(() => ({
-              __proto__: pos$96,
+              [nix.POS]: pos$96,
               interfaces: nix.thunk(() => ({
-                __proto__: pos$95,
+                [nix.POS]: pos$95,
                 eth1: nix.thunk(() => ({
-                  __proto__: pos$94,
+                  [nix.POS]: pos$94,
                   ipv4: nix.thunk(() => ({
-                    __proto__: pos$93,
+                    [nix.POS]: pos$93,
                     addresses: nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$92, address: "203.0.113.16", prefixLength: 24n })),
+                      nix.thunk(() => ({ [nix.POS]: pos$92, address: "203.0.113.16", prefixLength: 24n })),
                     ]),
                   })),
                 })),

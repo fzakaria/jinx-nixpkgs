@@ -14,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const pgx = nix.arg($, "pgx");
   const pgx_lwt = nix.arg($, "pgx_lwt");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "pgx_lwt_unix",
       version: nix.thunk(() => nix.attr(pgx, "version")),
       src: nix.thunk(() => nix.attr(pgx, "src")),
       propagatedBuildInputs: nix.thunk(() => [pgx_lwt]),
       checkInputs: nix.thunk(() => [alcotest_lwt, base64]),
       doCheck: true,
-      meta: nix.thunk(() => nix.update(nix.sel(pgx, "meta"), { __proto__: pos$1, description: "Pgx using Lwt and Unix libraries for IO" })),
+      meta: nix.thunk(() => nix.update(nix.sel(pgx, "meta"), { [nix.POS]: pos$1, description: "Pgx using Lwt and Unix libraries for IO" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=lwt_unix.ts.map

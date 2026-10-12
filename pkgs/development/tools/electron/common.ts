@@ -40,10 +40,10 @@ export default nix.lambda((args) => (() => {
   const gclientDeps = nix.thunk(() => nix.app(nix.sel(gclient2nix, "importGclientDeps"), nix.thunk(() => nix.sel(info, "deps"))));
   const yarn_berry = yarn_berry_4;
   return nix.app(nix.sel(nix.app(nix.sel(nix.app(nix.sel(chromium, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       "upstream-info": nix.thunk(() => nix.sel(info, "chromium")),
     }))), "mkDerivation"), (base) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       packageName: "electron",
       version: nix.thunk(() => nix.attr(info, "version")),
       buildTargets: nix.thunk(() => ["electron:copy_node_headers", "electron:electron_dist_zip"]),
@@ -62,12 +62,12 @@ export default nix.lambda((args) => (() => {
           const src = nix.thunk(() => nix.sel(gclientDeps, "src", "path"));
           const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/third_party/node`);
           const hash = nix.thunk(() => nix.sel(info, "chromium_npm_hash"));
-          return { __proto__: pos$2, src, sourceRoot, hash };
+          return { [nix.POS]: pos$2, src, sourceRoot, hash };
         })()))),
       npmRoot: "third_party/node",
       missingHashes: nix.thunk(() => (nix.asBool(nix.has(nix.sel(info, "electron_yarn_data"), "missing_hashes")) ? nix.app(nix.sel(writers, "writeJSON"), "missing-hashes.json", nix.thunk(() => nix.sel(info, "electron_yarn_data", "missing_hashes"))) : null)),
       yarnOfflineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           src: nix.thunk(() => nix.sel(gclientDeps, "src/electron", "path")),
           hash: nix.thunk(() => nix.sel(info, "electron_yarn_data", "hash")),
           missingHashes: nix.thunk(() => (nix.asBool(nix.has(nix.sel(info, "electron_yarn_data"), "missing_hashes")) ? nix.app(nix.sel(writers, "writeJSON"), "missing-hashes.json", nix.thunk(() => nix.sel(info, "electron_yarn_data", "missing_hashes"))) : null)),
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
       unpackPhase: null,
       sourceRoot: "src",
       env: nix.thunk(() => nix.update(nix.sel(base, "env"), {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.sel(base, "env", "NIX_CFLAGS_COMPILE"), " -Wno-deprecated")),
         ELECTRON_OUT_DIR: "Release",
       })),
@@ -183,7 +183,7 @@ echo 'checkout_clusterfuzz_data = false' >> build/config/gclient_args.gni
         const enable_pdf_save_to_drive = false;
         const node_openssl_path = "//third_party/boringssl";
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           is_component_build,
           is_official_build,
           rtc_use_h264,
@@ -213,8 +213,8 @@ echo 'checkout_clusterfuzz_data = false' >> build/config/gclient_args.gni
           enable_pdf_save_to_drive,
           node_openssl_path,
         };
-      })(), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(info, "version")), "43")), nix.thunk(() => ({ __proto__: pos$6, enterprise_cloud_content_analysis: false }))), {
-        __proto__: pos$7,
+      })(), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(info, "version")), "43")), nix.thunk(() => ({ [nix.POS]: pos$6, enterprise_cloud_content_analysis: false }))), {
+        [nix.POS]: pos$7,
         enable_widevine: false,
         override_electron_version: nix.thunk(() => nix.sel(info, "version")),
       }))),
@@ -234,9 +234,9 @@ echo 'checkout_clusterfuzz_data = false' >> build/config/gclient_args.gni
 `);
       })()),
       requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
-      passthru: nix.thunk(() => ({ __proto__: pos$8, info: info })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$8, info: info })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Cross platform desktop application shell",
         homepage: "https://github.com/electron/electron",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
@@ -247,9 +247,9 @@ echo 'checkout_clusterfuzz_data = false' >> build/config/gclient_args.gni
         timeout: 172800n,
       })),
     })), "overrideAttrs"), (finalAttrs) => (prevAttrs) => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       passthru: nix.thunk(() => nix.update(nix.sel(prevAttrs, "passthru"), {
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         dist: nix.thunk(() => nix.add(nix.sel(finalAttrs, "finalPackage"), "/libexec/electron")),
       })),
     }));

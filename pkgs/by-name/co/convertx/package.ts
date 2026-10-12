@@ -40,14 +40,14 @@ export default nix.lambda((args) => (() => {
   const version = nix.thunk(() => nix.attr(pin, "version"));
   const pname = "convertx";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "C4illin",
       repo: "ConvertX",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: nix.thunk(() => nix.sel(pin, "srcHash")),
     }))));
   const node_modules = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.str`${pname}-node_modules`),
       version: version,
       src: src,
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       outputHashMode: "recursive",
     })));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: src,
@@ -117,7 +117,7 @@ makeBinaryWrapper ${bun}/bin/bun $out/bin/convertx \\
         ]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Self-hosted online file converter",
         homepage: "https://github.com/C4illin/ConvertX/tree/main",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

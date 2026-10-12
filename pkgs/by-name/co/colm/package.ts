@@ -18,23 +18,23 @@ export default nix.lambda((args) => (() => {
   const asciidoc = nix.arg($, "asciidoc");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "colm",
       version: "0.13.0.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.colm.net/files/colm/colm-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0f76iri173l2wja2v7qrwmf958cqwh5g9x4bhj2z8wknmlla6gz4",
         })))),
       patches: nix.thunk(() => [nix.path(here, "./cross-compile.patch")]),
       nativeBuildInputs: nix.thunk(() => [makeWrapper, asciidoc, autoreconfHook]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=int-conversion" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=int-conversion" })))),
       doCheck: true,
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/colm \\
   --prefix PATH ":" ${gcc}/bin
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Programming language for the analysis and transformation of computer languages",
         mainProgram: "colm",
         homepage: "http://www.colm.net/open-source/colm",

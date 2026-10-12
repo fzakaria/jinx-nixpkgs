@@ -81,13 +81,13 @@ export default nix.lambda((args) => (() => {
         const version = "24.8";
         const pname = nix.thunk(() => nix.str`hyphen-dict-${shortName}-libreoffice`);
         const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: "https://anongit.freedesktop.org/git/libreoffice/dictionaries.git",
             rev: "e4ad1862342d7e1365978499ca951ae4788c9dc0",
             hash: "sha256-sv3KnmrewE1dRxeO+TqfOjfHjoJpzJ6p8MdBDiT3Ips=",
           }))));
         const meta = nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           description: nix.thunk(() => nix.str`Hyphen dictionary for ${shortDescription} from LibreOffice`),
           homepage: "https://wiki.documentfoundation.org/Development/Dictionaries",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
@@ -113,7 +113,7 @@ if [ -n "${readmeFilePath}" ]; then
 fi
 runHook postInstall
 `);
-        return { __proto__: pos$3, version, pname, src, meta, dontBuild, installPhase };
+        return { [nix.POS]: pos$3, version, pname, src, meta, dontBuild, installPhase };
       })()));
   })(), formals$2);
   const mkDictFromLibreofficeGit = nix.lambda((args_1) => (() => {
@@ -125,7 +125,7 @@ runHook postInstall
     const filenameAliases = nix.argOr($_1, "filenameAliases", () => "");
     const readmeFileName = nix.argOr($_1, "readmeFileName", () => "");
     return nix.app(mkDictFromLibreofficeGitCustom, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         subdir: subdir,
         shortName: shortName,
         shortDescription: shortDescription,
@@ -137,7 +137,7 @@ runHook postInstall
   })(), formals$3);
   const dicts = nix.thunk(() => (() => {
     const af_za = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         subdir: "af_ZA",
         shortName: "af-za",
         shortDescription: "Afrikaans",
@@ -148,7 +148,7 @@ runHook postInstall
     const af_NA = af_za;
     const af_ZA = af_za;
     const as_in = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         subdir: "as_IN",
         shortName: "as-in",
         shortDescription: "Assamese",
@@ -157,7 +157,7 @@ runHook postInstall
       }))));
     const as_IN = as_in;
     const be_by = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         subdir: "be_BY",
         shortName: "be-by",
         shortDescription: "Belarussian",
@@ -166,7 +166,7 @@ runHook postInstall
       }))));
     const be_BY = be_by;
     const bg_bg = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         subdir: "bg_BG",
         shortName: "bg-bg",
         shortDescription: "Bulgarian",
@@ -175,7 +175,7 @@ runHook postInstall
       }))));
     const bg_BG = bg_bg;
     const ca_es = nix.thunk(() => nix.app(mkDictFromLibreofficeGitCustom, nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         subdir: "ca",
         shortName: "ca-es",
         shortDescription: "Catalan",
@@ -190,7 +190,7 @@ runHook postInstall
     const ca_IT = ca_es;
     const ca_ES = ca_es;
     const cs_cz = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         subdir: "cs_CZ",
         shortName: "cs-cz",
         shortDescription: "Czech",
@@ -199,7 +199,7 @@ runHook postInstall
       }))));
     const cs_CZ = cs_cz;
     const da_dk = nix.thunk(() => nix.app(mkDictFromLibreofficeGitCustom, nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         subdir: "da_DK",
         shortName: "da-dk",
         shortDescription: "Danish",
@@ -209,7 +209,7 @@ runHook postInstall
       }))));
     const da_DK = da_dk;
     const de_de = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         subdir: "de",
         shortName: "de-de",
         shortDescription: "German (Germany)",
@@ -218,7 +218,7 @@ runHook postInstall
       }))));
     const de_DE = de_de;
     const de_at = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         subdir: "de",
         shortName: "de-at",
         shortDescription: "German (Austria)",
@@ -227,7 +227,7 @@ runHook postInstall
       }))));
     const de_AT = de_at;
     const de_ch = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         subdir: "de",
         shortName: "de-ch",
         shortDescription: "German (Switzerland)",
@@ -236,7 +236,7 @@ runHook postInstall
       }))));
     const de_CH = de_ch;
     const el_gr = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         subdir: "el_GR",
         shortName: "el-gr",
         shortDescription: "Greek",
@@ -245,7 +245,7 @@ runHook postInstall
       }))));
     const el_GR = el_gr;
     const en_gb = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         subdir: "en",
         shortName: "en-gb",
         shortDescription: "English (Great Britain)",
@@ -269,7 +269,7 @@ runHook postInstall
     const en_NZ = en_gb;
     const en_TT = en_gb;
     const en_us = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         nativeBuildInputs: nix.thunk(() => nix.sel(hyphen, "nativeBuildInputs")),
         version: nix.thunk(() => nix.sel(hyphen, "version")),
         pname: "hyphen-dict-en-us",
@@ -277,7 +277,7 @@ runHook postInstall
         meta: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(hyphen, "meta"));
           return {
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           homepage: nix.thunk(() => nix.attr(from, "homepage")),
           platforms: nix.thunk(() => nix.attr(from, "platforms")),
           license: nix.thunk(() => nix.attr(from, "license")),
@@ -289,7 +289,7 @@ runHook postInstall
       }))));
     const en_US = en_us;
     const eo = nix.thunk(() => nix.app(mkDictFromLibreofficeGitCustom, nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         subdir: "eo",
         shortName: "eo",
         shortDescription: "Esperanto",
@@ -298,7 +298,7 @@ runHook postInstall
         readmeFilePath: "desc_eo.txt",
       }))));
     const es_es = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         subdir: "es",
         shortName: "es-es",
         shortDescription: "Spanish",
@@ -330,7 +330,7 @@ runHook postInstall
     const es_VE = es_es;
     const es_ES = es_es;
     const et_ee = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         subdir: "et_EE",
         shortName: "et-ee",
         shortDescription: "Estonian",
@@ -339,7 +339,7 @@ runHook postInstall
       }))));
     const et_EE = et_ee;
     const fr_fr = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         subdir: "fr_FR",
         shortName: "fr-fr",
         shortDescription: "French",
@@ -354,7 +354,7 @@ runHook postInstall
     const fr_MC = fr_fr;
     const fr_FR = fr_fr;
     const gl_es = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         subdir: "gl",
         shortName: "gl-es",
         shortDescription: "Galician",
@@ -363,7 +363,7 @@ runHook postInstall
       }))));
     const gl_ES = gl_es;
     const hr_hr = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         subdir: "hr_HR",
         shortName: "hr-hr",
         shortDescription: "Croatian",
@@ -372,7 +372,7 @@ runHook postInstall
       }))));
     const hr_HR = hr_hr;
     const hu_hu = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         subdir: "hu_HU",
         shortName: "hu-hu",
         shortDescription: "Hungarian",
@@ -381,7 +381,7 @@ runHook postInstall
       }))));
     const hu_HU = hu_hu;
     const id_id = nix.thunk(() => nix.app(mkDictFromLibreofficeGitCustom, nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         subdir: "id",
         shortName: "id-id",
         shortDescription: "Indonesian",
@@ -391,7 +391,7 @@ runHook postInstall
       }))));
     const id_ID = id_id;
     const it_it = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         subdir: "it_IT",
         shortName: "it-it",
         shortDescription: "Italian",
@@ -402,7 +402,7 @@ runHook postInstall
     const it_CH = it_it;
     const it_IT = it_it;
     const kn_in = nix.thunk(() => nix.app(mkDictFromLibreofficeGitCustom, nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         subdir: "kn_IN",
         shortName: "kn-in",
         shortDescription: "Kannada",
@@ -412,7 +412,7 @@ runHook postInstall
       }))));
     const kn_IN = kn_in;
     const lt_lt = nix.thunk(() => nix.app(mkDictFromLibreofficeGitCustom, nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         subdir: "lt_LT",
         shortName: "lt-lt",
         shortDescription: "Lithuanian",
@@ -422,7 +422,7 @@ runHook postInstall
       }))));
     const lt_LT = lt_lt;
     const lv_lv = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         subdir: "lv_LV",
         shortName: "lv-lv",
         shortDescription: "Latvian",
@@ -431,7 +431,7 @@ runHook postInstall
       }))));
     const lv_LV = lv_lv;
     const mn_mn = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         subdir: "mn_MN",
         shortName: "mn-mn",
         shortDescription: "Mongolian",
@@ -440,7 +440,7 @@ runHook postInstall
       }))));
     const mn_MN = mn_mn;
     const nl_nl = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         subdir: "nl_NL",
         shortName: "nl-nl",
         shortDescription: "Dutch",
@@ -451,7 +451,7 @@ runHook postInstall
     const nl_BE = nl_nl;
     const nl_NL = nl_nl;
     const nb_no = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         subdir: "no",
         shortName: "nb-no",
         shortDescription: "Norwegian (Bokmål)",
@@ -460,7 +460,7 @@ runHook postInstall
       }))));
     const nb_NO = nb_no;
     const nn_no = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         subdir: "no",
         shortName: "nn-no",
         shortDescription: "Norwegian (Nynorsk)",
@@ -469,7 +469,7 @@ runHook postInstall
       }))));
     const nn_NO = nn_no;
     const or_in = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         subdir: "or_IN",
         shortName: "or-in",
         shortDescription: "Oriya",
@@ -477,7 +477,7 @@ runHook postInstall
       }))));
     const or_IN = or_in;
     const pa_in = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         subdir: "pa_IN",
         shortName: "pa-in",
         shortDescription: "Panjabi",
@@ -485,7 +485,7 @@ runHook postInstall
       }))));
     const pa_IN = pa_in;
     const pl_pl = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        __proto__: pos$37,
+        [nix.POS]: pos$37,
         subdir: "pl_PL",
         shortName: "pl-pl",
         shortDescription: "Polish",
@@ -494,7 +494,7 @@ runHook postInstall
       }))));
     const pl_PL = pl_pl;
     const pt_br = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        __proto__: pos$38,
+        [nix.POS]: pos$38,
         subdir: "pt_BR",
         shortName: "pt-br",
         shortDescription: "Portuguese (Brazil)",
@@ -503,7 +503,7 @@ runHook postInstall
       }))));
     const pt_BR = pt_br;
     const pt_pt = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        __proto__: pos$39,
+        [nix.POS]: pos$39,
         subdir: "pt_PT",
         shortName: "pt-pt",
         shortDescription: "Portuguese (Portugal)",
@@ -512,7 +512,7 @@ runHook postInstall
       }))));
     const pt_PT = pt_pt;
     const ro_ro = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        __proto__: pos$40,
+        [nix.POS]: pos$40,
         subdir: "ro",
         shortName: "ro-ro",
         shortDescription: "Romanian",
@@ -521,7 +521,7 @@ runHook postInstall
       }))));
     const ro_RO = ro_ro;
     const ru_ru = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        __proto__: pos$41,
+        [nix.POS]: pos$41,
         subdir: "ru_RU",
         shortName: "ru-ru",
         shortDescription: "Russian (Russia)",
@@ -530,7 +530,7 @@ runHook postInstall
       }))));
     const ru_RU = ru_ru;
     const sa_in = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        __proto__: pos$42,
+        [nix.POS]: pos$42,
         subdir: "sa_IN",
         shortName: "sa-in",
         shortDescription: "Sanskrit (India)",
@@ -538,7 +538,7 @@ runHook postInstall
       }))));
     const sa_IN = sa_in;
     const sk_sk = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        __proto__: pos$43,
+        [nix.POS]: pos$43,
         subdir: "sk_SK",
         shortName: "sk-sk",
         shortDescription: "Slovak",
@@ -547,7 +547,7 @@ runHook postInstall
       }))));
     const sk_SK = sk_sk;
     const sl_si = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        __proto__: pos$44,
+        [nix.POS]: pos$44,
         subdir: "sl_SI",
         shortName: "sl-si",
         shortDescription: "Slovenian",
@@ -556,7 +556,7 @@ runHook postInstall
       }))));
     const sl_SI = sl_si;
     const sq_al = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        __proto__: pos$45,
+        [nix.POS]: pos$45,
         subdir: "sq_AL",
         shortName: "sq-al",
         shortDescription: "Albanian",
@@ -565,7 +565,7 @@ runHook postInstall
       }))));
     const sq_AL = sq_al;
     const sr_sr = nix.thunk(() => nix.app(mkDictFromLibreofficeGitCustom, nix.thunk(() => ({
-        __proto__: pos$46,
+        [nix.POS]: pos$46,
         subdir: "sr",
         shortName: "sr-sr",
         shortDescription: "Serbian (Cyrillic)",
@@ -575,7 +575,7 @@ runHook postInstall
       }))));
     const sr_SR = sr_sr;
     const sr_sr_latn = nix.thunk(() => nix.app(mkDictFromLibreofficeGitCustom, nix.thunk(() => ({
-        __proto__: pos$47,
+        [nix.POS]: pos$47,
         subdir: "sr",
         shortName: "sr-sr-latn",
         shortDescription: "Serbian (Latin)",
@@ -585,7 +585,7 @@ runHook postInstall
       }))));
     const sr_SR_LATN = sr_sr_latn;
     const sv_se = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        __proto__: pos$48,
+        [nix.POS]: pos$48,
         subdir: "sv_SE",
         shortName: "sv-se",
         shortDescription: "Swedish",
@@ -595,7 +595,7 @@ runHook postInstall
     const sv_FI = sv_se;
     const sv_SE = sv_se;
     const te_in = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        __proto__: pos$49,
+        [nix.POS]: pos$49,
         subdir: "te_IN",
         shortName: "te-in",
         shortDescription: "Telugu",
@@ -604,7 +604,7 @@ runHook postInstall
       }))));
     const te_IN = te_in;
     const th_th = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        __proto__: pos$50,
+        [nix.POS]: pos$50,
         subdir: "th_TH",
         shortName: "th-th",
         shortDescription: "Thai",
@@ -613,7 +613,7 @@ runHook postInstall
       }))));
     const th_TH = th_th;
     const uk_ua = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        __proto__: pos$51,
+        [nix.POS]: pos$51,
         subdir: "uk_UA",
         shortName: "uk-ua",
         shortDescription: "Ukrainian",
@@ -622,7 +622,7 @@ runHook postInstall
       }))));
     const uk_UA = uk_ua;
     const zu_za = nix.thunk(() => nix.app(mkDictFromLibreofficeGitCustom, nix.thunk(() => ({
-        __proto__: pos$52,
+        [nix.POS]: pos$52,
         subdir: "zu_ZA",
         shortName: "zu-za",
         shortDescription: "Zulu",
@@ -631,7 +631,7 @@ runHook postInstall
       }))));
     const zu_ZA = zu_za;
     return {
-      __proto__: pos$53,
+      [nix.POS]: pos$53,
       af_NA,
       af_ZA,
       "af-za": af_za,
@@ -777,9 +777,9 @@ runHook postInstall
     };
   })());
   return nix.update(dicts, {
-    __proto__: pos$55,
+    [nix.POS]: pos$55,
     all: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-        __proto__: pos$54,
+        [nix.POS]: pos$54,
         name: "hyphen-all",
         paths: nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), dicts)))),
       })))),

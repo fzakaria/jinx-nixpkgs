@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "oremanj",
           repo: "greenback",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [asgiref, greenlet, outcome, sniffio]);
       const pythonImportsCheck = nix.thunk(() => ["greenback"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Use anyio and asyncio from synchronous code",
         homepage: "https://github.com/oremanj/greenback",
         changelog: nix.thunk(() => nix.str`https://github.com/oremanj/greenback/blob/${nix.sel(src, "tag")}/docs/source/history.rst`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

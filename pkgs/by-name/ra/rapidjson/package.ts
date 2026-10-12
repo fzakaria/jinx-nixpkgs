@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const valgrind = nix.arg($, "valgrind");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "rapidjson",
       version: "1.1.0-unstable-2025-02-05",
       outputs: nix.thunk(() => ["out", "doc"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Tencent",
           repo: "rapidjson",
           rev: "24b5e7a8b27f42fa16b96fc70aade9106cf7102f",
@@ -53,11 +53,11 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => (nix.asBool(!nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))) && nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), valgrind)))),
       nativeCheckInputs: nix.thunk(() => [valgrind]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, tagPrefix: "v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, tagPrefix: "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Fast JSON parser/generator for C++ with both SAX/DOM style API",
         homepage: "http://rapidjson.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

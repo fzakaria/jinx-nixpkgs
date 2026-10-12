@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cue2pops",
       version: "0-unstable-2023-01-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "makefu",
           repo: "cue2pops-linux",
           rev: "3f2be6126bd50dfe6b998bc8926f88ce9139c19a",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       dontConfigure: true,
       installPhase: "runHook preInstall\ninstall --directory --mode=755 $out/bin\ninstall --mode=755 cue2pops $out/bin\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Convert CUE to ISO suitable to POPStarter",
         homepage: "https://github.com/makefu/cue2pops-linux",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

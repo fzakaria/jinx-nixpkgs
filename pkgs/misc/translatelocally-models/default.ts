@@ -32,14 +32,14 @@ export default nix.thunk(() => (() => {
       const url = nix.arg($_1, "url");
       const checksum = nix.arg($_1, "checksum");
       return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.str`translatelocally-model-${code}`),
           version: nix.thunk(() => nix.builtins.toString(version)),
-          src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ __proto__: pos$1, url: url, sha256: checksum })))),
+          src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$1, url: url, sha256: checksum })))),
           dontUnpack: true,
           installPhase: "TARGET=\"$out/share/translateLocally/models\"\nmkdir -p \"$TARGET\"\ntar -xzf \"$src\" -C \"$TARGET\"\n\n# avoid patching shebangs in inconsistently executable extra files\nfind \"$out\" -type f -exec chmod -x {} +\n",
           meta: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             description: nix.thunk(() => nix.str`TranslateLocally model - ${name}`),
             homepage: "https://translatelocally.com/",
             license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),
@@ -48,8 +48,8 @@ export default nix.thunk(() => (() => {
     })(), formals$3);
     const allModelPkgs = nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.app(withCodeAsKey, mkModelPackage)), modelSpecs))));
     return nix.update(allModelPkgs, {
-      __proto__: pos$5,
-      passthru: nix.thunk(() => ({ __proto__: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      [nix.POS]: pos$5,
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
     });
   })(), formals$1);
 })());

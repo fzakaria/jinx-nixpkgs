@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version_1 = version;
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OHF-Voice",
           repo: "hassil",
           tag: nix.thunk(() => nix.str`v${version_1}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [pyyaml, unicode_rbnf]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/OHF-Voice/hassil/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
         description: "Intent parsing for Home Assistant",
         mainProgram: "hassil",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "home-assistant"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: pname_1,
         version: version_1,
         pyproject,

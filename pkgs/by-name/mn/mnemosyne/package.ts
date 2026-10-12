@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const anki = nix.arg($, "anki");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mnemosyne",
       version: "2.10.1",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/mnemosyne-proj/mnemosyne/mnemosyne-${nix.sel(finalAttrs, "version")}/Mnemosyne-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-zI79iuRXb5S0Y87KfdG+HKc0XVNQOAcBR7Zt/OdaBP4=",
         })))),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       dontWrapQtApps: true,
       makeWrapperArgs: nix.thunk(() => ["${qtWrapperArgs[@]}"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://mnemosyne-proj.org/",
         description: "Spaced-repetition software",
         mainProgram: "mnemosyne",

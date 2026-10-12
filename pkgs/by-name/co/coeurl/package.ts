@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const spdlog = nix.arg($, "spdlog");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "coeurl",
       version: "0.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "nheko.im",
           owner: "nheko-reborn",
           repo: "coeurl",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [ninja, pkg_config, meson]),
       buildInputs: nix.thunk(() => [libevent, curl, spdlog]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple async wrapper around CURL for C++",
         homepage: "https://nheko.im/nheko-reborn/coeurl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

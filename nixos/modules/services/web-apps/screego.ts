@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
   const mkIf = nix.thunk(() => nix.attr(lib, "mkIf"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "screego"));
   const defaultSettings = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     SCREEGO_SERVER_ADDRESS: "127.0.0.1:5050",
     SCREEGO_TURN_ADDRESS: "0.0.0.0:3478",
     SCREEGO_TURN_PORT_RANGE: "50000:55000",
@@ -43,29 +43,29 @@ export default nix.lambda((args) => (() => {
     SCREEGO_LOG_LEVEL: "info",
   }));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "pinpox"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         screego: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "screego screen-sharing server for developers")),
           openFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Open the firewall port(s).\n",
             })))),
           environmentFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: null,
               description: "Environment file (see {manpage}`systemd.exec(5)` \"EnvironmentFile=\"\nsection for the syntax) passed to the service. This option can be\nused to safely include secrets in the configuration.\n",
               example: "/run/secrets/screego-envfile",
@@ -75,11 +75,11 @@ export default nix.lambda((args) => (() => {
               })()),
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "str")))),
               description: "Screego settings passed as Nix attribute set, they will be merged with\nthe defaults. Settings will be passed as environment variables.\n\nSee <https://screego.net/#/config> for possible values\n",
               default: defaultSettings,
-              example: nix.thunk(() => ({ __proto__: pos$5, SCREEGO_EXTERNAL_IP: "dns:example.com" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$5, SCREEGO_EXTERNAL_IP: "dns:example.com" })),
             })))),
         })),
       })),
@@ -89,16 +89,16 @@ export default nix.lambda((args) => (() => {
       const turnUDPPorts = nix.thunk(() => nix.app(nix.sel(lib, "splitString"), ":", nix.thunk(() => nix.sel(mergedConfig, "SCREEGO_TURN_PORT_RANGE"))));
       const turnPort = nix.thunk(() => nix.app(nix.sel(lib, "toInt"), nix.thunk(() => nix.builtins.elemAt(nix.thunk(() => nix.app(nix.sel(lib, "splitString"), ":", nix.thunk(() => nix.sel(mergedConfig, "SCREEGO_TURN_ADDRESS")))), 1n))));
       return nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           networking: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 allowedTCPPorts: nix.thunk(() => [turnPort]),
                 allowedUDPPorts: nix.thunk(() => [turnPort]),
                 allowedUDPPortRanges: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     from: nix.thunk(() => nix.app(nix.sel(lib, "toInt"), nix.thunk(() => nix.builtins.elemAt(turnUDPPorts, 0n)))),
                     to: nix.thunk(() => nix.app(nix.sel(lib, "toInt"), nix.thunk(() => nix.builtins.elemAt(turnUDPPorts, 1n)))),
                   })),
@@ -106,23 +106,23 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             services: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               screego: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 after: nix.thunk(() => ["network.target"]),
                 description: "screego screen-sharing for developers",
                 environment: mergedConfig,
                 serviceConfig: nix.thunk(() => nix.update({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   DynamicUser: true,
                   ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "screego")))} serve`),
                   Restart: "on-failure",
                   RestartSec: "5s",
                 }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "environmentFile"), null)), nix.thunk(() => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     EnvironmentFile: nix.thunk(() => nix.sel(cfg, "environmentFile")),
                   }))))),
               })),

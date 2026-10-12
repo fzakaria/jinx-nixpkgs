@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fonttosfnt = nix.arg($, "fonttosfnt");
   const libfaketime = nix.arg($, "libfaketime");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "clearly-u",
       version: "12-1.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.math.nmsu.edu/~mleisher/Software/cu/cu${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "1xn14jbv3m1khy7ydvad9ydkn7yygdbhjy9wm1v000jzjwr3lv21",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "# convert bdf fonts to otb\nfor i in *.bdf; do\n  name=$(basename \"$i\" .bdf)\n  faketime -f \"1970-01-01 00:00:01\" fonttosfnt -g 2 -m 2 -v -o \"$name.otb\" \"$i\"\ndone\n",
       installPhase: "# install otb and bdf fonts\nfontDir=\"$out/share/fonts\"\ninstall -m 644 -D *.bdf *.otb -t \"$fontDir\"\nmkfontdir \"$fontDir\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unicode font",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "raskin"))]),

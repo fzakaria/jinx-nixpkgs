@@ -11,10 +11,10 @@ export default nix.lambda((args) => (() => {
   const mkDerivation = nix.arg($, "mkDerivation");
   const lib = nix.arg($, "lib");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "cddl/share/zfs/compatibility.d",
       extraPaths: nix.thunk(() => ["sys/contrib/openzfs/cmd/zpool/compatibility.d"]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "cddl")) })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "cddl")) })),
     })));
 })(), formals$1);
 //# sourceMappingURL=zfs-data.ts.map

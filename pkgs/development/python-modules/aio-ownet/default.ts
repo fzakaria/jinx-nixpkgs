@@ -21,18 +21,18 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hacf-fr",
           repo: "aio-ownet",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-KgQasltfoffVjCDX9s98qnZrv+VLiEffLi9FnUD5vXc=",
         }))));
       const build_system = nix.thunk(() => [poetry_core]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, cli: nix.thunk(() => [click]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, cli: nix.thunk(() => [click]) }));
       const pythonImportsCheck = nix.thunk(() => ["aio_ownet"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/hacf-fr/aio-ownet/releases/tag/${nix.sel(src, "tag")}`),
         description: "Asynchronous OWFS (owserver network protocol) client library",
         homepage: "https://github.com/hacf-fr/aio-ownet",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "dotlambda"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

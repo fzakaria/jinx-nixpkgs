@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "smap",
       version: "0.1.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "s0md3v",
           repo: "Smap",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["cmd/smap"]),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Drop-in replacement for Nmap powered by shodan.io",
         homepage: "https://github.com/s0md3v/Smap",
         changelog: nix.thunk(() => nix.str`https://github.com/s0md3v/Smap/releases/tag/${nix.sel(finalAttrs, "version")}`),

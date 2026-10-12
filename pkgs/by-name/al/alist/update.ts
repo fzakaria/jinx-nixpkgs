@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   return nix.app(writeShellApplication, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "update-alist",
       runtimeInputs: nix.thunk(() => [curl, jq, nix$, common_updater_scripts, nix_update]),
       text: "# get old info\noldVersion=$(nix-instantiate --eval --strict -A \"alist.version\" | jq -e -r)\n\nget_latest_release() {\n    local repo=$1\n    curl --fail ${GITHUB_TOKEN:+ -H \"Authorization: bearer $GITHUB_TOKEN\"} \\\n         -s \"https://api.github.com/repos/AlistGo/$repo/releases/latest\" | jq -r \".tag_name\"\n}\n\nversion=$(get_latest_release \"alist\")\nversion=\"${version#v}\"\nwebVersion=$(get_latest_release \"alist-web\")\n\nif [[ \"$oldVersion\" == \"$version\" ]]; then\n    echo \"Already up to date!\"\n    exit 0\nfi\n\nupdate-source-version alist \"$webVersion\" --source-key=web --version-key=webVersion\n\nnix-update alist --version=\"$version\"\n",

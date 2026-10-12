@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libev = nix.arg($, "libev");
   const udev = nix.arg($, "udev");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "illum",
       version: "0.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "codyps",
           repo: "illum",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "prevent-unplug-segfault",
             url: "https://github.com/codyps/illum/commit/47b7cd60ee892379e5d854f79db343a54ae5a3cc.patch",
             sha256: "sha256-hIBBCIJXAt8wnZuyKye1RiEfOCelP3+4kcGrM43vFOE=",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       configurePhase: "runHook preConfigure\n\nbash ./configure\n\nrunHook postConfigure\n",
       installPhase: "mkdir -p $out/bin\nmv illum-d $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/codyps/illum",
         description: "Daemon that wires button presses to screen backlight level",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

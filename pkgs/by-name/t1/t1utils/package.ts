@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "t1utils",
       version: "1.42",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.lcdf.org/type/t1utils-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "YYd5NbGYcETd/0u5CgUgDKcWRnijVeFwv18aVVbMnyk=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of simple Type 1 font manipulation programs",
         longDescription: "t1utils is a collection of simple type-1 font manipulation programs.\nTogether, they allow you to convert between PFA (ASCII) and PFB (binary)\nformats, disassemble PFA or PFB files into human-readable form,\nreassemble them into PFA or PFB format. Additionally you can extract font\nresources from a Macintosh font file or create a Macintosh Type 1 font\nfile from a PFA or PFB font.\n",
         homepage: "https://www.lcdf.org/type/",

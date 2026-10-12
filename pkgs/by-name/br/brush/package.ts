@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const brush = nix.arg($, "brush");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "brush",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "reubeno",
           repo: "brush",
           tag: nix.thunk(() => nix.str`brush-shell-v${nix.sel(finalAttrs, "version")}`),
@@ -40,24 +40,24 @@ export default nix.lambda((args) => (() => {
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/${nix.sel(finalAttrs, "meta", "mainProgram")}`),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         shellPath: "/bin/brush",
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           complete: nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               assertion: "brushinfo performs to inspect completions",
               expected: nix.thunk(() => nix.app(writeText, "expected", "brush\nbrushctl\nbrushinfo\n")),
-              actual: nix.thunk(() => nix.app(runCommand, "actual", nix.thunk(() => ({ __proto__: pos$2, nativeBuildInputs: nix.thunk(() => [brush]) })), "brush -c 'brushinfo complete line bru' >$out\n")),
+              actual: nix.thunk(() => nix.app(runCommand, "actual", nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [brush]) })), "brush -c 'brushinfo complete line bru' >$out\n")),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             extraArgs: nix.thunk(() => ["--version-regex=brush-shell-v([\\d\\.]+)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Bash/POSIX-compatible shell implemented in Rust",
         homepage: "https://github.com/reubeno/brush",
         changelog: nix.thunk(() => nix.str`https://github.com/reubeno/brush/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

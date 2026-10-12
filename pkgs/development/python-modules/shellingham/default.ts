@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pytest_mock = nix.arg($, "pytest-mock");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "shellingham",
       version: "1.5.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sarugaku",
           repo: "shellingham",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_mock, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["shellingham"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to detect the surrounding shell",
         homepage: "https://github.com/sarugaku/shellingham",
         changelog: nix.thunk(() => nix.str`https://github.com/sarugaku/shellingham/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.rst`),

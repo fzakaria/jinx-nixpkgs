@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.43";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ms7m",
           repo: "notify-py",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,12 +39,12 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [
           nix.thunk(() => nix.app(replaceVars, nix.path(here, "./linux-paths.patch"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               aplay: nix.thunk(() => nix.str`${alsa_utils}/bin/aplay`),
               notifysend: nix.thunk(() => nix.str`${libnotify}/bin/notify-send`),
             })))),
         ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [
-          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./darwin-paths.patch"), nix.thunk(() => ({ __proto__: pos$3, which: nix.thunk(() => nix.str`${which}/bin/which`) })))),
+          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./darwin-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$3, which: nix.thunk(() => nix.str`${which}/bin/which`) })))),
         ]))));
       const nativeBuildInputs = nix.thunk(() => [pyprojectVersionPatchHook]);
       const build_system = nix.thunk(() => [poetry_core]);
@@ -62,7 +62,7 @@ PATH="$TMP/bin:$PATH" pytest
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["notifypy"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Cross-platform desktop notification library for Python",
         mainProgram: "notifypy",
         homepage: "https://github.com/ms7m/notify-py",
@@ -77,7 +77,7 @@ PATH="$TMP/bin:$PATH" pytest
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

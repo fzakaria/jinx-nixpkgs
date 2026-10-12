@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const SDL2 = nix.arg($, "SDL2");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "projectm-sdl-cpp",
       version: "0-unstable-2026-01-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "projectM-visualizer",
           repo: "frontend-sdl-cpp",
           rev: "7a07229428c51378f43843cf160bcddc21ef70ff",
@@ -41,16 +41,16 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [libprojectm, poco, utf8proc, libGL, libx11, SDL2]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-std=gnu++17"]))),
       })),
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Standalone application based on libprojectM and libSDL that turns your desktop audio into awesome visuals",
         homepage: "https://github.com/projectM-visualizer/frontend-sdl-cpp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

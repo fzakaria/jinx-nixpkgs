@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "8.18.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "elasticsearch_dsl",
           version: version,
           hash: "sha256-djRl26nq4Wat0QVn6STGVzCqEigZsIv+mgd+kbE7MNE=",
@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [elasticsearch, python_dateutil, typing_extensions]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         async: nix.thunk(() => nix.concat([elasticsearch], nix.sel(elasticsearch, "optional-dependencies", "async"))),
       }));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "High level Python client for Elasticsearch",
         longDescription: "Elasticsearch DSL is a high-level library whose aim is to help with\nwriting and running queries against Elasticsearch. It is built on top of\nthe official low-level client (elasticsearch-py).\n",
         homepage: "https://github.com/elasticsearch/elasticsearch-dsl-py",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

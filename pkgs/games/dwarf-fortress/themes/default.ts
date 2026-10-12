@@ -17,10 +17,10 @@ export default nix.lambda((args) => (() => {
   const maintainers = nix.thunk(() => nix.attr(lib, "maintainers"));
   const platforms = nix.thunk(() => nix.attr(lib, "platforms"));
   return nix.app(listToAttrs, nix.thunk(() => nix.builtins.map((v) => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name: nix.thunk(() => nix.attr(v, "name")),
         value: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: nix.thunk(() => nix.sel(v, "name")),
             version: nix.thunk(() => nix.sel(v, "version")),
             owner: "DFgraphics",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
             rev: nix.thunk(() => nix.sel(v, "version")),
             sha256: nix.thunk(() => nix.sel(v, "sha256")),
             meta: nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               platforms: nix.thunk(() => nix.sel(platforms, "all")),
               maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(maintainers, "shazow"))]),
               license: nix.thunk(() => nix.sel(licenses, "unfree")),

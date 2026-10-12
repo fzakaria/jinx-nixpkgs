@@ -42,16 +42,16 @@ export default nix.lambda((args) => (() => {
   const platforms = nix.thunk(() => nix.attr(lib, "platforms"));
   const versionOlder = nix.thunk(() => nix.attr(lib, "versionOlder"));
   const unfuck_releases = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "0.44.12": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       unfuckRelease: "0.44.12",
       owner: "svenstaro",
       rev: "0.44.12",
       hash: "sha256-f9vDe3Q3Vl2hFLCPSzYtqyv9rLKBKEnARZTu0MKaX88=",
     })),
     "0.47.05": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       unfuckRelease: "0.47.05-final",
       owner: "cizra",
       rev: "29fddba2ad92039b95d8873b9b05bbded7111fd0",
@@ -60,11 +60,11 @@ export default nix.lambda((args) => (() => {
   }));
   const release = nix.thunk(() => (nix.asBool(nix.app(hasAttr, dfVersion, unfuck_releases)) ? nix.app(getAttr, dfVersion, unfuck_releases) : nix.builtins.throw(nix.thunk(() => nix.str`[unfuck] Unknown Dwarf Fortress version: ${dfVersion}`))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "dwarf_fortress_unfuck",
       version: nix.thunk(() => nix.sel(release, "unfuckRelease")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           repo: "dwarf_fortress_unfuck",
           owner: nix.thunk(() => nix.attr(release, "owner")),
           rev: nix.thunk(() => nix.attr(release, "rev")),
@@ -72,13 +72,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(versionOlder, nix.thunk(() => nix.sel(release, "unfuckRelease")), "0.47.05")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               name: "fix-noreturn-returning.patch",
               url: "https://github.com/svenstaro/dwarf_fortress_unfuck/commit/6dcfe5ae869fddd51940c6c37a95f7bc639f4389.patch",
               hash: "sha256-b9eI3iR7dmFqCrktPyn6QJ9U2A/7LvfYRS+vE3BOaqk=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               name: "use-the-glew-cmake-target.patch",
               url: "https://github.com/svenstaro/dwarf_fortress_unfuck/commit/abd2961836ace8cf6277ceff997b02704c6edd7a.patch",
               hash: "sha256-2VS/Mvhl6oLoMcH4x3hX9RO0VrHha8hhkdKwN0ZfUTs=",
@@ -105,9 +105,9 @@ export default nix.lambda((args) => (() => {
       dontStrip: true,
       installPhase: "install -D -m755 ../build/libgraphics.so $out/lib/libgraphics.so\n",
       hardeningDisable: nix.thunk(() => ["fortify"]),
-      passthru: nix.thunk(() => ({ __proto__: pos$7, dfVersion: dfVersion })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$7, dfVersion: dfVersion })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Unfucked multimedia layer for Dwarf Fortress",
         homepage: "https://github.com/svenstaro/dwarf_fortress_unfuck",
         license: nix.thunk(() => nix.sel(licenses, "free")),

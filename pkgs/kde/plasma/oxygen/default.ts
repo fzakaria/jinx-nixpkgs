@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const qtbase = nix.arg($, "qtbase");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "oxygen",
       outputs: nix.thunk(() => ["out", "dev", "qt5"]),
       extraCmakeFlags: nix.thunk(() => [

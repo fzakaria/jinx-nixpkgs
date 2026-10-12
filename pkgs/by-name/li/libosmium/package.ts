@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const boost = nix.arg($, "boost");
   const lz4 = nix.arg($, "lz4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libosmium",
       version: "2.23.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "osmcode",
           repo: "libosmium",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "INSTALL_GDALCPP", true))]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fast and flexible C++ library for working with OpenStreetMap data",
         homepage: "https://osmcode.org/libosmium/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "boost")),

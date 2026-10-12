@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "CLProver++",
       version: "1.0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PaulGainer",
           repo: "CLProverPlusPlus",
           rev: "66bf6dc19d77094cc06eac3f30a3630ba830ac86",
@@ -41,7 +41,7 @@ cp -r examples $out/share/${nix.sel(finalAttrs, "pname")}/examples
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Ordered resolution based theorem prover for Coalition Logic",
         homepage: "https://cgi.csc.liv.ac.uk/~ullrich/CLProver++/",
         maintainers: nix.thunk(() => (() => {

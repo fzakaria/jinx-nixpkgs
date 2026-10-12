@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const poetry_core = nix.arg($, "poetry-core");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "google-play-scraper",
       version: "1.2.7-unstable-2024-06-07",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "JoMingyu",
           repo: "google-play-scraper",
           rev: "ce1df6d67e6d8c39826daac2f668808fc025f284",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["google_play_scraper"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Google play scraper for Python inspired by <facundoolano/google-play-scraper>",
         homepage: "https://github.com/JoMingyu/google-play-scraper",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

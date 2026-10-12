@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.10.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SmileyChris",
           repo: "easy-thumbnails",
           tag: version,
@@ -34,14 +34,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [django, pillow]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, svg: nix.thunk(() => [reportlab, svglib]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, svg: nix.thunk(() => [reportlab, svglib]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook, pytest_django], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const checkInputs = nix.thunk(() => [testfixtures]);
       const disabledTests = nix.thunk(() => ["test_postprocessor"]);
       const preCheck = "export DJANGO_SETTINGS_MODULE=\"easy_thumbnails.tests.settings\"\n";
       const pythonImportsCheck = nix.thunk(() => ["easy_thumbnails"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Easy thumbnails for Django",
         homepage: "https://github.com/SmileyChris/easy-thumbnails",
         changelog: nix.thunk(() => nix.str`https://github.com/SmileyChris/easy-thumbnails/blob/${nix.sel(src, "tag")}/CHANGES.rst`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "onny"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

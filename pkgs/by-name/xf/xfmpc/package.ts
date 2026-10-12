@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const libmpd = nix.arg($, "libmpd");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "xfmpc",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.xfce.org",
           owner: "apps",
           repo: "xfmpc",
@@ -51,11 +51,11 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [gtk3, glib, libxfce4ui, libxfce4util, libmpd]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "xfmpc-" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "xfmpc-" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "MPD client written in GTK",
         homepage: "https://docs.xfce.org/apps/xfmpc/start",
         changelog: nix.thunk(() => nix.str`https://gitlab.xfce.org/apps/xfmpc/-/blob/xfmpc-${nix.sel(finalAttrs, "version")}/NEWS`),

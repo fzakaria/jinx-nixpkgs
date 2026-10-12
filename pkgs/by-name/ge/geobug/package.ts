@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const geoclue2 = nix.arg($, "geoclue2");
   const libadwaita = nix.arg($, "libadwaita");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "geobug",
       version: "0.9.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tpikonen",
           repo: "geobug",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["geobug"]),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Adaptive GeoClue client",
         longDescription: "Geobug is an adaptive client for GeoClue, the geolocation D-bus server from freedesktop.org. It can display your location information (coordinates, speed etc.) and save a track of your movements to a GPX-file.\n",
         homepage: "https://codeberg.org/tpikonen/geobug",

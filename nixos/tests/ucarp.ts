@@ -28,21 +28,21 @@ export default nix.lambda((args) => (() => {
     const pkgs_1 = nix.arg($_1, "pkgs");
     const lib_1 = nix.arg($_1, "lib");
     return {
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       networking: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         interfaces: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           eth1: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             ipv4: nix.thunk(() => ({
-              __proto__: pos$2,
-              addresses: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$1, address: addr, prefixLength: 24n }))]))),
+              [nix.POS]: pos$2,
+              addresses: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$1, address: addr, prefixLength: 24n }))]))),
             })),
           })),
         })),
         ucarp: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: true,
           interface: "eth1",
           srcIp: addr,
@@ -60,11 +60,11 @@ ${nix.sel(pkgs_1, "iproute2")}/bin/ip addr del "$2"/24 dev "$1"
     };
   })(), formals$2);
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     name: "ucarp",
-    meta: nix.thunk(() => ({ __proto__: pos$8, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$8, maintainers: [] })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       hostA: nix.thunk(() => nix.app(mkUcarpHost, addrHostA)),
       hostB: nix.thunk(() => nix.app(mkUcarpHost, addrHostB)),
     })),

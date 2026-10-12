@@ -30,17 +30,17 @@ export default nix.lambda((args) => (() => {
   const libice = nix.arg($, "libice");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "xawtv",
       version: "3.107",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://linuxtv.org/downloads/xawtv/xawtv-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "055p0wia0xsj073l8mg4ifa6m81dmv6p45qyh99brramq5iylfy5",
         })))),
       patches: nix.thunk(() => [nix.path(here, "./0001-Fix-build-for-glibc-2.32.patch")]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
       })),
       buildInputs: nix.thunk(() => [
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`resdir=${nix.builtins.placeholder("out")}/share/X11`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "TV application for Linux with apps and tools such as a teletext browser",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
         homepage: "https://www.kraxel.org/blog/linux/xawtv/",

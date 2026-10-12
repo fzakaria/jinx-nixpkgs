@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "gtklock"));
   const configFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       listToValue: nix.thunk(() => nix.app(nix.builtins.concatStringsSep, ";")),
     }))));
   const types = nix.thunk(() => nix.attr(lib, "types"));
@@ -39,23 +39,23 @@ export default nix.lambda((args) => (() => {
   const mkEnableOption = nix.thunk(() => nix.attr(lib, "mkEnableOption"));
   const mkPackageOption = nix.thunk(() => nix.attr(lib, "mkPackageOption"));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       programs: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         gtklock: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(mkEnableOption, "gtklock, a GTK-based lockscreen for Wayland")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "gtklock", nix.thunk(() => ({})))),
           config: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(configFormat, "type")),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  main = {\n    idle-hide = true;\n    idle-timeout = 10;\n  };\n}")),
               description: "Configuration for gtklock.\nSee [`gtklock(1)`](https://github.com/jovanlanik/gtklock/blob/master/man/gtklock.1.scd) man page for details.\n",
             })))),
           style: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "lines")));
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
               description: "CSS Stylesheet for gtklock.\nSee [gtklock's wiki](https://github.com/jovanlanik/gtklock/wiki#Styling) for details.\n",
             })))),
           modules: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "package")));
@@ -77,20 +77,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         programs: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           gtklock: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             config: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               main: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                   nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "style"), null)), nix.thunk(() => ({
-                      __proto__: pos$8,
+                      [nix.POS]: pos$8,
                       style: nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "writeText"), "style.css", nix.thunk(() => nix.sel(cfg, "style")))}`),
                     })))),
                   nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "modules"), [])), nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       modules: nix.thunk(() => nix.builtins.map((pkg) => nix.str`${pkg}/lib/gtklock/${nix.app(nix.sel(lib, "removePrefix"), "gtklock-", nix.thunk(() => nix.sel(pkg, "pname")))}.so`, nix.thunk(() => nix.sel(cfg, "modules")))),
                     })))),
                 ]))),
@@ -98,21 +98,21 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           etc: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             "xdg/gtklock/config.ini": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "config"), {})), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 source: nix.thunk(() => nix.app(nix.sel(configFormat, "generate"), "config.ini", nix.thunk(() => nix.sel(cfg, "config")))),
               })))),
           })),
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           pam: nix.thunk(() => ({
-            __proto__: pos$17,
-            services: nix.thunk(() => ({ __proto__: pos$16, gtklock: nix.thunk(() => ({})) })),
+            [nix.POS]: pos$17,
+            services: nix.thunk(() => ({ [nix.POS]: pos$16, gtklock: nix.thunk(() => ({})) })),
           })),
         })),
       })))),

@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const vulkan_loader = nix.arg($, "vulkan-loader");
   const wayland = nix.arg($, "wayland");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "clonehero",
       version: "1.1.0.6142",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/clonehero-game/releases/releases/download/v${nix.sel(finalAttrs, "version")}-final/Linux.x86_64-Standalone.tar`),
           hash: "sha256-Vylx2TCSKDxdDVIAaia1Krjo+xKNz7QqNJbeJsiqIx0=",
         })))),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
       ]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "clonehero",
             desktopName: "Clone Hero",
             comment: nix.thunk(() => nix.sel(finalAttrs, "meta", "description")),
@@ -80,14 +80,14 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ninstall -Dm755 clonehero \"$out/libexec/clonehero/clonehero\"\ninstall -Dm644 GameAssembly.so \"$out/lib/clonehero/GameAssembly.so\"\ninstall -Dm644 UnityPlayer.so \"$out/lib/clonehero/UnityPlayer.so\"\n\nmkdir -p \"$out/share\"\ncp -r clonehero_Data \"$out/share/clonehero\"\n\nmkdir -p \"$out/bin\" \"$out/share/icons/hicolor/128x128/apps\"\nln -s \"$out/libexec/clonehero/clonehero\" \"$out/bin/clonehero\"\nln -s \"$out/lib/clonehero/GameAssembly.so\" \"$out/libexec/clonehero/GameAssembly.so\"\nln -s \"$out/lib/clonehero/UnityPlayer.so\" \"$out/libexec/clonehero/UnityPlayer.so\"\nln -s \"$out/share/clonehero\" \"$out/libexec/clonehero/clonehero_Data\"\nln -s \"$out/share/clonehero/Resources/UnityPlayer.png\" \"$out/share/icons/hicolor/128x128/apps/clonehero.png\"\n\nrunHook postInstall\n",
       postFixup: "patchelf \\\n  --add-needed libasound.so.2 \\\n  --add-needed libdbus-1.so.3 \\\n  --add-needed libGL.so.1 \\\n  --add-needed libpthread.so.0 \\\n  --add-needed libudev.so.1 \\\n  --add-needed libvulkan.so.1 \\\n  --add-needed libwayland-client.so.0 \\\n  --add-needed libwayland-cursor.so.0 \\\n  --add-needed libwayland-egl.so.1 \\\n  --add-needed libX11.so.6 \\\n  --add-needed libXcursor.so.1 \\\n  --add-needed libXext.so.6 \\\n  --add-needed libXi.so.6 \\\n  --add-needed libXinerama.so.1 \\\n  --add-needed libxkbcommon.so.0 \\\n  --add-needed libXrandr.so.2 \\\n  --add-needed libXss.so.1 \\\n  --add-needed libXxf86vm.so.1 \\\n  \"$out/lib/clonehero/UnityPlayer.so\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version-regex", "^v([0-9.]+)-final$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Clone of Guitar Hero and Rockband-style games",
         homepage: "https://clonehero.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

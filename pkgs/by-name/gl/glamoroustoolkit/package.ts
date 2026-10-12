@@ -40,16 +40,16 @@ export default nix.lambda((args) => (() => {
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   const zenity = nix.arg($, "zenity");
   const gkIcon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://gist.githubusercontent.com/qbit/cb52e6cd193c410e0b0aee8a216f6574/raw/2b042bde1dc4cbd30457f14c9d18c889444bf3d0/glamoroustoolkit.svg",
       sha256: "sha256-Trfo8P01anLq9yTFzwqIfsyidLGyuZDg48YQPrGBkgs=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "glamoroustoolkit",
       version: "1.1.70",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/feenkcom/gtoolkit-vm/releases/download/v${nix.sel(finalAttrs, "version")}/GlamorousToolkit-x86_64-unknown-linux-gnu.zip`),
           stripRoot: false,
           hash: "sha256-ftMHM+uePoS7CYCSQDwe+rXjpu/HR7G3twbmo5IFuWE=",
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         const w = nix.withScope(finalAttrs, null);
         return [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               name: nix.thunk(() => nix.lookup(w, "pname")),
               desktopName: "GlamorousToolkit",
               exec: "GlamorousToolkit",
@@ -140,7 +140,7 @@ gappsWrapperArgs+=(
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://gtoolkit.com",
         description: "GlamorousToolkit Development Environment",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

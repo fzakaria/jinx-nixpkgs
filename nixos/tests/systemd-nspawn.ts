@@ -25,9 +25,9 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
-  const gpgKeyring = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common/gpg-keyring.nix")), nix.thunk(() => ({ __proto__: pos$1, pkgs: pkgs }))));
+  const gpgKeyring = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common/gpg-keyring.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, pkgs: pkgs }))));
   const nspawnImages = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "localhost", nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       buildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(pkgs, "coreutils")),
         nix.thunk(() => nix.sel(pkgs, "gnupg")),
@@ -48,27 +48,27 @@ cp -R ${gpgKeyring}/* $GNUPGHOME
 gpg --batch --sign --detach-sign --output SHA256SUMS.gpg SHA256SUMS
 `)));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     name: "systemd-nspawn",
     nodes: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           networking: nix.thunk(() => ({
-            __proto__: pos$4,
-            firewall: nix.thunk(() => ({ __proto__: pos$3, allowedTCPPorts: nix.thunk(() => [80n]) })),
+            [nix.POS]: pos$4,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$3, allowedTCPPorts: nix.thunk(() => [80n]) })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             nginx: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                __proto__: pos$6,
-                server: nix.thunk(() => ({ __proto__: pos$5, root: nspawnImages })),
+                [nix.POS]: pos$6,
+                server: nix.thunk(() => ({ [nix.POS]: pos$5, root: nspawnImages })),
               })),
             })),
           })),
@@ -78,13 +78,13 @@ gpg --batch --sign --detach-sign --output SHA256SUMS.gpg SHA256SUMS
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           environment: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             etc: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               "systemd/import-pubring.gpg": nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 source: nix.thunk(() => nix.str`${gpgKeyring}/pubkey.gpg`),
               })),
             })),

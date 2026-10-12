@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
     const drvB = nix.thunk(() => nix.builtins.unsafeDiscardOutputDependency(nix.thunk(() => nix.selOr(b, () => nix.builtins.throw("testEqualDerivation third argument must be a package"), "drvPath"))));
     const name = nix.thunk(() => (nix.asBool(nix.has(a, "name")) ? nix.str`testEqualDerivation-${nix.sel(a, "name")}` : "testEqualDerivation"));
     return (nix.asBool(nix.eq(drvA, drvB)) ? nix.force(emptyFile) : nix.app(runCommand, name, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         assertion: assertion,
         drvA: drvA,
         drvB: drvB,

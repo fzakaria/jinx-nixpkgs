@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const setuptools_scm = nix.arg($, "setuptools-scm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "python-openevse-http",
       version: "1.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "firstof9",
           repo: "python-openevse-http",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [aioresponses, freezegun, pytestCheckHook, pytest_asyncio]),
       pythonImportsCheck: nix.thunk(() => ["openevsehttp"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python wrapper for OpenEVSE HTTP API",
         homepage: "https://github.com/firstof9/python-openevse-http",
         changelog: nix.thunk(() => nix.str`https://github.com/firstof9/python-openevse-http/releases/tag/${nix.sel(finalAttrs, "version")}`),

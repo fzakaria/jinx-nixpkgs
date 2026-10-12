@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const ghdl = nix.arg($, "ghdl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "yosys-ghdl",
       version: "0-unstable-2025-05-23",
       plugin: "ghdl",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ghdl",
           repo: "ghdl-yosys-plugin",
           rev: "1b97dc71377cea7e861be6625be4353c377a5fb5",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       installPhase: "mkdir -p $out/share/yosys/plugins\ncp ghdl.so $out/share/yosys/plugins/ghdl.so\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GHDL plugin for Yosys",
         homepage: "https://github.com/ghdl/ghdl-yosys-plugin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

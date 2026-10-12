@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const flex = nix.arg($, "flex");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xmlindent",
       version: "0.2.17",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/xmlindent/xmlindent/${nix.sel(finalAttrs, "version")}/xmlindent-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0k15rxh51a5r4bvfm6c4syxls8al96cx60a9mn6pn24nns3nh3rs",
         })))),
       buildInputs: nix.thunk(() => [flex]),
       preConfigure: "substituteInPlace Makefile --replace \"PREFIX=/usr/local\" \"PREFIX=$out\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "XML stream reformatter",
         mainProgram: "xmlindent",
         homepage: "https://xmlindent.sourceforge.net/",

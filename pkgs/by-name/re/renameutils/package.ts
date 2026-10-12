@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const readline = nix.arg($, "readline");
   const coreutils = nix.arg($, "coreutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "renameutils",
       version: "0.12.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://savannah/renameutils/renameutils-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "18xlkr56jdyajjihcmfqlyyanzyiqqlzbhrm6695mkvw081g1lnb",
         })))),
@@ -34,11 +34,11 @@ substituteInPlace src/icmd.c \\
 substituteInPlace src/qcmd.c \\
   --replace "ls_program = xstrdup(\\"ls\\")" "ls_program = xstrdup(\\"${coreutils}/bin/ls\\")"
 `))),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       nativeBuildInputs: nix.thunk(() => [readline]),
       preConfigure: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), "export ac_cv_func_lstat64=no\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.nongnu.org/renameutils/",
         description: "Set of programs to make renaming of files faster",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

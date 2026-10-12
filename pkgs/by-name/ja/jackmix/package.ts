@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libsForQt5 = nix.arg($, "libsForQt5");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jackmix",
       version: "0.6.1-unstable-2024-03-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kampfschlaefer",
           repo: "jackmix",
           rev: "f0f29a7111f704f369f1ecd6c29a713ce21f767a",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(libsForQt5, "qtbase")), jack, alsa_lib]),
       installPhase: "install -D jackmix/jackmix $out/bin/jackmix\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Matrix-Mixer for the Jack-Audio-connection-Kit",
         mainProgram: "jackmix",
         homepage: "https://github.com/kampfschlaefer/jackmix",

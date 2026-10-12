@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const flex = nix.arg($, "flex");
   const readline = nix.arg($, "readline");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cdecl",
       version: "18.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "paul-j-lucas",
           repo: "cdecl",
           tag: nix.thunk(() => nix.str`cdecl-${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoconf, automake, bison, flex]),
       buildInputs: nix.thunk(() => [readline]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(["-DBSD", "-DUSE_READLINE"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => [
               "-Wno-error=int-conversion",
               "-Wno-error=incompatible-function-pointer-types",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "mkdir -p $out/bin;\n",
       outputs: nix.thunk(() => ["out", "man"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Composing and deciphering C (or C++) declarations or casts, aka 'gibberish'",
         homepage: "https://github.com/paul-j-lucas/cdecl",
         changelog: nix.thunk(() => nix.str`https://github.com/paul-j-lucas/cdecl/blob/cdecl-${nix.sel(finalAttrs, "version")}/ChangeLog`),

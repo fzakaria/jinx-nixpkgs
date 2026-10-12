@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libxcb_keysyms = nix.arg($, "libxcb-keysyms");
   const xorgproto = nix.arg($, "xorgproto");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xcb-imdkit",
       version: "1.0.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fcitx",
           repo: "xcb-imdkit",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         libxcb_keysyms,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Input method development support for xcb",
         homepage: "https://github.com/fcitx/xcb-imdkit",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

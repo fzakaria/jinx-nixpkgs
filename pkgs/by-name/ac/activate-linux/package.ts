@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const wayland_scanner = nix.arg($, "wayland-scanner");
   const libconfig = nix.arg($, "libconfig");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "activate-linux",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MrGlockenspiel",
           repo: "activate-linux",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\nmkdir -p $out/share/man/man1\n\ncp activate-linux $out/bin\ncp activate-linux.1 $out/share/man/man1\n\ninstall -Dm444 res/activate-linux.png $out/share/icons/hicolor/128x128/apps/activate-linux.png\ninstall -Dm444 res/activate-linux.desktop -t $out/share/applications\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "\"Activate Windows\" watermark ported to Linux",
         homepage: "https://github.com/MrGlockenspiel/activate-linux",
         changelog: nix.thunk(() => nix.str`https://github.com/MrGlockenspiel/activate-linux/releases/tag/v${nix.sel(finalAttrs, "version")}`),

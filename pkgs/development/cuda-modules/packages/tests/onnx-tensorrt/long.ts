@@ -14,8 +14,8 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const writeShellApplication = nix.arg($, "writeShellApplication");
   return nix.app(writeShellApplication, nix.thunk(() => ({
-      __proto__: pos$2,
-      derivationArgs: nix.thunk(() => ({ __proto__: pos$1, __structuredAttrs: true, strictDeps: true })),
+      [nix.POS]: pos$2,
+      derivationArgs: nix.thunk(() => ({ [nix.POS]: pos$1, __structuredAttrs: true, strictDeps: true })),
       name: nix.thunk(() => nix.str`${cudaNamePrefix}-tests-onnx-tensorrt-long`),
       runtimeInputs: nix.thunk(() => [
         cuda_cudart,

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "idsk",
       version: "0.20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cpcsdk",
           repo: "idsk",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/cpcsdk/idsk/commit/52fa3cdcc10d4ba6c75cab10ca7067b129198d92.patch",
             hash: "sha256-Ll0apllNj+fP7kZ1n+bBowrlskLK1bIashxxgPVVxmg=",
           })))),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 iDSK $out/bin/iDSK\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Manipulating CPC dsk images and files",
         homepage: "https://github.com/cpcsdk/idsk",
         changelog: nix.thunk(() => nix.str`https://github.com/cpcsdk/idsk/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

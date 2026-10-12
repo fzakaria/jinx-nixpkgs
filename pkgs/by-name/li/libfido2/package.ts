@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const withPcsclite = nix.argOr($, "withPcsclite", () => true);
   const pcsclite = nix.arg($, "pcsclite");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libfido2",
       version: "1.17.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://developers.yubico.com/libfido2/Releases/libfido2-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-wQEsiHHXG2WHL9X/Gp1rCDilVoOgPoW6l0ec5XEpxzY=",
         })))),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["-DUSE_HIDAPI=1"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ["-DNFC_LINUX=1"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(withPcsclite))), nix.thunk(() => ["-DUSE_PCSC=1"])))))),
       hardeningDisable: nix.thunk(() => ["fortify3"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Provides library functionality for FIDO 2.0, including communication with a device over USB.\n",
         homepage: "https://github.com/Yubico/libfido2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

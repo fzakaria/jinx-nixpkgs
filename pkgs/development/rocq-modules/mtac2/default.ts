@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const unicoq = nix.arg($, "unicoq");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "Mtac2",
       owner: "Mtac2",
       version: version,
@@ -30,33 +30,33 @@ export default nix.lambda((args) => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "version")), nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               case: nix.thunk(() => nix.app(nix.lookup(w, "isEq"), "9.1")),
               out: nix.thunk(() => nix.str`1.4-rocq${nix.sel(coq, "coq-version")}`),
             })),
             nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.19", "9.0")),
               out: nix.thunk(() => nix.str`1.4-coq${nix.sel(coq, "coq-version")}`),
             })),
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         "1.4-rocq9.1": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           hash: "sha256-A+ac84ZfDMW2NhS/NrGIfdairXmzXxZIYGNmJIz0ReM=",
         })),
         "1.4-coq9.0": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           hash: "sha256-pAPBRCW7M46UZPJ+v/0xAT8mpQURN8czMmlrfYz/MVU=",
         })),
         "1.4-coq8.20": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           hash: "sha256-3nu/8zDvdnl6WzGtw46mVcdqgkRgc6Xy8/I+lUOrSIY=",
         })),
         "1.4-coq8.19": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           hash: "sha256-G9eK0eLyECdT20/yf8yyz7M8Xq2WnHHaHpxVGP0yTtU=",
         })),
       })),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
       mlPlugin: true,
       propagatedBuildInputs: nix.thunk(() => [stdlib, unicoq]),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Typed tactic language for Coq",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),

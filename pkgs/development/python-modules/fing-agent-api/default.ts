@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const httpx = nix.arg($, "httpx");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fing-agent-api",
       version: "1.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fingltd",
           repo: "fing-agent-pyapi",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["fing_agent_api"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/fingltd/fing-agent-pyapi/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Python library for interacting with the Fingbox local APIs",
         homepage: "https://github.com/fingltd/fing-agent-pyapi",

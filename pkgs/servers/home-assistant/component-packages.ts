@@ -6,10 +6,10 @@ const pos$1 = nix.positions(here + "/component-packages.nix", [["3_day_blinds", 
 const pos$2 = nix.positions(here + "/component-packages.nix", [["version", 5, 3], ["components", 6, 3], ["supportedComponentsWithTests", 8351, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$2,
+  [nix.POS]: pos$2,
   version: "2026.9.4",
   components: nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "3_day_blinds": (ps) => (() => {
       const w = nix.withScope(ps, null);
       return [];

@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const fetchurl = nix.arg($, "fetchurl");
   const findXMLCatalogs = nix.arg($, "findXMLCatalogs");
-  const src = nix.argOr($, "src", () => nix.app(fetchurl, nix.thunk(() => ({ __proto__: pos$1, hash: hash, url: url }))));
+  const src = nix.argOr($, "src", () => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$1, hash: hash, url: url }))));
   const version = nix.arg($, "version");
   const hash = nix.argOr($, "hash", () => "");
   const url = nix.argOr($, "url", () => nix.str`https://www.oasis-open.org/docbook/xml/${version}/docbook-xml-${version}.zip`);
   const postInstall = nix.argOr($, "postInstall", () => "true");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: version,
       src: src,
       postInstall: postInstall,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\nfind . -type f -exec chmod -x {} \\;\nrunHook postInstall\n",
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         branch: version,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),

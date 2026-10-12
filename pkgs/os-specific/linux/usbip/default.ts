@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const hwdata = nix.arg($, "hwdata");
   const kernelOlder = nix.arg($, "kernelOlder");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.str`usbip-${nix.sel(kernel, "pname")}`),
       version: nix.thunk(() => nix.sel(kernel, "version")),
       src: nix.thunk(() => nix.sel(kernel, "src")),
@@ -30,13 +30,13 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoconf, automake, libtool]),
       buildInputs: nix.thunk(() => [udev]),
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=address-of-packed-member"]))),
       })),
       preConfigure: "cd tools/usb/usbip\n./autogen.sh\n",
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-usbids-dir=${hwdata}/share/hwdata/`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/torvalds/linux/tree/master/tools/usb/usbip",
         description: "Allows to pass USB device from server to client over the network",
         license: nix.thunk(() => (() => {

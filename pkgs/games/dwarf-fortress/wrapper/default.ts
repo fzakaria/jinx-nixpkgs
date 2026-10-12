@@ -46,20 +46,20 @@ export default nix.lambda((args) => (() => {
   const enableTextMode = nix.argOr($, "enableTextMode", () => false);
   const enableSound = nix.argOr($, "enableSound", () => true);
   const settings = nix.argOr($, "settings", () => ({}));
-  const dfhack$ = nix.thunk(() => nix.app(nix.sel(dfhack, "override"), nix.thunk(() => ({ __proto__: pos$1, enableStoneSense: enableStoneSense }))));
+  const dfhack$ = nix.thunk(() => nix.app(nix.sel(dfhack, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableStoneSense: enableStoneSense }))));
   const isAtLeast50 = nix.thunk(() => nix.ge(nix.sel(dwarf_fortress, "baseVersion"), 50n));
   const enableTWBT$ = nix.thunk(() => (nix.asBool((nix.asBool(enableTWBT) && nix.asBool(!nix.eq(twbt, null)))) && nix.asBool(nix.eq(nix.selOr(twbt, () => null, "dfVersion"), nix.sel(dwarf_fortress, "version")))));
   const ptheme = nix.thunk(() => (nix.asBool(nix.builtins.isString(theme)) ? nix.builtins.getAttr(theme, themes) : nix.force(theme)));
   const baseEnv = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: nix.thunk(() => nix.str`dwarf-fortress-base-env-${nix.sel(dwarf_fortress, "dfVersion")}`),
       paths: nix.thunk(() => nix.concat(extraPackages, nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(theme, null)), ptheme), nix.concat(nix.app(nix.sel(lib, "optional"), enableDFHack, dfhack$), nix.concat(nix.app(nix.sel(lib, "optional"), enableSoundSense, soundSense), nix.concat(nix.app(nix.sel(lib, "optionals"), enableTWBT$, nix.thunk(() => [nix.thunk(() => nix.sel(twbt, "lib")), nix.thunk(() => nix.sel(twbt, "art"))])), [dwarf_fortress])))))),
       ignoreCollisions: true,
     }))));
   const settings$ = nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       init: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         PRINT_MODE: nix.thunk(() => (nix.asBool(enableTextMode) ? "TEXT" : (nix.asBool(enableTWBT$) ? "TWBT" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "STANDARD" : null)))),
         INTRO: enableIntro,
         TRUETYPE: enableTruetype,
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
     })), settings));
   const forEach = (attrs) => (f) => nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), f, attrs)));
   const toTxt = (v) => (nix.asBool(nix.app(nix.sel(lib, "isBool"), v)) ? (nix.asBool(v) ? "YES" : "NO") : (nix.asBool(nix.app(nix.sel(lib, "isInt"), v)) ? nix.builtins.toString(v) : (nix.asBool(nix.app(nix.sel(lib, "isString"), v)) ? nix.force(v) : nix.builtins.throw(nix.thunk(() => nix.str`dwarf-fortress: unsupported configuration value ${nix.builtins.toString(v)}`)))));
-  const config = nix.thunk(() => nix.app(runCommand, "dwarf-fortress-config", nix.thunk(() => ({ __proto__: pos$5, nativeBuildInputs: nix.thunk(() => [gawk, makeWrapper]) })), nix.thunk(() => nix.add(nix.add("mkdir -p $out/data/init\n\nedit_setting() {\n  v=${v//'&'/'\\&'}\n  if [ -f \"$out/$file\" ]; then\n    if ! gawk -i inplace -v RS='\\r?\\n' '\n      { n += sub(\"\\\\[\" ENVIRON[\"k\"] \":[^]]*\\\\]\", \"[\" ENVIRON[\"k\"] \":\" ENVIRON[\"v\"] \"]\"); print }\n      END { exit(!n) }\n    ' \"$out/$file\"; then\n      echo \"error: no setting named '$k' in $out/$file\" >&2\n      exit 1\n    fi\n  else\n    echo \"warning: no file $out/$file; cannot edit\" >&2\n  fi\n}\n", nix.app(forEach, settings$, (file) => (kv) => nix.add(nix.str`file=data/init/${nix.app(nix.sel(lib, "escapeShellArg"), file)}.txt
+  const config = nix.thunk(() => nix.app(runCommand, "dwarf-fortress-config", nix.thunk(() => ({ [nix.POS]: pos$5, nativeBuildInputs: nix.thunk(() => [gawk, makeWrapper]) })), nix.thunk(() => nix.add(nix.add("mkdir -p $out/data/init\n\nedit_setting() {\n  v=${v//'&'/'\\&'}\n  if [ -f \"$out/$file\" ]; then\n    if ! gawk -i inplace -v RS='\\r?\\n' '\n      { n += sub(\"\\\\[\" ENVIRON[\"k\"] \":[^]]*\\\\]\", \"[\" ENVIRON[\"k\"] \":\" ENVIRON[\"v\"] \"]\"); print }\n      END { exit(!n) }\n    ' \"$out/$file\"; then\n      echo \"error: no setting named '$k' in $out/$file\" >&2\n      exit 1\n    fi\n  else\n    echo \"warning: no file $out/$file; cannot edit\" >&2\n  fi\n}\n", nix.app(forEach, settings$, (file) => (kv) => nix.add(nix.str`file=data/init/${nix.app(nix.sel(lib, "escapeShellArg"), file)}.txt
 if [ -f "${baseEnv}/$file" ]; then
   cp "${baseEnv}/$file" "$out/$file"
 else
@@ -94,17 +94,17 @@ echo "  Replace: $patched_md5"
 substitute "$input_file" "$output_file" --replace-fail "$orig_md5" "$patched_md5"
 `))))));
   const env = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       name: nix.thunk(() => nix.str`dwarf-fortress-env-${nix.sel(dwarf_fortress, "dfVersion")}`),
       paths: nix.thunk(() => [config, baseEnv]),
       ignoreCollisions: true,
     }))));
   return nix.app(nix.sel(lib, "throwIf"), nix.thunk(() => (nix.asBool(enableTWBT$) && nix.asBool(!nix.asBool(enableDFHack)))), "dwarf-fortress: TWBT requires DFHack to be enabled", nix.thunk(() => nix.sel(lib, "throwIf")), nix.thunk(() => (nix.asBool(enableStoneSense) && nix.asBool(!nix.asBool(enableDFHack)))), "dwarf-fortress: StoneSense requires DFHack to be enabled", nix.thunk(() => nix.sel(lib, "throwIf")), nix.thunk(() => (nix.asBool(enableTextMode) && nix.asBool(enableTWBT$))), "dwarf-fortress: text mode and TWBT are mutually exclusive", nix.thunk(() => nix.sel(stdenv, "mkDerivation")), nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "dwarf-fortress",
       version: nix.thunk(() => nix.sel(dwarf_fortress, "dfVersion")),
       dfInit: nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dwarf-fortress-init.in"), nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           env: env,
           stdenv_shell: nix.thunk(() => nix.str`${nix.sel(stdenv, "shell")}`),
           cp: nix.thunk(() => nix.str`${coreutils}/bin/cp`),
@@ -119,7 +119,7 @@ substitute "$input_file" "$output_file" --replace-fail "$orig_md5" "$patched_md5
       runDF: nix.path(here, "./dwarf-fortress.in"),
       runSoundSense: nix.path(here, "./soundSense.in"),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         "dwarf-fortress": dwarf_fortress,
         "dwarf-therapist": dwarf_therapist,
         twbt: twbt,

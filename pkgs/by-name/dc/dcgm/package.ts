@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
   const mkCudaFlags = (cudaPackages) => (() => {
     const version = nix.thunk(() => nix.sel(cudaPackages, "cudaMajorVersion"));
     const headers = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: nix.thunk(() => nix.str`cuda-headers-combined-${version}`),
         paths: nix.thunk(() => nix.app(nix.sel(lib, "map"), (pkg) => nix.str`${nix.app(nix.sel(lib, "getInclude"), pkg)}/include`, nix.thunk(() => nix.app(getCudaPackages, cudaPackages)))),
       }))));
@@ -68,11 +68,11 @@ export default nix.lambda((args) => (() => {
     ];
   })();
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "dcgm",
       version: "4.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "NVIDIA",
           repo: "DCGM",
           rev: "1477d8785e899ab3450fdff2b486102e9bed096b",
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./dynamic-libs.patch"),
         nix.path(here, "./fix-gcc15.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             coreutils: coreutils,
             "util-linux": util_linux,
             lshw: lshw,
@@ -122,14 +122,14 @@ export default nix.lambda((args) => (() => {
         "GetPluginCudalessDir returns cudaless directory in plugin directory",
       ]),
       cmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), mkCudaFlags, cudaPackageSets)),
-      env: nix.thunk(() => ({ __proto__: pos$4, NIX_CFLAGS_COMPILE: "-Wno-error" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$4, NIX_CFLAGS_COMPILE: "-Wno-error" })),
       doCheck: true,
       dontUseNinjaCheck: true,
       postPatch: "while read -r -d \"\" file; do\n  substituteInPlace \"$file\" --replace-quiet @dcgm_out@ \"$out\"\ndone < <(find . '(' -name '*.h' -or -name '*.cpp' ')' -print0)\n",
       disallowedReferences: nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), getCudaPackages, cudaPackageSets)),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Data Center GPU Manager (DCGM) is a daemon that allows users to monitor NVIDIA data-center GPUs",
         homepage: "https://developer.nvidia.com/dcgm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

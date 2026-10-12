@@ -58,18 +58,18 @@ export default nix.lambda((args) => (() => {
   })());
   const serverDeps = nix.thunk(() => nix.concat([libmicrohttpd, libsodium], nix.app(nix.sel(lib, "optional"), withSystemd, systemd)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "drawpile",
       version: "2.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "drawpile",
           repo: "drawpile",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           sha256: "sha256-0paLKxAEvlbExq426xTekBt+Dkphx7Wg/AtpYN3f/4w=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "qt-6.10.1.patch",
             url: "https://github.com/drawpile/Drawpile/commit/c4f69f79b1cb0d25e68b49e807ce6773ddb9dd3c.patch",
             hash: "sha256-Z8mcPux8tvK5y1GirfKq1X9+kxHDIrnSLTd2MCSIxTg=",
@@ -101,7 +101,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "TOOLS", buildExtraTools)),
       ]),
       meta: nix.thunk(() => nix.update({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Collaborative drawing program that allows multiple users to sketch on the same canvas simultaneously",
         homepage: "https://drawpile.net/",
         downloadPage: "https://drawpile.net/download/",
@@ -115,7 +115,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
-      }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), buildServer, nix.thunk(() => ({ __proto__: pos$5, mainProgram: "drawpile-srv" }))), nix.app(nix.sel(lib, "optionalAttrs"), buildClient, nix.thunk(() => ({ __proto__: pos$6, mainProgram: "drawpile" })))))),
+      }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), buildServer, nix.thunk(() => ({ [nix.POS]: pos$5, mainProgram: "drawpile-srv" }))), nix.app(nix.sel(lib, "optionalAttrs"), buildClient, nix.thunk(() => ({ [nix.POS]: pos$6, mainProgram: "drawpile" })))))),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

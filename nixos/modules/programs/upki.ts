@@ -39,24 +39,24 @@ export default nix.lambda((args) => (() => {
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "upki.toml", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         upki: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "upki certificate infrastructure cache updates")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "upki", nix.thunk(() => ({})))),
           interval: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "2h",
               example: "1h",
               description: "How often to update the upki cache.",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.attr(format, "type")),
               default: nix.thunk(() => ({})),
               description: "Settings written to the upki config file.",
@@ -66,43 +66,43 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         environment: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$7,
-            "upki/config.toml": nix.thunk(() => ({ __proto__: pos$6, source: configFile })),
+            [nix.POS]: pos$7,
+            "upki/config.toml": nix.thunk(() => ({ [nix.POS]: pos$6, source: configFile })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           upki: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             settings: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               "cache-dir": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/var/cache/upki")),
               revocation: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 "fetch-url": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "https://upki.rustls.dev/")),
               })),
             })),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           users: nix.thunk(() => ({
-            __proto__: pos$14,
-            upki: nix.thunk(() => ({ __proto__: pos$13, isSystemUser: true, group: "upki" })),
+            [nix.POS]: pos$14,
+            upki: nix.thunk(() => ({ [nix.POS]: pos$13, isSystemUser: true, group: "upki" })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$15, upki: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$15, upki: nix.thunk(() => ({})) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             "upki-fetch": nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "Update the upki cache",
               after: nix.thunk(() => ["network-online.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
@@ -110,7 +110,7 @@ export default nix.lambda((args) => (() => {
                 nix.thunk(() => nix.sel(config, "environment", "etc", "upki/config.toml", "source")),
               ]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 Type: "oneshot",
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} --config-file /etc/upki/config.toml fetch`),
                 User: "upki",
@@ -137,13 +137,13 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           timers: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             "upki-fetch": nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               description: nix.thunk(() => nix.str`Update the upki cache every ${nix.sel(cfg, "interval")}`),
               wantedBy: nix.thunk(() => ["timers.target"]),
               timerConfig: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 OnActiveSec: "0",
                 OnUnitActiveSec: nix.thunk(() => nix.sel(cfg, "interval")),
               })),
@@ -152,7 +152,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "skyesoss"))]),
     })),
   };

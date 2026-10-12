@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tytools",
       version: "0.9.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Koromix",
           repo: "rygel",
           tag: nix.thunk(() => nix.str`tytools/${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\n./bootstrap.sh\n./felix -pFast tycmd tycommander tyuploader\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ninstallBin bin/Fast/tycmd bin/Fast/tycommander bin/Fast/tyuploader\ninstall -D --mode 0644 src/tytools/tycommander/tycommander_linux.desktop $out/share/applications/tycommander.desktop\ninstall -D --mode 0644 src/tytools/tyuploader/tyuploader_linux.desktop $out/share/applications/tyuploader.desktop\ninstall -D --mode 0644 src/tytools/assets/images/tycommander.png $out/share/icons/hicolor/512x512/apps/tycommander.png\ninstall -D --mode 0644 src/tytools/assets/images/tyuploader.png $out/share/icons/hicolor/512x512/apps/tyuploader.png\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of tools to manage Teensy boards",
         homepage: "https://koromix.dev/tytools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),

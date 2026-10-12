@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
   const applyPatches = nix.arg($, "applyPatches");
   const buildGoModule = nix.arg($, "buildGoModule");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "goconvey",
       version: "1.8.1-unstable-2024-03-06",
       excludedPackages: "web/server/watch/integration_testing",
       src: nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               owner: "smartystreets",
               repo: "goconvey",
               rev: "a50310f1e3e53e63e2d23eb904f853aa388a5988",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
             })))),
           patches: nix.thunk(() => [
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 url: "https://github.com/smartystreets/goconvey/commit/a8d73b2e5380902ab6caa6716ad69c324f390a2d.patch",
                 hash: "sha256-4JZs4/kxt3KP21q4U8mpBJkueVmRsCsKqST1Cn6ySN8=",
               })))),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       ldflags: nix.thunk(() => ["-s", "-w"]),
       checkFlags: nix.thunk(() => ["-short"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Go testing in the browser. Integrates with `go test`. Write behavioral tests in Go",
         mainProgram: "goconvey",
         homepage: "https://github.com/smartystreets/goconvey",

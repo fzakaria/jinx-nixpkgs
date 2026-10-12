@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const i3lock = nix.arg($, "i3lock");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "i3lock-fancy-rapid",
       version: "0-unstable-2021-04-21",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "yvbbrjdr",
           repo: "i3lock-fancy-rapid",
           rev: "6eeebd4caa177b82fa5010b5e8828cce3f89fb97",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
 `),
       installPhase: "runHook preInstall\n\ninstall -D i3lock-fancy-rapid $out/bin/i3lock-fancy-rapid\nln -s $out/bin/i3lock-fancy-rapid $out/bin/i3lock\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Faster implementation of i3lock-fancy",
         homepage: "https://github.com/yvbbrjdr/i3lock-fancy-rapid",
         maintainers: nix.thunk(() => (() => {

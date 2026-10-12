@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pnpmConfigHook = nix.arg($, "pnpmConfigHook");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ansible-language-server",
       version: nix.thunk(() => nix.sel(finalAttrs, "vscodeAnsibleVersion")),
       vscodeAnsibleVersion: "26.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ansible",
           repo: "vscode-ansible",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "vscodeAnsibleVersion")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeWrapper, nodejs, pnpmConfigHook, pnpm_11]),
       pnpmWorkspaces: nix.thunk(() => ["@ansible/ansible-language-server"]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pnpmWorkspaces: nix.thunk(() => nix.attr(finalAttrs, "pnpmWorkspaces")),
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -58,7 +58,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), nodejs)} $out/bin/ansible-language
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/ansible/vscode-ansible/releases/tag/v${nix.sel(finalAttrs, "vscodeAnsibleVersion")}`),
         description: "Ansible Language Server",
         mainProgram: "ansible-language-server",

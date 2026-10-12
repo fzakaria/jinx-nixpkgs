@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
 ln -s ${nix.sel(passthru, "libusb")}/examples/bin/fxload $out/bin/fxload
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
-        libusb: nix.thunk(() => nix.app(nix.sel(libusb1, "override"), nix.thunk(() => ({ __proto__: pos$1, withExamples: true })))),
+        [nix.POS]: pos$2,
+        libusb: nix.thunk(() => nix.app(nix.sel(libusb1, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withExamples: true })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/libusb/libusb",
         description: "Tool to upload firmware to into an21, fx, fx2, fx2lp and fx3 ez-usb devices",
         mainProgram: "fxload",
@@ -42,7 +42,7 @@ ln -s ${nix.sel(passthru, "libusb")}/examples/bin/fxload $out/bin/fxload
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         dontUnpack,

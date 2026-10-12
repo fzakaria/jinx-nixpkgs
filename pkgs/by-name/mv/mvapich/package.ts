@@ -43,13 +43,13 @@ export default nix.lambda((args) => (() => {
   nix.assert_(nix.builtins.elem(network, nix.thunk(() => ["ucx", "ofi"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/mv/mvapich/package.nix:37:1");
   nix.assert_((!nix.asBool(cudaSupport) || nix.asBool(!nix.asBool(rocmSupport))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/mv/mvapich/package.nix:41:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "mvapich",
       version: "4.1",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://mvapich.cse.ohio-state.edu/download/mvapich/mv2/mvapich-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-JaU9NyW2aeLGSBWPt8n8WxOIlT86L5SXSFhsRH0OQ+4=",
         })))),
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`--with-cuda-lib=${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart")))}/lib`),
         ])), nix.app(nix.sel(lib, "optionals"), rocmSupport, nix.thunk(() => [nix.thunk(() => nix.str`--with-hip=${nix.sel(rocmPackages, "clr")}`)]))))))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), cudaSupport, nix.thunk(() => nix.str`-L${nix.app(nix.sel(lib, "getOutput"), "stubs", nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart")))}/lib/stubs`))),
       })),
       doCheck: false,
@@ -100,19 +100,19 @@ fi
 `),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         cudaSupport: cudaSupport,
         rocmSupport: rocmSupport,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "MPI-3.1 implementation optimized for Infiband and OmniPath transport",
         homepage: "https://mvapich.cse.ohio-state.edu",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "openvpn",
       version: "2.6.23",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://swupdate.openvpn.net/community/releases/openvpn-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-QEHHCRYr7BMlq/WqjPJ6JVzEd8Y0sV7jEEEccB/ECpY=",
         })))),
@@ -50,15 +50,15 @@ export default nix.lambda((args) => (() => {
 `)))),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "initrd-network-openvpn": nix.thunk(() => nix.attr(nixosTests, "initrd-network-openvpn")),
           "systemd-initrd-networkd-openvpn": nix.thunk(() => nix.attr(nixosTests, "systemd-initrd-networkd-openvpn")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Robust and highly flexible tunneling application",
         downloadPage: "https://openvpn.net/community-downloads/",
         homepage: "https://openvpn.net/",

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zplug",
       version: "2.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zplug",
           repo: "zplug",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       dontPatch: true,
       installPhase: "mkdir -p $out/share/zplug\ncp -r $src/{autoload,base,bin,init.zsh,misc} $out/share/zplug/\nmkdir -p $out/share/man\ncp -r $src/doc/man/* $out/share/man/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Next-generation plugin manager for zsh",
         homepage: "https://github.com/zplug/zplug",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

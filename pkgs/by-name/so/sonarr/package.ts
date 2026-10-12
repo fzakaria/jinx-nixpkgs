@@ -39,9 +39,9 @@ export default nix.lambda((args) => (() => {
   const applyPatches = nix.arg($, "applyPatches");
   const version = "4.0.19.2979";
   const src = nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Sonarr",
           repo: "Sonarr",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -50,27 +50,27 @@ export default nix.lambda((args) => (() => {
       postPatch: "mv src/NuGet.Config NuGet.Config\n\n# error CS0104: 'IPNetwork' is an ambiguous reference between 'Microsoft.AspNetCore.HttpOverrides.IPNetwork' and 'System.Net.IPNetwork'\nsubstituteInPlace src/NzbDrone.Host/Startup.cs \\\n  --replace-fail 'IPNetwork' 'Microsoft.AspNetCore.HttpOverrides.IPNetwork'\n",
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "5.0")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: "revert-ffprobe-bump",
               url: "https://github.com/Sonarr/Sonarr/commit/34761ca2162eb45d1f207a097f0d546239665bfa.patch",
               revert: true,
               hash: "sha256-8DNXrWtaTwNthI4tCXIf9a3xF2dBwo7IPdbtGStFX50=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               name: "revert-mailkit-bump",
               url: "https://github.com/Sonarr/Sonarr/commit/0718ba00041bf2d74749dc246bc02ad0540ec24e.patch",
               revert: true,
               hash: "sha256-+S4bt5Ult48nwXXOhZ57UIOYg0sInZDlvBWeySZfGyY=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               name: "dotnet8-compatibility",
               url: "https://github.com/Sonarr/Sonarr/commit/518f1799dca96a7481004ceefe39be465de3d72d.patch",
               hash: "sha256-e+/rKZrTf6lWq9bmCAwnZrbEPRkqVmI7qNavpLjfpUE=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               name: "dotnet8-darwin-compatibility",
               url: "https://github.com/Sonarr/Sonarr/commit/1a5fa185d11d2548f45fefb8a0facd3731a946d0.patch",
               hash: "sha256-6Lzo4ph1StA05+B1xYhWH+BBegLd6DxHiEiaRxGXn7k=",
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const rid = nix.thunk(() => nix.app(nix.sel(dotnetCorePackages, "systemToDotnetRid"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "system"))));
   return nix.app(buildDotnetModule, nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: "sonarr",
       version: version,
       src: src,
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [nodejs, yarn, prefetch_yarn_deps, fixup_yarn_lock]),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           yarnLock: nix.thunk(() => nix.str`${src}/yarn.lock`),
           hash: "sha256-YkBFvv+g4p22HdM/GQAHVGGW1yLYGWpNtRq7+QJiLIw=",
         })))),
@@ -152,10 +152,10 @@ ln -s ${packageInfo} $out/lib/sonarr/package_info
         "NzbDrone.Common.Test.ProcessProviderFixture.kill_all_should_kill_all_process_with_name",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$10,
-        tests: nix.thunk(() => ({ __proto__: pos$8, sonarr: nix.thunk(() => nix.attr(nixosTests, "sonarr")) })),
+        [nix.POS]: pos$10,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$8, sonarr: nix.thunk(() => nix.attr(nixosTests, "sonarr")) })),
         updateScript: nix.thunk(() => nix.app(nix.sel(writers, "writePython3"), "sonarr-updater", nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             libraries: nix.thunk(() => (() => {
               const w = nix.withScope(python3Packages, null);
               return [nix.thunk(() => nix.lookup(w, "requests"))];
@@ -169,7 +169,7 @@ ln -s ${packageInfo} $out/lib/sonarr/package_info
           })), nix.path(here, "./update.py"))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         description: "Smart PVR for newsgroup and bittorrent users",
         homepage: "https://sonarr.tv",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

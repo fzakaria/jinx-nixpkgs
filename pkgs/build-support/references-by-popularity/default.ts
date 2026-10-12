@@ -12,8 +12,8 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const coreutils = nix.arg($, "coreutils");
   return (path) => nix.app(runCommand, "closure-paths", nix.thunk(() => ({
-      __proto__: pos$2,
-      exportReferencesGraph: nix.thunk(() => ({ __proto__: pos$1, graph: path })),
+      [nix.POS]: pos$2,
+      exportReferencesGraph: nix.thunk(() => ({ [nix.POS]: pos$1, graph: path })),
       __structuredAttrs: true,
       preferLocalBuild: true,
       nativeBuildInputs: nix.thunk(() => [coreutils, python3]),

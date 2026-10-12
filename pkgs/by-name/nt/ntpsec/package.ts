@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
   const withDocs = nix.argOr($, "withDocs", () => true);
   const withSeccomp = nix.argOr($, "withSeccomp", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ntpsec",
       version: "1.2.5",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://ftp.ntpsec.org/pub/releases/ntpsec-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-b7GRzdr2B+d1Sx9pFaGmHcQBiz5O7z0v+s7JYcloKUk=",
         })))),
@@ -61,11 +61,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ __proto__: pos$2, ignoredVersions: "-rc" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, ignoredVersions: "-rc" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Secure, hardened, and improved implementation of Network Time Protocol",
         homepage: "https://www.ntpsec.org/",
         downloadPage: "https://ftp.ntpsec.org/pub/releases/",

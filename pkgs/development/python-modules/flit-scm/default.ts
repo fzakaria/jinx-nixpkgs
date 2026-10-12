@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const flit_core = nix.arg($, "flit-core");
   const setuptools_scm = nix.arg($, "setuptools-scm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "flit-scm",
       version: "1.7.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "WillDaSilva",
           repo: "flit_scm",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["flit_scm"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PEP 518 build backend that uses setuptools_scm to generate a version file from your version control system, then flit to build the package",
         homepage: "https://gitlab.com/WillDaSilva/flit_scm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

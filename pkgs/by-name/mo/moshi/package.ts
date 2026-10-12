@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
     ]))) : nix.force(cudaCapability)));
   const cudaCapability$ = nix.thunk(() => nix.app(nix.sel(lib, "toInt"), nix.thunk(() => nix.app(nix.sel(cudaPackages, "flags", "dropDots"), cudaCapabilityString))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: "moshi",
       version: "0.2.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kyutai-labs",
           repo: "moshi",
           tag: nix.thunk(() => nix.str`moshi-v${nix.sel(finalAttrs, "version")}`),
@@ -70,11 +70,11 @@ export default nix.lambda((args) => (() => {
         ]))))),
       buildFeatures: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["metal"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(config, "cudaSupport")), nix.thunk(() => ["cuda"])))),
       env: nix.thunk(() => nix.update({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         RUSTONIG_SYSTEM_LIBONIG: true,
         PYO3_USE_ABI3_FORWARD_COMPATIBILITY: true,
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "cudaSupport")), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           CUDA_COMPUTE_CAP: cudaCapability$,
           CUDA_TOOLKIT_ROOT_DIR: nix.thunk(() => nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart")))),
         }))))),
@@ -85,21 +85,21 @@ export default nix.lambda((args) => (() => {
             ]))),
         ]))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           withCuda: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.app(nix.sel(moshi, "override"), nix.thunk(() => ({
-                __proto__: pos$5,
-                config: nix.thunk(() => ({ __proto__: pos$4, cudaSupport: true })),
+                [nix.POS]: pos$5,
+                config: nix.thunk(() => ({ [nix.POS]: pos$4, cudaSupport: true })),
               })))))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             extraArgs: nix.thunk(() => ["--generate-lockfile", "--version-regex=moshi-v(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         description: "Rust implementation of moshi, a real-time voice AI",
         homepage: "https://github.com/kyutai-labs/moshi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -110,9 +110,9 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         mainProgram: "moshi-cli",
         problems: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(config, "cudaSupport")) && nix.asBool(nix.app(nix.sel(cudaPackages, "cudaAtLeast"), "12.9")))), nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             "unsupported-cuda-version": nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               message: nix.thunk(() => nix.str`cudaPackages is too new (${nix.sel(cudaPackages, "cudaMajorMinorVersion")}).
 Version 0.16.2 of the cudarc crate asks for a CUDA version older than 12.9.
 Please override cudaPackages with an older version.

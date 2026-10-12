@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sequoia-sqv",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sequoia-pgp",
           repo: "sequoia-sqv",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       postInstall: "installManPage target/*/release/build/*/out/man-pages/sqv.1\ninstallShellCompletion --cmd sqv \\\n  --zsh target/*/release/build/*/out/shell-completions/_sqv \\\n  --bash target/*/release/build/*/out/shell-completions/sqv.bash \\\n  --fish target/*/release/build/*/out/shell-completions/sqv.fish\n",
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Command-line OpenPGP signature verification tool",
         homepage: "https://docs.sequoia-pgp.org/sqv/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

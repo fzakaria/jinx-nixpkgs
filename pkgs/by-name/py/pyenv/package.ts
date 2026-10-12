@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pyenv",
       version: "2.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pyenv",
           repo: "pyenv",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p \"$out\"\ncp -R bin \"$out/bin\"\ncp -R libexec \"$out/libexec\"\ncp -R plugins \"$out/plugins\"\n\nrunHook postInstall\n",
       postInstall: "installManPage man/man1/pyenv.1\ninstallShellCompletion completions/pyenv.{bash,fish,zsh}\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple Python version management",
         homepage: "https://github.com/pyenv/pyenv",
         changelog: nix.thunk(() => nix.str`https://github.com/pyenv/pyenv/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

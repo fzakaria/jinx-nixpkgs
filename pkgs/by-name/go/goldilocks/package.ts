@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "goldilocks",
       version: "4.15.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FairwindsOps",
           repo: "goldilocks",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "version",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Get your resource requests \"Just Right\"",
         longDescription: "Goldilocks is a utility that can help you identify a starting point for\nresource requests and limits. By using the Kubernetes\nVerticalPodAutoscaler in recommendation mode, it gives you a dashboard\nwith suggested resource requests and limits for each workload, so you can\nset them \"just right\".\n",
         homepage: "https://goldilocks.docs.fairwinds.com/",

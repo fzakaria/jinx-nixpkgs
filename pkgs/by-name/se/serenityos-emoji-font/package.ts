@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch2 = nix.arg($, "fetchpatch2");
   const parallel = nix.arg($, "parallel");
   const pixart2svg = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pixart2svg",
       version: "0-unstable-2021-07-18",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: "pixart2svg",
           url: "https://gist.github.com/m13253/66284bc244deeff0f0f8863c206421c7/archive/f9454958dc0a33cea787cc6fbd7e8e34ba6eb23b.zip",
           hash: "sha256-lNA3qWK/bnUcMM/jrCGEgaX+HAk/DjKJnkE8niYmBDU=",
@@ -35,19 +35,19 @@ export default nix.lambda((args) => (() => {
         const urlFor = (name) => nix.str`https://raw.githubusercontent.com/linusg/serenityos-emoji-font/11c84f33777a5d5bbe97ef2ffe8b74af7d72d27f/patches/${name}.patch`;
         return [
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: nix.thunk(() => nix.app(urlFor, "0001-pixart2svg-rgba")),
               extraPrefix: "./",
               hash: "sha256-/4a6btqp/6yiBnFhr4vI+SWfOopUjzDfOeW1Fs6Z5yU=",
             })))),
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               url: nix.thunk(() => nix.app(urlFor, "0002-pixart2svg-no-style")),
               extraPrefix: "./",
               hash: "sha256-FVurs+bEOat74d2egl21JS5ywdkFKKIsqXSFGSJI8MI=",
             })))),
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               url: nix.thunk(() => nix.app(urlFor, "0003-pixart2svg-imageio-deprecation-warning")),
               extraPrefix: "./",
               hash: "sha256-Vo3JIcXof+AtuEbsczNS3CUaBUEncCR0pnIuY4uF7R4=",
@@ -57,11 +57,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -p $out\ncp ./pixart2svg.py $out\n",
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "serenityos-emoji-font",
       version: "0-unstable-2025-05-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           name: "serenity",
           owner: "SerenityOS",
           repo: "serenity",
@@ -93,7 +93,7 @@ runHook postBuild
 `),
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/fonts/truetype\ncp build/SerenityOS-Emoji.ttf $out/share/fonts/truetype\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "SerenityOS pixel art emojis as a TTF",
         homepage: "https://emoji.serenityos.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

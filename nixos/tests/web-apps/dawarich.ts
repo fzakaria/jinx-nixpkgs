@@ -23,30 +23,30 @@ const pos$14 = nix.positions(here + "/dawarich.nix", [["name", 3, 3], ["nodes", 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     name: "dawarich-nixos",
     nodes: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib = nix.arg($_1, "lib");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$12,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$1, memorySize: 1536n })),
+          [nix.POS]: pos$12,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, memorySize: 1536n })),
           services: nix.thunk(() => ({
-            __proto__: pos$3,
-            dawarich: nix.thunk(() => ({ __proto__: pos$2, enable: true, localDomain: "localhost" })),
+            [nix.POS]: pos$3,
+            dawarich: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, localDomain: "localhost" })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             etc: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               geojson: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 text: nix.thunk(() => (() => {
                   const points = nix.thunk(() => nix.builtins.map((i) => ({
-                      __proto__: pos$4,
+                      [nix.POS]: pos$4,
                       lat: nix.thunk(() => nix.div(i, 10.0)),
                       lon: nix.thunk(() => nix.div(i, 10.0)),
                       timestamp: nix.thunk(() => nix.add(1609459200n, nix.mul(i, 1000n))),
@@ -57,11 +57,11 @@ export default nix.lambda((args) => (() => {
                     const lon = nix.arg($_2, "lon");
                     const timestamp = nix.arg($_2, "timestamp");
                     return {
-                      __proto__: pos$7,
+                      [nix.POS]: pos$7,
                       type: "Feature",
-                      geometry: nix.thunk(() => ({ __proto__: pos$5, type: "Point", coordinates: nix.thunk(() => [lon, lat]) })),
+                      geometry: nix.thunk(() => ({ [nix.POS]: pos$5, type: "Point", coordinates: nix.thunk(() => [lon, lat]) })),
                       properties: nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         altitude: 1n,
                         vertical_accuracy: 1n,
                         accuracy: 1n,
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
                     };
                   })(), formals$3);
                   return nix.builtins.toJSON(nix.thunk(() => ({
-                      __proto__: pos$8,
+                      [nix.POS]: pos$8,
                       type: "FeatureCollection",
                       features: nix.thunk(() => nix.builtins.map(mkGeoJsonPoint, points)),
                     })));

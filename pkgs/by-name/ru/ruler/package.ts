@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ruler";
       const version = "2.4.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sensepost",
           repo: "ruler",
           tag: version,
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-ITd3cvZmRBWK3922dDRvNHNH8KzHoVfIQI6S318ibxA=";
       const ldflags = nix.thunk(() => ["-w", "-s"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to abuse Exchange services",
         homepage: "https://github.com/sensepost/ruler",
         changelog: nix.thunk(() => nix.str`https://github.com/sensepost/ruler/releases/tag/${version}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
         mainProgram: "ruler",
       }));
-      return { __proto__: pos$3, pname, version, src, vendorHash, ldflags, meta };
+      return { [nix.POS]: pos$3, pname, version, src, vendorHash, ldflags, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

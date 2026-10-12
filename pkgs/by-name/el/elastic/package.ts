@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const template_glib = nix.arg($, "template-glib");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "elastic",
       version: "1.0.3",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           owner: "World",
           repo: "elastic",
@@ -49,11 +49,11 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [gtk4, libadwaita, libgee, gtksourceview5, template_glib]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Design spring animations",
         homepage: "https://gitlab.gnome.org/World/elastic/",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/World/elastic/-/releases/${nix.sel(finalAttrs, "version")}`),

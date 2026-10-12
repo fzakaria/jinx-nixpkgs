@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => nix.attr(sudachidict, "meta"));
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "WorksApplications",
           repo: "SudachiDict",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +40,7 @@ substituteInPlace INFO.json \\
 touch sudachidict_${nix.sel(sudachidict, "dict-type")}/__init__.py
 `);
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         version,
         meta,

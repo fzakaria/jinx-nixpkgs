@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const tk = nix.arg($, "tk");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ifm",
       version: "5.5",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~zondo",
           repo: "ifm",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,10 +33,10 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, bison, flex, help2man, python3]),
       buildInputs: nix.thunk(() => [perl, tk]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-fcommon -std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fcommon -std=gnu17" })),
       enableParallelBuilding: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://bitbucket.org/zondo/ifm",
         description: "Interactive fiction mapper",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

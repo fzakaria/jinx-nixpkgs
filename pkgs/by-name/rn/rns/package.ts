@@ -11,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const python3Packages = nix.arg($, "python3Packages");
   const pythonPackages = nix.thunk(() => nix.app(nix.sel(python3Packages, "overrideScope"), (self) => (super$) => ({
-      __proto__: pos$2,
-      lxmf: nix.thunk(() => nix.app(nix.sel(super$, "lxmf", "override"), nix.thunk(() => ({ __proto__: pos$1, propagateRns: false })))),
+      [nix.POS]: pos$2,
+      lxmf: nix.thunk(() => nix.app(nix.sel(super$, "lxmf", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, propagateRns: false })))),
     })));
   return nix.app(nix.sel(pythonPackages, "toPythonApplication"), nix.thunk(() => nix.app(nix.sel(pythonPackages, "rns", "overridePythonAttrs"), (old) => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         dependencies: nix.thunk(() => nix.concat(nix.sel(old, "dependencies"), [nix.thunk(() => nix.sel(pythonPackages, "lxmf"))])),
       }))));
 })(), formals$1);

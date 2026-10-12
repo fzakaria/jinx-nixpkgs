@@ -26,25 +26,25 @@ export default nix.lambda((args) => (() => {
   const memtest86 = nix.thunk(() => nix.sel(pkgs, "memtest86plus"));
   const cfg = nix.thunk(() => nix.sel(config, "boot", "loader", "grub", "memtest86"));
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       boot: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         loader: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           grub: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             memtest86: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   default: false,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                   description: "Make Memtest86+, a memory testing program, available from the GRUB\nboot menu.\n",
                 })))),
               params: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   default: [],
                   example: nix.thunk(() => ["console=ttyS0,115200"]),
                   type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
@@ -56,18 +56,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         boot: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           loader: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             grub: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               extraEntries: nix.thunk(() => nix.str`menuentry "Memtest86+" {
   linux @bootRoot@/memtest.bin ${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "params")))}
 }
 `),
-              extraFiles: nix.thunk(() => ({ __proto__: pos$8, "memtest.bin": nix.thunk(() => nix.sel(memtest86, "efi")) })),
+              extraFiles: nix.thunk(() => ({ [nix.POS]: pos$8, "memtest.bin": nix.thunk(() => nix.sel(memtest86, "efi")) })),
             })),
           })),
         })),

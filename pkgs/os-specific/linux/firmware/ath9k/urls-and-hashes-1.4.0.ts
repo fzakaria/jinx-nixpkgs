@@ -30,7 +30,7 @@ export default nix.thunk(() => (() => {
   const GMP_SUM = "sha256-H1iKrMxBu5rtlG+f44Uhwm2LKQ0APF34B/ZWkPKq3sk=";
   const BINUTILS_SUM = "sha256-KrLlsD4IbRLGKV+DGtrUaz4UEKOiNJM6Lo+sZssuehk=";
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     BASEDIR,
     BINUTILS_URL,
     DL_DIR,

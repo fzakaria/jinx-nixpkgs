@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.37.0";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "iovisor",
           repo: "bcc",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./fix-deadlock-detector-import.patch"),
         nix.path(here, "./bashreadline.py-remove-dependency-on-elftools.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./absolute-ausyscall.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             ausyscall: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), audit, "ausyscall")),
           })))),
       ]);
@@ -101,11 +101,11 @@ substituteInPlace tools/bashreadline.py \\
       ]);
       const outputs = nix.thunk(() => ["out", "man"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, bpf: nix.thunk(() => nix.sel(nixosTests, "bpf")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, bpf: nix.thunk(() => nix.sel(nixosTests, "bpf")) })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Dynamic Tracing Tools for Linux",
         homepage: "https://iovisor.github.io/bcc/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -122,7 +122,7 @@ substituteInPlace tools/bashreadline.py \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

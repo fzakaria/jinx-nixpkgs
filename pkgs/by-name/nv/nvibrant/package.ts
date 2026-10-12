@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const gitMinimal = nix.arg($, "gitMinimal");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "nvibrant",
       version: nix.thunk(() => nix.sel(finalAttrs, "passthru", "_version")),
       pyproject: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         nvibrantVersion: "1.2.1",
         oldestDriverVersion: "515.43.04",
         latestDriverVersion: "610.43.02",
@@ -35,9 +35,9 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.sel(finalAttrs, "passthru", "latestDriverVersion")),
           ]))),
         srcAttrs: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           nvibrant: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               owner: "tremeschin",
               repo: "nvibrant",
               name: "nvibrant",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
               hash: "sha256-M83WSQiJwzFZl8ECkZjKigvLTlMkzRa6o2hqPOt1378=",
             })))),
           "open-gpu": nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               owner: "nvidia",
               repo: "open-gpu-kernel-modules",
               name: "open-gpu",
@@ -130,7 +130,7 @@ update-source-version nvibrant "\${open_gpu_tags[-1]}" \\
         return [nix.thunk(() => nix.lookup(w_1, "packaging"))];
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Configure NVIDIA's Digital Vibrance on Wayland",
         homepage: "https://github.com/Tremeschin/nvibrant",
         mainProgram: "nvibrant",

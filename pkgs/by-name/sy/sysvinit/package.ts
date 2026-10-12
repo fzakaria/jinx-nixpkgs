@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libxcrypt = nix.arg($, "libxcrypt");
   const withoutInitTools = nix.argOr($, "withoutInitTools", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => (nix.asBool(withoutInitTools) ? "sysvtools" : "sysvinit")),
       version: "3.04",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://savannah/sysvinit/sysvinit-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-KmIf5uRSi8kTCLdIZ92q6733dT8COVwMW66Be9K346U=",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "substituteInPlace src/Makefile --replace /usr /\n",
       postInstall: nix.thunk(() => nix.add("mv $out/sbin/killall5 $out/bin\nln -sf killall5 $out/bin/pidof\n", nix.app(nix.sel(lib, "optionalString"), withoutInitTools, "shopt -s extglob\nrm -rf $out/sbin/!(sulogin)\nrm -rf $out/include\nrm -rf $out/share/man/man5\nrm $(for i in $out/share/man/man8/*; do echo $i; done | grep -v 'pidof\\|killall5')\nrm $out/bin/wall $out/share/man/man1/wall.1\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.nongnu.org/sysvinit/",
         description: "Utilities related to booting and shutdown",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

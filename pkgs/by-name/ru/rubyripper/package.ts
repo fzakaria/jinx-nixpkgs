@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const cddiscid = nix.arg($, "cddiscid");
   const ruby = nix.arg($, "ruby");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "0.8.0rc3",
       pname: "rubyripper",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bleskodev",
           repo: "rubyripper",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [cddiscid, cdparanoia, ruby]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "High quality CD audio ripper",
         mainProgram: "rrip_cli",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

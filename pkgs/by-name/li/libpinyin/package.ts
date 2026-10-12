@@ -21,16 +21,16 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const nix_update_script = nix.arg($, "nix-update-script");
   const modelData = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "mirror://sourceforge/libpinyin/models/model20.text.tar.gz",
       hash: "sha256-WcaOidQ/+F9aMJSJSZy83igtKwS9kYiHNIhLfe/LEVU=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libpinyin",
       version: "2.11.91",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "libpinyin",
           repo: "libpinyin",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib, kyotocabinet]),
       configureFlags: nix.thunk(() => ["--with-dbm=KyotoCabinet"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Library for intelligent sentence-based Chinese pinyin input method",
         homepage: "https://github.com/libpinyin/libpinyin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

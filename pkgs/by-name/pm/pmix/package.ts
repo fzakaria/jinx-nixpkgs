@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const gitMinimal = nix.arg($, "gitMinimal");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pmix",
       version: "6.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "openpmix",
           owner: "openpmix",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -70,7 +70,7 @@ substituteInPlace "\${!outputDev}"/share/pmix/pmixcc-wrapper-data.txt \\
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), "dev", nix.thunk(() => nix.sel(finalAttrs, "outputs")))), "# The path to the pmixcc-wrapper-data.txt is hard coded and\n# points to $out instead of dev. Use wrapper to fix paths.\nwrapProgram \"${!outputDev}\"/bin/pmixcc \\\n  --set PMIX_INCLUDEDIR \"${!outputDev}\"/include \\\n  --set PMIX_PKGDATADIR \"${!outputDev}\"/share/pmix\n")),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Process Management Interface for HPC environments",
         homepage: "https://openpmix.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

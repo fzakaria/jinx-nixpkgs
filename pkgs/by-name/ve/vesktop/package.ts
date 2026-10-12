@@ -39,18 +39,18 @@ export default nix.lambda((args) => (() => {
   const withSystemVencord = nix.argOr($, "withSystemVencord", () => false);
   const electron = electron_43;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "vesktop",
       version: "1.6.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Vencord",
           repo: "Vesktop",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-Y74FIqcY26Dizz+DoY+r8caOfX+4/VmiEbmhcOpMHqE=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -65,8 +65,8 @@ export default nix.lambda((args) => (() => {
           pipewire,
           nix.thunk(() => nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(stdenv, "cc", "cc")))),
         ]))),
-      patches: nix.thunk(() => nix.app(nix.sel(lib, "optional"), withSystemVencord, nix.thunk(() => nix.app(replaceVars, nix.path(here, "./use_system_vencord.patch"), nix.thunk(() => ({ __proto__: pos$3, vencord: vencord })))))),
-      env: nix.thunk(() => ({ __proto__: pos$4, ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
+      patches: nix.thunk(() => nix.app(nix.sel(lib, "optional"), withSystemVencord, nix.thunk(() => nix.app(replaceVars, nix.path(here, "./use_system_vencord.patch"), nix.thunk(() => ({ [nix.POS]: pos$3, vencord: vencord })))))),
+      env: nix.thunk(() => ({ [nix.POS]: pos$4, ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
       preBuild: nix.thunk(() => nix.str`# Validate electron version matches upstream package.json
 expectedMajor="$(jq -r '.devDependencies.electron | ltrimstr("^") | split(".") | .[0]' < package.json)"
 actualMajor="${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(electron, "version")))}"
@@ -103,7 +103,7 @@ popd
   --add-flags "\\\${NIXOS_OZONE_WL:+\\\${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime=true}}"
 `)), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "makeWrapper $out/Applications/Vesktop.app/Contents/MacOS/Vesktop $out/bin/vesktop\n"))),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "vesktop",
             desktopName: "Vesktop",
             exec: "vesktop %U",
@@ -116,12 +116,12 @@ popd
             mimeTypes: nix.thunk(() => ["x-scheme-handler/discord"]),
           })))))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pnpmDeps: nix.thunk(() => nix.attr(finalAttrs, "pnpmDeps")),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Alternative Discord client with Vencord built-in",
         homepage: "https://github.com/Vencord/Vesktop",
         changelog: nix.thunk(() => nix.str`https://github.com/Vencord/Vesktop/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

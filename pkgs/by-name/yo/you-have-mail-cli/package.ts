@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const go = nix.arg($, "go");
   const buildGoModule = nix.arg($, "buildGoModule");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "you-have-mail-cli",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LeanderBB",
           repo: "you-have-mail-cli",
           rev: "b338153353495428e2dc0065843553b7821b9d3a",
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
       goSrpVersion: "0.1.5",
       postPatch: "export GOCACHE=$TMPDIR/go-cache\nexport GOPATH=\"$TMPDIR/go\"\nexport GOPROXY=off\ncp -r --reflink=auto \"$goModules\" $(echo \"$cargoDepsCopy\"/*/\"go-srp-$goSrpVersion\")/go/vendor\n",
       goModules: nix.thunk(() => nix.sel(nix.app(buildGoModule, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: "proton-api-rs",
           version: "0.14.0",
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               owner: "LeanderBB",
               repo: "proton-api-rs",
               rev: "4597810e8335118f3c780a04e6d099ae46a7a376",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         }))), "goModules")),
       cargoHash: "sha256-w2hrrFHpgeAPcP/swerZu0VJ34T/9/JeQkipp4IQ2js=",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Small application to notify you when you receive an email in your email account",
         homepage: "https://github.com/LeanderBB/you-have-mail-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

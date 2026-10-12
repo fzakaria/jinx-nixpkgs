@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
   const swift_sources = nix.arg($, "swift_sources");
   const doInstallCheck = nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "swift-corelibs-foundation",
       version: swift_release,
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(swift_sources, "swift-corelibs-foundation"));
           return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "swiftlang",
           repo: "swift-corelibs-foundation",
           tag: nix.thunk(() => nix.str`swift-${nix.sel(finalAttrs, "version")}-RELEASE`),
@@ -67,7 +67,7 @@ for f in "$out/bin/plutil" "$out/lib/libFoundation${nix.sel(stdenv, "hostPlatfor
   patchelf --add-rpath ${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.app(nix.sel(lib, "makeSearchPathOutput"), "out", nix.thunk(() => nix.str`lib/swift/${nix.sel(stdenv, "hostPlatform", "swift", "platform")}`), nix.thunk(() => [swift_minimal]))))} "$f"
   patchelf --add-rpath ${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [
               swift_corelibs_libdispatch,
-              nix.thunk(() => nix.app(nix.sel(swift_corelibs_libdispatch, "override"), nix.thunk(() => ({ __proto__: pos$2, useSwift: false })))),
+              nix.thunk(() => nix.app(nix.sel(swift_corelibs_libdispatch, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, useSwift: false })))),
               swift_foundation,
             ]))))} "$f"
 done
@@ -83,7 +83,7 @@ runHook postInstallCheck
 `),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Core utilities, internationalization, and OS independence for Swift",
         mainProgram: "plutil",
         homepage: "https://github.com/swiftlang/swift-corelibs-foundation",

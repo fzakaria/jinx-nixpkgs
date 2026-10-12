@@ -14,7 +14,7 @@ export default (ethercat) => nix.lambda((args) => (() => {
   const kernel = nix.arg($, "kernel");
   const extraSupportedKernel = nix.thunk(() => nix.app(nix.sel(lib, "elem"), nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(kernel, "version")))), nix.thunk(() => ["5.10", "5.14", "5.15", "6.1", "6.4", "6.12"])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "ethercat",
       version: nix.thunk(() => nix.str`${nix.sel(kernel, "version")}-${nix.sel(ethercat, "version")}`),
       __structuredAttrs: true,
@@ -42,7 +42,7 @@ export default (ethercat) => nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ethercat, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: nix.thunk(() => nix.add(nix.sel(ethercat, "meta", "description"), " - kernel modules")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         changelog: nix.thunk(() => nix.attr(from, "changelog")),

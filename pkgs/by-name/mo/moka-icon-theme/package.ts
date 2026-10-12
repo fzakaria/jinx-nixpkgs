@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const hicolor_icon_theme = nix.arg($, "hicolor-icon-theme");
   const jdupes = nix.arg($, "jdupes");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "moka-icon-theme",
       version: "5.4.0-unstable-2019-05-30",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "snwh",
           repo: "moka-icon-theme",
           rev: "c0355ea31e5cfdb6b44d8108f602d66817546a09",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs meson/post_install.py\n",
       postInstall: "# replace duplicate files with symlinks\njdupes -l -r $out/share/icons\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Icon theme designed with a minimal flat style using simple geometry and bright colours",
         homepage: "https://snwh.org/moka",
         license: nix.thunk(() => (() => {

@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Infinidat",
           repo: "munch",
           tag: version,
@@ -32,22 +32,22 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/Infinidat/munch/commit/84651ee872f9ea6dbaed986fd3818202933a8b50.patch",
             hash: "sha256-n/uBAP7pnlGZcnDuxdMKWgAEdG9gWeGoLWB97T1KloY=",
           })))),
       ]);
-      const env = nix.thunk(() => ({ __proto__: pos$3, PBR_VERSION: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$3, PBR_VERSION: version }));
       const nativeBuildInputs = nix.thunk(() => [pbr, setuptools]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pyyaml]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Dot-accessible dictionary (a la JavaScript objects)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/Infinidat/munch",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

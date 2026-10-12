@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const zip = nix.arg($, "zip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "blockattack",
       version: "2.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "blockattack",
           repo: "blockattack-game",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,13 +43,13 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       preConfigure: "patchShebangs packdata.sh source/misc/translation/*.sh\nchmod +x ./packdata.sh\n./packdata.sh\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(SDL2, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://blockattack.net/",
         description: "Open source clone of Panel de Pon (aka Tetris Attack)",
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),

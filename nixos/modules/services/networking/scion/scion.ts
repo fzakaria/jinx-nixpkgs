@@ -28,23 +28,23 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "scion"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         scion: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "all of the scion components and services")),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "scion", nix.thunk(() => ({})))),
           stateless: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "Setting this value to false (stateful) can lead to improved caching and\nperformance.\n\nThis option decides whether to persist the SCION path sqlite databases\non disk or not. Persisting this data can lead to database corruption in\nextreme cases such as power outage, meaning SCION fails to work on the\nnext boot. This is being investigated.\n\nIf true, /run/scion-* is used for data\nIf false, use /var/lib/scion-* is used for data\n",
             })))),
           bypassBootstrapWarning: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "bypass Nix warning about SCION PKI bootstrapping\n",
@@ -53,25 +53,25 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         environment: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           scion: nix.thunk(() => ({
-            __proto__: pos$12,
-            "scion-dispatcher": nix.thunk(() => ({ __proto__: pos$7, enable: true })),
-            "scion-daemon": nix.thunk(() => ({ __proto__: pos$8, enable: true })),
-            "scion-router": nix.thunk(() => ({ __proto__: pos$9, enable: true })),
-            "scion-control": nix.thunk(() => ({ __proto__: pos$10, enable: true })),
-            "scion-ip-gateway": nix.thunk(() => ({ __proto__: pos$11, enable: true })),
+            [nix.POS]: pos$12,
+            "scion-dispatcher": nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
+            "scion-daemon": nix.thunk(() => ({ [nix.POS]: pos$8, enable: true })),
+            "scion-router": nix.thunk(() => ({ [nix.POS]: pos$9, enable: true })),
+            "scion-control": nix.thunk(() => ({ [nix.POS]: pos$10, enable: true })),
+            "scion-ip-gateway": nix.thunk(() => ({ [nix.POS]: pos$11, enable: true })),
           })),
         })),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             assertion: nix.thunk(() => nix.eq(nix.sel(cfg, "bypassBootstrapWarning"), true)),
             message: "SCION is a routing protocol and requires bootstrapping with a manual, imperative key signing ceremony. You may want to join an existing Isolation Domain (ISD) such as scionlab.org, or bootstrap your own. If you have completed and configured the public key infrastructure for SCION and are sure this process is complete, then add the following to your configuration:\n\nservices.scion.bypassBootstrapWarning = true;\n\nrefer to docs.scion.org for more information\n",
           })),

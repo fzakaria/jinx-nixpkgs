@@ -31,27 +31,27 @@ export default nix.lambda((args) => (() => {
   const password = "rUceu1W41U";
   const passwordFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "password-file", password));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     name: "victorialogs-remote-write-with-vlagent",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "shawn8901"))]),
     })),
     containers: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           networking: nix.thunk(() => ({
-            __proto__: pos$3,
-            firewall: nix.thunk(() => ({ __proto__: pos$2, allowedTCPPorts: nix.thunk(() => [9428n]) })),
+            [nix.POS]: pos$3,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$2, allowedTCPPorts: nix.thunk(() => [9428n]) })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             victorialogs: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               enable: true,
               basicAuthUsername: username,
               basicAuthPasswordFile: nix.thunk(() => nix.builtins.toString(passwordFile)),
@@ -63,33 +63,33 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             vlagent: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               enable: true,
               remoteWrite: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 url: "http://server:9428/internal/insert",
                 basicAuthUsername: username,
                 basicAuthPasswordFile: nix.thunk(() => nix.builtins.toString(passwordFile)),
               })),
             })),
             journald: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               upload: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 enable: true,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$10,
-                  Upload: nix.thunk(() => ({ __proto__: pos$9, URL: "http://localhost:9429/insert/journald" })),
+                  [nix.POS]: pos$10,
+                  Upload: nix.thunk(() => ({ [nix.POS]: pos$9, URL: "http://localhost:9429/insert/journald" })),
                 })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "curl"))]),
           })),
         };

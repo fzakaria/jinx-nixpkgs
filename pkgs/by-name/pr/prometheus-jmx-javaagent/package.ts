@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const jarName = nix.thunk(() => nix.str`jmx_prometheus_javaagent-${nix.sel(finalAttrs, "version")}.jar`);
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: "jmx-prometheus-javaagent",
         version: "1.0.1",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`mirror://maven/io/prometheus/jmx/jmx_prometheus_javaagent/${nix.sel(finalAttrs, "version")}/${jarName}`),
             hash: "sha256-fWH3N/1mFhDMwUrqeXZPqh6pSjQMvI8AKbPS7eo9gME=",
           })))),
@@ -29,7 +29,7 @@ mkdir -p $out/lib
 cp $src $out/lib/${jarName}
 `),
         meta: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           homepage: "https://github.com/prometheus/jmx_exporter",
           description: "Process for exposing JMX Beans via HTTP for Prometheus consumption",
           sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryBytecode"))]),

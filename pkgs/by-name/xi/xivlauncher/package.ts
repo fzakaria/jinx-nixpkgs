@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pname = "XIVLauncher";
       const version = rev;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "goatcorp",
           repo: "XIVLauncher.Core",
           rev: rev,
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       const dotnet_sdk = nix.thunk(() => (() => {
         const w_1 = nix.withScope(dotnetCorePackages, null);
         return nix.update(nix.lookup(w_1, "sdk_10_0"), {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           packages: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w_1, "sdk_9_0")), "packages")),
           targetPackages: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w_1, "sdk_9_0")), "targetPackages")),
         });
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
       const postInstall = "mkdir -p $out/share/pixmaps\ncp src/XIVLauncher.Core/Resources/logo.png $out/share/pixmaps/xivlauncher.png\n";
       const postFixup = nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), useSteamRun, nix.thunk(() => (() => {
           const steam_run = nix.thunk(() => nix.sel(nix.app(nix.sel(steam, "override"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               extraPkgs: (pkgs) => [nix.thunk(() => nix.sel(pkgs, "libunwind"))],
               extraProfile: "unset TZ\n",
             }))), "run"));
@@ -85,7 +85,7 @@ echo ${aria2} >> $out/nix-support/depends
       const runtimeDeps = nix.thunk(() => [sdl3, libdecor, libsecret, glib, gnutls]);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "xivlauncher",
             exec: "XIVLauncher.Core",
             icon: "xivlauncher",
@@ -96,7 +96,7 @@ echo ${aria2} >> $out/nix-support/depends
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Custom launcher for FFXIV",
         homepage: "https://github.com/goatcorp/XIVLauncher.Core",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -112,7 +112,7 @@ echo ${aria2} >> $out/nix-support/depends
         mainProgram: "XIVLauncher.Core",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

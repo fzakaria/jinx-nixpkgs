@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
   const firedrakePackages = nix.thunk(() => nix.app(nix.sel(lib, "makeScope"), newScope, (self) => (() => {
       const from = nix.thunk(() => nix.sel(petsc4py, "petscPackages"));
       return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       mpi: nix.thunk(() => nix.attr(from, "mpi")),
       hdf5: nix.thunk(() => nix.attr(from, "hdf5")),
       mpi4py: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.thunk(() => nix.sel(mpi4py, "override")), nix.thunk(() => ({})))),
@@ -67,12 +67,12 @@ export default nix.lambda((args) => (() => {
     };
     })()));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "firedrake",
       version: "2026.4.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "firedrakeproject",
           repo: "firedrake",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -131,22 +131,22 @@ export default nix.lambda((args) => (() => {
       ]),
       checkPhase: "runHook preCheck\n\n$out/bin/firedrake-check\n\nrunHook postCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         skipBulkUpdate: true,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version-regex", "([0-9.]+)"]),
           })))),
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             mpich: nix.thunk(() => nix.app(nix.sel(firedrake, "override"), nix.thunk(() => ({
-                __proto__: pos$5,
-                petsc4py: nix.thunk(() => nix.app(nix.sel(petsc4py, "override"), nix.thunk(() => ({ __proto__: pos$4, mpi: mpich })))),
+                [nix.POS]: pos$5,
+                petsc4py: nix.thunk(() => nix.app(nix.sel(petsc4py, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, mpi: mpich })))),
               })))),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         homepage: "https://www.firedrakeproject.org",
         downloadPage: "https://github.com/firedrakeproject/firedrake",
         description: "Automated Finite Element System",

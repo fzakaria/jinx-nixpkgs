@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "certmitm",
       version: "0-unstable-2025-05-14",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aapooksman",
           repo: "certmitm",
           rev: "f04c91a1ba231762ec126487f593f9b4d33f4ec2",
@@ -41,7 +41,7 @@ runHook postInstall
 `),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for testing for certificate validation vulnerabilities of TLS connections",
         homepage: "https://github.com/aapooksman/certmitm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

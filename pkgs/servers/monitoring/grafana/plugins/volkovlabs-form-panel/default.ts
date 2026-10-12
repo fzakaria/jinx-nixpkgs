@@ -11,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const grafanaPlugin = nix.arg($, "grafanaPlugin");
   const lib = nix.arg($, "lib");
   return nix.app(grafanaPlugin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "volkovlabs-form-panel",
       version: "6.3.5",
       zipHash: "sha256-bMqxVx0RiMWKMJ9XM2uQpZr1Fz8EOaCs9WW9hZ3AiFs=",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Plugin that allows inserting and updating application data, as well as modifying configuration directly from your Grafana dashboard",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => (() => {

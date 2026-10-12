@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const getopt = nix.arg($, "getopt");
   return nix.app(replaceVarsWith, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "lsb_release",
       pname: "lsb_release",
       version: nix.thunk(() => nix.sel(lib, "trivial", "release")),
@@ -23,13 +23,13 @@ export default nix.lambda((args) => (() => {
       dir: "bin",
       isExecutable: true,
       replacements: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         coreutils: coreutils,
         getopt: getopt,
         runtimeShell: runtimeShell,
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Prints certain LSB (Linux Standard Base) and Distribution information",
         mainProgram: "lsb_release",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

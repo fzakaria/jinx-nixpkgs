@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bmcfee",
           repo: "resampy",
           tag: version,
@@ -34,19 +34,19 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [numpy, numba]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, design: nix.thunk(() => [optuna]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, design: nix.thunk(() => [optuna]) }));
       const nativeCheckInputs = nix.thunk(() => [pytest_cov_stub, pytestCheckHook, scipy]);
       const disabledTests = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-linux")), nix.thunk(() => ["test_quality_sine_parallel", "test_resample_nu_quality_sine_parallel"])));
       const pythonImportsCheck = nix.thunk(() => ["resampy"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Efficient signal resampling",
         homepage: "https://github.com/bmcfee/resampy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -36,12 +36,12 @@ export default nix.lambda((args) => (() => {
   const trio = nix.arg($, "trio");
   const zsh = nix.arg($, "zsh");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cyclopts",
       version: "4.25.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BrianPugh",
           repo: "cyclopts",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling, hatch_vcs]),
       dependencies: nix.thunk(() => [attrs, docstring_parser, rich, rich_rst]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         trio: nix.thunk(() => [trio]),
         yaml: nix.thunk(() => [pyyaml]),
         mkdocs: nix.thunk(() => [mkdocs, markdown, pymdown_extensions]),
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
         "test_requires_equals_eq_form_value_completion",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Module to create CLIs based on Python type hints",
         homepage: "https://github.com/BrianPugh/cyclopts",
         changelog: nix.thunk(() => nix.str`https://github.com/BrianPugh/cyclopts/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

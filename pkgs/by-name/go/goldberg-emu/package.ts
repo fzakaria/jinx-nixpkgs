@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const protobuf_21 = nix.arg($, "protobuf_21");
   const protobuf = protobuf_21;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "goldberg-emu",
       version: "0.2.5",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mr_goldberg",
           repo: "goldberg_emulator",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preFixup: "mkdir -p $out/{bin,lib}\nchmod +x $out/share/goldberg/tools/find_interfaces.sh\n\nln -s $out/share/goldberg/libsteam_api.so $out/lib\nln -s $out/share/goldberg/lobby_connect/lobby_connect $out/bin\nln -s $out/share/goldberg/tools/generate_interfaces_file $out/bin\nln -s $out/share/goldberg/tools/find_interfaces.sh $out/bin/find_interfaces\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         homepage: "https://gitlab.com/Mr_Goldberg/goldberg_emulator",
         changelog: "https://gitlab.com/Mr_Goldberg/goldberg_emulator/-/releases",

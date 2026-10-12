@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const go_md2man = nix.arg($, "go-md2man");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.5.0",
       pname: "zfs-prune-snapshots",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bahamas10",
           repo: "zfs-prune-snapshots",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       makeTargets: nix.thunk(() => ["man"]),
       installPhase: "install -m 755 -D zfs-prune-snapshots $out/bin/zfs-prune-snapshots\ninstall -m 644 -D man/zfs-prune-snapshots.1 $out/share/man/man1/zfs-prune-snapshots.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Remove snapshots from one or more zpools that match given criteria",
         mainProgram: "zfs-prune-snapshots",
         homepage: "https://github.com/bahamas10/zfs-prune-snapshots",

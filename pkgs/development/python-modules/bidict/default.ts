@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.23.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jab",
           repo: "bidict",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "rm pytest.ini\n";
       const pythonImportsCheck = nix.thunk(() => ["bidict"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://bidict.readthedocs.io",
         changelog: "https://bidict.readthedocs.io/changelog.html",
         description: "Bidirectional mapping library for Python",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

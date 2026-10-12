@@ -18,16 +18,16 @@ export default nix.lambda((args) => (() => {
   const mkNode = nix.arg($, "mkNode");
   const package$ = nix.arg($, "package");
   const testScriptSetup = nix.arg($, "testScriptSetup");
-  const extraSettings = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(package$, "version")), "2")) ? { __proto__: pos$1, replication_factor: 3n, consistency_mode: "consistent" } : { __proto__: pos$2, replication_mode: "3" }));
+  const extraSettings = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(package$, "version")), "2")) ? { [nix.POS]: pos$1, replication_factor: 3n, consistency_mode: "consistent" } : { [nix.POS]: pos$2, replication_mode: "3" }));
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     name: nix.thunk(() => nix.str`garage-${nix.sel(package$, "version")}-3node-replication`),
     nodes: nix.thunk(() => ({
-      __proto__: pos$7,
-      node1: nix.thunk(() => nix.app(mkNode, nix.thunk(() => ({ __proto__: pos$3, extraSettings: extraSettings, publicV6Address: "fc00:1::1" })))),
-      node2: nix.thunk(() => nix.app(mkNode, nix.thunk(() => ({ __proto__: pos$4, extraSettings: extraSettings, publicV6Address: "fc00:1::2" })))),
-      node3: nix.thunk(() => nix.app(mkNode, nix.thunk(() => ({ __proto__: pos$5, extraSettings: extraSettings, publicV6Address: "fc00:1::3" })))),
-      node4: nix.thunk(() => nix.app(mkNode, nix.thunk(() => ({ __proto__: pos$6, extraSettings: extraSettings, publicV6Address: "fc00:1::4" })))),
+      [nix.POS]: pos$7,
+      node1: nix.thunk(() => nix.app(mkNode, nix.thunk(() => ({ [nix.POS]: pos$3, extraSettings: extraSettings, publicV6Address: "fc00:1::1" })))),
+      node2: nix.thunk(() => nix.app(mkNode, nix.thunk(() => ({ [nix.POS]: pos$4, extraSettings: extraSettings, publicV6Address: "fc00:1::2" })))),
+      node3: nix.thunk(() => nix.app(mkNode, nix.thunk(() => ({ [nix.POS]: pos$5, extraSettings: extraSettings, publicV6Address: "fc00:1::3" })))),
+      node4: nix.thunk(() => nix.app(mkNode, nix.thunk(() => ({ [nix.POS]: pos$6, extraSettings: extraSettings, publicV6Address: "fc00:1::4" })))),
     })),
     testScript: nix.thunk(() => nix.str`${testScriptSetup}
 

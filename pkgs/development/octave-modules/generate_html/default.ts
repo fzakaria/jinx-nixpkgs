@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
       const pname = "generate_html";
       const version = "0.3.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/octave/${pname}-${version}.tar.gz`),
           sha256: "sha256-CHJ0+90+SNXmslLrQc+8aetSnHK0m9PqEBipFuFjwHw=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gnu-octave.github.io/packages/generate_html/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: nix.thunk(() => (() => {
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         description: "Provides functions for generating HTML pages that contain the help texts for a set of functions",
         longDescription: "This package provides functions for generating HTML pages that contain\nthe help texts for a set of functions. The package is designed to be as\ngeneral as possible, but also contains convenience functions for generating\na set of pages for entire packages.\n",
       }));
-      return { __proto__: pos$3, pname, version, src, meta };
+      return { [nix.POS]: pos$3, pname, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -59,11 +59,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "budgie-desktop",
       version: "10.10.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BuddiesOfBudgie",
           repo: "budgie-desktop",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -119,19 +119,19 @@ substituteInPlace src/session/budgie-desktop.in \\
   --replace-fail "@bindir@/org.buddiesofbudgie.Services" "${nix.app(nix.sel(lib, "getExe"), budgie_desktop_services)}"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         providedSessions: nix.thunk(() => ["budgie-desktop"]),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Feature-rich, modern desktop designed to keep out the way of the user",
         homepage: "https://github.com/BuddiesOfBudgie/budgie-desktop",
         changelog: nix.thunk(() => nix.str`https://github.com/BuddiesOfBudgie/budgie-desktop/releases/tag/v${nix.sel(finalAttrs, "version")}`),

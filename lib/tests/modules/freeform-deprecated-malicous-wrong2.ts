@@ -10,13 +10,13 @@ const pos$5 = nix.positions(here + "/freeform-deprecated-malicous-wrong2.nix", [
 const pos$6 = nix.positions(here + "/freeform-deprecated-malicous-wrong2.nix", [["config", 4, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$6,
+  [nix.POS]: pos$6,
   config: nix.thunk(() => ({
-    __proto__: pos$5,
-    either: nix.thunk(() => ({ __proto__: pos$1, int: 42n })),
-    eitherBehindNullor: nix.thunk(() => ({ __proto__: pos$2, int: 42n })),
-    oneOf: nix.thunk(() => ({ __proto__: pos$3, int: 42n })),
-    number: nix.thunk(() => ({ __proto__: pos$4, str: 42n })),
+    [nix.POS]: pos$5,
+    either: nix.thunk(() => ({ [nix.POS]: pos$1, int: 42n })),
+    eitherBehindNullor: nix.thunk(() => ({ [nix.POS]: pos$2, int: 42n })),
+    oneOf: nix.thunk(() => ({ [nix.POS]: pos$3, int: 42n })),
+    number: nix.thunk(() => ({ [nix.POS]: pos$4, str: 42n })),
   })),
 }));
 //# sourceMappingURL=freeform-deprecated-malicous-wrong2.ts.map

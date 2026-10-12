@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const patchelfUnstable = nix.arg($, "patchelfUnstable");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "hyper-cmd-utils",
       version: "1.0.0",
       npmDepsHash: "sha256-FgUIHdmmeRhVoXisc2WdWUNA76vzFCfkM58RpqLoK5s=",
       dontNpmBuild: true,
       makeCacheWritable: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "holepunchto",
           repo: "hyper-cmd-utils",
           rev: "b8f1da1a1f4bc28ff9dbdbb6f4d777c2378d6137",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/holepunchto/hyper-cmd-utils/commit/9bec5ca0a58fc9ba263afe750134f82e7e1c30c4.patch",
             hash: "sha256-p32r5y8PnROePbpsBLYza1+lGR2n0amSdo8qDWhyYxo=",
           })))),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [patchelfUnstable]),
       postInstall: "# glibc 2.41+ refuses to make the stack executable if it isn't executable,\n# but a library loaded via `dlopen()` mandates it.\n# According to https://github.com/holepunchto/sodium-native/issues/214\n# this isn't necessary in this case.\nwhile IFS= read -r -d '' file; do\n  # Skip PEs with the same name\n  if patchelf --print-rpath \"$file\" &>/dev/null; then\n    patchelf \"$file\" --clear-execstack\n  fi\ndone < <(find $out/lib/node_modules -name 'sodium-native.node' -print0)\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "HyperCmd Utils",
         homepage: "https://github.com/holepunchto/hyper-cmd-utils",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

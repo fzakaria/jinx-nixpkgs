@@ -13,19 +13,19 @@ export default nix.lambda((args) => (() => {
   return (() => {
     const version = "1.8.16.1";
     const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: nix.thunk(() => nix.str`https://www.openafs.org/dl/openafs/${version}/openafs-${version}-src.tar.bz2`),
         hash: "sha256-z1kGdYmilUcePxD2RPDyFlETNHzIsK0Pu0EjJZoq8KI=",
       }))));
     const srcs = nix.thunk(() => [
       src,
       nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://www.openafs.org/dl/openafs/${version}/openafs-${version}-doc.tar.bz2`),
           hash: "sha256-kZhKpuF1VEZC4d2z10ROwibq57oTTTfAXfEPu4CNnjA=",
         })))),
     ]);
-    return { __proto__: pos$3, version, src, srcs };
+    return { [nix.POS]: pos$3, version, src, srcs };
   })();
 })(), formals$1);
 //# sourceMappingURL=srcs.ts.map

@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
       const version = "2.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "django_celery_results",
           version: version,
           hash: "sha256-mrzYNq5rYQY3eSRNiIeoj+gLv6uhQ98208sHA0ZxJ3w=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-attribute-error.patch",
             url: "https://github.com/celery/django-celery-results/commit/067dfc9a857344c833e269f679047d48b938e60d.patch?full_index=1",
             hash: "sha256-IHwzd91rAsgjJblnQ8lLMRVH3GZfPuK8phDAGYj6HUY=",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       const postgresqlEnableTCP = true;
       const doCheck = nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "buildPlatform")), postgresqlTestHook));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Celery result back end with django",
         homepage: "https://github.com/celery/django-celery-results",
         changelog: nix.thunk(() => nix.str`https://github.com/celery/django-celery-results/blob/v${version}/Changelog`),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

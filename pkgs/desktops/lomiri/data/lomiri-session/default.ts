@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const xdg_user_dirs = nix.arg($, "xdg-user-dirs");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "lomiri-session",
       version: "0.4",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ubports",
           repo: "development/core/lomiri-session",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -65,13 +65,13 @@ substituteInPlace desktop/dm-lomiri-session.in \\
 `),
       postFixup: "wrapGApp $out/bin/lomiri-session\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         providedSessions: nix.thunk(() => ["lomiri"]),
         tests: nix.thunk(() => nix.sel(nixosTests, "lomiri")),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Integrates Lomiri desktop/touch sessions into display / session managers",
         homepage: "https://gitlab.com/ubports/development/core/lomiri-session",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/core/lomiri-session/-/blob/${nix.sel(finalAttrs, "version")}/ChangeLog`),

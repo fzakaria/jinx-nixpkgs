@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const f2fs_tools = nix.arg($, "f2fs-tools");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tparted",
       version: "2025-11-02",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/Kagamma/tparted/releases/download/${nix.sel(finalAttrs, "version")}/linux_x86-64_tparted_${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-dVVNr8VL8SP2gCdysbE28QgKWGOzfGoIdVIzJRxRp9M=",
         })))),
@@ -65,11 +65,11 @@ export default nix.lambda((args) => (() => {
       unpackPhase: "runHook preUnpack\ntar xf $src\nrunHook postUnpack\n",
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ncp tparted $out/bin/\nmkdir -p $out/opt/tparted\ncp -r locale $out/opt/tparted/\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Text-based user interface (TUI) frontend for parted",
         homepage: "https://github.com/Kagamma/tparted",
         changelog: nix.thunk(() => nix.str`https://github.com/Kagamma/tparted/releases/tag/${nix.sel(finalAttrs, "version")}`),

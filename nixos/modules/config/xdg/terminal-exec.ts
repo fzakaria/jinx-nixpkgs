@@ -26,24 +26,24 @@ export default nix.lambda((args) => (() => {
   const mkPackageOption = nix.thunk(() => nix.attr(lib, "mkPackageOption"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "Cryolitia"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       xdg: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "terminal-exec": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(mkEnableOption, "xdg-terminal-exec, the [proposed](https://gitlab.freedesktop.org/xdg/xdg-specs/-/merge_requests/46) Default Terminal Execution Specification")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "xdg-terminal-exec", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))));
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
               default: nix.thunk(() => ({})),
               description: "Configuration options for the Default Terminal Execution Specification.\n\nThe keys are the desktop environments that are matched (case-insensitively) against `$XDG_CURRENT_DESKTOP`,\nor `default` which is used when the current desktop environment is not found in the configuration.\nThe values are a list of terminals' [desktop file IDs](https://specifications.freedesktop.org/desktop-entry-spec/latest/ar01s02.html#desktop-file-id) to try in order of decreasing priority.\n",
               example: nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 default: nix.thunk(() => ["kitty.desktop"]),
                 GNOME: nix.thunk(() => ["com.raggesilver.BlackBox.desktop", "org.gnome.Terminal.desktop"]),
               })),
@@ -60,12 +60,12 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         environment: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (desktop) => (terminals) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`xdg/${(nix.asBool(nix.eq(desktop, "default")) ? "" : nix.str`${nix.app(nix.sel(lib, "toLower"), desktop)}-`)}xdg-terminals.list`), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 text: nix.thunk(() => nix.app(nix.sel(lib, "concatLines"), terminals)),
               }))), nix.thunk(() => nix.sel(cfg, "settings")))),
         })),

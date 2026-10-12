@@ -24,15 +24,15 @@ export default nix.lambda((args) => (() => {
     const rev = "refs/tags/4.22.1";
     const hash = "sha256-zCcXuiEYL2N4Q+WT96ouVDwdZVSohgU/QA2BkGlnZZ0=";
     return nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/GNOME/gtk/${rev}/gdk/wayland/protocol/gtk-shell.xml`),
         hash: hash,
       })));
   })());
   const javaVersion = "25.0.3";
   const build = "508.4";
-  return nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({ __proto__: pos$2, jdk: jdk, debugBuild: debugBuild, withJcef: withJcef })), nix.thunk(() => ({
-      __proto__: pos$3,
+  return nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, jdk: jdk, debugBuild: debugBuild, withJcef: withJcef })), nix.thunk(() => ({
+      [nix.POS]: pos$3,
       javaVersion: javaVersion,
       build: build,
       sourceDateEpoch: 1780959777n,

@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const qtmultimedia = nix.thunk(() => nix.attr(qt5, "qtmultimedia"));
   const wrapQtAppsHook = nix.thunk(() => nix.attr(qt5, "wrapQtAppsHook"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rpcemu",
       version: "0.9.5",
-      env: nix.thunk(() => ({ __proto__: pos$1, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$1, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       src: nix.thunk(() => nix.app(fetchhg, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "http://www.home.marutan.net/hg/rpcemu",
           rev: nix.thunk(() => nix.str`release_${nix.sel(finalAttrs, "version")}`),
           sha256: "sha256-raZ+u8CnX33CsOSI20utegwPVVk8bcZqDNJ/5UcMP9w=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       configurePhase: "runHook preConfigure\n\ncd src/qt5\nqmake\n\nrunHook postConfigure\n",
       installPhase: "runHook preInstall\n\ncd ../..\ninstall -Dm755 rpcemu-interpreter -t $out/bin\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.marutan.net/rpcemu/index.php",
         description: "Risc PC Emulator",
         mainProgram: "rpcemu-interpreter",

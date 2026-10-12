@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.arg($, "version");
   const enableGC = nix.argOr($, "enableGC", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows")));
   return nix.app(mkMesonLibrary, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "nix-expr",
       version: version,
       workDir: nix.path(here, "./."),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => nix.concat([nix_util, nix_store, nix_fetchers, boost, nlohmann_json], nix.app(nix.sel(lib, "optional"), enableGC, boehmgc))),
       mesonFlags: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "gc", enableGC))]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "unix"), nix.sel(lib, "platforms", "windows"))),
       })),
     }));

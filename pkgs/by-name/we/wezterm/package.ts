@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const rcodesign = nix.arg($, "rcodesign");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "wezterm",
       version: "0-unstable-2026-09-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wezterm",
           repo: "wezterm",
           rev: "b09b56c29c1e367e598b60ca266e2cc9038751e0",
@@ -96,25 +96,25 @@ install -Dm644 assets/wezterm-nautilus.py -t $out/share/nautilus-python/extensio
 `)), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p \"$out/Applications\"\nOUT_APP=\"$out/Applications/WezTerm.app\"\ncp -r assets/macos/WezTerm.app \"$OUT_APP\"\nrm $OUT_APP/*.dylib\n# macos codesigning requires a specific directory structure\n# see also: https://github.com/wezterm/wezterm/blob/76b606ec597a3c0263fa60321548637451c0a547/ci/deploy.sh#L31\nmkdir -p $OUT_APP/Contents/{MacOS,Resources}\ncp -r assets/shell-integration/* $OUT_APP/Contents/Resources/\n# https://github.com/wezterm/wezterm/pull/6886\n# macOS will only recognize our application bundle\n# if the binaries are inside of it. Move them there\n# and create symbolic links for them in bin/.\nmv $out/bin/{wezterm,wezterm-mux-server,wezterm-gui,strip-ansi-escapes} $OUT_APP/Contents/MacOS/\nln -s $OUT_APP/Contents/MacOS/{wezterm,wezterm-mux-server,wezterm-gui,strip-ansi-escapes} $out/bin\n"))),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "rcodesign sign $out/Applications/WezTerm.app")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         headless: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./headless.nix")), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             openssl: openssl,
             "pkg-config": pkg_config,
             rustPlatform: rustPlatform,
             wezterm: wezterm,
           })))),
-        terminfo: nix.thunk(() => nix.app(runCommand, "wezterm-terminfo", nix.thunk(() => ({ __proto__: pos$3, nativeBuildInputs: nix.thunk(() => [ncurses]) })), nix.thunk(() => nix.str`mkdir -p $out/share/terminfo $out/nix-support
+        terminfo: nix.thunk(() => nix.app(runCommand, "wezterm-terminfo", nix.thunk(() => ({ [nix.POS]: pos$3, nativeBuildInputs: nix.thunk(() => [ncurses]) })), nix.thunk(() => nix.str`mkdir -p $out/share/terminfo $out/nix-support
 tic -x -o $out/share/terminfo ${nix.sel(finalAttrs, "src")}/termwiz/data/wezterm.terminfo
 `))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "all-terminfo": nix.thunk(() => nix.sel(nixosTests, "allTerminfo")),
         })),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "GPU-accelerated cross-platform terminal emulator and multiplexer written by @wez and implemented in Rust",
         homepage: "https://wezterm.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

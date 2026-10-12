@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const libyaml = nix.arg($, "libyaml");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(graalvmPackages, "buildGraalvmProduct"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./hashes.nix")), "hashes", nix.key(nix.sel(stdenv, "system")))))),
       version: nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./hashes.nix")), "version")),
       product: "truffleruby",
@@ -30,7 +30,7 @@ $out/bin/ruby -e 'puts(1 + 1)'
 ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "echo '1 + 1' | $out/bin/irb\n")}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "High-performance implementation of Ruby built on GraalVM",
         homepage: "https://truffleruby.dev/",
         mainProgram: "ruby",

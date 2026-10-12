@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const meson = nix.arg($, "meson");
   const ninja = nix.arg($, "ninja");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libvdpau",
       version: "1.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://gitlab.freedesktop.org/vdpau/libvdpau/-/archive/${nix.sel(finalAttrs, "version")}/libvdpau-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-pdUKQrjCiP68BxUatkOsjeBqGERpZcckH4m06BCCGRM=",
         })))),
@@ -37,10 +37,10 @@ export default nix.lambda((args) => (() => {
       mesonFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [
           nix.thunk(() => nix.str`-Dmoduledir=${nix.sel(mesa, "driverLink")}/lib/vdpau`),
         ]))),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ __proto__: pos$2, NIX_LDFLAGS: "-lX11" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-lX11" })))),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isElf")), "patchelf $out/lib/libvdpau.so --add-rpath $out/lib\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.freedesktop.org/wiki/Software/VDPAU/",
         description: "Library to use the Video Decode and Presentation API for Unix (VDPAU)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

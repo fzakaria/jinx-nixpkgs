@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const tinyprog = nix.arg($, "tinyprog");
   const scons = nix.arg($, "scons");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "apio",
       version: "0.9.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FPGAwars",
           repo: "apio",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -72,7 +72,7 @@ substituteInPlace apio/managers/scons.py --replace-fail \\
       disabledTestPaths: nix.thunk(() => ["test2"]),
       pytestFlags: nix.thunk(() => ["--offline"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open source ecosystem for open FPGA boards",
         mainProgram: "apio",
         homepage: "https://github.com/FPGAwars/apio",

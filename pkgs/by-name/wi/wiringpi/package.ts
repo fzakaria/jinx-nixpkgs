@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const libxcrypt = nix.arg($, "libxcrypt");
   const version = "3.18";
   const srcAll = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "WiringPi",
       repo: "WiringPi",
       tag: version,
@@ -36,13 +36,13 @@ export default nix.lambda((args) => (() => {
     const buildInputs = nix.argOr($_1, "buildInputs", () => []);
     const src = nix.argOr($_1, "src", () => nix.force(srcAll));
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: nix.thunk(() => nix.str`wiringpi-${subprj}`),
         version: version,
         src: src,
         sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/${subprj}`),
         buildInputs: buildInputs,
-        env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+        env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
         preInstall: "sed -i \"/chown root/d\" Makefile\nsed -i \"/chmod/d\" Makefile\n",
         makeFlags: nix.thunk(() => [
           nix.thunk(() => nix.str`DESTDIR=${nix.builtins.placeholder("out")}`),
@@ -52,21 +52,21 @@ export default nix.lambda((args) => (() => {
       }));
   })(), formals$2);
   const passthru = nix.thunk(() => ({
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     src: srcAll,
     mkSubProject: mkSubProject,
     wiringPi: nix.thunk(() => nix.app(mkSubProject, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         subprj: "wiringPi",
         buildInputs: nix.thunk(() => [libxcrypt]),
       })))),
     devLib: nix.thunk(() => nix.app(mkSubProject, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         subprj: "devLib",
         buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(passthru, "wiringPi"))]),
       })))),
     wiringPiD: nix.thunk(() => nix.app(mkSubProject, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         subprj: "wiringPiD",
         buildInputs: nix.thunk(() => [
           libxcrypt,
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     gpio: nix.thunk(() => nix.app(mkSubProject, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         subprj: "gpio",
         buildInputs: nix.thunk(() => [
           libxcrypt,
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
       })))),
   }));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "wiringpi",
       passthru: passthru,
       version: version,
@@ -96,7 +96,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(passthru, "gpio")),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Gordon's Arduino wiring-like WiringPi Library for the Raspberry Pi (Unofficial Mirror for WiringPi bindings)",
         homepage: "https://github.com/WiringPi/WiringPi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

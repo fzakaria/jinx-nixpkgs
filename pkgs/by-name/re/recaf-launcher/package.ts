@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const buildFHSEnv = nix.arg($, "buildFHSEnv");
   const version = "0.8.1";
   const jar = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/Col-E/Recaf-Launcher/releases/download/${version}/recaf-gui-${version}.jar`),
       hash: "sha256-RHsI8z/orwR9b9s+LrrOHpxpr82J6YOpnfik3dnlsvI=",
     }))));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "recaf-launcher",
       version: version,
       targetPkgs: (p) => (() => {
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       })(),
       runScript: nix.thunk(() => nix.str`java -jar ${jar}`),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple launcher for Recaf 4.X and above - a modern Java bytecode editor",
         homepage: "https://recaf.coley.software",
         changelog: nix.thunk(() => nix.str`https://github.com/Col-E/Recaf-Launcher/releases/tag/${version}/CHANGELOG.md`),

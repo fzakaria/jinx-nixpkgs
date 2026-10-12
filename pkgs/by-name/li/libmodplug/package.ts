@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const file = nix.arg($, "file");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libmodplug",
       version: "0.8.9.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/modplug-xmms/libmodplug/${nix.sel(finalAttrs, "version")}/libmodplug-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1pnri98a603xk47smnxr551svbmgbzcw018mq1k6srbrq6kaaz25",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
    --replace /usr/bin/file ${file}/bin/file
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MOD playing library",
         homepage: "https://modplug-xmms.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),

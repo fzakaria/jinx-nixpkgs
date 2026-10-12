@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const zita_resampler = nix.arg($, "zita-resampler");
   const fftwFloat = nix.arg($, "fftwFloat");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "xtuner",
       version: "1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "brummer10",
           repo: "XTuner",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "glibc-2.38.patch",
             url: "https://github.com/brummer10/libxputty/commit/7eb70bf3f7bce0af9e1919d6c875cdb8efca734e.patch",
             hash: "sha256-VspR0KJjBt4WOrnlo7rHw1oAYM1d2RSz6JhuAEfsO3M=",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/brummer10/XTuner",
         description: "Tuner for Jack Audio Connection Kit",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

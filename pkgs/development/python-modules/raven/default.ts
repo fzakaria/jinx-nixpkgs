@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.10.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "getsentry",
           repo: "raven-python",
           rev: version,
@@ -28,9 +28,9 @@ export default nix.lambda((args) => (() => {
         }))));
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["raven"]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, flask: nix.thunk(() => [blinker, flask]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, flask: nix.thunk(() => [blinker, flask]) }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Legacy Python client for Sentry (getsentry.com) — replaced by sentry-python",
         mainProgram: "raven",
         homepage: "https://github.com/getsentry/raven-python",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

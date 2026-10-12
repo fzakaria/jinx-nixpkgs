@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const xunit_viewer = nix.arg($, "xunit-viewer");
   const runCommand = nix.arg($, "runCommand");
-  return nix.app(runCommand, "test-xunit-viewer", nix.thunk(() => ({ __proto__: pos$1, nativeBuildInputs: nix.thunk(() => [xunit_viewer]) })), nix.thunk(() => nix.str`mkdir $out
+  return nix.app(runCommand, "test-xunit-viewer", nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [xunit_viewer]) })), nix.thunk(() => nix.str`mkdir $out
 xunit-viewer -r ${nix.path(here, "./example.junit.xml")} -o $out/index.html
 ( set -x
   grep '<body' $out/index.html

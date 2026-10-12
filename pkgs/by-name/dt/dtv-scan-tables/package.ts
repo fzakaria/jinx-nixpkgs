@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const v4l_utils = nix.arg($, "v4l-utils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dtv-scan-tables",
       version: "2024-03-24-7098bdd27548",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://linuxtv.org/downloads/dtv-scan-tables/dtv-scan-tables-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-P0yJgbOkgpBms5arwNonDlx+Z0tdGQ6SUyoGlRoH6Y4=",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       allowedReferences: [],
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         downloadPage: "https://linuxtv.org/downloads/dtv-scan-tables/",
         description: "Digital TV (DVB) channel/transponder scan tables",
         homepage: "https://www.linuxtv.org/wiki/index.php/Dtv-scan-tables",

@@ -31,22 +31,22 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const tsx = nix.arg($, "tsx");
   const nixosTests = nix.arg($, "nixosTests");
-  const pnpm = nix.thunk(() => nix.app(nix.sel(pnpm_11, "override"), nix.thunk(() => ({ __proto__: pos$1, "nodejs-slim": nodejs_slim_26 }))));
+  const pnpm = nix.thunk(() => nix.app(nix.sel(pnpm_11, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, "nodejs-slim": nodejs_slim_26 }))));
   const nodejs = nodejs_26;
-  const tsx$ = nix.thunk(() => nix.app(nix.sel(tsx, "override"), nix.thunk(() => ({ __proto__: pos$2, "nodejs-slim_24": nodejs_slim_26 }))));
+  const tsx$ = nix.thunk(() => nix.app(nix.sel(tsx, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, "nodejs-slim_24": nodejs_slim_26 }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "papra",
       version: "26.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "papra-hq",
           repo: "papra",
           tag: nix.thunk(() => nix.str`@papra/app@${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-4Kcfv6bcKM7SXTmKn0cjXjhUXEZSypSFWyr7jIP/4+E=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         pnpm,
       ]),
       buildInputs: nix.thunk(() => [vips]),
-      env: nix.thunk(() => ({ __proto__: pos$5, SHARP_FORCE_GLOBAL_LIBVIPS: 1n, npm_config_nodedir: nodejs })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$5, SHARP_FORCE_GLOBAL_LIBVIPS: 1n, npm_config_nodedir: nodejs })),
       postPatch: "substituteInPlace apps/papra-server/src/modules/app/static-assets/static-assets.routes.ts \\\n  --replace-fail \"./public\" \"$out/lib/public\" \\\n  --replace-fail \"public/index.html\" \"$out/lib/public/index.html\"\n",
       buildPhase: "runHook preBuild\n\npnpm --filter \"@papra/app-client...\" run build\npnpm --filter \"@papra/app-server...\" run build\n\nrunHook postBuild\n",
       installPhase: nix.thunk(() => nix.str`runHook preInstall
@@ -88,12 +88,12 @@ makeWrapper "${nix.app(nix.sel(lib, "getExe"), tsx$)}" $out/bin/papra-migrate-up
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => ({ __proto__: pos$6, nixos: nix.thunk(() => nix.sel(nixosTests, "papra")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$6, nixos: nix.thunk(() => nix.sel(nixosTests, "papra")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Open-source document management platform designed to help you organize, secure, and archive your files effortlessly.",
         homepage: "https://papra.app/",
         changelog: "https://github.com/papra-hq/papra/releases",

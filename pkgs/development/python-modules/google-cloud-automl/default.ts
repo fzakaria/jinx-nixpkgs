@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "google-cloud-automl",
       version: "2.20.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "google_cloud_automl",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-PIZ21kxcBgQXcJL77jNzy04qfaNsfBYy6WNAhIN+Bk0=",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: nix.thunk(() => ["protobuf"]),
       dependencies: nix.thunk(() => nix.concat([google_api_core, proto_plus, protobuf], nix.sel(google_api_core, "optional-dependencies", "grpc"))),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         libcst: nix.thunk(() => [libcst]),
         pandas: nix.thunk(() => [pandas]),
         storage: nix.thunk(() => [google_cloud_storage]),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         "google.cloud.automl_v1beta1",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Cloud AutoML API client library",
         homepage: "https://github.com/googleapis/google-cloud-python/tree/main/packages/google-cloud-automl",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/google-cloud-python/tree/google-cloud-automl-v${nix.sel(finalAttrs, "version")}/packages/google-cloud-automl`),

@@ -36,30 +36,30 @@ export default nix.lambda((args) => (() => {
   const libxml2 = nix.arg($, "libxml2");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "vicinae",
       version: "0.29.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vicinaehq",
           repo: "vicinae",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-HuBu9NU+L2H/BW07H85E9A5/sT2ctOpGSBtB4IfteTk=",
         })))),
       apiDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/src/typescript/api`),
           hash: "sha256-4FEaBDJK9abcgz+vptuL4wQ8zhp+wpLbbR4Y79BVhEg=",
         })))),
       extensionManagerDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/src/typescript/extension-manager`),
           hash: "sha256-pEgqFgvdz7Bcc+LznCI+KlD1XEfUuWFWjS24MJ7sx3k=",
         })))),
       cmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "cmakeFeature")), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           VICINAE_GIT_TAG: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           VICINAE_PROVENANCE: "nix",
           INSTALL_NODE_MODULES: "OFF",
@@ -124,9 +124,9 @@ npmRoot=src/typescript/extension-manager npmDeps=${nix.sel(finalAttrs, "extensio
 `)), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "ln -s ../Applications/Vicinae.app/Contents/MacOS/vicinae-cli \"$out/bin/vicinae\"\n"))),
       doInstallCheck: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")),
       nativeInstallCheckInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [udevCheckHook]))),
-      passthru: nix.thunk(() => ({ __proto__: pos$5, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Native, fast, extensible launcher for the desktop",
         homepage: "https://github.com/vicinaehq/vicinae",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

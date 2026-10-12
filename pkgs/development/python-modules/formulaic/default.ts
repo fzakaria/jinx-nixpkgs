@@ -32,17 +32,17 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "matthewwardrop",
           repo: "formulaic",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-C4IUuyxBbW2DUxF4at8/736ZMmVZrFRRp+RxrJfmLkY=",
         }))));
-      const env = nix.thunk(() => ({ __proto__: pos$2, SETUPTOOLS_SCM_PRETEND_VERSION: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, SETUPTOOLS_SCM_PRETEND_VERSION: version }));
       const build_system = nix.thunk(() => [hatchling, hatch_vcs]);
       const dependencies = nix.thunk(() => [narwhals, numpy, pandas, scipy, wrapt, typing_extensions, interface_meta]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         arrow: nix.thunk(() => [pyarrow]),
         polars: nix.thunk(() => [polars]),
         calculus: nix.thunk(() => [sympy]),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.concat(nix.sel(optional_dependencies, "arrow"), nix.sel(optional_dependencies, "calculus"))));
       const pythonImportsCheck = nix.thunk(() => ["formulaic"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "High-performance implementation of Wilkinson formulas",
         homepage: "https://matthewwardrop.github.io/formulaic/",
         changelog: nix.thunk(() => nix.str`https://github.com/matthewwardrop/formulaic/releases/tag/${nix.sel(src, "tag")}`),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

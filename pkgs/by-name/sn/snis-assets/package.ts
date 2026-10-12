@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "snis_assets",
       version: "2025-07-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "marcin-serwin",
           repo: "snis-assets-snapshotter",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       dontFixup: true,
       installPhase: "runHook preInstall\nmkdir -p $out\ncp -r share $out\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Assets for Space Nerds In Space, a multi-player spaceship bridge simulator",
         homepage: "https://smcameron.github.io/space-nerds-in-space/",
         downloadPage: "https://github.com/marcin-serwin/snis-assets-snapshotter",

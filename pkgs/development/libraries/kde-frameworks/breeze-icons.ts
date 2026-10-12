@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const qtsvg = nix.arg($, "qtsvg");
   const hicolor_icon_theme = nix.arg($, "hicolor-icon-theme");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "breeze-icons",
       nativeBuildInputs: nix.thunk(() => [cmake, extra_cmake_modules, gtk3]),
       buildInputs: nix.thunk(() => [qtsvg]),

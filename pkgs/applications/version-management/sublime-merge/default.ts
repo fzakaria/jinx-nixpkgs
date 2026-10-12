@@ -12,15 +12,15 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const common = (opts) => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), opts)));
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "sublime-merge": nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         buildVersion: "2132",
         aarch64sha256: "70KdQ9lqkhFSfWU9fkhuawJpEkj6bkeU+XlLJIGKK54=",
         x64sha256: "As7Nj3vrEE6JmN/oZ8e4EzhY+qLpPYja7/FJUjDRs9g=",
       })), nix.thunk(() => ({})))),
     "sublime-merge-dev": nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         buildVersion: "2126",
         dev: true,
         aarch64sha256: "sqrcGszq1Vi0DDbPds7ABsM7i1/6EEErTAC/Og3wwhc=",

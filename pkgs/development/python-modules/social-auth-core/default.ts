@@ -31,13 +31,13 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "social-auth-core",
       version: "5.2.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "python-social-auth",
           repo: "social-core",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         requests_oauthlib,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         openidconnect: nix.thunk(() => [python_jose]),
         saml: nix.thunk(() => [lxml, python3_saml]),
         azuread: nix.thunk(() => [cryptography]),
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["social_core"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Module for social authentication/registration mechanisms",
         homepage: "https://github.com/python-social-auth/social-core",
         changelog: nix.thunk(() => nix.str`https://github.com/python-social-auth/social-core/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

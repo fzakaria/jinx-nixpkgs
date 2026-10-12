@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const rustc_demangle = nix.arg($, "rustc-demangle");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "hotspot",
       version: "1.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KDAB",
           repo: "hotspot",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "strings", "cmakeBool"), "QT6_BUILD", true)),
       ]),
       buildInputs: nix.thunk(() => nix.concat([
-        nix.thunk(() => nix.app(nix.sel(elfutils, "override"), nix.thunk(() => ({ __proto__: pos$2, enableDebuginfod: true })))),
+        nix.thunk(() => nix.app(nix.sel(elfutils, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, enableDebuginfod: true })))),
         kddockwidgets,
         libelf,
         nix.thunk(() => nix.sel(qt6, "qtbase")),
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
   $out/libexec/hotspot-perfparser
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GUI for Linux perf",
         mainProgram: "hotspot",
         longDescription: "hotspot is a GUI replacement for `perf report`.\nIt takes a perf.data file, parses and evaluates its contents and\nthen displays the result in a graphical way.\n",

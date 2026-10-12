@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "xv";
       const version = "6.2.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jasper-software",
           repo: "xv",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [cmake]);
       const buildInputs = nix.thunk(() => [libx11, libxt, libpng, libwebp, libtiff, libjpeg, jasper, libxrandr, libexif]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Classic image viewer and editor for X",
         homepage: "http://www.trilon.com/xv/",
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             shortName: "xv",
             fullName: "XV License",
             url: "https://github.com/jasper-software/xv/blob/main/src/README",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "galen"))];
         })()),
       }));
-      return { __proto__: pos$4, pname, version, src, nativeBuildInputs, buildInputs, meta };
+      return { [nix.POS]: pos$4, pname, version, src, nativeBuildInputs, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

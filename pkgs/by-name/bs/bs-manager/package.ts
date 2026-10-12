@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const electron = nix.arg($, "electron");
   const steam_run_free = nix.arg($, "steam-run-free");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "bs-manager",
       version: "1.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Zagrios",
           repo: "bs-manager",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,14 +49,14 @@ ln -s ${nix.sel(finalAttrs, "passthru", "depotdownloader")}/bin/DepotDownloader 
 `),
       npmDepsHash: "sha256-iyhbqxnIoxq4MH0Qd+h4FRi8/dqg62SvMDe8/XAfKhI=",
       extraNpmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: nix.thunk(() => nix.str`bs-manager-${nix.sel(finalAttrs, "version")}-extra-npm-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/release/app`),
           hash: "sha256-jw7vhYF3//GWIpjlvK+iJakzy2c84Xyx0e6XsBJjAlg=",
         })))),
       makeCacheWritable: true,
-      env: nix.thunk(() => ({ __proto__: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       npmRebuildFlags: nix.thunk(() => ["--ignore-scripts"]),
       nativeBuildInputs: nix.thunk(() => [autoPatchelfHook, copyDesktopItems, makeWrapper]),
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(stdenv, "cc", "cc"))]),
@@ -91,7 +91,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             desktopName: "BSManager",
             name: "BSManager",
             exec: "bs-manager %U",
@@ -109,15 +109,15 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             extraArgs: nix.thunk(() => ["--custom-dep", "extraNpmDeps"]),
           })))),
         depotdownloader: nix.thunk(() => nix.app(callPackage, nix.path(here, "./depotdownloader"), nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         changelog: nix.thunk(() => nix.str`https://github.com/Zagrios/bs-manager/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),
         description: "Your Beat Saber Assistant",
         homepage: "https://github.com/Zagrios/bs-manager",

@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const libpulseaudio = nix.arg($, "libpulseaudio");
   const wayland = nix.arg($, "wayland");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gbar",
       version: "0-unstable-2024-12-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "scorpion-26",
           repo: "gBar",
           rev: "03bedc7471add061fb15e0ca1c9d2f729b8c5d7b",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         libdbusmenu_gtk3,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Blazingly fast status bar written with GTK",
         homepage: "https://github.com/scorpion-26/gBar",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

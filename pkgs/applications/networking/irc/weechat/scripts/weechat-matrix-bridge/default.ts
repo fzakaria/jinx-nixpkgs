@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const olm = nix.arg($, "olm");
   const luaffi = nix.arg($, "luaffi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "weechat-matrix-bridge",
       version: "unstable-2018-11-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "torhve",
           repo: "weechat-matrix-protocol-script",
           rev: "8d32e90d864a8f3f09ecc2857cd5dd6e39a8c3f7",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
 substituteInPlace olm.lua \\
   --replace "__NIX_LIB_PATH__" "$out/lib/?.so"
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, scripts: nix.thunk(() => ["matrix.lua"]) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, scripts: nix.thunk(() => ["matrix.lua"]) })),
       installPhase: nix.thunk(() => nix.str`mkdir -p $out/{share,lib}
 
 cp {matrix.lua,olm.lua} $out/share
@@ -47,7 +47,7 @@ cp ${olm}/lib/libolm.so $out/lib/libolm.so
 cp ${luaffi}/lib/lua/${nix.sel(luaffi, "lua", "luaversion")}/ffi.so $out/lib/ffi.so
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "WeeChat script in Lua that implements the matrix.org chat protocol",
         homepage: "https://github.com/torhve/weechat-matrix-protocol-script",
         maintainers: [],

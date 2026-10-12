@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const systemd = nix.arg($, "systemd");
   const tpm2_tools = nix.arg($, "tpm2-tools");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "clevis",
       version: "22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "latchset",
           repo: "clevis",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -77,11 +77,11 @@ wrapProgram $out/libexec/clevis-luks-askpass \\
 `;
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "installer"));
           return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           clevisBcachefs: nix.thunk(() => nix.attr(from, "clevisBcachefs")),
           clevisBcachefsFallback: nix.thunk(() => nix.attr(from, "clevisBcachefsFallback")),
           clevisLuks: nix.thunk(() => nix.attr(from, "clevisLuks")),
@@ -98,7 +98,7 @@ wrapProgram $out/libexec/clevis-luks-askpass \\
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/latchset/clevis",
         description: "Automated Encryption Framework",
         longDescription: "Clevis is a pluggable framework for automated decryption. It can be used\nto provide automated decryption of data or even automated unlocking of\nLUKS volumes.\n",

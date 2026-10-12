@@ -36,12 +36,12 @@ export default nix.lambda((args) => (() => {
   const optionalAttrs = nix.thunk(() => nix.attr(lib, "optionalAttrs"));
   const nameValuePair = nix.thunk(() => nix.attr(lib, "nameValuePair"));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     port: 9753n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       repository: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
           example: "sftp:backup@192.168.1.100:/backups/example",
         })))),
       repositoryFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -60,13 +60,13 @@ export default nix.lambda((args) => (() => {
           description: "Path to the file containing the URI for the repository to monitor.\n",
         })))),
       passwordFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.sel(types, "path")),
           description: "File containing the password to the repository.\n",
           example: "/etc/nixos/restic-password",
         })))),
       environmentFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => (() => {
             const w = nix.withScope(types, null);
             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -75,13 +75,13 @@ export default nix.lambda((args) => (() => {
           description: "File containing the credentials to access the repository, in the\nformat of an EnvironmentFile as described by {manpage}`systemd.exec(5)`\n",
         })))),
       refreshInterval: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           type: nix.thunk(() => nix.sel(types, "ints", "unsigned")),
           default: 60n,
           description: "Refresh interval for the metrics in seconds.\nComputing the metrics is an expensive task, keep this value as high as possible.\n",
         })))),
       rcloneOptions: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           type: nix.thunk(() => (() => {
             const w = nix.withScope(types, null);
             return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -93,7 +93,7 @@ export default nix.lambda((args) => (() => {
           description: "Options to pass to rclone to control its behavior.\nSee <https://rclone.org/docs/#options> for\navailable options. When specifying option names, strip the\nleading `--`. To set a flag such as\n`--drive-use-trash`, which does not take a value,\nset the value to the Boolean `true`.\n",
         })))),
       rcloneConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           type: nix.thunk(() => (() => {
             const w = nix.withScope(types, null);
             return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -105,7 +105,7 @@ export default nix.lambda((args) => (() => {
           description: "Configuration for the rclone remote being used for backup.\nSee the remote's specific options under rclone's docs at\n<https://rclone.org/docs/>. When specifying\noption names, use the \"config\" name specified in the docs.\nFor example, to set `--b2-hard-delete` for a B2\nremote, use `hard_delete = true` in the\nattribute set.\n\n::: {.warning}\nSecrets set in here will be world-readable in the Nix\nstore! Consider using the {option}`rcloneConfigFile`\noption instead to specify secret values separately. Note that\noptions set here will override those set in the config file.\n:::\n",
         })))),
       rcloneConfigFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           type: nix.thunk(() => (() => {
             const w = nix.withScope(types, null);
             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -115,14 +115,14 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       script: nix.thunk(() => nix.str`export RESTIC_REPOSITORY=${(nix.asBool(!nix.eq(nix.sel(cfg, "repositoryFile"), null)) ? "$(cat $CREDENTIALS_DIRECTORY/RESTIC_REPOSITORY)" : nix.str`${nix.sel(cfg, "repository")}`)}
 export RESTIC_PASSWORD_FILE=$CREDENTIALS_DIRECTORY/RESTIC_PASSWORD_FILE
 ${nix.sel(pkgs, "prometheus-restic-exporter")}/bin/restic-exporter.py \\
   ${nix.app(concatStringsSep, " \\\n  ", nix.thunk(() => nix.sel(cfg, "extraFlags")))}
 `),
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         CacheDirectory: "restic-exporter",
         EnvironmentFile: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "environmentFile"), null)), nix.thunk(() => nix.sel(cfg, "environmentFile")))),
         LoadCredential: nix.thunk(() => nix.concat([
@@ -137,13 +137,13 @@ ${nix.sel(pkgs, "prometheus-restic-exporter")}/bin/restic-exporter.py \\
         const rcloneAttrToConf = (v) => nix.add("RCLONE_CONFIG_", nix.app(toUpper, nix.thunk(() => nix.add(nix.add(rcloneRemoteName, "_"), v))));
         const toRcloneVal = (v) => (nix.asBool(nix.app(nix.sel(lib, "isBool"), v)) ? nix.app(nix.sel(lib, "boolToString"), v) : nix.force(v));
         return nix.update({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           LISTEN_ADDRESS: nix.thunk(() => nix.sel(cfg, "listenAddress")),
           LISTEN_PORT: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))),
           REFRESH_INTERVAL: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "refreshInterval")))),
           RESTIC_CACHE_DIR: "$CACHE_DIRECTORY",
         }, nix.update(nix.app(mapAttrs$, (name) => (value) => nix.app(nameValuePair, nix.thunk(() => nix.app(rcloneAttrToOpt, name)), nix.thunk(() => nix.app(toRcloneVal, value))), nix.thunk(() => nix.sel(cfg, "rcloneOptions"))), nix.update(nix.app(optionalAttrs, nix.thunk(() => !nix.eq(nix.sel(cfg, "rcloneConfigFile"), null)), nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             RCLONE_CONFIG: nix.thunk(() => nix.sel(cfg, "rcloneConfigFile")),
           }))), nix.app(mapAttrs$, (name) => (value) => nix.app(nameValuePair, nix.thunk(() => nix.app(rcloneAttrToConf, name)), nix.thunk(() => nix.app(toRcloneVal, value))), nix.thunk(() => nix.sel(cfg, "rcloneConfig"))))));
       })()),

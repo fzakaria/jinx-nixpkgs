@@ -15,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const kernel = nix.arg($, "kernel");
   const rr = nix.arg($, "rr");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rr-zen_workaround",
       src: nix.thunk(() => nix.attr(rr, "src")),
       version: nix.thunk(() => nix.attr(rr, "version")),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(rr, "src", "name")}/third-party/zen-pmu-workaround`),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             name: "kernel-6.16.patch",
             url: "https://github.com/rr-debugger/rr/commit/86aa1ebe03c6a7f60eb65249233f866fd3da8316.diff",
             stripLen: 2n,
@@ -46,7 +46,7 @@ runHook postInstall
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Kernel module supporting the rr debugger on (some) AMD Zen-based CPUs",
         homepage: "https://github.com/rr-debugger/rr/wiki/Zen#kernel-module",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

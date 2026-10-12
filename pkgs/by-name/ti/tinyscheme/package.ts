@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tinyscheme";
       const version = "1.42";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/tinyscheme/${pname}-${version}.tar.gz`),
           sha256: "sha256-F7Cxv/0i89SdWDPiKhILM5A50s/aC0bW/FHdLwG0B60=",
         }))));
@@ -34,9 +34,9 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace scheme.c --replace \"init.scm\" \"$out/lib/init.scm\"\n";
       const installPhase = "mkdir -p $out/bin $out/lib\ncp init.scm $out/lib\ncp libtinyscheme* $out/lib\ncp scheme $out/bin/tinyscheme\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           simple: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-simple-test`), nix.thunk(() => ({})), nix.thunk(() => nix.str`${tinyscheme}/bin/tinyscheme <<<"(quit 0)"
 echo "success" > $out
 `))),
@@ -55,7 +55,7 @@ EOF
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Lightweight Scheme implementation",
         longDescription: "TinyScheme is a lightweight Scheme interpreter that implements as large a\nsubset of R5RS as was possible without getting very large and complicated.\n",
         homepage: "https://tinyscheme.sourceforge.net/",
@@ -65,7 +65,7 @@ EOF
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

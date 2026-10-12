@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const perlPackages = nix.arg($, "perlPackages");
   const sharnessExtensions = nix.argOr($, "sharnessExtensions", () => ({}));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sharness",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "felipec",
           repo: "sharness",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(sharnessExtensions, {})), "extDir=$out/share/sharness/sharness.d\nmkdir -p \"$extDir\"\nlinkExtensions() {\n  set -- $extensions\n  while [ $# -ge 2 ]; do\n    ln -s \"$2\" \"$extDir/$1\"\n    shift 2\n  done\n}\nlinkExtensions\n")),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         SHARNESS_TEST_SRCDIR: nix.thunk(() => nix.add(nix.sel(finalAttrs, "finalPackage"), "/share/sharness")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Portable shell library to write, run and analyze automated tests adhering to Test Anything Protocol (TAP)",
         homepage: "https://github.com/chriscool/sharness",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

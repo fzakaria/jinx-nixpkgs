@@ -29,18 +29,18 @@ export default nix.lambda((args) => (() => {
   const gel = nix.arg($, "gel");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "gel",
       version: "7.10.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "geldata",
           repo: "gel-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-Fy4J7puunqB5TeUsafnOotoWNvtTGiMJZ06YII14zIM=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -51,22 +51,22 @@ export default nix.lambda((args) => (() => {
       checkFeatures: [],
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-dynamically-patchelf-binaries.patch"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             patchelf: patchelf,
             dynamicLinker: nix.thunk(() => nix.sel(stdenv, "cc", "bintools", "dynamicLinker")),
           })))),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$4, OPENSSL_NO_VENDOR: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$4, OPENSSL_NO_VENDOR: true })),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$5, package: gel, command: "gel --version" })))),
+          [nix.POS]: pos$6,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$5, package: gel, command: "gel --version" })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Gel cli",
         homepage: "https://docs.geldata.com/reference/cli",
         changelog: "https://github.com/geldata/gel-cli/compare/v7.7.0...v7.10.2",

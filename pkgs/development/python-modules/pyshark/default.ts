@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "pyshark",
       version: "0.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KimiNewt",
           repo: "pyshark",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,17 +42,17 @@ export default nix.lambda((args) => (() => {
       patchFlags: nix.thunk(() => ["-p2"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/KimiNewt/pyshark/commit/7142c5bf88abcd4c65c81052a00226d6155dda42.patch",
             hash: "sha256-Ti7cwRyYSbF4a4pEEV9FntNevkV/JVXNqACQWzoma7g=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/KimiNewt/pyshark/commit/0e1d8d0e06108f2887c3147c93049de63b475f8a.patch",
             hash: "sha256-fpgiBHcfS/TGYIB65ioZJrWUuDIrLxxXqGVJ9y18b2w=",
           })))),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-tshark-path.patch"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             tshark: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), wireshark_cli, "tshark")),
           })))),
         nix.path(here, "./py314-compat.patch"),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["pyshark"]),
       enabledTestPaths: nix.thunk(() => ["../tests/"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Python wrapper for tshark, allowing Python packet parsing using Wireshark dissectors",
         homepage: "https://github.com/KimiNewt/pyshark/",
         changelog: nix.thunk(() => nix.str`https://github.com/KimiNewt/pyshark/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

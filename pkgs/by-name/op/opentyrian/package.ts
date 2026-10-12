@@ -18,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const SDL2_net = nix.arg($, "SDL2_net");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "opentyrian",
       version: "2.1.20221123",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "opentyrian",
           repo: "opentyrian",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           sha256: "sha256-fVcc8v1c9uU72X6afEo4VoMo6YuDECQSwDQ/TQjgwUY=",
         })))),
       data: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://camanis.net/tyrian/tyrian21.zip",
           sha256: "1biz6hf6s7qrwn8ky0g6p8w7yg715w7yklpn6258bkks1s15hpdb",
         })))),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`prefix=${nix.builtins.placeholder("out")}`)]),
       postInstall: "mkdir -p $out/share/games/tyrian\ncp -r $data/* $out/share/games/tyrian/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Open source port of the game \"Tyrian\"",
         mainProgram: "opentyrian",
         homepage: "https://github.com/opentyrian/opentyrian",

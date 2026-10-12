@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "prqlc",
       version: "0.13.14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "prql",
           repo: "prql",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]),
       buildInputs: nix.thunk(() => [openssl, sqlite, zlib]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PYO3_PYTHON: nix.thunk(() => nix.str`${python3}/bin/python3`),
       })),
       postInstall: "rm -r $out/bin/compile-files $out/bin/mdbook-prql $out/lib\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CLI for the PRQL compiler - a simple, powerful, pipelined SQL replacement",
         homepage: "https://github.com/prql/prql",
         changelog: nix.thunk(() => nix.str`https://github.com/prql/prql/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

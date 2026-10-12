@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const mkKdeDerivation = nix.arg($, "mkKdeDerivation");
   const qtpositioning = nix.arg($, "qtpositioning");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kweathercore",
       extraBuildInputs: nix.thunk(() => [qtpositioning]),
     })));

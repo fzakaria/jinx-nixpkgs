@@ -30,18 +30,18 @@ export default nix.lambda((args) => (() => {
   const nodejs = nodejs_24;
   const electron = electron_42;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "losslesscut",
       version: "3.69.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "mifi",
           repo: "lossless-cut",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-N53B2qylJR163M5FEg8qLGazxTio3E7GTfGJXvvLQ9s=",
           postFetch: nix.thunk(() => nix.str`cd $out
 patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               src: nix.path(here, "./yarn-fix.patch"),
               substitutions: nix.thunk(() => [
                 "--replace-fail",
@@ -58,7 +58,7 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
       ]),
       postPatch: "for f in src/main/ffmpeg.ts src/main/i18nCommon.ts; do\n  substituteInPlace \"$f\" \\\n    --subst-var-by losslesscut_resources_path $out/share/losslesscut\ndone\n",
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
         ELECTRON_OVERRIDE_DIST_PATH: nix.thunk(() => nix.sel(electron, "dist")),
         NODE_ENV: "production",
@@ -74,7 +74,7 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
       ]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "losslesscut",
             desktopName: "LosslessCut",
             comment: "simple video editor to trim or cut videos",
@@ -115,7 +115,7 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
       ]),
       missingHashes: nix.path(here, "./missing-hashes.json"),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           hash: "sha256-Qa/m7diKJONy6BKc8InK5xqpUMqQXEMKT/sicBDPlco=",
@@ -155,9 +155,9 @@ done
 runHook postInstall
 `),
       __structuredAttrs: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$6, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$6, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Swiss army knife of lossless video/audio editing",
         homepage: "https://losslesscut.app/",
         changelog: nix.thunk(() => nix.str`https://github.com/mifi/lossless-cut/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

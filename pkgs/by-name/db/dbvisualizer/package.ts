@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const pname = "dbvisualizer";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: "26.1.3",
       src: nix.thunk(() => (() => {
         const underscoreVersion = nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version"))));
         return nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://www.dbvis.com/product_download/dbvis-${nix.sel(finalAttrs, "version")}/media/dbvis_linux_${underscoreVersion}.tar.gz`),
             hash: "sha256-ifD6pNWsw0n+aiPvQXG0pjNp/NMIAbr+bxzzntDahhs=",
           })));
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems, makeWrapper]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: pname,
             desktopName: "DB Visualizer",
             tryExec: "dbvis",
@@ -60,7 +60,7 @@ wrapProgram $out/bin/dbvis --set INSTALL4J_JAVA_HOME ${openjdk25}
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Universal database tool",
         homepage: "https://www.dbvis.com/",
         maintainers: nix.thunk(() => (() => {

@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const overrideCabal = nix.thunk(() => nix.attr(from, "overrideCabal"));
   const justStaticExecutables = nix.thunk(() => nix.attr(from, "justStaticExecutables"));
   const overrides = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     description: "OAuth credential MAnager",
     homepage: "https://github.com/pdobsan/oama",
     patches: nix.thunk(() => [nix.path(here, "./no-githash.patch")]),
-    passthru: nix.thunk(() => ({ __proto__: pos$1, updateScript: nix.path(here, "./update.sh") })),
+    passthru: nix.thunk(() => ({ [nix.POS]: pos$1, updateScript: nix.path(here, "./update.sh") })),
     buildDepends: nix.thunk(() => [makeBinaryWrapper]),
     postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/oama \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat([coreutils], nix.concat(nix.app(nix.sel(lib, "optional"), withLibsecret, libsecret), nix.app(nix.sel(lib, "optional"), withGpg, gnupg)))))}

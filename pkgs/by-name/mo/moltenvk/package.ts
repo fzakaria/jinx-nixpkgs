@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const enableStatic = nix.argOr($, "enableStatic", () => nix.sel(stdenv, "hostPlatform", "isStatic"));
   const enablePrivateAPIUsage = nix.argOr($, "enablePrivateAPIUsage", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "MoltenVK",
       version: "1.4.2",
       strictDeps: true,
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [xcbuildHook]),
       outputs: nix.thunk(() => ["out", "bin", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KhronosGroup",
           repo: "MoltenVK",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -95,7 +95,7 @@ mkdir -p build/include
 ln -s "${nix.sel(glslang, "src")}" "build/include/glslang"
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(["-Wno-error=unguarded-availability"], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "cc", "libcxx"), null)), nix.thunk(() => nix.str`-isystem ${nix.app(nix.sel(lib, "getInclude"), nix.thunk(() => nix.sel(stdenv, "cc", "libcxx")))}/include/c++/v1`)), nix.concat([
             nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), spirv_cross)}/include/spirv_cross`),
             nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), spirv_headers)}/include/spirv/unified1`),
@@ -147,11 +147,11 @@ runHook postInstall
 `),
       __structuredAttrs: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$3, "rev-prefix": "v", ignoredVersions: ".*-(beta|rc).*" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v", ignoredVersions: ".*-(beta|rc).*" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Vulkan Portability implementation built on top of Apple’s Metal API",
         homepage: "https://github.com/KhronosGroup/MoltenVK",
         changelog: "https://github.com/KhronosGroup/MoltenVK/releases",

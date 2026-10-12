@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const hypothesis = nix.arg($, "hypothesis");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mutagen",
       version: "1.48.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "quodlibet",
           repo: "mutagen",
           tag: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [hypothesis, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["mutagen"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python module for handling audio metadata",
         longDescription: "Mutagen is a Python module to handle audio metadata. It supports\nASF, FLAC, MP4, Monkey's Audio, MP3, Musepack, Ogg Opus, Ogg FLAC,\nOgg Speex, Ogg Theora, Ogg Vorbis, True Audio, WavPack, OptimFROG,\nand AIFF audio files. All versions of ID3v2 are supported, and all\nstandard ID3v2.4 frames are parsed. It can read Xing headers to\naccurately calculate the bitrate and length of MP3s. ID3 and APEv2\ntags can be edited regardless of audio format. It can also\nmanipulate Ogg streams on an individual packet/page level.\n",
         homepage: "https://mutagen.readthedocs.io",

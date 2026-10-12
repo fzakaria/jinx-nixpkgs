@@ -11,11 +11,11 @@ const pos$4 = nix.positions(here + "/default.nix", [["dns-single-node", 10, 3], 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({ __proto__: pos$1, system: system }))));
-  const dns = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./dns.nix")), nix.thunk(() => ({ __proto__: pos$2, system: system, pkgs: pkgs }))));
-  const rbac = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./rbac.nix")), nix.thunk(() => ({ __proto__: pos$3, system: system, pkgs: pkgs }))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system }))));
+  const dns = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./dns.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs }))));
+  const rbac = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./rbac.nix")), nix.thunk(() => ({ [nix.POS]: pos$3, system: system, pkgs: pkgs }))));
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "dns-single-node": nix.thunk(() => nix.sel(dns, "singlenode", "test")),
     "dns-multi-node": nix.thunk(() => nix.sel(dns, "multinode", "test")),
     "rbac-single-node": nix.thunk(() => nix.sel(rbac, "singlenode", "test")),

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const lv2 = nix.arg($, "lv2");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "swh-lv2",
       version: "1.0.16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "swh",
           repo: "lv2",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ sed -e "s#PREFIX = /usr/local#PREFIX = $out#" -i Makefile
       buildInputs: nix.thunk(() => [fftwSinglePrec, lv2]),
       installPhase: "make install-system",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/swh/lv2",
         description: "LV2 version of Steve Harris' SWH plugins",
         longDescription: "SWH plugins include:\namp, fast overdrive, overdrive (with colourisation), comb\nfilter, waveshaper, ringmod, divider, diode, decliper, pitch\nscaler, 16 band equaliser, sinus wavewrapper, hermes filter,\nchorus, flanger, decimater, oscillator, gverb, phasers, harmonic\ngenerators, surround encoders and more.\n",

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "coherent-oss",
           repo: "pytest-flake8",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://raw.githubusercontent.com/OpenIndiana/oi-userland/0d06abedf17256d1f2c89086acc05cfa53dbc647/components/python/pytest-flake8/patches/02-deprecated-path.patch",
             hash: "sha256-mHGRKaMmDTJdj6ajWS0Dts1ZTbT1bNLMjOOZAP156Jg=",
           })))),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [flake8]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/coherent-oss/pytest-flake8/blob/${nix.sel(src, "rev")}/NEWS.rst`),
         description: "py.test plugin for efficiently checking PEP8 compliance",
         homepage: "https://github.com/coherent-oss/pytest-flake8",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

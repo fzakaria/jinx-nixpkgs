@@ -39,86 +39,86 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "wealthfolio"));
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         wealthfolio: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Wealthfolio personal investment tracker")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "wealthfolio-server", nix.thunk(() => ({})))),
           address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "127.0.0.1",
               description: "The IP address the Wealthfolio server binds to.",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 8088n,
               description: "The port the Wealthfolio server listens on.",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to automatically open the specified port in the system firewall.",
             })))),
           secretKeyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.age.secrets.wealthfolio-key.path")),
               description: "Path to a file containing the 32-byte secret key used for encrypting sensitive data\nat rest (broker credentials, API keys) and signing JWT tokens.\n\nGenerate with: `openssl rand -base64 32`.\n\nNote: Losing this key means losing access to all stored encrypted secrets.\nThere is no recovery.\n",
             })))),
           authPasswordHashFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.age.secrets.wealthfolio-hash.path")),
               description: "Path to a file containing the Argon2id PHC string defining the login password.\nRequired for web access unless `authRequired` is false.\n\nGenerate with: `printf 'your-password' | argon2 yoursalt16chars! -id -e`\n",
             })))),
           authRequired: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to require internal authentication.\n\nSecurity Note: The server panics at startup if the listener is bound to a\nnon-loopback address and authentication is disabled. Set this to `false`\nonly if a reverse proxy handles authentication for you.\n",
             })))),
           corsAllowOrigins: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "*",
               example: "https://wealthfolio.example.com",
               description: "Comma-separated list of allowed CORS origins.\n\nSecurity Note: The server panics at startup if `*` is used while authentication\nis enabled, as this is a CSRF vector. Set explicit origins matching your\ndeployment URL (scheme + host + port).\n",
             })))),
           authTokenTtlMinutes: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "ints", "positive")),
               default: 60n,
               description: "JWT access token lifetime in minutes. (e.g., 1440 for 24h, 10080 for 7d).",
             })))),
           cookieSecure: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["auto", "true", "false"]))),
               default: "auto",
               description: "Controls the Secure attribute on the authentication session cookie.\n- auto: Sets Secure based on HTTPS protocol.\n- true: Always sets Secure (Use behind a reverse proxy that terminates HTTPS).\n- false: Never sets Secure (Not recommended).\n",
             })))),
           requestTimeoutMs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "ints", "positive")),
               default: 300000n,
               description: "HTTP request timeout in milliseconds. Default (5m) accommodates large broker syncs.",
             })))),
           logFormat: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["text", "json"]))),
               default: "text",
               description: "Log output format. `json` is recommended if shipping to log aggregators.",
             })))),
           requireDatabaseEncryption: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enforces database encryption.\n\nWARNING: This does not encrypt an existing database. If you have an existing\nplaintext database, you must keep this `false`, stop the service, and manually\nrun `wealthfolio-server db encrypt` against your data directory before enabling.\n",
@@ -127,42 +127,42 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         networking: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           firewall: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => nix.sel(cfg, "port")))),
           })),
         })),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "secretKeyFile"), null)),
             message: "services.wealthfolio: secretKeyFile must be provided.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "authRequired")) || nix.asBool(!nix.eq(nix.sel(cfg, "authPasswordHashFile"), null)))),
             message: "services.wealthfolio: authPasswordHashFile must be provided when authRequired is true.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "authRequired")) || nix.asBool(!nix.eq(nix.sel(cfg, "corsAllowOrigins"), "*")))),
             message: "services.wealthfolio: corsAllowOrigins cannot be '*' when authRequired is true. Provide an explicit domain.",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           services: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             wealthfolio: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               description: "Wealthfolio server service daemon.",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 WF_LISTEN_ADDR: nix.thunk(() => nix.str`${nix.sel(cfg, "address")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}`),
                 WF_DATA_DIR: "/var/lib/wealthfolio",
                 WF_DB_PATH: "/var/lib/wealthfolio/wealthfolio.db",
@@ -180,7 +180,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
 exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))}
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 LoadCredential: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "secretKeyFile"), null)), nix.thunk(() => nix.str`secret_key:${nix.sel(cfg, "secretKeyFile")}`)), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "authPasswordHashFile"), null)), nix.thunk(() => nix.str`auth_hash:${nix.sel(cfg, "authPasswordHashFile")}`)))),
                 DynamicUser: true,
                 StateDirectory: "wealthfolio",
@@ -193,7 +193,7 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "luuumine"))];

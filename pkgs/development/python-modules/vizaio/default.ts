@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const typer = nix.arg($, "typer");
   const zeroconf = nix.arg($, "zeroconf");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "vizaio",
       version: "0.7.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "raman325",
           repo: "vizaio",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,14 +40,14 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => [aiohttp]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         cli: nix.thunk(() => [platformdirs, rich, tomlkit, typer]),
         discovery: nix.thunk(() => [zeroconf]),
       })),
       nativeCheckInputs: nix.thunk(() => nix.concat([aioresponses, pytest_asyncio, pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
       pythonImportsCheck: nix.thunk(() => ["vizaio"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Modern async Python client and CLI for Vizio SmartCast devices",
         homepage: "https://github.com/raman325/vizaio",
         changelog: nix.thunk(() => nix.str`https://github.com/raman325/vizaio/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

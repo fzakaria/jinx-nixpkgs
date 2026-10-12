@@ -24,21 +24,21 @@ export default nix.lambda((args) => (() => {
   const runtimeShell = nix.arg($, "runtimeShell");
   const options = nix.thunk(() => (() => {
     const x86_64_linux = nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       arch: "linuxx86",
       hash: "sha256-cAae50xvBoXfg+tiJM4i8+eRnheyM0dseE5EDWDia/E=",
       runtime: "lx86cl64",
       kernel: "linuxx8664",
     }));
     const i686_linux = nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       arch: "linuxx86",
       hash: nix.thunk(() => nix.sel(x86_64_linux, "hash")),
       runtime: "lx86cl",
       kernel: "linuxx8632",
     }));
     const armv7l_linux = nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       arch: "linuxarm",
       hash: "sha256-iyUMTDuHbyfEAxAAhjXANjh6HhpLkWG5+diXI6aFUUc=",
       runtime: "armcl",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
     }));
     const armv6l_linux = armv7l_linux;
     return {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       "x86_64-linux": x86_64_linux,
       "i686-linux": i686_linux,
       "armv7l-linux": armv7l_linux,
@@ -55,17 +55,17 @@ export default nix.lambda((args) => (() => {
   })());
   const cfg = nix.thunk(() => nix.selOr(options, () => nix.builtins.throw(nix.thunk(() => nix.str`missing source url for platform ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "ccl",
       version: "1.13",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           url: nix.thunk(() => nix.str`https://github.com/Clozure/ccl/releases/download/v${nix.sel(finalAttrs, "version")}/ccl-${nix.sel(finalAttrs, "version")}-${nix.sel(cfg, "arch")}.tar.gz`),
           hash: nix.thunk(() => nix.sel(cfg, "hash")),
         })))),
       buildInputs: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? [bootstrap_cmds, m4] : [glibc, m4])),
       env: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         CCL_RUNTIME: nix.thunk(() => nix.sel(cfg, "runtime")),
         CCL_KERNEL: nix.thunk(() => nix.sel(cfg, "kernel")),
       })),
@@ -99,7 +99,7 @@ ln -s "$out"/bin/"${nix.sel(finalAttrs, "env", "CCL_RUNTIME")}" "$out"/bin/ccl
 `),
       hardeningDisable: nix.thunk(() => ["format"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Clozure Common Lisp",
         homepage: "https://ccl.clozure.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

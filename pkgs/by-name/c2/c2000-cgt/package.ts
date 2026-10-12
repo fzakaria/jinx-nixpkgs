@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const buildFHSEnv = nix.arg($, "buildFHSEnv");
   const fetchurl = nix.arg($, "fetchurl");
-  const fhs = nix.thunk(() => nix.app(buildFHSEnv, nix.thunk(() => ({ __proto__: pos$1, name: "fhs-shell" }))));
+  const fhs = nix.thunk(() => nix.app(buildFHSEnv, nix.thunk(() => ({ [nix.POS]: pos$1, name: "fhs-shell" }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "c2000-cgt",
       version: "25.11.0.LTS",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://dr-download.ti.com/software-development/ide-configuration-compiler-or-debugger/MD-xqxJ05PLfM/${nix.sel(finalAttrs, "version")}/ti_cgt_c2000_${nix.sel(finalAttrs, "version")}_linux-x64_installer.bin`),
           hash: "sha256-vkxV7/D3I4Uf7q3KBwdjEq9rn4DTPNMUm1NSuMYQEbM=",
         })))),
@@ -37,7 +37,7 @@ mv /build/ti/ti-cgt-c2000_${nix.sel(finalAttrs, "version")} $out
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "C28x/CLA code generation tools (CGT) - compiler",
         longDescription: "The TI C28x code generation tools (C2000-CGT) facilitate the development of applications\nfor TI C28x microcontroller platforms. The platforms include the Concerto (F28M3xx),\nPiccolo (280xx), Delfino floating-point (283xx), and C28x fixed-point (2823x/280x/281x) device families.\n",
         homepage: "https://www.ti.com/tool/C2000-CGT",

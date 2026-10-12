@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const pam = nix.arg($, "pam");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pam_tmpdir",
       version: "0.11",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://deb.debian.org/debian/pool/main/p/pam-tmpdir/pam-tmpdir_${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-SuMOKSsQ68zJBhhFi+5hgt3nkus73mh8jMPZhmMkzfM=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [pam]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://tracker.debian.org/pkg/pam-tmpdir",
         description: "PAM module for creating safe per-user temporary directories",
         mainProgram: "pam-tmpdir-helper",

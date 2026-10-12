@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const gnupg = nix.arg($, "gnupg");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sequoia-wot",
       version: "0.15.0-unstable-2026-02-25",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sequoia-pgp",
           repo: "sequoia-wot",
           rev: "47a8fe9fe42319cae7a1185a2370e2e07f7e2898",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [gnupg]),
       postInstall: "installShellCompletion --cmd sq-wot \\\n  --bash target/*/release/build/sequoia-wot-*/out/sq-wot.bash \\\n  --fish target/*/release/build/sequoia-wot-*/out/sq-wot.fish \\\n  --zsh  target/*/release/build/sequoia-wot-*/out/_sq-wot\n# Also elv and powershell are generated there\ninstallManPage \\\n  target/*/release/build/sequoia-wot-*/out/sq-wot.1 \\\n  target/*/release/build/sequoia-wot-*/out/sq-wot-authenticate.1 \\\n  target/*/release/build/sequoia-wot-*/out/sq-wot-lookup.1 \\\n  target/*/release/build/sequoia-wot-*/out/sq-wot-identify.1 \\\n  target/*/release/build/sequoia-wot-*/out/sq-wot-list.1 \\\n  target/*/release/build/sequoia-wot-*/out/sq-wot-path.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Rust CLI tool for authenticating bindings and exploring a web of trust",
         homepage: "https://gitlab.com/sequoia-pgp/sequoia-wot",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

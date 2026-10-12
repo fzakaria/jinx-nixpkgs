@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.11";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mib1185",
           repo: "py-sucks",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,12 +34,12 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [pycryptodome, requests, sleekxmppfs]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, cli: nix.thunk(() => [click, pycountry_convert]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, cli: nix.thunk(() => [click, pycountry_convert]) }));
       const pythonImportsCheck = nix.thunk(() => ["sucks"]);
       const nativeCheckInputs = nix.thunk(() => nix.concat([requests_mock, pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const disabledTests = nix.thunk(() => ["test_config_file_name"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/mib1185/py-sucks/releases/tag/${nix.sel(src, "tag")}`),
         description: "Library for controlling certain robot vacuums",
         homepage: "https://github.com/mib1185/py-sucks",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

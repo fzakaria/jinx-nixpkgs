@@ -62,76 +62,76 @@ port=${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}
 https=false
 `)));
   return {
-    __proto__: pos$34,
+    [nix.POS]: pos$34,
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         "trilium-server": nix.thunk(() => (() => {
           const w = nix.withScope(lib, null);
           return {
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "trilium-server")),
             package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "trilium-server", nix.thunk(() => ({})))),
             dataDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "/var/lib/trilium",
                 description: "The directory storing the notes database and the configuration.\n",
               })))),
             environmentFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
                 default: null,
                 example: "/secrets/trilium.env",
                 description: "File to load as the environment file. This allows you to pass secrets in without writing\nto the nix store.\n",
               })))),
             instanceName: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "Trilium",
                 description: "Instance name used to distinguish between different instances\n",
               })))),
             noBackup: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: false,
                 description: "Disable periodic database backups.\n",
               })))),
             noAuthentication: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: false,
                 description: "If set to true, no password is required to access the web frontend.\n",
               })))),
             host: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "127.0.0.1",
                 description: "The host address to bind to (defaults to localhost).\n",
               })))),
             port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
                 default: 8080n,
                 description: "The port number to bind to.\n",
               })))),
             nginx: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 default: nix.thunk(() => ({})),
                 description: "Configuration for nginx reverse proxy.\n",
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     options: nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                           default: false,
                           description: "Configure the nginx reverse proxy settings.\n",
                         })))),
                       hostName: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                           description: "The hostname use to setup the virtualhost configuration\n",
                         })))),
@@ -143,7 +143,7 @@ https=false
       })),
     })),
     meta: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "fliegendewurst"))];
@@ -151,14 +151,14 @@ https=false
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             users: nix.thunk(() => ({
-              __proto__: pos$20,
-              groups: nix.thunk(() => ({ __proto__: pos$17, trilium: nix.thunk(() => ({})) })),
+              [nix.POS]: pos$20,
+              groups: nix.thunk(() => ({ [nix.POS]: pos$17, trilium: nix.thunk(() => ({})) })),
               users: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 trilium: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   description: "Trilium User",
                   group: "trilium",
                   home: nix.thunk(() => nix.sel(cfg, "dataDir")),
@@ -167,18 +167,18 @@ https=false
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               services: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 "trilium-server": nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   environment: nix.thunk(() => ({
-                    __proto__: pos$21,
+                    [nix.POS]: pos$21,
                     TRILIUM_DATA_DIR: nix.thunk(() => nix.sel(cfg, "dataDir")),
                   })),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$22,
+                    [nix.POS]: pos$22,
                     ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))),
                     EnvironmentFile: nix.thunk(() => nix.sel(cfg, "environmentFile")),
                     User: "trilium",
@@ -188,7 +188,7 @@ https=false
                 })),
               })),
               tmpfiles: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 rules: nix.thunk(() => [
                   nix.thunk(() => nix.str`d  ${nix.sel(cfg, "dataDir")}            0750 trilium trilium - -`),
                   nix.thunk(() => nix.str`L+ ${nix.sel(cfg, "dataDir")}/config.ini -    -       -       - ${configIni}`),
@@ -197,19 +197,19 @@ https=false
             })),
           })),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "nginx", "enable")), nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               services: nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 nginx: nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   enable: true,
                   virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                     [nix.str`${nix.sel(cfg, "nginx", "hostName")}`, nix.thunk(() => ({
-                      __proto__: pos$30,
+                      [nix.POS]: pos$30,
                       locations: nix.thunk(() => ({
-                        __proto__: pos$29,
+                        [nix.POS]: pos$29,
                         "/": nix.thunk(() => ({
-                          __proto__: pos$28,
+                          [nix.POS]: pos$28,
                           proxyPass: nix.thunk(() => nix.str`http://${nix.sel(cfg, "host")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}/`),
                           extraConfig: "proxy_http_version 1.1;\nproxy_set_header Upgrade $http_upgrade;\nproxy_set_header Connection 'upgrade';\nproxy_set_header Host $host;\nproxy_cache_bypass $http_upgrade;\n",
                         })),

@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const extraProfile = nix.argOr($, "extraProfile", () => "");
   const extraEnv = nix.argOr($, "extraEnv", () => ({}));
   return nix.app(nix.sel(steam, "buildRuntimeEnv"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "umu-launcher",
       version: nix.thunk(() => nix.attr(umu_launcher_unwrapped, "version")),
       meta: nix.thunk(() => nix.attr(umu_launcher_unwrapped, "meta")),

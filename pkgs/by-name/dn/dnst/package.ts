@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "dnst",
       version: "0.2.0-alpha3",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NLnetLabs",
           repo: "dnst",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-8pzf4GeBJbqIZf6KAqROEAvFAqtf6XLODWhS3RVfpAQ=",
       postInstall: "mkdir -p $out/libexec\nmv $out/bin/ldns $out/libexec\nfor tool in key2ds keygen notify nsec3-hash signzone; do\n  makeWrapper $out/libexec/ldns $out/bin/ldns-$tool --add-flag ldns-$tool\ndone\n\ninstallManPage doc/manual/build/man/*.1\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=unstable"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=unstable"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Toolset to assist DNS operators with zone and nameserver maintenance",
         mainProgram: "dnst",
         homepage: "https://nlnetlabs.nl/projects/domain/dnst/",

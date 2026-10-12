@@ -55,25 +55,25 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$44,
+    [nix.POS]: pos$44,
     options: nix.thunk(() => ({
-      __proto__: pos$43,
+      [nix.POS]: pos$43,
       services: nix.thunk(() => ({
-        __proto__: pos$42,
+        [nix.POS]: pos$42,
         "github-runners": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             description: "Multiple GitHub Runners.\n",
             example: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               runner1: nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 enable: true,
                 url: "https://github.com/owner/repo",
                 name: "runner1",
                 tokenFile: "/secrets/token1",
               })),
               runner2: nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 enable: true,
                 url: "https://github.com/owner/repo",
                 name: "runner2",
@@ -86,61 +86,61 @@ export default nix.lambda((args) => (() => {
                   const name = nix.arg($_1, "name");
                   const config = nix.arg($_1, "config");
                   return {
-                    __proto__: pos$40,
+                    [nix.POS]: pos$40,
                     options: nix.thunk(() => ({
-                      __proto__: pos$39,
+                      [nix.POS]: pos$39,
                       enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           default: false,
                           example: true,
                           description: "Whether to enable GitHub Actions runner.\n\nNote: GitHub recommends using self-hosted runners with private repositories only. Learn more here:\n[About self-hosted runners](https://docs.github.com/en/actions/hosting-your-own-runners/about-self-hosted-runners).\n",
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         })))),
                       url: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$5,
+                          [nix.POS]: pos$5,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                           default: null,
                           description: "Repository to add the runner to.\n\nChanging this option triggers a new runner registration.\n\nIMPORTANT: If your token is org-wide (not per repository), you need to\nprovide a github org link, not a single repository, so do it like this\n`https://github.com/nixos`, not like this\n`https://github.com/nixos/nixpkgs`.\nOtherwise, you are going to get a `404 NotFound`\nfrom `POST https://api.github.com/actions/runner-registration`\nin the configure script.\n\nMandatory unless `orgs` is used, in which case the URL is taken\nfrom each `orgs.<name>.url` instead and this option is ignored.\n",
                           example: "https://github.com/nixos/nixpkgs",
                         })))),
                       tokenFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                           default: null,
                           description: "The full path to a file which contains either\n\n* a fine-grained personal access token (PAT),\n* a classic PAT\n* or a runner registration token\n\nExactly one of `tokenFile` and `githubApp` must be set. Use\n`githubApp` to authenticate via a GitHub App installation instead\nof a token file.\n\nChanging this option or the `tokenFile`’s content triggers a new runner registration.\n\nWe suggest using the fine-grained PATs. A runner registration token is valid\nonly for 1 hour after creation, so the next time the runner configuration changes\nthis will give you hard-to-debug HTTP 404 errors in the configure step.\n\nThe file should contain exactly one line with the token without any newline.\n(Use `echo -n '…token…' > …token file…` to make sure no newlines sneak in.)\n\nIf the file contains a PAT, the service creates a new registration token\non startup as needed.\nIf a registration token is given, it can be used to re-register a runner of the same\nname but is time-limited as noted above.\n\nFor fine-grained PATs:\n\nGive it \"Read and Write access to organization/repository self hosted runners\",\ndepending on whether it is organization wide or per-repository. You might have to\nexperiment a little, fine-grained PATs are a `beta` Github feature and still subject\nto change; nonetheless they are the best option at the moment.\n\nFor classic PATs:\n\nMake sure the PAT has a scope of `admin:org` for organization-wide registrations\nor a scope of `repo` for a single repository.\n\nFor runner registration tokens:\n\nNothing special needs to be done, but updating will break after one hour,\nso these are not recommended.\n",
                           example: "/run/secrets/github-runner/nixos.token",
                         })))),
                       tokenType: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$7,
+                          [nix.POS]: pos$7,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["auto", "access", "registration"]))),
                           description: "Type of token to use for runner registration.\n\nAn access token is a personal access token or any other kind of GitHub token that\nstarts with `ghp_`, `gho_`, etc prefix. It is passed as `--pat` to the runner\nconfig script.\n\nA registration token is an unprefixed string generated by the\n\"Add new self-hosted runner\" page. It is passed as `--token` to runner config\nscript.\n\nThe default `auto` attempts to detect the token type automatically based on its\nformat.\n",
                           example: "registration",
                           default: "auto",
                         })))),
                       githubApp: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$13,
+                          [nix.POS]: pos$13,
                           default: null,
                           description: "Authenticate the runner using a GitHub App installation instead\nof a `tokenFile`. Exactly one of `tokenFile` and `githubApp` must\nbe set.\n\nOn every start the service derives a short-lived installation\naccess token from the App's private key, uses it to fetch a fresh\nrunner registration token and registers the runner with it. This\navoids storing a long-lived personal access token on the host and\npairs well with `ephemeral` runners.\n\nThe App needs read and write access to the\n\"self-hosted runners\" administration of the organisation (or\nrepository) given in `url`, and must be installed on the `login`\nbelow.\n",
                           example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  id = 123456;\n  login = \"my-org\";\n  privateKeyFile = \"/run/secrets/github-app.pem\";\n}\n")),
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                                __proto__: pos$12,
+                                [nix.POS]: pos$12,
                                 options: nix.thunk(() => ({
-                                  __proto__: pos$11,
+                                  [nix.POS]: pos$11,
                                   id: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$8,
+                                      [nix.POS]: pos$8,
                                       type: nix.thunk(() => nix.sel(lib, "types", "int")),
                                       description: "The GitHub App's ID (the numeric `App ID`, not the client ID).",
                                       example: 123456n,
                                     })))),
                                   login: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$9,
+                                      [nix.POS]: pos$9,
                                       type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                                       default: null,
                                       description: "The organisation (or user) login the GitHub App is\ninstalled on. Used to look up the App installation and,\nfor organisation-wide runners, as the registration scope.\n\nMandatory unless `orgs` is used, in which case the login\nis taken from each `orgs.<name>.login` instead and this\noption is ignored.\n\nChanging this option triggers a new runner registration.\n",
                                       example: "my-org",
                                     })))),
                                   privateKeyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$10,
+                                      [nix.POS]: pos$10,
                                       type: nix.thunk(() => nix.sel(lib, "types", "path")),
                                       description: "The full path to a file containing the GitHub App's\nPEM-encoded private key. The file should be deployed as a\nsecret and is never copied into the Nix store.\n",
                                       example: "/run/secrets/github-app.pem",
@@ -149,21 +149,21 @@ export default nix.lambda((args) => (() => {
                               })))))),
                         })))),
                       name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                           description: "Name of the runner to configure. If null, defaults to the hostname.\n\nChanging this option triggers a new runner registration.\n",
                           example: "nixos",
                           default: name,
                         })))),
                       count: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$15,
+                          [nix.POS]: pos$15,
                           type: nix.thunk(() => nix.sel(lib, "types", "ints", "positive")),
                           default: 1n,
                           example: 4n,
                           description: "Number of identical runner instances to create.\n\nWithout `orgs`, this fans the single entry (using the\nentry-level `url`) out into `count` runner services:\n`github-runner-<name>` for `count == 1` (unchanged) and\n`github-runner-<name>-<n>` for `count > 1`. Each instance\nregisters under a distinct runner name.\n\nWith `orgs`, this is the default replica count for every org\nthat does not set its own; see `orgs.<name>.count`.\n\nPairs well with `ephemeral`.\n",
                         })))),
                       orgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$22,
+                          [nix.POS]: pos$22,
                           default: nix.thunk(() => ({})),
                           description: "Organisations (or repositories) to serve from this entry.\n\nWhen set, the entry fans out into one systemd service per runner\nnamed `github-runner-<name>-<org>-<n>`, where `<org>` is the\nattribute name and `<n>` ranges over the per-org `count`. The\nentry-level `githubApp`/`tokenFile` is shared across every org;\nonly the App `login` changes per org (defaulting to the\nattribute name), so a single GitHub App installed on multiple\norgs serves all of them.\n\nLeaving this empty (the default) keeps the single-runner\nbehaviour: the entry-level `url`, `name` and auth, fanned out by\nthe entry-level `count`.\n",
                           example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  org-a.count = 12;\n  org-b = {\n    count = 2;\n    extraLabels = [ \"org-b\" ];\n  };\n}\n")),
@@ -171,25 +171,25 @@ export default nix.lambda((args) => (() => {
                                 const $_2 = nix.formals(args_2, formals$3);
                                 const name_1 = nix.arg($_2, "name");
                                 return {
-                                  __proto__: pos$21,
+                                  [nix.POS]: pos$21,
                                   options: nix.thunk(() => ({
-                                    __proto__: pos$20,
+                                    [nix.POS]: pos$20,
                                     url: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                        __proto__: pos$16,
+                                        [nix.POS]: pos$16,
                                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                                         default: nix.thunk(() => nix.str`https://github.com/${name_1}`),
                                         defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"https://github.com/${name}\"")),
                                         description: "URL of the organisation (or repository) to connect to.\nDefaults to the GitHub URL derived from the attribute name.\n",
                                       })))),
                                     login: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                        __proto__: pos$17,
+                                        [nix.POS]: pos$17,
                                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                                         default: name_1,
                                         defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "${name}")),
                                         description: "GitHub login (org or user) the shared `githubApp` is\ninstalled on. Defaults to the attribute name. Ignored\nwhen authenticating via `tokenFile`.\n",
                                       })))),
                                     count: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                        __proto__: pos$18,
+                                        [nix.POS]: pos$18,
                                         type: nix.thunk(() => nix.sel(lib, "types", "ints", "positive")),
                                         default: nix.thunk(() => nix.sel(config, "count")),
                                         defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalMD"), "the entry-level `count`")),
@@ -197,7 +197,7 @@ export default nix.lambda((args) => (() => {
                                         description: "Number of identical runner instances to create for this\norg. Defaults to the entry-level `count`. Each gets its\nown systemd service named `github-runner-<name>-<org>-<n>`\nand registers under a distinct runner name. Pairs well\nwith `ephemeral`.\n",
                                       })))),
                                     extraLabels: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                        __proto__: pos$19,
+                                        [nix.POS]: pos$19,
                                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                                         default: [],
                                         example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ \"org-a\" ]")),
@@ -208,83 +208,83 @@ export default nix.lambda((args) => (() => {
                               })(), formals$3))))),
                         })))),
                       runnerGroup: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$23,
+                          [nix.POS]: pos$23,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                           description: "Name of the runner group to add this runner to (defaults to the default runner group).\n\nChanging this option triggers a new runner registration.\n",
                           default: null,
                         })))),
                       extraLabels: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$24,
+                          [nix.POS]: pos$24,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                           description: "Extra labels in addition to the default (unless disabled through the `noDefaultLabels` option).\n\nChanging this option triggers a new runner registration.\n",
                           example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ \"nixos\" ]")),
                           default: [],
                         })))),
                       noDefaultLabels: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$25,
+                          [nix.POS]: pos$25,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           description: "Disables adding the default labels. Also see the `extraLabels` option.\n\nChanging this option triggers a new runner registration.\n",
                           default: false,
                         })))),
                       replace: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$26,
+                          [nix.POS]: pos$26,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           description: "Replace any existing runner with the same name.\n\nWithout this flag, registering a new runner with the same name fails.\n",
                           default: false,
                         })))),
                       extraPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$27,
+                          [nix.POS]: pos$27,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
                           description: "Extra packages to add to `PATH` of the service to make them available to workflows.\n",
                           default: [],
                         })))),
                       extraEnvironment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$29,
+                          [nix.POS]: pos$29,
                           type: nix.thunk(() => nix.sel(lib, "types", "attrs")),
                           description: "Extra environment variables to set for the runner, as an attrset.\n",
-                          example: nix.thunk(() => ({ __proto__: pos$28, GIT_CONFIG: "/path/to/git/config" })),
+                          example: nix.thunk(() => ({ [nix.POS]: pos$28, GIT_CONFIG: "/path/to/git/config" })),
                           default: nix.thunk(() => ({})),
                         })))),
                       serviceOverrides: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$31,
+                          [nix.POS]: pos$31,
                           type: nix.thunk(() => nix.sel(lib, "types", "attrs")),
                           description: "Modify the systemd service. Can be used to, e.g., adjust the sandboxing options.\nSee {manpage}`systemd.exec(5)` for more options.\n",
                           example: nix.thunk(() => ({
-                            __proto__: pos$30,
+                            [nix.POS]: pos$30,
                             ProtectHome: false,
                             RestrictAddressFamilies: nix.thunk(() => ["AF_PACKET"]),
                           })),
                           default: nix.thunk(() => ({})),
                         })))),
                       package: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "github-runner", nix.thunk(() => ({}))), {
-                        __proto__: pos$33,
+                        [nix.POS]: pos$33,
                         apply: (pkg) => nix.app(nix.sel(pkg, "override"), nix.thunk(() => ({
-                            __proto__: pos$32,
+                            [nix.POS]: pos$32,
                             nodeRuntimes: nix.thunk(() => nix.attr(config, "nodeRuntimes")),
                           }))),
                       })),
                       ephemeral: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$34,
+                          [nix.POS]: pos$34,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           description: "If enabled, causes the following behavior:\n\n- Passes the `--ephemeral` flag to the runner configuration script\n- De-registers and stops the runner with GitHub after it has processed one job\n- On stop, systemd wipes the runtime directory (this always happens, even without using the ephemeral option)\n- Restarts the service after its successful exit\n- On start, wipes the state directory and configures a new runner\n\nYou should only enable this option if `tokenFile` points to a file which contains a\npersonal access token (PAT). If you're using the option with a registration token, restarting the\nservice will fail as soon as the registration token expired.\n\nChanging this option triggers a new runner registration.\n",
                           default: false,
                         })))),
                       user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$35,
+                          [nix.POS]: pos$35,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                           description: "User under which to run the service.\n\nIf this option and the `group` option is set to `null`,\nthe service runs as a dynamically allocated user.\n\nAlso see the `group` option for an overview on the effects of the `user` and `group` settings.\n",
                           default: null,
                           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "username")),
                         })))),
                       group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$36,
+                          [nix.POS]: pos$36,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                           description: "Group under which to run the service.\n\nThe effect of this option depends on the value of the `user` option:\n\n- `group == null` and `user == null`:\n  The service runs with a dynamically allocated user and group.\n- `group == null` and `user != null`:\n  The service runs as the given user and its default group.\n- `group != null` and `user == null`:\n  This configuration is invalid. In this case, the service would use the given group\n  but run as root implicitly. If this is really what you want, set `user = \"root\"` explicitly.\n",
                           default: null,
                           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "groupname")),
                         })))),
                       workDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$37,
+                          [nix.POS]: pos$37,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -293,7 +293,7 @@ export default nix.lambda((args) => (() => {
                           default: null,
                         })))),
                       nodeRuntimes: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$38,
+                          [nix.POS]: pos$38,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                             return nix.app(nix.lookup(w, "nonEmptyListOf"), nix.thunk(() => nix.app(nix.lookup(w, "enum"), nix.thunk(() => ["node20", "node24"]))));

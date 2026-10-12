@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const plemoljp = nix.arg($, "plemoljp");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "plemoljp-nf",
       version: nix.thunk(() => nix.attr(plemoljp, "version")),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/yuru7/PlemolJP/releases/download/v${nix.sel(finalAttrs, "version")}/PlemolJP_NF_v${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-7DVWDxciW5pEuaIdIinibwPi7QjNsQBPFq/wtP+fTeg=",
         })))),
       installPhase: "runHook preInstall\n\ninstall -Dm444 PlemolJPConsole_NF/*.ttf -t $out/share/fonts/truetype/plemoljp-nf-console\ninstall -Dm444 PlemolJP35Console_NF/*.ttf -t $out/share/fonts/truetype/plemoljp-nf-35console\n\nrunHook postInstall\n",
       meta: nix.thunk(() => nix.update(nix.sel(plemoljp, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Composite font of IBM Plex Mono, IBM Plex Sans JP and nerd-fonts",
       })),
     }));

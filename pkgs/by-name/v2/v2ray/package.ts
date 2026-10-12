@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const v2ray_domain_list_community = nix.arg($, "v2ray-domain-list-community");
   const assets = nix.argOr($, "assets", () => [v2ray_geoip, v2ray_domain_list_community]);
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "v2ray-core",
       version: "5.49.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "v2fly",
           repo: "v2ray-core",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,18 +38,18 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["main"]),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       installPhase: "runHook preInstall\ninstall -Dm555 \"$GOPATH\"/bin/main $out/bin/v2ray\ninstall -Dm444 release/config/systemd/system/v2ray{,@}.service -t $out/lib/systemd/system\ninstall -Dm444 release/config/*.json -t $out/etc/v2ray\nrunHook postInstall\n",
-      assetsDrv: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({ __proto__: pos$2, name: "v2ray-assets", paths: assets })))),
+      assetsDrv: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({ [nix.POS]: pos$2, name: "v2ray-assets", paths: assets })))),
       postFixup: "wrapProgram $out/bin/v2ray \\\n  --suffix XDG_DATA_DIRS : $assetsDrv/share\nsubstituteInPlace $out/lib/systemd/system/*.service \\\n  --replace User=nobody DynamicUser=yes \\\n  --replace /usr/local/bin/ $out/bin/ \\\n  --replace /usr/local/etc/ /etc/\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "simple-vmess-proxy-test": nix.thunk(() => nix.sel(nixosTests, "v2ray")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://www.v2fly.org/en_US/",
         description: "Platform for building proxies to bypass network restrictions",
         mainProgram: "v2ray",

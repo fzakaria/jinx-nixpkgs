@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "utterly-round-plasma-style",
       version: "2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "HimDek",
           repo: "utterly-round-plasma-style",
           rev: "6280f69781b7fa9613b7a9c502d8d61e11fefca5",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/{aurorae/themes,plasma/desktoptheme}\n\ncp -a aurorae/dark/translucent $out/share/aurorae/themes/Utterly-Round-Dark\ncp -a aurorae/dark/solid $out/share/aurorae/themes/Utterly-Round-Dark-Solid\ncp -a aurorae/light/translucent $out/share/aurorae/themes/Utterly-Round-Light\ncp -a aurorae/light/solid $out/share/aurorae/themes/Utterly-Round-Light-Solid\n\ncp -a desktoptheme/translucent $out/share/plasma/desktoptheme/Utterly-Round\ncp -a desktoptheme/solid $out/share/plasma/desktoptheme/Utterly-Round-Solid\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Rounded desktop theme and window borders for Plasma 5 that follows any color scheme",
         homepage: "https://himdek.com/Utterly-Round-Plasma-Style/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

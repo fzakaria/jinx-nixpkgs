@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const inetutils = nix.arg($, "inetutils");
   const xvfb = nix.arg($, "xvfb");
   return nix.app(buildPythonPackage, (finalAtrrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "easyprocess",
       version: "1.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "EasyProcess",
           version: nix.thunk(() => nix.attr(finalAtrrs, "version")),
           hash: "sha256-iFiYMCpXqrlIlz6LXTKkIpOSufstmGqx1P/VkOW6kOw=",
@@ -36,14 +36,14 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [
         pytestCheckHook,
         pytest_timeout,
-        nix.thunk(() => nix.app(nix.sel(pyvirtualdisplay, "overridePythonAttrs"), nix.thunk(() => ({ __proto__: pos$2, doCheck: false })))),
+        nix.thunk(() => nix.app(nix.sel(pyvirtualdisplay, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, doCheck: false })))),
         imagemagick,
         inetutils,
         xvfb,
       ]),
       disabledTests: nix.thunk(() => ["test_deadlock_pipe"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Easy to use python subprocess interface",
         homepage: "https://github.com/ponty/EasyProcess",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsdOriginal")),

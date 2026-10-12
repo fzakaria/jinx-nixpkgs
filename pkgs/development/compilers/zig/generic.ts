@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const wrapCCWith = nix.arg($, "wrapCCWith");
   const wrapBintoolsWith = nix.arg($, "wrapBintoolsWith");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "zig",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ziglang",
           repo: "zig",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\n$out/bin/zig test --cache-dir \"$TMPDIR/zig-test-cache\" -I $src/test $src/test/behavior.zig\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./passthru.nix")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           stdenv: stdenv,
           callPackage: callPackage,
           wrapCCWith: wrapCCWith,
@@ -82,14 +82,14 @@ export default nix.lambda((args) => (() => {
           zig: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         zig_default_cpu_flag: "-Dcpu=baseline",
         zig_default_optimize_flag: "--release=safe",
       })),
       setupHook: nix.path(here, "./setup-hook.sh"),
       propagatedNativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [xcbuild]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "General-purpose programming language and toolchain for maintaining robust, optimal, and reusable software",
         homepage: "https://ziglang.org/",
         changelog: nix.thunk(() => nix.str`https://ziglang.org/download/${nix.sel(finalAttrs, "version")}/release-notes.html`),

@@ -20,34 +20,34 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
     const $ = nix.formals(args, formals$1);
     const pkgs = nix.arg($, "pkgs");
     return {
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       name: "maddy-unencrypted",
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "onny"))]),
         };
       })()),
       nodes: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         server: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           return {
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             services: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               maddy: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 enable: true,
                 hostname: "server",
                 primaryDomain: "server",
                 openFirewall: true,
                 ensureAccounts: nix.thunk(() => ["postmaster@server"]),
                 ensureCredentials: nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   "postmaster@server": nix.thunk(() => ({
-                    __proto__: pos$2,
+                    [nix.POS]: pos$2,
                     passwordFile: nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "writeText"), "postmaster", "test")}`),
                   })),
                 })),
@@ -58,9 +58,9 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
         client: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$3);
           return {
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             environment: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               systemPackages: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writePython3Bin"), "send-testmail", nix.thunk(() => ({})), "import smtplib\nfrom email.mime.text import MIMEText\n\nmsg = MIMEText(\"Hello World\")\nmsg['Subject'] = 'Test'\nmsg['From'] = \"postmaster@server\"\nmsg['To'] = \"postmaster@server\"\nwith smtplib.SMTP('server', 587) as smtp:\n    smtp.login('postmaster@server', 'test')\n    smtp.sendmail('postmaster@server', 'postmaster@server', msg.as_string())\n")),
                 nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writePython3Bin"), "test-imap", nix.thunk(() => ({})), "import imaplib\n\nwith imaplib.IMAP4('server') as imap:\n    imap.login('postmaster@server', 'test')\n    imap.select()\n    status, refs = imap.search(None, 'ALL')\n    assert status == 'OK'\n    assert len(refs) == 1\n    status, msg = imap.fetch(refs[0], 'BODY[TEXT]')\n    assert status == 'OK'\n    assert msg[0][1].strip() == b\"Hello World\"\n")),

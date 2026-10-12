@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const rich = nix.arg($, "rich");
   const uv_build = nix.arg($, "uv-build");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "logurich",
       version: "0.9.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PakitoSec",
           repo: "logurich",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: nix.thunk(() => ["rich"]),
       "build-system": nix.thunk(() => [uv_build]),
       dependencies: nix.thunk(() => [loguru, rich]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, click: nix.thunk(() => [click]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, click: nix.thunk(() => [click]) })),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["logurich"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Logger that combine loguru and rich",
         homepage: "https://github.com/PakitoSec/logurich",
         changelog: nix.thunk(() => nix.str`https://github.com/PakitoSec/logurich/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

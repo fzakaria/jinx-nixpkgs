@@ -28,16 +28,16 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "ocserv"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         ocserv: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "ocserv")),
           config: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               description: "Configuration content to start an OCServ server.\n\nFor a full configuration reference,please refer to the online documentation\n(https://ocserv.gitlab.io/www/manual.html), the openconnect\nrecipes (https://github.com/openconnect/recipes) or `man ocserv`.\n",
               example: "# configuration examples from $out/doc without explanatory comments.\n# for a full reference please look at the installed man pages.\nauth = \"plain[passwd=./sample.passwd]\"\ntcp-port = 443\nudp-port = 443\nrun-as-user = ocserv\nrun-as-group = ocserv\nsocket-file = /run/ocserv-socket\nserver-cert = certs/server-cert.pem\nserver-key = certs/server-key.pem\nkeepalive = 32400\ndpd = 90\nmobile-dpd = 1800\nswitch-to-tcp-timeout = 25\ntry-mtu-discovery = false\ncert-user-oid = 0.9.2342.19200300.100.1.1\ntls-priorities = \"NORMAL:%SERVER_PRECEDENCE:%COMPAT:-VERS-SSL3.0\"\nauth-timeout = 240\nmin-reauth-time = 300\nmax-ban-score = 80\nban-reset-time = 1200\ncookie-timeout = 300\ndeny-roaming = false\nrekey-time = 172800\nrekey-method = ssl\nuse-occtl = true\npid-file = /run/ocserv.pid\ndevice = vpns\npredictable-ips = true\ndefault-domain = example.com\nipv4-network = 192.168.1.0\nipv4-netmask = 255.255.255.0\ndns = 192.168.1.2\nping-leases = false\nroute = 10.10.10.0/255.255.255.0\nroute = 192.168.0.0/255.255.0.0\nno-route = 192.168.5.0/255.255.255.0\ncisco-client-compat = true\ndtls-legacy = true\n\n[vhost:www.example.com]\nauth = \"certificate\"\nca-cert = certs/ca.pem\nserver-cert = certs/server-cert-secp521r1.pem\nserver-key = cersts/certs/server-key-secp521r1.pem\nipv4-network = 192.168.2.0\nipv4-netmask = 255.255.255.0\ncert-user-oid = 0.9.2342.19200300.100.1.1\n",
@@ -46,35 +46,35 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         environment: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "ocserv"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$6,
-            "ocserv/ocserv.conf": nix.thunk(() => ({ __proto__: pos$5, text: nix.thunk(() => nix.sel(cfg, "config")) })),
+            [nix.POS]: pos$6,
+            "ocserv/ocserv.conf": nix.thunk(() => ({ [nix.POS]: pos$5, text: nix.thunk(() => nix.sel(cfg, "config")) })),
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           pam: nix.thunk(() => ({
-            __proto__: pos$9,
-            services: nix.thunk(() => ({ __proto__: pos$8, ocserv: nix.thunk(() => ({})) })),
+            [nix.POS]: pos$9,
+            services: nix.thunk(() => ({ [nix.POS]: pos$8, ocserv: nix.thunk(() => ({})) })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             ocserv: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "OpenConnect SSL VPN server",
               documentation: nix.thunk(() => ["man:ocserv(8)"]),
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["dbus.service", "network-online.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 PrivateTmp: true,
                 PIDFile: "/run/ocserv.pid",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "ocserv")}/bin/ocserv --foreground --pid-file /run/ocesrv.pid --config /etc/ocserv/ocserv.conf`),

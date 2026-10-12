@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const qtsvg = nix.arg($, "qtsvg");
   const qttools = nix.arg($, "qttools");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kiconthemes",
       patches: nix.thunk(() => [nix.path(here, "./default-theme-breeze.patch")]),
       nativeBuildInputs: nix.thunk(() => [cmake, extra_cmake_modules]),

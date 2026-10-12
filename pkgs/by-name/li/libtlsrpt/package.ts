@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const asciidoctor = nix.arg($, "asciidoctor");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libtlsrpt",
       version: "0.5.1",
       outputs: nix.thunk(() => ["out", "dev", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sys4",
           repo: "libtlsrpt",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, asciidoctor]),
       separateDebugInfo: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Low-level C Library to implement TLSRPT into a MTA",
         homepage: "https://github.com/sys4/libtlsrpt",
         changelog: nix.thunk(() => nix.str`https://github.com/sys4/libtlsrpt/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

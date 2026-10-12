@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "doclifter",
       version: "2.21",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://www.catb.org/~esr/doclifter/doclifter-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-3zb+H/rRmU87LWh0+kQtiRMZ4JwJ3tVrt8vQ/EeKx8Q=",
         })))),
@@ -37,7 +37,7 @@ wrapProgram "$out/bin/manlifter" \\
 gzip < manlifter.1 > $out/share/man/man1/manlifter.1.gz
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: "https://gitlab.com/esr/doclifter/-/blob/2.21/NEWS",
         description: "Lift documents in nroff markups to XML-DocBook",
         homepage: "http://www.catb.org/esr/doclifter",

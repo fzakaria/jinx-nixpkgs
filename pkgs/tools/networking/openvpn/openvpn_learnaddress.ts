@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const gawk = nix.arg($, "gawk");
   const util_linux = nix.arg($, "util-linux");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "openvpn-learnaddress",
       version: "unstable-2013-10-21",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://gist.github.com/4058733.git",
           rev: "19b03c3beb0190df46ea07bf4b68244acb8eae80",
           sha256: "16pcyvyhwsx34i0cjkkx906lmrwdd9gvznvqdwlad4ha8l8f8z42",
@@ -34,7 +34,7 @@ wrapProgram $out/libexec/openvpn/openvpn-learnaddress \\
     --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils, gawk, util_linux]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Openvpn learn-address script to manage a hosts-like file",
         homepage: "https://gist.github.com/offlinehacker/4058733/",
         maintainers: [],

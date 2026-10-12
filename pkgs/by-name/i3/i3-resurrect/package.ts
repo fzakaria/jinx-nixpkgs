@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const xprop = nix.arg($, "xprop");
   const xdotool = nix.arg($, "xdotool");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "i3-resurrect",
       version: "1.4.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-13FKRvEE4vHq5G51G1UyBnfNiWeS9Q/SYCG16E1Sn4c=",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/JonnyHaystack/i3-resurrect",
         description: "Simple but flexible solution to saving and restoring i3 workspaces",
         mainProgram: "i3-resurrect",

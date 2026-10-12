@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const cohttp_lwt_jsoo = nix.arg($, "cohttp-lwt-jsoo");
   const js_of_ocaml_lwt = nix.arg($, "js_of_ocaml-lwt");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "github-jsoo",
       version: nix.thunk(() => nix.attr(github, "version")),
       src: nix.thunk(() => nix.attr(github, "src")),
       duneVersion: "3",
       propagatedBuildInputs: nix.thunk(() => [github, cohttp, cohttp_lwt_jsoo, js_of_ocaml_lwt]),
-      meta: nix.thunk(() => nix.update(nix.sel(github, "meta"), { __proto__: pos$1, description: "GitHub APIv3 JavaScript library" })),
+      meta: nix.thunk(() => nix.update(nix.sel(github, "meta"), { [nix.POS]: pos$1, description: "GitHub APIv3 JavaScript library" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=jsoo.ts.map

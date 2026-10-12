@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     interfaceFile: (agdaVersion) => (agdaFile) => nix.add(nix.add(nix.add(nix.add("_build/", agdaVersion), "/agda/"), nix.app(nix.sel(lib, "head"), nix.thunk(() => nix.builtins.match("(.*\\.)l?agda(\\.(md|org|rst|tex|typ))?", agdaFile)))), "agdai"),
     isUnbrokenAgdaPackage: (pkg) => (() => {
       const r = nix.thunk(() => nix.builtins.tryEval(nix.thunk(() => (nix.asBool(nix.selOr(pkg, () => false, "isAgdaDerivation")) && nix.asBool(!nix.asBool(nix.sel(pkg, "meta", "broken")))))));

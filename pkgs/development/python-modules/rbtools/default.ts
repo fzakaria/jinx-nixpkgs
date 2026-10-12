@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => !nix.asBool(isPy3k));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "reviewboard",
           repo: "rbtools",
           tag: nix.thunk(() => nix.str`release-${version}`),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
         "rbtools/clients/tests/test_scanning.py::ScanningTests::test_scanning_nested_repos_2",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.reviewboard.org/docs/rbtools/dev/",
         description: "RBTools is a set of command line tools for working with Review Board and RBCommons",
         mainProgram: "rbt",
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

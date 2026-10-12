@@ -77,32 +77,32 @@ export default nix.lambda((args) => (() => {
   })();
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const mkDefaultAttrs = nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs"), (n) => (v) => nix.app(nix.lookup(w, "mkDefault"), v)));
-  const mkForwardZone = nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (zone) => (uri) => ({ __proto__: pos$1, zone: zone, forwarders: nix.thunk(() => [uri]) })));
+  const mkForwardZone = nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (zone) => (uri) => ({ [nix.POS]: pos$1, zone: zone, forwarders: nix.thunk(() => [uri]) })));
   return {
-    __proto__: pos$43,
+    [nix.POS]: pos$43,
     options: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       services: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         "pdns-recursor": nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "PowerDNS Recursor, a recursive DNS server")),
           dns: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             address: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.app(oneOrMore, nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 default: nix.thunk(() => ["::", "0.0.0.0"]),
                 description: "IP addresses Recursor DNS server will bind to.\n",
               })))),
             port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
                 default: 53n,
                 description: "Port number Recursor DNS server will bind to.\n",
               })))),
             allowFrom: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 default: nix.thunk(() => [
                   "127.0.0.0/8",
@@ -120,22 +120,22 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           api: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "the built-in webserver. It serves the REST API (which additionally needs\nan API key set via {option}`services.pdns-recursor.settings.webservice.api_key`)\nand, at `/metrics`, statistics in Prometheus format. Without this the\n`api.address`, `api.port` and `api.allowFrom` options have no effect, as\nthe webserver stays disabled")),
             address: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "0.0.0.0",
                 description: "IP address Recursor REST API server will bind to.\n",
               })))),
             port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
                 default: 8082n,
                 description: "Port number Recursor REST API server will bind to.\n",
               })))),
             allowFrom: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 default: nix.thunk(() => ["127.0.0.1", "::1"]),
                 example: nix.thunk(() => ["0.0.0.0/0", "::/0"]),
@@ -143,45 +143,45 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           exportHosts: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether to export names and IP addresses defined in /etc/hosts.\n",
             })))),
           forwardZones: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "attrs")),
               default: nix.thunk(() => ({})),
               description: "DNS zones to be forwarded to other authoritative servers.\n",
             })))),
           forwardZonesRecurse: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "attrs")),
-              example: nix.thunk(() => ({ __proto__: pos$12, eth: "[::1]:5353" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$12, eth: "[::1]:5353" })),
               default: nix.thunk(() => ({})),
               description: "DNS zones to be forwarded to other recursive servers.\n",
             })))),
           dnssecValidation: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["off", "process-no-validate", "process", "log-fail", "validate"]))),
               default: "validate",
               description: "Controls the level of DNSSEC processing done by the PowerDNS Recursor.\nSee <https://doc.powerdns.com/md/recursor/dnssec/> for a detailed explanation.\n",
             })))),
           serveRFC1918: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "Whether to directly resolve the RFC1918 reverse-mapping domains:\n`10.in-addr.arpa`,\n`168.192.in-addr.arpa`,\n`16-31.172.in-addr.arpa`\nThis saves load on the AS112 servers.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(settingsFormat, "type")),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  loglevel = 8;\n  log-common-errors = true;\n}\n")),
               description: "PowerDNS Recursor settings. Use this option to configure Recursor\nsettings not exposed in a NixOS option or to bypass one.\nSee the full documentation at\n<https://doc.powerdns.com/recursor/yamlsettings.html>\nfor the available options.\n",
             })))),
           luaConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               description: "The content Lua configuration file for PowerDNS Recursor. See\n<https://doc.powerdns.com/recursor/lua-config/index.html>.\n",
@@ -190,45 +190,45 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$41,
+        [nix.POS]: pos$41,
         environment: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           etc: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             "/pdns-recursor/recursor.yml": nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               source: nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "recursor.yml", nix.thunk(() => nix.sel(cfg, "settings")))),
             })),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           resolvconf: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             useLocalResolver: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           "pdns-recursor": nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             settings: nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               incoming: nix.thunk(() => nix.app(mkDefaultAttrs, nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   listen: nix.thunk(() => nix.sel(cfg, "dns", "address")),
                   port: nix.thunk(() => nix.sel(cfg, "dns", "port")),
                   allow_from: nix.thunk(() => nix.sel(cfg, "dns", "allowFrom")),
                 })))),
               webservice: nix.thunk(() => nix.app(mkDefaultAttrs, nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   webserver: nix.thunk(() => nix.sel(cfg, "api", "enable")),
                   address: nix.thunk(() => nix.sel(cfg, "api", "address")),
                   port: nix.thunk(() => nix.sel(cfg, "api", "port")),
                   allow_from: nix.thunk(() => nix.sel(cfg, "api", "allowFrom")),
                 })))),
               recursor: nix.thunk(() => nix.app(mkDefaultAttrs, nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   forward_zones: nix.thunk(() => nix.app(mkForwardZone, nix.thunk(() => nix.sel(cfg, "forwardZones")))),
                   forward_zones_recurse: nix.thunk(() => nix.app(mkForwardZone, nix.thunk(() => nix.sel(cfg, "forwardZonesRecurse")))),
                   export_etc_hosts: nix.thunk(() => nix.sel(cfg, "exportHosts")),
@@ -238,20 +238,20 @@ export default nix.lambda((args) => (() => {
                   write_pid: false,
                 })))),
               dnssec: nix.thunk(() => nix.app(mkDefaultAttrs, nix.thunk(() => ({
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   validation: nix.thunk(() => nix.sel(cfg, "dnssecValidation")),
                 })))),
-              logging: nix.thunk(() => nix.app(mkDefaultAttrs, nix.thunk(() => ({ __proto__: pos$30, timestamp: false, disable_syslog: true })))),
+              logging: nix.thunk(() => nix.app(mkDefaultAttrs, nix.thunk(() => ({ [nix.POS]: pos$30, timestamp: false, disable_syslog: true })))),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "pdns-recursor"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             "pdns-recursor": nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               restartTriggers: nix.thunk(() => [
                 nix.thunk(() => nix.sel(config, "environment", "etc", "/pdns-recursor/recursor.yml", "source")),
               ]),
@@ -260,17 +260,17 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           users: nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             "pdns-recursor": nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               isSystemUser: true,
               group: "pdns-recursor",
               description: "PowerDNS Recursor daemon user",
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$39, "pdns-recursor": nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$39, "pdns-recursor": nix.thunk(() => ({})) })),
         })),
       })))),
     imports: nix.thunk(() => [
@@ -279,7 +279,7 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["services", "pdns-recursor", "old-settings"]), "pdns-recursor has changed its configuration file format from pdns-recursor.conf\n(mapped to `services.pdns-recursor.old-settings`) to the newer pdns-recursor.yml\n(mapped to `services.pdns-recursor.settings`).\n\nSupport for the older format has been removed, please migrate your settings over.\nSee <https://doc.powerdns.com/recursor/yamlsettings.html>.\n")),
     ]),
     meta: nix.thunk(() => ({
-      __proto__: pos$42,
+      [nix.POS]: pos$42,
       maintainers: nix.thunk(() => (() => {
         const w_3 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_3, "rnhmjoj"))];

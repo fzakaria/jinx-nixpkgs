@@ -18,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const macaddr = nix.arg($, "macaddr");
   const mirage_device = nix.arg($, "mirage-device");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mirage-net",
       version: "4.0.0",
       duneVersion: "3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/mirage-net/releases/download/v${nix.sel(finalAttrs, "version")}/mirage-net-v${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-Zo7/0Ye4GgqzJFCHDBXbuJ/5ETl/8ziolRgH4lDhlM4=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [cstruct, fmt, lwt, macaddr, mirage_device]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Network signatures for MirageOS",
         homepage: "https://github.com/mirage/mirage-net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

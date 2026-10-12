@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pname = "redland";
       const version = "1.0.17";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.librdf.org/source/redland-${version}.tar.gz`),
           sha256: "de1847f7b59021c16bdc72abb4d8e2d9187cd6124d69156f3326dd34ee043681",
         }))));
@@ -45,17 +45,17 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`--with-bdb-include=${nix.sel(db, "dev")}/include`),
           nix.thunk(() => nix.str`--with-bdb-lib=${nix.sel(db, "out")}/lib`),
         ]))));
-      const env = nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_LINK: "-lraptor2" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_LINK: "-lraptor2" }));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "C libraries that provide support for the Resource Description Framework (RDF)",
         homepage: "https://librdf.org/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

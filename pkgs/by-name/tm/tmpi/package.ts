@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const reptyr = nix.arg($, "reptyr");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tmpi",
       version: "0-unstable-2022-02-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Azrael3000",
           repo: "tmpi",
           rev: "f5a0fd8848b5c87b301edc8a23de9bfcfbd41918",
@@ -42,7 +42,7 @@ wrapProgram $out/bin/tmpi \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Run a parallel command inside a split tmux window",
         mainProgram: "tmpi",
         homepage: "https://github.com/Azrael3000/tmpi",

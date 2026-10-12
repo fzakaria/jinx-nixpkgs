@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const ounit2 = nix.arg($, "ounit2");
   const lwt = nix.arg($, "lwt");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ctypes-foreign",
       version: nix.thunk(() => nix.attr(ctypes, "version")),
       src: nix.thunk(() => nix.attr(ctypes, "src")),
@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [ctypes, libffi]),
       checkInputs: nix.thunk(() => [ounit2, lwt]),
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       doCheck: nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.5"))))),
       meta: nix.thunk(() => nix.update(nix.sel(ctypes, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Dynamic access to foreign C libraries using Ctypes",
       })),
     })));

@@ -33,22 +33,22 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "sysstat"));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         sysstat: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "sar system activity collection")),
           "collect-frequency": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "*:00/10",
               description: "OnCalendar specification for sysstat-collect\n",
             })))),
           "collect-args": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "1 1",
               description: "Arguments to pass sa1 when collecting statistics\n",
@@ -57,17 +57,17 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             sysstat: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               description: "Resets System Activity Logs",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 User: "root",
                 RemainAfterExit: true,
                 Type: "oneshot",
@@ -76,22 +76,22 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             "sysstat-collect": nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               description: "system activity accounting tool",
-              unitConfig: nix.thunk(() => ({ __proto__: pos$8, Documentation: "man:sa1(8)" })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$8, Documentation: "man:sa1(8)" })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 Type: "oneshot",
                 User: "root",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "sysstat")}/lib/sa/sa1 ${nix.sel(cfg, "collect-args")}`),
               })),
             })),
             "sysstat-summary": nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "Generate a daily summary of process accounting",
-              unitConfig: nix.thunk(() => ({ __proto__: pos$11, Documentation: "man:sa2(8)" })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$11, Documentation: "man:sa2(8)" })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 Type: "oneshot",
                 User: "root",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "sysstat")}/lib/sa/sa2 -A`),
@@ -99,21 +99,21 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           timers: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             "sysstat-collect": nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               description: "Run system activity accounting tool on a regular basis",
               wantedBy: nix.thunk(() => ["timers.target"]),
               timerConfig: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 OnCalendar: nix.thunk(() => nix.sel(cfg, "collect-frequency")),
               })),
             })),
             "sysstat-summary": nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "Generate summary of yesterday's process accounting",
               wantedBy: nix.thunk(() => ["timers.target"]),
-              timerConfig: nix.thunk(() => ({ __proto__: pos$17, OnCalendar: "00:07:00" })),
+              timerConfig: nix.thunk(() => ({ [nix.POS]: pos$17, OnCalendar: "00:07:00" })),
             })),
           })),
         })),

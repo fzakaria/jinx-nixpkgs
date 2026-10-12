@@ -19,25 +19,25 @@ export default nix.lambda((args) => (() => {
   const fetchpatch2 = nix.arg($, "fetchpatch2");
   const updateAutotoolsGnuConfigScriptsHook = nix.arg($, "updateAutotoolsGnuConfigScriptsHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "popt",
       version: "1.19",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://ftp.osuosl.org/pub/rpm/popt/releases/popt-1.x/popt-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-wlpIOPyOTByKrLi9Yg7bMISj1jv4mH/a08onWMYyQPk=",
         })))),
       nativeBuildInputs: nix.thunk(() => [updateAutotoolsGnuConfigScriptsHook]),
       patches: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isCygwin")), nix.thunk(() => [nix.path(here, "./1.16-cygwin.patch"), nix.path(here, "./1.16-vpath.patch")])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMinGW")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: "https://aur.archlinux.org/cgit/aur.git/plain/get-w32-console-maxcols.mingw32.patch?h=mingw-w64-popt&id=63f2cdb0de116362c49681cef20f7a8b4355e85a",
               sha256: "zv43l1RBqNzT/JG+jQaMVFaFv+ZYPuIiAtKUDzJJBbc=",
               stripLen: 1n,
               extraPrefix: "src/",
             })))),
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               url: "https://github.com/rpm-software-management/popt/commit/905544c5d9767894edaf71a1e3ce5126944c5695.patch",
               sha256: "3PmcxeiEZ/Hof0zoVFSytEXvQ8gE8Sp5UdagExPVICU=",
               stripLen: 1n,
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--sysconfdir=/etc"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://github.com/rpm-software-management/popt",
         description: "Command line option parsing library",
         maintainers: nix.thunk(() => (() => {
@@ -59,9 +59,9 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           purlParts: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: "github",
             spec: nix.thunk(() => nix.str`rpm-software-management/popt@popt-${nix.sel(finalAttrs, "version")}-release`),
           })),

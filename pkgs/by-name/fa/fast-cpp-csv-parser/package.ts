@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fast-cpp-csv-parser",
       version: "2021-01-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ben-strasser",
           repo: "fast-cpp-csv-parser",
           rev: "75600d0b77448e6c410893830df0aec1dbacf8e3",
@@ -28,7 +28,7 @@ cp -r *.h $out/include/
 substituteAll ${nix.path(here, "./fast-cpp-csv-parser.pc.in")} $out/lib/pkgconfig/fast-cpp-csv-parser.pc
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Small, easy-to-use and fast header-only library for reading comma separated value (CSV) files",
         homepage: "https://github.com/ben-strasser/fast-cpp-csv-parser",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

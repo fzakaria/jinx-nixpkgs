@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const mate_wayland_session = nix.arg($, "mate-wayland-session");
   const glib = nix.arg($, "glib");
   const gsettingsOverridePackages = nix.thunk(() => [gsettings_desktop_schemas, mate_wayland_session]);
-  return nix.app(runCommand, "mate-gsettings-overrides", nix.thunk(() => ({ __proto__: pos$1, preferLocalBuild: true })), nix.thunk(() => nix.str`data_dir="$out/share/gsettings-schemas/nixos-gsettings-overrides"
+  return nix.app(runCommand, "mate-gsettings-overrides", nix.thunk(() => ({ [nix.POS]: pos$1, preferLocalBuild: true })), nix.thunk(() => nix.str`data_dir="$out/share/gsettings-schemas/nixos-gsettings-overrides"
 schema_dir="$data_dir/glib-2.0/schemas"
 mkdir -p "$schema_dir"
 

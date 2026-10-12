@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zip2hashcat",
       version: "1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hashstation",
           repo: "zip2hashcat",
           rev: "462bd94ea30d69a0810ca9bb3d056aa0f5393d57",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\n$CC zip2hashcat.c -o zip2hashcat\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\nmv zip2hashcat $out/bin/zip2hashcat\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Processes input ZIP files into a format suitable for use with hashcat",
         homepage: "https://github.com/hashstation/zip2hashcat",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

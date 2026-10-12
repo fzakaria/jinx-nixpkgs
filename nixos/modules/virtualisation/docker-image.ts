@@ -13,19 +13,19 @@ const pos$6 = nix.positions(here + "/docker-image.nix", [["imports", 4, 3], ["bo
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     imports: nix.thunk(() => [nix.path(here, "../profiles/docker-container.nix")]),
     boot: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       postBootCommands: "# Set virtualisation to docker\necho \"docker\" > /run/systemd/container\n",
     })),
     networking: nix.thunk(() => ({
-      __proto__: pos$3,
-      firewall: nix.thunk(() => ({ __proto__: pos$2, enable: false })),
+      [nix.POS]: pos$3,
+      firewall: nix.thunk(() => ({ [nix.POS]: pos$2, enable: false })),
     })),
     services: nix.thunk(() => ({
-      __proto__: pos$5,
-      openssh: nix.thunk(() => ({ __proto__: pos$4, startWhenNeeded: false })),
+      [nix.POS]: pos$5,
+      openssh: nix.thunk(() => ({ [nix.POS]: pos$4, startWhenNeeded: false })),
     })),
   };
 })(), formals$1);

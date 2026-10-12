@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const version = "1.0.0";
   const description = "Advanced typing practice program";
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pyproject: true,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "franksh",
           repo: "amphetype",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "amphetype",
             desktopName: "Amphetype",
             genericName: "Typing Practice",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: description,
         mainProgram: "amphetype",
         homepage: "https://gitlab.com/franksh/amphetype",

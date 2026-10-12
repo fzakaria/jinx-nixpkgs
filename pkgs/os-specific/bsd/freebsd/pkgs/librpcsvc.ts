@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const include = nix.arg($, "include");
   const csu = nix.arg($, "csu");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "lib/librpcsvc",
       extraPaths: nix.thunk(() => ["sys/nlm", "include/rpcsvc"]),
       noLibc: true,

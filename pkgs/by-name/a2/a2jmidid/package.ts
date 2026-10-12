@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "a2jmidid",
       version: "12",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitea.ladish.org",
           owner: "LADI",
           repo: "a2jmidid",
@@ -45,11 +45,11 @@ export default nix.lambda((args) => (() => {
       })())),
       postInstall: "wrapProgram $out/bin/a2j_control --set PYTHONPATH $PYTHONPATH\nsubstituteInPlace $out/bin/a2j --replace-fail \"a2j_control\" \"$out/bin/a2j_control\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Daemon for exposing legacy ALSA sequencer applications in JACK MIDI system",
         homepage: "https://a2jmidid.ladish.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

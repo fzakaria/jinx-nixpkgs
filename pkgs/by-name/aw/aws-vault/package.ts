@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const xdg_utils = nix.arg($, "xdg-utils");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aws-vault",
       version: "7.15.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ByteNess",
           repo: "aws-vault",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +46,7 @@ installShellCompletion --cmd aws-vault \\
       installCheckPhase: nix.thunk(() => nix.str`$out/bin/aws-vault --version 2>&1 | grep ${nix.sel(finalAttrs, "version")} > /dev/null
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Vault for securely storing and accessing AWS credentials in development environments",
         mainProgram: "aws-vault",
         homepage: "https://github.com/ByteNess/aws-vault",

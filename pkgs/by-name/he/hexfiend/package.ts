@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "hexfiend";
       const version = "2.17.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/HexFiend/HexFiend/releases/download/v${version}/Hex_Fiend_${nix.app(urlSuffix, version)}.dmg`),
           hash: "sha256-QpGmpxDpdS+sJtsNtp0VSAd9WJXaZiKTH4yDsDK8FSk=",
         }))));
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [undmg]);
       const installPhase = "mkdir -p \"$out/Applications/Hex Fiend.app\"\ncp -R . \"$out/Applications/Hex Fiend.app\"\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Open-source macOS hex editor",
         homepage: "http://hexfiend.com/",
         changelog: "https://hexfiend.github.io/HexFiend/ReleaseNotes.html",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const bison = nix.arg($, "bison");
   const flex = nix.arg($, "flex");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libcue",
       version: "2.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lipnitsk",
           repo: "libcue",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \\\n    'CMAKE_MINIMUM_REQUIRED(VERSION 2.8 FATAL_ERROR)' \\\n    'CMAKE_MINIMUM_REQUIRED(VERSION 3.10 FATAL_ERROR)'\n",
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CUE Sheet Parser Library",
         longDescription: "libcue is intended to parse a so called cue sheet from a char string or\na file pointer. For handling of the parsed data a convenient API is\navailable.\n",
         homepage: "https://github.com/lipnitsk/libcue",

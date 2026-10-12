@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const dbus = nix.arg($, "dbus");
   return nix.app(mkTclDerivation, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dbus",
       version: "4.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://chiselapp.com/user/schelte/repository/dbus/uv/dbus-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-8VIw475Q9kRh6UV6FxWCXKLKasqM1z58ed0rMgzEX3I=",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [dbus]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "DBus bindings for Tcl",
         homepage: "https://chiselapp.com/user/schelte/repository/dbus/home",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

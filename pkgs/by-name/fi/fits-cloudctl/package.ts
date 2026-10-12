@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const gitsha = "0a0d89a8";
       const gittime = "2024-05-15T17:34:46+02:00";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fi-ts",
           repo: "cloudctl",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X github.com/metal-stack/v.BuildDate=${gittime}`),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command-line client for FI-TS Finance Cloud Native services",
         homepage: "https://github.com/fi-ts/cloudctl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "cloudctl",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         gitversion,

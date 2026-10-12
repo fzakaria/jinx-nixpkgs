@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.thunk(() => nix.attr(sources, "version"));
   const binaries = nix.thunk(() => nix.attr(sources, "binaries"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.sel(binaries, nix.key(nix.sel(stdenv, "hostPlatform", "system")))))),
@@ -38,9 +38,9 @@ export default nix.lambda((args) => (() => {
       emulator: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(withShellCompletions) && nix.asBool(!nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))))), nix.thunk(() => nix.app(nix.sel(stdenv, "hostPlatform", "emulator"), buildPackages)))),
       installPhase: nix.thunk(() => nix.add(nix.add("runHook preInstall\nmkdir -p -- \"$out/bin\"\ncp -- \"$src\" \"$out/bin/yc\"\nchmod +x -- \"$out/bin/yc\"\n", nix.app(nix.sel(lib, "optionalString"), withShellCompletions, "for shell in bash zsh; do\n  ${emulator:+\"$emulator\"} \"$out/bin/yc\" completion $shell >yc.$shell\n  installShellCompletion yc.$shell\ndone\n")), "makeWrapper \"$out/bin/yc\" \"$out/bin/docker-credential-yc\" \\\n  --add-flags --no-user-output \\\n  --add-flags container \\\n  --add-flags docker-credential\nrunHook postInstall\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix.sel(writers, "writePython3"), nix.thunk(() => nix.str`${pname}-updater`), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             libraries: nix.thunk(() => (() => {
               const w = nix.withScope(python3Packages, null);
               return [nix.thunk(() => nix.lookup(w, "requests"))];
@@ -53,15 +53,15 @@ export default nix.lambda((args) => (() => {
             ]),
           })), nix.path(here, "./update.py"))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Command line interface that helps you interact with Yandex Cloud services",
         homepage: "https://cloud.yandex/docs/cli",
         changelog: nix.thunk(() => nix.str`https://cloud.yandex/docs/cli/release-notes#version${version}`),

@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const riot = nix.arg($, "riot");
   const tty = nix.arg($, "tty");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "minttea",
       version: "0.0.3",
       minimalOCamlVersion: "5.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/leostera/minttea/releases/download/${nix.sel(finalAttrs, "version")}/minttea-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-WEaJVCCvsmKcF8+yzovljt8dGWaIv4UmAr74jq6Vo9M=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [riot, tty]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fun, functional, and stateful way to build terminal apps in OCaml heavily inspired by Go's BubbleTea",
         homepage: "https://github.com/leostera/minttea",
         changelog: nix.thunk(() => nix.str`https://github.com/leostera/minttea/blob/${nix.sel(finalAttrs, "version")}/CHANGES.md`),

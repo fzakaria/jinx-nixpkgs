@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const pname = "aja-desktop-software";
   const version = "17.1.3";
   const meta = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     description: "Graphical utilities for interacting with AJA desktop video cards",
     homepage: "https://www.aja.com/products/aja-control-room",
     license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
     ]),
   }));
   const unwrapped = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.str`${pname}-unwrapped`),
       version: version,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://www.aja.com/assets/support/files/9895/en/AJA-Desktop-Software-Installer_Linux-Ubuntu_v${version}_Release.zip`),
           hash: "sha256-TxDcYIhEcpPnpoqpey5vSvUltLT/3xwBfOhAP81Q9+E=",
         })))),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       meta: meta,
     }))));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: version,
       targetPkgs: (pkgs) => nix.concat([unwrapped], (() => {
@@ -93,8 +93,8 @@ for binary in controlpanel controlroom ajanmos systemtest; do
     --add-flags "$binary"
 done
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$4, unwrapped: unwrapped })),
-      meta: nix.thunk(() => nix.update(meta, { __proto__: pos$5, mainProgram: "aja-controlpanel" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, unwrapped: unwrapped })),
+      meta: nix.thunk(() => nix.update(meta, { [nix.POS]: pos$5, mainProgram: "aja-controlpanel" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

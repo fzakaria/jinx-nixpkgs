@@ -17,15 +17,15 @@ export default nix.thunk(() => (() => {
     const $ = nix.formals(args, formals$1);
     const pkgs = nix.arg($, "pkgs");
     return {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       environment: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "jq"))]),
       })),
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         couchdb: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: true,
           package: couchpkg,
           adminUser: user,
@@ -42,11 +42,11 @@ export default nix.thunk(() => (() => {
     const pkgs = nix.arg($, "pkgs");
     const lib = nix.arg($, "lib");
     return {
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       name: "couchdb",
-      meta: nix.thunk(() => ({ __proto__: pos$5, maintainers: [] })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$5, maintainers: [] })),
       nodes: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         couchdb3: nix.thunk(() => nix.app(makeNode, nix.thunk(() => nix.sel(pkgs, "couchdb3")), testuser, testpass)),
       })),
       testScript: nix.thunk(() => (() => {

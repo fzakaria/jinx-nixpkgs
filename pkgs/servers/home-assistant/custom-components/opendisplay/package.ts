@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const pytest_homeassistant_custom_component = nix.arg($, "pytest-homeassistant-custom-component");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildHomeAssistantComponent, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       owner: "OpenDisplay",
       domain: "opendisplay",
       version: "3.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: nix.thunk(() => nix.attr(finalAttrs, "owner")),
           repo: "Home_Assistant_Integration",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
         "tests/drawcustom/text_test.py::test_text_truncate",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Home Assistant Integration for OpenDisplay",
         homepage: "https://github.com/OpenDisplay/Home_Assistant_Integration",
         changelog: nix.thunk(() => nix.str`https://github.com/OpenDisplay/Home_Assistant_Integration/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

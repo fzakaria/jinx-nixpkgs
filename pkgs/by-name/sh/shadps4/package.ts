@@ -72,18 +72,18 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const withRpc = nix.argOr($, "withRpc", () => true);
   const abseilCppSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "abseil",
       repo: "abseil-cpp",
       tag: "20250512.1",
       hash: "sha256-eB7OqTO9Vwts9nYQ/Mdq0Ds4T1KgmmpYdzU09VPWOhk=",
     }))));
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "shadps4",
       version: "0.18.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "shadps4-emu",
           repo: "shadPS4",
           tag: nix.thunk(() => nix.str`v.${nix.sel(finalAttrs, "version")}`),
@@ -99,7 +99,7 @@ export default nix.lambda((args) => (() => {
   --replace-fail @GIT_DESC@ nixpkgs \\
   --replace-fail @BUILD_DATE@ $(cat SOURCE_DATE_EPOCH)
 `),
-      env: nix.thunk(() => ({ __proto__: pos$3, NIX_LDFLAGS: "-lzstd" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_LDFLAGS: "-lzstd" })),
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config, makeBinaryWrapper]),
       buildInputs: nix.thunk(() => [
         alsa_lib,
@@ -165,18 +165,18 @@ export default nix.lambda((args) => (() => {
 `),
       runtimeDependencies: nix.thunk(() => [vulkan_loader, libxi]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "openorbis-example": nix.thunk(() => nix.sel(nixosTests, "shadps4")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             extraArgs: nix.thunk(() => ["--version-regex", "v\\.(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Early in development PS4 emulator",
         homepage: "https://shadps4.net",
         downloadPage: "https://shadps4.net/downloads",

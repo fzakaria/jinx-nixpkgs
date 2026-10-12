@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
   const enableTools = nix.argOr($, "enableTools", () => false);
   nix.assert_((!nix.asBool(enableTools) || nix.asBool((nix.asBool((nix.asBool(enableAudio) && nix.asBool(enableEmulation))) && nix.asBool(enableLibplayer)))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/li/libvgm/package.nix:37:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libvgm",
       version: "0-unstable-2026-09-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ValleyBell",
           repo: "libvgm",
           rev: "c8b998b606895990c409a512b86c5509070f9f0d",
@@ -83,15 +83,15 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "UTIL_CHARCNV_WINAPI", nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isWindows")))),
         ])))))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "More modular rewrite of most components from VGMPlay",
         homepage: "https://github.com/ValleyBell/libvgm",
         license: nix.thunk(() => (nix.asBool((nix.asBool(enableEmulation) && nix.asBool((nix.asBool(withAllEmulators) || nix.asBool(nix.app(nix.sel(lib, "lists", "elem"), "WSWAN_ALL", emulators)))))) ? nix.sel(lib, "licenses", "unfree") : nix.sel(lib, "licenses", "gpl2Only"))),

@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pytest-base-url",
       version: "2.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pytest-dev",
           repo: "pytest-base-url",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_url_fails"]),
       pythonImportsCheck: nix.thunk(() => ["pytest_base_url"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pytest plugin for URL based tests",
         homepage: "https://github.com/pytest-dev/pytest-base-url",
         changelog: nix.thunk(() => nix.str`https://github.com/pytest-dev/pytest-base-url/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGES.rst`),

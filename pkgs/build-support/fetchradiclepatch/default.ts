@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.argOr($_1, "nativeBuildInputs", () => []);
       nix.assert_((nix.asBool((nix.asBool(!nix.asBool(nix.has(args_2, "rev"))) && nix.asBool(!nix.asBool(nix.has(args_2, "tag"))))) || nix.asBool(nix.builtins.throw("fetchRadiclePatch does not accept `rev` or `tag` arguments."))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/fetchradiclepatch/default.nix:15:3");
       return nix.update(nix.app(fetchFromRadicle, nix.thunk(() => nix.update({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           nativeBuildInputs: nix.thunk(() => nix.concat([jq], nativeBuildInputs)),
           rev: revision,
           leaveDotGit: true,
@@ -31,7 +31,7 @@ rm -r $out
 mv patch $out
 ${postFetch}
 `),
-        }, nix.builtins.removeAttrs(args_2, nix.thunk(() => ["revision", "postFetch", "nativeBuildInputs", "leaveDotGit"]))))), { __proto__: pos$2, revision: revision });
+        }, nix.builtins.removeAttrs(args_2, nix.thunk(() => ["revision", "postFetch", "nativeBuildInputs", "leaveDotGit"]))))), { [nix.POS]: pos$2, revision: revision });
     })(), formals$2));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

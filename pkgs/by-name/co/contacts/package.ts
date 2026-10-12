@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const xcbuildHook = nix.arg($, "xcbuildHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.1a-3",
       pname: "contacts",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dhess",
           repo: "contacts",
           rev: "4092a3c6615d7a22852a3bafc44e4aeeb698aa8f",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [xcbuildHook]),
       installPhase: "mkdir -p $out/bin\ncp Products/Default/contacts $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Access contacts from the Mac address book from command-line",
         homepage: "http://www.gnufoo.org/contacts/contacts.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

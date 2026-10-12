@@ -40,16 +40,16 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(gpuSupport) || nix.asBool(!nix.asBool(cudaSupport))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/python-modules/lightgbm/default.nix:42:1");
   nix.assert_((!nix.asBool(cudaSupport) || nix.asBool(!nix.asBool(gpuSupport))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/python-modules/lightgbm/default.nix:43:1");
   const effectiveStdenv = nix.thunk(() => (nix.asBool(cudaSupport) ? nix.sel(cudaPackages, "backendStdenv") : nix.force(stdenv)));
-  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ __proto__: pos$1, stdenv: effectiveStdenv })), (finalAttrs) => (() => {
+  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: effectiveStdenv })), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "lightgbm"));
       return {
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: nix.thunk(() => nix.attr(from, "pname")),
       version: nix.thunk(() => nix.attr(from, "version")),
       patches: nix.thunk(() => nix.attr(from, "patches")),
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-yxxZcg61aTicC6dNFPUjUbVzr0ifIwAyocnzFPi6t/4=",
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_CUDA_STANDARD", "14")),
         ])))),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         arrow: nix.thunk(() => [cffi, pyarrow]),
         dask: nix.thunk(() => nix.concat([dask, pandas], nix.concat(nix.sel(dask, "optional-dependencies", "array"), nix.concat(nix.sel(dask, "optional-dependencies", "dataframe"), nix.sel(dask, "optional-dependencies", "distributed"))))),
         pandas: nix.thunk(() => [pandas]),
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["lightgbm"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Fast, distributed, high performance gradient boosting (GBDT, GBRT, GBM or MART) framework",
         homepage: "https://github.com/lightgbm-org/LightGBM",
         changelog: nix.thunk(() => nix.str`https://github.com/lightgbm-org/LightGBM/releases/tag/v${nix.sel(finalAttrs, "version")}`),

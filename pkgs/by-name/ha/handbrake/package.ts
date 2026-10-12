@@ -90,9 +90,9 @@ export default nix.lambda((args) => (() => {
   const fdk_aac = nix.arg($, "fdk_aac");
   const version = "1.11.2";
   const src = nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "HandBrake",
           repo: "HandBrake",
           rev: "9eb6c936803e8b071035b1a77662cb0db58441ea",
@@ -100,7 +100,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/HandBrake/HandBrake/commit/432514bf839e7280511e4a7afc35fb4868ef4d0b.patch",
             excludes: nix.thunk(() => [
               "contrib/x265/module.defs",
@@ -111,7 +111,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-xwIY1pO9mKbrQFjQCENuvntIoiZTHeUVg8axrl3zxxo=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/HandBrake/HandBrake/commit/02b704c5cf2e73d227fbb5be151501b232b0e5f2.patch?full_index=1",
             excludes: nix.thunk(() => ["contrib/ffmpeg/module.defs"]),
             hash: "sha256-fSfLXH+aRwVv9BrDT1oNBHD2VUbAnN3jVu3CJeoaAKg=",
@@ -119,7 +119,7 @@ export default nix.lambda((args) => (() => {
       ]),
     }))));
   const ffmpeg_hb = nix.thunk(() => nix.app(nix.sel(ffmpeg_8_full, "overrideAttrs"), (old) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       patches: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "patches"), [
         nix.thunk(() => nix.str`${src}/contrib/ffmpeg/A01-mov-read-name-track-tag-written-by-movenc.patch`),
         nix.thunk(() => nix.str`${src}/contrib/ffmpeg/A02-movenc-write-3gpp-track-titl-tag.patch`),
@@ -149,11 +149,11 @@ export default nix.lambda((args) => (() => {
       ])),
     })));
   const x265_hb = nix.thunk(() => nix.app(nix.sel(x265, "overrideAttrs"), (old) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       version: "4.2",
       sourceRoot: "x265_4.2/source",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           url: "https://bitbucket.org/multicoreware/x265_git/downloads/x265_4.2.tar.gz",
           hash: "sha256-QLHqBFPgMJ8OupNODd9TP49ilZZmeeiJTo8cHI1eEhA=",
         })))),
@@ -167,7 +167,7 @@ popd
   const svt_av1_hb = nix.thunk(() => nix.app(nix.sel(svt_av1, "overrideAttrs"), (old) => (() => {
       const version_1 = "4.1.0";
       const src_1 = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           owner: "AOMediaCodec",
           repo: "SVT-AV1",
           tag: nix.thunk(() => nix.str`v${version_1}`),
@@ -179,7 +179,7 @@ popd
   done
 popd
 `));
-      return { __proto__: pos$9, version: version_1, src: src_1, postPatch };
+      return { [nix.POS]: pos$9, version: version_1, src: src_1, postPatch };
     })()));
   const versionFile = nix.thunk(() => nix.app(writeText, "version.txt", nix.thunk(() => nix.str`URL=${nix.sel(src, "meta", "homepage")}.git
 HASH=${nix.sel(src, "rev")}
@@ -260,7 +260,7 @@ sed -e 's/^[[:space:]]*\\(meson\\|ninja\\|nasm\\)[[:space:]]*= ToolProbe.*$//g' 
         ])), nix.concat(nix.app(optional, useFdk, fdk_aac), nix.app(optional, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nv_codec_headers))))));
       const configureFlags = nix.thunk(() => nix.concat(["--disable-df-fetch", "--disable-df-verify"], nix.concat(nix.app(optional, nix.thunk(() => !nix.asBool(useGtk)), "--disable-gtk"), nix.concat(nix.app(optional, useFdk, "--enable-fdk-aac"), nix.concat(nix.app(optional, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "--disable-xcode"), nix.app(optional, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86")), "--harden"))))));
       const env = nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lx265"]))),
       }));
       const dontUseMesonConfigure = true;
@@ -269,18 +269,18 @@ sed -e 's/^[[:space:]]*\\(meson\\|ninja\\|nasm\\)[[:space:]]*= ToolProbe.*$//g' 
       const dontUseNinjaInstall = true;
       const makeFlags = nix.thunk(() => ["--directory=build"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         "ffmpeg-hb": ffmpeg_hb,
         "x265-hb": x265_hb,
         tests: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           "basic-conversion": nix.thunk(() => (() => {
             const testMkv = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 url: "https://github.com/Matroska-Org/matroska-test-files/blob/cf0792be144ac470c4b8052cfe19bb691993e3a2/test_files/test1.mkv?raw=true",
                 hash: "sha256-CZajCf8glZELnTDVJTsETWNxVCl9330L2n863t9a3cE=",
               }))));
-            return nix.app(runCommand, nix.thunk(() => nix.str`${pname}-${version_1}-basic-conversion`), nix.thunk(() => ({ __proto__: pos$12, nativeBuildInputs: nix.thunk(() => [self]) })), nix.thunk(() => nix.str`mkdir -p $out
+            return nix.app(runCommand, nix.thunk(() => nix.str`${pname}-${version_1}-basic-conversion`), nix.thunk(() => ({ [nix.POS]: pos$12, nativeBuildInputs: nix.thunk(() => [self]) })), nix.thunk(() => nix.str`mkdir -p $out
 cd $out
 HandBrakeCLI -i ${testMkv} -o test.mp4 -e x264 -q 20 -B 160
 test -e test.mp4
@@ -288,11 +288,11 @@ HandBrakeCLI -i ${testMkv} -o test.mkv -e x264 -q 20 -B 160
 test -e test.mkv
 `));
           })()),
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$13, package: self, command: "HandBrakeCLI --version" })))),
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$13, package: self, command: "HandBrakeCLI --version" })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         homepage: "https://handbrake.fr/",
         description: "Tool for converting video files and ripping DVDs",
         longDescription: "Tool for converting and remuxing video files\ninto selection of modern and widely supported codecs\nand containers. Very versatile and customizable.\nPackage provides:\nCLI - `HandbrakeCLI`\nGTK GUI - `ghb`\n",
@@ -312,7 +312,7 @@ test -e test.mkv
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         pname,
         version: version_1,
         src: src_1,

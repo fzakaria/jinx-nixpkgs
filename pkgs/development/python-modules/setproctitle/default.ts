@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dvarrazzo",
           repo: "py-setproctitle",
           tag: nix.thunk(() => nix.str`version-${version}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         ])));
       const pythonImportsCheck = nix.thunk(() => ["setproctitle"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Allows a process to change its title (as displayed by system tools such as ps and top)",
         homepage: "https://github.com/dvarrazzo/py-setproctitle",
         changelog: nix.thunk(() => nix.str`https://github.com/dvarrazzo/py-setproctitle/blob/${nix.sel(src, "tag")}/HISTORY.rst`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

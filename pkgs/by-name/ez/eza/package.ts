@@ -23,19 +23,19 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const exaAlias = nix.argOr($, "exaAlias", () => true);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "eza",
       version: "0.23.5",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eza-community",
           repo: "eza",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-4XgPePl90mnQxmTUJfOvIsCcTRSYNBuRUNOb/3kmO1k=",
         })))),
       cargoHash: "sha256-IRG+mVgU8ZZ8PsxZWqmf3ZjW8fGL0RD0CwIrjsL366I=",
-      env: nix.thunk(() => ({ __proto__: pos$2, LIBGIT2_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, LIBGIT2_NO_VENDOR: 1n })),
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config, installShellFiles, pandoc]),
       buildInputs: nix.thunk(() => [libgit2, zlib]),
       buildNoDefaultFeatures: true,
@@ -54,7 +54,7 @@ installShellCompletion \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Modern, maintained replacement for ls",
         longDescription: "eza is a modern replacement for ls. It uses colours for information by\ndefault, helping you distinguish between many types of files, such as\nwhether you are the owner, or in the owning group. It also has extra\nfeatures not present in the original ls, such as viewing the Git status\nfor a directory, or recursing into directories with a tree view. eza is\nwritten in Rust, so it’s small, fast, and portable.\n",
         homepage: "https://github.com/eza-community/eza",

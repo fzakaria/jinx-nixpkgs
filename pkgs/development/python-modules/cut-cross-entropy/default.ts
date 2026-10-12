@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const tqdm = nix.arg($, "tqdm");
   const transformers = nix.arg($, "transformers");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cut-cross-entropy",
       version: "25.7.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "apple",
           repo: "ml-cross-entropy",
           rev: "b19a424ed30a05b8261cfa84d83b2601a9454c67",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       dependencies: nix.thunk(() => [torch, triton]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         transformers: nix.thunk(() => [transformers]),
         all: nix.thunk(() => [accelerate, datasets, fire, huggingface_hub, pandas, tqdm, transformers]),
       })),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_vocab_parallel"]),
       pythonImportsCheck: nix.thunk(() => ["cut_cross_entropy"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Memory-efficient cross-entropy loss implementation using Cut Cross-Entropy (CCE)",
         homepage: "https://github.com/apple/ml-cross-entropy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "aml")),

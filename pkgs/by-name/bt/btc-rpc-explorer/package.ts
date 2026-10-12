@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "btc-rpc-explorer";
       const version = "3.5.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "janoside",
           repo: "btc-rpc-explorer",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [vips]);
       const dontNpmBuild = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/janoside/btc-rpc-explorer/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
         description: "Database-free, self-hosted Bitcoin explorer, via RPC to Bitcoin Core",
         homepage: "https://github.com/janoside/btc-rpc-explorer",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "btc-rpc-explorer",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const fastdeploy = nix.thunk(() => nix.app(callPackage, nix.path(here, "./fastdeploy-ppocr.nix"), nix.thunk(() => ({}))));
   const sources = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pin.json")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.add("maa-assistant-arknights", nix.app(nix.sel(lib, "optionalString"), isBeta, "-beta"))),
       version: nix.thunk(() => (nix.asBool(isBeta) ? nix.sel(sources, "beta", "version") : nix.sel(sources, "stable", "version"))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MaaAssistantArknights",
           repo: "MaaAssistantArknights",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,14 +58,14 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "USE_MAADEPS", false)),
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "MAA_VERSION", nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`))),
       ]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       postPatch: nix.thunk(() => nix.str`cp -v ${nix.sel(fastdeploy, "cmake")}/Findonnxruntime.cmake cmake/
 `),
       postInstall: nix.thunk(() => nix.str`mkdir -p $out/share/${nix.sel(finalAttrs, "pname")}
 mv $out/{Python,resource} $out/share/${nix.sel(finalAttrs, "pname")}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Arknights assistant",
         homepage: "https://github.com/MaaAssistantArknights/MaaAssistantArknights",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

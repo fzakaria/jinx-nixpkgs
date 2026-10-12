@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "distutils",
       version: nix.thunk(() => nix.attr(setuptools_80, "version")),
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pypa",
           repo: "distutils",
           rev: "5ad8291ff2ad3e43583bc72a4c09299ca6134f09",
@@ -62,7 +62,7 @@ ln -s ${setuptools_80}/${nix.sel(python, "sitePackages")}/setuptools/_distutils 
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       disabledTests: nix.thunk(() => nix.concat(["test_byte_compile", "test_byte_compile_optimized"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["test_glob_to_re"])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Distutils as found in cpython",
         homepage: "https://github.com/pypa/distutils",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

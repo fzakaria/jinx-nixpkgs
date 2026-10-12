@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const findutils = nix.arg($, "findutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "abuild",
       version: "3.17.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.alpinelinux.org",
           owner: "alpine",
           repo: "abuild",
@@ -76,11 +76,11 @@ for prog in \\
 done
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, ignoredVersions: "_rc" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, ignoredVersions: "_rc" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Alpine Linux build tools",
         homepage: "https://gitlab.alpinelinux.org/alpine/abuild",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "foss.heptapod.net",
           owner: "openpyxl",
           repo: "et_xmlfile",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://foss.heptapod.net/openpyxl/et_xmlfile/-/commit/73172a7ce6d819ce13e6706f9a1c6d50f1646dde.patch",
             hash: "sha256-PMtzIGtXJ/vp0VRmBodvyaG/Ptn2DwrTTC1EyLSChHU=",
           })))),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [lxml, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["et_xmlfile"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Implementation of lxml.xmlfile for the standard library",
         longDescription: "et_xmlfile is a low memory library for creating large XML files.\n\nIt is based upon the xmlfile module from lxml with the aim of\nallowing code to be developed that will work with both\nlibraries. It was developed initially for the openpyxl project\nbut is now a standalone module.\n",
         homepage: "https://foss.heptapod.net/openpyxl/et_xmlfile",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

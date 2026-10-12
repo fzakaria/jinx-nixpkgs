@@ -36,28 +36,28 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "xserver", "xautolock"));
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         xserver: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           xautolock: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "xautolock")),
             enableNotifier: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mkEnableOption"), "xautolock.notify"), {
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               description: "Whether to enable the notifier feature of xautolock.\nThis publishes a notification before the autolock.\n",
             })),
             time: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 default: 15n,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                 description: "Idle time (in minutes) to wait until xautolock locks the computer.\n",
               })))),
             locker: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 default: nix.thunk(() => nix.str`${nix.sel(pkgs, "xlockmore")}/bin/xlock`),
                 defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "\"${pkgs.xlockmore}/bin/xlock\"")),
                 example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "\"${pkgs.i3lock}/bin/i3lock -i /path/to/img\"")),
@@ -65,40 +65,40 @@ export default nix.lambda((args) => (() => {
                 description: "The script to use when automatically locking the computer.\n",
               })))),
             nowlocker: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 default: null,
                 example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "\"${pkgs.i3lock}/bin/i3lock -i /path/to/img\"")),
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 description: "The script to use when manually locking the computer with {command}`xautolock -locknow`.\n",
               })))),
             notify: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 default: 10n,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                 description: "Time (in seconds) before the actual lock when the notification about the pending lock should be published.\n",
               })))),
             notifier: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 default: null,
                 example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "\"${pkgs.libnotify}/bin/notify-send 'Locking in 10 seconds'\"")),
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 description: "Notification script to be used to warn about the pending autolock.\n",
               })))),
             killer: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 default: null,
                 example: "/run/current-system/systemd/bin/systemctl suspend",
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 description: "The script to use when nothing has happened for as long as {option}`killtime`\n",
               })))),
             killtime: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 default: 20n,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                 description: "Minutes xautolock waits until it executes the script specified in {option}`killer`\n(Has to be at least 10 minutes)\n",
               })))),
             extraOptions: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 default: [],
                 example: nix.thunk(() => ["-detectsleep"]),
@@ -109,29 +109,29 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         environment: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           systemPackages: nix.thunk(() => (() => {
             const w_1 = nix.withScope(pkgs, w);
             return [nix.thunk(() => nix.lookup(w_1, "xautolock"))];
           })()),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           user: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             services: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               xautolock: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 description: "xautolock service",
                 wantedBy: nix.thunk(() => ["graphical-session.target"]),
                 partOf: nix.thunk(() => ["graphical-session.target"]),
                 serviceConfig: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(lib, w);
                   return {
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     ExecStart: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "strings"), "concatStringsSep"), " ", nix.thunk(() => nix.concat([
                         nix.thunk(() => nix.str`${nix.sel(pkgs, "xautolock")}/bin/xautolock`),
                         "-noclose",
@@ -153,17 +153,17 @@ export default nix.lambda((args) => (() => {
         })),
         assertions: nix.thunk(() => nix.concat([
           nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "enableNotifier")) || nix.asBool(!nix.eq(nix.sel(cfg, "notifier"), null)))),
             message: "When enabling the notifier for xautolock, you also need to specify the notify script",
           })),
           nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, "killer"), null)) || nix.asBool(nix.ge(nix.sel(cfg, "killtime"), 10n)))),
             message: "killtime has to be at least 10 minutes according to `man xautolock`",
           })),
         ], nix.app(nix.sel(lib, "forEach"), nix.thunk(() => ["locker", "notifier", "nowlocker", "killer"]), (option) => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, nix.key(nix.force(option))), null)) || nix.asBool(nix.eq(nix.app(nix.sel(nix.builtins, "substring"), 0n, 1n, nix.thunk(() => nix.sel(cfg, nix.key(nix.force(option))))), "/")))),
             message: nix.thunk(() => nix.str`Please specify a canonical path for \`services.xserver.xautolock.${option}\``),
           })))),

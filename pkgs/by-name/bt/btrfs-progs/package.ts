@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const udevSupport = nix.argOr($, "udevSupport", () => true);
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "btrfs-progs",
       version: "7.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://kernel/linux/kernel/people/kdave/btrfs-progs/btrfs-progs-v${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-0fVcwpcTmMkULqp50gPmPVhqO0uGf5VmZKHWgyLNTjQ=",
         })))),
@@ -58,9 +58,9 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "simple-filesystem": nix.thunk(() => nix.app(runCommand, "btrfs-progs-create-fs", nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir -p $out
 truncate -s110M $out/disc
 ${btrfs_progs}/bin/mkfs.btrfs $out/disc | tee $out/success
@@ -69,13 +69,13 @@ ${btrfs_progs}/bin/btrfs check $out/disc | tee $out/success
 `))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/kdave/btrfs-progs.git",
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Utilities for the btrfs filesystem",
         homepage: "https://btrfs.readthedocs.io/en/latest/",
         changelog: nix.thunk(() => nix.str`https://github.com/kdave/btrfs-progs/raw/v${nix.sel(finalAttrs, "version")}/CHANGES`),

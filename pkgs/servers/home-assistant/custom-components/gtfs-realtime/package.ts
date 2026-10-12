@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const domain = "gtfs_realtime";
       const version = "0.4.10";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bcpearce",
           repo: "homeassistant-gtfs-realtime",
           tag: version,
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_call_card_creator"]);
       const ignoreVersionRequirement = nix.thunk(() => ["gtfs_station_stop"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/bcpearce/homeassistant-gtfs-realtime/releases/tag/${nix.sel(src, "tag")}`),
         description: "GTFS Realtime transit arrivals for Home Assistant",
         homepage: "https://github.com/bcpearce/homeassistant-gtfs-realtime",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "stepbrobd"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         owner,
         domain,
         version,

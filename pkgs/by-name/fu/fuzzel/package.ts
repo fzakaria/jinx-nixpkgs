@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const librsvg = nix.arg($, "librsvg");
   nix.assert_((!nix.asBool((nix.asBool(svgSupport) && nix.asBool(nix.eq(svgBackend, "nanosvg")))) || nix.asBool(enableCairo)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/fu/fuzzel/package.nix:27:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fuzzel",
       version: "1.15.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dnkl",
           repo: "fuzzel",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonOption"), "svg-backend", nix.thunk(() => (nix.asBool(svgSupport) ? nix.force(svgBackend) : "none")))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://codeberg.org/dnkl/fuzzel/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Wayland-native application launcher, similar to rofi’s drun mode",
         homepage: "https://codeberg.org/dnkl/fuzzel",

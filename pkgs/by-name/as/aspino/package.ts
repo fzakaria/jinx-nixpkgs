@@ -17,16 +17,16 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const boost = nix.arg($, "boost");
   const glucose$ = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "http://www.labri.fr/perso/lsimon/downloads/softwares/glucose-syrup.tgz",
       hash: "sha256-jboqQX/Z8RcPG30UVHaI7hLJKpgOCwCeha7BpaSgBS8=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "aspino",
       version: "0-unstable-2018-03-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "alviano",
           repo: "aspino",
           rev: "4d7483e328bdf9a00ef1eb7f2868e7b0f2a82d56",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
 `),
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ninstall -m0755 build/release/{aspino,fairino-{bs,ls,ps},maxino-2015-{k16,kdyn}} $out/bin\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "SAT/PseudoBoolean/MaxSat/ASP solver using glucose",
         maintainers: [],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

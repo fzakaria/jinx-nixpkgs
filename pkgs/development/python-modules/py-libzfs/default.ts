@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.4.1-4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "45Drives",
           repo: "python3-libzfs",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -34,13 +34,13 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [cython, setuptools]);
       const configureFlags = nix.thunk(() => [nix.thunk(() => nix.str`--prefix=${nix.sel(zfs_2_3, "dev")}`)]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.sel(zfs_2_3, "dev")}/include/libzfs -I${nix.sel(zfs_2_3, "dev")}/include/libspl -Wno-error=incompatible-pointer-types`),
         NIX_CFLAGS_LINK: nix.thunk(() => nix.str`-L${zfs_2_3}/lib`),
       }));
       const pythonImportsCheck = nix.thunk(() => ["libzfs"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python libzfs bindings",
         homepage: "https://github.com/45Drives/python3-libzfs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

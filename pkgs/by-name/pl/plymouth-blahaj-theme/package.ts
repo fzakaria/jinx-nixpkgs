@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "plymouth-blahaj-theme";
       const version = "1.0.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/190n/plymouth-blahaj/releases/download/v${version}/blahaj.tar.gz`),
           sha256: "sha256-JSCu/3SK1FlSiRwxnjQvHtPGGkPc6u/YjaoIvw0PU8A=",
         }))));
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const dontBuild = true;
       const installPhase = "runHook preInstall\n\nmkdir -p $out/share/plymouth/themes/blahaj\ncp * $out/share/plymouth/themes/blahaj\nfind $out/share/plymouth/themes/ -name \\*.plymouth -exec sed -i \"s@\\/usr\\/@$out\\/@\" {} \\;\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Plymouth theme featuring IKEA's 1m soft toy shark",
         homepage: "https://github.com/190n/plymouth-blahaj",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

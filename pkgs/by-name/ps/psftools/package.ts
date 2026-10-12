@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "psftools",
       version: "1.1.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.seasip.info/Unix/PSF/psftools-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-uiPWgJblAMKpM79L1FrJg4RzJ0D/XenkfUXNTmvq9B8=",
         })))),
       outputs: nix.thunk(() => ["out", "man", "dev", "lib"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.seasip.info/Unix/PSF",
         description: "Conversion tools for .PSF fonts",
         longDescription: "The PSFTOOLS are designed to manipulate fixed-width bitmap fonts,\nsuch as DOS or Linux console fonts. Both the PSF1 (8 pixels wide)\nand PSF2 (any width) formats are supported; the default output\nformat is PSF2.\n",

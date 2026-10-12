@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "genAttrs")), (_) => true)),
         ])));
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         added: nix.thunk(() => nix.app(filterKeys, (n) => (_) => !nix.asBool(nix.has(old, nix.key(nix.force(n)))), new$)),
         removed: nix.thunk(() => nix.app(filterKeys, (n) => (_) => !nix.asBool(nix.has(new$, nix.key(nix.force(n)))), old)),
         changed: nix.thunk(() => nix.app(filterKeys, (n) => (v) => (nix.asBool(nix.has(new$, nix.key(nix.force(n)))) && nix.asBool(!nix.eq(v, nix.sel(new$, nix.key(nix.force(n)))))), old)),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
     const meta = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.thunk(() => nix.str`${after}/${evalSystem}/meta.json`)));
     const maintainers = nix.thunk(() => nix.app(nix.sel(lib, "pipe"), meta, nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (k) => (v) => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             package: nix.thunk(() => nix.app(nix.sel(lib, "pipe"), k, nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(lib, "splitString"), ".")),
                 nix.thunk(() => nix.sel(lib, "init")),

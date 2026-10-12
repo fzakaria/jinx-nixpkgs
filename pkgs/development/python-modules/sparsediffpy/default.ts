@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const scikit_build_core = nix.arg($, "scikit-build-core");
   const blas = nix.arg($, "blas");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sparsediffpy",
       version: "0.6.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SparseDifferentiation",
           repo: "SparseDiffPy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["sparsediffpy"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python bindings for SparseDiffEngine, a C library for computing sparse Jacobians and Hessians",
         homepage: "https://github.com/SparseDifferentiation/SparseDiffPy",
         changelog: nix.thunk(() => nix.str`https://github.com/SparseDifferentiation/SparseDiffPy/blob/${nix.sel(finalAttrs, "src", "tag")}/RELEASES.md`),

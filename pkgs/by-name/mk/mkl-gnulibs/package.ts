@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const mkl = nix.arg($, "mkl");
   const patchelf = nix.arg($, "patchelf");
   return nix.app(nix.sel(mkl, "overrideAttrs"), (finalAttrs) => (o) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       strictDeps: true,
       __structuredAttrs: true,
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(o, "nativeBuildInputs"), [gcc, patchelf])),
@@ -56,18 +56,18 @@ substituteAll ${nix.path(here, "./mkl.pc.in")} $out/lib/pkgconfig/mkl.pc
 # Need slightly different name for numpy, which special cases "mkl"
 substituteAll ${nix.path(here, "./mkl.pc.in")} $out/lib/pkgconfig/mkl_rt.pc
 `)),
-      meta: nix.thunk(() => nix.update(nix.selOr(o, () => ({}), "meta"), { __proto__: pos$1, platforms: nix.thunk(() => ["x86_64-linux"]) })),
+      meta: nix.thunk(() => nix.update(nix.selOr(o, () => ({}), "meta"), { [nix.POS]: pos$1, platforms: nix.thunk(() => ["x86_64-linux"]) })),
       passthru: nix.thunk(() => nix.update(nix.selOr(o, () => ({}), "passthru"), {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         isILP64: false,
         implementation: "mkl",
         blasProvider: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
         blasImplementation: "mkl",
         provider: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "gnu-openmp": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               "mkl-gnulibs": nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),

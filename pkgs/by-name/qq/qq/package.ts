@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
     const url = nix.arg($_1, "url");
     const hash = nix.arg($_1, "hash");
     return nix.app(runCommandLocal, nix.thunk(() => nix.builtins.baseNameOf(url)), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         outputHash: hash,
         outputHashMode: "flat",
         nativeBuildInputs: nix.thunk(() => [curl, jq, cacert]),
@@ -69,13 +69,13 @@ curl -fL --retry 3 -o "$out" "$signedUrl"
   const pname = "qq";
   const version = nix.thunk(() => nix.sel(source, "version"));
   const src = nix.thunk(() => nix.app(fetchqq, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.attr(source, "url")),
       hash: nix.thunk(() => nix.attr(source, "hash")),
     }))));
-  const passthru = nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.path(here, "./update.sh") }));
+  const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") }));
   const meta = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     homepage: "https://im.qq.com/index/",
     description: "Messaging app",
     platforms: nix.thunk(() => ["aarch64-darwin", "aarch64-linux", "x86_64-linux"]),
@@ -95,7 +95,7 @@ curl -fL --retry 3 -o "$out" "$signedUrl"
     })()),
   }));
   return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       src: src,
@@ -105,7 +105,7 @@ curl -fL --retry 3 -o "$out" "$signedUrl"
       sourceRoot: ".",
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications\ncp -a QQ.app $out/Applications\n\nrunHook postInstall\n",
     }))) : nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: version,
       src: src,

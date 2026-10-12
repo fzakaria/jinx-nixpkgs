@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "wakeonlan";
       const version = "0.42";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jpoliv",
           repo: "wakeonlan",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "rm -f t/93_pod_spell.t\n";
       const installPhase = "install -Dt $out/bin wakeonlan\ninstallManPage blib/man1/wakeonlan.1\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Perl script for waking up computers via Wake-On-LAN magic packets",
         homepage: "https://github.com/jpoliv/wakeonlan",
         license: nix.thunk(() => nix.sel(lib, "licenses", "artistic1")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "wakeonlan",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

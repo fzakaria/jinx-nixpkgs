@@ -11,14 +11,14 @@ export default nix.lambda((args) => (() => {
   const apple_sdk_26 = nix.arg($, "apple-sdk_26");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "libcxx",
       version: nix.thunk(() => nix.str`21.1.6+apple-sdk-${nix.sel(apple_sdk_26, "version")}`),
       src: nix.thunk(() => nix.attr(apple_sdk_26, "src")),
       dontConfigure: true,
       dontBuild: true,
       installPhase: "runHook preInstall\nmkdir -p \"$out/include\" \"$out/lib\"\ncp -v usr/lib/libc++abi.tbd usr/lib/libc++.1.tbd \"$out/lib\"\nln -s libc++.1.tbd \"$out/lib/libc++.tbd\"\ncp -rv usr/include/c++ \"$out/include\"\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$1, isLLVM: true })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, isLLVM: true })),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

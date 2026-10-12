@@ -24,28 +24,28 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     name: "pgbouncer",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "_1000101"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       one: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           systemd: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             services: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               "postgresql-setup": nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 postStart: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "postgresql")}/bin/psql -U postgres -c "ALTER ROLE testuser WITH LOGIN PASSWORD 'testpass'";
 ${nix.sel(pkgs_1, "postgresql")}/bin/psql -U postgres -c "ALTER DATABASE testdb OWNER TO testuser;";
 `),
@@ -53,28 +53,28 @@ ${nix.sel(pkgs_1, "postgresql")}/bin/psql -U postgres -c "ALTER DATABASE testdb 
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             postgresql: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               enable: true,
               ensureDatabases: nix.thunk(() => ["testdb"]),
-              ensureUsers: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$5, name: "testuser" }))]),
+              ensureUsers: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$5, name: "testuser" }))]),
               authentication: "local testdb testuser scram-sha-256\n",
             })),
             pgbouncer: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               enable: true,
               openFirewall: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 pgbouncer: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   listen_addr: "localhost",
                   auth_type: "scram-sha-256",
                   auth_file: nix.thunk(() => nix.builtins.toFile("pgbouncer-users.txt", "\"testuser\" \"testpass\"\n")),
                 })),
                 databases: nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   test: "host=/run/postgresql port=5432 auth_user=testuser dbname=testdb",
                 })),
               })),

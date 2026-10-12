@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const ueberzugpp = nix.arg($, "ueberzugpp");
   const yt_dlp = nix.arg($, "yt-dlp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ytfzf",
       version: "2.6.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pystardust",
           repo: "ytfzf",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
   --set YTFZF_SYSTEM_ADDON_DIR "$out/share/ytfzf/addons"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Posix script to find and watch youtube videos from the terminal",
         homepage: "https://github.com/pystardust/ytfzf",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

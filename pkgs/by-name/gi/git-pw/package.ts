@@ -21,16 +21,16 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const git_pw = nix.arg($, "git-pw");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "git-pw",
       version: "2.8.1",
       pyproject: true,
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         PBR_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "getpatchwork",
           repo: "git-pw",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -62,17 +62,17 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
-          version: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$3, package: git_pw }))), "overrideAttrs"), (old) => ({
-              __proto__: pos$4,
+          [nix.POS]: pos$5,
+          version: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: git_pw }))), "overrideAttrs"), (old) => ({
+              [nix.POS]: pos$4,
               buildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "buildInputs"), [git])),
             }))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Tool for integrating Git with Patchwork, the web-based patch tracking system",
         homepage: "https://github.com/getpatchwork/git-pw",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

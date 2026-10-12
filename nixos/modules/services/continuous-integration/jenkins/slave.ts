@@ -31,33 +31,33 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "jenkinsSlave"));
   const masterCfg = nix.thunk(() => nix.sel(config, "services", "jenkins"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         jenkinsSlave: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "If true the system will be configured to work as a jenkins slave.\nIf the system is also configured to work as a jenkins master then this has no effect.\nIn progress: Currently only assures the jenkins user is configured.\n",
             })))),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: "jenkins",
               type: nix.thunk(() => nix.sel(types, "str")),
               description: "User the jenkins slave agent should execute under.\n",
             })))),
           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: "jenkins",
               type: nix.thunk(() => nix.sel(types, "str")),
               description: "If the default slave agent user \"jenkins\" is configured then this is\nthe primary group of that user.\n",
             })))),
           home: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: "/var/lib/jenkins",
               type: nix.thunk(() => nix.sel(types, "path")),
               description: "The path to use as JENKINS_HOME. If the default user \"jenkins\" is configured then\nthis is the home of the \"jenkins\" user.\n",
@@ -67,20 +67,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(nix.sel(cfg, "enable")) && nix.asBool(!nix.asBool(nix.sel(masterCfg, "enable"))))), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         users: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "jenkins")), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               jenkins: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 gid: nix.thunk(() => nix.sel(config, "ids", "gids", "jenkins")),
               })),
             })))),
           users: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "jenkins")), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               jenkins: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 description: "jenkins user",
                 createHome: true,
                 home: nix.thunk(() => nix.sel(cfg, "home")),
@@ -91,9 +91,9 @@ export default nix.lambda((args) => (() => {
             })))),
         })),
         programs: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           java: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             enable: true,
             package: nix.thunk(() => nix.sel(cfg, "javaPackage")),
           })),

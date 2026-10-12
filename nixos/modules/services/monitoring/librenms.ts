@@ -105,16 +105,16 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   const configJson = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "librenms-config.json", nix.thunk(() => nix.sel(cfg, "settings"))));
   const package$ = nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       logDir: nix.thunk(() => nix.attr(cfg, "logDir")),
       dataDir: nix.thunk(() => nix.attr(cfg, "dataDir")),
     }))));
   const toKeyValue = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toKeyValue"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       mkKeyValue: nix.thunk(() => nix.app(nix.sel(lib, "generators", "mkKeyValueDefault"), nix.thunk(() => ({})), " = ")),
     }))));
   const defaultPHPSettings = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     log_errors: "on",
     post_max_size: "100M",
     upload_max_filesize: "100M",
@@ -122,7 +122,7 @@ export default nix.lambda((args) => (() => {
     "date.timezone": nix.thunk(() => nix.sel(config, "time", "timeZone")),
   }));
   const phpIni = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "php.ini", nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       phpPackage: nix.thunk(() => nix.attr(package$, "phpPackage")),
       phpOptions: nix.thunk(() => nix.app(toKeyValue, nix.thunk(() => nix.sel(cfg, "phpOptions")))),
       preferLocalBuild: true,
@@ -150,19 +150,19 @@ $config = ($config == null) ? $new_config : array_merge($config, $new_config);
 ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "extraConfig"), null)), nix.thunk(() => nix.sel(cfg, "extraConfig")))}
 `)));
   return {
-    __proto__: pos$92,
+    [nix.POS]: pos$92,
     options: nix.thunk(() => ({
-      __proto__: pos$45,
+      [nix.POS]: pos$45,
       services: nix.thunk(() => ({
-        __proto__: pos$44,
+        [nix.POS]: pos$44,
         librenms: nix.thunk(() => (() => {
           const w = nix.withScope(lib, null);
           return {
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "LibreNMS network monitoring system")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "librenms", nix.thunk(() => ({})))),
             finalPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(lib, "types", "package")),
                 readOnly: true,
                 default: package$,
@@ -170,100 +170,100 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
                 description: "The final package used by the module. This is the package that has all overrides.\n",
               })))),
             user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "librenms",
                 description: "Name of the LibreNMS user.\n",
               })))),
             group: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "librenms",
                 description: "Name of the LibreNMS group.\n",
               })))),
             hostname: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: nix.thunk(() => nix.sel(config, "networking", "fqdnOrHostName")),
                 defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "config.networking.fqdnOrHostName")),
                 description: "The hostname to serve LibreNMS on.\n",
               })))),
             pollerThreads: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                 default: 16n,
                 description: "Amount of threads of the cron-poller.\n",
               })))),
             enableOneMinutePolling: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: false,
                 description: "Enables the [1-Minute Polling](https://docs.librenms.org/Support/1-Minute-Polling/).\nChanging this option will automatically convert your existing rrd files.\n",
               })))),
             enableLocalBilling: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: true,
                 description: "Enable billing Cron-Jobs on the local instance. Enabled by default, but you may disable it\non some nodes within a distributed poller setup. See [the docs](https://docs.librenms.org/Extensions/Distributed-Poller/#discovery)\nfor more informations about billing with distributed pollers.\n",
               })))),
             useDistributedPollers: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: false,
                 description: "Enables [distributed pollers](https://docs.librenms.org/Extensions/Distributed-Poller/)\nfor this LibreNMS instance. This will enable a local `rrdcached` and `memcached` server.\n\nTo use this feature, make sure to configure your firewall that the distributed pollers\ncan reach the local `mysql`, `rrdcached` and `memcached` ports.\n",
               })))),
             distributedPoller: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                   default: false,
                   description: "Configure this LibreNMS instance as a [distributed poller](https://docs.librenms.org/Extensions/Distributed-Poller/).\nThis will disable all web features and just configure the poller features.\nUse the `mysql` database of your main LibreNMS instance in the database settings.\n",
                 })))),
               name: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                   default: null,
                   description: "Custom name of this poller.\n",
                 })))),
               group: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                   default: "0",
                   example: "1,2",
                   description: "Group(s) of this poller.\n",
                 })))),
               distributedBilling: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                   default: false,
                   description: "Enable distributed billing on this poller.\n\nNote: according to [the docs](https://docs.librenms.org/Extensions/Distributed-Poller/#discovery),\nbilling should only be calculated on a single node per poller group. You can disable billing on\nsome nodes with the `services.librenms.enableLocalBilling` option.\n",
                 })))),
               memcachedHost: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                   description: "Hostname or IP of the `memcached` server.\n",
                 })))),
               memcachedPort: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
                   default: 11211n,
                   description: "Port of the `memcached` server.\n",
                 })))),
               rrdcachedHost: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                   description: "Hostname or IP of the `rrdcached` server.\n",
                 })))),
               rrdcachedPort: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
                   default: 42217n,
                   description: "Port of the `memcached` server.\n",
                 })))),
             })),
             phpOptions: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 type: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                   return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "oneOf"), nix.thunk(() => [
@@ -272,7 +272,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
                       ]))));
                 })()),
                 defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "generators"), "toPretty"), nix.thunk(() => ({})), nix.thunk(() => nix.update(defaultPHPSettings, {
-                      __proto__: pos$22,
+                      [nix.POS]: pos$22,
                       zend_extension: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "opcache")),
                       "opcache.enable": nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "1")),
                       "opcache.memory_consumption": nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "256")),
@@ -282,7 +282,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
                 description: "Options for PHP's php.ini file for librenms.\n\nPlease note that this option is _additive_ on purpose while the\nattribute values inside the default are option defaults: that means that\n\n```nix\n{\n  services.librenms.phpOptions.\"opcache.enable\" = 1;\n}\n```\n\nwill override the `php.ini` option `opcache.enable` without discarding the rest of the defaults.\n\nOverriding all of `phpOptions` can be done like this:\n\n```nix\n{\n  services.librenms.phpOptions = lib.mkForce {\n    /* ... */\n  };\n}\n```\n",
               })))),
             poolConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 type: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                   return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "oneOf"), nix.thunk(() => [
@@ -292,7 +292,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
                       ]))));
                 })()),
                 default: nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   pm: "dynamic",
                   "pm.max_children": 32n,
                   "pm.start_servers": 2n,
@@ -303,64 +303,64 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
                 description: "Options for the LibreNMS PHP pool. See the documentation on `php-fpm.conf`\nfor details on configuration directives.\n",
               })))),
             nginx: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$27,
-                type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => nix.app(nix.lookup(w, "recursiveUpdate"), nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "../web-servers/nginx/vhost-options.nix"), nix.thunk(() => ({ __proto__: pos$26, config: config, lib: lib })))), nix.thunk(() => ({})))))),
+                [nix.POS]: pos$27,
+                type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => nix.app(nix.lookup(w, "recursiveUpdate"), nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "../web-servers/nginx/vhost-options.nix"), nix.thunk(() => ({ [nix.POS]: pos$26, config: config, lib: lib })))), nix.thunk(() => ({})))))),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  serverAliases = [\n    \"librenms.${config.networking.domain}\"\n  ];\n  # To enable encryption and let let's encrypt take care of certificate\n  forceSSL = true;\n  enableACME = true;\n  # To set the LibreNMS virtualHost as the default virtualHost;\n  default = true;\n}\n")),
                 description: "With this option, you can customize the nginx virtualHost settings.\n",
               })))),
             dataDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
                 default: "/var/lib/librenms",
                 description: "Path of the LibreNMS state directory.\n",
               })))),
             logDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
                 default: "/var/log/librenms",
                 description: "Path of the LibreNMS logging directory.\n",
               })))),
             database: nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               createLocally: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                   default: false,
                   description: "Whether to create a local database automatically.\n",
                 })))),
               host: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   default: "localhost",
                   description: "Hostname or IP of the MySQL/MariaDB server.\nIgnored if 'socket' is defined.\n",
                 })))),
               port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$32,
+                  [nix.POS]: pos$32,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
                   default: 3306n,
                   description: "Port of the MySQL/MariaDB server.\nIgnored if 'socket' is defined.\n",
                 })))),
               database: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                   default: "librenms",
                   description: "Name of the database on the MySQL/MariaDB server.\n",
                 })))),
               username: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$34,
+                  [nix.POS]: pos$34,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                   default: "librenms",
                   description: "Name of the user on the MySQL/MariaDB server.\nIgnored if 'socket' is defined.\n",
                 })))),
               passwordFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$35,
+                  [nix.POS]: pos$35,
                   type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
                   default: null,
                   example: "/run/secrets/mysql.pass",
                   description: "A file containing the password for the user of the MySQL/MariaDB server.\nMust be readable for the LibreNMS user.\nIgnored if 'socket' is defined, mandatory otherwise.\n",
                 })))),
               socket: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$36,
+                  [nix.POS]: pos$36,
                   type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                   default: null,
                   example: "/run/mysqld/mysqld.sock",
@@ -368,29 +368,29 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
                 })))),
             })),
             environmentFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 default: null,
                 description: "File containing env-vars to be substituted into the final config. Useful for secrets.\nDoes not apply to settings defined in `extraConfig`.\n",
               })))),
             settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                    __proto__: pos$39,
+                    [nix.POS]: pos$39,
                     freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                     options: nix.thunk(() => ({})),
                   })))),
                 description: "Attrset of the LibreNMS configuration.\nSee <https://docs.librenms.org/Support/Configuration/> for reference.\nAll possible options are listed [here](https://github.com/librenms/librenms/blob/master/resources/definitions/config_definitions.json).\nSee <https://docs.librenms.org/Extensions/Authentication/> for setting other authentication methods.\n",
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => ({
-                  __proto__: pos$40,
+                  [nix.POS]: pos$40,
                   base_url: "/librenms/",
                   top_devices: true,
                   top_ports: false,
                 })),
               })))),
             extraConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 default: null,
                 description: "Additional config for LibreNMS that will be appended to the `config.php`. See\n<https://github.com/librenms/librenms/blob/master/misc/config_definitions.json>\nfor possible options. Useful if you want to use PHP-Functions in your config.\n",
@@ -400,29 +400,29 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$90,
+        [nix.POS]: pos$90,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             assertion: nix.thunk(() => !nix.eq(nix.sel(config, "time", "timeZone"), null)),
             message: "You must set `time.timeZone` to use the LibreNMS module.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "database", "createLocally")) || nix.asBool(nix.eq(nix.sel(cfg, "database", "host"), "localhost")))),
             message: "The database host must be \"localhost\" if services.librenms.database.createLocally is set to true.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             assertion: nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(cfg, "useDistributedPollers")) && nix.asBool(nix.sel(cfg, "distributedPoller", "enable"))))),
             message: "The LibreNMS instance can't be a distributed poller and a full instance at the same time.",
           })),
         ]),
         users: nix.thunk(() => ({
-          __proto__: pos$50,
+          [nix.POS]: pos$50,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.sel(cfg, "user"), nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               group: nix.thunk(() => nix.str`${nix.sel(cfg, "group")}`),
               isSystemUser: true,
             }))],
@@ -430,12 +430,12 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
           groups: nix.thunk(() => nix.attrsDyn({}, [[nix.sel(cfg, "group"), nix.thunk(() => ({}))]])),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$73,
+          [nix.POS]: pos$73,
           librenms: nix.thunk(() => ({
-            __proto__: pos$54,
+            [nix.POS]: pos$54,
             phpOptions: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "const"), nix.thunk(() => nix.sel(lib, "mkOptionDefault")))), defaultPHPSettings)),
             settings: nix.thunk(() => nix.update({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               user: nix.thunk(() => nix.sel(cfg, "user")),
               own_hostname: nix.thunk(() => nix.sel(cfg, "hostname")),
               base_url: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/")),
@@ -446,7 +446,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
               "rrd.step": nix.thunk(() => (nix.asBool(nix.sel(cfg, "enableOneMinutePolling")) ? 60n : 300n)),
               "rrd.heartbeat": nix.thunk(() => (nix.asBool(nix.sel(cfg, "enableOneMinutePolling")) ? 120n : 600n)),
             }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "distributedPoller", "enable")), nix.thunk(() => ({
-                __proto__: pos$52,
+                [nix.POS]: pos$52,
                 distributed_poller: true,
                 distributed_poller_name: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "distributedPoller", "name"), null)), nix.thunk(() => nix.sel(cfg, "distributedPoller", "name")))),
                 distributed_poller_group: nix.thunk(() => nix.sel(cfg, "distributedPoller", "group")),
@@ -455,7 +455,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
                 distributed_poller_memcached_port: nix.thunk(() => nix.sel(cfg, "distributedPoller", "memcachedPort")),
                 rrdcached: nix.thunk(() => nix.str`${nix.sel(cfg, "distributedPoller", "rrdcachedHost")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "distributedPoller", "rrdcachedPort")))}`),
               }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "useDistributedPollers")), nix.thunk(() => ({
-                __proto__: pos$53,
+                [nix.POS]: pos$53,
                 distributed_poller: true,
                 distributed_poller_group: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "0")),
                 distributed_billing: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
@@ -464,19 +464,19 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
                 rrdcached: "localhost:42217",
               })))))),
           })),
-          memcached: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "useDistributedPollers")), nix.thunk(() => ({ __proto__: pos$55, enable: true, listen: "0.0.0.0" })))),
+          memcached: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "useDistributedPollers")), nix.thunk(() => ({ [nix.POS]: pos$55, enable: true, listen: "0.0.0.0" })))),
           mysql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ({
-              __proto__: pos$60,
+              [nix.POS]: pos$60,
               enable: true,
               package: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(pkgs, "mariadb")))),
               settings: nix.thunk(() => ({
-                __proto__: pos$58,
-                mysqld: nix.thunk(() => nix.update({ __proto__: pos$56, innodb_file_per_table: 1n, lower_case_table_names: 0n }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "useDistributedPollers")), nix.thunk(() => ({ __proto__: pos$57, "bind-address": "0.0.0.0" }))))),
+                [nix.POS]: pos$58,
+                mysqld: nix.thunk(() => nix.update({ [nix.POS]: pos$56, innodb_file_per_table: 1n, lower_case_table_names: 0n }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "useDistributedPollers")), nix.thunk(() => ({ [nix.POS]: pos$57, "bind-address": "0.0.0.0" }))))),
               })),
               ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "database", "database"))]),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$59,
+                  [nix.POS]: pos$59,
                   name: nix.thunk(() => nix.sel(cfg, "database", "username")),
                   ensurePermissions: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${nix.sel(cfg, "database", "database")}.*`, "ALL PRIVILEGES"]])),
                 })),
@@ -486,23 +486,23 @@ GRANT ALL PRIVILEGES ON ${nix.sel(cfg, "database", "database")}.* TO '${nix.sel(
 `))))),
             })))),
           nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "distributedPoller", "enable"))), nix.thunk(() => ({
-              __proto__: pos$65,
+              [nix.POS]: pos$65,
               enable: true,
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${nix.sel(cfg, "hostname")}`, nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                     nix.thunk(() => nix.sel(cfg, "nginx")),
                     nix.thunk(() => ({
-                      __proto__: pos$64,
+                      [nix.POS]: pos$64,
                       root: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.str`${package$}/html`))),
                       locations: nix.thunk(() => ({
-                        __proto__: pos$63,
+                        [nix.POS]: pos$63,
                         "/": nix.thunk(() => ({
-                          __proto__: pos$61,
+                          [nix.POS]: pos$61,
                           index: "index.php",
                           tryFiles: "$uri $uri/ /index.php?$query_string",
                         })),
                         "~ .php$": nix.thunk(() => ({
-                          __proto__: pos$62,
+                          [nix.POS]: pos$62,
                           extraConfig: nix.thunk(() => nix.str`fastcgi_pass unix:${nix.sel(config, "services", "phpfpm", "pools", "librenms", "socket")};
 fastcgi_split_path_info ^(.+\\.php)(/.+)$;
 `),
@@ -513,17 +513,17 @@ fastcgi_split_path_info ^(.+\\.php)(/.+)$;
               ])),
             })))),
           phpfpm: nix.thunk(() => ({
-            __proto__: pos$69,
+            [nix.POS]: pos$69,
             pools: nix.thunk(() => ({
-              __proto__: pos$68,
+              [nix.POS]: pos$68,
               librenms: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "distributedPoller", "enable"))), nix.thunk(() => ({
-                  __proto__: pos$67,
+                  [nix.POS]: pos$67,
                   user: nix.thunk(() => nix.sel(cfg, "user")),
                   group: nix.thunk(() => nix.sel(cfg, "group")),
                   phpPackage: nix.thunk(() => nix.attr(package$, "phpPackage")),
                   phpOptions: nix.thunk(() => nix.app(toKeyValue, nix.thunk(() => nix.sel(cfg, "phpOptions")))),
                   settings: nix.thunk(() => nix.update({
-                    __proto__: pos$66,
+                    [nix.POS]: pos$66,
                     "listen.mode": "0660",
                     "listen.owner": nix.thunk(() => nix.sel(config, "services", "nginx", "user")),
                     "listen.group": nix.thunk(() => nix.sel(config, "services", "nginx", "group")),
@@ -532,11 +532,11 @@ fastcgi_split_path_info ^(.+\\.php)(/.+)$;
             })),
           })),
           logrotate: nix.thunk(() => ({
-            __proto__: pos$71,
+            [nix.POS]: pos$71,
             enable: true,
             settings: nix.thunk(() => nix.attrsDyn({}, [
               [nix.str`${nix.sel(cfg, "logDir")}/librenms.log`, nix.thunk(() => ({
-                __proto__: pos$70,
+                [nix.POS]: pos$70,
                 su: nix.thunk(() => nix.str`${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")}`),
                 create: nix.thunk(() => nix.str`0640 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")}`),
                 rotate: 6n,
@@ -549,7 +549,7 @@ fastcgi_split_path_info ^(.+\\.php)(/.+)$;
             ])),
           })),
           cron: nix.thunk(() => ({
-            __proto__: pos$72,
+            [nix.POS]: pos$72,
             enable: true,
             systemCronJobs: nix.thunk(() => (() => {
               const env = nix.thunk(() => nix.str`PHPRC=${phpIni}`);
@@ -572,16 +572,16 @@ fastcgi_split_path_info ^(.+\\.php)(/.+)$;
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$85,
+          [nix.POS]: pos$85,
           services: nix.thunk(() => ({
-            __proto__: pos$80,
+            [nix.POS]: pos$80,
             rrdcached: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "useDistributedPollers")), nix.thunk(() => ({
-                __proto__: pos$75,
+                [nix.POS]: pos$75,
                 description: "rrdcached",
                 after: nix.thunk(() => ["librenms-setup.service"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$74,
+                  [nix.POS]: pos$74,
                   Type: "forking",
                   User: nix.thunk(() => nix.sel(cfg, "user")),
                   Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -592,11 +592,11 @@ fastcgi_split_path_info ^(.+\\.php)(/.+)$;
                 })),
               })))),
             "librenms-scheduler": nix.thunk(() => ({
-              __proto__: pos$77,
+              [nix.POS]: pos$77,
               description: "LibreNMS Scheduler",
               path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "unixtools", "whereis"))]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$76,
+                [nix.POS]: pos$76,
                 Type: "oneshot",
                 WorkingDirectory: package$,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
@@ -605,7 +605,7 @@ fastcgi_split_path_info ^(.+\\.php)(/.+)$;
               })),
             })),
             "librenms-setup": nix.thunk(() => ({
-              __proto__: pos$79,
+              [nix.POS]: pos$79,
               description: "Preparation tasks for LibreNMS",
               before: nix.thunk(() => ["phpfpm-librenms.service"]),
               after: nix.thunk(() => nix.concat(["systemd-tmpfiles-setup.service", "network.target"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(nix.sel(cfg, "database", "host"), "localhost")), "mysql.service"))),
@@ -617,7 +617,7 @@ fastcgi_split_path_info ^(.+\\.php)(/.+)$;
                 nix.thunk(() => nix.sel(pkgs, "gnused")),
               ]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$78,
+                [nix.POS]: pos$78,
                 Type: "oneshot",
                 RemainAfterExit: true,
                 EnvironmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "environmentFile"), null)), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "environmentFile"))]))),
@@ -723,16 +723,16 @@ ${artisanWrapper}/bin/librenms-artisan config:cache
             })),
           })),
           timers: nix.thunk(() => ({
-            __proto__: pos$83,
+            [nix.POS]: pos$83,
             "librenms-scheduler": nix.thunk(() => ({
-              __proto__: pos$82,
+              [nix.POS]: pos$82,
               description: "LibreNMS Scheduler",
               wantedBy: nix.thunk(() => ["timers.target"]),
-              timerConfig: nix.thunk(() => ({ __proto__: pos$81, OnCalendar: "minutely", AccuracySec: "1second" })),
+              timerConfig: nix.thunk(() => ({ [nix.POS]: pos$81, OnCalendar: "minutely", AccuracySec: "1second" })),
             })),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$84,
+            [nix.POS]: pos$84,
             rules: nix.thunk(() => nix.concat([
               nix.thunk(() => nix.str`d ${nix.sel(cfg, "logDir")}                               0750 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} - -`),
               nix.thunk(() => nix.str`f ${nix.sel(cfg, "logDir")}/librenms.log                  0640 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} - -`),
@@ -758,11 +758,11 @@ ${artisanWrapper}/bin/librenms-artisan config:cache
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$88,
+          [nix.POS]: pos$88,
           wrappers: nix.thunk(() => ({
-            __proto__: pos$87,
+            [nix.POS]: pos$87,
             fping: nix.thunk(() => ({
-              __proto__: pos$86,
+              [nix.POS]: pos$86,
               setuid: true,
               owner: "root",
               group: "root",
@@ -771,12 +771,12 @@ ${artisanWrapper}/bin/librenms-artisan config:cache
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$89,
+          [nix.POS]: pos$89,
           systemPackages: nix.thunk(() => [artisanWrapper, lnmsWrapper]),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$91,
+      [nix.POS]: pos$91,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

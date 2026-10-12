@@ -25,17 +25,17 @@ export default nix.lambda((args) => (() => {
   const variant = nix.argOr($, "variant", () => null);
   nix.assert_(nix.app(nix.sel(lib, "elem"), variant, nix.thunk(() => [null, "sev", "tdx"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/li/libkrunfw/package.nix:16:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: nix.thunk(() => nix.add("libkrunfw", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(variant, null)), nix.thunk(() => nix.str`-${variant}`)))),
       version: "5.5.0",
       kernelSrc: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "mirror://kernel/linux/kernel/v6.x/linux-6.12.91.tar.xz",
           hash: "sha256-D/KrnhafnxlIVXRx+7RQ0wGPjFt3yvKI4aOYJYJZeWk=",
         })))),
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "libkrun",
           repo: "libkrunfw",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,10 +55,10 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [elfutils]),
       makeFlags: nix.thunk(() => nix.concat([nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(variant, "sev")), nix.thunk(() => ["SEV=1"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(variant, "tdx")), nix.thunk(() => ["TDX=1"]))))),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "targetPlatform", "isAarch64")), nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-march=armv8-a+crypto" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "targetPlatform", "isAarch64")), nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-march=armv8-a+crypto" })))),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Dynamic library bundling the guest payload consumed by libkrun",
         homepage: "https://github.com/libkrun/libkrunfw",
         license: nix.thunk(() => (() => {

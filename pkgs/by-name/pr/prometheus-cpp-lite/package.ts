@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "prometheus-cpp-lite",
       version: "1.0-unstable-2023-08-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "biaks",
           repo: "prometheus-cpp-lite",
           rev: "48d09c45ee6deb90e02579b03037740e1c01fd27",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/include/prometheus $out/lib\n\ncp ../core/include/prometheus/* $out/include/prometheus\ncp ../simpleapi/include/prometheus/* $out/include/prometheus\ncp simpleapi/libprometheus-cpp-simpleapi.* $out/lib/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C++ Header-only Prometheus client library",
         homepage: "https://github.com/biaks/prometheus-cpp-lite",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "markuskowa"))]),

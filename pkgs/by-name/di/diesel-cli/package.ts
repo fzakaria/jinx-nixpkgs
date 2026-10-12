@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const pname = "diesel-cli";
       const version = "2.3.14";
       const src = nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           crateName: "diesel_cli",
           hash: "sha256-kf1vVtcgDnO5jK3kpEcfaokBfeWxrHd8vKPMkVY5MHs=",
@@ -63,19 +63,19 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const postInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd diesel \\\n  --bash <($out/bin/diesel completions bash) \\\n  --fish <($out/bin/diesel completions fish) \\\n  --zsh <($out/bin/diesel completions zsh)\n"));
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), mysqlSupport, "-lz -lssl -lcrypto")),
       }));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$3, package: diesel_cli })))),
+          [nix.POS]: pos$4,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: diesel_cli })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Database tool for working with Rust projects that use Diesel",
         homepage: "https://diesel.rs",
         changelog: nix.thunk(() => nix.str`https://github.com/diesel-rs/diesel/releases/tag/v${version}`),
@@ -93,7 +93,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "diesel",
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

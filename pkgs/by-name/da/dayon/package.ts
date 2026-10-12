@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const stripJavaArchivesHook = nix.arg($, "stripJavaArchivesHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dayon",
       version: "18.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "RetGal",
           repo: "dayon",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +50,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => ["debian/dayon_assisted.desktop", "debian/dayon_assistant.desktop"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Easy to use, cross-platform remote desktop assistance solution",
         homepage: "https://retgal.github.io/Dayon/index.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

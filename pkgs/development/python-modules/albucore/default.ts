@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const hypothesis = nix.arg($, "hypothesis");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "albucore",
       version: "0.2.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "albumentations-team",
           repo: "albucore",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [hypothesis, pytestCheckHook]),
       disabledTests: nix.thunk(() => ["test_normalize_consistency_across_shapes"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "High-performance image processing library to optimize and extend Albumentations with specialized functions for image transformations",
         homepage: "https://github.com/albumentations-team/albucore",
         changelog: nix.thunk(() => nix.str`https://github.com/albumentations-team/albucore/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const macaulay2 = nix.arg($, "macaulay2");
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "macaulay2",
       version: nix.thunk(() => nix.attr(macaulay2, "version")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(macaulay2, "src"));
           return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: nix.thunk(() => nix.attr(from, "repo")),
           owner: nix.thunk(() => nix.attr(from, "owner")),
           tag: nix.thunk(() => nix.attr(from, "tag")),
@@ -42,7 +42,7 @@ EOF
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(macaulay2, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
         description: "Syntax highlighting and key mappings to send code to a running Macaulay2 session.",

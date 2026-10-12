@@ -12,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const installAgentSkills = nix.arg($, "installAgentSkills");
   const runCommandLocal = nix.arg($, "runCommandLocal");
   return nix.app(runCommandLocal, "install-agent-skills--install-skill", nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       strictDeps: true,
       __structuredAttrs: true,
       nativeBuildInputs: nix.thunk(() => [installAgentSkills]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       })),
     })), "# required to functions/hook to work. this is a contrived example\n# so its fine to manually set here\nexport pname=test-installSkill\n\nmkdir -p skill-xyz\necho \"This is a test agent skill!\" > skill-xyz/SKILL.md\n\ninstallSkill ./skill-xyz\n\ncmp skill-xyz/SKILL.md $out/share/skills/$pname/skill-xyz/SKILL.md\n");

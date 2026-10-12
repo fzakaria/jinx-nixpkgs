@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
     const flattenMapServicesConfigToList = (f) => (loc) => (config) => nix.concat(nix.app(f, loc, config), nix.app(concatLists, nix.thunk(() => nix.app(mapAttrsToList, (k) => (v) => nix.app(flattenMapServicesConfigToList, f, nix.thunk(() => nix.concat(loc, ["services", k])), v), nix.thunk(() => nix.sel(config, "services"))))));
     const getWarnings = nix.thunk(() => nix.app(flattenMapServicesConfigToList, (loc) => (config) => nix.builtins.map((msg) => nix.str`in ${nix.app(showOption, loc)}: ${msg}`, nix.thunk(() => nix.sel(config, "warnings")))));
     const getAssertions = nix.thunk(() => nix.app(flattenMapServicesConfigToList, (loc) => (config) => nix.builtins.map((ass) => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           message: nix.thunk(() => nix.str`in ${nix.app(showOption, loc)}: ${nix.sel(ass, "message")}`),
           assertion: nix.thunk(() => nix.sel(ass, "assertion")),
         }), nix.thunk(() => nix.sel(config, "assertions")))));
@@ -29,20 +29,20 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const serviceManagerPkgs = nix.argOr($_1, "serviceManagerPkgs", () => nix.builtins.throw("lib.services.configure: `serviceManagerPkgs` is required unless `baseModules` is set"));
       const baseModules = nix.argOr($_1, "baseModules", () => [
-        nix.thunk(() => nix.app(nix.sel(lib, "importService"), nix.thunk(() => ({ __proto__: pos$2, pkgs: serviceManagerPkgs })))),
+        nix.thunk(() => nix.app(nix.sel(lib, "importService"), nix.thunk(() => ({ [nix.POS]: pos$2, pkgs: serviceManagerPkgs })))),
       ]);
       const extraRootModules = nix.argOr($_1, "extraRootModules", () => []);
       const extraRootSpecialArgs = nix.argOr($_1, "extraRootSpecialArgs", () => ({}));
       const serviceSubmodule = nix.thunk(() => nix.app(nix.sel(types, "submoduleWith"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           class: "service",
           modules: nix.thunk(() => nix.concat(baseModules, extraRootModules)),
           specialArgs: extraRootSpecialArgs,
         }))));
-      return { __proto__: pos$4, serviceSubmodule: serviceSubmodule };
+      return { [nix.POS]: pos$4, serviceSubmodule: serviceSubmodule };
     })(), formals$2);
     return {
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       flattenMapServicesConfigToList,
       getWarnings,
       getAssertions,

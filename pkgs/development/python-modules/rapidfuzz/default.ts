@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.14.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "maxbachmann",
           repo: "RapidFuzz",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "support-taskflow-4.1.0.patch",
             url: "https://github.com/rapidfuzz/RapidFuzz/commit/76fa54bf8c3f2d24879ca1966ea98bbba7b3c9d6.patch",
             hash: "sha256-hJZtYNLSqK5NgcBAcvrf9NPh3Z0+pSlyy0W+uJ96kBQ=",
@@ -51,9 +51,9 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => nix.concat([cmake, cython, ninja, scikit_build_core], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => [clang_tools]))));
       const dontUseCmakeConfigure = true;
       const buildInputs = nix.thunk(() => [rapidfuzz_cpp, taskflow]);
-      const env = nix.thunk(() => ({ __proto__: pos$3, RAPIDFUZZ_BUILD_EXTENSION: 1n }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$3, RAPIDFUZZ_BUILD_EXTENSION: 1n }));
       const preBuild = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))), "export CMAKE_ARGS=\"-DCMAKE_CXX_COMPILER_AR=$AR -DCMAKE_CXX_COMPILER_RANLIB=$RANLIB\"\n"));
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$4, all: nix.thunk(() => [numpy]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$4, all: nix.thunk(() => [numpy]) }));
       const preCheck = "export RAPIDFUZZ_IMPLEMENTATION=cpp\n";
       const nativeCheckInputs = nix.thunk(() => [hypothesis, pandas, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => [
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         "rapidfuzz.utils",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Rapid fuzzy string matching",
         homepage: "https://github.com/maxbachmann/RapidFuzz",
         changelog: nix.thunk(() => nix.str`https://github.com/maxbachmann/RapidFuzz/blob/${nix.sel(src, "tag")}/CHANGELOG.rst`),
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

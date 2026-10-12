@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "hash-slinger";
       const version = "3.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "letoams",
           repo: "hash-slinger",
           rev: version,
@@ -52,13 +52,13 @@ make install
 wrapPythonPrograms
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Various tools to generate special DNS records",
         homepage: "https://github.com/letoams/hash-slinger",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

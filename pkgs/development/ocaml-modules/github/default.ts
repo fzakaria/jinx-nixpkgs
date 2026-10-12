@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const yojson = nix.arg($, "yojson");
   const stringext = nix.arg($, "stringext");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "github",
       version: "4.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mirage",
           repo: "ocaml-github",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       duneVersion: "3",
       propagatedBuildInputs: nix.thunk(() => [uri, cohttp, lwt, cohttp_lwt, github_data, yojson, stringext]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/mirage/ocaml-github",
         description: "GitHub APIv3 OCaml library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

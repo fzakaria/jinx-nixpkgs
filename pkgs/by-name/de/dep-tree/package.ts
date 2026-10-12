@@ -19,30 +19,30 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const linkFarm = nix.arg($, "linkFarm");
   const testDeps = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     "react-stl-viewer": nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         owner: "gabotechs",
         repo: "react-stl-viewer",
         rev: "2.2.4",
         hash: "sha256-0u9q0UgOn43PE1Y6BUhl1l6RnVjpPraFqZWB+HhQ0s8=",
       })))),
     "react-gcode-viewer": nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         owner: "gabotechs",
         repo: "react-gcode-viewer",
         rev: "2.2.4",
         hash: "sha256-FHBICLdy0k4j3pPKStg+nkIktMpKS1ADa4m1vYHJ+AQ=",
       })))),
     "graphql-js": nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         owner: "graphql",
         repo: "graphql-js",
         rev: "v17.0.0-alpha.2",
         hash: "sha256-y55SNiMivL7bRsjLEIpsKKyaluI4sXhREpiB6A5jfDU=",
       })))),
     warp: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         owner: "seanmonstar",
         repo: "warp",
         rev: "v0.3.3",
@@ -52,11 +52,11 @@ export default nix.lambda((args) => (() => {
   const pname = "dep-tree";
   const version = "0.23.4";
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           owner: "gabotechs",
           repo: "dep-tree",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
 `),
       checkPhase: "runHook preCheck\n# We do not set trimpath for tests, in case they reference test assets\nexport GOFLAGS=${GOFLAGS//-trimpath/}\n\n# checkFlags is not able to skip tests via pattern.\n# possibly requires fixing in buildGoModule.\n# For now, this is the new checkPhase\ngo test ./... -skip='TestRoot.*|TestFilesFromArgs.*'\n# these tests were not feasibly fixable.\n# a LARGE portion of the original source would need to be edited via patch for this to work.\n\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Tool for visualizing interconnectedness of codebases in multiple languages",
         longDescription: "dep-tree is a tool for interactively visualizing the complexity of a code base.\nIt helps analyze the interconnectedness of the codebase and create goals to improve maintainability.\n",
         homepage: "https://github.com/gabotechs/dep-tree",

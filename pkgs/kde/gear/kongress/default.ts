@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const qtlocation = nix.arg($, "qtlocation");
   const qtsvg = nix.arg($, "qtsvg");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kongress",
       extraBuildInputs: nix.thunk(() => [kcontacts, qtsvg, qtlocation]),
     })));

@@ -104,11 +104,11 @@ export default nix.lambda((args) => (() => {
     zlib,
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "appgate-sdp",
       version: "6.5.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://bin.appgate-sdp.com/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/client/appgate-sdp_${nix.sel(finalAttrs, "version")}_amd64.deb`),
           hash: "sha256-tVHGAP90C4Jxz+Ur1hmlCmQ2tOtaSuIvAUQAqu6BKRw=",
         })))),
@@ -152,7 +152,7 @@ makeWrapper $out/opt/appgate/Appgate $out/bin/appgate \\
 wrapProgram $out/opt/appgate/linux/set_dns --set PYTHONPATH $PYTHONPATH
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Appgate SDP (Software Defined Perimeter) desktop client",
         homepage: "https://www.appgate.com/support/software-defined-perimeter-support",
         sourceProvenance: nix.thunk(() => (() => {

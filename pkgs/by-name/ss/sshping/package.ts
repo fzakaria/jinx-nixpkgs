@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const libssh = nix.arg($, "libssh");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sshping",
       version: "0.1.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "spook",
           repo: "sshping",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "$CXX -Wall -I ext/ -o bin/sshping src/sshping.cxx -lssh\n",
       installPhase: "install -Dm755 bin/sshping $out/bin/sshping\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/spook/sshping",
         description: "Measure character-echo latency and bandwidth for an interactive ssh session",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

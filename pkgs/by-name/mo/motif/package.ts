@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const libxau = nix.arg($, "libxau");
   const demoSupport = nix.argOr($, "demoSupport", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "motif",
       version: "2.3.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/motif/motif-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1rxwkrhmj8sfg7dwmkhq885valwqbh26d79033q7vb7fcqv756w5",
         })))),
@@ -86,10 +86,10 @@ substituteInPlace tools/wml/Makefile.in \\
             const name = "fix-format-security.patch";
             const url = nix.thunk(() => nix.str`https://raw.githubusercontent.com/void-linux/void-packages/b9a1110dabb01c052dadc1abae1413bd4afe3652/srcpkgs/motif/patches/02-${name}`);
             const sha256 = "13vzpf8yxvhf4gl7q0yzlr6ak1yzx382fsqsrv5lc8jbbg4nwrrq";
-            return { __proto__: pos$2, name, url, sha256 };
+            return { [nix.POS]: pos$2, name, url, sha256 };
           })()))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "missing-headers.patch",
             url: "https://gitlab.freedesktop.org/xorg/lib/libxpm/-/commit/4cedf181bcfe13e5d206554c51edb82cb17e7ad5.patch",
             extraPrefix: "lib/Xm/",
@@ -97,7 +97,7 @@ substituteInPlace tools/wml/Makefile.in \\
             hash: "sha256-WlagHOgf2gZDxXN+SSEW6de1FuN4fbpd9zviMwo1+HI=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "noreturn.patch",
             url: "https://dev.gentoo.org/~ulm/distfiles/motif-2.3.8-patches-5.tar.xz",
             downloadToTemp: true,
@@ -105,7 +105,7 @@ substituteInPlace tools/wml/Makefile.in \\
             hash: "sha256-FyaBfqD/TuJVFFHZlp1/b1MyL8BJAfV43ktuusgxbfE=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://raw.githubusercontent.com/macports/macports-ports/acc8c7cb2247d9892bf5a52eb92431a4c0c8e1cd/x11/openmotif/files/wcs-functions.patch",
             extraPrefix: "",
             hash: "sha256-w3zCUs/RbnRoUJ0sNCI00noEOkov/IGV/zIygakSQqc=",
@@ -115,7 +115,7 @@ substituteInPlace tools/wml/Makefile.in \\
         nix.thunk(() => nix.str`ac_cv_func_setpgrp_void=${nix.app(nix.sel(lib, "boolToYesNo"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isBSD"))))}`),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(["-std=gnu17"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => [
               "-Wno-error=implicit-function-declaration",
               "-Wno-error=incompatible-function-pointer-types",
@@ -124,7 +124,7 @@ substituteInPlace tools/wml/Makefile.in \\
       enableParallelBuilding: true,
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "mkdir -p \"$out/lib/internals\"\ncp config/util/makestrs tools/wml/{wml,wmluiltok,.libs/wmldbcreate} \"$out/lib/internals\"\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://motif.ics.com",
         description: "Unix standard widget-toolkit and window-manager",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

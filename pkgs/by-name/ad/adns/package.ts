@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "adns",
       version: "1.6.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://www.chiark.greenend.org.uk/~ian/adns/ftp/adns-${nix.sel(finalAttrs, "version")}.tar.gz`),
             nix.thunk(() => nix.str`mirror://gnu/adns/adns-${nix.sel(finalAttrs, "version")}.tar.gz`),
@@ -37,15 +37,15 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\nfor prog in $out/bin/*; do\n  $prog --help > /dev/null && echo $(basename $prog) shows usage\ndone\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://www.chiark.greenend.org.uk/ucgi/~ianmdlvl/githttp/adns.git",
             "rev-prefix": "adns-",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "http://www.chiark.greenend.org.uk/~ian/adns/",
         description: "Asynchronous DNS resolver library",
         license: nix.thunk(() => [

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libuuid = nix.arg($, "libuuid");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hfsprogs",
       version: "627.40.1-linux",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "glaubitz",
           repo: "hfs",
           rev: "a9496556b0a5fa805139ea20b44081d48aae912a",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libbsd, libuuid, openssl]),
       installPhase: "# Copy executables\ninstall -Dm 555 \"newfs_hfs/newfs_hfs\" \"$out/bin/mkfs.hfsplus\"\ninstall -Dm 555 \"fsck_hfs/fsck_hfs\" \"$out/bin/fsck.hfsplus\"\n# Copy man pages\ninstall -Dm 444 \"newfs_hfs/newfs_hfs.8\" \"$out/share/man/man8/mkfs.hfsplus.8\"\ninstall -Dm 444 \"fsck_hfs/fsck_hfs.8\" \"$out/share/man/man8/fsck.hfsplus.8\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "HFS/HFS+ user space utils",
         homepage: "https://github.com/glaubitz/hfs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "apple-psl20")),

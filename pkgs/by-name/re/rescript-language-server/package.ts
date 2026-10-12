@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const rescript_editor_analysis = nix.thunk(() => nix.attr(from, "rescript-editor-analysis"));
   const platformDir = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? "linux" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "darwin" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isFreeBSD")) ? "freebsd" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows")) ? "win32" : nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "system")}`)))))));
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       src: nix.thunk(() => nix.attr(rescript_editor_analysis, "src")),
       version: nix.thunk(() => nix.attr(rescript_editor_analysis, "version")),
       pname: "rescript-language-server",
@@ -40,14 +40,14 @@ ln -s ${nix.app(nix.sel(lib, "getExe"), rescript_editor_analysis)} "$DIR"/rescri
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             extraArgs: nix.thunk(() => ["--version-regex", "([0-9]+\\.[0-9]+\\.[0-9]+)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "ReScript Language Server",
         homepage: nix.thunk(() => nix.str`https://github.com/rescript-lang/rescript-vscode/tree/${nix.sel(finalAttrs, "version")}/server`),
         changelog: nix.thunk(() => nix.str`https://github.com/rescript-lang/rescript-vscode/releases/tag/${nix.sel(finalAttrs, "version")}`),

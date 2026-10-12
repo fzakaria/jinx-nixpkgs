@@ -21,32 +21,32 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const testBase = nix.arg($, "testBase");
   const system = nix.arg($, "system");
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/testing-python.nix")), nix.thunk(() => ({ __proto__: pos$1, system: system, pkgs: pkgs })))), null);
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, pkgs: pkgs })))), null);
   return nix.app(nix.lookup(w, "runTest"), nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const config = nix.arg($_1, "config");
       const lib = nix.arg($_1, "lib");
       return {
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         name: name,
         meta: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           maintainers: nix.thunk(() => nix.sel(lib, "teams", "nextcloud", "members")),
         })),
         imports: nix.thunk(() => [testBase]),
         nodes: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           nextcloud: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             fileSystems: nix.thunk(() => ({
-              __proto__: pos$4,
-              "/mnt": nix.thunk(() => ({ __proto__: pos$3, fsType: "tmpfs", device: "tmpfs" })),
+              [nix.POS]: pos$4,
+              "/mnt": nix.thunk(() => ({ [nix.POS]: pos$3, fsType: "tmpfs", device: "tmpfs" })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               nextcloud: nix.thunk(() => ({
-                __proto__: pos$6,
-                config: nix.thunk(() => ({ __proto__: pos$5, dbtype: "sqlite" })),
+                [nix.POS]: pos$6,
+                config: nix.thunk(() => ({ [nix.POS]: pos$5, dbtype: "sqlite" })),
                 home: "/mnt/nextcloud",
               })),
             })),

@@ -17,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const libpng = nix.arg($, "libpng");
   const libGL = nix.arg($, "libGL");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mathgl",
       version: "8.0.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/mathgl/mathgl-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-m7qe5qD4bRuPPzugN008t3b3ctu28aAWhMpsC9ViBNY=",
         })))),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [zlib, libpng, libGL]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for scientific data visualization",
         homepage: "https://mathgl.sourceforge.net/",
         license: nix.thunk(() => (() => {

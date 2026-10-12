@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pytest-aiohttp",
       version: "1.1.1",
       pyproject: true,
       __darwinAllowLocalNetworking: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aio-libs",
           repo: "pytest-aiohttp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pytestFlags: nix.thunk(() => ["-Wignore::DeprecationWarning", "-Wignore::pytest.PytestDeprecationWarning"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/aio-libs/pytest-aiohttp/",
         changelog: nix.thunk(() => nix.str`https://github.com/aio-libs/pytest-aiohttp/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.rst`),
         description: "Pytest plugin for aiohttp support",

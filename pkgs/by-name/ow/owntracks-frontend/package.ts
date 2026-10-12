@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "owntracks-frontend",
       version: "2.15.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "owntracks",
           repo: "frontend",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: "sha256-sZkOvffpRoUTbIXpskuVSbX4+k1jiwIbqW4ckBwnEHM=",
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/owntracks-frontend\ncp -r dist/* $out/share/owntracks-frontend\ncp dist/config/config.example.js $out/share/owntracks-frontend/config/config.js\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Web interface for OwnTracks",
         homepage: "https://github.com/owntracks/frontend",
         changelog: nix.thunk(() => nix.str`https://github.com/owntracks/frontend/releases/tag/v${nix.sel(finalAttrs, "version")}`),

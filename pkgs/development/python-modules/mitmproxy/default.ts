@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       const version = "12.2.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mitmproxy",
           repo: "mitmproxy",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -128,14 +128,14 @@ export default nix.lambda((args) => (() => {
       const dontUsePytestXdist = true;
       const pythonImportsCheck = nix.thunk(() => ["mitmproxy"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           mitmproxy: nix.thunk(() => nix.attr(nixosTests, "mitmproxy")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Man-in-the-middle proxy",
         homepage: "https://mitmproxy.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/mitmproxy/mitmproxy/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -147,7 +147,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "mitmproxy",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

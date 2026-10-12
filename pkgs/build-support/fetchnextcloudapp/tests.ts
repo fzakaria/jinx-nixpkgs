@@ -12,9 +12,9 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const fetchNextcloudApp = nix.arg($, "fetchNextcloudApp");
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "simple-sha512": nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchNextcloudApp, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         appName: "phonetrack",
         appVersion: "0.8.2",
         license: "agpl3Plus",
@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
         url: "https://github.com/julien-nc/phonetrack/releases/download/v0.8.2/phonetrack-0.8.2.tar.gz",
       })))),
     "simple-sha256": nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchNextcloudApp, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         appName: "phonetrack",
         appVersion: "0.8.2",
         license: "agpl3Plus",

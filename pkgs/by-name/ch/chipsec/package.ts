@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const withDriver = nix.argOr($, "withDriver", () => false);
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "chipsec",
       version: "1.13.20",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chipsec",
           repo: "chipsec",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [nix.path(here, "./log-path.diff")]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), withDriver, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           KSRC: nix.thunk(() => nix.str`${nix.sel(kernel, "dev")}/lib/modules/${nix.sel(kernel, "modDirVersion")}/build`),
         })))),
       nativeBuildInputs: nix.thunk(() => nix.concat([nasm], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "buildPlatform")), elfutils)), nix.thunk(() => [elfutils])), nix.app(nix.sel(lib, "optionals"), withDriver, nix.thunk(() => nix.sel(kernel, "moduleBuildDependencies")))))),
@@ -58,7 +58,7 @@ popd
 `)))),
       pythonImportsCheck: nix.thunk(() => ["chipsec"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Platform Security Assessment Framework",
         longDescription: "CHIPSEC is a framework for analyzing the security of PC platforms\nincluding hardware, system firmware (BIOS/UEFI), and platform components.\nIt includes a security test suite, tools for accessing various low level\ninterfaces, and forensic capabilities. It can be run on Windows, Linux,\nMac OS X and UEFI shell.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

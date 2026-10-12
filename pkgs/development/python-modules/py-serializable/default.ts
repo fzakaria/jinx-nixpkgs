@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "madpah",
           repo: "serializable",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["py_serializable"]);
       const disabledTests = nix.thunk(() => ["test_serializable_no_defaultNS", "test_serializable_with_defaultNS"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to aid with serialisation and deserialisation to/from JSON and XML",
         homepage: "https://github.com/madpah/serializable",
         changelog: nix.thunk(() => nix.str`https://github.com/madpah/serializable/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

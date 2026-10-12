@@ -21,17 +21,17 @@ export default nix.lambda((args) => (() => {
   const SDL2_net = nix.arg($, "SDL2_net");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rocksndiamonds",
       version: "4.4.2.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.artsoft.org/RELEASES/linux/rocksndiamonds/rocksndiamonds-${nix.sel(finalAttrs, "version")}-linux.tar.gz`),
           hash: "sha256-WevciYWSORmj88186y6aBzyltHVf/aD5CPS/SYvGH5k=",
         })))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "rocksndiamonds",
             exec: nix.thunk(() => nix.sel(finalAttrs, "meta", "mainProgram")),
             icon: "rocksndiamonds",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\niconDir=$out/share/icons/hicolor/32x32/apps\nmkdir -p $out/bin $iconDir $dataDir\ncp rocksndiamonds $out/bin/\nln -s $dataDir/graphics/gfx_classic/icons/icon.png $iconDir/rocksndiamonds.png\ncp -r conf docs graphics levels music sounds $dataDir\n\nrunHook postInstall\n",
       enableParallelBuilding: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Scrolling tile-based arcade style puzzle game",
         mainProgram: "rocksndiamonds",
         homepage: "https://www.artsoft.org/rocksndiamonds/",

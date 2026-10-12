@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const SDL = nix.arg($, "SDL");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cg-term",
       version: "1.7b2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MagerValp",
           repo: "CGTerm",
           rev: "01e35d64c29bccee52211b0afc66035a10e4792a",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [SDL]),
       makeFlags: nix.thunk(() => ["CC:=$(CC)", "PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C/G telnet client for C64 BBS's",
         homepage: "https://github.com/MagerValp/CGTerm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

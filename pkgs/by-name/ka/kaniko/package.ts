@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const kaniko = nix.arg($, "kaniko");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kaniko",
       version: "1.25.15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chainguard-forks",
           repo: "kaniko",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +51,7 @@ done
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/${nix.sel(finalAttrs, "meta", "mainProgram")}`),
       versionCheckProgramArg: "version",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to build container images from a Dockerfile, inside a container or Kubernetes cluster",
         homepage: "https://github.com/chainguard-forks/kaniko",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

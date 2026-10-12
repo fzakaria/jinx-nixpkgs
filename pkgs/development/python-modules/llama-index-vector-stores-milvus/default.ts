@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const llama_index_core = nix.arg($, "llama-index-core");
   const pymilvus = nix.arg($, "pymilvus");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "llama-index-vector-stores-milvus",
       version: "1.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "llama_index_vector_stores_milvus",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-xwcAPLwRstC36b6dZzBDTNQS5xjKB/uG1Eka5CFLrBA=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["llama_index.vector_stores.milvus"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Llama-index vector_stores milvus integration",
         homepage: "https://pypi.org/project/llama-index-vector-stores-milvus/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

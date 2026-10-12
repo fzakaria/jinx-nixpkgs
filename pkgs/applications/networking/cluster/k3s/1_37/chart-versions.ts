@@ -7,14 +7,14 @@ const pos$2 = nix.positions(here + "/chart-versions.nix", [["url", 7, 5], ["sha2
 const pos$3 = nix.positions(here + "/chart-versions.nix", [["traefik-crd", 2, 3], ["traefik", 6, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$3,
+  [nix.POS]: pos$3,
   "traefik-crd": nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     url: "https://k3s.io/k3s-charts/assets/traefik-crd/traefik-crd-41.4.2+up41.4.0.tgz",
     sha256: "0dfvh65gilw4z3cyia8gq0hqgcp09cbdihq6g6n93af9lbpwysnf",
   })),
   traefik: nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     url: "https://k3s.io/k3s-charts/assets/traefik/traefik-41.4.2+up41.4.0.tgz",
     sha256: "1379f54pci4y41szpnw016wr6kkawyyr6sfzijdsz3f8fryhp3xp",
   })),

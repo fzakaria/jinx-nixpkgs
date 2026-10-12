@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "915resolution",
       version: "0.5.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://915resolution.mango-lang.org/915resolution-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0hmmy4kkz3x6yigz6hk99416ybznd67dpjaxap50nhay9f1snk5n",
         })))),
       patchPhase: "rm *.o",
       installPhase: "mkdir -p $out/sbin; cp 915resolution $out/sbin/",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://915resolution.mango-lang.org/",
         description: "Tool to modify Intel 800/900 video BIOS",
         mainProgram: "915resolution",

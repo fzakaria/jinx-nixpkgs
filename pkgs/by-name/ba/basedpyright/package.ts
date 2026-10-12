@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pname = "basedpyright";
       const version = "1.39.8";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "detachhead",
           repo: "basedpyright",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -47,16 +47,16 @@ export default nix.lambda((args) => (() => {
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const doInstallCheck = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           simple: nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               assertion: "simple type checking",
               expected: nix.thunk(() => nix.app(writeText, "expected", "4\n")),
               actual: nix.thunk(() => nix.app(runCommand, "actual", nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   nativeBuildInputs: nix.thunk(() => [jq, basedpyright]),
                   base: nix.thunk(() => nix.app(writeText, "test.py", "import sys\nfrom time import tzset\n\ndef print_string(a_string: str):\n    a_string += 42\n    print(a_string)\n\nif sys.platform == \"win32\":\n    print_string(69)\n    this_function_does_not_exist(\"nice!\")\nelse:\n    result_of_tzset_is_None: str = tzset()\n")),
                   configFile: nix.thunk(() => nix.app(writeText, "pyproject.toml", "[tool.pyright]\ntypeCheckingMode = \"strict\"\n")),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         changelog: nix.thunk(() => nix.str`https://github.com/detachhead/basedpyright/releases/tag/${nix.sel(src, "tag")}`),
         description: "Type checker for the Python language",
         homepage: "https://github.com/detachhead/basedpyright",
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

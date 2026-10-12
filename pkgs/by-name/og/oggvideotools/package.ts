@@ -32,17 +32,17 @@ export default nix.lambda((args) => (() => {
   const libtheora = nix.arg($, "libtheora");
   const libvorbis = nix.arg($, "libvorbis");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: "oggvideotools",
       version: "0.9.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/oggvideotools/oggvideotools/oggvideotools-${nix.sel(finalAttrs, "version")}/oggvideotools-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-2dv3iXt86phhIgnYC5EnRzyX1u5ssNzPwrOP4+jilSM=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             debianRevision: "7",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-0D22P+Qdf9Sfp6vptSnL4E33NVUL/XL72gNE36BF6QI=",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             debianRevision: "7",
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-yGzHGEADlSRnWZIN8x6xfg9ChAn8WKFQgZAJmbKtKq8=",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             debianRevision: "7",
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-LBgmpyyxmeAFE3zpeHRryuxboMBdBztUEGxbs0Ay+HU=",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             debianRevision: "7",
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-7BtdAGHHW860hFZYlRWDVfEw6CDkb18HfFROZHl+guY=",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             debianRevision: "7",
@@ -82,22 +82,22 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-KMs4nyILveKY+ZmcSONmtS5+sAPPB+ypNUi9yzxBsXQ=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             url: "https://salsa.debian.org/multimedia-team/oggvideotools/-/raw/ed006e5d78f9509508dbc72277de8ab3c06d2362/debian/patches/1010-kate-header-buffer-read-past-end.patch",
             hash: "sha256-CEkNG9tHZIggCvKRPj2pKI855pVWQUdudLfpda/ZVME=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             url: "https://salsa.debian.org/multimedia-team/oggvideotools/-/raw/122047a7cf644e282906370f277ae83b4672e5e4/debian/patches/1020-CVE-2020-21723-null-pointer-crash.patch",
             hash: "sha256-dUkMfEaB5Hn9I5+QbE/002X6ij+xIzzqjc8QTom1ITk=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             url: "https://src.fedoraproject.org/rpms/oggvideotools/raw/23f918f39278d87adb5a5ab2e57d5cc1816e1e8a/f/0005-unbundle-libresample.patch",
             hash: "sha256-JSuH8ScYBi6zAgEhrFdPOGCSXzDk+lEnSHX9wuctAsg=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             url: "https://src.fedoraproject.org/rpms/oggvideotools/raw/2dd078ea81773a34cc0c4817ebbf3c4038b8098c/f/stream-serializer.diff",
             hash: "sha256-3HkAuCBaNjKoTN8Q3oW89e3zXo13Ev5g7VJ/RPO3zRA=",
           })))),
@@ -109,7 +109,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_POLICY_VERSION_MINIMUM", "4.0")),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         description: "Toolbox for manipulating and creating Ogg video files",
         homepage: "https://sourceforge.net/projects/oggvideotools/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

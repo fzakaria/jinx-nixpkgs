@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "okta-aws-cli",
       version: "2.6.0",
       subPackages: nix.thunk(() => ["cmd/okta-aws-cli"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "okta",
           repo: "okta-aws-cli",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-MEtwJZWadQcKAdJS5LhGdIJV2OZKoRJRu87o4J6sruU=",
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI for having Okta as the IdP for AWS CLI operations",
         homepage: "https://github.com/okta/okta-aws-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

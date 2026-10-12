@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
       const pname = "ipw2200-firmware";
       const version = "3.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://src.fedoraproject.org/repo/pkgs/ipw2200-firmware/ipw2200-fw-${version}.tgz/eaba788643c7cc7483dd67ace70f6e99/ipw2200-fw-${version}.tgz`),
           hash: "sha256-xoGMEcGMwDDVX/g/ZLK62P7vSF53QvhPlKYdgRpiWL0=",
         }))));
       const outputs = nix.thunk(() => ["out", "doc"]);
       const installPhase = "runHook preInstall\n\ninstall -D -m644 ipw2200-bss.fw     $out/lib/firmware/ipw2200-bss.fw\ninstall -D -m644 ipw2200-ibss.fw    $out/lib/firmware/ipw2200-ibss.fw\ninstall -D -m644 ipw2200-sniffer.fw $out/lib/firmware/ipw2200-sniffer.fw\ninstall -D -m644 LICENSE.ipw2200-fw ${!outputDoc}/share/doc/intel2200BGFirmware/LICENSE\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Firmware for Intel 2200BG cards",
         homepage: "https://ipw2200.sourceforge.net/firmware.php",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributableFirmware")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w_1, "binaryFirmware"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, outputs, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, outputs, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

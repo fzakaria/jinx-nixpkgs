@@ -24,18 +24,18 @@ export default nix.lambda((args) => (() => {
   const skkDictionaries = nix.arg($, "skkDictionaries");
   const libxkbcommon = nix.arg($, "libxkbcommon");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libskk",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ueno",
           repo: "libskk",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-Dciz5VeflaX2eYt1B90NpgLKNtCHY/CDabuCx+T/SS0=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=int-conversion"]))),
       })),
       buildInputs: nix.thunk(() => [libxkbcommon]),
@@ -48,7 +48,7 @@ ln -s ${nix.sel(skkDictionaries, "l")}/share/skk/SKK-JISYO.L $dictDir/
 `),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library to deal with Japanese kana-to-kanji conversion method",
         mainProgram: "skk",
         longDescription: "Libskk is a library that implements basic features of SKK including:\nnew word registration, completion, numeric conversion, abbrev mode, kuten input,\nhankaku-katakana input, Lisp expression evaluation (concat only), and re-conversion.\nIt also supports various typing rules including: romaji-to-kana, AZIK, TUT-Code, and NICOLA,\nas well as various dictionary types including: file dictionary (such as SKK-JISYO.[SML]),\nuser dictionary, skkserv, and CDB format dictionary.\n",

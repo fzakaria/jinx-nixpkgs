@@ -25,16 +25,16 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "mango"));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       programs: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         mango: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Mango, a Wayland compositor based on dwl and scenefx")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "mango", nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: nix.thunk(() => ["mango"]),
               example: "pkgs.mango.override { enableXWayland = false; }",
             })))),
@@ -45,15 +45,15 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["programs", "mangowc"]), nix.thunk(() => ["programs", "mango"]))),
     ]),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         environment: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         xdg: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           portal: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             enable: true,
             extraPortals: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
@@ -63,9 +63,9 @@ export default nix.lambda((args) => (() => {
               ];
             })()),
             config: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               mango: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 default: nix.thunk(() => ["gtk"]),
                 "org.freedesktop.impl.portal.Secret": nix.thunk(() => ["gnome-keyring"]),
                 "org.freedesktop.impl.portal.ScreenCast": nix.thunk(() => ["wlr"]),
@@ -76,16 +76,16 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w, "yvnth"))];
           })()),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           displayManager: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             sessionPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         })),

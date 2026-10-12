@@ -23,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const gnutls = nix.arg($, "gnutls");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gtk-gnutella",
       version: "1.3.1",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gtk-gnutella",
           repo: "gtk-gnutella",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib, gnutls, libbfd, libxml2, zlib]),
       configureScript: "./build.sh",
       configureFlags: nix.thunk(() => ["--configure-only", "--topless"]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       enableParallelBuilding: true,
       postInstall: "install -Dm0444 src/gtk-gnutella.man $out/share/man/man1/gtk-gnutella.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GTK Gnutella client, optimized for speed and scalability",
         mainProgram: "gtk-gnutella",
         homepage: "https://gtk-gnutella.sourceforge.net/",

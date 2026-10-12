@@ -21,15 +21,15 @@ export default nix.lambda((args) => (() => {
       const version = nix.thunk(() => nix.attr(rosec, "version"));
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/rosec-bitwarden-pm`);
       const cargoHash = "sha256-TAP1G0QJGg3w0lKCUHTsfVvwON7nSlcM4jhtIB+WByQ=";
-      const env = nix.thunk(() => ({ __proto__: pos$1, RUSTFLAGS: "-C linker=wasm-ld" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$1, RUSTFLAGS: "-C linker=wasm-ld" }));
       const nativeBuildInputs = nix.thunk(() => [lld]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const __structuredAttrs = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Bitwarden (Personal) provider for rosec",
         homepage: "https://github.com/jmylchreest/rosec",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "wasi")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         src,
         version,

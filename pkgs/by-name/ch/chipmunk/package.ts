@@ -30,13 +30,13 @@ export default nix.lambda((args) => (() => {
       const majorVersion = "7";
       const version = nix.thunk(() => nix.str`${majorVersion}.0.3`);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://chipmunk-physics.net/release/Chipmunk-${majorVersion}.x/Chipmunk-${version}.tgz`),
           sha256: "06j9cfxsyrrnyvl7hsf55ac5mgff939mmijliampphlizyg0r2q4",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/slembcke/Chipmunk2D/commit/9a051e6fb970c7afe09ce2d564c163b81df050a8.patch",
             sha256: "0ps8bjba1k544vcdx5w0qk7gcjq94yfigxf67j50s63yf70k2n70",
           })))),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const postInstall = "mkdir -p $out/bin\ncp demo/chipmunk_demos $out/bin\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fast and lightweight 2D game physics library",
         mainProgram: "chipmunk_demos",
         homepage: "http://chipmunk2d.net/",
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         majorVersion,
         version,

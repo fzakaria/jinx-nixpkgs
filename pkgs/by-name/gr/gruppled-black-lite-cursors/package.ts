@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const theme = nix.argOr($, "theme", () => "black");
   nix.assert_(nix.app(nix.sel(lib, "asserts", "assertOneOf"), "theme", theme, nix.thunk(() => ["black", "white"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/gr/gruppled-black-lite-cursors/package.nix:8:1");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.str`gruppled-${theme}-lite-cursors`),
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nim65s",
           repo: "gruppled-lite-cursors",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
 cp -r gruppled_${theme}_lite/{cursors,index.theme} $out/share/icons/gruppled_${theme}_lite
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: nix.thunk(() => nix.str`Gruppled ${nix.app(nix.sel(lib, "toSentenceCase"), theme)} Lite Cursors theme`),
         homepage: "https://github.com/nim65s/gruppled-lite-cursors",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

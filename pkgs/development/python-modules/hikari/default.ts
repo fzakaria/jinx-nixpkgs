@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   const mock = nix.arg($, "mock");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "hikari",
       version: "2.6.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hikari-py",
           repo: "hikari",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling]),
       propagatedBuildInputs: nix.thunk(() => [aiohttp, attrs, multidict, colorlog]),
       pythonRelaxDeps: true,
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, server: nix.thunk(() => [pynacl]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, server: nix.thunk(() => [pynacl]) })),
       nativeCheckInputs: nix.thunk(() => [
         pytestCheckHook,
         pytest_asyncio,
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["hikari"]),
       postPatch: "substituteInPlace hikari/_about.py \\\n  --replace-fail \"__git_sha1__: typing.Final[str] = \\\"HEAD\\\"\" \"__git_sha1__: typing.Final[str] = \\\"$(cat $src/COMMIT)\\\"\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Discord API wrapper for Python written with asyncio",
         homepage: "https://www.hikari-py.dev/",
         changelog: nix.thunk(() => nix.str`https://github.com/hikari-py/hikari/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

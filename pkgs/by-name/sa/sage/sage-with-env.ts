@@ -98,9 +98,9 @@ cp -f '${sage_env}/sage-env' "$out/bin/sage-env"
 substituteInPlace "$out/bin/sage-env" \\
   --subst-var-by sage-local "$out"
 `);
-      const passthru = nix.thunk(() => ({ __proto__: pos$1, env: sage_env }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$1, env: sage_env }));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         version,
         pname,
         src,

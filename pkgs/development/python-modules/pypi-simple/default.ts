@@ -21,22 +21,22 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const tqdm = nix.arg($, "tqdm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pypi-simple",
       version: "1.8.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "pypi_simple",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-Rm8vzQ1yOCKq46DM/aIuaP+M1/UKrmiRGUarHdHVh+E=",
         })))),
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => [beautifulsoup4, mailbits, packaging, pydantic, requests]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, tqdm: nix.thunk(() => [tqdm]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, tqdm: nix.thunk(() => [tqdm]) })),
       pythonImportsCheck: nix.thunk(() => ["pypi_simple"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "PyPI Simple Repository API client library",
         homepage: "https://pypi.org/project/pypi-simple",
         changelog: "https://github.com/jwodder/pypi-simple/blob/master/CHANGELOG.md",

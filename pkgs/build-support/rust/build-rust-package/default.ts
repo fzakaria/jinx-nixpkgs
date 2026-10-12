@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
   const getOptionalAttrs = (names) => (attrs) => nix.app(nix.sel(lib, "getAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "intersectLists"), names, nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), attrs)))), attrs);
   const interpolateString = (s) => (nix.asBool(nix.app(nix.sel(lib, "isList"), s)) ? nix.app(nix.sel(lib, "concatMapStringsSep"), " ", (s_1) => nix.str`${s_1}`, nix.thunk(() => nix.app(nix.sel(lib, "filter"), (s_1) => !nix.eq(s_1, null), s))) : (nix.asBool(nix.eq(s, null)) ? "" : nix.str`${s}`));
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
       excludeDrvArgNames: nix.thunk(() => [
         "depsExtraArgs",
@@ -70,11 +70,11 @@ export default nix.lambda((args) => (() => {
         nix.assert_((nix.asBool(useFetchCargoVendor) || nix.asBool(nix.builtins.throw("buildRustPackage: `useFetchCargoVendor` is non‐optional and enabled by default as of 25.05, remove it"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/rust/build-rust-package/default.nix:81:5");
         nix.assert_(nix.app(nix.sel(lib, "warnIf"), nix.thunk(() => nix.has(args_2, "useFetchCargoVendor")), "buildRustPackage: `useFetchCargoVendor` is non‐optional and enabled by default as of 25.05, remove it", true), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/rust/build-rust-package/default.nix:85:5");
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           env: nix.thunk(() => (() => {
             const isDarwinDebug = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.eq(buildType, "debug"))));
             return nix.update(nix.attrsDyn({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               PKG_CONFIG_ALLOW_CROSS: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))) ? 1n : 0n)),
               RUST_LOG: logLevel,
             }, [
@@ -93,7 +93,7 @@ export default nix.lambda((args) => (() => {
                 "unpackPhase",
                 "postUnpack",
               ]), finalAttrs), nix.update(nix.attrsDyn({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               patches: cargoPatches,
               hash: nix.thunk(() => nix.sel(args_2, "cargoHash")),
             }, [[(nix.asBool(!nix.eq(cargoDepsName, null)) ? "name" : null), cargoDepsName]]), depsExtraArgs))))))))),
@@ -105,7 +105,7 @@ export default nix.lambda((args) => (() => {
           cargoBuildFeatures: buildFeatures,
           cargoCheckFeatures: checkFeatures,
           nativeBuildInputs: nix.thunk(() => nix.concat(nativeBuildInputs, nix.concat(nix.app(nix.sel(lib, "optionals"), auditable, nix.thunk(() => [
-              nix.thunk(() => nix.app(nix.sel(buildPackages, "cargo-auditable-cargo-wrapper", "override"), nix.thunk(() => ({ __proto__: pos$3, cargo: cargo, "cargo-auditable": cargo_auditable })))),
+              nix.thunk(() => nix.app(nix.sel(buildPackages, "cargo-auditable-cargo-wrapper", "override"), nix.thunk(() => ({ [nix.POS]: pos$3, cargo: cargo, "cargo-auditable": cargo_auditable })))),
             ])), [
             cargoBuildHook,
             nix.thunk(() => (nix.asBool(useNextest) ? nix.force(cargoNextestHook) : nix.force(cargoCheckHook))),
@@ -120,7 +120,7 @@ export default nix.lambda((args) => (() => {
           doCheck: nix.thunk(() => nix.selOr(args_2, () => true, "doCheck")),
           strictDeps: true,
           meta: nix.thunk(() => nix.update(meta, {
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             badPlatforms: nix.thunk(() => nix.concat(nix.selOr(meta, () => [], "badPlatforms"), nix.sel(rustc, "badTargetPlatforms"))),
             platforms: nix.thunk(() => nix.app(nix.sel(lib, "intersectLists"), nix.thunk(() => nix.selOr(meta, () => nix.sel(lib, "platforms", "all"), "platforms")), nix.thunk(() => nix.sel(rustc, "targetPlatforms")))),
           })),

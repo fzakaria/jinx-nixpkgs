@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const systemd = nix.arg($, "systemd");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "iptsd",
       version: "3.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linux-surface",
           repo: "iptsd",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +61,7 @@ substituteInPlace etc/udev/50-iptsd.rules.in \\
 `),
       mesonFlags: nix.thunk(() => ["-Dservice_manager=systemd", "-Dsample_config=false", "-Db_lto=false"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/linux-surface/iptsd/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Userspace daemon for Intel Precise Touch & Stylus",
         homepage: "https://github.com/linux-surface/iptsd",

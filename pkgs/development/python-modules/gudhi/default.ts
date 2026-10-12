@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.11.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GUDHI",
           repo: "gudhi-devel",
           tag: nix.thunk(() => nix.str`tags/gudhi-release-${version}`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "runHook preCheck\n\nrm -r gudhi\nctest --output-on-failure\n\nrunHook postCheck\n";
       const pythonImportsCheck = nix.thunk(() => ["gudhi", "gudhi.hera", "gudhi.point_cloud", "gudhi.clustering"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for Computational Topology and Topological Data Analysis (TDA)",
         homepage: "https://gudhi.inria.fr/python/latest/",
         downloadPage: "https://github.com/GUDHI/gudhi-devel",
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

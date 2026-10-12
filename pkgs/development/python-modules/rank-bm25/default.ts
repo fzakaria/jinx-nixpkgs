@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pname = "rank-bm25";
   const version = "0.2.2";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: version,
       pname: pname,
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dorianbrown",
           repo: "rank_bm25",
           tag: version,
@@ -33,7 +33,7 @@ substituteInPlace setup.py --replace "get_version()" "'${version}'"
       propagatedBuildInputs: nix.thunk(() => [numpy]),
       pythonImportsCheck: nix.thunk(() => ["rank_bm25"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of BM25 Algorithms in Python",
         homepage: "https://github.com/dorianbrown/rank_bm25",
         changelog: nix.thunk(() => nix.str`https://github.com/dorianbrown/rank_bm25/releases/tag/${version}`),

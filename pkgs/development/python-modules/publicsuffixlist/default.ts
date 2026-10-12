@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const publicsuffix_list = nix.arg($, "publicsuffix-list");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "publicsuffixlist",
       version: "1.0.2.20261007",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-TxvtwsLFzEsLYLJwxXnUdcdYDmRB0mLR/Pxi89RaWOA=",
@@ -34,7 +34,7 @@ ln -s ${publicsuffix_list}/share/publicsuffix/public_suffix_list.dat publicsuffi
 `),
       "build-system": nix.thunk(() => [setuptools]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         update: nix.thunk(() => [requests]),
         readme: nix.thunk(() => [pandoc]),
       })),
@@ -42,7 +42,7 @@ ln -s ${publicsuffix_list}/share/publicsuffix/public_suffix_list.dat publicsuffi
       pythonImportsCheck: nix.thunk(() => ["publicsuffixlist"]),
       enabledTestPaths: nix.thunk(() => ["publicsuffixlist/test.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Public Suffix List parser implementation",
         homepage: "https://github.com/ko-zu/psl",
         changelog: nix.thunk(() => nix.str`https://github.com/ko-zu/psl/blob/v${nix.sel(finalAttrs, "version")}-gha/CHANGES.md`),

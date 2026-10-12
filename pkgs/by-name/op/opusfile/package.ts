@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libopus = nix.arg($, "libopus");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "opusfile",
       version: "0.12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://downloads.xiph.org/releases/opus/opusfile-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "02smwc5ah8nb3a67mnkjzqmrzk43j356hgj2a97s9midq40qd38i",
         })))),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => nix.concat([
         nix.path(here, "./include-multistream.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "CVE-2022-47021.patch",
             url: "https://github.com/xiph/opusfile/commit/0a4cd796df5b030cb866f3f4a5e41a4b92caddf5.patch",
             sha256: "sha256-XThI/ys5caB+OncFVfxm5IsvQPy1MbLQKwIlYjPvTJQ=",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isWindows")), nix.thunk(() => [nix.path(here, "./disable-cert-store.patch")])))),
       configureFlags: nix.thunk(() => ["--disable-examples"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "High-level API for decoding and seeking in .opus files",
         homepage: "https://www.opus-codec.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

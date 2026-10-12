@@ -41,29 +41,29 @@ export default nix.lambda((args) => (() => {
   const opt = nix.thunk(() => nix.sel(options, "services", "kener"));
   const isRedisUnixSocket = nix.thunk(() => nix.app(nix.sel(lib, "hasPrefix"), "/", nix.thunk(() => nix.sel(cfg, "redis", "host"))));
   return {
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "albertlarsan68"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         kener: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Kener, this assumes a reverse proxy to be set")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "kener", nix.thunk(() => ({})))),
           environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: null,
               description: "Environment file, to put KENER_SECRET_KEY and other sensible values.",
             })))),
           redis: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             createLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 description: nix.thunk(() => nix.str`Whether to configure a local Redis server for Kener.
 The connection is performed via Unix sockets by default,
 but that can be changed by disabling this option and
@@ -73,23 +73,23 @@ configuring {option}\`${nix.sel(opt, "redis", "host")}\` and {option}\`${nix.sel
                 default: true,
               })))),
             host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: nix.thunk(() => nix.sel(config, "services", "redis", "servers", "kener", "unixSocket")),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.redis.servers.kener.unixSocket")),
                 description: "The host that redis will listen on.",
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 0n,
                 description: "The port that redis will listen on. Set to zero to disable TCP.",
               })))),
           })),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   freeformType: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                     return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -97,7 +97,7 @@ configuring {option}\`${nix.sel(opt, "redis", "host")}\` and {option}\`${nix.sel
                 })))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 PORT: "4000",
                 NODE_EXTRA_CA_CERTS: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.security.pki.caBundle")),
               })),
@@ -107,22 +107,22 @@ configuring {option}\`${nix.sel(opt, "redis", "host")}\` and {option}\`${nix.sel
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(config, "services", "kener", "redis", "createLocally")) || nix.asBool(nix.eq(nix.sel(config, "services", "kener", "redis", "host"), nix.sel(config, "services", "redis", "servers", "kener", "unixSocket"))))),
             message: "createLocally should only be used with the local unix socket",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           redis: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             servers: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "redis", "createLocally")), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 kener: nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   enable: true,
                   port: nix.thunk(() => nix.sel(cfg, "redis", "port")),
                   bind: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(isRedisUnixSocket)), nix.thunk(() => nix.sel(cfg, "redis", "host")))),
@@ -130,17 +130,17 @@ configuring {option}\`${nix.sel(opt, "redis", "host")}\` and {option}\`${nix.sel
               })))),
           })),
           kener: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             settings: nix.thunk(() => (() => {
               const redisEnv = nix.thunk(() => (nix.asBool(isRedisUnixSocket) ? {
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 REDIS_URL: nix.thunk(() => nix.str`unix://${nix.sel(cfg, "redis", "host")}`),
               } : {
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 REDIS_URL: nix.thunk(() => nix.str`redis://${nix.sel(cfg, "redis", "host")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "redis", "port")))}`),
               }));
               return nix.update(redisEnv, {
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 NODE_ENV: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "production")),
                 DATABASE_URL: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "sqlite:///var/lib/kener/kener.sqlite.db")),
                 HOST: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "127.0.0.1")),
@@ -150,11 +150,11 @@ configuring {option}\`${nix.sel(opt, "redis", "host")}\` and {option}\`${nix.sel
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           services: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             kener: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               description: "Kener",
               after: nix.thunk(() => nix.concat(["network.target"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "redis", "createLocally")), "redis-kener.service"))),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -164,7 +164,7 @@ configuring {option}\`${nix.sel(opt, "redis", "host")}\` and {option}\`${nix.sel
                 return [nix.thunk(() => nix.sel(nix.lookup(w, "unixtools"), "ping"))];
               })()),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 Type: "simple",
                 StateDirectory: "kener",
                 StateDirectoryMode: "750",

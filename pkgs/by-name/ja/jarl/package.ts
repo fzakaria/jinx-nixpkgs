@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jarl",
       version: "0.6.0-unstable-2026-08-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "etiennebacher",
           repo: "jarl",
           rev: "0abcc17f335010419fa9cae463d746ad1343477e",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       postInstall: nix.thunk(() => nix.add("rm $out/bin/xtask_codegen\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd jarl \\\n  --bash <(COMPLETE=bash $out/bin/jarl) \\\n  --fish <(COMPLETE=fish $out/bin/jarl) \\\n  --zsh <(COMPLETE=zsh $out/bin/jarl) \\\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Just another R linter",
         homepage: "https://jarl.etiennebacher.com",
         changelog: "https://jarl.etiennebacher.com/changelog",

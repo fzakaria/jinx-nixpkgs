@@ -17,19 +17,19 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const rustc = nix.arg($, "rustc");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gersemi",
       version: "0.29.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BlankSpruce",
           repo: "gersemi",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-PEx5cT6jn0v4fm5ABqBvUKaJH9YS8kfZWdg5rUHSrUw=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Formatter to make your CMake code the real treasure",
         homepage: "https://github.com/BlankSpruce/gersemi",
         changelog: nix.thunk(() => nix.str`https://github.com/BlankSpruce/gersemi/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const CoreSymbolication = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "CoreSymbolication",
       version: "0-unstable-2018-06-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "CoreSymbolication",
           owner: "matthewbauer",
           rev: "24c87c23664b3ee05dc7a5a87d647ae476a680e4",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "mkdir -p \"$out/include\"\ncp *.h \"$out/include\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Reverse engineered headers for Apple's CoreSymbolication framework",
         homepage: "https://github.com/matthewbauer/CoreSymbolication",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       })),
     })));
   return (self) => (super$) => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     buildPhase: nix.thunk(() => nix.add(nix.selOr(super$, () => "", "buildPhase"), nix.str`mkdir -p System/Library/PrivateFrameworks/CoreSymbolication.framework/Versions/A/Headers
 ln -s Versions/Current/Headers System/Library/PrivateFrameworks/CoreSymbolication.framework/Headers
 cp '${CoreSymbolication}/include/'*.h System/Library/PrivateFrameworks/CoreSymbolication.framework/Versions/A/Headers

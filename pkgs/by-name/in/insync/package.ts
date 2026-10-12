@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const web_archive_id = "20260301163242";
   const debian_dist = "forky_amd64";
   const insync_pkg = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.str`${pname}-pkg`),
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.str`https://web.archive.org/web/${web_archive_id}/${nix.builtins.elemAt(urls, 0n)}`),
           ]);
           const hash = "sha256-EeTp49so038/bEJ9P1ubPiSj7dKhGHtHmkV0ExMCmj0=";
-          return { __proto__: pos$1, urls, hash };
+          return { [nix.POS]: pos$1, urls, hash };
         })()))),
       nativeBuildInputs: nix.thunk(() => [dpkg, autoPatchelfHook, nix.thunk(() => nix.sel(qt5, "wrapQtAppsHook"))]),
       buildInputs: nix.thunk(() => nix.concat([alsa_lib, nss, lz4, libgcrypt, libthai], [nix.thunk(() => nix.sel(qt5, "qtvirtualkeyboard"))])),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       dontStrip: true,
     }))));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       targetPkgs: (pkgs) => (() => {
@@ -75,7 +75,7 @@ exec /usr/lib/insync/insync "$@"
       unshareCgroup: false,
       dieWithParent: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         platforms: nix.thunk(() => ["x86_64-linux"]),
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);

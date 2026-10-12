@@ -11,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const spigot = nix.arg($, "spigot");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "spigot-approximation",
       version: nix.thunk(() => nix.attr(spigot, "version")),
       nativeBuildInputs: nix.thunk(() => [spigot]),
       dontInstall: true,
       buildCommand: "[ \"$(spigot -b2 -d32 '(pi/1-355/113)')\" = \"-0.00000000000000000000010001111001\" ]\n[ \"$(spigot -b2 -d32 '(e/1-1457/536)')\" = \"-0.00000000000000000001110101101011\" ]\ntouch $out\n",
-      meta: nix.thunk(() => ({ __proto__: pos$1, timeout: 10n })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 10n })),
     })));
 })(), formals$1);
 //# sourceMappingURL=approximation.ts.map

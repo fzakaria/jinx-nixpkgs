@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aiohomematic-config",
       version: "2026.8.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sukramj",
           repo: "aiohomematic-config",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["aiohomematic_config"]),
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytest_xdist, pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/sukramj/aiohomematic-config/blob/${nix.sel(finalAttrs, "src", "tag")}/changelog.md`),
         description: "Presentation-layer library for Homematic device configuration UI",
         homepage: "https://github.com/sukramj/aiohomematic-config",

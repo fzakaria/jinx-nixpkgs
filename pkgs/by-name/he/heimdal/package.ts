@@ -45,11 +45,11 @@ export default nix.lambda((args) => (() => {
   const withSQLite3 = nix.argOr($, "withSQLite3", () => true);
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => (!nix.asBool(withOpenLDAPAsHDBModule) || nix.asBool(withOpenLDAP))), "OpenLDAP needs to be enabled in order to build the OpenLDAP HDB Module.\n"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/he/heimdal/package.nix:42:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "heimdal",
       version: "7.8.0-unstable-2024-09-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "heimdal",
           repo: "heimdal",
           rev: "fd2d434dd375c402d803e6f948cfc6e257d3facc",
@@ -96,15 +96,15 @@ substituteInPlace tests/kdc/check-iprop.in \\
       postBuild: "(cd include/hcrypto; make -j $NIX_BUILD_CORES)\n(cd lib/hcrypto; make -j $NIX_BUILD_CORES)\n",
       postInstall: "# Install hcrypto\n(cd include/hcrypto; make -j $NIX_BUILD_CORES install)\n(cd lib/hcrypto; make -j $NIX_BUILD_CORES install)\n\nmkdir -p $dev/bin\nmv $out/bin/krb5-config $dev/bin/\n\n# asn1 compilers, move them to $dev\nmv $out/libexec/heimdal/* $dev/bin\nrmdir $out/libexec/heimdal\n\n# compile_et is needed for cross-compiling this package and samba\nmv lib/com_err/.libs/compile_et $dev/bin\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         implementation: "heimdal",
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           nixos: nix.thunk(() => nix.sel(nixosTests, "kerberos", "heimdal")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.heimdal.software",
         changelog: "https://github.com/heimdal/heimdal/releases",
         description: "Implementation of Kerberos 5 (and some more stuff)",

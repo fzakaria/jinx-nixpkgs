@@ -10,10 +10,10 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildAstalModule = nix.arg($, "buildAstalModule");
   return nix.app(buildAstalModule, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "io",
       sourceRoot: "lib/astal/io",
-      meta: nix.thunk(() => ({ __proto__: pos$1, description: "Astal core library" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, description: "Astal core library" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=io.ts.map

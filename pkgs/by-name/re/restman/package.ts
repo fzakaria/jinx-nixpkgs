@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const restman = nix.arg($, "restman");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "restman",
       version: "0.4.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "restman",
           owner: "jackMort",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/jackMort/Restman/commit/2d5edd4e4faa0499bf93741fed250f8f13efa9c3.patch",
             hash: "sha256-Mv7+eAKczR4YZDdevK60I1WZrmEumqsXhXMQVwu1zLo=",
           })))),
@@ -45,11 +45,11 @@ export default nix.lambda((args) => (() => {
       ]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: restman,
               version: nix.thunk(() => nix.str`restman version ${nix.sel(finalAttrs, "version")}`),
               command: "restman --version",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "CLI for streamlined RESTful API testing and management",
         homepage: "https://github.com/jackMort/Restman",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

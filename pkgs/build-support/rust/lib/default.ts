@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const pkgsBuildTarget = nix.arg($, "pkgsBuildTarget");
   const pkgsTargetTarget = nix.arg($, "pkgsTargetTarget");
   return nix.update({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     envVars: nix.thunk(() => (() => {
       const ccForBuild = nix.thunk(() => nix.str`${nix.sel(pkgsBuildHost, "stdenv", "cc")}/bin/${nix.sel(pkgsBuildHost, "stdenv", "cc", "targetPrefix")}cc`);
       const cxxForBuild = nix.thunk(() => nix.str`${nix.sel(pkgsBuildHost, "stdenv", "cc")}/bin/${nix.sel(pkgsBuildHost, "stdenv", "cc", "targetPrefix")}c++`);
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const rustTargetPlatform = nix.thunk(() => nix.sel(stdenv, "targetPlatform", "rust", "rustcTarget"));
       const rustTargetPlatformSpec = nix.thunk(() => nix.sel(stdenv, "targetPlatform", "rust", "rustcTargetSpec"));
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         ccForBuild: ccForBuild,
         cxxForBuild: cxxForBuild,
         rustBuildPlatform: rustBuildPlatform,
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       };
     })()),
   }, nix.app(nix.sel(lib, "mapAttrs"), (old) => (new$) => (platform) => nix.app(nix.sel(lib, "warn"), nix.thunk(() => nix.str`\`rust.${old} platform\` is deprecated. Use \`platform.rust.${nix.app(nix.sel(lib, "showAttrPath"), new$)}\` instead.`), nix.thunk(() => nix.sel(lib, "getAttrFromPath")), new$, nix.thunk(() => nix.sel(platform, "rust"))), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       toTargetArch: nix.thunk(() => ["platform", "arch"]),
       toTargetOs: nix.thunk(() => ["platform", "os"]),
       toTargetFamily: nix.thunk(() => ["platform", "target-family"]),

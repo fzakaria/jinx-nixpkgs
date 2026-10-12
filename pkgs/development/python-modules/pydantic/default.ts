@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.13.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pydantic",
           repo: "pydantic",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "pytest-9.1-compat.patch",
             url: "https://github.com/pydantic/pydantic/commit/f257d0155c6643fbda9516af6b2c4ca082ed7651.patch",
             excludes: nix.thunk(() => ["uv.lock"]),
@@ -55,12 +55,12 @@ export default nix.lambda((args) => (() => {
       const postPatch = "sed -i \"/--benchmark/d\" pyproject.toml\n";
       const build_system = nix.thunk(() => [hatch_fancy_pypi_readme, hatchling]);
       const dependencies = nix.thunk(() => [annotated_types, pydantic_core, typing_extensions, typing_inspection]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$3, email: nix.thunk(() => [email_validator]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$3, email: nix.thunk(() => [email_validator]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([
         cloudpickle,
         dirty_equals,
         hypothesis,
-        nix.thunk(() => nix.app(nix.sel(inline_snapshot, "overridePythonAttrs"), nix.thunk(() => ({ __proto__: pos$4, doCheck: false })))),
+        nix.thunk(() => nix.app(nix.sel(inline_snapshot, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$4, doCheck: false })))),
         jsonschema,
         pytest_mock,
         pytest_run_parallel,
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/benchmarks", "tests/pydantic_core/benchmarks", "tests/test_docs.py"]);
       const pythonImportsCheck = nix.thunk(() => ["pydantic"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Data validation and settings management using Python type hinting",
         homepage: "https://github.com/pydantic/pydantic",
         changelog: nix.thunk(() => nix.str`https://github.com/pydantic/pydantic/blob/${nix.sel(src, "tag")}/HISTORY.md`),
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

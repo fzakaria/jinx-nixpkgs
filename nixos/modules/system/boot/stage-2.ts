@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const useHostResolvConf = nix.thunk(() => (nix.asBool(nix.sel(config, "networking", "resolvconf", "enable")) && nix.asBool(nix.sel(config, "networking", "useHostResolvConf"))));
   const bootStage2 = nix.thunk(() => nix.app(nix.sel(pkgs, "replaceVarsWith"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       src: nix.path(here, "./stage-2-init.sh"),
       isExecutable: true,
       replacements: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(config, "boot"));
         const from_1 = nix.thunk(() => nix.sel(config, "system", "build"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         shell: nix.thunk(() => nix.str`${nix.sel(pkgs, "bash")}/bin/bash`),
         systemConfig: null,
         systemdExecutable: nix.thunk(() => nix.attr(from, "systemdExecutable")),
@@ -50,42 +50,42 @@ export default nix.lambda((args) => (() => {
       })()),
     }))));
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["boot", "readOnlyNixStore"]), "Please use the `boot.nixStoreMountOpts' option to define mount options for the Nix store, including 'ro'")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       boot: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         postBootCommands: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             default: "",
             example: "rm -f /var/log/messages",
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
             description: "Shell commands to be executed just before systemd is started.\n",
           })))),
         nixStoreMountOpts: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "nonEmptyStr")))),
             default: nix.thunk(() => ["x-initrd.mount", "ro", "nodev", "nosuid"]),
             description: "Defines the mount options used on a bind mount for the {file}`/nix/store`.\nThis affects the whole system except the nix store daemon, which will undo the bind mount.\n\n`ro` enforces immutability of the Nix store.\nThe store daemon should already not put device mappers or suid binaries in the store,\nmeaning `nosuid` and `nodev` enforce what should already be the case.\n",
           })))),
         systemdExecutable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             default: "/run/current-system/systemd/lib/systemd/systemd",
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             description: "The program to execute to start systemd.\n",
           })))),
         stage2Greeting: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             default: nix.thunk(() => nix.str`<<< ${nix.sel(config, "system", "nixos", "distroName")} Stage 2 >>>`),
             defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "\"<<< ${config.system.nixos.distroName} Stage 2 >>>\"")),
             description: "The greeting message displayed during NixOS stage 2 boot.\n",
           })))),
         extraSystemdUnitPaths: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             default: [],
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
             description: "Additional paths that get appended to the SYSTEMD_UNIT_PATH environment variable\nthat can contain mutable unit files.\n",
@@ -93,10 +93,10 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       system: nix.thunk(() => ({
-        __proto__: pos$11,
-        build: nix.thunk(() => ({ __proto__: pos$10, bootStage2: bootStage2 })),
+        [nix.POS]: pos$11,
+        build: nix.thunk(() => ({ [nix.POS]: pos$10, bootStage2: bootStage2 })),
       })),
     })),
   };

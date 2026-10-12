@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const libogg = nix.arg($, "libogg");
   const sse2neon = nix.arg($, "sse2neon");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "etterna",
       version: "0.74.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "etternagame",
           repo: "etterna",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
       ]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "etterna",
             desktopName: "Etterna",
             genericName: "Rhythm and dance game",
@@ -101,7 +101,7 @@ runHook postInstall
 `),
       cmakeFlags: nix.thunk(() => ["-D WITH_CRASHPAD=OFF"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Advanced cross-platform rhythm game focused on keyboard play",
         homepage: "https://etternaonline.com",
         changelog: nix.thunk(() => nix.str`https://github.com/etternagame/etterna/releases/tag/v${nix.sel(finalAttrs, "version")}`),

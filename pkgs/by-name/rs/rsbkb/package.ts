@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const enableAppletSymlinks = nix.argOr($, "enableAppletSymlinks", () => true);
   const version = "1.9";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rsbkb",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "trou",
           repo: "rsbkb",
           rev: nix.thunk(() => nix.str`release-${version}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-loHsF4fCefT6I0WAbUuP2wmFAdXHNuZokoBQG65ZyoA=",
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), enableAppletSymlinks, "cd $out/bin || exit 1\npath=\"$(realpath --canonicalize-missing ./rsbkb)\"\nfor i in $(./rsbkb list) ; do ln -s $path $i ; done\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command line tools to encode/decode things",
         homepage: "https://github.com/trou/rsbkb",
         changelog: nix.thunk(() => nix.str`https://github.com/trou/rsbkb/releases/tag/release-${version}`),

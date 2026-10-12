@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
   const dataDir = nix.thunk(() => nix.sel(cfg, "dataDir"));
   const staticDir = nix.thunk(() => nix.add(nix.sel(cfg, "dataDir"), "/static"));
   const graphiteLocalSettingsDir = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "graphite_local_settings", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       graphiteLocalSettings: graphiteLocalSettings,
       preferLocalBuild: true,
     })), "mkdir -p $out\nln -s $graphiteLocalSettings $out/graphite_local_settings.py\n"));
@@ -99,13 +99,13 @@ export default nix.lambda((args) => (() => {
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(config, "time", "timeZone"), null)), nix.thunk(() => nix.str`TIME_ZONE = '${nix.sel(config, "time", "timeZone")}'
 `))), nix.sel(cfg, "web", "extraConfig")))));
   const seyrenConfig = nix.thunk(() => nix.update({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     SEYREN_URL: nix.thunk(() => nix.sel(cfg, "seyren", "seyrenUrl")),
     MONGO_URL: nix.thunk(() => nix.sel(cfg, "seyren", "mongoUrl")),
     GRAPHITE_URL: nix.thunk(() => nix.sel(cfg, "seyren", "graphiteUrl")),
   }, nix.sel(cfg, "seyren", "extraConfig")));
   const configDir = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "graphite-config",
       paths: nix.thunk(() => nix.app(nix.sel(lib, "lists", "filter"), (el) => !nix.eq(el, null), nix.thunk(() => [
           nix.thunk(() => nix.app(writeTextOrNull, "carbon.conf", nix.thunk(() => nix.sel(cfg, "carbon", "config")))),
@@ -121,10 +121,10 @@ export default nix.lambda((args) => (() => {
   const carbonOpts = (name) => nix.str`--nodaemon --syslog --prefix=${name} --pidfile /run/${name}/${name}.pid ${name}
 `;
   const carbonEnv = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     PYTHONPATH: nix.thunk(() => (() => {
       const cenv = nix.thunk(() => nix.app(nix.sel(pkgs, "python3", "buildEnv", "override"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           extraLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "python3Packages", "carbon"))]),
         }))));
       return nix.str`${cenv}/${nix.sel(pkgs, "python3", "sitePackages")}`;
@@ -134,121 +134,121 @@ export default nix.lambda((args) => (() => {
     GRAPHITE_STORAGE_DIR: dataDir,
   }));
   return {
-    __proto__: pos$75,
+    [nix.POS]: pos$75,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "graphite", "api"]), "")),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "graphite", "beacon"]), "")),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "graphite", "pager"]), "")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$33,
+      [nix.POS]: pos$33,
       services: nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         graphite: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/db/graphite",
               description: "Data directory for graphite.\n",
             })))),
           web: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 description: "Whether to enable graphite web frontend.",
                 default: false,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               })))),
             listenAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 description: "Graphite web frontend listen address.",
                 default: "127.0.0.1",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 description: "Graphite web frontend port.",
                 default: 8080n,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
               })))),
             extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "",
                 description: "Graphite webapp settings. See:\n<https://graphite.readthedocs.io/en/latest/config-local-settings.html>\n",
               })))),
           })),
           carbon: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 description: "Content of carbon configuration file.",
                 default: "[cache]\n# Listen on localhost by default for security reasons\nUDP_RECEIVER_INTERFACE = 127.0.0.1\nPICKLE_RECEIVER_INTERFACE = 127.0.0.1\nLINE_RECEIVER_INTERFACE = 127.0.0.1\nCACHE_QUERY_INTERFACE = 127.0.0.1\n# Do not log every update\nLOG_UPDATES = False\nLOG_CACHE_HITS = False\n",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
               })))),
             enableCache: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 description: "Whether to enable carbon cache, the graphite storage daemon.",
                 default: false,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               })))),
             storageAggregation: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 description: "Defines how to aggregate data to lower-precision retentions.",
                 default: null,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 example: "[all_min]\npattern = \\.min$\nxFilesFactor = 0.1\naggregationMethod = min\n",
               })))),
             storageSchemas: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 description: "Defines retention rates for storing metrics.",
                 default: "",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 example: "[apache_busyWorkers]\npattern = ^servers\\.www.*\\.workers\\.busyWorkers$\nretentions = 15s:7d,1m:21d,15m:5y\n",
               })))),
             blacklist: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 description: "Any metrics received which match one of the expressions will be dropped.",
                 default: null,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 example: "^some\\.noisy\\.metric\\.prefix\\..*",
               })))),
             whitelist: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 description: "Only metrics received which match one of the expressions will be persisted.",
                 default: null,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 example: ".*",
               })))),
             rewriteRules: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 description: "Regular expression patterns that can be used to rewrite metric names\nin a search and replace fashion.\n",
                 default: null,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 example: "[post]\n_sum$ =\n_avg$ =\n",
               })))),
             enableRelay: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 description: "Whether to enable carbon relay, the carbon replication and sharding service.",
                 default: false,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               })))),
             relayRules: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 description: "Relay rules are used to send certain metrics to a certain backend.",
                 default: null,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 example: "[example]\npattern = ^mydata\\.foo\\..+\nservers = 10.1.2.3, 10.1.2.4:2004, myserver.mydomain.com\n",
               })))),
             enableAggregator: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 description: "Whether to enable carbon aggregator, the carbon buffering service.",
                 default: false,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               })))),
             aggregationRules: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 description: "Defines if and how received metrics will be aggregated.",
                 default: null,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
@@ -256,42 +256,42 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           seyren: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 description: "Whether to enable seyren service.",
                 default: false,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 description: "Seyren listening port.",
                 default: 8081n,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
               })))),
             seyrenUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 default: nix.thunk(() => nix.str`http://localhost:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "seyren", "port")))}/`),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`"http://localhost:\${toString config.${nix.sel(opt, "seyren", "port")}}/"`))),
                 description: "Host where seyren is accessible.",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
               })))),
             graphiteUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 default: nix.thunk(() => nix.str`http://${nix.sel(cfg, "web", "listenAddress")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "web", "port")))}`),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`"http://\${config.${nix.sel(opt, "web", "listenAddress")}}:\${toString config.${nix.sel(opt, "web", "port")}}"`))),
                 description: "Host where graphite service runs.",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
               })))),
             mongoUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 default: nix.thunk(() => nix.str`mongodb://${nix.sel(config, "services", "mongodb", "bind_ip")}:27017/seyren`),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"mongodb://${config.services.mongodb.bind_ip}:27017/seyren\"")),
                 description: "Mongodb connection string.",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
               })))),
             extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 default: nix.thunk(() => ({})),
                 description: "Extra seyren configuration. See\n<https://github.com/scobal/seyren#config>\n",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
@@ -303,21 +303,21 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "carbon", "enableCache")), nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             systemd: nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               services: nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 carbonCache: nix.thunk(() => (() => {
                   const name = "carbon-cache";
                   return {
-                    __proto__: pos$35,
+                    [nix.POS]: pos$35,
                     description: "Graphite Data Storage Backend",
                     wantedBy: nix.thunk(() => ["multi-user.target"]),
                     after: nix.thunk(() => ["network.target"]),
                     environment: carbonEnv,
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$34,
+                      [nix.POS]: pos$34,
                       Slice: "system-graphite.slice",
                       RuntimeDirectory: name,
                       ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "python3Packages", "twisted")), "twistd")} ${nix.app(carbonOpts, name)}`),
@@ -335,22 +335,22 @@ install -dm0700 -o graphite -g graphite ${nix.sel(cfg, "dataDir")}/whisper
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "carbon", "enableAggregator")), nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             systemd: nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               services: nix.thunk(() => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 carbonAggregator: nix.thunk(() => (() => {
                   const name = "carbon-aggregator";
                   return {
-                    __proto__: pos$40,
+                    [nix.POS]: pos$40,
                     enable: nix.thunk(() => nix.sel(cfg, "carbon", "enableAggregator")),
                     description: "Carbon Data Aggregator",
                     wantedBy: nix.thunk(() => ["multi-user.target"]),
                     after: nix.thunk(() => ["network.target"]),
                     environment: carbonEnv,
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$39,
+                      [nix.POS]: pos$39,
                       Slice: "system-graphite.slice",
                       RuntimeDirectory: name,
                       ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "python3Packages", "twisted")), "twistd")} ${nix.app(carbonOpts, name)}`),
@@ -364,21 +364,21 @@ install -dm0700 -o graphite -g graphite ${nix.sel(cfg, "dataDir")}/whisper
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "carbon", "enableRelay")), nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             systemd: nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               services: nix.thunk(() => ({
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 carbonRelay: nix.thunk(() => (() => {
                   const name = "carbon-relay";
                   return {
-                    __proto__: pos$45,
+                    [nix.POS]: pos$45,
                     description: "Carbon Data Relay",
                     wantedBy: nix.thunk(() => ["multi-user.target"]),
                     after: nix.thunk(() => ["network.target"]),
                     environment: carbonEnv,
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$44,
+                      [nix.POS]: pos$44,
                       Slice: "system-graphite.slice",
                       RuntimeDirectory: name,
                       ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "python3Packages", "twisted")), "twistd")} ${nix.app(carbonOpts, name)}`),
@@ -392,29 +392,29 @@ install -dm0700 -o graphite -g graphite ${nix.sel(cfg, "dataDir")}/whisper
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(cfg, "carbon", "enableCache")) || nix.asBool(nix.sel(cfg, "carbon", "enableAggregator")))) || nix.asBool(nix.sel(cfg, "carbon", "enableRelay")))), nix.thunk(() => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             environment: nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "python3Packages", "carbon"))]),
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "web", "enable")), nix.thunk(() => ({
-            __proto__: pos$58,
+            [nix.POS]: pos$58,
             systemd: nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               services: nix.thunk(() => ({
-                __proto__: pos$55,
+                [nix.POS]: pos$55,
                 graphiteWeb: nix.thunk(() => ({
-                  __proto__: pos$54,
+                  [nix.POS]: pos$54,
                   description: "Graphite Web Interface",
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   after: nix.thunk(() => ["network.target"]),
                   path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "perl"))]),
                   environment: nix.thunk(() => ({
-                    __proto__: pos$52,
+                    [nix.POS]: pos$52,
                     PYTHONPATH: nix.thunk(() => (() => {
                       const penv = nix.thunk(() => nix.app(nix.sel(pkgs, "python3", "buildEnv", "override"), nix.thunk(() => ({
-                          __proto__: pos$51,
+                          [nix.POS]: pos$51,
                           extraLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "python3Packages", "graphite-web"))]),
                         }))));
                       const penvPack = nix.thunk(() => nix.str`${penv}/${nix.sel(pkgs, "python3", "sitePackages")}`);
@@ -431,7 +431,7 @@ install -dm0700 -o graphite -g graphite ${nix.sel(cfg, "dataDir")}/whisper
                     LD_LIBRARY_PATH: nix.thunk(() => nix.str`${nix.sel(pkgs, "cairo", "out")}/lib`),
                   })),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$53,
+                    [nix.POS]: pos$53,
                     ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "python3Packages", "waitress-django")))} \\
   --host=${nix.sel(cfg, "web", "listenAddress")} --port=${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "web", "port")))}
 `),
@@ -463,24 +463,24 @@ fi
               })),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$57,
+              [nix.POS]: pos$57,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "python3Packages", "graphite-web"))]),
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "seyren", "enable")), nix.thunk(() => ({
-            __proto__: pos$65,
+            [nix.POS]: pos$65,
             systemd: nix.thunk(() => ({
-              __proto__: pos$62,
+              [nix.POS]: pos$62,
               services: nix.thunk(() => ({
-                __proto__: pos$61,
+                [nix.POS]: pos$61,
                 seyren: nix.thunk(() => ({
-                  __proto__: pos$60,
+                  [nix.POS]: pos$60,
                   description: "Graphite Alerting Dashboard",
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   after: nix.thunk(() => ["network.target", "mongodb.service"]),
                   environment: seyrenConfig,
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$59,
+                    [nix.POS]: pos$59,
                     ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "seyren")))} -httpPort ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "seyren", "port")))}`),
                     WorkingDirectory: dataDir,
                     User: "graphite",
@@ -496,32 +496,32 @@ fi
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$64,
+              [nix.POS]: pos$64,
               mongodb: nix.thunk(() => ({
-                __proto__: pos$63,
+                [nix.POS]: pos$63,
                 enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
               })),
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool((nix.asBool(nix.sel(cfg, "carbon", "enableCache")) || nix.asBool(nix.sel(cfg, "carbon", "enableAggregator")))) || nix.asBool(nix.sel(cfg, "carbon", "enableRelay")))) || nix.asBool(nix.sel(cfg, "web", "enable")))) || nix.asBool(nix.sel(cfg, "seyren", "enable")))), nix.thunk(() => ({
-            __proto__: pos$74,
+            [nix.POS]: pos$74,
             systemd: nix.thunk(() => ({
-              __proto__: pos$68,
+              [nix.POS]: pos$68,
               slices: nix.thunk(() => ({
-                __proto__: pos$67,
+                [nix.POS]: pos$67,
                 "system-graphite": nix.thunk(() => ({
-                  __proto__: pos$66,
+                  [nix.POS]: pos$66,
                   description: "Graphite Graphing System Slice",
                   documentation: nix.thunk(() => ["https://graphite.readthedocs.io/en/latest/overview.html"]),
                 })),
               })),
             })),
             users: nix.thunk(() => ({
-              __proto__: pos$73,
+              [nix.POS]: pos$73,
               users: nix.thunk(() => ({
-                __proto__: pos$70,
+                [nix.POS]: pos$70,
                 graphite: nix.thunk(() => ({
-                  __proto__: pos$69,
+                  [nix.POS]: pos$69,
                   uid: nix.thunk(() => nix.sel(config, "ids", "uids", "graphite")),
                   group: "graphite",
                   description: "Graphite daemon user",
@@ -529,9 +529,9 @@ fi
                 })),
               })),
               groups: nix.thunk(() => ({
-                __proto__: pos$72,
+                [nix.POS]: pos$72,
                 graphite: nix.thunk(() => ({
-                  __proto__: pos$71,
+                  [nix.POS]: pos$71,
                   gid: nix.thunk(() => nix.sel(config, "ids", "gids", "graphite")),
                 })),
               })),

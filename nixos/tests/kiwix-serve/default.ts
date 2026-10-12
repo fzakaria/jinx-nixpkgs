@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const mkTestZim = (name) => nix.app(nix.sel(pkgs, "runCommandLocal"), nix.thunk(() => nix.str`${name}.zim`), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "zim-tools"))]),
     })), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "zim-tools")), "zimwriterfs")} \\
   --name "${name}" \\
@@ -38,30 +38,30 @@ export default nix.lambda((args) => (() => {
   const testZimStore = nix.thunk(() => nix.app(mkTestZim, "test-store"));
   const testZimOutside = nix.thunk(() => nix.app(mkTestZim, "test-outside"));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     name: "kiwix-serve",
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "MysteryBlokHed"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       machine: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         systemd: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           services: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             "copy-zim-file": nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               description: "Copy test ZIM file to host system to test paths outside of store",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               before: nix.thunk(() => ["kiwix-serve.service"]),
               requiredBy: nix.thunk(() => ["kiwix-serve.service"]),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$3, Type: "oneshot" })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$3, Type: "oneshot" })),
               script: nix.thunk(() => nix.str`mkdir -p /var/lib/kiwix-serve
 cp ${testZimOutside} /var/lib/kiwix-serve/test-outside.zim
 `),
@@ -69,13 +69,13 @@ cp ${testZimOutside} /var/lib/kiwix-serve/test-outside.zim
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           "kiwix-serve": nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             enable: true,
             port: 8080n,
             library: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               "test-store": testZimStore,
               "test-outside": "/var/lib/kiwix-serve/test-outside.zim",
             })),

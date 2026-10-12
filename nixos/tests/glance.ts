@@ -29,17 +29,17 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     name: "glance",
     nodes: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       machine_default: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           services: nix.thunk(() => ({
-            __proto__: pos$2,
-            glance: nix.thunk(() => ({ __proto__: pos$1, enable: true })),
+            [nix.POS]: pos$2,
+            glance: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
           })),
         };
       })(), formals$2),
@@ -47,37 +47,37 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs = nix.arg($_1, "pkgs");
         const secrets = nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "glance-location": nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             path: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "location-secret", "Nivelles, Belgium")))),
           })),
         }));
         return {
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             glance: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$12,
-                server: nix.thunk(() => ({ __proto__: pos$6, port: 5678n })),
+                [nix.POS]: pos$12,
+                server: nix.thunk(() => ({ [nix.POS]: pos$6, port: 5678n })),
                 pages: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     name: "Home",
                     columns: nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         size: "full",
                         widgets: nix.thunk(() => [
-                          nix.thunk(() => ({ __proto__: pos$7, type: "calendar" })),
+                          nix.thunk(() => ({ [nix.POS]: pos$7, type: "calendar" })),
                           nix.thunk(() => ({
-                            __proto__: pos$9,
+                            [nix.POS]: pos$9,
                             type: "weather",
                             location: nix.thunk(() => ({
-                              __proto__: pos$8,
+                              [nix.POS]: pos$8,
                               _secret: nix.thunk(() => nix.sel(secrets, "glance-location", "path")),
                             })),
                           })),
@@ -121,7 +121,7 @@ yaml_parsed = yaml.load(yaml_contents, Loader=yaml.FullLoader)
 location = yaml_parsed["pages"][0]["columns"][0]["widgets"][1]["location"]
 assert location == "Nivelles, Belgium"
 `),
-    meta: nix.thunk(() => ({ __proto__: pos$17, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$17, maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=glance.ts.map

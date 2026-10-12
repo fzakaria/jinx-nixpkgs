@@ -32,16 +32,16 @@ export default nix.lambda((args) => (() => {
     const extraDescription = nix.argOr($_1, "extraDescription", () => null);
     const meta = nix.argOr($_1, "meta", () => ({}));
     const package$ = nix.thunk(() => nix.app(nix.sel(lib, "lazyDerivation"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         derivation: drv,
         passthru: nix.thunk(() => nix.update({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`catalog-${name}`),
           pname: nix.thunk(() => nix.str`catalog-${name}`),
           internals: drv,
-        }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(version, null)), nix.thunk(() => ({ __proto__: pos$2, version: version }))))),
+        }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(version, null)), nix.thunk(() => ({ [nix.POS]: pos$2, version: version }))))),
         meta: nix.thunk(() => nix.update({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           description: nix.thunk(() => nix.str`JSON Schema Catalog for ${displayName}`),
           longDescription: nix.thunk(() => (() => {
             const licenses = nix.thunk(() => nix.app(nix.sel(lib, "toList"), nix.thunk(() => nix.sel(meta, "license"))));
@@ -58,28 +58,28 @@ ${theLicensesApply} to the schemas in this catalog. The catalog file itself is l
         }, meta)),
       }))));
     const drvArgs = nix.thunk(() => nix.update({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: name,
       catalogJson: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           name: displayName,
           groups: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name_1) => (group) => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               name: name_1,
               baseLocation: "/",
-              schemas: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (id) => (location) => ({ __proto__: pos$5, id: id, location: location }), group)),
+              schemas: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (id) => (location) => ({ [nix.POS]: pos$5, id: id, location: location }), group)),
             }), groups)),
         })))),
-      passthru: nix.thunk(() => ({ __proto__: pos$8, groups: groups })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$8, groups: groups })),
       nativeBuildInputs: nix.thunk(() => [jq, json_schema_catalog_rs]),
       __structuredAttrs: true,
-    }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(version, null)), nix.thunk(() => ({ __proto__: pos$10, version: version })))));
+    }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(version, null)), nix.thunk(() => ({ [nix.POS]: pos$10, version: version })))));
     const drv = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(package$, "name")}${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(version, null)), nix.thunk(() => nix.str`-${version}`))}`), drvArgs, "out_dir=\"$out/share/json-schema-catalogs\"\nout_file=\"$out_dir/$name.json\"\n\nmkdir -p \"$out_dir\"\n\n# Write the catalog JSON. `jq` formats it nicely.\nprintf \"%s\" \"$catalogJson\" | jq . >\"$out_file\"\n\njson-schema-catalog check \"$out_file\"\n"));
     return nix.force(package$);
   })(), formals$2);
   return {
-    __proto__: pos$12,
-    lib: nix.thunk(() => ({ __proto__: pos$11, newCatalog: newCatalog })),
+    [nix.POS]: pos$12,
+    lib: nix.thunk(() => ({ [nix.POS]: pos$11, newCatalog: newCatalog })),
   };
 })(), formals$1);
 //# sourceMappingURL=lib.ts.map

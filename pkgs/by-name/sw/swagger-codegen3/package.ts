@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "swagger-codegen3";
       const version = "3.0.81";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "swagger-api",
           repo: "swagger-codegen",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -42,7 +42,7 @@ runHook postInstall
       const doInstallCheck = true;
       const versionCheckProgramArg = "version";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Allows generation of API client libraries (SDK generation), server stubs and documentation automatically given an OpenAPI Spec",
         homepage: "https://github.com/swagger-api/swagger-codegen/tree/3.0.0",
         changelog: nix.thunk(() => nix.str`https://github.com/swagger-api/swagger-codegen/releases/tag/v${version}`),
@@ -65,7 +65,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

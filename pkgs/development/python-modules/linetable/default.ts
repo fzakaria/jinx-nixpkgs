@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.3";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "amol-",
           repo: "linetable",
           tag: version,
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["linetable"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to parse and generate co_linetable attributes in Python code objects",
         homepage: "https://github.com/amol-/linetable",
         changelog: nix.thunk(() => nix.str`https://github.com/amol-/linetable/releases/tag/${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

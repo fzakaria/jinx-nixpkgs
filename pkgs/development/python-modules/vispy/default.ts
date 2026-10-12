@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.16.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-CUUavoeBM2/WhCIHzZXOXoYJ2Z8TvN6JhBJTgSXDUIg=",
         }))));
       const patches = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [
           nix.thunk(() => nix.app(replaceVars, nix.path(here, "./library-paths.patch"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               fontconfig: nix.thunk(() => nix.str`${nix.sel(fontconfig, "lib")}/lib/libfontconfig${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
               gl: nix.thunk(() => nix.str`${nix.sel(libGL, "out")}/lib/libGL${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
             })))),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         "vispy.visuals",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Interactive scientific visualization in Python",
         homepage: "https://vispy.org/index.html",
         changelog: nix.thunk(() => nix.str`https://github.com/vispy/vispy/blob/v${version}/CHANGELOG.md`),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

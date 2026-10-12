@@ -7,7 +7,7 @@ const pos$2 = nix.positions(here + "/define-attrsOfSub-foo-enable.nix", [["foo",
 const pos$3 = nix.positions(here + "/define-attrsOfSub-foo-enable.nix", [["attrsOfSub", 2, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$3,
-  attrsOfSub: nix.thunk(() => ({ __proto__: pos$2, foo: nix.thunk(() => ({ __proto__: pos$1, enable: true })) })),
+  [nix.POS]: pos$3,
+  attrsOfSub: nix.thunk(() => ({ [nix.POS]: pos$2, foo: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })) })),
 }));
 //# sourceMappingURL=define-attrsOfSub-foo-enable.ts.map

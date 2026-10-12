@@ -19,32 +19,32 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     name: "brscan5",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "mattchrist"))];
       })()),
     })),
-    node: nix.thunk(() => ({ __proto__: pos$2, pkgsReadOnly: false })),
+    node: nix.thunk(() => ({ [nix.POS]: pos$2, pkgsReadOnly: false })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       machine: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         hardware: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           sane: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             enable: true,
             brscan5: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               enable: true,
               netDevices: nix.thunk(() => ({
-                __proto__: pos$5,
-                a: nix.thunk(() => ({ __proto__: pos$3, model: "ADS-1200", nodename: "BRW0080927AFBCE" })),
-                b: nix.thunk(() => ({ __proto__: pos$4, model: "ADS-1200", ip: "192.168.1.2" })),
+                [nix.POS]: pos$5,
+                a: nix.thunk(() => ({ [nix.POS]: pos$3, model: "ADS-1200", nodename: "BRW0080927AFBCE" })),
+                b: nix.thunk(() => ({ [nix.POS]: pos$4, model: "ADS-1200", ip: "192.168.1.2" })),
               })),
             })),
           })),

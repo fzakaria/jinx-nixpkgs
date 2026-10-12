@@ -26,30 +26,30 @@ export default nix.lambda((args) => (() => {
   const distributed = nix.arg($, "distributed");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "prophet",
       version: "1.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "facebook",
           repo: "prophet",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-Bu+ztg6sj1jh2iair6v1CdbF0Fi4b+h8yLzB3xTMD3Y=",
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/python`),
-      env: nix.thunk(() => ({ __proto__: pos$2, PROPHET_REPACKAGE_CMDSTAN: "false" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, PROPHET_REPACKAGE_CMDSTAN: "false" })),
       nativeBuildInputs: nix.thunk(() => [setuptools]),
       propagatedBuildInputs: nix.thunk(() => [cmdstanpy, numpy, matplotlib, pandas, holidays, tqdm, importlib_resources]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         parallel: nix.thunk(() => nix.concat([dask, distributed], nix.sel(dask, "optional-dependencies", "dataframe"))),
       })),
       preCheck: "# use the generated files from $out for testing\nmv prophet/tests .\nrm -r prophet\n",
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["prophet"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/facebook/prophet/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Tool for producing high quality forecasts for time series data that has multiple seasonality with linear or non-linear growth",
         homepage: "https://facebook.github.io/prophet/",

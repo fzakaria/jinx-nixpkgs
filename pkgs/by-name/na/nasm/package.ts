@@ -19,17 +19,17 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "nasm",
       version: "3.02",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.nasm.us/pub/nasm/releasebuilds/${nix.sel(finalAttrs, "version")}/nasm-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-hzNuulO0rP6RdCSrXVANKwBU2fUUjTXCJzzPLPtxLw0=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "output-oob-fix.patch",
             url: "https://github.com/netwide-assembler/nasm/commit/8890d723d0aa9ed1a790e2ce1c55eee8dfa0cf94.patch",
             hash: "sha256-m03+bhKTgKlqeRLGZIy6GO5BTPIJ3r398VQrtN4waaw=",
@@ -40,16 +40,16 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkPhase: "runHook preCheck\n\nmake golden\nmake test\n\nrunHook postCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/netwide-assembler/nasm.git",
             "rev-prefix": "nasm-",
             ignoredVersions: "rc.*",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://www.nasm.us/",
         description: "80x86 and x86-64 assembler designed for portability and modularity",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "atuin-desktop",
       version: "0.2.20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "atuinsh",
           repo: "desktop",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,14 +45,14 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoRoot: "./.",
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-68yQkgIVpqUo5tOcvxKh6NOkW565V94zHIZeI4q7nNA=",
         })))),
       node_modules: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-node_modules`),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
           buildPhase: "runHook preBuild\n\nexport BUN_INSTALL_CACHE_DIR=$(mktemp -d)\n\n# Install dependencies without running lifecycle scripts:\n#  - Skip scripts to avoid running ts-tiny-activerecord's prepare script with unpatched shebangs.\n#  - Rebuild in the main derivation after shebangs are patched there manually.\nbun install \\\n  --force \\\n  --no-progress \\\n  --frozen-lockfile \\\n  --ignore-scripts\n\nrunHook postBuild\n",
           installPhase: "runHook preInstall\n\ncp -R ./node_modules $out\n\nrunHook postInstall\n",
           outputHash: nix.thunk(() => nix.selOr({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             "aarch64-darwin": "sha256-YbjDAa2KG8U0ODqIYc5h7iNr5px+6+iforDrPomOVDo=",
             "aarch64-linux": "sha256-JoUPAfBF4xdQxtx+J/VNpYomBACNsL7Wes0XXuGByGk=",
             "x86_64-linux": "sha256-w8fMS6f+F+23EtMjjl0RsHMm6b5jOXSwUDAc21vqLAg=",
@@ -80,13 +80,13 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [wrapGAppsHook4])))),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [alsa_lib, glib_networking, libappindicator, openssl, webkitgtk_4_1]))),
       env: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         NODE_OPTIONS: "--max-old-space-size=6144",
         NIX_CFLAGS_COMPILE: "-std=gnu17",
       })),
       tauriConf: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-          __proto__: pos$7,
-          bundle: nix.thunk(() => ({ __proto__: pos$6, createUpdaterArtifacts: false })),
+          [nix.POS]: pos$7,
+          bundle: nix.thunk(() => ({ [nix.POS]: pos$6, createUpdaterArtifacts: false })),
         })))),
       preBuild: "tauriConfPath=\"tauriConf\"\nprintf \"%s\" \"$tauriConf\" > \"$tauriConfPath\"\ntauriBuildFlags+=(\n  \"--config\"\n  \"$tauriConfPath\"\n)\n",
       configurePhase: nix.thunk(() => nix.str`runHook preConfigure
@@ -111,7 +111,7 @@ export PATH="$PWD/node_modules/.bin:$PATH"
 runHook postConfigure
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       checkFlags: nix.thunk(() => [
@@ -121,7 +121,7 @@ runHook postConfigure
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Local-first, executable runbook editor",
         homepage: "https://atuin.sh",
         downloadPage: "https://github.com/atuinsh/desktop",

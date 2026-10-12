@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const gettext = nix.arg($, "gettext");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "eiskaltdcpp",
       version: "2.4.2-unstable-2024-11-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eiskaltdcpp",
           repo: "eiskaltdcpp",
           rev: "697db4b03e3d9ffa48b3d4c74fd043dee7663266",
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "ln -s $out/bin/$pname-qt $out/bin/$pname\n",
       preFixup: "substituteInPlace $out/bin/eiskaltdcpp-cli-jsonrpc \\\n  --replace \"/usr/local\" \"$out\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cross-platform program that uses the Direct Connect and ADC protocols",
         homepage: "https://github.com/eiskaltdcpp/eiskaltdcpp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

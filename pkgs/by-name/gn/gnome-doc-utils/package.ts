@@ -28,18 +28,18 @@ export default nix.lambda((args) => (() => {
       const version = "0.20.10";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-doc-utils/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/gnome-doc-utils-${version}.tar.xz`),
           sha256: "19n4x25ndzngaciiyd8dd6s2mf9gv6nv3wv27ggns2smm7zkj1nb",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://src.fedoraproject.org/rpms/gnome-doc-utils/raw/6b8908abe5af61a952db7174c5d1843708d61f1b/f/gnome-doc-utils-0.14.0-package.patch",
             sha256: "sha256-V2L2/30NoHY/wj3+dsombxveWRSUJb2YByOKtEgVx/0=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://src.fedoraproject.org/rpms/gnome-doc-utils/raw/6b8908abe5af61a952db7174c5d1843708d61f1b/f/gnome-doc-utils-0.20.10-python3.patch",
             sha256: "sha256-niH/Yx5H44rsRgkCZS8LWLFB9ZvuInt75zugzoVUhH0=",
           })))),
@@ -49,11 +49,11 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "libxml2"))]);
       const configureFlags = nix.thunk(() => ["--disable-scrollkeeper"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$4, packageName: pname })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$4, packageName: pname })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Collection of documentation utilities for the GNOME project",
         homepage: "https://gitlab.gnome.org/GNOME/gnome-doc-utils",
         license: nix.thunk(() => (() => {
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         pyproject,

@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const libressl = nix.arg($, "libressl");
   const libevent = nix.arg($, "libevent");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "usr.sbin/syslogd",
       buildInputs: nix.thunk(() => [libressl, libevent]),
       postPatch: "sed -i /DPADD/d $BSDSRCDIR/usr.sbin/syslogd/Makefile\n",

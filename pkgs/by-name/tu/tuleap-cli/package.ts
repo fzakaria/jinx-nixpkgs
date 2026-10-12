@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tuleap-cli",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "csgroup-oss",
           repo: "tuleap-cli",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["."]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd tuleap-cli \\\n  --bash <($out/bin/tuleap-cli -s tuleap.example.com completion bash) \\\n  --fish <($out/bin/tuleap-cli -s tuleap.example.com completion fish) \\\n  --zsh <($out/bin/tuleap-cli -s tuleap.example.com completion zsh)\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command-line interface for the Tuleap API",
         homepage: "https://gitlab.com/csgroup-oss/tuleap-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

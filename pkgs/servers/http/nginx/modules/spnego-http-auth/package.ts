@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const libkrb5 = nix.arg($, "libkrb5");
   const mkNginxPlugin = nix.arg($, "mkNginxPlugin");
   return nix.app(mkNginxPlugin, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "spnego-http-auth",
       version: "1.1.1-unstable-2023-04-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stnoonan",
           repo: "spnego-http-auth-nginx-module",
           rev: "3575542b3147bd03a6c68a750c3662b0d72ed94e",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       buildInputs: nix.thunk(() => [libkrb5]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SPNEGO HTTP Authentication Module",
         homepage: "https://github.com/stnoonan/spnego-http-auth-nginx-module",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

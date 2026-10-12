@@ -24,18 +24,18 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const runCommand = nix.arg($, "runCommand");
   const nativeClients = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "aarch64-darwin": "sbtn-universal-apple-darwin",
     "aarch64-linux": "sbtn-aarch64-pc-linux",
     "x86_64-linux": "sbtn-x86_64-pc-linux",
   }));
   const nativeClient = nix.thunk(() => nix.selOr(nativeClients, () => null, nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "sbt",
       version: "2.0.10",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/sbt/sbt/releases/download/v${nix.sel(finalAttrs, "version")}/sbt-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-eD/gwnhWTmf70U7KqazmuUM8+OzgrY9QrUNsskYiEFw=",
         })))),
@@ -70,14 +70,14 @@ $out/bin/sbt --version --allow-empty | grep -q "${nix.sel(finalAttrs, "version")
 runHook postInstallCheck
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           command: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({})))))),
           supportedFeatures: nix.thunk(() => ["commit"]),
         })),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-version`), nix.thunk(() => ({})), nix.thunk(() => nix.str`export HOME="$TMPDIR"
 ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))} --version --allow-empty > version.txt
 grep -q 'sbt runner version: ${nix.sel(finalAttrs, "version")}' version.txt
@@ -86,7 +86,7 @@ touch $out
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://www.scala-sbt.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/sbt/sbt/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

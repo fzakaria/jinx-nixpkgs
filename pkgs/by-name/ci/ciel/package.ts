@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ciel",
       version: "3.11.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AOSC-Dev",
           repo: "ciel-rs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [bash, systemdLibs, dbus, openssl, libssh2, libgit2, xz, zlib]),
       postInstall: "mv -v \"$out/bin/ciel-rs\" \"$out/bin/ciel\"\n\n# From install-assets.sh\ninstall -Dm555 -t \"$out/libexec/ciel-plugin\" plugins/*\n\n# Install completions\ninstallShellCompletion --cmd ciel \\\n  --bash completions/ciel.bash \\\n  --fish completions/ciel.fish \\\n  --zsh completions/_ciel\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for controlling AOSC OS packaging environments using multi-layer filesystems and containers",
         homepage: "https://github.com/AOSC-Dev/ciel-rs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

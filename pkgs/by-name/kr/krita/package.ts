@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const krita_unwrapped = nix.arg($, "krita-unwrapped");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "krita",
       version: nix.thunk(() => nix.attr(krita_unwrapped, "version")),
       buildInputs: nix.thunk(() => nix.attr(krita_unwrapped, "buildInputs")),
@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(krita_unwrapped, "nativeBuildInputs"), [wrapGAppsHook3])),
       paths: nix.thunk(() => nix.concat([krita_unwrapped], binaryPlugins)),
       postBuild: "gappsWrapperArgsHook\nwrapQtApp \"$out/bin/krita\" \\\n  \"${gappsWrapperArgs[@]}\" \\\n  --prefix PYTHONPATH : \"$PYTHONPATH\" \\\n  --set KRITA_PLUGIN_PATH \"$out/lib/kritaplugins\"\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$1, binaryPlugins: binaryPlugins, unwrapped: krita_unwrapped })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, binaryPlugins: binaryPlugins, unwrapped: krita_unwrapped })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const nix_cli = nix.arg($, "nix-cli");
   const version = nix.arg($, "version");
   return nix.app(mkMesonDerivation, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "nix-manual",
       version: version,
       workDir: nix.path(here, "./."),
@@ -40,7 +40,7 @@ echo ${nix.sel(finalAttrs, "version")} > ./.version
 `),
       postInstall: "mkdir -p $out/nix-support\necho \"doc manual $out/share/doc/nix/manual\" >> $out/nix-support/hydra-build-products\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       })),
     }));

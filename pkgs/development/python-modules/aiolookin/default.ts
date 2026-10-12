@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aiolookin",
       version: "1.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ANMalko",
           repo: "aiolookin",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [faker, pytest_aiohttp, pytest_mock, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["aiolookin"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python client for interacting with LOOKin devices",
         homepage: "https://github.com/ANMalko/aiolookin",
         changelog: nix.thunk(() => nix.str`https://github.com/ANMalko/aiolookin/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

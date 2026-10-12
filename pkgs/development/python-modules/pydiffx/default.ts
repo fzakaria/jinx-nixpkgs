@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "beanbaginc",
           repo: "diffx",
           tag: nix.thunk(() => nix.str`pydiffx/release-${version}`),
@@ -34,14 +34,14 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["pydiffx"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, kgb]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "DiffX file format and utilities",
         homepage: "https://github.com/beanbaginc/diffx",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

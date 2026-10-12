@@ -11,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const skawarePackages = nix.arg($, "skawarePackages");
   const skalibs = nix.arg($, "skalibs");
   return nix.app(nix.sel(skawarePackages, "buildPackage"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "nsss",
       version: "0.2.1.3",
       sha256: "sha256-FNpESoNtJLaihvrIilAr2qKWpNMo8J1Sl1aK07PgJoU=",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Implementation of a subset of the pwd.h, group.h and shadow.h family of functions",
       })),
       buildInputs: nix.thunk(() => [skalibs]),

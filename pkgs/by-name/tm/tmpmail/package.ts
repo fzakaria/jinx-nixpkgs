@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tmpmail";
       const version = "1.2.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sdushantha",
           repo: "tmpmail",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -37,7 +37,7 @@ installManPage tmpmail.1
 wrapProgram $out/bin/tmpmail --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [w3m, curl, jq, xclip]))}
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/sdushantha/tmpmail",
         description: "Temporary email right from your terminal written in POSIX sh",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -45,7 +45,7 @@ wrapProgram $out/bin/tmpmail --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath
         mainProgram: "tmpmail",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

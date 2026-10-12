@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const crowbar = nix.arg($, "crowbar");
   const bigstringaf = nix.arg($, "bigstringaf");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "duff",
       version: "0.5",
       minimalOCamlVersion: "4.08",
       duneVersion: "3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/duff/releases/download/v${nix.sel(finalAttrs, "version")}/duff-${nix.sel(finalAttrs, "version")}.tbz`),
           sha256: "sha256-+UU89Ko7aFDv6MxvE/BT6+XyER+vF3zqv7sD5dmtbt4=",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest, crowbar, hxd, bigstringaf]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pure OCaml implementation of libXdiff (Rabin’s fingerprint)",
         homepage: "https://github.com/mirage/duff",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

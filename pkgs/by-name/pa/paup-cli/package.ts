@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const gfortran = nix.arg($, "gfortran");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "paup-cli",
       version: "4.0a168",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://phylosolutions.com/paup-test/paup4a168_centos64.gz",
           hash: "sha256-41dZswlrIQ05f1zJzId78DKmPf0QH1SfrexzvCAUxq8=",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [curl, gfortran, zlib]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 paup -t $out/bin\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Software package for inferring evolutionary trees",
         homepage: "http://phylosolutions.com/paup-test/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

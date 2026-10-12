@@ -20,32 +20,32 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "prometheus", "exporters", "mailman3"));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     port: 9934n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       logLevel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["debug", "info", "warning", "error", "critical"]))),
           default: "info",
           description: "Detail level to log.\n",
         })))),
       mailman: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         addr: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             default: "http://127.0.0.1:8001",
             description: "Mailman3 Core REST API address.\n",
           })))),
         user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             default: "restadmin",
             description: "Mailman3 Core REST API username.\n",
           })))),
         passFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             default: nix.thunk(() => nix.sel(config, "services", "mailman", "restApiPassFile")),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.mailman.restApiPassFile")),
@@ -54,9 +54,9 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         LoadCredential: nix.thunk(() => [nix.thunk(() => nix.str`password:${nix.sel(cfg, "mailman", "passFile")}`)]),
         ExecStart: nix.thunk(() => (() => {
           const addr = nix.thunk(() => nix.str`${(nix.asBool(nix.app(nix.sel(lib, "hasInfix"), ":", nix.thunk(() => nix.sel(cfg, "listenAddress")))) ? nix.str`[${nix.sel(cfg, "listenAddress")}]` : nix.sel(cfg, "listenAddress"))}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}`);

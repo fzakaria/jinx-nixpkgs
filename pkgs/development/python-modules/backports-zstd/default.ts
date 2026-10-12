@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rogdham",
           repo: "backports.zstd",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -43,7 +43,7 @@ substituteInPlace tests/test/support/script_helper.py \\
       const enabledTestPaths = nix.thunk(() => ["tests"]);
       const disabledTestPaths = nix.thunk(() => ["tests/test/test_tarfile.py::TestExtractionFilters::test_modes"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/rogdham/backports.zstd/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
         description: "Backport of compression.zstd",
         homepage: "https://github.com/rogdham/backports.zstd",
@@ -51,7 +51,7 @@ substituteInPlace tests/test/support/script_helper.py \\
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "dotlambda"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

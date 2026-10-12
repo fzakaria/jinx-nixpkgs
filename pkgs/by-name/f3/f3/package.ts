@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const systemdLibs = nix.arg($, "systemdLibs");
   const argp_standalone = nix.arg($, "argp-standalone");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "f3",
       version: "10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AltraMayor",
           repo: "f3",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       installTargets: nix.thunk(() => nix.concat(["install"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "install-extra"))),
       postInstall: "install -Dm555 -t $out/bin scripts/{f3write.h2w,log-f3wr}\ninstall -Dm444 -t $out/share/doc/f3 LICENSE README.rst\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fight Flash Fraud",
         homepage: "https://fight-flash-fraud.readthedocs.io/en/stable/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

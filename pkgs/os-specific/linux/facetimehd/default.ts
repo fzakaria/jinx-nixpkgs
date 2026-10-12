@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "facetimehd";
       const version = "0.7.0.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "patjak",
           repo: "facetimehd",
           rev: version,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`KDIR=${nix.sel(kernel, "dev")}/lib/modules/${nix.sel(kernel, "modDirVersion")}/build`),
       ]));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/patjak/bcwc_pcie",
         description: "Linux driver for the Facetime HD (Broadcom 1570) PCIe webcam",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["i686-linux", "x86_64-linux"]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name,
         pname,
         version,

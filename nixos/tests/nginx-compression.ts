@@ -33,25 +33,25 @@ export default nix.lambda((args) => (() => {
   ]);
   const incompressible = nix.thunk(() => ["jpg", "png", "zip"]);
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     name: "nginx-compression",
     containers: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           services: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             nginx: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               enable: true,
               recommendedGzipSettings: true,
               virtualHosts: nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 default: nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   root: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommandLocal"), "nginx-compression-testdir", nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir "$out"
 for ext in ${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.concat(compressible, incompressible)))}; do
   # Well past gzip_min_length, and trivially compressible.

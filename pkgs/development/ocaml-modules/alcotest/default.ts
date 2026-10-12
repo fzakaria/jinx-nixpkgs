@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const uutf = nix.arg($, "uutf");
   const ocaml_syntax_shims = nix.arg($, "ocaml-syntax-shims");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "alcotest",
       version: "1.9.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/alcotest/releases/download/${nix.sel(finalAttrs, "version")}/alcotest-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-HinDtB1DKQYhBbcj39o6/4a4zvXnx1ANDkkfxf145II=",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [astring, cmdliner, fmt, re, stdlib_shims, uutf]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/mirage/alcotest",
         description: "Lightweight and colourful test framework",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

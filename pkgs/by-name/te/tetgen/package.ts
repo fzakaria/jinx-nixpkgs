@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tetgen",
       version: "1.6.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://wias-berlin.de/software/tetgen/1.5/src/tetgen${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-h7XmHr06Rx/E8s3XEkwrEd1mOfT+sflBpdL1EQ0Fzjk=",
         })))),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out/{bin,lib,include}\ncp tetgen $out/bin\ncp libtet.a $out/lib\ncp ../tetgen.{cxx,h} $out/include\n\nrunHook postInstall\n",
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.6)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Quality Tetrahedral Mesh Generator and 3D Delaunay Triangulator",
         mainProgram: "tetgen",
         homepage: "http://tetgen.org/",

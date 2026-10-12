@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gate",
       version: "0.65.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "minekube",
           repo: "gate",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "rm ./pkg/edition/bedrock/geyser/managed/download_test.go\n",
       excludedPackages: nix.thunk(() => [".web"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "High-Performance, Low-Memory, Lightweight, Extensible Minecraft Reverse Proxy",
         longDescription: "Gate is an extensible, high performant & paralleled Minecraft proxy server\nwith scalability, flexibility & excellent server version support - written in Go\nand ready for the cloud!\n",
         homepage: "https://github.com/minekube/gate",

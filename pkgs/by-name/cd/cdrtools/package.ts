@@ -17,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const acl = nix.arg($, "acl");
   const libcap = nix.arg($, "libcap");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cdrtools",
       version: "3.02a09",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/cdrtools/cdrtools-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-qihDj0WO8/MUt58gKdsnZ52uHV/+FWm23ld0JRGRXoE=",
         })))),
       nativeBuildInputs: nix.thunk(() => [m4]),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [acl, libcap]))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat([
             "-Wno-error=implicit-int",
             "-Wno-error=implicit-function-declaration",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: false,
       hardeningDisable: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), "fortify")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://cdrtools.sourceforge.net/private/cdrecord.html",
         description: "Highly portable CD/DVD/BluRay command line recording software",
         license: nix.thunk(() => (() => {

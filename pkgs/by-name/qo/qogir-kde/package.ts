@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "qogir-kde",
       version: "0-unstable-2024-12-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vinceliuice",
           repo: "qogir-kde",
           rev: "31e7bbf94e905ef40d262d2bc6063156df252470",
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs install.sh\n\nsubstituteInPlace install.sh \\\n  --replace '$HOME/.local' $out \\\n  --replace '$HOME/.config' $out/share\n\nsubstituteInPlace sddm/*/Main.qml \\\n  --replace /usr $out\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/plasma/plasmoids\n\nname= HOME=\"$TMPDIR\" ./install.sh --dest $out/share/themes\n\nmkdir -p $out/share/sddm/themes\ncp -a sddm/Qogir $out/share/sddm/themes/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Flat Design theme for KDE Plasma desktop",
         homepage: "https://github.com/vinceliuice/Qogir-kde",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

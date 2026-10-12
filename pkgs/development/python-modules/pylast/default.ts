@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.0.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pylast",
           repo: "pylast",
           tag: version,
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [flaky, pytest_random_order, pytest_recording, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["pylast"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python interface to last.fm (and compatibles)",
         homepage: "https://github.com/pylast/pylast",
         changelog: nix.thunk(() => nix.str`https://github.com/pylast/pylast/releases/tag/${nix.sel(src, "tag")}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

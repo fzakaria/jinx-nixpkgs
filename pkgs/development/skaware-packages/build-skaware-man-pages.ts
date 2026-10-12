@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromSourcehut = nix.arg($, "fetchFromSourcehut");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
       excludeDrvArgNames: nix.thunk(() => ["sha256", "description", "maintainers", "license", "owner", "rev"]),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -29,21 +29,21 @@ export default nix.lambda((args) => (() => {
         const meta = nix.argOr($_1, "meta", () => ({}));
         const manDir = nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/man`);
         const src = nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: owner,
             rev: rev,
             sha256: sha256,
             repo: nix.thunk(() => nix.sel(finalAttrs, "pname")),
           }))));
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           src: src,
           makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`MAN_DIR=${manDir}`)]),
           dontBuild: true,
           meta: nix.thunk(() => nix.update((() => {
             const from = nix.thunk(() => nix.sel(src, "meta"));
             return {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             description: description,
             license: license,
             maintainers: maintainers,

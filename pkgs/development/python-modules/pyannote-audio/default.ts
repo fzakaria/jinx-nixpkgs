@@ -45,13 +45,13 @@ export default nix.lambda((args) => (() => {
   const papermill = nix.arg($, "papermill");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pyannote-audio",
       version: "4.0.7",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pyannote",
           repo: "pyannote-audio",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
         torchcodec,
         torchmetrics,
       ]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, cli: nix.thunk(() => [hydra_core, typer]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, cli: nix.thunk(() => [hydra_core, typer]) })),
       pythonImportsCheck: nix.thunk(() => ["pyannote.audio"]),
       nativeCheckInputs: nix.thunk(() => [papermill, pytestCheckHook]),
       preCheck: "$out/bin/pyannote-audio --help\n",
@@ -102,7 +102,7 @@ export default nix.lambda((args) => (() => {
           "tests/tasks/test_reproducibility.py",
         ])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Neural building blocks for speaker diarization: speech activity detection, speaker change detection, overlapped speech detection, speaker embedding",
         homepage: "https://github.com/pyannote/pyannote-audio",
         changelog: nix.thunk(() => nix.str`https://github.com/pyannote/pyannote-audio/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

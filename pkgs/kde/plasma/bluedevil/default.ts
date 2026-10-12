@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const mkKdeDerivation = nix.arg($, "mkKdeDerivation");
   const shared_mime_info = nix.arg($, "shared-mime-info");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "bluedevil",
       extraNativeBuildInputs: nix.thunk(() => [shared_mime_info]),
     })));

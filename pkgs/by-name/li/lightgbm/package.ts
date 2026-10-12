@@ -44,13 +44,13 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(openclSupport) || nix.asBool(!nix.asBool(cudaSupport))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/li/lightgbm/package.nix:33:1");
   nix.assert_((!nix.asBool(cudaSupport) || nix.asBool(!nix.asBool(openclSupport))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/li/lightgbm/package.nix:34:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), rLibrary, "r-"), "lightgbm")),
       version: "4.6.0",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lightgbm-org",
           repo: "lightgbm",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-boost-sha1",
             url: "https://raw.githubusercontent.com/conda-forge/lightgbm-feedstock/68ca96d25d8a6f7281310a4ad3b8d5cdd01f067b/recipe/patches/0003-boost-sha1.patch",
             hash: "sha256-Hw2YmoduOPri7O1XV2p/3Ny4hC8xq7Jq4zoSuKhVeVQ=",
@@ -109,14 +109,14 @@ rm -rf $out/tmp
 `))), "runHook postInstall\n")),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), rLibrary, "if test -e $out/nix-support/propagated-build-inputs; then\n  ln -s $out/nix-support/propagated-build-inputs $out/nix-support/propagated-user-env-packages\nfi\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pythonPackage: nix.thunk(() => nix.sel(python3Packages, "lightgbm")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Gradient boosting framework that uses tree based learning algorithms",
         mainProgram: "lightgbm",
         homepage: "https://github.com/lightgbm-org/LightGBM",

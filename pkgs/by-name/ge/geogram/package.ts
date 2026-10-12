@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libmeshb = nix.arg($, "libmeshb");
   const rply = nix.arg($, "rply");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "geogram",
       version: "1.9.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BrunoLevy",
           repo: "geogram",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,11 +54,11 @@ export default nix.lambda((args) => (() => {
       postBuild: "make doc-devkit-full\n",
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Programming Library with Geometric Algorithms",
         longDescription: "Geogram contains the main results in Geometry Processing from the former ALICE Inria project,\nthat is, more than 30 research articles published in ACM SIGGRAPH, ACM Transactions on Graphics,\nSymposium on Geometry Processing and Eurographics.\n",
         homepage: "https://github.com/BrunoLevy/geogram",

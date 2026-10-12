@@ -31,20 +31,20 @@ export default nix.lambda((args) => (() => {
   const pname = "vk-messenger";
   const version = "5.3.2";
   const src = nix.thunk(() => nix.selOr({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "i686-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: nix.thunk(() => nix.str`https://desktop.userapi.com/rpm/master/vk-${version}.i686.rpm`),
         sha256: "L0nE0zW4LP8udcE8uPy+cH9lLuQsUSq7cF13Gv7w2rI=",
       })))),
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: nix.thunk(() => nix.str`https://desktop.userapi.com/rpm/master/vk-${version}.x86_64.rpm`),
         sha256: "spDw9cfDSlIuCwOqREsqXC19tx62TiAz9fjIS9lYjSQ=",
       })))),
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "system")}`)), nix.key(nix.sel(stdenv, "system"))));
   const meta = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     description: "Simple and Convenient Messaging App for VK",
     homepage: "https://vk.com/messenger",
     sourceProvenance: nix.thunk(() => (() => {
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
     platforms: nix.thunk(() => ["i686-linux", "x86_64-linux"]),
   }));
   const linux = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       src: src,
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir $out\ncd usr\ncp -r --parents bin $out\ncp -r --parents share/vk $out\ncp -r --parents share/applications $out\ncp -r --parents share/pixmaps $out\n",
     }))));
   const darwin = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: version,
       src: src,

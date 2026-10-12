@@ -18,20 +18,20 @@ export default nix.lambda((args) => (() => {
       const callPackage = nix.thunk(() => nix.attr(self, "callPackage"));
       const inheritedArgs = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(pkgs, "darwin"));
-        return { __proto__: pos$1, sigtool: nix.thunk(() => nix.attr(from, "sigtool")) };
+        return { [nix.POS]: pos$1, sigtool: nix.thunk(() => nix.attr(from, "sigtool")) };
       })());
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         sources: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             lib: lib,
             fetchFromGitHub: nix.thunk(() => nix.attr(pkgs, "fetchFromGitHub")),
             fetchgit: nix.thunk(() => nix.attr(pkgs, "fetchgit")),
           })))),
         emacs31: nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.sel(self, "sources", "emacs31")), inheritedArgs)),
-        "emacs31-gtk3": nix.thunk(() => nix.app(nix.sel(self, "emacs31", "override"), nix.thunk(() => ({ __proto__: pos$3, withGTK3: true })))),
-        "emacs31-nox": nix.thunk(() => nix.app(nix.sel(self, "emacs31", "override"), nix.thunk(() => ({ __proto__: pos$4, noGui: true })))),
-        "emacs31-pgtk": nix.thunk(() => nix.app(nix.sel(self, "emacs31", "override"), nix.thunk(() => ({ __proto__: pos$5, withPgtk: true })))),
+        "emacs31-gtk3": nix.thunk(() => nix.app(nix.sel(self, "emacs31", "override"), nix.thunk(() => ({ [nix.POS]: pos$3, withGTK3: true })))),
+        "emacs31-nox": nix.thunk(() => nix.app(nix.sel(self, "emacs31", "override"), nix.thunk(() => ({ [nix.POS]: pos$4, noGui: true })))),
+        "emacs31-pgtk": nix.thunk(() => nix.app(nix.sel(self, "emacs31", "override"), nix.thunk(() => ({ [nix.POS]: pos$5, withPgtk: true })))),
         "emacs30-macport": nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.sel(self, "sources", "emacs30-macport")), inheritedArgs)),
       };
     })());

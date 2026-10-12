@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "html5lib",
       version: "1.1-unstable-2024-02-21",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "html5lib",
           repo: "html5lib-python",
           rev: "fd4f032bc090d44fb11a84b352dad7cbee0a4745",
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [six, webencodings]),
       nativeCheckInputs: nix.thunk(() => [pytest_expect, pytestCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, branch: "master" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, branch: "master" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/html5lib/html5lib-python",
         downloadPage: "https://github.com/html5lib/html5lib-python/releases",
         description: "HTML parser based on WHAT-WG HTML5 specification",

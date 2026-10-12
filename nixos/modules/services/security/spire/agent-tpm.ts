@@ -30,32 +30,32 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const cfg = nix.thunk(() => nix.sel(config, "services", "spire", "agent"));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         spire: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           agent: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             settings: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               plugins: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 NodeAttestor: nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   tpm: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                      __proto__: pos$4,
+                      [nix.POS]: pos$4,
                       default: null,
                       description: "TPM 2.0 node attestation plugin. When set, automatically enables security.tpm2 and grants the spire-agent user access to the TPM device.",
                       type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                            __proto__: pos$3,
+                            [nix.POS]: pos$3,
                             freeformType: nix.thunk(() => nix.sel(nix.app(nix.sel(pkgs, "formats", "hcl1"), nix.thunk(() => ({}))), "type")),
                             options: nix.thunk(() => ({
-                              __proto__: pos$2,
+                              [nix.POS]: pos$2,
                               plugin_cmd: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$1,
+                                  [nix.POS]: pos$1,
                                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                                   default: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "spire-tpm-plugin")), "tpm_attestor_agent")),
                                   defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "lib.getExe' pkgs.spire-tpm-plugin \"tpm_attestor_agent\"")),
@@ -72,19 +72,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enable")) && nix.asBool(!nix.eq(nix.sel(cfg, "settings", "plugins", "NodeAttestor", "tpm"), null)))), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         security: nix.thunk(() => ({
-          __proto__: pos$13,
-          tpm2: nix.thunk(() => ({ __proto__: pos$12, enable: true })),
+          [nix.POS]: pos$13,
+          tpm2: nix.thunk(() => ({ [nix.POS]: pos$12, enable: true })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             "spire-agent": nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 SupplementaryGroups: nix.thunk(() => [nix.thunk(() => nix.sel(config, "security", "tpm2", "tssGroup"))]),
               })),
             })),

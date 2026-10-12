@@ -10,12 +10,12 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildRedist = nix.arg($, "buildRedist");
   return nix.app(buildRedist, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       redistName: "cuda",
       pname: "cuda_cuobjdump",
       outputs: nix.thunk(() => ["out"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Extracts information from CUDA binary files (both standalone and those embedded in host binaries) and presents them in human readable format",
         longDescription: "`cuobjdump` extracts information from CUDA binary files (both standalone and those embedded in host binaries)\nand presents them in human readable format. The output of cuobjdump includes CUDA assembly code for each kernel,\nCUDA ELF section headers, string tables, relocators and other CUDA specific sections. It also extracts embedded\nptx text from host binaries.\n",
         homepage: "https://docs.nvidia.com/cuda/cuda-binary-utilities#cuobjdump",

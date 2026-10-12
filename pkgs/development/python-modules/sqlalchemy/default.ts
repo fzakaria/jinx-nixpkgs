@@ -44,12 +44,12 @@ export default nix.lambda((args) => (() => {
   const pytest_xdist = nix.arg($, "pytest-xdist");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "sqlalchemy",
       version: "2.0.51",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sqlalchemy",
           repo: "sqlalchemy",
           tag: nix.thunk(() => nix.str`rel_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => nix.concat([setuptools], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(isPyPy)), nix.thunk(() => [cython])))),
       dependencies: nix.thunk(() => [greenlet, typing_extensions]),
       "optional-dependencies": nix.thunk(() => nix.app(nix.sel(lib, "fix"), (self) => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           asyncio: nix.thunk(() => [greenlet]),
           mypy: nix.thunk(() => [mypy, types_greenlet]),
           mssql: nix.thunk(() => [pyodbc]),
@@ -86,14 +86,14 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_xdist, pytestCheckHook, mock]),
       disabledTestPaths: nix.thunk(() => ["test/ext/mypy", "test/typing", "test/aaa_profiling"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version-regex", "^rel_([0-9]+)_([0-9]+)_([0-9]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/sqlalchemy/sqlalchemy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Python SQL toolkit and Object Relational Mapper",
         homepage: "http://www.sqlalchemy.org/",

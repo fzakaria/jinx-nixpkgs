@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.31.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MatthiasValvekens",
           repo: "pyhanko",
           tag: nix.thunk(() => nix.str`pyhanko-certvalidator/v${version}`),
@@ -47,14 +47,14 @@ substituteInPlace pyproject.toml --replace-fail "0.0.0.dev1" "${version}"
       const nativeCheckInputs = nix.thunk(() => [aiohttp, freezegun, pytest_asyncio, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["pyhanko_certvalidator"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex=pyhanko-certvalidator/v(.*)"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python library for validating X.509 certificates and paths",
         homepage: "https://github.com/MatthiasValvekens/pyHanko/tree/master/pkgs/pyhanko-certvalidator",
         changelog: nix.thunk(() => nix.str`https://github.com/MatthiasValvekens/pyhanko/blob/${nix.sel(src, "tag")}/docs/changelog.rst#pyhanko-certvalidator`),
@@ -62,7 +62,7 @@ substituteInPlace pyproject.toml --replace-fail "0.0.0.dev1" "${version}"
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "antonmosich"))]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

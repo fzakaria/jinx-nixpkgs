@@ -26,14 +26,14 @@ export default nix.lambda((args) => (() => {
   const version = "4.1.0-1";
   const runtimeDeps = nix.thunk(() => [ghostscript, file, gnused, gnugrep, coreutils, which]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cups-brother-mfcl2800dw",
       version: version,
       nativeBuildInputs: nix.thunk(() => [dpkg, makeWrapper, autoPatchelfHook]),
       buildInputs: nix.thunk(() => [perl]),
       dontUnpack: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf106048/mfcl2800dwpdrv-${version}.i386.deb`),
           hash: "sha256-sY92w0EFI69LxoNrhluIhqFOWZQOI+SJKKyuExvasgA=",
         })))),
@@ -70,7 +70,7 @@ ln -s \\
 runHook postInstall
 `)),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.brother.com/",
         description: "Brother MFC-L2750DW printer driver",
         sourceProvenance: nix.thunk(() => (() => {

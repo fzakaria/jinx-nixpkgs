@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const gmp = nix.arg($, "gmp");
   const scalp = nix.arg($, "scalp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pagsuite",
       version: "1.80-unstable-2025-05-03",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kumm",
           repo: "pagsuite",
           rev: "1cc657765658cb2eb622d4a9c656ab9854150e7d",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gmp, scalp]),
       enableParallelBuilding: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Optimization tools for the (P)MCM problem",
         homepage: "https://gitlab.com/kumm/pagsuite",
         maintainers: nix.thunk(() => (() => {

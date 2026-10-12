@@ -18,18 +18,18 @@ export default nix.lambda((args) => (() => {
       const pname = "dinish";
       const version = "4.007";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/playbeing/dinish/releases/download/v${version}/dinish-ttf.zip`),
           stripRoot: false,
           hash: "sha256-u/AYA9/8piZ6hz4XD3uSruOM0deeXQ5Gb0N/8rlDiP0=",
         }))));
       const installPhase = "runHook preInstall\n\ninstall -Dm644 *.ttf -t $out/share/fonts/truetype\n\nrunHook postInstall\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/playbeing/dinish",
         changelog: nix.thunk(() => nix.str`https://github.com/playbeing/dinish/blob/v${version}/FONTLOG.txt`),
         description: "Modern computer font inspired by DIN 1451",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "vji"))];
         })()),
       }));
-      return { __proto__: pos$4, pname, version, src, installPhase, passthru, meta };
+      return { [nix.POS]: pos$4, pname, version, src, installPhase, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

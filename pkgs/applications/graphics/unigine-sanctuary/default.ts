@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pname = "unigine-sanctuary";
       const version = "2.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://assets.unigine.com/d/Unigine_Sanctuary-${version}.run`),
           sha256: "sha256-KKi70ctkEm+tx0kjBMWVKMLDrJ1TsPH+CKLDMXA6OdU=",
         }))));
@@ -65,7 +65,7 @@ runHook postInstall
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "Sanctuary",
             exec: "Sanctuary",
             genericName: "A GPU Stress test tool from the UNIGINE",
@@ -83,7 +83,7 @@ runHook postInstall
       ]);
       const dontUnpack = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Unigine Heaven GPU benchmarking tool",
         homepage: "https://benchmark.unigine.com/sanctuary",
         sourceProvenance: nix.thunk(() => (() => {
@@ -96,7 +96,7 @@ runHook postInstall
         mainProgram: "Sanctuary",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

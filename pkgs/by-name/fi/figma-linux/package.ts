@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "figma-linux",
       version: "0.11.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Figma-Linux",
           repo: "figma-linux",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,10 +33,10 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems, makeBinaryWrapper]),
       npmDepsHash: "sha256-FqgcG52Nkj0wlwsHwIWTXNuIeAs7b+TPkHcg7m5D2og=",
-      env: nix.thunk(() => ({ __proto__: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "figma-linux",
             desktopName: "Figma Linux",
             comment: "Unofficial Figma desktop application for Linux",
@@ -72,7 +72,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), electron)} $out/bin/figma-linux \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Unofficial Electron-based Figma desktop app for Linux",
         homepage: "https://github.com/Figma-Linux/figma-linux",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const domain = "hass_web_proxy";
       const version = "0.0.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dermotduffy",
           repo: "hass-web-proxy-integration",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/dermotduffy/hass-web-proxy-integration/commit/77964d49fd6e9d7aefe0cd9c19226a80477dc909.patch",
             hash: "sha256-PZBRHVoHXMiELHitmj+YmgVSQiOqEmyP4o3MBc1Yjsg=",
           })))),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         pytest_timeout,
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/dermotduffy/hass-web-proxy-integration/releases/tag/${nix.sel(src, "tag")}`),
         description: "Home Assistant Web Proxy",
         homepage: "https://github.com/dermotduffy/hass-web-proxy-integration",
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         owner,
         domain,
         version,

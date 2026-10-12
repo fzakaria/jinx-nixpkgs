@@ -16,15 +16,15 @@ export default nix.lambda((args) => (() => {
   const makeSetupHook = nix.arg($, "makeSetupHook");
   const sortArray = nix.arg($, "sortArray");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "getSortedMapKeys",
       propagatedBuildInputs: nix.thunk(() => [isDeclaredArray, isDeclaredMap, sortArray]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         tests: nix.thunk(() => nix.app(callPackages, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Gets the sorted indices of an associative array",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),

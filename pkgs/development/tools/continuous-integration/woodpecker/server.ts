@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const common = nix.thunk(() => nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({}))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "woodpecker-server",
       version: nix.thunk(() => nix.attr(common, "version")),
       src: nix.thunk(() => nix.attr(common, "src")),
@@ -22,16 +22,16 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.attr(common, "postInstall")),
       vendorHash: nix.thunk(() => nix.attr(common, "vendorHash")),
       subPackages: "cmd/server",
-      env: nix.thunk(() => ({ __proto__: pos$1, CGO_ENABLED: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$1, CGO_ENABLED: 1n })),
       postPatch: nix.thunk(() => nix.str`cp -r ${nix.sel(finalAttrs, "passthru", "webui")} web/dist
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         webui: nix.thunk(() => nix.app(callPackage, nix.path(here, "./webui.nix"), nix.thunk(() => ({})))),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => nix.update(nix.sel(common, "meta"), {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Woodpecker Continuous Integration server",
         mainProgram: "woodpecker-server",
       })),

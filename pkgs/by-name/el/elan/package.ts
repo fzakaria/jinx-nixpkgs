@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "elan",
       version: "4.2.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "leanprover",
           repo: "elan",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,12 +37,12 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-dgqIu3SM134g/qLsetOLxed8/gAG8i90IKEy6xnK2rg=",
       nativeBuildInputs: nix.thunk(() => [pkg_config, makeWrapper]),
-      env: nix.thunk(() => ({ __proto__: pos$2, OPENSSL_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: 1n })),
       buildInputs: nix.thunk(() => nix.concat([curl, zlib, openssl], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), libiconv))),
       buildFeatures: nix.thunk(() => ["no-self-update"]),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [
           nix.thunk(() => nix.app(runCommand, "0001-dynamically-patchelf-binaries.patch", nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               CC: nix.thunk(() => nix.sel(stdenv, "cc")),
               cc: nix.thunk(() => nix.str`${nix.sel(stdenv, "cc")}/bin/cc`),
               ar: nix.thunk(() => nix.str`${nix.sel(stdenv, "cc")}/bin/ar`),
@@ -59,7 +59,7 @@ substitute ${nix.path(here, "./0001-dynamically-patchelf-binaries.patch")} $out 
         ]))),
       postInstall: "pushd $out/bin\nmv elan-init elan\nfor link in lean leanpkg leanchecker leanc leanmake lake; do\n  ln -s elan $link\ndone\npopd\n\n# tries to create .elan\nexport HOME=$(mktemp -d)\nmkdir -p \"$out/share/\"{bash-completion/completions,fish/vendor_completions.d,zsh/site-functions}\n$out/bin/elan completions bash > \"$out/share/bash-completion/completions/elan\"\n$out/bin/elan completions fish > \"$out/share/fish/vendor_completions.d/elan.fish\"\n$out/bin/elan completions zsh >  \"$out/share/zsh/site-functions/_elan\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Small tool to manage your installations of the Lean theorem prover",
         homepage: "https://github.com/leanprover/elan",
         changelog: nix.thunk(() => nix.str`https://github.com/leanprover/elan/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

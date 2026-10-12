@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const xdg = nix.arg($, "xdg");
   const zeroconf = nix.arg($, "zeroconf");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pylutron-caseta",
       version: "0.29.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gurumitts",
           repo: "pylutron-caseta",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,12 +36,12 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => [cryptography, orjson]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, cli: nix.thunk(() => [click, xdg, zeroconf]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, cli: nix.thunk(() => [click, xdg, zeroconf]) })),
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytest_timeout, pytestCheckHook]),
       pytestFlags: nix.thunk(() => ["--asyncio-mode=auto"]),
       pythonImportsCheck: nix.thunk(() => ["pylutron_caseta"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python module to control Lutron Caseta devices",
         homepage: "https://github.com/gurumitts/pylutron-caseta",
         changelog: nix.thunk(() => nix.str`https://github.com/gurumitts/pylutron-caseta/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

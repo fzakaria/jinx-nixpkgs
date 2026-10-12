@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const xterm = nix.arg($, "xterm");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "zenmap",
       version: nix.thunk(() => nix.sel(nmap, "version")),
       pyproject: true,
@@ -60,7 +60,7 @@ ${nix.sel(python3Packages, "python", "interpreter")} run_tests.py 2>&1 | tee /de
 runHook postCheck
 `),
       meta: nix.thunk(() => nix.update(nix.sel(nmap, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Official nmap Security Scanner GUI",
         homepage: "https://nmap.org/zenmap/",
         maintainers: nix.thunk(() => (() => {

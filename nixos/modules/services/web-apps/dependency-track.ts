@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "javaProperties"), nix.thunk(() => ({}))));
   const frontendConfigFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   const frontendConfigFile = nix.thunk(() => nix.app(nix.sel(frontendConfigFormat, "generate"), "config.json", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       API_BASE_URL: nix.thunk(() => nix.sel(cfg, "frontend", "baseUrl")),
       OIDC_ISSUER: nix.thunk(() => nix.sel(cfg, "oidc", "issuer")),
       OIDC_CLIENT_ID: nix.thunk(() => nix.sel(cfg, "oidc", "clientId")),
@@ -99,62 +99,62 @@ export default nix.lambda((args) => (() => {
   const filterNull = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (v) => !nix.eq(v, null)));
   const renderSettings = (settings) => nix.app(nix.sel(lib, "mapAttrs'"), (n) => (v) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.app(nix.sel(lib, "toUpper"), nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), n)))), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "isBool"), v)) ? nix.app(nix.sel(lib, "boolToString"), v) : nix.force(v)))), nix.thunk(() => nix.app(filterNull, settings)));
   return {
-    __proto__: pos$69,
+    [nix.POS]: pos$69,
     options: nix.thunk(() => ({
-      __proto__: pos$49,
+      [nix.POS]: pos$49,
       services: nix.thunk(() => ({
-        __proto__: pos$48,
+        [nix.POS]: pos$48,
         "dependency-track": nix.thunk(() => ({
-          __proto__: pos$47,
+          [nix.POS]: pos$47,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "dependency-track")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "dependency-track", nix.thunk(() => ({})))),
           logLevel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["INFO", "WARN", "ERROR", "DEBUG", "TRACE"]))),
               default: "INFO",
               description: "Log level for dependency-track",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 8080n,
               description: "On which port dependency-track should listen for new HTTP connections.\n",
             })))),
           javaArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ \"-Xmx16G\" ] ")),
               description: "Java options passed to JVM. Configuring this is usually not necessary, but for small systems\nit can be useful to tweak the JVM heap size.\n",
             })))),
           database: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             type: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["h2", "postgresql", "manual"]))),
                 default: "postgresql",
                 description: "`h2` database is not recommended for a production setup.\n`postgresql` this settings it recommended for production setups.\n`manual` the module doesn't handle database settings.\n",
               })))),
             createLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Whether a database should be automatically created on the\nlocal host. Set this to false if you plan on provisioning a\nlocal database yourself.\n",
               })))),
             databaseName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "dependency-track",
                 description: "Database name to use when connecting to an external or\nmanually provisioned database; has no effect when a local\ndatabase is automatically provisioned.\n\nTo use this with a local database, set {option}`services.dependency-track.database.createLocally`\nto `false` and create the database and user.\n",
               })))),
             username: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "dependency-track",
                 description: "Username to use when connecting to an external or manually\nprovisioned database; has no effect when a local database is\nautomatically provisioned.\n\nTo use this with a local database, set {option}`services.dependency-track.database.createLocally`\nto `false` and create the database and user.\n",
               })))),
             passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(lib, "types", "path")),
                 example: "/run/keys/db_password",
                 apply: nix.thunk(() => nix.app(assertStringPath, "passwordFile")),
@@ -162,9 +162,9 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           ldap: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             bindPasswordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.sel(lib, "types", "path")),
                 example: "/run/keys/ldap_bind_password",
                 apply: nix.thunk(() => nix.app(assertStringPath, "bindPasswordFile")),
@@ -172,9 +172,9 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           frontend: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             baseUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "nginx", "enable")), nix.thunk(() => nix.str`${(nix.asBool(sslEnabled) ? "https" : "http")}://${nix.sel(cfg, "nginx", "domain")}`))),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "lib.optionalString config.services.dependency-track.nginx.enable \"${\n  if sslEnabled then \"https\" else \"http\"\n}://${config.services.dependency-track.nginx.domain}\";\n")),
@@ -182,69 +182,69 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           oidc: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "oidc support")),
             issuer: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "",
                 description: "Defines the issuer URL to be used for OpenID Connect.\nSee alpine.oidc.issuer property of the API server.\n",
               })))),
             clientId: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "",
                 description: "Defines the client ID for OpenID Connect.\n",
               })))),
             scope: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "openid profile email",
                 description: "Defines the scopes to request for OpenID Connect.\nSee also: <https://openid.net/specs/openid-connect-basic-1_0.html#Scopes>\n",
               })))),
             flow: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["code", "implicit"]))),
                 default: "code",
                 description: "Specifies the OpenID Connect flow to use.\nValues other than \"implicit\" will result in the Code+PKCE flow to be used.\nUsage of the implicit flow is strongly discouraged, but may be necessary when\nthe IdP of choice does not support the Code+PKCE flow.\nSee also:\n  - <https://oauth.net/2/grant-types/implicit/>\n  - <https://oauth.net/2/pkce/>\n",
               })))),
             loginButtonText: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "Login with OpenID Connect",
                 description: "Defines the scopes to request for OpenID Connect.\nSee also: <https://openid.net/specs/openid-connect-basic-1_0.html#Scopes>\n",
               })))),
             usernameClaim: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "name",
                 example: "preferred_username",
                 description: "Defines the name of the claim that contains the username in the provider's userinfo endpoint.\nCommon claims are \"name\", \"username\", \"preferred_username\" or \"nickname\".\nSee also: <https://openid.net/specs/openid-connect-core-1_0.html#UserInfoResponse>\n",
               })))),
             userProvisioning: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 example: true,
                 description: "Specifies if mapped OpenID Connect accounts are automatically created upon successful\nauthentication. When a user logs in with a valid access token but an account has\nnot been previously provisioned, an authentication failure will be returned.\nThis allows admins to control specifically which OpenID Connect users can access the\nsystem and which users cannot. When this value is set to true, a local OpenID Connect\nuser will be created and mapped to the OpenID Connect account automatically. This\nautomatic provisioning only affects authentication, not authorization.\n",
               })))),
             teamSynchronization: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 example: true,
                 description: "This option will ensure that team memberships for OpenID Connect users are dynamic and\nsynchronized with membership of OpenID Connect groups or assigned roles. When a team is\nmapped to an OpenID Connect group, all local OpenID Connect users will automatically be\nassigned to the team if they are a member of the group the team is mapped to. If the user\nis later removed from the OpenID Connect group, they will also be removed from the team. This\noption provides the ability to dynamically control user permissions via the identity provider.\nNote that team synchronization is only performed during user provisioning and after successful\nauthentication.\n",
               })))),
             teams: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               claim: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                   default: "groups",
                   description: "Defines the name of the claim that contains group memberships or role assignments in the provider's userinfo endpoint.\nThe claim must be an array of strings. Most public identity providers do not support group or role management.\nWhen using a customizable / on-demand hosted identity provider, name, content, and inclusion in the userinfo endpoint\nwill most likely need to be configured.\n",
                 })))),
               default: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "commas")))),
                   default: null,
                   description: "Defines one or more team names that auto-provisioned OIDC users shall be added to.\nMultiple team names may be provided as comma-separated list.\n\nHas no effect when {option}`services.dependency-track.oidc.userProvisioning`=false,\nor {option}`services.dependency-track.oidc.teamSynchronization`=true.\n",
@@ -252,50 +252,50 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           nginx: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 example: false,
                 description: "Whether to set up an nginx virtual host.\n",
               })))),
             domain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 example: "dtrack.example.com",
                 description: "The domain name under which to set up the virtual host.\n",
               })))),
           })),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$45,
+                  [nix.POS]: pos$45,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$44,
+                    [nix.POS]: pos$44,
                     "alpine.data.directory": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$30,
+                        [nix.POS]: pos$30,
                         type: nix.thunk(() => nix.sel(lib, "types", "path")),
                         default: "/var/lib/dependency-track",
                         description: "Defines the path to the data directory. This directory will hold logs, keys,\nand any database or index files along with application-specific files or\ndirectories.\n",
                       })))),
                     "alpine.database.mode": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$31,
+                        [nix.POS]: pos$31,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["server", "embedded", "external"]))),
                         default: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "h2")) ? "embedded" : (nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "postgresql")) ? "external" : null))),
                         defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "if config.services.dependency-track.database.type == \"h2\" then \"embedded\"\nelse if config.services.dependency-track.database.type == \"postgresql\" then \"external\"\nelse null\n")),
                         description: "Defines the database mode of operation. Valid choices are:\n'server', 'embedded', and 'external'.\nIn server mode, the database will listen for connections from remote hosts.\nIn embedded mode, the system will be more secure and slightly faster.\nExternal mode should be used when utilizing an external database server\n(i.e. mysql, postgresql, etc).\n",
                       })))),
                     "alpine.database.url": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$32,
+                        [nix.POS]: pos$32,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "h2")) ? "jdbc:h2:/var/lib/dependency-track/db" : (nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "postgresql")) ? nix.str`jdbc:postgresql:${nix.sel(cfg, "database", "databaseName")}?socketFactory=org.newsclub.net.unix.AFUNIXSocketFactory$FactoryArg&socketFactoryArg=/run/postgresql/.s.PGSQL.5432` : null))),
                         defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "if config.services.dependency-track.database.type == \"h2\" then \"jdbc:h2:/var/lib/dependency-track/db\"\n  else if config.services.dependency-track.database.type == \"postgresql\" then \"jdbc:postgresql:${config.services.dependency-track.database.name}?socketFactory=org.newsclub.net.unix.AFUNIXSocketFactory$FactoryArg&socketFactoryArg=/run/postgresql/.s.PGSQL.5432\"\n  else null\n")),
                         description: "Specifies the JDBC URL to use when connecting to the database.",
                       })))),
                     "alpine.database.driver": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$33,
+                        [nix.POS]: pos$33,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => [
                             "org.h2.Driver",
                             "org.postgresql.Driver",
@@ -307,69 +307,69 @@ export default nix.lambda((args) => (() => {
                         description: "Specifies the JDBC driver class to use.",
                       })))),
                     "alpine.database.username": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$34,
+                        [nix.POS]: pos$34,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: nix.thunk(() => (nix.asBool(nix.sel(cfg, "database", "createLocally")) ? "dependency-track" : nix.sel(cfg, "database", "username"))),
                         defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "if config.services.dependency-track.database.createLocally then \"dependency-track\"\nelse config.services.dependency-track.database.username\n")),
                         description: "Specifies the username to use when authenticating to the database.",
                       })))),
                     "alpine.ldap.enabled": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$35,
+                        [nix.POS]: pos$35,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         default: false,
                         description: "Defines if LDAP will be used for user authentication. If enabled,\nalpine.ldap.* properties should be set accordingly.\n",
                       })))),
                     "alpine.oidc.enabled": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$36,
+                        [nix.POS]: pos$36,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         default: nix.thunk(() => nix.sel(cfg, "oidc", "enable")),
                         defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.dependency-track.oidc.enable")),
                         description: "Defines if OpenID Connect will be used for user authentication.\nIf enabled, alpine.oidc.* properties should be set accordingly.\n",
                       })))),
                     "alpine.oidc.client.id": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$37,
+                        [nix.POS]: pos$37,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: nix.thunk(() => nix.sel(cfg, "oidc", "clientId")),
                         defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.dependency-track.oidc.clientId")),
                         description: "Defines the client ID to be used for OpenID Connect.\nThe client ID should be the same as the one configured for the frontend,\nand will only be used to validate ID tokens.\n",
                       })))),
                     "alpine.oidc.issuer": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$38,
+                        [nix.POS]: pos$38,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: nix.thunk(() => nix.sel(cfg, "oidc", "issuer")),
                         defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.dependency-track.oidc.issuer")),
                         description: "Defines the issuer URL to be used for OpenID Connect.\nThis issuer MUST support provider configuration via the /.well-known/openid-configuration endpoint.\nSee also:\n- <https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata>\n- <https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfig>\n",
                       })))),
                     "alpine.oidc.username.claim": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$39,
+                        [nix.POS]: pos$39,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: nix.thunk(() => nix.sel(cfg, "oidc", "usernameClaim")),
                         defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.dependency-track.oidc.usernameClaim")),
                         description: "Defines the name of the claim that contains the username in the provider's userinfo endpoint.\nCommon claims are \"name\", \"username\", \"preferred_username\" or \"nickname\".\nSee also: <https://openid.net/specs/openid-connect-core-1_0.html#UserInfoResponse>\n",
                       })))),
                     "alpine.oidc.user.provisioning": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$40,
+                        [nix.POS]: pos$40,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         default: nix.thunk(() => nix.sel(cfg, "oidc", "userProvisioning")),
                         defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.dependency-track.oidc.userProvisioning")),
                         description: "Specifies if mapped OpenID Connect accounts are automatically created upon successful\nauthentication. When a user logs in with a valid access token but an account has\nnot been previously provisioned, an authentication failure will be returned.\nThis allows admins to control specifically which OpenID Connect users can access the\nsystem and which users cannot. When this value is set to true, a local OpenID Connect\nuser will be created and mapped to the OpenID Connect account automatically. This\nautomatic provisioning only affects authentication, not authorization.\n",
                       })))),
                     "alpine.oidc.team.synchronization": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$41,
+                        [nix.POS]: pos$41,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         default: nix.thunk(() => nix.sel(cfg, "oidc", "teamSynchronization")),
                         defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.dependency-track.oidc.teamSynchronization")),
                         description: "This option will ensure that team memberships for OpenID Connect users are dynamic and\nsynchronized with membership of OpenID Connect groups or assigned roles. When a team is\nmapped to an OpenID Connect group, all local OpenID Connect users will automatically be\nassigned to the team if they are a member of the group the team is mapped to. If the user\nis later removed from the OpenID Connect group, they will also be removed from the team. This\noption provides the ability to dynamically control user permissions via the identity provider.\nNote that team synchronization is only performed during user provisioning and after successful\nauthentication.\n",
                       })))),
                     "alpine.oidc.teams.claim": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$42,
+                        [nix.POS]: pos$42,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: nix.thunk(() => nix.sel(cfg, "oidc", "teams", "claim")),
                         defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.dependency-track.oidc.teams.claim")),
                         description: "Defines the name of the claim that contains group memberships or role assignments in the provider's userinfo endpoint.\nThe claim must be an array of strings. Most public identity providers do not support group or role management.\nWhen using a customizable / on-demand hosted identity provider, name, content, and inclusion in the userinfo endpoint\nwill most likely need to be configured.\n",
                       })))),
                     "alpine.oidc.teams.default": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$43,
+                        [nix.POS]: pos$43,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "commas")))),
                         default: nix.thunk(() => nix.sel(cfg, "oidc", "teams", "default")),
                         defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.dependency-track.oidc.teams.default")),
@@ -384,20 +384,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$67,
+        [nix.POS]: pos$67,
         services: nix.thunk(() => ({
-          __proto__: pos$59,
+          [nix.POS]: pos$59,
           nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "nginx", "enable")), nix.thunk(() => ({
-              __proto__: pos$57,
+              [nix.POS]: pos$57,
               enable: true,
               recommendedGzipSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
               recommendedOptimisation: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
               recommendedProxySettings: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
               recommendedTlsSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
               upstreams: nix.thunk(() => ({
-                __proto__: pos$51,
+                [nix.POS]: pos$51,
                 "dependency-track": nix.thunk(() => ({
-                  __proto__: pos$50,
+                  [nix.POS]: pos$50,
                   servers: nix.thunk(() => nix.attrsDyn({}, [
                     [nix.str`localhost:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}`, nix.thunk(() => ({}))],
                   ])),
@@ -405,19 +405,19 @@ export default nix.lambda((args) => (() => {
               })),
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "nginx", "domain"), nix.thunk(() => ({
-                  __proto__: pos$56,
+                  [nix.POS]: pos$56,
                   locations: nix.thunk(() => ({
-                    __proto__: pos$55,
+                    [nix.POS]: pos$55,
                     "/": nix.thunk(() => ({
-                      __proto__: pos$52,
+                      [nix.POS]: pos$52,
                       alias: nix.thunk(() => nix.str`${nix.sel(cfg, "package", "frontend")}/dist/`),
                       index: "index.html",
                       tryFiles: "$uri $uri/ /index.html",
                       extraConfig: "location ~ (index\\.html)$ {\n  add_header Cache-Control \"max-age=0, no-cache, no-store, must-revalidate\";\n  add_header Pragma \"no-cache\";\n  add_header Expires 0;\n}\n",
                     })),
-                    "/api": nix.thunk(() => ({ __proto__: pos$53, proxyPass: "http://dependency-track" })),
+                    "/api": nix.thunk(() => ({ [nix.POS]: pos$53, proxyPass: "http://dependency-track" })),
                     "= /static/config.json": nix.thunk(() => ({
-                      __proto__: pos$54,
+                      [nix.POS]: pos$54,
                       alias: frontendConfigFile,
                       extraConfig: "add_header Cache-Control \"max-age=0, no-cache, no-store, must-revalidate\";\nadd_header Pragma \"no-cache\";\nadd_header Expires 0;\n",
                     })),
@@ -426,22 +426,22 @@ export default nix.lambda((args) => (() => {
               ])),
             })))),
           postgresql: nix.thunk(() => ({
-            __proto__: pos$58,
+            [nix.POS]: pos$58,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$66,
+          [nix.POS]: pos$66,
           services: nix.thunk(() => ({
-            __proto__: pos$65,
+            [nix.POS]: pos$65,
             "dependency-track-postgresql-init": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ({
-                __proto__: pos$61,
+                [nix.POS]: pos$61,
                 after: nix.thunk(() => ["postgresql.target"]),
                 before: nix.thunk(() => ["dependency-track.service"]),
                 bindsTo: nix.thunk(() => ["postgresql.target"]),
                 path: nix.thunk(() => [nix.thunk(() => nix.sel(config, "services", "postgresql", "package"))]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$60,
+                  [nix.POS]: pos$60,
                   Type: "oneshot",
                   RemainAfterExit: true,
                   User: "postgres",
@@ -456,14 +456,14 @@ export default nix.lambda((args) => (() => {
             "dependency-track": nix.thunk(() => (() => {
               const databaseServices = nix.thunk(() => (nix.asBool(nix.sel(cfg, "database", "createLocally")) ? ["dependency-track-postgresql-init.service", "postgresql.target"] : []));
               return {
-                __proto__: pos$64,
+                [nix.POS]: pos$64,
                 description: "Dependency Track",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 requires: databaseServices,
                 after: databaseServices,
-                environment: nix.thunk(() => nix.update({ __proto__: pos$62, HOME: "%S/dependency-track" }, nix.app(renderSettings, nix.thunk(() => nix.sel(cfg, "settings"))))),
+                environment: nix.thunk(() => nix.update({ [nix.POS]: pos$62, HOME: "%S/dependency-track" }, nix.app(renderSettings, nix.thunk(() => nix.sel(cfg, "settings"))))),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$63,
+                  [nix.POS]: pos$63,
                   User: "dependency-track",
                   Group: "dependency-track",
                   DynamicUser: true,
@@ -492,7 +492,7 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "jre_headle
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$68,
+      [nix.POS]: pos$68,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

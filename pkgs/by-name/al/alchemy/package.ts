@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "alchemy",
       version: "008",
       enableParallelBuilding: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://al.chemy.org/files/Alchemy-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0449bvdccgx1jqnws1bckzs4nv2d230523qs0jx015gi81s1q7li",
         })))),
@@ -34,7 +34,7 @@ EOF
 chmod +x $out/bin/alchemy
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Drawing application",
         longDescription: "Alchemy is an open drawing project aimed at exploring how we can sketch,\ndraw, and create on computers in new ways. Alchemy isn’t software for\ncreating finished artwork, but rather a sketching environment that\nfocuses on the absolute initial stage of the creation process.\nExperimental in nature, Alchemy lets you brainstorm visually to explore\nan expanded range of ideas and possibilities in a serendipitous way.\n",
         homepage: "http://al.chemy.org/",

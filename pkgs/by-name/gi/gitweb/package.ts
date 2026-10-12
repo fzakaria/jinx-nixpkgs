@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const gitwebTheme = nix.argOr($, "gitwebTheme", () => false);
   const gitwebThemeSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "kogakure",
       repo: "gitweb-theme",
       rev: "d4cc1792f10dac16dbeee06d7e0902715e4fa51a",
@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-+e8ZP8hVGWQsXgyWUd/rF9+GRHNHJLFpOr5nsNIieyo",
     }))));
   return nix.app(buildEnv, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: nix.thunk(() => nix.attr(git, "version")),
       pname: "gitweb",
       ignoreCollisions: true,
       paths: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), gitwebTheme, gitwebThemeSrc), [nix.thunk(() => nix.str`${git}/share/gitweb`)])),
-      meta: nix.thunk(() => nix.update(nix.sel(git, "meta"), { __proto__: pos$2, maintainers: [] })),
+      meta: nix.thunk(() => nix.update(nix.sel(git, "meta"), { [nix.POS]: pos$2, maintainers: [] })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

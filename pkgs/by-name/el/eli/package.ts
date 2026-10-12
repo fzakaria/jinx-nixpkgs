@@ -27,21 +27,21 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const file = nix.arg($, "file");
   const tk_combined = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "tk_combined",
       paths: nix.thunk(() => [tk, nix.thunk(() => nix.sel(tk, "dev"))]),
     }))));
   const curses_combined = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "curses_combined",
       paths: nix.thunk(() => [ncurses, nix.thunk(() => nix.sel(ncurses, "dev"))]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "eli",
       version: "4.8.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/eli-project/Eli/Eli%20${nix.sel(finalAttrs, "version")}/eli-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "1vran8583hbwrr5dciji4zkhz3f88w4mn8n9sdpr6zw0plpf1whj",
         })))),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [file, makeWrapper]),
       buildFlags: nix.thunk(() => ["nobrowsers"]),
-      env: nix.thunk(() => ({ __proto__: pos$4, NIX_CFLAGS_COMPILE: "-fcommon --std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$4, NIX_CFLAGS_COMPILE: "-fcommon --std=gnu17" })),
       preConfigure: nix.thunk(() => nix.str`configureFlagsArray=(
   --with-tcltk="${tcl} ${tk_combined}"
   --with-curses="${curses_combined}"
@@ -67,7 +67,7 @@ export ODIN_LOCALIPC=1
       doInstallCheck: true,
       installCheckPhase: "export HOME=\"$TMP/home\"\nmkdir -p \"$HOME\"\n$out/bin/eli \"!ls\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Translator Construction Made Easy",
         longDescription: "Eli is a programming environment that supports all phases of translator\nconstruction with extensive libraries implementing common tasks, yet handling\narbitrary special cases. Output is the C subset of C++.\n",
         homepage: "https://eli-project.sourceforge.net/",

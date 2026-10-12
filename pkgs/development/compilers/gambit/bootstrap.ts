@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const gambit_support = nix.arg($, "gambit-support");
   return nix.app(nix.sel(gccStdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gambit-bootstrap",
       version: "4.9.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://gambitscheme.org/4.9.5/gambit-v4_9_5.tgz",
           sha256: "sha256-4o74218OexFZcgwVAFPcq498TK4fDlyDiUR5cHP4wdw=",
         })))),
@@ -35,7 +35,7 @@ unset CFLAGS LDFLAGS LIBS CPPFLAGS CXXFLAGS
       installPhase: "cp -fa ./gsc-boot $out/gambit/\n",
       forceShare: nix.thunk(() => ["info"]),
       meta: nix.thunk(() => nix.update(nix.sel(gambit_support, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Optimizing Scheme to C compiler, bootstrap step",
       })),
     })));

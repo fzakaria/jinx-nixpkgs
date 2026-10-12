@@ -60,18 +60,18 @@ export default nix.lambda((args) => (() => {
   const inetSocket = nix.thunk(() => (() => {
     const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
     return {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       options: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         addr: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => nix.app(nix.lookup(w_2, "nullOr"), nix.thunk(() => nix.lookup(w_2, "str")))),
             default: null,
             example: "127.0.0.1",
             description: "The address to bind to. Localhost if null",
           })))),
         port: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.lookup(w_2, "port")),
             default: 10030n,
             description: "Tcp port to bind to",
@@ -82,17 +82,17 @@ export default nix.lambda((args) => (() => {
   const unixSocket = nix.thunk(() => (() => {
     const w_3 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
     return {
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       options: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         path: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             type: nix.thunk(() => nix.lookup(w_3, "path")),
             default: "/run/postgrey.sock",
             description: "Path of the unix socket",
           })))),
         mode: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             type: nix.thunk(() => nix.lookup(w_3, "str")),
             default: "0777",
             description: "Mode of the unix socket",
@@ -101,7 +101,7 @@ export default nix.lambda((args) => (() => {
     };
   })());
   return {
-    __proto__: pos$42,
+    [nix.POS]: pos$42,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.lookup(w, "mkMergedOptionModule"), nix.thunk(() => [
           nix.thunk(() => ["services", "postgrey", "inetAddr"]),
@@ -110,109 +110,109 @@ export default nix.lambda((args) => (() => {
           const value = (p) => nix.app(nix.lookup(w, "getAttrFromPath"), p, config_1);
           const inetAddr = nix.thunk(() => ["services", "postgrey", "inetAddr"]);
           const inetPort = nix.thunk(() => ["services", "postgrey", "inetPort"]);
-          return (nix.asBool(nix.eq(nix.app(value, inetAddr), null)) ? { __proto__: pos$9, path: "/run/postgrey.sock" } : {
-            __proto__: pos$10,
+          return (nix.asBool(nix.eq(nix.app(value, inetAddr), null)) ? { [nix.POS]: pos$9, path: "/run/postgrey.sock" } : {
+            [nix.POS]: pos$10,
             addr: nix.thunk(() => nix.app(value, inetAddr)),
             port: nix.thunk(() => nix.app(value, inetPort)),
           });
         })())),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       services: nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         postgrey: nix.thunk(() => (() => {
           const w_4 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
           return {
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             enable: nix.thunk(() => nix.app(nix.lookup(w_4, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.lookup(w_4, "bool")),
                 default: false,
                 description: "Whether to run the Postgrey daemon",
               })))),
             socket: nix.thunk(() => nix.app(nix.lookup(w_4, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: socket,
-                default: nix.thunk(() => ({ __proto__: pos$12, path: "/run/postgrey.sock", mode: "0777" })),
-                example: nix.thunk(() => ({ __proto__: pos$13, addr: "127.0.0.1", port: 10030n })),
+                default: nix.thunk(() => ({ [nix.POS]: pos$12, path: "/run/postgrey.sock", mode: "0777" })),
+                example: nix.thunk(() => ({ [nix.POS]: pos$13, addr: "127.0.0.1", port: 10030n })),
                 description: "Socket to bind to",
               })))),
             greylistText: nix.thunk(() => nix.app(nix.lookup(w_4, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.lookup(w_4, "str")),
                 default: "Greylisted for %%s seconds",
                 description: "Response status text for greylisted messages; use %%s for seconds left until greylisting is over and %%r for mail domain of recipient",
               })))),
             greylistAction: nix.thunk(() => nix.app(nix.lookup(w_4, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => nix.lookup(w_4, "str")),
                 default: "DEFER_IF_PERMIT",
                 description: "Response status for greylisted messages (see {manpage}`access(5)`)",
               })))),
             greylistHeader: nix.thunk(() => nix.app(nix.lookup(w_4, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 type: nix.thunk(() => nix.lookup(w_4, "str")),
                 default: "X-Greylist: delayed %%t seconds by postgrey-%%v at %%h; %%d",
                 description: "Prepend header to greylisted mails; use %%t for seconds delayed due to greylisting, %%v for the version of postgrey, %%d for the date, and %%h for the host",
               })))),
             delay: nix.thunk(() => nix.app(nix.lookup(w_4, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 type: nix.thunk(() => nix.sel(nix.lookup(w_4, "ints"), "unsigned")),
                 default: 300n,
                 description: "Greylist for N seconds",
               })))),
             maxAge: nix.thunk(() => nix.app(nix.lookup(w_4, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 type: nix.thunk(() => nix.sel(nix.lookup(w_4, "ints"), "unsigned")),
                 default: 35n,
                 description: "Delete entries from whitelist if they haven't been seen for N days",
               })))),
             retryWindow: nix.thunk(() => nix.app(nix.lookup(w_4, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 type: nix.thunk(() => nix.app(nix.lookup(w_4, "either"), nix.thunk(() => nix.lookup(w_4, "str")), nix.thunk(() => nix.sel(nix.lookup(w_4, "ints"), "unsigned")))),
                 default: 2n,
                 example: "12h",
                 description: "Allow N days for the first retry. Use string with appended 'h' to specify time in hours",
               })))),
             lookupBySubnet: nix.thunk(() => nix.app(nix.lookup(w_4, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 type: nix.thunk(() => nix.lookup(w_4, "bool")),
                 default: true,
                 description: "Strip the last N bits from IP addresses, determined by IPv4CIDR and IPv6CIDR",
               })))),
             IPv4CIDR: nix.thunk(() => nix.app(nix.lookup(w_4, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 type: nix.thunk(() => nix.sel(nix.lookup(w_4, "ints"), "unsigned")),
                 default: 24n,
                 description: "Strip N bits from IPv4 addresses if lookupBySubnet is true",
               })))),
             IPv6CIDR: nix.thunk(() => nix.app(nix.lookup(w_4, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 type: nix.thunk(() => nix.sel(nix.lookup(w_4, "ints"), "unsigned")),
                 default: 64n,
                 description: "Strip N bits from IPv6 addresses if lookupBySubnet is true",
               })))),
             privacy: nix.thunk(() => nix.app(nix.lookup(w_4, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 type: nix.thunk(() => nix.lookup(w_4, "bool")),
                 default: true,
                 description: "Store data using one-way hash functions (SHA1)",
               })))),
             autoWhitelist: nix.thunk(() => nix.app(nix.lookup(w_4, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 type: nix.thunk(() => nix.app(nix.lookup(w_4, "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_4, "ints"), "positive")))),
                 default: 5n,
                 description: "Whitelist clients after successful delivery of N messages",
               })))),
             whitelistClients: nix.thunk(() => nix.app(nix.lookup(w_4, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 type: nix.thunk(() => nix.app(nix.lookup(w_4, "listOf"), nix.thunk(() => nix.lookup(w_4, "path")))),
                 default: [],
                 description: "Client address whitelist files (see {manpage}`postgrey(8)`)",
               })))),
             whitelistRecipients: nix.thunk(() => nix.app(nix.lookup(w_4, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 type: nix.thunk(() => nix.app(nix.lookup(w_4, "listOf"), nix.thunk(() => nix.lookup(w_4, "path")))),
                 default: [],
                 description: "Recipient address whitelist files (see {manpage}`postgrey(8)`)",
@@ -222,43 +222,43 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$41,
+        [nix.POS]: pos$41,
         environment: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "postgrey"))]),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           users: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             postgrey: nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               description: "Postgrey Daemon",
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "postgrey")),
               group: "postgrey",
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             postgrey: nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "postgrey")),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           services: nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             postgrey: nix.thunk(() => (() => {
               const bind_flag = nix.thunk(() => (nix.asBool(nix.has(nix.sel(cfg, "socket"), "path")) ? nix.str`--unix=${nix.sel(cfg, "socket", "path")} --socketmode=${nix.sel(cfg, "socket", "mode")}` : nix.str`--inet=${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "socket", "addr"), null)), nix.thunk(() => nix.add(nix.sel(cfg, "socket", "addr"), ":")))}${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "socket", "port")))}`));
               return {
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 description: "Postfix Greylisting Service",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 before: nix.thunk(() => ["postfix.service"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$37,
+                  [nix.POS]: pos$37,
                   Type: "simple",
                   ExecStartPre: nix.thunk(() => [
                     nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils")), "mkdir")} -p /var/postgrey`),

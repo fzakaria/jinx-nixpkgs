@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "plm";
       const version = "2.9.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/BuggleInc/PLM/releases/download/v${version}/plm-${version}.jar`),
           sha256: "0i9ghx9pm3kpn9x9n1hl10zdr36v5mv3drx8lvhsqwhlsvz42p5i",
           name: nix.thunk(() => nix.str`${pname}-${version}.jar`),
@@ -39,7 +39,7 @@ makeWrapper ${jre}/bin/java $out/bin/plm \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Free cross-platform programming exerciser",
         mainProgram: "plm",
         homepage: "https://people.irisa.fr/Martin.Quinson/Teaching/PLM/",
@@ -52,7 +52,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

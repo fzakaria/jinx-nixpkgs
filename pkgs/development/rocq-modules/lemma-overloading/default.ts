@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const mathcomp_ssreflect = nix.arg($, "mathcomp-ssreflect");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       pname: "lemma-overloading",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.sel(mathcomp_ssreflect, "version")),
           ]), nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               cases: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.10", "8.12")),
                 nix.thunk(() => nix.app(nix.lookup(w, "range"), "1.7", "1.11")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
               out: "8.12.0",
             })),
             nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               cases: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.10", "8.11")),
                 nix.thunk(() => nix.app(nix.lookup(w, "range"), "1.7", "1.11")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
               out: "8.11.0",
             })),
             nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               cases: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.8", "8.11")),
                 nix.thunk(() => nix.app(nix.lookup(w, "range"), "1.7", "1.10")),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
               out: "8.10.0",
             })),
             nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               cases: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.8", "8.9")),
                 nix.thunk(() => nix.app(nix.lookup(w, "range"), "1.7", "1.8")),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
               out: "8.9.0",
             })),
             nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               cases: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.lookup(w, "isEq"), "8.8")),
                 nix.thunk(() => nix.app(nix.lookup(w, "range"), "1.6.2", "1.7")),
@@ -77,32 +77,32 @@ export default nix.lambda((args) => (() => {
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         "8.12.0": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           hash: "sha256-ul1IhxFwhLTy3+rmo3gvjHI3Z8A8avN0Rzq0YDy2bjs=",
         })),
         "8.11.0": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           hash: "sha256-RI3KdSEYxUbjfZWKO7atGdEqDU8WmLJSFeF6TLlgUFc=",
         })),
         "8.10.0": nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           hash: "sha256-qpHh/iz2fFtGwUedjJ6fuOh8uq1mlL4ETxc9zDJ6800=",
         })),
         "8.9.0": nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           hash: "sha256-dE9O94DvcF93TUTU7ky9pvGZgTtPZWz6826b6Js/nHc=",
         })),
         "8.8.0": nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           hash: "sha256-Iq3KfESMnZF8hhGKuvZHx+hAMEaoCP7MhhQEI6xfoO8=",
         })),
       })),
       releaseRev: (v) => nix.str`v${v}`,
       propagatedBuildInputs: nix.thunk(() => [mathcomp_ssreflect]),
       meta: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         description: "Libraries demonstrating design patterns for programming and proving with canonical structures in Coq",
         maintainers: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

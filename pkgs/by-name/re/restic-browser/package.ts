@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const restic = nix.arg($, "restic");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "restic-browser",
       version: "0.3.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "emuell",
           repo: "restic-browser",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-/EgSr46mJV84s/MG/3nUnU6XQ8RtEWiWo0gFtegblEQ=",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-npm-deps-${nix.sel(finalAttrs, "version")}`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-uyn5cXMKm7+LLuF+n94pBTypLiPvfAs5INDEtd9cHs0=",
@@ -55,11 +55,11 @@ export default nix.lambda((args) => (() => {
 ln -s $out/Applications/Restic-Browser.app/Contents/MacOS/Restic-Browser $out/bin/${nix.sel(finalAttrs, "meta", "mainProgram")}
 `))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "GUI to browse and restore restic backup repositories",
         homepage: "https://github.com/emuell/restic-browser",
         changelog: nix.thunk(() => nix.str`https://github.com/emuell/restic-browser/releases/tag/v${nix.sel(finalAttrs, "version")}`),

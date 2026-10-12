@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "19.11.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-v4VoRzQIeqKlxjMYveYL/B6p+2HcmpTkLq/8grl0wtY=",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["peaqevcore"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for interacting with Peaqev car charging",
         homepage: "https://github.com/elden1337/peaqev-core",
         changelog: nix.thunk(() => nix.str`https://github.com/elden1337/peaqev-core/releases/tag/${version}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

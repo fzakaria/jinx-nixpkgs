@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
   const semver = nix.thunk(() => nix.app(nix.sel(lib, "strings", "concatStringsSep"), ".", nix.thunk(() => nix.app(nix.sel(lib, "lists", "init"), nix.thunk(() => nix.builtins.splitVersion(version))))));
   const description = "Raise3D's 3D slicer software";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://downcdn.raise3d.com/ideamaker/release/${semver}/ideaMaker_${version}-ubuntu_amd64.deb`),
           hash: "sha256-kXcgVuuPTMWoOCrEztiedJrZrTbFx1xHyzzh4y2b0UA=",
         })))),
@@ -94,7 +94,7 @@ runHook postInstall
       postFixup: "patchelf \\\n  --add-needed libdbus-1.so.3 \\\n  \"$out/usr/lib/x86_64-linux-gnu/ideamaker/libQt5DBus.so.5.15.2\"\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "ideamaker",
             exec: "ideamaker",
             icon: "ideamaker",
@@ -116,16 +116,16 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               name: "ideamaker-update-script",
               runtimeInputs: nix.thunk(() => [curl, common_updater_scripts, jq]),
               text: "update-source-version ideamaker \"$(\n  curl 'https://api.raise3d.com/ideamakerio-v1.1/hq/ofpVersionControl/find' -X 'POST' \\\n  | jq -r '.data.release_version.linux_64_deb_url' \\\n  | sed -E 's#.*/release/([0-9]+\\.[0-9]+\\.[0-9]+)/ideaMaker_\\1\\.([0-9]+).*#\\1.\\2#'\n)\"\n",
             })))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: description,
         changelog: "https://www.raise3d.com/download/ideamaker-release-notes/",
         homepage: "https://www.raise3d.com/ideamaker/",

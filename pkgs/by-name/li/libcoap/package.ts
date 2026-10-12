@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const withTLS = nix.argOr($, "withTLS", () => true);
   const withDocs = nix.argOr($, "withDocs", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libcoap",
       version: "4.3.5b",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "libcoap",
           owner: "obgm",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "./autogen.sh",
       configureFlags: nix.thunk(() => nix.concat(["--disable-shared"], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withDocs)), "--disable-documentation"), nix.app(nix.sel(lib, "optional"), withTLS, "--enable-dtls")))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/obgm/libcoap",
         description: "CoAP (RFC 7252) implementation in C",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

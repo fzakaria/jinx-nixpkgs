@@ -12,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const writeTextFile = nix.arg($, "writeTextFile");
   const svg_file = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "test.svg",
       text: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg width=\"50\" height=\"50\" version=\"1.1\">\n  <ellipse cx=\"1\" cy=\"1\" rx=\"1\" ry=\"1\" />\n</svg>",
     }))));
-  return nix.app(runCommand, "inkscape-test-eps", nix.thunk(() => ({ __proto__: pos$2, nativeBuildInputs: nix.thunk(() => [inkscape]) })), nix.thunk(() => nix.str`echo ps test
+  return nix.app(runCommand, "inkscape-test-eps", nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [inkscape]) })), nix.thunk(() => nix.str`echo ps test
 inkscape ${svg_file} --export-type=ps -o test.ps
 inkscape test.ps -o test.ps.svg
 

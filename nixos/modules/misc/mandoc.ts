@@ -41,22 +41,22 @@ export default nix.lambda((args) => (() => {
   const toMandocOutput = (output) => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value) => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "isString"), value)) || nix.asBool(nix.app(nix.sel(lib, "isPath"), value)))) ? nix.str`output ${name} ${value}` : (nix.asBool(nix.app(nix.sel(lib, "isInt"), value)) ? nix.str`output ${name} ${nix.builtins.toString(value)}` : (nix.asBool(nix.app(nix.sel(lib, "isBool"), value)) ? nix.app(nix.sel(lib, "optionalString"), value, nix.thunk(() => nix.str`output ${name}`)) : (nix.asBool(nix.eq(value, null)) ? "" : nix.builtins.throw(nix.thunk(() => nix.str`Unrecognized value type ${nix.builtins.typeOf(value)} of key ${name} in mandoc output settings`)))))), output);
   const makeLeadingSlashes = nix.thunk(() => nix.app(nix.builtins.map, (path) => (nix.asBool(!nix.eq(nix.builtins.substring(0n, 1n, path), "/")) ? nix.str`/${path}` : nix.force(path))));
   return {
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "sternenseemann"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       documentation: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         man: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           mandoc: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "mandoc as the default man page viewer")),
             manPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
                 description: "Change the paths included in the MANPATH environment variable,\ni. e. the directories where {manpage}`man(1)`\nlooks for section-specific directories of man pages.\nYou only need to change this setting if you want extra man pages\n(e. g. in non-english languages). All values must be strings that\nare a valid path from the target prefix (without including it).\nThe first value given takes priority. Note that this will not\nadd manpath directives to {manpage}`man.conf(5)`.\n",
               })))),
             cachePath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -79,22 +79,22 @@ export default nix.lambda((args) => (() => {
                 description: "Change the paths where mandoc {manpage}`makewhatis(8)`generates the\nmanual page index caches. {option}`documentation.man.cache.enable`\nshould be enabled to allow cache generation. This list should only\ninclude the paths to manpages installed in the system configuration,\ni. e. /run/current-system/sw/share/man. {manpage}`makewhatis(8)`\ncreates a database in each directory using the files\n`mansection/[arch/]title.section` and `catsection/[arch/]title.0`\nin it. If a directory contains no manual pages, no database is\ncreated in that directory.\nThis option only needs to be set manually if extra paths should be\nindexed or {option}`documentation.man.manPath` contains paths that\ncan't be indexed.\n",
               })))),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(lib, "types", "package")),
                 default: nix.thunk(() => nix.sel(pkgs, "mandoc")),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.mandoc")),
                 description: "The `mandoc` derivation to use. Useful to override\nconfiguration options used for the package.\n",
               })))),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 description: "Configuration for {manpage}`man.conf(5)`",
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     options: nix.thunk(() => ({
-                      __proto__: pos$14,
+                      [nix.POS]: pos$14,
                       manpath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$5,
+                          [nix.POS]: pos$5,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                             return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -104,16 +104,16 @@ export default nix.lambda((args) => (() => {
                           description: "Override the default search path for {manpage}`man(1)`,\n{manpage}`apropos(1)`, and {manpage}`makewhatis(8)`. It can be\nused multiple times to specify multiple paths, with the order\ndetermining the manual page search order.\nThis is not recommended in favor of\n{option}`documentation.man.mandoc.manPath`, but if it's needed to\nspecify the manpath in this way, set\n{option}`documentation.man.mandoc.manPath` to an empty list (`[]`).\n",
                         })))),
                       output: nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         fragment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$6,
+                            [nix.POS]: pos$6,
                             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                             default: false,
                             example: true,
                             description: "Whether to omit the <!DOCTYPE> declaration and the <html>, <head>, and <body>\nelements and only emit the subtree below the <body> element in HTML\noutput of {manpage}`mandoc(1)`. The style argument will be ignored.\nThis is useful when embedding manual content within existing documents.\n",
                           })))),
                         includes: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$7,
+                            [nix.POS]: pos$7,
                             type: nix.thunk(() => (() => {
                               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                               return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -123,7 +123,7 @@ export default nix.lambda((args) => (() => {
                             description: "A string of relative path used as a template for the output path of\nlinked header files (usually via the In macro) in HTML output.\nInstances of `%I` are replaced with the include filename. The\ndefault is not to present a hyperlink.\n",
                           })))),
                         indent: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$8,
+                            [nix.POS]: pos$8,
                             type: nix.thunk(() => (() => {
                               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                               return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "int")));
@@ -132,7 +132,7 @@ export default nix.lambda((args) => (() => {
                             description: "Number of blank characters at the left margin for normal text,\ndefault of `5` for {manpage}`mdoc(7)` and `7` for\n{manpage}`man(7)`. Increasing this is not recommended; it may\nresult in degraded formatting, for example overfull lines or ugly\nline breaks. When output is to a pager on a terminal that is less\nthan 66 columns wide, the default is reduced to three columns.\n",
                           })))),
                         man: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$9,
+                            [nix.POS]: pos$9,
                             type: nix.thunk(() => (() => {
                               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                               return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -142,7 +142,7 @@ export default nix.lambda((args) => (() => {
                             description: "A template for linked manuals (usually via the Xr macro) in HTML\noutput. Instances of ‘%N’ and ‘%S’ are replaced with the linked\nmanual's name and section, respectively. If no section is included,\nsection 1 is assumed. The default is not to present a hyperlink.\nIf two formats are given and a file %N.%S exists in the current\ndirectory, the first format is used; otherwise, the second format is used.\n",
                           })))),
                         paper: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$10,
+                            [nix.POS]: pos$10,
                             type: nix.thunk(() => (() => {
                               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                               return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -151,7 +151,7 @@ export default nix.lambda((args) => (() => {
                             description: "This option is for generating PostScript and PDF output. The paper\nsize name may be one of `a3`, `a4`, `a5`, `legal`, or `letter`.\nYou may also manually specify dimensions as `NNxNN`, width by\nheight in millimetres. If an unknown value is encountered, letter\nis used. Output pages default to letter sized and are rendered in\nthe Times font family, 11-point. Margins are calculated as 1/9 the\npage length and width. Line-height is 1.4m.\n",
                           })))),
                         style: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$11,
+                            [nix.POS]: pos$11,
                             type: nix.thunk(() => (() => {
                               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                               return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -161,7 +161,7 @@ export default nix.lambda((args) => (() => {
                           })))),
                         toc: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "printing a table of contents near the beginning of the HTML output\nof {manpage}`mandoc(1)` if an input file contains at least two\nnon-standard sections\n")),
                         width: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$12,
+                            [nix.POS]: pos$12,
                             type: nix.thunk(() => (() => {
                               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                               return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "int")));
@@ -174,7 +174,7 @@ export default nix.lambda((args) => (() => {
                   })))),
               })))),
             extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 type: nix.thunk(() => nix.sel(lib, "types", "lines")),
                 default: "",
                 description: "Extra configuration to write to {manpage}`man.conf(5)`.\n",
@@ -184,14 +184,14 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         environment: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             "man.conf": nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               text: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.concat(nix.builtins.map((path) => nix.str`manpath ${path}`, nix.thunk(() => nix.sel(cfg, "settings", "manpath"))), nix.concat(nix.app(toMandocOutput, nix.thunk(() => nix.sel(cfg, "settings", "output"))), [nix.thunk(() => nix.sel(cfg, "extraConfig"))]))))),
             })),
           })),
@@ -201,7 +201,7 @@ do
 done
 `))),
           profileRelativeSessionVariables: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             MANPATH: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "manPath"), [])), nix.thunk(() => nix.sel(cfg, "manPath")))),
           })),
         })),

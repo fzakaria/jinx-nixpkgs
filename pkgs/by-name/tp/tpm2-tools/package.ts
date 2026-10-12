@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const enableManpages = nix.argOr($, "enableManpages", () => nix.sel(buildPackages, "pandoc", "compiler", "bootstrapAvailable"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tpm2-tools",
       version: "5.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/tpm2-software/tpm2-tools/releases/download/${nix.sel(finalAttrs, "version")}/tpm2-tools-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-HLcxhcroFLThXHwtCyJkLWQPr0h3X0FWof2S7fhL73M=",
         })))),
@@ -42,7 +42,7 @@ wrapProgram $out/bin/tss2 --suffix LD_LIBRARY_PATH : "${ldLibraryPath}"
       })()),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command line tools that provide access to a TPM 2.0 compatible device",
         homepage: "https://github.com/tpm2-software/tpm2-tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

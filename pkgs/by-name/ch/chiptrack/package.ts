@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "chiptrack",
       version: "0.5-unstable-2026-02-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jturcotte",
           repo: "chiptrack",
           rev: "3cb0caa5bbc23d0579cdad8187c4371bdf0723a3",
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
           ])))))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Programmable cross-platform sequencer for the Game Boy Advance sound chip",
         homepage: "https://github.com/jturcotte/chiptrack",
         license: nix.thunk(() => (() => {

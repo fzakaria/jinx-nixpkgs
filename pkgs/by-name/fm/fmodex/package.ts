@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
       const version = "4.44.64";
       const shortVersion = nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), version));
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://zdoom.org/files/fmod/fmodapi${shortVersion}linux.tar.gz`),
           sha256: "047hk92xapwwqj281f4zwl0ih821rrliya70gfj82sdfjh9lz8i1",
         } : {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://zdoom.org/files/fmod/fmodapi${shortVersion}mac-installer.dmg`),
           sha256: "1m1y4cpcwpkl8x31d3s68xzp107f343ma09w2437i2adn5y7m8ii",
         }))));
@@ -40,7 +40,7 @@ ln -s libfmodex-${version}.so $out/lib/libfmodex.so
 patchelf --set-rpath ${libPath} $out/lib/libfmodex.so
 `)), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "install -D api/lib/libfmodex.dylib $out/lib/libfmodex.dylib\ninstall -D api/lib/libfmodexL.dylib $out/lib/libfmodexL.dylib\n")), "cp -r api/inc $out/include\n"));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Programming library and toolkit for the creation and playback of interactive audio",
         homepage: "http://www.fmod.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
@@ -48,7 +48,7 @@ patchelf --set-rpath ${libPath} $out/lib/libfmodex.so
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "lassulus"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         shortVersion,

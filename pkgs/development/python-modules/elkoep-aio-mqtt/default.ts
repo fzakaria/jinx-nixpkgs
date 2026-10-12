@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.0.beta.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "epdevlab",
           repo: "elkoep-aio-mqtt",
           tag: "0.1.0.beta.4",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest_asyncio, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["inelsmqtt"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library for iNELS mqtt protocol",
         homepage: "https://github.com/epdevlab/elkoep-aio-mqtt",
         changelog: nix.thunk(() => nix.str`https://github.com/epdevlab/elkoep-aio-mqtt/releases/tag/${nix.sel(src, "tag")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "jamiemagee"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

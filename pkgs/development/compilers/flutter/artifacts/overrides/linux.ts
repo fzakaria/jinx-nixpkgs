@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const buildInputs = nix.argOr($_1, "buildInputs", () => []);
     return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       buildInputs: nix.thunk(() => nix.concat(buildInputs, [gtk3])),
     };
   })(), formals$2);

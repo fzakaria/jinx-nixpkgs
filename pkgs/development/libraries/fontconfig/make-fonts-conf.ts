@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
     ])))));
     const includes = nix.argOr($_1, "includes", () => ["/etc/fonts/conf.d"]);
     return nix.app(runCommand, "fonts.conf", nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         nativeBuildInputs: nix.thunk(() => [libxslt]),
         buildInputs: nix.thunk(() => [fontconfig_1]),
         fontDirectories: fontDirectories,

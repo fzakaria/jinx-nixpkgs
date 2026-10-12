@@ -44,24 +44,24 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "sway"));
-  const wayland_lib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lib.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib }))));
+  const wayland_lib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lib.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib }))));
   return {
-    __proto__: pos$34,
+    [nix.POS]: pos$34,
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       programs: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         sway: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Sway, the i3-compatible tiling Wayland compositor. You can manually launch\nSway by executing \"exec sway\" on a TTY. Copy /etc/sway/config to\n~/.config/sway/config to modify the default configuration. See\n<https://github.com/swaywm/sway/wiki> and\n\"man 5 sway\" for more information")),
           package: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "sway", nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               nullable: true,
               extraDescription: "If the package is not overridable with `extraSessionCommands`, `extraOptions`,\n`withBaseWrapper`, `withGtkWrapper`, `enableXWayland` and `isNixOS`,\nthen the module options {option}`wrapperFeatures`, {option}`extraSessionCommands`,\n{option}`extraOptions` and {option}`xwayland` will have no effect.\n\nSet to `null` to not add any Sway package to your path.\nThis should be done if you want to use the Home Manager Sway module to install Sway.\n",
             }))), {
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             apply: (p) => (nix.asBool(nix.eq(p, null)) ? null : nix.app(nix.sel(wayland_lib, "genFinalPackage"), p, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 extraSessionCommands: nix.thunk(() => nix.sel(cfg, "extraSessionCommands")),
                 extraOptions: nix.thunk(() => nix.sel(cfg, "extraOptions")),
                 withBaseWrapper: nix.thunk(() => nix.sel(cfg, "wrapperFeatures", "base")),
@@ -71,30 +71,30 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           wrapperFeatures: nix.thunk(() => ({
-            __proto__: pos$6,
-            base: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "the base wrapper to execute extra session commands and prepend a\ndbus-run-session to the sway command"), { __proto__: pos$5, default: true })),
+            [nix.POS]: pos$6,
+            base: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "the base wrapper to execute extra session commands and prepend a\ndbus-run-session to the sway command"), { [nix.POS]: pos$5, default: true })),
             gtk: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the wrapGAppsHook wrapper to execute sway with required environment\nvariables for GTK applications")),
           })),
           extraSessionCommands: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               example: "# SDL:\nexport SDL_VIDEODRIVER=wayland\n# QT (needs qt5.qtwayland in systemPackages):\nexport QT_QPA_PLATFORM=wayland-egl\nexport QT_WAYLAND_DISABLE_WINDOWDECORATION=\"1\"\n# Fix for some Java AWT applications (e.g. Android Studio),\n# use this if they aren't displayed properly:\nexport _JAVA_AWT_WM_NONREPARENTING=1\n",
               description: "Shell commands executed just before Sway is started. See\n<https://github.com/swaywm/sway/wiki/Running-programs-natively-under-wayland>\nand <https://github.com/swaywm/wlroots/blob/master/docs/env_vars.md>\nfor some useful environment variables.\n",
             })))),
           extraOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["--verbose", "--debug", "--unsupported-gpu"]),
               description: "Command line arguments passed to launch Sway. Please DO NOT report\nissues if you use an unsupported GPU (proprietary drivers).\n",
             })))),
           xwayland: nix.thunk(() => ({
-            __proto__: pos$10,
-            enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "XWayland"), { __proto__: pos$9, default: true })),
+            [nix.POS]: pos$10,
+            enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "XWayland"), { [nix.POS]: pos$9, default: true })),
           })),
           extraPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "package")));
@@ -120,10 +120,10 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, "extraSessionCommands"), "")) || nix.asBool(nix.sel(cfg, "wrapperFeatures", "base")))),
                 message: "The extraSessionCommands for Sway will not be run if wrapperFeatures.base is disabled.\n",
               })),
@@ -132,31 +132,31 @@ export default nix.lambda((args) => (() => {
                 "Using Sway with Nvidia driver version <= 550 may result in a broken system. Configure hardware.nvidia.package to use a newer version.",
               ]))),
             environment: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               systemPackages: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "package"), null)), nix.thunk(() => nix.sel(cfg, "package"))), nix.sel(cfg, "extraPackages"))),
               pathsToLink: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "package"), null)), "/share/backgrounds/sway")),
               etc: nix.thunk(() => nix.update({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 "sway/config.d/nixos.conf": nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "nixos.conf", "# Import the most important environment variables into the D-Bus and systemd\n# user environments (e.g. required for screen sharing and Pinentry prompts):\nexec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP\n# enable systemd-integration\nexec \"systemctl --user import-environment {,WAYLAND_}DISPLAY SWAYSOCK; systemctl --user start sway-session.target\"\nexec swaymsg -t subscribe '[\"shutdown\"]' && systemctl --user stop sway-session.target\n")),
                 })),
               }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "package"), null)), nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   "sway/config": nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     source: nix.thunk(() => nix.app(nix.sel(lib, "mkOptionDefault"), nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/etc/sway/config`))),
                   })),
                 }))))),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               user: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 targets: nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   "sway-session": nix.thunk(() => ({
-                    __proto__: pos$21,
+                    [nix.POS]: pos$21,
                     description: "sway compositor session",
                     documentation: nix.thunk(() => ["man:systemd.special(7)"]),
                     bindsTo: nix.thunk(() => ["graphical-session.target"]),
@@ -167,20 +167,20 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               displayManager: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 sessionPackages: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "package"), null)), nix.thunk(() => nix.sel(cfg, "package")))),
               })),
             })),
             xdg: nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               portal: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 config: nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   sway: nix.thunk(() => ({
-                    __proto__: pos$27,
+                    [nix.POS]: pos$27,
                     default: nix.thunk(() => ["gtk"]),
                     "org.freedesktop.impl.portal.ScreenCast": "wlr",
                     "org.freedesktop.impl.portal.Screenshot": "wlr",
@@ -191,14 +191,14 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./wayland-session.nix")), nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               lib: lib,
               pkgs: pkgs,
               enableXWayland: nix.thunk(() => nix.sel(cfg, "xwayland", "enable")),
             })))),
         ]))))),
     meta: nix.thunk(() => ({
-      __proto__: pos$33,
+      [nix.POS]: pos$33,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "sotormd"))];

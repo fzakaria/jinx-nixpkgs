@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.launchpad.net/lazr.config",
           rev: "3c659114e8e947fbd46954336f5577351d786de9",
           hash: "sha256-eYJY4JRoqTMG4j1jyiYrI8xEKdJ+wQYVVU/6OqVIodk=",
@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
       const preCheck = "cd $out\n";
       const pythonNamespaces = nix.thunk(() => ["lazr"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Create configuration schemas, and process and validate configurations",
         homepage: "https://launchpad.net/lazr.config",
         changelog: nix.thunk(() => nix.str`https://git.launchpad.net/lazr.config/tree/NEWS.rst?h=${version}`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

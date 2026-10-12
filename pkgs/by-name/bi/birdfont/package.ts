@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const xmlbird = nix.arg($, "xmlbird");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "birdfont",
       version: "2.33.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "johanmattssonm",
           repo: "birdfont",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -64,17 +64,17 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "substituteInPlace install.py \\\n  --replace-fail 'platform.version()' '\"Nix\"'\n\npatchShebangs .\n",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-std=gnu17 -Wno-error=incompatible-pointer-types",
       })),
       buildPhase: "./build.py",
       installPhase: "./install.py",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Font editor which can generate fonts in TTF, EOT, SVG and BIRDFONT format",
         homepage: "https://birdfont.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

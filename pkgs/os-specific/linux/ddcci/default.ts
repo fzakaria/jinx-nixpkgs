@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.5-unstable-2025-09-27";
       const name = nix.thunk(() => nix.str`${pname}-${nix.sel(kernel, "version")}-${version}`);
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: nix.thunk(() => nix.str`${pname}-linux`),
           repo: nix.thunk(() => nix.str`${pname}-linux`),
           rev: "bbb7553373f815d78e93a4a9f071ce968563694a",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         "INCLUDEDIR=$(out)/include",
       ]));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Kernel module driver for DDC/CI monitors",
         homepage: "https://gitlab.com/ddcci-driver-linux/ddcci-driver-linux",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.app(nix.sel(kernel, "kernelOlder"), "5.1")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         name,

@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const poetry_core = nix.arg($, "poetry-core");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bpylist2",
       version: "4.1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "parabolala",
           repo: "bpylist2",
           rev: "ddb89e0b0301c6b298de6469221d99b5fe127b58",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       postPatch: "substituteInPlace setup.cfg \\\n  --replace-fail \"--pycodestyle\" \"\" \\\n  --replace-fail \"--pylint --pylint-rcfile=pylint.rc\" \"\" \\\n  --replace-fail \"--mypy\" \"\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Parse and Generate binary plists and NSKeyedArchiver archives",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/parabolala/bpylist2",

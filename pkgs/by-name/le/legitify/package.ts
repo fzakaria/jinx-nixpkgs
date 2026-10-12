@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "legitify",
       version: "1.0.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Legit-Labs",
           repo: "legitify",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-XPfqQFGJ5yZJVFzHq4zzTXzwuxsAPJvTrZBK+gZWRKE=",
       overrideModAttrs: (oldAttrs) => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         postPatch: nix.thunk(() => nix.add(nix.selOr(oldAttrs, () => "", "postPatch"), "export GOCACHE=$TMPDIR/go-cache\nexport GOPATH=$TMPDIR/go\ngo mod edit -replace golang.org/x/tools=golang.org/x/tools@v0.30.0\ngo mod tidy\n")),
         postBuild: nix.thunk(() => nix.add(nix.selOr(oldAttrs, () => "", "postBuild"), "cp go.mod go.sum vendor/\n")),
       }),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preCheck: "rm e2e/e2e_test.go # tests requires network\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool to detect and remediate misconfigurations and security risks of GitHub assets",
         homepage: "https://github.com/Legit-Labs/legitify",
         changelog: nix.thunk(() => nix.str`https://github.com/Legit-Labs/legitify/releases/tag/v${nix.sel(finalAttrs, "version")}`),

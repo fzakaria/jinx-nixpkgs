@@ -48,14 +48,14 @@ export default nix.lambda((args) => (() => {
   const darwin = nix.thunk(() => nix.attr(pkgs, "darwin"));
   const w = nix.withScope(haskellLib, null);
   return (self) => (super$) => nix.update((() => {
-    const from = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({ __proto__: pos$17, __darwinAllowLocalNetworking: true })), super$));
+    const from = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({ [nix.POS]: pos$17, __darwinAllowLocalNetworking: true })), super$));
     return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     "shell-conduit": nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "shell-conduit")))),
-    hakyll: nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), nix.thunk(() => ({ __proto__: pos$1, testToolDepends: [], doCheck: false })), nix.thunk(() => nix.sel(super$, "hakyll")))),
+    hakyll: nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), nix.thunk(() => ({ [nix.POS]: pos$1, testToolDepends: [], doCheck: false })), nix.thunk(() => nix.sel(super$, "hakyll")))),
     "double-conversion": nix.thunk(() => nix.app(nix.lookup(w, "addExtraLibrary"), nix.thunk(() => nix.sel(pkgs, "libcxx")), nix.thunk(() => nix.sel(super$, "double-conversion")))),
     mockery: nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         preCheck: nix.thunk(() => nix.add("export TRAVIS=true\n", nix.selOr(drv, () => "", "preCheck"))),
       }), nix.thunk(() => nix.sel(super$, "mockery")))),
     shake: nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "shake")))),
@@ -64,59 +64,59 @@ export default nix.lambda((args) => (() => {
     gtk: nix.thunk(() => nix.app(nix.lookup(w, "appendConfigureFlag"), "-f have-quartz-gtk", nix.thunk(() => nix.sel(super$, "gtk")))),
     "with-utf8": nix.thunk(() => nix.app(nix.lookup(w, "addExtraLibrary"), nix.thunk(() => nix.sel(pkgs, "libiconv")), nix.thunk(() => nix.sel(super$, "with-utf8")))),
     "git-annex": nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         preCheck: nix.thunk(() => nix.add(nix.selOr(drv, () => "", "preCheck"), "checkFlagsArray+=(\n  # The addurl test cases require security(1) to be in PATH which we can't\n  # provide from nixpkgs to my (@sternenseemann) knowledge.\n  \"-p\" \"!/addurl/\"\n)\n")),
       }), nix.thunk(() => nix.sel(super$, "git-annex")))),
     immortal: nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "immortal")))),
     "x509-system": nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(pkgs, "stdenv", "cc", "nativeLibc"))), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           postPatch: nix.thunk(() => nix.add("substituteInPlace System/X509/MacOS.hs --replace-fail security /usr/bin/security\n", nix.selOr(drv, () => "", "postPatch"))),
         }))), nix.thunk(() => nix.sel(super$, "x509-system")))),
     "crypton-x509-system": nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(pkgs, "stdenv", "cc", "nativeLibc"))), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           postPatch: nix.thunk(() => nix.add("substituteInPlace System/X509/MacOS.hs --replace-fail security /usr/bin/security\n", nix.selOr(drv, () => "", "postPatch"))),
         }))), nix.thunk(() => nix.sel(super$, "crypton-x509-system")))),
     "HsOpenSSL-x509-system": nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(pkgs, "stdenv", "cc", "nativeLibc"))), nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           postPatch: nix.thunk(() => nix.add("substituteInPlace OpenSSL/X509/SystemStore/MacOSX.hs --replace-fail security /usr/bin/security\n", nix.selOr(drv, () => "", "postPatch"))),
         }))), nix.thunk(() => nix.sel(super$, "HsOpenSSL-x509-system")))),
     foundation: nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "foundation")))),
     "system-fileio": nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "system-fileio")))),
     "llvm-hs": nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (oldAttrs) => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         doCheck: false,
         preCompileBuildDriver: nix.thunk(() => nix.add("substituteInPlace Setup.hs --replace-fail \"addToLdLibraryPath libDir\" \"pure ()\"\n", nix.selOr(oldAttrs, () => "", "preCompileBuildDriver"))),
       }), nix.thunk(() => nix.sel(super$, "llvm-hs")))),
-    hidapi: nix.thunk(() => nix.app(nix.sel(super$, "hidapi", "override"), nix.thunk(() => ({ __proto__: pos$8, systemd: null })))),
+    hidapi: nix.thunk(() => nix.app(nix.sel(super$, "hidapi", "override"), nix.thunk(() => ({ [nix.POS]: pos$8, systemd: null })))),
     OpenGLRaw: nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         librarySystemDepends: [],
         libraryHaskellDepends: nix.thunk(() => nix.sel(drv, "libraryHaskellDepends")),
         preConfigure: nix.thunk(() => nix.add("frameworkPaths=($(for i in $nativeBuildInputs; do if [ -d \"$i\"/Library/Frameworks ]; then echo \"-F$i/Library/Frameworks\"; fi done))\nframeworkPaths=$(IFS=, ; echo \"${frameworkPaths[@]}\")\nconfigureFlags+=$(if [ -n \"$frameworkPaths\" ]; then echo -n \"--ghc-options=-optl=$frameworkPaths\"; fi)\n", nix.selOr(drv, () => "", "preConfigure"))),
       }), nix.thunk(() => nix.sel(super$, "OpenGLRaw")))),
-    "bindings-GLFW": nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({ __proto__: pos$10, librarySystemDepends: [] }), nix.thunk(() => nix.sel(super$, "bindings-GLFW")))),
+    "bindings-GLFW": nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({ [nix.POS]: pos$10, librarySystemDepends: [] }), nix.thunk(() => nix.sel(super$, "bindings-GLFW")))),
     hinotify: nix.thunk(() => nix.sel(self, "hfsevents")),
     fsnotify: nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "fsnotify")))),
     HTF: nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         postPatch: nix.thunk(() => nix.add("substituteInPlace scripts/local-htfpp --replace-fail \"find=gfind\" \"find=find\"\n", nix.selOr(drv, () => "", "postPatch"))),
       }), nix.thunk(() => nix.sel(super$, "HTF")))),
     "cas-store": nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         libraryHaskellDepends: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(self, "kqueue"))], nix.selOr(drv, () => [], "libraryHaskellDepends"))),
       }), nix.thunk(() => nix.sel(super$, "cas-store")))),
     "tmp-postgres": nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "tmp-postgres")))),
     GLHUI: nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         postPatch: nix.thunk(() => nix.add("substituteInPlace GLHUI.cabal --replace-fail \" rt\" \"\"\n", nix.selOr(drv, () => "", "postPatch"))),
       }), nix.thunk(() => nix.sel(super$, "GLHUI")))),
     "SDL-image": nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         postPatch: nix.thunk(() => nix.add("substituteInPlace configure --replace-fail xDarwin noDarwinSpecialCasing\n", nix.selOr(drv, () => "", "postPatch"))),
         patches: nix.thunk(() => [nix.path(here, "./patches/SDL-image-darwin-hsc.patch")]),
       }), nix.thunk(() => nix.sel(super$, "SDL-image")))),
     "SDL-mixer": nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         postPatch: nix.thunk(() => nix.add("substituteInPlace configure --replace-fail xDarwin noDarwinSpecialCasing\n", nix.selOr(drv, () => "", "postPatch"))),
       }), nix.thunk(() => nix.sel(super$, "SDL-mixer")))),
     "SDL-ttf": nix.thunk(() => nix.app(nix.lookup(w, "appendPatch"), nix.path(here, "./patches/SDL-ttf-darwin-hsc.patch"), nix.thunk(() => nix.sel(super$, "SDL-ttf")))),
@@ -124,7 +124,7 @@ export default nix.lambda((args) => (() => {
     "acid-state": nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "acid-state")))),
     c2hsc: nix.thunk(() => nix.app(nix.lookup(w, "addTestToolDepends"), nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gcc"))]), nix.thunk(() => nix.sel(super$, "c2hsc")))),
     "inline-c-cpp": nix.thunk(() => nix.app(nix.lookup(w, "appendPatch"), nix.thunk(() => nix.app(nix.sel(pkgs, "fetchpatch"), nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           url: "https://github.com/fpco/inline-c/commit/e8dc553b13bb847409fdced649a6a863323cff8a.patch",
           name: "revert-use-system-cxx-std-lib.patch",
           sha256: "sha256-ql1/+8bvmWexyCdFR0VS4M4cY2lD0Px/9dHYLqlKyNA=",
@@ -176,12 +176,12 @@ export default nix.lambda((args) => (() => {
     "yesod-core": nix.thunk(() => nix.attr(from, "yesod-core")),
     "zeromq4-haskell": nix.thunk(() => nix.attr(from, "zeromq4-haskell")),
     warp: nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         __darwinAllowLocalNetworking: true,
         testFlags: nix.thunk(() => nix.concat(nix.selOr(drv, () => [], "testFlags"), ["--skip=/Response/range requests/", "--skip=/Response/partial files/"])),
       }), nix.thunk(() => nix.sel(super$, "warp")))),
     "ghcjs-dom-hello": nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         libraryHaskellDepends: nix.thunk(() => (() => {
           const w_1 = nix.withScope(self, w);
           return [
@@ -198,7 +198,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }), nix.thunk(() => nix.sel(super$, "ghcjs-dom-hello")))),
     "jsaddle-hello": nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         libraryHaskellDepends: nix.thunk(() => (() => {
           const w_1 = nix.withScope(self, w);
           return [
@@ -215,7 +215,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }), nix.thunk(() => nix.sel(super$, "jsaddle-hello")))),
     "jsaddle-wkwebview": nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         libraryHaskellDepends: nix.thunk(() => (() => {
           const w_1 = nix.withScope(self, w);
           return [
@@ -225,17 +225,17 @@ export default nix.lambda((args) => (() => {
           ];
         })()),
       }), nix.thunk(() => nix.sel(super$, "jsaddle-wkwebview")))),
-    "reflex-dom": nix.thunk(() => nix.app(nix.lookup(w, "addBuildDepend"), nix.thunk(() => nix.sel(self, "jsaddle-wkwebview")), nix.thunk(() => nix.app(nix.sel(super$, "reflex-dom", "override"), (drv) => ({ __proto__: pos$22, "jsaddle-webkit2gtk": null }))))),
+    "reflex-dom": nix.thunk(() => nix.app(nix.lookup(w, "addBuildDepend"), nix.thunk(() => nix.sel(self, "jsaddle-wkwebview")), nix.thunk(() => nix.app(nix.sel(super$, "reflex-dom", "override"), (drv) => ({ [nix.POS]: pos$22, "jsaddle-webkit2gtk": null }))))),
     "di-core": nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         preConfigure: "substituteInPlace test/Main.hs --replace-fail \\\n  \"2 @=? List.length (List.nub (List.sort (map Di.log_time logs)))\" \"\"\n",
       }), nix.thunk(() => nix.sel(super$, "di-core")))),
     "hercules-ci-agent": nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (old) => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         preBuild: nix.thunk(() => nix.add("DYLD_INSERT_LIBRARIES=\"${DYLD_INSERT_LIBRARIES:+$DYLD_INSERT_LIBRARIES:}$(pkg-config --variable=libdir nix-store)/libnixstore.dylib:$(pkg-config --variable=libdir nix-util)/libnixutil.dylib\"\nexport DYLD_INSERT_LIBRARIES\necho \"DYLD_INSERT_LIBRARIES=$DYLD_INSERT_LIBRARIES\"\n", nix.selOr(old, () => "", "preBuild"))),
       }), nix.thunk(() => nix.sel(super$, "hercules-ci-agent")))),
     cachix: nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (old) => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         preBuild: nix.thunk(() => nix.add("DYLD_INSERT_LIBRARIES=\"${DYLD_INSERT_LIBRARIES:+$DYLD_INSERT_LIBRARIES:}$(pkg-config --variable=libdir nix-store)/libnixstore.dylib:$(pkg-config --variable=libdir nix-util)/libnixutil.dylib\"\nexport DYLD_INSERT_LIBRARIES\necho \"DYLD_INSERT_LIBRARIES=$DYLD_INSERT_LIBRARIES\"\n", nix.selOr(old, () => "", "preBuild"))),
       }), nix.thunk(() => nix.sel(super$, "cachix")))),
     "http-reverse-proxy": nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "http-reverse-proxy")))),
@@ -243,9 +243,9 @@ export default nix.lambda((args) => (() => {
     sysinfo: nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "sysinfo")))),
   };
   })(), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isAarch64")), nix.thunk(() => ({
-      __proto__: pos$34,
+      [nix.POS]: pos$34,
       cabal2nix: nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (old) => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           postInstall: nix.thunk(() => nix.str`remove-references-to -t ${nix.sel(self, "hpack")} "\${!outputBin}/bin/cabal2nix"
 # Note: The \`data\` output is needed at runtime.
 remove-references-to -t ${nix.sel(self, "distribution-nixpkgs", "out")} "\${!outputBin}/bin/hackage2nix"
@@ -254,7 +254,7 @@ ${nix.selOr(old, () => "", "postInstall")}
 `),
         }), nix.thunk(() => nix.sel(super$, "cabal2nix")))),
       "cabal2nix-unstable": nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (old) => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           postInstall: nix.thunk(() => nix.str`remove-references-to -t ${nix.sel(self, "hpack")} "\${!outputBin}/bin/cabal2nix"
 # Note: The \`data\` output is needed at runtime.
 remove-references-to -t ${nix.sel(self, "distribution-nixpkgs-unstable", "out")} "\${!outputBin}/bin/hackage2nix"
@@ -263,14 +263,14 @@ ${nix.selOr(old, () => "", "postInstall")}
 `),
         }), nix.thunk(() => nix.sel(super$, "cabal2nix-unstable")))),
       happy: nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (old) => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           postInstall: nix.thunk(() => nix.str`remove-references-to -t ${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(self, "happy-lib")))} "\${!outputBin}/bin/happy"
 
 ${nix.selOr(old, () => "", "postInstall")}
 `),
         }), nix.thunk(() => nix.sel(super$, "happy")))),
       hadolint: nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (old) => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           postInstall: nix.thunk(() => nix.str`remove-references-to -t ${nix.sel(self, "ShellCheck")} "$out/bin/hadolint"
 
 ${nix.selOr(old, () => "", "postInstall")}
@@ -278,17 +278,17 @@ ${nix.selOr(old, () => "", "postInstall")}
         }), nix.thunk(() => nix.sel(super$, "hadolint")))),
       unliftio: nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "unliftio")))),
       rio: nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           preConfigure: "sed -i 's/\\bit /xit /g' test/RIO/FileSpec.hs\n",
         }), nix.thunk(() => nix.sel(super$, "rio")))),
       "text-icu": nix.thunk(() => nix.app(nix.lookup(w, "disableCabalFlag"), "homebrew", nix.thunk(() => nix.sel(super$, "text-icu")))),
       cryptonite: nix.thunk(() => nix.app(nix.lookup(w, "appendPatch"), nix.path(here, "./patches/cryptonite-remove-argon2.patch"), nix.thunk(() => nix.sel(super$, "cryptonite")))),
       ormolu: nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           libraryHaskellDepends: nix.thunk(() => nix.concat(nix.sel(drv, "libraryHaskellDepends"), [nix.thunk(() => nix.sel(self, "file-embed"))])),
         }), nix.thunk(() => nix.app(nix.lookup(w, "disableCabalFlag"), "fixity-th", nix.thunk(() => nix.sel(super$, "ormolu")))))),
       fourmolu: nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           libraryHaskellDepends: nix.thunk(() => nix.concat(nix.sel(drv, "libraryHaskellDepends"), [nix.thunk(() => nix.sel(self, "file-embed"))])),
         }), nix.thunk(() => nix.app(nix.lookup(w, "disableCabalFlag"), "fixity-th", nix.thunk(() => nix.sel(super$, "fourmolu")))))),
       Agda: nix.thunk(() => nix.app(nix.sel(lib, "pipe"), nix.thunk(() => nix.sel(super$, "Agda")), nix.thunk(() => [
@@ -313,11 +313,11 @@ ${nix.selOr(old, () => "", "postInstall")}
       "rivet-adaptor-postgresql": nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "rivet-adaptor-postgresql")))),
       "tmp-proc-postgres": nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "tmp-proc-postgres")))),
     }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isx86_64")), nix.thunk(() => ({
-      __proto__: pos$36,
+      [nix.POS]: pos$36,
       "regex-rure": nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "regex-rure")))),
       jacinda: nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "jacinda")))),
       ad: nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           testFlags: nix.thunk(() => nix.concat(nix.selOr(drv, () => [], "testFlags"), ["-p", "!/issue-108/"])),
         }), nix.thunk(() => nix.sel(super$, "ad")))),
     })))));

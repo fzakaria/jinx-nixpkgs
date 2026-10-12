@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const stdint = nix.arg($, "stdint");
   const stdio = nix.arg($, "stdio");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "capnp",
       version: "3.6.0",
       minimalOCamlVersion: "4.08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "capnproto",
           repo: "capnp-ocaml",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [base_quickcheck, ounit2]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OCaml code generation plugin for the Cap'n Proto serialization framework",
         homepage: "https://github.com/capnproto/capnp-ocaml",
         changelog: nix.thunk(() => nix.str`https://github.com/capnproto/capnp-ocaml/blob/${nix.sel(finalAttrs, "version")}/CHANGES.md`),

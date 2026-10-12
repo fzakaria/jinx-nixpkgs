@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
   const mkKeyValueDefault = nix.thunk(() => nix.attr(from_1, "mkKeyValueDefault"));
   const mkValueStringDefault = nix.thunk(() => nix.attr(from_1, "mkValueStringDefault"));
   const gendeepINI = nix.thunk(() => nix.app(toINI, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       mkKeyValue: nix.thunk(() => (() => {
         const sep = "=";
         return (k) => (v) => (nix.asBool(nix.app(isAttrs, v)) ? nix.app(concatStringsSep, "\n", nix.thunk(() => nix.app(collect, isString, nix.thunk(() => nix.app(mapAttrsRecursive, (path_1) => (value) => nix.str`${nix.app(escape, nix.thunk(() => [sep]), nix.thunk(() => nix.app(concatStringsSep, "\\", nix.thunk(() => nix.concat([k], path_1)))))}${sep}${nix.app(replaceString, "\n", "\\n", nix.thunk(() => nix.app(mkValueStringDefault, nix.thunk(() => ({})), value)))}`, v))))) : nix.app(mkKeyValueDefault, nix.thunk(() => ({})), sep, k, v));
@@ -79,58 +79,58 @@ export default nix.lambda((args) => (() => {
     }))));
   const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "qBittorrent.conf", nix.thunk(() => nix.app(gendeepINI, nix.thunk(() => nix.sel(cfg, "serverConfig"))))));
   return {
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         qbittorrent: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(mkEnableOption, "qbittorrent, BitTorrent client")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "qbittorrent-nox", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: str,
               default: "qbittorrent",
               description: "User account under which qbittorrent runs.",
             })))),
           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: str,
               default: "qbittorrent",
               description: "Group under which qbittorrent runs.",
             })))),
           profileDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: path,
               default: "/var/lib/qBittorrent",
               description: "The path passed to qbittorrent via --profile.\nPlease note that the resulting systemd service will be run with some very strict security controls,\nsuch as `ProtectHome=yes`, `PrivateUsers=true`, and `ProtectSystem=full` among others, so you cannot specify\na profileDir in your home directory. See [this bug report](https://github.com/NixOS/nixpkgs/issues/514206) for further info.\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(mkEnableOption, "opening both the webuiPort and torrentPort over TCP in the firewall")),
           webuiPort: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: 8080n,
               type: nix.thunk(() => nix.app(nullOr, port)),
               description: "the port passed to qbittorrent via `--webui-port`",
             })))),
           torrentingPort: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: null,
               type: nix.thunk(() => nix.app(nullOr, port)),
               description: "the port passed to qbittorrent via `--torrenting-port`",
             })))),
           serverConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   freeformType: nix.thunk(() => nix.app(attrsOf, nix.thunk(() => nix.app(attrsOf, anything)))),
                 })))),
               description: "Free-form settings mapped to the {file}`qBittorrent.conf` file in the profile.\nRefer to [Explanation-of-Options-in-qBittorrent](https://github.com/qbittorrent/qBittorrent/wiki/Explanation-of-Options-in-qBittorrent).\nThe Password_PBKDF2 format is oddly unique, you will likely want to use [this tool](https://codeberg.org/feathecutie/qbittorrent_password) to generate the format.\nAlternatively you can run qBittorrent independently first and use its webUI to generate the format.\n\nOptionally an alternative webUI can be easily set. VueTorrent for example:\n```nix\n{\n  Preferences = {\n    WebUI = {\n      AlternativeUIEnabled = true;\n      RootFolder = \"${pkgs.vuetorrent}/share/vuetorrent\";\n    };\n  };\n}\n];\n```\n",
               example: nix.thunk(() => nix.app(literalExpression, "{\n  LegalNotice.Accepted = true;\n  Preferences = {\n    WebUI = {\n      Username = \"user\";\n      Password_PBKDF2 = \"generated ByteArray.\";\n    };\n    General.Locale = \"en\";\n  };\n}\n")),
             })))),
           extraArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(listOf, str)),
               default: [],
               description: "Extra arguments passed to qbittorrent. See `qbittorrent -h`, or the [source code](https://github.com/qbittorrent/qBittorrent/blob/master/src/app/cmdoptions.cpp), for the available arguments.\n",
@@ -140,27 +140,27 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         systemd: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             settings: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               qbittorrent: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${nix.sel(cfg, "profileDir")}/qBittorrent/`, nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   d: nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     mode: "755",
                     user: nix.thunk(() => nix.attr(cfg, "user")),
                     group: nix.thunk(() => nix.attr(cfg, "group")),
                   })),
                 }))],
                 [nix.str`${nix.sel(cfg, "profileDir")}/qBittorrent/config/`, nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   d: nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     mode: "755",
                     user: nix.thunk(() => nix.attr(cfg, "user")),
                     group: nix.thunk(() => nix.attr(cfg, "group")),
@@ -170,16 +170,16 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             qbittorrent: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               description: "qbittorrent BitTorrent client",
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["local-fs.target", "network-online.target", "nss-lookup.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               restartTriggers: nix.thunk(() => nix.app(optionals, nix.thunk(() => !nix.eq(nix.sel(cfg, "serverConfig"), {})), nix.thunk(() => [configFile]))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 Type: "simple",
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -224,27 +224,27 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           users: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "qbittorrent")), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               qbittorrent: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 group: nix.thunk(() => nix.attr(cfg, "group")),
                 isSystemUser: true,
               })),
             })))),
-          groups: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "qbittorrent")), nix.thunk(() => ({ __proto__: pos$25, qbittorrent: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "qbittorrent")), nix.thunk(() => ({ [nix.POS]: pos$25, qbittorrent: nix.thunk(() => ({})) })))),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           firewall: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             allowedTCPPorts: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => nix.concat(nix.app(optionals, nix.thunk(() => !nix.eq(nix.sel(cfg, "webuiPort"), null)), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "webuiPort"))])), nix.app(optionals, nix.thunk(() => !nix.eq(nix.sel(cfg, "torrentingPort"), null)), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "torrentingPort"))])))))),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(maintainers, null);
         return [

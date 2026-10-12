@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const opencl_cts = nix.arg($, "opencl-cts");
   const clr = nix.arg($, "clr");
   return nix.app(makeImpureTest, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "opencl-cts",
       testedPackage: "rocmPackages.clr",
       sandboxPaths: nix.thunk(() => ["/sys", "/dev/dri", "/dev/kfd"]),
@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       OCL_ICD_VENDORS: nix.thunk(() => nix.str`${nix.sel(clr, "icd")}/etc/OpenCL/vendors`),
       testScript: "test_basic arraycopy arrayreadwrite astype barrier vector_swizzle work_item_functions\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "rocm"))]),
       })),
     })));

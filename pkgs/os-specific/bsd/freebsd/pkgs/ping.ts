@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const libcapsicum = nix.arg($, "libcapsicum");
   const libipsec = nix.arg($, "libipsec");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "sbin/ping",
       buildInputs: nix.thunk(() => [libcasper, libcapsicum, libipsec]),
       postPatch: "sed -i 's/4555/0555/' $BSDSRCDIR/sbin/ping/Makefile\n",

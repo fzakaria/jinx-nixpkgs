@@ -18,18 +18,18 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const pkgs = nix.arg($_1, "pkgs");
     return {
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       networking: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         firewall: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           allowedUDPPorts: nix.thunk(() => [4791n]),
           allowedTCPPorts: nix.thunk(() => [4800n]),
         })),
-        rxe: nix.thunk(() => ({ __proto__: pos$2, enable: true, interfaces: nix.thunk(() => ["eth1"]) })),
+        rxe: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, interfaces: nix.thunk(() => ["eth1"]) })),
       })),
       environment: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         systemPackages: nix.thunk(() => (() => {
           const w = nix.withScope(pkgs, null);
           return [
@@ -41,9 +41,9 @@ export default nix.lambda((args) => (() => {
     };
   })(), formals$2);
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     name: "rxe",
-    nodes: nix.thunk(() => ({ __proto__: pos$6, server: node, client: node })),
+    nodes: nix.thunk(() => ({ [nix.POS]: pos$6, server: node, client: node })),
     testScript: "# Test if rxe interface comes up\nserver.wait_for_unit(\"default.target\")\nserver.succeed(\"systemctl status rxe.service\")\nserver.succeed(\"ibv_devices | grep rxe_eth1\")\n\nclient.wait_for_unit(\"default.target\")\n\n# ping pong tests\nfor proto in \"rc\", \"uc\", \"ud\", \"srq\":\n    server.succeed(\n        \"screen -dmS {0}_pingpong ibv_{0}_pingpong -p 4800 -s 1024 -g0\".format(proto)\n    )\n    client.succeed(\"sleep 2; ibv_{}_pingpong -p 4800 -s 1024 -g0 server\".format(proto))\n\nserver.succeed(\"screen -dmS rping rping -s -a server -C 10\")\nclient.succeed(\"sleep 2; rping -c -a server -C 10\")\n",
   };
 })(), formals$1);

@@ -18,23 +18,23 @@ export default nix.lambda((args) => (() => {
   const libpaper = nix.arg($, "libpaper");
   const asciidoc = nix.arg($, "asciidoc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "paperjam",
       version: "1.2.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://mj.ucw.cz/download/linux/paperjam-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ooGRLQCpNfSQziCHPoe4LVIDu2GAMmvhvsYBhKyrMPw=",
         })))),
       buildInputs: nix.thunk(() => nix.concat([qpdf, libpaper, asciidoc], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), libiconv))),
       makeFlags: nix.thunk(() => ["PREFIX=$(out)", "BUILD_DATE=\\<unknown\\>", "BUILD_COMMIT=\\<unknown\\>"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-DPOINTERHOLDER_TRANSITION=1",
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-liconv")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://mj.ucw.cz/sw/paperjam/",
         description: "Program for transforming PDF files",
         longDescription: "PaperJam is a program for transforming PDF files. It can re-arrange\npages, scale and rotate them, put multiple pages on a single sheet, draw\ncropmarks, and many other tricks.\n",

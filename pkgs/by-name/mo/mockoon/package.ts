@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const pname = "mockoon";
   const version = "9.6.1";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/mockoon/mockoon/releases/download/v${version}/mockoon-${version}.x86_64.AppImage`),
       hash: "sha256-Y6DmoWGvNp0cvRYgDDMHul5K6CzhiWxMxVTR+W9PE5E=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: src,
@@ -33,7 +33,7 @@ substituteInPlace $out/share/applications/${pname}.desktop \\
   --replace 'Exec=AppRun' 'Exec=${pname}'
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Easiest and quickest way to run mock APIs locally",
         longDescription: "Mockoon is the easiest and quickest way to run mock APIs locally.\nNo remote deployment, no account required, free and open-source.\n",
         sourceProvenance: nix.thunk(() => (() => {

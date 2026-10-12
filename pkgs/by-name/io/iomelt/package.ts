@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const version = "0.7";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: version,
       pname: "iomelt",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://web.archive.org/web/20180816072405if_/http://iomelt.com/s/iomelt-${version}.tar.gz`),
           sha256: "1jhrdm5b7f1bcbrdwcc4yzg26790jxl4d2ndqiwd9brl2g5537im",
         })))),
       preBuild: "install -d $out/{bin,share/man/man1}\n\nsubstituteInPlace Makefile \\\n  --replace /usr $out\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple yet effective way to benchmark disk IO in Linux systems",
         homepage: "https://github.com/camposr/iomelt",
         maintainers: nix.thunk(() => (() => {

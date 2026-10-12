@@ -20,18 +20,18 @@ export default nix.lambda((args) => (() => {
       const version = "0.25.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tree-sitter",
           repo: "tree-sitter-javascript",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-2Jj/SUG+k8lHlGSuPZvHjJojvQFgDiZHZzH8xLu7suE=",
         }))));
       const build_system = nix.thunk(() => [setuptools]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, core: nix.thunk(() => [tree_sitter]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, core: nix.thunk(() => [tree_sitter]) }));
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["tree_sitter_javascript"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "JavaScript and JSX grammar for tree-sitter",
         homepage: "https://github.com/tree-sitter/tree-sitter-javascript",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

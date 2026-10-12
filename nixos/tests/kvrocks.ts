@@ -43,93 +43,93 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$33,
+    [nix.POS]: pos$33,
     name: "kvrocks",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "xyenon"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       machine: nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         services: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           kvrocks: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: true,
-            settings: nix.thunk(() => ({ __proto__: pos$2, "log-level": "debug" })),
+            settings: nix.thunk(() => ({ [nix.POS]: pos$2, "log-level": "debug" })),
           })),
         })),
         specialisation: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           nonDefaultDataDir: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             configuration: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               services: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 kvrocks: nix.thunk(() => ({
-                  __proto__: pos$6,
-                  settings: nix.thunk(() => ({ __proto__: pos$5, dir: "/var/lib/kvrocks-custom" })),
+                  [nix.POS]: pos$6,
+                  settings: nix.thunk(() => ({ [nix.POS]: pos$5, dir: "/var/lib/kvrocks-custom" })),
                 })),
               })),
             })),
           })),
           unixSocket: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             configuration: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               services: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 kvrocks: nix.thunk(() => ({
-                  __proto__: pos$11,
-                  settings: nix.thunk(() => ({ __proto__: pos$10, bind: [], unixsocket: "/run/kvrocks/kvrocks.sock" })),
+                  [nix.POS]: pos$11,
+                  settings: nix.thunk(() => ({ [nix.POS]: pos$10, bind: [], unixsocket: "/run/kvrocks/kvrocks.sock" })),
                 })),
               })),
             })),
           })),
           tcpAndUnix: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             configuration: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               services: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 kvrocks: nix.thunk(() => ({
-                  __proto__: pos$16,
-                  settings: nix.thunk(() => ({ __proto__: pos$15, unixsocket: "/run/kvrocks/kvrocks.sock" })),
+                  [nix.POS]: pos$16,
+                  settings: nix.thunk(() => ({ [nix.POS]: pos$15, unixsocket: "/run/kvrocks/kvrocks.sock" })),
                 })),
               })),
             })),
           })),
           socketActivation: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             configuration: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               services: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 kvrocks: nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   socketActivation: true,
-                  settings: nix.thunk(() => ({ __proto__: pos$20, bind: nix.thunk(() => ["127.0.0.1"]) })),
+                  settings: nix.thunk(() => ({ [nix.POS]: pos$20, bind: nix.thunk(() => ["127.0.0.1"]) })),
                 })),
               })),
             })),
           })),
           socketActivationAndUnix: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             configuration: nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               services: nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 kvrocks: nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   socketActivation: true,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$25,
+                    [nix.POS]: pos$25,
                     bind: nix.thunk(() => ["127.0.0.1"]),
                     unixsocket: "/run/kvrocks/kvrocks.sock",
                   })),

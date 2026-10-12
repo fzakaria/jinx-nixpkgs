@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
       const qmlImportPath = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ":", nix.thunk(() => nix.builtins.map((o) => nix.str`${o}/${nix.sel(qt6, "qtbase", "qtQmlPrefix")}`, qmlPkgs))));
       const qtPluginPath = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ":", nix.thunk(() => nix.builtins.map((o) => nix.str`${o}/${nix.sel(qt6, "qtbase", "qtPluginPrefix")}`, qmlPkgs))));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: "dms-shell",
         version: "1.6.3",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "AvengeMedia",
             repo: "DankMaterialShell",
             tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -102,11 +102,11 @@ installShellCompletion --cmd dms \\
   --zsh <($out/bin/dms completion zsh)
 `),
         passthru: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           description: "DankMaterialShell - Desktop shell for wayland compositors built with Quickshell & GO",
           homepage: "https://danklinux.com",
           changelog: nix.thunk(() => nix.str`https://github.com/AvengeMedia/DankMaterialShell/releases/tag/v${nix.sel(finalAttrs, "version")}`),

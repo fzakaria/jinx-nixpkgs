@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const buildFishPlugin = nix.arg($, "buildFishPlugin");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildFishPlugin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "foreign-env",
       version: "0-unstable-2023-08-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "oh-my-fish",
           repo: "plugin-foreign-env",
           rev: "7f0cf099ae1e1e4ab38f46350ed6757d54471de7",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       preInstall: nix.thunk(() => nix.str`sed -i -e "s|bash|${nix.app(nix.sel(lib, "getExe"), bash)}|" functions/fenv.main.fish
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Foreign environment interface for Fish shell",
         homepage: "https://github.com/oh-my-fish/plugin-foreign-env",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const pgocaml = nix.arg($, "pgocaml");
   const xml_light = nix.arg($, "xml-light");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "ocsipersist-pgsql",
       version: nix.thunk(() => nix.attr(ocsipersist, "version")),
       src: nix.thunk(() => nix.attr(ocsipersist, "src")),
       propagatedBuildInputs: nix.thunk(() => [logs, ocsipersist, pgocaml]),
       meta: nix.thunk(() => nix.update(nix.sel(ocsipersist, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Persistent key/value storage for OCaml using PostgreSQL",
       })),
     })));

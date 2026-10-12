@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const clangStdenv = nix.arg($, "clangStdenv");
   const pname = "rustnet";
   const version = "1.6.0";
-  return nix.app(nix.sel(rustPlatform, "buildRustPackage", "override"), nix.thunk(() => ({ __proto__: pos$1, stdenv: clangStdenv })), nix.thunk(() => ({
-      __proto__: pos$6,
+  return nix.app(nix.sel(rustPlatform, "buildRustPackage", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: clangStdenv })), nix.thunk(() => ({
+      [nix.POS]: pos$6,
       pname: pname,
       version: version,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "domcyrus",
           repo: "rustnet",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [elfutils, libbpf, libpcap, zlib]),
       hardeningDisable: nix.thunk(() => ["zerocallusedregs"]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         LIBBPF_SYS_LIBRARY_PATH: nix.thunk(() => nix.str`${libbpf}/lib`),
         LIBBPF_SYS_INCLUDE_PATH: nix.thunk(() => nix.str`${libbpf}/include`),
       })),
@@ -51,11 +51,11 @@ export default nix.lambda((args) => (() => {
         "--skip=network::platform::linux::interface_stats::tests::test_list_interfaces",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "High-performance, cross-platform network monitoring terminal UI tool built with Rust",
         homepage: "https://github.com/domcyrus/rustnet",
         changelog: nix.thunk(() => nix.str`https://github.com/domcyrus/rustnet/releases/tag/v${version}`),

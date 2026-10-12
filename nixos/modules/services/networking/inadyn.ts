@@ -60,41 +60,41 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.se
 `)));
   const configFile = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "configFile"), null)) ? nix.sel(cfg, "configFile") : nix.force(configFile$)));
   return {
-    __proto__: pos$39,
+    [nix.POS]: pos$39,
     options: nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       services: nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         inadyn: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
           const providerOptions = nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             include: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 default: null,
                 description: "File to include additional settings for this provider from.",
                 type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")))),
               })))),
             ssl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 default: true,
                 description: "Whether to use HTTPS for this DDNS provider.",
                 type: nix.thunk(() => nix.lookup(w, "bool")),
               })))),
             username: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 default: null,
                 description: "Username for this DDNS provider.",
                 type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")))),
               })))),
             password: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 default: null,
                 description: "Password for this DDNS provider.\n\nWARNING: This will be world-readable in the nix store.\nTo store credentials securely, use the `include` or `configFile` options.\n",
                 type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")))),
               })))),
             hostname: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 default: "*",
                 example: "your.cool-domain.com",
                 description: "Hostname alias(es).",
@@ -102,80 +102,80 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.se
               })))),
           }));
           return {
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "synchronise your machine's IP address with a dynamic DNS provider using inadyn\n")),
             user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 default: "inadyn",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "User account under which inadyn runs.\n\n::: {.note}\nIf left as the default value this user will automatically be created\non system activation, otherwise you are responsible for\nensuring the user exists before the inadyn service starts.\n:::\n",
               })))),
             group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 default: "inadyn",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "Group account under which inadyn runs.\n\n::: {.note}\nIf left as the default value this user will automatically be created\non system activation, otherwise you are responsible for\nensuring the user exists before the inadyn service starts.\n:::\n",
               })))),
             interval: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 default: "*-*-* *:*:00",
                 description: "How often to check the current IP.\nUses the format described in {manpage}`systemd.time(7)`\";\n",
                 type: nix.thunk(() => nix.lookup(w, "str")),
               })))),
             logLevel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["none", "err", "warning", "info", "notice", "debug"]))),
                 default: "notice",
                 description: "Set inadyn's log level.",
               })))),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 default: nix.thunk(() => ({})),
                 description: "See `inadyn.conf (5)`",
                 type: nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$21,
+                    [nix.POS]: pos$21,
                     freeformType: nix.thunk(() => nix.lookup(w, "attrs")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$20,
+                      [nix.POS]: pos$20,
                       "allow-ipv6": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$11,
+                          [nix.POS]: pos$11,
                           default: nix.thunk(() => nix.sel(config, "networking", "enableIPv6")),
                           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.networking.enableIPv6")),
                           description: "Whether to get IPv6 addresses from interfaces.",
                           type: nix.thunk(() => nix.lookup(w, "bool")),
                         })))),
                       "forced-update": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$12,
+                          [nix.POS]: pos$12,
                           default: 2592000n,
                           description: "Duration (in seconds) after which an update is forced.",
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "ints"), "positive")),
                         })))),
                       provider: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           default: nix.thunk(() => ({})),
                           description: "Settings for DDNS providers built-in to inadyn.\n\nFor a list of built-in providers, see `inadyn.conf (5)`.\n",
                           type: nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                                __proto__: pos$13,
+                                [nix.POS]: pos$13,
                                 freeformType: nix.thunk(() => nix.lookup(w, "attrs")),
                                 options: providerOptions,
                               })))))),
                         })))),
                       custom: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$19,
+                          [nix.POS]: pos$19,
                           default: nix.thunk(() => ({})),
                           description: "Settings for custom DNS providers.\n",
                           type: nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                                __proto__: pos$18,
+                                [nix.POS]: pos$18,
                                 freeformType: nix.thunk(() => nix.lookup(w, "attrs")),
                                 options: nix.thunk(() => nix.update(providerOptions, {
-                                  __proto__: pos$17,
+                                  [nix.POS]: pos$17,
                                   "ddns-server": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$15,
+                                      [nix.POS]: pos$15,
                                       description: "DDNS server name.",
                                       type: nix.thunk(() => nix.lookup(w, "str")),
                                     })))),
                                   "ddns-path": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$16,
+                                      [nix.POS]: pos$16,
                                       description: "DDNS server path.\n\nSee `inadnyn.conf (5)` for a list for format specifiers that can be used.\n",
                                       example: "/update?user=%u&password=%p&domain=%h&myip=%i",
                                       type: nix.thunk(() => nix.lookup(w, "str")),
@@ -187,7 +187,7 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.se
                   })))),
               })))),
             configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 default: null,
                 description: "Configuration file for inadyn.\n\nSetting this will override all other configuration options.\n\nPassed to the inadyn service using LoadCredential.\n",
                 type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")))),
@@ -197,13 +197,13 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.se
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$38,
+        [nix.POS]: pos$38,
         systemd: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           services: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             inadyn: nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               description: "Update nameservers using inadyn",
               documentation: nix.thunk(() => [
                 "man:inadyn",
@@ -214,7 +214,7 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.se
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               startAt: nix.thunk(() => nix.sel(cfg, "interval")),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 Type: "oneshot",
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "inadyn")))} -f ${configFile} --cache-dir \${CACHE_DIRECTORY} -1 --foreground -l ${nix.sel(cfg, "logLevel")}`),
                 LoadCredential: nix.thunk(() => nix.str`config:${configFile}`),
@@ -249,24 +249,24 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.se
             })),
           })),
           timers: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             inadyn: nix.thunk(() => ({
-              __proto__: pos$31,
-              timerConfig: nix.thunk(() => ({ __proto__: pos$30, Persistent: true })),
+              [nix.POS]: pos$31,
+              timerConfig: nix.thunk(() => ({ [nix.POS]: pos$30, Persistent: true })),
             })),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           users: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             inadyn: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "inadyn")), nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 isSystemUser: true,
               })))),
           })),
-          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "inadyn")), nix.thunk(() => ({ __proto__: pos$36, inadyn: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "inadyn")), nix.thunk(() => ({ [nix.POS]: pos$36, inadyn: nix.thunk(() => ({})) })))),
         })),
       })))),
   };

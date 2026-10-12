@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "obs-vaapi";
       const version = "0.4.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fzwoch",
           repo: "obs-vaapi",
           rev: version,
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         ];
       })());
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         obsWrapperArguments: nix.thunk(() => (() => {
           const gstreamerHook = (package$) => nix.str`--prefix GST_PLUGIN_SYSTEM_PATH_1_0 : ${nix.app(nix.sel(lib, "getLib"), package$)}/lib/gstreamer-1.0`;
           const w_1 = nix.withScope(gst_all_1, null);
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(obs_studio, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "OBS Studio VAAPI support via GStreamer",
         homepage: "https://github.com/fzwoch/obs-vaapi",
         changelog: nix.thunk(() => nix.str`https://github.com/fzwoch/obs-vaapi/releases/tag/${version}`),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

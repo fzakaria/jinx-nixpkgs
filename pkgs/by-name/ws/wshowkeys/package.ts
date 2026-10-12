@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const wayland_protocols = nix.arg($, "wayland-protocols");
   const libxkbcommon = nix.arg($, "libxkbcommon");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wshowkeys-unstable",
       version: "2021-08-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ammgws",
           repo: "wshowkeys",
           rev: "e8bfc78f08ebdd1316daae59ecc77e62bba68b2b",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, pkg_config, wayland_scanner, ninja]),
       buildInputs: nix.thunk(() => [cairo, libinput, pango, wayland, wayland_protocols, libxkbcommon]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Displays keys being pressed on a Wayland session",
         longDescription: "Displays keypresses on screen on supported Wayland compositors (requires\nwlr_layer_shell_v1 support).\nNote: This tool requires root permissions to read input events, but these\npermissions are dropped after startup. The NixOS module provides such a\nsetuid binary (use \"programs.wshowkeys.enable = true;\").\n",
         homepage: "https://github.com/ammgws/wshowkeys",

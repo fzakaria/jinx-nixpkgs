@@ -34,12 +34,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "umap-learn",
       version: "0.5.12",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lmcinnes",
           repo: "umap",
           tag: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [numba, numpy, pynndescent, scikit_learn, scipy, tqdm]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         plot: nix.thunk(() => [
           bokeh,
           colorcet,
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
         "test_save_load",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Uniform Manifold Approximation and Projection",
         homepage: "https://github.com/lmcinnes/umap",
         changelog: nix.thunk(() => nix.str`https://github.com/lmcinnes/umap/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -19,21 +19,21 @@ export default nix.lambda((args) => (() => {
       const pname = "oxefmsynth";
       const version = "1.3.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "oxesoft",
           repo: "oxefmsynth",
           rev: nix.thunk(() => nix.str`v${version}`),
           sha256: "1rk71ls33a38wx8i22plsi7d89cqqxrfxknq5i4f9igsw1ipm4gn",
         }))));
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-narrowing"]))),
       }));
       const buildFlags = nix.thunk(() => [nix.thunk(() => nix.str`VSTSDK_PATH=${vst2_sdk}`)]);
       const buildInputs = nix.thunk(() => [libx11]);
       const installPhase = "mkdir -p $out/lib/lxvst\ninstall -Dm644 oxevst64.so -t $out/lib/lxvst\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/oxesoft/oxefmsynth",
         description: "Open source VST 2.4 instrument plugin",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "hirenashah"))]),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

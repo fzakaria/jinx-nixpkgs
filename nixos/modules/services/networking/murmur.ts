@@ -109,7 +109,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
 ${nix.sel(cfg, "extraConfig")}
 `)));
   return {
-    __proto__: pos$56,
+    [nix.POS]: pos$56,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "murmur", "logFile"]), "This option has been superseded by services.murmur.logToFile")),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "murmur", "sslCa"]), nix.thunk(() => ["services", "murmur", "tls", "caPath"]))),
@@ -117,168 +117,168 @@ ${nix.sel(cfg, "extraConfig")}
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "murmur", "sslCert"]), nix.thunk(() => ["services", "murmur", "tls", "certPath"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       services: nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         murmur: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Mumble server")),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "opening ports in the firewall for the Mumble server")),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "murmur",
               description: "The name of an existing user to use to run the service.\nIf not specified, the default user will be created.\n",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "murmur",
               description: "The name of an existing group to use to run the service.\nIf not specified, the default group will be created.\n",
             })))),
           stateDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/murmur",
               description: "Directory to store data for the server.\n",
             })))),
           autobanAttempts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
               default: 10n,
               description: "Number of attempts a client is allowed to make in\n`autobanTimeframe` seconds, before being\nbanned for `autobanTime`.\n",
             })))),
           autobanTimeframe: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
               default: 120n,
               description: "Timeframe in which a client can connect without being banned\nfor repeated attempts (in seconds).\n",
             })))),
           autobanTime: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
               default: 300n,
               description: "The amount of time an IP ban lasts (in seconds).",
             })))),
           logToFile: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "logging to a file instead of journald, which is stored in /var/log/murmur")),
           welcometext: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "",
               description: "Welcome message for connected clients.",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 64738n,
               description: "Ports to bind to (UDP and TCP).",
             })))),
           hostName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "",
               description: "Host to bind to. Defaults binding on all addresses.",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "murmur", nix.thunk(() => ({})))),
           password: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "",
               description: "Required password to join server, if specified.",
             })))),
           bandwidth: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
               default: 72000n,
               description: "Maximum bandwidth (in bits per second) that clients may send\nspeech at.\n",
             })))),
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
               default: 100n,
               description: "Maximum number of concurrent clients allowed.",
             })))),
           textMsgLength: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
               default: 5000n,
               description: "Max length of text messages. Set 0 for no limit.",
             })))),
           imgMsgLength: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
               default: 131072n,
               description: "Max length of image messages. Set 0 for no limit.",
             })))),
           allowHtml: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Allow HTML in client messages, comments, and channel\ndescriptions.\n",
             })))),
           logDays: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 31n,
               description: "How long to store RPC logs for in the database. Set 0 to\nkeep logs forever, or -1 to disable DB logging.\n",
             })))),
           bonjour: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Bonjour auto-discovery, which allows clients over your LAN to automatically discover Mumble servers")),
           sendVersion: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Send Murmur version in UDP response.",
             })))),
           registerName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "",
               description: "Public server registration name, and also the name of the\nRoot channel. Even if you don't publicly register your\nserver, you probably still want to set this.\n",
             })))),
           registerPassword: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "",
               description: "Public server registry password, used authenticate your\nserver to the registry to prevent impersonation; required for\nsubsequent registry updates.\n",
             })))),
           registerUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "",
               description: "URL website for your server.",
             })))),
           registerHostname: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "",
               description: "DNS hostname where your server can be reached. This is only\nneeded if you want your server to be accessed by its\nhostname and not IP - but the name *must* resolve on the\ninternet properly.\n",
             })))),
           clientCertRequired: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "requiring clients to authenticate via certificates")),
           tls: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             certPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "tls", "useACMEHost"), null)) ? nix.str`${acmeHostDir}/cert.pem` : null)),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalMD"), "If {option}`services.murmur.tls.useACMEHost` is set, defaults to what's provided by the ACME module.")),
                 description: "Path to your TLS certificate.",
               })))),
             keyPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "tls", "useACMEHost"), null)) ? nix.str`${acmeHostDir}/key.pem` : null)),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalMD"), "If {option}`services.murmur.tls.useACMEHost` is set, defaults to what's provided by the ACME module.")),
                 description: "Path to your TLS key.",
               })))),
             caPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "tls", "useACMEHost"), null)) ? nix.str`${acmeHostDir}/chain.pem` : null)),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalMD"), "If {option}`services.murmur.tls.useACMEHost` is set, defaults to what's provided by the ACME module.")),
                 description: "Path to your TLS CA certificate.",
               })))),
             useACMEHost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 example: "mumble.example.com",
@@ -286,20 +286,20 @@ ${nix.sel(cfg, "extraConfig")}
               })))),
           })),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Extra configuration to put into murmur.ini.",
             })))),
           environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${config.services.murmur.stateDir}/murmurd.env\"")),
               description: "Environment file as defined in {manpage}`systemd.exec(5)`.\n\nSecrets may be passed to the service without adding them to the world-readable\nNix store, by specifying placeholder variables as the option value in Nix and\nsetting these variables accordingly in the environment file.\n\n```\n  # snippet of murmur-related config\n  services.murmur.password = \"$MURMURD_PASSWORD\";\n```\n\n```\n  # content of the environment file\n  MURMURD_PASSWORD=verysecretpassword\n```\n\nNote that this file needs to be available on the host on which\n`murmur` is running.\n",
             })))),
           dbus: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => [null, "session", "system"]))),
               default: null,
               description: "Enable D-Bus remote control. Set to the bus you want Murmur to connect to.",
@@ -308,13 +308,13 @@ ${nix.sel(cfg, "extraConfig")}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$54,
+        [nix.POS]: pos$54,
         users: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           users: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             murmur: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "murmur")), nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 description: "Murmur Service user",
                 home: nix.thunk(() => nix.sel(cfg, "stateDir")),
                 createHome: true,
@@ -323,35 +323,35 @@ ${nix.sel(cfg, "extraConfig")}
               })))),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             murmur: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "murmur")), nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 gid: nix.thunk(() => nix.sel(config, "ids", "gids", "murmur")),
               })))),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]),
               allowedUDPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]),
             })))),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           acme: nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             certs: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "tls", "useACMEHost"), null)), nix.thunk(() => nix.attrsDyn({}, [
-                [nix.str`${nix.sel(cfg, "tls", "useACMEHost")}`, nix.thunk(() => ({ __proto__: pos$40, reloadServices: nix.thunk(() => ["murmur.service"]) }))],
+                [nix.str`${nix.sel(cfg, "tls", "useACMEHost")}`, nix.thunk(() => ({ [nix.POS]: pos$40, reloadServices: nix.thunk(() => ["murmur.service"]) }))],
               ])))),
           })),
           apparmor: nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             policies: nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               "bin.mumble-server": nix.thunk(() => ({
-                __proto__: pos$43,
+                [nix.POS]: pos$43,
                 profile: nix.thunk(() => nix.str`abi <abi/4.0>,
 include <tunables/global>
 
@@ -359,7 +359,7 @@ profile ${nix.sel(cfg, "package")}/bin/{mumble-server,.mumble-server-wrapped} {
   include <abstractions/base>
   include <abstractions/nameservice>
   include <abstractions/ssl_certs>
-  include "${nix.app(nix.sel(pkgs, "apparmorRulesFromClosure"), nix.thunk(() => ({ __proto__: pos$42, name: "mumble-server" })), nix.thunk(() => nix.sel(cfg, "package")))}"
+  include "${nix.app(nix.sel(pkgs, "apparmorRulesFromClosure"), nix.thunk(() => ({ [nix.POS]: pos$42, name: "mumble-server" })), nix.thunk(() => nix.sel(cfg, "package")))}"
   ${nix.sel(cfg, "package")}/bin/.mumble-server-wrapped pix,
 
   ${nix.sel(config, "environment", "etc", "os-release", "source")} r,
@@ -387,17 +387,17 @@ profile ${nix.sel(cfg, "package")}/bin/{mumble-server,.mumble-server-wrapped} {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$50,
+          [nix.POS]: pos$50,
           services: nix.thunk(() => ({
-            __proto__: pos$49,
+            [nix.POS]: pos$49,
             murmur: nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               description: "Murmur Chat Service",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => nix.concat(["network.target"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "tls", "useACMEHost"), null)), nix.thunk(() => nix.str`acme-${nix.sel(cfg, "tls", "useACMEHost")}.service`)))),
               wants: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "tls", "useACMEHost"), null)), nix.thunk(() => [nix.thunk(() => nix.str`acme-${nix.sel(cfg, "tls", "useACMEHost")}.service`)]))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$47,
+                [nix.POS]: pos$47,
                 Type: nix.thunk(() => (nix.asBool(forking) ? "forking" : "simple")),
                 PIDFile: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), forking, "/run/murmur/murmurd.pid")),
                 EnvironmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "environmentFile"), null)), nix.thunk(() => nix.sel(cfg, "environmentFile")))),
@@ -443,12 +443,12 @@ profile ${nix.sel(cfg, "package")}/bin/{mumble-server,.mumble-server-wrapped} {
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$53,
+          [nix.POS]: pos$53,
           dbus: nix.thunk(() => ({
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             packages: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "dbus"), "system")), nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-                    __proto__: pos$51,
+                    [nix.POS]: pos$51,
                     name: "murmur-dbus-policy",
                     text: nix.thunk(() => nix.str`<!DOCTYPE busconfig PUBLIC
   "-//freedesktop//DTD D-BUS Bus Configuration 1.0//EN"
@@ -471,7 +471,7 @@ profile ${nix.sel(cfg, "package")}/bin/{mumble-server,.mumble-server-wrapped} {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$55,
+      [nix.POS]: pos$55,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "felixsinger"))];

@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const toolsPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [mcpp, python3])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "souffle",
       version: "2.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "souffle-lang",
           repo: "souffle",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./threads.patch"),
         nix.path(here, "./includes.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "replace-copy-assignment.patch",
             url: "https://github.com/souffle-lang/souffle/commit/73ebe789ec21772a0c5558639606354bfc3bcbd1.patch",
             hash: "sha256-L9SK3Dh2cRwxKfEckUSiGGTDsWIZ5B8hoYYcslJpZl4=",
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [bash_completion, ncurses, zlib, sqlite, libffi, python3]),
       propagatedBuildInputs: nix.thunk(() => [ncurses, zlib, sqlite, libffi]),
       cmakeFlags: nix.thunk(() => ["-DSOUFFLE_GIT=OFF"]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error=unused-but-set-variable" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error=unused-but-set-variable" })))),
       postInstall: nix.thunk(() => nix.str`wrapProgram "$out/bin/souffle" --prefix PATH : "${toolsPath}"
 `),
       postFixup: nix.thunk(() => nix.str`substituteInPlace "$out/bin/souffle-compile.py" \\
@@ -67,11 +67,11 @@ export default nix.lambda((args) => (() => {
 `),
       outputs: nix.thunk(() => ["out"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Translator of declarative Datalog programs into the C++ language",
         homepage: "https://souffle-lang.github.io/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

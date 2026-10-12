@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       const pname = "hw-probe";
       const version = "1.6.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linuxhw",
           repo: pname,
           rev: version,
@@ -115,7 +115,7 @@ export default nix.lambda((args) => (() => {
       })());
       const postInstall = "wrapProgram $out/bin/hw-probe \\\n  $makeWrapperArgs\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Probe for hardware, check operability and find drivers",
         homepage: "https://github.com/linuxhw/hw-probe",
         platforms: nix.thunk(() => (() => {
@@ -136,7 +136,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "hw-probe",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

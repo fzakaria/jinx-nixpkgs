@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "double-entry-generator",
       version: "2.15.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "deb-sig",
           repo: "double-entry-generator",
           hash: "sha256-lOV62FOqenL/vggYrR2vgKtSu5JSmDf3ofRS39co2fk=",
@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\ntouch build-local\nln -s $out/bin ./\nmake SHELL=bash GIT_COMMIT= VERSION= DOCKER_LABELS= -o test-go test\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Rule-based double-entry bookkeeping importer (from Alipay/WeChat/Huobi etc. to Beancount/Ledger)",
         homepage: "https://github.com/deb-sig/double-entry-generator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

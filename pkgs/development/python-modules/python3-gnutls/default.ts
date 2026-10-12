@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => !nix.asBool(isPy3k));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AGProjects",
           repo: "python3-gnutls",
           tag: nix.thunk(() => nix.str`release-${version}`),
@@ -36,13 +36,13 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [twisted, pyopenssl, service_identity]);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./libgnutls-path.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             gnutlslib: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), gnutls)}/lib`),
           })))),
       ]);
       const pythonImportsCheck = nix.thunk(() => ["gnutls"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python wrapper for the GnuTLS library",
         homepage: "https://github.com/AGProjects/python3-gnutls",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         longDescription: "This package provides a high level object oriented wrapper around libgnutls,\nas well as low level bindings to the GnuTLS types and functions via ctypes.\nThe high level wrapper hides the details of accessing the GnuTLS library via\nctypes behind a set of classes that encapsulate GnuTLS sessions, certificates\nand credentials and expose them to python applications using a simple API.\n\nThe package also includes a Twisted interface that has seamless integration\nwith Twisted, providing connectTLS and listenTLS methods on the Twisted\nreactor once imported (the methods are automatically attached to the reactor\nby simply importing the GnuTLS Twisted interface module).\n\nThe high level wrapper is written using the GnuTLS library bindings that are\nmade available via ctypes. This makes the wrapper very powerful and flexible\nas it has direct access to all the GnuTLS internals and is also very easy to\nextend without any need to write C code or recompile anything.\n\n",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

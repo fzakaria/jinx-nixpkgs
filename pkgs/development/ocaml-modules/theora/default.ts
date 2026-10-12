@@ -15,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const ogg = nix.arg($, "ogg");
   const libtheora = nix.arg($, "libtheora");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "theora",
       version: nix.thunk(() => nix.attr(ogg, "version")),
       src: nix.thunk(() => nix.attr(ogg, "src")),
       buildInputs: nix.thunk(() => [dune_configurator]),
       propagatedBuildInputs: nix.thunk(() => [ogg, libtheora]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: "https://github.com/savonet/ocaml-theora",
         description: "Bindings to libtheora",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

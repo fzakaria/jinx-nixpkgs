@@ -25,24 +25,24 @@ const pos$17 = nix.positions(here + "/freetube.nix", [["name", 33, 17], ["nodes"
 
 export default nix.thunk(() => (() => {
   const tests = nix.thunk(() => ({
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     wayland: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
       const pkgs = nix.arg($, "pkgs");
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         imports: nix.thunk(() => [nix.path(here, "./common/wayland-cage.nix")]),
         services: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           cage: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             program: nix.thunk(() => nix.str`${nix.sel(pkgs, "freetube")}/bin/freetube`),
           })),
         })),
-        virtualisation: nix.thunk(() => ({ __proto__: pos$3, memorySize: 2047n })),
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$3, memorySize: 2047n })),
         environment: nix.thunk(() => ({
-          __proto__: pos$5,
-          variables: nix.thunk(() => ({ __proto__: pos$4, NIXOS_OZONE_WL: "1", DISPLAY: "do not use" })),
+          [nix.POS]: pos$5,
+          variables: nix.thunk(() => ({ [nix.POS]: pos$4, NIXOS_OZONE_WL: "1", DISPLAY: "do not use" })),
         })),
       };
     })(), formals$1),
@@ -50,29 +50,29 @@ export default nix.thunk(() => (() => {
       const $ = nix.formals(args, formals$2);
       const pkgs = nix.arg($, "pkgs");
       return {
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         imports: nix.thunk(() => [
           nix.path(here, "./common/user-account.nix"),
           nix.path(here, "./common/x11.nix"),
         ]),
-        virtualisation: nix.thunk(() => ({ __proto__: pos$7, memorySize: 2047n })),
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$7, memorySize: 2047n })),
         services: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           xserver: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             enable: true,
             displayManager: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               sessionCommands: nix.thunk(() => nix.str`${nix.sel(pkgs, "freetube")}/bin/freetube
 `),
             })),
           })),
         })),
         "test-support": nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           displayManager: nix.thunk(() => ({
-            __proto__: pos$12,
-            auto: nix.thunk(() => ({ __proto__: pos$11, user: "alice" })),
+            [nix.POS]: pos$12,
+            auto: nix.thunk(() => ({ [nix.POS]: pos$11, user: "alice" })),
           })),
         })),
       };
@@ -82,11 +82,11 @@ export default nix.thunk(() => (() => {
       const $ = nix.formals(args, formals$3);
       const pkgs = nix.arg($, "pkgs");
       return {
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         name: name,
         nodes: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${name}`, machine]])),
         meta: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w, "kirillrdy"))];

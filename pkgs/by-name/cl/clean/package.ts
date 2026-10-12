@@ -20,15 +20,15 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "clean",
       version: "3.1",
       src: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://ftp.cs.ru.nl/Clean/Clean31/linux/clean3.1_32_boot.tar.gz",
           sha256: "Ls0IKf+o7yhRLhtSV61jzmnYukfh5x5fogHaP5ke/Ck=",
         }))) : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://ftp.cs.ru.nl/Clean/Clean31/linux/clean3.1_64_boot.tar.gz",
           sha256: "Gg5CVZjrwDBtV7Vuw21Xj6Rn+qN1Mf6B3ls6r/16oBc=",
         }))) : nix.builtins.throw("Architecture not supported")))),
@@ -43,13 +43,13 @@ substituteInPlace src/clm/clm.c \\
   --replace-fail /usr/bin/as ${binutils}/bin/as \\
   --replace-fail /usr/bin/gcc ${gcc}/bin/gcc
 `),
-      env: nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       buildFlags: nix.thunk(() => ["-C src/"]),
       dontStrip: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "compile-hello-world": nix.thunk(() => nix.app(runCommand, "compile-hello-world", nix.thunk(() => ({})), nix.thunk(() => nix.str`cat >HelloWorld.icl <<EOF
 module HelloWorld
 Start = "Hello, world!"
@@ -60,7 +60,7 @@ touch $out
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "General purpose, state-of-the-art, pure and lazy functional programming language",
         longDescription: "Clean is a general purpose, state-of-the-art, pure and lazy functional\nprogramming language designed for making real-world applications. Some\nof its most notable language features are uniqueness typing, dynamic typing,\nand generic functions.\n",
         homepage: "http://wiki.clean.cs.ru.nl/Clean",

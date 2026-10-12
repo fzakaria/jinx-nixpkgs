@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "silviolleite",
           repo: "django-pwa",
           tag: version,
@@ -35,7 +35,7 @@ ${nix.sel(python, "interpreter")} runtests.py
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Django app to include a manifest.json and Service Worker instance to enable progressive web app behavior",
         homepage: "https://github.com/silviolleite/django-pwa",
         changelog: nix.thunk(() => nix.str`https://github.com/silviolleite/django-pwa/releases/tag/${nix.sel(src, "tag")}`),
@@ -46,7 +46,7 @@ runHook postCheck
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

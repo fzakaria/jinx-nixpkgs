@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const onnxruntime = nix.arg($, "onnxruntime");
   const tokenizers = nix.arg($, "tokenizers");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pyopenjtalk-plus",
       version: "0.4.1-post9",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tsukumijima",
           repo: "pyopenjtalk-plus",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
           fetchSubmodules: true,
         })))),
       tsqyomiModelDir: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://huggingface.co/tsukumijima/tsqyomi-models",
           rev: "680596dd2ad2bad59ee5db3741e197cfce79f9b4",
           fetchLFS: true,
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./tsqyomi_model_dir.patch"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             model_dir: nix.thunk(() => nix.sel(finalAttrs, "tsqyomiModelDir")),
           })))),
       ]),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-linux")), nix.thunk(() => ["tests/test_tsqyomi_regression.py"]))),
       pythonImportsCheck: nix.thunk(() => ["pyopenjtalk"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python wrapper for OpenJTalk with additional improvements",
         homepage: "https://github.com/tsukumijima/pyopenjtalk-plus",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

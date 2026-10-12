@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "szurubooru-client",
       version: version,
       src: nix.thunk(() => nix.str`${src}/client`),
@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       npmBuildFlags: nix.thunk(() => ["--gzip"]),
       installPhase: "runHook preInstall\n\nmkdir $out\nmv ./public/* $out\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Client of szurubooru, an image board engine for small and medium communities",
         homepage: "https://github.com/rr-/szurubooru",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

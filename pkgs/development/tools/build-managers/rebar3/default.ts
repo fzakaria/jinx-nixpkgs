@@ -32,19 +32,19 @@ export default nix.lambda((args) => (() => {
   const nix$ = nix.arg($, "nix");
   const rebar3_nix = nix.arg($, "rebar3-nix");
   const deps = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./rebar-deps.nix")), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       fetchFromGitHub: fetchFromGitHub,
       fetchgit: fetchgit,
       fetchHex: fetchHex,
     }))));
   const rebar3 = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "rebar3",
       version: "3.27.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "erlang",
           repo: "rebar3",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -68,7 +68,7 @@ done
       doCheck: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ncp rebar3 $out/bin/rebar3\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/rebar/rebar3",
         changelog: nix.thunk(() => nix.str`https://github.com/erlang/rebar3/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Erlang build tool that makes it easy to compile and test Erlang applications, port drivers and releases",
@@ -79,7 +79,7 @@ done
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(writeScript, "update.sh", nix.thunk(() => nix.str`#!${nix.sel(stdenv, "shell")}
 set -ox errexit
 PATH=${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [
@@ -88,7 +88,7 @@ PATH=${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [
               git,
               gnused,
               nix$,
-              nix.thunk(() => nix.app(rebar3WithPlugins, nix.thunk(() => ({ __proto__: pos$4, globalPlugins: nix.thunk(() => [rebar3_nix]) })))),
+              nix.thunk(() => nix.app(rebar3WithPlugins, nix.thunk(() => ({ [nix.POS]: pos$4, globalPlugins: nix.thunk(() => [rebar3_nix]) })))),
             ]))}
 latest=$(list-git-tags | sed -n '/[\\d\\.]\\+/p' | sort -V | tail -1)
 if [ "$latest" != "${nix.sel(finalAttrs, "version")}" ]; then
@@ -114,7 +114,7 @@ fi
     const pluginLibDirs = nix.thunk(() => nix.builtins.map((p) => nix.str`${p}/lib/erlang/lib`, nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.concat(plugins, globalPlugins))))));
     const globalPluginNames = nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.builtins.map((p) => nix.sel(p, "pname"), globalPlugins))));
     const rebar3Patched = nix.thunk(() => nix.app(nix.sel(rebar3_1, "overrideAttrs"), (old) => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         patches: nix.thunk(() => [
           nix.path(here, "./skip-plugins.patch"),
           nix.path(here, "./global-plugins.patch"),
@@ -122,7 +122,7 @@ fi
         doCheck: false,
       })));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname: "rebar3-with-plugins",
         version: nix.thunk(() => nix.attr(rebar3_1, "version")),
         nativeBuildInputs: nix.thunk(() => [erlang, makeWrapper]),
@@ -143,6 +143,6 @@ makeWrapper ${erlang}/bin/erl $out/bin/rebar3 \\
 `),
       })));
   })(), formals$2);
-  return { __proto__: pos$9, rebar3: rebar3, rebar3WithPlugins: rebar3WithPlugins };
+  return { [nix.POS]: pos$9, rebar3: rebar3, rebar3WithPlugins: rebar3WithPlugins };
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

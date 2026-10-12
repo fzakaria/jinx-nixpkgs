@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const eulaDate = nix.arg($, "eulaDate");
   const outputHash = nix.argOr($, "outputHash", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       version: version,
       src: src,
       pname: "houdini-runtime",
@@ -35,7 +35,7 @@ sed -i 's@'"$out"'@$HFS@g' $out/packages/package_dirs.json  # this seem to be in
 `),
       dontFixup: true,
     }, (nix.asBool(nix.builtins.isNull(outputHash)) ? {} : {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       outputHash: outputHash,
       outputHashAlgo: "sha256",
       outputHashMode: "recursive",

@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
   nix.assert_((nix.asBool(!nix.asBool(nix.sel(blas, "isILP64"))) && nix.asBool(!nix.asBool(nix.sel(lapack, "isILP64")))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/mu/multicharge/package.nix:18:1");
   nix.assert_(nix.builtins.elem(buildType, nix.thunk(() => ["meson", "cmake"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/mu/multicharge/package.nix:19:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "multicharge",
       version: "0.5.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "grimme-lab",
           repo: "multicharge",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       postPatch: "patchShebangs --build config/install-mod.py\n\n# custom blas and lapack need to be explicitly found for transitive dependencies\n# otherwise CMAKE builds can not proceed.\necho 'set(custom-blas_FOUND TRUE)' >> config/cmake/Findcustom-blas.cmake\necho 'set(custom-lapack_FOUND TRUE)' >> config/cmake/Findcustom-lapack.cmake\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Electronegativity equilibration model for atomic partial charges",
         mainProgram: "multicharge",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libxfixes = nix.arg($, "libxfixes");
   const libxext = nix.arg($, "libxext");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "highlight-pointer",
       version: "1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "swillner",
           repo: "highlight-pointer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libx11, libxext, libxi, libxfixes]),
       installPhase: "runHook preInstall\n\ninstall -m 555 -D highlight-pointer $out/bin/highlight-pointer\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Highlight mouse pointer/cursor using a dot",
         homepage: "https://github.com/swillner/highlight-pointer",
         changelog: nix.thunk(() => nix.str`https://github.com/swillner/highlight-pointer/releases/tag/v${nix.sel(finalAttrs, "version")}`),

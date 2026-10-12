@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const pytest = nix.arg($, "pytest");
   const triton = nix.arg($, "triton");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "flash-linear-attention",
       version: "0.5.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fla-org",
           repo: "flash-linear-attention",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [einops, torch, transformers]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         cuda: nix.thunk(() => [triton]),
         cpu: nix.thunk(() => [triton]),
         tilelang: nix.thunk(() => [tilelang]),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["fla"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Triton-based implementations of causal linear attention",
         homepage: "https://github.com/fla-org/flash-linear-attention",
         changelog: nix.thunk(() => nix.str`https://github.com/fla-org/flash-linear-attention/releases/tag/v${nix.sel(finalAttrs, "version")}`),

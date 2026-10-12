@@ -40,33 +40,33 @@ export default nix.lambda((args) => (() => {
   const nodejs = nodejs_22;
   const system = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system"));
   const vsBuildTarget = nix.thunk(() => nix.selOr({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "x86_64-linux": "linux-x64",
     "aarch64-linux": "linux-arm64",
     "aarch64-darwin": "darwin-arm64",
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system ${system}`)), nix.key(nix.force(system))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "openvscode-server",
       version: "1.109.5",
       executableName: "openvscode-server",
       longName: "OpenVSCode Server",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "gitpod-io",
           repo: "openvscode-server",
           rev: nix.thunk(() => nix.str`openvscode-server-v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-FWexstn6pmKPkMuoXOWr4+levM+3FK74q1HLu4kFWTc=",
         })))),
       nodeModules: nix.thunk(() => nix.app(runCommand, "openvscode-server-node-modules", nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           nativeBuildInputs: nix.thunk(() => nix.attr(finalAttrs, "nativeBuildInputs")),
           outputHashMode: "recursive",
           outputHashAlgo: "sha256",
           outputHash: "sha256-DMjqFMdp7ocGdvMEmrKqB8RhF+BTN/9ybOKQAeuSG/o=",
           env: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             FORCE_EMPTY_CACHE: true,
             FORCE_GIT_DEPS: true,
             npm_config_progress: false,
@@ -83,7 +83,7 @@ do (
 done
 `))),
       env: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         NODE_OPTIONS: "--openssl-legacy-provider",
         NODE_ENV: "development",
         PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1",
@@ -133,14 +133,14 @@ ln -sf ${nodejs}/bin/node $out
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           "openvscode-server": nix.thunk(() => nix.attr(nixosTests, "openvscode-server")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Run VS Code on a remote machine",
         longDescription: "Run upstream VS Code on a remote machine with access through a modern web\nbrowser from any device, anywhere.\n",
         homepage: "https://github.com/gitpod-io/openvscode-server",

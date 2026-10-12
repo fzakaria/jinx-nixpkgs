@@ -5,7 +5,7 @@ const here = nix.here(import.meta.url);
 const pos$1 = nix.positions(here + "/packages-config.nix", [["allowAliases", 4, 3], ["allowVariants", 5, 3], ["recursionMode", 6, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$1,
+  [nix.POS]: pos$1,
   allowAliases: false,
   allowVariants: false,
   recursionMode: "search",

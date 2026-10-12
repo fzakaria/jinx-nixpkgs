@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "claude-monitor",
       version: "4.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Maciek-roboblog",
           repo: "Claude-Code-Usage-Monitor",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       })()),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Real-time Claude Code usage monitor",
         longDescription: "Real-time terminal monitoring tool for Claude AI token usage\nwith advanced analytics, machine learning-based predictions,\nand Rich UI. Track your token consumption, burn rate, cost analysis,\nand get intelligent predictions about session limits.\n",
         homepage: "https://github.com/Maciek-roboblog/Claude-Code-Usage-Monitor",

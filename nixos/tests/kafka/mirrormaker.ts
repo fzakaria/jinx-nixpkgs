@@ -43,28 +43,28 @@ export default nix.lambda((args) => (() => {
   const clusterAId = "ihzlrasUQ9O3Yy0ZWYkd6w";
   const clusterBId = "Bnu_zrzKRH6-7KcK7t3I5Q";
   const kafkaConfig = nix.thunk(() => ({
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     networking: nix.thunk(() => ({
-      __proto__: pos$2,
-      firewall: nix.thunk(() => ({ __proto__: pos$1, allowedTCPPorts: nix.thunk(() => [9092n, 9093n]) })),
+      [nix.POS]: pos$2,
+      firewall: nix.thunk(() => ({ [nix.POS]: pos$1, allowedTCPPorts: nix.thunk(() => [9092n, 9093n]) })),
     })),
     virtualisation: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       diskSize: 1024n,
       memorySize: nix.thunk(() => nix.mul(1024n, 2n)),
     })),
     environment: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "apacheKafka"))]),
     })),
     services: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       "apache-kafka": nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         enable: true,
         formatLogDirs: true,
         settings: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           listeners: nix.thunk(() => ["PLAINTEXT://:9092", "CONTROLLER://:9093"]),
           "listener.security.protocol.map": nix.thunk(() => ["PLAINTEXT:PLAINTEXT", "CONTROLLER:PLAINTEXT"]),
           "controller.listener.names": nix.thunk(() => ["CONTROLLER"]),
@@ -78,29 +78,29 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     systemd: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         "apache-kafka": nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           after: nix.thunk(() => ["network-online.target"]),
           requires: nix.thunk(() => ["network-online.target"]),
-          serviceConfig: nix.thunk(() => ({ __proto__: pos$8, StateDirectory: "apache-kafka" })),
+          serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$8, StateDirectory: "apache-kafka" })),
         })),
       })),
     })),
   }));
   const extraKafkaConfig = nix.thunk(() => ({
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     kafkaa1: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         "apache-kafka": nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           clusterId: nix.thunk(() => nix.str`${clusterAId}`),
           settings: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             "node.id": 1n,
             "controller.quorum.voters": nix.thunk(() => ["1@kafkaa1:9093"]),
           })),
@@ -108,14 +108,14 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     kafkab1: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       services: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         "apache-kafka": nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           clusterId: nix.thunk(() => nix.str`${clusterBId}`),
           settings: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             "node.id": 1n,
             "controller.quorum.voters": nix.thunk(() => ["1@kafkab1:9093"]),
           })),
@@ -126,40 +126,40 @@ export default nix.lambda((args) => (() => {
   const kafkaNodes = nix.thunk(() => nix.builtins.mapAttrs((_) => (val) => nix.app(mkMerge, nix.thunk(() => [val, kafkaConfig])), extraKafkaConfig));
   const mirrorMakerProperties = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "mm2.properties", "name = A->B\n\nclusters = A, B\n\nA.bootstrap.servers = kafkaa1:9092\nB.bootstrap.servers = kafkab1:9092\n\nA->B.enabled = true\nA->B.topics = .*\n\nB->A.enabled = false\nB->A.topics = .*\n\nreplication.factor=1\nreplication.policy.class=org.apache.kafka.connect.mirror.IdentityReplicationPolicy\n\ntasks.max = 2\nrefresh.topics.enabled = true\nrefresh.topics.interval.seconds = 5\nsync.topic.configs.enabled = true\n\ncheckpoints.topic.replication.factor=1\nheartbeats.topic.replication.factor=1\noffset-syncs.topic.replication.factor=1\n\noffset.storage.replication.factor=1\nstatus.storage.replication.factor=1\nconfig.storage.replication.factor=1\n\nemit.checkpoints.enabled = true\nemit.checkpoints.interval.seconds = 5\n"));
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     name: "kafka-mirrormaker",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "jpds"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       kafkaa1: nix.thunk(() => nix.attr(kafkaNodes, "kafkaa1")),
       kafkab1: nix.thunk(() => nix.attr(kafkaNodes, "kafkab1")),
       mirrormaker: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             diskSize: 1024n,
             memorySize: nix.thunk(() => nix.mul(1024n, 2n)),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             services: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               "kafka-connect-mirror-maker": nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 after: nix.thunk(() => ["network-online.target"]),
                 requires: nix.thunk(() => ["network-online.target"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "apacheKafka")}/bin/connect-mirror-maker.sh ${mirrorMakerProperties}
 `),
                   Restart: "on-failure",

@@ -19,27 +19,27 @@ export default nix.lambda((args) => (() => {
   const vscode_utils = nix.arg($, "vscode-utils");
   const vscode_extension_update_script = nix.arg($, "vscode-extension-update-script");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       mktplcRef: nix.thunk(() => (() => {
         const sources = nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "x86_64-linux": nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             arch: "linux-x64",
             hash: "sha256-cP/oFn19CZ/G3kjdHNZGqXvoDE1qUtg6xrg/2MO14Lo=",
           })),
           "aarch64-darwin": nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             arch: "darwin-arm64",
             hash: "sha256-XYdwVoDqK+88ZYUm6APyamFNx6XlYjy0R4CIhSMuRmU=",
           })),
         }));
-        return nix.update({ __proto__: pos$4, publisher: "redhat", name: "vscode-xml", version: "0.29.3" }, nix.selOr(sources, () => ({}), nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system"))));
+        return nix.update({ [nix.POS]: pos$4, publisher: "redhat", name: "vscode-xml", version: "0.29.3" }, nix.selOr(sources, () => ({}), nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system"))));
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(vscode_extension_update_script, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             extraArgs: nix.thunk(() => [
               "--override-filename",
               "pkgs/applications/editors/vscode/extensions/redhat.vscode-xml/default.nix",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         license: nix.thunk(() => nix.sel(lib, "licenses", "epl20")),
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-darwin"]),
       })),

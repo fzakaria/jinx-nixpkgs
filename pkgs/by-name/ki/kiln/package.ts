@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const scdoc = nix.arg($, "scdoc");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kiln",
       version: "0.4.1",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~adnano",
           repo: "kiln",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-3s1+/RxOTNVFX9FnS94jLVGSr5IjZC/XucmnkxHhk5Q=",
       postInstall: "scdoc < docs/kiln.1.scd > docs/kiln.1\ninstallManPage docs/kiln.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple static site generator for Gemini",
         homepage: "https://git.sr.ht/~adnano/kiln",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

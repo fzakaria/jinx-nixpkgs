@@ -15,27 +15,27 @@ export default (callPackage) => (() => {
   const quake3pointrelease = nix.thunk(() => nix.app(callPackage, nix.path(here, "./content/pointrelease.nix"), nix.thunk(() => ({}))));
   const quake3hires = nix.thunk(() => nix.app(callPackage, nix.path(here, "./content/hires.nix"), nix.thunk(() => ({}))));
   const quake3arena = nix.thunk(() => nix.app(quake3wrapper, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "quake3",
       paks: nix.thunk(() => [quake3arenadata, quake3pointrelease]),
     }))));
   const quake3arena_hires = nix.thunk(() => nix.app(quake3wrapper, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "quake3",
       paks: nix.thunk(() => [quake3arenadata, quake3pointrelease, quake3hires]),
     }))));
   const quake3demo = nix.thunk(() => nix.app(quake3wrapper, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "quake3-demo",
       paks: nix.thunk(() => [quake3demodata, quake3pointrelease]),
     }))));
   const quake3demo_hires = nix.thunk(() => nix.app(quake3wrapper, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "quake3-demo",
       paks: nix.thunk(() => [quake3demodata, quake3pointrelease, quake3hires]),
     }))));
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     quake3wrapper,
     quake3arenadata,
     quake3demodata,

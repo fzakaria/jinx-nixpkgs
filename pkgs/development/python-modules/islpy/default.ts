@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const isl = nix.arg($, "isl");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "islpy",
       version: "2026.2.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "inducer",
           repo: "islpy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["islpy"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python wrapper around isl, an integer set library",
         homepage: "https://github.com/inducer/islpy",
         changelog: nix.thunk(() => nix.str`https://github.com/inducer/islpy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

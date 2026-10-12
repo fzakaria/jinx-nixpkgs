@@ -39,88 +39,88 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "upower"));
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         upower: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable Upower, a DBus service that provides power\nmanagement support to applications.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "upower", nix.thunk(() => ({})))),
           enableWattsUpPro: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enable the Watts Up Pro device.\n\nThe Watts Up Pro contains a generic FTDI USB device without a specific\nvendor and product ID. When we probe for WUP devices, we can cause\nthe user to get a perplexing \"Device or resource busy\" error when\nattempting to use their non-WUP device.\n\nThe generic FTDI device is known to also be used on:\n\n- Sparkfun FT232 breakout board\n- Parallax Propeller\n",
             })))),
           noPollBatteries: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Don't poll the kernel for battery level changes.\n\nSome hardware will send us battery level changes through\nevents, rather than us having to poll for it. This option\nallows disabling polling for hardware that sends out events.\n",
             })))),
           ignoreLid: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Do we ignore the lid state\n\nSome laptops are broken. The lid state is either inverted, or stuck\non or off. We can't do much to fix these problems, but this is a way\nfor users to make the laptop panel vanish, a state that might be used\nby a couple of user-space daemons. On Linux systems, see also\n{manpage}`logind.conf(5)`.\n",
             })))),
           usePercentageForPolicy: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Policy for warnings and action based on battery levels\n\nWhether battery percentage based policy should be used. The default\nis to use the percentage, which\nshould work around broken firmwares. It is also more reliable than\nthe time left (frantically saving all your files is going to use more\nbattery than letting it rest for example).\n",
             })))),
           percentageLow: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
               default: 20n,
               description: "When `usePercentageForPolicy` is\n`true`, the levels at which UPower will consider the\nbattery low.\n\nThis will also be used for batteries which don't have time information\nsuch as that of peripherals.\n\nIf any value (of `percentageLow`,\n`percentageCritical` and\n`percentageAction`) is invalid, or not in descending\norder, the defaults will be used.\n",
             })))),
           percentageCritical: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
               default: 5n,
               description: "When `usePercentageForPolicy` is\n`true`, the levels at which UPower will consider the\nbattery critical.\n\nThis will also be used for batteries which don't have time information\nsuch as that of peripherals.\n\nIf any value (of `percentageLow`,\n`percentageCritical` and\n`percentageAction`) is invalid, or not in descending\norder, the defaults will be used.\n",
             })))),
           percentageAction: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
               default: 2n,
               description: "When `usePercentageForPolicy` is\n`true`, the levels at which UPower will take action\nfor the critical battery level.\n\nThis will also be used for batteries which don't have time information\nsuch as that of peripherals.\n\nIf any value (of `percentageLow`,\n`percentageCritical` and\n`percentageAction`) is invalid, or not in descending\norder, the defaults will be used.\n",
             })))),
           timeLow: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
               default: 1200n,
               description: "When `usePercentageForPolicy` is\n`false`, the time remaining in seconds at which\nUPower will consider the battery low.\n\nIf any value (of `timeLow`,\n`timeCritical` and `timeAction`) is\ninvalid, or not in descending order, the defaults will be used.\n",
             })))),
           timeCritical: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
               default: 300n,
               description: "When `usePercentageForPolicy` is\n`false`, the time remaining in seconds at which\nUPower will consider the battery critical.\n\nIf any value (of `timeLow`,\n`timeCritical` and `timeAction`) is\ninvalid, or not in descending order, the defaults will be used.\n",
             })))),
           timeAction: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
               default: 120n,
               description: "When `usePercentageForPolicy` is\n`false`, the time remaining in seconds at which\nUPower will take action for the critical battery level.\n\nIf any value (of `timeLow`,\n`timeCritical` and `timeAction`) is\ninvalid, or not in descending order, the defaults will be used.\n",
             })))),
           allowRiskyCriticalPowerAction: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enable the risky critical power actions \"Suspend\" and \"Ignore\".\n",
             })))),
           criticalPowerAction: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["PowerOff", "Hibernate", "HybridSleep", "Suspend", "Ignore"]))),
               default: "HybridSleep",
               description: "The action to take when `timeAction` or\n`percentageAction` has been reached for the batteries\n(UPS or laptop batteries) supplying the computer.\n\nWhen set to `Suspend` or `Ignore`,\n{option}`services.upower.allowRiskyCriticalPowerAction` must be set\nto `true`.\n",
@@ -129,10 +129,10 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             assertion: nix.thunk(() => (() => {
               const elem = nix.thunk(() => nix.attr(nix.builtins, "elem"));
               const riskyActions = nix.thunk(() => ["Suspend", "Ignore"]);
@@ -146,16 +146,16 @@ services.upower.criticalPowerAction is set to
           })),
         ]),
         environment: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             "UPower/UPower.conf": nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               text: nix.thunk(() => nix.app(nix.sel(lib, "generators", "toINI"), nix.thunk(() => ({})), nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   UPower: nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     EnableWattsUpPro: nix.thunk(() => nix.sel(cfg, "enableWattsUpPro")),
                     NoPollBatteries: nix.thunk(() => nix.sel(cfg, "noPollBatteries")),
                     IgnoreLid: nix.thunk(() => nix.sel(cfg, "ignoreLid")),
@@ -174,18 +174,18 @@ services.upower.criticalPowerAction is set to
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           dbus: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
           udev: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
       })))),

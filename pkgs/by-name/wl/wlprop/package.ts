@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const sway = nix.arg($, "sway");
   const bash = nix.arg($, "bash");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "wlprop",
       version: "unstable-2022-08-18",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://gist.github.com/f313386043395ff06570e02af2d9a8e0",
           rev: "758c548bfb4be5b437c428c8062b3987f126f002",
           sha256: "sha256-ZJ9LYYrU2cNYikiVNTlEcI4QXcoqfl7iwk3Be+NhGG8=",
@@ -41,9 +41,9 @@ wrapProgram "$out/bin/wlprop" \\
 
 runHook postInstall
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, scriptName: "wlprop.sh" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, scriptName: "wlprop.sh" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Xprop clone for wlroots based compositors",
         homepage: "https://gist.github.com/crispyricepc/f313386043395ff06570e02af2d9a8e0",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

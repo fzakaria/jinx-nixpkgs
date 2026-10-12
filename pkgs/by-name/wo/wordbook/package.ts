@@ -26,23 +26,23 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const fetchurl = nix.arg($, "fetchurl");
   const wordnetData = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://github.com/globalwordnet/english-wordnet/releases/download/2025-edition/english-wordnet-2025-plus.xml.gz",
       hash: "sha256-MfSvFsVLUy/VSE1MwzruWIoxu1twaDroGXhC/eW1hrw=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "wordbook",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "mufeedali",
           repo: "Wordbook",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-sn0ssKz/Mf+GSH8+hXAuJ59wLSHIZGFSB/9HrZNrhuc=",
         })))),
       wnSrc: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "mufeedali",
           repo: "wn",
           rev: "9b51a749ff167a0b0ded55fc5b23448a0e21eb45",
@@ -89,7 +89,7 @@ substituteInPlace scripts/generate-wn-db.py \\
 )
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Offline English-English dictionary application built for GNOME",
         homepage: "https://github.com/mufeedali/Wordbook",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

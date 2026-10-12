@@ -33,34 +33,34 @@ export default nix.lambda((args) => (() => {
         const $_2 = nix.formals(args_2, formals$3);
         const availablePlugins = nix.arg($_2, "availablePlugins");
         return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           plugins: nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.builtins.removeAttrs(availablePlugins, nix.thunk(() => ["php"]))))),
         };
       })(), formals$3));
       const perlInterpreter = nix.thunk(() => nix.sel(perlPackages, "perl"));
       const availablePlugins = nix.thunk(() => (() => {
         const simplePlugin = (name) => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pluginFile: nix.thunk(() => nix.str`${nix.sel(weechat, nix.key(nix.force(name)))}/lib/weechat/plugins/${name}.so`),
         });
         return (() => {
           const python = nix.thunk(() => nix.update(nix.app(simplePlugin, "python"), {
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             extraEnv: nix.thunk(() => nix.str`export PATH="${nix.sel(python3Packages, "python")}/bin:$PATH"
 `),
             withPackages: (pkgsFun) => nix.update(python, {
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               extraEnv: nix.thunk(() => nix.str`${nix.sel(python, "extraEnv")}
 export PYTHONHOME="${nix.app(nix.sel(python3Packages, "python", "withPackages"), pkgsFun)}"
 `),
             }),
           }));
           const perl = nix.thunk(() => nix.update(nix.app(simplePlugin, "perl"), {
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             extraEnv: nix.thunk(() => nix.str`export PATH="${perlInterpreter}/bin:$PATH"
 `),
             withPackages: (pkgsFun) => nix.update(perl, {
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               extraEnv: nix.thunk(() => nix.str`${nix.sel(perl, "extraEnv")}
 export PERL5LIB=${nix.app(nix.sel(perlPackages, "makeFullPerlPath"), nix.thunk(() => nix.app(pkgsFun, perlPackages)))}
 `),
@@ -71,10 +71,10 @@ export PERL5LIB=${nix.app(nix.sel(perlPackages, "makeFullPerlPath"), nix.thunk((
           const guile = nix.thunk(() => nix.app(simplePlugin, "guile"));
           const lua = nix.thunk(() => nix.app(simplePlugin, "lua"));
           const php = nix.thunk(() => nix.app(simplePlugin, "php"));
-          return { __proto__: pos$7, python, perl, tcl, ruby, guile, lua, php };
+          return { [nix.POS]: pos$7, python, perl, tcl, ruby, guile, lua, php };
         })();
       })());
-      const config = nix.thunk(() => nix.app(configure, nix.thunk(() => ({ __proto__: pos$8, availablePlugins: availablePlugins }))));
+      const config = nix.thunk(() => nix.app(configure, nix.thunk(() => ({ [nix.POS]: pos$8, availablePlugins: availablePlugins }))));
       const plugins = nix.thunk(() => nix.selOr(config, () => nix.builtins.attrValues(availablePlugins), "plugins"));
       const pluginsDir = nix.thunk(() => nix.app(runCommand, "weechat-plugins", nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir -p $out/plugins
 for plugin in ${nix.app(nix.sel(lib, "concatMapStringsSep"), " ", (p) => nix.sel(p, "pluginFile"), plugins)} ; do
@@ -92,14 +92,14 @@ export WEECHAT_EXTRA_LIBDIR=${pluginsDir}
 ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (p) => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.has(p, "extraEnv")), nix.thunk(() => nix.sel(p, "extraEnv"))), plugins)}
 exec ${weechat}/bin/${bin} "$@" --run-command ${nix.app(nix.sel(lib, "escapeShellArg"), init)}
 `)), {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         name: nix.thunk(() => nix.attr(weechat, "name")),
         man: nix.thunk(() => nix.attr(weechat, "man")),
         unwrapped: weechat,
         outputs: nix.thunk(() => ["out", "man"]),
       });
       return nix.app(buildEnv, nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           pname: "weechat-bin-env",
           version: nix.thunk(() => nix.attr(weechat, "version")),
           extraOutputsToInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), installManPages, nix.thunk(() => ["man"]))),

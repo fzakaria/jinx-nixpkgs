@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
       const pname = "libmtquery";
       const version = "0.0.1alpha3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/multitran/libmtquery-${version}.tar.bz2`),
           sha256: "e24c7c15772445f1b14871928d84dd03cf93bd88f9d2b2ed1bf0257c2cf2b15e",
         }))));
       const buildInputs = nix.thunk(() => [libmtsupport, libfacet, libbtree, multitrandata]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, NIX_LDFLAGS: "-lbtree" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-lbtree" }));
       const patchPhase = nix.thunk(() => nix.str`sed -i -e 's@\\$(DESTDIR)/usr@'$out'@' \\
   -e 's@/usr/include/mt/support@${libmtsupport}/include/mt/support@' \\
   -e 's@/usr/include/btree@${libbtree}/include/btree@' \\
@@ -35,13 +35,13 @@ export default nix.lambda((args) => (() => {
 sed -i -e 's@/usr/share/multitran@${multitrandata}/share/multitran@' src/config.cc
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://multitran.sourceforge.net/",
         description: "Multitran lib: main engine to query translations",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
-      return { __proto__: pos$4, pname, version, src, buildInputs, env, patchPhase, meta };
+      return { [nix.POS]: pos$4, pname, version, src, buildInputs, env, patchPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

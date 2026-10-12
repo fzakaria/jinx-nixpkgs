@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const osc_sdk_python = nix.arg($, "osc-sdk-python");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "osc-diagram",
       version: "unstable-2023-08-07",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "outscale-mgo",
           repo: "osc-diagram",
           rev: "8531233b8a95da03aca9106064b91479197f888d",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [diagrams, osc_sdk_python]),
       pythonImportsCheck: nix.thunk(() => ["osc_diagram"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Build Outscale cloud diagrams",
         mainProgram: "osc-diagram",
         homepage: "https://github.com/outscale-mgo/osc-diagram",

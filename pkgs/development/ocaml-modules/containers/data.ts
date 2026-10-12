@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const qcheck_core = nix.arg($, "qcheck-core");
   const mdx = nix.arg($, "mdx");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "containers-data",
       src: nix.thunk(() => nix.attr(containers, "src")),
       version: nix.thunk(() => nix.attr(containers, "version")),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(mdx, "bin"))]),
       checkInputs: nix.thunk(() => [gen, iter, qcheck_core]),
       propagatedBuildInputs: nix.thunk(() => [containers]),
-      meta: nix.thunk(() => nix.update(nix.sel(containers, "meta"), { __proto__: pos$1, description: "Set of advanced datatypes for containers" })),
+      meta: nix.thunk(() => nix.update(nix.sel(containers, "meta"), { [nix.POS]: pos$1, description: "Set of advanced datatypes for containers" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=data.ts.map

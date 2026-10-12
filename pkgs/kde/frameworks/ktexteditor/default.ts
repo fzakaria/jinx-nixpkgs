@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const qtspeech = nix.arg($, "qtspeech");
   const editorconfig_core_c = nix.arg($, "editorconfig-core-c");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "ktexteditor",
       extraBuildInputs: nix.thunk(() => [qtdeclarative, qtspeech, editorconfig_core_c]),
     })));

@@ -16,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const ppx_sexp_conv = nix.arg($, "ppx_sexp_conv");
   const ounit2 = nix.arg($, "ounit2");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "macaddr",
       version: "5.6.2",
       minimalOCamlVersion: "4.04",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/ocaml-ipaddr/releases/download/v${nix.sel(finalAttrs, "version")}/ipaddr-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-CKP6bmQRSQtmYeWxAinqnsa4w3OOn2slWFmxPxRb4TY=",
         })))),
       checkInputs: nix.thunk(() => [ppx_sexp_conv, ounit2]),
       doCheck: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.08")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/mirage/ocaml-ipaddr",
         description: "Library for manipulation of MAC address representations",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

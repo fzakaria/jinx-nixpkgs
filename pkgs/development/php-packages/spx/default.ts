@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const version = "0.4.22";
   return nix.app(buildPecl, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: version,
       pname: "spx",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NoiseByNorthwest",
           repo: "php-spx",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-spx-assets-dir=${nix.builtins.placeholder("out")}/share/misc/php-spx/assets/`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/NoiseByNorthwest/php-spx/releases/tag/v${version}`),
         description: "Simple & straight-to-the-point PHP profiling extension with its built-in web UI",
         homepage: "https://github.com/NoiseByNorthwest/php-spx",

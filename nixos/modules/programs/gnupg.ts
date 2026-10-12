@@ -69,49 +69,49 @@ export default nix.lambda((args) => (() => {
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   const cfg = nix.thunk(() => nix.sel(config, "programs", "gnupg"));
   const agentSettingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "keyValue"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       mkKeyValue: nix.thunk(() => nix.app(nix.sel(lib, "generators", "mkKeyValueDefault"), nix.thunk(() => ({})), " ")),
     }))));
   return {
-    __proto__: pos$52,
+    [nix.POS]: pos$52,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["programs", "gnupg", "agent", "pinentryFlavor"]), "Use programs.gnupg.agent.pinentryPackage instead")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       programs: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         gnupg: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "gnupg", nix.thunk(() => ({})))),
           agent: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
                 description: "Enables GnuPG agent with socket-activation for every user session.\n",
               })))),
             enableSSHSupport: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
                 description: "Enable SSH agent support in GnuPG agent. Also sets SSH_AUTH_SOCK\nenvironment variable correctly. This will disable socket-activation\nand thus always start a GnuPG agent per user session.\n",
               })))),
             enableExtraSocket: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
                 description: "Enable extra socket for GnuPG agent.\n",
               })))),
             enableBrowserSocket: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
                 description: "Enable browser socket for GnuPG agent.\n",
               })))),
             pinentryPackage: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "package")))),
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalMD"), "pkgs.pinentry-gnome3")),
                 default: nix.thunk(() => nix.sel(pkgs, "pinentry-curses")),
@@ -119,17 +119,17 @@ export default nix.lambda((args) => (() => {
                 description: "Which pinentry package to use. The path to the mainProgram as defined in\nthe package's meta attributes will be set in /etc/gnupg/gpg-agent.conf.\nIf not set by the user, it'll pick an appropriate flavor depending on the\nsystem configuration (qt flavor for lxqt and plasma, gtk2 for xfce,\ngnome3 on all other systems with X enabled, curses otherwise).\n",
               })))),
             settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(agentSettingsFormat, "type")),
                 default: nix.thunk(() => ({})),
-                example: nix.thunk(() => ({ __proto__: pos$7, "default-cache-ttl": 600n })),
+                example: nix.thunk(() => ({ [nix.POS]: pos$7, "default-cache-ttl": 600n })),
                 description: "Configuration for /etc/gnupg/gpg-agent.conf.\nSee {manpage}`gpg-agent(1)` for supported options.\n",
               })))),
           })),
           dirmngr: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
                 description: "Enables GnuPG network certificate management daemon with socket-activation for every user session.\n",
@@ -139,21 +139,21 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "agent", "enable")), nix.thunk(() => ({
-        __proto__: pos$51,
+        [nix.POS]: pos$51,
         programs: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           gnupg: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             agent: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               settings: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "agent", "pinentryPackage"), null)), nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   "pinentry-program": nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "agent", "pinentryPackage")))),
                 })))),
             })),
           })),
           ssh: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             extraConfig: nix.thunk(() => nix.app(optionalString, nix.thunk(() => nix.sel(cfg, "agent", "enableSSHSupport")), nix.thunk(() => nix.str`# The SSH agent protocol doesn't have support for changing TTYs; however we
 # can simulate this with the \`exec\` feature of openssh (see ssh_config(5))
 # that hooks a command to the shell currently running the ssh program.
@@ -162,11 +162,11 @@ Match host * exec "${nix.sel(pkgs, "runtimeShell")} -c '${nix.sel(cfg, "package"
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           etc: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             "gnupg/gpg-agent.conf": nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               source: nix.thunk(() => nix.app(nix.sel(agentSettingsFormat, "generate"), "gpg-agent.conf", nix.thunk(() => nix.sel(cfg, "agent", "settings")))),
             })),
           })),
@@ -178,51 +178,51 @@ fi
 `))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$47,
+          [nix.POS]: pos$47,
           user: nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             services: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               "gpg-agent": nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 unitConfig: nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   Description: "GnuPG cryptographic agent and passphrase cache",
                   Documentation: "man:gpg-agent(1)",
                   Requires: nix.thunk(() => ["sockets.target"]),
                 })),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/gpg-agent --supervised`),
                   ExecReload: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/gpgconf --reload gpg-agent`),
                 })),
               })),
               dirmngr: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "dirmngr", "enable")), nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   unitConfig: nix.thunk(() => ({
-                    __proto__: pos$26,
+                    [nix.POS]: pos$26,
                     Description: "GnuPG network certificate management daemon",
                     Documentation: "man:dirmngr(8)",
                     Requires: "dirmngr.socket",
                   })),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$27,
+                    [nix.POS]: pos$27,
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/dirmngr --supervised`),
                     ExecReload: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/gpgconf --reload dirmngr`),
                   })),
                 })))),
             })),
             sockets: nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               "gpg-agent": nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 unitConfig: nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   Description: "GnuPG cryptographic agent and passphrase cache",
                   Documentation: "man:gpg-agent(1)",
                 })),
                 socketConfig: nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   ListenStream: "%t/gnupg/S.gpg-agent",
                   FileDescriptorName: "std",
                   SocketMode: "0600",
@@ -231,14 +231,14 @@ fi
                 wantedBy: nix.thunk(() => ["sockets.target"]),
               })),
               "gpg-agent-ssh": nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "agent", "enableSSHSupport")), nix.thunk(() => ({
-                  __proto__: pos$35,
+                  [nix.POS]: pos$35,
                   unitConfig: nix.thunk(() => ({
-                    __proto__: pos$33,
+                    [nix.POS]: pos$33,
                     Description: "GnuPG cryptographic agent (ssh-agent emulation)",
                     Documentation: "man:gpg-agent(1) man:ssh-add(1) man:ssh-agent(1) man:ssh(1)",
                   })),
                   socketConfig: nix.thunk(() => ({
-                    __proto__: pos$34,
+                    [nix.POS]: pos$34,
                     ListenStream: "%t/gnupg/S.gpg-agent.ssh",
                     FileDescriptorName: "ssh",
                     Service: "gpg-agent.service",
@@ -248,14 +248,14 @@ fi
                   wantedBy: nix.thunk(() => ["sockets.target"]),
                 })))),
               "gpg-agent-extra": nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "agent", "enableExtraSocket")), nix.thunk(() => ({
-                  __proto__: pos$38,
+                  [nix.POS]: pos$38,
                   unitConfig: nix.thunk(() => ({
-                    __proto__: pos$36,
+                    [nix.POS]: pos$36,
                     Description: "GnuPG cryptographic agent and passphrase cache (restricted)",
                     Documentation: "man:gpg-agent(1)",
                   })),
                   socketConfig: nix.thunk(() => ({
-                    __proto__: pos$37,
+                    [nix.POS]: pos$37,
                     ListenStream: "%t/gnupg/S.gpg-agent.extra",
                     FileDescriptorName: "extra",
                     Service: "gpg-agent.service",
@@ -265,14 +265,14 @@ fi
                   wantedBy: nix.thunk(() => ["sockets.target"]),
                 })))),
               "gpg-agent-browser": nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "agent", "enableBrowserSocket")), nix.thunk(() => ({
-                  __proto__: pos$41,
+                  [nix.POS]: pos$41,
                   unitConfig: nix.thunk(() => ({
-                    __proto__: pos$39,
+                    [nix.POS]: pos$39,
                     Description: "GnuPG cryptographic agent and passphrase cache (access for web browsers)",
                     Documentation: "man:gpg-agent(1)",
                   })),
                   socketConfig: nix.thunk(() => ({
-                    __proto__: pos$40,
+                    [nix.POS]: pos$40,
                     ListenStream: "%t/gnupg/S.gpg-agent.browser",
                     FileDescriptorName: "browser",
                     Service: "gpg-agent.service",
@@ -282,14 +282,14 @@ fi
                   wantedBy: nix.thunk(() => ["sockets.target"]),
                 })))),
               dirmngr: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "dirmngr", "enable")), nix.thunk(() => ({
-                  __proto__: pos$44,
+                  [nix.POS]: pos$44,
                   unitConfig: nix.thunk(() => ({
-                    __proto__: pos$42,
+                    [nix.POS]: pos$42,
                     Description: "GnuPG network certificate management daemon",
                     Documentation: "man:dirmngr(8)",
                   })),
                   socketConfig: nix.thunk(() => ({
-                    __proto__: pos$43,
+                    [nix.POS]: pos$43,
                     ListenStream: "%t/gnupg/S.dirmngr",
                     SocketMode: "0600",
                     DirectoryMode: "0700",
@@ -300,15 +300,15 @@ fi
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$49,
+          [nix.POS]: pos$49,
           dbus: nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             packages: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.app(nix.sel(lib, "elem"), "gnome3", nix.thunk(() => nix.selOr(cfg, () => [], "agent", "pinentryPackage", "flavors")))), nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gcr_3"))]))),
           })),
         })),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "agent", "enableSSHSupport")) || nix.asBool(!nix.asBool(nix.sel(config, "programs", "ssh", "startAgent"))))),
             message: "You can't use ssh-agent and GnuPG agent with SSH support enabled at the same time!",
           })),

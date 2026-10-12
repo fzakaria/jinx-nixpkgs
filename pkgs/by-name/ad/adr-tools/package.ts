@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const adr_tools = nix.arg($, "adr-tools");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "adr-tools",
       version: "3.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "npryce",
           repo: "adr-tools",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -53,9 +53,9 @@ makeWrapper $out/libexec/adr $out/bin/adr --prefix PATH : ${nix.app(nix.sel(lib,
 installShellCompletion --bash autocomplete/adr
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           default: nix.thunk(() => nix.app(runCommand, "adr-tools-test", nix.thunk(() => ({})), nix.thunk(() => nix.str`set -euo pipefail
 export PATH=$PATH:${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [adr_tools, gnugrep]))}
 
@@ -78,7 +78,7 @@ grep 'TESTED AMEND' doc/adr/0001-record-architecture-decisions.md | grep 0002-bl
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Command-line tools for working with Architecture Decision Records",
         homepage: "https://github.com/npryce/adr-tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

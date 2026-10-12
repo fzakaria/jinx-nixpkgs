@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "pdsadmin",
       version: nix.thunk(() => nix.attr(bluesky_pds, "version")),
       src: nix.thunk(() => nix.attr(bluesky_pds, "src")),
@@ -38,7 +38,7 @@ runHook postInstall
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(bluesky_pds, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Admin scripts for Bluesky Personal Data Server (PDS)",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),

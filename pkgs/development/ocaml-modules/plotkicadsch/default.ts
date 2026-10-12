@@ -24,18 +24,18 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const imagemagick = nix.arg($, "imagemagick");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "plotkicadsch",
       duneVersion: "3",
       src: nix.thunk(() => nix.attr(kicadsch, "src")),
       version: nix.thunk(() => nix.attr(kicadsch, "version")),
       minimalOCamlVersion: "4.09",
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ __proto__: pos$1, coreutils: coreutils, imagemagick: imagemagick })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$1, coreutils: coreutils, imagemagick: imagemagick })))),
       ]),
       buildInputs: nix.thunk(() => [base64, cmdliner, digestif, git_unix, kicadsch, lwt, lwt_ppx, sha, tyxml]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to export Kicad Sch files to SVG pictures",
         homepage: "https://github.com/jnavila/plotkicadsch",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

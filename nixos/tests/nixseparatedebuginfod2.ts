@@ -29,25 +29,25 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     name: "nixseparatedebuginfod2",
-    defaults: nix.thunk(() => ({ __proto__: pos$2, nix: nix.thunk(() => ({ __proto__: pos$1, enable: true })) })),
+    defaults: nix.thunk(() => ({ [nix.POS]: pos$2, nix: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })) })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       cache: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           services: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             nginx: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 default: nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   default: true,
                   addSSL: false,
                   root: "/var/lib/thebinarycache",
@@ -56,21 +56,21 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$8,
-            firewall: nix.thunk(() => ({ __proto__: pos$7, allowedTCPPorts: nix.thunk(() => [80n]) })),
+            [nix.POS]: pos$8,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$7, allowedTCPPorts: nix.thunk(() => [80n]) })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             services: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               buildthebinarycache: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 before: nix.thunk(() => ["nginx.service"]),
                 wantedBy: nix.thunk(() => ["nginx.service"]),
                 script: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "nix")}/bin/nix --extra-experimental-features nix-command copy --to file:///var/lib/thebinarycache?index-debug-info=true ${nix.sel(pkgs_1, "gnumake", "debug")} ${nix.sel(pkgs_1, "gnumake")} ${nix.sel(pkgs_1, "gnumake", "src")} ${nix.sel(pkgs_1, "sl")}
 `),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   User: "nginx",
                   Group: "nginx",
                   StateDirectory: "thebinarycache",
@@ -82,17 +82,17 @@ export default nix.lambda((args) => (() => {
         };
       })(), formals$2),
       machine: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         services: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           nixseparatedebuginfod2: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             enable: true,
             substituters: nix.thunk(() => ["http://cache"]),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.sel(pkgs, "valgrind")),
             nix.thunk(() => nix.sel(pkgs, "gdb")),

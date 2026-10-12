@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   const lib = nix.arg($, "lib");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "ansi-wl-pprint",
       version: "0.6.8.1",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://github.com/ekmett/ansi-wl-pprint",
           sha256: "00pgxgkramz6y1bgdlm00rsh6gd6mdaqllh6riax2rc2sa35kip4",
           rev: "d16e2f6896d76b87b72af7220c2e93ba15c53280",

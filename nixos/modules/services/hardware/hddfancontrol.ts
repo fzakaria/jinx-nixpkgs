@@ -34,9 +34,9 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "hddfancontrol"));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "jadewilk"))];
@@ -50,26 +50,26 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "hddfancontrol", "extraArgs"]), "Extra Args should now be specified per hddfancontrol instance in its attrset")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         hddfancontrol: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "hddfancontrol daemon")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "hddfancontrol", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsWith"), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   placeholder: "drive-bay-name",
                   elemType: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.lambda((args_1) => (() => {
                       const $_1 = nix.formals(args_1, formals$2);
                       return {
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         options: nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           disks: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$2,
+                              [nix.POS]: pos$2,
                               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                               default: [],
                               description: "Drive(s) to get temperature from\n\nCan also use command substitution to automatically grab all matching drives; such as all scsi (sas) drives\n",
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
                               ]),
                             })))),
                           pwmPaths: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$3,
+                              [nix.POS]: pos$3,
                               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                               default: [],
                               description: "PWM filepath(s) to control fan speed (under /sys), followed by initial and fan-stop PWM values\nCan also use command substitution to ensure the correct hwmonX is selected on every boot\n",
@@ -89,13 +89,13 @@ export default nix.lambda((args) => (() => {
                               ]),
                             })))),
                           logVerbosity: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$4,
+                              [nix.POS]: pos$4,
                               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["TRACE", "DEBUG", "INFO", "WARN", "ERROR"]))),
                               default: "INFO",
                               description: "Verbosity of the log level\n",
                             })))),
                           extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$5,
+                              [nix.POS]: pos$5,
                               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                               default: [],
                               description: "Extra commandline arguments for hddfancontrol\n",
@@ -121,7 +121,7 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.sel(cnf, "extraArgs")),
           ]));
         const createService = (cnf) => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           description: "HDD fan control",
           documentation: nix.thunk(() => ["man:hddfancontrol(1)"]),
           after: nix.thunk(() => ["hddtemp.service"]),
@@ -131,7 +131,7 @@ export default nix.lambda((args) => (() => {
             return nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} -v ${nix.sel(cnf, "logVerbosity")} daemon ${argString}`;
           })()),
           serviceConfig: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             CPUSchedulingPolicy: "rr",
             CPUSchedulingPriority: 49n,
             ProtectSystem: "strict",
@@ -146,23 +146,23 @@ export default nix.lambda((args) => (() => {
         const services = nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "mergeAttrsList"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "mapAttrs'"), (name) => (cnf) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`hddfancontrol-${name}`), nix.thunk(() => nix.app(createService, cnf))), nix.thunk(() => nix.sel(cfg, "settings")))),
             nix.thunk(() => ({
-              __proto__: pos$16,
-              hddfancontrol: nix.thunk(() => ({ __proto__: pos$15, enable: false })),
+              [nix.POS]: pos$16,
+              hddfancontrol: nix.thunk(() => ({ [nix.POS]: pos$15, enable: false })),
             })),
           ])));
         return {
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           systemd: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
             services: services,
           })),
           hardware: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             sensor: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               hddtemp: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 enable: true,
                 drives: nix.thunk(() => nix.app(nix.sel(lib, "lists", "flatten"), nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "catAttrs"), "disks", nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "attrValues"), nix.thunk(() => nix.sel(cfg, "settings")))))))),
               })),

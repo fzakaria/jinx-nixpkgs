@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const samba = nix.arg($, "samba");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(buildPecl, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "smbclient",
       version: "1.1.2",
       sha256: "sha256-Hmp0RWOqxwCBXlca2YsRNahOhA1E5qxnmXSUx4Cpzec=",
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         LIBSMBCLIENT_INCDIR: nix.thunk(() => nix.str`${nix.sel(samba, "dev")}/include/samba-4.0`),
       })),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [samba]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PHP wrapper for libsmbclient",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
         homepage: "https://github.com/eduardok/libsmbclient-php",

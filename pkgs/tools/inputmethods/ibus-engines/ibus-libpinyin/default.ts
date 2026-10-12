@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ibus-libpinyin";
       const version = "1.16.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libpinyin",
           repo: "ibus-libpinyin",
           tag: version,
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-build-with-opencc-1.4.patch",
             url: "https://github.com/libpinyin/ibus-libpinyin/commit/42ad7d20b803c10ce6d8921ccff5c6282bb4818c.patch?full_index=1",
             hash: "sha256-ndAJd+EEyluvjZL1gXM8HbfgEtwQETw0Lu1WAwcou4M=",
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
         libnotify,
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         isIbusEngine: true,
         description: "IBus interface to the libpinyin input method",
         homepage: "https://github.com/libpinyin/ibus-libpinyin",
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

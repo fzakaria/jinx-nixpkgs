@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-fqA0pQxZzHhzLxSABA6sK7Nvgmzi62B8MCm104qxG6g=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "# import from $out\nmv src/python/compreffor/test .\nrm -r src tools\n";
       const pythonImportsCheck = nix.thunk(() => ["compreffor"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/googlefonts/compreffor/releases/tag/v${version}`),
         description: "CFF table subroutinizer for FontTools",
         mainProgram: "compreffor",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

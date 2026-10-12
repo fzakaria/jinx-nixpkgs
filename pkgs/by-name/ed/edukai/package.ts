@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "edukai",
       version: "5.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/edukai-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-B4TwTPX1dsq6rB4YunY6q2yx2OJhNhmn3an/dJwDPJc=",
         })))),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MOE Standard Kai Font, a Chinese font by the Ministry of Education, ROC (Taiwan)",
         longDescription: "The MOE Standard Kai Font is a kai (regular script) font\nprovided by the Ministry of Education, Republic of China (Taiwan).\nIt currently includes 13,084 Chinese characters.\n",
         homepage: "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/edukai.pdf",

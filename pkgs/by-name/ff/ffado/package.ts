@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.4.9";
       const outputs = nix.thunk(() => ["out", "bin", "dev"]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.ffado.org/files/libffado-${version}.tgz`),
           hash: "sha256-xELFL60Ryv1VE7tOhGyFHxAchIT4karFRe0ZDo/U0Q8=",
         }))));
@@ -83,14 +83,14 @@ substituteInPlace support/tools/SConscript --replace-fail \\
         libxmlxx3,
         python,
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isGnu"))), nix.thunk(() => [argp_standalone]))));
-      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isGnu"))), nix.thunk(() => ({ __proto__: pos$2, NIX_LDFLAGS: "-largp" }))));
+      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isGnu"))), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-largp" }))));
       const enableParallelBuilding = true;
       const dontWrapQtApps = true;
       const strictDeps = true;
       const doInstallCheck = true;
       const preFixup = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withMixer, "wrapQtApp \"$bin/bin/ffado-mixer\"\n"));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://www.ffado.org",
         description: "FireWire audio drivers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -101,7 +101,7 @@ substituteInPlace support/tools/SConscript --replace-fail \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         outputs,

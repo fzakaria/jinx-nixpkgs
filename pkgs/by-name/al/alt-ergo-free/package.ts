@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const ocamlPackages = nix.arg($, "ocamlPackages");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(ocamlPackages, "buildDunePackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "alt-ergo-free",
       version: "2.4.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/OCamlPro/alt-ergo/releases/download/v${nix.sel(finalAttrs, "version")}-free/alt-ergo-${nix.sel(finalAttrs, "version")}-free.tar.gz`),
           hash: "sha256-ksVP9HH9pY+T6Es/wgC9pGd805AGw1e1vgfVlNGCXG8=",
         })))),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "High-performance theorem prover and SMT solver",
         homepage: "https://alt-ergo.ocamlpro.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cecill-c")),

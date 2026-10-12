@@ -20,22 +20,22 @@ export default nix.lambda((args) => (() => {
   const jbigkit = nix.arg($, "jbigkit");
   const zlib = nix.arg($, "zlib");
   const color_profiles = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "splix-color-profiles",
       version: "0-unstable-2007-06-25",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://web.archive.org/web/20170518031609if_/http://splix.ap2c.org/samsung_cms.tar.bz2",
           hash: "sha256-tF2vdzyrp6trZqu6ZnxWvi14rWCsNkjUqakWzSJ1poQ=",
         })))),
       installPhase: "mkdir -p $out/share/cups/profiles/samsung\ncp * $out/share/cups/profiles/samsung/\n",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "splix-svn",
       version: "315",
       src: nix.thunk(() => nix.app(fetchsvn, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: "svn://svn.code.sf.net/p/splix/code/splix",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-tEsxElTEGzVBCiqicJT1tytJXHHvRcHrUKyMbzupi5s=",
@@ -52,7 +52,7 @@ substituteInPlace src/pstoqpdl.cpp \\
       ]),
       buildInputs: nix.thunk(() => [cups, zlib, jbigkit]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "CUPS drivers for SPL (Samsung Printer Language) printers",
         homepage: "https://web.archive.org/web/20220729010458/http://splix.ap2c.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

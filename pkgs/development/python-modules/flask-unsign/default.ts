@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Paradoxis",
           repo: "Flask-Unsign",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["flask_unsign"]);
       const enabledTestPaths = nix.thunk(() => ["tests/flask_unsign.py"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command line tool to fetch, decode, brute-force and craft session cookies of Flask applications",
         homepage: "https://github.com/Paradoxis/Flask-Unsign",
         changelog: nix.thunk(() => nix.str`https://github.com/Paradoxis/Flask-Unsign/releases/tag/${nix.sel(src, "tag")}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "flask-unsign",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

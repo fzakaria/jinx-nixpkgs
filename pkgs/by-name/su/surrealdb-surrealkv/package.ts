@@ -9,6 +9,6 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const _surrealdbPackage = nix.arg($, "_surrealdbPackage");
   const callPackage = nix.arg($, "callPackage");
-  return nix.app(callPackage, _surrealdbPackage, nix.thunk(() => ({ __proto__: pos$1, backend: "surrealkv" })));
+  return nix.app(callPackage, _surrealdbPackage, nix.thunk(() => ({ [nix.POS]: pos$1, backend: "surrealkv" })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

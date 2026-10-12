@@ -58,89 +58,89 @@ fi
 $sudo ${nix.sel(cfg, "package")}/bin/ltmanage keys --api-keys-db-path ${nix.sel(cfg, "dataDir")}/db/api_keys.db "$@"
 `)));
   return {
-    __proto__: pos$39,
+    [nix.POS]: pos$39,
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         libretranslate: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "LibreTranslate service")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "libretranslate", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "libretranslate",
               description: "User account under which libretranslate runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "libretranslate",
               description: "Group account under which libretranslate runs.",
             })))),
           host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               description: "The address the application should listen on.",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "127.0.0.1",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 5000n,
               description: "The the application should listen on.",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/libretranslate",
               example: "/srv/data/libretranslate",
               description: "The data directory.",
             })))),
           threads: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "ints", "positive")))),
               default: null,
               example: 8n,
               description: "Set number of threads.",
             })))),
           enableApiKeys: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               example: true,
               description: "Whether to enable the API keys database.",
             })))),
           disableWebUI: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               example: true,
               description: "Whether to disable the Web UI.",
             })))),
           updateModels: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               example: true,
               description: "Update language models at startup",
             })))),
           domain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "",
               example: "libretranslate.example.com",
               description: "The domain serving your LibreTranslate instance.\nRequired for configure nginx as a reverse proxy.\n",
             })))),
           configureNginx: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Configure nginx as a reverse proxy for LibreTranslate.",
             })))),
           extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -156,7 +156,7 @@ $sudo ${nix.sel(cfg, "package")}/bin/ltmanage keys --api-keys-db-path ${nix.sel(
               })()),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 debug: true,
                 "disable-files-translation": true,
                 "url-prefix": "translate",
@@ -167,38 +167,38 @@ $sudo ${nix.sel(cfg, "package")}/bin/ltmanage keys --api-keys-db-path ${nix.sel(
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$38,
+        [nix.POS]: pos$38,
         environment: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           systemPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableApiKeys")), nix.thunk(() => [ltmanageKeysCli]))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             rules: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "dataDir"), "/var/lib/libretranslate")), nix.thunk(() => [
                 nix.thunk(() => nix.str`d '${nix.sel(cfg, "dataDir")}' 0750 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} - -`),
                 nix.thunk(() => nix.str`z '${nix.sel(cfg, "dataDir")}' 0750 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} - -`),
               ]))),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             libretranslate: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               description: "LibreTranslate service",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 HOME: nix.thunk(() => nix.sel(cfg, "dataDir")),
                 PYTHONUNBUFFERED: "1",
               })),
               serviceConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$21,
+                    [nix.POS]: pos$21,
                     Type: "simple",
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/libretranslate ${nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk(() => ({})), nix.thunk(() => nix.update(nix.sel(cfg, "extraArgs"), {
-                        __proto__: pos$20,
+                        [nix.POS]: pos$20,
                         host: nix.thunk(() => nix.attr(cfg, "host")),
                         port: nix.thunk(() => nix.attr(cfg, "port")),
                         threads: nix.thunk(() => nix.attr(cfg, "threads")),
@@ -238,36 +238,36 @@ $sudo ${nix.sel(cfg, "package")}/bin/ltmanage keys --api-keys-db-path ${nix.sel(
                     SystemCallFilter: nix.thunk(() => ["~@cpu-emulation @debug @keyring @mount @obsolete @privileged @setuid"]),
                   })),
                   nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "dataDir"), "/var/lib/libretranslate")), nix.thunk(() => ({
-                      __proto__: pos$22,
+                      [nix.POS]: pos$22,
                       StateDirectory: "libretranslate",
                       StateDirectoryMode: "0750",
                     })))),
-                  nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "dataDir"), "/var/lib/libretranslate")), nix.thunk(() => ({ __proto__: pos$23, ReadWritePaths: nix.thunk(() => nix.sel(cfg, "dataDir")) })))),
+                  nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "dataDir"), "/var/lib/libretranslate")), nix.thunk(() => ({ [nix.POS]: pos$23, ReadWritePaths: nix.thunk(() => nix.sel(cfg, "dataDir")) })))),
                 ]))),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "configureNginx")), nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               enable: true,
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${nix.sel(cfg, "domain")}`, nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   root: "/var/empty",
                   locations: nix.thunk(() => ({
-                    __proto__: pos$30,
+                    [nix.POS]: pos$30,
                     "/": nix.thunk(() => ({
-                      __proto__: pos$27,
+                      [nix.POS]: pos$27,
                       proxyPass: nix.thunk(() => nix.str`http://127.0.0.1:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}`),
                     })),
                     "= /favicon.ico": nix.thunk(() => ({
-                      __proto__: pos$28,
+                      [nix.POS]: pos$28,
                       alias: nix.thunk(() => nix.str`${nix.sel(cfg, "package", "static-compressed")}/share/libretranslate/static/favicon.ico`),
                     })),
                     "^~ /static/": nix.thunk(() => ({
-                      __proto__: pos$29,
+                      [nix.POS]: pos$29,
                       alias: nix.thunk(() => nix.str`${nix.sel(cfg, "package", "static-compressed")}/share/libretranslate/static/`),
                     })),
                   })),
@@ -276,16 +276,16 @@ $sudo ${nix.sel(cfg, "package")}/bin/ltmanage keys --api-keys-db-path ${nix.sel(
             })))),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           users: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "libretranslate")), nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               libretranslate: nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 isSystemUser: true,
               })),
             })))),
-          groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "libretranslate")), nix.thunk(() => ({ __proto__: pos$36, libretranslate: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "libretranslate")), nix.thunk(() => ({ [nix.POS]: pos$36, libretranslate: nix.thunk(() => ({})) })))),
         })),
       })))),
   };

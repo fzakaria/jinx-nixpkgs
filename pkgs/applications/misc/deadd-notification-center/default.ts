@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "deadd-notification-center";
       const version = "2.1.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "phuhl",
           repo: "linux_notification_center",
           rev: version,
@@ -89,7 +89,7 @@ echo "${systemd_service}" > $out/lib/systemd/user/deadd-notification-center.serv
       const platforms = nix.thunk(() => nix.sel(lib, "platforms", "linux"));
       const mainProgram = "deadd-notification-center";
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         version,
         src,

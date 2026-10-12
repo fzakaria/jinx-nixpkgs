@@ -9,22 +9,22 @@ const pos$4 = nix.positions(here + "/hashes.nix", [["aarch64-darwin", 5, 5], ["a
 const pos$5 = nix.positions(here + "/hashes.nix", [["version", 3, 3], ["hashes", 4, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$5,
+  [nix.POS]: pos$5,
   version: "34.0.1",
   hashes: nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "aarch64-darwin": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       sha256: "003n13yb6mfq49yijgx3y4pzn61zvl19pjjags9dlwff92fq5pfa",
       url: "https://github.com/truffleruby/truffleruby/releases/download/graal-34.0.1/truffleruby-community-34.0.1-macos-aarch64.tar.gz",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       sha256: "0hal66wb02knn8dq03c5wngv8pbk0qzirya4cp2h0fhgl7nmc4cb",
       url: "https://github.com/truffleruby/truffleruby/releases/download/graal-34.0.1/truffleruby-community-34.0.1-linux-aarch64.tar.gz",
     })),
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       sha256: "0h8z016w8351vs0ahm7v2a4kh1axh0sprzvvgkamaxa5dpil0dfp",
       url: "https://github.com/truffleruby/truffleruby/releases/download/graal-34.0.1/truffleruby-community-34.0.1-linux-amd64.tar.gz",
     })),

@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const tailscale = nix.arg($, "tailscale");
   const buildGo127Module = nix.arg($, "buildGo127Module");
   return nix.app(buildGo127Module, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tailscale-gitops-pusher",
       version: nix.thunk(() => nix.attr(tailscale, "version")),
       src: nix.thunk(() => nix.attr(tailscale, "src")),
       vendorHash: nix.thunk(() => nix.attr(tailscale, "vendorHash")),
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         CGO_ENABLED: nix.thunk(() => nix.attr(tailscale, "CGO_ENABLED")),
       })),
       subPackages: nix.thunk(() => ["cmd/gitops-pusher"]),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X tailscale.com/version.shortStamp=${nix.sel(tailscale, "version")}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://tailscale.com",
         description: "Allows users to use a GitOps flow for managing Tailscale ACLs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

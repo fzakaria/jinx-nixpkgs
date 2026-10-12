@@ -99,9 +99,9 @@ const pos$94 = nix.positions(here + "/gemset.nix", [["groups", 552, 5], ["platfo
 const pos$95 = nix.positions(here + "/gemset.nix", [["activesupport", 2, 3], ["addressable", 26, 3], ["base64", 37, 3], ["bigdecimal", 47, 3], ["colorize", 57, 3], ["concurrent-ruby", 67, 3], ["connection_pool", 77, 3], ["domain_name", 87, 3], ["drb", 97, 3], ["ejson", 107, 3], ["faraday", 117, 3], ["faraday-net_http", 132, 3], ["ffi", 143, 3], ["ffi-compiler", 153, 3], ["google-cloud-env", 167, 3], ["google-logging-utils", 181, 3], ["googleauth", 191, 3], ["http", 210, 3], ["http-accept", 226, 3], ["http-cookie", 236, 3], ["http-form_data", 247, 3], ["i18n", 257, 3], ["json", 268, 3], ["jsonpath", 278, 3], ["jwt", 289, 3], ["krane", 300, 3], ["kubeclient", 322, 3], ["llhttp-ffi", 338, 3], ["logger", 352, 3], ["mime-types", 362, 3], ["mime-types-data", 376, 3], ["minitest", 386, 3], ["multi_json", 396, 3], ["net-http", 406, 3], ["netrc", 417, 3], ["os", 427, 3], ["ostruct", 437, 3], ["public_suffix", 447, 3], ["rake", 457, 3], ["recursive-open-struct", 467, 3], ["rest-client", 478, 3], ["securerandom", 494, 3], ["signet", 504, 3], ["statsd-instrument", 520, 3], ["thor", 530, 3], ["tzinfo", 540, 3], ["uri", 551, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$95,
+  [nix.POS]: pos$95,
   activesupport: nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     dependencies: nix.thunk(() => [
       "base64",
       "bigdecimal",
@@ -119,7 +119,7 @@ export default nix.thunk(() => ({
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "02h73s0cimsfx81vgkaw1jx4cnhp3gs6qslk2qmbqyxy4l3z9bfl",
       type: "gem",
@@ -127,12 +127,12 @@ export default nix.thunk(() => ({
     version: "8.1.0",
   })),
   addressable: nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     dependencies: nix.thunk(() => ["public_suffix"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0cl2qpvwiffym62z991ynks7imsm87qmgxf0yfsmlwzkgi9qcaa6",
       type: "gem",
@@ -140,11 +140,11 @@ export default nix.thunk(() => ({
     version: "2.8.7",
   })),
   base64: nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0yx9yn47a8lkfcjmigk79fykxvr80r4m1i35q82sxzynpbm7lcr7",
       type: "gem",
@@ -152,11 +152,11 @@ export default nix.thunk(() => ({
     version: "0.3.0",
   })),
   bigdecimal: nix.thunk(() => ({
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0612spks81fvpv2zrrv3371lbs6mwd7w6g5zafglyk75ici1x87a",
       type: "gem",
@@ -164,11 +164,11 @@ export default nix.thunk(() => ({
     version: "3.3.1",
   })),
   colorize: nix.thunk(() => ({
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "133rqj85n400qk6g3dhf2bmfws34mak1wqihvh3bgy9jhajw580b",
       type: "gem",
@@ -176,11 +176,11 @@ export default nix.thunk(() => ({
     version: "0.8.1",
   })),
   "concurrent-ruby": nix.thunk(() => ({
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1ipbrgvf0pp6zxdk5ascp6i29aybz2bx9wdrlchjmpx6mhvkwfw1",
       type: "gem",
@@ -188,11 +188,11 @@ export default nix.thunk(() => ({
     version: "1.3.5",
   })),
   connection_pool: nix.thunk(() => ({
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "02p7l47gvchbvnbag6kb4x2hg8n28r25ybslyvrr2q214wir5qg9",
       type: "gem",
@@ -200,11 +200,11 @@ export default nix.thunk(() => ({
     version: "2.5.4",
   })),
   domain_name: nix.thunk(() => ({
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0cyr2xm576gqhqicsyqnhanni47408w2pgvrfi8pd13h2li3nsaz",
       type: "gem",
@@ -212,11 +212,11 @@ export default nix.thunk(() => ({
     version: "0.6.20240107",
   })),
   drb: nix.thunk(() => ({
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0wrkl7yiix268s2md1h6wh91311w95ikd8fy8m5gx589npyxc00b",
       type: "gem",
@@ -224,11 +224,11 @@ export default nix.thunk(() => ({
     version: "2.2.3",
   })),
   ejson: nix.thunk(() => ({
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "07ar8rhfinn965danfj6bqqsx0vr9gbl8jxyc0c6r10bcmf97wip",
       type: "gem",
@@ -236,12 +236,12 @@ export default nix.thunk(() => ({
     version: "1.5.3",
   })),
   faraday: nix.thunk(() => ({
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     dependencies: nix.thunk(() => ["faraday-net_http", "json", "logger"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1ka175ci0q9ylpcy651pjj580diplkaskycn4n7jcmbyv7jwz6c6",
       type: "gem",
@@ -249,12 +249,12 @@ export default nix.thunk(() => ({
     version: "2.14.0",
   })),
   "faraday-net_http": nix.thunk(() => ({
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     dependencies: nix.thunk(() => ["net-http"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0fxbckg468dabkkznv48ss8zv14d9cd8mh1rr3m98aw7wzx5fmq9",
       type: "gem",
@@ -262,11 +262,11 @@ export default nix.thunk(() => ({
     version: "3.4.1",
   })),
   ffi: nix.thunk(() => ({
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "19kdyjg3kv7x0ad4xsd4swy5izsbb1vl1rpb6qqcqisr5s23awi9",
       type: "gem",
@@ -274,12 +274,12 @@ export default nix.thunk(() => ({
     version: "1.17.2",
   })),
   "ffi-compiler": nix.thunk(() => ({
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     dependencies: nix.thunk(() => ["ffi", "rake"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1844j58cdg2q6g0rqfwg4rrambnhf059h4yg9rfmrbrcs60kskx9",
       type: "gem",
@@ -287,12 +287,12 @@ export default nix.thunk(() => ({
     version: "1.3.2",
   })),
   "google-cloud-env": nix.thunk(() => ({
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     dependencies: nix.thunk(() => ["base64", "faraday"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1rvqj6n6qhjmjy0lynpmga7ly48s7dk36i6nj4jqrrvvn8gc1ahg",
       type: "gem",
@@ -300,11 +300,11 @@ export default nix.thunk(() => ({
     version: "2.3.1",
   })),
   "google-logging-utils": nix.thunk(() => ({
-    __proto__: pos$32,
+    [nix.POS]: pos$32,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$31,
+      [nix.POS]: pos$31,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0yyzlgy9hx104xhrbl51ana0dl3m5p5989j4lcjsizssxas64m37",
       type: "gem",
@@ -312,7 +312,7 @@ export default nix.thunk(() => ({
     version: "0.2.0",
   })),
   googleauth: nix.thunk(() => ({
-    __proto__: pos$34,
+    [nix.POS]: pos$34,
     dependencies: nix.thunk(() => [
       "faraday",
       "google-cloud-env",
@@ -325,7 +325,7 @@ export default nix.thunk(() => ({
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$33,
+      [nix.POS]: pos$33,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "096bsg1z4yyqxrdmnxdbb45g94dr2fb8hf2av40kcmqd7n4n06fn",
       type: "gem",
@@ -333,12 +333,12 @@ export default nix.thunk(() => ({
     version: "1.15.1",
   })),
   http: nix.thunk(() => ({
-    __proto__: pos$36,
+    [nix.POS]: pos$36,
     dependencies: nix.thunk(() => ["addressable", "http-cookie", "http-form_data", "llhttp-ffi"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$35,
+      [nix.POS]: pos$35,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0z8x4c2bcg05x7ffrjy47cwarfqzlg8kcfxchk5jcfdyx7c04265",
       type: "gem",
@@ -346,11 +346,11 @@ export default nix.thunk(() => ({
     version: "5.3.1",
   })),
   "http-accept": nix.thunk(() => ({
-    __proto__: pos$38,
+    [nix.POS]: pos$38,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$37,
+      [nix.POS]: pos$37,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "09m1facypsdjynfwrcv19xcb1mqg8z6kk31g8r33pfxzh838c9n6",
       type: "gem",
@@ -358,12 +358,12 @@ export default nix.thunk(() => ({
     version: "1.7.0",
   })),
   "http-cookie": nix.thunk(() => ({
-    __proto__: pos$40,
+    [nix.POS]: pos$40,
     dependencies: nix.thunk(() => ["domain_name"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$39,
+      [nix.POS]: pos$39,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "06dvmngd4hwrr6k774i1h6c50h2l8nww9f1id0wvrvi72l6yd99q",
       type: "gem",
@@ -371,11 +371,11 @@ export default nix.thunk(() => ({
     version: "1.1.0",
   })),
   "http-form_data": nix.thunk(() => ({
-    __proto__: pos$42,
+    [nix.POS]: pos$42,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$41,
+      [nix.POS]: pos$41,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1wx591jdhy84901pklh1n9sgh74gnvq1qyqxwchni1yrc49ynknc",
       type: "gem",
@@ -383,12 +383,12 @@ export default nix.thunk(() => ({
     version: "2.3.0",
   })),
   i18n: nix.thunk(() => ({
-    __proto__: pos$44,
+    [nix.POS]: pos$44,
     dependencies: nix.thunk(() => ["concurrent-ruby"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$43,
+      [nix.POS]: pos$43,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "03sx3ahz1v5kbqjwxj48msw3maplpp2iyzs22l4jrzrqh4zmgfnf",
       type: "gem",
@@ -396,11 +396,11 @@ export default nix.thunk(() => ({
     version: "1.14.7",
   })),
   json: nix.thunk(() => ({
-    __proto__: pos$46,
+    [nix.POS]: pos$46,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$45,
+      [nix.POS]: pos$45,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "128bp3mihh175l9wm7hgg9sdisp6hd3kf36fw01iksqnq7kv5hdi",
       type: "gem",
@@ -408,12 +408,12 @@ export default nix.thunk(() => ({
     version: "2.15.1",
   })),
   jsonpath: nix.thunk(() => ({
-    __proto__: pos$48,
+    [nix.POS]: pos$48,
     dependencies: nix.thunk(() => ["multi_json"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$47,
+      [nix.POS]: pos$47,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1ghxjcs9rss0fd43yqnc3ab6fhnm4qrkvv34p0xcjb9s35kh9xr9",
       type: "gem",
@@ -421,12 +421,12 @@ export default nix.thunk(() => ({
     version: "1.1.5",
   })),
   jwt: nix.thunk(() => ({
-    __proto__: pos$50,
+    [nix.POS]: pos$50,
     dependencies: nix.thunk(() => ["base64"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$49,
+      [nix.POS]: pos$49,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0dfm4bhl4fzn076igh0bmh2v1vphcrxdv6ldc46hdd3bkbqr2sdg",
       type: "gem",
@@ -434,7 +434,7 @@ export default nix.thunk(() => ({
     version: "3.1.2",
   })),
   krane: nix.thunk(() => ({
-    __proto__: pos$52,
+    [nix.POS]: pos$52,
     dependencies: nix.thunk(() => [
       "activesupport",
       "colorize",
@@ -450,7 +450,7 @@ export default nix.thunk(() => ({
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$51,
+      [nix.POS]: pos$51,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0mgim57lx8dqdygzzy4qlmq2rmrh0hf8cz1ihx1zqm5477ywg4wj",
       type: "gem",
@@ -458,12 +458,12 @@ export default nix.thunk(() => ({
     version: "3.8.1",
   })),
   kubeclient: nix.thunk(() => ({
-    __proto__: pos$54,
+    [nix.POS]: pos$54,
     dependencies: nix.thunk(() => ["http", "jsonpath", "recursive-open-struct", "rest-client"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$53,
+      [nix.POS]: pos$53,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "14q6vsfrlmz1ja3p4qh58a5m2ljd24hmn33750rr7qb18jqndxji",
       type: "gem",
@@ -471,12 +471,12 @@ export default nix.thunk(() => ({
     version: "4.13.0",
   })),
   "llhttp-ffi": nix.thunk(() => ({
-    __proto__: pos$56,
+    [nix.POS]: pos$56,
     dependencies: nix.thunk(() => ["ffi-compiler", "rake"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$55,
+      [nix.POS]: pos$55,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1g57iw0l3y7x50132x6a1jyssxa6pw7srh69g0d6j7ri37yaf9cs",
       type: "gem",
@@ -484,11 +484,11 @@ export default nix.thunk(() => ({
     version: "0.5.1",
   })),
   logger: nix.thunk(() => ({
-    __proto__: pos$58,
+    [nix.POS]: pos$58,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$57,
+      [nix.POS]: pos$57,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "00q2zznygpbls8asz5knjvvj2brr3ghmqxgr83xnrdj4rk3xwvhr",
       type: "gem",
@@ -496,12 +496,12 @@ export default nix.thunk(() => ({
     version: "1.7.0",
   })),
   "mime-types": nix.thunk(() => ({
-    __proto__: pos$60,
+    [nix.POS]: pos$60,
     dependencies: nix.thunk(() => ["logger", "mime-types-data"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$59,
+      [nix.POS]: pos$59,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0mjyxl7c0xzyqdqa8r45hqg7jcw2prp3hkp39mdf223g4hfgdsyw",
       type: "gem",
@@ -509,11 +509,11 @@ export default nix.thunk(() => ({
     version: "3.7.0",
   })),
   "mime-types-data": nix.thunk(() => ({
-    __proto__: pos$62,
+    [nix.POS]: pos$62,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$61,
+      [nix.POS]: pos$61,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0a27k4jcrx7pvb0p59fn1frh14iy087c2aygrdkmgwsrbshvqxpj",
       type: "gem",
@@ -521,11 +521,11 @@ export default nix.thunk(() => ({
     version: "3.2025.0924",
   })),
   minitest: nix.thunk(() => ({
-    __proto__: pos$64,
+    [nix.POS]: pos$64,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$63,
+      [nix.POS]: pos$63,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0c1c9lr7h0bnf48xj5sylg2cs2awrb0hfxwimiz4yfl6kz87m0gm",
       type: "gem",
@@ -533,11 +533,11 @@ export default nix.thunk(() => ({
     version: "5.26.0",
   })),
   multi_json: nix.thunk(() => ({
-    __proto__: pos$66,
+    [nix.POS]: pos$66,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$65,
+      [nix.POS]: pos$65,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "06sabsvnw0x1aqdcswc6bqrqz6705548bfd8z22jxgxfjrn1yn3n",
       type: "gem",
@@ -545,12 +545,12 @@ export default nix.thunk(() => ({
     version: "1.17.0",
   })),
   "net-http": nix.thunk(() => ({
-    __proto__: pos$68,
+    [nix.POS]: pos$68,
     dependencies: nix.thunk(() => ["uri"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$67,
+      [nix.POS]: pos$67,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1ysrwaabhf0sn24jrp0nnp51cdv0jf688mh5i6fsz63q2c6b48cn",
       type: "gem",
@@ -558,11 +558,11 @@ export default nix.thunk(() => ({
     version: "0.6.0",
   })),
   netrc: nix.thunk(() => ({
-    __proto__: pos$70,
+    [nix.POS]: pos$70,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$69,
+      [nix.POS]: pos$69,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0gzfmcywp1da8nzfqsql2zqi648mfnx6qwkig3cv36n9m0yy676y",
       type: "gem",
@@ -570,11 +570,11 @@ export default nix.thunk(() => ({
     version: "0.11.0",
   })),
   os: nix.thunk(() => ({
-    __proto__: pos$72,
+    [nix.POS]: pos$72,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$71,
+      [nix.POS]: pos$71,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0gwd20smyhxbm687vdikfh1gpi96h8qb1x28s2pdcysf6dm6v0ap",
       type: "gem",
@@ -582,11 +582,11 @@ export default nix.thunk(() => ({
     version: "1.1.4",
   })),
   ostruct: nix.thunk(() => ({
-    __proto__: pos$74,
+    [nix.POS]: pos$74,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$73,
+      [nix.POS]: pos$73,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "04nrir9wdpc4izqwqbysxyly8y7hsfr4fsv69rw91lfi9d5fv8lm",
       type: "gem",
@@ -594,11 +594,11 @@ export default nix.thunk(() => ({
     version: "0.6.3",
   })),
   public_suffix: nix.thunk(() => ({
-    __proto__: pos$76,
+    [nix.POS]: pos$76,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$75,
+      [nix.POS]: pos$75,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1543ap9w3ydhx39ljcd675cdz9cr948x9mp00ab8qvq6118wv9xz",
       type: "gem",
@@ -606,11 +606,11 @@ export default nix.thunk(() => ({
     version: "6.0.2",
   })),
   rake: nix.thunk(() => ({
-    __proto__: pos$78,
+    [nix.POS]: pos$78,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$77,
+      [nix.POS]: pos$77,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "14s4jdcs1a4saam9qmzbsa2bsh85rj9zfxny5z315x3gg0nhkxcn",
       type: "gem",
@@ -618,12 +618,12 @@ export default nix.thunk(() => ({
     version: "13.3.0",
   })),
   "recursive-open-struct": nix.thunk(() => ({
-    __proto__: pos$80,
+    [nix.POS]: pos$80,
     dependencies: nix.thunk(() => ["ostruct"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$79,
+      [nix.POS]: pos$79,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0847mn846fddfmm6vpdpz4ds9azbbcdxnnjw4zs31fqpi2f4l6ql",
       type: "gem",
@@ -631,12 +631,12 @@ export default nix.thunk(() => ({
     version: "1.3.1",
   })),
   "rest-client": nix.thunk(() => ({
-    __proto__: pos$82,
+    [nix.POS]: pos$82,
     dependencies: nix.thunk(() => ["http-accept", "http-cookie", "mime-types", "netrc"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$81,
+      [nix.POS]: pos$81,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1qs74yzl58agzx9dgjhcpgmzfn61fqkk33k1js2y5yhlvc5l19im",
       type: "gem",
@@ -644,11 +644,11 @@ export default nix.thunk(() => ({
     version: "2.1.0",
   })),
   securerandom: nix.thunk(() => ({
-    __proto__: pos$84,
+    [nix.POS]: pos$84,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$83,
+      [nix.POS]: pos$83,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1cd0iriqfsf1z91qg271sm88xjnfd92b832z49p1nd542ka96lfc",
       type: "gem",
@@ -656,12 +656,12 @@ export default nix.thunk(() => ({
     version: "0.4.1",
   })),
   signet: nix.thunk(() => ({
-    __proto__: pos$86,
+    [nix.POS]: pos$86,
     dependencies: nix.thunk(() => ["addressable", "faraday", "jwt", "multi_json"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$85,
+      [nix.POS]: pos$85,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0nydm087m5c3j85gvzvz30w1qb9pl2lzpznw746jha29ybxyj5yn",
       type: "gem",
@@ -669,11 +669,11 @@ export default nix.thunk(() => ({
     version: "0.21.0",
   })),
   "statsd-instrument": nix.thunk(() => ({
-    __proto__: pos$88,
+    [nix.POS]: pos$88,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$87,
+      [nix.POS]: pos$87,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1kd75axvmyq866nan18n9ys5bd140h0mka2kz9s5m86r8m42jbhj",
       type: "gem",
@@ -681,11 +681,11 @@ export default nix.thunk(() => ({
     version: "3.8.0",
   })),
   thor: nix.thunk(() => ({
-    __proto__: pos$90,
+    [nix.POS]: pos$90,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$89,
+      [nix.POS]: pos$89,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0gcarlmpfbmqnjvwfz44gdjhcmm634di7plcx2zdgwdhrhifhqw7",
       type: "gem",
@@ -693,12 +693,12 @@ export default nix.thunk(() => ({
     version: "1.4.0",
   })),
   tzinfo: nix.thunk(() => ({
-    __proto__: pos$92,
+    [nix.POS]: pos$92,
     dependencies: nix.thunk(() => ["concurrent-ruby"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$91,
+      [nix.POS]: pos$91,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "16w2g84dzaf3z13gxyzlzbf748kylk5bdgg3n1ipvkvvqy685bwd",
       type: "gem",
@@ -706,11 +706,11 @@ export default nix.thunk(() => ({
     version: "2.0.6",
   })),
   uri: nix.thunk(() => ({
-    __proto__: pos$94,
+    [nix.POS]: pos$94,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$93,
+      [nix.POS]: pos$93,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0jrl2vkdvc5aq8q3qvjmmrgjxfm784w8h7fal19qg7q7gh9msj1l",
       type: "gem",

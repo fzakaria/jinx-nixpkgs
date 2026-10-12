@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const pname = "foundationdb";
       const version = "7.3.68";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "apple",
           repo: "foundationdb",
           tag: version,
@@ -53,12 +53,12 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./don-t-use-static-boost-libs.patch"),
         nix.path(here, "./fix-toml11-4.0.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/apple/foundationdb/commit/c35a23d3f6b65698c3b888d76de2d93a725bff9c.patch",
             hash: "sha256-bneRoZvCzJp0Hp/G0SzAyUyuDrWErSpzv+ickZQJR5w=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/apple/foundationdb/commit/8d04c97a74c6b83dd8aa6ff5af67587044c2a572.patch",
             hash: "sha256-ZLIcmcfirm1+96DtTIr53HfM5z38uTLZrRNHAmZL6rc=",
           })))),
@@ -80,7 +80,7 @@ substituteInPlace cmake/CompileBoost.cmake \\
       const buildInputs = nix.thunk(() => [boost, jemalloc, msgpack_cxx, openssl, toml11, zlib]);
       const checkInputs = nix.thunk(() => [doctest]);
       const nativeBuildInputs = nix.thunk(() => nix.concat([cmake, mono, ninja, openjdk, pkg_config, python3], nix.app(nix.sel(lib, "optional"), isDarwin, llvm)));
-      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), isDarwin, nix.thunk(() => ({ __proto__: pos$4, NIX_CFLAGS_COMPILE: "-DFMT_CONSTEVAL=" }))));
+      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), isDarwin, nix.thunk(() => ({ [nix.POS]: pos$4, NIX_CFLAGS_COMPILE: "-DFMT_CONSTEVAL=" }))));
       const separateDebugInfo = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux"));
       const cmakeFlags = nix.thunk(() => nix.concat([
         "-DFDB_RELEASE=TRUE",
@@ -123,7 +123,7 @@ mv lib/fdb-java-*.jar $lib/share/java/fdb-java.jar
 `);
       const outputs = nix.thunk(() => ["out", "dev", "lib", "pythonsrc"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Open source, distributed, transactional key-value store",
         homepage: "https://www.foundationdb.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -138,7 +138,7 @@ mv lib/fdb-java-*.jar $lib/share/java/fdb-java.jar
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

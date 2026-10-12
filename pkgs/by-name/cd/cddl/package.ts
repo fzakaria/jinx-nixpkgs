@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cddl",
       gemfile: nix.path(here, "./Gemfile"),
       lockfile: nix.path(here, "./Gemfile.lock"),
       gemset: nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.builtins.import(nix.path(here, "./gemset.nix"))), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           cddl: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             dontBuild: false,
             postPatch: "sed -i 's\\#!/usr/bin/env RUBY_THREAD_VM_STACK_SIZE=5000000\\#!/usr/bin/env\\' bin/cddl\n",
           })),
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper]),
       postBuild: "wrapProgram $out/bin/cddl \\\n  --set RUBY_THREAD_VM_STACK_SIZE 5000000\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "cddl")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Parser, generator, and validator for CDDL",
         homepage: "https://rubygems.org/gems/cddl",
         license: nix.thunk(() => (() => {

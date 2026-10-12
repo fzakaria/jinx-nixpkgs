@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gnubg",
       version: "1.08.003",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/gnubg/gnubg-release-${nix.sel(finalAttrs, "version")}-sources.tar.gz`),
           hash: "sha256-b32WmxPP/3hvupD/jMXl1WS5f08Kppr+Tzg48YxEWXk=",
         })))),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--with-gtk3", "--with--board3d"]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             desktopName: "GNU Backgammon",
             name: "gnubg",
             genericName: "Backgammon",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "World class backgammon application",
         homepage: "https://www.gnu.org/software/gnubg/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

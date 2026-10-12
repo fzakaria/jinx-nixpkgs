@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const trellis = nix.arg($, "trellis");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "silice",
       version: "0-unstable-2026-06-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sylefeb",
           repo: "silice",
           rev: "620487d6b83035dd98299734c8c8fccf8f636005",
@@ -51,11 +51,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs antlr/antlr.sh\n# use nixpkgs version\nrm -r python/pybind11\n",
       installPhase: "runHook preInstall\n\nmake install\nmkdir -p $out\ncp -ar ../{bin,frameworks,lib} $out/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => (() => {
           const silice = nix.thunk(() => nix.sel(finalAttrs, "finalPackage"));
           const testProject = (project) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: nix.thunk(() => nix.str`${nix.sel(silice, "name")}-test-${project}`),
               nativeBuildInputs: nix.thunk(() => [silice, yosys, nextpnr, verilator, dfu_util, icestorm, trellis]),
               src: nix.thunk(() => nix.str`${nix.sel(silice, "src")}/projects`),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
               installPhase: "mkdir $out\nfor target in \"${targets[@]}\" ; do\n  [[ $target != Makefile* ]] || continue\ndone\n",
             })));
           return {
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             audio_sdcard_streamer: nix.thunk(() => nix.app(testProject, "audio_sdcard_streamer")),
             bram_interface: nix.thunk(() => nix.app(testProject, "bram_interface")),
             blinky: nix.thunk(() => nix.app(testProject, "blinky")),
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Open source language that simplifies prototyping and writing algorithms on FPGA architectures",
         homepage: "https://github.com/sylefeb/Silice",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jwasm",
       version: "2.20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Baron-von-Riedesel",
           repo: "JWasm",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ substituteInPlace Makefile \\
 `),
       postInstall: "install -Dpm644 $src/Html/License.html \\\n                $src/Html/Manual.html \\\n                $src/Html/Readme.html \\\n                -t $doc/share/doc/jwasm/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/Baron-von-Riedesel/JWasm/",
         description: "MASM-compatible x86 assembler",
         changelog: nix.thunk(() => nix.str`https://github.com/Baron-von-Riedesel/JWasm/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

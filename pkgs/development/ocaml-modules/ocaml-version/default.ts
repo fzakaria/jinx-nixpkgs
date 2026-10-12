@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ocaml-version",
       version: "4.1.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ocurrent/ocaml-version/releases/download/v${nix.sel(finalAttrs, "version")}/ocaml-version-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-Iiik1STIuLd1639h99JE64H/2sowC3jCnY/drKWkPbI=",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       minimalOCamlVersion: "4.07",
       duneVersion: "3",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Manipulate, parse and generate OCaml compiler version strings",
         homepage: "https://github.com/ocurrent/ocaml-version",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

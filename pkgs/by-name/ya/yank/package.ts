@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const xsel = nix.arg($, "xsel");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "yank",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mptre",
           repo: "yank",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`YANKCMD=${xsel}/bin/xsel`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/mptre/yank",
         description: "Yank terminal output to clipboard",
         longDescription: "Read input from stdin and display a selection interface that allows a\nfield to be selected and copied to the clipboard. Fields are determined\nby splitting the input on a delimiter sequence, optionally specified\nusing the -d option. New line, carriage return and tab characters are\nalways treated as delimiters.\n",

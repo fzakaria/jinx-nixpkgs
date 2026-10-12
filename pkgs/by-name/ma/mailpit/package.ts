@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.thunk(() => nix.attr(source, "version"));
   const vendorHash = nix.thunk(() => nix.attr(source, "vendorHash"));
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "axllent",
       repo: "mailpit",
       rev: nix.thunk(() => nix.str`v${version}`),
@@ -43,16 +43,16 @@ export default nix.lambda((args) => (() => {
     }))));
   const libtool$ = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.force(cctools) : nix.force(libtool)));
   const ui = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mailpit-ui",
       src: src,
       version: version,
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: src,
           hash: nix.thunk(() => nix.sel(source, "npmDepsHash")),
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-std=c++20" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-std=c++20" })),
       nativeBuildInputs: nix.thunk(() => [
         nodejs,
         python3,
@@ -63,12 +63,12 @@ export default nix.lambda((args) => (() => {
       installPhase: "mv server/ui/dist $out\n",
     }))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: "mailpit",
       src: src,
       version: version,
       vendorHash: vendorHash,
-      env: nix.thunk(() => ({ __proto__: pos$5, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$5, CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => [
         "-s",
         nix.thunk(() => nix.str`-X github.com/axllent/mailpit/config.Version=${version}`),
@@ -76,17 +76,17 @@ export default nix.lambda((args) => (() => {
       preBuild: nix.thunk(() => nix.str`cp -r ${nix.sel(finalAttrs, "passthru", "ui")} server/ui/dist
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         tests: nix.thunk(() => nix.update({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               package: mailpit,
               command: "mailpit version --no-release-check",
             })))),
-        }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ({ __proto__: pos$8, mailpit: nix.thunk(() => nix.attr(nixosTests, "mailpit")) }))))),
+        }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ({ [nix.POS]: pos$8, mailpit: nix.thunk(() => nix.attr(nixosTests, "mailpit")) }))))),
         updateScript: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           supportedFeatures: nix.thunk(() => ["commit"]),
           command: nix.path(here, "./update.sh"),
         })),
@@ -94,7 +94,7 @@ export default nix.lambda((args) => (() => {
       })),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         changelog: nix.thunk(() => nix.str`https://github.com/axllent/mailpit/releases/tag/v${version}`),
         description: "Email and SMTP testing tool with API for developers",
         downloadPage: "https://github.com/axllent/mailpit",

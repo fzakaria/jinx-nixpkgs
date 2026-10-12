@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const tomli = nix.arg($, "tomli");
   const websocket_client = nix.arg($, "websocket-client");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "obsws-python",
       version: "1.8.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aatikturk",
           repo: "obsws-python",
           rev: "f70583d7ca250c1f3a0df768d3cfd41663a6023b",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [tomli, websocket_client]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python SDK for OBS Studio WebSocket v5.0",
         homepage: "https://github.com/aatikturk/obsws-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

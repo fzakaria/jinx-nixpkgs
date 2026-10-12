@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const yarl = nix.arg($, "yarl");
   const zeep = nix.arg($, "zeep");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "onvif-zeep-async",
       version: "4.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openvideolibs",
           repo: "python-onvif-zeep-async",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["onvif"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ONVIF Client Implementation in Python",
         homepage: "https://github.com/hunterjm/python-onvif-zeep-async",
         changelog: nix.thunk(() => nix.str`https://github.com/openvideolibs/python-onvif-zeep-async/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

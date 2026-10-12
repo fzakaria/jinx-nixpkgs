@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const tabulate = nix.arg($, "tabulate");
   const tokenizers = nix.arg($, "tokenizers");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "youtokentome",
       version: "1.0.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "VKCOM",
           repo: "YouTokenToMe",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["youtokentome"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unsupervised text tokenizer",
         homepage: "https://github.com/VKCOM/YouTokenToMe",
         changelog: nix.thunk(() => nix.str`https://github.com/VKCOM/YouTokenToMe/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

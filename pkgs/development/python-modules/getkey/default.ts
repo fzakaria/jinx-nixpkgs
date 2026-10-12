@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.5";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "0ng0ihfagh9g8hral0bq5nhjlp3csqghyv3z8b7ylkdkqc1cgiv8",
@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
       const postPatch = "sed -e '/python-coveralls/d' -e '/pytest-cov/d' -i setup.py\nrm setup.cfg\n";
       const nativeCheckInputs = nix.thunk(() => [flake8, pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Read single characters and key-strokes",
         homepage: "https://github.com/kcsaff/getkey",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "symphorien"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

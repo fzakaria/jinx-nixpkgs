@@ -33,13 +33,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pythonAtLeast = nix.arg($, "pythonAtLeast");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "botorch",
       version: "0.18.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "meta-pytorch",
           repo: "botorch",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "scipy-1.18.patch",
             url: "https://github.com/meta-pytorch/botorch/commit/611f14acc8c1b2f30ce2ae058568d90f96bbb2ec.patch",
             hash: "sha256-PiXq9GmPaWQXh+emY7aNI53Y+ufl8K5uOFa8GD0clP8=",
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         torch,
         typing_extensions,
       ]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$3, pymoo: nix.thunk(() => [pymoo]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$3, pymoo: nix.thunk(() => [pymoo]) })),
       nativeCheckInputs: nix.thunk(() => [jax, numpyro, pytestCheckHook]),
       disabledTestPaths: nix.thunk(() => ["test_community/models/test_prior_fitted_network.py"]),
       disabledTests: nix.thunk(() => nix.concat([
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["botorch"]),
       requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/meta-pytorch/botorch/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Bayesian Optimization in PyTorch",
         homepage: "https://botorch.org",

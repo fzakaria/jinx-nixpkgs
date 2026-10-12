@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const less = nix.arg($, "less");
   const withGui = nix.argOr($, "withGui", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mrtrix",
       version: "3.0.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MRtrix3",
           repo: "mrtrix3",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -69,7 +69,7 @@ runHook postConfigure
 done
 `)),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))),
         homepage: "https://github.com/MRtrix3/mrtrix3",
         description: "Suite of tools for diffusion imaging",

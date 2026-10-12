@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const version = "1.6.4";
   const pname = "gsender";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/Sienci-Labs/gsender/releases/download/v${version}/gSender-${version}-Linux-Intel-64Bit.AppImage`),
       hash: "sha256-N8jAy5+2UPC7trtUF7kVztDA3aiFyHEAcyfcCobIRe4=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => (() => {
       const pname_1 = pname;
       const version_1 = version;
@@ -32,7 +32,7 @@ substituteInPlace $out/share/applications/gsender.desktop \\
   --replace-fail 'Exec=AppRun' 'Exec=${nix.sel(meta, "mainProgram")}'
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "G-code sender for grbl and grblHAL-based CNCs",
         homepage: "https://sienci.com/gsender/",
         downloadPage: "https://resources.sienci.com/view/gs-installation/",
@@ -50,7 +50,7 @@ substituteInPlace $out/share/applications/gsender.desktop \\
         mainProgram: "gsender",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: pname_1,
         version: version_1,
         src: src_1,

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const breakpad = nix.arg($, "breakpad");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sentry-native",
       version: "0.16.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "getsentry",
           repo: "sentry-native",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       cmakeBuildType: "RelWithDebInfo",
       cmakeFlags: nix.thunk(() => ["-DSENTRY_BREAKPAD_SYSTEM=On", "-DSENTRY_BACKEND=breakpad"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/getsentry/sentry-native",
         description: "Sentry SDK for C, C++ and native applications",
         changelog: nix.thunk(() => nix.str`https://github.com/getsentry/sentry-native/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

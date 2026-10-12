@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const pname = "listen1";
   const version = "2.33.0";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/listen1/listen1_desktop/releases/download/v${version}/listen1_${version}_linux_x86_64.AppImage`),
       hash: "sha256-RMpusz9bNrHpN23HrncjteiIGkLJgsP7FS2t7zD1Ud0=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: src,
@@ -33,7 +33,7 @@ install -m 444 -D ${appimageContents}/usr/share/icons/hicolor/512x512/apps/liste
   $out/share/icons/hicolor/512x512/apps/listen1.png
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "One for all free music in China",
         homepage: "http://listen1.github.io/listen1/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

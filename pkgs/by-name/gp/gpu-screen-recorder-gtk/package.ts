@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const wrapperDir = nix.argOr($, "wrapperDir", () => "/run/wrappers/bin");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gpu-screen-recorder-gtk",
       version: "5.8.1",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://repo.dec05eba.com/gpu-screen-recorder-gtk",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-LOaHYk7c8USZz5p17YdzcgGJ+FZkEt1qn15VggnQyJQ=",
@@ -55,18 +55,18 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       strictDeps: true,
       preFixup: nix.thunk(() => (() => {
-        const gpu_screen_recorder_wrapped = nix.thunk(() => nix.app(nix.sel(gpu_screen_recorder, "override"), nix.thunk(() => ({ __proto__: pos$2, wrapperDir: wrapperDir }))));
+        const gpu_screen_recorder_wrapped = nix.thunk(() => nix.app(nix.sel(gpu_screen_recorder, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, wrapperDir: wrapperDir }))));
         return nix.str`gappsWrapperArgs+=(--prefix PATH : ${wrapperDir})
 gappsWrapperArgs+=(--suffix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gpu_screen_recorder_wrapped]))})
 gappsWrapperArgs+=(--prefix LD_LIBRARY_PATH : ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libglvnd, nix.thunk(() => nix.sel(addDriverRunpath, "driverLink"))]))})
 `;
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: "https://git.dec05eba.com/gpu-screen-recorder-gtk/tree/com.dec05eba.gpu_screen_recorder.appdata.xml#n82",
         description: "GTK frontend for gpu-screen-recorder",
         homepage: "https://git.dec05eba.com/gpu-screen-recorder-gtk/about/",

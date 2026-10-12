@@ -15,26 +15,26 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "perseus",
       version: "4-beta",
       nativeBuildInputs: nix.thunk(() => [unzip]),
       hardeningDisable: nix.thunk(() => ["stackprotector"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://people.maths.ox.ac.uk/nanda/source/perseus_4_beta.zip",
           sha256: "sha256-cnkJEIC4tu+Ni7z0cKdjmLdS8QLe8iKpdA8uha2MeSU=",
         })))),
       sourceRoot: ".",
       patches: nix.thunk(() => [nix.path(here, "./fix-gcc15.patch")]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-std=c++14"]))),
       })),
       buildPhase: "g++ Pers.cpp -O3 -fpermissive -o perseus\n",
       installPhase: "mkdir -p $out/bin\ncp perseus $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Persistent Homology Software",
         mainProgram: "perseus",
         longDescription: "Persistent homology - or simply, persistence - is an algebraic\ntopological invariant of a filtered cell complex. Perseus\ncomputes this invariant for a wide class of filtrations built\naround datasets arising from point samples, images, distance\nmatrices and so forth.\n",

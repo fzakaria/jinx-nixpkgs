@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zsh-zhooks",
       version: "0-unstable-2021-10-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "agkozak",
           repo: "zhooks",
           rev: "e6616b4a2786b45a56a2f591b79439836e678d22",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\ninstall -m755 -D zhooks.plugin.zsh --target-directory $out/share/zsh/zhooks\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for displaying the code for all Zsh hook functions",
         homepage: "https://github.com/agkozak/zhooks",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

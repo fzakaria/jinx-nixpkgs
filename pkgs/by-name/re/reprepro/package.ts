@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const gcc14Stdenv = nix.arg($, "gcc14Stdenv");
   const theStdenv = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.force(gcc14Stdenv) : nix.force(stdenv)));
   return nix.app(nix.sel(theStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "reprepro",
       version: "5.4.8",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "salsa.debian.org",
           owner: "debian",
           repo: "reprepro",
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://salsa.debian.org/debian/reprepro/",
         description: "Debian package repository producer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.20";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "faust-streaming",
           repo: "cChardet",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +39,7 @@ ln -s $out/${nix.sel(python, "sitePackages")}/{faust_,}cchardet-${version}.dist-
       const pythonImportsCheck = nix.thunk(() => ["cchardet"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/faust-streaming/cChardet/blob/${nix.sel(src, "tag")}/CHANGES.rst`),
         description: "High-speed universal character encoding detector",
         mainProgram: "cchardetect",
@@ -51,7 +51,7 @@ ln -s $out/${nix.sel(python, "sitePackages")}/{faust_,}cchardet-${version}.dist-
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const stripJavaArchivesHook = nix.arg($, "stripJavaArchivesHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pakku",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "juraj-hrivnak",
           repo: "Pakku",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       gradleBuildTask: "jvmJar",
       nativeBuildInputs: nix.thunk(() => [gradle, makeWrapper, installShellFiles, stripJavaArchivesHook]),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
@@ -53,9 +53,9 @@ runHook postInstall
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd pakku \\\n  --bash <($out/bin/pakku --generate-completion=bash) \\\n  --fish <($out/bin/pakku --generate-completion=fish) \\\n  --zsh <($out/bin/pakku --generate-completion=zsh)\n")),
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Multiplatform modpack manager for Minecraft: Java Edition",
         longDescription: "With Pakku, you can create modpacks for CurseForge, Modrinth or both simultaneously.\n\nIt's a package manager that significantly simplifies Minecraft modpack development, inspired by package managers like npm and Cargo. In addition to package management itself, it enables support for version control, simplifies collaboration options, and adds support for CI/CD.\n",
         homepage: "https://github.com/juraj-hrivnak/Pakku",

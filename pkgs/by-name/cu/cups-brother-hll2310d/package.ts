@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const arches = nix.thunk(() => ["x86_64", "i686", "armv7l"]);
   const runtimeDeps = nix.thunk(() => [ghostscript, file, gnused, gnugrep, coreutils, which]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cups-brother-hll2310d",
       version: "4.0.0-1",
       strictDeps: true,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [perl]),
       dontUnpack: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.brother.com/pub/com/linux/linux/packages/hll2310dpdrv-${nix.sel(finalAttrs, "version")}.i386.deb`),
           hash: "sha256-g+ny6rTqiBXIPWEUnHqdXdXpRd4V8Ibs3VLmfsx1QbQ=",
         })))),
@@ -72,7 +72,7 @@ ln -s \\
 runHook postInstall
 `)),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.brother.com/",
         description: "Brother HL-L2310D printer driver",
         sourceProvenance: nix.thunk(() => (() => {

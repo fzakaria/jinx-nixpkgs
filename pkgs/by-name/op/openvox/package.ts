@@ -18,19 +18,19 @@ export default nix.lambda((args) => (() => {
   const openvox = nix.arg($, "openvox");
   const ruby_3_4 = nix.arg($, "ruby_3_4");
   const testers = nix.arg($, "testers");
-  return nix.app(nix.sel(bundlerApp, "override"), nix.thunk(() => ({ __proto__: pos$1, ruby: ruby_3_4 })), nix.thunk(() => ({
-      __proto__: pos$6,
+  return nix.app(nix.sel(bundlerApp, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, ruby: ruby_3_4 })), nix.thunk(() => ({
+      [nix.POS]: pos$6,
       pname: "openvox",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["puppet"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")), "openvox"));
               return {
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: openvox,
               command: "HOME=$(mktemp -d) puppet --version",
               version: nix.thunk(() => nix.attr(from, "version")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "openvox")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Server automation framework and application",
         homepage: "https://github.com/OpenVoxProject/openvox",
         changelog: "https://github.com/OpenVoxProject/openvox/blob/main/CHANGELOG.md",

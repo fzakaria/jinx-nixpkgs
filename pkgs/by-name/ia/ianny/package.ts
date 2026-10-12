@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const dbus = nix.arg($, "dbus");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ianny",
       version: "2.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zefr0x",
           repo: "ianny",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace src/main.rs \\\n  --replace-fail '/usr/share/locale' $out/share/locale\n",
       preFixup: "mkdir -p $out/etc/xdg/autostart\nmkdir -p $out/usr/share/local\ncp io.github.zefr0x.ianny.desktop $out/etc/xdg/autostart/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Desktop utility that helps preventing repetitive strain injuries by keeping track of usage patterns and periodically informing the user to take breaks",
         homepage: "https://github.com/zefr0x/ianny",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

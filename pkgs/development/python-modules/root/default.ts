@@ -12,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const buildPythonPackage = nix.arg($, "buildPythonPackage");
   const python = nix.arg($, "python");
   const root = nix.arg($, "root");
-  const unwrapped = nix.thunk(() => nix.app(nix.sel(root, "override"), nix.thunk(() => ({ __proto__: pos$1, python3: python }))));
+  const unwrapped = nix.thunk(() => nix.app(nix.sel(root, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, python3: python }))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
-      passthru: nix.thunk(() => ({ __proto__: pos$2, unwrapped: unwrapped })),
+      [nix.POS]: pos$3,
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, unwrapped: unwrapped })),
       pname: nix.thunk(() => nix.attr(unwrapped, "pname")),
       version: nix.thunk(() => nix.attr(unwrapped, "version")),
       meta: nix.thunk(() => nix.attr(unwrapped, "meta")),

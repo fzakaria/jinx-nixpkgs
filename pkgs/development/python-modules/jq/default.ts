@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
       const version = "1.12.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mwilliamson",
           repo: "jq.py",
           tag: version,
           hash: "sha256-glWEqoS+QaoIiBJu9DXd+VvhPnWOgRT4VaYfMpjbR5g=",
         }))));
-      const env = nix.thunk(() => ({ __proto__: pos$2, JQPY_USE_SYSTEM_LIBS: 1n }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, JQPY_USE_SYSTEM_LIBS: 1n }));
       const nativeBuildInputs = nix.thunk(() => [cython]);
       const buildInputs = nix.thunk(() => [jq, oniguruma]);
       const preBuild = "cython jq.pyx\n";
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["jq"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python bindings for jq, the flexible JSON processor",
         homepage: "https://github.com/mwilliamson/jq.py",
         changelog: nix.thunk(() => nix.str`https://github.com/mwilliamson/jq.py/blob/${version}/CHANGELOG.rst`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

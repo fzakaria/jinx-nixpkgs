@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "chirpstack-mqtt-forwarder";
       const version = "4.6.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chirpstack",
           repo: "chirpstack-mqtt-forwarder",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       const doInstallCheck = true;
       const checkFlags = nix.thunk(() => ["--skip=end_to_end"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Forwarder which can be installed on the gateway to forward LoRa data over MQTT",
         homepage: "https://www.chirpstack.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "chirpstack-mqtt-forwarder",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

@@ -22,27 +22,27 @@ export default nix.lambda((args) => (() => {
   const gitMinimal = nix.arg($, "gitMinimal");
   const version = "1.10.2";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "Saghen",
       repo: "blink.cmp",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-C1FpyGw0f35NdHvDUGPXxmKdOgw3SpIteK1gAjVy6Ns=",
     }))));
   const blink_fuzzy_lib = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: version,
       src: src,
       pname: "blink-fuzzy-lib",
       cargoHash: "sha256-z8koRYVM9mkgKB6rdZAKIfjZfinVUUpYAW0IvPgmjZ4=",
       nativeBuildInputs: nix.thunk(() => [gitMinimal]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         RUSTC_BOOTSTRAP: true,
         RUSTFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-C link-arg=-undefined -C link-arg=dynamic_lookup")),
       })),
     }))));
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "blink.cmp",
       version: version,
       src: src,
@@ -53,12 +53,12 @@ ln -s ${blink_fuzzy_lib}/lib/libblink_cmp_fuzzy${ext} target/release/libblink_cm
 `;
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$4, attrPath: "vimPlugins.blink-cmp.blink-fuzzy-lib" })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, attrPath: "vimPlugins.blink-cmp.blink-fuzzy-lib" })))),
         "blink-fuzzy-lib": blink_fuzzy_lib,
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Performant, batteries-included completion plugin for Neovim",
         homepage: "https://github.com/saghen/blink.cmp",
         changelog: nix.thunk(() => nix.str`https://github.com/Saghen/blink.cmp/blob/v${version}/CHANGELOG.md`),

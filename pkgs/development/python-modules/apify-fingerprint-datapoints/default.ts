@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const hatchling = nix.arg($, "hatchling");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "apify-fingerprint-datapoints",
       version: "0.15.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "apify_fingerprint_datapoints",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-V3b+c/6qORAmXK5VWZVSsJjzpxbYhyyaDCKV/yu2gNw=",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["apify_fingerprint_datapoints"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Browser fingerprint datapoints collected by Apify",
         homepage: "https://pypi.org/project/apify-fingerprint-datapoints/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

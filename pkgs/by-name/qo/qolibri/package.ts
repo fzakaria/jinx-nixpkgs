@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const qt6Packages = nix.arg($, "qt6Packages");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "qolibri",
       version: "2.1.5-unstable-2025-01-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mvf",
           repo: "qolibri",
           rev: "edc0683915c0a99872a4c04ff53afe0f5df101fb",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       ]),
       cmakeFlags: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeOptionType"), "filepath", "QOLIBRI_EB_SOURCE_DIR", nix.thunk(() => nix.str`${nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               owner: "mvf",
               repo: "eb",
               rev: "58e1c3bb9847ed5d05863f478f21e7a8ca3d74c8",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "install -Dm644 $src/qolibri.desktop -t $out/share/applications\n\nfor size in 16 32 48 64 128; do\n  install -Dm644 \\\n    $src/images/qolibri-$size.png \\\n    $out/share/icons/hicolor/${size}x${size}/apps/qolibri.png\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "EPWING reader for viewing Japanese dictionaries",
         homepage: "https://github.com/mvf/qolibri",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

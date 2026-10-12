@@ -45,24 +45,24 @@ export default nix.lambda((args) => (() => {
   const ollaya = nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package"))));
   const staticUser = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "user"), null)) && nix.asBool(!nix.eq(nix.sel(cfg, "group"), null))));
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         ollaya: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "ollaya server for local decision models")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "ollaya", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
               default: null,
               example: "ollaya",
               description: "User account under which to run ollaya. Defaults to\n[`DynamicUser`](https://www.freedesktop.org/software/systemd/man/latest/systemd.exec.html#DynamicUser=)\nwhen set to `null`.\n\nThe user will automatically be created when this option is non-null.\n",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
               default: nix.thunk(() => nix.sel(cfg, "user")),
               defaultText: nix.thunk(() => nix.app(literalExpression, "config.services.ollaya.user")),
@@ -70,14 +70,14 @@ export default nix.lambda((args) => (() => {
               description: "Group under which to run ollaya. Only used when `services.ollaya.user` is set.\n",
             })))),
           home: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "/var/lib/ollaya",
               example: "/home/foo",
               description: "The home directory that the ollaya service is started in.",
             })))),
           modelsDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: nix.thunk(() => nix.str`${nix.sel(cfg, "home")}/models`),
               defaultText: nix.thunk(() => nix.app(literalExpression, "${config.services.ollaya.home}/models")),
@@ -85,31 +85,31 @@ export default nix.lambda((args) => (() => {
               description: "Directory where ollaya reads and stores downloaded models.\n",
             })))),
           host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "127.0.0.1",
               example: "0.0.0.0",
               description: "IP address on which the server listens.",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 11435n,
               example: 11111n,
               description: "Port on which the server listens.",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   freeformType: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "str")))),
                 })))),
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$8, OLLAYA_DEVICE: "cuda", OLLAYA_KEEP_ALIVE: "30m" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$8, OLLAYA_DEVICE: "cuda", OLLAYA_KEEP_ALIVE: "30m" })),
               description: "Environment variables passed to the ollaya server process.\nSee <https://ollaya.dev/docs/cli#ollaya-serve> for available variables.\n",
             })))),
           loadModels: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               apply: nix.thunk(() => nix.app(nix.builtins.filter, (model) => !nix.eq(model, ""))),
               default: [],
@@ -117,7 +117,7 @@ export default nix.lambda((args) => (() => {
               description: "Models to download after the ollaya service starts. This creates a\nseparate `ollaya-model-loader.service`.\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Whether to open the firewall for ollaya. This adds\n`services.ollaya.port` to `networking.firewall.allowedTCPPorts`.\n",
@@ -126,12 +126,12 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), staticUser, nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             users: nix.thunk(() => nix.attrsDyn({}, [
               [nix.sel(cfg, "user"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 home: nix.thunk(() => nix.attr(cfg, "home")),
                 isSystemUser: true,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -140,26 +140,26 @@ export default nix.lambda((args) => (() => {
             groups: nix.thunk(() => nix.attrsDyn({}, [[nix.sel(cfg, "group"), nix.thunk(() => ({}))]])),
           })))),
         systemd: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           services: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             ollaya: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               description: "Server for local decision models",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               environment: nix.thunk(() => nix.update(nix.sel(cfg, "settings"), {
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 HOME: nix.thunk(() => nix.sel(cfg, "home")),
                 OLLAYA_MODELS: nix.thunk(() => nix.sel(cfg, "modelsDir")),
                 OLLAYA_HOST: nix.thunk(() => nix.str`${nix.sel(cfg, "host")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}`),
               })),
               serviceConfig: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), staticUser, nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   User: nix.thunk(() => nix.sel(cfg, "user")),
                   Group: nix.thunk(() => nix.sel(cfg, "group")),
                 }))), {
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 Type: "exec",
                 DynamicUser: true,
                 ExecStart: nix.thunk(() => nix.str`${ollaya} serve`),
@@ -209,7 +209,7 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             "ollaya-model-loader": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "loadModels"), [])), nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 description: "Download ollaya models in the background",
                 wantedBy: nix.thunk(() => ["multi-user.target", "ollaya.service"]),
                 wants: nix.thunk(() => ["network-online.target"]),
@@ -217,7 +217,7 @@ export default nix.lambda((args) => (() => {
                 bindsTo: nix.thunk(() => ["ollaya.service"]),
                 environment: nix.thunk(() => nix.sel(config, "systemd", "services", "ollaya", "environment")),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   Type: "exec",
                   DynamicUser: true,
                   Restart: "on-failure",
@@ -235,19 +235,19 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           firewall: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => nix.sel(cfg, "port")))),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "happysalada"))];

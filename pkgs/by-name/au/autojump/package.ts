@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "autojump",
       version: "22.5.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wting",
           repo: "autojump",
           rev: nix.thunk(() => nix.str`release-v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       installPhase: "python ./install.py -d \"$out\" -p \"\" -z \"$out/share/zsh/site-functions/\"\n\nchmod +x \"$out/etc/profile.d/autojump.sh\"\ninstall -Dt \"$out/share/bash-completion/completions/\" -m444 \"$out/share/autojump/autojump.bash\"\ninstall -Dt \"$out/share/fish/vendor_conf.d/\" -m444 \"$out/share/autojump/autojump.fish\"\ninstall -Dt \"$out/share/zsh/site-functions/\" -m444 \"$out/share/autojump/autojump.zsh\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "`cd' command that learns",
         mainProgram: "autojump",
         longDescription: "One of the most used shell commands is “cd”.  A quick survey\namong my friends revealed that between 10 and 20% of all\ncommands they type are actually cd commands! Unfortunately,\njumping from one part of your system to another with cd\nrequires to enter almost the full path, which isn’t very\npractical and requires a lot of keystrokes.\n\nAutojump is a faster way to navigate your filesystem.  It\nworks by maintaining a database of the directories you use the\nmost from the command line.  The jstat command shows you the\ncurrent contents of the database.  You need to work a little\nbit before the database becomes usable.  Once your database\nis reasonably complete, you can “jump” to a directory by\ntyping \"j dirspec\", where dirspec is a few characters of the\ndirectory you want to jump to.  It will jump to the most used\ndirectory whose name matches the pattern given in dirspec.\n\nAutojump supports tab-completion.\n",

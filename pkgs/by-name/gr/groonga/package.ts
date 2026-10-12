@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const zlibSupport = nix.argOr($, "zlibSupport", () => true);
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "groonga",
       version: "16.1.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://packages.groonga.org/source/groonga/groonga-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-MxM6806HcFIsXoAJbrbZTsiMUwIBrsga1DCtcHP5Mgo=",
         })))),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, mecab, pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([rapidjson, xxhash, zstd, mecab, kytea, libstemmer, msgpack_c], nix.concat(nix.app(nix.sel(lib, "optionals"), lz4Support, nix.thunk(() => [lz4])), nix.concat(nix.app(nix.sel(lib, "optionals"), zlibSupport, nix.thunk(() => [zlib])), nix.app(nix.sel(lib, "optionals"), suggestSupport, nix.thunk(() => [zeromq, libevent])))))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), zlibSupport, nix.thunk(() => nix.str`-I${nix.sel(zlib, "dev")}/include`))),
       })),
       strictDeps: true,
@@ -59,19 +59,19 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pgroonga: nix.thunk(() => nix.attr(postgresqlPackages, "pgroonga")),
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               moduleNames: nix.thunk(() => ["groonga"]),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://groonga.org/",
         changelog: nix.thunk(() => nix.str`https://groonga.org/docs/news/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}.html#release-${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["-"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
         description: "Open-source fulltext search engine and column store",

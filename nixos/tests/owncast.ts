@@ -34,40 +34,40 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     name: "owncast",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "MayNiklas"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(pkgs_1, "lib")), null);
         return {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           networking: nix.thunk(() => ({
-            __proto__: pos$9,
-            dhcpcd: nix.thunk(() => ({ __proto__: pos$2, enable: false })),
+            [nix.POS]: pos$9,
+            dhcpcd: nix.thunk(() => ({ [nix.POS]: pos$2, enable: false })),
             interfaces: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               eth1: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 ipv6: nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   addresses: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOverride"), 0n, nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$3, address: "fd00::2", prefixLength: 64n })),
+                      nix.thunk(() => ({ [nix.POS]: pos$3, address: "fd00::2", prefixLength: 64n })),
                     ]))),
                 })),
                 ipv4: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   addresses: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOverride"), 0n, nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$5, address: "192.168.1.2", prefixLength: 24n })),
+                      nix.thunk(() => ({ [nix.POS]: pos$5, address: "192.168.1.2", prefixLength: 24n })),
                     ]))),
                 })),
               })),
@@ -80,35 +80,35 @@ export default nix.lambda((args) => (() => {
         const pkgs_1 = nix.arg($_1, "pkgs");
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(pkgs_1, "lib")), null);
         return {
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           networking: nix.thunk(() => ({
-            __proto__: pos$19,
-            dhcpcd: nix.thunk(() => ({ __proto__: pos$11, enable: false })),
+            [nix.POS]: pos$19,
+            dhcpcd: nix.thunk(() => ({ [nix.POS]: pos$11, enable: false })),
             useNetworkd: true,
             useDHCP: false,
             interfaces: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               eth1: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 ipv6: nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   addresses: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOverride"), 0n, nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$12, address: "fd00::1", prefixLength: 64n })),
+                      nix.thunk(() => ({ [nix.POS]: pos$12, address: "fd00::1", prefixLength: 64n })),
                     ]))),
                 })),
                 ipv4: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   addresses: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOverride"), 0n, nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$14, address: "192.168.1.1", prefixLength: 24n })),
+                      nix.thunk(() => ({ [nix.POS]: pos$14, address: "192.168.1.1", prefixLength: 24n })),
                     ]))),
                 })),
               })),
             })),
-            firewall: nix.thunk(() => ({ __proto__: pos$18, allowedTCPPorts: nix.thunk(() => [8080n]) })),
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$18, allowedTCPPorts: nix.thunk(() => [8080n]) })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$21,
-            owncast: nix.thunk(() => ({ __proto__: pos$20, enable: true, listen: "0.0.0.0" })),
+            [nix.POS]: pos$21,
+            owncast: nix.thunk(() => ({ [nix.POS]: pos$20, enable: true, listen: "0.0.0.0" })),
           })),
         };
       })(), formals$3),

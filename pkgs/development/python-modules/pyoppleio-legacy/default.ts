@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pyoppleio-legacy",
       version: "1.0.8",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tinysnake",
           repo: "python-oppleio-legacy",
           rev: "90c57f778554fcf3a00e42757d0e92caebcfd149",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [crc16]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library for interfacing with Opple WiFi lights (legacy firmware support)",
         homepage: "https://github.com/tinysnake/python-oppleio-legacy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

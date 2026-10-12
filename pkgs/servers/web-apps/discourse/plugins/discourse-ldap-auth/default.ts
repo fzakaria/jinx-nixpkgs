@@ -14,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const mkDiscoursePlugin = nix.arg($, "mkDiscoursePlugin");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(mkDiscoursePlugin, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "discourse-ldap-auth",
-      bundlerEnvArgs: nix.thunk(() => ({ __proto__: pos$1, gemdir: nix.path(here, "./.") })),
+      bundlerEnvArgs: nix.thunk(() => ({ [nix.POS]: pos$1, gemdir: nix.path(here, "./.") })),
       pluginName: "ldap",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "jonmbake",
           repo: "discourse-ldap-auth",
           rev: "9776c1d021696e5bfdb8857093b8434063bc6ae1",
           sha256: "sha256-ZXYuplYF1xjxqcKT7+u/zkjh0fCmIgQ+cWBhs7NFm14=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/jonmbake/discourse-ldap-auth",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

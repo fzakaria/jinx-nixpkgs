@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "easyrsa",
       version: "3.2.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OpenVPN",
           repo: "easy-rsa",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +52,7 @@ chmod +x $out/bin/easyrsa-init
       doInstallCheck: true,
       postInstallCheck: "set -euo pipefail\nexport EASYRSA_BATCH=1\nexport EASYRSA_PASSIN=pass:nixpkgs\nexport EASYRSA_PASSOUT=\"$EASYRSA_PASSIN\"\nexport EASYRSA_REQ_CN='nixpkgs test CA'\nexport EASYRSA_KEY_SIZE=3072\nexport EASYRSA_ALGO=rsa\nexport EASYRSA_DIGEST=sha512\n$out/bin/easyrsa init-pki\n$out/bin/easyrsa build-ca\nopenssl x509 -in pki/ca.crt -noout -subject | tee /dev/stderr | grep -zq \"$EASYRSA_REQ_CN\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple shell based CA utility",
         homepage: "https://openvpn.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

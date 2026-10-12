@@ -96,26 +96,26 @@ export default nix.lambda((args) => (() => {
     const name = nix.arg($_1, "name");
     const config_1 = nix.arg($_1, "config");
     return {
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       options: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nonEmptyStr,
             example: "ttyS1",
             description: "Name of modem device,\nwill be searched for in {file}`/dev`.\n",
           })))),
         type: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nonEmptyStr,
             example: "cirrus",
             description: "Name of modem configuration file,\nwill be searched for in {file}`config`\nin the spooling area directory.\n",
           })))),
         config: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: configAttrType,
             example: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               AreaCode: "49",
               LocalCode: "30",
               FAXNumber: "123456",
@@ -129,10 +129,10 @@ Options defined here override options in
           })))),
       })),
       config: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         name: nix.thunk(() => nix.app(mkDefault, name)),
         config: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           Include: nix.thunk(() => [nix.thunk(() => nix.str`config/${nix.sel(config_1, "type")}`)]),
         })),
       })),
@@ -146,7 +146,7 @@ Options defined here override options in
     const mkIfDefault = (cond) => (value) => nix.app(mkIf, cond, nix.thunk(() => nix.app(mkDefault, value)));
     const noWrapper = nix.thunk(() => nix.eq(nix.sel(config, "services", "mail", "sendmailSetuidWrapper"), null));
     const c = nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       sendmailPath: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
           nix.thunk(() => nix.app(mkIfDefault, noWrapper, nix.thunk(() => nix.app(getExe$, nix.thunk(() => nix.sel(pkgs, "coreutils")), "false")))),
           nix.thunk(() => nix.app(mkIfDefault, nix.thunk(() => !nix.asBool(noWrapper)), nix.thunk(() => nix.str`${wrapperDir}/${program}`))),
@@ -155,18 +155,18 @@ Options defined here override options in
       faxqConfig: nix.thunk(() => nix.app(importDefaultConfig, nix.path(here, "./faxq-default.nix"))),
       hfaxdConfig: nix.thunk(() => nix.app(importDefaultConfig, nix.path(here, "./hfaxd-default.nix"))),
     }));
-    const importDefaultConfig = (file) => nix.app(nix.sel(lib, "attrsets", "mapAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "trivial", "const"), mkDefault)), nix.thunk(() => nix.app(nix.builtins.import(file), nix.thunk(() => ({ __proto__: pos$10, lib: lib, pkgs: pkgs })))));
+    const importDefaultConfig = (file) => nix.app(nix.sel(lib, "attrsets", "mapAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "trivial", "const"), mkDefault)), nix.thunk(() => nix.app(nix.builtins.import(file), nix.thunk(() => ({ [nix.POS]: pos$10, lib: lib, pkgs: pkgs })))));
     return nix.force(c);
   })());
   const localConfig = nix.thunk(() => (() => {
     const c = nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       hfaxdConfig: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         UserAccessFile: nix.thunk(() => nix.sel(cfg, "userAccessFile")),
       })),
       faxqConfig: nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "mapAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "trivial", "const"), (v) => nix.app(mkIf, nix.thunk(() => !nix.eq(v, null)), v))), nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           AreaCode: nix.thunk(() => nix.sel(cfg, "areaCode")),
           CountryCode: nix.thunk(() => nix.sel(cfg, "countryCode")),
           LongDistancePrefix: nix.thunk(() => nix.sel(cfg, "longDistancePrefix")),
@@ -177,90 +177,90 @@ Options defined here override options in
     return nix.force(c);
   })());
   return {
-    __proto__: pos$51,
+    [nix.POS]: pos$51,
     options: nix.thunk(() => ({
-      __proto__: pos$48,
+      [nix.POS]: pos$48,
       services: nix.thunk(() => ({
-        __proto__: pos$47,
+        [nix.POS]: pos$47,
         hylafax: nix.thunk(() => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           enable: nix.thunk(() => nix.app(mkEnableOption, "HylaFAX server")),
-          package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "HylaFAX", nix.thunk(() => ({ __proto__: pos$14, default: "hylafaxplus" })))),
+          package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "HylaFAX", nix.thunk(() => ({ [nix.POS]: pos$14, default: "hylafaxplus" })))),
           autostart: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: bool,
               default: true,
               example: false,
               description: "Autostart the HylaFAX queue manager at system start.\nIf this is `false`, the queue manager\nwill still be started if there are pending\njobs or if a user tries to connect to it.\n",
             })))),
           countryCode: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.app(nullOr, nonEmptyStr)),
               default: null,
               example: "49",
               description: "Country code for server and all modems.",
             })))),
           areaCode: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.app(nullOr, nonEmptyStr)),
               default: null,
               example: "30",
               description: "Area code for server and all modems.",
             })))),
           longDistancePrefix: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.app(nullOr, str)),
               default: null,
               example: "0",
               description: "Long distance prefix for server and all modems.",
             })))),
           internationalPrefix: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.app(nullOr, str)),
               default: null,
               example: "00",
               description: "International prefix for server and all modems.",
             })))),
           spoolAreaPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: path,
               default: "/var/spool/fax",
               description: "The spooling area will be created/maintained\nat the location given here.\n",
             })))),
           userAccessFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               type: path,
               default: "/etc/hosts.hfaxd",
               description: "The {file}`hosts.hfaxd`\nfile entry in the spooling area\nwill be symlinked to the location given here.\nThis file must exist and be\nreadable only by the `uucp` user.\nSee {manpage}`hosts.hfaxd(5)` for details.\nThis configuration permits access for all users:\n```\n  environment.etc.\"hosts.hfaxd\" = {\n    mode = \"0600\";\n    user = \"uucp\";\n    text = \".*\";\n  };\n```\nNote that host-based access can be controlled with\n{option}`config.systemd.sockets.hylafax-hfaxd.listenStreams`;\nby default, only 127.0.0.1 is permitted to connect.\n",
             })))),
           sendmailPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: path,
               example: nix.thunk(() => nix.app(literalExpression, "lib.getExe' config.services.postfix.package \"sendmail\"")),
               description: "Path to {file}`sendmail` program.\nThe default uses the local sendmail wrapper\n(see {option}`config.services.mail.sendmailSetuidWrapper`),\notherwise the {file}`false`\nbinary to cause an error if used.\n",
             })))),
           hfaxdConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               type: configAttrType,
-              example: nix.thunk(() => ({ __proto__: pos$23, RecvqProtection: "0400" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$23, RecvqProtection: "0400" })),
               description: nix.thunk(() => nix.str`Attribute set of lines for the global
 hfaxd config file {file}\`etc/hfaxd.conf\`.
 ${commonDescr}
 `),
             })))),
           faxqConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               type: configAttrType,
-              example: nix.thunk(() => ({ __proto__: pos$25, InternationalPrefix: "00", LongDistancePrefix: "0" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$25, InternationalPrefix: "00", LongDistancePrefix: "0" })),
               description: nix.thunk(() => nix.str`Attribute set of lines for the global
 faxq config file {file}\`etc/config\`.
 ${commonDescr}
 `),
             })))),
           commonModemConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               type: configAttrType,
-              example: nix.thunk(() => ({ __proto__: pos$27, InternationalPrefix: "00", LongDistancePrefix: "0" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$27, InternationalPrefix: "00", LongDistancePrefix: "0" })),
               description: nix.thunk(() => nix.str`Attribute set of default values for
 modem config files {file}\`etc/config.*\`.
 ${commonDescr}
@@ -269,33 +269,33 @@ paths of fax-processing scripts.
 `),
             })))),
           modems: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               type: nix.thunk(() => nix.app(attrsOf, nix.thunk(() => nix.app(submodule, nix.thunk(() => [modemConfigOptions]))))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 ttyS1: nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   type: "cirrus",
-                  config: nix.thunk(() => ({ __proto__: pos$29, FAXNumber: "123456", LocalIdentifier: "Smith" })),
+                  config: nix.thunk(() => ({ [nix.POS]: pos$29, FAXNumber: "123456", LocalIdentifier: "Smith" })),
                 })),
               })),
               description: "Description of installed modems.\nAt least on modem must be defined\nto enable the HylaFAX server.\n",
             })))),
           spoolExtraInit: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               type: lines,
               default: "",
               example: "chmod 0755 .  # everyone may read my faxes",
               description: "Additional shell code that is executed within the\nspooling area directory right after its setup.\n",
             })))),
           faxcron: nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             enable: nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               spoolInit: nix.thunk(() => nix.app(mkEnableOption, "purging old files from the spooling area with\n{file}`faxcron`\neach time the spooling area is initialized\n")),
               frequency: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$34,
+                  [nix.POS]: pos$34,
                   type: nix.thunk(() => nix.app(nullOr, nonEmptyStr)),
                   default: null,
                   example: "daily",
@@ -303,31 +303,31 @@ paths of fax-processing scripts.
                 })))),
             })),
             infoDays: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 type: nix.thunk(() => nix.sel(ints, "positive")),
                 default: 30n,
                 description: "Set the expiration time for data in the\nremote machine information directory in days.\n",
               })))),
             logDays: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 type: nix.thunk(() => nix.sel(ints, "positive")),
                 default: 30n,
                 description: "Set the expiration time for\nsession trace log files in days.\n",
               })))),
             rcvDays: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 type: nix.thunk(() => nix.sel(ints, "positive")),
                 default: 7n,
                 description: "Set the expiration time for files in\nthe received facsimile queue in days.\n",
               })))),
           })),
           faxqclean: nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             enable: nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               spoolInit: nix.thunk(() => nix.app(mkEnableOption, "purging old files from the spooling area with\n{file}`faxqclean`\neach time the spooling area is initialized\n")),
               frequency: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$40,
+                  [nix.POS]: pos$40,
                   type: nix.thunk(() => nix.app(nullOr, nonEmptyStr)),
                   default: null,
                   example: "daily",
@@ -335,21 +335,21 @@ paths of fax-processing scripts.
                 })))),
             })),
             archiving: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 type: nix.thunk(() => nix.app(enum$, nix.thunk(() => ["never", "as-flagged", "always"]))),
                 default: "as-flagged",
                 example: "always",
                 description: "Enable or suppress job archiving:\n`never` disables job archiving,\n`as-flagged` archives jobs that\nhave been flagged for archiving by sendfax,\n`always` forces archiving of all jobs.\nSee also {manpage}`sendfax(1)` and {manpage}`faxqclean(8)`.\n",
               })))),
             doneqMinutes: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$43,
+                [nix.POS]: pos$43,
                 type: nix.thunk(() => nix.sel(ints, "positive")),
                 default: 15n,
                 example: nix.thunk(() => nix.app(literalExpression, "24*60")),
                 description: "Set the job\nage threshold (in minutes) that controls how long\njobs may reside in the doneq directory.\n",
               })))),
             docqMinutes: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 type: nix.thunk(() => nix.sel(ints, "positive")),
                 default: 60n,
                 example: nix.thunk(() => nix.app(literalExpression, "24*60")),
@@ -360,9 +360,9 @@ paths of fax-processing scripts.
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$50,
+      [nix.POS]: pos$50,
       services: nix.thunk(() => ({
-        __proto__: pos$49,
+        [nix.POS]: pos$49,
         hylafax: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(config, "services", "hylafax", "enable")), nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [defaultConfig, localConfig]))))),
       })),
     })),

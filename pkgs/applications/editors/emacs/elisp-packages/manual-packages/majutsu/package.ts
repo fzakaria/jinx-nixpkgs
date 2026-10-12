@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const consult = nix.arg($, "consult");
   const plz = nix.arg($, "plz");
   return nix.app(melpaBuild, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "majutsu",
       version: "0.6.0-unstable-2026-09-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "0WD0",
           repo: "majutsu",
           rev: "0fdb3c2b3ab826724949cd2cc714f2eff32ec152",
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
         })))),
       packageRequires: nix.thunk(() => [magit, transient, with_editor, consult, plz]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch=main"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch=main"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Magit for jujutsu",
         homepage: "https://github.com/0WD0/majutsu",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "shunueda"))]),

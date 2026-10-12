@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "21.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ofek",
           repo: "coincurve",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,20 +38,20 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/ofek/coincurve/commit/19597b0869803acfc669d916e43c669e9ffcced7.patch",
             hash: "sha256-BkUxXjcwk3btcvSVaVZqVTJ+8E8CYtT5cTXLx9lxJ/g=",
           })))),
       ]);
       const build_system = nix.thunk(() => [hatchling, cffi, cmake, ninja, pkg_config, setuptools, scikit_build_core]);
       const dontUseCmakeConfigure = true;
-      const env = nix.thunk(() => ({ __proto__: pos$3, COINCURVE_IGNORE_SYSTEM_LIB: "OFF" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$3, COINCURVE_IGNORE_SYSTEM_LIB: "OFF" }));
       const buildInputs = nix.thunk(() => [secp256k1]);
       const dependencies = nix.thunk(() => [asn1crypto, cffi]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["coincurve"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Cross-platform bindings for libsecp256k1",
         homepage: "https://github.com/ofek/coincurve",
         license: nix.thunk(() => (() => {
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

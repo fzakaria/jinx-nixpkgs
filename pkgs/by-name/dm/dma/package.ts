@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const flex = nix.arg($, "flex");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dma",
       version: "0.14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "corecode",
           repo: "dma",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace Makefile \\\n  --replace-fail \" -m 2755 -o root -g mail\" \"\" \\\n  --replace-fail \" -m 4754 -o root -g mail\" \"\"\nsubstituteInPlace local.c \\\n  --replace-fail \"LIBEXEC_PATH\" '\"/run/wrappers/bin\"'\n",
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Small Mail Transport Agent, designed for home and office use",
         homepage: "https://github.com/corecode/dma",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

@@ -22,19 +22,19 @@ export default nix.lambda((args) => (() => {
       const version = "25.7.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PWZER",
           repo: "swagger-ui-py",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-yPGt7EG8KvGoI7Unz0E7fn7nG9Ei/h8Q3TDKnuVVRkQ=",
         }))));
-      const env = nix.thunk(() => ({ __proto__: pos$2, VERSION: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, VERSION: version }));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [jinja2, packaging, pyyaml]);
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["swagger_ui"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/PWZER/swagger-ui-py/releases/tag/${nix.sel(src, "tag")}`),
         description: "Swagger UI for Python web framework, such Tornado, Flask and Sanic. https://pwzer.github.io/swagger-ui-py",
         homepage: "https://github.com/PWZER/swagger-ui-py",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

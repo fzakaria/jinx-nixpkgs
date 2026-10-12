@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libmnl = nix.arg($, "libmnl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.0.3",
       pname: "libnetfilter_acct",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.netfilter.org/projects/libnetfilter_acct/files/libnetfilter_acct-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "06lsjndgfjsgfjr43px2n2wk3nr7whz6r405mks3887y7vpwwl22",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libmnl]),
       outputs: nix.thunk(() => ["out", "dev"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.netfilter.org/projects/libnetfilter_acct/",
         description: "Userspace library providing interface to extended accounting infrastructure",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sqlite-modern-cpp",
       version: "3.2-unstable-2023-12-03",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SqliteModernCpp",
           repo: "sqlite_modern_cpp",
           rev: "6e3009973025e0016d5573529067714201338c80",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "substituteInPlace CMakeLists.txt \\\n  --replace-fail 'find_package(sqlite3 CONFIG REQUIRED)' \\\n                 'find_package(SQLite3 REQUIRED)' \\\n  --replace-fail 'sqlite3::sqlite3' 'SQLite::SQLite3'\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/include\ncp -r $src/hdr/. $out/include/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightweight C++ wrapper around sqlite3 C api",
         homepage: "https://github.com/SqliteModernCpp/sqlite_modern_cpp",
         changelog: "https://github.com/SqliteModernCpp/sqlite_modern_cpp/releases",

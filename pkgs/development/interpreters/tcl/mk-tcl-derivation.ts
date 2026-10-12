@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
     "--enable-stubs",
   ]);
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
       excludeDrvArgNames: nix.thunk(() => [
         "addTclConfigureFlags",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         const configureFlags = nix.argOr($_1, "configureFlags", () => []);
         const addTclConfigureFlags = nix.argOr($_1, "addTclConfigureFlags", () => true);
         return nix.update({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           buildInputs: nix.thunk(() => nix.concat(nix.selOr(args_2, () => [], "buildInputs"), [nix.thunk(() => nix.sel(tcl, "tclPackageHook"))])),
           nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(args_2, () => [], "nativeBuildInputs"), nix.concat([makeWrapper, tcl], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), nix.thunk(() => [nix.thunk(() => nix.sel(tcl, "tclRequiresCheckHook"))]))))),
           propagatedBuildInputs: nix.thunk(() => nix.concat(nix.selOr(args_2, () => [], "propagatedBuildInputs"), [tcl])),
@@ -52,16 +52,16 @@ export default nix.lambda((args) => (() => {
           nativeInstallCheckInputs: nix.thunk(() => nix.concat(nix.selOr(args_2, () => [], "nativeCheckInputs"), nix.selOr(args_2, () => [], "nativeInstallCheckInputs"))),
           configureFlags: nix.thunk(() => (nix.asBool((nix.asBool(!nix.asBool(dontConfigure)) && nix.asBool(addTclConfigureFlags))) ? nix.concat(configureFlags, defaultTclPkgConfigureFlags) : nix.force(configureFlags))),
           env: nix.thunk(() => nix.update({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             TCLSH: nix.thunk(() => nix.str`${nix.app(getExe$, tcl, "tclsh")}`),
           }, nix.selOr(args_2, () => ({}), "env"))),
           __structuredAttrs: true,
           meta: nix.thunk(() => nix.update({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             platforms: nix.thunk(() => nix.sel(tcl, "meta", "platforms")),
           }, nix.selOr(args_2, () => ({}), "meta"))),
         }, nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "checkPhase")), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             installCheckPhase: nix.thunk(() => nix.sel(args_2, "checkPhase")),
           }))));
       })(), formals$2),

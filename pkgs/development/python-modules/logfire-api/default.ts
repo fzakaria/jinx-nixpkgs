@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const logfire = nix.arg($, "logfire");
   const hatchling = nix.arg($, "hatchling");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "logfire-api",
       version: nix.thunk(() => nix.attr(logfire, "version")),
       src: nix.thunk(() => nix.attr(logfire, "src")),
@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling]),
       pythonImportsCheck: nix.thunk(() => ["logfire_api"]),
       meta: nix.thunk(() => nix.update(nix.sel(logfire, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Shim for the Logfire SDK which does nothing unless Logfire is installed",
       })),
     }));

@@ -21,14 +21,14 @@ export default nix.lambda((args) => (() => {
   const pname = "filen-cli";
   const version = "0.0.36";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "FilenCloudDienste",
       repo: "filen-cli",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-2FN9KygSGir/vtHdKXX0zUeug2O6tgAc1PBhzD9HPqY=",
     }))));
   const node_modules = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.str`${pname}-node_modules`),
       version: version,
       src: src,
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out/node_modules\ncp -R ./node_modules $out\n\nrunHook postInstall\n",
       dontFixup: true,
       outputHash: nix.thunk(() => nix.selOr({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "aarch64-darwin": "sha256-+nTCiCEXsEz7YqRZkHlP3CWL7e7OPdds33BTwfqTL5c=",
         "aarch64-linux": "sha256-uvL498mHFXwoZpeCwsup4Iyh4l5buVnqLRBMyGVRIlA=",
         "x86_64-linux": "sha256-Ky+ewpdd5nKvRzXwEAUgT7P/OW3v6fdb2r6SGxZ/JEc=",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       outputHashMode: "recursive",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       src: src,
@@ -87,7 +87,7 @@ runHook postInstall
       preVersionCheck: "cat > filen-version << EOF\n#!/bin/sh\nexec $out/bin/filen --skip-update \"\\$@\"\nEOF\nchmod +x filen-version\nversionCheckProgram=\"$(pwd)/filen-version\"\n",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "CLI tool for interacting with the Filen cloud",
         homepage: "https://github.com/FilenCloudDienste/filen-cli",
         changelog: nix.thunk(() => nix.str`https://github.com/FilenCloudDienste/filen-cli/releases/tag/v${version}`),

@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const fetchPnpmDeps = nix.arg($, "fetchPnpmDeps");
   const pnpmConfigHook = nix.arg($, "pnpmConfigHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "pgrok",
       version: "1.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pgrok",
           repo: "pgrok",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,9 +35,9 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpmConfigHook, pnpm_11]),
       postPatch: "# Rename directories to avoid binary naming conflicts (both would be named \"cli\")\nmv pgrok/cli pgrok/pgrok\nmv pgrokd/cli pgrokd/pgrokd\n\n# Update references in Go code and web app package.json to match renamed directory\nsubstituteInPlace pgrokd/pgrokd/main.go \\\n  --replace-fail \"github.com/pgrok/pgrok/pgrokd/cli/internal/web\" \"github.com/pgrok/pgrok/pgrokd/pgrokd/internal/web\"\nsubstituteInPlace pgrokd/web/package.json \\\n  --replace-fail \"../cli/internal/web/dist\" \"../pgrokd/internal/web/dist\"\n",
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -58,11 +58,11 @@ export default nix.lambda((args) => (() => {
       preBuild: "pushd pgrokd/web\n\npnpm run build\n\npopd\n",
       postInstall: "moveToOutput bin/pgrokd $server\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Selfhosted TCP/HTTP tunnel, ngrok alternative, written in Go",
         homepage: "https://github.com/pgrok/pgrok",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const pname = "elementary-settings-daemon";
       const version = "8.5.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "elementary",
           repo: "settings-daemon",
           tag: version,
@@ -69,11 +69,11 @@ export default nix.lambda((args) => (() => {
         systemdLibs,
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Settings daemon for Pantheon",
         homepage: "https://github.com/elementary/settings-daemon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "io.elementary.settings-daemon",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

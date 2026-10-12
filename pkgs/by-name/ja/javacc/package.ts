@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const jdk = jdk8;
   const jre = jre8;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "javacc",
       version: "7.0.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "javacc",
           repo: "javacc",
           rev: nix.thunk(() => nix.str`javacc-${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +46,7 @@ runHook postInstall
       doCheck: true,
       checkPhase: "runHook preCheck\nant test\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/javacc/javacc/blob/${nix.sel(finalAttrs, "src", "rev")}/docs/release-notes.md`),
         description: "Parser generator for building parsers from grammars",
         homepage: "https://javacc.github.io/javacc",

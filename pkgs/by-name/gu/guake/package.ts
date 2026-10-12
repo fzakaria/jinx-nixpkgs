@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const dconf = nix.arg($, "dconf");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "guake",
       version: "3.10.1",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Guake",
           repo: "guake",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,13 +48,13 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./no-compile-schemas.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/Guake/guake/commit/14abaa0c69cfab64fe3467fbbea211d830042de8.patch",
             hash: "sha256-RjGRFJDTQX2meAaw3UZi/3OxAtIHbRZVpXTbcJk/scY=",
             revert: true,
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/Guake/guake/commit/8c7a23ba62ee262c033dfa5b0b18d3df71361ff4.patch",
             hash: "sha256-0asXI08XITkFc73EUenV9qxY/Eak+TzygRRK7GvhQUc=",
             revert: true,
@@ -88,14 +88,14 @@ export default nix.lambda((args) => (() => {
 )
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           test: nix.thunk(() => nix.sel(nixosTests, "terminal-emulators", "guake")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Drop-down terminal for GNOME",
         homepage: "https://guake.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

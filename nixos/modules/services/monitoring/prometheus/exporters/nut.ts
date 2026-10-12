@@ -23,39 +23,39 @@ export default nix.lambda((args) => (() => {
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   const concatStringsSep = nix.thunk(() => nix.attr(lib, "concatStringsSep"));
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     port: 9199n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       nutServer: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "127.0.0.1",
           description: "Hostname or address of the NUT server\n",
         })))),
       nutUser: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "",
           example: "nut",
           description: "The user to log in into NUT server. If set, passwordPath should\nalso be set.\n\nDefault NUT configs usually permit reading variables without\nauthentication.\n",
         })))),
       passwordPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
           default: null,
           apply: (final) => (nix.asBool(nix.eq(final, null)) ? null : nix.builtins.toString(final)),
           description: "A run-time path to the nutUser password file, which should be\nprovisioned outside of Nix store.\n",
         })))),
       nutVariables: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
           default: [],
           description: "List of NUT variable names to monitor.\n\nIf no variables are set, all numeric variables will be exported automatically.\nSee the [upstream docs](https://github.com/DRuggeri/nut_exporter?tab=readme-ov-file#variables-and-information)\nfor more information.\n",
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       script: nix.thunk(() => nix.str`${nix.app(optionalString, nix.thunk(() => !nix.eq(nix.sel(cfg, "passwordPath"), null)), nix.thunk(() => nix.str`export NUT_EXPORTER_PASSWORD=$(cat ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "passwordPath")))})`))}
 ${nix.sel(pkgs, "prometheus-nut-exporter")}/bin/nut_exporter \\
   --nut.server=${nix.sel(cfg, "nutServer")} \\

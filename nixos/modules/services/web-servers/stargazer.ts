@@ -67,16 +67,16 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
           return nix.add(nix.app(genINI, nix.thunk(() => nix.attrsDyn({}, [[nix.str`${name}`, params]]))), "\n");
         })())))))));
   return {
-    __proto__: pos$35,
+    [nix.POS]: pos$35,
     options: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       services: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         stargazer: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Stargazer Gemini server")),
           listen: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => nix.concat(["0.0.0.0"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(config, "networking", "enableIPv6")), "[::0]"))),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ \"0.0.0.0\" ] ++ lib.optional config.networking.enableIPv6 \"[::0]\"")),
@@ -84,82 +84,82 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
               description: "Address and port to listen on.\n",
             })))),
           connectionLogging: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether or not to log connections to stdout.",
             })))),
           ipLog: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Log client IP addresses in the connection log.",
             })))),
           ipLogPartial: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Log partial client IP addresses in the connection log.",
             })))),
           requestTimeout: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
               default: 5n,
               description: "Number of seconds to wait for the client to send a complete\nrequest. Set to 0 to disable.\n",
             })))),
           responseTimeout: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
               default: 0n,
               description: "Number of seconds to wait for the client to send a complete\nrequest and for stargazer to finish sending the response.\nSet to 0 to disable.\n",
             })))),
           allowCgiUser: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "When enabled, the stargazer process will be given `CAP_SETGID`\nand `CAP_SETUID` so that it can run cgi processes as a different\nuser. This is required if the `cgi-user` option is used for a route.\nNote that these capabilities could allow privilege escalation so be\ncareful. For that reason, this is disabled by default.\n\nYou will need to create the user mentioned `cgi-user` if it does not\nalready exist.\n",
             })))),
           store: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/gemini/certs",
               description: "Path to the certificate store on disk. This should be a\npersistent directory writable by Stargazer.\n",
             })))),
           certOrg: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "stargazer",
               description: "The name of the organization responsible for the X.509\ncertificate's /O name.\n",
             })))),
           genCerts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Set to false to disable automatic certificate generation.\nUse if you want to provide your own certs.\n",
             })))),
           regenCerts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Set to false to turn off automatic regeneration of expired certificates.\nUse if you want to provide your own certs.\n",
             })))),
           certLifetime: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "",
               description: "How long certs generated by Stargazer should live for.\nCerts live forever by default.\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"1y\"")),
             })))),
           debugMode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Run Stargazer in debug mode.",
             })))),
           routes: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     freeformType: nix.thunk(() => (() => {
                       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                       return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.update(nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -168,14 +168,14 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
                               nix.thunk(() => nix.lookup(w, "float")),
                               nix.thunk(() => nix.lookup(w, "str")),
                             ])))), {
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           description: "INI atom (null, bool, int, float or string)",
                         })));
                     })()),
                     options: nix.thunk(() => ({
-                      __proto__: pos$16,
+                      [nix.POS]: pos$16,
                       route: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$15,
+                          [nix.POS]: pos$15,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "Route section name",
                         })))),
@@ -186,13 +186,13 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[\n  {\n    route = \"example.com\";\n    root = \"/srv/gemini/example.com\"\n  }\n  {\n    route = \"example.com:/man\";\n    root = \"/cgi-bin\";\n    cgi = true;\n  }\n  {\n    route = \"other.org~(.*)\";\n    redirect = \"gemini://example.com\";\n    rewrite = \"\\1\";\n  }\n]\n")),
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "stargazer",
               description: "User account under which stargazer runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "stargazer",
               description: "Group account under which stargazer runs.",
@@ -201,18 +201,18 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         systemd: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           services: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             stargazer: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               description: "Stargazer gemini server",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "stargazer")}/bin/stargazer ${configFile} ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "debugMode")), "-D")}`),
                 Restart: "always",
                 User: nix.thunk(() => nix.sel(cfg, "user")),
@@ -254,27 +254,27 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
             })),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             rules: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "store"))), "/var/lib/gemini/certs")), nix.thunk(() => [
                 nix.thunk(() => nix.str`d /var/lib/gemini/certs - "${nix.sel(cfg, "user")}" "${nix.sel(cfg, "group")}" -`),
               ]))),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           users: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "stargazer")), nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               stargazer: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 isSystemUser: true,
               })),
             })))),
-          groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "stargazer")), nix.thunk(() => ({ __proto__: pos$31, stargazer: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "stargazer")), nix.thunk(() => ({ [nix.POS]: pos$31, stargazer: nix.thunk(() => ({})) })))),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$34,
+      [nix.POS]: pos$34,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "gaykitty"))];

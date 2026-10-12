@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildLakePackage = nix.arg($, "buildLakePackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildLakePackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lean4-Qq",
       version: "4.34.0-unstable-2026-09-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "leanprover-community",
           repo: "quote4",
           rev: "6a489d9af5d0c47e5b259e2e8bcdfc1811b5a259",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       leanPackageName: "Qq",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lean 4 compile-time quote and antiquote macros for metaprogramming",
         homepage: "https://github.com/leanprover-community/quote4",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

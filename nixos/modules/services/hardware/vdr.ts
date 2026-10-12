@@ -37,39 +37,39 @@ export default nix.lambda((args) => (() => {
   const mkIf = nix.thunk(() => nix.attr(lib, "mkIf"));
   const optional = nix.thunk(() => nix.attr(lib, "optional"));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         vdr: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(mkEnableOption, "VDR, a video disk recorder")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "vdr", nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               example: "wrapVdr.override { plugins = with pkgs.vdrPlugins; [ hello ]; }",
             })))),
           videoDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(types, "path")),
               default: "/srv/vdr/video",
               description: "Recording directory",
             })))),
           extraArguments: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: [],
               description: "Additional command line arguments to pass to VDR.",
             })))),
           enableLirc: nix.thunk(() => nix.app(mkEnableOption, "LIRC")),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "vdr",
               description: "User under which the VDR service runs.\n",
             })))),
           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "vdr",
               description: "Group under which the VDRvdr service runs.\n",
@@ -78,26 +78,26 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d ${nix.sel(cfg, "videoDir")} 0755 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} -`),
               nix.thunk(() => nix.str`Z ${nix.sel(cfg, "videoDir")} - ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} -`),
             ]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             vdr: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "VDR",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => nix.app(optional, nix.thunk(() => nix.sel(cfg, "enableLirc")), "lircd.service")),
               after: nix.thunk(() => nix.concat(["network.target"], nix.app(optional, nix.thunk(() => nix.sel(cfg, "enableLirc")), "lircd.service"))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 ExecStart: nix.thunk(() => (() => {
                   const args_1 = nix.thunk(() => nix.concat([nix.thunk(() => nix.str`--video=${nix.sel(cfg, "videoDir")}`)], nix.concat(nix.app(optional, nix.thunk(() => nix.sel(cfg, "enableLirc")), nix.thunk(() => nix.str`--lirc=${nix.sel(config, "passthru", "lirc", "socket")}`)), nix.sel(cfg, "extraArguments"))));
                   return nix.str`${nix.sel(cfg, "package")}/bin/vdr ${nix.app(nix.sel(lib, "escapeShellArgs"), args_1)}`;
@@ -113,22 +113,22 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           users: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "vdr")), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               vdr: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 group: nix.thunk(() => nix.attr(cfg, "group")),
                 home: "/run/vdr",
                 isSystemUser: true,
                 extraGroups: nix.thunk(() => nix.concat(["video", "audio"], nix.app(optional, nix.thunk(() => nix.sel(cfg, "enableLirc")), "lirc"))),
               })),
             })))),
-          groups: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "vdr")), nix.thunk(() => ({ __proto__: pos$17, vdr: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "vdr")), nix.thunk(() => ({ [nix.POS]: pos$17, vdr: nix.thunk(() => ({})) })))),
         })),
       })))),
   };

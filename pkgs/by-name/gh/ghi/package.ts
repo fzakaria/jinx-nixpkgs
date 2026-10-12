@@ -17,21 +17,21 @@ export default nix.lambda((args) => (() => {
   const bundlerEnv = nix.arg($, "bundlerEnv");
   const version = "1.2.1";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "drazisil",
       repo: "ghi",
       tag: version,
       hash: "sha256-3V1lxI4VhP0jC3VSWyNS327gOCKowbbLB6ae1idpFFI=",
     }))));
   const rubyEnv = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "ghi",
       gemfile: nix.thunk(() => nix.str`${src}/Gemfile`),
       lockfile: nix.thunk(() => nix.str`${src}/Gemfile.lock`),
       gemset: nix.path(here, "./gemset.nix"),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ghi",
       version: version,
       src: src,
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(rubyEnv, "wrappedRuby"))]),
       installPhase: "mkdir -p $out/bin\n\ncp ghi $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GitHub Issues on the command line",
         mainProgram: "ghi",
         homepage: "https://github.com/drazisil/ghi",

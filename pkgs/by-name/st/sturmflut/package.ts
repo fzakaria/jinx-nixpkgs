@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sturmflut",
       version: "0-unstable-2023-04-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TobleMiner",
           repo: "sturmflut",
           rev: "0e3092ab6db23d2529b8ddc95e5d5e2c3ae8fc9d",
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [imagemagick]),
       installPhase: "runHook preInstall\ninstall -m755 -D sturmflut $out/bin/sturmflut\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fast (80+ Gbit/s) pixelflut client with full IPv6 and animation support",
         homepage: "https://github.com/TobleMiner/sturmflut",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

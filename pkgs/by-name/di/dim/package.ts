@@ -25,18 +25,18 @@ export default nix.lambda((args) => (() => {
   const libva = nix.arg($, "libva");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "dim",
       version: "0-unstable-2025-09-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Dusk-Labs",
           repo: "dim",
           rev: "d9a4bd0b7e985398ee4f494bf6da8884ab84b8ef",
           hash: "sha256-WktDQF2YqF/3TFnpUvz7lge8+w/W56aFjUG0v58ash4=",
         })))),
       frontend: nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: "dim-ui",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/ui`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       cargoPatches: nix.thunk(() => [
         nix.path(here, "./bump-nightfall.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "remove-unused-imports.patch",
             url: "https://github.com/Dusk-Labs/dim/commit/f62de1d38e6e52f27b1176f0dabbbc51622274cb.patch",
             hash: "sha256-Gk+RHWtCKN7McfFB3siIOOhwi3+k17MCQr4Ya4RCKjc=",
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [ffmpeg]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/Dusk-Labs/dim",
         description: "Self-hosted media manager",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

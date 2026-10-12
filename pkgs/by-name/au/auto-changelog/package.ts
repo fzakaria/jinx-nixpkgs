@@ -21,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "auto-changelog",
       version: "2.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cookpete",
           repo: "auto-changelog",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-ticQpDOQieLaWXfavDKIH0jSenRimp5QYeJy42BjpKw=",
         })))),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: "sha256-NGQbzogQi0XbeGd7fYNyw0i9Yo9j91CfeTdO7nhq4Yw=",
         })))),
@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [git]),
       checkPhase: "runHook preCheck\nyarn --offline run test -i -g 'compileTemplate'\nrunHook postCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Command line tool for generating a changelog from git tags and commit history",
         homepage: "https://github.com/cookpete/auto-changelog",
         changelog: "https://github.com/cookpete/auto-changelog/blob/master/CHANGELOG.md",

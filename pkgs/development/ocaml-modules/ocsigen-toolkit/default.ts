@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const js_of_ocaml_ppx_deriving_json = nix.arg($, "js_of_ocaml-ppx_deriving_json");
   const ocsigen_ppx_rpc = nix.arg($, "ocsigen-ppx-rpc");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ocsigen-toolkit",
       version: "4.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ocsigen",
           repo: "ocsigen-toolkit",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [cmdliner, js_of_ocaml_ppx_deriving_json, ocsigen_ppx_rpc]),
       propagatedBuildInputs: nix.thunk(() => [calendar, eliom]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://ocsigen.org/ocsigen-toolkit/",
         description: "User interface widgets for Ocsigen applications",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

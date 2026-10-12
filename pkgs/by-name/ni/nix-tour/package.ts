@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "nix-tour";
       const version = "unstable-2022-01-03";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nixcloud",
           repo: "tour_of_nix",
           rev: "6a6784983e6dc121574b97eb9b1d03592c8cb9a7",
@@ -36,7 +36,7 @@ makeWrapper ${electron}/bin/electron $out/bin/nix-tour \\
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: pname,
             desktopName: "Tour of Nix",
             genericName: "Tour of Nix",
@@ -46,7 +46,7 @@ makeWrapper ${electron}/bin/electron $out/bin/nix-tour \\
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "'the tour of nix' from nixcloud.io/tour as offline version",
         homepage: "https://nixcloud.io/tour",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
@@ -57,7 +57,7 @@ makeWrapper ${electron}/bin/electron $out/bin/nix-tour \\
         mainProgram: "nix-tour",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

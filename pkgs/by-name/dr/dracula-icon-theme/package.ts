@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const jdupes = nix.arg($, "jdupes");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dracula-icon-theme",
       version: "0-unstable-2024-05-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "m4thewz",
           repo: "dracula-icons",
           rev: "6232e5217429a3ae6396c9e054f5338cecdbb7a5",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       dontRewriteSymlinks: true,
       installPhase: "runHook preInstall\nmkdir -p $out/share/icons/Dracula\ncp -a * $out/share/icons/Dracula/\njdupes --quiet --link-soft --recurse $out/share\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Dracula Icon theme",
         homepage: "https://github.com/m4thewz/dracula-icons",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

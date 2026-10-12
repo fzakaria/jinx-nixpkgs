@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "django-cms",
           repo: "djangocms-alias",
           tag: version,
@@ -43,7 +43,7 @@ runHook postCheck
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["djangocms_alias"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lean enterprise content management powered by Django",
         homepage: "https://django-cms.org",
         changelog: nix.thunk(() => nix.str`https://github.com/django-cms/djangocms-alias/releases/tag/${nix.sel(src, "tag")}`),
@@ -51,7 +51,7 @@ runHook postCheck
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "onny"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

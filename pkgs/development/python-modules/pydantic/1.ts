@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => nix.app(pythonAtLeast, "3.14"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pydantic",
           repo: "pydantic",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [cython, setuptools]);
       const dependencies = nix.thunk(() => [typing_extensions]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         dotenv: nix.thunk(() => [python_dotenv]),
         email: nix.thunk(() => [email_validator]),
       }));
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const enableParallelBuilding = true;
       const pythonImportsCheck = nix.thunk(() => ["pydantic"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Data validation and settings management using Python type hinting",
         homepage: "https://github.com/pydantic/pydantic",
         changelog: nix.thunk(() => nix.str`https://github.com/pydantic/pydantic/blob/v${version}/HISTORY.md`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

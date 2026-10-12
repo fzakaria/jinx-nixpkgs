@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const drbd = nix.arg($, "drbd");
   const pacemaker = nix.arg($, "pacemaker");
-  const drbdForOCF = nix.thunk(() => nix.app(nix.sel(drbd, "override"), nix.thunk(() => ({ __proto__: pos$1, forOCF: true }))));
-  const pacemakerForOCF = nix.thunk(() => nix.app(nix.sel(pacemaker, "override"), nix.thunk(() => ({ __proto__: pos$2, forOCF: true }))));
+  const drbdForOCF = nix.thunk(() => nix.app(nix.sel(drbd, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, forOCF: true }))));
+  const pacemakerForOCF = nix.thunk(() => nix.app(nix.sel(pacemaker, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, forOCF: true }))));
   const resource_agentsForOCF = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "resource-agents",
       version: "4.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "ClusterLabs",
           repo: "resource-agents",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "autoconf-2.72.patch",
             url: "https://github.com/ClusterLabs/resource-agents/commit/bac658711a61fd704e792e2a0a45a2137213c442.patch",
             hash: "sha256-Xq7W8pMRmFZmkqb2430bY5zdmVTrUrob6GwGiN6/bKY=",
@@ -54,11 +54,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [bashNonInteractive, glib]),
       strictDeps: true,
       env: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isGNU")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "version")), "12")))), nix.thunk(() => ["-Wno-error=maybe-uninitialized"])), ["-Wno-error=discarded-qualifiers"])))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://github.com/ClusterLabs/resource-agents",
         description: "Combined repository of OCF agents from the RHCS and Linux-HA projects",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -73,12 +73,12 @@ export default nix.lambda((args) => (() => {
       })),
     })));
   return nix.app(runCommand, "ocf-resource-agents", nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pos: nix.thunk(() => nix.builtins.unsafeGetAttrPos("version", resource_agentsForOCF)),
       passthru: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         inputs: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           "resource-agentsForOCF": resource_agentsForOCF,
           drbdForOCF: drbdForOCF,
           pacemakerForOCF: pacemakerForOCF,

@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const sphinx = nix.arg($, "sphinx");
   const openpyxl = nix.arg($, "openpyxl");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sphinxcontrib-excel-table",
       version: "1.0.8",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256:1q79byn3k3ribvwqafbpixwabjhymk46ns8ym0hxcn8vhf5nljzd",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonNamespaces: nix.thunk(() => ["sphinxcontrib"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Sphinx excel-table extension",
         homepage: "https://github.com/hackerain/sphinxcontrib-excel-table",
         maintainers: nix.thunk(() => (() => {

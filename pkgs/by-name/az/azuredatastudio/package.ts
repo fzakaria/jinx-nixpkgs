@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
   const libxcb = nix.arg($, "libxcb");
   const zlib = nix.arg($, "zlib");
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "azuredatastudio",
       desktopName: "Azure Data Studio",
       comment: "Data Management Tool that enables you to work with SQL Server, Azure SQL DB and SQL DW from Windows, macOS and Linux.",
@@ -67,9 +67,9 @@ export default nix.lambda((args) => (() => {
       mimeTypes: nix.thunk(() => ["text/plain", "inode/directory", "application/x-azuredatastudio-workspace"]),
       keywords: nix.thunk(() => ["azuredatastudio"]),
       actions: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "new-empty-window": nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: "New Empty Window",
           exec: "azuredatastudio --no-sandbox --new-window %F",
           icon: "azuredatastudio",
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   const urlHandlerDesktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "azuredatastudio-url-handler",
       desktopName: "Azure Data Studio - URL Handler",
       comment: "Azure Data Studio",
@@ -96,7 +96,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.49.1";
       const desktopItems = nix.thunk(() => [desktopItem, urlHandlerDesktopItem]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           name: nix.thunk(() => nix.str`${pname}-${version}.tar.gz`),
           url: "https://download.microsoft.com/download/7/8/3/783c2037-8607-43c4-a593-0936e965d38b/azuredatastudio-linux-1.49.1.tar.gz",
           sha256: "sha256-0LCrRUTTe8UEDgtGLvxVQL8pA5dwA6SvZEZSDILr7jo=",
@@ -184,7 +184,7 @@ makeWrapper \\
   --set LD_LIBRARY_PATH ${rpath}
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "xavierzwirtz"))];
@@ -200,7 +200,7 @@ makeWrapper \\
         mainProgram: "azuredatastudio",
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         desktopItems,

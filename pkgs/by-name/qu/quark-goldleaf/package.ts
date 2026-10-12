@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const gtk3 = nix.arg($, "gtk3");
   const udevCheckHook = nix.arg($, "udevCheckHook");
-  const jdk$ = nix.thunk(() => nix.app(nix.sel(jdk, "override"), nix.thunk(() => ({ __proto__: pos$1, enableJavaFX: true }))));
+  const jdk$ = nix.thunk(() => nix.app(nix.sel(jdk, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableJavaFX: true }))));
   return nix.app(nix.sel(maven, "buildMavenPackage"), nix.thunk(() => (() => {
       const pname = "quark-goldleaf";
       const version = "1.2.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "XorTroll",
           repo: "Goldleaf",
           tag: version,
@@ -63,7 +63,7 @@ makeWrapper ${jdk$}/bin/java $out/bin/quark-goldleaf \\
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "quark-goldleaf",
             exec: "quark-goldleaf",
             icon: "quark-goldleaf",
@@ -75,7 +75,7 @@ makeWrapper ${jdk$}/bin/java $out/bin/quark-goldleaf \\
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/XorTroll/Goldleaf/releases/tag/${nix.sel(src, "rev")}`),
         description: "GUI tool for transfering files between a computer and a Nintendo Switch running Goldleaf",
         homepage: "https://github.com/XorTroll/Goldleaf#quark-and-remote-browsing",
@@ -103,7 +103,7 @@ or by adding the package manually to udev packages:
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

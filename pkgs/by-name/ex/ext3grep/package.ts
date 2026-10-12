@@ -20,44 +20,44 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const e2fsprogs = nix.arg($, "e2fsprogs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "ext3grep",
       version: "0.10.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/ext3grep/ext3grep-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-WG8+k50v/XgvbwBrgaPfLcR3xtoD8h7biGDFxPcZjz4=",
         })))),
       nativeBuildInputs: nix.thunk(() => [e2fsprogs]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://salsa.debian.org/pkg-security-team/ext3grep/-/raw/6150141b945dd12240629c07ada0a033b275baeb/debian/patches/001_fix-ftbfs-e2fsprogs_1.42-WIP-702.diff",
             hash: "sha256-27M+o3vw4eGCFpdqVLXX6b73a8v29yuKphMo8K0xJ3U=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://salsa.debian.org/pkg-security-team/ext3grep/-/raw/7c4bfb4c19eabaa11e6bf435289bfcd6e6847a9c/debian/patches/002_remove_i_dir_acl.diff",
             hash: "sha256-2bdlJ+zlsd7zX3ztV7NOTwSmEZf0N1BM8qJ/5avKX+M=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://salsa.debian.org/pkg-security-team/ext3grep/-/raw/58d63611bb8dfe5c4eacd568e79914f4f0cb2a0f/debian/patches/005_fix-FTBFS-dh-11.patch",
             hash: "sha256-GfiSMRxbGz1gDMfAjo+FRmNIRK1zq96TVkLBO03pzbI=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://salsa.debian.org/pkg-security-team/ext3grep/-/raw/8bb5322ced9b099d2af73e77d4a84b6e5b1a9f7f/debian/patches/010_fix-spellings.patch",
             hash: "sha256-YHUInewf634HaRFUW9djtRZqg7Wdqh/rjp0pbJuOT2M=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             url: "https://salsa.debian.org/pkg-security-team/ext3grep/-/raw/662e314abca7d466add8015fc3d2cd49653cffcf/debian/patches/015_fix-clang-build.patch",
             hash: "sha256-GctPFpBxdZYi5l2dtFTrFx4cTmDXV8BARvpwK+oxMdc=",
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Tool to investigate an ext3 file system for deleted content and possibly recover it",
         mainProgram: "ext3grep",
         homepage: "https://code.google.com/archive/p/ext3grep/",

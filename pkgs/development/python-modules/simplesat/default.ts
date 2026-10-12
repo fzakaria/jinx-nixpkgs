@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "enthought",
           repo: "sat-solver",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["simplesat"]);
       const enabledTestPaths = nix.thunk(() => ["simplesat/tests"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Prototype for SAT-based dependency handling",
         homepage: "https://github.com/enthought/sat-solver",
         changelog: nix.thunk(() => nix.str`https://github.com/enthought/sat-solver/blob/${nix.sel(src, "tag")}/CHANGES.rst`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

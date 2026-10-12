@@ -28,9 +28,9 @@ export default nix.lambda((args) => (() => {
   const bootSize = nix.argOr($, "bootSize", () => 1024n);
   const rootSize = nix.argOr($, "rootSize", () => 2048n);
   const rootPoolName = nix.argOr($, "rootPoolName", () => "tank");
-  const rootPoolProperties = nix.argOr($, "rootPoolProperties", () => ({ __proto__: pos$1, autoexpand: "on" }));
+  const rootPoolProperties = nix.argOr($, "rootPoolProperties", () => ({ [nix.POS]: pos$1, autoexpand: "on" }));
   const rootPoolFilesystemProperties = nix.argOr($, "rootPoolFilesystemProperties", () => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     acltype: "posixacl",
     atime: "off",
     compression: "on",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
   const includeChannel = nix.argOr($, "includeChannel", () => true);
   const formatOpt = nix.thunk(() => (nix.asBool(nix.eq(format, "qcow2-compressed")) ? "qcow2" : nix.force(format)));
   const compress = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(format, "qcow2-compressed")), "-c"));
-  const filenameSuffix = nix.thunk(() => nix.add(".", nix.selOr({ __proto__: pos$3, qcow2: "qcow2", vdi: "vdi", vpc: "vhd", raw: "img" }, () => nix.force(formatOpt), nix.key(nix.force(formatOpt)))));
+  const filenameSuffix = nix.thunk(() => nix.add(".", nix.selOr({ [nix.POS]: pos$3, qcow2: "qcow2", vdi: "vdi", vpc: "vhd", raw: "img" }, () => nix.force(formatOpt), nix.key(nix.force(formatOpt)))));
   const bootFilename = nix.thunk(() => nix.str`nixos.boot${filenameSuffix}`);
   const rootFilename = nix.thunk(() => nix.str`nixos.root${filenameSuffix}`);
   const channelSources = nix.thunk(() => (() => {
@@ -63,7 +63,7 @@ echo -n ${nix.sel(config, "system", "nixos", "versionSuffix")} > $out/nixos/.ver
 `));
   })());
   const closureInfo = nix.thunk(() => nix.app(nix.sel(pkgs, "closureInfo"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       rootPaths: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(config, "system", "build", "toplevel"))], nix.app(nix.sel(lib, "optional"), includeChannel, channelSources))),
     }))));
   const modulesTree = nix.thunk(() => nix.app(nix.sel(pkgs, "aggregateModules"), nix.thunk(() => (() => {
@@ -140,7 +140,7 @@ mount -t zfs ${name_1} /mnt${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk((
   const fileSystemsCfgFile = nix.thunk(() => (() => {
     const mountable = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (value) => nix.app(hasDefinedMount, value), datasets));
     return nix.app(nix.sel(pkgs, "runCommand"), "filesystem-config.nix", nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         buildInputs: nix.thunk(() => (() => {
           const w_2 = nix.withScope(pkgs, null);
           return [
@@ -149,12 +149,12 @@ mount -t zfs ${name_1} /mnt${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk((
           ];
         })()),
         filesystems: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             fileSystems: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (dataset) => (attrs) => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 name: nix.thunk(() => nix.sel(attrs, "mount")),
                 value: nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   fsType: "zfs",
                   device: nix.thunk(() => nix.str`${dataset}`),
                 })),
@@ -164,7 +164,7 @@ mount -t zfs ${name_1} /mnt${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk((
       })), "(\n  echo \"builtins.fromJSON ''\"\n  printf \"%s\" \"$filesystems\" | jq .\n  echo \"''\"\n) > $out\n\nnixpkgs-fmt $out\n");
   })());
   const mergedConfig = nix.thunk(() => (nix.asBool(nix.eq(configFile, null)) ? nix.force(fileSystemsCfgFile) : nix.app(nix.sel(pkgs, "runCommand"), "configuration.nix", nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       buildInputs: nix.thunk(() => (() => {
         const w_2 = nix.withScope(pkgs, null);
         return [nix.thunk(() => nix.lookup(w_2, "nixpkgs-fmt"))];
@@ -179,12 +179,12 @@ mount -t zfs ${name_1} /mnt${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk((
 nixpkgs-fmt $out
 `))));
   const image = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(pkgs, "vmTools", "override"), nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       rootModules: nix.thunk(() => ["9p", "9pnet_virtio", "virtio_blk", "virtio_pci", "virtiofs", "zfs"]),
       kernel: nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "kernel")),
       kernelModules: modulesTree,
     }))), "runInLinuxVM"), nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), name, nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         QEMU_OPTS: nix.thunk(() => nix.add("-drive file=$bootDiskImage,if=virtio,cache=unsafe,werror=report", " -drive file=$rootDiskImage,if=virtio,cache=unsafe,werror=report")),
         memSize: memSize,
         preVM: nix.thunk(() => nix.str`PATH=$PATH:${nix.sel(pkgs, "qemu_kvm")}/bin

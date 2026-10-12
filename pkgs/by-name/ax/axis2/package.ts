@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const stripJavaArchivesHook = nix.arg($, "stripJavaArchivesHook");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "axis2",
       version: "1.8.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://apache/axis/axis2/java/core/${nix.sel(finalAttrs, "version")}/axis2-${nix.sel(finalAttrs, "version")}-bin.zip`),
           hash: "sha256-oilPVFFpl3F61nVDxcYx/bc81FopS5fzoIdXzeP8brk=",
         })))),
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\nant -f webapp\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ninstall -Dm644 lib/* -t $out/lib\ninstall -Dm644 dist/axis2.war -t $out/webapps\nunzip $out/webapps/axis2.war -d $out/webapps/axis2\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, tomcat: nix.thunk(() => nix.attr(nixosTests, "tomcat")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, tomcat: nix.thunk(() => nix.attr(nixosTests, "tomcat")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Web Services / SOAP / WSDL engine, the successor to the widely used Apache Axis SOAP stack",
         homepage: "https://axis.apache.org/axis2/java/core/",
         changelog: nix.thunk(() => nix.str`https://axis.apache.org/axis2/java/core/release-notes/${nix.sel(finalAttrs, "version")}.html`),

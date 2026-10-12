@@ -18,35 +18,35 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "rifiuti",
       version: "20040505_1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/odessa/Rifiuti/${nix.sel(finalAttrs, "version")}/rifiuti_${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-bVPz0nXexGtQtXxGb3Mc79tzyZikc7KxNNWuvgu6pQ0=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "add-GCC-hardening.patch",
             url: "https://salsa.debian.org/pkg-security-team/rifiuti/-/raw/f237358a91b12776beb9942c79ccb3aea180968a/debian/patches/add-GCC-hardening",
             hash: "sha256-Z4UajJ8WydoCKjkG4q7WsBSXWwkM8B6UXBoWN1Qas60=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "fix-bts-crash-on-malformed-file.patch",
             url: "https://salsa.debian.org/pkg-security-team/rifiuti/-/raw/5b51604942b518b7752843cf7d693f202dc9c6f1/debian/patches/fix-bts-crash-on-malformed-file.patch",
             hash: "sha256-1kZKC6qIGpCl1zOvKiWh6FcyYX3WozHBSPBHUsL2eMI=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "fix-warnings",
             url: "https://salsa.debian.org/pkg-security-team/rifiuti/-/raw/f237358a91b12776beb9942c79ccb3aea180968a/debian/patches/fix-warnings",
             hash: "sha256-9/OckpNqZQdkmNsUeHUEi6wT12mBd7aMA5dKgQAxXq8=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "use-CC-and-abort-on-error.patch",
             url: "https://salsa.debian.org/pkg-security-team/rifiuti/-/raw/5bd48acbcb63cee324556c4ec29750ce1e41755c/debian/patches/use-CC-and-abort-on-error.patch",
             hash: "sha256-RE4Vswtc887neJ3yAe0YWcs5YtZbwd1UtcTF4zBsmlo=",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       installPhase: "runHook preInstall\ninstall -D bin/rifiuti $out/bin/rifiuti\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Analyze Windows Recycle Bin INFO2 file",
         mainProgram: "rifiuti",
         homepage: "https://sourceforge.net/projects/odessa/files/Rifiuti",

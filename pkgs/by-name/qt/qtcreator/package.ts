@@ -34,12 +34,12 @@ export default nix.lambda((args) => (() => {
   const pname = "qtcreator";
   const version = "20.0.1";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`mirror://qt/official_releases/${pname}/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/${version}/qt-creator-opensource-src-${version}.tar.xz`),
       hash: "sha256-XsO8zwbumhkFqHYKyfunoShWcvFAqX4MUsniSNkFGrg=",
     }))));
   const goModules = nix.thunk(() => nix.sel(nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "gocmdbridge",
       version: "1.0.0",
       src: src,
@@ -47,14 +47,14 @@ export default nix.lambda((args) => (() => {
       setSourceRoot: "sourceRoot=$(echo */src/libs/gocmdbridge/server)\n",
     }))), "goModules"));
   return nix.app(nix.sel(stdenv$, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: version,
       src: src,
       nativeBuildInputs: nix.thunk(() => [
         cmake,
         pkg_config,
-        nix.thunk(() => nix.app(nix.sel(qt6, "qttools", "override"), nix.thunk(() => ({ __proto__: pos$3, withClang: true })))),
+        nix.thunk(() => nix.app(nix.sel(qt6, "qttools", "override"), nix.thunk(() => ({ [nix.POS]: pos$3, withClang: true })))),
         nix.thunk(() => nix.sel(qt6, "wrapQtAppsHook")),
         python3,
         ninja,
@@ -102,11 +102,11 @@ cp -r --reflink=auto ${goModules} src/libs/gocmdbridge/server/vendor
       postInstall: "# Small hack to set-up right prefix in cmake modules for header files\ncmake . $cmakeFlags -DCMAKE_INSTALL_PREFIX=\"${!outputDev}\"\n\ncmake --install . --prefix \"${!outputDev}\" --component Devel\n",
       postFixup: "substituteInPlace ${!outputDev}/lib/cmake/QtCreator/QtCreatorConfig.cmake --replace \"$out/\" \"\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         withPackages: nix.thunk(() => nix.app(callPackage, nix.path(here, "./with-plugins.nix"), nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Cross-platform IDE tailored to the needs of Qt developers",
         longDescription: "Qt Creator is a cross-platform IDE (integrated development environment)\ntailored to the needs of Qt developers. It includes features such as an\nadvanced code editor, a visual debugger and a GUI designer.\n",
         homepage: "https://wiki.qt.io/Qt_Creator",

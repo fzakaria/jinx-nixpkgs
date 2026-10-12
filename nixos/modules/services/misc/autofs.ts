@@ -26,33 +26,33 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "autofs"));
   const autoMaster = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "auto.master", nix.thunk(() => nix.sel(cfg, "autoMaster"))));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         autofs: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Mount filesystems on demand. Unmount them automatically.\nYou may also be interested in afuse.\n",
             })))),
           autoMaster: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "let\n  mapConf = pkgs.writeText \"auto\" ''\n   kernel    -ro,soft,intr       ftp.kernel.org:/pub/linux\n   boot      -fstype=ext2        :/dev/hda1\n   windoze   -fstype=smbfs       ://windoze/c\n   removable -fstype=ext2        :/dev/hdd\n   cd        -fstype=iso9660,ro  :/dev/hdc\n   floppy    -fstype=auto        :/dev/fd0\n   server    -rw,hard,intr       / -ro myserver.me.org:/ \\\n                                 /usr myserver.me.org:/usr \\\n                                 /home myserver.me.org:/home\n  '';\nin ''\n  /auto file:${mapConf}\n''\n")),
               description: "Contents of `/etc/auto.master` file. See {manpage}`auto.master(5)` and {manpage}`autofs(5)`.\n",
             })))),
           timeout: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 600n,
               description: "Set the global minimum timeout, in seconds, until directories are unmounted",
             })))),
           debug: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Pass -d and -7 to automount and write log to the system journal.\n",
@@ -61,20 +61,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
-        boot: nix.thunk(() => ({ __proto__: pos$8, kernelModules: nix.thunk(() => ["autofs"]) })),
+        [nix.POS]: pos$13,
+        boot: nix.thunk(() => ({ [nix.POS]: pos$8, kernelModules: nix.thunk(() => ["autofs"]) })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             autofs: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               description: "Automounts filesystems on demand",
               after: nix.thunk(() => ["network.target", "ypbind.service", "sssd.service", "network-online.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 Type: "forking",
                 PIDFile: "/run/autofs.pid",
                 ExecStartPre: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils")), "rm")} -f /tmp/autofs-running`),

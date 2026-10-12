@@ -31,7 +31,7 @@ popd
 `);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Native AWS Pulumi Provider",
         mainProgram: "pulumi-resource-aws-native",
         homepage: "https://github.com/pulumi/pulumi-aws-native",
@@ -42,7 +42,7 @@ popd
         })()),
       }));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         owner,
         repo,
         version,

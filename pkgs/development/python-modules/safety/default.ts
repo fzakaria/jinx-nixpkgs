@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
   const tomli = nix.arg($, "tomli");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "safety",
       version: "3.8.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pyupio",
           repo: "safety",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [git, pytestCheckHook, tomli, writableTmpDirAsHomeHook]),
       disabledTestPaths: nix.thunk(() => ["tests/firewall/test_command.py", "tests/test_cli.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Checks installed dependencies for known vulnerabilities",
         mainProgram: "safety",
         homepage: "https://github.com/pyupio/safety",

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "redocly";
       const version = "2.17.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Redocly",
           repo: "redocly-cli",
           rev: nix.thunk(() => nix.str`@redocly/cli@${version}`),
@@ -52,14 +52,14 @@ EOF
 chmod +x $out/bin/redocly
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: redocly })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: redocly })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: "https://redocly.com/docs/cli/changelog/",
         description: "Makes OpenAPI easy. Lint/validate to any standard, generate beautiful docs, and more",
         homepage: "https://github.com/Redocly/redocly-cli",
@@ -71,7 +71,7 @@ chmod +x $out/bin/redocly
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const notebook = nix.arg($, "notebook");
   const nix$ = nix.arg($, "nix");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nix-kernel",
       version: "unstable-2020-04-26",
       pyproject: true,
       disabled: nix.thunk(() => !nix.asBool(isPy3k)),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GTrunSec",
           repo: "nix-kernel",
           rev: "dfa42d0812d508ded99f690ee1a83281d900a3ec",
@@ -42,7 +42,7 @@ substituteInPlace setup.py \\
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["nix-kernel"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple jupyter kernel for nix-repl",
         homepage: "https://github.com/GTrunSec/nix-kernel",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

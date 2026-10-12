@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "asdf-vm",
       version: "0.20.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "asdf-vm",
           repo: "asdf",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ wrapProgram $out/bin/asdf \\
   --set ASDF_DIR $out
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "# Generate completions using the built asdf binary\ninstallShellCompletion --cmd asdf \\\n  --bash <($out/bin/asdf completion bash) \\\n  --fish <($out/bin/asdf completion fish) \\\n  --zsh <($out/bin/asdf completion zsh)\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extendable version manager with support for Ruby, Node.js, Erlang & more",
         homepage: "https://asdf-vm.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

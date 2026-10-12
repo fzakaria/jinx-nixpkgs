@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const torchvision = nix.arg($, "torchvision");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cleanvision",
       version: "0.3.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cleanlab",
           repo: "cleanvision",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
           "test_visualize_sample_images_hf_dataset",
         ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_image_sets", "test_imagelab_run", "test_individual_images"]))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Automatically find issues in image datasets and practice data-centric computer vision",
         homepage: "https://github.com/cleanlab/cleanvision",
         changelog: nix.thunk(() => nix.str`https://github.com/cleanlab/cleanvision/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const groff = nix.arg($, "groff");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wiggle",
       version: "1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "neilbrown",
           repo: "wiggle",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [ncurses, groff]),
       configurePhase: "runHook preConfigure\n\nmakeFlagsArray=( CFLAGS=\"-I. -O3\"\n                 STRIP=\"-s\"\n                 INSTALL=\"install\"\n                 BINDIR=\"$out/bin\"\n                 MANDIR=\"$out/share/man\"\n               )\npatchShebangs .\n\nrunHook postConfigure\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/neilbrown/wiggle",
         description: "Tool for applying patches with conflicts",
         mainProgram: "wiggle",

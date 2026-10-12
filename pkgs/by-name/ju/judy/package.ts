@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pkgsBuildBuild = nix.arg($, "pkgsBuildBuild");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "judy",
       version: "1.0.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/judy/Judy-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1sv3990vsx8hrza1mvq3bhvv9m6ff08y4yz7swn6znszz24l0w6j",
         })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "runHook preCheck\nmake -C test check-TESTS\nrunHook postCheck\n",
       outputs: nix.thunk(() => ["out", "man", "dev"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://judy.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
         description: "State-of-the-art C library that implements a sparse dynamic array",

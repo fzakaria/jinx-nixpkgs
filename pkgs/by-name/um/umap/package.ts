@@ -22,21 +22,21 @@ export default nix.lambda((args) => (() => {
   const postgresqlTestHook = nix.arg($, "postgresqlTestHook");
   const playwright_driver = nix.arg($, "playwright-driver");
   const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       self: python,
       packageOverrides: (final) => (prev) => ({
-        __proto__: pos$2,
-        django: nix.thunk(() => nix.app(nix.sel(prev, "django_5", "override"), nix.thunk(() => ({ __proto__: pos$1, withGdal: true })))),
+        [nix.POS]: pos$2,
+        django: nix.thunk(() => nix.app(nix.sel(prev, "django_5", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withGdal: true })))),
       }),
     }))));
   return nix.app(nix.sel(python, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "umap",
       version: "3.8.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "umap-project",
           repo: "umap",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
         "pillow",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pythonPath: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/${nix.sel(python, "sitePackages")}:${nix.app(nix.sel(python, "pkgs", "makePythonPath"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "dependencies")))}`),
       })),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -131,7 +131,7 @@ export postgresqlTestUserOptions="LOGIN SUPERUSER" # Allow creation of databases
         "test_good_request_passes",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "UMap lets you create maps with OpenStreetMap layers in a minute and embed them in your site",
         homepage: "https://github.com/umap-project/umap/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const usbmuxd = nix.arg($, "usbmuxd");
   const libplist = nix.arg($, "libplist");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "usbfluxd",
       version: "1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "corellium",
           repo: "usbfluxd",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libimobiledevice, libusb1, libusbmuxd, usbmuxd, libplist]),
       postPatch: "substituteInPlace configure.ac \\\n  --replace-fail 'with_static_libplist=yes' 'with_static_libplist=no'\nsubstituteInPlace usbfluxd/utils.h \\\n  --replace-fail PLIST_FORMAT_BINARY //PLIST_FORMAT_BINARY \\\n  --replace-fail PLIST_FORMAT_XML, NOT_PLIST_FORMAT_XML\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/corellium/usbfluxd",
         description: "Redirects the standard usbmuxd socket to allow connections to local and remote usbmuxd instances so remote devices appear connected locally",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

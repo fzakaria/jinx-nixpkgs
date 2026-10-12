@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "purple-mm-sms";
       const version = "0.1.7";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "source.puri.sm",
           owner: "Librem5",
           repo: "purple-mm-sms",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [pkg_config]);
       const buildInputs = nix.thunk(() => [glibmm_2_4, pidgin, modemmanager]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://source.puri.sm/Librem5/purple-mm-sms",
         description: "Libpurple plugin for sending and receiving SMS via Modemmanager",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

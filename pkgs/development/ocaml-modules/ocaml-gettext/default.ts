@@ -23,24 +23,24 @@ export default nix.lambda((args) => (() => {
   const fileutils = nix.arg($, "fileutils");
   const ounit2 = nix.arg($, "ounit2");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "gettext",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               url: nix.thunk(() => nix.str`https://github.com/gildor478/ocaml-gettext/releases/download/v${nix.sel(finalAttrs, "version")}/gettext-${nix.sel(finalAttrs, "version")}.tbz`),
               hash: "sha256-CN2d9Vsq8YOOIxK+S+lCtDddvBjCrtDKGSRIh1DjT10=",
             })))),
           patches: nix.thunk(() => nix.concat([
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 url: "https://github.com/gildor478/ocaml-gettext/commit/5462396bee53cb13d8d6fde4c6d430412a17b64d.patch",
                 hash: "sha256-tOR+xgZTadvNeQpZnFTJEvZglK8P+ySvYnE3c1VWvKQ=",
               })))),
           ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.4")), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 url: "https://github.com/gildor478/ocaml-gettext/commit/5d521981e39dcaeada6bbe7b15c5432d6de5d33c.patch",
                 hash: "sha256-82ajmpyXSd2RdVq/ND4lS8PIugRSkKe5oL8BL9CsLo4=",
               }))))))),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       checkInputs: nix.thunk(() => [ounit2]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "OCaml Bindings to gettext",
         homepage: "https://github.com/gildor478/ocaml-gettext",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

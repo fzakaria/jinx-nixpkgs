@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.5";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-ryASD+/Sr+3osAH77y6p2nCtfUn6/bZIkCXa6HRcOu4=",
@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
       const pytestFlags = nix.thunk(() => ["--doctest-glob=*.rst", "--doctest-modules"]);
       const pythonImportsCheck = nix.thunk(() => ["colour"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Converts and manipulates common color representation (RGB, HSV, web, ...)",
         homepage: "https://github.com/vaab/colour",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

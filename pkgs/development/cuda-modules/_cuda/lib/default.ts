@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const _cuda = nix.arg($, "_cuda");
   const lib = nix.arg($, "lib");
   return (() => {
-    const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./assertions.nix")), nix.thunk(() => ({ __proto__: pos$1, _cuda: _cuda, lib: lib }))));
-    const from_1 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./cuda.nix")), nix.thunk(() => ({ __proto__: pos$2, _cuda: _cuda, lib: lib }))));
-    const from_2 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./meta.nix")), nix.thunk(() => ({ __proto__: pos$3, _cuda: _cuda, lib: lib }))));
-    const from_3 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./redist.nix")), nix.thunk(() => ({ __proto__: pos$4, _cuda: _cuda, lib: lib }))));
-    const from_4 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./strings.nix")), nix.thunk(() => ({ __proto__: pos$5, _cuda: _cuda, lib: lib }))));
-    const from_5 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./versions.nix")), nix.thunk(() => ({ __proto__: pos$6, _cuda: _cuda, lib: lib }))));
+    const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./assertions.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, _cuda: _cuda, lib: lib }))));
+    const from_1 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./cuda.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, _cuda: _cuda, lib: lib }))));
+    const from_2 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./meta.nix")), nix.thunk(() => ({ [nix.POS]: pos$3, _cuda: _cuda, lib: lib }))));
+    const from_3 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./redist.nix")), nix.thunk(() => ({ [nix.POS]: pos$4, _cuda: _cuda, lib: lib }))));
+    const from_4 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./strings.nix")), nix.thunk(() => ({ [nix.POS]: pos$5, _cuda: _cuda, lib: lib }))));
+    const from_5 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./versions.nix")), nix.thunk(() => ({ [nix.POS]: pos$6, _cuda: _cuda, lib: lib }))));
     return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     _evaluateAssertions: nix.thunk(() => nix.attr(from, "_evaluateAssertions")),
     _mkFailedAssertionsString: nix.thunk(() => nix.attr(from, "_mkFailedAssertionsString")),
     _mkMissingPackagesAssertions: nix.thunk(() => nix.attr(from, "_mkMissingPackagesAssertions")),

@@ -54,12 +54,12 @@ export default nix.lambda((args) => (() => {
     const systems = nix.thunk(() => nix.attr(lib, "systems"));
     const subtractLists = nix.thunk(() => nix.attr(lib, "subtractLists"));
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         version: version,
         passthru: passthru,
         pname: "mongodb",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "mongodb",
             repo: "mongo",
             tag: nix.thunk(() => nix.str`r${nix.sel(finalAttrs, "version")}`),
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
         patches: patches,
         postPatch: nix.thunk(() => nix.add(nix.add("# fix environment variable reading\nsubstituteInPlace SConstruct \\\n    --replace-fail \"env = Environment(\" \"env = Environment(ENV = os.environ,\"\n", "# Fix debug gcc 11 and clang 12 builds on Fedora\n# https://github.com/mongodb/mongo/commit/e78b2bf6eaa0c43bd76dbb841add167b443d2bb0.patch\nsubstituteInPlace src/mongo/db/query/plan_summary_stats.h --replace-fail '#include <string>' '#include <optional>\n#include <string>'\nsubstituteInPlace src/mongo/db/exec/plan_stats.h --replace-fail '#include <string>' '#include <optional>\n#include <string>'\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(avxSupport)), "substituteInPlace SConstruct \\\n  --replace-fail \"default=['+sandybridge'],\" 'default=[],'\n"))),
         env: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-unused-command-line-argument")),
         })),
         sconsFlags: nix.thunk(() => nix.concat([
@@ -108,7 +108,7 @@ export default nix.lambda((args) => (() => {
         prefixKey: "DESTDIR=",
         enableParallelBuilding: true,
         meta: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           description: "Scalable, high-performance, open source NoSQL database",
           homepage: "http://www.mongodb.org",
           license: license,

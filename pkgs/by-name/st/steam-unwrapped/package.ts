@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const bash = nix.arg($, "bash");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "steam-unwrapped",
       version: "1.0.0.87",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://repo.steampowered.com/steam/archive/stable/steam_${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ZJN10vk3f4AJqvPi/wmXgEHrkRSJfZxaOIbx2C4nuh8=",
         })))),
@@ -38,9 +38,9 @@ rm $out/share/applications/steam.desktop
 substitute steam.desktop $out/share/applications/steam.desktop \\
   --replace-fail /usr/bin/steam steam
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.py") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.py") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Digital distribution platform",
         longDescription: "Steam is a video game digital distribution service and storefront from Valve.\n\nTo install on NixOS, please use the option `programs.steam.enable = true`.\n",
         homepage: "https://store.steampowered.com/",

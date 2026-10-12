@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const crunch = nix.arg($, "crunch");
   const toml = nix.arg($, "toml");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "autofonce",
       version: "0.9-unstable-2026-06-25",
       minimalOCamlVersion: "4.10",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OCamlPro",
           repo: "autofonce",
           rev: "36c577b642ba5355e5a448ccef62a973fadd1eb6",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Modern runner for GNU Autoconf testsuites in m4",
         homepage: "https://ocamlpro.github.io/autofonce/sphinx/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

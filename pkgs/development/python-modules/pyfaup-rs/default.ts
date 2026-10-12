@@ -16,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pyfaup-rs",
       version: "0.4.23",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ail-project",
           repo: "faup-rs",
           tag: nix.thunk(() => nix.str`pyfaup-rs-v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-lxNvc/haAYB4PcNaXVzkvYltNXIYP456mOdUEG1t26A=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["pyfaup"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Url parsing library",
         homepage: "https://github.com/ail-project/faup-rs",
         changelog: nix.thunk(() => nix.str`https://github.com/ail-project/faup-rs/releases/tag/pyfaup-rs-${nix.sel(finalAttrs, "src", "tag")}`),

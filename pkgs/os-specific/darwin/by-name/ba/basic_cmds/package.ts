@@ -11,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const mkAppleDerivation = nix.arg($, "mkAppleDerivation");
   return nix.app(mkAppleDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       releaseName: "basic_cmds",
       outputs: nix.thunk(() => ["out", "man"]),
       xcodeHash: "sha256-gT7kP/w23d5kGKgNPYS9ydCbeVaLwriMJj0BPIHgQ4U=",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Basic commands for Darwin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       })),

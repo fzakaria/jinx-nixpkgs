@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const git_lfs = nix.arg($, "git-lfs");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "github-backup",
       version: "0.65.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "josegonzalez",
           repo: "python-github-backup",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,12 +41,12 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         SSL_CERT_FILE: nix.thunk(() => nix.str`${cacert}/etc/ssl/certs/ca-bundle.crt`),
       })),
       versionCheckKeepEnvironment: nix.thunk(() => ["SSL_CERT_FILE"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Backup a github user or organization",
         homepage: "https://github.com/josegonzalez/python-github-backup",
         changelog: nix.thunk(() => nix.str`https://github.com/josegonzalez/python-github-backup/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.rst`),

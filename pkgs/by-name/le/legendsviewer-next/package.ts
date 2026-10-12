@@ -24,14 +24,14 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "1.3.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "Kromtec",
       repo: "LegendsViewer-Next",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-NfNCWRN54NHbTDGcZDqd4PGFUudh14jhZYaYBL4jPc0=",
     }))));
   const patches$ = nix.thunk(() => nix.concat(patches, [nix.path(here, "./remove-npm-frontend.patch")]));
-  const frontend = nix.thunk(() => nix.app(callPackage, nix.path(here, "./frontend.nix"), nix.thunk(() => ({ __proto__: pos$2, version: version, src: src, patches: patches$ }))));
+  const frontend = nix.thunk(() => nix.app(callPackage, nix.path(here, "./frontend.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, version: version, src: src, patches: patches$ }))));
   return nix.app(buildDotnetModule, nix.thunk(() => (() => {
       const pname = "legendsviewer-next";
       const version_1 = version;
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const __structuredAttrs = true;
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: pname,
             desktopName: "Legends Viewer",
             genericName: "DF Legends Export Browser",
@@ -114,11 +114,11 @@ trap - EXIT
 runHook postInstallCheck
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Recreates Dwarf Fortress' Legends Mode from exported files",
         homepage: "https://github.com/Kromtec/LegendsViewer-Next",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -130,7 +130,7 @@ runHook postInstallCheck
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version: version_1,
         src: src_1,

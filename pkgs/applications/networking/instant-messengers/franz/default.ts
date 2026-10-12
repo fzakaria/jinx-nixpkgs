@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
       const name = "Franz";
       const version = "5.11.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/meetfranz/franz/releases/download/v${version}/franz_${version}_amd64.deb`),
           sha256: "sha256-4+HeH9lY5/2fswSwzMPM1Idllj01zU7nmlLOMYfcSsU=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Free messaging app that combines chat & messaging services into one application",
         homepage: "https://meetfranz.com",
         sourceProvenance: nix.thunk(() => (() => {
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["x86_64-linux"]),
         hydraPlatforms: [],
       }));
-      return { __proto__: pos$3, pname, name, version, src, meta };
+      return { [nix.POS]: pos$3, pname, name, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

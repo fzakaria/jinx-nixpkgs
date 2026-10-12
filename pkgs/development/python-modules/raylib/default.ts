@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const writers = nix.arg($, "writers");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "raylib",
       version: "6.0.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "electronstudio",
           repo: "raylib-python-cffi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,15 +44,15 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["pyray"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./passthru-tests.nix")), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             writers: writers,
             raylib: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python CFFI bindings for Raylib",
         homepage: "https://electronstudio.github.io/raylib-python-cffi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "epl20")),

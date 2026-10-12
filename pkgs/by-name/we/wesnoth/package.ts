@@ -43,13 +43,13 @@ export default nix.lambda((args) => (() => {
   const boost = boost186;
   const suffix = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), enableDevel, "-devel"));
   const sdl = nix.thunk(() => (nix.asBool(enableDevel) ? [sdl3, sdl3_image, sdl3_mixer] : [SDL2, SDL2_image, SDL2_mixer, SDL2_net, SDL2_ttf]));
-  const lua = nix.thunk(() => nix.app(nix.sel(lua5_4, "override"), nix.thunk(() => ({ __proto__: pos$1, postConfigure: "makeFlagsArray+=(\"CC=$CXX\")\n" }))));
+  const lua = nix.thunk(() => nix.app(nix.sel(lua5_4, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, postConfigure: "makeFlagsArray+=(\"CC=$CXX\")\n" }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: nix.thunk(() => nix.str`wesnoth${suffix}`),
       version: nix.thunk(() => (nix.asBool(enableDevel) ? "1.19.28" : "1.18.8")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "wesnoth",
           repo: "wesnoth",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -122,9 +122,9 @@ ln -s "$app_contents/MacOS/wesnothd${suffix}" "$out/bin/wesnothd${suffix}"
 makeBinaryWrapper "$app_bundle/Contents/MacOS/wesnoth${suffix}" "$out/bin/wesnoth${suffix}"
 `))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => [
               "--version-regex",
               nix.thunk(() => (nix.asBool(enableDevel) ? "^(\\d+\\.\\d*[13579]\\.\\d+.*)$" : "^(\\d+\\.\\d*[02468]\\.\\d+)$")),
@@ -132,7 +132,7 @@ makeBinaryWrapper "$app_bundle/Contents/MacOS/wesnoth${suffix}" "$out/bin/wesnot
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Battle for Wesnoth, a free, turn-based strategy game with a fantasy theme",
         longDescription: "The Battle for Wesnoth is a Free, turn-based tactical strategy\ngame with a high fantasy theme, featuring both single-player, and\nonline/hotseat multiplayer combat. Fight a desperate battle to\nreclaim the throne of Wesnoth, or take hand in any number of other\nadventures.\n",
         homepage: "https://www.wesnoth.org/",

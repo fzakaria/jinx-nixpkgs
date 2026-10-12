@@ -25,17 +25,17 @@ export default nix.lambda((args) => (() => {
   const networkdEnabled = nix.thunk(() => (nix.asBool(nix.sel(config, "networking", "useNetworkd")) || nix.asBool(nix.sel(config, "systemd", "network", "enable"))));
   const networkmanagerEnabled = nix.thunk(() => nix.sel(config, "networking", "networkmanager", "enable"));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       networking: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         netplan: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Whether to enable the netplan-configure service at boot")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "netplan", nix.thunk(() => ({})))),
           configFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => ({})),
               example: "{\n  \"10-example.yaml\" = \\'\\'\n     ---\n     network:\n       version: 2\n       dummy-devices:\n         example:\n           addresses: [\"fd00::feed:cafe/32\"]\n     \\'\\'\n}\n",
@@ -45,18 +45,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         warnings: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool((nix.asBool(networkdEnabled) || nix.asBool(networkmanagerEnabled)))), nix.thunk(() => [
             "You enabled the netplan-configure service, but you haven't enabled a backend for it. It's likely you want to enable either networkd or NetworkManager.",
           ]))),
         environment: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((key) => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 name: nix.thunk(() => nix.add("netplan/", key)),
                 value: nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   text: nix.thunk(() => nix.sel(cfg, "configFiles", nix.key(nix.str`${key}`))),
                   user: "root",
                   group: "root",
@@ -65,11 +65,11 @@ export default nix.lambda((args) => (() => {
               }), nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "attrNames"), nix.thunk(() => nix.sel(cfg, "configFiles")))))))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$9,
-            "netplan-configure": nix.thunk(() => ({ __proto__: pos$8, wantedBy: nix.thunk(() => ["sysinit.target"]) })),
+            [nix.POS]: pos$9,
+            "netplan-configure": nix.thunk(() => ({ [nix.POS]: pos$8, wantedBy: nix.thunk(() => ["sysinit.target"]) })),
           })),
         })),
       })))),

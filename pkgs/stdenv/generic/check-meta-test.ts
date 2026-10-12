@@ -33,10 +33,10 @@ export default nix.lambda((args) => (() => {
   const recurseIntoAttrs = nix.thunk(() => nix.attr(lib, "recurseIntoAttrs"));
   const replaceString = nix.thunk(() => nix.attr(lib, "replaceString"));
   const mkPkg = (name) => (license) => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     pname: name,
     version: "1.0",
-    meta: nix.thunk(() => ({ __proto__: pos$1, license: license })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, license: license })),
   });
   const assertValidity = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
@@ -44,13 +44,13 @@ export default nix.lambda((args) => (() => {
     const pkg = nix.arg($_1, "pkg");
     const expected = nix.argOr($_1, "expected", () => true);
     const testPkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         system: nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "system")),
         config: nixpkgsConfig,
       }))));
     const checkMeta = nix.thunk(() => nix.app(nix.sel(testPkgs, "callPackage"), nix.path(here, "./check-meta.nix"), nix.thunk(() => ({}))));
     const tryEval = (expression) => nix.builtins.tryEval(nix.thunk(() => nix.builtins.deepSeq(expression, expression)));
-    const actual = nix.thunk(() => nix.app(tryEval, nix.thunk(() => nix.app(nix.sel(checkMeta, "assertValidity"), nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform")), nix.thunk(() => ({ __proto__: pos$4, meta: nix.thunk(() => nix.sel(pkg, "meta")), attrs: pkg }))))));
+    const actual = nix.thunk(() => nix.app(tryEval, nix.thunk(() => nix.app(nix.sel(checkMeta, "assertValidity"), nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform")), nix.thunk(() => ({ [nix.POS]: pos$4, meta: nix.thunk(() => nix.sel(pkg, "meta")), attrs: pkg }))))));
     const toPretty = nix.thunk(() => nix.app(nix.sel(generators, "toPretty"), nix.thunk(() => ({}))));
     return nix.app(assertMsg, nix.thunk(() => nix.eq(nix.sel(actual, "success"), expected)), nix.thunk(() => nix.str`Expected validity of package '${nix.app(nix.sel(lib, "getName"), pkg)}' with unfree license
 '${nix.app(nix.sel(licenses, "toSPDX"), nix.thunk(() => nix.sel(pkg, "meta", "license")))}' to be ${nix.app(toPretty, expected)}, but got
@@ -61,31 +61,31 @@ ${nix.app(toPretty, nixpkgsConfig)}
   })(), formals$2);
   const runAssertions = (assertions) => nix.app(nix.sel(lib, "deepSeq"), assertions, "");
   const mkTests = (mkUnfreePkg) => ({
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     allowOnlyFreePackagesByDefault: nix.thunk(() => nix.app(assertValidity, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         nixpkgsConfig: nix.thunk(() => ({})),
         pkg: nix.thunk(() => nix.app(mkUnfreePkg, "forbidden")),
         expected: false,
       })))),
     allowAllUnfreePackages: nix.thunk(() => nix.app(assertValidity, nix.thunk(() => ({
-        __proto__: pos$7,
-        nixpkgsConfig: nix.thunk(() => ({ __proto__: pos$6, allowUnfree: true })),
+        [nix.POS]: pos$7,
+        nixpkgsConfig: nix.thunk(() => ({ [nix.POS]: pos$6, allowUnfree: true })),
         pkg: nix.thunk(() => nix.app(mkUnfreePkg, "allowed")),
       })))),
     allowUnfreePackagesWithPredicate: nix.thunk(() => (() => {
       const nixpkgsConfig = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         allowUnfreePredicate: (pkg) => nix.eq(nix.app(nix.sel(lib, "getName"), pkg), "allowed-by-predicate"),
       }));
       return [
         nix.thunk(() => nix.app(assertValidity, nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             nixpkgsConfig: nixpkgsConfig,
             pkg: nix.thunk(() => nix.app(mkUnfreePkg, "allowed-by-predicate")),
           })))),
         nix.thunk(() => nix.app(assertValidity, nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             nixpkgsConfig: nixpkgsConfig,
             pkg: nix.thunk(() => nix.app(mkUnfreePkg, "allowed-by-nothing")),
             expected: false,
@@ -94,31 +94,31 @@ ${nix.app(toPretty, nixpkgsConfig)}
     })()),
     allowUnfreeWithPackages: nix.thunk(() => nix.app(runAssertions, nix.thunk(() => [
         nix.thunk(() => nix.app(assertValidity, nix.thunk(() => ({
-            __proto__: pos$12,
-            nixpkgsConfig: nix.thunk(() => ({ __proto__: pos$11, allowUnfreePackages: nix.thunk(() => ["unfree"]) })),
+            [nix.POS]: pos$12,
+            nixpkgsConfig: nix.thunk(() => ({ [nix.POS]: pos$11, allowUnfreePackages: nix.thunk(() => ["unfree"]) })),
             pkg: nix.thunk(() => nix.app(mkUnfreePkg, "unfree")),
             expected: true,
           })))),
       ]))),
     allowUnfreePackagesOrPredicate: nix.thunk(() => (() => {
       const nixpkgsConfig = nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         allowUnfreePackages: nix.thunk(() => ["allowed-by-packages"]),
         allowUnfreePredicate: (pkg) => nix.eq(nix.app(nix.sel(lib, "getName"), pkg), "allowed-by-predicate"),
       }));
       return nix.app(runAssertions, nix.thunk(() => [
           nix.thunk(() => nix.app(assertValidity, nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               nixpkgsConfig: nixpkgsConfig,
               pkg: nix.thunk(() => nix.app(mkUnfreePkg, "allowed-by-packages")),
             })))),
           nix.thunk(() => nix.app(assertValidity, nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               nixpkgsConfig: nixpkgsConfig,
               pkg: nix.thunk(() => nix.app(mkUnfreePkg, "allowed-by-predicate")),
             })))),
           nix.thunk(() => nix.app(assertValidity, nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               nixpkgsConfig: nixpkgsConfig,
               pkg: nix.thunk(() => nix.app(mkUnfreePkg, "forbidden")),
               expected: false,

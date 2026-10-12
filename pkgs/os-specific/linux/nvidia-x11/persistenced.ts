@@ -19,18 +19,18 @@ export default (nvidia_x11) => (sha256) => nix.lambda((args) => (() => {
   const addDriverRunpath = nix.arg($, "addDriverRunpath");
   const libtirpc = nix.arg($, "libtirpc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nvidia-persistenced",
       version: nix.thunk(() => nix.sel(nvidia_x11, "persistencedVersion")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NVIDIA",
           repo: "nvidia-persistenced",
           rev: nix.thunk(() => nix.sel(nvidia_x11, "persistencedVersion")),
           sha256: sha256,
         })))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(nvidia_x11, "persistencedVersion")), "450.51")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [nix.thunk(() => nix.str`-I${nix.sel(libtirpc, "dev")}/include/tirpc`)]))),
           NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-ltirpc"]))),
         })))),
@@ -46,7 +46,7 @@ export default (nvidia_x11) => (sha256) => nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       postFixup: "# Save a copy of persistenced for mounting in containers\nmkdir $out/origBin\ncp $out/{bin,origBin}/nvidia-persistenced\npatchelf --set-interpreter /lib64/ld-linux-x86-64.so.2 $out/origBin/nvidia-persistenced\n\naddDriverRunpath $out/bin/nvidia-persistenced\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/NVIDIA/nvidia-persistenced",
         description: "NVIDIA driver persistence daemon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

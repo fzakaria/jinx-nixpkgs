@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const itkwasm = nix.arg($, "itkwasm");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "itkwasm-image-io-wasi",
       version: "1.6.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "itkwasm_image_io_wasi",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-g3w/OPU9N1GxJkW9kKrOvGtVPRVb6zTy5n2nB5WU7+Q=",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["itkwasm_image_io_wasi"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Input and output for scientific and medical image file formats",
         homepage: "https://pypi.org/project/itkwasm-image-io-wasi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

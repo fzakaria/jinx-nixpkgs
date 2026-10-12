@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "er-patcher";
       const version = "1.12-3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gurrgur",
           repo: "er-patcher",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [python3]);
       const installPhase = "mkdir -p $out/bin\ninstall -Dm755 $src/er-patcher $out/bin/er-patcher\npatchShebangs $out/bin/er-patcher\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/gurrgur/er-patcher",
         changelog: nix.thunk(() => nix.str`https://github.com/gurrgur/er-patcher/releases/tag/v${version}`),
         description: "Enhancement patches for Elden Ring adding ultrawide support, custom frame rate limits and more",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "sigmasquadron"))]),
         mainProgram: "er-patcher",
       }));
-      return { __proto__: pos$3, pname, version, src, buildInputs, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, buildInputs, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

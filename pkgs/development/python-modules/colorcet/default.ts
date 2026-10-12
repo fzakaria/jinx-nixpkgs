@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.2.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-SNmmfm5Z3FwKllqhtG/l1Zzclcw2qVlJ8pMT+VCsWfc=",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["matplotlib_default_colormap_plot"]);
       const pythonImportsCheck = nix.thunk(() => ["colorcet"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of perceptually uniform colormaps",
         mainProgram: "colorcet",
         homepage: "https://colorcet.pyviz.org",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

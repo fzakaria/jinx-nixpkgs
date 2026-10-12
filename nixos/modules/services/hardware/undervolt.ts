@@ -54,13 +54,13 @@ export default nix.lambda((args) => (() => {
   })());
   const cliArgs = nix.thunk(() => (() => {
     const optionFormat = (optionName) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       option: nix.thunk(() => nix.str`--${optionName}`),
       sep: null,
       explicitBool: false,
     });
     return nix.app(nix.sel(lib, "cli", "toCommandLine"), optionFormat, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         verbose: nix.thunk(() => nix.attr(cfg, "verbose")),
         temp: nix.thunk(() => nix.attr(cfg, "temp")),
         turbo: nix.thunk(() => nix.attr(cfg, "turbo")),
@@ -76,73 +76,73 @@ export default nix.lambda((args) => (() => {
       })));
   })());
   return {
-    __proto__: pos$38,
+    [nix.POS]: pos$38,
     options: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       services: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         undervolt: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Undervolting service for Intel CPUs.\n\nWarning: This service is not endorsed by Intel and may permanently damage your hardware. Use at your own risk\n")),
           verbose: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable verbose logging.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "undervolt", nix.thunk(() => ({})))),
           coreOffset: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "int")))),
               default: null,
               description: "The amount of voltage in mV to offset the CPU cores by.\n",
             })))),
           gpuOffset: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "int")))),
               default: null,
               description: "The amount of voltage in mV to offset the GPU by.\n",
             })))),
           uncoreOffset: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "int")))),
               default: null,
               description: "The amount of voltage in mV to offset uncore by.\n",
             })))),
           analogioOffset: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "int")))),
               default: null,
               description: "The amount of voltage in mV to offset analogio by.\n",
             })))),
           temp: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "int")))),
               default: null,
               description: "The temperature target in Celsius degrees.\n",
             })))),
           tempAc: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "int")))),
               default: null,
               description: "The temperature target on AC power in Celsius degrees.\n",
             })))),
           tempBat: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "int")))),
               default: null,
               description: "The temperature target on battery power in Celsius degrees.\n",
             })))),
           turbo: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "int")))),
               default: null,
               description: "Changes the Intel Turbo feature status (1 is disabled and 0 is enabled).\n",
             })))),
           p1: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             limit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "int")));
@@ -151,7 +151,7 @@ export default nix.lambda((args) => (() => {
                 description: "The P1 Power Limit in Watts.\nBoth limit and window must be set.\n",
               })))),
             window: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -164,9 +164,9 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           p2: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             limit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "int")));
@@ -175,7 +175,7 @@ export default nix.lambda((args) => (() => {
                 description: "The P2 Power Limit in Watts.\nBoth limit and window must be set.\n",
               })))),
             window: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -188,7 +188,7 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           useTimer: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to set a timer that applies the undervolt settings every 30s.\nThis will cause spam in the journal but might be required for some\nhardware under specific conditions.\nEnable this if your undervolt settings don't hold.\n",
@@ -197,44 +197,44 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$37,
+        [nix.POS]: pos$37,
         hardware: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           cpu: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             x86: nix.thunk(() => ({
-              __proto__: pos$23,
-              msr: nix.thunk(() => ({ __proto__: pos$22, enable: true })),
+              [nix.POS]: pos$23,
+              msr: nix.thunk(() => ({ [nix.POS]: pos$22, enable: true })),
             })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           services: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             undervolt: nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               description: "Intel Undervolting Service",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 Type: "oneshot",
                 Restart: "no",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/undervolt ${nix.builtins.toString(cliArgs)}`),
               })),
             })),
             "undervolt-sleep": nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               description: "Preserve Intel Undervolting After Sleep",
               wantedBy: nix.thunk(() => ["sleep.target"]),
               before: nix.thunk(() => ["sleep.target"]),
-              unitConfig: nix.thunk(() => ({ __proto__: pos$29, StopWhenUnneeded: true })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$29, StopWhenUnneeded: true })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 Type: "oneshot",
                 Restart: "no",
                 RemainAfterExit: true,
@@ -243,13 +243,13 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           timers: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             undervolt: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "useTimer")), nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 description: "Undervolt timer to ensure voltage settings are always applied",
                 partOf: nix.thunk(() => ["undervolt.service"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
-                timerConfig: nix.thunk(() => ({ __proto__: pos$33, OnBootSec: "2min", OnUnitActiveSec: "30" })),
+                timerConfig: nix.thunk(() => ({ [nix.POS]: pos$33, OnBootSec: "2min", OnUnitActiveSec: "30" })),
               })))),
           })),
         })),

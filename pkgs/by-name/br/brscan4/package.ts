@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
       const pname = "brscan4";
       const version = "0.4.10-1";
       const src = nix.thunk(() => nix.selOr({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "i686-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`http://download.brother.com/welcome/dlf006646/${pname}-${version}.i386.deb`),
             sha256: "sha256-ymIAg+rfSYP5uzsAM1hUYZacJ0PXmKEoljNtb0pgGMw=",
           })))),
         "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf006645/${pname}-${version}.amd64.deb`),
             sha256: "sha256-Gpr5456MCNpyam3g2qPo7S3aEZFMaUGR8bu7YmRY8xk=",
           })))),
@@ -92,7 +92,7 @@ runHook postInstall
       const dontStrip = true;
       const dontPatchELF = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Brother brscan4 sane backend driver",
         homepage: "http://www.brother.com",
         platforms: nix.thunk(() => ["i686-linux", "x86_64-linux"]),
@@ -107,7 +107,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

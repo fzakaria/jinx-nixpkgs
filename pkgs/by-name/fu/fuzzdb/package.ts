@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fuzzdb",
       version: "0-unstable-2020-02-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fuzzdb-project",
           repo: "fuzzdb",
           rev: "5656ab25dc6bb43bae32236fab775658a90d7380",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\nmkdir -p $out/share/{fuzzdb,wordlists/fuzzdb}\nmv docs web-backdoors $out/share/fuzzdb\nmv */ $out/share/wordlists/fuzzdb\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Comprehensive collection of attack patterns and predictable resource names used for security testing and fuzzing application",
         homepage: "https://github.com/fuzzdb-project/fuzzdb",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

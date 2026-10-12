@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const gettext = nix.arg($, "gettext");
   const librsvg = nix.arg($, "librsvg");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ymuse",
       version: "0.22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "yktoo",
           repo: "ymuse",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "install -Dm644 ./resources/com.yktoo.ymuse.desktop -t $out/share/applications\ninstall -Dm644 ./resources/metainfo/com.yktoo.ymuse.metainfo.xml -t $out/share/metainfo\ncp -r ./resources/icons $out/share\n\napp_id=\"ymuse\"\nfind ./resources/i18n -type f -name '*.po' |\nwhile read file; do\n    # Language is the filename without the extension\n    lang=\"$(basename \"$file\")\"\n    lang=\"${lang%.*}\"\n\n    # Create the target dir if needed\n    target_dir=\"$out/share/locale/$lang/LC_MESSAGES\"\n    mkdir -p \"$target_dir\"\n\n    # Compile the .po into a .mo\n    echo \"Compiling $file\" into \"$target_dir/$app_id.mo\"\n    msgfmt \"$file\" -o \"$target_dir/$app_id.mo\"\ndone\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://yktoo.com/en/software/ymuse/",
         description: "GTK client for Music Player Daemon (MPD)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

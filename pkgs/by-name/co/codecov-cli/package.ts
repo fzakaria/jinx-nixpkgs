@@ -18,19 +18,19 @@ export default nix.lambda((args) => (() => {
   const click_8_2 = nix.thunk(() => nix.app(nix.sel(python3Packages, "click", "overridePythonAttrs"), (old) => (() => {
       const version = "8.2.1";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "click",
           version: version,
           hash: "sha256-J8SRzAXZaNJx1aHbE+O1oYRjbZ2TDxSMULA48NBkYgI=",
         }))));
-      return { __proto__: pos$2, version, src };
+      return { [nix.POS]: pos$2, version, src };
     })()));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => (() => {
       const pname = "codecov-cli";
       const version = "11.2.8";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "getsentry",
           repo: "prevent-cli",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         ];
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Codecov Command Line Interface",
         homepage: "https://github.com/codecov/codecov-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

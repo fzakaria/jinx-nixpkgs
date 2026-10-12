@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.0dev";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-jYcA3gByT5RydMU8eK+PUnWe9TrRQ/chw+F6wTUqcX0=",
@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
       const preCheck = "sed -i 's/test_epoch/_test_epoch/' timecop/tests/test_freeze.py\n";
       const pythonImportsCheck = nix.thunk(() => ["timecop"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Port of the most excellent TimeCop Ruby Gem for Python",
         homepage: "https://github.com/bluekelp/pytimecop",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

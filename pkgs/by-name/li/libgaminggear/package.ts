@@ -26,17 +26,17 @@ export default nix.lambda((args) => (() => {
   const libpthread_stubs = nix.arg($, "libpthread-stubs");
   const harfbuzz = nix.arg($, "harfbuzz");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libgaminggear",
       version: "0.15.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/libgaminggear/libgaminggear-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "0jf5i1iv8j842imgiixbhwcr6qcwa93m27lzr6gb01ri5v35kggz",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://aur.archlinux.org/cgit/aur.git/plain/cmake_min_version.patch?h=libgaminggear&id=bfe7db62db76dbcefa8ba47640a35c80183f91d3",
             hash: "sha256-loznfqxlucYlDUSYotMdUBmivKu+DD+OYhRIWpcrSgE=",
           })))),
@@ -50,12 +50,12 @@ export default nix.lambda((args) => (() => {
         "-DINSTALL_LIBDIR=lib",
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [nix.thunk(() => nix.str`-I${nix.sel(harfbuzz, "dev")}/include/harfbuzz`)]))),
       })),
       postFixup: "moveToOutput bin \"$bin\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Provides functionality for gaming input devices",
         homepage: "https://sourceforge.net/projects/libgaminggear/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

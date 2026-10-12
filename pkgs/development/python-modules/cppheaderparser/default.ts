@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cppheaderparser",
       version: "2.7.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "CppHeaderParser",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-OCswQW2VsKXoUCshSBDcrCpWQykX4mUUR9Or4lPjzEI=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [ply]),
       pythonImportsCheck: nix.thunk(() => ["CppHeaderParser"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Parse C++ header files using ply.lex to generate navigable class tree representing the class structure",
         homepage: "https://sourceforge.net/projects/cppheaderparser/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsdOriginal")),

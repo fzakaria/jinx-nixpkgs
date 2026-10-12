@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const uv_build = nix.arg($, "uv-build");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cyvest",
       version: "6.1.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PakitoSec",
           repo: "cyvest",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: nix.thunk(() => ["pydantic"]),
       "build-system": nix.thunk(() => [uv_build]),
       dependencies: nix.thunk(() => [click, logurich, pydantic, rich, typing_extensions]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, visualization: nix.thunk(() => [pyvis]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, visualization: nix.thunk(() => [pyvis]) })),
       nativeCheckInputs: nix.thunk(() => [pytest_cov_stub, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["cyvest"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Cybersecurity Investigation Model",
         homepage: "https://github.com/PakitoSec/cyvest",
         changelog: nix.thunk(() => nix.str`https://github.com/PakitoSec/cyvest/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

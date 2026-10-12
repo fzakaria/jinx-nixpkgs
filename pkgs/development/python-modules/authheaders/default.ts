@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.16.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ValiMail",
           repo: "authentication-headers",
           tag: version,
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["authheaders"]);
       const disabledTests = nix.thunk(() => ["test_authenticate_dmarc_psdsub"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library for the generation of email authentication headers",
         homepage: "https://github.com/ValiMail/authentication-headers",
         changelog: nix.thunk(() => nix.str`https://github.com/ValiMail/authentication-headers/blob${version}/CHANGES`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "dmarc-policy-find",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

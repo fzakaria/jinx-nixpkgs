@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
       const pname = "amnezia-xray";
       const version = "1.4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "amnezia-vpn",
           repo: "amnezia-xray-bindings",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-lvU3bDzd5kgYl5DjdglnQzgjPwhtczxWu6LyxeVvVXE=",
         }))));
       const vendorHash = "sha256-L05GHzj9lyFAm9JgR8ZDQf+2auumug6PcoD1F4ozk3E=";
-      const env = nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 1n }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 1n }));
       const buildPhase = "runHook preBuild\n\nmkdir -p build\ngo build -buildmode=c-archive -trimpath -ldflags=\"-w -s\" -o build/amnezia_xray.a .\n\nrunHook postBuild\n";
       const installPhase = "runHook preInstall\n\ninstall -Dm444 build/amnezia_xray.a $out/lib/libamnezia_xray.a\ninstall -Dm444 build/amnezia_xray.h -t $out/include/\n\nrunHook postInstall\n";
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

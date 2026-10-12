@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const doSymlink = nix.argOr($, "doSymlink", () => true);
   const dim = nix.thunk(() => nix.builtins.toString(dimensions));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "palp",
       version: "2.21",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://hep.itp.tuwien.ac.at/~kreuzer/CY/palp/palp-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-fkp78hmZioRMC8zgoXbknQdDy0tQWg4ZUym/LsGW3dc=",
         })))),
@@ -37,7 +37,7 @@ for file in poly class cws nef mori; do
 done
 `, nix.app(nix.sel(lib, "optionalString"), doSymlink, "cd $out/bin\nfor file in poly class cws nef mori; do\n  ln -sf $file-6d.x $file.x\ndone\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Package for Analyzing Lattice Polytopes",
         longDescription: "A Package for Analyzing Lattice Polytopes (PALP) is a set of C\nprograms for calculations with lattice polytopes and applications to\ntoric geometry.\n\nIt contains routines for vertex and facet enumeration, computation of\nincidences and symmetries, as well as completion of the set of lattice\npoints in the convex hull of a given set of points. In addition, there\nare procedures specialised to reflexive polytopes such as the\nenumeration of reflexive subpolytopes, and applications to toric\ngeometry and string theory, like the computation of Hodge data and\nfibration structures for toric Calabi-Yau varieties.  The package is\nwell tested and optimised in speed as it was used for time consuming\ntasks such as the classification of reflexive polyhedra in 4\ndimensions and the creation and manipulation of very large lists of\n5-dimensional polyhedra.\n\nWhile originally intended for low-dimensional applications, the\nalgorithms work in any dimension and our key routine for vertex and\nfacet enumeration compares well with existing packages.\n",
         homepage: "http://hep.itp.tuwien.ac.at/~kreuzer/CY/CYpalp.html",

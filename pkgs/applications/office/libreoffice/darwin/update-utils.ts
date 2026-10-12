@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const getSha256 = (dmgUrl) => (oldVersion) => (newVersion) => nix.app(extractSha256FromHtml, nix.thunk(() => nix.app(getHtml, nix.thunk(() => nix.app(getSha256Url, dmgUrl, oldVersion, newVersion)))));
   const getSha256Url = (dmgUrl) => (oldVersion) => (newVersion) => nix.add(nix.builtins.replaceStrings(nix.thunk(() => [oldVersion]), nix.thunk(() => [newVersion]), dmgUrl), ".sha256");
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     extractLatestVersionFromHtml: extractLatestVersionFromHtml,
     getHtml: getHtml,
     getLatestStableVersion: getLatestStableVersion,

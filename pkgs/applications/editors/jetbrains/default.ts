@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
   const webstorm = nix.arg($, "webstorm");
   const vmopts = nix.argOr($, "vmopts", () => null);
   return nix.update({
-    __proto__: pos$2,
-    mkJetBrainsProduct: nix.thunk(() => nix.app(callPackage, nix.path(here, "./builder/default.nix"), nix.thunk(() => ({ __proto__: pos$1, vmopts: vmopts })))),
+    [nix.POS]: pos$2,
+    mkJetBrainsProduct: nix.thunk(() => nix.app(callPackage, nix.path(here, "./builder/default.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, vmopts: vmopts })))),
     mkJetBrainsSource: nix.thunk(() => nix.app(callPackage, nix.path(here, "./source/build.nix"), nix.thunk(() => ({})))),
     cythonDebugSpeedupsHook: nix.thunk(() => nix.app(callPackage, nix.path(here, "./hooks/cython-debug-speedups.nix"), nix.thunk(() => ({})))),
     sharedLibsHook: nix.thunk(() => nix.app(callPackage, nix.path(here, "./hooks/shared-libs.nix"), nix.thunk(() => ({})))),
     plugins: nix.thunk(() => nix.app(callPackage, nix.path(here, "./plugins"), nix.thunk(() => ({})))),
   }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       clion: clion,
       datagrip: datagrip,
       dataspell: dataspell,

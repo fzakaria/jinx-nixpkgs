@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const go_md2man = nix.arg($, "go-md2man");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "cri-o",
       version: "1.37.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cri-o",
           repo: "cri-o",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles, go_md2man, pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([btrfs_progs, gpgme, libapparmor, libseccomp, libselinux, lvm2], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(glibc, null)), nix.thunk(() => [glibc, nix.thunk(() => nix.sel(glibc, "static"))])))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         BUILDTAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "apparmor",
             "seccomp",
@@ -55,11 +55,11 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\nsed -i 's;\\thack/;\\tbash ./hack/;g' Makefile\nmake binaries docs BUILDTAGS=\"$BUILDTAGS\"\nrunHook postBuild\n",
       installPhase: "runHook preInstall\ninstall -Dm755 bin/* -t $out/bin\n\nfor shell in bash fish zsh; do\n  installShellCompletion --$shell completions/$shell/*\ndone\n\ninstall contrib/cni/*.conflist -Dt $out/etc/cni/net.d\ninstall crictl.yaml -Dt $out/etc\n\ninstallManPage docs/*.[1-9]\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, "cri-o": nix.thunk(() => nix.attr(nixosTests, "cri-o")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, "cri-o": nix.thunk(() => nix.attr(nixosTests, "cri-o")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://cri-o.io",
         description: "Open Container Initiative-based implementation of the\nKubernetes Container Runtime Interface\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

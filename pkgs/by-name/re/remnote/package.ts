@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(appimageTools, "wrapType2"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "remnote",
       version: "1.28.37",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download2.remnote.io/remnote-desktop2/RemNote-${nix.sel(finalAttrs, "version")}.AppImage`),
           hash: "sha256-K972+NFq5qmgeu8+kF5v1TOrP+wg+zHjgnmlveiJyyk=",
         })))),
@@ -34,11 +34,11 @@ wrapProgram $out/bin/remnote \\
   --add-flags "\\\${NIXOS_OZONE_WL:+\\\${WAYLAND_DISPLAY:+--ozone-platform=wayland --enable-wayland-ime=true --wayland-text-input-version=3}}"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeScript, "update.sh", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p curl coreutils gnused common-updater-scripts\nset -eu -o pipefail\nurl=\"$(curl -ILs -w %{url_effective} -o /dev/null https://backend.remnote.com/desktop/linux)\"\nversion=\"$(echo $url | sed -n 's/.*RemNote-\\([0-9]\\+\\.[0-9]\\+\\.[0-9]\\+\\).*/\\1/p')\"\ncurrentVersion=$(nix-instantiate --eval -E \"with import ./. {}; remnote.version or (lib.getVersion remnote)\" | tr -d '\"')\nif [[ \"$version\" != \"$currentVersion\" ]]; then\n  hash=$(nix-hash --to-sri --type sha256 \"$(nix-prefetch-url \"$url\")\")\n  update-source-version remnote \"$version\" \"$hash\" --print-changes\nfi\n")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Note-taking application focused on learning and productivity",
         homepage: "https://remnote.com/",
         changelog: "https://feedback.remnote.com/changelog",

@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const rspamd = nix.arg($, "rspamd");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "rspamd-trainer",
       version: "unstable-2023-11-27",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "onlime",
           repo: "rspamd-trainer",
           rev: "eb6639a78a019ade6781f3a8418eddc030f8fa14",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitlab.com/onlime/rspamd-trainer/-/commit/8824bfb9a9826988a90a401b8e51c20f5366ed70.patch",
             hash: "sha256-qiXfwMUfM/iV+fHba8xdwQD92RQz627+HdUTgwgRZdc=",
             name: "refactor_pyproject.patch",
@@ -60,14 +60,14 @@ sed -i "s|/usr/bin/rspamc|${rspamd}/bin/rspamc|" src/rspamd_trainer/run.py
         ];
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "rspamd-trainer": nix.thunk(() => nix.attr(nixosTests, "rspamd-trainer")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://gitlab.com/onlime/rspamd-trainer",
         description: "Grabs messages from a spam mailbox via IMAP and feeds them to Rspamd for training",
         mainProgram: "rspamd-trainer",

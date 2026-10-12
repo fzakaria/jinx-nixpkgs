@@ -62,7 +62,7 @@ ln -s "${env}/bin/sphinx-build" "$out/bin"
       const outputs = nix.thunk(() => ["bin", "out", "dev"]);
       const propagatedBuildOutputs = nix.thunk(() => ["out"]);
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "libinput",
           repo: "libinput",
@@ -98,15 +98,15 @@ ln -s "${env}/bin/sphinx-build" "$out/bin"
       const doInstallCheck = true;
       const postPatch = "patchShebangs \\\n  test/symbols-leak-test \\\n  test/check-leftover-udev-rules.sh \\\n  test/helper-copy-and-exec-from-tmp.sh\n\n# Don't create an empty directory under /etc.\nsed -i \"/install_emptydir(dir_etc \\/ 'libinput')/d\" meson.build\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "libinput-module": nix.thunk(() => nix.sel(nixosTests, "libinput")),
         })),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$3, "patchlevel-unstable": true })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "patchlevel-unstable": true })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Handles input devices in Wayland compositors and provides a generic X.Org input driver",
         mainProgram: "libinput",
         homepage: "https://www.freedesktop.org/wiki/Software/libinput/",
@@ -120,7 +120,7 @@ ln -s "${env}/bin/sphinx-build" "$out/bin"
         ]),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         outputs,

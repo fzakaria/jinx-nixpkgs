@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const cudnnAtLeast = nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(finalAttrs, "version"))));
       const cudnnOlder = nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version"))));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         redistName: "cudnn",
         pname: "cudnn",
         outputs: nix.thunk(() => ["out", "dev", "include", "lib", "static"]),
@@ -43,24 +43,24 @@ ${nix.app(nix.sel(lib, "getExe"), patchelf)} \${!outputLib:?}/lib/libcudnn_ops_i
           const allCCNewerThan35 = nix.thunk(() => (nix.asBool(allCCNewerThan50) || nix.asBool(nix.app(nix.sel(lib, "all"), nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "versionAtLeast")), "3.5")), cudaCapabilities))));
           return [
             nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               message: nix.thunk(() => nix.add(nix.str`cuDNN releases since 8.5 (found ${nix.sel(finalAttrs, "version")})`, nix.str` support CUDA compute capabilities 3.5 and newer (found ${nix.builtins.toJSON(cudaCapabilities)})`)),
               assertion: nix.thunk(() => (!nix.asBool(cudnnAtLeast85) || nix.asBool(allCCNewerThan35))),
             })),
             nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               message: nix.thunk(() => nix.add(nix.str`cuDNN releases since 8.8 (found ${nix.sel(finalAttrs, "version")})`, nix.str` support CUDA compute capabilities 5.0 and newer (found ${nix.builtins.toJSON(cudaCapabilities)})`)),
               assertion: nix.thunk(() => (!nix.asBool(cudnnAtLeast88) || nix.asBool(allCCNewerThan50))),
             })),
             nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               message: nix.thunk(() => nix.add(nix.str`cuDNN releases since 9.12 (found ${nix.sel(finalAttrs, "version")})`, nix.str` support CUDA compute capabilities 7.5 and newer (found ${nix.builtins.toJSON(cudaCapabilities)})`)),
               assertion: nix.thunk(() => (!nix.asBool(cudnnAtLeast912) || nix.asBool(allCCNewerThan75))),
             })),
           ];
         })()),
         meta: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           description: "GPU-accelerated library of primitives for deep neural networks",
           longDescription: "The NVIDIA CUDA Deep Neural Network library (cuDNN) is a GPU-accelerated library of primitives for deep neural\nnetworks.\n",
           homepage: "https://developer.nvidia.com/cudnn",

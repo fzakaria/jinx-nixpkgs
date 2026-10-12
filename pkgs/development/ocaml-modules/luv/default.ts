@@ -18,14 +18,14 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const file = nix.arg($, "file");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "luv",
       version: "0.5.14",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/aantron/luv/releases/download/${nix.sel(finalAttrs, "version")}/luv-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: nix.thunk(() => nix.sel({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             "0.5.14": "sha256-jgG0pQyIds3ZjY4kXAaHxNxNiDrtFhrZxazh+x/arpk=",
             "0.5.12": "sha256-dp9qCIYqSdROIAQ+Jw73F3vMe7hnkDe8BgZWImNMVsA=",
           }, nix.key(nix.str`${nix.sel(finalAttrs, "version")}`))),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/aantron/luv",
         description: "Binding to libuv: cross-platform asynchronous I/O",
         license: nix.thunk(() => (() => {

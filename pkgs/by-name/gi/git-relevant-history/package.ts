@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const git_filter_repo = nix.arg($, "git-filter-repo");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "git-relevant-history",
       version: "1.0.0-unstable-2022-09-15",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rainlabs-eu",
           repo: "git-relevant-history",
           rev: "84552324d7cb4790db86282fc61bf98a05b7a4fd",
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [nix.thunk(() => nix.sel(python3, "pkgs", "setuptools"))]),
       dependencies: nix.thunk(() => [git, git_filter_repo, nix.thunk(() => nix.sel(python3, "pkgs", "docopt"))]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, tagPrefix: "v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, tagPrefix: "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Extract only relevant history from git repo",
         homepage: "https://github.com/rainlabs-eu/git-relevant-history",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -34,15 +34,15 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => nix.app(pythonAtLeast, "3.13"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bytewax",
           repo: "bytewax",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-O5q1Jd3AMUaQwfQM249CUnkjqEkXybxtM9SOISoULZk=",
         }))));
-      const env = nix.thunk(() => ({ __proto__: pos$2, OPENSSL_NO_VENDOR: true }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: true }));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: pname,
           version: version,
           src: src,
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       const dontUseCmakeConfigure = true;
       const buildInputs = nix.thunk(() => [openssl, cyrus_sasl, protobuf]);
       const dependencies = nix.thunk(() => [jsonpickle, prometheus_client]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$4, kafka: nix.thunk(() => [confluent_kafka]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$4, kafka: nix.thunk(() => [confluent_kafka]) }));
       const preCheck = "export PY_IGNORE_IMPORTMISMATCH=1\n";
       const nativeCheckInputs = nix.thunk(() => nix.concat([myst_parser, pytestCheckHook, pytest_benchmark], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pytestFlags = nix.thunk(() => ["--benchmark-disable"]);
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["docs"]);
       const pythonImportsCheck = nix.thunk(() => ["bytewax"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Python Stream Processing",
         homepage: "https://github.com/bytewax/bytewax",
         changelog: nix.thunk(() => nix.str`https://github.com/bytewax/bytewax/releases/tag/v${version}`),
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

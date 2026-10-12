@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "wireguard-vanity-keygen";
       const version = "1.0.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "axllent",
           repo: "wireguard-vanity-keygen",
           rev: version,
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-hYNQVYNpMqi656GlaMehG5U48IKtJIxJ5QPxPWMmpzg=";
       const ldflags = nix.thunk(() => ["-s", "-w", nix.thunk(() => nix.str`-X main.appVersion=${version}`)]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => (() => {
           const versionWithoutDots = nix.thunk(() => nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.app(nix.sel(lib, "splitString"), ".", version))));
           return nix.str`https://github.com/axllent/wireguard-vanity-keygen/blob/develop/CHANGELOG.md#${versionWithoutDots}`;
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
         mainProgram: "wireguard-vanity-keygen",
       }));
-      return { __proto__: pos$3, pname, version, src, vendorHash, ldflags, meta };
+      return { [nix.POS]: pos$3, pname, version, src, vendorHash, ldflags, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

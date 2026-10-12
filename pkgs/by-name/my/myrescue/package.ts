@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "myrescue",
       version: "0.9.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/myrescue/myrescue/myrescue-${nix.sel(finalAttrs, "version")}/myrescue-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-tO9gkDpEtmySatzV2Ktw3eq5SybCUGAUmKXiSxnkwdc=",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./0001-darwin-build-fixes.patch")]),
       installPhase: "runHook preInstall\ninstall -Dm755 myrescue myrescue-bitmap2ppm myrescue-stat -t $out/bin\ninstallManPage ../doc/myrescue.1\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Hard disk recovery tool that reads undamaged regions first",
         mainProgram: "myrescue",
         homepage: "https://myrescue.sourceforge.net",

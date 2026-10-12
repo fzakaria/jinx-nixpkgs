@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const libdbusmenu = nix.arg($, "libdbusmenu");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "deadbeef-statusnotifier-plugin",
       version: "1.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vovochka404",
           repo: "deadbeef-statusnotifier-plugin",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
 `),
       installPhase: "runHook preInstall\nmkdir -p $out/lib/deadbeef\ncp build/sni_gtk3.so $out/lib/deadbeef\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "DeaDBeeF StatusNotifier Plugin",
         homepage: "https://github.com/vovochka404/deadbeef-statusnotifier-plugin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

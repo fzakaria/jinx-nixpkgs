@@ -24,13 +24,13 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const version = nix.arg($, "version");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "gerrit",
       version: version,
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://gerrit-releases.storage.googleapis.com/gerrit-${nix.sel(finalAttrs, "version")}.war`),
           hash: hash,
         })))),
@@ -38,9 +38,9 @@ export default nix.lambda((args) => (() => {
 ln -s ${nix.sel(finalAttrs, "src")} "$out"/webapps/gerrit-${nix.sel(finalAttrs, "version")}.war
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => [
               "--url=https://github.com/GerritCodeReview/gerrit",
               nix.thunk(() => nix.str`--version-regex=v(${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}\\.[0-9]+)`),
@@ -61,15 +61,15 @@ ln -s ${nix.sel(finalAttrs, "src")} "$out"/webapps/gerrit-${nix.sel(finalAttrs, 
           "webhooks",
         ]),
         tests: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           gerrit: nix.thunk(() => nix.app(nix.sel(nixosTests, "gerrit", "extendNixOS"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               module: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 services: nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   gerrit: nix.thunk(() => ({
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
                   })),
                 })),
@@ -78,7 +78,7 @@ ln -s ${nix.sel(finalAttrs, "src")} "$out"/webapps/gerrit-${nix.sel(finalAttrs, 
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         homepage: "https://www.gerritcodereview.com/index.md",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         description: "Web based code review and repository management for the git version control system",

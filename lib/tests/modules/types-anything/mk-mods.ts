@@ -28,66 +28,66 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     options: nix.thunk(() => ({
-      __proto__: pos$2,
-      value: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ __proto__: pos$1, type: nix.thunk(() => nix.sel(lib, "types", "anything")) })))),
+      [nix.POS]: pos$2,
+      value: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$1, type: nix.thunk(() => nix.sel(lib, "types", "anything")) })))),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           value: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             mkiffalse: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), false, nix.thunk(() => ({})))),
           })),
         })),
         nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           value: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             mkiftrue: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), true, nix.thunk(() => ({})))),
           })),
         })),
         nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           value: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             mkdefault: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 0n)),
           })),
         })),
         nix.thunk(() => ({
-          __proto__: pos$10,
-          value: nix.thunk(() => ({ __proto__: pos$9, mkdefault: 1n })),
+          [nix.POS]: pos$10,
+          value: nix.thunk(() => ({ [nix.POS]: pos$9, mkdefault: 1n })),
         })),
         nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           value: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             mkmerge: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [nix.thunk(() => ({}))]))),
           })),
         })),
         nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           value: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             mkbefore: nix.thunk(() => nix.app(nix.sel(lib, "mkBefore"), true)),
           })),
         })),
         nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           value: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             nested: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   foo: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 0n)),
                   bar: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), false, 0n)),
                 })),
                 nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), true, nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     foo: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), true, nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), 1n)))),
                     bar: nix.thunk(() => ({
-                      __proto__: pos$16,
+                      [nix.POS]: pos$16,
                       baz: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "baz")),
                     })),
                   })))),

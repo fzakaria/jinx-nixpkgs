@@ -12,9 +12,9 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const fetchDebianPatch = nix.arg($, "fetchDebianPatch");
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     simple: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchDebianPatch, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         pname: "pysimplesoap",
         version: "1.16.2",
         debianRevision: "5",
@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
         hash: "sha256-xA8Wnrpr31H8wy3zHSNfezFNjUJt1HbSXn3qUMzeKc0=",
       })))),
     libPackage: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchDebianPatch, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname: "libfile-pid-perl",
         version: "1.01",
         debianRevision: "2",

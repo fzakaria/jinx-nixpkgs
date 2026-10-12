@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "omry",
           repo: "omegaconf",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./antlr4.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             antlr_jar: nix.thunk(() => nix.str`${nix.sel(antlr4, "out")}/share/java/antlr-${nix.sel(antlr4, "version")}-complete.jar`),
           })))),
         nix.path(here, "./0000-add-support-for-dataclasses_missing_type.patch"),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       const pytestFlags = nix.thunk(() => ["-Wignore::DeprecationWarning", "-Wignore::UserWarning"]);
       const disabledTests = nix.thunk(() => nix.concat(["test_eq"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.13")), nix.thunk(() => ["test_errors", "test_to_yaml", "test_type_str"]))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Framework for configuring complex applications",
         homepage: "https://github.com/omry/omegaconf",
         changelog: nix.thunk(() => nix.str`https://github.com/omry/omegaconf/blob/v${version}/NEWS.md`),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

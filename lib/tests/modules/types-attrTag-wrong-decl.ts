@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       opt: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$3,
-          type: nix.thunk(() => nix.app(nix.sel(types, "attrTag"), nix.thunk(() => ({ __proto__: pos$1, int: nix.thunk(() => nix.sel(types, "int")) })))),
-          default: nix.thunk(() => ({ __proto__: pos$2, int: 1n })),
+          [nix.POS]: pos$3,
+          type: nix.thunk(() => nix.app(nix.sel(types, "attrTag"), nix.thunk(() => ({ [nix.POS]: pos$1, int: nix.thunk(() => nix.sel(types, "int")) })))),
+          default: nix.thunk(() => ({ [nix.POS]: pos$2, int: 1n })),
         })))),
     })),
   };

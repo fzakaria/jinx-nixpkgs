@@ -23,19 +23,19 @@ export default nix.lambda((args) => (() => {
   const gnugrep = nix.arg($, "gnugrep");
   const gnutar = nix.arg($, "gnutar");
   const gzip = nix.arg($, "gzip");
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib }))));
   const meta = nix.thunk(() => nix.attr(from, "meta"));
   const pname = "gnused";
   const version = "4.2";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`mirror://gnu/sed/sed-${version}.tar.gz`),
       hash: "sha256-20XNY/0BDmUFN9ZdXfznaJplJ0UjZgbl5ceCk3Jn2YM=",
     }))));
   const fakeBuildPlatform = nix.thunk(() => nix.app(nix.sel(lib, "strings", "removeSuffix"), "-musl", nix.thunk(() => nix.sel(buildPlatform, "config"))));
   const fakeHostPlatform = nix.thunk(() => nix.app(nix.sel(lib, "strings", "removeSuffix"), "-musl", nix.thunk(() => nix.sel(hostPlatform, "config"))));
   return nix.app(nix.sel(bash, "runCommand"), nix.thunk(() => nix.str`${pname}-${version}`), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       meta: meta,
@@ -49,9 +49,9 @@ export default nix.lambda((args) => (() => {
         gzip,
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "get-version": (result) => nix.app(nix.sel(bash, "runCommand"), nix.thunk(() => nix.str`${pname}-get-version-${version}`), nix.thunk(() => ({})), nix.thunk(() => nix.str`${result}/bin/sed --version
 mkdir \${out}
 `)),

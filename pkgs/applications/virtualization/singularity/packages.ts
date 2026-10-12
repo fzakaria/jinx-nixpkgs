@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         const version = "1.5.4";
         const projectName = "apptainer";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "apptainer",
             repo: "apptainer",
             tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,9 +39,9 @@ export default nix.lambda((args) => (() => {
           }))));
         const vendorHash = "sha256-k0HhLDImOs+nDn7B3VfxORnWRxTRlefi01YQiaNASeY=";
         const extraDescription = " (previously known as Singularity)";
-        const extraMeta = nix.thunk(() => ({ __proto__: pos$2, homepage: "https://apptainer.org" }));
+        const extraMeta = nix.thunk(() => ({ [nix.POS]: pos$2, homepage: "https://apptainer.org" }));
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname,
           version,
           projectName,
@@ -51,11 +51,11 @@ export default nix.lambda((args) => (() => {
           extraMeta,
         };
       })()))), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       conmon: null,
       defaultToSuid: null,
       sourceFilesWithDefaultPaths: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "cmd/internal/cli/actions.go": nix.thunk(() => ["/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/local/sbin"]),
         "e2e/env/env.go": nix.thunk(() => ["/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"]),
         "internal/pkg/util/env/env.go": nix.thunk(() => ["/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"]),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         const version = "4.4.1";
         const projectName = "singularity";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             owner: "sylabs",
             repo: "singularity",
             tag: nix.thunk(() => nix.str`v${version}`),
@@ -75,9 +75,9 @@ export default nix.lambda((args) => (() => {
         const vendorHash = "sha256-uqEzYj8JmZWi2Rceh+JMJ5kzUmJ4T3JAt0rto1NewlM=";
         const extraConfigureFlags = nix.thunk(() => ["--without-squashfuse", "--without-libsubid"]);
         const extraDescription = " (Sylabs Inc's fork of Singularity, a.k.a. SingularityCE)";
-        const extraMeta = nix.thunk(() => ({ __proto__: pos$7, homepage: "https://sylabs.io/" }));
+        const extraMeta = nix.thunk(() => ({ [nix.POS]: pos$7, homepage: "https://sylabs.io/" }));
         return {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           pname,
           version,
           projectName,
@@ -88,25 +88,25 @@ export default nix.lambda((args) => (() => {
           extraMeta,
         };
       })()))), nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       defaultToSuid: true,
       sourceFilesWithDefaultPaths: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         "cmd/internal/cli/actions.go": nix.thunk(() => ["/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/local/sbin"]),
         "e2e/env/env.go": nix.thunk(() => ["/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"]),
         "internal/pkg/util/env/clean.go": nix.thunk(() => ["/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"]),
       })),
     }))));
   const genOverridenNixos = (package$) => (packageName) => nix.app(nix.sel(nix.app(nixos, nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       programs: nix.thunk(() => ({
-        __proto__: pos$12,
-        singularity: nix.thunk(() => ({ __proto__: pos$11, enable: true, package: package$ })),
+        [nix.POS]: pos$12,
+        singularity: nix.thunk(() => ({ [nix.POS]: pos$11, enable: true, package: package$ })),
       })),
     }))), "config", "programs", "singularity", "packageOverriden", "overrideAttrs"), (oldAttrs) => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       meta: nix.thunk(() => nix.update(nix.sel(oldAttrs, "meta"), {
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         description: "",
         longDescription: nix.thunk(() => nix.str`This package produces identical store derivations to \`pkgs.${packageName}\`
 overridden and installed by the NixOS module \`programs.singularity\`
@@ -117,7 +117,7 @@ This is for binary substitutes only. Use pkgs.${packageName} instead.
       })),
     }));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     apptainer: apptainer,
     singularity: singularity,
     "apptainer-overriden-nixos": nix.thunk(() => nix.app(genOverridenNixos, apptainer, "apptainer")),

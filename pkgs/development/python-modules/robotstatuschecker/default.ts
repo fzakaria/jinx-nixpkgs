@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "robotframework",
           repo: "statuschecker",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,14 +35,14 @@ ${nix.sel(python, "interpreter")} test/run.py
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for checking that Robot Framework test cases have expected statuses and log messages",
         homepage: "https://github.com/robotframework/statuschecker",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

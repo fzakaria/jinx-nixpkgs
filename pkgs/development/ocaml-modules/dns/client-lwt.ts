@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const happy_eyeballs_lwt = nix.arg($, "happy-eyeballs-lwt");
   const tls_lwt = nix.arg($, "tls-lwt");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "dns-client-lwt",
       src: nix.thunk(() => nix.attr(dns, "src")),
       version: nix.thunk(() => nix.attr(dns, "version")),

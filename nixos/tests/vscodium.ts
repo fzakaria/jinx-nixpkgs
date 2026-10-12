@@ -28,27 +28,27 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const runTest = nix.arg($, "runTest");
   const tests = nix.thunk(() => ({
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     wayland: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const lib = nix.arg($_1, "lib");
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         imports: nix.thunk(() => [nix.path(here, "./common/wayland-cage.nix")]),
         services: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           cage: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             program: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "vscodium")))} --force-device-scale-factor=2`),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$4,
-          variables: nix.thunk(() => ({ __proto__: pos$3, NIXOS_OZONE_WL: "1", DISPLAY: "do not use" })),
+          [nix.POS]: pos$4,
+          variables: nix.thunk(() => ({ [nix.POS]: pos$3, NIXOS_OZONE_WL: "1", DISPLAY: "do not use" })),
         })),
         fonts: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           packages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [nix.thunk(() => nix.lookup(w, "dejavu_fonts"))];
@@ -61,29 +61,29 @@ export default nix.lambda((args) => (() => {
       const lib = nix.arg($_1, "lib");
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         imports: nix.thunk(() => [
           nix.path(here, "./common/user-account.nix"),
           nix.path(here, "./common/x11.nix"),
         ]),
-        virtualisation: nix.thunk(() => ({ __proto__: pos$7, memorySize: 2047n })),
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$7, memorySize: 2047n })),
         services: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           xserver: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             enable: true,
             displayManager: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               sessionCommands: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "vscodium")))} --force-device-scale-factor=2
 `),
             })),
           })),
         })),
         "test-support": nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           displayManager: nix.thunk(() => ({
-            __proto__: pos$12,
-            auto: nix.thunk(() => ({ __proto__: pos$11, user: "alice" })),
+            [nix.POS]: pos$12,
+            auto: nix.thunk(() => ({ [nix.POS]: pos$11, user: "alice" })),
           })),
         })),
       };
@@ -93,11 +93,11 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$4);
       const lib = nix.arg($_1, "lib");
       return {
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         name: name,
         nodes: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${name}`, machine]])),
         meta: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w, "turion"))];

@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xxhash",
       version: "0.8.3",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Cyan4973",
           repo: "xxHash",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       cmakeDir: "../cmake_unofficial",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extremely fast hash algorithm",
         longDescription: "xxHash is an Extremely fast Hash algorithm, running at RAM speed limits.\nIt successfully completes the SMHasher test suite which evaluates\ncollision, dispersion and randomness qualities of hash functions. Code is\nhighly portable, and hashes are identical on all platforms (little / big\nendian).\n",
         homepage: "https://github.com/Cyan4973/xxHash",

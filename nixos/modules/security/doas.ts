@@ -65,15 +65,15 @@ export default nix.lambda((args) => (() => {
       ]));
   })();
   return {
-    __proto__: pos$34,
+    [nix.POS]: pos$34,
     options: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       security: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         doas: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.force(nix.lookup(w, "bool"));
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "doas", nix.thunk(() => ({})))),
           wheelNeedsPassword: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.force(nix.lookup(w, "bool"));
@@ -92,18 +92,18 @@ export default nix.lambda((args) => (() => {
               description: "Whether users of the `wheel` group must provide a password to\nrun commands as super user via {command}`doas`.\n",
             })))),
           extraRules: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               default: [],
               description: "Define specific rules to be set in the\n{file}`/etc/doas.conf` file. More specific rules should\ncome after more general ones in order to yield the expected behavior.\nYou can use `mkBefore` and/or `mkAfter` to ensure\nthis is the case when configuration options are merged. Be aware that\nthis option cannot be used to override the behaviour allowing\npasswordless operation for root.\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[\n  # Allow execution of any command by any user in group doas, requiring\n  # a password and keeping any previously-defined environment variables.\n  { groups = [ \"doas\" ]; noPass = false; keepEnv = true; }\n\n  # Allow execution of \"/home/root/secret.sh\" by user `backup` OR user\n  # `database` OR any member of the group with GID `1006`, without a\n  # password.\n  { users = [ \"backup\" \"database\" ]; groups = [ 1006 ];\n    cmd = \"/home/root/secret.sh\"; noPass = true; }\n\n  # Allow any member of group `bar` to run `/home/baz/cmd1.sh` as user\n  # `foo` with argument `hello-doas`.\n  { groups = [ \"bar\" ]; runAs = \"foo\";\n    cmd = \"/home/baz/cmd1.sh\"; args = [ \"hello-doas\" ]; }\n\n  # Allow any member of group `bar` to run `/home/baz/cmd2.sh` as user\n  # `foo` with no arguments.\n  { groups = [ \"bar\" ]; runAs = \"foo\";\n    cmd = \"/home/baz/cmd2.sh\"; args = [ ]; }\n\n  # Allow user `abusers` to execute \"nano\" and unset the value of\n  # SSH_AUTH_SOCK, override the value of ALPHA to 1, and inherit the\n  # value of BETA from the current environment.\n  { users = [ \"abusers\" ]; cmd = \"nano\";\n    setEnv = [ \"-SSH_AUTH_SOCK\" \"ALPHA=1\" \"BETA\" ]; }\n]\n")),
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                      __proto__: pos$14,
+                      [nix.POS]: pos$14,
                       options: nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         noPass: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$3,
+                            [nix.POS]: pos$3,
                             type: nix.thunk(() => (() => {
                               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                               return nix.force(nix.lookup(w_1, "bool"));
@@ -112,7 +112,7 @@ export default nix.lambda((args) => (() => {
                             description: "If `true`, the user is not required to enter a\npassword.\n",
                           })))),
                         noLog: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$4,
+                            [nix.POS]: pos$4,
                             type: nix.thunk(() => (() => {
                               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                               return nix.force(nix.lookup(w_1, "bool"));
@@ -121,7 +121,7 @@ export default nix.lambda((args) => (() => {
                             description: "If `true`, successful executions will not be logged\nto\n{manpage}`syslogd(8)`.\n",
                           })))),
                         persist: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$5,
+                            [nix.POS]: pos$5,
                             type: nix.thunk(() => (() => {
                               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                               return nix.force(nix.lookup(w_1, "bool"));
@@ -130,7 +130,7 @@ export default nix.lambda((args) => (() => {
                             description: "If `true`, do not ask for a password again for some\ntime after the user successfully authenticates.\n",
                           })))),
                         keepEnv: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$6,
+                            [nix.POS]: pos$6,
                             type: nix.thunk(() => (() => {
                               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                               return nix.force(nix.lookup(w_1, "bool"));
@@ -139,7 +139,7 @@ export default nix.lambda((args) => (() => {
                             description: "If `true`, environment variables other than those\nlisted in\n{manpage}`doas(1)`\nare kept when creating the environment for the new process.\n",
                           })))),
                         setEnv: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$7,
+                            [nix.POS]: pos$7,
                             type: nix.thunk(() => (() => {
                               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                               return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -148,7 +148,7 @@ export default nix.lambda((args) => (() => {
                             description: "Keep or set the specified variables. Variables may also be\nremoved with a leading '-' or set using\n`variable=value`. If the first character of\n`value` is a '$', the value to be set is taken from\nthe existing environment variable of the indicated name. This\noption is processed after the default environment has been\ncreated.\n\nNOTE: All rules have `setenv { SSH_AUTH_SOCK }` by\ndefault. To prevent `SSH_AUTH_SOCK` from being\ninherited, add `\"-SSH_AUTH_SOCK\"` anywhere in this\nlist.\n",
                           })))),
                         users: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$8,
+                            [nix.POS]: pos$8,
                             type: nix.thunk(() => (() => {
                               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                               return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "either"), nix.thunk(() => nix.lookup(w_1, "str")), nix.thunk(() => nix.lookup(w_1, "int")))));
@@ -157,7 +157,7 @@ export default nix.lambda((args) => (() => {
                             description: "The usernames / UIDs this rule should apply for.",
                           })))),
                         groups: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$9,
+                            [nix.POS]: pos$9,
                             type: nix.thunk(() => (() => {
                               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                               return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "either"), nix.thunk(() => nix.lookup(w_1, "str")), nix.thunk(() => nix.lookup(w_1, "int")))));
@@ -166,7 +166,7 @@ export default nix.lambda((args) => (() => {
                             description: "The groups / GIDs this rule should apply for.",
                           })))),
                         runAs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$10,
+                            [nix.POS]: pos$10,
                             type: nix.thunk(() => (() => {
                               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                               return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -175,7 +175,7 @@ export default nix.lambda((args) => (() => {
                             description: "Which user or group the specified command is allowed to run as.\nWhen set to `null` (the default), all users are\nallowed.\n\nA user can be specified using just the username:\n`\"foo\"`. It is also possible to only allow running as\na specific group with `\":bar\"`.\n",
                           })))),
                         cmd: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$11,
+                            [nix.POS]: pos$11,
                             type: nix.thunk(() => (() => {
                               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                               return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -184,7 +184,7 @@ export default nix.lambda((args) => (() => {
                             description: "The command the user is allowed to run. When set to\n`null` (the default), all commands are allowed.\n\nNOTE: It is best practice to specify absolute paths. If a\nrelative path is specified, only a restricted PATH will be\nsearched.\n",
                           })))),
                         args: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$12,
+                            [nix.POS]: pos$12,
                             type: nix.thunk(() => (() => {
                               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                               return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")))));
@@ -197,7 +197,7 @@ export default nix.lambda((args) => (() => {
               })()),
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.force(nix.lookup(w, "lines"));
@@ -209,23 +209,23 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         security: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           doas: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             extraRules: nix.thunk(() => nix.app(nix.sel(lib, "mkOrder"), 600n, nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   groups: nix.thunk(() => ["wheel"]),
                   noPass: nix.thunk(() => !nix.asBool(nix.sel(cfg, "wheelNeedsPassword"))),
                 })),
               ]))),
           })),
           wrappers: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             doas: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               setuid: true,
               owner: "root",
               group: "root",
@@ -233,22 +233,22 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           pam: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             services: nix.thunk(() => ({
-              __proto__: pos$25,
-              doas: nix.thunk(() => ({ __proto__: pos$24, allowNullPassword: true, sshAgentAuth: true })),
+              [nix.POS]: pos$25,
+              doas: nix.thunk(() => ({ [nix.POS]: pos$24, allowNullPassword: true, sshAgentAuth: true })),
             })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             "doas.conf": nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               source: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "doas-conf", nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   src: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "doas-conf-in", nix.thunk(() => nix.str`# To modify this file, set the NixOS options
 # \`security.doas.extraRules\` or \`security.doas.extraConfig\`. To
 # completely replace the contents of this file, use
@@ -271,7 +271,7 @@ permit nopass keepenv root
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$33,
+      [nix.POS]: pos$33,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "cole-h"))];

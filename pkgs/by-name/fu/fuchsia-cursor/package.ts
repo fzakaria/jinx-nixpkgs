@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname_1 = pname;
       const version = "2.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ful1e5",
           repo: "fuchsia-cursor",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -45,7 +45,7 @@ ${(nix.asBool(!nix.eq(themeVariants, [])) ? nix.str`name= ctgen build.toml \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "First OpenSource port of FuchsiaOS's cursors for Linux and Windows",
         homepage: "https://github.com/ful1e5/fuchsia-cursor",
         maintainers: [],
@@ -53,7 +53,7 @@ runHook postInstall
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: pname_1,
         version,
         src,

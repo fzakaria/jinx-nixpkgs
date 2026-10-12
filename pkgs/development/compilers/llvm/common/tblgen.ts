@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.arg($, "version");
   const clangPatches = nix.arg($, "clangPatches");
   const pname = "llvm-tblgen";
-  const src$ = nix.thunk(() => (nix.asBool(!nix.eq(monorepoSrc, null)) ? nix.app(runCommand, nix.thunk(() => nix.str`${pname}-src-${version}`), nix.thunk(() => ({ __proto__: pos$1, strictDeps: true, __structuredAttrs: true })), nix.thunk(() => nix.add(nix.str`mkdir -p "$out"
+  const src$ = nix.thunk(() => (nix.asBool(!nix.eq(monorepoSrc, null)) ? nix.app(runCommand, nix.thunk(() => nix.str`${pname}-src-${version}`), nix.thunk(() => ({ [nix.POS]: pos$1, strictDeps: true, __structuredAttrs: true })), nix.thunk(() => nix.add(nix.str`mkdir -p "$out"
 cp -r ${monorepoSrc}/cmake "$out"
 cp -r ${monorepoSrc}/third-party "$out"
 cp -r ${monorepoSrc}/llvm "$out"
@@ -40,7 +40,7 @@ cp -r ${monorepoSrc}/mlir "$out"
     "mlir-tblgen",
   ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), release_version, "20")), nix.thunk(() => ["clang-pseudo-gen"]))));
   const self = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: pname,
       version: version,
       patches: patches,

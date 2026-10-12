@@ -18,22 +18,22 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const inInitrd = nix.thunk(() => nix.selOr(config, () => false, "boot", "initrd", "supportedFilesystems", "f2fs"));
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.selOr(config, () => false, "boot", "supportedFilesystems", "f2fs")), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         system: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           fsPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "f2fs-tools"))]),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           initrd: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             availableKernelModules: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), inInitrd, nix.thunk(() => ["f2fs", "crc32"]))),
             extraUtilsCommands: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => (nix.asBool(inInitrd) && nix.asBool(!nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable"))))), nix.thunk(() => nix.str`copy_bin_and_libs ${nix.sel(pkgs, "f2fs-tools")}/sbin/fsck.f2fs
 `))),
             systemd: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               initrdBin: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), inInitrd, nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "f2fs-tools"))]))),
             })),
           })),

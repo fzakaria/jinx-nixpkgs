@@ -37,12 +37,12 @@ export default nix.lambda((args) => (() => {
     const buildFlags = nix.argOr($_1, "buildFlags", () => []);
     const debugInfoFlag = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(enableDebugInfo) || nix.asBool(nix.sel(erlang, "debugInfo")))), "+debug_info"));
     const shell = (drv) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: nix.thunk(() => nix.str`interactive-shell-${nix.sel(drv, "name")}`),
         buildInputs: nix.thunk(() => [drv]),
       })));
     const pkg = (self) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(attrs, {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         app_name: name,
         name: nix.thunk(() => nix.str`${name}-${version}`),
         version: version,
@@ -78,7 +78,7 @@ fi
 runHook postInstall
 ` : nix.force(installPhase))),
         passthru: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           packageName: name,
           env: nix.thunk(() => nix.app(shell, self)),
           beamDeps: beamDeps,

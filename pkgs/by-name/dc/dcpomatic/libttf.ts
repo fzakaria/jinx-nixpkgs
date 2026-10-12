@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const boost = nix.arg($, "boost");
   const fmt = nix.arg($, "fmt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libttf",
       version: "0.0.7",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.carlh.net/git/libttf",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-pLduKqcfCw8m4hZn8KsVa8rHESEPSQrvW4NCBcwXT5g=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Limited TTF manipulation library",
         homepage: "https://git.carlh.net/cgit/libttf",
         downloadPage: "https://git.carlh.net/cgit/libttf",

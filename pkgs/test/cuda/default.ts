@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const getTests = (cps) => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(cps, "tests"));
       return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       saxpy: nix.thunk(() => nix.attr(cps, "saxpy")),
       "cuda-library-samples": nix.thunk(() => nix.attr(from, "cuda-library-samples")),
     };
     })()));
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => getTests, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         cudaPackages: nix.thunk(() => nix.attr(pkgs, "cudaPackages")),
         cudaPackages_12: nix.thunk(() => nix.attr(pkgs, "cudaPackages_12")),
         cudaPackages_12_6: nix.thunk(() => nix.attr(pkgs, "cudaPackages_12_6")),

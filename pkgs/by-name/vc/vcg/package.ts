@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const eigen = nix.arg($, "eigen");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "vcg",
       version: "2025.07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cnr-isti-vclab",
           repo: "vcglib",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "cmake-install-lib-and-exports.patch",
             url: "https://github.com/cnr-isti-vclab/vcglib/commit/4a8dd8d6e54890aee76917d27aabfa7031cbc68d.patch",
             hash: "sha256-b3qsmLu+4VSs943VS3C4gdG/PDR2mhr9/dDTmkep8zo=",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "VCG_BUILD_EXAMPLES", false)),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://vcg.isti.cnr.it/vcglib/install.html",
         description: "C++ library for manipulation, processing and displaying with OpenGL of triangle and tetrahedral meshes",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

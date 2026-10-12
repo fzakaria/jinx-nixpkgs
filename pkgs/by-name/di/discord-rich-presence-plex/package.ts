@@ -18,14 +18,14 @@ export default nix.lambda((args) => (() => {
   const version = "3.0.0";
   const pname = "discord-rich-presence-plex";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "phin05",
       repo: "discord-rich-presence-plex",
       rev: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-RvsS47059YdxKSo6sy+zglY1YxzyJmZTmo/DIKX1xqU=",
     }))));
   const webAssets = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.str`${pname}-web`),
       version: version,
       src: src,
@@ -34,12 +34,12 @@ export default nix.lambda((args) => (() => {
       installPhase: "cp -r dist $out\n",
     }))));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: version,
       src: src,
       pname: pname,
       subPackages: nix.thunk(() => ["server/main"]),
-      env: nix.thunk(() => ({ __proto__: pos$3, GOEXPERIMENT: "jsonv2" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, GOEXPERIMENT: "jsonv2" })),
       vendorHash: "sha256-B1XHMqyih3eBlRsU6s5HcGv9WY8OcXj2yGwB2jpP9HI=",
       preBuild: nix.thunk(() => nix.str`mkdir -p web/dist
 cp -r ${webAssets}/* web/dist/
@@ -47,7 +47,7 @@ cp -r ${webAssets}/* web/dist/
       ldflags: nix.thunk(() => ["-s", "-w", nix.thunk(() => nix.str`-X main.version=${version}`)]),
       postInstall: "mv $out/bin/main $out/bin/drpp\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/phin05/discord-rich-presence-plex",
         description: "Displays your Plex status on Discord using Rich Presence",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

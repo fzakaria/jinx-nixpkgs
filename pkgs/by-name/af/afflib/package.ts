@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: "3.7.22",
       pname: "afflib",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sshock",
           repo: "AFFLIBv3",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "gcc16-missing-declarations.patch",
             url: "https://github.com/sshock/AFFLIBv3/commit/f35df6c1d2610e3233c30d50054c00e29d7d5a23.patch",
             hash: "sha256-D7/PnePwb7ikuHIo+3MBPp4PI8uN8vNJ1rZykeXDdxU=",
@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       buildInputs: nix.thunk(() => [zlib, curl, expat, openssl, python3, fuse3]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         CFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-DFUSE_DARWIN_ENABLE_EXTENSIONS=0")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "http://afflib.sourceforge.net/",
         description: "Advanced forensic format library",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

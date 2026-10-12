@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "opensprinkler-card",
       version: "1.13.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rianadon",
           repo: "opensprinkler-card",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: "sha256-6zze/SzgZGaFOtGO/aEzX3JO+NdAI1H6nVuvILE74HI=",
       installPhase: "runHook preInstall\n\nmkdir $out\ninstall -m0644 dist/opensprinkler-card.js $out\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Home Assistant card for collecting OpenSprinkler status",
         homepage: "https://github.com/rianadon/opensprinkler-card",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

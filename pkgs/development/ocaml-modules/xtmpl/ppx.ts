@@ -12,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const xtmpl = nix.arg($, "xtmpl");
   const ppxlib = nix.arg($, "ppxlib");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "xtmpl_ppx",
       src: nix.thunk(() => nix.attr(xtmpl, "src")),
       version: nix.thunk(() => nix.attr(xtmpl, "version")),
       postPatch: "substituteInPlace ppx/ppx_xtmpl.ml --replace-fail 'Parse.longident b' \\\n  'Astlib.Longident.parse s'\n",
       buildInputs: nix.thunk(() => [ppxlib, xtmpl]),
-      meta: nix.thunk(() => nix.update(nix.sel(xtmpl, "meta"), { __proto__: pos$1, description: "Xml templating library, ppx extension" })),
+      meta: nix.thunk(() => nix.update(nix.sel(xtmpl, "meta"), { [nix.POS]: pos$1, description: "Xml templating library, ppx extension" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=ppx.ts.map

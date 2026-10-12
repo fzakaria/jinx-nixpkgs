@@ -16,17 +16,17 @@ export default nix.lambda((args) => (() => {
   const gsl = nix.arg($, "gsl");
   const boost = nix.arg($, "boost");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "treemix",
       version: "1.13",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://bitbucket.org/nygcresearch/treemix/downloads/treemix-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1nd3rzsdgk47r8b8k43mdfvaagln533sm08s1jr0dz8km8nlym7y",
         })))),
       buildInputs: nix.thunk(() => [zlib, gsl, boost]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Inference of patterns of population splitting and mixing from genome-wide allele frequency data",
         homepage: "https://bitbucket.org/nygcresearch/treemix/wiki/Home",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

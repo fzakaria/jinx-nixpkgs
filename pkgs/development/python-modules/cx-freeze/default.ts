@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "8.5.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "marcelotduarte",
           repo: "cx_Freeze",
           tag: version,
@@ -142,7 +142,7 @@ substituteInPlace tests/conftest.py \\
           "test_freezer_default_bin_includes",
         ]))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Set of scripts and modules for freezing Python scripts into executables",
         homepage: "https://marcelotduarte.github.io/cx_Freeze",
         changelog: nix.thunk(() => nix.str`https://github.com/marcelotduarte/cx_Freeze/releases/tag/${nix.sel(src, "tag")}`),
@@ -151,7 +151,7 @@ substituteInPlace tests/conftest.py \\
         mainProgram: "cxfreeze",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

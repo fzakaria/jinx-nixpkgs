@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const nixpkgs = nix.arg($, "nixpkgs");
   const pkgs = nix.arg($, "pkgs");
   return nix.app(nix.sel(pkgs, "runCommand"), "nixpkgs-release-checks", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       src: nixpkgs,
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "nix"))]),
       requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),

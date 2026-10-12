@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libxext = nix.arg($, "libxext");
   const libxi = nix.arg($, "libxi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sndpeek",
       version: "1.41",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://soundlab.cs.princeton.edu/software/sndpeek/files/sndpeek-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-ZVMLZRDQfCCI5f+i5LEb34uHKqiTkT2pa2sBjnSyTk0=",
         })))),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       buildFlags: nix.thunk(() => ["linux-alsa"]),
       installPhase: "mkdir -p $out/bin\nmv sndpeek $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Real-time 3D animated audio display/playback",
         longDescription: "sndpeek is just what it sounds (and looks) like:\n  * real-time 3D animated display/playback\n  * can use mic-input or wav/aiff/snd/raw/mat file (with playback)\n  * time-domain waveform\n  * FFT magnitude spectrum\n  * 3D waterfall plot\n  * lissajous! (interchannel correlation)\n  * rotatable and scalable display\n  * freeze frame! (for didactic purposes)\n  * real-time spectral feature extraction (centroid, rms, flux, rolloff)\n  * available on MacOS X, Linux, and Windows under GPL\n  * part of the sndtools distribution.\n",
         homepage: "https://soundlab.cs.princeton.edu/software/sndpeek/",

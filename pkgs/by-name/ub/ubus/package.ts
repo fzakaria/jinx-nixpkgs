@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libubox = nix.arg($, "libubox");
   const libjson = nix.arg($, "libjson");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ubus",
       version: "0-unstable-2025-10-17",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.openwrt.org/project/ubus.git",
           rev: "60e04048a0e2f3e33651c19e62861b41be4c290f",
           hash: "sha256-fjxO77z+do5gZ7nLwHbC14UnP9cmZ5eANNn4X6Sudn0=",
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libubox, libjson]),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))), nix.thunk(() => ["-Wno-error=gnu-folding-constant"]))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "OpenWrt system message/RPC bus",
         homepage: "https://git.openwrt.org/?p=project/ubus.git;a=summary",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

@@ -49,70 +49,70 @@ export default nix.lambda((args) => (() => {
     ])));
   const cfg = nix.thunk(() => nix.sel(config, "services", "glusterfs"));
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         glusterfs: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "GlusterFS Daemon")),
           logLevel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL", "TRACE", "NONE"]))),
               description: "Log level used by the GlusterFS daemon",
               default: "INFO",
             })))),
           useRpcbind: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Enable use of rpcbind. This is required for Gluster's NFS functionality.\n\nYou may want to turn it off to reduce the attack surface for DDoS reflection attacks.\n\nSee <https://davelozier.com/glusterfs-and-rpcbind-portmap-ddos-reflection-attacks/>\nand <https://bugzilla.redhat.com/show_bug.cgi?id=1426842> for details.\n",
               default: true,
             })))),
           enableGlustereventsd: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Whether to enable the GlusterFS Events Daemon",
               default: true,
             })))),
           killMode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["control-group", "process", "mixed", "none"]))),
               description: "The systemd KillMode to use for glusterd.\n\nglusterd spawns other daemons like gsyncd.\nIf you want these to stop when glusterd is stopped (e.g. to ensure\nthat NixOS config changes are reflected even for these sub-daemons),\nset this to 'control-group'.\nIf however you want running volume processes (glusterfsd) and thus\ngluster mounts not be interrupted when glusterd is restarted\n(for example, when you want to restart them manually at a later time),\nset this to 'process'.\n",
               default: "control-group",
             })))),
           stopKillTimeout: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "The systemd TimeoutStopSec to use.\n\nAfter this time after having been asked to shut down, glusterd\n(and depending on the killMode setting also its child processes)\nare killed by systemd.\n\nThe default is set low because GlusterFS (as of 3.10) is known to\nnot tell its children (like gsyncd) to terminate at all.\n",
               default: "5s",
             })))),
           extraFlags: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "Extra flags passed to the GlusterFS daemon",
               default: [],
             })))),
           tlsSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "Make the server communicate via TLS.\nThis means it will only connect to other gluster\nservers having certificates signed by the same CA.\n\nEnabling this will create a file {file}`/var/lib/glusterd/secure-access`.\nDisabling will delete this file again.\n\nSee also: <https://gluster.readthedocs.io/en/latest/Administrator%20Guide/SSL/>\n",
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     options: nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       tlsKeyPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$7,
+                          [nix.POS]: pos$7,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "Path to the private key used for TLS.",
                         })))),
                       tlsPem: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           type: nix.thunk(() => nix.sel(lib, "types", "path")),
                           description: "Path to the certificate used for TLS.",
                         })))),
                       caCert: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           type: nix.thunk(() => nix.sel(lib, "types", "path")),
                           description: "Path certificate authority used to sign the cluster certificates.",
                         })))),
@@ -123,36 +123,36 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         environment: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "glusterfs"))]),
           etc: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "tlsSettings"), null)), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               "ssl/glusterfs.pem": nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 source: nix.thunk(() => nix.sel(cfg, "tlsSettings", "tlsPem")),
               })),
               "ssl/glusterfs.key": nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 source: nix.thunk(() => nix.sel(cfg, "tlsSettings", "tlsKeyPath")),
               })),
               "ssl/glusterfs.ca": nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 source: nix.thunk(() => nix.sel(cfg, "tlsSettings", "caCert")),
               })),
             })))),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$22,
-          rpcbind: nix.thunk(() => ({ __proto__: pos$21, enable: nix.thunk(() => nix.sel(cfg, "useRpcbind")) })),
+          [nix.POS]: pos$22,
+          rpcbind: nix.thunk(() => ({ [nix.POS]: pos$21, enable: nix.thunk(() => nix.sel(cfg, "useRpcbind")) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           services: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             glusterd: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               restartTriggers: restartTriggers,
               description: "GlusterFS, a clustered file-system server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -168,7 +168,7 @@ ${tlsCmd}
 ${rsync}/bin/rsync -a ${glusterfs}/var/lib/glusterd/groups/ /var/lib/glusterd/groups/
 `)),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 LimitNOFILE: 65536n,
                 ExecStart: nix.thunk(() => nix.str`${glusterfs}/sbin/glusterd --no-daemon --log-level=${nix.sel(cfg, "logLevel")} ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "extraFlags")))}`),
                 KillMode: nix.thunk(() => nix.sel(cfg, "killMode")),
@@ -176,7 +176,7 @@ ${rsync}/bin/rsync -a ${glusterfs}/var/lib/glusterd/groups/ /var/lib/glusterd/gr
               })),
             })),
             glustereventsd: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableGlustereventsd")), nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 restartTriggers: restartTriggers,
                 description: "Gluster Events Notifier",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -184,7 +184,7 @@ ${rsync}/bin/rsync -a ${glusterfs}/var/lib/glusterd/groups/ /var/lib/glusterd/gr
                 preStart: "install -m 0755 -d /var/log/glusterfs\n",
                 path: nix.thunk(() => [glusterfs]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   Type: "simple",
                   PIDFile: "/run/glustereventsd.pid",
                   ExecStart: nix.thunk(() => nix.str`${glusterfs}/sbin/glustereventsd --pid-file /run/glustereventsd.pid`),

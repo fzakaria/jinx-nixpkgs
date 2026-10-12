@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "yas";
       const version = "7.1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "niXman",
           repo: "yas",
           rev: version,
@@ -24,14 +24,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const installPhase = "runHook preInstall\nmkdir -p $out/include/yas\ncp -r include/yas/* $out/include/yas\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/niXman/yas",
         description: "Yet Another Serialization",
         license: nix.thunk(() => nix.sel(lib, "licenses", "boost")),
         maintainers: [],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

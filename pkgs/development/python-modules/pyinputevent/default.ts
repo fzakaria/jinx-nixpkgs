@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pyinputevent",
       version: "0.1-unstable-2015-10-18",
       __structuredAttrs: true,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ntzrmtthihu777",
           repo: "pyinputevent",
           rev: "d2075fa5db5d8a402735fe788bb33cf9fe272a5b",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/ntzrmtthihu777/pyinputevent",
         description: "Python interface to the Input Subsystem's input_event and uinput",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

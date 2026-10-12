@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const pname = "xmoto";
       const version = "0.6.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xmoto",
           repo: "xmoto",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -65,12 +65,12 @@ export default nix.lambda((args) => (() => {
         zlib,
       ]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), SDL2)}/include/SDL2`),
       }));
       const preFixup = "wrapProgram \"$out/bin/xmoto\" \\\n  --prefix XDG_DATA_DIRS : \"$out/share/\"\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Challenging 2D motocross platform game, where physics play an important role",
         mainProgram: "xmoto",
         longDescription: "X-Moto is a challenging 2D motocross platform game, where physics plays an all important role in the gameplay.\nYou need to control your bike to its limits, if you want to have a chance to finish the most difficult challenges.\n",
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

@@ -46,39 +46,39 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "redsocks"));
   return {
-    __proto__: pos$34,
+    [nix.POS]: pos$34,
     options: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       services: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         redsocks: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether to enable redsocks.",
             })))),
           log_debug: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Log connection progress.",
             })))),
           log_info: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Log start and end of client sessions.",
             })))),
           log: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "stderr",
               description: "Where to send logs.\n\nPossible values are:\n  - stderr\n  - file:/path/to/file\n  - syslog:FACILITY where FACILITY is any of \"daemon\", \"local0\",\n    etc.\n",
             })))),
           chroot: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -87,11 +87,11 @@ export default nix.lambda((args) => (() => {
               description: "Chroot under which to run redsocks. Log file is opened before\nchroot, but if logging to syslog /etc/localtime may be required.\n",
             })))),
           redsocks: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               description: "Local port to proxy associations to be performed.\n\nThe example shows how to configure a proxy to handle port 80 as HTTP\nrelay, and all other ports as HTTP connect.\n",
               example: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   port: 23456n,
                   proxy: "1.2.3.4:8080",
                   type: "http-relay",
@@ -99,7 +99,7 @@ export default nix.lambda((args) => (() => {
                   doNotRedirect: nix.thunk(() => ["-d 1.2.0.0/16"]),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   port: 23457n,
                   proxy: "1.2.3.4:8080",
                   type: "http-connect",
@@ -108,33 +108,33 @@ export default nix.lambda((args) => (() => {
                 })),
               ]),
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     options: nix.thunk(() => ({
-                      __proto__: pos$18,
+                      [nix.POS]: pos$18,
                       ip: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                           default: "127.0.0.1",
                           description: "IP on which redsocks should listen. Defaults to 127.0.0.1 for\nsecurity reasons.\n",
                         })))),
                       port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
                           default: 12345n,
                           description: "Port on which redsocks should listen.",
                         })))),
                       proxy: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                           description: "Proxy through which redsocks should forward incoming traffic.\nExample: \"example.org:8080\"\n",
                         })))),
                       type: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$11,
+                          [nix.POS]: pos$11,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["socks4", "socks5", "http-connect", "http-relay"]))),
                           description: "Type of proxy.",
                         })))),
                       login: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$12,
+                          [nix.POS]: pos$12,
                           type: nix.thunk(() => (() => {
                             const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                             return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -143,7 +143,7 @@ export default nix.lambda((args) => (() => {
                           description: "Login to send to proxy.",
                         })))),
                       password: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$13,
+                          [nix.POS]: pos$13,
                           type: nix.thunk(() => (() => {
                             const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                             return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -152,19 +152,19 @@ export default nix.lambda((args) => (() => {
                           description: "Password to send to proxy. WARNING, this will end up\nworld-readable in the store! Awaiting\nhttps://github.com/NixOS/nix/issues/8 to be able to fix.\n",
                         })))),
                       disclose_src: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["false", "X-Forwarded-For", "Forwarded_ip", "Forwarded_ipport"]))),
                           default: "false",
                           description: "Way to disclose client IP to the proxy.\n  - \"false\": do not disclose\n\nhttp-connect supports the following ways:\n  - \"X-Forwarded-For\": add header \"X-Forwarded-For: IP\"\n  - \"Forwarded_ip\": add header \"Forwarded: for=IP\" (see RFC7239)\n  - \"Forwarded_ipport\": add header 'Forwarded: for=\"IP:port\"'\n",
                         })))),
                       redirectInternetOnly: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$15,
+                          [nix.POS]: pos$15,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                           default: true,
                           description: "Exclude all non-globally-routable IPs from redsocks",
                         })))),
                       doNotRedirect: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$16,
+                          [nix.POS]: pos$16,
                           type: nix.thunk(() => (() => {
                             const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                             return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -174,7 +174,7 @@ export default nix.lambda((args) => (() => {
                           example: nix.thunk(() => ["-d 1.2.3.4"]),
                         })))),
                       redirectCondition: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$17,
+                          [nix.POS]: pos$17,
                           type: nix.thunk(() => (() => {
                             const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                             return nix.app(nix.lookup(w_1, "either"), nix.thunk(() => nix.lookup(w_1, "bool")), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -246,14 +246,14 @@ ip46tables -t nat -A OUTPUT -p tcp ${nix.app(redCond, block)} -j ${chain} 2>/dev
 `));
         })(), nix.thunk(() => nix.sel(cfg, "redsocks"))));
       return nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           users: nix.thunk(() => ({
-            __proto__: pos$27,
-            groups: nix.thunk(() => ({ __proto__: pos$24, redsocks: nix.thunk(() => ({})) })),
+            [nix.POS]: pos$27,
+            groups: nix.thunk(() => ({ [nix.POS]: pos$24, redsocks: nix.thunk(() => ({})) })),
             users: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               redsocks: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 description: "Redsocks daemon",
                 group: "redsocks",
                 isSystemUser: true,
@@ -261,11 +261,11 @@ ip46tables -t nat -A OUTPUT -p tcp ${nix.app(redCond, block)} -j ${chain} 2>/dev
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             services: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               redsocks: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 description: "Redsocks",
                 after: nix.thunk(() => ["network.target"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -274,9 +274,9 @@ ip46tables -t nat -A OUTPUT -p tcp ${nix.app(redCond, block)} -j ${chain} 2>/dev
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             firewall: nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               extraCommands: iptables,
               extraStopCommands: nix.thunk(() => nix.app(nix.lookup(w, "concatImapStringsSep"), "\n", (idx) => (block) => (() => {
                   const chain = nix.thunk(() => nix.str`REDSOCKS${nix.app(nix.builtins.toString, idx)}`);

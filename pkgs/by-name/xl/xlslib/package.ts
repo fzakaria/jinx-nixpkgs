@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xlslib",
       version: "2.5.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/xlslib/xlslib-package-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "1wx3jbpkz2rvgs45x6mwawamd1b2llb0vn29b5sr0rfxzx9d1985",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       setSourceRoot: "export sourceRoot=xlslib/xlslib",
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C++/C library to construct Excel .xls files in code",
         homepage: "https://sourceforge.net/projects/xlslib/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

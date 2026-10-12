@@ -31,46 +31,46 @@ export default nix.lambda((args) => (() => {
   const udhcpcScript = nix.thunk(() => nix.app(nix.sel(pkgs, "writeScript"), "udhcp-script", "#! /bin/sh\nif [ \"$1\" = bound ]; then\n  ip address add \"$ip/$mask\" dev \"$interface\"\n  if [ -n \"$mtu\" ]; then\n    ip link set mtu \"$mtu\" dev \"$interface\"\n  fi\n  if [ -n \"$staticroutes\" ]; then\n    echo \"$staticroutes\" \\\n      | sed -r \"s@(\\S+) (\\S+)@ ip route add \\\"\\1\\\" via \\\"\\2\\\" dev \\\"$interface\\\" ; @g\" \\\n      | sed -r \"s@ via \\\"0\\.0\\.0\\.0\\\"@@g\" \\\n      | /bin/sh\n  fi\n  if [ -n \"$router\" ]; then\n    ip route add \"$router\" dev \"$interface\" # just in case if \"$router\" is not within \"$ip/$mask\" (e.g. Hetzner Cloud)\n    ip route add default via \"$router\" dev \"$interface\"\n  fi\n  if [ -n \"$dns\" ]; then\n    rm -f /etc/resolv.conf\n    for server in $dns; do\n      echo \"nameserver $server\" >> /etc/resolv.conf\n    done\n  fi\nfi\n"));
   const udhcpcArgs = nix.thunk(() => nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "udhcpc", "extraArgs"))));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       boot: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         initrd: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           network: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: false,
                 description: "Add network connectivity support to initrd. The network may be\nconfigured using the `ip` kernel parameter,\nas described in [the kernel documentation](https://www.kernel.org/doc/Documentation/filesystems/nfs/nfsroot.txt).\nOtherwise, if\n{option}`networking.useDHCP` is enabled, an IP address\nis acquired using DHCP.\n\nYou should add the module(s) required for your network card to\nboot.initrd.availableKernelModules.\n`lspci -v | grep -iA8 'network\\|ethernet'`\nwill tell you which.\n",
               })))),
             flushBeforeStage2: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: nix.thunk(() => !nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable"))),
                 defaultText: "!config.boot.initrd.systemd.enable",
                 description: "Whether to clear the configuration of the interfaces that were set up in\nthe initrd right before stage 2 takes over. Stage 2 will do the regular network\nconfiguration based on the NixOS networking options.\n\nThe default is false when systemd is enabled in initrd,\nbecause the systemd-networkd documentation suggests it.\n",
               })))),
             udhcpc: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   default: nix.thunk(() => (nix.asBool(nix.sel(config, "networking", "useDHCP")) && nix.asBool(!nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable"))))),
                   defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.networking.useDHCP")),
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                   description: "Enables the udhcpc service during stage 1 of the boot process. This\ndefaults to {option}`networking.useDHCP`. Therefore, this useful if\nuseDHCP is off but the initramfs should do dhcp.\n",
                 })))),
               extraArgs: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   default: [],
                   type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                   description: "Additional command-line arguments passed verbatim to\nudhcpc if {option}`boot.initrd.network.enable` and\n{option}`boot.initrd.network.udhcpc.enable` are enabled.\n",
                 })))),
             })),
             postCommands: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 default: "",
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
                 description: "Shell commands to be executed after stage 1 of the\nboot has initialised the network.\n",
@@ -80,11 +80,11 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         boot: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           initrd: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             kernelModules: nix.thunk(() => ["af_packet"]),
             extraUtilsCommands: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable"))), nix.thunk(() => nix.str`copy_bin_and_libs ${nix.sel(pkgs, "klibc")}/lib/klibc/bin.static/ipconfig
 `))),

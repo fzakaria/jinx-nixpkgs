@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const withHydra = nix.argOr($, "withHydra", () => false);
   const withIvy = nix.argOr($, "withIvy", () => false);
   return nix.app(melpaBuild, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "notdeft",
       version: "0-unstable-2025-06-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hasu",
           repo: "notdeft",
           rev: "e0426807f608f550df14b7cd50b8455dee4dbfb3",
@@ -47,11 +47,11 @@ export default nix.lambda((args) => (() => {
       preBuild: "$CXX -std=c++11 -o notdeft-xapian xapian/notdeft-xapian.cc -lxapian\n",
       preInstall: "install -D --target-directory=$out/bin notdeft-xapian\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, hardcodeZeroVersion: true })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://tero.hasu.is/notdeft/",
         description: "Fork of Deft that uses Xapian as a search engine",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "nessdoor"))]),

@@ -61,11 +61,11 @@ export default nix.lambda((args) => (() => {
   const wxGTK_override = nix.argOr($, "wxGTK-override", () => null);
   const opencascade_override = nix.argOr($, "opencascade-override", () => null);
   const nanosvg_fltk = nix.thunk(() => nix.app(nix.sel(nanosvg, "overrideAttrs"), (old) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "nanosvg-fltk",
       version: "unstable-2022-12-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fltk",
           repo: "nanosvg",
           rev: "abcd277ea45e9098bed752cf9c6875b533c0892f",
@@ -75,11 +75,11 @@ export default nix.lambda((args) => (() => {
   const wxGTK_override$ = nix.thunk(() => (nix.asBool(nix.eq(wxGTK_override, null)) ? nix.force(wxwidgets_3_2) : nix.force(wxGTK_override)));
   const opencascade_override$ = nix.thunk(() => (nix.asBool(nix.eq(opencascade_override, null)) ? nix.force(opencascade_occt_7_6_1) : nix.force(opencascade_override)));
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "prusa-slicer",
       version: "2.9.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "prusa3d",
           repo: "PrusaSlicer",
           hash: "sha256-SXNIyAncnPU6Zac8/plM32sPBgj9Uj9eVDL3NBu+IL4=",
@@ -128,7 +128,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       separateDebugInfo: true,
       doInstallCheck: true,
-      env: nix.thunk(() => nix.update({ __proto__: pos$4, NLOPT: nlopt }, nix.app(nix.sel(lib, "optionalAttrs"), withSystemd, nix.thunk(() => ({ __proto__: pos$5, NIX_LDFLAGS: "-ludev" }))))),
+      env: nix.thunk(() => nix.update({ [nix.POS]: pos$4, NLOPT: nlopt }, nix.app(nix.sel(lib, "optionalAttrs"), withSystemd, nix.thunk(() => ({ [nix.POS]: pos$5, NIX_LDFLAGS: "-ludev" }))))),
       prePatch: nix.thunk(() => nix.str`# Since version 2.5.0 of nlopt we need to link to libnlopt, as libnlopt_cxx
 # now seems to be integrated into the main lib.
 sed -i 's|nlopt_cxx|nlopt|g' cmake/modules/FindNLopt.cmake
@@ -166,14 +166,14 @@ substituteInPlace src/${(nix.asBool(nix.eq(nix.sel(finalAttrs, "pname"), "prusa-
       nativeCheckInputs: nix.thunk(() => [ctestCheckHook]),
       checkFlags: nix.thunk(() => ["--force-new-ctest-process", "-E", "libslic3r_tests|sla_print_tests"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             extraArgs: nix.thunk(() => ["--version-regex", "^version_(.+)$"]),
           })))),
       })),
       meta: nix.thunk(() => nix.update({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "G-code generator for 3D printer",
         homepage: "https://github.com/prusa3d/PrusaSlicer",
         changelog: nix.thunk(() => nix.str`https://github.com/prusa3d/PrusaSlicer/releases/tag/version_${nix.sel(finalAttrs, "version")}`),
@@ -187,7 +187,7 @@ substituteInPlace src/${(nix.asBool(nix.eq(nix.sel(finalAttrs, "pname"), "prusa-
           ];
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
-      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(clangStdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ __proto__: pos$9, mainProgram: "PrusaSlicer" }))))),
+      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(clangStdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$9, mainProgram: "PrusaSlicer" }))))),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

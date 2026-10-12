@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "tailscale-gui",
       version: "1.98.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://pkgs.tailscale.com/stable/Tailscale-${nix.sel(finalAttrs, "version")}-macos.pkg`),
           hash: "sha256-r7e8aKNWaX1psI0a3sohTUv8xmUv8oebH/ndjeHLoVA=",
         })))),
@@ -35,16 +35,16 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [xar, cpio, pbzx]),
       installPhase: "runHook preInstall\nxar -xf $src\ncd Distribution.pkg\npbzx -n Payload | cpio -i\n\nmkdir -p $out/Applications/Tailscale.app\nmkdir -p $out/bin\n\ncp -R Contents $out/Applications/Tailscale.app/\nln -s \"$out/Applications/Tailscale.app/Contents/MacOS/Tailscale\" \"$out/bin/tailscale\"\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: "tailscale-gui-update-script",
               runtimeInputs: nix.thunk(() => [cacert, curl, jq, common_updater_scripts]),
               text: "version=$(curl --silent \"https://pkgs.tailscale.com/stable/?mode=json&os=darwin\" | jq -r '.MacZipsVersion')\nupdate-source-version tailscale-gui \"$version\"\n",
             })))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Tailscale GUI client for macOS",
         homepage: "https://tailscale.com",
         changelog: "https://tailscale.com/changelog#client",

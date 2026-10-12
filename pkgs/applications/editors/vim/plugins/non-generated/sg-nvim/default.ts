@@ -23,14 +23,14 @@ export default nix.lambda((args) => (() => {
   const vimUtils = nix.arg($, "vimUtils");
   const version = "1.1.0-unstable-2025-01-21";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "sourcegraph",
       repo: "sg.nvim",
       rev: "775f22b75a9826eabf69b0094dd1d51d619fe552",
       hash: "sha256-i5g+pzxB8pAORLbr1wlYWUTsrJJmVj9UwlCg8pU3Suw=",
     }))));
   const sg_nvim_rust = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sg-nvim-rust",
       version: version,
       src: src,
@@ -38,12 +38,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
       prePatch: "rm .cargo/config.toml\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, OPENSSL_NO_VENDOR: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: true })),
       cargoBuildFlags: nix.thunk(() => ["--workspace"]),
       doCheck: false,
     }))));
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "sg.nvim",
       version: version,
       src: src,
@@ -60,16 +60,16 @@ ln -s ${sg_nvim_rust}/{bin,lib}/* $out/target/debug
 `),
       nvimSkipModules: nix.thunk(() => ["sg.cody.fuzzy", "sg.health"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             extraArgs: nix.thunk(() => ["--version=branch"]),
             attrPath: "vimPlugins.sg-nvim.sg-nvim-rust",
           })))),
         "sg-nvim-rust": sg_nvim_rust,
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Neovim plugin designed to emulate the behaviour of the Cursor AI IDE",
         homepage: "https://github.com/sourcegraph/sg.nvim/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

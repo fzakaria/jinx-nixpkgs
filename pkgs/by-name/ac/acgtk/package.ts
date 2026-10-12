@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "acgtk",
       version: "2.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.inria.fr",
           owner: "acg",
           repo: "dev/acgtk",
@@ -62,16 +62,16 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\ndune build -p acgtk --profile=release ${enableParallelBuilding:+-j $NIX_BUILD_CORES}\nrunHook postBuild\n",
       installPhase: "dune install -p acgtk --prefix $out --libdir $OCAMLFIND_DESTDIR\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex", "^release-(\\d+\\.\\d+\\.\\d+)$"]),
           })))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocamlPackages, "ocaml", "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://acg.loria.fr/",
         description: "Toolkit for developing ACG signatures and lexicon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cecill20")),

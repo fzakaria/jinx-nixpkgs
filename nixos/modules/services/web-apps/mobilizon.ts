@@ -84,12 +84,12 @@ export default nix.lambda((args) => (() => {
   const user = "mobilizon";
   const group = "mobilizon";
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "elixirConf"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       elixir: nix.thunk(() => nix.sel(cfg, "package", "elixirPackage")),
     }))));
   const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "mobilizon-config.exs", nix.thunk(() => nix.sel(cfg, "settings"))));
   const launchers = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`${nix.sel(cfg, "package", "pname")}-launchers-${nix.sel(cfg, "package", "version")}`), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       src: nix.thunk(() => nix.sel(cfg, "package")),
       nativeBuildInputs: nix.thunk(() => (() => {
         const w = nix.withScope(pkgs, null);
@@ -119,18 +119,18 @@ makeWrapper \\
   const postgresqlSocketDir = "/run/postgresql";
   const secretEnvFile = "/var/lib/mobilizon/secret-env.sh";
   return {
-    __proto__: pos$64,
+    [nix.POS]: pos$64,
     options: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       services: nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         mobilizon: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Mobilizon federated organization and mobilization platform")),
           nginx: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Whether an Nginx virtual host should be\nset up to serve Mobilizon.\n",
@@ -138,90 +138,90 @@ makeWrapper \\
           })),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "mobilizon", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               type: nix.thunk(() => (() => {
                 const elixirTypes = nix.thunk(() => nix.sel(settingsFormat, "lib", "types"));
                 return nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$23,
+                    [nix.POS]: pos$23,
                     freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$22,
+                      [nix.POS]: pos$22,
                       ":mobilizon": nix.thunk(() => ({
-                        __proto__: pos$21,
+                        [nix.POS]: pos$21,
                         "Mobilizon.Web.Endpoint": nix.thunk(() => ({
-                          __proto__: pos$11,
+                          [nix.POS]: pos$11,
                           url: nix.thunk(() => ({
-                            __proto__: pos$6,
+                            [nix.POS]: pos$6,
                             host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                __proto__: pos$5,
+                                [nix.POS]: pos$5,
                                 type: nix.thunk(() => nix.sel(elixirTypes, "str")),
                                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalMD"), "${settings.\":mobilizon\".\":instance\".hostname}\n")),
                                 description: "Your instance's hostname for generating URLs throughout the app\n",
                               })))),
                           })),
                           http: nix.thunk(() => ({
-                            __proto__: pos$9,
+                            [nix.POS]: pos$9,
                             port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                __proto__: pos$7,
+                                [nix.POS]: pos$7,
                                 type: nix.thunk(() => nix.sel(elixirTypes, "port")),
                                 default: 4000n,
                                 description: "The port to run the server\n",
                               })))),
                             ip: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                __proto__: pos$8,
+                                [nix.POS]: pos$8,
                                 type: nix.thunk(() => nix.sel(elixirTypes, "tuple")),
                                 default: nix.thunk(() => nix.app(nix.sel(settingsFormat, "lib", "mkTuple"), nix.thunk(() => [0n, 0n, 0n, 0n, 0n, 0n, 0n, 1n]))),
                                 description: "The IP address to listen on. Defaults to [::1] notated as a byte tuple.\n",
                               })))),
                           })),
                           has_reverse_proxy: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$10,
+                              [nix.POS]: pos$10,
                               type: nix.thunk(() => nix.sel(elixirTypes, "bool")),
                               default: true,
                               description: "Whether you use a reverse proxy\n",
                             })))),
                         })),
                         ":instance": nix.thunk(() => ({
-                          __proto__: pos$16,
+                          [nix.POS]: pos$16,
                           name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$12,
+                              [nix.POS]: pos$12,
                               type: nix.thunk(() => nix.sel(elixirTypes, "str")),
                               description: "The fallback instance name if not configured into the admin UI\n",
                             })))),
                           hostname: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$13,
+                              [nix.POS]: pos$13,
                               type: nix.thunk(() => nix.sel(elixirTypes, "str")),
                               description: "Your instance's hostname\n",
                             })))),
                           email_from: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$14,
+                              [nix.POS]: pos$14,
                               type: nix.thunk(() => nix.sel(elixirTypes, "str")),
                               defaultText: nix.thunk(() => nix.app(literalExpression, "noreply@${settings.\":mobilizon\".\":instance\".hostname}\n")),
                               description: "The email for the From: header in emails\n",
                             })))),
                           email_reply_to: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$15,
+                              [nix.POS]: pos$15,
                               type: nix.thunk(() => nix.sel(elixirTypes, "str")),
                               defaultText: nix.thunk(() => nix.app(literalExpression, "${email_from}\n")),
                               description: "The email for the Reply-To: header in emails\n",
                             })))),
                         })),
                         "Mobilizon.Storage.Repo": nix.thunk(() => ({
-                          __proto__: pos$20,
+                          [nix.POS]: pos$20,
                           socket_dir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$17,
+                              [nix.POS]: pos$17,
                               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(elixirTypes, "str")))),
                               default: postgresqlSocketDir,
                               description: "Path to the postgres socket directory.\n\nSet this to null if you want to connect to a remote database.\n\nIf non-null, the local PostgreSQL server will be configured with\nthe configured database, permissions, and required extensions.\n\nIf connecting to a remote database, please follow the\ninstructions on how to setup your database:\n<https://docs.joinmobilizon.org/administration/install/release/#database-setup>\n",
                             })))),
                           username: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$18,
+                              [nix.POS]: pos$18,
                               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(elixirTypes, "str")))),
                               default: user,
                               description: "User used to connect to the database\n",
                             })))),
                           database: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$19,
+                              [nix.POS]: pos$19,
                               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(elixirTypes, "str")))),
                               default: "mobilizon_prod",
                               description: "Name of the database\n",
@@ -238,62 +238,62 @@ makeWrapper \\
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$62,
+        [nix.POS]: pos$62,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "nginx", "enable")) || nix.asBool(nix.eq(nix.sel(cfg, "settings", ":mobilizon", "Mobilizon.Web.Endpoint", "http", "ip"), nix.app(nix.sel(settingsFormat, "lib", "mkTuple"), nix.thunk(() => [0n, 0n, 0n, 0n, 0n, 0n, 0n, 1n])))))),
             message: "Setting the IP mobilizon listens on is only possible when the nginx config is not used, as it is hardcoded there.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             assertion: nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(config, "services", "postgresql", "finalPackage", "version")), "18")),
             message: "Mobilizon currently doesn't support PostgreSQL versions above 18. See https://framagit.org/kaihuri/mobilizon/-/work_items/2070 for the upstream issue.",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$49,
+          [nix.POS]: pos$49,
           mobilizon: nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             settings: nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               ":mobilizon": nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 "Mobilizon.Web.Endpoint": nix.thunk(() => ({
-                  __proto__: pos$32,
+                  [nix.POS]: pos$32,
                   server: true,
                   url: nix.thunk(() => ({
-                    __proto__: pos$30,
+                    [nix.POS]: pos$30,
                     host: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.sel(instanceSettings, "hostname")))),
                   })),
-                  secret_key_base: nix.thunk(() => nix.app(nix.sel(settingsFormat, "lib", "mkGetEnv"), nix.thunk(() => ({ __proto__: pos$31, envVariable: "MOBILIZON_INSTANCE_SECRET" })))),
+                  secret_key_base: nix.thunk(() => nix.app(nix.sel(settingsFormat, "lib", "mkGetEnv"), nix.thunk(() => ({ [nix.POS]: pos$31, envVariable: "MOBILIZON_INSTANCE_SECRET" })))),
                 })),
                 "Mobilizon.Web.Auth.Guardian": nix.thunk(() => ({
-                  __proto__: pos$34,
-                  secret_key: nix.thunk(() => nix.app(nix.sel(settingsFormat, "lib", "mkGetEnv"), nix.thunk(() => ({ __proto__: pos$33, envVariable: "MOBILIZON_AUTH_SECRET" })))),
+                  [nix.POS]: pos$34,
+                  secret_key: nix.thunk(() => nix.app(nix.sel(settingsFormat, "lib", "mkGetEnv"), nix.thunk(() => ({ [nix.POS]: pos$33, envVariable: "MOBILIZON_AUTH_SECRET" })))),
                 })),
                 ":instance": nix.thunk(() => ({
-                  __proto__: pos$35,
+                  [nix.POS]: pos$35,
                   registrations_open: nix.thunk(() => nix.app(mkDefault, false)),
                   demo: nix.thunk(() => nix.app(mkDefault, false)),
                   email_from: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.str`noreply@${nix.sel(instanceSettings, "hostname")}`))),
                   email_reply_to: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.sel(instanceSettings, "email_from")))),
                 })),
                 "Mobilizon.Storage.Repo": nix.thunk(() => ({
-                  __proto__: pos$36,
+                  [nix.POS]: pos$36,
                   adapter: nix.thunk(() => nix.app(nix.sel(settingsFormat, "lib", "mkAtom"), "Ecto.Adapters.Postgres")),
                   pool_size: nix.thunk(() => nix.app(mkDefault, 10n)),
                 })),
               })),
-              ":tzdata": nix.thunk(() => ({ __proto__: pos$38, ":data_dir": "/var/lib/mobilizon/tzdata/" })),
+              ":tzdata": nix.thunk(() => ({ [nix.POS]: pos$38, ":data_dir": "/var/lib/mobilizon/tzdata/" })),
             })),
           })),
           postgresql: nix.thunk(() => nix.app(mkIf, isLocalPostgres, nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               enable: true,
               ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(repoSettings, "database"))]),
               ensureUsers: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$41, name: dbUser, ensureDBOwnership: false })),
+                nix.thunk(() => ({ [nix.POS]: pos$41, name: dbUser, ensureDBOwnership: false })),
               ]),
               extensions: (ps) => (() => {
                 const w = nix.withScope(ps, null);
@@ -305,29 +305,29 @@ makeWrapper \\
             const hostname = nix.thunk(() => nix.attr(from, "hostname"));
             const proxyPass = nix.thunk(() => nix.add("http://[::1]:", nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "settings", ":mobilizon", "Mobilizon.Web.Endpoint", "http", "port")))));
             return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "nginx", "enable")), nix.thunk(() => ({
-                __proto__: pos$48,
+                [nix.POS]: pos$48,
                 enable: true,
                 virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                   [nix.str`${hostname}`, nix.thunk(() => ({
-                    __proto__: pos$47,
+                    [nix.POS]: pos$47,
                     enableACME: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                     forceSSL: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                     locations: nix.thunk(() => ({
-                      __proto__: pos$46,
+                      [nix.POS]: pos$46,
                       "/": nix.thunk(() => ({
-                        __proto__: pos$43,
+                        [nix.POS]: pos$43,
                         proxyPass: proxyPass,
                         proxyWebsockets: true,
                         recommendedProxySettings: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                         extraConfig: "expires off;\nadd_header Cache-Control \"public, max-age=0, s-maxage=0, must-revalidate\" always;\n",
                       })),
                       "~ ^/(assets|img)": nix.thunk(() => ({
-                        __proto__: pos$44,
+                        [nix.POS]: pos$44,
                         root: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/lib/mobilizon-${nix.sel(cfg, "package", "version")}/priv/static`),
                         extraConfig: "access_log off;\nadd_header Cache-Control \"public, max-age=31536000, s-maxage=31536000, immutable\";\n",
                       })),
                       "~ ^/(media|proxy)": nix.thunk(() => ({
-                        __proto__: pos$45,
+                        [nix.POS]: pos$45,
                         proxyPass: proxyPass,
                         recommendedProxySettings: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                         extraConfig: "proxy_http_version 1.1;\nproxy_request_buffering off;\naccess_log off;\nadd_header Cache-Control \"public, max-age=31536000, s-maxage=31536000, immutable\";\n",
@@ -339,11 +339,11 @@ makeWrapper \\
           })()),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$58,
+          [nix.POS]: pos$58,
           services: nix.thunk(() => ({
-            __proto__: pos$56,
+            [nix.POS]: pos$56,
             mobilizon: nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               description: "Mobilizon federated organization and mobilization platform",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               path: nix.thunk(() => (() => {
@@ -360,7 +360,7 @@ makeWrapper \\
                 ];
               })()),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$50,
+                [nix.POS]: pos$50,
                 ExecStartPre: nix.thunk(() => nix.str`${launchers}/bin/mobilizon_ctl migrate`),
                 ExecStart: nix.thunk(() => nix.str`${launchers}/bin/mobilizon start`),
                 ExecStop: nix.thunk(() => nix.str`${launchers}/bin/mobilizon stop`),
@@ -375,7 +375,7 @@ makeWrapper \\
               })),
             })),
             "mobilizon-setup-secrets": nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               description: "Mobilizon setup secrets",
               before: nix.thunk(() => ["mobilizon.service"]),
               wantedBy: nix.thunk(() => ["mobilizon.service"]),
@@ -398,7 +398,7 @@ fi
 `;
               })()),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$52,
+                [nix.POS]: pos$52,
                 Type: "oneshot",
                 User: user,
                 Group: group,
@@ -406,7 +406,7 @@ fi
               })),
             })),
             "mobilizon-postgresql": nix.thunk(() => nix.app(mkIf, isLocalPostgres, nix.thunk(() => ({
-                __proto__: pos$55,
+                [nix.POS]: pos$55,
                 description: "Mobilizon PostgreSQL setup",
                 after: nix.thunk(() => ["postgresql.target"]),
                 before: nix.thunk(() => ["mobilizon.service", "mobilizon-setup-secrets.service"]),
@@ -420,7 +420,7 @@ psql -tAc 'ALTER DATABASE "${nix.sel(repoSettings, "database")}" OWNER TO "${dbU
 
 `),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$54,
+                  [nix.POS]: pos$54,
                   Type: "oneshot",
                   User: nix.thunk(() => nix.sel(config, "services", "postgresql", "superUser")),
                   Restart: "on-failure",
@@ -428,7 +428,7 @@ psql -tAc 'ALTER DATABASE "${nix.sel(repoSettings, "database")}" OWNER TO "${dbU
               })))),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$57,
+            [nix.POS]: pos$57,
             rules: nix.thunk(() => [
               "d /var/lib/mobilizon 700 mobilizon mobilizon - -",
               "d /var/lib/mobilizon/sitemap 700 mobilizon mobilizon - -",
@@ -440,10 +440,10 @@ psql -tAc 'ALTER DATABASE "${nix.sel(repoSettings, "database")}" OWNER TO "${dbU
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$60,
+          [nix.POS]: pos$60,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [user, nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               description: "Mobilizon daemon user",
               group: group,
               isSystemUser: true,
@@ -451,10 +451,10 @@ psql -tAc 'ALTER DATABASE "${nix.sel(repoSettings, "database")}" OWNER TO "${dbU
           ])),
           groups: nix.thunk(() => nix.attrsDyn({}, [[group, nix.thunk(() => ({}))]])),
         })),
-        environment: nix.thunk(() => ({ __proto__: pos$61, systemPackages: nix.thunk(() => [launchers]) })),
+        environment: nix.thunk(() => ({ [nix.POS]: pos$61, systemPackages: nix.thunk(() => [launchers]) })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$63,
+      [nix.POS]: pos$63,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "erictapen"))];

@@ -57,11 +57,11 @@ export default nix.lambda((args) => (() => {
     const hash = nix.arg($_1, "hash");
     const extraPatches = nix.argOr($_1, "extraPatches", () => []);
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         version: version,
         pname: nix.thunk(() => nix.str`subversion${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool((nix.asBool(!nix.asBool(bdbSupport)) && nix.asBool(perlBindings))) && nix.asBool(pythonBindings))), "-client")}`),
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`mirror://apache/subversion/subversion-${nix.sel(finalAttrs, "version")}.tar.bz2`),
             hash: hash,
           })))),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
         patches: nix.thunk(() => nix.concat([
           nix.path(here, "./apr-1.patch"),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: "swig-4.4.patch",
               url: "https://github.com/apache/subversion/commit/bf72420e86059a894fa3aacbbd6e3bee9286e46e.patch",
               hash: "sha256-0X9y/0qDDctKo1vu86pKu3k79zIqhOhQU9rvyG4v6jg=",
@@ -80,10 +80,10 @@ export default nix.lambda((args) => (() => {
         ], extraPatches)),
         postPatch: nix.thunk(() => nix.add("rm subversion/bindings/swig/proxy/{perlrun.swg,pyrun.swg,python.swg,rubydef.swg,rubyhead.swg,rubytracking.swg,runtime.swg,swigrun.swg}\n", nix.app(nix.sel(lib, "optionalString"), perlBindings, "rm subversion/bindings/swig/perl/native/{core.c,svn_*.c}\n"))),
         env: nix.thunk(() => nix.update({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           CPPFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-P"]))),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             CXX: "clang++",
             CC: "clang",
             CPP: "clang -E",
@@ -120,14 +120,14 @@ done
         nativeCheckInputs: nix.thunk(() => [python3]),
         doCheck: false,
         passthru: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           tests: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             svnserve: nix.thunk(() => nix.attr(nixosTests, "svnserve")),
           })),
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           description: "Version control system intended to be a compelling replacement for CVS in the open source community",
           license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
           homepage: "https://subversion.apache.org/",
@@ -138,9 +138,9 @@ done
       }));
   })(), formals$2);
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     subversion: nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         version: "1.14.5",
         hash: "sha256-54op53Zri3s1RJfQj3GlVkGrxTZ1zhh1WEeBquNWRKE=",
       })))),

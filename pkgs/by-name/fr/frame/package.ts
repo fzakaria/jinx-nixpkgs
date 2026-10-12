@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libxext = nix.arg($, "libxext");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "frame",
       version: "2.5.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://launchpad.net/frame/trunk/v${nix.sel(finalAttrs, "version")}/+download/frame-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "bc2a20cd3ac1e61fe0461bd3ee8cb250dbcc1fa511fad0686d267744e9c78f3a",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([stdenv], nix.app(nix.sel(lib, "optionals"), enableX11, nix.thunk(() => [xorg_server, libx11, libxext, libxi])))),
       configureFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), enableX11, "--with-x11")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://launchpad.net/frame",
         description: "Handles the buildup and synchronization of a set of simultaneous touches",
         mainProgram: "frame-test-x11",

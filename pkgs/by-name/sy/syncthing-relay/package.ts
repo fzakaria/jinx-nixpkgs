@@ -11,8 +11,8 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   const syncthing = nix.arg($, "syncthing");
-  return nix.app(nix.sel(nix.app(nix.sel(syncthing, "override"), nix.thunk(() => ({ __proto__: pos$1, target: "strelaysrv" }))), "overrideAttrs"), nix.thunk(() => ({
-      __proto__: pos$2,
+  return nix.app(nix.sel(nix.app(nix.sel(syncthing, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, target: "strelaysrv" }))), "overrideAttrs"), nix.thunk(() => ({
+      [nix.POS]: pos$2,
       pname: "syncthing-relay",
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "mkdir -p $out/lib/systemd/system\n\nsubstitute cmd/strelaysrv/etc/linux-systemd/strelaysrv.service \\\n           $out/lib/systemd/system/strelaysrv.service \\\n           --replace-fail /usr/bin/strelaysrv $out/bin/strelaysrv\n")),
     })));

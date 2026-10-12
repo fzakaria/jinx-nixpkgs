@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const buildPythonApplication = nix.thunk(() => nix.attr(from, "buildPythonApplication"));
   const pygobject3 = nix.thunk(() => nix.attr(from, "pygobject3"));
   return nix.app(buildPythonApplication, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gnome-browser-connector",
       version: "42.1",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-browser-connector/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-browser-connector-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "vZcCzhwWNgbKMrjBPR87pugrJHz4eqxgYQtBHfFVYhI=",
         })))),
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: "gnome-browser-connector" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gnome-browser-connector" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Native host connector for the GNOME Shell browser extension",
         homepage: "https://gitlab.gnome.org/GNOME/gnome-browser-connector",
         longDescription: "To use the integration, install the [browser extension](https://gitlab.gnome.org/GNOME/gnome-browser-extension), and then set `services.gnome.gnome-browser-connector.enable` to `true`.\n",

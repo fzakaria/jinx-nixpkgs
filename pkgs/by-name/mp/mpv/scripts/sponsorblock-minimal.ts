@@ -17,19 +17,19 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const coreutils = nix.arg($, "coreutils");
   return nix.app(buildLua, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mpv_sponsorblock_minimal",
       version: "0-unstable-2025-12-21",
       scriptPath: "sponsorblock_minimal.lua",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jouni",
           repo: "mpv_sponsorblock_minimal",
           rev: "8f4b186d6ea46e6fe0e5e94a53dda2f50dceb576",
           hash: "sha256-21qucigVnEaniQh7BKwFG/PDkwV51q0kzqe0ipVH6qY=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       preInstall: nix.thunk(() => nix.str`substituteInPlace sponsorblock_minimal.lua \\
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
   --replace-fail "sha256sum" "${nix.app(nix.sel(lib, "getExe'"), coreutils, "sha256sum")}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Minimal script to skip sponsored segments of YouTube videos",
         homepage: "https://codeberg.org/jouni/mpv_sponsorblock_minimal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

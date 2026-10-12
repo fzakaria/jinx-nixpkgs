@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.22.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fabiocaccamo",
           repo: "django-maintenance-mode",
           tag: version,
@@ -37,7 +37,7 @@ runHook postCheck
 `);
       const pythonImportsCheck = nix.thunk(() => ["maintenance_mode"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Shows a 503 error page when maintenance-mode is on",
         homepage: "https://github.com/fabiocaccamo/django-maintenance-mode",
         changelog: nix.thunk(() => nix.str`https://github.com/fabiocaccamo/django-maintenance-mode/releases/tag/${nix.sel(src, "tag")}`),
@@ -48,7 +48,7 @@ runHook postCheck
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const go_rice = nix.arg($, "go-rice");
   const lib = nix.arg($, "lib");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "linx-server",
       version: "unstable-2021-12-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zizzydizzymc",
           repo: "linx-server",
           rev: "3f503442f10fca68a3212975b23cf74d92c9988c",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [go_rice]),
       preBuild: "rice embed-go",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Self-hosted file/code/media sharing website",
         homepage: "https://put.icu",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

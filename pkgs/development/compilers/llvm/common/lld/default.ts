@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const getVersionFile = nix.arg($, "getVersionFile");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "lld",
       version: version,
       src: nix.thunk(() => (nix.asBool(!nix.eq(monorepoSrc, null)) ? nix.app(runCommand, nix.thunk(() => nix.str`lld-src-${version}`), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           passthru: nix.thunk(() => nix.attr(monorepoSrc, "passthru")),
           strictDeps: true,
           __structuredAttrs: true,
@@ -45,7 +45,7 @@ mkdir -p "$out/llvm"
 `)) : nix.force(src))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/lld`),
       patches: nix.thunk(() => nix.concat([nix.thunk(() => nix.app(getVersionFile, "lld/gnu-install-dirs.patch"))], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "versions", "major"), release_version), "18")), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "more-openbsd-program-headers.patch",
             url: "https://github.com/llvm/llvm-project/commit/d7fd8b19e560fbb613159625acd8046d0df75115.patch",
             stripLen: 1n,
@@ -58,11 +58,11 @@ mkdir -p "$out/llvm"
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "LLD_INSTALL_PACKAGE_DIR", nix.thunk(() => nix.str`${nix.builtins.placeholder("dev")}/lib/cmake/lld`))),
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "LLVM_TABLEGEN_EXE", nix.thunk(() => nix.str`${nix.sel(buildLlvmPackages, "tblgen")}/bin/llvm-tblgen`))),
       ], devExtraCmakeFlags)),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => ({ __proto__: pos$3, LDFLAGS: "-Wl,-z,stack-size=2097152" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => ({ [nix.POS]: pos$3, LDFLAGS: "-Wl,-z,stack-size=2097152" })))),
       outputs: nix.thunk(() => ["out", "lib", "dev"]),
       __structuredAttrs: true,
       meta: nix.thunk(() => nix.update(llvm_meta, {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://lld.llvm.org/",
         description: "LLVM linker (unwrapped)",
         longDescription: "LLD is a linker from the LLVM project that is a drop-in replacement for\nsystem linkers and runs much faster than them. It also provides features\nthat are useful for toolchain developers.\nThe linker supports ELF (Unix), PE/COFF (Windows), Mach-O (macOS), and\nWebAssembly in descending order of completeness. Internally, LLD consists\nof several different linkers.\n",

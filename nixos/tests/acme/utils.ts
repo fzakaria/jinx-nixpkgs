@@ -5,7 +5,7 @@ const here = nix.here(import.meta.url);
 const pos$1 = nix.positions(here + "/utils.nix", [["pythonUtils", 3, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$1,
+  [nix.POS]: pos$1,
   pythonUtils: nix.thunk(() => nix.builtins.readFile(nix.path(here, "./python-utils.py"))),
 }));
 //# sourceMappingURL=utils.ts.map

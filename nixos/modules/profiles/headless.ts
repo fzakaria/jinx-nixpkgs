@@ -18,27 +18,27 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     systemd: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "serial-getty@ttyS0": nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
         })),
-        "serial-getty@hvc0": nix.thunk(() => ({ __proto__: pos$2, enable: false })),
-        "getty@tty1": nix.thunk(() => ({ __proto__: pos$3, enable: false })),
-        "autovt@": nix.thunk(() => ({ __proto__: pos$4, enable: false })),
+        "serial-getty@hvc0": nix.thunk(() => ({ [nix.POS]: pos$2, enable: false })),
+        "getty@tty1": nix.thunk(() => ({ [nix.POS]: pos$3, enable: false })),
+        "autovt@": nix.thunk(() => ({ [nix.POS]: pos$4, enable: false })),
       })),
       enableEmergencyMode: false,
     })),
     boot: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       kernelParams: nix.thunk(() => ["panic=1", "boot.panic_on_fail", "vga=0x317", "nomodeset"]),
       loader: nix.thunk(() => ({
-        __proto__: pos$8,
-        grub: nix.thunk(() => ({ __proto__: pos$7, splashImage: null })),
+        [nix.POS]: pos$8,
+        grub: nix.thunk(() => ({ [nix.POS]: pos$7, splashImage: null })),
       })),
     })),
   };

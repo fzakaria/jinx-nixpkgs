@@ -27,35 +27,35 @@ export default nix.lambda((args) => (() => {
   const pname = "ansible-cmdb";
   const version = "1.31";
   return nix.app(buildPythonApplication, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: pname,
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fboender",
           repo: "ansible-cmdb",
           tag: version,
           hash: "sha256-HOFLX8fiid+xJOVYNyVbz5FunrhteAUPlvS3ctclVHo=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./setup.patch"), nix.thunk(() => ({ __proto__: pos$2, version: version })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./setup.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, version: version })))),
       ]),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [mako, pyyaml, jsonxs]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: ansible_cmdb,
               version: nix.thunk(() => nix.str`v${version}`),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Generate host overview from ansible fact gathering output",
         homepage: "https://github.com/fboender/ansible-cmdb",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

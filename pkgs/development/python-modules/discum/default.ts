@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-/8TaAmfSPv/7kuymockSvC2uxXgHfuP+FXN8vuA9WHY=",
@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
         ua_parser,
         websocket_client,
       ]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, ra: nix.thunk(() => [pycryptodome, pypng, pyqrcode]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, ra: nix.thunk(() => [pycryptodome, pypng, pyqrcode]) }));
       const pythonImportsCheck = nix.thunk(() => ["discum"]);
       const pythonRelaxDeps = nix.thunk(() => ["websocket-client"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Discord API Wrapper for Userbots/Selfbots written in Python",
         homepage: "https://pypi.org/project/discum/",
         changelog: nix.thunk(() => nix.str`https://github.com/Merubokkusu/Discord-S.C.U.M/blob/v${version}/changelog.md`),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

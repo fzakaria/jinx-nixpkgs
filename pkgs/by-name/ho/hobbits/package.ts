@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const qt5 = nix.arg($, "qt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "hobbits",
       version: "0.55.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Mahlet-Inc",
           repo: "hobbits",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,12 +44,12 @@ substituteInPlace CMakeLists.txt \\
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "USE_SYSTEM_PFFFT", true)),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), "-Wno-error=narrowing")),
       })),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/{Applications,bin}\nmv $out/hobbits.app $out/Applications\nwrapProgram $out/Applications/hobbits.app/Contents/MacOS/hobbits \\\n  --prefix DYLD_LIBRARY_PATH : $out/Applications/hobbits.app/Contents/Frameworks\nln -s $out/Applications/hobbits.app/Contents/MacOS/hobbits $out/bin/hobbits\n# Prevent wrapping\nfind $out/Applications -type f -name \"*.dylib\" -exec chmod -x {} \\;\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Multi-platform GUI for bit-based analysis, processing, and visualization",
         homepage: "https://github.com/Mahlet-Inc/hobbits",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

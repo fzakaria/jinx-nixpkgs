@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const pipewire = nix.arg($, "pipewire");
   const gpsd = nix.arg($, "gpsd");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "plasma-workspace",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dependency-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             fcMatch: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), fontconfig, "fc-match")),
             lsof: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), lsof)),
             qdbus: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), qttools, "qdbus")),
@@ -79,7 +79,7 @@ echo "${lsof} ${xmessage} ${xrdb}" > $out/nix-support/depends
 moveToOutput share/xsessions $sessions
 moveToOutput share/wayland-sessions $sessions
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, providedSessions: nix.thunk(() => ["plasma", "plasmax11"]) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, providedSessions: nix.thunk(() => ["plasma", "plasmax11"]) })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

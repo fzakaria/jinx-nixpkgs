@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libidn2 = nix.arg($, "libidn2");
   const libunistring = nix.arg($, "libunistring");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libgnurl",
       version: "7.72.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/gnunet/gnurl-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1y4laraq37kw8hc8jlzgcw7y37bfd0n71q0sy3d3z6yg7zh2prxi",
         })))),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         "--without-librtmp",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fork of libcurl used by GNUnet",
         homepage: "https://gnunet.org/en/gnurl.html",
         maintainers: [],

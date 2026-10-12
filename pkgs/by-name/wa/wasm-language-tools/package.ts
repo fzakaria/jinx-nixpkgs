@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const vscode_extension_update_script = nix.arg($, "vscode-extension-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "wasm-language-tools",
       version: "0.11.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "g-plane",
           repo: "wasm-language-tools",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "update-snapshot-for-rust-1.98.patch",
             url: "https://github.com/g-plane/wasm-language-tools/commit/d7cabdba9fa90ec74a461dcc6b470288184d6c86.patch",
             hash: "sha256-dPPMebvNVVtFTURsxGGHTwZ6SM3CDMlZucENzwOO6/4=",
@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/wat_server`),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
             nix.thunk(() => nix.app(vscode_extension_update_script, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 attrPath: "vscode-extensions.gplane.wasm-language-tools",
                 extraArgs: nix.thunk(() => [
                   "--override-filename",
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
           ]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Language server and other tools for WebAssembly",
         homepage: "https://github.com/g-plane/wasm-language-tools/",
         changelog: nix.thunk(() => nix.str`https://github.com/g-plane/wasm-language-tools/releases/tag/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

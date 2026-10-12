@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libpng = nix.arg($, "libpng");
   const libjpeg = nix.arg($, "libjpeg");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ffmpegthumbnailer",
       version: "2.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dirkvdb",
           repo: "ffmpegthumbnailer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace libffmpegthumbnailer.pc.in \\\n  --replace '$'{exec_prefix}/@CMAKE_INSTALL_LIBDIR@ @CMAKE_INSTALL_FULL_LIBDIR@\n",
       postInstall: "substituteInPlace $out/share/thumbnailers/ffmpegthumbnailer{,-audio}.thumbnailer \\\n  --replace-fail '=ffmpegthumbnailer' \"=$out/bin/ffmpegthumbnailer\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightweight video thumbnailer",
         longDescription: "FFmpegthumbnailer is a lightweight video\n        thumbnailer that can be used by file managers to create thumbnails\n        for your video files. The thumbnailer uses ffmpeg to decode frames\n        from the video files, so supported videoformats depend on the\n        configuration flags of ffmpeg.\n        This thumbnailer was designed to be as fast and lightweight as possible.\n        The only dependencies are ffmpeg and libpng/libjpeg.\n    ",
         homepage: "https://github.com/dirkvdb/ffmpegthumbnailer",

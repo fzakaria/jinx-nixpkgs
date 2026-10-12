@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "llm-ls",
       version: "0.5.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "huggingface",
           repo: "llm-ls",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,13 +34,13 @@ export default nix.lambda((args) => (() => {
       cargoPatches: nix.thunk(() => [
         nix.path(here, "./fix-time-compilation-failure.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-version.patch",
             url: "https://github.com/huggingface/llm-ls/commit/479401f3a5173f2917a888c8068f84e29b7dceed.patch?full_index=1",
             hash: "sha256-4gXasfMqlrrP8II+FiV/qGfO7a9qFkDQMiax7yEua5E=",
           })))),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$3, RUSTONIG_SYSTEM_LIBONIG: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, RUSTONIG_SYSTEM_LIBONIG: true })),
       cargoHash: "sha256-qiYspv2KcvzxVshVpAMlSqFDqbbiutpLyWMz+QSIVmQ=",
       buildAndTestSubdir: "crates/llm-ls",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
@@ -48,11 +48,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "LSP server leveraging LLMs for code completion (and more?)",
         homepage: "https://github.com/huggingface/llm-ls",
         changelog: nix.thunk(() => nix.str`https://github.com/huggingface/llm-ls/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

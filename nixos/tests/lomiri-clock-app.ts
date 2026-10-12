@@ -22,27 +22,27 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     name: "lomiri-clock-app-standalone",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "lomiri", "members")),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
           services: nix.thunk(() => ({
-            __proto__: pos$3,
-            xserver: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+            [nix.POS]: pos$3,
+            xserver: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(pkgs_1, "lomiri")), null);
               return [
@@ -50,15 +50,15 @@ export default nix.lambda((args) => (() => {
                 nix.thunk(() => nix.lookup(w, "lomiri-clock-app")),
               ];
             })()),
-            variables: nix.thunk(() => ({ __proto__: pos$4, UITK_ICON_THEME: "suru" })),
+            variables: nix.thunk(() => ({ [nix.POS]: pos$4, UITK_ICON_THEME: "suru" })),
             etc: nix.thunk(() => ({
-              __proto__: pos$6,
-              "icewm/prefoverride": nix.thunk(() => ({ __proto__: pos$5, text: "DesktopBackgroundColor=#FFFFFF\n" })),
+              [nix.POS]: pos$6,
+              "icewm/prefoverride": nix.thunk(() => ({ [nix.POS]: pos$5, text: "DesktopBackgroundColor=#FFFFFF\n" })),
             })),
           })),
-          i18n: nix.thunk(() => ({ __proto__: pos$8, supportedLocales: nix.thunk(() => ["all"]) })),
+          i18n: nix.thunk(() => ({ [nix.POS]: pos$8, supportedLocales: nix.thunk(() => ["all"]) })),
           fonts: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             packages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [nix.thunk(() => nix.lookup(w, "ubuntu-classic"))];

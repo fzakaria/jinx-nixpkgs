@@ -33,13 +33,13 @@ export default nix.lambda((args) => (() => {
   const pytest_xdist = nix.arg($, "pytest-xdist");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pettingzoo",
       version: "1.27.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Farama-Foundation",
           repo: "PettingZoo",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [gymnasium, numpy, typing_extensions]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         atari: nix.thunk(() => [pygame_ce]),
         butterfly: nix.thunk(() => [pygame_ce, pymunk]),
         classic: nix.thunk(() => [chess, pygame_ce, rlcard, shimmy]),
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
         "test_rgb_array_render_does_not_init_audio",
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_multi_episode_parallel_env_wrapper"])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "API standard for multi-agent reinforcement learning environments, with popular reference environments and related utilities",
         homepage: "https://github.com/Farama-Foundation/PettingZoo",
         changelog: nix.thunk(() => nix.str`https://github.com/Farama-Foundation/PettingZoo/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

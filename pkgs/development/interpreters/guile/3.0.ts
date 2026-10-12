@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const pname = "guile";
       const version = "3.0.11";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/${pname}/${pname}-${version}.tar.xz`),
           sha256: "sha256-gYx50jZlen+pb7NkE3zHtBs73uDWXGF0ygN2lVlXlGA=",
         }))));
@@ -52,14 +52,14 @@ export default nix.lambda((args) => (() => {
       const strictDeps = true;
       const enableParallelBuilding = nix.thunk(() => nix.app(nix.sel(lib, "systems", "equals"), nix.thunk(() => nix.sel(stdenv, "buildPlatform")), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))));
       const patches = nix.thunk(() => nix.concat([nix.path(here, "./eai_system.patch")], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(coverageAnalysis, null)), nix.path(here, "./gcov-file-name.patch")), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitlab.gnome.org/GNOME/gtk-osx/raw/52898977f165777ad9ef169f7d4818f2d4c9b731/patches/guile-clocktime.patch",
             sha256: "12wvwdna9j8795x59ldryv9d84c1j3qdk2iskw09306idfsis207",
           }))))))));
       const env = nix.thunk(() => nix.update({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-std=gnu17"]))),
-      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isGNU")) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))))), nix.thunk(() => ({ __proto__: pos$4, LDFLAGS: "-lgcc_s" })))));
+      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isGNU")) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))))), nix.thunk(() => ({ [nix.POS]: pos$4, LDFLAGS: "-lgcc_s" })))));
       const configureFlags = nix.thunk(() => nix.concat([
         nix.thunk(() => nix.str`--with-libreadline-prefix=${nix.app(nix.sel(lib, "getDev"), readline)}`),
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isSunOS")), nix.thunk(() => [
@@ -81,13 +81,13 @@ export default nix.lambda((args) => (() => {
       const dontStrip = true;
       const setupHook = nix.path(here, "./setup-hook-3.0.sh");
       const passthru = nix.thunk(() => (() => {
-        const tests = nix.thunk(() => ({ __proto__: pos$5, static: nix.thunk(() => nix.sel(pkgsStatic, "guile")) }));
+        const tests = nix.thunk(() => ({ [nix.POS]: pos$5, static: nix.thunk(() => nix.sel(pkgsStatic, "guile")) }));
         const effectiveVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), version));
         const siteCcacheDir = nix.thunk(() => nix.str`lib/guile/${effectiveVersion}/site-ccache`);
         const siteDir = nix.thunk(() => nix.str`share/guile/site/${effectiveVersion}`);
         const updateScript = nix.thunk(() => nix.app(writeScript, "update-guile-3", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p curl pcre2 common-updater-scripts\n\nset -eu -o pipefail\n\n# Expect the text in format of '\"https://ftp.gnu.org/gnu/guile/guile-3.0.8.tar.gz\"'\nnew_version=\"$(curl -s https://www.gnu.org/software/guile/download/ |\n    pcre2grep -o1 '\"https://ftp.gnu.org/gnu/guile/guile-(3[.0-9]+).tar.gz\"')\"\nupdate-source-version guile_3_0 \"$new_version\"\n"));
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           tests,
           effectiveVersion,
           siteCcacheDir,
@@ -96,7 +96,7 @@ export default nix.lambda((args) => (() => {
         };
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://www.gnu.org/software/guile/",
         description: "Embeddable Scheme implementation",
         longDescription: "GNU Guile is an implementation of the Scheme programming language, with\nsupport for many SRFIs, packaged for use in a wide variety of\nenvironments.  In addition to implementing the R5RS Scheme standard and a\nlarge subset of R6RS, Guile includes a module system, full access to POSIX\nsystem calls, networking support, multiple threads, dynamic linking, a\nforeign function call interface, and powerful string processing.\n",
@@ -107,7 +107,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "guile",
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version,
         src,

@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "oxide-rs",
       version: "0.18.0+2026073100.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "oxidecomputer",
           repo: "oxide.rs",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,9 +43,9 @@ export default nix.lambda((args) => (() => {
       cargoTestFlags: nix.thunk(() => ["--package=oxide-cli"]),
       nativeBuildInputs: nix.thunk(() => [curl, pkg_config]),
       buildInputs: nix.thunk(() => [curl, libgit2, openssl, zlib]),
-      env: nix.thunk(() => ({ __proto__: pos$2, OPENSSL_NO_VENDOR: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: true })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Oxide Rust SDK and CLI",
         homepage: "https://github.com/oxidecomputer/oxide.rs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

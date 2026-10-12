@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pname = "iopath";
   const version = "0.1.10";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "facebookresearch",
           repo: "iopath",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,9 +37,9 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_download", "test_bad_args"]),
       disabledTestPaths: nix.thunk(() => ["tests/async_torch_test.py", "tests/async_writes_test.py"]),
       pythonImportsCheck: nix.thunk(() => ["iopath"]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, aws: nix.thunk(() => [boto3]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, aws: nix.thunk(() => [boto3]) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python library that provides common I/O interface across different storage backends",
         homepage: "https://github.com/facebookresearch/iopath",
         changelog: nix.thunk(() => nix.str`https://github.com/facebookresearch/iopath/releases/tag/v${version}`),

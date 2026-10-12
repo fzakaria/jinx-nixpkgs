@@ -39,46 +39,46 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const dataDir = "/var/lib/metabase";
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         metabase: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Metabase service")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "metabase", nix.thunk(() => ({})))),
           listen: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             ip: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "0.0.0.0",
                 description: "IP address that Metabase should listen on.\n",
               })))),
             port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(types, "port")),
                 default: 3000n,
                 description: "Listen port for Metabase.\n",
               })))),
           })),
           ssl: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
                 description: "Whether to enable SSL (https) support.\n",
               })))),
             port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(types, "port")),
                 default: 8443n,
                 description: "Listen port over SSL (https) for Metabase.\n",
               })))),
             keystore: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                 default: nix.thunk(() => nix.str`${dataDir}/metabase.jks`),
                 example: "/etc/secrets/keystore.jks",
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           openFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Open ports in the firewall for Metabase.\n",
@@ -95,31 +95,31 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         systemd: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             metabase: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               description: "Metabase server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target"]),
               environment: nix.thunk(() => nix.update({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 MB_PLUGINS_DIR: nix.thunk(() => nix.str`${dataDir}/plugins`),
                 MB_DB_FILE: nix.thunk(() => nix.str`${dataDir}/metabase.db`),
                 MB_JETTY_HOST: nix.thunk(() => nix.sel(cfg, "listen", "ip")),
                 MB_JETTY_PORT: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "listen", "port")))),
               }, nix.app(optionalAttrs, nix.thunk(() => nix.sel(cfg, "ssl", "enable")), nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   MB_JETTY_SSL: true,
                   MB_JETTY_SSL_PORT: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "ssl", "port")))),
                   MB_JETTY_SSL_KEYSTORE: nix.thunk(() => nix.sel(cfg, "ssl", "keystore")),
                 }))))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 DynamicUser: true,
                 StateDirectory: nix.thunk(() => nix.builtins.baseNameOf(dataDir)),
                 ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))),
@@ -128,9 +128,9 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           firewall: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               allowedTCPPorts: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(cfg, "listen", "port"))], nix.app(optional, nix.thunk(() => nix.sel(cfg, "ssl", "enable")), nix.thunk(() => nix.sel(cfg, "ssl", "port"))))),
             })))),
         })),

@@ -46,9 +46,9 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "litellm"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const tiktokenEncodings = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     cl100k_base: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://openaipublic.blob.core.windows.net/encodings/cl100k_base.tiktoken",
       hash: "sha256-Ijkht27pm96ZW3/3OFE+7xAPtR0YyTWXoRO8/+hlsqc=",
     })),
@@ -56,11 +56,11 @@ export default nix.lambda((args) => (() => {
   const tiktokenCacheEntries = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (_) => (encoding) => (() => {
       const cacheKey = nix.thunk(() => nix.builtins.hashString("sha1", nix.thunk(() => nix.sel(encoding, "url"))));
       const sourceFile = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchurl"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.attr(encoding, "url")),
           hash: nix.thunk(() => nix.attr(encoding, "hash")),
         }))));
-      return { __proto__: pos$4, cacheKey: cacheKey, sourceFile: sourceFile };
+      return { [nix.POS]: pos$4, cacheKey: cacheKey, sourceFile: sourceFile };
     })(), tiktokenEncodings));
   const seedTiktokenCacheScript = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScript"), "litellm-seed-tiktoken-cache", nix.thunk(() => nix.str`set -eu
 
@@ -70,69 +70,69 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (entry) => nix.str`ln -sf $
 `, tiktokenCacheEntries)}
 `)));
   return {
-    __proto__: pos$33,
+    [nix.POS]: pos$33,
     options: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       services: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         litellm: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "LiteLLM server")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "litellm", nix.thunk(() => ({})))),
           stateDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(types, "path")),
               default: "/var/lib/litellm",
               example: "/home/foo",
               description: "State directory of LiteLLM.",
             })))),
           host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "127.0.0.1",
               example: "0.0.0.0",
               description: "The host address which the LiteLLM server HTTP interface listens to.\n",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 8080n,
               example: 11111n,
               description: "Which port the LiteLLM server listens to.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     model_list: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: nix.thunk(() => nix.sel(settingsFormat, "type")),
                         description: "List of supported models on the server, with model-specific configs.\n",
                         default: [],
                       })))),
                     router_settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         type: nix.thunk(() => nix.sel(settingsFormat, "type")),
                         description: "LiteLLM Router settings\n",
                         default: nix.thunk(() => ({})),
                       })))),
                     litellm_settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         type: nix.thunk(() => nix.sel(settingsFormat, "type")),
                         description: "LiteLLM Module settings\n",
                         default: nix.thunk(() => ({})),
                       })))),
                     general_settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         type: nix.thunk(() => nix.sel(settingsFormat, "type")),
                         description: "LiteLLM Server settings\n",
                         default: nix.thunk(() => ({})),
                       })))),
                     environment_variables: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         type: nix.thunk(() => nix.sel(settingsFormat, "type")),
                         description: "Environment variables to pass to the Lite\n",
                         default: nix.thunk(() => ({})),
@@ -143,10 +143,10 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (entry) => nix.str`ln -sf $
               description: "Configuration for LiteLLM.\nSee <https://docs.litellm.ai/docs/proxy/configs> for more.\n",
             })))),
           environment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 SCARF_NO_ANALYTICS: "True",
                 DO_NOT_TRACK: "True",
                 ANONYMIZED_TELEMETRY: "False",
@@ -155,14 +155,14 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (entry) => nix.str`ln -sf $
               description: "Extra environment variables for LiteLLM.\n",
             })))),
           environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "Environment file to be passed to the systemd service.\nUseful for passing secrets to the service to prevent them from being\nworld-readable in the Nix store.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               example: "/var/lib/secrets/liteLLMSecrets",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Whether to open the firewall for LiteLLM.\nThis adds `services.litellm.port` to `networking.firewall.allowedTCPPorts`.\n",
@@ -171,25 +171,25 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (entry) => nix.str`ln -sf $
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         systemd: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d '${nix.sel(cfg, "stateDir")}/ui' 0700 - - - -`),
               nix.thunk(() => nix.str`d '${nix.sel(cfg, "stateDir")}/tiktoken-cache' 0700 - - - -`),
             ]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             litellm: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               description: "LLM Gateway to provide model access, fallbacks and spend tracking across 100+ LLMs.",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               environment: nix.thunk(() => nix.update({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 LITELLM_NON_ROOT: "true",
                 LITELLM_UI_PATH: nix.thunk(() => nix.str`${nix.sel(cfg, "stateDir")}/ui`),
                 CUSTOM_TIKTOKEN_CACHE_DIR: nix.thunk(() => nix.str`${nix.sel(cfg, "stateDir")}/tiktoken-cache`),
@@ -197,7 +197,7 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (entry) => nix.str`ln -sf $
               serviceConfig: nix.thunk(() => (() => {
                 const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "config.yaml", nix.thunk(() => nix.sel(cfg, "settings"))));
                 return {
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   ExecStartPre: nix.thunk(() => [
                     seedTiktokenCacheScript,
                     nix.thunk(() => nix.str`${nix.sel(pkgs, "runtimeShell")} -euc 'chmod -R u+rwX ${nix.sel(cfg, "stateDir")}/ui'`),
@@ -232,14 +232,14 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (entry) => nix.str`ln -sf $
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]),
             })))),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$32, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$32, maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=litellm.ts.map

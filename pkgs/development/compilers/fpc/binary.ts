@@ -22,29 +22,29 @@ export default nix.lambda((args) => (() => {
       const pname = "fpc-binary";
       const version = "3.2.2";
       const src = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/freepascal/Linux/${version}/fpc-${version}.i386-linux.tar`),
           sha256: "f62980ac0b2861221f79fdbff67836aa6912a4256d4192cfa4dfa0ac5b419958",
         }))) : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/freepascal/Linux/${version}/fpc-${version}.x86_64-linux.tar`),
           sha256: "5adac308a5534b6a76446d8311fc340747cbb7edeaacfe6b651493ff3fe31e83",
         }))) : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/freepascal/Linux/${version}/fpc-${version}.aarch64-linux.tar`),
           sha256: "b39470f9b6b5b82f50fc8680a5da37d2834f2129c65c24c5628a80894d565451",
         }))) : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/freepascal/Mac%20OS%20X/${version}/fpc-${version}.intelarm64-macosx.dmg`),
           sha256: "05d4510c8c887e3c68de20272abf62171aa5b2ef1eba6bce25e4c0bc41ba8b7d",
         }))) : nix.builtins.throw(nix.thunk(() => nix.str`Not supported on ${nix.sel(stdenv, "hostPlatform", "system")}.`)))))));
       const nativeBuildInputs = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [undmg, xar, cpio])));
       const builder = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? nix.path(here, "./binary-builder.sh") : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.path(here, "./binary-builder-darwin.sh") : nix.builtins.throw(nix.thunk(() => nix.str`Not supported on ${nix.sel(stdenv, "hostPlatform", "system")}.`)))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Free Pascal Compiler from a binary distribution",
       }));
-      return { __proto__: pos$6, pname, version, src, nativeBuildInputs, builder, meta };
+      return { [nix.POS]: pos$6, pname, version, src, nativeBuildInputs, builder, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=binary.ts.map

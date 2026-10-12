@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "spatialmath-python",
       version: "1.1.18",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "spatialmath_python",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-39JluT9RUsAuuMBb/I1fgg52yqcVrL33u48tYKarIuw=",
@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       disabledTestPaths: nix.thunk(() => ["tests/test_spline.py"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         MPLBACKEND: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "Agg")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Provides spatial maths capability for Python",
         homepage: "https://github.com/rai-opensource/spatialmath-python",
         changelog: nix.thunk(() => nix.str`https://github.com/rai-opensource/spatialmath-python/releases/tag/${nix.sel(finalAttrs, "version")}`),

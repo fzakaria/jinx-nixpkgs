@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const cups = nix.arg($, "cups");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cups-bjnp",
       version: "2.0.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/cups-bjnp/cups-bjnp-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-yRSy/Z2OJs4i8t9iRNne/uwx7ppTYPcj7ss7APIWhQA=",
         })))),
       preConfigure: "mkdir -p $out/lib/cups/backend\nconfigureFlags=\"--with-cupsbackenddir=$out/lib/cups/backend\"\n",
       buildInputs: nix.thunk(() => [cups]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-include stdio.h",
             "-Wno-error=stringop-truncation",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
           ]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CUPS back-end for Canon printers",
         longDescription: "CUPS back-end for the canon printers using the proprietary USB over IP\nBJNP protocol. This back-end allows Cups to print over the network to a\nCanon printer. The design is based on reverse engineering of the protocol.\n",
         homepage: "http://cups-bjnp.sourceforge.net",

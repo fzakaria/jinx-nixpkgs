@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const texinfo = nix.arg($, "texinfo");
   const texliveBasic = nix.arg($, "texliveBasic");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "c-intro-and-ref",
       version: "0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/${nix.sel(finalAttrs, "pname")}/${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-45mtnlyz2RuYUk4Jza+lZGGBxezpiRS/v70xx1iKxEQ=",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       postBuild: "makeinfo --html --no-split c.texi -o c.htm\nmakeinfo --plaintext c.texi -o c.txt\n",
       postInstall: "install -Dm644 c.htm $out/share/doc/c-intro-and-ref/c.html\ninstall -Dm644 c.txt -t $out/share/doc/c-intro-and-ref/\ninstall -Dm644 c.html/* -t $out/share/doc/c-intro-and-ref/c.html.d/\ninstall -Dm644 c.dvi -t $out/share/doc/c-intro-and-ref/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GNU C Language Intro and Reference Manual",
         longDescription: "This manual explains the C language for use with the GNU Compiler\nCollection (GCC) on the GNU/Linux operating system and other systems. We\nrefer to this dialect as GNU C. If you already know C, you can use this as\na reference manual.\n",
         homepage: "https://www.gnu.org/software/c-intro-and-ref/",

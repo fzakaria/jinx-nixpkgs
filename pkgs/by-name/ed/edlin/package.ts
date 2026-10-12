@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "edlin",
       version: "2.24",
       src: nix.thunk(() => (() => {
         const version = nix.thunk(() => nix.attr(finalAttrs, "version"));
         return nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`mirror://sourceforge/freedos-edlin/freedos-edlin/${version}/edlin-${version}.tar.bz2`),
             hash: "sha256-zj5kCDdEkjzDiun/5xL8yX2SVsnZc3hrzIAYUo4Vj+c=",
           })));
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
 cp AUTHORS ChangeLog README TODO edlin.html $out/share/doc/edlin-${nix.sel(finalAttrs, "version")}/
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://sourceforge.net/projects/freedos-edlin/",
         description: "FreeDOS line editor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

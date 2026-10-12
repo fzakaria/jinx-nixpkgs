@@ -32,18 +32,18 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const version = "0.14.0";
   const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/Ruddickmg/hermes.nvim/archive/refs/tags/v${version}.tar.gz`),
       hash: "sha256-YUe+Mg1StwcxpcIcWr9T/32nkH921UranMM0bE+7lu8=",
     }))));
   const dejavuFont = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: "https://github.com/dejavu-fonts/dejavu-fonts/releases/download/version_2_37/dejavu-fonts-ttf-2.37.zip",
       hash: "sha256-JM75TClUBnQ7qKMHXbOD96ZoTxOhBFnsN5xH0QSafjc=",
       stripRoot: false,
     }))));
   const agentSvgs = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "hermes-agent-svgs",
       nativeBuildInputs: nix.thunk(() => [curl, cacert, jq]),
       dontUnpack: true,
@@ -64,7 +64,7 @@ runHook postInstall
       outputHash: "sha256-N8eyv3wcohj0l/giOmwzwy3drduhHhA/klFYqffmHQ0=",
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "hermes-nvim",
       version: version,
       src: src,
@@ -73,7 +73,7 @@ runHook postInstall
       cargoBuildFeatures: nix.thunk(() => ["with-icons"]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         HERMES_FONT_PATH: nix.thunk(() => nix.str`${dejavuFont}/dejavu-fonts-ttf-2.37/ttf/DejaVuSansMono.ttf`),
         HERMES_ICONS_DIR: agentSvgs,
       })),
@@ -81,14 +81,14 @@ runHook postInstall
       forceShare: nix.thunk(() => ["man", "info"]),
       postInstall: "cp -r lua $out/\ncp -r plugin $out/\ncp -r doc $out/ 2>/dev/null || true\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         vimPlugin: true,
         agentSvgs: agentSvgs,
         dejavuFont: dejavuFont,
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           basic: nix.thunk(() => nix.app(runCommand, "hermes-nvim-test-basic", nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
             })), nix.thunk(() => nix.str`test -f "${nix.sel(finalAttrs, "finalPackage")}/lua/hermes/init.lua"
 test -f "${nix.sel(finalAttrs, "finalPackage")}/plugin/hermes.lua"
@@ -150,7 +150,7 @@ fi
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "ACP (Agent Client Protocol) client for Neovim",
         homepage: "https://github.com/Ruddickmg/hermes.nvim",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

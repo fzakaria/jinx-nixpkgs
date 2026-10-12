@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AzureAD",
           repo: "azure-activedirectory-library-for-python",
           rev: version,
@@ -36,14 +36,14 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_failed_request"]);
       const pythonImportsCheck = nix.thunk(() => ["adal"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python module to authenticate to Azure Active Directory (AAD) in order to access AAD protected web resources",
         homepage: "https://github.com/AzureAD/azure-activedirectory-library-for-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

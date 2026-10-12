@@ -93,14 +93,14 @@ export default nix.lambda((args) => (() => {
   const nixos_background_light = nix.thunk(() => nix.sel(pkgs, "nixos-artwork", "wallpapers", "nineish"));
   const nixos_background_dark = nix.thunk(() => nix.sel(pkgs, "nixos-artwork", "wallpapers", "nineish-dark-gray"));
   const nixos_gsettings_overrides = nix.thunk(() => nix.app(nix.sel(pkgs, "budgie-gsettings-overrides", "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       extraGSettingsOverrides: nix.thunk(() => nix.attr(cfg, "extraGSettingsOverrides")),
       extraGSettingsOverridePackages: nix.thunk(() => nix.attr(cfg, "extraGSettingsOverridePackages")),
       "nixos-background-dark": nixos_background_dark,
       "nixos-background-light": nixos_background_light,
     }))));
   const nixos_background_info = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "nixos-background-info",
       text: nix.thunk(() => nix.str`<?xml version="1.0"?>
 <!DOCTYPE wallpapers SYSTEM "gnome-wp-list.dtd">
@@ -126,49 +126,49 @@ export default nix.lambda((args) => (() => {
       destination: "/share/gnome-background-properties/nixos.xml",
     }))));
   const budgie_control_center$ = nix.thunk(() => nix.app(nix.sel(pkgs, "budgie-control-center", "override"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       enableSshSocket: nix.thunk(() => nix.sel(config, "services", "openssh", "startWhenNeeded")),
     }))));
   const notExcluded = (pkg) => nix.app(nix.sel(utils, "disablePackageByName"), pkg, nix.thunk(() => nix.sel(config, "environment", "budgie", "excludePackages")));
   return {
-    __proto__: pos$72,
+    [nix.POS]: pos$72,
     meta: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "budgie"))]),
     })),
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "xserver", "desktopManager", "budgie"]), nix.thunk(() => ["services", "desktopManager", "budgie"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         desktopManager: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           budgie: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             enable: nix.thunk(() => nix.app(mkEnableOption, "the Budgie desktop")),
             sessionPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 description: "Additional list of packages to be added to the session search path.\nUseful for GSettings-conditional autostart.\n\nNote that this should be a last resort; patching the package is preferred (see GPaste).\n",
                 type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "package")))),
                 default: [],
                 example: nix.thunk(() => nix.app(literalExpression, "[ pkgs.gpaste ]")),
               })))),
             extraGSettingsOverrides: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 description: "Additional GSettings overrides.",
                 type: nix.thunk(() => nix.sel(types, "lines")),
                 default: "",
               })))),
             extraGSettingsOverridePackages: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 description: "List of packages for which GSettings are overridden.",
                 type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "path")))),
                 default: [],
               })))),
             extraPlugins: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 description: "Extra plugins for the Budgie desktop",
                 type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "package")))),
                 default: [],
@@ -178,11 +178,11 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       environment: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         budgie: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           excludePackages: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "Which packages Budgie should exclude from the default environment.",
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "package")))),
               default: [],
@@ -192,39 +192,39 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$71,
+        [nix.POS]: pos$71,
         services: nix.thunk(() => ({
-          __proto__: pos$48,
+          [nix.POS]: pos$48,
           displayManager: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             sessionPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "budgie-desktop"))];
             })()),
           })),
           xserver: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             displayManager: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               lightdm: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 greeters: nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   slick: nix.thunk(() => ({
-                    __proto__: pos$20,
+                    [nix.POS]: pos$20,
                     enable: nix.thunk(() => nix.app(mkDefault, true)),
                     theme: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => ({
-                        __proto__: pos$17,
+                        [nix.POS]: pos$17,
                         name: "Qogir",
                         package: nix.thunk(() => nix.sel(pkgs, "qogir-theme")),
                       })))),
                     iconTheme: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => ({
-                        __proto__: pos$18,
+                        [nix.POS]: pos$18,
                         name: "Qogir",
                         package: nix.thunk(() => nix.sel(pkgs, "qogir-icon-theme")),
                       })))),
                     cursorTheme: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => ({
-                        __proto__: pos$19,
+                        [nix.POS]: pos$19,
                         name: "Qogir",
                         package: nix.thunk(() => nix.sel(pkgs, "qogir-icon-theme")),
                       })))),
@@ -235,42 +235,42 @@ export default nix.lambda((args) => (() => {
             updateDbusEnvironment: true,
           })),
           desktopManager: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             budgie: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               sessionPath: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "budgie-desktop-view"))]),
             })),
           })),
-          geoclue2: nix.thunk(() => ({ __proto__: pos$27, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+          geoclue2: nix.thunk(() => ({ [nix.POS]: pos$27, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
           upower: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             enable: nix.thunk(() => nix.sel(config, "powerManagement", "enable")),
           })),
-          libinput: nix.thunk(() => ({ __proto__: pos$29, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
-          colord: nix.thunk(() => ({ __proto__: pos$30, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+          libinput: nix.thunk(() => ({ [nix.POS]: pos$29, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+          colord: nix.thunk(() => ({ [nix.POS]: pos$30, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
           gnome: nix.thunk(() => ({
-            __proto__: pos$40,
-            "at-spi2-core": nix.thunk(() => ({ __proto__: pos$31, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
-            "gnome-online-accounts": nix.thunk(() => ({ __proto__: pos$32, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
-            "gnome-user-share": nix.thunk(() => ({ __proto__: pos$33, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
-            rygel: nix.thunk(() => ({ __proto__: pos$34, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
-            "evolution-data-server": nix.thunk(() => ({ __proto__: pos$35, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
-            "glib-networking": nix.thunk(() => ({ __proto__: pos$36, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
-            "gnome-keyring": nix.thunk(() => ({ __proto__: pos$37, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
-            "gcr-ssh-agent": nix.thunk(() => ({ __proto__: pos$38, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
-            "gnome-settings-daemon": nix.thunk(() => ({ __proto__: pos$39, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+            [nix.POS]: pos$40,
+            "at-spi2-core": nix.thunk(() => ({ [nix.POS]: pos$31, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+            "gnome-online-accounts": nix.thunk(() => ({ [nix.POS]: pos$32, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+            "gnome-user-share": nix.thunk(() => ({ [nix.POS]: pos$33, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+            rygel: nix.thunk(() => ({ [nix.POS]: pos$34, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+            "evolution-data-server": nix.thunk(() => ({ [nix.POS]: pos$35, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+            "glib-networking": nix.thunk(() => ({ [nix.POS]: pos$36, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+            "gnome-keyring": nix.thunk(() => ({ [nix.POS]: pos$37, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+            "gcr-ssh-agent": nix.thunk(() => ({ [nix.POS]: pos$38, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+            "gnome-settings-daemon": nix.thunk(() => ({ [nix.POS]: pos$39, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
           })),
-          "accounts-daemon": nix.thunk(() => ({ __proto__: pos$41, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
-          udisks2: nix.thunk(() => ({ __proto__: pos$42, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
-          printing: nix.thunk(() => ({ __proto__: pos$43, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+          "accounts-daemon": nix.thunk(() => ({ [nix.POS]: pos$41, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+          udisks2: nix.thunk(() => ({ [nix.POS]: pos$42, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+          printing: nix.thunk(() => ({ [nix.POS]: pos$43, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
           "system-config-printer": nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             enable: nix.thunk(() => nix.sel(config, "services", "printing", "enable")),
           })),
-          dleyna: nix.thunk(() => ({ __proto__: pos$45, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
-          gvfs: nix.thunk(() => ({ __proto__: pos$46, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+          dleyna: nix.thunk(() => ({ [nix.POS]: pos$45, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+          gvfs: nix.thunk(() => ({ [nix.POS]: pos$46, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
           dbus: nix.thunk(() => ({
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             packages: nix.thunk(() => [
               budgie_control_center$,
               nix.thunk(() => nix.sel(pkgs, "budgie-desktop-services")),
@@ -278,7 +278,7 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$51,
+          [nix.POS]: pos$51,
           extraInit: nix.thunk(() => nix.add(nix.str`${nix.app(concatMapStrings, (p) => nix.str`if [ -d "${p}/share/gsettings-schemas/${nix.sel(p, "name")}" ]; then
   export XDG_DATA_DIRS=$XDG_DATA_DIRS\${XDG_DATA_DIRS:+:}${p}/share/gsettings-schemas/${nix.sel(p, "name")}
 fi
@@ -294,7 +294,7 @@ fi
               nix.thunk(() => nix.lookup(w, "budgie-backgrounds")),
               budgie_control_center$,
               nix.thunk(() => nix.lookup(w, "budgie-desktop-services")),
-              nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "budgie-desktop-with-plugins"), "override"), nix.thunk(() => ({ __proto__: pos$49, plugins: nix.thunk(() => nix.sel(cfg, "extraPlugins")) })))),
+              nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "budgie-desktop-with-plugins"), "override"), nix.thunk(() => ({ [nix.POS]: pos$49, plugins: nix.thunk(() => nix.sel(cfg, "extraPlugins")) })))),
               nix.thunk(() => nix.lookup(w, "budgie-desktop-view")),
               nix.thunk(() => nix.lookup(w, "budgie-session")),
               nix.thunk(() => nix.lookup(w, "gnome-menus")),
@@ -328,62 +328,62 @@ fi
           })()),
           pathsToLink: nix.thunk(() => ["/share"]),
           sessionVariables: nix.thunk(() => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             NIX_GSETTINGS_OVERRIDES_DIR: nix.thunk(() => nix.str`${nixos_gsettings_overrides}/share/gsettings-schemas/nixos-gsettings-overrides/glib-2.0/schemas`),
           })),
         })),
         programs: nix.thunk(() => ({
-          __proto__: pos$59,
-          labwc: nix.thunk(() => ({ __proto__: pos$52, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
-          gtklock: nix.thunk(() => ({ __proto__: pos$53, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+          [nix.POS]: pos$59,
+          labwc: nix.thunk(() => ({ [nix.POS]: pos$52, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+          gtklock: nix.thunk(() => ({ [nix.POS]: pos$53, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
           "gnome-terminal": nix.thunk(() => ({
-            __proto__: pos$54,
+            [nix.POS]: pos$54,
             enable: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.app(notExcluded, nix.thunk(() => nix.sel(pkgs, "gnome-terminal")))))),
           })),
-          dconf: nix.thunk(() => ({ __proto__: pos$55, enable: true })),
+          dconf: nix.thunk(() => ({ [nix.POS]: pos$55, enable: true })),
           "nm-applet": nix.thunk(() => ({
-            __proto__: pos$56,
+            [nix.POS]: pos$56,
             enable: nix.thunk(() => nix.sel(config, "networking", "networkmanager", "enable")),
             indicator: true,
           })),
-          bash: nix.thunk(() => ({ __proto__: pos$57, vteIntegration: true })),
-          zsh: nix.thunk(() => ({ __proto__: pos$58, vteIntegration: true })),
+          bash: nix.thunk(() => ({ [nix.POS]: pos$57, vteIntegration: true })),
+          zsh: nix.thunk(() => ({ [nix.POS]: pos$58, vteIntegration: true })),
         })),
         fonts: nix.thunk(() => ({
-          __proto__: pos$62,
+          [nix.POS]: pos$62,
           packages: nix.thunk(() => [
             nix.thunk(() => nix.sel(pkgs, "noto-fonts")),
             nix.thunk(() => nix.sel(pkgs, "hack-font")),
           ]),
           fontconfig: nix.thunk(() => ({
-            __proto__: pos$61,
+            [nix.POS]: pos$61,
             defaultFonts: nix.thunk(() => ({
-              __proto__: pos$60,
+              [nix.POS]: pos$60,
               sansSerif: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => ["Noto Sans"]))),
               monospace: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => ["Hack"]))),
             })),
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$64,
+          [nix.POS]: pos$64,
           polkit: nix.thunk(() => ({
-            __proto__: pos$63,
+            [nix.POS]: pos$63,
             enable: nix.thunk(() => nix.app(mkDefault, true)),
             enablePkexecWrapper: nix.thunk(() => nix.app(mkDefault, true)),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$66,
-          networkmanager: nix.thunk(() => ({ __proto__: pos$65, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+          [nix.POS]: pos$66,
+          networkmanager: nix.thunk(() => ({ [nix.POS]: pos$65, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
         })),
         hardware: nix.thunk(() => ({
-          __proto__: pos$68,
-          bluetooth: nix.thunk(() => ({ __proto__: pos$67, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+          [nix.POS]: pos$68,
+          bluetooth: nix.thunk(() => ({ [nix.POS]: pos$67, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
         })),
         xdg: nix.thunk(() => ({
-          __proto__: pos$70,
+          [nix.POS]: pos$70,
           portal: nix.thunk(() => ({
-            __proto__: pos$69,
+            [nix.POS]: pos$69,
             enable: nix.thunk(() => nix.app(mkDefault, true)),
             extraPortals: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);

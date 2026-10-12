@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const cacert = nix.arg($, "cacert");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       pname: "dataform",
       version: "3.0.71",
       __structuredAttrs: true,
       strictDeps: true,
       nodejs: nodejs,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://registry.npmjs.org/@dataform/cli/-/cli-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-kqwLREOvZaMFy1bbkLB6dNJP/Hml+aET8gsnUb26hBg=",
         })))),
@@ -50,31 +50,31 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nodejs]))}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$9,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--generate-lockfile"]) })))),
+        [nix.POS]: pos$9,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--generate-lockfile"]) })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
           help: nix.thunk(() => nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-help-test`),
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
               script: "dataform --help | grep -F \"dataform [command]\"\ntouch $out\n",
             })))),
           "install-refuses": nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure'"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-install-refuses-test`),
               drv: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-install-refuses-test`), nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
                 })), "dataform init test-project my-test-db US\ncd test-project\ndataform install .\n")),
               expectedBuilderLogEntries: nix.thunk(() => ["No installation is needed when using workflow_settings.yaml"]),
             })))),
           workflow: nix.thunk(() => nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-workflow-test`),
               nativeBuildInputs: nix.thunk(() => [
                 nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         mainProgram: "dataform",
         description: "Dataform CLI",
         longDescription: "Dataform is a framework for managing SQL based data operations in BigQuery\nDataform CLI is an open-source command-line tool that allows developers to locally build,\ncompile, test, and execute SQLX data transformation pipelines for BigQuery.\n",
@@ -99,10 +99,10 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "binaryBytecode"))];
         })()),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "dataform-co", nix.thunk(() => nix.sel(finalAttrs, "version")))),
           purlParts: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             type: "npm",
             spec: nix.thunk(() => nix.str`%40dataform/cli@${nix.sel(finalAttrs, "version")}`),
           })),

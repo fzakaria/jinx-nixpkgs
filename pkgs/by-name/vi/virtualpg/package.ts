@@ -16,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const libpq = nix.arg($, "libpq");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "virtualpg",
       version: "2.0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.gaia-gis.it/gaia-sins/virtualpg-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-virr64yf8nQ4IIX1HUIugjhYvKT2vC+pCYFkZMah4Is=",
         })))),
       nativeBuildInputs: nix.thunk(() => [validatePkgConfig, nix.thunk(() => nix.sel(libpq, "pg_config"))]),
       buildInputs: nix.thunk(() => [libpq, sqlite]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Loadable dynamic extension to both SQLite and SpatiaLite",
         homepage: "https://www.gaia-gis.it/fossil/virtualpg",
         license: nix.thunk(() => (() => {

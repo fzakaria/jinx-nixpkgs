@@ -32,34 +32,34 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "irkerd"));
   const ports = nix.thunk(() => [6659n]);
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         irkerd: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               description: "Whether to enable irker, an IRC notification daemon.",
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             })))),
           openPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               description: "Open ports in the firewall for irkerd",
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             })))),
           listenAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: "localhost",
               example: "0.0.0.0",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Specifies the bind address on which the irker daemon listens.\nThe default is localhost.\n\nIrker authors strongly warn about the risks of running this on\na publicly accessible interface, so change this with caution.\n",
             })))),
           nick: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: "irker",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Nick to use for irker",
@@ -68,19 +68,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         systemd: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             irkerd: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "Internet Relay Chat (IRC) notification daemon",
               documentation: nix.thunk(() => ["man:irkerd(8)", "man:irkerhook(1)", "man:irk(1)"]),
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "irker")}/bin/irkerd -H ${nix.sel(cfg, "listenAddress")} -n ${nix.sel(cfg, "nick")}`),
                 User: "irkerd",
               })),
@@ -88,26 +88,26 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "irker"))]),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           users: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             irkerd: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "Irker daemon user",
               isSystemUser: true,
               group: "irkerd",
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$15, irkerd: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$15, irkerd: nix.thunk(() => ({})) })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           firewall: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openPorts")), ports)),
             allowedUDPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openPorts")), ports)),
           })),

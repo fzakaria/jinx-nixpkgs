@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const libmikmod = nix.arg($, "libmikmod");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bb",
       version: "1.3rc1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/aa-project/bb/${nix.sel(finalAttrs, "version")}/bb-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1i411glxh7g4pfg4gw826lpwngi89yrbmxac8jmnsfvrfb48hgbr",
         })))),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [aalib, ncurses, libmikmod, libxau, libxdmcp, libx11]),
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "substituteInPlace config.h \\\n  --replace-fail \"__attribute__ ((regparm(n)))\" \"\"\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://aa-project.sourceforge.net/bb",
         description: "AA-lib demo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

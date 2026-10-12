@@ -29,10 +29,10 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     name: "containers-imperative",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "aszlig"))];
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
     })),
     imports: nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         options: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "test-nix-in-container": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Whether to test nix inside the container.\nWe also run this test without daemon, in which case that won't work.\nActivated by `./containers-imperative-no-daemon.nix`.\n",
               default: true,
@@ -53,40 +53,40 @@ export default nix.lambda((args) => (() => {
       })),
     ]),
     nodes: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config_1 = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           imports: nix.thunk(() => [nix.path(here, "../modules/installer/cd-dvd/channel.nix")]),
-          boot: nix.thunk(() => ({ __proto__: pos$5, enableContainers: true })),
+          boot: nix.thunk(() => ({ [nix.POS]: pos$5, enableContainers: true })),
           nix: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             enable: true,
-            settings: nix.thunk(() => ({ __proto__: pos$6, sandbox: false, substituters: [] })),
+            settings: nix.thunk(() => ({ [nix.POS]: pos$6, sandbox: false, substituters: [] })),
           })),
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             memorySize: 2048n,
             writableStore: true,
             additionalPaths: nix.thunk(() => (() => {
               const emptyContainer = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/eval-config.nix")), nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   modules: nix.thunk(() => nix.app(nix.sel(lib_1, "singleton"), nix.thunk(() => ({
-                      __proto__: pos$12,
+                      [nix.POS]: pos$12,
                       nixpkgs: nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         hostPlatform: nix.thunk(() => (() => {
                           const from = nix.thunk(() => nix.sel(pkgs_1, "stdenv", "hostPlatform"));
-                          return { __proto__: pos$8, system: nix.thunk(() => nix.attr(from, "system")) };
+                          return { [nix.POS]: pos$8, system: nix.thunk(() => nix.attr(from, "system")) };
                         })()),
                       })),
                       containers: nix.thunk(() => ({
-                        __proto__: pos$11,
-                        foo: nix.thunk(() => ({ __proto__: pos$10, config: nix.thunk(() => ({})) })),
+                        [nix.POS]: pos$11,
+                        foo: nix.thunk(() => ({ [nix.POS]: pos$10, config: nix.thunk(() => ({})) })),
                       })),
                     })))),
                   system: null,

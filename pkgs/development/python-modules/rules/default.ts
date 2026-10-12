@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.5.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dfunckt",
           repo: "django-rules",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ ${nix.sel(python, "interpreter")} tests/manage.py test testsuite -v2
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Awesome Django authorization, without the database",
         homepage: "https://github.com/dfunckt/django-rules",
         changelog: nix.thunk(() => nix.str`https://github.com/dfunckt/django-rules/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -46,7 +46,7 @@ runHook postCheck
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

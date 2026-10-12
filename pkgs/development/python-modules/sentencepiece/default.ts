@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["sentencepiece"]);
       const meta = nix.thunk(() => nix.builtins.removeAttrs(nix.thunk(() => nix.sel(sentencepiece, "meta")), nix.thunk(() => ["outputsToInstall"])));
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         pname,
         format,
         version,

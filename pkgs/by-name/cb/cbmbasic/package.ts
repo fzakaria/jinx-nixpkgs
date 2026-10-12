@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "cbmbasic",
       version: "0-unstable-2022-12-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mist64",
           repo: "cbmbasic",
           rev: "352a313313dd0a15a47288c8f8031b54ac8c92a2",
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace cbmbasic.c \\\n  --replace-fail \"typedef unsigned char bool;\" \"\"\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin/\nmv cbmbasic $out/bin/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           run: nix.thunk(() => nix.app(runCommand, "cbmbasic-test-run", nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
             })), nix.thunk(() => nix.str`echo '#!${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))}' > helloI.bas;
 echo 'PRINT"Hello, World!"' >> helloI.bas;
@@ -53,7 +53,7 @@ touch $out;
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Portable version of Commodore's version of Microsoft BASIC 6502 as found on the Commodore 64",
         longDescription: "\"Commodore BASIC\" (cbmbasic) is a 100% compatible version of Commodore's\nversion of Microsoft BASIC 6502 as found on the Commodore 64. You can use\nit in interactive mode or pass a BASIC file as a command line parameter.\n\nThis source does not emulate 6502 code; all code is completely native. On\na 1 GHz CPU you get about 1000x speed compared to a 1 MHz 6502.\n",
         homepage: "https://github.com/mist64/cbmbasic",

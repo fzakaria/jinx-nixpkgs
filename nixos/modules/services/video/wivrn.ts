@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
   const serverPackageExe = nix.thunk(() => (nix.asBool(nix.sel(cfg, "highPriority")) ? nix.str`${nix.sel(config, "security", "wrapperDir")}/wivrn-server` : nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))));
   const applicationStrings = nix.thunk(() => nix.app(tail, applicationList));
   const applicationConcat = nix.thunk(() => nix.app(concatStringsSep, " ", nix.thunk(() => nix.concat([applicationPackageExe], applicationStrings))));
-  const applicationUpdate = nix.thunk(() => nix.app(recursiveUpdate, nix.thunk(() => nix.sel(cfg, "config", "json")), nix.thunk(() => nix.app(optionalAttrs, applicationCheck, nix.thunk(() => ({ __proto__: pos$1, application: applicationConcat }))))));
+  const applicationUpdate = nix.thunk(() => nix.app(recursiveUpdate, nix.thunk(() => nix.sel(cfg, "config", "json")), nix.thunk(() => nix.app(optionalAttrs, applicationCheck, nix.thunk(() => ({ [nix.POS]: pos$1, application: applicationConcat }))))));
   const configFile = nix.thunk(() => nix.app(nix.sel(configFormat, "generate"), "config.json", applicationUpdate));
   const enabledConfig = nix.thunk(() => nix.app(optionalString, nix.thunk(() => nix.sel(cfg, "config", "enable")), nix.thunk(() => nix.str`-f ${configFile}`)));
   const serverCmdline = nix.thunk(() => nix.app(concatStringsSep, " ", nix.thunk(() => nix.concat([serverPackageExe, enabledConfig], nix.sel(cfg, "extraServerFlags")))));
@@ -82,45 +82,45 @@ export PATH="${nix.app(makeBinPath, nix.thunk(() => [nix.thunk(() => nix.sel(cfg
 exec -a wivrn-server ${serverCmdline}
 `)))) : nix.force(serverCmdline)));
   return {
-    __proto__: pos$33,
+    [nix.POS]: pos$33,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "wivrn", "defaultRuntime"]), "WiVRn now manages the active runtime itself, so this option has been removed.\n")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         wivrn: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(mkEnableOption, "WiVRn, an OpenXR streaming application")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "wivrn", nix.thunk(() => ({})))),
           openFirewall: nix.thunk(() => nix.app(mkEnableOption, "the default ports in the firewall for the WiVRn server")),
           autoStart: nix.thunk(() => nix.app(mkEnableOption, "starting the service by default")),
           highPriority: nix.thunk(() => nix.app(mkEnableOption, "high priority capability for asynchronous reprojection")),
           monadoEnvironment: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(types, "attrs")),
               description: "Environment variables to be passed to the Monado environment.",
               default: nix.thunk(() => ({})),
             })))),
           extraServerFlags: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               description: "Flags to add to the wivrn service.",
               default: [],
               example: nix.thunk(() => nix.app(literalExpression, "[ \"--no-publish-service\" ]")),
             })))),
           steam: nix.thunk(() => ({
-            __proto__: pos$5,
-            enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "Steam support"), { __proto__: pos$4, default: true })),
+            [nix.POS]: pos$5,
+            enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "Steam support"), { [nix.POS]: pos$4, default: true })),
             importOXRRuntimes: nix.thunk(() => nix.app(mkEnableOption, "Sets `PRESSURE_VESSEL_IMPORT_OPENXR_1_RUNTIMES` system-wide to allow Steam to automatically discover the WiVRn server.\n\nNote that you may have to logout for this variable to be visible\n")),
             package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "steam", nix.thunk(() => ({})))),
           })),
           config: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             enable: nix.thunk(() => nix.app(mkEnableOption, "configuration for WiVRn")),
             json: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(configFormat, "type")),
                 description: "Configuration for WiVRn. The attributes are serialized to JSON in config.json. The server will fallback to default values for any missing attributes.\n\nLike upstream, the application option is a list including the application and it's flags. In the case of the NixOS module however, the first element of the list must be a package. The module will assert otherwise.\nThe application can be set to a single package because it gets passed to lib.toList, though this will not allow for flags to be passed.\n\nWiVRn has good default configurations and most options can be configured at runtime so it is recommended to leave this empty and try the defaults before attempting manual configuration.\n\nSee <https://github.com/WiVRn/WiVRn/blob/master/docs/configuration.md>\n",
                 default: nix.thunk(() => ({})),
@@ -131,20 +131,20 @@ exec -a wivrn-server ${serverCmdline}
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             assertion: nix.thunk(() => (nix.asBool(!nix.asBool(applicationCheck)) || nix.asBool(nix.app(isDerivation, applicationAttr)))),
             message: "The application in WiVRn configuration is not a package. Please ensure that the application is a package or that a package is the first element in the list.",
           })),
         ]),
         security: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           wrappers: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             "wivrn-server": nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "highPriority")), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 setuid: false,
                 owner: "root",
                 group: "root",
@@ -154,22 +154,22 @@ exec -a wivrn-server ${serverCmdline}
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           user: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             services: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               wivrn: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 description: "WiVRn XR runtime service",
                 environment: nix.thunk(() => nix.app(recursiveUpdate, nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     PRESSURE_VESSEL_IMPORT_OPENXR_1_RUNTIMES: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "steam", "importOXRRuntimes")), "1")),
                   })), nix.thunk(() => nix.sel(cfg, "monadoEnvironment")))),
                 enableDefaultPath: false,
-                unitConfig: nix.thunk(() => ({ __proto__: pos$16, ConditionUser: "!@system" })),
-                serviceConfig: nix.thunk(() => (nix.asBool(nix.sel(cfg, "highPriority")) ? { __proto__: pos$17, ExecStart: serverExec } : {
-                  __proto__: pos$18,
+                unitConfig: nix.thunk(() => ({ [nix.POS]: pos$16, ConditionUser: "!@system" })),
+                serviceConfig: nix.thunk(() => (nix.asBool(nix.sel(cfg, "highPriority")) ? { [nix.POS]: pos$17, ExecStart: serverExec } : {
+                  [nix.POS]: pos$18,
                   ExecStart: serverExec,
                   CapabilityBoundingSet: nix.thunk(() => ["CAP_SYS_NICE"]),
                   AmbientCapabilities: nix.thunk(() => ["CAP_SYS_NICE"]),
@@ -194,34 +194,34 @@ exec -a wivrn-server ${serverCmdline}
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           avahi: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             enable: true,
-            publish: nix.thunk(() => ({ __proto__: pos$23, enable: true, userServices: true })),
+            publish: nix.thunk(() => ({ [nix.POS]: pos$23, enable: true, userServices: true })),
           })),
           firewalld: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           firewall: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               allowedTCPPorts: nix.thunk(() => [9757n]),
               allowedUDPPorts: nix.thunk(() => [9757n]),
             })))),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package")), applicationPackage]),
-          sessionVariables: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "steam", "importOXRRuntimes")), nix.thunk(() => ({ __proto__: pos$29, PRESSURE_VESSEL_IMPORT_OPENXR_1_RUNTIMES: "1" })))),
+          sessionVariables: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "steam", "importOXRRuntimes")), nix.thunk(() => ({ [nix.POS]: pos$29, PRESSURE_VESSEL_IMPORT_OPENXR_1_RUNTIMES: "1" })))),
           pathsToLink: nix.thunk(() => ["/share/openxr"]),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(maintainers, null);
         return [nix.thunk(() => nix.lookup(w, "passivelemon"))];

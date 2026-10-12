@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "caeml",
       version: "0-unstable-2023-05-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ferdinandyb",
           repo: "caeml",
           rev: "25dbe10e99aac9b0ce3b80787c162628104f5cd2",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-SDJsRLIGlLv/6NUctCrn6z1IDEmum1Wn5I8RFuwcOe8=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "cat eml files",
         mainProgram: "caeml",
         longDescription: "Reads an email file from either STDIN or from a file passed as the first\nargument, digests it and outputs it to STDOUT in a more human readable\nformat. This means only From, To, Cc, Bcc, Date and Subject headers are\nkept and these are decoded and of all the parts only text/plain is returned.\n",

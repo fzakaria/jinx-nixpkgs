@@ -25,9 +25,9 @@ export default nix.lambda((args) => (() => {
   const sources = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./sources.json")));
   const version = nix.thunk(() => nix.attr(sources, "version"));
   const src = nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: nix.thunk(() => nix.attr(sources, "owner")),
           repo: nix.thunk(() => nix.attr(sources, "repo")),
           hash: nix.thunk(() => nix.attr(sources, "hash")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "CVE-2026-66066.patch",
             url: "https://github.com/we-promise/sure/commit/40a678fe8f774bb144e023c2abab1ac37f7c8d36.patch",
             hash: "sha256-ocm4CZonT+J8jLw6Ftr36Fb/rguP0nATnW5aGSpUizY=",
@@ -51,7 +51,7 @@ cp -f ${nix.path(here, "./rubyEnv/Gemfile.lock")} ./Gemfile.lock
       const version_1 = version;
       const gemdir = src;
       const gemset = nix.path(here, "./rubyEnv/gemset.nix");
-      return { __proto__: pos$4, name, ruby, version: version_1, gemdir, gemset };
+      return { [nix.POS]: pos$4, name, ruby, version: version_1, gemdir, gemset };
     })())));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "sure";
@@ -60,7 +60,7 @@ cp -f ${nix.path(here, "./rubyEnv/Gemfile.lock")} ./Gemfile.lock
       const strictDeps = true;
       const __structuredAttrs = true;
       const env = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         RAILS_ENV: "production",
         TAILWINDCSS_INSTALL_DIR: nix.thunk(() => nix.str`${tailwindcss_4}/bin`),
       }));
@@ -68,9 +68,9 @@ cp -f ${nix.path(here, "./rubyEnv/Gemfile.lock")} ./Gemfile.lock
       const buildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(rubyEnv, "wrappedRuby"))]);
       const buildPhase = "runHook preBuild\npatchShebangs bin/\n\nbundle exec bootsnap precompile --gemfile -j 0\nbundle exec bootsnap precompile -j 0 app/ lib/\n\nSECRET_KEY_BASE_DUMMY=1 bundle exec rake assets:precompile\n\nrunHook postBuild\n";
       const installPhase = "runHook preInstall\n\nmkdir -p $out\ncp -r {public,bin,app,config,db,lib,vendor} $out/\ncp -r {Rakefile,config.ru,.sure-version} $out/\n\nln -s /run/sure/tmp $out/tmp\nln -s /run/sure/log $out/log\nln -s /run/sure/storage $out/storage\n\nrunHook postInstall\n";
-      const passthru = nix.thunk(() => ({ __proto__: pos$6, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$6, updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         changelog: nix.thunk(() => nix.str`https://github.com/we-promise/sure/releases/tag/v${version_1}`),
         description: "Personal finance app for everyone",
         homepage: "https://sure.am/",
@@ -85,7 +85,7 @@ cp -f ${nix.path(here, "./rubyEnv/Gemfile.lock")} ./Gemfile.lock
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         src: src_1,
         version: version_1,

@@ -65,13 +65,13 @@ export default nix.lambda((args) => (() => {
   const tifffile = nix.arg($, "tifffile");
   const zarr = nix.arg($, "zarr");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tensorflow-datasets",
       version: "4.9.10",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tensorflow",
           repo: "datasets",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -170,7 +170,7 @@ export default nix.lambda((args) => (() => {
         "tensorflow_datasets/text/c4_wsrs/c4_wsrs_test.py::C4WSRSTest",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library of datasets ready to use with TensorFlow",
         homepage: "https://www.tensorflow.org/datasets/overview",
         changelog: nix.thunk(() => nix.str`https://github.com/tensorflow/datasets/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

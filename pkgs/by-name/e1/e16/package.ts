@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "e16",
       version: "1.0.32",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/enlightenment/e16-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-BrbvWToTBRcNnLcHFOoVsFSoSon01QfCpdTXTaJj3g0=",
         })))),
@@ -60,15 +60,15 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "substituteInPlace scripts/e_gen_menu --replace \"/usr/local:\" \"/run/current-system/sw:/usr/local:\"\nsubstituteInPlace scripts/e_gen_menu --replace \"'/opt'\" \"'/opt', '/run/current-system/sw'\"\nsubstituteInPlace scripts/e_gen_menu --replace \"'/.local'\" \"'/.nix-profile', '/.local'\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://git.enlightenment.org/e16/e16",
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.enlightenment.org/e16",
         description: "Enlightenment DR16 window manager",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

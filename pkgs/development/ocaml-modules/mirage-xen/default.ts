@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const duration = nix.arg($, "duration");
   const io_page = nix.arg($, "io-page");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mirage-xen",
       version: "8.0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/mirage-xen/releases/download/v${nix.sel(finalAttrs, "version")}/mirage-xen-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-x8i2Kbz0EcifZK/lbDIFa9Kwtl1/xzbYV9h9E+EtGP4=",
         })))),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         duration,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Xen core platform libraries for MirageOS",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "sternenseemann"))]),

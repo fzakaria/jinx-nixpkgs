@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const symlinkJoin = nix.arg($, "symlinkJoin");
   const fonts = nix.thunk(() => nix.app(nix.sel(lib, "importTOML"), nix.path(here, "./fonts.toml")));
   const meta = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     description: "Innovative superfamily of fonts for code",
     longDescription: "Since the earliest days of the teletype machine, code has been set in\nmonospaced type — letters, on a grid. Monaspace is a new type system that\nadvances the state of the art for the display of code on screen.\n\nEvery advancement in the technology of computing has been accompanied by\nadvancements to the display and editing of code. CRTs made screen editors\npossible. The advent of graphical user interfaces gave rise to integrated\ndevelopment environments.\n\nEven today, we still have limited options when we want to layer additional\nmeaning on top of code. Syntax highlighting was invented in 1982 to help\nchildren to code in BASIC. But beyond colors, most editors must\ncommunicate with developers through their interfaces — hovers, underlines,\nand other graphical decorations.\n\nMonaspace offers a more expressive palette for code and the tools we use\nto work with it.\n",
     homepage: "https://monaspace.githubnext.com/",
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
     const destination = nix.arg($_1, "destination");
     const meta_1 = nix.arg($_1, "meta");
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: pname,
         version: version,
         src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`${baseUrl}/v${version}/${fontFamily}-${variant}-v${version}.zip`),
             hash: hash,
           })))),
@@ -69,7 +69,7 @@ runHook postInstall
           const meta_1 = meta;
           const pname = nix.thunk(() => nix.add(nix.add(fontFamily, "-"), variant));
           return {
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             baseUrl,
             fontFamily,
             version,
@@ -81,7 +81,7 @@ runHook postInstall
           };
         })());
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           name: nix.thunk(() => nix.sel(fontAttrs, "variant")),
           value: nix.thunk(() => nix.app(makeFont, fontAttrs)),
         };
@@ -90,14 +90,14 @@ runHook postInstall
   const woffFonts = nix.thunk(() => nix.app(makePackages, nix.thunk(() => nix.builtins.filter((f) => nix.eq(nix.sel(f, "destination"), "woff"), nix.thunk(() => nix.sel(fonts, "fonts"))))));
   const defaultFonts = nix.thunk(() => nix.app(nix.sel(lib, "removeAttrs"), allFonts, nix.thunk(() => nix.builtins.attrNames(woffFonts))));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "monaspace",
       version: nix.thunk(() => nix.attr(fonts, "version")),
       paths: nix.thunk(() => nix.builtins.attrValues(defaultFonts)),
       passthru: nix.thunk(() => nix.update(allFonts, {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         woff: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             pname: "monaspace-webfonts",
             version: nix.thunk(() => nix.attr(fonts, "version")),
             paths: nix.thunk(() => nix.builtins.attrValues(woffFonts)),

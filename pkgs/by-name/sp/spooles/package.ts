@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "spooles",
       version: "2.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.netlib.org/linalg/spooles/spooles.${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "1pf5z3vvwd8smbpibyabprdvcmax0grzvx2y0liy98c7x6h5jid8",
         })))),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -p $out/lib $out/include/spooles\ncp libspooles.a libspooles.so.2.2 $out/lib/\nln -s libspooles.so.2.2 $out/lib/libspooles.so.2\nln -s libspooles.so.2 $out/lib/libspooles.so\nfor h in *.h; do\n  if [ $h != 'MPI.h' ]; then\n     cp $h $out/include/spooles\n     d=`basename $h .h`\n     if [ -d $d ]; then\n        mkdir $out/include/spooles/$d\n        cp $d/*.h $out/include/spooles/$d\n     fi\n  fi\ndone\n",
       nativeBuildInputs: nix.thunk(() => [perl]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.netlib.org/linalg/spooles/",
         description: "Library for solving sparse real and complex linear systems of equations",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),

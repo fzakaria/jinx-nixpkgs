@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
   const unrar_free = nix.arg($, "unrar-free");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "winetricks",
       version: nix.thunk(() => nix.sel(finalAttrs, "src", "version")),
       src: nix.thunk(() => nix.sel(nix.app(callPackage, nix.path(here, "./sources.nix"), nix.thunk(() => ({}))), "winetricks")),
@@ -66,12 +66,12 @@ export default nix.lambda((args) => (() => {
       passthru: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         updateScript: nix.thunk(() => nix.attr(from, "updateScript")),
       };
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Script to install DLLs needed to work around problems in Wine",
         mainProgram: "winetricks",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

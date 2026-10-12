@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.16.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "liquidctl",
           repo: "liquidctl",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const postBuild = "# needed for pythonImportsCheck\nexport XDG_RUNTIME_DIR=$TMPDIR\n";
       const pythonImportsCheck = nix.thunk(() => ["liquidctl"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cross-platform CLI and Python drivers for AIO liquid coolers and other devices",
         homepage: "https://github.com/liquidctl/liquidctl",
         changelog: nix.thunk(() => nix.str`https://github.com/liquidctl/liquidctl/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "liquidctl",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -16,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const majorVersion = "0";
   const minorVersion = "100";
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "seshat",
       version: nix.thunk(() => nix.str`${majorVersion}.${minorVersion}`),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dotcolon.net/files/fonts/seshat_${majorVersion}${minorVersion}.zip`),
           hash: "sha256-XgprDhzAbcTzZw2QOwpCnzusYheYmSlM+ApU+Y0wO2Q=",
           stripRoot: false,
         })))),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://dotcolon.net/font/seshat/",
         description: "Roman body font designed for main text by Sora Sagano",
         longDescription: "Seshat is a Roman body font designed for the main text. By\nreferring to the classical balance, we changed some lines by\nomitting part of the lines such as \"A\" and \"n\".\n\nAlso, by attaching the strength of the thickness like Optima\nto the main drawing, it makes it more sharp design.\n\nIt incorporates symbols and ligatures used in the European region.\n",

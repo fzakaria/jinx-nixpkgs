@@ -18,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const libpq = nix.arg($, "libpq");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pg_top",
       version: "4.1.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://pg_top.gitlab.io/source/pg_top-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-4El3GmfP5UDJOsDxyU5z/s3JKw0jlMb8EB/hvtywwVs=",
         })))),
       buildInputs: nix.thunk(() => [libbsd, libpq, ncurses]),
       nativeBuildInputs: nix.thunk(() => [cmake, docutils]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "'top' like tool for PostgreSQL",
         longDescription: "pg_top allows you to:\n * View currently running SQL statement of a process.\n * View query plan of a currently running SELECT statement.\n * View locks held by a process.\n * View I/O statistics per process.\n * View replication statistics for downstream nodes.\n",
         homepage: "https://pg_top.gitlab.io",

@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const mkNginxPlugin = nix.arg($, "mkNginxPlugin");
   return nix.app(mkNginxPlugin, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "upload",
       version: "2.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fdintino",
           repo: "nginx-upload-module",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-8veZP516oC7TESO368ZsZreetbDt+1eTcamk7P1kWjU=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Handle file uploads using multipart/form-data encoding and resumable uploads",
         homepage: "https://github.com/fdintino/nginx-upload-module",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

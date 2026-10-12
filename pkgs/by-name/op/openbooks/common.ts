@@ -14,14 +14,14 @@ export default nix.lambda((args) => (() => {
   return (() => {
     const version = "4.5.0";
     const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         owner: "evan-buss",
         repo: "openbooks",
         rev: nix.thunk(() => nix.str`v${version}`),
         hash: "sha256-gznaMcj8/9xW8wvz/pQaw4tY/hDW8K6duFfJD74E47E=",
       }))));
     const meta = nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       homepage: "https://evan-buss.github.io/openbooks/",
       license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       maintainers: nix.thunk(() => (() => {
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w, "ambroisie"))];
       })()),
     }));
-    return { __proto__: pos$3, version, src, meta };
+    return { [nix.POS]: pos$3, version, src, meta };
   })();
 })(), formals$1);
 //# sourceMappingURL=common.ts.map

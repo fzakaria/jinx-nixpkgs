@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const maven = nix.arg($, "maven");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(maven, "buildMavenPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "keycloak-home-idp-discovery",
       version: "26.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sventorben",
           repo: "keycloak-home-idp-discovery",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       installPhase: "runHook preInstall\ninstall -Dm444 -t \"$out\" target/keycloak-home-idp-discovery.jar\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/sventorben/keycloak-home-idp-discovery",
         changelog: nix.thunk(() => nix.str`https://github.com/sventorben/keycloak-home-idp-discovery/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Keycloak authenticator to redirect users to their home identity provider by email domain",

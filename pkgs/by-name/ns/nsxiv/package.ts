@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libinotify_kqueue = nix.arg($, "libinotify-kqueue");
   const conf = nix.argOr($, "conf", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nsxiv",
       version: "34",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nsxiv",
           repo: "nsxiv",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,14 +36,14 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(conf, null)), nix.thunk(() => nix.str`cp ${nix.builtins.toFile("config.def.h", conf)} config.def.h
 `))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-linotify")),
       })),
       makeFlags: nix.thunk(() => ["CC:=$(CC)"]),
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       installTargets: nix.thunk(() => ["install-all"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://nsxiv.codeberg.page/",
         description: "New Suckless X Image Viewer",
         mainProgram: "nsxiv",

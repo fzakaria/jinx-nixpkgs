@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.0.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "Flask-AppBuilder",
           version: version,
           hash: "sha256-9Xe5gqGuQLwhMjjO25PDnGfPIZmqHgBuCH6hs1B9VFA=",
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["flask_appbuilder"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Application development framework, built on top of Flask",
         homepage: "https://github.com/dpgaspar/flask-appbuilder/",
         changelog: nix.thunk(() => nix.str`https://github.com/dpgaspar/Flask-AppBuilder/blob/v${version}/CHANGELOG.rst`),
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
         broken: true,
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

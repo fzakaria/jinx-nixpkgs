@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const croniter = nix.arg($, "croniter");
   const pynacl = nix.arg($, "pynacl");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hikari-crescent",
       version: "1.4.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hikari-crescent",
           repo: "hikari-crescent",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_handle_resp"]),
       disabledTestPaths: nix.thunk(() => ["tests/test_bot/test_bot.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command handler for Hikari that keeps your project neat and tidy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/hikari-crescent/hikari-crescent",

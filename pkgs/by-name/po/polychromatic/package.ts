@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const usbutils = nix.arg($, "usbutils");
   const psmisc = nix.arg($, "psmisc");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "polychromatic",
       version: "0.9.8",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "polychromatic",
           repo: "polychromatic",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       dontWrapQtApps: true,
       makeWrapperArgs: nix.thunk(() => ["${gappsWrapperArgs[@]}", "${qtWrapperArgs[@]}"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://polychromatic.app/",
         description: "Graphical front-end and tray applet for configuring Razer peripherals on GNU/Linux",
         longDescription: "Polychromatic is a frontend for OpenRazer that enables Razer devices\nto control lighting effects and more on GNU/Linux.\n",

@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const openglSupport = nix.argOr($, "openglSupport", () => nix.force(libGLSupported));
   const autoSignDarwinBinariesHook = nix.thunk(() => nix.attr(darwin, "autoSignDarwinBinariesHook"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "sdl12-compat",
       version: "1.2.78",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libsdl-org",
           repo: "sdl12-compat",
           rev: nix.thunk(() => nix.add("release-", nix.sel(finalAttrs, "version"))),
@@ -64,9 +64,9 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./find-headers.patch")]),
       setupHook: nix.path(here, "./setup-hook.sh"),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
           SDL_image: SDL_image,
           SDL_ttf: SDL_ttf,
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.libsdl.org/",
         description: "Cross-platform multimedia library - build SDL 1.2 applications against 2.0",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

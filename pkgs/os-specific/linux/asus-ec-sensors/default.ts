@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "asus-ec-sensors";
       const version = "0.1.0-unstable-2025-12-11";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zeule",
           repo: "asus-ec-sensors",
           rev: "0e73cd165c4d1baf8ce841604722c6981b7ba9d6",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const installPhase = nix.thunk(() => nix.str`install asus-ec-sensors.ko -Dm444 -t ${nix.builtins.placeholder("out")}/lib/modules/${nix.sel(kernel, "modDirVersion")}/kernel/drivers/hwmon
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Linux HWMON sensors driver for ASUS motherboards to read sensor data from the embedded controller",
         homepage: "https://github.com/zeule/asus-ec-sensors",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.app(nix.sel(kernel, "kernelOlder"), "5.11")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name,
         pname,
         version,

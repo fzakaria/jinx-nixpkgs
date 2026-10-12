@@ -28,21 +28,21 @@ export default nix.lambda((args) => (() => {
       const version = "0.25.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fastapi",
           repo: "typer",
           tag: version,
           hash: "sha256-HIvXseuR7zUXFuTWzntDfHhAp8BcFjxo35gn0i4+03w=",
         }))));
       const postPatch = "for f in $(find tests -type f -print); do\n  # replace `sys.executable -m coverage run` with `sys.executable`\n  sed -z -i 's/\"-m\",\\n\\?\\s*\"coverage\",\\n\\?\\s*\"run\",//g' \"$f\"\ndone\n";
-      const env = nix.thunk(() => ({ __proto__: pos$2, TIANGOLO_BUILD_PACKAGE: "typer" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, TIANGOLO_BUILD_PACKAGE: "typer" }));
       const build_system = nix.thunk(() => [pdm_backend]);
       const dependencies = nix.thunk(() => [annotated_doc, click, rich, shellingham]);
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytest_xdist, pytest9_0CheckHook, writableTmpDirAsHomeHook], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [procps]))));
       const disabledTests = nix.thunk(() => nix.concat(["test_scripts", "test_show_completion", "test_install_completion"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["test_install_completion"]))));
       const pythonImportsCheck = nix.thunk(() => ["typer"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library for building CLI applications",
         homepage: "https://typer.tiangolo.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/tiangolo/typer/releases/tag/${version}`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

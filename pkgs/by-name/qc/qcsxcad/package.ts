@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const vtkWithQt6 = nix.arg($, "vtkWithQt6");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "qcsxcad",
       version: "0.6.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "thliebig",
           repo: "QCSXCAD",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,13 +33,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-cmake-40-issues.patch",
             url: "https://github.com/thliebig/QCSXCAD/commit/200c9c211ee1401d6dce2bcbf2543089cdc67208.patch",
             hash: "sha256-OVihvjBRTQ87l0bBq2J8aWC7WdFCPqy5CtU4S5a11Xw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "update-cmake-minimum-required.patch",
             url: "https://github.com/thliebig/QCSXCAD/commit/64a4bdc13511690499756e6602076c1e70cf4ee7.patch",
             hash: "sha256-rzVj9YdAJVxhTatTO5MxZJInb1RB0qqmPFAkI2nxpQ0=",
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       ]),
       dontWrapQtApps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Qt library for CSXCAD",
         homepage: "https://github.com/thliebig/QCSXCAD",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

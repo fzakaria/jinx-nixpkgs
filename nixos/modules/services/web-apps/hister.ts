@@ -50,75 +50,75 @@ export default nix.lambda((args) => (() => {
   const runtimeConfigSource = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "settings"), {})) ? nix.force(generatedConfig) : nix.sel(cfg, "configPath")));
   const runtimeConfig = "/run/hister/config.yml";
   const histerEnv = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "port"), null)), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       HISTER_PORT: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))),
-    }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), hasConfig, nix.thunk(() => ({ __proto__: pos$2, HISTER_CONFIG: runtimeConfig }))), { __proto__: pos$3, HISTER_DATA_DIR: dataDir })));
+    }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), hasConfig, nix.thunk(() => ({ [nix.POS]: pos$2, HISTER_CONFIG: runtimeConfig }))), { [nix.POS]: pos$3, HISTER_DATA_DIR: dataDir })));
   const privilegedPort = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "port"), null)) && nix.asBool(nix.lt(nix.sel(cfg, "port"), 1024n))));
   return {
-    __proto__: pos$33,
+    [nix.POS]: pos$33,
     meta: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "_4evy"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         hister: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Hister, a web history service with content-based search")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "hister", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "hister",
               description: "User account under which Hister runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "hister",
               description: "Group under which Hister runs.",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               example: "/var/lib/hister",
               description: "Directory where Hister stores its data. When `null` (the default), the\nservice is isolated under `/var/lib/hister` via systemd's\n`StateDirectory=`. When set to an explicit path, that path is created\nwith `systemd-tmpfiles` and granted via `ReadWritePaths=` instead.\n",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "port")))),
               default: null,
               example: 4433n,
               description: "Port on which Hister listens. When set, this overrides the port in\n`server.address` from the configuration file via the `HISTER_PORT`\nenvironment variable.\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to open {option}`services.hister.port` in the firewall. Has no\neffect if `port` is `null`.\n",
             })))),
           configPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               example: "/etc/hister/config.yml",
               description: "Path to an existing Hister configuration file mounted read-only into\nthe service runtime directory and passed via `HISTER_CONFIG`. Mutually\nexclusive with {option}`services.hister.settings`.\n",
             })))),
           environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               example: "/run/secrets/hister.env",
               description: "Path to an environment file (read at service start) used to inject\nsecrets such as `HISTER__APP__ACCESS_TOKEN` without placing them in the\nworld-readable Nix store.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(yamlFormat, "type")),
               default: nix.thunk(() => ({})),
               description: "Hister configuration rendered to YAML and passed via `HISTER_CONFIG`.\nAccepts any structure the server accepts: see the `app`, `server`,\n`indexer`, `crawler`, `hotkeys`, `extractors`, `semantic_search`, and\n`sensitive_content_patterns` blocks documented upstream.\n",
@@ -128,42 +128,42 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             assertion: nix.thunk(() => !nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "configPath"), null)) && nix.asBool(!nix.eq(nix.sel(cfg, "settings"), {}))))),
             message: "Only one of services.hister.configPath and services.hister.settings can be set",
           })),
         ]),
         environment: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "hister")), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               hister: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 description: "Hister web history service",
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 isSystemUser: true,
               })),
             })))),
-          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "hister")), nix.thunk(() => ({ __proto__: pos$20, hister: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "hister")), nix.thunk(() => ({ [nix.POS]: pos$20, hister: nix.thunk(() => ({})) })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             settings: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               "10-hister": nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${dataDir}`, nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   d: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "dataDir"), null)), nix.thunk(() => ({
-                      __proto__: pos$22,
+                      [nix.POS]: pos$22,
                       user: nix.thunk(() => nix.sel(cfg, "user")),
                       group: nix.thunk(() => nix.sel(cfg, "group")),
                       mode: "0750",
@@ -173,9 +173,9 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             hister: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               description: "Hister web history service",
               after: nix.thunk(() => [
                 "network.target",
@@ -185,7 +185,7 @@ export default nix.lambda((args) => (() => {
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: histerEnv,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} listen`),
                 Restart: "on-failure",
                 User: nix.thunk(() => nix.sel(cfg, "user")),
@@ -227,9 +227,9 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           firewall: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "openFirewall")) && nix.asBool(!nix.eq(nix.sel(cfg, "port"), null)))), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]))),
           })),
         })),

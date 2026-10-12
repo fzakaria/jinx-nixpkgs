@@ -12,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     name: "ssh-backdoor",
-    sshBackdoor: nix.thunk(() => ({ __proto__: pos$1, enable: true })),
-    nodes: nix.thunk(() => ({ __proto__: pos$2, machine: nix.thunk(() => ({})) })),
+    sshBackdoor: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+    nodes: nix.thunk(() => ({ [nix.POS]: pos$2, machine: nix.thunk(() => ({})) })),
     testScript: nix.thunk(() => nix.str`import subprocess
 
 start_all()

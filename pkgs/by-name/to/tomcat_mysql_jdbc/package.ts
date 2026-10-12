@@ -12,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const mysql_jdbc = nix.arg($, "mysql_jdbc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "tomcat-mysql-jdbc",
       version: nix.thunk(() => nix.sel(mysql_jdbc, "version")),
       dontUnpack: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib\nln -s $mysql_jdbc/share/java/mysql-connector-java.jar $out/lib/mysql-connector-java.jar\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
     })));

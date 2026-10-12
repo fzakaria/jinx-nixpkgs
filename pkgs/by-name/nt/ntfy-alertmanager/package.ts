@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const lib = nix.arg($, "lib");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ntfy-alertmanager",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://git.xenrox.net/~xenrox/ntfy-alertmanager/refs/download/v${nix.sel(finalAttrs, "version")}/ntfy-alertmanager-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-L5WyJ+O45OKAwdhMGb+j/UQSz19nwdUx7bEzyRsN8j0=",
         })))),
       vendorHash: "sha256-0yMQXeKHKdlELTu8uIRqXzaW601LHNTqkl3MwxGq9u4=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bridge between ntfy and Alertmanager",
         homepage: "https://git.xenrox.net/~xenrox/ntfy-alertmanager",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

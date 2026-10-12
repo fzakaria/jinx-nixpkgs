@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "encrypted-dns-server",
       version: "0.9.22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DNSCrypt",
           repo: "encrypted-dns-server",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,16 +32,16 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-FVAvrWbxiPm9rpTJLAs5TxObUJsQeMCmlZCSYQiRXtc=",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libsodium]),
-      env: nix.thunk(() => ({ __proto__: pos$2, SODIUM_USE_PKG_CONFIG: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, SODIUM_USE_PKG_CONFIG: true })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/encrypted-dns`),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/DNSCrypt/encrypted-dns-server/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Easy to install, high-performance, zero maintenance proxy to run an encrypted DNS server",
         homepage: "https://github.com/DNSCrypt/encrypted-dns-server",

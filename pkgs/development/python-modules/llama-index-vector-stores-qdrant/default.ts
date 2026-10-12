@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const llama_index_core = nix.arg($, "llama-index-core");
   const qdrant_client = nix.arg($, "qdrant-client");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "llama-index-vector-stores-qdrant",
       version: "0.10.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "llama_index_vector_stores_qdrant",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-S3t/6kLcpFNhbHbo/LcsyqctVSf1N3SlSVdJJ/PDzyY=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [grpcio, llama_index_core, qdrant_client]),
       pythonImportsCheck: nix.thunk(() => ["llama_index.vector_stores.qdrant"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "LlamaIndex Vector Store Integration for Qdrant",
         homepage: "https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-qdrant",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

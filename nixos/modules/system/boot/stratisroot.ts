@@ -26,23 +26,23 @@ export default nix.lambda((args) => (() => {
   const utils = nix.arg($, "utils");
   const requiredStratisFilesystems = nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "filterAttrs"), (_) => (x) => (nix.asBool(nix.app(nix.sel(utils, "fsNeededForBoot"), x)) && nix.asBool(!nix.eq(nix.sel(x, "stratis", "poolUuid"), null))), nix.thunk(() => nix.sel(config, "fileSystems"))));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     options: nix.thunk(() => ({})),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(requiredStratisFilesystems, {})), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             assertion: nix.thunk(() => nix.sel(config, "boot", "initrd", "systemd", "enable")),
             message: "stratis root fs requires systemd stage 1",
           })),
         ]),
         boot: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           initrd: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             systemd: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               storePaths: nix.thunk(() => [
                 nix.thunk(() => nix.str`${nix.sel(pkgs, "stratisd")}/lib/udev/stratis-base32-decode`),
                 nix.thunk(() => nix.str`${nix.sel(pkgs, "stratisd")}/lib/udev/stratis-str-cmp`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
               ]),
               packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "stratisd", "initrd"))]),
               extraBin: nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 thin_check: nix.thunk(() => nix.str`${nix.sel(pkgs, "thin-provisioning-tools")}/bin/thin_check`),
                 thin_repair: nix.thunk(() => nix.str`${nix.sel(pkgs, "thin-provisioning-tools")}/bin/thin_repair`),
                 thin_metadata_size: nix.thunk(() => nix.str`${nix.sel(pkgs, "thin-provisioning-tools")}/bin/thin_metadata_size`),
@@ -60,12 +60,12 @@ export default nix.lambda((args) => (() => {
                 cryptsetup: nix.thunk(() => nix.str`${nix.sel(pkgs, "cryptsetup")}/bin/cryptsetup`),
               })),
               services: nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "mapAttrs'"), (mountPoint) => (fileSystem) => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   name: nix.thunk(() => nix.str`stratis-setup-${nix.sel(fileSystem, "stratis", "poolUuid")}`),
                   value: nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     description: "setup for Stratis root filesystem",
-                    unitConfig: nix.thunk(() => ({ __proto__: pos$3, DefaultDependencies: "no", OnFailureJobMode: "isolate" })),
+                    unitConfig: nix.thunk(() => ({ [nix.POS]: pos$3, DefaultDependencies: "no", OnFailureJobMode: "isolate" })),
                     conflicts: nix.thunk(() => ["shutdown.target", "initrd-switch-root.target"]),
                     onFailure: nix.thunk(() => ["emergency.target"]),
                     wants: nix.thunk(() => ["stratisd-min.service", "plymouth-start.service"]),
@@ -73,11 +73,11 @@ export default nix.lambda((args) => (() => {
                     after: nix.thunk(() => ["paths.target", "plymouth-start.service", "stratisd-min.service"]),
                     before: nix.thunk(() => ["initrd.target", "shutdown.target", "initrd-switch-root.target"]),
                     environment: nix.thunk(() => ({
-                      __proto__: pos$4,
+                      [nix.POS]: pos$4,
                       STRATIS_ROOTFS_UUID: nix.thunk(() => nix.sel(fileSystem, "stratis", "poolUuid")),
                     })),
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$5,
+                      [nix.POS]: pos$5,
                       Type: "oneshot",
                       ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "stratisd", "initrd")}/bin/stratis-rootfs-setup`),
                       RemainAfterExit: "yes",
@@ -100,9 +100,9 @@ export default nix.lambda((args) => (() => {
               "algif_skcipher",
             ])),
             services: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               udev: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 packages: nix.thunk(() => [
                   nix.thunk(() => nix.sel(pkgs, "stratisd", "initrd")),
                   nix.thunk(() => nix.sel(pkgs, "lvm2")),

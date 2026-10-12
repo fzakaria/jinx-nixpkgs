@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ocurl";
       const version = "0.9.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ygrek/ocurl/releases/download/${version}/ocurl-${version}.tar.gz`),
           sha256: "sha256-4DWXGMh02s1VwLWW5d7h0jtMOUubWmBPGm1hghfWd2M=",
         }))));
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const strictDeps = true;
       const createFindlibDestdir = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OCaml bindings to libcurl (deprecated)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://ygrek.org/p/ocurl/",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(ocaml, "version")), "4.04")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

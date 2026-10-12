@@ -22,16 +22,16 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const data = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://mirandir.pagesperso-orange.fr/files/additional-levels.tar.xz",
       sha256: "167hisscsbldrwrs54gq6446shl8h26qdqigmfg0lq3daynqycg2",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "jumpnbump",
       version: "1.70-dev",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "LibreGames",
           repo: "jumpnbump",
           rev: "5744738211ca691444f779aafee3537fb3562516",
@@ -59,7 +59,7 @@ sed -i -e 's+Exec=jumpnbump+Exec=jumpnbump-menu+' $out/share/applications/jumpnb
       preFixup: "buildPythonPath \"$out ${pythonPath[*]}\"\n",
       postFixup: "wrapPythonPrograms\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Cute, true multiplayer platform game with bunnies",
         homepage: "https://libregames.gitlab.io/jumpnbump/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libxcrypt = nix.arg($, "libxcrypt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pounce",
       version: "3.2",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://git.causal.agency/pounce/snapshot/pounce-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-7FAB5kNOg465x8MFTyndJD4pqxJ6Wu3av+CbXGZuxWA=",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildFlags: nix.thunk(() => ["all"]),
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://code.causal.agency/june/pounce",
         description: "Simple multi-client TLS-only IRC bouncer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const findutils = nix.arg($, "findutils");
   const jre = nix.arg($, "jre");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "openjump",
       version: "2.4.0",
       revision: "r5303%5B6c9a02d%5D",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/jump-pilot/OpenJUMP/${nix.sel(finalAttrs, "version")}/OpenJUMP-Portable-${nix.sel(finalAttrs, "version")}-${nix.sel(finalAttrs, "revision")}-PLUS.zip`),
           hash: "sha256-MBP4zZTKHj3WooQvo6nQzhiAw9nO9gAJybSL2rc1mnc=",
         })))),
@@ -42,7 +42,7 @@ makeWrapper "$dir/bin/oj_linux.sh" $out/bin/OpenJump \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open source Geographic Information System (GIS) written in the Java programming language",
         homepage: "http://www.openjump.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

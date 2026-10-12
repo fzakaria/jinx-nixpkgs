@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "present",
       version: "0.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "terror",
           repo: "present",
           rev: "43c10253dc31038614eba5824588dbf2716212d6A",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs bin/get_version\n",
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Script interpolation engine for markdown documents",
         homepage: "https://github.com/terror/present/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),

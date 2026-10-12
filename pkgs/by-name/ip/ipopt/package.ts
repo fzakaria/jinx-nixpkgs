@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
   nix.assert_((nix.asBool(!nix.asBool(nix.sel(blas, "isILP64"))) && nix.asBool(!nix.asBool(nix.sel(lapack, "isILP64")))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ip/ipopt/package.nix:17:1");
   nix.assert_(!nix.asBool(nix.sel(mumps, "mpiSupport")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ip/ipopt/package.nix:18:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ipopt",
       version: "3.14.20",
       __structuredAttrs: true,
       srictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "coin-or",
           repo: "Ipopt",
           tag: nix.thunk(() => nix.str`releases/${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         ])), nix.concat(nix.app(nix.sel(lib, "optional"), enableSPRAL, "--with-spral-lflags=-lspral"), nix.app(nix.sel(lib, "optional"), enableAMPL, "--with-asl-lflags=-lamplsolver")))),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/coin-or/Ipopt/releases/tag/releases%2F${nix.sel(finalAttrs, "version")}`),
         description: "Software package for large-scale nonlinear optimization",
         homepage: "https://projects.coin-or.org/Ipopt",

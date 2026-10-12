@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.17";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "RPGillespie6",
           repo: "fastcov",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
   --replace-fail "default='gcov'" "default='${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(libgcc, "out")), "gcov")}'"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Massively parallelized gcov wrapper",
         homepage: "https://github.com/RPGillespie6/fastcov",
         changelog: nix.thunk(() => nix.str`https://github.com/RPGillespie6/fastcov/releases/tag/v${version}`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "fastcov",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

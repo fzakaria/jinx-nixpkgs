@@ -35,18 +35,18 @@ export default nix.lambda((args) => (() => {
         const __structuredAttrs = true;
         const strictDeps = true;
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://download.nextcloud.com/server/releases/nextcloud-${version_1}.tar.bz2`),
             hash: hash,
           }))));
         const installPhase = "runHook preInstall\nmkdir -p $out/\ncp -R . $out/\nrunHook postInstall\n";
         const passthru = nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           tests: nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (key) => (_) => nix.app(nix.sel(lib, "hasSuffix"), nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), version_1)), key), nix.thunk(() => nix.sel(nixosTests, "nextcloud")))),
           packages: packages,
         }));
         const meta = nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           changelog: nix.thunk(() => nix.str`https://nextcloud.com/changelog/#${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["-"]), version_1)}`),
           description: "Sharing solution for files, calendars, contacts and more",
           homepage: "https://nextcloud.com",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
           knownVulnerabilities: nix.thunk(() => nix.concat(extraVulnerabilities, nix.app(nix.sel(lib, "optional"), eol, nix.thunk(() => nix.str`Nextcloud version ${version_1} is EOL`)))),
         }));
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pname,
           version: version_1,
           __structuredAttrs,
@@ -69,21 +69,21 @@ export default nix.lambda((args) => (() => {
       })()));
   })(), formals$2);
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     nextcloud33: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         version: "33.0.9",
         hash: "sha256-8zHBBB0CfmWIUm0qAM5CvHCpYi6rWHHAvpF3JSz3dCM=",
         packages: nextcloud33Packages,
       })))),
     nextcloud34: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         version: "34.0.4",
         hash: "sha256-APIm5jZPluCRirBhVxWPZmAbjO3CWvd39e5aMFb0K4M=",
         packages: nextcloud34Packages,
       })))),
     nextcloud35: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         version: "35.0.1",
         hash: "sha256-ftMF6IAZLYBLqDF5oZ3SIldnlgjWMWGmEc4/ipGNKqY=",
         packages: nextcloud35Packages,

@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "spotiflac",
       version: "7.2.2",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "spotbye",
           repo: "SpotiFLAC",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,9 +53,9 @@ export default nix.lambda((args) => (() => {
       proxyVendor: true,
       makeWrapperArgs: nix.thunk(() => ["${gappsWrapperArgs[@]}"]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
           })))),
         pnpmRoot: "frontend",
       })),
-      overrideModAttrs: nix.thunk(() => ({ __proto__: pos$4, preBuild: "wails build -tags webkit2_41 -o spotiflac\n" })),
+      overrideModAttrs: nix.thunk(() => ({ [nix.POS]: pos$4, preBuild: "wails build -tags webkit2_41 -o spotiflac\n" })),
       buildPhase: "runHook preBuild\n\nwails build -tags webkit2_41 -devtools -o spotiflac\n\nrunHook postBuild\n",
       installPhase: nix.thunk(() => nix.str`runHook preInstall;
 
@@ -85,7 +85,7 @@ runHook postInstall;
       vendorHash: "sha256-B8FgP4w08imhrERyAbmLjvBIyb+5I05hhY2rF+uJoV4=",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "spotiflac",
             desktopName: "SpotiFLAC",
             exec: "spotiflac %u",
@@ -95,7 +95,7 @@ runHook postInstall;
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Get Spotify tracks in true FLAC from Tidal, Qobuz & Amazon Music — no account required",
         homepage: "https://github.com/spotbye/SpotiFLAC/",
         changelog: nix.thunk(() => nix.str`https://github.com/spotbye/SpotiFLAC/releases/tag/v${nix.sel(finalAttrs, "version")}`),

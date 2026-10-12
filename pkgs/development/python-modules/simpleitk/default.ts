@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [elastix, itk, simpleitk, numpy]);
       const pythonImportsCheck = nix.thunk(() => ["SimpleITK"]);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         pname,
         version,
         src,

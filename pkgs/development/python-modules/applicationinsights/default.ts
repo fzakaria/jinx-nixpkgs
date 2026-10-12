@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const portalocker = nix.arg($, "portalocker");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "0.11.10",
       pyproject: true,
       pname: "applicationinsights",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-C3YfPvBoCs9HMZBt/BgH+qbypXFornRZLbAISmCZ97M=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [portalocker]),
       pythonImportsCheck: nix.thunk(() => ["applicationinsights"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "This project extends the Application Insights API surface to support Python",
         homepage: "https://github.com/Microsoft/ApplicationInsights-Python",
         changelog: nix.thunk(() => nix.str`https://pypi.org/project/applicationinsights/${nix.sel(finalAttrs, "version")}/`),

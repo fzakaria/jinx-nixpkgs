@@ -21,17 +21,17 @@ export default nix.lambda((args) => (() => {
   const clang = nix.thunk(() => nix.sel(rust_bindgen_unwrapped, "clang"));
   const targetFlag = nix.thunk(() => (nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "systems", "equals"), nix.thunk(() => nix.sel(stdenv, "targetPlatform")), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))) ? nix.str`--target=${nix.sel(stdenv, "targetPlatform", "config")}` : ""));
   const self = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`rust-bindgen-${nix.sel(rust_bindgen_unwrapped, "version")}`), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "rust-bindgen",
       version: nix.thunk(() => nix.attr(rust_bindgen_unwrapped, "version")),
       meta: nix.thunk(() => nix.update(nix.sel(rust_bindgen_unwrapped, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         longDescription: nix.thunk(() => nix.add(nix.sel(rust_bindgen_unwrapped, "meta", "longDescription"), "This version of bindgen is wrapped with the required compiler flags\nrequired to find the c and c++ standard library, as well as the libraries\nspecified in the buildInputs of your derivation.\n")),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "simple-c": nix.thunk(() => nix.app(runCommandCC, "simple-c-bindgen-tests", nix.thunk(() => ({})), nix.thunk(() => nix.str`echo '#include <stdlib.h>' > a.c
 ${self}/bin/bindgen a.c --allowlist-function atoi | tee output
 grep atoi output
@@ -42,7 +42,7 @@ ${self}/bin/bindgen a.cpp --allowlist-function erf -- -xc++ | tee output
 grep erf output
 touch $out
 `))),
-          "with-lib": nix.thunk(() => nix.app(runCommandCC, "zlib-bindgen-tests", nix.thunk(() => ({ __proto__: pos$2, buildInputs: nix.thunk(() => [zlib]) })), nix.thunk(() => nix.str`echo '#include <zlib.h>' > a.c
+          "with-lib": nix.thunk(() => nix.app(runCommandCC, "zlib-bindgen-tests", nix.thunk(() => ({ [nix.POS]: pos$2, buildInputs: nix.thunk(() => [zlib]) })), nix.thunk(() => nix.str`echo '#include <zlib.h>' > a.c
 ${self}/bin/bindgen a.c --allowlist-function compress | tee output
 grep compress output
 touch $out

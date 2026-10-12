@@ -11,21 +11,21 @@ const pos$5 = nix.positions(here + "/simple-container.nix", [["machine", 5, 5], 
 const pos$6 = nix.positions(here + "/simple-container.nix", [["name", 2, 3], ["containers", 4, 3], ["testScript", 11, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$6,
+  [nix.POS]: pos$6,
   name: "simple-container",
   containers: nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     machine: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
       const pkgs = nix.arg($, "pkgs");
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         users: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           users: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             root: nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "hello"))]),
             })),
           })),

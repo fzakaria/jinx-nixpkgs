@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const which = nix.arg($, "which");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       __structuredAttrs: true,
       pname: "plover-stroke",
       version: "1.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openstenoproject",
           repo: "plover_stroke",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       preInstallCheck: "versionCheckProgram=\"$(which ls)\"\n",
       pythonImportsCheck: nix.thunk(() => ["plover_stroke"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Helper class for working with steno strokes",
         homepage: "https://github.com/openstenoproject/plover_stroke",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

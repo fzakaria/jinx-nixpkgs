@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   return nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "sshd-openpgp-auth",
       version: "0.3.1",
       srcHash: "sha256-YS8/q8faWSRNciR03wwiiGGgkvZqb5Euto22pde53C8=",

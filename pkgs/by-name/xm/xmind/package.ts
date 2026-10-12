@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const systemd = nix.arg($, "systemd");
   const libGL = nix.arg($, "libGL");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xmind",
       version: "26.05.01106-202608091931",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dl3.xmind.app/Xmind-for-Linux-amd64bit-${nix.sel(finalAttrs, "version")}.deb`),
           hash: "sha256-AXjDS/izF4sUn9nrIoQrzPuvHiRsb8T5EQOSQIHz8kA=",
         })))),
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
   --add-rpath ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libGL]))} $out/opt/xmind/xmind
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "All-in-one thinking tool featuring mind mapping, AI generation, and real-time collaboration",
         homepage: "https://xmind.app",
         sourceProvenance: nix.thunk(() => (() => {

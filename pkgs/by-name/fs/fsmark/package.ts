@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fsmark",
       version: "3.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/fsmark/${nix.sel(finalAttrs, "version")}/fs_mark-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "15f8clcz49qsfijdmcz165ysp8v4ybsm57d3dxhhlnq1bp1i9w33",
         })))),
       patchPhase: "sed -i Makefile -e 's/-static //'\n",
       installPhase: "mkdir -p $out/bin\ncp fs_mark $out/bin/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Synchronous write workload file system benchmark",
         homepage: "https://sourceforge.net/projects/fsmark/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

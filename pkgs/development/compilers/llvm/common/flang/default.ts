@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const buildLlvmPackages = nix.arg($, "buildLlvmPackages");
   const devExtraCmakeFlags = nix.argOr($, "devExtraCmakeFlags", () => []);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "flang",
       version: version,
       src: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-src-${nix.sel(finalAttrs, "version")}`), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           passthru: nix.thunk(() => nix.attr(monorepoSrc, "passthru")),
           strictDeps: true,
           __structuredAttrs: true,
@@ -78,7 +78,7 @@ ls -l ${nix.sel(mlir, "dev")}/lib/cmake/mlir/MLIRConfig.cmake
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "FLANG_INCLUDE_TESTS", false)),
       ], devExtraCmakeFlags)),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         langC: false,
         langCC: false,
         langFortran: true,
@@ -91,7 +91,7 @@ ls -l ${nix.sel(mlir, "dev")}/lib/cmake/mlir/MLIRConfig.cmake
       requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
       __structuredAttrs: true,
       meta: nix.thunk(() => nix.update(llvm_meta, {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://flang.llvm.org/",
         description: "LLVM-based Fortran frontend",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ncsa")),

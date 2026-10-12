@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const kernelFlag = nix.thunk(() => (nix.asBool(experimentalKernel) ? "--expk" : "--stdknl"));
   const useMlton = nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool(!nix.eq(nix.sel(stdenv, "buildPlatform", "system"), "i686-linux")) && nix.asBool(!nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "buildPlatform", "isMusl"))))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isMusl"))))) && nix.asBool(nix.app(nix.sel(lib, "elem"), nix.thunk(() => nix.sel(stdenv, "buildPlatform", "system")), nix.thunk(() => nix.sel(mlton, "meta", "platforms")))))) && nix.asBool(nix.app(nix.sel(lib, "elem"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system")), nix.thunk(() => nix.sel(mlton, "meta", "platforms"))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hol",
       version: nix.thunk(() => nix.str`4-${versionBase}`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "HOL-Theorem-Prover",
           repo: "HOL",
           tag: versionBase,
@@ -67,7 +67,7 @@ mkdir -p "$out/bin"
 ln -st "$out/bin" "$out"/share/hol/bin/*
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Interactive theorem prover based on Higher-Order Logic",
         longDescription: "HOL4 is the latest version of the HOL interactive proof\nassistant for higher order logic: a programming environment in\nwhich theorems can be proved and proof tools\nimplemented. Built-in decision procedures and theorem provers\ncan automatically establish many simple theorems (users may have\nto prove the hard theorems themselves!) An oracle mechanism\ngives access to external programs such as SMT and BDD\nengines. HOL4 is particularly suitable as a platform for\nimplementing combinations of deduction, execution and property\nchecking.\n",
         homepage: "https://hol-theorem-prover.org/",

@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const nix_update_script = nix.arg($, "nix-update-script");
   const initScript = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "muvm-init",
       runtimeInputs: nix.thunk(() => [coreutils]),
       text: "if [[ -f /etc/NIXOS ]]; then\n  ln -s /run/muvm-host/run/current-system /run/current-system\n  if [[ -d /run/muvm-host/run/opengl-driver ]]; then\n     ln -s /run/muvm-host/run/opengl-driver /run/opengl-driver\n  fi\nfi\n",
@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.str`--execute-pre=${nix.app(nix.sel(lib, "getExe"), initScript)}`),
     ])));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "muvm",
       version: "0.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "AsahiLinux",
           repo: "muvm",
           tag: nix.thunk(() => nix.str`muvm-${nix.sel(finalAttrs, "version")}`),
@@ -65,19 +65,19 @@ export default nix.lambda((args) => (() => {
         pkg_config,
       ]),
       buildInputs: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(libkrun, "override"), nix.thunk(() => ({ __proto__: pos$3, withBlk: true, withGpu: true, withNet: true })))),
+        nix.thunk(() => nix.app(nix.sel(libkrun, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, withBlk: true, withGpu: true, withNet: true })))),
         udev,
       ]),
       postFixup: nix.thunk(() => nix.str`wrapProgram $out/bin/muvm ${wrapArgs}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libkrun, "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Run programs from your system in a microVM",
         homepage: "https://github.com/AsahiLinux/muvm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

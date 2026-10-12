@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const scapy = nix.arg($, "scapy");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pex-entysec",
       version: "1.0.0-unstable-2024-10-13",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "EntySec",
           repo: "Pex",
           rev: "0a776da9afc1a88fcb74fac96648666748b3d965",
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["pex"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of special tools for providing high quality penetration testing using pure python programming language",
         homepage: "https://github.com/EntySec/Pex",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

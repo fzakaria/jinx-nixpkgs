@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const hasRocksDB = nix.thunk(() => nix.eq(backend, "rocksdb"));
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => nix.builtins.elem(backend, nix.thunk(() => ["rocksdb", "surrealkv"]))), "surrealdb: backend must be one of [ \"rocksdb\" \"surrealkv\" ]"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/su/surrealdb/package.nix:15:1");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: nix.thunk(() => (nix.asBool(hasRocksDB) ? "surrealdb" : "surrealdb-surrealkv")),
       version: "3.0.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "surrealdb",
           repo: "surrealdb",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,11 +49,11 @@ export default nix.lambda((args) => (() => {
         "storage-surrealkv",
       ], nix.app(nix.sel(lib, "optional"), hasRocksDB, "storage-rocksdb"))),
       env: nix.thunk(() => nix.update({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PROTOC: nix.thunk(() => nix.str`${protobuf}/bin/protoc`),
         PROTOC_INCLUDE: nix.thunk(() => nix.str`${protobuf}/include`),
       }, nix.app(nix.sel(lib, "optionalAttrs"), hasRocksDB, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           ROCKSDB_INCLUDE_DIR: nix.thunk(() => nix.str`${rocksdb}/include`),
           ROCKSDB_LIB_DIR: nix.thunk(() => nix.str`${rocksdb}/lib`),
         }))))),
@@ -63,18 +63,18 @@ export default nix.lambda((args) => (() => {
       checkFlags: nix.thunk(() => ["--skip=database_upgrade"]),
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "surreal version",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: nix.thunk(() => (nix.asBool(hasRocksDB) ? "Scalable, distributed, collaborative, document-graph database, for the realtime web" : "SurrealDB with the SurrealKV storage backend")),
         homepage: "https://surrealdb.com/",
         mainProgram: "surreal",

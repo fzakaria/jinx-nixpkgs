@@ -14,16 +14,16 @@ export default nix.lambda((args) => (() => {
   const apiGoVendorHook = nix.arg($, "apiGoVendorHook");
   const vendorHash = nix.arg($, "vendorHash");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "authentik-proxy-outpost",
       version: nix.thunk(() => nix.attr(authentik, "version")),
       src: nix.thunk(() => nix.attr(authentik, "src")),
       vendorHash: vendorHash,
       nativeBuildInputs: nix.thunk(() => [apiGoVendorHook]),
-      env: nix.thunk(() => ({ __proto__: pos$1, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$1, CGO_ENABLED: 0n })),
       subPackages: nix.thunk(() => ["cmd/proxy"]),
       meta: nix.thunk(() => nix.update(nix.sel(authentik, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Authentik proxy outpost which is used for HTTP reverse proxy authentication",
         homepage: "https://goauthentik.io/docs/providers/proxy/",
         mainProgram: "proxy",

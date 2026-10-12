@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "mimir",
       version: "3.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           rev: nix.thunk(() => nix.str`mimir-${nix.sel(finalAttrs, "version")}`),
           owner: "grafana",
           repo: "mimir",
@@ -42,12 +42,12 @@ export default nix.lambda((args) => (() => {
           "undelete-blocks",
         ])))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex", "mimir-(3\\.[0-9.]+)"]),
           })))),
-        tests: nix.thunk(() => ({ __proto__: pos$3, mimir: nix.thunk(() => nix.attr(nixosTests, "mimir")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, mimir: nix.thunk(() => nix.attr(nixosTests, "mimir")) })),
       })),
       ldflags: nix.thunk(() => (() => {
         const t = "github.com/grafana/mimir/pkg/util/version";
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Grafana Mimir provides horizontally scalable, highly available, multi-tenant, long-term storage for Prometheus. ",
         homepage: "https://github.com/grafana/mimir",
         changelog: nix.thunk(() => nix.str`https://github.com/grafana/mimir/releases/tag/mimir-${nix.sel(finalAttrs, "version")}`),

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const jre = nix.arg($, "jre");
   const platformName = nix.thunk(() => nix.selOr({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "x86_64-linux": "linux-x86-64",
     "aarch64-linux": "linux-aarch64",
     "aarch64-darwin": "darwin-aarch64",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "jugglinglab";
       const version = "1.6.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "jkboyce",
           repo: "jugglinglab",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -61,7 +61,7 @@ runHook postInstall
     --add-flags "-jar $out/share/jugglinglab/JugglingLab.jar"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Program to visualize different juggling patterns",
         homepage: "https://jugglinglab.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -76,7 +76,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

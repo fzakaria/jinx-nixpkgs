@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
   const orc = nix.arg($, "orc");
   const pkgsBuildBuild = nix.arg($, "pkgsBuildBuild");
   return nix.app(qtModule, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "qtmultimedia",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([ffmpeg], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isMinGW"))), nix.thunk(() => [libunwind, orc])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libpulseaudio, pipewire, alsa_lib, wayland, libxrandr, libva])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), elfutils)), nix.thunk(() => [elfutils])))))),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DQt6ShaderToolsTools_DIR=${nix.sel(pkgsBuildBuild, "qt6", "qtshadertools")}/lib/cmake/Qt6ShaderToolsTools`),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-include AudioToolbox/AudioToolbox.h")),
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-framework AudioToolbox")),
       })),

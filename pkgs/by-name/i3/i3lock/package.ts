@@ -28,15 +28,15 @@ export default nix.lambda((args) => (() => {
   const libxcb_util = nix.arg($, "libxcb-util");
   const cairo = nix.arg($, "cairo");
   const versionCheckHook = nix.arg($, "versionCheckHook");
-  const cairo$ = nix.thunk(() => nix.app(nix.sel(cairo, "override"), nix.thunk(() => ({ __proto__: pos$1, xcbSupport: true }))));
+  const cairo$ = nix.thunk(() => nix.app(nix.sel(cairo, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, xcbSupport: true }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "i3lock",
       version: "2.16",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "i3",
           repo: "i3lock",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simple screen locker like slock",
         longDescription: "Simple screen locker. After locking, a colored background (default: white) or\na configurable image is shown, and a ring-shaped unlock-indicator gives feedback\nfor every keystroke. After entering your password, the screen is unlocked again.\n",
         homepage: "https://i3wm.org/i3lock/",

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const env = nix.thunk(() => (() => {
     const paths = nix.thunk(() => nix.app(requiredPerlModules, nix.thunk(() => nix.concat(extraLibs, [perl]))));
     return nix.app(buildEnv, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name: nix.thunk(() => nix.str`${nix.sel(perl, "name")}-env`),
         paths: paths,
         ignoreCollisions: ignoreCollisions,
@@ -48,9 +48,9 @@ for path in ${nix.app(nix.sel(lib, "concatStringsSep"), " ", paths)}; do
   fi
 done
 `, postBuild)),
-        meta: nix.thunk(() => nix.update(nix.sel(perl, "meta"), { __proto__: pos$1, outputsToInstall: nix.thunk(() => ["out"]) })),
+        meta: nix.thunk(() => nix.update(nix.sel(perl, "meta"), { [nix.POS]: pos$1, outputsToInstall: nix.thunk(() => ["out"]) })),
         passthru: nix.thunk(() => nix.update(nix.sel(perl, "passthru"), {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           interpreter: nix.thunk(() => nix.str`${env}/bin/perl`),
           perl: perl,
         })),

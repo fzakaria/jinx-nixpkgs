@@ -16,16 +16,16 @@ export default nix.lambda((args) => (() => {
   const gems = nix.thunk(() => nix.builtins.import(nix.path(here, "./gemset.nix")));
   const version = nix.thunk(() => nix.sel(gems, "brakeman", "version"));
   return nix.app(bundlerApp, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "brakeman",
       exes: nix.thunk(() => ["brakeman"]),
       gemdir: nix.path(here, "./."),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "brakeman")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Static analysis security scanner for Ruby on Rails",
         homepage: "https://brakemanscanner.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/presidentbeef/brakeman/blob/v${version}/CHANGES.md`),

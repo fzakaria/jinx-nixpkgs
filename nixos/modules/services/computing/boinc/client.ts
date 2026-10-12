@@ -34,41 +34,41 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "boinc"));
   const allowRemoteGuiRpcFlag = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "allowRemoteGuiRpc")), "--allow_remote_gui_rpc"));
   const fhsEnv = nix.thunk(() => nix.app(nix.sel(pkgs, "buildFHSEnv"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "boinc-fhs-env",
       targetPkgs: (pkgs$) => nix.concat([nix.thunk(() => nix.sel(cfg, "package"))], nix.sel(cfg, "extraEnvPackages")),
       runScript: "/bin/boinc_client",
     }))));
   const fhsEnvExecutable = nix.thunk(() => nix.str`${fhsEnv}/bin/${nix.sel(fhsEnv, "name")}`);
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         boinc: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable the BOINC distributed computing client. If this\noption is set to true, the boinc_client daemon will be run as a\nbackground service. The boinccmd command can be used to control the\ndaemon.\n",
             })))),
-          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "boinc", nix.thunk(() => ({ __proto__: pos$3, example: "boinc-headless" })))),
+          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "boinc", nix.thunk(() => ({ [nix.POS]: pos$3, example: "boinc-headless" })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/boinc",
               description: "The directory in which to store BOINC's configuration and data files.\n",
             })))),
           allowRemoteGuiRpc: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "If set to true, any remote host can connect to and control this BOINC\nclient (subject to password authentication). If instead set to false,\nonly the hosts listed in {var}`dataDir`/remote_hosts.cfg will be allowed to\nconnect.\n\nSee also: <https://github.com/BOINC/boinc/wiki/Controlling_BOINC_remotely#remote-access>\n",
             })))),
           extraEnvPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ pkgs.virtualbox ]")),
@@ -78,17 +78,17 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         environment: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           users: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             boinc: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               group: "boinc",
               createHome: false,
               description: "BOINC Client",
@@ -96,23 +96,23 @@ export default nix.lambda((args) => (() => {
               isSystemUser: true,
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$13, boinc: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$13, boinc: nix.thunk(() => ({})) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             rules: nix.thunk(() => [nix.thunk(() => nix.str`d '${nix.sel(cfg, "dataDir")}' - boinc boinc - -`)]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             boinc: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               description: "BOINC Client",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 ExecStart: nix.thunk(() => nix.str`${fhsEnvExecutable} --dir ${nix.sel(cfg, "dataDir")} ${allowRemoteGuiRpcFlag}`),
                 User: "boinc",
                 Nice: 10n,
@@ -121,7 +121,7 @@ export default nix.lambda((args) => (() => {
           })),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$21, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$21, maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=client.ts.map

@@ -8,6 +8,6 @@ const pos$1 = nix.positions(here + "/replace-vars.nix", [["src", 36, 46], ["repl
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const replaceVarsWith = nix.arg($, "replaceVarsWith");
-  return (src) => (replacements) => nix.app(replaceVarsWith, nix.thunk(() => ({ __proto__: pos$1, src: src, replacements: replacements })));
+  return (src) => (replacements) => nix.app(replaceVarsWith, nix.thunk(() => ({ [nix.POS]: pos$1, src: src, replacements: replacements })));
 })(), formals$1);
 //# sourceMappingURL=replace-vars.ts.map

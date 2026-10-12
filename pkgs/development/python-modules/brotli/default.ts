@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const build_system = nix.thunk(() => [pkgconfig, setuptools]);
       const dontConfigure = true;
-      const env = nix.thunk(() => ({ __proto__: pos$1, USE_SYSTEM_BROTLI: 1n }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$1, USE_SYSTEM_BROTLI: 1n }));
       const buildInputs = nix.thunk(() => [brotli]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const enabledTestPaths = nix.thunk(() => ["python/tests"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/google/brotli/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
         homepage: "https://github.com/google/brotli",
         description: "Generic-purpose lossless compression algorithm",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

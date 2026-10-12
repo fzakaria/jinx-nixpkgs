@@ -33,24 +33,24 @@ export default nix.lambda((args) => (() => {
     const meta = nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "astro"))]),
       };
     })());
     const nodes = nix.thunk(() => (() => {
       const node = (i) => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         networking: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           interfaces: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             eth1: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               ipv4: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 addresses: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$2,
+                    [nix.POS]: pos$2,
                     address: nix.thunk(() => nix.str`192.168.0.${nix.builtins.toString(i)}`),
                     prefixLength: 24n,
                   })),
@@ -60,13 +60,13 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           corosync: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             enable: true,
             clusterName: "zentralwerk-network",
             nodelist: nix.thunk(() => nix.app(nix.sel(lib, "imap"), (i_1) => (name_1) => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 nodeid: i_1,
                 name: name_1,
                 ring_addrs: nix.thunk(() => [
@@ -74,28 +74,28 @@ export default nix.lambda((args) => (() => {
                 ]),
               }), nix.thunk(() => nix.builtins.attrNames(nodes)))),
           })),
-          pacemaker: nix.thunk(() => ({ __proto__: pos$9, enable: true })),
+          pacemaker: nix.thunk(() => ({ [nix.POS]: pos$9, enable: true })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           etc: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             "corosync/authkey": nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               source: nix.thunk(() => nix.builtins.toFile("authkey", "testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest")),
               mode: "0400",
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             "ha-cat": nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               description: "Highly available netcat",
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "netcat")}/bin/nc -l discard`),
               })),
             })),
@@ -103,7 +103,7 @@ export default nix.lambda((args) => (() => {
         })),
       });
       return {
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         node1: nix.thunk(() => nix.app(node, 1n)),
         node2: nix.thunk(() => nix.app(node, 2n)),
         node3: nix.thunk(() => nix.app(node, 3n)),
@@ -158,7 +158,7 @@ while True:
 next_node.log("Service migrated here!")
 `;
     })());
-    return { __proto__: pos$20, name, meta, nodes, testScript };
+    return { [nix.POS]: pos$20, name, meta, nodes, testScript };
   })();
 })(), formals$1);
 //# sourceMappingURL=pacemaker.ts.map

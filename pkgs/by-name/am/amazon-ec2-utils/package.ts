@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const util_linux = nix.arg($, "util-linux");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "amazon-ec2-utils",
       version: "2.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "amazonlinux",
           repo: "amazon-ec2-utils",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -70,11 +70,11 @@ installManPage doc/*.8
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\n$out/bin/ebsnvme-id --help\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Contains a set of utilities and settings for Linux deployments in EC2",
         homepage: "https://github.com/amazonlinux/amazon-ec2-utils",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

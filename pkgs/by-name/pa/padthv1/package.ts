@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const qt5 = nix.arg($, "qt5");
   const fftwFloat = nix.arg($, "fftwFloat");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "padthv1",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/padthv1/padthv1-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-23qiYiLQNWzzE0XKP/2uvlZbPtN1yV7x7q5O2ibYl2o=",
         })))),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         fftwFloat,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Polyphonic additive synthesizer",
         mainProgram: "padthv1_jack",
         homepage: "http://padthv1.sourceforge.net/",

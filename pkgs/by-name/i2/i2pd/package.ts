@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const upnpSupport = nix.argOr($, "upnpSupport", () => true);
   const miniupnpc = nix.arg($, "miniupnpc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "i2pd",
       version: "2.61.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PurpleI2P",
           repo: "i2pd",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       installPhase: "install -D i2pd $out/bin/i2pd\ninstall --mode=444 -D 'contrib/i2pd.service' \"$out/etc/systemd/system/i2pd.service\"\ninstallManPage 'debian/i2pd.1'\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://i2pd.website",
         description: "Minimal I2P router written in C++",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

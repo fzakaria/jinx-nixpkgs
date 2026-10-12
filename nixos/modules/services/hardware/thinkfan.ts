@@ -49,13 +49,13 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "thinkfan.yaml", nix.thunk(() => nix.sel(cfg, "settings"))));
   const thinkfan = nix.thunk(() => nix.app(nix.sel(pkgs, "thinkfan", "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       smartSupport: nix.thunk(() => nix.attr(cfg, "smartSupport")),
     }))));
   const levelType = nix.thunk(() => (() => {
     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
     const tuple = (ts) => nix.app(nix.sel(lib, "mkOptionType"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: "tuple",
         merge: nix.thunk(() => nix.sel(lib, "mergeOneOption")),
         check: (xs) => nix.app(nix.sel(lib, "all"), nix.thunk(() => nix.sel(lib, "id")), nix.thunk(() => nix.app(nix.sel(lib, "zipListsWith"), (t) => (x) => nix.app(nix.sel(t, "check"), x), ts, xs))),
@@ -70,12 +70,12 @@ export default nix.lambda((args) => (() => {
       ]));
   })());
   const sensorType = (name) => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       freeformType: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(settingsFormat, "type")))),
       options: nix.thunk(() => nix.update({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         type: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["hwmon", "atasmart", "tpacpi", "nvml"]))),
             description: nix.thunk(() => nix.str`The ${name} type, can be
 \`hwmon\` for standard ${name}s,
@@ -89,7 +89,7 @@ S.M.A.R.T (requires smartSupport to be enabled),
 `),
           })))),
         query: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             description: nix.thunk(() => nix.str`The query string used to match one or more ${name}s: can be
 a fullpath to the temperature file (single ${name}) or a fullpath
@@ -102,7 +102,7 @@ When multiple ${name}s match, the query can be restricted using the
 `),
           })))),
         indices: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             type: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
               return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.sel(nix.lookup(w_1, "ints"), "unsigned")))));
@@ -116,9 +116,9 @@ Indices start from 0.
 `),
           })))),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(name, "sensor")), nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           correction: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "int")))));
@@ -149,31 +149,31 @@ instead of a single declaration like:
 :::
 `;
   return {
-    __proto__: pos$35,
+    [nix.POS]: pos$35,
     options: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       services: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         thinkfan: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable thinkfan, a fan control program.\n\n::: {.note}\nThis module targets IBM/Lenovo thinkpads by default, for\nother hardware you will have configure it more carefully.\n:::\n",
               relatedPackages: nix.thunk(() => ["thinkfan"]),
             })))),
           smartSupport: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to build thinkfan with S.M.A.R.T. support to read temperatures\ndirectly from hard disks.\n",
             })))),
           sensors: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(sensorType, "sensor")))),
               default: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$12, type: "tpacpi", query: "/proc/acpi/ibm/thermal" })),
+                nix.thunk(() => ({ [nix.POS]: pos$12, type: "tpacpi", query: "/proc/acpi/ibm/thermal" })),
               ]),
               description: nix.thunk(() => nix.str`List of temperature sensors thinkfan will monitor.
 
@@ -181,10 +181,10 @@ ${nix.app(syntaxNote, "thermal")}
 `),
             })))),
           fans: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(sensorType, "fan")))),
               default: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$14, type: "tpacpi", query: "/proc/acpi/ibm/fan" })),
+                nix.thunk(() => ({ [nix.POS]: pos$14, type: "tpacpi", query: "/proc/acpi/ibm/fan" })),
               ]),
               description: nix.thunk(() => nix.str`List of fans thinkfan will control.
 
@@ -192,7 +192,7 @@ ${nix.app(syntaxNote, "fan")}
 `),
             })))),
           levels: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), levelType)),
               default: nix.thunk(() => [
                 nix.thunk(() => [0n, 0n, 55n]),
@@ -206,14 +206,14 @@ ${nix.app(syntaxNote, "fan")}
               description: "[LEVEL LOW HIGH]\n\nLEVEL is the fan level to use: it can be an integer (0-7 with thinkpad_acpi),\n\"level auto\" (to keep the default firmware behavior), \"level full-speed\" or\n\"level disengaged\" (to run the fan as fast as possible).\nLOW is the temperature at which to step down to the previous level.\nHIGH is the temperature at which to step up to the next level.\nAll numbers are integers.\n",
             })))),
           extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["-b", "0"]),
               description: "A list of extra command line arguments to pass to thinkfan.\nCheck the {manpage}`thinkfan(1)` manpage for available arguments.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(settingsFormat, "type")))),
               default: nix.thunk(() => ({})),
               description: "Thinkfan settings. Use this option to configure thinkfan\nsettings not exposed in a NixOS option or to bypass one.\nBefore changing this, read the {manpage}`thinkfan.conf(5)`\nmanpage and take a look at the example config file at\n<https://github.com/vmatare/thinkfan/blob/master/examples/thinkfan.yaml>\n",
@@ -222,14 +222,14 @@ ${nix.app(syntaxNote, "fan")}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$34,
-        environment: nix.thunk(() => ({ __proto__: pos$22, systemPackages: nix.thunk(() => [thinkfan]) })),
+        [nix.POS]: pos$34,
+        environment: nix.thunk(() => ({ [nix.POS]: pos$22, systemPackages: nix.thunk(() => [thinkfan]) })),
         services: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           thinkfan: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (k) => (v) => nix.app(nix.sel(lib, "mkDefault"), v), nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 sensors: nix.thunk(() => nix.builtins.map(sensorToConf, nix.thunk(() => nix.sel(cfg, "sensors")))),
                 fans: nix.thunk(() => nix.builtins.map(sensorToConf, nix.thunk(() => nix.sel(cfg, "fans")))),
                 levels: nix.thunk(() => nix.sel(cfg, "levels")),
@@ -237,30 +237,30 @@ ${nix.app(syntaxNote, "fan")}
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           packages: nix.thunk(() => [thinkfan]),
           services: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             thinkfan: nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               environment: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 THINKFAN_ARGS: nix.thunk(() => nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.concat(["-c", configFile], nix.sel(cfg, "extraArgs"))))),
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 Restart: "on-failure",
                 RestartSec: "30s",
                 PrivateNetwork: true,
               })),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
             })),
-            "thinkfan-wakeup": nix.thunk(() => ({ __proto__: pos$29, wantedBy: nix.thunk(() => ["sleep.target"]) })),
-            "thinkfan-sleep": nix.thunk(() => ({ __proto__: pos$30, wantedBy: nix.thunk(() => ["sleep.target"]) })),
+            "thinkfan-wakeup": nix.thunk(() => ({ [nix.POS]: pos$29, wantedBy: nix.thunk(() => ["sleep.target"]) })),
+            "thinkfan-sleep": nix.thunk(() => ({ [nix.POS]: pos$30, wantedBy: nix.thunk(() => ["sleep.target"]) })),
           })),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           extraModprobeConfig: "options thinkpad_acpi experimental=1 fan_control=1",
         })),
       })))),

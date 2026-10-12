@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const ubootOdroidXU3 = nix.arg($, "ubootOdroidXU3");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "odroid-xu3-bootloader",
       version: "unstable-2015-12-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hardkernel",
           repo: "u-boot",
           rev: "fe2f831fd44a4071f58a42f260164544697aa666",
@@ -40,7 +40,7 @@ sed -i \\
   $out/bin/sd_fuse-xu3
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributableFirmware")),
         description: "Secure boot enabled boot loader for ODROID-XU{3,4}",

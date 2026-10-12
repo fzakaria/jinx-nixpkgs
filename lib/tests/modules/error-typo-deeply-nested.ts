@@ -26,38 +26,38 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         nginx: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             })))),
           virtualHosts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     options: nix.thunk(() => ({
-                      __proto__: pos$6,
+                      [nix.POS]: pos$6,
                       enableSSL: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$2,
+                          [nix.POS]: pos$2,
                           default: false,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         })))),
                       ssl: nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         certificate: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$3,
+                            [nix.POS]: pos$3,
                             default: "",
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           })))),
                         certificateKey: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$4,
+                            [nix.POS]: pos$4,
                             default: "",
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           })))),
@@ -70,16 +70,16 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       services: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         nginx: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           virtualHosts: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             "example.com": nix.thunk(() => ({
-              __proto__: pos$13,
-              ssl: nix.thunk(() => ({ __proto__: pos$12, certficate: "/path/to/cert" })),
+              [nix.POS]: pos$13,
+              ssl: nix.thunk(() => ({ [nix.POS]: pos$12, certficate: "/path/to/cert" })),
             })),
           })),
         })),

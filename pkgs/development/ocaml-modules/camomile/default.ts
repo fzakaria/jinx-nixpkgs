@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const dune_site = nix.arg($, "dune-site");
   const version = nix.argOr($, "version", () => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.08")) ? "2.0.0" : "1.0.2"));
   const params = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     "1.0.2": nix.thunk(() => nix.app(nix.sel(lib, "throwIf"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.0")), nix.thunk(() => nix.str`camomile 1 is not available for OCaml ${nix.sel(ocaml, "version")}`), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "yoriyuki",
             repo: "camomile",
             rev: version,
@@ -40,9 +40,9 @@ export default nix.lambda((args) => (() => {
 `),
       })))),
     "2.0.0": nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "ocaml-community",
           repo: "camomile",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -53,11 +53,11 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   return nix.app(buildDunePackage, nix.thunk(() => nix.update(nix.sel(params, nix.key(nix.str`${version}`)), {
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "camomile",
       version: version,
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://github.com/ocaml-community/Camomile",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const backend = nix.argOr($, "backend", () => "mysql");
   nix.assert_(nix.app(nix.sel(lib, "assertOneOf"), "backend", backend, nix.thunk(() => ["mysql", "postgres", "sqlite"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/kde/gear/akonadi/default.nix:15:1");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "akonadi",
       patches: nix.thunk(() => [nix.path(here, "./ignore-mysql-config-timestamp.patch")]),
       extraCmakeFlags: nix.thunk(() => nix.concat([

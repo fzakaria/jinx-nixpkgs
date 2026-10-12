@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "nginx_exporter";
       const version = "1.5.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nginx",
           repo: "nginx-prometheus-exporter",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -38,14 +38,14 @@ export default nix.lambda((args) => (() => {
         ];
       })());
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { __proto__: pos$2, nginx: nix.thunk(() => nix.attr(from, "nginx")) };
+          return { [nix.POS]: pos$2, nginx: nix.thunk(() => nix.attr(from, "nginx")) };
         })()),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "NGINX Prometheus Exporter for NGINX and NGINX Plus",
         mainProgram: "nginx-prometheus-exporter",
         homepage: "https://github.com/nginx/nginx-prometheus-exporter",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
           ];
         })()),
       }));
-      return { __proto__: pos$5, pname, version, src, vendorHash, ldflags, passthru, meta };
+      return { [nix.POS]: pos$5, pname, version, src, vendorHash, ldflags, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

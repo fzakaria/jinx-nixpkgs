@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const fmt_9 = nix.arg($, "fmt_9");
   const libusb1 = nix.arg($, "libusb1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kryoflux",
       version: "3.50",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.kryoflux.com/download/kryoflux_${nix.sel(finalAttrs, "version")}_linux_r2.tar.gz`),
           hash: "sha256-qGFXu0FkmCB7cffOqNiOluDUww19MA/UuEVElgmSd3o=",
         })))),
@@ -48,7 +48,7 @@ echo 'ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="03eb", ATTR{idProduct}==
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Software UI to accompany KryoFlux, the renowned forensic floppy controller",
         homepage: "https://kryoflux.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

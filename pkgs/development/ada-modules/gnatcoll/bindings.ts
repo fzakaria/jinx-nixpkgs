@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const ncurses = nix.arg($, "ncurses");
   const libsFor = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     iconv: nix.thunk(() => [libiconv]),
     gmp: nix.thunk(() => [gmp]),
     lzma: nix.thunk(() => [xz]),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.str`gnatcoll-${component}`);
       const version = "25.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "AdaCore",
           repo: "gnatcoll-bindings",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -57,7 +57,7 @@ ${nix.sel(python3, "interpreter")} ${component}/setup.py install --prefix $out
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GNAT Components Collection - Bindings to C libraries",
         homepage: "https://github.com/AdaCore/gnatcoll-bindings",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -65,7 +65,7 @@ runHook postInstall
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "sternenseemann"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

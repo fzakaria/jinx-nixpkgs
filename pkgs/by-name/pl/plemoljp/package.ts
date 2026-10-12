@@ -18,21 +18,21 @@ export default nix.lambda((args) => (() => {
   const plemoljp_hs = nix.arg($, "plemoljp-hs");
   const plemoljp_nf = nix.arg($, "plemoljp-nf");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "plemoljp",
       version: "3.1.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/yuru7/PlemolJP/releases/download/v${nix.sel(finalAttrs, "version")}/PlemolJP_v${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-X4DUAU7uicWtm8o3L9HmfU9By1YMnnjVrVU0iyw273A=",
         })))),
       installPhase: "runHook preInstall\n\ninstall -Dm444 PlemolJP/*.ttf -t $out/share/fonts/truetype/plemoljp\ninstall -Dm444 PlemolJP35/*.ttf -t $out/share/fonts/truetype/plemoljp-35\ninstall -Dm444 PlemolJPConsole/*.ttf -t $out/share/fonts/truetype/plemoljp-console\ninstall -Dm444 PlemolJP35Console/*.ttf -t $out/share/fonts/truetype/plemoljp-35console\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "plemoljp-hs": plemoljp_hs,
         "plemoljp-nf": plemoljp_nf,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => [
               "--version-regex=^v([0-9.]+)$",
               "--subpackage",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Composite font of IBM Plex Mono and IBM Plex Sans JP",
         homepage: "https://github.com/yuru7/PlemolJP",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

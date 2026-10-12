@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const qttools = nix.arg($, "qttools");
   const gperf = nix.arg($, "gperf");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kcodecs",
       extraNativeBuildInputs: nix.thunk(() => [qttools, gperf]),
     })));

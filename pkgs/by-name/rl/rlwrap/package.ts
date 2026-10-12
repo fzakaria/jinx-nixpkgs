@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libptytty = nix.arg($, "libptytty");
   const readline = nix.arg($, "readline");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rlwrap",
       version: "0.48",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hanslub42",
           repo: "rlwrap",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, perl]),
       buildInputs: nix.thunk(() => [libptytty, readline]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-Wno-error=implicit-function-declaration")),
       })),
       preBuild: "touch src/completion.rb\ntouch src/completion.c\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Readline wrapper for console programs",
         homepage: "https://github.com/hanslub42/rlwrap",
         changelog: nix.thunk(() => nix.str`https://github.com/hanslub42/rlwrap/raw/${nix.sel(finalAttrs, "src", "rev")}/NEWS`),

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pihole_ftl = nix.arg($, "pihole-ftl");
   const procps = nix.arg($, "procps");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pihole-web",
       version: "6.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pi-hole",
           repo: "web",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,9 +30,9 @@ export default nix.lambda((args) => (() => {
         })))),
       propagatedBuildInputs: nix.thunk(() => [pihole, pihole_ftl, procps]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/share\ncp -r -t $out/share *.lp img/ scripts/ style/ vendor/\n\nmkdir -p $out/share/doc/$name/\ncp README.md $out/share/doc/$name/\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, tests: nix.thunk(() => nix.sel(nixosTests, "pihole-ftl")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, tests: nix.thunk(() => nix.sel(nixosTests, "pihole-ftl")) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Pi-hole web dashboard displaying stats and more",
         homepage: "https://github.com/pi-hole/web",
         changelog: nix.thunk(() => nix.str`https://github.com/pi-hole/web/releases/tag/v${nix.sel(finalAttrs, "version")}`),

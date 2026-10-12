@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
   const nvidia_ml_py = nix.arg($, "nvidia-ml-py");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const torch_memory_saver = nix.arg($, "torch-memory-saver");
-  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ __proto__: pos$1, stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
-      __proto__: pos$8,
+  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
+      [nix.POS]: pos$8,
       pname: "torch-memory-saver",
       version: "0.0.9.post1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "fzyzcjy",
           repo: "torch_memory_saver",
           rev: "0c88c358824bd304daeec34ac792a55e3fa2c1f2",
@@ -42,10 +42,10 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       nativeBuildInputs: nix.thunk(() => [autoAddDriverRunpath]),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         TMS_CUDA_MAJOR: nix.thunk(() => nix.sel(cudaPackages, "cudaMajorVersion")),
         CUDA_HOME: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "cudatoolkit-joined",
             paths: nix.thunk(() => [
               nix.thunk(() => (nix.asBool(nix.app(nix.sel(cudaPackages, "cudaAtLeast"), "13.0")) ? nix.sel(cudaPackages, "cuda_crt") : nix.sel(cudaPackages, "cuda_nvcc"))),
@@ -59,15 +59,15 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       nativeCheckInputs: nix.thunk(() => [nvidia_ml_py, pytestCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         gpuCheck: nix.thunk(() => nix.app(nix.sel(torch_memory_saver, "overridePythonAttrs"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             requiredSystemFeatures: nix.thunk(() => ["cuda"]),
             doCheck: true,
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Library that allows tensor memory to be temporarily released and resumed later",
         homepage: "https://github.com/fzyzcjy/torch_memory_saver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

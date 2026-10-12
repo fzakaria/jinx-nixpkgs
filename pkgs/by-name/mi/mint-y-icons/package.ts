@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mint-y-icons";
       const version = "1.9.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linuxmint",
           repo: "mint-y-icons",
           rev: version,
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const dontDropIconThemeCache = true;
       const installPhase = "runHook preInstall\n\nmkdir -p $out\nmv usr/share $out\n\nfor theme in $out/share/icons/*; do\n  gtk-update-icon-cache $theme\ndone\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/linuxmint/mint-y-icons",
         description: "Mint-Y icon theme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "cinnamon"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

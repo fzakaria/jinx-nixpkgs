@@ -47,31 +47,31 @@ export default nix.lambda((args) => (() => {
       "--add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED",
     ], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "initialJavaHeapSize"), null)), nix.thunk(() => nix.str`-Xms${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "initialJavaHeapSize")))}m`)), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "maximumJavaHeapSize"), null)), nix.thunk(() => nix.str`-Xmx${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "maximumJavaHeapSize")))}m`)), nix.concat(nix.sel(cfg, "extraJvmOptions"), ["-jar", nix.thunk(() => nix.str`${stateDir}/lib/ace.jar`)])))))));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         unifi: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "UniFi controller service")),
           jrePackage: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
               default: nix.thunk(() => nix.selOr(cfg, () => nix.force(jdk25_headless), "unifiPackage", "passthru", "jrePackage")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "unifiPackage.passthru.jrePackage")),
               description: "Which Java runtime to use.\n",
             })))),
           unifiPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "unifi", nix.thunk(() => ({})))),
-          mongodbPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "mongodb", nix.thunk(() => ({ __proto__: pos$2, default: "mongodb-7_0" })))),
+          mongodbPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "mongodb", nix.thunk(() => ({ [nix.POS]: pos$2, default: "mongodb-7_0" })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether or not to open the minimum required ports on the firewall.\n\nThis is necessary to allow firmware upgrades and device discovery to\nwork. For remote login, you should additionally open (or forward) port\n8443.\n",
             })))),
           initialJavaHeapSize: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "int")));
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
               description: "Set the initial heap size for the JVM in MB. If this option isn't set, the\nJVM will decide this value at runtime.\n",
             })))),
           maximumJavaHeapSize: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "int")));
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
               description: "Set the maximum heap size for the JVM in MB. If this option isn't set, the\nJVM will decide this value at runtime.\n",
             })))),
           extraJvmOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -104,47 +104,47 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             assertion: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(config, "system", "stateVersion")), "24.11")) || nix.asBool((nix.asBool(nix.lt(nix.sel(options, "services", "unifi", "unifiPackage", "highestPrio"), nix.sel(nix.app(nix.sel(lib, "mkOptionDefault"), nix.thunk(() => ({}))), "priority"))) && nix.asBool(nix.lt(nix.sel(options, "services", "unifi", "mongodbPackage", "highestPrio"), nix.sel(nix.app(nix.sel(lib, "mkOptionDefault"), nix.thunk(() => ({}))), "priority"))))))),
             message: "Support for UniFi < 8 has been dropped; please explicitly set\n`services.unifi.unifiPackage` and `services.unifi.mongodbPackage`.\n\nNote that the previous default MongoDB version was 5.0 and MongoDB\nonly supports migrating one major version at a time; therefore, you\nmay wish to set `services.unifi.mongodbPackage = pkgs.mongodb-6_0;`\nand activate your configuration before upgrading again to the default\n`mongodb-7_0` supported by `unifi`.\n\nFor more information, see the MongoDB upgrade notes:\n<https://www.mongodb.com/docs/manual/release-notes/7.0-upgrade-standalone/#upgrade-recommendations-and-checklists>\n",
           })),
         ]),
         users: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           users: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             unifi: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               isSystemUser: true,
               group: "unifi",
               description: "UniFi controller daemon user",
               home: nix.thunk(() => nix.str`${stateDir}`),
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$13, unifi: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$13, unifi: nix.thunk(() => ({})) })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               allowedTCPPorts: nix.thunk(() => [8080n, 8880n, 8843n, 6789n]),
               allowedUDPPorts: nix.thunk(() => [3478n, 10001n]),
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           services: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             unifi: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               description: "UniFi controller daemon",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               environment: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 LD_LIBRARY_PATH: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "stdenv")), null);
                   return nix.str`${nix.sel(nix.lookup(w, "cc"), "cc", "lib")}/lib`;
@@ -155,7 +155,7 @@ export default nix.lambda((args) => (() => {
                 nix.thunk(() => nix.sel(cfg, "mongodbPackage")),
               ]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 Type: "notify",
                 ExecStart: nix.thunk(() => nix.str`${cmd} start`),
                 ExecStop: nix.thunk(() => [

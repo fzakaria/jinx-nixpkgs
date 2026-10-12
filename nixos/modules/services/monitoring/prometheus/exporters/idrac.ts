@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const configFile = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "configurationPath"), null)) ? nix.sel(cfg, "configurationPath") : nix.app(nix.sel(pkgs, "writeText"), "idrac.yml", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.sel(cfg, "configuration")))))));
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     port: 9348n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       configurationPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => (() => {
             const w = nix.withScope(types, null);
             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -40,20 +40,20 @@ export default nix.lambda((args) => (() => {
           description: "Path to the service's config file. This path can either be a computed path in /nix/store or a path in the local filesystem.\n\nThe config file should NOT be stored in /nix/store as it will contain passwords and/or keys in plain text.\n\nMutually exclusive with `configuration` option.\n\nConfiguration reference: <https://github.com/mrlhansen/idrac_exporter/#configuration>\n",
         })))),
       configuration: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "attrs")))),
           description: "Configuration for iDRAC exporter, as a nix attribute set.\n\nConfiguration reference: <https://github.com/mrlhansen/idrac_exporter/#configuration>\n\nMutually exclusive with `configurationPath` option.\n",
           default: null,
           example: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             timeout: 10n,
             retries: 1n,
             hosts: nix.thunk(() => ({
-              __proto__: pos$3,
-              default: nix.thunk(() => ({ __proto__: pos$2, username: "username", password: "password" })),
+              [nix.POS]: pos$3,
+              default: nix.thunk(() => ({ [nix.POS]: pos$2, username: "username", password: "password" })),
             })),
             metrics: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               system: true,
               sensors: true,
               power: true,
@@ -65,9 +65,9 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         LoadCredential: nix.thunk(() => nix.str`configFile:${configFile}`),
         ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "prometheus-idrac-exporter")}/bin/idrac_exporter -config %d/configFile`),
         Environment: nix.thunk(() => [

@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const domain = "blueprints_updater";
       const version = "2.15.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: owner,
           repo: "blueprints-updater",
           tag: version,
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const disabledTests = nix.thunk(() => ["test_compatibility_main_configures_global_uv_before_verification"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Automatically update Home Assistant blueprints via native update entities",
         homepage: "https://github.com/luuquangvu/blueprints-updater/",
         changelog: nix.thunk(() => nix.str`https://github.com/luuquangvu/blueprints-updater/releases/tag/${nix.sel(src, "tag")}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         owner,
         domain,
         version,

@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const libxdamage = nix.arg($, "libxdamage");
   const xwininfo = nix.arg($, "xwininfo");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "byzanz",
       version: "0.2.1-unstable-2016-03-12",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://gitlab.gnome.org/Archive/byzanz",
           rev: "81235d235d12c9687897f7fc6ec0de1feaed6623",
           hash: "sha256-3DUwXCPBAmeCRlDkiPUgwNyBa6bCvC/TLguMCK3bo4E=",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preBuild: "./autogen.sh --prefix=$out\n",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.concatStringsSep(" ", nix.thunk(() => [
             "-Wno-error=deprecated-declarations",
             "-Wno-error=incompatible-pointer-types",
@@ -66,7 +66,7 @@ cp ${gettext}/share/gettext/m4/nls.m4 macros/
         ];
       })())),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool to record a running X desktop to an animation suitable for presentation in a web browser",
         homepage: "https://gitlab.gnome.org/Archive/byzanz",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

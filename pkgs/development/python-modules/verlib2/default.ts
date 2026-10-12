@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "26.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-B0Cjs1dVqdjruTP/zpifN3YRP+MZq2LfX6IPfBQ0PVg=",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [setuptools, versioningit]);
       const pythonImportsCheck = nix.thunk(() => ["verlib2"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Standalone variant of packaging.version, without anything else",
         homepage: "https://pypi.org/project/verlib2/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

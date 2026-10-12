@@ -23,52 +23,52 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "dvb-apps",
       version: "1.1.1-unstable-2014-03-21",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://www.linuxtv.org/hg/dvb-apps/archive/3d43b280298c.tar.bz2",
           hash: "sha256-854vDr7X4yvOg1IgYq1NQU9n/M1d8bZHYYUkSX4V4Fc=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/media-tv/linuxtv-dvb-apps/files/linuxtv-dvb-apps-glibc-2.31.patch?id=ec6d38022bd905cb5460d4812e52434fd1f9663c",
             hash: "sha256-zSbbKSJgW4L983DR0GVXtgAHK6ILOQC3Gz2iGnmWOp8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/media-tv/linuxtv-dvb-apps/files/linuxtv-dvb-apps-no-ca_set_pid.patch?id=ec6d38022bd905cb5460d4812e52434fd1f9663c",
             hash: "sha256-GZunNYlhktalPOZ4ZST1MwooBvdDGA6ckscx/7mx8ok=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/media-tv/linuxtv-dvb-apps/files/linuxtv-dvb-apps-1.1.1.20100223-alevt.patch?id=ec6d38022bd905cb5460d4812e52434fd1f9663c",
             hash: "sha256-+j+tP8O3mho+gcsDPzQUJaE39ZAgimMAJoRP1J1HrBk=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/media-tv/linuxtv-dvb-apps/files/linuxtv-dvb-apps-1.1.1.20100223-ldflags.patch?id=ec6d38022bd905cb5460d4812e52434fd1f9663c",
             hash: "sha256-jrRE1yySLbQWbF+SaugFN8VuEIfveSvjR0nKpmKffpQ=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/media-tv/linuxtv-dvb-apps/files/linuxtv-dvb-apps-1.1.1.20100223-perl526.patch?id=ec6d38022bd905cb5460d4812e52434fd1f9663c",
             hash: "sha256-zIROx0HEvtZqvNBLlKp3aI3S2CihuS6l/OWf6WFFCrY=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/media-tv/linuxtv-dvb-apps/files/linuxtv-dvb-apps-1.1.1.20140321-dvbdate.patch?id=ec6d38022bd905cb5460d4812e52434fd1f9663c",
             hash: "sha256-dLPlscdDOd7Kq+2sEhgJ/PBY1zN/0/fh3TU6JOELaYw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/media-tv/linuxtv-dvb-apps/files/linuxtv-dvb-apps-1.1.1.20140321-gcc10.patch?id=ec6d38022bd905cb5460d4812e52434fd1f9663c",
             hash: "sha256-034TYxH1qHcdkwVxuAcNHORfBWhw/k8P+11QAc3jp74=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             url: "https://bugs.debian.org/cgi-bin/bugreport.cgi?att=1;bug=779520;filename=bug779520.patch;msg=17",
             hash: "sha256-UL5lKDfloXvngsabnslpVXbe/dmt4dzVK5W8JkIieps=",
           })))),
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => ["prefix=$(out)"]),
       dontConfigure: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "Linux DVB API applications and utilities",
         homepage: "https://linuxtv.org/",
         maintainers: nix.thunk(() => (() => {

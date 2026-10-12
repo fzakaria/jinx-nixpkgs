@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "leo-lang",
       version: "3.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ProvableHQ",
           repo: "leo",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "--version",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       checkFlags: nix.thunk(() => [
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         "--skip=cli::cli::tests::relaxed_struct_shadowing_run_test",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Functional, statically-typed programming language built for writing private applications",
         homepage: "https://github.com/ProvableHQ/leo",
         changelog: nix.thunk(() => nix.str`https://github.com/ProvableHQ/leo/releases/tag/v${nix.sel(finalAttrs, "version")}`),

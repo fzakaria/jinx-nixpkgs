@@ -19,21 +19,21 @@ export default nix.lambda((args) => (() => {
   const numkong = nix.arg($, "numkong");
   const stdenv = nix.arg($, "stdenv");
   const sqliteSrc = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://sqlite.org/2024/sqlite-amalgamation-3450200.zip",
       hash: "sha256-nkDMIiTHjeiopPbGcviQekgSOYifuNM/kr07IHgQvoI=",
     }))));
   const from = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "extensions"));
   const sharedLibrary = nix.thunk(() => nix.attr(from, "sharedLibrary"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "usearch",
       version: "2.26.0",
       outputs: nix.thunk(() => ["out", "lib", "dev"]),
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "unum-cloud",
           repo: "USearch",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -71,7 +71,7 @@ done
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "USEARCH_BUILD_BENCH_CPP", false)),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Smaller & Faster Single-File Vector Search Engine from Unum",
         homepage: "https://github.com/unum-cloud/USearch/",
         changelog: nix.thunk(() => nix.str`https://github.com/unum-cloud/USearch/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

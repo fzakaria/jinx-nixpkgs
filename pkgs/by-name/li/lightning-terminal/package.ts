@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lightning-terminal";
       const version = "0.17.0-alpha";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lightninglabs",
           repo: "lightning-terminal",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -93,22 +93,22 @@ ldflags+=" -X github.com/lightningnetwork/lnd/build.CommitHash=$(cat COMMIT)"
       const versionCheckProgram = nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/litcli`);
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "litd-app": nix.thunk(() => nix.app(runCommandWith, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               name: "test-litd-app",
               derivationArgs: nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 nativeBuildInputs: nix.thunk(() => [curl, lightning_terminal]),
               })),
             })), "litd \\\n  --uipassword=12345678 \\\n  --insecure-httplisten=127.0.0.1:8080 \\\n  --httpslisten= &\nsleep 2\nGETindexHTTPCode=$(curl -o /dev/null -w \"%{http_code}\" -Lvs 127.0.0.1:8080/index.html)\nif [ \"$GETindexHTTPCode\" = 200 ]; then\n  touch $out\nfi\n")),
         })),
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
-            nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$5, "rev-prefix": "v", ignoredVersions: ".*rc.*" })))),
+            nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$5, "rev-prefix": "v", ignoredVersions: ".*rc.*" })))),
             nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               command: nix.thunk(() => [
                 nix.thunk(() => nix.app(writeShellScript, "update-hashes.sh", nix.thunk(() => nix.str`set -euxo pipefail
 
@@ -139,12 +139,12 @@ fi
           ]))),
       }));
       const lightning_app = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           pname: "lightning-app",
           src: nix.thunk(() => nix.str`${src}/app`),
           version: "0.0.1",
           yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               yarnLock: nix.thunk(() => nix.str`${src}/app/yarn.lock`),
               hash: "sha256-EJwrnsIBwLKDI3mF54EjLvaKu1PYKKLXed9SKKwUZNA=",
             })))),
@@ -154,7 +154,7 @@ fi
           installPhase: "mkdir -p $out\ncp -r build/* $out/\n",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "All-in-one Lightning node management tool that includes LND, Loop, Pool, Faraday, and Tapd",
         homepage: "https://github.com/lightninglabs/lightning-terminal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -166,7 +166,7 @@ fi
         mainProgram: "litcli",
       }));
       return {
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         pname,
         version,
         src,

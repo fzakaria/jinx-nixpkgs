@@ -21,23 +21,23 @@ export default nix.lambda((args) => (() => {
       const pname = "fluidd";
       const version = "1.36.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fluidd-core",
           repo: "fluidd",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-nf0H1yk+BczzvSMw5mcXz6LfcvyMF5q4teYBtwsrLOk=",
         }))));
       const patches = nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-version.patch"), nix.thunk(() => ({ __proto__: pos$2, version: version })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-version.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, version: version })))),
       ]);
       const npmDepsHash = "sha256-uyrfPXm+bIjjKn4eABlfNowYzvEME0ahVvwlM9+e2Kc=";
       const installPhase = "mkdir -p $out/share/fluidd\ncp -r dist $out/share/fluidd/htdocs\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, fluidd: nix.thunk(() => nix.attr(nixosTests, "fluidd")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, fluidd: nix.thunk(() => nix.attr(nixosTests, "fluidd")) })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Klipper web interface",
         homepage: "https://docs.fluidd.xyz",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

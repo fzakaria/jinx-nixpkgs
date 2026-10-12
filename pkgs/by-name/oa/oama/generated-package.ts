@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const warp = nix.arg($, "warp");
   const yaml = nix.arg($, "yaml");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "oama",
       version: "0.22.0",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://github.com/pdobsan/oama.git",
           sha256: "1lasr8psfsgc43in6lgaf7byvmdvanhg7idxijz504z6ga7v0pnj",
           rev: "e419ef10ca4feacf4818c5cd9bd5e617f7ee2ee7",

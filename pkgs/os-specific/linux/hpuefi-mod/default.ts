@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const kernelModuleMakeFlags = nix.arg($, "kernelModuleMakeFlags");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hpuefi-mod",
       version: "3.05",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://ftp.hp.com/pub/softpaq/sp150501-151000/sp150953.tgz",
           hash: "sha256-ofzqu5Y2g+QU0myJ4SF39ZJGXH1zXzX1Ys2FhXVTQKE=",
           stripRoot: false,
@@ -37,7 +37,7 @@ cd hpuefi-mod-${nix.sel(finalAttrs, "version")}
       prePatch: "substituteInPlace \"Makefile\" \\\n  --replace-fail depmod \\#\n",
       postPatch: "substituteInPlace hpuefi.h \\\n  --replace-fail '&((p)->flags)' '(unsigned long *)&((p)->flags)'\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://ftp.hp.com/pub/caps-softpaq/cmit/linuxtools/HP_LinuxTools.html",
         description: "Kernel module for managing BIOS settings and updating BIOS firmware on supported HP computers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

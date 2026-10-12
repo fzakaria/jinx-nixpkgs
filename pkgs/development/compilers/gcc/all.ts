@@ -27,10 +27,10 @@ export default nix.lambda((args) => (() => {
     const atLeast = nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), majorMinorVersion));
     const attrName = nix.thunk(() => nix.str`gcc${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), majorMinorVersion)}`);
     const pkg = nix.thunk(() => nix.app(nix.sel(lib, "lowPrio"), nix.thunk(() => nix.app(wrapCC, nix.thunk(() => nix.app(callPackage, nix.path(here, "./default.nix"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             noSysDirs: noSysDirs,
             majorMinorVersion: majorMinorVersion,
-            _systemInfo: nix.thunk(() => ({ __proto__: pos$1, buildIsHost: buildIsHost, hostIsTarget: hostIsTarget })),
+            _systemInfo: nix.thunk(() => ({ [nix.POS]: pos$1, buildIsHost: buildIsHost, hostIsTarget: hostIsTarget })),
             reproducibleBuild: true,
             profiledCompiler: false,
             libcCross: nix.thunk(() => (nix.asBool(!nix.asBool(buildIsTarget)) ? nix.selOr(targetPackages, () => nix.sel(pkgs, "libc"), "libc") : null)),

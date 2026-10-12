@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const xz = nix.arg($, "xz");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       core: "pcsx2",
       version: "0-unstable-2026-09-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libretro",
           repo: "ps2",
           rev: "20e014fc24f68b6ac2a479316197b5472440988a",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       makefile: "Makefile",
       preInstall: "cd bin",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Port of PCSX2 to libretro",
         homepage: "https://github.com/libretro/ps2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

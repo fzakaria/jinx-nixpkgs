@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tthsum",
       version: "1.3.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://tthsum.devs.nu/pkg/tthsum-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "0z6jq8lbg9rasv98kxfs56936dgpgzsg3yc9k52878qfw1l2bp59",
         })))),
       installPhase: "mkdir -p $out/bin $out/share/man/man1\ncp share/tthsum.1.gz $out/share/man/man1\ncp obj-unix/tthsum $out/bin\n",
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Md5sum-alike program that works with Tiger/THEX hashes",
         longDescription: "tthsum generates or checks TTH checksums (root of the THEX hash\ntree). The Merkle Hash Tree, invented by Ralph Merkle, is a hash\nconstruct that exhibits desirable properties for verifying the\nintegrity of files and file subranges in an incremental or\nout-of-order fashion. tthsum uses the Tiger hash algorithm for\nboth the internal and the leaf nodes.\n\nThe specification of the Tiger hash algorithm is at:\nhttp://www.cs.technion.ac.il/~biham/Reports/Tiger/\n\nThe specification of the THEX algorithm is at:\nhttp://adc.sourceforge.net/draft-jchapweske-thex-02.html\n",

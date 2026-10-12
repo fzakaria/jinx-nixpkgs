@@ -35,51 +35,51 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const packageOverrides = nix.argOr($, "packageOverrides", () => (self) => (super$) => ({}));
   const py = nix.thunk(() => nix.app(nix.sel(python313, "override"), nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       self: py,
       packageOverrides: nix.thunk(() => nix.app(nix.sel(lib, "foldr"), nix.thunk(() => nix.sel(lib, "composeExtensions")), (self) => (super$) => ({}), nix.thunk(() => [
           (self) => (super$) => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             "octoprint-filecheck": nix.thunk(() => nix.app(nix.sel(self, "buildPythonPackage"), nix.thunk(() => (() => {
                 const pname = "OctoPrint-FileCheck";
                 const version = "2025.7.23";
                 const format = "setuptools";
                 const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                    __proto__: pos$1,
+                    [nix.POS]: pos$1,
                     owner: "OctoPrint",
                     repo: "OctoPrint-FileCheck",
                     rev: version,
                     hash: "sha256-Y3JVfbe+bZz2t65OqdjvVVqTSa0VUPoCaxvE+zQ+Qts=",
                   }))));
                 const doCheck = false;
-                return { __proto__: pos$2, pname, version, format, src, doCheck };
+                return { [nix.POS]: pos$2, pname, version, format, src, doCheck };
               })()))),
           }),
           (self) => (super$) => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             "octoprint-firmwarecheck": nix.thunk(() => nix.app(nix.sel(self, "buildPythonPackage"), nix.thunk(() => (() => {
                 const pname = "OctoPrint-FirmwareCheck";
                 const version = "2025.7.23";
                 const format = "setuptools";
                 const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     owner: "OctoPrint",
                     repo: "OctoPrint-FirmwareCheck",
                     rev: version,
                     hash: "sha256-QPchpyeotB5IKbfES74CJlhw3sz8Q1df/+n5dpbrHSs=",
                   }))));
                 const doCheck = false;
-                return { __proto__: pos$5, pname, version, format, src, doCheck };
+                return { [nix.POS]: pos$5, pname, version, format, src, doCheck };
               })()))),
           }),
           (self) => (super$) => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             "octoprint-pisupport": nix.thunk(() => nix.app(nix.sel(self, "buildPythonPackage"), nix.thunk(() => (() => {
                 const pname = "OctoPrint-PiSupport";
                 const version = "2025.7.23";
                 const format = "setuptools";
                 const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     owner: "OctoPrint",
                     repo: "OctoPrint-PiSupport",
                     rev: version,
@@ -89,17 +89,17 @@ export default nix.lambda((args) => (() => {
                 const postPatch = nix.thunk(() => nix.str`substituteInPlace octoprint_pi_support/__init__.py \\
   --replace /usr/bin/vcgencmd ${nix.sel(self, "pkgs", "libraspberrypi")}/bin/vcgencmd
 `);
-                return { __proto__: pos$8, pname, version, format, src, doCheck, postPatch };
+                return { [nix.POS]: pos$8, pname, version, format, src, doCheck, postPatch };
               })()))),
           }),
           (self) => (super$) => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             octoprint: nix.thunk(() => nix.app(nix.sel(self, "buildPythonPackage"), nix.thunk(() => (() => {
                 const pname = "OctoPrint";
                 const version = "1.11.8";
                 const format = "setuptools";
                 const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     owner: "OctoPrint",
                     repo: "OctoPrint",
                     rev: version,
@@ -173,11 +173,11 @@ export default nix.lambda((args) => (() => {
                 })());
                 const patches = nix.thunk(() => [
                   nix.thunk(() => nix.app(replaceVars, nix.path(here, "./pip-path.patch"), nix.thunk(() => ({
-                      __proto__: pos$11,
+                      [nix.POS]: pos$11,
                       pip: nix.thunk(() => nix.str`${nix.sel(self, "pip")}/bin/pip`),
                     })))),
                   nix.thunk(() => nix.app(replaceVars, nix.path(here, "./ffmpeg-path.patch"), nix.thunk(() => ({
-                      __proto__: pos$12,
+                      [nix.POS]: pos$12,
                       ffmpeg: nix.thunk(() => nix.str`${nix.sel(pkgs, "ffmpeg-headless")}/bin/ffmpeg`),
                     })))),
                 ]);
@@ -215,17 +215,17 @@ export default nix.lambda((args) => (() => {
                 const disabledTests = nix.thunk(() => nix.concat(["test_check_setup"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_set_external_modification"]))));
                 const disabledTestPaths = nix.thunk(() => ["tests/http_api", "tests/test_octoprint_setuptools.py"]);
                 const passthru = nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   python: nix.thunk(() => nix.attr(self, "python")),
                   updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
                   tests: nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     plugins: nix.thunk(() => nix.app(callPackage, nix.path(here, "./plugins.nix"), nix.thunk(() => ({})), super$, self)),
                     octoprint: nix.thunk(() => nix.attr(nixosTests, "octoprint")),
                   })),
                 }));
                 const meta = nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   homepage: "https://octoprint.org/",
                   description: "Snappy web interface for your 3D printer",
                   mainProgram: "octoprint",
@@ -239,7 +239,7 @@ export default nix.lambda((args) => (() => {
                   })()),
                 }));
                 return {
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   pname,
                   version,
                   format,

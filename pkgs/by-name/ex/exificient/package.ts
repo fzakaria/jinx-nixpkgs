@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "exificient";
       const version = "1.0.7";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "EXIficient",
           repo: "exificient",
           rev: nix.thunk(() => nix.str`exificient-${version}`),
@@ -37,7 +37,7 @@ makeWrapper ${jre}/bin/java $out/bin/exificient \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Java implementation of the W3C Efficient Extensible Interchange (EXI) format specification",
         homepage: "http://exificient.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -48,7 +48,7 @@ runHook postInstall
         mainProgram: "exificient",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

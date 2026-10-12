@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
   ], nix.concat(nix.app(nix.lookup(w, "optionals"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "autologinUser"), null)) && nix.asBool(!nix.asBool(nix.sel(cfg, "autologinOnce"))))), nix.thunk(() => ["--autologin", nix.thunk(() => nix.sel(cfg, "autologinUser"))])), nix.concat(nix.app(nix.lookup(w, "optionals"), nix.thunk(() => !nix.eq(nix.sel(cfg, "loginOptions"), null)), nix.thunk(() => ["--login-options", nix.thunk(() => nix.sel(cfg, "loginOptions"))])), nix.sel(cfg, "extraArgs")))));
   const gettyCmd = (args_1) => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "util-linux")), "agetty")} ${nix.app(nix.lookup(w, "escapeShellArgs"), baseArgs)} ${args_1}`;
   const autologinOnceScript = (otherArgs) => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "autologin-once",
       text: nix.thunk(() => nix.str`autologged="/run/agetty.autologged"
 if test "$TTY" = tty1 && ! test -f "$autologged"; then
@@ -63,63 +63,63 @@ exec ${nix.app(gettyCmd, otherArgs)}
 `),
     })));
   return {
-    __proto__: pos$33,
+    [nix.POS]: pos$33,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.lookup(w, "mkRenamedOptionModule"), nix.thunk(() => ["services", "mingetty"]), nix.thunk(() => ["services", "getty"]))),
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["services", "getty", "serialSpeed"]), "set non-standard baudrates with `boot.kernelParams` i.e. boot.kernelParams = [\"console=ttyS2,1500000\"];")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         getty: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           autologinUser: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: null,
               description: "Username of the account that will be automatically logged in at the console.\nIf unspecified, a login prompt is shown as usual.\n",
             })))),
           autologinOnce: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "If enabled the automatic login will only happen in the first tty\nonce per boot. This can be useful to avoid retyping the account\npassword on systems with full disk encrypted.\n",
             })))),
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "Include getty in the system.\n\ngetty is quiescent until called into action and does not have\nruntime costs if it is not used. The benefit of disabling it is\nin reducing closure size.\n\nDisabling getty means that console login may not be possible,\n`machinectl shell` and `login` may not work, and other ills.\nIt is only recommended for lights-out, headless containers,\nappliances, and similar configurations not meant for any human\ninteraction ever.\n",
             })))),
           loginProgram: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               default: nix.thunk(() => nix.str`${nix.sel(pkgs, "shadow")}/bin/login`),
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "\"${pkgs.shadow}/bin/login\"")),
               description: "Path to the login binary executed by agetty.\n",
             })))),
           loginOptions: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: null,
               description: "Template for arguments to be passed to\n{manpage}`login(1)`.\n\nSee {manpage}`agetty(1)` for details,\nincluding security considerations.  If unspecified, agetty\nwill not be invoked with a {option}`--login-options`\noption.\n",
               example: "-h darkstar -- \\u",
             })))),
           extraArgs: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: [],
               description: "Additional arguments passed to agetty.\n",
               example: nix.thunk(() => ["--nohostname"]),
             })))),
           greetingLine: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "Welcome line printed by agetty.\nThe default shows current NixOS version label, machine type and tty.\n",
             })))),
           helpLine: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               description: "Help line printed by agetty below the welcome line.\nUsed by the installation CD to give some hints on\nhow to proceed.\n",
@@ -128,17 +128,17 @@ exec ${nix.app(gettyCmd, otherArgs)}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         services: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           getty: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             greetingLine: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.str`<<< Welcome to ${nix.sel(config, "system", "nixos", "distroName")} ${nix.sel(config, "system", "nixos", "label")} (\\m) - \\l >>>`))),
             helpLine: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(config, "documentation", "nixos", "enable")) && nix.asBool(nix.sel(config, "documentation", "doc", "enable")))), "\nRun 'nixos-help' for the NixOS manual.")),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           additionalUpstreamSystemUnits: nix.thunk(() => [
             "getty.target",
             "getty-pre.target",
@@ -148,39 +148,39 @@ exec ${nix.app(gettyCmd, otherArgs)}
             "container-getty@.service",
           ]),
           targets: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             getty: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               wants: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(config, "services", "displayManager", "enable"))), nix.thunk(() => ["autovt@tty1.service"]))),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             "getty@": nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 ExecStart: nix.thunk(() => [
                   "",
                   nix.thunk(() => (nix.asBool(nix.sel(cfg, "autologinOnce")) ? nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(autologinOnceScript, "--noclear --keep-baud \"$TTY\" 115200,38400,9600 \"$TERM\""))) : nix.app(gettyCmd, "--noclear --keep-baud %I 115200,38400,9600 $TERM"))),
                 ]),
               })),
-              environment: nix.thunk(() => ({ __proto__: pos$18, TTY: "%I" })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$18, TTY: "%I" })),
               restartIfChanged: false,
               aliases: nix.thunk(() => ["autovt@.service"]),
             })),
             "serial-getty@": nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 ExecStart: nix.thunk(() => ["", nix.thunk(() => nix.app(gettyCmd, "%I --keep-baud $TERM"))]),
               })),
               restartIfChanged: false,
             })),
             "container-getty@": nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 ExecStart: nix.thunk(() => [
                   "",
                   nix.thunk(() => nix.app(gettyCmd, "--noclear --keep-baud pts/%I 115200,38400,9600 $TERM")),
@@ -189,9 +189,9 @@ exec ${nix.app(gettyCmd, otherArgs)}
               restartIfChanged: false,
             })),
             "console-getty": nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 ExecStart: nix.thunk(() => [
                   "",
                   nix.thunk(() => nix.app(gettyCmd, "--noclear --keep-baud console 115200,38400,9600 $TERM")),
@@ -204,11 +204,11 @@ exec ${nix.app(gettyCmd, otherArgs)}
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           etc: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             issue: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "issue", nix.thunk(() => nix.str`
 [1;32m${nix.sel(config, "services", "getty", "greetingLine")}[0m
 ${nix.sel(config, "services", "getty", "helpLine")}
@@ -219,7 +219,7 @@ ${nix.sel(config, "services", "getty", "helpLine")}
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_1, "RossComputerGuy"))];

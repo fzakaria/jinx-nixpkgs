@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "iconpack-obsidian";
       const version = "4.15";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "madmaxms",
           repo: "iconpack-obsidian",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const dontDropIconThemeCache = true;
       const installPhase = "runHook preInstall\n\nmkdir -p $out/share/icons\nmv Obsidian* $out/share/icons\n\nfor theme in $out/share/icons/*; do\n  gtk-update-icon-cache $theme\ndone\n\n# Fix broken symlink only if needed\n# https://github.com/NixOS/nixpkgs/issues/394218\n\nbroken_symlink=\"$out/share/icons/Obsidian/actions/96/lock.svg\"\ntarget_svg=\"$out/share/icons/Obsidian/actions/scalable/system-lock-screen.svg\"\n\nif [ -h \"$broken_symlink\" ] && [ ! -e \"$broken_symlink\" ]; then\n  echo \"=== Fixing broken symlink: $broken_symlink\"\n  rm -f \"$broken_symlink\"\n  ln -s \"$target_svg\" \"$broken_symlink\"\nfi\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Gnome icon pack based upon Faenza",
         homepage: "https://github.com/madmaxms/iconpack-obsidian",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "romildo"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

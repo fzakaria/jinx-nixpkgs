@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const pnpm = pnpm_10;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "slidev-cli",
       version: "52.15.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "slidevjs",
           repo: "slidev",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       pnpmWorkspaces: nix.thunk(() => ["@slidev/cli..."]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -47,11 +47,11 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\npnpm -r --filter=@slidev/cli... --parallel run build\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nrm -rf node_modules packages/slidev/node_modules\npnpm install --force --offline --production --ignore-scripts --filter=@slidev/cli...\n\nmkdir -p $out/lib/node_modules/slidev-cli/\nmkdir $out/bin\nmv ./packages ./node_modules ./package.json $out/lib/node_modules/slidev-cli\n\nln -s $out/lib/node_modules/slidev-cli/packages/slidev/bin/slidev.mjs $out/bin/slidev\nchmod +x $out/bin/slidev\npatchShebangs $out/bin/slidev\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/slidevjs/slidev/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Presentation slides for developers",
         homepage: "https://sli.dev",

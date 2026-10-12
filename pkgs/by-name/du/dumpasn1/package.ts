@@ -14,21 +14,21 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dumpasn1",
       version: "20230207.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "katexochen",
           repo: "dumpasn1",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-r40czSLdjCYbt73zK7exCoP/kMq6+pyJfz9LKJLLaXM=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, CFLAGS: "-DDUMPASN1_CONFIG_PATH='\"$(out)/etc/\"' " })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CFLAGS: "-DDUMPASN1_CONFIG_PATH='\"$(out)/etc/\"' " })),
       makeFlags: nix.thunk(() => ["prefix=$(out)"]),
       patches: nix.thunk(() => [nix.path(here, "./configpath.patch")]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Display and debug ASN.1 data",
         homepage: "https://github.com/katexochen/dumpasn1",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

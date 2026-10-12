@@ -122,7 +122,7 @@ export default nix.lambda((args) => (() => {
   const user = "drupal";
   const webserver = nix.thunk(() => nix.sel(config, "services", nix.key(nix.sel(cfg, "webserver"))));
   const pkg = (hostName) => (cfg_1) => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: nix.thunk(() => nix.str`drupal-${hostName}`),
       name: nix.thunk(() => nix.str`drupal-${hostName}`),
       src: nix.thunk(() => nix.sel(cfg_1, "package")),
@@ -146,7 +146,7 @@ ln -s ${nix.sel(cfg_1, "themesDir")} $out/share/php/${nix.sel(cfg_1, "package", 
 `),
     }));
   const sites = (hostName) => (cfg_1) => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.str`drupal-sites-${hostName}`),
       name: nix.thunk(() => nix.str`drupal-sites-${hostName}`),
       src: nix.thunk(() => nix.sel(cfg_1, "package")),
@@ -163,7 +163,7 @@ runHook postInstall
 `),
     }));
   const configSync = (hostName) => (cfg_1) => nix.app(optionalString, nix.thunk(() => !nix.eq(nix.sel(cfg_1, "configRoot"), "")), nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: nix.thunk(() => nix.str`drupal-config-${hostName}`),
         name: nix.thunk(() => nix.str`drupal-config-${hostName}`),
         src: nix.thunk(() => nix.sel(cfg_1, "package")),
@@ -180,7 +180,7 @@ runHook postInstall
 `),
       }))));
   const drupalSettings = (hostName) => (cfg_1) => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: nix.thunk(() => nix.str`settings.nixos-${hostName}.php`),
       text: nix.thunk(() => nix.str`<?php
 
@@ -194,7 +194,7 @@ runHook postInstall
       checkPhase: nix.thunk(() => nix.str`${nix.sel(pkgs, "php")}/bin/php --syntax-check $target`),
     })));
   const appendSettings = (hostName) => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: nix.thunk(() => nix.str`append-drupal-settings-${hostName}`),
       text: nix.thunk(() => nix.str`
 // NixOS settings file import.
@@ -203,12 +203,12 @@ require dirname(__FILE__) . '/settings.nixos-${hostName}.php';
 `),
     })));
   const privateFilesHtAccess = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       name: "private-files-htaccess",
       text: "# Turn off all options we don't need.\nOptions -Indexes -ExecCGI -Includes -MultiViews\n\n# Set the catch-all handler to prevent scripts from being executed.\nSetHandler Drupal_Security_Do_Not_Remove_See_SA_2006_006\n<Files *>\n  # Override the handler again if we're run later in the evaluation list.\n  SetHandler Drupal_Security_Do_Not_Remove_See_SA_2013_003\n</Files>\n\n# If we know how to do it safely, disable the PHP engine entirely.\n<IfModule mod_php.c>\n  php_flag engine off\n</IfModule>\n",
     }))));
   const stateDirManage = (hostName) => (cfg_1) => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       name: nix.thunk(() => nix.str`drupal-state-init-${hostName}`),
       excludeShellChecks: nix.thunk(() => ["SC2194", "SC2157"]),
       runtimeInputs: nix.thunk(() => (() => {
@@ -269,142 +269,142 @@ chown -R ${user}:${nix.sel(webserver, "group")} ${nix.sel(cfg_1, "stateDir")}
     const lib_1 = nix.arg($_1, "lib");
     const name = nix.arg($_1, "name");
     return {
-      __proto__: pos$33,
+      [nix.POS]: pos$33,
       options: nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         enable: nix.thunk(() => nix.app(mkEnableOption, "Drupal web application")),
         package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "drupal", nix.thunk(() => ({})))),
         filesDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             type: nix.thunk(() => nix.sel(types, "path")),
             default: nix.thunk(() => nix.str`/var/lib/drupal/${name}/sites/default/files`),
             defaultText: "/var/lib/drupal/<name>/sites/default/files",
             description: "The location of the Drupal files directory.\n\nMany of the files in this directory are variable, so they must be located\nin a location writeable by users of the webgroup.\n",
           })))),
         privateFilesDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             type: nix.thunk(() => nix.sel(types, "path")),
             default: nix.thunk(() => nix.str`/var/lib/drupal/${name}/private`),
             defaultText: "/var/lib/drupal/<name>/private",
             description: "The location of the Drupal private files directory.",
           })))),
         configSyncDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             type: nix.thunk(() => nix.sel(types, "path")),
             default: nix.thunk(() => nix.str`/var/lib/drupal/${name}/config/sync`),
             defaultText: "/var/lib/drupal/<name>/config/sync",
             description: "The location of the user-managed Drupal config sync directory.\nDrupal will both read from and write to this directory when executing\nconfiguration management operations.\n\nThis option differs from the `configRoot` option,\nwhich this service uses to discover\nthe location of the config sync directory in the package's source code.\n",
           })))),
         webRoot: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             type: nix.thunk(() => nix.sel(types, "str")),
             default: "",
             description: "An optional path string with a leading slash\nindicating the location of the Drupal webroot\nin your package's source code.\n\nThe path relative to the project root directory.\n",
             example: "/web",
           })))),
         configRoot: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             type: nix.thunk(() => nix.sel(types, "str")),
             default: "",
             description: "An optional path string with a leading slash\nindicating the location of the config sync directory on\nthe Drupal package. Your package will probably have a config sync\ndirectory if it has been significantly customized.\n\nThe path must be relative to the project root directory.\n\nThis option differs from the `configSyncDir` option, which\ntells this service where to create a user-writeable config directory\non NixOS.\n",
             example: "/config",
           })))),
         extraConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             type: nix.thunk(() => nix.sel(types, "lines")),
             default: "",
             description: "Extra configuration values that you want to insert into settings.php.\nAll configuration must be written as PHP script.\n",
             example: "$config['user.settings']['anonymous'] = 'Visitor';\n$settings['entity_update_backup'] = TRUE;\n",
           })))),
         stateDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             type: nix.thunk(() => nix.sel(types, "path")),
             default: nix.thunk(() => nix.str`/var/lib/drupal/${name}`),
             defaultText: "/var/lib/drupal/<name>",
             description: "The location of the user-managed Drupal site state directory.\nThis directory will contain the settings and configuration files for\nyour Drupal instance. It may also contain your files directory if the\n`filesDir` option remains unchanged.\n\nMany of the files in this directory are variable, so they must be located\nin a location writeable by users of the webgroup.\n",
           })))),
         modulesDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             type: nix.thunk(() => nix.sel(types, "path")),
             default: nix.thunk(() => nix.str`/var/lib/drupal/${name}/modules`),
             defaultText: "/var/lib/drupal/<name>/modules",
             description: "The location for users to manually install Drupal modules.\n\nNote: in most instances, it is preferable to install modules using\ncomposer, or to package them with your source code repository, if\nyou are using a custom Drupal.\n",
           })))),
         themesDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             type: nix.thunk(() => nix.sel(types, "path")),
             default: nix.thunk(() => nix.str`/var/lib/drupal/${name}/themes`),
             defaultText: "/var/lib/drupal/<name>/themes",
             description: "The location for users to manually install Drupal themes.\n\nNote: in most instances, it is preferable to install themes using\ncomposer, or to package them with your source code repository, if\nyou are using a custom Drupal.\n",
           })))),
         phpOptions: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "str")))),
             default: nix.thunk(() => ({})),
             description: "Options for PHP's php.ini file for this Drupal site.\n",
             example: nix.thunk(() => nix.app(literalExpression, "{\n  \"opcache.interned_strings_buffer\" = \"8\";\n  \"opcache.max_accelerated_files\" = \"10000\";\n  \"opcache.memory_consumption\" = \"128\";\n  \"opcache.revalidate_freq\" = \"15\";\n  \"opcache.fast_shutdown\" = \"1\";\n}\n")),
           })))),
         database: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "localhost",
               description: "Database host address.",
             })))),
           port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 3306n,
               description: "Database host port.",
             })))),
           name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "drupal",
               description: "Database name.",
             })))),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "drupal",
               description: "Database user.",
             })))),
           passwordFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               default: null,
               example: "/run/keys/database-dbpassword",
               description: "A file containing the password corresponding to\n{option}`database.user`.\n",
             })))),
           tablePrefix: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "dp_",
               description: "The $table_prefix is the value placed in the front of your database tables.\nChange the value if you want to use something other than dp_ for your database\nprefix. Typically this is changed if you are installing multiple Drupal sites\nin the same database.\n",
             })))),
           socket: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               default: null,
               defaultText: nix.thunk(() => nix.app(literalExpression, "/run/mysqld/mysqld.sock")),
               description: "Path to the unix socket file to use for authentication.",
             })))),
           createLocally: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: true,
               description: "Create the database and database user locally.",
             })))),
         })),
         virtualHost: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.builtins.import(nix.path(here, "../web-servers/apache-httpd/vhost-options.nix"))))),
             example: nix.thunk(() => nix.app(literalExpression, "{\n  adminAddr = \"webmaster@example.org\";\n  forceSSL = true;\n  enableACME = true;\n}\n")),
             description: "Apache configuration can be done by adapting {option}`services.httpd.virtualHosts`.\n",
           })))),
         poolConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             type: nix.thunk(() => (() => {
               const w = nix.withScope(types, null);
               return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -414,7 +414,7 @@ chown -R ${user}:${nix.sel(webserver, "group")} ${nix.sel(cfg_1, "stateDir")}
                   ]))));
             })()),
             default: nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               pm: "dynamic",
               "pm.max_children": 32n,
               "pm.start_servers": 2n,
@@ -426,32 +426,32 @@ chown -R ${user}:${nix.sel(webserver, "group")} ${nix.sel(cfg_1, "stateDir")}
           })))),
       })),
       config: nix.thunk(() => ({
-        __proto__: pos$32,
-        virtualHost: nix.thunk(() => ({ __proto__: pos$31, hostName: nix.thunk(() => nix.app(mkDefault, name)) })),
+        [nix.POS]: pos$32,
+        virtualHost: nix.thunk(() => ({ [nix.POS]: pos$31, hostName: nix.thunk(() => nix.app(mkDefault, name)) })),
       })),
     };
   })(), formals$2);
   return {
-    __proto__: pos$84,
+    [nix.POS]: pos$84,
     options: nix.thunk(() => ({
-      __proto__: pos$40,
+      [nix.POS]: pos$40,
       services: nix.thunk(() => ({
-        __proto__: pos$39,
+        [nix.POS]: pos$39,
         drupal: nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           enable: nix.thunk(() => nix.app(mkEnableOption, "drupal")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "drupal", nix.thunk(() => ({})))),
           sites: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), siteOpts)))),
               default: nix.thunk(() => ({
-                __proto__: pos$35,
-                localhost: nix.thunk(() => ({ __proto__: pos$34, enable: true })),
+                [nix.POS]: pos$35,
+                localhost: nix.thunk(() => ({ [nix.POS]: pos$34, enable: true })),
               })),
               description: "Specification of one or more Drupal sites to serve",
             })))),
           webserver: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["nginx", "caddy"]))),
               default: "nginx",
               description: "Whether to use nginx or caddy for virtual host management.\n\nFurther nginx configuration can be done by adapting `services.nginx.virtualHosts.<name>`.\nSee [](#opt-services.nginx.virtualHosts) for further information.\n\nFurther caddy configuration can be done by adapting `services.caddy.virtualHosts.<name>`.\nSee [](#opt-services.caddy.virtualHosts) for further information.\n",
@@ -461,37 +461,37 @@ chown -R ${user}:${nix.sel(webserver, "group")} ${nix.sel(cfg_1, "stateDir")}
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$49,
+            [nix.POS]: pos$49,
             assertions: nix.thunk(() => nix.concat(nix.app(mapAttrsToList, (hostName) => (cfg_1) => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg_1, "database", "createLocally")) || nix.asBool(nix.eq(nix.sel(cfg_1, "database", "user"), user)))),
                 message: nix.thunk(() => nix.str`services.drupal.sites."${hostName}".database.user must be ${user} if the database is to be automatically provisioned`),
               }), eachSite), nix.app(mapAttrsToList, (hostName) => (cfg_1) => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg_1, "database", "createLocally")) || nix.asBool(nix.eq(nix.sel(cfg_1, "database", "passwordFile"), null)))),
                 message: nix.thunk(() => nix.str`services.drupal.sites."${hostName}".database.passwordFile cannot be specified if services.drupal.sites."${hostName}".database.createLocally is set to true.`),
               }), eachSite))),
             services: nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               mysql: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.app(any, (v) => nix.sel(v, "database", "createLocally"), nix.thunk(() => nix.app(attrValues, eachSite)))), nix.thunk(() => ({
-                  __proto__: pos$44,
+                  [nix.POS]: pos$44,
                   enable: true,
                   package: nix.thunk(() => nix.app(mkDefault, mariadb)),
                   ensureDatabases: nix.thunk(() => nix.app(mapAttrsToList, (hostName) => (cfg_1) => nix.sel(cfg_1, "database", "name"), eachSite)),
                   ensureUsers: nix.thunk(() => nix.app(mapAttrsToList, (hostName) => (cfg_1) => ({
-                      __proto__: pos$43,
+                      [nix.POS]: pos$43,
                       name: nix.thunk(() => nix.sel(cfg_1, "database", "user")),
                       ensurePermissions: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${nix.sel(cfg_1, "database", "name")}.*`, "ALL PRIVILEGES"]])),
                     }), eachSite)),
                 })))),
               phpfpm: nix.thunk(() => ({
-                __proto__: pos$47,
+                [nix.POS]: pos$47,
                 pools: nix.thunk(() => nix.app(mapAttrs$, (hostName) => (cfg_1) => nix.app(nameValuePair, nix.thunk(() => nix.str`drupal-${hostName}`), nix.thunk(() => ({
-                      __proto__: pos$46,
+                      [nix.POS]: pos$46,
                       user: user,
                       group: nix.thunk(() => nix.sel(webserver, "group")),
                       settings: nix.thunk(() => nix.update({
-                        __proto__: pos$45,
+                        [nix.POS]: pos$45,
                         "listen.owner": nix.thunk(() => nix.sel(webserver, "user")),
                         "listen.group": nix.thunk(() => nix.sel(webserver, "group")),
                       }, nix.sel(cfg_1, "poolConfig"))),
@@ -500,11 +500,11 @@ chown -R ${user}:${nix.sel(webserver, "group")} ${nix.sel(cfg_1, "stateDir")}
             })),
           })),
           nix.thunk(() => ({
-            __proto__: pos$54,
+            [nix.POS]: pos$54,
             systemd: nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               tmpfiles: nix.thunk(() => ({
-                __proto__: pos$50,
+                [nix.POS]: pos$50,
                 rules: nix.thunk(() => nix.app(flatten, nix.thunk(() => nix.app(mapAttrsToList, (hostName) => (cfg_1) => [
                       nix.thunk(() => nix.str`d '${nix.sel(cfg_1, "stateDir")}' 0750 ${user} ${nix.sel(webserver, "group")} - -`),
                       nix.thunk(() => nix.str`d '${nix.sel(cfg_1, "modulesDir")}' 0750 ${user} ${nix.sel(webserver, "group")} - -`),
@@ -519,10 +519,10 @@ chown -R ${user}:${nix.sel(webserver, "group")} ${nix.sel(cfg_1, "stateDir")}
               })),
             })),
             users: nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               users: nix.thunk(() => nix.attrsDyn({}, [
                 [user, nix.thunk(() => ({
-                  __proto__: pos$52,
+                  [nix.POS]: pos$52,
                   group: nix.thunk(() => nix.sel(webserver, "group")),
                   isSystemUser: true,
                 }))],
@@ -530,17 +530,17 @@ chown -R ${user}:${nix.sel(webserver, "group")} ${nix.sel(cfg_1, "stateDir")}
             })),
           })),
           nix.thunk(() => ({
-            __proto__: pos$60,
+            [nix.POS]: pos$60,
             systemd: nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               services: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
                   nix.thunk(() => nix.app(mapAttrs$, (hostName) => (cfg_1) => nix.app(nameValuePair, nix.thunk(() => nix.str`drupal-state-init-${hostName}`), nix.thunk(() => ({
-                        __proto__: pos$56,
+                        [nix.POS]: pos$56,
                         wantedBy: nix.thunk(() => ["multi-user.target"]),
                         before: nix.thunk(() => ["nginx.service"]),
                         after: nix.thunk(() => ["local-fs.target"]),
                         serviceConfig: nix.thunk(() => ({
-                          __proto__: pos$55,
+                          [nix.POS]: pos$55,
                           Type: "oneshot",
                           User: "root",
                           RemainAfterExit: true,
@@ -555,28 +555,28 @@ chown -R ${user}:${nix.sel(webserver, "group")} ${nix.sel(cfg_1, "stateDir")}
                         ]),
                       }))), eachSite)),
                   nix.thunk(() => nix.app(optionalAttrs, nix.thunk(() => nix.app(any, (v) => nix.sel(v, "database", "createLocally"), nix.thunk(() => nix.app(attrValues, eachSite)))), nix.thunk(() => ({
-                      __proto__: pos$58,
-                      httpd: nix.thunk(() => ({ __proto__: pos$57, after: nix.thunk(() => ["mysql.service"]) })),
+                      [nix.POS]: pos$58,
+                      httpd: nix.thunk(() => ({ [nix.POS]: pos$57, after: nix.thunk(() => ["mysql.service"]) })),
                     })))),
                 ]))),
             })),
           })),
           nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "webserver"), "nginx")), nix.thunk(() => ({
-              __proto__: pos$79,
+              [nix.POS]: pos$79,
               services: nix.thunk(() => ({
-                __proto__: pos$78,
+                [nix.POS]: pos$78,
                 nginx: nix.thunk(() => ({
-                  __proto__: pos$77,
+                  [nix.POS]: pos$77,
                   enable: true,
                   virtualHosts: nix.thunk(() => nix.app(mapAttrs, (hostName) => (cfg_1) => ({
-                      __proto__: pos$76,
+                      [nix.POS]: pos$76,
                       serverName: nix.thunk(() => nix.app(mkDefault, hostName)),
                       root: nix.thunk(() => nix.str`${nix.app(pkg, hostName, cfg_1)}/share/php/${nix.sel(cfg_1, "package", "pname")}${nix.sel(cfg_1, "webRoot")}`),
                       extraConfig: "index index.php index.htm index.html;\n",
                       locations: nix.thunk(() => ({
-                        __proto__: pos$75,
+                        [nix.POS]: pos$75,
                         "~ '\\.php$|^/update\\.php'": nix.thunk(() => ({
-                          __proto__: pos$61,
+                          [nix.POS]: pos$61,
                           extraConfig: nix.thunk(() => nix.str`fastcgi_split_path_info ^(.+\\.php)(/.+)$;
 fastcgi_pass unix:${nix.sel(config, "services", "phpfpm", "pools", nix.key(nix.str`drupal-${hostName}`), "socket")};
 fastcgi_index index.php;
@@ -593,36 +593,36 @@ fastcgi_send_timeout 300;
 fastcgi_read_timeout 300;
 `),
                         })),
-                        "= /favicon.ico": nix.thunk(() => ({ __proto__: pos$62, extraConfig: "log_not_found off;\naccess_log off;\n" })),
+                        "= /favicon.ico": nix.thunk(() => ({ [nix.POS]: pos$62, extraConfig: "log_not_found off;\naccess_log off;\n" })),
                         "= /robots.txt": nix.thunk(() => ({
-                          __proto__: pos$63,
+                          [nix.POS]: pos$63,
                           extraConfig: "allow all;\nlog_not_found off;\naccess_log off;\n",
                         })),
-                        "~ \\..*/.*\\.php$": nix.thunk(() => ({ __proto__: pos$64, extraConfig: "return 403;\n" })),
-                        "~ ^/sites/.*/private/": nix.thunk(() => ({ __proto__: pos$65, extraConfig: "return 403;\n" })),
-                        "~ ^/sites/[^/]+/files/.*\\.php$": nix.thunk(() => ({ __proto__: pos$66, extraConfig: "deny all;\n" })),
-                        "~* ^/.well-known/": nix.thunk(() => ({ __proto__: pos$67, extraConfig: "allow all;\n" })),
-                        "/": nix.thunk(() => ({ __proto__: pos$68, extraConfig: "try_files $uri /index.php?$query_string;\n" })),
-                        "@rewrite": nix.thunk(() => ({ __proto__: pos$69, extraConfig: "rewrite ^ /index.php;\n" })),
-                        "~ /vendor/.*\\.php$": nix.thunk(() => ({ __proto__: pos$70, extraConfig: "deny all;\nreturn 404;\n" })),
+                        "~ \\..*/.*\\.php$": nix.thunk(() => ({ [nix.POS]: pos$64, extraConfig: "return 403;\n" })),
+                        "~ ^/sites/.*/private/": nix.thunk(() => ({ [nix.POS]: pos$65, extraConfig: "return 403;\n" })),
+                        "~ ^/sites/[^/]+/files/.*\\.php$": nix.thunk(() => ({ [nix.POS]: pos$66, extraConfig: "deny all;\n" })),
+                        "~* ^/.well-known/": nix.thunk(() => ({ [nix.POS]: pos$67, extraConfig: "allow all;\n" })),
+                        "/": nix.thunk(() => ({ [nix.POS]: pos$68, extraConfig: "try_files $uri /index.php?$query_string;\n" })),
+                        "@rewrite": nix.thunk(() => ({ [nix.POS]: pos$69, extraConfig: "rewrite ^ /index.php;\n" })),
+                        "~ /vendor/.*\\.php$": nix.thunk(() => ({ [nix.POS]: pos$70, extraConfig: "deny all;\nreturn 404;\n" })),
                         "~* \\.(js|css|png|jpg|jpeg|gif|ico|svg)$": nix.thunk(() => ({
-                          __proto__: pos$71,
+                          [nix.POS]: pos$71,
                           extraConfig: "try_files $uri @rewrite;\nexpires max;\nlog_not_found off;\n",
                         })),
                         "~ ^/sites/.*/files/styles/": nix.thunk(() => ({
-                          __proto__: pos$72,
+                          [nix.POS]: pos$72,
                           extraConfig: nix.thunk(() => nix.str`alias ${nix.sel(cfg_1, "filesDir")}/;
 try_files $uri @rewrite;
 `),
                         })),
                         "^~ /sites/.*/files/": nix.thunk(() => ({
-                          __proto__: pos$73,
+                          [nix.POS]: pos$73,
                           extraConfig: nix.thunk(() => nix.str`alias ${nix.sel(cfg_1, "filesDir")}/;
 try_files $uri @rewrite;
 `),
                         })),
                         "~ ^(/[a-z\\-]+)?/system/files/": nix.thunk(() => ({
-                          __proto__: pos$74,
+                          [nix.POS]: pos$74,
                           extraConfig: nix.thunk(() => nix.str`alias ${nix.sel(cfg_1, "privateFilesDir")}/;
 try_files $uri /index.php?$query_string;
 `),
@@ -633,14 +633,14 @@ try_files $uri /index.php?$query_string;
               })),
             })))),
           nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "webserver"), "caddy")), nix.thunk(() => ({
-              __proto__: pos$83,
+              [nix.POS]: pos$83,
               services: nix.thunk(() => ({
-                __proto__: pos$82,
+                [nix.POS]: pos$82,
                 caddy: nix.thunk(() => ({
-                  __proto__: pos$81,
+                  [nix.POS]: pos$81,
                   enable: true,
                   virtualHosts: nix.thunk(() => nix.app(mapAttrs$, (hostName) => (cfg_1) => nix.app(nameValuePair, hostName, nix.thunk(() => ({
-                        __proto__: pos$80,
+                        [nix.POS]: pos$80,
                         extraConfig: nix.thunk(() => nix.str`root * ${nix.app(pkg, hostName, cfg_1)}/share/php/${nix.sel(cfg_1, "package", "pname")}${nix.sel(cfg_1, "webRoot")}
 file_server
 root /sites/*/files ${nix.sel(cfg_1, "filesDir")}

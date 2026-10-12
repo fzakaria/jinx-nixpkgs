@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const libxrandr = nix.arg($, "libxrandr");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xdg-launch",
       version: "1.12",
       postPatch: "# fix gettext configuration\necho 'AM_GNU_GETTEXT_VERSION' >> configure.ac\necho 'AM_GNU_GETTEXT([external])' >> configure.ac\n\nsed -i data/*.desktop \\\n  -e \"s,/usr/bin,/$out/bin,g\"\n",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bbidulock",
           repo: "xdg-launch",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libx11, libxrandr, glib]),
       nativeBuildInputs: nix.thunk(() => [autoconf, automake, gettext, libtool, perl, pkg_config]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/bbidulock/xdg-launch",
         description: "Command line XDG compliant launcher and tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

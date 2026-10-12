@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "nightlight";
       const version = "1.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "smudge",
           repo: "nightlight",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
       const cargoHash = "sha256-WtzCk2kBO2cWUfNN+xZ84Go4m5/a3BmBayOzy3uU5Wk=";
       const checkFlags = nix.thunk(() => ["--skip=repl", "--skip=printer::tests"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/smudge/nightlight",
         description: "CLI tool for configuring Night Shift macOS",
         maintainers: nix.thunk(() => (() => {
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         mainProgram: "nightlight",
       }));
-      return { __proto__: pos$4, pname, version, src, cargoHash, checkFlags, passthru, meta };
+      return { [nix.POS]: pos$4, pname, version, src, cargoHash, checkFlags, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

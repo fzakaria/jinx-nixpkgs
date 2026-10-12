@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cassandra";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           sha256: sha256,
           url: nix.thunk(() => nix.str`mirror://apache/cassandra/${version_1}/apache-cassandra-${version_1}-bin.tar.gz`),
         }))));
@@ -104,21 +104,21 @@ runHook postInstall
 `);
       const postFixup = "# Remove cassandra bash script wrapper.\n# The wrapper searches for a suitable python version and is not necessary with Nix.\nrm $out/bin/cqlsh\n# Make \"cqlsh.py\" accessible by invoking \"cqlsh\"\nln -s $out/bin/cqlsh.py $out/bin/cqlsh\n# Use nixpkgs Python packages instead of bundled zips\nmakeWrapperArgs+=(\"--set\" \"CQLSH_NO_BUNDLED\" \"1\")\nwrapPythonPrograms\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => (() => {
           const test = nix.thunk(() => nix.sel(nixosTests, "cassandra"));
           return {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             nixos: nix.thunk(() => (() => {
               nix.assert_(nix.eq(nix.sel(test, "testPackage", "version"), version_1), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/servers/nosql/cassandra/generic.nix:126:11");
               return nix.force(test);
             })()),
           };
         })()),
-        updateScript: nix.thunk(() => nix.app(callPackage, nix.path(here, "./update-script.nix"), nix.thunk(() => ({ __proto__: pos$3, generation: generation })))),
+        updateScript: nix.thunk(() => nix.app(callPackage, nix.path(here, "./update-script.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, generation: generation })))),
       }));
       const meta = nix.thunk(() => nix.update({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://cassandra.apache.org/",
         description: "Massively scalable open source NoSQL database",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
@@ -133,7 +133,7 @@ runHook postInstall
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "roberth"))]),
       }, extraMeta));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version: version_1,
         src,

@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const bootstrapData = nix.arg($, "bootstrapData");
   const db = nix.arg($, "db");
   return nix.update(bootstrapData, {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     allSortedCudaCapabilities: nix.thunk(() => nix.app(nix.sel(lib, "sort"), nix.thunk(() => nix.sel(lib, "versionOlder")), nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), nix.thunk(() => nix.sel(db, "cudaCapabilityToInfo")))))),
     cudaArchNameToCapabilities: nix.thunk(() => nix.app(nix.sel(lib, "groupBy"), (cudaCapability) => nix.sel(db, "cudaCapabilityToInfo", nix.key(nix.force(cudaCapability)), "archName"), nix.thunk(() => nix.sel(db, "allSortedCudaCapabilities")))),
   });

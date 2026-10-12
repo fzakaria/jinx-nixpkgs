@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const torchaudio = nix.arg($, "torchaudio");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "beat-this",
       version: "1.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CPJKU",
           repo: "beat_this",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,20 +46,20 @@ cp ${nix.sel(finalAttrs, "passthru", "final0Ckpt")} $HOME/.cache/torch/hub/check
 `),
       pythonImportsCheck: nix.thunk(() => ["beat_this"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         final0Ckpt: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://cloud.cp.jku.at/public.php/dav/files/7ik4RrBKTS273gp/final0.ckpt",
             hash: "sha256-jDKLRfWdjdPf8hklP/ao1kgr5X0BM6KRQOL+u/jrgzE=",
           })))),
         small0Ckpt: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://cloud.cp.jku.at/public.php/dav/files/7ik4RrBKTS273gp/small0.ckpt",
             hash: "sha256-YHS+LE1JDF9hAfzDdKHscq6TRW4ju2AZeDuEn13H1Hs=",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Accurate and general beat tracker",
         homepage: "https://github.com/CPJKU/beat_this",
         changelog: "https://github.com/CPJKU/beat_this/blob/main/CHANGELOG.md",

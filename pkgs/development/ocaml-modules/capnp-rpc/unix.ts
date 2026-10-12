@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const mdx = nix.arg($, "mdx");
   const mirage_crypto_rng = nix.arg($, "mirage-crypto-rng");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "capnp-rpc-unix",
       minimalOCamlVersion: "5.2",
       src: nix.thunk(() => nix.attr(capnp_rpc, "src")),
@@ -49,13 +49,13 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [
         alcotest,
         eio_main,
-        nix.thunk(() => nix.app(nix.sel(mdx, "override"), nix.thunk(() => ({ __proto__: pos$1, logs: logs })))),
+        nix.thunk(() => nix.app(nix.sel(mdx, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, logs: logs })))),
       ]),
       nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(mdx, "bin"))]),
       doCheck: true,
       __darwinAllowLocalNetworking: true,
       preCheck: "export XDG_CACHE_HOME=\"$TMPDIR/cache\"\n",
-      meta: nix.thunk(() => nix.update(nix.sel(capnp_rpc, "meta"), { __proto__: pos$2, description: "Unix helpers for Cap'n Proto RPC services" })),
+      meta: nix.thunk(() => nix.update(nix.sel(capnp_rpc, "meta"), { [nix.POS]: pos$2, description: "Unix helpers for Cap'n Proto RPC services" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=unix.ts.map

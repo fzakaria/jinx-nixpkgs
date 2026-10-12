@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const disabled = nix.thunk(() => !nix.asBool(isPy3k));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "QuantStack",
           repo: "frilouz",
           rev: version,
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "runHook preCheck\npython -m unittest\nrunHook postCheck\n";
       const pythonImportsCheck = nix.thunk(() => ["frilouz"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/QuantStack/frilouz",
         description: "Python AST parser adapter with partial error recovery",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

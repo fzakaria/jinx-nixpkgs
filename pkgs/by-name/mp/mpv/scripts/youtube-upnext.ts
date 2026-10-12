@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "youtube-upnext";
       const version = "1.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cvzi",
           repo: "mpv-youtube-upnext",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   --replace-fail '"curl"' '"${nix.app(nix.sel(lib, "getExe"), curl)}"'
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Userscript that allows you to play 'up next'/recommended youtube videos",
         homepage: "https://github.com/cvzi/mpv-youtube-upnext",
         maintainers: nix.thunk(() => (() => {
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
       }));
-      return { __proto__: pos$4, pname, version, src, postPatch, passthru, meta };
+      return { [nix.POS]: pos$4, pname, version, src, postPatch, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=youtube-upnext.ts.map

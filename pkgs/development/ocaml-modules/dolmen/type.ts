@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const spelll = nix.arg($, "spelll");
   const uutf = nix.arg($, "uutf");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "dolmen_type",
       src: nix.thunk(() => nix.attr(dolmen, "src")),
       version: nix.thunk(() => nix.attr(dolmen, "version")),
       propagatedBuildInputs: nix.thunk(() => [dolmen, spelll, uutf]),
       meta: nix.thunk(() => nix.update(nix.sel(dolmen, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Typechecker for automated deduction languages",
       })),
     })));

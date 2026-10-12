@@ -23,45 +23,45 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     imports: nix.thunk(() => [nix.path(here, "../profiles/qemu-guest.nix")]),
     config: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       fileSystems: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "/": nix.thunk(() => nix.app(nix.sel(lib, "mkImageMediaOverride"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             device: "/dev/disk/by-label/nixos",
             autoResize: true,
             fsType: "ext4",
           })))),
       })),
       boot: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         growPartition: true,
         kernelParams: nix.thunk(() => ["console=tty0"]),
         loader: nix.thunk(() => ({
-          __proto__: pos$4,
-          grub: nix.thunk(() => ({ __proto__: pos$3, device: "/dev/vda" })),
+          [nix.POS]: pos$4,
+          grub: nix.thunk(() => ({ [nix.POS]: pos$3, device: "/dev/vda" })),
           timeout: 0n,
         })),
       })),
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         openssh: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: true,
-          settings: nix.thunk(() => ({ __proto__: pos$6, PermitRootLogin: "prohibit-password" })),
+          settings: nix.thunk(() => ({ [nix.POS]: pos$6, PermitRootLogin: "prohibit-password" })),
         })),
-        "cloud-init": nix.thunk(() => ({ __proto__: pos$8, enable: true })),
+        "cloud-init": nix.thunk(() => ({ [nix.POS]: pos$8, enable: true })),
       })),
       environment: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "wget"))]),
         etc: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           "cloud/cloud.cfg.d/99_cloudstack.cfg": nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             text: "datasource:\n  CloudStack: {}\n  None: {}\ndatasource_list: [\"CloudStack\"]\n",
           })),
         })),

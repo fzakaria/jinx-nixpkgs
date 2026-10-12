@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "custom-brand-icons",
       version: "2026.09.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "elax46",
           repo: "custom-brand-icons",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nnode custom-icons-builder.cjs\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmkdir $out/\ncp -v dist/custom-brand-icons.js -t $out/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Custom brand icons for Home Assistant",
         homepage: "https://github.com/elax46/custom-brand-icons",
         changelog: nix.thunk(() => nix.str`https://github.com/elax46/custom-brand-icons/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -16,20 +16,20 @@ export default nix.lambda((args) => (() => {
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       system: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         build: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             default: nix.thunk(() => ({})),
             description: "Attribute set of derivations used to set up the system.\n",
             type: nix.thunk(() => nix.app(nix.sel(types, "submoduleWith"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 modules: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$1,
+                    [nix.POS]: pos$1,
                     freeformType: nix.thunk(() => (() => {
                       const w = nix.withScope(types, null);
                       return nix.app(nix.lookup(w, "lazyAttrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "uniq"), nix.thunk(() => nix.lookup(w, "unspecified")))));

@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
     return nix.force(nix.lookup(w, "isLinux"));
   })());
   const stdenv = nix.thunk(() => (nix.asBool(withMold) ? nix.app(useMoldLinker, clangStdenv) : nix.force(clangStdenv)));
-  return nix.app(nix.sel(rustPlatform, "buildRustPackage", "override"), nix.thunk(() => ({ __proto__: pos$1, stdenv: stdenv })), (finalAttrs) => ({
-      __proto__: pos$5,
+  return nix.app(nix.sel(rustPlatform, "buildRustPackage", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: stdenv })), (finalAttrs) => ({
+      [nix.POS]: pos$5,
       pname: "pgdog",
       version: "0.1.60",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "pgdogdev",
           repo: "pgdog",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-clq0rz7yi0XSXPzFjOGDcCwwndRq29KgtvUwpvEZoYA=",
       postPatch: "rm .cargo/config.toml\n",
-      env: nix.thunk(() => ({ __proto__: pos$3, RUSTFLAGS: "--cfg tokio_unstable" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, RUSTFLAGS: "--cfg tokio_unstable" })),
       cargoBuildFlags: nix.thunk(() => ["--package", "pgdog"]),
       nativeBuildInputs: nix.thunk(() => [pkg_config, nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]),
       buildInputs: nix.thunk(() => [openssl]),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "PostgreSQL connection pooler, load balancer, and database sharder",
         homepage: "https://pgdog.dev/",
         changelog: nix.thunk(() => nix.str`https://github.com/pgdogdev/pgdog/releases/tag/v${nix.sel(finalAttrs, "version")}`),

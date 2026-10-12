@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "keychain",
       version: "3.0.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "danielrobbins",
           repo: "keychain",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w, "setuptools"))];
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Manage SSH and GPG keys in a convenient and secure manner",
         longDescription: "Keychain helps you to manage SSH and GPG keys in a convenient and secure\nmanner. It acts as a frontend to ssh-agent and ssh-add, but allows you\nto easily have one long running ssh-agent process per system, rather\nthan the norm of one ssh-agent per login session.\n\nThis dramatically reduces the number of times you need to enter your\npassphrase. With keychain, you only need to enter a passphrase once\nevery time your local machine is rebooted. Keychain also makes it easy\nfor remote cron jobs to securely \"hook in\" to a long-running ssh-agent\nprocess, allowing your scripts to take advantage of key-based logins.\n",
         homepage: "https://kernel-seeds.org/projects/keychain/",

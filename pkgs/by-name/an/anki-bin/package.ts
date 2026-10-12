@@ -30,30 +30,30 @@ export default nix.lambda((args) => (() => {
   const pname = "anki-bin";
   const version = "26.09.3";
   const sources = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     "linux-aarch64": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: nix.thunk(() => nix.str`https://github.com/ankitects/anki/releases/download/${version}/anki-${version}-linux-aarch64.tar.zst`),
         hash: "sha256-C1hu/bDjWCvuO50IufpX32gfuXqAZtdqZ0PhvD/DMes=",
       })))),
     "linux-x86_64": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: nix.thunk(() => nix.str`https://github.com/ankitects/anki/releases/download/${version}/anki-${version}-linux-x86_64.tar.zst`),
         hash: "sha256-1w4Blxp6oZCxiZJ1c+5kPyUl/4QOr67Meo+M3lBWULM=",
       })))),
     "darwin-x86_64": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         url: nix.thunk(() => nix.str`https://github.com/ankitects/anki/releases/download/${version}/anki-${version}-mac-intel.dmg`),
         hash: "sha256-exI+/sqxOV0D/fTl303xbvxyyWKcOLUO+MrWktMQvXc=",
       })))),
     "darwin-aarch64": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         url: nix.thunk(() => nix.str`https://github.com/ankitects/anki/releases/download/${version}/anki-${version}-mac-apple.dmg`),
         hash: "sha256-s2/o9sAVpgL+rz7zj1lnwnyJZO4wpcdMolMiJc9gI0U=",
       })))),
   }));
   const unpacked = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: version,
       nativeBuildInputs: nix.thunk(() => [zstd]),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
   const meta = nix.thunk(() => (() => {
     const from = nix.thunk(() => nix.sel(anki, "meta"));
     return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     license: nix.thunk(() => nix.attr(from, "license")),
     homepage: nix.thunk(() => nix.attr(from, "homepage")),
     description: nix.thunk(() => nix.attr(from, "description")),
@@ -79,9 +79,9 @@ export default nix.lambda((args) => (() => {
     })()),
   };
   })());
-  const passthru = nix.thunk(() => ({ __proto__: pos$8, sources: sources }));
+  const passthru = nix.thunk(() => ({ [nix.POS]: pos$8, sources: sources }));
   const fhsEnvAnki = nix.thunk(() => nix.app(buildFHSEnv, nix.thunk(() => nix.update(nix.sel(appimageTools, "defaultFhsEnvArgs"), {
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: pname,
       version: version,
       profile: nix.thunk(() => nix.str`# anki vendors QT and mixing QT versions usually causes crashes
@@ -113,7 +113,7 @@ cp -R ${unpacked}/share/applications \\
       passthru: passthru,
     }))));
   return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? nix.force(fhsEnvAnki) : nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: pname,
       version: version,
       passthru: passthru,

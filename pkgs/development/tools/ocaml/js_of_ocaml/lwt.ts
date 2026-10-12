@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const lwt_log = nix.arg($, "lwt_log");
   const loggerSupport = nix.argOr($, "loggerSupport", () => !nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(lwt, "version")), "6.0.0")));
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "js_of_ocaml-lwt",
       version: nix.thunk(() => nix.attr(js_of_ocaml, "version")),
       src: nix.thunk(() => nix.attr(js_of_ocaml, "src")),

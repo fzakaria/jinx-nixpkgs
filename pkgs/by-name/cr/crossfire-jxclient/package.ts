@@ -21,14 +21,14 @@ export default nix.lambda((args) => (() => {
       const pname = "crossfire-jxclient";
       const version = "2025-01";
       const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.code.sf.net/p/crossfire/jxclient",
           rev: "01471f0fdf7a5fd8b4ea6d5b49bde7edead5c505",
           hash: "sha256-NGBj3NUBZIfS9J3FHqER8lblPuFEEH9dsTKFBqioiik=",
           fetchSubmodules: false,
         }))));
       const sounds = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://git.code.sf.net/p/crossfire/crossfire-sounds",
           rev: "b53f436e1d1cca098c641f34c46f15c828ea9c8f",
           hash: "sha256-zA+SaQAaNxNroHESCSonDiUsCuCzjZp+WZNzvsJHNXY=",
@@ -55,7 +55,7 @@ makeWrapper ${jre}/bin/java $out/bin/crossfire-jxclient \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Java-based fullscreen client for the Crossfire free MMORPG",
         homepage: "http://crossfire.real-time.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -63,7 +63,7 @@ runHook postInstall
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

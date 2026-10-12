@@ -25,19 +25,19 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "cloudcheck",
       version: "11.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "blacklanternsecurity",
           repo: "cloudcheck",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-rOMr7J6XZGjWq11Mlr3gkE7IpBlBeQ30gJ5uGXfbxTI=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -53,10 +53,10 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         SWAGGER_UI_DOWNLOAD_URL: nix.thunk(() => (() => {
           const swaggerUi = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               url: "https://github.com/swagger-api/swagger-ui/archive/refs/tags/v5.17.14.zip",
               hash: "sha256-SBJE0IEgl7Efuu73n3HZQrFxYX+cn5UU5jrL4T5xzNw=",
             }))));
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preCheck: "rm -rf cloudcheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Module to check whether an IP address or hostname belongs to popular cloud providers",
         homepage: "https://github.com/blacklanternsecurity/cloudcheck",
         changelog: nix.thunk(() => nix.str`https://github.com/blacklanternsecurity/cloudcheck/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

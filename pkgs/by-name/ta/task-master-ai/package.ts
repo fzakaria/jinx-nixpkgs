@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "task-master-ai",
       version: "0.25.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eyaltoledano",
           repo: "claude-task-master",
           tag: nix.thunk(() => nix.str`task-master-ai@${nix.sel(finalAttrs, "version")}`),
@@ -36,16 +36,16 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nodejs]))}`),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       postInstall: "mkdir -p $out/lib/node_modules/task-master-ai/apps\ncp -r apps/extension $out/lib/node_modules/task-master-ai/apps/extension\ncp -r apps/docs $out/lib/node_modules/task-master-ai/apps/docs\n",
-      env: nix.thunk(() => ({ __proto__: pos$3, PUPPETEER_SKIP_DOWNLOAD: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, PUPPETEER_SKIP_DOWNLOAD: 1n })),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/task-master`),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Node.js agentic AI workflow orchestrator",
         homepage: "https://task-master.dev",
         changelog: nix.thunk(() => nix.str`https://github.com/eyaltoledano/claude-task-master/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

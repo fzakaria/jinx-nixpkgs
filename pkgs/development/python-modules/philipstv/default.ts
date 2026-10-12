@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bcyran",
           repo: "philipstv",
           tag: version,
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
       const postInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd philipstv \\\n  --bash <(_PHILIPSTV_COMPLETE=bash_source $out/bin/philipstv) \\\n  --zsh <(_PHILIPSTV_COMPLETE=zsh_source $out/bin/philipstv) \\\n  --fish <(_PHILIPSTV_COMPLETE=fish_source $out/bin/philipstv)\n"));
       const pythonImportsCheck = nix.thunk(() => ["philipstv"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CLI and library to control Philips Android-powered TVs",
         homepage: "https://github.com/bcyran/philipstv",
         changelog: nix.thunk(() => nix.str`https://github.com/bcyran/philipstv/releases/tag/${nix.sel(src, "tag")}`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

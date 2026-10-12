@@ -30,13 +30,13 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const linux_latest = nix.arg($, "linux_latest");
   const darwin_endian_h = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "endian-h",
       text: "#include <byteswap.h>\n",
       destination: "/include/endian.h",
     }))));
   const darwin_byteswap_h = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "byteswap-h",
       text: "#pragma once\n#include <libkern/OSByteOrder.h>\n#define bswap_16 OSSwapInt16\n#define bswap_32 OSSwapInt32\n#define bswap_64 OSSwapInt64\n",
       destination: "/include/byteswap.h",
@@ -48,12 +48,12 @@ export default nix.lambda((args) => (() => {
     const patches = nix.argOr($_1, "patches", () => []);
     const passthru = nix.argOr($_1, "passthru", () => ({}));
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         src: src,
         pname: "linux-headers",
         version: version,
         env: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           ARCH: nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "linuxArch")),
         })),
         strictDeps: true,
@@ -82,7 +82,7 @@ echo "${version}-default" > $out/include/config/kernel.release
         passthru: passthru,
         __structuredAttrs: true,
         meta: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           description: "Header files and scripts for Linux kernel",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
@@ -91,23 +91,23 @@ echo "${version}-default" > $out/include/config/kernel.release
       })));
   })(), formals$2);
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     makeLinuxHeaders: makeLinuxHeaders,
     linuxHeaders: nix.thunk(() => (() => {
       const version = "7.2";
       return nix.app(makeLinuxHeaders, nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           version: version,
           src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               url: nix.thunk(() => nix.str`mirror://kernel/linux/kernel/v${nix.app(nix.sel(lib, "versions", "major"), version)}.x/linux-${version}.tar.xz`),
               hash: "sha256-+f7z0UwN9TgZAm9L50RZg1wqCw3L9bW72eoZ8IKUArM=",
             })))),
           patches: nix.thunk(() => [nix.path(here, "./no-relocs.patch")]),
           passthru: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 extraArgs: nix.thunk(() => [
                   "--version",
                   nix.thunk(() => nix.str`${nix.sel(linux_latest, "meta", "branch")}`),

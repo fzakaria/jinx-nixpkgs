@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const flit = nix.arg($, "flit");
   const requests = nix.arg($, "requests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "requests-download",
       version: "0.1.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "takluyver",
           repo: "requests_download",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [flit]),
       dependencies: nix.thunk(() => [requests]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Download files using requests and save them to a target path",
         homepage: "https://github.com/takluyver/requests_download",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

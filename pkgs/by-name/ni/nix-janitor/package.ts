@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nix-janitor",
       version: "0.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nobbz",
           repo: "nix-janitor",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: "for shell in bash fish zsh; do\n  completionFile=janitor.$shell\n  $out/bin/janitor --completions $shell > $completionFile\n  installShellCompletion $completionFile\ndone\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/nobbz/nix-janitor",
         changelog: nix.thunk(() => nix.str`https://github.com/NobbZ/nix-janitor/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "Tool to clean up old profile generations",

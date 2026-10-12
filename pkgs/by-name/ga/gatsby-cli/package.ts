@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "gatsby-cli",
       version: "5.16.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gatsbyjs",
           repo: "gatsby",
           tag: nix.thunk(() => nix.str`gatsby-cli@${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       yarnKeepDevDeps: true,
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/yarn.lock")),
           hash: "sha256-tmMPz/GunOMMGAHP2/nQkDBeZ+LtCdqQA/Bc6PFzOdk=",
         })))),
@@ -56,14 +56,14 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), nodejs)} $out/bin/gatsby \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--use-github-releases", "--version-regex", "gatsby@(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/gatsbyjs/gatsby/releases/tag/gatsby%2540${nix.sel(finalAttrs, "version")}`),
         description: "The Gatsby command line interface",
         homepage: "https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-cli#readme",

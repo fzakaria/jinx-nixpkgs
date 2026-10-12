@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const ocl_icd = nix.arg($, "ocl-icd");
   const opencl_clhpp = nix.arg($, "opencl-clhpp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "clpeak",
       version: "2.0.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "krrishnarraj",
           repo: "clpeak",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [ocl_icd, opencl_clhpp]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool which profiles OpenCL devices to find their peak capacities",
         homepage: "https://github.com/krrishnarraj/clpeak/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

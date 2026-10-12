@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const apacheHttpd = nix.thunk(() => nix.attr(apacheHttpdPackages, "apacheHttpd"));
   const mod_dnssd = nix.thunk(() => nix.attr(apacheHttpdPackages, "mod_dnssd"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mate-user-share",
       version: "1.28.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://pub.mate-desktop.org/releases/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/mate-user-share-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "iYVgmZkXllE0jkl+8I81C4YIG5expKcwQHfurlc5rjg=",
         })))),
@@ -51,16 +51,16 @@ export default nix.lambda((args) => (() => {
       ]),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://git.mate-desktop.org/mate-user-share",
             "odd-unstable": true,
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "User level public file sharing for the MATE desktop",
         mainProgram: "mate-file-share-properties",
         homepage: "https://github.com/mate-desktop/mate-user-share",

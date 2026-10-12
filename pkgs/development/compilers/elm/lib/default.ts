@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const elm = nix.arg($, "elm");
   const patchNpmElm = (pkg) => nix.app(nix.sel(pkg, "override"), (old) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       preRebuild: nix.thunk(() => nix.add(nix.selOr(old, () => "", "preRebuild"), "rm node_modules/elm/install.js\necho \"console.log('Nixpkgs\\' version of Elm will be used');\" > node_modules/elm/install.js\n")),
       postInstall: nix.thunk(() => nix.add(nix.selOr(old, () => "", "postInstall"), nix.str`ln -sf ${elm}/bin/elm node_modules/elm/bin/elm
 `)),
     }));
-  return { __proto__: pos$2, patchNpmElm: patchNpmElm };
+  return { [nix.POS]: pos$2, patchNpmElm: patchNpmElm };
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

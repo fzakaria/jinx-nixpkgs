@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_(nix.app(nix.sel(lib, "assertOneOf"), "frontend", frontend, nix.thunk(() => ["ncurses", "sdl"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/fr/frotz/package.nix:22:1");
   const progName = nix.thunk(() => (nix.asBool(nix.eq(frontend, "ncurses")) ? "frotz" : "sfrotz"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: progName,
       version: "2.55",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DavidGriffith",
           repo: "frotz",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       buildFlags: nix.thunk(() => [frontend]),
       installTargets: nix.thunk(() => (nix.asBool(nix.eq(frontend, "ncurses")) ? "install-frotz" : nix.str`install-${frontend}`)),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://davidgriffith.gitlab.io/frotz/",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/DavidGriffith/frotz/-/raw/${nix.sel(finalAttrs, "version")}/ChangeLog`),
         description: nix.thunk(() => nix.str`Z-machine interpreter for Infocom games and other interactive fiction (${frontend})`),

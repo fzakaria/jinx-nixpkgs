@@ -39,12 +39,12 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const callPackage = nix.arg($, "callPackage");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dbt-core",
       version: "1.11.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dbt-labs",
           repo: "dbt-core",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -93,11 +93,11 @@ export default nix.lambda((args) => (() => {
       ], nix.sel(mashumaro, "optional-dependencies", "msgpack"))),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         withAdapters: nix.thunk(() => nix.app(callPackage, nix.path(here, "./with-adapters.nix"), nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Enables data analysts and engineers to transform their data using the same practices that software engineers use to build applications",
         longDescription: "The dbt tool needs adapters to data sources in order to work. The available\nadapters are:\n\n  dbt-bigquery\n  dbt-postgres\n  dbt-redshift\n  dbt-snowflake\n\nAn example of building this package with a few adapters:\n\n  dbt.withAdapters (adapters: [\n    adapters.dbt-bigquery\n    adapters.dbt-postgres\n  ])\n",
         homepage: "https://github.com/dbt-labs/dbt-core",

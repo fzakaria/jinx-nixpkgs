@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const chromium = nix.arg($, "chromium");
   const python3 = nix.arg($, "python3");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "single-file-cli",
       version: "1.1.49",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gildas-lormeau",
           repo: "single-file-cli",
           rev: "af0f6f119edd8bf82bce3860fa55cfad869ac874",
@@ -48,7 +48,7 @@ wait
 runHook postCheck
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI tool for saving a faithful copy of a complete web page in a single HTML file",
         homepage: "https://github.com/gildas-lormeau/single-file-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

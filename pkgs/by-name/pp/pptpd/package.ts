@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const ppp = nix.arg($, "ppp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pptpd",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/poptop/pptpd/pptpd-${nix.sel(finalAttrs, "version")}/pptpd-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-anJChLHOAOoj99dgjQgYQ6EMio2H2VHLLqhucKobTnc=",
         })))),
       buildInputs: nix.thunk(() => [ppp]),
       postPatch: "substituteInPlace plugins/Makefile --replace-fail \"install -o root\" \"install\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://poptop.sourceforge.net/dox/",
         description: "PPTP Server for Linux",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

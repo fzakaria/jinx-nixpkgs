@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const StructTact = nix.arg($, "StructTact");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cheerios",
       owner: "uwplse",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (case$_1) => (out) => ({ __proto__: pos$1, case: case$_1, out: out });
+        const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$1, case: case$_1, out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "version")), nix.thunk(() => [
             nix.thunk(() => nix.app(case$, nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.14", "9.3")), "20230107")),
@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "20230107": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           rev: "bad8ad2476e14df6b5a819b7aaddc27a7c53fb69",
           hash: "sha256-G7a+6h4VDk7seKvFr6wy7vYqYmhUje78TYCj98wXrr8=",
         })),
         "20200201": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           rev: "9c7f66e57b91f706d70afa8ed99d64ed98ab367d",
           hash: "sha256:1h55s6lk47bk0lv5ralh81z55h799jbl9mhizmqwqzy57y8wqgs1",
         })),

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const bluez = nix.arg($, "bluez");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "bluesnarfer",
       version: "0.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://www.alighieri.org/tools/bluesnarfer.tar.gz",
           stripRoot: false,
           hash: "sha256-HGdrJZohKIsOkLETBdHz80w6vxmG25aMEWXrQlpMgRw=",
@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [bluez]),
       strictDeps: true,
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-incompatible-pointer-types", "-Wno-implicit-function-declaration"]))),
       })),
       installPhase: "runHook preInstall\ninstall -Dm755 bluesnarfer $out/bin/bluesnarfer\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Bluetooth bluesnarfing utility",
         homepage: "https://www.alighieri.org/project.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

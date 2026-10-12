@@ -18,24 +18,24 @@ export default nix.lambda((args) => (() => {
       const domain = "climate_group";
       const version = "1.0.8";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: owner,
           repo: "climate_group",
           tag: version,
           hash: "sha256-HwMHhrmQ+fbdLHQAM+ka/1oNCIBFaLTqOlPMzCEEeQ0=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/bjrnptrsn/climate_group/blob/${nix.sel(src, "rev")}/README.md#changelog`),
         description: "Group multiple climate devices to a single entity",
         homepage: "https://github.com/bjrnptrsn/climate_group",
         maintainers: nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(lib, "maintainers"));
-            return { __proto__: pos$2, jamiemagee: nix.thunk(() => nix.attr(from, "jamiemagee")) };
+            return { [nix.POS]: pos$2, jamiemagee: nix.thunk(() => nix.attr(from, "jamiemagee")) };
           })()))),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
-      return { __proto__: pos$4, owner, domain, version, src, meta };
+      return { [nix.POS]: pos$4, owner, domain, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vollkorn",
       version: "4.105",
       outputs: nix.thunk(() => ["out", "webfont", "doc"]),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://vollkorn-typeface.com/download/vollkorn-${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["-"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.zip`),
           stripRoot: false,
           hash: "sha256-oG79GgCwCavbMFAPakza08IPmt13Gwujrkc/NKTai7g=",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`install -Dm444 {Fontlog,OFL-FAQ,OFL}.txt -t $doc/share/doc/${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}/
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://vollkorn-typeface.com/",
         description: "Free and healthy typeface for bread and butter use",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

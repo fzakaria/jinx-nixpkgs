@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const writeClosure = nix.arg($, "writeClosure");
   const builder = nix.thunk(() => nix.app(replaceVars, nix.path(here, "./builder.pl"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       storeDir: nix.thunk(() => nix.attr(nix.builtins, "storeDir")),
     }))));
   const concatMap = nix.thunk(() => nix.attr(lib, "concatMap"));
   return nix.app(nix.sel(lib, "makeOverridable"), nix.thunk(() => nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         constructDrv: nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")),
         excludeDrvArgNames: nix.thunk(() => ["derivationArgs", "paths"]),
         extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
             [(nix.asBool(nix.has(args_2, "buildInputs")) ? "buildInputs" : null), buildInputs],
           ]));
           return nix.update(compatArgs, nix.update(derivationArgs, {
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             __structuredAttrs: true,
             extraOutputsToInstall: extraOutputsToInstall,
             manifest: manifest,
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
             extraPrefix: extraPrefix,
             postBuild: postBuild,
             chosenOutputs: nix.thunk(() => nix.builtins.map((drv) => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 paths: nix.thunk(() => nix.concat((nix.asBool((nix.asBool((nix.asBool(!nix.asBool(nix.has(drv, "outputSpecified"))) || nix.asBool(!nix.asBool(nix.sel(drv, "outputSpecified"))))) && nix.asBool(!nix.eq(nix.selOr(drv, () => null, "meta", "outputsToInstall"), null)))) ? nix.builtins.map((outName) => nix.sel(drv, nix.key(nix.force(outName))), nix.thunk(() => nix.sel(drv, "meta", "outputsToInstall"))) : [drv]), nix.app(concatMap, (outName) => (nix.asBool(nix.has(drv, nix.key(nix.force(outName)))) ? [nix.thunk(() => nix.sel(drv, nix.key(nix.force(outName))))] : []), nix.thunk(() => nix.sel(finalAttrs, "extraOutputsToInstall"))))),
                 priority: nix.thunk(() => nix.selOr(drv, () => nix.sel(lib, "meta", "defaultPriority"), "meta", "priority")),
               }), nix.thunk(() => nix.selOr(finalAttrs, () => nix.force(paths), "passthru", "paths")))),
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
             buildCommand: nix.thunk(() => nix.str`${nix.sel(buildPackages, "perl")}/bin/perl -w ${builder}
 eval "$postBuild"
 `),
-            passthru: nix.thunk(() => nix.update({ __proto__: pos$3, paths: paths }, nix.update(nix.selOr(derivationArgs, () => ({}), "passthru"), passthru))),
+            passthru: nix.thunk(() => nix.update({ [nix.POS]: pos$3, paths: paths }, nix.update(nix.selOr(derivationArgs, () => ({}), "passthru"), passthru))),
           }));
         })(), formals$2),
         inheritFunctionArgs: false,

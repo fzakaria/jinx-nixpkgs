@@ -39,12 +39,12 @@ export default nix.lambda((args) => (() => {
     })());
   })();
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "platformio",
       version: nix.thunk(() => nix.attr(platformio_core, "version")),
       targetPkgs: pio_pkgs,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Open source ecosystem for IoT development",
         homepage: "https://platformio.org",
         maintainers: nix.thunk(() => (() => {

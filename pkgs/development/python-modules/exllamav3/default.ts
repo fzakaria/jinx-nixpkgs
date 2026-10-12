@@ -31,13 +31,13 @@ export default nix.lambda((args) => (() => {
   const torch = nix.arg($, "torch");
   const typing_extensions = nix.arg($, "typing-extensions");
   const cudaCapabilities = nix.thunk(() => nix.app(nix.sel(lib, "intersectLists"), nix.thunk(() => nix.sel(torch, "cudaCapabilities")), nix.thunk(() => ["7.5", "8.0", "8.6", "8.9", "9.0", "10.0", "12.0"])));
-  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ __proto__: pos$1, stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
-      __proto__: pos$6,
+  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
+      [nix.POS]: pos$6,
       pname: "exllamav3",
       version: "1.5.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "turboderp-org",
           repo: "exllamav3",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         typing_extensions,
       ]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(torch, "cudaSupport")), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           CUDA_HOME: nix.thunk(() => nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(cudaPackages, "cuda_nvcc")))),
           TORCH_CUDA_ARCH_LIST: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ";", nix.thunk(() => nix.concat(cudaCapabilities, [
               nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "last"), cudaCapabilities)}+PTX`),
@@ -76,11 +76,11 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["exllamav3"]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Quantization and inference library for running LLMs locally on modern consumer-class GPUs",
         homepage: "https://github.com/turboderp-org/exllamav3",
         changelog: nix.thunk(() => nix.str`https://github.com/turboderp-org/exllamav3/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

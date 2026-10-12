@@ -12,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const junixsocket_common = nix.arg($, "junixsocket-common");
   const lib = nix.arg($, "lib");
   return nix.app(fetchMavenArtifact, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       groupId: "com.kohlschutter.junixsocket",
       artifactId: "junixsocket-native-common",
       version: nix.thunk(() => nix.attr(junixsocket_common, "version")),
       hash: "sha256-ASbOC68c61de9ReAfU0rFLnzLwYYAgThLsc6tKdyVno=",
       meta: nix.thunk(() => nix.update(nix.sel(junixsocket_common, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Binaries of the native JNI library for junixsocket for common platforms",
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
       })),

@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const keybase = nix.arg($, "keybase");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "kbfs",
       src: nix.thunk(() => nix.attr(keybase, "src")),
       version: nix.thunk(() => nix.attr(keybase, "version")),
@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       tags: nix.thunk(() => ["production"]),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: "https://keybase.io/docs/kbfs",
         description: "Keybase filesystem",
         maintainers: nix.thunk(() => (() => {

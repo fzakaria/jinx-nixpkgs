@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "3cpio";
       const version = "0.14.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bdrung",
           repo: "3cpio",
           tag: version,
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       const cargoHash = "sha256-q3WcEv2JF6SHdeFPSJrx0aE/DU/v08ihZjklJRVLwPY=";
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Manage initrd cpio archives",
         homepage: "https://github.com/bdrung/3cpio",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "3cpio",
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
-      return { __proto__: pos$4, pname, version, src, cargoHash, doCheck, passthru, meta };
+      return { [nix.POS]: pos$4, pname, version, src, cargoHash, doCheck, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

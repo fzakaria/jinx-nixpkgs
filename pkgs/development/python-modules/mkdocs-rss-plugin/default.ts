@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const setuptools_scm = nix.arg($, "setuptools-scm");
   const validator_collection = nix.arg($, "validator-collection");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mkdocs-rss-plugin",
       version: "1.17.9",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Guts",
           repo: "mkdocs-rss-plugin",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         "tests/test_build.py",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MkDocs plugin to generate a RSS feeds for created and updated pages, using git log and YAML frontmatter",
         homepage: "https://github.com/Guts/mkdocs-rss-plugin",
         changelog: nix.thunk(() => nix.str`https://github.com/Guts/mkdocs-rss-plugin/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

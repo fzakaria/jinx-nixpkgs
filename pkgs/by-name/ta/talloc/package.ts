@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "talloc";
       const version = "2.5.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://samba/talloc/talloc-${version}.tar.gz`),
           sha256: "sha256-kSr6I3UQrlQqdzOZjrGKErzaNatnKcji3bQ+jQ66sAc=",
         }))));
@@ -44,12 +44,12 @@ export default nix.lambda((args) => (() => {
           "--cross-compile",
           nix.thunk(() => nix.str`--cross-execute=${nix.app(nix.sel(stdenv, "hostPlatform", "emulator"), buildPackages)}`),
         ]))));
-      const env = nix.thunk(() => nix.update({ __proto__: pos$2, PYTHON_CONFIG: "/invalid" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "bintools", "isLLVM")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "bintools", "version")), "17")))), nix.thunk(() => ({ __proto__: pos$3, NIX_LDFLAGS: "--undefined-version" })))));
+      const env = nix.thunk(() => nix.update({ [nix.POS]: pos$2, PYTHON_CONFIG: "/invalid" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "bintools", "isLLVM")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "bintools", "version")), "17")))), nix.thunk(() => ({ [nix.POS]: pos$3, NIX_LDFLAGS: "--undefined-version" })))));
       const preBuild = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), "export NIX_CFLAGS_LINK=\"-no-pie -shared\";\n"));
       const postInstall = nix.thunk(() => nix.str`${nix.sel(stdenv, "cc", "targetPrefix")}ar q $out/lib/libtalloc.a bin/default/talloc.c.[0-9]*.o
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Hierarchical pool based memory allocator with destructors",
         homepage: "https://tdb.samba.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "matthiasbeyer"))]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

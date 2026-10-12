@@ -20,16 +20,16 @@ export default nix.lambda((args) => (() => {
   const yojson = nix.arg($, "yojson");
   const ounit2 = nix.arg($, "ounit2");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gapi-ocaml",
       version: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(cryptokit, "version")), "1.21")) ? "0.4.9" : "0.4.7")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "astrada",
           repo: "gapi-ocaml",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: nix.thunk(() => nix.sel({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             "0.4.7": "sha256-uQJfrgF0oafURlamHslt9hX9MP4vFeVqDhuX7T/kjiY=",
             "0.4.9": "sha256-UWoWWpCAKCNEwEFO4UBXrTO49QyxLXrulDHX6dGr0z4=",
           }, nix.key(nix.str`${nix.sel(finalAttrs, "version")}`))),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [ounit2]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "OCaml client for google services",
         homepage: "https://github.com/astrada/gapi-ocaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

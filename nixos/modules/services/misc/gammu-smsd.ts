@@ -89,70 +89,70 @@ ${nix.sel(cfg, "extraConfig", "smsd")}
   const gammuPackage = nix.thunk(() => (() => {
     const w_1 = nix.withScope(nix.thunk(() => nix.sel(cfg, "backend")), null);
     return nix.app(nix.sel(pkgs, "gammu", "override"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         dbiSupport: nix.thunk(() => (nix.asBool(nix.eq(nix.lookup(w_1, "service"), "sql")) && nix.asBool(nix.eq(nix.sel(nix.lookup(w_1, "sql"), "driver"), "sqlite")))),
         postgresSupport: nix.thunk(() => (nix.asBool(nix.eq(nix.lookup(w_1, "service"), "sql")) && nix.asBool(nix.eq(nix.sel(nix.lookup(w_1, "sql"), "driver"), "native_pgsql")))),
       })));
   })());
   return {
-    __proto__: pos$40,
+    [nix.POS]: pos$40,
     options: nix.thunk(() => ({
-      __proto__: pos$31,
+      [nix.POS]: pos$31,
       services: nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         "gammu-smsd": nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "gammu-smsd daemon")),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "smsd",
               description: "User that has access to the device",
             })))),
           device: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             path: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(lib, "types", "path")),
                 description: "Device node or address of the phone",
                 example: "/dev/ttyUSB2",
               })))),
             group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "root",
                 description: "Owner group of the device",
                 example: "dialout",
               })))),
             connection: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "at",
                 description: "Protocol which will be used to talk to the phone",
               })))),
             synchronizeTime: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Whether to set time from computer to the phone during starting connection",
               })))),
             pin: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 description: "PIN code for the simcard",
               })))),
           })),
           log: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             file: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "syslog",
                 description: "Path to file where information about communication will be stored",
               })))),
             format: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => [
                     "nothing",
                     "text",
@@ -167,88 +167,88 @@ ${nix.sel(cfg, "extraConfig", "smsd")}
               })))),
           })),
           extraConfig: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             gammu: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.sel(lib, "types", "lines")),
                 default: "",
                 description: "Extra config lines to be added into [gammu] section",
               })))),
             smsd: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.sel(lib, "types", "lines")),
                 default: "",
                 description: "Extra config lines to be added into [smsd] section",
               })))),
           })),
           backend: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             service: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["null", "files", "sql"]))),
                 default: "null",
                 description: "Service to use to store sms data.",
               })))),
             files: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               inboxPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   type: nix.thunk(() => nix.sel(lib, "types", "path")),
                   default: "/var/spool/sms/inbox/",
                   description: "Where the received SMSes are stored",
                 })))),
               outboxPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   type: nix.thunk(() => nix.sel(lib, "types", "path")),
                   default: "/var/spool/sms/outbox/",
                   description: "Where SMSes to be sent should be placed",
                 })))),
               sentSMSPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   type: nix.thunk(() => nix.sel(lib, "types", "path")),
                   default: "/var/spool/sms/sent/",
                   description: "Where the transmitted SMSes are placed",
                 })))),
               errorSMSPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   type: nix.thunk(() => nix.sel(lib, "types", "path")),
                   default: "/var/spool/sms/error/",
                   description: "Where SMSes with error in transmission is placed",
                 })))),
             })),
             sql: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               driver: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["native_mysql", "native_pgsql", "odbc", "dbi"]))),
                   description: "DB driver to use",
                 })))),
               sqlDialect: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                   default: null,
                   description: "SQL dialect to use (odbc driver only)",
                 })))),
               database: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                   default: null,
                   description: "Database name to store sms data",
                 })))),
               host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                   default: "localhost",
                   description: "Database server address",
                 })))),
               user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                   default: null,
                   description: "User name used for connection to the database",
                 })))),
               password: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                   default: null,
                   description: "User password used for connection to the database",
@@ -259,12 +259,12 @@ ${nix.sel(cfg, "extraConfig", "smsd")}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$39,
+        [nix.POS]: pos$39,
         users: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.sel(cfg, "user"), nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               description: "gammu-smsd user",
               isSystemUser: true,
               group: nix.thunk(() => nix.sel(cfg, "device", "group")),
@@ -272,18 +272,18 @@ ${nix.sel(cfg, "extraConfig", "smsd")}
           ])),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           systemPackages: nix.thunk(() => (() => {
             const w_2 = nix.withScope(nix.thunk(() => nix.sel(cfg, "backend")), null);
             return nix.concat([gammuPackage], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.eq(nix.lookup(w_2, "service"), "sql")) && nix.asBool(nix.eq(nix.sel(nix.lookup(w_2, "sql"), "driver"), "sqlite")))), nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "sqlite"))])));
           })()),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           services: nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             "gammu-smsd": nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               description: "gammu-smsd daemon",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => (() => {
@@ -316,7 +316,7 @@ chown ${nix.sel(cfg, "user")} -R ${nix.lookup(w_4, "errorSMSPath")}
                 })());
               })()),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 User: nix.thunk(() => nix.str`${nix.sel(cfg, "user")}`),
                 Group: nix.thunk(() => nix.str`${nix.sel(cfg, "device", "group")}`),
                 PermissionsStartOnly: true,

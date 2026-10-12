@@ -52,12 +52,12 @@ export default nix.lambda((args) => (() => {
   const foldArgs = (merger) => (f) => (init) => (x) => (() => {
     const arg = nix.thunk(() => nix.app(merger, init, nix.thunk(() => nix.app(defaultMergeArg, init, x))));
     const base = nix.thunk(() => nix.app(setAttrMerge, "passthru", nix.thunk(() => ({})), nix.thunk(() => nix.app(f, arg)), (z) => nix.update(z, {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         function: nix.thunk(() => nix.app(foldArgs, merger, f, arg)),
         args: nix.thunk(() => nix.update(nix.app(attrByPath, nix.thunk(() => ["passthru", "args"]), nix.thunk(() => ({})), z), x)),
       })));
     const withStdOverrides = nix.thunk(() => nix.update(base, {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       override: nix.thunk(() => nix.sel(base, "passthru", "function")),
     }));
     return nix.force(withStdOverrides);
@@ -99,7 +99,7 @@ export default nix.lambda((args) => (() => {
       const isX = (y) => nix.app(compare, nix.thunk(() => nix.app(getter, y)), nix.thunk(() => nix.app(getter, x)));
       const newOutputList = nix.thunk(() => nix.concat(outputList, (nix.asBool(nix.app(any, isX, outputList)) ? [] : [x])));
       return nix.app(uniqListExt, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           outputList: newOutputList,
           inputList: nix.thunk(() => nix.app(tail, inputList)),
           getter: getter,
@@ -127,21 +127,21 @@ export default nix.lambda((args) => (() => {
     return (nix.asBool(!nix.asBool(nix.app(isAttrs, y))) ? nix.app(innerClosePropagation, acc, ys) : (() => {
       const acc$ = nix.thunk(() => nix.concat([y], acc));
       return nix.app(innerClosePropagation, acc$, nix.thunk(() => nix.app(uniqList, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             inputList: nix.thunk(() => nix.concat(nix.app(maybeAttrNullable, "propagatedBuildInputs", [], y), nix.concat(nix.app(maybeAttrNullable, "propagatedNativeBuildInputs", [], y), ys))),
             acc: acc$,
           })))));
     })());
   })());
   const closePropagationSlow = (list) => nix.app(uniqList, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       inputList: nix.thunk(() => nix.app(innerClosePropagation, [], list)),
     })));
   const closePropagationFast = (list) => nix.builtins.catAttrs("val", nix.thunk(() => nix.builtins.genericClosure(nix.thunk(() => ({
-        __proto__: pos$8,
-        startSet: nix.thunk(() => nix.builtins.map((x) => ({ __proto__: pos$6, key: nix.thunk(() => nix.sel(x, "outPath")), val: x }), nix.thunk(() => nix.builtins.filter((x) => !nix.eq(x, null), list)))),
+        [nix.POS]: pos$8,
+        startSet: nix.thunk(() => nix.builtins.map((x) => ({ [nix.POS]: pos$6, key: nix.thunk(() => nix.sel(x, "outPath")), val: x }), nix.thunk(() => nix.builtins.filter((x) => !nix.eq(x, null), list)))),
         operator: (item) => (nix.asBool(!nix.asBool(nix.builtins.isAttrs(nix.thunk(() => nix.sel(item, "val"))))) ? [] : nix.builtins.concatMap((x) => (nix.asBool(!nix.eq(x, null)) ? [
-            nix.thunk(() => ({ __proto__: pos$7, key: nix.thunk(() => nix.sel(x, "outPath")), val: x })),
+            nix.thunk(() => ({ [nix.POS]: pos$7, key: nix.thunk(() => nix.sel(x, "outPath")), val: x })),
           ] : []), nix.thunk(() => nix.concat(nix.selOr(item, () => [], "val", "propagatedBuildInputs"), nix.selOr(item, () => [], "val", "propagatedNativeBuildInputs"))))),
       })))));
   const closePropagation = nix.thunk(() => (nix.asBool(nix.has(nix.builtins, "genericClosure")) ? closePropagationFast : closePropagationSlow));
@@ -157,14 +157,14 @@ export default nix.lambda((args) => (() => {
     return (attrs1) => (attrs2) => nix.app(foldr, (n) => (set) => nix.app(setAttr, set, n, nix.thunk(() => (nix.asBool(nix.has(set, nix.key(nix.force(n)))) ? (nix.asBool(nix.app(elem, n, mergeLists)) ? nix.concat(nix.sel(attrs2, nix.key(nix.force(n))), nix.sel(attrs1, nix.key(nix.force(n)))) : (nix.asBool(nix.app(elem, n, overrideSnd)) ? nix.sel(attrs1, nix.key(nix.force(n))) : nix.builtins.throw(nix.thunk(() => nix.str`error mergeAttrsNoOverride, attribute ${n} given in both attributes - no merge func defined`)))) : nix.sel(attrs2, nix.key(nix.force(n)))))), attrs1, nix.thunk(() => nix.app(attrNames, attrs2)));
   })(), formals$5);
   const mergeAttrByFunc = (x) => (y) => (() => {
-    const mergeAttrBy2 = nix.thunk(() => nix.update({ __proto__: pos$9, mergeAttrBy: mergeAttrs }, nix.update(nix.app(maybeAttr, "mergeAttrBy", nix.thunk(() => ({})), x), nix.app(maybeAttr, "mergeAttrBy", nix.thunk(() => ({})), y))));
+    const mergeAttrBy2 = nix.thunk(() => nix.update({ [nix.POS]: pos$9, mergeAttrBy: mergeAttrs }, nix.update(nix.app(maybeAttr, "mergeAttrBy", nix.thunk(() => ({})), x), nix.app(maybeAttr, "mergeAttrBy", nix.thunk(() => ({})), y))));
     return nix.app(foldr, mergeAttrs, nix.thunk(() => ({})), nix.thunk(() => [
         x,
         y,
         nix.thunk(() => nix.app(mapAttrs, (a) => (v) => (nix.asBool(nix.has(x, nix.key(nix.force(a)))) ? (nix.asBool(nix.has(y, nix.key(nix.force(a)))) ? nix.app(v, nix.thunk(() => nix.sel(x, nix.key(nix.force(a)))), nix.thunk(() => nix.sel(y, nix.key(nix.force(a))))) : nix.sel(x, nix.key(nix.force(a)))) : nix.sel(y, nix.key(nix.force(a)))), nix.thunk(() => nix.builtins.removeAttrs(mergeAttrBy2, nix.thunk(() => nix.app(filter, (a) => (nix.asBool(!nix.asBool(nix.has(x, nix.key(nix.force(a))))) && nix.asBool(!nix.asBool(nix.has(y, nix.key(nix.force(a)))))), nix.thunk(() => nix.app(attrNames, mergeAttrBy2)))))))),
       ]));
   })();
-  const mergeAttrsByFuncDefaults = nix.thunk(() => nix.app(foldl, mergeAttrByFunc, nix.thunk(() => ({ __proto__: pos$10, mergeAttrBy: mergeAttrBy }))));
+  const mergeAttrsByFuncDefaults = nix.thunk(() => nix.app(foldl, mergeAttrByFunc, nix.thunk(() => ({ [nix.POS]: pos$10, mergeAttrBy: mergeAttrBy }))));
   const mergeAttrsByFuncDefaultsClean = (list) => nix.builtins.removeAttrs(nix.thunk(() => nix.app(mergeAttrsByFuncDefaults, list)), nix.thunk(() => ["mergeAttrBy"]));
   const mergeAttrBy = nix.thunk(() => nix.update(nix.app(listToAttrs, nix.thunk(() => nix.builtins.map((n) => nix.app(nameValuePair, n, concat), nix.thunk(() => [
         "nativeBuildInputs",
@@ -182,7 +182,7 @@ ${b}`), nix.thunk(() => ["preConfigure", "postInstall"])))))));
   const fakeSha256 = "0000000000000000000000000000000000000000000000000000000000000000";
   const fakeSha512 = "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     checkFlag: checkFlag,
     checkReqs: checkReqs,
     closePropagation: closePropagation,

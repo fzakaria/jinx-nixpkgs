@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const meson = nix.arg($, "meson");
   const ninja = nix.arg($, "ninja");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libv3270",
       version: "5.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PerryWerneck",
           repo: "libv3270",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "# lib3270_build_data_filename is relative to lib3270's share - not ours.\nfor f in $(find . -type f -iname \"*.c\"); do\n  sed -i -e \"s@lib3270_build_data_filename(@g_build_filename(\\\"$out/share/pw3270\\\", @\" \"$f\"\ndone\n",
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "3270 Virtual Terminal for GTK",
         homepage: "https://github.com/PerryWerneck/libv3270",
         changelog: "https://github.com/PerryWerneck/libv3270/blob/master/CHANGELOG",

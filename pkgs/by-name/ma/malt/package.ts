@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libelf = nix.arg($, "libelf");
   const libunwind = nix.arg($, "libunwind");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "malt",
       version: "1.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "memtt",
           repo: "malt",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ sed -i -e 's,^NODE=""$,NODE=${nodejs}/bin/node,' -e s,^detectNodeJS$,, \\
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [libelf, libunwind]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Memory tool to find where you allocate your memory",
         homepage: "https://github.com/memtt/malt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cecill-c")),

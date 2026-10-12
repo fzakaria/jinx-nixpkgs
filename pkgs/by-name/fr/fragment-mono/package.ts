@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fragment-mono",
       version: "1.21",
       outputs: nix.thunk(() => ["out", "webfont"]),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/weiweihuanghuang/fragment-mono/releases/download/${nix.sel(finalAttrs, "version")}/fragment-mono-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-H5s4rYDN2d0J+zVRgBzg8vfZXCA/jjHrGBV8o8Dxutc=",
         })))),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/weiweihuanghuang/fragment-mono",
         description: "Helvetica Monospace Coding Font",
         changelog: nix.thunk(() => nix.str`https://github.com/weiweihuanghuang/fragment-mono/releases/tag/${nix.sel(finalAttrs, "version")}`),

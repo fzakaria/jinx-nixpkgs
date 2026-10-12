@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const root = nix.arg($, "root");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "xfitter",
       version: "2.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fitters",
           repo: "xfitter",
           tag: "2.2.0_Future_Freeze",
@@ -63,14 +63,14 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "libc"), "glibc")), libtirpc))),
       preConfigure: "substituteInPlace \"CMakeLists.txt\" \\\n  --replace-fail 'cmake_minimum_required(VERSION 2.8.12.2)' \\\n                 'cmake_minimum_required(VERSION 3.10)'\n",
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "libc"), "glibc")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.sel(libtirpc, "dev")}/include/tirpc`),
           NIX_LDFLAGS: "-ltirpc",
         })))),
       hardeningDisable: nix.thunk(() => ["format"]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "ln -sv \"$out/lib/xfitter/\"* \"$out/lib/\"\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Open source QCD fit framework designed to extract PDFs and assess the impact of new data",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
         homepage: "https://gitlab.cern.ch/fitters/xfitter",

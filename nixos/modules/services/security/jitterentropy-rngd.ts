@@ -26,41 +26,41 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "jitterentropy-rngd"));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         "jitterentropy-rngd": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "jitterentropy-rngd service configuration")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "jitterentropy-rngd", nix.thunk(() => ({})))),
           osr: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "ints", "between"), 3n, 20n)),
               default: 3n,
               description: "Oversampling rate for jitterentropy (3 to 20)",
             })))),
           flags: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 0n,
               description: "Additional flags to pass to jitterentropy",
             })))),
           "forceSP800-90B": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Force SP800-90B mode for entropy reading",
             })))),
           memlockLimit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "2M",
               description: "Set limit for lockable memory with mlock",
             })))),
           verbose: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enable verbose log messages",
@@ -71,17 +71,17 @@ export default nix.lambda((args) => (() => {
     config: nix.thunk(() => (() => {
       const args_1 = nix.thunk(() => nix.add(nix.add(nix.str`--osr ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "osr")))} --flags ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "flags")))}`, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "forceSP800-90B")), " --sp800-90b")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "verbose")), " -vvv")));
       return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           systemd: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
             services: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               jitterentropy: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 wantedBy: nix.thunk(() => ["basic.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   ExecStartPre: nix.thunk(() => [
                     nix.thunk(() => nix.str`-${nix.sel(cfg, "package")}/bin/jitterentropy-rngd --status ${args_1}`),
                   ]),
@@ -97,7 +97,7 @@ export default nix.lambda((args) => (() => {
         })));
     })()),
     meta: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "thillux"))];

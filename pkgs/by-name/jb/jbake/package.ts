@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const jre = nix.arg($, "jre");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "2.7.0",
       pname: "jbake",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/jbake-org/jbake/releases/download/v${nix.sel(finalAttrs, "version")}/jbake-${nix.sel(finalAttrs, "version")}-bin.zip`),
           hash: "sha256-oaTZEXrI208tVP+lLgz2bplXvM7yYbcNlfkAvdOJCik=",
         })))),
@@ -35,7 +35,7 @@ bin/jbake | grep -q "${nix.sel(finalAttrs, "version")}" || (echo "jbake did not 
 `),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Java based, open source, static site/blog generator for developers & designers",
         homepage: "https://jbake.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

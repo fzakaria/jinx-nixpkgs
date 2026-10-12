@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const ptime = nix.arg($, "ptime");
   const uri = nix.arg($, "uri");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dream-pure",
       version: "1.0.0-alpha8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/aantron/dream/releases/download/${nix.sel(finalAttrs, "version")}/dream-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-I+2BKJDAP+XJl0pJYano5iEmvte8fX0UQLhGUslc8pY=",
         })))),
       buildInputs: nix.thunk(() => [lwt_ppx]),
       propagatedBuildInputs: nix.thunk(() => [base64, hmap, lwt, ptime, uri]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Shared HTTP types for Dream (server) and Hyper (client)",
         homepage: "https://aantron.github.io/dream/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

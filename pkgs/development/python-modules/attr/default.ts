@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "denis-ryzhkov",
           repo: "attr",
           rev: version,
@@ -31,7 +31,7 @@ ${nix.sel(python, "interpreter")} -c "import dry_attr; dry_attr.test()"
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple decorator to set attributes of target function or class in a DRY way",
         homepage: "https://github.com/denis-ryzhkov/attr",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -41,7 +41,7 @@ runHook postCheck
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

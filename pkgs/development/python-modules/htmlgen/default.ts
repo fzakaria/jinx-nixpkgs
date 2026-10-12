@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const mypy = nix.arg($, "mypy");
   const unittestCheckHook = nix.arg($, "unittestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "htmlgen",
       version: "2.0.0",
       __structuredAttrs: true,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "srittau",
           repo: "python-htmlgen",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       unittestFlags: nix.thunk(() => ["--start", "test_htmlgen", "--pattern", "*.py"]),
       pythonImportsCheck: nix.thunk(() => ["htmlgen"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python HTML 5 Generator",
         homepage: "https://github.com/srittau/python-htmlgen",
         changelog: nix.thunk(() => nix.str`https://github.com/srittau/python-htmlgen/blob/v${nix.sel(finalAttrs, "version")}/NEWS.md`),

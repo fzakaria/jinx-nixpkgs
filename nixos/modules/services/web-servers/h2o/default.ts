@@ -77,18 +77,18 @@ export default nix.lambda((args) => (() => {
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const mkCertOwnershipAssertion = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../security/acme/mk-cert-ownership-assertion.nix")), lib));
-  const from_1 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib }))));
+  const from_1 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib }))));
   const tlsRecommendationsOption = nix.thunk(() => nix.attr(from_1, "tlsRecommendationsOption"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const getNames = (name) => (vhostSettings) => (() => {
     const server = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(vhostSettings, "serverName"), null)) ? nix.sel(vhostSettings, "serverName") : nix.force(name)));
     const cert = nix.thunk(() => (nix.asBool(nix.eq(nix.app(nix.sel(lib, "attrByPath"), nix.thunk(() => ["acme", "useHost"]), null, vhostSettings), null)) ? nix.force(server) : nix.sel(vhostSettings, "acme", "useHost")));
-    return { __proto__: pos$2, server, cert };
+    return { [nix.POS]: pos$2, server, cert };
   })();
   const acmeEnabledHostsConfigs = nix.thunk(() => nix.app(nix.sel(lib, "foldlAttrs"), (acc) => (name) => (value) => (nix.asBool((nix.asBool(nix.eq(nix.sel(value, "acme"), null)) || nix.asBool((nix.asBool(!nix.asBool(nix.sel(value, "acme", "enable"))) && nix.asBool(nix.eq(nix.sel(value, "acme", "useHost"), null)))))) ? nix.force(acc) : (() => {
       const names = nix.thunk(() => nix.app(getNames, name, value));
       const virtualHostConfig = nix.thunk(() => nix.update(value, {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         serverName: nix.thunk(() => nix.sel(names, "server")),
         certName: nix.thunk(() => nix.sel(names, "cert")),
       }));
@@ -99,16 +99,16 @@ export default nix.lambda((args) => (() => {
       const certName = nix.thunk(() => nix.attr(vhostSettings, "certName"));
       const isDependent = nix.thunk(() => nix.eq(nix.sel(certs, nix.key(nix.force(certName)), "dnsProvider"), null));
       return (nix.asBool((nix.asBool(isDependent) && nix.asBool(!nix.asBool(nix.builtins.elem(certName, nix.thunk(() => nix.sel(acc, "dependent"))))))) ? nix.update(acc, {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         dependent: nix.thunk(() => nix.concat(nix.sel(acc, "dependent"), [certName])),
       }) : (nix.asBool((nix.asBool(!nix.asBool(isDependent)) && nix.asBool(!nix.asBool(nix.builtins.elem(certName, nix.thunk(() => nix.sel(acc, "independent"))))))) ? nix.update(acc, {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         independent: nix.thunk(() => nix.concat(nix.sel(acc, "independent"), [certName])),
       }) : nix.force(acc)));
     })();
-    const certNames = nix.thunk(() => nix.app(nix.sel(lib, "lists", "foldl"), partition, nix.thunk(() => ({ __proto__: pos$6, dependent: [], independent: [] })), acmeEnabledHostsConfigs));
+    const certNames = nix.thunk(() => nix.app(nix.sel(lib, "lists", "foldl"), partition, nix.thunk(() => ({ [nix.POS]: pos$6, dependent: [], independent: [] })), acmeEnabledHostsConfigs));
     return nix.update(certNames, {
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       all: nix.thunk(() => nix.concat(nix.sel(certNames, "dependent"), nix.sel(certNames, "independent"))),
     });
   })());
@@ -116,7 +116,7 @@ export default nix.lambda((args) => (() => {
     const version = "6.0";
     const git_tag = "v6.0";
     const guidelinesJSON = nix.thunk(() => nix.app(nix.sel(lib, "pipe"), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         urls: nix.thunk(() => [
           nix.thunk(() => nix.str`https://ssl-config.mozilla.org/guidelines/${version}.json`),
           nix.thunk(() => nix.str`https://raw.githubusercontent.com/mozilla/ssl-config-generator/refs/tags/${git_tag}/src/static/guidelines/${version}.json`),
@@ -131,7 +131,7 @@ export default nix.lambda((args) => (() => {
   })() : null));
   const hostsConfig = nix.thunk(() => nix.app(nix.sel(lib, "concatMapAttrs"), (name) => (value) => (() => {
       const port = nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         HTTP: nix.thunk(() => nix.app(nix.sel(lib, "attrByPath"), nix.thunk(() => ["http", "port"]), nix.thunk(() => nix.sel(cfg, "defaultHTTPListenPort")), value)),
         TLS: nix.thunk(() => nix.app(nix.sel(lib, "attrByPath"), nix.thunk(() => ["tls", "port"]), nix.thunk(() => nix.sel(cfg, "defaultTLSListenPort")), value)),
       }));
@@ -141,11 +141,11 @@ export default nix.lambda((args) => (() => {
           const acmeChallengePath = "/.well-known/acme-challenge";
           return nix.attrsDyn({}, [
             [nix.str`${nix.sel(names, "server")}:${nix.builtins.toString(acmePort)}`, nix.thunk(() => ({
-              __proto__: pos$12,
-              listen: nix.thunk(() => ({ __proto__: pos$10, port: acmePort })),
+              [nix.POS]: pos$12,
+              listen: nix.thunk(() => ({ [nix.POS]: pos$10, port: acmePort })),
               paths: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${acmeChallengePath}/`, nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   "file.dir": nix.thunk(() => nix.add(nix.sel(value, "acme", "root"), acmeChallengePath)),
                 }))],
               ])),
@@ -154,19 +154,19 @@ export default nix.lambda((args) => (() => {
         })())));
       const httpSettings = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(value, "tls"), null)) || nix.asBool(nix.eq(nix.sel(value, "tls", "policy"), "add")))), nix.thunk(() => nix.attrsDyn({}, [
           [nix.str`${nix.sel(names, "server")}:${nix.builtins.toString(nix.thunk(() => nix.sel(port, "HTTP")))}`, nix.thunk(() => nix.update(nix.sel(value, "settings"), {
-            __proto__: pos$14,
-            listen: nix.thunk(() => ({ __proto__: pos$13, port: nix.thunk(() => nix.sel(port, "HTTP")) })),
+            [nix.POS]: pos$14,
+            listen: nix.thunk(() => ({ [nix.POS]: pos$13, port: nix.thunk(() => nix.sel(port, "HTTP")) })),
           }))],
         ]))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(value, "tls"), null)) && nix.asBool(nix.eq(nix.sel(value, "tls", "policy"), "force")))), nix.thunk(() => nix.attrsDyn({}, [
           [nix.str`${nix.sel(names, "server")}:${nix.builtins.toString(nix.thunk(() => nix.sel(port, "HTTP")))}`, nix.thunk(() => ({
-            __proto__: pos$19,
-            listen: nix.thunk(() => ({ __proto__: pos$15, port: nix.thunk(() => nix.sel(port, "HTTP")) })),
+            [nix.POS]: pos$19,
+            listen: nix.thunk(() => ({ [nix.POS]: pos$15, port: nix.thunk(() => nix.sel(port, "HTTP")) })),
             paths: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               "/": nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 redirect: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   status: nix.thunk(() => nix.sel(value, "tls", "redirectCode")),
                   url: nix.thunk(() => nix.str`https://${nix.sel(names, "server")}:${nix.builtins.toString(nix.thunk(() => nix.sel(port, "TLS")))}`),
                 })),
@@ -178,15 +178,15 @@ export default nix.lambda((args) => (() => {
           [nix.str`${nix.sel(names, "server")}:${nix.builtins.toString(nix.thunk(() => nix.sel(port, "TLS")))}`, nix.thunk(() => (() => {
             const tlsRecommendations = nix.thunk(() => nix.app(nix.sel(lib, "attrByPath"), nix.thunk(() => ["tls", "recommendations"]), nix.thunk(() => nix.sel(cfg, "defaultTLSRecommendations")), value));
             const hasTLSRecommendations = nix.thunk(() => (nix.asBool(!nix.eq(tlsRecommendations, null)) && nix.asBool(!nix.eq(mozTLSRecs, null))));
-            const tlsRecAttrs = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.builtins.elem(nix.thunk(() => nix.sel(names, "cert")), nix.thunk(() => nix.sel(acmeCertNames, "all")))), nix.thunk(() => ({ __proto__: pos$20, "ocsp-update-interval": 0n }))), nix.app(nix.sel(lib, "optionalAttrs"), hasTLSRecommendations, nix.thunk(() => (() => {
+            const tlsRecAttrs = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.builtins.elem(nix.thunk(() => nix.sel(names, "cert")), nix.thunk(() => nix.sel(acmeCertNames, "all")))), nix.thunk(() => ({ [nix.POS]: pos$20, "ocsp-update-interval": 0n }))), nix.app(nix.sel(lib, "optionalAttrs"), hasTLSRecommendations, nix.thunk(() => (() => {
                 const recs = nix.thunk(() => nix.sel(mozTLSRecs, nix.key(nix.force(tlsRecommendations))));
                 return nix.update({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   "min-version": nix.thunk(() => nix.builtins.head(nix.thunk(() => nix.sel(recs, "tls_versions")))),
                   "cipher-preference": "server",
                   "cipher-suite-tls1.3": nix.thunk(() => nix.sel(recs, "ciphersuites")),
                 }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(recs, "ciphers", "openssl"), [])), nix.thunk(() => ({
-                    __proto__: pos$22,
+                    [nix.POS]: pos$22,
                     "cipher-suite": nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ":", nix.thunk(() => nix.sel(recs, "ciphers", "openssl")))),
                   }))));
               })()))));
@@ -195,27 +195,27 @@ export default nix.lambda((args) => (() => {
                 const recs = nix.thunk(() => nix.sel(mozTLSRecs, nix.key(nix.force(tlsRecommendations))));
                 const hsts = nix.thunk(() => nix.str`Strict-Transport-Security: max-age=${nix.builtins.toString(nix.thunk(() => nix.sel(recs, "hsts_min_age")))}; includeSubDomains; preload`);
                 return {
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   "header.set": nix.thunk(() => (nix.asBool(nix.builtins.isString(headerSet)) ? [headerSet, hsts] : nix.concat(headerSet, [hsts]))),
                 };
               })())));
             const listen = nix.thunk(() => (() => {
               const identity = nix.thunk(() => nix.concat(nix.sel(value, "tls", "identity"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.builtins.elem(nix.thunk(() => nix.sel(names, "cert")), nix.thunk(() => nix.sel(acmeCertNames, "all")))), nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   "key-file": nix.thunk(() => nix.str`${nix.sel(certs, nix.key(nix.sel(names, "cert")), "directory")}/key.pem`),
                   "certificate-file": nix.thunk(() => nix.str`${nix.sel(certs, nix.key(nix.sel(names, "cert")), "directory")}/fullchain.pem`),
                 })))));
               const baseListen = nix.thunk(() => nix.update({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 port: nix.thunk(() => nix.sel(port, "TLS")),
-                ssl: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "recursiveUpdate"), tlsRecAttrs, nix.thunk(() => nix.sel(value, "tls", "extraSettings"))), { __proto__: pos$25, identity: identity })),
-              }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(value, "host"), null)), nix.thunk(() => ({ __proto__: pos$27, host: nix.thunk(() => nix.sel(value, "host")) })))));
+                ssl: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "recursiveUpdate"), tlsRecAttrs, nix.thunk(() => nix.sel(value, "tls", "extraSettings"))), { [nix.POS]: pos$25, identity: identity })),
+              }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(value, "host"), null)), nix.thunk(() => ({ [nix.POS]: pos$27, host: nix.thunk(() => nix.sel(value, "host")) })))));
               const quicListen = nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(value, "tls", "quic"), null)), nix.thunk(() => nix.update(baseListen, (() => {
                   const from_2 = nix.thunk(() => nix.sel(value, "tls"));
-                  return { __proto__: pos$28, quic: nix.thunk(() => nix.attr(from_2, "quic")) };
+                  return { [nix.POS]: pos$28, quic: nix.thunk(() => nix.attr(from_2, "quic")) };
                 })()))));
               return {
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 listen: nix.thunk(() => nix.concat([baseListen], quicListen)),
               };
             })());
@@ -224,42 +224,42 @@ export default nix.lambda((args) => (() => {
         ]))));
       return nix.update(nix.app(nix.sel(lib, "recursiveUpdate"), acmeSettings, httpSettings), tlsSettings);
     })(), nix.thunk(() => nix.sel(cfg, "hosts"))));
-  const h2oConfig = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "h2o.yaml", nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => ({ __proto__: pos$30, hosts: hostsConfig })), nix.thunk(() => nix.sel(cfg, "settings"))))));
+  const h2oConfig = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "h2o.yaml", nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => ({ [nix.POS]: pos$30, hosts: hostsConfig })), nix.thunk(() => nix.sel(cfg, "settings"))))));
   const h2oExe = nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} ${nix.app(nix.sel(lib, "strings", "escapeShellArgs"), nix.thunk(() => ["--conf", nix.thunk(() => nix.str`${h2oConfig}`)]))}`);
   return {
-    __proto__: pos$58,
+    [nix.POS]: pos$58,
     options: nix.thunk(() => ({
-      __proto__: pos$41,
+      [nix.POS]: pos$41,
       services: nix.thunk(() => ({
-        __proto__: pos$40,
+        [nix.POS]: pos$40,
         h2o: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           enable: nix.thunk(() => nix.app(mkEnableOption, "H2O web server")),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               type: nix.thunk(() => nix.sel(types, "nonEmptyStr")),
               default: "h2o",
               description: "User running H2O service",
             })))),
           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               type: nix.thunk(() => nix.sel(types, "nonEmptyStr")),
               default: "h2o",
               description: "Group running H2O services",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "h2o", nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               example: "pkgs.h2o.override {\n  withMruby = false;\n  openssl = pkgs.openssl_legacy;\n}\n",
             })))),
           defaultHTTPListenPort: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 80n,
               description: "If hosts do not specify listen.port, use these ports for HTTP by default.\n",
               example: 8080n,
             })))),
           defaultTLSListenPort: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 443n,
               description: "If hosts do not specify listen.port, use these ports for SSL by default.\n",
@@ -267,15 +267,15 @@ export default nix.lambda((args) => (() => {
             })))),
           defaultTLSRecommendations: tlsRecommendationsOption,
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               type: nix.thunk(() => nix.sel(settingsFormat, "type")),
               default: nix.thunk(() => ({})),
               description: "Configuration for H2O (see <https://h2o.examp1e.net/configure.html>)",
               example: nix.thunk(() => nix.app(literalExpression, "{\n  compress = \"ON\";\n  ssl-offload = \"kernel\";\n  http2-reprioritize-blocking-assets = \"ON\";\n  \"file.mime.addtypes\" = {\n    \"text/x-rst\" = {\n      extensions = [ \".rst\" ];\n      is_compressible = \"YES\";\n    };\n  };\n}\n")),
             })))),
           hosts: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$38,
-              type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./vhost-options.nix")), nix.thunk(() => ({ __proto__: pos$37, config: config, lib: lib })))))))),
+              [nix.POS]: pos$38,
+              type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./vhost-options.nix")), nix.thunk(() => ({ [nix.POS]: pos$37, config: config, lib: lib })))))))),
               default: nix.thunk(() => ({})),
               description: "The `hosts` config to be merged with the settings.\n\nNote that unlike YAML used for H2O, Nix will not support duplicate\nkeys to, for instance, have multiple listens in a host block; use the\nvirtual host options in like `http` & `tls` or use `$HOST:$PORT`\nkeys if manually specifying config.\n",
               example: nix.thunk(() => nix.app(literalExpression, "{\n  \"hydra.example.com\" = {\n    tls = {\n      policy = \"force\";\n      identity = [\n        {\n          key-file = \"/path/to/key\";\n          certificate-file = \"/path/to/cert\";\n        };\n      ];\n      extraSettings = {\n        minimum-version = \"TLSv1.3\";\n      };\n    };\n    settings = {\n      paths.\"/\" = {\n        \"file:dir\" = \"/var/www/default\";\n      };\n    };\n  };\n}\n")),
@@ -284,10 +284,10 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$57,
+        [nix.POS]: pos$57,
         assertions: nix.thunk(() => nix.concat([
           nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             assertion: nix.thunk(() => (nix.asBool(!nix.asBool(nix.builtins.hasAttr("hosts", h2oConfig))) || nix.asBool(nix.builtins.all((host) => (() => {
                 const hasKeyPlusCert = (attrs) => (nix.asBool(!nix.eq(nix.selOr(attrs, () => "", "key-file"), "")) && nix.asBool(!nix.eq(nix.selOr(attrs, () => "", "certificate-file"), "")));
                 return (nix.asBool((nix.asBool(nix.eq(nix.app(nix.sel(lib, "attrByPath"), nix.thunk(() => ["listen", "ssl"]), null, host), null)) || nix.asBool((nix.asBool((nix.asBool(nix.builtins.hasAttr("identity", host)) && nix.asBool(nix.gt(nix.builtins.length(nix.thunk(() => nix.sel(host, "identity"))), 0n)))) && nix.asBool(nix.builtins.all(hasKeyPlusCert, nix.thunk(() => nix.sel(host, "listen", "ssl", "identity")))))))) || nix.asBool(nix.app(hasKeyPlusCert, nix.thunk(() => nix.sel(host, "listen", "ssl")))));
@@ -295,31 +295,31 @@ export default nix.lambda((args) => (() => {
             message: "TLS support will require at least one non-empty certificate & key\nfile. Use services.h2o.hosts.<name>.acme.enable,\nservices.h2o.hosts.<name>.acme.useHost,\nservices.h2o.hosts.<name>.tls.identity, or\nservices.h2o.hosts.<name>.tls.extraSettings.\n",
           })),
         ], nix.builtins.map((name) => nix.app(mkCertOwnershipAssertion, nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               cert: nix.thunk(() => nix.sel(certs, nix.key(nix.force(name)))),
               groups: nix.thunk(() => nix.sel(config, "users", "groups")),
               services: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(config, "systemd", "services", "h2o"))], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(acmeCertNames, "all"), [])), nix.thunk(() => nix.sel(config, "systemd", "services", "h2o-config-reload"))))),
             }))), nix.thunk(() => nix.sel(acmeCertNames, "all"))))),
         users: nix.thunk(() => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           users: nix.thunk(() => nix.attrsDyn({}, [
-            [nix.sel(cfg, "user"), nix.thunk(() => nix.update({ __proto__: pos$44, group: nix.thunk(() => nix.sel(cfg, "group")) }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "h2o")), nix.thunk(() => ({ __proto__: pos$45, isSystemUser: true })))))],
+            [nix.sel(cfg, "user"), nix.thunk(() => nix.update({ [nix.POS]: pos$44, group: nix.thunk(() => nix.sel(cfg, "group")) }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "h2o")), nix.thunk(() => ({ [nix.POS]: pos$45, isSystemUser: true })))))],
           ])),
           groups: nix.thunk(() => nix.attrsDyn({}, [[nix.sel(cfg, "group"), nix.thunk(() => ({}))]])),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$53,
+          [nix.POS]: pos$53,
           services: nix.thunk(() => ({
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             h2o: nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               description: "H2O HTTP server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => nix.app(nix.sel(lib, "concatLists"), nix.thunk(() => nix.builtins.map((certName) => [nix.thunk(() => nix.str`acme-${certName}.service`)], nix.thunk(() => nix.sel(acmeCertNames, "all")))))),
               before: nix.thunk(() => nix.builtins.map((certName) => nix.str`acme-order-renew-${certName}.service`, nix.thunk(() => nix.sel(acmeCertNames, "all")))),
               after: nix.thunk(() => nix.concat(["network.target"], nix.builtins.map((certName) => nix.str`acme-${certName}.service`, nix.thunk(() => nix.sel(acmeCertNames, "all"))))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$47,
+                [nix.POS]: pos$47,
                 ExecStartPre: nix.thunk(() => nix.str`${h2oExe} --mode 'test'`),
                 ExecStart: nix.thunk(() => nix.str`${h2oExe} --mode 'master'`),
                 ExecReload: nix.thunk(() => [
@@ -361,16 +361,16 @@ export default nix.lambda((args) => (() => {
             "h2o-config-reload": nix.thunk(() => (() => {
               const tlsServices = nix.thunk(() => nix.builtins.map((certName) => nix.str`acme-order-renew-${certName}.service`, nix.thunk(() => nix.sel(acmeCertNames, "all"))));
               return nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(acmeCertNames, "all"), [])), nix.thunk(() => ({
-                  __proto__: pos$51,
+                  [nix.POS]: pos$51,
                   wantedBy: nix.thunk(() => nix.concat(tlsServices, ["multi-user.target"])),
                   after: tlsServices,
                   unitConfig: nix.thunk(() => ({
-                    __proto__: pos$49,
+                    [nix.POS]: pos$49,
                     ConditionPathExists: nix.thunk(() => nix.builtins.map((certName) => nix.str`${nix.sel(certs, nix.key(nix.force(certName)), "directory")}/fullchain.pem`, nix.thunk(() => nix.sel(acmeCertNames, "all")))),
                     StartLimitIntervalSec: 0n,
                   })),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$50,
+                    [nix.POS]: pos$50,
                     Type: "oneshot",
                     TimeoutSec: 60n,
                     ExecCondition: "/run/current-system/systemd/bin/systemctl -q is-active h2o.service",
@@ -381,15 +381,15 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$56,
+          [nix.POS]: pos$56,
           acme: nix.thunk(() => ({
-            __proto__: pos$55,
+            [nix.POS]: pos$55,
             certs: nix.thunk(() => (() => {
               const mkCerts = (acc) => (vhostSettings) => (nix.asBool(nix.eq(nix.sel(vhostSettings, "acme", "useHost"), null)) ? (() => {
                 const hasRoot = nix.thunk(() => !nix.eq(nix.sel(vhostSettings, "acme", "root"), null));
                 return nix.update(acc, nix.attrsDyn({}, [
                   [nix.str`${nix.sel(vhostSettings, "serverName")}`, nix.thunk(() => ({
-                    __proto__: pos$54,
+                    [nix.POS]: pos$54,
                     group: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.sel(cfg, "group")))),
                     webroot: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), nix.thunk(() => (nix.asBool(hasRoot) ? 1000n : 2000n)), nix.thunk(() => nix.sel(vhostSettings, "acme", "root")))),
                     dnsProvider: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), nix.thunk(() => (nix.asBool(hasRoot) ? 1000n : 2000n)), null)),

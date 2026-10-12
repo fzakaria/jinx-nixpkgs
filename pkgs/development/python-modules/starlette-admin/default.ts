@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jowilf",
           repo: "starlette-admin",
           tag: version,
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatchling]);
       const dependencies = nix.thunk(() => [itsdangerous, jinja2, python_multipart, starlette]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         email: nix.thunk(() => [email_validator]),
         i18n: nix.thunk(() => [babel]),
         pdf: nix.thunk(() => [reportlab]),
@@ -119,7 +119,7 @@ export default nix.lambda((args) => (() => {
         "starlette_admin.views",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fast, beautiful and extensible administrative interface framework for Starlette & FastApi applications",
         homepage: "https://github.com/jowilf/starlette-admin",
         changelog: "https://jowilf.github.io/starlette-admin/changelog/",
@@ -130,7 +130,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

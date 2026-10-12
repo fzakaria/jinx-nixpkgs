@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const m2libc = nix.arg($, "m2libc");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mescc-tools",
       version: "1.7.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://savannah/${nix.sel(finalAttrs, "pname")}/${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-toL3v1dvieVdCxxjjZ3i2b6yhVciaPWPq/TtFNm2V1w=",
         })))),
@@ -35,7 +35,7 @@ patchShebangs --build Kaem/test.sh
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(m2libc, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of tools written for use in bootstrapping",
         homepage: "https://savannah.nongnu.org/projects/mescc-tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

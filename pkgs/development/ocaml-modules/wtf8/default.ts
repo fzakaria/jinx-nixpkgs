@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const buildDunePackage = nix.arg($, "buildDunePackage");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wtf8",
       version: "1.0.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/flowtype/ocaml-wtf8/releases/download/v${nix.sel(finalAttrs, "version")}/wtf8-v${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-d5/3KUBAWRj8tntr4RkJ74KWW7wvn/B/m1nx0npnzyc=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/flowtype/ocaml-wtf8",
         description: "WTF-8 is a superset of UTF-8 that allows unpaired surrogates",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

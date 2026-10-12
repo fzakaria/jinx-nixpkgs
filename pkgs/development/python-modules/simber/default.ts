@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const colorama = nix.arg($, "colorama");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "simber",
       version: "0.2.6",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "deepjyoti30",
           repo: "simber",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["simber"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple, minimal and powerful logger for Python",
         homepage: "https://github.com/deepjyoti30/simber",
         changelog: nix.thunk(() => nix.str`https://github.com/deepjyoti30/simber/releases/tag/${nix.sel(finalAttrs, "version")}`),

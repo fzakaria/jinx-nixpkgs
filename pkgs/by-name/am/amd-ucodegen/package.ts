@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const callPackage = nix.arg($, "callPackage");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "amd-ucodegen",
       version: "0-unstable-2017-06-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AndyLavr",
           repo: "amd-ucodegen",
           rev: "0d34b54e396ef300d0364817e763d2c7d1ffff02",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "validate-family-not-id.patch",
             url: "https://github.com/AndyLavr/amd-ucodegen/compare/0d34b54e396ef300d0364817e763d2c7d1ffff02...dobo90:amd-ucodegen:7a3c51e821df96910ecb05b22f3e4866b4fb85b2.patch",
             hash: "sha256-jvsvu9QgXikwsxjPiTaRff+cOg/YQmKg1MYKyBoMRQI=",
@@ -42,18 +42,18 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 amd-ucodegen $out/bin/amd-ucodegen\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$3, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$6,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           platomav: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-platomav.nix"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               "amd-ucodegen": nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Tool to generate AMD microcode files",
         longDescription: "This tool can be used to generate AMD microcode containers as used by the\nLinux kernel. It accepts raw AMD microcode files such as those generated\nby [MCExtractor](https://github.com/platomav/MCExtractor.git) as input.\nThe generated output file can be installed in /lib/firmware/amd-ucode.\n",
         homepage: "https://github.com/AndyLavr/amd-ucodegen",

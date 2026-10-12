@@ -23,10 +23,10 @@ export default nix.lambda((args) => (() => {
   const url = nix.arg($, "url");
   const sha1 = nix.arg($, "sha1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "minecraft-server",
       version: version,
-      src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ __proto__: pos$1, url: url, sha1: sha1 })))),
+      src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$1, url: url, sha1: sha1 })))),
       preferLocalBuild: true,
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       installPhase: nix.thunk(() => nix.str`runHook preInstall
@@ -41,19 +41,19 @@ runHook postInstall
 `),
       dontUnpack: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "minecraft-server": nix.thunk(() => nix.attr(nixosTests, "minecraft-server")),
         })),
         updateScript: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           command: nix.thunk(() => [nix.path(here, "./update.py")]),
           supportedFeatures: nix.thunk(() => ["commit"]),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Minecraft Server",
         homepage: "https://minecraft.net",
         sourceProvenance: nix.thunk(() => (() => {

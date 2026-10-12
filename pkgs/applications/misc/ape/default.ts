@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const description = nix.argOr($, "description", () => "Parser for Attempto Controlled English (ACE)");
   const license = nix.argOr($, "license", () => nix.sel(lib, "licenses", "lgpl3"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: "2019-08-10",
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       buildInputs: nix.thunk(() => [swi_prolog]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Attempto",
           repo: "APE",
           rev: "113b81621262d7a395779465cb09397183e6f74c",
@@ -40,7 +40,7 @@ cp new_lexicon.pl prolog/lexicon/clex_lexicon.pl
 `),
       installPhase: "mkdir -p $out/bin\ncp ape.exe $out\nmakeWrapper $out/ape.exe $out/bin/ape --add-flags ace\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: description,
         homepage: "https://github.com/Attempto/APE",
         license: license,

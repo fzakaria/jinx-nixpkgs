@@ -14,20 +14,20 @@ export default nix.lambda((args) => (() => {
   const contrib = nix.arg($, "contrib");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tparsec",
       version: "2020-02-11",
       ipkgName: "TParsec",
       idrisDeps: nix.thunk(() => [contrib]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gallais",
           repo: "idris-tparsec",
           rev: "943c64dfcb4e1582696f68312fad88145dc3a8e4",
           sha256: "0pyhkafhx2pwim91ada6qrgacvahl9bpv5m486y8fph4qzf4z6mx",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "TParsec - Total Parser Combinators in Idris",
         homepage: "https://github.com/gallais/idris-tparsec",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

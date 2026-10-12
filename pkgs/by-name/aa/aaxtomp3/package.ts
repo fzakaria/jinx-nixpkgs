@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const resholve = nix.arg($, "resholve");
   return nix.app(nix.sel(resholve, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "aaxtomp3",
       version: "1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "krumpetpirate",
           repo: "aaxtomp3",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,9 +43,9 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace AAXtoMP3 \\\n  --replace-fail 'AAXtoMP3' 'aaxtomp3'\nsubstituteInPlace interactiveAAXtoMP3 \\\n  --replace-fail 'AAXtoMP3' 'aaxtomp3' \\\n  --replace-fail 'call=\"./aaxtomp3\"' 'call=\"$AAXTOMP3\"'\n",
       installPhase: "install -Dm 755 AAXtoMP3 $out/bin/aaxtomp3\ninstall -Dm 755 interactiveAAXtoMP3 $out/bin/interactiveaaxtomp3\n",
       solutions: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         default: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           scripts: nix.thunk(() => ["bin/aaxtomp3", "bin/interactiveaaxtomp3"]),
           interpreter: nix.thunk(() => nix.str`${bash}/bin/bash`),
           inputs: nix.thunk(() => [
@@ -62,9 +62,9 @@ export default nix.lambda((args) => (() => {
             mp4v2,
             ncurses,
           ]),
-          keep: nix.thunk(() => ({ __proto__: pos$2, $call: true })),
+          keep: nix.thunk(() => ({ [nix.POS]: pos$2, $call: true })),
           fix: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             $AAXTOMP3: nix.thunk(() => [nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/aaxtomp3`)]),
             $FIND: nix.thunk(() => ["find"]),
             $GREP: nix.thunk(() => ["grep"]),
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Convert Audible's .aax filetype to MP3, FLAC, M4A, or OPUS",
         homepage: "https://krumpetpirate.github.io/AAXtoMP3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "wtfpl")),

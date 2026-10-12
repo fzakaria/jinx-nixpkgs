@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
   const logs = nix.arg($, "logs");
   const ke = nix.arg($, "ke");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "git-mirage",
       version: nix.thunk(() => nix.attr(git, "version")),
       src: nix.thunk(() => nix.attr(git, "src")),
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
       ]),
       checkInputs: nix.thunk(() => [alcotest, alcotest_lwt, bigstringaf, logs, ke]),
       meta: nix.thunk(() => nix.update(nix.sel(git, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Package to use ocaml-git with MirageOS backend",
       })),
     })));

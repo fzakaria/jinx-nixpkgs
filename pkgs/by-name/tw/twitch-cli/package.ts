@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const twitch_cli = nix.arg($, "twitch-cli");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "twitch-cli",
       version: "1.1.25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "twitchdev",
           repo: "twitch-cli",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "$out/bin/twitch-cli completion bash > twitch-cli.bash\n$out/bin/twitch-cli completion fish > twitch-cli.fish\n$out/bin/twitch-cli completion zsh > _twitch-cli\ninstallShellCompletion --cmd twitch-cli \\\n  --bash twitch-cli.bash \\\n  --fish twitch-cli.fish \\\n  --zsh _twitch-cli\n")),
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: twitch_cli,
               command: "HOME=$(mktemp -d) twitch-cli version",
               version: nix.thunk(() => nix.str`twitch-cli/${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Official Twitch CLI to make developing on Twitch easier",
         mainProgram: "twitch-cli",
         homepage: "https://github.com/twitchdev/twitch-cli",

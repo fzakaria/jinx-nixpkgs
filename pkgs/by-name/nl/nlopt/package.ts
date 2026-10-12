@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(p, "python-markdown-math")),
     ]));
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nlopt",
       version: "2.11.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stevengj",
           repo: "nlopt",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -69,11 +69,11 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       postFixup: "substituteInPlace $out/lib/cmake/nlopt/NLoptLibraryDepends.cmake --replace-fail \\\n  'INTERFACE_INCLUDE_DIRECTORIES \"${_IMPORT_PREFIX}/' 'INTERFACE_INCLUDE_DIRECTORIES \"'\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://nlopt.readthedocs.io/en/latest/",
         changelog: nix.thunk(() => nix.str`https://github.com/stevengj/nlopt/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Free open-source library for nonlinear optimization",

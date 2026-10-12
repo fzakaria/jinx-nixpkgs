@@ -26,29 +26,29 @@ export default nix.lambda((args) => (() => {
       const pname = "valgrind";
       const version = "3.27.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://sourceware.org/pub/valgrind/valgrind-${version}.tar.bz2`),
           hash: "sha256-XViRUuuAccAv6rjOarcZ5DGh+8PisXAPVDJjKouSZNw=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://bugsfiles.kde.org/attachment.cgi?id=148912",
             sha256: "Za+7K93pgnuEUQ+jDItEzWlN0izhbynX2crSOXBBY/I=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://bugsfiles.kde.org/attachment.cgi?id=186451",
             hash: "sha256-IGmyHwwGoy00hcz3XxQSDcwcU8zHLBJ9dfqTvWDQ520=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "reallocarray-test-musl.patch",
             url: "https://sourceware.org/git/?p=valgrind.git;a=patch;h=991961ece87e4cdc0771a05c956c55baa437bb07",
             hash: "sha256-U16384rLXMhLE5Em9z8FKYbshPlnq8l9ejC2+epL7M4=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://git.yoctoproject.org/poky/plain/meta/recipes-devtools/valgrind/valgrind/use-appropriate-march-mcpu-mfpu-for-ARM-test-apps.patch?id=b7a9250590a16f1bdc8c7b563da428df814d4292",
             sha256: "sha256-sBZzn98Sf/ETFv8ubivgA6Y6fBNcyR8beB3ICDAyAH0=",
           })))),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = true;
       const postInstall = "for i in $out/libexec/valgrind/*.supp; do\n  substituteInPlace $i \\\n    --replace 'obj:/lib' 'obj:*/lib' \\\n    --replace 'obj:/usr/X11R6/lib' 'obj:*/lib' \\\n    --replace 'obj:/usr/lib' 'obj:*/lib'\ndone\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-valgrind", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p curl pcre2 common-updater-scripts
 
@@ -79,7 +79,7 @@ update-source-version ${pname} "$new_version"
 `))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://valgrind.org/",
         description: "Debugging and profiling tool suite",
         longDescription: "Valgrind is an award-winning instrumentation framework for\nbuilding dynamic analysis tools.  There are Valgrind tools that\ncan automatically detect many memory management and threading\nbugs, and profile your programs in detail.  You can also use\nValgrind to build new tools.\n",
@@ -99,7 +99,7 @@ update-source-version ${pname} "$new_version"
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version,
         src,

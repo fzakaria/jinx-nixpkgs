@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const libxt = nix.arg($, "libxt");
   const libtiff = nix.arg($, "libtiff");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "djview",
       version: "4.12.3",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/djvu/djview-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-F7+5cxq4Bw4BI1OB8I5XsSMf+19J6wMYc+v6GJza9H0=",
         })))),
@@ -59,7 +59,7 @@ popd
 `));
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Portable DjVu viewer (Qt5)",
         mainProgram: "djview",
         homepage: "https://djvu.sourceforge.net/djview4.html",

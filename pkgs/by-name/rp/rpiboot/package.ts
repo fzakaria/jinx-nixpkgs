@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libusb1 = nix.arg($, "libusb1");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rpiboot",
       version: "20250908-162618-bookworm",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "raspberrypi",
           repo: "usbboot",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["INSTALL_PREFIX=$(out)"]),
       preInstall: "mkdir -p $out/bin\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/raspberrypi/usbboot",
         changelog: nix.thunk(() => nix.str`https://github.com/raspberrypi/usbboot/blob/${nix.sel(finalAttrs, "version")}/debian/changelog`),
         description: "Utility to boot a Raspberry Pi CM/CM3/CM4/Zero over USB",

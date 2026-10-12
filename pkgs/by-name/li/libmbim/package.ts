@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const withDocs = nix.argOr($, "withDocs", () => nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform")));
   const gobject_introspection = nix.arg($, "gobject-introspection");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libmbim",
       version: "1.34.0",
       outputs: nix.thunk(() => nix.concat(["out", "dev"], nix.app(nix.sel(lib, "optionals"), withDocs, nix.thunk(() => ["man"])))),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "mobile-broadband",
           repo: "libmbim",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       postPatch: "patchShebangs \\\n  build-aux/mbim-codegen/mbim-codegen\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.freedesktop.org/wiki/Software/libmbim/",
         description: "Library for talking to WWAN modems and devices which speak the Mobile Interface Broadband Model (MBIM) protocol",
         changelog: nix.thunk(() => nix.str`https://gitlab.freedesktop.org/mobile-broadband/libmbim/-/raw/${nix.sel(finalAttrs, "version")}/NEWS`),

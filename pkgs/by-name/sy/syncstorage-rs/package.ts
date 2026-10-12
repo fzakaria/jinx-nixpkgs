@@ -34,17 +34,17 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(p, "cryptography")),
     ]));
   const swaggerUi = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://github.com/swagger-api/swagger-ui/archive/refs/tags/v5.17.14.zip",
       hash: "sha256-SBJE0IEgl7Efuu73n3HZQrFxYX+cn5UU5jrL4T5xzNw=",
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "syncstorage-rs",
       version: "0.23.3",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "mozilla-services",
           repo: "syncstorage-rs",
           rev: nix.thunk(() => nix.str`refs/tags/${nix.sel(finalAttrs, "version")}`),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         SWAGGER_UI_DOWNLOAD_URL: nix.thunk(() => nix.str`file://${swaggerUi}`),
       })),
       preFixup: nix.thunk(() => nix.str`wrapProgram $out/bin/syncserver \\
@@ -71,15 +71,15 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-BJ5+6o57WlwsTerKCmOPXATPHQfjr5cRYMbqC8CIPg0=",
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "firefox-syncserver": nix.thunk(() => nix.sel(nixosTests, "firefox-syncserver", nix.key((nix.asBool(nix.eq(dbBackend, "postgresql")) ? "postgresql" : "mysql")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Mozilla Sync Storage built with Rust",
         homepage: "https://github.com/mozilla-services/syncstorage-rs",
         changelog: nix.thunk(() => nix.str`https://github.com/mozilla-services/syncstorage-rs/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

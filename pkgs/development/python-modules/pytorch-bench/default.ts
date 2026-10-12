@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const tqdm = nix.arg($, "tqdm");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pytorch-bench",
       version: "0-unstable-2025-05-05",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MaximeGloesener",
           repo: "torch-benchmark",
           rev: "f22db3b2e5920cf084e088e7748e3ffd32343853",
@@ -51,11 +51,11 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["pytorch_bench"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Benchmarking tool for torch",
         homepage: "https://github.com/MaximeGloesener/torch-benchmark",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

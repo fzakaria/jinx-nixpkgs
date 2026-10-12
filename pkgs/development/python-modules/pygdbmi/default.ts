@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pytest = nix.arg($, "pytest");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pygdbmi",
       version: "0.11.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cs01",
           repo: "pygdbmi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       preCheck: "# tries to execute flake8,\n# which is likely to break on flake8 updates\necho \"def main(): return 0\" > tests/static_tests.py\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Parse gdb machine interface output with Python",
         homepage: "https://github.com/cs01/pygdbmi",
         changelog: nix.thunk(() => nix.str`https://github.com/cs01/pygdbmi/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

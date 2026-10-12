@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const capnproto = nix.arg($, "capnproto");
   const nlohmann_json = nix.arg($, "nlohmann_json");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "surelog",
       version: "1.86",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chipsalliance",
           repo: "surelog",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkPhase: "runHook preCheck\nmake -j $NIX_BUILD_CORES UnitTests\nctest --output-on-failure\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SystemVerilog 2017 Pre-processor, Parser, Elaborator, UHDM Compiler",
         homepage: "https://github.com/chipsalliance/Surelog",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

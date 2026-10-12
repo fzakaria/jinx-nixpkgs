@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
   const python_dateutil = nix.arg($, "python-dateutil");
   const writeShellScriptBin = nix.arg($, "writeShellScriptBin");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "certbot",
       version: "5.6.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "certbot",
           repo: "certbot",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -65,11 +65,11 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       makeWrapperArgs: nix.thunk(() => [nix.thunk(() => nix.str`--prefix PATH : ${dialog}/bin`)]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         withPlugins: (f) => (() => {
           const pythonEnv = nix.thunk(() => nix.app(nix.sel(python, "withPackages"), f));
           return nix.app(runCommand, nix.thunk(() => nix.str`certbot-with-plugins-${nix.sel(finalAttrs, "version")}`), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               meta: nix.thunk(() => nix.attr(finalAttrs, "meta")),
@@ -80,7 +80,7 @@ ln -s ${pythonEnv}/bin/certbot
         })(),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/certbot/certbot",
         changelog: nix.thunk(() => nix.str`https://github.com/certbot/certbot/blob/${nix.sel(finalAttrs, "src", "tag")}/certbot/CHANGELOG.md`),
         description: "ACME client that can obtain certs and extensibly update server configurations",

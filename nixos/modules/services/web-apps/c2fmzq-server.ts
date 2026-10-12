@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "c2fmzq-server"));
   const argsFormat = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     type: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
       return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -46,57 +46,57 @@ export default nix.lambda((args) => (() => {
               nix.thunk(() => nix.lookup(w, "str")),
             ]))))));
     })()),
-    generate: nix.thunk(() => nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk(() => ({ __proto__: pos$1, explicitBool: true })))),
+    generate: nix.thunk(() => nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk(() => ({ [nix.POS]: pos$1, explicitBool: true })))),
   }));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         "c2fmzq-server": nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           enable: nix.thunk(() => nix.app(mkEnableOption, "c2fmzq-server")),
           bindIP: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "127.0.0.1",
               description: "The local address to use.",
             })))),
           port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 8080n,
               description: "The local port to use.",
             })))),
           passphraseFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(types, "str")),
               example: "/run/secrets/c2fmzq/pwfile",
               description: "Path to file containing the database passphrase",
             })))),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "c2fmzq", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   freeformType: nix.thunk(() => nix.sel(argsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     address: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         internal: true,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: nix.thunk(() => nix.str`${nix.sel(cfg, "bindIP")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}`),
                       })))),
                     database: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: "%S/c2fmzq-server/data",
                         description: "Path of the database",
                       })))),
                     verbose: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: nix.thunk(() => nix.app(nix.sel(types, "ints", "between"), 1n, 3n)),
                         default: 2n,
                         description: "The level of logging verbosity: 1:Error 2:Info 3:Debug",
@@ -105,7 +105,7 @@ export default nix.lambda((args) => (() => {
                 })))),
               description: "Configuration for c2FmZQ-server passed as CLI arguments.\nRun {command}`c2FmZQ-server help` for supported values.\n",
               example: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 verbose: 3n,
                 "allow-new-accounts": true,
                 "auto-approve-new-accounts": true,
@@ -117,20 +117,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         systemd: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           services: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             "c2fmzq-server": nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               description: "c2FmZQ-server",
               documentation: nix.thunk(() => ["https://github.com/c2FmZQ/c2FmZQ/blob/main/README.md"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network.target", "network-online.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} ${nix.app(nix.sel(argsFormat, "generate"), nix.thunk(() => nix.sel(cfg, "settings")))}`),
                 AmbientCapabilities: "",
                 CapabilityBoundingSet: "",
@@ -172,7 +172,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       doc: nix.path(here, "./c2fmzq-server.md"),
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

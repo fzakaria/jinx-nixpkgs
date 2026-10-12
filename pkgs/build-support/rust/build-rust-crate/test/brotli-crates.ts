@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         return (nix.asBool(nix.eq(path, p)) || nix.asBool((nix.asBool(nix.eq(type, "directory")) && nix.asBool(nix.app(nix.sel(lib, "strings", "hasPrefix"), path, p)))));
       })(), includedFiles), src);
   const updateFeatures = (f) => (up) => (functions) => nix.builtins.deepSeq(f, nix.thunk(() => nix.app(nix.sel(lib, "lists", "foldl'"), (features) => (fun) => nix.app(fun, features), nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "recursiveUpdate"), f, up)), functions)));
-  const mapFeatures = (features) => nix.app(nix.builtins.map, (fun) => nix.app(fun, nix.thunk(() => ({ __proto__: pos$1, features: features }))));
+  const mapFeatures = (features) => nix.app(nix.builtins.map, (fun) => nix.app(fun, nix.thunk(() => ({ [nix.POS]: pos$1, features: features }))));
   const mkFeatures = (feat) => nix.app(nix.sel(lib, "lists", "foldl"), (features) => (featureName) => (nix.asBool(nix.selOr(feat, () => false, nix.key(nix.force(featureName)))) ? nix.concat([featureName], features) : nix.force(features)), [], nix.thunk(() => nix.builtins.attrNames(feat)));
   return (() => {
     const alloc_no_stdlib_1_3_0_ = nix.lambda((args_1) => (() => {
@@ -52,12 +52,12 @@ export default nix.lambda((args) => (() => {
       const buildDependencies = nix.argOr($_1, "buildDependencies", () => []);
       const features = nix.argOr($_1, "features", () => []);
       return nix.app(buildRustCrate, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           crateName: "alloc-no-stdlib",
           version: "1.3.0",
           authors: nix.thunk(() => ["Daniel Reiter Horn <danielrh@dropbox.com>"]),
           sha256: "1jcp27pzmqdszgp80y484g4kwbjbg7x8a589drcwbxg0i8xwkir9",
-          crateBin: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$2, name: "example" }))]),
+          crateBin: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$2, name: "example" }))]),
           dependencies: dependencies,
           buildDependencies: buildDependencies,
           features: features,
@@ -69,12 +69,12 @@ export default nix.lambda((args) => (() => {
       const buildDependencies = nix.argOr($_1, "buildDependencies", () => []);
       const features = nix.argOr($_1, "features", () => []);
       return nix.app(buildRustCrate, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           crateName: "brotli",
           version: "2.5.0",
           authors: nix.thunk(() => ["Daniel Reiter Horn <danielrh@dropbox.com>", "The Brotli Authors"]),
           sha256: "1ynw4hkdwnp0kj30p86ls44ahv4s99258s019bqrq4mya8hlsb5b",
-          crateBin: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$4, name: "brotli" }))]),
+          crateBin: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$4, name: "brotli" }))]),
           dependencies: dependencies,
           buildDependencies: buildDependencies,
           features: features,
@@ -86,12 +86,12 @@ export default nix.lambda((args) => (() => {
       const buildDependencies = nix.argOr($_1, "buildDependencies", () => []);
       const features = nix.argOr($_1, "features", () => []);
       return nix.app(buildRustCrate, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           crateName: "brotli-decompressor",
           version: "1.3.1",
           authors: nix.thunk(() => ["Daniel Reiter Horn <danielrh@dropbox.com>", "The Brotli Authors"]),
           sha256: "022g69q1xzwdj0130qm3fa4qwpn4q1jx3lc8yz0v0v201p7bm8fb",
-          crateBin: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$6, name: "brotli-decompressor" }))]),
+          crateBin: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$6, name: "brotli-decompressor" }))]),
           dependencies: dependencies,
           buildDependencies: buildDependencies,
           features: features,
@@ -101,14 +101,14 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$5);
       const features = nix.argOr($_1, "features", () => nix.app(alloc_no_stdlib_1_3_0_features, nix.thunk(() => ({}))));
       return nix.app(alloc_no_stdlib_1_3_0_, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           features: nix.thunk(() => nix.app(mkFeatures, nix.thunk(() => nix.selOr(features, () => ({}), "alloc_no_stdlib_1_3_0")))),
         })));
     })(), formals$5);
     const alloc_no_stdlib_1_3_0_features = (f) => nix.app(updateFeatures, f, nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         alloc_no_stdlib_1_3_0: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           default: nix.thunk(() => nix.selOr(f, () => true, "alloc_no_stdlib_1_3_0", "default")),
         })),
       })), []);
@@ -116,23 +116,23 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$6);
       const features = nix.argOr($_1, "features", () => nix.app(brotli_2_5_0_features, nix.thunk(() => ({}))));
       return nix.app(brotli_2_5_0_, nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           dependencies: nix.thunk(() => nix.app(mapFeatures, features, nix.thunk(() => [alloc_no_stdlib_1_3_0, brotli_decompressor_1_3_1]))),
           features: nix.thunk(() => nix.app(mkFeatures, nix.thunk(() => nix.selOr(features, () => ({}), "brotli_2_5_0")))),
         })));
     })(), formals$6);
     const brotli_2_5_0_features = (f) => nix.app(updateFeatures, f, nix.thunk(() => (() => {
         const alloc_no_stdlib_1_3_0_1 = nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           "no-stdlib": nix.thunk(() => (nix.asBool((nix.asBool(nix.selOr(f, () => false, "alloc_no_stdlib_1_3_0", "no-stdlib")) || nix.asBool(nix.selOr(brotli_2_5_0_1, () => false, "no-stdlib")))) || nix.asBool(nix.selOr(f, () => false, "brotli_2_5_0", "no-stdlib")))),
           default: true,
         }));
         const brotli_2_5_0_1 = nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           default: nix.thunk(() => nix.selOr(f, () => true, "brotli_2_5_0", "default")),
         }));
         const brotli_decompressor_1_3_1_1 = nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           "disable-timer": nix.thunk(() => (nix.asBool((nix.asBool(nix.selOr(f, () => false, "brotli_decompressor_1_3_1", "disable-timer")) || nix.asBool(nix.selOr(brotli_2_5_0_1, () => false, "disable-timer")))) || nix.asBool(nix.selOr(f, () => false, "brotli_2_5_0", "disable-timer")))),
           "no-stdlib": nix.thunk(() => (nix.asBool((nix.asBool(nix.selOr(f, () => false, "brotli_decompressor_1_3_1", "no-stdlib")) || nix.asBool(nix.selOr(brotli_2_5_0_1, () => false, "no-stdlib")))) || nix.asBool(nix.selOr(f, () => false, "brotli_2_5_0", "no-stdlib")))),
           benchmark: nix.thunk(() => (nix.asBool((nix.asBool(nix.selOr(f, () => false, "brotli_decompressor_1_3_1", "benchmark")) || nix.asBool(nix.selOr(brotli_2_5_0_1, () => false, "benchmark")))) || nix.asBool(nix.selOr(f, () => false, "brotli_2_5_0", "benchmark")))),
@@ -140,7 +140,7 @@ export default nix.lambda((args) => (() => {
           seccomp: nix.thunk(() => (nix.asBool((nix.asBool(nix.selOr(f, () => false, "brotli_decompressor_1_3_1", "seccomp")) || nix.asBool(nix.selOr(brotli_2_5_0_1, () => false, "seccomp")))) || nix.asBool(nix.selOr(f, () => false, "brotli_2_5_0", "seccomp")))),
         }));
         return {
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           alloc_no_stdlib_1_3_0: alloc_no_stdlib_1_3_0_1,
           brotli_2_5_0: brotli_2_5_0_1,
           brotli_decompressor_1_3_1: brotli_decompressor_1_3_1_1,
@@ -150,30 +150,30 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$7);
       const features = nix.argOr($_1, "features", () => nix.app(brotli_decompressor_1_3_1_features, nix.thunk(() => ({}))));
       return nix.app(brotli_decompressor_1_3_1_, nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           dependencies: nix.thunk(() => nix.app(mapFeatures, features, nix.thunk(() => [alloc_no_stdlib_1_3_0]))),
           features: nix.thunk(() => nix.app(mkFeatures, nix.thunk(() => nix.selOr(features, () => ({}), "brotli_decompressor_1_3_1")))),
         })));
     })(), formals$7);
     const brotli_decompressor_1_3_1_features = (f) => nix.app(updateFeatures, f, nix.thunk(() => (() => {
         const alloc_no_stdlib_1_3_0_1 = nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           "no-stdlib": nix.thunk(() => (nix.asBool((nix.asBool(nix.selOr(f, () => false, "alloc_no_stdlib_1_3_0", "no-stdlib")) || nix.asBool(nix.selOr(brotli_decompressor_1_3_1_1, () => false, "no-stdlib")))) || nix.asBool(nix.selOr(f, () => false, "brotli_decompressor_1_3_1", "no-stdlib")))),
           default: true,
           unsafe: nix.thunk(() => (nix.asBool((nix.asBool(nix.selOr(f, () => false, "alloc_no_stdlib_1_3_0", "unsafe")) || nix.asBool(nix.selOr(brotli_decompressor_1_3_1_1, () => false, "unsafe")))) || nix.asBool(nix.selOr(f, () => false, "brotli_decompressor_1_3_1", "unsafe")))),
         }));
         const brotli_decompressor_1_3_1_1 = nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           default: nix.thunk(() => nix.selOr(f, () => true, "brotli_decompressor_1_3_1", "default")),
         }));
         return {
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           alloc_no_stdlib_1_3_0: alloc_no_stdlib_1_3_0_1,
           brotli_decompressor_1_3_1: brotli_decompressor_1_3_1_1,
         };
       })()), nix.thunk(() => [alloc_no_stdlib_1_3_0_features]));
     return {
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       alloc_no_stdlib_1_3_0_,
       brotli_2_5_0_,
       brotli_decompressor_1_3_1_,

@@ -15,49 +15,49 @@ const pos$10 = nix.positions(here + "/sources.nix", [["platform", 32, 5], ["cpu"
 const pos$11 = nix.positions(here + "/sources.nix", [["version", 2, 3], ["x86_64-linux", 3, 3], ["aarch64-linux", 24, 3], ["aarch64-darwin", 31, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$11,
+  [nix.POS]: pos$11,
   version: "3.3.0",
   "x86_64-linux": nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     platform: "linux_x86_64",
     cpu: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       cp312: "sha256-PumW7ivy0rM+mGWHb7gv8Dy3uyJGzFqgAn7dapoGQOs=",
       cp313: "sha256-iImCdPXNXi9OuvVjHUwAkn2dWEZaCDh1wiS0D5k1zTk=",
     })),
     gpu: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       cu126: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         cp312: "sha256-rYlNNuvnK3j3th+HltQPlyeLowA648E4qkUW2a8GBOU=",
         cp313: "sha256-hb1kDryNy72pjtNaj7SJIfL3hMsx9xMIbJ67hy2JDEU=",
       })),
       cu129: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         cp312: "sha256-Ukci896/PoTmk6Za1ZzZnO5NDeN7xMgfUMJK4Jj57J0=",
         cp313: "sha256-pkNs7L3AEqGARs4iM7n5eReMHj+ZJj8LGHefXmmQNTM=",
       })),
       cu130: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         cp312: "sha256-yD4wdgkwRm1FdvyGAPExwpomCc4M/PC2RugBpsCUWZ8=",
         cp313: "sha256-3zmZ4mbxhC8LL/+wT9ip43F8E0iwzHjP9tm8+hYcTBE=",
       })),
     })),
   })),
   "aarch64-linux": nix.thunk(() => ({
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     platform: "linux_aarch64",
     cpu: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       cp312: "sha256-1GeE+enBxjIc9BTulCvXBeC6HI0XRcPdf/20mb/HE3w=",
       cp313: "sha256-LfBVU8RHRDXAAFlfN623fOUJMWGFT5AWntKTyDaLlB4=",
     })),
   })),
   "aarch64-darwin": nix.thunk(() => ({
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     platform: "macosx_11_0_arm64",
     cpu: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       cp312: "sha256-F6q2uQ2M7yzPiT9L6CzwXpBuIf6GxAo0/qZwGTfXeCs=",
       cp313: "sha256-tWeBNUsYBj9DqH89ViraWk+KQ3/iMSqxAy+omtWlTsA=",
     })),

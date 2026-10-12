@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.11.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "pyqt6_webengine",
           version: version,
           hash: "sha256-Fc9J77u9TGvIdlOyxK6A1gSfgA4xYgszZzSuLjfL7a4=",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         const w_1 = nix.withScope(qt6Packages, null);
         return [nix.thunk(() => nix.lookup(w_1, "qtwebengine"))];
       })());
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, sip: sip }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, sip: sip }));
       const dontConfigure = true;
       const pythonImportsCheck = nix.thunk(() => [
         "PyQt6.QtWebEngineCore",
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(mesa, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python bindings for Qt6 WebEngine",
         homepage: "https://riverbankcomputing.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

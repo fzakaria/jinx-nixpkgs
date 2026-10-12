@@ -12,14 +12,14 @@ export default nix.lambda((args) => (() => {
   const eio = nix.arg($, "eio");
   const linol = nix.arg($, "linol");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "linol-eio",
       version: nix.thunk(() => nix.attr(linol, "version")),
       src: nix.thunk(() => nix.attr(linol, "src")),
       patches: nix.thunk(() => nix.attr(linol, "patches")),
       propagatedBuildInputs: nix.thunk(() => [eio, linol]),
       meta: nix.thunk(() => nix.update(nix.sel(linol, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "LSP server library (with Eio for concurrency)",
       })),
     })));

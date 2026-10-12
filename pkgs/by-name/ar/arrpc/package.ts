@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "arrpc";
       const version = "3.7.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OpenAsar",
           repo: "arrpc",
           tag: version,
@@ -29,7 +29,7 @@ substitute ${nix.path(here, "./arrpc.service")} $out/lib/systemd/user/arrpc.serv
   --subst-var-by arrpc $out/bin/arrpc
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/OpenAsar/arrpc/blob/${version}/changelog.md`),
         description: "Open Discord RPC server for atypical setups",
         homepage: "https://arrpc.openasar.dev/",
@@ -45,7 +45,7 @@ substitute ${nix.path(here, "./arrpc.service")} $out/lib/systemd/user/arrpc.serv
         mainProgram: "arrpc",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

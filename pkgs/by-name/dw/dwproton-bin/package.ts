@@ -21,21 +21,21 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(proton_ge_bin, "overrideAttrs"), (finalAttrs) => (_) => (() => {
       const from = nix.thunk(() => nix.sel(finalAttrs, "passthru", "variants", nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system"))));
       return {
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       steamDisplayName: steamDisplayName,
       src: nix.thunk(() => nix.attr(from, "src")),
       toolName: nix.thunk(() => nix.attr(from, "toolName")),
       pname: "dwproton-bin",
       version: "dwproton-11.0-13",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         variants: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "x86_64-linux": nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             toolName: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}-x86_64`),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 url: nix.thunk(() => nix.str`https://dawn.wine/dawn-winery/dwproton/releases/download/${nix.sel(finalAttrs, "version")}/${nix.sel(finalAttrs, "version")}-x86_64.tar.xz`),
                 hash: "sha256-INbvpKk01gMyt72Z2jlJvov5k4LZztpFuiYgVkGBc1I=",
               })))),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(writeScript, "update-dwproton", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p curl jq common-updater-scripts\nversion=$(curl -sL \"https://dawn.wine/api/v1/repos/dawn-winery/dwproton/tags?page=1\\&limit=1\" | jq -r .[0].name)\nupdate-source-version dwproton-bin \"$version\"\n")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Dawn Winery's custom Proton fork with fixes for various games.\n\n(This is intended for use in the `programs.steam.extraCompatPackages` option only.)\n",
         homepage: "https://dawn.wine/dawn-winery/dwproton",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

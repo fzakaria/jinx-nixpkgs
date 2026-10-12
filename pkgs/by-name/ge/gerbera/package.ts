@@ -66,78 +66,78 @@ export default nix.lambda((args) => (() => {
   const wavpack = nix.arg($, "wavpack");
   const enableWavPack = nix.argOr($, "enableWavPack", () => false);
   const libupnp$ = nix.thunk(() => nix.app(nix.sel(libupnp, "overrideAttrs"), (super$) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       cmakeFlags: nix.thunk(() => nix.concat(nix.selOr(super$, () => [], "cmakeFlags"), ["-Dblocking_tcp_connections=OFF", "-Dreuseaddr=ON"])),
     })));
   const options = nix.thunk(() => [
     nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "AVCODEC",
       enable: enableAvcodec,
       packages: nix.thunk(() => [ffmpeg]),
     })),
     nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "CURL",
       enable: enableCurl,
       packages: nix.thunk(() => [curl]),
     })),
     nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "EXIF",
       enable: enableLibexif,
       packages: nix.thunk(() => [libexif]),
     })),
     nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: "EXIV2",
       enable: enableExiv2,
       packages: nix.thunk(() => [exiv2]),
     })),
     nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       name: "FFMPEGTHUMBNAILER",
       enable: enableFFmpegThumbnailer,
       packages: nix.thunk(() => [ffmpegthumbnailer]),
     })),
     nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       name: "INOTIFY",
       enable: enableInotifyTools,
       packages: nix.thunk(() => [inotify_tools]),
     })),
     nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       name: "JS",
       enable: enableDuktape,
       packages: nix.thunk(() => [duktape]),
     })),
     nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       name: "MAGIC",
       enable: enableLibmagic,
       packages: nix.thunk(() => [file]),
     })),
     nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       name: "MATROSKA",
       enable: enableLibmatroska,
       packages: nix.thunk(() => [libmatroska, libebml]),
     })),
     nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       name: "MYSQL",
       enable: enableMysql,
       packages: nix.thunk(() => [libmysqlclient]),
     })),
     nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       name: "TAGLIB",
       enable: enableTaglib,
       packages: nix.thunk(() => [taglib]),
     })),
     nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       name: "WAVPACK",
       enable: enableWavPack,
       packages: nix.thunk(() => [wavpack]),
@@ -145,11 +145,11 @@ export default nix.lambda((args) => (() => {
   ]);
   const flatten = nix.thunk(() => nix.attr(lib, "flatten"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       pname: "gerbera",
       version: "3.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           repo: "gerbera",
           owner: "gerbera",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -179,14 +179,14 @@ substituteInPlace CMakeLists.txt --replace-fail /usr/share/bash-completion/compl
         icu77,
       ], nix.app(flatten, nix.thunk(() => nix.builtins.catAttrs("packages", nix.thunk(() => nix.builtins.filter((e) => nix.sel(e, "enable"), options))))))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         tests: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           mediatomb: nix.thunk(() => nix.attr(nixosTests, "mediatomb")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         homepage: "https://docs.gerbera.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/gerbera/gerbera/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "UPnP Media Server for 2024",

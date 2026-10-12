@@ -26,30 +26,30 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     imports: nix.thunk(() => [nix.path(here, "./installation-cd-graphical-calamares.nix")]),
     isoImage: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       edition: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "cosmic")),
       configurationName: "COSMIC (Linux LTS)",
     })),
-    environment: nix.thunk(() => ({ __proto__: pos$2, pathsToLink: nix.thunk(() => ["/share/calamares"]) })),
+    environment: nix.thunk(() => ({ [nix.POS]: pos$2, pathsToLink: nix.thunk(() => ["/share/calamares"]) })),
     services: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       desktopManager: nix.thunk(() => ({
-        __proto__: pos$4,
-        cosmic: nix.thunk(() => ({ __proto__: pos$3, enable: true })),
+        [nix.POS]: pos$4,
+        cosmic: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
       })),
       displayManager: nix.thunk(() => ({
-        __proto__: pos$7,
-        "cosmic-greeter": nix.thunk(() => ({ __proto__: pos$5, enable: true })),
-        autoLogin: nix.thunk(() => ({ __proto__: pos$6, enable: true, user: "nixos" })),
+        [nix.POS]: pos$7,
+        "cosmic-greeter": nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
+        autoLogin: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true, user: "nixos" })),
       })),
     })),
     systemd: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       tmpfiles: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         rules: nix.thunk(() => (() => {
           const desktopDir = "/home/nixos/Desktop";
           const filesInHomePerms = "0644 nixos users -";
@@ -71,17 +71,17 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     specialisation: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       cosmic_latest_kernel: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         configuration: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const config_1 = nix.arg($_1, "config");
           return {
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             imports: nix.thunk(() => [nix.path(here, "./latest-kernel.nix")]),
             isoImage: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               configurationName: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.str`COSMIC (Linux ${nix.sel(config_1, "boot", "kernelPackages", "kernel", "version")})`))),
             })),
           };

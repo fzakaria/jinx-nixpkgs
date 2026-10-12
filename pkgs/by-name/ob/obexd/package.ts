@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const bluez = nix.arg($, "bluez");
   const libical = nix.arg($, "libical");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "obexd",
       version: "0.48",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://kernel/linux/bluetooth/obexd-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "1i20dnibvnq9lnkkhajr5xx3kxlwf9q5c4jm19kyb0q1klzgzlb8",
         })))),
       buildInputs: nix.thunk(() => [glib, dbus, openobex, bluez, libical]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.bluez.org/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

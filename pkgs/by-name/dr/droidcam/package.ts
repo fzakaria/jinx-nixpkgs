@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libappindicator = nix.arg($, "libappindicator");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "droidcam",
       version: "2.1.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dev47apps",
           repo: "droidcam-linux-client",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "makeFlagsArray+=(\"JPEG=$(pkg-config --libs --cflags libturbojpeg)\")\nmakeFlagsArray+=(\"USBMUXD=$(pkg-config --libs --cflags libusbmuxd-2.0)\")\n",
       installPhase: "runHook preInstall\n\ninstall -Dt $out/bin droidcam droidcam-cli\ninstall -D icon2.png $out/share/icons/hicolor/96x96/apps/droidcam.png\ninstall -D droidcam.desktop $out/share/applications/droidcam.desktop\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Linux client for DroidCam app",
         homepage: "https://github.com/dev47apps/droidcam-linux-client",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

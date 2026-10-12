@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "apparix",
       version: "11-062",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://micans.org/apparix/src/apparix-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "211bb5f67b32ba7c3e044a13e4e79eb998ca017538e9f4b06bc92d5953615235",
         })))),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://micans.org/apparix",
         description: "Add directory bookmarks, distant listing, and distant editing to the command line",
         maintainers: [],

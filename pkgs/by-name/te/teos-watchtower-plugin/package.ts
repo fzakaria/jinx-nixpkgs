@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "teos-watchtower-plugin",
       version: nix.thunk(() => nix.attr(teos, "version")),
       src: nix.thunk(() => nix.attr(teos, "src")),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openssl]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => nix.update(nix.sel(teos, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Lightning watchtower plugin for clightning",
         mainProgram: "watchtower-client",

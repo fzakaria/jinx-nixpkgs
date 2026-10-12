@@ -13,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const nodejs = nix.arg($, "nodejs");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "audiobookshelf-client",
       version: version,
       nodejs: nodejs,
       src: nix.thunk(() => nix.str`${src}/client`),
       npmDepsHash: "sha256-Rvy/bULWyVkGthfpIGkTMO8Lv1miywwea7jLODfm54Y=",
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         CYPRESS_INSTALL_BINARY: 0n,
         NODE_OPTIONS: "--openssl-legacy-provider",
       })),

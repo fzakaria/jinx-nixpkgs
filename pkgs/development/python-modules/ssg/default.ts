@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const python_crfsuite = nix.arg($, "python-crfsuite");
   const tqdm = nix.arg($, "tqdm");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ssg",
       version: "0.0.8",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ponrawee",
           repo: "ssg",
           rev: "d1b811ef4f8ac08ba1db839f426ba6b6a8e0eb38",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-deprecation-warnings-and-bump-version",
             url: "https://patch-diff.githubusercontent.com/raw/ponrawee/ssg/pull/10.patch",
             hash: "sha256-4O1fpI0FBUG/3RN+PAi7I8vpgYmPPL5ZMXhoZUFsQy8=",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["ssg"]),
       postInstall: nix.thunk(() => nix.str`rm -rf $out/${nix.sel(python, "sitePackages")}/scripts`),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "TCRF syllable segmenter for Thai",
         homepage: "https://github.com/ponrawee/ssg",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

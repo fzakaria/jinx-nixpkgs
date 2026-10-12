@@ -7,15 +7,15 @@ const pos$2 = nix.positions(here + "/default.nix", [["exportTemplatesHash", 8, 5
 const pos$3 = nix.positions(here + "/default.nix", [["version", 2, 3], ["hash", 3, 3], ["default", 4, 3], ["mono", 7, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$3,
+  [nix.POS]: pos$3,
   version: "4.5.1-stable",
   hash: "sha256-8iMhn40y7aVL6Xjvo34ZtfygJYWwDmCnTxUJcV3AQCI=",
   default: nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     exportTemplatesHash: "sha256-GZivN/E4doTiwhHNtIPa9JL8ZNxrEglr3c3KJbaRDIY=",
   })),
   mono: nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     exportTemplatesHash: "sha256-xCVjMGG7SfQ5C9zs4rnOaLOwvjxxCVtAZE2PbxexFG4=",
     nugetDeps: nix.path(here, "./deps.json"),
   })),

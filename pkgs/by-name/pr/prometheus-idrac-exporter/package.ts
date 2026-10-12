@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "idrac_exporter";
       const version = "unstable-2023-06-29";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mrlhansen",
           repo: "idrac_exporter",
           rev: "3b311e0e6d602fb0938267287f425f341fbf11da",
@@ -30,16 +30,16 @@ export default nix.lambda((args) => (() => {
       const ldflags = nix.thunk(() => ["-s", "-w"]);
       const doCheck = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { __proto__: pos$2, idrac: nix.thunk(() => nix.attr(from, "idrac")) };
+          return { [nix.POS]: pos$2, idrac: nix.thunk(() => nix.attr(from, "idrac")) };
         })()),
       }));
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(src, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "Simple iDRAC exporter for Prometheus",
         mainProgram: "idrac_exporter",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

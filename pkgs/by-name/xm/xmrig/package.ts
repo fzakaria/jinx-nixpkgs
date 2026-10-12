@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const enableDebugLog = nix.argOr($, "enableDebugLog", () => false);
   const enableHwlocDebug = nix.argOr($, "enableHwlocDebug", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xmrig",
       version: "6.26.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xmrig",
           repo: "xmrig",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -85,7 +85,7 @@ runHook postInstall
 `),
       hardeningDisable: nix.thunk(() => ["fortify"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Monero (XMR) CPU miner",
         homepage: "https://github.com/xmrig/xmrig",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

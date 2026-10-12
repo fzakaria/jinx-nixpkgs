@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const symlinkJoin = nix.arg($, "symlinkJoin");
   const type_infer = nix.arg($, "type-infer");
   const testNltkData = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "nltk-test-data",
       paths: nix.thunk(() => [
         nix.thunk(() => nix.sel(nltk_data, "punkt")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const version = "25.2.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: "dataprep_ml",
           version: version,
           hash: "sha256-pULqrPTxGtBLRsKCpSsP3a/QA0O5eXOP6BSI5TbCQWY=",
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         type_infer,
       ]);
       const doCheck = false;
-      const env = nix.thunk(() => ({ __proto__: pos$3, NLTK_DATA: testNltkData }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$3, NLTK_DATA: testNltkData }));
       const pythonImportsCheck = nix.thunk(() => [
         "dataprep_ml",
         "dataprep_ml.cleaners",
@@ -69,14 +69,14 @@ export default nix.lambda((args) => (() => {
         "dataprep_ml.splitters",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Data utilities for Machine Learning pipelines",
         homepage: "https://github.com/mindsdb/dataprep_ml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

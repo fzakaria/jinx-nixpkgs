@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const mkNginxPlugin = nix.arg($, "mkNginxPlugin");
   return nix.app(mkNginxPlugin, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cache-purge",
       version: "3.0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nginx-modules",
           repo: "ngx_cache_purge",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-i7TJGC4E6AX3+BYCK/NfYEx976h7Txu03+QgbOUWNKk=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Adds ability to purge content from FastCGI, proxy, SCGI and uWSGI caches",
         homepage: "https://github.com/nginx-modules/ngx_cache_purge",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

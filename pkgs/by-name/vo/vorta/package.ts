@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const makeFontsConf = nix.arg($, "makeFontsConf");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "vorta",
       version: "0.11.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "borgbase",
           repo: "vorta",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       preCheck: nix.thunk(() => (() => {
-        const fontsConf = nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ __proto__: pos$2, fontDirectories: [] }))));
+        const fontsConf = nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$2, fontDirectories: [] }))));
         return nix.str`export HOME=$(mktemp -d)
 export FONTCONFIG_FILE=${fontsConf};
 # For tests/test_misc.py::test_autostart
@@ -77,11 +77,11 @@ export QT_QPA_PLATFORM=offscreen
       })()),
       disabledTestPaths: nix.thunk(() => nix.concat(["tests/integration", "tests/unit"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ["tests/network_manager/test_darwin.py"])))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/borgbase/vorta/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Desktop Backup Client for Borg",
         homepage: "https://vorta.borgbase.com/",

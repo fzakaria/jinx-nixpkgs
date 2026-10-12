@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const writeText = nix.arg($, "writeText");
   const copyUdevRuleToOutput = (name) => (rule) => nix.str`cp ${nix.app(writeText, name, rule)} $out/etc/udev/rules.d/${name}`;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "digitalbitbox",
       version: "3.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BitBoxSwiss",
           repo: "dbb-app",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(libsForQt5, "qtmultimedia")),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         LUPDATE: nix.thunk(() => nix.str`${nix.sel(libsForQt5, "qttools", "dev")}/bin/lupdate`),
         LRELEASE: nix.thunk(() => nix.str`${nix.sel(libsForQt5, "qttools", "dev")}/bin/lrelease`),
         MOC: nix.thunk(() => nix.str`${nix.sel(libsForQt5, "qtbase", "dev")}/bin/moc`),
@@ -88,7 +88,7 @@ ${nix.app(copyUdevRuleToOutput, "52-hid-digitalbox.rules", udevRule52)}
       enableParallelBuilding: true,
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "QT based application for the Digital Bitbox hardware wallet",
         longDescription: "Digital Bitbox provides dbb-app, a GUI tool, and dbb-cli, a CLI tool, to manage Digital Bitbox devices.\n\nThis package will only install the dbb-app and dbb-cli, however; in order for these applications to identify and access Digital Bitbox devices, one may want to enable the digitalbitbox hardware module by adding\n\n    hardware.digitalbitbox.enable = true;\n\nto the configuration which is equivalent to adding this package to the udev.packages list.\n\n\nThe easiest way to use the digitalbitbox package in NixOS is by adding\n\n    programs.digitalbitbox.enable = true;\n\nto the configuration which installs the package and enables the hardware module.\n",
         homepage: "https://digitalbitbox.com/",

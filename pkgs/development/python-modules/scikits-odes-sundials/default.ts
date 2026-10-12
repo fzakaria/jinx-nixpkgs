@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["scikits_odes_sundials"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => nix.update(nix.sel(scikits_odes_core, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Sundials wrapper module for scikits-odes",
         homepage: "https://github.com/bmcage/odes/blob/master/packages/scikits-odes-sundials",
       }));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         version,
         src,
         pname,

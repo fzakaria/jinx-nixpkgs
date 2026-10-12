@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pname = "sonixd";
   const version = "0.15.5";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/jeffvli/sonixd/releases/download/v${version}/Sonixd-${version}-linux-x86_64.AppImage`),
       sha256: "sha256-j8B+o/CJ5SsZPMNbugyP3T9Kb+xuxlVxH02loxlwwDg=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => (() => {
       const pname_1 = pname;
       const version_1 = version;
@@ -31,7 +31,7 @@ substituteInPlace $out/share/applications/${pname_1}.desktop \\
 cp -r ${appimageContents}/usr/share/icons $out/share
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Full-featured Subsonic/Jellyfin compatible desktop music player",
         homepage: "https://github.com/jeffvli/sonixd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -43,7 +43,7 @@ cp -r ${appimageContents}/usr/share/icons $out/share
         mainProgram: "sonixd",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: pname_1,
         version: version_1,
         src: src_1,

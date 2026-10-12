@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const ladspa_sdk = nix.arg($, "ladspa-sdk");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tap-plugins",
       version: "0-unstable-2020-12-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tomscii",
           repo: "tap-plugins",
           rev: "5d882799f37dffe37fc73451f2c5b4fb24316f3b",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [ladspa_sdk]),
       postPatch: "substituteInPlace Makefile --replace /usr/local \"$out\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://tomscii.sig7.se/tap-plugins/",
         description: "Tom's Audio Processing plugins",
         longDescription: "A number of LADSPA plugins including: TAP AutoPanner, TAP Chorus/Flanger,\nTAP DeEsser, TAP Dynamics (Mono & Stereo), TAP Equalizer and TAP\nEqualizer/BW, TAP Fractal Doubler, TAP Pink/Fractal Noise, TAP Pitch\nShifter, TAP Reflector, TAP Reverberator, TAP Rotary Speaker, TAP Scaling\nLimiter, TAP Sigmoid Booster, TAP Stereo Echo, TAP Tremolo, TAP\nTubeWarmth, TAP Vibrato.\n",

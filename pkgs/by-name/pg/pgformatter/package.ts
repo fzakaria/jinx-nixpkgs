@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pgformatter";
       const version = "5.11";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "darold",
           repo: "pgFormatter",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       const versionCheckProgramArg = "--version";
       const doInstallCheck = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "PostgreSQL SQL syntax beautifier that can work as a console program or as a CGI",
         homepage: "https://github.com/darold/pgFormatter",
         changelog: nix.thunk(() => nix.str`https://github.com/darold/pgFormatter/releases/tag/${nix.sel(src, "tag")}`),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "pg_format",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

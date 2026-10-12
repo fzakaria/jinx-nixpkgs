@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const glibc = nix.arg($, "glibc");
   const bashNonInteractive = nix.arg($, "bashNonInteractive");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dpkg",
       version: "1.23.7",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.launchpad.net/ubuntu/+source/dpkg",
           tag: nix.thunk(() => nix.str`applied/${nix.sel(finalAttrs, "version")}`),
           leaveDotGit: true,
@@ -85,7 +85,7 @@ cp -r scripts/t/origins $out/etc/dpkg
       setupHook: nix.path(here, "./setup-hook.sh"),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Debian package manager",
         homepage: "https://wiki.debian.org/Teams/Dpkg",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

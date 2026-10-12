@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "confy-tui",
       version: "3.1.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "phluxjr",
           repo: "confy",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-E4AK2WLwr7GEexM8JncfHoSBQxQ1OuCkro9jEq+9I4s=",
       postInstall: "install -Dm644 confy.1 $out/share/man/man1/confy.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "config manager tui for linux/unix systems",
         homepage: "https://github.com/phluxjr/confy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

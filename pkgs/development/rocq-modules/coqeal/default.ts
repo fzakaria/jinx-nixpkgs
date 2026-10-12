@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const version = nix.argOr($, "version", () => null);
   const derivation = nix.thunk(() => nix.app(mkRocqDerivation, nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       pname: "CoqEAL",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (coq_1) => (mc) => (out) => ({ __proto__: pos$1, cases: nix.thunk(() => [coq_1, mc]), out: out });
+        const case$ = (coq_1) => (mc) => (out) => ({ [nix.POS]: pos$1, cases: nix.thunk(() => [coq_1, mc]), out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => [
             nix.thunk(() => nix.sel(coq, "coq-version")),
@@ -61,75 +61,75 @@ export default nix.lambda((args) => (() => {
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         "2.1.2": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           hash: "sha256-ktoejlxAtbPzWGdW+DXwLSAmxNHDzQTujkY1If4EM8E=",
         })),
         "2.1.1": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           hash: "sha256-nAQAX35W9br7dgrT9FqGyHYSzwgMiMsuD1d7SztQDwY=",
         })),
         "2.1.0": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           hash: "sha256-UoDxy2BKraDyRsO42GXRo26O74OF51biZQGkIMWLf8Y=",
         })),
         "2.0.3": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           hash: "sha256-5lDq7IWlEW0EkNzYPu+dA6KOvRgy53W/alikpDr/Kd0=",
         })),
         "2.0.1": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           hash: "sha256-d/IQ4IdS2tpyPewcGobj2S6m2HU+iXQmlvR+ITNIcjI=",
         })),
-        "2.0.0": nix.thunk(() => ({ __proto__: pos$7, hash: "sha256-SG/KVnRJz2P+ZxkWVp1dDOnc/JVgigoexKfRUh1Y0GM" })),
+        "2.0.0": nix.thunk(() => ({ [nix.POS]: pos$7, hash: "sha256-SG/KVnRJz2P+ZxkWVp1dDOnc/JVgigoexKfRUh1Y0GM" })),
         "1.1.3": nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           hash: "sha256-xhqWpg86xbU1GbDtXXInNCTArjjPnWZctWiiasq1ScU=",
         })),
         "1.1.1": nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           hash: "sha256-ExAdC3WuArNxS+Sa1r4x5aT7ylbCvP/BZXfkdQNAvZ8=",
         })),
         "1.1.0": nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           hash: "sha256:1vyhfna5frkkq2fl1fkg2mwzpg09k3sbzxxpyp14fjay81xajrxr",
         })),
         "1.0.6": nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           hash: "sha256:0lqkyfj4qbq8wr3yk8qgn7mclw582n3fjl9l19yp8cnchspzywx0",
         })),
         "1.0.5": nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           hash: "sha256:0cmvky8glb5z2dy3q62aln6qbav4lrf2q1589f6h1gn5bgjrbzkm",
         })),
         "1.0.4": nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           hash: "sha256:1g5m26lr2lwxh6ld2gykailhay4d0ayql4bfh0aiwqpmmczmxipk",
         })),
         "1.0.3": nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           hash: "sha256:0hc63ny7phzbihy8l7wxjvn3haxx8jfnhi91iw8hkq8n29i23v24",
         })),
       })),
       useCoqifVersion: (v) => (nix.asBool((nix.asBool(!nix.eq(v, null)) && nix.asBool(!nix.eq(v, "dev")))) && nix.asBool(nix.app(nix.sel(lib, "versions", "isLe"), "2.1.2", v))),
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(mathcomp, "algebra")), bignums, multinomials]),
       meta: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         description: "CoqEAL - The Coq Effective Algebra Library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     }))));
   const patched_derivation1 = nix.thunk(() => nix.app(nix.sel(derivation, "overrideAttrs"), (o) => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       propagatedBuildInputs: nix.thunk(() => nix.concat(nix.sel(o, "propagatedBuildInputs"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versions", "isGe"), "1.1", nix.thunk(() => nix.sel(o, "version")))) || nix.asBool(nix.eq(nix.sel(o, "version"), "dev")))), mathcomp_real_closed))),
     })));
   const patched_derivation2 = nix.thunk(() => nix.app(nix.sel(patched_derivation1, "overrideAttrs"), (o) => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       propagatedBuildInputs: nix.thunk(() => nix.concat(nix.sel(o, "propagatedBuildInputs"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versions", "isLe"), "2.0.3", nix.thunk(() => nix.sel(o, "version")))) && nix.asBool(!nix.eq(nix.sel(o, "version"), "dev")))), paramcoq))),
     })));
   const patched_derivation3 = nix.thunk(() => nix.app(nix.sel(patched_derivation2, "overrideAttrs"), (o) => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       propagatedBuildInputs: nix.thunk(() => nix.concat(nix.sel(o, "propagatedBuildInputs"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versions", "isLe"), "2.1.1", nix.thunk(() => nix.sel(o, "version")))) && nix.asBool(!nix.eq(nix.sel(o, "version"), "dev")))), nix.thunk(() => nix.sel(mathcomp, "ssreflect"))))),
     })));
   return nix.force(patched_derivation3);

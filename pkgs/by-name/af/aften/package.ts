@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aften",
       version: "0.0.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/aften/aften-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "02hc5x9vkgng1v9bzvza9985ifrjd7fjr7nlpvazp4mv6dr89k47",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DSHARED=ON"]),
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \\\n    'CMAKE_MINIMUM_REQUIRED(VERSION 2.4)' \\\n    'CMAKE_MINIMUM_REQUIRED(VERSION 3.10)'\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Audio encoder which generates compressed audio streams based on ATSC A/52 specification",
         homepage: "https://aften.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

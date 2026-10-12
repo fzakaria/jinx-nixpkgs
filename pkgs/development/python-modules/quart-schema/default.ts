@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pydantic = nix.arg($, "pydantic");
   const hypothesis = nix.arg($, "hypothesis");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "quart-schema",
       version: "0.24.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pgjones",
           repo: "quart-schema",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, pytest_asyncio, pydantic, hypothesis]),
       preCheck: "substituteInPlace pyproject.toml \\\n  --replace-fail \"--no-cov-on-fail\" \"\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Create subcommand-based CLI programs with docopt",
         homepage: "https://github.com/pgjones/quart-schema",
         changelog: nix.thunk(() => nix.str`https://github.com/pgjones/quart-schema/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.rst`),

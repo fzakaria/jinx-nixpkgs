@@ -61,12 +61,12 @@ export default nix.lambda((args) => (() => {
   const libiconv = nix.arg($, "libiconv");
   const makeHardcodeGsettingsPatch = nix.arg($, "makeHardcodeGsettingsPatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "evolution-data-server",
       version: "3.60.2",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/evolution-data-server/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/evolution-data-server-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-IITb2sOWNxs2XVBMH/RYZrqNyi8SUuXaHT2cM6vcEoY=",
         })))),
@@ -130,11 +130,11 @@ substituteInPlace src/camel/CMakeLists.txt --replace-fail \\
 `)))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "ln -s $out/lib/evolution-data-server/*.dylib $out/lib/\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         hardcodeGsettingsPatch: nix.thunk(() => nix.app(makeHardcodeGsettingsPatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             schemaIdToVariableMapping: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               "org.gnome.Evolution.DefaultSources": "EDS",
               "org.gnome.evolution.shell.network-config": "EDS",
               "org.gnome.evolution-data-server.addressbook": "EDS",
@@ -147,7 +147,7 @@ substituteInPlace src/camel/CMakeLists.txt --replace-fail \\
           })))),
         updateScript: nix.thunk(() => (() => {
           const updateSource = nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               packageName: "evolution-data-server",
               versionPolicy: "odd-unstable",
             }))));
@@ -156,7 +156,7 @@ substituteInPlace src/camel/CMakeLists.txt --replace-fail \\
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Unified backend for programs that work with contacts, tasks, and calendar information",
         homepage: "https://gitlab.gnome.org/GNOME/evolution-data-server",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/evolution-data-server/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),

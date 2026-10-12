@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const jdk21 = nix.arg($, "jdk21");
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "diylc",
       version: "6.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/bancika/diy-layout-creator/releases/download/v${nix.sel(finalAttrs, "version")}/diylc-${nix.sel(finalAttrs, "version")}-universal.zip`),
           hash: "sha256-ZHGsxQJ6NE8YmQyGnHavhxzgp/6J3z/0XY0Duch9boU=",
         })))),
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems, unzip, makeBinaryWrapper]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "diylc",
             desktopName: "DIY Layout Creator",
             comment: "Multi platform circuit layout and schematic drawing tool",
@@ -59,7 +59,7 @@ makeWrapper $out/app/diylc/run.sh $out/bin/diylc
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Multi platform circuit layout and schematic drawing tool",
         mainProgram: "diylc",
         homepage: "https://bancika.github.io/diy-layout-creator",

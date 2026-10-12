@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libusb_compat_0_1 = nix.arg($, "libusb-compat-0_1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sispmctl",
       version: "4.12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/sispmctl/sispmctl-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-51eGOkg42m4cpypXrcWspvxH/73ccqaQUtir10PVcII=",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libusb_compat_0_1]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://sispmctl.sourceforge.net/",
         description: "USB controlled powerstrips management software",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

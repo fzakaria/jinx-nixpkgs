@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const php = nix.arg($, "php");
   const version = "1.1.0";
   return nix.app(nix.sel(php, "buildComposerWithPlugin"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nix-community/composer-local-repo-plugin",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nix-community",
           repo: "composer-local-repo-plugin",
           rev: version,
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       composerLock: nix.path(here, "./composer.lock"),
       vendorHash: "sha256-cup8maS9NkhdqTHoKJaH7r7AJQdkflWTvM6uIuxMPX0=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/nix-community/composer-local-repo-plugin/releases/tag/${version}`),
         description: "Composer plugin that facilitates the creation of a local composer type repository",
         homepage: "https://github.com/nix-community/composer-local-repo-plugin",

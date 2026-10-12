@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const sassc = nix.arg($, "sassc");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "everforest-gtk-theme",
       version: "0-unstable-2025-10-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Fausto-Korpsvart",
           repo: "Everforest-GTK-Theme",
           rev: "9b8be4d6648ae9eaae3dd550105081f8c9054825",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs themes/install.sh\n",
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/share/\"{themes,icons}\n\ncp -a icons/* \"$out/share/icons/\"\n\nfor theme in \"$out/share/icons/\"*; do\n  gtk-update-icon-cache \"$theme\"\ndone\n\ncd themes\n./install.sh --name Everforest --theme all --dest \"$out/share/themes\"\ncd ..\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Everforest colour palette for GTK",
         homepage: "https://github.com/Fausto-Korpsvart/Everforest-GTK-Theme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

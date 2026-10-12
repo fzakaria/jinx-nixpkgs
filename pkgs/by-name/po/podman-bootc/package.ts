@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "podman-bootc",
       version: "0.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bootc-dev",
           repo: "podman-bootc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ installShellCompletion --cmd podman-bootc \\
 `));
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Streamlining podman+bootc interactions",
         homepage: "https://github.com/bootc-dev/podman-bootc",
         changelog: nix.thunk(() => nix.str`https://github.com/bootc-dev/podman-bootc/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

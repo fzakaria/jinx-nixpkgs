@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const matplotlib = nix.arg($, "matplotlib");
   const pandas = nix.arg($, "pandas");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tt-perf-report",
       version: "1.2.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tenstorrent",
           repo: "tt-perf-report",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: nix.thunk(() => ["matplotlib"]),
       pythonImportsCheck: nix.thunk(() => ["tt_perf_report"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for analyzing performance traces from Metal operations",
         homepage: "https://github.com/tenstorrent/tt-perf-report",
         changelog: nix.thunk(() => nix.str`https://github.com/tenstorrent/tt-perf-report/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

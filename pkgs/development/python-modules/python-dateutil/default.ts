@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.9.0.post0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-N91UII2n4c2HU4ghfV4A69QXkkn5D7ckN+kaNUWaCtM=",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         "dateutil.zoneinfo",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/dateutil/dateutil/blob/${version}/NEWS`),
         description: "Powerful extensions to the standard datetime module",
         homepage: "https://github.com/dateutil/dateutil/",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "croc",
       version: "11.5.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "schollz",
           repo: "croc",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,9 +36,9 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: nix.thunk(() => nix.add(nix.add("installShellCompletion --cmd croc \\\n  --bash src/install/bash_autocomplete \\\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "--fish <($out/bin/croc generate-fish-completion) \\\n")), "--zsh src/install/zsh_autocomplete\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "local-relay": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-local-relay.nix"), nix.thunk(() => ({})))),
           croc: nix.thunk(() => nix.attr(nixosTests, "croc")),
         })),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Easily and securely send things from one computer to another",
         longDescription: "Croc is a command line tool written in Go that allows any two computers to\nsimply and securely transfer files and folders.\n\nCroc does all of the following:\n- Allows any two computers to transfer data (using a relay)\n- Provides end-to-end encryption (using PAKE)\n- Enables easy cross-platform transfers (Windows, Linux, Mac)\n- Allows multiple file transfers\n- Allows resuming transfers that are interrupted\n- Does not require a server or port-forwarding\n",
         homepage: "https://github.com/schollz/croc",

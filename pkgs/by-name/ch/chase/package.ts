@@ -16,20 +16,20 @@ export default nix.lambda((args) => (() => {
   const libatomic_ops = nix.arg($, "libatomic_ops");
   const boehmgc = nix.arg($, "boehmgc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "chase",
       version: "0.5.2",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libatomic_ops, boehmgc]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://debian/pool/main/c/chase/chase_${nix.sel(finalAttrs, "version")}.orig.tar.gz`),
           sha256: "68d95c2d4dc45553b75790fcea4413b7204a2618dff148116ca9bdb0310d737f",
         })))),
       doCheck: true,
       makeFlags: nix.thunk(() => ["-e", "LIBS=-lgc"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Follow a symlink and print out its target file",
         longDescription: "A commandline program that chases symbolic filesystems links to the original file\n",
         homepage: "https://qa.debian.org/developer.php?login=rotty%40debian.org",

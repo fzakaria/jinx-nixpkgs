@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dotX12",
           repo: "ShazamIO",
           tag: version,
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "remove-unused-build-dependencies.patch",
             url: "https://github.com/dotX12/ShazamIO/commit/5c61e1efe51c2826852da5b6aa6ad8ce3d4012a9.patch",
             hash: "sha256-KiU5RVBPnSs5qrReFeTe9ePg1fR7y0NchIIHcQwlPaI=",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_about_artist", "test_recognize_song_file", "test_recognize_song_bytes"]);
       const pythonImportsCheck = nix.thunk(() => ["shazamio"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Free asynchronous library from reverse engineered Shazam API",
         homepage: "https://github.com/dotX12/ShazamIO",
         changelog: nix.thunk(() => nix.str`https://github.com/dotX12/ShazamIO/releases/tag/${nix.sel(src, "tag")}`),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(pydantic, "version")), "2")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

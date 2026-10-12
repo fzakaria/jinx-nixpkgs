@@ -25,29 +25,29 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const rpm = nix.arg($, "rpm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "cpio",
       version: "2.15",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/cpio/cpio-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-k3YQuXwymh7JJoVT+3gAN7z/8Nz/6XJevE/ZwaqQdds=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "CVE-2026-66484.patch",
             url: "https://git.savannah.gnu.org/cgit/cpio.git/patch/?id=e2b9cbdd3354d2b1569b7390d1bc15c1930559ad",
             hash: "sha256-WjphVpMaI/ePg8MTZx+vvilKzpRAAzhAFwCwrbsPLRE=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "CVE-2026-66485.patch",
             url: "https://git.savannah.gnu.org/cgit/cpio.git/patch/?id=3cd514031371d8aeeaf2048aa10103e02831aaa9",
             hash: "sha256-YDlROEYYlZERNzzlx1cQD29gV5IrU01aVcZ/sKpWrRo=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "CVE-2026-66486.patch",
             url: "https://git.savannah.gnu.org/cgit/cpio.git/patch/?id=2ff9600c9ef32e88759843cdbde74c8db5ae9b30",
             excludes: nix.thunk(() => ["NEWS"]),
@@ -60,9 +60,9 @@ export default nix.lambda((args) => (() => {
       preConfigure: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isCygwin")), "sed -i gnu/fpending.h -e 's,include <stdio_ext.h>,,'\n")),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           libguestfs: libguestfs,
           rpm: rpm,
           git: nix.thunk(() => nix.sel(git, "tests", "withInstallCheck")),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://www.gnu.org/software/cpio/",
         description: "Program to create or extract from cpio archives",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const hicolor_icon_theme = nix.arg($, "hicolor-icon-theme");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "antu-icons",
       version: "2.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "froodo_alexis",
           repo: "Antu-icons",
           rev: "a12a9e559b59c8ded47531e299a5516718ef9a28",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       dontDropIconThemeCache: true,
       installPhase: "runHook preInstall\nmkdir -p $out/share/icons/antu-icons\ncp -r * $out/share/icons/antu-icons\n\n# Remove broken symlinks\nfind $out/share/icons/antu-icons -xtype l -delete\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Smooth icon theme designed for Plasma Desktop",
         homepage: "https://gitlab.com/froodo_alexis/Antu-icons",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-nc-sa-30")),

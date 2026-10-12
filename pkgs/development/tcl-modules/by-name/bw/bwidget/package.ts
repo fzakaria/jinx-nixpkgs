@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const mkTclDerivation = nix.arg($, "mkTclDerivation");
   const tk = nix.arg($, "tk");
   return nix.app(mkTclDerivation, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bwidget",
       version: "1.10.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/tcllib/bwidget-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-61sCvsua+Iv3SldHhd4eMpzzCjZ5EVMJOnkRT6xRw60=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
 cp -R *.tcl lang images "$out/lib/bwidget${nix.sel(finalAttrs, "version")}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://sourceforge.net/projects/tcllib",
         description: "High-level widget set for Tcl/Tk",
         maintainers: nix.thunk(() => (() => {

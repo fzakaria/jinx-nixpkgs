@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const src = nix.arg($, "src");
   const meta = nix.argOr($, "meta", () => ({}));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "libmicrohttpd",
       version: version,
       src: src,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       __structuredAttrs: true,
       meta: nix.thunk(() => nix.update({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Embeddable HTTP server library",
         longDescription: "GNU libmicrohttpd is a small C library that is supposed to make\nit easy to run an HTTP server as part of another application.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),

@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.25.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "google_cloud_tasks",
           version: version,
           hash: "sha256-UeG5GBiSUSTD73KAGbFA8NSlBo2HHw8noXxtqAMy8eQ=",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         "google.cloud.tasks_v2beta3",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cloud Tasks API API client library",
         homepage: "https://github.com/googleapis/google-cloud-python/tree/main/packages/google-cloud-tasks",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/google-cloud-python/blob/google-cloud-tasks-v${version}/packages/google-cloud-tasks/CHANGELOG.md`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

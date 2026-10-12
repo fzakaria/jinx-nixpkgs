@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const eigen = nix.arg($, "eigen");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pcmsolver",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PCMSolver",
           repo: "pcmsolver",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,12 +34,12 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace external/Catch/catch.hpp \\\n  --replace SIGSTKSZ _SC_SIGSTKSZ\n",
       nativeBuildInputs: nix.thunk(() => [cmake, gfortran, perl, python3]),
       buildInputs: nix.thunk(() => [boost, eigen, zlib]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=c++14 -Wno-template-body" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=c++14 -Wno-template-body" })),
       cmakeFlags: nix.thunk(() => ["-DENABLE_OPENMP=ON", "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"]),
       hardeningDisable: nix.thunk(() => ["format"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "API for the Polarizable Continuum Model",
         mainProgram: "run_pcm",
         homepage: "https://pcmsolver.readthedocs.io/en/stable/",

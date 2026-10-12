@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
     const sql = nix.arg($_1, "sql");
     const withPackages = nix.argOr($_1, "withPackages", () => []);
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => nix.update({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: nix.thunk(() => nix.str`${nix.sel(finalPackage, "name")}-test-extension`),
         dontUnpack: true,
         doCheck: true,

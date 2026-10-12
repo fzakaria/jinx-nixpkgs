@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
   const scikit_learn = nix.arg($, "scikit-learn");
   const writeText = nix.arg($, "writeText");
   const pymoo_data = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "anyoptimization",
       repo: "pymoo-data",
       rev: "8dae7d02078def161ee109184399adc3db25265b",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.1.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "anyoptimization",
           repo: "pymoo",
           tag: version,
@@ -79,12 +79,12 @@ substituteInPlace pymoo/config.py \\
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.13")), nix.thunk(() => ["test_kktpm_correctness"]))));
       const disabledTestPaths = nix.thunk(() => nix.concat(["tests/algorithms/test_no_modfication.py"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["tests/misc/test_kktpm.py::test_kktpm_correctness[zdt3-params3]"]))));
       const env = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         MATPLOTLIBRC: nix.thunk(() => nix.app(writeText, "", "backend: Agg\n")),
       }));
       const pythonImportsCheck = nix.thunk(() => ["pymoo"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Multi-objective Optimization in Python",
         homepage: "https://pymoo.org/",
         downloadPage: "https://github.com/anyoptimization/pymoo",
@@ -96,7 +96,7 @@ substituteInPlace pymoo/config.py \\
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

@@ -22,14 +22,14 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook269 = nix.arg($, "autoreconfHook269");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libssp",
       version: version,
-      src: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`libssp-src-${version}`), nix.thunk(() => ({ __proto__: pos$1, src: monorepoSrc })), nix.thunk(() => nix.add("runPhase unpackPhase\n\nmkdir -p \"$out/gcc\"\ncp gcc/BASE-VER \"$out/gcc\"\ncp gcc/DATESTAMP \"$out/gcc\"\n\ncp -r libssp \"$out\"\n\ncp -r config \"$out\"\ncp -r multilib.am \"$out\"\n\ncp config.guess \"$out\"\ncp config.rpath \"$out\"\ncp config.sub \"$out\"\ncp config-ml.in \"$out\"\ncp ltmain.sh \"$out\"\ncp install-sh \"$out\"\ncp mkinstalldirs \"$out\"\n\n", "if [[ -f MD5SUMS ]]; then cp MD5SUMS \"$out\"; fi\n")))),
+      src: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`libssp-src-${version}`), nix.thunk(() => ({ [nix.POS]: pos$1, src: monorepoSrc })), nix.thunk(() => nix.add("runPhase unpackPhase\n\nmkdir -p \"$out/gcc\"\ncp gcc/BASE-VER \"$out/gcc\"\ncp gcc/DATESTAMP \"$out/gcc\"\n\ncp -r libssp \"$out\"\n\ncp -r config \"$out\"\ncp -r multilib.am \"$out\"\n\ncp config.guess \"$out\"\ncp config.rpath \"$out\"\ncp config.sub \"$out\"\ncp config-ml.in \"$out\"\ncp ltmain.sh \"$out\"\ncp install-sh \"$out\"\ncp mkinstalldirs \"$out\"\n\n", "if [[ -f MD5SUMS ]]; then cp MD5SUMS \"$out\"; fi\n")))),
       outputs: nix.thunk(() => ["out", "dev"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "regular-libdir-includedir.patch",
             url: "https://inbox.sourceware.org/gcc-patches/20250720172933.2404828-1-git@JohnEricson.me/raw",
             hash: "sha256-W7dcy1Tm3O2reK7kx83DRv8W97qUfaqDbKLiLXIegRw=",
@@ -49,8 +49,8 @@ export default nix.lambda((args) => (() => {
       preConfigure: "cd \"$buildRoot\"\nconfigureScript=$sourceRoot/configure\n",
       hardeningDisable: nix.thunk(() => ["fortify", "stackprotector"]),
       doCheck: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$3, isGNU: true })),
-      meta: nix.thunk(() => nix.update(gcc_meta, { __proto__: pos$4, homepage: "https://gcc.gnu.org/" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, isGNU: true })),
+      meta: nix.thunk(() => nix.update(gcc_meta, { [nix.POS]: pos$4, homepage: "https://gcc.gnu.org/" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

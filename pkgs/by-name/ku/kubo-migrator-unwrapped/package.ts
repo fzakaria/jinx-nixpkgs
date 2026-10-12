@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kubo-migrator",
       version: "2.0.2-unstable-2024-08-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ipfs",
           repo: "fs-repo-migrations",
           rev: "cbc31a03fb2f6aba80d577224c09472101427771",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-/DqkBBtR/nU8gk3TFqNKY5zQU6BFMc3N8Ti+38mi/jk=",
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Run the appropriate migrations for migrating the filesystem repository of Kubo (migrations not included)",
         homepage: "https://github.com/ipfs/fs-repo-migrations",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

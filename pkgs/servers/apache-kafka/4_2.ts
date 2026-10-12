@@ -5,7 +5,7 @@ const here = nix.here(import.meta.url);
 const pos$1 = nix.positions(here + "/4_2.nix", [["kafkaVersion", 2, 3], ["scalaVersion", 3, 3], ["hash", 4, 3]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     kafkaVersion: "4.2.1",
     scalaVersion: "2.13",
     hash: "sha256-z/g5pZlKj9mwJrVU0JhSgHpu+f1NgkbvFRcyYx2knfo=",

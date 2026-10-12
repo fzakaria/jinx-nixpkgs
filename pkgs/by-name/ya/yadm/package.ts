@@ -37,14 +37,14 @@ export default nix.lambda((args) => (() => {
   const withOpenssl = nix.argOr($, "withOpenssl", () => true);
   const withTar = nix.thunk(() => (nix.asBool(withGpg) || nix.asBool(withOpenssl)));
   return nix.app(nix.sel(resholve, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "yadm",
       version: "3.5.0",
       strictDeps: true,
       __structuredAttrs: true,
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "yadm-dev",
           repo: "yadm",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -55,18 +55,18 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\ninstall -Dt $out/bin yadm\nrunHook postInstall\n",
       postInstall: "installManPage yadm.1\ninstallShellCompletion --cmd yadm \\\n  --zsh completion/zsh/_yadm \\\n  --bash completion/bash/yadm\n",
       solutions: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         yadm: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           scripts: nix.thunk(() => ["bin/yadm"]),
           interpreter: nix.thunk(() => nix.str`${bash}/bin/sh`),
           inputs: nix.thunk(() => nix.concat([bash, coreutils, git], nix.concat(nix.app(nix.sel(lib, "optional"), withGpg, gnupg), nix.concat(nix.app(nix.sel(lib, "optional"), withOpenssl, openssl), nix.concat(nix.app(nix.sel(lib, "optional"), withAwk, gawk), nix.concat(nix.app(nix.sel(lib, "optional"), withEsh, esh), nix.app(nix.sel(lib, "optional"), withTar, gnutar))))))),
           fake: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             external: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isCygwin"))), "cygpath"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withTar)), "tar"))),
           })),
           fix: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             $GIT_PROGRAM: nix.thunk(() => ["git"]),
             $GPG_PROGRAM: nix.thunk(() => nix.app(nix.sel(lib, "optional"), withGpg, "gpg")),
             $OPENSSL_PROGRAM: nix.thunk(() => nix.app(nix.sel(lib, "optional"), withOpenssl, "openssl")),
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
             $ESH_PROGRAM: nix.thunk(() => nix.app(nix.sel(lib, "optional"), withEsh, "esh")),
           })),
           keep: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             $YADM_COMMAND: true,
             $processor: true,
             $log: true,
@@ -97,16 +97,16 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         tests: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           minimal: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-test`), nix.thunk(() => ({})), nix.thunk(() => nix.str`export HOME=$out
 ${yadm}/bin/yadm init
 `))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         homepage: "https://github.com/yadm-dev/yadm",
         description: "Yet Another Dotfiles Manager",
         longDescription: "yadm is a dotfile management tool with 3 main features:\n* Manages files across systems using a single Git repository.\n* Provides a way to use alternate files on a specific OS or host.\n* Supplies a method of encrypting confidential data so it can safely be stored in your repository.\n",

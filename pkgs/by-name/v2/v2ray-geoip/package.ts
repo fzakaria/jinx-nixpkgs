@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "v2ray-geoip";
       const version = "202501190004";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "v2fly",
           repo: "geoip",
           tag: version,
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const vendorHash = "sha256-nvJsifXF6u3eWqd9X0kGZxASEs/LX2dQraZAwgnw060=";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GeoIP for V2Ray",
         homepage: "https://github.com/v2fly/geoip",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),
@@ -38,10 +38,10 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "nickcao"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, vendorHash, meta };
+      return { [nix.POS]: pos$3, pname, version, src, vendorHash, meta };
     })())));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: nix.thunk(() => nix.attr(generator, "pname")),
       src: nix.thunk(() => nix.attr(generator, "src")),
       version: nix.thunk(() => nix.attr(dbip_country_lite, "version")),
@@ -55,10 +55,10 @@ geoip
 runHook postBuild
 `),
       installPhase: "runHook preInstall\n\ninstall -Dm444 -t \"$out/share/v2ray\" output/{cn,geoip-only-cn-private,geoip,private}.dat\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$4, generator: generator })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, generator: generator })),
       meta: nix.thunk(() => nix.update(nix.sel(generator, "meta"), (() => {
         const from = nix.thunk(() => nix.sel(dbip_country_lite, "meta"));
-        return { __proto__: pos$5, license: nix.thunk(() => nix.attr(from, "license")) };
+        return { [nix.POS]: pos$5, license: nix.thunk(() => nix.attr(from, "license")) };
       })())),
     })));
 })(), formals$1);

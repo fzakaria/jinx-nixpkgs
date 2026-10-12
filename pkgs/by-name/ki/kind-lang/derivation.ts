@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const mtl = nix.arg($, "mtl");
   const parsec = nix.arg($, "parsec");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "kind-lang",
       version: "0.1.0.0",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://github.com/higherorderco/kind.git",
           sha256: "1g4pikxh42p3hikzyfzf11cs7zd1miaxapyf8pijdcxhpdx7wwl0",
           rev: "5cfff210b3aeed01ebd73b2364cf9e5d2df658af",

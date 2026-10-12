@@ -40,26 +40,26 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     name: "flap-alerted",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "defelo"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       machine: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         services: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "flap-alerted": nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: true,
             settings: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               asn: 4213370001n,
               bgpListenAddress: ":1790",
               routeChangeCounter: 5n,
@@ -67,28 +67,28 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           bird: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enable: true,
             preCheckConfig: "mkdir -p /tmp/bird\ntouch /tmp/bird/routes.conf\n",
             config: "router id 192.168.1.1;\n\nprotocol device { }\n\nprotocol bgp flapalerted {\n  local 2001:db8:1::1 as 4213370001;\n  neighbor ::1 as 4213370001 port 1790;\n\n  ipv4 {\n    add paths on;\n    export all;\n    import none;\n    extended next hop on;\n  };\n\n  ipv6 {\n    add paths on;\n    export all;\n    import none;\n  };\n}\n\nprotocol static {\n  include \"/tmp/bird/routes.conf\";\n\n  ipv4 {\n    import all;\n    export none;\n  };\n}\n",
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           services: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             bird: nix.thunk(() => ({
-              __proto__: pos$7,
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$6, BindReadOnlyPaths: nix.thunk(() => ["/tmp/bird"]) })),
+              [nix.POS]: pos$7,
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$6, BindReadOnlyPaths: nix.thunk(() => ["/tmp/bird"]) })),
             })),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             settings: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               "bird-static-routes": nix.thunk(() => ({
-                __proto__: pos$10,
-                "/tmp/bird/routes.conf": nix.thunk(() => ({ __proto__: pos$9, f: nix.thunk(() => ({})) })),
+                [nix.POS]: pos$10,
+                "/tmp/bird/routes.conf": nix.thunk(() => ({ [nix.POS]: pos$9, f: nix.thunk(() => ({})) })),
               })),
             })),
           })),
@@ -96,35 +96,35 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     interactive: nix.thunk(() => ({
-      __proto__: pos$30,
-      sshBackdoor: nix.thunk(() => ({ __proto__: pos$16, enable: true })),
+      [nix.POS]: pos$30,
+      sshBackdoor: nix.thunk(() => ({ [nix.POS]: pos$16, enable: true })),
       defaults: nix.thunk(() => ({
-        __proto__: pos$18,
-        virtualisation: nix.thunk(() => ({ __proto__: pos$17, graphics: false })),
+        [nix.POS]: pos$18,
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$17, graphics: false })),
       })),
       nodes: nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         machine: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           services: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             "flap-alerted": nix.thunk(() => ({
-              __proto__: pos$20,
-              settings: nix.thunk(() => ({ __proto__: pos$19, httpAPIListenAddress: ":8699" })),
+              [nix.POS]: pos$20,
+              settings: nix.thunk(() => ({ [nix.POS]: pos$19, httpAPIListenAddress: ":8699" })),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$23,
-            firewall: nix.thunk(() => ({ __proto__: pos$22, allowedTCPPorts: nix.thunk(() => [8699n]) })),
+            [nix.POS]: pos$23,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$22, allowedTCPPorts: nix.thunk(() => [8699n]) })),
           })),
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             forwardPorts: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 from: "host",
-                host: nix.thunk(() => ({ __proto__: pos$24, port: 8699n })),
-                guest: nix.thunk(() => ({ __proto__: pos$25, port: 8699n })),
+                host: nix.thunk(() => ({ [nix.POS]: pos$24, port: 8699n })),
+                guest: nix.thunk(() => ({ [nix.POS]: pos$25, port: 8699n })),
               })),
             ]),
           })),

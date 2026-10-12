@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(lib, "versions"));
   const majorMinor = nix.thunk(() => nix.attr(from, "majorMinor"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: "2.7",
       pname: "ferm",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://ferm.foo-projects.org/download/${nix.app(majorMinor, nix.thunk(() => nix.sel(finalAttrs, "version")))}/ferm-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-wA2RDVOU5pZ1YI617g9QTVz9pB6ZCi2akbqsbfk+P5I=",
         })))),
@@ -42,11 +42,11 @@ for i in "$out/sbin/"*; do
 done
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, ferm: nix.thunk(() => nix.sel(nixosTests, "ferm")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, ferm: nix.thunk(() => nix.sel(nixosTests, "ferm")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "http://ferm.foo-projects.org/",
         description: "Tool to maintain complex firewalls",
         longDescription: "ferm is a tool to maintain complex firewalls, without having the trouble to\nrewrite the complex rules over and over again. ferm allows the entire\nfirewall rule set to be stored in a separate file, and to be loaded with one\ncommand. The firewall configuration resembles structured programming-like\nlanguage, which can contain levels and lists.\n",

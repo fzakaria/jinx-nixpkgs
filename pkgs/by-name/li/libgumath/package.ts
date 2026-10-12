@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libndtypes = nix.arg($, "libndtypes");
   const libxnd = nix.arg($, "libxnd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libgumath",
       version: "0.2.0dev3-unstable-2019-08-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xnd-project",
           repo: "libgumath",
           rev: "360ed454105ac5615a7cb7d216ad25bc4181b876",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`LD=${nix.sel(stdenv, "cc", "targetPrefix")}cc`)]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library supporting function dispatch on general data containers. C base and Python wrapper",
         homepage: "https://xnd.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

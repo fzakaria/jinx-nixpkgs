@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const rich = nix.arg($, "rich");
   const sentencepiece = nix.arg($, "sentencepiece");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mlx-vlm",
       version: "0.4.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Blaizzy",
           repo: "mlx-vlm",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
       ]),
       disabledTestPaths: nix.thunk(() => ["mlx_vlm/tests/test_utils.py", "mlx_vlm/tests/test_smoke.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Inference and fine-tuning of Vision Language Models (VLMs) on your Mac using MLX",
         homepage: "https://github.com/Blaizzy/mlx-vlm",
         changelog: nix.thunk(() => nix.str`https://github.com/Blaizzy/mlx-vlm/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

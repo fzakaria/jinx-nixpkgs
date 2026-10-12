@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const entr = nix.arg($, "entr");
   const withEntr = nix.argOr($, "withEntr", () => true);
   return nix.app(buildBatExtrasPkg, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "batwatch",
       dependencies: nix.thunk(() => nix.concat([less, coreutils], nix.app(nix.sel(lib, "optional"), withEntr, entr))),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Watch for changes in one or more files, and print them with bat",
       })),
     })));

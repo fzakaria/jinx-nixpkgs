@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const jinja2 = nix.arg($, "jinja2");
   const gitpython = nix.arg($, "gitpython");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "leanblueprint",
       version: "0.0.20",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "leanblueprint",
           owner: "PatrickMassot",
           rev: "v0.0.20",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["leanblueprint"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "This plasTeX plugin allowing to write blueprints for Lean 4 projects",
         homepage: "https://github.com/PatrickMassot/leanblueprint",
         maintainers: nix.thunk(() => (() => {

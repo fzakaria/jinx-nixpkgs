@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const systemd = nix.arg($, "systemd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lightum",
       version: "unstable-2014-06-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "poliva",
           repo: "lightum",
           rev: "123e6babe0669b23d4c1dfa5511088608ff2baa8",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       patchPhase: "substituteInPlace Makefile \\\n  --replace \"libsystemd-login\" \"libsystemd\"\n",
       installPhase: "make install prefix=$out bindir=$out/bin docdir=$out/share/doc \\\n  mandir=$out/share/man INSTALL=\"install -c\" INSTALLDATA=\"install -c -m 644\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MacBook automatic light sensor daemon",
         mainProgram: "lightum",
         homepage: "https://github.com/poliva/lightum",

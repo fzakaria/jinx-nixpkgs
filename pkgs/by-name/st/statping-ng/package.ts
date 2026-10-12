@@ -22,19 +22,19 @@ export default nix.lambda((args) => (() => {
   const yarnConfigHook = nix.arg($, "yarnConfigHook");
   const version = "0.93.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "statping-ng",
       repo: "statping-ng",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-VVM3Jyahs0OQuHiF/r+U9vq9TBOFOtuTzBurAhR1Dhc=",
     }))));
   const frontend = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "statping-ng-frontend",
       version: version,
       src: nix.thunk(() => nix.str`${src}/frontend`),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.str`${src}/frontend/yarn.lock`),
           hash: "sha256-e8GyKIJ0RopRliVMVrY8eEd6Qx/gTKbW3biPCSqbRrQ=",
         })))),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
 $out/bin/statping-ng version | grep ${version_1} > /dev/null
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Status Page for monitoring your websites and applications with beautiful graphs, analytics, and plugins",
         homepage: "https://github.com/statping-ng/statping-ng",
         changelog: nix.thunk(() => nix.str`https://github.com/statping-ng/statping-ng/releases/tag/${nix.sel(src_1, "tag")}`),
@@ -73,7 +73,7 @@ $out/bin/statping-ng version | grep ${version_1} > /dev/null
         mainProgram: "statping-ng",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version: version_1,
         src: src_1,

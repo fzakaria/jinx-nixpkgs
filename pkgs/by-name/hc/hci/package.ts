@@ -26,9 +26,9 @@ export default nix.lambda((args) => (() => {
   const makeBinPath = nix.thunk(() => nix.attr(lib, "makeBinPath"));
   const bundledBins = nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), crun));
   const overrides = (old) => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     "hercules-ci-agent": nix.thunk(() => nix.app(overrideCabal, (o) => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         isLibrary: true,
         isExecutable: false,
         postInstall: "",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       }), nix.thunk(() => nix.sel(old, "hercules-ci-agent")))),
   });
   const pkg = nix.thunk(() => nix.app(overrideCabal, (o) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       postInstall: nix.thunk(() => nix.str`${nix.selOr(o, () => "", "postInstall")}
 mkdir -p $out/libexec
 mv $out/bin/hci $out/libexec
@@ -48,9 +48,9 @@ makeWrapper $out/libexec/hci $out/bin/hci --prefix PATH : ${nix.app(nix.sel(lib,
 `),
     }), nix.thunk(() => nix.app(addBuildTools, nix.thunk(() => [makeWrapper]), nix.thunk(() => nix.app((nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))) ? nix.sel(lib, "id") : nix.sel(haskell, "lib", "compose", "justStaticExecutables")), nix.thunk(() => nix.app(nix.sel(haskellPackages, "hercules-ci-cli", "override"), overrides))))))));
   return nix.update(pkg, {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     meta: nix.thunk(() => nix.update(nix.sel(pkg, "meta"), {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       position: nix.thunk(() => nix.add(nix.builtins.toString(nix.path(here, "./package.nix")), ":1")),
     })),
   });

@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const python3 = nix.arg($, "python3");
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     dartConfigHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name: "dart-config-hook",
         substitutions: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           yq: nix.thunk(() => nix.str`${yq}/bin/yq`),
           jq: nix.thunk(() => nix.str`${jq}/bin/jq`),
           python3: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (ps) => (() => {
@@ -39,27 +39,27 @@ export default nix.lambda((args) => (() => {
           packageGraphScript: nix.path(here, "../../pub2nix/package-graph.py"),
           workspacePackageConfigScript: nix.path(here, "../workspace-package-config.py"),
         })),
-        meta: nix.thunk(() => ({ __proto__: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
       })), nix.path(here, "./dart-config-hook.sh"))),
     dartBuildHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         name: "dart-build-hook",
         substitutions: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           yq: nix.thunk(() => nix.str`${yq}/bin/yq`),
           jq: nix.thunk(() => nix.str`${jq}/bin/jq`),
         })),
-        meta: nix.thunk(() => ({ __proto__: pos$5, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$5, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
       })), nix.path(here, "./dart-build-hook.sh"))),
     dartInstallHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         name: "dart-install-hook",
-        meta: nix.thunk(() => ({ __proto__: pos$7, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$7, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
       })), nix.path(here, "./dart-install-hook.sh"))),
     dartFixupHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         name: "dart-fixup-hook",
-        meta: nix.thunk(() => ({ __proto__: pos$9, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$9, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
       })), nix.path(here, "./dart-fixup-hook.sh"))),
   };
 })(), formals$1);

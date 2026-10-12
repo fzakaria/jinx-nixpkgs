@@ -24,16 +24,16 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "infnoise"));
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         infnoise: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the Infinite Noise TRNG driver")),
           fillDevRandom: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               description: "Whether to run the infnoise driver as a daemon to refill /dev/random.\n\nIf disabled, you can use the `infnoise` command-line tool to\nmanually obtain randomness.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
@@ -42,29 +42,29 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         environment: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "infnoise"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           udev: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             extraRules: "SUBSYSTEM==\"usb\", ATTRS{idVendor}==\"0403\", ATTRS{idProduct}==\"6015\", SYMLINK+=\"infnoise\", TAG+=\"systemd\", GROUP=\"dialout\", MODE=\"0664\", ENV{SYSTEMD_WANTS}=\"infnoise.service\"\n",
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             infnoise: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "fillDevRandom")), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 description: "Infinite Noise TRNG driver",
                 bindsTo: nix.thunk(() => ["dev-infnoise.device"]),
                 after: nix.thunk(() => ["dev-infnoise.device"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "infnoise")}/bin/infnoise --dev-random --debug`),
                   Restart: "always",
                   User: "infnoise",

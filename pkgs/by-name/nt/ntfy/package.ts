@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const withPid = nix.argOr($, "withPid", () => true);
   const withDbus = nix.argOr($, "withDbus", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ntfy",
       version: "2.7.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dschep",
           repo: "ntfy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/test_xmpp.py"]),
       pythonImportsCheck: nix.thunk(() => ["ntfy"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/dschep/ntfy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Utility for sending notifications, on demand and when commands finish",
         homepage: "https://ntfy.readthedocs.io/en/latest/",

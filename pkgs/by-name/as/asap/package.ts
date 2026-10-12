@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const SDL = nix.arg($, "SDL");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "asap",
       version: "8.0.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/asap/asap/${nix.sel(finalAttrs, "version")}/asap-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-lk43jknsPndQ3KIvTgJBYYG2hhVaUrq5CGyuH0qXHeo=",
         })))),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         "install-lib",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://asap.sourceforge.net/",
         mainProgram: "asap-sdl",
         description: "Another Slight Atari Player",

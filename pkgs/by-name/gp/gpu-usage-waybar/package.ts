@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const autoAddDriverRunpath = nix.arg($, "autoAddDriverRunpath");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gpu-usage-waybar",
       version: "0.1.26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PolpOnline",
           repo: "gpu-usage-waybar",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-wGKMZDT+B/AD8onnfslnqKBFgqVJNo/idWKLZOiQb/c=",
       nativeBuildInputs: nix.thunk(() => [autoAddDriverRunpath]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to display GPU usage in Waybar",
         homepage: "https://github.com/PolpOnline/gpu-usage-waybar",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const withTcl = nix.argOr($, "withTcl", () => true);
   const tcl = nix.arg($, "tcl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "hping",
       version: "2014-12-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "antirez",
           repo: "hping",
           rev: "3547c7691742c6eaa31f8402e0ccbb81387c1b99",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fno-common.patch",
             url: "https://github.com/antirez/hping/pull/64/commits/d057b9309aec3a5a53aaee1ac3451a8a5b71b4e8.patch",
             sha256: "0bqr7kdlziijja588ipj8g5hv2109wq01c6x2qadbhjfnsps1b6l",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => nix.concat([libpcap], nix.app(nix.sel(lib, "optional"), withTcl, tcl))),
       postPatch: nix.thunk(() => nix.add(nix.add("substituteInPlace Makefile.in --replace \"gcc\" \"$CC\"\nsubstituteInPlace version.c --replace \"RELEASE_DATE\" \"\\\"$version\\\"\"\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "sed -i -e 's|#include <net/bpf.h>|#include <pcap/bpf.h>|' \\\n  libpcap_stuff.c script.c\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => nix.str`substituteInPlace configure --replace 'BYTEORDER=\`./byteorder -m\`' BYTEORDER=${nix.sel({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           littleEndian: "__LITTLE_ENDIAN_BITFIELD",
           bigEndian: "__BIG_ENDIAN_BITFIELD",
         }, nix.key(nix.sel(stdenv, "hostPlatform", "parsed", "cpu", "significantByte", "name")))}
@@ -50,7 +50,7 @@ substituteInPlace Makefile.in --replace './hping3 -v' ""
       ]),
       installPhase: "install -Dm755 hping3 -t $out/sbin\nln -s $out/sbin/hping3 $out/sbin/hping\nln -s $out/sbin/hping3 $out/sbin/hping2\ninstall -Dm644 docs/hping3.8 -t $out/share/man/man8\nln -s hping3.8.gz $out/share/man/man8/hping.8.gz\nln -s hping3.8.gz $out/share/man/man8/hping2.8.gz\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Command-line oriented TCP/IP packet assembler/analyzer",
         homepage: "https://github.com/antirez/hping",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

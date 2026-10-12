@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ord",
       version: "0.29.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ordinals",
           repo: "ord",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       dontUseCargoParallelTests: true,
       checkFlags: nix.thunk(() => ["--skip=subcommand::server::tests::status"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Index, block explorer, and command-line wallet for Ordinals",
         homepage: "https://github.com/ordinals/ord",
         changelog: nix.thunk(() => nix.str`https://github.com/ordinals/ord/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

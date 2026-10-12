@@ -29,16 +29,16 @@ export default nix.lambda((args) => (() => {
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const cfg = nix.thunk(() => nix.sel(config, "services", "evdevremapkeys"));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         evdevremapkeys: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "evdevremapkeys, a daemon to remap events on linux input devices")),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(format, "type")),
               default: nix.thunk(() => ({})),
               description: "config.yaml for evdevremapkeys\n",
@@ -47,22 +47,22 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$16,
-        boot: nix.thunk(() => ({ __proto__: pos$5, kernelModules: nix.thunk(() => ["uinput"]) })),
+        [nix.POS]: pos$16,
+        boot: nix.thunk(() => ({ [nix.POS]: pos$5, kernelModules: nix.thunk(() => ["uinput"]) })),
         services: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           udev: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             extraRules: "KERNEL==\"uinput\", MODE=\"0660\", GROUP=\"input\"\n",
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$11,
-          groups: nix.thunk(() => ({ __proto__: pos$8, evdevremapkeys: nix.thunk(() => ({})) })),
+          [nix.POS]: pos$11,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$8, evdevremapkeys: nix.thunk(() => ({})) })),
           users: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             evdevremapkeys: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "evdevremapkeys service user",
               group: "evdevremapkeys",
               extraGroups: nix.thunk(() => ["input"]),
@@ -71,17 +71,17 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             evdevremapkeys: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "evdevremapkeys",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => (() => {
                 const config_1 = nix.thunk(() => nix.app(nix.sel(format, "generate"), "config.yaml", nix.thunk(() => nix.sel(cfg, "settings"))));
                 return {
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "evdevremapkeys")}/bin/evdevremapkeys --config-file ${config_1}`),
                   User: "evdevremapkeys",
                   Group: "evdevremapkeys",

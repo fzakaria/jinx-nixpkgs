@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const xwayland = nix.arg($, "xwayland");
   const wlroots_0_19 = nix.arg($, "wlroots_0_19");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cagebreak",
       version: "3.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "project-repo",
           repo: "cagebreak",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [xwayland]))}"
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/project-repo/cagebreak",
         description: "Wayland tiling compositor inspired by ratpoison",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -83,8 +83,8 @@ export default nix.lambda((args) => (() => {
         mainProgram: "cagebreak",
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, basic: nix.thunk(() => nix.sel(nixosTests, "cagebreak")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, basic: nix.thunk(() => nix.sel(nixosTests, "cagebreak")) })),
       })),
     }));
 })(), formals$1);

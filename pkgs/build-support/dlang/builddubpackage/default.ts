@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const ldc = nix.arg($, "ldc");
   const removeReferencesTo = nix.arg($, "removeReferencesTo");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
       excludeDrvArgNames: nix.thunk(() => ["dubLock", "compiler"]),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -32,9 +32,9 @@ export default nix.lambda((args) => (() => {
         const dubLock = nix.arg($_1, "dubLock");
         const compiler = nix.argOr($_1, "compiler", () => nix.force(ldc));
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           dubDeps: nix.thunk(() => nix.app(importDubLock, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               lock: dubLock,
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
           __structuredAttrs: nix.thunk(() => nix.selOr(args_2, () => true, "__structuredAttrs")),
           nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(args_2, () => [], "nativeBuildInputs"), [
             dubSetupHook,
-            nix.thunk(() => nix.app(nix.sel(dubBuildHook, "override"), nix.thunk(() => ({ __proto__: pos$2, dub: dub })))),
+            nix.thunk(() => nix.app(nix.sel(dubBuildHook, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, dub: dub })))),
             compiler,
             removeReferencesTo,
           ])),
@@ -53,7 +53,7 @@ runHook postConfigure
 `),
           doCheck: nix.thunk(() => nix.selOr(args_2, () => false, "doCheck")),
           nativeCheckInputs: nix.thunk(() => [
-            nix.thunk(() => nix.app(nix.sel(dubCheckHook, "override"), nix.thunk(() => ({ __proto__: pos$3, dub: dub })))),
+            nix.thunk(() => nix.app(nix.sel(dubCheckHook, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, dub: dub })))),
           ]),
           preFixup: nix.thunk(() => nix.str`${nix.selOr(args_2, () => "", "preFixup")}
 
@@ -61,7 +61,7 @@ find "$out" -type f -exec remove-references-to ${nix.app(nix.sel(lib, "concatMap
 `),
           disallowedReferences: nix.thunk(() => nix.selOr(args_2, () => nix.sel(compiler, "all"), "disallowedReferences")),
           meta: nix.thunk(() => nix.update({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             platforms: nix.thunk(() => nix.sel(dub, "meta", "platforms")),
           }, nix.selOr(args_2, () => ({}), "meta"))),
         };

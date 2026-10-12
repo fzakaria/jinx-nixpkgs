@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "1zm8x2pd0q6zza0fw7hg9g1qvybfnjq6ql9b8mh2fc45l7l25655",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["pycflow2dot"]);
       const checkPhase = "cd tests\nexport PATH=$out/bin:$PATH\nmake all\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Layout C call graphs from cflow using GraphViz dot",
         homepage: "https://github.com/johnyf/pycflow2dot",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "cflow2dot",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "vastai",
       version: "1.8.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vast-ai",
           repo: "vast-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/vast-ai/vast-cli/commit/0889fe32e5bf3228074436dd9688f6a1fdc649e8.patch",
             hash: "sha256-g3Nje1M1SnXK3eJ26XE13+/Wdg0pv63AKU5wbgZacMM=",
           })))),
@@ -117,11 +117,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postCheck: "$out/bin/vastai --help >/dev/null\ntest -x $out/bin/serve-vast-deployment\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "CLI and SDK for the Vast.ai GPU cloud service",
         homepage: "https://vast.ai/",
         changelog: nix.thunk(() => nix.str`https://github.com/vast-ai/vast-cli/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

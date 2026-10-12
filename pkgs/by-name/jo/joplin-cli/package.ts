@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const clang_20 = nix.arg($, "clang_20");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "joplin-cli",
       version: "3.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "laurent22",
           repo: "joplin",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
 rm $out/packages/app-cli/tests/support/photo*
 cd $out
 patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               src: nix.path(here, "./yarn-fix.patch"),
               substitutions: nix.thunk(() => [
                 "--replace-fail",
@@ -51,7 +51,7 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
         })))),
       missingHashes: nix.path(here, "./missing-hashes.json"),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry_4, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           postPatch: nix.thunk(() => nix.attr(finalAttrs, "postPatch")),
@@ -70,13 +70,13 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
         rsync,
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [xcbuild, nix.thunk(() => nix.sel(buildPackages, "cctools")), clang_20])))),
       buildInputs: nix.thunk(() => [nodejs]),
-      env: nix.thunk(() => ({ __proto__: pos$4, YARN_ENABLE_SCRIPTS: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$4, YARN_ENABLE_SCRIPTS: 0n })),
       postPatch: "# Don't immediately build everything\nsed -i '/postinstall/d' package.json\n# Don't install onenote-converter subpackage deps\nsed -i '/onenote-converter/d' packages/{lib,app-cli}/package.json\n",
       buildPhase: "runHook preBuild\n\nunset YARN_ENABLE_SCRIPTS\n\nyarn config set enableInlineBuilds true\n\nfor node_modules in packages/*/node_modules; do\n  patchShebangs $node_modules\ndone\n\nyarn workspaces focus root joplin\nyarn workspaces foreach -Rptvi --from joplin run tsc\nyarn workspaces foreach -Rtvi --from joplin run build\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\n# Remove dev dependencies\nyarn workspaces focus --production root joplin\n\nmkdir -p $out/lib/packages\nmkdir $out/bin\nmv packages/{app-cli,renderer,tools,utils,lib,htmlpack,turndown{,-plugin-gfm},fork-*} $out/lib/packages/\nrm -rf $out/lib/packages/lib/node_modules/canvas\n\n# Remove extra files\nrm -rf $out/lib/packages/app-cli/{app/,*.md,.*ignore,tests/,tools/,*.js,tsconfig.json,*.sh}\n\n# Link final binary\nchmod +x $out/lib/packages/app-cli/build/main.js\nln -s $out/lib/packages/app-cli/build/main.js $out/bin/joplin\npatchShebangs $out/bin/joplin\n\nrunHook postInstall\n",
       updateScript: nix.path(here, "./update.sh"),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/laurent22/joplin/releases/v${nix.sel(finalAttrs, "version")}`),
         description: "CLI client for Joplin",
         homepage: "https://joplinapp.org/",

@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const ntk = nix.arg($, "ntk");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sorcer",
       version: "1.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openAVproductions",
           repo: "openAV-Sorcer",
           rev: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "# Fix build with lv2 1.18: https://github.com/brummer10/guitarix/commit/c0334c72\nfind . -type f -exec fgrep -q LV2UI_Descriptor {} \\; \\\n  -exec sed -i {} -e 's/const struct _\\?LV2UI_Descriptor/const LV2UI_Descriptor/' \\;\n\nsubstituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required (VERSION 2.6)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       installPhase: "make install\ncp -a ../presets/* \"$out/lib/lv2\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))),
         homepage: "http://openavproductions.com/sorcer/",
         description: "Wavetable LV2 plugin synth, targeted at the electronic / dubstep genre",

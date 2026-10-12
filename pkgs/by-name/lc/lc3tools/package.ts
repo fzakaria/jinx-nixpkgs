@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const readline = nix.arg($, "readline");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "lc3tools",
       version: "0.12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://highered.mheducation.com/sites/dl/free/0072467509/104652/lc3tools_v12.zip",
           hash: "sha256-PTM0ole8pHiJmUaahjPwcBQY8/hVVgQhADZ4bSABt3I=",
         })))),
@@ -36,14 +36,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [unzip]),
       buildInputs: nix.thunk(() => [flex, tk, ncurses, readline]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         LIBS: nix.thunk(() => nix.str`${flex}/lib:${ncurses}/lib:${readline}/lib`),
         INCLUDES: nix.thunk(() => nix.str`${flex}/include:${ncurses}/include:${readline}/include`),
       })),
       prefixKey: "--installdir ",
       postInstall: "mkdir -p $out/{bin,share/lc3tools}\n\nmv -t $out/share/lc3tools $out/{COPYING,NO_WARRANTY,README} $out/lc3os*\nmv -t $out/bin $out/lc3*\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         longDescription: "The LC-3 tools package contains the lc3as assembler, the lc3sim simulator,\nand lc3sim-tk, a Tcl/Tk-based GUI frontend to the simulator.\n",
         description: "Toolchain and emulator for the LC-3 architecture",
         homepage: "https://highered.mheducation.com/sites/0072467509/student_view0/lc-3_simulator.html",

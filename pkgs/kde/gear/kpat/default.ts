@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const freecell_solver = nix.arg($, "freecell-solver");
   const libkdegames = nix.arg($, "libkdegames");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "kpat",
       extraNativeBuildInputs: nix.thunk(() => [_7zz, shared_mime_info]),
       extraBuildInputs: nix.thunk(() => [qtsvg, black_hole_solver, freecell_solver]),
       qtWrapperArgs: nix.thunk(() => [nix.thunk(() => nix.str`--prefix XDG_DATA_DIRS : ${libkdegames}/share`)]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "kpat" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "kpat" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

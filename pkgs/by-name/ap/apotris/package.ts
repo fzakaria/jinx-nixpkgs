@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "apotris",
       version: "4.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitea.com",
           owner: "akouzoukos",
           repo: "apotris",
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
       dontUseCmakeConfigure: true,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "Apotris",
             exec: "Apotris",
             comment: "A block stacking game",
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(SDL2, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Block stacking game",
         longDescription: "Apotris is a multiplatform open-source block stacking game! What sets\nApotris apart from other block stacking games is its extensive\ncustomization options, complemented by ultra-responsive controls that let\nyou execute your moves with precision. With 14 unique game modes and a\nplethora of settings, you can tailor the game to your preferences,\nensuring a fresh and challenging experience every time you play. Whether\nyou're a casual player or a hardcore enthusiast, Apotris has something for\neveryone. You can even battle your friends using the Gameboy Advance Link\nCable or Wireless Adapters in 2-Player Battle! While Apotris was\noriginally designed for Gameboy Advance, it now supports all kinds of\nplatforms, so between the ports and emulation you can play Apotris on\nalmost anything.\n",
         homepage: "https://akouzoukos.com/apotris/",

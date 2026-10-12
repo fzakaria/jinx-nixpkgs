@@ -27,7 +27,7 @@ const pos$21 = nix.positions(here + "/systems.nix", [["expr", 337, 11], ["expect
 export default nix.thunk(() => (() => {
   const lib = nix.thunk(() => nix.builtins.import(nix.path(here, "../default.nix")));
   const mseteq = (x) => (y) => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     expr: nix.thunk(() => nix.app(nix.sel(lib, "sort"), nix.thunk(() => nix.sel(lib, "lessThan")), x)),
     expected: nix.thunk(() => nix.app(nix.sel(lib, "sort"), nix.thunk(() => nix.sel(lib, "lessThan")), y)),
   });
@@ -35,7 +35,7 @@ export default nix.thunk(() => (() => {
   return nix.app(nix.sel(lib, "runTests"), nix.thunk(() => nix.update((() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "systems", "doubles")), null);
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         testall: nix.thunk(() => nix.app(mseteq, nix.thunk(() => nix.lookup(w, "all")), nix.thunk(() => nix.concat(nix.lookup(w, "linux"), nix.concat(nix.lookup(w, "darwin"), nix.concat(nix.lookup(w, "freebsd"), nix.concat(nix.lookup(w, "openbsd"), nix.concat(nix.lookup(w, "netbsd"), nix.concat(nix.lookup(w, "illumos"), nix.concat(nix.lookup(w, "wasi"), nix.concat(nix.lookup(w, "windows"), nix.concat(nix.lookup(w, "cygwin"), nix.concat(nix.lookup(w, "embedded"), nix.concat(nix.lookup(w, "mmix"), nix.concat(nix.lookup(w, "js"), nix.concat(nix.lookup(w, "genode"), nix.concat(nix.lookup(w, "redox"), nix.lookup(w, "uefi")))))))))))))))))),
         testarm: nix.thunk(() => nix.app(mseteq, nix.thunk(() => nix.lookup(w, "arm")), nix.thunk(() => [
             "armv5tel-linux",
@@ -152,9 +152,9 @@ export default nix.thunk(() => (() => {
         testunix: nix.thunk(() => nix.app(mseteq, nix.thunk(() => nix.lookup(w, "unix")), nix.thunk(() => nix.concat(nix.lookup(w, "linux"), nix.concat(nix.lookup(w, "darwin"), nix.concat(nix.lookup(w, "freebsd"), nix.concat(nix.lookup(w, "openbsd"), nix.concat(nix.lookup(w, "netbsd"), nix.concat(nix.lookup(w, "illumos"), nix.concat(nix.lookup(w, "cygwin"), nix.lookup(w, "redox"))))))))))),
       };
     })(), nix.update({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       test_platforms_pass_typecheck: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         expr: nix.thunk(() => nix.builtins.filter((system) => (() => {
             const evalResult = nix.thunk(() => nix.builtins.tryEval(nix.thunk(() => nix.app(nix.sel(lib, "systems", "parse", "mkSystemFromString"), system))));
             return nix.eq(nix.sel(evalResult, "success"), false);
@@ -162,65 +162,65 @@ export default nix.thunk(() => (() => {
         expected: [],
       })),
       "test_equals_example_x86_64-linux": nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         expr: nix.thunk(() => nix.app(nix.sel(lib, "systems", "equals"), nix.thunk(() => nix.app(nix.sel(lib, "systems", "elaborate"), "x86_64-linux")), nix.thunk(() => nix.app(nix.sel(lib, "systems", "elaborate"), "x86_64-linux")))),
         expected: true,
       })),
       "test_toLosslessStringMaybe_example_x86_64-linux": nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         expr: nix.thunk(() => nix.app(toLosslessStringMaybe, nix.thunk(() => nix.app(nix.sel(lib, "systems", "elaborate"), "x86_64-linux")))),
         expected: "x86_64-linux",
       })),
       test_toLosslessStringMaybe_fail: nix.thunk(() => (() => {
         const baseSystem = nix.thunk(() => nix.app(nix.sel(lib, "systems", "elaborate"), "x86_64-linux"));
         return {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           expr: nix.thunk(() => nix.app(toLosslessStringMaybe, nix.thunk(() => nix.update(baseSystem, {
-              __proto__: pos$7,
-              _withoutFunctions: nix.thunk(() => nix.update(nix.sel(baseSystem, "_withoutFunctions"), { __proto__: pos$6, something: "extra" })),
+              [nix.POS]: pos$7,
+              _withoutFunctions: nix.thunk(() => nix.update(nix.sel(baseSystem, "_withoutFunctions"), { [nix.POS]: pos$6, something: "extra" })),
             })))),
           expected: null,
         };
       })()),
       test_elaborate_config_over_system: nix.thunk(() => ({
-        __proto__: pos$10,
-        expr: nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "systems", "elaborate"), nix.thunk(() => ({ __proto__: pos$9, config: "i686-unknown-linux-gnu", system: "x86_64-linux" }))), "system")),
+        [nix.POS]: pos$10,
+        expr: nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "systems", "elaborate"), nix.thunk(() => ({ [nix.POS]: pos$9, config: "i686-unknown-linux-gnu", system: "x86_64-linux" }))), "system")),
         expected: "i686-linux",
       })),
       test_elaborate_config_over_parsed: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         expr: nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "systems", "elaborate"), nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             config: "i686-unknown-linux-gnu",
             parsed: nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "systems", "elaborate"), "x86_64-linux"), "parsed")),
           }))), "parsed", "cpu", "arch")),
         expected: "i686",
       })),
       test_elaborate_system_over_parsed: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         expr: nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "systems", "elaborate"), nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             system: "i686-linux",
             parsed: nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "systems", "elaborate"), "x86_64-linux"), "parsed")),
           }))), "parsed", "cpu", "arch")),
         expected: "i686",
       })),
       test_equals_reelaborate_overridden_platform: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         expr: nix.thunk(() => (() => {
           const base = nix.thunk(() => nix.app(nix.sel(lib, "systems", "elaborate"), "x86_64-linux"));
-          return nix.app(nix.sel(lib, "systems", "equals"), base, nix.thunk(() => nix.app(nix.sel(lib, "systems", "elaborate"), nix.thunk(() => nix.update(base, { __proto__: pos$15, useLLVM: true, linker: "lld" })))));
+          return nix.app(nix.sel(lib, "systems", "equals"), base, nix.thunk(() => nix.app(nix.sel(lib, "systems", "elaborate"), nix.thunk(() => nix.update(base, { [nix.POS]: pos$15, useLLVM: true, linker: "lld" })))));
         })()),
         expected: false,
       })),
     }, nix.update({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       test_equals_functionNames_in_sync: nix.thunk(() => (() => {
         const sys = nix.thunk(() => nix.app(nix.sel(lib, "systems", "elaborate"), "x86_64-linux"));
         const actual = nix.thunk(() => nix.app(nix.sel(lib, "filter"), (n) => nix.builtins.isFunction(nix.thunk(() => nix.sel(sys, nix.key(nix.force(n))))), nix.thunk(() => nix.builtins.attrNames(sys))));
         const expected = nix.thunk(() => nix.app(nix.sel(lib, "sort"), nix.thunk(() => nix.sel(lib, "lessThan")), nix.thunk(() => nix.sel(lib, "systems", "functionNames"))));
         return {
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           expr: nix.thunk(() => nix.app(nix.sel(lib, "sort"), nix.thunk(() => nix.sel(lib, "lessThan")), actual)),
           expected: expected,
         };
@@ -232,13 +232,13 @@ export default nix.thunk(() => (() => {
             const modified = nix.thunk(() => (() => {
               nix.assert_(!nix.eq(origValue, arbitraryValue), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/systems.nix:327:13");
               return nix.update(baseSystem, {
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 _withoutFunctions: nix.thunk(() => nix.update(nix.sel(baseSystem, "_withoutFunctions"), nix.attrsDyn({}, [[nix.force(platformAttrName), arbitraryValue]]))),
               });
             })());
             const arbitraryValue = (x) => "<<modified>>";
             return {
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               expr: nix.thunk(() => nix.app(nix.sel(lib, "systems", "equals"), baseSystem, modified)),
               expected: false,
             };

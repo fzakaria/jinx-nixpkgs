@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dyncall",
       version: "1.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.dyncall.org/r${nix.sel(finalAttrs, "version")}/dyncall-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-FEN9u+87bckkg/ZQfq+CWrl5ZKie7K6Ms0emvsnDKq4=",
         })))),
       doCheck: false,
       postInstall: "# install cmake modules to make using dyncall easier\n# This is essentially what -DINSTALL_CMAKE_MODULES=ON if using cmake build\n# We don't use the cmake-based build since it installs different set of headers\n# (mostly fewer headers, but installs dyncall_alloc_wx.h \"instead\" dyncall_alloc.h)\n# and we'd have to patch the cmake module installation to not use CMAKE_ROOT anyway :).\ninstall -D -t $out/lib/cmake ./buildsys/cmake/Modules/Find*.cmake\n\n# manpages are nice, install them\n# doing this is in the project's \"ToDo\", so check this when updating!\ninstall -D -t $out/share/man/man3 ./*/*.3\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Highly dynamic multi-platform foreign function call interface library",
         homepage: "https://www.dyncall.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

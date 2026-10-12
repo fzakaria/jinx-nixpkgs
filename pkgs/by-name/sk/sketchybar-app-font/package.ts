@@ -20,18 +20,18 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "sketchybar-app-font",
       version: "3.0.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kvndrsslr",
           repo: "sketchybar-app-font",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-kFKX41tsSFr0kWlXtyrVpy7Y7o3lnBtt+JUybgoxvM0=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\npnpm i\npnpm run build\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ninstall -Dm644 dist/sketchybar-app-font.ttf \"$out/share/fonts/truetype/sketchybar-app-font.ttf\"\ninstall -Dm755 dist/icon_map.sh \"$out/bin/icon_map.sh\"\ninstall -Dm644 dist/icon_map.lua \"$out/lib/sketchybar-app-font/icon_map.lua\"\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Ligature-based symbol font and a mapping function for sketchybar",
         longDescription: "A ligature-based symbol font and a mapping function for sketchybar, inspired by simple-bar's usage of community-contributed minimalistic app icons.\n",
         homepage: "https://github.com/kvndrsslr/sketchybar-app-font",

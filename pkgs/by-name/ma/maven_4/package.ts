@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const jdk_headless = jdk25_headless;
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "maven",
       version: "4.0.0-rc-7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://apache/maven/maven-4/${nix.sel(finalAttrs, "version")}/binaries/apache-maven-${nix.sel(finalAttrs, "version")}-bin.tar.gz`),
           hash: "sha256-lRxjJnaH1Bi7nAbAjiVUQyhYNRmRm5Zheqci+BOxnm8=",
         })))),
@@ -46,12 +46,12 @@ makeWrapper $out/maven/bin/mvnDebug $out/bin/mvnDebug \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         buildMavenPackage: nix.thunk(() => nix.app(nix.sel(maven, "mkBuildMavenPackage"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "env MAVEN_OPTS=\"-Dmaven.repo.local=$TMPDIR/m2\" \\\n  mvn --version\n",
             })))),
@@ -60,7 +60,7 @@ runHook postInstall
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(jdk_headless, "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://maven.apache.org/",
         description: "Build automation tool (used primarily for Java projects)",
         longDescription: "Apache Maven is a software project management and comprehension\ntool. Based on the concept of a project object model (POM), Maven can\nmanage a project's build, reporting and documentation from a central piece\nof information.\n",

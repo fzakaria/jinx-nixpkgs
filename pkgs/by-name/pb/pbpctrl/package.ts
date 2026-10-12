@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const dbus = nix.arg($, "dbus");
   const protobuf = nix.arg($, "protobuf");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pbpctrl",
       version: "0.1.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "qzed",
           repo: "pbpctrl",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, protobuf]),
       buildInputs: nix.thunk(() => [dbus]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Control Google Pixel Buds Pro from the Linux command line",
         homepage: "https://github.com/qzed/pbpctrl",
         license: nix.thunk(() => (() => {

@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const pcre2 = nix.arg($, "pcre2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "ucg",
       version: "unstable-2022-09-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gvansickle",
           repo: "ucg",
           rev: "cbb185e8adad6546b7e1c5e9ca59a81f98dca49f",
@@ -34,14 +34,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => [pcre2]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          simple: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/simple.nix"), nix.thunk(() => ({ __proto__: pos$2, ucg: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")) })))),
+          [nix.POS]: pos$3,
+          simple: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/simple.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, ucg: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")) })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://gvansickle.github.io/ucg/",
         description: "Grep-like tool for searching large bodies of source code",
         longDescription: "UniversalCodeGrep (ucg) is an extremely fast grep-like tool specialized\nfor searching large bodies of source code. It is intended to be largely\ncommand-line compatible with Ack, to some extent with ag, and where\nappropriate with grep. Search patterns are specified as PCRE regexes.\n",

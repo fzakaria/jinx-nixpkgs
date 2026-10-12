@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "freifunk-meshviewer",
       version: "13.2.0",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "freifunk",
           repo: "meshviewer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: "sha256-gdGaJSwT5EYcrL/VBId4c6VFmyEbQ9v2LEJP1jc8yO8=",
       installPhase: "mkdir -p $out/share/freifunk-meshviewer/\ncp -r build/* $out/share/freifunk-meshviewer/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/freifunk/meshviewer",
         changelog: nix.thunk(() => nix.str`https://github.com/freifunk/meshviewer/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

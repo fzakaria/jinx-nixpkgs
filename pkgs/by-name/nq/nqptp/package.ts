@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: "1.2.8",
       pname: "nqptp",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mikebrady",
           repo: "nqptp",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, ignoredVersions: ".*(-dev|d0)" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, ignoredVersions: ".*(-dev|d0)" })))),
       })),
       postInstall: "mkdir -p $out/lib/systemd/system\ncp nqptp.service $out/lib/systemd/system\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/mikebrady/nqptp",
         description: "Daemon and companion application to Shairport Sync that monitors timing data from any PTP clocks",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

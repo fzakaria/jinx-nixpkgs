@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const util_linux = nix.arg($, "util-linux");
   const coreutils = nix.arg($, "coreutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "profile-sync-daemon",
       version: "6.50",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "graysky2",
           repo: "profile-sync-daemon",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ substituteInPlace $out/bin/psd-overlay-helper \\
   --replace "sudo " "/run/wrappers/bin/sudo "
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Syncs browser profile dirs to RAM",
         longDescription: "Profile-sync-daemon (psd) is a tiny pseudo-daemon designed to manage your\nbrowser's profile in tmpfs and to periodically sync it back to your\nphysical disc (HDD/SSD). This is accomplished via a symlinking step and\nan innovative use of rsync to maintain back-up and synchronization\nbetween the two. One of the major design goals of psd is a completely\ntransparent user experience.\n",
         homepage: "https://github.com/graysky2/profile-sync-daemon",

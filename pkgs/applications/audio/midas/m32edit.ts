@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const url = nix.thunk(() => nix.str`https://cdn-media.empowertribe.com/9ba5bed1bc7a427cb96cef8aeb49f097/${type}-Edit_LINUX_${version}.tar.gz`);
       const hash = "sha256-cEva2Brxo7zm3qppO+BtYIlUqV9t69j+8f6g94C4i3c=";
       const homepage = "https://www.midasconsoles.com/en/products/0603-AEO";
-      return { __proto__: pos$1, brand, type, version, url, hash, homepage };
+      return { [nix.POS]: pos$1, brand, type, version, url, hash, homepage };
     })())));
 })(), formals$1);
 //# sourceMappingURL=m32edit.ts.map

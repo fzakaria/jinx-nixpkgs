@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "numbat",
       version: "1.24.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sharkdp",
           repo: "numbat",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-Lz5S4GT3cUaeKj7js0E6XSwkg3LnGiVplKzTlN54td8=",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NUMBAT_SYSTEM_MODULE_PATH: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/numbat/modules`),
       })),
       postInstall: "mkdir -p $out/share/numbat\ncp -r $src/numbat/modules $out/share/numbat/\n\nmkdir -p $out/share/applications\ncp $src/assets/numbat.desktop $out/share/applications\n\nfor size in 16 22 24 32 48 64 128 256 512; do\n  dims=\"${size}x${size}\"\n  dest=$out/share/icons/hicolor/${dims}/apps\n  mkdir -p $dest\n  cp $src/assets/numbat-${dims}.png ${dest}/numbat.png\ndone\n\nmkdir -p $out/share/icons/hicolor/scalable/apps\ncp $src/assets/numbat.svg $out/share/icons/hicolor/scalable/apps\n",
@@ -42,11 +42,11 @@ export TZDIR=${tzdata}/share/zoneinfo
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "High precision scientific calculator with full support for physical units",
         longDescription: "A statically typed programming language for scientific computations\nwith first class support for physical dimensions and units\n",
         homepage: "https://numbat.dev",

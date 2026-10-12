@@ -8,6 +8,6 @@ const pos$1 = nix.positions(here + "/package.nix", [["enableGui", 7, 5], ["enabl
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const python3 = nix.arg($, "python3");
-  return nix.app(nix.sel(python3, "pkgs", "toPythonApplication"), nix.thunk(() => nix.app(nix.sel(python3, "pkgs", "pyglossary", "override"), nix.thunk(() => ({ __proto__: pos$1, enableGui: true, enableCmd: true })))));
+  return nix.app(nix.sel(python3, "pkgs", "toPythonApplication"), nix.thunk(() => nix.app(nix.sel(python3, "pkgs", "pyglossary", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableGui: true, enableCmd: true })))));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

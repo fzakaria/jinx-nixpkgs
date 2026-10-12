@@ -110,7 +110,7 @@ export default nix.lambda((args) => (() => {
   const mkKeepArgs = (cfg) => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (x) => (y) => nix.str`--keep-${x}=${nix.builtins.toString(y)}`, nix.thunk(() => nix.sel(cfg, "prune", "keep")))));
   const mkExtraArgs = (cfg) => nix.app(nix.sel(lib, "concatLines"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (values) => nix.str`${name}=(${values})
 `, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         extraArgs: nix.thunk(() => nix.attr(cfg, "extraArgs")),
         extraInitArgs: nix.thunk(() => nix.attr(cfg, "extraInitArgs")),
         extraCreateArgs: nix.thunk(() => nix.attr(cfg, "extraCreateArgs")),
@@ -175,10 +175,10 @@ ${nix.sel(cfg, "postPrune")}
   const mkPassEnv = (cfg) => (() => {
     const w = nix.withScope(nix.thunk(() => nix.sel(cfg, "encryption")), null);
     return (nix.asBool(!nix.eq(nix.lookup(w, "passCommand"), null)) ? {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       BORG_PASSCOMMAND: nix.thunk(() => nix.lookup(w, "passCommand")),
     } : (nix.asBool(!nix.eq(nix.lookup(w, "passphrase"), null)) ? {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       BORG_PASSPHRASE: nix.thunk(() => nix.lookup(w, "passphrase")),
     } : {}));
   })();
@@ -187,7 +187,7 @@ ${nix.sel(cfg, "postPrune")}
     const backupJobName = nix.thunk(() => nix.str`borgbackup-job-${name}`);
     const backupScript = nix.thunk(() => nix.app(mkBackupScript, backupJobName, cfg));
     return nix.app(nix.sel(lib, "nameValuePair"), backupJobName, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: nix.thunk(() => nix.str`BorgBackup job ${name}`),
         path: nix.thunk(() => [
           nix.thunk(() => nix.sel(config, "services", "borgbackup", "package")),
@@ -199,11 +199,11 @@ ${nix.sel(cfg, "postPrune")}
     --why="Scheduled backup" \\
 `))), backupScript)),
         unitConfig: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(isLocalPath, nix.thunk(() => nix.sel(cfg, "repo")))), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             RequiresMountsFor: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "repo"))]),
           })))),
         serviceConfig: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           User: nix.thunk(() => nix.sel(cfg, "user")),
           Group: nix.thunk(() => nix.sel(cfg, "group")),
           CPUSchedulingPolicy: "idle",
@@ -215,15 +215,15 @@ ${nix.sel(cfg, "postPrune")}
           ], nix.concat(nix.sel(cfg, "readWritePaths"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(isLocalPath, nix.thunk(() => nix.sel(cfg, "repo")))), nix.thunk(() => nix.sel(cfg, "repo")))))),
           PrivateTmp: nix.thunk(() => nix.sel(cfg, "privateTmp")),
         })),
-        environment: nix.thunk(() => nix.update({ __proto__: pos$6, BORG_REPO: nix.thunk(() => nix.sel(cfg, "repo")) }, nix.update(nix.app(mkPassEnv, cfg), nix.sel(cfg, "environment")))),
+        environment: nix.thunk(() => nix.update({ [nix.POS]: pos$6, BORG_REPO: nix.thunk(() => nix.sel(cfg, "repo")) }, nix.update(nix.app(mkPassEnv, cfg), nix.sel(cfg, "environment")))),
       })));
   })();
   const mkBackupTimers = (name) => (cfg) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`borgbackup-job-${name}`), nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       description: nix.thunk(() => nix.str`BorgBackup job ${name} timer`),
       wantedBy: nix.thunk(() => ["timers.target"]),
       timerConfig: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         Persistent: nix.thunk(() => nix.sel(cfg, "persistentTimer")),
         OnCalendar: nix.thunk(() => nix.sel(cfg, "startAt")),
       })),
@@ -237,36 +237,36 @@ ${nix.sel(cfg, "postPrune")}
     const set = nix.argOr($_1, "set", () => ({}));
     const extraArgs = nix.argOr($_1, "extraArgs", () => null);
     return nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`${name}-wrapper`), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "makeWrapper"))]),
       })), nix.thunk(() => nix.str`makeWrapper "${original}" "$out/bin/${name}" \\
   ${nix.app(nix.sel(lib, "concatStringsSep"), " \\\n ", nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "mapAttrsToList"), (name_1) => (value) => nix.str`--set ${name_1} "${value}"`, set), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(extraArgs, null)), nix.thunk(() => nix.str`--add-flags "${extraArgs}"`)))))}
 `));
   })(), formals$2);
   const mkBorgWrapper = (name) => (cfg) => nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "wrapper"), "")) && nix.asBool(!nix.eq(nix.sel(cfg, "wrapper"), null)))), nix.thunk(() => nix.app(mkWrapperDrv, nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         original: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(config, "services", "borgbackup", "package")))),
         name: nix.thunk(() => nix.sel(cfg, "wrapper")),
-        set: nix.thunk(() => nix.update({ __proto__: pos$11, BORG_REPO: nix.thunk(() => nix.sel(cfg, "repo")) }, nix.update(nix.app(mkPassEnv, cfg), nix.sel(cfg, "environment")))),
+        set: nix.thunk(() => nix.update({ [nix.POS]: pos$11, BORG_REPO: nix.thunk(() => nix.sel(cfg, "repo")) }, nix.update(nix.app(mkPassEnv, cfg), nix.sel(cfg, "environment")))),
         extraArgs: nix.thunk(() => nix.selOr(cfg, () => null, "extraArgs")),
       })))));
   const mkTmpfiles = (name) => (cfg) => (() => {
     const settings = nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       user: nix.thunk(() => nix.attr(cfg, "user")),
       group: nix.thunk(() => nix.attr(cfg, "group")),
     }));
     return nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`borgbackup-job-${name}`), nix.thunk(() => nix.update(nix.attrsDyn({}, [
-        [nix.str`${nix.sel(config, "users", "users", nix.key(nix.str`${nix.sel(cfg, "user")}`), "home")}/.config`, nix.thunk(() => ({ __proto__: pos$14, d: settings }))],
-        [nix.str`${nix.sel(config, "users", "users", nix.key(nix.str`${nix.sel(cfg, "user")}`), "home")}/.cache`, nix.thunk(() => ({ __proto__: pos$15, d: settings }))],
-        [nix.str`${nix.sel(config, "users", "users", nix.key(nix.str`${nix.sel(cfg, "user")}`), "home")}/.config/borg`, nix.thunk(() => ({ __proto__: pos$16, d: settings }))],
-        [nix.str`${nix.sel(config, "users", "users", nix.key(nix.str`${nix.sel(cfg, "user")}`), "home")}/.cache/borg`, nix.thunk(() => ({ __proto__: pos$17, d: settings }))],
+        [nix.str`${nix.sel(config, "users", "users", nix.key(nix.str`${nix.sel(cfg, "user")}`), "home")}/.config`, nix.thunk(() => ({ [nix.POS]: pos$14, d: settings }))],
+        [nix.str`${nix.sel(config, "users", "users", nix.key(nix.str`${nix.sel(cfg, "user")}`), "home")}/.cache`, nix.thunk(() => ({ [nix.POS]: pos$15, d: settings }))],
+        [nix.str`${nix.sel(config, "users", "users", nix.key(nix.str`${nix.sel(cfg, "user")}`), "home")}/.config/borg`, nix.thunk(() => ({ [nix.POS]: pos$16, d: settings }))],
+        [nix.str`${nix.sel(config, "users", "users", nix.key(nix.str`${nix.sel(cfg, "user")}`), "home")}/.cache/borg`, nix.thunk(() => ({ [nix.POS]: pos$17, d: settings }))],
       ]), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.app(isLocalPath, nix.thunk(() => nix.sel(cfg, "repo")))) && nix.asBool(!nix.asBool(nix.sel(cfg, "removableDevice"))))), nix.thunk(() => nix.attrsDyn({}, [
-          [nix.str`${nix.sel(cfg, "repo")}`, nix.thunk(() => ({ __proto__: pos$18, d: settings }))],
+          [nix.str`${nix.sel(cfg, "repo")}`, nix.thunk(() => ({ [nix.POS]: pos$18, d: settings }))],
         ]))))));
   })();
   const mkPassAssertion = (name) => (cfg) => ({
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     assertion: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(cfg, "encryption")), null);
       return (!nix.asBool(!nix.eq(nix.lookup(w, "mode"), "none")) || nix.asBool((nix.asBool(!nix.eq(nix.lookup(w, "passCommand"), null)) || nix.asBool(!nix.eq(nix.lookup(w, "passphrase"), null)))));
@@ -274,12 +274,12 @@ ${nix.sel(cfg, "postPrune")}
     message: nix.thunk(() => nix.add("passCommand or passphrase has to be specified because", nix.str` borgbackup.jobs.${name}.encryption != "none"`)),
   });
   const mkRepoService = (name) => (cfg) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`borgbackup-repo-${name}`), nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       description: nix.thunk(() => nix.str`Create BorgBackup repository ${name} directory`),
       script: nix.thunk(() => nix.str`mkdir -p ${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.sel(cfg, "path")))}
 chown ${nix.sel(cfg, "user")}:${nix.sel(cfg, "group")} ${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.sel(cfg, "path")))}
 `),
-      serviceConfig: nix.thunk(() => ({ __proto__: pos$20, Type: "oneshot" })),
+      serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$20, Type: "oneshot" })),
       wantedBy: nix.thunk(() => ["multi-user.target"]),
     })));
   const mkAuthorizedKey = (cfg) => (appendOnly) => (key) => (() => {
@@ -291,14 +291,14 @@ chown ${nix.sel(cfg, "user")}:${nix.sel(cfg, "group")} ${nix.app(nix.sel(lib, "e
     return nix.str`command="${cdCommand} && ${serveCommand}",restrict ${key}`;
   })();
   const mkUsersConfig = (name) => (cfg) => ({
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     users: nix.thunk(() => nix.attrsDyn({}, [
       [nix.sel(cfg, "user"), nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         openssh: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           authorizedKeys: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             keys: nix.thunk(() => nix.concat(nix.builtins.map(nix.thunk(() => nix.app(mkAuthorizedKey, cfg, false)), nix.thunk(() => nix.sel(cfg, "authorizedKeys"))), nix.builtins.map(nix.thunk(() => nix.app(mkAuthorizedKey, cfg, true)), nix.thunk(() => nix.sel(cfg, "authorizedKeysAppendOnly"))))),
           })),
         })),
@@ -310,12 +310,12 @@ chown ${nix.sel(cfg, "user")}:${nix.sel(cfg, "group")} ${nix.app(nix.sel(lib, "e
     groups: nix.thunk(() => nix.attrsDyn({}, [[nix.sel(cfg, "group"), nix.thunk(() => ({}))]])),
   });
   const mkKeysAssertion = (name) => (cfg) => ({
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     assertion: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "authorizedKeys"), [])) || nix.asBool(!nix.eq(nix.sel(cfg, "authorizedKeysAppendOnly"), [])))),
     message: nix.thunk(() => nix.add(nix.str`borgbackup.repos.${name} does not make sense`, " without at least one public key")),
   });
   const mkSourceAssertions = (name) => (cfg) => ({
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     assertion: nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "count"), nix.builtins.isNull, nix.thunk(() => [
         nix.thunk(() => nix.sel(cfg, "dumpCommand")),
         nix.thunk(() => nix.sel(cfg, "paths")),
@@ -325,14 +325,14 @@ must be set.
 `),
   });
   const mkCreateCommandImportTarDumpCommandAssertion = (name) => (cfg) => ({
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     assertion: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "createCommand"), "import-tar")) || nix.asBool(!nix.eq(nix.sel(cfg, "dumpCommand"), null)))),
     message: nix.thunk(() => nix.str`Option borgbackup.jobs.${name}.dumpCommand is required when createCommand
 is set to "import-tar".
 `),
   });
   const mkCreateCommandImportTarExclusionsAssertion = (name) => (cfg) => ({
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     assertion: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "createCommand"), "import-tar")) || nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "exclude"), [])) && nix.asBool(nix.eq(nix.sel(cfg, "patterns"), [])))))),
     message: nix.thunk(() => nix.str`Options borgbackup.jobs.${name}.exclude and
 borgbackup.jobs.${name}.patterns have no effect when createCommand is set
@@ -340,15 +340,15 @@ to "import-tar".
 `),
   });
   const mkRemovableDeviceAssertions = (name) => (cfg) => ({
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     assertion: nix.thunk(() => (!nix.asBool(!nix.asBool(nix.app(isLocalPath, nix.thunk(() => nix.sel(cfg, "repo"))))) || nix.asBool(!nix.asBool(nix.sel(cfg, "removableDevice"))))),
     message: nix.thunk(() => nix.str`borgbackup.repos.${name}: repo isn't a local path, thus it can't be a removable device!
 `),
   });
   return {
-    __proto__: pos$92,
+    [nix.POS]: pos$92,
     meta: nix.thunk(() => ({
-      __proto__: pos$31,
+      [nix.POS]: pos$31,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -359,14 +359,14 @@ to "import-tar".
       doc: nix.path(here, "./borgbackup.md"),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$87,
+      [nix.POS]: pos$87,
       services: nix.thunk(() => ({
-        __proto__: pos$86,
+        [nix.POS]: pos$86,
         borgbackup: nix.thunk(() => ({
-          __proto__: pos$85,
+          [nix.POS]: pos$85,
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "borgbackup", nix.thunk(() => ({})))),
           jobs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$74,
+              [nix.POS]: pos$74,
               description: "Deduplicating backups using BorgBackup.\nAdding a job will cause a borg-job-NAME wrapper to be added\nto your system path, so that you can perform maintenance easily.\nSee also the chapter about BorgBackup in the NixOS manual.\n",
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "  { # for a local backup\n    rootBackup = {\n      paths = \"/\";\n      exclude = [ \"/nix\" ];\n      repo = \"/path/to/local/repo\";\n      encryption = {\n        mode = \"repokey\";\n        passphrase = \"secret\";\n      };\n      compression = \"auto,lzma\";\n      startAt = \"weekly\";\n    };\n  }\n  { # Root backing each day up to a remote backup server. We assume that you have\n    #   * created a password less key: ssh-keygen -N \"\" -t ed25519 -f /path/to/ssh_key\n    #     best practices are: use -t ed25519, /path/to = /run/keys\n    #   * the passphrase is in the file /run/keys/borgbackup_passphrase\n    #   * you have initialized the repository manually\n    paths = [ \"/etc\" \"/home\" ];\n    exclude = [ \"/nix\" \"'**/.cache'\" ];\n    doInit = false;\n    repo =  \"user3@arep.repo.borgbase.com:repo\";\n    encryption = {\n      mode = \"repokey-blake2\";\n      passCommand = \"cat /path/to/passphrase\";\n    };\n    environment = { BORG_RSH = \"ssh -i /path/to/ssh_key\"; };\n    compression = \"auto,lzma\";\n    startAt = \"daily\";\n};\n")),
@@ -377,18 +377,18 @@ to "import-tar".
                       const name = nix.arg($_1, "name");
                       const config_1 = nix.arg($_1, "config");
                       return {
-                        __proto__: pos$73,
+                        [nix.POS]: pos$73,
                         options: nix.thunk(() => ({
-                          __proto__: pos$72,
+                          [nix.POS]: pos$72,
                           createCommand: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$32,
+                              [nix.POS]: pos$32,
                               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["create", "import-tar"]))),
                               description: "Borg command to use for archive creation. The default (`create`)\ncreates a regular Borg archive.\n\nUse `import-tar` to instead read a tar archive stream from\n{option}`dumpCommand` output and import its contents into the\nrepository.\n\n`import-tar` can not be used together with {option}`exclude` or\n{option}`patterns`.\n",
                               default: "create",
                               example: "import-tar",
                             })))),
                           paths: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$33,
+                              [nix.POS]: pos$33,
                               type: nix.thunk(() => (() => {
                                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "coercedTo"), nix.thunk(() => nix.lookup(w, "str")), nix.thunk(() => nix.sel(lib, "singleton")), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))))));
@@ -398,7 +398,7 @@ to "import-tar".
                               example: "/home/user",
                             })))),
                           dumpCommand: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$34,
+                              [nix.POS]: pos$34,
                               type: nix.thunk(() => (() => {
                                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -408,33 +408,33 @@ to "import-tar".
                               example: "/path/to/createZFSsend.sh",
                             })))),
                           repo: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$35,
+                              [nix.POS]: pos$35,
                               type: nix.thunk(() => nix.sel(lib, "types", "str")),
                               description: "Remote or local repository to back up to.",
                               example: "user@machine:/path/to/repo",
                             })))),
                           removableDevice: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$36,
+                              [nix.POS]: pos$36,
                               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                               default: false,
                               description: "Whether the repo (which must be local) is a removable device.",
                             })))),
                           archiveBaseName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$37,
+                              [nix.POS]: pos$37,
                               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "strMatching"), "[^/{}]+")))),
                               default: nix.thunk(() => nix.str`${nix.sel(globalConfig, "networking", "hostName")}-${name}`),
                               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${config.networking.hostName}-<name>\"")),
                               description: "How to name the created archives. A timestamp, whose format is\ndetermined by {option}`dateFormat`, will be appended. The full\nname can be modified at runtime (`$archiveName`).\nPlaceholders like `{hostname}` must not be used.\nUse `null` for no base name.\n",
                             })))),
                           dateFormat: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$38,
+                              [nix.POS]: pos$38,
                               type: nix.thunk(() => nix.sel(lib, "types", "str")),
                               description: "Arguments passed to {command}`date`\nto create a timestamp suffix for the archive name.\n",
                               default: "+%Y-%m-%dT%H:%M:%S",
                               example: "-u +%s",
                             })))),
                           startAt: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$39,
+                              [nix.POS]: pos$39,
                               type: nix.thunk(() => (() => {
                                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                                 return nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "str")), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))));
@@ -443,33 +443,33 @@ to "import-tar".
                               description: "When or how often the backup should run.\nMust be in the format described in\n{manpage}`systemd.time(7)`.\nIf you do not want the backup to start\nautomatically, use `[ ]`.\nIt will generate a systemd service borgbackup-job-NAME.\nYou may trigger it manually via systemctl restart borgbackup-job-NAME.\n",
                             })))),
                           persistentTimer: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$40,
+                              [nix.POS]: pos$40,
                               default: false,
                               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                               example: true,
                               description: "Set the `Persistent` option for the\n{manpage}`systemd.timer(5)`\nwhich triggers the backup immediately if the last trigger\nwas missed (e.g. if the system was powered down).\n",
                             })))),
                           inhibitsSleep: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$41,
+                              [nix.POS]: pos$41,
                               default: false,
                               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                               example: true,
                               description: "Prevents the system from sleeping while backing up.\n",
                             })))),
                           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$42,
+                              [nix.POS]: pos$42,
                               type: nix.thunk(() => nix.sel(lib, "types", "str")),
                               description: "The user {command}`borg` is run as.\nUser or group need read permission\nfor the specified {option}`paths`.\n",
                               default: "root",
                             })))),
                           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$43,
+                              [nix.POS]: pos$43,
                               type: nix.thunk(() => nix.sel(lib, "types", "str")),
                               description: "The group borg is run as. User or group needs read permission\nfor the specified {option}`paths`.\n",
                               default: "root",
                             })))),
                           wrapper: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$44,
+                              [nix.POS]: pos$44,
                               type: nix.thunk(() => (() => {
                                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -479,9 +479,9 @@ to "import-tar".
                               defaultText: "borg-job-<name>",
                             })))),
                           encryption: nix.thunk(() => ({
-                            __proto__: pos$48,
+                            [nix.POS]: pos$48,
                             mode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$45,
+                                [nix.POS]: pos$45,
                                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => [
                                     "repokey",
                                     "keyfile",
@@ -495,7 +495,7 @@ to "import-tar".
                                 example: "repokey-blake2",
                               })))),
                             passCommand: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$46,
+                                [nix.POS]: pos$46,
                                 type: nix.thunk(() => (() => {
                                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                                   return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -505,7 +505,7 @@ to "import-tar".
                                 example: "cat /path/to/passphrase_file",
                               })))),
                             passphrase: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$47,
+                                [nix.POS]: pos$47,
                                 type: nix.thunk(() => (() => {
                                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                                   return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -515,14 +515,14 @@ to "import-tar".
                               })))),
                           })),
                           compression: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$49,
+                              [nix.POS]: pos$49,
                               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "strMatching"), "none|(auto,)?(lz4|zstd|zlib|lzma)(,[[:digit:]]{1,2})?")),
                               description: "Compression method to use. Refer to\n{command}`borg help compression`\nfor all available options.\n",
                               default: "lz4",
                               example: "auto,lzma",
                             })))),
                           exclude: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$50,
+                              [nix.POS]: pos$50,
                               type: nix.thunk(() => (() => {
                                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -532,7 +532,7 @@ to "import-tar".
                               example: nix.thunk(() => ["/home/*/.cache", "/nix"]),
                             })))),
                           patterns: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$51,
+                              [nix.POS]: pos$51,
                               type: nix.thunk(() => (() => {
                                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -542,7 +542,7 @@ to "import-tar".
                               example: nix.thunk(() => ["+ /home/susan", "- /home/*"]),
                             })))),
                           readWritePaths: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$52,
+                              [nix.POS]: pos$52,
                               type: nix.thunk(() => (() => {
                                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "path")));
@@ -552,33 +552,33 @@ to "import-tar".
                               example: nix.thunk(() => ["/var/backup/mysqldump"]),
                             })))),
                           privateTmp: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$53,
+                              [nix.POS]: pos$53,
                               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                               description: "Set the `PrivateTmp` option for\nthe systemd-service. Set to false if you need sockets\nor other files from global /tmp.\n",
                               default: true,
                             })))),
                           failOnWarnings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$54,
+                              [nix.POS]: pos$54,
                               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                               description: "Fail the whole backup job if any borg command returns a warning\n(exit code 1), for example because a file changed during backup.\n",
                               default: true,
                             })))),
                           doInit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$55,
+                              [nix.POS]: pos$55,
                               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                               description: "Run {command}`borg init` if the\nspecified {option}`repo` does not exist.\nYou should set this to `false`\nif the repository is located on an external drive\nthat might not always be mounted.\n",
                               default: true,
                             })))),
                           appendFailedSuffix: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$56,
+                              [nix.POS]: pos$56,
                               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                               description: "Append a `.failed` suffix\nto the archive name, which is only removed if\n{command}`borg create` has a zero exit status.\n",
                               default: true,
                             })))),
                           prune: nix.thunk(() => ({
-                            __proto__: pos$59,
+                            [nix.POS]: pos$59,
                             keep: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$57,
+                                [nix.POS]: pos$57,
                                 type: nix.thunk(() => (() => {
                                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                                   return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "int")), nix.thunk(() => nix.app(nix.lookup(w, "strMatching"), "[[:digit:]]+[Hdwmy]")))));
@@ -588,7 +588,7 @@ to "import-tar".
                                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  within = \"1d\"; # Keep all archives from the last day\n  daily = 7;\n  weekly = 4;\n  monthly = -1;  # Keep at least one archive for each month\n}\n")),
                               })))),
                             prefix: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$58,
+                                [nix.POS]: pos$58,
                                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                                 description: "Only consider archive names starting with this prefix for pruning.\nBy default, only archives created by this job are considered.\nUse `\"\"` or `null` to consider all archives.\n",
                                 default: nix.thunk(() => nix.sel(config_1, "archiveBaseName")),
@@ -596,48 +596,48 @@ to "import-tar".
                               })))),
                           })),
                           environment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$61,
+                              [nix.POS]: pos$61,
                               type: nix.thunk(() => (() => {
                                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "str")));
                               })()),
                               description: "Environment variables passed to the backup script.\nYou can for example specify which SSH key to use.\n",
                               default: nix.thunk(() => ({})),
-                              example: nix.thunk(() => ({ __proto__: pos$60, BORG_RSH: "ssh -i /path/to/key" })),
+                              example: nix.thunk(() => ({ [nix.POS]: pos$60, BORG_RSH: "ssh -i /path/to/key" })),
                             })))),
                           preHook: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$62,
+                              [nix.POS]: pos$62,
                               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
                               description: "Shell commands to run before the backup.\nThis can for example be used to mount file systems.\n",
                               default: "",
                               example: "# To add excluded paths at runtime\nextraCreateArgs+=(\"--exclude\" \"/some/path\")\n",
                             })))),
                           postInit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$63,
+                              [nix.POS]: pos$63,
                               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
                               description: "Shell commands to run after {command}`borg init`.\n",
                               default: "",
                             })))),
                           postCreate: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$64,
+                              [nix.POS]: pos$64,
                               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
                               description: "Shell commands to run after {command}`borg create`. The name\nof the created archive is stored in `$archiveName`.\n",
                               default: "",
                             })))),
                           postPrune: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$65,
+                              [nix.POS]: pos$65,
                               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
                               description: "Shell commands to run after {command}`borg prune`.\n",
                               default: "",
                             })))),
                           postHook: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$66,
+                              [nix.POS]: pos$66,
                               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
                               description: "Shell commands to run just before exit. They are executed\neven if a previous command exits with a non-zero exit code.\nThe latter is available as `$exitStatus`.\n",
                               default: "",
                             })))),
                           extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$67,
+                              [nix.POS]: pos$67,
                               type: nix.thunk(() => (() => {
                                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                                 return nix.app(nix.lookup(w, "coercedTo"), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))), nix.thunk(() => nix.sel(lib, "escapeShellArgs")), nix.thunk(() => nix.lookup(w, "str")));
@@ -647,7 +647,7 @@ to "import-tar".
                               example: nix.thunk(() => ["--remote-path=/path/to/borg"]),
                             })))),
                           extraInitArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$68,
+                              [nix.POS]: pos$68,
                               type: nix.thunk(() => (() => {
                                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                                 return nix.app(nix.lookup(w, "coercedTo"), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))), nix.thunk(() => nix.sel(lib, "escapeShellArgs")), nix.thunk(() => nix.lookup(w, "str")));
@@ -657,7 +657,7 @@ to "import-tar".
                               example: nix.thunk(() => ["--append-only"]),
                             })))),
                           extraCreateArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$69,
+                              [nix.POS]: pos$69,
                               type: nix.thunk(() => (() => {
                                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                                 return nix.app(nix.lookup(w, "coercedTo"), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))), nix.thunk(() => nix.sel(lib, "escapeShellArgs")), nix.thunk(() => nix.lookup(w, "str")));
@@ -667,7 +667,7 @@ to "import-tar".
                               example: nix.thunk(() => ["--stats", "--checkpoint-interval 600"]),
                             })))),
                           extraPruneArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$70,
+                              [nix.POS]: pos$70,
                               type: nix.thunk(() => (() => {
                                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                                 return nix.app(nix.lookup(w, "coercedTo"), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))), nix.thunk(() => nix.sel(lib, "escapeShellArgs")), nix.thunk(() => nix.lookup(w, "str")));
@@ -677,7 +677,7 @@ to "import-tar".
                               example: nix.thunk(() => ["--save-space"]),
                             })))),
                           extraCompactArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$71,
+                              [nix.POS]: pos$71,
                               type: nix.thunk(() => (() => {
                                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                                 return nix.app(nix.lookup(w, "coercedTo"), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))), nix.thunk(() => nix.sel(lib, "escapeShellArgs")), nix.thunk(() => nix.lookup(w, "str")));
@@ -692,35 +692,35 @@ to "import-tar".
                   })()))))),
             })))),
           repos: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$84,
+              [nix.POS]: pos$84,
               description: "Serve BorgBackup repositories to given public SSH keys,\nrestricting their access to the repository only.\nSee also the chapter about BorgBackup in the NixOS manual.\nAlso, clients do not need to specify the absolute path when accessing the repository,\ni.e. `user@machine:.` is enough. (Note colon and dot.)\n",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.lambda((args_1) => (() => {
                     const $_1 = nix.formals(args_1, formals$4);
                     return {
-                      __proto__: pos$83,
+                      [nix.POS]: pos$83,
                       options: nix.thunk(() => ({
-                        __proto__: pos$82,
+                        [nix.POS]: pos$82,
                         path: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$75,
+                            [nix.POS]: pos$75,
                             type: nix.thunk(() => nix.sel(lib, "types", "path")),
                             description: "Where to store the backups. Note that the directory\nis created automatically, with correct permissions.\n",
                             default: "/var/lib/borgbackup",
                           })))),
                         user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$76,
+                            [nix.POS]: pos$76,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             description: "The user {command}`borg serve` is run as.\nUser or group needs write permission\nfor the specified {option}`path`.\n",
                             default: "borg",
                           })))),
                         group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$77,
+                            [nix.POS]: pos$77,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             description: "The group {command}`borg serve` is run as.\nUser or group needs write permission\nfor the specified {option}`path`.\n",
                             default: "borg",
                           })))),
                         authorizedKeys: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$78,
+                            [nix.POS]: pos$78,
                             type: nix.thunk(() => (() => {
                               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                               return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -729,7 +729,7 @@ to "import-tar".
                             default: [],
                           })))),
                         authorizedKeysAppendOnly: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$79,
+                            [nix.POS]: pos$79,
                             type: nix.thunk(() => (() => {
                               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                               return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -738,13 +738,13 @@ to "import-tar".
                             default: [],
                           })))),
                         allowSubRepos: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$80,
+                            [nix.POS]: pos$80,
                             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                             description: "Allow clients to create repositories in subdirectories of the\nspecified {option}`path`. These can be accessed using\n`user@machine:path/to/subrepo`. Note that a\n{option}`quota` applies to repositories independently.\nTherefore, if this is enabled, clients can create multiple\nrepositories and upload an arbitrary amount of data.\n",
                             default: false,
                           })))),
                         quota: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$81,
+                            [nix.POS]: pos$81,
                             type: nix.thunk(() => (() => {
                               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                               return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "strMatching"), "[[:digit:].]+[KMGTP]?")));
@@ -766,12 +766,12 @@ to "import-tar".
       })()), nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(config, "services", "borgbackup")), null);
         return {
-          __proto__: pos$91,
+          [nix.POS]: pos$91,
           assertions: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "mapAttrsToList"), mkPassAssertion, nix.thunk(() => nix.lookup(w_1, "jobs"))), nix.concat(nix.app(nix.sel(lib, "mapAttrsToList"), mkKeysAssertion, nix.thunk(() => nix.lookup(w_1, "repos"))), nix.concat(nix.app(nix.sel(lib, "mapAttrsToList"), mkSourceAssertions, nix.thunk(() => nix.lookup(w_1, "jobs"))), nix.concat(nix.app(nix.sel(lib, "mapAttrsToList"), mkCreateCommandImportTarDumpCommandAssertion, nix.thunk(() => nix.lookup(w_1, "jobs"))), nix.concat(nix.app(nix.sel(lib, "mapAttrsToList"), mkCreateCommandImportTarExclusionsAssertion, nix.thunk(() => nix.lookup(w_1, "jobs"))), nix.app(nix.sel(lib, "mapAttrsToList"), mkRemovableDeviceAssertions, nix.thunk(() => nix.lookup(w_1, "jobs"))))))))),
           systemd: nix.thunk(() => ({
-            __proto__: pos$89,
+            [nix.POS]: pos$89,
             tmpfiles: nix.thunk(() => ({
-              __proto__: pos$88,
+              [nix.POS]: pos$88,
               settings: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), mkTmpfiles, nix.thunk(() => nix.lookup(w_1, "jobs")))),
             })),
             services: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mapAttrs'"), mkBackupService, nix.thunk(() => nix.lookup(w_1, "jobs"))), nix.app(nix.sel(lib, "mapAttrs'"), mkRepoService, nix.thunk(() => nix.lookup(w_1, "repos"))))),
@@ -779,7 +779,7 @@ to "import-tar".
           })),
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), mkUsersConfig, nix.thunk(() => nix.lookup(w_1, "repos")))))),
           environment: nix.thunk(() => ({
-            __proto__: pos$90,
+            [nix.POS]: pos$90,
             systemPackages: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(config, "services", "borgbackup", "package"))], nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), mkBorgWrapper, nix.thunk(() => nix.lookup(w_1, "jobs"))))))),
           })),
         };

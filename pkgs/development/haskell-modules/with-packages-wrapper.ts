@@ -39,7 +39,7 @@ should be written as
     const hasLibraries = nix.thunk(() => nix.app(nix.sel(lib, "any"), (x) => nix.sel(x, "isHaskellLibrary"), paths));
     const llvm = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(ghc, "llvmPackages", "llvm"))], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ghc, "version")), "9.10")) || nix.asBool(nix.sel(stdenv, "targetPlatform", "isDarwin")))), nix.thunk(() => [nix.thunk(() => nix.sel(ghc, "llvmPackages", "clang"))]))))));
     return (nix.asBool((nix.asBool(nix.eq(paths, [])) && nix.asBool(!nix.asBool(useLLVM)))) ? nix.force(ghc) : nix.app(symlinkJoin, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: nix.thunk(() => nix.add(nix.sel(ghc, "name"), "-with-packages")),
         paths: nix.thunk(() => nix.concat(paths, nix.concat([ghc], nix.app(nix.sel(lib, "optionals"), installDocumentation, nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "getOutput"), "doc", ghc))]))))),
         nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -130,7 +130,7 @@ $out/bin/${ghcCommand}-pkg check
 `), postBuild)),
         preferLocalBuild: true,
         passthru: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: nix.thunk(() => nix.attr(ghc, "version")),
           meta: nix.thunk(() => nix.attr(ghc, "meta")),
           targetPrefix: nix.thunk(() => nix.attr(ghc, "targetPrefix")),

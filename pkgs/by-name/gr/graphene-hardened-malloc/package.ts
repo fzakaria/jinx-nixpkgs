@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const stress_ng = nix.arg($, "stress-ng");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "graphene-hardened-malloc",
       version: "14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GrapheneOS",
           repo: "hardened_malloc",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/GrapheneOS/hardened_malloc/commit/04a25bd141efcd2c0d29ef7d868b205a844b3ad2.patch",
             hash: "sha256-+FBjnGnjs1nyN/zu0Gf0bIv7RHEDscevDsFkvb1/A20=",
           })))),
@@ -48,10 +48,10 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ninstall -Dm444 -t $out/include include/*\ninstall -Dm444 -t $out/lib out/libhardened_malloc.so out-light/libhardened_malloc-light.so\n\nmkdir -p $out/bin\nsubstitute preload.sh $out/bin/preload-hardened-malloc --replace \"\\$dir\" $out/lib\nchmod 0555 $out/bin/preload-hardened-malloc\n\nrunHook postInstall\n",
       separateDebugInfo: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$3, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
+        [nix.POS]: pos$6,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
         "ld-preload-tests": nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-ld-preload-tests`),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -65,7 +65,7 @@ makeWrapper ${nix.sel(python3, "interpreter")} $out/bin/run-tests \\
 `),
           })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "ld-preload": nix.thunk(() => nix.app(runCommand, "ld-preload-test-run", nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/bin/preload-hardened-malloc ${nix.sel(finalAttrs, "passthru", "ld-preload-tests")}/bin/run-tests
 touch $out
 `))),
@@ -79,7 +79,7 @@ touch $out
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://github.com/GrapheneOS/hardened_malloc",
         description: "Hardened allocator designed for modern systems",
         mainProgram: "preload-hardened-malloc",

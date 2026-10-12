@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const mimalloc = nix.arg($, "mimalloc");
   const mimallocSupport = nix.argOr($, "mimallocSupport", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "stunnel",
       version: "5.80",
       outputs: nix.thunk(() => ["out", "doc", "man"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.stunnel.org/archive/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}.x/stunnel-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-bQhB1I3gfLuvSgVZGQZb97tevGPMFcl6LHbKor8oVRM=",
         })))),
@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
       postInstall: "# remove legacy compatibility-wrapper that would require perl\nrm $out/bin/stunnel3\n",
       installFlags: nix.thunk(() => ["sysconfdir=${out}/etc", "localstatedir=${TMPDIR}"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, stunnel: nix.thunk(() => nix.sel(nixosTests, "stunnel")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, stunnel: nix.thunk(() => nix.sel(nixosTests, "stunnel")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Universal tls/ssl wrapper",
         homepage: "https://www.stunnel.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

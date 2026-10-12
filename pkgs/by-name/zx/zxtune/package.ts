@@ -49,15 +49,15 @@ export default nix.lambda((args) => (() => {
       const version = "5112";
       const outputs = nix.thunk(() => ["out"]);
       const src = nix.thunk(() => nix.app(fetchFromBitbucket, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zxtune",
           repo: "zxtune",
           rev: nix.thunk(() => nix.str`r${version}`),
           hash: "sha256-903dvy7XegZzoP/+0ZTWQDg3nWib6k1g+05vGRfcenI=",
         }))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "r" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "r" })))),
       }));
       const strictDeps = true;
       const nativeBuildInputs = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), withQt, nix.thunk(() => [zip, nix.thunk(() => nix.sel(qt5, "wrapQtAppsHook")), copyDesktopItems])));
@@ -103,7 +103,7 @@ make ${nix.builtins.toString(makeOptsCommon)} -C apps/zxtune123
       const preFixup = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withQt, "wrapQtApp \"$out/bin/zxtune-qt\"\n"));
       const desktopItems = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), withQt, nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               name: "ZXTune",
               exec: "zxtune-qt",
               icon: "zxtune",
@@ -115,7 +115,7 @@ make ${nix.builtins.toString(makeOptsCommon)} -C apps/zxtune123
             })))),
         ])));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Crossplatform chiptunes player",
         longDescription: "Chiptune music player with truly extensive format support. Supported\nformats/chips include AY/YM, ZX Spectrum, PC, Amiga, Atari, Acorn, Philips\nSAA1099, MOS6581 (Commodore 64), NES, SNES, GameBoy, Atari, TurboGrafX,\nNintendo DS, Sega Master System, and more. Powered by vgmstream, OpenMPT,\nsidplay, and many other libraries.\n",
         homepage: "https://zxtune.bitbucket.io/",
@@ -131,7 +131,7 @@ make ${nix.builtins.toString(makeOptsCommon)} -C apps/zxtune123
         mainProgram: nix.thunk(() => (nix.asBool(withQt) ? "zxtune-qt" : "zxtune123")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         outputs,

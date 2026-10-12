@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libxcb_util = nix.arg($, "libxcb-util");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.3",
       pname: "xcb-util-xrm",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/Airblader/xcb-util-xrm/releases/download/v${nix.sel(finalAttrs, "version")}/xcb-util-xrm-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "118cj1ybw86pgw0l5whn9vbg5n5b0ijcpx295mwahzi004vz671h",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       buildInputs: nix.thunk(() => [libxcb, libxcb_util, libx11]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "XCB utility functions for the X resource manager",
         homepage: "https://github.com/Airblader/xcb-util-xrm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

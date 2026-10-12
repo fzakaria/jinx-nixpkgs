@@ -17,17 +17,17 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const fetchpatch2 = nix.arg($, "fetchpatch2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "halibut",
       version: "1.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.chiark.greenend.org.uk/~sgtatham/halibut/halibut-${nix.sel(finalAttrs, "version")}/halibut-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0ciikn878vivs4ayvwvr63nnhpcg12m8023xv514zxqpdxlzg85a",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-charset-cmakelists.patch",
             url: "https://git.tartarus.org/?p=simon/halibut.git;a=blobdiff_plain;f=charset/CMakeLists.txt;h=4613cb4d02959db051dd82b25d6bfd82a50455d7;hp=06eae7703d3e52aa50d5309624ec93a7684f73d8;hb=570407a40bdde2a9bb50c16aa47711202ade8923;hpb=ce14e373b7e6532c0dfa1908fe6030c5667cf79a",
             hash: "sha256-YdLxbXc3C2UxWp0CUzvmJ8mgzqaWJ5Br4VfRU7YjBYE=",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [cmake, perl]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Documentation production system for software manuals",
         homepage: "https://www.chiark.greenend.org.uk/~sgtatham/halibut/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const zig_0_16 = nix.arg($, "zig_0_16");
   const zig = zig_0_16;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ztags",
       version: "1.0.1-unstable-2026-04-23",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gpanders",
           repo: "ztags",
           rev: "49d45d0db73c6e5705853bfdb25a471d19538993",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(zig, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Generate tags files for Zig projects",
         homepage: "https://codeberg.org/gpanders/ztags",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

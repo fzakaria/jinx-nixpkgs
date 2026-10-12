@@ -49,12 +49,12 @@ export default nix.lambda((args) => (() => {
       const pname = "iceSL";
       const version = "2.4.1";
       const src = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://icesl.loria.fr/assets/other/download.php?build=${version}&os=amd64`),
           extension: "zip",
           sha256: "0rrnkqkhlsjclif5cjbf17qz64vs95ja49xarxjvq54wb4jhbs4l",
         }))) : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")) ? nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://icesl.loria.fr/assets/other/download.php?build=${version}&os=i386`),
           extension: "zip",
           sha256: "0n2yyxzw0arkc70f0qli4n5chdlh9vc7aqizk4v7825mcglhwlyh",
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
 makeWrapper $out/oldbin/IceSL-slicer $out/bin/icesl --prefix PATH : ${dialog}/bin
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GPU-accelerated procedural modeler and slicer for 3D printing",
         homepage: "https://icesl.loria.fr/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -82,7 +82,7 @@ makeWrapper $out/oldbin/IceSL-slicer $out/bin/icesl --prefix PATH : ${dialog}/bi
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

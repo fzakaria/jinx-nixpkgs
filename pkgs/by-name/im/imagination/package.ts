@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const sox = nix.arg($, "sox");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "imagination",
       version: "3.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/imagination/imagination-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "139dgb9vfr2q7bxvjskykdz526xxwrn0bh463ir8m2p7rx5a3pw5",
         })))),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
 )
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightweight and simple DVD slide show maker",
         homepage: "https://imagination.sourceforge.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

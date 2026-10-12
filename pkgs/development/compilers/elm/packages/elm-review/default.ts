@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "elm-review";
       const version = "2.13.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jfmengels",
           repo: "node-elm-review",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
       const postPatch = "sed -i \"s/elm-tooling install/echo 'skipping elm-tooling install'/g\" package.json\n";
       const dontNpmBuild = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               version: nix.thunk(() => nix.str`${version}`),
               package: elm_review,
               command: "elm-review --version",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: "https://github.com/jfmengels/node-elm-review/blob/main/CHANGELOG.md",
         description: "Analyzes Elm projects, to help find mistakes before your users find them",
         mainProgram: "elm-review",
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

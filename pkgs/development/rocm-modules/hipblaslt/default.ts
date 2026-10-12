@@ -66,11 +66,11 @@ export default nix.lambda((args) => (() => {
   const compiler = "amdclang++";
   const cFlags = nix.thunk(() => nix.str`-Wno-switch -fopenmp -I${nix.app(nix.sel(lib, "getDev"), zstd)}/include -I${amd_blis}/include/blis/ -I${nix.app(nix.sel(lib, "getDev"), msgpack_cxx)}/include`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: nix.thunk(() => nix.str`hipblaslt${nix.sel(clr, "gpuArchSuffix")}`),
       version: "7.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ROCm",
           repo: "rocm-libraries",
           tag: nix.thunk(() => nix.str`rocm-${nix.sel(finalAttrs, "version")}`),
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/projects/hipblaslt`),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CXX: compiler,
         CFLAGS: cFlags,
         CXXFLAGS: cFlags,
@@ -154,12 +154,12 @@ rmdir $out/bin
 `)),
       installCheckPhase: "runHook preInstallCheck\nfind \"$out\" -type f -name \"*.dat\" -size \"+2M\" -exec sh -c '\n    echo \"ERROR: oversized .dat file, check for issues with install compression: {}\" >&2\n    exit 1\n' {} \\;\necho \"Verified .dat files in $out are not huge\"\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         supportsTargetArches: supportsTargetArches,
-        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ __proto__: pos$3, finalAttrs: finalAttrs })))),
+        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$3, finalAttrs: finalAttrs })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Library that provides general matrix-matrix operations with a flexible API",
         homepage: "https://github.com/ROCm/rocm-libraries/tree/develop/projects/hipblaslt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

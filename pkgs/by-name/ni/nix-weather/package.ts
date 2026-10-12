@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "nix-weather",
       version: "0.0.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cafkafk",
           repo: "nix-weather",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,14 +36,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([openssl, installShellFiles], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv])))),
       outputs: nix.thunk(() => ["out", "man"]),
-      env: nix.thunk(() => ({ __proto__: pos$2, MAN_OUT: "./man" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, MAN_OUT: "./man" })),
       postInstall: "cd crates/nix-weather\ninstallManPage man/nix-weather.1\ninstallShellCompletion \\\n  --fish man/nix-weather.fish \\\n  --bash man/nix-weather.bash \\\n  --zsh  man/_nix-weather\nmkdir -p $out\ncd ../..\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Check Cache Availability of NixOS Configurations",
         longDescription: "Fast rust tool to check availability of your entire system in caches. It\nso to speak \"checks the weather\" before going to update. Useful for\ndebugging cache utilization and timing updates and deployments.\n\nHeavily inspired by guix weather.\n",
         homepage: "https://git.fem.gg/cafkafk/nix-weather",

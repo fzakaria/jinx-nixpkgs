@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const pytest_recording = nix.arg($, "pytest-recording");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "llm-anthropic",
       version: "0.25.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "simonw",
           repo: "llm-anthropic",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -55,11 +55,11 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["llm_anthropic"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         tests: nix.thunk(() => nix.app(nix.sel(llm, "mkPluginTest"), llm_anthropic)),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "LLM access to models by Anthropic, including the Claude series",
         homepage: "https://github.com/simonw/llm-anthropic",
         changelog: nix.thunk(() => nix.str`https://github.com/simonw/llm-anthropic/releases/tag/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

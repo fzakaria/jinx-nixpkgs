@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const acl = nix.arg($, "acl");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gnutar",
       version: "1.35",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/tar/tar-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-TWL/NzQux67XSFNTI5MMfPlKz3HDWRiCsmp+pQ8+3BY=",
         })))),
@@ -40,14 +40,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([autoreconfHook], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isCygwin")), gettext))),
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), aclSupport, acl), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), libintl))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         FORCE_UNSAFE_CONFIGURE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "armv7l-linux")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isSunOS")))), "1")),
       })),
       doCheck: true,
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GNU implementation of the `tar` archiver",
         longDescription: "The Tar program provides the ability to create tar archives, as\nwell as various other kinds of manipulation.  For example, you\ncan use Tar on previously created archives to extract files, to\nstore additional files, or to update or list files which were\nalready stored.\n\nInitially, tar archives were used to store files conveniently on\nmagnetic tape.  The name \"Tar\" comes from this use; it stands\nfor tape archiver.  Despite the utility's name, Tar can direct\nits output to available devices, files, or other programs (using\npipes), it can even access remote devices or files (as\narchives).\n",
         homepage: "https://www.gnu.org/software/tar/",

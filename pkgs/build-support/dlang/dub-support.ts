@@ -11,10 +11,10 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const callPackage = nix.arg($, "callPackage");
   return nix.update({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "dub-to-nix": nix.thunk(() => nix.app(callPackage, nix.path(here, "./dub-to-nix"), nix.thunk(() => ({})))),
     importDubLock: nix.thunk(() => nix.app(callPackage, nix.path(here, "./builddubpackage/import-dub-lock.nix"), nix.thunk(() => ({})))),
     buildDubPackage: nix.thunk(() => nix.app(callPackage, nix.path(here, "./builddubpackage"), nix.thunk(() => ({})))),
-  }, nix.app(nix.builtins.import(nix.path(here, "./builddubpackage/hooks")), nix.thunk(() => ({ __proto__: pos$2, lib: lib, callPackage: callPackage }))));
+  }, nix.app(nix.builtins.import(nix.path(here, "./builddubpackage/hooks")), nix.thunk(() => ({ [nix.POS]: pos$2, lib: lib, callPackage: callPackage }))));
 })(), formals$1);
 //# sourceMappingURL=dub-support.ts.map

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const help2man = nix.arg($, "help2man");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fead",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://trong.loang.net/~cnx/fead/snapshot/fead-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-cbU379Zz+mwRqEHiDUlGvWheLkkr0YidHeVs/1Leg38=",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       dontPatchShebangs: true,
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Advert generator from web feeds",
         homepage: "https://trong.loang.net/~cnx/fead",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

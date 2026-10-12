@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "komga";
       const version = "1.28.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/gotson/${pname}/releases/download/${version}/${pname}-${version}.jar`),
           sha256: "sha256-ANW+aVNpjeCtlmuqt9YttAlxxRyBDrTNnxExXDbMouY=",
         }))));
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   --prefix LD_LIBRARY_PATH : ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libwebp]))}
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, komga: nix.thunk(() => nix.sel(nixosTests, "komga")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, komga: nix.thunk(() => nix.sel(nixosTests, "komga")) })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Free and open source comics/mangas server",
         homepage: "https://komga.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

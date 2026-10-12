@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const gtk2 = nix.arg($, "gtk2");
   const pango = nix.arg($, "pango");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}`),
       pname: "ocaml-cairo",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://cgit.freedesktop.org/cairo-ocaml/snapshot/cairo-ocaml-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "0l4p9bp6kclr570mxma8wafibr1g5fsjj8h10yr4b507g0hmlh0l",
         })))),
@@ -55,7 +55,7 @@ cp ${lablgtk}/lib/ocaml/${nix.sel(ocaml, "version")}/site-lib/lablgtk2/gaux.ml .
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://cairographics.org/cairo-ocaml",
         description: "Ocaml bindings for cairo library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

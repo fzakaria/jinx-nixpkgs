@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pulseaudio-module-xrdp";
       const version = "0.8";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "neutrinolabs",
           repo: "pulseaudio-module-xrdp",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -49,15 +49,15 @@ runHook postInstall
 `);
       const nativeBuildInputs = nix.thunk(() => [autoreconfHook, pkg_config, nix.thunk(() => nix.sel(pulseaudio, "dev"))]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "xrdp-with-audio-pulseaudio": nix.thunk(() => nix.attr(nixosTests, "xrdp-with-audio-pulseaudio")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "xrdp sink/source pulseaudio modules",
         homepage: "https://github.com/neutrinolabs/pulseaudio-module-xrdp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
@@ -66,7 +66,7 @@ runHook postInstall
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "fromSource"))]),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

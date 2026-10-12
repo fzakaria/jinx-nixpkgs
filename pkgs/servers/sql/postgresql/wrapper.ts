@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   return (f) => (() => {
     const installedExtensions = nix.thunk(() => nix.app(f, nix.thunk(() => nix.sel(postgresql, "pkgs"))));
     const recurse = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./wrapper.nix")), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         buildEnv: buildEnv,
         callPackage: callPackage,
         lib: lib,
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         postgresql: postgresql,
       }))));
     return nix.app(buildEnv, (finalAttrs) => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname: nix.thunk(() => nix.str`${nix.sel(postgresql, "pname")}-and-plugins`),
         version: nix.thunk(() => nix.attr(postgresql, "version")),
         paths: nix.thunk(() => nix.concat(installedExtensions, [postgresql, nix.thunk(() => nix.sel(postgresql, "man"))])),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
           "/share/postgresql/tsearch_data",
         ]),
         derivationArgs: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           strictDeps: true,
           nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper]),
         })),
@@ -50,14 +50,14 @@ export default nix.lambda((args) => (() => {
 `;
         })()),
         passthru: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           installedExtensions: installedExtensions,
           pkgs: nix.thunk(() => nix.attr(postgresql, "pkgs")),
           psqlSchema: nix.thunk(() => nix.attr(postgresql, "psqlSchema")),
           pg_config: nix.thunk(() => nix.app(nix.sel(postgresql, "pg_config", "override"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               outputs: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 out: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
                 man: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               })),

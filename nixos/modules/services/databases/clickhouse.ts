@@ -44,45 +44,45 @@ export default nix.lambda((args) => (() => {
   const serverConfigFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "config.yaml", nix.thunk(() => nix.sel(cfg, "serverConfig"))));
   const usersConfigFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "users.yaml", nix.thunk(() => nix.sel(cfg, "usersConfig"))));
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "thevar1able"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         clickhouse: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "ClickHouse database server")),
-          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "clickhouse", nix.thunk(() => ({ __proto__: pos$2, example: "pkgs.clickhouse-lts" })))),
+          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "clickhouse", nix.thunk(() => ({ [nix.POS]: pos$2, example: "pkgs.clickhouse-lts" })))),
           serverConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(format, "type")),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  http_port = 8123;\n  tcp_port = 9000;\n\n  remote_servers = {\n    default = {\n      shard = {\n        replica = [\n          { host = \"::\"; port = \"9000\"; }\n          { host = \"::\"; port = \"9001\"; }\n          { host = \"::\"; port = \"9002\"; }\n        ];\n      };\n    };\n  };\n}\n")),
               description: "Your {file}`config.yaml` as a Nix attribute set.\nCheck the [documentation](https://clickhouse.com/docs/operations/configuration-files)\nfor possible options.\n",
             })))),
           usersConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(format, "type")),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  profiles = {};\n\n  users = {\n    default = {\n      profile = \"default\";\n      password_sha256_hex = \"36dd292533174299fb0c34665df468bb881756ca9eaf9757d0cfde38f9ededa1\";  # `echo -n verysecret | sha256sum`\n    };\n  };\n}\n")),
               description: "Your {file}`users.yaml` as a Nix attribute set.\nCheck the [documentation](https://clickhouse.com/docs/operations/configuration-files#user-settings)\nfor possible options.\n",
             })))),
           extraServerConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               example: "<clickhouse>\n  <max_connections>500</max_connections>\n  <keep_alive_timeout>3</keep_alive_timeout>\n</clickhouse>\n",
               description: "Additional raw XML configuration for ClickHouse server.",
             })))),
           extraUsersConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               example: "<clickhouse>\n  <users>\n    <readonly>\n      <profile>readonly</profile>\n    </readonly>\n  </users>\n</clickhouse>\n",
@@ -92,13 +92,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         users: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           users: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             clickhouse: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               name: "clickhouse",
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "clickhouse")),
               group: "clickhouse",
@@ -106,24 +106,24 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             clickhouse: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "clickhouse")),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           services: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             clickhouse: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               description: "ClickHouse server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 Type: "notify",
                 User: "clickhouse",
                 Group: "clickhouse",
@@ -132,31 +132,31 @@ export default nix.lambda((args) => (() => {
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/clickhouse-server --config=/etc/clickhouse-server/config.xml`),
                 TimeoutStartSec: "infinity",
               })),
-              environment: nix.thunk(() => ({ __proto__: pos$16, CLICKHOUSE_WATCHDOG_ENABLE: "0" })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$16, CLICKHOUSE_WATCHDOG_ENABLE: "0" })),
             })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           etc: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             "clickhouse-server/config.xml": nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/etc/clickhouse-server/config.xml`),
             })),
             "clickhouse-server/users.xml": nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/etc/clickhouse-server/users.xml`),
             })),
-            "clickhouse-server/config.d/100-nixos-module-config.yaml": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "serverConfig"), {})), nix.thunk(() => ({ __proto__: pos$22, source: serverConfigFile })))),
-            "clickhouse-server/users.d/100-nixos-module-config.yaml": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "usersConfig"), {})), nix.thunk(() => ({ __proto__: pos$23, source: usersConfigFile })))),
-            "clickhouse-server/config.d/200-nixos-module-extra-config.xml": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "extraServerConfig"), "")), nix.thunk(() => ({ __proto__: pos$24, text: nix.thunk(() => nix.sel(cfg, "extraServerConfig")) })))),
-            "clickhouse-server/users.d/200-nixos-module-extra-config.xml": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "extraUsersConfig"), "")), nix.thunk(() => ({ __proto__: pos$25, text: nix.thunk(() => nix.sel(cfg, "extraUsersConfig")) })))),
+            "clickhouse-server/config.d/100-nixos-module-config.yaml": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "serverConfig"), {})), nix.thunk(() => ({ [nix.POS]: pos$22, source: serverConfigFile })))),
+            "clickhouse-server/users.d/100-nixos-module-config.yaml": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "usersConfig"), {})), nix.thunk(() => ({ [nix.POS]: pos$23, source: usersConfigFile })))),
+            "clickhouse-server/config.d/200-nixos-module-extra-config.xml": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "extraServerConfig"), "")), nix.thunk(() => ({ [nix.POS]: pos$24, text: nix.thunk(() => nix.sel(cfg, "extraServerConfig")) })))),
+            "clickhouse-server/users.d/200-nixos-module-extra-config.xml": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "extraUsersConfig"), "")), nix.thunk(() => ({ [nix.POS]: pos$25, text: nix.thunk(() => nix.sel(cfg, "extraUsersConfig")) })))),
           })),
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         time: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           timeZone: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "UTC")),
         })),
       })))),

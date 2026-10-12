@@ -10,12 +10,12 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildRedist = nix.arg($, "buildRedist");
   return nix.app(buildRedist, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       redistName: "cuda",
       pname: "libnvptxcompiler",
       outputs: nix.thunk(() => ["out"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "APIs which can be used to compile a PTX program into GPU assembly code",
         homepage: "https://docs.nvidia.com/cuda/ptx-compiler-api",
       })),

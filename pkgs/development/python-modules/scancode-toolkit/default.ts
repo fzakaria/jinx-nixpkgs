@@ -68,12 +68,12 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const xmltodict = nix.arg($, "xmltodict");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "scancode-toolkit",
       version: "32.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "scancode_toolkit",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-WXAZCk0aRmKb1UU1ud95mZFHAMC9U+gDRd9w7TZTVSA=",
@@ -140,7 +140,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["scancode"]),
       dontStrip: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to scan code for license, copyright, package and their documented dependencies and other interesting facts",
         homepage: "https://github.com/aboutcode-org/scancode-toolkit",
         changelog: nix.thunk(() => nix.str`https://github.com/aboutcode-org/scancode-toolkit/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.rst`),

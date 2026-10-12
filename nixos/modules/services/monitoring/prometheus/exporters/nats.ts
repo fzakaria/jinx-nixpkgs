@@ -20,21 +20,21 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const concatStringsSep = nix.thunk(() => nix.attr(lib, "concatStringsSep"));
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     port: 7777n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "http://127.0.0.1:8222",
           description: "NATS monitor endpoint to query.\n",
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "prometheus-nats-exporter")}/bin/prometheus-nats-exporter \\
   -addr ${nix.sel(cfg, "listenAddress")} \\
   -port ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))} \\

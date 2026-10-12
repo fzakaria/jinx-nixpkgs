@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
       const pname = "dvtm";
       const version = "0.15";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.brain-dump.org/projects/dvtm/dvtm-${version}.tar.gz`),
           sha256: "0475w514b7i3gxk6khy8pfj2gx9l7lv2pwacmq92zn1abv01a84g",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/martanne/dvtm/commit/1f1ed664d64603f3f1ce1388571227dc723901b2.patch",
             sha256: "1cby8x3ckvhzqa8yxlfrwzgm8wk7yz84kr9psdjr7xwpnca1cqrd",
           })))),
       ]);
-      return { __proto__: pos$3, pname, version, src, patches };
+      return { [nix.POS]: pos$3, pname, version, src, patches };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

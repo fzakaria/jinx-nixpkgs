@@ -29,38 +29,38 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const blade_formatter = nix.arg($, "blade-formatter");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "blade-formatter",
       version: "1.44.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "shufo",
           repo: "blade-formatter",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-/HuYfAf0JwDzWKpc6ymsfl6NjfwnnzduVX/LGwuE1uo=",
         })))),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/yarn.lock")),
           hash: "sha256-gVAJO74lSwBaWS19/GeAPWUfRJIjeMA6Gqzk46VA8hU=",
         })))),
       nativeBuildInputs: nix.thunk(() => [yarnConfigHook, yarnBuildHook, yarnInstallHook, nodejs]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: blade_formatter,
               command: "blade-formatter --version",
             })))),
           simple: nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               assertion: "blade-formatter formats a basic blade file",
               expected: nix.thunk(() => nix.app(writeText, "expected", "@if (true)\n    Hello world!\n@endif\n")),
               actual: nix.thunk(() => nix.app(runCommand, "actual", nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   nativeBuildInputs: nix.thunk(() => [blade_formatter]),
                   base: nix.thunk(() => nix.app(writeText, "base", "@if(   true )  Hello world!   @endif\n")),
                 })), "blade-formatter $base > $out\n")),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(nodejs, "meta"));
         return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Laravel Blade template formatter",
         homepage: "https://github.com/shufo/blade-formatter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

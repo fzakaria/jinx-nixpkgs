@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const version = "2.85.9";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "grame-cncm",
       repo: "faust",
       tag: version,
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       fetchSubmodules: true,
     }))));
   const meta = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     homepage: "https://faust.grame.fr/",
     downloadPage: "https://github.com/grame-cncm/faust/",
     license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
@@ -63,9 +63,9 @@ export default nix.lambda((args) => (() => {
     })()),
   }));
   const faust = nix.thunk(() => (() => {
-    const ncurses_static = nix.thunk(() => nix.app(nix.sel(ncurses, "override"), nix.thunk(() => ({ __proto__: pos$3, enableStatic: true }))));
+    const ncurses_static = nix.thunk(() => nix.app(nix.sel(ncurses, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, enableStatic: true }))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname: "faust",
         version: version,
         src: src,
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
           libxml2,
         ]),
         passthru: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           wrap: wrap,
           wrapWithBuildEnv: wrapWithBuildEnv,
           faust2ApplBase: faust2ApplBase,
@@ -127,7 +127,7 @@ for script in "$out"/bin/faust2*; do
 done
 `),
         meta: nix.thunk(() => nix.update(meta, {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           description: "Functional programming language for realtime audio signal processing",
           longDescription: "FAUST (Functional Audio Stream) is a functional programming\nlanguage specifically designed for real-time signal processing\nand synthesis. FAUST targets high-performance signal processing\napplications and audio plug-ins for a variety of platforms and\nstandards.\nThe Faust compiler translates DSP specifications into very\nefficient C++ code. Thanks to the notion of architecture,\nFAUST programs can be easily deployed on a large variety of\naudio platforms and plugin formats (jack, alsa, ladspa, maxmsp,\npuredata, csound, supercollider, pure, vst, coreaudio) without\nany change to the FAUST code.\n\nThis package has just the compiler, libraries, and headers.\nInstall faust2* for specific faust2appl scripts.\n",
         })),
@@ -140,7 +140,7 @@ done
     const dir = nix.argOr($_1, "dir", () => "tools/faust2appls");
     const scripts = nix.argOr($_1, "scripts", () => [baseName]);
     return nix.update(args_2, {
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: baseName,
       src: src,
       version: version,
@@ -156,7 +156,7 @@ runHook postInstall
 `),
       postInstall: "# For the faust2appl script, change 'faustpath' and\n# 'faustoptflags' to absolute paths.\nfor script in \"$out\"/bin/*; do\n  substituteInPlace \"$script\" \\\n    --replace-quiet \" error \" \"echo\"\ndone\n",
       meta: nix.thunk(() => nix.update(meta, {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: nix.thunk(() => nix.str`The ${baseName} script, part of faust functional programming language for realtime audio signal processing`),
       })),
     });
@@ -167,7 +167,7 @@ runHook postInstall
     const baseName = nix.arg($_1, "baseName");
     const propagatedBuildInputs = nix.argOr($_1, "propagatedBuildInputs", () => []);
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(nix.app(faust2ApplBase, args_2), {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         nativeBuildInputs: nix.thunk(() => [pkg_config, makeWrapper]),
         propagatedBuildInputs: nix.thunk(() => nix.concat([faust], propagatedBuildInputs)),
         libPath: nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), propagatedBuildInputs)),
@@ -203,7 +203,7 @@ done
     const runtimeInputs = nix.argOr($_1, "runtimeInputs", () => []);
     const runtimePath = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ":", nix.thunk(() => nix.builtins.map((p) => nix.str`${p}/bin`, nix.thunk(() => nix.concat([faust], runtimeInputs))))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(nix.app(faust2ApplBase, args_2), {
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         nativeBuildInputs: nix.thunk(() => [makeWrapper]),
         postFixup: nix.thunk(() => nix.str`for script in "$out"/bin/*; do
   wrapProgram "$script" --prefix PATH : "${runtimePath}"

@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const make = nix.arg($, "make");
   const make_rules = nix.arg($, "make-rules");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "tools/make",
       buildInputs: [],
       nativeBuildInputs: nix.thunk(() => [bsdSetupHook, netbsdSetupHook]),

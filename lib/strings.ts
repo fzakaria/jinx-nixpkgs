@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
     const concatLines = (lines) => nix.app(optionalString, nix.thunk(() => !nix.eq(lines, [])), nix.thunk(() => nix.add(nix.app(concatStringsSep, "\n", lines), "\n")));
     const replaceString = (from) => (to) => nix.app(replaceStrings, nix.thunk(() => [from]), nix.thunk(() => [to]));
     const replicate = (n) => (s) => nix.app(concatStrings, nix.thunk(() => nix.app(nix.sel(lib, "lists", "replicate"), n, s)));
-    const trim = nix.thunk(() => nix.app(trimWith, nix.thunk(() => ({ __proto__: pos$1, start: true, end: true }))));
+    const trim = nix.thunk(() => nix.app(trimWith, nix.thunk(() => ({ [nix.POS]: pos$1, start: true, end: true }))));
     const trimWith = nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const start = nix.argOr($_1, "start", () => false);
@@ -398,7 +398,7 @@ This function also copies the path to the Nix store, which may not be what you w
       })());
     })());
     return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       compareVersions,
       concatMap,
       elem,

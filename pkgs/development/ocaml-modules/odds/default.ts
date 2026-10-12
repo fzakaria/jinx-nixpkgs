@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const menhir = nix.arg($, "menhir");
   const cmdliner = nix.arg($, "cmdliner");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "odds",
       version: "1.2",
       minimalOCamlVersion: "5.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "raphael-proust",
           repo: "odds",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [cmdliner]),
       nativeBuildInputs: nix.thunk(() => [menhir]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Dice roller",
         homepage: "https://github.com/raphael-proust/odds",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

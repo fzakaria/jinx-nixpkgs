@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.15.0";
       const jarName = nix.thunk(() => nix.str`jmx_prometheus_httpserver-${version}-jar-with-dependencies.jar`);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://maven/io/prometheus/jmx/jmx_prometheus_httpserver/${version}/${jarName}`),
           sha256: "0fr3svn8kjp7bq1wzbkvv5awylwn8b01bngj04zvk7fpzqpgs7mz",
         }))));
@@ -32,7 +32,7 @@ cp $src $out/libexec/$jarName
 makeWrapper "${jre}/bin/java" $out/bin/jmx_prometheus_httpserver --add-flags "-jar $out/libexec/$jarName"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/prometheus/jmx_exporter",
         description: "Process for exposing JMX Beans via HTTP for Prometheus consumption",
         mainProgram: "jmx_prometheus_httpserver",
@@ -45,7 +45,7 @@ makeWrapper "${jre}/bin/java" $out/bin/jmx_prometheus_httpserver --add-flags "-j
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         jarName,

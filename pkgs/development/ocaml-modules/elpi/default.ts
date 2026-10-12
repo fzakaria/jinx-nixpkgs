@@ -57,119 +57,119 @@ export default nix.lambda((args) => (() => {
   const rocqPackages = nix.arg($, "rocqPackages");
   const version = nix.argOr($, "version", () => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.13")) ? "3.8.0" : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.08")) ? "1.20.0" : "1.15.2")));
   const p5 = camlp5;
-  const camlp5_1 = nix.thunk(() => nix.app(nix.sel(p5, "override"), nix.thunk(() => ({ __proto__: pos$1, legacy: true }))));
+  const camlp5_1 = nix.thunk(() => nix.app(nix.sel(p5, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, legacy: true }))));
   const fetched = nix.thunk(() => nix.app(nix.sel(rocqPackages, "metaFetch"), nix.thunk(() => ({
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       release: nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         "3.8.0": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           hash: "sha256-hMJ9CX0CRHiWRDHM8t8oWvKSRip9Z0OyyKX4vV8vDNQ=",
         })),
         "3.7.1": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           hash: "sha256-AQn0T9bAj17tAcVZdl3PTj4ri0fCXQJvAVN1dFn19GY=",
         })),
         "3.6.2": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           hash: "sha256-BDE4L5qYZfaMt+6JivNBJIaJGeDSf5E+Kw1Wera/WFk=",
         })),
         "3.6.1": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           hash: "sha256-zoVgRqNAXeCgk3zGntVkkZxIiQrCU5+ONeI97BiT674=",
         })),
         "3.4.5": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           hash: "sha256-cck6XqC98Z9lb3CYS8K/aB1WOckjAyXzZ14vX41nJvI=",
         })),
         "3.4.4": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           hash: "sha256-SvNNAyBYIkSMv3rhx0wVu2JjHdGYUOqaFzZKGBMMebs=",
         })),
         "3.4.3": nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           hash: "sha256-2bzUzUO/Ps1uxHHIzQx0pULme9upYxBBggenxaQrd+I=",
         })),
         "3.4.2": nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           hash: "sha256-w7GjKYZrVrfezJN0NLmzpVm6CFGVKxXszHADFGCw5cc=",
         })),
         "3.4.1": nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           hash: "sha256-3rQPw91dHAqp61KTHk1UOEqh5syWrZZ1V1/1eE8cyI8=",
         })),
         "3.3.0": nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           hash: "sha256:963f95eea48b8f853cca9cbe4db49f22343c58e88dc961bc1da303356ef50dcd",
         })),
         "3.0.1": nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           hash: "sha256-r4B0xn6UCVslVW4dHiqq8NBMGfNz44kZy48KDWeGquc=",
         })),
         "2.0.7": nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           hash: "sha256-gCM+vZK6vWlhSO1VMjiWHse23mvxVwRarhxwkIQK7e0=",
         })),
         "2.0.6": nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           hash: "sha256-tRUYXQZ0VXrjIZBZ1skdzieUsww4rSNEe5ik+iKpk3U=",
         })),
         "2.0.5": nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           hash: "sha256-cHgERFqrfSg5WtUX3UxR6L+QkzS7+t6n4V+wweiEacc=",
         })),
         "2.0.3": nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           hash: "sha256-t2z0sWPiFgp6LuR6CsH/Zk9qfxW+3QjjFcYrB6qSPgc=",
         })),
         "1.20.0": nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           hash: "sha256-lctZAIQgOg5d+LfILtWsBVcsemV3zTZYfJfDlCxHtcA=",
         })),
         "1.19.2": nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           hash: "sha256-dBj5Ek7PWq/8Btq/dggJUqa8cUtfvbi6EWo/lJEDOU4=",
         })),
         "1.18.2": nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           hash: "sha256-usOYukHQ/h4YBxlhYrAkMTVjNm97hq4IArI9bvDzy/k=",
         })),
         "1.18.1": nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           hash: "sha256-rrIv/mVC0Ez3nU7fpnzwduIC3tI6l73DjgAbv1gd2v0=",
         })),
         "1.17.0": nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           hash: "sha256-J8FJBeaB+2HtHjrkgNzOZJngZ2AcYU+npL9Y1HNPnzo=",
         })),
         "1.15.2": nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           hash: "sha256-+sQYQiN3n+dlzXzi5opOjhkJZqpkNwlHZcUjaUM6+xQ=",
         })),
         "1.15.0": nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           hash: "sha256-vpQzbkDqJPCmaBmXcBnzlWGS7djW9wWv8xslkIlXgP0=",
         })),
         "1.13.7": nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           hash: "sha256-0QbOEnrRCYA2mXDGRKe+QYCXSESLJvLzRW0Iq+/3P9Y=",
         })),
         "1.12.0": nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           hash: "sha256-w4JzLZB8jcxw7nA7AfgU9jTZTr6IYUxPU5E2vNIFC4Q=",
         })),
         "1.11.4": nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           hash: "sha256-dyzEpzokgffsF9lt+FZgUlcZEuAb70vGuHfGUtjZYIM=",
         })),
       })),
       releaseRev: (v) => nix.str`v${v}`,
       releaseArtifact: (v) => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), v, "1.13.8")) ? nix.str`elpi-${v}.tbz` : nix.str`elpi-v${v}.tbz`),
-      location: nix.thunk(() => ({ __proto__: pos$28, domain: "github.com", owner: "LPCIC", repo: "elpi" })),
+      location: nix.thunk(() => ({ [nix.POS]: pos$28, domain: "github.com", owner: "LPCIC", repo: "elpi" })),
     })), version));
   const version_1 = nix.thunk(() => nix.attr(fetched, "version"));
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       pname: "elpi",
       version: version_1,
       src: nix.thunk(() => nix.attr(fetched, "src")),
@@ -180,9 +180,9 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version_1, "1.16")) || nix.asBool(nix.eq(version_1, "dev")))), atdgen)))),
       buildInputs: nix.thunk(() => nix.concat([ncurses], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version_1, "3.3.0")) || nix.asBool(nix.eq(version_1, "dev")))), ppx_optcomp), nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version_1, "1.16")) || nix.asBool(nix.eq(version_1, "dev")))), atdgen_runtime)))),
       propagatedBuildInputs: nix.thunk(() => nix.concat([re, stdlib_shims], nix.concat((nix.asBool((nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version_1, "1.15")) || nix.asBool(nix.eq(version_1, "dev")))) ? [menhirLib] : [camlp5_1]), nix.concat((nix.asBool((nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version_1, "2.0.7")) || nix.asBool(nix.eq(version_1, "dev")))) ? [ppx_deriving] : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version_1, "1.13")) ? [ppx_deriving_0_33] : [ppx_deriving_0_15])), nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version_1, "3.8")) || nix.asBool(nix.eq(version_1, "dev")))), atdgen_runtime))))),
-      passthru: nix.thunk(() => ({ __proto__: pos$30, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$30, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         description: "Embeddable λProlog Interpreter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),

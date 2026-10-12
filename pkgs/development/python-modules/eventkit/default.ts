@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
   const version = "1.0.3";
   const hash = "sha256-mUl/bzxjilD/dhby+M2Iexi7/zdl3BvYaBVU2xRnyTM=";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       format: "setuptools",
       pname: pname,
       version: version,
-      src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({ __proto__: pos$1, pname: pname, version: version, hash: hash })))),
+      src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({ [nix.POS]: pos$1, pname: pname, version: version, hash: hash })))),
       propagatedBuildInputs: nix.thunk(() => [numpy]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/erdewit/eventkit",
         description: "Event-driven data pipelines",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

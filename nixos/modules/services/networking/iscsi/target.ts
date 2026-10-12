@@ -27,18 +27,18 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "target"));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         target: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
           return {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             enable: nix.thunk(() => nix.app(nix.lookup(w_1, "mkEnableOption"), "the kernel's LIO iscsi target")),
             config: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.lookup(w_1, "attrs")),
                 default: nix.thunk(() => ({})),
                 description: "Content of /etc/target/saveconfig.json\nThis file is normally read and written by targetcli\n",
@@ -48,13 +48,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         environment: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           etc: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             "target/saveconfig.json": nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               text: nix.thunk(() => nix.app(nix.sel(nix.builtins, "toJSON"), nix.thunk(() => nix.sel(cfg, "config")))),
               mode: "0600",
             })),
@@ -65,21 +65,21 @@ export default nix.lambda((args) => (() => {
           })()),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           kernelModules: nix.thunk(() => ["configfs", "target_core_mod", "iscsi_target_mod"]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             "iscsi-target": nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               enable: true,
               after: nix.thunk(() => ["network.target", "local-fs.target"]),
               requires: nix.thunk(() => ["sys-kernel-config.mount"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 Type: "oneshot",
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "python3Packages", "rtslib-fb")))} restore`),
                 ExecStop: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "python3Packages", "rtslib-fb")))} clear`),
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             rules: nix.thunk(() => ["d /etc/target 0700 root root - -"]),
           })),
         })),

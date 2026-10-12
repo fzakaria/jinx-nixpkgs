@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const gnum4 = nix.arg($, "gnum4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "suitesparse-graphblas",
       version: "10.5.1",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DrTimothyAldenDavis",
           repo: "GraphBLAS",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "GRAPHBLAS_USE_JIT", nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64"))))))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Graph algorithms in the language of linear algebra",
         homepage: "https://people.engr.tamu.edu/davis/GraphBLAS.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

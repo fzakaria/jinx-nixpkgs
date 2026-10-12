@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const avahi = nix.arg($, "avahi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lexmark-aex",
       version: "1.0",
       dontPatchELF: true,
       dontStrip: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://downloads.lexmark.com/downloads/drivers/Lexmark-AEX-PPD-Files-1.0-01242019.amd64.deb",
           hash: "sha256-igrJEeFLArGbncOwk/WttnWfPjOokD0/IzpJ4VSOtHk=",
         })))),
@@ -56,7 +56,7 @@ runHook postInstall
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CUPS drivers for Lexmark B2200 and MB2200 Series printers",
         homepage: "https://support.lexmark.com/en_xm/drivers-downloads.html",
         sourceProvenance: nix.thunk(() => (() => {

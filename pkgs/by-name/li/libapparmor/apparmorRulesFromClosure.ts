@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
     return (rootPaths) => nix.app(runCommand, nix.thunk(() => nix.add("apparmor-closure-rules", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(name, "")), nix.thunk(() => nix.str`-${name}`)))), nix.thunk(() => ({})), nix.thunk(() => nix.str`touch $out
 while read -r path
 do printf >>$out "%s,\\n" ${nix.app(nix.sel(lib, "concatMapStringsSep"), " ", (x) => nix.str`"${x}"`, nix.thunk(() => nix.concat(baseRules, additionalRules)))}
-done <${nix.app(closureInfo, nix.thunk(() => ({ __proto__: pos$1, rootPaths: rootPaths })))}/store-paths
+done <${nix.app(closureInfo, nix.thunk(() => ({ [nix.POS]: pos$1, rootPaths: rootPaths })))}/store-paths
 `));
   })(), formals$2);
 })(), formals$1);

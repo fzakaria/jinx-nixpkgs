@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libmediainfo = nix.arg($, "libmediainfo");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mediainfo",
       version: "26.05",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://mediaarea.net/download/source/mediainfo/${nix.sel(finalAttrs, "version")}/mediainfo_${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-+FIJP5BQAi1plgbuq7OLJNpVI9AhL6tk3E5NPka1beE=",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-libmediainfo=${libmediainfo}`)]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Supplies technical and tag information about a video or audio file",
         longDescription: "MediaInfo is a convenient unified display of the most relevant technical\nand tag data for video and audio files.\n",
         homepage: "https://mediaarea.net/",

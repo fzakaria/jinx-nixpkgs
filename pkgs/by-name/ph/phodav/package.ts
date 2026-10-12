@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0";
       const outputs = nix.thunk(() => ["out", "dev", "lib"]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/phodav/${version}/phodav-${version}.tar.xz`),
           sha256: "OS7C0G1QMA3P8e8mmiqYUwTim841IAAvyiny7cHRONE=",
         }))));
@@ -39,15 +39,15 @@ export default nix.lambda((args) => (() => {
         "-Dgtk_doc=disabled",
         nix.thunk(() => nix.str`-Dudevrulesdir=${nix.builtins.placeholder("out")}/lib/udev/rules.d`),
       ]);
-      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ __proto__: pos$2, NIX_LDFLAGS: "-lintl" }))));
+      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-lintl" }))));
       const doInstallCheck = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$3, packageName: pname })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: pname })))),
       }));
       const preConfigure = "install -vDt $out/lib/udev/rules.d/ data/*-spice-webdavd.rules\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "WebDav server implementation and library using libsoup",
         homepage: "https://gitlab.gnome.org/GNOME/phodav",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         outputs,

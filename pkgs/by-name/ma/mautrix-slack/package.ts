@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "26.09.1";
       const tag = "v0.2609.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mautrix",
           repo: "slack",
           tag: tag,
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
       const doInstallCheck = true;
       const ldflags = nix.thunk(() => ["-s", "-w", "-X", nix.thunk(() => nix.str`main.Tag=${tag}`)]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Matrix-Slack puppeting bridge",
         homepage: "https://github.com/mautrix/slack",
         changelog: nix.thunk(() => nix.str`https://github.com/mautrix/slack/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "mautrix-slack",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         tag,

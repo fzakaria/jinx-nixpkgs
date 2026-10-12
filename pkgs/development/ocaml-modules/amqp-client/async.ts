@@ -14,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const amqp_client = nix.arg($, "amqp-client");
   const ezxmlm = nix.arg($, "ezxmlm");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "amqp-client-async",
       version: nix.thunk(() => nix.attr(amqp_client, "version")),
       src: nix.thunk(() => nix.attr(amqp_client, "src")),
       doCheck: true,
       buildInputs: nix.thunk(() => [ezxmlm]),
       propagatedBuildInputs: nix.thunk(() => [amqp_client, async$, uri]),
-      meta: nix.thunk(() => nix.update(nix.sel(amqp_client, "meta"), { __proto__: pos$1, description: "Amqp client library, async version" })),
+      meta: nix.thunk(() => nix.update(nix.sel(amqp_client, "meta"), { [nix.POS]: pos$1, description: "Amqp client library, async version" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=async.ts.map

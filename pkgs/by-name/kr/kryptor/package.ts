@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "kryptor";
       const version = "4.1.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "samuel-lucas6",
           repo: "Kryptor",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       const doInstallCheck = true;
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/samuel-lucas6/Kryptor/releases/tag/v${version}`),
         description: "Simple, modern, and secure encryption and signing tool that aims to be a better version of age and Minisign",
         homepage: "https://github.com/samuel-lucas6/Kryptor",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

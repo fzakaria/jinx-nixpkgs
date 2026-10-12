@@ -34,6 +34,6 @@ export default nix.lambda((args) => (() => {
     const cmakeFlags = nix.argOr($_1, "cmakeFlags", () => []);
     return nix.concat(cmakeFlags, cmakeFlags$);
   })(), formals$2);
-  return { __proto__: pos$1, makeCMakeFlags: makeCMakeFlags };
+  return { [nix.POS]: pos$1, makeCMakeFlags: makeCMakeFlags };
 })(), formals$1);
 //# sourceMappingURL=cmake.ts.map

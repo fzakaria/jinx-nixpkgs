@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
   const levenshteinAtMost = nix.thunk(() => nix.attr(from, "levenshteinAtMost"));
   return (() => {
     const overrideDerivation = (drv) => (f) => nix.app(extendDerivation, nix.thunk(() => nix.app(seq, nix.thunk(() => nix.sel(drv, "drvPath")), true)), nix.thunk(() => nix.update({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         meta: nix.thunk(() => nix.selOr(drv, () => ({}), "meta")),
         passthru: nix.thunk(() => nix.selOr(drv, () => ({}), "passthru")),
       }, nix.update(nix.selOr(drv, () => ({}), "passthru"), nix.attrsDyn({}, [
@@ -79,12 +79,12 @@ export default nix.lambda((args) => (() => {
         const result = nix.thunk(() => nix.app(f, origArgs));
         const overrideArgs = nix.thunk(() => nix.app(mirrorArgs, (newArgs) => nix.app(makeOverridable, f, nix.thunk(() => nix.update(origArgs, (nix.asBool(nix.app(isFunction, newArgs)) ? nix.app(newArgs, origArgs) : nix.force(newArgs)))))));
         return (nix.asBool(nix.app(isAttrs, result)) ? nix.update(result, nix.attrsDyn({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           override: overrideArgs,
           overrideDerivation: (fdrv) => nix.app(makeOverridable, nix.thunk(() => nix.app(mirrorArgs, (args_1) => nix.app(overrideDerivation, nix.thunk(() => nix.app(f, args_1)), fdrv))), origArgs),
         }, [
           [(nix.asBool(nix.has(result, "overrideAttrs")) ? "overrideAttrs" : null), (fdrv) => nix.app(makeOverridable, nix.thunk(() => nix.app(mirrorArgs, (args_1) => nix.app(nix.sel(nix.app(f, args_1), "overrideAttrs"), fdrv))), origArgs)],
-        ])) : (nix.asBool(nix.app(isFunction, result)) ? nix.update(nix.app(setFunctionArgs, result, nix.thunk(() => nix.app(functionArgs, result))), { __proto__: pos$3, override: overrideArgs }) : nix.force(result)));
+        ])) : (nix.asBool(nix.app(isFunction, result)) ? nix.update(nix.app(setFunctionArgs, result, nix.thunk(() => nix.app(functionArgs, result))), { [nix.POS]: pos$3, override: overrideArgs }) : nix.force(result)));
       })();
       return (nix.asBool(nix.app(isAttrs, f)) ? nix.update(f, nix.update(nix.app(mirrorArgs, f$), nix.attrsDyn({}, [
         [(nix.asBool(nix.has(f, "override")) ? "override" : null), (fdrv) => nix.app(makeOverridable, nix.thunk(() => nix.app(nix.sel(f, "override"), fdrv)))],
@@ -125,12 +125,12 @@ export default nix.lambda((args) => (() => {
     const extendDerivation = (condition) => (passthru) => (drv) => (() => {
       const commonAttrs = nix.thunk(() => nix.update(drv, nix.update(nix.app(listToAttrs, nix.thunk(() => nix.concat(outputsList, [
           nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "all",
             value: nix.thunk(() => nix.app(catAttrs, "value", outputsList)),
           })),
         ]))), nix.update(passthru, {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         drvPath: nix.thunk(() => (() => {
           nix.assert_(condition, "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/customisation.nix:417:13");
           return nix.sel(drv, "drvPath");
@@ -141,12 +141,12 @@ export default nix.lambda((args) => (() => {
         })()),
       }))));
       const outputsList = nix.thunk(() => nix.builtins.map((outputName) => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           name: outputName,
           value: nix.thunk(() => nix.update(commonAttrs, (() => {
             const from_1 = nix.thunk(() => nix.sel(drv, nix.key(nix.force(outputName))));
             return nix.attrsDyn({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             type: nix.thunk(() => nix.attr(from_1, "type")),
             outputName: nix.thunk(() => nix.attr(from_1, "outputName")),
             outputSpecified: true,
@@ -168,23 +168,23 @@ export default nix.lambda((args) => (() => {
     const hydraJob = (drv) => (() => {
       const outputs = nix.thunk(() => nix.selOr(drv, () => ["out"], "outputs"));
       const commonAttrs = nix.thunk(() => nix.update({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         name: nix.thunk(() => nix.attr(drv, "name")),
         system: nix.thunk(() => nix.attr(drv, "system")),
         meta: nix.thunk(() => nix.attr(drv, "meta")),
         outputs: outputs,
       }, nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.selOr(drv, () => false, "_hydraAggregate")), nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           _hydraAggregate: true,
           constituents: nix.thunk(() => nix.builtins.map(hydraJob, nix.thunk(() => nix.app(flatten, nix.thunk(() => nix.sel(drv, "constituents")))))),
         }))), nix.app(listToAttrs, outputsList))));
       const makeOutput = (outputName) => (() => {
         const output = nix.thunk(() => nix.sel(drv, nix.key(nix.force(outputName))));
         return {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           name: outputName,
           value: nix.thunk(() => nix.update(commonAttrs, {
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             outPath: nix.thunk(() => nix.sel(output, "outPath")),
             drvPath: nix.thunk(() => nix.sel(output, "drvPath")),
             type: "derivation",
@@ -198,18 +198,18 @@ export default nix.lambda((args) => (() => {
     })();
     const makeScope = (newScope) => (f) => (() => {
       const self = nix.thunk(() => nix.update({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         callPackage: nix.thunk(() => nix.app(nix.sel(self, "newScope"), nix.thunk(() => ({})))),
       }, nix.update(nix.app(f, self), {
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         newScope: (scope) => nix.app(newScope, nix.thunk(() => nix.update(self, scope))),
         overrideScope: (g) => nix.app(makeScope, newScope, nix.thunk(() => nix.app(extends$, g, f))),
         packages: f,
       })));
       return nix.force(self);
     })();
-    const makeScopeWithSplicing = (splicePackages) => (newScope) => (otherSplices) => (keep) => (extra) => (f) => nix.app(makeScopeWithSplicing$, nix.thunk(() => ({ __proto__: pos$14, splicePackages: splicePackages, newScope: newScope })), nix.thunk(() => ({
-        __proto__: pos$15,
+    const makeScopeWithSplicing = (splicePackages) => (newScope) => (otherSplices) => (keep) => (extra) => (f) => nix.app(makeScopeWithSplicing$, nix.thunk(() => ({ [nix.POS]: pos$14, splicePackages: splicePackages, newScope: newScope })), nix.thunk(() => ({
+        [nix.POS]: pos$15,
         otherSplices: otherSplices,
         keep: keep,
         extra: extra,
@@ -226,7 +226,7 @@ export default nix.lambda((args) => (() => {
         const extra = nix.argOr($_2, "extra", () => (_spliced0) => ({}));
         const f = nix.arg($_2, "f");
         const spliced0 = nix.thunk(() => nix.app(splicePackages, nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             pkgsBuildBuild: nix.thunk(() => nix.sel(otherSplices, "selfBuildBuild")),
             pkgsBuildHost: nix.thunk(() => nix.sel(otherSplices, "selfBuildHost")),
             pkgsBuildTarget: nix.thunk(() => nix.sel(otherSplices, "selfBuildTarget")),
@@ -236,11 +236,11 @@ export default nix.lambda((args) => (() => {
           }))));
         const spliced = nix.thunk(() => nix.update(nix.app(extra, spliced0), nix.update(spliced0, nix.app(keep, self))));
         const self = nix.thunk(() => nix.update(nix.app(f, self), {
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           newScope: (scope) => nix.app(newScope, nix.thunk(() => nix.update(spliced, scope))),
           callPackage: nix.thunk(() => nix.app(newScope, spliced)),
-          overrideScope: (g) => nix.app(makeScopeWithSplicing$, nix.thunk(() => ({ __proto__: pos$17, splicePackages: splicePackages, newScope: newScope })), nix.thunk(() => ({
-              __proto__: pos$18,
+          overrideScope: (g) => nix.app(makeScopeWithSplicing$, nix.thunk(() => ({ [nix.POS]: pos$17, splicePackages: splicePackages, newScope: newScope })), nix.thunk(() => ({
+              [nix.POS]: pos$18,
               otherSplices: otherSplices,
               keep: keep,
               extra: extra,
@@ -260,7 +260,7 @@ export default nix.lambda((args) => (() => {
       const inheritFunctionArgs = nix.argOr($_1, "inheritFunctionArgs", () => true);
       const transformDrv = nix.argOr($_1, "transformDrv", () => nix.force(id));
       return {
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         __functor: (self) => (fpargs) => nix.app(transformDrv, nix.thunk(() => nix.app(constructDrv, (final) => (() => {
               const previous = nix.thunk(() => (nix.asBool(nix.app(isFunction, fpargs)) ? nix.app(fpargs, final) : nix.force(fpargs)));
               return nix.update(nix.builtins.removeAttrs(previous, excludeDrvArgNames), nix.app(extendDrvArgs, final, previous));
@@ -273,7 +273,7 @@ export default nix.lambda((args) => (() => {
       };
     })(), formals$4);
     const renameCrossIndexFrom = (prefix) => (x) => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       buildBuild: nix.thunk(() => nix.sel(x, nix.key(nix.str`${prefix}BuildBuild`))),
       buildHost: nix.thunk(() => nix.sel(x, nix.key(nix.str`${prefix}BuildHost`))),
       buildTarget: nix.thunk(() => nix.sel(x, nix.key(nix.str`${prefix}BuildTarget`))),
@@ -298,7 +298,7 @@ export default nix.lambda((args) => (() => {
       const hostTarget = nix.arg($_1, "hostTarget");
       const targetTarget = nix.arg($_1, "targetTarget");
       return {
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         buildBuild: nix.thunk(() => nix.app(f, buildBuild)),
         buildHost: nix.thunk(() => nix.app(f, buildHost)),
         buildTarget: nix.thunk(() => nix.app(f, buildTarget)),
@@ -308,7 +308,7 @@ export default nix.lambda((args) => (() => {
       };
     })(), formals$5);
     return {
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       overrideDerivation,
       makeOverridable,
       callPackageWith,

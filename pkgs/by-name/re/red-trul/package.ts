@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const sox = nix.arg($, "sox");
   const runtimeDeps = nix.thunk(() => [ffmpeg, flac2mp3, sox]);
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "red-trul",
       version: "2.3.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lfence",
           repo: "red-trul",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,9 +34,9 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`wrapProgram $out/bin/red-trul \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "runtimeDeps")))}
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, runtimeDeps: runtimeDeps })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, runtimeDeps: runtimeDeps })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         mainProgram: "red-trul",
         description: "Lightweight utility to transcode FLAC releases",
         homepage: "https://github.com/lfence/red-trul",

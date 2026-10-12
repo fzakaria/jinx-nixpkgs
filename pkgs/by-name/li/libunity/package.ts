@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libunity",
       version: "7.1.4-unstable-2021-02-01",
       outputs: nix.thunk(() => ["out", "dev", "py"]),
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.launchpad.net/ubuntu/+source/libunity",
           rev: "import/7.1.4+19.04.20190319-5",
           sha256: "LHUs6kl1srS6Xektx+jmm4SXLR47VuQ9IhYbBxf2Wc8=",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-pygi-overrides-dir=${nix.builtins.placeholder("py")}/${nix.sel(python3, "sitePackages")}/gi/overrides`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for instrumenting and integrating with all aspects of the Unity shell",
         homepage: "https://launchpad.net/libunity",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

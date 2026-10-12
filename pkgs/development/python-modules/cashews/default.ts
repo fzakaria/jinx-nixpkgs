@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Krukov",
           repo: "cashews",
           tag: version,
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         dill: nix.thunk(() => [dill]),
         diskcache: nix.thunk(() => [diskcache]),
         redis: nix.thunk(() => [redis]),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["redis", "diskcache", "integration"]);
       const pythonImportsCheck = nix.thunk(() => ["cashews"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Cache tools with async power",
         homepage: "https://github.com/Krukov/cashews/",
         changelog: nix.thunk(() => nix.str`https://github.com/Krukov/cashews/releases/tag/${nix.sel(src, "tag")}`),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

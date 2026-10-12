@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const kdePackages = nix.arg($, "kdePackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "subtitlecomposer",
       version: "0.8.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "invent.kde.org",
           owner: "multimedia",
           repo: "subtitlecomposer",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         ];
       })())),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://apps.kde.org/subtitlecomposer",
         description: "Open source text-based subtitle editor",
         longDescription: "An open source text-based subtitle editor that supports basic and\nadvanced editing operations, aiming to become an improved version of\nSubtitle Workshop for every platform supported by Plasma Frameworks.\n",

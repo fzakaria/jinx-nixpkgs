@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const scdoc = nix.arg($, "scdoc");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "uair",
       version: "0.6.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "metent",
           repo: "uair",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles, scdoc]),
       preFixup: "scdoc < docs/uair.1.scd > docs/uair.1\nscdoc < docs/uair.5.scd > docs/uair.5\nscdoc < docs/uairctl.1.scd > docs/uairctl.1\n\ninstallManPage docs/*.[1-9]\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extensible pomodoro timer",
         homepage: "https://github.com/metent/uair",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

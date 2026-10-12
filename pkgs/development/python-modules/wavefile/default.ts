@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.6.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vokimon",
           repo: "python-wavefile",
           tag: nix.thunk(() => nix.str`python-wavefile-${version}`),
@@ -36,14 +36,14 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pyaudio, numpy, libsndfile]);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./libsndfile.py.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             libsndfile: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), libsndfile)}/lib/libsndfile${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
           })))),
       ]);
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["wavefile"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Pythonic libsndfile wrapper to read and write audio files",
         homepage: "https://github.com/vokimon/python-wavefile",
         changelog: "https://github.com/vokimon/python-wavefile#version-history",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

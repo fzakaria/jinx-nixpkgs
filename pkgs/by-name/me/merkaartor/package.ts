@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const withZbar = nix.argOr($, "withZbar", () => false);
   const zbar = nix.arg($, "zbar");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "merkaartor",
       version: "0.20.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openstreetmap",
           repo: "merkaartor",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/openstreetmap/merkaartor/commit/28cca84e9f5db0aaba87c2084ed32f9677598823.diff",
             hash: "sha256-so0La5djYhWF6NqLpShWa3vGl5A2jkS3Xwg5Pe1yse4=",
           })))),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/{Applications,bin}\nmv $out/merkaartor.app $out/Applications\n# Prevent wrapping, otherwise plugins will not be loaded\nchmod -x $out/Applications/merkaartor.app/Contents/plugins/background/*.dylib\nmakeWrapper $out/{Applications/merkaartor.app/Contents/MacOS,bin}/merkaartor\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "OpenStreetMap editor",
         homepage: "https://merkaartor.be/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

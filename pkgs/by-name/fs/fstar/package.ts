@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const ocamlPackages = nix.thunk(() => nix.sel(ocaml_ng, "ocamlPackages_5_4"));
   const fstarZ3 = nix.thunk(() => nix.app(callPackage, nix.path(here, "./z3"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(ocamlPackages, "buildDunePackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "fstar",
       version: "2026.03.24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FStarLang",
           repo: "FStar",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -95,15 +95,15 @@ runHook postInstall
 `),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex", "^v([0-9]{4}\\.[0-9]{2}\\.[0-9]{2})$"]),
           })))),
         z3: fstarZ3,
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "ML-like functional programming language aimed at program verification",
         homepage: "https://www.fstar-lang.org",
         changelog: nix.thunk(() => nix.str`https://github.com/FStarLang/FStar/raw/v${nix.sel(finalAttrs, "version")}/CHANGES.md`),

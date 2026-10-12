@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "habluetooth",
       version: "6.26.11",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Bluetooth-Devices",
           repo: "habluetooth",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [freezegun, pytest_asyncio, pytest_codspeed, pytest_cov_stub, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["habluetooth"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for high availability Bluetooth",
         homepage: "https://github.com/Bluetooth-Devices/habluetooth",
         changelog: nix.thunk(() => nix.str`https://github.com/Bluetooth-Devices/habluetooth/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

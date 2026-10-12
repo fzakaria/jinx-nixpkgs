@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const rev = "a7e046db4b29d422fc9aac60ea6b82b31399951a";
   const sha256 = "sha256-6ZQ0OLijq6UtOtUqRdFC19+helhU0Av6MvGCZf6XmcQ=";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "nix-serve",
       version: nix.thunk(() => nix.str`0.2-${nix.app(nix.sel(lib, "substring"), 0n, 7n, rev)}`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "edolstra",
           repo: "nix-serve",
           rev: rev,
@@ -46,16 +46,16 @@ makeWrapper ${nix.app(nix.sel(perl, "withPackages"), (p) => [
   --add-flags $out/libexec/nix-serve/nix-serve.psgi
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         nix: nix$,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "nix-serve": nix.thunk(() => nix.sel(nixosTests, "nix-serve")),
           "nix-serve-ssh": nix.thunk(() => nix.sel(nixosTests, "nix-serve-ssh")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/edolstra/nix-serve",
         description: "Utility for sharing a Nix store as a binary cache",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

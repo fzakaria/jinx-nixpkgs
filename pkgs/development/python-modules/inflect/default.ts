@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.5.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jaraco",
           repo: "inflect",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["inflect.engine.compare"]);
       const pythonImportsCheck = nix.thunk(() => ["inflect"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Correctly generate plurals, singular nouns, ordinals, indefinite articles",
         homepage: "https://github.com/jaraco/inflect",
         changelog: nix.thunk(() => nix.str`https://github.com/jaraco/inflect/blob/${nix.sel(src, "tag")}/CHANGES.rst`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "tts"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

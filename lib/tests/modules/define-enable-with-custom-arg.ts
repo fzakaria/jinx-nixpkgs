@@ -10,8 +10,8 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const custom = nix.arg($, "custom");
   return {
-    __proto__: pos$2,
-    config: nix.thunk(() => ({ __proto__: pos$1, enable: custom })),
+    [nix.POS]: pos$2,
+    config: nix.thunk(() => ({ [nix.POS]: pos$1, enable: custom })),
   };
 })(), formals$1);
 //# sourceMappingURL=define-enable-with-custom-arg.ts.map

@@ -9,6 +9,6 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const runCommand = nix.arg($, "runCommand");
   const changelog_d = nix.arg($, "changelog-d");
-  return nix.app(runCommand, "changelog-d-basic-test", nix.thunk(() => ({ __proto__: pos$1, nativeBuildInputs: nix.thunk(() => [changelog_d]) })), "mkdir changelogs\ncat > changelogs/config <<EOF\norganization: NixOS\nrepository: boondoggle\nEOF\ncat > changelogs/a <<EOF\nsynopsis: Support numbers with incrementing base-10 digits\nissues: #1234\ndescription: {\nThis didn't work before.\n}\nEOF\nchangelog-d changelogs >$out\ncat -n $out\necho Checking the generated output\nset -x\ngrep -F 'Support numbers with incrementing base-10 digits' $out >/dev/null\ngrep -F 'https://github.com/NixOS/boondoggle/issues/1234' $out >/dev/null\nset +x\n");
+  return nix.app(runCommand, "changelog-d-basic-test", nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [changelog_d]) })), "mkdir changelogs\ncat > changelogs/config <<EOF\norganization: NixOS\nrepository: boondoggle\nEOF\ncat > changelogs/a <<EOF\nsynopsis: Support numbers with incrementing base-10 digits\nissues: #1234\ndescription: {\nThis didn't work before.\n}\nEOF\nchangelog-d changelogs >$out\ncat -n $out\necho Checking the generated output\nset -x\ngrep -F 'Support numbers with incrementing base-10 digits' $out >/dev/null\ngrep -F 'https://github.com/NixOS/boondoggle/issues/1234' $out >/dev/null\nset +x\n");
 })(), formals$1);
 //# sourceMappingURL=basic.ts.map

@@ -18,28 +18,28 @@ const pos$9 = nix.positions(here + "/atmosphere.nix", [["name", 3, 3], ["skipTyp
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     name: "stardust-xr-atmosphere",
     skipTypeCheck: true,
     nodes: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib = nix.arg($_1, "lib");
         const pkgs = nix.arg($_1, "pkgs");
         const config = nix.arg($_1, "config");
         return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           imports: nix.thunk(() => [nix.path(here, "./common.nix")]),
-          virtualisation: nix.thunk(() => ({ __proto__: pos$1, memorySize: 4096n })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, memorySize: 4096n })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             user: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               services: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 "stardust-xr-atmosphere": nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   wantedBy: nix.thunk(() => ["xdg-desktop-autostart.target"]),
                   requires: nix.thunk(() => ["stardust-xr-server.service"]),
                   after: nix.thunk(() => ["stardust-xr-server.service"]),
@@ -48,7 +48,7 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "stardust-xr-atm
 ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "stardust-xr-atmosphere")))} set-default the_grid
 ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "stardust-xr-atmosphere")))} show
 `),
-                  environment: nix.thunk(() => ({ __proto__: pos$2, RUST_BACKTRACE: "full" })),
+                  environment: nix.thunk(() => ({ [nix.POS]: pos$2, RUST_BACKTRACE: "full" })),
                 })),
               })),
             })),

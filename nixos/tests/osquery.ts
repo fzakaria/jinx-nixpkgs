@@ -21,10 +21,10 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
     const nullvalue = "NULL";
     const utc = false;
     return {
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       name: "osquery",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [
@@ -34,19 +34,19 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
         })()),
       })),
       nodes: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         machine: (_) => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           services: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             osquery: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$3,
-                options: nix.thunk(() => ({ __proto__: pos$2, nullvalue: nullvalue, utc: utc })),
+                [nix.POS]: pos$3,
+                options: nix.thunk(() => ({ [nix.POS]: pos$2, nullvalue: nullvalue, utc: utc })),
               })),
-              flags: nix.thunk(() => ({ __proto__: pos$4, config_refresh: config_refresh, nullvalue: "IGNORED" })),
+              flags: nix.thunk(() => ({ [nix.POS]: pos$4, config_refresh: config_refresh, nullvalue: "IGNORED" })),
             })),
           })),
         }),

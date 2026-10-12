@@ -25,26 +25,26 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const openssl = nix.arg($, "openssl");
   const openjtalk_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "VOICEVOX",
       repo: "open_jtalk",
       rev: "1.11",
       hash: "sha256-SBLdQ8D62QgktI8eI6eSNzdYt5PmGo6ZUCKxd01Z8UE=",
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "voicevox-core",
       version: "0.16.2",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         modelVersion: "0.16.4",
         "voicevox-onnxruntime": nix.thunk(() => nix.app(callPackage, nix.path(here, "./onnxruntime.nix"), nix.thunk(() => ({})))),
         models: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pname: "voicevox-models",
             version: nix.thunk(() => nix.sel(finalAttrs, "passthru", "modelVersion")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 owner: "VOICEVOX",
                 repo: "voicevox_vvm",
                 tag: nix.thunk(() => nix.sel(finalAttrs, "passthru", "modelVersion")),
@@ -61,7 +61,7 @@ ln -s ${nix.sel(finalAttrs, "passthru", "models")} "$out"/lib/model
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "patchelf --add-rpath '$ORIGIN' \"$out\"/lib/libvoicevox_core*\n"))))),
       })),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "VOICEVOX",
           repo: "voicevox_core",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -75,12 +75,12 @@ patch -d $cargoDepsCopy/*/open_jtalk-sys-* -p1 < ./openjtalk.patch
 `),
       cargoBuildFlags: nix.thunk(() => ["-p voicevox_core_c_api"]),
       buildFeatures: nix.thunk(() => ["load-onnxruntime"]),
-      env: nix.thunk(() => ({ __proto__: pos$6, ORT_LIB_LOCATION: "dummy" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$6, ORT_LIB_LOCATION: "dummy" })),
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         changelog: nix.thunk(() => nix.str`https://github.com/VOICEVOX/voicevox_core/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Core library for the VOICEVOX speech synthesis software",
         homepage: "https://github.com/VOICEVOX/voicevox_core",

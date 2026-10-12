@@ -168,38 +168,38 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ __proto__: pos$1, system: system, config: config }))));
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/testing-python.nix")), nix.thunk(() => ({ __proto__: pos$2, system: system, pkgs: pkgs })))), null);
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs })))), null);
   const lib = nix.thunk(() => nix.sel(pkgs, "lib"));
   const eapCerts = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "eap-certs", nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openssl"))]),
     })), "mkdir -p $out\n\n# Create CA certificate\nopenssl req -x509 -newkey rsa:2048 -days 365000 -nodes \\\n  -keyout $out/ca.key -out $out/ca.cert \\\n  -subj \"/CN=ExampleCA\"\n\n# Create server certificate\nopenssl req -newkey rsa:2048 -nodes \\\n  -keyout $out/server.key -out server.csr \\\n  -subj \"/CN=server.example.com\"\nopenssl x509 -req -in server.csr -CA $out/ca.cert -CAkey $out/ca.key \\\n  -days 365000 -set_serial 100 -out $out/server.cert\n\n# Create client certificate\nopenssl req -newkey rsa:2048 -nodes \\\n  -keyout $out/client1.key -out client1.csr \\\n  -subj \"/CN=client1.example.com\"\nopenssl x509 -req -in client1.csr -CA $out/ca.cert -CAkey $out/ca.key \\\n  -days 365000 -set_serial 101 -out $out/client1.cert\n"));
   const eapWifiSsid = "NixOS EAP";
   const vwifiPort = 8212n;
   const vwifiServerAddress = "192.168.1.2";
-  const router = nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./router.nix"), nix.thunk(() => ({ __proto__: pos$4, networkd: true }))));
+  const router = nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./router.nix"), nix.thunk(() => ({ [nix.POS]: pos$4, networkd: true }))));
   const clientConfig = (extraConfig) => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       networking: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         useDHCP: false,
-        interfaces: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ({ __proto__: pos$5, eth1: nix.thunk(() => ({})) })))),
+        interfaces: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ({ [nix.POS]: pos$5, eth1: nix.thunk(() => ({})) })))),
         networkmanager: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enable: true,
           settings: nix.thunk(() => ({
-            __proto__: pos$7,
-            main: nix.thunk(() => ({ __proto__: pos$6, "no-auto-default": "*" })),
+            [nix.POS]: pos$7,
+            main: nix.thunk(() => ({ [nix.POS]: pos$6, "no-auto-default": "*" })),
           })),
           ensureProfiles: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             profiles: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               default: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 connection: nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   id: "default",
                   type: "ethernet",
                   "interface-name": "eth1",
@@ -212,49 +212,49 @@ export default nix.lambda((args) => (() => {
       })),
     })), extraConfig);
   const testCases = nix.thunk(() => ({
-    __proto__: pos$158,
+    [nix.POS]: pos$158,
     startup: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       name: "startup",
       nodes: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         client: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           networking: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             useDHCP: false,
-            networkmanager: nix.thunk(() => ({ __proto__: pos$15, enable: true })),
+            networkmanager: nix.thunk(() => ({ [nix.POS]: pos$15, enable: true })),
           })),
         })),
       })),
       testScript: "with subtest(\"NetworkManager is started automatically at boot\"):\n  client.wait_for_unit(\"NetworkManager.service\")\n",
     })),
     static: nix.thunk(() => ({
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       name: "static",
       nodes: nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         router: router,
         client: nix.thunk(() => nix.app(clientConfig, nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             networking: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               networkmanager: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 ensureProfiles: nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   profiles: nix.thunk(() => ({
-                    __proto__: pos$23,
+                    [nix.POS]: pos$23,
                     default: nix.thunk(() => ({
-                      __proto__: pos$22,
+                      [nix.POS]: pos$22,
                       ipv4: nix.thunk(() => ({
-                        __proto__: pos$20,
+                        [nix.POS]: pos$20,
                         method: "manual",
                         addresses: "192.168.1.42/24",
                         gateway: "192.168.1.1",
                       })),
                       ipv6: nix.thunk(() => ({
-                        __proto__: pos$21,
+                        [nix.POS]: pos$21,
                         method: "manual",
                         addresses: "fd00:1234:5678:1::42/64",
                         gateway: "fd00:1234:5678:1::1",
@@ -269,25 +269,25 @@ export default nix.lambda((args) => (() => {
       testScript: "start_all()\nrouter.systemctl(\"start network-online.target\")\nrouter.wait_for_unit(\"network-online.target\")\nclient.wait_for_unit(\"NetworkManager.service\")\n\nwith subtest(\"Wait until we have an ip address on each interface\"):\n    client.wait_until_succeeds(\"ip addr show dev eth1 | grep -q '192.168.1'\")\n    client.wait_until_succeeds(\"ip addr show dev eth1 | grep -q 'fd00:1234:5678:1:'\")\n\nwith subtest(\"Test if icmp echo works\"):\n    client.wait_until_succeeds(\"ping -c 1 192.168.3.1\")\n    client.wait_until_succeeds(\"ping -c 1 fd00:1234:5678:3::1\")\n    router.wait_until_succeeds(\"ping -c 1 192.168.1.42\")\n    router.wait_until_succeeds(\"ping -c 1 fd00:1234:5678:1::42\")\n",
     })),
     auto: nix.thunk(() => ({
-      __proto__: pos$39,
+      [nix.POS]: pos$39,
       name: "auto",
       nodes: nix.thunk(() => ({
-        __proto__: pos$38,
+        [nix.POS]: pos$38,
         router: router,
         client: nix.thunk(() => nix.app(clientConfig, nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             networking: nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               networkmanager: nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 ensureProfiles: nix.thunk(() => ({
-                  __proto__: pos$34,
+                  [nix.POS]: pos$34,
                   profiles: nix.thunk(() => ({
-                    __proto__: pos$33,
+                    [nix.POS]: pos$33,
                     default: nix.thunk(() => ({
-                      __proto__: pos$32,
-                      ipv4: nix.thunk(() => ({ __proto__: pos$30, method: "auto" })),
-                      ipv6: nix.thunk(() => ({ __proto__: pos$31, method: "auto" })),
+                      [nix.POS]: pos$32,
+                      ipv4: nix.thunk(() => ({ [nix.POS]: pos$30, method: "auto" })),
+                      ipv6: nix.thunk(() => ({ [nix.POS]: pos$31, method: "auto" })),
                     })),
                   })),
                 })),
@@ -298,24 +298,24 @@ export default nix.lambda((args) => (() => {
       testScript: "start_all()\nrouter.systemctl(\"start network-online.target\")\nrouter.wait_for_unit(\"network-online.target\")\nclient.wait_for_unit(\"NetworkManager.service\")\n\nwith subtest(\"Wait until we have an ip address on each interface\"):\n    client.wait_until_succeeds(\"ip addr show dev eth1 | grep -q '192.168.1'\")\n    client.wait_until_succeeds(\"ip addr show dev eth1 | grep -q 'fd00:1234:5678:1:'\")\n\nwith subtest(\"Test if icmp echo works\"):\n    client.wait_until_succeeds(\"ping -c 1 192.168.1.1\")\n    client.wait_until_succeeds(\"ping -c 1 fd00:1234:5678:1::1\")\n    router.wait_until_succeeds(\"ping -c 1 192.168.1.2\")\n    router.wait_until_succeeds(\"ping -c 1 fd00:1234:5678:1::2\")\n",
     })),
     dns: nix.thunk(() => ({
-      __proto__: pos$55,
+      [nix.POS]: pos$55,
       name: "dns",
       nodes: nix.thunk(() => ({
-        __proto__: pos$54,
+        [nix.POS]: pos$54,
         router: router,
         dynamic: nix.thunk(() => nix.app(clientConfig, nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             networking: nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               networkmanager: nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 ensureProfiles: nix.thunk(() => ({
-                  __proto__: pos$43,
+                  [nix.POS]: pos$43,
                   profiles: nix.thunk(() => ({
-                    __proto__: pos$42,
+                    [nix.POS]: pos$42,
                     default: nix.thunk(() => ({
-                      __proto__: pos$41,
-                      ipv4: nix.thunk(() => ({ __proto__: pos$40, method: "auto" })),
+                      [nix.POS]: pos$41,
+                      ipv4: nix.thunk(() => ({ [nix.POS]: pos$40, method: "auto" })),
                     })),
                   })),
                 })),
@@ -323,19 +323,19 @@ export default nix.lambda((args) => (() => {
             })),
           })))),
         static: nix.thunk(() => nix.app(clientConfig, nix.thunk(() => ({
-            __proto__: pos$53,
+            [nix.POS]: pos$53,
             networking: nix.thunk(() => ({
-              __proto__: pos$52,
+              [nix.POS]: pos$52,
               networkmanager: nix.thunk(() => ({
-                __proto__: pos$51,
+                [nix.POS]: pos$51,
                 ensureProfiles: nix.thunk(() => ({
-                  __proto__: pos$50,
+                  [nix.POS]: pos$50,
                   profiles: nix.thunk(() => ({
-                    __proto__: pos$49,
+                    [nix.POS]: pos$49,
                     default: nix.thunk(() => ({
-                      __proto__: pos$48,
+                      [nix.POS]: pos$48,
                       ipv4: nix.thunk(() => ({
-                        __proto__: pos$47,
+                        [nix.POS]: pos$47,
                         method: "auto",
                         "ignore-auto-dns": "true",
                         dns: "10.10.10.10",
@@ -351,19 +351,19 @@ export default nix.lambda((args) => (() => {
       testScript: "start_all()\nrouter.systemctl(\"start network-online.target\")\nrouter.wait_for_unit(\"network-online.target\")\ndynamic.wait_for_unit(\"NetworkManager.service\")\nstatic.wait_for_unit(\"NetworkManager.service\")\n\ndynamic.wait_until_succeeds(\"cat /etc/resolv.conf | grep -q '192.168.1.1'\")\nstatic.wait_until_succeeds(\"cat /etc/resolv.conf | grep -q '10.10.10.10'\")\nstatic.wait_until_fails(\"cat /etc/resolv.conf | grep -q '192.168.1.1'\")\n",
     })),
     dispatcherScripts: nix.thunk(() => ({
-      __proto__: pos$61,
+      [nix.POS]: pos$61,
       name: "dispatcherScripts",
       nodes: nix.thunk(() => ({
-        __proto__: pos$60,
+        [nix.POS]: pos$60,
         client: nix.thunk(() => nix.app(clientConfig, nix.thunk(() => ({
-            __proto__: pos$59,
+            [nix.POS]: pos$59,
             networking: nix.thunk(() => ({
-              __proto__: pos$58,
+              [nix.POS]: pos$58,
               networkmanager: nix.thunk(() => ({
-                __proto__: pos$57,
+                [nix.POS]: pos$57,
                 dispatcherScripts: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$56,
+                    [nix.POS]: pos$56,
                     type: "pre-up",
                     source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "testHook", "touch /tmp/dispatcher-scripts-are-working\n")),
                   })),
@@ -375,26 +375,26 @@ export default nix.lambda((args) => (() => {
       testScript: "start_all()\nclient.wait_for_unit(\"NetworkManager.service\")\nclient.wait_until_succeeds(\"stat /tmp/dispatcher-scripts-are-working\")\n",
     })),
     envsubst: nix.thunk(() => ({
-      __proto__: pos$70,
+      [nix.POS]: pos$70,
       name: "envsubst",
       nodes: nix.thunk(() => ({
-        __proto__: pos$69,
+        [nix.POS]: pos$69,
         client: nix.thunk(() => (() => {
           const secretFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "my-secret.env", "MY_SECRET_IP=fd00:1234:5678:1::23/64\n"));
           return nix.app(clientConfig, nix.thunk(() => ({
-              __proto__: pos$68,
+              [nix.POS]: pos$68,
               networking: nix.thunk(() => ({
-                __proto__: pos$67,
+                [nix.POS]: pos$67,
                 networkmanager: nix.thunk(() => ({
-                  __proto__: pos$66,
+                  [nix.POS]: pos$66,
                   ensureProfiles: nix.thunk(() => ({
-                    __proto__: pos$65,
+                    [nix.POS]: pos$65,
                     environmentFiles: nix.thunk(() => [secretFile]),
                     profiles: nix.thunk(() => ({
-                      __proto__: pos$64,
+                      [nix.POS]: pos$64,
                       default: nix.thunk(() => ({
-                        __proto__: pos$63,
-                        ipv6: nix.thunk(() => ({ __proto__: pos$62, method: "manual", addresses: "$MY_SECRET_IP" })),
+                        [nix.POS]: pos$63,
+                        ipv6: nix.thunk(() => ({ [nix.POS]: pos$62, method: "manual", addresses: "$MY_SECRET_IP" })),
                       })),
                     })),
                   })),
@@ -409,26 +409,26 @@ export default nix.lambda((args) => (() => {
       const toBase64Blob = (file) => nix.add("data:;base64,", nix.app(nix.sel(nix.builtins, "readFile"), nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "base64", nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/base64 -w0 ${file} > $out
 `)))));
       return {
-        __proto__: pos$82,
+        [nix.POS]: pos$82,
         name: "eap / 802.1x with secrets in blob encoding",
         nodes: nix.thunk(() => ({
-          __proto__: pos$81,
-          router: nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./router-eap.nix"), nix.thunk(() => ({ __proto__: pos$71, eapCerts: eapCerts })))),
+          [nix.POS]: pos$81,
+          router: nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./router-eap.nix"), nix.thunk(() => ({ [nix.POS]: pos$71, eapCerts: eapCerts })))),
           client: nix.thunk(() => nix.app(clientConfig, nix.thunk(() => ({
-              __proto__: pos$80,
+              [nix.POS]: pos$80,
               networking: nix.thunk(() => ({
-                __proto__: pos$79,
+                [nix.POS]: pos$79,
                 networkmanager: nix.thunk(() => ({
-                  __proto__: pos$77,
+                  [nix.POS]: pos$77,
                   ensureProfiles: nix.thunk(() => ({
-                    __proto__: pos$76,
+                    [nix.POS]: pos$76,
                     profiles: nix.thunk(() => ({
-                      __proto__: pos$75,
+                      [nix.POS]: pos$75,
                       default: nix.thunk(() => ({
-                        __proto__: pos$74,
-                        ipv4: nix.thunk(() => ({ __proto__: pos$72, method: "auto" })),
+                        [nix.POS]: pos$74,
+                        ipv4: nix.thunk(() => ({ [nix.POS]: pos$72, method: "auto" })),
                         "802-1x": nix.thunk(() => ({
-                          __proto__: pos$73,
+                          [nix.POS]: pos$73,
                           eap: "tls",
                           identity: "client1.example.com",
                           "ca-cert": nix.thunk(() => nix.app(toBase64Blob, nix.thunk(() => nix.str`${eapCerts}/ca.cert`))),
@@ -441,7 +441,7 @@ export default nix.lambda((args) => (() => {
                   })),
                 })),
                 wireless: nix.thunk(() => ({
-                  __proto__: pos$78,
+                  [nix.POS]: pos$78,
                   enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 9n, true)),
                   driver: "wired",
                 })),
@@ -452,31 +452,31 @@ export default nix.lambda((args) => (() => {
       };
     })()),
     eapFiles: nix.thunk(() => ({
-      __proto__: pos$99,
+      [nix.POS]: pos$99,
       name: "eap / 802.1x with secrets in stored in files",
       nodes: nix.thunk(() => ({
-        __proto__: pos$98,
-        router: nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./router-eap.nix"), nix.thunk(() => ({ __proto__: pos$83, eapCerts: eapCerts })))),
+        [nix.POS]: pos$98,
+        router: nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./router-eap.nix"), nix.thunk(() => ({ [nix.POS]: pos$83, eapCerts: eapCerts })))),
         client: nix.thunk(() => nix.app(clientConfig, nix.thunk(() => ({
-            __proto__: pos$97,
+            [nix.POS]: pos$97,
             environment: nix.thunk(() => ({
-              __proto__: pos$88,
+              [nix.POS]: pos$88,
               etc: nix.thunk(() => ({
-                __proto__: pos$87,
+                [nix.POS]: pos$87,
                 "wpa_supplicant/ca.cert": nix.thunk(() => ({
-                  __proto__: pos$84,
+                  [nix.POS]: pos$84,
                   source: nix.thunk(() => nix.str`${eapCerts}/ca.cert`),
                   user: "wpa_supplicant",
                   mode: "0400",
                 })),
                 "wpa_supplicant/client1.cert": nix.thunk(() => ({
-                  __proto__: pos$85,
+                  [nix.POS]: pos$85,
                   source: nix.thunk(() => nix.str`${eapCerts}/client1.cert`),
                   user: "wpa_supplicant",
                   mode: "0400",
                 })),
                 "wpa_supplicant/client1.key": nix.thunk(() => ({
-                  __proto__: pos$86,
+                  [nix.POS]: pos$86,
                   source: nix.thunk(() => nix.str`${eapCerts}/client1.key`),
                   user: "wpa_supplicant",
                   mode: "0400",
@@ -484,18 +484,18 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             networking: nix.thunk(() => ({
-              __proto__: pos$96,
+              [nix.POS]: pos$96,
               networkmanager: nix.thunk(() => ({
-                __proto__: pos$94,
+                [nix.POS]: pos$94,
                 ensureProfiles: nix.thunk(() => ({
-                  __proto__: pos$93,
+                  [nix.POS]: pos$93,
                   profiles: nix.thunk(() => ({
-                    __proto__: pos$92,
+                    [nix.POS]: pos$92,
                     default: nix.thunk(() => ({
-                      __proto__: pos$91,
-                      ipv4: nix.thunk(() => ({ __proto__: pos$89, method: "auto" })),
+                      [nix.POS]: pos$91,
+                      ipv4: nix.thunk(() => ({ [nix.POS]: pos$89, method: "auto" })),
                       "802-1x": nix.thunk(() => ({
-                        __proto__: pos$90,
+                        [nix.POS]: pos$90,
                         eap: "tls",
                         identity: "client1.example.com",
                         "ca-cert": "/etc/wpa_supplicant/ca.cert",
@@ -508,7 +508,7 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               wireless: nix.thunk(() => ({
-                __proto__: pos$95,
+                [nix.POS]: pos$95,
                 enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 9n, true)),
                 driver: "wired",
               })),
@@ -518,58 +518,58 @@ export default nix.lambda((args) => (() => {
       testScript: "start_all()\nclient.wait_for_unit(\"NetworkManager.service\")\nrouter.wait_for_unit(\"freeradius.service\")\nrouter.wait_for_unit(\"hostapd.service\")\nrouter.wait_until_succeeds(\"journalctl -b --unit freeradius.service --grep='Sent Access-Accept'\")\nrouter.wait_until_succeeds(\"journalctl -b --unit freeradius.service --grep='TLS-Client-Cert-Common-Name = \\\"client1.example.com\\\"'\")\n",
     })),
     eapPkcs11: nix.thunk(() => ({
-      __proto__: pos$157,
+      [nix.POS]: pos$157,
       name: "eap / 802.1x over vwifi with a TPM-backed PKCS#11 private key",
       nodes: nix.thunk(() => ({
-        __proto__: pos$156,
+        [nix.POS]: pos$156,
         airgap: nix.thunk(() => ({
-          __proto__: pos$110,
+          [nix.POS]: pos$110,
           networking: nix.thunk(() => ({
-            __proto__: pos$104,
+            [nix.POS]: pos$104,
             useDHCP: false,
             interfaces: nix.thunk(() => ({
-              __proto__: pos$103,
+              [nix.POS]: pos$103,
               eth1: nix.thunk(() => ({
-                __proto__: pos$102,
+                [nix.POS]: pos$102,
                 ipv4: nix.thunk(() => ({
-                  __proto__: pos$101,
+                  [nix.POS]: pos$101,
                   addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$100, address: vwifiServerAddress, prefixLength: 24n })),
+                      nix.thunk(() => ({ [nix.POS]: pos$100, address: vwifiServerAddress, prefixLength: 24n })),
                     ]))),
                 })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$108,
+            [nix.POS]: pos$108,
             vwifi: nix.thunk(() => ({
-              __proto__: pos$107,
+              [nix.POS]: pos$107,
               server: nix.thunk(() => ({
-                __proto__: pos$106,
+                [nix.POS]: pos$106,
                 enable: true,
-                ports: nix.thunk(() => ({ __proto__: pos$105, tcp: vwifiPort })),
+                ports: nix.thunk(() => ({ [nix.POS]: pos$105, tcp: vwifiPort })),
                 openFirewall: true,
               })),
             })),
           })),
-          virtualisation: nix.thunk(() => ({ __proto__: pos$109, vlans: nix.thunk(() => [1n]) })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$109, vlans: nix.thunk(() => [1n]) })),
         })),
         router: nix.thunk(() => ({
-          __proto__: pos$117,
+          [nix.POS]: pos$117,
           imports: nix.thunk(() => [
             nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./router-eap.nix"), nix.thunk(() => ({
-                __proto__: pos$112,
+                [nix.POS]: pos$112,
                 eapCerts: eapCerts,
-                wifi: nix.thunk(() => ({ __proto__: pos$111, interface: "wlan0", ssid: eapWifiSsid })),
+                wifi: nix.thunk(() => ({ [nix.POS]: pos$111, interface: "wlan0", ssid: eapWifiSsid })),
               })))),
           ]),
           services: nix.thunk(() => ({
-            __proto__: pos$116,
+            [nix.POS]: pos$116,
             vwifi: nix.thunk(() => ({
-              __proto__: pos$115,
-              module: nix.thunk(() => ({ __proto__: pos$113, enable: true, macPrefix: "74:F8:F6:00:01" })),
+              [nix.POS]: pos$115,
+              module: nix.thunk(() => ({ [nix.POS]: pos$113, enable: true, macPrefix: "74:F8:F6:00:01" })),
               client: nix.thunk(() => ({
-                __proto__: pos$114,
+                [nix.POS]: pos$114,
                 enable: true,
                 serverAddress: vwifiServerAddress,
                 serverPort: vwifiPort,
@@ -578,19 +578,19 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         client: nix.thunk(() => nix.app(clientConfig, nix.thunk(() => ({
-            __proto__: pos$155,
+            [nix.POS]: pos$155,
             environment: nix.thunk(() => ({
-              __proto__: pos$121,
+              [nix.POS]: pos$121,
               etc: nix.thunk(() => ({
-                __proto__: pos$120,
+                [nix.POS]: pos$120,
                 "wpa_supplicant/ca.cert": nix.thunk(() => ({
-                  __proto__: pos$118,
+                  [nix.POS]: pos$118,
                   source: nix.thunk(() => nix.str`${eapCerts}/ca.cert`),
                   user: "wpa_supplicant",
                   mode: "0400",
                 })),
                 "wpa_supplicant/client1.cert": nix.thunk(() => ({
-                  __proto__: pos$119,
+                  [nix.POS]: pos$119,
                   source: nix.thunk(() => nix.str`${eapCerts}/client1.cert`),
                   user: "wpa_supplicant",
                   mode: "0400",
@@ -602,35 +602,35 @@ export default nix.lambda((args) => (() => {
               ]),
             })),
             networking: nix.thunk(() => ({
-              __proto__: pos$138,
+              [nix.POS]: pos$138,
               interfaces: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ({
-                  __proto__: pos$125,
+                  [nix.POS]: pos$125,
                   eth1: nix.thunk(() => ({
-                    __proto__: pos$124,
+                    [nix.POS]: pos$124,
                     ipv4: nix.thunk(() => ({
-                      __proto__: pos$123,
+                      [nix.POS]: pos$123,
                       addresses: nix.thunk(() => [
-                        nix.thunk(() => ({ __proto__: pos$122, address: "192.168.1.3", prefixLength: 24n })),
+                        nix.thunk(() => ({ [nix.POS]: pos$122, address: "192.168.1.3", prefixLength: 24n })),
                       ]),
                     })),
                   })),
                 })))),
               networkmanager: nix.thunk(() => ({
-                __proto__: pos$135,
+                [nix.POS]: pos$135,
                 unmanaged: nix.thunk(() => ["eth1"]),
                 ensureProfiles: nix.thunk(() => ({
-                  __proto__: pos$134,
+                  [nix.POS]: pos$134,
                   profiles: nix.thunk(() => ({
-                    __proto__: pos$133,
+                    [nix.POS]: pos$133,
                     default: nix.thunk(() => ({
-                      __proto__: pos$132,
-                      connection: nix.thunk(() => ({ __proto__: pos$126, type: "wifi", "interface-name": "wlan0" })),
-                      wifi: nix.thunk(() => ({ __proto__: pos$127, ssid: eapWifiSsid, mode: "infrastructure" })),
-                      "wifi-security": nix.thunk(() => ({ __proto__: pos$128, "key-mgmt": "wpa-eap" })),
-                      ipv4: nix.thunk(() => ({ __proto__: pos$129, method: "disabled" })),
-                      ipv6: nix.thunk(() => ({ __proto__: pos$130, method: "disabled" })),
+                      [nix.POS]: pos$132,
+                      connection: nix.thunk(() => ({ [nix.POS]: pos$126, type: "wifi", "interface-name": "wlan0" })),
+                      wifi: nix.thunk(() => ({ [nix.POS]: pos$127, ssid: eapWifiSsid, mode: "infrastructure" })),
+                      "wifi-security": nix.thunk(() => ({ [nix.POS]: pos$128, "key-mgmt": "wpa-eap" })),
+                      ipv4: nix.thunk(() => ({ [nix.POS]: pos$129, method: "disabled" })),
+                      ipv6: nix.thunk(() => ({ [nix.POS]: pos$130, method: "disabled" })),
                       "802-1x": nix.thunk(() => ({
-                        __proto__: pos$131,
+                        [nix.POS]: pos$131,
                         eap: "tls",
                         identity: "client1.example.com",
                         "ca-cert": "/etc/wpa_supplicant/ca.cert",
@@ -643,32 +643,32 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               wireless: nix.thunk(() => ({
-                __proto__: pos$137,
+                [nix.POS]: pos$137,
                 enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 9n, true)),
                 driver: "nl80211",
-                pkcs11: nix.thunk(() => ({ __proto__: pos$136, enable: true })),
+                pkcs11: nix.thunk(() => ({ [nix.POS]: pos$136, enable: true })),
               })),
             })),
             security: nix.thunk(() => ({
-              __proto__: pos$142,
+              [nix.POS]: pos$142,
               tpm2: nix.thunk(() => ({
-                __proto__: pos$141,
+                [nix.POS]: pos$141,
                 enable: true,
-                pkcs11: nix.thunk(() => ({ __proto__: pos$139, enable: true })),
-                tctiEnvironment: nix.thunk(() => ({ __proto__: pos$140, enable: true, deviceConf: "/dev/tpmrm-test" })),
+                pkcs11: nix.thunk(() => ({ [nix.POS]: pos$139, enable: true })),
+                tctiEnvironment: nix.thunk(() => ({ [nix.POS]: pos$140, enable: true, deviceConf: "/dev/tpmrm-test" })),
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$147,
+              [nix.POS]: pos$147,
               udev: nix.thunk(() => ({
-                __proto__: pos$143,
+                [nix.POS]: pos$143,
                 extraRules: "KERNEL==\"tpmrm0\", SYMLINK+=\"tpmrm-test\"\n",
               })),
               vwifi: nix.thunk(() => ({
-                __proto__: pos$146,
-                module: nix.thunk(() => ({ __proto__: pos$144, enable: true, macPrefix: "74:F8:F6:00:02" })),
+                [nix.POS]: pos$146,
+                module: nix.thunk(() => ({ [nix.POS]: pos$144, enable: true, macPrefix: "74:F8:F6:00:02" })),
                 client: nix.thunk(() => ({
-                  __proto__: pos$145,
+                  [nix.POS]: pos$145,
                   enable: true,
                   serverAddress: vwifiServerAddress,
                   serverPort: vwifiPort,
@@ -676,11 +676,11 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$152,
+              [nix.POS]: pos$152,
               services: nix.thunk(() => ({
-                __proto__: pos$151,
+                [nix.POS]: pos$151,
                 "tpm2-pkcs11-provision": nix.thunk(() => ({
-                  __proto__: pos$150,
+                  [nix.POS]: pos$150,
                   description: "Provision the TPM2 PKCS#11 token for EAP-TLS",
                   requiredBy: nix.thunk(() => ["NetworkManager.service", "wpa_supplicant.service"]),
                   before: nix.thunk(() => ["NetworkManager.service", "wpa_supplicant.service"]),
@@ -691,12 +691,12 @@ export default nix.lambda((args) => (() => {
                     nix.thunk(() => nix.sel(pkgs, "tpm2-tools")),
                   ]),
                   environment: nix.thunk(() => ({
-                    __proto__: pos$148,
+                    [nix.POS]: pos$148,
                     TPM2TOOLS_TCTI: "device:/dev/tpmrm-test",
                     TPM2_PKCS11_STORE: "/etc/tpm2_pkcs11",
                   })),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$149,
+                    [nix.POS]: pos$149,
                     Type: "oneshot",
                     RemainAfterExit: true,
                     User: "wpa_supplicant",
@@ -725,8 +725,8 @@ tpm2_ptool import \\
               })),
             })),
             virtualisation: nix.thunk(() => ({
-              __proto__: pos$154,
-              tpm: nix.thunk(() => ({ __proto__: pos$153, enable: true })),
+              [nix.POS]: pos$154,
+              tpm: nix.thunk(() => ({ [nix.POS]: pos$153, enable: true })),
               vlans: nix.thunk(() => [1n]),
             })),
           })))),
@@ -789,9 +789,9 @@ with subtest("EAP-TLS authenticates with the TPM-backed private key"):
     })),
   }));
   return nix.app(nix.sel(lib, "mapAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "const"), (attrs) => nix.app(nix.lookup(w, "makeTest"), nix.thunk(() => nix.update(attrs, {
-          __proto__: pos$160,
+          [nix.POS]: pos$160,
           name: nix.thunk(() => nix.str`${nix.sel(attrs, "name")}-Networking-NetworkManager`),
-          meta: nix.thunk(() => ({ __proto__: pos$159, maintainers: [] })),
+          meta: nix.thunk(() => ({ [nix.POS]: pos$159, maintainers: [] })),
         }))))), testCases);
 })(), formals$1);
 //# sourceMappingURL=networkmanager.ts.map

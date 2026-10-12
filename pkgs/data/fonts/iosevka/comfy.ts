@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
   ]);
   const version = "2.1.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "protesilaos",
       repo: "iosevka-comfy",
       rev: version,
@@ -42,15 +42,15 @@ export default nix.lambda((args) => (() => {
   const makeIosevkaFont = (set) => (() => {
     const superBuildNpmPackage = buildNpmPackage;
     return nix.app(nix.sel(iosevka, "override"), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         set: set,
         privateBuildPlan: privateBuildPlan,
         buildNpmPackage: (args_1) => nix.app(superBuildNpmPackage, nix.thunk(() => nix.update(args_1, {
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             pname: nix.thunk(() => nix.str`iosevka-${set}`),
             version: version,
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 owner: "be5invis",
                 repo: "iosevka",
                 rev: "v31.9.1",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
             meta: nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(src, "meta"));
               return {
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               homepage: nix.thunk(() => nix.attr(from, "homepage")),
               description: "Customised build of the Iosevka typeface, with a consistent\nrounded style and overrides for almost all individual glyphs\nin both roman (upright) and italic (slanted) variants.\n",
               license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
       })));
   })();
   return nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((set) => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         name: set,
         value: nix.thunk(() => nix.app(makeIosevkaFont, set)),
       }), sets)));

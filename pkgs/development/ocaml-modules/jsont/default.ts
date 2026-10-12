@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.0";
       const minimalOCamlVersion = "4.14.0";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://erratique.ch/software/jsont/releases/jsont-${version}.tbz`),
           hash: "sha256-2L7YaPXn4PzGl/3XwuwvpQTr4aiS85Hm1HNofuaK7DY=",
         }))));
@@ -47,7 +47,7 @@ ${nix.sel(topkg, "run")} build ${nix.app(nix.sel(lib, "escapeShellArgs"), nix.th
 runHook postBuild
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Declarative JSON data manipulation",
         longDescription: "Jsont is an OCaml library for declarative JSON data manipulation. it\nprovides:\n\n• Combinators for describing JSON data using the OCaml values of your\n  choice. The descriptions can be used by generic functions to decode,\n  encode, query and update JSON data without having to construct a\n  generic JSON representation\n• A JSON codec with optional text location tracking and best-effort\n  layout preservation. The codec is compatible with effect-based\n  concurrency.\n\nThe descriptions are independent from the codec and can be used by\nthird-party processors or codecs.\n",
         homepage: "https://erratique.ch/software/jsont",
@@ -58,7 +58,7 @@ runHook postBuild
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         minimalOCamlVersion,

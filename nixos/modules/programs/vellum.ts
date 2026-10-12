@@ -36,24 +36,24 @@ export default nix.lambda((args) => (() => {
   const separatedString = nix.thunk(() => nix.attr(from, "separatedString"));
   const toml = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       programs: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         vellum: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(mkEnableOption, "vellum, a live screen annotation overlay for Wayland")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "vellum", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.attr(toml, "type")),
               default: nix.thunk(() => ({})),
               description: "Configuration options for vellum.\nSee available options at <https://github.com/greyxp1/vellum/blob/master/docs/configuration.md>.\n",
               example: nix.thunk(() => nix.app(literalExpression, "{\n  default_tool = \"arrow\";\n  remember_last_tool = false;\n  feedback_duration_ms = 250;\n}\n")),
             })))),
           extraOptions: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(separatedString, " ")),
               default: "",
               description: "Extra command-line options to pass to\nthe {command}`vellum` daemon.\n",
@@ -63,26 +63,26 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         environment: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             "xdg/vellum/config.toml": nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "settings"), {})), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 source: nix.thunk(() => nix.app(nix.sel(toml, "generate"), "vellum-config.toml", nix.thunk(() => nix.sel(cfg, "settings")))),
               })))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           user: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             services: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               vellum: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 description: "Vellum screen annotation overlay",
                 after: nix.thunk(() => ["graphical-session.target"]),
                 partOf: nix.thunk(() => ["graphical-session.target"]),
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
                   nix.thunk(() => nix.sel(config, "environment", "etc", "xdg/vellum/config.toml", "source")),
                 ]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   ExecStart: nix.thunk(() => nix.str`${nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))} ${nix.sel(cfg, "extraOptions")}`),
                   Restart: "on-failure",
                 })),
@@ -101,7 +101,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "poz"))];

@@ -23,32 +23,32 @@ export default nix.lambda((args) => (() => {
   const ntfsPlusSupported = nix.thunk(() => nix.app(nix.sel(config, "boot", "kernelPackages", "kernelAtLeast"), "7.1"));
   const initrdSupport = nix.thunk(() => nix.selOr(config, () => false, "boot", "initrd", "supportedFilesystems", "ntfs"));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool((nix.asBool(ntfsEnabled) && nix.asBool(ntfsPlusSupported))) && nix.asBool(!nix.asBool(ntfs3gEnabled)))), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             system: nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               fsPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "ntfsprogs-plus"))]),
             })),
             boot: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               initrd: nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 availableKernelModules: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), initrdSupport, nix.thunk(() => ["ntfs"]))),
               })),
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(ntfs3gEnabled) || nix.asBool((nix.asBool(ntfsEnabled) && nix.asBool(!nix.asBool(ntfsPlusSupported)))))), nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             system: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               fsPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "ntfs3g"))]),
             })),
             boot: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               initrd: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 availableKernelModules: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), initrdSupport, nix.thunk(() => ["ntfs3"]))),
               })),
             })),

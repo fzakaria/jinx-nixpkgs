@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "prometheus-nextcloud-exporter";
       const version = "0.9.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xperimental",
           repo: "nextcloud-exporter",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -27,21 +27,21 @@ export default nix.lambda((args) => (() => {
         }))));
       const vendorHash = "sha256-3HrJ1HtovA/GJJw96eQQTRnwzMUE4E24lVHc8rhZqzY=";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { __proto__: pos$2, nextcloud: nix.thunk(() => nix.attr(from, "nextcloud")) };
+          return { [nix.POS]: pos$2, nextcloud: nix.thunk(() => nix.attr(from, "nextcloud")) };
         })()),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Prometheus exporter for Nextcloud servers",
         homepage: "https://github.com/xperimental/nextcloud-exporter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
         mainProgram: "nextcloud-exporter",
       }));
-      return { __proto__: pos$5, pname, version, src, vendorHash, passthru, meta };
+      return { [nix.POS]: pos$5, pname, version, src, vendorHash, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

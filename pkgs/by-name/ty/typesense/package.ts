@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const arch = nix.thunk(() => nix.attr(platform, "arch"));
   const hash = nix.thunk(() => nix.attr(platform, "hash"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "typesense",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dl.typesense.org/releases/${version}/typesense-server-${version}-${arch}.tar.gz`),
           hash: hash,
         })))),
@@ -37,15 +37,15 @@ export default nix.lambda((args) => (() => {
       sourceRoot: ".",
       installPhase: "mkdir -p $out/bin\ncp $sourceRoot/typesense-server $out/bin\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           typesense: nix.thunk(() => nix.attr(nixosTests, "typesense")),
         })),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://typesense.org",
         description: "Fast, typo-tolerant search engine for building delightful search experiences",
         mainProgram: "typesense-server",

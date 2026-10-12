@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const version = "2.13.0";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "todo.txt-cli",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ginatrapani/todo.txt-cli/releases/download/v${version}/todo.txt_cli-${version}.tar.gz`),
           sha256: "sha256-07klQ0ApqsISITwQP7ZXOk+WDHTdRno++sm9mv6J0V8=",
         })))),
       installPhase: "install -vd $out/bin\ninstall -vm 755 todo.sh $out/bin\ninstall -vd $out/share/bash-completion/completions\ninstall -vm 644 todo_completion $out/share/bash-completion/completions/todo\ninstall -vd $out/etc/todo\ninstall -vm 644 todo.cfg $out/etc/todo/config\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple plaintext todo list manager",
         homepage: "http://todotxt.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const fetchgit = nix.arg($, "fetchgit");
   return nix.app(fetchgit, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://gerrit.libreoffice.org/help",
       rev: "f008fbf8547b1d9376af9bf3640ec1a7edfc8ee2",
       hash: "sha256-J2gtGU3YSgKnoGMALoPY1Bn2i8bU6KJM+aU7nmcAUIg=",

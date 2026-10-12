@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const pname = "git-gr";
   const version = "1.4.6";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "9999years",
           repo: "git-gr",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })))),
       buildFeatures: nix.thunk(() => ["clap_mangen"]),
       cargoHash: "sha256-j/qUWGzsODSsn/dbygN2mYHED3wvUDKEGu7nYcTUm90=",
-      env: nix.thunk(() => ({ __proto__: pos$2, OPENSSL_NO_VENDOR: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: true })),
       nativeBuildInputs: nix.thunk(() => nix.concat([installShellFiles], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), pkg_config))),
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), openssl), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv])))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), canRunGitGr, nix.thunk(() => nix.str`manpages=$(mktemp -d)
@@ -53,7 +53,7 @@ installShellCompletion --cmd git-gr \\
   --zsh <(${gitGr} completions zsh)
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/9999years/git-gr",
         changelog: nix.thunk(() => nix.str`https://github.com/9999years/git-gr/releases/tag/v${version}`),
         description: "Gerrit CLI client",
@@ -62,7 +62,7 @@ installShellCompletion --cmd git-gr \\
         mainProgram: "git-gr",
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
     })));

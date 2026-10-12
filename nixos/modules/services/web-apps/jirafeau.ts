@@ -52,28 +52,28 @@ export default nix.lambda((args) => (() => {
   ${nix.sel(cfg, "extraConfig")}
 `)));
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         jirafeau: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           adminPasswordSha256: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "",
               description: "SHA-256 of the desired administration password. Leave blank/unset for no password.\n",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               default: "/var/lib/jirafeau/data/",
               description: "Location of Jirafeau storage directory.",
             })))),
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Jirafeau file upload application")),
           extraConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               example: "$cfg['style'] = 'courgette';\n$cfg['organisation'] = 'ACME';\n",
@@ -85,19 +85,19 @@ values.
               })()),
             })))),
           hostName: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "localhost",
               description: "URL of instance. Must have trailing slash.",
             })))),
           maxUploadSizeMegabytes: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
               default: 0n,
               description: "Maximum upload size of accepted files.",
             })))),
           maxUploadTimeout: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "30m",
               description: nix.thunk(() => (() => {
@@ -109,15 +109,15 @@ values.
               })()),
             })))),
           nginxConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
-              type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "../web-servers/nginx/vhost-options.nix"), nix.thunk(() => ({ __proto__: pos$7, config: config, lib: lib })))))),
+              [nix.POS]: pos$8,
+              type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "../web-servers/nginx/vhost-options.nix"), nix.thunk(() => ({ [nix.POS]: pos$7, config: config, lib: lib })))))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  serverAliases = [ \"wiki.${config.networking.domain}\" ];\n}\n")),
               description: "Extra configuration for the nginx virtual host of Jirafeau.",
             })))),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "jirafeau", nix.thunk(() => ({})))),
           poolConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "oneOf"), nix.thunk(() => [
@@ -127,7 +127,7 @@ values.
                     ]))));
               })()),
               default: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 pm: "dynamic",
                 "pm.max_children": 32n,
                 "pm.start_servers": 2n,
@@ -141,17 +141,17 @@ values.
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         services: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           nginx: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             enable: true,
             virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
               [nix.str`${nix.sel(cfg, "hostName")}`, nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
                   nix.thunk(() => nix.sel(cfg, "nginxConfig")),
                   nix.thunk(() => ({
-                    __proto__: pos$16,
+                    [nix.POS]: pos$16,
                     extraConfig: nix.thunk(() => (() => {
                       const clientMaxBodySize = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "maxUploadSizeMegabytes"), 0n)) ? "0" : nix.str`${nix.sel(cfg, "maxUploadSizeMegabytes")}m`));
                       return nix.str`index index.php;
@@ -161,9 +161,9 @@ client_header_timeout ${nix.sel(cfg, "maxUploadTimeout")};
 `;
                     })()),
                     locations: nix.thunk(() => ({
-                      __proto__: pos$15,
+                      [nix.POS]: pos$15,
                       "~ \\.php$": nix.thunk(() => ({
-                        __proto__: pos$14,
+                        [nix.POS]: pos$14,
                         extraConfig: nix.thunk(() => nix.str`include ${nix.sel(config, "services", "nginx", "package")}/conf/fastcgi_params;
 fastcgi_split_path_info ^(.+\\.php)(/.+)$;
 fastcgi_index index.php;
@@ -179,16 +179,16 @@ fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
             ])),
           })),
           phpfpm: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             pools: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               jirafeau: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 group: group,
                 user: user,
-                phpEnv: nix.thunk(() => ({ __proto__: pos$18, JIRAFEAU_CONFIG: nix.thunk(() => nix.str`${localConfig}`) })),
+                phpEnv: nix.thunk(() => ({ [nix.POS]: pos$18, JIRAFEAU_CONFIG: nix.thunk(() => nix.str`${localConfig}`) })),
                 settings: nix.thunk(() => nix.update({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   "listen.mode": "0660",
                   "listen.owner": user,
                   "listen.group": group,
@@ -198,9 +198,9 @@ fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d ${nix.sel(cfg, "dataDir")} 0750 ${user} ${group} - -`),
               nix.thunk(() => nix.str`d ${nix.sel(cfg, "dataDir")}/files/ 0750 ${user} ${group} - -`),
@@ -210,7 +210,7 @@ fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
           })),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$27, buildDocsInSandbox: false })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$27, buildDocsInSandbox: false })),
   };
 })(), formals$1);
 //# sourceMappingURL=jirafeau.ts.map

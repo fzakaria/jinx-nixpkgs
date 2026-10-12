@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const sfcgal = nix.arg($, "sfcgal");
   const wheel = nix.arg($, "wheel");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pysfcgal",
       version: "2.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sfcgal",
           repo: "pysfcgal",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "rm -rf pysfcgal\n",
       disabledTests: nix.thunk(() => ["test_wrap_geom_segfault"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python wrapper for SFCGAL",
         homepage: "https://gitlab.com/sfcgal/pysfcgal",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/sfcgal/pysfcgal/-/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

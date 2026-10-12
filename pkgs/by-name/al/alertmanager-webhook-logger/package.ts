@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "alertmanager-webhook-logger",
       version: "1.0",
       rev: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           rev: nix.thunk(() => nix.attr(finalAttrs, "rev")),
           owner: "tomtom-international",
           repo: "alertmanager-webhook-logger",
@@ -30,17 +30,17 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-gKtOoM9TuEIHgvSjZhqWmdexG2zDjlPuM0HjjP52DOI=",
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus"));
           return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           alertmanager: nix.thunk(() => nix.attr(from, "alertmanager")),
         };
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Generates (structured) log messages from Prometheus AlertManager webhook notifier",
         mainProgram: "alertmanager-webhook-logger",
         homepage: "https://github.com/tomtom-international/alertmanager-webhook-logger",

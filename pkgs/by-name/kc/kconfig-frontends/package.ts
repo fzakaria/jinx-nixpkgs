@@ -22,17 +22,17 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "kconfig-frontends",
       version: "4.11.0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://bitbucket.org/nuttx/tools/downloads/kconfig-frontends-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-yxg4z+Lwl7oJyt4n1HUncg1bKeK3FcCpbDPQtqELqxM=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://bitbucket.org/nuttx/tools/downloads/gperf3.1_kconfig_id_lookup.patch",
             hash: "sha256-cqAWjRnMA/fJ8wnEfUxoPEW0hIJY/mprE6/TQMY6NPI=",
           })))),
@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       configureFlags: nix.thunk(() => ["--enable-frontends=conf,mconf,nconf"]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-error=format-security")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Out of Linux tree packaging of the kconfig infrastructure",
         longDescription: "Configuration language and system for the Linux kernel and other\nprojects. Features simple syntax and grammar, limited yet adequate option\ntypes, simple organization of options, and direct and reverse\ndependencies.\n",
         homepage: "https://bitbucket.org/nuttx/tools/",

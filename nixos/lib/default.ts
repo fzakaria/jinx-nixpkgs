@@ -17,12 +17,12 @@ export default nix.thunk(() => (() => {
     const featureFlags = nix.argOr($, "featureFlags", () => ({}));
     const seqIf = (cond) => (nix.asBool(cond) ? nix.builtins.seq : (a) => (b) => nix.force(b));
     const seqAttrsIf = (cond) => (a) => nix.app(nix.sel(lib, "mapAttrs"), (_) => (v) => nix.app(seqIf, cond, a, v));
-    const eval_config_minimal = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./eval-config-minimal.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib }))));
-    const testing_lib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./testing/default.nix")), nix.thunk(() => ({ __proto__: pos$2, lib: lib }))));
+    const eval_config_minimal = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./eval-config-minimal.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib }))));
+    const testing_lib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./testing/default.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, lib: lib }))));
     return (() => {
       const from = nix.thunk(() => nix.app(seqAttrsIf, nix.thunk(() => !nix.asBool(nix.has(featureFlags, "minimalModules"))), minimalModulesWarning, eval_config_minimal));
       return {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       evalModules: nix.thunk(() => nix.attr(from, "evalModules")),
       evalTest: nix.thunk(() => nix.attr(testing_lib, "evalTest")),
       runTest: nix.thunk(() => nix.attr(testing_lib, "runTest")),

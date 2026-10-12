@@ -12,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const nixpkgs = nix.argOr($, "nixpkgs", () => nix.path(here, "../../.."));
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nixpkgs), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       config: nix.thunk(() => ({})),
       overlays: [],
       system: system,
     }))));
-  const nixVersions = nix.argOr($, "nixVersions", () => nix.app(nix.builtins.import(nix.path(here, "../../tests/nix-for-tests.nix")), nix.thunk(() => ({ __proto__: pos$2, pkgs: pkgs }))));
+  const nixVersions = nix.argOr($, "nixVersions", () => nix.app(nix.builtins.import(nix.path(here, "../../tests/nix-for-tests.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, pkgs: pkgs }))));
   const libpath = nix.argOr($, "libpath", () => nix.path(here, "../.."));
   const seed = nix.argOr($, "seed", () => null);
   return nix.app(nix.sel(pkgs, "runCommand"), "lib-path-tests", nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       nativeBuildInputs: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(nixVersions, "stable"))], (() => {
         const w = nix.withScope(pkgs, null);
         return [nix.thunk(() => nix.lookup(w, "jq")), nix.thunk(() => nix.lookup(w, "bc"))];

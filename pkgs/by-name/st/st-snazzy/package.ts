@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "st-snazzy",
       version: "0.8.5-unstable-2024-09-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "siduck",
           repo: "st",
           rev: "a7582f96afdee6bf0793cd0d8f84b755fd6aabf6",
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [fontconfig, harfbuzz, libx11, libxft, ncurses, gd, glib]),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         TERMINFO: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/terminfo`),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/siduck/st",
         description: "Snazzy terminal (suckless + beautiful)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

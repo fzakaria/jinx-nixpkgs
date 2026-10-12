@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "codexbar",
       version: "0.65.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/steipete/CodexBar/releases/download/v${nix.sel(finalAttrs, "version")}/CodexBar-macos-universal-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-z4/RfA+1T0h1+qiwndnexwXUIPRn8g01zZP3TMzlOLQ=",
         })))),
@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeWrapper, unzip]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications\ncp -r CodexBar.app $out/Applications\nmakeWrapper $out/Applications/CodexBar.app/Contents/MacOS/CodexBar $out/bin/codexbar\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--url=https://github.com/steipete/CodexBar"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Show usage stats for AI coding-provider limits",
         homepage: "https://codex.bar/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

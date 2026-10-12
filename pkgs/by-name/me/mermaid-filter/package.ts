@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mermaid-filter";
       const version = "1.4.7";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "raghur",
           repo: "mermaid-filter",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
         }))));
       const npmDepsHash = "sha256-Hj4h8xTch2Z3ByUhxzPhbCTSXNOXuTXC6XUrBkRvQ/U=";
       const nativeBuildInputs = nix.thunk(() => [makeWrapper]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: 1n }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: 1n }));
       const dontNpmBuild = true;
       const postInstall = nix.thunk(() => nix.str`wrapProgram $out/bin/mermaid-filter \\
   --set PUPPETEER_EXECUTABLE_PATH ${chromium}/bin/chromium
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Pandoc filter for creating diagrams in mermaid syntax blocks in markdown docs",
         homepage: "https://github.com/raghur/mermaid-filter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "mermaid-filter",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

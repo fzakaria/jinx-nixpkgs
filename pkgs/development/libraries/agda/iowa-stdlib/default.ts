@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.5.0";
       const pname = "iowa-stdlib";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cedille",
           repo: "ial",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const libraryName = "IAL-1.3";
       const buildPhase = "patchShebangs find-deps.sh\nmake\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/cedille/ial",
         description: "Agda standard library developed at Iowa",
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         pname,
         src,

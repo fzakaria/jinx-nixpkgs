@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
   const pkg = nix.thunk(() => nix.sel(cfg, "package"));
   const boolToPython = (b) => (nix.asBool(b) ? "True" : "False");
   const environment = nix.thunk(() => nix.update({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     PYTHONPATH: nix.thunk(() => nix.sel(pkg, "pythonPath")),
     STATIC_ROOT: nix.thunk(() => nix.add(nix.sel(cfg, "dataDir"), "/static")),
   }, nix.app(nix.sel(lib, "filterAttrs"), (_) => (v) => !nix.asBool(nix.app(nix.builtins.isNull, v)), nix.thunk(() => nix.sel(cfg, "settings")))));
@@ -71,97 +71,97 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
 $sudo ${pkg}/opt/healthchecks/manage.py "$@"
 `)));
   return {
-    __proto__: pos$39,
+    [nix.POS]: pos$39,
     options: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       services: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         healthchecks: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           enable: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mkEnableOption"), "healthchecks"), {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             description: "Enable healthchecks.\nIt is expected to be run behind a HTTP reverse proxy.\n",
           })),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "healthchecks", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: defaultUser,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "User account under which healthchecks runs.\n\n::: {.note}\nIf left as the default value this user will automatically be created\non system activation, otherwise you are responsible for\nensuring the user exists before the healthchecks service starts.\n:::\n",
             })))),
           group: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: defaultUser,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "Group account under which healthchecks runs.\n\n::: {.note}\nIf left as the default value this group will automatically be created\non system activation, otherwise you are responsible for\nensuring the group exists before the healthchecks service starts.\n:::\n",
             })))),
           listenAddress: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "localhost",
               description: "Address the server will listen on.",
             })))),
           port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               default: 8000n,
               description: "Port the server will listen on.",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "/var/lib/healthchecks",
               description: "The directory used to store all data for healthchecks.\n\n::: {.note}\nIf left as the default value this directory will automatically be created before\nthe healthchecks server starts, otherwise you are responsible for ensuring the\ndirectory exists with appropriate ownership and permissions.\n:::\n",
             })))),
           settingsFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: nix.thunk(() => nix.sel(opt, "settings", "description")),
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               description: "Environment variables which are read by healthchecks `(local)_settings.py`.\n\nSettings which are explicitly covered in options below, are type-checked and/or transformed\nbefore added to the environment, everything else is passed as a string.\n\nSee <https://healthchecks.io/docs/self_hosted_configuration/>\nfor a full documentation of settings.\n\nWe add additional variables to this list inside the packages `local_settings.py.`\n- `STATIC_ROOT` to set a state directory for dynamically generated static files.\n- `SECRET_KEY_FILE` to read `SECRET_KEY` from a file at runtime and keep it out of\n  /nix/store.\n- `_FILE` variants for several values that hold sensitive information in\n  [Healthchecks configuration](https://healthchecks.io/docs/self_hosted_configuration/) so\n  that they also can be read from a file and kept out of /nix/store. To see which values\n  have support for a `_FILE` variant, run:\n  - `nix-instantiate --eval --expr '(import <nixpkgs> {}).healthchecks.secrets'`\n  - or `nix eval 'nixpkgs#healthchecks.secrets'` if the flake support has been enabled.\n\nIf the same variable is set in both `settings` and `settingsFile` the value from `settingsFile` has priority.\n",
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), (settings) => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   freeformType: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                   options: nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     ALLOWED_HOSTS: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                         default: nix.thunk(() => ["*"]),
                         description: "The host/domain names that this site can serve.",
                         apply: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ",")),
                       })))),
                     SECRET_KEY_FILE: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
                         description: "Path to a file containing the secret key.",
                         default: null,
                       })))),
                     DEBUG: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                         default: false,
                         description: "Enable debug mode.",
                         apply: boolToPython,
                       })))),
                     REGISTRATION_OPEN: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                         default: false,
                         description: "A boolean that controls whether site visitors can create new accounts.\nSet it to false if you are setting up a private Healthchecks instance,\nbut it needs to be publicly accessible (so, for example, your cloud\nservices can send pings to it).\nIf you close new user registration, you can still selectively invite\nusers to your team account.\n",
                         apply: boolToPython,
                       })))),
                     DB: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["sqlite", "postgres", "mysql"]))),
                         default: "sqlite",
                         description: "Database engine to use.",
                       })))),
                     DB_NAME: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$14,
+                        [nix.POS]: pos$14,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         default: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(settings, "config", "DB"), "sqlite")) ? nix.str`${nix.sel(cfg, "dataDir")}/healthchecks.sqlite` : "hc")),
                         defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`if config.${nix.sel(settings, "options", "DB")} == "sqlite"
@@ -177,17 +177,17 @@ else "hc"
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$38,
+        [nix.POS]: pos$38,
         environment: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           systemPackages: nix.thunk(() => [healthchecksManageScript]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           targets: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             healthchecks: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               description: "Target for all Healthchecks services",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
@@ -196,7 +196,7 @@ else "hc"
           })),
           services: nix.thunk(() => (() => {
             const commonConfig = nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               WorkingDirectory: nix.thunk(() => nix.sel(cfg, "dataDir")),
               User: nix.thunk(() => nix.sel(cfg, "user")),
               Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -205,13 +205,13 @@ else "hc"
               StateDirectoryMode: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "dataDir"), "/var/lib/healthchecks")), "0750")),
             }));
             return {
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               "healthchecks-migration": nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 description: "Healthchecks migrations",
                 wantedBy: nix.thunk(() => ["healthchecks.target"]),
                 serviceConfig: nix.thunk(() => nix.update(commonConfig, {
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   Restart: "on-failure",
                   Type: "oneshot",
                   ExecStart: nix.thunk(() => nix.str`${pkg}/opt/healthchecks/manage.py migrate
@@ -219,12 +219,12 @@ else "hc"
                 })),
               })),
               healthchecks: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 description: "Healthchecks WSGI Service",
                 wantedBy: nix.thunk(() => ["healthchecks.target"]),
                 after: nix.thunk(() => ["healthchecks-migration.service"]),
                 serviceConfig: nix.thunk(() => nix.update(commonConfig, {
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   Restart: "always",
                   ExecStartPre: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(cfg, "settings", "DEBUG"), "True")), nix.thunk(() => [nix.thunk(() => nix.str`${pkg}/opt/healthchecks/manage.py compress`)])), [
                     nix.thunk(() => nix.str`${pkg}/opt/healthchecks/manage.py collectstatic --no-input`),
@@ -237,24 +237,24 @@ else "hc"
                 })),
               })),
               "healthchecks-sendalerts": nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 description: "Healthchecks Alert Service",
                 wantedBy: nix.thunk(() => ["healthchecks.target"]),
                 after: nix.thunk(() => ["healthchecks.service"]),
                 serviceConfig: nix.thunk(() => nix.update(commonConfig, {
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   Restart: "always",
                   ExecStart: nix.thunk(() => nix.str`${pkg}/opt/healthchecks/manage.py sendalerts
 `),
                 })),
               })),
               "healthchecks-sendreports": nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 description: "Healthchecks Reporting Service",
                 wantedBy: nix.thunk(() => ["healthchecks.target"]),
                 after: nix.thunk(() => ["healthchecks.service"]),
                 serviceConfig: nix.thunk(() => nix.update(commonConfig, {
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   Restart: "always",
                   ExecStart: nix.thunk(() => nix.str`${pkg}/opt/healthchecks/manage.py sendreports --loop
 `),
@@ -264,17 +264,17 @@ else "hc"
           })()),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           users: nix.thunk(() => nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), defaultUser)), nix.thunk(() => nix.attrsDyn({}, [
               [defaultUser, nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 description: "healthchecks service owner",
                 isSystemUser: true,
                 group: defaultUser,
               }))],
             ])))),
           groups: nix.thunk(() => nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), defaultUser)), nix.thunk(() => nix.attrsDyn({}, [
-              [defaultUser, nix.thunk(() => ({ __proto__: pos$36, members: nix.thunk(() => [defaultUser]) }))],
+              [defaultUser, nix.thunk(() => ({ [nix.POS]: pos$36, members: nix.thunk(() => [defaultUser]) }))],
             ])))),
         })),
       })))),

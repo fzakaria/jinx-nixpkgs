@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "boot", "loader", "refind"));
   const efi = nix.thunk(() => nix.sel(config, "boot", "loader", "efi"));
   const refindInstallConfig = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "refind-install.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         nixPath: nix.thunk(() => nix.sel(config, "nix", "package")),
         efiBootMgrPath: nix.thunk(() => nix.sel(pkgs, "efibootmgr")),
         refindPath: nix.thunk(() => nix.sel(cfg, "package")),
@@ -54,46 +54,46 @@ export default nix.lambda((args) => (() => {
         additionalFiles: nix.thunk(() => nix.sel(cfg, "additionalFiles")),
       }))))));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     meta: nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "refind", "meta"));
       return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
     };
     })()),
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       boot: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         loader: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           refind: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             enable: nix.thunk(() => nix.app(mkEnableOption, "the rEFInd boot loader")),
             extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 default: "",
                 type: nix.thunk(() => nix.sel(types, "lines")),
                 description: "A string which is prepended to refind.conf.\n",
               })))),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "refind", nix.thunk(() => ({})))),
             maxGenerations: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 default: null,
                 example: 50n,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "int")))),
                 description: "Maximum number of latest generations in the boot menu.\nUseful to prevent boot partition of running out of disk space.\n`null` means no limit i.e. all generations that were not\ngarbage collected yet.\n",
               })))),
             additionalFiles: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "path")))),
                 example: nix.thunk(() => nix.app(literalExpression, "{ \"efi/memtest86/memtest86.efi\" = \"${pkgs.memtest86-efi}/BOOTX64.efi\"; }\n")),
                 description: "A set of files to be copied to {file}`/boot`. Each attribute name denotes the\ndestination file name in {file}`/boot`, while the corresponding attribute value\nspecifies the source file.\n",
               })))),
             efiInstallAsRemovable: nix.thunk(() => nix.update(nix.app(mkEnableOption, null), {
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: nix.thunk(() => !nix.asBool(nix.sel(efi, "canTouchEfiVariables"))),
               defaultText: nix.thunk(() => nix.app(literalExpression, "!config.boot.loader.efi.canTouchEfiVariables")),
               description: "Whether or not to install the rEFInd EFI files as removable.\n\nSee {option}`boot.loader.grub.efiInstallAsRemovable`\n",
@@ -103,33 +103,33 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             assertion: nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isx86_64")) || nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isi686")))) || nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isAarch64")))),
             message: "rEFInd can only be installed on aarch64 & x86 platforms",
           })),
           nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             assertion: nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isEfi")),
             message: "rEFInd can only be installed on UEFI platforms",
           })),
         ]),
         system: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           boot: nix.thunk(() => ({
-            __proto__: pos$14,
-            loader: nix.thunk(() => ({ __proto__: pos$13, id: "refind" })),
+            [nix.POS]: pos$14,
+            loader: nix.thunk(() => ({ [nix.POS]: pos$13, id: "refind" })),
           })),
           build: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             installBootLoader: nix.thunk(() => nix.app(nix.sel(pkgs, "replaceVarsWith"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 src: nix.path(here, "./refind-install.py"),
                 isExecutable: true,
                 replacements: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   python3: nix.thunk(() => nix.app(nix.sel(pkgs, "python3", "withPackages"), (python_packages) => [nix.thunk(() => nix.sel(python_packages, "psutil"))])),
                   configPath: refindInstallConfig,
                 })),

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const xorgproto = nix.arg($, "xorgproto");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(multiStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "hax11",
       version: "0-unstable-2025-04-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CyberShadow",
           repo: "hax11",
           rev: "d82bf3ba655c1a823b77a9a47f30657c9a32c1fe",
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libx11, libxxf86vm, xorgproto]),
       installPhase: "runHook preInstall\n\ninstall -Dm644 lib32/hax11.so -t $out/lib32/\ninstall -Dm644 lib64/hax11.so -t $out/lib64/\ninstall -Dm644 README.md -t $doc/share/doc/hax11/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/CyberShadow/hax11",
         description: "Hackbrary to Hook and Augment X11 protocol calls",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

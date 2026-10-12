@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const snakemake = nix.arg($, "snakemake");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "snakemake-logger-plugin-rich",
       version: "0.4.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cademirch",
           repo: "snakemake-logger-plugin-rich",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["snakemake_logger_plugin_rich"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, snakemake, writableTmpDirAsHomeHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Snakemake logger plugin using Rich",
         homepage: "https://github.com/cademirch/snakemake-logger-plugin-rich",
         changelog: nix.thunk(() => nix.str`https://github.com/cademirch/snakemake-logger-plugin-rich/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

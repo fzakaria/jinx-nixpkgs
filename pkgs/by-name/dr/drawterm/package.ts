@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const withWayland = nix.argOr($, "withWayland", () => false);
   const withXorg = nix.thunk(() => !nix.asBool((nix.asBool(withWayland) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "drawterm",
       version: "0-unstable-2026-08-15",
       src: nix.thunk(() => nix.app(fetchFrom9Front, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "plan9front",
           repo: "drawterm",
           rev: "45ab4d2ce7fd2443ad7264bd0ce14bf294d8b9e6",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([installShellFiles, makeWrapper], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(llvmPackages, "lld"))])), nix.app(nix.sel(lib, "optionals"), withWayland, nix.thunk(() => [pkg_config, wayland_scanner]))))),
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), withWayland, nix.thunk(() => [pipewire, wayland, wayland_protocols, libxkbcommon, libdecor])), nix.app(nix.sel(lib, "optionals"), withXorg, nix.thunk(() => [libx11, libxt])))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_LINK: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-fuse-ld=lld")),
       })),
       makeFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), withWayland, "CONF=linux"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool((nix.asBool(withWayland) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))), "CONF=unix"), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["CONF=osx-cocoa", "CC=clang"]))))),
@@ -58,12 +58,12 @@ install -Dm755 -t $out/bin/ drawterm.bin
 makeWrapper ${nix.app(nix.sel(lib, "getExe'"), pulseaudio, "padsp")} $out/bin/drawterm --add-flags $out/bin/drawterm.bin
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/{Applications,bin}\nmv gui-cocoa/drawterm.app $out/Applications/\nmv drawterm $out/Applications/drawterm.app/\nln -s $out/Applications/drawterm.app/drawterm $out/bin/\n")), "runHook postInstall\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$3, shallowClone: false })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, shallowClone: false })))),
         tests: nix.thunk(() => nix.sel(nixosTests, "drawterm")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Connect to Plan 9 CPU servers from other operating systems",
         homepage: "https://drawterm.9front.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

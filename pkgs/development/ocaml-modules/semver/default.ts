@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const ocaml = nix.arg($, "ocaml");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "semver",
       version: "0.2.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/rgrinberg/ocaml-semver/releases/download/${nix.sel(finalAttrs, "version")}/semver-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-CjzDUtoe5Hvt6zImb+EqVIulRUUUQd9MmuJ4BH/2mLg=",
         })))),
       doCheck: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.08")),
       checkInputs: nix.thunk(() => [alcotest]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/rgrinberg/ocaml-semver",
         description: "Semantic versioning module",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

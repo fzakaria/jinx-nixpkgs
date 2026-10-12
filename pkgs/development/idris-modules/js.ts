@@ -15,19 +15,19 @@ export default nix.lambda((args) => (() => {
   const pruviloj = nix.arg($, "pruviloj");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "js",
       version: "2018-11-27",
       idrisDeps: nix.thunk(() => [contrib, pruviloj]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rbarreiro",
           repo: "idrisjs",
           rev: "1ce91ecec69a7174c20bff927aeac3928a01ed3f",
           sha256: "13whhccb7yjq10hnngdc8bc9z9vvyir1wjkclpz006cr4cd266ca",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Js libraries for idris",
         homepage: "https://github.com/rbarreiro/idrisjs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

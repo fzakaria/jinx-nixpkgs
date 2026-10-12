@@ -65,10 +65,10 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$56,
+    [nix.POS]: pos$56,
     name: "anubis",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -79,53 +79,53 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$55,
+      [nix.POS]: pos$55,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$54,
+          [nix.POS]: pos$54,
           environment: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             etc: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               "anubis-botPolicy.json": nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 text: nix.thunk(() => nix.app(nix.sel(lib, "generators", "toJSON"), nix.thunk(() => ({})), nix.thunk(() => ({
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     bots: nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$2, name: "allow-all", user_agent_regex: ".*", action: "ALLOW" })),
+                      nix.thunk(() => ({ [nix.POS]: pos$2, name: "allow-all", user_agent_regex: ".*", action: "ALLOW" })),
                     ]),
                   })))),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             anubis: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               defaultOptions: nix.thunk(() => ({
-                __proto__: pos$8,
-                settings: nix.thunk(() => ({ __proto__: pos$7, DIFFICULTY: 3n, USER_DEFINED_DEFAULT: true })),
+                [nix.POS]: pos$8,
+                settings: nix.thunk(() => ({ [nix.POS]: pos$7, DIFFICULTY: 3n, USER_DEFINED_DEFAULT: true })),
               })),
               instances: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 "": nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     TARGET: "http://localhost:8080",
                     DIFFICULTY: 5n,
                     USER_DEFINED_INSTANCE: true,
                   })),
                 })),
                 tcp: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   user: "anubis-tcp",
                   group: "anubis-tcp",
                   settings: nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     TARGET: "http://localhost:8080",
                     BIND: "127.0.0.1:9000",
                     BIND_NETWORK: "tcp",
@@ -134,38 +134,38 @@ export default nix.lambda((args) => (() => {
                   })),
                 })),
                 "another-unix-listen": nix.thunk(() => ({
-                  __proto__: pos$14,
-                  settings: nix.thunk(() => ({ __proto__: pos$13, TARGET: "http://localhost:8080" })),
+                  [nix.POS]: pos$14,
+                  settings: nix.thunk(() => ({ [nix.POS]: pos$13, TARGET: "http://localhost:8080" })),
                 })),
                 "unix-upstream": nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   group: "nginx",
-                  settings: nix.thunk(() => ({ __proto__: pos$15, TARGET: "unix:///run/nginx/nginx.sock" })),
+                  settings: nix.thunk(() => ({ [nix.POS]: pos$15, TARGET: "unix:///run/nginx/nginx.sock" })),
                 })),
                 "policy-default": nix.thunk(() => ({
-                  __proto__: pos$18,
-                  settings: nix.thunk(() => ({ __proto__: pos$17, TARGET: "http://localhost:8080" })),
+                  [nix.POS]: pos$18,
+                  settings: nix.thunk(() => ({ [nix.POS]: pos$17, TARGET: "http://localhost:8080" })),
                 })),
                 "policy-custom": nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   policy: nix.thunk(() => ({
-                    __proto__: pos$21,
+                    [nix.POS]: pos$21,
                     extraBots: nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$19,
+                        [nix.POS]: pos$19,
                         name: "custom-allow",
                         user_agent_regex: "CustomBot/.*",
                         action: "ALLOW",
                       })),
                     ]),
-                    settings: nix.thunk(() => ({ __proto__: pos$20, dnsbl: false })),
+                    settings: nix.thunk(() => ({ [nix.POS]: pos$20, dnsbl: false })),
                   })),
-                  settings: nix.thunk(() => ({ __proto__: pos$22, TARGET: "http://localhost:8080" })),
+                  settings: nix.thunk(() => ({ [nix.POS]: pos$22, TARGET: "http://localhost:8080" })),
                 })),
                 "policy-file": nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$24,
+                    [nix.POS]: pos$24,
                     TARGET: "http://localhost:8080",
                     POLICY_FNAME: "/etc/anubis-botPolicy.json",
                   })),
@@ -173,74 +173,74 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             nginx: nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               enable: true,
               recommendedProxySettings: true,
               virtualHosts: nix.thunk(() => ({
-                __proto__: pos$48,
+                [nix.POS]: pos$48,
                 "basic.localhost": nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   locations: nix.thunk(() => ({
-                    __proto__: pos$30,
+                    [nix.POS]: pos$30,
                     "/": nix.thunk(() => ({
-                      __proto__: pos$28,
+                      [nix.POS]: pos$28,
                       proxyPass: nix.thunk(() => nix.str`http://unix:${nix.sel(config, "services", "anubis", "instances", "", "settings", "BIND")}`),
                     })),
                     "/metrics": nix.thunk(() => ({
-                      __proto__: pos$29,
+                      [nix.POS]: pos$29,
                       proxyPass: nix.thunk(() => nix.str`http://unix:${nix.sel(config, "services", "anubis", "instances", "", "settings", "METRICS_BIND")}`),
                     })),
                   })),
                 })),
                 "tcp.localhost": nix.thunk(() => ({
-                  __proto__: pos$35,
+                  [nix.POS]: pos$35,
                   locations: nix.thunk(() => ({
-                    __proto__: pos$34,
+                    [nix.POS]: pos$34,
                     "/": nix.thunk(() => ({
-                      __proto__: pos$32,
+                      [nix.POS]: pos$32,
                       proxyPass: nix.thunk(() => nix.str`http://${nix.sel(config, "services", "anubis", "instances", "tcp", "settings", "BIND")}`),
                     })),
                     "/metrics": nix.thunk(() => ({
-                      __proto__: pos$33,
+                      [nix.POS]: pos$33,
                       proxyPass: nix.thunk(() => nix.str`http://${nix.sel(config, "services", "anubis", "instances", "tcp", "settings", "METRICS_BIND")}`),
                     })),
                   })),
                 })),
                 "another-unix-listen": nix.thunk(() => ({
-                  __proto__: pos$39,
+                  [nix.POS]: pos$39,
                   locations: nix.thunk(() => ({
-                    __proto__: pos$38,
+                    [nix.POS]: pos$38,
                     "/": nix.thunk(() => ({
-                      __proto__: pos$36,
+                      [nix.POS]: pos$36,
                       proxyPass: nix.thunk(() => nix.str`http://unix:${nix.sel(config, "services", "anubis", "instances", "another-unix-listen", "settings", "BIND")}`),
                     })),
                     "/metrics": nix.thunk(() => ({
-                      __proto__: pos$37,
+                      [nix.POS]: pos$37,
                       proxyPass: nix.thunk(() => nix.str`http://unix:${nix.sel(config, "services", "anubis", "instances", "another-unix-listen", "settings", "METRICS_BIND")}`),
                     })),
                   })),
                 })),
                 "unix.localhost": nix.thunk(() => ({
-                  __proto__: pos$42,
+                  [nix.POS]: pos$42,
                   locations: nix.thunk(() => ({
-                    __proto__: pos$41,
+                    [nix.POS]: pos$41,
                     "/": nix.thunk(() => ({
-                      __proto__: pos$40,
+                      [nix.POS]: pos$40,
                       proxyPass: nix.thunk(() => nix.str`http://unix:${nix.sel(config, "services", "anubis", "instances", "unix-upstream", "settings", "BIND")}`),
                     })),
                   })),
                 })),
                 "upstream.localhost": nix.thunk(() => ({
-                  __proto__: pos$47,
+                  [nix.POS]: pos$47,
                   default: true,
                   listen: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$43, addr: "unix:/run/nginx/nginx.sock" })),
-                    nix.thunk(() => ({ __proto__: pos$44, addr: "localhost", port: 8080n })),
+                    nix.thunk(() => ({ [nix.POS]: pos$43, addr: "unix:/run/nginx/nginx.sock" })),
+                    nix.thunk(() => ({ [nix.POS]: pos$44, addr: "localhost", port: 8080n })),
                   ]),
                   locations: nix.thunk(() => ({
-                    __proto__: pos$46,
+                    [nix.POS]: pos$46,
                     "/": nix.thunk(() => ({
-                      __proto__: pos$45,
+                      [nix.POS]: pos$45,
                       tryFiles: "$uri $uri/index.html =404",
                       root: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "anubis-test-upstream", nix.thunk(() => ({})), "mkdir $out\necho \"it works\" >> $out/index.html\n")),
                     })),
@@ -250,11 +250,11 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$53,
+            [nix.POS]: pos$53,
             users: nix.thunk(() => ({
-              __proto__: pos$52,
+              [nix.POS]: pos$52,
               nginx: nix.thunk(() => ({
-                __proto__: pos$51,
+                [nix.POS]: pos$51,
                 extraGroups: nix.thunk(() => [nix.thunk(() => nix.sel(config, "users", "groups", "anubis", "name"))]),
               })),
             })),

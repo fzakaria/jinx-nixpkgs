@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const earley = nix.arg($, "earley");
   const timed = nix.arg($, "timed");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bindlib",
       version: "6.0.0",
       minimalOCamlVersion: "4.07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rlepigre",
           repo: "ocaml-bindlib",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [earley, timed]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://rlepigre.github.io/ocaml-bindlib",
         description: "Efficient binder representation in Ocaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

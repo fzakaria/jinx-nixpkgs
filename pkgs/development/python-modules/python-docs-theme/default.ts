@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const pythonOlder = nix.arg($, "pythonOlder");
   const sphinx = nix.arg($, "sphinx");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "python-docs-theme",
       version: "2026.4",
       pyproject: true,
       disabled: nix.thunk(() => nix.app(pythonOlder, "3.12")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "python",
           repo: "python-docs-theme",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [sphinx]),
       pythonImportsCheck: nix.thunk(() => ["python_docs_theme"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Sphinx theme for CPython project",
         homepage: "https://github.com/python/python-docs-theme",
         changelog: nix.thunk(() => nix.str`https://github.com/python/python-docs-theme/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

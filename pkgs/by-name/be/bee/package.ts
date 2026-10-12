@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const buildGoModule = nix.arg($, "buildGoModule");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "bee",
       version: "2.8.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ethersphere",
           repo: "bee",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,10 +35,10 @@ export default nix.lambda((args) => (() => {
         "-X github.com/ethersphere/bee/v2/pkg/p2p/libp2p.reachabilityOverridePublic=false",
         "-X github.com/ethersphere/bee/v2/pkg/postage/listener.batchFactorOverridePublic=5",
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       postInstall: "mkdir -p $out/lib/systemd/system\ncp packaging/bee.service $out/lib/systemd/system/\ncp packaging/bee-get-addr $out/bin/\nchmod +x $out/bin/bee-get-addr\npatchShebangs $out/bin/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/ethersphere/bee",
         description: "Ethereum Swarm Bee",
         longDescription: "A decentralised storage and communication system for a sovereign digital society.\n\nSwarm is a system of peer-to-peer networked nodes that create a decentralised storage\nand communication service. The system is economically self-sustaining due to a built-in\nincentive system enforced through smart contracts on the Ethereum blockchain.\n\nBee is a Swarm node implementation, written in Go.\n",

@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.arg($, "version");
   const meta = nix.arg($, "meta");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: pname,
       version: version,
       meta: meta,
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
           const name = nix.thunk(() => nix.str`VNC-Viewer-${nix.sel(finalAttrs, "version")}-MacOSX-universal.dmg`);
           const url = nix.thunk(() => nix.str`https://downloads.realvnc.com/download/file/viewer.files/${name}`);
           const hash = "sha256-nWS7XsAQFcp2uoXXzT+a542Q9vwloZEQHqf4eieKqUA=";
-          return { __proto__: pos$1, name, url, hash };
+          return { [nix.POS]: pos$1, name, url, hash };
         })()))),
       sourceRoot: ".",
       nativeBuildInputs: nix.thunk(() => [undmg]),

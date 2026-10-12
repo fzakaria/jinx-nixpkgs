@@ -48,93 +48,93 @@ export default nix.lambda((args) => (() => {
   const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "wgautomesh-config.toml", nix.thunk(() => nix.app(nix.lookup(w, "filterAttrs"), (k) => (v) => !nix.eq(v, null), nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs"), (k) => (v) => (nix.asBool(nix.eq(k, "peers")) ? nix.app(nix.builtins.map, (e) => nix.app(nix.lookup(w, "filterAttrs"), (k_1) => (v_1) => !nix.eq(v_1, null), e), v) : nix.force(v)), nix.thunk(() => nix.sel(cfg, "settings"))))))));
   const runtimeConfigFile = nix.thunk(() => (nix.asBool(nix.sel(cfg, "enableGossipEncryption")) ? "/run/wgautomesh/wgautomesh.toml" : nix.force(configFile)));
   return {
-    __proto__: pos$33,
+    [nix.POS]: pos$33,
     options: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       services: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         wgautomesh: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "the wgautomesh daemon")),
           logLevel: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["trace", "debug", "info", "warn", "error"]))),
               default: "info",
               description: "wgautomesh log level.",
             })))),
           enableGossipEncryption: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "Enable encryption of gossip traffic.",
             })))),
           gossipSecretFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               description: "File containing the gossip secret, a shared secret key to use for gossip\nencryption.  Required if `enableGossipEncryption` is set.  This file\nmay contain any arbitrary-length utf8 string.  To generate a new gossip\nsecret, use a command such as `openssl rand -base64 32`.\n",
             })))),
           enablePersistence: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "Enable persistence of Wireguard peer info between restarts.",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "Automatically open gossip port in firewall (recommended).",
             })))),
           settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$16,
+                    [nix.POS]: pos$16,
                     interface: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         description: "Wireguard interface to manage (it is NOT created by wgautomesh, you\nshould use another NixOS option to create it such as\n`networking.wireguard.interfaces.wg0 = {...};`).\n",
                         example: "wg0",
                       })))),
                     gossip_port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
                         description: "wgautomesh gossip port, this MUST be the same number on all nodes in\nthe wgautomesh network.\n",
                         default: 1666n,
                       })))),
                     lan_discovery: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                         default: true,
                         description: "Enable discovery of peers on the same LAN using UDP broadcast.",
                       })))),
                     upnp_forward_external_port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")))),
                         default: null,
                         description: "Public port number to try to redirect to this machine's Wireguard\ndaemon using UPnP IGD.\n",
                       })))),
                     peers: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$15,
+                        [nix.POS]: pos$15,
                         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                              __proto__: pos$14,
+                              [nix.POS]: pos$14,
                               options: nix.thunk(() => ({
-                                __proto__: pos$13,
+                                [nix.POS]: pos$13,
                                 pubkey: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                    __proto__: pos$10,
+                                    [nix.POS]: pos$10,
                                     type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                                     description: "Wireguard public key of this peer.",
                                   })))),
                                 address: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                    __proto__: pos$11,
+                                    [nix.POS]: pos$11,
                                     type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                                     description: "Wireguard address of this peer (a single IP address, multiple\naddresses or address ranges are not supported).\n",
                                     example: "10.0.0.42",
                                   })))),
                                 endpoint: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                    __proto__: pos$12,
+                                    [nix.POS]: pos$12,
                                     type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                                     description: "Bootstrap endpoint for connecting to this Wireguard peer if no\nother address is known or none are working.\n",
                                     default: null,
@@ -154,32 +154,32 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         services: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           wgautomesh: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             settings: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               gossip_secret_file: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableGossipEncryption")), "$CREDENTIALS_DIRECTORY/gossip_secret")),
               persist_file: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enablePersistence")), "/var/lib/wgautomesh/state")),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           services: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             wgautomesh: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "wireguard-tools"))]),
               environment: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 RUST_LOG: nix.thunk(() => nix.str`wgautomesh=${nix.sel(cfg, "logLevel")}`),
               })),
               description: "wgautomesh",
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 Type: "simple",
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.lookup(w, "getExe"), nix.thunk(() => nix.sel(pkgs, "wgautomesh")))} ${runtimeConfigFile}`),
                 Restart: "always",
@@ -202,9 +202,9 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           firewall: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             allowedUDPPorts: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "gossip_port"))]))),
           })),
         })),

@@ -11,9 +11,9 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const mkDerivation = nix.arg($, "mkDerivation");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "usr.sbin/vidcontrol",
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "vidcontrol" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "vidcontrol" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=vidcontrol.ts.map

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.2.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ubernostrum",
           repo: "django-registration",
           tag: version,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const installCheckPhase = "runHook preInstallCheck\n\nDJANGO_SETTINGS_MODULE=tests.settings python -m coverage run --source django_registration runtests.py\n\nrunHook postInstallCheck\n";
       const pythonImportsCheck = nix.thunk(() => ["django_registration"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/ubernostrum/django-registration/blob/${version}/docs/changelog.rst`),
         description: "User registration app for Django",
         homepage: nix.thunk(() => nix.str`https://django-registration.readthedocs.io/en/${version}/`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "l0b0"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

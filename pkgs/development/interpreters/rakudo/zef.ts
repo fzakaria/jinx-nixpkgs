@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const rakudo = nix.arg($, "rakudo");
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zef",
       version: "1.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ugexe",
           repo: "zef",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ runHook postInstall
 `),
       postFixup: "wrapProgram $out/bin/zef --prefix RAKUDOLIB , \"inst#$out\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Raku / Perl6 Module Management",
         homepage: "https://github.com/ugexe/zef",
         license: nix.thunk(() => nix.sel(lib, "licenses", "artistic2")),

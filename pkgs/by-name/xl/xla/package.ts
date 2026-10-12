@@ -64,15 +64,15 @@ export default nix.lambda((args) => (() => {
   const cudaManifests = nix.thunk(() => (() => {
     const from = nix.thunk(() => nix.sel(cudaPackages, "manifests"));
     return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     cuda: nix.thunk(() => nix.attr(from, "cuda")),
     cudnn: nix.thunk(() => nix.attr(from, "cudnn")),
   };
   })());
   const cudaManifestHash = nix.thunk(() => nix.builtins.hashString("sha256", nix.thunk(() => nix.builtins.toJSON(cudaManifests))));
-  const cudaLocal = nix.thunk(() => nix.app(callPackage, nix.path(here, "./cuda-local.nix"), nix.thunk(() => ({ __proto__: pos$2, cudaPackages: cudaPackages }))));
+  const cudaLocal = nix.thunk(() => nix.app(callPackage, nix.path(here, "./cuda-local.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, cudaPackages: cudaPackages }))));
   const cudaHashes = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "41d8c351dd9ceb95086c8fc2ebcb49b317c5082393220e5919372a7860487c60": "sha256-BXPlzvYSCOudbKgHU/IhHaHG5umNBGgD0hKl7jnOxcc=",
   }));
   const cudaHash = nix.thunk(() => nix.app(nix.selOr(cudaHashes, () => nix.builtins.throw, nix.key(nix.force(cudaManifestHash))), "xla: no Bazel dependency hash for these CUDA/cuDNN manifests; overrideAttrs with deps.overrideAttrs { outputHash = ...; outputHashAlgo = \"sha256\"; } (see tests/README.md)"));
@@ -139,11 +139,11 @@ done
       ];
     })(), [nix.thunk(() => nix.app(nix.sel(lib, "getLib"), rdma_core))]))));
   return nix.app(nix.sel(nix.app(buildBazelPackage, nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       pname: "xla",
       version: "0-unstable-2026-02-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "openxla",
           repo: "xla",
           rev: "964a0a45a0c3090cd484a3c51e8f9d05ed10b968",
@@ -196,15 +196,15 @@ substituteInPlace WORKSPACE \\
       removeRulesCC: false,
       removeLocal: false,
       fetchAttrs: nix.thunk(() => nix.update({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         bazelTargets: nix.thunk(() => nix.concat(["//xla/..."], nix.app(nix.sel(lib, "optional"), cudaSupport, "@nccl_archive//..."))),
         sha256: nix.thunk(() => nix.selOr({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           cpu: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             "x86_64-linux": "sha256-wbLvzCLpFw4+QF86zIBroAeFrwqUTe31aJV7tcjhSZE=",
           })),
-          cuda: nix.thunk(() => ({ __proto__: pos$6, "x86_64-linux": cudaHash })),
+          cuda: nix.thunk(() => ({ [nix.POS]: pos$6, "x86_64-linux": cudaHash })),
         }, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key((nix.asBool(cudaSupport) ? "cuda" : "cpu")), nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
         installPhase: nix.thunk(() => nix.str`runHook preInstall
 
@@ -279,11 +279,11 @@ echo '${nix.sel(bazel_7, "name")}' > $bazelOut/external/.nix-bazel-version
 runHook postInstall
 `),
       }, nix.app(nix.sel(lib, "optionalAttrs"), cudaSupport, nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           preConfigure: nix.thunk(() => nix.app(configureCuda, "sm_80")),
         }))))),
       buildAttrs: nix.thunk(() => nix.update({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         outputs: nix.thunk(() => ["out"]),
         __structuredAttrs: cudaSupport,
         strictDeps: cudaSupport,
@@ -374,13 +374,13 @@ done
 `)),
         installPhase: nix.thunk(() => nix.add(nix.add(nix.add(nix.add("runHook preInstall\nmkdir -p $out/{bin,lib,include}\n", "install_bazel_libraries() {\n  find bazel-bin/xla -name \"$1\" -type f -print0 \\\n    | sort -z \\\n    | while IFS= read -r -d \"\" library; do\n      cp --remove-destination \"$library\" \"$out/lib/$(basename \"$library\")\"\n    done\n}\ninstall_bazel_libraries \"*.so*\"\ninstall_bazel_libraries \"*.a\"\n\nmlir_runner_libs=(\n  libexternal_Sllvm-project_Smlir_Slib_Umlir_Uc_Urunner_Uutils.so\n  libexternal_Sllvm-project_Smlir_SlibSparseTensorRuntime.so\n  libexternal_Sllvm-project_Smlir_Slib_Umlir_Uapfloat_Uutils.so\n  libexternal_Sllvm-project_Smlir_Slib_Umlir_Ufloat16_Uutils.so\n  libexternal_Sllvm-project_Sllvm_SlibSupport.so\n  libexternal_Sllvm-project_Sllvm_SlibDemangle.so\n)\nfor library in \"${mlir_runner_libs[@]}\"; do\n  library_path=\"bazel-bin/_solib_x86_64/$library\"\n  if [ ! -e \"$library_path\" ]; then\n    echo \"missing Bazel runtime dependency $library_path\" >&2\n    exit 1\n  fi\n  cp -L \"$library_path\" \"$out/lib/$library\"\ndone\nfind \"$out/lib\" -name '*.runfiles_manifest' -delete\n"), nix.app(nix.sel(lib, "optionalString"), cudaSupport, "nvshmem_lib=\"$bazelOut/external/nvidia_nvshmem/lib\"\ninstall -m755 \\\n  \"$nvshmem_lib/libnvshmem_host.so.3.2.5\" \\\n  \"$nvshmem_lib/nvshmem_bootstrap_uid.so.3.0.0\" \\\n  \"$nvshmem_lib/nvshmem_transport_ibrc.so.3.0.0\" \\\n  \"$out/lib/\"\nln -s libnvshmem_host.so.3.2.5 \"$out/lib/libnvshmem_host.so.3\"\nln -s nvshmem_bootstrap_uid.so.3.0.0 \"$out/lib/nvshmem_bootstrap_uid.so.3\"\nln -s nvshmem_transport_ibrc.so.3.0.0 \"$out/lib/nvshmem_transport_ibrc.so.3\"\n")), "cp bazel-bin/xla/tools/run_hlo_module $out/bin/\n"), "find xla -name \"*.h\" -type f | while read -r header; do\n  target=\"$out/include/$header\"\n  mkdir -p \"$(dirname \"$target\")\"\n  cp \"$header\" \"$target\"\ndone\n\nrunHook postInstall\n")),
       }, nix.app(nix.sel(lib, "optionalAttrs"), cudaSupport, nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           runtimeDependencies: cudaRuntimeLibs,
           autoPatchelfIgnoreMissingDeps: nix.thunk(() => ["libcuda.so.1"]),
         }))))),
       requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         description: "Machine learning compiler for GPUs, CPUs, and ML accelerators",
         homepage: "https://github.com/openxla/xla",
         license: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(lib, "licenses", "asl20"))], nix.app(nix.sel(lib, "optionals"), cudaSupport, nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(lib, "licenses", "nvidiaCudaRedist"))], nix.sel(cudaPackages, "cudnn", "meta", "license")))))),
@@ -390,9 +390,9 @@ done
         })()),
         platforms: nix.thunk(() => ["x86_64-linux"]),
         problems: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "hasAttr"), cudaManifestHash, cudaHashes))), nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             "unsupported-cuda-toolkit": nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               message: nix.thunk(() => nix.str`Unsupported cuda version for XLA.
   Current \`cudaManifestHash\`: ${cudaManifestHash}
   Supported hash(es): ${nix.app(nix.sel(lib, "concatStringsSep"), ", ", nix.thunk(() => nix.builtins.attrNames(cudaHashes)))}
@@ -403,16 +403,16 @@ done
       })),
     }))), "overrideAttrs"), (finalAttrs) => (previousAttrs) => (() => {
       const checks = nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests"), nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           xla: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           cudaSupport: cudaSupport,
           cudaPackages: cudaPackages,
           cudaRuntimeLibs: cudaRuntimeLibs,
         }))));
       return {
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         passthru: nix.thunk(() => nix.update(nix.selOr(previousAttrs, () => ({}), "passthru"), {
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           cudaSupport: cudaSupport,
           tests: nix.thunk(() => nix.attr(checks, "tests")),
           testers: nix.thunk(() => nix.attr(checks, "testers")),

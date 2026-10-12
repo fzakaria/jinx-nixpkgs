@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cutter";
       const version = "2.5.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rizinorg",
           repo: "cutter",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -62,22 +62,22 @@ export default nix.lambda((args) => (() => {
       const preBuild = "qtWrapperArgs+=(--prefix PYTHONPATH : \"$PYTHONPATH\")\n";
       const passthru = nix.thunk(() => (() => {
         const plugins = nix.thunk(() => nix.update(nix.sel(rizin, "plugins"), {
-          __proto__: pos$3,
-          "rz-ghidra": nix.thunk(() => nix.app(nix.sel(rizin, "plugins", "rz-ghidra", "override"), nix.thunk(() => ({ __proto__: pos$2, cutter: cutter, qt6: qt6, enableCutterPlugin: true })))),
+          [nix.POS]: pos$3,
+          "rz-ghidra": nix.thunk(() => nix.app(nix.sel(rizin, "plugins", "rz-ghidra", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, cutter: cutter, qt6: qt6, enableCutterPlugin: true })))),
         }));
         const withPlugins = (filter) => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./wrapper.nix"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             rizin: rizin,
             cutter: cutter,
             isCutter: true,
             plugins: nix.thunk(() => nix.app(filter, plugins)),
           })));
-        return { __proto__: pos$5, plugins, withPlugins };
+        return { [nix.POS]: pos$5, plugins, withPlugins };
       })());
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(rizin, "meta"));
         return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Free and Open Source Reverse Engineering Platform powered by rizin",
         homepage: nix.thunk(() => nix.sel(src, "meta", "homepage")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

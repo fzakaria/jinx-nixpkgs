@@ -20,19 +20,19 @@ export default nix.lambda((args) => (() => {
   const installFonts = nix.arg($, "installFonts");
   const pname = "mplus-outline-fonts";
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     osdnRelease: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: nix.thunk(() => nix.str`${pname}-osdn`),
         version: "063a",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: "mirror://osdn/mplus-fonts/62344/mplus-TESTFLIGHT-063a.tar.xz",
             hash: "sha256-ROuXO0tq/1dN5FTbEF3cI+Z0nCKUc0vZyx4Nc05M3Xk=",
           })))),
         nativeBuildInputs: nix.thunk(() => [installFonts]),
         meta: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           description: "M+ Outline Fonts (legacy OSDN release)",
           homepage: "https://mplus-fonts.osdn.jp",
           maintainers: nix.thunk(() => (() => {
@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     githubRelease: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname: nix.thunk(() => nix.str`${pname}-github`),
         version: "unstable-2022-05-19",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             owner: "coz-m",
             repo: "MPLUS_FONTS",
             rev: "336fec4e9e7c1e61bd22b82e6364686121cf3932",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
           })))),
         nativeBuildInputs: nix.thunk(() => [installFonts]),
         meta: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           description: "M+ Outline Fonts (GitHub release)",
           homepage: "https://mplusfonts.github.io",
           maintainers: nix.thunk(() => (() => {

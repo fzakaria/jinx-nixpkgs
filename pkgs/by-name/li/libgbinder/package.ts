@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const libglibutil = nix.arg($, "libglibutil");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libgbinder",
       version: "1.1.45",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mer-hybris",
           repo: "libgbinder",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       installTargets: nix.thunk(() => ["install", "install-dev"]),
       postInstall: "sed -i -e \"s@includedir=/usr@includedir=$dev@g\" $dev/lib/pkgconfig/$pname.pc\nsed -i -e \"s@Cflags: @Cflags: $($PKG_CONFIG --cflags libglibutil) @g\" $dev/lib/pkgconfig/$pname.pc\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GLib-style interface to binder",
         homepage: "https://github.com/mer-hybris/libgbinder",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["programs", "oblogout"]), "programs.oblogout has been removed from NixOS. This is because the oblogout repository has been archived upstream.")),
     ]),

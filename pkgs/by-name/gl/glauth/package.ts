@@ -15,24 +15,24 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "glauth",
       version: "2.5.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "glauth",
           repo: "glauth",
           tag: nix.thunk(() => nix.str`GLAuth-v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-b5R3aXrvHyKDoRhNIXIZncnkIV5DuWr4pPQCv0I36JU=",
         })))),
       vendorHash: "sha256-T0nzmnnM7Cps9nmt4Rfzn4nl2+i/1baP0AwIrjk4hXk=",
-      overrideModAttrs: (_) => ({ __proto__: pos$2, buildPhase: "go work vendor -e -v\n" }),
+      overrideModAttrs: (_) => ({ [nix.POS]: pos$2, buildPhase: "go work vendor -e -v\n" }),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       doCheck: false,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Lightweight LDAP server for development, home use, or CI",
         homepage: "https://github.com/glauth/glauth",
         changelog: nix.thunk(() => nix.str`https://github.com/glauth/glauth/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

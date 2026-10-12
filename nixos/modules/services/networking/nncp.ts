@@ -41,18 +41,18 @@ export default nix.lambda((args) => (() => {
   const jsonCfgFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "nncp.json", nix.thunk(() => nix.sel(programCfg, "settings"))));
   const pkg = nix.thunk(() => nix.sel(programCfg, "package"));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         nncp: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           caller: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "cron'ed NNCP TCP daemon caller.\nThe daemon will take configuration from\n[](#opt-programs.nncp.settings)\n")),
             extraArgs: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                   return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -63,13 +63,13 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           daemon: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "NNCP TCP synronization daemon.\nThe daemon will take configuration from\n[](#opt-programs.nncp.settings)\n")),
             socketActivation: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "socket activation for nncp-daemon")),
               listenStreams: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   type: nix.thunk(() => (() => {
                     const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                     return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
                 })))),
             })),
             extraArgs: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                   return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -93,10 +93,10 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.selOr(programCfg, () => nix.selOr(callerCfg, () => nix.sel(daemonCfg, "enable"), "enable"), "enable")), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             assertion: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.builtins, w);
               const callerCongfigured = nix.thunk(() => (() => {
@@ -109,32 +109,32 @@ export default nix.lambda((args) => (() => {
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           services: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             "nncp-caller": nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               enable: nix.thunk(() => nix.attr(callerCfg, "enable")),
               description: "Croned NNCP TCP daemon caller.",
               documentation: nix.thunk(() => ["http://www.nncpgo.org/nncp_002dcaller.html"]),
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 ExecStart: nix.thunk(() => nix.str`${pkg}/bin/nncp-caller -noprogress -cfg "${nncpCfgFile}" ${nix.app(nix.sel(lib, "strings", "escapeShellArgs"), nix.thunk(() => nix.sel(callerCfg, "extraArgs")))}`),
                 Group: "uucp",
                 UMask: "0002",
               })),
             })),
             "nncp-daemon": nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(daemonCfg, "enable")), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 enable: nix.thunk(() => !nix.asBool(nix.sel(daemonCfg, "socketActivation", "enable"))),
                 description: "NNCP TCP syncronization daemon.",
                 documentation: nix.thunk(() => ["http://www.nncpgo.org/nncp_002ddaemon.html"]),
                 after: nix.thunk(() => ["network.target"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   ExecStart: nix.thunk(() => nix.str`${pkg}/bin/nncp-daemon -noprogress -cfg "${nncpCfgFile}" ${nix.app(nix.sel(lib, "strings", "escapeShellArgs"), nix.thunk(() => nix.sel(daemonCfg, "extraArgs")))}`),
                   Restart: "on-failure",
                   Group: "uucp",
@@ -142,12 +142,12 @@ export default nix.lambda((args) => (() => {
                 })),
               })))),
             "nncp-daemon@": nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(daemonCfg, "socketActivation", "enable")), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 description: "NNCP TCP syncronization daemon.",
                 documentation: nix.thunk(() => ["http://www.nncpgo.org/nncp_002ddaemon.html"]),
                 after: nix.thunk(() => ["network.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   ExecStart: nix.thunk(() => nix.str`${pkg}/bin/nncp-daemon -noprogress -ucspi -cfg "${nncpCfgFile}" ${nix.app(nix.sel(lib, "strings", "escapeShellArgs"), nix.thunk(() => nix.sel(daemonCfg, "extraArgs")))}`),
                   Group: "uucp",
                   UMask: "0002",
@@ -158,16 +158,16 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           sockets: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             "nncp-daemon": nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(daemonCfg, "socketActivation", "enable")), nix.thunk(() => (() => {
                 const from = nix.thunk(() => nix.sel(daemonCfg, "socketActivation"));
                 return {
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 listenStreams: nix.thunk(() => nix.attr(from, "listenStreams")),
                 description: "socket for NNCP TCP syncronization.",
                 conflicts: nix.thunk(() => ["nncp-daemon.service"]),
                 wantedBy: nix.thunk(() => ["sockets.target"]),
-                socketConfig: nix.thunk(() => ({ __proto__: pos$18, Accept: true })),
+                socketConfig: nix.thunk(() => ({ [nix.POS]: pos$18, Accept: true })),
               };
               })()))),
           })),

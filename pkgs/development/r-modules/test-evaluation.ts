@@ -7,11 +7,11 @@ const pos$2 = nix.positions(here + "/test-evaluation.nix", [["config", 14, 38]])
 const pos$3 = nix.positions(here + "/test-evaluation.nix", [["packages", 17, 5]]);
 
 export default nix.thunk(() => (() => {
-  const config = nix.thunk(() => ({ __proto__: pos$1, allowBroken: true, allowUnfree: true }));
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({ __proto__: pos$2, config: config }))));
+  const config = nix.thunk(() => ({ [nix.POS]: pos$1, allowBroken: true, allowUnfree: true }));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({ [nix.POS]: pos$2, config: config }))));
   const pkgs = nix.thunk(() => nix.attr(from, "pkgs"));
   const rWrapper = nix.thunk(() => nix.app(nix.sel(pkgs, "rWrapper", "override"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       packages: nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "filter"), nix.thunk(() => nix.sel(pkgs, "lib", "isDerivation")), nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "attrValues"), nix.thunk(() => nix.sel(pkgs, "rPackages")))))),
     }))));
   return nix.force(rWrapper);

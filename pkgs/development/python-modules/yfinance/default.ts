@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const websockets = nix.arg($, "websockets");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "yfinance",
       version: "1.5.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ranaroussi",
           repo: "yfinance",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -64,14 +64,14 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonRelaxDeps: nix.thunk(() => ["curl_cffi"]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         nospam: nix.thunk(() => [requests_cache, requests_ratelimiter]),
         repair: nix.thunk(() => [scipy]),
       })),
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["yfinance"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Module to doiwnload Yahoo! Finance market data",
         homepage: "https://github.com/ranaroussi/yfinance",
         changelog: nix.thunk(() => nix.str`https://github.com/ranaroussi/yfinance/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.rst`),

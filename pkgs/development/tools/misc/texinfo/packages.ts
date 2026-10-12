@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const procps = nix.arg($, "procps");
   const meta = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     description: "GNU documentation system",
     homepage: "https://www.gnu.org/software/texinfo/",
     changelog: "https://git.savannah.gnu.org/cgit/texinfo.git/plain/NEWS",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
     mainProgram: "texi2any",
   }));
   const buildTexinfo = nix.thunk(() => nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       lib: lib,
       stdenv: stdenv,
       buildPackages: buildPackages,
@@ -58,9 +58,9 @@ export default nix.lambda((args) => (() => {
       interactive: interactive,
     }))));
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     texinfo7: nix.thunk(() => nix.app(buildTexinfo, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version: "7.3",
         hash: "sha256-UfdOsPUc+phzuFJk391dRuiVfslbiPD7di9j2eFkxy4=",
       })))),

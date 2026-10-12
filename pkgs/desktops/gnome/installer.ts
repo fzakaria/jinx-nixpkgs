@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const extraModules = nix.argOr($, "extraModules", () => []);
   const module = nix.path(here, "../../../../nixos/modules/installer/cd-dvd/installation-cd-graphical-gnome.nix");
   const config = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "../../../../nixos/lib/eval-config.nix")), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       system: system,
       modules: nix.thunk(() => nix.concat([
         module,
         nix.thunk(() => ({
-          __proto__: pos$2,
-          image: nix.thunk(() => ({ __proto__: pos$1, baseName: isoBaseName })),
+          [nix.POS]: pos$2,
+          image: nix.thunk(() => ({ [nix.POS]: pos$1, baseName: isoBaseName })),
         })),
       ], extraModules)),
     }))), "config"));

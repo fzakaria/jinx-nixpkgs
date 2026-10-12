@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "2023.11.26";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => [".0"]), nix.thunk(() => ["."]), version)),
           hash: "sha256-Im3rQAs/TYookv6FeGpU6tJxUGBMb6/UW1ZMDg9FW4s=",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [writableTmpDirAsHomeHook]);
       const pythonImportsCheck = nix.thunk(() => ["ytmdl"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/deepjyoti30/ytmdl",
         description: "YouTube Music Downloader",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "ytmdl",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

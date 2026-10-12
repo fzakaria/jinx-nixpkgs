@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
       const release = "8.6";
       const version = nix.thunk(() => nix.str`${release}.16`);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/tcl/tcl${version}-src.tar.gz`),
           hash: "sha256-kcuPphdxxjwmLvtVMFm3x61nV6+lhXr2Jl5LC9wqFKU=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/tcltk/tcl/commit/1685fee268dcf1334b015840d873366a3cd8d237.patch",
             decode: "sed -e 's|configure[.]ac|configure.in|g'",
             includes: nix.thunk(() => ["unix/tcl.m4", "unix/configure.in"]),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const extraPatch = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => nix.str`substituteInPlace unix/configure unix/configure.in \\
   --replace-fail '\`uname -s\`' '${nix.sel(stdenv, "hostPlatform", "uname", "system")}'
 `)));
-      return { __proto__: pos$3, release, version, src, patches, extraPatch };
+      return { [nix.POS]: pos$3, release, version, src, patches, extraPatch };
     })())));
 })(), formals$1);
 //# sourceMappingURL=8.6.ts.map

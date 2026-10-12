@@ -35,13 +35,13 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const vips = nix.arg($, "vips");
   const xcbuild = nix.arg($, "xcbuild");
-  const pnpm = nix.thunk(() => nix.app(nix.sel(pnpm_10_34_0, "override"), nix.thunk(() => ({ __proto__: pos$1, "nodejs-slim": nodejs_slim_22 }))));
+  const pnpm = nix.thunk(() => nix.app(nix.sel(pnpm_10_34_0, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, "nodejs-slim": nodejs_slim_22 }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "sharkey",
       version: "2025.4.7",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           domain: "activitypub.software",
           owner: "TransFem-org",
           repo: "Sharkey",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
           fetchSubmodules: true,
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -133,12 +133,12 @@ runHook postInstall
       })()),
       fixupPhase: "runHook preFixup\n\n# cleanup dangling symlinks in node_modules, referencing workspace packages we don't include in the final output\nrm -r $out/sharkey/node_modules/.pnpm/node_modules/{sw,misskey-js-type-generator,frontend-shared}\n\n# remove packageManager line from package.json; tries to download a different pnpm version into $HOME otherwise\nsed -i -e '9d' $out/sharkey/package.json\n\nrunHook postFixup\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        tests: nix.thunk(() => ({ __proto__: pos$4, sharkey: nix.thunk(() => nix.sel(nixosTests, "sharkey")) })),
+        [nix.POS]: pos$5,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$4, sharkey: nix.thunk(() => nix.sel(nixosTests, "sharkey")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Sharkish microblogging platform",
         homepage: "https://joinsharkey.org",
         changelog: nix.thunk(() => nix.str`https://activitypub.software/TransFem-org/Sharkey/-/releases/${nix.sel(finalAttrs, "version")}`),

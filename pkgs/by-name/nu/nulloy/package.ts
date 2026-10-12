@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const taglib = nix.arg($, "taglib");
   const gst_all_1 = nix.arg($, "gst_all_1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nulloy",
       version: "0.9.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nulloy",
           repo: "nulloy",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       preFixup: "qtWrapperArgs+=(\n  --prefix GST_PLUGIN_SYSTEM_PATH_1_0 : \"$GST_PLUGIN_SYSTEM_PATH_1_0\"\n)\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Music player with a waveform progress bar",
         homepage: "https://nulloy.com",
         changelog: nix.thunk(() => nix.str`https://github.com/nulloy/nulloy/blob/${nix.sel(finalAttrs, "src", "rev")}/ChangeLog`),

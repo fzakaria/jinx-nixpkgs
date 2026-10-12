@@ -24,20 +24,20 @@ export default nix.lambda((args) => (() => {
       const version = "0.14.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-z2mDEFx7Qn5LKyji4CgFhxvCUblZeXLf2hjy4i6lMjQ=",
         }))));
       const build_system = nix.thunk(() => [hatchling]);
       const dependencies = nix.thunk(() => [httpx, tomli]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, web: nix.thunk(() => [starlette]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, web: nix.thunk(() => [starlette]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook, pytest_benchmark], nix.sel(optional_dependencies, "web")));
       const pytestFlags = nix.thunk(() => ["--benchmark-disable"]);
       const preCheck = "export HOME=$(mktemp -d)\n";
       const pythonImportsCheck = nix.thunk(() => ["wn"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Modern, interlingual wordnet interface for Python",
         homepage: "https://github.com/goodmami/wn",
         changelog: nix.thunk(() => nix.str`https://github.com/goodmami/wn/blob/v${version}/CHANGELOG.md`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

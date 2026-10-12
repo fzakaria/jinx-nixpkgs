@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.4.9";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jawah",
           repo: "charset_normalizer",
           tag: version,
@@ -38,17 +38,17 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace _mypyc_hook/backend.py \\\n  --replace-fail \"mypy>=1.4.1,<2.2\" \"mypy\"\n";
       const build_system = nix.thunk(() => nix.concat([setuptools], nix.app(nix.sel(lib, "optionals"), withMypyc, nix.thunk(() => [ast_serialize, mypy]))));
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CHARSET_NORMALIZER_USE_MYPYC: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withMypyc, "1")),
       }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["charset_normalizer"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, aiohttp: aiohttp, requests: requests })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, aiohttp: aiohttp, requests: requests })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Python module for encoding and language detection",
         mainProgram: "normalizer",
         homepage: "https://charset-normalizer.readthedocs.io/",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

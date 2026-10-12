@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nu_plugin_gstat",
       version: nix.thunk(() => nix.attr(nushell, "version")),
       src: nix.thunk(() => nix.attr(nushell, "src")),
@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openssl]),
       buildAndTestSubdir: "crates/nu_plugin_gstat",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$1, extraArgs: nix.thunk(() => ["--version=skip"]) })))),
+        [nix.POS]: pos$2,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$1, extraArgs: nix.thunk(() => ["--version=skip"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Git status plugin for Nushell",
         mainProgram: "nu_plugin_gstat",
         homepage: nix.thunk(() => nix.str`https://github.com/nushell/nushell/tree/${nix.sel(finalAttrs, "version")}/crates/nu_plugin_gstat`),

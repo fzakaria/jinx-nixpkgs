@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pytest_django = nix.arg($, "pytest-django");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "django-prometheus",
       version: "2.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "django-commons",
           repo: "django-prometheus",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["django_prometheus"]),
       nativeCheckInputs: nix.thunk(() => [psycopg, pytestCheckHook, pytest_django]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/django-commons/django-prometheus/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Django middlewares to monitor your application with Prometheus.io",
         homepage: "https://github.com/django-commons/django-prometheus",

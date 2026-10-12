@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const bison = nix.arg($, "bison");
   const readline = nix.arg($, "readline");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "2.2.2",
       pname: "lie",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Computer algebra package for Lie group computations",
         mainProgram: "lie",
         homepage: "http://wwwmathlabo.univ-poitiers.fr/~maavl/LiE/",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       })),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "http://wwwmathlabo.univ-poitiers.fr/~maavl/LiE/conLiE.tar.gz",
           sha256: "07lbj75qqr4pq1j1qz8fyfnmrz1gnk92lnsshxycfavxl5zzdmn4",
         })))),

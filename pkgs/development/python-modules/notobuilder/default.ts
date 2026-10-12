@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const font_v = nix.arg($, "font-v");
   const ninja = nix.arg($, "ninja");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "notobuilder",
       version: "0-unstable-2026-09-24",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "notofonts",
           repo: "notobuilder",
           rev: "efda64ea4bdb249cfa69cad28d9cf2febfc7b0c8",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
   --replace-fail '"ninja"' '"${nix.app(nix.sel(lib, "getExe"), ninja)}"'
 `),
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
-      env: nix.thunk(() => ({ __proto__: pos$2, SETUPTOOLS_SCM_PRETEND_VERSION: "0.0.0" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, SETUPTOOLS_SCM_PRETEND_VERSION: "0.0.0" })),
       dependencies: nix.thunk(() => nix.concat([
         fonttools,
         ufomerge,
@@ -61,11 +61,11 @@ export default nix.lambda((args) => (() => {
       ], nix.sel(gftools, "optional-dependencies", "qa"))),
       pythonImportsCheck: nix.thunk(() => ["notobuilder", "notoqa"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python module for building Noto fonts",
         homepage: "https://github.com/notofonts/notobuilder",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

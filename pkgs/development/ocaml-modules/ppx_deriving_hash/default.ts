@@ -19,20 +19,20 @@ export default nix.lambda((args) => (() => {
   const ppx_deriving = nix.arg($, "ppx_deriving");
   const ounit2 = nix.arg($, "ounit2");
   const param = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ppxlib, "version")), "0.36")) ? {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     version: "0.1.4",
     hash: "sha256-5EYz9DwAdFW+KmE+9B+iTpsBvHJ9sMt3Dhamgz6oLUU=",
   } : {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     version: "0.1.2",
     hash: "sha256-ss3OALD+9Dm5wtwgvQ0SSL7Cu0xWumwKmLBKPDh4Fa8=",
   }));
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ppx_deriving_hash",
       version: nix.thunk(() => nix.attr(param, "version")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://github.com/sim642/ppx_deriving_hash/releases/download/${nix.sel(finalAttrs, "version")}/ppx_deriving_hash-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: nix.thunk(() => nix.attr(param, "hash")),
         })))),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [cppo]),
       checkInputs: nix.thunk(() => [ounit2]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/sim642/ppx_deriving_hash",
         description: "OCaml PPX deriver for standard hash functions without extra dependencies",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

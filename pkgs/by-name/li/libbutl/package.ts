@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const enableShared = nix.argOr($, "enableShared", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")));
   const enableStatic = nix.argOr($, "enableStatic", () => !nix.asBool(enableShared));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libbutl",
       version: "0.18.1",
       outputs: nix.thunk(() => ["out", "dev", "doc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://pkg.cppget.org/1/alpha/build2/libbutl-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-tQl7FRJh/CJ7A5MIlxlVv5aduPy/C0shcn9l+IB1oZU=",
         })))),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "build2 utility library",
         longDescription: "This library is a collection of utilities that are used throughout the\nbuild2 toolchain.\n",
         homepage: "https://build2.org/",

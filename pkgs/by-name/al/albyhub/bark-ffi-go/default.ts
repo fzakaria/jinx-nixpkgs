@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const protobuf = nix.arg($, "protobuf");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bark-ffi-go",
       version: "0.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ark-bitcoin",
           repo: "bark-ffi-bindings",
           rev: "3c626a43d7523c4d19e867bd453ec80c541780c7",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [protobuf]),
       installPhase: "runHook preInstall\n\ninstall -Dm444 target/*/release/libbark_ffi_go.a \\\n  $out/lib/libbark_ffi_go.a\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Go bindings static library for Bark",
         homepage: "https://gitlab.com/ark-bitcoin/bark-ffi-bindings",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

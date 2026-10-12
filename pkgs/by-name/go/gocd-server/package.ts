@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
       const version = "23.1.0";
       const rev = "16079";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.go.cd/binaries/${version}-${rev}/generic/go-server-${version}-${rev}.zip`),
           sha256: "sha256-//d6izGm1odE25H/PI5pn51FfUL4/6GbLwKUKAqZ3Kw=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Continuous delivery server specializing in advanced workflow modeling and visualization",
         homepage: "http://www.go.cd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -45,9 +45,9 @@ export default nix.lambda((args) => (() => {
       }));
       const nativeBuildInputs = nix.thunk(() => [unzip]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "gocd-server": nix.thunk(() => nix.attr(nixosTests, "gocd-server")),
         })),
       }));
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
     mkdir -p $out/go-server/conf
   `);
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         rev,

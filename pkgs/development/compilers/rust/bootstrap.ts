@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const hashes = nix.arg($, "hashes");
   const platform = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "rust", "rustcTarget"));
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://static.rust-lang.org/dist/rust-${version}-${platform}.tar.gz`),
       sha256: nix.thunk(() => nix.selOr(hashes, () => nix.builtins.throw(nix.thunk(() => nix.str`missing bootstrap url for platform ${platform}`)), nix.key(nix.force(platform)))),
     }))));
   return nix.app(callPackage, nix.path(here, "./binary.nix"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: version,
       src: src,
       platform: platform,

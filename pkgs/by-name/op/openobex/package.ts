@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "openobex",
       version: "1.7.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/openobex/openobex-${nix.sel(finalAttrs, "version")}-Source.tar.gz`),
           sha256: "1z6l7pbwgs5pjx3861cyd3r6vq5av984bdp4r3hgrw2jxam6120m",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       patchPhase: "sed -i \"s!/lib/udev!$out/lib/udev!\" udev/CMakeLists.txt\nsed -i \"/if ( PKGCONFIG_UDEV_FOUND )/,/endif ( PKGCONFIG_UDEV_FOUND )/d\" udev/CMakeLists.txt\n\n# cmake 4 compatibility, upstream is dead\nsubstituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required ( VERSION 3.1 FATAL_ERROR )\" \"cmake_minimum_required ( VERSION 3.10 FATAL_ERROR )\"\n\n# https://sourceforge.net/p/openobex/bugs/66/\nsubstituteInPlace CMakeLists.txt \\\n  --replace-fail '\\$'{prefix}/'$'{CMAKE_INSTALL_LIBDIR} '$'{CMAKE_INSTALL_FULL_LIBDIR} \\\n  --replace-fail '\\$'{prefix}/'$'{CMAKE_INSTALL_INCLUDEDIR} '$'{CMAKE_INSTALL_FULL_INCLUDEDIR}\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://dev.zuckschwerdt.org/openobex/",
         description: "Open source implementation of the Object Exchange (OBEX) protocol",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

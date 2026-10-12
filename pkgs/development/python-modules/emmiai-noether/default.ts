@@ -36,13 +36,13 @@ export default nix.lambda((args) => (() => {
   const typer = nix.arg($, "typer");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "emmiai-noether",
       version: "2026.4.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Emmi-AI",
           repo: "noether",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-pyproject-version.patch",
             url: "https://github.com/Emmi-AI/noether/commit/bb86d54755e01de8131b0742c3ce9d5f417d6b84.patch",
             hash: "sha256-M96WQdyEe629IxLHOKVHYiBMFWx1dZ+ZU7w5I8IxAwg=",
@@ -102,7 +102,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_real_time_accuracy"])))),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Deep-Learning framework for Engineering AI",
         homepage: "https://github.com/Emmi-AI/noether",
         changelog: nix.thunk(() => nix.str`https://github.com/Emmi-AI/noether/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

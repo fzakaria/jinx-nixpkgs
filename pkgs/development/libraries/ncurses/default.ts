@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const binlore = nix.arg($, "binlore");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       version: "6.6",
       pname: nix.thunk(() => nix.add("ncurses", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(abiVersion, "5")), "-abi5-compat"))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://invisible-island.net/archives/ncurses/ncurses-${nix.sel(finalAttrs, "version")}.tar.gz`),
             nix.thunk(() => nix.str`https://invisible-mirror.net/archives/ncurses/ncurses-${nix.sel(finalAttrs, "version")}.tar.gz`),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "bintools", "isLLVM")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "bintools", "version")), "17")))), nix.thunk(() => ["LDFLAGS=-Wl,--undefined-version"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isOpenBSD")), nix.thunk(() => [
           nix.thunk(() => nix.str`--host=${nix.sel(stdenv, "hostPlatform", "config")}${nix.sel(stdenv, "cc", "libc", "version")}`),
         ])), ["cf_cv_type_of_bool=bool"])))))))))))))),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isSunOS")), nix.thunk(() => ({ __proto__: pos$2, CFLAGS: "-D_XOPEN_SOURCE_EXTENDED" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isSunOS")), nix.thunk(() => ({ [nix.POS]: pos$2, CFLAGS: "-D_XOPEN_SOURCE_EXTENDED" })))),
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => nix.concat([updateAutotoolsGnuConfigScriptsHook, pkg_config], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => [ncurses])))),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(mouseSupport) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), gpm)),
@@ -139,22 +139,22 @@ moveToOutput "bin/infocmp" "$out"
 `);
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         binlore: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           out: nix.thunk(() => nix.app(nix.sel(binlore, "synthesize"), ncurses, "execer cannot bin/{reset,tput,tset}\n")),
         })),
         ldflags: "-lncurses",
         unicodeSupport: unicodeSupport,
         abiVersion: abiVersion,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://www.gnu.org/software/ncurses/",
         description: "Free software emulation of curses in SVR4 and more",
         longDescription: "The Ncurses (new curses) library is a free software emulation of curses in\nSystem V Release 4.0, and more. It uses Terminfo format, supports pads and\ncolor and multiple highlights and forms characters and function-key\nmapping, and has all the other SYSV-curses enhancements over BSD Curses.\n\nThe ncurses code was developed under GNU/Linux. It has been in use for\nsome time with OpenBSD as the system curses library, and on FreeBSD and\nNetBSD as an external package. It should port easily to any\nANSI/POSIX-conforming UNIX. It has even been ported to OS/2 Warp!\n",
@@ -165,7 +165,7 @@ moveToOutput "bin/infocmp" "$out"
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "ncurses_project", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

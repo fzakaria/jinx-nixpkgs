@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const mkDerivation = nix.arg($, "mkDerivation");
   const libncurses_tinfo = nix.arg($, "libncurses-tinfo");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "lib/ncurses/ncurses",
       extraPaths: nix.thunk(() => ["lib/ncurses", "contrib/ncurses", "lib/Makefile.inc"]),
       MK_TESTS: "no",

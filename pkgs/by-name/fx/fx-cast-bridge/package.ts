@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.1";
       const nodejs = nodejs_22;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hensm",
           repo: "fx_cast",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -57,7 +57,7 @@ chmod +x $out/bin/fx_cast_bridge
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Implementation of the Chrome Sender API (Chromecast) within Firefox",
         homepage: "https://hensm.github.io/fx_cast/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -70,7 +70,7 @@ runHook postInstall
         mainProgram: "fx_cast_bridge",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         nodejs,

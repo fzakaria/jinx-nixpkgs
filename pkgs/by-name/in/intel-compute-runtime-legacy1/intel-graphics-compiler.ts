@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.34.4";
       const srcs = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             name: "igc",
             owner: "intel",
             repo: "intel-graphics-compiler",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-w20nrn3wo9Dvv3BILYBzuJTTLXqcWaRAF7SiPtryhwk=",
           })))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "llvm-project",
             owner: "llvm",
             repo: "llvm-project",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-fspqSReX+VD+Nl/Cfq+tDcdPtnQPV1IRopNDfd5VtUs=",
           })))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "vc-intrinsics",
             owner: "intel",
             repo: "vc-intrinsics",
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-ozc1w3V5RqWHwqNHuefZJMN8RAYxrJxH9bd1BEqxfiQ=",
           })))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "opencl-clang",
             owner: "intel",
             repo: "opencl-clang",
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-ema1jTNMHs3pUituVb1NPllc6cA8eYJHtDOjuEzIDWM=",
           })))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "llvm-spirv",
             owner: "KhronosGroup",
             repo: "SPIRV-LLVM-Translator",
@@ -127,11 +127,11 @@ substituteInPlace igc/external/llvm/llvm_preferred_version.cmake \\
         "-Wno-dev",
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$7,
-        tests: nix.thunk(() => ({ __proto__: pos$6, "intel-compute-runtime": intel_compute_runtime })),
+        [nix.POS]: pos$7,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$6, "intel-compute-runtime": intel_compute_runtime })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "LLVM-based compiler for OpenCL targeting Intel Gen graphics hardware",
         homepage: "https://github.com/intel/intel-graphics-compiler",
         changelog: nix.thunk(() => nix.str`https://github.com/intel/intel-graphics-compiler/releases/tag/v${version}`),
@@ -143,7 +143,7 @@ substituteInPlace igc/external/llvm/llvm_preferred_version.cmake \\
         })()),
       }));
       return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname,
         version,
         srcs,

@@ -8,6 +8,6 @@ const pos$1 = nix.positions(here + "/package.nix", [["altcoinSupport", 4, 3]]);
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const btcpayserver = nix.arg($, "btcpayserver");
-  return nix.app(nix.sel(btcpayserver, "override"), nix.thunk(() => ({ __proto__: pos$1, altcoinSupport: true })));
+  return nix.app(nix.sel(btcpayserver, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, altcoinSupport: true })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

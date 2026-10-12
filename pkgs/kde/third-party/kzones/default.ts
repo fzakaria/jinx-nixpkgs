@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const kwin = nix.arg($, "kwin");
   const zip = nix.arg($, "zip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kzones",
       version: "0.9.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gerritdevriese",
           repo: "kzones",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildFlags: nix.thunk(() => ["build"]),
       installPhase: "runHook preInstall\n\nkpackagetool6 --type=KWin/Script --install=kzones.kwinscript --packageroot=$out/share/kwin/scripts\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "KDE KWin Script for snapping windows into zones",
         homepage: "https://github.com/gerritdevriese/kzones/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

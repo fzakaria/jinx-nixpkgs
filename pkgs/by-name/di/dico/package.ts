@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const groff = nix.arg($, "groff");
   const libxcrypt = nix.arg($, "libxcrypt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dico",
       version: "2.12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/dico/dico-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-couJxQ4JC/+Dno97MEO1xwI/hhqSEckwSLQqtFWGavc=",
         })))),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Flexible dictionary server and client implementing RFC 2229",
         homepage: "https://www.gnu.org/software/dico/",

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const libzint = nix.arg($, "libzint");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zxing-cpp",
       version: "1.4.0-unstable-2026-08-08",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.linphone.org",
           group: "BC",
           owner: "public/external",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail '# PC file generation.' 'include (GNUInstallDirs)'\nsubstituteInPlace zxing.pc.in \\\n  --replace-fail 'libdir=${exec_prefix}/@CMAKE_INSTALL_LIBDIR@' 'libdir=@CMAKE_INSTALL_FULL_LIBDIR@' \\\n  --replace-fail 'includedir=${prefix}/@CMAKE_INSTALL_INCLUDEDIR@' 'includedir=@CMAKE_INSTALL_FULL_INCLUDEDIR@'\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gitlab.linphone.org/BC/public/external/zxing-cpp",
         description: "BelledonneCommunications' fork of zxing-cpp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

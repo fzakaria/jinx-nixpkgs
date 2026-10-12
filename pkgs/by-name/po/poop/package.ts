@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const zig_0_16 = nix.arg($, "zig_0_16");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "poop",
       version: "0.5.0-unstable-2026-05-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "andrewrk",
           repo: "poop",
           rev: "e1a802d19a4b8267e2fa79c3ede15c09357b31c9",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [zig_0_16]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Compare the performance of multiple commands with a colorful terminal user interface",
         homepage: "https://github.com/andrewrk/poop",
         changelog: nix.thunk(() => nix.str`https://github.com/andrewrk/poop/releases/tag/${nix.sel(finalAttrs, "version")}`),

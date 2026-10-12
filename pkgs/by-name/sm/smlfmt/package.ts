@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mlton = nix.arg($, "mlton");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "smlfmt",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "shwestrick",
           repo: "smlfmt",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [mlton]),
       installPhase: "runHook preInstall\ninstall -Dm755 -t $out/bin smlfmt\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Custom parser/auto-formatter for Standard ML",
         mainProgram: "smlfmt",
         longDescription: "A custom parser and code formatter for Standard ML, with helpful error messages.\n\nSupports SML source files (.sml, .sig, .fun, etc.) as well as MLBasis\ncompilation files (.mlb) using MLton conventions, including MLBasis path\nmaps.\n",

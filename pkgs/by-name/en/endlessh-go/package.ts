@@ -17,28 +17,28 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "endlessh-go",
       version: "2026.0328.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "shizunge",
           repo: "endlessh-go",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-EiIWgyAHAJrloIztKX1oZaSNNSG4t2OaVYyLTfJCkLU=",
         })))),
       vendorHash: "sha256-HumLc9u7jVFk7228SYHptBEOSRdLp4r5QECYlYrO6KY=",
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "endlessh-go": nix.thunk(() => nix.attr(nixosTests, "endlessh-go")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Implementation of endlessh exporting Prometheus metrics",
         homepage: "https://github.com/shizunge/endlessh-go",
         changelog: nix.thunk(() => nix.str`https://github.com/shizunge/endlessh-go/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -17,19 +17,19 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const pname = "patch-ng";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "sha256-J0hHkvSsHBX+Lz5M7PdLuYM9M7dccVtx0Zn34efR94Y=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to parse and apply unified diffs",
         homepage: "https://github.com/conan-io/python-patch",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
-      return { __proto__: pos$3, version, format, pname, src, meta };
+      return { [nix.POS]: pos$3, version, format, pname, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

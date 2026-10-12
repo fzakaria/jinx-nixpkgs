@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   const gtk3 = nix.arg($, "gtk3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "eigenwallet",
       version: "4.13.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/eigenwallet/core/releases/download/${nix.sel(finalAttrs, "version")}/eigenwallet_${nix.sel(finalAttrs, "version")}_amd64.deb`),
           hash: "sha256-nVrl3XY6fN8lA/RUL2P/NzMaOdPUIFxsEYbROk7keTA=",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [cairo, gdk_pixbuf, webkitgtk_4_1, gtk3]),
       installPhase: "runHook preInstall\n\nmkdir -p $out\nmv {usr/bin,usr/share} $out\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Protocol and desktop application for swapping Monero and Bitcoin",
         homepage: "https://eigenwallet.org",
         maintainers: nix.thunk(() => (() => {

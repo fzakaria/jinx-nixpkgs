@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const wayland_scanner = nix.arg($, "wayland-scanner");
   const debug = nix.argOr($, "debug", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "xdg-desktop-portal-hyprland",
       version: "1.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hyprwm",
           repo: "xdg-desktop-portal-hyprland",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -76,11 +76,11 @@ wrapProgramShell $out/libexec/xdg-desktop-portal-hyprland \\
   --prefix PATH ":" ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nix.thunk(() => nix.builtins.placeholder("out")), grim]))}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "xdg-desktop-portal backend for Hyprland",
         homepage: "https://github.com/hyprwm/xdg-desktop-portal-hyprland",
         changelog: nix.thunk(() => nix.str`https://github.com/hyprwm/xdg-desktop-portal-hyprland/releases/tag/v${nix.sel(finalAttrs, "version")}`),

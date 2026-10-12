@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const boost = nix.arg($, "boost");
   const qgpgme = nix.arg($, "qgpgme");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "libkleo",
       extraBuildInputs: nix.thunk(() => [qt5compat, boost]),
       extraPropagatedBuildInputs: nix.thunk(() => [qgpgme]),

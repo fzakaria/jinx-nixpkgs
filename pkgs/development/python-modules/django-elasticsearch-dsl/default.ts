@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const elastic_transport = nix.arg($, "elastic-transport");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "django-elasticsearch-dsl",
       version: "8.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "django-es",
           repo: "django-elasticsearch-dsl",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["django_elasticsearch_dsl"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Wrapper around elasticsearch-dsl-py for Django models",
         homepage: "https://github.com/sabricot/django-elasticsearch-dsl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

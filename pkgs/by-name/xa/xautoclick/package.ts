@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const qtSupport = nix.argOr($, "qtSupport", () => true);
   const qt5 = nix.arg($, "qt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "xautoclick",
       version: "0.34",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "qarkai",
           repo: "xautoclick",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "bump-cmake-required-version.patch",
             url: "https://github.com/qarkai/xautoclick/commit/a6cd4058fa7d8579bf4ada3f48441f333fca9dab.patch?full_index=1",
             hash: "sha256-4ovcaVrXQqFZX85SnewtfjZpipcGTw52ZrTkT6iWZQM=",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.sel(qt5, "wrapQtAppsHook")),
         ])))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Autoclicker application, which enables you to automatically click the left mousebutton",
         homepage: "https://github.com/qarkai/xautoclick",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

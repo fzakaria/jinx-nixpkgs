@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
   const zig_0_16 = nix.arg($, "zig_0_16");
   const jdk = jdk25_headless;
   const gradle = gradle_9;
-  const gradleOverlay = nix.thunk(() => nix.app(nix.sel(gradle, "override"), nix.thunk(() => ({ __proto__: pos$1, java: jdk }))));
+  const gradleOverlay = nix.thunk(() => nix.app(nix.sel(gradle, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, java: jdk }))));
   const zig = zig_0_16;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "pkl-lsp",
       version: "0.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "apple",
           repo: "pkl-lsp",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,14 +41,14 @@ export default nix.lambda((args) => (() => {
           postFetch: "pushd $out\ngit rev-parse HEAD | tr -d '\\n' > .commit-hash\nrm -rf .git\npopd\n",
         })))),
       treeSitterSrc: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "tree-sitter",
           repo: "tree-sitter",
           rev: "v0.25.3",
           hash: "sha256-xafeni6Z6QgPiKzvhCT2SyfPn0agLHo47y+6ExQXkzE=",
         })))),
       treeSitterPklSrc: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "apple",
           repo: "tree-sitter-pkl",
           rev: "f9405e40597d7dac637a6b49e7d26c4515cb2a34",
@@ -70,7 +70,7 @@ chmod +w -R build/repos/{tree-sitter,tree-sitter-pkl}
 `),
       nativeBuildInputs: nix.thunk(() => [gradleOverlay, makeBinaryWrapper, zig]),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
@@ -97,11 +97,11 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "The Pkl Language Server",
         homepage: "https://pkl-lang.org/lsp/current/index.html",
         downloadPage: "https://github.com/apple/pkl-lsp",

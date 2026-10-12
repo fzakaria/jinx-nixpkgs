@@ -17,31 +17,31 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
     const pkgs = nix.arg($, "pkgs");
     const lib = nix.arg($, "lib");
     return {
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       name: "nixos-rebuild-install-bootloader",
       nodes: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const lib_1 = nix.arg($_1, "lib");
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             imports: nix.thunk(() => [
               nix.path(here, "../modules/profiles/installation-device.nix"),
               nix.path(here, "../modules/profiles/base.nix"),
             ]),
             nix: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               settings: nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 substituters: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), [])),
                 "hashed-mirrors": null,
                 "connect-timeout": 1n,
               })),
             })),
-            system: nix.thunk(() => ({ __proto__: pos$3, includeBuildDependencies: true })),
-            virtualisation: nix.thunk(() => ({ __proto__: pos$4, cores: 2n, memorySize: 2048n, useBootLoader: true })),
+            system: nix.thunk(() => ({ [nix.POS]: pos$3, includeBuildDependencies: true })),
+            virtualisation: nix.thunk(() => ({ [nix.POS]: pos$4, cores: 2n, memorySize: 2048n, useBootLoader: true })),
           };
         })(), formals$2),
       })),

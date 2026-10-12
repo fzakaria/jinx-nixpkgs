@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const scdoc = nix.arg($, "scdoc");
   const version = "0.8.0";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "aba",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~onemoresuza",
           repo: "aba",
           tag: version,
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       dontUseJustCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Address book for aerc",
         homepage: "https://sr.ht/~onemoresuza/aba/",
         changelog: "https://git.sr.ht/~onemoresuza/aba/tree/main/item/CHANGELOG.md",

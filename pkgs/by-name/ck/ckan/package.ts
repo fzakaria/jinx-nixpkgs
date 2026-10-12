@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
       const pname = "ckan";
       const version = "1.36.4";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/KSP-CKAN/CKAN/releases/download/v${version}/ckan.exe`),
           hash: "sha256-d0gILN/PLbtfUCJhsYr8hQAxk4lMYEJ9BLCseo3+994=",
         }))));
       const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://raw.githubusercontent.com/KSP-CKAN/CKAN/450e2f960e1a3fee4ab7cf74ad56bddc5296fc7e/assets/ckan-256.png",
           hash: "sha256-BJvuOz8NWmzpYzzhveeq6rcuqXIxQqxtBIcRvobx+TY=",
         }))));
@@ -51,7 +51,7 @@ runHook postInstall
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "ckan",
             comment: "The Comprehensive Kerbal Archive Network Client",
             desktopName: "CKAN",
@@ -59,15 +59,15 @@ runHook postInstall
             exec: "ckan",
             icon: "ckan",
             keywords: nix.thunk(() => ["Kerbal Space Program", "KSP", "Mod"]),
-            extraConfig: nix.thunk(() => ({ __proto__: pos$3, "X-GNOME-SingleWindow": "true" })),
+            extraConfig: nix.thunk(() => ({ [nix.POS]: pos$3, "X-GNOME-SingleWindow": "true" })),
           })))),
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Mod manager for Kerbal Space Program",
         mainProgram: "ckan",
         homepage: "https://github.com/KSP-CKAN/CKAN",
@@ -82,7 +82,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

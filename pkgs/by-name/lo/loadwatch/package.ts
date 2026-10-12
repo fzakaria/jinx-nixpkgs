@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromSourcehut = nix.arg($, "fetchFromSourcehut");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "loadwatch",
       version: "1.1-unstable-2026-05-04",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~woffs",
           repo: "loadwatch",
           rev: "f79b9cfad44a9f24aaab69cfad85a9ea14252b79",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       makeFlags: nix.thunk(() => ["bindir=$(out)/bin"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Run a program using only idle cycles",
         homepage: "https://git.sr.ht/~woffs/loadwatch",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

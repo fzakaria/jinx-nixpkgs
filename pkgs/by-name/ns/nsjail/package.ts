@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "nsjail";
       const version = "3.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "google",
           repo: "nsjail",
           rev: version,
@@ -40,14 +40,14 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [libnl, protobuf, protobufc]);
       const enableParallelBuilding = true;
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error"]))),
       }));
       const preBuild = nix.thunk(() => nix.str`makeFlagsArray+=(USER_DEFINES='-DNEWUIDMAP_PATH=${shadow}/bin/newuidmap -DNEWGIDMAP_PATH=${shadow}/bin/newgidmap')
 `);
       const installPhase = "runHook preInstall\ninstall -Dm755 nsjail \"$out/bin/nsjail\"\ninstallManPage nsjail.1\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Light-weight process isolation tool, making use of Linux namespaces and seccomp-bpf syscall filters",
         homepage: "https://nsjail.dev/",
         changelog: nix.thunk(() => nix.str`https://github.com/google/nsjail/releases/tag/${version}`),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "nsjail",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

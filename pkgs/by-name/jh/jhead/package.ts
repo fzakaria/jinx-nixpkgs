@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "jhead";
       const version = "3.08";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Matthias-Wandel",
           repo: "jhead",
           rev: version,
@@ -37,7 +37,7 @@ cp -v jhead.1 $out/man/man1
 cp -v *.txt $out/share/doc/${pname}-${version}
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.sentex.net/~mwandel/jhead/",
         description: "Exif Jpeg header manipulation tool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),
@@ -49,7 +49,7 @@ cp -v *.txt $out/share/doc/${pname}-${version}
         mainProgram: "jhead",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

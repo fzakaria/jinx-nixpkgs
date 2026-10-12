@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const verilator = nix.arg($, "verilator");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "veridian",
       version: "0-unstable-2025-11-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vivekmalneedi",
           repo: "veridian",
           rev: "0c5776a4a4e08fd00b90d91ad3cd2ec10315d2bd",
@@ -55,20 +55,20 @@ export default nix.lambda((args) => (() => {
 `;
       })()),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         OPENSSL_NO_VENDOR: "1",
         RUSTFLAGS: "-C link-args=-lmimalloc",
         SLANG_INSTALL_PATH: sv_lang_9,
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version=branch", "--version-regex=(0-unstable-.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "SystemVerilog Language Server",
         homepage: "https://github.com/vivekmalneedi/veridian",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

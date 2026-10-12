@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "django-auth-ldap",
           repo: "django-auth-ldap",
           tag: version,
@@ -37,7 +37,7 @@ export DJANGO_SETTINGS_MODULE=tests.settings
       const checkPhase = "runHook preCheck\npython -m django test --settings tests.settings\nrunHook postCheck\n";
       const pythonImportsCheck = nix.thunk(() => ["django_auth_ldap"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/django-auth-ldap/django-auth-ldap/releases/tag/${nix.sel(src, "tag")}`),
         description: "Django authentication backend that authenticates against an LDAP service",
         homepage: "https://github.com/django-auth-ldap/django-auth-ldap",
@@ -46,7 +46,7 @@ export DJANGO_SETTINGS_MODULE=tests.settings
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

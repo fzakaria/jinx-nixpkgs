@@ -19,9 +19,9 @@ export default nix.lambda((args) => (() => {
   const vmopts = nix.argOr($, "vmopts", () => null);
   const baseBuilder = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.path(here, "./darwin.nix") : nix.path(here, "./linux.nix")));
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       constructDrv: nix.thunk(() => nix.app(callPackage, baseBuilder, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           vmopts: vmopts,
           excludeDrvArgNames: nix.thunk(() => [
             "product",
@@ -43,17 +43,17 @@ export default nix.lambda((args) => (() => {
         const meta = nix.argOr($_1, "meta", () => ({}));
         const passthru = nix.argOr($_1, "passthru", () => ({}));
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           passthru: nix.thunk(() => nix.update(passthru, {
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             buildNumber: buildNumber,
             product: product,
             "jetbrains-libdbm": jetbrains_libdbm,
             fsnotifier: fsnotifier,
             updateScript: nix.path(here, "../updater/main.py"),
             tests: nix.thunk(() => ({
-              __proto__: pos$3,
-              plugins: nix.thunk(() => nix.app(callPackage, nix.path(here, "../plugins/tests.nix"), nix.thunk(() => ({ __proto__: pos$2, ide: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")) })))),
+              [nix.POS]: pos$3,
+              plugins: nix.thunk(() => nix.app(callPackage, nix.path(here, "../plugins/tests.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, ide: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")) })))),
             })),
           })),
         };

@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const util_linux = nix.arg($, "util-linux");
   const libintl = nix.arg($, "libintl");
   return (attrs) => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => nix.update({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       __structuredAttrs: true,
       strictDeps: true,
       name: nix.thunk(() => nix.str`r-${nix.selOr(attrs, () => nix.str`${nix.sel(attrs, "pname")}-${nix.sel(attrs, "version")}`, "name")}`),
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "buildInputs"), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libintl])))),
       enableParallelBuilding: true,
       env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`${nix.selOr(attrs, () => "", "env", "NIX_CFLAGS_COMPILE")} -I${nix.app(nix.sel(lib, "getInclude"), nix.thunk(() => nix.sel(stdenv, "cc", "libcxx")))}/include/c++/v1`),
         }))))),
       configurePhase: "runHook preConfigure\n\nexport MAKEFLAGS+=\"${enableParallelBuilding:+-j$NIX_BUILD_CORES}\"\nexport R_LIBS_SITE=\"$R_LIBS_SITE${R_LIBS_SITE:+:}$out/library\"\n\nif [ -f ./configure ] && [ -z \"${dontPatchShebangsInConfigure:-}\" ]; then\n  patchShebangs --build ./configure\nfi\n\nrunHook postConfigure\n",

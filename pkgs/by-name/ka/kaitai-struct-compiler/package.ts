@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kaitai-struct-compiler",
       version: "0.11",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/kaitai-io/kaitai_struct_compiler/releases/download/${nix.sel(finalAttrs, "version")}/kaitai-struct-compiler-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "sha256-j9TEilijqgIiD0GbJfGKkU1FLio9aTopIi1v8QT1b+A=",
         })))),
@@ -30,7 +30,7 @@ cp -R $src/lib $out/lib
 wrapProgram $out/bin/kaitai-struct-compiler --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [jre]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/kaitai-io/kaitai_struct_compiler",
         description: "Compiler to generate binary data parsers in C++ / C# / Go / Java / JavaScript / Lua / Perl / PHP / Python / Ruby ",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

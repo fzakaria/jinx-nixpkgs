@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
     const llvmPackages = llvmPackages_22;
     const llvmStdenv = nix.thunk(() => nix.sel(llvmPackages, "stdenv"));
     return nix.app(nix.sel(llvmStdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: "clickhouse",
         version: version,
         rev: rev,
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
             const nativeBuildInputs = nix.thunk(() => [zstd]);
             const postFetch = "# Delete files that make the source too big\nrm -rf $out/contrib/arrow/docs/\nrm -rf $out/contrib/arrow/testing/\nrm -rf $out/contrib/aws/generated/protocol-tests/\nrm -rf $out/contrib/aws/generated/smoke-tests/\nrm -rf $out/contrib/aws/generated/tests/\nrm -rf $out/contrib/aws/tools/\nrm -rf $out/contrib/cld2/internal/test_shuffle_1000_48_666.utf8.gz\nrm -rf $out/contrib/croaring/benchmarks/\nrm -rf $out/contrib/boost/doc/\nrm -rf $out/contrib/boost/libs/*/bench/\nrm -rf $out/contrib/boost/libs/*/example/\nrm -rf $out/contrib/boost/libs/*/doc/\nrm -rf $out/contrib/boost/libs/*/test/\nrm -rf $out/contrib/google-cloud-cpp/ci/abi-dumps/\nrm -rf $out/contrib/icu/icu4c/source/test/\nrm -rf $out/contrib/icu/icu4j/main/core/src/test/\nrm -rf $out/contrib/icu/icu4j/perf-tests/\nrm -rf $out/contrib/llvm-project/*/docs/\nrm -rf $out/contrib/llvm-project/*/test/\nrm -rf $out/contrib/llvm-project/*/unittests/\nrm -rf $out/contrib/postgres/doc/\n\n# As long as we're not running tests, remove test files\nrm -rf $out/tests/\n\n# fix case insensitivity on macos https://github.com/NixOS/nixpkgs/issues/39308\nrm -rf $out/contrib/sysroot/linux-*\nrm -rf $out/contrib/liburing/man\n\n# Compress to not exceed the 2GB output limit\necho \"Creating deterministic source tarball...\"\n\ntar -I 'zstd --no-progress' \\\n  --sort=name \\\n  --mtime=1970-01-01 \\\n  --owner=0 --group=0 \\\n  --numeric-owner --mode=go=rX,u+rw,a-s \\\n  --transform='s@^@source/@S' \\\n  -cf temp  -C \"$out\" .\n\necho \"Finished creating deterministic source tarball!\"\n\nrm -r \"$out\"\nmv temp \"$out\"\n";
             return {
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               owner,
               repo,
               tag,
@@ -119,7 +119,7 @@ EOF
           "-DCOMPILER_CACHE=disabled",
         ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), "-DNO_ARMV81_OR_HIGHER=1"))),
         env: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           CARGO_HOME: "$PWD/../.cargo/",
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64")), " -mcx16"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), " -Wno-implicit-const-int-float-conversion -Wno-unneeded-internal-declaration"))),
         })),
@@ -140,7 +140,7 @@ remove-references-to -t ${nix.sel(llvmStdenv, "cc")} $out/bin/clickhouse
         checkPhase: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "$NIX_BUILD_TOP/$sourceRoot/build/programs/clickhouse local --query 'SELECT 1' | grep 1\n")),
         requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
         passthru: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           tests: nix.thunk(() => (nix.asBool(lts) ? nix.sel(nixosTests, "clickhouse-lts") : nix.sel(nixosTests, "clickhouse"))),
           updateScript: nix.thunk(() => [
             nix.path(here, "./update.sh"),
@@ -148,7 +148,7 @@ remove-references-to -t ${nix.sel(llvmStdenv, "cc")} $out/bin/clickhouse
           ]),
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           homepage: "https://clickhouse.com",
           description: "Column-oriented database management system",
           license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

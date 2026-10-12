@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const mkdocs = nix.thunk(() => nix.attr(python3Packages, "mkdocs"));
   const mkdocs_material = nix.thunk(() => nix.attr(python3Packages, "mkdocs-material"));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "internalallthethings",
       version: "0-unstable-2025-11-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "swisskyrepo",
           repo: "InternalAllTheThings",
           rev: "9a97b9d16e5f9834b4ef2276b6cd1b98a0748b6e",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "mkdocs build\n",
       installPhase: "runHook preInstall\nmkdir -p $doc/share/internalallthethings\ncp -r site/* $doc/share/internalallthethings\n\nmkdir -p $out/share/internalallthethings\nrm -r mkdocs.yml site\ncp -r * $out/share/internalallthethings\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/swisskyrepo/InternalAllTheThings",
         description: "Active Directory and Internal Pentest Cheatsheets",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

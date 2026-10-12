@@ -65,59 +65,59 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "lavalink"));
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$49,
+    [nix.POS]: pos$49,
     options: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       services: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         lavalink: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Lavalink")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "lavalink", nix.thunk(() => ({})))),
           password: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
               default: null,
               example: "s3cRe!p4SsW0rD",
               description: "The password for Lavalink's authentication in plain text.\n",
             })))),
           port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 2333n,
               example: 4567n,
               description: "The port that Lavalink will use.\n",
             })))),
           address: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "0.0.0.0",
               example: "127.0.0.1",
               description: "The network address to bind to.\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               example: true,
               description: "Whether to expose the port to the network.\n",
             })))),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "lavalink",
               example: "root",
               description: "The user of the service.\n",
             })))),
           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "lavalink",
               example: "medias",
               description: "The group of the service.\n",
             })))),
           home: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "/var/lib/lavalink",
               example: "/home/lavalink",
@@ -125,54 +125,54 @@ export default nix.lambda((args) => (() => {
             })))),
           enableHttp2: nix.thunk(() => nix.app(mkEnableOption, "HTTP/2 support")),
           jvmArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "-Xmx4G",
               example: "-Djava.io.tmpdir=/var/lib/lavalink/tmp -Xmx6G",
               description: "Set custom JVM arguments.\n",
             })))),
           environmentFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
               default: null,
               example: "/run/secrets/lavalink/passwordEnvFile",
               description: "Add custom environment variables from a file.\nSee <https://lavalink.dev/configuration/index.html#example-environment-variables> for the full documentation.\n",
             })))),
           plugins: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     options: nix.thunk(() => ({
-                      __proto__: pos$16,
+                      [nix.POS]: pos$16,
                       dependency: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           example: "dev.lavalink.youtube:youtube-plugin:1.8.0",
                           description: "The coordinates of the plugin.\n",
                         })))),
                       repository: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$11,
+                          [nix.POS]: pos$11,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           example: "https://maven.example.com/releases",
                           default: "https://maven.lavalink.dev/releases",
                           description: "The plugin repository. Defaults to the lavalink releases repository.\n\nTo use the snapshots repository, use <https://maven.lavalink.dev/snapshots> instead\n",
                         })))),
                       hash: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$12,
+                          [nix.POS]: pos$12,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           example: nix.thunk(() => nix.sel(lib, "fakeHash")),
                           description: "The hash of the plugin.\n",
                         })))),
                       configName: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$13,
+                          [nix.POS]: pos$13,
                           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                           example: "youtube",
                           default: null,
                           description: "The name of the plugin to use as the key for the plugin configuration.\n",
                         })))),
                       extraConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$15,
-                          type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({ __proto__: pos$14, freeformType: nix.thunk(() => nix.sel(format, "type")) })))),
+                          [nix.POS]: pos$15,
+                          type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({ [nix.POS]: pos$14, freeformType: nix.thunk(() => nix.sel(format, "type")) })))),
                           default: nix.thunk(() => ({})),
                           description: "The configuration for the plugin.\n\nThe {option}`services.lavalink.plugins.*.configName` option must be set.\n",
                         })))),
@@ -183,8 +183,8 @@ export default nix.lambda((args) => (() => {
               description: "A list of plugins for lavalink.\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$20,
-              type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({ __proto__: pos$19, freeformType: nix.thunk(() => nix.sel(format, "type")) })))),
+              [nix.POS]: pos$20,
+              type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({ [nix.POS]: pos$19, freeformType: nix.thunk(() => nix.sel(format, "type")) })))),
               description: "Configuration to write to {file}`application.yml`.\nSee <https://lavalink.dev/configuration/#example-applicationyml> for the full documentation.\n\nIndividual configuration parameters can be overwritten using environment variables.\nSee <https://lavalink.dev/configuration/#example-environment-variables> for more information.\n",
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  lavalink.server = {\n    sources.twitch = true;\n\n    filters.volume = true;\n  };\n\n  logging.file.path = \"./logs/\";\n}\n")),
@@ -201,7 +201,7 @@ export default nix.lambda((args) => (() => {
             const pluginFile = nix.thunk(() => nix.str`${pluginFileName}-${pluginVersion}.jar`);
             const pluginUrl = nix.thunk(() => nix.str`${nix.sel(pluginCfg, "repository")}/${pluginWebPath}${pluginVersion}/${pluginFile}`);
             const plugin = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchurl"), nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 url: pluginUrl,
                 hash: nix.thunk(() => nix.attr(pluginCfg, "hash")),
               }))));
@@ -209,50 +209,50 @@ export default nix.lambda((args) => (() => {
           })(), nix.thunk(() => nix.sel(cfg, "plugins"))))));
       const pluginExtraConfigs = nix.thunk(() => nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((pluginConfig) => nix.app(nix.sel(lib, "attrsets", "nameValuePair"), nix.thunk(() => nix.sel(pluginConfig, "configName")), nix.thunk(() => nix.sel(pluginConfig, "extraConfig"))), nix.thunk(() => nix.app(nix.sel(lib, "lists", "filter"), (pluginCfg) => !nix.eq(nix.sel(pluginCfg, "configName"), null), nix.thunk(() => nix.sel(cfg, "plugins"))))))));
       const config_1 = nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "recursiveUpdate"), nix.thunk(() => nix.sel(cfg, "extraConfig")), nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           server: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             port: nix.thunk(() => nix.attr(cfg, "port")),
             address: nix.thunk(() => nix.attr(cfg, "address")),
-            http2: nix.thunk(() => ({ __proto__: pos$25, enabled: nix.thunk(() => nix.sel(cfg, "enableHttp2")) })),
+            http2: nix.thunk(() => ({ [nix.POS]: pos$25, enabled: nix.thunk(() => nix.sel(cfg, "enableHttp2")) })),
           })),
           plugins: pluginExtraConfigs,
           lavalink: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             plugins: nix.thunk(() => nix.builtins.map((pluginConfig) => nix.builtins.removeAttrs(pluginConfig, nix.thunk(() => ["name", "extraConfig", "hash"])), nix.thunk(() => nix.sel(cfg, "plugins")))),
           })),
         }))));
       const configWithPassword = nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "recursiveUpdate"), config_1, nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "password"), null)), nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             lavalink: nix.thunk(() => ({
-              __proto__: pos$30,
-              server: nix.thunk(() => ({ __proto__: pos$29, password: nix.thunk(() => nix.sel(cfg, "password")) })),
+              [nix.POS]: pos$30,
+              server: nix.thunk(() => ({ [nix.POS]: pos$29, password: nix.thunk(() => nix.sel(cfg, "password")) })),
             })),
           }))))));
       const configFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "application.yml", configWithPassword));
       return nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$48,
+          [nix.POS]: pos$48,
           assertions: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               assertion: nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "lists", "any"), (pluginCfg) => (nix.asBool(!nix.eq(nix.sel(pluginCfg, "extraConfig"), {})) && nix.asBool(nix.eq(nix.sel(pluginCfg, "configName"), null))), nix.thunk(() => nix.sel(cfg, "plugins"))))),
               message: "Plugins with extra configuration need to have the `configName` attribute defined",
             })),
           ]),
           networking: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             firewall: nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               allowedTCPPorts: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]))),
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$38,
-            groups: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "lavalink")), nix.thunk(() => ({ __proto__: pos$35, lavalink: nix.thunk(() => ({})) })))),
+            [nix.POS]: pos$38,
+            groups: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "lavalink")), nix.thunk(() => ({ [nix.POS]: pos$35, lavalink: nix.thunk(() => ({})) })))),
             users: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "lavalink")), nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 lavalink: nix.thunk(() => ({
-                  __proto__: pos$36,
+                  [nix.POS]: pos$36,
                   home: nix.thunk(() => nix.attr(cfg, "home")),
                   group: "lavalink",
                   description: "The user for the Lavalink server",
@@ -261,32 +261,32 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             tmpfiles: nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               settings: nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 "10-lavalink": nix.thunk(() => (() => {
                   const dirConfig = nix.thunk(() => ({
-                    __proto__: pos$39,
+                    [nix.POS]: pos$39,
                     user: nix.thunk(() => nix.attr(cfg, "user")),
                     group: nix.thunk(() => nix.attr(cfg, "group")),
                     mode: "0700",
                   }));
                   return nix.attrsDyn({}, [
                     [nix.str`${nix.sel(cfg, "home")}/plugins`, nix.thunk(() => ({
-                      __proto__: pos$40,
+                      [nix.POS]: pos$40,
                       d: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "plugins"), [])), dirConfig)),
                     }))],
-                    [nix.sel(cfg, "home"), nix.thunk(() => ({ __proto__: pos$41, d: dirConfig }))],
+                    [nix.sel(cfg, "home"), nix.thunk(() => ({ [nix.POS]: pos$41, d: dirConfig }))],
                   ]);
                 })()),
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               lavalink: nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 description: "Lavalink Service",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 after: nix.thunk(() => ["syslog.target", "network.target"]),
@@ -298,7 +298,7 @@ export _JAVA_OPTIONS="${nix.sel(cfg, "jvmArgs")}"
 ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))}
 `),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$44,
+                  [nix.POS]: pos$44,
                   User: nix.thunk(() => nix.sel(cfg, "user")),
                   Group: nix.thunk(() => nix.sel(cfg, "group")),
                   Type: "simple",

@@ -16,18 +16,18 @@ export default nix.lambda((args) => (() => {
       const name = "pc";
       const version = "1.15.0";
       const src = nix.thunk(() => nix.app(fetchHex, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pkg: name,
           version: version,
           sha256: "sha256-TA+tT2Q3yuNT1RfaIY/ng0e4/6RLmBeIdJTKquVFlbM=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Rebar3 port compiler for native code",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/blt/port_compiler",
       }));
-      return { __proto__: pos$3, name, version, src, meta };
+      return { [nix.POS]: pos$3, name, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

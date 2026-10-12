@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const docbook_xsl = nix.arg($, "docbook_xsl");
   const docbook_xml_dtd_45 = nix.arg($, "docbook_xml_dtd_45");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cdimgtools",
       version: "0.3",
       src: nix.thunk(() => nix.app(fetchFromRepoOrCz, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "cdimgtools",
           rev: "version/0.3",
           hash: "sha256-HFlXGmi6YcYP+ZAdu79lJHLBmtMEhW17gs4I2ekbr8M=",
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "doc"]),
       installTargets: nix.thunk(() => ["install", "install-doc"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://repo.or.cz/cdimgtools.git/blob_plain/refs/heads/release:/README.html",
         description: "Tools to inspect and manipulate CD/DVD optical disc images",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

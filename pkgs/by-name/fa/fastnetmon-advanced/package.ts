@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "fastnetmon-advanced";
       const version = "2.0.383";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://noble.ubuntu.repo.fastnetmon.com/pool/stable/f/fa/fastnetmon_${version}_amd64.deb`),
           hash: "sha256-n43LDnkk5cMvnfbHc8MtR+zmQok7DEbUwR0ZeHOq2UY=",
         }))));
@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
       const doInstallCheck = true;
       const installCheckPhase = "set +o pipefail\n$out/bin/fastnetmon 2>&1 | grep \"Can't open log file\"\n$out/bin/fcli 2>&1 | grep \"Please run this tool with root rights\"\n$out/bin/fnm-gobgp --help 2>&1 | grep \"Available Commands\"\n$out/bin/fnm-gobgpd --help 2>&1 | grep \"Application Options\"\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "fastnetmon-advanced": nix.thunk(() => nix.attr(nixosTests, "fastnetmon-advanced")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "High performance DDoS detector / sensor - commercial edition",
         homepage: "https://fastnetmon.com",
         changelog: nix.thunk(() => nix.str`https://github.com/FastNetMon/fastnetmon-advanced-releases/releases/tag/v${version}`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

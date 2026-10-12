@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchgit = nix.arg($, "fetchgit");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mdf2iso",
       version: "0.3.1",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://salsa.debian.org/debian/mdf2iso",
           rev: "c6a5b588318d43bc8af986bbe48d0a06e92f4280",
           sha256: "0xg43jlvrk8adfjgbjir15nxwcj0nhz4gxpqx7jdfvhg0kwliq0n",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Small utility that converts MDF images to ISO format",
         homepage: nix.thunk(() => nix.sel(finalAttrs, "src", "url")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const scdoc = nix.arg($, "scdoc");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ratt",
       version: "0-unstable-2025-03-10",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~ghost08",
           repo: "ratt",
           rev: "7433a875fb5d8f614e8630cd50b3c9580ef931ce",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postInstall: "scdoc < doc/ratt.1.scd > doc/ratt.1\ninstallManPage doc/ratt.1\n\nscdoc < doc/ratt.5.scd > doc/ratt.5\ninstallManPage doc/ratt.5\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for converting websites to rss/atom feeds",
         homepage: "https://git.sr.ht/~ghost08/ratt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

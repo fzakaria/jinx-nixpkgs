@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const sexplib = nix.arg($, "sexplib");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ppx_protocol_conv",
       version: "5.2.3",
       minimalOCamlVersion: "5.3",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "andersfugmann",
           repo: "ppx_protocol_conv",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [ppx_expect, ppx_sexp_conv, sexplib, alcotest]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pluggable serialization and deserialization of ocaml data strucures based on type_conv",
         homepage: "https://github.com/andersfugmann/ppx_protocol_conv",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

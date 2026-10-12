@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libyubikey = nix.arg($, "libyubikey");
   const libykclient = nix.arg($, "libykclient");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "yubico-pam",
       version: "2.27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Yubico",
           repo: "yubico-pam",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config, asciidoc, libxslt, docbook_xsl]),
       buildInputs: nix.thunk(() => [pam, yubikey_personalization, libyubikey, libykclient]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Yubico PAM module",
         mainProgram: "ykpamcfg",
         homepage: "https://developers.yubico.com/yubico-pam",

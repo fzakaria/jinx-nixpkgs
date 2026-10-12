@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const openjdk11 = nix.arg($, "openjdk11");
   const openjdk = openjdk11;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gremlin-console",
       version: "3.8.2",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://downloads.apache.org/tinkerpop/${nix.sel(finalAttrs, "version")}/apache-tinkerpop-gremlin-console-${nix.sel(finalAttrs, "version")}-bin.zip`),
           sha256: "sha256-U2sorMLLFcYV9dRX64uHR+eUu92ZmxhYgOK4CBsL5YE=",
         })))),
@@ -35,7 +35,7 @@ makeWrapper $out/opt/bin/gremlin-console $out/bin/gremlin-console \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://tinkerpop.apache.org/",
         description: "Console of the Apache TinkerPop graph computing framework",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

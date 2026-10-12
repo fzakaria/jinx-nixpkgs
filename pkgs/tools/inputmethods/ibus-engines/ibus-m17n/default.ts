@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ibus-m17n";
       const version = "1.4.40";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ibus",
           repo: "ibus-m17n",
           rev: version,
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const configureFlags = nix.thunk(() => ["--with-gtk=3.0"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         isIbusEngine: true,
         description: "m17n engine for ibus",
         homepage: "https://github.com/ibus/ibus-m17n",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

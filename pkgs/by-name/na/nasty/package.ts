@@ -15,19 +15,19 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const gpgme = nix.arg($, "gpgme");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nasty",
       version: "0.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.vanheusden.com/nasty/nasty-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "1dznlxr728k1pgy1kwmlm7ivyl3j3rlvkmq34qpwbwbj8rnja1vn",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, CFLAGS: "-D_FILE_OFFSET_BITS=64" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CFLAGS: "-D_FILE_OFFSET_BITS=64" })),
       buildInputs: nix.thunk(() => [gpgme]),
       installPhase: "mkdir -p $out/bin\ncp nasty $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Recover the passphrase of your PGP or GPG-key",
         mainProgram: "nasty",
         longDescription: "Nasty is a program that helps you to recover the passphrase of your PGP or GPG-key\nin case you forget or lost it. It is mostly a proof-of-concept: with a different implementation\nthis program could be at least 100x faster.\n",

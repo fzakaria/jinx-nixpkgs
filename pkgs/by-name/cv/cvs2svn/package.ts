@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.5.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mhagger/cvs2svn/releases/download/${version}/cvs2svn-${version}.tar.gz`),
           sha256: "1ska0z15sjhyfi860rjazz9ya1gxbf5c0h8dfqwz88h7fccd22b4",
         }))));
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
 done
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to convert CVS repositories to Subversion repositories",
         homepage: "https://github.com/mhagger/cvs2svn",
         maintainers: nix.thunk(() => (() => {
@@ -53,7 +53,7 @@ done
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

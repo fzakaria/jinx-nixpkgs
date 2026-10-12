@@ -26,25 +26,25 @@ export default nix.lambda((args) => (() => {
   const withPigz = nix.argOr($, "withPigz", () => true);
   const withCloudflareZlib = nix.argOr($, "withCloudflareZlib", () => true);
   const cloudflareZlib = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "ningfei",
       repo: "zlib",
       rev: "7d9d0b20249fd459c69e4b98bc569b7157f3018c",
       hash: "sha256-WnD9pOnM6J3nCLBKYb28+JaIy0z/9csbn+AsyWZQnLs=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: "1.0.20250506",
       pname: "dcm2niix",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "rordenlab",
           repo: "dcm2niix",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-KtUWrm3Nq3khDxpaQ4W57y+h/gPeEMwfzBv4XYkAhoA=",
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), withCloudflareZlib, nix.thunk(() => [
-          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dont-fetch-external-libs.patch"), nix.thunk(() => ({ __proto__: pos$3, cloudflareZlib: cloudflareZlib })))),
+          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dont-fetch-external-libs.patch"), nix.thunk(() => ({ [nix.POS]: pos$3, cloudflareZlib: cloudflareZlib })))),
         ]))),
       nativeBuildInputs: nix.thunk(() => [cmake, makeBinaryWrapper]),
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), batchVersion, nix.thunk(() => [yaml_cpp])), nix.app(nix.sel(lib, "optionals"), withOpenJpeg, nix.thunk(() => [openjpeg, nix.thunk(() => nix.sel(openjpeg, "dev"))])))),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withPigz, nix.thunk(() => nix.str`wrapProgram $out/bin/dcm2niix --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [pigz]))}"
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "DICOM to NIfTI converter",
         mainProgram: "dcm2niix",
         longDescription: "dcm2niix is designed to convert neuroimaging data from the DICOM format to the NIfTI format.\n",

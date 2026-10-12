@@ -26,15 +26,15 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const w = nix.withScope(lib, null);
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         oidentd: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: false,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               description: "Whether to enable ‘oidentd’, an implementation of the Ident\nprotocol (RFC 1413).  It allows remote systems to identify the\nname of the user associated with a TCP connection.\n",
@@ -43,35 +43,35 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(config, "services", "oidentd", "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         systemd: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           services: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             oidentd: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$5, Type: "forking" })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$5, Type: "forking" })),
               script: nix.thunk(() => nix.str`${nix.sel(pkgs, "oidentd")}/sbin/oidentd -u oidentd -g nogroup`),
             })),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           users: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             oidentd: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "Ident Protocol daemon user",
               group: "oidentd",
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "oidentd")),
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             oidentd: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "oidentd")),
             })),
           })),

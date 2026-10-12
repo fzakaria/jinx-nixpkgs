@@ -32,20 +32,20 @@ export default nix.lambda((args) => (() => {
     const lib_1 = nix.arg($_1, "lib");
     const pkgs = nix.arg($_1, "pkgs");
     return {
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$2,
-        directBoot: nix.thunk(() => ({ __proto__: pos$1, enable: false })),
+        [nix.POS]: pos$2,
+        directBoot: nix.thunk(() => ({ [nix.POS]: pos$1, enable: false })),
         mountHostNixStore: false,
         useEFIBoot: nix.thunk(() => nix.eq(partitionTableType, "efi")),
         fileSystems: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => ({})))),
       })),
       boot: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         loader: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           grub: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: true,
             efiSupport: nix.thunk(() => nix.eq(partitionTableType, "efi")),
             efiInstallAsRemovable: nix.thunk(() => nix.eq(partitionTableType, "efi")),
@@ -55,16 +55,16 @@ export default nix.lambda((args) => (() => {
         growPartition: true,
       })),
       fileSystems: nix.thunk(() => ({
-        __proto__: pos$7,
-        "/": nix.thunk(() => ({ __proto__: pos$6, device: rootFsDevice, fsType: "ext4" })),
+        [nix.POS]: pos$7,
+        "/": nix.thunk(() => ({ [nix.POS]: pos$6, device: rootFsDevice, fsType: "ext4" })),
       })),
       system: nix.thunk(() => ({
-        __proto__: pos$11,
-        switch: nix.thunk(() => ({ __proto__: pos$8, enable: true })),
+        [nix.POS]: pos$11,
+        switch: nix.thunk(() => ({ [nix.POS]: pos$8, enable: true })),
         build: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           diskImage: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/make-disk-image.nix")), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               config: config,
               lib: lib_1,
               pkgs: pkgs,
@@ -80,17 +80,17 @@ export default nix.lambda((args) => (() => {
     };
   })(), formals$2);
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     name: "grow-partition",
     meta: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "arianvp"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       efi: nix.thunk(() => nix.app(externalModule, "efi")),
       legacy: nix.thunk(() => nix.app(externalModule, "legacy")),
       legacyGPT: nix.thunk(() => nix.app(externalModule, "legacy+gpt")),

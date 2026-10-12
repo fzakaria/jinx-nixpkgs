@@ -22,21 +22,21 @@ export default nix.lambda((args) => (() => {
   const ppxlib = nix.arg($, "ppxlib");
   const version = nix.argOr($, "version", () => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ppxlib, "version")), "0.36")) ? "0.8.0" : "0.7.0"));
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "repr",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/mirage/repr/releases/download/${version}/repr-${version}.tbz`),
           hash: nix.thunk(() => nix.sel({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             "0.8.0": "sha256-FyhCO4sCCPmwMq0+Bd2WpDuSzXZBb5FG45TwsLoTM0c=",
             "0.7.0": "sha256-itrJ/oW/ig4g7raBDXIW6Y4bf02b05nmG7ECSs4lAaw=",
           }, nix.key(nix.str`${version}`))),
         })))),
       propagatedBuildInputs: nix.thunk(() => [base64, either, fmt, jsonm, uutf, optint]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Dynamic type representations. Provides no stability guarantee",
         homepage: "https://github.com/mirage/repr",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

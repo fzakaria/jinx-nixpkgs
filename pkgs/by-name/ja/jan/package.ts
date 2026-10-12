@@ -24,19 +24,19 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const version = "0.8.4";
   const darwin_src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/janhq/jan/releases/download/v${version}/jan-mac-universal-${version}.zip`),
       hash: "sha256-hK9cu9c2kJRCJ3iy0CucRP0whgDgF5K29JgR4AIKXVg=",
     }))));
   const linux_src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`https://github.com/janhq/jan/releases/download/v${version}/Jan_${version}_amd64.AppImage`),
       hash: "sha256-NNTIq02kisIjINS2TCh0Rb2UyRMSlJLR2+uzZmWxSVo=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$3, pname: "Jan", version: version, src: linux_src }))));
-  const passthru = nix.thunk(() => ({ __proto__: pos$4, updateScript: nix.path(here, "./update.sh") }));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$3, pname: "Jan", version: version, src: linux_src }))));
+  const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") }));
   const meta = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     changelog: nix.thunk(() => nix.str`https://github.com/janhq/jan/releases/tag/v${version}`),
     description: "Open source alternative to ChatGPT that runs 100% offline on your computer",
     homepage: "https://github.com/janhq/jan",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
     })())),
   }));
   const linux = nix.thunk(() => nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "Jan",
       version: version,
       src: linux_src,
@@ -68,7 +68,7 @@ cp -r ${appimageContents}/usr/share/icons $out/share
       meta: meta,
     }))));
   const darwin = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "Jan",
       version: version,
       strictDeps: true,

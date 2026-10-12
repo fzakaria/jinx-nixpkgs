@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libsForQt5 = nix.arg($, "libsForQt5");
   const exiv2 = nix.arg($, "exiv2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "phototonic",
       version: "2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "oferkv",
           repo: "phototonic",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "exiv2-0.28.patch",
             url: "https://gitlab.archlinux.org/archlinux/packaging/packages/phototonic/-/raw/fcfa17307ad8988750cc09200188c9365c2c0b79/exiv2-0.28.patch",
             hash: "sha256-EayJYM4qobUWosxV2Ylj+2eiyhk1jM8OfnFZDbVdGII=",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(libsForQt5, "qtbase")), exiv2]),
       preConfigure: "sed -i 's;/usr;$$PREFIX/;g' phototonic.pro\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Image viewer and organizer",
         mainProgram: "phototonic",
         homepage: "https://github.com/oferkv/phototonic",

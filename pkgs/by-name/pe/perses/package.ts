@@ -28,20 +28,20 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const nixosTests = nix.arg($, "nixosTests");
   const pluginsArchive = nix.thunk(() => nix.app(linkFarm, "perses-plugin-archive", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (plugin) => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: nix.thunk(() => nix.str`${name}-${nix.sel(plugin, "version")}.tar.gz`),
         path: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.attr(plugin, "url")),
             hash: nix.thunk(() => nix.attr(plugin, "hash")),
           })))),
       }), nix.thunk(() => nix.builtins.import(nix.path(here, "./plugins.nix")))))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "perses",
       version: "0.54.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "perses",
           repo: "perses",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         installShellFiles,
       ]),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-ui`),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         })))),
       npmRoot: "ui",
       overrideModAttrs: (oldAttrs) => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "remove"), nix.thunk(() => nix.sel(npmHooks, "npmConfigHook")), nix.thunk(() => nix.sel(oldAttrs, "nativeBuildInputs")))),
         preBuild: null,
       }),
@@ -86,13 +86,13 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\n$out/bin/percli help > /dev/null\n\n$out/bin/perses --help 2> /dev/null\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.path(here, "./update.sh"),
-        tests: nix.thunk(() => ({ __proto__: pos$6, nixos: nix.thunk(() => nix.sel(nixosTests, "perses")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$6, nixos: nix.thunk(() => nix.sel(nixosTests, "perses")) })),
         pluginsArchive: pluginsArchive,
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "CNCF sandbox for observability visualisation",
         homepage: "https://perses.dev/",
         changelog: nix.thunk(() => nix.str`https://github.com/perses/perses/releases/tag/v${nix.sel(finalAttrs, "version")}`),

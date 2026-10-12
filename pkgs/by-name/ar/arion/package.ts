@@ -18,15 +18,15 @@ export default nix.lambda((args) => (() => {
   const haskell = nix.arg($, "haskell");
   const runCommand = nix.arg($, "runCommand");
   const buildPackages = nix.arg($, "buildPackages");
-  const arion = nix.thunk(() => nix.app(nix.sel(nix.app(justStaticExecutables, nix.thunk(() => nix.app(overrideCabal, cabalOverrides, arion_compose))), "overrideAttrs"), (o) => ({ __proto__: pos$1, pname: "arion" })));
+  const arion = nix.thunk(() => nix.app(nix.sel(nix.app(justStaticExecutables, nix.thunk(() => nix.app(overrideCabal, cabalOverrides, arion_compose))), "overrideAttrs"), (o) => ({ [nix.POS]: pos$1, pname: "arion" })));
   const from = nix.thunk(() => nix.sel(haskell, "lib", "compose"));
   const justStaticExecutables = nix.thunk(() => nix.attr(from, "justStaticExecutables"));
   const overrideCabal = nix.thunk(() => nix.attr(from, "overrideCabal"));
   const arion_compose = nix.thunk(() => nix.attr(haskellPackages, "arion-compose"));
   const cabalOverrides = (o) => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     buildTools: nix.thunk(() => nix.concat(nix.selOr(o, () => [], "buildTools"), [nix.thunk(() => nix.sel(buildPackages, "makeWrapper"))])),
-    passthru: nix.thunk(() => nix.update(nix.selOr(o, () => ({}), "passthru"), { __proto__: pos$2, eval: eval$, build: build })),
+    passthru: nix.thunk(() => nix.update(nix.selOr(o, () => ({}), "passthru"), { [nix.POS]: pos$2, eval: eval$, build: build })),
     src: nix.thunk(() => nix.sel(arion_compose, "src")),
     postInstall: nix.thunk(() => nix.add(nix.selOr(o, () => "", "postInstall"), nix.str`mkdir -p $out/libexec
 mv $out/bin/arion $out/libexec
@@ -40,7 +40,7 @@ makeWrapper $out/libexec/arion $out/bin/arion \\
   const eval$ = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const args_2 = args_1;
-    return nix.app(nix.builtins.import(nix.thunk(() => nix.add(srcUnpacked, "/src/nix/eval-composition.nix"))), nix.thunk(() => nix.update({ __proto__: pos$4, pkgs: pkgs }, args_2)));
+    return nix.app(nix.builtins.import(nix.thunk(() => nix.add(srcUnpacked, "/src/nix/eval-composition.nix"))), nix.thunk(() => nix.update({ [nix.POS]: pos$4, pkgs: pkgs }, args_2)));
   })(), formals$2);
   const build = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$3);

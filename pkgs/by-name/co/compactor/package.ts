@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const wireshark_cli = nix.arg($, "wireshark-cli");
   const protobuf = protobuf_21;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "compactor",
       version: "1.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dns-stats",
           repo: "compactor",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./patches/add-a-space-after-type-in-check-response-opt-sh.patch"),
         nix.path(here, "./patches/update-golden-cbor2diag-output.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/dns-stats/compactor/commit/f7deaf89f55a12c586b6662a3a7d04b10a4c7bcb.patch",
             hash: "sha256-eEaVS5rfrLkRGc668PwVfb/xw3n1SoCm30xEf1NjbeY=",
           })))),
@@ -84,7 +84,7 @@ cp ${catch2}/include/catch2/catch.hpp tests/catch.hpp
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       nativeCheckInputs: nix.thunk(() => [cbor_diag, cddl, diffutils, file, mktemp, netcat, tcpdump, wireshark_cli]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tools to capture DNS traffic and record it in C-DNS files",
         homepage: "https://dns-stats.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/dns-stats/compactor/raw/${nix.sel(finalAttrs, "version")}/ChangeLog.txt`),

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const xdg_dbus_proxy = nix.arg($, "xdg-dbus-proxy");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "firejail",
       version: "0.9.80",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "netblue30",
           repo: "firejail",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,9 +49,9 @@ sed -e "s@/bin/cp@$(which cp)@g" -i $( grep -lr /bin/cp .)
       preBuild: "sed -e \"s@/etc/@$out/etc/@g\" -e \"/chmod u+s/d\" -i Makefile\n",
       postInstall: "for local in $(grep -Eh '^include.*local$' $out/etc/firejail/*{.inc,.profile} | awk '{print $2}' | sort | uniq)\ndo\n  echo \"include /etc/firejail/$local\" >$out/etc/firejail/$local\ndone\n",
       enableParallelBuilding: false,
-      passthru: nix.thunk(() => ({ __proto__: pos$2, tests: nix.thunk(() => nix.sel(nixosTests, "firejail")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, tests: nix.thunk(() => nix.sel(nixosTests, "firejail")) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Namespace-based sandboxing tool for Linux",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "raskin"))]),

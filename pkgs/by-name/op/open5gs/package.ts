@@ -36,18 +36,18 @@ export default nix.lambda((args) => (() => {
   const mongosh = nix.arg($, "mongosh");
   const usrsctp = nix.arg($, "usrsctp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "open5gs",
       version: "2.8.0",
       diameter: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "open5gs",
           repo: "freeDiameter",
           rev: "13f5a5996b5fa1a46ed780635c7fc6fcd09b4290",
           hash: "sha256-S8jL+9rW9RDwQc7NU8MOzMe9/iRbshWa2QLqXoiV85Q=",
         })))),
       libtins: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "open5gs",
           repo: "libtins",
           rev: "bf22438172d269e6db70e27246dffd8e1f0b96e3",
@@ -55,14 +55,14 @@ export default nix.lambda((args) => (() => {
         })))),
       mesonFlags: nix.thunk(() => ["-Dwerror=false", "--buildtype=release"]),
       promc: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "open5gs",
           repo: "prometheus-client-c",
           rev: "a58ba25bf87a9b1b7c6be4e6f4c62047d620f402",
           hash: "sha256-COZV4UeB7YRfpLwloIfc/WdlTP9huwVfXrJWH4jmvB8=",
         })))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "open5gs",
           repo: "open5gs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -91,7 +91,7 @@ substituteInPlace $out/bin/open5gs-dbctl \\
   --replace "mongosh" "${nix.app(nix.sel(lib, "getExe"), mongosh)}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://open5gs.org/",
         description: "4G/5G core network components",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

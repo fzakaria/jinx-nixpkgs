@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tmbo",
           repo: "questionary",
           tag: version,
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_blank_line_fix", "test_print_with_style"]);
       const pythonImportsCheck = nix.thunk(() => ["questionary"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library to build command line user prompts",
         homepage: "https://github.com/tmbo/questionary",
         changelog: nix.thunk(() => nix.str`https://github.com/tmbo/questionary/blob/${nix.sel(src, "rev")}/docs/pages/changelog.rst`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

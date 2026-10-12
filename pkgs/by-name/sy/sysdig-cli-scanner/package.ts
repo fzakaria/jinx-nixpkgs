@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const fetchForSystem = nix.thunk(() => nix.selOr(versionMetadata, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported system ${nix.sel(stdenv, "system")}`)), nix.key(nix.sel(stdenv, "system"))));
   const wrapper = nix.thunk(() => nix.app(writeShellScript, "sysdig-cli-scanner-wrapper", "for arg in \"$@\"; do\n  # We must not pass --dbpath to the cli in case it has been called with --iac\n  # IaC Scanning does not make use of the vulnerability database\n  if [ \"$arg\" = \"--iac\" ]; then\n    exec @out@/libexec/sysdig-cli-scanner-unwrapped \"$@\"\n  fi\ndone\n\n# --dbpath argument is needed for vulnerability scanning mode, otherwise it tries to download\n# the vulnerability database in the same path as the binary, which is read-only in the case of the\n# nix store\nexec @out@/libexec/sysdig-cli-scanner-unwrapped \\\n  --dbpath=\"$HOME/.cache/sysdig-cli-scanner/\" \"$@\"\n"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sysdig-cli-scanner",
       version: nix.thunk(() => nix.sel(versionMetadata, "version")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.attr(fetchForSystem, "url")),
           hash: nix.thunk(() => nix.attr(fetchForSystem, "hash")),
         })))),
@@ -35,9 +35,9 @@ substituteInPlace $out/bin/sysdig-cli-scanner --subst-var out
 
 runHook postInstall
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool for scanning container images and directories using Sysdig",
         longDescription: "The Sysdig Vulnerability CLI Scanner, sysdig-cli-scanner, is a versatile tool designed to\nmanually scan container images and directories, whether they are located locally or remotely.\nDepending on your specific use case, you have the flexibility to execute sysdig-cli-scanner\nin Vulnerability Management (VM) mode for image scanning or Infrastructure as Code (IaC) mode\nfor scanning directories.\n",
         homepage: "https://docs.sysdig.com/en/docs/installation/sysdig-secure/install-vulnerability-cli-scanner/",

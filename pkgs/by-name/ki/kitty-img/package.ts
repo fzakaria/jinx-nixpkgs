@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromCodeberg = nix.arg($, "fetchFromCodeberg");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kitty-img",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sashanoraa",
           repo: "kitty-img",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-S/f2Q9SpPuAJLr8QkdWjRGwcuE64AhXJMcXMvwAMIUw=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Print images inline in kitty",
         homepage: "https://codeberg.org/sashanoraa/kitty-img",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/sashanoraa/kitty-img/releases/tag/${nix.sel(finalAttrs, "version")}`),

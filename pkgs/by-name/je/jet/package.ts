@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const testers = nix.arg($, "testers");
   return nix.app(buildGraalvmNativeImage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "jet",
       version: "0.7.27",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/borkdude/jet/releases/download/v${nix.sel(finalAttrs, "version")}/jet-${nix.sel(finalAttrs, "version")}-standalone.jar`),
           sha256: "sha256-250/1DBNCXlU1b4jjLUUOXI+uSbOyPXtBN1JJRpdmFc=",
         })))),
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\noutput=\"$(\n  printf '%s\\n' '{\"value\":1}' \\\n    | $out/bin/jet --from json --to edn --keywordize\n)\"\ntest \"$output\" = '{:value 1}'\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "jet --version",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "CLI to transform between JSON, EDN, YAML and Transit, powered with a minimal query language",
         homepage: "https://github.com/borkdude/jet",
         sourceProvenance: nix.thunk(() => (() => {

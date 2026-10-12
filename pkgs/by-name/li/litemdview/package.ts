@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "litemdview",
       version: "0.0.32",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "g0tsu",
           repo: "litemdview",
           rev: nix.thunk(() => nix.str`litemdview-${nix.sel(finalAttrs, "version")}`),
@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./fix-gcc15.patch")]),
       buildInputs: nix.thunk(() => [gtkmm3]),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=implicit-int" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=implicit-int" })),
       enableParallelBuilding: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://codeberg.org/g0tsu/litemdview",
         description: "Suckless markdown viewer",
         longDescription: "LiteMDview is a lightweight, extremely fast markdown viewer with lots of useful features. One of them is ability to use your preferred text editor to edit markdown files, every time you save the file, litemdview reloads those changes (I call it live-reload). It has a convenient navigation through local directories, has support for a basic \"git-like\" folders hierarchy as well as vimwiki projects.\n\nFeatures:\n\n\n  - Does not use any of those bloated gecko(servo)-blink engines\n  - Lightweight and fast\n  - Live reload\n  - Convenient key bindings\n  - Supports text zooming\n  - Supports images\n  - Supports links\n  - Navigation history\n  - Cool name which associates with 1337, at least for me :)\n  - Builtin markdown css themes\n  - Supports emoji™️\n  - vimwiki support\n  - Basic html support (very simple offline documents in html)\n  - Syntax highlighting\n",

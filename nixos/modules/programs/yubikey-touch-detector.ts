@@ -27,28 +27,28 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const cfg = nix.thunk(() => nix.sel(config, "programs", "yubikey-touch-detector"));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       programs: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "yubikey-touch-detector": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "yubikey-touch-detector")),
           libnotify: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: true,
               type: nix.thunk(() => nix.sel(types, "bool")),
               description: "If set to true, yubikey-touch-detctor will send notifications using libnotify\n",
             })))),
           unixSocket: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: true,
               type: nix.thunk(() => nix.sel(types, "bool")),
               description: "If set to true, yubikey-touch-detector will send notifications to a unix socket\n",
             })))),
           verbose: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: false,
               type: nix.thunk(() => nix.sel(types, "bool")),
               description: "Enables verbose logging\n",
@@ -57,19 +57,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "yubikey-touch-detector"))]),
           user: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             services: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               "yubikey-touch-detector": nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gnupg"))]),
                 environment: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   YUBIKEY_TOUCH_DETECTOR_LIBNOTIFY: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "libnotify")))),
                   YUBIKEY_TOUCH_DETECTOR_NOSOCKET: nix.thunk(() => nix.builtins.toString(nix.thunk(() => !nix.asBool(nix.sel(cfg, "unixSocket"))))),
                   YUBIKEY_TOUCH_DETECTOR_VERBOSE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "verbose")))),
@@ -79,8 +79,8 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             sockets: nix.thunk(() => ({
-              __proto__: pos$11,
-              "yubikey-touch-detector": nix.thunk(() => ({ __proto__: pos$10, wantedBy: nix.thunk(() => ["sockets.target"]) })),
+              [nix.POS]: pos$11,
+              "yubikey-touch-detector": nix.thunk(() => ({ [nix.POS]: pos$10, wantedBy: nix.thunk(() => ["sockets.target"]) })),
             })),
           })),
         })),

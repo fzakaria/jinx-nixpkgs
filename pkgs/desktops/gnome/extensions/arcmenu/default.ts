@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gnome-shell-extension-arcmenu";
       const version = "69.2";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "arcmenu",
           repo: "ArcMenu",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix_gmenu.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             gmenu_path: nix.thunk(() => nix.str`${gnome_menus}/lib/girepository-1.0`),
           })))),
       ]);
@@ -39,12 +39,12 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`INSTALLBASE=${nix.builtins.placeholder("out")}/share/gnome-shell/extensions`),
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         extensionUuid: "arcmenu@arcmenu.com",
         extensionPortalSlug: "arcmenu",
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Application menu for GNOME Shell, designed to provide a more traditional user experience and workflow",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         maintainers: nix.thunk(() => (() => {
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         homepage: "https://gitlab.com/arcmenu/ArcMenu",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

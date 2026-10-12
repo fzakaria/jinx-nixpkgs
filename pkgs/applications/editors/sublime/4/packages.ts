@@ -12,15 +12,15 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const common = (opts) => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), opts)));
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     sublime4: nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         buildVersion: "4215",
         x64sha256: "wVP0GNOrJrkOzOjAKoLk6WECXtemX34lBgpUV9Q+iNk=",
         aarch64sha256: "0xRmWkJy8zVRUDQyNyo0UW27WpoS3OKkcELBlC9m7nk=",
       })), nix.thunk(() => ({})))),
     "sublime4-dev": nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         buildVersion: "4212",
         dev: true,
         x64sha256: "AA6ZsWNXs6J4JXI0tbJPDoAhoN8Jj58jhD0hLnTEFNI=",

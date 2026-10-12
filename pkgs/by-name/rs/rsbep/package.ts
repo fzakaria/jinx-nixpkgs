@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const gawk = nix.arg($, "gawk");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rsbep",
       version: "0.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ttsiodras",
           repo: "rsbep-backup",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ rm poorZFS.py
       doInstallCheck: true,
       installCheckPhase: "cd $TMP\necho hello > input\n$out/bin/freeze.sh input > packed\n$out/bin/melt.sh packed > output\ndiff -u input output\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Create resilient backups with Reed-Solomon error correction and byte-spreading",
         homepage: "https://www.thanassis.space/rsbep.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

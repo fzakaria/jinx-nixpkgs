@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.14.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "touying-typ",
           repo: "touying-exporter",
           tag: version,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["touying"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Export presentation slides in various formats for Touying",
         changelog: nix.thunk(() => nix.str`https://github.com/touying-typ/touying-exporter/releases/tag/${version}`),
         homepage: "https://github.com/touying-typ/touying-exporter",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "touying",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
       const pname = "soundfont-arachno";
       const version = "1.0";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.dropbox.com/s/2rnpya9ecb9m4jh/arachno-soundfont-${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), version)}-sf2.zip`),
           hash: "sha256-Z5ETe0AKPCi4KlM2xOlNcyQn1xvCuor3S/tcrF+AwNQ=",
           stripRoot: false,
         }))));
       const installPhase = "runHook preInstall\ninstall -Dm444 Arachno*.sf2 $out/share/soundfonts/arachno.sf2\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "General MIDI-compliant bank, aimed at enhancing the realism of your MIDI files and arrangements",
         homepage: "http://www.arachnosoft.com/main/soundfont.php",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "mrtnvgr"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

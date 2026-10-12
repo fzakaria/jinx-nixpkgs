@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pass-tomb";
       const version = "1.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "roddhjav",
           repo: "pass-tomb",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
   --replace 'TOMB="\${PASSWORD_STORE_TOMB:-tomb}"' 'TOMB="\${PASSWORD_STORE_TOMB:-${tomb}/bin/tomb}"'
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pass extension that keeps the password store encrypted inside a tomb",
         homepage: "https://github.com/roddhjav/pass-tomb",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

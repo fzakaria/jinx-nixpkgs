@@ -16,21 +16,21 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const ronn = nix.arg($, "ronn");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "termimage",
       version: "1.2.1",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-1FOPe466GqQfiIpsQT9DJn+FupI2vy9b4+7p31ceY6M=",
         })))),
       cargoHash: "sha256-SIPak7tl/fIH6WzvAl8bjhclZqQ6imC/zdxCnBnEsbk=",
       nativeBuildInputs: nix.thunk(() => [installShellFiles, ronn]),
-      env: nix.thunk(() => ({ __proto__: pos$2, RUSTFLAGS: "-Adangerous_implicit_autorefs" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTFLAGS: "-Adangerous_implicit_autorefs" })),
       postInstall: "ronn --roff --organization=\"termimage developers\" termimage.md\ninstallManPage termimage.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Display images in your terminal",
         homepage: "https://github.com/nabijaczleweli/termimage",
         changelog: nix.thunk(() => nix.str`https://github.com/nabijaczleweli/termimage/releases/tag/v${nix.sel(finalAttrs, "version")}`),

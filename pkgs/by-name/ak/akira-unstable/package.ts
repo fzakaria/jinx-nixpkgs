@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const libgee = nix.arg($, "libgee");
   const libxml2 = nix.arg($, "libxml2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "akira",
       version: "0.0.16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "akiraux",
           repo: "Akira",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       mesonFlags: nix.thunk(() => ["-Dprofile=default"]),
       postPatch: "chmod +x build-aux/meson/post_install.py\npatchShebangs build-aux/meson/post_install.py\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Native Linux Design application built in Vala and GTK",
         homepage: "https://github.com/akiraux/Akira",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

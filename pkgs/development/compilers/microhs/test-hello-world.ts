@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const microhs = nix.arg($, "microhs");
   const writeTextDir = nix.arg($, "writeTextDir");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "microhs-hello-world",
       buildInputs: nix.thunk(() => [microhs]),
       src: nix.thunk(() => nix.app(writeTextDir, "helloworld.hs", "main :: IO ()\nmain = putStrLn \"Hello World\"\n")),

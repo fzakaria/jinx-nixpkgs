@@ -43,13 +43,13 @@ export default nix.lambda((args) => (() => {
     ], "localGpuTargets"));
   const projectRoot = "projects/composablekernel";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       preBuild: "echo \"This derivation isn't intended to be built directly and only exists to be overridden and built in chunks\";\nexit 1\n",
       pname: "composable_kernel_base",
       version: "7.2.3",
       outputs: nix.thunk(() => nix.concat(["out"], nix.concat(nix.app(nix.sel(lib, "optionals"), buildTests, nix.thunk(() => ["test"])), nix.app(nix.sel(lib, "optionals"), buildExamples, nix.thunk(() => ["example"]))))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ROCm",
           repo: "rocm-libraries",
           tag: nix.thunk(() => nix.str`rocm-${nix.sel(finalAttrs, "version")}`),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       enableParallelBuilding: true,
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         ROCM_PATH: clr,
         LD_PRELOAD: nix.thunk(() => nix.str`${jemalloc}/lib/libjemalloc.so`),
         MALLOC_CONF: "background_thread:true,metadata_thp:auto,dirty_decay_ms:10000,muzzy_decay_ms:10000",
@@ -92,16 +92,16 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.add(nix.add(nix.add("substituteInPlace library/src/utility/CMakeLists.txt library/src/tensor_operation_instance/gpu/CMakeLists.txt \\\n  --replace-fail clang_tidy_check '#clang_tidy_check'\nsubstituteInPlace CMakeLists.txt \\\n  --replace-fail \"add_subdirectory(profiler)\" \"\"\nsubstituteInPlace cmake/EnableCompilerWarnings.cmake \\\n  --replace-fail \"-Werror\" \"\"\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(withDeprecatedKernels)), "substituteInPlace include/ck/ck.hpp \\\n  --replace-fail \"CK_BUILD_DEPRECATED 1\" \"CK_BUILD_DEPRECATED 0\"\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(buildTests)), "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"add_subdirectory(test)\" \"\"\nsubstituteInPlace codegen/CMakeLists.txt \\\n  --replace-fail \"include(ROCMTest)\" \"\"\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(buildExamples)), "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"add_subdirectory(example)\" \"\"\n"))),
       postInstall: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), buildTests, "mkdir -p $test/bin\nmv $out/bin/test_* $test/bin\n"), nix.app(nix.sel(lib, "optionalString"), buildExamples, "mkdir -p $example/bin\nmv $out/bin/example_* $example/bin\n"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         gpuTargets: gpuTargets,
         miOpenReqLibsOnly: miOpenReqLibsOnly,
         composable_kernel_src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/${projectRoot}`),
-        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ __proto__: pos$3, finalAttrs: finalAttrs })))),
+        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$3, finalAttrs: finalAttrs })))),
         anyGfx9Target: nix.thunk(() => nix.app(nix.sel(lib, "lists", "any"), nix.thunk(() => nix.app(nix.sel(lib, "strings", "hasPrefix"), "gfx9")), gpuTargets)),
         anyMfmaTarget: nix.thunk(() => !nix.eq(nix.app(nix.sel(lib, "lists", "intersectLists"), gpuTargets, nix.thunk(() => ["gfx908", "gfx90a", "gfx942", "gfx950"])), [])),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Performance portable programming model for machine learning tensor operators",
         homepage: "https://github.com/ROCm/rocm-libraries/tree/develop/projects/composablekernel",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

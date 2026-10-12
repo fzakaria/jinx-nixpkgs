@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const xmlto = nix.arg($, "xmlto");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "guilt",
       version: "0.37-rc1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jeffpc",
           repo: "guilt",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`wrapProgram $out/bin/guilt --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(finalAttrs, "buildInputs")))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Manage patches like quilt, on top of a git repository",
         longDescription: "Andrew Morton originally developed a set of scripts for\nmaintaining kernel patches outside of any SCM tool. Others\nextended these into a suite called quilt]. The basic idea behind\nquilt is to maintain patches instead of maintaining source\nfiles. Patches can be added, removed or reordered, and they can\nbe refreshed as you fix bugs or update to a new base\nrevision. quilt is very powerful, but it is not integrated with\nthe underlying SCM tools. This makes it difficult to visualize\nyour changes.\n\nGuilt allows one to use quilt functionality on top of a Git\nrepository. Changes are maintained as patches which are\ncommitted into Git. Commits can be removed or reordered, and the\nunderlying patch can be refreshed based on changes made in the\nworking directory. The patch directory can also be placed under\nrevision control, so you can have a separate history of changes\nmade to your patches.\n",
         homepage: "https://github.com/jeffpc/guilt",

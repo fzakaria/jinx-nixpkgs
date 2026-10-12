@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const src = nix.thunk(() => (() => {
         const version$ = nix.thunk(() => nix.app(nix.sel(lib, "replaceString"), ".", "-", version));
         return nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://archive.org/download/network-miner-${version$}-source/NetworkMiner_${version$}_source.zip`),
             hash: "sha256-BdjSsFSpt3U7IUurY1dmprzq8wNdPNZyXGKeIGETr7Q=",
           })));
@@ -50,7 +50,7 @@ install -D NetworkMiner/networkminericon-96x96.png $out/share/icons/hicolor/96x9
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open Source Network Forensic Analysis Tool (NFAT)",
         homepage: "https://www.netresec.com/?page=NetworkMiner",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -62,7 +62,7 @@ runHook postInstall
         mainProgram: "NetworkMiner",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

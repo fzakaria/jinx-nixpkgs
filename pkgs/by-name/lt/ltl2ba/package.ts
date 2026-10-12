@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ltl2ba",
       version: "1.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://www.lsv.ens-cachan.fr/~gastin/ltl2ba/ltl2ba-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1bz9gjpvby4mnvny0nmxgd81rim26mqlcnjlznnxxk99575pfa4i",
         })))),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "substituteInPlace Makefile \\\n--replace \"CC=gcc\" \"\"\n",
       installPhase: "mkdir -p $out/bin\nmv ltl2ba $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fast translation from LTL formulae to Buchi automata",
         mainProgram: "ltl2ba",
         homepage: "http://www.lsv.ens-cachan.fr/~gastin/ltl2ba",

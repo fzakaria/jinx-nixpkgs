@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OttoAllmendinger",
           repo: "llm-git",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_cov_stub, writableTmpDirAsHomeHook]);
       const pythonImportsCheck = nix.thunk(() => ["llm_git"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         tests: nix.thunk(() => nix.app(nix.sel(llm, "mkPluginTest"), llm_git)),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "AI-powered Git commands for the LLM CLI tool",
         homepage: "https://github.com/OttoAllmendinger/llm-git",
         changelog: nix.thunk(() => nix.str`https://github.com/OttoAllmendinger/llm-git/releases/tag/${version}/CHANGELOG.md`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

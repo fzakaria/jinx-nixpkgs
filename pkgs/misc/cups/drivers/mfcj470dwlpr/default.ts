@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mfcj470dw-cupswrapper";
       const version = "3.0.0-1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf006843/mfcj470dwlpr-${version}.i386.deb`),
           sha256: "7202dd895d38d50bb767080f2995ed350eed99bc2b7871452c3c915c8eefc30a",
         }))));
@@ -51,7 +51,7 @@ wrapProgram $out/opt/brother/Printers/mfcj470dw/lpd/filtermfcj470dw \\
 --prefix PATH ":" ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [ghostscript, a2ps, file, gnused, coreutils]))}
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.brother.com/",
         description: "Brother MFC-J470DW LPR driver",
         sourceProvenance: nix.thunk(() => (() => {
@@ -64,7 +64,7 @@ wrapProgram $out/opt/brother/Printers/mfcj470dw/lpd/filtermfcj470dw \\
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "yochai"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

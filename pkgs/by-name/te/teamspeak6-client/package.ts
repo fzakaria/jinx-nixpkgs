@@ -45,11 +45,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const libxshmfence = nix.arg($, "libxshmfence");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "teamspeak6-client",
       version: "6.0.0-beta4.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://files.teamspeak-services.com/pre_releases/client/${nix.sel(finalAttrs, "version")}/teamspeak-client.tar.gz`),
           hash: "sha256-7f0VQQLa4Gg7qgXMVfoPYPazPRA9uYeX251j3mHaSLo=",
         })))),
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoPatchelfHook, copyDesktopItems, makeWrapper]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "TeamSpeak",
             exec: "TeamSpeak",
             icon: "teamspeak6-client",
@@ -114,9 +114,9 @@ makeWrapper $out/share/teamspeak6-client/TeamSpeak $out/bin/TeamSpeak \\
 
 runHook postInstall
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "TeamSpeak voice communication tool (beta version)",
         homepage: "https://teamspeak.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "teamspeak")),

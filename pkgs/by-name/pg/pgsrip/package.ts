@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pgsrip",
       version: "0.2.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ratoaq2",
           repo: "pgsrip",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_repository_knowledge_is_consistent"]),
       pythonImportsCheck: nix.thunk(() => ["pgsrip"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Rip your PGS subtitles",
         homepage: "https://github.com/ratoaq2/pgsrip",
         changelog: nix.thunk(() => nix.str`https://github.com/ratoaq2/pgsrip/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

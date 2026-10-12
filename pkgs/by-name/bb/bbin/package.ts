@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "bbin";
       const version = "0.2.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "babashka",
           repo: "bbin",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -44,13 +44,13 @@ wrapProgram $out/bin/bbin \\
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
       }));
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(babashka_unwrapped, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/babashka/bbin",
         description: "Install any Babashka script or project with one command",
         mainProgram: "bbin",
@@ -63,7 +63,7 @@ runHook postInstall
       };
       })());
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

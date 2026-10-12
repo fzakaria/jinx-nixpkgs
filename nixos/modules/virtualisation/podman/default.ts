@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
   const dockerCompat = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`${nix.sel(cfg, "package", "pname")}-docker-compat-${nix.sel(cfg, "package", "version")}`), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(cfg, "package"));
       return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "installShellFiles"))]),
       outputs: nix.thunk(() => ["out", "man"]),
       meta: nix.thunk(() => nix.attr(from, "meta")),
@@ -94,51 +94,51 @@ for f in ${nix.sel(cfg, "package", "man")}/share/man/man1/*; do
 done
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "export HOME=$(mktemp -d) # work around `docker <cmd>`\ninstallShellCompletion --cmd docker \\\n  --bash <($out/bin/docker completion bash) \\\n  --zsh <($out/bin/docker completion zsh) \\\n  --fish <($out/bin/docker completion fish)\n")))));
   return {
-    __proto__: pos$60,
+    [nix.POS]: pos$60,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["virtualisation", "podman", "defaultNetwork", "dnsname"]), "Use virtualisation.podman.defaultNetwork.settings.dns_enabled instead.")),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["virtualisation", "podman", "defaultNetwork", "extraPlugins"]), "Netavark isn't compatible with CNI plugins.")),
       nix.path(here, "./network-socket.nix"),
     ]),
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "podman"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         podman: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "This option enables Podman, a daemonless container engine for\ndeveloping, managing, and running OCI Containers on your Linux System.\n\nIt is a drop-in replacement for the {command}`docker` command.\n",
             })))),
           dockerSocket: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
                 description: "Make the Podman socket available in place of the Docker socket, so\nDocker tools can find the Podman socket.\n\nPodman implements the Docker API.\n\nUsers must be in the `podman` group in order to connect. As\nwith Docker, members of this group can gain root access.\n",
               })))),
           })),
           dockerCompat: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Create an alias mapping {command}`docker` to {command}`podman`.\n",
             })))),
           enableNvidia: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "**Deprecated**, please use {option}`hardware.nvidia-container-toolkit.enable` instead.\n\nEnable use of Nvidia GPUs from within podman containers.\n",
             })))),
           extraPackages: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "package")));
@@ -147,7 +147,7 @@ done
               description: "Extra dependencies for podman to be placed on $PATH in the wrapper.\n",
             })))),
           extraRuntimes: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "package")));
@@ -158,34 +158,34 @@ done
               description: "Extra runtime packages to be installed in the Podman wrapper.\nThose are then placed in libexec/podman, i.e. are seen as podman internal commands.\n",
             })))),
           autoPrune: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
                 description: "Whether to periodically prune Podman resources. If enabled, a\nsystemd timer will run `podman system prune -f`\nas specified by the `dates` option.\n",
               })))),
             flags: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                 default: [],
                 example: nix.thunk(() => ["--all"]),
                 description: "Any additional flags passed to {command}`podman system prune`.\n",
               })))),
             dates: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 default: "weekly",
                 type: nix.thunk(() => nix.sel(types, "str")),
                 description: "Specification (in the format described by\n{manpage}`systemd.time(7)`) of the time at\nwhich the prune will occur.\n",
               })))),
           })),
           package: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "podman", nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               extraDescription: "This package will automatically include extra packages and runtimes.\n",
             }))), {
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             apply: (pkg) => nix.app(nix.sel(pkg, "override"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 extraPackages: nix.thunk(() => nix.concat(nix.sel(cfg, "extraPackages"), nix.concat(["/run/wrappers", nix.thunk(() => nix.sel(config, "systemd", "package"))], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.selOr(config, () => false, "boot", "supportedFilesystems", "zfs")), nix.thunk(() => nix.sel(config, "boot", "zfs", "package")))))),
                 extraRuntimes: nix.thunk(() => nix.concat(nix.sel(cfg, "extraRuntimes"), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.selOr(config, () => "", "virtualisation", "containers", "containersConf", "settings", "network", "default_rootless_network_cmd"), "slirp4netns")), nix.thunk(() => (() => {
                     const w = nix.withScope(pkgs, null);
@@ -194,9 +194,9 @@ done
               }))),
           })),
           defaultNetwork: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 type: nix.thunk(() => nix.sel(json, "type")),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{ dns_enabled = true; }")),
@@ -208,60 +208,60 @@ done
     })),
     config: nix.thunk(() => (() => {
       const networkConfig = nix.thunk(() => nix.update({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         dns_enabled: false,
         driver: "bridge",
         id: "0000000000000000000000000000000000000000000000000000000000000000",
         internal: false,
-        ipam_options: nix.thunk(() => ({ __proto__: pos$22, driver: "host-local" })),
+        ipam_options: nix.thunk(() => ({ [nix.POS]: pos$22, driver: "host-local" })),
         ipv6_enabled: false,
         name: "podman",
         network_interface: "podman0",
         subnets: nix.thunk(() => [
-          nix.thunk(() => ({ __proto__: pos$23, gateway: "10.88.0.1", subnet: "10.88.0.0/16" })),
+          nix.thunk(() => ({ [nix.POS]: pos$23, gateway: "10.88.0.1", subnet: "10.88.0.0/16" })),
         ]),
       }, nix.sel(cfg, "defaultNetwork", "settings")));
       const dns_enabled = nix.thunk(() => nix.attr(networkConfig, "dns_enabled"));
       const network_interface = nix.thunk(() => nix.attr(networkConfig, "network_interface"));
       return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$59,
+          [nix.POS]: pos$59,
           warnings: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "enableNvidia")), nix.thunk(() => [
               "You have set virtualisation.podman.enableNvidia. This option is deprecated, please set hardware.nvidia-container-toolkit.enable instead.\n",
             ]))),
           environment: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             systemPackages: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(cfg, "package"))], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "dockerCompat")), dockerCompat))),
             etc: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               "containers/networks/podman.json": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "defaultNetwork", "settings"), {})), nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   source: nix.thunk(() => nix.app(nix.sel(json, "generate"), "podman.json", networkConfig)),
                 })))),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(config, "networking", "firewall", "backend"), "firewalld")), nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 interfaces: nix.thunk(() => nix.attrsDyn({}, [
                   [nix.force(network_interface), nix.thunk(() => ({
-                    __proto__: pos$28,
+                    [nix.POS]: pos$28,
                     allowedUDPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), dns_enabled, nix.thunk(() => [53n]))),
                   }))],
                 ])),
               })))),
           })),
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             containers: nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               enable: true,
               containersConf: nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$32,
+                  [nix.POS]: pos$32,
                   network: nix.thunk(() => ({
-                    __proto__: pos$31,
+                    [nix.POS]: pos$31,
                     network_backend: "netavark",
                     firewall_driver: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "networking", "nftables", "enable")), "nftables")),
                   })),
@@ -270,17 +270,17 @@ done
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$54,
+            [nix.POS]: pos$54,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
             services: nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               "podman-prune": nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 description: "Prune podman resources",
                 restartIfChanged: false,
-                unitConfig: nix.thunk(() => ({ __proto__: pos$36, "X-StopOnRemoval": false })),
+                unitConfig: nix.thunk(() => ({ [nix.POS]: pos$36, "X-StopOnRemoval": false })),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$37,
+                  [nix.POS]: pos$37,
                   Type: "oneshot",
                   ExecStart: nix.thunk(() => nix.app(nix.sel(utils, "escapeSystemdExecArgs"), nix.thunk(() => nix.concat([
                       nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))),
@@ -294,48 +294,48 @@ done
                 requires: nix.thunk(() => ["podman.service"]),
               })),
               podman: nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 environment: nix.thunk(() => nix.sel(config, "networking", "proxy", "envVars")),
               })),
             })),
             sockets: nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               podman: nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 wantedBy: nix.thunk(() => ["sockets.target"]),
                 socketConfig: nix.thunk(() => ({
-                  __proto__: pos$41,
+                  [nix.POS]: pos$41,
                   SocketGroup: "podman",
                   Symlinks: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "dockerSocket", "enable")), nix.thunk(() => ["/run/docker.sock"]))),
                 })),
               })),
             })),
             user: nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               services: nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 podman: nix.thunk(() => ({
-                  __proto__: pos$44,
+                  [nix.POS]: pos$44,
                   environment: nix.thunk(() => nix.sel(config, "networking", "proxy", "envVars")),
                 })),
               })),
               sockets: nix.thunk(() => ({
-                __proto__: pos$47,
-                podman: nix.thunk(() => ({ __proto__: pos$46, wantedBy: nix.thunk(() => ["sockets.target"]) })),
+                [nix.POS]: pos$47,
+                podman: nix.thunk(() => ({ [nix.POS]: pos$46, wantedBy: nix.thunk(() => ["sockets.target"]) })),
               })),
             })),
             timers: nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               "podman-prune": nix.thunk(() => ({
-                __proto__: pos$50,
-                timerConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "autoPrune", "enable")), nix.thunk(() => ({ __proto__: pos$49, Persistent: true, RandomizedDelaySec: 1800n })))),
+                [nix.POS]: pos$50,
+                timerConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "autoPrune", "enable")), nix.thunk(() => ({ [nix.POS]: pos$49, Persistent: true, RandomizedDelaySec: 1800n })))),
               })),
             })),
             tmpfiles: nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               packages: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "podman-tmpfiles-nixos", nix.thunk(() => ({
-                    __proto__: pos$52,
+                    [nix.POS]: pos$52,
                     package: nix.thunk(() => nix.sel(cfg, "package")),
                     preferLocalBuild: true,
                   })), "mkdir -p $out/lib/tmpfiles.d/\ngrep -v 'D! /run/podman 0700 root root' \\\n  <$package/lib/tmpfiles.d/podman.conf \\\n  >$out/lib/tmpfiles.d/podman.conf\n")),
@@ -343,17 +343,17 @@ done
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$56,
-            groups: nix.thunk(() => ({ __proto__: pos$55, podman: nix.thunk(() => ({})) })),
+            [nix.POS]: pos$56,
+            groups: nix.thunk(() => ({ [nix.POS]: pos$55, podman: nix.thunk(() => ({})) })),
           })),
           assertions: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$57,
+              [nix.POS]: pos$57,
               assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "dockerCompat")) || nix.asBool(!nix.asBool(nix.sel(config, "virtualisation", "docker", "enable"))))),
               message: "Option dockerCompat conflicts with docker",
             })),
             nix.thunk(() => ({
-              __proto__: pos$58,
+              [nix.POS]: pos$58,
               assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "dockerSocket", "enable")) || nix.asBool(!nix.asBool(nix.sel(config, "virtualisation", "docker", "enable"))))),
               message: "The options virtualisation.podman.dockerSocket.enable and virtualisation.docker.enable conflict, because only one can serve the socket.\n",
             })),

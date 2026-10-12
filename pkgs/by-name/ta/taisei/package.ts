@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const libunibreak = nix.arg($, "libunibreak");
   const gamemodeSupport = nix.argOr($, "gamemodeSupport", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "taisei",
       version: "1.4.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "taisei-project",
           repo: "taisei",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
         spirv_cross,
       ], nix.app(nix.sel(lib, "optional"), gamemodeSupport, gamemode))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), " -Dsincos=__builtin_sincos")),
       })),
       mesonFlags: nix.thunk(() => [
@@ -98,7 +98,7 @@ export default nix.lambda((args) => (() => {
 `)), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications $out/bin\n\nmv $out/Taisei.app $out/Applications/\n# regular symlink will fail here due to resources being missed\nmakeBinaryWrapper $out/Applications/Taisei.app/Contents/MacOS/Taisei $out/bin/taisei\n"))),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Free and open-source Touhou Project clone and fangame",
         mainProgram: "taisei",
         longDescription: "Taisei is an open clone of the Tōhō Project series. Tōhō is a one-man\nproject of shoot-em-up games set in an isolated world full of Japanese\nfolklore.\n",

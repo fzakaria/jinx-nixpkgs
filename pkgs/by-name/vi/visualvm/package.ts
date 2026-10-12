@@ -18,17 +18,17 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const jdk = nix.arg($, "jdk");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "2.2.1",
       pname: "visualvm",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/visualvm/visualvm.src/releases/download/${nix.sel(finalAttrs, "version")}/visualvm_${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.zip`),
           sha256: "sha256-4Ub14FKOp2toMMuIaWJZ2pvE34UJ4m++Psoh8KdCe2M=",
         })))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "visualvm",
             exec: "visualvm",
             comment: "Java Troubleshooting Tool",
@@ -51,7 +51,7 @@ cp -r . $out
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Visual interface for viewing information about Java applications",
         mainProgram: "visualvm",
         longDescription: "VisualVM is a visual tool integrating several commandline JDK\ntools and lightweight profiling capabilities. Designed for both\nproduction and development time use, it further enhances the\ncapability of monitoring and performance analysis for the Java\nSE platform.\n",

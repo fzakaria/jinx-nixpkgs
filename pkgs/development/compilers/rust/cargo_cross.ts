@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(stdenv, "targetPlatform", "config")}-cargo-${nix.app(nix.sel(lib, "getVersion"), nix.thunk(() => nix.sel(pkgsBuildBuild, "cargo")))}`), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgsBuildBuild, "cargo"));
       return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       depsBuildBuild: nix.thunk(() => [makeShellWrapper]),
       meta: nix.thunk(() => nix.attr(from, "meta")),
     };

@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const pyasyncore = nix.arg($, "pyasyncore");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pysecretsocks",
       version: "0.9.1-unstable-2023-11-04",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BC-SECURITY",
           repo: "PySecretSOCKS",
           rev: "da5be0e48f82097044894247343cef2111f13c7a",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["secretsocks"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Socks server for tunneling a connection over another channel",
         homepage: "https://github.com/BC-SECURITY/PySecretSOCKS",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

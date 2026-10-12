@@ -42,17 +42,17 @@ export default nix.lambda((args) => (() => {
   const libredirect = nix.arg($, "libredirect");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const dashboard = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://raw.githubusercontent.com/domainaware/parsedmarc/77331b55c54cb3269205295bd57d0ab680638964/grafana/Grafana-DMARC_Reports.json",
       sha256: "0wbihyqbb4ndjg79qs8088zgrcg88km8khjhv2474y7nzjzkf43i",
     }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "parsedmarc",
       version: "11.0.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "domainaware",
           repo: "parsedmarc",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -94,12 +94,12 @@ export NIX_REDIRECTS=/etc/protocols=${iana_etc}/etc/protocols:/etc/resolv.conf=$
       ]),
       pythonImportsCheck: nix.thunk(() => ["parsedmarc"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         dashboard: dashboard,
         tests: nix.thunk(() => nix.sel(nixosTests, "parsedmarc")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python module and CLI utility for parsing DMARC reports",
         homepage: "https://domainaware.github.io/parsedmarc/",
         changelog: nix.thunk(() => nix.str`https://github.com/domainaware/parsedmarc/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

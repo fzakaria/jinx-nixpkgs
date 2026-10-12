@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libssh = nix.arg($, "libssh");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "bird",
       version: "3.3.3",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.nic.cz",
           owner: "labs",
           repo: "bird",
@@ -36,13 +36,13 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [readline, libssh]),
       patches: nix.thunk(() => [nix.path(here, "./dont-create-sysconfdir-2.patch")]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CPP: nix.thunk(() => nix.str`${nix.sel(stdenv, "cc", "targetPrefix")}cpp -E`),
       })),
       configureFlags: nix.thunk(() => ["--localstatedir=/var", "--runstatedir=/run/bird"]),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, tests: nix.thunk(() => nix.sel(nixosTests, "bird3")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, tests: nix.thunk(() => nix.sel(nixosTests, "bird3")) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://gitlab.nic.cz/labs/bird/-/blob/v${nix.sel(finalAttrs, "version")}/NEWS`),
         description: "BIRD Internet Routing Daemon",
         homepage: "https://bird.nic.cz/",

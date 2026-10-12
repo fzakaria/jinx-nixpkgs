@@ -39,16 +39,16 @@ export default nix.lambda((args) => (() => {
   const attachSignature = nix.thunk(() => nix.attr(from_1, "attachSignature"));
   const mkSignedAttrsForPe = nix.thunk(() => nix.attr(from_1, "mkSignedAttrsForPe"));
   const mkSystemdSbsignDerivation = nix.thunk(() => nix.app(mkCliDerivationBuilder, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       package: nix.thunk(() => nix.app(getLib, nix.thunk(() => nix.sel(buildPackages, "systemd")))),
       exe: nix.thunk(() => nix.str`${nix.app(getLib, nix.thunk(() => nix.sel(buildPackages, "systemd")))}/lib/systemd/systemd-sbsign`),
       attrPrefix: "systemdSbsign",
     }))));
   const escapeURLPath = (path) => nix.app(concatMapStringsSep, "/", escapeURL, nix.thunk(() => nix.app(splitString, "/", path)));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     mkSignedAttrsForPe: nix.thunk(() => nix.app(extendMkDerivation, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         constructDrv: mkSystemdSbsignDerivation,
         extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
@@ -59,20 +59,20 @@ export default nix.lambda((args) => (() => {
           const peFile = nix.arg($_1, "peFile");
           const pos = nix.argOr($_1, "pos", () => nix.app(unsafeGetAttrPos, "pname", args_2));
           return {
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: nix.thunk(() => nix.str`${pname}-${version}-${nix.builtins.baseNameOf(peFile)}.signed-attrs.der`),
             systemdSbsignArgs: nix.thunk(() => [
               "sign",
               nix.thunk(() => nix.sel(finalAttrs, "certificateArgs")),
               nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 prepareOfflineSigning: true,
                 output: nix.thunk(() => nix.builtins.placeholder("out")),
               })),
               peFile,
             ]),
             certificateArgs: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               certificateSource: "provider:default",
               certificate: nix.thunk(() => nix.str`file://${nix.app(escapeURLPath, nix.thunk(() => nix.str`${certificate}`))}`),
             })),
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
         })(), formals$2),
       })))),
     attachSignature: nix.thunk(() => nix.app(extendMkDerivation, nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         constructDrv: mkSystemdSbsignDerivation,
         extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$3);
@@ -95,13 +95,13 @@ export default nix.lambda((args) => (() => {
           const pos = nix.argOr($_1, "pos", () => nix.app(unsafeGetAttrPos, "pname", args_2));
           const signedAttrs = nix.thunk(() => nix.sel(signature, "message"));
           return {
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             name: nix.thunk(() => nix.str`${pname}-${version}-${nix.builtins.baseNameOf(nix.thunk(() => nix.sel(signedAttrs, "peFile")))}.signed`),
             systemdSbsignArgs: nix.thunk(() => [
               "sign",
               nix.thunk(() => nix.sel(signedAttrs, "certificateArgs")),
               nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 signedData: signedAttrs,
                 signedDataSignature: signature,
                 output: nix.thunk(() => nix.builtins.placeholder("out")),
@@ -109,7 +109,7 @@ export default nix.lambda((args) => (() => {
               nix.thunk(() => nix.sel(signedAttrs, "peFile")),
             ]),
             passthru: nix.thunk(() => nix.update({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               certificate: nix.thunk(() => nix.attr(signedAttrs, "certificate")),
               peFile: nix.thunk(() => nix.attr(signedAttrs, "peFile")),
               signedAttrs: signedAttrs,
@@ -119,7 +119,7 @@ export default nix.lambda((args) => (() => {
         })(), formals$3),
       })))),
     mkSignedPe: nix.thunk(() => nix.app(extendMkDerivation, nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         constructDrv: attachSignature,
         excludeDrvArgNames: nix.thunk(() => ["signingKey"]),
         extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -133,12 +133,12 @@ export default nix.lambda((args) => (() => {
           const pos = nix.argOr($_1, "pos", () => nix.app(unsafeGetAttrPos, "pname", args_2));
           const meta = nix.argOr($_1, "meta", () => ({}));
           return {
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             signature: nix.thunk(() => nix.app(sign, nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 signingKey: signingKey,
                 message: nix.thunk(() => nix.app(mkSignedAttrsForPe, nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     pname: pname,
                     version: version,
                     certificate: certificate,

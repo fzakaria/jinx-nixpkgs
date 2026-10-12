@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
     const libiconv = nix.argOr($_1, "libiconv", () => null);
     const ncurses = nix.arg($_1, "ncurses");
     const libffi = nix.argOr($_1, "libffi", () => null);
-    const useLLVM = nix.argOr($_1, "useLLVM", () => !nix.asBool(nix.app(nix.builtins.import(nix.path(here, "./common-have-ncg.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib, stdenv: stdenv, version: version })))));
+    const useLLVM = nix.argOr($_1, "useLLVM", () => !nix.asBool(nix.app(nix.builtins.import(nix.path(here, "./common-have-ncg.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib, stdenv: stdenv, version: version })))));
     const buildTargetLlvmPackages = nix.arg($_1, "buildTargetLlvmPackages");
     const llvmPackages = nix.arg($_1, "llvmPackages");
     const enableNativeBignum = nix.argOr($_1, "enableNativeBignum", () => !nix.asBool((nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), gmp)) && nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "targetPlatform")), gmp)))));
@@ -98,7 +98,7 @@ CrossCompilePrefix = ${targetPrefix}
     const installCC = nix.thunk(() => nix.sel(pkgsHostTarget, "targetPackages", "stdenv", "cc"));
     const toolPath = (name) => (cc) => (() => {
       const tools = nix.thunk(() => nix.sel({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         cc: cc,
         "c++": cc,
         as: nix.thunk(() => nix.sel(cc, "bintools")),
@@ -125,7 +125,7 @@ CrossCompilePrefix = ${targetPrefix}
     const targetLibs = nix.thunk(() => (() => {
       const from = nix.thunk(() => (nix.asBool(!nix.eq(hostPlatform, targetPlatform)) ? nix.force(targetPackages) : nix.force(pkgsHostTarget)));
       return {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       gmp: nix.thunk(() => nix.attr(from, "gmp")),
       libffi: nix.thunk(() => nix.attr(from, "libffi")),
       ncurses: nix.thunk(() => nix.attr(from, "ncurses")),
@@ -135,12 +135,12 @@ CrossCompilePrefix = ${targetPrefix}
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update((() => {
         const pname = nix.thunk(() => nix.str`${targetPrefix}ghc${variantSuffix}`);
         const version_1 = version;
-        const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ __proto__: pos$4, url: url, sha256: sha256 }))));
+        const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$4, url: url, sha256: sha256 }))));
         const enableParallelBuilding = true;
         const outputs = nix.thunk(() => ["out", "doc"]);
         const patches = nix.thunk(() => nix.concat([
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               name: "unix-fix-ctimeval-size-32-bit.patch",
               url: "https://github.com/haskell/unix/commit/8183e05b97ce870dd6582a3677cc82459ae566ec.patch",
               sha256: "17q5yyigqr5kxlwwzb95sx567ysfxlw6bp3j4ji20lz0947aw6gv",
@@ -148,7 +148,7 @@ CrossCompilePrefix = ${targetPrefix}
               extraPrefix: "libraries/unix/",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               name: "unix-AC_C_CONST-drop.patch",
               url: "https://github.com/haskell/unix/commit/1e4183114d4bde7a343803ae11ebbe6763a81ad2.patch",
               hash: "sha256-ZeIeX4mX5qO0AwT8ASO25ZQXjcTICPfyy5MYw5CJ9sw=",
@@ -160,27 +160,27 @@ CrossCompilePrefix = ${targetPrefix}
           nix.path(here, "./ghc-9.4-rts-package-db-libnuma-dirs.patch"),
         ], nix.concat([
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               name: "ghc-add-location-to-cc-phase.patch",
               url: "https://gitlab.haskell.org/ghc/ghc/-/commit/4a7256a75af2fc0318bef771a06949ffb3939d5a.patch",
               hash: "sha256-DnTI+i1zMebeWvw75D59vMaEEBb2Nr9HusxTyhmdy2M=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               name: "ghc-cc-directly-emit-object.patch",
               url: "https://gitlab.haskell.org/ghc/ghc/-/commit/96811ba491495b601ec7d6a32bef8563b0292109.patch",
               hash: "sha256-G8u7/MK/tGOEN8Wxccxj/YIOP7mL2G9Co1WKdHXOo6I=",
             })))),
         ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "versions", "majorMinor"), version_1), "9.4")), nix.thunk(() => [
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 name: "ghc-hp2ps-c-gnu17.patch",
                 url: "https://src.fedoraproject.org/rpms/ghc/raw/9c26d7c3c3de73509a25806e5663b37bcf2e0b4e/f/hp2ps-C-gnu17.patch",
                 hash: "sha256-Vr5wkiSE1S5e+cJ8pWUvG9KFpxtmvQ8wAy08ElGNp5E=",
               })))),
           ])), nix.concat([
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               url: "https://github.com/haskell/cabal/commit/6c796218c92f93c95e94d5ec2d077f6956f68e98.patch",
               stripLen: 1n,
               extraPrefix: "libraries/Cabal/",
@@ -188,12 +188,12 @@ CrossCompilePrefix = ${targetPrefix}
             })))),
         ], nix.concat([
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               name: "ghc-rts-adjustor-fix-i386-stack-overrun.patch",
               url: "https://gitlab.haskell.org/ghc/ghc/-/commit/39bb6e583d64738db51441a556d499aa93a4fc4a.patch",
               sha256: "0w5fx413z924bi2irsy1l4xapxxhrq158b5gn6jzrbsmhvmpirs0",
             })))),
-        ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "targetPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "targetPlatform", "isAarch64")))), nix.thunk(() => [nix.path(here, "./Cabal-at-least-3.6-paths-fix-cycle-aarch64-darwin.patch")])), nix.app(nix.builtins.import(nix.path(here, "./common-llvm-patches.nix")), nix.thunk(() => ({ __proto__: pos$12, lib: lib, version: version_1, fetchpatch: fetchpatch }))))))))));
+        ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "targetPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "targetPlatform", "isAarch64")))), nix.thunk(() => [nix.path(here, "./Cabal-at-least-3.6-paths-fix-cycle-aarch64-darwin.patch")])), nix.app(nix.builtins.import(nix.path(here, "./common-llvm-patches.nix")), nix.thunk(() => ({ [nix.POS]: pos$12, lib: lib, version: version_1, fetchpatch: fetchpatch }))))))))));
         const postPatch = "patchShebangs .";
         const postAutoreconf = "pushd libraries/unix\nautoconf\npopd\n";
         const preConfigure = nix.thunk(() => nix.add(nix.add(nix.add(nix.add(nix.add(nix.add(nix.add(nix.add(nix.add(nix.add(nix.str`for env in $(env | grep '^TARGET_' | sed -E 's|\\+?=.*||'); do
@@ -308,7 +308,7 @@ ghc-settings-edit "$settingsFile" \\
 install -D -m 444 utils/completion/ghc.bash $out/share/bash-completion/completions/${targetPrefix}ghc
 `));
         const passthru = nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           bootPkgs: bootPkgs,
           targetPrefix: targetPrefix,
           llvmPackages: llvmPackages,
@@ -320,7 +320,7 @@ install -D -m 444 utils/completion/ghc.bash $out/share/bash-completion/completio
         const meta = nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(bootPkgs, "ghc", "meta"));
           return {
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           homepage: "http://haskell.org/ghc",
           description: "Glasgow Haskell Compiler",
           maintainers: nix.thunk(() => (() => {
@@ -334,7 +334,7 @@ install -D -m 444 utils/completion/ghc.bash $out/share/bash-completion/completio
         };
         })());
         return {
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           pname,
           version: version_1,
           src,
@@ -364,7 +364,7 @@ install -D -m 444 utils/completion/ghc.bash $out/share/bash-completion/completio
           passthru,
           meta,
         };
-      })(), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(targetPlatform, "useAndroidPrebuilt")), nix.thunk(() => ({ __proto__: pos$16, dontStrip: true, dontPatchELF: true, noAuditTmpdir: true }))))));
+      })(), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(targetPlatform, "useAndroidPrebuilt")), nix.thunk(() => ({ [nix.POS]: pos$16, dontStrip: true, dontPatchELF: true, noAuditTmpdir: true }))))));
   })(), formals$2);
 })(), formals$1);
 //# sourceMappingURL=common-make-native-bignum.ts.map

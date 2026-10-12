@@ -20,15 +20,15 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const replaceVars = nix.arg($, "replaceVars");
   const callPackage = nix.arg($, "callPackage");
-  const mkGeneric = (builderArgs) => nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => ({ __proto__: pos$1, builderArgs: builderArgs })));
+  const mkGeneric = (builderArgs) => nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, builderArgs: builderArgs })));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     "inochi-creator": nix.thunk(() => nix.app(mkGeneric, nix.thunk(() => (() => {
         const pname = "inochi-creator";
         const appname = "Inochi Creator";
         const version = "0.8.6";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             owner: "Inochi2D",
             repo: "inochi-creator",
             rev: nix.thunk(() => nix.str`v${version}`),
@@ -36,23 +36,23 @@ export default nix.lambda((args) => (() => {
           }))));
         const dubLock = nix.path(here, "./creator-dub-lock.json");
         const patches = nix.thunk(() => [
-          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./support-url.patch"), nix.thunk(() => ({ __proto__: pos$3, assignees: "TomaSajt" })))),
+          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./support-url.patch"), nix.thunk(() => ({ [nix.POS]: pos$3, assignees: "TomaSajt" })))),
           nix.path(here, "./translations.patch"),
         ]);
         const meta = nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
           changelog: nix.thunk(() => nix.str`https://github.com/Inochi2D/inochi-creator/releases/tag/${nix.sel(src, "rev")}`),
           description: "Open source editor for the Inochi2D puppet format",
         }));
-        return { __proto__: pos$5, pname, appname, version, src, dubLock, patches, meta };
+        return { [nix.POS]: pos$5, pname, appname, version, src, dubLock, patches, meta };
       })()))),
     "inochi-session": nix.thunk(() => nix.app(mkGeneric, nix.thunk(() => (() => {
         const pname = "inochi-session";
         const appname = "Inochi Session";
         const version = "0.8.7";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             owner: "Inochi2D",
             repo: "inochi-session",
             rev: nix.thunk(() => nix.str`v${version}`),
@@ -63,13 +63,13 @@ export default nix.lambda((args) => (() => {
         const preFixup = "patchelf $out/share/inochi-session/inochi-session --add-needed cimgui.so\n";
         const dontStrip = true;
         const meta = nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
           changelog: nix.thunk(() => nix.str`https://github.com/Inochi2D/inochi-session/releases/tag/${nix.sel(src, "rev")}`),
           description: "Application that allows streaming with Inochi2D puppets",
         }));
         return {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           pname,
           appname,
           version,

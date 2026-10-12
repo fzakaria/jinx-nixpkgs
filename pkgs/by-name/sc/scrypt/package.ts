@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const getconf = nix.arg($, "getconf");
   const util_linux = nix.arg($, "util-linux");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "scrypt",
       version: "1.3.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.tarsnap.com/scrypt/scrypt-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "sha256-HCcQUX6ZjqrC6X2xHwkuNxOeaYhrIaGyZh9k4TAhWuk=",
         })))),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       checkTarget: "test",
       nativeCheckInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [util_linux]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Encryption utility",
         mainProgram: "scrypt",
         homepage: "https://www.tarsnap.com/scrypt.html",

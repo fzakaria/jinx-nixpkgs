@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const quixote = nix.arg($, "quixote");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "twill",
       version: "3.3.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-/ZT5ntn7YMafrD9/rWaOvROKo+CGFKSldG9jjH/eR0Q=",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/test_tidy.py"]),
       pythonImportsCheck: nix.thunk(() => ["twill"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple scripting language for Web browsing",
         homepage: "https://twill-tools.github.io/twill/",
         changelog: nix.thunk(() => nix.str`https://github.com/twill-tools/twill/releases/tag/v${nix.sel(finalAttrs, "version")}`),

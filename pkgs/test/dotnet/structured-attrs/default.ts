@@ -19,22 +19,22 @@ export default nix.lambda((args) => (() => {
   const copyrightString = "Public domain 🅮";
   const buildDotnetModule = nix.thunk(() => nix.attr(buildPackages, "buildDotnetModule"));
   const app = nix.thunk(() => nix.app(buildDotnetModule, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "structured-attrs-test-application",
       src: nix.path(here, "./src"),
       nugetDeps: nix.path(here, "./nuget-deps.json"),
       dotnetFlags: nix.thunk(() => [nix.thunk(() => nix.str`--property:Copyright=${copyrightString}`)]),
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         TargetFramework: nix.thunk(() => nix.str`net${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), dotnet_sdk)))}`),
       })),
       __structuredAttrs: true,
     }))));
   return {
-    __proto__: pos$5,
-    "no-structured-attrs": nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), nix.thunk(() => nix.app(nix.sel(app, "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$3, __structuredAttrs: false })))))),
+    [nix.POS]: pos$5,
+    "no-structured-attrs": nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), nix.thunk(() => nix.app(nix.sel(app, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$3, __structuredAttrs: false })))))),
     "check-output": nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         assertion: "buildDotnetModule sets AssemblyCopyrightAttribute with structured attributes",
         expected: nix.thunk(() => nix.builtins.toFile("expected-copyright.txt", copyrightString)),
         actual: nix.thunk(() => nix.app(runCommand, "dotnet-structured-attrs-test", nix.thunk(() => ({})), nix.thunk(() => nix.str`${app}/bin/Application >"$out"

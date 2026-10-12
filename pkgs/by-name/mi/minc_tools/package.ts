@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.thunk(() => nix.attr(perlPackages, "perl"));
   const TextFormat = nix.thunk(() => nix.attr(perlPackages, "TextFormat"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "minc-tools",
       version: "2.3.06-unstable-2024-11-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BIC-MNI",
           repo: "minc-tools",
           rev: "a72077d92266f9ea4c49b6dd3efd5766b81a104c",
@@ -44,10 +44,10 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DZNZ_INCLUDE_DIR=${nifticlib}/include/nifti`),
         nix.thunk(() => nix.str`-DNIFTI_INCLUDE_DIR=${nifticlib}/include/nifti`),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-D_FillValue=NC_FillValue" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-D_FillValue=NC_FillValue" })),
       postFixup: "for prog in minccomplete minchistory mincpik; do\n  wrapProgram $out/bin/$prog --prefix PERL5LIB : $PERL5LIB\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/BIC-MNI/minc-tools",
         description: "Command-line utilities for working with MINC files",
         maintainers: nix.thunk(() => (() => {

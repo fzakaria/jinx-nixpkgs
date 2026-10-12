@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libexttextcat",
       version: "3.4.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dev-www.libreoffice.org/src/libexttextcat/libexttextcat-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-k+uJ/U/I9WWAY1ThAOd4s6yaJOX8BMJOaoP7HptsnVk=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "N-Gram-Based Text Categorization library primarily intended for language guessing",
         homepage: "https://wiki.documentfoundation.org/Libexttextcat",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

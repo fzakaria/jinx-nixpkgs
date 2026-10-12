@@ -42,12 +42,12 @@ export default nix.lambda((args) => (() => {
       const plat = nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.eq(nix.sel(self, "luaversion"), "5.4")))) ? "linux-readline" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? "linux" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "macosx" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isMinGW")) ? "mingw" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isFreeBSD")) ? "freebsd" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isSunOS")) ? "solaris" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isBSD")) ? "bsd" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isUnix")) ? "posix" : "generic")))))))));
       const compatFlags = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(self, "luaversion")), "5.3")) ? " -DLUA_COMPAT_ALL" : (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(self, "luaversion")), "5.4")) ? " -DLUA_COMPAT_5_1 -DLUA_COMPAT_5_2" : (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(self, "luaversion")), "5.5")) ? " -DLUA_COMPAT_5_3" : " -DLUA_COMPAT_MATHLIB"))));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname: "lua",
         version: version,
         outputs: nix.thunk(() => ["out", "doc"]),
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://www.lua.org/ftp/lua-${nix.sel(finalAttrs, "version")}.tar.gz`),
             sha256: hash,
           })))),
@@ -64,7 +64,7 @@ sed -e '1s/^/LUA_SO = liblua.so/' \\
     -i src/Makefile
 cat ${nix.path(here, "./lua-dso.make")} >> src/Makefile
 `)))),
-        env: nix.thunk(() => ({ __proto__: pos$2, luaversion: luaversion, pkgversion: version })),
+        env: nix.thunk(() => ({ [nix.POS]: pos$2, luaversion: luaversion, pkgversion: version })),
         makeFlags: nix.thunk(() => [
           nix.thunk(() => nix.str`INSTALL_TOP=${nix.builtins.placeholder("out")}`),
           nix.thunk(() => nix.str`INSTALL_MAN=${nix.builtins.placeholder("out")}/share/man/man1`),
@@ -90,7 +90,7 @@ runHook postConfigure
         postBuild: postBuild,
         postInstall: nix.thunk(() => nix.str`mkdir -p "$out/nix-support" "$out/share/doc/lua" "$out/lib/pkgconfig"
 cp ${nix.app(replaceVars, nix.path(here, "./utils.sh"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             luapathsearchpaths: nix.thunk(() => nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.sel(finalAttrs, "LuaPathSearchPaths")))),
             luacpathsearchpaths: nix.thunk(() => nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.sel(finalAttrs, "LuaCPathSearchPaths")))),
           })))} $out/nix-support/utils.sh
@@ -124,7 +124,7 @@ mv $out/share/doc/lua $out/share/doc/lua-${nix.sel(finalAttrs, "version")}
         passthru: nix.thunk(() => (() => {
           const inputs$ = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (n) => (v) => (nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "isDerivation"), v))) && nix.asBool(!nix.eq(n, "passthruFun"))), inputs));
           const override = (attr) => (() => {
-            const lua = nix.thunk(() => nix.app(nix.sel(attr, "override"), nix.thunk(() => nix.update(inputs$, { __proto__: pos$4, self: lua }))));
+            const lua = nix.thunk(() => nix.app(nix.sel(attr, "override"), nix.thunk(() => nix.update(inputs$, { [nix.POS]: pos$4, self: lua }))));
             return nix.force(lua);
           })();
           return nix.app(passthruFun, nix.thunk(() => (() => {
@@ -139,7 +139,7 @@ mv $out/share/doc/lua $out/share/doc/lua-${nix.sel(finalAttrs, "version")}
               const luaOnHostForHost = nix.thunk(() => nix.app(override, nix.thunk(() => nix.sel(pkgsHostHost, nix.key(nix.force(luaAttr_1))))));
               const luaOnTargetForTarget = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "hasAttr"), luaAttr_1, pkgsTargetTarget)), nix.thunk(() => nix.app(override, nix.thunk(() => nix.sel(pkgsTargetTarget, nix.key(nix.force(luaAttr_1))))))));
               return {
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 self: self_1,
                 luaversion: luaversion_1,
                 packageOverrides: packageOverrides_1,
@@ -155,7 +155,7 @@ mv $out/share/doc/lua $out/share/doc/lua-${nix.sel(finalAttrs, "version")}
         })()),
         __structuredAttrs: true,
         meta: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           homepage: "https://www.lua.org",
           description: "Powerful, fast, lightweight, embeddable scripting language",
           longDescription: "Lua combines simple procedural syntax with powerful data\ndescription constructs based on associative arrays and extensible\nsemantics. Lua is dynamically typed, runs by interpreting bytecode\nfor a register-based virtual machine, and has automatic memory\nmanagement with incremental garbage collection, making it ideal\nfor configuration, scripting, and rapid prototyping.\n",

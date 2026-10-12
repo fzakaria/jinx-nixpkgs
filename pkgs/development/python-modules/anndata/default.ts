@@ -43,13 +43,13 @@ export default nix.lambda((args) => (() => {
   const scanpy = nix.arg($, "scanpy");
   const scikit_learn = nix.arg($, "scikit-learn");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "anndata",
       version: "0.13.3.post0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "scverse",
           repo: "anndata",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -119,11 +119,11 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$2, doInstallCheck: true })))),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, doInstallCheck: true })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/scverse/anndata/blob/main/docs/release-notes/${nix.sel(finalAttrs, "src", "tag")}.md`),
         description: "Python package for handling annotated data matrices in memory and on disk",
         homepage: "https://anndata.readthedocs.io/",

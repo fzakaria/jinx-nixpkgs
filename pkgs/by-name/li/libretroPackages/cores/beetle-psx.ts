@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const mkLibretroCore = nix.arg($, "mkLibretroCore");
   const withHw = nix.argOr($, "withHw", () => false);
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       core: nix.thunk(() => nix.add("mednafen-psx", nix.app(nix.sel(lib, "optionalString"), withHw, "-hw"))),
       version: "0-unstable-2026-09-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libretro",
           repo: "beetle-psx-libretro",
           rev: "5718ab9b829599687671503f11494ca6a0049c57",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         "HAVE_LIGHTREC=1",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: nix.thunk(() => nix.add("Port of Mednafen's PSX Engine core to libretro", nix.app(nix.sel(lib, "optionalString"), withHw, " (with hardware acceleration support)"))),
         homepage: "https://github.com/libretro/beetle-psx-libretro",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

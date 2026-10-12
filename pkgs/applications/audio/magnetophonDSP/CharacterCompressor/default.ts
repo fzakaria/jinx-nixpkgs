@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const faust2jaqt = nix.arg($, "faust2jaqt");
   const faust2lv2 = nix.arg($, "faust2lv2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "CharacterCompressor",
       version: "0.3.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "magnetophon",
           repo: "CharacterCompressor",
           rev: nix.thunk(() => nix.str`V${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "faust2jaqt -vec -time -t 99999 CharacterCompressor.dsp\nfaust2jaqt -vec -time -t 99999 CharacterCompressorMono.dsp\nfaust2lv2 -vec -time -gui -t 99999 CharacterCompressor.dsp\nfaust2lv2 -vec -time -gui -t 99999 CharacterCompressorMono.dsp\n",
       installPhase: "mkdir -p $out/bin\nfor f in $(find . -executable -type f); do\n  cp $f $out/bin/\ndone\nmkdir -p $out/lib/lv2\ncp -r CharacterCompressor.lv2/ $out/lib/lv2\ncp -r CharacterCompressorMono.lv2/ $out/lib/lv2\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Compressor with character. For jack and lv2",
         homepage: "https://github.com/magnetophon/CharacterCompressor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

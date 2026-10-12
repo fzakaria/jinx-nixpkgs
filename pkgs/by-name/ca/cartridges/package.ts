@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cartridges",
       version: "2.12.1",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kra-mo",
           repo: "cartridges",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -65,11 +65,11 @@ export default nix.lambda((args) => (() => {
       postFixup: "wrapPythonProgramsIn $out/libexec \"$out ${pythonPath[*]}\"\n",
       postInstallCheck: "mesonCheckPhase\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GTK4 + Libadwaita game launcher",
         longDescription: "A simple game launcher for all of your games.\nIt has support for importing games from Steam, Lutris, Heroic\nand more with no login necessary.\nYou can sort and hide games or download cover art from SteamGridDB.\n",
         homepage: "https://apps.gnome.org/Cartridges/",

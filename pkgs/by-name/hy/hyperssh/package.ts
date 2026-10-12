@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const patchelfUnstable = nix.arg($, "patchelfUnstable");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "hyperssh",
       version: "5.0.3",
       npmDepsHash: "sha256-nT++cvYbY+zsebIaMZ0hUhK9pAX17GTbQyuixdCjojM=",
       makeCacheWritable: true,
       dontNpmBuild: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "holepunchto",
           repo: "hyperssh",
           rev: "v5.0.3",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/holepunchto/hyperssh/commit/ad1d0e06a133e71c9df9f59dd5f805c49f46ec70.patch",
             hash: "sha256-fUjgHHbZHgqokNg2fVVZCjoDA3LqSJiFzBwgA8Tt1m4=",
           })))),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [patchelfUnstable]),
       postInstall: "# glibc 2.41+ refuses to make the stack executable if it isn't executable,\n# but a library loaded via `dlopen()` mandates it.\n# According to https://github.com/holepunchto/sodium-native/issues/214\n# this isn't necessary in this case.\nwhile IFS= read -r -d '' file; do\n  # Skip PEs with the same name\n  if patchelf --print-rpath \"$file\" &>/dev/null; then\n    patchelf \"$file\" --clear-execstack\n  fi\ndone < <(find $out/lib/node_modules -name 'sodium-native.node' -print0)\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Run SSH over hyperswarm",
         homepage: "https://github.com/holepunchto/hyperssh",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

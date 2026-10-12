@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sqlite-zandronum",
       version: "3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://www.sqlite.org/2021/sqlite-autoconf-3360000.tar.gz",
           sha256: "1qxwkfvd185dfcqbakrzikrsw6ffr5jp1gl3dch9dsdyjvmw745x",
         })))),
       buildPhase: "mkdir -p $out\ncp sqlite3.c $out/\ncp sqlite3.h $out/\ncp sqlite3ext.h $out/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.sqlite.org/",
         description: "Single C code file, named sqlite3.c, that contains all C code for the core SQLite library and the FTS3 and RTREE extensions",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

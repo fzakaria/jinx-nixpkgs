@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "coffeegrindsize",
       version: "0-unstable-2021-04-20",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jgagneastro",
           repo: "coffeegrindsize",
           rev: "22661ebd21831dba4cf32bfc6ba59fe3d49f879c",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       })()),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\necho \"#!/usr/bin/env python\" > \"$out/bin/coffeegrindsize\"\ncat coffeegrindsize.py >> \"$out/bin/coffeegrindsize\"\nchmod +x \"$out/bin/coffeegrindsize\"\npatchShebangs \"$out/bin/coffeegrindsize\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Detects the individual coffee grounds in a white-background picture to determine particle size distribution",
         mainProgram: "coffeegrindsize",
         homepage: "https://github.com/jgagneastro/coffeegrindsize",

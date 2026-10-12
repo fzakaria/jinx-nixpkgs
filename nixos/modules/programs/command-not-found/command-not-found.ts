@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "command-not-found"));
   const commandNotFound = nix.thunk(() => nix.app(nix.sel(pkgs, "replaceVarsWith"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "command-not-found",
       dir: "bin",
       src: nix.path(here, "./command-not-found.pl"),
       isExecutable: true,
       replacements: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         dbPath: nix.thunk(() => nix.attr(cfg, "dbPath")),
         perl: nix.thunk(() => nix.app(nix.sel(pkgs, "perl", "withPackages"), (p) => [
             nix.thunk(() => nix.sel(p, "DBDSQLite")),
@@ -40,22 +40,22 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       programs: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         "command-not-found": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: nix.thunk(() => nix.builtins.pathExists(nix.thunk(() => nix.sel(config, "programs", "command-not-found", "dbPath")))),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "builtins.pathExists config.programs.command-not-found.dbPath\n")),
               description: "Whether interactive shells should show which Nix package (if\nany) provides a missing command.\n\nSee also nix-index and nix-index-database as an alternative for flakes-based systems.\n\nAdditionally, having the env var NIX_AUTO_RUN set will automatically run the matching package, and with NIX_AUTO_RUN_INTERACTIVE it will confirm the package before running.\n",
             })))),
           dbPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: nix.thunk(() => nix.add(nix.sel(pkgs, "path"), "/programs.sqlite")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.path + \"/programs.sqlite\"\n")),
@@ -65,32 +65,32 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         programs: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           bash: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             interactiveShellInit: nix.thunk(() => nix.str`command_not_found_handle() {
   '${commandNotFound}/bin/command-not-found' "$@"
 }
 `),
           })),
           zsh: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             interactiveShellInit: nix.thunk(() => nix.str`command_not_found_handler() {
   '${commandNotFound}/bin/command-not-found' "$@"
 }
 `),
           })),
           fish: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             interactiveShellInit: nix.thunk(() => nix.str`function fish_command_not_found
    "${commandNotFound}/bin/command-not-found" $argv
 end
 `),
           })),
         })),
-        environment: nix.thunk(() => ({ __proto__: pos$12, systemPackages: nix.thunk(() => [commandNotFound]) })),
+        environment: nix.thunk(() => ({ [nix.POS]: pos$12, systemPackages: nix.thunk(() => [commandNotFound]) })),
       })))),
   };
 })(), formals$1);

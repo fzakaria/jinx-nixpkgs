@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "melonloader-installer";
       const version = "4.3.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LavaGang",
           repo: "MelonLoader.Installer",
           tag: version,
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const postInstall = "install -Dm644 Resources/ML_Icon.png $out/share/icons/MelonLoader.Installer.Linux.png\n";
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: pname,
             desktopName: "MelonLoader Installer",
             exec: nix.thunk(() => nix.sel(meta, "mainProgram")),
@@ -48,9 +48,9 @@ export default nix.lambda((args) => (() => {
             icon: nix.thunk(() => nix.sel(meta, "mainProgram")),
           })))),
       ]);
-      const passthru = nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://melonwiki.xyz",
         mainProgram: "MelonLoader.Installer.Linux",
         description: "Automated installer for MelonLoader, the universal mod-loader for games built in the Unity Engine",
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

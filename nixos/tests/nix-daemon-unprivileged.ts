@@ -22,44 +22,44 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     name: "nix-daemon-unprivileged",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "artemist"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       machine: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         users: nix.thunk(() => ({
-          __proto__: pos$5,
-          groups: nix.thunk(() => ({ __proto__: pos$2, "nix-daemon": nix.thunk(() => ({})) })),
+          [nix.POS]: pos$5,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$2, "nix-daemon": nix.thunk(() => ({})) })),
           users: nix.thunk(() => ({
-            __proto__: pos$4,
-            "nix-daemon": nix.thunk(() => ({ __proto__: pos$3, isSystemUser: true, group: "nix-daemon" })),
+            [nix.POS]: pos$4,
+            "nix-daemon": nix.thunk(() => ({ [nix.POS]: pos$3, isSystemUser: true, group: "nix-daemon" })),
           })),
         })),
         nix: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           package: nix.thunk(() => nix.sel(pkgs, "nixVersions", "git")),
           daemonUser: "nix-daemon",
           daemonGroup: "nix-daemon",
           settings: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             "experimental-features": nix.thunk(() => ["local-overlay-store", "auto-allocate-uids"]),
           })),
           enable: true,
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           etc: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             "test.nix": nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               text: nix.thunk(() => nix.str`derivation {
   name = "test";
   builder = "/bin/sh";

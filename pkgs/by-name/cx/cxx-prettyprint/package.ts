@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "2016-04-30";
       const rev = "9ab26d228f2960f50b38ad37fe0159b7381f7533";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "louisdx",
           repo: "cxx-prettyprint",
           rev: rev,
@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const installPhase = "mkdir -p \"$out/include\"\ncp prettyprint.hpp \"$out/include\"\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Header only C++ library for pretty printing standard containers",
         homepage: "https://github.com/louisdx/cxx-prettyprint",
         license: nix.thunk(() => nix.sel(lib, "licenses", "boost")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         hydraPlatforms: [],
       }));
-      return { __proto__: pos$3, pname, version, rev, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, rev, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

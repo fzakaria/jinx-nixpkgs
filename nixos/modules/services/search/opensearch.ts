@@ -47,59 +47,59 @@ export default nix.lambda((args) => (() => {
   const opensearchYml = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "opensearch.yml", nix.thunk(() => nix.sel(cfg, "settings"))));
   const loggingConfigFilename = "log4j2.properties";
   const loggingConfigFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: loggingConfigFilename,
       text: nix.thunk(() => nix.sel(cfg, "logging")),
     }))));
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     options: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       services: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         opensearch: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "OpenSearch")),
-          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "OpenSearch", nix.thunk(() => ({ __proto__: pos$2, default: nix.thunk(() => ["opensearch"]) })))),
+          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "OpenSearch", nix.thunk(() => ({ [nix.POS]: pos$2, default: nix.thunk(() => ["opensearch"]) })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     "network.host": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "127.0.0.1",
                         description: "Which port this service should listen on.\n",
                       })))),
                     "cluster.name": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "opensearch",
                         description: "The name of the cluster.\n",
                       })))),
                     "discovery.type": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "single-node",
                         description: "The type of discovery to use.\n",
                       })))),
                     "http.port": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => nix.sel(lib, "types", "port")),
                         default: 9200n,
                         description: "The port to listen on for HTTP traffic.\n",
                       })))),
                     "transport.port": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => nix.sel(lib, "types", "port")),
                         default: 9300n,
                         description: "The port to listen on for transport traffic.\n",
                       })))),
                     "plugins.security.disabled": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         default: true,
                         description: "Whether to enable the security plugin,\n`plugins.security.ssl.transport.keystore_filepath` or\n`plugins.security.ssl.transport.server.pemcert_filepath` and\n`plugins.security.ssl.transport.client.pemcert_filepath`\nmust be set for this plugin to be enabled.\n",
@@ -110,45 +110,45 @@ export default nix.lambda((args) => (() => {
               description: "OpenSearch configuration.\n",
             })))),
           logging: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "opensearch logging configuration.",
               default: "logger.action.name = org.opensearch.action\nlogger.action.level = info\n\nappender.console.type = Console\nappender.console.name = console\nappender.console.layout.type = PatternLayout\nappender.console.layout.pattern = [%d{ISO8601}][%-5p][%-25c{1.}] %marker%m%n\n\nrootLogger.level = info\nrootLogger.appenderRef.console.ref = console\n",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/opensearch",
               apply: nix.thunk(() => nix.app(nix.sel(lib, "converge"), nix.thunk(() => nix.app(nix.sel(lib, "removeSuffix"), "/")))),
               description: "Data directory for OpenSearch. If you change this, you need to\nmanually create the directory. You also need to create the\n`opensearch` user and group, or change\n[](#opt-services.opensearch.user) and\n[](#opt-services.opensearch.group) to existing ones with\naccess to the directory.\n",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "opensearch",
               description: "The user OpenSearch runs as. Should be left at default unless\nyou have very specific needs.\n",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "opensearch",
               description: "The group OpenSearch runs as. Should be left at default unless\nyou have very specific needs.\n",
             })))),
           extraCmdLineOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               description: "Extra command line options for the OpenSearch launcher.",
               default: [],
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             })))),
           extraJavaOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               description: "Extra command line options for Java.",
               default: [],
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               example: nix.thunk(() => ["-Djava.net.preferIPv4Stack=true"]),
             })))),
           restartIfChanged: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Automatically restart the service on config change.\nThis can be set to false to defer restarts on a server or cluster.\nPlease consider the security implications of inadvertently running an older version,\nand the possibility of unexpected behavior caused by inconsistent versions across a cluster when disabling this option.\n",
               default: true,
@@ -157,26 +157,26 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         systemd: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           services: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             opensearch: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               description: "OpenSearch Daemon",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "inetutils"))]),
               restartIfChanged: nix.thunk(() => nix.attr(cfg, "restartIfChanged")),
               environment: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 OPENSEARCH_HOME: nix.thunk(() => nix.sel(cfg, "dataDir")),
                 OPENSEARCH_JAVA_OPTS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "extraJavaOptions")))),
                 OPENSEARCH_PATH_CONF: configDir,
               })),
               serviceConfig: nix.thunk(() => nix.update({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 ExecStartPre: nix.thunk(() => (() => {
                   const startPreFullPrivileges = nix.thunk(() => nix.add("set -o errexit -o pipefail -o nounset -o errtrace\nshopt -s inherit_errexit\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(config, "boot", "isContainer"))), nix.thunk(() => nix.str`# Only set vm.max_map_count if lower than ES required minimum
 # This avoids conflict if configured via boot.kernel.sysctl
@@ -247,12 +247,12 @@ done
                 Restart: "always",
                 TimeoutStartSec: "infinity",
                 DynamicUser: nix.thunk(() => (nix.asBool(usingDefaultUserAndGroup) && nix.asBool(usingDefaultDataDir))),
-              }, nix.app(nix.sel(lib, "optionalAttrs"), usingDefaultDataDir, nix.thunk(() => ({ __proto__: pos$24, StateDirectory: "opensearch", StateDirectoryMode: "0700" }))))),
+              }, nix.app(nix.sel(lib, "optionalAttrs"), usingDefaultDataDir, nix.thunk(() => ({ [nix.POS]: pos$24, StateDirectory: "opensearch", StateDirectoryMode: "0700" }))))),
             })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
       })))),

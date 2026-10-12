@@ -16,10 +16,10 @@ export default nix.lambda((args) => (() => {
   const libjail = nix.arg($, "libjail");
   const libnetgraph = nix.arg($, "libnetgraph");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "usr.bin/netstat",
       buildInputs: nix.thunk(() => [libxo, libutil, libmemstat, libjail, libnetgraph]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "netstat" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "netstat" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=netstat.ts.map

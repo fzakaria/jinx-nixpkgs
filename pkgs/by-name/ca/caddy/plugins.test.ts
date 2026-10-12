@@ -18,37 +18,37 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     name: "caddy-plugins",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "stepbrobd"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           services: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             caddy: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               enable: true,
               package: nix.thunk(() => nix.app(nix.sel(pkgs, "caddy", "withPlugins"), nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   plugins: nix.thunk(() => ["github.com/caddyserver/replace-response@v0.0.0-20250618171559-80962887e4c6"]),
                   hash: "sha256-RvnrhgktjwNkG/3/th2q/ec6g7fMfGn6qLlGcz2B4TI=",
                 })))),
               globalConfig: "order replace after encode\n",
               virtualHosts: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 "localhost:80": nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   extraConfig: "respond \"hello world\"\nreplace world nixos\n",
                 })),
               })),

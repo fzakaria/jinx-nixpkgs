@@ -62,20 +62,20 @@ export default nix.lambda((args) => (() => {
   const concatStringsSep = nix.thunk(() => nix.attr(lib, "concatStringsSep"));
   const useLLVM = nix.thunk(() => nix.selOr(stdenv, () => false, "targetPlatform", "useLLVM"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: nix.thunk(() => nix.str`${nix.sel(targetPackages, "stdenv", "cc", "targetPrefix")}rustc`),
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://static.rust-lang.org/dist/rustc-${version}-src.tar.gz`),
           sha256: sha256,
-          passthru: nix.thunk(() => ({ __proto__: pos$1, isReleaseTarball: true })),
+          passthru: nix.thunk(() => ({ [nix.POS]: pos$1, isReleaseTarball: true })),
         })))),
       __darwinAllowLocalNetworking: true,
       dontUpdateAutotoolsGnuConfigScripts: true,
       stripDebugList: nix.thunk(() => ["bin"]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(nix.app(optional, nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(!nix.asBool(withBundledLLVM)))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "targetPlatform", "isFreeBSD"))))) && nix.asBool(!nix.asBool(useLLVM)))), "--push-state --as-needed -lstdc++ --pop-state"), nix.concat(nix.app(optional, nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(!nix.asBool(withBundledLLVM)))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "targetPlatform", "isFreeBSD"))))) && nix.asBool(useLLVM))), nix.thunk(() => nix.str`--push-state --as-needed -L${nix.sel(llvmPackages, "libcxx")}/lib -lc++ -lc++abi -lLLVM-${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(llvmPackages, "llvm", "version")))} --pop-state`)), nix.concat(nix.app(optional, nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(!nix.asBool(withBundledLLVM)))), "-lc++ -lc++abi"), nix.app(optional, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`-rpath ${nix.sel(llvmSharedForHost, "lib")}/lib`)))))))),
         RUSTFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.concat(["-Ccodegen-units=10"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "rust", "rustcTargetSpec"), "x86_64-unknown-linux-gnu")), nix.thunk(() => ["-Clinker-features=-lld", "-Clink-self-contained=-linker"])))))),
         RUSTDOCFLAGS: "-A rustdoc::broken-intra-doc-links",
@@ -229,17 +229,17 @@ rm $out/lib/rustlib/uninstall.sh
       requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
       disallowedReferences: nix.thunk(() => [cargo, rustc]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         llvm: llvmShared,
         llvmPackages: llvmPackages,
         targetPlatforms: nix.thunk(() => nix.attr(rustc, "targetPlatforms")),
         targetPlatformsWithHostTools: nix.thunk(() => nix.attr(rustc, "targetPlatformsWithHostTools")),
         badTargetPlatforms: nix.thunk(() => nix.attr(rustc, "badTargetPlatforms")),
-        tests: nix.thunk(() => nix.update({ __proto__: pos$4, fd: fd, ripgrep: ripgrep, wezterm: wezterm }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ __proto__: pos$5, firefox: firefox, thunderbird: thunderbird }))))),
+        tests: nix.thunk(() => nix.update({ [nix.POS]: pos$4, fd: fd, ripgrep: ripgrep, wezterm: wezterm }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ [nix.POS]: pos$5, firefox: firefox, thunderbird: thunderbird }))))),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://www.rust-lang.org/",
         description: "Safe, concurrent, practical language",
         mainProgram: "rustc",

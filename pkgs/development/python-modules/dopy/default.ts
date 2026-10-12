@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const six = nix.arg($, "six");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dopy",
       version: "2016-01-04",
       format: "setuptools",
       src: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchFromGitHub"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Wiredcraft",
           repo: "dopy",
           rev: "cb443214166a4e91b17c925f40009ac883336dc3",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["dopy"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Digital Ocean API python wrapper",
         homepage: "https://github.com/Wiredcraft/dopy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

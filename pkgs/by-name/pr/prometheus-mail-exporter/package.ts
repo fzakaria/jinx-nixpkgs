@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mailexporter",
       version: "2020-07-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cherti",
           repo: "mailexporter",
           rev: "f5a552c736ac40ccdc0110d2e9a71619c1cd6862",
@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: "installManPage $src/man/mailexporter.1\ninstallManPage $src/man/mailexporter.conf.5\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { __proto__: pos$2, mail: nix.thunk(() => nix.attr(from, "mail")) };
+          return { [nix.POS]: pos$2, mail: nix.thunk(() => nix.attr(from, "mail")) };
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Export Prometheus-style metrics about mail server functionality",
         mainProgram: "mailexporter",
         homepage: "https://github.com/cherti/mailexporter",

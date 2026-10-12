@@ -18,29 +18,29 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const config = nix.arg($, "config");
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       programs: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         haguichi: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Haguichi, a Linux GUI frontend to the proprietary LogMeIn Hamachi")),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "programs", "haguichi", "enable")), nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         environment: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [nix.thunk(() => nix.lookup(w, "haguichi"))];
           })()),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$6,
-          "logmein-hamachi": nix.thunk(() => ({ __proto__: pos$5, enable: true })),
+          [nix.POS]: pos$6,
+          "logmein-hamachi": nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
         })),
       })))),
   };

@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       const pname = "public-inbox";
       const version = "2.1.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://public-inbox.org/public-inbox.git/snapshot/public-inbox-${version}.tar.gz`),
           sha256: "sha256-A9qHiOYuJOUjDqu46gpyBule43FsgQEH0F7maZUjbes=",
         }))));
@@ -108,14 +108,14 @@ done
 mv sa_config $sa_config
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "nixos-public-inbox": nix.thunk(() => nix.sel(nixosTests, "public-inbox")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://public-inbox.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
         maintainers: nix.thunk(() => (() => {
@@ -128,7 +128,7 @@ mv sa_config $sa_config
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

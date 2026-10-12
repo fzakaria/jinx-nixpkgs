@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const asciidoctor = nix.arg($, "asciidoctor");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "listenbrainz-mpd",
       version: "2.6.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "elomatreb",
           repo: "listenbrainz-mpd",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       buildFeatures: nix.thunk(() => nix.concat(["shell_completion"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ["systemd"])))),
       postInstall: "installShellCompletion \\\n  --bash generated_completions/listenbrainz-mpd.bash \\\n  --fish generated_completions/listenbrainz-mpd.fish \\\n  --zsh generated_completions/_listenbrainz-mpd\n\nasciidoctor --backend=manpage listenbrainz-mpd.adoc -o listenbrainz-mpd.1\ninstallManPage listenbrainz-mpd.1\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://codeberg.org/elomatreb/listenbrainz-mpd",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/elomatreb/listenbrainz-mpd/src/tag/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "ListenBrainz submission client for MPD",

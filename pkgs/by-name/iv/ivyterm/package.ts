@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ivyterm",
       version: "1.0.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Tomiyou",
           repo: "ivyterm",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openssl, libadwaita, vte_gtk4]),
       postInstall: "install -D data/com.tomiyou.ivyTerm.desktop -t $out/share/applications\ninstall -D data/com.tomiyou.ivyTerm.svg -t $out/share/icons\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Terminal emulator implemented in gtk4-rs and VTE4",
         homepage: "https://github.com/Tomiyou/ivyterm",
         changelog: nix.thunk(() => nix.str`https://github.com/Tomiyou/ivyterm/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

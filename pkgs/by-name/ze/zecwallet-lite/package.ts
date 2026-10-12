@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
       const pname = "zecwallet-lite";
       const version = "1.8.8";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/adityapk00/zecwallet-lite/releases/download/v${version}/Zecwallet.Lite-${version}.AppImage`),
           hash: "sha256-6jppP3V7R8tCR5Wv5UWfbWKkAdsgrCjSiO/bbpLNcw4=",
         }))));
       const extraInstallCommands = nix.thunk(() => (() => {
-        const contents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+        const contents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
         return nix.str`install -m 444 -D ${contents}/zecwallet-lite.desktop -t $out/share/applications
 substituteInPlace $out/share/applications/zecwallet-lite.desktop \\
   --replace 'Exec=AppRun' "Exec=$out/bin/zecwallet-lite"
@@ -30,7 +30,7 @@ cp -r ${contents}/usr/share/icons $out/share
 `;
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fully featured shielded wallet for Zcash",
         homepage: "https://www.zecwallet.co/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -38,7 +38,7 @@ cp -r ${contents}/usr/share/icons $out/share
         platforms: nix.thunk(() => ["x86_64-linux"]),
         mainProgram: "zecwallet-lite",
       }));
-      return { __proto__: pos$4, pname, version, src, extraInstallCommands, meta };
+      return { [nix.POS]: pos$4, pname, version, src, extraInstallCommands, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

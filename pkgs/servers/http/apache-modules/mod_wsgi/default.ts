@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mod_wsgi";
       const version = "5.0.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GrahamDumpleton",
           repo: "mod_wsgi",
           rev: version,
@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace configure --replace '/usr/bin/lipo' 'lipo'\n";
       const makeFlags = nix.thunk(() => ["LIBEXECDIR=$(out)/modules"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/GrahamDumpleton/mod_wsgi",
         description: "Host Python applications in Apache through the WSGI interface",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

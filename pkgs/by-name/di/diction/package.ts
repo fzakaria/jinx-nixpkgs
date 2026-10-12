@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "diction",
       version: "1.14",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.moria.de/~michael/comp/diction/diction-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-2gEvs6XLplZtI4zahpsM7NvvBFJ4DE02gQCoQEcv1/w=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GNU style and diction utilities",
         longDescription: "Diction and style are two old standard Unix commands. Diction identifies\nwordy and commonly misused phrases. Style analyses surface\ncharacteristics of a document, including sentence length and other\nreadability measures.\n",
         homepage: "https://www.moria.de/~michael/comp/",

@@ -9,13 +9,13 @@ const pos$3 = nix.positions(here + "/vscodeEnvTest.nix", [["mutableExtensionsFil
 export default nix.thunk(() => (() => {
   const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.builtins.findFile(nix.builtins.nixPath, "nixpkgs")), nix.thunk(() => ({})))), null);
   return nix.app(nix.lookup(w, "callPackage"), nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./vscodeEnv.nix"))), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       extensionsFromVscodeMarketplace: nix.thunk(() => nix.sel(nix.lookup(w, "vscode-utils"), "extensionsFromVscodeMarketplace")),
       vscodeDefault: nix.thunk(() => nix.lookup(w, "vscode")),
     })), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mutableExtensionsFile: nix.path(here, "./extensions.nix"),
-      settings: nix.thunk(() => ({ __proto__: pos$2, a: "fdsdf", t: "test" })),
+      settings: nix.thunk(() => ({ [nix.POS]: pos$2, a: "fdsdf", t: "test" })),
     })));
 })());
 //# sourceMappingURL=vscodeEnvTest.ts.map

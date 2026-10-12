@@ -44,37 +44,37 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "jupyter"));
   const package$ = nix.thunk(() => nix.app(nix.sel(pkgs, "python3", "withPackages"), (ps) => nix.concat([nix.thunk(() => nix.sel(cfg, "package"))], nix.sel(cfg, "extraPackages"))));
   const kernels = nix.thunk(() => nix.app(nix.sel(pkgs, "jupyter-kernel", "create"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       definitions: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "kernels"), null)) ? nix.sel(cfg, "kernels") : nix.sel(pkgs, "jupyter-kernel", "default"))),
     }))));
   const notebookConfig = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "jupyter_server_config.py", nix.thunk(() => nix.str`${nix.sel(cfg, "notebookConfig")}
 c.ServerApp.password = "${nix.sel(cfg, "password")}"
 `)));
   return {
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "b-m-f"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       services: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         jupyter: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Jupyter development server")),
           ip: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "localhost",
               description: "IP address Jupyter will be listening on.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, nix.thunk(() => ["python3", "pkgs", "jupyter"]), nix.thunk(() => ({})))),
           extraPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[\n  pkgs.python3.pkgs.nbconvert\n  pkgs.python3.pkgs.playwright\n]\n")),
@@ -83,7 +83,7 @@ c.ServerApp.password = "${nix.sel(cfg, "password")}"
           extraEnvironmentVariables: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(options, "environment", "variables"));
               return {
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               description: "Extra environment variables to be set in the runtime context of jupyter notebook",
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  PLAYWRIGHT_BROWSERS_PATH = \"${pkgs.playwright-driver.browsers}\";\n  PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS = \"true\";\n}\n")),
@@ -92,53 +92,53 @@ c.ServerApp.password = "${nix.sel(cfg, "password")}"
             };
             })()))),
           command: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "jupyter notebook",
               example: "jupyter lab",
               description: "Which command the service runs. Note that not all jupyter packages\nhave all commands, e.g. `jupyter lab` isn't present in the `notebook` package.\n",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 8888n,
               description: "Port number Jupyter will be listening on.\n",
             })))),
           notebookDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "~/",
               description: "Root directory for notebooks.\n",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "jupyter",
               description: "Name of the user used to run the jupyter service.\nFor security reason, jupyter should really not be run as root.\nIf not set (jupyter), the service will create a jupyter user with appropriate settings.\n",
               example: "aborsu",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "jupyter",
               description: "Name of the group used to run the jupyter service.\nUse this if you want to create a group of users that are able to view the notebook directory's content.\n",
               example: "users",
             })))),
           password: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Password to use with notebook.\nCan be generated following: <https://jupyter-server.readthedocs.io/en/stable/operators/public-server.html#preparing-a-hashed-password>\n",
               example: "argon2:$argon2id$v=19$m=10240,t=10,p=8$48hF+vTUuy1LB83/GzNhUg$J1nx4jPWD7PwOJHs5OtDW8pjYK2s0c1R3rYGbSIKB54",
             })))),
           notebookConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Raw jupyter config.\nPlease use the password configuration option to set a password instead of passing it in here.\n",
             })))),
           kernels: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
-              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./kernel-options.nix")), nix.thunk(() => ({ __proto__: pos$13, lib: lib, pkgs: pkgs })))))))))),
+              [nix.POS]: pos$14,
+              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./kernel-options.nix")), nix.thunk(() => ({ [nix.POS]: pos$13, lib: lib, pkgs: pkgs })))))))))),
               default: null,
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  python3 = let\n    env = (pkgs.python3.withPackages (pythonPackages: with pythonPackages; [\n            ipykernel\n            pandas\n            scikit-learn\n          ]));\n  in {\n    displayName = \"Python 3 for machine learning\";\n    argv = [\n      \"${env.interpreter}\"\n      \"-m\"\n      \"ipykernel_launcher\"\n      \"-f\"\n      \"{connection_file}\"\n    ];\n    language = \"python\";\n    logo32 = \"${env.sitePackages}/ipykernel/resources/logo-32x32.png\";\n    logo64 = \"${env.sitePackages}/ipykernel/resources/logo-64x64.png\";\n    extraPaths = {\n      \"cool.txt\" = pkgs.writeText \"cool\" \"cool content\";\n    };\n  };\n}\n")),
               description: "Declarative kernel config.\n\nKernels can be declared in any language that supports and has the required\ndependencies to communicate with a jupyter server.\nIn python's case, it means that ipykernel package must always be included in\nthe list of packages of the targeted environment.\n",
@@ -148,23 +148,23 @@ c.ServerApp.password = "${nix.sel(cfg, "password")}"
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             systemd: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               services: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 jupyter: nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   description: "Jupyter development server",
                   after: nix.thunk(() => ["network.target"]),
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "bash"))]),
                   environment: nix.thunk(() => nix.update({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     JUPYTER_PATH: nix.thunk(() => nix.builtins.toString(kernels)),
                   }, nix.sel(cfg, "extraEnvironmentVariables"))),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     Restart: "always",
                     ExecStart: nix.thunk(() => nix.str`${package$}/bin/${nix.sel(cfg, "command")} \\
             --no-browser \\
@@ -183,20 +183,20 @@ c.ServerApp.password = "${nix.sel(cfg, "password")}"
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enable")) && nix.asBool(nix.eq(nix.sel(cfg, "group"), "jupyter")))), nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             users: nix.thunk(() => ({
-              __proto__: pos$25,
-              groups: nix.thunk(() => ({ __proto__: pos$24, jupyter: nix.thunk(() => ({})) })),
+              [nix.POS]: pos$25,
+              groups: nix.thunk(() => ({ [nix.POS]: pos$24, jupyter: nix.thunk(() => ({})) })),
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enable")) && nix.asBool(nix.eq(nix.sel(cfg, "user"), "jupyter")))), nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             users: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               extraUsers: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 jupyter: nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   group: nix.thunk(() => nix.attr(cfg, "group")),
                   home: "/var/lib/jupyter",
                   createHome: true,

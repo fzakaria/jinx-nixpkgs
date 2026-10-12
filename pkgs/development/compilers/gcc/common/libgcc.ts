@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(!nix.asBool(nix.sel(stdenv, "targetPlatform", "hasSharedLibraries"))) || nix.asBool(!nix.asBool(enableShared))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/compilers/gcc/common/libgcc.nix:16:1");
   return (drv) => nix.app(nix.sel(lib, "pipe"), drv, nix.thunk(() => nix.concat([
       (pkg) => nix.app(nix.sel(pkg, "overrideAttrs"), (previousAttrs) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool((nix.asBool(!nix.asBool(hostIsTarget)) && nix.asBool((nix.asBool(enableShared) || nix.asBool(nix.sel(targetPlatform, "isMinGW")))))) && nix.asBool(withoutTargetLibc))), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             makeFlags: nix.thunk(() => ["all-gcc", "all-target-libgcc"]),
             installTargets: "install-gcc install-target-libgcc",
           })))),
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
       const libgcc_s_version_major = nix.thunk(() => (nix.asBool(nix.sel(targetPlatform, "isM68k")) ? "2" : "1"));
       return [
         (pkg) => nix.app(nix.sel(pkg, "overrideAttrs"), (previousAttrs) => nix.app(nix.sel(lib, "optionalAttrs"), useLibgccFromTargetLibc, nix.thunk(() => ({
-              __proto__: pos$3,
-              passthru: nix.thunk(() => nix.update(nix.selOr(previousAttrs, () => ({}), "passthru"), { __proto__: pos$2, libgcc: nix.thunk(() => nix.attr(libcCross, "libgcc")) })),
+              [nix.POS]: pos$3,
+              passthru: nix.thunk(() => nix.update(nix.selOr(previousAttrs, () => ({}), "passthru"), { [nix.POS]: pos$2, libgcc: nix.thunk(() => nix.attr(libcCross, "libgcc")) })),
             })))),
         (pkg) => nix.app(nix.sel(pkg, "overrideAttrs"), (previousAttrs) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool((nix.asBool(!nix.asBool(langC)) || nix.asBool(langJit))) || nix.asBool(enableLibGccOutput))), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               outputs: nix.thunk(() => nix.concat(nix.sel(previousAttrs, "outputs"), nix.app(nix.sel(lib, "optionals"), enableLibGccOutput, nix.thunk(() => ["libgcc"])))),
               preFixupPhases: nix.thunk(() => nix.concat(nix.selOr(previousAttrs, () => [], "preFixupPhases"), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(!nix.asBool(langC)) || nix.asBool(enableLibGccOutput))), nix.thunk(() => ["preFixupLibGccPhase"])))),
               preFixupLibGccPhase: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(langC)), "rm -f $out/lib/libgcc_s.so*\n"), nix.app(nix.sel(lib, "optionalString"), enableLibGccOutput, nix.thunk(() => nix.add(nix.add(nix.str`# move libgcc from lib to its own output (libgcc)

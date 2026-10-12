@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const swig = nix.arg($, "swig");
   const pytest = nix.arg($, "pytest");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pygraphviz",
       version: "2.0.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pygraphviz",
           repo: "pygraphviz",
           tag: nix.thunk(() => nix.str`pygraphviz-${nix.sel(finalAttrs, "version")}`),
@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./path.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             path: nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [graphviz, coreutils]))),
           })))),
       ]),
       postPatch: "substituteInPlace pyproject.toml \\\n  --replace-fail ', \"swig>4.1.0\"' \"\"\n",
-      env: nix.thunk(() => ({ __proto__: pos$3, GRAPHVIZ_PREFIX: graphviz })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, GRAPHVIZ_PREFIX: graphviz })),
       "build-system": nix.thunk(() => [setuptools]),
       nativeBuildInputs: nix.thunk(() => [graphviz, pkg_config, swig]),
       buildInputs: nix.thunk(() => [graphviz]),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "runHook preCheck\npytest --pyargs pygraphviz\nrunHook postCheck\n",
       pythonImportsCheck: nix.thunk(() => ["pygraphviz"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/pygraphviz/pygraphviz/releases/tag/pygraphviz-${nix.sel(finalAttrs, "version")}`),
         description: "Python interface to Graphviz graph drawing package",
         homepage: "https://github.com/pygraphviz/pygraphviz",

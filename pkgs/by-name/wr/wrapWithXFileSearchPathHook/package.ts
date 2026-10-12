@@ -14,10 +14,10 @@ export default nix.lambda((args) => (() => {
   const writeScript = nix.arg($, "writeScript");
   const xbitmaps = nix.arg($, "xbitmaps");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "wrapWithXFileSearchPathHook",
       propagatedBuildInputs: nix.thunk(() => [makeBinaryWrapper]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
     })), nix.thunk(() => nix.app(writeScript, "wrapWithXFileSearchPathHook.sh", nix.thunk(() => nix.str`wrapWithXFileSearchPath() {
   paths=(
     "$out/share/X11/%T/%N"

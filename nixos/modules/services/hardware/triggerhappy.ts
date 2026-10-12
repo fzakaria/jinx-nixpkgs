@@ -43,29 +43,29 @@ export default nix.lambda((args) => (() => {
         const keys = nix.arg($_1, "keys");
         const event = nix.arg($_1, "event");
         const cmd = nix.arg($_1, "cmd");
-        return nix.str`${nix.app(nix.sel(lib, "concatMapStringsSep"), "+", (x) => nix.add("KEY_", x), keys)} ${nix.builtins.toString(nix.thunk(() => nix.sel({ __proto__: pos$1, press: 1n, hold: 2n, release: 0n }, nix.key(nix.force(event)))))} ${cmd}`;
+        return nix.str`${nix.app(nix.sel(lib, "concatMapStringsSep"), "+", (x) => nix.add("KEY_", x), keys)} ${nix.builtins.toString(nix.thunk(() => nix.sel({ [nix.POS]: pos$1, press: 1n, hold: 2n, release: 0n }, nix.key(nix.force(event)))))} ${cmd}`;
       })(), formals$2), nix.thunk(() => nix.sel(cfg, "bindings")))}
 ${nix.sel(cfg, "extraConfig")}
 `)));
   const bindingCfg = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$3);
     return {
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       options: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         keys: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             description: "List of keys to match.  Key names as defined in linux/input-event-codes.h",
           })))),
         event: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["press", "hold", "release"]))),
             default: "press",
             description: "Event to match.",
           })))),
         cmd: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             description: "What to run.",
           })))),
@@ -73,35 +73,35 @@ ${nix.sel(cfg, "extraConfig")}
     };
   })(), formals$3);
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         triggerhappy: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable the {command}`triggerhappy` hotkey daemon.\n",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "nobody",
               example: "root",
               description: "User account under which {command}`triggerhappy` runs.\n",
             })))),
           bindings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), bindingCfg)))),
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ { keys = [\"PLAYPAUSE\"];  cmd = \"${lib.getExe pkgs.mpc} -q toggle\"; } ]\n")),
               description: "Key bindings for {command}`triggerhappy`.\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Literal contents to append to the end of {command}`triggerhappy` configuration file.\n",
@@ -110,38 +110,38 @@ ${nix.sel(cfg, "extraConfig")}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           sockets: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             triggerhappy: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               description: "Triggerhappy Socket",
               wantedBy: nix.thunk(() => ["sockets.target"]),
-              socketConfig: nix.thunk(() => ({ __proto__: pos$14, ListenDatagram: socket })),
+              socketConfig: nix.thunk(() => ({ [nix.POS]: pos$14, ListenDatagram: socket })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             triggerhappy: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               description: "Global hotkey daemon",
               documentation: nix.thunk(() => ["man:thd(1)"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "triggerhappy")}/bin/thd ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "user"), "root")), nix.thunk(() => nix.str`--user ${nix.sel(cfg, "user")}`))} --socket ${socket} --triggers ${configFile} --deviceglob /dev/input/event*`),
               })),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           udev: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             packages: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   name: "triggerhappy-udev-rules",
                   destination: "/etc/udev/rules.d/61-triggerhappy.rules",
                   text: nix.thunk(() => nix.str`ACTION=="add", SUBSYSTEM=="input", KERNEL=="event[0-9]*", ATTRS{name}!="triggerhappy", \\

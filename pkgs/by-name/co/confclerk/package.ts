@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "confclerk";
       const version = "0.7.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.toastfreeware.priv.at/tarballs/confclerk/confclerk-${version}.tar.gz`),
           sha256: "sha256-GgWvPHcQnQrK9SOC8U9F2P8kuPCn8I2EhoWEEMtKBww=",
         }))));
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const postInstall = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "mkdir -p $out/Applications\nmv $out/confclerk.app $out/Applications/\nmkdir -p $out/bin\nln -s ../Applications/confclerk.app/Contents/MacOS/confclerk $out/bin/confclerk\n" : "mkdir -p $out/bin\nmv $out/confclerk $out/bin/\n"));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Offline conference schedule viewer",
         mainProgram: "confclerk",
         homepage: "http://www.toastfreeware.priv.at/confclerk",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

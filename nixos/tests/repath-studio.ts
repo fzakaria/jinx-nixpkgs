@@ -24,32 +24,32 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     name: "Repath Studio",
     nodes: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           imports: nix.thunk(() => [
             nix.path(here, "./common/x11.nix"),
             nix.path(here, "./common/user-account.nix"),
           ]),
           services: nix.thunk(() => ({
-            __proto__: pos$2,
-            xserver: nix.thunk(() => ({ __proto__: pos$1, enable: true })),
+            [nix.POS]: pos$2,
+            xserver: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
           })),
           "test-support": nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             displayManager: nix.thunk(() => ({
-              __proto__: pos$4,
-              auto: nix.thunk(() => ({ __proto__: pos$3, user: "alice" })),
+              [nix.POS]: pos$4,
+              auto: nix.thunk(() => ({ [nix.POS]: pos$3, user: "alice" })),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [
@@ -59,11 +59,11 @@ export default nix.lambda((args) => (() => {
             })()),
           })),
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             memorySize: 4096n,
             cores: 4n,
             qemu: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               options: nix.thunk(() => ["-vga none -device virtio-gpu-pci,xres=1020,yres=768"]),
             })),
           })),
@@ -72,8 +72,8 @@ export default nix.lambda((args) => (() => {
     })),
     enableOCR: true,
     interactive: nix.thunk(() => ({
-      __proto__: pos$12,
-      sshBackdoor: nix.thunk(() => ({ __proto__: pos$11, enable: true })),
+      [nix.POS]: pos$12,
+      sshBackdoor: nix.thunk(() => ({ [nix.POS]: pos$11, enable: true })),
     })),
     testScript: nix.thunk(() => nix.str`start_all()
 
@@ -110,7 +110,7 @@ assert "${nix.sel(pkgs, "repath-studio", "version")}" in machine.succeed("cat /h
 machine.screenshot("Repath-Studio-GUI")
 `),
     meta: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "ngi", "members")),
     })),
   };

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const binaries = nix.thunk(() => ["bfrshlog", "mlx-mkbfb", "bfup"]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bfscripts",
       version: "3.9.7-1-unstable-2025-06-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Mellanox",
           repo: "bfscripts",
           rev: "ed8ede79fa002a2d83719a1bef6fbe0f7dcf37a4",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       installPhase: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.builtins.map((b) => nix.str`install -D ${b} $out/bin/${b}`, binaries)))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of scripts used for BlueField SoC system management",
         homepage: "https://github.com/Mellanox/bfscripts",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

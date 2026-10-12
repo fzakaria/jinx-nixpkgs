@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.2";
       const __structuredAttrs = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ayufan",
           repo: "camera-streamer",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -51,7 +51,7 @@ wrapProgram $out/bin/camera-streamer --prefix PATH : ${nix.app(nix.sel(lib, "mak
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/ayufan/camera-streamer",
         changelog: nix.thunk(() => nix.str`https://github.com/ayufan/camera-streamer/releases/tag/v${version}`),
         description: "High-performance low-latency camera streamer for Raspberry PI's",
@@ -64,7 +64,7 @@ runHook postInstall
         mainProgram: "camera-streamer",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         __structuredAttrs,

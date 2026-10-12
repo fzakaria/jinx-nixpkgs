@@ -19,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const python = nix.arg($, "python");
   const isPyPy = nix.arg($, "isPyPy");
-  const ft = nix.thunk(() => nix.app(nix.sel(freetype, "overrideAttrs"), (oldArgs) => ({ __proto__: pos$1, dontDisableStatic: true })));
+  const ft = nix.thunk(() => nix.app(nix.sel(freetype, "overrideAttrs"), (oldArgs) => ({ [nix.POS]: pos$1, dontDisableStatic: true })));
   return nix.app(buildPythonPackage, nix.thunk(() => (() => {
       const pname = "reportlab";
       const version = "5.0.1";
       const pyproject = true;
       const disabled = isPyPy;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           hash: "sha256-69ExVL4chRXmZd5wvS0wOundw+9H5Er9URZEHKAoOiY=",
@@ -42,7 +42,7 @@ popd
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: "https://hg.reportlab.com/hg-public/reportlab/file/tip/CHANGES.md",
         description: "Open Source Python library for generating PDFs and graphics",
         homepage: "https://www.reportlab.com/",
@@ -50,7 +50,7 @@ runHook postCheck
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

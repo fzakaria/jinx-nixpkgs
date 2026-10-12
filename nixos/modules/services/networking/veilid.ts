@@ -71,32 +71,32 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "veilid-server.conf", nix.thunk(() => nix.app(nix.sel(lib, "converge"), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrsRecursive"), (_) => (v) => (nix.asBool((nix.asBool((nix.asBool(!nix.eq(v, null)) && nix.asBool(!nix.eq(v, {})))) && nix.asBool(!nix.eq(v, "")))) && nix.asBool(!nix.eq(v, []))))), nix.thunk(() => nix.sel(cfg, "settings"))))));
   return {
-    __proto__: pos$56,
+    [nix.POS]: pos$56,
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         networking: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           firewall: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               allowedTCPPorts: nix.thunk(() => [5150n]),
               allowedUDPPorts: nix.thunk(() => [5150n]),
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           services: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             veilid: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               enable: true,
               description: "Veilid Headless Node",
               wants: nix.thunk(() => ["network-online.target"]),
               before: nix.thunk(() => ["network-online.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               restartTriggers: nix.thunk(() => [configFile]),
-              environment: nix.thunk(() => ({ __proto__: pos$3, RUST_BACKTRACE: "1" })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$3, RUST_BACKTRACE: "1" })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "veilid")}/bin/veilid-server -c ${configFile}`),
                 ExecReload: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/kill -s HUP $MAINPID`),
                 KillSignal: "SIGQUIT",
@@ -130,76 +130,76 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           users: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             veilid: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               isSystemUser: true,
               group: "veilid",
               home: dataDir,
               createHome: true,
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$10, veilid: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$10, veilid: nix.thunk(() => ({})) })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "veilid"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$14,
-          veilid: nix.thunk(() => ({ __proto__: pos$13, settings: nix.thunk(() => ({})) })),
+          [nix.POS]: pos$14,
+          veilid: nix.thunk(() => ({ [nix.POS]: pos$13, settings: nix.thunk(() => ({})) })),
         })),
       })))),
     options: nix.thunk(() => ({
-      __proto__: pos$54,
+      [nix.POS]: pos$54,
       services: nix.thunk(() => ({
-        __proto__: pos$53,
+        [nix.POS]: pos$53,
         veilid: nix.thunk(() => ({
-          __proto__: pos$52,
+          [nix.POS]: pos$52,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Veilid Headless Node")),
           openFirewall: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               default: false,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               description: "Whether to open firewall on ports 5150/tcp, 5150/udp",
             })))),
           settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               description: "Build veilid-server.conf with nix expression.\nCheck [Configuration Keys](https://veilid.gitlab.io/developer-book/admin/config.html#configuration-keys).\n",
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                  __proto__: pos$50,
+                  [nix.POS]: pos$50,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$49,
+                    [nix.POS]: pos$49,
                     client_api: nix.thunk(() => ({
-                      __proto__: pos$19,
+                      [nix.POS]: pos$19,
                       ipc_enabled: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$17,
+                          [nix.POS]: pos$17,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                           default: true,
                           description: "veilid-server will respond to Python and other JSON client requests.",
                         })))),
                       ipc_directory: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$18,
+                          [nix.POS]: pos$18,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                           default: nix.thunk(() => nix.str`${dataDir}/ipc`),
                           description: "IPC directory where file sockets are stored.",
                         })))),
                     })),
                     logging: nix.thunk(() => ({
-                      __proto__: pos$29,
+                      [nix.POS]: pos$29,
                       system: nix.thunk(() => ({
-                        __proto__: pos$22,
+                        [nix.POS]: pos$22,
                         enabled: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$20,
+                            [nix.POS]: pos$20,
                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                             default: true,
                             description: "Events of type 'system' will be logged.",
                           })))),
                         level: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$21,
+                            [nix.POS]: pos$21,
                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                             default: "info",
                             example: "debug",
@@ -207,15 +207,15 @@ export default nix.lambda((args) => (() => {
                           })))),
                       })),
                       terminal: nix.thunk(() => ({
-                        __proto__: pos$25,
+                        [nix.POS]: pos$25,
                         enabled: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$23,
+                            [nix.POS]: pos$23,
                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                             default: false,
                             description: "Events of type 'terminal' will be logged.",
                           })))),
                         level: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$24,
+                            [nix.POS]: pos$24,
                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                             default: "info",
                             example: "debug",
@@ -223,15 +223,15 @@ export default nix.lambda((args) => (() => {
                           })))),
                       })),
                       api: nix.thunk(() => ({
-                        __proto__: pos$28,
+                        [nix.POS]: pos$28,
                         enabled: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$26,
+                            [nix.POS]: pos$26,
                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                             default: false,
                             description: "Events of type 'api' will be logged.",
                           })))),
                         level: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$27,
+                            [nix.POS]: pos$27,
                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                             default: "info",
                             example: "debug",
@@ -240,11 +240,11 @@ export default nix.lambda((args) => (() => {
                       })),
                     })),
                     core: nix.thunk(() => ({
-                      __proto__: pos$48,
+                      [nix.POS]: pos$48,
                       capabilities: nix.thunk(() => ({
-                        __proto__: pos$31,
+                        [nix.POS]: pos$31,
                         disable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$30,
+                            [nix.POS]: pos$30,
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                             default: [],
                             example: nix.thunk(() => ["APPM"]),
@@ -252,78 +252,78 @@ export default nix.lambda((args) => (() => {
                           })))),
                       })),
                       protected_store: nix.thunk(() => ({
-                        __proto__: pos$35,
+                        [nix.POS]: pos$35,
                         allow_insecure_fallback: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$32,
+                            [nix.POS]: pos$32,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")))),
                             default: null,
                             description: "If we can't use system-provided secure storage, should we proceed anyway?",
                           })))),
                         always_use_insecure_storage: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$33,
+                            [nix.POS]: pos$33,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")))),
                             default: null,
                             description: "Should we bypass any attempt to use system-provided secure storage?",
                           })))),
                         directory: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$34,
+                            [nix.POS]: pos$34,
                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                             default: nix.thunk(() => nix.str`${dataDir}/protected_store`),
                             description: "The filesystem directory to store your protected store in.",
                           })))),
                       })),
                       table_store: nix.thunk(() => ({
-                        __proto__: pos$37,
+                        [nix.POS]: pos$37,
                         directory: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$36,
+                            [nix.POS]: pos$36,
                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                             default: nix.thunk(() => nix.str`${dataDir}/table_store`),
                             description: "The filesystem directory to store your table store within.",
                           })))),
                       })),
                       block_store: nix.thunk(() => ({
-                        __proto__: pos$39,
+                        [nix.POS]: pos$39,
                         directory: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$38,
+                            [nix.POS]: pos$38,
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                             default: nix.thunk(() => nix.str`${dataDir}/block_store`),
                             description: "The filesystem directory to store blocks for the block store.",
                           })))),
                       })),
                       network: nix.thunk(() => ({
-                        __proto__: pos$47,
+                        [nix.POS]: pos$47,
                         routing_table: nix.thunk(() => ({
-                          __proto__: pos$42,
+                          [nix.POS]: pos$42,
                           bootstrap: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$40,
+                              [nix.POS]: pos$40,
                               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))))),
                               default: null,
                               description: "Host name of existing well-known Veilid bootstrap servers for the network to connect to.",
                             })))),
                           public_keys: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$41,
+                              [nix.POS]: pos$41,
                               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                               default: null,
                               description: "Base64-encoded public key for the node, used as the node's ID.",
                             })))),
                         })),
                         dht: nix.thunk(() => ({
-                          __proto__: pos$44,
+                          [nix.POS]: pos$44,
                           min_peer_count: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$43,
+                              [nix.POS]: pos$43,
                               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "number")))),
                               default: null,
                               description: "Minimum number of nodes to keep in the peer table.",
                             })))),
                         })),
                         upnp: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$45,
+                            [nix.POS]: pos$45,
                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                             default: true,
                             description: "Should the app try to improve its incoming network connectivity using UPnP?",
                           })))),
                         detect_address_changes: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$46,
+                            [nix.POS]: pos$46,
                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                             default: true,
                             description: "Should veilid-core detect and notify on network address changes?",
@@ -337,7 +337,7 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     meta: nix.thunk(() => ({
-      __proto__: pos$55,
+      [nix.POS]: pos$55,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_1, "figboy9"))];

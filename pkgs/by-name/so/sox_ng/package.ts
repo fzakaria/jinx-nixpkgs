@@ -54,11 +54,11 @@ export default nix.lambda((args) => (() => {
   const enableWavpack = nix.argOr($, "enableWavpack", () => true);
   const wavpack = nix.arg($, "wavpack");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sox",
       version: "14.7.1.2",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sox_ng",
           repo: "sox_ng",
           tag: nix.thunk(() => nix.str`sox_ng-${nix.sel(finalAttrs, "version")}`),
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
       ]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Another Swiss Army Knife of sound processing utilities",
         homepage: "https://codeberg.org/sox_ng/sox_ng",
         maintainers: nix.thunk(() => (() => {

@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const sqlalchemy = nix.arg($, "sqlalchemy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "knx-telegram-store",
       version: "0.12.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "XKNX",
           repo: "knx-telegram-store",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         postgres: nix.thunk(() => [asyncpg, sqlalchemy]),
         sqlite: nix.thunk(() => [aiosqlite, sqlalchemy]),
       })),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytest_asyncio, pytest_cov_stub, pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
       pythonImportsCheck: nix.thunk(() => ["knx_telegram_store"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Standalone, host-agnostic Python library for KNX telegram persistence",
         homepage: "https://github.com/XKNX/knx-telegram-store",
         changelog: nix.thunk(() => nix.str`https://github.com/XKNX/knx-telegram-store/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.11.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-e1wa4Qkn+eAs9NVOLHSoqgDNKcONY33v48lI09jp8zo=",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "export HOME=$(mktemp -d)\n";
       const pythonImportsCheck = nix.thunk(() => ["duecredit"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/duecredit/duecredit",
         description: "Simple framework to embed references in code",
         mainProgram: "duecredit",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "bcdarwin"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

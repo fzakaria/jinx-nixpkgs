@@ -25,21 +25,21 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         gnome: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "at-spi2-core": nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to enable at-spi2-core, a service for the Assistive Technologies\navailable on the GNOME platform.\n\nEnable this if you get the error or warning\n`The name org.a11y.Bus was not provided by any .service files`.\n",
@@ -50,28 +50,28 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "gnome", "at-spi2-core", "enable")), nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             environment: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "at-spi2-core"))]),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               dbus: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "at-spi2-core"))]),
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "at-spi2-core"))]),
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(config, "services", "gnome", "at-spi2-core", "enable"))), nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             environment: nix.thunk(() => ({
-              __proto__: pos$13,
-              sessionVariables: nix.thunk(() => ({ __proto__: pos$12, NO_AT_BRIDGE: "1", GTK_A11Y: "none" })),
+              [nix.POS]: pos$13,
+              sessionVariables: nix.thunk(() => ({ [nix.POS]: pos$12, NO_AT_BRIDGE: "1", GTK_A11Y: "none" })),
             })),
           })))),
       ]))),

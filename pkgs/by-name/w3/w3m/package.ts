@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const updateAutotoolsGnuConfigScriptsHook = nix.arg($, "updateAutotoolsGnuConfigScriptsHook");
   const mktable = nix.thunk(() => nix.app(nix.sel(buildPackages, "stdenv", "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "w3m-mktable",
       src: nix.thunk(() => nix.attr(w3m, "src")),
       nativeBuildInputs: nix.thunk(() => [pkg_config, boehmgc]),
@@ -45,18 +45,18 @@ export default nix.lambda((args) => (() => {
       installPhase: "install -D mktable $out/bin/mktable\n",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "w3m",
       version: "0.5.6",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "~rkta",
           repo: "w3m",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-VJztcvcmmA8f5RJ+NEYjPE8CGEfCRRjQ+fuF0UpY+sA=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isSunOS")), "-lsocket -lnsl")),
         PERL: nix.thunk(() => nix.str`${perl}/bin/perl`),
         MAN: nix.thunk(() => nix.str`${man}/bin/man`),
@@ -85,11 +85,11 @@ sed -i -e 's!mktable.*:.*!mktable:!' Makefile.in
       outputs: nix.thunk(() => ["out", "man"]),
       enableParallelBuilding: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               package: w3m,
               command: "w3m -version",
@@ -97,7 +97,7 @@ sed -i -e 's!mktable.*:.*!mktable:!' Makefile.in
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://git.sr.ht/~rkta/w3m",
         changelog: nix.thunk(() => nix.str`https://git.sr.ht/~rkta/w3m/tree/v${nix.sel(finalAttrs, "version")}/item/NEWS`),
         description: "Text-mode web browser",

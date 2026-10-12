@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "2025.4.15";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Alir3z4",
           repo: "html2text",
           tag: version,
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["html2text"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Turn HTML into equivalent Markdown-structured text",
         homepage: "https://github.com/Alir3z4/html2text/",
         changelog: nix.thunk(() => nix.str`https://github.com/Alir3z4/html2text/blob/${nix.sel(src, "tag")}/ChangeLog.rst`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "html2text",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

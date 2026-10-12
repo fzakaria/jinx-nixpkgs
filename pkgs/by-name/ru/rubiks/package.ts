@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const dos2unix = nix.arg($, "dos2unix");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       pname: "rubiks",
       version: "20070912",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sageupstream/rubiks/rubiks-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "0zdmkb0j1kyspdpsszzb2k3279xij79jkx0dxd9f3ix1yyyg3yfq",
         })))),
@@ -42,58 +42,58 @@ export default nix.lambda((args) => (() => {
       prePatch: "find ./dietz/ -type f -exec dos2unix {} \\;\n",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://raw.githubusercontent.com/sagemath/sage/2a9a4267f93588cf33119cbacc032ed9acc433e5/build/pkgs/rubiks/patches/dietz-cu2-Makefile.patch",
             sha256: "bRU7MJ/6BgCp2PUqZOragJhm38Q3E8ShStXQIYwIjvw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://raw.githubusercontent.com/sagemath/sage/2a9a4267f93588cf33119cbacc032ed9acc433e5/build/pkgs/rubiks/patches/dietz-mcube-Makefile.patch",
             sha256: "f53z4DogXKax1vUNkraOTt3TQ4bvT7CdQK/hOaaBS38=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://raw.githubusercontent.com/sagemath/sage/2a9a4267f93588cf33119cbacc032ed9acc433e5/build/pkgs/rubiks/patches/dietz-solver-Makefile.patch",
             sha256: "7gMC8y9elyIy2KvXYcp7YjPBNqn9PVhUle+/GrYAAdE=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://raw.githubusercontent.com/sagemath/sage/2a9a4267f93588cf33119cbacc032ed9acc433e5/build/pkgs/rubiks/patches/reid-Makefile.patch",
             sha256: "rp3SYtx02vVBtSlg1vJpdIoXNcdBNKDLCLqLAKwOYeQ=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             url: "https://raw.githubusercontent.com/sagemath/sage/2a9a4267f93588cf33119cbacc032ed9acc433e5/build/pkgs/rubiks/patches/fedora-1-rubiks-includes.patch",
             sha256: "QYJ1KQ73HTEGY/beMVbcU215g/B8rHDjYD1YM2WZ7sk=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             url: "https://raw.githubusercontent.com/sagemath/sage/2a9a4267f93588cf33119cbacc032ed9acc433e5/build/pkgs/rubiks/patches/fedora-2-rubiks-ansi-c.patch",
             sha256: "Rnu7uphE9URxnbg2K8mkymnB61magweH+WxVWR9JC4s=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             url: "https://raw.githubusercontent.com/sagemath/sage/2a9a4267f93588cf33119cbacc032ed9acc433e5/build/pkgs/rubiks/patches/fedora-3-rubiks-prototypes.patch",
             sha256: "Wi038g+y7No1TNMiITtAdipjRi0+g6h0Sspslm5rZGU=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             url: "https://raw.githubusercontent.com/sagemath/sage/2a9a4267f93588cf33119cbacc032ed9acc433e5/build/pkgs/rubiks/patches/fedora-4-rubiks-longtype.patch",
             sha256: "6pNuxFM69CZ/TQGZfHXLlCN5g5lf3RiYYZKzMvLJwkw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             url: "https://raw.githubusercontent.com/sagemath/sage/2a9a4267f93588cf33119cbacc032ed9acc433e5/build/pkgs/rubiks/patches/fedora-5-rubiks-signed.patch",
             sha256: "CCGXBMYvSjTm4YKQZAQMi6pWGjyHDYYQzdMZDSW2vFE=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             url: "https://raw.githubusercontent.com/sagemath/sage/2a9a4267f93588cf33119cbacc032ed9acc433e5/build/pkgs/rubiks/patches/fedora-6-rubiks-attributes.patch",
             sha256: "RhlzMb33iaLfeBoF7Y0LIgEzOB/EC+AoWMSkRPCICaU=",
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         homepage: "https://wiki.sagemath.org/spkg/rubiks",
         description: "Several programs for working with Rubik's cubes",
         longDescription: "There are several programs for working with Rubik's cubes, by three\ndifferent people. Look inside the directories under /src to see\nspecific info and licensing. In summary the three contributors are:\n\n\nMichael Reid (GPL) http://www.math.ucf.edu/~reid/Rubik/optimal_solver.html\n    optimal - uses many pre-computed tables to find an optimal\n              solution to the 3x3x3 Rubik's cube\n\n\nDik T. Winter (MIT License)\n    cube    - uses Kociemba's algorithm to iteratively find a short\n              solution to the 3x3x3 Rubik's cube\n    size222 - solves a 2x2x2 Rubik's cube\n\n\nEric Dietz (GPL) http://www.wrongway.org/?rubiksource\n    cu2   - A fast, non-optimal 2x2x2 solver\n    cubex - A fast, non-optimal 3x3x3 solver\n    mcube - A fast, non-optimal 4x4x4 solver\n",

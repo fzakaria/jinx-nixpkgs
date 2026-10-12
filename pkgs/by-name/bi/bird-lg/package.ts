@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         const pname = nix.thunk(() => nix.str`bird-lg-${modRoot_1}`);
         const version = "1.4.8";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "xddxdd",
             repo: "bird-lg-go",
             rev: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         const modRoot_1 = modRoot;
         const vendorHash_1 = vendorHash;
         const meta = nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           description: "Bird Looking Glass",
           homepage: "https://github.com/xddxdd/bird-lg-go",
           changelog: nix.thunk(() => nix.str`https://github.com/xddxdd/bird-lg-go/releases/tag/v${version}`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
           })()),
         }));
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname,
           version,
           src,
@@ -66,28 +66,28 @@ export default nix.lambda((args) => (() => {
       })()));
   })(), formals$2);
   const bird_lg_frontend = nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       modRoot: "frontend",
       vendorHash: "sha256-SmpCCvOP9HQh+Niqa3EhRGj1a7EXQgwRW2hTJgv+oIw=",
     }))));
   const bird_lg_proxy = nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       modRoot: "proxy",
       vendorHash: "sha256-LRj5OvCu0e0iNW8nEUmbnKhhvaUXOVNIYGv0Lmai28g=",
     }))));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "bird-lg",
       version: nix.thunk(() => nix.attr(bird_lg_frontend, "version")),
       meta: nix.thunk(() => nix.attr(bird_lg_frontend, "meta")),
       src: nix.thunk(() => nix.attr(bird_lg_frontend, "src")),
       paths: nix.thunk(() => [bird_lg_frontend, bird_lg_proxy]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         "bird-lg-frontend": bird_lg_frontend,
         "bird-lg-proxy": bird_lg_proxy,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             extraArgs: nix.thunk(() => ["--subpackage", "bird-lg-frontend", "--subpackage", "bird-lg-proxy"]),
           })))),
       })),

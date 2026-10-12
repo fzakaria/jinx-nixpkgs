@@ -24,24 +24,24 @@ export default nix.lambda((args) => (() => {
       const namespace = "plugin.video.skyvideoitalia";
       const version = "1.0.4";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://mirrors.kodi.tv/addons/${nix.app(nix.sel(lib, "toLower"), rel)}/${namespace}/${namespace}-${version}.zip`),
           sha256: "sha256-ciLtqT++6bn7la4xRVvlRwzbbUUUPN5WU35rJpR4l+w=",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [requests, inputstreamhelper, simplecache]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(addonUpdateScript, nix.thunk(() => ({ __proto__: pos$2, attrPath: "kodi.packages.skyvideoitalia" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(addonUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$2, attrPath: "kodi.packages.skyvideoitalia" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.github.com/nixxo/plugin.video.skyvideoitalia",
         description: "Show video content from the website of Sky Italia (video.sky.it). News, sport, entertainment and much more",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "kodi"))]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         namespace,
         version,

@@ -24,23 +24,23 @@ export default nix.lambda((args) => (() => {
   const json_glib = nix.arg($, "json-glib");
   const libsoup_3 = nix.arg($, "libsoup_3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "timezonemap",
       version: "0.4.5.1",
       src: nix.thunk(() => nix.app(fetchbzr, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "lp:timezonemap",
           rev: "58",
           sha256: "sha256-wCJXwgnN+aZVerjQCm8oT3xIcwmc4ArcEoCh9pMrt+E=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://git.launchpad.net/ubuntu/+source/libtimezonemap/plain/debian/patches/timezone-map-Never-try-to-access-to-free-d-or-null-values.patch?id=88f72f724e63df061204f6818c9a1e7d8c003e29",
             sha256: "sha256-M5eR0uaqpJOeW2Ya1Al+3ZciXukzHpnjJTMVvdO0dPE=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://git.launchpad.net/ubuntu/+source/libtimezonemap/plain/debian/patches/port-to-libsoup3.patch?id=b8346a99d4abece742bce73780ccf0edfa0b99f0",
             hash: "sha256-BHLVA3Vcakl9COAiSPo0OyFOUz4ejsxB22gJW/+m7NI=",
           })))),
@@ -59,7 +59,7 @@ done
 `),
       postPatch: "sed \"s|/usr/share/libtimezonemap|$out/share/libtimezonemap|g\" -i ./src/tz.h\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://launchpad.net/timezonemap",
         description: "GTK+3 Timezone Map Widget",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

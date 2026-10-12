@@ -47,16 +47,16 @@ export default nix.lambda((args) => (() => {
   const gnome_tecla = nix.arg($, "gnome-tecla");
   const gsettings_desktop_schemas = nix.arg($, "gsettings-desktop-schemas");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "gnome-initial-setup",
       version: "50.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-initial-setup/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-initial-setup-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-su0FI1iW9H9VJJirWrKfVQHmqMQe5kXyqRhiCx3pHmA=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-fix-paths.patch"), nix.thunk(() => ({ __proto__: pos$2, tzdata: tzdata, tecla: gnome_tecla })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, tzdata: tzdata, tecla: gnome_tecla })))),
       ]),
       nativeBuildInputs: nix.thunk(() => [dconf, gettext, meson, ninja, pkg_config, systemd, wrapGAppsHook4]),
       buildInputs: nix.thunk(() => [
@@ -87,11 +87,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-Dvendor-conf-file=${nix.path(here, "./vendor.conf")}`),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$3, packageName: "gnome-initial-setup" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: "gnome-initial-setup" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Simple, easy, and safe way to prepare a new system",
         homepage: "https://gitlab.gnome.org/GNOME/gnome-initial-setup",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/gnome-initial-setup/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),

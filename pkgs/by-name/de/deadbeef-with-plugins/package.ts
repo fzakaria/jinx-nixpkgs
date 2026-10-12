@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const plugins = nix.argOr($, "plugins", () => []);
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "deadbeef-with-plugins",
       version: nix.thunk(() => nix.attr(deadbeef, "version")),
       paths: nix.thunk(() => nix.concat([deadbeef], plugins)),

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const expat = nix.arg($, "expat");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ipu6-camera-bins",
       version: "unstable-2025-06-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "ipu6-camera-bins",
           owner: "intel",
           tag: "20250923_ov02e",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out\ncp --no-preserve=mode --recursive \\\n  lib \\\n  include \\\n  $out/\n\n# There is no LICENSE file in the src\n# install -m 0644 -D LICENSE $out/share/doc/LICENSE\n\nrunHook postInstall\n",
       postFixup: "for lib in $out/lib/lib*.so.*; do \\\n  lib=${lib##*/}; \\\n  ln -s $lib $out/lib/${lib%.*}; \\\ndone\n\nfor pcfile in $out/lib/pkgconfig/*.pc; do\n  substituteInPlace $pcfile \\\n    --replace 'prefix=/usr' \"prefix=$out\"\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "IPU firmware and proprietary image processing libraries",
         homepage: "https://github.com/intel/ipu6-camera-bins",
         license: nix.thunk(() => nix.sel(lib, "licenses", "issl")),

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "git-ignore",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sondr3",
           repo: "git-ignore",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: "assets=$releaseDir/../assets\ninstallManPage $assets/git-ignore.1\ninstallShellCompletion $assets/git-ignore.{bash,fish} --zsh $assets/_git-ignore\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Quickly and easily fetch .gitignore templates from gitignore.io",
         homepage: "https://github.com/sondr3/git-ignore",
         changelog: nix.thunk(() => nix.str`https://github.com/sondr3/git-ignore/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

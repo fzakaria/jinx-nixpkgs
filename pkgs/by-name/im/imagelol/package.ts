@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libpng = nix.arg($, "libpng");
   const stb = nix.arg($, "stb");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "imagelol",
       version: "0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MCRedstoner2004",
           repo: "imagelol",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "gcc-12.patch",
             url: "https://github.com/MCredstoner2004/ImageLOL/commit/013fb1f901d88f5fd21a896bfab47c7fff0737d7.patch",
             hash: "sha256-RVaG2xbUqE4CxqI2lhvug2qihT6A8vN+pIfK58CXLDw=",
@@ -56,7 +56,7 @@ rm -r External/zlib External/zlib-no-examples External/libpng External/stb
       buildInputs: nix.thunk(() => [libpng, stb]),
       installPhase: "runHook preInstall\ninstall -Dm755 ImageLOL -t $out/bin\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/MCredstoner2004/ImageLOL",
         description: "Simple program to store a file into a PNG image",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

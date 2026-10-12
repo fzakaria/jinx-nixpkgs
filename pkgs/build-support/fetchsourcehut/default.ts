@@ -43,37 +43,37 @@ export default nix.lambda((args) => (() => {
       const urlFor = (resource) => nix.str`https://${resource}.${domain}/${owner}/${repo}`;
       const rev$ = nix.thunk(() => (nix.asBool(!nix.eq(tag, null)) ? nix.force(tag) : nix.force(rev)));
       const baseUrl = nix.thunk(() => nix.app(urlFor, vc));
-      const baseArgs = nix.thunk(() => nix.update({ __proto__: pos$1, name: name }, nix.builtins.removeAttrs(args_2, nix.thunk(() => ["owner", "repo", "rev", "tag", "domain", "vc", "name", "fetchSubmodules"]))));
-      const vcArgs = nix.thunk(() => nix.update(baseArgs, { __proto__: pos$2, rev: rev$, url: baseUrl }));
+      const baseArgs = nix.thunk(() => nix.update({ [nix.POS]: pos$1, name: name }, nix.builtins.removeAttrs(args_2, nix.thunk(() => ["owner", "repo", "rev", "tag", "domain", "vc", "name", "fetchSubmodules"]))));
+      const vcArgs = nix.thunk(() => nix.update(baseArgs, { [nix.POS]: pos$2, rev: rev$, url: baseUrl }));
       const fetcher = nix.thunk(() => (nix.asBool(fetchSubmodules) ? nix.force(vc) : "zip"));
       const cases = nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         git: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           fetch: fetchgit,
-          arguments: nix.thunk(() => nix.update(vcArgs, { __proto__: pos$3, fetchSubmodules: true })),
+          arguments: nix.thunk(() => nix.update(vcArgs, { [nix.POS]: pos$3, fetchSubmodules: true })),
         })),
         hg: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           fetch: fetchhg,
-          arguments: nix.thunk(() => nix.update(vcArgs, { __proto__: pos$5, fetchSubrepos: true })),
+          arguments: nix.thunk(() => nix.update(vcArgs, { [nix.POS]: pos$5, fetchSubrepos: true })),
         })),
         zip: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           fetch: fetchzip,
           arguments: nix.thunk(() => nix.update(baseArgs, {
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             url: nix.thunk(() => nix.str`${baseUrl}/archive/${rev$}.tar.gz`),
             postFetch: nix.thunk(() => nix.app(optionalString, nix.thunk(() => nix.eq(vc, "hg")), "rm -f \"$out/.hg_archival.txt\"\n")),
-            passthru: nix.thunk(() => nix.update(nix.selOr(args_2, () => ({}), "passthru"), { __proto__: pos$7, gitRepoUrl: nix.thunk(() => nix.app(urlFor, "git")) })),
+            passthru: nix.thunk(() => nix.update(nix.selOr(args_2, () => ({}), "passthru"), { [nix.POS]: pos$7, gitRepoUrl: nix.thunk(() => nix.app(urlFor, "git")) })),
           })),
         })),
       }));
       return nix.update(nix.app(nix.sel(cases, nix.key(nix.force(fetcher)), "fetch"), nix.thunk(() => nix.sel(cases, nix.key(nix.force(fetcher)), "arguments"))), {
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         tag: tag,
         rev: rev$,
-        meta: nix.thunk(() => ({ __proto__: pos$11, homepage: nix.thunk(() => nix.str`${baseUrl}`) })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$11, homepage: nix.thunk(() => nix.str`${baseUrl}`) })),
       });
     })(), formals$2));
 })(), formals$1);

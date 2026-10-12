@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const mysql84 = nix.arg($, "mysql84");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libmysqlconnectorcpp",
       version: "9.7.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://mysql/Connector-C++/mysql-connector-c++-${nix.sel(finalAttrs, "version")}-src.tar.gz`),
           hash: "sha256-mj3U/kQagZH3YRkuzccXwYpYocu245Yj3rtxlsMHWw4=",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       cmakeFlags: nix.thunk(() => ["-DMYSQLCLIENT_STATIC_LINKING=false", "-DWITH_JDBC=true"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://dev.mysql.com/downloads/connector/cpp/",
         description: "C++ library for connecting to mysql servers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

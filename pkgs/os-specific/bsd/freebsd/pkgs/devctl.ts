@@ -11,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const mkDerivation = nix.arg($, "mkDerivation");
   const libdevctl = nix.arg($, "libdevctl");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "usr.sbin/devctl",
       outputs: nix.thunk(() => ["out", "debug"]),
       buildInputs: nix.thunk(() => [libdevctl]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "devctl" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "devctl" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=devctl.ts.map

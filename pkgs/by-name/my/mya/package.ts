@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libbsd = nix.arg($, "libbsd");
   const argp_standalone = nix.arg($, "argp-standalone");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mya",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jmakhack",
           repo: "myanimelist-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./argp.patch")]),
       installPhase: "runHook preInstall\n\n# Based on the upstream PKGBUILD\nmkdir -p $out/share/doc/mya\ncp -a bin $out\ncp $cmakeDir/README.md $out/share/doc/mya\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Minimalistic command line interface for fetching user anime data from MyAnimeList",
         longDescription: "Minimalistic command line interface for fetching user anime data from MyAnimeList.\n\nYou have to run this with the MYANIMELIST_CLIENT_ID environ variable set.\nWhere to get one: <https://myanimelist.net/apiconfig>.\nSelect the type `other`.\n",
         homepage: "https://github.com/jmakhack/myanimelist-cli",

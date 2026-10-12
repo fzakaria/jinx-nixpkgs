@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const tclPackages = nix.arg($, "tclPackages");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ma",
       version: "13",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://web.archive.org/web/20250829110226/http://call-with-current-continuation.org/ma/ma.tar.gz",
           hash: "sha256-QNt4ctcu4/xJY2eud+kp5paPUnLsRhK7D2nJ0LBIvIo=",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(tclPackages, "tk", "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Minimalistic variant of the Acme editor",
         homepage: "http://call-with-current-continuation.org/ma/ma.html",
         mainProgram: "ma",

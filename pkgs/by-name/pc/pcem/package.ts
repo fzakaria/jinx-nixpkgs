@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const withNetworking = nix.argOr($, "withNetworking", () => true);
   const withALSA = nix.argOr($, "withALSA", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pcem",
       version: "17",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://pcem-emulator.co.uk/files/PCemV${nix.sel(finalAttrs, "version")}Linux.tar.gz`),
           stripRoot: false,
           sha256: "067pbnc15h6a4pnnym82klr1w8qwfm6p0pkx93gx06wvwqsxvbdv",
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([wxwidgets_3_2, coreutils, SDL2, openal, gtk3], nix.app(nix.sel(lib, "optional"), withALSA, alsa_lib))),
       configureFlags: nix.thunk(() => nix.concat(["--enable-release-build"], nix.concat(nix.app(nix.sel(lib, "optional"), withNetworking, "--enable-networking"), nix.app(nix.sel(lib, "optional"), withALSA, "--enable-alsa")))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration -Wno-error=incompatible-pointer-types -std=gnu17",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Emulator for IBM PC computers and clones",
         mainProgram: "pcem",
         homepage: "https://pcem-emulator.co.uk/",

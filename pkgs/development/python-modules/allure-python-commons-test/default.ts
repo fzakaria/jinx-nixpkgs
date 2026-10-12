@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.16.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "allure_python_commons_test",
           version: version,
           hash: "sha256-otfGxWNnbMUGuQcqsroOOfiqhCQqe25c39Ur57ek2og=",
@@ -37,7 +37,7 @@ ${nix.sel(python, "interpreter")} -m doctest ./src/result.py
 `);
       const pythonImportsCheck = nix.thunk(() => ["allure_commons_test"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Just pack of hamcrest matchers for validation result in allure2 json format",
         homepage: "https://github.com/allure-framework/allure-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -47,7 +47,7 @@ ${nix.sel(python, "interpreter")} -m doctest ./src/result.py
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

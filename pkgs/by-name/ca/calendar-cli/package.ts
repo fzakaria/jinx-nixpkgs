@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const xandikos = nix.arg($, "xandikos");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "calendar-cli",
       version: "1.0.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pycalendar",
           repo: "calendar-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,21 +56,21 @@ export default nix.lambda((args) => (() => {
       })()),
       nativeCheckInputs: nix.thunk(() => [
         perl,
-        nix.thunk(() => nix.app(nix.sel(python3, "pkgs", "toPythonModule"), nix.thunk(() => nix.app(nix.sel(radicale, "override"), nix.thunk(() => ({ __proto__: pos$2, python3: python3 })))))),
+        nix.thunk(() => nix.app(nix.sel(python3, "pkgs", "toPythonModule"), nix.thunk(() => nix.app(nix.sel(radicale, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, python3: python3 })))))),
         versionCheckHook,
         which,
         xandikos,
       ]),
       checkPhase: "runHook preCheck\nrunHook preInstallCheck\n\npushd tests\n./test_calendar-cli.sh\npopd\n\nrunHook postCheck\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           radicale: nix.thunk(() => nix.attr(nixosTests, "radicale")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/pycalendar/calendar-cli/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Simple command-line CalDav client",
         homepage: "https://github.com/pycalendar/calendar-cli",

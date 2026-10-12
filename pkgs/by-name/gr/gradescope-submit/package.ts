@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gradescope_submit";
       const version = "2.0.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nmittu",
           repo: "gradescope-submit",
           rev: version,
@@ -36,14 +36,14 @@ export default nix.lambda((args) => (() => {
         ];
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Small script to submit to Gradescope via GitHub",
         homepage: "https://github.com/nmittu/gradescope-submit",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
         mainProgram: "submit",
       }));
-      return { __proto__: pos$3, pname, version, src, buildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

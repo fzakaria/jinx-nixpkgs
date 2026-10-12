@@ -21,19 +21,19 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(cargoToml, "package"));
       return {
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: nix.thunk(() => nix.sel(cargoToml, "package", "name")),
       version: nix.thunk(() => nix.attr(from, "version")),
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(nix.sel(lib, "sourceFilesBySuffices"), nix.path(here, "./."), nix.thunk(() => [".rs", ".toml", ".lock"]))),
-      cargoLock: nix.thunk(() => ({ __proto__: pos$1, lockFile: nix.path(here, "./Cargo.lock") })),
+      cargoLock: nix.thunk(() => ({ [nix.POS]: pos$1, lockFile: nix.path(here, "./Cargo.lock") })),
       stripAllList: nix.thunk(() => ["bin"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "lint-format": nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (_) => (previousAttrs) => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               pname: nix.thunk(() => nix.add(nix.sel(previousAttrs, "pname"), "-lint-format")),
               nativeCheckInputs: nix.thunk(() => nix.concat(nix.selOr(previousAttrs, () => [], "nativeCheckInputs"), [clippy, rustfmt])),
               checkPhase: "cargo clippy\ncargo fmt --check\n",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "for binary in \"${binaries[@]}\"; do\n  ln -s $out/bin/nixos-init $out/bin/$binary\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

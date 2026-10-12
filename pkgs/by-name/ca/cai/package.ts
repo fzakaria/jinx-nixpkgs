@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cai",
       version: "1.1.5-unstable-2026-06-05",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aliasrobotics",
           repo: "cai",
           rev: "1c79507140845d0c57455e3b623e489680fd80e8",
@@ -117,11 +117,11 @@ export default nix.lambda((args) => (() => {
         "tests/util/test_wait_hints_compact.py",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Framework for AI Security",
         homepage: "https://github.com/aliasrobotics/cai",
         changelog: nix.thunk(() => nix.str`https://github.com/aliasrobotics/cai/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

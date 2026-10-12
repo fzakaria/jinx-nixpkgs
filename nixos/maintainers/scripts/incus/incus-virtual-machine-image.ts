@@ -29,16 +29,16 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     imports: nix.thunk(() => [nix.path(here, "../../../modules/virtualisation/incus-virtual-machine.nix")]),
     virtualisation: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       lxc: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         templates: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           nix: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             enable: true,
             target: "/etc/nixos/incus.nix",
             template: nix.path(here, "./nix.tpl"),
@@ -48,21 +48,21 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     systemd: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         "incus-create-nixos-config": nix.thunk(() => (() => {
           const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "replaceVars"), nix.path(here, "./incus-virtual-machine-image-inner.nix"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               stateVersion: nix.thunk(() => nix.sel(lib, "trivial", "release")),
             }))));
           return {
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             description: "Create default NixOS configuration for Incus",
             wantedBy: nix.thunk(() => ["multi-user.target"]),
-            unitConfig: nix.thunk(() => ({ __proto__: pos$6, ConditionPathExists: "!/etc/nixos/configuration.nix" })),
+            unitConfig: nix.thunk(() => ({ [nix.POS]: pos$6, ConditionPathExists: "!/etc/nixos/configuration.nix" })),
             serviceConfig: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               Type: "oneshot",
               RemainAfterExit: true,
               ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/install -m 0644 -D ${configFile} /etc/nixos/configuration.nix`),
@@ -71,23 +71,23 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
       network: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         enable: true,
         networks: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           "50-enp5s0": nix.thunk(() => ({
-            __proto__: pos$13,
-            matchConfig: nix.thunk(() => ({ __proto__: pos$10, Name: "enp5s0" })),
-            networkConfig: nix.thunk(() => ({ __proto__: pos$11, DHCP: "ipv4", IPv6AcceptRA: true })),
-            linkConfig: nix.thunk(() => ({ __proto__: pos$12, RequiredForOnline: "routable" })),
+            [nix.POS]: pos$13,
+            matchConfig: nix.thunk(() => ({ [nix.POS]: pos$10, Name: "enp5s0" })),
+            networkConfig: nix.thunk(() => ({ [nix.POS]: pos$11, DHCP: "ipv4", IPv6AcceptRA: true })),
+            linkConfig: nix.thunk(() => ({ [nix.POS]: pos$12, RequiredForOnline: "routable" })),
           })),
         })),
       })),
     })),
-    installer: nix.thunk(() => ({ __proto__: pos$17, cloneConfig: false })),
+    installer: nix.thunk(() => ({ [nix.POS]: pos$17, cloneConfig: false })),
     networking: nix.thunk(() => ({
-      __proto__: pos$19,
-      dhcpcd: nix.thunk(() => ({ __proto__: pos$18, enable: false })),
+      [nix.POS]: pos$19,
+      dhcpcd: nix.thunk(() => ({ [nix.POS]: pos$18, enable: false })),
       useDHCP: false,
       useHostResolvConf: false,
     })),

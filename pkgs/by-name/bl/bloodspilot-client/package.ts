@@ -22,19 +22,19 @@ export default nix.lambda((args) => (() => {
   const SDL_ttf = nix.arg($, "SDL_ttf");
   const SDL_image = nix.arg($, "SDL_image");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "1.5.0",
       pname: "bloodspilot-client",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/bloodspilot/client-sdl/v${nix.sel(finalAttrs, "version")}/bloodspilot-client-sdl-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-svOVg8b33cUpsesd9Xq8PRHvnZFKnxoA/cKqslVJlOM=",
         })))),
       patches: nix.thunk(() => [nix.path(here, "./bloodspilot-sdl-window-fix.patch")]),
       buildInputs: nix.thunk(() => [libx11, SDL, SDL_ttf, SDL_image, libGLU, libGL, expat, zlib]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_LDFLAGS: "-lX11" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-lX11" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Multiplayer space combat game (client part)",
         mainProgram: "bloodspilot-client-sdl",
         homepage: "http://bloodspilot.sf.net/",

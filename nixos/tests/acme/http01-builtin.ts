@@ -101,7 +101,7 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.str`migration-2.${domain}`),
     nix.thunk(() => nix.str`migration-3.${domain}`),
   ]);
-  const migrationCerts = nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), migrationCertNames, (_) => ({ __proto__: pos$1, listenHTTP: ":80" })));
+  const migrationCerts = nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), migrationCertNames, (_) => ({ [nix.POS]: pos$1, listenHTTP: ":80" })));
   const migrationTestLego = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScriptBin"), "lego", nix.thunk(() => nix.str`if [[ \${1-} == migrate ]]; then
   printf '1\\n' >> /run/acme/test-migration-attempts
   if ! mkdir /run/acme/test-migration-active; then
@@ -115,24 +115,24 @@ fi
 ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "lego")))} "$@"
 `)));
   const migrationServicePaths = nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), nix.thunk(() => nix.builtins.map((name) => nix.str`acme-order-renew-${name}`, migrationCertNames)), (_) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: nix.thunk(() => nix.app(nix.sel(lib, "mkBefore"), nix.thunk(() => [migrationTestLego]))),
     })));
   return {
-    __proto__: pos$84,
+    [nix.POS]: pos$84,
     name: "http01-builtin",
     meta: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "acme", "members")),
       timeout: 300n,
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$83,
+      [nix.POS]: pos$83,
       acme: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const nodes = nix.arg($_1, "nodes");
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           imports: nix.thunk(() => [nix.path(here, "../common/acme/server")]),
         };
       })(), formals$2),
@@ -141,120 +141,120 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "lego")))} "$@"
         const nodes = nix.arg($_1, "nodes");
         const config = nix.arg($_1, "config");
         return {
-          __proto__: pos$82,
+          [nix.POS]: pos$82,
           imports: nix.thunk(() => [nix.path(here, "../common/acme/client")]),
           networking: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             domain: domain,
-            firewall: nix.thunk(() => ({ __proto__: pos$5, allowedTCPPorts: nix.thunk(() => [80n]) })),
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$5, allowedTCPPorts: nix.thunk(() => [80n]) })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openssl"))]),
           })),
           security: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             acme: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               certs: nix.thunk(() => nix.attrsDyn({}, [
-                [nix.str`${nix.sel(config, "networking", "fqdn")}`, nix.thunk(() => ({ __proto__: pos$8, extraDomainNames: nix.thunk(() => [ip]), listenHTTP: ":80" }))],
+                [nix.str`${nix.sel(config, "networking", "fqdn")}`, nix.thunk(() => ({ [nix.POS]: pos$8, extraDomainNames: nix.thunk(() => [ip]), listenHTTP: ":80" }))],
               ])),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             services: nix.thunk(() => nix.attrsDyn({}, [
               [nix.str`acme-order-renew-${nix.sel(config, "networking", "fqdn")}`, nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 path: nix.thunk(() => nix.app(nix.sel(lib, "mkBefore"), nix.thunk(() => [migrationTestLego]))),
               }))],
             ])),
             targets: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               "renew-triggered": nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 wantedBy: nix.thunk(() => [
                   nix.thunk(() => nix.str`acme-order-renew-${nix.sel(config, "networking", "fqdn")}.service`),
                 ]),
                 after: nix.thunk(() => [
                   nix.thunk(() => nix.str`acme-order-renew-${nix.sel(config, "networking", "fqdn")}.service`),
                 ]),
-                unitConfig: nix.thunk(() => ({ __proto__: pos$12, RefuseManualStart: true })),
+                unitConfig: nix.thunk(() => ({ [nix.POS]: pos$12, RefuseManualStart: true })),
               })),
             })),
           })),
           specialisation: nix.thunk(() => ({
-            __proto__: pos$81,
+            [nix.POS]: pos$81,
             renew: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               configuration: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 security: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   acme: nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     certs: nix.thunk(() => nix.attrsDyn({}, [
-                      [nix.str`${nix.sel(config, "networking", "fqdn")}`, nix.thunk(() => ({ __proto__: pos$16, validMinDays: 9999n }))],
+                      [nix.str`${nix.sel(config, "networking", "fqdn")}`, nix.thunk(() => ({ [nix.POS]: pos$16, validMinDays: 9999n }))],
                     ])),
                   })),
                 })),
               })),
             })),
             accountchange: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               configuration: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 security: nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   acme: nix.thunk(() => ({
-                    __proto__: pos$22,
+                    [nix.POS]: pos$22,
                     certs: nix.thunk(() => nix.attrsDyn({}, [
-                      [nix.str`${nix.sel(config, "networking", "fqdn")}`, nix.thunk(() => ({ __proto__: pos$21, email: null }))],
+                      [nix.str`${nix.sel(config, "networking", "fqdn")}`, nix.thunk(() => ({ [nix.POS]: pos$21, email: null }))],
                     ])),
                   })),
                 })),
               })),
             })),
             emailplaceholder: nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               configuration: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 security: nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   acme: nix.thunk(() => ({
-                    __proto__: pos$27,
+                    [nix.POS]: pos$27,
                     certs: nix.thunk(() => nix.attrsDyn({}, [
-                      [nix.str`${nix.sel(config, "networking", "fqdn")}`, nix.thunk(() => ({ __proto__: pos$26, email: "noemail@example.com" }))],
+                      [nix.str`${nix.sel(config, "networking", "fqdn")}`, nix.thunk(() => ({ [nix.POS]: pos$26, email: "noemail@example.com" }))],
                     ])),
                   })),
                 })),
               })),
             })),
             keytype: nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               configuration: nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 security: nix.thunk(() => ({
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   acme: nix.thunk(() => ({
-                    __proto__: pos$32,
+                    [nix.POS]: pos$32,
                     certs: nix.thunk(() => nix.attrsDyn({}, [
-                      [nix.str`${nix.sel(config, "networking", "fqdn")}`, nix.thunk(() => ({ __proto__: pos$31, keyType: "ec384" }))],
+                      [nix.str`${nix.sel(config, "networking", "fqdn")}`, nix.thunk(() => ({ [nix.POS]: pos$31, keyType: "ec384" }))],
                     ])),
                   })),
                 })),
               })),
             })),
             legacy_account_hash: nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               configuration: nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 security: nix.thunk(() => ({
-                  __proto__: pos$38,
+                  [nix.POS]: pos$38,
                   acme: nix.thunk(() => ({
-                    __proto__: pos$37,
+                    [nix.POS]: pos$37,
                     defaults: nix.thunk(() => ({
-                      __proto__: pos$36,
+                      [nix.POS]: pos$36,
                       server: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), null)),
                     })),
                   })),
@@ -262,57 +262,57 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "lego")))} "$@"
               })),
             })),
             ocsp_stapling: nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               configuration: nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 security: nix.thunk(() => ({
-                  __proto__: pos$43,
+                  [nix.POS]: pos$43,
                   acme: nix.thunk(() => ({
-                    __proto__: pos$42,
+                    [nix.POS]: pos$42,
                     certs: nix.thunk(() => nix.attrsDyn({}, [
-                      [nix.str`${nix.sel(config, "networking", "fqdn")}`, nix.thunk(() => ({ __proto__: pos$41, ocspMustStaple: true }))],
+                      [nix.str`${nix.sel(config, "networking", "fqdn")}`, nix.thunk(() => ({ [nix.POS]: pos$41, ocspMustStaple: true }))],
                     ])),
                   })),
                 })),
               })),
             })),
-            preservation: nix.thunk(() => ({ __proto__: pos$46, configuration: nix.thunk(() => ({})) })),
+            preservation: nix.thunk(() => ({ [nix.POS]: pos$46, configuration: nix.thunk(() => ({})) })),
             migration_serial: nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               configuration: nix.thunk(() => ({
-                __proto__: pos$50,
+                [nix.POS]: pos$50,
                 security: nix.thunk(() => ({
-                  __proto__: pos$48,
-                  acme: nix.thunk(() => ({ __proto__: pos$47, maxConcurrentRenewals: 1n, certs: migrationCerts })),
+                  [nix.POS]: pos$48,
+                  acme: nix.thunk(() => ({ [nix.POS]: pos$47, maxConcurrentRenewals: 1n, certs: migrationCerts })),
                 })),
-                systemd: nix.thunk(() => ({ __proto__: pos$49, services: migrationServicePaths })),
+                systemd: nix.thunk(() => ({ [nix.POS]: pos$49, services: migrationServicePaths })),
               })),
             })),
             migration_parallel: nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               configuration: nix.thunk(() => ({
-                __proto__: pos$55,
+                [nix.POS]: pos$55,
                 security: nix.thunk(() => ({
-                  __proto__: pos$53,
-                  acme: nix.thunk(() => ({ __proto__: pos$52, maxConcurrentRenewals: 10n, certs: migrationCerts })),
+                  [nix.POS]: pos$53,
+                  acme: nix.thunk(() => ({ [nix.POS]: pos$52, maxConcurrentRenewals: 10n, certs: migrationCerts })),
                 })),
-                systemd: nix.thunk(() => ({ __proto__: pos$54, services: migrationServicePaths })),
+                systemd: nix.thunk(() => ({ [nix.POS]: pos$54, services: migrationServicePaths })),
               })),
             })),
             add_cert_and_domain: nix.thunk(() => ({
-              __proto__: pos$62,
+              [nix.POS]: pos$62,
               configuration: nix.thunk(() => ({
-                __proto__: pos$61,
+                [nix.POS]: pos$61,
                 security: nix.thunk(() => ({
-                  __proto__: pos$60,
+                  [nix.POS]: pos$60,
                   acme: nix.thunk(() => ({
-                    __proto__: pos$59,
+                    [nix.POS]: pos$59,
                     certs: nix.thunk(() => nix.attrsDyn({}, [
                       [nix.str`${nix.sel(config, "networking", "fqdn")}`, nix.thunk(() => ({
-                        __proto__: pos$57,
+                        [nix.POS]: pos$57,
                         extraDomainNames: nix.thunk(() => [nix.thunk(() => nix.str`builtin-alt.${domain}`)]),
                       }))],
-                      [nix.str`builtin-2.${domain}`, nix.thunk(() => ({ __proto__: pos$58, listenHTTP: ":80" }))],
+                      [nix.str`builtin-2.${domain}`, nix.thunk(() => ({ [nix.POS]: pos$58, listenHTTP: ":80" }))],
                     ])),
                     maxConcurrentRenewals: 10n,
                   })),
@@ -320,16 +320,16 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "lego")))} "$@"
               })),
             })),
             remove_domain: nix.thunk(() => ({
-              __proto__: pos$67,
+              [nix.POS]: pos$67,
               configuration: nix.thunk(() => ({
-                __proto__: pos$66,
+                [nix.POS]: pos$66,
                 security: nix.thunk(() => ({
-                  __proto__: pos$65,
+                  [nix.POS]: pos$65,
                   acme: nix.thunk(() => ({
-                    __proto__: pos$64,
+                    [nix.POS]: pos$64,
                     certs: nix.thunk(() => nix.attrsDyn({}, [
                       [nix.str`${nix.sel(config, "networking", "fqdn")}`, nix.thunk(() => ({
-                        __proto__: pos$63,
+                        [nix.POS]: pos$63,
                         extraDomainNames: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => [ip]))),
                       }))],
                     ])),
@@ -338,32 +338,32 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "lego")))} "$@"
               })),
             })),
             concurrency: nix.thunk(() => ({
-              __proto__: pos$74,
+              [nix.POS]: pos$74,
               configuration: nix.thunk(() => ({
-                __proto__: pos$73,
+                [nix.POS]: pos$73,
                 security: nix.thunk(() => ({
-                  __proto__: pos$72,
+                  [nix.POS]: pos$72,
                   acme: nix.thunk(() => ({
-                    __proto__: pos$71,
+                    [nix.POS]: pos$71,
                     maxConcurrentRenewals: 1n,
                     certs: nix.thunk(() => nix.attrsDyn({}, [
                       [nix.str`${nix.sel(config, "networking", "fqdn")}`, nix.thunk(() => ({
-                        __proto__: pos$68,
+                        [nix.POS]: pos$68,
                         extraDomainNames: nix.thunk(() => [nix.thunk(() => nix.str`builtin-alt.${domain}`)]),
                       }))],
                       [nix.str`builtin-2.${domain}`, nix.thunk(() => ({
-                        __proto__: pos$69,
+                        [nix.POS]: pos$69,
                         extraDomainNames: nix.thunk(() => [nix.thunk(() => nix.str`builtin-2-alt.${domain}`)]),
                         listenHTTP: ":80",
                       }))],
-                      [nix.str`builtin-3.${domain}`, nix.thunk(() => ({ __proto__: pos$70, listenHTTP: ":80" }))],
+                      [nix.str`builtin-3.${domain}`, nix.thunk(() => ({ [nix.POS]: pos$70, listenHTTP: ":80" }))],
                     ])),
                   })),
                 })),
               })),
             })),
             csr: nix.thunk(() => ({
-              __proto__: pos$80,
+              [nix.POS]: pos$80,
               configuration: nix.thunk(() => (() => {
                 const conf = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "openssl.csr.conf", nix.thunk(() => nix.str`[req]
 default_bits = 2048
@@ -383,7 +383,7 @@ DNS.1 = ${nix.sel(config, "networking", "fqdn")}
 IP.1 = ${ip}
 `)));
                 const csrData = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "csr-and-key", nix.thunk(() => ({
-                    __proto__: pos$75,
+                    [nix.POS]: pos$75,
                     buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openssl"))]),
                   })), nix.thunk(() => nix.str`mkdir -p $out
 openssl req -new -newkey rsa:2048 -nodes \\
@@ -392,14 +392,14 @@ openssl req -new -newkey rsa:2048 -nodes \\
   -config ${conf}
 `)));
                 return {
-                  __proto__: pos$79,
+                  [nix.POS]: pos$79,
                   security: nix.thunk(() => ({
-                    __proto__: pos$78,
+                    [nix.POS]: pos$78,
                     acme: nix.thunk(() => ({
-                      __proto__: pos$77,
+                      [nix.POS]: pos$77,
                       certs: nix.thunk(() => nix.attrsDyn({}, [
                         [nix.str`${nix.sel(config, "networking", "fqdn")}`, nix.thunk(() => ({
-                          __proto__: pos$76,
+                          [nix.POS]: pos$76,
                           csr: nix.thunk(() => nix.str`${csrData}/request.csr`),
                           csrKey: nix.thunk(() => nix.str`${csrData}/key.pem`),
                           extraDomainNames: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),

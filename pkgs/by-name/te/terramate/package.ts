@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const git = nix.arg($, "git");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "terramate",
       version: "0.17.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "terramate-io",
           repo: "terramate",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       excludedPackages: nix.thunk(() => ["./e2etests/cloud", "./e2etests/core"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Adds code generation, stacks, orchestration, change detection, data sharing and more to Terraform",
         homepage: "https://github.com/terramate-io/terramate",
         changelog: nix.thunk(() => nix.str`https://github.com/terramate-io/terramate/releases/tag/v${nix.sel(finalAttrs, "version")}`),

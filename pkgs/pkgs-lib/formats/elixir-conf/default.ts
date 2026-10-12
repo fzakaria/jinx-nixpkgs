@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
   const oneOf = nix.thunk(() => nix.attr(types, "oneOf"));
   const str = nix.thunk(() => nix.attr(types, "str"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     format: nix.thunk(() => (() => {
       const toElixir = (value) => (nix.asBool(nix.eq(value, null)) ? "nil" : (nix.asBool(nix.eq(value, true)) ? "true" : (nix.asBool(nix.eq(value, false)) ? "false" : (nix.asBool((nix.asBool(nix.app(isInt, value)) || nix.asBool(nix.app(isFloat, value)))) ? nix.builtins.toString(value) : (nix.asBool(nix.app(isString, value)) ? nix.app(string, value) : (nix.asBool(nix.app(isAttrs, value)) ? nix.app(attrs, value) : (nix.asBool(nix.app(isList, value)) ? nix.app(list, value) : nix.builtins.abort(nix.thunk(() => nix.str`formats.elixirConf: should never happen (value = ${value})`)))))))));
       const escapeElixir = nix.thunk(() => nix.app(escape, nix.thunk(() => ["\\", "#", "\""])));
@@ -89,7 +89,7 @@ ${nix.app(concatStringsSep, "\n", rootConfigs)}
         const $_1 = nix.formals(args_1, formals$3);
         const elixir = nix.argOr($_1, "elixir", () => nix.sel(pkgs, "elixir"));
         return {
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           type: nix.thunk(() => (() => {
             const valueType = nix.thunk(() => nix.update(nix.app(nullOr, nix.thunk(() => nix.app(oneOf, nix.thunk(() => [
                   bool,
@@ -98,13 +98,13 @@ ${nix.app(concatStringsSep, "\n", rootConfigs)}
                   str,
                   nix.thunk(() => nix.app(attrsOf, valueType)),
                   nix.thunk(() => nix.app(listOf, valueType)),
-                ])))), { __proto__: pos$1, description: "Elixir value" }));
+                ])))), { [nix.POS]: pos$1, description: "Elixir value" }));
             return nix.app(attrsOf, nix.thunk(() => nix.app(attrsOf, valueType)));
           })()),
           lib: nix.thunk(() => (() => {
-            const mkRaw = (value) => ({ __proto__: pos$2, value: value, _elixirType: "raw" });
+            const mkRaw = (value) => ({ [nix.POS]: pos$2, value: value, _elixirType: "raw" });
             return {
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               mkRaw: mkRaw,
               mkGetEnv: nix.lambda((args_2) => (() => {
                 const $_2 = nix.formals(args_2, formals$4);
@@ -112,43 +112,43 @@ ${nix.app(concatStringsSep, "\n", rootConfigs)}
                 const fallback = nix.argOr($_2, "fallback", () => null);
                 return nix.app(mkRaw, nix.thunk(() => nix.str`System.get_env(${nix.app(toElixir, envVariable)}, ${nix.app(toElixir, fallback)})`));
               })(), formals$4),
-              mkAtom: (value) => ({ __proto__: pos$3, value: value, _elixirType: "atom" }),
-              mkCharlist: (value) => ({ __proto__: pos$4, value: value, _elixirType: "charlist" }),
-              mkTuple: (value) => ({ __proto__: pos$5, value: value, _elixirType: "tuple" }),
-              mkMap: (value) => ({ __proto__: pos$6, value: value, _elixirType: "map" }),
+              mkAtom: (value) => ({ [nix.POS]: pos$3, value: value, _elixirType: "atom" }),
+              mkCharlist: (value) => ({ [nix.POS]: pos$4, value: value, _elixirType: "charlist" }),
+              mkTuple: (value) => ({ [nix.POS]: pos$5, value: value, _elixirType: "tuple" }),
+              mkMap: (value) => ({ [nix.POS]: pos$6, value: value, _elixirType: "map" }),
               types: nix.thunk(() => (() => {
                 const isElixirType = (type) => (x) => nix.eq(nix.selOr(x, () => "", "_elixirType"), type);
                 const rawElixir = nix.thunk(() => nix.app(mkOptionType, nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     name: "rawElixir",
                     description: "raw elixir",
                     check: nix.thunk(() => nix.app(isElixirType, "raw")),
                   }))));
                 const elixirOr = (other) => nix.app(either, other, rawElixir);
                 return nix.update({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   rawElixir: rawElixir,
                   elixirOr: elixirOr,
                   atom: nix.thunk(() => nix.app(elixirOr, nix.thunk(() => nix.app(mkOptionType, nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         name: "elixirAtom",
                         description: "elixir atom",
                         check: nix.thunk(() => nix.app(isElixirType, "atom")),
                       })))))),
                   charlist: nix.thunk(() => nix.app(elixirOr, nix.thunk(() => nix.app(mkOptionType, nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         name: "elixirCharlist",
                         description: "elixir charlist",
                         check: nix.thunk(() => nix.app(isElixirType, "charlist")),
                       })))))),
                   tuple: nix.thunk(() => nix.app(elixirOr, nix.thunk(() => nix.app(mkOptionType, nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         name: "elixirTuple",
                         description: "elixir tuple",
                         check: nix.thunk(() => nix.app(isElixirType, "tuple")),
                       })))))),
                   map: nix.thunk(() => nix.app(elixirOr, nix.thunk(() => nix.app(mkOptionType, nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         name: "elixirMap",
                         description: "elixir map",
                         check: nix.thunk(() => nix.app(isElixirType, "map")),
@@ -158,7 +158,7 @@ ${nix.app(concatStringsSep, "\n", rootConfigs)}
             };
           })()),
           generate: (name) => (value) => nix.app(nix.sel(pkgs, "runCommand"), name, nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               value: nix.thunk(() => nix.app(toConf, value)),
               nativeBuildInputs: nix.thunk(() => [elixir]),
               preferLocalBuild: true,

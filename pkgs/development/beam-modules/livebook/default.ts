@@ -29,21 +29,21 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(beamPackages, "erlang"))]);
       const nativeBuildInputs = nix.thunk(() => [bun, makeWrapper, writableTmpDirAsHomeHook]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "livebook-dev",
           repo: "livebook",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-VpYxsbfQl5sS4G1iqD/gkEohqlwiFi/Wyj8kiG0Pc4I=",
         }))));
       const mixFodDeps = nix.thunk(() => nix.app(nix.sel(beamPackages, "fetchMixDeps"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.str`mix-deps-${pname}`),
           src: src,
           version: version,
           hash: "sha256-T74RmUORPdNibxdl+bRGyYyOdnKs1TyjtdutLtfLNLM=",
         }))));
       const node_modules = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.str`${pname}-node_modules`),
           src: src,
           version: version,
@@ -83,15 +83,15 @@ wrapProgram $out/bin/server \\
       const versionCheckKeepEnvironment = nix.thunk(() => ["HOME"]);
       const doInstallCheck = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "livebook-service": nix.thunk(() => nix.sel(nixosTests, "livebook-service")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         homepage: "https://livebook.dev/",
         description: "Automate code & data workflows with interactive Elixir notebooks",
@@ -110,7 +110,7 @@ wrapProgram $out/bin/server \\
         ]),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         buildInputs,

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.15.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PyCQA",
           repo: "pep8-naming",
           tag: version,
@@ -34,7 +34,7 @@ runHook postCheck
 `);
       const pythonImportsCheck = nix.thunk(() => ["pep8ext_naming"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Check PEP-8 naming conventions, plugin for flake8",
         homepage: "https://github.com/PyCQA/pep8-naming",
         changelog: nix.thunk(() => nix.str`https://github.com/PyCQA/pep8-naming/blob/${nix.sel(src, "tag")}/CHANGELOG.rst`),
@@ -45,7 +45,7 @@ runHook postCheck
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

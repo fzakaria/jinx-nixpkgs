@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const stdenv$ = nix.thunk(() => (nix.asBool(nix.selOr(stdenvNoCC, () => false, "hostPlatform", "useLLVM")) ? nix.app(overrideCC, stdenvNoCC, nix.thunk(() => nix.sel(buildPackages, "llvmPackages", "clangNoLibcxx"))) : (nix.asBool(nix.selOr(stdenvNoCC, () => false, "hostPlatform", "useGccNG")) ? nix.app(overrideCC, stdenvNoCC, nix.thunk(() => nix.sel(buildPackages, "gccNGPackages", "gccWithLibatomic"))) : nix.force(stdenv))));
   const stdenv_1 = stdenv$;
   return nix.app(nix.sel(stdenv_1, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libbacktrace",
       version: "0-unstable-2026-05-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ianlancetaylor",
           repo: "libbacktrace",
           rev: "96664e69b1ecdb76e824be1d9e8f475b76dd08cf",
@@ -47,11 +47,11 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => (nix.asBool((nix.asBool(enableShared) && nix.asBool(nix.sel(stdenv_1, "hostPlatform", "isPE")))) ? "LDFLAGS=-no-undefined" : null)),
       doCheck: nix.thunk(() => (nix.asBool(nix.sel(stdenv_1, "hostPlatform", "isLinux")) && nix.asBool(!nix.asBool(nix.sel(stdenv_1, "hostPlatform", "isMusl"))))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "C library that may be linked into a C/C++ program to produce symbolic backtraces",
         homepage: "https://github.com/ianlancetaylor/libbacktrace",
         maintainers: nix.thunk(() => (() => {

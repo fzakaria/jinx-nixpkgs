@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pycrypto = nix.arg($, "pycrypto");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pymumble",
       version: "unstable-2024-10-20",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tjni",
           repo: "pymumble",
           rev: "3241e84e5ce162a20597e4df6a9c443122357fec",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pycrypto, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["pymumble_py3", "pymumble_py3.constants"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to create mumble bots",
         homepage: "https://github.com/tjni/pymumble",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

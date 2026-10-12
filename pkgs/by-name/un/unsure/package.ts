@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "unsure";
       const version = "0.4.0-unstable-2025-04-15";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "filiph",
           repo: "unsure",
           rev: "123712482b7053974cbef9ffa7ba46c1cdfb765f",
@@ -31,9 +31,9 @@ export default nix.lambda((args) => (() => {
       const pubspecLock = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json")));
       const doInstallCheck = true;
       const installCheckPhase = "runHook preInstallCheck\n\n[[ \"$(\"$out/bin/unsure\" \"4~6 * 1~2\" | head --lines=2)\" == \"$(printf '\\n\\t%s' '5~11')\" ]]\n\nrunHook postInstallCheck\n";
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/filiph/unsure/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
         description: "Calculate with numbers you’re not sure about",
         downloadPage: "https://github.com/filiph/unsure",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         ]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

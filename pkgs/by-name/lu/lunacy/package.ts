@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const imagemagick = nix.arg($, "imagemagick");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lunacy",
       version: "14.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://lcdn.icons8.com/setup/Lunacy_${nix.sel(finalAttrs, "version")}.deb`),
           hash: "sha256-riOlvd3ZxdCw5pe5v0R0jqVMpOFOiVfqxmgh8YqnPd0=",
         })))),
@@ -72,7 +72,7 @@ runHook postInstall
       postInstall: "substituteInPlace $out/share/applications/lunacy.desktop \\\n  --replace-fail \"Exec=/opt/icons8/lunacy/Lunacy\" \"Exec=lunacy\" \\\n  --replace-fail \"Icon=/opt/icons8/lunacy/Assets/LunacyLogo.png\" \"Icon=lunacy\"\n",
       postFixup: "mkdir $out/bin\n\n# The wrapper is needed instead of a symlink to prevent a random \"Unsupported file format\" when running the app.\nmakeWrapper \"$out/lib/lunacy/Lunacy\" \"$out/bin/lunacy\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Free design software that keeps your flow with AI tools and built-in graphics",
         homepage: "https://icons8.com/lunacy",
         changelog: "https://lunacy.docs.icons8.com/release-notes/",

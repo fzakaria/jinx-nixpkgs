@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "chromium"));
   const defaultProfile = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (k) => (v) => !nix.eq(v, null), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       HomepageLocation: nix.thunk(() => nix.sel(cfg, "homepageLocation")),
       DefaultSearchProviderEnabled: nix.thunk(() => nix.sel(cfg, "defaultSearchProviderEnabled")),
       DefaultSearchProviderSearchURL: nix.thunk(() => nix.sel(cfg, "defaultSearchProviderSearchURL")),
@@ -47,18 +47,18 @@ export default nix.lambda((args) => (() => {
       ExtensionInstallForcelist: nix.thunk(() => nix.sel(cfg, "extensions")),
     }))));
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       programs: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         chromium: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "policies for chromium based browsers like Chromium, Google Chrome or Brave")),
           enablePlasmaBrowserIntegration: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Native Messaging Host for Plasma Browser Integration")),
           plasmaBrowserIntegrationPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, nix.thunk(() => ["kdePackages", "plasma-browser-integration"]), nix.thunk(() => ({})))),
           extensions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))));
@@ -68,49 +68,49 @@ export default nix.lambda((args) => (() => {
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[\n  \"chlffgpmiacpedhhbkiomidkjlcfhogd\" # pushbullet\n  \"mbniclmhobmnbdlbpiphghaielnnpgdp\" # lightshot\n  \"gcbommkclmclpchllfjekcdonpmejbdp\" # https everywhere\n  \"cjpalhdlnbpafiamejdnhcphjbkeiagm\" # ublock origin\n]\n")),
             })))),
           homepageLocation: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "Chromium default homepage",
               default: null,
               example: "https://nixos.org",
             })))),
           defaultSearchProviderEnabled: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "bool")))),
               description: "Enable the default search provider.",
               default: null,
               example: true,
             })))),
           defaultSearchProviderSearchURL: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "Chromium default search provider url.",
               default: null,
               example: "https://encrypted.google.com/search?q={searchTerms}&{google:RLZ}{google:originalQueryForSuggestion}{google:assistedQueryStats}{google:searchFieldtrialParameter}{google:searchClient}{google:sourceId}{google:instantExtendedEnabledParameter}ie={inputEncoding}",
             })))),
           defaultSearchProviderSuggestURL: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "Chromium default search provider url for suggestions.",
               default: null,
               example: "https://encrypted.google.com/complete/search?output=chrome&q={searchTerms}",
             })))),
           extraOpts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "attrs")),
               description: "Extra chromium policy options. These settings are locked and the user cannot change them in the browser later.\nA list of available policies\ncan be found in the Chrome Enterprise documentation:\n<https://cloud.google.com/docs/chrome-enterprise/policies/>\nMake sure the selected policy is supported on Linux and your browser version.\n",
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  \"BrowserSignin\" = 0;\n  \"SyncDisabled\" = true;\n  \"PasswordManagerEnabled\" = false;\n  \"SpellcheckEnabled\" = true;\n  \"SpellcheckLanguage\" = [\n    \"de\"\n    \"en-US\"\n  ];\n}\n")),
             })))),
           extraOptsRecommended: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "attrs")),
               description: "Extra chromium policy options in recommended. These are default settings. The user can change them in the browser later if they want to.\nA list of available policies\ncan be found in the Chrome Enterprise documentation:\n<https://cloud.google.com/docs/chrome-enterprise/policies/>\nMake sure the selected policy is supported on Linux and your browser version.\n",
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  \"BrowserSignin\" = 0;\n  \"SyncDisabled\" = true;\n  \"PasswordManagerEnabled\" = false;\n  \"SpellcheckEnabled\" = true;\n  \"SpellcheckLanguage\" = [\n    \"de\"\n    \"en-US\"\n  ];\n}\n")),
             })))),
           initialPrefs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "attrs")),
               description: "Initial preferences are used to configure the browser for the first run.\nUnlike {option}`programs.chromium.extraOpts`, initialPrefs can be changed by users in the browser settings.\nMore information can be found in the Chromium documentation:\n<https://www.chromium.org/administrators/configuring-other-preferences/>\n",
               default: nix.thunk(() => ({})),
@@ -120,57 +120,57 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       environment: nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         etc: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             "chromium/native-messaging-hosts/org.kde.plasma.browser_integration.json": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enablePlasmaBrowserIntegration")), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 source: nix.thunk(() => nix.str`${nix.sel(cfg, "plasmaBrowserIntegrationPackage")}/etc/chromium/native-messaging-hosts/org.kde.plasma.browser_integration.json`),
               })))),
             "chromium/policies/managed/default.json": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(defaultProfile, {})), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 text: nix.thunk(() => nix.builtins.toJSON(defaultProfile)),
               })))),
             "chromium/policies/managed/extra.json": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "extraOpts"), {})), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 text: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.sel(cfg, "extraOpts")))),
               })))),
             "chromium/policies/recommended/extra.json": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "extraOptsRecommended"), {})), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 text: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.sel(cfg, "extraOptsRecommended")))),
               })))),
             "chromium/initial_preferences": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "initialPrefs"), {})), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 text: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.sel(cfg, "initialPrefs")))),
               })))),
             "opt/chrome/native-messaging-hosts/org.kde.plasma.browser_integration.json": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enablePlasmaBrowserIntegration")), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 source: nix.thunk(() => nix.str`${nix.sel(cfg, "plasmaBrowserIntegrationPackage")}/etc/opt/chrome/native-messaging-hosts/org.kde.plasma.browser_integration.json`),
               })))),
             "opt/chrome/policies/managed/default.json": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(defaultProfile, {})), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 text: nix.thunk(() => nix.builtins.toJSON(defaultProfile)),
               })))),
             "opt/chrome/policies/managed/extra.json": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "extraOpts"), {})), nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 text: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.sel(cfg, "extraOpts")))),
               })))),
             "opt/chrome/policies/recommended/extra.json": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "extraOptsRecommended"), {})), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 text: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.sel(cfg, "extraOptsRecommended")))),
               })))),
             "brave/policies/managed/default.json": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(defaultProfile, {})), nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 text: nix.thunk(() => nix.builtins.toJSON(defaultProfile)),
               })))),
             "brave/policies/managed/extra.json": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "extraOpts"), {})), nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 text: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.sel(cfg, "extraOpts")))),
               })))),
             "brave/policies/recommended/extra.json": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "extraOptsRecommended"), {})), nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 text: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.sel(cfg, "extraOptsRecommended")))),
               })))),
           })))),

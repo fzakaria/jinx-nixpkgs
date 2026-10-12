@@ -15,26 +15,26 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const REAndroidLibrary = nix.arg($, "REAndroidLibrary");
   const self = nix.thunk(() => nix.app(REAndroidLibrary, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "smali",
       version: "0-unstable-2024-11-24",
       projectName: "smali",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "REAndroid",
           repo: "smali-lib",
           rev: "76b35b4e0c9e8c874ca3e374bb943bba8d280770",
           hash: "sha256-PhRBjiIKA4EIiafPplZNBErXG8V84Xn0cZLWVPmJelQ=",
         })))),
       patches: nix.thunk(() => [nix.path(here, "./fix-gradle.patch")]),
-      mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ __proto__: pos$2, pkg: self, data: nix.path(here, "./deps.json") })))),
+      mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: pos$2, pkg: self, data: nix.path(here, "./deps.json") })))),
       gradleBuildTask: "build",
       installPhase: nix.thunk(() => nix.str`runHook preInstall
 install -Dm644 smali/build/libs/*-fat.jar $out/${nix.sel(self, "outJar")}
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
           return [

@@ -44,12 +44,12 @@ export default nix.lambda((args) => (() => {
   const yasm = nix.arg($, "yasm");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "godot3",
       version: "3.6.3",
       godotBuildDescription: "X11 tools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "godotengine",
           repo: "godot",
           rev: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}-stable`),
@@ -142,17 +142,17 @@ runHook postInstall
 `),
       runtimeDependencies: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(finalAttrs, "shouldPatchBinary")), nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.sel(lib, "getLib")), nix.thunk(() => [alsa_lib, libpulseaudio, udev]))))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 extraArgs: nix.thunk(() => ["--version-regex", "(3\\..*)-stable"]),
               })))),
             nix.path(here, "./mono/update-glue-version.sh"),
@@ -173,7 +173,7 @@ runHook postInstall
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://godotengine.org",
         description: nix.thunk(() => nix.add(nix.add("Free and Open Source 2D and 3D game engine (", nix.sel(finalAttrs, "godotBuildDescription")), ")")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

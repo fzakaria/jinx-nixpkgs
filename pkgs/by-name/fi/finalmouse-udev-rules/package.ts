@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "finalmouse-udev-rules",
       version: "0-unstable-2026-01-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "teamfinalmouse",
           repo: "xpanel-linux-permissions",
           rev: "49ba1bf19e7d1f05306baaf72e4514c1f12f139a",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       dontUnpack: true,
       installPhase: "runHook preInstall\n\ninstall -Dpm644 $src/70-finalmouse.rules $out/lib/udev/rules.d/70-finalmouse.rules\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/teamfinalmouse/xpanel-linux-permissions",
         description: "udev rules that give NixOS permission to communicate with Finalmouse mice",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

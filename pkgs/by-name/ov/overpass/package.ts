@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "overpass";
       const version = "3.0.5";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/RedHatOfficial/Overpass/releases/download/v${version}/overpass-${version}.zip`),
           hash: "sha256-8AWT0/DELfNWXtZOejC90DbUSOtyGt9tSkcSuO7HP2o=",
         }))));
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const postInstall = nix.thunk(() => nix.str`install -Dm644 *.md  -t $out/share/doc/overpass-${version}
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://overpassfont.org/",
         description: "Font heavily inspired by Highway Gothic",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "rycee"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

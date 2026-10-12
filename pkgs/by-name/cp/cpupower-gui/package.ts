@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.0";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vagnum08",
           repo: "cpupower-gui",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,12 +40,12 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/vagnum08/cpupower-gui/commit/97f8ac02fe33e412b59d3f3968c16a217753e74b.patch",
             sha256: "XYnpm03kq8JLMjAT73BMCJWlzz40IAuHESm715VV6G0=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/vagnum08/cpupower-gui/commit/22ea668aa4ecf848149ea4c150aa840a25dc6ff8.patch",
             sha256: "sha256-Mri7Af1Y79lt2pvZl4DQSvrqSLIJLIjzyXwMPFEbGVI=",
           })))),
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
       const makeWrapperArgs = nix.thunk(() => ["${gappsWrapperArgs[@]}"]);
       const postFixup = "wrapPythonProgramsIn $out/lib \"$out $propagatedBuildInputs\"\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Change the frequency limits of your cpu and its governor",
         mainProgram: "cpupower-gui",
         homepage: "https://github.com/vagnum08/cpupower-gui/",
@@ -93,7 +93,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

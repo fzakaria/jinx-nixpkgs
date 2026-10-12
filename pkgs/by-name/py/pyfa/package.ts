@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pyfa";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pyfa-org",
           repo: "Pyfa",
           tag: nix.thunk(() => nix.str`v${version_1}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [nix.path(here, "./dark-theme-wxpython-4.2-compat.patch")]);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "pyfa",
             exec: "pyfa %U",
             icon: "pyfa",
@@ -90,7 +90,7 @@ EOF
       const fixupPhase = "runHook preFixup\n\nwrapProgramShell $out/share/pyfa/pyfa \\\n  ${gappsWrapperArgs[@]} \\\n\nrunHook postFixup\n";
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python fitting assistant, cross-platform fitting tool for EVE Online",
         homepage: "https://github.com/pyfa-org/Pyfa",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -106,7 +106,7 @@ EOF
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         version: version_1,
         pname,
         pyproject,

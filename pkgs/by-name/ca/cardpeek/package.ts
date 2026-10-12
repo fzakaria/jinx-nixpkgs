@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const readline = nix.arg($, "readline");
   const version = "0.8.4";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cardpeek",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "L1L1",
           repo: "cardpeek",
           rev: nix.thunk(() => nix.str`cardpeek-${version}`),
@@ -36,10 +36,10 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.add("# gcc15\nsubstituteInPlace lua_nodes.c \\\n  --replace-fail \"ui_update(1)\" \"ui_update()\"\nsubstituteInPlace ui/gtk/gui_cardview.c \\\n  --replace-fail \"ui_update(0)\" \"ui_update()\"\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "# replace xcode check and hard-coded PCSC framework path\nsubstituteInPlace configure.ac \\\n  --replace-fail 'if test ! -e \"/Applications/Xcode.app/\"; then' 'if test yes != yes; then' \\\n  --replace-fail 'PCSC_HEADERS=`ls -d /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/*.sdk/System/Library/Frameworks/PCSC.framework/Versions/Current/Headers/ | sort | head -1`' 'PCSC_HEADERS=$SDKROOT/System/Library/Frameworks/PCSC.framework/Versions/Current/Headers'\n"))),
       nativeBuildInputs: nix.thunk(() => [pkg_config, autoreconfHook]),
       buildInputs: nix.thunk(() => nix.concat([glib, gtk3, lua5_2, curl, readline], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), pcsclite))),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ __proto__: pos$2, am_cv_func_iconv_works: "yes" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$2, am_cv_func_iconv_works: "yes" })))),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/L1L1/cardpeek",
         description: "Tool to read the contents of ISO7816 smart cards",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

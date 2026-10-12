@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const pyusb = nix.arg($, "pyusb");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "blinkstick",
       version: "1.2.0-unstable-2023-05-04",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "arvydas",
           repo: "blinkstick-python",
           rev: "8140b9fa18a9ff4f0e9df8e70c073f41cb8f1d35",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["blinkstick"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python package to control BlinkStick USB devices",
         mainProgram: "blinkstick",
         homepage: "https://github.com/arvydas/blinkstick-python",

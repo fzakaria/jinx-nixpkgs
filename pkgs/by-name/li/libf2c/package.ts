@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libf2c",
       version: "20160102",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "http://www.netlib.org/f2c/libf2c.zip",
           sha256: "1q78y8j8xpl8zdzdxmn5ablss56hi5a7vz3idam9l2nfx5q40h6a",
         })))),
@@ -39,7 +39,7 @@ unzip ${nix.sel(finalAttrs, "src")}
       hardeningDisable: nix.thunk(() => ["format"]),
       enableParallelBuilding: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "F2c converts Fortran 77 source code to C",
         homepage: "http://www.netlib.org/f2c/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

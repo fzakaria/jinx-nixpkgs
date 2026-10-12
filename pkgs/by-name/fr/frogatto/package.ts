@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const engine = nix.thunk(() => nix.app(callPackage, nix.path(here, "./engine.nix"), nix.thunk(() => ({}))));
   const data = nix.thunk(() => nix.app(callPackage, nix.path(here, "./data.nix"), nix.thunk(() => ({}))));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "frogatto",
       exec: "frogatto",
       startupNotify: true,
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const version = nix.thunk(() => nix.attr(data, "version"));
   return nix.app(buildEnv, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "frogatto",
       version: version,
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postBuild: "wrapProgram $out/bin/frogatto \\\n  --chdir \"$out/share/frogatto\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://frogatto.com",
         description: description,
         license: nix.thunk(() => (() => {

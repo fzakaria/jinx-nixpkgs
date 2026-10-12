@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const boost = nix.arg($, "boost");
   const python3 = nix.arg($, "python3");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "kopeninghours",
       extraNativeBuildInputs: nix.thunk(() => [bison, flex]),
       extraBuildInputs: nix.thunk(() => [
         qtdeclarative,
-        nix.thunk(() => nix.app(nix.sel(boost, "override"), nix.thunk(() => ({ __proto__: pos$1, enablePython: true, python: python3 })))),
+        nix.thunk(() => nix.app(nix.sel(boost, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enablePython: true, python: python3 })))),
         python3,
       ]),
     })));

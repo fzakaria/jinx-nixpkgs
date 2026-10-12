@@ -34,22 +34,22 @@ export default nix.lambda((args) => (() => {
   const mkEnableOption = nix.thunk(() => nix.attr(from, "mkEnableOption"));
   const mkPackageOption = nix.thunk(() => nix.attr(from, "mkPackageOption"));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       programs: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pinnacle: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(mkEnableOption, "pinnacle")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "pinnacle", nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: "pinnacle",
               example: "pkgs.pinnacle",
               extraDescription: "package containing the pinnacle server binary",
             })))),
           "xdg-portals": nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             enable: nix.thunk(() => nix.app(mkEnableOption, "enable xdg-portals for pinnacle")),
           })),
           withUWSM: nix.thunk(() => nix.app(mkEnableOption, "manage the pinnacle session with [UWSM](https://github.com/Vladimir-csp/uwsm) instead\nof independent systemd services and targets.\n")),
@@ -58,9 +58,9 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             environment: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               systemPackages: nix.thunk(() => [
                 nix.thunk(() => nix.sel(cfg, "package")),
                 nix.thunk(() => nix.sel(pkgs, "protobuf")),
@@ -69,11 +69,11 @@ export default nix.lambda((args) => (() => {
               pathsToLink: nix.thunk(() => ["/share/pinnacle"]),
             })),
             xdg: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               portal: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "xdg-portals", "enable")), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   enable: true,
-                  wlr: nix.thunk(() => ({ __proto__: pos$7, enable: true })),
+                  wlr: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
                   configPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
                   extraPortals: nix.thunk(() => [
                     nix.thunk(() => nix.sel(pkgs, "xdg-desktop-portal-wlr")),
@@ -84,16 +84,16 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "withUWSM")), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               programs: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 uwsm: nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   enable: true,
                   waylandCompositors: nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     pinnacle: nix.thunk(() => ({
-                      __proto__: pos$11,
+                      [nix.POS]: pos$11,
                       prettyName: "Pinnacle",
                       comment: "Pinnacle compositor managed by UWSM",
                       binPath: "/run/current-system/sw/bin/pinnacle",
@@ -104,18 +104,18 @@ export default nix.lambda((args) => (() => {
               })),
             })))),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "withUWSM"))), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               services: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 displayManager: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   sessionPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
                 })),
               })),
             })))),
         ]))))),
     meta: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "cassandracomar"))];

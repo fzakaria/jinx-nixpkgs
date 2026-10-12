@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gol";
       const version = "1.2.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "clarisma",
           repo: "gol-tool",
           tag: version,
@@ -39,7 +39,7 @@ makeWrapper ${jre}/bin/java $out/bin/gol \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command-line utility for creating and managing Geographic Object Libraries",
         longDescription: "Use the GOL command-line utility to:\n- build and maintain Geographic Object Libraries (GeoDesk's compact database format for OpenStreetMap features)\n- perform GOQL queries and export the results in a variety of formats.\n",
         homepage: "https://docs.geodesk.com/gol",
@@ -48,7 +48,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

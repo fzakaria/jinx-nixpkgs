@@ -16,21 +16,21 @@ export default nix.lambda((args) => (() => {
       const pname = "shapelib";
       const version = "1.6.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.osgeo.org/shapelib/shapelib-${version}.tar.gz`),
           hash: "sha256-P/Xq0Yym0v4knw6As2HhrWeCFlEVJo7UpYx4CmDB4Os=",
         }))));
       const doCheck = true;
       const preCheck = "patchShebangs tests contrib/tests\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C Library for reading, writing and updating ESRI Shapefiles",
         homepage: "http://shapelib.maptools.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "geospatial"))]),
         changelog: "http://shapelib.maptools.org/release.html",
       }));
-      return { __proto__: pos$3, pname, version, src, doCheck, preCheck, meta };
+      return { [nix.POS]: pos$3, pname, version, src, doCheck, preCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

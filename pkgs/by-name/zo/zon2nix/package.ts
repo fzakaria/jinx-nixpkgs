@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const nix$ = nix.arg($, "nix");
   const zig = zig_0_16;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zon2nix",
       version: "0.1.3-unstable-2026-04-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nix-community",
           repo: "zon2nix",
           rev: "d1e1762ce1e5d4df3b65a0d45421b6fb7b99cf92",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(zig, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Convert the dependencies in `build.zig.zon` to a Nix expression",
         mainProgram: "zon2nix",
         homepage: "https://github.com/nix-community/zon2nix",

@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const pytimeparse = nix.arg($, "pytimeparse");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "agate",
       version: "1.14.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wireservice",
           repo: "agate",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_cast_format_locale"]))),
       pythonImportsCheck: nix.thunk(() => ["agate"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python data analysis library that is optimized for humans instead of machines",
         homepage: "https://github.com/wireservice/agate",
         changelog: nix.thunk(() => nix.str`https://github.com/wireservice/agate/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.rst`),

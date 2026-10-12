@@ -30,15 +30,15 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nodejs = nodejs_slim_22;
   const yarnConfigHook$ = nix.thunk(() => nix.app(nix.sel(yarnConfigHook, "override"), nix.thunk(() => ({
-      __proto__: pos$2,
-      yarn: nix.thunk(() => nix.app(nix.sel(yarn, "override"), nix.thunk(() => ({ __proto__: pos$1, nodejs: nodejs })))),
+      [nix.POS]: pos$2,
+      yarn: nix.thunk(() => nix.app(nix.sel(yarn, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, nodejs: nodejs })))),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "gancio",
       version: "1.28.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           domain: "framagit.org",
           owner: "les",
           repo: "gancio",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-2WXibjUHKK1jM5FEwgY9QpgIINQ6bG6KC3FV2Q9JlwQ=",
         })))),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/yarn.lock")),
           hash: "sha256-N53GctXhKH04rO+N8Tshln6bU+QuOyZPEuJf8hC0wHk=",
         })))),
@@ -65,13 +65,13 @@ export default nix.lambda((args) => (() => {
       preInstall: "cp node_modules/sharp/build/Release/sharp.node .\ncp node_modules/sqlite3/build/Release/node_sqlite3.node .\n",
       postInstall: "install -Dm755 sharp.node -t $out/lib/node_modules/gancio/node_modules/sharp/build/Release\ninstall -Dm755 node_sqlite3.node -t $out/lib/node_modules/gancio/node_modules/sqlite3/build/Release\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         nodejs: nodejs,
-        tests: nix.thunk(() => ({ __proto__: pos$5, gancio: nix.thunk(() => nix.attr(nixosTests, "gancio")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$5, gancio: nix.thunk(() => nix.attr(nixosTests, "gancio")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Shared agenda for local communities, running on nodejs",
         homepage: "https://gancio.org/",
         changelog: "https://framagit.org/les/gancio/-/raw/master/CHANGELOG.md",

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const jre = nix.arg($, "jre");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jython",
       version: "2.7.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://search.maven.org/remotecontent?filepath=org/python/jython-standalone/${nix.sel(finalAttrs, "version")}/jython-standalone-${nix.sel(finalAttrs, "version")}.jar`),
           sha256: "sha256-H7oXae/8yLGfXhBDa8gnShWM6YhVnyV5J8JMc7sTfzw=",
         })))),
@@ -30,7 +30,7 @@ cp $src $out/jython.jar
 makeWrapper ${jre}/bin/java $out/bin/jython --add-flags "-jar $out/jython.jar"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python interpreter written in Java",
         mainProgram: "jython",
         homepage: "https://jython.org/",

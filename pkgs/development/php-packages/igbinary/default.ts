@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const php = nix.arg($, "php");
   return nix.app(buildPecl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "igbinary",
       version: "3.2.14",
       sha256: "sha256-YzcUek+4iAclZmdIN72pko7gbufwEUtDOLhsgWIykl0=",
@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["phpincludedir=$(dev)/include"]),
       outputs: nix.thunk(() => ["out", "dev"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Binary serialization for PHP",
         homepage: "https://github.com/igbinary/igbinary/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pynamodb",
           repo: "PynamoDB",
           tag: version,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [botocore]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, signal: nix.thunk(() => [blinker]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, signal: nix.thunk(() => [blinker]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([freezegun, pytest_env, pytest_mock, pytestCheckHook], nix.sel(optional_dependencies, "signal")));
       const pythonImportsCheck = nix.thunk(() => ["pynamodb"]);
       const disabledTests = nix.thunk(() => [
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         "test_connection_make_api_call__binary_attributes",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Interface for Amazon’s DynamoDB",
         longDescription: "DynamoDB is a great NoSQL service provided by Amazon, but the API is\nverbose. PynamoDB presents you with a simple, elegant API.\n",
         homepage: "http://jlafon.io/pynamodb.html",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

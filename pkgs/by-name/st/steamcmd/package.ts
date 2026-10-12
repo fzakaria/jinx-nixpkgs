@@ -19,16 +19,16 @@ export default nix.lambda((args) => (() => {
   const srcs = nix.thunk(() => (() => {
     const url = (platform) => nix.str`https://web.archive.org/web/20240521141411/https://steamcdn-a.akamaihd.net/client/installer/steamcmd_${platform}.tar.gz`;
     return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.app(url, "linux")),
           hash: "sha256-zr8ARr/QjPRdprwJSuR6o56/QVXl7eQTc7V5uPEHHnw=",
         })))),
     };
   })());
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "steamcmd",
       version: "20180104",
       src: nix.thunk(() => nix.selOr(srcs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system")))),
@@ -46,7 +46,7 @@ substitute ${nix.path(here, "./steamcmd.sh")} $out/bin/steamcmd \\
 chmod 0755 $out/bin/steamcmd
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://developer.valvesoftware.com/wiki/SteamCMD",
         description: "Steam command-line tools",
         mainProgram: "steamcmd",

@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
     openssl,
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kreya",
       version: "1.21.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://stable-downloads.kreya.app/${nix.sel(finalAttrs, "version")}/Kreya-linux-x64.tar.gz`),
           hash: "sha256-ZNSK+L9hLDZi1YuWtlKfjRaX/4CqPHWI9jfNDU6tjmw=",
         })))),
@@ -55,7 +55,7 @@ runHook postInstall
 `),
       dontStrip: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Kreya is a GUI client for gRPC and REST APIs",
         homepage: "https://kreya.app/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

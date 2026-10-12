@@ -62,49 +62,49 @@ export default nix.lambda((args) => (() => {
   const str = nix.thunk(() => nix.attr(from, "str"));
   const submodule = nix.thunk(() => nix.attr(from, "submodule"));
   const noInvalidChars = (str_1) => nix.app(nix.sel(lib, "all"), (c) => (nix.asBool(!nix.eq(c, "#")) && nix.asBool(!nix.eq(c, "/"))), nix.thunk(() => nix.app(nix.sel(lib, "stringToCharacters"), str_1)));
-  const printerName = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "types", "addCheck"), nix.thunk(() => nix.app(nix.sel(lib, "types", "strMatching"), "[[:graph:]]+")), noInvalidChars), { __proto__: pos$1, description: "printable string without spaces, # and /" }));
+  const printerName = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "types", "addCheck"), nix.thunk(() => nix.app(nix.sel(lib, "types", "strMatching"), "[[:graph:]]+")), noInvalidChars), { [nix.POS]: pos$1, description: "printable string without spaces, # and /" }));
   return {
-    __proto__: pos$37,
+    [nix.POS]: pos$37,
     options: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       hardware: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         printers: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           ensureDefaultPrinter: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), printerName)),
               default: null,
               description: "Ensures the named printer is the default CUPS printer / printer queue.\n",
             })))),
           ensureClasses: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "Will ensure that the given CUPS classes are configured as declared.\nPlease note that it is possible for some users to temporarily override\nthese properties. If those changes conflict with this configuration,\nthe configuration will take precedence and override them at boot and\nwhen a rebuild is applied. This configuration will not delete any\nclasses that have been removed from the list. In order to list classes\nyou can use {command}`lpstat -c`. It will list any classes without\nmembers as having a member titled `unknown`. Print jobs to empty\nclasses will silently fail. In order to remove a class, run\n{command}`lpadmin -x <class name>`. Classes can still be added\nmanually. For more on classes see\n<https://www.cups.org/doc/admin.html#CLASSES>, or\n{manpage}`lpadmin(8)`.\n",
               type: nix.thunk(() => nix.app(attrsOf, nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     options: nix.thunk(() => ({
-                      __proto__: pos$7,
+                      [nix.POS]: pos$7,
                       description: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$3,
+                          [nix.POS]: pos$3,
                           type: nix.thunk(() => nix.app(nullOr, str)),
                           description: "Optional human-readable description",
                           example: "Printers that support color printing",
                         })))),
                       location: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           type: nix.thunk(() => nix.app(nullOr, str)),
                           description: "Optional human-readable location",
                           example: "Workroom",
                         })))),
                       printers: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$5,
+                          [nix.POS]: pos$5,
                           type: nix.thunk(() => nix.app(listOf, str)),
                           default: [],
                           example: nix.thunk(() => ["BrotherHL_Workroom", "EpsonColor_Basement"]),
                           description: "A list of printers included in this class. Note that all\nprinters in this list must also be present in\nconfig.hardware.printers.ensurePrinters. Specifying a symblic\nname here that does not match any of those printers is\nconsidered a hard error.\n",
                         })))),
                       classes: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           type: nix.thunk(() => nix.app(listOf, str)),
                           default: [],
                           description: "A list of classes to include in this class.\n\n::: {.note}\nCUPS itself does not support nested classes. Any classes will\nsimply have all of their member printers added to this class\nin a recursive manner. This is an abstraction that serves the\npurpose of convenience and expressiveness, not a 1:1 mapping\non top of CUPS.\n:::\n",
@@ -113,49 +113,49 @@ export default nix.lambda((args) => (() => {
                   })))))),
             })))),
           ensurePrinters: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               description: "Will regularly ensure that the given CUPS printers are configured as declared here.\nIf a printer's options are manually changed afterwards, they will be overwritten eventually.\nThis option will never delete any printer, even if removed from this list.\nYou can check existing printers with {command}`lpstat -s`\nand remove printers with {command}`lpadmin -x <printer-name>`.\nPrinters not listed here can still be manually configured.\n",
               default: [],
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     options: nix.thunk(() => ({
-                      __proto__: pos$17,
+                      [nix.POS]: pos$17,
                       name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           type: printerName,
                           example: "BrotherHL_Workroom",
                           description: "Name of the printer / printer queue.\nMay contain any printable characters except \"/\", \"#\", and space.\n",
                         })))),
                       location: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$11,
+                          [nix.POS]: pos$11,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                           default: null,
                           example: "Workroom",
                           description: "Optional human-readable location.\n",
                         })))),
                       description: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$12,
+                          [nix.POS]: pos$12,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                           default: null,
                           example: "Brother HL-5140",
                           description: "Optional human-readable description.\n",
                         })))),
                       deviceUri: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$13,
+                          [nix.POS]: pos$13,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"ipp://printserver.local/printers/BrotherHL_Workroom\"\n\"usb://HP/DESKJET%20940C?serial=CN16E6C364BH\"\n")),
                           description: "How to reach the printer.\n{command}`lpinfo -v` shows a list of supported device URIs and schemes.\n",
                         })))),
                       model: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"gutenprint.${lib.versions.majorMinor (lib.getVersion pkgs.gutenprint)}://brother-hl-5140/expert\"\n")),
                           description: "Location of the ppd driver file for the printer.\n{command}`lpinfo -m` shows a list of supported models.\n",
                         })))),
                       ppdOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$16,
+                          [nix.POS]: pos$16,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
-                          example: nix.thunk(() => ({ __proto__: pos$15, PageSize: "A4", Duplex: "DuplexNoTumble" })),
+                          example: nix.thunk(() => ({ [nix.POS]: pos$15, PageSize: "A4", Duplex: "DuplexNoTumble" })),
                           default: nix.thunk(() => ({})),
                           description: "Sets PPD options for the printer.\n{command}`lpoptions [-p printername] -l` shows supported PPD options for the given printer.\n",
                         })))),
@@ -166,7 +166,7 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "printing", "enable")), nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         assertions: nix.thunk(() => nix.concat([
           nix.thunk(() => (() => {
             const referencedClasses = nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (_) => nix.lambda((args_1) => (() => {
@@ -182,7 +182,7 @@ export default nix.lambda((args) => (() => {
                   return nix.builtins.elem(missingClass, classes);
                 })(), formals$3), nix.thunk(() => nix.sel(cfg, "ensureClasses")))));
             return {
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               assertion: nix.thunk(() => nix.eq(missingClasses, [])),
               message: nix.thunk(() => nix.str`One or more values of \`config.hardware.printers.ensureClasses.<name>.classes\`
 contained values not present in \`config.hardware.printers.ensureClasses\`
@@ -206,7 +206,7 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (p) => nix.str`  - \`${p}\`
                   return nix.builtins.elem(missingPrinter, printers);
                 })(), formals$5), nix.thunk(() => nix.sel(cfg, "ensureClasses")))));
             return {
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               assertion: nix.thunk(() => nix.eq(missingPrinters, [])),
               message: nix.thunk(() => nix.str`One or more values of \`config.hardware.printers.ensureClasses.<name>.printers\`
 contained values not present in \`config.hardware.printers.ensurePrinters\`
@@ -217,40 +217,40 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (p) => nix.str`  - \`${p}\`
             };
           })()),
         ], nix.builtins.map((class$) => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             assertion: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "ensureClasses", nix.key(nix.force(class$)), "printers"), [])) || nix.asBool(!nix.eq(nix.sel(cfg, "ensureClasses", nix.key(nix.force(class$)), "classes"), [])))),
             message: nix.thunk(() => nix.str`At least one of the lists \`config.hardware.printers.ensureClasses.${class$}.printers\`
 and \`config.hardware.printers.ensureClasses.${class$}.classes\` has to be non-empty.
 `),
           }), nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.sel(cfg, "ensureClasses"))))))),
         systemd: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           services: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             cups: nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               postStart: nix.thunk(() => (() => {
                 const getPrinters = (class$) => nix.app(nix.sel(lib, "uniqueStrings"), nix.thunk(() => nix.app(nix.sel(lib, "concatLists"), nix.thunk(() => nix.app(nix.sel(lib, "textClosureList"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => nix.lambda((args_1) => (() => {
                           const $_1 = nix.formals(args_1, formals$6);
                           const classes = nix.argOr($_1, "classes", () => []);
                           const printers = nix.argOr($_1, "printers", () => []);
-                          return { __proto__: pos$26, deps: classes, text: printers };
+                          return { [nix.POS]: pos$26, deps: classes, text: printers };
                         })(), formals$6), nix.thunk(() => nix.sel(cfg, "ensureClasses")))), nix.thunk(() => [class$]))))));
                 const classNames = nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.sel(cfg, "ensureClasses"))));
                 const lpadmin = (args_1) => (() => {
                   const toLpadminArgs = nix.thunk(() => nix.app(nix.sel(lib, "cli", "toCommandLineShell"), (optionName) => ({
-                      __proto__: pos$27,
+                      [nix.POS]: pos$27,
                       option: nix.thunk(() => nix.str`-${optionName}`),
                       sep: null,
                       explicitBool: false,
                     })));
-                  const argsDpx = nix.thunk(() => nix.app(nix.sel(lib, "intersectAttrs"), nix.thunk(() => ({ __proto__: pos$28, d: true, p: true, x: true })), args_1));
+                  const argsDpx = nix.thunk(() => nix.app(nix.sel(lib, "intersectAttrs"), nix.thunk(() => ({ [nix.POS]: pos$28, d: true, p: true, x: true })), args_1));
                   const argsWoDpx = nix.thunk(() => nix.app(nix.sel(lib, "removeAttrs"), args_1, nix.thunk(() => ["d", "p", "x"])));
                   return nix.str`lpadmin ${nix.app(toLpadminArgs, argsDpx)} ${nix.app(toLpadminArgs, argsWoDpx)}`;
                 })();
                 return nix.str`#### ADDING PRINTERS ####
 ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (p) => nix.app(lpadmin, nix.thunk(() => ({
-                      __proto__: pos$29,
+                      [nix.POS]: pos$29,
                       p: nix.thunk(() => nix.sel(p, "name")),
                       v: nix.thunk(() => nix.sel(p, "deviceUri")),
                       m: nix.thunk(() => nix.sel(p, "model")),
@@ -261,14 +261,14 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (p) => nix.app(lpadmin, nix
                     }))), nix.thunk(() => nix.sel(cfg, "ensurePrinters")))}
 
 #### SETTING DEFAULT PRINTER ####
-${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "ensureDefaultPrinter"), null)), nix.thunk(() => nix.app(lpadmin, nix.thunk(() => ({ __proto__: pos$30, d: nix.thunk(() => nix.sel(cfg, "ensureDefaultPrinter")) })))))}
+${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "ensureDefaultPrinter"), null)), nix.thunk(() => nix.app(lpadmin, nix.thunk(() => ({ [nix.POS]: pos$30, d: nix.thunk(() => nix.sel(cfg, "ensureDefaultPrinter")) })))))}
 
 #### ADDING PRINTERS TO CLASSES ####
-${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (className) => nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (printer) => nix.app(lpadmin, nix.thunk(() => ({ __proto__: pos$31, p: printer, c: className }))), nix.thunk(() => nix.app(getPrinters, className))), classNames)}
+${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (className) => nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (printer) => nix.app(lpadmin, nix.thunk(() => ({ [nix.POS]: pos$31, p: printer, c: className }))), nix.thunk(() => nix.app(getPrinters, className))), classNames)}
 
 #### POPULATING CLASSES ####
 ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (className) => (class$) => nix.app(lpadmin, nix.thunk(() => ({
-                        __proto__: pos$32,
+                        [nix.POS]: pos$32,
                         p: className,
                         L: nix.thunk(() => nix.sel(class$, "location")),
                         D: nix.thunk(() => nix.sel(class$, "description")),

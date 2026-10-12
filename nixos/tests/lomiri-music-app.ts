@@ -38,52 +38,52 @@ export default nix.lambda((args) => (() => {
   const ocrPauseColor = "#FF00FF";
   const ocrStartColor = "#00FFFF";
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     name: "lomiri-music-app-standalone",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "lomiri", "members")),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           imports: nix.thunk(() => [
             nix.path(here, "./common/auto.nix"),
             nix.path(here, "./common/user-account.nix"),
             nix.path(here, "./common/x11.nix"),
           ]),
           services: nix.thunk(() => ({
-            __proto__: pos$6,
-            xserver: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+            [nix.POS]: pos$6,
+            xserver: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
             desktopManager: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               lomiri: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 enable: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), true)),
               })),
             })),
             displayManager: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               defaultSession: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "none+icewm")),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             etc: nix.thunk(() => nix.attrsDyn({}, [
               [nix.str`${musicFile}`, nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 source: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), musicFile, nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     nativeBuildInputs: nix.thunk(() => (() => {
                       const w = nix.withScope(pkgs, null);
                       return [
                         nix.thunk(() => nix.lookup(w, "ffmpeg")),
-                        nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "imagemagick"), "override"), nix.thunk(() => ({ __proto__: pos$7, ghostscriptSupport: true })))),
+                        nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "imagemagick"), "override"), nix.thunk(() => ({ [nix.POS]: pos$7, ghostscriptSupport: true })))),
                       ];
                     })()),
                   })), nix.thunk(() => nix.str`magick -size 400x400 canvas:white -pointsize 40 -fill black -annotate +100+100 '${ocrContent}' output.png
@@ -111,7 +111,7 @@ ffmpeg -re \\
                   nix.thunk(() => nix.lookup(w_1, "lomiri-music-app")),
                   nix.thunk(() => nix.lookup(w_1, "lomiri-thumbnailer")),
                   nix.thunk(() => nix.app(nix.sel(lib, "meta", "hiPrio"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "suru-icon-theme"), "overrideAttrs"), (old) => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         postPatch: nix.thunk(() => nix.add(nix.selOr(old, () => "", "postPatch"), nix.str`substituteInPlace suru/actions/scalable/media-playback-pause.svg \\
   --replace-fail 'fill:none' 'fill:${ocrPauseColor}'
 
@@ -122,30 +122,30 @@ substituteInPlace suru/actions/scalable/media-playback-start.svg \\
                 ];
               })());
             })()),
-            variables: nix.thunk(() => ({ __proto__: pos$11, UITK_ICON_THEME: "suru" })),
+            variables: nix.thunk(() => ({ [nix.POS]: pos$11, UITK_ICON_THEME: "suru" })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             tmpfiles: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               settings: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 "10-lomiri-music-app-test-setup": nix.thunk(() => nix.attrsDyn({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   "/root/Music": nix.thunk(() => ({
-                    __proto__: pos$14,
-                    d: nix.thunk(() => ({ __proto__: pos$13, mode: "0755", user: "root", group: "root" })),
+                    [nix.POS]: pos$14,
+                    d: nix.thunk(() => ({ [nix.POS]: pos$13, mode: "0755", user: "root", group: "root" })),
                   })),
                 }, [
                   [nix.str`/root/Music/${musicFile}`, nix.thunk(() => ({
-                    __proto__: pos$16,
-                    "C+": nix.thunk(() => ({ __proto__: pos$15, argument: nix.thunk(() => nix.str`/etc/${musicFile}`) })),
+                    [nix.POS]: pos$16,
+                    "C+": nix.thunk(() => ({ [nix.POS]: pos$15, argument: nix.thunk(() => nix.str`/etc/${musicFile}`) })),
                   }))],
                 ])),
               })),
             })),
           })),
-          i18n: nix.thunk(() => ({ __proto__: pos$21, supportedLocales: nix.thunk(() => ["all"]) })),
+          i18n: nix.thunk(() => ({ [nix.POS]: pos$21, supportedLocales: nix.thunk(() => ["all"]) })),
         };
       })(), formals$2),
     })),

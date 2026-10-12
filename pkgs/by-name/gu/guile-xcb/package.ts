@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const texinfo = nix.arg($, "texinfo");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "guile-xcb",
       version: "1.3-unstable-2017-05-28",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mwitmer",
           repo: "guile-xcb",
           rev: "db7d5a393cc37a56f66541b3f33938b40c6f35b3",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       ]),
       makeFlags: nix.thunk(() => ["GUILE_AUTO_COMPILE=0"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/mwitmer/guile-xcb",
         description: "XCB bindings for Guile",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

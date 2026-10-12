@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const inkscape = nix.arg($, "inkscape");
   const xcursorgen = nix.arg($, "xcursorgen");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "volantes-cursors",
       version: "2022-08-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "varlesh",
           repo: "volantes-cursors",
           rev: "b13a4bbf6bd1d7e85fadf7f2ecc44acc198f8d01",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       makeTargets: nix.thunk(() => ["build"]),
       makeFlags: nix.thunk(() => ["DESTDIR=$(out)", "PREFIX="]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.pling.com/p/1356095/",
         description: "Classic cursor theme with a flying style",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

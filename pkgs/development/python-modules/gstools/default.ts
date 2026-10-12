@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_cov_stub = nix.arg($, "pytest-cov-stub");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gstools",
       version: "1.7.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GeoStat-Framework",
           repo: "GSTools",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [hatch_vcs, hatchling]),
       dependencies: nix.thunk(() => [emcee, gstools_cython, hankel, meshio, numpy, pyevtk, scipy]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, plotting: nix.thunk(() => [matplotlib, pyvista]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, plotting: nix.thunk(() => [matplotlib, pyvista]) })),
       pythonImportsCheck: nix.thunk(() => ["gstools"]),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytestCheckHook, pytest_cov_stub], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Geostatistical toolbox",
         homepage: "https://github.com/GeoStat-Framework/GSTools",
         changelog: nix.thunk(() => nix.str`https://github.com/GeoStat-Framework/GSTools/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

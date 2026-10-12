@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.12";
       const pname = "qtikz";
       const meta = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Editor for the TikZ language",
         mainProgram: "qtikz",
         homepage: "https://github.com/fhackenberger/ktikz",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         longDescription: "You will also need a working *tex installation in your PATH, containing at least `preview` and `pgf`.\n",
       }));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "fhackenberger",
           repo: "ktikz",
           rev: version,
@@ -42,12 +42,12 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/fhackenberger/ktikz/commit/972685a406517bb85eb561f2c8e26f029eacd7db.patch",
             sha256: "13z40rcd4m4n088v7z2ns17lnpn0z3rzp31lsamic3qdcwjwa5k8",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/fhackenberger/ktikz/commit/ebe4dfb72ac8a137b475ef688b9f7ac3e5c7f242.patch",
             sha256: "GIgPh+iUBPftHKIpZR3a0FxmLhMLuPUapF/t+bCuqMs=",
           })))),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(libsForQt5, "wrapQtAppsHook")),
       ]);
       const env = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         QT_PLUGIN_PATH: nix.thunk(() => nix.str`${nix.sel(libsForQt5, "qtbase")}/${nix.sel(libsForQt5, "qtbase", "qtPluginPrefix")}`),
       }));
       const buildInputs = nix.thunk(() => [
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const qtWrapperArgs = nix.thunk(() => [nix.thunk(() => nix.str`--prefix PATH : "${gnuplot}/bin"`)]);
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         version,
         pname,
         meta,

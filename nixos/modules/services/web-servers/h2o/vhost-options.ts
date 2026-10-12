@@ -41,41 +41,41 @@ export default nix.lambda((args) => (() => {
   const literalExpression = nix.thunk(() => nix.attr(lib, "literalExpression"));
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib }))));
   const tlsRecommendationsOption = nix.thunk(() => nix.attr(from, "tlsRecommendationsOption"));
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     options: nix.thunk(() => ({
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       serverName: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "nonEmptyStr")))),
           default: null,
           description: "Server name to be used for this virtual host. Defaults to attribute\nname in hosts.\n",
           example: "example.org",
         })))),
       serverAliases: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "nonEmptyStr")))),
           default: [],
           example: nix.thunk(() => ["www.example.org", "example.org"]),
           description: "Additional names of virtual hosts served by this virtual host\nconfiguration.\n",
         })))),
       host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "nonEmptyStr")))),
           default: null,
           example: "127.0.0.1",
           description: "Set the host address for this virtual host. If unset, the default is to\nlisten on all network interfaces.\n",
         })))),
       http: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 options: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      __proto__: pos$5,
+                      [nix.POS]: pos$5,
                       type: nix.thunk(() => nix.sel(types, "port")),
                       default: nix.thunk(() => nix.sel(config, "services", "h2o", "defaultHTTPListenPort")),
                       defaultText: nix.thunk(() => nix.app(literalExpression, "config.services.h2o.defaultHTTPListenPort\n")),
@@ -88,13 +88,13 @@ export default nix.lambda((args) => (() => {
           description: "HTTP options for virtual host",
         })))),
       tls: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 options: nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       type: nix.thunk(() => nix.sel(types, "port")),
                       default: nix.thunk(() => nix.sel(config, "services", "h2o", "defaultTLSListenPort")),
                       defaultText: nix.thunk(() => nix.app(literalExpression, "config.services.h2o.defaultTLSListenPort\n")),
@@ -102,31 +102,31 @@ export default nix.lambda((args) => (() => {
                       example: 8443n,
                     })))),
                   policy: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["add", "only", "force"]))),
                       description: "`add` will additionally listen for TLS connections. `only` will\ndisable   TLS connections. `force` will redirect non-TLS traffic\nto the TLS connection.\n",
                       example: "force",
                     })))),
                   redirectCode: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      __proto__: pos$11,
+                      [nix.POS]: pos$11,
                       type: nix.thunk(() => nix.app(nix.sel(types, "ints", "between"), 300n, 399n)),
                       default: 301n,
                       example: 308n,
                       description: "HTTP status used by `globalRedirect` & `forceSSL`. Possible\nusecases include temporary (302, 307) redirects, keeping the\nrequest method & body (307, 308), or explicitly resetting the\nmethod to GET (303). See\n<https://developer.mozilla.org/en-US/docs/Web/HTTP/Redirections>.\n",
                     })))),
                   identity: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      __proto__: pos$16,
+                      [nix.POS]: pos$16,
                       type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                            __proto__: pos$15,
+                            [nix.POS]: pos$15,
                             options: nix.thunk(() => ({
-                              __proto__: pos$14,
+                              [nix.POS]: pos$14,
                               "key-file": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$12,
+                                  [nix.POS]: pos$12,
                                   type: nix.thunk(() => nix.sel(types, "path")),
                                   description: "Path to key file. See\n<https://h2o.examp1e.net/configure/base_directives.html#key-file>.\n",
                                 })))),
                               "certificate-file": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$13,
+                                  [nix.POS]: pos$13,
                                   type: nix.thunk(() => nix.sel(types, "path")),
                                   description: "Path to certificate file. See\n<https://h2o.examp1e.net/configure/base_directives.html#certificate-file>.\n",
                                 })))),
@@ -138,14 +138,14 @@ export default nix.lambda((args) => (() => {
                     })))),
                   recommendations: tlsRecommendationsOption,
                   quic: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      __proto__: pos$17,
+                      [nix.POS]: pos$17,
                       type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "attrs")))),
                       default: null,
                       description: "Enables HTTP/3 over QUIC on the UDP port for TLS. The attrset\nprovides fine-turning for QUIC behavior, but can be empty. See\n<https://h2o.examp1e.net/configure/http3_directives.html#quic-attributes>.\n",
                       example: nix.thunk(() => nix.app(literalExpression, "{\n  amp-limit = 2;\n  handshake-timeout-rtt-multiplier = 300;\n  retry = \"ON\";\n}\n")),
                     })))),
                   extraSettings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      __proto__: pos$18,
+                      [nix.POS]: pos$18,
                       type: nix.thunk(() => nix.sel(types, "attrs")),
                       default: nix.thunk(() => ({})),
                       description: "Additional TLS/SSL-related configuration options. See\n<https://h2o.examp1e.net/configure/base_directives.html#listen-ssl>.\n",
@@ -157,25 +157,25 @@ export default nix.lambda((args) => (() => {
           description: "TLS options for virtual host",
         })))),
       acme: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "addCheck"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   options: nix.thunk(() => ({
-                    __proto__: pos$25,
+                    [nix.POS]: pos$25,
                     enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$22,
+                        [nix.POS]: pos$22,
                         type: nix.thunk(() => nix.sel(types, "bool")),
                         default: false,
                         description: "Whether to ask Let’s Encrypt to sign a certificate for this\nvirtual host. Alternatively, an existing host can be used thru\n{option}`acme.useHost`.\n",
                       })))),
                     useHost: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$23,
+                        [nix.POS]: pos$23,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "nonEmptyStr")))),
                         default: null,
                         description: "An existing Let’s Encrypt certificate to use for this virtual\nhost. This is useful if you have many subdomains and want to\navoid hitting the [rate\nlimit](https://letsencrypt.org/docs/rate-limits). Alternately,\nyou can generate a certificate through {option}`acme.enable`.\nNote that this option neither creates any certificates nor does\nit add subdomains to existing ones — you will need to create\nthem manually using [](#opt-security.acme.certs).\n",
                       })))),
                     root: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$24,
+                        [nix.POS]: pos$24,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                         default: "/var/lib/acme/acme-challenge",
                         description: "Directory for the ACME challenge, which is **public**. Don’t put\ncerts or keys in here. Set to `null` to inherit from\nconfig.security.acme.\n",
@@ -186,7 +186,7 @@ export default nix.lambda((args) => (() => {
           description: "ACME options for virtual host.",
         })))),
       settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           type: nix.thunk(() => nix.sel(types, "attrs")),
           default: nix.thunk(() => ({})),
           description: "Attrset to be transformed into YAML for host config. Note that the HTTP\n/ TLS configurations will override these config values. See\n<https://h2o.examp1e.net/configure/base_directives.html#hosts>.\n",

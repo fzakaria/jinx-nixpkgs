@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
       const version = "0.28.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-MR9m6f9yYFX3PnR2T7YuCXq4Btoxd8E/E1bI5+r5pl0=",
         }))));
       const build_system = nix.thunk(() => [setuptools]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, socks: nix.thunk(() => [siosocks]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, socks: nix.thunk(() => [siosocks]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([
         async_timeout,
         pytest_asyncio,
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_pasv_connection_pasv_forced_response_address"])));
       const pythonImportsCheck = nix.thunk(() => ["aioftp"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python FTP client/server for asyncio",
         homepage: "https://aioftp.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/aio-libs/aioftp/blob/${version}/history.rst`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const swapspace = nix.arg($, "swapspace");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "swapspace",
       version: "1.18.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Tookmund",
           repo: "Swapspace",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,18 +47,18 @@ substituteInPlace 'Makefile.am' \\
 `),
       postInstall: "installManPage doc/swapspace.8\ninstall --mode=444 -D 'swapspace.service' \"$out/etc/systemd/system/swapspace.service\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         binlore: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           out: nix.thunk(() => nix.app(nix.sel(binlore, "synthesize"), swapspace, "execer cannot bin/swapspace\n")),
         })),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           swapspace: nix.thunk(() => nix.attr(nixosTests, "swapspace")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Dynamic swap manager for Linux",
         homepage: "https://github.com/Tookmund/Swapspace",
         changelog: nix.thunk(() => nix.str`https://github.com/Tookmund/Swapspace/releases/tag/v${nix.sel(finalAttrs, "version")}`),

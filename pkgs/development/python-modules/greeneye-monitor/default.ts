@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.0.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jkeljo",
           repo: "greeneye-monitor",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest_socket, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["greeneye.monitor"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Receive data packets from GreenEye Monitor",
         homepage: "https://github.com/jkeljo/greeneye-monitor",
         changelog: nix.thunk(() => nix.str`https://github.com/jkeljo/greeneye-monitor/blob/v${version}/CHANGELOG.rst`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

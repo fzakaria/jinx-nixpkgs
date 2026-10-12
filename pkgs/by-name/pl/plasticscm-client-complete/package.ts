@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const plasticscm_client_core = nix.arg($, "plasticscm-client-core");
   const plasticscm_client_gui = nix.arg($, "plasticscm-client-gui");
   return nix.app(buildEnv, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "plasticscm-client-complete",
       version: nix.thunk(() => nix.attr(plasticscm_client_core, "version")),
       name: nix.thunk(() => nix.str`plasticscm-client-complete-${nix.sel(plasticscm_client_core, "version")}`),
       paths: nix.thunk(() => [plasticscm_client_core, plasticscm_client_gui]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: "https://www.plasticscm.com",
         description: "SCM by Unity for game development",
         platforms: nix.thunk(() => ["x86_64-linux"]),

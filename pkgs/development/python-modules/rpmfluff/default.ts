@@ -19,19 +19,19 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.7.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://releases.pagure.org/${pname}/${pname}-${version}.tar.xz`),
           sha256: "19vnlzma8b0aghdiixk0q3wc10y6306hsnic0qvswaaiki94fss1",
         }))));
-      const env = nix.thunk(() => ({ __proto__: pos$2, LC_ALL: "en_US.utf-8" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, LC_ALL: "en_US.utf-8" }));
       const buildInputs = nix.thunk(() => [glibcLocales]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Lightweight way of building RPMs, and sabotaging them",
         homepage: "https://pagure.io/rpmfluff",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
       }));
-      return { __proto__: pos$4, pname, version, format, src, env, buildInputs, meta };
+      return { [nix.POS]: pos$4, pname, version, format, src, env, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

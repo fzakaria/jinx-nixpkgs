@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   const foo = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "foo-test",
       dontUnpack: true,
       installPhase: nix.thunk(() => nix.str`mkdir -p $out/bin $out/include $out/lib
@@ -28,7 +28,7 @@ $CC -shared \\
 `),
     }))));
   const bar = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "bar-test",
       outputs: nix.thunk(() => ["out", "dev"]),
       dontUnpack: true,
@@ -43,7 +43,7 @@ $CC -shared \\
 `),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: "stdenv-inputs-test",
       buildInputs: nix.thunk(() => [foo, bar]),
       buildCommand: nix.thunk(() => nix.str`env
@@ -66,10 +66,10 @@ $CC -lfoo -lbar -o lib-check ${nix.path(here, "./lib-main.c")}
 touch $out
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       })),
-      passthru: nix.thunk(() => ({ __proto__: pos$4, foo: foo, bar: bar })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, foo: foo, bar: bar })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

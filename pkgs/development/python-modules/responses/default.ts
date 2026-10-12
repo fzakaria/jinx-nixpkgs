@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const __darwinAllowLocalNetworking = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "getsentry",
           repo: "responses",
           tag: version,
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest_asyncio, pytest_httpserver, pytestCheckHook, tomli_w]);
       const pythonImportsCheck = nix.thunk(() => ["responses"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python module for mocking out the requests Python library",
         homepage: "https://github.com/getsentry/responses",
         changelog: nix.thunk(() => nix.str`https://github.com/getsentry/responses/blob/${nix.sel(src, "tag")}/CHANGES`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

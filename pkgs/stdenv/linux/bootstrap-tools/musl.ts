@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const bootstrapFiles = nix.arg($, "bootstrapFiles");
   const extraAttrs = nix.arg($, "extraAttrs");
   return nix.app(nix.builtins.derivation, nix.thunk(() => nix.update({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "bootstrap-tools",
       builder: nix.thunk(() => nix.sel(bootstrapFiles, "busybox")),
       args: nix.thunk(() => ["ash", "-e", nix.path(here, "./musl/unpack-bootstrap-tools.sh")]),

@@ -16,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const pname = "sdbus-networkmanager";
   const version = "2.0.0";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       format: "setuptools",
       pname: pname,
       version: version,
       propagatedBuildInputs: nix.thunk(() => [sdbus]),
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-NXKsOoGJxoPsBBassUh2F3Oo8Iga09eLbW9oZO/5xQs=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python-sdbus binds for NetworkManager",
         homepage: "https://github.com/python-sdbus/python-sdbus-networkmanager",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2")),

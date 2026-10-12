@@ -98,18 +98,18 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.se
 ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", fileSystems)}
 `);
   return {
-    __proto__: pos$35,
+    [nix.POS]: pos$35,
     options: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       services: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         orangefs: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           server: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "OrangeFS server")),
             logType: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "enum"), nix.thunk(() => ["file", "syslog"]));
@@ -118,21 +118,21 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", fileSystems)}
                 description: "Destination for log messages.",
               })))),
             dataStorageSpace: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 example: "/data/storage",
                 description: "Directory for data storage.",
               })))),
             metadataStorageSpace: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 example: "/data/meta",
                 description: "Directory for meta data storage.",
               })))),
             BMIModules: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -142,72 +142,72 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", fileSystems)}
                 description: "List of BMI modules to load.",
               })))),
             extraDefaults: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(lib, "types", "lines")),
                 default: "",
                 description: "Extra config for `<Defaults>` section.",
               })))),
             extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(lib, "types", "lines")),
                 default: "",
                 description: "Extra config for the global section.",
               })))),
             servers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")));
                 })()),
                 default: nix.thunk(() => ({})),
-                example: nix.thunk(() => ({ __proto__: pos$7, node1: "tcp://node1:3334", node2: "tcp://node2:3334" })),
+                example: nix.thunk(() => ({ [nix.POS]: pos$7, node1: "tcp://node1:3334", node2: "tcp://node2:3334" })),
                 description: "URLs for storage server including port. The attribute names define the server alias.",
               })))),
             fileSystems: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 description: "These options will create the `<FileSystem>` sections of config file.\n",
-                default: nix.thunk(() => ({ __proto__: pos$9, orangefs: nix.thunk(() => ({})) })),
+                default: nix.thunk(() => ({ [nix.POS]: pos$9, orangefs: nix.thunk(() => ({})) })),
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  fs1 = {\n    id = 101;\n  };\n\n  fs2 = {\n    id = 102;\n  };\n}\n")),
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.lambda((args_1) => (() => {
                         const $_1 = nix.formals(args_1, formals$2);
                         return {
-                          __proto__: pos$17,
+                          [nix.POS]: pos$17,
                           options: nix.thunk(() => ({
-                            __proto__: pos$16,
+                            [nix.POS]: pos$16,
                             id: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$10,
+                                [nix.POS]: pos$10,
                                 type: nix.thunk(() => nix.sel(lib, "types", "int")),
                                 default: 1n,
                                 description: "File system ID (must be unique within configuration).",
                               })))),
                             rootHandle: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$11,
+                                [nix.POS]: pos$11,
                                 type: nix.thunk(() => nix.sel(lib, "types", "int")),
                                 default: 3n,
                                 description: "File system root ID.",
                               })))),
                             extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$12,
+                                [nix.POS]: pos$12,
                                 type: nix.thunk(() => nix.sel(lib, "types", "lines")),
                                 default: "",
                                 description: "Extra config for `<FileSystem>` section.",
                               })))),
                             troveSyncMeta: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$13,
+                                [nix.POS]: pos$13,
                                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                                 default: true,
                                 description: "Sync meta data.",
                               })))),
                             troveSyncData: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$14,
+                                [nix.POS]: pos$14,
                                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                                 default: false,
                                 description: "Sync data.",
                               })))),
                             extraStorageHints: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$15,
+                                [nix.POS]: pos$15,
                                 type: nix.thunk(() => nix.sel(lib, "types", "lines")),
                                 default: "",
                                 description: "Extra config for `<StorageHints>` section.",
@@ -222,34 +222,34 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", fileSystems)}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         environment: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "orangefs"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$24,
-            "orangefs/server.conf": nix.thunk(() => ({ __proto__: pos$23, text: configFile, user: "orangefs", group: "orangefs" })),
+            [nix.POS]: pos$24,
+            "orangefs/server.conf": nix.thunk(() => ({ [nix.POS]: pos$23, text: configFile, user: "orangefs", group: "orangefs" })),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           users: nix.thunk(() => ({
-            __proto__: pos$27,
-            orangefs: nix.thunk(() => ({ __proto__: pos$26, isSystemUser: true, group: "orangefs" })),
+            [nix.POS]: pos$27,
+            orangefs: nix.thunk(() => ({ [nix.POS]: pos$26, isSystemUser: true, group: "orangefs" })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$28, orangefs: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$28, orangefs: nix.thunk(() => ({})) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           services: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             "orangefs-server": nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               requires: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "orangefs")}/bin/pvfs2-server -d \\
   /etc/orangefs/server.conf
 `),

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.8.3";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-dVawZB5oewu7sNj0lZ4koVia6gorjtxpSu66Lvl6XuE=",
@@ -40,14 +40,14 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["pve_exporter"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { __proto__: pos$2, pve: nix.thunk(() => nix.attr(from, "pve")) };
+          return { [nix.POS]: pos$2, pve: nix.thunk(() => nix.attr(from, "pve")) };
         })()),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Exposes information gathered from Proxmox VE cluster for use by the Prometheus monitoring system",
         mainProgram: "pve_exporter",
         homepage: "https://github.com/prometheus-pve/prometheus-pve-exporter",
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         format,

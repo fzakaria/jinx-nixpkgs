@@ -25,20 +25,20 @@ export default nix.lambda((args) => (() => {
   const pname = "bzip2-static";
   const version = "1.0.8";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://sourceware.org/pub/bzip2/bzip2-${version}.tar.gz`),
       sha256: "0s92986cv0p692icqlw1j42y9nld8zd83qwhzbqd61p1dqbh6nmb",
     }))));
   const binutilsTargetPrefix = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(hostPlatform, "config"), nix.sel(buildPlatform, "config"))), nix.thunk(() => nix.str`${nix.sel(hostPlatform, "config")}-`)));
   return nix.app(nix.sel(bash, "runCommand"), nix.thunk(() => nix.str`${pname}-${version}`), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       nativeBuildInputs: nix.thunk(() => [gcc, binutils, findutils, gnumake, gnutar, gzip]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "get-version": (result) => nix.app(nix.sel(bash, "runCommand"), nix.thunk(() => nix.str`${pname}-get-version-${version}`), nix.thunk(() => ({})), nix.thunk(() => nix.str`${result}/bin/bzip2 --help
 mkdir $out
 `)),
@@ -55,7 +55,7 @@ mkdir $out
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "High-quality data compression program",
         homepage: "https://www.sourceware.org/bzip2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsdOriginal")),

@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const mkPackageOption = nix.thunk(() => nix.attr(lib, "mkPackageOption"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "hercules-ci-agent"));
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./settings.nix")), nix.thunk(() => ({ __proto__: pos$1, pkgs: pkgs, lib: lib }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./settings.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, pkgs: pkgs, lib: lib }))));
   const format = nix.thunk(() => nix.attr(from, "format"));
   const settingsModule = nix.thunk(() => nix.attr(from, "settingsModule"));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(mkRenamedOptionModule, nix.thunk(() => ["services", "hercules-ci-agent", "extraOptions"]), nix.thunk(() => ["services", "hercules-ci-agent", "settings"]))),
       nix.thunk(() => nix.app(mkRenamedOptionModule, nix.thunk(() => ["services", "hercules-ci-agent", "baseDirectory"]), nix.thunk(() => ["services", "hercules-ci-agent", "settings", "baseDirectory"]))),
@@ -47,25 +47,25 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["services", "hercules-ci-agent", "patchNix"]), "Nix versions packaged in this version of Nixpkgs don't need a patched nix-daemon to work correctly in Hercules CI Agent clusters.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         "hercules-ci-agent": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Enable to run Hercules CI Agent as a system service.\n\n[Hercules CI](https://hercules-ci.com) is a\ncontinuous integation service that is centered around Nix.\n\nSupport is available at [help@hercules-ci.com](mailto:help@hercules-ci.com).\n",
             })))),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "hercules-ci-agent", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               description: "These settings are written to the {file}`agent.toml` file.\n\nNot all settings are listed as options, can be set nonetheless.\n\nFor the exhaustive list of settings, see <https://docs.hercules-ci.com/hercules-ci/reference/agent-config/>.\n",
-              type: nix.thunk(() => nix.app(nix.sel(types, "submoduleWith"), nix.thunk(() => ({ __proto__: pos$3, modules: nix.thunk(() => [settingsModule]) })))),
+              type: nix.thunk(() => nix.app(nix.sel(types, "submoduleWith"), nix.thunk(() => ({ [nix.POS]: pos$3, modules: nix.thunk(() => [settingsModule]) })))),
             })))),
           tomlFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(types, "path")),
               internal: true,
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalMD"), "generated `hercules-ci-agent.toml`")),
@@ -75,31 +75,31 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             assertion: nix.thunk(() => (!nix.asBool(nix.selOr(cfg, () => false, "settings", "nixUserIsTrusted")) || nix.asBool(nix.eq(nix.builtins.match(".*(^|\n)[ \t]*trusted-users[ \t]*=.*", nix.thunk(() => nix.sel(config, "nix", "extraOptions"))), null)))),
             message: "hercules-ci-agent: Please do not set `trusted-users` in `nix.extraOptions`.\n\nThe hercules-ci-agent module by default relies on `nix.settings.trusted-users`\nto be effectful, but a line like `trusted-users = ...` in `nix.extraOptions`\nwill override the value set in `nix.settings.trusted-users`.\n\nInstead of setting `trusted-users` in the `nix.extraOptions` string, you should\nset an option with additive semantics, such as\n - the NixOS option `nix.settings.trusted-users`, or\n - the Nix option in the `extraOptions` string, `extra-trusted-users`\n",
           })),
         ]),
         nix: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           extraOptions: "# A store path that was missing at first may well have finished building,\n# even shortly after the previous lookup. This *also* applies to the daemon.\nnarinfo-cache-negative-ttl = 0\n",
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           "hercules-ci-agent": nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             tomlFile: nix.thunk(() => nix.app(nix.sel(format, "generate"), "hercules-ci-agent.toml", nix.thunk(() => nix.sel(cfg, "settings")))),
             settings: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               config: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 _module: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   args: nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     packageOption: nix.thunk(() => nix.sel(options, "services", "hercules-ci-agent", "package")),
                     pkgs: pkgs,
                   })),

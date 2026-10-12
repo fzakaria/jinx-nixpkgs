@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const valgrind = nix.arg($, "valgrind");
   const libwacom_surface = nix.arg($, "libwacom-surface");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "libwacom",
       version: "2.20.0",
       outputs: nix.thunk(() => ["bin", "out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linuxwacom",
           repo: "libwacom",
           rev: nix.thunk(() => nix.str`libwacom-${nix.sel(finalAttrs, "version")}`),
@@ -65,15 +65,15 @@ export default nix.lambda((args) => (() => {
           ])),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "libwacom-surface": libwacom_surface,
-          tests: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$2, doCheck: true })))),
+          tests: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, doCheck: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         homepage: "https://linuxwacom.github.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/linuxwacom/libwacom/blob/${nix.sel(finalAttrs, "src", "rev")}/NEWS`),

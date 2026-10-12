@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   const enablePtqpdf = nix.argOr($, "enablePtqpdf", () => false);
-  const architecture = nix.thunk(() => nix.selOr({ __proto__: pos$1, "i686-linux": "i386", "x86_64-linux": "amd64" }, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported system ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
+  const architecture = nix.thunk(() => nix.selOr({ [nix.POS]: pos$1, "i686-linux": "i386", "x86_64-linux": "amd64" }, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported system ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "pantum-driver";
       const version = "1.1.167";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/osguot/pantum-universal-driver/releases/download/release/Pantum.Linux.Driver.V${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}.zip`),
           hash: "sha256-0RyCgU00ZwGwcUhCkod971noVB7G10xnbH64/AdIFMA=",
         }))));
@@ -41,7 +41,7 @@ cp -r usr/share $out/
 cp Resources/locale/en_US.UTF-8/* $out/share/doc/pantum/
 `, nix.app(nix.sel(lib, "optionalString"), enablePtqpdf, "cp -r opt/pantum/* $out/\nln -s $out/lib/libqpdf.so* $out/lib/libqpdf.so\nln -s $out/lib/libqpdf.so $out/lib/libqpdf.so.21\n")));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Pantum universal driver",
         homepage: "https://global.pantum.com/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -56,7 +56,7 @@ cp Resources/locale/en_US.UTF-8/* $out/share/doc/pantum/
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

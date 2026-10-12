@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const radicale = nix.arg($, "radicale");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "etesync-dav",
       version: "0.35.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "etesync",
           repo: "etesync-dav",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,20 +45,20 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w_1, "flask")),
           nix.thunk(() => nix.lookup(w_1, "flask-wtf")),
           nix.thunk(() => nix.lookup(w_1, "msgpack")),
-          nix.thunk(() => nix.app(nix.sel(python3Packages, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(radicale, "override"), nix.thunk(() => ({ __proto__: pos$2, python3: nix.thunk(() => nix.lookup(w_1, "python")) })))))),
+          nix.thunk(() => nix.app(nix.sel(python3Packages, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(radicale, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, python3: nix.thunk(() => nix.lookup(w_1, "python")) })))))),
           nix.thunk(() => nix.lookup(w_1, "requests")),
         ], nix.sel(nix.lookup(w_1, "requests"), "optional-dependencies", "socks"));
       })()),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "etesync-dav": nix.thunk(() => nix.attr(nixosTests, "etesync-dav")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://www.etesync.com",
         description: "Secure, end-to-end encrypted, and privacy respecting sync for contacts, calendars and tasks",
         mainProgram: "etesync-dav",

@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
   const hotdoc = nix.arg($, "hotdoc");
   const apple_sdk_gstreamer = nix.arg($, "apple-sdk_gstreamer");
   const validPlugins = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     file: [],
     gopbuffer: [],
     inter: [],
@@ -139,19 +139,19 @@ export default nix.lambda((args) => (() => {
   const pkgConfigNames = nix.thunk(() => nix.builtins.map(pkgConfigName, selectedPlugins));
   const invalidPlugins = nix.thunk(() => nix.app(nix.sel(lib, "subtractLists"), nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), validPlugins)), selectedPlugins));
   const validPluginFile = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "known-plugin-names.txt",
       text: nix.thunk(() => nix.app(nix.sel(lib, "concatLines"), nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), validPlugins)))),
     }))));
   const requiresBindgen = nix.thunk(() => (nix.asBool(!nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64"))))) || nix.asBool(nix.app(nix.sel(lib, "elem"), "whisper", selectedPlugins))));
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => nix.eq(invalidPlugins, [])), nix.thunk(() => nix.str`Invalid gst-plugins-rs plugin${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.gt(nix.app(nix.sel(lib, "length"), invalidPlugins), 1n)), "s")}: ${nix.app(nix.sel(lib, "concatStringsSep"), ", ", invalidPlugins)}`)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/libraries/gstreamer/rs/default.nix:207:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "gst-plugins-rs",
       version: "0.15.3",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           domain: "gitlab.freedesktop.org",
           owner: "gstreamer",
           repo: "gst-plugins-rs",
@@ -159,7 +159,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-DO5Dk9xjqWTI4ORzlHYPc/O/tyHfSyh7+YCzES5ZiHs=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           name: nix.thunk(() => nix.str`gst-plugins-rs-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-EHikshVeaBzyx9+GBIkOPii63T12BobWdW6nTBLzwU8=",
@@ -188,7 +188,7 @@ diff -u ${validPluginFile} valid-plugin-names.txt
         nasm,
         validatePkgConfig,
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), requiresBindgen, nix.thunk(() => [cmake, nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [lld])), nix.app(nix.sel(lib, "optionals"), enableDocumentation, nix.thunk(() => [hotdoc])))))),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ __proto__: pos$5, NIX_CFLAGS_LINK: "-fuse-ld=lld" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$5, NIX_CFLAGS_LINK: "-fuse-ld=lld" })))),
       buildInputs: nix.thunk(() => nix.concat([gstreamer, gst_plugins_base, libGL], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [apple_sdk_gstreamer])), nix.app(nix.sel(lib, "concatMap"), (plugin) => nix.app(nix.sel(lib, "getAttr"), plugin, validPlugins), selectedPlugins)))),
       checkInputs: nix.thunk(() => [gst_plugins_good, gst_plugins_bad, gst_plugins_ugly]),
       mesonFlags: nix.thunk(() => nix.concat(nix.builtins.map((plugin) => nix.app(nix.sel(lib, "mesonEnable"), plugin, true), selectedPlugins), [
@@ -211,22 +211,22 @@ export GST_PLUGIN_SCANNER="${nix.app(nix.sel(lib, "getLib"), gstreamer)}/libexec
       doInstallCheck: nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "elem"), "webp", selectedPlugins)) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))))) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isElf")))),
       installCheckPhase: "runHook preInstallCheck\nreadelf -a $out/lib/gstreamer-1.0/libgstrswebp.so | grep -F 'Shared library: [libwebpdemux.so'\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         tests: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               versionCheck: true,
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             extraArgs: nix.thunk(() => ["--version-regex", "([0-9.]+)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "GStreamer plugins written in Rust",
         mainProgram: "gst-webrtc-signalling-server",
         homepage: "https://gitlab.freedesktop.org/gstreamer/gst-plugins-rs",

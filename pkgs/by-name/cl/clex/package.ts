@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "clex",
       version: "4.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/xitop/clex/releases/download/v${nix.sel(finalAttrs, "version")}/clex-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-3Y3ayJEy9pHLTUSeXYeekTVdopwKLZ8vVcVarLIFnpM=",
         })))),
       buildInputs: nix.thunk(() => [ncurses]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "File manager with full-screen terminal interface",
         longDescription: "CLEX (pronounced KLEKS) displays directory contents including the file\nstatus details and provides features like command history, filename\ninsertion, or name completion in order to help users to create commands\nto be executed by the shell. There are no built-in commands, CLEX is an\nadd-on to your favorite shell.\n",
         homepage: "https://github.com/xitop/clex",

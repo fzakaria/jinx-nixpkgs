@@ -53,14 +53,14 @@ export default nix.lambda((args) => (() => {
   const effectiveStdenv = nix.thunk(() => (nix.asBool(cudaSupport) ? nix.sel(cudaPackages, "backendStdenv") : nix.sel(args_1, "stdenv")));
   const stdenv_1 = nix.thunk(() => nix.builtins.throw("Use effectiveStdenv instead of stdenv directly, as it may be replaced by cudaPackages.backendStdenv"));
   const libmathdx = nix.thunk(() => nix.app(callPackage, nix.path(here, "./libmathdx.nix"), nix.thunk(() => ({}))));
-  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ __proto__: pos$1, stdenv: effectiveStdenv })), (finalAttrs) => ({
-      __proto__: pos$16,
+  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: effectiveStdenv })), (finalAttrs) => ({
+      [nix.POS]: pos$16,
       pname: "warp-lang",
       version: "1.15.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "NVIDIA",
           repo: "warp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "fix-diagnostics-lifetime-llvm21.patch",
             url: "https://github.com/NVIDIA/warp/commit/309c6147a6d19c3a01159a145d50c56ec1f34101.patch",
             hash: "sha256-KZ7X7CViYol+XPK8Z7rQoaI8ccTfaTK8o5zGubGvjHA=",
@@ -119,7 +119,7 @@ substituteInPlace "$PWD/warp/_src/build_dll.py" \\
         ]))))),
       preBuild: nix.thunk(() => (() => {
         const llvmPath = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "llvm-path",
             paths: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(llvmPackages, "libclang")))),
@@ -138,14 +138,14 @@ substituteInPlace "$PWD/warp/_src/build_dll.py" \\
       pythonImportsCheck: nix.thunk(() => ["warp"]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         libmathdx: libmathdx,
         testers: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           "unit-tests": nix.thunk(() => (() => {
             const python$ = nix.thunk(() => nix.app(nix.sel(python, "withPackages"), (_) => [warp_lang, jax, torch]));
             return nix.app(writeShellApplication, nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 name: "warp-lang-unit-tests",
                 runtimeInputs: nix.thunk(() => [python$]),
                 text: nix.thunk(() => nix.str`${python$}/bin/python3 -m warp.tests
@@ -160,13 +160,13 @@ substituteInPlace "$PWD/warp/_src/build_dll.py" \\
             const libmathdxSupport_1 = nix.arg($_1, "libmathdxSupport");
             const name = nix.thunk(() => nix.add(nix.add("warp-lang-unit-tests-cpu", nix.app(nix.sel(lib, "optionalString"), cudaSupport_1, "-cuda")), nix.app(nix.sel(lib, "optionalString"), libmathdxSupport_1, "-libmathdx")));
             const warp_lang$ = nix.thunk(() => nix.app(nix.sel(warp_lang, "override"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 cudaSupport: cudaSupport_1,
                 libmathdxSupport: libmathdxSupport_1,
                 "warp-lang": warp_lang$,
               }))));
             return nix.app(runCommand, name, nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 nativeBuildInputs: nix.thunk(() => [
                   nix.thunk(() => nix.sel(warp_lang$, "passthru", "testers", "unit-tests")),
                   writableTmpDirAsHomeHook,
@@ -184,18 +184,18 @@ fi
 `));
           })(), formals$2);
           return {
-            __proto__: pos$13,
-            cpu: nix.thunk(() => nix.app(mkUnitTests, nix.thunk(() => ({ __proto__: pos$9, cudaSupport: false, libmathdxSupport: false })))),
+            [nix.POS]: pos$13,
+            cpu: nix.thunk(() => nix.app(mkUnitTests, nix.thunk(() => ({ [nix.POS]: pos$9, cudaSupport: false, libmathdxSupport: false })))),
             cuda: nix.thunk(() => ({
-              __proto__: pos$12,
-              cudaOnly: nix.thunk(() => nix.app(mkUnitTests, nix.thunk(() => ({ __proto__: pos$10, cudaSupport: true, libmathdxSupport: false })))),
-              cudaWithLibmathDx: nix.thunk(() => nix.app(mkUnitTests, nix.thunk(() => ({ __proto__: pos$11, cudaSupport: true, libmathdxSupport: true })))),
+              [nix.POS]: pos$12,
+              cudaOnly: nix.thunk(() => nix.app(mkUnitTests, nix.thunk(() => ({ [nix.POS]: pos$10, cudaSupport: true, libmathdxSupport: false })))),
+              cudaWithLibmathDx: nix.thunk(() => nix.app(mkUnitTests, nix.thunk(() => ({ [nix.POS]: pos$11, cudaSupport: true, libmathdxSupport: true })))),
             })),
           };
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         description: "Python framework for high performance GPU simulation and graphics",
         longDescription: "Warp is a Python framework for writing high-performance simulation\nand graphics code. Warp takes regular Python functions and JIT\ncompiles them to efficient kernel code that can run on the CPU or\nGPU.\n\nWarp is designed for spatial computing and comes with a rich set\nof primitives that make it easy to write programs for physics\nsimulation, perception, robotics, and geometry processing. In\naddition, Warp kernels are differentiable and can be used as part\nof machine-learning pipelines with frameworks such as PyTorch,\nJAX and Paddle.\n",
         homepage: "https://github.com/NVIDIA/warp",

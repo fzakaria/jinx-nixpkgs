@@ -68,11 +68,11 @@ export default nix.lambda((args) => (() => {
   const libPath = nix.thunk(() => nix.add(nix.add(nix.app(nix.sel(lib, "makeLibraryPath"), deps), ":"), nix.app(nix.sel(lib, "makeSearchPathOutput"), "lib", "lib64", deps)));
   const binPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), deps));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "airtame-application",
       version: "4.16.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://downloads.airtame.com/app/latest/linux/Airtame-${nix.sel(finalAttrs, "version")}.deb`),
           hash: "sha256-wjWuPqXXonxbaobwl6dpYmUHA5W3+LXYskFJLUsjDf8=",
         })))),
@@ -115,7 +115,7 @@ sed -i "s|Exec.*$|Exec=$out/bin/airtame-application \\$U|" $out/share/applicatio
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Airtame official screen streaming application",
         homepage: "https://airtame.com",
         downloadPage: nix.thunk(() => nix.str`https://downloads.airtame.com/app/latest/linux/Airtame-${nix.sel(finalAttrs, "version")}.deb`),

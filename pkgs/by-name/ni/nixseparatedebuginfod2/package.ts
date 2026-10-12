@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const util_linux = nix.arg($, "util-linux");
   const cacert = nix.arg($, "cacert");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "nixseparatedebuginfod2",
       version: "2.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "symphorien",
           repo: "nixseparatedebuginfod2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,16 +43,16 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")),
       nativeCheckInputs: nix.thunk(() => [bubblewrap, elfutils, nix$, util_linux, cacert]),
       cargoBuildFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux"))), nix.thunk(() => ["--no-default-features"]))),
-      env: nix.thunk(() => ({ __proto__: pos$2, OPENSSL_NO_VENDOR: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: "1" })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           nixseparatedebuginfod2: nix.thunk(() => nix.attr(nixosTests, "nixseparatedebuginfod2")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Downloads and provides debug symbols and source code for nix derivations to gdb and other debuginfod-capable debuggers as needed",
         homepage: "https://github.com/symphorien/nixseparatedebuginfod2",
         changelog: nix.thunk(() => nix.str`https://https://github.com/symphorien/nixseparatedebuginfod2/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md/`),

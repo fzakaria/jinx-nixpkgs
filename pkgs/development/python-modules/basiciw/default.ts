@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
   const wirelesstools = nix.arg($, "wirelesstools");
   const isPyPy = nix.arg($, "isPyPy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "basiciw",
       version: "0.2.2",
       pyproject: true,
       __structuredAttrs: true,
       disabled: isPyPy,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-S/vpNoJyc5evFEtrsif6BKkc1Qc9z4ory9RNujd1Vao=",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [wirelesstools]),
       pythonImportsCheck: nix.thunk(() => ["basiciw"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Get info about wireless interfaces using libiw",
         homepage: "https://github.com/enkore/basiciw",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

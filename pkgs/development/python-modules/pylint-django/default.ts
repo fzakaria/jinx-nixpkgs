@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pylint_plugin_utils = nix.arg($, "pylint-plugin-utils");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pylint-django",
       version: "2.8.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PyCQA",
           repo: "pylint-django",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [poetry_core]),
       dependencies: nix.thunk(() => [pylint_plugin_utils]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, with_django: nix.thunk(() => [django]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, with_django: nix.thunk(() => [django]) })),
       nativeCheckInputs: nix.thunk(() => [django_tables2, django_tastypie, factory_boy, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["pylint_django"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Pylint plugin to analyze Django applications",
         homepage: "https://github.com/PyCQA/pylint-django",
         changelog: nix.thunk(() => nix.str`https://github.com/pylint-dev/pylint-django/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const setuptools_scm = nix.arg($, "setuptools-scm");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dvc-webhdfs",
       version: "3.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-bolIQ9Fc52agXGFt7anZvDYSSOk7+eozi5lublHqD+o=",
@@ -32,9 +32,9 @@ export default nix.lambda((args) => (() => {
       pythonRemoveDeps: nix.thunk(() => ["dvc"]),
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       dependencies: nix.thunk(() => [dvc_objects, fsspec]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, kerberos: nix.thunk(() => [requests_kerberos]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, kerberos: nix.thunk(() => [requests_kerberos]) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Webhdfs plugin for dvc",
         homepage: "https://pypi.org/project/dvc-webhdfs/",
         changelog: nix.thunk(() => nix.str`https://github.com/iterative/dvc-webhdfs/releases/tag/${nix.sel(finalAttrs, "version")}`),

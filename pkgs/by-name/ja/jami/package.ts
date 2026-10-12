@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
       const pname = "jami";
       const version = "20260811.0";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "git.jami.net",
           owner: "savoirfairelinux",
           repo: "jami-client-qt",
@@ -85,22 +85,22 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitlab.archlinux.org/archlinux/packaging/packages/jami-qt/-/raw/20260717.0-2/zxing-cpp-3.patch",
             hash: "sha256-fTGrsdeC3kN277DvSuKyR5fMZhtBmk1nsL2BbeHYjTY=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://git.jami.net/savoirfairelinux/jami-client-qt/-/commit/b97eb85af48b36008a9d619077965d6284660031.patch",
             hash: "sha256-2gY4cqWg5FY6Q6j6V/x3IMWN3AP8RThjZdxYI+ktLI4=",
             revert: true,
           })))),
       ]);
       const pjsip_jami = nix.thunk(() => nix.app(nix.sel(pjsip, "overrideAttrs"), (old) => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           version: "sfl-2.15-unstable-2025-09-18",
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               owner: "savoirfairelinux",
               repo: "pjproject",
               rev: "3a92a7ee340dbc1f4730fcaf32acac9a54cacf1b",
@@ -132,16 +132,16 @@ export default nix.lambda((args) => (() => {
           buildInputs: nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), [gnutls])),
         })));
       const opendht_jami = nix.thunk(() => nix.app(nix.sel(opendht, "override"), nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enableProxyServerAndClient: true,
           enablePushNotifications: true,
         }))));
       const dhtnet = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           pname: "dhtnet",
           version: "unstable-2026-08-11",
           src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               domain: "git.jami.net",
               owner: "savoirfairelinux",
               repo: "dhtnet",
@@ -178,7 +178,7 @@ export default nix.lambda((args) => (() => {
             "-DBUILD_EXAMPLE=Off",
           ]),
           meta: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             description: "Lightweight Peer-to-Peer Communication Library",
             license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
             platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
@@ -186,7 +186,7 @@ export default nix.lambda((args) => (() => {
           })),
         }))));
       const qwindowkit_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           owner: "atraczyk",
           repo: "qwindowkit",
           rev: "c5c7da2163dfcba144e09a905ee98f920d9d94e7",
@@ -265,17 +265,17 @@ substituteInPlace CMakeLists.txt \\
       const cmakeFlags = nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "DWITH_WEBENGINE", withWebengine)),
       ]);
-      const env = nix.thunk(() => ({ __proto__: pos$11, NIX_LDFLAGS: "-lz" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$11, NIX_LDFLAGS: "-lz" }));
       const qtWrapperArgs = nix.thunk(() => ["--set-default QT_QPA_PLATFORM xcb"]);
       const preFixup = "qtWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$13,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$12, "rev-prefix": "stable/" })))),
+        [nix.POS]: pos$13,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$12, "rev-prefix": "stable/" })))),
         "pjsip-jami": pjsip_jami,
         dhtnet: dhtnet,
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         homepage: "https://jami.net/",
         description: "Free and universal communication platform that respects the privacy and freedoms of its users",
         mainProgram: "jami",
@@ -284,7 +284,7 @@ substituteInPlace CMakeLists.txt \\
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "linsui"))]),
       }));
       return {
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         pname,
         version,
         src,

@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "xonsh-direnv": nix.thunk(() => nix.app(callPackage, nix.path(here, "./xonsh-direnv"), nix.thunk(() => ({})))),
     "xontrib-abbrevs": nix.thunk(() => nix.app(callPackage, nix.path(here, "./xontrib-abbrevs"), nix.thunk(() => ({})))),
     "xontrib-bashisms": nix.thunk(() => nix.app(callPackage, nix.path(here, "./xontrib-bashisms"), nix.thunk(() => ({})))),

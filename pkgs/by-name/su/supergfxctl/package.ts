@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const systemd = nix.arg($, "systemd");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "supergfxctl",
       version: "5.2.7",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "asus-linux",
           repo: "supergfxctl",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ substituteInPlace data/99-nvidia-ac.rules --replace /usr/bin/systemctl ${systemd
       doInstallCheck: true,
       postInstall: "install -Dm444 -t $out/lib/udev/rules.d/ data/*.rules\ninstall -Dm444 -t $out/share/dbus-1/system.d/ data/org.supergfxctl.Daemon.conf\ninstall -Dm444 -t $out/lib/systemd/system/ data/supergfxd.service\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GPU switching utility, mostly for ASUS laptops",
         homepage: "https://gitlab.com/asus-linux/supergfxctl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const privsepPath = nix.argOr($, "privsepPath", () => "/var/empty");
   const privsepUser = nix.argOr($, "privsepUser", () => "ntp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "openntpd",
       version: "6.8p1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://openbsd/OpenNTPD/openntpd-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0ijsylc7a4jlpxsqa0jq1w1c7333id8pcakzl7a5749ria1xp0l5",
         })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libressl]),
       installFlags: nix.thunk(() => ["sysconfdir=${out}/etc", "localstatedir=${TMPDIR}"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.openntpd.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         description: "OpenBSD NTP daemon (Debian port)",

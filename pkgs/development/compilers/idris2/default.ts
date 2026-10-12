@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const idris2 = nix.arg($, "idris2");
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     idris2: idris2,
     idris2Api: nix.thunk(() => nix.app(callPackage, nix.path(here, "./idris2-api.nix"), nix.thunk(() => ({})))),
     idris2Lsp: nix.thunk(() => nix.app(callPackage, nix.path(here, "./idris2-lsp.nix"), nix.thunk(() => ({})))),

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.12.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-6QDntZpHgfY9npNeiPbsUMTWC+P0rfnGO1HtOdV4/gg=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_server_with_path", "test_schema_compatibility_type_mismatch"]);
       const pythonImportsCheck = nix.thunk(() => ["avro"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python serialization and RPC framework",
         homepage: "https://github.com/apache/avro",
         changelog: nix.thunk(() => nix.str`https://github.com/apache/avro/releases/tag/release-${version}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "avro",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

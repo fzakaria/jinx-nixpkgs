@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const enableShared = nix.argOr($, "enableShared", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")));
   const enableDebug = nix.argOr($, "enableDebug", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mlx42",
       version: "2.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "codam-coding-college",
           repo: "MLX42",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
 substituteAll ${nix.path(here, "./mlx42.pc")} $out/lib/pkgconfig/mlx42.pc
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/codam-coding-college/MLX42/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Simple cross-platform graphics library that uses GLFW and OpenGL",
         homepage: "https://github.com/codam-coding-college/MLX42",

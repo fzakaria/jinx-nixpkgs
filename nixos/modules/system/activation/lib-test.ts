@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const testers = nix.arg($, "testers");
   const runTests = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "tests-activation-lib",
       src: nix.path(here, "./lib"),
       buildPhase: ":",
@@ -23,10 +23,10 @@ export default nix.lambda((args) => (() => {
       installPhase: "touch $out\n",
     }))));
   const runShellcheck = nix.thunk(() => nix.app(nix.sel(testers, "shellcheck"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "activation-lib",
       src: nix.thunk(() => nix.sel(runTests, "src")),
     }))));
-  return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({ __proto__: pos$3, runTests: runTests, runShellcheck: runShellcheck })));
+  return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({ [nix.POS]: pos$3, runTests: runTests, runShellcheck: runShellcheck })));
 })(), formals$1);
 //# sourceMappingURL=lib-test.ts.map

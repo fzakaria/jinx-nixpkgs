@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "termscp",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "veeso",
           repo: "termscp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-Var5ZnwX9OyCh+G6/5JF1K/IJR7nQ5508+B1akfsito=",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [dbus, openssl, samba]),
-      env: nix.thunk(() => ({ __proto__: pos$2, OPENSSL_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: 1n })),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       checkFeatures: nix.thunk(() => ["isolated-tests"]),
@@ -47,11 +47,11 @@ export default nix.lambda((args) => (() => {
         "--skip=system::environment::tests::test_system_environment_get_config_dir_err",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Terminal UI file transfer and explorer with support for SCP/SFTP/FTP/S3/SMB",
         changelog: nix.thunk(() => nix.str`https://github.com/veeso/termscp/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         homepage: "https://github.com/veeso/termscp",

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "ed",
       version: "1.22.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/ed/ed-${nix.sel(finalAttrs, "version")}.tar.lz`),
           hash: "sha256-PzOyITUhnDnDxpX3txccJWfT4qF8eYwKkGBzIMuyaPI=",
         })))),
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "ed --version",
             })))),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://www.gnu.org/software/ed/",
         description: "GNU implementation of the standard Unix editor",
         longDescription: "GNU ed is a line-oriented text editor. It is used to create, display,\nmodify and otherwise manipulate text files, both interactively and via\nshell scripts. A restricted version of ed, red, can only edit files in the\ncurrent directory and cannot execute shell commands. Ed is the 'standard'\ntext editor in the sense that it is the original editor for Unix, and thus\nwidely available. For most purposes, however, it is superseded by\nfull-screen editors such as GNU Emacs or GNU Moe.\n",

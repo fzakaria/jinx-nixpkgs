@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.2.20";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "minio",
           repo: "minio-py",
           tag: version,
@@ -39,14 +39,14 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/unit/credentials_test.py"]);
       const pythonImportsCheck = nix.thunk(() => ["minio"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple APIs to access any Amazon S3 compatible object storage server",
         homepage: "https://github.com/minio/minio-py",
         changelog: nix.thunk(() => nix.str`https://github.com/minio/minio-py/releases/tag/${nix.sel(src, "tag")}`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

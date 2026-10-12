@@ -13,9 +13,9 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const fetchFromBitbucket = nix.arg($, "fetchFromBitbucket");
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     withEncodedWhitespace: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchFromBitbucket, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "withWhitespace",
         owner: "tetov",
         repo: "fetchbitbucket_tester",
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
         sha256: "sha256-Nf1Cvbx7Sbab8EeSSBU5baLBiuFYiQtITED+f4tfjC0=",
       })))),
     withEncodedWhitespaceGit: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchFromBitbucket, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: "withWhitespaceGit",
         owner: "tetov",
         repo: "fetchbitbucket_tester",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         forceFetchGit: true,
       })))),
     withoutWhitespace: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchFromBitbucket, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name: "withoutWhitespace",
         owner: "tetov",
         repo: "fetchbitbucket_tester",

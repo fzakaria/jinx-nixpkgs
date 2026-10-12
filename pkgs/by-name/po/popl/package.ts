@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "popl";
       const version = "1.3.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "badaix",
           repo: "popl",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const dontFixup = true;
       const installPhase = "runHook preInstall\n\ninstall -Dm644 $src/include/popl.hpp $out/include/popl.hpp\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Header-only C++ program options parser library",
         homepage: "https://github.com/badaix/popl",
         changelog: nix.thunk(() => nix.str`https://github.com/badaix/popl/releases/tag/${nix.sel(src, "rev")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

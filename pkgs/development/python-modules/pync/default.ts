@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pync";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "38b9e61735a3161f9211a5773c5f5ea698f36af4ff7f77fa03e8d1ff0caa117f",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const preInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`sed -i 's|^\\([ ]*\\)self.bin_path.*$|\\1self.bin_path = "${nix.sel(pkgs, "terminal-notifier")}/bin/terminal-notifier"|' build/lib/pync/TerminalNotifier.py
 `)));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python Wrapper for Mac OS 10.8 Notification Center",
         homepage: "https://pypi.org/project/pync/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         pname,
         format,

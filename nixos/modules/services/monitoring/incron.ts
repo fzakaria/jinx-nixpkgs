@@ -33,40 +33,40 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "incron"));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         incron: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable the incron daemon.\n\nNote that commands run under incrontab only support common Nix profiles for the {env}`PATH` provided variable.\n",
             })))),
           allow: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))))),
               default: null,
               description: "Users allowed to use incrontab.\n\nIf empty then no user will be allowed to have their own incrontab.\nIf `null` then will defer to {option}`deny`.\nIf both {option}`allow` and {option}`deny` are null\nthen all users will be allowed to have their own incrontab.\n",
             })))),
           deny: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))))),
               default: null,
               description: "Users forbidden from using incrontab.",
             })))),
           systab: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "The system incrontab contents.",
               example: "/var/mail IN_CLOSE_WRITE abc $@/$#\n/tmp IN_ALL_EVENTS efg $@/$# $&\n",
             })))),
           extraPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ pkgs.rsync ]")),
@@ -76,34 +76,34 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         warnings: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "allow"), null)) && nix.asBool(!nix.eq(nix.sel(cfg, "deny"), null)))), "If `services.incron.allow` is set then `services.incron.deny` will be ignored.")),
         environment: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "incron"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             "incron.d/system": nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               mode: "0444",
               text: nix.thunk(() => nix.sel(cfg, "systab")),
             })),
             "incron.allow": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "allow"), null)), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 text: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.sel(cfg, "allow")))),
               })))),
             "incron.deny": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "deny"), null)), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 text: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.sel(cfg, "deny")))),
               })))),
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           wrappers: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             incrontab: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               setuid: true,
               owner: "root",
               group: "root",
@@ -112,16 +112,16 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             incron: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "File System Events Scheduler",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               path: nix.thunk(() => nix.sel(cfg, "extraPackages")),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 PIDFile: "/run/incrond.pid",
                 ExecStartPre: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/mkdir -m 710 -p /var/spool/incron`),
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "incron")}/bin/incrond --foreground`),

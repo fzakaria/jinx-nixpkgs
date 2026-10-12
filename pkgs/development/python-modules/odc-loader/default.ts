@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const geopandas = nix.arg($, "geopandas");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "odc-loader",
       version: "0.6.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "opendatacube",
           repo: "odc-loader",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [flit]),
       dependencies: nix.thunk(() => [dask, numpy, odc_geo, rasterio, xarray]),
       "optional-dependencies": nix.thunk(() => nix.app(nix.sel(lib, "fix"), (self) => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           botocore: nix.thunk(() => [botocore]),
           zarr: nix.thunk(() => [zarr]),
           all: nix.thunk(() => nix.concat(nix.sel(self, "botocore"), nix.sel(self, "zarr"))),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_mem_reader", "test_memreader_aux", "test_memreader_zarr"]),
       pythonImportsCheck: nix.thunk(() => ["odc.loader"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tools for constructing xarray objects from parsed metadata",
         homepage: "https://github.com/opendatacube/odc-loader/",
         changelog: nix.thunk(() => nix.str`https://github.com/opendatacube/odc-loader/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

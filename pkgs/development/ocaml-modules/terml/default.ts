@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "terml";
       const version = "0.0.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wllfaria",
           repo: "terml",
           rev: nix.thunk(() => nix.str`${version}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [uutf]);
       const minimalOCamlVersion = "4.13";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/wllfaria/terml/blob/${version}/CHANGES.md`),
         description: "Terminal manipulation library in pure Ocaml",
         homepage: "https://github.com/wllfaria/terml",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "PhilVoel"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

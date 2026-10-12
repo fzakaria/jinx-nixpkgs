@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkLibretroCore = nix.arg($, "mkLibretroCore");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       core: "stella",
       version: "0-unstable-2026-09-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stella-emu",
           repo: "stella",
           rev: "36db8267e443a1ddfe4fabc0a3d42ec2b2332cb4",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "cd src/os/libretro",
       dontConfigure: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Port of Stella to libretro",
         homepage: "https://github.com/stella-emu/stella",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

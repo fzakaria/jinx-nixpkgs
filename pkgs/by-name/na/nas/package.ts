@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const xorg_cf_files = nix.arg($, "xorg-cf-files");
   const xorgproto = nix.arg($, "xorgproto");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nas",
       version: "1.9.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/nas/nas-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-t4hK+zj+7AOhlr07fpxHuAPIMOzRDXRV6cl+Eiw3lEw=",
         })))),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libxau, libxaw, libxext, libxpm, libxt, xorgproto]),
       buildFlags: nix.thunk(() => ["WORLDOPTS=", "World"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-std=c17",
             "-Wno-error=implicit-function-declaration",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
 rm -fr $out/nix
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://radscan.com/nas.html",
         description: "Network transparent, client/server audio transport system",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

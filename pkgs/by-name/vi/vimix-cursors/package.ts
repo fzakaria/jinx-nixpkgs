@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const inkscape = nix.arg($, "inkscape");
   const xcursorgen = nix.arg($, "xcursorgen");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vimix-cursors",
       version: "2020-02-24-unstable-2021-09-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vinceliuice",
           repo: "vimix-cursors",
           rev: "9bc292f40904e0a33780eda5c5d92eb9a1154e9c",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nHOME=\"$NIX_BUILD_ROOT\" ./build.sh\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ninstall -dm 755 $out/share/icons\nfor color in \"\" \"-white\"; do\n  cp -pr \"dist$color/\"  \"$out/share/icons/Vimix$color-cursors\"\ndone\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "X cursor theme inspired by Materia design",
         homepage: "https://github.com/vinceliuice/Vimix-cursors",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

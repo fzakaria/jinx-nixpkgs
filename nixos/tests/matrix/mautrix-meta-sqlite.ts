@@ -48,38 +48,38 @@ export default nix.lambda((args) => (() => {
   const instagramBotUsername = "instagrambot";
   const metaBotUsername = "metabot";
   return {
-    __proto__: pos$33,
+    [nix.POS]: pos$33,
     name: "mautrix-meta-sqlite",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.sel(pkgs, "mautrix-meta", "meta", "maintainers")),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           services: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             "matrix-synapse": nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$6,
-                database: nix.thunk(() => ({ __proto__: pos$2, name: "sqlite3" })),
+                [nix.POS]: pos$6,
+                database: nix.thunk(() => ({ [nix.POS]: pos$2, name: "sqlite3" })),
                 enable_registration: true,
                 enable_registration_without_verification: true,
                 listeners: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     bind_addresses: nix.thunk(() => ["0.0.0.0"]),
                     port: 8008n,
                     resources: nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$3, compress: true, names: nix.thunk(() => ["client"]) })),
-                      nix.thunk(() => ({ __proto__: pos$4, compress: false, names: nix.thunk(() => ["federation"]) })),
+                      nix.thunk(() => ({ [nix.POS]: pos$3, compress: true, names: nix.thunk(() => ["client"]) })),
+                      nix.thunk(() => ({ [nix.POS]: pos$4, compress: false, names: nix.thunk(() => ["federation"]) })),
                     ]),
                     tls: false,
                     type: "http",
@@ -88,41 +88,41 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             "mautrix-meta": nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               instances: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 facebook: nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   enable: true,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$13,
-                    homeserver: nix.thunk(() => ({ __proto__: pos$8, address: homeserverUrl, domain: homeserverDomain })),
+                    [nix.POS]: pos$13,
+                    homeserver: nix.thunk(() => ({ [nix.POS]: pos$8, address: homeserverUrl, domain: homeserverDomain })),
                     appservice: nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       port: 8009n,
-                      bot: nix.thunk(() => ({ __proto__: pos$9, username: metaBotUsername, avatar: "" })),
+                      bot: nix.thunk(() => ({ [nix.POS]: pos$9, username: metaBotUsername, avatar: "" })),
                     })),
-                    encryption: nix.thunk(() => ({ __proto__: pos$11, allow: false, default: false, require: false })),
+                    encryption: nix.thunk(() => ({ [nix.POS]: pos$11, allow: false, default: false, require: false })),
                     bridge: nix.thunk(() => ({
-                      __proto__: pos$12,
+                      [nix.POS]: pos$12,
                       permissions: nix.thunk(() => nix.attrsDyn({}, [[nix.str`@${username}:server`, "user"]])),
                     })),
                   })),
                 })),
                 instagram: nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   enable: true,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$20,
-                    homeserver: nix.thunk(() => ({ __proto__: pos$15, address: homeserverUrl, domain: homeserverDomain })),
+                    [nix.POS]: pos$20,
+                    homeserver: nix.thunk(() => ({ [nix.POS]: pos$15, address: homeserverUrl, domain: homeserverDomain })),
                     appservice: nix.thunk(() => ({
-                      __proto__: pos$17,
+                      [nix.POS]: pos$17,
                       port: 8010n,
-                      bot: nix.thunk(() => ({ __proto__: pos$16, username: instagramBotUsername, avatar: "" })),
+                      bot: nix.thunk(() => ({ [nix.POS]: pos$16, username: instagramBotUsername, avatar: "" })),
                     })),
-                    encryption: nix.thunk(() => ({ __proto__: pos$18, allow: false, default: false, require: false })),
+                    encryption: nix.thunk(() => ({ [nix.POS]: pos$18, allow: false, default: false, require: false })),
                     bridge: nix.thunk(() => ({
-                      __proto__: pos$19,
+                      [nix.POS]: pos$19,
                       permissions: nix.thunk(() => nix.attrsDyn({}, [[nix.str`@${username}:server`, "user"]])),
                     })),
                   })),
@@ -131,8 +131,8 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$26,
-            firewall: nix.thunk(() => ({ __proto__: pos$25, allowedTCPPorts: nix.thunk(() => [8008n]) })),
+            [nix.POS]: pos$26,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$25, allowedTCPPorts: nix.thunk(() => [8008n]) })),
           })),
         };
       })(), formals$2),
@@ -140,17 +140,17 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           environment: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(pkgs_1, "writers", "writePython3Bin"), "register_user", nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   libraries: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "python3Packages", "matrix-nio"))]),
                   flakeIgnore: nix.thunk(() => ["E501"]),
                 })), "import sys\nimport asyncio\n\nfrom nio import AsyncClient\n\n\nasync def run(username: str, homeserver: str):\n    matrix = AsyncClient(homeserver)\n\n    response = await matrix.register(username, \"foobar\")\n    print(\"Matrix register response: \", response)\n\n\nif __name__ == \"__main__\":\n    asyncio.run(run(sys.argv[1], sys.argv[2]))\n")),
               nix.thunk(() => nix.app(nix.sel(pkgs_1, "writers", "writePython3Bin"), "do_test", nix.thunk(() => ({
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   libraries: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "python3Packages", "matrix-nio"))]),
                   flakeIgnore: nix.thunk(() => ["E501"]),
                 })), nix.thunk(() => nix.str`import sys

@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const commandLineArgs = nix.argOr($, "commandLineArgs", () => "");
   const electron = electron_42;
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "lx-music-desktop",
       version: "2.12.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lyswhut",
           repo: "lx-music-desktop",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             categories: nix.thunk(() => ["Utility", "AudioVideo", "Audio", "Player", "Music"]),
             desktopName: "LX Music Desktop",
             exec: "lx-music-desktop",
@@ -52,14 +52,14 @@ export default nix.lambda((args) => (() => {
       ]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./electron-builder.patch"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             electron_version: nix.thunk(() => nix.sel(electron, "version")),
           })))),
       ]),
       nativeBuildInputs: nix.thunk(() => [makeWrapper, copyDesktopItems]),
       npmDepsHash: "sha256-bBgewJxBSzyL1V9U9qm0TbWCZMjheCUK6DvvoE3T67M=",
       makeCacheWritable: true,
-      env: nix.thunk(() => ({ __proto__: pos$4, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$4, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       npmFlags: nix.thunk(() => ["--ignore-scripts"]),
       preBuild: nix.thunk(() => nix.str`# delete prebuilt libs
 rm -r build-config/lib
@@ -90,7 +90,7 @@ npm rebuild --no-progress --verbose
   --add-flags ${nix.app(nix.sel(lib, "escapeShellArg"), commandLineArgs)}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Music software based on Electron and Vue",
         longDescription: "Some functionalities (e.g. lyrics window) are broken when lx-music-desktop\nruns using a Wayland ozone platform due to Electron's lack of support\nfor Wayland. If you do need these features, please consider unsetting\n`NIXOS_OZONE_WL` and passing `--ozone-platform=x11` from the command line\nto restore the expected behavior.\n",

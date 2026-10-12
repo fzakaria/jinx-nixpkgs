@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const nanomsg = nix.arg($, "nanomsg");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nanomsg-python",
       version: "1.0.20190114",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tonysimpson",
           repo: "nanomsg-python",
           rev: "3acd9160f90f91034d4a43ce603aaa19fbaf1f2e",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["nanomsg"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bindings for nanomsg",
         homepage: "https://github.com/tonysimpson/nanomsg-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

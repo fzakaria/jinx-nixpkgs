@@ -38,13 +38,13 @@ export default nix.lambda((args) => (() => {
   const pytest_cov = nix.arg($, "pytest-cov");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "arviz-plots",
       version: nix.thunk(() => nix.attr(arviz, "version")),
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "arviz-devs",
           repo: "arviz-plots",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [flit_core]),
       dependencies: nix.thunk(() => nix.concat([arviz_base, arviz_stats], nix.sel(arviz_stats, "optional-dependencies", "xarray"))),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         bokeh: nix.thunk(() => [bokeh]),
         doc: nix.thunk(() => [
           h5netcdf,
@@ -72,11 +72,11 @@ export default nix.lambda((args) => (() => {
         test: nix.thunk(() => [h5netcdf, hypothesis, kaleido, pytest, pytest_cov]),
       })),
       pythonImportsCheck: nix.thunk(() => ["arviz_plots"]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ __proto__: pos$3, MPLBACKEND: "Agg" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$3, MPLBACKEND: "Agg" })))),
       nativeCheckInputs: nix.thunk(() => [bokeh, h5netcdf, hypothesis, matplotlib, plotly, pytestCheckHook, webcolors]),
       disabledTests: nix.thunk(() => ["test_plot_trace_dist"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "ArviZ modular plotting",
         homepage: "https://github.com/arviz-devs/arviz-plots",
         changelog: nix.thunk(() => nix.str`https://github.com/arviz-devs/arviz-plots/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

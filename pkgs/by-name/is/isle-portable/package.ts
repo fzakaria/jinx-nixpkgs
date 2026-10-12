@@ -25,19 +25,19 @@ export default nix.lambda((args) => (() => {
   const isle_portable_unwrapped = nix.argOr($, "isle-portable-unwrapped", () => nix.app(callPackage, nix.path(here, "./unwrapped.nix"), nix.thunk(() => ({}))));
   const _7zz = nix.arg($, "_7zz");
   const legoIslandIso = nix.thunk(() => nix.app(requireFile, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "LEGO_ISLANDI.ISO",
       hash: "sha256-pefu/XcvGKcWYzaFldWeFEYdc7OUBgbmlgWyH2CnZec=",
       message: "ISO file of Lego Island 1.1",
     }))));
-  const unpackedIso = nix.thunk(() => nix.app(runCommand, "LEGO_ISLANDI-unpacked", nix.thunk(() => ({ __proto__: pos$2, nativeBuildInputs: nix.thunk(() => [_7zz]) })), nix.thunk(() => nix.str`mkdir "$out"
+  const unpackedIso = nix.thunk(() => nix.app(runCommand, "LEGO_ISLANDI-unpacked", nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [_7zz]) })), nix.thunk(() => nix.str`mkdir "$out"
 7zz x ${legoIslandIso} -o"$out"
 `)));
   return nix.app(symlinkJoin, (finalAttrs) => (() => {
       const iniWithDisk = nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "iniConfig")), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           isle: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             diskpath: nix.thunk(() => nix.str`${unpackedIso}/DATA/disk`),
             cdpath: nix.thunk(() => nix.str`${unpackedIso}`),
           })),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const quotedIni = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsRecursiveCond"), (as) => !nix.asBool(nix.app(nix.sel(lib, "isDerivation"), as)), (_) => (value) => nix.str`"${nix.builtins.toString(value)}"`, iniWithDisk));
       const iniFile = nix.thunk(() => nix.app(writeText, "isle.ini", nix.thunk(() => nix.app(nix.sel(lib, "generators", "toINI"), nix.thunk(() => ({})), quotedIni))));
       return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         version: nix.thunk(() => nix.attr(isle_portable_unwrapped, "version")),
         pname: "isle-portable-wrapped",
         paths: nix.thunk(() => [isle_portable_unwrapped]),
@@ -54,12 +54,12 @@ export default nix.lambda((args) => (() => {
   --add-flags "--ini ${iniFile}"
 `),
         passthru: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           unwrapped: isle_portable_unwrapped,
           iniConfig: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             isle: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               diskpath: null,
               cdpath: null,
               mediapath: isle_portable_unwrapped,
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
               msaa: "0",
               anisotropic: "",
             })),
-            extensions: nix.thunk(() => ({ __proto__: pos$6, "texture loader": "false", "si loader": "false" })),
+            extensions: nix.thunk(() => ({ [nix.POS]: pos$6, "texture loader": "false", "si loader": "false" })),
           })),
         })),
         meta: nix.thunk(() => nix.builtins.removeAttrs(nix.thunk(() => nix.sel(isle_portable_unwrapped, "meta")), nix.thunk(() => ["position"]))),

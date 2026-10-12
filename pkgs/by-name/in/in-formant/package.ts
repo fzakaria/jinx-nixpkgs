@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const libxcb = nix.arg($, "libxcb");
   const kdePackages = nix.arg($, "kdePackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "in-formant",
       version: "3.1.2-unstable-2022-09-15",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "in-formant",
           repo: "in-formant",
           rev: "e0606feecff70f0fd4226ff8f116e46817dd7462",
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "mkdir -p $out/bin\ncp in-formant $out/bin\ninstall -Dm444 $src/dist-res/in-formant.desktop -t $out/share/applications\ninstall -Dm444 $src/dist-res/in-formant.png -t $out/share/icons/hicolor/512x512/apps\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Real-time pitch and formant tracking software",
         mainProgram: "in-formant",
         homepage: "https://github.com/in-formant/in-formant",

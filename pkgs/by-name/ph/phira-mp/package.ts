@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "phira-mp",
       version: "0.1.0-unstable-2025-06-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TeamFlos",
           repo: "phira-mp",
           rev: "30b481117af8d17cbfcca88de460e4a407a4cb67",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-fkGB9qgOxroOjfQMwXfJqSVWB1S7T+ndYVYEmGrqtIs=",
       buildInputs: nix.thunk(() => [openssl]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Multiplayer server for the rhythm game Phira",
         homepage: "https://github.com/TeamFlos/phira-mp",
         maintainers: nix.thunk(() => (() => {

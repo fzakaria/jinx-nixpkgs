@@ -72,20 +72,20 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "optionalString"), libOnly, "lib")}pulseaudio`);
       const version = "17.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://freedesktop.org/software/pulseaudio/releases/pulseaudio-${version}.tar.xz`),
           hash: "sha256-BTeU1mcaPjl9hJ5HioC4KmPLnYyilr01tzMXu1zrh7U=",
         }))));
       const patches = nix.thunk(() => [
         nix.path(here, "./add-option-for-installation-sysconfdir.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "alsa-ucm-Check-UCM-verb-before-working-with-device-status.patch",
             url: "https://gitlab.freedesktop.org/pulseaudio/pulseaudio/-/commit/f5cacd94abcc47003bd88ad7ca1450de649ffb15.patch",
             hash: "sha256-WyEqCitrqic2n5nNHeVS10vvGy5IzwObPPXftZKy/A8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "alsa-ucm-Replace-port-device-UCM-context-assertion-with-an-error.patch",
             url: "https://gitlab.freedesktop.org/pulseaudio/pulseaudio/-/commit/ed3d4f0837f670e5e5afb1afa5bcfc8ff05d3407.patch",
             hash: "sha256-fMJ3EYq56sHx+zTrG6osvI/QgnhqLvWiifZxrRLMvns=",
@@ -105,13 +105,13 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [glib])), nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(bluetoothSupport) && nix.asBool(advancedBluetoothCodecs))), wrapGAppsHook3))));
       const propagatedBuildInputs = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libcap])));
       const buildInputs = nix.thunk(() => nix.concat([libtool, libsndfile, soxr, speexdsp, fftwFloat, check], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [glib, dbus])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isFreeBSD")))), nix.thunk(() => [libintl])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(libOnly)), nix.thunk(() => nix.concat([libasyncns, webrtc_audio_processing_1], nix.concat(nix.app(nix.sel(lib, "optional"), jackaudioSupport, libjack2), nix.concat(nix.app(nix.sel(lib, "optionals"), x11Support, nix.thunk(() => [libice, libsm, libx11, libxi, libxtst])), nix.concat(nix.app(nix.sel(lib, "optional"), useSystemd, systemdLibs), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [alsa_lib, udev])), nix.concat(nix.app(nix.sel(lib, "optional"), airtunesSupport, openssl), nix.concat(nix.app(nix.sel(lib, "optionals"), bluetoothSupport, nix.thunk(() => [bluez5, sbc])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(bluetoothSupport) && nix.asBool(advancedBluetoothCodecs))), nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               "gst-plugins-bad": nix.thunk(() => nix.attr(gst_all_1, "gst-plugins-bad")),
               "gst-plugins-good": nix.thunk(() => nix.attr(gst_all_1, "gst-plugins-good")),
               "gst-plugins-base": nix.thunk(() => nix.attr(gst_all_1, "gst-plugins-base")),
               gstreamer: nix.thunk(() => nix.attr(gst_all_1, "gstreamer")),
             }))))), nix.concat(nix.app(nix.sel(lib, "optional"), remoteControlSupport, lirc), nix.app(nix.sel(lib, "optional"), zeroconfSupport, avahi))))))))))))))));
-      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "bintools", "isLLVM")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "bintools", "version")), "17")))), nix.thunk(() => ({ __proto__: pos$5, NIX_LDFLAGS: "--undefined-version" }))));
+      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "bintools", "isLLVM")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "bintools", "version")), "17")))), nix.thunk(() => ({ [nix.POS]: pos$5, NIX_LDFLAGS: "--undefined-version" }))));
       const mesonFlags = nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "alsa", nix.thunk(() => (nix.asBool(!nix.asBool(libOnly)) && nix.asBool(alsaSupport))))),
         nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "asyncns", nix.thunk(() => !nix.asBool(libOnly)))),
@@ -156,15 +156,15 @@ export default nix.lambda((args) => (() => {
  --prefix GIO_EXTRA_MODULES : "${nix.app(nix.sel(lib, "getLib"), dconf)}/lib/gio/modules"
 `)), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "for file in $out/lib/pulseaudio/modules/*.dylib; do\n  ln -s \"$file\" \"${file%.dylib}.so\"\n  ln -s \"$file\" \"$out/lib/pulseaudio/$(basename $file .dylib).so\"\ndone\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(libOnly)), "mkdir -p $out/bin\nln -st $out/bin $out/.bin-unwrapped/*\n\n# Ensure that service files use the wrapped binaries.\nfind \"$out\" -name \"*.service\" | while read f; do\n    substituteInPlace \"$f\" --replace \"$out/.bin-unwrapped/\" \"$out/bin/\"\ndone\n")));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           pulseaudio: nix.thunk(() => nix.attr(nixosTests, "pulseaudio")),
           "pulseaudio-tcp": nix.thunk(() => nix.attr(nixosTests, "pulseaudio-tcp")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Sound server for POSIX and Win32 systems",
         homepage: "http://www.pulseaudio.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),
@@ -176,7 +176,7 @@ export default nix.lambda((args) => (() => {
         longDescription: "PulseAudio is a sound server for POSIX and Win32 systems.  A\nsound server is basically a proxy for your sound applications.\nIt allows you to do advanced operations on your sound data as it\npasses between your application and your hardware.  Things like\ntransferring the audio to a different machine, changing the\nsample format or channel count and mixing several sounds into\none are easily achieved using a sound server.\n",
       }));
       return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname,
         version,
         src,

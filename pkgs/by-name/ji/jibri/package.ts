@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
 EndSection
 `)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "jibri",
       version: "8.0-205-g206e038",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.jitsi.org/stable/jibri_${nix.sel(finalAttrs, "version")}-1_all.deb`),
           hash: "sha256-DJyBNjCgesg0P1SSU8mi3vVN9TK5sU/eLS1PLzEsIRE=",
         })))),
@@ -52,12 +52,12 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), jdk17_headless)} $out/bin/jibri --
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.path(here, "./update.sh"),
-        tests: nix.thunk(() => ({ __proto__: pos$2, jibri: nix.thunk(() => nix.attr(nixosTests, "jibri")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, jibri: nix.thunk(() => nix.attr(nixosTests, "jibri")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "JItsi BRoadcasting Infrastructure",
         mainProgram: "jibri",
         longDescription: "Jibri provides services for recording or streaming a Jitsi Meet conference.\nIt works by launching a Chrome instance rendered in a virtual framebuffer and capturing and\nencoding the output with ffmpeg. It is intended to be run on a separate machine (or a VM), with\nno other applications using the display or audio devices. Only one recording at a time is\nsupported on a single jibri.\n",

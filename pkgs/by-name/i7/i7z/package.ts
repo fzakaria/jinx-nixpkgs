@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const withGui = nix.argOr($, "withGui", () => false);
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "i7z",
       version: "0.27.4",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DimitryAndric",
           repo: "i7z",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,17 +35,17 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([ncurses], nix.app(nix.sel(lib, "optional"), withGui, nix.thunk(() => nix.sel(libsForQt5, "qtbase"))))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://salsa.debian.org/debian/i7z/raw/ad1359764ee7a860a02e0c972f40339058fa9369/debian/patches/fix-insecure-tempfile.patch",
             hash: "sha256-eihvP8hhoZ+wc1xUFN9vrKatScVwvv+tI54ELrsBz0U=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://salsa.debian.org/debian/i7z/raw/ad1359764ee7a860a02e0c972f40339058fa9369/debian/patches/nehalem.patch",
             hash: "sha256-CmH5aZ/tVCYLK8o7JqVE8P6WEBwMH0+aWXjKAOrTRvs=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://salsa.debian.org/debian/i7z/raw/ad1359764ee7a860a02e0c972f40339058fa9369/debian/patches/hyphen-used-as-minus-sign.patch",
             hash: "sha256-Nzw4PbS3P8l3lwA+r4epefD9ntO0gY8vI6kA7NvGIso=",
           })))),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`prefix=${nix.builtins.placeholder("out")}`)]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withGui, "install -Dm755 GUI/i7z_GUI $out/bin/i7z-gui\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Better i7 (and now i3, i5) reporting tool for Linux",
         mainProgram: "i7z",
         homepage: "https://github.com/DimitryAndric/i7z",

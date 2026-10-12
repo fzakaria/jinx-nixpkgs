@@ -18,29 +18,29 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const stick = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchurl"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://nixos.org/~eelco/nix/udisks-test.img.xz",
       sha256: "0was1xgjkjad91nipzclaz5biv3m4b2nk029ga6nk7iklwi19l8b",
     }))));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     name: "udisks2",
-    meta: nix.thunk(() => ({ __proto__: pos$2, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$2, maintainers: [] })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           services: nix.thunk(() => ({
-            __proto__: pos$4,
-            udisks2: nix.thunk(() => ({ __proto__: pos$3, enable: true })),
+            [nix.POS]: pos$4,
+            udisks2: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
           })),
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           security: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             polkit: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               extraConfig: "polkit.addRule(function(action, subject) {\n  if (subject.user == \"alice\") return \"yes\";\n});\n",
             })),
           })),

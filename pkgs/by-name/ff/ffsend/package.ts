@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const usesX11 = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isBSD"))));
   nix.assert_((!nix.asBool((nix.asBool(x11Support) && nix.asBool(usesX11))) || nix.asBool((nix.asBool(!nix.eq(xclip, null)) || nix.asBool(!nix.eq(xsel, null))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ff/ffsend/package.nix:21:1");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ffsend",
       version: "0.2.77",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "timvisee",
           repo: "ffsend",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-DQcuyp61r0y9fi8AV33qxN2cOrl0M8q4/VoXuV47gxQ=",
       cargoPatches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "rust-1.87.0-compat.patch",
             url: "https://gitlab.com/timvisee/ffsend/-/commit/29eb167d4367929a2546c20b3f2bbf890b63c631.patch",
             hash: "sha256-BxJ+0QJP2fzQT1X3BZG1Yy9V+csIEk8xocUKSBgdG9M=",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
 `)))),
       postInstall: "installShellCompletion contrib/completions/ffsend.{bash,fish} --zsh contrib/completions/_ffsend\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Easily and securely share files from the command line. A fully featured Firefox Send client",
         longDescription: "Easily and securely share files and directories from the command line through a safe, private\nand encrypted link using a single simple command. Files are shared using the Send service and\nmay be up to 2GB. Others are able to download these files with this tool, or through their\nweb browser.\n",
         homepage: "https://gitlab.com/timvisee/ffsend",

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const pandas = nix.arg($, "pandas");
   const protobuf = nix.arg($, "protobuf");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "ortools",
       version: nix.thunk(() => nix.attr(or_tools, "version")),
       format: "other",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\nmkdir -p $out\nlndir -silent $src $out\nrunHook postInstall\n",
       propagatedBuildInputs: nix.thunk(() => [immutabledict, numpy, pandas, protobuf]),
       pythonImportsCheck: nix.thunk(() => ["ortools", "ortools.sat.python.cp_model"]),
-      meta: nix.thunk(() => nix.update(nix.sel(or_tools, "meta"), { __proto__: pos$1, description: "Python bindings for Google's or-tools" })),
+      meta: nix.thunk(() => nix.update(nix.sel(or_tools, "meta"), { [nix.POS]: pos$1, description: "Python bindings for Google's or-tools" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

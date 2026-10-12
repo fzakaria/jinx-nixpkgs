@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const azure_cli = nix.arg($, "azure-cli");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "azure-mgmt-resource-subscriptions",
       version: "1.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "azure_mgmt_resource_subscriptions",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-jBJRxU70+phR/M9KrlMA9Nq9MZNXeDFSuTD9lh9NBOs=",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         "azure.mgmt.resource.subscriptions.models",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Microsoft Azure SDK for Python",
         homepage: "https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/resources/azure-mgmt-resource-subscriptions",
         changelog: nix.thunk(() => nix.str`https://github.com/Azure/azure-sdk-for-python/blob/azure-mgmt-resource-subscriptions_${nix.sel(finalAttrs, "version")}/sdk/resources/azure-mgmt-resource-subscriptions/CHANGELOG.md`),

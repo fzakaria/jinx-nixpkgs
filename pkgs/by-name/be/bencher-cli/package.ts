@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const rustc = nix.arg($, "rustc");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "bencher-cli",
       version: "0.6.13",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bencherdev",
           repo: "bencher",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
       checkNoDefaultFeatures: nix.thunk(() => nix.sel(finalAttrs, "buildNoDefaultFeatures")),
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(finalAttrs, "buildNoDefaultFeatures")), "# Replaces the proprietary Rust files with empty files\n# This is just a safeguard, the build shouldn't touch these files anyways\necho \"find . -path '*/plus/*' -type f ! -name Cargo.toml -exec truncate -s 0 {} +\"\nfind . -path '*/plus/*' -type f ! -name Cargo.toml -exec truncate -s 0 {} +\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Command-Line interface for the Bencher continuous benchmarking platform",
         mainProgram: "bencher",
         longDescription: "Bencher is a suite of continuous benchmarking tools.\nBencher allows you to detect and prevent performance regressions\n*before* they hit production.\n\n- Run: Run your benchmarks locally or in CI using your favorite\n  benchmarking tools. The bencher CLI simply wraps your existing\n  benchmark harness and stores its results.\n- Track: Track the results of your benchmarks over time. Monitor, query,\n  and graph the results using the Bencher web console based on the source\n  branch, testbed, benchmark, and measure.\n- Catch: Catch performance regressions in CI. Bencher uses state of the\n  art, customizable analytics to detect performance regressions before\n  they make it to production.\n\nBencher's source repo includes non-free features, included in the build\nas the Cargo feature \"plus\".\nFiles in the plus directories are proprietary, while the other files\nare dual Apache-2.0/MIT licensed.\nThe Nix derivation does not compile the proprietary features.\n",

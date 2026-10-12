@@ -128,79 +128,79 @@ ln -s ${nix.app(extraConfig, hostName, cfg_1)} $out/extraConfig.php
 ${nix.app(nix.lookup(w, "concatMapStringsSep"), "\n", (template) => nix.str`cp -r ${template}/. $out/application/views/invoice_templates/pdf/`, nix.thunk(() => nix.sel(cfg_1, "invoiceTemplates")))}
 ${nix.app(nix.lookup(w, "concatMapStringsSep"), "\n", (template) => nix.str`cp -r ${template}/. $out/application/views/quote_templates/pdf/`, nix.thunk(() => nix.sel(cfg_1, "quoteTemplates")))}
 `);
-      return { __proto__: pos$1, pname, version, src, postPatch, installPhase };
+      return { [nix.POS]: pos$1, pname, version, src, postPatch, installPhase };
     })()));
   const siteOpts = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const lib_1 = nix.arg($_1, "lib");
     const name = nix.arg($_1, "name");
     return {
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       options: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "InvoicePlane web application")),
         stateDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
             default: nix.thunk(() => nix.str`/var/lib/invoiceplane/${name}`),
             description: "This directory is used for uploads of attachments and cache.\nThe directory passed here is automatically created and permissions\nadjusted as required.\n",
           })))),
         database: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           host: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "localhost",
               description: "Database host address.",
             })))),
           port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               default: 3306n,
               description: "Database host port.",
             })))),
           name: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "invoiceplane",
               description: "Database name.",
             })))),
           user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "invoiceplane",
               description: "Database user.",
             })))),
           passwordFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               default: null,
               example: "/run/keys/invoiceplane-dbpassword",
               description: "A file containing the password corresponding to\n{option}`database.user`.\n",
             })))),
           createLocally: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "Create the database and database user locally.",
             })))),
         })),
         invoiceTemplates: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
             default: [],
             description: "List of path(s) to respective template(s) which are copied from the 'invoice_templates/pdf' directory.\n\n::: {.note}\nThese templates need to be packaged before use, see example.\n:::\n",
             example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "let\n  # Let's package an example template\n  template-vtdirektmarketing = pkgs.stdenv.mkDerivation {\n    name = \"vtdirektmarketing\";\n    # Download the template from a public repository\n    src = pkgs.fetchgit {\n      url = \"https://git.project-insanity.org/onny/invoiceplane-vtdirektmarketing.git\";\n      sha256 = \"1hh0q7wzsh8v8x03i82p6qrgbxr4v5fb05xylyrpp975l8axyg2z\";\n    };\n    sourceRoot = \".\";\n    # Installing simply means copying template php file to the output directory\n    installPhase = \"\"\n      mkdir -p $out\n      cp invoiceplane-vtdirektmarketing/vtdirektmarketing.php $out/\n    \"\";\n  };\n# And then pass this package to the template list like this:\nin [ template-vtdirektmarketing ]\n")),
           })))),
         quoteTemplates: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
             default: [],
             description: "List of path(s) to respective template(s) which are copied from the 'quote_templates/pdf' directory.\n\n::: {.note}\nThese templates need to be packaged before use, see example.\n:::\n",
             example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "let\n  # Let's package an example template\n  template-vtdirektmarketing = pkgs.stdenv.mkDerivation {\n    name = \"vtdirektmarketing\";\n    # Download the template from a public repository\n    src = pkgs.fetchgit {\n      url = \"https://git.project-insanity.org/onny/invoiceplane-vtdirektmarketing.git\";\n      sha256 = \"1hh0q7wzsh8v8x03i82p6qrgbxr4v5fb05xylyrpp975l8axyg2z\";\n    };\n    sourceRoot = \".\";\n    # Installing simply means copying template php file to the output directory\n    installPhase = \"\"\n      mkdir -p $out\n      cp invoiceplane-vtdirektmarketing/vtdirektmarketing.php $out/\n    \"\";\n  };\n# And then pass this package to the template list like this:\nin [ template-vtdirektmarketing ]\n")),
           })))),
         poolConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             type: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
               return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "oneOf"), nix.thunk(() => [
@@ -210,7 +210,7 @@ ${nix.app(nix.lookup(w, "concatMapStringsSep"), "\n", (template) => nix.str`cp -
                   ]))));
             })()),
             default: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               pm: "dynamic",
               "pm.max_children": 32n,
               "pm.start_servers": 2n,
@@ -221,22 +221,22 @@ ${nix.app(nix.lookup(w, "concatMapStringsSep"), "\n", (template) => nix.str`cp -
             description: "Options for the InvoicePlane PHP pool. See the documentation on `php-fpm.conf`\nfor details on configuration directives.\n",
           })))),
         settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "anything")))),
             default: nix.thunk(() => ({})),
             description: "Structural InvoicePlane configuration. Refer to\n<https://github.com/InvoicePlane/InvoicePlane/blob/master/ipconfig.php.example>\nfor details and supported values.\n",
             example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  SETUP_COMPLETED = true;\n  DISABLE_SETUP = true;\n  IP_URL = \"https://invoice.example.com\";\n}\n")),
           })))),
         cron: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Enable cron service which periodically runs Invoiceplane tasks.\nRequires key taken from the administration page. Refer to\n<https://wiki.invoiceplane.com/en/1.0/modules/recurring-invoices>\non how to configure it.\n",
             })))),
           key: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "Cron key taken from the administration page.",
             })))),
@@ -245,25 +245,25 @@ ${nix.app(nix.lookup(w, "concatMapStringsSep"), "\n", (template) => nix.str`cp -
     };
   })(), formals$2);
   return {
-    __proto__: pos$64,
+    [nix.POS]: pos$64,
     options: nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       services: nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         invoiceplane: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 options: nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   sites: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                      __proto__: pos$20,
+                      [nix.POS]: pos$20,
                       type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), siteOpts)))),
                       default: nix.thunk(() => ({})),
                       description: "Specification of one or more InvoicePlane sites to serve",
                     })))),
                   webserver: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                      __proto__: pos$21,
+                      [nix.POS]: pos$21,
                       type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["caddy", "nginx"]))),
                       default: "caddy",
                       example: "nginx",
@@ -278,55 +278,55 @@ ${nix.app(nix.lookup(w, "concatMapStringsSep"), "\n", (template) => nix.str`cp -
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(eachSite, {})), nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             assertions: nix.thunk(() => nix.app(nix.lookup(w, "flatten"), nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (hostName) => (cfg_1) => [
                   nix.thunk(() => ({
-                    __proto__: pos$27,
+                    [nix.POS]: pos$27,
                     assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg_1, "database", "createLocally")) || nix.asBool(nix.eq(nix.sel(cfg_1, "database", "user"), user)))),
                     message: nix.thunk(() => nix.str`services.invoiceplane.sites."${hostName}".database.user must be ${user} if the database is to be automatically provisioned`),
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$28,
+                    [nix.POS]: pos$28,
                     assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg_1, "database", "createLocally")) || nix.asBool(nix.eq(nix.sel(cfg_1, "database", "passwordFile"), null)))),
                     message: nix.thunk(() => nix.str`services.invoiceplane.sites."${hostName}".database.passwordFile cannot be specified if services.invoiceplane.sites."${hostName}".database.createLocally is set to true.`),
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$29,
+                    [nix.POS]: pos$29,
                     assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg_1, "cron", "enable")) || nix.asBool(!nix.eq(nix.sel(cfg_1, "cron", "key"), null)))),
                     message: nix.thunk(() => nix.str`services.invoiceplane.sites."${hostName}".cron.key must be set in order to use cron service.`),
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$30,
+                    [nix.POS]: pos$30,
                     assertion: nix.thunk(() => (!nix.asBool((nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(nix.app(pkg, hostName, cfg_1), "version")), "1.7.2")) && nix.asBool(!nix.eq(nix.sel(cfg_1, "invoiceTemplates"), [])))) || nix.asBool(nix.has(nix.sel(cfg_1, "settings"), "CUSTOM_INVOICE_TEMPLATES_PDF")))),
                     message: nix.thunk(() => nix.str`services.invoiceplane.sites."${hostName}".invoiceTemplates is set but settings.CUSTOM_INVOICE_TEMPLATES_PDF is not. Since InvoicePlane >= 1.7.2 (current: ${nix.sel(cfg_1, "package", "version")}), the filename of the custom invoice template PHP file must be explicitly whitelisted via settings.CUSTOM_INVOICE_TEMPLATES_PDF, otherwise it will not be picked up.`),
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$31,
+                    [nix.POS]: pos$31,
                     assertion: nix.thunk(() => (!nix.asBool((nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(nix.app(pkg, hostName, cfg_1), "version")), "1.7.2")) && nix.asBool(!nix.eq(nix.sel(cfg_1, "quoteTemplates"), [])))) || nix.asBool(nix.has(nix.sel(cfg_1, "settings"), "CUSTOM_QUOTE_TEMPLATES_PDF")))),
                     message: nix.thunk(() => nix.str`services.invoiceplane.sites."${hostName}".quoteTemplates is set but settings.CUSTOM_QUOTE_TEMPLATES_PDF is not. Since InvoicePlane >= 1.7.2 (current: ${nix.sel(cfg_1, "package", "version")}), the filename of the custom quote template PHP file must be explicitly whitelisted via settings.CUSTOM_QUOTE_TEMPLATES_PDF, otherwise it will not be picked up.`),
                   })),
                 ], eachSite)))),
             services: nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               mysql: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.app(nix.lookup(w, "any"), (v) => nix.sel(v, "database", "createLocally"), nix.thunk(() => nix.app(nix.lookup(w, "attrValues"), eachSite)))), nix.thunk(() => ({
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   enable: true,
                   package: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.sel(pkgs, "mariadb")))),
                   ensureDatabases: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (hostName) => (cfg_1) => nix.sel(cfg_1, "database", "name"), eachSite)),
                   ensureUsers: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (hostName) => (cfg_1) => ({
-                      __proto__: pos$32,
+                      [nix.POS]: pos$32,
                       name: nix.thunk(() => nix.sel(cfg_1, "database", "user")),
                       ensurePermissions: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${nix.sel(cfg_1, "database", "name")}.*`, "ALL PRIVILEGES"]])),
                     }), eachSite)),
                 })))),
               phpfpm: nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 pools: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs'"), (hostName) => (cfg_1) => nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.str`invoiceplane-${hostName}`), nix.thunk(() => ({
-                      __proto__: pos$35,
+                      [nix.POS]: pos$35,
                       user: user,
                       group: nix.thunk(() => nix.sel(webserver, "group")),
                       settings: nix.thunk(() => nix.update({
-                        __proto__: pos$34,
+                        [nix.POS]: pos$34,
                         "listen.owner": nix.thunk(() => nix.sel(webserver, "user")),
                         "listen.group": nix.thunk(() => nix.sel(webserver, "group")),
                       }, nix.sel(cfg_1, "poolConfig"))),
@@ -335,11 +335,11 @@ ${nix.app(nix.lookup(w, "concatMapStringsSep"), "\n", (template) => nix.str`cp -
             })),
           })),
           nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             systemd: nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               tmpfiles: nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 rules: nix.thunk(() => nix.app(nix.lookup(w, "flatten"), nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (hostName) => (cfg_1) => [
                       nix.thunk(() => nix.str`d ${nix.sel(cfg_1, "stateDir")} 0750 ${user} ${nix.sel(webserver, "group")} - -`),
                       nix.thunk(() => nix.str`f ${nix.sel(cfg_1, "stateDir")}/ipconfig.php 0750 ${user} ${nix.sel(webserver, "group")} - -`),
@@ -353,10 +353,10 @@ ${nix.app(nix.lookup(w, "concatMapStringsSep"), "\n", (template) => nix.str`cp -
                     ], eachSite)))),
               })),
               services: nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 "invoiceplane-config": nix.thunk(() => ({
-                  __proto__: pos$41,
-                  serviceConfig: nix.thunk(() => ({ __proto__: pos$40, Type: "oneshot" })),
+                  [nix.POS]: pos$41,
+                  serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$40, Type: "oneshot" })),
                   script: nix.thunk(() => nix.app(nix.lookup(w, "concatStrings"), nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (hostName) => (cfg_1) => nix.str`mkdir -p ${nix.sel(cfg_1, "stateDir")}/logs \\
          ${nix.sel(cfg_1, "stateDir")}/uploads
 if ! grep -q IP_URL "${nix.sel(cfg_1, "stateDir")}/ipconfig.php"; then
@@ -371,10 +371,10 @@ fi
               })),
             })),
             users: nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               users: nix.thunk(() => nix.attrsDyn({}, [
                 [user, nix.thunk(() => ({
-                  __proto__: pos$44,
+                  [nix.POS]: pos$44,
                   group: nix.thunk(() => nix.sel(webserver, "group")),
                   isSystemUser: true,
                 }))],
@@ -382,23 +382,23 @@ fi
             })),
           })),
           nix.thunk(() => ({
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             systemd: nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               timers: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs'"), (hostName) => (cfg_1) => nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.str`invoiceplane-cron-${hostName}`), nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg_1, "cron", "enable")), nix.thunk(() => ({
-                      __proto__: pos$48,
+                      [nix.POS]: pos$48,
                       wantedBy: nix.thunk(() => ["timers.target"]),
                       timerConfig: nix.thunk(() => ({
-                        __proto__: pos$47,
+                        [nix.POS]: pos$47,
                         OnBootSec: "5m",
                         OnUnitActiveSec: "5m",
                         Unit: nix.thunk(() => nix.str`invoiceplane-cron-${hostName}.service`),
                       })),
                     }))))), eachSite)),
               services: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs'"), (hostName) => (cfg_1) => nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.str`invoiceplane-cron-${hostName}`), nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg_1, "cron", "enable")), nix.thunk(() => ({
-                      __proto__: pos$50,
+                      [nix.POS]: pos$50,
                       serviceConfig: nix.thunk(() => ({
-                        __proto__: pos$49,
+                        [nix.POS]: pos$49,
                         Type: "oneshot",
                         User: user,
                         ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "curl")}/bin/curl --header 'Host: ${hostName}' http://localhost/invoices/cron/recur/${nix.sel(cfg_1, "cron", "key")}`),
@@ -407,14 +407,14 @@ fi
             })),
           })),
           nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "webserver"), "caddy")), nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               services: nix.thunk(() => ({
-                __proto__: pos$55,
+                [nix.POS]: pos$55,
                 caddy: nix.thunk(() => ({
-                  __proto__: pos$54,
+                  [nix.POS]: pos$54,
                   enable: true,
                   virtualHosts: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs'"), (hostName) => (cfg_1) => nix.app(nix.lookup(w, "nameValuePair"), hostName, nix.thunk(() => ({
-                        __proto__: pos$53,
+                        [nix.POS]: pos$53,
                         extraConfig: nix.thunk(() => nix.str`root * ${nix.app(pkg, hostName, cfg_1)}
 file_server
 php_fastcgi unix/${nix.sel(config, "services", "phpfpm", "pools", nix.key(nix.str`invoiceplane-${hostName}`), "socket")}
@@ -424,25 +424,25 @@ php_fastcgi unix/${nix.sel(config, "services", "phpfpm", "pools", nix.key(nix.st
               })),
             })))),
           nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "webserver"), "nginx")), nix.thunk(() => ({
-              __proto__: pos$63,
+              [nix.POS]: pos$63,
               services: nix.thunk(() => ({
-                __proto__: pos$62,
+                [nix.POS]: pos$62,
                 nginx: nix.thunk(() => ({
-                  __proto__: pos$61,
+                  [nix.POS]: pos$61,
                   enable: true,
                   virtualHosts: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs'"), (hostName) => (cfg_1) => nix.app(nix.lookup(w, "nameValuePair"), hostName, nix.thunk(() => ({
-                        __proto__: pos$60,
+                        [nix.POS]: pos$60,
                         root: nix.thunk(() => nix.app(pkg, hostName, cfg_1)),
                         extraConfig: "index index.php index.html index.htm;\n\nif (!-e $request_filename){\n  rewrite ^(.*)$ /index.php break;\n}\n",
                         locations: nix.thunk(() => ({
-                          __proto__: pos$59,
+                          [nix.POS]: pos$59,
                           "/setup": nix.thunk(() => ({
-                            __proto__: pos$57,
+                            [nix.POS]: pos$57,
                             extraConfig: nix.thunk(() => nix.str`rewrite ^(.*)$ http://${hostName}/ redirect;
 `),
                           })),
                           "~ .php$": nix.thunk(() => ({
-                            __proto__: pos$58,
+                            [nix.POS]: pos$58,
                             extraConfig: nix.thunk(() => nix.str`fastcgi_split_path_info ^(.+\\.php)(/.+)$;
 fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
 fastcgi_pass unix:${nix.sel(config, "services", "phpfpm", "pools", nix.key(nix.str`invoiceplane-${hostName}`), "socket")};

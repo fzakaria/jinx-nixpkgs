@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const yelp_xsl = nix.arg($, "yelp-xsl");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "yelp",
       version: "49.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/yelp/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/yelp-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-Pj6U7y0slIfMUQYuOvv6FXjOvSnYDIQ1e21+5tz9inQ=",
         })))),
@@ -64,11 +64,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "chmod +x src/link-gnome-help.sh data/domains/gen_yelp_xml.sh\npatchShebangs src/link-gnome-help.sh\npatchShebangs data/domains/gen_yelp_xml.sh\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: "yelp" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "yelp" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://apps.gnome.org/Yelp/",
         description: "Help viewer for GNOME",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),

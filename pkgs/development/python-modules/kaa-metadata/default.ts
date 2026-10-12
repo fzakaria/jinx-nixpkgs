@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "kaa-metadata";
       const disabled = nix.thunk(() => (nix.asBool(isPyPy) || nix.asBool(isPy3k)));
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "0bkbzfgxvmby8lvzkqjp86anxvv3vjd9nksv2g4l7shsk1n7y27a",
@@ -51,14 +51,14 @@ rm -f "$out/${nix.sel(python, "sitePackages")}"/site.py*
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library for parsing media metadata, which can extract metadata (e.g., such as id3 tags) from a wide range of media files",
         homepage: "https://github.com/freevo/kaa-metadata",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         format,
         pname,

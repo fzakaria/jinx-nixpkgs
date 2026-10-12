@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const six = nix.arg($, "six");
   const typechecks = nix.arg($, "typechecks");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "serializable",
       version: "unstable-2023-07-13",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "iskandr",
           repo: "serializable",
           rev: "ed309a6f8f2590b525fc0f93c00549223c8c944f",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [simplejson, six, typechecks]),
       pythonImportsCheck: nix.thunk(() => ["serializable"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Base class with serialization methods for user-defined Python objects",
         homepage: "https://github.com/iskandr/serializable",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

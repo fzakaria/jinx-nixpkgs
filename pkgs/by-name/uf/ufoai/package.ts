@@ -28,21 +28,21 @@ export default nix.lambda((args) => (() => {
   const cunit = nix.arg($, "cunit");
   const enableEditor = nix.argOr($, "enableEditor", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ufoai",
       version: "2.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/ufoai/ufoai-${nix.sel(finalAttrs, "version")}-source.tar.bz2`),
           sha256: "0kxrbcjrharcwz319s90m789i4my9285ihp5ax6kfhgif2vn2ji5",
         })))),
       srcData: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`mirror://sourceforge/ufoai/ufoai-${nix.sel(finalAttrs, "version")}-data.tar`),
           sha256: "1drhh08cqqkwv1yz3z4ngkplr23pqqrdx6cp8c3isy320gy25cvb",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: "-fcommon",
         NIX_CFLAGS_LINK: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lgcc_s", "-lm"]))),
       })),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         cunit,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "http://ufoai.org",
         description: "Squad-based tactical strategy game in the tradition of X-Com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

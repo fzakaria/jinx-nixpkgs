@@ -93,7 +93,7 @@ export default nix.lambda((args) => (() => {
   const similarity = nix.thunk(() => nix.concat(ann, vectors));
   const all = nix.thunk(() => nix.concat(agent, nix.concat(api, nix.concat(ann, nix.concat(console, nix.concat(database, nix.concat(graph, nix.concat(model, nix.concat(pipeline, nix.concat(scoring, nix.concat(similarity, workflow)))))))))));
   const optional_dependencies = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     agent: agent,
     ann: ann,
     api: api,
@@ -115,14 +115,14 @@ export default nix.lambda((args) => (() => {
     all: all,
   }));
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "neuml",
       repo: "txtai",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-PL6mbGQfDA8YgVJBvTbVoXNTyTlZKhSwKwslF6mG+J8=",
     }))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "txtai",
       version: version,
       src: src,
@@ -158,7 +158,7 @@ export default nix.lambda((args) => (() => {
         "testSQLiteCustom",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Semantic search and workflows powered by language models",
         changelog: nix.thunk(() => nix.str`https://github.com/neuml/txtai/releases/tag/${nix.sel(src, "tag")}`),
         homepage: "https://github.com/neuml/txtai",

@@ -39,7 +39,7 @@ const pos$32 = nix.positions(here + "/release.nix", [["haskell", 293, 9], ["pkgs
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const nixpkgs = nix.argOr($, "nixpkgs", () => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     outPath: nix.thunk(() => nix.app(nix.sel(nix.builtins.import(nix.path(here, "../../lib")), "cleanSource"), nix.path(here, "../.."))),
     revCount: 1234n,
     shortRev: "abcdef",
@@ -58,9 +58,9 @@ export default nix.lambda((args) => (() => {
   ]);
   const scrubJobs = nix.argOr($, "scrubJobs", () => true);
   const nixpkgsArgs = nix.argOr($, "nixpkgsArgs", () => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     config: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       allowAliases: false,
       allowUnfree: false,
       inHydra: true,
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
   }));
   const attrNamesOnly = nix.argOr($, "attrNamesOnly", () => false);
   const release_lib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./release-lib.nix")), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       supportedSystems: supportedSystems,
       scrubJobs: scrubJobs,
       nixpkgsArgs: nixpkgsArgs,
@@ -100,26 +100,26 @@ export default nix.lambda((args) => (() => {
   const unionOfDisjoint = nix.thunk(() => nix.attr(from_1, "unionOfDisjoint"));
   const supportDarwin = nix.thunk(() => nix.app(elem, "aarch64-darwin", supportedSystems));
   const nonPackageJobs = nix.thunk(() => ({
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     tarball: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-tarball.nix")), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pkgs: pkgs,
         nixpkgs: nixpkgs,
         officialRelease: officialRelease,
       })))),
     "release-checks": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./nixpkgs-basic-release-checks.nix")), nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pkgs: pkgs,
         nixpkgs: nixpkgs,
         supportedSystems: supportedSystems,
       })))),
-    manual: nix.thunk(() => nix.app(nix.sel(pkgs, "nixpkgs-manual", "override"), nix.thunk(() => ({ __proto__: pos$7, nixpkgs: nixpkgs })))),
-    metrics: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./metrics.nix")), nix.thunk(() => ({ __proto__: pos$8, pkgs: pkgs, nixpkgs: nixpkgs })))),
+    manual: nix.thunk(() => nix.app(nix.sel(pkgs, "nixpkgs-manual", "override"), nix.thunk(() => ({ [nix.POS]: pos$7, nixpkgs: nixpkgs })))),
+    metrics: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./metrics.nix")), nix.thunk(() => ({ [nix.POS]: pos$8, pkgs: pkgs, nixpkgs: nixpkgs })))),
     "darwin-tested": nix.thunk(() => (nix.asBool(supportDarwin) ? nix.app(nix.sel(pkgs, "releaseTools", "aggregate"), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         name: nix.thunk(() => nix.str`nixpkgs-darwin-${nix.sel(jobs, "tarball", "version")}`),
         meta: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           description: "Release-critical builds for the Nixpkgs darwin channel",
         })),
         constituents: nix.thunk(() => nix.concat([
@@ -154,10 +154,10 @@ export default nix.lambda((args) => (() => {
           ])))),
       }))) : null)),
     unstable: nix.thunk(() => nix.app(nix.sel(pkgs, "releaseTools", "aggregate"), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         name: nix.thunk(() => nix.str`nixpkgs-${nix.sel(jobs, "tarball", "version")}`),
         meta: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           description: "Release-critical builds for the Nixpkgs unstable channel",
         })),
         constituents: nix.thunk(() => nix.concat([
@@ -201,70 +201,70 @@ export default nix.lambda((args) => (() => {
       })))),
     stdenvBootstrapTools: nix.thunk(() => nix.app(genAttrs, bootstrapConfigs, (config) => (nix.asBool(nix.app(hasInfix, "-linux-", config)) ? (() => {
         const bootstrap = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../stdenv/linux/make-bootstrap-tools.nix")), nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             pkgs: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({
-                __proto__: pos$14,
-                localSystem: nix.thunk(() => ({ __proto__: pos$13, config: config })),
+                [nix.POS]: pos$14,
+                localSystem: nix.thunk(() => ({ [nix.POS]: pos$13, config: config })),
               })))),
           }))));
         return {
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           build: nix.thunk(() => nix.attr(bootstrap, "build")),
           test: nix.thunk(() => nix.attr(bootstrap, "test")),
         };
       })() : (nix.asBool(nix.app(hasSuffix, "-darwin", config)) ? (() => {
         const bootstrap = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../stdenv/darwin/make-bootstrap-tools.nix")), nix.thunk(() => ({
-            __proto__: pos$18,
-            localSystem: nix.thunk(() => ({ __proto__: pos$17, config: config })),
+            [nix.POS]: pos$18,
+            localSystem: nix.thunk(() => ({ [nix.POS]: pos$17, config: config })),
           }))));
         return {
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           build: nix.thunk(() => nix.attr(bootstrap, "build")),
           test: nix.thunk(() => nix.attr(bootstrap, "test")),
         };
       })() : (nix.asBool(nix.app(hasSuffix, "-freebsd", config)) ? (() => {
         const bootstrap = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../stdenv/freebsd/make-bootstrap-tools.nix")), nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             pkgs: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({
-                __proto__: pos$21,
-                localSystem: nix.thunk(() => ({ __proto__: pos$20, config: config })),
+                [nix.POS]: pos$21,
+                localSystem: nix.thunk(() => ({ [nix.POS]: pos$20, config: config })),
               })))),
           }))));
-        return { __proto__: pos$23, build: nix.thunk(() => nix.attr(bootstrap, "build")) };
+        return { [nix.POS]: pos$23, build: nix.thunk(() => nix.attr(bootstrap, "build")) };
       })() : nix.builtins.abort(nix.thunk(() => nix.str`No bootstrap implementation for system: ${config}`))))))),
   }));
   const jobs = nix.thunk(() => (() => {
     const packagePlatforms = nix.thunk(() => nix.app(nix.sel(release_lib, "recursiveMapPackages"), nix.thunk(() => (nix.asBool(attrNamesOnly) ? nix.force(id) : nix.sel(release_lib, "getPlatforms")))));
     const packageJobs = nix.thunk(() => nix.update(nix.app(packagePlatforms, pkgs), {
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       haskell: nix.thunk(() => nix.update(nix.app(packagePlatforms, nix.thunk(() => nix.sel(pkgs, "haskell"))), {
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         packages: nix.thunk(() => nix.app(genAttrs, nix.thunk(() => ["ghc96", "ghc98", "ghc910", "ghc912"]), (compilerName) => (() => {
             const from_2 = nix.thunk(() => nix.app(packagePlatforms, nix.thunk(() => nix.sel(pkgs, "haskell", "packages", nix.key(nix.force(compilerName))))));
             return {
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             "haskell-language-server": nix.thunk(() => nix.attr(from_2, "haskell-language-server")),
           };
           })())),
       })),
       pkgsLLVM: nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         stdenv: nix.thunk(() => ["x86_64-linux", "aarch64-linux"]),
       })),
       pkgsArocc: nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         stdenv: nix.thunk(() => ["x86_64-linux", "aarch64-linux"]),
       })),
       pkgsZig: nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         stdenv: nix.thunk(() => ["x86_64-linux", "aarch64-linux"]),
       })),
       pkgsMusl: nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         stdenv: nix.thunk(() => ["x86_64-linux", "aarch64-linux"]),
       })),
       pkgsStatic: nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         stdenv: nix.thunk(() => ["x86_64-linux", "aarch64-linux"]),
       })),
       pkgsRocm: nix.thunk(() => nix.sel(pkgs, "rocmPackages", "meta", "release-packagePlatforms")),

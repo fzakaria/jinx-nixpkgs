@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       strictDeps: true,
       __structuredAttrs: true,
       pname: "source2viewer-cli",
       version: "19.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ValveResourceFormat",
           repo: "ValveResourceFormat",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,9 +33,9 @@ export default nix.lambda((args) => (() => {
       "dotnet-runtime": nix.thunk(() => nix.sel(dotnetCorePackages, "runtime_10_0")),
       nugetDeps: nix.path(here, "./deps.json"),
       executables: nix.thunk(() => ["Source2Viewer-CLI"]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Parser, decompiler, and exporter for Valve's Source 2 resource file format (VRF)",
         homepage: "https://github.com/ValveResourceFormat/ValveResourceFormat",
         changelog: nix.thunk(() => nix.str`https://github.com/ValveResourceFormat/ValveResourceFormat/releases/tag/${nix.sel(finalAttrs, "version")}`),

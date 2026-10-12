@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "v4l2-relayd",
       version: "0.1.5",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.launchpad.net/v4l2-relayd",
           tag: nix.thunk(() => nix.str`upstream/${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-D+OWkny+TYNJt08X+nl7EYs5tp51vjvig/vuID6lkmg=",
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
       ]),
       preConfigure: "./autogen.sh --prefix=$out",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "upstream/" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "upstream/" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Streaming relay for v4l2loopback using GStreamer",
         mainProgram: "v4l2-relayd",
         homepage: "https://git.launchpad.net/v4l2-relayd",

@@ -31,56 +31,56 @@ export default nix.lambda((args) => (() => {
   const hashedPassword1 = "$y$j9T$s8TyQJtNImvobhGM5Nlez0$3E8/O8EVGuA4sr1OQmrzi8GrRcy/AEhj454JjAn72A2";
   const hashedPasswordFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "hashed-password", hashedPassword1));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     name: "systemd-sysusers-password-option-override-ordering",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "fidgetingbits"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       machine: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         systemd: nix.thunk(() => ({
-          __proto__: pos$3,
-          sysusers: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+          [nix.POS]: pos$3,
+          sysusers: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
         })),
         system: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           etc: nix.thunk(() => ({
-            __proto__: pos$5,
-            overlay: nix.thunk(() => ({ __proto__: pos$4, enable: true })),
+            [nix.POS]: pos$5,
+            overlay: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
           })),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           initrd: nix.thunk(() => ({
-            __proto__: pos$8,
-            systemd: nix.thunk(() => ({ __proto__: pos$7, enable: true })),
+            [nix.POS]: pos$8,
+            systemd: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           mutableUsers: true,
           users: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             root: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               hashedPasswordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), null)),
               initialHashedPassword: password,
             })),
             alice: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               isSystemUser: true,
               group: "test",
               initialPassword: password,
               initialHashedPassword: hashedPassword,
             })),
             bob: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               isSystemUser: true,
               group: "test",
               initialPassword: password,
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
               hashedPasswordFile: nix.thunk(() => nix.sel(hashedPasswordFile, "outPath")),
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$14, test: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$14, test: nix.thunk(() => ({})) })),
         })),
       })),
     })),

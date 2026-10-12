@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const ufo2ft = nix.arg($, "ufo2ft");
   const skia_pathops = nix.arg($, "skia-pathops");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "glyphslib",
       version: "6.15.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "googlefonts",
           repo: "glyphsLib",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         "tests/builder/interpolation_test.py",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bridge from Glyphs source files (.glyphs) to UFOs and Designspace files via defcon and designspaceLib",
         homepage: "https://github.com/googlefonts/glyphsLib",
         changelog: nix.thunk(() => nix.str`https://github.com/googlefonts/glyphsLib/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

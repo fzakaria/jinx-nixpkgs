@@ -15,21 +15,21 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     name: "owasp blint test",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return nix.concat([nix.thunk(() => nix.sel(nix.lookup(w, "maintainers"), "ethancedwards8"))], nix.sel(nix.lookup(w, "teams"), "ngi", "members"));
       })()),
     })),
     containers: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       machine: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         environment: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [

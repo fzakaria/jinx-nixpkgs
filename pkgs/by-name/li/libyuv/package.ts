@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libjpeg = nix.arg($, "libjpeg");
   const gtest = nix.arg($, "gtest");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libyuv",
       version: "1908",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://chromium.googlesource.com/libyuv/libyuv.git",
           rev: "b7a857659f8485ee3c6769c27a3e74b0af910746",
           hash: "sha256-4Irs+hlAvr6v5UKXmKHhg4IK3cTWdsFWxt1QTS0rizU=",
@@ -39,7 +39,7 @@ substituteInPlace $out/lib/pkgconfig/libyuv.pc \\
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isLoongArch64"))),
       checkPhase: "runHook preCheck\n\n./libyuv_unittest\n\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://chromium.googlesource.com/libyuv/libyuv",
         description: "Open source project that includes YUV scaling and conversion functionality",
         mainProgram: "yuvconvert",

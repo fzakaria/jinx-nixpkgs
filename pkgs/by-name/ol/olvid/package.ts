@@ -54,13 +54,13 @@ export default nix.lambda((args) => (() => {
     "--add-opens=java.desktop/sun.awt.shell=ALL-UNNAMED",
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "olvid",
       version: "3.1.1",
       dontUnpack: true,
       dontWrapGApps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://static.olvid.io/linux/${repo}-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-kdx4xUQcDvXKMvrM/9LwuiJRlfrZehxpv0rrd4H13l0=",
         })))),
@@ -82,7 +82,7 @@ makeBinaryWrapper ${jdk21}/bin/java $out/bin/${repo} \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Secure french messenger",
         homepage: "https://www.olvid.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

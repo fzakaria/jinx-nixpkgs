@@ -92,33 +92,33 @@ export default nix.lambda((args) => (() => {
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "hocon"), nix.thunk(() => ({}))));
   const toVarName = (s) => nix.add("XMPP_PASSWORD_", nix.app(nix.lookup(w, "stringAsChars"), (c) => (nix.asBool(!nix.eq(nix.app(nix.sel(nix.builtins, "match"), "[A-Za-z0-9]", c), null)) ? nix.force(c) : "_"), s));
   const defaultJibriConfig = nix.thunk(() => ({
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     id: "",
     "single-use-mode": false,
     api: nix.thunk(() => ({
-      __proto__: pos$7,
-      http: nix.thunk(() => ({ __proto__: pos$1, "external-api-port": 2222n, "internal-api-port": 3333n })),
+      [nix.POS]: pos$7,
+      http: nix.thunk(() => ({ [nix.POS]: pos$1, "external-api-port": 2222n, "internal-api-port": 3333n })),
       xmpp: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         environments: nix.thunk(() => nix.app(nix.lookup(w, "flip"), nix.thunk(() => nix.lookup(w, "mapAttrsToList")), nix.thunk(() => nix.sel(cfg, "xmppEnvironments")), (name) => (env) => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: name,
             "xmpp-server-hosts": nix.thunk(() => nix.sel(env, "xmppServerHosts")),
             "xmpp-domain": nix.thunk(() => nix.sel(env, "xmppDomain")),
             "control-muc": nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               domain: nix.thunk(() => nix.sel(env, "control", "muc", "domain")),
               "room-name": nix.thunk(() => nix.sel(env, "control", "muc", "roomName")),
               nickname: nix.thunk(() => nix.sel(env, "control", "muc", "nickname")),
             })),
             "control-login": nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               domain: nix.thunk(() => nix.sel(env, "control", "login", "domain")),
               username: nix.thunk(() => nix.sel(env, "control", "login", "username")),
               password: nix.thunk(() => nix.app(nix.sel(format, "lib", "mkSubstitution"), nix.thunk(() => nix.app(toVarName, nix.thunk(() => nix.str`${name}_control`))))),
             })),
             "call-login": nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               domain: nix.thunk(() => nix.sel(env, "call", "login", "domain")),
               username: nix.thunk(() => nix.sel(env, "call", "login", "username")),
               password: nix.thunk(() => nix.app(nix.sel(format, "lib", "mkSubstitution"), nix.thunk(() => nix.app(toVarName, nix.thunk(() => nix.str`${name}_call`))))),
@@ -130,13 +130,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     recording: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       "recordings-directory": "/tmp/recordings",
       "finalize-script": nix.thunk(() => nix.str`${nix.sel(cfg, "finalizeScript")}`),
     })),
-    streaming: nix.thunk(() => ({ __proto__: pos$9, "rtmp-allow-list": nix.thunk(() => [".*"]) })),
+    streaming: nix.thunk(() => ({ [nix.POS]: pos$9, "rtmp-allow-list": nix.thunk(() => [".*"]) })),
     chrome: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       flags: nix.thunk(() => nix.concat([
         "--use-fake-ui-for-media-stream",
         "--start-maximized",
@@ -146,40 +146,40 @@ export default nix.lambda((args) => (() => {
         "--autoplay-policy=no-user-gesture-required",
       ], nix.app(nix.sel(nix.lookup(w, "lists"), "optional"), nix.thunk(() => nix.sel(cfg, "ignoreCert")), "--ignore-certificate-errors"))),
     })),
-    stats: nix.thunk(() => ({ __proto__: pos$11, "enable-stats-d": true })),
-    webhook: nix.thunk(() => ({ __proto__: pos$12, subscribers: [] })),
+    stats: nix.thunk(() => ({ [nix.POS]: pos$11, "enable-stats-d": true })),
+    webhook: nix.thunk(() => ({ [nix.POS]: pos$12, subscribers: [] })),
     "jwt-info": nix.thunk(() => ({})),
     "call-status-checks": nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       "no-media-timout": "30 seconds",
       "all-muted-timeout": "10 minutes",
       "default-call-empty-timout": "30 seconds",
     })),
   }));
   const jibriConfig = nix.thunk(() => nix.app(nix.lookup(w, "recursiveUpdate"), defaultJibriConfig, nix.thunk(() => nix.sel(cfg, "config"))));
-  const configFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "jibri.conf", nix.thunk(() => ({ __proto__: pos$15, jibri: jibriConfig }))));
+  const configFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "jibri.conf", nix.thunk(() => ({ [nix.POS]: pos$15, jibri: jibriConfig }))));
   return {
-    __proto__: pos$77,
+    [nix.POS]: pos$77,
     options: nix.thunk(() => ({
-      __proto__: pos$49,
+      [nix.POS]: pos$49,
       services: nix.thunk(() => ({
-        __proto__: pos$48,
+        [nix.POS]: pos$48,
         jibri: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
           return {
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             enable: nix.thunk(() => nix.update(nix.app(nix.lookup(w_1, "mkEnableOption"), "Jitsi BRoadcasting Infrastructure"), {
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               description: "Whether to enable Jibri.\nJibri must run on a host where {option}`services.jitsi-meet.enable` is enabled.\nIt installs a system-wide Chromium policy that disables security warnings for every Chromium user.\n",
             })),
             config: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 type: nix.thunk(() => nix.sel(format, "type")),
                 default: nix.thunk(() => ({})),
                 description: "Jibri configuration.\nSee <https://github.com/jitsi/jibri/blob/master/src/main/resources/reference.conf>\nfor default configuration with comments.\n",
               })))),
             finalizeScript: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "path")),
                 default: nix.thunk(() => nix.app(nix.sel(pkgs, "writeScript"), "finalize_recording.sh", "#!/bin/sh\n\nRECORDINGS_DIR=$1\n\necho \"This is a dummy finalize script\" > /tmp/finalize.out\necho \"The script was invoked with recordings directory $RECORDINGS_DIR.\" >> /tmp/finalize.out\necho \"You should put any finalize logic (renaming, uploading to a service\" >> /tmp/finalize.out\necho \"or storage provider, etc.) in this script\" >> /tmp/finalize.out\n\nexit 0\n")),
                 defaultText: nix.thunk(() => nix.app(nix.lookup(w_1, "literalExpression"), "pkgs.writeScript \"finalize_recording.sh\" ''''\n#!/bin/sh\n\nRECORDINGS_DIR=$1\n\necho \"This is a dummy finalize script\" > /tmp/finalize.out\necho \"The script was invoked with recordings directory $RECORDINGS_DIR.\" >> /tmp/finalize.out\necho \"You should put any finalize logic (renaming, uploading to a service\" >> /tmp/finalize.out\necho \"or storage provider, etc.) in this script\" >> /tmp/finalize.out\n\nexit 0\n'''';\n")),
@@ -187,14 +187,14 @@ export default nix.lambda((args) => (() => {
                 description: "This script runs when jibri finishes recording a video of a conference.\n",
               })))),
             ignoreCert: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 type: nix.thunk(() => nix.lookup(w_1, "bool")),
                 default: false,
                 example: true,
                 description: "Whether to enable the flag \"--ignore-certificate-errors\" for the Chromium browser opened by Jibri.\nIntended for use in automated tests or anywhere else where using a verified cert for Jitsi-Meet is not possible.\n",
               })))),
             xmppEnvironments: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 description: "XMPP servers to connect to.\n",
                 example: nix.thunk(() => nix.app(nix.lookup(w_1, "literalExpression"), "\"jitsi-meet\" = {\n  xmppServerHosts = [ \"localhost\" ];\n  xmppDomain = config.services.jitsi-meet.hostName;\n\n  control.muc = {\n    domain = \"internal.${config.services.jitsi-meet.hostName}\";\n    roomName = \"JibriBrewery\";\n    nickname = \"jibri\";\n  };\n\n  control.login = {\n    domain = \"auth.${config.services.jitsi-meet.hostName}\";\n    username = \"jibri\";\n    passwordFile = \"/var/lib/jitsi-meet/jibri-auth-secret\";\n  };\n\n  call.login = {\n    domain = \"recorder.${config.services.jitsi-meet.hostName}\";\n    username = \"recorder\";\n    passwordFile = \"/var/lib/jitsi-meet/jibri-recorder-secret\";\n  };\n\n  usageTimeout = \"0\";\n  disableCertificateVerification = true;\n  stripFromRoomDomain = \"conference.\";\n};\n")),
                 default: nix.thunk(() => ({})),
@@ -202,58 +202,58 @@ export default nix.lambda((args) => (() => {
                       const $_1 = nix.formals(args_1, formals$2);
                       const name = nix.arg($_1, "name");
                       return {
-                        __proto__: pos$45,
+                        [nix.POS]: pos$45,
                         options: nix.thunk(() => ({
-                          __proto__: pos$39,
+                          [nix.POS]: pos$39,
                           xmppServerHosts: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$20,
+                              [nix.POS]: pos$20,
                               type: nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")))),
                               example: nix.thunk(() => ["xmpp.example.org"]),
                               description: "Hostnames of the XMPP servers to connect to.\n",
                             })))),
                           xmppDomain: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$21,
+                              [nix.POS]: pos$21,
                               type: nix.thunk(() => nix.lookup(w_1, "str")),
                               example: "xmpp.example.org",
                               description: "The base XMPP domain.\n",
                             })))),
                           control: nix.thunk(() => ({
-                            __proto__: pos$30,
+                            [nix.POS]: pos$30,
                             muc: nix.thunk(() => ({
-                              __proto__: pos$25,
+                              [nix.POS]: pos$25,
                               domain: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$22,
+                                  [nix.POS]: pos$22,
                                   type: nix.thunk(() => nix.lookup(w_1, "str")),
                                   description: "The domain part of the MUC to connect to for control.\n",
                                 })))),
                               roomName: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$23,
+                                  [nix.POS]: pos$23,
                                   type: nix.thunk(() => nix.lookup(w_1, "str")),
                                   default: "JibriBrewery",
                                   description: "The room name of the MUC to connect to for control.\n",
                                 })))),
                               nickname: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$24,
+                                  [nix.POS]: pos$24,
                                   type: nix.thunk(() => nix.lookup(w_1, "str")),
                                   default: "jibri",
                                   description: "The nickname for this Jibri instance in the MUC.\n",
                                 })))),
                             })),
                             login: nix.thunk(() => ({
-                              __proto__: pos$29,
+                              [nix.POS]: pos$29,
                               domain: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$26,
+                                  [nix.POS]: pos$26,
                                   type: nix.thunk(() => nix.lookup(w_1, "str")),
                                   description: "The domain part of the JID for this Jibri instance.\n",
                                 })))),
                               username: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$27,
+                                  [nix.POS]: pos$27,
                                   type: nix.thunk(() => nix.lookup(w_1, "str")),
                                   default: "jvb",
                                   description: "User part of the JID.\n",
                                 })))),
                               passwordFile: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$28,
+                                  [nix.POS]: pos$28,
                                   type: nix.thunk(() => nix.lookup(w_1, "str")),
                                   example: "/run/keys/jibri-xmpp1",
                                   description: "File containing the password for the user.\n",
@@ -261,23 +261,23 @@ export default nix.lambda((args) => (() => {
                             })),
                           })),
                           call: nix.thunk(() => ({
-                            __proto__: pos$35,
+                            [nix.POS]: pos$35,
                             login: nix.thunk(() => ({
-                              __proto__: pos$34,
+                              [nix.POS]: pos$34,
                               domain: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$31,
+                                  [nix.POS]: pos$31,
                                   type: nix.thunk(() => nix.lookup(w_1, "str")),
                                   example: "recorder.xmpp.example.org",
                                   description: "The domain part of the JID for the recorder.\n",
                                 })))),
                               username: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$32,
+                                  [nix.POS]: pos$32,
                                   type: nix.thunk(() => nix.lookup(w_1, "str")),
                                   default: "recorder",
                                   description: "User part of the JID for the recorder.\n",
                                 })))),
                               passwordFile: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$33,
+                                  [nix.POS]: pos$33,
                                   type: nix.thunk(() => nix.lookup(w_1, "str")),
                                   example: "/run/keys/jibri-recorder-xmpp1",
                                   description: "File containing the password for the user.\n",
@@ -285,20 +285,20 @@ export default nix.lambda((args) => (() => {
                             })),
                           })),
                           disableCertificateVerification: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$36,
+                              [nix.POS]: pos$36,
                               type: nix.thunk(() => nix.lookup(w_1, "bool")),
                               default: false,
                               description: "Whether to skip validation of the server's certificate.\n",
                             })))),
                           stripFromRoomDomain: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$37,
+                              [nix.POS]: pos$37,
                               type: nix.thunk(() => nix.lookup(w_1, "str")),
                               default: "0",
                               example: "conference.",
                               description: "The prefix to strip from the room's JID domain to derive the call URL.\n",
                             })))),
                           usageTimeout: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$38,
+                              [nix.POS]: pos$38,
                               type: nix.thunk(() => nix.lookup(w_1, "str")),
                               default: "0",
                               example: "1 hour",
@@ -308,14 +308,14 @@ export default nix.lambda((args) => (() => {
                         config: nix.thunk(() => (() => {
                           const nick = nix.thunk(() => nix.app(nix.lookup(w_1, "mkDefault"), nix.thunk(() => nix.app(nix.sel(nix.builtins, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["-"]), nix.thunk(() => nix.add(nix.sel(config, "networking", "hostName"), nix.app(nix.lookup(w_1, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(config, "networking", "domain"), null)), nix.thunk(() => nix.str`.${nix.sel(config, "networking", "domain")}`))))))));
                           return {
-                            __proto__: pos$44,
+                            [nix.POS]: pos$44,
                             call: nix.thunk(() => ({
-                              __proto__: pos$41,
-                              login: nix.thunk(() => ({ __proto__: pos$40, username: nick })),
+                              [nix.POS]: pos$41,
+                              login: nix.thunk(() => ({ [nix.POS]: pos$40, username: nick })),
                             })),
                             control: nix.thunk(() => ({
-                              __proto__: pos$43,
-                              muc: nix.thunk(() => ({ __proto__: pos$42, nickname: nick })),
+                              [nix.POS]: pos$43,
+                              muc: nix.thunk(() => ({ [nix.POS]: pos$42, nickname: nick })),
                             })),
                           };
                         })()),
@@ -327,18 +327,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$75,
+        [nix.POS]: pos$75,
         users: nix.thunk(() => ({
-          __proto__: pos$53,
+          [nix.POS]: pos$53,
           groups: nix.thunk(() => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             jibri: nix.thunk(() => ({})),
             plugdev: nix.thunk(() => ({})),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             jibri: nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               isSystemUser: true,
               group: "jibri",
               home: "/var/lib/jibri",
@@ -347,20 +347,20 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$69,
+          [nix.POS]: pos$69,
           services: nix.thunk(() => ({
-            __proto__: pos$63,
+            [nix.POS]: pos$63,
             "jibri-xorg": nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               description: "Jitsi Xorg Process",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["jibri.service", "jibri-icewm.service"]),
               preStart: nix.thunk(() => nix.str`cp --no-preserve=mode,ownership ${nix.sel(pkgs, "jibri")}/etc/jitsi/jibri/* /var/lib/jibri
 mv /var/lib/jibri/{,.}asoundrc
 `),
-              environment: nix.thunk(() => ({ __proto__: pos$54, DISPLAY: ":0" })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$54, DISPLAY: ":0" })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$55,
+                [nix.POS]: pos$55,
                 Type: "simple",
                 User: "jibri",
                 Group: "jibri",
@@ -372,14 +372,14 @@ mv /var/lib/jibri/{,.}asoundrc
               })),
             })),
             "jibri-icewm": nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               description: "Jitsi Window Manager",
               requires: nix.thunk(() => ["jibri-xorg.service"]),
               after: nix.thunk(() => ["jibri-xorg.service"]),
               wantedBy: nix.thunk(() => ["jibri.service"]),
-              environment: nix.thunk(() => ({ __proto__: pos$57, DISPLAY: ":0" })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$57, DISPLAY: ":0" })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 Type: "simple",
                 User: "jibri",
                 Group: "jibri",
@@ -390,7 +390,7 @@ mv /var/lib/jibri/{,.}asoundrc
               })),
             })),
             jibri: nix.thunk(() => ({
-              __proto__: pos$62,
+              [nix.POS]: pos$62,
               description: "Jibri Process",
               requires: nix.thunk(() => ["jibri-icewm.service", "jibri-xorg.service"]),
               after: nix.thunk(() => ["network.target"]),
@@ -407,9 +407,9 @@ mv /var/lib/jibri/{,.}asoundrc
 export ${nix.app(toVarName, nix.thunk(() => nix.str`${name}_call`))}=$(cat ${nix.sel(env, "call", "login", "passwordFile")})
 `, nix.thunk(() => nix.sel(cfg, "xmppEnvironments"))))), nix.str`${nix.app(nix.lookup(w, "getExe"), nix.thunk(() => nix.sel(pkgs, "jdk17_headless")))} -Dwebdriver.chrome.driver=${nix.app(nix.lookup(w, "getExe"), nix.thunk(() => nix.sel(pkgs, "chromedriver")))} -Djava.util.logging.config.file=${nix.path(here, "./logging.properties-journal")} -Dconfig.file=${configFile} -jar ${nix.sel(pkgs, "jibri")}/opt/jitsi/jibri/jibri.jar --config /var/lib/jibri/jibri.json
 `)),
-              environment: nix.thunk(() => ({ __proto__: pos$60, HOME: "/var/lib/jibri" })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$60, HOME: "/var/lib/jibri" })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$61,
+                [nix.POS]: pos$61,
                 Type: "simple",
                 User: "jibri",
                 Group: "jibri",
@@ -420,37 +420,37 @@ export ${nix.app(toVarName, nix.thunk(() => nix.str`${name}_call`))}=$(cat ${nix
             })),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$68,
+            [nix.POS]: pos$68,
             settings: nix.thunk(() => ({
-              __proto__: pos$67,
+              [nix.POS]: pos$67,
               "10-jibri": nix.thunk(() => ({
-                __proto__: pos$66,
+                [nix.POS]: pos$66,
                 "/var/log/jitsi/jibri": nix.thunk(() => ({
-                  __proto__: pos$65,
-                  d: nix.thunk(() => ({ __proto__: pos$64, user: "jibri", group: "jibri", mode: "755" })),
+                  [nix.POS]: pos$65,
+                  d: nix.thunk(() => ({ [nix.POS]: pos$64, user: "jibri", group: "jibri", mode: "755" })),
                 })),
               })),
             })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$73,
+          [nix.POS]: pos$73,
           etc: nix.thunk(() => ({
-            __proto__: pos$72,
+            [nix.POS]: pos$72,
             "chromium/policies/managed/managed_policies.json": nix.thunk(() => ({
-              __proto__: pos$71,
-              text: nix.thunk(() => nix.app(nix.sel(nix.builtins, "toJSON"), nix.thunk(() => ({ __proto__: pos$70, CommandLineFlagSecurityWarningsEnabled: false })))),
+              [nix.POS]: pos$71,
+              text: nix.thunk(() => nix.app(nix.sel(nix.builtins, "toJSON"), nix.thunk(() => ({ [nix.POS]: pos$70, CommandLineFlagSecurityWarningsEnabled: false })))),
             })),
           })),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$74,
+          [nix.POS]: pos$74,
           extraModprobeConfig: "options snd-aloop enable=1,1,1,1,1,1,1,1\n",
           kernelModules: nix.thunk(() => ["snd-aloop"]),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$76,
+      [nix.POS]: pos$76,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "jitsi"))]),
     })),
   };

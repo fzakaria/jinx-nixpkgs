@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const version = "0.1.6";
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gh-eco",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jrnxf",
           repo: "gh-eco",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-LrD6mfzilN+5nHBY/j2Jn+poc8ZXpr5rAs2oOkhDZNs=",
       ldflags: nix.thunk(() => ["-s", "-w", nix.thunk(() => nix.str`-X main.Version=${version}`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/coloradocolby/gh-eco",
         description: "gh extension to explore the ecosystem",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

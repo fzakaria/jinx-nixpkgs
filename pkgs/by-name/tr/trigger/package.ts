@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "trigger-rally",
       version: "0.6.6.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/trigger-rally/trigger-rally-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "016bc2hczqscfmngacim870hjcsmwl8r3aq8x03vpf22s49nw23z",
         })))),
@@ -68,7 +68,7 @@ install -Dm644 $out/share/games/trigger-rally/icon/trigger-rally-icons.svg $out/
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "Trigger",
             exec: "trigger-rally",
             icon: "trigger",
@@ -78,7 +78,7 @@ install -Dm644 $out/share/games/trigger-rally/icon/trigger-rally-icons.svg $out/
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fast-paced single-player racing game",
         mainProgram: "trigger-rally",
         homepage: "http://trigger-rally.sourceforge.net/",

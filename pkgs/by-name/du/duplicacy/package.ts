@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "duplicacy";
       const version = "3.2.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gilbertchen",
           repo: "duplicacy",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-4M/V4vP9XwHBkZ6UwsAxZ81YAzP4inuNC5yI+5ygQsA=";
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://duplicacy.com",
         description: "New generation cloud backup tool",
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
           ];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, vendorHash, doCheck, meta };
+      return { [nix.POS]: pos$3, pname, version, src, vendorHash, doCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

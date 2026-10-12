@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libpulseaudio = nix.arg($, "libpulseaudio");
   const xz = nix.arg($, "xz");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ocenaudio",
       version: "3.20.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: "ocenaudio.deb",
           url: nix.thunk(() => nix.str`https://www.ocenaudio.com/downloads/index.php/ocenaudio_debian12.deb?version=v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-flO5jlWZllUPl31okwmNjHI/9ctR0pziUx4/i+YRWQY=",
@@ -56,7 +56,7 @@ ln -s ${nix.sel(bzip2, "out")}/lib/libbz2.so.1 $out/lib/libbz2.so.1.0
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cross-platform, easy to use, fast and functional audio editor",
         homepage: "https://www.ocenaudio.com",
         sourceProvenance: nix.thunk(() => (() => {

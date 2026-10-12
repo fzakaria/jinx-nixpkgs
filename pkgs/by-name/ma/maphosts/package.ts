@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const ruby = nix.arg($, "ruby");
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   const env = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "maphosts-gems",
       ruby: ruby,
       gemdir: nix.path(here, "./."),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "maphosts",
       version: nix.thunk(() => nix.sel(env, "gems", "maphosts", "version")),
       dontUnpack: true,
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
 ln -s "${env}/bin/maphosts" "$out/bin/maphosts"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "maphosts")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Small command line application for keeping your project hostnames in sync with /etc/hosts",
         homepage: "https://github.com/mpscholten/maphosts",
         changelog: nix.thunk(() => nix.str`https://github.com/mpscholten/maphosts/releases/tag/v${nix.sel(finalAttrs, "version")}`),

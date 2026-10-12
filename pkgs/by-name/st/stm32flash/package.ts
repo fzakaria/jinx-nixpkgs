@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "stm32flash",
       version: "0.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/stm32flash/stm32flash-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-xMnNi+x52mOxEdFXE+9cws2UfeykEdNdbjBl4ifcQUo=",
         })))),
       buildFlags: nix.thunk(() => [nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`)]),
       installPhase: "# Manually copy, make install copies to /usr/local/bin\nmkdir -pv $out/bin/\ncp stm32flash $out/bin/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open source flash program for the STM32 ARM processors using the ST bootloader",
         mainProgram: "stm32flash",
         homepage: "https://sourceforge.net/projects/stm32flash/",

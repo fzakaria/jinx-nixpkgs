@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "doona",
       version: "0-unstable-2019-03-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wireghoul",
           repo: "doona",
           rev: "master",
@@ -31,7 +31,7 @@ cp ${nix.sel(finalAttrs, "src")}/doona.pl $out/bin/doona
 chmod +x $out/bin/doona
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/wireghoul/doona",
         description: "Fork of the Bruteforce Exploit Detector Tool (BED)",
         mainProgram: "doona",

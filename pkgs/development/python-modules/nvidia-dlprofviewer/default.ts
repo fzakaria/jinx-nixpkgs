@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const uvicorn = nix.arg($, "uvicorn");
   const whitenoise = nix.arg($, "whitenoise");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nvidia-dlprofviewer",
       version: "1.8.0",
       __structuredAttrs: true,
       format: "wheel",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://pypi.nvidia.com/nvidia-dlprofviewer/nvidia_dlprofviewer-${nix.sel(finalAttrs, "version")}-py3-none-any.whl`),
           hash: "sha256-KrfLZ6NdP31qfSfOBl8944ZE2xZ+kgjkyt+QPUblYVA=",
         })))),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [django, gunicorn, setuptools, sqlite, uvicorn, whitenoise]),
       pythonRelaxDeps: nix.thunk(() => ["django"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "NVIDIA DLProf Viewer",
         homepage: "https://docs.nvidia.com/deeplearning/frameworks/dlprof-user-guide/index.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

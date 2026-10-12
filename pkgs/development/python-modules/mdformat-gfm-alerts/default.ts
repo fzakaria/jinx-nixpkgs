@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const mdit_py_plugins = nix.arg($, "mdit-py-plugins");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mdformat-gfm-alerts",
       version: "2.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KyleKing",
           repo: "mdformat-gfm-alerts",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["mdformat_gfm_alerts"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Format 'GitHub Markdown Alerts', which use blockquotes to render admonitions",
         homepage: "https://github.com/KyleKing/mdformat-gfm-alerts",
         changelog: nix.thunk(() => nix.str`https://github.com/KyleKing/mdformat-gfm-alerts/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

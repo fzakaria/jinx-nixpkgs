@@ -32,9 +32,9 @@ export default nix.lambda((args) => (() => {
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(maintainers, null);
         return [nix.thunk(() => nix.lookup(w, "happysalada"))];
@@ -42,39 +42,39 @@ export default nix.lambda((args) => (() => {
       doc: nix.path(here, "./pict-rs.md"),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         "pict-rs": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "pict-rs server")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "pict-rs", nix.thunk(() => ({})))),
           dataDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(types, "path")),
               default: "/var/lib/pict-rs",
               description: "The directory where to store the uploaded images & database.\n",
             })))),
           repoPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               default: null,
               description: "The directory where to store the database.\nThis option takes precedence over dataDir.\n",
             })))),
           storePath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               default: null,
               description: "The directory where to store the uploaded images.\nThis option takes precedence over dataDir.\n",
             })))),
           address: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "127.0.0.1",
               description: "The IPv4 address to deploy the service to.\n",
             })))),
           port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 8080n,
               description: "The port which to bind the service to.\n",
@@ -83,29 +83,29 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         services: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           "pict-rs": nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(config, "system", "stateVersion")), "23.11")) ? nix.sel(pkgs, "pict-rs") : nix.builtins.throw("pict-rs made changes to the database schema between 0.3 and 0.4. It\nwill apply these automatically on the first run of 0.4, but the old\nversion will no longer work after that.\n\nYour configuration is currently using the old default of pict-rs\n0.3. Unfortunately, 0.3 no longer builds due to the Rust 1.80 update,\nand has been removed. pict-rs has already been updated to 0.5 in\nNixpkgs, which has another schema change but removes the migration\nlogic for 0.3.\n\nYou will need to migrate to 0.4 first, and then to 0.5. As 0.4 is\nno longer present in Nixpkgs, the recommended migration path is:\n\n* Import a separate Nixpkgs old enough to contain 0.4, temporarily\n  set `services.pict-rs.package` to its pict-rs, set the\n  `PICTRS__OLD_DB__PATH` environment variable for the migration, and\n  activate your configuration to start it. The following configuration\n  snippet should work:\n\n      services.pict-rs.package =\n        (import (fetchTarball {\n          url = \"https://github.com/NixOS/nixpkgs/archive/9b19f5e77dd906cb52dade0b7bd280339d2a1f3d.tar.gz\";\n          sha256 = \"sha256:0939vbhln9d33xkqw63nsk908k03fxihj85zaf70i3il9z42q8mc\";\n        }) pkgs.config).pict-rs;\n\n      systemd.services.pict-rs.environment.PICTRS__OLD_DB__PATH = config.services.pict-rs.dataDir;\n\n* After the migration to 0.4 completes, remove the package and\n  environment variable overrides, set `services.pict-rs.package` to\n  the current `pkgs.pict-rs` instead, and activate your configuration\n  to begin the migration to 0.5.\n\nFor more information, see:\n\n* <https://git.asonix.dog/asonix/pict-rs/src/tag/v0.4.8#0-3-to-0-4-migration-guide>\n* <https://git.asonix.dog/asonix/pict-rs/src/tag/v0.5.16#0-4-to-0-5-migration-guide>\n\nThe NixOS module will handle the configuration changes for you,\nat least.\n"))))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             "pict-rs": nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               environment: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 PICTRS__REPO__PATH: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "repoPath"), null)) ? nix.sel(cfg, "repoPath") : nix.str`${nix.sel(cfg, "dataDir")}/sled-repo`)),
                 PICTRS__STORE__PATH: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "storePath"), null)) ? nix.sel(cfg, "storePath") : nix.str`${nix.sel(cfg, "dataDir")}/files`)),
                 PICTRS__SERVER__ADDRESS: nix.thunk(() => nix.str`${nix.sel(cfg, "address")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}`),
               })),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 DynamicUser: true,
                 StateDirectory: "pict-rs",
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(cfg, "package")))}/bin/pict-rs run`),

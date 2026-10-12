@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const msgpack = nix.arg($, "msgpack");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ihm",
       version: "2.10",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ihmwg",
           repo: "python-ihm",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_validator_example"]),
       pythonImportsCheck: nix.thunk(() => ["ihm"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python package for handling IHM mmCIF and BinaryCIF files",
         homepage: "https://github.com/ihmwg/python-ihm",
         changelog: nix.thunk(() => nix.str`https://github.com/ihmwg/python-ihm/blob/${nix.sel(finalAttrs, "src", "tag")}/ChangeLog.rst`),

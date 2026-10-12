@@ -50,11 +50,11 @@ export default nix.lambda((args) => (() => {
   const concatStringsSep = nix.thunk(() => nix.attr(from_4, "concatStringsSep"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "keyd"));
   const keyboardOptions = nix.thunk(() => ({
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       ids: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => (() => {
             const w = nix.withScope(types, null);
             return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -66,23 +66,23 @@ export default nix.lambda((args) => (() => {
       settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => (() => {
           const from_5 = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({}))));
           return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           type: nix.thunk(() => nix.attr(from_5, "type")),
           default: nix.thunk(() => ({})),
           example: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             main: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               capslock: "overload(control, esc)",
               rightalt: "layer(rightalt)",
             })),
-            rightalt: nix.thunk(() => ({ __proto__: pos$3, j: "down", k: "up", h: "left", l: "right" })),
+            rightalt: nix.thunk(() => ({ [nix.POS]: pos$3, j: "down", k: "up", h: "left", l: "right" })),
           })),
           description: "Configuration, except `ids` section, that is written to {file}`/etc/keyd/<keyboard>.conf`.\nAppropriate names can be used to write non-alpha keys, for example \"equal\" instead of \"=\" sign (see <https://github.com/NixOS/nixpkgs/issues/236622>).\nSee <https://github.com/rvaiya/keyd> how to configure.\n",
         };
         })()))),
       extraConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           type: nix.thunk(() => nix.sel(types, "lines")),
           default: "",
           example: "[control+shift]\nh = left\n",
@@ -91,21 +91,21 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "keyd", "ids"]), "Use keyboards.<filename>.ids instead. If you don't need a multi-file configuration, just add keyboards.default before the ids. See https://github.com/NixOS/nixpkgs/pull/243271.")),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "keyd", "settings"]), "Use keyboards.<filename>.settings instead. If you don't need a multi-file configuration, just add keyboards.default before the settings. See https://github.com/NixOS/nixpkgs/pull/243271.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         keyd: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(mkEnableOption, "keyd, a key remapping daemon")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "keyd", nix.thunk(() => ({})))),
           keyboards: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), keyboardOptions)));
@@ -118,11 +118,11 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         environment: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           etc: nix.thunk(() => nix.app(mapAttrs$, (name) => (options) => nix.app(nameValuePair, nix.thunk(() => nix.str`keyd/${name}.conf`), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 text: nix.thunk(() => nix.str`[ids]
 ${nix.app(concatStringsSep, "\n", nix.thunk(() => nix.sel(options, "ids")))}
 
@@ -132,21 +132,21 @@ ${nix.sel(options, "extraConfig")}
               }))), nix.thunk(() => nix.sel(cfg, "keyboards")))),
         })),
         hardware: nix.thunk(() => ({
-          __proto__: pos$16,
-          uinput: nix.thunk(() => ({ __proto__: pos$15, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+          [nix.POS]: pos$16,
+          uinput: nix.thunk(() => ({ [nix.POS]: pos$15, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             keyd: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "Keyd remapping daemon",
               documentation: nix.thunk(() => ["man:keyd(1)"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               restartTriggers: nix.thunk(() => nix.app(mapAttrsToList, (name) => (_options) => nix.sel(config, "environment", "etc", nix.key(nix.str`keyd/${name}.conf`), "source"), nix.thunk(() => nix.sel(cfg, "keyboards")))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))),
                 Restart: "always",
                 SupplementaryGroups: nix.thunk(() => [

@@ -16,23 +16,23 @@ export default nix.lambda((args) => (() => {
   const unixtools = nix.arg($, "unixtools");
   const groff = nix.arg($, "groff");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ztools",
       version: "7/3.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://mirror.ifarchive.org/if-archive/infocom/tools/ztools/ztools731.tar.gz",
           hash: "sha256-vlQX0/fCAr88KJwMnYUSROFOg9tfVK5Hz58AUDuhNXg=",
         })))),
       sourceRoot: ".",
       nativeBuildInputs: nix.thunk(() => [groff, nix.thunk(() => nix.sel(unixtools, "col"))]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-implicit-function-declaration -Wno-implicit-int",
       })),
       installPhase: "runHook preInstall\nmkdir -p $out/bin/\ncp {check,infodump,pix2gif,txd} $out/bin/\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Essential set of Z-machine tools for interpreter authors, experienced Inform programmers, and Z-code hackers",
         homepage: "http://inform-fiction.org/zmachine/ztools.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),

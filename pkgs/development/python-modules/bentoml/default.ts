@@ -97,7 +97,7 @@ export default nix.lambda((args) => (() => {
   const io = nix.thunk(() => nix.concat(io_image, io_pandas));
   const tracing = tracing_otlp;
   const optional_dependencies = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     all: nix.thunk(() => nix.concat(aws, nix.concat(io, nix.concat(grpc, nix.concat(grpc_reflection, nix.concat(grpc_channelz, nix.concat(tracing, monitor_otlp))))))),
     aws: aws,
     grpc: grpc,
@@ -112,14 +112,14 @@ export default nix.lambda((args) => (() => {
     triton: nix.thunk(() => nix.concat([tritonclient], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.concat(nix.sel(tritonclient, "optional-dependencies", "http"), nix.sel(tritonclient, "optional-dependencies", "grpc")))))),
   }));
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "bentoml",
       repo: "BentoML",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-SR84EeZ9WNoaRDG4uklYhlFSDigZv81XX3VlKCn/7Zw=",
     }))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "bentoml",
       version: version,
       src: src,
@@ -206,7 +206,7 @@ export default nix.lambda((args) => (() => {
         writableTmpDirAsHomeHook,
       ], nix.sel(optional_dependencies, "grpc"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Build Production-Grade AI Applications",
         homepage: "https://github.com/bentoml/BentoML",
         changelog: nix.thunk(() => nix.str`https://github.com/bentoml/BentoML/releases/tag/${nix.sel(src, "tag")}`),

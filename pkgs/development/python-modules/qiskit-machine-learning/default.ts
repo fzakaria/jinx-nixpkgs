@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "qiskit",
           repo: "qiskit-machine-learning",
           tag: version,
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         "test_qgan_training",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: true,
         description: "Software for developing quantum computing programs",
         homepage: "https://qiskit.org",
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

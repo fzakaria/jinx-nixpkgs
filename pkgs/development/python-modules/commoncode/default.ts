@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const setuptools_scm = nix.arg($, "setuptools-scm");
   const text_unidecode = nix.arg($, "text-unidecode");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "commoncode",
       version: "32.4.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nexB",
           repo: "commoncode",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_searchable_paths"])))),
       pythonImportsCheck: nix.thunk(() => ["commoncode"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Set of common utilities, originally split from ScanCode",
         homepage: "https://github.com/nexB/commoncode",
         changelog: nix.thunk(() => nix.str`https://github.com/nexB/commoncode/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.rst`),

@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
   const bootGhcVersion = nix.arg($, "bootGhcVersion");
   const userSettings = nix.argOr($, "userSettings", () => null);
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "hadrian",
       version: ghcVersion,
       src: ghcSrc,
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         unordered_containers,
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), ghcVersion, "9.7")), nix.thunk(() => [cryptohash_sha256, base16_bytestring])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), ghcVersion, "9.9")), nix.thunk(() => [ghc_platform, ghc_toolchain]))))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         "ghc-platform": ghc_platform,
         "ghc-toolchain": ghc_toolchain,
       })),

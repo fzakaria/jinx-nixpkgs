@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const pytest_textual_snapshot = nix.arg($, "pytest-textual-snapshot");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "textual-fastdatatable",
       version: "0.19.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tconbeer",
           repo: "textual-fastdatatable",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,12 +36,12 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => nix.concat([pyarrow, textual, typing_extensions], nix.sel(textual, "optional-dependencies", "syntax"))),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, polars: nix.thunk(() => [polars]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, polars: nix.thunk(() => [polars]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytest_asyncio, pytest_textual_snapshot, pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
       pythonImportsCheck: nix.thunk(() => ["textual_fastdatatable"]),
       disabledTestPaths: nix.thunk(() => ["tests/snapshot_tests/test_snapshots.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Performance-focused reimplementation of Textual's DataTable widget, with a pluggable data storage backend",
         homepage: "https://github.com/tconbeer/textual-fastdatatable",
         changelog: nix.thunk(() => nix.str`https://github.com/tconbeer/textual-fastdatatable/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

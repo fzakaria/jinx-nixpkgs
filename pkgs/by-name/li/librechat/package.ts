@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "librechat",
       version: "0.8.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "danny-avila",
           repo: "LibreChat",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,18 +46,18 @@ export default nix.lambda((args) => (() => {
       preInstall: "# not sure why this is something npm pack tries to keep\nrm -rf ./packages/data-schemas/node_modules/winston-transport/.nyc_output\n",
       preFixup: "mkdir -p $out/lib/node_modules/LibreChat/packages/api\ncp -R packages/api/dist/. $out/lib/node_modules/LibreChat/packages/api\nmkdir -p $out/lib/node_modules/LibreChat/packages/client\ncp -R packages/client/dist/. $out/lib/node_modules/LibreChat/packages/client\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex", "^v(\\d+\\.\\d+\\.\\d+)$"]),
           })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           librechat: nix.thunk(() => nix.attr(nixosTests, "librechat")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Open-source app for all your AI conversations, fully customizable and compatible with any AI provider",
         homepage: "https://github.com/danny-avila/LibreChat",
         changelog: nix.thunk(() => nix.str`https://www.librechat.ai/changelog/${nix.sel(finalAttrs, "src", "tag")}`),

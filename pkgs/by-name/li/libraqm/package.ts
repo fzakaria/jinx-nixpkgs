@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const harfbuzz = nix.arg($, "harfbuzz");
   const fribidi = nix.arg($, "fribidi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libraqm",
       version: "0.11.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "HOST-Oman",
           repo: "libraqm",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, meson, ninja]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for complex text layout",
         homepage: "https://github.com/HOST-Oman/libraqm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

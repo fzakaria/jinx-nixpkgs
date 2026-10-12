@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const stestr = nix.arg($, "stestr");
   const testscenarios = nix.arg($, "testscenarios");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "os-service-types-tests",
       version: nix.thunk(() => nix.attr(os_service_types, "version")),
       src: nix.thunk(() => nix.attr(os_service_types, "src")),

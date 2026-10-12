@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "stargazer",
       version: "1.3.4",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~zethra",
           repo: "stargazer",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,9 +31,9 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-p1COGfMjHNZeAWYdVzCo/mHM75Tt5klxtYWn8tAuH0g=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "basic-functionality": nix.thunk(() => nix.sel(nixosTests, "stargazer")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles, scdoc]),
       postInstall: "scdoc < doc/stargazer.scd  > stargazer.1\nscdoc < doc/stargazer-ini.scd  > stargazer.ini.5\ninstallManPage stargazer.1\ninstallManPage stargazer.ini.5\ninstallShellCompletion completions/stargazer.{bash,zsh,fish}\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Fast and easy to use Gemini server",
         mainProgram: "stargazer",
         homepage: "https://sr.ht/~zethra/stargazer/",

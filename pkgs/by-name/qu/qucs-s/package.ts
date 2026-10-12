@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const qt6Packages = nix.arg($, "qt6Packages");
   const kernels = nix.argOr($, "kernels", () => [ngspice, qucsator_rf]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "qucs-s",
       version: "25.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ra3xdh",
           repo: "qucs_s",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -53,13 +53,13 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), kernels)),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         QTDIR: nix.thunk(() => nix.sel(qt6Packages, "qtbase", "dev")),
       })),
       doInstallCheck: true,
       installCheck: "$out/bin/qucs-s --version\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Spin-off of Qucs that allows custom simulation kernels",
         longDescription: "Spin-off of Qucs that allows custom simulation kernels.\nDefault version is installed with ngspice.\n",
         homepage: "https://ra3xdh.github.io/",

@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const ohex = nix.arg($, "ohex");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hkdf",
       version: "2.0.0",
       minimalOCamlVersion: "4.08",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/hannesm/ocaml-hkdf/releases/download/v${nix.sel(finalAttrs, "version")}/hkdf-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-VLBxJ5viTTn1nK0QNIAGq/8961x0/RGHZN/C/7ITWNM=",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest, ohex]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "HMAC-based Extract-and-Expand Key Derivation Function (RFC 5869)",
         homepage: "https://github.com/hannesm/ocaml-hkdf",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

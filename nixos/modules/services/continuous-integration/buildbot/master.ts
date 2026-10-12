@@ -98,15 +98,15 @@ m = BuildMaster(basedir, configfile, umask)
 m.setServiceParent(application)
 `)));
   return {
-    __proto__: pos$41,
+    [nix.POS]: pos$41,
     options: nix.thunk(() => ({
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       services: nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         "buildbot-master": nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           factorySteps: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "Factory Steps",
               default: [],
@@ -116,7 +116,7 @@ m.setServiceParent(application)
               ]),
             })))),
           changeSource: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "List of Change Sources.",
               default: [],
@@ -125,7 +125,7 @@ m.setServiceParent(application)
               ]),
             })))),
           configurators: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "Configurator Steps, see <https://docs.buildbot.net/latest/manual/configuration/configurators.html>",
               default: [],
@@ -134,26 +134,26 @@ m.setServiceParent(application)
               ]),
             })))),
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable the Buildbot continuous integration server.",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               description: "Extra configuration to append to master.cfg",
               default: "c['buildbotNetUsageData'] = None",
             })))),
           extraImports: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               description: "Extra python imports to prepend to master.cfg",
               default: "",
               example: "from buildbot.process.project import Project",
             })))),
           masterCfg: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "Optionally pass master.cfg path. Other options in this configuration will be ignored.",
               default: defaultMasterCfg,
@@ -161,7 +161,7 @@ m.setServiceParent(application)
               example: "/etc/nixos/buildbot/master.cfg",
             })))),
           schedulers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "List of Schedulers.",
               default: nix.thunk(() => [
@@ -170,7 +170,7 @@ m.setServiceParent(application)
               ]),
             })))),
           builders: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "List of Builders.",
               default: nix.thunk(() => [
@@ -178,101 +178,101 @@ m.setServiceParent(application)
               ]),
             })))),
           workers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "List of Workers.",
               default: nix.thunk(() => ["worker.Worker('example-worker', 'pass')"]),
             })))),
           reporters: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               default: [],
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "List of reporter objects used to present build status to various users.",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               default: "buildbot",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "User the buildbot server should execute under.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               default: "buildbot",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Primary group of buildbot user.",
             })))),
           extraGroups: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "List of extra groups that the buildbot user should be a part of.",
             })))),
           home: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               default: "/home/buildbot",
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "Buildbot home directory.",
             })))),
           buildbotDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               default: nix.thunk(() => nix.str`${nix.sel(cfg, "home")}/master`),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`"\${config.${nix.sel(opt, "home")}}/master"`))),
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "Specifies the Buildbot directory.",
             })))),
           pbPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               default: 9989n,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "either"), nix.thunk(() => nix.sel(lib, "types", "str")), nix.thunk(() => nix.sel(lib, "types", "port")))),
               example: "'tcp:9990:interface=127.0.0.1'",
               description: "The buildmaster will listen on a TCP port of your choosing\nfor connections from workers.\nIt can also use this port for connections from remote Change Sources,\nstatus clients, and debug tools.\nThis port should be visible to the outside world, and you’ll need to tell\nyour worker admins about your choice.\nIf put in (single) quotes, this can also be used as a connection string,\nas defined in the [ConnectionStrings guide](https://twistedmatrix.com/documents/current/core/howto/endpoints.html).\n",
             })))),
           listenAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               default: "0.0.0.0",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Specifies the bind address on which the buildbot HTTP interface listens.",
             })))),
           buildbotUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               default: "http://localhost:8010/",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Specifies the Buildbot URL.",
             })))),
           title: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               default: "Buildbot",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Specifies the Buildbot Title.",
             })))),
           titleUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               default: "Buildbot",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Specifies the Buildbot TitleURL.",
             })))),
           dbUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               default: "sqlite:///state.sqlite",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Specifies the database connection string.",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               default: 8010n,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               description: "Specifies port number on which the buildbot HTTP interface listens.",
             })))),
-          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "buildbot-full", nix.thunk(() => ({ __proto__: pos$24, example: "buildbot" })))),
+          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "buildbot-full", nix.thunk(() => ({ [nix.POS]: pos$24, example: "buildbot" })))),
           packages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               default: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "git"))]),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ pkgs.git ]")),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               description: "Packages to add to PATH for the buildbot process.",
             })))),
           pythonPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "functionTo"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))))),
               default: (pythonPackages) => [],
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pythonPackages: with pythonPackages; [ ]")),
@@ -283,14 +283,14 @@ m.setServiceParent(application)
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$39,
+        [nix.POS]: pos$39,
         users: nix.thunk(() => ({
-          __proto__: pos$33,
-          groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "buildbot")), nix.thunk(() => ({ __proto__: pos$30, buildbot: nix.thunk(() => ({})) })))),
+          [nix.POS]: pos$33,
+          groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "buildbot")), nix.thunk(() => ({ [nix.POS]: pos$30, buildbot: nix.thunk(() => ({})) })))),
           users: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "buildbot")), nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               buildbot: nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 description: "Buildbot User.",
                 isNormalUser: true,
                 createHome: true,
@@ -302,17 +302,17 @@ m.setServiceParent(application)
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           services: nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             "buildbot-master": nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               description: "Buildbot Continuous Integration Server.",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               path: nix.thunk(() => nix.concat(nix.sel(cfg, "packages"), nix.app(nix.sel(cfg, "pythonPackages"), nix.thunk(() => nix.sel(python, "pkgs"))))),
               environment: nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 PYTHONPATH: nix.thunk(() => nix.str`${nix.app(nix.sel(python, "withPackages"), (self) => nix.concat(nix.app(nix.sel(cfg, "pythonPackages"), self), [package$]))}/${nix.sel(python, "sitePackages")}`),
               })),
               preStart: nix.thunk(() => nix.str`mkdir -vp "${nix.sel(cfg, "buildbotDir")}"
@@ -322,7 +322,7 @@ ${nix.sel(cfg, "package")}/bin/buildbot create-master --db "${nix.sel(cfg, "dbUr
 rm -f buildbot.tac.new master.cfg.sample
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 Type: "simple",
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -342,7 +342,7 @@ rm -f buildbot.tac.new master.cfg.sample
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "buildbot-master", "status"]), "Since Buildbot 0.9.0, status targets are deprecated and ignored.\nReview your configuration and migrate to reporters (available at services.buildbot-master.reporters).\n")),
     ]),
     meta: nix.thunk(() => ({
-      __proto__: pos$40,
+      [nix.POS]: pos$40,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "buildbot"))]),
     })),
   };

@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const libraw = nix.arg($, "libraw");
   const openexr = nix.arg($, "openexr");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kimageformats",
       extraCmakeFlags: nix.thunk(() => ["-DKIMAGEFORMATS_HEIF=1"]),
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),

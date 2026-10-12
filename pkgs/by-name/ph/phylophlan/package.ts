@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const diamond = nix.arg($, "diamond");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "phylophlan",
       version: "3.2.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "biobakery",
           repo: "phylophlan",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -56,7 +56,7 @@ makeWrapperArgs+=(--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thu
 `),
       postInstall: "# Not revelant in this context\nrm -f $out/bin/phylophlan_write_default_configs.sh\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/biobakery/phylophlan",
         description: "Precise phylogenetic analysis of microbial isolates and genomes from metagenomes",
         changelog: "https://github.com/biobakery/phylophlan/releases",

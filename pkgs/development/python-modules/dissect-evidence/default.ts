@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pythonAtLeast = nix.arg($, "pythonAtLeast");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dissect-evidence",
       version: "3.13",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fox-it",
           repo: "dissect.evidence",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       dependencies: nix.thunk(() => [dissect_cstruct, dissect_util]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, full: nix.thunk(() => [pycryptodome]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, full: nix.thunk(() => [pycryptodome]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
       disabledTests: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["test_ewf"]))),
       pythonImportsCheck: nix.thunk(() => ["dissect.evidence"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Dissect module implementing a parsers for various forensic evidence file containers",
         homepage: "https://github.com/fox-it/dissect.evidence",
         changelog: nix.thunk(() => nix.str`https://github.com/fox-it/dissect.evidence/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

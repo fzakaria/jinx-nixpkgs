@@ -16,21 +16,21 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const liquidsoap = nix.arg($, "liquidsoap");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "csexp",
       version: "1.5.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ocaml-dune/csexp/releases/download/${nix.sel(finalAttrs, "version")}/csexp-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-GhTdBLtDeaQZkCSFUGKMd5E6nAfzw1wTcLaWDml3h/8=",
         })))),
       minimalOCamlVersion: "4.03",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, liquidsoap: liquidsoap })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, liquidsoap: liquidsoap })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Minimal support for Canonical S-expressions",
         homepage: "https://github.com/ocaml-dune/csexp",
         changelog: nix.thunk(() => nix.str`https://github.com/ocaml-dune/csexp/raw/${nix.sel(finalAttrs, "version")}/CHANGES.md`),

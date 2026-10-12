@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const libsForQt5 = nix.arg($, "libsForQt5");
   const ghostscript = nix.arg($, "ghostscript");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "krop",
       version: "0.7.0",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "arminstraub",
           repo: "krop",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       makeWrapperArgs: nix.thunk(() => ["${qtWrapperArgs[@]}"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://arminstraub.com/software/krop",
         description: "Graphical tool to crop the pages of PDF files",
         longDescription: "Krop is a tool that allows you to optimise your PDF files, and remove\nsections of the page you do not want.  A unique feature of krop, at least to my\nknowledge, is its ability to automatically split pages into subpages to fit the\nlimited screensize of devices such as eReaders. This is particularly useful, if\nyour eReader does not support convenient scrolling. Krop also has a command line\ninterface.\n",

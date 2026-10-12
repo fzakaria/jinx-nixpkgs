@@ -19,27 +19,27 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "wordpress",
       version: version,
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://wordpress.org/wordpress-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: hash,
         })))),
       installPhase: "runHook preInstall\n\n# remove non-essential plugins and themes\nrm -r wp-content/{plugins,themes}\nmkdir wp-content/plugins\ncat << EOF > wp-content/plugins/index.php\n<?php\n// Silence is golden.\nEOF\ncp -a wp-content/{plugins,themes}\n\nmkdir -p $out/share/wordpress\ncp -r . $out/share/wordpress\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           wordpress: nix.thunk(() => nix.attr(nixosTests, "wordpress")),
         })),
         updateScript: nix.thunk(() => nix.app(writeScript, "update.sh", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p common-updater-scripts jq\nset -eu -o pipefail\nversion=$(curl --globoff \"https://api.wordpress.org/core/version-check/1.7/\" | jq -r '.offers[0].version')\nupdate-source-version wordpress $version --file=./pkgs/servers/web-apps/wordpress/default.nix\n")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://wordpress.org",
         description: "Open source software you can use to create a beautiful website, blog, or app",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const sfml_2 = nix.arg($, "sfml_2");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "marble-marcher-ce",
       version: "1.4.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "WAUthethird",
           repo: "Marble-Marcher-Community-Edition",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "mkdir $out/bin\nmkdir -p $out/share/icons/\n# The executable has to be run from the same directory the assets are in\nmakeWrapper $out/share/MMCE/MarbleMarcher $out/bin/marble-marcher-ce --chdir $out/share/MMCE\nln -s $out/share/MMCE/images/MarbleMarcher.png $out/share/icons/marble-marcher-ce.png\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "marble-marcher-ce",
             exec: "marble-marcher-ce",
             icon: "marble-marcher-ce",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Community-developed version of the original Marble Marcher - a fractal physics game",
         mainProgram: "marble-marcher-ce",
         homepage: "https://michaelmoroz.itch.io/mmce",

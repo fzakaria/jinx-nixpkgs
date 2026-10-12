@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "rmfakecloud";
       const version = "0.0.31";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ddvk",
           repo: "rmfakecloud",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,10 +34,10 @@ export default nix.lambda((args) => (() => {
         }))));
       const vendorHash = "sha256-A+y63w+sEleXFh4ZHgFo1IhsQ2KhqqKW4vRPi393atI=";
       const env = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pnpmRoot: "ui",
         pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: pname,
             version: version,
             src: src,
@@ -53,14 +53,14 @@ export default nix.lambda((args) => (() => {
       const postPatch = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(enableWebui)), "sed -i '/go:/d' ui/assets.go\n"));
       const ldflags = nix.thunk(() => ["-s", "-w", nix.thunk(() => nix.str`-X main.version=v${version}`)]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           rmfakecloud: nix.thunk(() => nix.sel(nixosTests, "rmfakecloud")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Host your own cloud for the Remarkable",
         homepage: "https://ddvk.github.io/rmfakecloud/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "rmfakecloud",
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

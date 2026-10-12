@@ -17,17 +17,17 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "kakasi",
       version: "2.3.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://kakasi.namazu.org/stable/kakasi-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-LuV7GwPHT9V2bnQcOBICjvxzvA4L+Tpuf/IOtHAfPuM=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://src.fedoraproject.org/rpms/kakasi/raw/4756771/f/kakasi-configure-c99.patch",
             hash: "sha256-XPIp/+AR6K84lv606aRHPQwia/1K3rt/7KSo0V0ZQ5o=",
           })))),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "for a in tests/kakasi-* ; do\n  substituteInPlace $a \\\n    --replace-quiet \"/bin/echo\" echo\ndone\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Kanji Kana Simple Inverter",
         longDescription: "KAKASI is the language processing filter to convert Kanji\ncharacters to Hiragana, Katakana or Romaji and may be\nhelpful to read Japanese documents.\n",
         homepage: "http://kakasi.namazu.org/",

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const geoip = nix.arg($, "geoip");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mirrorbits",
       version: "0.6.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "videolabs",
           repo: "mirrorbits",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "version",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Geographical download redirector for distributing files efficiently across a set of mirrors",
         homepage: "https://github.com/videolabs/mirrorbits",
         longDescription: "Mirrorbits is a geographical download redirector written in Go for\ndistributing files efficiently across a set of mirrors. It offers\na simple and economic way to create a Content Delivery Network\nlayer using a pure software stack. It is primarily designed for\nthe distribution of large-scale Open-Source projects with a lot\nof traffic.\n",

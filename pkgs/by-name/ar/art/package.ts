@@ -47,11 +47,11 @@ export default nix.lambda((args) => (() => {
   const opencolorio = nix.arg($, "opencolorio");
   const color_transformation_language = nix.arg($, "color-transformation-language");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "art",
       version: "1.26.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "artraweditor",
           repo: "ART",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -99,12 +99,12 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DCTL_INCLUDE_DIR=${color_transformation_language}/include/CTL`),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CMAKE_CXX_FLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-std=c++11", "-Wno-deprecated-declarations", "-Wno-unused-result"]))),
         CXXFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-include", "cstdint"]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Raw converter based on RawTherapee",
         homepage: "https://artraweditor.github.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

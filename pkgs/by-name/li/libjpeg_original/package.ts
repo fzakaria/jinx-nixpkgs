@@ -17,25 +17,25 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const static$ = nix.argOr($, "static", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libjpeg",
       version: "10",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.ijg.org/files/jpegsrc.v${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-i56qEyQmkOvQPhcoqx7fl6gaeO1ug2JNSTZV8xrJWrU=",
         })))),
       configureFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), static$, "--enable-static --disable-shared")),
       outputs: nix.thunk(() => ["bin", "dev", "out", "man"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.ijg.org/",
         description: "Library that implements the JPEG image file format",
         maintainers: nix.thunk(() => (() => {

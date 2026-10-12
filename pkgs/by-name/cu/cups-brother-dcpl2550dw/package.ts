@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cups-brother-dcpl2550dw";
       const version = "4.0.0-1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf103577/dcpl2550dwpdrv-${version}.i386.deb`),
           hash: "sha256-gGW8KDXlmYSMxvI29pfXd/lusg4rd4HaXiGkbBnUuQY=",
         }))));
@@ -69,7 +69,7 @@ ln -s \\
 runHook postInstall
 `));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.brother.com/",
         description: "Brother DCP-L2550DW printer driver",
         sourceProvenance: nix.thunk(() => (() => {
@@ -85,7 +85,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

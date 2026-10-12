@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const rsync = nix.arg($, "rsync");
   const baseHelloArtifacts = nix.thunk(() => nix.app(nix.sel(checkpointBuildTools, "prepareCheckpointBuild"), hello));
   const patchedHello = nix.thunk(() => nix.app(nix.sel(hello, "overrideAttrs"), (old) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       buildInputs: nix.thunk(() => [texinfo]),
       src: nix.thunk(() => nix.app(runCommand, "patch-hello-src", nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir -p $out
 cd $out
@@ -29,14 +29,14 @@ patch -p1 < ${nix.path(here, "./hello.patch")}
     })));
   const checkpointBuiltHello = nix.thunk(() => nix.app(nix.sel(checkpointBuildTools, "mkCheckpointBuild"), patchedHello, baseHelloArtifacts));
   const checkpointBuiltHelloWithCheck = nix.thunk(() => nix.app(nix.sel(checkpointBuiltHello, "overrideAttrs"), (old) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       doCheck: true,
       checkPhase: nix.thunk(() => nix.str`echo "checking if unchanged source file is not recompiled"
   [ "$(stat --format="%Y" lib/exitfail.o)" = "$(stat --format="%Y" ${baseHelloArtifacts}/outputs/lib/exitfail.o)" ]
 `),
     })));
   const baseHelloRemoveFileArtifacts = nix.thunk(() => nix.app(nix.sel(checkpointBuildTools, "prepareCheckpointBuild"), nix.thunk(() => nix.app(nix.sel(hello, "overrideAttrs"), (old) => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         patches: nix.thunk(() => [nix.path(here, "./hello-additionalFile.patch")]),
       })))));
   const preparedHelloRemoveFileSrc = nix.thunk(() => nix.app(runCommand, "patch-hello-src", nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir -p $out
@@ -45,7 +45,7 @@ tar xf ${nix.sel(hello, "src")} --strip-components=1
 patch -p1 < ${nix.path(here, "./hello-additionalFile.patch")}
 `)));
   const patchedHelloRemoveFile = nix.thunk(() => nix.app(nix.sel(hello, "overrideAttrs"), (old) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       buildInputs: nix.thunk(() => [texinfo]),
       src: nix.thunk(() => nix.app(runCommand, "patch-hello-src", nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir -p $out
 cd $out
@@ -55,7 +55,7 @@ patch -p1 < ${nix.path(here, "./hello-removeFile.patch")}
     })));
   const checkpointBuiltHelloWithRemovedFile = nix.thunk(() => nix.app(nix.sel(checkpointBuildTools, "mkCheckpointBuild"), patchedHelloRemoveFile, baseHelloRemoveFileArtifacts));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: "patched-hello-returns-correct-output",
       buildCommand: nix.thunk(() => nix.str`touch $out
 

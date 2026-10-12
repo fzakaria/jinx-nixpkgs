@@ -14,19 +14,19 @@ const pos$7 = nix.positions(here + "/onlyoffice.nix", [["name", 5, 3], ["nodes",
 export default nix.thunk(() => (() => {
   const port = 8000n;
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     name: "onlyoffice",
     nodes: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       machine: nix.lambda((args) => (() => {
         const $ = nix.formals(args, formals$1);
         const pkgs = nix.arg($, "pkgs");
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           services: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             onlyoffice: nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               enable: true,
               port: port,
               hostname: "office.example.com",
@@ -34,8 +34,8 @@ export default nix.thunk(() => (() => {
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$4,
-            hosts: nix.thunk(() => ({ __proto__: pos$3, "::1": nix.thunk(() => ["office.example.com"]) })),
+            [nix.POS]: pos$4,
+            hosts: nix.thunk(() => ({ [nix.POS]: pos$3, "::1": nix.thunk(() => ["office.example.com"]) })),
           })),
         };
       })(), formals$1),

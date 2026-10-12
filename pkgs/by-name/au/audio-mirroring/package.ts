@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const pname = "audio-mirroring";
       const version = "0.1.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mkg20001",
           repo: "audio-mirroring",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-Idu15ZfY8JYVZhub0LRXYtWdiVCMVRyC3MVTX4JcbzY=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           description: "Audio Mirroring for Linux",
           homepage: "https://github.com/mkg20001/audio-mirroring",
           license: nix.thunk(() => nix.sel(nix.lookup(w, "licenses"), "gpl3Only")),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
         };
       })());
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

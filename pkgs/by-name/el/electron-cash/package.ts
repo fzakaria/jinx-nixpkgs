@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.4.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Electron-Cash",
           repo: "Electron-Cash",
           tag: version,
@@ -77,7 +77,7 @@ substituteInPlace contrib/requirements/requirements.txt \\
       const doInstallCheck = true;
       const installCheckPhase = "output=\"$($out/bin/electron-cash help 2>&1)\"\nif [[ \"$output\" == *\"failed to load\"* ]]; then\n  echo \"$output\"\n  echo \"Forbidden text detected: failed to load\"\n  exit 1\nfi\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bitcoin Cash SPV Wallet",
         mainProgram: "electron-cash",
         longDescription: "An easy-to-use Bitcoin Cash client featuring wallets generated from\nmnemonic seeds (in addition to other, more advanced, wallet options)\nand the ability to perform transactions without downloading a copy\nof the blockchain.\n",
@@ -93,7 +93,7 @@ substituteInPlace contrib/requirements/requirements.txt \\
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       highscore_stella,
     ])));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "highscore",
       version: nix.thunk(() => nix.attr(highscore_unwrapped, "version")),
       meta: nix.thunk(() => nix.attr(highscore_unwrapped, "meta")),

@@ -42,12 +42,12 @@ export default nix.lambda((args) => (() => {
   ]);
   const flakyTests = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["test_baseline_predict"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["test_coxnet"]))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "scikit-survival",
       version: "0.28.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sebp",
           repo: "scikit-survival",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -74,11 +74,11 @@ export default nix.lambda((args) => (() => {
       ]),
       disabledTests: nix.thunk(() => nix.concat(slowTests, flakyTests)),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           full: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (old) => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               nativeInstallCheckInputs: nix.thunk(() => nix.concat(nix.sel(old, "nativeInstallCheckInputs"), [polars])),
               disabledTests: flakyTests,
               disabledTestPaths: [],
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Survival analysis built on top of scikit-learn",
         homepage: "https://github.com/sebp/scikit-survival",
         changelog: nix.thunk(() => nix.str`https://github.com/sebp/scikit-survival/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

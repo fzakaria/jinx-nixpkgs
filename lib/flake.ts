@@ -7,14 +7,14 @@ const pos$1 = nix.positions(here + "/flake.nix", [["lib", 10, 7]]);
 const pos$2 = nix.positions(here + "/flake.nix", [["description", 2, 3], ["outputs", 4, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$2,
+  [nix.POS]: pos$2,
   description: "Library of low-level helper functions for nix expressions.",
   outputs: nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const self = nix.arg($, "self");
     const lib0 = nix.thunk(() => nix.builtins.import(nix.path(here, "./.")));
     return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       lib: nix.thunk(() => nix.app(nix.sel(lib0, "extend"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./flake-version-info.nix")), self)))),
     };
   })(), formals$1),

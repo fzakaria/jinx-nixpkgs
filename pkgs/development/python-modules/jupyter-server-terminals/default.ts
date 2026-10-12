@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jupyter-server",
           repo: "jupyter_server_terminals",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,14 +36,14 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytest_jupyter, pytest_timeout, pytestCheckHook], nix.sel(pytest_jupyter, "optional-dependencies", "server")));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          check: nix.thunk(() => nix.app(nix.sel(self, "overridePythonAttrs"), (_) => ({ __proto__: pos$2, doCheck: true }))),
+          [nix.POS]: pos$3,
+          check: nix.thunk(() => nix.app(nix.sel(self, "overridePythonAttrs"), (_) => ({ [nix.POS]: pos$2, doCheck: true }))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/jupyter-server/jupyter_server_terminals/releases/tag/${nix.sel(src, "tag")}`),
         description: "Jupyter Server Extension Providing Support for Terminals",
         homepage: "https://github.com/jupyter-server/jupyter_server_terminals",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

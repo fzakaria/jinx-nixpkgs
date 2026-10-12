@@ -19,15 +19,15 @@ export default nix.lambda((args) => (() => {
   const hasAmdCpu = nix.thunk(() => nix.app(nix.sel(facterLib, "hasAmdCpu"), report));
   const kver = nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "kernel", "version"));
   return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(config, "hardware", "facter", "enable")) && nix.asBool(isBaremetal))) && nix.asBool(hasAmdCpu))), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       boot: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), kver, "5.17")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), kver, "6.1")))), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               kernelParams: nix.thunk(() => ["initcall_blacklist=acpi_cpufreq_init"]),
               kernelModules: nix.thunk(() => ["amd-pstate"]),
             })))),
-          nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), kver, "6.1")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), kver, "6.3")))), nix.thunk(() => ({ __proto__: pos$2, kernelParams: nix.thunk(() => ["amd_pstate=passive"]) })))),
-          nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), kver, "6.3")), nix.thunk(() => ({ __proto__: pos$3, kernelParams: nix.thunk(() => ["amd_pstate=active"]) })))),
+          nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), kver, "6.1")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), kver, "6.3")))), nix.thunk(() => ({ [nix.POS]: pos$2, kernelParams: nix.thunk(() => ["amd_pstate=passive"]) })))),
+          nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), kver, "6.3")), nix.thunk(() => ({ [nix.POS]: pos$3, kernelParams: nix.thunk(() => ["amd_pstate=active"]) })))),
         ]))),
     })));
 })(), formals$1);

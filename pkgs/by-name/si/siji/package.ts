@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const mkfontscale = nix.arg($, "mkfontscale");
   const fonttosfnt = nix.arg($, "fonttosfnt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "siji",
       version: "2016-05-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stark",
           repo: "siji",
           rev: "3cbb7fe938c33aaadbb657803ea5946e5157d6e2",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "install -m 644 -D *.otb pcf/* -t \"$out/share/fonts/misc\"\ninstall -m 644 -D bdf/* -t \"$bdf/share/fonts/misc\"\nmkfontdir \"$out/share/fonts/misc\"\nmkfontdir \"$bdf/share/fonts/misc\"\n",
       outputs: nix.thunk(() => ["out", "bdf"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/stark/siji",
         description: "Iconic bitmap font based on Stlarch with additional glyphs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

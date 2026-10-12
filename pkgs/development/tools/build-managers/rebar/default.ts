@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "rebar";
       const version = "2.6.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rebar",
           repo: "rebar",
           rev: version,
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const buildPhase = "escript bootstrap";
       const installPhase = "mkdir -p $out/bin\ncp rebar $out/bin/rebar\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/rebar/rebar",
         description: "Erlang build tool that makes it easy to compile and test Erlang applications, port drivers and releases",
         mainProgram: "rebar",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "beam"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

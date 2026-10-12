@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const pipInstallHook = nix.arg($, "pipInstallHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "casatasks",
       version: "6.7.5.18",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://open-bitbucket.nrao.edu/scm/casa/casa6.git",
           rev: nix.thunk(() => nix.str`refs/tags/${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-75oIlaNAyu70KWSjz38LoYAvV7RJgzH/X9uBnGpriF4=",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [casatools, casaconfig, matplotlib, scipy, certifi, pyerfa]),
       jarName: "xml-casa-assembly-1.88.jar",
       xml_jar: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`http://casa.nrao.edu/download/devel/xml-casa/java/${nix.sel(finalAttrs, "jarName")}`),
           hash: "sha256-UJCiXLXAe7Prm1qGXJ9jbuZcgKhPTSrU8qnf4C5Goxs=",
         })))),
@@ -66,7 +66,7 @@ EOF
 `),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-casatasks", nix.thunk(() => nix.str`set -euo pipefail
 version=$(${nix.app(nix.sel(lib, "getExe"), curl)} -s https://pypi.org/pypi/casatasks/json | ${nix.app(nix.sel(lib, "getExe"), gnugrep)} -oP '"version"\\s*:\\s*"\\K[^"]+' | head -1)
 ${nix.app(nix.sel(lib, "getExe'"), common_updater_scripts, "update-source-version")} python3Packages.casatasks "$version"
@@ -86,7 +86,7 @@ ${nix.app(nix.sel(lib, "getExe"), gnused)} -i \\
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "High-level Python tasks for radio astronomy data reduction",
         homepage: "https://casa.nrao.edu/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Only")),

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "rtl_433-exporter";
       const version = "0.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mhansen",
           repo: "rtl_433_prometheus",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const postPatch = nix.thunk(() => nix.str`substituteInPlace rtl_433_prometheus.go --replace /bin/bash ${bash}/bin/bash`);
       const vendorHash = "sha256-BsNB0OTwBUu9kK+lSN7EF8ZQH3kFx8P9h4QgcfCvtg4=";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { __proto__: pos$2, rtl_433: nix.thunk(() => nix.attr(from, "rtl_433")) };
+          return { [nix.POS]: pos$2, rtl_433: nix.thunk(() => nix.attr(from, "rtl_433")) };
         })()),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Prometheus time-series DB exporter for rtl_433 433MHz radio packet decoder",
         mainProgram: "rtl_433_prometheus",
         homepage: "https://github.com/mhansen/rtl_433_prometheus",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "zopieux"))];
         })()),
       }));
-      return { __proto__: pos$5, pname, version, src, postPatch, vendorHash, passthru, meta };
+      return { [nix.POS]: pos$5, pname, version, src, postPatch, vendorHash, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

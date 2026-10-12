@@ -32,18 +32,18 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "wrangler",
       version: "4.148.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cloudflare",
           repo: "workers-sdk",
           rev: nix.thunk(() => nix.str`wrangler@${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-Wo8D86TSrG8yL8TrGmeZHzwhr6YoYHD2haDiRIUYEIY=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -54,9 +54,9 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: "jq 'del(.packageManager)' package.json | sponge package.json\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version-regex=wrangler@(.*)"]),
           })))),
       })),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(llvmPackages, "libunwind")),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [musl, libx11])))),
       nativeBuildInputs: nix.thunk(() => nix.concat([makeWrapper, nodejs, pnpmConfigHook, pnpm_10, jq, moreutils], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [autoPatchelfHook])))),
-      env: nix.thunk(() => ({ __proto__: pos$5, NODE_OPTIONS: "--max-old-space-size=4096" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$5, NODE_OPTIONS: "--max-old-space-size=4096" })),
       postBuild: "NODE_ENV=\"production\" pnpm --filter wrangler... run build\n",
       installPhase: nix.thunk(() => nix.str`runHook preInstall
 mkdir -p $out/{bin,lib}
@@ -85,7 +85,7 @@ runHook postInstall
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(nodejs, "meta"));
         return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Command-line interface for all things Cloudflare Workers",
         homepage: "https://github.com/cloudflare/workers-sdk#readme",
         license: nix.thunk(() => (() => {

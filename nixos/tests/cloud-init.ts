@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const snakeOilPrivateKey = nix.thunk(() => nix.attr(from, "snakeOilPrivateKey"));
   const snakeOilPublicKey = nix.thunk(() => nix.attr(from, "snakeOilPublicKey"));
   const metadataDrive = nix.thunk(() => nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "metadata",
       buildCommand: nix.thunk(() => nix.str`mkdir -p $out/iso
 
@@ -70,10 +70,10 @@ ${nix.sel(pkgs, "cdrkit")}/bin/genisoimage -volid cidata -joliet -rock -o $out/m
 `),
     }))));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     name: "cloud-init",
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -83,26 +83,26 @@ ${nix.sel(pkgs, "cdrkit")}/bin/genisoimage -volid cidata -joliet -rock -o $out/m
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       unnamed: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         virtualisation: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           qemu: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             options: nix.thunk(() => ["-cdrom", nix.thunk(() => nix.str`${metadataDrive}/metadata.iso`)]),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           "cloud-init": nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             enable: true,
-            network: nix.thunk(() => ({ __proto__: pos$5, enable: true })),
+            network: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
           })),
-          openssh: nix.thunk(() => ({ __proto__: pos$7, enable: true })),
+          openssh: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
         })),
-        networking: nix.thunk(() => ({ __proto__: pos$9, hostName: "", useDHCP: false })),
+        networking: nix.thunk(() => ({ [nix.POS]: pos$9, hostName: "", useDHCP: false })),
       })),
     })),
     testScript: nix.thunk(() => nix.str`# To wait until cloud-init terminates its run

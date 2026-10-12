@@ -34,18 +34,18 @@ export default nix.lambda((args) => (() => {
       const pname = "yandex-music";
       const version = "5.63.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cucumber-sp",
           repo: "yandex-music-linux",
           rev: "066a6c7f503304d2181db04c5ed379a80f9137b8",
           hash: "sha256-z+gmUG0/7ykF42+OlFGZC268Tj8+vpfgZRYrW4otpfM=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [p7zip, asar, jq, python3, makeWrapper]);
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") }));
       const ymExe = nix.thunk(() => (() => {
         const ym_info = nix.thunk(() => nix.builtins.fromJSON(nix.thunk(() => nix.builtins.readFile(nix.path(here, "./ym_info.json")))));
         return nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: nix.thunk(() => nix.sel(ym_info, "exe_link")),
             hash: nix.thunk(() => nix.sel(ym_info, "exe_hash")),
           })));
@@ -82,7 +82,7 @@ install -Dm644 "$src/templates/desktop" "$out/share/applications/yandex-music.de
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Personal recommendations, selections for any occasion and new music",
         homepage: "https://music.yandex.ru/",
         downloadPage: "https://music.yandex.ru/download/",
@@ -95,7 +95,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

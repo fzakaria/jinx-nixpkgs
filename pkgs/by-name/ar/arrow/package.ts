@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "arrow",
       version: "3.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mhgolkar",
           repo: "Arrow",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: "Application",
             name: "Arrow",
             exec: "Arrow",
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
           vulkan_loader,
         ]))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
@@ -82,7 +82,7 @@ runHook postBuild
 `),
       installPhase: "runHook preInstall\n\ninstall -D -m 755 -t $out/libexec ./build/Arrow\ninstall -D -m 644 -t $out/libexec ./build/Arrow.pck\n\ninstall -d -m 755 $out/bin\nln -s $out/libexec/Arrow $out/bin/Arrow\n\ninstall -vD icon.svg $out/share/icons/hicolor/scalable/apps/Arrow.svg\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://mhgolkar.github.io/Arrow/",
         description: "Game Narrative Design Tool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

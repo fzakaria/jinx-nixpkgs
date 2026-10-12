@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const gst_all_1 = nix.arg($, "gst_all_1");
   const libplist = nix.arg($, "libplist");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rpiplay",
       version: "0-unstable-2021-06-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FD-",
           repo: "RPiPlay",
           rev: "35dd995fceed29183cbfad0d4110ae48e0635786",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "use-static-ports.patch",
             url: "https://github.com/FD-/RPiPlay/commit/2ffc287ba822e1d2b2ed0fc0e41a2bb3d9dab105.patch",
             sha256: "08dy829gyhyzw2n54zn5m3176cmd24k5hij24vpww5bhbwkbabww",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "substituteInPlace {lib/playfair/,lib/llhttp/,lib/,renderers/,./}CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 3.4.1)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         homepage: "https://github.com/FD-/RPiPlay",
         description: "Open-source implementation of an AirPlay mirroring server",

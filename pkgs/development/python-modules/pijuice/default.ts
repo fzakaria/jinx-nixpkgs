@@ -20,20 +20,20 @@ export default nix.lambda((args) => (() => {
       const version = "1.8";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PiSupply",
           repo: "PiJuice",
           tag: nix.thunk(() => nix.str`V${version}`),
           sha256: "sha256-tPYuI+VzbxmTeY/L3s0oDoydRDXJ6t76KmLUyJzxUvU=",
         }))));
       const patches = nix.thunk(() => [nix.path(here, "./patch-shebang.diff")]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, PIJUICE_BUILD_BASE: 1n, PIJUICE_VERSION: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PIJUICE_BUILD_BASE: 1n, PIJUICE_VERSION: version }));
       const preBuild = "cd Software/Source\n";
       const propagatedBuildInputs = nix.thunk(() => [smbus_cffi, urwid]);
       const postFixup = "rm $out/bin/pijuice_sys.py\nrm $out/bin/pijuiceboot{32,64}\nmv $out/bin/pijuice_cli.py $out/bin/pijuice_cli\n";
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library and resources for PiJuice HAT for Raspberry Pi",
         mainProgram: "pijuice_cli",
         homepage: "https://github.com/PiSupply/PiJuice",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

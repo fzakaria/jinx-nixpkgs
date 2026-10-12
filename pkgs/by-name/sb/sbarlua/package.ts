@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const lua55Packages = nix.arg($, "lua55Packages");
   const readline = nix.arg($, "readline");
   return nix.app(nix.sel(lua55Packages, "buildLuaPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sbarLua",
       version: "0-unstable-2026-03-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FelixKratz",
           repo: "SbarLua",
           rev: "dba9cc421b868c918d5c23c408544a28aadf2f2f",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`INSTALL_DIR=$(out)/lib/lua/${nix.sel(lua55Packages, "lua", "luaversion")}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lua API for SketchyBar",
         homepage: "https://github.com/FelixKratz/SbarLua/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

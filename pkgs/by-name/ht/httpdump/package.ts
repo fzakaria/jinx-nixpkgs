@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const libpcap = nix.arg($, "libpcap");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "httpdump",
       version: "0-unstable-2023-05-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hsiafan",
           repo: "httpdump",
           rev: "e971e00e0136d5c770c4fdddb1c2095327d419d8",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [libpcap]),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Parse and display HTTP traffic from network device or pcap file",
         mainProgram: "httpdump",
         homepage: "https://github.com/hsiafan/httpdump",

@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "snowflake-cli",
       version: "3.13.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "snowflakedb",
           repo: "snowflake-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -144,7 +144,7 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: true,
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "\n# Looks like the completion generation has some sort of a race\n# Occasionally one of the completion generations would fail with\n#\n# An unexpected exception occurred. Use --debug option to see the traceback. Exception message:\n# [Errno 17] File exists: '/build/tmp.W654FVhCPT/.config/snowflake/logs'\n#\n# This creates a fake config that prevents logging in the build sandbox.\nexport HOME=$(mktemp -d)\nmkdir -p $HOME/.config/snowflake\ncat <<EOF > $HOME/.config/snowflake/config.toml\n[cli.logs]\nsave_logs = false\nEOF\n# snowcli checks the config permissions upon launch and exits with an error code if it's not 0600.\nchmod 0600 $HOME/.config/snowflake/config.toml\n\n# Typer tries to guess the current shell by default\nexport _TYPER_COMPLETE_TEST_DISABLE_SHELL_DETECTION=1\n\ninstallShellCompletion --cmd snow \\\n  --bash <($out/bin/snow --show-completion bash) \\\n  --fish <($out/bin/snow --show-completion fish) \\\n  --zsh <($out/bin/snow --show-completion zsh)\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/snowflakedb/snowflake-cli/blob/${nix.sel(finalAttrs, "src", "tag")}/RELEASE-NOTES.md`),
         homepage: "https://docs.snowflake.com/en/developer-guide/snowflake-cli-v2/index",
         description: "Command-line tool explicitly designed for developer-centric workloads in addition to SQL operations",

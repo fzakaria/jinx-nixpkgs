@@ -17,24 +17,24 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const bash = nix.arg($, "bash");
   const owl = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "ol.c.gz",
       url: "https://haltp.org/files/ol-0.2.2.c.gz",
       hash: "sha256-/KhdrjaRAQhZjYpKJE33qMJxnngDrEbScHYuzkrvxVw=",
     }))));
   const hex = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "owl-lisp",
       repo: "hex",
       rev: "e95ebd38e4f7ef8e3d4e653f432e43ce0a804ca6",
       hash: "sha256-OT04EGun8nKR6D55bMx8xj20dSFwxI7zP/8sdeFZAHQ=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "radamsa",
       version: "0.7",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "akihe",
           repo: "radamsa",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +59,7 @@ patchShebangs tests
       doCheck: true,
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "General purpose fuzzer",
         mainProgram: "radamsa",
         longDescription: "Radamsa is a general purpose data fuzzer. It reads data from given sample files, or standard input if none are given, and outputs modified data. It is usually used to generate malformed data for testing programs.",

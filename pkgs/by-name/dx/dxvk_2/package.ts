@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const libglfw = nix.thunk(() => nix.str`${libPrefix}glfw${nix.app(soVersion, "3")}`);
   const libSDL2 = nix.thunk(() => nix.str`${libPrefix}SDL2${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(hostPlatform, "isWindows"))), "-2.0")}${nix.app(soVersion, "0")}`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "dxvk",
       version: "2.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "doitsujin",
           repo: "dxvk",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,12 +62,12 @@ substituteInPlace subprojects/libdisplay-info/tool/gen-search-table.py \\
       mesonBuildType: "release",
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Vulkan-based translation layer for Direct3D 8/9/10/11",
         homepage: "https://github.com/doitsujin/dxvk",
         changelog: "https://github.com/doitsujin/dxvk/releases",

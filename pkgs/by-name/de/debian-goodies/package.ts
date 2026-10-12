@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "debian-goodies",
       version: "0.88.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "salsa.debian.org",
           owner: "debian",
           repo: "debian-goodies",
@@ -40,7 +40,7 @@ substituteInPlace dman \\
       buildInputs: nix.thunk(() => [perl, python3]),
       installPhase: "runHook preInstall\n\n# see https://salsa.debian.org/debian/debian-goodies/-/blob/master/debian/install\nfor bin in checkrestart dgrep dglob debget dpigs debman dman popbugs which-pkg-broke which-pkg-broke-build dhomepage debmany/debmany check-enhancements find-dbgsym-packages; do\n  install -Dm755 $bin -t $out/bin\ndone\n\ninstall -Dm644 find-dbgsym-packages-templates/* -t $out/share/debian-goodies/find-dbgsym-packages-templates/\n\ninstallShellCompletion --bash \\\n  debmany/bash_completion/debmany \\\n  debian/bash-completion\n\ninstallManPage \\\n  *.1 \\\n  debmany/man/*.1 \\\n  *.8\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Small toolbox-style utilities for Debian systems",
         homepage: "https://salsa.debian.org/debian/debian-goodies",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

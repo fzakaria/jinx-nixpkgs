@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(python312Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vanguards",
       version: "0.3.1",
       pyproject: true,
@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(python312Packages, "stem"))]),
       doCheck: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mikeperry-tor",
           repo: "vanguards",
           rev: "8132fa0e556fbcbb3538ff9b48a2180c0c5e8fbd",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "# fix import cycle issue\nsubstituteInPlace src/vanguards/main.py --replace-fail \\\n  'import stem.response.events' 'import stem.socket; import stem.control; import stem.response.events'\n",
       pythonImportsCheck: nix.thunk(() => ["vanguards"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "ForgottenBeast"))];

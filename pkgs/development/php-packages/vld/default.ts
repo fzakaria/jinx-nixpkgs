@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const php = nix.arg($, "php");
   const version = "0.19.1";
   return nix.app(buildPecl, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "vld",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "derickr",
           repo: "vld",
           tag: version,
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
         })))),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Vulcan Logic Dumper hooks into the Zend Engine and dumps all the opcodes (execution units) of a script",
         homepage: "https://github.com/derickr/vld",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

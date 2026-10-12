@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "riotx",
       version: "1.15.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/redis/riotx-dist/releases/download/v${nix.sel(finalAttrs, "version")}/riotx-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-IotoZsbwttfrb2I4bqPf/MPzZOThNazovz9U7qJ2i7s=",
         })))),
@@ -45,7 +45,7 @@ runHook postInstall
       __structuredAttrs: true,
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/redis/riotx-dist/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Data integration tool for Redis Cloud and Redis Software",
         homepage: "https://redis.github.io/riotx",

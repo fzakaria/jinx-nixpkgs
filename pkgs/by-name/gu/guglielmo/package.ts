@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const libsamplerate = nix.arg($, "libsamplerate");
   const portaudio = nix.arg($, "portaudio");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "guglielmo",
       version: "0.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "marcogrecopriolo",
           repo: "guglielmo",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
 patchelf --add-rpath "${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [airspy, rtl_sdr]))}" $out/bin/.guglielmo-wrapped
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Qt based FM / Dab tuner",
         mainProgram: "guglielmo",
         homepage: "https://github.com/marcogrecopriolo/guglielmo",

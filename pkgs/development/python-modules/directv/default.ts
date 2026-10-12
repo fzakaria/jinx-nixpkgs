@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ctalkington",
           repo: "python-directv",
           tag: version,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "replace-async-timeout-with-asyncio.timeout.patch",
             url: "https://github.com/ctalkington/python-directv/commit/a161454b09e144de15883d25378fbb13069e241b.patch",
             hash: "sha256-jI+ALoQ0EDUQCSQp90SE+e3sGMWLwojNtLevAbgoScc=",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_client_error"]);
       const pythonImportsCheck = nix.thunk(() => ["directv"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/ctalkington/python-directv/releases/tag/${nix.sel(src, "tag")}`),
         description: "Asynchronous Python client for DirecTV (SHEF)",
         homepage: "https://github.com/ctalkington/python-directv",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

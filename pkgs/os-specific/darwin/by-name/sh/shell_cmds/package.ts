@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const sourceRelease = nix.arg($, "sourceRelease");
   const launchd = nix.thunk(() => nix.app(sourceRelease, "launchd"));
   return nix.app(mkAppleDerivation, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       releaseName: "shell_cmds",
       outputs: nix.thunk(() => ["out", "man"]),
       xcodeHash: "sha256-sbgPFMMXgUp+F1IRLiaFto+PsfMHBd23KQ1sQK7tP7A=",
       postPatch: "# Fix `mktemp` templates\nsubstituteInPlace sh/mkbuiltins \\\n  --replace-fail '-t ka' '-t ka.XXXXXX'\nsubstituteInPlace sh/mktokens \\\n  --replace-fail '-t ka' '-t ka.XXXXXX'\n\n# Update `/etc/locate.rc` paths to point to the store.\nfor path in locate/locate/locate.updatedb.8 locate/locate/locate.rc locate/locate/updatedb.sh; do\n  substituteInPlace $path --replace-fail '/etc/locate.rc' \"$out/etc/locate.rc\"\ndone\n",
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${launchd}/liblaunch`),
       })),
       depsBuildBuild: nix.thunk(() => [clang]),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libedit, libresolv, libsbuf, libutil, libxo]),
       postInstall: "# Patch the shebangs to use `sh` from shell_cmds.\nHOST_PATH=\"$out/bin\" patchShebangs --host \"$out/bin\" \"$out/libexec\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Darwin shell commands and the Almquist shell",
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);

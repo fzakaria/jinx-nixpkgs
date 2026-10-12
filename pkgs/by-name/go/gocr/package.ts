@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const tk = nix.arg($, "tk");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gocr",
       version: "0.52",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www-e.uni-magdeburg.de/jschulen/ocr/gocr-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "11l6gds1lrm8lwrrsxnm5fjlwz8q1xbh896cprrl4psz21in946z",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.str`sed -i -e 's|exec wish|exec ${tk}/bin/wish|' $out/bin/gocr.tcl
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://jocr.sourceforge.net/",
         description: "GPL Optical Character Recognition",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const tqdm = nix.arg($, "tqdm");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "flowmc",
       version: "0.4.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kazewong",
           repo: "flowMC",
           tag: nix.thunk(() => nix.str`flowMC-${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["test/integration/test_quickstart.py"]),
       disabledTests: nix.thunk(() => ["test_rqSpline", "test_training"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Normalizing-flow enhanced sampling package for probabilistic inference in Jax",
         homepage: "https://github.com/kazewong/flowMC",
         changelog: nix.thunk(() => nix.str`https://github.com/kazewong/flowMC/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

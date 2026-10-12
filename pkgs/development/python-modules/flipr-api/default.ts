@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.6.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cnico",
           repo: "flipr-api",
           tag: version,
@@ -33,10 +33,10 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [poetry_core]);
       const dependencies = nix.thunk(() => [python_dateutil, requests]);
       const nativeCheckInputs = nix.thunk(() => [requests_mock, pytest_asyncio, pytestCheckHook]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, FLIPR_USERNAME: "foobar", FLIPR_PASSWORD: "secret" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, FLIPR_USERNAME: "foobar", FLIPR_PASSWORD: "secret" }));
       const pythonImportsCheck = nix.thunk(() => ["flipr_api"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python client for Flipr API",
         mainProgram: "flipr-api",
         homepage: "https://github.com/cnico/flipr-api",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

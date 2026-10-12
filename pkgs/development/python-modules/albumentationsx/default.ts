@@ -37,13 +37,13 @@ export default nix.lambda((args) => (() => {
   const scikit_learn = nix.arg($, "scikit-learn");
   const torchvision = nix.arg($, "torchvision");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "albumentationsx",
       version: "2.3.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "albumentations-team",
           repo: "AlbumentationsX",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => [albucore, numpy, pydantic, pyyaml, scipy, typing_extensions]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         contrib: nix.thunk(() => [opencv_contrib_python]),
         "contrib-headless": [],
         gui: nix.thunk(() => [opencv_python]),
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
         "tests/test_telemetry.py",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python library for image augmentation",
         homepage: "https://github.com/albumentations-team/AlbumentationsX",
         changelog: nix.thunk(() => nix.str`https://github.com/albumentations-team/AlbumentationsX/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

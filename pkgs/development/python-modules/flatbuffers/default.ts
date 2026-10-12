@@ -18,10 +18,10 @@ export default nix.lambda((args) => (() => {
       const src = nix.thunk(() => nix.attr(flatbuffers, "src"));
       const format = "setuptools";
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/python`);
-      const env = nix.thunk(() => ({ __proto__: pos$1, VERSION: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$1, VERSION: version }));
       const pythonImportsCheck = nix.thunk(() => ["flatbuffers"]);
       const meta = nix.thunk(() => nix.update(nix.sel(flatbuffers, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python runtime library for use with the Flatbuffers serialization format",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "flatc",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const systemd = nix.arg($, "systemd");
   const gsettings_desktop_schemas = nix.arg($, "gsettings-desktop-schemas");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gnome-logs",
       version: "50.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-logs/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-logs-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-tGbGZgFVUhuoE1M5xt8ICg4HGkb5kRuZFysh+eLf2Ag=",
         })))),
@@ -61,11 +61,11 @@ export default nix.lambda((args) => (() => {
       mesonFlags: nix.thunk(() => ["-Dman=true"]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: "gnome-logs" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gnome-logs" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://apps.gnome.org/Logs/",
         description: "Log viewer for the systemd journal",
         mainProgram: "gnome-logs",

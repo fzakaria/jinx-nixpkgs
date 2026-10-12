@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGo127Module = nix.arg($, "buildGo127Module");
   const fetchFromGitea = nix.arg($, "fetchFromGitea");
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gitea-mcp-server",
       version: "1.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitea.com",
           owner: "gitea",
           repo: "gitea-mcp",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postInstall: "install -Dm644 README.md LICENSE -t $out/share/doc/gitea-mcp-server\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Gitea Model Context Protocol (MCP) Server",
         longDescription: "The Gitea MCP Server is a Model Context Protocol (MCP) server that provides\nseamless integration with Gitea APIs, enabling advanced automation and\ninteraction capabilities for developers and tools.\n\nThis server allows LLMs to interact with Gitea repositories, issues, pull\nrequests, and other Gitea features through structured API interactions.\n",
         homepage: "https://gitea.com/gitea/gitea-mcp",

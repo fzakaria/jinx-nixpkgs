@@ -15,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const json2x = nix.arg($, "json2x");
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     format: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         type: nix.thunk(() => nix.sel(lib, "types", "toml")),
         generate: (name) => (value) => nix.app(nix.sel(pkgs, "callPackage"), nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
             const runCommand = nix.arg($_2, "runCommand");
             return nix.app(runCommand, name, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 nativeBuildInputs: nix.thunk(() => [json2x]),
                 value: value,
                 preferLocalBuild: true,

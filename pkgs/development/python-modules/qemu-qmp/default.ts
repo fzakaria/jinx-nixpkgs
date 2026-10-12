@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "qemu-project",
           repo: "python-qemu-qmp",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const pythonImportsCheck = nix.thunk(() => ["qemu.qmp"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Asyncio library for communicating with QEMU Monitor Protocol (“QMP”) servers",
         homepage: "https://gitlab.com/qemu-project/python-qemu-qmp",
         license: nix.thunk(() => (() => {
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

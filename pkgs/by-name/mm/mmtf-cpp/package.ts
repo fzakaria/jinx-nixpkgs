@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const msgpack_cxx = nix.arg($, "msgpack-cxx");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mmtf-cpp",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rcsb",
           repo: "mmtf-cpp",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [msgpack_cxx]),
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail 'find_package(msgpack)' 'find_package(msgpack-cxx)' \\\n  --replace-fail msgpackc msgpack-cxx\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library of exchange-correlation functionals with arbitrary-order derivatives",
         homepage: "https://github.com/rcsb/mmtf-cpp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

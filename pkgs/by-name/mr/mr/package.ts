@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mr",
       version: "1.20180726",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "git://myrepos.branchable.com/",
           rev: "0ad7a17bb455de1fec3b2375c7aac72ab2a22ac4",
           sha256: "0jphw61plm8cgklja6hs639xhdvxgvjwbr6jpvjwpp7hc5gmhms5",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [perl]),
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Multiple Repository management tool",
         longDescription: "mr is a tool to manage all your version control repos. It can\ncheckout, update, or perform other actions on a set of\nrepositories as if they were one combined repository. It\nsupports any combination of subversion, git, cvs, mercurial,\nbzr, darcs, fossil and veracity repositories, and support for\nother version control systems can easily be added.\n",
         homepage: "http://myrepos.branchable.com/",

@@ -22,25 +22,25 @@ export default nix.lambda((args) => (() => {
   const gitMinimal = nix.arg($, "gitMinimal");
   const version = "0-unstable-2026-01-10";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "bitbloxhub",
       repo: "jupyter-api.nvim",
       rev: "5dd157fd8cd9ef6d20075c0809f54c9f7af23e43",
       hash: "sha256-N9Z7SaWeT8b2N3EtwwRLW7DCiQk0+tCd9e573DSq7SQ=",
     }))));
   const jupyter_api_nvim_lib = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: version,
       src: src,
       pname: "jupyter-api-nvim-lib",
       cargoHash: "sha256-Oe6NnnNBY2nzYkNYucPpR6iV/8a6/9ZUytKpdHWY+So=",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         RUSTFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-C link-arg=-undefined -C link-arg=dynamic_lookup")),
       })),
     }))));
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "jupyter-api.nvim",
       version: version,
       src: src,
@@ -51,15 +51,15 @@ ln -s ${jupyter_api_nvim_lib}/lib/libjupyter_api_nvim${ext} target/release/libju
 `;
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             attrPath: "vimPlugins.jupyter-api-nvim.jupyter-api-nvim-lib",
           })))),
         "jupyter-api-nvim-lib": jupyter_api_nvim_lib,
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Library for interacting with Jupyter kernels from Neovim Lua",
         homepage: "https://github.com/bitbloxhub/jupyter-api.nvim/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

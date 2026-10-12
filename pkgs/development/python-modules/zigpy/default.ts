@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const voluptuous = nix.arg($, "voluptuous");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zigpy",
       version: "2.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zigpy",
           repo: "zigpy",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -81,7 +81,7 @@ rm -r tools
         "zigpy.zcl",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library implementing a ZigBee stack",
         homepage: "https://github.com/zigpy/zigpy",
         changelog: nix.thunk(() => nix.str`https://github.com/zigpy/zigpy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

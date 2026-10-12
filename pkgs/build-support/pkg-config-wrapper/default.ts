@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
   const wrapperName = "PKG_CONFIG_WRAPPER";
   const wrapperBinName = nix.thunk(() => nix.str`${targetPrefix}${baseBinName}`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: nix.thunk(() => nix.add(nix.add(targetPrefix, nix.sel(pkg_config, "pname")), "-wrapper")),
       version: nix.thunk(() => nix.attr(pkg_config, "version")),
       enableParallelBuilding: true,
@@ -85,19 +85,19 @@ wrap ${wrapperBinName} ${nix.path(here, "./pkg-config-wrapper.sh")} "${nix.app(g
         const roleHook = nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => (() => {
             const name = "pkg-config-role-hook";
             const substitutions = nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               name: name,
               suffixSalt: suffixSalt,
               wrapperName: wrapperName,
             }));
-            const meta = nix.thunk(() => ({ __proto__: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) }));
-            return { __proto__: pos$3, name, substitutions, meta };
+            const meta = nix.thunk(() => ({ [nix.POS]: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) }));
+            return { [nix.POS]: pos$3, name, substitutions, meta };
           })()), nix.path(here, "../setup-hooks/role.bash")));
         const setupHook = nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: "pkgs-config-setup-hook",
-            substitutions: nix.thunk(() => ({ __proto__: pos$4, targetPrefix: targetPrefix, baseBinName: baseBinName })),
-            meta: nix.thunk(() => ({ __proto__: pos$5, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+            substitutions: nix.thunk(() => ({ [nix.POS]: pos$4, targetPrefix: targetPrefix, baseBinName: baseBinName })),
+            meta: nix.thunk(() => ({ [nix.POS]: pos$5, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
           })), nix.path(here, "./setup-hook.sh")));
         return [
           nix.thunk(() => nix.str`${roleHook}/nix-support/setup-hook`),
@@ -105,9 +105,9 @@ wrap ${wrapperBinName} ${nix.path(here, "./pkg-config-wrapper.sh")} "${nix.app(g
         ];
       })()),
       postFixup: nix.thunk(() => (() => {
-        const addFlags = nix.thunk(() => nix.app(replaceVars, nix.path(here, "./add-flags.sh"), nix.thunk(() => ({ __proto__: pos$7, suffixSalt: suffixSalt }))));
+        const addFlags = nix.thunk(() => nix.app(replaceVars, nix.path(here, "./add-flags.sh"), nix.thunk(() => ({ [nix.POS]: pos$7, suffixSalt: suffixSalt }))));
         const utils = nix.thunk(() => nix.app(replaceVars, nix.path(here, "../wrapper-common/utils.bash"), nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             suffixSalt: suffixSalt,
             wrapperName: wrapperName,
             darwinMinVersion: nix.thunk(() => nix.attr(targetPlatform, "darwinMinVersion")),
@@ -121,7 +121,7 @@ install -m444 -T ${utils} $out/nix-support/utils.bash
 `), extraBuildCommands);
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         targetPrefix: targetPrefix,
         suffixSalt: suffixSalt,
         "pkg-config": pkg_config,
@@ -132,7 +132,7 @@ install -m444 -T ${utils} $out/nix-support/utils.bash
       meta: nix.thunk(() => (() => {
         const pkg_config_ = nix.thunk(() => nix.app(optionalAttrs, nix.thunk(() => !nix.eq(pkg_config, null)), pkg_config));
         return nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(pkg_config_, "meta")), nix.thunk(() => nix.builtins.removeAttrs(nix.thunk(() => nix.sel(pkg_config, "meta")), nix.thunk(() => ["priority", "mainProgram"])))), {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           description: nix.thunk(() => nix.add(nix.app(attrByPath, nix.thunk(() => ["meta", "description"]), "pkg-config", pkg_config_), " (wrapper script)")),
           priority: 10n,
           mainProgram: wrapperBinName,

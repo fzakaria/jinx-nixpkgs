@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "johnny-reborn-engine";
       const version = "0.45";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xesf",
           repo: "jc_reborn",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(SDL2, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open-source engine for the classic \"Johnny Castaway\" screensaver (engine only)",
         homepage: "https://github.com/xesf/jc_reborn",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
       };
       })());
-      return { __proto__: pos$3, pname, version, src, buildInputs, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, buildInputs, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

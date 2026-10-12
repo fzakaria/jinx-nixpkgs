@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const version = "1.3.0";
   const sha256 = "sha256-CFv9gZQHeEiZctJFyB6PJ1dVNkrQ7PlVtgZuteQQTJ0=";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "git-vendor",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "brettlangdon",
           repo: "git-vendor",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
         })))),
       outputs: nix.thunk(() => ["bin", "man", "doc", "out"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PREFIX: nix.thunk(() => nix.builtins.placeholder("out")),
         BINPREFIX: nix.thunk(() => nix.str`${nix.builtins.placeholder("bin")}/bin`),
         MANPREFIX: nix.thunk(() => nix.str`${nix.builtins.placeholder("man")}/share/man/man1`),
       })),
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.app(writeShellScriptBin, "git", ""))]),
       postInstall: nix.thunk(() => nix.str`${nix.app(nix.sel(skawarePackages, "cleanPackaging", "commonFileActions"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           docFiles: nix.thunk(() => ["LICENSE", "README.md"]),
           noiseFiles: nix.thunk(() => ["bin/git-vendor", "Makefile", "etc/bash_completion.sh", "man", "install.sh"]),
         })))} $doc/share/doc/git-vendor
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`${nix.sel(skawarePackages, "cleanPackaging", "checkForRemainingFiles")}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Git command for managing vendored dependencies",
         longDescription: "git-vendor is a wrapper around git-subtree commands for checking out and updating vendored dependencies.\n\nBy default git-vendor conforms to the pattern used for vendoring golang dependencies:\n  * Dependencies are stored under vendor/ directory in the repo.\n  * Dependencies are stored under the fully qualified project path.\n      e.g. https://github.com/brettlangdon/forge will be stored under vendor/github.com/brettlangdon/forge.\n",
         homepage: "https://github.com/brettlangdon/git-vendor",

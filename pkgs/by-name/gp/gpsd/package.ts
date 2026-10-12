@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const gpsdUser = nix.argOr($, "gpsdUser", () => "gpsd");
   const gpsdGroup = nix.argOr($, "gpsdGroup", () => "dialout");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gpsd",
       version: "3.27.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://savannah/${nix.sel(finalAttrs, "pname")}/${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-QJhz9QSEYu8axBOlGrNcqotQsxvmKzNHvuHMKZTnxkk=",
         })))),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
       installTargets: nix.thunk(() => ["install", "udev-install"]),
       postFixup: "wrapPythonProgramsIn $out/bin \"$out ${pythonPath[*]}\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GPS service daemon",
         longDescription: "gpsd is a service daemon that monitors one or more GPSes or AIS\nreceivers attached to a host computer through serial or USB ports,\nmaking all data on the location/course/velocity of the sensors\navailable to be queried on TCP port 2947 of the host computer. With\ngpsd, multiple location-aware client applications (such as navigational\nand wardriving software) can share access to receivers without\ncontention or loss of data. Also, gpsd responds to queries with a\nformat that is substantially easier to parse than the NMEA 0183 emitted\nby most GPSes. The gpsd distribution includes a linkable C service\nlibrary, a C++ wrapper class, and a Python module that developers of\ngpsd-aware applications can use to encapsulate all communication with\ngpsd. Third-party client bindings for Java and Perl also exist.\n\nBesides gpsd itself, the project provides auxiliary tools for\ndiagnostic monitoring and profiling of receivers and feeding\nlocation-aware applications GPS/AIS logs for diagnostic purposes.\n",
         homepage: "https://gpsd.gitlab.io/gpsd/index.html",

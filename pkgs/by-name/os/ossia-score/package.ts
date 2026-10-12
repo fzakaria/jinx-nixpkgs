@@ -49,11 +49,11 @@ export default nix.lambda((args) => (() => {
   const suil = nix.arg($, "suil");
   const udev = nix.arg($, "udev");
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ossia-score",
       version: "3.8.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ossia",
           repo: "score",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -121,7 +121,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DSuil_INCLUDE_DIR=${suil}/include/suil-0`),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-lasound",
             "-llilv-0",
@@ -136,7 +136,7 @@ export default nix.lambda((args) => (() => {
       runtimeDependencies: nix.thunk(() => [alsa_lib, avahi, avahi_compat, bluez, fftw, lilv, suil, pipewire, udev]),
       installPhase: "runHook preInstall\n\ncmake -DCMAKE_INSTALL_DO_STRIP=1 -DCOMPONENT=OssiaScore -P cmake_install.cmake\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://ossia.io/score/about.html",
         description: "Sequencer for audio-visual artists",
         longDescription: "ossia score is a sequencer for audio-visual artists, designed to enable\nthe creation of interactive shows, museum installations, intermedia\ndigital artworks, interactive music and more in an intuitive user interface.\n",

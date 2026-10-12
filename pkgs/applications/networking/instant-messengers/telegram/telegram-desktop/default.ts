@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   const pname = nix.argOr($, "pname", () => "telegram-desktop");
-  const unwrapped = nix.argOr($, "unwrapped", () => nix.app(callPackage, nix.path(here, "./unwrapped.nix"), nix.thunk(() => ({ __proto__: pos$1, stdenv: stdenv }))));
+  const unwrapped = nix.argOr($, "unwrapped", () => nix.app(callPackage, nix.path(here, "./unwrapped.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: stdenv }))));
   const qtbase = nix.arg($, "qtbase");
   const qtimageformats = nix.arg($, "qtimageformats");
   const qtsvg = nix.arg($, "qtsvg");
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(finalAttrs, "unwrapped"));
       return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: pname,
       version: nix.thunk(() => nix.attr(from, "version")),
       meta: nix.thunk(() => nix.attr(from, "meta")),

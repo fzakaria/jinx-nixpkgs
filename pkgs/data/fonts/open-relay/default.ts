@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
     const directory = nix.arg($_1, "directory");
     const meta = nix.arg($_1, "meta");
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: nix.thunk(() => nix.str`open-relay-${name}`),
         version: "2026-04-12",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "kreativekorp",
             repo: "open-relay",
             tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         postInstall: nix.thunk(() => nix.str`install -D -m644 -t "$out/share/doc/${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}" OFL.txt
 `),
         meta: nix.thunk(() => nix.update({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           homepage: "https://www.kreativekorp.com/software/fonts/index.shtml",
           description: "Free and open source fonts from Kreative Software",
           license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
@@ -59,42 +59,42 @@ export default nix.lambda((args) => (() => {
       }));
   })(), formals$2);
   return nix.app(nix.sel(lib, "mapAttrs"), mkOpenRelayTypeface, nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       constructium: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         directory: "Constructium",
         meta: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           homepage: "https://www.kreativekorp.com/software/fonts/constructium/",
           description: "Fork of SIL Gentium designed specifically to support constructed scripts as encoded in the Under-ConScript Unicode Registry",
           longDescription: "Constructium is a fork of SIL Gentium designed specifically to support\nconstructed scripts as encoded in the Under-ConScript Unicode Registry.\nIt is ideal for mixed Latin, Greek, Cyrillic, IPA, and conlang text in\nweb sites and documents.\n",
         })),
       })),
       fairfax: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         directory: "Fairfax",
         meta: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           homepage: "https://www.kreativekorp.com/software/fonts/fairfax/",
           description: "6×12 bitmap font supporting many Unicode blocks & scripts as well as constructed scripts",
           longDescription: "Fairfax is a 6×12 bitmap font for terminals, text editors, IDEs, etc. It\nsupports many scripts and a large number of Unicode blocks as well as\nconstructed scripts as encoded in the Under-ConScript Unicode Registry,\npseudographics and semigraphics, and tons of private use characters. It\nhas been superseded by Fairfax HD but is still maintained.\n",
         })),
       })),
       "fairfax-hd": nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         directory: "FairfaxHD",
         meta: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           homepage: "https://www.kreativekorp.com/software/fonts/fairfaxhd/",
           description: "Halfwidth scalable monospace font supporting many Unicode blocks & script as well as constructed scripts",
           longDescription: "Fairfax HD is a halfwidth scalable monospace font for terminals, text\neditors, IDEs, etc. It supports many scripts and a large number of\nUnicode blocks as well as constructed scripts as encoded in the\nUnder-ConScript Unicode Registry, pseudographics and semigraphics, and\ntons of private use characters.\n",
         })),
       })),
       "kreative-square": nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         directory: "KreativeSquare",
         meta: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           homepage: "https://www.kreativekorp.com/software/fonts/ksquare/",
           description: "Fullwidth scalable monospace font designed specifically to support pseudographics, semigraphics, and private use characters",
         })),

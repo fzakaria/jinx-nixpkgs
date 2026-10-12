@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const kernel = nix.arg($, "kernel");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-${nix.sel(kernel, "version")}`),
       pname: "system76-acpi-module",
       version: "1.0.2",
-      passthru: nix.thunk(() => ({ __proto__: pos$1, moduleName: "system76_acpi" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, moduleName: "system76_acpi" })),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "pop-os",
           repo: "system76-acpi-dkms",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,11 +42,11 @@ mv lib/udev/hwdb.d/* $out/lib/udev/hwdb.d
 runHook postInstall
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "ahoneybun"))];

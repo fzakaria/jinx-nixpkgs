@@ -36,72 +36,72 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "grafana-to-ntfy"));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "kittyandrew"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         "grafana-to-ntfy": nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "grafana-to-ntfy, a Grafana/Alertmanager to ntfy.sh bridge")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "grafana-to-ntfy", nix.thunk(() => ({})))),
           settings: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             ntfyUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "The URL to the ntfy-sh topic.",
                 example: "https://push.example.com/grafana",
               })))),
             ntfyBAuthUser: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 description: "The ntfy-sh user to use for authenticating with the ntfy-sh instance.\nSetting this option is required when using a ntfy-sh instance with access control enabled.\n",
                 default: null,
                 example: "grafana",
               })))),
             ntfyBAuthPass: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 description: "The path to the password for the specified ntfy-sh user.\nSetting this option is required when using a ntfy-sh instance with access control enabled.\n",
                 default: null,
                 example: "/run/secrets/grafana-to-ntfy-ntfy-pass",
               })))),
             bauthUser: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 description: "The user for Basic Auth on incoming webhook requests from Grafana or Alertmanager.\nWhen set together with {option}`bauthPass`, incoming requests require Basic Auth.\nWhen both are null, the endpoint is open (unauthenticated).\n",
                 default: null,
                 example: "admin",
               })))),
             bauthPass: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 description: "Path to the password file for Basic Auth on incoming webhook requests.\nWhen set together with {option}`bauthUser`, incoming requests require Basic Auth.\nWhen both are null, the endpoint is open (unauthenticated).\n",
                 default: null,
                 example: "/run/secrets/grafana-to-ntfy-bauth-pass",
               })))),
             markdown: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 description: "Enable Markdown formatting in ntfy notifications. Sets the X-Markdown header.",
                 default: false,
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 description: "Port to listen on.",
                 default: 8080n,
               })))),
             address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "Address to listen on.",
                 default: "127.0.0.1",
@@ -112,25 +112,25 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             assertion: nix.thunk(() => nix.eq(nix.eq(nix.sel(cfg, "settings", "bauthUser"), null), nix.eq(nix.sel(cfg, "settings", "bauthPass"), null))),
             message: "services.grafana-to-ntfy: bauthUser and bauthPass must both be set or both be null",
           })),
           nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             assertion: nix.thunk(() => nix.eq(nix.eq(nix.sel(cfg, "settings", "ntfyBAuthUser"), null), nix.eq(nix.sel(cfg, "settings", "ntfyBAuthPass"), null))),
             message: "services.grafana-to-ntfy: ntfyBAuthUser and ntfyBAuthPass must both be set or both be null",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           services: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             "grafana-to-ntfy": nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               description: "Grafana/Alertmanager to ntfy.sh bridge",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
@@ -144,19 +144,19 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))
 `;
               })()),
               environment: nix.thunk(() => nix.update({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 NTFY_URL: nix.thunk(() => nix.sel(cfg, "settings", "ntfyUrl")),
                 ROCKET_PORT: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "settings", "port")))),
                 ROCKET_ADDRESS: nix.thunk(() => nix.sel(cfg, "settings", "address")),
               }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "settings", "bauthUser"), null)), nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   BAUTH_USER: nix.thunk(() => nix.sel(cfg, "settings", "bauthUser")),
                 }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "settings", "ntfyBAuthUser"), null)), nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   NTFY_BAUTH_USER: nix.thunk(() => nix.sel(cfg, "settings", "ntfyBAuthUser")),
-                }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "settings", "markdown")), nix.thunk(() => ({ __proto__: pos$19, MARKDOWN: "true" }))))))),
+                }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "settings", "markdown")), nix.thunk(() => ({ [nix.POS]: pos$19, MARKDOWN: "true" }))))))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 LoadCredential: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "settings", "bauthPass"), null)), nix.thunk(() => nix.str`BAUTH_PASS_FILE:${nix.sel(cfg, "settings", "bauthPass")}`)), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "settings", "ntfyBAuthPass"), null)), nix.thunk(() => nix.str`NTFY_BAUTH_PASS_FILE:${nix.sel(cfg, "settings", "ntfyBAuthPass")}`)))),
                 DynamicUser: true,
                 Restart: "always",

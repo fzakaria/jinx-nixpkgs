@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const apronext = nix.arg($, "apronext");
   const picasso = nix.arg($, "picasso");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libabsolute",
       version: "0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mpelleau",
           repo: "absolute",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [menhir]),
       propagatedBuildInputs: nix.thunk(() => [apronext, picasso]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
         homepage: "https://github.com/mpelleau/AbSolute",
         description: "A constraint programming library based on abstract domains",

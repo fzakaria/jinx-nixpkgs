@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dog",
       version: "1.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://archive.debian.org/debian/pool/main/d/dog/dog_${nix.sel(finalAttrs, "version")}.orig.tar.gz`),
           sha256: "3ef25907ec5d1dfb0df94c9388c020b593fbe162d7aaa9bd08f35d2a125af056",
         })))),
       postPatch: "substituteInPlace Makefile \\\n  --replace-fail \"gcc\" \"$CC\"\nsed -i '40i #include <time.h>' dog.c\n",
       installPhase: "runHook preInstall\nmkdir -p $out/bin\nmkdir -p $out/man/man1\ncp dog.1 $out/man/man1\ncp dog $out/bin\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://lwn.net/Articles/421072/",
         description: "'cat' replacement",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

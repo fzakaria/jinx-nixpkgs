@@ -15,22 +15,22 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "donut-shellcode",
       version: "1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TheWover",
           repo: "donut",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-gKa7ngq2+r4EYRdwH9AWnJodJjCdppzKch4Ve/4ZPhk=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_LDFLAGS: "-z,noexecstack" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-z,noexecstack" })),
       "build-system": nix.thunk(() => [setuptools]),
       pythonImportsCheck: nix.thunk(() => ["donut"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Module to generate x86, x64, or AMD64+x86 position-independent shellcode",
         homepage: "https://github.com/TheWover/donut",
         changelog: nix.thunk(() => nix.str`https://github.com/TheWover/donut/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -24,23 +24,23 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   nix.assert_(nix.eq(nix.sel(blas, "isILP64"), nix.sel(lapack, "isILP64")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/sc/scalapack/package.nix:14:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "scalapack",
       version: "2.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Reference-ScaLAPACK",
           repo: "scalapack",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-cUdHC9DfJBSrxFVyCSSj9qxE5a+JFkI1W671iT7DP1M=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         isILP64: nix.thunk(() => nix.attr(blas, "isILP64")),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       checkFlags: nix.thunk(() => ["ARGS=--timeout 10000"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "http://www.netlib.org/scalapack/",
         description: "Library of high-performance linear algebra routines for parallel distributed memory machines",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const runtimeShell = nix.arg($, "runtimeShell");
   const gradle = gradle_8;
   const jre = nix.thunk(() => nix.app(nix.sel(jre_minimal, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       modules: nix.thunk(() => ["java.base", "java.desktop"]),
       jdk: jre_headless,
     }))));
@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
       const pname = "pdftk";
       const version = "3.3.3";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "pdftk-java",
           repo: "pdftk",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-ciKotTHSEcITfQYKFZ6sY2LZnXGChBJy0+eno8B3YHY=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [gradle]);
-      const mitmCache = nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ __proto__: pos$3, pname: pname, data: nix.path(here, "./deps.json") }))));
+      const mitmCache = nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: pos$3, pname: pname, data: nix.path(here, "./deps.json") }))));
       const __darwinAllowLocalNetworking = true;
       const gradleFlags = nix.thunk(() => ["-Dfile.encoding=utf-8"]);
       const gradleBuildTask = "shadowJar";
@@ -51,7 +51,7 @@ chmod a+x "$out/bin/pdftk"
 cp ${src}/pdftk.1 $out/share/man/man1
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Command-line tool for working with PDFs",
         homepage: "https://gitlab.com/pdftk-java/pdftk",
         sourceProvenance: nix.thunk(() => (() => {
@@ -70,7 +70,7 @@ cp ${src}/pdftk.1 $out/share/man/man1
         mainProgram: "pdftk",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

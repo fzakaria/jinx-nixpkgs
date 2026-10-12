@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
     const warnAfterVersion = (ver) => (pkg) => nix.app(nix.sel(lib, "warnIf"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), ver, nix.thunk(() => nix.sel(super$, nix.key(nix.sel(pkg, "pname")), "version")))), nix.thunk(() => nix.str`override for haskell.packages.ghc912.${nix.sel(pkg, "pname")} may no longer be needed`), pkg);
     const w = nix.withScope(haskellLib, null);
     return {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       array: null,
       base: null,
       binary: null,
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       "ghc-exactprint": nix.thunk(() => nix.app(nix.lookup(w, "doDistribute"), nix.thunk(() => nix.sel(self, "ghc-exactprint_1_12_0_0")))),
       "large-generics": nix.thunk(() => nix.app(nix.lookup(w, "doJailbreak"), nix.thunk(() => nix.sel(super$, "large-generics")))),
       cpphs: nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           postPatch: "sed -i 's/time >=1.5 \\&\\& <1.13/time >=1.5 \\&\\& <=1.14/g' cpphs.cabal\n",
         }), nix.thunk(() => nix.sel(super$, "cpphs")))),
       "cabal-install-parsers": nix.thunk(() => nix.app(nix.lookup(w, "doJailbreak"), nix.thunk(() => nix.sel(super$, "cabal-install-parsers")))),
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
       relude: nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "relude")))),
       "generic-lens": nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "generic-lens")))),
       alex: nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           preCheck: nix.thunk(() => nix.add(nix.selOr(drv, () => "", "preCheck"), "export alex_datadir=\"$(pwd)/data\"\n")),
         }), nix.thunk(() => nix.sel(super$, "alex")))),
       "newtype-generics": nix.thunk(() => nix.app(warnAfterVersion, "0.6.2", nix.thunk(() => nix.app(nix.lookup(w, "doJailbreak"), nix.thunk(() => nix.sel(super$, "newtype-generics")))))),

@@ -38,41 +38,41 @@ export default nix.lambda((args) => (() => {
   const quassel = nix.thunk(() => nix.sel(cfg, "package"));
   const user = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "user"), null)) ? nix.sel(cfg, "user") : "quassel"));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         quassel: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "the Quassel IRC client daemon")),
           certificateFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: null,
               description: "Path to the certificate used for SSL connections with clients.\n",
             })))),
           requireSSL: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Require SSL for connections from clients.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "quasselDaemon", nix.thunk(() => ({})))),
           interfaces: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: nix.thunk(() => ["127.0.0.1"]),
               description: "The interfaces the Quassel daemon will be listening to.  If `[ 127.0.0.1 ]`,\nonly clients on the local host can connect to it; if `[ 0.0.0.0 ]`, clients\ncan access it from any network interface.\n",
             })))),
           portNumber: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               default: 4242n,
               description: "The port number the Quassel daemon will be listening to.\n",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: nix.thunk(() => nix.str`/home/${user}/.config/quassel-irc.org`),
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), nix.thunk(() => nix.str`"/home/\${config.${nix.sel(opt, "user")}}/.config/quassel-irc.org"
 `))),
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
               description: "The directory holding configuration files, the SQlite database and the SSL Cert.\n",
             })))),
           user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               description: "The existing user the Quassel daemon should run as. If left empty, a default \"quassel\" user will be created.\n",
@@ -89,20 +89,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "requireSSL")) || nix.asBool(!nix.eq(nix.sel(cfg, "certificateFile"), null)))),
             message: "Quassel needs a certificate file in order to require SSL",
           })),
         ]),
         users: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           users: nix.thunk(() => nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), null)), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               quassel: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 name: "quassel",
                 description: "Quassel IRC client daemon",
                 group: "quassel",
@@ -110,29 +110,29 @@ export default nix.lambda((args) => (() => {
               })),
             })))),
           groups: nix.thunk(() => nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), null)), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               quassel: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 name: "quassel",
                 gid: nix.thunk(() => nix.sel(config, "ids", "gids", "quassel")),
               })),
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             rules: nix.thunk(() => [nix.thunk(() => nix.str`d '${nix.sel(cfg, "dataDir")}' - ${user} - - -`)]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             quassel: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "Quassel IRC client daemon",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => nix.concat(["network.target"], nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.sel(config, "services", "postgresql", "enable")), "postgresql.target"), nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.sel(config, "services", "mysql", "enable")), "mysql.service")))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 ExecStart: nix.thunk(() => nix.app(nix.lookup(w, "concatStringsSep"), " ", nix.thunk(() => nix.concat([
                     nix.thunk(() => nix.str`${quassel}/bin/quasselcore`),
                     nix.thunk(() => nix.str`--listen=${nix.app(nix.lookup(w, "concatStringsSep"), ",", nix.thunk(() => nix.sel(cfg, "interfaces")))}`),

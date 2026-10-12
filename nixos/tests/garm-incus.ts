@@ -85,36 +85,36 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const releases = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../release.nix")), nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       configuration: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           documentation: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), false)),
             nixos: nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), false)),
             })),
           })),
           system: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             installer: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               channel: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 enable: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), false)),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             etc: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               "nix/registry.json": nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 text: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "{}")),
               })),
             })),
@@ -124,34 +124,34 @@ export default nix.lambda((args) => (() => {
             ]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             "cloud-init": nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               enable: true,
-              settings: nix.thunk(() => ({ __proto__: pos$9, datasource_list: nix.thunk(() => ["LXD"]) })),
+              settings: nix.thunk(() => ({ [nix.POS]: pos$9, datasource_list: nix.thunk(() => ["LXD"]) })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             tmpfiles: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               rules: nix.thunk(() => [
                 "L /dev/lxd - - - - /dev/incus",
                 nix.thunk(() => nix.str`L+ /bin/bash - - - - ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs_1, "bash")))}`),
               ]),
             })),
             settings: nix.thunk(() => ({
-              __proto__: pos$14,
-              Manager: nix.thunk(() => ({ __proto__: pos$13, DefaultEnvironment: "PATH=/run/current-system/sw/bin" })),
+              [nix.POS]: pos$14,
+              Manager: nix.thunk(() => ({ [nix.POS]: pos$13, DefaultEnvironment: "PATH=/run/current-system/sw/bin" })),
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$19,
-            groups: nix.thunk(() => ({ __proto__: pos$16, runner: nix.thunk(() => ({})) })),
+            [nix.POS]: pos$19,
+            groups: nix.thunk(() => ({ [nix.POS]: pos$16, runner: nix.thunk(() => ({})) })),
             users: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               runner: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 isNormalUser: true,
                 group: "runner",
                 extraGroups: nix.thunk(() => ["wheel"]),
@@ -160,8 +160,8 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           security: nix.thunk(() => ({
-            __proto__: pos$21,
-            sudo: nix.thunk(() => ({ __proto__: pos$20, wheelNeedsPassword: false })),
+            [nix.POS]: pos$21,
+            sudo: nix.thunk(() => ({ [nix.POS]: pos$20, wheelNeedsPassword: false })),
           })),
         };
       })(), formals$2),
@@ -171,42 +171,42 @@ export default nix.lambda((args) => (() => {
   const hostIP = "10.0.10.1";
   const runnerInstallTemplate = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "gitea-runner-install-nixos.tmpl", nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "garm"));
-      return { __proto__: pos$24, src: nix.thunk(() => nix.attr(from, "src")) };
+      return { [nix.POS]: pos$24, src: nix.thunk(() => nix.attr(from, "src")) };
     })()), "sed -e 's|/etc/systemd/system|/run/systemd/system|g' \\\n    -e 's|systemctl enable --now|systemctl start|g' \\\n    $src/internal/templates/userdata/gitea_linux_userdata.tmpl > $out\ngrep -q /run/systemd/system $out\n! grep -q 'enable --now' $out\n"));
   return {
-    __proto__: pos$74,
+    [nix.POS]: pos$74,
     name: "garm-incus",
     meta: nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "katexochen"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$73,
+      [nix.POS]: pos$73,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$72,
+          [nix.POS]: pos$72,
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             cores: 2n,
             memorySize: 4096n,
             diskSize: 8192n,
             incus: nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               enable: true,
               preseed: nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 networks: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$27,
+                    [nix.POS]: pos$27,
                     name: "incusbr0",
                     type: "bridge",
                     config: nix.thunk(() => ({
-                      __proto__: pos$26,
+                      [nix.POS]: pos$26,
                       "ipv4.address": nix.thunk(() => nix.str`${hostIP}/24`),
                       "ipv4.nat": "true",
                     })),
@@ -214,58 +214,58 @@ export default nix.lambda((args) => (() => {
                 ]),
                 profiles: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$31,
+                    [nix.POS]: pos$31,
                     name: "default",
                     devices: nix.thunk(() => ({
-                      __proto__: pos$30,
-                      eth0: nix.thunk(() => ({ __proto__: pos$28, name: "eth0", network: "incusbr0", type: "nic" })),
-                      root: nix.thunk(() => ({ __proto__: pos$29, path: "/", pool: "default", type: "disk" })),
+                      [nix.POS]: pos$30,
+                      eth0: nix.thunk(() => ({ [nix.POS]: pos$28, name: "eth0", network: "incusbr0", type: "nic" })),
+                      root: nix.thunk(() => ({ [nix.POS]: pos$29, path: "/", pool: "default", type: "disk" })),
                     })),
                   })),
                 ]),
-                storage_pools: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$32, name: "default", driver: "dir" }))]),
+                storage_pools: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$32, name: "default", driver: "dir" }))]),
               })),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$38,
-            nftables: nix.thunk(() => ({ __proto__: pos$36, enable: true })),
-            firewall: nix.thunk(() => ({ __proto__: pos$37, trustedInterfaces: nix.thunk(() => ["incusbr0"]) })),
+            [nix.POS]: pos$38,
+            nftables: nix.thunk(() => ({ [nix.POS]: pos$36, enable: true })),
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$37, trustedInterfaces: nix.thunk(() => ["incusbr0"]) })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$63,
+            [nix.POS]: pos$63,
             gitea: nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 server: nix.thunk(() => ({
-                  __proto__: pos$39,
+                  [nix.POS]: pos$39,
                   HTTP_ADDR: "0.0.0.0",
                   ROOT_URL: nix.thunk(() => nix.str`http://${hostIP}:3000/`),
                 })),
-                service: nix.thunk(() => ({ __proto__: pos$40, DISABLE_REGISTRATION: true })),
-                actions: nix.thunk(() => ({ __proto__: pos$41, ENABLED: true })),
+                service: nix.thunk(() => ({ [nix.POS]: pos$40, DISABLE_REGISTRATION: true })),
+                actions: nix.thunk(() => ({ [nix.POS]: pos$41, ENABLED: true })),
               })),
             })),
             nginx: nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                __proto__: pos$48,
+                [nix.POS]: pos$48,
                 tools: nix.thunk(() => ({
-                  __proto__: pos$47,
-                  listen: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$44, addr: "0.0.0.0", port: 8080n }))]),
+                  [nix.POS]: pos$47,
+                  listen: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$44, addr: "0.0.0.0", port: 8080n }))]),
                   root: nix.thunk(() => nix.app(nix.sel(pkgs_1, "runCommand"), "garm-tools-stub", nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir $out
 ln -s ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs_1, "gitea-actions-runner")))} $out/gitea-runner
 ln -s ${nix.app(nix.sel(pkgs_1, "writers", "writeJSON"), "releases.json", nix.thunk(() => [
                         nix.thunk(() => ({
-                          __proto__: pos$46,
+                          [nix.POS]: pos$46,
                           tag_name: nix.thunk(() => nix.str`v${nix.sel(pkgs_1, "gitea-actions-runner", "version")}`),
                           name: nix.thunk(() => nix.str`v${nix.sel(pkgs_1, "gitea-actions-runner", "version")}`),
                           assets: nix.thunk(() => [
                             nix.thunk(() => ({
-                              __proto__: pos$45,
+                              [nix.POS]: pos$45,
                               name: nix.thunk(() => nix.str`gitea-runner-v${nix.sel(pkgs_1, "gitea-actions-runner", "version")}-linux-amd64`),
                               browser_download_url: nix.thunk(() => nix.str`http://${hostIP}:8080/gitea-runner`),
                             })),
@@ -277,42 +277,42 @@ ln -s ${nix.app(nix.sel(pkgs_1, "writers", "writeJSON"), "releases.json", nix.th
               })),
             })),
             garm: nix.thunk(() => ({
-              __proto__: pos$62,
+              [nix.POS]: pos$62,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$61,
+                [nix.POS]: pos$61,
                 apiserver: nix.thunk(() => ({
-                  __proto__: pos$51,
+                  [nix.POS]: pos$51,
                   bind: "0.0.0.0",
-                  webui: nix.thunk(() => ({ __proto__: pos$50, enable: true })),
+                  webui: nix.thunk(() => ({ [nix.POS]: pos$50, enable: true })),
                 })),
                 jwt_auth: nix.thunk(() => ({
-                  __proto__: pos$53,
-                  secret: nix.thunk(() => ({ __proto__: pos$52, _secret: "/etc/garm-jwt-secret" })),
+                  [nix.POS]: pos$53,
+                  secret: nix.thunk(() => ({ [nix.POS]: pos$52, _secret: "/etc/garm-jwt-secret" })),
                 })),
                 database: nix.thunk(() => ({
-                  __proto__: pos$55,
-                  passphrase: nix.thunk(() => ({ __proto__: pos$54, _secret: "/etc/garm-db-passphrase" })),
+                  [nix.POS]: pos$55,
+                  passphrase: nix.thunk(() => ({ [nix.POS]: pos$54, _secret: "/etc/garm-db-passphrase" })),
                 })),
                 provider: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$60,
+                    [nix.POS]: pos$60,
                     name: "incus",
                     description: "Incus external provider",
                     provider_type: "external",
                     external: nix.thunk(() => ({
-                      __proto__: pos$59,
+                      [nix.POS]: pos$59,
                       provider_executable: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs_1, "garm-provider-incus")))),
                       config_file: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writers", "writeTOML"), "incus-provider.toml", nix.thunk(() => ({
-                          __proto__: pos$58,
+                          [nix.POS]: pos$58,
                           unix_socket_path: "/var/lib/incus/unix.socket",
                           project_name: "default",
                           instance_type: "container",
                           include_default_profile: false,
                           image_remotes: nix.thunk(() => ({
-                            __proto__: pos$57,
+                            [nix.POS]: pos$57,
                             images: nix.thunk(() => ({
-                              __proto__: pos$56,
+                              [nix.POS]: pos$56,
                               addr: "https://127.0.0.1",
                               public: true,
                               protocol: "simplestreams",
@@ -326,21 +326,21 @@ ln -s ${nix.app(nix.sel(pkgs_1, "writers", "writeJSON"), "releases.json", nix.th
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$67,
+            [nix.POS]: pos$67,
             services: nix.thunk(() => ({
-              __proto__: pos$66,
+              [nix.POS]: pos$66,
               garm: nix.thunk(() => ({
-                __proto__: pos$65,
-                serviceConfig: nix.thunk(() => ({ __proto__: pos$64, SupplementaryGroups: nix.thunk(() => ["incus-admin"]) })),
+                [nix.POS]: pos$65,
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$64, SupplementaryGroups: nix.thunk(() => ["incus-admin"]) })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$71,
+            [nix.POS]: pos$71,
             etc: nix.thunk(() => ({
-              __proto__: pos$70,
-              "garm-jwt-secret": nix.thunk(() => ({ __proto__: pos$68, text: "uhAVE3d5hiA4f93yPJcVo5xRbvUSbvVUSLGC8tG8WTzxtqtS" })),
-              "garm-db-passphrase": nix.thunk(() => ({ __proto__: pos$69, text: "6ahIZPHobW5SvKR92a8nrahCLsZvWBnD" })),
+              [nix.POS]: pos$70,
+              "garm-jwt-secret": nix.thunk(() => ({ [nix.POS]: pos$68, text: "uhAVE3d5hiA4f93yPJcVo5xRbvUSbvVUSLGC8tG8WTzxtqtS" })),
+              "garm-db-passphrase": nix.thunk(() => ({ [nix.POS]: pos$69, text: "6ahIZPHobW5SvKR92a8nrahCLsZvWBnD" })),
             })),
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs_1, "gitea")),

@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wkeeling",
           repo: "selenium-wire",
           tag: version,
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["seleniumwire"]);
       const disabledTestPaths = nix.thunk(() => ["tests/end2end/test_end2end.py"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extends Selenium's Python bindings to give you the ability to inspect requests made by the browser",
         homepage: "https://github.com/wkeeling/selenium-wire",
         changelog: nix.thunk(() => nix.str`https://github.com/wkeeling/selenium-wire/blob/${version}/HISTORY.rst`),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(blinker, "version")), "1.8")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

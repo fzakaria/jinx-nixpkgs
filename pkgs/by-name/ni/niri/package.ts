@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const withScreencastSupport = nix.argOr($, "withScreencastSupport", () => true);
   const withSystemd = nix.argOr($, "withSystemd", () => true);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "niri",
       version: "26.04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "niri-wm",
           repo: "niri",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
       buildNoDefaultFeatures: true,
       postInstall: nix.thunk(() => nix.add(nix.add(nix.add(nix.add(nix.add("install -Dm0644 README.md resources/default-config.kdl -t $doc/share/doc/niri\nmv docs/wiki $doc/share/doc/niri/wiki\n\ninstall -Dm0644 resources/niri.desktop -t $out/share/wayland-sessions\n", nix.app(nix.sel(lib, "optionalString"), withDbus, "install -Dm0644 resources/niri-portals.conf -t $out/share/xdg-desktop-portal\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(withSystemd) || nix.asBool(withDinit))), "install -Dm0755 resources/niri-session -t $out/bin\n")), nix.app(nix.sel(lib, "optionalString"), withSystemd, "install -Dm0644 resources/niri{-shutdown.target,.service} -t $out/lib/systemd/user\n")), nix.app(nix.sel(lib, "optionalString"), withDinit, "install -Dm0644 resources/dinit/niri{-shutdown,} -t $out/lib/dinit.d/user\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd $pname \\\n  --bash <($out/bin/niri completions bash) \\\n  --fish <($out/bin/niri completions fish) \\\n  --nushell <($out/bin/niri completions nushell) \\\n  --zsh <($out/bin/niri completions zsh)\n"))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         RUSTFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.builtins.map((arg) => nix.add("-C link-arg=", arg), nix.thunk(() => [
               "-Wl,--push-state,--no-as-needed",
               "-lEGL",
@@ -81,12 +81,12 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         providedSessions: nix.thunk(() => ["niri"]),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Scrollable-tiling Wayland compositor",
         homepage: "https://github.com/niri-wm/niri",
         changelog: nix.thunk(() => nix.str`https://github.com/niri-wm/niri/releases/tag/v${nix.sel(finalAttrs, "version")}`),

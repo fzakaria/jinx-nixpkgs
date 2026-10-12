@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "node-red";
       const version = "5.0.8";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "node-red",
           repo: "node-red",
           tag: version,
@@ -36,15 +36,15 @@ mv package.json.tmp package.json
       })());
       const makeCacheWritable = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "node-red": nix.thunk(() => nix.attr(nixosTests, "node-red")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/node-red/node-red/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
         description: "Low-code programming for event-driven applications",
         homepage: "https://nodered.org/",
@@ -59,7 +59,7 @@ mv package.json.tmp package.json
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

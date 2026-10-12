@@ -86,54 +86,54 @@ export default nix.lambda((args) => (() => {
   const str = nix.thunk(() => nix.attr(types, "str"));
   const enum$ = nix.thunk(() => nix.attr(types, "enum"));
   const withDefaults = (optionSpecs) => (defaults) => nix.app(nix.sel(lib, "genAttrs"), nix.thunk(() => nix.app(attrNames, optionSpecs)), (name) => nix.app(mkOption, nix.thunk(() => nix.update(nix.sel(optionSpecs, nix.key(nix.force(name))), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         default: nix.thunk(() => nix.selOr(optionSpecs, () => nix.selOr(defaults, () => null, nix.key(nix.force(name))), nix.key(nix.force(name)), "default")),
       }))));
   const latencyProfile = nix.thunk(() => nix.app(withDefaults, nix.thunk(() => ({
-      __proto__: pos$7,
-      latency: nix.thunk(() => ({ __proto__: pos$2, type: int, description: "`sched_latency_ns`." })),
-      "nr-latency": nix.thunk(() => ({ __proto__: pos$3, type: int, description: "`sched_nr_latency`." })),
-      "wakeup-granularity": nix.thunk(() => ({ __proto__: pos$4, type: float, description: "`sched_wakeup_granularity_ns`." })),
-      "bandwidth-size": nix.thunk(() => ({ __proto__: pos$5, type: int, description: "`sched_cfs_bandwidth_slice_us`." })),
+      [nix.POS]: pos$7,
+      latency: nix.thunk(() => ({ [nix.POS]: pos$2, type: int, description: "`sched_latency_ns`." })),
+      "nr-latency": nix.thunk(() => ({ [nix.POS]: pos$3, type: int, description: "`sched_nr_latency`." })),
+      "wakeup-granularity": nix.thunk(() => ({ [nix.POS]: pos$4, type: float, description: "`sched_wakeup_granularity_ns`." })),
+      "bandwidth-size": nix.thunk(() => ({ [nix.POS]: pos$5, type: int, description: "`sched_cfs_bandwidth_slice_us`." })),
       preempt: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         type: nix.thunk(() => nix.app(enum$, nix.thunk(() => ["none", "voluntary", "full"]))),
         description: "Preemption mode.",
       })),
     }))));
   const schedulerProfile = nix.thunk(() => nix.app(withDefaults, nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       nice: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         type: nix.thunk(() => nix.app(nullOr, nix.thunk(() => nix.app(nix.sel(ints, "between"), nix.thunk(() => nix.neg(20n)), 19n)))),
         description: "Niceness.",
       })),
       class: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         type: nix.thunk(() => nix.app(nullOr, nix.thunk(() => nix.app(enum$, nix.thunk(() => ["idle", "batch", "other", "rr", "fifo"]))))),
         example: nix.thunk(() => nix.app(literalExpression, "\"batch\"")),
         description: "CPU scheduler class.",
       })),
       prio: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         type: nix.thunk(() => nix.app(nullOr, nix.thunk(() => nix.app(nix.sel(ints, "between"), 1n, 99n)))),
         example: nix.thunk(() => nix.app(literalExpression, "49")),
         description: "CPU scheduler priority.",
       })),
       ioClass: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         type: nix.thunk(() => nix.app(nullOr, nix.thunk(() => nix.app(enum$, nix.thunk(() => ["idle", "best-effort", "realtime"]))))),
         example: nix.thunk(() => nix.app(literalExpression, "\"best-effort\"")),
         description: "IO scheduler class.",
       })),
       ioPrio: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         type: nix.thunk(() => nix.app(nullOr, nix.thunk(() => nix.app(nix.sel(ints, "between"), 0n, 7n)))),
         example: nix.thunk(() => nix.app(literalExpression, "4")),
         description: "IO scheduler priority.",
       })),
       matchers: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         type: nix.thunk(() => nix.app(nullOr, nix.thunk(() => nix.app(listOf, str)))),
         default: [],
         example: nix.thunk(() => nix.app(literalExpression, "[\n  \"include cgroup=\\\"/user.slice/*.service\\\" parent=\\\"systemd\\\"\"\n  \"emacs\"\n]\n")),
@@ -149,39 +149,39 @@ export default nix.lambda((args) => (() => {
 ${nix.app(concatStringsSep, "\n", nix.thunk(() => nix.app(map, (m) => nix.str`  ${indent}${m}`, nix.thunk(() => nix.sel(a, "matchers")))))}
 ${indent}}`))))))));
   return {
-    __proto__: pos$56,
+    [nix.POS]: pos$56,
     options: nix.thunk(() => ({
-      __proto__: pos$38,
+      [nix.POS]: pos$38,
       services: nix.thunk(() => ({
-        __proto__: pos$37,
+        [nix.POS]: pos$37,
         "system76-scheduler": nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "system76-scheduler")),
           package: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(types, "package")),
               default: nix.thunk(() => nix.sel(pkgs, "system76-scheduler")),
               defaultText: nix.thunk(() => nix.app(literalExpression, "pkgs.system76-scheduler")),
               description: "Which System76-Scheduler package to use.",
             })))),
           useStockConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: bool,
               default: true,
               description: "Use the (reasonable and featureful) stock configuration.\n\nWhen this option is `true`, `services.system76-scheduler.settings`\nare ignored.\n",
             })))),
           settings: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             cfsProfiles: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   type: bool,
                   default: true,
                   description: "Tweak CFS latency parameters when going on/off battery",
                 })))),
               default: nix.thunk(() => nix.app(latencyProfile, nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   latency: 6n,
                   "nr-latency": 8n,
                   "wakeup-granularity": 1.0,
@@ -189,7 +189,7 @@ ${indent}}`))))))));
                   preempt: "voluntary",
                 })))),
               responsive: nix.thunk(() => nix.app(latencyProfile, nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   latency: 4n,
                   "nr-latency": 10n,
                   "wakeup-granularity": 0.5,
@@ -198,46 +198,46 @@ ${indent}}`))))))));
                 })))),
             })),
             processScheduler: nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   type: bool,
                   default: true,
                   description: "Tweak scheduling of individual processes in real time.",
                 })))),
               useExecsnoop: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   type: bool,
                   default: true,
                   description: "Use execsnoop (otherwise poll the precess list periodically).",
                 })))),
               refreshInterval: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   type: int,
                   default: 60n,
                   description: "Process list poll interval, in seconds",
                 })))),
               foregroundBoost: nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                    __proto__: pos$24,
+                    [nix.POS]: pos$24,
                     type: bool,
                     default: true,
                     description: "Boost foreground process priorities.\n\n(And de-boost background ones).  Note that this option needs cooperation\nfrom the desktop environment to work.  On Gnome the client side is\nimplemented by the \"System76 Scheduler\" shell extension.\n",
                   })))),
-                foreground: nix.thunk(() => nix.app(schedulerProfile, nix.thunk(() => ({ __proto__: pos$25, nice: 0n, ioClass: "best-effort", ioPrio: 0n })))),
-                background: nix.thunk(() => nix.app(schedulerProfile, nix.thunk(() => ({ __proto__: pos$26, nice: 6n, ioClass: "idle" })))),
+                foreground: nix.thunk(() => nix.app(schedulerProfile, nix.thunk(() => ({ [nix.POS]: pos$25, nice: 0n, ioClass: "best-effort", ioPrio: 0n })))),
+                background: nix.thunk(() => nix.app(schedulerProfile, nix.thunk(() => ({ [nix.POS]: pos$26, nice: 6n, ioClass: "idle" })))),
               })),
               pipewireBoost: nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                    __proto__: pos$28,
+                    [nix.POS]: pos$28,
                     type: bool,
                     default: true,
                     description: "Boost Pipewire client priorities.",
                   })))),
                 profile: nix.thunk(() => nix.app(schedulerProfile, nix.thunk(() => ({
-                    __proto__: pos$29,
+                    [nix.POS]: pos$29,
                     nice: nix.thunk(() => nix.neg(6n)),
                     ioClass: "best-effort",
                     ioPrio: 0n,
@@ -246,9 +246,9 @@ ${indent}}`))))))));
             })),
           })),
           assignments: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$33,
+                    [nix.POS]: pos$33,
                     options: nix.thunk(() => nix.app(schedulerProfile, nix.thunk(() => ({})))),
                   })))))),
               default: nix.thunk(() => ({})),
@@ -256,7 +256,7 @@ ${indent}}`))))))));
               description: "Process profile assignments.",
             })))),
           exceptions: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), str)),
               default: [],
               example: nix.thunk(() => nix.app(literalExpression, "[\n  \"include descends=\\\"schedtool\\\"\"\n  \"schedtool\"\n]\n")),
@@ -266,23 +266,23 @@ ${indent}}`))))))));
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$54,
+        [nix.POS]: pos$54,
         environment: nix.thunk(() => ({
-          __proto__: pos$47,
+          [nix.POS]: pos$47,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
               nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "useStockConfig")), nix.thunk(() => ({
-                  __proto__: pos$42,
+                  [nix.POS]: pos$42,
                   "system76-scheduler/config.kdl": nix.thunk(() => ({
-                    __proto__: pos$39,
+                    [nix.POS]: pos$39,
                     source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/data/config.kdl`),
                   })),
                   "system76-scheduler/process-scheduler/00-dist.kdl": nix.thunk(() => ({
-                    __proto__: pos$40,
+                    [nix.POS]: pos$40,
                     source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/data/pop_os.kdl`),
                   })),
                   "system76-scheduler/process-scheduler/01-fix-pipewire-paths.kdl": nix.thunk(() => ({
-                    __proto__: pos$41,
+                    [nix.POS]: pos$41,
                     source: nix.path(here, "../../../../pkgs/by-name/sy/system76-scheduler/01-fix-pipewire-paths.kdl"),
                   })),
                 })))),
@@ -291,9 +291,9 @@ ${indent}}`))))))));
                 const cfsp = nix.thunk(() => nix.sel(settings, "cfsProfiles"));
                 const ps = nix.thunk(() => nix.sel(settings, "processScheduler"));
                 return nix.app(mkIf, nix.thunk(() => !nix.asBool(nix.sel(cfg, "useStockConfig"))), nix.thunk(() => ({
-                    __proto__: pos$44,
+                    [nix.POS]: pos$44,
                     "system76-scheduler/config.kdl": nix.thunk(() => ({
-                      __proto__: pos$43,
+                      [nix.POS]: pos$43,
                       text: nix.thunk(() => nix.str`version "2.0"
 autogroup-enabled false
 cfs-profiles enable=${nix.app(boolToString, nix.thunk(() => nix.sel(cfsp, "enable")))} {
@@ -314,9 +314,9 @@ process-scheduler enable=${nix.app(boolToString, nix.thunk(() => nix.sel(ps, "en
                   })));
               })()),
               nix.thunk(() => ({
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 "system76-scheduler/process-scheduler/02-config.kdl": nix.thunk(() => ({
-                  __proto__: pos$45,
+                  [nix.POS]: pos$45,
                   text: nix.thunk(() => nix.add(nix.add(nix.add(nix.str`exceptions {
 ${nix.app(concatStringsSep, "\n", nix.thunk(() => nix.app(map, (e) => nix.str`  ${e}`, nix.thunk(() => nix.sel(cfg, "exceptions")))))}
 }
@@ -326,18 +326,18 @@ ${nix.app(concatStringsSep, "\n", nix.thunk(() => nix.app(map, (e) => nix.str`  
             ]))),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$49,
+          [nix.POS]: pos$49,
           dbus: nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$53,
+          [nix.POS]: pos$53,
           services: nix.thunk(() => ({
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             "system76-scheduler": nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               description: "Manage process priorities and CFS scheduler latencies for improved responsiveness on the desktop",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               path: nix.thunk(() => [
@@ -346,7 +346,7 @@ ${nix.app(concatStringsSep, "\n", nix.thunk(() => nix.app(map, (e) => nix.str`  
                 nix.thunk(() => nix.sel(pkgs, "xz")),
               ]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$50,
+                [nix.POS]: pos$50,
                 Type: "dbus",
                 BusName: "com.system76.Scheduler",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/system76-scheduler daemon`),
@@ -357,7 +357,7 @@ ${nix.app(concatStringsSep, "\n", nix.thunk(() => nix.app(map, (e) => nix.str`  
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$55,
+      [nix.POS]: pos$55,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "cmm"))]),
     })),
   };

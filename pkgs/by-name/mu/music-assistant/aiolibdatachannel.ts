@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const scikit_build_core = nix.arg($, "scikit-build-core");
   const setuptools_scm = nix.arg($, "setuptools-scm");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "aiolibdatachannel",
       version: "2026.5.22-unstable-2026-07-23",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "music-assistant",
           repo: "aiolibdatachannel",
           rev: "950e7f0fef33000e701bae48e4872913cebbcc9a",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-y9tnlAQK+BAfXxy7sdNpxA5jOukMw+XkYEwPBj0JZC4=",
         })))),
       postPatch: "substituteInPlace pyproject.toml \\\n  --replace-fail 'setuptools-scm>=8,<9' 'setuptools-scm>=8' \\\n  --replace-fail 'dynamic = [\"version\"]' 'version = \"2026.5.22\"'\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, AIOLIB_REQUIRE_NATIVE: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, AIOLIB_REQUIRE_NATIVE: "1" })),
       nativeBuildInputs: nix.thunk(() => [cmake, ninja]),
       dontUseCmakeConfigure: true,
       "build-system": nix.thunk(() => [nanobind, scikit_build_core, setuptools_scm]),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(music_assistant, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "asyncio-friendly Python wrapper for libdatachannel (WebRTC Data Channels)",
         homepage: "https://github.com/music-assistant/aiolibdatachannel/tree/feat/certpem-testdrive",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

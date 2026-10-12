@@ -39,84 +39,84 @@ export default nix.lambda((args) => (() => {
   const serverDataDir = nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/server`);
   const serverEnabled = nix.thunk(() => (nix.asBool(nix.sel(cfg, "enable")) || nix.asBool(nix.sel(cfg, "server", "enable"))));
   return {
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         tdarr: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           server: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Tdarr server")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.sel(lib, "types", "package")),
                 default: nix.thunk(() => nix.sel(cfg, "package", "server")),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.tdarr.package.server")),
                 description: "Package to use for the Tdarr server.",
               })))),
             serverPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 8266n,
                 description: "Port for server API communication.",
               })))),
             webUIPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 8265n,
                 description: "Port for the Tdarr web UI.",
               })))),
             serverIP: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "0.0.0.0",
                 description: "IP address the server binds to.",
               })))),
             serverBindIP: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to bind to the specific IP in {option}`services.tdarr.server.serverIP`.",
               })))),
             serverDualStack: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Enable dual-stack (IPv4/IPv6) networking.\n\nWhen enabled, the server binds to `::` if IPv6 is available, accepting both\nIPv4 and IPv6 connections. Useful in Kubernetes and other modern networking setups.\n",
               })))),
             maxLogSizeMB: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
                 default: 10n,
                 description: "Maximum log file size in megabytes.",
               })))),
             cronPluginUpdate: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "",
                 description: "Cron expression for automatic plugin updates. Empty string disables.",
                 example: "0 2 * * *",
               })))),
             auth: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                   default: false,
                   description: "Whether to enable authentication for the Tdarr web UI and API.",
                 })))),
             })),
             environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
                 description: "File containing environment variable overrides for the server,\nin the format accepted by systemd's `EnvironmentFile`.\n\nUseful for setting secrets such as `authSecretKey` or `seededApiKey`\nwithout exposing them in the Nix store.\n\nExample file contents:\n```\nauthSecretKey=your-secret-key\nseededApiKey=tapi_your_api_key_here\n```\n",
                 example: "/run/secrets/tdarr-server-env",
               })))),
             openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to open the firewall for the Tdarr server web UI and API ports.",
@@ -126,25 +126,25 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), serverEnabled, nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         systemd: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d ${serverDataDir} 0750 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} -`),
               nix.thunk(() => nix.str`d ${serverDataDir}/configs 0750 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} -`),
             ]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             "tdarr-server": nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               description: "Tdarr Server",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 serverPort: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "server", "serverPort")))),
                 webUIPort: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "server", "webUIPort")))),
                 serverIP: nix.thunk(() => nix.sel(cfg, "server", "serverIP")),
@@ -157,7 +157,7 @@ export default nix.lambda((args) => (() => {
                 rootDataPath: serverDataDir,
               })),
               serviceConfig: nix.thunk(() => nix.update({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 Type: "simple",
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -171,16 +171,16 @@ export default nix.lambda((args) => (() => {
                 ProtectHome: true,
                 ReadWritePaths: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(cfg, "dataDir"))], nix.sel(cfg, "libraryDir"))),
               }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "server", "environmentFile"), null)), nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   EnvironmentFile: nix.thunk(() => nix.sel(cfg, "server", "environmentFile")),
                 }))))),
             })),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           firewall: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "server", "openFirewall")), nix.thunk(() => [
                 nix.thunk(() => nix.sel(cfg, "server", "serverPort")),
                 nix.thunk(() => nix.sel(cfg, "server", "webUIPort")),

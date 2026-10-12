@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const qtquick3d = nix.arg($, "qtquick3d");
   const qtquicktimeline = nix.arg($, "qtquicktimeline");
   return nix.app(qtModule, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "qtgraphs",
       propagatedBuildInputs: nix.thunk(() => [qtbase, qtdeclarative, qtquick3d, qtquicktimeline]),
     })));

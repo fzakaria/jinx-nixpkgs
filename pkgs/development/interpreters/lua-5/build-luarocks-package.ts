@@ -46,13 +46,13 @@ export default nix.lambda((args) => (() => {
     const knownRockspec = nix.argOr($_1, "knownRockspec", () => null);
     const luarocks_config = "luarocks-config.lua";
     const luarocksDrv = nix.thunk(() => nix.app(nix.sel(luaLib, "toLuaModule"), nix.thunk(() => nix.app(nix.sel(lua, "stdenv", "mkDerivation"), (self) => nix.update(attrs, {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           name: nix.thunk(() => nix.add(nix.add(nix.add(namePrefix, nix.sel(self, "pname")), "-"), nix.sel(self, "version"))),
           rockspecVersion: rockspecVersion,
           __structuredAttrs: true,
           strictDeps: true,
           env: nix.thunk(() => nix.update({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             LUAROCKS_CONFIG: nix.thunk(() => nix.sel(self, "configFile")),
           }, nix.selOr(attrs, () => ({}), "env"))),
           generatedRockspecFilename: nix.thunk(() => nix.str`./${nix.sel(self, "pname")}-${nix.sel(self, "rockspecVersion")}.rockspec`),
@@ -70,24 +70,24 @@ export default nix.lambda((args) => (() => {
           propagatedBuildInputs: nix.thunk(() => nix.concat(propagatedBuildInputs, [lua])),
           rocksSubdir: nix.thunk(() => nix.str`${nix.sel(self, "pname")}-${nix.sel(self, "version")}-rocks`),
           configFile: nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: nix.thunk(() => nix.add(nix.sel(self, "pname"), "-luarocks-config.lua")),
               text: nix.thunk(() => nix.sel(self, "luarocks_content")),
             })))),
-          luarocks_content: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "generators", "toLua"), nix.thunk(() => ({ __proto__: pos$3, asBindings: true })), nix.thunk(() => nix.sel(self, "luarocksConfig"))), nix.str`
+          luarocks_content: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "generators", "toLua"), nix.thunk(() => ({ [nix.POS]: pos$3, asBindings: true })), nix.thunk(() => nix.sel(self, "luarocksConfig"))), nix.str`
 ${nix.sel(self, "extraConfig")}
 `)),
           luarocksConfig: nix.thunk(() => (() => {
             const externalDepsGenerated = nix.thunk(() => nix.app(nix.sel(lib, "filter"), (drv) => !nix.asBool(nix.has(drv, "luaModule")), nix.thunk(() => nix.concat(nix.sel(self, "finalPackage", "nativeBuildInputs"), nix.concat(nix.sel(self, "propagatedBuildInputs"), nix.sel(self, "buildInputs"))))));
             const generatedConfig = nix.thunk(() => nix.app(nix.sel(luaLib, "generateLuarocksConfig"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 externalDeps: nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.concat(nix.sel(self, "externalDeps"), externalDepsGenerated)))),
                 local_cache: "",
                 rocks_subdir: nix.thunk(() => nix.sel(self, "rocksSubdir")),
                 requiredLuaRocks: nix.thunk(() => nix.app(nix.sel(lib, "filter"), nix.thunk(() => nix.sel(luaLib, "hasLuaModule")), nix.thunk(() => nix.app(nix.sel(lua, "pkgs", "requiredLuaModules"), nix.thunk(() => nix.concat(nix.sel(self, "finalPackage", "nativeBuildInputs"), nix.sel(self, "propagatedBuildInputs"))))))),
               }))));
             const luarocksConfig$ = nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), luarocksConfig, nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(attrs, "extraVariables")), nix.thunk(() => nix.app(nix.sel(lib, "warn"), "extraVariables in buildLuarocksPackage is deprecated, use luarocksConfig instead", nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     variables: nix.thunk(() => nix.sel(attrs, "extraVariables")),
                   }))))))));
             return nix.app(nix.sel(lib, "recursiveUpdate"), generatedConfig, luarocksConfig$);
@@ -121,9 +121,9 @@ runHook postShell
               nix.thunk(() => nix.sel(lua, "luaOnBuild")),
               nix.thunk(() => nix.sel(lua, "luaOnBuild", "pkgs", "luarocks_bootstrap")),
             ]))),
-          passthru: nix.thunk(() => nix.update({ __proto__: pos$6, lua: lua }, nix.selOr(attrs, () => ({}), "passthru"))),
+          passthru: nix.thunk(() => nix.update({ [nix.POS]: pos$6, lua: lua }, nix.selOr(attrs, () => ({}), "passthru"))),
           meta: nix.thunk(() => nix.update({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             platforms: nix.thunk(() => nix.sel(lua, "meta", "platforms")),
             maintainers: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "meta", "maintainers"), [])),
             broken: disabled,

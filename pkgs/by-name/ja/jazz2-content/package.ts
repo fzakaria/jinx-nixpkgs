@@ -12,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const runCommandLocal = nix.arg($, "runCommandLocal");
   return nix.app(runCommandLocal, "jazz2-content", nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "jazz2-content",
       version: nix.thunk(() => nix.attr(jazz2, "version")),
       src: nix.thunk(() => nix.attr(jazz2, "src")),
       meta: nix.thunk(() => nix.update(nix.builtins.removeAttrs(nix.thunk(() => nix.sel(jazz2, "meta")), nix.thunk(() => ["mainProgram"])), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Assets needed for jazz2",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       })),

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cloudbrute",
       version: "1.0.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "0xsha",
           repo: "CloudBrute",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-SRk5kEUVmY3IJSB/XwchqWGnaXLQUoisx6KlVzMHdjg=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cloud enumeration tool",
         mainProgram: "cloudbrute",
         longDescription: "A tool to find a company (target) infrastructure, files, and apps on\nthe top cloud providers (Amazon, Google, Microsoft, DigitalOcean,\nAlibaba, Vultr, Linode).\n",

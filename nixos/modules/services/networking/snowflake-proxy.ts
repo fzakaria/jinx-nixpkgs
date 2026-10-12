@@ -27,16 +27,16 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "snowflake-proxy"));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         "snowflake-proxy": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "snowflake-proxy, a system to defeat internet censorship")),
           broker: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               description: "Broker URL (default \"https://snowflake-broker.torproject.net/\")",
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
               default: null,
             })))),
           capacity: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               description: "Limits the amount of maximum concurrent clients allowed.",
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
               default: null,
             })))),
           relay: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               description: "websocket relay URL (default \"wss://snowflake.bamsoftware.com/\")",
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
               default: null,
             })))),
           stun: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               description: "STUN broker URL (default \"stun:stun.stunprotocol.org:3478\")",
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
               default: null,
             })))),
           extraFlags: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               description: "Extra flags to pass to snowflake-proxy",
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
@@ -85,16 +85,16 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         systemd: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             "snowflake-proxy": nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               wantedBy: nix.thunk(() => ["network-online.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 ExecStart: nix.thunk(() => nix.add(nix.str`${nix.sel(pkgs, "snowflake")}/bin/proxy `, nix.app(nix.lookup(w, "concatStringsSep"), " ", nix.thunk(() => nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "broker"), null)), nix.thunk(() => nix.str`-broker ${nix.sel(cfg, "broker")}`)), nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "capacity"), null)), nix.thunk(() => nix.str`-capacity ${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "capacity")))}`)), nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "relay"), null)), nix.thunk(() => nix.str`-relay ${nix.sel(cfg, "relay")}`)), nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "stun"), null)), nix.thunk(() => nix.str`-stun ${nix.sel(cfg, "stun")}`)), nix.sel(cfg, "extraFlags"))))))))),
                 CapabilityBoundingSet: "",
                 DynamicUser: true,
@@ -122,7 +122,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_1, "yayayayaka"))];

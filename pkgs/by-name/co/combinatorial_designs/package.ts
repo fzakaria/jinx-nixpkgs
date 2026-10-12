@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "combinatorial_designs",
       version: "20140630",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sageupstream/combinatorial_designs/combinatorial_designs-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "0bj8ngiq59hipa6izi6g5ph5akmy4cbk0vlsb0wa67f7grnnqj69",
         })))),
       installPhase: "mkdir -p \"$out/share/combinatorial_designs\"\nmv * \"$out/share/combinatorial_designs\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Data for Combinatorial Designs",
         longDescription: "Current content:\n\n- The table of MOLS (10 000 integers) from the Handbook of Combinatorial\n  Designs, 2ed.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),

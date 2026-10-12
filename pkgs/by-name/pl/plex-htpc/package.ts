@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
   const version = "1.71.1";
   const rev = "73";
   const meta = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     homepage: "https://plex.tv/",
     description: "Plex HTPC client for the big screen",
     longDescription: "Plex HTPC for Linux is your client for playing on your Linux computer\nconnected to the big screen. It features a 10-foot interface with a\npowerful playback engine.\n",
@@ -65,12 +65,12 @@ export default nix.lambda((args) => (() => {
     })()),
   }));
   const plex_htpc = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       meta: meta,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://api.snapcraft.io/api/v1/snaps/download/81OP06hEXlwmMrpMAhe5hyLy5bQ9q6Kz_${rev}.snap`),
           hash: "sha512-n9pXRx8s6AwhIJm7PmUIOB8pXqzyNFzdmwJMonQ4WzWvA5tPI27x0slQ6WUxRBQJoLScGckyGAFxIGWRylNr3g==",
         })))),
@@ -106,7 +106,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ncp -r . $out\nrm -r $out/etc\nrm -r $out/usr\n\n# flatpak removes these during installation.\nrm -r $out/lib/dri\nrm $out/lib/libpciaccess.so*\nrm $out/lib/libswresample.so*\nrm $out/lib/libva-*.so*\nrm $out/lib/libva.so*\nrm $out/lib/libEGL.so*\nrm $out/lib/libdrm.so*\nrm $out/lib/libdrm*\n\n# Keep some dependencies from the snap.\ncp usr/lib/x86_64-linux-gnu/liblcms2.so.2 $out/lib/liblcms2.so.2\ncp usr/lib/x86_64-linux-gnu/libjbig.so.0 $out/lib/libjbig.so.0\ncp usr/lib/x86_64-linux-gnu/libjpeg.so.8 $out/lib/libjpeg.so.8\ncp usr/lib/x86_64-linux-gnu/libpci.so.3 $out/lib/libpci.so.3\ncp usr/lib/x86_64-linux-gnu/libsnappy.so.1 $out/lib/libsnappy.so.1\ncp usr/lib/x86_64-linux-gnu/libtiff.so.5 $out/lib/libtiff.so.5\ncp usr/lib/x86_64-linux-gnu/libwebp.so.6 $out/lib/libwebp.so.6\ncp usr/lib/x86_64-linux-gnu/libxkbfile.so.1 $out/lib/libxkbfile.so.1\ncp usr/lib/x86_64-linux-gnu/libxslt.so.1 $out/lib/libxslt.so.1\n\nrunHook postInstall\n",
     }))));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       meta: meta,
@@ -139,7 +139,7 @@ ${nix.app(nix.sel(lib, "toShellVars"), extraEnv)}
 set +o allexport
 exec ${plex_htpc}/Plex.sh
 `))),
-      passthru: nix.thunk(() => ({ __proto__: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -18,26 +18,26 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const version = nix.arg($, "version");
   return nix.app(nix.sel(pkgs, "testers", "runNixOSTest"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       name: "pulsemeeter-version",
       nodes: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const config = nix.arg($_1, "config");
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             services: nix.thunk(() => ({
-              __proto__: pos$2,
-              pulseaudio: nix.thunk(() => ({ __proto__: pos$1, enable: true, systemWide: true })),
+              [nix.POS]: pos$2,
+              pulseaudio: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true, systemWide: true })),
             })),
             users: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               users: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 alice: nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   isNormalUser: true,
                   password: "foo",
                   extraGroups: nix.thunk(() => ["wheel", "pulse-access"]),

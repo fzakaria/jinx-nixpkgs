@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const gnugrep = nix.arg($, "gnugrep");
   const zulu = nix.arg($, "zulu");
   const preferZulu = nix.argOr($, "preferZulu", () => false);
-  const jre$ = nix.thunk(() => nix.app(nix.sel((nix.asBool(preferZulu) ? nix.force(zulu) : nix.force(jdk)), "override"), nix.thunk(() => ({ __proto__: pos$1, enableJavaFX: true }))));
+  const jre$ = nix.thunk(() => nix.app(nix.sel((nix.asBool(preferZulu) ? nix.force(zulu) : nix.force(jdk)), "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableJavaFX: true }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "davmail",
       version: "7.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "mguessan",
           repo: "davmail",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -53,11 +53,11 @@ makeWrapper $out/share/davmail/davmail $out/bin/davmail \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Java application which presents a Microsoft Exchange server as local CALDAV, IMAP and SMTP servers",
         homepage: "https://davmail.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

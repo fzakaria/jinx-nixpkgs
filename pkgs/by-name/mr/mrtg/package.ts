@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mrtg",
       version: "2.17.10",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://oss.oetiker.ch/mrtg/pub/mrtg-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-x/EcteIXpQDYfuO10mxYqGUu28DTKRaIu3krAQ+uQ6w=",
         })))),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./configure-long-long-format-gcc14.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-gcc15.patch",
             url: "https://github.com/oetiker/mrtg/commit/a64a83210643114b3a892e70ce07ded5bd5de054.patch",
             hash: "sha256-9k16WrCAETuk5DJf5pmeXFHc4AZD9Acmtq/7P24tpwc=",
@@ -49,10 +49,10 @@ export default nix.lambda((args) => (() => {
             extraPrefix: "",
           })))),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_LINK: "-lm" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_LINK: "-lm" })),
       postInstall: "# mrtg wants plain C locale\nwrapProgram $out/bin/mrtg  --set LANG C\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Multi Router Traffic Grapher",
         homepage: "https://oss.oetiker.ch/mrtg/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

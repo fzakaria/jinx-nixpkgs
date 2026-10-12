@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const libnice = nix.arg($, "libnice");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "galene-stream",
       version: "0.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "erdnaxe",
           repo: "galene-stream",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -61,9 +61,9 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           vm: nix.thunk(() => nix.sel(nixosTests, "galene", "stream")),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(galene, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Gateway to send UDP, RTMP, SRT or RIST streams to Galène videoconference server",
         homepage: "https://github.com/erdnaxe/galene-stream",
         changelog: nix.thunk(() => nix.str`https://github.com/erdnaxe/galene-stream/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

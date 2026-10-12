@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rime-wanxiang",
       version: "18.0.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "amzxyz",
           repo: "rime-wanxiang",
           tag: nix.thunk(() => nix.add("v", nix.sel(finalAttrs, "version"))),
@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\nrm -rf README.md .git* custom LICENSE\n\nmv default.yaml wanxiang_suggested_default.yaml\n\nmkdir -p $out/share\ncp -r . $out/share/rime-data\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Feature-rich pinyin schema for Rime",
         longDescription: "万象拼音 is a quanpin and shuangpin input schema for Rime based on\n[万象 dictionaries and grammar models](https://github.com/amzxyz/RIME-LMDG),\nsupporting traditional shuangpin as well as tonal schemata such as 自然龙 and\n龙码.\n\nThis package is built from the upstream repository snapshots, and includes\nall the auxiliary encodings.\n\nThe schema requires to work the grammar model `wanxiang-lts-zh-hans.gram`.\nHowever, this file is\n[released](https://github.com/amzxyz/RIME-LMDG/releases/tag/LTS) by\ncarelessly overriding the old versions\n(see the [discussion](https://github.com/amzxyz/RIME-LMDG/issues/22)). So\nwe can't pack it into Nixpkgs, which demands reproducibility. You have to\ndownload it yourself and place it in the user directory of Rime.\n\nThe upstream `default.yaml` is included as\n`wanxiang_suggested_default.yaml`. To enable it, please modify your\n`default.custom.yaml` as such:\n\n```yaml\npatch:\n  __include: wanxiang_suggested_default:/\n```\n",
         homepage: "https://github.com/amzxyz/rime-wanxiang",

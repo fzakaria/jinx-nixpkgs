@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "extism-js-core",
       version: "1.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "extism",
           repo: "js-pdk",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-BBhHTzG0FU4AOuUz7yjp4bpELr1vEVdwT+vyyuITagE=",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-npm-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/${nix.sel(finalAttrs, "npmRoot")}`),
@@ -51,14 +51,14 @@ popd
       depsBuildBuild: nix.thunk(() => [nodejs, nix.thunk(() => nix.sel(npmHooks, "npmConfigHook"))]),
       nativeBuildInputs: nix.thunk(() => [binaryen, lld, nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         RUSTFLAGS: "-C linker=wasm-ld",
         RQUICKJS_SYS_NO_WASI_SDK: 1n,
       })),
       cargoBuildFlags: nix.thunk(() => ["--package=js-pdk-core"]),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         broken: nix.thunk(() => nix.sel(stdenv, "buildPlatform", "isDarwin")),
         changelog: nix.thunk(() => nix.str`https://github.com/extism/js-pdk/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Write Extism plugins in JavaScript & TypeScript (WASM core)",

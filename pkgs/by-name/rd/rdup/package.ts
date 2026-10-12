@@ -18,14 +18,14 @@ export default nix.lambda((args) => (() => {
   const pcre2 = nix.arg($, "pcre2");
   const coreutils = nix.arg($, "coreutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rdup",
       version: "1.1.16-unstable-2024-03-05",
       strictDeps: true,
       __structuredAttrs: true,
       enableParallelBuilding: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "miekg",
           repo: "rdup",
           rev: "fa1c753a107c12b3797204c41779ce2c8d5da45a",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib, pcre2]),
       installFlags: nix.thunk(() => [nix.thunk(() => nix.str`INSTALL=${coreutils}/bin/install`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Only backup program that doesn't make backups",
         homepage: "https://github.com/miekg/rdup",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

@@ -107,7 +107,7 @@ export default nix.lambda((args) => (() => {
   const qtPluginPrefix = "lib/qt-6/plugins";
   const qtQmlPrefix = "lib/qt-6/qml";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "qtbase",
       src: src,
       version: version,
@@ -185,12 +185,12 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./qmlimportscanner-import-path.patch"),
         nix.path(here, "./skip-missing-qml-directory.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: "https://github.com/qt/qtbase/commit/515cbbacfba9f4259c9c3b0714a31222c2b4c879.diff",
             hash: "sha256-93tzp4O7dZxRZv7ilN/gbQSVmaeOGmxpYgM7aomN0n8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/qt/qtbase/commit/85420d5d4f78a6ba4cf70ed8ee092e0ef4fb9a54.diff",
             hash: "sha256-BFL1mtwzEH0uUYbeUZDC2Fcp9pjBhtSYOaSxxVILe30=",
           })))),
@@ -246,7 +246,7 @@ substituteInPlace mkspecs/common/macx.conf \\
           nix.thunk(() => nix.str`-DQt6HostInfo_DIR=${nix.sel(pkgsBuildBuild, "qt6", "qtbase")}/lib/cmake/Qt6HostInfo`),
         ])), nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(!nix.eq(qttranslations, null)) && nix.asBool(!nix.asBool(isCrossBuild)))), nix.thunk(() => nix.str`-DINSTALL_TRANSLATIONSDIR=${qttranslations}/translations`))))))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-DNIXPKGS_QT_PLUGIN_PREFIX="${qtPluginPrefix}"`),
       })),
       outputs: nix.thunk(() => ["out", "dev"]),
@@ -274,22 +274,22 @@ patchelf --add-rpath "${vulkan_loader}/lib" --add-needed "libvulkan.so" $out/lib
       dontWrapQtApps: true,
       setupHook: nix.thunk(() => (() => {
         const hook = nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: "qtbase6-setup-hook",
             substitutions: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               fix_qt_builtin_paths: fix_qt_builtin_paths,
               fix_qt_module_paths: fix_qt_module_paths,
               qtPluginPrefix: qtPluginPrefix,
               qtQmlPrefix: qtQmlPrefix,
             })),
-            meta: nix.thunk(() => ({ __proto__: pos$5, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+            meta: nix.thunk(() => ({ [nix.POS]: pos$5, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
           })), nix.path(here, "../../hooks/qtbase-setup-hook.sh")));
         return nix.str`${hook}/nix-support/setup-hook`;
       })()),
-      passthru: nix.thunk(() => ({ __proto__: pos$7, qtPluginPrefix: qtPluginPrefix, qtQmlPrefix: qtQmlPrefix })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$7, qtPluginPrefix: qtPluginPrefix, qtQmlPrefix: qtQmlPrefix })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         homepage: "https://www.qt.io/",
         description: "Cross-platform application framework for C++",
         license: nix.thunk(() => (() => {

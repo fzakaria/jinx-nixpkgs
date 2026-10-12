@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const baseUrl = nix.argOr($, "baseUrl", () => null);
   const flutter = flutter335;
   const sourceBuild = nix.thunk(() => nix.app(nix.sel(flutter, "buildFlutterApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "fladder",
       version: "0.11.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DonutWare",
           repo: "Fladder",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
 `))))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(targetFlutterPlatform, "linux")), "# Install SVG icon\ninstall -Dm644 icons/fladder_icon.svg \\\n  $out/share/icons/hicolor/scalable/apps/fladder.svg\n"))),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(targetFlutterPlatform, "linux")), nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: "fladder",
               desktopName: "Fladder",
               genericName: "Jellyfin Client",
@@ -62,9 +62,9 @@ export default nix.lambda((args) => (() => {
               categories: nix.thunk(() => ["AudioVideo", "Video", "Player"]),
             })))),
         ]))),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Cross-platform Jellyfin client built on top of Flutter",
         homepage: "https://github.com/DonutWare/Fladder",
         downloadPage: "https://github.com/DonutWare/Fladder/releases",
@@ -80,11 +80,11 @@ export default nix.lambda((args) => (() => {
       })),
     })));
   const darwin = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: nix.thunk(() => nix.sel(sourceBuild, "pname")),
       version: nix.thunk(() => nix.attr(sourceBuild, "version")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           url: nix.thunk(() => nix.str`https://github.com/DonutWare/Fladder/releases/download/v${nix.sel(sourceBuild, "version")}/Fladder-macOS-${nix.sel(sourceBuild, "version")}.dmg`),
           hash: "sha256-23+T6DOhSvq7cQMqBmTIMcVnEo1bYMaszEAndQZe/lE=",
         })))),
@@ -92,7 +92,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: ".",
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications\ncp -r Fladder.app $out/Applications\nmakeBinaryWrapper $out/Applications/Fladder.app/Contents/MacOS/Fladder $out/bin/Fladder\n\nrunHook postInstall\n",
       meta: nix.thunk(() => nix.update(nix.sel(sourceBuild, "meta"), {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         mainProgram: "Fladder",
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);

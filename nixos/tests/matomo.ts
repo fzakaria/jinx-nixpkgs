@@ -18,36 +18,36 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     name: "matomo",
     nodes: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           services: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             matomo: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               enable: true,
-              nginx: nix.thunk(() => ({ __proto__: pos$1, forceSSL: false, enableACME: false })),
+              nginx: nix.thunk(() => ({ [nix.POS]: pos$1, forceSSL: false, enableACME: false })),
             })),
             mysql: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               enable: true,
               package: nix.thunk(() => nix.sel(pkgs, "mariadb")),
             })),
-            nginx: nix.thunk(() => ({ __proto__: pos$4, enable: true })),
+            nginx: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
           })),
         };
       })(), formals$2),
     })),
     testScript: "start_all()\nmachine.wait_for_unit(\"mysql.service\")\nmachine.wait_for_unit(\"phpfpm-matomo.service\")\nmachine.wait_for_unit(\"nginx.service\")\n\nwith subtest(\"matomo.js reachable via HTTP\"):\n  machine.succeed(\"curl -sSfk http://machine/matomo.js\")\n\nwith subtest(\"js/piwik.js reachable via HTTP\"):\n  machine.succeed(\"curl -sSfk http://machine/js/piwik.js\")\n\nwith subtest(\"matomo.php (API) reachable via HTTP\"):\n  machine.succeed(\"curl -sSfk http://machine/matomo.php\")\n\n# without the grep the command does not produce valid utf-8 for some reason\nwith subtest(\"welcome screen loads\"):\n  machine.succeed(\n    \"curl -sSfL http://localhost/ | grep '<title>Matomo[^<]*Installation'\"\n  )\n\nwith subtest(\"killing the phpfpm process should trigger an automatic restart\"):\n  machine.succeed(\"systemctl kill -s KILL phpfpm-matomo\")\n  machine.sleep(1)\n  machine.wait_for_unit(\"phpfpm-matomo.service\")\n",
     meta: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

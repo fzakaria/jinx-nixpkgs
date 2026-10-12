@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const syft = nix.arg($, "syft");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "bomly",
       version: "0.24.2",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bomly-dev",
           repo: "bomly-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,11 +45,11 @@ cp ${nix.path(here, "./scan_targets.json")} internal/benchmark/testdata/scan_tar
 `),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CLI for dependency intelligence, SBOMs, vulnerability auditing, and CI policy gates",
         homepage: "https://github.com/bomly-dev/bomly-cli",
         changelog: nix.thunk(() => nix.str`https://github.com/bomly-dev/bomly-cli/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

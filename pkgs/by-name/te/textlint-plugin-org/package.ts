@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "textlint-plugin-org";
       const version = "0.3.7";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kijimaD",
           repo: "textlint-plugin-org",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -29,9 +29,9 @@ export default nix.lambda((args) => (() => {
         }))));
       const npmDepsHash = "sha256-J1ksstPED7FwB80N4CzfZ1i2xc3Wmu7s4T3acOrWA9s=";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => nix.app(nix.sel(textlint, "testPackages"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: nix.thunk(() => nix.attr(textlint_plugin_org, "pname")),
             rule: textlint_rule_max_comma,
             plugin: textlint_plugin_org,
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Org mode support for textlint",
         homepage: "https://github.com/kijimaD/textlint-plugin-org",
         changelog: nix.thunk(() => nix.str`https://github.com/kijimaD/textlint-plugin-org/releases/tag/v${version}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "natsukium"))];
         })()),
       }));
-      return { __proto__: pos$5, pname, version, src, npmDepsHash, passthru, meta };
+      return { [nix.POS]: pos$5, pname, version, src, npmDepsHash, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const systemd = nix.arg($, "systemd");
   const protobuf = nix.arg($, "protobuf");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libsideswap-client",
       version: "0-unstable-2026-02-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sideswap-io",
           repo: "sideswap_rust",
           rev: "9b0eea90b18007621eb15282d0064976dfedfa91",
@@ -38,7 +38,7 @@ substituteInPlace sideswap_client/build.rs \\
       cargoBuildFlags: nix.thunk(() => ["--package", "sideswap_client"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Rust library for Sideswap",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

@@ -35,38 +35,38 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "localtimed"));
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "localtime"]), nix.thunk(() => ["services", "localtimed"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         localtimed: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enable `localtimed`, a simple daemon for keeping the\nsystem timezone up-to-date based on the current location. It uses\ngeoclue2 to determine the current location.\n\nTo avoid silent overriding by the service, if you have explicitly set a\ntimezone, either remove it or ensure that it is set with a lower priority\nthan the default value using `lib.mkDefault` or `lib.mkOverride`. This is\nto make the choice deliberate. An error will be presented otherwise.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "localtime", nix.thunk(() => ({})))),
-          geoclue2Package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "Geoclue2", nix.thunk(() => ({ __proto__: pos$2, default: "geoclue2-with-demo-agent" })))),
+          geoclue2Package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "Geoclue2", nix.thunk(() => ({ [nix.POS]: pos$2, default: "geoclue2-with-demo-agent" })))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$23,
-        time: nix.thunk(() => ({ __proto__: pos$6, timeZone: null })),
+        [nix.POS]: pos$23,
+        time: nix.thunk(() => ({ [nix.POS]: pos$6, timeZone: null })),
         services: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           geoclue2: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             appConfig: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               localtimed: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 isAllowed: true,
                 isSystem: true,
                 users: nix.thunk(() => [
@@ -77,20 +77,20 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             localtimed: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               partOf: nix.thunk(() => ["localtimed-geoclue-agent.service"]),
               after: nix.thunk(() => ["localtimed-geoclue-agent.service"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/localtimed`),
                 Restart: "on-failure",
                 Type: "exec",
@@ -98,12 +98,12 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             "localtimed-geoclue-agent": nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               partOf: nix.thunk(() => ["geoclue.service"]),
               after: nix.thunk(() => ["geoclue.service"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "geoclue2Package")}/libexec/geoclue-2.0/demos/agent`),
                 Restart: "on-failure",
                 Type: "exec",
@@ -113,19 +113,19 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           users: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             localtimed: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "localtimed")),
               group: "localtimed",
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             localtimed: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "localtimed")),
             })),
           })),

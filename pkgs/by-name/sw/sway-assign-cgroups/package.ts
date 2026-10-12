@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sway-assign-cgroups",
       version: "0.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alebastr",
           repo: "sway-systemd",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       })()),
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ncp src/assign-cgroups.py $out/bin/\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Place GUI applications into systemd scopes for systemd-oomd compatibility",
         mainProgram: "assign-cgroups.py",
         longDescription: "Automatically assign a dedicated systemd scope to the GUI applications\nlaunched in the same cgroup as the compositor. This could be helpful for\nimplementing cgroup-based resource management and would be necessary when\n`systemd-oomd` is in use.\n\nLimitations: The script is using i3ipc window:new event to detect application\nlaunches and would fail to detect background apps or special surfaces.\nTherefore it's recommended to supplement the script with use of systemd user\nservices for such background apps.\n",

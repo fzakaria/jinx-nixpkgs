@@ -23,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const libevdev = nix.arg($, "libevdev");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "midimonster",
       version: "0.6.0",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [gnumake, gcc, lua5_4, openssl, jack1, python3, alsa_lib, ncurses, libevdev]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "midimonster",
           owner: "cbdevnet",
           rev: "f16f7db86662fcdbf45b6373257c90c824b0b4b0",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "PLUGINS=$out/lib/midimonster make all\n",
       installPhase: "PREFIX=$out make install\n\nmkdir -p \"$man/share/man/man1\"\ncp assets/midimonster.1 \"$man/share/man/man1\"\n\nmkdir -p \"$out/share/icons/hicolor/scalable/apps\"\ncp assets/MIDIMonster.svg \"$out/share/icons/hicolor/scalable/apps/\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://midimonster.net",
         description: "Multi-protocol translation tool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const precision = nix.argOr($, "precision", () => "double");
   const stdenv = nix.arg($, "stdenv");
   nix.assert_(nix.app(nix.sel(lib, "elem"), precision, nix.thunk(() => ["single", "double", "long-double"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/pf/pfft/package.nix:12:1");
-  const fftw$ = nix.thunk(() => nix.app(nix.sel(fftwMpi, "override"), nix.thunk(() => ({ __proto__: pos$1, precision: precision }))));
+  const fftw$ = nix.thunk(() => nix.app(nix.sel(fftwMpi, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, precision: precision }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.str`pfft-${precision}`),
       version: "1.0.8-alpha",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "mpip",
           repo: "pfft",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [fftw$, mpi]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Parallel fast Fourier transforms",
         homepage: "https://www-user.tu-chemnitz.de/~potts/workgroup/pippig/software.php.en#pfft",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

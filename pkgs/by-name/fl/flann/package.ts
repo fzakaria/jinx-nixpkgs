@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const enablePython = nix.argOr($, "enablePython", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "flann",
       version: "1.9.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "flann-lib",
           repo: "flann",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,29 +37,29 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://salsa.debian.org/science-team/flann/-/raw/debian/1.9.1+dfsg-9/debian/patches/0001-Updated-fix-cmake-hdf5.patch",
             sha256: "yM1ONU4mu6lctttM5YcSTg8F344TNUJXwjxXLqzr5Pk=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://salsa.debian.org/science-team/flann/-/raw/debian/1.9.1+dfsg-9/debian/patches/0001-src-cpp-fix-cmake-3.11-build.patch",
             sha256: "REsBnbe6vlrZ+iCcw43kR5wy2o6q10RM73xjW5kBsr4=",
           })))),
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "cc", "isClang"))), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               url: "https://salsa.debian.org/science-team/flann/-/raw/debian/1.9.1+dfsg-9/debian/patches/0003-Use-system-version-of-liblz4.patch",
               sha256: "xi+GyFn9PEjLgbJeAIEmsbp7ut9G9KIBkVulyT3nfsg=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               url: "https://github.com/flann-lib/flann/commit/25eb56ec78472bd419a121c6905095a793cf8992.patch",
               sha256: "qt8h576Gn8uR7+T9u9bEBIRz6e6AoTKpa1JfdZVvW9s=",
             })))),
         ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               url: "https://github.com/flann-lib/flann/commit/be80cefa69b314a3d9e1ab971715e84145863ebb.patch",
               hash: "sha256-4SUKzQCm0Sx8N43Z6ShuMbgbbe7q8b2Ibk3WgkB0qa4=",
             })))),
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "cc", "isClang"))), lz4)),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), enablePython, nix.thunk(() => [python3]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://github.com/flann-lib/flann",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         description: "Fast approximate nearest neighbor searches in high dimensional spaces",

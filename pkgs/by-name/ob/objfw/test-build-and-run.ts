@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const objfw = nix.arg($, "objfw");
   const writeTextDir = nix.arg($, "writeTextDir");
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "ObjFW test",
       buildInputs: nix.thunk(() => [objfw]),
       src: nix.thunk(() => nix.app(writeTextDir, "helloworld.m", "#import <ObjFW/ObjFW.h>\nint main() {\n    OFLog(@\"Hello world from objc\");\n    return 0;\n}\n")),

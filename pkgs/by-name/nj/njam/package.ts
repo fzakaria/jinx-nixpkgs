@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const SDL_mixer = nix.arg($, "SDL_mixer");
   const SDL_net = nix.arg($, "SDL_net");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "njam",
       version: "1.25",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/njam/njam-${nix.sel(finalAttrs, "version")}-src.tar.gz`),
           sha256: "0ysvqw017xkvddj957pdfmbmji7qi20nyr7f0zxvcvm6c7d3cc7s",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => ["format"]),
       patches: nix.thunk(() => [nix.path(here, "./logfile.patch")]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://trackballs.sourceforge.net/",
         description: "Cross-platform pacman-like game",
         mainProgram: "njam",

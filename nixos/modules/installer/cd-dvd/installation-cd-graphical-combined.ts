@@ -27,25 +27,25 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     imports: nix.thunk(() => [nix.path(here, "./installation-cd-base.nix")]),
     isoImage: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       edition: "graphical",
       showConfiguration: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
     })),
     specialisation: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       gnome: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         configuration: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const config = nix.arg($_1, "config");
           return {
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             imports: nix.thunk(() => [nix.path(here, "./installation-cd-graphical-calamares-gnome.nix")]),
             isoImage: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               showConfiguration: true,
               configurationName: "GNOME (Linux LTS)",
             })),
@@ -53,18 +53,18 @@ export default nix.lambda((args) => (() => {
         })(), formals$2),
       })),
       gnome_latest_kernel: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         configuration: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$3);
           const config = nix.arg($_1, "config");
           return {
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             imports: nix.thunk(() => [
               nix.path(here, "./installation-cd-graphical-calamares-gnome.nix"),
               nix.path(here, "./latest-kernel.nix"),
             ]),
             isoImage: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               showConfiguration: true,
               configurationName: nix.thunk(() => nix.str`GNOME (Linux ${nix.sel(config, "boot", "kernelPackages", "kernel", "version")})`),
             })),
@@ -72,15 +72,15 @@ export default nix.lambda((args) => (() => {
         })(), formals$3),
       })),
       plasma: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         configuration: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$4);
           const config = nix.arg($_1, "config");
           return {
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             imports: nix.thunk(() => [nix.path(here, "./installation-cd-graphical-calamares-plasma6.nix")]),
             isoImage: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               showConfiguration: true,
               configurationName: "Plasma (Linux LTS)",
             })),
@@ -88,18 +88,18 @@ export default nix.lambda((args) => (() => {
         })(), formals$4),
       })),
       plasma_latest_kernel: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         configuration: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$5);
           const config = nix.arg($_1, "config");
           return {
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             imports: nix.thunk(() => [
               nix.path(here, "./installation-cd-graphical-calamares-plasma6.nix"),
               nix.path(here, "./latest-kernel.nix"),
             ]),
             isoImage: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               showConfiguration: true,
               configurationName: nix.thunk(() => nix.str`Plasma (Linux ${nix.sel(config, "boot", "kernelPackages", "kernel", "version")})`),
             })),

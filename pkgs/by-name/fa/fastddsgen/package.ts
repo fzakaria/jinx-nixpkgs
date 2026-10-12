@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const openjdk = nix.arg($, "openjdk");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "fastddsgen",
       version: "4.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eProsima",
           repo: "Fast-DDS-Gen",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}.0`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [gradle, openjdk, makeWrapper]),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
@@ -54,15 +54,15 @@ runHook postInstall
 `),
       postGradleUpdate: "cd thirdparty/idl-parser\n# fix \"Task 'submodulesUpdate' not found\"\ngradleFlags=\ngradle nixDownloadDeps\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             command: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "meta", "mainProgram")} -version`),
             package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Fast-DDS IDL code generator tool",
         mainProgram: "fastddsgen",
         homepage: "https://github.com/eProsima/Fast-DDS-Gen",

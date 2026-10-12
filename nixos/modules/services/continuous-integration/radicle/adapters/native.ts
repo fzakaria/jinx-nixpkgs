@@ -50,67 +50,67 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const enabledInstances = nix.thunk(() => nix.app(nix.sel(lib, "filter"), (instance) => nix.sel(instance, "enable"), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(cfg, "instances"))))));
   return {
-    __proto__: pos$35,
+    [nix.POS]: pos$35,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "radicle"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       services: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         radicle: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           ci: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             adapters: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               native: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 instances: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.lambda((args_1) => (() => {
                           const $_1 = nix.formals(args_1, formals$2);
                           const config_1 = nix.arg($_1, "config");
                           const name = nix.arg($_1, "name");
                           return {
-                            __proto__: pos$14,
+                            [nix.POS]: pos$14,
                             options: nix.thunk(() => ({
-                              __proto__: pos$11,
-                              enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "this radicle-native-ci instance"), { __proto__: pos$2, default: true, example: false })),
+                              [nix.POS]: pos$11,
+                              enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "this radicle-native-ci instance"), { [nix.POS]: pos$2, default: true, example: false })),
                               name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$3,
+                                  [nix.POS]: pos$3,
                                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                                   description: "Adapter name that is used in the radicle-ci-broker configuration.\nDefaults to the attribute name.\n",
                                 })))),
                               package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "radicle-native-ci", nix.thunk(() => ({})))),
                               runtimePackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$4,
+                                  [nix.POS]: pos$4,
                                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
                                   description: "Packages added to the adapter's {env}`PATH`.",
                                   defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "with pkgs; [\n  bash\n  coreutils\n  curl\n  gawk\n  gitMinimal\n  gnused\n  wget\n]\n")),
                                 })))),
                               settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$10,
+                                  [nix.POS]: pos$10,
                                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                                      __proto__: pos$9,
+                                      [nix.POS]: pos$9,
                                       freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                                       options: nix.thunk(() => ({
-                                        __proto__: pos$8,
+                                        [nix.POS]: pos$8,
                                         state: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                            __proto__: pos$5,
+                                            [nix.POS]: pos$5,
                                             type: nix.thunk(() => nix.sel(lib, "types", "path")),
                                             description: "Directory where per-run directories are stored.",
                                             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`"\${config.services.radicle.ci.broker.stateDir}/adapters/native/${nix.sel(config_1, "name")}"`))),
                                           })))),
                                         log: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                            __proto__: pos$6,
+                                            [nix.POS]: pos$6,
                                             type: nix.thunk(() => nix.sel(lib, "types", "path")),
                                             description: "File where radicle-native-ci should write the run log.",
                                             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`"\${config.services.radicle.ci.broker.logDir}/adapters/native/${nix.sel(config_1, "name")}.log"`))),
                                           })))),
                                         base_url: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                            __proto__: pos$7,
+                                            [nix.POS]: pos$7,
                                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                                             description: "Base URL for build logs (mandatory for access from CI broker page).",
                                             default: null,
@@ -122,7 +122,7 @@ export default nix.lambda((args) => (() => {
                                 })))),
                             })),
                             config: nix.thunk(() => ({
-                              __proto__: pos$13,
+                              [nix.POS]: pos$13,
                               name: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), name)),
                               runtimePackages: nix.thunk(() => (() => {
                                 const w = nix.withScope(pkgs, null);
@@ -137,7 +137,7 @@ export default nix.lambda((args) => (() => {
                                 ];
                               })()),
                               settings: nix.thunk(() => ({
-                                __proto__: pos$12,
+                                [nix.POS]: pos$12,
                                 state: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`${nix.sel(brokerCfg, "stateDir")}/adapters/native/${nix.sel(config_1, "name")}`))),
                                 log: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`${nix.sel(brokerCfg, "logDir")}/adapters/native/${nix.sel(config_1, "name")}.log`))),
                               })),
@@ -154,24 +154,24 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(enabledInstances, [])), nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         services: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           radicle: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             ci: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               broker: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   adapters: nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map((instance) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.sel(instance, "name")), nix.thunk(() => ({
-                          __proto__: pos$23,
+                          [nix.POS]: pos$23,
                           command: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(instance, "package")))),
                           config: nix.thunk(() => nix.sel(instance, "settings")),
                           config_env: "RADICLE_NATIVE_CI",
                           env: nix.thunk(() => ({
-                            __proto__: pos$22,
+                            [nix.POS]: pos$22,
                             PATH: nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(instance, "runtimePackages")))),
                           })),
                         }))), enabledInstances)))),
@@ -181,15 +181,15 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             settings: nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               "radicle-native-ci": nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map((instance) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.builtins.dirOf(nix.thunk(() => nix.sel(instance, "settings", "log")))), nix.thunk(() => ({
-                      __proto__: pos$30,
+                      [nix.POS]: pos$30,
                       d: nix.thunk(() => ({
-                        __proto__: pos$29,
+                        [nix.POS]: pos$29,
                         user: nix.thunk(() => nix.sel(config, "users", "users", "radicle", "name")),
                         group: nix.thunk(() => nix.sel(config, "users", "groups", "radicle", "name")),
                       })),

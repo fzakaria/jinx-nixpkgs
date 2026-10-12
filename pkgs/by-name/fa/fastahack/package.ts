@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const fastahack = nix.arg($, "fastahack");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "fastahack",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ekg",
           repo: "fastahack",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,9 +29,9 @@ export default nix.lambda((args) => (() => {
         })))),
       installFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           simple: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-test`), nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir $out
 cp ${nix.sel(fastahack, "src")}/tests/* $out
 grep -v ERROR <(${nix.app(nix.sel(lib, "getExe"), fastahack)} $out/correct.fasta 2>&1)
@@ -43,7 +43,7 @@ grep -v ERROR <(${nix.app(nix.sel(lib, "getExe"), fastahack)} $out/trailing_newl
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Utilities for indexing and sequence extraction from FASTA files",
         homepage: "https://github.com/ekg/fastahack",
         changelog: nix.thunk(() => nix.str`https://github.com/ekg/fastahack/releases/tag/v${nix.sel(finalAttrs, "version")}`),

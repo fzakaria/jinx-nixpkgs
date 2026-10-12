@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const result = nix.arg($, "result");
   const ast_serialize = nix.arg($, "ast-serialize");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "crossandra",
       version: "2.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "trag1c",
           repo: "crossandra",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["crossandra"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/trag1c/crossandra/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Fast and simple enum/regex-based tokenizer with decent configurability",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

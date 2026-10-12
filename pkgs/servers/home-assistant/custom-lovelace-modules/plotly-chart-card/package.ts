@@ -23,21 +23,21 @@ export default nix.lambda((args) => (() => {
       const pname = "esbuild";
       const version = "0.16.10";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "evanw",
           repo: "esbuild",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-plcI3p/m1tPODZNcBoP/kc3avO11oXww7NIA9wdX+Pc=",
         }))));
       const vendorHash = "sha256-+BfxCyg0KkDQpHt/wycy/8CTG6YBA/VJvJFhhzUnSiQ=";
-      const meta = nix.thunk(() => ({ __proto__: pos$2, mainProgram: "esbuild" }));
-      return { __proto__: pos$3, pname, version, src, vendorHash, meta };
+      const meta = nix.thunk(() => ({ [nix.POS]: pos$2, mainProgram: "esbuild" }));
+      return { [nix.POS]: pos$3, pname, version, src, vendorHash, meta };
     })())));
-  return nix.app(nix.sel(buildNpmPackage, "override"), nix.thunk(() => ({ __proto__: pos$4, nodejs: nodejs_22 })), nix.thunk(() => (() => {
+  return nix.app(nix.sel(buildNpmPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, nodejs: nodejs_22 })), nix.thunk(() => (() => {
       const pname = "plotly-graph-card";
       const version = "3.3.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "dbuezas",
           repo: "lovelace-plotly-graph-card",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -47,12 +47,12 @@ export default nix.lambda((args) => (() => {
       const forceGitDeps = true;
       const makeCacheWritable = true;
       const env = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         ESBUILD_BINARY_PATH: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), esbuild)),
       }));
       const installPhase = "install -d $out\ninstall -m0644 dist/plotly-graph-card.js $out/\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Highly customisable Lovelace card to plot interactive graphs. Brings scrolling, zooming, and much more",
         homepage: "https://github.com/dbuezas/lovelace-plotly-graph-card",
         changelog: nix.thunk(() => nix.str`https://github.com/dbuezas/lovelace-plotly-graph-card/releases/tag/${nix.sel(src, "tag")}`),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version,
         src,

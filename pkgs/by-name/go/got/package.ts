@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const openssh = nix.arg($, "openssh");
   const defaultEditor = nix.argOr($, "defaultEditor", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "got",
       version: "0.129",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://gameoftrees.org/releases/portable/got-portable-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Qg8um+iLXn3jOyR/auIbkYwRPM6yy5qUs3pG1RTzCj4=",
         })))),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([libressl, libbsd, libevent, libuuid, libmd, zlib, ncurses], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libossp_uuid, apple_sdk_15])))),
       preConfigure: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "# The configure script assumes dependencies on Darwin are installed via\n# Homebrew or MacPorts and hardcodes assumptions about the paths of\n# dependencies which fails the nixpkgs configurePhase.\nsubstituteInPlace configure --replace-fail 'xdarwin' 'xhomebrew'\n")),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(defaultEditor, null)), nix.thunk(() => [
               nix.thunk(() => nix.str`-DGOT_DEFAULT_EDITOR="${nix.app(nix.sel(lib, "getExe"), defaultEditor)}"`),
             ])), nix.concat(nix.app(nix.sel(lib, "optionals"), withSsh, nix.thunk(() => [
@@ -59,21 +59,21 @@ export default nix.lambda((args) => (() => {
             ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ["-Wno-error=implicit-function-declaration", "-Wno-error=int-conversion"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["-DHAVE_STRMODE=1", "-include getopt.h"]))))))))),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--url=https://github.com/ThomasAdam/got-portable"]),
           })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         changelog: "https://gameoftrees.org/releases/CHANGES",
         description: "Version control system which prioritizes ease of use and simplicity over flexibility",
         longDescription: "Game of Trees (Got) is a version control system which prioritizes\nease of use and simplicity over flexibility.\n\nGot uses Git repositories to store versioned data. Git can be used\nfor any functionality which has not yet been implemented in\nGot. It will always remain possible to work with both Got and Git\non the same repository.\n",

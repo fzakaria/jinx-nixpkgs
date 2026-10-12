@@ -97,7 +97,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.22.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "deepset-ai",
           repo: "haystack",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -130,7 +130,7 @@ export default nix.lambda((args) => (() => {
         transformers,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         audio: nix.thunk(() => [openai_whisper]),
         aws: nix.thunk(() => [boto3, botocore]),
         colab: nix.thunk(() => [pillow]),
@@ -191,7 +191,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["haystack"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "LLM orchestration framework to build customizable, production-ready LLM applications",
         longDescription: "LLM orchestration framework to build customizable, production-ready LLM applications. Connect components (models, vector DBs, file converters) to pipelines or agents that can interact with your data. With advanced retrieval methods, it's best suited for building RAG, question answering, semantic search or conversational agent chatbots\n",
         changelog: nix.thunk(() => nix.str`https://github.com/deepset-ai/haystack/releases/tag/${nix.sel(src, "tag")}`),
@@ -204,7 +204,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(pydantic, "version")), "2")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

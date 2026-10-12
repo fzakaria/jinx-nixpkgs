@@ -16,17 +16,17 @@ export default nix.lambda((args) => (() => {
   const defs = nix.thunk(() => nix.app(nix.sel(lib, "modules", "mergeAttrDefinitionsWithPrio"), nix.thunk(() => nix.sel(options, "_module", "args"))));
   const assertLazy = (pos) => nix.builtins.throw(nix.thunk(() => nix.str`${nix.sel(pos, "file")}:${nix.builtins.toString(nix.thunk(() => nix.sel(pos, "line")))}:${nix.builtins.toString(nix.thunk(() => nix.sel(pos, "column")))}: The test must not evaluate this the assertLazy thunk, but it did. Unexpected strictness leads to unexpected errors and performance problems.`));
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     options: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       result: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({})))),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       _module: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         args: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           default: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.app(assertLazy, { file: nix.add(here, "/test-mergeAttrDefinitionsWithPrio.nix"), line: 13n, column: 41n })))),
           regular: null,
           force: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.app(assertLazy, { file: nix.add(here, "/test-mergeAttrDefinitionsWithPrio.nix"), line: 15n, column: 37n })))),

@@ -25,16 +25,16 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const version = "1.7.2";
   const languages = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/InvoicePlane/InvoicePlane/releases/download/v${version}/v${version}.zip`),
       hash: "sha256-DpQazuLOJnNGrrQo7l6uQReoKZEd5es2DT0a50NuQB0=",
     }))));
   return nix.app(nix.sel(php, "buildComposerProject2"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "invoiceplane",
       version: "1.7.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "InvoicePlane",
           repo: "InvoicePlane",
           rev: "a934e27e6c0961ac96d4b8c19baf6e17c03beb1f",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-bkPoUd+u1wKM+CpbrbmD8lT6zyMKf/vx6km5kzo9s5Q=",
       nativeBuildInputs: nix.thunk(() => [yarnConfigHook, yarnBuildHook, yarnInstallHook, grunt_cli]),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           patches: nix.thunk(() => nix.attr(finalAttrs, "patches")),
           hash: "sha256-faEq9sVsE5xcqL07IIEmXcavcWPZicb7asmuhuBI+h4=",
@@ -56,14 +56,14 @@ cp -r ${languages}/application/language $out/application/
 rm -r $out/{composer.json,composer.lock,docker-compose.yml,Gruntfile.js,package.json,node_modules,yarn.lock,share}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           invoiceplane: nix.thunk(() => nix.attr(nixosTests, "invoiceplane")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Self-hosted open source application for managing your invoices, clients and payments",
         changelog: nix.thunk(() => nix.str`https://github.com/InvoicePlane/InvoicePlane/releases/tag/v${version}`),
         homepage: "https://www.invoiceplane.com",

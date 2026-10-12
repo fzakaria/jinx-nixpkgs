@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.3.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "flask_caching",
           version: version,
           hash: "sha256-Zdf9G07r+BD4RN595iWCVLMkgpbuQpvcs/dBvL97mMk=",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [asgiref, pytest_asyncio, pytest_xprocess, pytestCheckHook]);
       const disabledTests = nix.thunk(() => nix.concat(["backend_cache", "Redis", "Memcache"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_cache_timeout_dynamic", "test_cached_view_class"]))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Caching extension for Flask",
         homepage: "https://github.com/pallets-eco/flask-caching",
         changelog: nix.thunk(() => nix.str`https://github.com/pallets-eco/flask-caching/blob/v${version}/CHANGES.rst`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

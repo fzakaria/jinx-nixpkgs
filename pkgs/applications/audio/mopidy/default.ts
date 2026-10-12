@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(lib, "makeScope"), newScope, (self) => (() => {
       const w = nix.withScope(self, null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         python: python,
         pythonPackages: nix.thunk(() => nix.sel(python, "pkgs")),
         mopidy: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./mopidy.nix"), nix.thunk(() => ({})))),

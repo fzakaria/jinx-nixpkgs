@@ -19,25 +19,25 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const python = nix.thunk(() => (() => {
     const packageOverrides = (self) => (super$) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       iso8601: nix.thunk(() => nix.app(nix.sel(super$, "iso8601", "overridePythonAttrs"), (old) => (() => {
           const version = "1.1.0";
           const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               pname: "iso8601",
               version: version,
               hash: "sha256-MoEee4He7iBj6m0ulPiBmobR84EeSdI2I6QfqDK+8D8=",
             }))));
-          return { __proto__: pos$2, version, src };
+          return { [nix.POS]: pos$2, version, src };
         })())),
     });
-    return nix.app(nix.sel(python3, "override"), nix.thunk(() => ({ __proto__: pos$4, packageOverrides: packageOverrides, self: python })));
+    return nix.app(nix.sel(python3, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, packageOverrides: packageOverrides, self: python })));
   })());
   return nix.app(nix.sel(python, "pkgs", "buildPythonApplication"), nix.thunk(() => (() => {
       const pname = "nhentai";
       const version = "0.5.25";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "RicterZ",
           repo: "doujinshi-dl",
           rev: version,
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
       })());
       const pythonRelaxDeps = nix.thunk(() => ["tabulate", "urllib3"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://github.com/RicterZ/doujinshi-dl",
         description: "CLI tool for downloading doujinshi from adult site(s)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "nhentai",
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

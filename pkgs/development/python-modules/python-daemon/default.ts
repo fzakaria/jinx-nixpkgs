@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.1.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "python_daemon",
           version: version,
           hash: "sha256-97BDNa3Ec96Hf1EX4m1fEUL0yffNdlQI8Id3V75a+/Q=",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["daemon", "daemon.daemon", "daemon.pidfile"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to implement a well-behaved Unix daemon process",
         homepage: "https://pagure.io/python-daemon/",
         license: nix.thunk(() => (() => {
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

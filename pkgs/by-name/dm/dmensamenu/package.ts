@@ -16,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const dmenu = nix.arg($, "dmenu");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dmensamenu",
       version: "1.2.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dotlambda",
           repo: "dmensamenu",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-dtQpNDhw1HklEtltYl3yiz54UDLOJWJHNZEuQGaIYbI=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dmenu-path.patch"), nix.thunk(() => ({ __proto__: pos$2, dmenu: dmenu })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dmenu-path.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, dmenu: dmenu })))),
       ]),
       "build-system": nix.thunk(() => (() => {
         const w = nix.withScope(python3Packages, null);
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       })()),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/dotlambda/dmensamenu",
         description: "Print German canteen menus using dmenu and OpenMensa",
         mainProgram: "dmensamenu",

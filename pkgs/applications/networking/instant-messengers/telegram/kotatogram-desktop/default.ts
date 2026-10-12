@@ -16,15 +16,15 @@ export default nix.lambda((args) => (() => {
   const withWebkit = nix.argOr($, "withWebkit", () => true);
   const version = "1.4.9";
   return nix.app(nix.sel(telegram_desktop, "override"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "kotatogram-desktop",
       withWebkit: withWebkit,
       unwrapped: nix.thunk(() => nix.app(nix.sel(telegram_desktop, "unwrapped", "overrideAttrs"), (old) => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: "kotatogram-desktop-unwrapped",
           version: nix.thunk(() => nix.str`${version}-unstable-2026-10-06`),
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               owner: "kotatogram",
               repo: "kotatogram-desktop",
               rev: "4561e1a33bb55feb692282d8ae5ba1bf6f7a72f3",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
               fetchSubmodules: true,
             })))),
           meta: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             description: "Kotatogram – experimental Telegram Desktop fork",
             longDescription: "Unofficial desktop client for the Telegram messenger, based on Telegram Desktop.\n\nIt contains some useful (or purely cosmetic) features, but they could be unstable. A detailed list is available here: https://kotatogram.github.io/changes\n",
             license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

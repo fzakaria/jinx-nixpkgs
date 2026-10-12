@@ -65,27 +65,27 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
-  const evalConfig = (module) => nix.sel(nix.app(nix.builtins.import(nix.path(here, "../lib/eval-config.nix")), nix.thunk(() => ({ __proto__: pos$1, system: null, modules: nix.thunk(() => [module]) }))), "config", "system", "build", "toplevel");
+  const evalConfig = (module) => nix.sel(nix.app(nix.builtins.import(nix.path(here, "../lib/eval-config.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, system: null, modules: nix.thunk(() => [module]) }))), "config", "system", "build", "toplevel");
   const common = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const config = nix.arg($_1, "config");
     return {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       imports: nix.thunk(() => [nix.path(here, "../modules/profiles/minimal.nix")]),
       system: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         stateVersion: nix.thunk(() => nix.sel(config, "system", "nixos", "release")),
       })),
-      nixpkgs: nix.thunk(() => ({ __proto__: pos$3, pkgs: pkgs })),
+      nixpkgs: nix.thunk(() => ({ [nix.POS]: pos$3, pkgs: pkgs })),
     };
   })(), formals$2);
   const profile_host_nspawn = nix.thunk(() => ({
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     networking: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       useNetworkd: true,
       firewall: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         extraCommands: nix.thunk(() => nix.str`# open DHCP for nspawn interfaces
 ${nix.sel(pkgs, "iptables")}/bin/iptables -A nixos-fw -i ve-+ -p udp -m udp --dport 67 -j nixos-fw-accept
 `),
@@ -93,38 +93,38 @@ ${nix.sel(pkgs, "iptables")}/bin/iptables -A nixos-fw -i ve-+ -p udp -m udp --dp
     })),
   }));
   const profile_guest_nspawn = nix.thunk(() => ({
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     boot: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       isNspawnContainer: true,
       loader: nix.thunk(() => ({
-        __proto__: pos$9,
-        initScript: nix.thunk(() => ({ __proto__: pos$8, enable: true })),
+        [nix.POS]: pos$9,
+        initScript: nix.thunk(() => ({ [nix.POS]: pos$8, enable: true })),
       })),
     })),
-    networking: nix.thunk(() => ({ __proto__: pos$11, useHostResolvConf: false, useNetworkd: true })),
+    networking: nix.thunk(() => ({ [nix.POS]: pos$11, useHostResolvConf: false, useNetworkd: true })),
   }));
   const profile_host_vmspawn = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$3);
     const config = nix.arg($_1, "config");
     const pkgs_1 = nix.arg($_1, "pkgs");
     return {
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       networking: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         useNetworkd: true,
         firewall: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           extraCommands: nix.thunk(() => nix.str`# open DHCP for vmspawn interfaces
 ${nix.sel(pkgs_1, "iptables")}/bin/iptables -A nixos-fw -i vt-+ -p udp -m udp --dport 67 -j nixos-fw-accept
 `),
         })),
       })),
       environment: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         systemPackages: nix.thunk(() => (() => {
           const vmspawn_wrapped = nix.thunk(() => nix.app(nix.sel(pkgs_1, "runCommand"), "systemd-vmspawn-wrapped", nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "makeWrapper"))]),
             })), nix.thunk(() => nix.str`makeWrapper ${nix.sel(config, "systemd", "package")}/bin/systemd-vmspawn $out/bin/systemd-vmspawn-wrapped \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [
@@ -140,30 +140,30 @@ ${nix.sel(pkgs_1, "iptables")}/bin/iptables -A nixos-fw -i vt-+ -p udp -m udp --
     };
   })(), formals$3);
   const profile_guest_vmspawn = nix.thunk(() => ({
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     imports: nix.thunk(() => [nix.path(here, "../modules/profiles/qemu-guest.nix")]),
     boot: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       initrd: nix.thunk(() => ({
-        __proto__: pos$19,
-        systemd: nix.thunk(() => ({ __proto__: pos$18, enable: true, root: null })),
+        [nix.POS]: pos$19,
+        systemd: nix.thunk(() => ({ [nix.POS]: pos$18, enable: true, root: null })),
       })),
       loader: nix.thunk(() => ({
-        __proto__: pos$21,
-        grub: nix.thunk(() => ({ __proto__: pos$20, enable: false })),
+        [nix.POS]: pos$21,
+        grub: nix.thunk(() => ({ [nix.POS]: pos$20, enable: false })),
       })),
     })),
-    networking: nix.thunk(() => ({ __proto__: pos$23, useNetworkd: true })),
+    networking: nix.thunk(() => ({ [nix.POS]: pos$23, useNetworkd: true })),
   }));
-  const container = nix.thunk(() => ({ __proto__: pos$25, imports: nix.thunk(() => [common, profile_guest_nspawn]) }));
+  const container = nix.thunk(() => ({ [nix.POS]: pos$25, imports: nix.thunk(() => [common, profile_guest_nspawn]) }));
   const containerSystem = nix.thunk(() => nix.app(evalConfig, container));
   const containerName = "container";
   const containerRoot = nix.thunk(() => nix.str`/var/lib/machines/${containerName}`);
   const containerTarball = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../lib/make-system-tarball.nix"), nix.thunk(() => ({
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       storeContents: nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           object: containerSystem,
           symlink: "/nix/var/nix/profiles/system",
         })),
@@ -171,98 +171,98 @@ ${nix.sel(pkgs_1, "iptables")}/bin/iptables -A nixos-fw -i vt-+ -p udp -m udp --
       extraCommands: "mkdir -p usr",
       contents: nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           source: nix.thunk(() => nix.add(containerSystem, "/etc/os-release")),
           target: "/etc/os-release",
         })),
         nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           source: nix.thunk(() => nix.add(containerSystem, "/init")),
           target: "/sbin/init",
         })),
       ]),
     }))));
   const vm = nix.thunk(() => ({
-    __proto__: pos$32,
+    [nix.POS]: pos$32,
     imports: nix.thunk(() => [common, profile_guest_vmspawn]),
     services: nix.thunk(() => ({
-      __proto__: pos$31,
-      openssh: nix.thunk(() => ({ __proto__: pos$30, enable: true })),
+      [nix.POS]: pos$31,
+      openssh: nix.thunk(() => ({ [nix.POS]: pos$30, enable: true })),
     })),
   }));
   const vmSystem = nix.thunk(() => nix.app(evalConfig, vm));
   const vmShared = nix.thunk(() => ({
-    __proto__: pos$35,
+    [nix.POS]: pos$35,
     imports: nix.thunk(() => [vm]),
     fileSystems: nix.thunk(() => ({
-      __proto__: pos$34,
-      "/nix/store": nix.thunk(() => ({ __proto__: pos$33, device: "mnt0", fsType: "virtiofs", neededForBoot: true })),
+      [nix.POS]: pos$34,
+      "/nix/store": nix.thunk(() => ({ [nix.POS]: pos$33, device: "mnt0", fsType: "virtiofs", neededForBoot: true })),
     })),
   }));
   const vmSharedSystem = nix.thunk(() => nix.app(evalConfig, vmShared));
   return {
-    __proto__: pos$54,
+    [nix.POS]: pos$54,
     name: "systemd-machinectl",
     meta: nix.thunk(() => ({
-      __proto__: pos$36,
+      [nix.POS]: pos$36,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "ck3d"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$53,
+      [nix.POS]: pos$53,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$4);
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$52,
+          [nix.POS]: pos$52,
           imports: nix.thunk(() => [profile_host_nspawn, profile_host_vmspawn]),
           nix: nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             settings: nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               substituters: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), [])),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             targets: nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               machines: nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 wants: nix.thunk(() => [nix.thunk(() => nix.str`systemd-nspawn@${containerName}.service`)]),
               })),
             })),
             tmpfiles: nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               rules: nix.thunk(() => [
                 "d /var/lib/machines/shared-decl 0755 root root - -",
                 "d /var/lib/machines/shared-decl/usr 0755 root root - -",
               ]),
             })),
             nspawn: nix.thunk(() => nix.attrsDyn({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               "shared-decl": nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 execConfig: nix.thunk(() => ({
-                  __proto__: pos$42,
+                  [nix.POS]: pos$42,
                   Boot: false,
                   Parameters: nix.thunk(() => nix.str`${containerSystem}/init`),
                 })),
-                filesConfig: nix.thunk(() => ({ __proto__: pos$43, BindReadOnly: "/nix/store" })),
+                filesConfig: nix.thunk(() => ({ [nix.POS]: pos$43, BindReadOnly: "/nix/store" })),
               })),
             }, [
               [containerName, nix.thunk(() => ({
-                __proto__: pos$46,
-                filesConfig: nix.thunk(() => ({ __proto__: pos$45, Bind: "/proc:/run/proc" })),
+                [nix.POS]: pos$46,
+                filesConfig: nix.thunk(() => ({ [nix.POS]: pos$45, Bind: "/proc:/run/proc" })),
               }))],
             ])),
             services: nix.thunk(() => nix.attrsDyn({}, [
               [nix.str`systemd-nspawn@${containerName}`, nix.thunk(() => ({
-                __proto__: pos$49,
+                [nix.POS]: pos$49,
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$48,
+                  [nix.POS]: pos$48,
                   Environment: nix.thunk(() => ["SYSTEMD_NSPAWN_TMPFS_TMP=0"]),
                 })),
                 overrideStrategy: "asDropin",
@@ -270,7 +270,7 @@ ${nix.sel(pkgs_1, "iptables")}/bin/iptables -A nixos-fw -i vt-+ -p udp -m udp --
             ])),
           })),
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$51,
+            [nix.POS]: pos$51,
             additionalPaths: nix.thunk(() => [containerSystem, containerTarball, vmSystem, vmSharedSystem]),
             diskSize: 2048n,
           })),

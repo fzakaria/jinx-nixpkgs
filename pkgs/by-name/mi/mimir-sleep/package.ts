@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const gawk = nix.arg($, "gawk");
   const sox = nix.arg($, "sox");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mimir-sleep",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FraioVeio",
           repo: "mimir",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,11 +46,11 @@ wrapProgram "$out/bin/mimir" \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Drop-in `sleep` replacement that plays soothing sound effects while your computer is asleep",
         homepage: "https://github.com/FraioVeio/mimir",
         changelog: nix.thunk(() => nix.str`https://github.com/FraioVeio/mimir/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

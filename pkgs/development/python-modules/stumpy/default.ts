@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.14.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TDAmeritrade",
           repo: "stumpy",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["stumpy"]);
       const enabledTestPaths = nix.thunk(() => ["tests/test_core.py"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library that can be used for a variety of time series data mining tasks",
         changelog: nix.thunk(() => nix.str`https://github.com/TDAmeritrade/stumpy/blob/v${version}/CHANGELOG.md`),
         homepage: "https://github.com/TDAmeritrade/stumpy",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         badPlatforms: nix.thunk(() => ["aarch64-linux"]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

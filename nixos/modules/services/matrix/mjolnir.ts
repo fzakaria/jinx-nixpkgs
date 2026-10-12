@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "mjolnir"));
   const yamlConfig = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     dataPath: nix.thunk(() => nix.attr(cfg, "dataPath")),
     managementRoom: nix.thunk(() => nix.attr(cfg, "managementRoom")),
     protectedRooms: nix.thunk(() => nix.attr(cfg, "protectedRooms")),
@@ -62,12 +62,12 @@ export default nix.lambda((args) => (() => {
     homeserverUrl: nix.thunk(() => (nix.asBool(nix.sel(cfg, "pantalaimon", "enable")) ? nix.str`http://${nix.sel(cfg, "pantalaimon", "options", "listenAddress")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "pantalaimon", "options", "listenPort")))}` : nix.sel(cfg, "homeserverUrl"))),
     rawHomeserverUrl: nix.thunk(() => nix.sel(cfg, "homeserverUrl")),
     pantalaimon: nix.thunk(() => nix.update({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       use: nix.thunk(() => nix.sel(cfg, "pantalaimon", "enable")),
     }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "pantalaimon", "enable")), nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(cfg, "pantalaimon"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         username: nix.thunk(() => nix.attr(from, "username")),
         password: "@PANTALAIMON_PASSWORD@",
       };
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
     encryption: nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(cfg, "settings", "encryption"));
       return {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       username: nix.thunk(() => nix.attr(from, "username")),
       password: "@ENCRYPTION_PASSWORD@",
     };
@@ -110,22 +110,22 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
 `;
     })())));
   return {
-    __proto__: pos$43,
+    [nix.POS]: pos$43,
     options: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       services: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         mjolnir: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Mjolnir, a moderation tool for Matrix")),
           homeserverUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "https://matrix.org",
               description: "Where the homeserver is located (client-server URL).\n\nIf `pantalaimon.enable` is `true`, this option will become the homeserver to which `pantalaimon` connects.\nThe listen address of `pantalaimon` will then become the `homeserverUrl` of `mjolnir`.\n",
             })))),
           accessTokenFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -134,9 +134,9 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
               description: "File containing the matrix access token for the `mjolnir` user.\n",
             })))),
           encryption: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -146,21 +146,21 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
               })))),
           })),
           pantalaimon: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "`pantalaimon` options (enables E2E Encryption support).\n\nThis will create a `pantalaimon` instance with the name \"mjolnir\".\n",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   options: nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "ignoring the accessToken. If true, accessToken is ignored and the username/password below will be\nused instead. The access token of the bot will be stored in the dataPath\n")),
                     username: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         description: "The username to login with.",
                       })))),
                     passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         type: nix.thunk(() => (() => {
                           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                           return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -169,7 +169,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
                         description: "File containing the matrix password for the `mjolnir` user.\n",
                       })))),
                     options: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.builtins.import(nix.path(here, "./pantalaimon-options.nix"))))),
                         default: nix.thunk(() => ({})),
                         description: "passthrough additional options to the `pantalaimon` service.\n",
@@ -178,26 +178,26 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
                 })))),
             })))),
           dataPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/mjolnir",
               description: "The directory the bot should store various bits of information in.\n",
             })))),
           managementRoom: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "#moderators:example.org",
               description: "The room ID where people can use the bot. The bot has no access controls, so\nanyone in this room can use the bot - secure your room!\nThis should be a room alias or room ID - not a matrix.to URL.\nNote: `mjolnir` is fairly verbose - expect a lot of messages from it.\n",
             })))),
           protectedRooms: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[\n  \"https://matrix.to/#/#yourroom:example.org\"\n  \"https://matrix.to/#/#anotherroom:example.org\"\n]\n")),
               description: "A list of rooms to protect (matrix.to URLs).\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.sel(nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))), "type")),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  autojoinOnlyIfManager = true;\n  automaticallyRedactForReasons = [ \"spam\" \"advertising\" ];\n}\n")),
@@ -207,64 +207,64 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "mjolnir", "enable")), nix.thunk(() => ({
-        __proto__: pos$41,
+        [nix.POS]: pos$41,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             assertion: nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(cfg, "settings", "encryption", "use")) && nix.asBool(nix.eq(nix.sel(cfg, "encryption", "passwordFile"), null))))),
             message: "encryption.passwordFile must be specified when native encryption is used.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             assertion: nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(cfg, "pantalaimon", "enable")) && nix.asBool(nix.eq(nix.sel(cfg, "pantalaimon", "passwordFile"), null))))),
             message: "pantalaimon.passwordFile must be specified when pantalaimon is enabled.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             assertion: nix.thunk(() => (!nix.asBool(nix.eq(nix.sel(cfg, "accessTokenFile"), null)) || nix.asBool((nix.asBool(nix.sel(cfg, "pantalaimon", "enable")) || nix.asBool(nix.sel(cfg, "settings", "encryption", "use")))))),
             message: "Do not specify accessTokenFile when using native encryption or pantalaimon",
           })),
           nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             assertion: nix.thunk(() => !nix.asBool((nix.asBool((nix.asBool(!nix.asBool(nix.sel(cfg, "pantalaimon", "enable"))) && nix.asBool(!nix.asBool(nix.sel(cfg, "settings", "encryption", "use"))))) && nix.asBool(nix.eq(nix.sel(cfg, "accessTokenFile"), null))))),
             message: "Specify accessTokenFile when not using pantalaimon or native encryption.",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           mjolnir: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             settings: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               encryption: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 use: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
               })),
             })),
           })),
           "pantalaimon-headless": nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             instances: nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               mjolnir: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "pantalaimon", "enable")), nix.thunk(() => ({
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   homeserver: nix.thunk(() => nix.sel(cfg, "homeserverUrl")),
                 }))), nix.sel(cfg, "pantalaimon", "options"))),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           services: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             mjolnir: nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               description: "mjolnir - a moderation tool for Matrix",
               wants: nix.thunk(() => nix.concat(["network-online.target"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "pantalaimon", "enable")), nix.thunk(() => ["pantalaimon-mjolnir.service"])))),
               after: nix.thunk(() => nix.concat(["network-online.target"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "pantalaimon", "enable")), nix.thunk(() => ["pantalaimon-mjolnir.service"])))),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "mjolnir")}/bin/mjolnir --mjolnir-config ./config/default.yaml`),
                 ExecStartPre: nix.thunk(() => [generateConfig]),
                 WorkingDirectory: nix.thunk(() => nix.sel(cfg, "dataPath")),
@@ -282,16 +282,16 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           users: nix.thunk(() => ({
-            __proto__: pos$38,
-            mjolnir: nix.thunk(() => ({ __proto__: pos$37, group: "mjolnir", isSystemUser: true })),
+            [nix.POS]: pos$38,
+            mjolnir: nix.thunk(() => ({ [nix.POS]: pos$37, group: "mjolnir", isSystemUser: true })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$39, mjolnir: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$39, mjolnir: nix.thunk(() => ({})) })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$42,
+      [nix.POS]: pos$42,
       doc: nix.path(here, "./mjolnir.md"),
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

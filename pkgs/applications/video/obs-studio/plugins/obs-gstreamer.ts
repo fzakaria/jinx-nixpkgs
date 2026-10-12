@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "obs-gstreamer";
       const version = "0.4.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fzwoch",
           repo: "obs-gstreamer",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         ];
       })());
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         obsWrapperArguments: nix.thunk(() => (() => {
           const gstreamerHook = (package$) => nix.str`--prefix GST_PLUGIN_SYSTEM_PATH_1_0 : ${nix.app(nix.sel(lib, "getLib"), package$)}/lib/gstreamer-1.0`;
           const w_1 = nix.withScope(gst_all_1, null);
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       }));
       const postInstall = "mkdir $out/lib/obs-plugins\nmv $out/lib/obs-gstreamer.so $out/lib/obs-plugins/\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "OBS Studio source, encoder and video filter plugin to use GStreamer elements/pipelines in OBS Studio",
         homepage: "https://github.com/fzwoch/obs-gstreamer",
         maintainers: nix.thunk(() => (() => {
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const typer = nix.arg($, "typer");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "git-dummy",
       version: "0.1.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "initialcommit-com",
           repo: "git-dummy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "export _TYPER_COMPLETE_TEST_DISABLE_SHELL_DETECTION=1\ninstallShellCompletion --cmd git-dummy \\\n  --bash <($out/bin/git-dummy --show-completion bash) \\\n  --fish <($out/bin/git-dummy --show-completion fish) \\\n  --zsh <($out/bin/git-dummy --show-completion zsh)\n")),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Generate dummy Git repositories populated with the desired number of commits, branches, and structure",
         homepage: "https://github.com/initialcommit-com/git-dummy",
         changelog: nix.thunk(() => nix.str`https://github.com/initialcommit-com/git-dummy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

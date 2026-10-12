@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const buildBatExtrasPkg = nix.arg($, "buildBatExtrasPkg");
   const util_linux = nix.arg($, "util-linux");
   return nix.app(buildBatExtrasPkg, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "batman",
       dependencies: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "targetPlatform", "isLinux")), util_linux)),
-      shellInit: nix.thunk(() => ({ __proto__: pos$1, flags: nix.thunk(() => ["--export-env"]) })),
+      shellInit: nix.thunk(() => ({ [nix.POS]: pos$1, flags: nix.thunk(() => ["--export-env"]) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Read system manual pages (man) using bat as the manual page formatter",
       })),
     })));

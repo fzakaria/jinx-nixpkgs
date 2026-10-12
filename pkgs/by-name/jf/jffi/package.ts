@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const texinfo = nix.arg($, "texinfo");
   const stripJavaArchivesHook = nix.arg($, "stripJavaArchivesHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "jffi",
       version: "1.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jnr",
           repo: "jffi",
           rev: nix.thunk(() => nix.str`jffi-${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [ant, jdk, pkg_config, texinfo, stripJavaArchivesHook]),
       buildInputs: nix.thunk(() => [libffi]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         LIBFFI_LIBS: nix.thunk(() => nix.str`${libffi}/lib/libffi${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
         ANT_ARGS: "-Duse.system.libffi=1",
       })),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
 echo ${libffi} > $out/nix-support/depends
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Java Foreign Function Interface",
         homepage: "https://github.com/jnr/jffi",

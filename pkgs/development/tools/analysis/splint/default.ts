@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "splint";
       const version = "3.1.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.splint.org/downloads/${pname}-${version}.src.tgz`),
           sha256: "02pv8kscsrkrzip9r08pfs9xs98q74c52mlxzbii6cv6vx1vd3f7",
         }))));
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const buildFlags = nix.thunk(() => ["CFLAGS=-std=gnu99"]);
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.splint.org/",
         description: "Annotation-assisted lightweight static analyzer for C",
         mainProgram: "splint",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "3270font";
       const version = "3.0.1";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/rbanffy/3270font/releases/download/v${version}/3270_fonts_d916271.zip`),
           sha256: "sha256-Zi6Lp5+sqfjIaHmnaaemaw3i+hXq9mqIsK/81lTkwfM=",
           stripRoot: false,
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const dontFixup = true;
       const installPhase = "runHook preInstall\n\ninstall -Dm644 -t $out/share/fonts/opentype/ *.otf\ninstall -Dm644 -t $out/share/fonts/truetype/ *.ttf\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Monospaced font based on IBM 3270 terminals",
         homepage: "https://github.com/rbanffy/3270font",
         changelog: nix.thunk(() => nix.str`https://github.com/rbanffy/3270font/blob/v${version}/CHANGELOG.md`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

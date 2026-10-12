@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const re = nix.arg($, "re");
   const yamlx = nix.arg($, "yamlx");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "atdgen",
       version: nix.thunk(() => nix.attr(atdgen_codec_runtime, "version")),
       src: nix.thunk(() => nix.attr(atdgen_codec_runtime, "src")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [atd, atdml, biniou]),
       checkInputs: nix.thunk(() => [alcotest, atdgen_codec_runtime, yamlx, atd_jsonlike, atd_yamlx]),
       meta: nix.thunk(() => nix.update(nix.builtins.removeAttrs(nix.thunk(() => nix.sel(atd, "meta")), nix.thunk(() => ["mainProgram"])), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Generates efficient JSON serializers, deserializers and validators",
       })),
     })));

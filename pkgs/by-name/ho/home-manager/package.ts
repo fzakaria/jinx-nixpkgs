@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "home-manager",
       version: "0-unstable-2026-08-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: "home-manager-source",
           owner: "nix-community",
           repo: "home-manager",
@@ -60,11 +60,11 @@ export default nix.lambda((args) => (() => {
   --subst-var-by OUT "$out"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, url: "https://github.com/nix-community/home-manager/" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, url: "https://github.com/nix-community/home-manager/" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://nix-community.github.io/home-manager/",
         description: "Nix-based user environment configurator",
         longDescription: "The Home-Manager project provides a basic system for managing a user\nenvironment using the Nix package manager together with the Nix libraries\nfound in Nixpkgs. It allows declarative configuration of user specific\n(non global) packages and dotfiles.\n",

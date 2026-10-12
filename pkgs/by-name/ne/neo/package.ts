@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "neo",
       version: "0.6.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/st3w/neo/releases/download/v${nix.sel(finalAttrs, "version")}/neo-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-pV5O1e/QpK8kjRYBinqq07YX7x06wF0pKiWKOKr0ank=",
         })))),
       buildInputs: nix.thunk(() => [ncurses]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simulates the digital rain from \"The Matrix\"",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         longDescription: "neo recreates the digital rain effect from \"The Matrix\". Streams of random\ncharacters will endlessly scroll down your terminal screen.\n",

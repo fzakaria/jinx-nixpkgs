@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.14.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-TFSX8iL6ChaL3Fj+0VCHzafF/314Y/i0aTI809Qk5hU=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "rm -rf vipaccess\n";
       const disabledTests = nix.thunk(() => ["test_check_token_detects_invalid_token"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Free software implementation of Symantec's VIP Access application and protocol",
         mainProgram: "vipaccess",
         homepage: "https://github.com/dlenski/python-vipaccess",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

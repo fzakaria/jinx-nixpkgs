@@ -15,21 +15,21 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const weechat = nix.arg($, "weechat");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "buffer_autoset",
       version: "1.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://raw.githubusercontent.com/weechat/scripts/2b308b44df39ba6563d02b2bcd40c384ec2777dc/python/buffer_autoset.py",
           sha256: "0csl3sfpijdbq1j6wabx347lvn91a24a2jfx5b5pspfxz7gixli1",
         })))),
       dontUnpack: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$2, scripts: nix.thunk(() => ["buffer_autoset.py"]) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, scripts: nix.thunk(() => ["buffer_autoset.py"]) })),
       installPhase: "install -D $src $out/share/buffer_autoset.py\n",
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(weechat, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
         description: "WeeChat script which auto-set buffer properties when a buffer is opened",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

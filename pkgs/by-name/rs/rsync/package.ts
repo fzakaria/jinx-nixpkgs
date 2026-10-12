@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "rsync",
       version: "3.5.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://samba/rsync/src/rsync-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-x//R72U+mVQPZh5HywC3+crR7muXI5mxb5PWcmVuDTM=",
         })))),
@@ -70,8 +70,8 @@ substituteInPlace \\
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isMusl")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))), nix.thunk(() => ["--disable-roll-simd"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(!nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))))), nix.thunk(() => ["rsync_cv_can_hardlink_symlink=yes"]))))),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, rsyncd: nix.thunk(() => nix.attr(nixosTests, "rsyncd")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, rsyncd: nix.thunk(() => nix.attr(nixosTests, "rsyncd")) })),
       })),
       nativeCheckInputs: nix.thunk(() => [python3]),
       preCheck: nix.thunk(() => nix.str`export RSYNC_EXCLUDE=${nix.app(nix.sel(lib, "concatStringsSep"), ",", nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [
@@ -90,7 +90,7 @@ substituteInPlace \\
       strictDeps: true,
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Fast incremental file transfer utility",
         homepage: "https://rsync.samba.org/",
         changelog: nix.thunk(() => nix.str`https://download.samba.org/pub/rsync/NEWS#${nix.sel(finalAttrs, "version")}`),
@@ -100,9 +100,9 @@ substituteInPlace \\
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "security-review"))]),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           cpeParts: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             vendor: "samba",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             update: "-",

@@ -17,31 +17,31 @@ const pos$12 = nix.positions(here + "/default-config.nix", [["events", 61, 5], [
 const pos$13 = nix.positions(here + "/default-config.nix", [["binaries", 3, 3], ["matching", 12, 3], ["processing", 18, 3], ["import", 22, 3], ["persistence", 51, 3], ["diagnostics", 55, 3], ["plugins", 60, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$13,
+  [nix.POS]: pos$13,
   binaries: nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     ffmpeg: "ffmpeg",
     ffprobe: "ffprobe",
     imagemagick: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       convert: "convert",
       montage: "montage",
       identify: "identify",
     })),
   })),
   matching: nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     ignoreSingleNames: true,
     applyStudioLabels: true,
     applyActorLabels: true,
     regexAliasesCaseSensitive: false,
   })),
-  processing: nix.thunk(() => ({ __proto__: pos$4, generatePreviewStrip: true, bookmarkNewScenes: false })),
+  processing: nix.thunk(() => ({ [nix.POS]: pos$4, generatePreviewStrip: true, bookmarkNewScenes: false })),
   import: nix.thunk(() => ({
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     images: nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         path: "/media/porn-vault/images",
         include: [],
         exclude: [],
@@ -51,7 +51,7 @@ export default nix.thunk(() => ({
     ]),
     videos: nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         path: "/media/porn-vault/videos",
         include: [],
         exclude: [],
@@ -61,17 +61,17 @@ export default nix.thunk(() => ({
     ]),
   })),
   persistence: nix.thunk(() => ({
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     libraryPath: "/media/porn-vault/lib/library",
     tempFolder: "tmp",
   })),
   diagnostics: nix.thunk(() => ({
-    __proto__: pos$10,
-    deadAudioChannelDetection: nix.thunk(() => ({ __proto__: pos$9, volumeThreshold: nix.thunk(() => nix.neg(50n)) })),
+    [nix.POS]: pos$10,
+    deadAudioChannelDetection: nix.thunk(() => ({ [nix.POS]: pos$9, volumeThreshold: nix.thunk(() => nix.neg(50n)) })),
   })),
   plugins: nix.thunk(() => ({
-    __proto__: pos$12,
-    events: nix.thunk(() => ({ __proto__: pos$11, "scene:created": [] })),
+    [nix.POS]: pos$12,
+    events: nix.thunk(() => ({ [nix.POS]: pos$11, "scene:created": [] })),
     register: nix.thunk(() => ({})),
   })),
 }));

@@ -21,18 +21,18 @@ export default nix.lambda((args) => (() => {
       const pname = "red";
       const version = "0.6.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           rev: "755eb943ccea9e78c2cab0f20b313a52404355cb",
           owner: "red",
           repo: "red",
           sha256: "sha256:045rrg9666zczgrwyyyglivzdzja103s52b0fzj7hqmr1fz68q37",
         }))));
       const rebol = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: "http://www.rebol.com/downloads/v278/rebol-core-278-4-2.tar.gz",
           sha256: "1c1v0pyhf3d8z98qc93a5zmx0bbl0qq5lr8mbkdgygqsq2bv2xbz",
           meta: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
           })),
         }))));
@@ -91,7 +91,7 @@ patchelf --set-rpath ${nix.sel(pkgsi686Linux, "curl", "out")}/lib \\
 
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "New programming language strongly inspired by Rebol, but with a\nbroader field of usage thanks to its native-code compiler, from system\nprogramming to high-level scripting, while providing modern support for\nconcurrency and multi-core CPUs\n",
         mainProgram: "red",
         maintainers: nix.thunk(() => (() => {
@@ -103,7 +103,7 @@ patchelf --set-rpath ${nix.sel(pkgsi686Linux, "curl", "out")}/lib \\
         homepage: "https://www.red-lang.org/",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

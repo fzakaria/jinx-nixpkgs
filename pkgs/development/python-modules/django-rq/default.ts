@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const pyyaml = nix.arg($, "pyyaml");
   const redisTestHook = nix.arg($, "redisTestHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "django-rq",
       version: "4.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rq",
           repo: "django-rq",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,13 +37,13 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => [django, redis, rq]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, prometheus: nix.thunk(() => [prometheus_client]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, prometheus: nix.thunk(() => [prometheus_client]) })),
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytest_django, pytestCheckHook, pyyaml, redisTestHook], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "optional-dependencies"))))),
       preCheck: "export DJANGO_SETTINGS_MODULE=tests.settings\n",
       disabledTests: nix.thunk(() => ["test_scheduled_jobs"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simple app that provides django integration for RQ (Redis Queue)",
         homepage: "https://github.com/rq/django-rq",
         changelog: nix.thunk(() => nix.str`https://github.com/rq/django-rq/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

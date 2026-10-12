@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.0.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TheKevJames",
           repo: "coveralls-python",
           tag: version,
@@ -39,14 +39,14 @@ export default nix.lambda((args) => (() => {
 `);
       const disabledTests = nix.thunk(() => ["test_git", "test_5", "test_7", "test_11"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Show coverage stats online via coveralls.io",
         mainProgram: "coveralls",
         homepage: "https://github.com/coveralls-clients/coveralls-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

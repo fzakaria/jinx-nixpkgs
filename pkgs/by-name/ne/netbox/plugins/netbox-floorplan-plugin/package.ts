@@ -19,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const netaddr = nix.arg($, "netaddr");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       __structuredAttrs: true,
       pname: "netbox-floorplan-plugin",
       version: "0.9.2",
       pyproject: true,
       disabled: nix.thunk(() => !nix.eq(nix.sel(python, "pythonVersion"), nix.sel(netbox, "python", "pythonVersion"))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "netbox-community",
           repo: "netbox-floorplan-plugin",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,9 +38,9 @@ export default nix.lambda((args) => (() => {
 `),
       dontUsePythonImportsCheck: nix.thunk(() => !nix.eq(nix.sel(python, "pythonVersion"), nix.sel(netbox, "python", "pythonVersion"))),
       pythonImportsCheck: nix.thunk(() => ["netbox_floorplan"]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, pluginName: "netbox_floorplan" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, pluginName: "netbox_floorplan" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Netbox plugin providing floorplan mapping capability for locations and sites",
         homepage: "https://github.com/netbox-community/netbox-floorplan-plugin",
         changelog: nix.thunk(() => nix.str`https://github.com/netbox-community/netbox-floorplan-plugin/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

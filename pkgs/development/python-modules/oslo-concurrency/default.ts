@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.4.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openstack",
           repo: "oslo.concurrency",
           tag: version,
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
 substituteInPlace pyproject.toml \\
   --replace-fail '"oslo_concurrency"' '"oslo_concurrency", "oslo_concurrency.fixture", "oslo_concurrency.tests"'
 `);
-      const env = nix.thunk(() => ({ __proto__: pos$2, PBR_VERSION: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PBR_VERSION: version }));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [debtcollector, fasteners, oslo_config, oslo_i18n, oslo_utils, pbr]);
       const nativeCheckInputs = nix.thunk(() => [
@@ -85,7 +85,7 @@ runHook postCheck
       })());
       const pythonImportsCheck = nix.thunk(() => ["oslo_concurrency"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Oslo Concurrency library",
         mainProgram: "lockutils-wrapper",
         homepage: "https://github.com/openstack/oslo.concurrency",
@@ -93,7 +93,7 @@ runHook postCheck
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "openstack"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

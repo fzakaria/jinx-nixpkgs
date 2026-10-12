@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const lxml = nix.arg($, "lxml");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "yaxmldiff",
       version: "0.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "latk",
           repo: "yaxmldiff.py",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [lxml]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Yet Another XML Differ",
         homepage: "https://github.com/latk/yaxmldiff.py",
         changelog: nix.thunk(() => nix.str`https://github.com/latk/yaxmldiff.py/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

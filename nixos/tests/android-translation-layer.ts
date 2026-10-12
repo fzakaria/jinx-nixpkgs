@@ -18,35 +18,35 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   const demoApp = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchurl"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://gitlab.com/android_translation_layer/atl_test_apks/-/raw/061e32a3172c8167b1746768d098f0e62d8f564b/demo_app.apk",
       hash: "sha256-aXxLZEAMNsL6nL4r2N9rVsbBPmf3+gFGmgo3kZjdo4s=",
     }))));
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     name: "android-translation-layer",
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "onny"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
           services: nix.thunk(() => ({
-            __proto__: pos$4,
-            xserver: nix.thunk(() => ({ __proto__: pos$3, enable: true })),
+            [nix.POS]: pos$4,
+            xserver: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "android-translation-layer"))]),
           })),
         };

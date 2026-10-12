@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dasm",
       version: "2.20.14.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dasm-assembler",
           repo: "dasm",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "gcc-15.patch",
             url: "https://github.com/dasm-assembler/dasm/commit/ed21db28a0e9693c455d6491cdc120a5936b007a.patch",
             hash: "sha256-CR5/Cs82JN63TmMRt398iWlMdt0QaLL7N2bbOiCAz9s=",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       checkTarget: "test",
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Assembler for 6502 and other 8-bit microprocessors",
         homepage: "https://dasm-assembler.github.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

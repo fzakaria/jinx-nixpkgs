@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ecapture";
       const version = "1.5.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gojue",
           repo: "ecapture",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -52,12 +52,12 @@ export default nix.lambda((args) => (() => {
         go_bindata,
       ]);
       const newlibpcap = nix.thunk(() => nix.app(nix.sel(libpcap, "overrideAttrs"), (previousAttrs) => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           configureFlags: nix.thunk(() => nix.concat(nix.sel(previousAttrs, "configureFlags"), ["--without-libnl"])),
         })));
       const buildInputs = nix.thunk(() => [newlibpcap, nix.thunk(() => nix.sel(glibc, "static")), glibc]);
       const env = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         CGO_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lpcap", "-lpthread", "-static"]))),
       }));
       const ldflags = nix.thunk(() => ["-extldflags '-static'", "-linkmode=external"]);
@@ -111,11 +111,11 @@ KERN_BUILD_PATH=${nix.sel(kernel, "dev")}/lib/modules/${nix.sel(kernel, "modDirV
       })());
       const vendorHash = "sha256-esBALagv8J4UPYAzV2x3joF0MUxco4OHDFlL32yXe6E=";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Capture SSL/TLS text content without CA certificate Using eBPF",
         changelog: nix.thunk(() => nix.str`https://github.com/gojue/ecapture/releases/tag/v${version}`),
         homepage: "https://ecapture.cc",
@@ -128,7 +128,7 @@ KERN_BUILD_PATH=${nix.sel(kernel, "dev")}/lib/modules/${nix.sel(kernel, "modDirV
         mainProgram: "ecapture",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
     const udevCheckHook = nix.arg($_1, "udevCheckHook");
     const isFuse3 = nix.thunk(() => nix.app(nix.sel(lib, "hasPrefix"), "3", version));
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname: "fuse",
         version: version,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "libfuse",
             repo: "libfuse",
             tag: nix.thunk(() => nix.str`fuse-${version}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         strictDeps: true,
         __structuredAttrs: true,
         patches: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(!nix.asBool(isFuse3)) && nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isLoongArch64")))))), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: "https://github.com/libfuse/libfuse/commit/914871b20a901e3e1e981c92bc42b1c93b7ab81b.patch",
               hash: "sha256-6hqu5npSUN8I7XLZRiCl+b60Sweb1n2ZZz5LroIzkvA=",
             }))))), (nix.asBool(isFuse3) ? [
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         ] : [
           nix.path(here, "./fuse2-Do-not-set-FUSERMOUNT_DIR.patch"),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/sys-fs/fuse/files/fuse-2.9.9-closefrom-glibc-2-34.patch?id=8a970396fca7aca2d5a761b8e7a8242f1eef14c9",
               hash: "sha256-ELYBW/wxRcSMssv7ejCObrpsJHtOPJcGq33B9yHQII4=",
             })))),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
             "-Dexamples=false",
           ]))),
         env: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           NIX_CFLAGS_COMPILE: "-DFUSERMOUNT_DIR=\"/run/wrappers/bin\"",
         })),
         preConfigure: nix.thunk(() => nix.add(nix.str`substituteInPlace lib/mount_util.c \\
@@ -94,7 +94,7 @@ substituteInPlace util/mount.fuse.c \\
         postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), isFuse3, "rm $out/etc/fuse.conf\nmkdir $udev\nmv $out/etc $udev\n")),
         propagatedBuildOutputs: nix.thunk(() => ["out"]),
         meta: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           description: "Library that allows filesystems to be implemented in user space",
           longDescription: "FUSE (Filesystem in Userspace) is an interface for userspace programs to\nexport a filesystem to the Linux kernel. The FUSE project consists of two\ncomponents: The fuse kernel module (maintained in the regular kernel\nrepositories) and the libfuse userspace library (this package). libfuse\nprovides the reference implementation for communicating with the FUSE\nkernel module.\n",
           homepage: "https://github.com/libfuse/libfuse",

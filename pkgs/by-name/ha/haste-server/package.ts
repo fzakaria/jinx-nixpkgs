@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "haste-server",
       version: "unstable-2023-03-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "toptal",
           repo: "haste-server",
           rev: "b52b394bad909ddf151073987671e843540d91d6",
@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
       dontNpmBuild: true,
       postInstall: "install -Dt \"$out/share/haste-server\" about.md\nrm -rf \"$out/lib/node_modules/haste/node_modules/.bin/\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "haste-server": nix.thunk(() => nix.attr(nixosTests, "haste-server")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Open source pastebin written in Node.js",
         homepage: "https://github.com/toptal/haste-server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

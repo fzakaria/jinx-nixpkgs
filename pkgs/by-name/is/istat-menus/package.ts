@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "istat-menus",
       version: "7.20",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://cdn.istatmenus.app/files/istatmenus${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/versions/iStatMenus${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-oJApYp7ejtcMrm7CyeohV/euXYkJJ0yCRBW2i5AgcEE=",
         })))),
@@ -31,9 +31,9 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [unzip]),
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications\"\ncp -r *.app \"$out/Applications\"\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: "istatmenus-update-script",
               runtimeInputs: nix.thunk(() => [curl, common_updater_scripts]),
               text: nix.thunk(() => nix.str`redirect_url="$(curl -s -L -f "https://download.bjango.com/istatmenus${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/" -o /dev/null -w '%{url_effective}')"
@@ -43,7 +43,7 @@ update-source-version istat-menus "$version"
             })))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: "https://bjango.com/mac/istatmenus/versionhistory/",
         description: "Set of nine separate and highly configurable menu items that let you know exactly what's going on inside your Mac",
         homepage: "https://bjango.com/mac/istatmenus/",

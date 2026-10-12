@@ -13,8 +13,8 @@ export default nix.lambda((args) => (() => {
   const jdk = nix.arg($, "jdk");
   const debugBuild = nix.argOr($, "debugBuild", () => false);
   const withJcef = nix.argOr($, "withJcef", () => true);
-  return nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({ __proto__: pos$1, jdk: jdk, debugBuild: debugBuild, withJcef: withJcef })), nix.thunk(() => ({
-      __proto__: pos$2,
+  return nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, jdk: jdk, debugBuild: debugBuild, withJcef: withJcef })), nix.thunk(() => ({
+      [nix.POS]: pos$2,
       javaVersion: "21.0.10",
       build: "1163.110",
       sourceDateEpoch: 1765114563n,

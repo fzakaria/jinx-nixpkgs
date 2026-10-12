@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nunicode",
       version: "1.18",
       strictDeps: true,
       __structuredAttrs: true,
       outputs: nix.thunk(() => ["out", "sqlite"]),
       src: nix.thunk(() => nix.app(fetchFromBitbucket, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alekseyt",
           repo: "nunicode",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,11 +51,11 @@ echo >>sqlite3/CMakeLists.txt \\
       doCheck: true,
       checkTarget: "nusqlite3_test",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fast, small and portable Unicode library with SQLite extension",
         homepage: "https://bitbucket.org/alekseyt/nunicode",
         changelog: nix.thunk(() => nix.str`https://bitbucket.org/alekseyt/nunicode/src/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG`),

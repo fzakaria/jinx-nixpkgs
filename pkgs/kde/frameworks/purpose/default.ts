@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const qtdeclarative = nix.arg($, "qtdeclarative");
   const kdeclarative = nix.arg($, "kdeclarative");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "purpose",
       extraBuildInputs: nix.thunk(() => [qtdeclarative]),
       extraPropagatedBuildInputs: nix.thunk(() => [kdeclarative]),

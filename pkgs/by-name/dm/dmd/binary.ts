@@ -24,14 +24,14 @@ export default nix.lambda((args) => (() => {
   const MODEL = nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(hostPlatform, "parsed", "cpu", "bits"))));
   nix.assert_((!nix.asBool(nix.sel(hostPlatform, "isLinux")) || nix.asBool(nix.has(nix.sel(stdenv, "cc", "cc"), "libgcc"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/dm/dmd/binary.nix:22:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dmd-bootstrap",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
           const name = nix.thunk(() => nix.str`dmd.${version}.${OS}.tar.xz`);
           const url = nix.thunk(() => nix.str`http://downloads.dlang.org/releases/2.x/${version}/${name}`);
           const sha256 = nix.thunk(() => nix.selOr(hashes, () => nix.builtins.throw(nix.thunk(() => nix.str`missing bootstrap sha256 for OS ${OS}`)), nix.key(nix.force(OS))));
-          return { __proto__: pos$1, name, url, sha256 };
+          return { [nix.POS]: pos$1, name, url, sha256 };
         })()))),
       dontConfigure: true,
       dontBuild: true,
@@ -61,7 +61,7 @@ runHook postInstall
 `),
       dontStrip: nix.thunk(() => nix.sel(hostPlatform, "isDarwin")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Digital Mars D Compiler Package",
         license: nix.thunk(() => nix.sel(lib, "licenses", "boost")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "lionello"))]),

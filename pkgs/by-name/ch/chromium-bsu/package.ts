@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const quesoglc = nix.arg($, "quesoglc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "chromium-bsu",
       version: "0.9.16.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/chromium-bsu/Chromium%20B.S.U.%20source%20code/chromium-bsu-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ocFBo00ZpZYHroEWahmGTrjITPhrFVRi/tMabVbhYko=",
         })))),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--disable-sdlimage", "--disable-sdlmixer"]),
       postInstall: "install -D misc/chromium-bsu.png -t $out/share/icons/hicolor/64x64/apps\ninstall -D misc/chromium-bsu.desktop $out/share/applications/chromium-bsu.desktop\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://chromium-bsu.sourceforge.net/",
         description: "Fast paced, arcade-style, top-scrolling space shooter",
         mainProgram: "chromium-bsu",

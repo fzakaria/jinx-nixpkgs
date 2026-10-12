@@ -26,40 +26,40 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "powerManagement"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       powerManagement: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             default: true,
             description: "Whether to enable power management.  This includes support\nfor suspend-to-RAM and powersave features on laptops.\n",
           })))),
         resumeCommands: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.sel(lib, "types", "lines")),
             default: "",
             example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${pkgs.util-linux}/bin/rfkill unblock all\"\n")),
             description: "Commands executed after the system resumes from suspend-to-RAM.",
           })))),
         powerUpCommands: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => nix.sel(lib, "types", "lines")),
             default: "",
             example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${pkgs.powertop}/bin/powertop --auto-tune\"\n")),
             description: "Commands executed when the machine powers up.  That is,\nthey're executed both when the system first boots and when\nit resumes from suspend or hibernation.\n",
           })))),
         powerDownCommands: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: nix.thunk(() => nix.sel(lib, "types", "lines")),
             default: "",
             example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${pkgs.hdparm}/sbin/hdparm -B 255 /dev/sda\"\n")),
             description: "Commands executed when the machine powers down.  That is,\nthey're executed both when the system shuts down and when\nit goes to suspend or hibernation.\n",
           })))),
         bootCommands: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             type: nix.thunk(() => nix.sel(lib, "types", "lines")),
             default: "",
             example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${pkgs.networkmanager}/bin/nmcli radio wifi on\"\n")),
@@ -68,18 +68,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         warnings: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "powerUpCommands"), "")), "powerManagement.powerUpCommands is deprecated due to it having unclear ordering semantics.\nIt will be removed in NixOS 26.11.\nIt is recommended to create an explicit systemd oneshot service instead,\nthat is pulled in at the right time during the boot process.\nSee https://www.freedesktop.org/software/systemd/man/latest/systemd.special.html\nfor more information on possible targets that can be used for this.\n\nIf you also want to run this service upon waking up from resume, the recommended\nmethod to do so is described here:\nhttps://www.freedesktop.org/software/systemd/man/latest/systemd.special.html#sleep.target\n")),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             "sleep-actions": nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               description: "Sleep Actions",
               wantedBy: nix.thunk(() => ["sleep.target"]),
               before: nix.thunk(() => ["sleep.target"]),
-              unitConfig: nix.thunk(() => ({ __proto__: pos$8, StopWhenUnneeded: true })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$8, StopWhenUnneeded: true })),
               script: nix.thunk(() => nix.str`# NixOS pre-sleep script
 
 # config.powerManagement.powerDownCommands
@@ -93,10 +93,10 @@ ${nix.sel(cfg, "resumeCommands")}
 # config.powerManagement.powerUpCommands
 ${nix.sel(cfg, "powerUpCommands")}
 `),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$9, Type: "oneshot", RemainAfterExit: true })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$9, Type: "oneshot", RemainAfterExit: true })),
             })),
             "post-boot": nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "Post-Boot Actions",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               restartIfChanged: false,
@@ -113,7 +113,7 @@ ${nix.sel(cfg, "powerUpCommands")}
 # config.powerManagement.powerDownCommands
 ${nix.sel(cfg, "powerDownCommands")}
 `),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$11, Type: "oneshot", RemainAfterExit: true })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$11, Type: "oneshot", RemainAfterExit: true })),
             })),
           })),
         })),

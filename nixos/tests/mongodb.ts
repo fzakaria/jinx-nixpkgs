@@ -19,10 +19,10 @@ export default nix.lambda((args) => (() => {
   const testQuery = nix.thunk(() => nix.app(nix.sel(pkgs, "writeScript"), "nixtest.js", "db.greetings.insertOne({ \"greeting\": \"hello\" });\nprint(db.greetings.findOne().greeting);\n"));
   const mongoshExe = nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "mongosh"))));
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     name: testName,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [
@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       mongodb: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         services: nix.thunk(() => ({
-          __proto__: pos$3,
-          mongodb: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+          [nix.POS]: pos$3,
+          mongodb: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
         })),
       })),
     })),

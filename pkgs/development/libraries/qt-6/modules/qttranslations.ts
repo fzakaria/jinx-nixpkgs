@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const qtModule = nix.arg($, "qtModule");
   const qttools = nix.arg($, "qttools");
   return nix.app(qtModule, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "qttranslations",
       nativeBuildInputs: nix.thunk(() => [qttools]),
       separateDebugInfo: false,

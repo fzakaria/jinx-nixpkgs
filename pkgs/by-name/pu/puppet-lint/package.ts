@@ -17,16 +17,16 @@ export default nix.lambda((args) => (() => {
   const puppet_lint = nix.arg($, "puppet-lint");
   const testers = nix.arg($, "testers");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "puppet-lint",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["puppet-lint"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               package: puppet_lint,
               version: nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")), "puppet-lint", "version")),
             })))),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "puppet-lint")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Checks Puppet code against the recommended Puppet language style guide",
         homepage: "https://github.com/puppetlabs/puppet-lint",
         changelog: "https://github.com/puppetlabs/puppet-lint/blob/main/CHANGELOG.md",

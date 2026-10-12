@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ffigen";
       const version = "8.0.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dart-lang",
           repo: "native",
           tag: nix.thunk(() => nix.str`ffigen-v${version}`),
@@ -29,14 +29,14 @@ ln -s ${flutter}/bin/dart $out/bin/dart
 `);
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/pkgs/ffigen`);
       const pubspecLock = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./ffigen.pubspec.lock.json")));
-      const dartEntryPoints = nix.thunk(() => ({ __proto__: pos$2, "bin/ffigen": "bin/ffigen.dart" }));
+      const dartEntryPoints = nix.thunk(() => ({ [nix.POS]: pos$2, "bin/ffigen": "bin/ffigen.dart" }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         mainProgram: "ffigen",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

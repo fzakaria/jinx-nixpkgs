@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mlton = nix.arg($, "mlton");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ceptre",
       version: "0-unstable-2024-08-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chrisamaphone",
           repo: "interactive-lp",
           rev: "22df9ff622f3363824f345089a25016e2a897077",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [mlton]),
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ncp ceptre $out/bin\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Linear logic programming language for modeling generative interactive systems",
         mainProgram: "ceptre",
         homepage: "https://github.com/chrisamaphone/interactive-lp",

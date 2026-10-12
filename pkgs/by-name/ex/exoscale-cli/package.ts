@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "exoscale-cli",
       version: "1.101.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "exoscale",
           repo: "cli",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       postBuild: "mv $GOPATH/bin/cli $GOPATH/bin/exo\n\nmkdir -p manpage\n$GOPATH/bin/docs --man-page\nrm $GOPATH/bin/docs\n\n$GOPATH/bin/completion bash\n$GOPATH/bin/completion zsh\nrm $GOPATH/bin/completion\n",
       postInstall: "installManPage manpage/*\ninstallShellCompletion --cmd exo --bash bash_completion --zsh zsh_completion\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command-line tool for everything at Exoscale: compute, storage, dns",
         homepage: "https://github.com/exoscale/cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

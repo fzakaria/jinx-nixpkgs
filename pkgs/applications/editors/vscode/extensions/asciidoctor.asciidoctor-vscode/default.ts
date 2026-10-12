@@ -13,9 +13,9 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "asciidoctor-vscode",
         publisher: "asciidoctor",
         version: "3.4.5",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
     --replace-fail "@ASCIIDOCTOR_PDF_BIN@" \\
                    "${asciidoctor}/bin/asciidoctor-pdf"
 `),
-      meta: nix.thunk(() => ({ __proto__: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

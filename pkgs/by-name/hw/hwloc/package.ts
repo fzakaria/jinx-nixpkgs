@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const enableCuda = nix.argOr($, "enableCuda", () => nix.sel(config, "cudaSupport"));
   const cudaPackages = nix.arg($, "cudaPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hwloc",
       version: "2.14.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "open-mpi",
           repo: "hwloc",
           tag: nix.thunk(() => nix.str`hwloc-${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +53,7 @@ sed -i "$lib/lib/libhwloc.la" \\
       doCheck: false,
       outputs: nix.thunk(() => ["out", "lib", "dev", "doc", "man"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Portable abstraction of hierarchical architectures for high-performance computing",
         longDescription: "hwloc provides a portable abstraction (across OS,\nversions, architectures, ...) of the hierarchical topology of\nmodern architectures, including NUMA memory nodes, sockets,\nshared caches, cores and simultaneous multithreading.  It also\ngathers various attributes such as cache and memory\ninformation.  It primarily aims at helping high-performance\ncomputing applications with gathering information about the\nhardware so as to exploit it accordingly and efficiently.\n\nhwloc may display the topology in multiple convenient\nformats.  It also offers a powerful programming interface to\ngather information about the hardware, bind processes, and much\nmore.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -21,29 +21,29 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "sniffnet"));
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       programs: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         sniffnet: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "sniffnet, a network traffic monitor application")),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         environment: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "sniffnet"))]),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           wrappers: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             sniffnet: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               owner: "root",
               group: "root",
               capabilities: "cap_net_raw,cap_net_admin=eip",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
           })),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$9, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$9, maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=sniffnet.ts.map

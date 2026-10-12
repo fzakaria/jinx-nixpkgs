@@ -51,18 +51,18 @@ export default nix.lambda((args) => (() => {
   const darwinMinVersionHook = nix.arg($, "darwinMinVersionHook");
   const withApp = nix.argOr($, "withApp", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "vte",
       version: "0.84.1",
       outputs: nix.thunk(() => nix.concat(["out", "dev"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(gtkVersion, null)), "devdoc"))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/vte/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/vte-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-rKHKqEeK6827HWeJf7NRHrdgHeuuaBDhahW2+iXzGsg=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "0001-Add-W_EXITCODE-macro-for-non-glibc-systems.patch",
             url: "https://git.alpinelinux.org/aports/plain/community/vte3/fix-W_EXITCODE.patch?id=4d35c076ce77bfac7655f60c4c3e4c86933ab7dd",
             hash: "sha256-FkVyhsM0mRUzZmS2Gh172oqwcfXv6PyD6IEgjBhy2uU=",
@@ -98,18 +98,18 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonBool"), "_systemd", systemdSupport)),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["-D_b_symbolic_functions=false"])))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), "-Wno-unused-command-line-argument"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-cast-function-type-strict"))))),
       })),
       postPatch: "patchShebangs perf/* \\\n  src/app/meson_desktopfile.py \\\n  src/parser-seq.py \\\n  src/minifont-coverage.py \\\n  src/modes.py\n",
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$4, packageName: "vte", versionPolicy: "odd-unstable" })))),
+        [nix.POS]: pos$6,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$4, packageName: "vte", versionPolicy: "odd-unstable" })))),
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "terminal-emulators"));
           return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "gnome-terminal": nix.thunk(() => nix.attr(from, "gnome-terminal")),
           lxterminal: nix.thunk(() => nix.attr(from, "lxterminal")),
           mlterm: nix.thunk(() => nix.attr(from, "mlterm")),
@@ -123,7 +123,7 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://www.gnome.org/",
         description: "Library implementing a terminal emulator widget for GTK",
         longDescription: "VTE is a library (libvte) implementing a terminal emulator widget for\nGTK, and a minimal sample application (vte) using that.  Vte is\nmainly used in gnome-terminal, but can also be used to embed a\nconsole/terminal in games, editors, IDEs, etc. VTE supports Unicode and\ncharacter set conversion, as well as emulating any terminal known to\nthe system's terminfo database.\n",

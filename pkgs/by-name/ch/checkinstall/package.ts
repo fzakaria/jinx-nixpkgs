@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "checkinstall",
       version: "1.8.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ssgelm",
           repo: "checkinstall",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./filter-access-family.patch"),
         nix.path(here, "./empty-dirs.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "stop-access-materialising.patch",
             url: "https://github.com/ssgelm/checkinstall/commit/f2538619907e73b7d7183b7775a456f28ced6579.patch",
             hash: "sha256-g9TaRQDx4D75aBfrEXNkhUosqrkiZdBlPP2LMadIheo=",
@@ -63,11 +63,11 @@ substituteInPlace installwatch/create-localdecls \\
       nativeInstallCheckInputs: nix.thunk(() => [dpkg, file, util_linux, which]),
       installCheckPhase: "runHook preInstallCheck\n\nsed \"s|^BASE_TMP_DIR=/var/tmp|BASE_TMP_DIR=$TMPDIR|\" \\\n  $out/lib/checkinstall/checkinstallrc-dist > \"$NIX_BUILD_TOP/checkinstallrc\"\n\nCHECKINSTALL_INSTALLED=$out CHECKINSTALL_RC=\"$NIX_BUILD_TOP/checkinstallrc\" \\\n  tests/run-tests.sh\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/ssgelm/checkinstall",
         description: "Tool for automatically generating Slackware, RPM or Debian packages when doing `make install`",
         maintainers: nix.thunk(() => (() => {

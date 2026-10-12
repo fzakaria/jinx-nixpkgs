@@ -63,20 +63,20 @@ export default nix.lambda((args) => (() => {
       const pname = "freeglut-mupdf";
       const version = nix.thunk(() => nix.str`3.0.0-r${nix.sel(src, "rev")}`);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ArtifexSoftware",
           repo: "thirdparty-freeglut",
           rev: "d5e2256d571b3ef66fb60716c99e35e9d3e570a2",
           hash: "sha256-yVnVFh2KMpkRB0Emr1iiUwg8ZcPn/k4fnBtBsnv6jX0=",
         }))));
       const postPatch = "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"CMAKE_MINIMUM_REQUIRED(VERSION 2.8.8 FATAL_ERROR)\" \"CMAKE_MINIMUM_REQUIRED(VERSION 3.10 FATAL_ERROR)\"\n";
-      return { __proto__: pos$2, pname, version, src, postPatch };
+      return { [nix.POS]: pos$2, pname, version, src, postPatch };
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const version = "1.27.2";
       const pname = "mupdf";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://mupdf.com/downloads/archive/${pname}-${version}-source.tar.gz`),
           hash: "sha256-VThnsTUwPcTCWrZ8XyNNjpAKDjbmboSE2ZrcBf4ehzc=",
         }))));
@@ -106,7 +106,7 @@ done
 `)));
       const desktopItems = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(enableGL) || nix.asBool(enableX11))), nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               name: pname,
               desktopName: pname,
               comment: nix.thunk(() => nix.sel(meta, "description")),
@@ -157,21 +157,21 @@ cp build/*/mupdf.py $out/${nix.sel(python3, "sitePackages")}/mupdf/__init__.py
 `)))))));
       const enableParallelBuilding = true;
       const env = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         USE_SONAME: nix.thunk(() => nix.app(nix.sel(lib, "boolToYesNo"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))),
       }));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(python3, "pkgs"));
           return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           "cups-filters": cups_filters,
           zathura: zathura,
           pikepdf: nix.thunk(() => nix.attr(from, "pikepdf")),
           pymupdf: nix.thunk(() => nix.attr(from, "pymupdf")),
           "mupdf-all": nix.thunk(() => nix.app(nix.sel(mupdf, "override"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               enableCurl: true,
               enableGL: true,
               enableOcr: true,
@@ -181,13 +181,13 @@ cp build/*/mupdf.py $out/${nix.sel(python3, "sitePackages")}/mupdf/__init__.py
         };
         })()),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             url: "https://cgit.ghostscript.com/cgi-bin/cgit.cgi/mupdf.git",
             ignoredVersions: ".rc.*",
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         homepage: "https://mupdf.com",
         description: "Lightweight PDF, XPS, and E-book viewer and toolkit written in portable C",
         changelog: nix.thunk(() => nix.str`https://cgit.ghostscript.com/cgi-bin/cgit.cgi/mupdf.git/plain/CHANGES?h=refs/tags/${version}`),
@@ -200,7 +200,7 @@ cp build/*/mupdf.py $out/${nix.sel(python3, "sitePackages")}/mupdf/__init__.py
         mainProgram: "mupdf",
       }));
       return {
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         version,
         pname,
         src,

@@ -32,16 +32,16 @@ export default nix.lambda((args) => (() => {
   const litellmPricingRev = "49ca04d8c3ddea336237ce6f3082dbc26d19e944";
   const litellmPricingHash = "sha256-rkUyugxdoD7WlPN//6BQpl4OJQuBbc20db7gt7exqpc=";
   const litellmPricing = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/BerriAI/litellm/${litellmPricingRev}/model_prices_and_context_window.json`),
       hash: litellmPricingHash,
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "ccusage",
       version: "20.0.17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "ccusage",
           repo: "ccusage",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [apple_sdk_15, libiconv]))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         CCUSAGE_PRICING_JSON_PATH: nix.thunk(() => nix.str`${litellmPricing}`),
       })),
       cargoBuildFlags: nix.thunk(() => ["-p", "ccusage", "--bin", "ccusage"]),
@@ -62,23 +62,23 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               name: "ccusage-update",
               runtimeInputs: nix.thunk(() => [curl, jq, nix_update]),
               text: "set -euo pipefail\n\nattr=\"${UPDATE_NIX_ATTR_PATH:-ccusage}\"\n\nnix-update \"$attr\"\n\nversion=$(nix-instantiate --eval --raw -A \"$attr.version\")\nrev=$(curl --fail --silent --show-error --location \\\n  \"https://raw.githubusercontent.com/ccusage/ccusage/v${version}/flake.lock\" \\\n  | jq --raw-output '.nodes.litellm.locked.rev')\nhash=$(nix-prefetch-url --type sha256 \\\n  \"https://raw.githubusercontent.com/BerriAI/litellm/${rev}/model_prices_and_context_window.json\" \\\n  | xargs nix --extra-experimental-features nix-command hash convert --hash-algo sha256 --to sri)\n\nfile=$(nix-instantiate --eval --raw -A \"$attr.meta.position\" | sed -re 's/:[0-9]+$//')\nsed -i \\\n  -e \"s|litellmPricingRev = \\\"[0-9a-f]*\\\"|litellmPricingRev = \\\"${rev}\\\"|\" \\\n  -e \"s|litellmPricingHash = \\\"sha256-[^\\\"]*\\\"|litellmPricingHash = \\\"${hash}\\\"|\" \\\n  \"$file\"\n",
             })))))),
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           smoke: nix.thunk(() => nix.app(runCommand, "ccusage-smoke-test", nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage")), jq]),
             })), "export HOME=\"$(mktemp -d)\"\nccusage daily --json --offline > report.json\njq -e '.daily == [] and .totals.totalTokens == 0' report.json\ntouch \"$out\"\n")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Analyze coding agent CLI token usage and costs from local data",
         homepage: "https://github.com/ccusage/ccusage",
         changelog: nix.thunk(() => nix.str`https://github.com/ccusage/ccusage/releases/tag/v${nix.sel(finalAttrs, "version")}`),

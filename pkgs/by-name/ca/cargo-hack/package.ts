@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchCrate = nix.arg($, "fetchCrate");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cargo-hack",
       version: "0.6.45",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-WehLSSE1g6mu8GNJQzyVeu80pqswE+SModgwOAP//bE=",
@@ -32,11 +32,11 @@ $out/bin/cargo-hack hack --version | grep -F 'cargo-hack ${nix.sel(finalAttrs, "
 runHook postInstallCheck
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Cargo subcommand to provide various options useful for testing and continuous integration",
         mainProgram: "cargo-hack",
         homepage: "https://github.com/taiki-e/cargo-hack",

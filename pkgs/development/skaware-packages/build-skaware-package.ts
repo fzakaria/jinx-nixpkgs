@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
       excludeDrvArgNames: nix.thunk(() => ["sha256", "manpages"]),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -59,9 +59,9 @@ export default nix.lambda((args) => (() => {
         ]);
         const libraryOutput = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "elem"), "lib", outputs)) ? "lib" : "out"));
         return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               url: nix.thunk(() => nix.str`https://skarnet.org/software/${nix.sel(finalAttrs, "pname")}/${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}.tar.gz`),
               sha256: sha256,
             })))),
@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
               nix.thunk(() => nix.str`RANLIB=${nix.sel(stdenv, "cc", "targetPrefix")}ranlib`),
             ]))),
           postInstall: nix.thunk(() => nix.str`echo "Cleaning & moving common files"
-${nix.app(nix.sel(cleanPackaging, "commonFileActions"), nix.thunk(() => ({ __proto__: pos$2, noiseFiles: commonNoiseFiles, docFiles: commonMetaFiles })))} $doc/share/doc/${nix.sel(finalAttrs, "pname")}
+${nix.app(nix.sel(cleanPackaging, "commonFileActions"), nix.thunk(() => ({ [nix.POS]: pos$2, noiseFiles: commonNoiseFiles, docFiles: commonMetaFiles })))} $doc/share/doc/${nix.sel(finalAttrs, "pname")}
 
 ${(nix.asBool(nix.eq(manpages, null)) ? "echo \"no manpages for this package\"" : nix.str`echo "copying manpages"
 cp -vr ${manpages} $man
@@ -103,9 +103,9 @@ fi
 ${nix.sel(cleanPackaging, "checkForRemainingFiles")}
 `),
           passthru: nix.thunk(() => nix.update({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 extraArgs: nix.thunk(() => [
                   "--url",
                   nix.thunk(() => nix.str`https://github.com/skarnet/${nix.sel(finalAttrs, "pname")}`),
@@ -113,9 +113,9 @@ ${nix.sel(cleanPackaging, "checkForRemainingFiles")}
                   nix.thunk(() => nix.str`pkgs/development/skaware-packages/${nix.sel(finalAttrs, "pname")}/default.nix`),
                 ]),
               })))),
-          }, nix.update(passthru, (nix.asBool(nix.eq(manpages, null)) ? {} : { __proto__: pos$5, manpages: manpages })))),
+          }, nix.update(passthru, (nix.asBool(nix.eq(manpages, null)) ? {} : { [nix.POS]: pos$5, manpages: manpages })))),
           meta: nix.thunk(() => nix.update({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             homepage: nix.thunk(() => nix.str`https://skarnet.org/software/${nix.sel(finalAttrs, "pname")}/`),
             platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
             license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

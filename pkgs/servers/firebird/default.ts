@@ -32,10 +32,10 @@ export default nix.lambda((args) => (() => {
   const icu73 = nix.arg($, "icu73");
   const superServer = nix.argOr($, "superServer", () => false);
   const base = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     pname: "firebird",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       description: "SQL relational database management system",
       downloadPage: "https://github.com/FirebirdSQL/firebird/",
       homepage: "https://firebirdsql.org/",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
     nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
     buildInputs: nix.thunk(() => [libedit, icu73]),
     env: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       LD_LIBRARY_PATH: nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [icu73]))),
     })),
     configureFlags: nix.thunk(() => nix.concat(["--with-system-editline"], nix.app(nix.sel(lib, "optional"), superServer, "--enable-superserver"))),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
     const firebird_3 = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(base, (() => {
         const version = "3.0.14";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             owner: "FirebirdSQL",
             repo: "firebird",
             rev: nix.thunk(() => nix.str`v${version}`),
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
           }))));
         const patches = nix.thunk(() => [
           nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               pname: "firebird3.0",
               version: "3.0.13.ds7",
               debianRevision: "2",
@@ -86,13 +86,13 @@ export default nix.lambda((args) => (() => {
             })))),
         ]);
         const buildInputs = nix.thunk(() => nix.concat(nix.sel(base, "buildInputs"), [zlib, libtommath]));
-        const meta = nix.thunk(() => nix.update(nix.sel(base, "meta"), { __proto__: pos$6, platforms: nix.thunk(() => ["x86_64-linux"]) }));
-        return { __proto__: pos$7, version, src, patches, buildInputs, meta };
+        const meta = nix.thunk(() => nix.update(nix.sel(base, "meta"), { [nix.POS]: pos$6, platforms: nix.thunk(() => ["x86_64-linux"]) }));
+        return { [nix.POS]: pos$7, version, src, patches, buildInputs, meta };
       })()))));
     const firebird_4 = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(base, (() => {
         const version = "4.0.7";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             owner: "FirebirdSQL",
             repo: "firebird",
             rev: nix.thunk(() => nix.str`v${version}`),
@@ -100,12 +100,12 @@ export default nix.lambda((args) => (() => {
           }))));
         const nativeBuildInputs = nix.thunk(() => nix.concat(nix.sel(base, "nativeBuildInputs"), [unzip]));
         const buildInputs = nix.thunk(() => nix.concat(nix.sel(base, "buildInputs"), [zlib, libtommath, libtomcrypt]));
-        return { __proto__: pos$9, version, src, nativeBuildInputs, buildInputs };
+        return { [nix.POS]: pos$9, version, src, nativeBuildInputs, buildInputs };
       })()))));
     const firebird_5 = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(base, (() => {
         const version = "5.0.4";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             owner: "FirebirdSQL",
             repo: "firebird",
             rev: nix.thunk(() => nix.str`v${version}`),
@@ -116,7 +116,7 @@ export default nix.lambda((args) => (() => {
         const nativeBuildInputs = nix.thunk(() => nix.concat(nix.sel(base, "nativeBuildInputs"), [cmake, unzip]));
         const buildInputs = nix.thunk(() => nix.concat(nix.sel(base, "buildInputs"), [zlib, libtommath, libtomcrypt]));
         return {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           version,
           src,
           dontUseCmakeConfigure,
@@ -125,7 +125,7 @@ export default nix.lambda((args) => (() => {
         };
       })()))));
     const firebird = firebird_5;
-    return { __proto__: pos$12, firebird_3, firebird_4, firebird_5, firebird };
+    return { [nix.POS]: pos$12, firebird_3, firebird_4, firebird_5, firebird };
   })();
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

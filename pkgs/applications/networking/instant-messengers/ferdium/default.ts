@@ -25,9 +25,9 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(stdenv, "hostPlatform"));
   const system = nix.thunk(() => nix.attr(from, "system"));
   const throwSystem = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`ferdium: arch ${system} not supported`)));
-  const arch = nix.thunk(() => nix.selOr({ __proto__: pos$1, "x86_64-linux": "amd64", "aarch64-linux": "arm64" }, () => nix.force(throwSystem), nix.key(nix.force(system))));
+  const arch = nix.thunk(() => nix.selOr({ [nix.POS]: pos$1, "x86_64-linux": "amd64", "aarch64-linux": "arm64" }, () => nix.force(throwSystem), nix.key(nix.force(system))));
   const hash = nix.thunk(() => nix.selOr({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     "x86_64-linux": "sha256-+KP107a8Tmr2qR8pH+gHuXqEqiC5ExPGXoYOqV1Urbo=",
     "aarch64-linux": "sha256-6XnuSqHOJxAURTGWfi4QUBv4ictLmjeJAoyrPg+o+Bg=",
   }, () => nix.force(throwSystem), nix.key(nix.force(system))));
@@ -36,13 +36,13 @@ export default nix.lambda((args) => (() => {
       const name = "Ferdium";
       const version = "7.2.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://github.com/ferdium/ferdium-app/releases/download/v${version}/Ferdium-linux-${version}-${arch}.deb`),
           hash: hash,
         }))));
       const extraBuildInputs = nix.thunk(() => [libxshmfence]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-ferdium", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix_update)} ferdium --no-src --override-filename pkgs/applications/networking/instant-messengers/ferdium/default.nix
 latestVersion=$(nix eval --raw --file . ferdium.version)
 if [[ "$latestVersion" == "$UPDATE_NIX_OLD_VERSION" ]]; then
@@ -59,7 +59,7 @@ done
 `))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "All your services in one place built by the community",
         homepage: "https://ferdium.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -71,7 +71,7 @@ done
         hydraPlatforms: [],
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         name,
         version,

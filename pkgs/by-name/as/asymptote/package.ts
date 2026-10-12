@@ -44,12 +44,12 @@ export default nix.lambda((args) => (() => {
   const vulkan_headers = nix.arg($, "vulkan-headers");
   const glfw = nix.arg($, "glfw");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "3.12",
       pname: "asymptote",
       outputs: nix.thunk(() => ["out", "man", "info", "doc", "tex"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/asymptote/${nix.sel(finalAttrs, "version")}/asymptote-${nix.sel(finalAttrs, "version")}.src.tgz`),
           hash: "sha256-6uwel0Y+8hOjk8OI1GanNHiwgY+UA8liuRJAZZybjxs=",
         })))),
@@ -118,7 +118,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "HOME=$TMP\nsubstituteInPlace Makefile.in \\\n  --replace-fail ' install-texhash' ''\nif [[ -n $texContainer ]] ; then\n  sed -i Makefile.in -e '/(\\(latex\\|context\\)dir)/d'\n  substituteInPlace Makefile.in \\\n    --replace-fail 'asy sty' 'asy'\nelse\n  prependToVar configureFlags \"--with-latex=$tex/tex/latex\" \"--with-context=$tex/tex/context/third\"\nfi\nif [[ -n $texdocContainer ]] ; then\n  substituteInPlace Makefile.in \\\n    --replace-fail ' install-man' '' \\\n    --replace-fail 'docdir = $(DESTDIR)@docdir@' 'docdir = $(TMP)/doc'\nfi\n",
       configureFlags: nix.thunk(() => ["--enable-gc=system"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.sel(boehmgc, "dev")}/include/gc`),
       })),
       postInstall: nix.thunk(() => nix.str`rm "$out"/bin/xasy
@@ -139,7 +139,7 @@ install -Dt $out/share/emacs/site-lisp/${nix.sel(finalAttrs, "pname")} $out/shar
       enableParallelBuilding: true,
       enableParallelInstalling: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool for programming graphics intended to replace Metapost",
         homepage: "https://asymptote.sourceforge.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

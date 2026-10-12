@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.16.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Analogj",
           repo: "lexicon",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [poetry_core]);
       const propagatedBuildInputs = nix.thunk(() => [beautifulsoup4, cryptography, pyotp, pyyaml, requests, tldextract]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         route53: nix.thunk(() => [boto3]),
         localzone: nix.thunk(() => [localzone]),
         softlayer: nix.thunk(() => [softlayer]),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["lexicon"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Manipulate DNS records on various DNS providers in a standardized way",
         mainProgram: "lexicon",
         homepage: "https://github.com/AnalogJ/lexicon",
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

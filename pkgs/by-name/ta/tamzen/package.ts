@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tamzen-font",
       version: "1.11.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sunaku",
           repo: "tamzen-font",
           rev: nix.thunk(() => nix.str`Tamzen-${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [mkfontscale]),
       installPhase: "install -m 644 -D otb/*.otb pcf/*.pcf -t \"$out/share/fonts/misc\"\ninstall -m 644 -D psf/*.psf -t \"$out/share/consolefonts\"\nmkfontdir \"$out/share/fonts/misc\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bitmapped programming font based on Tamsyn",
         longDescription: "Tamzen is a monospace bitmap font. It is programmatically forked\nfrom Tamsyn version 1.11, which backports glyphs from older\nversions while deleting deliberately empty glyphs to allow\nsecondary/fallback fonts to provide real glyphs at those codepoints.\nTamzen also has fonts that additionally provide the Powerline\nsymbols.\n",
         homepage: "https://github.com/sunaku/tamzen-font",

@@ -7,11 +7,11 @@ const pos$2 = nix.positions(here + "/gemset.nix", [["source", 3, 5], ["version",
 const pos$3 = nix.positions(here + "/gemset.nix", [["teamocil", 2, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$3,
+  [nix.POS]: pos$3,
   teamocil: nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     source: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1l5f33faipb45xx7ds67s7dqgvjlljlcxgpgig4pg8p002vg06r2",
       type: "gem",

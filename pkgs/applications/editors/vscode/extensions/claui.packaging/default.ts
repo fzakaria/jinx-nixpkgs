@@ -12,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "packaging",
         publisher: "claui",
         version: "0.2.5",
         hash: "sha256-WGs00Q1oa8Nz9dpKn3iZSjrhR0VKUwJWPGdm+wWtoxs=",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: "https://github.com/claui/vscode-packaging/releases",
         description: "Visual Studio Code extension for PKGBUILDs in the Arch User Repository (AUR)",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=claui.packaging",

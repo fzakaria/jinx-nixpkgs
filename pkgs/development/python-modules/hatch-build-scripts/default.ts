@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const hatch_vcs = nix.arg($, "hatch-vcs");
   const version = "1.0.0";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hatch-build-scripts",
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rmorshea",
           repo: "hatch-build-scripts",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [hatch_vcs]),
       pythonImportsCheck: nix.thunk(() => ["hatch_build_scripts"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Plugin for Hatch that runs build scripts and saves their artifacts",
         homepage: "https://github.com/rmorshea/hatch-build-scripts",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "b36a1c245f2d304965eb4e0a82848379241dc04b865afcc4aab16748587e1923",
@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest]);
       const checkPhase = "py.test webencodings/tests.py\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Character encoding aliases for legacy web content",
         homepage: "https://github.com/SimonSapin/python-webencodings",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

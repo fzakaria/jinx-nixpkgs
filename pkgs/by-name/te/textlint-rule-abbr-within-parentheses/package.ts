@@ -22,18 +22,18 @@ export default nix.lambda((args) => (() => {
   const textlint = nix.arg($, "textlint");
   const textlint_rule_abbr_within_parentheses = nix.arg($, "textlint-rule-abbr-within-parentheses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "textlint-rule-abbr-within-parentheses",
       version: "1.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "azu",
           repo: "textlint-rule-abbr-within-parentheses",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-CBrf7WtvywDmtuSyxkDtAyjmrj7KS3TQLSsNfMxeWXw=",
         })))),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: "sha256-N4tnja6qTo7jtn7Dh4TwBUCUKfbIbHvdZ7aeJcE+NlU=",
         })))),
@@ -42,15 +42,15 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nyarn --offline build\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nyarn --offline --production install\nrm -r test\nmkdir -p $out/lib/node_modules/textlint-rule-abbr-within-parentheses\ncp -r . $out/lib/node_modules/textlint-rule-abbr-within-parentheses/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => nix.app(nix.sel(textlint, "testPackages"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             rule: textlint_rule_abbr_within_parentheses,
             testFile: nix.path(here, "./test.md"),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Textlint rule check if write abbreviations within parentheses",
         homepage: "https://github.com/azu/textlint-rule-abbr-within-parentheses",
         changelog: nix.thunk(() => nix.str`https://github.com/azu/textlint-rule-abbr-within-parentheses/releases/tag/${nix.sel(finalAttrs, "version")}`),

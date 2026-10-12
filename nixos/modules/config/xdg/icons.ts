@@ -22,25 +22,25 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "freedesktop"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       xdg: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         icons: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to install files to support the\n[XDG Icon Theme specification](https://specifications.freedesktop.org/icon-theme-spec/latest).\n",
             })))),
           fallbackCursorThemes: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "Names of the fallback cursor themes, in order of preference, to be used when no other icon source can be found.\nSet to `[]` to disable the fallback entirely.\n",
@@ -49,13 +49,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "xdg", "icons", "enable")), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         environment: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           pathsToLink: nix.thunk(() => ["/share/icons", "/share/pixmaps"]),
           systemPackages: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(pkgs, "hicolor-icon-theme"))], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(config, "xdg", "icons", "fallbackCursorThemes"), [])), nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   name: "fallback-cursor-theme",
                   text: nix.thunk(() => nix.str`[Icon Theme]
 Inherits=${nix.app(nix.sel(lib, "concatStringsSep"), ",", nix.thunk(() => nix.sel(config, "xdg", "icons", "fallbackCursorThemes")))}
@@ -64,11 +64,11 @@ Inherits=${nix.app(nix.sel(lib, "concatStringsSep"), ",", nix.thunk(() => nix.se
                 })))),
             ])))),
           sessionVariables: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             XCURSOR_PATH: nix.thunk(() => ["$HOME/.icons", "$HOME/.local/share/icons"]),
           })),
           profileRelativeSessionVariables: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             XCURSOR_PATH: nix.thunk(() => ["/share/icons", "/share/pixmaps"]),
           })),
         })),

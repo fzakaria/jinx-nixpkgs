@@ -18,14 +18,14 @@ export default nix.lambda((args) => (() => {
       const version = "2.9.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: "python-sane",
           sha256: "JAmOuDxujhsBEm5q16WwR5wHsBPF0iBQm1VYkv5JJd4=",
         }))));
       const buildInputs = nix.thunk(() => [sane_backends]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/python-pillow/Sane",
         description: "Python interface to the SANE scanner and frame grabber",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "doronbehar"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, format, src, buildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

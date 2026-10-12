@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const djvulibre = nix.arg($, "djvulibre");
   const backends = nix.argOr($, "backends", () => ["pdf", "ps", "djvu", "tiff", "pixbuf", "comics", "xps"]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xreader",
       version: "4.6.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linuxmint",
           repo: "xreader",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
 )
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Document viewer capable of displaying multiple and single page\ndocument formats like PDF and Postscript",
         homepage: "https://github.com/linuxmint/xreader",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

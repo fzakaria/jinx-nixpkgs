@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const pandas = nix.arg($, "pandas");
   const pyarrow = nix.arg($, "pyarrow");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "adbc-driver-sqlite",
       version: "1.12.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "adbc_driver_sqlite",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-GEZqLwwU+UywsXgYFXzBTta5Ou8KSO9kjelF6brBVA0=",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [adbc_driver_manager, importlib_resources]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, pandas, pyarrow]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         ADBC_SQLITE_LIBRARY: nix.thunk(() => nix.str`libadbc_driver_sqlite${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
       })),
       preBuild: nix.thunk(() => nix.str`cp ${nix.app(nix.sel(lib, "getLib"), arrow_adbc)}/lib/$ADBC_SQLITE_LIBRARY .
@@ -45,7 +45,7 @@ chmod u+w $ADBC_SQLITE_LIBRARY
 `),
       pythonImportsCheck: nix.thunk(() => ["adbc_driver_sqlite"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "ADBC driver for working with SQLite",
         homepage: "https://pypi.org/project/adbc-driver-sqlite",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

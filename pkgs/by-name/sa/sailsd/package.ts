@@ -17,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const jansson = nix.arg($, "jansson");
   const libsailing = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "sails-simulator",
       repo: "libsailing",
       rev: "9b2863ff0c539cd23d91b0254032a7af9c840574",
       sha256: "06rcxkwgms9sxqr1swnnc4jnvgs0iahm4cksd475yd1bp5p1gq6j",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: "0.3.0",
       pname: "sailsd",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "sails-simulator",
           repo: "sailsd",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,14 +36,14 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [jansson, libsailing]),
-      env: nix.thunk(() => ({ __proto__: pos$3, INSTALL_PATH: "$(out)" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, INSTALL_PATH: "$(out)" })),
       postUnpack: nix.thunk(() => nix.str`rmdir $sourceRoot/libsailing
 cp -r ${libsailing} $sourceRoot/libsailing
 chmod 755 -R $sourceRoot/libsailing
 `),
       patchPhase: "substituteInPlace Makefile \\\n  --replace gcc cc\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Simulator daemon for autonomous sailing boats",
         homepage: "https://github.com/sails-simulator/sailsd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

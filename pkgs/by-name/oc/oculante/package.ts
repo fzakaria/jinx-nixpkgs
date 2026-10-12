@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const shaderc = nix.arg($, "shaderc");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "oculante",
       version: "0.9.2.1-unstable-2025-10-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "woelper",
           repo: "oculante",
           rev: "51b9f70b35e09850baee85971720b8d3ac49c80b",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-Bn2HxmFiqOeb3oUnUL/K0SahcFWRlY9RrbGU4orQz+Y=",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         SHADERC_LIB_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), shaderc)}/lib`),
       })),
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config, nasm, perl, wrapGAppsHook3]),
@@ -62,7 +62,7 @@ wrapProgram $out/bin/oculante \\
   --prefix LD_LIBRARY_PATH : ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => nix.concat([libGL, libxkbcommon], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [wayland])))))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Minimalistic crossplatform image viewer written in Rust",
         homepage: "https://github.com/woelper/oculante",

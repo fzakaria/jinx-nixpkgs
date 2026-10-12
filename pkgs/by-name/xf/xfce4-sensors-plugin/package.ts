@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const nvidiaSupport = nix.argOr($, "nvidiaSupport", () => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), nix.thunk(() => nix.sel(linuxPackages, "nvidia_x11", "settings", "libXNVCtrl"))));
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "xfce4-sensors-plugin",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://xfce/src/panel-plugins/xfce4-sensors-plugin/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/xfce4-sensors-plugin-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-hARCuH/d3NhZW9n4Pqi4H3cf4pa7nSq/Dhl54ghyeuk=",
         })))),
@@ -59,15 +59,15 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "xnvctrl", nvidiaSupport)),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitlab.xfce.org/panel-plugins/xfce4-sensors-plugin",
             "rev-prefix": "xfce4-sensors-plugin-",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://docs.xfce.org/panel-plugins/xfce4-sensors-plugin",
         description: "Panel plug-in for different sensors using acpi, lm_sensors and hddtemp",
         mainProgram: "xfce4-sensors",

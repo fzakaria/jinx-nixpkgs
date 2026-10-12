@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.9.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "scikit-rf",
           repo: "scikit-rf",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [numpy, scipy, pandas]);
       const pythonRemoveDeps = nix.thunk(() => ["pre-commit"]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         plot: nix.thunk(() => [matplotlib]),
         xlsx: nix.thunk(() => [openpyxl]),
         netw: nix.thunk(() => [networkx]),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
           nbval,
         ]),
       }));
-      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ __proto__: pos$3, MPLBACKEND: "Agg" }))));
+      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$3, MPLBACKEND: "Agg" }))));
       const nativeCheckInputs = nix.thunk(() => [
         pytest_mock,
         matplotlib,
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["skrf"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python library for RF/Microwave engineering",
         homepage: "https://scikit-rf.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/scikit-rf/scikit-rf/releases/tag/${nix.sel(src, "tag")}`),
@@ -97,7 +97,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

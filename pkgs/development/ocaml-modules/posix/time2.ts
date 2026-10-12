@@ -14,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const posix_types = nix.arg($, "posix-types");
   const posix_errno = nix.arg($, "posix-errno");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "posix-time2",
       version: nix.thunk(() => nix.attr(posix_base, "version")),
       src: nix.thunk(() => nix.attr(posix_base, "src")),
       propagatedBuildInputs: nix.thunk(() => [posix_base, posix_types, posix_errno]),
       doCheck: true,
       meta: nix.thunk(() => nix.update(nix.sel(posix_base, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Posix-time2 provides the types and bindings for posix time APIs",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

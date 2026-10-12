@@ -72,9 +72,9 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "lemmy"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$59,
+    [nix.POS]: pos$59,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -89,100 +89,100 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "lemmy", "jwtSecretPath"]), "As of v0.13.0, Lemmy auto-generates the JWT secret.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       services: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         lemmy: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Lemmy, a federated alternative to Reddit")),
           server: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "lemmy-server", nix.thunk(() => ({})))),
           })),
           ui: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "lemmy-ui", nix.thunk(() => ({})))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 1234n,
                 description: "Port where lemmy-ui should listen for incoming requests.",
               })))),
           })),
           caddy: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "exposing Lemmy with the Caddy reverse proxy")),
           })),
           nginx: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "exposing Lemmy with the nginx reverse proxy")),
           })),
           database: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             createLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "creation of a local PostgreSQL database")),
             uri: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 example: "postgres:///lemmy?host=/run/postgresql&user=lemmy",
                 description: "The connection URI to use. Takes priority over the configuration file if set.",
               })))),
             uriFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
                 description: "File which contains the database uri.",
               })))),
           })),
           pictrsApiKeyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "File which contains the value of `pictrs.api_key`.",
             })))),
           smtpPasswordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "File which contains the value of `email.smtp_password`.",
             })))),
           adminPasswordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "File which contains the value of `setup.admin_password`.",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               default: nix.thunk(() => ({})),
               description: "Lemmy configuration",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     hostname: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         example: "lemmy.ml",
                         description: "Public domain name of the instance.",
                       })))),
                     port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$14,
+                        [nix.POS]: pos$14,
                         type: nix.thunk(() => nix.sel(lib, "types", "port")),
                         default: 8536n,
                         description: "Port where Lemmy should listen for incoming requests.",
                       })))),
                     captcha: nix.thunk(() => ({
-                      __proto__: pos$17,
+                      [nix.POS]: pos$17,
                       enabled: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$15,
+                          [nix.POS]: pos$15,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: true,
                           description: "Whether to enable captcha.",
                         })))),
                       difficulty: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$16,
+                          [nix.POS]: pos$16,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["easy", "medium", "hard"]))),
                           default: "medium",
                           description: "Difficulty of the captcha to solve.",
@@ -196,41 +196,41 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => (() => {
       const secretOptions = nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         pictrsApiKeyFile: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           setting: nix.thunk(() => ["pictrs", "api_key"]),
           path: nix.thunk(() => nix.sel(cfg, "pictrsApiKeyFile")),
         })),
         smtpPasswordFile: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           setting: nix.thunk(() => ["email", "smtp_password"]),
           path: nix.thunk(() => nix.sel(cfg, "smtpPasswordFile")),
         })),
         adminPasswordFile: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           setting: nix.thunk(() => ["setup", "admin_password"]),
           path: nix.thunk(() => nix.sel(cfg, "adminPasswordFile")),
         })),
         uriFile: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           setting: nix.thunk(() => ["database", "uri"]),
           path: nix.thunk(() => nix.sel(cfg, "database", "uriFile")),
         })),
       }));
       const secrets = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (option) => (data) => !nix.eq(nix.sel(data, "path"), null), secretOptions));
       return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$58,
+          [nix.POS]: pos$58,
           services: nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             lemmy: nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               settings: nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "recursiveUpdate"), nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mapAttrs"), (name) => nix.sel(lib, "mkDefault"), nix.thunk(() => ({
-                    __proto__: pos$31,
+                    [nix.POS]: pos$31,
                     bind: "127.0.0.1",
                     tls_enabled: true,
                     pictrs: nix.thunk(() => ({
-                      __proto__: pos$29,
+                      [nix.POS]: pos$29,
                       url: nix.thunk(() => (() => {
                         const w = nix.withScope(nix.thunk(() => nix.sel(config, "services", "pict-rs")), null);
                         return nix.str`http://${nix.lookup(w, "address")}:${nix.app(nix.builtins.toString, nix.thunk(() => nix.lookup(w, "port")))}`;
@@ -238,7 +238,7 @@ export default nix.lambda((args) => (() => {
                     })),
                     actor_name_max_length: 20n,
                     rate_limit: nix.thunk(() => ({
-                      __proto__: pos$30,
+                      [nix.POS]: pos$30,
                       message: 180n,
                       message_per_second: 60n,
                       post: 6n,
@@ -249,36 +249,36 @@ export default nix.lambda((args) => (() => {
                       image_per_second: 3600n,
                     })),
                   }))), {
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   database: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => nix.sel(lib, "mkDefault"), nix.thunk(() => ({
-                      __proto__: pos$32,
+                      [nix.POS]: pos$32,
                       user: "lemmy",
                       host: "/run/postgresql",
                       port: 5432n,
                       database: "lemmy",
                       pool_size: 5n,
                     })))),
-                })), nix.thunk(() => nix.app(nix.sel(lib, "foldlAttrs"), (acc) => (option) => (data) => nix.update(acc, nix.app(nix.sel(lib, "setAttrByPath"), nix.thunk(() => nix.sel(data, "setting")), nix.thunk(() => ({ __proto__: pos$34, _secret: option })))), nix.thunk(() => ({})), secrets)))),
+                })), nix.thunk(() => nix.app(nix.sel(lib, "foldlAttrs"), (acc) => (option) => (data) => nix.update(acc, nix.app(nix.sel(lib, "setAttrByPath"), nix.thunk(() => nix.sel(data, "setting")), nix.thunk(() => ({ [nix.POS]: pos$34, _secret: option })))), nix.thunk(() => ({})), secrets)))),
             })),
             postgresql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 enable: true,
                 ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "database", "database"))]),
                 ensureUsers: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$36,
+                    [nix.POS]: pos$36,
                     name: nix.thunk(() => nix.sel(cfg, "settings", "database", "user")),
                     ensureDBOwnership: true,
                   })),
                 ]),
               })))),
-            "pict-rs": nix.thunk(() => ({ __proto__: pos$38, enable: true })),
+            "pict-rs": nix.thunk(() => ({ [nix.POS]: pos$38, enable: true })),
             caddy: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "caddy", "enable")), nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                 virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                   [nix.str`${nix.sel(cfg, "settings", "hostname")}`, nix.thunk(() => ({
-                    __proto__: pos$39,
+                    [nix.POS]: pos$39,
                     extraConfig: nix.thunk(() => nix.str`handle_path /static/* {
   root * ${nix.sel(cfg, "ui", "package")}/dist
   file_server
@@ -314,24 +314,24 @@ handle {
                 ])),
               })))),
             nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "nginx", "enable")), nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                 virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                   [nix.str`${nix.sel(cfg, "settings", "hostname")}`, nix.thunk(() => ({
-                    __proto__: pos$44,
+                    [nix.POS]: pos$44,
                     locations: nix.thunk(() => (() => {
                       const ui = nix.thunk(() => nix.str`http://127.0.0.1:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "ui", "port")))}`);
                       const backend = nix.thunk(() => nix.str`http://127.0.0.1:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "settings", "port")))}`);
                       return {
-                        __proto__: pos$43,
+                        [nix.POS]: pos$43,
                         "~ ^/(api|pictrs|feeds|nodeinfo|.well-known)": nix.thunk(() => ({
-                          __proto__: pos$41,
+                          [nix.POS]: pos$41,
                           proxyPass: backend,
                           proxyWebsockets: true,
                           recommendedProxySettings: true,
                         })),
                         "/": nix.thunk(() => ({
-                          __proto__: pos$42,
+                          [nix.POS]: pos$42,
                           extraConfig: nix.thunk(() => nix.str`set $proxpass "${ui}";
 if ($http_accept = "application/activity+json") {
   set $proxpass "${backend}";
@@ -362,32 +362,32 @@ proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
           })),
           assertions: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "database", "createLocally")) || nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "settings", "database", "host"), "localhost")) || nix.asBool(nix.eq(nix.sel(cfg, "settings", "database", "host"), "/run/postgresql")))))),
               message: "if you want to create the database locally, you need to use a local database",
             })),
             nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               assertion: nix.thunk(() => (nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "hasAttrByPath"), nix.thunk(() => ["federation"]), nix.thunk(() => nix.sel(cfg, "settings"))))) && nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "hasAttrByPath"), nix.thunk(() => ["federation", "enabled"]), nix.thunk(() => nix.sel(cfg, "settings"))))))),
               message: "`services.lemmy.settings.federation` was removed in 0.17.0 and no longer has any effect",
             })),
             nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, "database", "uriFile"), null)) || nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "database", "uri"), null)) && nix.asBool(!nix.asBool(nix.sel(cfg, "database", "createLocally"))))))),
               message: "specifying a database uri while also specifying a database uri file is not allowed",
             })),
           ]),
           systemd: nix.thunk(() => ({
-            __proto__: pos$57,
+            [nix.POS]: pos$57,
             services: nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               lemmy: nix.thunk(() => (() => {
                 const substitutedConfig = "/run/lemmy/config.hjson";
                 return {
-                  __proto__: pos$52,
+                  [nix.POS]: pos$52,
                   description: "Lemmy server",
                   environment: nix.thunk(() => ({
-                    __proto__: pos$50,
+                    [nix.POS]: pos$50,
                     LEMMY_CONFIG_LOCATION: nix.thunk(() => (nix.asBool(nix.eq(secrets, {})) ? nix.app(nix.sel(settingsFormat, "generate"), "config.hjson", nix.thunk(() => nix.sel(cfg, "settings"))) : substitutedConfig)),
                     LEMMY_DATABASE_URL: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "database", "uri"), null)) ? nix.sel(cfg, "database", "uri") : nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), "postgres:///lemmy?host=/run/postgresql&user=lemmy"))),
                   })),
@@ -404,7 +404,7 @@ cd "$CREDENTIALS_DIRECTORY"
 ${nix.app(nix.sel(utils, "genJqSecretsReplacementSnippet"), nix.thunk(() => nix.sel(cfg, "settings")), substitutedConfig)}
 `))),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$51,
+                    [nix.POS]: pos$51,
                     DynamicUser: true,
                     RuntimeDirectory: "lemmy",
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "server", "package")}/bin/lemmy_server`),
@@ -418,10 +418,10 @@ ${nix.app(nix.sel(utils, "genJqSecretsReplacementSnippet"), nix.thunk(() => nix.
                 };
               })()),
               "lemmy-ui": nix.thunk(() => ({
-                __proto__: pos$55,
+                [nix.POS]: pos$55,
                 description: "Lemmy ui",
                 environment: nix.thunk(() => ({
-                  __proto__: pos$53,
+                  [nix.POS]: pos$53,
                   LEMMY_UI_HOST: nix.thunk(() => nix.str`127.0.0.1:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "ui", "port")))}`),
                   LEMMY_UI_LEMMY_INTERNAL_HOST: nix.thunk(() => nix.str`127.0.0.1:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "settings", "port")))}`),
                   LEMMY_UI_LEMMY_EXTERNAL_HOST: nix.thunk(() => nix.sel(cfg, "settings", "hostname")),
@@ -436,7 +436,7 @@ ${nix.app(nix.sel(utils, "genJqSecretsReplacementSnippet"), nix.thunk(() => nix.
                 after: nix.thunk(() => ["lemmy.service"]),
                 requires: nix.thunk(() => ["lemmy.service"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$54,
+                  [nix.POS]: pos$54,
                   DynamicUser: true,
                   WorkingDirectory: nix.thunk(() => nix.str`${nix.sel(cfg, "ui", "package")}`),
                   ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "nodejs-slim")))} ${nix.sel(cfg, "ui", "package")}/dist/js/server.js`),

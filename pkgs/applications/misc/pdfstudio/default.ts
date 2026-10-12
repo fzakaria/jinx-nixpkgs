@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
   const desktopName = nix.thunk(() => (nix.asBool(nix.eq(program, "pdfstudio")) ? nix.str`PDF Studio ${year}` : "PDF Studio Viewer"));
   const dot2dash = (str) => nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), str);
   return nix.sel({
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     pdfstudioviewer: nix.thunk(() => nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => (() => {
         const desktopName_1 = desktopName;
         const pname_1 = pname;
@@ -39,13 +39,13 @@ export default nix.lambda((args) => (() => {
         const version = nix.thunk(() => nix.str`${year_1}.0.1`);
         const longDescription_1 = "PDF Studio Viewer is an easy to use, full-featured PDF editing software. This is the free edition. For the standard/pro edition, see the package pdfstudio.\n";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: "https://web.archive.org/web/20241201121627/https://download.qoppa.com/pdfstudioviewer/PDFStudioViewer_linux64.deb",
             hash: "sha256-hxReGuyGsBiEr7wWxWzQUQvxk11sgF9HkJ07L9i+e+0=",
           }))));
         const jdk = jdk17;
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           desktopName: desktopName_1,
           pname: pname_1,
           program: program_1,
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         const year_1 = year;
         const version = nix.thunk(() => nix.str`${year_1}.2.2`);
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: nix.thunk(() => nix.str`https://download.qoppa.com/pdfstudio/v${year_1}/PDFStudio_v${nix.app(dot2dash, version)}_linux64.deb`),
             hash: "sha256-HdkwRMqwquAaW6l3AukGReFtw2f5n36tZ8vXo6QiPvU=",
           }))));
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
         ]);
         const jdk = jdk11;
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           desktopName: desktopName_1,
           longDescription: longDescription_1,
           pname: pname_1,
@@ -93,7 +93,7 @@ export default nix.lambda((args) => (() => {
         const year_1 = year;
         const version = nix.thunk(() => nix.str`${year_1}.2.5`);
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: nix.thunk(() => nix.str`https://download.qoppa.com/pdfstudio/v${year_1}/PDFStudio_v${nix.app(dot2dash, version)}_linux64.deb`),
             hash: "sha256-3faZyWUnFe//S+gOskWhsZ6jzHw67FRsv/xP77R1jj4=",
           }))));
@@ -102,7 +102,7 @@ export default nix.lambda((args) => (() => {
         ]);
         const jdk = jdk17;
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           desktopName: desktopName_1,
           longDescription: longDescription_1,
           pname: pname_1,
@@ -122,7 +122,7 @@ export default nix.lambda((args) => (() => {
         const year_1 = year;
         const version = nix.thunk(() => nix.str`${year_1}.0.4`);
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             url: nix.thunk(() => nix.str`https://download.qoppa.com/pdfstudio/v${year_1}/PDFStudio_v${nix.app(dot2dash, version)}_linux64.deb`),
             hash: "sha256-TTh0yzpCOpxFKGfrakvnu1Y+l9NI0nfWlVuvSWpkRkE=",
           }))));
@@ -131,7 +131,7 @@ export default nix.lambda((args) => (() => {
         ]);
         const jdk = jdk17;
         return {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           desktopName: desktopName_1,
           longDescription: longDescription_1,
           pname: pname_1,
@@ -151,7 +151,7 @@ export default nix.lambda((args) => (() => {
         const year_1 = year;
         const version = nix.thunk(() => nix.str`${year_1}.0.1`);
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             url: nix.thunk(() => nix.str`https://download.qoppa.com/pdfstudio/v${year_1}/PDFStudio_v${nix.app(dot2dash, version)}_linux64.deb`),
             hash: "sha256-dptpkWPlocp4U9QSp+AJTOSVWA3RRs8GrFfXhCYzOJc=",
           }))));
@@ -160,7 +160,7 @@ export default nix.lambda((args) => (() => {
         ]);
         const jdk = jdk17;
         return {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           desktopName: desktopName_1,
           longDescription: longDescription_1,
           pname: pname_1,

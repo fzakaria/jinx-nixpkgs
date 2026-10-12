@@ -131,19 +131,19 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "outline"));
   const mkRemovedOptionModule = nix.thunk(() => nix.attr(lib, "mkRemovedOptionModule"));
   return {
-    __proto__: pos$118,
+    [nix.POS]: pos$118,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["services", "outline", "sequelizeArguments"]), "Database migration are run agains configurated database by outline directly")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$93,
+      [nix.POS]: pos$93,
       services: nix.thunk(() => ({
-        __proto__: pos$92,
+        [nix.POS]: pos$92,
         outline: nix.thunk(() => ({
-          __proto__: pos$91,
+          [nix.POS]: pos$91,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "outline")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: nix.thunk(() => nix.sel(pkgs, "outline")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.outline")),
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
@@ -160,119 +160,119 @@ export default nix.lambda((args) => (() => {
               description: "Outline package to use.",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: defaultUser,
               description: "User under which the service should run. If this is the default value,\nthe user will be created, with the specified group as the primary\ngroup.\n",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: defaultUser,
               description: "Group under which the service should run. If this is the default value,\nthe group will be created.\n",
             })))),
           secretKeyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/var/lib/outline/secret_key",
               description: "File path that contains the application secret key. It must be 32\nbytes long and hex-encoded. If the file does not exist, a new key will\nbe generated and saved here.\n",
             })))),
           utilsSecretFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/var/lib/outline/utils_secret",
               description: "File path that contains the utility secret key. If the file does not\nexist, a new key will be generated and saved here.\n",
             })))),
           databaseUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "local",
               description: "URI to use for the main PostgreSQL database. If this needs to include\ncredentials that shouldn't be world-readable in the Nix store, set an\nenvironment file on the systemd service and override the\n`DATABASE_URL` entry. Pass the string\n`local` to setup a database on the local server.\n",
             })))),
           redisUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "local",
               description: "Connection to a redis server. If this needs to include credentials\nthat shouldn't be world-readable in the Nix store, set an environment\nfile on the systemd service and override the\n`REDIS_URL` entry. Pass the string\n`local` to setup a local Redis database.\n",
             })))),
           publicUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "http://localhost:3000",
               description: "The fully qualified, publicly accessible URL",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 3000n,
               description: "Listening port.",
             })))),
           storage: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               description: "To support uploading of images for avatars and document attachments an\ns3-compatible storage can be provided. AWS S3 is recommended for\nredundancy however if you want to keep all file storage local an\nalternative such as [garage](https://garagehq.deuxfleurs.fr/)\ncan be used.\nLocal filesystem storage can also be used.\n\nA more detailed guide on setting up storage is available\n[here](https://docs.getoutline.com/s/hosting/doc/file-storage-N4M0T6Ypu7).\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  accessKey = \"...\";\n  secretKeyFile = \"/somewhere\";\n  uploadBucketUrl = \"https://garage.example.com\";\n  uploadBucketName = \"outline\";\n  region = \"us-east-1\";\n}\n")),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   options: nix.thunk(() => ({
-                    __proto__: pos$21,
+                    [nix.POS]: pos$21,
                     storageType: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["local", "s3"]))),
                         description: "File storage type, it can be local or s3.",
                         default: "s3",
                       })))),
                     localRootDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         description: "If `storageType` is `local`, this sets the parent directory\nunder which all attachments/images go.\n",
                         default: "/var/lib/outline/data",
                       })))),
                     accessKey: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         description: "S3 access key.",
                       })))),
                     accelerateUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: null,
                         description: "URL for AWS S3 [transfer acceleration](https://docs.aws.amazon.com/AmazonS3/latest/userguide/transfer-acceleration.html).\n",
                       })))),
                     secretKeyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$14,
+                        [nix.POS]: pos$14,
                         type: nix.thunk(() => nix.sel(lib, "types", "path")),
                         description: "File path that contains the S3 secret key.",
                       })))),
                     region: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$15,
+                        [nix.POS]: pos$15,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "xx-xxxx-x",
                         description: "AWS S3 region name.",
                       })))),
                     uploadBucketUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$16,
+                        [nix.POS]: pos$16,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         description: "URL endpoint of an S3-compatible API where uploads should be\nstored.\n",
                       })))),
                     uploadBucketName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$17,
+                        [nix.POS]: pos$17,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         description: "Name of the bucket where uploads should be stored.",
                       })))),
                     uploadMaxSize: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$18,
+                        [nix.POS]: pos$18,
                         type: nix.thunk(() => nix.sel(lib, "types", "int")),
                         default: 26214400n,
                         description: "Maxmium file size for uploads.",
                       })))),
                     forcePathStyle: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$19,
+                        [nix.POS]: pos$19,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         default: true,
                         description: "Force S3 path style.",
                       })))),
                     acl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$20,
+                        [nix.POS]: pos$20,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "private",
                         description: "ACL setting.",
@@ -281,20 +281,20 @@ export default nix.lambda((args) => (() => {
                 })))),
             })))),
           slackAuthentication: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               description: "To configure Slack auth, you'll need to create an Application at\n<https://api.slack.com/apps>\n\nWhen configuring the Client ID, add a redirect URL under \"OAuth & Permissions\"\nto `https://[publicUrl]/auth/slack.callback`.\n",
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$27,
+                    [nix.POS]: pos$27,
                     options: nix.thunk(() => ({
-                      __proto__: pos$26,
+                      [nix.POS]: pos$26,
                       clientId: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$24,
+                          [nix.POS]: pos$24,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "Authentication key.",
                         })))),
                       secretFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$25,
+                          [nix.POS]: pos$25,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "File path containing the authentication secret.",
                         })))),
@@ -302,20 +302,20 @@ export default nix.lambda((args) => (() => {
                   })))))),
             })))),
           googleAuthentication: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               description: "To configure Google auth, you'll need to create an OAuth Client ID at\n<https://console.cloud.google.com/apis/credentials>\n\nWhen configuring the Client ID, add an Authorized redirect URI to\n`https://[publicUrl]/auth/google.callback`.\n",
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$32,
+                    [nix.POS]: pos$32,
                     options: nix.thunk(() => ({
-                      __proto__: pos$31,
+                      [nix.POS]: pos$31,
                       clientId: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$29,
+                          [nix.POS]: pos$29,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "Authentication client identifier.",
                         })))),
                       clientSecretFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$30,
+                          [nix.POS]: pos$30,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "File path containing the authentication secret.",
                         })))),
@@ -323,25 +323,25 @@ export default nix.lambda((args) => (() => {
                   })))))),
             })))),
           azureAuthentication: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               description: "To configure Microsoft/Azure auth, you'll need to create an OAuth\nClient. See\n[the guide](https://wiki.generaloutline.com/share/dfa77e56-d4d2-4b51-8ff8-84ea6608faa4)\nfor details on setting up your Azure App.\n",
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$38,
+                    [nix.POS]: pos$38,
                     options: nix.thunk(() => ({
-                      __proto__: pos$37,
+                      [nix.POS]: pos$37,
                       clientId: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$34,
+                          [nix.POS]: pos$34,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "Authentication client identifier.",
                         })))),
                       clientSecretFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$35,
+                          [nix.POS]: pos$35,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "File path containing the authentication secret.",
                         })))),
                       resourceAppId: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$36,
+                          [nix.POS]: pos$36,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "Authentication application resource ID.",
                         })))),
@@ -349,31 +349,31 @@ export default nix.lambda((args) => (() => {
                   })))))),
             })))),
           discordAuthentication: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               description: "To configure Discord auth, you'll need to create an application at\n<https://discord.com/developers/applications/>\n\nSee <https://docs.getoutline.com/s/hosting/doc/discord-g4JdWFFub6>\nfor details on setting up your Discord app.\n",
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$45,
+                    [nix.POS]: pos$45,
                     options: nix.thunk(() => ({
-                      __proto__: pos$44,
+                      [nix.POS]: pos$44,
                       clientId: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$40,
+                          [nix.POS]: pos$40,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "Authentication client identifier.",
                         })))),
                       clientSecretFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$41,
+                          [nix.POS]: pos$41,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "File path containing the authentication secret.",
                         })))),
                       serverId: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$42,
+                          [nix.POS]: pos$42,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "",
                           description: "Restrict logins to a specific server (optional, but recommended).\nYou can find a Discord server's ID by right-clicking the server icon,\nand select “Copy Server ID”.\n",
                         })))),
                       serverRoles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$43,
+                          [nix.POS]: pos$43,
                           type: nix.thunk(() => nix.sel(lib, "types", "commas")),
                           default: "",
                           description: "Optionally restrict logins to a comma-separated list of role IDs",
@@ -382,52 +382,52 @@ export default nix.lambda((args) => (() => {
                   })))))),
             })))),
           oidcAuthentication: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$57,
+              [nix.POS]: pos$57,
               description: "To configure generic OIDC auth, you'll need some kind of identity\nprovider. See the documentation for whichever IdP you use to fill out\nall the fields. The redirect URL is\n`https://[publicUrl]/auth/oidc.callback`.\n",
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$56,
+                    [nix.POS]: pos$56,
                     options: nix.thunk(() => ({
-                      __proto__: pos$55,
+                      [nix.POS]: pos$55,
                       clientId: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$47,
+                          [nix.POS]: pos$47,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "Authentication client identifier.",
                         })))),
                       clientSecretFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$48,
+                          [nix.POS]: pos$48,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "File path containing the authentication secret.",
                         })))),
                       authUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$49,
+                          [nix.POS]: pos$49,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "OIDC authentication URL endpoint.",
                         })))),
                       tokenUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$50,
+                          [nix.POS]: pos$50,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "OIDC token URL endpoint.",
                         })))),
                       userinfoUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$51,
+                          [nix.POS]: pos$51,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "OIDC userinfo URL endpoint.",
                         })))),
                       usernameClaim: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$52,
+                          [nix.POS]: pos$52,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "Specify which claims to derive user information from. Supports any\nvalid JSON path with the JWT payload\n",
                           default: "preferred_username",
                         })))),
                       displayName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$53,
+                          [nix.POS]: pos$53,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "Display name for OIDC authentication.",
                           default: "OpenID",
                         })))),
                       scopes: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$54,
+                          [nix.POS]: pos$54,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                           description: "OpenID authentication scopes.",
                           default: nix.thunk(() => ["openid", "profile", "email"]),
@@ -436,73 +436,73 @@ export default nix.lambda((args) => (() => {
                   })))))),
             })))),
           sslKeyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$58,
+              [nix.POS]: pos$58,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "File path that contains the Base64-encoded private key for HTTPS\ntermination. This is only required if you do not use an external reverse\nproxy. See\n[the documentation](https://wiki.generaloutline.com/share/dfa77e56-d4d2-4b51-8ff8-84ea6608faa4).\n",
             })))),
           sslCertFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "File path that contains the Base64-encoded certificate for HTTPS\ntermination. This is only required if you do not use an external reverse\nproxy. See\n[the documentation](https://wiki.generaloutline.com/share/dfa77e56-d4d2-4b51-8ff8-84ea6608faa4).\n",
             })))),
           cdnUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$60,
+              [nix.POS]: pos$60,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "",
               description: "If using a Cloudfront/Cloudflare distribution or similar it can be set\nusing this option. This will cause paths to JavaScript files,\nstylesheets and images to be updated to the hostname defined here. In\nyour CDN configuration the origin server should be set to public URL.\n",
             })))),
           forceHttps: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$61,
+              [nix.POS]: pos$61,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Auto-redirect to HTTPS in production. The default is\n`true` but you may set this to `false`\nif you can be sure that SSL is terminated at an external loadbalancer.\n",
             })))),
           enableUpdateCheck: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$62,
+              [nix.POS]: pos$62,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Have the installation check for updates by sending anonymized statistics\nto the maintainers.\n",
             })))),
           concurrency: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$63,
+              [nix.POS]: pos$63,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 1n,
               description: "How many processes should be spawned. For a rough estimate, divide your\nserver's available memory by 512.\n",
             })))),
           maximumImportSize: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$64,
+              [nix.POS]: pos$64,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 5120000n,
               description: "The maximum size of document imports. Overriding this could be required\nif you have especially large Word documents with embedded imagery.\n",
             })))),
           debugOutput: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$65,
+              [nix.POS]: pos$65,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["http"]))))),
               default: null,
               description: "Set this to `http` log HTTP requests.",
             })))),
           slackIntegration: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$71,
+              [nix.POS]: pos$71,
               description: "For a complete Slack integration with search and posting to channels\nthis configuration is also needed. See here for details:\n<https://wiki.generaloutline.com/share/be25efd1-b3ef-4450-b8e5-c4a4fc11e02a>\n",
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$70,
+                    [nix.POS]: pos$70,
                     options: nix.thunk(() => ({
-                      __proto__: pos$69,
+                      [nix.POS]: pos$69,
                       verificationTokenFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$66,
+                          [nix.POS]: pos$66,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "File path containing the verification token.",
                         })))),
                       appId: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$67,
+                          [nix.POS]: pos$67,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "Application ID.",
                         })))),
                       messageActions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$68,
+                          [nix.POS]: pos$68,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: true,
                           description: "Whether to enable message actions.",
@@ -511,75 +511,75 @@ export default nix.lambda((args) => (() => {
                   })))))),
             })))),
           googleAnalyticsId: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$72,
+              [nix.POS]: pos$72,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "Optionally enable Google Analytics to track page views in the knowledge\nbase.\n",
             })))),
           sentryDsn: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$73,
+              [nix.POS]: pos$73,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "Optionally enable [Sentry](https://sentry.io/) to\ntrack errors and performance.\n",
             })))),
           sentryTunnel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$74,
+              [nix.POS]: pos$74,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "Optionally add a\n[Sentry proxy tunnel](https://docs.sentry.io/platforms/javascript/troubleshooting/#using-the-tunnel-option)\nfor bypassing ad blockers in the UI.\n",
             })))),
           logo: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$75,
+              [nix.POS]: pos$75,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "Custom logo displayed on the authentication screen. This will be scaled\nto a height of 60px.\n",
             })))),
           smtp: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$86,
+              [nix.POS]: pos$86,
               description: "To support sending outgoing transactional emails such as\n\"document updated\" or \"you've been invited\" you'll need to provide\nauthentication for an SMTP server.\n",
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$85,
+                    [nix.POS]: pos$85,
                     options: nix.thunk(() => ({
-                      __proto__: pos$84,
+                      [nix.POS]: pos$84,
                       host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$76,
+                          [nix.POS]: pos$76,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "Host name or IP address of the SMTP server.",
                         })))),
                       port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$77,
+                          [nix.POS]: pos$77,
                           type: nix.thunk(() => nix.sel(lib, "types", "port")),
                           description: "TCP port of the SMTP server.",
                         })))),
                       username: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$78,
+                          [nix.POS]: pos$78,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "Username to authenticate with.",
                         })))),
                       passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$79,
+                          [nix.POS]: pos$79,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "File path containing the password to authenticate with.\n",
                         })))),
                       fromEmail: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$80,
+                          [nix.POS]: pos$80,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "Sender email in outgoing mail.",
                         })))),
                       replyEmail: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$81,
+                          [nix.POS]: pos$81,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "Reply address in outgoing mail.",
                         })))),
                       tlsCiphers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$82,
+                          [nix.POS]: pos$82,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "",
                           description: "Override SMTP cipher configuration.",
                         })))),
                       secure: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$83,
+                          [nix.POS]: pos$83,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: true,
                           description: "Use a secure SMTP connection.",
@@ -588,7 +588,7 @@ export default nix.lambda((args) => (() => {
                   })))))),
             })))),
           defaultLanguage: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$87,
+              [nix.POS]: pos$87,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => [
                   "da_DK",
                   "de_DE",
@@ -614,16 +614,16 @@ export default nix.lambda((args) => (() => {
               description: "The default interface language. See\n[translate.getoutline.com](https://translate.getoutline.com/)\nfor a list of available language codes and their rough percentage\ntranslated.\n",
             })))),
           rateLimiter: nix.thunk(() => ({
-            __proto__: pos$90,
+            [nix.POS]: pos$90,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "rate limiter for the application web server")),
             requests: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$88,
+                [nix.POS]: pos$88,
                 type: nix.thunk(() => nix.sel(lib, "types", "int")),
                 default: 5000n,
                 description: "Maximum number of requests in a throttling window.",
               })))),
             durationWindow: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$89,
+                [nix.POS]: pos$89,
                 type: nix.thunk(() => nix.sel(lib, "types", "int")),
                 default: 60n,
                 description: "Length of a throttling window.",
@@ -633,12 +633,12 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$117,
+        [nix.POS]: pos$117,
         users: nix.thunk(() => ({
-          __proto__: pos$95,
+          [nix.POS]: pos$95,
           users: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), defaultUser)), nix.thunk(() => nix.attrsDyn({}, [
               [defaultUser, nix.thunk(() => ({
-                __proto__: pos$94,
+                [nix.POS]: pos$94,
                 isSystemUser: true,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
               }))],
@@ -646,9 +646,9 @@ export default nix.lambda((args) => (() => {
           groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), defaultUser)), nix.thunk(() => nix.attrsDyn({}, [[defaultUser, nix.thunk(() => ({}))]])))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$110,
+          [nix.POS]: pos$110,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$96,
+            [nix.POS]: pos$96,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`f ${nix.sel(cfg, "secretKeyFile")} 0600 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} -`),
               nix.thunk(() => nix.str`f ${nix.sel(cfg, "utilsSecretFile")} 0600 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} -`),
@@ -656,12 +656,12 @@ export default nix.lambda((args) => (() => {
             ]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$109,
+            [nix.POS]: pos$109,
             outline: nix.thunk(() => (() => {
               const localRedisUrl = "redis+unix:///run/redis-outline/redis.sock";
               const localPostgresqlUrl = "postgres://localhost/outline?host=/run/postgresql";
               return {
-                __proto__: pos$108,
+                [nix.POS]: pos$108,
                 description: "Outline wiki and knowledge base",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 after: nix.thunk(() => nix.concat(["network.target"], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(nix.sel(cfg, "databaseUrl"), "local")), "postgresql.target"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(nix.sel(cfg, "redisUrl"), "local")), "redis-outline.service")))),
@@ -669,7 +669,7 @@ export default nix.lambda((args) => (() => {
                 path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openssl"))]),
                 environment: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$97,
+                      [nix.POS]: pos$97,
                       NODE_ENV: "production",
                       REDIS_URL: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "redisUrl"), "local")) ? localRedisUrl : nix.sel(cfg, "redisUrl"))),
                       URL: nix.thunk(() => nix.sel(cfg, "publicUrl")),
@@ -693,7 +693,7 @@ export default nix.lambda((args) => (() => {
                       FILE_STORAGE_LOCAL_ROOT_DIR: nix.thunk(() => nix.sel(cfg, "storage", "localRootDir")),
                     })),
                     nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "storage", "storageType"), "s3")), nix.thunk(() => ({
-                        __proto__: pos$98,
+                        [nix.POS]: pos$98,
                         AWS_ACCESS_KEY_ID: nix.thunk(() => nix.sel(cfg, "storage", "accessKey")),
                         AWS_REGION: nix.thunk(() => nix.sel(cfg, "storage", "region")),
                         AWS_S3_UPLOAD_BUCKET_URL: nix.thunk(() => nix.sel(cfg, "storage", "uploadBucketUrl")),
@@ -702,24 +702,24 @@ export default nix.lambda((args) => (() => {
                         AWS_S3_ACL: nix.thunk(() => nix.sel(cfg, "storage", "acl")),
                       })))),
                     nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "storage", "storageType"), "s3")) && nix.asBool(!nix.eq(nix.sel(cfg, "storage", "accelerateUrl"), null)))), nix.thunk(() => ({
-                        __proto__: pos$99,
+                        [nix.POS]: pos$99,
                         AWS_S3_ACCELERATE_URL: nix.thunk(() => nix.sel(cfg, "storage", "accelerateUrl")),
                       })))),
                     nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "slackAuthentication"), null)), nix.thunk(() => ({
-                        __proto__: pos$100,
+                        [nix.POS]: pos$100,
                         SLACK_CLIENT_ID: nix.thunk(() => nix.sel(cfg, "slackAuthentication", "clientId")),
                       })))),
                     nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "googleAuthentication"), null)), nix.thunk(() => ({
-                        __proto__: pos$101,
+                        [nix.POS]: pos$101,
                         GOOGLE_CLIENT_ID: nix.thunk(() => nix.sel(cfg, "googleAuthentication", "clientId")),
                       })))),
                     nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "azureAuthentication"), null)), nix.thunk(() => ({
-                        __proto__: pos$102,
+                        [nix.POS]: pos$102,
                         AZURE_CLIENT_ID: nix.thunk(() => nix.sel(cfg, "azureAuthentication", "clientId")),
                         AZURE_RESOURCE_APP_ID: nix.thunk(() => nix.sel(cfg, "azureAuthentication", "resourceAppId")),
                       })))),
                     nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "oidcAuthentication"), null)), nix.thunk(() => ({
-                        __proto__: pos$103,
+                        [nix.POS]: pos$103,
                         OIDC_CLIENT_ID: nix.thunk(() => nix.sel(cfg, "oidcAuthentication", "clientId")),
                         OIDC_AUTH_URI: nix.thunk(() => nix.sel(cfg, "oidcAuthentication", "authUrl")),
                         OIDC_TOKEN_URI: nix.thunk(() => nix.sel(cfg, "oidcAuthentication", "tokenUrl")),
@@ -729,18 +729,18 @@ export default nix.lambda((args) => (() => {
                         OIDC_SCOPES: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.sel(cfg, "oidcAuthentication", "scopes")))),
                       })))),
                     nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "slackIntegration"), null)), nix.thunk(() => ({
-                        __proto__: pos$104,
+                        [nix.POS]: pos$104,
                         SLACK_APP_ID: nix.thunk(() => nix.sel(cfg, "slackIntegration", "appId")),
                         SLACK_MESSAGE_ACTIONS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "slackIntegration", "messageActions")))),
                       })))),
                     nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "discordAuthentication"), null)), nix.thunk(() => ({
-                        __proto__: pos$105,
+                        [nix.POS]: pos$105,
                         DISCORD_CLIENT_ID: nix.thunk(() => nix.sel(cfg, "discordAuthentication", "clientId")),
                         DISCORD_SERVER_ID: nix.thunk(() => nix.sel(cfg, "discordAuthentication", "serverId")),
                         DISCORD_SERVER_ROLES: nix.thunk(() => nix.sel(cfg, "discordAuthentication", "serverRoles")),
                       })))),
                     nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "smtp"), null)), nix.thunk(() => ({
-                        __proto__: pos$106,
+                        [nix.POS]: pos$106,
                         SMTP_HOST: nix.thunk(() => nix.sel(cfg, "smtp", "host")),
                         SMTP_PORT: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "smtp", "port")))),
                         SMTP_USERNAME: nix.thunk(() => nix.sel(cfg, "smtp", "username")),
@@ -807,7 +807,7 @@ export DATABASE_URL
 ${nix.sel(cfg, "package")}/bin/outline-server
 `),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$107,
+                  [nix.POS]: pos$107,
                   User: nix.thunk(() => nix.sel(cfg, "user")),
                   Group: nix.thunk(() => nix.sel(cfg, "group")),
                   Restart: "always",
@@ -826,21 +826,21 @@ ${nix.sel(cfg, "package")}/bin/outline-server
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$116,
+          [nix.POS]: pos$116,
           postgresql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "databaseUrl"), "local")), nix.thunk(() => ({
-              __proto__: pos$112,
+              [nix.POS]: pos$112,
               enable: true,
               ensureUsers: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$111, name: "outline", ensureDBOwnership: true })),
+                nix.thunk(() => ({ [nix.POS]: pos$111, name: "outline", ensureDBOwnership: true })),
               ]),
               ensureDatabases: nix.thunk(() => ["outline"]),
             })))),
           redis: nix.thunk(() => ({
-            __proto__: pos$115,
+            [nix.POS]: pos$115,
             servers: nix.thunk(() => ({
-              __proto__: pos$114,
+              [nix.POS]: pos$114,
               outline: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "redisUrl"), "local")), nix.thunk(() => ({
-                  __proto__: pos$113,
+                  [nix.POS]: pos$113,
                   enable: true,
                   user: nix.thunk(() => nix.sel(config, "services", "outline", "user")),
                   port: 0n,

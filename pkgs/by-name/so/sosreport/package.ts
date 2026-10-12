@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.11.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sosreport",
           repo: "sos",
           tag: version,
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "export PYTHONPATH=$PWD/tests:$PYTHONPATH\n";
       const pythonImportsCheck = nix.thunk(() => ["sos"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unified tool for collecting system logs and other debug information",
         homepage: "https://github.com/sosreport/sos",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

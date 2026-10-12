@@ -24,14 +24,14 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const makeWrapper = nix.arg($, "makeWrapper");
   const jdk = nix.thunk(() => nix.app(nix.sel(openjdk, "override"), nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         enableJavaFX: true,
-        openjfx_jdk: nix.thunk(() => nix.app(nix.sel(openjfx, "override"), nix.thunk(() => ({ __proto__: pos$1, withWebKit: true })))),
+        openjfx_jdk: nix.thunk(() => nix.app(nix.sel(openjfx, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withWebKit: true })))),
       }))))));
   const pname = "scenic-view";
   const version = "11.0.2";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       owner: "JonathanGiles",
       repo: "scenic-view",
       rev: version,
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const gradle = gradle_8;
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "scenic-view",
       desktopName: "scenic-view",
       exec: "scenic-view",
@@ -53,14 +53,14 @@ export default nix.lambda((args) => (() => {
       const src_1 = src;
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://github.com/JonathanGiles/scenic-view/commit/0f682bba77e9662ce860216987c94e468f5da421.patch?full_index=1",
             hash: "sha256-ISbKexjpGfS8xaRR4GqJ0J+z8fdv8+n4VCO6/SvLGlw=",
             excludes: nix.thunk(() => ["*.md"]),
           })))),
       ]);
       const nativeBuildInputs = nix.thunk(() => [gradle, makeWrapper]);
-      const mitmCache = nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ __proto__: pos$6, pname: pname_1, data: nix.path(here, "./deps.json") }))));
+      const mitmCache = nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: pos$6, pname: pname_1, data: nix.path(here, "./deps.json") }))));
       const __darwinAllowLocalNetworking = true;
       const doCheck = true;
       const installPhase = nix.thunk(() => nix.str`runHook preInstall
@@ -73,7 +73,7 @@ runHook postInstall
 `);
       const desktopItems = nix.thunk(() => [desktopItem]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) || nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))))),
         description: "JavaFx application to visualize and modify the scenegraph of running JavaFx applications",
         mainProgram: "scenic-view",
@@ -94,7 +94,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname: pname_1,
         version: version_1,
         src: src_1,

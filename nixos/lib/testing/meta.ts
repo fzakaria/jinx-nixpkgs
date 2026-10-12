@@ -28,73 +28,73 @@ export default nix.lambda((args) => (() => {
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const literalMD = nix.thunk(() => nix.attr(lib, "literalMD"));
   const getPosition = (definitionsWithLocations) => (nix.asBool(nix.eq(definitionsWithLocations, [])) ? null : {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     file: nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "head"), definitionsWithLocations), "file")),
     column: 0n,
     line: 1n,
   });
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       meta: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           description: "The [`meta`](https://nixos.org/manual/nixpkgs/stable/#chap-meta) attributes that will be set on the returned derivations.\n\nNot all [`meta`](https://nixos.org/manual/nixpkgs/stable/#chap-meta) attributes are supported, but more can be added as desired.\n",
           apply: nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (k) => (v) => !nix.eq(v, null))),
           type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.lambda((args_1) => (() => {
               const $_1 = nix.formals(args_1, formals$2);
               const options_1 = nix.arg($_1, "options");
               return {
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 options: nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   maintainers: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      __proto__: pos$2,
+                      [nix.POS]: pos$2,
                       type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "raw")))),
                       default: [],
                       description: "The [list of maintainers](https://nixos.org/manual/nixpkgs/stable/#var-meta-maintainers) for this test.\n",
                     })))),
                   maintainersPosition: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      __proto__: pos$3,
+                      [nix.POS]: pos$3,
                       internal: true,
                       readOnly: true,
                       type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "attrs")))),
                       default: nix.thunk(() => nix.app(getPosition, nix.thunk(() => nix.sel(options_1, "maintainers", "definitionsWithLocations")))),
                     })))),
                   teams: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      __proto__: pos$4,
+                      [nix.POS]: pos$4,
                       type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "raw")))),
                       default: [],
                       description: "The [list of maintainer-teams](https://nixos.org/manual/nixpkgs/stable/#var-meta-teams) for this test.\n",
                     })))),
                   teamsPosition: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      __proto__: pos$5,
+                      [nix.POS]: pos$5,
                       internal: true,
                       readOnly: true,
                       type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "attrs")))),
                       default: nix.thunk(() => nix.app(getPosition, nix.thunk(() => nix.sel(options_1, "teams", "definitionsWithLocations")))),
                     })))),
                   timeout: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      __proto__: pos$6,
+                      [nix.POS]: pos$6,
                       type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "int")))),
                       default: 3600n,
                       description: "The [{option}`test`](#test-opt-test)'s [`meta.timeout`](https://nixos.org/manual/nixpkgs/stable/#var-meta-timeout) in seconds.\n",
                     })))),
                   broken: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      __proto__: pos$7,
+                      [nix.POS]: pos$7,
                       type: nix.thunk(() => nix.sel(types, "bool")),
                       default: false,
                       description: "Sets the [`meta.broken`](https://nixos.org/manual/nixpkgs/stable/#var-meta-broken) attribute on the [{option}`test`](#test-opt-test) derivation.\n",
                     })))),
                   platforms: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      __proto__: pos$8,
+                      [nix.POS]: pos$8,
                       type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "raw")))),
                       default: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.sel(config, "containers"), {})), nix.thunk(() => nix.sel(lib, "platforms", "darwin"))))),
                       defaultText: nix.thunk(() => nix.app(literalMD, "`lib.platforms.linux ++ lib.platforms.darwin` when no containers are configured; otherwise `lib.platforms.linux`.\n")),
                       description: "Sets the [`meta.platforms`](https://nixos.org/manual/nixpkgs/stable/#var-meta-platforms) attribute on the [{option}`test`](#test-opt-test) derivation.\n",
                     })))),
                   hydraPlatforms: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "raw")))),
                       default: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
                       defaultText: nix.thunk(() => nix.app(literalMD, "`lib.platforms.linux` only, as the `hydra.nixos.org` build farm does not currently support virtualisation on Darwin.")),

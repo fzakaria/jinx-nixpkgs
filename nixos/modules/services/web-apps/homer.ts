@@ -32,26 +32,26 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "homer-config.yml", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homer: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "A dead simple static HOMepage for your servER to keep your services on hand, from a simple yaml configuration file.\n")),
           virtualHost: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             nginx: nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "a virtualhost to serve homer through nginx")),
             })),
             caddy: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "a virtualhost to serve homer through caddy")),
             })),
             domain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 description: "Domain to use for the virtual host.\n\nThis can be used to change nginx options like\n```nix\nservices.nginx.virtualHosts.\"$\\{config.services.homer.virtualHost.domain}\".listen = [ ... ]\n```\nor\n```nix\nservices.nginx.virtualHosts.\"example.com\".listen = [ ... ]\n```\n",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
               })))),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
               return {
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: nix.thunk(() => ({})),
               description: "Settings serialized into {file}`config.yml` before build.\nIf left empty, the default configuration shipped with the package will be used instead.\nFor more information, see the [official documentation](https://github.com/bastienwirtz/homer/blob/main/docs/configuration.md).\n\nNote that the full configuration will be written to the nix store as world readable, which may include secrets such as [api-keys](https://github.com/bastienwirtz/homer/blob/main/docs/customservices.md).\n\nTo add files such as icons or backgrounds, you can reference them in line such as\n```nix\nicon = \"${./icon.png}\";\n```\nThis will add the file to the nix store upon build, referencing it by file path as expected by Homer.\n",
               example: nix.thunk(() => nix.str`{
@@ -164,33 +164,33 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         services: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "virtualHost", "nginx", "enable")), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               enable: true,
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${nix.sel(cfg, "virtualHost", "domain")}`, nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   locations: nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     "/": nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       root: nix.thunk(() => nix.sel(cfg, "package")),
                       tryFiles: "$uri /index.html",
                     })),
-                    "= /assets/config.yml": nix.thunk(() => ({ __proto__: pos$10, alias: configFile })),
+                    "= /assets/config.yml": nix.thunk(() => ({ [nix.POS]: pos$10, alias: configFile })),
                   })),
                 }))],
               ])),
             })))),
           caddy: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "virtualHost", "caddy", "enable")), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               enable: true,
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${nix.sel(cfg, "virtualHost", "domain")}`, nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   extraConfig: nix.thunk(() => nix.str`root * ${nix.sel(cfg, "package")}
 encode zstd gzip
 
@@ -218,7 +218,7 @@ file_server
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "stunkymonkey"))]),
     })),
   };

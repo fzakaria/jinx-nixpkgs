@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "result",
       version: "1.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/janestreet/result/releases/download/${nix.sel(finalAttrs, "version")}/result-${nix.sel(finalAttrs, "version")}.tbz`),
           sha256: "0cpfp35fdwnv3p30a06wd0py3805qxmq3jmcynjc3x2qhlimwfkw",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/janestreet/result",
         description: "Compatibility Result module",
         longDescription: "Projects that want to use the new result type defined in OCaml >= 4.03\nwhile staying compatible with older version of OCaml should use the\nResult module defined in this library.\n",

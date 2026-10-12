@@ -31,23 +31,23 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   const releases = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../release.nix")), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       configuration: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         documentation: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), false)),
           nixos: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), false)),
           })),
         })),
         system: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           installer: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             channel: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), false)),
             })),
           })),
@@ -57,24 +57,24 @@ export default nix.lambda((args) => (() => {
   const lxc_image_metadata = nix.thunk(() => nix.add(nix.sel(releases, "incusContainerMeta", nix.key(nix.sel(pkgs, "stdenv", "hostPlatform", "system"))), nix.str`/tarball/nixos-image-lxc-*-${nix.sel(pkgs, "stdenv", "hostPlatform", "system")}.tar.xz`));
   const lxc_image_rootfs = nix.thunk(() => nix.add(nix.sel(releases, "containerTarball", nix.key(nix.sel(pkgs, "stdenv", "hostPlatform", "system"))), nix.str`/tarball/nixos-image-lxc-*-${nix.sel(pkgs, "stdenv", "hostPlatform", "system")}.tar.xz`));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     name: "lxc-container-unprivileged",
     meta: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "lxc", "members")),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       machine: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         virtualisation: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           diskSize: 6144n,
           cores: 2n,
           memorySize: 512n,
           writableStore: true,
           lxc: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             enable: true,
             unprivilegedContainers: true,
             systemConfig: "lxc.lxcpath = /tmp/lxc\n",
@@ -84,32 +84,32 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.sel(pkgs, "wget")),
             nix.thunk(() => nix.sel(pkgs, "dnsmasq")),
           ]),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           users: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             alice: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               isNormalUser: true,
               password: "test",
               description: "Lxc unprivileged user with access to lxcbr0",
               extraGroups: nix.thunk(() => ["lxc-user"]),
-              subGidRanges: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$12, startGid: 100000n, count: 65536n }))]),
-              subUidRanges: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$13, startUid: 100000n, count: 65536n }))]),
+              subGidRanges: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$12, startGid: 100000n, count: 65536n }))]),
+              subUidRanges: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$13, startUid: 100000n, count: 65536n }))]),
             })),
             bob: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               isNormalUser: true,
               password: "test",
               description: "Lxc unprivileged user without access to lxcbr0",
-              subGidRanges: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$15, startGid: 100000n, count: 65536n }))]),
-              subUidRanges: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$16, startUid: 100000n, count: 65536n }))]),
+              subGidRanges: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$15, startGid: 100000n, count: 65536n }))]),
+              subUidRanges: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$16, startUid: 100000n, count: 65536n }))]),
             })),
           })),
         })),

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const system = nix.thunk(() => nix.attr(from, "system"));
   const version = "2.2.3-20963";
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "orbstack",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://cdn-updates.orbstack.dev/arm64/OrbStack_v${nix.app(nix.sel(lib, "replaceString"), "-", "_", version)}_arm64.dmg`),
           hash: "sha256-fKd4aPOg19n1ez+YYVqtMMxZ0jzIS7/xP3iEbfC0k9Q=",
         })))),
@@ -31,9 +31,9 @@ export default nix.lambda((args) => (() => {
       sourceRoot: ".",
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications\"\ncp -R OrbStack.app \"$out/Applications\"\n\nmkdir -p \"$out/bin\"\nfor binary in \"$out\"/Applications/OrbStack.app/Contents/MacOS/{bin,xbin}/*; do\n  ln -s \"$binary\" \"$out/bin/$(basename \"$binary\")\"\ndone\n\nrunHook postInstall\n",
       postInstall: "installShellCompletion --bash \"$out\"/Applications/OrbStack.app/Contents/Resources/completions/bash/{docker,kubectl,orbctl}.bash\ninstallShellCompletion --zsh \"$out\"/Applications/OrbStack.app/Contents/Resources/completions/zsh/{_docker,_kubectl,_orb,_orbctl}\ninstallShellCompletion --fish \"$out\"/Applications/OrbStack.app/Contents/Resources/completions/fish/{docker,kubectl,orbctl}.fish\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://docs.orbstack.dev/release-notes#${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["-"]), version)}`),
         description: "Fast, light, and easy way to run Docker containers and Linux machines",
         homepage: "https://orbstack.dev/",

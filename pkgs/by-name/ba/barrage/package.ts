@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "barrage",
       version: "1.0.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/lgames/barrage-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-9mdC7JiZPGnjj9+h4jezIY2AL0X096MxzTwlwH1zYT8=",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(SDL, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://lgames.sourceforge.io/Barrage/",
         description: "Destructive action game",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

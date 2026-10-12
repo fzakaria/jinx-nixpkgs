@@ -19,24 +19,24 @@ export default nix.lambda((args) => (() => {
   const gifview = nix.argOr($, "gifview", () => false);
   const static$ = nix.argOr($, "static", () => nix.sel(stdenv, "hostPlatform", "isStatic"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gifsicle",
       version: "1.96",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.lcdf.org/gifsicle/gifsicle-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-/SPSeWgabf48FSZOM/NEBFs7pHPaTRn0nmelCZSwd/s=",
         })))),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), gifview, nix.thunk(() => [xorgproto, libxt, libx11]))),
       configureFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(gifview)), "--disable-gifview")),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), static$, "-static")),
       })),
       doCheck: true,
       checkPhase: "./src/gifsicle --info logo.gif\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Command-line tool for creating, editing, and getting information about GIF images and animations",
         homepage: "https://www.lcdf.org/gifsicle/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

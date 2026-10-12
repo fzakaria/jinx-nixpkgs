@@ -82,10 +82,10 @@ export default nix.lambda((args) => (() => {
   const stateDir = "/var/lib/netbird-mgmt";
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   const defaultSettings = nix.thunk(() => ({
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     Stuns: nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         Proto: "udp",
         URI: nix.thunk(() => nix.str`stun:${nix.sel(cfg, "turnDomain")}:3478`),
         Username: "",
@@ -93,10 +93,10 @@ export default nix.lambda((args) => (() => {
       })),
     ]),
     TURNConfig: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       Turns: nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           Proto: "udp",
           URI: nix.thunk(() => nix.str`turn:${nix.sel(cfg, "turnDomain")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "turnPort")))}`),
           Username: "netbird",
@@ -108,32 +108,32 @@ export default nix.lambda((args) => (() => {
       TimeBasedCredentials: false,
     })),
     Signal: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       Proto: "https",
       URI: nix.thunk(() => nix.str`${nix.sel(cfg, "domain")}:443`),
       Username: "",
       Password: null,
     })),
     ReverseProxy: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       TrustedHTTPProxies: [],
       TrustedHTTPProxiesCount: 0n,
       TrustedPeers: nix.thunk(() => ["0.0.0.0/0"]),
     })),
     Datadir: nix.thunk(() => nix.str`${stateDir}/data`),
     DataStoreEncryptionKey: "very-insecure-key",
-    StoreConfig: nix.thunk(() => ({ __proto__: pos$6, Engine: "sqlite" })),
+    StoreConfig: nix.thunk(() => ({ [nix.POS]: pos$6, Engine: "sqlite" })),
     HttpConfig: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       Address: nix.thunk(() => nix.str`127.0.0.1:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}`),
       IdpSignKeyRefreshEnabled: true,
       OIDCConfigEndpoint: nix.thunk(() => nix.sel(cfg, "oidcConfigEndpoint")),
     })),
     IdpManagerConfig: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       ManagerType: "none",
       ClientConfig: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         Issuer: "",
         TokenEndpoint: "",
         ClientID: "netbird",
@@ -147,10 +147,10 @@ export default nix.lambda((args) => (() => {
       ZitadelClientCredentials: null,
     })),
     DeviceAuthorizationFlow: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       Provider: "none",
       ProviderConfig: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         Audience: "netbird",
         Domain: null,
         ClientID: "netbird",
@@ -161,9 +161,9 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     PKCEAuthorizationFlow: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       ProviderConfig: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         Audience: "netbird",
         ClientID: "netbird",
         ClientSecret: "",
@@ -179,99 +179,99 @@ export default nix.lambda((args) => (() => {
   const managementFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "config.json", managementConfig));
   const cfg = nix.thunk(() => nix.sel(config, "services", "netbird", "server", "management"));
   return {
-    __proto__: pos$50,
+    [nix.POS]: pos$50,
     options: nix.thunk(() => ({
-      __proto__: pos$34,
+      [nix.POS]: pos$34,
       services: nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         netbird: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           server: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             management: nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               enable: nix.thunk(() => nix.app(mkEnableOption, "Netbird Management Service")),
               package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "netbird-management", nix.thunk(() => ({})))),
               domain: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   type: str,
                   description: "The domain under which the management API runs.",
                 })))),
               turnDomain: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   type: str,
                   description: "The domain of the TURN server to use.",
                 })))),
               turnPort: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   type: port,
                   default: 3478n,
                   description: "The port of the TURN server to use.\n",
                 })))),
               dnsDomain: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   type: str,
                   default: "netbird.selfhosted",
                   description: "Domain used for peer resolution.",
                 })))),
               singleAccountModeDomain: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   type: str,
                   default: "netbird.selfhosted",
                   description: "Enables single account mode.\nThis means that all the users will be under the same account grouped by the specified domain.\nIf the installation has more than one account, the property is ineffective.\n",
                 })))),
               disableAnonymousMetrics: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   type: bool,
                   default: true,
                   description: "Disables push of anonymous usage metrics to NetBird.",
                 })))),
               disableSingleAccountMode: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   type: bool,
                   default: false,
                   description: "If set to true, disables single account mode.\nThe `singleAccountModeDomain` property will be ignored and every new user will have a separate NetBird account.\n",
                 })))),
               port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   type: port,
                   default: 8011n,
                   description: "Internal port of the management server.",
                 })))),
               metricsPort: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   type: port,
                   default: 9090n,
                   description: "Internal port of the metrics server.",
                 })))),
               extraOptions: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   type: nix.thunk(() => nix.app(listOf, str)),
                   default: [],
                   description: "Additional options given to netbird-mgmt as commandline arguments.\n",
                 })))),
               oidcConfigEndpoint: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   type: str,
                   description: "The oidc discovery endpoint.",
                   example: "https://example.eu.auth0.com/.well-known/openid-configuration",
                 })))),
               settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   type: nix.thunk(() => nix.attr(settingsFormat, "type")),
                   defaultText: nix.thunk(() => nix.app(literalExpression, "defaultSettings = {\n  Stuns = [\n    {\n      Proto = \"udp\";\n      URI = \"stun:${cfg.turnDomain}:3478\";\n      Username = \"\";\n      Password = null;\n    }\n  ];\n\n  TURNConfig = {\n    Turns = [\n      {\n        Proto = \"udp\";\n        URI = \"turn:${cfg.turnDomain}:3478\";\n        Username = \"netbird\";\n        Password = \"netbird\";\n      }\n    ];\n\n    CredentialsTTL = \"12h\";\n    Secret = \"not-secure-secret\";\n    TimeBasedCredentials = false;\n  };\n\n  Signal = {\n    Proto = \"https\";\n    URI = \"${cfg.domain}:443\";\n    Username = \"\";\n    Password = null;\n  };\n\n  ReverseProxy = {\n    TrustedHTTPProxies = [ ];\n    TrustedHTTPProxiesCount = 0;\n    TrustedPeers = [ \"0.0.0.0/0\" ];\n  };\n\n  Datadir = \"${stateDir}/data\";\n  DataStoreEncryptionKey = \"genEVP6j/Yp2EeVujm0zgqXrRos29dQkpvX0hHdEUlQ=\";\n  StoreConfig = { Engine = \"sqlite\"; };\n\n  HttpConfig = {\n    Address = \"127.0.0.1:${toString cfg.port}\";\n    IdpSignKeyRefreshEnabled = true;\n    OIDCConfigEndpoint = cfg.oidcConfigEndpoint;\n  };\n\n  IdpManagerConfig = {\n    ManagerType = \"none\";\n    ClientConfig = {\n      Issuer = \"\";\n      TokenEndpoint = \"\";\n      ClientID = \"netbird\";\n      ClientSecret = \"\";\n      GrantType = \"client_credentials\";\n    };\n\n    ExtraConfig = { };\n    Auth0ClientCredentials = null;\n    AzureClientCredentials = null;\n    KeycloakClientCredentials = null;\n    ZitadelClientCredentials = null;\n  };\n\n  DeviceAuthorizationFlow = {\n    Provider = \"none\";\n    ProviderConfig = {\n      Audience = \"netbird\";\n      Domain = null;\n      ClientID = \"netbird\";\n      TokenEndpoint = null;\n      DeviceAuthEndpoint = \"\";\n      Scope = \"openid profile email offline_access api\";\n      UseIDToken = false;\n    };\n  };\n\n  PKCEAuthorizationFlow = {\n    ProviderConfig = {\n      Audience = \"netbird\";\n      ClientID = \"netbird\";\n      ClientSecret = \"\";\n      AuthorizationEndpoint = \"\";\n      TokenEndpoint = \"\";\n      Scope = \"openid profile email offline_access api\";\n      RedirectURLs = \"http://localhost:53000\";\n      UseIDToken = false;\n    };\n  };\n};\n")),
                   default: nix.thunk(() => ({})),
                   description: "Configuration of the netbird management server.\nOptions containing secret data should be set to an attribute set containing the attribute _secret\n- a string pointing to a file containing the value the option should be set to.\nSee the example to get a better picture of this: in the resulting management.json file,\nthe `DataStoreEncryptionKey` key will be set to the contents of the /run/agenix/netbird_mgmt-data_store_encryption_key file.\n",
                   example: nix.thunk(() => ({
-                    __proto__: pos$27,
+                    [nix.POS]: pos$27,
                     DataStoreEncryptionKey: nix.thunk(() => ({
-                      __proto__: pos$26,
+                      [nix.POS]: pos$26,
                       _secret: "/run/agenix/netbird_mgmt-data_store_encryption_key",
                     })),
                   })),
                 })))),
               logLevel: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   type: nix.thunk(() => nix.app(enum$, nix.thunk(() => ["ERROR", "WARN", "INFO", "DEBUG"]))),
                   default: "INFO",
                   description: "Log level of the netbird services.",
@@ -283,7 +283,7 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$49,
+        [nix.POS]: pos$49,
         warnings: nix.thunk(() => nix.app(concatMap, nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const check = nix.arg($_1, "check");
@@ -291,34 +291,34 @@ export default nix.lambda((args) => (() => {
             return nix.app(optional, check, nix.thunk(() => nix.str`${name} is world-readable in the Nix Store, you should provide it as a _secret.`));
           })(), formals$2), nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               check: nix.thunk(() => nix.builtins.isString(nix.thunk(() => nix.sel(managementConfig, "TURNConfig", "Secret")))),
               name: "The TURNConfig.secret",
             })),
             nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               check: nix.thunk(() => nix.builtins.isString(nix.thunk(() => nix.sel(managementConfig, "DataStoreEncryptionKey")))),
               name: "The DataStoreEncryptionKey",
             })),
             nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               check: nix.thunk(() => nix.app(any, (T) => (nix.asBool(nix.has(T, "Password")) && nix.asBool(nix.builtins.isString(nix.thunk(() => nix.sel(T, "Password"))))), nix.thunk(() => nix.sel(managementConfig, "TURNConfig", "Turns")))),
               name: "A Turn configuration's password",
             })),
           ]))),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "port"), nix.sel(cfg, "metricsPort"))),
             message: "The primary listen port cannot be the same as the listen port for the metrics endpoint",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$42,
+          [nix.POS]: pos$42,
           services: nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             "netbird-management": nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               description: "The management server for Netbird, a wireguard VPN",
               documentation: nix.thunk(() => ["https://netbird.io/docs/"]),
               after: nix.thunk(() => ["network.target"]),
@@ -326,7 +326,7 @@ export default nix.lambda((args) => (() => {
               restartTriggers: nix.thunk(() => [managementFile]),
               preStart: nix.thunk(() => nix.app(genJqSecretsReplacementSnippet, managementConfig, nix.thunk(() => nix.str`${stateDir}/management.json`))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 ExecStart: nix.thunk(() => nix.app(escapeSystemdExecArgs, nix.thunk(() => nix.concat([
                     nix.thunk(() => nix.app(getExe$, nix.thunk(() => nix.sel(cfg, "package")), "netbird-mgmt")),
                     "management",
@@ -377,21 +377,21 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$48,
+          [nix.POS]: pos$48,
           nginx: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enableNginx")), nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               enable: true,
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "domain"), nix.thunk(() => ({
-                  __proto__: pos$46,
+                  [nix.POS]: pos$46,
                   locations: nix.thunk(() => ({
-                    __proto__: pos$45,
+                    [nix.POS]: pos$45,
                     "/api": nix.thunk(() => ({
-                      __proto__: pos$43,
+                      [nix.POS]: pos$43,
                       proxyPass: nix.thunk(() => nix.str`http://localhost:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}`),
                     })),
                     "/management.ManagementService/": nix.thunk(() => ({
-                      __proto__: pos$44,
+                      [nix.POS]: pos$44,
                       extraConfig: nix.thunk(() => nix.str`# This is necessary so that grpc connections do not get closed early
 # see https://stackoverflow.com/a/67805465
 client_body_timeout 1d;

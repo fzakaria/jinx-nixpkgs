@@ -17,23 +17,23 @@ export default nix.lambda((args) => (() => {
   const valkey = nix.arg($, "valkey");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: "redis-test-hook",
       substitutions: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         cli: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), valkey, "redis-cli")),
         server: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), valkey, "redis-server")),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           simple: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test.nix"), nix.thunk(() => ({})))),
           "python3-valkey": nix.thunk(() => nix.sel(python3Packages, "valkey")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "redis"))]),
       })),

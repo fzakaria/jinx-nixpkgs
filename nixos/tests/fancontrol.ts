@@ -14,20 +14,20 @@ const pos$6 = nix.positions(here + "/fancontrol.nix", [["name", 3, 3], ["meta", 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     name: "fancontrol",
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           imports: nix.thunk(() => [nix.path(here, "../modules/profiles/minimal.nix")]),
           hardware: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             fancontrol: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               enable: true,
               config: "INTERVAL=42\nDEVPATH=hwmon1=devices/platform/dummy\nDEVNAME=hwmon1=dummy\nFCTEMPS=hwmon1/device/pwm1=hwmon1/device/temp1_input\nFCFANS=hwmon1/device/pwm1=hwmon1/device/fan1_input\nMINTEMP=hwmon1/device/pwm1=25\nMAXTEMP=hwmon1/device/pwm1=65\nMINSTART=hwmon1/device/pwm1=150\nMINSTOP=hwmon1/device/pwm1=0\n",
             })),

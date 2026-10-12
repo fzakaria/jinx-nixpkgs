@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchCrate = nix.arg($, "fetchCrate");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "i3-open-next-ws",
       version: "0.1.5",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-eYHCm8jEv6Ll6/h1kcYHNxWGnVWI41ZB96Jec9oZFsY=",
         })))),
       cargoHash: "sha256-ND80SweURwVbqxcYwgvnk186BjhISr8Pz0B8BVf0DMY=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Workspace management utility for i3 and sway, that picks the first unused workspace automagically",
         homepage: "https://github.com/JohnDowson/i3-open-next-ws",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

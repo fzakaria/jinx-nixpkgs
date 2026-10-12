@@ -34,42 +34,42 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const tzdir = nix.thunk(() => nix.str`${nix.sel(pkgs, "tzdata")}/share/zoneinfo`);
   const nospace = (str) => nix.eq(nix.app(nix.sel(lib, "filter"), (c) => nix.eq(c, " "), nix.thunk(() => nix.app(nix.sel(lib, "stringToCharacters"), str))), []);
-  const timezone = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "addCheck"), nix.thunk(() => nix.sel(lib, "types", "str")), nospace))), { __proto__: pos$1, description: "null or string without spaces" }));
+  const timezone = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "addCheck"), nix.thunk(() => nix.sel(lib, "types", "str")), nospace))), { [nix.POS]: pos$1, description: "null or string without spaces" }));
   const lcfg = nix.thunk(() => nix.sel(config, "location"));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       time: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         timeZone: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             default: null,
             type: timezone,
             example: "America/New_York",
             description: "The time zone used when displaying times and dates. See <https://en.wikipedia.org/wiki/List_of_tz_database_time_zones>\nfor a comprehensive list of possible values for this setting.\n\nIf null, the timezone will default to UTC and can be set imperatively\nusing timedatectl.\n",
           })))),
         hardwareClockInLocalTime: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             default: false,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             description: "If set, keep the hardware clock in local time instead of UTC.",
           })))),
       })),
       location: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         latitude: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             type: nix.thunk(() => nix.sel(lib, "types", "float")),
             description: "Your current latitude, between\n`-90.0` and `90.0`. Must be provided\nalong with longitude.\n",
           })))),
         longitude: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             type: nix.thunk(() => nix.sel(lib, "types", "float")),
             description: "Your current longitude, between\nbetween `-180.0` and `180.0`. Must be\nprovided along with latitude.\n",
           })))),
         provider: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["manual", "geoclue2"]))),
             default: "manual",
             description: "The location provider to use for determining your location. If set to\n`manual` you must also provide latitude/longitude.\n",
@@ -77,35 +77,35 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       environment: nix.thunk(() => ({
-        __proto__: pos$17,
-        sessionVariables: nix.thunk(() => ({ __proto__: pos$10, TZDIR: "/etc/zoneinfo" })),
+        [nix.POS]: pos$17,
+        sessionVariables: nix.thunk(() => ({ [nix.POS]: pos$10, TZDIR: "/etc/zoneinfo" })),
         etc: nix.thunk(() => nix.update({
-          __proto__: pos$12,
-          zoneinfo: nix.thunk(() => ({ __proto__: pos$11, source: tzdir })),
+          [nix.POS]: pos$12,
+          zoneinfo: nix.thunk(() => ({ [nix.POS]: pos$11, source: tzdir })),
         }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(config, "time", "timeZone"), null)), nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             localtime: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               source: nix.thunk(() => nix.str`/etc/zoneinfo/${nix.sel(config, "time", "timeZone")}`),
               mode: "direct-symlink",
             })),
           }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "time", "hardwareClockInLocalTime")), nix.thunk(() => ({
-            __proto__: pos$16,
-            adjtime: nix.thunk(() => ({ __proto__: pos$15, text: "0.0 0 0\n0\nLOCAL\n" })),
+            [nix.POS]: pos$16,
+            adjtime: nix.thunk(() => ({ [nix.POS]: pos$15, text: "0.0 0 0\n0\nLOCAL\n" })),
           })))))),
       })),
       services: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         geoclue2: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(lcfg, "provider"), "geoclue2")), true)),
         })),
       })),
       systemd: nix.thunk(() => ({
-        __proto__: pos$21,
-        globalEnvironment: nix.thunk(() => ({ __proto__: pos$20, TZDIR: tzdir })),
+        [nix.POS]: pos$21,
+        globalEnvironment: nix.thunk(() => ({ [nix.POS]: pos$20, TZDIR: tzdir })),
       })),
     })),
   };

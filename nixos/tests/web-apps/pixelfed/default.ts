@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const runTestOn = nix.arg($, "runTestOn");
   const supportedSystems = nix.thunk(() => ["x86_64-linux", "aarch64-linux", "i686-linux"]);
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     standard: nix.thunk(() => nix.app(runTestOn, supportedSystems, nix.path(here, "./standard.nix"))),
   };
 })(), formals$1);

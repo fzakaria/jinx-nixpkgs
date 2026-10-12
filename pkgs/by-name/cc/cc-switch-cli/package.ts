@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const lsof = nix.arg($, "lsof");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cc-switch-cli",
       version: "5.10.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SaladDay",
           repo: "cc-switch-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-OiK0PN1ILtMzl9+QndPnYa1PdFM2Y3BmE7MYJjAWnDc=",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "cc-switch-cli-skip-non-utf8-filename-test-on-macos",
             url: "https://github.com/SaladDay/cc-switch-cli/commit/1ae36f7ac66e3a837c064c8c3fb1c56449f3f7c1.patch?full_index=1",
             relative: "src-tauri",
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         "--skip=parser_results_are_delivered_in_completion_order",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Cross-platform CLI management tool for Claude Code, Codex, Gemini, and OpenCode",
         homepage: "https://github.com/SaladDay/cc-switch-cli",
         changelog: nix.thunk(() => nix.str`https://github.com/SaladDay/cc-switch-cli/releases/tag/v${nix.sel(finalAttrs, "version")}`),

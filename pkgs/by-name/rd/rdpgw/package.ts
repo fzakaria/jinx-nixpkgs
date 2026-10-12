@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pam = nix.arg($, "pam");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rdpgw",
       version: "2.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bolkedebruin",
           repo: "rdpgw",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [pam]),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Remote Desktop Gateway",
         homepage: "https://github.com/bolkedebruin/rdpgw",
         changelog: nix.thunk(() => nix.str`https://github.com/bolkedebruin/rdpgw/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

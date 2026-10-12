@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "show-midi",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gbevin",
           repo: "ShowMIDI",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ninstall -Dt $out/share/ShowMIDI/themes Themes/*\n\ninstall -D Design/icon.png $out/share/icons/show-midi.png\n\nmkdir -p $out/bin $out/lib/lv2 $out/lib/vst3\ncd Builds/LinuxMakefile/build/\ncp -r ShowMIDI.lv2 $out/lib/lv2\ncp -r ShowMIDI.vst3 $out/lib/vst3\ncp ShowMIDI $out/bin\n\nrunHook postInstall\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "ShowMIDI",
             exec: nix.thunk(() => nix.sel(finalAttrs, "meta", "mainProgram")),
             comment: nix.thunk(() => nix.sel(finalAttrs, "meta", "description")),
@@ -62,11 +62,11 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lX11", "-lXext", "-lXcursor", "-lXinerama", "-lXrandr"]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Multi-platform GUI application to effortlessly visualize MIDI activity",
         homepage: "https://github.com/gbevin/ShowMIDI",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

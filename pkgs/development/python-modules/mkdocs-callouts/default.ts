@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const mkdocs = nix.arg($, "mkdocs");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mkdocs-callouts",
       version: "1.17.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sondregronas",
           repo: "mkdocs-callouts",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["mkdocs_callouts"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "A simple MkDocs plugin that converts Obsidian callout blocks to mkdocs supported Admonitions",
         homepage: "https://github.com/sondregronas/mkdocs-callouts",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const llvmPackages = nix.arg($, "llvmPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "hm",
       version: "18.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "vcgit.hhi.fraunhofer.de",
           owner: "jvet",
           repo: "HM",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "gcc16-unused-variable.patch",
             url: "https://vcgit.hhi.fraunhofer.de/jvet/HM/-/commit/884d704b9d04ac1728b2c6049174e47eb04987d2.patch",
             hash: "sha256-UqZf7XFTEOpfE0Uyyrq+ydScR9GzMgR+JQVeZGFjc1c=",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(llvmPackages, "openmp"))]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(["-Wno-error=array-bounds"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => [
               "-Wno-error=bitwise-instead-of-logical",
               "-Wno-error=missing-braces",
@@ -55,11 +55,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ninstall -Dm 755 -t $out/bin ../bin/umake/*/*/release/*\n\nrunHook postInstall\n",
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$4, "rev-prefix": "HM-", ignoredVersions: "rc" })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, "rev-prefix": "HM-", ignoredVersions: "rc" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Reference software for HEVC",
         homepage: "https://vcgit.hhi.fraunhofer.de/jvet/HM",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

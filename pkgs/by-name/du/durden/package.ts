@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchFromCodeberg = nix.arg($, "fetchFromCodeberg");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "durden",
       version: "0.6.3",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "letoram",
           repo: "durden",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ cp -a ./durden ${nix.builtins.placeholder("out")}/share/arcan/appl/
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://durden.arcan-fe.com/",
         description: "Reference Desktop Environment for Arcan",
         longDescription: "Durden is a desktop environment for the Arcan Display Server. It serves\nboth as a reference showcase on how to take advantage of some of the\nfeatures in Arcan, and as a very competent entry to the advanced-user side\nof the desktop environment spectrum.\n",

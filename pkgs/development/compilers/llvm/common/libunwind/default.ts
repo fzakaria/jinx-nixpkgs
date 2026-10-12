@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const devExtraCmakeFlags = nix.argOr($, "devExtraCmakeFlags", () => []);
   const getVersionFile = nix.arg($, "getVersionFile");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libunwind",
       version: version,
       src: nix.thunk(() => (nix.asBool(!nix.eq(monorepoSrc, null)) ? nix.app(runCommand, nix.thunk(() => nix.str`libunwind-src-${version}`), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           passthru: nix.thunk(() => nix.attr(monorepoSrc, "passthru")),
           strictDeps: true,
           __structuredAttrs: true,
@@ -56,7 +56,7 @@ cp -r ${monorepoSrc}/runtimes "$out"
       postInstall: nix.thunk(() => nix.add(nix.add(nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool((nix.asBool(enableShared) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows"))))), "# libcxxabi wants to link to libunwind_shared.so (?).\nln -s $out/lib/libunwind.so $out/lib/libunwind_shared.so\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(enableShared) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows")))), "ln -s $out/lib/libunwind.dll.a $out/lib/libunwind_shared.dll.a\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(doFakeLibgcc) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows"))))), "ln -s $out/lib/libunwind.so $out/lib/libgcc_s.so\nln -s $out/lib/libunwind.so $out/lib/libgcc_s.so.1\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(doFakeLibgcc) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows")))), "ln -s $out/lib/libunwind.dll.a $out/lib/libgcc_s.dll.a\n"))),
       __structuredAttrs: true,
       meta: nix.thunk(() => nix.update(llvm_meta, {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://clang.llvm.org/docs/Toolchain.html#unwind-library",
         description: "LLVM's unwinder library",
         longDescription: "The unwind library provides a family of _Unwind_* functions implementing\nthe language-neutral stack unwinding portion of the Itanium C++ ABI (Level\nI). It is a dependency of the C++ ABI library, and sometimes is a\ndependency of other runtimes.\n",

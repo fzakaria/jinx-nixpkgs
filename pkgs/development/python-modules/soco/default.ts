@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const xmltodict = nix.arg($, "xmltodict");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "soco",
       version: "0.31.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SoCo",
           repo: "SoCo",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [appdirs, ifaddr, lxml, requests, xmltodict]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, events_asyncio: nix.thunk(() => [aiohttp]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, events_asyncio: nix.thunk(() => [aiohttp]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([graphviz, mock, pytest_asyncio, pytestCheckHook, requests_mock], nix.sel(finalAttrs, "passthru", "optional-dependencies", "events_asyncio"))),
       pythonImportsCheck: nix.thunk(() => ["soco"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CLI and library to control Sonos speakers",
         homepage: "http://python-soco.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/SoCo/SoCo/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

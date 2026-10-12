@@ -63,14 +63,14 @@ export default nix.lambda((args) => (() => {
   const emptyDirectory = nix.arg($, "emptyDirectory");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const pkgs_with_overlay = nix.thunk(() => nix.app(nix.sel(pkgs, "extend"), (final) => (prev) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       "proof-of-overlay-hello": nix.thunk(() => nix.sel(prev, "hello")),
     })));
-  const dummyVersioning = nix.thunk(() => ({ __proto__: pos$2, revision: "test", versionSuffix: "test", label: "test" }));
+  const dummyVersioning = nix.thunk(() => ({ [nix.POS]: pos$2, revision: "test", versionSuffix: "test", label: "test" }));
   const overrideStructuredAttrs = (enable) => (drv) => nix.app(nix.sel(drv, "overrideAttrs"), (old) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       failed: nix.thunk(() => nix.app(nix.sel(old, "failed", "overrideAttrs"), (oldFailed) => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name: nix.thunk(() => nix.add(nix.sel(oldFailed, "name"), nix.str`${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(enable)), "-no")}-structuredAttrs`)),
           __structuredAttrs: enable,
         }))),
@@ -79,18 +79,18 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const lib_1 = nix.arg($_1, "lib");
       return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         name: "runNixOSTest-test",
         nodes: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           machine: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
             const pkgs_1 = nix.arg($_2, "pkgs");
             return {
-              __proto__: pos$7,
-              system: nix.thunk(() => ({ __proto__: pos$5, nixos: dummyVersioning })),
+              [nix.POS]: pos$7,
+              system: nix.thunk(() => ({ [nix.POS]: pos$5, nixos: dummyVersioning })),
               environment: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 systemPackages: nix.thunk(() => [
                   nix.thunk(() => nix.sel(pkgs_1, "proof-of-overlay-hello")),
                   nix.thunk(() => nix.sel(pkgs_1, "figlet")),
@@ -103,23 +103,23 @@ export default nix.lambda((args) => (() => {
       };
     })(), formals$2)));
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-      __proto__: pos$43,
+      [nix.POS]: pos$43,
       lycheeLinkCheck: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.sel(pkgs, "lychee", "tests")))),
       hasPkgConfigModules: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../hasPkgConfigModules/tests.nix"), nix.thunk(() => ({})))),
       hasCmakeConfigModules: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../hasCmakeConfigModules/tests.nix"), nix.thunk(() => ({})))),
       shellcheck: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../shellcheck/tests.nix"), nix.thunk(() => ({})))),
       shfmt: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackages"), nix.path(here, "../shfmt/tests.nix"), nix.thunk(() => ({})))),
       runCommand: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           bork: nix.thunk(() => nix.sel(pkgs, "python3Packages", "bork", "tests", "pytest-network")),
           "dns-resolution": nix.thunk(() => nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               name: "runCommand-dns-resolution-test",
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "ldns"))]),
               script: "drill example.com\ntouch $out\n",
             })))),
           "nonDefault-hash": nix.thunk(() => nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               name: "runCommand-nonDefaultHash-test",
               script: "mkdir $out\ntouch $out/empty\necho aaaaaaaaaaicjnrkeflncmrlk > $out/keymash\n",
               hash: "sha256-eMy+6bkG+KS75u7Zt4PM3APhtdVd60NxmBRN5GKJrHs=",
@@ -128,24 +128,24 @@ export default nix.lambda((args) => (() => {
       "runNixOSTest-example": runNixOSTest_example,
       "runNixOSTest-extendNixOS": nix.thunk(() => (() => {
         const t = nix.thunk(() => nix.app(nix.sel(runNixOSTest_example, "extendNixOS"), nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             module: nix.lambda((args_1) => (() => {
               const $_1 = nix.formals(args_1, formals$4);
               const hi = nix.arg($_1, "hi");
               const lib_1 = nix.arg($_1, "lib");
               return {
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 config: nix.thunk(() => ({
-                  __proto__: pos$14,
-                  assertions: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$13, assertion: hi }))]),
+                  [nix.POS]: pos$14,
+                  assertions: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$13, assertion: hi }))]),
                 })),
                 options: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   itsProofYay: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({})))),
                 })),
               };
             })(), formals$4),
-            specialArgs: nix.thunk(() => ({ __proto__: pos$17, hi: true })),
+            specialArgs: nix.thunk(() => ({ [nix.POS]: pos$17, hi: true })),
           }))));
         nix.assert_(nix.app(nix.sel(lib, "isDerivation"), t), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/testers/test/default.nix:105:5");
         nix.assert_(nix.has(nix.sel(t, "nodes", "machine"), "itsProofYay"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/testers/test/default.nix:106:5");
@@ -155,18 +155,18 @@ export default nix.lambda((args) => (() => {
           const $_1 = nix.formals(args_1, formals$5);
           const lib_1 = nix.arg($_1, "lib");
           return {
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             name: "nixosTest-test",
             nodes: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               machine: nix.lambda((args_2) => (() => {
                 const $_2 = nix.formals(args_2, formals$6);
                 const pkgs_1 = nix.arg($_2, "pkgs");
                 return {
-                  __proto__: pos$21,
-                  system: nix.thunk(() => ({ __proto__: pos$19, nixos: dummyVersioning })),
+                  [nix.POS]: pos$21,
+                  system: nix.thunk(() => ({ [nix.POS]: pos$19, nixos: dummyVersioning })),
                   environment: nix.thunk(() => ({
-                    __proto__: pos$20,
+                    [nix.POS]: pos$20,
                     systemPackages: nix.thunk(() => [
                       nix.thunk(() => nix.sel(pkgs_1, "proof-of-overlay-hello")),
                       nix.thunk(() => nix.sel(pkgs_1, "figlet")),
@@ -180,24 +180,24 @@ export default nix.lambda((args) => (() => {
         })(), formals$5))),
       testBuildFailure: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => (() => {
           const happy = nix.thunk(() => nix.app(runCommand, "testBuildFailure-happy", nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               failed: nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), nix.thunk(() => nix.app(runCommand, "fail", nix.thunk(() => ({})), "echo ok-ish >$out\n\necho failing though\necho also stderr 1>&2\necho 'line\\nwith-\\bbackslashes'\nprintf \"incomplete line - no newline\"\n\nexit 3\n")))),
             })), "grep -F 'ok-ish' $failed/result\n\ngrep -F 'failing though' $failed/testBuildFailure.log\ngrep -F 'also stderr' $failed/testBuildFailure.log\ngrep -F 'line\\nwith-\\bbackslashes' $failed/testBuildFailure.log\ngrep -F 'incomplete line - no newline' $failed/testBuildFailure.log\n\n[[ 3 = $(cat $failed/testBuildFailure.exit) ]]\n\ntouch $out\n"));
           const happyStructuredAttrs = nix.thunk(() => nix.app(overrideStructuredAttrs, true, happy));
           const helloDoesNotFail = nix.thunk(() => nix.app(runCommand, "testBuildFailure-helloDoesNotFail", nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               failed: nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), hello)))),
               hello: hello,
             })), "echo \"Checking $failed/testBuildFailure.log\"\ngrep -F 'testBuildFailure: The builder did not fail, but a failure was expected' $failed/testBuildFailure.log >/dev/null\n[[ 1 = $(cat $failed/testBuildFailure.exit) ]]\ntouch $out\necho 'All good.'\n"));
           const multiOutput = nix.thunk(() => nix.app(runCommand, "testBuildFailure-multiOutput", nix.thunk(() => ({
-              __proto__: pos$27,
-              failed: nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), nix.thunk(() => nix.app(runCommand, "fail", nix.thunk(() => ({ __proto__: pos$26, outputs: nix.thunk(() => ["dev", "doc", "out"]) })), "echo i am failing\nexit 1\n")))),
+              [nix.POS]: pos$27,
+              failed: nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), nix.thunk(() => nix.app(runCommand, "fail", nix.thunk(() => ({ [nix.POS]: pos$26, outputs: nix.thunk(() => ["dev", "doc", "out"]) })), "echo i am failing\nexit 1\n")))),
             })), "grep -F 'i am failing' $failed/testBuildFailure.log >/dev/null\n[[ 1 = $(cat $failed/testBuildFailure.exit) ]]\n\n# Checking our note that dev is the default output\necho $failed/_ | grep -- '-dev/_' >/dev/null\necho 'All good.'\ntouch $out\n"));
           const multiOutputStructuredAttrs = nix.thunk(() => nix.app(overrideStructuredAttrs, true, multiOutput));
           const sideEffects = nix.thunk(() => nix.app(runCommand, "testBuildFailure-sideEffects", nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               failed: nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-                    __proto__: pos$28,
+                    [nix.POS]: pos$28,
                     name: "fail-with-side-effects",
                     src: emptyDirectory,
                     postHook: "echo touching side-effect...\n# Assert that the side-effect doesn't exist yet...\n# We're checking that this hook isn't run by expect-failure.sh\nif [[ -e side-effect ]]; then\n  echo \"side-effect already exists\"\n  exit 1\nfi\ntouch side-effect\n",
@@ -206,7 +206,7 @@ export default nix.lambda((args) => (() => {
             })), "grep -F 'touching side-effect...' $failed/testBuildFailure.log >/dev/null\ngrep -F 'i am failing' $failed/testBuildFailure.log >/dev/null\n[[ 1 = $(cat $failed/testBuildFailure.exit) ]]\n[[ ! -e side-effect ]]\n\ntouch $out\n"));
           const sideEffectStructuredAttrs = nix.thunk(() => nix.app(overrideStructuredAttrs, true, sideEffects));
           return {
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             happy,
             happyStructuredAttrs,
             helloDoesNotFail,
@@ -216,64 +216,64 @@ export default nix.lambda((args) => (() => {
             sideEffectStructuredAttrs,
           };
         })()))),
-      "testBuildFailure'": nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(nix.sel(pkgs, "callPackages"), nix.path(here, "../testBuildFailurePrime/tests.nix"), nix.thunk(() => ({ __proto__: pos$31, overrideStructuredAttrs: overrideStructuredAttrs })))))),
+      "testBuildFailure'": nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(nix.sel(pkgs, "callPackages"), nix.path(here, "../testBuildFailurePrime/tests.nix"), nix.thunk(() => ({ [nix.POS]: pos$31, overrideStructuredAttrs: overrideStructuredAttrs })))))),
       testEqualContents: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-          __proto__: pos$42,
+          [nix.POS]: pos$42,
           equalDir: nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               assertion: "The same directory contents at different paths are recognized as equal",
               expected: nix.thunk(() => nix.app(runCommand, "expected", nix.thunk(() => ({})), "mkdir -p -- \"$out/c\"\necho a >\"$out/a\"\necho b >\"$out/b\"\necho d >\"$out/c/d\"\necho e >\"$out/e\"\nchmod a+x -- \"$out/e\"\n")),
               actual: nix.thunk(() => nix.app(runCommand, "actual", nix.thunk(() => ({})), "mkdir -p -- \"$out/c\"\necho a >\"$out/a\"\necho b >\"$out/b\"\necho d >\"$out/c/d\"\necho e >\"$out/e\"\nchmod a+x -- \"$out/e\"\n")),
             })))),
           fileMissing: nix.thunk(() => (() => {
             const log = nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   assertion: "Directories with different file list are not recognized as equal",
                   expected: nix.thunk(() => nix.app(runCommand, "expected", nix.thunk(() => ({})), "mkdir -p -- \"$out/c\"\necho a >\"$out/a\"\necho b >\"$out/b\"\necho d >\"$out/c/d\"\n")),
                   actual: nix.thunk(() => nix.app(runCommand, "actual", nix.thunk(() => ({})), "mkdir -p -- \"$out/c\"\necho a >\"$out/a\"\necho d >\"$out/c/d\"\n")),
                   postFailureMessage: postFailureMessage,
                 }))))));
             const postFailureMessage = "If after careful review, you find that the changes are acceptable, run `suchandsuch` to adopt the new behavior.\n";
-            return nix.app(runCommand, "fileMissing-failure-and-log-check", nix.thunk(() => ({ __proto__: pos$34, log: log, postFailureMessage: postFailureMessage })), "grep -F \"$postFailureMessage\" \"$log/testBuildFailure.log\"\ntouch $out\n");
+            return nix.app(runCommand, "fileMissing-failure-and-log-check", nix.thunk(() => ({ [nix.POS]: pos$34, log: log, postFailureMessage: postFailureMessage })), "grep -F \"$postFailureMessage\" \"$log/testBuildFailure.log\"\ntouch $out\n");
           })()),
           equalExe: nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               assertion: "The same executable file contents at different paths are recognized as equal",
               expected: nix.thunk(() => nix.app(runCommand, "expected", nix.thunk(() => ({})), "echo test >\"$out\"\nchmod a+x -- \"$out\"\n")),
               actual: nix.thunk(() => nix.app(runCommand, "actual", nix.thunk(() => ({})), "echo test >\"$out\"\nchmod a+x -- \"$out\"\n")),
             })))),
           unequalExe: nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 assertion: "Different file mode bits are not recognized as equal",
                 expected: nix.thunk(() => nix.app(runCommand, "expected", nix.thunk(() => ({})), "touch -- \"$out\"\nchmod a+x -- \"$out\"\n")),
                 actual: nix.thunk(() => nix.app(runCommand, "actual", nix.thunk(() => ({})), "touch -- \"$out\"\n")),
               })))))),
           unequalExeInDir: nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 assertion: "Different file mode bits are not recognized as equal in directory",
                 expected: nix.thunk(() => nix.app(runCommand, "expected", nix.thunk(() => ({})), "mkdir -p -- \"$out/a\"\necho b >\"$out/b\"\nchmod a+x -- \"$out/b\"\n")),
                 actual: nix.thunk(() => nix.app(runCommand, "actual", nix.thunk(() => ({})), "mkdir -p -- \"$out/a\"\necho b >\"$out/b\"\n")),
               })))))),
           nonExistentPath: nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 assertion: "Non existent paths are not recognized as equal",
                 expected: nix.thunk(() => nix.str`${emptyDirectory}/foo`),
                 actual: nix.thunk(() => nix.str`${emptyDirectory}/bar`),
               })))))),
           emptyFileAndDir: nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 assertion: "Empty file and directory are not recognized as equal",
                 expected: emptyFile,
                 actual: emptyDirectory,
               })))))),
           fileDiff: nix.thunk(() => (() => {
             const log = nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-                  __proto__: pos$40,
+                  [nix.POS]: pos$40,
                   assertion: "Different files are not recognized as equal in subdirectories",
                   expected: nix.thunk(() => nix.app(runCommand, "expected", nix.thunk(() => ({})), "mkdir -p -- \"$out/b\"\necho a >\"$out/a\"\necho EXPECTED >\"$out/b/c\"\n")),
                   actual: nix.thunk(() => nix.app(runCommand, "actual", nix.thunk(() => ({})), "mkdir -p \"$out/b\"\necho a >\"$out/a\"\necho ACTUAL >\"$out/b/c\"\n")),
                 }))))));
-            return nix.app(runCommand, "testEqualContents-fileDiff", nix.thunk(() => ({ __proto__: pos$41, log: log })), "(\n  set -x\n  # Note: use `&&` operator to chain commands because errexit (set -e)\n  # does not work in this context (even when set explicitly and with\n  # inherit_errexit), otherwise the subshell exits with the status of\n  # the last run command and ignores preceding failures.\n  grep -F -- 'Contents must be equal, but were not!' \"$log/testBuildFailure.log\" &&\n  grep -E -- '\\+\\+\\+ .*-expected/b/c' \"$log/testBuildFailure.log\" &&\n  grep -E -- '--- .*-actual/b/c' \"$log/testBuildFailure.log\" &&\n  grep -F -- -ACTUAL \"$log/testBuildFailure.log\" &&\n  grep -F -- +EXPECTED \"$log/testBuildFailure.log\"\n) || {\n  echo \"Test failed: could not find pattern in build log $log\"\n  false\n}\necho 'All good.'\ntouch -- \"$out\"\n");
+            return nix.app(runCommand, "testEqualContents-fileDiff", nix.thunk(() => ({ [nix.POS]: pos$41, log: log })), "(\n  set -x\n  # Note: use `&&` operator to chain commands because errexit (set -e)\n  # does not work in this context (even when set explicitly and with\n  # inherit_errexit), otherwise the subshell exits with the status of\n  # the last run command and ignores preceding failures.\n  grep -F -- 'Contents must be equal, but were not!' \"$log/testBuildFailure.log\" &&\n  grep -E -- '\\+\\+\\+ .*-expected/b/c' \"$log/testBuildFailure.log\" &&\n  grep -E -- '--- .*-actual/b/c' \"$log/testBuildFailure.log\" &&\n  grep -F -- -ACTUAL \"$log/testBuildFailure.log\" &&\n  grep -F -- +EXPECTED \"$log/testBuildFailure.log\"\n) || {\n  echo \"Test failed: could not find pattern in build log $log\"\n  false\n}\necho 'All good.'\ntouch -- \"$out\"\n");
           })()),
         })))),
       testEqualArrayOrMap: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackages"), nix.path(here, "../testEqualArrayOrMap/tests.nix"), nix.thunk(() => ({})))),

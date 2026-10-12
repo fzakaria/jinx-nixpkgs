@@ -23,10 +23,10 @@ export default nix.lambda((args) => (() => {
   const virtiofsd = nix.arg($, "virtiofsd");
   const yq_go = nix.arg($, "yq-go");
   const version = "3.32.0";
-  const kata_images_all = nix.thunk(() => nix.app(callPackage, nix.path(here, "./kata-images.nix"), nix.thunk(() => ({ __proto__: pos$1, version: version }))));
+  const kata_images_all = nix.thunk(() => nix.app(callPackage, nix.path(here, "./kata-images.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, version: version }))));
   const kata_images = nix.thunk(() => nix.selOr(kata_images_all, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const qemuSystemBinary = nix.thunk(() => nix.selOr({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     "x86_64-linux": "qemu-system-x86_64",
     "aarch64-linux": "qemu-system-aarch64",
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.str`${nix.sel(stdenv, "hostPlatform", "system")}`)));
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const version_1 = version;
       const hardeningDisable = nix.thunk(() => ["fortify"]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "kata-containers",
           repo: "kata-containers",
           rev: version_1,
@@ -70,12 +70,12 @@ sed -i \\
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "kata-images": kata_images,
         "kata-images-aarch64-linux": nix.thunk(() => nix.sel(kata_images_all, "aarch64-linux")),
         "kata-images-x86_64-linux": nix.thunk(() => nix.sel(kata_images_all, "x86_64-linux")),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             extraArgs: nix.thunk(() => [
               "--subpackage=kata-images-aarch64-linux",
               "--subpackage=kata-images-x86_64-linux",
@@ -83,7 +83,7 @@ runHook postInstall
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Lightweight Virtual Machines like containers that provide the workload isolation and security of VMs",
         homepage: "https://github.com/kata-containers/kata-containers",
         changelog: nix.thunk(() => nix.str`https://github.com/kata-containers/kata-containers/releases/tag/${version_1}`),
@@ -95,7 +95,7 @@ runHook postInstall
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux"]),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version: version_1,
         hardeningDisable,

@@ -15,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const libnetfilter_conntrack = nix.arg($, "libnetfilter_conntrack");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "iptstate",
       version: "2.2.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/jaymzh/iptstate/releases/download/v${nix.sel(finalAttrs, "version")}/iptstate-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-iW3wYCiFRWomMfeV1jT8ITEeUF+MkQNI5jEoYPIJeVU=",
         })))),
       buildInputs: nix.thunk(() => [libnetfilter_conntrack, ncurses]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Conntrack top like tool",
         mainProgram: "iptstate",
         homepage: "https://github.com/jaymzh/iptstate",

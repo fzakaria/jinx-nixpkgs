@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libdrm = nix.arg($, "libdrm");
   return nix.app(qtModule, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "qtwayland",
       propagatedBuildInputs: nix.thunk(() => [qtbase, qtdeclarative]),
       buildInputs: nix.thunk(() => [libdrm]),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`-DQt6WaylandScannerTools_DIR=${nix.sel(pkgsBuildBuild, "qt6", "qtbase")}/lib/cmake/Qt6WaylandScannerTools`),
         ]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         badPlatforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
       })),

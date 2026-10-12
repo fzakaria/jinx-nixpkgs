@@ -20,26 +20,26 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const mcVersion = nix.thunk(() => nix.builtins.head(nix.thunk(() => nix.app(nix.sel(lib, "splitString"), "_", version))));
   return nix.app(runCommand, nix.thunk(() => nix.str`optifine-${mcVersion}`), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "optifine",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://optifine.net/download?f=OptiFine_${version}.jar`),
           sha256: sha256,
           name: nix.thunk(() => nix.str`OptiFine_${version}.jar`),
         })))),
       nativeBuildInputs: nix.thunk(() => [jre, makeWrapper]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           command: nix.thunk(() => [nix.path(here, "./update.py")]),
           supportedFeatures: nix.thunk(() => ["commit"]),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://optifine.net/",
         description: nix.thunk(() => nix.str`Minecraft ${mcVersion} optimization mod`),
         longDescription: nix.thunk(() => nix.str`OptiFine is a Minecraft optimization mod.

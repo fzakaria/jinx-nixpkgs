@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const mpi = nix.arg($, "mpi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hpcg",
       version: "3.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.hpcg-benchmark.org/downloads/hpcg-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "197lw2nwmzsmfsbvgvi8z7kj69n374kgfzzp8pkmk7mp2vkk991k",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       dontConfigure: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin $out/share/hpcg\n\ncp bin/xhpcg $out/bin\ncp bin/hpcg.dat $out/share/hpcg\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "HPC conjugate gradient benchmark",
         homepage: "https://www.hpcg-benchmark.org",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

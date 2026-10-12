@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const perlPackages = nix.arg($, "perlPackages");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(perl, "pkgs", "toPerlModule"), nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname: "nix-perl",
         version: nix.thunk(() => nix.attr(nix_store, "version")),
         src: src,
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         doCheck: true,
         nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(perlPackages, "Test2Harness"))]),
         meta: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           description: "Perl bindings for the Nix store, as maintained in the Hydra repository",
           homepage: "https://github.com/NixOS/hydra",
           license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

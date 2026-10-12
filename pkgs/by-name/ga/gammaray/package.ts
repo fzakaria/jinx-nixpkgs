@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const elfutils = nix.arg($, "elfutils");
   const libbfd = nix.arg($, "libbfd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gammaray",
       version: "3.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KDAB",
           repo: nix.thunk(() => nix.sel(finalAttrs, "pname")),
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       ]),
       cmakeFlags: nix.thunk(() => ["-DGAMMARAY_BUILD_DOCS=OFF"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Software introspection tool for Qt applications developed by KDAB",
         homepage: "https://github.com/KDAB/GammaRay",
         changelog: nix.thunk(() => nix.str`https://github.com/KDAB/GammaRay/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

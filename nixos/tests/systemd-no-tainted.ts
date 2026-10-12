@@ -10,9 +10,9 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     name: "systemd-no-tainted",
-    nodes: nix.thunk(() => ({ __proto__: pos$1, machine: nix.thunk(() => ({})) })),
+    nodes: nix.thunk(() => ({ [nix.POS]: pos$1, machine: nix.thunk(() => ({})) })),
     testScript: "machine.wait_for_unit(\"multi-user.target\")\nwith subtest(\"systemctl should not report tainted with unmerged-usr\"):\n    output = machine.succeed(\"systemctl status\")\n    print(output)\n    assert \"Tainted\" not in output\n    assert \"unmerged-usr\" not in output\n",
   };
 })(), formals$1);

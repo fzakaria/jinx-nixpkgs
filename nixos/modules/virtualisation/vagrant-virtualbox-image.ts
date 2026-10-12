@@ -23,15 +23,15 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     imports: nix.thunk(() => [
       nix.path(here, "./vagrant-guest.nix"),
       nix.path(here, "./virtualbox-image.nix"),
     ]),
     virtualbox: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       params: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         audio: "none",
         audioin: "off",
         audioout: "off",
@@ -40,26 +40,26 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     documentation: nix.thunk(() => ({
-      __proto__: pos$5,
-      man: nix.thunk(() => ({ __proto__: pos$3, enable: false })),
-      nixos: nix.thunk(() => ({ __proto__: pos$4, enable: false })),
+      [nix.POS]: pos$5,
+      man: nix.thunk(() => ({ [nix.POS]: pos$3, enable: false })),
+      nixos: nix.thunk(() => ({ [nix.POS]: pos$4, enable: false })),
     })),
     users: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       extraUsers: nix.thunk(() => ({
-        __proto__: pos$7,
-        vagrant: nix.thunk(() => ({ __proto__: pos$6, extraGroups: nix.thunk(() => ["vboxsf"]) })),
+        [nix.POS]: pos$7,
+        vagrant: nix.thunk(() => ({ [nix.POS]: pos$6, extraGroups: nix.thunk(() => ["vboxsf"]) })),
       })),
     })),
     image: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       extension: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 999n, nix.thunk(() => nix.str`${nix.sel(config, "image", "baseName")}.box`))),
     })),
     system: nix.thunk(() => ({
-      __proto__: pos$12,
-      nixos: nix.thunk(() => ({ __proto__: pos$10, tags: nix.thunk(() => ["vagrant"]) })),
+      [nix.POS]: pos$12,
+      nixos: nix.thunk(() => ({ [nix.POS]: pos$10, tags: nix.thunk(() => ["vagrant"]) })),
       build: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         image: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 999n, nix.thunk(() => nix.sel(config, "system", "build", "vagrantVirtualbox")))),
         vagrantVirtualbox: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.sel(config, "image", "fileName")), nix.thunk(() => ({})), nix.thunk(() => nix.str`  mkdir workdir
   cd workdir

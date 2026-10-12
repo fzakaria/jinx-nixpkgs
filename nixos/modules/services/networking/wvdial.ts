@@ -22,22 +22,22 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "environment", "wvdial"));
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       environment: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         wvdial: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           dialerDefaults: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: "",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               example: "Init1 = AT+CGDCONT=1,\"IP\",\"internet.t-mobile\"",
               description: "Contents of the \"Dialer Defaults\" section of\n<filename>/etc/wvdial.conf</filename>.\n",
             })))),
           pppDefaults: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: "noipdefault\nusepeerdns\ndefaultroute\npersist\nnoauth\n",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Default ppp settings for wvdial.",
@@ -46,20 +46,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "dialerDefaults"), "")), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         environment: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           etc: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             "wvdial.conf": nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "wvdial.conf", nix.thunk(() => nix.str`[Dialer Defaults]
 PPPD PATH = ${nix.sel(pkgs, "ppp")}/sbin/pppd
 ${nix.sel(config, "environment", "wvdial", "dialerDefaults")}
 `))),
             })),
             "ppp/peers/wvdial": nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "wvdial", nix.thunk(() => nix.sel(cfg, "pppDefaults")))),
             })),
           })),

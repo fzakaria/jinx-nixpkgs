@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "openhantek6022";
       const version = "3.4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OpenHantek",
           repo: "OpenHantek6022",
           rev: version,
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "# Fix up install paths & checks\nsed -i 's#if(EXISTS \".*\")#if(1)#g' CMakeLists.txt\nsed -i 's#/lib/udev#lib/udev#g' CMakeLists.txt\nsed -i 's#/usr/share#share#g' CMakeLists.txt\n";
       const doInstallCheck = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Free software for Hantek and compatible (Voltcraft/Darkwire/Protek/Acetech) USB digital signal oscilloscopes",
         mainProgram: "OpenHantek",
         homepage: "https://github.com/OpenHantek/OpenHantek6022",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(libsForQt5, "qtbase", "meta", "platforms")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

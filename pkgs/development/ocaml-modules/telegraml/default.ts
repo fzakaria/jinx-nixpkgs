@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const logs = nix.arg($, "logs");
   const yojson = nix.arg($, "yojson");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "telegraml",
       version: "unstable-2021-06-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nv-vn",
           repo: "TelegraML",
           rev: "3e28933a287e5eacd34c46b434c487f155397abc",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace src/dune --replace batteries batteries.unthreaded\n",
       propagatedBuildInputs: nix.thunk(() => [batteries, cohttp_lwt_unix, logs, yojson]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OCaml library implementing the Telegram bot API",
         homepage: "https://github.com/nv-vn/TelegraML/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

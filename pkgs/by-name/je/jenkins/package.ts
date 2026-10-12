@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const cacert = nix.arg($, "cacert");
   const curl = nix.arg($, "curl");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "jenkins",
       version: "2.580.1",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://get.jenkins.io/war-stable/${nix.sel(finalAttrs, "version")}/jenkins.war`),
           hash: "sha256-OTvyR2NS3XJlGf0fks5m6sfSPAk25pZ0ILcXBgxMQNA=",
         })))),
@@ -50,9 +50,9 @@ makeWrapper "${jdk25}/bin/java" "$out/bin/jenkins-cli" \\
   --add-flags "-jar $out/share/jenkins-cli.jar"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           jenkins: nix.thunk(() => nix.attr(nixosTests, "jenkins")),
           "jenkins-cli": nix.thunk(() => nix.attr(nixosTests, "jenkins-cli")),
         })),
@@ -75,7 +75,7 @@ fi
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Extendable open source continuous integration server",
         homepage: "https://jenkins.io/",
         sourceProvenance: nix.thunk(() => (() => {

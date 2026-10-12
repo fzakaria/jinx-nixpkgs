@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const perlPackages = nix.arg($, "perlPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vcsh",
       version: "2.0.10",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/RichiH/vcsh/releases/download/v${nix.sel(finalAttrs, "version")}/vcsh-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-M/UME2kNCxwzngKXMYp0cdps7LWVwoS2I/mTrvPts7g=",
         })))),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       })())),
       outputs: nix.thunk(() => ["out", "doc", "man"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Version Control System for $HOME",
         homepage: "https://github.com/RichiH/vcsh",
         changelog: nix.thunk(() => nix.str`https://github.com/RichiH/vcsh/blob/v${nix.sel(finalAttrs, "version")}/changelog`),

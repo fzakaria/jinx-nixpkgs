@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const pname = "translitcodec";
   const version = "0.7.0";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "claudep",
           repo: "translitcodec",
           tag: nix.thunk(() => nix.str`version-${version}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => [pname]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unicode to 8-bit charset transliteration codec",
         homepage: "https://github.com/claudep/translitcodec",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -21,36 +21,36 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     imports: nix.thunk(() => [nix.path(here, "./auto.nix")]),
     services: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       xserver: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         enable: true,
         windowManager: nix.thunk(() => ({
-          __proto__: pos$2,
-          icewm: nix.thunk(() => ({ __proto__: pos$1, enable: true })),
+          [nix.POS]: pos$2,
+          icewm: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
         })),
       })),
       displayManager: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         defaultSession: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "none+icewm")),
       })),
     })),
     "test-support": nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       displayManager: nix.thunk(() => ({
-        __proto__: pos$7,
-        auto: nix.thunk(() => ({ __proto__: pos$6, enable: true })),
+        [nix.POS]: pos$7,
+        auto: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
       })),
     })),
     environment: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       etc: nix.thunk(() => ({
-        __proto__: pos$11,
-        "icewm/theme": nix.thunk(() => ({ __proto__: pos$9, text: "Theme=\"gtk2/default.theme\"\n" })),
-        "icewm/preferences": nix.thunk(() => ({ __proto__: pos$10, text: "ShowTaskBar=0\n" })),
+        [nix.POS]: pos$11,
+        "icewm/theme": nix.thunk(() => ({ [nix.POS]: pos$9, text: "Theme=\"gtk2/default.theme\"\n" })),
+        "icewm/preferences": nix.thunk(() => ({ [nix.POS]: pos$10, text: "ShowTaskBar=0\n" })),
       })),
     })),
   };

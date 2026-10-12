@@ -23,18 +23,18 @@ export default nix.lambda((args) => (() => {
   const buildHashes = nix.thunk(() => nix.builtins.fromJSON(nix.thunk(() => nix.builtins.readFile(nix.path(here, "./hashes.json")))));
   const archHashes = nix.thunk(() => nix.sel(buildHashes, nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const platform_suffix = nix.thunk(() => nix.sel({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "aarch64-darwin": "aarch64-apple-darwin",
     "x86_64-linux": "x86_64-unknown-linux-gnu",
     "aarch64-linux": "aarch64-unknown-linux-gnu",
   }, nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const binaries = nix.thunk(() => ["buck2", "rust-project", "starlark_fmt"]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "buck2",
       version: nix.thunk(() => nix.sel(buildHashes, "version")),
       srcs: nix.thunk(() => nix.builtins.map((binary) => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`https://github.com/facebook/buck2/releases/download/${nix.sel(finalAttrs, "version")}/${binary}-${platform_suffix}.zst`),
             hash: nix.thunk(() => nix.sel(archHashes, nix.key(nix.force(binary)))),
           }))), binaries)),
@@ -61,16 +61,16 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       preVersionCheck: "version=buck2",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         prelude: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: nix.thunk(() => nix.str`https://github.com/facebook/buck2-prelude/archive/${nix.sel(buildHashes, "preludeGit")}.tar.gz`),
             hash: nix.thunk(() => nix.sel(buildHashes, "preludeFod")),
           })))),
         updateScript: nix.path(here, "./update.nu"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Fast, hermetic, multi-language build system",
         homepage: "https://buck2.build",
         changelog: nix.thunk(() => nix.str`https://github.com/facebook/buck2/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const gnugrep = nix.arg($, "gnugrep");
   const gnused = nix.arg($, "gnused");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "autorevision",
       version: "1.22",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/Autorevision/autorevision/releases/download/v%2F${nix.sel(finalAttrs, "version")}/autorevision-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "sha256-3ktLVC73m2xddq5BhxVKw/FJd6pZ5RVb7fv29dxUoRE=",
         })))),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
     -i "$out/bin/autorevision"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extracts revision metadata from your VCS repository",
         homepage: "https://autorevision.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LaunchPlatform",
           repo: "beanhub-forms",
           tag: version,
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [multidict, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["beanhub_forms"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for generating and processing BeanHub's custom forms",
         homepage: "https://github.com/LaunchPlatform/beanhub-forms/",
         changelog: nix.thunk(() => nix.str`https://github.com/LaunchPlatform/beanhub-forms/releases/tag/${version}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

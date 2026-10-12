@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const openjdk = nix.arg($, "openjdk");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "leo3",
       version: "1.7.18",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/leoprover/Leo-III/releases/download/v${nix.sel(finalAttrs, "version")}/leo3-v${nix.sel(finalAttrs, "version")}.jar`),
           sha256: "sha256-HEUi8Krxv9u9Rq/2Gu0Tts86sseaAZq+pccJ4Q5MRr0=",
         })))),
@@ -31,7 +31,7 @@ echo "'${openjdk}/bin/java' -jar '$out/lib/java/leo3/leo3.jar' \\"\\$@\\""  >> "
 chmod a+x "$out/bin/leo3"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Automated theorem prover for classical higher-order logic with choice",
         mainProgram: "leo3",
         sourceProvenance: nix.thunk(() => (() => {

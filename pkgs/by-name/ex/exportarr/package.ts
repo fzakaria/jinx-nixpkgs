@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "exportarr",
       version: "2.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "onedr0p",
           repo: "exportarr",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-XKIfOKgzJ41gQl/Jd8ZO3oNimZcoIY2d38ZojZAf53c=",
       subPackages: nix.thunk(() => ["cmd/exportarr"]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLE: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLE: 0n })),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       tags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ["netgo"]))),
       preCheck: "# Run all tests.\nunset subPackages\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "AIO Prometheus Exporter for Sonarr, Radarr or Lidarr",
         mainProgram: "exportarr",
         homepage: "https://github.com/onedr0p/exportarr",

@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "deepgit";
       const version = "4.4";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.syntevo.com/downloads/deepgit/deepgit-linux-${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}.tar.gz`),
           hash: "sha256-ILqwXDyW7/hZzoSxxaxv4bF5xsB/JFaOBYAJFb7xmdk=",
         }))));
@@ -50,7 +50,7 @@ patchShebangs bin/deepgit.sh
             const mimeTypes = nix.thunk(() => ["x-scheme-handler/deepgit", "x-scheme-handler/sourcetree"]);
             const icon = "deepgit";
             return {
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name,
               desktopName,
               keywords,
@@ -67,7 +67,7 @@ patchShebangs bin/deepgit.sh
       ]);
       const installPhase = "runHook preInstall\n\nmkdir -pv $out/{bin,share/icons/hicolor/scalable/apps/}\ncp -a lib license.html $out\nmv bin/deepgit.sh $out/bin/deepgit\n\nfor icon_size in 32 48 64 128 256; do\n  path=$icon_size'x'$icon_size\n  icon=bin/deepgit-$icon_size.png\n  mkdir -p $out/share/icons/hicolor/$path/apps\n  cp $icon $out/share/icons/hicolor/$path/apps/deepgit.png\ndone\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool to investigate the history of source code",
         homepage: "https://www.syntevo.com/deepgit",
         changelog: "https://www.syntevo.com/deepgit/changelog.txt",
@@ -77,7 +77,7 @@ patchShebangs bin/deepgit.sh
         mainProgram: "deepgit",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

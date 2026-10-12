@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   const torch_bin = nix.arg($, "torch-bin");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "torchaudio",
       version: "2.11.0",
       format: "wheel",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       dontStrip: true,
       pythonImportsCheck: nix.thunk(() => ["torchaudio"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "PyTorch audio library",
         homepage: "https://pytorch.org/audio",
         downloadPage: "https://github.com/pytorch/audio",

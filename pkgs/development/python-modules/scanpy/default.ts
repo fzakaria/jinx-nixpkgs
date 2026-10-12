@@ -58,13 +58,13 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const zarr = nix.arg($, "zarr");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "scanpy",
       version: "1.12.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "scverse",
           repo: "scanpy",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -98,7 +98,7 @@ export default nix.lambda((args) => (() => {
         umap_learn,
       ], nix.concat(nix.sel(fast_array_utils, "optional-dependencies", "accel"), nix.concat(nix.sel(fast_array_utils, "optional-dependencies", "sparse"), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonOlder, "3.13")), nix.thunk(() => [typing_extensions])))))),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         dask: nix.thunk(() => [anndata, dask]),
         "dask-ml": nix.thunk(() => [dask_ml]),
         leiden: nix.thunk(() => [igraph, leidenalg]),
@@ -161,7 +161,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["scanpy"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Single-cell analysis in Python which scales to >100M cells",
         homepage: "https://scanpy.readthedocs.io",
         changelog: nix.thunk(() => nix.str`https://github.com/scverse/scanpy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

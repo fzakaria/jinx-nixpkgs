@@ -24,13 +24,13 @@ export default nix.lambda((args) => (() => {
   const unittestCheckHook = nix.arg($, "unittestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "trectools",
       version: "0.0.50",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "joaopalotti",
           repo: "trectools",
           rev: "8a896def007e3d657eb29f820ee3de98e2f32691",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       unittestFlags: nix.thunk(() => ["unittests/"]),
       pythonImportsCheck: nix.thunk(() => ["trectools"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/joaopalotti/trectools",
         description: "Library for assisting Information Retrieval (IR) practitioners with TREC-like campaigns",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsdOriginal")),

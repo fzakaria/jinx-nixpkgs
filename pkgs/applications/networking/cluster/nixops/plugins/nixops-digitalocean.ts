@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const nixops = nix.arg($, "nixops");
   const python_digitalocean = nix.arg($, "python-digitalocean");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nixops-digitalocean",
       version: "0.1.0-unstable-2022-08-14",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nix-community",
           repo: "nixops-digitalocean",
           rev: "e977b7f11e264a6a2bff2dcbc7b94c6a97b92fff",
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [python_digitalocean]),
       pythonImportsCheck: nix.thunk(() => ["nixops_digitalocean"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "NixOps Digitalocean plugin",
         homepage: "https://github.com/nix-community/nixops-digitalocean",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),

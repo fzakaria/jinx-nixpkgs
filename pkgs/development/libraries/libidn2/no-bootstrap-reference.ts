@@ -14,10 +14,10 @@ export default nix.lambda((args) => (() => {
   const libunistring = nix.arg($, "libunistring");
   const runCommandLocal = nix.arg($, "runCommandLocal");
   return nix.app(runCommandLocal, nix.thunk(() => nix.str`${nix.sel(libidn2, "pname")}-${nix.sel(libidn2, "version")}`), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       outputs: nix.thunk(() => ["bin", "dev", "out"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         out: nix.thunk(() => nix.attr(libidn2, "out")),
         info: nix.thunk(() => nix.attr(libidn2, "info")),
         devdoc: nix.thunk(() => nix.attr(libidn2, "devdoc")),

@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "geany",
       version: "2.1",
       outputs: nix.thunk(() => ["out", "dev", "doc", "man"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.geany.org/geany-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-a5aohERjMAwQuWkqCl7a2CNu7J6ENC9XX4PU/IkzEig=",
         })))),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Small and lightweight IDE",
         longDescription: "Geany is a small and lightweight Integrated Development Environment.\nIt was developed to provide a small and fast IDE, which has only a few dependencies from other packages.\nAnother goal was to be as independent as possible from a special Desktop Environment like KDE or GNOME.\nGeany only requires the GTK runtime libraries.\nSome basic features of Geany:\n- Syntax highlighting\n- Code folding\n- Symbol name auto-completion\n- Construct completion/snippets\n- Auto-closing of XML and HTML tags\n- Call tips\n- Many supported filetypes including C, Java, PHP, HTML, Python, Perl, Pascal (full list)\n- Symbol lists\n- Code navigation\n- Build system to compile and execute your code\n- Simple project management\n- Plugin interface\n",
         homepage: "https://www.geany.org/",

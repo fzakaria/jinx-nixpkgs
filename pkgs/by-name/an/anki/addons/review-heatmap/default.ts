@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const esbuild = nix.arg($, "esbuild");
   const aab = nix.arg($, "aab");
   return nix.app(nix.sel(anki_utils, "buildAnkiAddon"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "review-heatmap",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "glutanimate",
           repo: "review-heatmap",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +52,7 @@ cd build/dist/src/review_heatmap
 runHook postBuild
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Anki add-on to help you keep track of your review activity",
         homepage: "https://github.com/glutanimate/review-heatmap",
         changelog: nix.thunk(() => nix.str`https://github.com/glutanimate/review-heatmap/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

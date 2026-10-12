@@ -27,11 +27,11 @@ WRAPPER
 chmod +x $out/bin/${toolset}
 `;
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "arcanist",
       version: "0-unstable-2026-07-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "phorgeit",
           repo: "arcanist",
           rev: "b084cd508f587aaa2ed6fef5e2cee163b4bdd259",
@@ -62,7 +62,7 @@ runHook postInstall
       doInstallCheck: true,
       installCheckPhase: "$out/bin/arc help diff -- > /dev/null\n$out/bin/phage help alias -- > /dev/null\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command line interface to Phorge and Phabricator",
         homepage: "https://we.phorge.it/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

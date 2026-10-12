@@ -29,11 +29,11 @@ import "C"
 EOF
 `);
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "age-plugin-fido2-hmac",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "olastor",
           repo: "age-plugin-fido2-hmac",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +48,7 @@ EOF
       buildInputs: nix.thunk(() => [libfido2]),
       postConfigure: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), darwin_configure)),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Age plugin to encrypt files with fido2 tokens using the hmac-secret extension and non-discoverable credentials",
         homepage: "https://github.com/olastor/age-plugin-fido2-hmac/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

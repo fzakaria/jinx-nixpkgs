@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "foundry",
       version: "1.8.4",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "foundry-rs",
           repo: "foundry",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,17 +41,17 @@ export default nix.lambda((args) => (() => {
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/forge`),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         VERGEN_GIT_SHA: nix.thunk(() => nix.sel(finalAttrs, "src", "rev")),
         VERGEN_GIT_DESCRIBE: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
         SVM_RELEASES_LIST_JSON: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.str`${nix.path(here, "./svm-lists/macosx-amd64.json")}` : nix.str`${nix.path(here, "./svm-lists/linux-amd64.json")}`)),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/foundry-rs/foundry",
         description: "Portable, modular toolkit for Ethereum application development written in Rust",
         changelog: nix.thunk(() => nix.str`https://github.com/foundry-rs/foundry/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

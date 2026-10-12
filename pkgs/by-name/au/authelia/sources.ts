@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
     const pname = "authelia";
     const version = "4.39.28";
     const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         owner: "authelia",
         repo: "authelia",
         rev: nix.thunk(() => nix.str`v${version}`),
@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       }))));
     const vendorHash = "sha256-Bi3cAkcVP1ZWFBuy0RfpqW7yqyV5DxSsa6gmtfLgxEA=";
     const pnpmDepsHash = "sha256-B/Au9YICuRM6+J4DojFbXf2IEWC+j1jRsU68nn08Puk=";
-    return { __proto__: pos$2, pname, version, src, vendorHash, pnpmDepsHash };
+    return { [nix.POS]: pos$2, pname, version, src, vendorHash, pnpmDepsHash };
   })();
 })(), formals$1);
 //# sourceMappingURL=sources.ts.map

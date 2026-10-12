@@ -28,18 +28,18 @@ export default nix.lambda((args) => (() => {
       const version = "7.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "intercreate",
           repo: "smpclient",
           tag: version,
           hash: "sha256-5o2z+cyOVpTNpOdc9GfFNmqcOhbGgbFM0qGng44E1xE=",
         }))));
-      const env = nix.thunk(() => ({ __proto__: pos$2, HATCH_BUILD_HOOK_VCS_VERSION: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, HATCH_BUILD_HOOK_VCS_VERSION: version }));
       const __darwinAllowLocalNetworking = true;
       const build_system = nix.thunk(() => [hatchling, hatch_vcs]);
       const dependencies = nix.thunk(() => [async_timeout, intelhex, smp]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         serial: nix.thunk(() => [pyserial]),
         ble: nix.thunk(() => [bleak]),
         udp: [],
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytest_asyncio, pytestCheckHook], nix.sel(optional_dependencies, "all")));
       const pythonImportsCheck = nix.thunk(() => ["smpclient"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Simple Management Protocol (SMP) Client for remotely managing MCU firmware",
         homepage: "https://github.com/intercreate/smpclient",
         changelog: nix.thunk(() => nix.str`https://github.com/intercreate/smpclient/releases/tag/${nix.sel(src, "tag")}`),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const openjdk = nix.arg($, "openjdk");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "visual-paradigm-ce",
       version: "18.1.20260914",
       src: nix.thunk(() => (() => {
@@ -29,33 +29,33 @@ export default nix.lambda((args) => (() => {
         const majorMinor = nix.thunk(() => nix.builtins.concatStringsSep(".", nix.thunk(() => nix.app(nix.sel(lib, "dropEnd"), 1n, splitted))));
         const suffix = nix.thunk(() => nix.app(nix.sel(lib, "last"), splitted));
         return nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://eu10-dl.visual-paradigm.com/visual-paradigm/vpce${majorMinor}/${suffix}/Visual_Paradigm_CE_${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), majorMinor)}_${suffix}_Linux64_InstallFree.tar.gz`),
             hash: "sha256-Kgfx+bl4i2OTdqIuNfNdELGo8Wt2BZe+YYQS3aJg7V8=",
           })));
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-visual-paradigm-ce", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p curl gnused common-updater-scripts\n\nset -eu -o pipefail\n\nversion=\"$(curl -Ls -o /dev/null -w %{url_effective} https://www.visual-paradigm.com/downloads/vpce/checksum.html | sed -E 's#.*/vpce([0-9]+\\.[0-9]+)/([0-9]+)/.*#\\1.\\2#')\"\n\nupdate-source-version visual-paradigm-ce \"$version\"\n")),
       })),
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "visualparadigm",
             desktopName: "Visual Paradigm",
             exec: "Visual_Paradigm %f",
             icon: "vpuml",
           })))),
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "visualparadigmproductselector",
             desktopName: "Visual Paradigm Product Selector",
             exec: "Visual_Paradigm_Product_Selector",
             icon: "ProductSelector",
           })))),
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "visualparadigmshapeeditor",
             desktopName: "Visual Paradigm Shape Editor",
             exec: "Visual_Paradigm_Shape_Editor",
@@ -80,7 +80,7 @@ done
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "All-in-one UML CASE tool for software development",
         homepage: "https://www.visual-paradigm.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const gotools = nix.arg($, "gotools");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jobber",
       version: "1.4.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dshearer",
           repo: "jobber",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "mkdir -p $out/etc $out/libexec\n$out/bin/jobbermaster defprefs --libexec $out/libexec > $out/etc/jobber.conf\nmv $out/bin/jobber{master,runner} $out/libexec/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://dshearer.github.io/jobber",
         changelog: nix.thunk(() => nix.str`https://github.com/dshearer/jobber/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Alternative to cron, with sophisticated status-reporting and error-handling",

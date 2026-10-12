@@ -16,22 +16,22 @@ export default nix.lambda((args) => (() => {
   const guile = nix.arg($, "guile");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "guile-irregex",
       version: "0.9.12",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://synthcode.com/scheme/irregex/irregex-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Iwt6mdgp5d0q2hweU2+9dPLs8j4Jd4GOdZvfvTe8Uvw=",
         })))),
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [guile, mitscheme]),
       buildInputs: nix.thunk(() => [guile]),
-      env: nix.thunk(() => ({ __proto__: pos$2, GUILE_AUTO_COMPILE: "0" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, GUILE_AUTO_COMPILE: "0" })),
       buildPhase: "runHook preBuild\n\nsite_dir=\"$out/share/guile/site/3.0\"\nlib_dir=\"$out/lib/guile/3.0/site-ccache\"\n\nmkdir -p $site_dir/rx/source\nmkdir -p $lib_dir/rx/source\n\ncp $src/irregex-guile.scm $site_dir/rx/irregex.scm\ncp $src/irregex.scm $site_dir/rx/source/irregex.scm\ncp $src/irregex-utils.scm $site_dir/rx/source/irregex-utils.scm\nguild compile --r7rs $site_dir/rx/irregex.scm -o $lib_dir/rx/irregex.go\nguild compile --r7rs $site_dir/rx/source/irregex.scm -o $lib_dir/rx/source/irregex.go\n\nrunHook postBuild\n",
       dontInstall: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "IrRegular Expressions",
         longDescription: "A fully portable and efficient R[4567]RS implementation of regular expressions, supporting\nboth POSIX syntax with various (irregular) PCRE extensions, as well as SCSH's SRE syntax, with\nvarious aliases for commonly used patterns. DFA matching is used when possible, otherwise a\nclosure-compiled NFA approach is used. The library makes no assumptions about the encoding of\nstrings or range of characters and can thus be used in Unicode-aware Scheme implementations.\nMatching may be performed over standard Scheme strings, or over arbitrarily chunked streams of\nstrings.\n",
         homepage: "https://synthcode.com/scheme/irregex",

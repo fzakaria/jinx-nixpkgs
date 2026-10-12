@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   const curl = nix.arg($, "curl");
-  return nix.app(nix.sel(lib, "fetchers", "withNormalizedHash"), nix.thunk(() => ({ __proto__: pos$1, hashTypes: nix.thunk(() => ["sha1", "sha256", "sha512"]) })), nix.lambda((args_1) => (() => {
+  return nix.app(nix.sel(lib, "fetchers", "withNormalizedHash"), nix.thunk(() => ({ [nix.POS]: pos$1, hashTypes: nix.thunk(() => ["sha1", "sha256", "sha512"]) })), nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const ipfs = nix.arg($_1, "ipfs");
       const url = nix.argOr($_1, "url", () => "");
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const postFetch = nix.argOr($_1, "postFetch", () => "");
       const preferLocalBuild = nix.argOr($_1, "preferLocalBuild", () => true);
       return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: ipfs,
           builder: nix.path(here, "./builder.sh"),
           nativeBuildInputs: nix.thunk(() => [curl]),

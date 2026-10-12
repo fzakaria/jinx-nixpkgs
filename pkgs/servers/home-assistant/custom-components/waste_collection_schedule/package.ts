@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const domain = "waste_collection_schedule";
       const version = "2.35.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: owner,
           repo: "hacs_waste_collection_schedule",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const nativeCheckInputs = nix.thunk(() => [homeassistant, jinja2, pytestCheckHook, pyyaml, requests]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/mampfes/hacs_waste_collection_schedule/releases/tag/${nix.sel(src, "tag")}`),
         description: "Home Assistant integration framework for (garbage collection) schedules",
         homepage: "https://github.com/mampfes/hacs_waste_collection_schedule",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         owner,
         domain,
         version,

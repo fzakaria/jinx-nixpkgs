@@ -76,11 +76,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "renpy",
       version: "8.5.3.26051504-unstable-2026-05-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "renpy",
           repo: "renpy",
           rev: "cb1a79e8d2e02936baaf9d3c6ec9ac28d68b9014",
@@ -126,7 +126,7 @@ nightly = False
 version_name = "We Can Go to the Moon"
 EOF
 `),
-      env: nix.thunk(() => ({ __proto__: pos$2, PYTHONDONTWRITEBYTECODE: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, PYTHONDONTWRITEBYTECODE: "1" })),
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
 
 ./setup.py build_ext --inplace -j $NIX_BUILD_CORES
@@ -169,7 +169,7 @@ cp -ar ${nix.sel(finalAttrs, "passthru", "distributedRenpy")}/renpy $out/share/r
 runHook postInstall
 `),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(minimal)), nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "renpy",
             desktopName: "Ren'Py",
             comment: nix.thunk(() => nix.sel(finalAttrs, "meta", "description")),
@@ -184,16 +184,16 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         appver: nix.thunk(() => nix.app(nix.sel(lib, "head"), nix.thunk(() => nix.builtins.match("([0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+).*", nix.thunk(() => nix.sel(finalAttrs, "version")))))),
         semver: nix.thunk(() => nix.app(nix.sel(lib, "head"), nix.thunk(() => nix.builtins.match("([0-9]+\\.[0-9]+\\.[0-9]+).*", nix.thunk(() => nix.sel(finalAttrs, "version")))))),
         binSrc: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: nix.thunk(() => nix.str`https://www.renpy.org/dl/${nix.sel(finalAttrs, "passthru", "semver")}/renpy-${nix.sel(finalAttrs, "passthru", "semver")}-sdk.tar.bz2`),
             hash: "sha256-l91zD0n/c5E80YfgZ/m5AbIj/RKL5OFosfwz7RHu7aQ=",
           })))),
         binSrcArm: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: nix.thunk(() => nix.str`https://www.renpy.org/dl/${nix.sel(finalAttrs, "passthru", "semver")}/renpy-${nix.sel(finalAttrs, "passthru", "semver")}-sdkarm.tar.bz2`),
             hash: "sha256-51+swtUfDK0on9wVVXOyzJKxHtV6m4u9X1wvpp85stI=",
           })))),
@@ -201,7 +201,7 @@ runHook postInstall
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Visual Novel Engine",
         mainProgram: "renpy",
         homepage: "https://renpy.org/",

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cbrowser";
       const version = "0.8";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/${pname}/${pname}-${version}.tar.gz`),
           sha256: "1050mirjab23qsnq3lp3a9vwcbavmh9kznzjm7dr5vkx8b7ffcji",
         }))));
@@ -32,7 +32,7 @@ makeWrapper $out/share/${pname}-${version}/cbrowser $out/bin/cbrowser \\
   --prefix PATH : ${tk}/bin
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tcl/Tk GUI front-end to cscope",
         mainProgram: "cbrowser",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -44,7 +44,7 @@ makeWrapper $out/share/${pname}-${version}/cbrowser $out/bin/cbrowser \\
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

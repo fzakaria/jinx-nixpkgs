@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const dpkg = nix.arg($, "dpkg");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bdf2psf",
       version: "1.249",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://debian/pool/main/c/console-setup/bdf2psf_${nix.sel(finalAttrs, "version")}_all.deb`),
           sha256: "sha256-7qfp9gq+7klgcTuETw2XFT3AWV5bSNMnrnziqL8k2PE=",
         })))),
@@ -33,7 +33,7 @@ mv usr "$out"
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "BDF to PSF converter",
         homepage: "https://packages.debian.org/sid/bdf2psf",
         longDescription: "Font converter to generate console fonts from BDF source fonts\n",

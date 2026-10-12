@@ -103,14 +103,14 @@ export default nix.lambda((args) => (() => {
   const dataDir = "/var/lib/dawarich";
   const isRedisUnixSocket = nix.thunk(() => nix.app(nix.sel(lib, "hasPrefix"), "/", nix.thunk(() => nix.sel(cfg, "redis", "host"))));
   const redisEnv = nix.thunk(() => (nix.asBool(isRedisUnixSocket) ? {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     REDIS_URL: nix.thunk(() => nix.str`unix://${nix.sel(config, "services", "redis", "servers", "dawarich", "unixSocket")}`),
   } : {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     REDIS_URL: nix.thunk(() => nix.str`redis://${nix.sel(cfg, "redis", "host")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "redis", "port")))}`),
   }));
   const env = nix.thunk(() => nix.update({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     RAILS_ENV: "production",
     NODE_ENV: "production",
     BUNDLE_USER_HOME: "/tmp/bundle",
@@ -151,7 +151,7 @@ export default nix.lambda((args) => (() => {
     ];
   })());
   const cfgService = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     User: nix.thunk(() => nix.sel(cfg, "user")),
     Group: nix.thunk(() => nix.sel(cfg, "group")),
     WorkingDirectory: nix.thunk(() => nix.sel(cfg, "package")),
@@ -195,19 +195,19 @@ export default nix.lambda((args) => (() => {
   const defaultSecretKeyBaseFile = nix.thunk(() => nix.str`${dataDir}/secrets/secret-key-base`);
   const needsGenCredentialsUnit = nix.thunk(() => nix.eq(nix.sel(cfg, "secretKeyBaseFile"), null));
   const credentials = nix.thunk(() => nix.update({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     SECRET_KEY_BASE: nix.thunk(() => nix.app(nix.sel(lib, "defaultTo"), defaultSecretKeyBaseFile, nix.thunk(() => nix.sel(cfg, "secretKeyBaseFile")))),
   }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "database", "passwordFile"), null)), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       DATABASE_PASSWORD: nix.thunk(() => nix.sel(cfg, "database", "passwordFile")),
     }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "smtp", "passwordFile"), null)), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       SMTP_PASSWORD: nix.thunk(() => nix.sel(cfg, "smtp", "passwordFile")),
     }))))));
   const loadCredentialsIntoEnv = nix.thunk(() => nix.app(nix.sel(lib, "concatMapAttrsStringSep"), "\n", (name) => (_) => nix.str`export ${name}="$(systemd-creds cat ${name})"`, credentials));
   const loadCredentials = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (path) => nix.str`${name}:${path}`, credentials));
   const dawarichRails = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       name: "dawarich-rails",
       text: nix.thunk(() => (() => {
         const sourceExtraEnv = nix.thunk(() => nix.app(nix.sel(lib, "concatMapStrings"), (p) => nix.str`source ${p}
@@ -244,18 +244,18 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package"))
         const jobClassLabel = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(processCfg, "jobClasses"), [])), nix.thunk(() => nix.str` (${nix.app(nix.sel(lib, "concatStringsSep"), ", ", nix.thunk(() => nix.sel(processCfg, "jobClasses")))})`)));
         const threads = nix.thunk(() => nix.builtins.toString(nix.thunk(() => (nix.asBool(nix.eq(nix.sel(processCfg, "threads"), null)) ? nix.sel(cfg, "sidekiqThreads") : nix.sel(processCfg, "threads")))));
         return {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           after: nix.thunk(() => nix.concat(["network.target"], nix.concat(nix.app(nix.sel(lib, "optional"), needsGenCredentialsUnit, "dawarich-init-credentials.service"), commonUnits))),
           requires: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), needsGenCredentialsUnit, "dawarich-init-credentials.service"), commonUnits)),
           description: nix.thunk(() => nix.str`Dawarich sidekiq${jobClassLabel}`),
           wantedBy: nix.thunk(() => ["dawarich.target"]),
-          environment: nix.thunk(() => nix.update(env, { __proto__: pos$9, RAILS_MAX_THREADS: threads })),
+          environment: nix.thunk(() => nix.update(env, { [nix.POS]: pos$9, RAILS_MAX_THREADS: threads })),
           script: nix.thunk(() => nix.str`${loadCredentialsIntoEnv}
 
 ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "sidekiq")} ${jobClassArgs} -c ${threads} -r ${nix.sel(cfg, "package")}
 `),
           serviceConfig: nix.thunk(() => nix.update({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             Restart: "always",
             RestartSec: 20n,
             LoadCredential: loadCredentials,
@@ -265,55 +265,55 @@ ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "si
         };
       })())), nix.thunk(() => nix.sel(cfg, "sidekiqProcesses"))));
   return {
-    __proto__: pos$88,
+    [nix.POS]: pos$88,
     options: nix.thunk(() => ({
-      __proto__: pos$51,
+      [nix.POS]: pos$51,
       services: nix.thunk(() => ({
-        __proto__: pos$50,
+        [nix.POS]: pos$50,
         dawarich: nix.thunk(() => ({
-          __proto__: pos$49,
+          [nix.POS]: pos$49,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Dawarich, a self-hostable alternative to Google Location History")),
           configureNginx: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "Configure nginx as a reverse proxy for dawarich.\nAlternatively you can configure a reverse-proxy of your choice to serve these paths:\n\n`/ -> ${pkgs.dawarich}/public`\n\n`/ -> 127.0.0.1:{{ webPort }} `(If there was no file in the directory above.)\n\nMake sure that websockets are forwarded properly. You might want to set up caching\nof some requests. Take a look at dawarich's provided reverse proxy configurations at\n`https://dawarich.app/docs/tutorials/reverse-proxy`.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "User under which dawarich runs. If it is set to \"dawarich\",\nthat user will be created, otherwise it should be set to the\nname of a user created elsewhere.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "dawarich",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "Group under which dawarich runs.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "dawarich",
             })))),
           webPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               description: "TCP port used by the dawarich web service.",
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 3000n,
             })))),
           sidekiqThreads: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               description: "Worker threads used by the dawarich-sidekiq-all service.\nIf `sidekiqProcesses` is configured and any processes specify null `threads`, this value is used.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 3n,
             })))),
           sidekiqProcesses: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               description: "How many Sidekiq processes should be used to handle background jobs, and which job classes they handle.\nCan be used to [speed up](https://dawarich.app/docs/FAQ/#how-to-speed-up-the-import-process) the import process.\n",
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                      __proto__: pos$20,
+                      [nix.POS]: pos$20,
                       options: nix.thunk(() => ({
-                        __proto__: pos$19,
+                        [nix.POS]: pos$19,
                         jobClasses: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$17,
+                            [nix.POS]: pos$17,
                             type: nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.app(nix.lookup(w, "enum"), nix.thunk(() => [
                                   "app_version_checking",
                                   "archival",
@@ -339,7 +339,7 @@ ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "si
                             description: "If not empty, which job classes should be executed by this process.\n*If left empty, all job classes will be executed by this process.*\n",
                           })))),
                         threads: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$18,
+                            [nix.POS]: pos$18,
                             type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "int")))),
                             description: "Number of threads this process should use for executing jobs.\nIf null, the configured `sidekiqThreads` are used.\n",
                           })))),
@@ -347,27 +347,27 @@ ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "si
                     })))));
               })()),
               default: nix.thunk(() => ({
-                __proto__: pos$22,
-                all: nix.thunk(() => ({ __proto__: pos$21, jobClasses: [], threads: null })),
+                [nix.POS]: pos$22,
+                all: nix.thunk(() => ({ [nix.POS]: pos$21, jobClasses: [], threads: null })),
               })),
               example: nix.thunk(() => ({
-                __proto__: pos$25,
-                all: nix.thunk(() => ({ __proto__: pos$23, jobClasses: [], threads: null })),
+                [nix.POS]: pos$25,
+                all: nix.thunk(() => ({ [nix.POS]: pos$23, jobClasses: [], threads: null })),
                 geocoding: nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   jobClasses: nix.thunk(() => ["reverse_geocoding"]),
                   threads: 10n,
                 })),
               })),
             })))),
           localDomain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               description: "The domain serving your Dawarich instance.",
               example: "dawarich.example.org",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
             })))),
           secretKeyBaseFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               description: nix.thunk(() => nix.str`Path to file containing the secret key base.
 A new secret key base can be generated by running:
 
@@ -383,9 +383,9 @@ with a new secret key base.
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             })))),
           redis: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             createLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 description: nix.thunk(() => nix.str`Whether to configure a local Redis server for Dawarich.
 The connection is performed via Unix sockets by default,
 but that can be changed by configuring {option}\`${nix.sel(opt, "redis", "host")}\` and {option}\`${nix.sel(opt, "redis", "port")}\`.
@@ -394,54 +394,54 @@ but that can be changed by configuring {option}\`${nix.sel(opt, "redis", "host")
                 default: true,
               })))),
             host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 description: "The redis host Dawarich will connect to.",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: nix.thunk(() => nix.sel(config, "services", "redis", "servers", "dawarich", "unixSocket")),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.redis.servers.dawarich.unixSocket")),
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 description: "The port of the redis server Dawarich will connect to. Set to zero to disable TCP and use Unix sockets instead.",
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 0n,
               })))),
           })),
           database: nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             createLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 description: "Whether to configure a local PostgreSQL server and database for Dawarich.\nThe connection is performed via Unix sockets.\n",
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
               })))),
             host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "/run/postgresql",
                 example: "127.0.0.1",
                 description: "Hostname or address of the postgresql server. If an absolute path is given here, it will be interpreted as a unix socket path.",
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "port")))),
                 default: 5432n,
                 description: "Port of the postgresql server.",
               })))),
             name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "dawarich",
                 description: "The name of the dawarich database.",
               })))),
             user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "dawarich",
                 description: "The database user for dawarich.",
               })))),
             passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
                 example: "/run/keys/dawarich-db-password",
@@ -450,35 +450,35 @@ but that can be changed by configuring {option}\`${nix.sel(opt, "redis", "host")
               })))),
           })),
           smtp: nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 description: "SMTP host used when sending emails to users.",
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 25n,
                 description: "SMTP port used when sending emails to users.",
               })))),
             fromAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 example: "dawarich@example.com",
                 description: "\"From\" address used when sending emails to users.",
               })))),
             user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$43,
+                [nix.POS]: pos$43,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 example: "dawarich@example.com",
                 description: "SMTP login name.",
               })))),
             passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
                 example: "/run/keys/dawarich-smtp-password",
@@ -487,7 +487,7 @@ but that can be changed by configuring {option}\`${nix.sel(opt, "redis", "host")
           })),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "dawarich", nix.thunk(() => ({})))),
           environment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -500,7 +500,7 @@ but that can be changed by configuring {option}\`${nix.sel(opt, "redis", "host")
               description: "Extra environment variables to pass to all dawarich services.\n",
             })))),
           extraEnvFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "path")));
@@ -510,7 +510,7 @@ but that can be changed by configuring {option}\`${nix.sel(opt, "redis", "host")
               example: nix.thunk(() => ["/etc/dawarich/secret.env"]),
             })))),
           automaticMigrations: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               description: "Whether to perform database migrations automatically",
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
@@ -520,33 +520,33 @@ but that can be changed by configuring {option}\`${nix.sel(opt, "redis", "host")
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$84,
+            [nix.POS]: pos$84,
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$52,
+                [nix.POS]: pos$52,
                 assertion: nix.thunk(() => (!nix.asBool(!nix.asBool(isRedisUnixSocket)) || nix.asBool(!nix.eq(nix.sel(cfg, "redis", "port"), 0n)))),
                 message: "`services.dawarich.redis.port` needs to be configured if `services.dawarich.redis.host` is not a unix socket.\n",
               })),
             ]),
             environment: nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               systemPackages: nix.thunk(() => [dawarichConsole, dawarichRails]),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$69,
+              [nix.POS]: pos$69,
               targets: nix.thunk(() => ({
-                __proto__: pos$55,
+                [nix.POS]: pos$55,
                 dawarich: nix.thunk(() => ({
-                  __proto__: pos$54,
+                  [nix.POS]: pos$54,
                   description: "Target for all Dawarich services",
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   after: nix.thunk(() => ["network.target"]),
                 })),
               })),
               services: nix.thunk(() => ({
-                __proto__: pos$64,
+                [nix.POS]: pos$64,
                 "dawarich-init-credentials": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), needsGenCredentialsUnit, nix.thunk(() => ({
-                    __proto__: pos$57,
+                    [nix.POS]: pos$57,
                     script: nix.thunk(() => nix.add("umask 077\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(nix.sel(cfg, "secretKeyBaseFile"), null)), nix.thunk(() => nix.str`if ! test -f ${defaultSecretKeyBaseFile}; then
   mkdir -p $(dirname ${defaultSecretKeyBaseFile})
   bin/bundle exec rails secret > ${defaultSecretKeyBaseFile}
@@ -554,7 +554,7 @@ fi
 `)))),
                     environment: env,
                     serviceConfig: nix.thunk(() => nix.update({
-                      __proto__: pos$56,
+                      [nix.POS]: pos$56,
                       Type: "oneshot",
                       SyslogIdentifier: "dawarich-init-dirs",
                       SystemCallFilter: nix.thunk(() => nix.concat(["~@resources"], systemCallFilter)),
@@ -562,7 +562,7 @@ fi
                     after: nix.thunk(() => ["network.target"]),
                   })))),
                 "dawarich-init-db": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "automaticMigrations")), nix.thunk(() => ({
-                    __proto__: pos$59,
+                    [nix.POS]: pos$59,
                     script: nix.thunk(() => nix.str`${loadCredentialsIntoEnv}
 
 # Run primary database migrations first (needed before other migrations)
@@ -579,7 +579,7 @@ rails db:seed
                     path: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
                     environment: env,
                     serviceConfig: nix.thunk(() => nix.update({
-                      __proto__: pos$58,
+                      [nix.POS]: pos$58,
                       Type: "oneshot",
                       LoadCredential: loadCredentials,
                       EnvironmentFile: nix.thunk(() => nix.sel(cfg, "extraEnvFiles")),
@@ -590,7 +590,7 @@ rails db:seed
                     requires: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), needsGenCredentialsUnit, "dawarich-init-credentials.service"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), "postgresql.target"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "redis", "createLocally")), "redis-dawarich.service")))),
                   })))),
                 "dawarich-web": nix.thunk(() => ({
-                  __proto__: pos$61,
+                  [nix.POS]: pos$61,
                   after: nix.thunk(() => nix.concat(["network.target"], nix.concat(nix.app(nix.sel(lib, "optional"), needsGenCredentialsUnit, "dawarich-init-credentials.service"), commonUnits))),
                   requires: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), needsGenCredentialsUnit, "dawarich-init-credentials.service"), commonUnits)),
                   wantedBy: nix.thunk(() => ["dawarich.target"]),
@@ -601,7 +601,7 @@ rails db:seed
 ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "rails")} server
 `),
                   serviceConfig: nix.thunk(() => nix.update({
-                    __proto__: pos$60,
+                    [nix.POS]: pos$60,
                     Restart: "always",
                     RestartSec: 20n,
                     LoadCredential: loadCredentials,
@@ -612,9 +612,9 @@ ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "ra
                   }, cfgService)),
                 })),
                 "postgresql-setup": nix.thunk(() => ({
-                  __proto__: pos$63,
+                  [nix.POS]: pos$63,
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$62,
+                    [nix.POS]: pos$62,
                     ExecStartPost: nix.thunk(() => (() => {
                       const sqlFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "dawarich-postgres-setup.sql", "CREATE EXTENSION IF NOT EXISTS postgis;\nSELECT postgis_extensions_upgrade();\n"));
                       return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => [
@@ -626,32 +626,32 @@ ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "ra
                 })),
               })),
               tmpfiles: nix.thunk(() => ({
-                __proto__: pos$68,
+                [nix.POS]: pos$68,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$67,
+                  [nix.POS]: pos$67,
                   dawarich: nix.thunk(() => nix.attrsDyn({}, [
                     [nix.str`${dataDir}/imports/watched`, nix.thunk(() => ({
-                      __proto__: pos$66,
-                      d: nix.thunk(() => ({ __proto__: pos$65, group: "dawarich", mode: "700", user: "dawarich" })),
+                      [nix.POS]: pos$66,
+                      d: nix.thunk(() => ({ [nix.POS]: pos$65, group: "dawarich", mode: "700", user: "dawarich" })),
                     }))],
                   ])),
                 })),
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$80,
+              [nix.POS]: pos$80,
               nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "configureNginx")), nix.thunk(() => ({
-                  __proto__: pos$74,
+                  [nix.POS]: pos$74,
                   enable: true,
                   virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                     [nix.str`${nix.sel(cfg, "localDomain")}`, nix.thunk(() => ({
-                      __proto__: pos$73,
+                      [nix.POS]: pos$73,
                       root: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/public/`),
                       locations: nix.thunk(() => ({
-                        __proto__: pos$72,
-                        "/": nix.thunk(() => ({ __proto__: pos$70, tryFiles: "$uri @proxy" })),
+                        [nix.POS]: pos$72,
+                        "/": nix.thunk(() => ({ [nix.POS]: pos$70, tryFiles: "$uri @proxy" })),
                         "@proxy": nix.thunk(() => ({
-                          __proto__: pos$71,
+                          [nix.POS]: pos$71,
                           proxyPass: nix.thunk(() => nix.str`http://127.0.0.1:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "webPort")))}`),
                           recommendedProxySettings: true,
                           proxyWebsockets: true,
@@ -661,11 +661,11 @@ ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "ra
                   ])),
                 })))),
               redis: nix.thunk(() => ({
-                __proto__: pos$77,
+                [nix.POS]: pos$77,
                 servers: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "redis", "createLocally")), nix.thunk(() => ({
-                    __proto__: pos$76,
+                    [nix.POS]: pos$76,
                     dawarich: nix.thunk(() => ({
-                      __proto__: pos$75,
+                      [nix.POS]: pos$75,
                       enable: true,
                       port: nix.thunk(() => nix.sel(cfg, "redis", "port")),
                       bind: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(isRedisUnixSocket)), nix.thunk(() => nix.sel(cfg, "redis", "host")))),
@@ -673,7 +673,7 @@ ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "ra
                   })))),
               })),
               postgresql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ({
-                  __proto__: pos$79,
+                  [nix.POS]: pos$79,
                   enable: true,
                   extensions: (ps) => (() => {
                     const w = nix.withScope(ps, null);
@@ -683,7 +683,7 @@ ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "ra
                     nix.thunk(() => (() => {
                       const from = nix.thunk(() => nix.sel(cfg, "database"));
                       return {
-                      __proto__: pos$78,
+                      [nix.POS]: pos$78,
                       name: nix.thunk(() => nix.attr(from, "name")),
                       ensureDBOwnership: true,
                     };
@@ -693,11 +693,11 @@ ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "ra
                 })))),
             })),
             users: nix.thunk(() => ({
-              __proto__: pos$83,
+              [nix.POS]: pos$83,
               users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "dawarich")), nix.thunk(() => ({
-                  __proto__: pos$82,
+                  [nix.POS]: pos$82,
                   dawarich: nix.thunk(() => ({
-                    __proto__: pos$81,
+                    [nix.POS]: pos$81,
                     isSystemUser: true,
                     home: nix.thunk(() => nix.sel(cfg, "package")),
                     group: nix.thunk(() => nix.attr(cfg, "group")),
@@ -707,15 +707,15 @@ ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "ra
             })),
           })),
           nix.thunk(() => ({
-            __proto__: pos$86,
+            [nix.POS]: pos$86,
             systemd: nix.thunk(() => ({
-              __proto__: pos$85,
+              [nix.POS]: pos$85,
               services: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [sidekiqUnits]))),
             })),
           })),
         ]))))),
     meta: nix.thunk(() => ({
-      __proto__: pos$87,
+      [nix.POS]: pos$87,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

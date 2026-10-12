@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const adms = nix.arg($, "adms");
   const withAdms = nix.argOr($, "withAdms", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "qucsator-rf",
       version: "1.0.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ra3xdh",
           repo: "qucsator_rf",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "WITH_ADMS", withAdms)),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "RF circuit simulation kernel for Qucs-S",
         homepage: "https://github.com/ra3xdh/qucsator_rf",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

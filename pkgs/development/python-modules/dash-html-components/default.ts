@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dash-html-components",
       version: "2.0.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "dash_html_components",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-hwOmAQgPAmGaY5CZjgs9pKXaq+l6H9epzrwJ0BXyblA=",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "HTML components for Dash",
         homepage: "https://dash.plot.ly/dash-html-components",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

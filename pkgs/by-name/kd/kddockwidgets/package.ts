@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const fmt = nix.arg($, "fmt");
   const nlohmann_json = nix.arg($, "nlohmann_json");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "KDDockWidgets",
       version: "2.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KDAB",
           repo: "KDDockWidgets",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       ]),
       dontWrapQtApps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "KDAB's Dock Widget Framework for Qt",
         homepage: "https://www.kdab.com/development-resources/qt-tools/kddockwidgets",
         license: nix.thunk(() => (() => {

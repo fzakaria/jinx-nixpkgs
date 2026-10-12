@@ -32,59 +32,59 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     name: "goss",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "anthonyroussel"))]),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       machine: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         environment: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "jq"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           goss: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             enable: true,
-            environment: nix.thunk(() => ({ __proto__: pos$3, GOSS_FMT: "json" })),
+            environment: nix.thunk(() => ({ [nix.POS]: pos$3, GOSS_FMT: "json" })),
             settings: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               addr: nix.thunk(() => ({
-                __proto__: pos$5,
-                "tcp://localhost:8080": nix.thunk(() => ({ __proto__: pos$4, reachable: true, "local-address": "127.0.0.1" })),
+                [nix.POS]: pos$5,
+                "tcp://localhost:8080": nix.thunk(() => ({ [nix.POS]: pos$4, reachable: true, "local-address": "127.0.0.1" })),
               })),
               command: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 "check-goss-version": nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   exec: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "goss")))} --version`),
                   "exit-status": 0n,
                 })),
               })),
               dns: nix.thunk(() => ({
-                __proto__: pos$9,
-                localhost: nix.thunk(() => ({ __proto__: pos$8, resolvable: true })),
+                [nix.POS]: pos$9,
+                localhost: nix.thunk(() => ({ [nix.POS]: pos$8, resolvable: true })),
               })),
               file: nix.thunk(() => ({
-                __proto__: pos$11,
-                "/nix": nix.thunk(() => ({ __proto__: pos$10, filetype: "directory", exists: true })),
+                [nix.POS]: pos$11,
+                "/nix": nix.thunk(() => ({ [nix.POS]: pos$10, filetype: "directory", exists: true })),
               })),
               group: nix.thunk(() => ({
-                __proto__: pos$13,
-                root: nix.thunk(() => ({ __proto__: pos$12, exists: true })),
+                [nix.POS]: pos$13,
+                root: nix.thunk(() => ({ [nix.POS]: pos$12, exists: true })),
               })),
               "kernel-param": nix.thunk(() => ({
-                __proto__: pos$15,
-                "kernel.ostype": nix.thunk(() => ({ __proto__: pos$14, value: "Linux" })),
+                [nix.POS]: pos$15,
+                "kernel.ostype": nix.thunk(() => ({ [nix.POS]: pos$14, value: "Linux" })),
               })),
               user: nix.thunk(() => ({
-                __proto__: pos$17,
-                root: nix.thunk(() => ({ __proto__: pos$16, exists: true })),
+                [nix.POS]: pos$17,
+                root: nix.thunk(() => ({ [nix.POS]: pos$16, exists: true })),
               })),
             })),
           })),

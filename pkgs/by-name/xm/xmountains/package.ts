@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const imake = nix.arg($, "imake");
   const gccmakedep = nix.arg($, "gccmakedep");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xmountains",
       version: "2.15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "spbooth",
           repo: "xmountains",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [imake, gccmakedep]),
       installPhase: "install -Dm755 xmountains -t $out/bin",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "X11 based fractal landscape generator",
         homepage: "https://spbooth.github.io/xmountains",
         license: nix.thunk(() => nix.sel(lib, "licenses", "hpndSellVariant")),

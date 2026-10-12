@@ -32,28 +32,28 @@ export default nix.thunk(() => (() => {
     const nixpkgs$ = nix.thunk(() => (nix.asBool(nix.eq(nixpkgs, null)) ? nix.builtins.fetchTarball(nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(pinned, "nixpkgs"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: nix.thunk(() => nix.attr(from, "url")),
         sha256: nix.thunk(() => nix.sel(pinned, "nixpkgs", "hash")),
       };
       })())) : nix.force(nixpkgs)));
-    const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nixpkgs$), nix.thunk(() => ({ __proto__: pos$2, system: system, allowAliases: false }))));
+    const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nixpkgs$), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, allowAliases: false }))));
     const fmt = nix.thunk(() => (() => {
       const treefmt = nix.thunk(() => nix.app(nix.sel(pkgs, "treefmt", "withConfig"), nix.path(here, "./treefmt.nix")));
       const fs = nix.thunk(() => nix.sel(pkgs, "lib", "fileset"));
       const nixFilesSrc = nix.thunk(() => nix.app(nix.sel(fs, "toSource"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           root: nix.path(here, "../."),
           fileset: nix.thunk(() => nix.app(nix.sel(fs, "difference"), nix.path(here, "../."), nix.thunk(() => nix.app(nix.sel(fs, "maybeMissing"), nix.path(here, "../.git"))))),
         }))));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pkg: treefmt,
         check: nix.thunk(() => nix.app(nix.sel(treefmt, "check"), nixFilesSrc)),
       };
     })());
     const docPkgs = nix.thunk(() => nix.app(nix.sel(pkgs, "extend"), (final) => (prev) => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "nixos-render-docs": nix.thunk(() => nix.app(nix.sel(final, "callPackage"), nix.path(here, "../pkgs/by-name/ni/nixos-render-docs/package.nix"), nix.thunk(() => ({})))),
         "nixos-render-docs-redirects": nix.thunk(() => nix.app(nix.sel(final, "callPackage"), nix.path(here, "../pkgs/by-name/ni/nixos-render-docs-redirects/package.nix"), nix.thunk(() => ({})))),
       })));
@@ -63,37 +63,37 @@ export default nix.thunk(() => (() => {
       const fmt_1 = fmt;
       const codeownersValidator = nix.thunk(() => nix.app(nix.sel(pkgs_1, "callPackage"), nix.path(here, "./codeowners-validator"), nix.thunk(() => ({}))));
       const eval$ = nix.thunk(() => nix.app(nix.sel(pkgs_1, "callPackage"), nix.path(here, "./eval"), nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           nix: nix.thunk(() => nix.app(nix.sel(pkgs_1, "lib", "getAttrFromPath"), nix.thunk(() => nix.app(nix.sel(pkgs_1, "lib", "splitString"), ".", nixPath)), pkgs_1)),
         }))));
-      const lib_tests = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/tests/release.nix")), nix.thunk(() => ({ __proto__: pos$7, pkgs: pkgs_1 }))));
+      const lib_tests = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/tests/release.nix")), nix.thunk(() => ({ [nix.POS]: pos$7, pkgs: pkgs_1 }))));
       const manual_nixos = nix.thunk(() => nix.selOr(nix.app(nix.builtins.import(nix.path(here, "../nixos/release.nix")), nix.thunk(() => ({}))), () => null, "manual", nix.key(nix.force(system))));
-      const manual_nixpkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../doc")), nix.thunk(() => ({ __proto__: pos$8, pkgs: docPkgs_1 }))));
+      const manual_nixpkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../doc")), nix.thunk(() => ({ [nix.POS]: pos$8, pkgs: docPkgs_1 }))));
       const nixpkgs_vet = nix.thunk(() => nix.app(nix.sel(pkgs_1, "callPackage"), nix.path(here, "./nixpkgs-vet.nix"), nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           nix: nix.thunk(() => nix.sel(pkgs_1, "nixVersions", "latest")),
         }))));
       const parse = nix.thunk(() => nix.app(nix.sel(pkgs_1, "lib", "recurseIntoAttrs"), nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           nix_latest: nix.thunk(() => nix.app(nix.sel(pkgs_1, "callPackage"), nix.path(here, "./parse.nix"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               nix: nix.thunk(() => nix.sel(pkgs_1, "nixVersions", "latest")),
             })))),
           stable: nix.thunk(() => nix.app(nix.sel(pkgs_1, "callPackage"), nix.path(here, "./parse.nix"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               nix: nix.thunk(() => nix.sel(pkgs_1, "nixVersions", "stable")),
             })))),
-          lix: nix.thunk(() => nix.app(nix.sel(pkgs_1, "callPackage"), nix.path(here, "./parse.nix"), nix.thunk(() => ({ __proto__: pos$12, nix: nix.thunk(() => nix.sel(pkgs_1, "lix")) })))),
+          lix: nix.thunk(() => nix.app(nix.sel(pkgs_1, "callPackage"), nix.path(here, "./parse.nix"), nix.thunk(() => ({ [nix.POS]: pos$12, nix: nix.thunk(() => nix.sel(pkgs_1, "lix")) })))),
           lix_latest: nix.thunk(() => nix.app(nix.sel(pkgs_1, "callPackage"), nix.path(here, "./parse.nix"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               nix: nix.thunk(() => nix.sel(pkgs_1, "lixPackageSets", "latest", "lix")),
             })))),
         }))));
-      const shell = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../shell.nix")), nix.thunk(() => ({ __proto__: pos$15, nixpkgs: nixpkgs, system: system }))));
+      const shell = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../shell.nix")), nix.thunk(() => ({ [nix.POS]: pos$15, nixpkgs: nixpkgs, system: system }))));
       const tarball = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../pkgs/top-level/make-tarball.nix")), nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           nixpkgs: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             outPath: nix.thunk(() => nix.app(nix.sel(pkgs_1, "lib", "cleanSource"), nix.path(here, "../."))),
             revCount: 1234n,
             shortRev: "abcdef",
@@ -105,7 +105,7 @@ export default nix.thunk(() => (() => {
           nix: nix.thunk(() => nix.sel(pkgs_1, "nixVersions", "latest")),
         }))));
       return {
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         pkgs: pkgs_1,
         docPkgs: docPkgs_1,
         fmt: fmt_1,

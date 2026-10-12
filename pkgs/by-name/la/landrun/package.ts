@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const which = nix.arg($, "which");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "landrun",
       version: "0.1.17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Zouuup",
           repo: "landrun",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -87,7 +87,7 @@ cat dir1/file1 | grep x > /dev/null
 popd
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightweight, secure sandbox for running Linux processes using Landlock LSM",
         mainProgram: "landrun",
         longDescription: "Landrun is designed to make it practical to sandbox any command with fine-grained filesystem\nand network access controls, without root/containers/SELinux/AppArmor.\n\nIt's lightweight, auditable, and wraps Landlock v5 features.\n\nLinux 5.13+ is required for file access restrictions, Linux 6.7+ for TCP restrictions.\n",

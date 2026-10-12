@@ -15,19 +15,19 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "roboto-serif",
       version: "1.008",
       outputs: nix.thunk(() => ["out", "webfont"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/googlefonts/roboto-serif/releases/download/v${nix.sel(finalAttrs, "version")}/RobotoSerifFonts-v${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-Nm9DcxL0CgA51nGeZJPWSCipgqwnNPlhj0wHyGhLaYQ=",
         })))),
       sourceRoot: ".",
       nativeBuildInputs: nix.thunk(() => [unzip, installFonts]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Roboto family of fonts",
         longDescription: "Google’s signature family of fonts, the default font on Android and\nChrome OS, and the recommended font for Google’s visual language,\nMaterial Design.\n",
         homepage: "https://github.com/googlefonts/roboto-serif",

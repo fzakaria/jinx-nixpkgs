@@ -20,16 +20,16 @@ export default nix.lambda((args) => (() => {
   const pytest = nix.arg($, "pytest");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pytest-ticket",
       version: "0-unstable-2025-05-15",
       pyproject: true,
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         SETUPTOOLS_SCM_PRETEND_VERSION: nix.thunk(() => nix.builtins.elemAt(nix.thunk(() => nix.builtins.split("-", nix.thunk(() => nix.sel(finalAttrs, "version")))), 0n)),
       })),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "next-actions",
           repo: "pytest-ticket",
           rev: "9f77e77d99ee25a65cad2ab07815884bf7271552",
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [pytest]),
       postInstall: "rm -f $out/lib/python*/site-packages/requirements.txt\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "pytest plugin that adds the ability to filter test cases by an associated ticket of a tracker of your choice",
         homepage: "https://github.com/next-actions/pytest-ticket",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

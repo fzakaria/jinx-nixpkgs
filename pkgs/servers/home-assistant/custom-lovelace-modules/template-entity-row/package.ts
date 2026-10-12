@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "template-entity-row";
       const version = "1.4.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "thomasloven",
           repo: "lovelace-template-entity-row",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-fJ+2LWXtUH4PiHhoVhMMxdCnCjfH+xzk+vjI44rKF60=";
       const installPhase = "runHook preInstall\n\nmkdir $out\ncp template-entity-row.js $out/\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/thomasloven/lovelace-template-entity-row/releases/tag/${nix.sel(src, "rev")}`),
         description: "Display whatever you want in an entities card row",
         homepage: "https://github.com/thomasloven/lovelace-template-entity-row",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, pname, version, src, npmDepsHash, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, npmDepsHash, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

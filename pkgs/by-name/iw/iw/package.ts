@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "iw",
       version: "6.17",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.kernel.org/pub/software/network/iw/iw-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-fRguSYKJqzmyV9pngNVi5BU3cQf1A1juW1W4z+QLHjM=",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://wireless.wiki.kernel.org/en/users/Documentation/iw",
         description: "Tool to use nl80211",
         longDescription: "iw is a new nl80211 based CLI configuration utility for wireless devices.\nIt supports all new drivers that have been added to the kernel recently.\nThe old tool iwconfig, which uses Wireless Extensions interface, is\ndeprecated and it's strongly recommended to switch to iw and nl80211.\n",

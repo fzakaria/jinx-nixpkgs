@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
   const coreclr_version = "v10.0.1";
   const coreclr_hash = "sha256-pVcLvew3THRqXgKMVO6jTZyPP06R46KZPMpYdiM3yXU=";
   const coreclr_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "dotnet",
       repo: "runtime",
       rev: coreclr_version,
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const dotnet_sdk = nix.thunk(() => nix.sel(dotnetCorePackages, "sdk_10_0"));
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "Samsung",
       repo: "netcoredbg",
       rev: version,
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       hash: hash,
     }))));
   const unmanaged = nix.thunk(() => nix.app(nix.sel(clangStdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       srcs: nix.thunk(() => [src, coreclr_src]),
@@ -69,7 +69,7 @@ cmakeFlagsArray+=(
 `),
     }))));
   const managed = nix.thunk(() => nix.app(buildDotnetModule, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: src,
@@ -82,7 +82,7 @@ cmakeFlagsArray+=(
       selfContainedBuild: true,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: pname,
       version: version,
       src: managed,
@@ -104,13 +104,13 @@ makeWrapper $out/libexec/netcoredbg/netcoredbg $out/bin/netcoredbg
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         "fetch-deps": nix.thunk(() => nix.attr(managed, "fetch-deps")),
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               package: netcoredbg,
               command: "netcoredbg --version",
               version: nix.thunk(() => nix.str`NET Core debugger ${release}`),
@@ -118,7 +118,7 @@ runHook postInstall
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Managed code debugger with MI interface for CoreCLR",
         homepage: "https://github.com/Samsung/netcoredbg",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

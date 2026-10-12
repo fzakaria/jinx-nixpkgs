@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "apfel-llm",
       version: "1.10.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/Arthur-Ficial/apfel/releases/download/v${nix.sel(finalAttrs, "version")}/apfel-${nix.sel(finalAttrs, "version")}-arm64-macos.tar.gz`),
           hash: "sha256-0tNOw888GGKVNVHUaL3Pzbu/f0YAz0tMhhKKkdvNOzo=",
         })))),
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Local Apple Intelligence LLM CLI and server",
         homepage: "https://github.com/Arthur-Ficial/apfel",
         changelog: nix.thunk(() => nix.str`https://github.com/Arthur-Ficial/apfel/releases/tag/v${nix.sel(finalAttrs, "version")}`),

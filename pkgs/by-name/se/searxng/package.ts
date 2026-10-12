@@ -18,14 +18,14 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nixosTests = nix.arg($, "nixosTests");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
-  const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({ __proto__: pos$1, packageOverrides: (final) => (prev) => ({}) }))));
+  const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, packageOverrides: (final) => (prev) => ({}) }))));
   return nix.app(nix.sel(python, "pkgs", "buildPythonPackage"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "searxng",
       version: "0-unstable-2026-10-02",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "searxng",
           repo: "searxng",
           rev: "19ffbcd30686e4008392e93de164200510dfb9d8",
@@ -89,12 +89,12 @@ ln -s ../${nix.sel(python, "sitePackages")}/searx/static $out/share/
 cp searx/limiter.toml $out/${nix.sel(python, "sitePackages")}/searx/limiter.toml
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        tests: nix.thunk(() => ({ __proto__: pos$3, searxng: nix.thunk(() => nix.sel(nixosTests, "searx")) })),
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$4, hardcodeZeroVersion: true })))),
+        [nix.POS]: pos$5,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, searxng: nix.thunk(() => nix.sel(nixosTests, "searx")) })),
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://github.com/searxng/searxng",
         description: "Fork of Searx, a privacy-respecting, hackable metasearch engine",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

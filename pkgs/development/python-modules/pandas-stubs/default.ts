@@ -36,13 +36,13 @@ export default nix.lambda((args) => (() => {
   const xarray = nix.arg($, "xarray");
   const xlsxwriter = nix.arg($, "xlsxwriter");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pandas-stubs",
       version: "3.0.5.260914",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pandas-dev",
           repo: "pandas-stubs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_clipboard"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["test_astype_float", "test_astype_complex"]))))),
       pythonImportsCheck: nix.thunk(() => ["pandas"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Type annotations for Pandas",
         homepage: "https://github.com/pandas-dev/pandas-stubs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

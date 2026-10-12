@@ -14,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const older = nix.arg($, "older");
   const sample_data = nix.arg($, "sample-data");
   return nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(older, "11.0")), nix.thunk(() => nix.update({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       default: nix.thunk(() => nix.app(mkTester, "sample_int8_api", nix.thunk(() => [
           "sample_int8_api",
           nix.thunk(() => nix.str`--model=${nix.add(nix.sel(sample_data, "outPath"), "/resnet50/ResNet50.onnx")}`),
           nix.thunk(() => nix.str`--data=${nix.add(nix.sel(sample_data, "outPath"), "/int8_api")}`),
         ]))),
     }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "subtractLists"), nix.thunk(() => ["7.2", "8.7"]), nix.thunk(() => nix.sel(backendStdenv, "cudaCapabilities"))), [])), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         dla: nix.thunk(() => nix.app(mkTester, "sample_int8_api-dla", nix.thunk(() => [
             "sample_int8_api",
             nix.thunk(() => nix.str`--model=${nix.add(nix.sel(sample_data, "outPath"), "/resnet50/ResNet50.onnx")}`),

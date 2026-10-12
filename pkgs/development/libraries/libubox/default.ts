@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const with_ustream_ssl = nix.argOr($, "with_ustream_ssl", () => false);
   const ustream_ssl = nix.arg($, "ustream-ssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libubox",
       version: "0-unstable-2025-10-14",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.openwrt.org/project/libubox.git",
           rev: "7d6b9d98d0bdd4e14aedeb7908c28e4b318c8191",
           hash: "sha256-SBw83zT/tMvmndo4bZ19sLWc493G2jefMhrvqjQ6WJc=",
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
 done
 `))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))), nix.thunk(() => ["-Wno-error=gnu-folding-constant"]))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "C utility functions for OpenWrt",
         homepage: "https://git.openwrt.org/?p=project/libubox.git;a=summary",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

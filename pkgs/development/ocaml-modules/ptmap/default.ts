@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const seq = nix.arg($, "seq");
   const stdlib_shims = nix.arg($, "stdlib-shims");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ptmap",
       version: "2.0.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/backtracking/ptmap/releases/download/${nix.sel(finalAttrs, "version")}/ptmap-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-69H4r+hnmiJv3LzbMjeI5vY9tXUhsVFHPy/4wFww86o=",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [seq]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.lri.fr/~filliatr/software.en.html",
         description: "Maps over integers implemented as Patricia trees",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

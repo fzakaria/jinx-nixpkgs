@@ -4,5 +4,5 @@ import * as nix from "../../../.jinx/runtime/index.ts";
 const here = nix.here(import.meta.url);
 const pos$1 = nix.positions(here + "/define-value-int-positive.nix", [["value", 2, 3]]);
 
-export default nix.thunk(() => ({ __proto__: pos$1, value: 42n }));
+export default nix.thunk(() => ({ [nix.POS]: pos$1, value: 42n }));
 //# sourceMappingURL=define-value-int-positive.ts.map

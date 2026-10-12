@@ -23,14 +23,14 @@ export default nix.lambda((args) => (() => {
   const jdk = jdk17;
   const version = "3.9.5";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "openrefine",
       repo: "openrefine",
       rev: version,
       hash: "sha256-548vOJf0mlk1AuuMjEXpsiVjft6UbJrUxh5mSca8Xbw=",
     }))));
   const npmPkg = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       src: src,
       version: version,
       pname: "openrefine-npm",
@@ -44,7 +44,7 @@ cp $NEW_PACKAGE_JSON package.json
       installPhase: "mkdir -p $out\ncp -r modules/core/3rdparty/* $out/\n",
     }))));
   return nix.app(nix.sel(maven, "buildMavenPackage"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       src: src,
       version: version,
       pname: "openrefine",
@@ -78,12 +78,12 @@ wrapProgram $out/bin/refine \\
   --set-default REFINE_INI_PATH "$out/etc/refine.ini"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         npmPkg: npmPkg,
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Power tool for working with messy data and improving it",
         homepage: "https://openrefine.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

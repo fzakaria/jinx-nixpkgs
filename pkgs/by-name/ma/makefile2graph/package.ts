@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const bash = nix.arg($, "bash");
   const gnumake = nix.arg($, "gnumake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "makefile2graph",
       version: "2021.11.06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lindenb",
           repo: "makefile2graph",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ wrapProgram $out/bin/makefile2graph \\
   --set PATH ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gnumake]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/lindenb/makefile2graph",
         description: "Creates a graph of dependencies from GNU-Make; Output is a graphiz-dot file or a Gexf-XML file",
         maintainers: nix.thunk(() => (() => {

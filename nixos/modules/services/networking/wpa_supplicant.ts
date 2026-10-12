@@ -76,11 +76,11 @@ export default nix.lambda((args) => (() => {
     return (nix.asBool(hasWPA3) && nix.asBool(!nix.eq(others, [])));
   })();
   const increaseWPA3Priority = (opts) => nix.update(opts, nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.app(hasMixedWPA, opts)), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       priority: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(opts, "priority"), null)) ? 1n : nix.add(nix.sel(opts, "priority"), 1n))),
     }))));
   const mkWPA2Fallback = (opts) => nix.update(opts, {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     authProtocols: nix.thunk(() => nix.app(nix.lookup(w, "subtractLists"), wpa3Protocols, nix.thunk(() => nix.sel(opts, "authProtocols")))),
   });
   const networkList = nix.thunk(() => nix.app(nix.lookup(w, "attrValues"), nix.thunk(() => nix.sel(cfg, "networks"))));
@@ -107,7 +107,7 @@ ${nix.app(nix.lookup(w, "concatMapStringsSep"), "\n", indent, options_1)}
     const deviceUnit = nix.thunk(() => nix.app(nix.lookup(w, "optional"), nix.thunk(() => !nix.eq(iface, null)), nix.thunk(() => nix.str`sys-subsystem-net-devices-${nix.app(nix.sel(utils, "escapeSystemdPath"), iface)}.device`)));
     const configStr = nix.thunk(() => nix.add((nix.asBool(nix.sel(cfg, "allowAuxiliaryImperativeNetworks")) ? "-c /etc/wpa_supplicant/imperative.conf -I /etc/wpa_supplicant/nixos.conf" : (nix.asBool(hasDeclarative) ? "-c /etc/wpa_supplicant/nixos.conf" : "-c /etc/wpa_supplicant/imperative.conf")), nix.app(nix.sel(lib, "concatMapStrings"), (p) => nix.add(" -I ", p), nix.thunk(() => nix.sel(cfg, "extraConfigFiles")))));
     return {
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       description: nix.thunk(() => nix.add("WPA Supplicant instance", nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.eq(iface, null)), nix.thunk(() => nix.str` for interface ${iface}`)))),
       after: deviceUnit,
       before: nix.thunk(() => ["network.target"]),
@@ -119,18 +119,18 @@ ${nix.app(nix.lookup(w, "concatMapStringsSep"), "\n", indent, options_1)}
         nix.thunk(() => nix.sel(config, "environment", "etc", "wpa_supplicant/nixos.conf", "source")),
       ]),
       environment: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "pkcs11", "enable")), nix.thunk(() => nix.update({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           OPENSSL_ENGINES: nix.thunk(() => nix.str`${nix.sel(cfg, "pkcs11", "package")}/lib/engines`),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "security", "tpm2", "tctiEnvironment", "enable")), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(config, "environment", "variables"));
             return {
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             TPM2_PKCS11_TCTI: nix.thunk(() => nix.attr(from, "TPM2_PKCS11_TCTI")),
           };
           })())))))),
       path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "wpa_supplicant"))]),
       serviceConfig: nix.thunk(() => nix.update({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         RuntimeDirectory: "wpa_supplicant",
         ExecStartPre: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "allowAuxiliaryImperativeNetworks")) || nix.asBool(!nix.asBool(hasDeclarative)))), nix.thunk(() => [
             nix.thunk(() => nix.str`+${nix.sel(pkgs, "coreutils")}/bin/touch /etc/wpa_supplicant/imperative.conf`),
@@ -143,7 +143,7 @@ ${nix.app(nix.lookup(w, "concatMapStringsSep"), "\n", indent, options_1)}
             nix.thunk(() => nix.str`+${nix.sel(pkgs, "coreutils")}/bin/chmod g=u /run/wpa_supplicant/client`),
           ])))),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "enableHardening")), nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           User: "wpa_supplicant",
           Group: "wpa_supplicant",
           AmbientCapabilities: nix.thunk(() => ["CAP_NET_ADMIN", "CAP_NET_RAW"]),
@@ -198,88 +198,88 @@ exec wpa_supplicant $args
   })();
   const systemctl = "/run/current-system/systemd/bin/systemctl";
   return {
-    __proto__: pos$54,
+    [nix.POS]: pos$54,
     options: nix.thunk(() => ({
-      __proto__: pos$36,
+      [nix.POS]: pos$36,
       networking: nix.thunk(() => ({
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         wireless: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "wpa_supplicant")),
           interfaces: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: [],
               example: nix.thunk(() => ["wlan0", "wlan1"]),
               description: "The interfaces {command}`wpa_supplicant` will use. If empty and\n[](#opt-networking.wireless.autoDetectInterfaces) is true it will\nautomatically use all wireless interfaces.\n\n::: {.note}\nA separate wpa_supplicant instance will be started for each interface.\n:::\n",
             })))),
-          autoDetectInterfaces: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mkEnableOption"), "automatic detection of wireless interfaces"), { __proto__: pos$9, default: true })),
+          autoDetectInterfaces: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mkEnableOption"), "automatic detection of wireless interfaces"), { [nix.POS]: pos$9, default: true })),
           driver: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "nl80211,wext",
               description: "Force a specific wpa_supplicant driver.",
             })))),
           allowAuxiliaryImperativeNetworks: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mkEnableOption"), "support for imperative & declarative networks"), {
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             description: "Whether to allow configuring networks \"imperatively\" (e.g. via\n`wpa_supplicant_gui`) and declaratively via\n[](#opt-networking.wireless.networks).\n",
           })),
           scanOnLowSignal: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "Whether to periodically scan for (better) networks when the signal of\nthe current one is low. This will make roaming between access points\nfaster, but will consume more power.\n",
             })))),
           fallbackToWPA2: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "Whether to fall back to WPA2 authentication protocols if WPA3 failed.\nThis allows old wireless cards (that lack recent features required by\nWPA3) to connect to mixed WPA2/WPA3 access points.\n\nTo avoid possible downgrade attacks, disable this options.\n",
             })))),
           secretsFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               default: null,
               example: "/run/secrets/wireless.conf",
               description: "File consisting of lines of the form `varname=value`\nto define variables for the wireless configuration.\n\nSecrets (PSKs, passwords, etc.) can be provided without adding them to\nthe world-readable Nix store by defining them in the secrets file and\nreferring to them in option [](#opt-networking.wireless.networks)\nwith the syntax `ext:secretname`. Example:\n\n```\n# content of /run/secrets/wireless.conf\npsk_home=mypassword\npsk_other=6a381cea59c7a2d6b30736ba0e6f397f7564a044bcdb7a327a1d16a1ed91b327\npass_work=myworkpassword\n\n# wireless-related configuration\nnetworking.wireless.secretsFile = \"/run/secrets/wireless.conf\";\nnetworking.wireless.networks = {\n  home.pskRaw = \"ext:psk_home\";\n  other.pskRaw = \"ext:psk_other\";\n  work.auth = ''\n    eap=PEAP\n    identity=\"my-user@example.com\"\n    password=ext:pass_work\n  '';\n};\n```\n",
             })))),
           networks: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.lambda((args_1) => (() => {
                     const $_1 = nix.formals(args_1, formals$2);
                     const name = nix.arg($_1, "name");
                     return {
-                      __proto__: pos$25,
+                      [nix.POS]: pos$25,
                       options: nix.thunk(() => ({
-                        __proto__: pos$24,
+                        [nix.POS]: pos$24,
                         ssid: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$15,
+                            [nix.POS]: pos$15,
                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                             default: name,
                             description: "You could use this field to override the network's ssid.\nThis can be useful to, for example, specify two networks\nthat share the same SSID but not the same password.\nSpecifying the BSSID of the network can make two entries of\nthe same SSID show up as different ones in wpa_cli.\n",
                           })))),
                         bssid: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$16,
+                            [nix.POS]: pos$16,
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                             default: null,
                             example: "02:00:00:00:00:01",
                             description: "If set, this network block is used only when associating with\nthe AP using the configured BSSID.\n",
                           })))),
                         psk: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$17,
+                            [nix.POS]: pos$17,
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "strMatching"), "[[:print:]]{8,63}")))),
                             default: null,
                             description: "The network's pre-shared key in plaintext defaulting\nto being a network without any authentication.\n\n::: {.warning}\nBe aware that this will be written to the Nix store\nin plaintext! Use {var}`pskRaw` with an external\nreference to keep it safe.\n:::\n\n::: {.note}\nMutually exclusive with {var}`pskRaw`.\n:::\n",
                           })))),
                         pskRaw: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$18,
+                            [nix.POS]: pos$18,
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "strMatching"), "([[:xdigit:]]{64})|(ext:[^=]+)")))),
                             default: null,
                             example: "ext:name_of_the_secret_here",
                             description: "Either the raw pre-shared key in hexadecimal format\nor the name of the secret (as defined inside\n[](#opt-networking.wireless.secretsFile) and prefixed\nwith `ext:`) containing the network pre-shared key.\n\n::: {.warning}\nBe aware that this will be written to the Nix store\nin plaintext! Always use an external reference.\n:::\n\n::: {.note}\nThe external secret can be either the plaintext\npassphrase or the raw pre-shared key.\n:::\n\n::: {.note}\nMutually exclusive with {var}`psk` and {var}`auth`.\n:::\n",
                           })))),
                         authProtocols: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$19,
+                            [nix.POS]: pos$19,
                             default: nix.thunk(() => ["WPA-PSK", "WPA-EAP", "SAE", "FT-PSK", "FT-EAP", "FT-SAE"]),
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => [
                                   "WPA-PSK",
@@ -307,27 +307,27 @@ exec wpa_supplicant $args
                             description: "The list of authentication protocols accepted by this network.\nThis corresponds to the `key_mgmt` option in wpa_supplicant.\n",
                           })))),
                         auth: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$20,
+                            [nix.POS]: pos$20,
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                             default: null,
                             example: "eap=PEAP\nidentity=\"user@example.com\"\npassword=ext:example_password\n",
                             description: "Use this option to configure advanced authentication methods\nlike EAP. See {manpage}`wpa_supplicant.conf(5)` for example\nconfigurations.\n\n::: {.warning}\nBe aware that this will be written to the Nix store\nin plaintext! Use an external reference like\n`ext:secretname` for secrets.\n:::\n\n::: {.note}\nMutually exclusive with {var}`psk` and {var}`pskRaw`.\n:::\n",
                           })))),
                         hidden: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$21,
+                            [nix.POS]: pos$21,
                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                             default: false,
                             description: "Set this to `true` if the SSID of the network is hidden.\n",
                             example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{ echelon = {\n    hidden = true;\n    psk = \"abcdefgh\";\n  };\n}\n")),
                           })))),
                         priority: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$22,
+                            [nix.POS]: pos$22,
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")))),
                             default: null,
                             description: "By default, all networks will get same priority group (0). If\nsome of the networks are more desirable, this field can be used\nto change the order in which wpa_supplicant goes through the\nnetworks when selecting a BSS. The priority groups will be\niterated in decreasing priority (i.e., the larger the priority\nvalue, the sooner the network is matched against the scan\nresults). Within each priority group, networks will be selected\nbased on security policy, signal strength, etc.\n",
                           })))),
                         extraConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$23,
+                            [nix.POS]: pos$23,
                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                             default: "",
                             example: "bssid_blacklist=02:11:22:33:44:55 02:22:aa:44:55:66\n",
@@ -341,7 +341,7 @@ exec wpa_supplicant $args
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{ echelon = {                   # SSID with no spaces or special characters\n    psk = \"abcdefgh\";           # (password will be written to /nix/store!)\n  };\n\n  echelon = {                   # safe version of the above: read PSK from the\n    pskRaw = \"ext:psk_echelon\"; # variable psk_echelon, defined in secretsFile,\n  };                            # this won't leak into /nix/store\n\n  \"echelon's AP\" = {            # SSID with spaces and/or special characters\n     psk = \"ijklmnop\";          # (password will be written to /nix/store!)\n  };\n\n  \"free.wifi\" = {};             # Public wireless network\n}\n")),
             })))),
           userControlled: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "coercedTo"), nix.thunk(() => nix.lookup(w_1, "attrs")), (val) => (nix.asBool((nix.asBool(nix.app(nix.sel(nix.builtins, "isAttrs"), val)) && nix.asBool(nix.has(val, "enable")))) ? nix.app(nix.lookup(w_1, "warn"), "Obsolete option `networking.wireless.userControlled.enable' is used. It was renamed to networking.wireless.userControlled", nix.thunk(() => nix.sel(val, "enable"))) : (nix.asBool((nix.asBool(nix.app(nix.sel(nix.builtins, "isAttrs"), val)) && nix.asBool(nix.has(val, "group")))) ? nix.app(nix.lookup(w_1, "warn"), "The option definition `networking.wireless.userControlled.group' no longer has any effect. The group is now fixed to `wpa_supplicant'.", nix.thunk(() => nix.selOr(val, () => false, "enable"))) : (nix.asBool(nix.app(nix.sel(nix.builtins, "isBool"), val)) ? nix.force(val) : false))), nix.thunk(() => nix.lookup(w_1, "bool")));
@@ -350,21 +350,21 @@ exec wpa_supplicant $args
               description: "Allow users of the `wpa_supplicant` group to control wpa_supplicant\nthrough wpa_gui or wpa_cli.\nThis is useful for laptop users that switch networks a lot and don't want\nto depend on a large package such as NetworkManager just to pick nearby\naccess points.\n\n::: {.note}\nWhen networks are configured declaratively, you cannot persist any settings\nvia wpa_gui or wpa_cli, unless {option}`allowAuxiliaryImperativeNetworks`\nis used.\n:::\n",
             })))),
           dbusControlled: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: nix.thunk(() => nix.lt(nix.app(nix.sel(lib, "length"), nix.thunk(() => nix.sel(cfg, "interfaces"))), 2n)),
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), nix.thunk(() => nix.str`length config.${nix.sel(opt, "interfaces")} < 2`))),
               description: "Whether to enable the DBus control interface.\nThis is only needed when using NetworkManager or connman.\n",
             })))),
           enableHardening: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               default: true,
               description: "Whether to apply security hardening measures to wpa_supplicant.\nThese include limiting access to the filesystem, devices and network\ncapabilities.\n\n::: {.note}\nDisabling this will increase the potential attack surface if the\nwpa_supplicant daemon becomes compromised, but it may be necessary\nfor more complex enterprise networks (for example requiring\naccess to mutable files, smart cards or TPM devices).\n:::\n",
             })))),
           pkcs11: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: false,
                 description: "Whether to make the OpenSSL pkcs11 engine available to\nwpa_supplicant, for EAP-TLS authentication with client keys on\nPKCS#11 tokens such as smartcards or a TPM.\n\n::: {.note}\nWith {option}`networking.wireless.enableHardening` enabled,\nthe service is additionally granted:\n  - Membership in {option}`security.tpm2.tssGroup`.\n  - Access to the TPM device configured by\n    {option}`security.tpm2.tctiEnvironment.deviceConf`.\n  - pcscd socket for smartcard readers.\n  - Access to default system-wide token store `/etc/tpm2_pkcs11`.\n    Note that the hardened service by default has no home directory,\n    so only the system store location applies.\n\nThe store must be writable by {option}`security.tpm2.tssGroup`.\nEnable {option}`security.tpm2.pkcs11.enable` option to grant\ntss group access to the store.\n:::\n\n::: {.note}\nwpa_supplicant loads the engine through OpenSSL's dynamic engine\nmechanism, which only searches OpenSSL's own store path;\nThis option points the search path (the `OPENSSL_ENGINES` environment\nvariable) at the configured libp11 package instead,\nwhich shadows OpenSSL's built-in engine directory rather than extending it.\n\nwpa_supplicant never requests the engines shipped there (afalg,\ncapi, loader_attic, padlock), so this is normally invisible.\nA configuration that nevertheless loads one of them by name\ninside this service (e.g. through a custom `OPENSSL_CONF`) can\nrestore the union of both directories:\n\n```nix\nnetworking.wireless.pkcs11.package = pkgs.symlinkJoin {\n  name = \"wpa-supplicant-engines\";\n  paths = [ pkgs.libp11 ];\n  postBuild = \"ln -s ${pkgs.openssl.out}/lib/engines-3/*.so $out/lib/engines/\";\n};\n```\n:::\n",
@@ -372,14 +372,14 @@ exec wpa_supplicant $args
             package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "libp11", nix.thunk(() => ({})))),
           })),
           extraConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               example: "p2p_disabled=1\n",
               description: "Extra lines appended to the configuration file.\nSee\n{manpage}`wpa_supplicant.conf(5)`\nfor available options.\n",
             })))),
           extraConfigFiles: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               default: [],
               description: "Extra wpa_supplicant configuration files to load.\n",
@@ -391,9 +391,9 @@ exec wpa_supplicant $args
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["networking", "wireless", "environmentFile"]), "Secrets are now handled by the `networking.wireless.secretsFile` and\n`networking.wireless.networks.<name>.pskRaw` options.\nThe change is motivated by a mechanism recently added by wpa_supplicant\nitself to separate secrets from configuration, making the previous\nmethod obsolete.\n\nThe syntax of the `secretsFile` is the same as before, except the\nvalues are interpreted literally, unlike environment variables.\nTo update, remove quotes or character escapes, if necessary, and\napply the following changes to your configuration:\n  {\n    home.psk = \"@psk_home@\";          →  home.pskRaw = \"ext:psk_home\";\n    other.pskRaw = \"@psk_other@\";     →  other.pskRaw = \"ext:psk_other\";\n    work.auth = ''\n      eap=PEAP\n      identity=\"my-user@example.com\"\n      password=@pass_work@            →  password=ext:pass_work\n    '';\n  }\n")),
     ]),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$52,
+        [nix.POS]: pos$52,
         assertions: nix.thunk(() => nix.concat(nix.app(nix.lookup(w, "flip"), nix.thunk(() => nix.lookup(w, "mapAttrsToList")), nix.thunk(() => nix.sel(cfg, "networks")), (name) => (cfg_1) => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             assertion: nix.thunk(() => (() => {
               const w_1 = nix.withScope(cfg_1, w);
               return nix.le(nix.app(nix.lookup(w_1, "count"), (x) => !nix.eq(x, null), nix.thunk(() => [
@@ -405,7 +405,7 @@ exec wpa_supplicant $args
             message: nix.thunk(() => nix.str`options networking.wireless."${name}".{psk,pskRaw,auth} are mutually exclusive`),
           })), [
           nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             assertion: nix.thunk(() => (!nix.asBool(nix.gt(nix.app(nix.lookup(w, "length"), nix.thunk(() => nix.sel(cfg, "interfaces"))), 1n)) || nix.asBool(!nix.asBool(nix.sel(cfg, "dbusControlled"))))),
             message: nix.thunk(() => (() => {
               const daemon = nix.thunk(() => (nix.asBool(nix.sel(config, "networking", "networkmanager", "enable")) ? "NetworkManager" : (nix.asBool(nix.sel(config, "services", "connman", "enable")) ? "connman" : null)));
@@ -420,26 +420,26 @@ in this case the interfaces will be configured automatically for you.
           })),
         ])),
         users: nix.thunk(() => ({
-          __proto__: pos$42,
-          groups: nix.thunk(() => ({ __proto__: pos$39, wpa_supplicant: nix.thunk(() => ({})) })),
+          [nix.POS]: pos$42,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$39, wpa_supplicant: nix.thunk(() => ({})) })),
           users: nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             wpa_supplicant: nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               isSystemUser: true,
               group: "wpa_supplicant",
               description: "WPA Supplicant user",
             })),
           })),
         })),
-        hardware: nix.thunk(() => ({ __proto__: pos$43, wirelessRegulatoryDatabase: true })),
+        hardware: nix.thunk(() => ({ [nix.POS]: pos$43, wirelessRegulatoryDatabase: true })),
         environment: nix.thunk(() => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "wpa_supplicant"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             "wpa_supplicant/nixos.conf": nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               text: nix.thunk(() => nix.app(nix.lookup(w, "concatStringsSep"), "\n", nix.thunk(() => nix.concat(nix.app(nix.builtins.map, mkNetwork, allNetworks), nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.sel(cfg, "userControlled")), nix.thunk(() => nix.app(nix.lookup(w, "concatStringsSep"), "\n", nix.thunk(() => [
                       "ctrl_interface=/run/wpa_supplicant/control",
                       "ctrl_interface_group=wpa_supplicant",
@@ -449,25 +449,25 @@ in this case the interfaces will be configured automatically for you.
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$49,
+          [nix.POS]: pos$49,
           dbus: nix.thunk(() => ({
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             packages: nix.thunk(() => nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.sel(cfg, "dbusControlled")), nix.thunk(() => nix.sel(pkgs, "wpa_supplicant")))),
           })),
           udev: nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             extraRules: nix.thunk(() => nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.eq(nix.sel(cfg, "interfaces"), [])), nix.thunk(() => nix.str`ACTION=="add|remove", SUBSYSTEM=="net", ENV{DEVTYPE}=="wlan", \\
 RUN+="${systemctl} try-restart wpa_supplicant.service"
 `))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$51,
-          services: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "interfaces"), [])) ? { __proto__: pos$50, wpa_supplicant: nix.thunk(() => nix.app(mkUnit, null)) } : nix.app(nix.lookup(w, "listToAttrs"), nix.thunk(() => nix.app(nix.builtins.map, (i) => nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.str`wpa_supplicant-${i}`), nix.thunk(() => nix.app(mkUnit, i))), nix.thunk(() => nix.sel(cfg, "interfaces"))))))),
+          [nix.POS]: pos$51,
+          services: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "interfaces"), [])) ? { [nix.POS]: pos$50, wpa_supplicant: nix.thunk(() => nix.app(mkUnit, null)) } : nix.app(nix.lookup(w, "listToAttrs"), nix.thunk(() => nix.app(nix.builtins.map, (i) => nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.str`wpa_supplicant-${i}`), nix.thunk(() => nix.app(mkUnit, i))), nix.thunk(() => nix.sel(cfg, "interfaces"))))))),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$53,
+      [nix.POS]: pos$53,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_1, "rnhmjoj"))];

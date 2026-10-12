@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const tk = nix.arg($, "tk");
   const incrtcl = nix.arg($, "incrtcl");
   return nix.app(mkTclDerivation, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "itk-tcl",
       version: "4.1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/incrtcl/%5BIncr%20Tcl_Tk%5D-source/3.4/itk${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-2mRhmSIu/cTYyZWThjyNKHRC6lqGh/lUYNbp5yQxycc=",
         })))),
@@ -39,7 +39,7 @@ rmdir $out/lib/itk${nix.sel(finalAttrs, "version")}
 `),
       outputs: nix.thunk(() => ["out", "dev", "man"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://incrtcl.sourceforge.net/",
         description: "Mega-widget toolkit for incr Tk",
         license: nix.thunk(() => nix.sel(lib, "licenses", "tcltk")),

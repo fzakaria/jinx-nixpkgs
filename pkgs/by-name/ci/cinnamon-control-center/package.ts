@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const upower = nix.arg($, "upower");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cinnamon-control-center",
       version: "6.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linuxmint",
           repo: "cinnamon-control-center",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
       mesonFlags: nix.thunk(() => [nix.thunk(() => nix.str`--localedir=${cinnamon_translations}/share/locale`)]),
       nativeBuildInputs: nix.thunk(() => [libxml2, pkg_config, meson, ninja, wrapGAppsHook3, gettext, python3]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/linuxmint/cinnamon-control-center",
         description: "Collection of configuration plugins used in cinnamon-settings",
         mainProgram: "cinnamon-control-center",

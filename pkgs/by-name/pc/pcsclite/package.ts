@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
   const polkitSupport = nix.argOr($, "polkitSupport", () => false);
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: "2.4.1",
       outputs: nix.thunk(() => ["out", "lib", "dev", "doc", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "salsa.debian.org",
           owner: "rousseau",
           repo: "PCSC",
@@ -82,13 +82,13 @@ substituteInPlace meson.build \\
       nativeBuildInputs: nix.thunk(() => [meson, ninja, flex, pkg_config, perl]),
       buildInputs: nix.thunk(() => nix.concat([python3], nix.concat(nix.app(nix.sel(lib, "optionals"), systemdSupport, nix.thunk(() => [systemdLibs])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(!nix.asBool(systemdSupport)) && nix.asBool(udevSupport))), nix.thunk(() => [udev])), nix.concat(nix.app(nix.sel(lib, "optionals"), dbusSupport, nix.thunk(() => [dbus])), nix.concat(nix.app(nix.sel(lib, "optionals"), polkitSupport, nix.thunk(() => [polkit])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(udevSupport)), nix.thunk(() => [libusb1])))))))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           nixos: nix.thunk(() => nix.sel(nixosTests, "pcsclite")),
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "pcscd --version",
             })))),
@@ -96,7 +96,7 @@ substituteInPlace meson.build \\
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Middleware to access a smart card using SCard API (PC/SC)",
         homepage: "https://pcsclite.apdu.fr/",
         changelog: nix.thunk(() => nix.str`https://salsa.debian.org/rousseau/PCSC/-/blob/${nix.sel(finalAttrs, "version")}/ChangeLog`),

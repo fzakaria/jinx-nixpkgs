@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const outputs = nix.thunk(() => ["out", "doc"]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "3-manifolds",
           repo: "SnapPy",
           tag: nix.thunk(() => nix.str`${version}_as_released`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "no-copy-doc.patch",
             url: "https://github.com/3-manifolds/SnapPy/commit/c6aeeaaec7010a54e4ebdf2e8dad7b384c2ce8e5.patch",
             hash: "sha256-OV3Qr5wO5UHNzVFTPTujIpp5ptel6gvAlcMgrJ8C0KY=",
@@ -86,7 +86,7 @@ substituteInPlace freedesktop/share/applications/snappy.desktop \\
         spherogram,
         tkinter_gl,
       ]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$3, "snappy-15-knots": nix.thunk(() => [snappy_15_knots]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$3, "snappy-15-knots": nix.thunk(() => [snappy_15_knots]) }));
       const postInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "mkdir -p $out/share\ncp -r freedesktop/share/{applications,icons} $out/share\n"));
       const sphinxRoot = "doc_src";
       const postInstallSphinx = nix.thunk(() => nix.str`ln -s \${!outputDoc}/share/doc/$name/html $out/${nix.sel(python, "sitePackages")}/snappy/doc
@@ -97,28 +97,28 @@ ${nix.sel(python, "interpreter")} -m snappy.test --skip-gui
 runHook postCheck
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           sage: nix.thunk(() => (() => {
             const sage$ = nix.thunk(() => nix.app(nix.sel(sage, "override"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 extraPythonPackages: (ps) => [nix.thunk(() => nix.sel(ps, "snappy"))],
                 requireSageTests: false,
               }))));
             return nix.app(runCommand, "snappy-sage-tests", nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 nativeBuildInputs: nix.thunk(() => [sage$, writableTmpDirAsHomeHook]),
               })), "sage -python -m snappy.test --skip-gui\ntouch $out\n");
           })()),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             extraArgs: nix.thunk(() => ["--version-regex", "(.*)_as_released"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Studying the topology and geometry of 3-manifolds, with a focus on hyperbolic structures",
         changelog: "https://snappy.computop.org/news.html",
         mainProgram: "SnapPy",
@@ -134,7 +134,7 @@ runHook postCheck
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
       }));
       return {
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         pname,
         version,
         pyproject,

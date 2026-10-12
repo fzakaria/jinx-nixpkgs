@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const libdbusmenu_jb = nix.thunk(() => nix.app(callPackage, nix.path(here, "./libdbusmenu.nix"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jetbrains-libdbm",
       version: "2025.3.4",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jetbrains",
           repo: "intellij-community",
           tag: nix.thunk(() => nix.str`idea/${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ cp ${libdbusmenu_jb}/lib/libdbusmenu-glib.a libdbusmenu-glib.a
 `),
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib\nmv libdbm.so $out/lib/libdbm.so\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "libdbusmenu wrapper by JetBrains for their IDEs",
         homepage: "https://github.com/JetBrains/intellij-community/tree/master/native/LinuxGlobalMenu",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const versionParts = nix.thunk(() => nix.app(nix.sel(lib, "take"), 2n, nix.thunk(() => nix.app(nix.sel(lib, "splitVersion"), version))));
   const stableVersion = nix.thunk(() => nix.app(nix.sel(lib, "removePrefix"), "0", nix.thunk(() => nix.app(nix.sel(lib, "concatMapStrings"), (p) => (nix.asBool(nix.lt(nix.app(nix.sel(lib, "toInt"), p), 10n)) ? nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => ["0", p])) : nix.force(p)), versionParts))));
   const pluginDirs = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     mod: "mod",
     antivirus: "lib/antivirus",
     assignsubmission: "mod/assign/submission",
@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
       const pname = "moodle";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://download.moodle.org/download.php/direct/stable${stableVersion}/${pname}-${version_1}.tgz`),
           hash: "sha256-7N2aPfPdZu4WXmZeetup7hL/8XdCcH+5NwTdHxvG0qk=",
         }))));
@@ -105,11 +105,11 @@ cp -r ${p}/* $out/share/moodle/${dir}/${nix.sel(p, "name")}/
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, moodle: nix.thunk(() => nix.attr(nixosTests, "moodle")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, moodle: nix.thunk(() => nix.attr(nixosTests, "moodle")) })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Free and open-source learning management system (LMS) written in PHP",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         homepage: "https://moodle.org/",
@@ -117,7 +117,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version: version_1,
         src,

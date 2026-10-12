@@ -18,23 +18,23 @@ export default nix.lambda((args) => (() => {
   return nix.app(buildHomeAssistantComponent, nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(ha_mcp, "src"));
       return {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       domain: "ha_mcp_tools",
       version: nix.thunk(() => nix.attr(ha_mcp, "version")),
       src: nix.thunk(() => nix.attr(ha_mcp, "src")),
       owner: nix.thunk(() => nix.attr(from, "owner")),
       dependencies: nix.thunk(() => [ha_mcp, ruamel_yaml, voluptuous_openapi]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             extraArgs: nix.thunk(() => ["--use-github-releases", "--version-regex=^v([0-9]+\\.[0-9]+\\.[0-9]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => (() => {
         const from_1 = nix.thunk(() => nix.sel(ha_mcp, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.attr(from_1, "changelog")),
         homepage: nix.thunk(() => nix.attr(from_1, "homepage")),
         license: nix.thunk(() => nix.attr(from_1, "license")),

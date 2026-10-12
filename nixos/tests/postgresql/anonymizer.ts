@@ -27,38 +27,38 @@ export default nix.lambda((args) => (() => {
       const lib = nix.arg($_1, "lib");
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         name: nix.thunk(() => nix.str`postgresql_anonymizer-${nix.sel(package$, "name")}`),
         meta: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           maintainers: nix.thunk(() => [
             nix.thunk(() => nix.sel(lib, "maintainers", "leona")),
             nix.thunk(() => nix.sel(lib, "maintainers", "osnyx")),
           ]),
         })),
         nodes: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           machine: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
             const pkgs_1 = nix.arg($_2, "pkgs");
             return {
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               users: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 users: nix.thunk(() => ({
-                  __proto__: pos$3,
-                  anon_dumper: nix.thunk(() => ({ __proto__: pos$2, isSystemUser: true, group: "anon_dumper" })),
+                  [nix.POS]: pos$3,
+                  anon_dumper: nix.thunk(() => ({ [nix.POS]: pos$2, isSystemUser: true, group: "anon_dumper" })),
                 })),
-                groups: nix.thunk(() => ({ __proto__: pos$4, anon_dumper: nix.thunk(() => ({})) })),
+                groups: nix.thunk(() => ({ [nix.POS]: pos$4, anon_dumper: nix.thunk(() => ({})) })),
               })),
               services: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 postgresql: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   package: package$,
                   enable: true,
                   extensions: (ps) => [nix.thunk(() => nix.sel(ps, "anonymizer"))],
-                  settings: nix.thunk(() => ({ __proto__: pos$6, shared_preload_libraries: nix.thunk(() => ["anon"]) })),
+                  settings: nix.thunk(() => ({ [nix.POS]: pos$6, shared_preload_libraries: nix.thunk(() => ["anon"]) })),
                 })),
               })),
             };
@@ -137,7 +137,7 @@ with subtest("Anonymize"):
       };
     })(), formals$2));
   return nix.app(genTests, nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       makeTestFor: makeTestFor,
       filter: (_) => (p) => !nix.asBool(nix.sel(p, "pkgs", "anonymizer", "meta", "broken")),
     })));

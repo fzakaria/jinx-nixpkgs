@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const imagemagick = nix.arg($, "imagemagick");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "lsix",
       version: "1.9.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hackerb9",
           repo: "lsix",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ninstall -Dm755 lsix -t $out/bin\n\nrunHook postInstall\n",
       postFixup: nix.thunk(() => nix.str`wrapProgram $out/bin/lsix \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [
-          nix.thunk(() => nix.app(nix.sel(imagemagick, "override"), nix.thunk(() => ({ __proto__: pos$2, ghostscriptSupport: true })))),
+          nix.thunk(() => nix.app(nix.sel(imagemagick, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, ghostscriptSupport: true })))),
         ]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Shows thumbnails in terminal using sixel graphics",
         homepage: "https://github.com/hackerb9/lsix",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

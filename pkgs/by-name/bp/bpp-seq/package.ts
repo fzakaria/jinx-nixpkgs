@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const bpp_core = nix.arg($, "bpp-core");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bpp-seq",
       version: nix.thunk(() => nix.attr(bpp_core, "version")),
       postPatch: nix.thunk(() => nix.attr(bpp_core, "postPatch")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BioPP",
           repo: "bpp-seq",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       postFixup: "substituteInPlace $out/lib/cmake/bpp-seq/bpp-seq-targets.cmake  \\\n  --replace 'set(_IMPORT_PREFIX' '#set(_IMPORT_PREFIX'\n",
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       meta: nix.thunk(() => nix.update(nix.sel(bpp_core, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/BioPP/bpp-seq",
         changelog: "https://github.com/BioPP/bpp-seq/blob/master/ChangeLog",
       })),

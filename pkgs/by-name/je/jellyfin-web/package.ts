@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const giflib = nix.arg($, "giflib");
   const jellyfin = nix.arg($, "jellyfin");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "jellyfin-web",
       version: "12.2",
       src: nix.thunk(() => (() => {
         nix.assert_(nix.eq(nix.sel(finalAttrs, "version"), nix.sel(jellyfin, "version")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/je/jellyfin-web/package.nix:19:5");
         return nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "jellyfin",
             repo: "jellyfin-web",
             tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,11 +46,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([pango], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [giflib])))),
       installPhase: "runHook preInstall\n\nmkdir -p $out/share\ncp -a dist $out/share/jellyfin-web\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Web Client for Jellyfin",
         homepage: "https://jellyfin.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

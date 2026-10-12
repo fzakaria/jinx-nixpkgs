@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
   const enableLomiriFeatures = nix.argOr($, "enableLomiriFeatures", () => false);
   const edsDataDir = nix.thunk(() => nix.str`${evolution_data_server}/share`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: nix.thunk(() => nix.str`${(nix.asBool(enableLomiriFeatures) ? "lomiri" : "ayatana")}-indicator-datetime`),
       version: "26.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AyatanaIndicators",
           repo: "ayatana-indicator-datetime",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -129,21 +129,21 @@ substituteInPlace src/CMakeLists.txt \\
       preFixup: nix.thunk(() => nix.add(nix.add("gappsWrapperArgs+=(\n", (nix.asBool(enableLomiriFeatures) ? "\"${qtWrapperArgs[@]}\"\n" : nix.str`--prefix XDG_DATA_DIRS : "${edsDataDir}"
 `)), ")\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "ayatana-indicators": nix.thunk(() => nix.attrsDyn({}, [
           [nix.str`${(nix.asBool(enableLomiriFeatures) ? "lomiri" : "ayatana")}-indicator-datetime`, nix.thunk(() => [nix.thunk(() => (nix.asBool(enableLomiriFeatures) ? "lomiri" : "ayatana"))])],
         ])),
         tests: nix.thunk(() => nix.update({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           startup: nix.thunk(() => nix.sel(nixosTests, "ayatana-indicators")),
         }, nix.app(nix.sel(lib, "optionalAttrs"), enableLomiriFeatures, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             lomiri: nix.thunk(() => nix.sel(nixosTests, "lomiri", "desktop-ayatana-indicator-datetime")),
           }))))),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Ayatana Indicator providing clock and calendar",
         longDescription: "This Ayatana Indicator provides a combined calendar, clock, alarm and\nevent management tool.\n",
         homepage: "https://github.com/AyatanaIndicators/ayatana-indicator-datetime",

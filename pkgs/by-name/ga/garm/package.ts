@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "garm",
       version: "0.2.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cloudbase",
           repo: "garm",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,23 +47,23 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "export HOME=$(mktemp -d)\nfor shell in bash fish zsh; do\n  $out/bin/garm-cli completion $shell > \"garm-cli.$shell\"\ndone\ninstallShellCompletion --cmd garm-cli garm-cli.{bash,fish,zsh}\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         webapp: nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: "garm-webapp",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/webapp`),
             npmDepsHash: "sha256-tWMkfK4k+kOv0OEyxNkxNln08fXEyQdNmpetKm55wFE=",
             installPhase: "runHook preInstall\ncp -r build $out\nrunHook postInstall\n",
           })))),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$3, extraArgs: nix.thunk(() => ["--subpackage", "webapp"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--subpackage", "webapp"]) })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "garm-incus": nix.thunk(() => nix.attr(nixosTests, "garm-incus")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Multi-cloud, auto-scaling manager for GitHub Actions & Gitea self-hosted runners with pluggable providers",
         homepage: "https://github.com/cloudbase/garm",
         changelog: nix.thunk(() => nix.str`https://github.com/cloudbase/garm/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

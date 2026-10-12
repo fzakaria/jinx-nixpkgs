@@ -57,11 +57,11 @@ export default nix.lambda((args) => (() => {
   const libadwaita = nix.arg($, "libadwaita");
   const gst_all_1 = nix.arg($, "gst_all_1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "convey",
       version: "50.2-1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           owner: "donnybeelo",
           repo: "convey",
@@ -132,7 +132,7 @@ runHook postCheck
 `),
       preFixup: "# Add geary to path for geary-attach\ngappsWrapperArgs+=(--prefix PATH : \"$out/bin\")\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gitlab.gnome.org/donnybeelo/convey",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/donnybeelo/convey/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),
         description: "Mail client for GNOME 3",

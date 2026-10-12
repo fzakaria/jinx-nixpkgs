@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "moon-buggy",
       version: "1.1.0",
       buildInputs: nix.thunk(() => [ncurses]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.seehuhn.de/programs/moon-buggy/moon-buggy-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-JZrm57GDjEBTKvXA8gzXxhc81cVS7eQIEUBkR1vPxbY=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple character graphics game where you drive some kind of car across the moon's surface",
         mainProgram: "moon-buggy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

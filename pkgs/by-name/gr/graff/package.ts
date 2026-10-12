@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const manifest = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./manifest.json")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "graff",
       version: nix.thunk(() => nix.sel(manifest, "version")),
       strictDeps: true,
@@ -25,9 +25,9 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       dontFixup: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
-      passthru: nix.thunk(() => ({ __proto__: pos$1, updateScript: nix.path(here, "./update.py") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, updateScript: nix.path(here, "./update.py") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fast agentic coding harness in Zig",
         homepage: "https://codegraff.com",
         changelog: nix.thunk(() => nix.str`https://github.com/justrach/codegraff/releases/tag/v${nix.sel(manifest, "version")}`),

@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
   const aistudio_sdk = nix.arg($, "aistudio-sdk");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "paddlex",
       version: "3.7.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PaddlePaddle",
           repo: "PaddleX",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -69,11 +69,11 @@ export default nix.lambda((args) => (() => {
         aistudio_sdk,
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/PaddlePaddle/PaddleX",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         description: "All-in-One Development Tool based on PaddlePaddle",

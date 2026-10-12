@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "joe",
       version: "4.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/joe-editor/joe-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-aZWyjuINzbvLWkWkwRBkLcltZ3SK6idFDHTNtN0HzCA=",
         })))),
       patches: nix.thunk(() => [nix.path(here, "./macos-fix.patch")]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Full featured terminal-based screen editor",
         longDescription: "JOE (Joe's Own Editor) is a full featured terminal-based screen editor\nwhich is distributed under the GNU General Public License (GPL). JOE has\nbeen around since 1988 and comes standard with many Linux distributions.\n\nJOE is being maintained by its original author Joseph Allen, plus all of\nthe people who send bug reports, feature suggestions and patches to the\nproject web site. JOE is hosted by SourceForge.net and its source code is\ncontrolled under Mercurial.\n\nJOE is a blending of MicroPro's venerable microcomputer word processor\nWordStar and Richard Stallman's famous LISP based text editor GNU-EMACS\n(but it does not use code from either program): most of the basic editing\nkeys are the same as in WordStar as is the overall feel of the editor. JOE\nalso has some of the key bindings and many of the powerful features of\nEMACS.\n\nJOE is written in C and its only dependency is libc. This makes JOE very\neasy to build (just \"configure\" and \"make install\"), making it feasible to\ninclude on small systems and recovery disks. The compiled binary is about\n300K in x86. Note that JOE can use either the termcap or terminfo terminal\ncapabilities databases (or a built-in termcap entry for ANSI\nterminals). The choice is controlled by a \"configure\" option. If terminfo\nis used, a library is required to access the database (on some systems\nthis library is ncurses, but JOE does not use curses to control the\nterminal - it has its own code for this).\n",
         homepage: "https://joe-editor.sourceforge.io",

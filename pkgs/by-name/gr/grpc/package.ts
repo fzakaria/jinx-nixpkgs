@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const arrow_cpp = nix.arg($, "arrow-cpp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "grpc",
       version: "1.83.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "grpc",
           repo: "grpc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "grpc-link-libatomic.patch",
             url: "https://github.com/lopsided98/grpc/commit/a9b917666234f5665c347123d699055d8c2537b2.patch",
             hash: "sha256-Lm0GQsz/UjBbXXEE14lT0dcRzVmCKycrlrdBJj+KLu8=",
@@ -71,16 +71,16 @@ export default nix.lambda((args) => (() => {
       preConfigure: "rm -vf BUILD\n",
       preBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), "export LD_LIBRARY_PATH=$(pwd)${LD_LIBRARY_PATH:+:}$LD_LIBRARY_PATH\n")),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(["-Wno-error"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["-Wno-elaborated-enum-base", "-Wno-deprecated-declarations"])))))),
       })),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(python3, "pkgs"));
           return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "grpcio-status": nix.thunk(() => nix.attr(from, "grpcio-status")),
           "grpcio-tools": nix.thunk(() => nix.attr(from, "grpcio-tools")),
           jaxlib: nix.thunk(() => nix.attr(from, "jaxlib")),
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "C based gRPC (C++, Python, Ruby, Objective-C, PHP, C#)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: [],

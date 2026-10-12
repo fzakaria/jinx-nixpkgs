@@ -19,16 +19,16 @@ export default nix.lambda((args) => (() => {
       const version = "2.3.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "0yl4qdwp3in170ks98qnldqz3r2iyzil5g1775ccg98qkh95s724",
         }))));
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, ZiX: nix.thunk(() => [uncompyle6]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, ZiX: nix.thunk(() => [uncompyle6]) }));
       const pythonImportsCheck = nix.thunk(() => ["unrpa"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/Lattyware/unrpa",
         changelog: nix.thunk(() => nix.str`https://github.com/Lattyware/unrpa/releases/tag/${version}`),
         description: "Program to extract files from the RPA archive format",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

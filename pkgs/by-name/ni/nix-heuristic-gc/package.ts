@@ -21,14 +21,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.4";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "risicle",
           repo: "nix-heuristic-gc",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-T/PKn005gkALJP2FfHfWJj5UIRP9IYkvMOT3+kMY3Wo=",
         }))));
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_SYSTEM: nix.thunk(() => nix.sel(nixVersions, "nixComponents_2_31", "nix-store", "stdenv", "hostPlatform", "system")),
       }));
       const buildInputs = nix.thunk(() => [
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const checkInputs = nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "pytestCheckHook"))]);
       const preCheck = "mv nix_heuristic_gc .nix_heuristic_gc";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         mainProgram: "nix-heuristic-gc",
         description: "Discerning garbage collection for Nix",
         longDescription: "A more discerning cousin of `nix-collect-garbage`, mostly intended as a\ntestbed to allow experimentation with more advanced selection processes.\n",
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

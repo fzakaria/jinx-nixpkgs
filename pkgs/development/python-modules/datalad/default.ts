@@ -49,12 +49,12 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const httpretty = nix.arg($, "httpretty");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "datalad",
       version: "1.3.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "datalad",
           repo: "datalad",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools, versioneer]),
       dependencies: nix.thunk(() => nix.concat(nix.sel(finalAttrs, "passthru", "optional-dependencies", "core"), nix.concat(nix.sel(finalAttrs, "passthru", "optional-dependencies", "downloaders"), nix.sel(finalAttrs, "passthru", "optional-dependencies", "publish")))),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         core: nix.thunk(() => nix.concat([
           platformdirs,
           chardet,
@@ -119,7 +119,7 @@ wrapProgram $out/bin/datalad \\
       __darwinAllowLocalNetworking: true,
       pythonImportsCheck: nix.thunk(() => ["datalad"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Keep code, data, containers under control with git and git-annex",
         homepage: "https://www.datalad.org",
         changelog: nix.thunk(() => nix.str`https://github.com/datalad/datalad/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

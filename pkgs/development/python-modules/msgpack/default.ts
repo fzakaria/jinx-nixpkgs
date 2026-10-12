@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "msgpack",
           repo: "msgpack-python",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,12 +34,12 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["msgpack"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, borgbackup: borgbackup })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, borgbackup: borgbackup })),
       }));
       const preBuild = "make cython\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "MessagePack serializer implementation",
         homepage: "https://github.com/msgpack/msgpack-python",
         changelog: nix.thunk(() => nix.str`https://github.com/msgpack/msgpack-python/blob/${nix.sel(src, "tag")}/ChangeLog.rst`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

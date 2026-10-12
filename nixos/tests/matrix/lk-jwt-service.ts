@@ -16,22 +16,22 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     name: "lk-jwt-service",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "quadradical"))]),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       machine: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         services: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "lk-jwt-service": nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: true,
-            keyFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writeYAML"), "keys.yaml", nix.thunk(() => ({ __proto__: pos$2, key: "f6lQGaHtM5HfgZjIcec3cOCRfiDqIine4CpZZnqdT5cE" })))),
+            keyFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writeYAML"), "keys.yaml", nix.thunk(() => ({ [nix.POS]: pos$2, key: "f6lQGaHtM5HfgZjIcec3cOCRfiDqIine4CpZZnqdT5cE" })))),
             livekitUrl: "wss://127.0.0.1:8100",
             port: 8000n,
           })),

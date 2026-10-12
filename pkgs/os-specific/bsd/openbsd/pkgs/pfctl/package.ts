@@ -11,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const mkDerivation = nix.arg($, "mkDerivation");
   const byacc = nix.arg($, "byacc");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "sbin/pfctl",
       extraPaths: nix.thunk(() => ["sys/net"]),
       extraNativeBuildInputs: nix.thunk(() => [byacc]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "pfctl" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "pfctl" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

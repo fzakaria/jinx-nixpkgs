@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const libxi = nix.arg($, "libxi");
   const libxrandr = nix.arg($, "libxrandr");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "gossip",
       version: "0.14.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mikedilger",
           repo: "gossip",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-rE7SErOhl2fcmvLairq+mvdnbDIk1aPo3eYqwRx5kkA=",
       postPatch: "substituteInPlace $cargoDepsCopy/*/sdl2-sys-0.37.0/SDL/CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 3.0.0)\" \"cmake_minimum_required(VERSION 3.0.0...3.5)\" \\\n  --replace-fail \"cmake_minimum_required(VERSION 3.4)\" \"cmake_minimum_required(VERSION 3.4...3.5)\"\n",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         RUSTFLAGS: "--cfg tokio_unstable",
         NIX_CFLAGS_COMPILE: "-std=gnu17",
       })),
@@ -72,7 +72,7 @@ patchelf $out/bin/gossip \\
 `))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "Gossip",
             exec: "gossip",
             icon: "gossip",
@@ -84,11 +84,11 @@ patchelf $out/bin/gossip \\
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Desktop client for nostr, an open social media protocol",
         downloadPage: nix.thunk(() => nix.str`https://github.com/mikedilger/gossip/releases/tag/${nix.sel(finalAttrs, "version")}`),

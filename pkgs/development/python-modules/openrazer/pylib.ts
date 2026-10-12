@@ -16,16 +16,16 @@ export default nix.lambda((args) => (() => {
   const numpy = nix.arg($, "numpy");
   const openrazer_daemon = nix.arg($, "openrazer-daemon");
   const setuptools = nix.arg($, "setuptools");
-  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib, fetchFromGitHub: fetchFromGitHub }))));
+  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib, fetchFromGitHub: fetchFromGitHub }))));
   return nix.app(buildPythonPackage, nix.thunk(() => nix.update(common, {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "openrazer",
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(common, "src", "name")}/pylib`),
       nativeBuildInputs: nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [dbus_python, numpy, openrazer_daemon]),
       doCheck: false,
       meta: nix.thunk(() => nix.update(nix.sel(common, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Entirely open source Python library that allows you to manage your Razer peripherals on GNU/Linux",
       })),
     })));

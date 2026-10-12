@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const python = nix.arg($, "python");
   const cffi = nix.arg($, "cffi");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "notmuch2",
       format: "setuptools",
       version: nix.thunk(() => nix.attr(notmuch, "version")),
@@ -34,7 +34,7 @@ EOF
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["notmuch2"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Pythonic bindings for the notmuch mail database using CFFI",
         homepage: "https://notmuchmail.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

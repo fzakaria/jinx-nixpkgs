@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "2023.12.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bachya",
           repo: "pyiqvia",
           tag: version,
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["examples/"]);
       const pythonImportsCheck = nix.thunk(() => ["pyiqvia"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module for working with IQVIA data",
         longDescription: "pyiqvia is an async-focused Python library for allergen, asthma, and\ndisease data from the IQVIA family of websites (such as https://pollen.com,\nhttps://flustar.com and more).\n",
         homepage: "https://github.com/bachya/pyiqvia",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

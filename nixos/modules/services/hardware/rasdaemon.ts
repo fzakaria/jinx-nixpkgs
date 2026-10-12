@@ -36,51 +36,51 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "hardware", "rasdaemon"));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     meta: nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "rasdaemon", "meta"));
       return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
     };
     })()),
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       hardware: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         rasdaemon: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "RAS logging daemon")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "rasdaemon", nix.thunk(() => ({})))),
           record: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "record events via sqlite3, required for ras-mc-ctl",
             })))),
           mainboard: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Custom mainboard description, see {manpage}`ras-mc-ctl(8)` for more details.",
               example: "vendor = ASRock\nmodel = B450M Pro4\n\n# it should default to such values from\n# /sys/class/dmi/id/board_[vendor|name]\n# alternatively one can supply a script\n# that returns the same format as above\n\nscript = <path to script>\n",
             })))),
           labels: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Additional memory module label descriptions to be placed in /etc/ras/dimm_labels.d/labels",
               example: "# vendor and model may be shown by 'ras-mc-ctl --mainboard'\nvendor: ASRock\n  product: To Be Filled By O.E.M.\n  model: B450M Pro4\n    # these labels are names for the motherboard slots\n    # the numbers may be shown by `ras-mc-ctl --error-count`\n    # they are mc:csrow:channel\n    DDR4_A1: 0.2.0;  DDR4_B1: 0.2.1;\n    DDR4_A2: 0.3.0;  DDR4_B2: 0.3.1;\n",
             })))),
           config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "rasdaemon configuration, currently only used for CE PFA\nfor details, read rasdaemon.outPath/etc/sysconfig/rasdaemon's comments\n",
               example: "# defaults from included config\nPAGE_CE_REFRESH_CYCLE=\"24h\"\nPAGE_CE_THRESHOLD=\"50\"\nPAGE_CE_ACTION=\"soft\"\n",
             })))),
           extraModules: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "extra kernel modules to load",
@@ -91,23 +91,23 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         environment: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           etc: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             "ras/mainboard": nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               enable: nix.thunk(() => !nix.eq(nix.sel(cfg, "mainboard"), "")),
               text: nix.thunk(() => nix.sel(cfg, "mainboard")),
             })),
             "ras/dimm_labels.d/labels": nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               enable: nix.thunk(() => !nix.eq(nix.sel(cfg, "labels"), "")),
               text: nix.thunk(() => nix.sel(cfg, "labels")),
             })),
             "sysconfig/rasdaemon": nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               enable: nix.thunk(() => !nix.eq(nix.sel(cfg, "config"), "")),
               text: nix.thunk(() => nix.sel(cfg, "config")),
             })),
@@ -122,14 +122,14 @@ export default nix.lambda((args) => (() => {
             })())))),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           initrd: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             kernelModules: nix.thunk(() => nix.concat(nix.sel(cfg, "extraModules"), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "testing")), nix.thunk(() => ["edac_core", "amd64_edac", "i7core_edac", "mce-inject", "aer-inject"])))),
           })),
           kernelPatches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "testing")), nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 name: "rasdaemon-tests",
                 patch: null,
                 extraConfig: "EDAC_DEBUG y\nX86_MCE_INJECT y\n\nPCIEPORTBUS y\nPCIEAER y\nPCIEAER_INJECT y\n",
@@ -137,16 +137,16 @@ export default nix.lambda((args) => (() => {
             ]))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           services: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             rasdaemon: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               description: "the RAS logging daemon",
               documentation: nix.thunk(() => ["man:rasdaemon(1)"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 StateDirectory: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "record")), "rasdaemon")),
                 ExecStart: nix.thunk(() => nix.add(nix.str`${nix.sel(cfg, "package")}/bin/rasdaemon --foreground`, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "record")), " --record"))),
                 ExecStop: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/rasdaemon --disable`),
@@ -154,12 +154,12 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             "ras-mc-ctl": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "labels"), "")), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 description: "register DIMM labels on startup",
                 documentation: nix.thunk(() => ["man:ras-mc-ctl(8)"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   Type: "oneshot",
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/ras-mc-ctl dimm --register-labels`),
                   RemainAfterExit: true,

@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const imagemagick = nix.arg($, "imagemagick");
   const executableLoc = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "$out/Applications/MiniZincIDE.app/Contents/MacOS/MiniZincIDE" : "$out/bin/MiniZincIDE"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "minizinc-ide",
       version: "2.10.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MiniZinc",
           repo: "MiniZincIDE",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       ]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "MiniZincIDE",
             desktopName: "MiniZincIDE",
             icon: "minizinc",
@@ -67,7 +67,7 @@ for size in 16 24 32 48 64 128 256 512; do
 done
 `)),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.minizinc.org/",
         description: "IDE for MiniZinc, a medium-level constraint modelling language",
         mainProgram: "MiniZincIDE",

@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ddtrace";
       const version = "1.19.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DataDog",
           repo: "dd-trace-php",
           rev: version,
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-pfhoj5a+kUVOuMnAHgL2s05Pcc6uhlTcp2t5aj1eJ0E=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: src,
           hash: "sha256-Onkkea1xntfSKVr2aoCy1Z9wGIdv/L7HRh7LGxv738M=",
         }))));
-      const env = nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-O2" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-O2" }));
       const postConfigure = "substituteInPlace Makefile --replace-fail '/$(builddir)/components-rs' '$(builddir)/components-rs'\n";
       const nativeBuildInputs = nix.thunk(() => [
         cargo,
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const buildInputs = nix.thunk(() => nix.concat([curl, pcre2], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [valgrind])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv])))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/DataDog/dd-trace-php/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
         description: "Datadog Tracing PHP Client",
         homepage: "https://github.com/DataDog/dd-trace-php",
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "php"))]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.20";
       const minimalOCamlVersion = "4.14.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sanette",
           repo: "ubase",
           tag: version,
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Remove accents from utf8 strings",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
         homepage: "https://github.com/sanette/ubase",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "mrdev023"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, minimalOCamlVersion, src, doCheck, meta };
+      return { [nix.POS]: pos$3, pname, version, minimalOCamlVersion, src, doCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

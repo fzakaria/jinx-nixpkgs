@@ -23,18 +23,18 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const withPostQuantum = nix.argOr($, "withPostQuantum", () => true);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "kryoptic",
       version: "1.5.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "latchset",
           repo: "kryoptic",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-ta5PHvKma371rpoyjf8VBFX70v+DcQCxaGKG+Q9bcRg=",
         })))),
       env: nix.thunk(() => nix.attrsDyn({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         LIBCLANG_PATH: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(clang, "cc")))}/lib`),
       }, [
         [(nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))) ? "OSSL_BINDGEN_CLANG_ARGS" : null), nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getInclude"), glibc)}/include`)],
@@ -49,11 +49,11 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "A PKCS#11 soft token written in Rust.",
         homepage: "https://github.com/latchset/kryoptic",
         maintainers: nix.thunk(() => (() => {

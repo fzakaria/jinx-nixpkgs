@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const libqmi = nix.arg($, "libqmi");
   const qrtr = nix.arg($, "qrtr");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "81voltd",
       version: "1.2.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.postmarketos.org",
           owner: "modem",
           repo: "81voltd",
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config]),
       buildInputs: nix.thunk(() => [modemmanager, glib, libqmi, qrtr]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Server-side implementation of the QMI IMS Data service",
         homepage: "https://gitlab.postmarketos.org/modem/81voltd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

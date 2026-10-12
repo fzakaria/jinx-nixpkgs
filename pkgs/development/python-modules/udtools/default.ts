@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const regex = nix.arg($, "regex");
   const udapi = nix.arg($, "udapi");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "udtools",
       version: "0.2.8",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "UniversalDependencies",
           repo: "tools",
           tag: nix.thunk(() => nix.str`py${nix.sel(finalAttrs, "version")}`),
@@ -38,14 +38,14 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["udtools"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version-regex=py(.*)"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version-regex=py(.*)"]) })))),
       })),
       postInstall: nix.thunk(() => nix.str`install -dm755 $out/${nix.sel(python, "sitePackages")}/udtools/data
 cp $src/data/* $out/${nix.sel(python, "sitePackages")}/udtools/data
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python tools for Universal Dependencies",
         homepage: "https://universaldependencies.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

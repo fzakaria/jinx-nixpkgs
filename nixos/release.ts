@@ -130,7 +130,7 @@ export default nix.thunk(() => (() => {
   return nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const nixpkgs = nix.argOr($, "nixpkgs", () => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       outPath: nix.thunk(() => nix.app(nix.lookup(w, "cleanSource"), nix.path(here, "./.."))),
       revCount: 708350n,
       shortRev: "gfedcba",
@@ -139,13 +139,13 @@ export default nix.thunk(() => (() => {
     const supportedSystems = nix.argOr($, "supportedSystems", () => ["x86_64-linux", "aarch64-linux"]);
     const configuration = nix.argOr($, "configuration", () => ({}));
     const attrNamesOnly = nix.argOr($, "attrNamesOnly", () => false);
-    const w_1 = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "../pkgs/top-level/release-lib.nix"), nix.thunk(() => ({ __proto__: pos$2, supportedSystems: supportedSystems })))), w);
+    const w_1 = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "../pkgs/top-level/release-lib.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, supportedSystems: supportedSystems })))), w);
     const version = nix.thunk(() => nix.app(nix.lookup(w_1, "fileContents"), nix.path(here, "../.version")));
     const versionSuffix = nix.thunk(() => nix.add((nix.asBool(stableBranch) ? "." : "pre"), nix.str`${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(nixpkgs, "revCount")))}.${nix.sel(nixpkgs, "shortRev")}`));
     const allTestsForSystem = (system) => nix.app(nix.builtins.import, nix.path(here, "./tests/all-tests.nix"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         system: system,
-        pkgs: nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./.."), nix.thunk(() => ({ __proto__: pos$3, system: system })))),
+        pkgs: nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./.."), nix.thunk(() => ({ [nix.POS]: pos$3, system: system })))),
         callTest: (config) => (() => {
           const test = nix.thunk(() => nix.attr(config, "test"));
           return nix.app(nix.sel(nix.lookup(w_1, "lib"), "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(nix.builtins, "elem"), system, nix.thunk(() => nix.app(nix.lookup(w_1, "getPlatforms"), test)))), nix.thunk(() => (nix.asBool(attrNamesOnly) ? nix.app(nix.lookup(w_1, "hydraJob"), test) : nix.attrsDyn({}, [
@@ -154,16 +154,16 @@ export default nix.thunk(() => (() => {
         })(),
       })));
     const allTests = nix.thunk(() => nix.app(nix.lookup(w_1, "foldAttrs"), nix.thunk(() => nix.lookup(w_1, "recursiveUpdate")), nix.thunk(() => ({})), nix.thunk(() => nix.app(nix.builtins.map, allTestsForSystem, nix.thunk(() => (nix.asBool(attrNamesOnly) ? [nix.thunk(() => nix.app(nix.lookup(w_1, "head"), supportedSystems))] : nix.force(supportedSystems)))))));
-    const pkgs = nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./.."), nix.thunk(() => ({ __proto__: pos$5, system: "x86_64-linux" }))));
+    const pkgs = nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./.."), nix.thunk(() => ({ [nix.POS]: pos$5, system: "x86_64-linux" }))));
     const versionModule = nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const config = nix.arg($_1, "config");
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         system: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           nixos: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             versionSuffix: versionSuffix,
             revision: nix.thunk(() => nix.selOr(nixpkgs, () => nix.sel(nixpkgs, "shortRev"), "rev")),
           })),
@@ -177,9 +177,9 @@ export default nix.thunk(() => (() => {
       const module = nix.arg($_1, "module");
       const type = nix.arg($_1, "type");
       const system = nix.arg($_1, "system");
-      const w_2 = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./.."), nix.thunk(() => ({ __proto__: pos$9, system: system })))), w_1);
+      const w_2 = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./.."), nix.thunk(() => ({ [nix.POS]: pos$9, system: system })))), w_1);
       return nix.app(nix.lookup(w_2, "hydraJob"), nix.thunk(() => nix.sel(nix.app(nix.builtins.import, nix.path(here, "./lib/eval-config.nix"), nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             system: system,
             modules: nix.thunk(() => nix.app(makeModules, module, nix.thunk(() => ({})))),
           }))), "config", "system", "build", "isoImage")));
@@ -188,9 +188,9 @@ export default nix.thunk(() => (() => {
       const $_1 = nix.formals(args_1, formals$4);
       const module = nix.arg($_1, "module");
       const system = nix.arg($_1, "system");
-      const w_2 = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./.."), nix.thunk(() => ({ __proto__: pos$11, system: system })))), w_1);
+      const w_2 = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./.."), nix.thunk(() => ({ [nix.POS]: pos$11, system: system })))), w_1);
       return nix.app(nix.lookup(w_2, "hydraJob"), nix.thunk(() => nix.sel(nix.app(nix.builtins.import, nix.path(here, "./lib/eval-config.nix"), nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             system: system,
             modules: nix.thunk(() => nix.app(makeModules, module, nix.thunk(() => ({})))),
           }))), "config", "system", "build", "sdImage")));
@@ -200,17 +200,17 @@ export default nix.thunk(() => (() => {
       const module = nix.arg($_1, "module");
       const maintainers = nix.argOr($_1, "maintainers", () => ["viric"]);
       const system = nix.arg($_1, "system");
-      const w_2 = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./.."), nix.thunk(() => ({ __proto__: pos$13, system: system })))), w_1);
+      const w_2 = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./.."), nix.thunk(() => ({ [nix.POS]: pos$13, system: system })))), w_1);
       const config = nix.thunk(() => nix.sel(nix.app(nix.builtins.import, nix.path(here, "./lib/eval-config.nix"), nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           system: system,
           modules: nix.thunk(() => nix.app(makeModules, module, nix.thunk(() => ({})))),
         }))), "config"));
       const tarball = nix.thunk(() => nix.sel(config, "system", "build", "tarball"));
       return nix.update(tarball, {
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         meta: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           description: nix.thunk(() => nix.str`NixOS system tarball for ${system}`),
           maintainers: nix.thunk(() => nix.app(nix.builtins.map, (x) => nix.sel(nix.lookup(w_2, "lib"), "maintainers", nix.key(nix.force(x))), maintainers)),
         })),
@@ -219,26 +219,26 @@ export default nix.thunk(() => (() => {
     })(), formals$5);
     const makeClosure = (module) => nix.app(buildFromConfig, module, (config) => nix.sel(config, "system", "build", "toplevel"));
     const buildFromConfig = (module) => (sel) => nix.app(nix.lookup(w_1, "forAllSystems"), (system) => nix.app(nix.lookup(w_1, "hydraJob"), nix.thunk(() => nix.app(sel, nix.thunk(() => nix.sel(nix.app(nix.builtins.import, nix.path(here, "./lib/eval-config.nix"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               system: system,
               modules: nix.thunk(() => nix.app(makeModules, module, nix.lambda((args_1) => (() => {
                   const $_1 = nix.formals(args_1, formals$6);
                   return {
-                    __proto__: pos$22,
+                    [nix.POS]: pos$22,
                     fileSystems: nix.thunk(() => ({
-                      __proto__: pos$18,
+                      [nix.POS]: pos$18,
                       "/": nix.thunk(() => ({
-                        __proto__: pos$17,
+                        [nix.POS]: pos$17,
                         device: nix.thunk(() => nix.app(nix.lookup(w_1, "mkDefault"), "/dev/sda1")),
                         fsType: nix.thunk(() => nix.app(nix.lookup(w_1, "mkDefault"), "auto")),
                       })),
                     })),
                     boot: nix.thunk(() => ({
-                      __proto__: pos$21,
+                      [nix.POS]: pos$21,
                       loader: nix.thunk(() => ({
-                        __proto__: pos$20,
+                        [nix.POS]: pos$20,
                         grub: nix.thunk(() => ({
-                          __proto__: pos$19,
+                          [nix.POS]: pos$19,
                           device: nix.thunk(() => nix.app(nix.lookup(w_1, "mkDefault"), "/dev/sda")),
                         })),
                       })),
@@ -251,14 +251,14 @@ export default nix.thunk(() => (() => {
       const module = nix.arg($_1, "module");
       const system = nix.arg($_1, "system");
       const configEvaled = nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./lib/eval-config.nix"), nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           system: system,
           modules: nix.thunk(() => nix.app(makeModules, module, nix.thunk(() => ({})))),
         }))));
       const build = nix.thunk(() => nix.sel(configEvaled, "config", "system", "build"));
       const kernelTarget = nix.thunk(() => nix.sel(build, "kernel", "target"));
       return nix.app(nix.sel(configEvaled, "pkgs", "symlinkJoin"), nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           name: "netboot",
           paths: nix.thunk(() => [
             nix.thunk(() => nix.sel(build, "netbootRamdisk")),
@@ -275,7 +275,7 @@ echo "file ipxe ${nix.sel(build, "netbootIpxeScript")}/netboot.ipxe" >> $out/nix
     })(), formals$7);
     return (() => {
       const channel = nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./lib/make-channel.nix"), nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           pkgs: pkgs,
           nixpkgs: nixpkgs,
           version: version,
@@ -303,31 +303,31 @@ echo "file ipxe ${nix.sel(build, "netbootIpxeScript")}/netboot.ipxe" >> $out/nix
           return {};
         })(), formals$12), (config) => nix.sel(config, "system", "build", "initialRamdisk")));
       const kexec = nix.thunk(() => nix.app(nix.lookup(w_1, "forMatchingSystems"), supportedSystems, (system) => nix.sel(nix.app(nix.builtins.import, nix.path(here, "./lib/eval-config.nix"), nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             system: system,
             modules: nix.thunk(() => [nix.path(here, "./modules/installer/netboot/netboot-minimal.nix")]),
           }))), "config", "system", "build", "kexecTree")));
       const netboot = nix.thunk(() => nix.app(nix.lookup(w_1, "forMatchingSystems"), supportedSystems, (system) => nix.app(makeNetboot, nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             module: nix.path(here, "./modules/installer/netboot/netboot-minimal.nix"),
             system: system,
           })))));
       const iso_minimal = nix.thunk(() => nix.app(nix.lookup(w_1, "forAllSystems"), (system) => nix.app(makeIso, nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             module: nix.path(here, "./modules/installer/cd-dvd/installation-cd-minimal-combined.nix"),
             type: "minimal",
             system: system,
           })))));
       const iso_graphical = nix.thunk(() => nix.app(nix.lookup(w_1, "forAllSystems"), (system) => nix.app(makeIso, nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             module: nix.path(here, "./modules/installer/cd-dvd/installation-cd-graphical-combined.nix"),
             type: "graphical",
             system: system,
           })))));
       const sd_image = nix.thunk(() => nix.app(nix.lookup(w_1, "forMatchingSystems"), nix.thunk(() => ["armv6l-linux", "armv7l-linux", "aarch64-linux"]), (system) => nix.app(makeSdImage, nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             module: nix.thunk(() => nix.sel({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               "armv6l-linux": nix.path(here, "./modules/installer/sd-card/sd-image-raspberrypi-installer.nix"),
               "armv7l-linux": nix.path(here, "./modules/installer/sd-card/sd-image-armv7l-multiplatform-installer.nix"),
               "aarch64-linux": nix.path(here, "./modules/installer/sd-card/sd-image-aarch64-installer.nix"),
@@ -335,52 +335,52 @@ echo "file ipxe ${nix.sel(build, "netbootIpxeScript")}/netboot.ipxe" >> $out/nix
             system: system,
           })))));
       const sd_image_new_kernel = nix.thunk(() => nix.app(nix.lookup(w_1, "forMatchingSystems"), nix.thunk(() => ["aarch64-linux"]), (system) => nix.app(makeSdImage, nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             module: nix.thunk(() => nix.sel({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               "aarch64-linux": nix.path(here, "./modules/installer/sd-card/sd-image-aarch64-new-kernel-installer.nix"),
             }, nix.key(nix.force(system)))),
             type: "minimal-new-kernel",
             system: system,
           })))));
       const sd_image_new_kernel_no_zfs = nix.thunk(() => nix.app(nix.lookup(w_1, "forMatchingSystems"), nix.thunk(() => ["aarch64-linux"]), (system) => nix.app(makeSdImage, nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             module: nix.thunk(() => nix.sel({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               "aarch64-linux": nix.path(here, "./modules/installer/sd-card/sd-image-aarch64-new-kernel-no-zfs-installer.nix"),
             }, nix.key(nix.force(system)))),
             type: "minimal-new-kernel-no-zfs",
             system: system,
           })))));
       const proxmoxVMA = nix.thunk(() => nix.app(nix.lookup(w_1, "forMatchingSystems"), nix.thunk(() => ["x86_64-linux"]), (system) => (() => {
-          const w_2 = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./.."), nix.thunk(() => ({ __proto__: pos$37, system: system })))), w_1);
+          const w_2 = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./.."), nix.thunk(() => ({ [nix.POS]: pos$37, system: system })))), w_1);
           return nix.app(nix.lookup(w_2, "hydraJob"), nix.thunk(() => nix.sel(nix.app(nix.builtins.import, nix.path(here, "./lib/eval-config.nix"), nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 system: system,
                 modules: nix.thunk(() => [nix.path(here, "./modules/virtualisation/proxmox-image.nix")]),
               }))), "config", "system", "build", "VMA")));
         })()));
       const proxmoxImage = proxmoxVMA;
       const proxmoxCloudImage = nix.thunk(() => nix.app(nix.lookup(w_1, "forMatchingSystems"), nix.thunk(() => ["x86_64-linux"]), (system) => (() => {
-          const w_2 = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./.."), nix.thunk(() => ({ __proto__: pos$39, system: system })))), w_1);
+          const w_2 = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./.."), nix.thunk(() => ({ [nix.POS]: pos$39, system: system })))), w_1);
           return nix.app(nix.lookup(w_2, "hydraJob"), nix.thunk(() => nix.sel(nix.app(nix.builtins.import, nix.path(here, "./lib/eval-config.nix"), nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 system: system,
                 modules: nix.thunk(() => [nix.path(here, "./modules/virtualisation/proxmox-image.nix")]),
               }))), "config", "system", "build", "cloudImage")));
         })()));
       const proxmoxLXC = nix.thunk(() => nix.app(nix.lookup(w_1, "forMatchingSystems"), nix.thunk(() => ["x86_64-linux"]), (system) => (() => {
-          const w_2 = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./.."), nix.thunk(() => ({ __proto__: pos$41, system: system })))), w_1);
+          const w_2 = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./.."), nix.thunk(() => ({ [nix.POS]: pos$41, system: system })))), w_1);
           return nix.app(nix.lookup(w_2, "hydraJob"), nix.thunk(() => nix.sel(nix.app(nix.builtins.import, nix.path(here, "./lib/eval-config.nix"), nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 system: system,
                 modules: nix.thunk(() => [nix.path(here, "./modules/virtualisation/proxmox-lxc.nix")]),
               }))), "config", "system", "build", "tarball")));
         })()));
       const amazonImage = nix.thunk(() => nix.app(nix.lookup(w_1, "forMatchingSystems"), nix.thunk(() => ["x86_64-linux", "aarch64-linux"]), (system) => (() => {
-          const w_2 = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./.."), nix.thunk(() => ({ __proto__: pos$43, system: system })))), w_1);
+          const w_2 = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./.."), nix.thunk(() => ({ [nix.POS]: pos$43, system: system })))), w_1);
           return nix.app(nix.lookup(w_2, "hydraJob"), nix.thunk(() => nix.sel(nix.app(nix.builtins.import, nix.path(here, "./lib/eval-config.nix"), nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 system: system,
                 modules: nix.thunk(() => [
                   configuration,
@@ -390,9 +390,9 @@ echo "file ipxe ${nix.sel(build, "netbootIpxeScript")}/netboot.ipxe" >> $out/nix
               }))), "config", "system", "build", "amazonImage")));
         })()));
       const amazonImageZfs = nix.thunk(() => nix.app(nix.lookup(w_1, "forMatchingSystems"), nix.thunk(() => ["x86_64-linux", "aarch64-linux"]), (system) => (() => {
-          const w_2 = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./.."), nix.thunk(() => ({ __proto__: pos$45, system: system })))), w_1);
+          const w_2 = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./.."), nix.thunk(() => ({ [nix.POS]: pos$45, system: system })))), w_1);
           return nix.app(nix.lookup(w_2, "hydraJob"), nix.thunk(() => nix.sel(nix.app(nix.builtins.import, nix.path(here, "./lib/eval-config.nix"), nix.thunk(() => ({
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 system: system,
                 modules: nix.thunk(() => [
                   configuration,
@@ -402,9 +402,9 @@ echo "file ipxe ${nix.sel(build, "netbootIpxeScript")}/netboot.ipxe" >> $out/nix
               }))), "config", "system", "build", "amazonImage")));
         })()));
       const incusContainerImage = nix.thunk(() => nix.app(nix.lookup(w_1, "forMatchingSystems"), nix.thunk(() => ["x86_64-linux", "aarch64-linux"]), (system) => (() => {
-          const w_2 = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./.."), nix.thunk(() => ({ __proto__: pos$47, system: system })))), w_1);
+          const w_2 = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./.."), nix.thunk(() => ({ [nix.POS]: pos$47, system: system })))), w_1);
           return nix.app(nix.lookup(w_2, "hydraJob"), nix.thunk(() => nix.sel(nix.app(nix.builtins.import, nix.path(here, "./lib/eval-config.nix"), nix.thunk(() => ({
-                __proto__: pos$48,
+                [nix.POS]: pos$48,
                 system: system,
                 modules: nix.thunk(() => [
                   configuration,
@@ -414,9 +414,9 @@ echo "file ipxe ${nix.sel(build, "netbootIpxeScript")}/netboot.ipxe" >> $out/nix
               }))), "config", "system", "build", "squashfs")));
         })()));
       const incusContainerMeta = nix.thunk(() => nix.app(nix.lookup(w_1, "forMatchingSystems"), nix.thunk(() => ["x86_64-linux", "aarch64-linux"]), (system) => (() => {
-          const w_2 = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./.."), nix.thunk(() => ({ __proto__: pos$49, system: system })))), w_1);
+          const w_2 = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./.."), nix.thunk(() => ({ [nix.POS]: pos$49, system: system })))), w_1);
           return nix.app(nix.lookup(w_2, "hydraJob"), nix.thunk(() => nix.sel(nix.app(nix.builtins.import, nix.path(here, "./lib/eval-config.nix"), nix.thunk(() => ({
-                __proto__: pos$50,
+                [nix.POS]: pos$50,
                 system: system,
                 modules: nix.thunk(() => [
                   configuration,
@@ -426,9 +426,9 @@ echo "file ipxe ${nix.sel(build, "netbootIpxeScript")}/netboot.ipxe" >> $out/nix
               }))), "config", "system", "build", "metadata")));
         })()));
       const incusVirtualMachineImage = nix.thunk(() => nix.app(nix.lookup(w_1, "forMatchingSystems"), nix.thunk(() => ["x86_64-linux", "aarch64-linux"]), (system) => (() => {
-          const w_2 = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./.."), nix.thunk(() => ({ __proto__: pos$51, system: system })))), w_1);
+          const w_2 = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./.."), nix.thunk(() => ({ [nix.POS]: pos$51, system: system })))), w_1);
           return nix.app(nix.lookup(w_2, "hydraJob"), nix.thunk(() => nix.sel(nix.app(nix.builtins.import, nix.path(here, "./lib/eval-config.nix"), nix.thunk(() => ({
-                __proto__: pos$52,
+                [nix.POS]: pos$52,
                 system: system,
                 modules: nix.thunk(() => [
                   configuration,
@@ -438,9 +438,9 @@ echo "file ipxe ${nix.sel(build, "netbootIpxeScript")}/netboot.ipxe" >> $out/nix
               }))), "config", "system", "build", "repartImage")));
         })()));
       const incusVirtualMachineImageMeta = nix.thunk(() => nix.app(nix.lookup(w_1, "forMatchingSystems"), nix.thunk(() => ["x86_64-linux", "aarch64-linux"]), (system) => (() => {
-          const w_2 = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./.."), nix.thunk(() => ({ __proto__: pos$53, system: system })))), w_1);
+          const w_2 = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./.."), nix.thunk(() => ({ [nix.POS]: pos$53, system: system })))), w_1);
           return nix.app(nix.lookup(w_2, "hydraJob"), nix.thunk(() => nix.sel(nix.app(nix.builtins.import, nix.path(here, "./lib/eval-config.nix"), nix.thunk(() => ({
-                __proto__: pos$54,
+                [nix.POS]: pos$54,
                 system: system,
                 modules: nix.thunk(() => [
                   configuration,
@@ -450,34 +450,34 @@ echo "file ipxe ${nix.sel(build, "netbootIpxeScript")}/netboot.ipxe" >> $out/nix
               }))), "config", "system", "build", "metadata")));
         })()));
       const dummy = nix.thunk(() => nix.app(nix.lookup(w_1, "forAllSystems"), (system) => nix.app(nix.sel(pkgs, "runCommand"), "dummy", nix.thunk(() => ({
-            __proto__: pos$63,
+            [nix.POS]: pos$63,
             toplevel: nix.thunk(() => nix.sel(nix.app(nix.builtins.import, nix.path(here, "./lib/eval-config.nix"), nix.thunk(() => ({
-                __proto__: pos$62,
+                [nix.POS]: pos$62,
                 system: system,
                 modules: nix.thunk(() => nix.app(nix.lookup(w_1, "singleton"), nix.lambda((args_1) => (() => {
                     const $_1 = nix.formals(args_1, formals$13);
                     return {
-                      __proto__: pos$61,
+                      [nix.POS]: pos$61,
                       fileSystems: nix.thunk(() => ({
-                        __proto__: pos$56,
+                        [nix.POS]: pos$56,
                         "/": nix.thunk(() => ({
-                          __proto__: pos$55,
+                          [nix.POS]: pos$55,
                           device: nix.thunk(() => nix.app(nix.lookup(w_1, "mkDefault"), "/dev/sda1")),
                           fsType: "ext4",
                         })),
                       })),
                       boot: nix.thunk(() => ({
-                        __proto__: pos$59,
+                        [nix.POS]: pos$59,
                         loader: nix.thunk(() => ({
-                          __proto__: pos$58,
+                          [nix.POS]: pos$58,
                           grub: nix.thunk(() => ({
-                            __proto__: pos$57,
+                            [nix.POS]: pos$57,
                             device: nix.thunk(() => nix.app(nix.lookup(w_1, "mkDefault"), "/dev/sda")),
                           })),
                         })),
                       })),
                       system: nix.thunk(() => ({
-                        __proto__: pos$60,
+                        [nix.POS]: pos$60,
                         stateVersion: nix.thunk(() => nix.app(nix.lookup(w_1, "mkDefault"), nix.thunk(() => nix.sel(nix.lookup(w_1, "lib"), "trivial", "release")))),
                       })),
                     };
@@ -486,53 +486,53 @@ echo "file ipxe ${nix.sel(build, "netbootIpxeScript")}/netboot.ipxe" >> $out/nix
             preferLocalBuild: true,
           })), "mkdir $out; ln -s $toplevel $out/dummy")));
       const containerTarball = nix.thunk(() => nix.app(nix.lookup(w_1, "forAllSystems"), (system) => nix.app(makeSystemTarball, nix.thunk(() => ({
-            __proto__: pos$64,
+            [nix.POS]: pos$64,
             module: nix.path(here, "./modules/virtualisation/lxc-container.nix"),
             system: system,
           })))));
       const tests = allTests;
       const closures = nix.thunk(() => ({
-        __proto__: pos$100,
+        [nix.POS]: pos$100,
         smallContainer: nix.thunk(() => nix.app(makeClosure, nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$14);
             return {
-              __proto__: pos$68,
-              boot: nix.thunk(() => ({ __proto__: pos$65, isContainer: true })),
+              [nix.POS]: pos$68,
+              boot: nix.thunk(() => ({ [nix.POS]: pos$65, isContainer: true })),
               services: nix.thunk(() => ({
-                __proto__: pos$67,
-                openssh: nix.thunk(() => ({ __proto__: pos$66, enable: true })),
+                [nix.POS]: pos$67,
+                openssh: nix.thunk(() => ({ [nix.POS]: pos$66, enable: true })),
               })),
             };
           })(), formals$14))),
         tinyContainer: nix.thunk(() => nix.app(makeClosure, nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$15);
             return {
-              __proto__: pos$70,
-              boot: nix.thunk(() => ({ __proto__: pos$69, isContainer: true })),
+              [nix.POS]: pos$70,
+              boot: nix.thunk(() => ({ [nix.POS]: pos$69, isContainer: true })),
               imports: nix.thunk(() => [nix.path(here, "./modules/profiles/minimal.nix")]),
             };
           })(), formals$15))),
         ec2: nix.thunk(() => nix.app(makeClosure, nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$16);
             return {
-              __proto__: pos$71,
+              [nix.POS]: pos$71,
               imports: nix.thunk(() => [nix.path(here, "./modules/virtualisation/amazon-image.nix")]),
             };
           })(), formals$16))),
         kde: nix.thunk(() => nix.app(makeClosure, nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$17);
             return {
-              __proto__: pos$78,
+              [nix.POS]: pos$78,
               services: nix.thunk(() => ({
-                __proto__: pos$77,
-                xserver: nix.thunk(() => ({ __proto__: pos$72, enable: true })),
+                [nix.POS]: pos$77,
+                xserver: nix.thunk(() => ({ [nix.POS]: pos$72, enable: true })),
                 displayManager: nix.thunk(() => ({
-                  __proto__: pos$74,
-                  sddm: nix.thunk(() => ({ __proto__: pos$73, enable: true })),
+                  [nix.POS]: pos$74,
+                  sddm: nix.thunk(() => ({ [nix.POS]: pos$73, enable: true })),
                 })),
                 desktopManager: nix.thunk(() => ({
-                  __proto__: pos$76,
-                  plasma6: nix.thunk(() => ({ __proto__: pos$75, enable: true })),
+                  [nix.POS]: pos$76,
+                  plasma6: nix.thunk(() => ({ [nix.POS]: pos$75, enable: true })),
                 })),
               })),
             };
@@ -540,15 +540,15 @@ echo "file ipxe ${nix.sel(build, "netbootIpxeScript")}/netboot.ipxe" >> $out/nix
         xfce: nix.thunk(() => nix.app(makeClosure, nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$18);
             return {
-              __proto__: pos$83,
+              [nix.POS]: pos$83,
               services: nix.thunk(() => ({
-                __proto__: pos$82,
+                [nix.POS]: pos$82,
                 xserver: nix.thunk(() => ({
-                  __proto__: pos$81,
+                  [nix.POS]: pos$81,
                   enable: true,
                   desktopManager: nix.thunk(() => ({
-                    __proto__: pos$80,
-                    xfce: nix.thunk(() => ({ __proto__: pos$79, enable: true })),
+                    [nix.POS]: pos$80,
+                    xfce: nix.thunk(() => ({ [nix.POS]: pos$79, enable: true })),
                   })),
                 })),
               })),
@@ -557,17 +557,17 @@ echo "file ipxe ${nix.sel(build, "netbootIpxeScript")}/netboot.ipxe" >> $out/nix
         gnome: nix.thunk(() => nix.app(makeClosure, nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$19);
             return {
-              __proto__: pos$90,
+              [nix.POS]: pos$90,
               services: nix.thunk(() => ({
-                __proto__: pos$89,
-                xserver: nix.thunk(() => ({ __proto__: pos$84, enable: true })),
+                [nix.POS]: pos$89,
+                xserver: nix.thunk(() => ({ [nix.POS]: pos$84, enable: true })),
                 displayManager: nix.thunk(() => ({
-                  __proto__: pos$86,
-                  gdm: nix.thunk(() => ({ __proto__: pos$85, enable: true })),
+                  [nix.POS]: pos$86,
+                  gdm: nix.thunk(() => ({ [nix.POS]: pos$85, enable: true })),
                 })),
                 desktopManager: nix.thunk(() => ({
-                  __proto__: pos$88,
-                  gnome: nix.thunk(() => ({ __proto__: pos$87, enable: true })),
+                  [nix.POS]: pos$88,
+                  gnome: nix.thunk(() => ({ [nix.POS]: pos$87, enable: true })),
                 })),
               })),
             };
@@ -575,13 +575,13 @@ echo "file ipxe ${nix.sel(build, "netbootIpxeScript")}/netboot.ipxe" >> $out/nix
         pantheon: nix.thunk(() => nix.app(makeClosure, nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$20);
             return {
-              __proto__: pos$95,
+              [nix.POS]: pos$95,
               services: nix.thunk(() => ({
-                __proto__: pos$94,
-                xserver: nix.thunk(() => ({ __proto__: pos$91, enable: true })),
+                [nix.POS]: pos$94,
+                xserver: nix.thunk(() => ({ [nix.POS]: pos$91, enable: true })),
                 desktopManager: nix.thunk(() => ({
-                  __proto__: pos$93,
-                  pantheon: nix.thunk(() => ({ __proto__: pos$92, enable: true })),
+                  [nix.POS]: pos$93,
+                  pantheon: nix.thunk(() => ({ [nix.POS]: pos$92, enable: true })),
                 })),
               })),
             };
@@ -590,17 +590,17 @@ echo "file ipxe ${nix.sel(build, "netbootIpxeScript")}/netboot.ipxe" >> $out/nix
             const $_1 = nix.formals(args_1, formals$21);
             const pkgs_1 = nix.arg($_1, "pkgs");
             return {
-              __proto__: pos$99,
+              [nix.POS]: pos$99,
               services: nix.thunk(() => ({
-                __proto__: pos$98,
+                [nix.POS]: pos$98,
                 httpd: nix.thunk(() => ({
-                  __proto__: pos$96,
+                  [nix.POS]: pos$96,
                   enable: true,
                   adminAddr: "foo@example.org",
                   enablePHP: true,
                 })),
                 postgresql: nix.thunk(() => ({
-                  __proto__: pos$97,
+                  [nix.POS]: pos$97,
                   enable: true,
                   package: nix.thunk(() => nix.sel(pkgs_1, "postgresql")),
                 })),
@@ -609,7 +609,7 @@ echo "file ipxe ${nix.sel(build, "netbootIpxeScript")}/netboot.ipxe" >> $out/nix
           })(), formals$21))),
       }));
       return {
-        __proto__: pos$101,
+        [nix.POS]: pos$101,
         channel,
         manualHTML,
         manual,

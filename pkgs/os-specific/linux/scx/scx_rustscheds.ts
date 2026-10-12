@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "scx_rustscheds",
       version: "1.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sched-ext",
           repo: "scx",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [elfutils, zlib, zstd, libseccomp, openssl]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         BPF_CLANG: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(llvmPackages, "clang")))),
         RUSTFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => [
             "-C relocation-model=pic",
@@ -64,8 +64,8 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\ncd $out/bin\nfound=(scx_*)\nif [[ \"${found[@]}\" != \"${EXPECTED_SCHEDULERS[@]}\" ]]; then\n  echo \"List of available schedulers changed, expected: ${EXPECTED_SCHEDULERS[@]}, found: ${found[@]}\"\n  exit 1\nfi\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, basic: nix.thunk(() => nix.sel(nixosTests, "scx")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, basic: nix.thunk(() => nix.sel(nixosTests, "scx")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         schedulers: nix.thunk(() => [
           "scx_beerland",
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
         ]),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Sched-ext Rust userspace schedulers",
         longDescription: "This includes Rust based schedulers such as\nscx_rustland, scx_bpfland, scx_lavd, scx_layered, scx_rlfifo.\n\n::: {.note}\nSched-ext schedulers are only available on kernels version 6.12 or later.\nIt is recommended to use the latest kernel for the best compatibility.\n:::\n",
         homepage: "https://github.com/sched-ext/scx/tree/main/scheds/rust",

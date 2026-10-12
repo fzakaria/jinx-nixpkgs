@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const vkbasalt = nix.arg($, "vkbasalt");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mangojuice",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "radiolamp",
           repo: "mangojuice",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-vkbasalt-path.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             vkbasalt: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "getLib"), vkbasalt), "/lib/vkbasalt/libvkbasalt.so")),
           })))),
       ]),
@@ -61,11 +61,11 @@ export default nix.lambda((args) => (() => {
 `;
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Convenient alternative to GOverlay for setting up MangoHud",
         homepage: "https://github.com/radiolamp/mangojuice",
         changelog: nix.thunk(() => nix.str`https://github.com/radiolamp/mangojuice/releases/tag/${nix.sel(finalAttrs, "version")}`),

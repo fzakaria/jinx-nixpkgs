@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bash_unit",
       version: "2.3.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bash-unit",
           repo: "bash_unit",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "runHook preCheck\n\n./bash_unit ./tests/test_core.sh\n\nrunHook postCheck\n",
       installPhase: "mkdir -p $out/bin\ncp bash_unit $out/bin/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bash unit testing enterprise edition framework for professionals",
         homepage: "https://github.com/bash-unit/bash_unit",
         maintainers: nix.thunk(() => (() => {

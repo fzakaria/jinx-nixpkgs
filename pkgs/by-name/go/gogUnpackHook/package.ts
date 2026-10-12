@@ -13,10 +13,10 @@ export default nix.lambda((args) => (() => {
   const innoextract = nix.arg($, "innoextract");
   const file_rename = nix.arg($, "file-rename");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "gog-unpack-hook",
       propagatedBuildInputs: nix.thunk(() => [innoextract, file_rename]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
     })), nix.path(here, "./gog-unpack.sh"));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

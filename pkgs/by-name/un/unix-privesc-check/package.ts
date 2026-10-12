@@ -31,19 +31,19 @@ export default nix.lambda((args) => (() => {
   const util_linux = nix.arg($, "util-linux");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(resholve, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "unix-privesc-check",
       version: "1.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://pentestmonkey.net/tools/unix-privesc-check/unix-privesc-check-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-4fhef2n6ut0jdWo9dqDj2GSyHih2O2DOLmGBKQ0cGWk=",
         })))),
       patches: nix.thunk(() => [nix.path(here, "./unix-privesc-check.patch")]),
       solutions: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "unix-privesc-check": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           scripts: nix.thunk(() => ["bin/unix-privesc-check"]),
           interpreter: nix.thunk(() => nix.str`${bash}/bin/bash`),
           inputs: nix.thunk(() => [
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
             util_linux,
             which,
           ]),
-          fake: nix.thunk(() => ({ __proto__: pos$2, external: nix.thunk(() => ["lanscan", "mount", "passwd"]) })),
+          fake: nix.thunk(() => ({ [nix.POS]: pos$2, external: nix.thunk(() => ["lanscan", "mount", "passwd"]) })),
           execer: nix.thunk(() => [
             nix.thunk(() => nix.str`cannot:${nix.sel(glibc, "bin")}/bin/ldd`),
             nix.thunk(() => nix.str`cannot:${postgresql}/bin/psql`),
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
       })),
       installPhase: "runHook preInstall\ninstall -Dm 755 unix-privesc-check $out/bin/unix-privesc-check\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Find misconfigurations that could allow local unprivilged users to escalate privileges to other users or to access local apps",
         mainProgram: "unix-privesc-check",
         homepage: "https://pentestmonkey.net/tools/audit/unix-privesc-check",

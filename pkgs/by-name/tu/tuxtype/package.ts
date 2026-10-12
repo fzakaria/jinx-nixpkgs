@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const SDL_ttf = nix.arg($, "SDL_ttf");
   const t4kcommon = nix.arg($, "t4kcommon");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.8.3",
       pname: "tuxtype",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tux4kids",
           repo: "tuxtype",
           rev: nix.thunk(() => nix.str`upstream/${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [librsvg, libxml2, SDL, SDL_image, SDL_mixer, SDL_net, SDL_ttf, t4kcommon]),
       configureFlags: nix.thunk(() => ["--without-sdlpango"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Educational Typing Tutor Game Starring Tux, the Linux Penguin",
         mainProgram: "tuxtype",
         homepage: "https://github.com/tux4kids/tuxtype",

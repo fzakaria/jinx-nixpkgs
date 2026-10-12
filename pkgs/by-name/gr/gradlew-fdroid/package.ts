@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gradlew-fdroid",
       version: "0-unstable-2026-06-06",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fdroid",
           repo: "gradlew-fdroid",
           rev: "9f31b7ee881e46a5d7d234406c14e5e474bc5fc4",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [writableTmpDirAsHomeHook]),
       pythonImportsCheck: nix.thunk(() => ["gradlew"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Reimplementation of the Gradle wrapper script",
         homepage: "https://gitlab.com/fdroid/gradlew-fdroid",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

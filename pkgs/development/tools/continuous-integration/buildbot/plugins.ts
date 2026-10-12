@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
   const jinja2 = nix.arg($, "jinja2");
   const buildbot_pkg = nix.arg($, "buildbot-pkg");
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     "buildbot-pkg": buildbot_pkg,
     www: nix.thunk(() => nix.app(buildPythonPackage, nix.thunk(() => (() => {
         const pname = "buildbot_www";
         const version = nix.thunk(() => nix.attr(buildbot_pkg, "version"));
         const pyproject = true;
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://github.com/buildbot/buildbot/releases/download/v${version}/${pname}-${version}.tar.gz`),
             hash: "sha256-mn55+Fb2cU2rNB5Nwt41nWXjcZfgd07ijYAAnZnnnwI=",
           }))));
@@ -51,14 +51,14 @@ export default nix.lambda((args) => (() => {
         const dependencies = nix.thunk(() => [buildbot_pkg, mock]);
         const doCheck = false;
         const meta = nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           homepage: "https://buildbot.net/",
           description: "Buildbot UI",
           teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "buildbot"))]),
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
         }));
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname,
           version,
           pyproject,
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
         const version = nix.thunk(() => nix.attr(buildbot_pkg, "version"));
         const pyproject = true;
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: nix.thunk(() => nix.str`https://github.com/buildbot/buildbot/releases/download/v${version}/${pname}-${version}.tar.gz`),
             hash: "sha256-VA6xqJBjD4XmQabTN8M+PLvfrG7Hq2ooxChtz2jAT8A=",
           }))));
@@ -83,14 +83,14 @@ export default nix.lambda((args) => (() => {
         const dependencies = nix.thunk(() => [buildbot_pkg]);
         const doCheck = false;
         const meta = nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           homepage: "https://buildbot.net/",
           description: "Buildbot Console View Plugin",
           teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "buildbot"))]),
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
         }));
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           pname,
           version,
           pyproject,
@@ -106,7 +106,7 @@ export default nix.lambda((args) => (() => {
         const version = nix.thunk(() => nix.attr(buildbot_pkg, "version"));
         const pyproject = true;
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             url: nix.thunk(() => nix.str`https://github.com/buildbot/buildbot/releases/download/v${version}/${pname}-${version}.tar.gz`),
             hash: "sha256-c/Nmr0Uscalnndq72Y6jPM1JDs5OyOCERtuX/GXkxp8=",
           }))));
@@ -114,14 +114,14 @@ export default nix.lambda((args) => (() => {
         const dependencies = nix.thunk(() => [buildbot_pkg]);
         const doCheck = false;
         const meta = nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           homepage: "https://buildbot.net/",
           description: "Buildbot Waterfall View Plugin",
           teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "buildbot"))]),
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
         }));
         return {
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           pname,
           version,
           pyproject,
@@ -137,7 +137,7 @@ export default nix.lambda((args) => (() => {
         const version = nix.thunk(() => nix.attr(buildbot_pkg, "version"));
         const pyproject = true;
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             url: nix.thunk(() => nix.str`https://github.com/buildbot/buildbot/releases/download/v${version}/${pname}-${version}.tar.gz`),
             hash: "sha256-AmY8RkFX0POmVpW71nNz4+dFbr0FHGhNR3RJymDNoaw=",
           }))));
@@ -145,14 +145,14 @@ export default nix.lambda((args) => (() => {
         const dependencies = nix.thunk(() => [buildbot_pkg]);
         const doCheck = false;
         const meta = nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           homepage: "https://buildbot.net/",
           description: "Buildbot Grid View Plugin",
           teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "buildbot"))]),
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
         }));
         return {
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           pname,
           version,
           pyproject,
@@ -168,7 +168,7 @@ export default nix.lambda((args) => (() => {
         const version = nix.thunk(() => nix.attr(buildbot_pkg, "version"));
         const pyproject = true;
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             url: nix.thunk(() => nix.str`https://github.com/buildbot/buildbot/releases/download/v${version}/${pname}-${version}.tar.gz`),
             hash: "sha256-vofKxpIfbAs7HR43Y7ojHLQEn6/WIdjZPgZieBMsz74=",
           }))));
@@ -176,14 +176,14 @@ export default nix.lambda((args) => (() => {
         const dependencies = nix.thunk(() => [buildbot_pkg]);
         const doCheck = false;
         const meta = nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           homepage: "https://buildbot.net/",
           description: "Buildbot WSGI dashboards Plugin",
           teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "buildbot"))]),
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
         }));
         return {
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           pname,
           version,
           pyproject,
@@ -199,7 +199,7 @@ export default nix.lambda((args) => (() => {
         const version = nix.thunk(() => nix.attr(buildbot_pkg, "version"));
         const pyproject = true;
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             url: nix.thunk(() => nix.str`https://github.com/buildbot/buildbot/releases/download/v${version}/${pname}-${version}.tar.gz`),
             hash: "sha256-u7HF6X+ClT4rT3LJcTHXWi5oSxCKPXoUDH+QFRI2S0w=",
           }))));
@@ -207,7 +207,7 @@ export default nix.lambda((args) => (() => {
         const dependencies = nix.thunk(() => [buildbot_pkg, cairosvg, klein, jinja2]);
         const doCheck = false;
         const meta = nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           homepage: "https://buildbot.net/",
           description: "Buildbot Badges Plugin",
           maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "julienmalka"))]),
@@ -215,7 +215,7 @@ export default nix.lambda((args) => (() => {
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
         }));
         return {
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           pname,
           version,
           pyproject,

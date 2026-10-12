@@ -21,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const automake = nix.arg($, "automake");
   const libtool = nix.arg($, "libtool");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gl-117",
       version: "1.3.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/gl-117/gl-117/GL-117%20Source/gl-117-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "1yvg1rp1yijv0b45cz085b29x5x0g5fkm654xdv5qwh2l6803gb4",
         })))),
       nativeBuildInputs: nix.thunk(() => [automake, autoconf]),
       buildInputs: nix.thunk(() => [libGLU, libGL, SDL, libglut, SDL_mixer, libtool]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Air combat simulator",
         mainProgram: "gl-117",
         homepage: "https://sourceforge.net/projects/gl-117",

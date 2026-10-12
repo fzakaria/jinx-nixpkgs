@@ -47,29 +47,29 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "cage"));
   return {
-    __proto__: pos$34,
+    [nix.POS]: pos$34,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         cage: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "cage kiosk service")),
           restartIfChanged: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               example: true,
               description: "Whether to restart the 'cage-tty1' service when its configuration changes.",
             })))),
           user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "demo",
               description: "User to log-in as.\n",
             })))),
           extraArguments: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: [],
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "[]")),
@@ -77,14 +77,14 @@ export default nix.lambda((args) => (() => {
               example: nix.thunk(() => ["-d"]),
             })))),
           environment: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$4, WLR_LIBINPUT_NO_DEVICES: "1" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$4, WLR_LIBINPUT_NO_DEVICES: "1" })),
               description: "Additional environment variables to pass to Cage.",
             })))),
           program: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               default: nix.thunk(() => nix.str`${nix.sel(pkgs, "xterm")}/bin/xterm`),
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "\"${pkgs.xterm}/bin/xterm\"")),
@@ -95,13 +95,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             "cage-tty1": nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               enable: true,
               after: nix.thunk(() => [
                 "systemd-user-sessions.service",
@@ -115,9 +115,9 @@ export default nix.lambda((args) => (() => {
               wantedBy: nix.thunk(() => ["graphical.target"]),
               conflicts: nix.thunk(() => ["getty@tty1.service"]),
               restartIfChanged: nix.thunk(() => nix.sel(cfg, "restartIfChanged")),
-              unitConfig: nix.thunk(() => ({ __proto__: pos$10, ConditionPathExists: "/dev/tty1" })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$10, ConditionPathExists: "/dev/tty1" })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/cage \\
   ${nix.app(nix.lookup(w, "escapeShellArgs"), nix.thunk(() => nix.sel(cfg, "extraArguments")))} \\
   -- ${nix.sel(cfg, "program")}
@@ -139,35 +139,35 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           targets: nix.thunk(() => ({
-            __proto__: pos$15,
-            graphical: nix.thunk(() => ({ __proto__: pos$14, wants: nix.thunk(() => ["cage-tty1.service"]) })),
+            [nix.POS]: pos$15,
+            graphical: nix.thunk(() => ({ [nix.POS]: pos$14, wants: nix.thunk(() => ["cage-tty1.service"]) })),
           })),
           defaultUnit: "graphical.target",
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$29,
-          polkit: nix.thunk(() => ({ __proto__: pos$17, enable: true })),
+          [nix.POS]: pos$29,
+          polkit: nix.thunk(() => ({ [nix.POS]: pos$17, enable: true })),
           pam: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             services: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               cage: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 useDefaultRules: false,
                 rules: nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   auth: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$19,
+                        [nix.POS]: pos$19,
                         name: "unix",
                         control: "required",
                         modulePath: nix.thunk(() => nix.sel(config, "security", "pam", "pam_unixModulePath")),
-                        settings: nix.thunk(() => ({ __proto__: pos$18, nullok: true })),
+                        settings: nix.thunk(() => ({ [nix.POS]: pos$18, nullok: true })),
                       })),
                     ]))),
                   account: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$20,
+                        [nix.POS]: pos$20,
                         name: "unix",
                         control: "required",
                         modulePath: nix.thunk(() => nix.sel(config, "security", "pam", "pam_unixModulePath")),
@@ -175,20 +175,20 @@ export default nix.lambda((args) => (() => {
                     ]))),
                   session: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$21,
+                        [nix.POS]: pos$21,
                         name: "unix",
                         control: "required",
                         modulePath: nix.thunk(() => nix.sel(config, "security", "pam", "pam_unixModulePath")),
                       })),
                       nix.thunk(() => ({
-                        __proto__: pos$23,
+                        [nix.POS]: pos$23,
                         name: "env",
                         control: "required",
                         modulePath: nix.thunk(() => nix.str`${nix.sel(config, "security", "pam", "package")}/lib/security/pam_env.so`),
-                        settings: nix.thunk(() => ({ __proto__: pos$22, conffile: "/etc/pam/environment", readenv: 0n })),
+                        settings: nix.thunk(() => ({ [nix.POS]: pos$22, conffile: "/etc/pam/environment", readenv: 0n })),
                       })),
                       nix.thunk(() => ({
-                        __proto__: pos$24,
+                        [nix.POS]: pos$24,
                         name: "systemd",
                         control: "required",
                         modulePath: nix.thunk(() => nix.str`${nix.sel(config, "systemd", "package")}/lib/security/pam_systemd.so`),
@@ -200,14 +200,14 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         hardware: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           graphics: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
           })),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$33, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$33, maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=cage.ts.map

@@ -22,14 +22,14 @@ export default nix.lambda((args) => (() => {
   const oniguruma = nix.arg($, "oniguruma");
   const rust_jemalloc_sys = nix.arg($, "rust-jemalloc-sys");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "yazi",
       version: "26.9.1",
       srcs: nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(finalAttrs, "passthru", "srcs")))),
       sourceRoot: nix.thunk(() => nix.sel(finalAttrs, "passthru", "srcs", "code_src", "name")),
       cargoHash: "sha256-V69VxhMiTY1Tgo4aW06AjwBIoXjK0Ov6oIahxk0NzGg=",
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         YAZI_GEN_COMPLETIONS: true,
         VERGEN_GIT_SHA: "Nixpkgs",
         VERGEN_BUILD_DATE: "2026-09-1",
@@ -55,19 +55,19 @@ install -Dm444 assets/yazi.desktop -t $out/share/applications
 install -Dm444 assets/logo.png $out/share/pixmaps/yazi.png
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
-        updateScript: nix.thunk(() => ({ __proto__: pos$2, command: nix.thunk(() => [nix.path(here, "./update.sh")]) })),
+        [nix.POS]: pos$6,
+        updateScript: nix.thunk(() => ({ [nix.POS]: pos$2, command: nix.thunk(() => [nix.path(here, "./update.sh")]) })),
         srcs: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           code_src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               owner: "sxyazi",
               repo: "yazi",
               tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
               hash: "sha256-/8j4bEbT8DR/xlWtt62FXVyeHyWtBlvV8Rq0VbtY6ms=",
             })))),
           man_src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               name: "manpages",
               owner: "yazi-rs",
               repo: "manpages",
@@ -77,7 +77,7 @@ install -Dm444 assets/logo.png $out/share/pixmaps/yazi.png
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Blazing fast terminal file manager written in Rust, based on async I/O",
         homepage: "https://github.com/sxyazi/yazi",
         changelog: nix.thunk(() => nix.str`https://github.com/sxyazi/yazi/blob/${nix.sel(finalAttrs, "passthru", "srcs", "code_src", "rev")}/CHANGELOG.md`),

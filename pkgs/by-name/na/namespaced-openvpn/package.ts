@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.0";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "slingamn",
           repo: pname,
           rev: "a3fa42b2d8645272cbeb6856e26a7ea9547cb7d1",
@@ -42,7 +42,7 @@ substituteInPlace seal-unseal-gateway \\
       const doCheck = false;
       const installPhase = "mkdir -p $out/bin\ncp namespaced-openvpn seal-unseal-gateway $out/bin\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/slingamn/namespaced-openvpn",
         description: "Network namespace isolation for OpenVPN tunnels",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -51,7 +51,7 @@ substituteInPlace seal-unseal-gateway \\
         mainProgram: "namespaced-openvpn",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

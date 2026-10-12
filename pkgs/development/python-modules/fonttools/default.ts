@@ -36,12 +36,12 @@ export default nix.lambda((args) => (() => {
   const addBinToPathHook = nix.arg($, "addBinToPathHook");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "fonttools",
       version: "4.63.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fonttools",
           repo: "fonttools",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       "optional-dependencies": nix.thunk(() => (() => {
         const extras = nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           ufo: [],
           lxml: nix.thunk(() => [lxml]),
           woff: nix.thunk(() => [
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
           repacker: nix.thunk(() => [uharfbuzz]),
         }));
         return nix.update(extras, {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           all: nix.thunk(() => nix.app(nix.sel(lib, "concatLists"), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), extras)))),
         });
       })()),
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
         "test_ttcompile_timestamp_calcs",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/fonttools/fonttools",
         description: "Library to manipulate font files from Python",
         changelog: nix.thunk(() => nix.str`https://github.com/fonttools/fonttools/blob/${nix.sel(finalAttrs, "src", "tag")}/NEWS.rst`),

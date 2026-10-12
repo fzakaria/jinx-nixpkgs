@@ -5,7 +5,7 @@ const here = nix.here(import.meta.url);
 const pos$1 = nix.positions(here + "/game-ids.nix", [["Baldur's Gate 3", 6, 3], ["Cyberpunk 2077", 7, 3], ["Mount & Blade II: Bannerlord", 8, 3], ["Skyrim Special Edition", 9, 3], ["Stardew Valley", 10, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$1,
+  [nix.POS]: pos$1,
   "Baldur's Gate 3": 3474n,
   "Cyberpunk 2077": 3333n,
   "Mount & Blade II: Bannerlord": 3174n,

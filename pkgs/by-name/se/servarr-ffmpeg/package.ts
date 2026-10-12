@@ -17,10 +17,10 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const version = "5.1.10";
   return nix.app(nix.sel(nix.app(nix.sel(ffmpeg_headless, "override"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: version,
       source: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Servarr",
           repo: "FFmpeg",
           rev: "9eecad42d64ab888b9bb366df998b5b7cac0e2bc",
@@ -78,11 +78,11 @@ export default nix.lambda((args) => (() => {
       withZlib: false,
       withZvbi: false,
     }))), "overrideAttrs"), (old) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "servarr-ffmpeg",
       patches: nix.thunk(() => nix.concat(nix.sel(old, "patches"), [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "fix_build_failure_due_to_libjxl_version_to_new",
             url: "https://git.ffmpeg.org/gitweb/ffmpeg.git/patch/75b1a555a70c178a9166629e43ec2f6250219eb2",
             hash: "sha256-+2kzfPJf5piim+DqEgDuVEEX5HLwRsxq0dWONJ4ACrU=",
@@ -103,7 +103,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(old, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         license: nix.thunk(() => nix.attr(from, "license")),
         pkgConfigModules: nix.thunk(() => nix.attr(from, "pkgConfigModules")),
         mainProgram: "ffprobe",

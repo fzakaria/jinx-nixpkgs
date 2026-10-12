@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const libcublas = nix.arg($, "libcublas");
   const nccl = nix.arg($, "nccl");
   return nix.app(buildRedist, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       redistName: "cutensor",
       pname: "libcutensor",
       outputs: nix.thunk(() => ["out", "dev", "include", "lib", "static"]),
@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
         const allCCNewerThan75 = nix.thunk(() => nix.app(nix.sel(lib, "all"), nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "versionAtLeast")), "7.5")), cudaCapabilities));
         return [
           nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             message: nix.thunk(() => nix.add(nix.str`cuTENSOR releases since 2.3.0 (found ${nix.sel(finalAttrs, "version")})`, nix.str` support CUDA compute capabilities 7.5 and newer (found ${nix.builtins.toJSON(cudaCapabilities)})`)),
             assertion: nix.thunk(() => (!nix.asBool(cutensorAtLeast23) || nix.asBool(allCCNewerThan75))),
           })),
         ];
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GPU-accelerated tensor linear algebra library for tensor contraction, reduction, and elementwise operations",
         longDescription: "NVIDIA cuTENSOR is a GPU-accelerated tensor linear algebra library for tensor contraction, reduction, and\nelementwise operations. Using cuTENSOR, applications can harness the specialized tensor cores on NVIDIA GPUs for\nhigh-performance tensor computations and accelerate deep learning training and inference, computer vision,\nquantum chemistry, and computational physics workloads.\n",
         homepage: "https://developer.nvidia.com/cutensor",

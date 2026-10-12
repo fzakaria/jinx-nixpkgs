@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const websockets = nix.arg($, "websockets");
   const zeroconf = nix.arg($, "zeroconf");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mozart-api",
       version: "6.2.0.44.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "mozart_api",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-UZE80lrcmsqNoh0Cj59Neq/W6SJVUVqySRbPp+aQI3Q=",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["mozart_api"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "REST API for the Bang & Olufsen Mozart platform",
         homepage: "https://github.com/bang-olufsen/mozart-open-api",
         changelog: nix.thunk(() => nix.str`https://github.com/bang-olufsen/mozart-open-api/releases/tag/${nix.sel(finalAttrs, "version")}`),

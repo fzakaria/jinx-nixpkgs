@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const writeScript = nix.arg($, "writeScript");
   const isCross = nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "poke",
       version: "5.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/poke/poke-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-aHPVmr6CHIERuIYj6nrZ4JCJL6lcdVYmBt2IN04vW48=",
         })))),
@@ -45,11 +45,11 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [dejagnu]),
       postInstall: "moveToOutput share/emacs \"$out\"\nmoveToOutput share/vim \"$out\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-poke", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p curl pcre2 common-updater-scripts\n\nset -eu -o pipefail\n\n# Expect the text in format of '<a href=\"...\">poke 2.0</a>'\nnew_version=\"$(curl -s https://www.jemarch.net/poke |\n    pcre2grep -o1 '>poke ([0-9.]+)</a>')\"\nupdate-source-version poke \"$new_version\"\n")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Interactive, extensible editor for binary data",
         homepage: "http://www.jemarch.net/poke",
         changelog: nix.thunk(() => nix.str`https://git.savannah.gnu.org/cgit/poke.git/plain/NEWS?h=releases/poke-${nix.sel(finalAttrs, "version")}`),

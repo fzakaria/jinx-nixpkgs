@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const mkdocs_material = nix.thunk(() => nix.attr(python3Packages, "mkdocs-material"));
   const pymdown_extensions = nix.thunk(() => nix.attr(python3Packages, "pymdown-extensions"));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "payloadsallthethings",
       version: "2025.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "swisskyrepo",
           repo: "PayloadsAllTheThings",
           tag: "4.2",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "yq -yi '.docs_dir = \"source\"' mkdocs.yml\nmkdir overrides\nmv mkdocs.yml ..\ncd ..\nmkdocs build --theme material\n",
       installPhase: "runHook preInstall\nmkdir -p $doc/share/payloadsallthethings\ncp -r site/* $doc/share/payloadsallthethings\n\nmkdir -p $out/share/payloadsallthethings\nrm source/CONTRIBUTING.md source/custom.css\ncp -r source/* $out/share/payloadsallthethings\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/swisskyrepo/PayloadsAllTheThings",
         description: "List of useful payloads and bypass for Web Application Security and Pentest/CTF",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

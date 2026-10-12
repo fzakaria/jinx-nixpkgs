@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "ufal.chu_liu_edmonds",
           version: version,
           hash: "sha256-v3tv6cYWoFPPgaO6KXR2uUk3MsZ458Tz5wKeFW8fzNE=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "runHook preCheck\ncd tests\npython test.py\nrunHook postCheck\n";
       const pythonImportsCheck = nix.thunk(() => ["ufal.chu_liu_edmonds"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bindings to Chu-Liu-Edmonds algorithm from TurboParser",
         homepage: "https://github.com/ufal/chu_liu_edmonds",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

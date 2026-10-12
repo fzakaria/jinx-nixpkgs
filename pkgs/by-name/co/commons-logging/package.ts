@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "commons-logging",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://apache/commons/logging/binaries/commons-logging-${nix.sel(finalAttrs, "version")}-bin.tar.gz`),
           sha256: "sha256-CEOFR0SEtbEULR0RWVc7dC6FUOZ/eTForuo5tabGn20=",
         })))),
       installPhase: "mkdir -p $out/share/java\ncp commons-logging-*.jar $out/share/java/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Wrapper around a variety of logging API implementations",
         homepage: "https://commons.apache.org/proper/commons-logging",
         sourceProvenance: nix.thunk(() => (() => {

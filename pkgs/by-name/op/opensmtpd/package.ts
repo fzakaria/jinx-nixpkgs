@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const binPath = nix.argOr($, "binPath", () => "/run/wrappers/bin");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "opensmtpd",
       version: "7.8.0p0",
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, autoconf_archive, pkgconf, libtool, bison]),
       buildInputs: nix.thunk(() => [libevent, zlib, libressl, db, pam, libxcrypt]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.opensmtpd.org/archives/opensmtpd-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-QDTeLpLGH6g+7a2x2Ni9/mXlfrUM6WeeAUCVDjTKSrc=",
         })))),
@@ -67,7 +67,7 @@ substituteInPlace usr.sbin/smtpd/smtpd.c \\
       ]),
       installFlags: nix.thunk(() => ["sysconfdir=${out}/etc", "localstatedir=${TMPDIR}"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.opensmtpd.org/",
         description: "A free implementation of the server-side SMTP protocol as defined by\nRFC 5321, with some additional standard extensions\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
@@ -81,9 +81,9 @@ substituteInPlace usr.sbin/smtpd/smtpd.c \\
         })()),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "basic-functionality-and-dovecot-interaction": nix.thunk(() => nix.sel(nixosTests, "opensmtpd")),
           "rspamd-integration": nix.thunk(() => nix.sel(nixosTests, "opensmtpd-rspamd")),
         })),

@@ -12,17 +12,17 @@ export default nix.lambda((args) => (() => {
   const grafanaPlugin = nix.arg($, "grafanaPlugin");
   const lib = nix.arg($, "lib");
   return nix.app(grafanaPlugin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "grafana-github-datasource",
       version: "2.9.2",
       zipHash: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         "x86_64-linux": "sha256-fDqIX16xnXUUi48nIl0RkgHLix/7bUs1WZaBecub/Io=",
         "aarch64-linux": "sha256-y16lRpPG2ft3gs9S47TdgQInoEdttx6pWeceNpROjKI=",
         "aarch64-darwin": "sha256-JWnAYwVSJUEqcBbjCKstkEY5HNlAesZRnT89ji2rias=",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Allows GitHub API data to be visually represented in Grafana dashboards",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => (() => {

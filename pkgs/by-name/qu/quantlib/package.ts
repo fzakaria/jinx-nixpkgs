@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const boost = nix.arg($, "boost");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "quantlib",
       version: "1.43",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lballabio",
           repo: "QuantLib",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DQL_HIGH_RESOLUTION_DATE=ON"]),
       postInstall: "cp ./quantlib-config $out/bin/\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Free/open-source library for quantitative finance",
         homepage: "https://quantlib.org",
         changelog: nix.thunk(() => nix.str`https://github.com/lballabio/QuantLib/releases/tag/v${nix.sel(finalAttrs, "version")}`),

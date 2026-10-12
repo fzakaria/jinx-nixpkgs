@@ -36,76 +36,76 @@ export default nix.lambda((args) => (() => {
   const mkDefinition = nix.thunk(() => nix.attr(lib, "mkDefinition"));
   const mkOptionDefault = nix.thunk(() => nix.attr(lib, "mkOptionDefault"));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     imports: nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         _file: "file",
         options: nix.thunk(() => ({
-          __proto__: pos$2,
-          conflict: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ __proto__: pos$1, default: 1n })))),
+          [nix.POS]: pos$2,
+          conflict: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$1, default: 1n })))),
         })),
         config: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           conflict: nix.thunk(() => nix.app(mkDefinition, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               file: "other",
               value: nix.thunk(() => nix.app(mkOptionDefault, 42n)),
             })))),
         })),
       })),
       nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         options: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           viaConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({})))),
         })),
         config: nix.thunk(() => ({
-          __proto__: pos$8,
-          viaConfig: nix.thunk(() => nix.app(mkDefinition, nix.thunk(() => ({ __proto__: pos$7, file: "other", value: true })))),
+          [nix.POS]: pos$8,
+          viaConfig: nix.thunk(() => nix.app(mkDefinition, nix.thunk(() => ({ [nix.POS]: pos$7, file: "other", value: true })))),
         })),
       })),
       nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         options: nix.thunk(() => ({
-          __proto__: pos$11,
-          mkMerge: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ __proto__: pos$10, type: nix.thunk(() => nix.sel(lib, "types", "bool")) })))),
+          [nix.POS]: pos$11,
+          mkMerge: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$10, type: nix.thunk(() => nix.sel(lib, "types", "bool")) })))),
         })),
         config: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           mkMerge: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
-              nix.thunk(() => nix.app(mkDefinition, nix.thunk(() => ({ __proto__: pos$12, file: "a.nix", value: true })))),
-              nix.thunk(() => nix.app(mkDefinition, nix.thunk(() => ({ __proto__: pos$13, file: "b.nix", value: true })))),
+              nix.thunk(() => nix.app(mkDefinition, nix.thunk(() => ({ [nix.POS]: pos$12, file: "a.nix", value: true })))),
+              nix.thunk(() => nix.app(mkDefinition, nix.thunk(() => ({ [nix.POS]: pos$13, file: "b.nix", value: true })))),
             ]))),
         })),
       })),
       nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         options: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           mkForce: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
             })))),
         })),
         config: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           mkForce: nix.thunk(() => nix.app(mkDefinition, nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               file: "other",
               value: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), true)),
             })))),
         })),
       })),
       nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         options: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           viaOptionDefault: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
-              default: nix.thunk(() => nix.app(mkDefinition, nix.thunk(() => ({ __proto__: pos$21, file: "other", value: true })))),
+              default: nix.thunk(() => nix.app(mkDefinition, nix.thunk(() => ({ [nix.POS]: pos$21, file: "other", value: true })))),
             })))),
         })),
       })),

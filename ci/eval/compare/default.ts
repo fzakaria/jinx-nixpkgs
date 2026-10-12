@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(ps, "tabulate")),
     ]));
   const cmp_stats = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "cmp-stats",
       version: nix.thunk(() => nix.sel(lib, "trivial", "release")),
       dontUnpack: true,
@@ -50,7 +50,7 @@ makeWrapper ${nix.sel(python, "interpreter")} "$out/bin/cmp-stats" \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Performance comparison of Nix evaluation statistics",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         mainProgram: "cmp-stats",
@@ -67,7 +67,7 @@ runHook postInstall
     const baseBranch = nix.arg($_1, "baseBranch");
     const ownersFile = nix.argOr($_1, "ownersFile", () => nix.path(here, "../../OWNERS"));
     const combined = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "isDerivation"), combinedDir)) ? nix.force(combinedDir) : nix.app(nix.sel(lib, "toDerivation"), combinedDir)));
-    const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./utils.nix")), nix.thunk(() => ({ __proto__: pos$3, lib: lib }))));
+    const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./utils.nix")), nix.thunk(() => ({ [nix.POS]: pos$3, lib: lib }))));
     const groupByKernel = nix.thunk(() => nix.attr(from, "groupByKernel"));
     const convertToPackagePlatformAttrs = nix.thunk(() => nix.attr(from, "convertToPackagePlatformAttrs"));
     const groupAttrdiffByKernel = nix.thunk(() => nix.attr(from, "groupAttrdiffByKernel"));
@@ -79,19 +79,19 @@ runHook postInstall
     const rebuildsPackagePlatformAttrs = nix.thunk(() => nix.app(convertToPackagePlatformAttrs, nix.thunk(() => nix.sel(diffAttrs, "rebuilds"))));
     const changed_paths = nix.thunk(() => (() => {
       const attrdiff = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => nix.force(extractPackageNames), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           added: nix.thunk(() => nix.attr(diffAttrs, "added")),
           changed: nix.thunk(() => nix.attr(diffAttrs, "changed")),
           removed: nix.thunk(() => nix.attr(diffAttrs, "removed")),
         }))));
       const attrdiffByPlatform = nix.thunk(() => nix.app(groupAttrdiffByPlatform, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           added: nix.thunk(() => nix.attr(diffAttrs, "added")),
           changed: nix.thunk(() => nix.attr(diffAttrs, "changed")),
           removed: nix.thunk(() => nix.attr(diffAttrs, "removed")),
         }))));
       const attrdiffByKernel = nix.thunk(() => nix.app(groupAttrdiffByKernel, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           added: nix.thunk(() => nix.attr(diffAttrs, "added")),
           changed: nix.thunk(() => nix.attr(diffAttrs, "changed")),
           removed: nix.thunk(() => nix.attr(diffAttrs, "removed")),
@@ -101,7 +101,7 @@ runHook postInstall
       const rebuildCountByKernel = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (kernel) => (kernelRebuilds) => nix.app(nix.sel(lib, "length"), kernelRebuilds), rebuildsByKernel));
       const rebuildNames = nix.thunk(() => nix.app(extractPackageNames, nix.thunk(() => nix.sel(diffAttrs, "rebuilds"))));
       return nix.app(writeText, "changed-paths.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             attrdiff: attrdiff,
             attrdiffByKernel: attrdiffByKernel,
             attrdiffByPlatform: attrdiffByPlatform,
@@ -109,14 +109,14 @@ runHook postInstall
             rebuildsByKernel: rebuildsByKernel,
             rebuildCountByKernel: rebuildCountByKernel,
             labels: nix.thunk(() => nix.update(nix.app(getLabels, rebuildCountByKernel), nix.update(nix.app(nix.sel(lib, "mapAttrs'"), (kernel) => (rebuilds) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`10.rebuild-${kernel}-stdenv`), nix.thunk(() => nix.app(nix.sel(lib, "elem"), "stdenv", rebuilds))), rebuildsByKernel), {
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               "10.rebuild-nixos-tests": nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "elem"), "nixosTests.simple-container", rebuildNames)) || nix.asBool(nix.app(nix.sel(lib, "elem"), "nixosTests.simple-vm", rebuildNames)))),
             }))),
           })))));
     })());
     const getMaintainers = nix.thunk(() => nix.app(callPackage, nix.path(here, "./maintainers.nix"), nix.thunk(() => ({}))));
     const from_1 = nix.thunk(() => nix.app(getMaintainers, nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         affectedAttrPaths: nix.thunk(() => nix.builtins.map((a) => nix.sel(a, "packagePath"), nix.thunk(() => nix.app(convertToPackagePlatformAttrs, nix.thunk(() => nix.concat(nix.sel(diffAttrs, "changed"), nix.sel(diffAttrs, "removed"))))))),
         changedFiles: nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), touchedFilesJson)),
       }))));
@@ -124,7 +124,7 @@ runHook postInstall
     const teams = nix.thunk(() => nix.attr(from_1, "teams"));
     const packages = nix.thunk(() => nix.attr(from_1, "packages"));
     return nix.app(runCommand, "compare", nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         nativeBuildInputs: nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.sel(lib, "getBin")), nix.thunk(() => [jq, cmp_stats, codeowners]))),
         users: nix.thunk(() => nix.builtins.toJSON(users)),
         teams: nix.thunk(() => nix.builtins.toJSON(teams)),

@@ -25,44 +25,44 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     name: "mate-wayland",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "mate", "members")),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           services: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             xserver: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               enable: true,
               desktopManager: nix.thunk(() => ({
-                __proto__: pos$3,
-                mate: nix.thunk(() => ({ __proto__: pos$2, enableWaylandSession: true })),
+                [nix.POS]: pos$3,
+                mate: nix.thunk(() => ({ [nix.POS]: pos$2, enableWaylandSession: true })),
               })),
             })),
             displayManager: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               sddm: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 enable: true,
-                wayland: nix.thunk(() => ({ __proto__: pos$5, enable: true })),
+                wayland: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
               })),
               defaultSession: "MATE",
-              autoLogin: nix.thunk(() => ({ __proto__: pos$7, enable: true, user: "alice" })),
+              autoLogin: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true, user: "alice" })),
             })),
           })),
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             qemu: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               options: nix.thunk(() => ["-vga none -device virtio-gpu-pci"]),
             })),
           })),

@@ -51,9 +51,9 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "networking", "firewall"));
   const canonicalizePortList = (ports) => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.builtins.sort(nix.thunk(() => nix.builtins.lessThan), ports)));
   const commonOptions = nix.thunk(() => ({
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "port")))),
         default: [],
         apply: canonicalizePortList,
@@ -61,14 +61,14 @@ export default nix.lambda((args) => (() => {
         description: "List of TCP ports on which incoming connections are\naccepted.\n",
       })))),
     allowedTCPPortRanges: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "port")))))),
         default: [],
-        example: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$2, from: 8999n, to: 9003n }))]),
+        example: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$2, from: 8999n, to: 9003n }))]),
         description: "A range of TCP ports on which incoming connections are\naccepted.\n",
       })))),
     allowedUDPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "port")))),
         default: [],
         apply: canonicalizePortList,
@@ -76,36 +76,36 @@ export default nix.lambda((args) => (() => {
         description: "List of open UDP ports.\n",
       })))),
     allowedUDPPortRanges: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "port")))))),
         default: [],
-        example: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$5, from: 60000n, to: 61000n }))]),
+        example: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$5, from: 60000n, to: 61000n }))]),
         description: "Range of open UDP ports.\n",
       })))),
   }));
   return {
-    __proto__: pos$39,
+    [nix.POS]: pos$39,
     options: nix.thunk(() => ({
-      __proto__: pos$31,
+      [nix.POS]: pos$31,
       networking: nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         firewall: nix.thunk(() => nix.update({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to enable the firewall.  This is a simple stateful\nfirewall that blocks connection attempts to unauthorised TCP\nor UDP ports on this machine.\n",
             })))),
           backend: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["iptables", "nftables", "firewalld"]))),
               default: nix.thunk(() => (nix.asBool(nix.sel(config, "services", "firewalld", "enable")) ? "firewalld" : (nix.asBool(nix.sel(config, "networking", "nftables", "enable")) ? "nftables" : "iptables"))),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "if config.services.firewalld.enable then\n  \"firewalld\"\nelse if config.networking.nftables.enable then\n  \"nftables\"\nelse\n  \"iptables\"\n")),
               description: "Underlying implementation for the firewall service.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
               default: nix.thunk(() => (nix.asBool(nix.sel(config, "networking", "nftables", "enable")) ? nix.sel(pkgs, "nftables") : nix.sel(pkgs, "iptables"))),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "if config.networking.nftables.enable then \"pkgs.nftables\" else \"pkgs.iptables\"")),
@@ -113,51 +113,51 @@ export default nix.lambda((args) => (() => {
               description: "The package to use for running the firewall service.\n",
             })))),
           logRefusedConnections: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to log rejected or dropped incoming connections.\nNote: The logs are found in the kernel logs, i.e. dmesg\nor journalctl -k.\n",
             })))),
           logRefusedPackets: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to log all rejected or dropped incoming packets.\nThis tends to give a lot of log messages, so it's mostly\nuseful for debugging.\nNote: The logs are found in the kernel logs, i.e. dmesg\nor journalctl -k.\n",
             })))),
           logRefusedUnicastsOnly: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "If {option}`networking.firewall.logRefusedPackets`\nand this option are enabled, then only log packets\nspecifically directed at this machine, i.e., not broadcasts\nor multicasts.\n",
             })))),
           rejectPackets: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "If set, refused packets are rejected rather than dropped\n(ignored).  This means that an ICMP \"port unreachable\" error\nmessage is sent back to the client (or a TCP RST packet in\ncase of an existing connection).  Rejecting packets makes\nport scanning somewhat easier.\n",
             })))),
           trustedInterfaces: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["enp0s2"]),
               description: "Traffic coming in from these interfaces will be accepted\nunconditionally.  Traffic from the loopback (lo) interface\nwill always be accepted.\n",
             })))),
           allowPing: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to respond to incoming ICMPv4 echo requests\n(\"pings\").  ICMPv6 pings are always allowed because the\nlarger address space of IPv6 makes network scanning much\nless effective.\n",
             })))),
           pingLimit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "separatedString"), " ")))),
               default: null,
               example: "--limit 1/minute --limit-burst 5",
               description: "If pings are allowed, this allows setting rate limits on them.\n\nFor the iptables based firewall, it should be set like\n\"--limit 1/minute --limit-burst 5\".\n\nFor the nftables based firewall, it should be set like\n\"2/second\" or \"1/minute burst 5 packets\".\n",
             })))),
           checkReversePath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "either"), nix.thunk(() => nix.sel(lib, "types", "bool")), nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["strict", "loose"]))))),
               default: "loose",
               defaultText: "loose",
@@ -165,19 +165,19 @@ export default nix.lambda((args) => (() => {
               description: "Performs a reverse path filter test on a packet.  If a reply\nto the packet would not be sent via the same interface that\nthe packet arrived on, it is refused.\n\nIf using asymmetric routing or other complicated routing, set\nthis option to loose mode or disable it and setup your own\ncounter-measures.\n\nThis option can be either true (or \"strict\"), \"loose\" (only\ndrop the packet if the source address is not reachable via any\ninterface) or false.\n",
             })))),
           logReversePathDrops: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Logs dropped packets failing the reverse path filter test if\nthe option networking.firewall.checkReversePath is enabled.\n",
             })))),
           filterForward: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enable filtering in IP forwarding.\n\nThis option only works with the nftables based firewall.\n",
             })))),
           connectionTrackingModules: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => [
@@ -195,38 +195,38 @@ export default nix.lambda((args) => (() => {
               description: "List of connection-tracking helpers that are auto-loaded.\nThe complete list of possible values is given in the example.\n\nAs helpers can pose as a security risk, it is advised to\nset this to an empty list and disable the setting\nnetworking.firewall.autoLoadConntrackHelpers unless you\nknow what you are doing. Connection tracking is disabled\nby default.\n\nLoading of helpers is recommended to be done through the\nCT target.  More info:\n<https://home.regit.org/netfilter-en/secure-use-of-helpers/>\n",
             })))),
           autoLoadConntrackHelpers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to auto-load connection-tracking helpers.\nSee the description at networking.firewall.connectionTrackingModules\n\n(needs kernel 3.5+)\n",
             })))),
           extraPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ pkgs.ipset ]")),
               description: "Additional packages to be included in the environment of the system\nas well as the path of networking.firewall.extraCommands.\n",
             })))),
           interfaces: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
-                return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$24, options: commonOptions }))]))));
+                return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$24, options: commonOptions }))]))));
               })()),
               description: "Interface-specific open ports.\n",
             })))),
           allInterfaces: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               internal: true,
               visible: false,
               default: nix.thunk(() => nix.update({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 default: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => (value) => nix.sel(cfg, nix.key(nix.force(name))), commonOptions)),
               }, nix.sel(cfg, "interfaces"))),
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
-                return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$27, options: commonOptions }))]))));
+                return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$27, options: commonOptions }))]))));
               })()),
               description: "All open ports.\n",
             })))),
@@ -234,29 +234,29 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$38,
+        [nix.POS]: pos$38,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "filterForward")) || nix.asBool(nix.sel(config, "networking", "nftables", "enable")))),
             message: "filterForward only works with the nftables based firewall",
           })),
           nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "autoLoadConntrackHelpers")) || nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "kernel", "version")), "6")))),
             message: "conntrack helper autoloading has been removed from kernel 6.0 and newer",
           })),
         ]),
         networking: nix.thunk(() => ({
-          __proto__: pos$35,
-          firewall: nix.thunk(() => ({ __proto__: pos$34, trustedInterfaces: nix.thunk(() => ["lo"]) })),
+          [nix.POS]: pos$35,
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$34, trustedInterfaces: nix.thunk(() => ["lo"]) })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           systemPackages: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(cfg, "package"))], nix.sel(cfg, "extraPackages"))),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           kernelModules: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "autoLoadConntrackHelpers")), "nf_conntrack"), nix.builtins.map((x) => nix.str`nf_conntrack_${x}`, nix.thunk(() => nix.sel(cfg, "connectionTrackingModules"))))),
           extraModprobeConfig: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "autoLoadConntrackHelpers")), "options nf_conntrack nf_conntrack_helper=1\n")),
         })),

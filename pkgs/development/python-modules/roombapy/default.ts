@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.9.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pschmitt",
           repo: "roombapy",
           tag: version,
@@ -35,13 +35,13 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [poetry_core]);
       const pythonRelaxDeps = nix.thunk(() => ["orjson"]);
       const propagatedBuildInputs = nix.thunk(() => [mashumaro, orjson, paho_mqtt]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, cli: nix.thunk(() => [click, tabulate]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, cli: nix.thunk(() => [click, tabulate]) }));
       const nativeCheckInputs = nix.thunk(() => [pytest_asyncio, pytestCheckHook]);
       const disabledTestPaths = nix.thunk(() => ["tests/test_discovery.py"]);
       const disabledTests = nix.thunk(() => ["test_roomba_connect"]);
       const pythonImportsCheck = nix.thunk(() => ["roombapy"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python program and library to control Wi-Fi enabled iRobot Roombas",
         mainProgram: "roombapy",
         homepage: "https://github.com/pschmitt/roombapy",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "debsigs";
       const version = "0.2.2";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "debsigs",
           repo: "debsigs",
           tag: nix.thunk(() => nix.str`release/${version}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
   --replace-fail /usr/bin/ar ${nix.sel(binutils, "bintools")}/bin/ar
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Manipulate the cryptographic signatures stored inside a .deb file",
         mainProgram: "debsigs",
         homepage: "https://gitlab.com/debsigs/debsigs",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "usertam"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, sourceRoot, postPatch, meta };
+      return { [nix.POS]: pos$3, pname, version, src, sourceRoot, postPatch, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

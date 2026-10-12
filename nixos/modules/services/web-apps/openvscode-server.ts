@@ -43,50 +43,50 @@ export default nix.lambda((args) => (() => {
   const defaultUser = "openvscode-server";
   const defaultGroup = defaultUser;
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     options: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       services: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         "openvscode-server": nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "openvscode-server")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "openvscode-server", nix.thunk(() => ({})))),
           extraPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: [],
               description: "Additional packages to add to the openvscode-server {env}`PATH`.\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ pkgs.go ]")),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
             })))),
           extraEnvironment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "Additional environment variables to pass to openvscode-server.\n",
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$2, PKG_CONFIG_PATH: "/run/current-system/sw/lib/pkgconfig" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$2, PKG_CONFIG_PATH: "/run/current-system/sw/lib/pkgconfig" })),
             })))),
           extraArguments: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: [],
               description: "Additional arguments to pass to openvscode-server.\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ \"--log=info\" ]")),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             })))),
           host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: "localhost",
               description: "The host name or IP address the server should listen to.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: 3000n,
               description: "The port the server should listen to. If 0 is passed a random free port is picked. If a range in the format num-num is passed, a free port from the range (end inclusive) is selected.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: defaultUser,
               example: "yourUser",
               description: nix.thunk(() => nix.str`The user to run openvscode-server as.
@@ -95,7 +95,7 @@ By default, a user named \`${defaultUser}\` will be created.
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               default: defaultGroup,
               example: "yourGroup",
               description: nix.thunk(() => nix.str`The group to run openvscode-server under.
@@ -104,7 +104,7 @@ By default, a group named \`${defaultGroup}\` will be created.
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
             })))),
           extraGroups: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               default: [],
               description: nix.thunk(() => nix.str`An array of additional groups for the \`${defaultUser}\` user.
 `),
@@ -112,53 +112,53 @@ By default, a group named \`${defaultGroup}\` will be created.
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             })))),
           withoutConnectionToken: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               default: false,
               description: "Run without a connection token. Only use this if the connection is secured by other means.\n",
               example: true,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             })))),
           socketPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               default: null,
               example: "/run/openvscode/socket",
               description: "The path to a socket file for the server to listen to.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             })))),
           userDataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               default: null,
               description: "Specifies the directory that user data is kept in. Can be used to open multiple distinct instances of Code.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             })))),
           serverDataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               default: null,
               description: "Specifies the directory that server data is kept in.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             })))),
           extensionsDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               default: null,
               description: "Set the root path for extensions.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             })))),
           telemetryLevel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               default: null,
               example: "crash",
               description: "Sets the initial telemetry level. Valid levels are: 'off', 'crash', 'error' and 'all'.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["off", "crash", "error", "all"]))))),
             })))),
           connectionToken: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               default: null,
               example: "secret-token",
               description: "A secret that must be included with all requests.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             })))),
           connectionTokenFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               default: null,
               description: "Path to a file that contains the connection token.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
@@ -167,13 +167,13 @@ By default, a group named \`${defaultGroup}\` will be created.
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         systemd: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           services: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             "openvscode-server": nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               description: "OpenVSCode server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
@@ -181,7 +181,7 @@ By default, a group named \`${defaultGroup}\` will be created.
               path: nix.thunk(() => nix.sel(cfg, "extraPackages")),
               environment: nix.thunk(() => nix.sel(cfg, "extraEnvironment")),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 ExecStart: nix.thunk(() => nix.add(nix.add(nix.add(nix.add(nix.add(nix.add(nix.add(nix.add(nix.add(nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} \\
   --accept-server-license-terms \\
   --host=${nix.sel(cfg, "host")} \\
@@ -204,17 +204,17 @@ By default, a group named \`${defaultGroup}\` will be created.
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.str`${nix.sel(cfg, "user")}`, nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), defaultUser)), nix.thunk(() => ({
-                    __proto__: pos$25,
+                    [nix.POS]: pos$25,
                     isNormalUser: true,
                     description: "openvscode-server user",
                     group: nix.thunk(() => nix.attr(cfg, "group")),
                   })))),
                 nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   packages: nix.thunk(() => nix.sel(cfg, "extraPackages")),
                   extraGroups: nix.thunk(() => nix.attr(cfg, "extraGroups")),
                 })),
@@ -225,7 +225,7 @@ By default, a group named \`${defaultGroup}\` will be created.
           ])),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$29, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$29, maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=openvscode-server.ts.map

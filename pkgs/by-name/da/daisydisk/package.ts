@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   const writeShellApplication = nix.arg($, "writeShellApplication");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "daisydisk",
       version: "4.34.2",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://daisydiskapp.com/download/DaisyDisk.zip",
           hash: "sha256-lSV367twsKDp0e5TsVYfjYO5GPcjtteBCxmUIOrz+0E=",
           stripRoot: false,
@@ -35,16 +35,16 @@ export default nix.lambda((args) => (() => {
       dontFixup: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications\nmv DaisyDisk.app $out/Applications\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: "daisydisk-update-script",
               runtimeInputs: nix.thunk(() => [curl, cacert, xmlstarlet, common_updater_scripts]),
               text: "url=\"https://daisydiskapp.com/downloads/appcastFeed.php\"\nversion=$(curl -s \"$url\" |  xmlstarlet sel -t -v 'rss/channel/item[1]/enclosure/@sparkle:version' -n)\nupdate-source-version daisydisk \"$version\"\n",
             })))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Find out what’s taking up your disk space and recover it in the most efficient and easy way",
         homepage: "https://daisydiskapp.com/",
         changelog: "https://daisydiskapp.com/releases",

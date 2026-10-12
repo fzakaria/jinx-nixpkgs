@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
       const pname = "fairymax";
       const version = "4.8";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://home.hccnet.nl/h.g.muller/fmax4_8w.c",
           hash: "sha256-ikn+CA5lxtDYSDT+Nsv1tfORhKW6/vlmHcGAT9SFfQc=",
         }))));
       const ini = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://home.hccnet.nl/h.g.muller/fmax.ini",
           hash: "sha256-lh2ivXx4jNdWn3pT1WKKNEvkVQ31JfdDx+vqNx44nf8=",
         }))));
@@ -32,12 +32,12 @@ cp ${ini} fmax.ini
 `);
       const buildPhase = "cc *.c -Wno-return-type \\\n  -o fairymax \\\n  -DINI_FILE='\"'\"$out/share/fairymax/fmax.ini\"'\"'\n";
       const env = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: "-Wno-error=return-mismatch -Wno-error=implicit-int",
       }));
       const installPhase = "mkdir -p \"$out\"/{bin,share/fairymax}\ncp fairymax \"$out/bin\"\ncp fmax.ini \"$out/share/fairymax\"\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "http://home.hccnet.nl/h.g.muller/dwnldpage.html",
         description: "Small chess engine supporting fairy pieces",
         mainProgram: "fairymax",
@@ -47,7 +47,7 @@ cp ${ini} fmax.ini
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

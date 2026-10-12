@@ -14,15 +14,15 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "getopt",
       version: "1.1.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://frodo.looijaard.name/system/files/software/getopt/getopt-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1zn5kp8ar853rin0ay2j3p17blxy16agpp8wi8wfg4x98b31vgyh",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-D__GNU_LIBRARY__" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-D__GNU_LIBRARY__" })),
       strictDeps: true,
       makeFlags: nix.thunk(() => [
         "WITHOUT_GETTEXT=1",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       ]),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         homepage: "https://frodo.looijaard.name/project/getopt",
         description: "Parses command-line arguments from shell scripts",

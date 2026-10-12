@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const pcre2 = nix.arg($, "pcre2");
   return nix.app(buildPecl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "imagick",
       version: "3.8.1",
       hash: "sha256-OjWHwKUkwX0NrZZzoWC5DNd26DaDhHThc7VJ7YZDUu4=",
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [pcre2]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Imagick is a native php extension to create and modify images using the ImageMagick API",
         license: nix.thunk(() => nix.sel(lib, "licenses", "php301")),
         homepage: "https://pecl.php.net/package/imagick",

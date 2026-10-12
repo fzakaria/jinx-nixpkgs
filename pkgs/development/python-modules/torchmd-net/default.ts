@@ -28,27 +28,27 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "torchmd-net",
       version: "3.0.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "torchmd",
           repo: "torchmd-net",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-FBeeNkc7mJQYmMwlsW3Un+3RHvErJM7rWKUqSCYYUCM=",
         })))),
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ __proto__: pos$2, PYTORCH_ENABLE_MPS_FALLBACK: true })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$2, PYTORCH_ENABLE_MPS_FALLBACK: true })))),
       pythonRemoveDeps: nix.thunk(() => ["setuptools"]),
       dependencies: nix.thunk(() => [ase, h5py, lightning, numpy, torch, torch_geometric, tqdm, warp_lang]),
       pythonImportsCheck: nix.thunk(() => ["torchmdnet"]),
       nativeCheckInputs: nix.thunk(() => [pytest_xdist, pytestCheckHook, writableTmpDirAsHomeHook]),
       disabledTests: nix.thunk(() => nix.concat(["test_dataset_s66x8", "test_torchscript_then_compile"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_ase_calculator", "test_torch_export_then_compile"])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library to train state-of-the-art neural networks potentials (NNPs)",
         homepage: "https://github.com/torchmd/torchmd-net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

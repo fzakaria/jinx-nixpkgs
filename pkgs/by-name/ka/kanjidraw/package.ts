@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kanjidraw",
       version: "0.2.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "obfusk",
           repo: "kanjidraw",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "make test\n",
       pythonImportsCheck: nix.thunk(() => ["kanjidraw"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Handwritten kanji recognition",
         mainProgram: "kanjidraw",
         longDescription: "kanjidraw is a simple Python library + GUI for matching (the strokes of a)\nhandwritten kanji against its database.\n\nYou can use the GUI to draw and subsequently select a kanji from the list of\nprobable matches, which will then be copied to the clipboard.\n\nThe database is based on KanjiVG and the algorithms are based on the\nKanji draw Android app.\n",

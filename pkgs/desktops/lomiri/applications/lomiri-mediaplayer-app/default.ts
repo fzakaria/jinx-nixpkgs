@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const wrapQtAppsHook = nix.arg($, "wrapQtAppsHook");
   const xvfb_run = nix.arg($, "xvfb-run");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "lomiri-mediaplayer-app",
       version: "1.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ubports",
           repo: "development/core/lomiri-mediaplayer-app",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -77,15 +77,15 @@ export QML2_IMPORT_PATH=${nix.app(listToQtVar, nix.thunk(() => [lomiri_ui_toolki
       postInstall: "mkdir -p $out/share/{icons/hicolor/256x256/apps,lomiri-app-launch/{symbolic,splash}}\n\nln -s $out/share/{lomiri-mediaplayer-app,icons/hicolor/256x256/apps}/lomiri-mediaplayer-app.png\nln -s $out/share/{lomiri-mediaplayer-app/lomiri-mediaplayer-app-splash.svg,lomiri-app-launch/splash/lomiri-mediaplayer-app.svg}\nln -s $out/share/{lomiri-mediaplayer-app/lomiri-mediaplayer-app-symbolic.svg,lomiri-app-launch/symbolic/lomiri-mediaplayer-app.svg}\n",
       preFixup: "qtWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           vm: nix.thunk(() => nix.sel(nixosTests, "lomiri-mediaplayer-app")),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Media Player application for Ubuntu Touch devices",
         homepage: "https://gitlab.com/ubports/development/core/lomiri-mediaplayer-app",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/core/lomiri-mediaplayer-app/-/blob/${(nix.asBool(!nix.asBool(nix.builtins.isNull(nix.thunk(() => nix.sel(finalAttrs, "src", "tag"))))) ? nix.sel(finalAttrs, "src", "tag") : nix.sel(finalAttrs, "src", "rev"))}/ChangeLog`),

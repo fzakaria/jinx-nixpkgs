@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "unpfs",
       version: "0-unstable-2021-04-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pfpacket",
           repo: "rust-9p",
           rev: "6d9b62aa182c5764e00b96f93109feb605d9eac9",
@@ -26,10 +26,10 @@ export default nix.lambda((args) => (() => {
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/example/unpfs`),
       cargoHash: "sha256-jRe1lgzfhzBUsS6wwwlqxxomap2TIDOyF3YBv20GJ14=",
-      env: nix.thunk(() => ({ __proto__: pos$2, RUSTC_BOOTSTRAP: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTC_BOOTSTRAP: 1n })),
       postInstall: "install -D -m 0444 ../../README* -t \"$out/share/doc/unpfs\"\ninstall -D -m 0444 ../../LICEN* -t \"$out/share/doc/unpfs\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "9P2000.L server implementation in Rust",
         homepage: "https://github.com/pfpacket/rust-9p",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

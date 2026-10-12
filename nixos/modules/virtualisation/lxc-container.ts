@@ -33,9 +33,9 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "lxc"))]),
     })),
     imports: nix.thunk(() => [
@@ -45,17 +45,17 @@ export default nix.lambda((args) => (() => {
     ]),
     options: nix.thunk(() => ({})),
     config: nix.thunk(() => ({
-      __proto__: pos$22,
-      boot: nix.thunk(() => ({ __proto__: pos$2, isContainer: true })),
+      [nix.POS]: pos$22,
+      boot: nix.thunk(() => ({ [nix.POS]: pos$2, isContainer: true })),
       systemd: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         services: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           "register-nix-paths": nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             description: "Register Nix Store Paths",
             unitConfig: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               DefaultDependencies: false,
               ConditionPathExists: "/nix-path-registration",
             })),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
             after: nix.thunk(() => ["local-fs.target"]),
             conflicts: nix.thunk(() => ["shutdown.target"]),
             restartIfChanged: false,
-            serviceConfig: nix.thunk(() => ({ __proto__: pos$4, Type: "oneshot", RemainAfterExit: true })),
+            serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$4, Type: "oneshot", RemainAfterExit: true })),
             script: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(config, "nix", "package", "out")), "nix-store")} --load-db < /nix-path-registration
 rm /nix-path-registration
 
@@ -79,19 +79,19 @@ ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(config, "nix", "packa
           })),
         })),
         network: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "networking", "useDHCP")), nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             networks: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               "99-lxc-veth-default-dhcp": nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 matchConfig: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   Type: "ether",
                   Kind: "veth",
                   Name: nix.thunk(() => ["en*", "eth*"]),
                 })),
                 DHCP: "yes",
-                networkConfig: nix.thunk(() => ({ __proto__: pos$8, IPv6PrivacyExtensions: "kernel" })),
+                networkConfig: nix.thunk(() => ({ [nix.POS]: pos$8, IPv6PrivacyExtensions: "kernel" })),
               })),
             })),
           })))),
@@ -99,33 +99,33 @@ ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(config, "nix", "packa
         packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "distrobuilder", "generator"))]),
       })),
       system: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         nixos: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           tags: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 99n, nix.thunk(() => ["lxc"]))),
         })),
         build: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           image: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 99n, nix.thunk(() => nix.sel(config, "system", "build", "tarball")))),
           tarball: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../../lib/make-system-tarball.nix"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               fileName: nix.thunk(() => nix.sel(config, "image", "baseName")),
               extraArgs: "--owner=0",
               storeContents: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   object: nix.thunk(() => nix.sel(config, "system", "build", "toplevel")),
                   symlink: "none",
                 })),
               ]),
               contents: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   source: nix.thunk(() => nix.add(nix.sel(config, "system", "build", "toplevel"), "/init")),
                   target: "/sbin/init",
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   source: nix.thunk(() => nix.add(nix.sel(config, "system", "build", "toplevel"), "/etc/os-release")),
                   target: "/etc/os-release",
                 })),
@@ -133,7 +133,7 @@ ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(config, "nix", "packa
               extraCommands: "mkdir -p proc sys dev",
             })))),
           squashfs: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../../lib/make-squashfs.nix"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               fileName: nix.thunk(() => nix.str`nixos-lxc-image-${nix.sel(pkgs, "stdenv", "hostPlatform", "system")}`),
               hydraBuildProduct: true,
               noStrip: true,
@@ -153,7 +153,7 @@ ${nix.sel(pkgs, "coreutils")}/bin/ln -fs "$1/init" /sbin/init
         })),
       })),
       image: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         extension: "tar.xz",
         filePath: nix.thunk(() => nix.str`tarball/${nix.sel(config, "image", "fileName")}`),
       })),

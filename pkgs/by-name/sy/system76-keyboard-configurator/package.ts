@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const udev = nix.arg($, "udev");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "system76-keyboard-configurator",
       version: "1.3.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pop-os",
           repo: "keyboard-configurator",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-Ws1LLX3K9/kpPJa6wureScSDswn1bIsu+s3C/VsDiEY=",
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "install -Dm444 linux/com.system76.keyboardconfigurator.desktop -t $out/share/applications\ncp -r data/icons $out/share\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Keyboard configuration application for System76 keyboards and laptops",
         mainProgram: "system76-keyboard-configurator",
         homepage: "https://github.com/pop-os/keyboard-configurator",

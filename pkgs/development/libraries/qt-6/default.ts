@@ -46,10 +46,10 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const python3 = nix.arg($, "python3");
   const config = nix.arg($, "config");
-  const srcs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./srcs.nix")), nix.thunk(() => ({ __proto__: pos$1, fetchurl: fetchurl, mirror: "mirror://qt" }))));
+  const srcs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./srcs.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, fetchurl: fetchurl, mirror: "mirror://qt" }))));
   const addPackages = (self) => (() => {
     const callPackage = nix.thunk(() => nix.app(nix.sel(self, "newScope"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         qtModule: nix.thunk(() => nix.attr(self, "qtModule")),
         srcs: srcs,
         python3: python3,
@@ -67,15 +67,15 @@ test -d "${drv$}/${qtQmlPrefix}" && ln -s "${drv$}/${qtQmlPrefix}" "$out/${qtQml
 `));
     })();
     return nix.update({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       callPackage: callPackage,
       srcs: srcs,
       darwinVersionInputs: darwinVersionInputs,
-      qtModule: nix.thunk(() => nix.app(callPackage, nix.path(here, "./qtModule.nix"), nix.thunk(() => ({ __proto__: pos$3, darwinVersionInputs: darwinVersionInputs })))),
+      qtModule: nix.thunk(() => nix.app(callPackage, nix.path(here, "./qtModule.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, darwinVersionInputs: darwinVersionInputs })))),
       qtbase: nix.thunk(() => nix.app(callPackage, nix.path(here, "./modules/qtbase"), nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(srcs, "qtbase"));
           return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           withGtk3: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isMinGW"))),
           darwinVersionInputs: darwinVersionInputs,
           src: nix.thunk(() => nix.attr(from, "src")),
@@ -98,7 +98,7 @@ test -d "${drv$}/${qtQmlPrefix}" && ln -s "${drv$}/${qtQmlPrefix}" "$out/${qtQml
       qtlocation: nix.thunk(() => nix.app(callPackage, nix.path(here, "./modules/qtlocation.nix"), nix.thunk(() => ({})))),
       qtlottie: nix.thunk(() => nix.app(callPackage, nix.path(here, "./modules/qtlottie.nix"), nix.thunk(() => ({})))),
       qtmultimedia: nix.thunk(() => nix.app(callPackage, nix.path(here, "./modules/qtmultimedia"), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           gstreamer: nix.thunk(() => nix.attr(gst_all_1, "gstreamer")),
           "gst-plugins-bad": nix.thunk(() => nix.attr(gst_all_1, "gst-plugins-bad")),
           "gst-plugins-base": nix.thunk(() => nix.attr(gst_all_1, "gst-plugins-base")),
@@ -122,10 +122,10 @@ test -d "${drv$}/${qtQmlPrefix}" && ln -s "${drv$}/${qtQmlPrefix}" "$out/${qtQml
       qtscxml: nix.thunk(() => nix.app(callPackage, nix.path(here, "./modules/qtscxml.nix"), nix.thunk(() => ({})))),
       qttools: nix.thunk(() => nix.app(callPackage, nix.path(here, "./modules/qttools"), nix.thunk(() => ({})))),
       qttranslations: nix.thunk(() => nix.app(callPackage, nix.path(here, "./modules/qttranslations.nix"), nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           qttools: nix.thunk(() => nix.app(nix.sel(self, "qttools", "override"), nix.thunk(() => ({
-              __proto__: pos$7,
-              qtbase: nix.thunk(() => nix.app(nix.sel(self, "qtbase", "override"), nix.thunk(() => ({ __proto__: pos$6, qttranslations: null })))),
+              [nix.POS]: pos$7,
+              qtbase: nix.thunk(() => nix.app(nix.sel(self, "qtbase", "override"), nix.thunk(() => ({ [nix.POS]: pos$6, qttranslations: null })))),
               qtdeclarative: null,
             })))),
         })))),
@@ -133,7 +133,7 @@ test -d "${drv$}/${qtQmlPrefix}" && ln -s "${drv$}/${qtQmlPrefix}" "$out/${qtQml
       qtwayland: nix.thunk(() => nix.app(callPackage, nix.path(here, "./modules/qtwayland.nix"), nix.thunk(() => ({})))),
       qtwebchannel: nix.thunk(() => nix.app(callPackage, nix.path(here, "./modules/qtwebchannel.nix"), nix.thunk(() => ({})))),
       qtwebengine: nix.thunk(() => nix.app(callPackage, nix.path(here, "./modules/qtwebengine"), nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           bootstrap_cmds: nix.thunk(() => nix.attr(darwin, "bootstrap_cmds")),
         })))),
       qtwebsockets: nix.thunk(() => nix.app(callPackage, nix.path(here, "./modules/qtwebsockets.nix"), nix.thunk(() => ({})))),
@@ -145,39 +145,39 @@ test -d "${drv$}/${qtQmlPrefix}" && ln -s "${drv$}/${qtQmlPrefix}" "$out/${qtQml
           const qtwayland = nix.arg($_1, "qtwayland");
           const qtbase = nix.arg($_1, "qtbase");
           return nix.app(makeSetupHook, nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               name: "wrap-qt6-apps-hook",
               propagatedBuildInputs: nix.thunk(() => [makeBinaryWrapper]),
               depsTargetTargetPropagated: nix.thunk(() => [nix.thunk(() => nix.app(onlyPluginsAndQml, qtbase))]),
               passthru: nix.thunk(() => ({
-                __proto__: pos$11,
-                tests: nix.thunk(() => nix.app(callPackages, nix.path(here, "./tests/wrap-qt-apps-hook.nix"), nix.thunk(() => ({ __proto__: pos$10, qtbase: qtbase, wrapQtAppsHook: wrapQtAppsHook })))),
+                [nix.POS]: pos$11,
+                tests: nix.thunk(() => nix.app(callPackages, nix.path(here, "./tests/wrap-qt-apps-hook.nix"), nix.thunk(() => ({ [nix.POS]: pos$10, qtbase: qtbase, wrapQtAppsHook: wrapQtAppsHook })))),
               })),
-              meta: nix.thunk(() => ({ __proto__: pos$12, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+              meta: nix.thunk(() => ({ [nix.POS]: pos$12, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
             })), nix.path(here, "./hooks/wrap-qt-apps-hook.sh"));
         })(), formals$2), nix.thunk(() => ({})))),
       qmake: nix.thunk(() => nix.app(callPackage, nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$3);
           const qtbase = nix.arg($_1, "qtbase");
           return nix.app(makeSetupHook, nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               name: "qmake6-hook",
               propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(qtbase, "dev"))]),
               substitutions: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 fix_qmake_libtool: nix.path(here, "./hooks/fix-qmake-libtool.sh"),
               })),
-              meta: nix.thunk(() => ({ __proto__: pos$15, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+              meta: nix.thunk(() => ({ [nix.POS]: pos$15, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
             })), nix.path(here, "./hooks/qmake-hook.sh"));
         })(), formals$3), nix.thunk(() => ({})))),
     }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         full: nix.thunk(() => nix.builtins.throw("qt6.full has been removed. Please use individual packages instead.")),
         wrapQtAppsNoGuiHook: nix.thunk(() => nix.app(nix.sel(lib, "warn"), "wrapQtAppsNoGuiHook is deprecated, use wrapQtAppsHook instead", nix.thunk(() => nix.sel(self, "wrapQtAppsHook")))),
       }))));
   })();
   const baseScope = nix.thunk(() => nix.app(makeScopeWithSplicing$, nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       otherSplices: nix.thunk(() => nix.app(generateSplicesForMkScope, "qt6")),
       f: addPackages,
     }))));

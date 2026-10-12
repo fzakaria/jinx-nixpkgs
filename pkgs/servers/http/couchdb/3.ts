@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "couchdb";
       const version = "3.5.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://apache/couchdb/source/${version}/apache-${pname}-${version}.tar.gz`),
           hash: "sha256-5WEQKqrf3aHkmebp4S0kc0MykbYIvNOQvLz1kLu2z2g=",
         }))));
@@ -42,16 +42,16 @@ export default nix.lambda((args) => (() => {
       const configureFlags = nix.thunk(() => ["--js-engine=quickjs", "--disable-spidermonkey"]);
       const buildFlags = nix.thunk(() => ["release"]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ["-Wno-error=implicit-function-declaration"]))))),
       }));
       const installPhase = "runHook preInstall\nmkdir -p $out\ncp -r rel/couchdb/* $out\nrunHook postInstall\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, couchdb: nix.thunk(() => nix.attr(nixosTests, "couchdb")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, couchdb: nix.thunk(() => nix.attr(nixosTests, "couchdb")) })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Database that uses JSON for documents, JavaScript for MapReduce queries, and regular HTTP for an API",
         homepage: "https://couchdb.apache.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

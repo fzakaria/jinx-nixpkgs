@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const gzip = nix.arg($, "gzip");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(melpaBuild, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "edraw",
       version: "1.2.0-unstable-2025-05-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "misohena",
           repo: "el-easydraw",
           rev: "8007f50c1c1734325c47939904f486753c7dd8ee",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       propagatedUserEnvPkgs: nix.thunk(() => [gzip]),
       files: "(:defaults \"msg\")",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/misohena/el-easydraw",
         description: "Embedded drawing tool for Emacs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

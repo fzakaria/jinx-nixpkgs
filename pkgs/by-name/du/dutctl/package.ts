@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const callPackage = nix.arg($, "callPackage");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "dutctl",
       version: "1.0.0-alpha.4-unstable-2026-09-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BlindspotSoftware",
           repo: "dutctl",
           rev: "f2d2aec5ad1f54b4380ab2b1d8c3aa4d270fd5d5",
@@ -31,17 +31,17 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-trdOZfYUbw11/OT168WYyYGkwXkosSnL8h8z3tN9um0=",
       ldflags: nix.thunk(() => ["-s"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
         tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test.nix"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             dutctl: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           })))),
       })),
       __structuredAttrs: true,
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Unified device management for open firmware development",
         longDescription: "dutctl stands for \"Device-under-Test Control\" and is an open-source\ncommand-line utility and service ecosystem for managing development and\ntest devices in firmware environments.\n\nBy providing a unified interface to interact with boards and test\nfixtures across platforms, dutctl eliminates the fragmentation of device\nmanagement tools that has long plagued firmware workflows.\n\nThe project features remote device control, command streaming,\nmulti-architecture testing, and a flexible plugin architecture for\nextensibility.\n",
         homepage: "https://github.com/BlindspotSoftware/dutctl",

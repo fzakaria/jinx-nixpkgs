@@ -46,12 +46,12 @@ export default nix.lambda((args) => (() => {
   const enableDaemon = nix.argOr($, "enableDaemon", () => true);
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "colord",
       version: "1.4.8",
       outputs: nix.thunk(() => ["out", "dev", "devdoc", "man", "installedTests"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.freedesktop.org/software/colord/releases/colord-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-IVAL1ol1MSp/DzzmAZ2fdfQqrKp1ynEV7HILVEVAaJY=",
         })))),
@@ -99,7 +99,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       postInstall: "glib-compile-schemas $out/share/glib-2.0/schemas\n",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PKG_CONFIG_SYSTEMD_SYSTEMDSYSTEMUNITDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/systemd/system`),
         PKG_CONFIG_SYSTEMD_SYSTEMDUSERUNITDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/systemd/user`),
         PKG_CONFIG_SYSTEMD_TMPFILESDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/tmpfiles.d`),
@@ -108,14 +108,14 @@ export default nix.lambda((args) => (() => {
         PKG_CONFIG_UDEV_UDEVDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/udev`),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           installedTests: nix.thunk(() => nix.sel(nixosTests, "installed-tests", "colord")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "System service to manage, install and generate color profiles to accurately color manage input and output devices",
         homepage: "https://www.freedesktop.org/software/colord/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),

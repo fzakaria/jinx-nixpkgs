@@ -20,21 +20,21 @@ export default nix.lambda((args) => (() => {
   const arch = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? "linux" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "darwin" : nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "system")}`)))));
   const analysisDir = nix.thunk(() => nix.str`server/analysis_binaries/${arch}`);
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "rescript-vscode",
         publisher: "chenglou92",
         version: version,
         hash: "sha256-2fN8bq6X1Lm9/5+wNMzL8I0bUVMFetXDWVObUJeVYbU=",
       })),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, "rescript-editor-analysis": rescript_editor_analysis })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, "rescript-editor-analysis": rescript_editor_analysis })),
       strictDeps: true,
       postPatch: nix.thunk(() => nix.str`rm -r ${analysisDir}
 ln -s ${rescript_editor_analysis}/bin ${analysisDir}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Official VSCode plugin for ReScript",
         homepage: "https://github.com/rescript-lang/rescript-vscode",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "jayesh-bhoot"))]),

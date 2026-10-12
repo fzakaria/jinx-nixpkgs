@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const dontUnpack = true;
       const installPhase = "runHook preInstall\n\ninstall -Dm644 $src/fonts/opentype/nowacki/iwona/*.otf -t $out/share/fonts/opentype\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Two-element sans-serif typeface, created by Małgorzata Budyta",
         homepage: "https://jmn.pl/en/kurier/",
         license: nix.thunk(() => nix.sel(src, "meta", "license")),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$2, pname, version, src, dontUnpack, installPhase, meta };
+      return { [nix.POS]: pos$2, pname, version, src, dontUnpack, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

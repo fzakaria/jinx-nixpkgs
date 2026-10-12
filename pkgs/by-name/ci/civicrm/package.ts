@@ -13,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const php = nix.arg($, "php");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(php, "buildComposerProject2"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "civicrm-core",
       version: "6.18.0",
       __structuredAttrs: true,
       strictDeps: true,
       dontUnpack: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "civicrm",
           repo: "civicrm-core",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-Yp+pWbsFytydBZtxR1HIJVohWq3O//3SbVyysrQKIxc=",
       installPhase: "runHook preInstall\nmkdir -p $out/\ncp -R . $out/\ncp $out/bin/setup.conf.txt $out/bin/setup.conf\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://civicrm.org/",
         changelog: nix.thunk(() => nix.str`https://download.civicrm.org/release/${nix.sel(finalAttrs, "version")}`),
         description: "Standalone version of CiviCRM, a CRM software for non-profit organizations",

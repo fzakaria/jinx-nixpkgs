@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const darcs = nix.arg($, "darcs");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "darcs-to-git",
       version: "0-unstable-2024-11-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "purcell",
           repo: "darcs-to-git",
           rev: "7b7bbc653c953772edffc2378cc0b2fe7632e1fa",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       })()),
       installPhase: "install -vD darcs-to-git \"$out/bin/darcs-to-git\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       doCheck: true,
@@ -89,7 +89,7 @@ cd "$orig_dir"
 rm -rf "$darcs_repos" "$git_repos" "$test_home"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Converts a Darcs repository into a Git repository",
         homepage: "http://www.sanityinc.com/articles/converting-darcs-repositories-to-git",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

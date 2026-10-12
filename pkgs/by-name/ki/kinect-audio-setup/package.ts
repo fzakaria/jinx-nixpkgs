@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const firmwareUrl = "https://download.microsoft.com/download/F/9/9/F99791F2-D5BE-478A-B77A-830AD14950C3/KinectSDK-v1.0-beta2-x86.msi";
   const licenseUrl = "https://www.microsoft.com/en-us/legal/terms-of-use";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "kinect-audio-setup",
       version: "0.5",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         FIRMWARE: nix.thunk(() => nix.app(requireFile, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             name: "UACFirmware",
             sha256: "08a2vpgd061cmc6h3h8i6qj3sjvjr1fwcnwccwywqypz3icn8xw1",
             message: nix.thunk(() => nix.str`In order to install the Kinect Audio Firmware, you need to download the
@@ -39,7 +39,7 @@ add it to the Nix store.
           })))),
       })),
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: "git://git.ao2.it/kinect-audio-setup.git",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-bFwmWh822KvFwP/0Gu097nF5K2uCwCLMB1RtP7k+Zt0=",
@@ -71,7 +71,7 @@ make install_udev_rules $makeFlags "\${makeFlagsArray[@]}"
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Tools to enable audio input from the Microsoft Kinect sensor device",
         homepage: "https://git.ao2.it/kinect-audio-setup.git",
         maintainers: nix.thunk(() => (() => {

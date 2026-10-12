@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const version = "1.2.0";
   const src = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "Klasse-Methode",
       repo: "lauti",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-llmXXaCy6V4DE0B1a0K0rRCb6XSvC1+EaG9legx0u4I=",
     }))));
-  const frontend = nix.thunk(() => nix.app(callPackage, nix.path(here, "./frontend.nix"), nix.thunk(() => ({ __proto__: pos$2, src: src, version: version }))));
+  const frontend = nix.thunk(() => nix.app(callPackage, nix.path(here, "./frontend.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, src: src, version: version }))));
   return nix.app(buildGoModule, nix.thunk(() => (() => {
       const pname = "lauti";
       const version_1 = version;
@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
 `);
       const preCheck = "# Disable test, requires running Docker daemon\nrm cmd/lauti/main_test.go\nrm service/email/email_test.go\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, lauti: nix.thunk(() => nix.attr(nixosTests, "lauti")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, lauti: nix.thunk(() => nix.attr(nixosTests, "lauti")) })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Open source calendar for events, groups and places",
         homepage: "https://lauti.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "lauti",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version: version_1,
         src: src_1,

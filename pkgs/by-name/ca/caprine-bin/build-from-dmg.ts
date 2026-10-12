@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const sha256 = nix.arg($, "sha256");
   const metaCommon = nix.argOr($, "metaCommon", () => ({}));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/sindresorhus/caprine/releases/download/v${version}/Caprine-${version}.dmg`),
           name: nix.thunk(() => nix.str`Caprine-${version}.dmg`),
           sha256: sha256,
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [undmg]),
       installPhase: "mkdir -p \"$out/Applications/Caprine.app\"\ncp -R . \"$out/Applications/Caprine.app\"\nmkdir \"$out/bin\"\nln -s \"$out/Applications/Caprine.app/Contents/MacOS/Caprine\" \"$out/bin/caprine\"\n",
       meta: nix.thunk(() => nix.update(metaCommon, {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         platforms: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "platforms")), null);
           return nix.force(nix.lookup(w, "darwin"));

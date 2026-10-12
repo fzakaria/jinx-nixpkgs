@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gintas",
           repo: "django-picklefield",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +34,7 @@ runHook postCheck
 `);
       const pythonImportsCheck = nix.thunk(() => ["picklefield"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pickled object field for Django",
         homepage: "https://github.com/gintas/django-picklefield",
         changelog: nix.thunk(() => nix.str`https://github.com/gintas/django-picklefield/releases/tag/${nix.sel(src, "tag")}`),
@@ -42,7 +42,7 @@ runHook postCheck
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

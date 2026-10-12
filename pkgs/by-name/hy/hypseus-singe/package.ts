@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const libzip = nix.arg($, "libzip");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "hypseus-singe",
       version: "2.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DirtBagXon",
           repo: "hypseus-singe",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, makeWrapper, pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([bash, SDL2, SDL2_image, SDL2_ttf, SDL2_mixer, libmpeg2, libvorbis, libzip], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libx11])))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), SDL2_image)}/include/SDL2`),
             nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), SDL2_ttf)}/include/SDL2`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "cd src\n",
       installPhase: "runHook preInstall\n\ninstall -Dm755 hypseus $out/bin/hypseus.bin\ncd ../..\ninstall -Dm755 scripts/run.sh $out/bin/hypseus\ninstall -Dm755 scripts/singe.sh $out/bin/singe\n\nsubstituteInPlace $out/bin/{hypseus,singe} \\\n    --replace-fail \"/bin/cat\" \"cat\" \\\n    --replace-fail hypseus.bin $out/bin/hypseus.bin\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Laserdisc game emulator, the SDL2 version of Daphne and Singe",
         homepage: "https://github.com/DirtBagXon/hypseus-singe",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

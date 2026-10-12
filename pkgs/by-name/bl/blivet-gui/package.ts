@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "storaged-project",
           repo: "blivet-gui",
           tag: version,
@@ -56,14 +56,14 @@ substituteInPlace org.fedoraproject.pkexec.blivet-gui.policy --replace-fail /usr
 )
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: blivet_gui })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: blivet_gui })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "GUI tool for storage configuration using blivet library",
         homepage: "https://fedoraproject.org/wiki/Blivet",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -75,7 +75,7 @@ substituteInPlace org.fedoraproject.pkexec.blivet-gui.policy --replace-fail /usr
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

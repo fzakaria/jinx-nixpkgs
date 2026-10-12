@@ -28,7 +28,7 @@ for p in $FILES; do
 done
 `)));
   return nix.app(nix.sel(faust, "wrapWithBuildEnv"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       baseName: "faust2jaqt",
       scripts: nix.thunk(() => ["faust2jaqt", "faust2jackserver"]),
       buildInputs: nix.thunk(() => [bash]),

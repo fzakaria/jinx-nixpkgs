@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const flit_core = nix.arg($, "flit-core");
   const sphinx = nix.arg($, "sphinx");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sphinx-inline-tabs",
       version: "2025.12.21.14",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pradyunsg",
           repo: "sphinx-inline-tabs",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["sphinx_inline_tabs"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Add inline tabbed content to your Sphinx documentation",
         homepage: "https://github.com/pradyunsg/sphinx-inline-tabs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

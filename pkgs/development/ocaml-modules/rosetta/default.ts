@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const yuscii = nix.arg($, "yuscii");
   const uuuu = nix.arg($, "uuuu");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rosetta",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/rosetta/releases/download/v${nix.sel(finalAttrs, "version")}/rosetta-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-LFdkwHBppDXE5q6mcDPWX1PreSVEsV9msq6rEmCWVwA=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [coin, uuuu, yuscii]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Universal decoder of an encoded flow (UTF-7, ISO-8859 and KOI8) to Unicode",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/mirage/rosetta",

@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   const version = "1.5.1";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "openscopeproject",
       repo: "TrguiNG",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-IcOkKYxkU7c+sIPcig10sR1L66xb7oYim7KALWsz9rQ=",
     }))));
   const meta = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     description: "Remote GUI for Transmission torrent daemon",
     homepage: "https://github.com/openscopeproject/TrguiNG",
     license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
     })()),
   }));
   const frontend = nix.thunk(() => nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "TrguiNG-frontend",
       version: version,
       src: src,
@@ -56,13 +56,13 @@ export default nix.lambda((args) => (() => {
       npmBuildScript: "webpack-prod",
       installPhase: "runHook preInstall\n\ncp -r dist/ $out\n\nrunHook postInstall\n",
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         TRGUING_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
-      meta: nix.thunk(() => nix.update(meta, { __proto__: pos$4, description: "Web UI for Transmission torrent daemon" })),
+      meta: nix.thunk(() => nix.update(meta, { [nix.POS]: pos$4, description: "Web UI for Transmission torrent daemon" })),
     })));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "TrguiNG",
       version: version,
       src: src,
@@ -81,11 +81,11 @@ substituteInPlace src-tauri/tauri.conf.json \\
       cargoRoot: "src-tauri",
       buildAndTestSubdir: "src-tauri",
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$6, extraArgs: nix.thunk(() => ["-s", "frontend"]) })))),
+        [nix.POS]: pos$7,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$6, extraArgs: nix.thunk(() => ["-s", "frontend"]) })))),
         frontend: frontend,
       })),
-      meta: nix.thunk(() => nix.update(meta, { __proto__: pos$8, mainProgram: "TrguiNG" })),
+      meta: nix.thunk(() => nix.update(meta, { [nix.POS]: pos$8, mainProgram: "TrguiNG" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

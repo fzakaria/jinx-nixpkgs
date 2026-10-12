@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const useQrencode = nix.argOr($, "useQrencode", () => true);
   const qrencode = nix.arg($, "qrencode");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "linux-router",
       version: "0.8.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "garywill",
           repo: "linux-router",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -70,7 +70,7 @@ makeWrapper $out/.bin-wrapped/lnxrouter $out/bin/lnxrouter --prefix PATH : ${bin
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/garywill/linux-router",
         description: "Set Linux as router / Wifi hotspot / proxy in one command",
         longDescription: "Features:\n\n- Create a NATed sub-network\n- Provide Internet\n- DHCP server and RA\n- DNS server\n- IPv6 (behind NATed LAN, like IPv4)\n- Creating Wifi hotspot:\n  - Channel selecting\n  - Choose encryptions: WPA2/WPA, WPA2, WPA, No encryption\n  - Create AP on the same interface you are getting Internet (require same channel)\n- Transparent proxy (redsocks)\n- DNS proxy\n- Compatible with NetworkManager (automatically set interface as unmanaged)\n",

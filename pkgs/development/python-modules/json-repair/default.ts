@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.55.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mangiucugna",
           repo: "json_repair",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/test_performance.py"]);
       const pythonImportsCheck = nix.thunk(() => ["json_repair"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module to repair invalid JSON, commonly used to parse the output of LLMs",
         homepage: "https://github.com/mangiucugna/json_repair/",
         changelog: nix.thunk(() => nix.str`https://github.com/mangiucugna/json_repair/releases/tag/${nix.sel(src, "tag")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "json_repair",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

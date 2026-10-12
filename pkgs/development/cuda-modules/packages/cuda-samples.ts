@@ -37,19 +37,19 @@ export default nix.lambda((args) => (() => {
   const libnvjitlink = nix.arg($, "libnvjitlink");
   const libnvjpeg = nix.arg($, "libnvjpeg");
   return nix.app(nix.sel(backendStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       __structuredAttrs: true,
       strictDeps: true,
       name: nix.thunk(() => nix.str`${cudaNamePrefix}-${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}`),
       pname: "cuda-samples",
       version: nix.thunk(() => (nix.asBool(nix.app(cudaAtLeast, "13")) ? "13.0" : "12.8")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "NVIDIA",
           repo: "cuda-samples",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: nix.thunk(() => nix.app(nix.sel(lib, "getAttr"), nix.thunk(() => nix.sel(finalAttrs, "version")), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               "13.0": "sha256-bOcAE/OzOI6MWTh+bFZfq1en6Yawu+HI8W+xK+XaCqg=",
               "12.8": "sha256-Ba0Fi0v/sQ+1iJ4mslgyIAE+oK5KO0lMoTQCC91vpiA=",
             })))),
@@ -111,7 +111,7 @@ substituteInPlace \\
       ]),
       installPhase: "runHook preInstall\n\npushd \"$NIX_BUILD_TOP/$sourceRoot/${cmakeBuildDir:?}\" >/dev/null\n\nnixLog \"deleting CMake related files\"\n\nfind \"$PWD/Samples\" -type d -name CMakeFiles -exec rm -rf {} +\nfind \"$PWD/Samples\" -type f -name cmake_install.cmake -exec rm -rf {} +\nfind \"$PWD/Samples\" -type f -name Makefile -exec rm -rf {} +\n\nnixLog \"copying $PWD/Samples to $out/\"\nmkdir -p \"$out\"\ncp -rv \"$PWD/Samples\"/* \"$out/\"\n\npopd >/dev/null\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Samples for CUDA Developers which demonstrates features in CUDA Toolkit",
         homepage: "https://github.com/NVIDIA/cuda-samples",
         license: nix.thunk(() => nix.sel(lib, "licenses", "nvidiaCuda")),

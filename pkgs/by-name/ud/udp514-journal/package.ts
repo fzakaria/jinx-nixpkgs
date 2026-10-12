@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const discount = nix.arg($, "discount");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "udp514-journal",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eworm-de",
           repo: "udp514-journal",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,16 +37,16 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       __structuredAttrs: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           nixos: nix.thunk(() => nix.sel(nixosTests, "udp514-journal")),
         })),
       })),
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           description: "Forward syslog from network (udp/514) to journal",
           homepage: "https://github.com/eworm-de/udp514-journal",
           license: nix.thunk(() => (() => {

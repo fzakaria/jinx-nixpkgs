@@ -72,36 +72,36 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "datadog-agent"));
   const ddConf = nix.thunk(() => nix.update({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     skip_ssl_validation: false,
     confd_path: "/etc/datadog-agent/conf.d",
     additional_checksd: "/etc/datadog-agent/checks.d",
     use_dogstatsd: true,
-  }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "logLevel"), null)), nix.thunk(() => ({ __proto__: pos$2, log_level: nix.thunk(() => nix.sel(cfg, "logLevel")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "hostname"), null)), nix.thunk(() => ({ __proto__: pos$3, hostname: nix.thunk(() => nix.attr(cfg, "hostname")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "ddUrl"), null)), nix.thunk(() => ({ __proto__: pos$4, dd_url: nix.thunk(() => nix.sel(cfg, "ddUrl")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "site"), null)), nix.thunk(() => ({ __proto__: pos$5, site: nix.thunk(() => nix.sel(cfg, "site")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "tags"), null)), nix.thunk(() => ({
-      __proto__: pos$6,
+  }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "logLevel"), null)), nix.thunk(() => ({ [nix.POS]: pos$2, log_level: nix.thunk(() => nix.sel(cfg, "logLevel")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "hostname"), null)), nix.thunk(() => ({ [nix.POS]: pos$3, hostname: nix.thunk(() => nix.attr(cfg, "hostname")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "ddUrl"), null)), nix.thunk(() => ({ [nix.POS]: pos$4, dd_url: nix.thunk(() => nix.sel(cfg, "ddUrl")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "site"), null)), nix.thunk(() => ({ [nix.POS]: pos$5, site: nix.thunk(() => nix.sel(cfg, "site")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "tags"), null)), nix.thunk(() => ({
+      [nix.POS]: pos$6,
       tags: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ", ", nix.thunk(() => nix.sel(cfg, "tags")))),
     }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "enableLiveProcessCollection")), nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       process_config: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         dd_agent_bin: nix.thunk(() => nix.str`${datadogPkg}/bin/agent`),
-        process_collection: nix.thunk(() => ({ __proto__: pos$7, enabled: "true" })),
-        container_collection: nix.thunk(() => ({ __proto__: pos$8, enabled: "true" })),
+        process_collection: nix.thunk(() => ({ [nix.POS]: pos$7, enabled: "true" })),
+        container_collection: nix.thunk(() => ({ [nix.POS]: pos$8, enabled: "true" })),
       })),
     }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "enableTraceAgent")), nix.thunk(() => ({
-      __proto__: pos$12,
-      apm_config: nix.thunk(() => ({ __proto__: pos$11, enabled: true })),
+      [nix.POS]: pos$12,
+      apm_config: nix.thunk(() => ({ [nix.POS]: pos$11, enabled: true })),
     }))), nix.sel(cfg, "extraConfig"))))))))));
   const makeCheckConfigs = (entries) => nix.app(nix.sel(lib, "mapAttrs'"), (name) => (conf) => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       name: nix.thunk(() => nix.str`datadog-agent/conf.d/${name}.d/conf.yaml`),
       value: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), nix.thunk(() => nix.str`${name}-check-conf.yaml`), nix.thunk(() => nix.builtins.toJSON(conf)))),
       })),
     }), entries);
   const defaultChecks = nix.thunk(() => ({
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     disk: nix.thunk(() => nix.sel(cfg, "diskCheck")),
     network: nix.thunk(() => nix.sel(cfg, "networkCheck")),
   }));
@@ -109,113 +109,113 @@ export default nix.lambda((args) => (() => {
     const w = nix.withScope(pkgs, null);
     const w_1 = nix.withScope(nix.builtins, w);
     return nix.update({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       "datadog-agent/datadog.yaml": nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         source: nix.thunk(() => nix.app(nix.lookup(w_1, "writeText"), "datadog.yaml", nix.thunk(() => nix.app(nix.lookup(w_1, "toJSON"), ddConf)))),
       })),
     }, nix.app(makeCheckConfigs, nix.thunk(() => nix.update(nix.sel(cfg, "checks"), defaultChecks))));
   })());
   const datadogPkg = nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       pythonPackages: nix.thunk(() => nix.app(nix.sel(pkgs, "datadog-integrations-core"), nix.thunk(() => nix.sel(cfg, "extraIntegrations")))),
     }))));
   return {
-    __proto__: pos$61,
+    [nix.POS]: pos$61,
     options: nix.thunk(() => ({
-      __proto__: pos$43,
+      [nix.POS]: pos$43,
       services: nix.thunk(() => ({
-        __proto__: pos$42,
+        [nix.POS]: pos$42,
         "datadog-agent": nix.thunk(() => ({
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Datadog-agent v7 monitoring service")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "datadog-agent", nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               extraDescription: "::: {.note}\nThe provided package is expected to have an overridable `pythonPackages`-attribute\nwhich configures the Python environment with the Datadog checks.\n:::\n",
             })))),
           apiKeyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               description: "Path to a file containing the Datadog API key to associate the\nagent with your account.\n",
               example: "/run/keys/datadog_api_key",
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
             })))),
           ddUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               description: "Custom dd_url to configure the agent with. Useful if traffic to datadog\nneeds to go through a proxy.\nDon't use this to point to another datadog site (EU) - use site instead.\n",
               default: null,
               example: "http://haproxy.example.com:3834",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             })))),
           site: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               description: "The datadog site to point the agent towards.\nSet to datadoghq.eu to point it to their EU site.\n",
               default: null,
               example: "datadoghq.eu",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             })))),
           tags: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               description: "The tags to mark this Datadog agent",
               example: nix.thunk(() => ["test", "service"]),
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))))),
             })))),
           hostname: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               description: "The hostname to show in the Datadog dashboard (optional)",
               default: null,
               example: "mymachine.mydomain",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             })))),
           logLevel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               description: "Logging verbosity.",
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["DEBUG", "INFO", "WARN", "ERROR"]))))),
             })))),
           extraIntegrations: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.sel(lib, "types", "attrs")),
               description: "Extra integrations from the Datadog core-integrations\nrepository that should be built and included.\n\nBy default the included integrations are disk, mongo, network,\nnginx and postgres.\n\nTo include additional integrations the name of the derivation\nand a function to filter its dependencies from the Python\npackage set must be provided.\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  ntp = pythonPackages: [ pythonPackages.ntplib ];\n}\n")),
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.sel(lib, "types", "attrs")),
               description: "Extra configuration options that will be merged into the\nmain config file {file}`datadog.yaml`.\n",
             })))),
           enableLiveProcessCollection: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               description: "Whether to enable the live process collection agent.\n",
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             })))),
           processAgentPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               default: nix.thunk(() => nix.sel(pkgs, "datadog-process-agent")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.datadog-process-agent")),
               description: "Which DataDog v7 agent package to use. Note that the provided\npackage is expected to have an overridable `pythonPackages`-attribute\nwhich configures the Python environment with the Datadog\nchecks.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
             })))),
           enableTraceAgent: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               description: "Whether to enable the trace agent.\n",
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             })))),
           checks: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               description: "Configuration for all Datadog checks. Keys of this attribute\nset will be used as the name of the check to create the\nappropriate configuration in `conf.d/$check.d/conf.yaml`.\n\nThe configuration is converted into JSON from the plain Nix\nlanguage configuration, meaning that you should write\nconfiguration adhering to Datadog's documentation - but in Nix\nlanguage.\n\nRefer to the implementation of this module (specifically the\ndefinition of `defaultChecks`) for an example.\n\nNote: The 'disk' and 'network' check are configured in\nseparate options because they exist by default. Attempting to\noverride their configuration here will have no effect.\n",
               example: nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 http_check: nix.thunk(() => ({
-                  __proto__: pos$32,
+                  [nix.POS]: pos$32,
                   init_config: null,
                   instances: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$31,
+                      [nix.POS]: pos$31,
                       name: "some-service",
                       url: "http://localhost:1337/healthz",
                       tags: nix.thunk(() => ["some-service"]),
@@ -230,25 +230,25 @@ export default nix.lambda((args) => (() => {
               })()),
             })))),
           diskCheck: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               description: "Disk check config",
               type: nix.thunk(() => nix.sel(lib, "types", "attrs")),
               default: nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 init_config: nix.thunk(() => ({})),
-                instances: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$35, use_mount: "false" }))]),
+                instances: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$35, use_mount: "false" }))]),
               })),
             })))),
           networkCheck: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               description: "Network check config",
               type: nix.thunk(() => nix.sel(lib, "types", "attrs")),
               default: nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 init_config: nix.thunk(() => ({})),
                 instances: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$38,
+                    [nix.POS]: pos$38,
                     collect_connection_state: false,
                     excluded_interfaces: nix.thunk(() => ["lo", "lo0"]),
                   })),
@@ -259,9 +259,9 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$60,
+        [nix.POS]: pos$60,
         environment: nix.thunk(() => ({
-          __proto__: pos$44,
+          [nix.POS]: pos$44,
           systemPackages: nix.thunk(() => [
             datadogPkg,
             nix.thunk(() => nix.sel(pkgs, "sysstat")),
@@ -271,11 +271,11 @@ export default nix.lambda((args) => (() => {
           etc: etcfiles,
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$49,
+          [nix.POS]: pos$49,
           users: nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             datadog: nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               description: "Datadog Agent User",
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "datadog")),
               group: "datadog",
@@ -284,18 +284,18 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             datadog: nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "datadog")),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$59,
+          [nix.POS]: pos$59,
           services: nix.thunk(() => (() => {
             const makeService = (attrs) => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => ({
-                __proto__: pos$51,
+                [nix.POS]: pos$51,
                 path: nix.thunk(() => [
                   datadogPkg,
                   nix.thunk(() => nix.sel(pkgs, "sysstat")),
@@ -304,7 +304,7 @@ export default nix.lambda((args) => (() => {
                 ]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$50,
+                  [nix.POS]: pos$50,
                   User: "datadog",
                   Group: "datadog",
                   Restart: "always",
@@ -313,18 +313,18 @@ export default nix.lambda((args) => (() => {
                 restartTriggers: nix.thunk(() => nix.concat([datadogPkg], nix.builtins.map((x) => nix.sel(x, "source"), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), etcfiles))))),
               })), attrs);
             return {
-              __proto__: pos$58,
+              [nix.POS]: pos$58,
               "datadog-agent": nix.thunk(() => nix.app(makeService, nix.thunk(() => ({
-                  __proto__: pos$53,
+                  [nix.POS]: pos$53,
                   description: "Datadog agent monitor",
                   preStart: "chown -R datadog: /etc/datadog-agent\nrm -f /etc/datadog-agent/auth_token\n",
                   script: nix.thunk(() => nix.str`export DD_API_KEY=$(head -n 1 ${nix.sel(cfg, "apiKeyFile")})
 exec ${datadogPkg}/bin/agent run -c /etc/datadog-agent/datadog.yaml
 `),
-                  serviceConfig: nix.thunk(() => ({ __proto__: pos$52, PermissionsStartOnly: true })),
+                  serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$52, PermissionsStartOnly: true })),
                 })))),
               "dd-jmxfetch": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.app(nix.sel(lib, "hasAttr"), "jmx", nix.thunk(() => nix.sel(cfg, "checks")))), nix.thunk(() => nix.app(makeService, nix.thunk(() => ({
-                    __proto__: pos$55,
+                    [nix.POS]: pos$55,
                     description: "Datadog JMX Fetcher",
                     path: nix.thunk(() => [
                       datadogPkg,
@@ -334,12 +334,12 @@ exec ${datadogPkg}/bin/agent run -c /etc/datadog-agent/datadog.yaml
                       nix.thunk(() => nix.sel(pkgs, "jdk")),
                     ]),
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$54,
+                      [nix.POS]: pos$54,
                       ExecStart: nix.thunk(() => nix.str`${datadogPkg}/bin/dd-jmxfetch`),
                     })),
                   })))))),
               "datadog-process-agent": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableLiveProcessCollection")), nix.thunk(() => nix.app(makeService, nix.thunk(() => ({
-                    __proto__: pos$56,
+                    [nix.POS]: pos$56,
                     description: "Datadog Live Process Agent",
                     path: [],
                     script: nix.thunk(() => nix.str`export DD_API_KEY=$(head -n 1 ${nix.sel(cfg, "apiKeyFile")})
@@ -347,7 +347,7 @@ ${nix.sel(cfg, "processAgentPackage")}/bin/process-agent --config /etc/datadog-a
 `),
                   })))))),
               "datadog-trace-agent": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableTraceAgent")), nix.thunk(() => nix.app(makeService, nix.thunk(() => ({
-                    __proto__: pos$57,
+                    [nix.POS]: pos$57,
                     description: "Datadog Trace Agent",
                     path: [],
                     script: nix.thunk(() => nix.str`export DD_API_KEY=$(head -n 1 ${nix.sel(cfg, "apiKeyFile")})

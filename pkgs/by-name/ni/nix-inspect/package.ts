@@ -24,14 +24,14 @@ export default nix.lambda((args) => (() => {
   const fetchpatch2 = nix.arg($, "fetchpatch2");
   const nixComponents = nix.thunk(() => nix.sel(nixVersions, "nixComponents_2_31"));
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "bluskript",
       repo: "nix-inspect",
       rev: "2938c8e94acca6a7f1569f478cac6ddc4877558e",
       hash: "sha256-ArwdTtlIje7yOTblkZs4aQ1+HBtEwJKkfKOiA9tY8nA=",
     }))));
   const workerPackage = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       src: src,
       pname: "nix-inspect-worker",
       version: "0.1.2-unstable-2025-08-14",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/bluskript/nix-inspect/commit/af4dd48d69f399c7b7e3f07d5268ade606a91f22.patch",
             hash: "sha256-ipyT/zr+CEZi8EPk6Tw8V58ukUdmrtXRn+H32Y7Csuw=",
           })))),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       mesonBuildType: "release",
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       src: src,
       pname: "nix-inspect",
       version: "0.1.2",
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
   --replace-fail 'env!("WORKER_BINARY_PATH")' '"${workerPackage}/bin/nix-inspect"'
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Interactive TUI for inspecting nix configs and other expressions",
         homepage: "https://github.com/bluskript/nix-inspect",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

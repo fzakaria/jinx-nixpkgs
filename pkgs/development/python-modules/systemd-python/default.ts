@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "235";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "systemd",
           repo: "python-systemd",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -42,7 +42,7 @@ pytest $out/${nix.sel(python, "sitePackages")}/systemd -k 'not test_get_machine 
 `);
       const pythonImportsCheck = nix.thunk(() => ["systemd.journal", "systemd.id128", "systemd.daemon", "systemd.login"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python module for native access to the systemd facilities",
         homepage: "https://www.freedesktop.org/software/systemd/python-systemd/",
         changelog: nix.thunk(() => nix.str`https://github.com/systemd/python-systemd/blob/v${version}/NEWS`),
@@ -53,7 +53,7 @@ pytest $out/${nix.sel(python, "sitePackages")}/systemd -k 'not test_get_machine 
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

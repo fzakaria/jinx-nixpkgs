@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "xfce4-icon-theme";
       const version = "4.4.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://xfce/src/art/${pname}/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/${pname}-${version}.tar.bz2`),
           sha256: "sha256-1HhmktVrilY/ZqXyYPHxOt4R6Gx4y8slqfml/EfPZvo=",
         }))));
@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [tango_icon_theme, hicolor_icon_theme]);
       const dontDropIconThemeCache = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(httpTwoLevelsUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`https://archive.xfce.org/src/art/${pname}`),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.xfce.org/",
         description: "Icons for Xfce",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "xfce"))]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

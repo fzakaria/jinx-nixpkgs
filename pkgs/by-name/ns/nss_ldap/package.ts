@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const openldap = nix.arg($, "openldap");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nss_ldap",
       version: "265",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://www.padl.com/download/nss_ldap-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1a16q9p97d2blrj0h6vl1xr7dg7i4s8x8namipr79mshby84vdbp",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [perl]),
       buildInputs: nix.thunk(() => [openldap]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "LDAP module for the Solaris Nameservice Switch (NSS)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

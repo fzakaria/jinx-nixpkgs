@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "liborcus",
       version: "0.21.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "orcus",
           repo: "orcus",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       enableParallelChecking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of parsers and import filters for spreadsheet documents",
         homepage: "https://gitlab.com/orcus/orcus",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/orcus/orcus/-/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG`),

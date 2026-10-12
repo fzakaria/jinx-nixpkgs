@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     diffPlugins: (expectedPlugins) => (foundPluginsFilePath) => nix.str`# sort both lists first
 plugins_expected=$(mktemp)
 (${nix.app(nix.sel(lib, "concatMapStrings"), (s) => nix.str`echo "${s}";`, expectedPlugins)}) \\

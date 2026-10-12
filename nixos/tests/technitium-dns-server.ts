@@ -20,38 +20,38 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     name: "technitium-dns-server",
     nodes: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           systemd: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             services: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               "technitium-dns-server": nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   Restart: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "no")),
                 })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$6,
-            "technitium-dns-server": nix.thunk(() => ({ __proto__: pos$5, enable: true, openFirewall: true })),
+            [nix.POS]: pos$6,
+            "technitium-dns-server": nix.thunk(() => ({ [nix.POS]: pos$5, enable: true, openFirewall: true })),
           })),
         };
       })(), formals$2),
     })),
     testScript: "import json\n\nstart_all()\nmachine.wait_for_unit(\"technitium-dns-server.service\")\nmachine.wait_for_open_port(53)\ncurl_cmd = 'curl --fail-with-body -X GET \"http://localhost:5380/api/user/login?user=admin&pass=admin\"'\noutput = json.loads(machine.wait_until_succeeds(curl_cmd, timeout=10))\nprint(output)\nassert \"ok\" == output['status'], \"status not ok\"\n",
     meta: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "fabianrig"))];

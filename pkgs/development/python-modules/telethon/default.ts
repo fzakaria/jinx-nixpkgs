@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "telethon",
       version: "1.45.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Lonami",
           repo: "Telethon",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,12 +37,12 @@ export default nix.lambda((args) => (() => {
 `),
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => [pyaes, rsa]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, cryptg: nix.thunk(() => [cryptg]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, cryptg: nix.thunk(() => [cryptg]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytest_asyncio, pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
       preCheck: "rm -r telethon\n",
       pythonImportsCheck: nix.thunk(() => ["telethon"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://codeberg.org/Lonami/Telethon",
         description: "Full-featured Telegram client library for Python 3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

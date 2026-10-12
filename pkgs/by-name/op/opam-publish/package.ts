@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const opam_format = nix.thunk(() => nix.attr(ocamlPackages, "opam-format"));
   const opam_state = nix.thunk(() => nix.attr(ocamlPackages, "opam-state"));
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "opam-publish",
       version: "3.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ocaml-opam",
           repo: "opam-publish",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       buildInputs: nix.thunk(() => [cmdliner, lwt_ssl, opam_core, opam_format, opam_state, github, github_unix]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/ocaml-opam/opam-publish",
         description: "Tool to ease contributions to opam repositories",
         mainProgram: "opam-publish",

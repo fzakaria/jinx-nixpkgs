@@ -45,112 +45,112 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$36,
+    [nix.POS]: pos$36,
     name: "suricata",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "felbinger"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$35,
+      [nix.POS]: pos$35,
       ids: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         networking: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           interfaces: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             eth1: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               useDHCP: false,
               ipv4: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 addresses: nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$2, address: "192.168.1.2", prefixLength: 24n })),
+                  nix.thunk(() => ({ [nix.POS]: pos$2, address: "192.168.1.2", prefixLength: 24n })),
                 ]),
               })),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           services: nix.thunk(() => ({
-            __proto__: pos$8,
-            "suricata-update": nix.thunk(() => ({ __proto__: pos$7, enable: false })),
+            [nix.POS]: pos$8,
+            "suricata-update": nix.thunk(() => ({ [nix.POS]: pos$7, enable: false })),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             rules: nix.thunk(() => [
               "f /var/lib/suricata/rules/suricata.rules 644 suricata suricata 0 alert ip any any -> any any (msg:\"GPL ATTACK_RESPONSE id check returned root\"; content:\"uid=0|28|root|29|\"; classtype:bad-unknown; sid:2100498; rev:7; metadata:created_at 2010_09_23, updated_at 2019_07_26;)",
             ]),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [nix.thunk(() => nix.lookup(w, "suricata"))];
           })()),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           suricata: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             enable: true,
             reloadOnRulesetUpdate: true,
             settings: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               vars: nix.thunk(() => ({
-                __proto__: pos$13,
-                "address-groups": nix.thunk(() => ({ __proto__: pos$12, HOME_NET: "192.168.1.0/24" })),
+                [nix.POS]: pos$13,
+                "address-groups": nix.thunk(() => ({ [nix.POS]: pos$12, HOME_NET: "192.168.1.0/24" })),
               })),
-              "unix-command": nix.thunk(() => ({ __proto__: pos$14, enabled: true })),
+              "unix-command": nix.thunk(() => ({ [nix.POS]: pos$14, enabled: true })),
               outputs: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$16,
-                  fast: nix.thunk(() => ({ __proto__: pos$15, enabled: true })),
+                  [nix.POS]: pos$16,
+                  fast: nix.thunk(() => ({ [nix.POS]: pos$15, enabled: true })),
                 })),
               ]),
-              "af-packet": nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$17, interface: "eth1" }))]),
+              "af-packet": nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$17, interface: "eth1" }))]),
               "classification-file": nix.thunk(() => nix.str`${nix.sel(pkgs, "suricata")}/etc/suricata/classification.config`),
             })),
           })),
         })),
       })),
       helper: nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         imports: nix.thunk(() => [nix.path(here, "../modules/profiles/minimal.nix")]),
         networking: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           interfaces: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             eth1: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               useDHCP: false,
               ipv4: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 addresses: nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$22, address: "192.168.1.1", prefixLength: 24n })),
+                  nix.thunk(() => ({ [nix.POS]: pos$22, address: "192.168.1.1", prefixLength: 24n })),
                 ]),
               })),
             })),
           })),
-          firewall: nix.thunk(() => ({ __proto__: pos$26, allowedTCPPorts: nix.thunk(() => [80n]) })),
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$26, allowedTCPPorts: nix.thunk(() => [80n]) })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           nginx: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             enable: true,
             virtualHosts: nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               localhost: nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 locations: nix.thunk(() => ({
-                  __proto__: pos$29,
-                  "/id/": nix.thunk(() => ({ __proto__: pos$28, return: "200 'uid=0(root) gid=0(root) groups=0(root)'" })),
+                  [nix.POS]: pos$29,
+                  "/id/": nix.thunk(() => ({ [nix.POS]: pos$28, return: "200 'uid=0(root) gid=0(root) groups=0(root)'" })),
                 })),
               })),
             })),

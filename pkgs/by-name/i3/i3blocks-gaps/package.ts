@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const perlscripts = nix.thunk(() => ["battery", "cpu_usage", "openvpn", "temperature"]);
   const contains_any = (l1) => (l2) => nix.lt(0n, nix.app(nix.sel(lib, "length"), nix.thunk(() => nix.app(nix.sel(lib, "intersectLists"), l1, l2))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "i3blocks-gaps",
       version: "1.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Airblader",
           repo: "i3blocks-gaps",
           rev: "4cfdf93c75f729a2c96d471004d31734e923812f",
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [alsa_utils]))}
 `)))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Flexible scheduler for your i3bar blocks -- this is a fork to use with i3-gaps",
         mainProgram: "i3blocks",
         homepage: "https://github.com/Airblader/i3blocks-gaps",

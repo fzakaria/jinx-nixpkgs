@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const system_manager = nix.arg($, "system-manager");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "system-manager",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "numtide",
           repo: "system-manager",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,15 +41,15 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [clippy, nix$, cargo, writableTmpDirAsHomeHook]),
       preCheck: "cargo clippy\n\n# Stop the Nix command from trying to create /nix/var/nix/profiles.\n#\n# https://nix.dev/manual/nix/2.24/command-ref/new-cli/nix3-profile#profiles\nexport NIX_STATE_DIR=$TMPDIR\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          "latest-nix": nix.thunk(() => nix.app(nix.sel(system_manager, "override"), nix.thunk(() => ({ __proto__: pos$2, nix: nix.thunk(() => nix.sel(nixVersions, "latest")) })))),
+          [nix.POS]: pos$3,
+          "latest-nix": nix.thunk(() => nix.app(nix.sel(system_manager, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, nix: nix.thunk(() => nix.sel(nixVersions, "latest")) })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Manage system config using nix on any distro",
         homepage: "http://system-manager.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

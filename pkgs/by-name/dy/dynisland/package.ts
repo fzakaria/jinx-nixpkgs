@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dynisland",
       version: "0.1.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cr3eperall",
           repo: "dynisland",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "installShellCompletion --cmd dynisland \\\n  --bash ./target/dynisland.bash \\\n  --fish ./target/dynisland.fish \\\n  --zsh ./target/_dynisland\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Dynamic and extensible GTK4 layer-shell, written in Rust",
         homepage: "https://github.com/cr3eperall/dynisland",
         changelog: nix.thunk(() => nix.str`https://github.com/cr3eperall/dynisland/releases/tag/${nix.sel(finalAttrs, "version")}`),

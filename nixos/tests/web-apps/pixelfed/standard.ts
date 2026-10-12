@@ -19,47 +19,47 @@ const pos$13 = nix.positions(here + "/standard.nix", [["server", 6, 5]]);
 const pos$14 = nix.positions(here + "/standard.nix", [["name", 2, 3], ["meta", 3, 3], ["nodes", 5, 3], ["testScript", 34, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$14,
+  [nix.POS]: pos$14,
   name: "pixelfed-standard",
-  meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+  meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
   nodes: nix.thunk(() => ({
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     server: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
       const pkgs = nix.arg($, "pkgs");
       const lib = nix.arg($, "lib");
       return {
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         services: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pixelfed: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: true,
             domain: "pixelfed.local",
             nginx: nix.thunk(() => ({})),
             secretFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "secrets.env", "# Snakeoil secret, can be any random 32-chars secret via CSPRNG.\nAPP_KEY=adKK9EcY8Hcj3PLU7rzG9rJ6KKTOtYfA\n")),
-            settings: nix.thunk(() => ({ __proto__: pos$2, FORCE_HTTPS_URLS: false })),
+            settings: nix.thunk(() => ({ [nix.POS]: pos$2, FORCE_HTTPS_URLS: false })),
           })),
         })),
         virtualisation: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           memorySize: 2048n,
           emptyDiskImages: nix.thunk(() => [4096n]),
         })),
-        swapDevices: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$6, device: "/dev/vdb" }))]),
+        swapDevices: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$6, device: "/dev/vdb" }))]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           settings: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             Manager: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               DefaultDeviceTimeoutSec: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), 1800n)),
             })),
           })),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$11,
-          initrd: nix.thunk(() => ({ __proto__: pos$10, kernelModules: nix.thunk(() => ["virtio_console"]) })),
+          [nix.POS]: pos$11,
+          initrd: nix.thunk(() => ({ [nix.POS]: pos$10, kernelModules: nix.thunk(() => ["virtio_console"]) })),
         })),
       };
     })(), formals$1),

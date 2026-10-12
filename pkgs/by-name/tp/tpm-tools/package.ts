@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const opencryptoki = nix.arg($, "opencryptoki");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tpm-tools",
       version: "1.3.9.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/trousers/tpm-tools/${nix.sel(finalAttrs, "version")}/tpm-tools-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ivg3lJouwwsZU4msiisxvEn+MVBQdRt9TQ1DK/eBKpc=",
         })))),
@@ -37,7 +37,7 @@ substituteInPlace include/tpm_pkcs11.h \\
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, perl]),
       buildInputs: nix.thunk(() => [trousers, openssl, opencryptoki]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Management tools for TPM hardware",
         longDescription: "tpm-tools is an open-source package designed to enable user and\napplication enablement of Trusted Computing using a Trusted Platform\nModule (TPM), similar to a smart card environment.\n",
         homepage: "https://sourceforge.net/projects/trousers/files/tpm-tools/",

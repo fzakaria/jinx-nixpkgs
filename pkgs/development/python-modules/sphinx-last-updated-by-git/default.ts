@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const sphinx_pytest = nix.arg($, "sphinx-pytest");
   const pytest_cov_stub = nix.arg($, "pytest-cov-stub");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sphinx-last-updated-by-git",
       version: "0.3.8-unstable-2026-03-22",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mgeier",
           repo: "sphinx-last-updated-by-git",
           rev: "8d4eef2561996319e6f785b4faa914a1e6545476",
@@ -45,7 +45,7 @@ substituteInPlace src/sphinx_last_updated_by_git.py \\
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, sphinx_pytest, pytest_cov_stub]),
       disabledTests: nix.thunk(() => ["test_no_git", "test_repo_shallow", "test_repo_shallow_without_warning"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Get the last updated time for each Sphinx page from Git",
         homepage: "https://github.com/mgeier/sphinx-last-updated-by-git",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pspp";
       const version = "2.1.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/pspp/pspp-${version}.tar.gz`),
           sha256: "sha256-teVQk3vfpmoebKcpGVJy6OXmaz4EaGstg/suZtTvFMM=",
         }))));
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const patches = nix.thunk(() => [nix.path(here, "./fix-glibc-2.42.patch")]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         C_INCLUDE_PATH: nix.thunk(() => nix.add(nix.str`${nix.sel(libxml2, "dev")}/include/libxml2/:`, nix.app(nix.sel(lib, "makeSearchPathOutput"), "dev", "include", buildInputs))),
         LIBRARY_PATH: nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), buildInputs)),
         NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers",
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
  --prefix GIO_EXTRA_MODULES : "${nix.app(nix.sel(lib, "getLib"), dconf)}/lib/gio/modules"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.gnu.org/software/pspp/",
         description: "Free replacement for SPSS, a program for statistical analysis of sampled data",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

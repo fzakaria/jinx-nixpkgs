@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   const backendStdenv = nix.thunk(() => nix.attr(cudaPackages, "backendStdenv"));
   return nix.app(nix.sel(backendStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "llrCUDA",
       version: "4.0.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://jpenne.free.fr/llr4/llrcuda${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}srcgpu12.zip`),
           hash: "sha256-/v89jsTKCpkmCMKp9nUf7VAnSobE8pDdwLw5n3Hz9dw=",
         })))),
@@ -40,7 +40,7 @@ substituteInPlace Makefile \\
         nix.thunk(() => nix.sel(cudaPackages, "cccl")),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => [
             nix.thunk(() => nix.str`-L${nix.app(nix.sel(lib, "getLib"), gmp)}/lib`),
             nix.thunk(() => nix.str`-L${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart")))}/lib`),
@@ -48,7 +48,7 @@ substituteInPlace Makefile \\
       })),
       installPhase: "runHook preInstall\n\ninstall -Dm755 dllrCUDA $out/bin/llrCUDA\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GPU version of the LLR program",
         longDescription: "Primality proving program for numbers of the form N = k*b^n +/- 1, (k < b^n),\nor numbers which can be rewritten in this form, like\nGaussian-Mersenne norms or b^n-b^m +/- 1 with n>m (new feature).\nThe identity Phi(3,-X) = X^2-X+1 is now used with X=b^n to search for\nGeneralized Unique Primes.\n",
         homepage: "http://jpenne.free.fr/index2.html",

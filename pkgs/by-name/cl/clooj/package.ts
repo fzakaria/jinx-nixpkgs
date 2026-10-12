@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "clooj",
       version: "0.4.4",
       jar: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://archive.org/download/clooj-${nix.sel(finalAttrs, "version")}-standalone/clooj-${nix.sel(finalAttrs, "version")}-standalone.jar`),
           sha256: "0hbc29bg2a86rm3sx9kvj7h7db9j0kbnrb706wsfiyk3zi3bavnd",
         })))),
@@ -30,7 +30,7 @@ ln -s $jar $out/share/java/clooj.jar
 makeWrapper ${jre}/bin/java $out/bin/clooj --add-flags "-jar $out/share/java/clooj.jar"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightweight IDE for Clojure",
         mainProgram: "clooj",
         homepage: "https://github.com/arthuredelstein/clooj",

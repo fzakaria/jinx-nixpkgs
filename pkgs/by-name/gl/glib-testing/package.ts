@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "glib-testing",
       version: "0.2.0",
       outputs: nix.thunk(() => ["out", "dev", "devdoc", "installedTests"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           owner: "pwithnall",
           repo: "libglib-testing",
@@ -48,14 +48,14 @@ substituteInPlace libglib-testing/dbus-queue.c \\
   --replace-fail 'Exec=/bin/true' 'Exec=${coreutils}/bin/true'
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           installedTests: nix.thunk(() => nix.sel(nixosTests, "installed-tests", "glib-testing")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Test library providing test harnesses and mock classes complementing the classes provided by GLib",
         homepage: "https://gitlab.gnome.org/pwithnall/libglib-testing",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

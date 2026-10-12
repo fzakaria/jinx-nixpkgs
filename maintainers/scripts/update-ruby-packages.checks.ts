@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
     const results = nix.thunk(() => nix.builtins.map((name) => (() => {
         const oldv = nix.thunk(() => nix.selOr(old_1, () => null, nix.key(nix.force(name)), "version"));
         const newv = nix.thunk(() => nix.selOr(new$_2, () => null, nix.key(nix.force(name)), "version"));
-        return (nix.asBool(nix.eq(newv, oldv)) ? null : { __proto__: pos$1, name: name, old: oldv, new: newv });
+        return (nix.asBool(nix.eq(newv, oldv)) ? null : { [nix.POS]: pos$1, name: name, old: oldv, new: newv });
       })(), gems));
     return nix.app(compact, results);
   })();
@@ -97,7 +97,7 @@ ${nix.app(concatMapStringsSep, "\n", (msg) => nix.str` - ${msg}`, failedChecks)}
 `)) : nix.builtins.trace(nix.thunk(() => nix.str`(Report follows...)
 
 ${report}`), nix.thunk(() => (nix.asBool(withData) ? {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       old: old_1,
       new: new$_2,
       allGems: allGems,

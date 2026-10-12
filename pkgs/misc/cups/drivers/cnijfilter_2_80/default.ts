@@ -22,17 +22,17 @@ export default nix.lambda((args) => (() => {
   const libpng = nix.arg($, "libpng");
   const ghostscript = nix.arg($, "ghostscript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cnijfilter",
       version: "2.80",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://gdlp01.c-wss.com/gds/1/0100000841/01/cnijfilter-common-2.80-1.tar.gz",
           sha256: "06s9nl155yxmx56056y22kz1p5b2sb5fhr3gf4ddlczjkd1xch53",
         })))),
       nativeBuildInputs: nix.thunk(() => [autoconf, automake]),
       buildInputs: nix.thunk(() => [libtool, cups, popt, libtiff, libpng, ghostscript]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: " -std=gnu90" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: " -std=gnu90" })),
       patches: nix.thunk(() => [
         nix.path(here, "./patches/missing-include.patch"),
         nix.path(here, "./patches/libpng15.patch"),
@@ -48,7 +48,7 @@ sed -i "s|/usr/local|$out|" libs/bjexec/bjexec.c;
       dontPatchELF: true,
       hardeningDisable: nix.thunk(() => ["fortify3"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Canon InkJet printer drivers for the iP5400, MP520, MP210, MP140, iP3500, and MP610 series.  (MP520 drivers also work for MX700.)",
         homepage: "http://support-asia.canon-asia.com/content/EN/0100084101.html",
         sourceProvenance: nix.thunk(() => (() => {

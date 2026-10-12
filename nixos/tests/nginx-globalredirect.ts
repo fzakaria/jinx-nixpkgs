@@ -17,29 +17,29 @@ const pos$9 = nix.positions(here + "/nginx-globalredirect.nix", [["name", 3, 3],
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     name: "nginx-globalredirect",
     nodes: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       webserver: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         const lib = nix.arg($_1, "lib");
         return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           services: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             nginx: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 localhost: nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   globalRedirect: "other.example.com",
                   locations: nix.thunk(() => ({
-                    __proto__: pos$2,
-                    "/noredirect": nix.thunk(() => ({ __proto__: pos$1, return: "200 'foo'" })),
+                    [nix.POS]: pos$2,
+                    "/noredirect": nix.thunk(() => ({ [nix.POS]: pos$1, return: "200 'foo'" })),
                   })),
                 })),
               })),

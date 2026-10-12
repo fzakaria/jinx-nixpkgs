@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const ffmpeg_full = nix.arg($, "ffmpeg-full");
   const szurubooru = nix.arg($, "szurubooru");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "szurubooru-server",
       version: version,
       pyproject: true,
@@ -52,22 +52,22 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "mkdir $out/bin\ninstall -m0755 $src/szuru-admin $out/bin/szuru-admin\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           szurubooru: nix.thunk(() => nix.sel(nixosTests, "szurubooru")),
         })),
         alembic: nix.thunk(() => nix.app(nix.sel(python3, "pkgs", "alembic", "overrideAttrs"), (old) => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             propagatedBuildInputs: nix.thunk(() => nix.concat(nix.sel(old, "propagatedBuildInputs"), [nix.thunk(() => nix.sel(szurubooru, "server"))])),
           }))),
         waitress: nix.thunk(() => nix.app(nix.sel(python3, "pkgs", "waitress", "overrideAttrs"), (old) => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             propagatedBuildInputs: nix.thunk(() => nix.concat(nix.sel(old, "propagatedBuildInputs"), [nix.thunk(() => nix.sel(szurubooru, "server"))])),
           }))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Server of szurubooru, an image board engine for small and medium communities",
         homepage: "https://github.com/rr-/szurubooru",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

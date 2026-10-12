@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(python3Packages, "buildPythonPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "boxflat",
       version: "1.35.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Lawstorant",
           repo: "boxflat",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -83,7 +83,7 @@ EOF
             const categories = nix.thunk(() => ["Game", "Utility"]);
             const keywords = nix.thunk(() => ["game", "racing", "cars", "wheels", "moza"]);
             return {
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name,
               desktopName,
               genericName,
@@ -98,11 +98,11 @@ EOF
           })()))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/Lawstorant/boxflat",
         changelog: nix.thunk(() => nix.str`https://github.com/Lawstorant/boxflat/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Control your Moza gear settings",

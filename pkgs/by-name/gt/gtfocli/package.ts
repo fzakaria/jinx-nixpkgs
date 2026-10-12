@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gtfocli",
       version: "0.0.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cmd-tools",
           repo: "gtfocli",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-FyClL+3fOe56+Y7CSNJtGoJaYnMeo2hoxYNPpg5FQJ8=",
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GTFO Command Line Interface for search binaries commands to bypass local security restrictions",
         homepage: "https://github.com/cmd-tools/gtfocli",
         changelog: nix.thunk(() => nix.str`https://github.com/cmd-tools/gtfocli/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -52,40 +52,40 @@ export default nix.lambda((args) => (() => {
   const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "./snakeoil-certs.nix")));
   const domain = nix.thunk(() => nix.sel(certs, "domain"));
   return {
-    __proto__: pos$37,
+    [nix.POS]: pos$37,
     name: "ente",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "oddlama"))]),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$36,
+      [nix.POS]: pos$36,
       garage: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           services: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             garage: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               enable: true,
               package: nix.thunk(() => nix.sel(pkgs, "garage_2")),
               settings: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 replication_factor: 1n,
                 consistency_mode: "consistent",
                 rpc_bind_addr: "[::]:3901",
                 rpc_public_addr: "[::1]:3901",
                 rpc_secret: "5c1915fa04d0b6739675c61bf5907eb0fe3d9c69850c83820f51b4d25d13868c",
-                s3_api: nix.thunk(() => ({ __proto__: pos$2, s3_region: "us-east-1", api_bind_addr: "[::]:3900" })),
+                s3_api: nix.thunk(() => ({ [nix.POS]: pos$2, s3_region: "us-east-1", api_bind_addr: "[::]:3900" })),
               })),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$7,
-            firewall: nix.thunk(() => ({ __proto__: pos$6, allowedTCPPorts: nix.thunk(() => [3900n]) })),
+            [nix.POS]: pos$7,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$6, allowedTCPPorts: nix.thunk(() => [3900n]) })),
           })),
-          virtualisation: nix.thunk(() => ({ __proto__: pos$8, diskSize: nix.thunk(() => nix.mul(2n, 1024n)) })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$8, diskSize: nix.thunk(() => nix.mul(2n, 1024n)) })),
         };
       })(), formals$2),
       ente: nix.lambda((args_1) => (() => {
@@ -94,24 +94,24 @@ export default nix.lambda((args) => (() => {
         const nodes = nix.arg($_1, "nodes");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           security: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             pki: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               certificateFiles: nix.thunk(() => [nix.thunk(() => nix.sel(certs, "ca", "cert"))]),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             extraHosts: nix.thunk(() => nix.str`${nix.sel(config, "networking", "primaryIPAddress")} accounts.${domain} albums.${domain} api.${domain} cast.${domain} photos.${domain} s3.${domain}
 `),
-            firewall: nix.thunk(() => ({ __proto__: pos$12, allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$12, allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             nginx: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               recommendedProxySettings: true,
               virtualHosts: nix.thunk(() => nix.update(nix.app(nix.sel(lib_1, "genAttrs"), nix.thunk(() => [
                   nix.thunk(() => nix.str`accounts.${domain}`),
@@ -120,19 +120,19 @@ export default nix.lambda((args) => (() => {
                   nix.thunk(() => nix.str`cast.${domain}`),
                   nix.thunk(() => nix.str`photos.${domain}`),
                 ]), (_) => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   sslCertificate: nix.thunk(() => nix.sel(certs, nix.key(nix.force(domain)), "cert")),
                   sslCertificateKey: nix.thunk(() => nix.sel(certs, nix.key(nix.force(domain)), "key")),
                 })), nix.attrsDyn({}, [
                 [nix.str`s3.${domain}`, nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   forceSSL: true,
                   sslCertificate: nix.thunk(() => nix.sel(certs, nix.key(nix.force(domain)), "cert")),
                   sslCertificateKey: nix.thunk(() => nix.sel(certs, nix.key(nix.force(domain)), "key")),
                   locations: nix.thunk(() => ({
-                    __proto__: pos$16,
+                    [nix.POS]: pos$16,
                     "/": nix.thunk(() => ({
-                      __proto__: pos$15,
+                      [nix.POS]: pos$15,
                       proxyPass: nix.thunk(() => nix.str`http://${nix.sel(nodes, "garage", "networking", "primaryIPAddress")}:3900`),
                     })),
                   })),
@@ -141,12 +141,12 @@ export default nix.lambda((args) => (() => {
               ]))),
             })),
             ente: nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               web: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 enable: true,
                 domains: nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   accounts: nix.thunk(() => nix.str`accounts.${domain}`),
                   albums: nix.thunk(() => nix.str`albums.${domain}`),
                   cast: nix.thunk(() => nix.str`cast.${domain}`),
@@ -154,46 +154,46 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               api: nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 enable: true,
-                nginx: nix.thunk(() => ({ __proto__: pos$21, enable: true })),
+                nginx: nix.thunk(() => ({ [nix.POS]: pos$21, enable: true })),
                 enableLocalDB: true,
                 domain: nix.thunk(() => nix.str`api.${domain}`),
                 settings: nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   s3: nix.thunk(() => ({
-                    __proto__: pos$25,
+                    [nix.POS]: pos$25,
                     use_path_style_urls: true,
                     "b2-eu-cen": nix.thunk(() => ({
-                      __proto__: pos$24,
+                      [nix.POS]: pos$24,
                       endpoint: nix.thunk(() => nix.str`https://s3.${domain}`),
                       region: "us-east-1",
                       bucket: "ente",
                       key: nix.thunk(() => ({
-                        __proto__: pos$22,
+                        [nix.POS]: pos$22,
                         _secret: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "accesskey", garageAccessKey)),
                       })),
                       secret: nix.thunk(() => ({
-                        __proto__: pos$23,
+                        [nix.POS]: pos$23,
                         _secret: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "secretkey", garageSecretKey)),
                       })),
                     })),
                   })),
                   key: nix.thunk(() => ({
-                    __proto__: pos$28,
+                    [nix.POS]: pos$28,
                     encryption: nix.thunk(() => ({
-                      __proto__: pos$26,
+                      [nix.POS]: pos$26,
                       _secret: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "encryption", "T0sn+zUVFOApdX4jJL4op6BtqqAfyQLH95fu8ASWfno=")),
                     })),
                     hash: nix.thunk(() => ({
-                      __proto__: pos$27,
+                      [nix.POS]: pos$27,
                       _secret: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "hash", "g/dBZBs1zi9SXQ0EKr4RCt1TGr7ZCKkgrpjyjrQEKovWPu5/ce8dYM6YvMIPL23MMZToVuuG+Z6SGxxTbxg5NQ==")),
                     })),
                   })),
                   jwt: nix.thunk(() => ({
-                    __proto__: pos$30,
+                    [nix.POS]: pos$30,
                     secret: nix.thunk(() => ({
-                      __proto__: pos$29,
+                      [nix.POS]: pos$29,
                       _secret: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "jwt", "i2DecQmfGreG6q1vBj5tCokhlN41gcfS2cjOs9Po-u8=")),
                     })),
                   })),

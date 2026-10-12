@@ -45,12 +45,12 @@ export default nix.lambda((args) => (() => {
   const withRealtime = nix.argOr($, "withRealtime", () => false);
   const withVoiceHelpers = nix.argOr($, "withVoiceHelpers", () => false);
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "openai",
       version: "2.53.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openai",
           repo: "openai-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling, hatch_fancy_pypi_readme]),
       dependencies: nix.thunk(() => nix.concat([anyio, distro, httpx, jiter, pydantic, sniffio, tqdm, typing_extensions], nix.concat(nix.app(nix.sel(lib, "optionals"), withAiohttp, nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies", "aiohttp"))), nix.concat(nix.app(nix.sel(lib, "optionals"), withDatalib, nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies", "datalib"))), nix.concat(nix.app(nix.sel(lib, "optionals"), withRealtime, nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies", "realtime"))), nix.app(nix.sel(lib, "optionals"), withVoiceHelpers, nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies", "voice-helpers")))))))),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         aiohttp: nix.thunk(() => [aiohttp, httpx_aiohttp]),
         bedrock: nix.thunk(() => [botocore]),
         datalib: nix.thunk(() => [numpy, pandas, pandas_stubs]),
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.app(nix.sel(lib, "removeAttrs"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies")), nix.thunk(() => ["datalib"])))))),
       disabledTestPaths: nix.thunk(() => ["tests/api_resources", "tests/lib/chat/test_completions_streaming.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python client library for the OpenAI API",
         homepage: "https://github.com/openai/openai-python",
         changelog: nix.thunk(() => nix.str`https://github.com/openai/openai-python/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

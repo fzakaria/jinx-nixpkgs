@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "onednn",
       version: "2.7.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "uxlfoundation",
           repo: "oneDNN",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postInstall: "substituteInPlace $out/lib/cmake/dnnl/dnnl-config.cmake \\\n  --replace \"\\${PACKAGE_PREFIX_DIR}/\" \"\"\n\nsubstituteInPlace $out/lib/cmake/dnnl/dnnl-targets.cmake \\\n  --replace \"\\${_IMPORT_PREFIX}/\" \"\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/uxlfoundation/oneDNN/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "oneAPI Deep Neural Network Library (oneDNN)",
         homepage: "http://uxlfoundation.github.io/oneDNN",

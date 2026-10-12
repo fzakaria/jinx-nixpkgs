@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const ament_package = nix.argOr($, "ament-package", () => nix.sel(python3Packages, "ament-package"));
   const catkin_pkg = nix.argOr($, "catkin-pkg", () => nix.sel(python3Packages, "catkin-pkg"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ament-cmake-core-jazzy",
       version: "2.5.4-1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ros2-gbp",
           repo: "ament_cmake-release",
           tag: nix.thunk(() => nix.str`release/jazzy/ament_cmake_core/${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [ament_package, cmake, catkin_pkg]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Core of the ament buildsystem in CMake",
         homepage: "https://github.com/ros2-gbp/ament_cmake-release/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -12,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "nix-env-picker",
         publisher: "io-github-oops418",
         version: "0.0.4",
         hash: "sha256-LGw7Pd72oVgMqhKPX1dV2EgluX0/4rvKVb7Fx2H6hOI=",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Visual Studio Code extension for seamless switching between Nix shells and flakes",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=io-github-oops418.nix-env-picker",
         homepage: "https://github.com/Oops418/nix-env-picker",

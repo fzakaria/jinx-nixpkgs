@@ -18,19 +18,19 @@ export default nix.lambda((args) => (() => {
   const lwt = nix.arg($, "lwt");
   const sexplib0 = nix.arg($, "sexplib0");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rock",
       version: "0.20.0",
       minimalOCamlVersion: "4.08",
       duneVersion: "3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/rgrinberg/opium/releases/download/${nix.sel(finalAttrs, "version")}/opium-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-MmuRhm3pC69TX4t9Sy/yPjnZUuVzwEs8E/EFS1n/L7Y=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [bigstringaf, hmap, httpaf, lwt, sexplib0]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Minimalist framework to build extensible HTTP servers and clients",
         homepage: "https://github.com/rgrinberg/opium",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

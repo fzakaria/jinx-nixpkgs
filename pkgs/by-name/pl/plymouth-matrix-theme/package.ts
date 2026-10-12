@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "plymouth-matrix-theme",
       version: "0.1.0-unstable-2017-02-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "storax",
           repo: "plymouth-matrix-theme",
           rev: "b2268f25dea7537ed5709b00d5a83b3600265c54",
@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\nmkdir -p $out/share/plymouth/themes/matrix\ncp * $out/share/plymouth/themes/matrix\nfind $out/share/plymouth/themes/ -name \\*.plymouth -exec sed -i \"s@\\/usr\\/@$out\\/@\" {} \\;\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Plymouth boot theme inspired by Matrix",
         longDescription: "A very simple boot animation that emulates\nTrinity hacking Neo's computer at the\nbeginning of The Matrix (1999).\n",
         homepage: "https://github.com/storax/plymouth-matrix-theme",

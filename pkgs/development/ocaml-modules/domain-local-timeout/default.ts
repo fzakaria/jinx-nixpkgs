@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const mdx = nix.arg($, "mdx");
   const domain_local_await = nix.arg($, "domain-local-await");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "domain-local-timeout",
       version: "1.0.1",
       minimalOCamlVersion: "4.12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ocaml-multicore/domain-local-timeout/releases/download/${nix.sel(finalAttrs, "version")}/domain-local-timeout-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-6sCqUkOjN8E+7OLUwVQntkv0vrQDkGDV8KNqDhVm0d8=",
         })))),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(mdx, "bin"))]),
       checkInputs: nix.thunk(() => [alcotest, domain_local_await, mdx]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/ocaml-multicore/domain-local-timeout",
         description: "Scheduler independent timeout mechanism",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

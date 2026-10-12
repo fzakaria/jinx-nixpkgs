@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const domain = "alarmo";
       const version = "1.10.19";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nielsfaber",
           repo: "alarmo",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const postPatch = "find ./custom_components/alarmo/frontend -mindepth 1 -maxdepth 1 ! -name \"dist\" -exec rm -rf {} \\;\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/nielsfaber/alarmo/releases/tag/v${version}`),
         description: "Alarm System for Home Assistant",
         homepage: "https://github.com/nielsfaber/alarmo",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })()),
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
-      return { __proto__: pos$3, owner, domain, version, src, postPatch, meta };
+      return { [nix.POS]: pos$3, owner, domain, version, src, postPatch, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

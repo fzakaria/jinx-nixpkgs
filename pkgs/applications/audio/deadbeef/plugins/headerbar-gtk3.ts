@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const gtk3 = nix.arg($, "gtk3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "deadbeef-headerbar-gtk3-plugin",
       version: "1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "saivert",
           repo: "ddb_misc_headerbar_GTK3",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["pkglibdir=$(out)/lib/deadbeef"]),
       preConfigure: "./autogen.sh",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Plug-in that adds GTK 3 header bar to the DeaDBeeF music player",
         homepage: "https://github.com/saivert/ddb_misc_headerbar_GTK3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

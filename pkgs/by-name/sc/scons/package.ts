@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "scons";
       const version = "4.10.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Scons",
           repo: "scons",
           tag: version,
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "distutils"))]);
       const setupHook = nix.path(here, "./setup-hook.sh");
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         python: nix.thunk(() => nix.attr(python3Packages, "python")),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Improved, cross-platform substitute for Make",
         longDescription: "SCons is an Open Source software construction tool. Think of SCons as an\nimproved, cross-platform substitute for the classic Make utility with\nintegrated functionality similar to autoconf/automake and compiler caches\nsuch as ccache. In short, SCons is an easier, more reliable and faster way\nto build software.\n",
         homepage: "https://scons.org/",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

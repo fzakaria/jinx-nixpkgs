@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.16.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "onnx",
           repo: "onnxmltools",
           tag: version,
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         lightgbm,
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ONNXMLTools enables conversion of models to ONNX",
         homepage: "https://github.com/onnx/onnxmltools",
         changelog: nix.thunk(() => nix.str`https://github.com/onnx/onnxmltools/blob/${nix.sel(src, "tag")}/CHANGELOGS.md`),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

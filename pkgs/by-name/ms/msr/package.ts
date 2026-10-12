@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "msr";
       const version = "20060208";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           url: nix.thunk(() => nix.str`https://www.etallen.com/msr/msr-${version}.src.tar.gz`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [nix.path(here, "./000-include-sysmacros.patch")]);
       const installPhase = "runHook preInstall\nmkdir -p $out/bin/\ncp msr $out/bin/\ninstallManPage msr.man\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.etallen.com/msr.html",
         description: "Linux tool to display or modify x86 model-specific registers (MSRs)",
         mainProgram: "msr",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["i686-linux", "x86_64-linux"]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

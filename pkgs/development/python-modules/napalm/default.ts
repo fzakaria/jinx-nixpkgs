@@ -36,12 +36,12 @@ export default nix.lambda((args) => (() => {
   const ddt = nix.arg($, "ddt");
   const mock = nix.arg($, "mock");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "napalm",
       version: "5.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "napalm-automation",
           repo: "napalm",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         ncclient,
         netaddr,
         netmiko,
-        nix.thunk(() => nix.app(nix.sel(netutils, "override"), nix.thunk(() => ({ __proto__: pos$2, napalm: null })))),
+        nix.thunk(() => nix.app(nix.sel(netutils, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, napalm: null })))),
         paramiko,
         pyeapi,
         pyyaml,
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, mock, ddt]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Network Automation and Programmability Abstraction Layer with Multivendor support",
         homepage: "https://github.com/napalm-automation/napalm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

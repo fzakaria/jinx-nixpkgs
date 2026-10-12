@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const boost = nix.arg($, "boost");
   const numactl = nix.arg($, "numactl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: nix.thunk(() => nix.str`${nix.sel(adaptivecpp, "pname")}-tests`),
       version: nix.thunk(() => nix.attr(adaptivecpp, "version")),
       src: nix.thunk(() => nix.attr(adaptivecpp, "src")),

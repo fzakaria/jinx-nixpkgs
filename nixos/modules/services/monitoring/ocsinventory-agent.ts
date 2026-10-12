@@ -37,13 +37,13 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "ocsinventory-agent"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "keyValue"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       mkKeyValue: nix.thunk(() => nix.app(nix.sel(lib, "generators", "mkKeyValueDefault"), nix.thunk(() => ({})), "=")),
     }))));
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       doc: nix.path(here, "./ocsinventory-agent.md"),
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -51,43 +51,43 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         "ocsinventory-agent": nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "OCS Inventory Agent")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "ocsinventory-agent", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type", "nestedTypes", "elemType")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     server: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         example: "https://ocsinventory.localhost:8080/ocsinventory",
                         default: null,
                         description: "The URI of the OCS Inventory server where to send the inventory file.\n\nThis option is ignored if {option}`services.ocsinventory-agent.settings.local` is set.\n",
                       })))),
                     local: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                         example: "/var/lib/ocsinventory-agent/reports",
                         default: null,
                         description: "If specified, the OCS Inventory Agent will run in offline mode\nand the resulting inventory file will be stored in the specified path.\n",
                       })))),
                     ca: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: nix.thunk(() => nix.sel(lib, "types", "path")),
                         default: nix.thunk(() => nix.sel(config, "security", "pki", "caBundle")),
                         defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.security.pki.caBundle")),
                         description: "Path to CA certificates file in PEM format, for server\nSSL certificate validation.\n",
                       })))),
                     tag: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: null,
                         example: "01234567890123",
@@ -98,7 +98,7 @@ export default nix.lambda((args) => (() => {
                 })))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 debug: true,
                 server: "https://ocsinventory.localhost:8080/ocsinventory",
                 tag: "01234567890123",
@@ -106,7 +106,7 @@ export default nix.lambda((args) => (() => {
               description: "Configuration for /etc/ocsinventory-agent/ocsinventory-agent.cfg.\n\nRefer to\n{manpage}`ocsinventory-agent(1)` for available options.\n",
             })))),
           interval: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "daily",
               example: "06:00",
@@ -118,26 +118,26 @@ export default nix.lambda((args) => (() => {
     config: nix.thunk(() => (() => {
       const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "ocsinventory-agent.cfg", nix.thunk(() => nix.sel(cfg, "settings"))));
       return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           environment: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             etc: nix.thunk(() => ({
-              __proto__: pos$16,
-              "ocsinventory-agent/ocsinventory-agent.cfg": nix.thunk(() => ({ __proto__: pos$15, source: configFile })),
+              [nix.POS]: pos$16,
+              "ocsinventory-agent/ocsinventory-agent.cfg": nix.thunk(() => ({ [nix.POS]: pos$15, source: configFile })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             services: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               "ocsinventory-agent": nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 description: "OCS Inventory Agent service",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 after: nix.thunk(() => ["network.target"]),
                 reloadTriggers: nix.thunk(() => [configFile]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))),
                   ConfigurationDirectory: "ocsinventory-agent",
                   StateDirectory: "ocsinventory-agent",
@@ -145,13 +145,13 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             timers: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               "ocsinventory-agent": nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 description: "Launch OCS Inventory Agent regularly",
                 wantedBy: nix.thunk(() => ["timers.target"]),
                 timerConfig: nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   OnCalendar: nix.thunk(() => nix.sel(cfg, "interval")),
                   AccuracySec: "1h",
                   RandomizedDelaySec: 240n,

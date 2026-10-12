@@ -38,14 +38,14 @@ export default nix.lambda((args) => (() => {
   const compileFeatures = "target_compile_features(cudnn_frontend INTERFACE cxx_std_17)";
   const linkCudart = "target_link_libraries(cudnn_frontend INTERFACE CUDA::cudart)";
   return nix.app(nix.sel(backendStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       __structuredAttrs: true,
       strictDeps: true,
       name: nix.thunk(() => nix.str`${cudaNamePrefix}-${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}`),
       pname: "cudnn-frontend",
       version: "1.30.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NVIDIA",
           repo: "cudnn-frontend",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -78,16 +78,16 @@ substituteInPlace ./cudnn_frontend-config.cmake.in \\
       propagatedBuildInputs: nix.thunk(() => [nlohmann_json, cuda_nvrtc]),
       postInstall: nix.thunk(() => nix.add(nix.add(nix.app(optionalString, withSamples, "moveToOutput \"bin/legacy_samples\" \"$legacy_samples\"\nmoveToOutput \"bin/samples\" \"$samples\"\n"), nix.app(optionalString, withTests, "moveToOutput \"bin/tests\" \"$tests\"\n")), "if [[ -e \"$out/bin\" ]]\nthen\n  nixErrorLog \"The bin directory in \\$out should no longer exist.\"\n  exit 1\nfi\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python and C++ Graph API with SOTA attention (SDPA / Flash Attention), MoE grouped GEMM fusions, and FP8/MXFP8 kernels for Hopper and Blackwell GPUs",
         homepage: "https://github.com/NVIDIA/cudnn-frontend",
         downloadPage: "https://github.com/NVIDIA/cudnn-frontend/releases",

@@ -67,122 +67,122 @@ export default nix.lambda((args) => (() => {
     return nix.builtins.map((address) => nix.app(extractPort, address), nix.thunk(() => nix.app(parseAddresses, listeners)));
   })();
   return {
-    __proto__: pos$44,
+    [nix.POS]: pos$44,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "stalwart-mail"]), nix.thunk(() => ["services", "stalwart"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         stalwart: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the all-in-one collaboration and mail server, Stalwart")),
           stateVersion: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "The version of this module (=version of NixOS) when this module was first enabled on this particular machine, used to maintain compatibility with application data created on older versions of this module.\n\nSee {option}`system.stateVersion` for details on the NixOS-global equivalent to this option.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "stalwart", nix.thunk(() => ({})))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to open TCP firewall ports, which are specified in\n{option}`services.stalwart.settings.server.listener` on all interfaces.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.attr(configFormat, "type")),
               default: nix.thunk(() => ({})),
               description: "Configuration options for the Stalwart server.\nSee <https://stalw.art/docs/configuration> for available options.\n\nBy default, the module is configured to store everything locally.\n",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: nix.thunk(() => nix.str`/var/lib/${stalwartIdentifier}`),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`/var/lib/\${${stalwartIdentifierText}}`))),
               description: "Data directory for stalwart\n",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: stalwartIdentifier,
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), stalwartIdentifierText)),
               description: "User ownership of service\n",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: stalwartIdentifier,
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), stalwartIdentifierText)),
               description: "Group ownership of service\n",
             })))),
           credentials: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               description: "Credentials envs used to configure Stalwart secrets.\nThese secrets can be accessed in configuration values with\nthe macros such as\n`%{file:/run/credentials/stalwart.service/VAR_NAME}%`.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$7, user_admin_password: "/run/keys/stalwart_admin_password" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$7, user_admin_password: "/run/keys/stalwart_admin_password" })),
             })))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$42,
+        [nix.POS]: pos$42,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             assertion: nix.thunk(() => !nix.asBool((nix.asBool(nix.app(nix.sel(lib, "hasAttrByPath"), nix.thunk(() => ["settings", "queue"]), cfg)) && nix.asBool(nix.builtins.any(nix.thunk(() => nix.app(nix.sel(lib, "hasAttrByPath"), nix.thunk(() => ["value", "next-hop"]))), nix.thunk(() => nix.app(nix.sel(lib, "attrsToList"), nix.thunk(() => nix.sel(cfg, "settings", "queue"))))))))),
             message: "Stalwart deprecated `next-hop` in favor of \"virtual queues\" `queue.strategy.route` \\\nwith v0.13.0 see [Outbound Strategy](https://stalw.art/docs/mta/outbound/strategy/#configuration) \\\nand [release announcement](https://github.com/stalwartlabs/stalwart/blob/main/UPGRADING.md#upgrading-from-v012x-and-v011x-to-v013x).\n",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           stalwart: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             settings: nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               tracer: nix.thunk(() => (nix.asBool(pre2605) ? {
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 stdout: nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   type: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "stdout")),
                   level: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "info")),
                   ansi: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
                   enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                 })),
               } : {
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 journal: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   type: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "journal")),
                   level: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "info")),
                   enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                 })),
               })),
               store: nix.thunk(() => (nix.asBool(useLegacyStorage) ? {
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 db: nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   type: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "sqlite")),
                   path: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/data/index.sqlite3`))),
                 })),
                 fs: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   type: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "fs")),
                   path: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/data/blobs`))),
                 })),
               } : {
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 db: nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   type: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "rocksdb")),
                   path: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/db`))),
                   compression: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "lz4")),
                 })),
               })),
               storage: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 data: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "db")),
                 fts: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "db")),
                 lookup: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "db")),
@@ -190,28 +190,28 @@ export default nix.lambda((args) => (() => {
                 directory: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "internal")),
               })),
               directory: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 internal: nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   type: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "internal")),
                   store: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "db")),
                 })),
               })),
               resolver: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "system")),
                 "public-suffix": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => [
                     nix.thunk(() => nix.str`file://${nix.sel(pkgs, "publicsuffix-list")}/share/publicsuffix/public_suffix_list.dat`),
                   ]))),
               })),
               "spam-filter": nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 resource: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`file://${nix.sel(cfg, "package", "spam-filter")}/spam-filter.toml`))),
               })),
               webadmin: nix.thunk(() => (() => {
                 const hasHttpListener = nix.thunk(() => nix.builtins.any((listener) => nix.eq(nix.sel(listener, "protocol"), "http"), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.selOr(cfg, () => ({}), "settings", "server", "listener"))))));
                 return {
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   path: nix.thunk(() => nix.str`/var/cache/${stalwartIdentifier}`),
                   resource: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), hasHttpListener, nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`file://${nix.sel(cfg, "package", "webadmin")}/webadmin.zip`))))),
                 };
@@ -220,33 +220,33 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), stalwartIdentifier)), nix.thunk(() => nix.attrsDyn({}, [[nix.sel(cfg, "group"), nix.thunk(() => ({}))]])))),
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), stalwartIdentifier)), nix.thunk(() => nix.attrsDyn({}, [
               [nix.sel(cfg, "user"), nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 isSystemUser: true,
                 group: nix.thunk(() => nix.attr(cfg, "group")),
               }))],
             ])))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d '${nix.sel(cfg, "dataDir")}' - '${nix.sel(cfg, "user")}' '${nix.sel(cfg, "group")}' - -`),
             ]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             stalwart: nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               description: "Stalwart Server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["local-fs.target", "network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 Type: "simple",
                 LimitNOFILE: 65536n,
                 KillMode: "process",
@@ -294,26 +294,26 @@ export default nix.lambda((args) => (() => {
                 UMask: "0077",
               })),
               unitConfig: nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 ConditionPathExists: nix.thunk(() => [nix.thunk(() => nix.str`${configFile}`)]),
               })),
             })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "openFirewall")) && nix.asBool(nix.builtins.hasAttr("listener", nix.thunk(() => nix.sel(cfg, "settings", "server")))))), nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               allowedTCPPorts: nix.thunk(() => nix.app(parsePorts, nix.thunk(() => nix.sel(cfg, "settings", "server", "listener")))),
             })))),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$43,
+      [nix.POS]: pos$43,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

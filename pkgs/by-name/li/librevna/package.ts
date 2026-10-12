@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const libusb1 = nix.arg($, "libusb1");
   const udev = nix.arg($, "udev");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "librevna",
       version: "1.6.5",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jankae",
           repo: "LibreVNA",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       installPhase: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "runHook preInstall\n\nmkdir -p $out/{Applications,bin}\nmv LibreVNA-GUI.app $out/Applications\nln -s $out/Applications/LibreVNA-GUI.app/Contents/MacOS/LibreVNA-GUI $out/bin/LibreVNA-GUI\n\nrunHook postInstall\n" : "runHook preInstall\n\ninstall -Dm755 LibreVNA-GUI -t $out/bin\ninstall -Dm644 ../51-vna.rules -t $out/etc/udev/rules.d\ninstall -Dm644 resources/librevna.desktop -t $out/share/applications\ninstall -Dm644 resources/librevna.png $out/share/icons/hicolor/256x256/apps/librevna.png\ninstall -Dm644 resources/librevna.png -t $out/share/pixmaps\n\nrunHook postInstall\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/jankae/LibreVNA/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         homepage: "https://github.com/jankae/LibreVNA/",
         description: "100kHz to 6GHz 2 port USB based VNA",

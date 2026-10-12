@@ -157,11 +157,11 @@ export default nix.lambda((args) => (() => {
   const wantCurl = nix.thunk(() => (nix.asBool((nix.asBool(withRemote) || nix.asBool(withImportd))) || nix.asBool(withImds)));
   const releaseTimestamp = "1773777352";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       pname: pname,
       version: "261.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "systemd",
           repo: "systemd",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -226,7 +226,7 @@ export default nix.lambda((args) => (() => {
               nix.thunk(() => nix.lookup(w, "cryptography")),
               nix.thunk(() => nix.lookup(w, "pefile")),
             ];
-          })()))), nix.concat(nix.app(nix.sel(lib, "optionals"), withPasswordQuality, nix.thunk(() => [libpwquality])), nix.concat(nix.app(nix.sel(lib, "optionals"), withQrencode, nix.thunk(() => [qrencode])), nix.concat(nix.app(nix.sel(lib, "optionals"), withLibarchive, nix.thunk(() => [libarchive])), nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(withBootloader) && nix.asBool(nix.selOr(stdenv, () => false, "targetPlatform", "useLLVM")))), nix.thunk(() => nix.app(nix.sel(llvmPackages, "compiler-rt", "override"), nix.thunk(() => ({ __proto__: pos$2, doFakeLibgcc: true })))))))))))))))))))))))))))))))))),
+          })()))), nix.concat(nix.app(nix.sel(lib, "optionals"), withPasswordQuality, nix.thunk(() => [libpwquality])), nix.concat(nix.app(nix.sel(lib, "optionals"), withQrencode, nix.thunk(() => [qrencode])), nix.concat(nix.app(nix.sel(lib, "optionals"), withLibarchive, nix.thunk(() => [libarchive])), nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(withBootloader) && nix.asBool(nix.selOr(stdenv, () => false, "targetPlatform", "useLLVM")))), nix.thunk(() => nix.app(nix.sel(llvmPackages, "compiler-rt", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, doFakeLibgcc: true })))))))))))))))))))))))))))))))))),
       mesonBuildType: "release",
       mesonFlags: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(nix.sel(lib, "mesonOption"), "time-epoch", releaseTimestamp)),
@@ -358,7 +358,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "substituteInPlace src/libsystemd/sd-journal/catalog.c \\\n  --replace-fail /usr/lib/systemd/catalog/ $out/lib/systemd/catalog/\n",
       postConfigure: "substituteInPlace config.h \\\n  --replace-fail \"SYSTEMD_BINARY_PATH\" \"_SYSTEMD_BINARY_PATH\" \\\n  --replace-fail \"SYSTEM_SHUTDOWN_PATH\" \"_SYSTEM_SHUTDOWN_PATH\" \\\n  --replace-fail \"SYSTEM_SLEEP_PATH\" \"_SYSTEM_SLEEP_PATH\"\n",
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-USYSTEMD_BINARY_PATH",
             "-DSYSTEMD_BINARY_PATH=\"/run/current-system/systemd/lib/systemd/systemd\"",
@@ -405,7 +405,7 @@ wrapProgram $out/bin/ukify --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath")
       disallowedReferences: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => nix.builtins.filter((p) => !nix.eq(p, null), nix.thunk(() => nix.builtins.map((p) => nix.selOr(p, () => nix.force(p), "__spliced", "buildHost"), nix.thunk(() => nix.sel(finalAttrs, "nativeBuildInputs")))))))),
       disallowedRequisites: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withUkify)), nix.thunk(() => [bash, bashNonInteractive]))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         interfaceVersion: 2n,
         withBootloader: withBootloader,
         withCryptsetup: withCryptsetup,
@@ -431,14 +431,14 @@ wrapProgram $out/bin/ukify --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath")
         withTpm2Units: nix.thunk(() => (nix.asBool((nix.asBool(withTpm2Tss) && nix.asBool(withBootloader))) && nix.asBool(withOpenSSL))),
         nixosTests: nix.thunk(() => (() => {
           const prefixTests = (prefix) => nix.app(nix.sel(lib, "mapAttrs'"), (name) => (value) => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               name: nix.thunk(() => nix.str`${prefix}-${name}`),
               value: value,
             }), nix.thunk(() => nix.sel(nixosTests, nix.key(nix.str`${prefix}`))));
           return nix.update((() => {
             const from = nix.thunk(() => nix.app(prefixTests, "systemd-binfmt"));
             return {
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             "systemd-binfmt-basic": nix.thunk(() => nix.attr(from, "systemd-binfmt-basic")),
             "systemd-binfmt-chroot": nix.thunk(() => nix.attr(from, "systemd-binfmt-chroot")),
             "systemd-binfmt-ldPreload": nix.thunk(() => nix.attr(from, "systemd-binfmt-ldPreload")),
@@ -447,7 +447,7 @@ wrapProgram $out/bin/ukify --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath")
           })(), nix.update((() => {
             const from = nix.thunk(() => nix.app(prefixTests, "systemd-initrd-networkd"));
             return {
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             "systemd-initrd-networkd-basic": nix.thunk(() => nix.attr(from, "systemd-initrd-networkd-basic")),
             "systemd-initrd-networkd-doFlush": nix.thunk(() => nix.attr(from, "systemd-initrd-networkd-doFlush")),
             "systemd-initrd-networkd-dontFlush": nix.thunk(() => nix.attr(from, "systemd-initrd-networkd-dontFlush")),
@@ -455,7 +455,7 @@ wrapProgram $out/bin/ukify --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath")
           })(), nix.update((() => {
             const from = nix.thunk(() => nix.app(prefixTests, "systemd-boot"));
             return {
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             "systemd-boot-basic": nix.thunk(() => nix.attr(from, "systemd-boot-basic")),
             "systemd-boot-basicXbootldr": nix.thunk(() => nix.attr(from, "systemd-boot-basicXbootldr")),
             "systemd-boot-bootCounting": nix.thunk(() => nix.attr(from, "systemd-boot-bootCounting")),
@@ -481,7 +481,7 @@ wrapProgram $out/bin/ukify --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath")
           })(), nix.update((() => {
             const from = nix.thunk(() => nix.app(prefixTests, "systemd-repart"));
             return {
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             "systemd-repart-after-initrd": nix.thunk(() => nix.attr(from, "systemd-repart-after-initrd")),
             "systemd-repart-basic": nix.thunk(() => nix.attr(from, "systemd-repart-basic")),
             "systemd-repart-create-root": nix.thunk(() => nix.attr(from, "systemd-repart-create-root")),
@@ -489,7 +489,7 @@ wrapProgram $out/bin/ukify --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath")
             "systemd-repart-factory-reset": nix.thunk(() => nix.attr(from, "systemd-repart-factory-reset")),
           };
           })(), {
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             "simple-vm": nix.thunk(() => nix.attr(nixosTests, "simple-vm")),
             "fsck-systemd-stage-1": nix.thunk(() => nix.attr(nixosTests, "fsck-systemd-stage-1")),
             "hibernate-systemd-stage-1": nix.thunk(() => nix.attr(nixosTests, "hibernate-systemd-stage-1")),
@@ -548,7 +548,7 @@ wrapProgram $out/bin/ukify --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath")
           }))));
         })()),
         tests: nix.thunk(() => nix.update(nix.sel(finalAttrs, "passthru", "nixosTests"), {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           cross: nix.thunk(() => (() => {
             const systemString = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "buildPlatform", "isAarch64")) ? "gnu64" : "aarch64-multiplatform"));
             return nix.sel(pkgsCross, nix.key(nix.force(systemString)), "systemd");
@@ -557,7 +557,7 @@ wrapProgram $out/bin/ukify --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath")
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         homepage: "https://systemd.io",
         description: "System and service manager for Linux",
         longDescription: "systemd is a suite of basic building blocks for a Linux system. It\nprovides a system and service manager that runs as PID 1 and starts the\nrest of the system. systemd provides aggressive parallelization\ncapabilities, uses socket and D-Bus activation for starting services,\noffers on-demand starting of daemons, keeps track of processes using Linux\ncontrol groups, maintains mount and automount points, and implements an\nelaborate transactional dependency-based service control logic. systemd\nsupports SysV and LSB init scripts and works as a replacement for\nsysvinit. Other parts include a logging daemon, utilities to control basic\nsystem configuration like the hostname, date, locale, maintain a list of\nlogged-in users and running containers and virtual machines, system\naccounts, runtime directories and settings, and daemons to manage simple\nnetwork configuration, network time synchronization, log forwarding, and\nname resolution.\n",
@@ -589,7 +589,7 @@ wrapProgram $out/bin/ukify --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath")
           nix.thunk(() => nix.sel(lib, "systems", "inspect", "platformPatterns", "isStatic")),
         ]),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "systemd_project", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

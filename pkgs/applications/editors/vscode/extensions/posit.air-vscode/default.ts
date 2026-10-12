@@ -13,9 +13,9 @@ export default nix.lambda((args) => (() => {
   const vscode_utils = nix.arg($, "vscode-utils");
   const air_formatter = nix.arg($, "air-formatter");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "air-vscode",
         publisher: "posit",
         version: "0.30.0",
@@ -27,7 +27,7 @@ ln -s "${nix.app(nix.sel(lib, "getExe"), air_formatter)}" bundled/bin/air
 runHook postPatch
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: "https://marketplace.visualstudio.com/items/Posit.air-vscode/changelog",
         description: "A Visual Studio Code extension for Air, an R formatter and language server, written in Rust.",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=Posit.air-vscode",

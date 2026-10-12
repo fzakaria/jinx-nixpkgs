@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "picocrypt-ng",
       version: "2.18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Picocrypt-NG",
           repo: "Picocrypt-NG",
           rev: "3261587f8b10471a6ed3c5ad132ada0f7c06e4cf",
@@ -45,11 +45,11 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`-skip=^${nix.builtins.concatStringsSep("$|^", skippedTests)}$`),
         ];
       })()),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 1n })),
       postInstall: "mv $out/bin/picocrypt $out/bin/picocrypt-ng-gui\ninstall -Dm644 $src/images/key.svg $out/share/icons/hicolor/scalable/apps/picocrypt-ng.svg\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "Picocrypt-NG",
             exec: "picocrypt-ng-gui",
             icon: "picocrypt-ng",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Very small, very simple, yet very secure encryption tool",
         homepage: "https://github.com/Picocrypt-NG/Picocrypt-NG",
         changelog: nix.thunk(() => nix.str`https://github.com/Picocrypt-NG/Picocrypt-NG/blob/${nix.sel(finalAttrs, "version")}/Changelog.md`),

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const jre = nix.arg($, "jre");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jacoco",
       version: "0.8.15",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://search.maven.org/remotecontent?filepath=org/jacoco/jacoco/${nix.sel(finalAttrs, "version")}/jacoco-${nix.sel(finalAttrs, "version")}.zip`),
           stripRoot: false,
           hash: "sha256-9B+IkVEWs1hfcI6CSfTIm1EvsuRKiXpHjQfAPGkkqxE=",
@@ -39,7 +39,7 @@ makeWrapper ${jre}/bin/java $out/bin/jacoco \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Free code coverage library for Java",
         mainProgram: "jacoco",
         homepage: "https://www.jacoco.org/jacoco",

@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "photoview-ui",
       version: version,
       src: nix.thunk(() => nix.str`${src}/ui`),
@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       NODE_ENV: "production",
       installPhase: "runHook preInstall\nmkdir -p $out\ncp -r dist/* $out/\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Web UI for Photoview photo gallery",
         homepage: "https://photoview.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

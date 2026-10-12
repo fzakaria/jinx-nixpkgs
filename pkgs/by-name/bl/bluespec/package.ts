@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const ghc = nix.arg($, "ghc");
   const gmp = nix.arg($, "gmp");
-  const gmp_static = nix.argOr($, "gmp-static", () => nix.app(nix.sel(gmp, "override"), nix.thunk(() => ({ __proto__: pos$1, withStatic: true }))));
+  const gmp_static = nix.argOr($, "gmp-static", () => nix.app(nix.sel(gmp, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withStatic: true }))));
   const iverilog = nix.arg($, "iverilog");
   const asciidoctor = nix.arg($, "asciidoctor");
   const texliveFull = nix.arg($, "texliveFull");
@@ -62,14 +62,14 @@ export default nix.lambda((args) => (() => {
       const pname = "bluespec";
       const version = "2024.07";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "B-Lang-org",
           repo: "bsc",
           tag: version,
           sha256: "sha256-gA/vfAkkM2cuArN99JZVYEWTIJqg82HlC+BHNVS5Ot0=",
         }))));
       const yices_src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://github.com/B-Lang-org/bsc/releases/download/${version}/yices-src-for-bsc-${version}.tar.gz`),
           sha256: "sha256-pyEdCJvmgwOYPMZEtw7aro76tSn/Y/2GcKTyARmIh4E=",
         }))));
@@ -123,10 +123,10 @@ patchShebangs \\
         makeBinaryWrapper,
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), withDocs, nix.thunk(() => [texliveFull, asciidoctor])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [cctools])))));
       const env = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error"]))),
         }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(withSuiteCheck) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           LOCALE_ARCHIVE: nix.thunk(() => nix.str`${glibcLocales}/lib/locale/locale-archive`),
         })))));
       const makeFlags = nix.thunk(() => nix.concat([
@@ -150,7 +150,7 @@ wrapProgram $out/bin/core/bsc \\
       const checkPhase = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withSuiteCheck, "(\n  cd testsuite\n  set +e # disable exit on error\n  make -j $NIX_BUILD_CORES $checkTarget\n  test_exit_code=$?\n  set -e\n  failures=$(./findfailures.csh)\n  echo \"$failures\"\n  for failure in $failures; do\n    logpath=\"${failure/%sum/log}\"\n    echo \"\\nFAILURE LOG: $logpath\"\n    cat \"$logpath\"\n    echo \"END LOG: $logpath\"\n  done\n\n  if [[ \"$test_exit_code\" != \"0\" || -n \"$failures\" ]]; then\n    echo \"Some tests failed or the makefile failed to run\"\n    exit 1\n  fi\n)\n"));
       const installCheckPhase = "output=\"$($out/bin/bsc 2>&1 || true)\"\necho \"bsc output:\"\necho \"$output\"\necho \"$output\" | grep -q \"to get help\"\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Toolchain for the Bluespec Hardware Definition Language",
         homepage: "https://github.com/B-Lang-org/bsc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -165,7 +165,7 @@ wrapProgram $out/bin/core/bsc \\
         })()),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

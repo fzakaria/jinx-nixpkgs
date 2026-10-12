@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const model = "dcpl3550cdw";
   const interpreter = nix.thunk(() => nix.str`${nix.sel(pkgsi686Linux, "stdenv", "cc", "libc")}/lib/ld-linux.so.2`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.str`cups-brother-${model}`),
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf103919/dcpl3550cdwpdrv-${version}.i386.deb`),
           hash: "sha256-FbtqISK3f1q1+JXJ+RP5O/8G0ZW9gcCS7OI0YRljwyY=",
         })))),
@@ -71,7 +71,7 @@ wrapProgram $out/opt/brother/Printers/${model}/lpd/br${model}filter \\
   --set NIX_REDIRECTS /opt=$out/opt
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.brother.com/",
         downloadPage: nix.thunk(() => nix.str`https://support.brother.com/g/b/downloadlist.aspx?c=eu_ot&lang=en&prod=${model}_eu&os=128`),
         description: "Brother DCP-L3550CDW printer driver",

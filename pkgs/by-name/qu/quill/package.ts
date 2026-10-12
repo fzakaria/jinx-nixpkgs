@@ -24,14 +24,14 @@ export default nix.lambda((args) => (() => {
       const pname = "quill";
       const version = "0.5.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dfinity",
           repo: "quill",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-lCDKM9zzGcey4oWp6imiHvGSNRor0xhlmlhRkSXFLlU=",
         }))));
       const ic = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "dfinity",
           repo: "ic",
           rev: "2f9ae6bf5eafed03599fd29475100aca9f78ae81",
@@ -53,7 +53,7 @@ export OPENSSL_LIB_DIR=${nix.app(nix.sel(lib, "getLib"), openssl)}/lib
       const nativeBuildInputs = nix.thunk(() => [pkg_config, protobuf]);
       const buildInputs = nix.thunk(() => nix.concat([openssl, udev], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv]))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/dfinity/quill",
         changelog: nix.thunk(() => nix.str`https://github.com/dfinity/quill/releases/tag/v${version}`),
         description: "Minimalistic ledger and governance toolkit for cold wallets on the Internet Computer",
@@ -65,7 +65,7 @@ export OPENSSL_LIB_DIR=${nix.app(nix.sel(lib, "getLib"), openssl)}/lib
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

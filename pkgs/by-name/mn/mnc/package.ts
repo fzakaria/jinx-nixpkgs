@@ -13,19 +13,19 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromSourcehut = nix.arg($, "fetchFromSourcehut");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mnc",
       version: "0.5",
       vendorHash: "sha256-H0KmGTWyjZOZLIEWophCwRYPeKLxBC050RI7cMXNbPs=",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~anjan",
           repo: "mnc",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-eCj7wmHxPF2j2x4yHKN7TE122TCv1++azgdoQArabBM=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Opens the user's crontab and echos the time when the next cronjob will be ran",
         homepage: "https://git.sr.ht/~anjan/mnc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zerwes",
           repo: "hiyapyco",
           tag: nix.thunk(() => nix.str`release-${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "runHook preCheck\n\nset -e\nfind test -name 'test_*.py' -exec python {} \\;\n\nrunHook postCheck\n";
       const pythonImportsCheck = nix.thunk(() => ["hiyapyco"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library allowing hierarchical overlay of config files in YAML syntax",
         homepage: "https://github.com/zerwes/hiyapyco",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

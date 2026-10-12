@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const xnuHeaders = nix.arg($, "xnuHeaders");
   const crashreporter_h = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://raw.githubusercontent.com/apple-oss-distributions/WebKit2/WebKit2-7605.1.33.0.2/Platform/spi/Cocoa/CrashReporterClientSPI.h",
       hash: "sha256-0ybVcwHuGEdThv0PPjYQc3SW0YVOyrM3/L9zG/l1Vtk=",
     }))));
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
   const libpthread = nix.thunk(() => nix.app(sourceRelease, "libpthread"));
   const xnu = nix.thunk(() => nix.app(sourceRelease, "xnu"));
   const privateHeaders = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "dyld-deps-private-headers",
       buildCommand: nix.thunk(() => nix.str`install -D -t "$out/include" \\
   '${Libc}/include/_bounds.h'
@@ -91,7 +91,7 @@ touch "$out/include/File.h"
 `),
     }))));
   return nix.app(mkAppleDerivation, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       releaseName: "dyld",
       outputs: nix.thunk(() => ["out", "lib", "man"]),
       propagatedBuildOutputs: [],
@@ -106,7 +106,7 @@ touch "$out/include/File.h"
       ]),
       postPatch: "substituteInPlace include/mach-o/dyld.h \\\n  --replace-fail '#ifdef __DRIVERKIT_19_0' \"#if 0\" \\\n  --replace-fail ', bridgeos(5.0)' \"\" \\\n  --replace-fail 'DYLD_EXCLAVEKIT_UNAVAILABLE' \"\" \\\n  --replace-fail '__API_UNAVAILABLE(ios, tvos, watchos) __API_UNAVAILABLE(bridgeos)' \"\"\n\nsubstituteInPlace include/mach-o/dyld_priv.h \\\n  --replace-fail ', bridgeos(3.0)' \"\"\n\nsubstituteInPlace include/mach-o/dyld_process_info.h \\\n  --replace-fail '__API_UNAVAILABLE(ios, tvos, watchos) __API_UNAVAILABLE(bridgeos)' \"\"\n\nsubstituteInPlace include/mach-o/utils_priv.h \\\n  --replace-fail 'SPI_AVAILABLE' \"__SPI_AVAILABLE\" \\\n  --replace-fail '____SPI_AVAILABLE' \"__SPI_AVAILABLE\"\n\nsubstituteInPlace libdyld/utils.cpp \\\n  --replace-fail 'DYLD_EXCLAVEKIT_UNAVAILABLE' \"\"\n\ncat <<EOF > libdyld/CrashReporterAnnotations.c\n#include <CrashReporterClient.h>\nstruct crashreporter_annotations_t gCRAnnotations\n    __attribute__((section(\"__DATA,\" CRASHREPORTER_ANNOTATIONS_SECTION)))\n    = { CRASHREPORTER_ANNOTATIONS_VERSION, 0, 0, 0, 0, 0, 0 };\nEOF\n\nsubstituteInPlace other-tools/Tool.cpp \\\n  --replace-fail 'bridgeOS 6,' \"\"\n\n# Fix header includes\nsubstituteInPlace libdyld_introspection/dyld_introspection.cpp \\\n  --replace-fail 'dyld_introspection.h' 'mach-o/dyld_introspection.h'\n\nsubstituteInPlace dyld/Loader.h \\\n  --replace-fail 'dyld_priv.h' 'mach-o/dyld_priv.h'\n\nsubstituteInPlace common/DyldSharedCache.h \\\n  --replace-fail 'dyld_cache_format.h' 'mach-o/dyld_cache_format.h'\n\n# Remove unused header include (since the compat shims don’t provide it).\nsubstituteInPlace other-tools/dsc_extractor.cpp \\\n  --replace-fail '#include <CommonCrypto/CommonHMAC.h>' \"\"\n\n# Specify path to `dsc_extractor.bundle` for `dlopen`\nsubstituteInPlace other-tools/dsc_extractor_bin.cpp \\\n  --subst-var lib\n",
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${privateHeaders}/include`),
       })),
       buildInputs: nix.thunk(() => [llvm, openssl]),
@@ -117,7 +117,7 @@ touch "$out/include/File.h"
       ]),
       dontUseCmakeConfigure: true,
       postInstall: "install_name_tool \"${!outputBin}/bin/dsc_extractor\" \\\n  -change @rpath/dsc_extractor.bundle \"${!outputLib}/lib/dsc_extractor.bundle\"\n",
-      meta: nix.thunk(() => ({ __proto__: pos$4, description: "Dyld-related commands for Darwin" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$4, description: "Dyld-related commands for Darwin" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const go_md2man = nix.arg($, "go-md2man");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vgrep",
       version: "2.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vrothberg",
           repo: "vgrep",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [go_md2man, installShellFiles]),
       postBuild: "sed -i '/SHELL= /d' Makefile\nmake docs\ninstallManPage docs/*.[1-9]\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "User-friendly pager for grep/git-grep/ripgrep",
         mainProgram: "vgrep",
         homepage: "https://github.com/vrothberg/vgrep",

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sillytavern",
       version: "1.19.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SillyTavern",
           repo: "SillyTavern",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "# `.npmrc` breaks `npm pack`.\nrm .npmrc\n",
       postInstall: "mkdir $out/lib/node_modules/sillytavern/{backups,public/scripts/extensions/third-party}\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "LLM Frontend for Power Users",
         longDescription: "SillyTavern is a user interface you can install on your computer (and Android phones) that allows you to interact with\ntext generation AIs and chat/roleplay with characters you or the community create.\n\nThis package makes a global installation, instead of a standalone installation according to the official tutorial.\nSee [the official documentation](https://docs.sillytavern.app/installation/#global--standalone-mode) for the context.\n",
         downloadPage: "https://github.com/SillyTavern/SillyTavern/releases",

@@ -22,22 +22,22 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "vsmartcard-vpcd"));
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "vsmartcard-vpcd": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Virtual smart card driver.")),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 35963n,
               description: "Port number vpcd will be listening on.\n",
             })))),
           hostname: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/dev/null",
               description: "Hostname of a waiting vpicc server vpcd will be connecting to. Use /dev/null for listening mode.\n",
@@ -46,11 +46,11 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         services: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           pcscd: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             readerConfigs: nix.thunk(() => [
               nix.thunk(() => nix.str`FRIENDLYNAME "Virtual PCD"
 DEVICENAME   ${nix.sel(cfg, "hostname")}:0x${nix.app(nix.sel(lib, "toHexString"), nix.thunk(() => nix.sel(cfg, "port")))}
@@ -61,12 +61,12 @@ CHANNELID    0x${nix.app(nix.sel(lib, "toHexString"), nix.thunk(() => nix.sel(cf
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "vsmartcard-vpcd"))]),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "stargate01"))];

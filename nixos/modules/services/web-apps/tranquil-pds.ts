@@ -65,92 +65,92 @@ export default nix.lambda((args) => (() => {
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$50,
+    [nix.POS]: pos$50,
     options: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       services: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         "tranquil-pds": nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "tranquil-pds AT Protocol personal data server")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "tranquil-pds", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "tranquil-pds",
               description: "User under which tranquil-pds runs",
             })))),
           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "tranquil-pds",
               description: "Group under which tranquil-pds runs",
             })))),
           dataDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "/var/lib/tranquil-pds",
               description: "Working directory for tranquil-pds. Also expected to be used for data (blobs)",
             })))),
           environmentFiles: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "path")))),
               default: [],
               description: "File to load environment variables from. Loaded variables override\nvalues set in {option}`environment`.\n\nUse it to set values of `JWT_SECRET`, `DPOP_SECRET` and `MASTER_KEY`.\n\nGenerate these with:\n```\nopenssl rand -base64 48\n```\n",
             })))),
           database: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             createLocally: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
                 description: "Create the postgres database and user on the local host.\n",
               })))),
           })),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     server: nix.thunk(() => ({
-                      __proto__: pos$11,
+                      [nix.POS]: pos$11,
                       host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$7,
+                          [nix.POS]: pos$7,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           default: "127.0.0.1",
                           description: "Host for tranquil-pds to listen on",
                         })))),
                       port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           type: nix.thunk(() => nix.sel(types, "int")),
                           default: 3000n,
                           description: "Port for tranquil-pds to listen on",
                         })))),
                       hostname: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           default: "",
                           example: "pds.example.com",
                           description: "The public-facing hostname of the PDS",
                         })))),
                       max_blob_size: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           type: nix.thunk(() => nix.sel(types, "int")),
                           default: 10737418240n,
                           description: "Maximum allowed blob size in bytes.",
                         })))),
                     })),
                     frontend: nix.thunk(() => ({
-                      __proto__: pos$13,
-                      enabled: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "serving the frontend from the backend. Disable to serve the frontend manually"), { __proto__: pos$12, default: true })),
+                      [nix.POS]: pos$13,
+                      enabled: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "serving the frontend from the backend. Disable to serve the frontend manually"), { [nix.POS]: pos$12, default: true })),
                       dir: nix.thunk(() => nix.app(mkPackageOption, pkgs, "tranquil-pds-frontend", nix.thunk(() => ({})))),
                     })),
                     storage: nix.thunk(() => ({
-                      __proto__: pos$15,
+                      [nix.POS]: pos$15,
                       path: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           type: nix.thunk(() => nix.sel(types, "path")),
                           default: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/blobs`),
                           defaultText: "${cfg.dataDir}/blobs",
@@ -158,9 +158,9 @@ export default nix.lambda((args) => (() => {
                         })))),
                     })),
                     tranquil_store: nix.thunk(() => ({
-                      __proto__: pos$17,
+                      [nix.POS]: pos$17,
                       data_dir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$16,
+                          [nix.POS]: pos$16,
                           type: nix.thunk(() => nix.sel(types, "path")),
                           default: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/store`),
                           defaultText: "${cfg.dataDir}/store",
@@ -176,38 +176,38 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               services: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 postgresql: nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   enable: true,
                   ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "user"))]),
                   ensureUsers: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$24,
+                      [nix.POS]: pos$24,
                       name: nix.thunk(() => nix.sel(cfg, "user")),
                       ensureDBOwnership: true,
                     })),
                   ]),
                 })),
                 "tranquil-pds": nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$27,
+                    [nix.POS]: pos$27,
                     database: nix.thunk(() => ({
-                      __proto__: pos$26,
+                      [nix.POS]: pos$26,
                       url: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`postgresql:///${nix.sel(cfg, "user")}?host=/run/postgresql`))),
                     })),
                   })),
                 })),
               })),
               systemd: nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 services: nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   "tranquil-pds": nix.thunk(() => ({
-                    __proto__: pos$30,
+                    [nix.POS]: pos$30,
                     requires: nix.thunk(() => ["postgresql.service"]),
                     after: nix.thunk(() => ["postgresql.service"]),
                   })),
@@ -215,12 +215,12 @@ export default nix.lambda((args) => (() => {
               })),
             })))),
           nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             users: nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               users: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "user"), nix.thunk(() => ({
-                  __proto__: pos$34,
+                  [nix.POS]: pos$34,
                   isSystemUser: true,
                   group: nix.thunk(() => nix.attr(cfg, "group")),
                   home: nix.thunk(() => nix.sel(cfg, "dataDir")),
@@ -229,19 +229,19 @@ export default nix.lambda((args) => (() => {
               groups: nix.thunk(() => nix.attrsDyn({}, [[nix.sel(cfg, "group"), nix.thunk(() => ({}))]])),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               tmpfiles: nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$38,
+                  [nix.POS]: pos$38,
                   "tranquil-pds": nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), nix.thunk(() => [
                       nix.thunk(() => nix.sel(cfg, "dataDir")),
                       nix.thunk(() => nix.sel(cfg, "settings", "storage", "path")),
                       nix.thunk(() => nix.sel(cfg, "settings", "tranquil_store", "data_dir")),
                     ]), (_) => ({
-                      __proto__: pos$37,
+                      [nix.POS]: pos$37,
                       d: nix.thunk(() => ({
-                        __proto__: pos$36,
+                        [nix.POS]: pos$36,
                         mode: "0750",
                         user: nix.thunk(() => nix.attr(cfg, "user")),
                         group: nix.thunk(() => nix.attr(cfg, "group")),
@@ -250,15 +250,15 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               services: nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 "tranquil-pds": nix.thunk(() => ({
-                  __proto__: pos$41,
+                  [nix.POS]: pos$41,
                   description: "Tranquil PDS - ATProtocol Personal Data Server",
                   after: nix.thunk(() => ["network-online.target"]),
                   wants: nix.thunk(() => ["network-online.target"]),
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$40,
+                    [nix.POS]: pos$40,
                     User: nix.thunk(() => nix.sel(cfg, "user")),
                     Group: nix.thunk(() => nix.sel(cfg, "group")),
                     UMask: "0077",
@@ -299,15 +299,15 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               etc: nix.thunk(() => ({
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 "tranquil-pds/config.toml": nix.thunk(() => ({
-                  __proto__: pos$45,
+                  [nix.POS]: pos$45,
                   source: nix.thunk(() => (() => {
                     const conf = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "tranquil-pds.toml", nix.thunk(() => nix.sel(cfg, "settings"))));
                     return nix.app(nix.sel(pkgs, "runCommandLocal"), "validated-tranquil-config", nix.thunk(() => ({
-                        __proto__: pos$44,
+                        [nix.POS]: pos$44,
                         nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
                       })), nix.thunk(() => nix.str`tranquil-server --config ${conf} validate --ignore-secrets
 ln -s ${conf} $out
@@ -319,7 +319,7 @@ ln -s ${conf} $out
           })),
         ]))))),
     meta: nix.thunk(() => ({
-      __proto__: pos$49,
+      [nix.POS]: pos$49,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nelind"))];

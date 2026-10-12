@@ -28,34 +28,34 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ __proto__: pos$1, system: system, config: config }))));
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ __proto__: pos$2, system: system, pkgs: pkgs })))), null);
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs })))), null);
   const w_1 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib")), w);
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     test1: nix.thunk(() => nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         name: "rsyslogd-test1",
         meta: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "lib", "maintainers", "aanderse"))]),
         })),
         nodes: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           machine: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const lib = nix.arg($_1, "lib");
             return {
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               services: nix.thunk(() => ({
-                __proto__: pos$8,
-                rsyslogd: nix.thunk(() => ({ __proto__: pos$4, enable: true })),
+                [nix.POS]: pos$8,
+                rsyslogd: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
                 journald: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     Journal: nix.thunk(() => ({
-                      __proto__: pos$5,
+                      [nix.POS]: pos$5,
                       ForwardToSyslog: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
                     })),
                   })),
@@ -67,21 +67,21 @@ export default nix.lambda((args) => (() => {
         testScript: "machine.wait_for_unit(\"default.target\")\nmachine.fail(\"test -f /var/log/messages\")\n",
       })))),
     test2: nix.thunk(() => nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         name: "rsyslogd-test2",
         meta: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "lib", "maintainers", "aanderse"))]),
         })),
         nodes: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           machine: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$3);
             return {
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               services: nix.thunk(() => ({
-                __proto__: pos$14,
-                rsyslogd: nix.thunk(() => ({ __proto__: pos$13, enable: true })),
+                [nix.POS]: pos$14,
+                rsyslogd: nix.thunk(() => ({ [nix.POS]: pos$13, enable: true })),
               })),
             };
           })(), formals$3),

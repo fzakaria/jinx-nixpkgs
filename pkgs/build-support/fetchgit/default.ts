@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
   })(), formals$3);
   const hasColonInfix = nix.thunk(() => nix.app(nix.sel(lib, "hasInfix"), ":"));
   return nix.update(nix.app(nix.sel(lib, "makeOverridable"), nix.thunk(() => nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         constructDrv: nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")),
         excludeDrvArgNames: nix.thunk(() => ["derivationArgs", "sha256"]),
         extendDrvArgs: (finalAttrs) => nix.app(nix.sel(lib, "fetchers", "withNormalizedHash"), nix.thunk(() => ({})), nix.lambda((args_1) => (() => {
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
             const tag = nix.argOr($_1, "tag", () => null);
             const rev = nix.argOr($_1, "rev", () => null);
             const name = nix.argOr($_1, "name", () => nix.app(urlToName, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 url: url,
                 rev: nix.thunk(() => nix.app(nix.sel(lib, "revOrTag"), nix.thunk(() => nix.sel(finalAttrs, "revCustom")), nix.thunk(() => nix.sel(finalAttrs, "tag")))),
                 append: nix.thunk(() => (nix.asBool(!nix.eq(rootDir, "")) ? nix.str`-${nix.app(nix.sel(lib, "strings", "sanitizeDerivationName"), rootDir)}` : "")),
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
             const finalHashHasColon = nix.thunk(() => nix.app(hasColonInfix, nix.thunk(() => nix.sel(finalAttrs, "hash"))));
             const finalHashColonMatch = nix.thunk(() => nix.app(nix.sel(lib, "match"), "([^:]+)[:](.*)", nix.thunk(() => nix.sel(finalAttrs, "hash"))));
             return nix.update(derivationArgs, {
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               __structuredAttrs: true,
               name: name,
               builder: nix.path(here, "./builder.sh"),
@@ -123,7 +123,7 @@ export default nix.lambda((args) => (() => {
               tag: tag,
               revCustom: rev,
               rev: nix.thunk(() => nix.app(getRevWithTag, nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   tag: nix.thunk(() => nix.attr(finalAttrs, "tag")),
                   rev: nix.thunk(() => nix.sel(finalAttrs, "revCustom")),
                 })))),
@@ -140,31 +140,31 @@ export HOME=$PWD
                 "FETCHGIT_HTTP_PROXIES",
               ]))),
               outputChecks: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 out: nix.thunk(() => nix.attrsDyn({}, [
                   [(nix.asBool(!nix.eq(allowedRequisites, null)) ? "allowedRequisites" : null), allowedRequisites],
                 ])),
               })),
               preferLocalBuild: preferLocalBuild,
               meta: nix.thunk(() => nix.update(meta, {
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 identifiers: nix.thunk(() => nix.update({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   purlParts: nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     type: "generic",
                     spec: nix.thunk(() => nix.str`${name}?vcs_url=${url}@${nix.app(nix.sel(lib, "revOrTag"), rev, tag)}`),
                   })),
                 }, nix.selOr(meta, () => ({}), "identifiers"))),
               })),
               env: nix.thunk(() => nix.update(nix.selOr(derivationArgs, () => ({}), "env"), {
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 NIX_PREFETCH_GIT_CHECKOUT_HOOK: nix.thunk(() => nix.sel(finalAttrs, "postCheckout")),
               })),
-              passthru: nix.thunk(() => nix.update({ __proto__: pos$8, gitRepoUrl: url }, passthru)),
+              passthru: nix.thunk(() => nix.update({ [nix.POS]: pos$8, gitRepoUrl: url }, passthru)),
             });
           })(), formals$4)),
         inheritFunctionArgs: false,
-      }))))), { __proto__: pos$11, getRevWithTag: getRevWithTag });
+      }))))), { [nix.POS]: pos$11, getRevWithTag: getRevWithTag });
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

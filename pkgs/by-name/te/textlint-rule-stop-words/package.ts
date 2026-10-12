@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const textlint = nix.arg($, "textlint");
   const textlint_rule_stop_words = nix.arg($, "textlint-rule-stop-words");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "textlint-rule-stop-words",
       version: "5.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sapegin",
           repo: "textlint-rule-stop-words",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,15 +29,15 @@ export default nix.lambda((args) => (() => {
         })))),
       npmDepsHash: "sha256-UEiSMHZ8tvq/CoRA/wuV7bEZ6Njj3+cjoz139JH46Ks=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => nix.app(nix.sel(textlint, "testPackages"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             rule: textlint_rule_stop_words,
             testFile: nix.path(here, "./test.md"),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Textlint rule to find filler words, buzzwords and clichés",
         homepage: "https://github.com/sapegin/textlint-rule-stop-words",
         changelog: nix.thunk(() => nix.str`https://github.com/sapegin/textlint-rule-stop-words/releases/tag/v${nix.sel(finalAttrs, "version")}`),

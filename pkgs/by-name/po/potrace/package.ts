@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "potrace",
       version: "1.16",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://potrace.sourceforge.net/download/${nix.sel(finalAttrs, "version")}/potrace-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1k3sxgjqq0jnpk9xxys05q32sl5hbf1lbk1gmfxcrmpdgnhli0my",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://potrace.sourceforge.net/",
         description: "Tool for tracing a bitmap, which means, transforming a bitmap into a smooth, scalable image",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

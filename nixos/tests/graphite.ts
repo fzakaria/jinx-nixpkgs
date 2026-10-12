@@ -18,22 +18,22 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     name: "graphite",
     nodes: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       one: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$7,
-          time: nix.thunk(() => ({ __proto__: pos$1, timeZone: "UTC" })),
+          [nix.POS]: pos$7,
+          time: nix.thunk(() => ({ [nix.POS]: pos$1, timeZone: "UTC" })),
           services: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             graphite: nix.thunk(() => ({
-              __proto__: pos$5,
-              web: nix.thunk(() => ({ __proto__: pos$2, enable: true, extraConfig: "SECRET_KEY = \"abcd\";\n" })),
-              carbon: nix.thunk(() => ({ __proto__: pos$3, enableCache: true })),
-              seyren: nix.thunk(() => ({ __proto__: pos$4, enable: false })),
+              [nix.POS]: pos$5,
+              web: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, extraConfig: "SECRET_KEY = \"abcd\";\n" })),
+              carbon: nix.thunk(() => ({ [nix.POS]: pos$3, enableCache: true })),
+              seyren: nix.thunk(() => ({ [nix.POS]: pos$4, enable: false })),
             })),
           })),
         };

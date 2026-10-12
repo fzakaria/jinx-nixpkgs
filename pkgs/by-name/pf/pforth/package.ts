@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pforth",
       version: "2.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "philburk",
           repo: "pforth",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ runHook postBuild
 `),
       installPhase: "runHook preInstall\ninstall -Dm755 platforms/unix/pforth_standalone $out/bin/pforth\nmkdir -p $out/share/pforth\ncp -r fth/* $out/share/pforth/\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.softsynth.com/pforth/",
         description: "Portable Portable ANS-like Forth written in ANSI 'C'",
         mainProgram: "pforth",

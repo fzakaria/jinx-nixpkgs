@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const postgresql = nix.arg($, "postgresql");
   return nix.app(buildPgrxExtension, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       postgresql: postgresql,
       "cargo-pgrx": cargo_pgrx_0_18_0,
       pname: "timescaledb_toolkit",
       version: "1.23.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "timescale",
           repo: "timescaledb-toolkit",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,13 +33,13 @@ export default nix.lambda((args) => (() => {
       buildAndTestSubdir: "extension",
       postInstall: "cargo run --manifest-path ./tools/post-install/Cargo.toml -- --dir \"$out\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => nix.sel(postgresql, "pkgs", "timescaledb", "tests")),
       })),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Provide additional tools to ease all things analytic when using TimescaleDB",
         homepage: "https://github.com/timescale/timescaledb-toolkit",
         maintainers: nix.thunk(() => (() => {

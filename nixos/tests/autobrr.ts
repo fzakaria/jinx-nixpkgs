@@ -21,35 +21,35 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     name: "autobrr",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "av-gal"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       machine: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         services: nix.thunk(() => ({
-          __proto__: pos$3,
-          autobrr: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+          [nix.POS]: pos$3,
+          autobrr: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
         })),
         specialisation: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           settingsPort: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             configuration: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               services: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 autobrr: nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   enable: true,
-                  settings: nix.thunk(() => ({ __proto__: pos$4, port: 7777n })),
+                  settings: nix.thunk(() => ({ [nix.POS]: pos$4, port: 7777n })),
                 })),
               })),
             })),

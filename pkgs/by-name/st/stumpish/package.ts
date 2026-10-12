@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const xprop = nix.arg($, "xprop");
   const rlwrap = nix.arg($, "rlwrap");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "stumpish",
       version: "0.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stumpwm",
           repo: "stumpwm-contrib",
           rev: "9f5f06652c480159ec57d1fd8751b16f02db06dc",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gnused, xprop, rlwrap, ncurses]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./paths.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             sed: nix.thunk(() => nix.str`${gnused}/bin/sed`),
             xprop: nix.thunk(() => nix.str`${xprop}/bin/xprop`),
             rlwrap: nix.thunk(() => nix.str`${rlwrap}/bin/rlwrap`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "mkdir -p $out/bin\n",
       installPhase: "cp util/stumpish/stumpish $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/stumpwm/stumpwm-contrib",
         description: "STUMPwm Interactive SHell",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

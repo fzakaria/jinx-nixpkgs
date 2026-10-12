@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const flex = nix.arg($, "flex");
   const bison = nix.arg($, "bison");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nfdump",
       version: "1.7.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "phaag",
           repo: "nfdump",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "# The script defaults to glibtoolize on darwin, so we pass the correct\n# name explicitly.\nLIBTOOLIZE=libtoolize ./autogen.sh\n",
       configureFlags: nix.thunk(() => ["--enable-nsel", "--enable-sflow", "--enable-readpcap", "--enable-nfpcapd"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tools for working with netflow data",
         longDescription: "nfdump is a set of tools for working with netflow data.\n",
         homepage: "https://github.com/phaag/nfdump",

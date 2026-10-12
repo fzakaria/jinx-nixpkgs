@@ -17,20 +17,20 @@ export default nix.lambda((args) => (() => {
   const libtool = nix.arg($, "libtool");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "CUnit",
       version: "2.1-3",
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, autoconf, automake]),
       buildInputs: nix.thunk(() => [libtool]),
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/cunit/CUnit/${nix.sel(finalAttrs, "version")}/CUnit-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "057j82da9vv4li4z5ri3227ybd18nzyq81f6gsvhifs5z0vr3cpm",
         })))),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unit Testing Framework for C",
         longDescription: "CUnit is a lightweight system for writing, administering, and running\nunit tests in C.  It provides C programmers a basic testing functionality\nwith a flexible variety of user interfaces.\n",
         homepage: "https://cunit.sourceforge.net/",

@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const libxkbcommon = nix.arg($, "libxkbcommon");
   const scdoc = nix.arg($, "scdoc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wmenu",
       version: "0.2.0",
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "adnano",
           repo: "wmenu",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, meson, ninja, wayland_scanner]),
       buildInputs: nix.thunk(() => [cairo, pango, wayland, libxkbcommon, wayland_protocols, scdoc]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Efficient dynamic menu for Sway and wlroots based Wayland compositors",
         homepage: "https://codeberg.org/adnano/wmenu",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

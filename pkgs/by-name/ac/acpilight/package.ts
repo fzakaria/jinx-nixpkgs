@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "acpilight",
       version: "1.2",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://gitlab.com/wavexx/acpilight.git",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-PNjW/04hndcdmsY1ej1TriUblPogsm2ounObbrodGeQ=",
@@ -37,7 +37,7 @@ substituteInPlace Makefile --replace-fail udevadm true
       nativeBuildInputs: nix.thunk(() => [udevCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gitlab.com/wavexx/acpilight",
         description: "ACPI backlight control",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

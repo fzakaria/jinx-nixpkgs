@@ -20,17 +20,17 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const directoryListingUpdater = nix.arg($, "directoryListingUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "alsa-firmware",
       version: "1.2.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://alsa/firmware/alsa-firmware-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-tnttfQi8/CR+9v8KuIqZwYgwWjz1euLf0LzZpbNs1bs=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://raw.githubusercontent.com/void-linux/void-packages/ae690000017d5fd355ab397c49202426e3a01c11/srcpkgs/alsa-firmware/patches/musl.patch",
             hash: "sha256-4A+TBBvpz14NwMNewLc2LQL51hnz4EZlZ44rhnx5dnc=",
           })))),
@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
       dontStrip: true,
       postInstall: "# These are lifted from the Arch PKGBUILD\n# remove files which conflicts with linux-firmware\nrm -rf $out/lib/firmware/{ct{efx,speq}.bin,ess,korg,sb16,yamaha}\n# remove broken symlinks (broken upstream)\nrm -rf $out/lib/firmware/turtlebeach\n# remove empty dir\nrm -rf $out/bin\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ __proto__: pos$3, url: "https://alsa-project.org/files/pub/firmware/" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, url: "https://alsa-project.org/files/pub/firmware/" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://www.alsa-project.org/",
         description: "Soundcard firmwares from the alsa project",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

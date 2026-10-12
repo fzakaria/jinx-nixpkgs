@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mercury";
       const version = "22.01.9";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dl.mercurylang.org/release/mercury-srcdist-${version}.tar.gz`),
           sha256: "sha256-WCY52JUw3WU5w68BuEH2guZVTDylwJvhJOeJ18pLK1g=",
         }))));
@@ -50,7 +50,7 @@ for e in $(ls $out/bin) ; do
 done
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pure logic programming language",
         longDescription: "Mercury is a logic/functional programming language which combines the\nclarity and expressiveness of declarative programming with advanced\nstatic analysis and error detection features.  Its highly optimized\nexecution algorithm delivers efficiency far in excess of existing logic\nprogramming systems, and close to conventional programming systems.\nMercury addresses the problems of large-scale program development,\nallowing modularity, separate compilation, and numerous optimization/time\ntrade-offs.\n",
         homepage: "https://mercurylang.org/",
@@ -63,7 +63,7 @@ done
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

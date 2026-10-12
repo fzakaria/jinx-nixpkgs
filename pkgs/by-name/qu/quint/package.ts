@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
   const apalacheVersion = "0.62.1";
   const evaluatorVersion = "0.7.0";
   const metaCommon = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     description: "Formal specification language with TLA+ semantics",
     homepage: "https://quint-lang.org",
     license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -48,14 +48,14 @@ export default nix.lambda((args) => (() => {
     })()),
   }));
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "quint-co",
       repo: "quint",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-ywcK3GahcA/GWoKTAYr9lSU7k2r1OfA5OALp4f04Vxs=",
     }))));
   const quint_cli = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "quint-cli",
       version: version,
       src: src,
@@ -66,12 +66,12 @@ export default nix.lambda((args) => (() => {
       dontNpmPrune: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/quint\ncp -r node_modules $out/share/quint\ncp -r dist $out/share/quint\n\nrunHook postInstall\n",
       meta: nix.thunk(() => nix.update(metaCommon, {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CLI for the Quint formal specification language",
       })),
     }))));
   const quint_evaluator = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "quint-evaluator",
       version: evaluatorVersion,
       src: src,
@@ -80,17 +80,17 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv]))),
       cargoHash: "sha256-aGVs/J+lAPHOsi01xShfZHBeUjd6eONpraNuMkaVfO8=",
       meta: nix.thunk(() => nix.update(metaCommon, {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Evaluator for the Quint formal specification language",
       })),
     }))));
   const apalacheDist = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       url: nix.thunk(() => nix.str`https://github.com/apalache-mc/apalache/releases/download/v${apalacheVersion}/apalache.tgz`),
       hash: "sha256-/BLs3nfUuYeGhBmiA/Fa0mzOyKibMHdnG9rU/6ZU6ZM=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "quint",
       version: version,
       src: src,
@@ -114,13 +114,13 @@ chmod +x $out/share/quint/apalache-dist-${apalacheVersion}/apalache/bin/apalache
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         "quint-cli": quint_cli,
         "quint-evaluator": quint_evaluator,
         apalacheDist: apalacheDist,
         apalacheVersion: apalacheVersion,
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
-            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$8, extraArgs: nix.thunk(() => ["--subpackage", "quint-cli"]) })))),
+            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$8, extraArgs: nix.thunk(() => ["--subpackage", "quint-cli"]) })))),
             nix.thunk(() => nix.app(writeShellScript, "update", nix.thunk(() => nix.str`src=$(nix build --print-out-paths --no-link .#quint.src)
 QUINT_EVALUATOR_VERSION=$(${nix.app(nix.sel(lib, "getExe"), gnugrep)} -m1 "const QUINT_EVALUATOR_VERSION" $src/quint/src/rust/binaryManager.ts | sed -E "s/.*= 'v?([^']+)'.*/\\1/")
 ${nix.app(nix.sel(lib, "getExe"), nix_update)} quint.quint-evaluator --version $QUINT_EVALUATOR_VERSION
@@ -129,7 +129,7 @@ ${nix.app(nix.sel(lib, "getExe'"), common_updater_scripts, "update-source-versio
 `))),
           ]))),
       })),
-      meta: nix.thunk(() => nix.update(metaCommon, { __proto__: pos$10, mainProgram: "quint" })),
+      meta: nix.thunk(() => nix.update(metaCommon, { [nix.POS]: pos$10, mainProgram: "quint" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

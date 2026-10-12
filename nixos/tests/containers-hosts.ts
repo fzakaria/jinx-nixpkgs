@@ -32,74 +32,74 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     name: "containers-hosts",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "montag451"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$20,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$2, vlans: [] })),
+          [nix.POS]: pos$20,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, vlans: [] })),
           networking: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             bridges: nix.thunk(() => ({
-              __proto__: pos$4,
-              br0: nix.thunk(() => ({ __proto__: pos$3, interfaces: [] })),
+              [nix.POS]: pos$4,
+              br0: nix.thunk(() => ({ [nix.POS]: pos$3, interfaces: [] })),
             })),
             interfaces: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               br0: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 ipv4: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$5, address: "10.11.0.254", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: pos$5, address: "10.11.0.254", prefixLength: 24n })),
                   ]),
                 })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             etc: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               "nsswitch.conf": nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 text: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), "hosts: files\n")),
               })),
             })),
           })),
           containers: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             simple: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               autoStart: true,
               privateNetwork: true,
               localAddress: "10.10.0.1",
               hostAddress: "10.10.0.254",
               config: nix.thunk(() => ({
-                __proto__: pos$14,
-                nix: nix.thunk(() => ({ __proto__: pos$13, enable: false })),
+                [nix.POS]: pos$14,
+                nix: nix.thunk(() => ({ [nix.POS]: pos$13, enable: false })),
               })),
             })),
             netmask: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               autoStart: true,
               privateNetwork: true,
               hostBridge: "br0",
               localAddress: "10.11.0.1/24",
               config: nix.thunk(() => ({
-                __proto__: pos$17,
-                nix: nix.thunk(() => ({ __proto__: pos$16, enable: false })),
+                [nix.POS]: pos$17,
+                nix: nix.thunk(() => ({ [nix.POS]: pos$16, enable: false })),
               })),
             })),
           })),

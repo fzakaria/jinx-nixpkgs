@@ -58,12 +58,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "lm-eval",
       version: "0.4.13",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "EleutherAI",
           repo: "lm-evaluation-harness",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
         word2number,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         api: nix.thunk(() => [aiohttp, requests, tenacity, tiktoken, tqdm]),
         archiver: nix.thunk(() => [jsonlines, zstandard]),
         audiolm_qwen: nix.thunk(() => [librosa, soundfile]),
@@ -120,15 +120,15 @@ export default nix.lambda((args) => (() => {
         "tests/scripts/test_zeno_visualize.py",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             "rev-prefix": "v",
             allowedVersions: "^[0-9]+\\.[0-9]+\\.[0-9]+(\\.[0-9]+)?$",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/EleutherAI/lm-evaluation-harness/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Framework for few-shot evaluation of language models",
         homepage: "https://github.com/EleutherAI/lm-evaluation-harness",

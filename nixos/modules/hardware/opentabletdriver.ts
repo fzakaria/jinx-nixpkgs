@@ -31,9 +31,9 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "hardware", "opentabletdriver"));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -43,28 +43,28 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       hardware: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         opentabletdriver: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Enable OpenTabletDriver udev rules, user service and blacklist kernel\nmodules known to conflict with OpenTabletDriver.\n",
             })))),
           blacklistedKernelModules: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => ["hid-uclogic", "wacom"]),
               description: "Blacklist of kernel modules known to conflict with OpenTabletDriver.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "opentabletdriver", nix.thunk(() => ({})))),
           daemon: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 default: true,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 description: "Whether to start OpenTabletDriver daemon as a systemd user service.\n",
@@ -74,40 +74,40 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         environment: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           udev: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           blacklistedKernelModules: nix.thunk(() => nix.sel(cfg, "blacklistedKernelModules")),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           user: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             services: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               opentabletdriver: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "daemon", "enable")), nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   description: "Open source, cross-platform, user-mode tablet driver",
                   wantedBy: nix.thunk(() => ["graphical-session.target"]),
                   partOf: nix.thunk(() => ["graphical-session.target"]),
                   unitConfig: nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     After: "graphical-session.target",
                     ConditionEnvironment: nix.thunk(() => ["|WAYLAND_DISPLAY", "|DISPLAY"]),
                   })),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     Type: "simple",
                     ExecStartPre: nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScript"), "poll-for-non-gdm-greeter-display", "if [[ \"$USER\" = \"gdm-greeter\"* \\\n    || ( \"$${XDG_SESSION_TYPE}\" = wayland && -z \"$${WAYLAND_DISPLAY}\" ) ]]; then\n  exit 1\nfi\n")),
                     ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "otd-daemon")),

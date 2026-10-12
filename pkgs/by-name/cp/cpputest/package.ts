@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cpputest",
       version: "4.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/cpputest/cpputest/releases/download/v${nix.sel(finalAttrs, "version")}/cpputest-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1xslavlb1974y5xvs8n1j9zkk05dlw8imy4saasrjlmibl895ii1",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://cpputest.github.io/",
         description: "Unit testing and mocking framework for C/C++",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

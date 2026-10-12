@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const gobject_introspection = nix.arg($, "gobject-introspection");
   const gtk_layer_shell = nix.arg($, "gtk-layer-shell");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nwg-dock-hyprland",
       version: "0.4.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nwg-piotr",
           repo: "nwg-dock-hyprland",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk_layer_shell]),
       postInstall: "install -d $out/share/nwg-dock-hyprland\ncp -r images $out/share/nwg-dock-hyprland/images\ninstall -Dm644 config/style.css $out/share/nwg-dock-hyprland/style.css\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GTK3-based dock for Hyprland",
         mainProgram: "nwg-dock-hyprland",
         homepage: "https://github.com/nwg-piotr/nwg-dock-hyprland",

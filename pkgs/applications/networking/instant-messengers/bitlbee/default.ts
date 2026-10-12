@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "bitlbee";
       const version = "3.6";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://bitlbee/src/bitlbee-${version}.tar.gz`),
           sha256: "0zhhcbcr59sx9h4maf8zamzv2waya7sbsl7w74gbyilvy93dw5cz",
         }))));
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const configureFlags = nix.thunk(() => nix.concat(["--otr=1", "--ssl=gnutls", "--pidfile=/var/lib/bitlbee/bitlbee.pid"], nix.concat(nix.app(nix.sel(lib, "optional"), enableLibPurple, "--purple=1"), nix.app(nix.sel(lib, "optional"), enablePam, "--pam=1"))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/bitlbee/bitlbee/commit/6ff651b3ec93e5fd74f80766d5e9714d963137bc.diff",
             sha256: "144dpm4kq7c268fpww1q3n88ayg068n73fbabr5arh1zryw48qfv",
           })))),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "# check flags set VERBOSE=y which breaks the build due overriding a command\nmake check\n";
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "IRC instant messaging gateway",
         mainProgram: "bitlbee",
         longDescription: "BitlBee brings IM (instant messaging) to IRC clients.  It's a\ngreat solution for people who have an IRC client running all the\ntime and don't want to run an additional MSN/AIM/whatever\nclient.\n\nBitlBee currently supports the following IM networks/protocols:\nXMPP/Jabber (including Google Talk), MSN Messenger, Yahoo!\nMessenger, AIM and ICQ.\n",
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "gnu"), nix.sel(lib, "platforms", "linux"))),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

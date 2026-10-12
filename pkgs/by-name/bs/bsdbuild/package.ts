@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const mandoc = nix.arg($, "mandoc");
   const ed = nix.arg($, "ed");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bsdbuild",
       version: "3.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://stable.hypertriton.com/bsdbuild/bsdbuild-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1zrdjh7a6z4khhfw9zrp490afq306cpl5v8wqz2z55ys7k1n5ifl",
         })))),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         "--with-manpages=yes",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://bsdbuild.hypertriton.com",
         description: "Cross-platform build system",
         longDescription: "BSDBuild is a cross-platform build system. Derived from the\ntraditional 4.4BSD make libraries, BSDBuild allows BSD-style\nMakefiles (without BSD make extensions), and works natively\nunder most operating systems and make flavors. Since BSDBuild\nis implemented as a library (as opposed to a macro package),\nMakefiles are edited directly, as opposed to being compiled\n(however, if the build directory is separate from the source\ndirectory, BSDBuild will produce the required Makefiles in place).\n",

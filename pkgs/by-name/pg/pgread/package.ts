@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pgread",
       version: "0-unstable-2026-01-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Chocapikk",
           repo: "pgread",
           rev: "48a71943fd1fed407a2bf6c9e0afaefabb7e26fc",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X=github.com/Chocapikk/pgread/pgdump.Version=${nix.sel(finalAttrs, "version")}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tools to read PostgreSQL data files without credentials",
         homepage: "https://github.com/Chocapikk/pgread",
         license: nix.thunk(() => nix.sel(lib, "licenses", "wtfpl")),

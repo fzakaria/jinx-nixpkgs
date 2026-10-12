@@ -27,55 +27,55 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const enabled = nix.thunk(() => nix.app(nix.sel(lib, "elem"), "displaylink", nix.thunk(() => nix.sel(config, "services", "xserver", "videoDrivers"))));
   const evdi = nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "evdi"));
-  const displaylink = nix.thunk(() => nix.app(nix.sel(pkgs, "displaylink", "override"), nix.thunk(() => ({ __proto__: pos$1, evdi: evdi }))));
+  const displaylink = nix.thunk(() => nix.app(nix.sel(pkgs, "displaylink", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, evdi: evdi }))));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), enabled, nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         boot: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           extraModulePackages: nix.thunk(() => [evdi]),
           kernelModules: nix.thunk(() => ["evdi"]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           xserver: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             externallyConfiguredDrivers: nix.thunk(() => ["displaylink"]),
             displayManager: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               sessionCommands: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(pkgs, "xrandr")))}/bin/xrandr --setprovideroutputsource 1 0
 `),
             })),
           })),
-          udev: nix.thunk(() => ({ __proto__: pos$5, packages: nix.thunk(() => [displaylink]) })),
+          udev: nix.thunk(() => ({ [nix.POS]: pos$5, packages: nix.thunk(() => [displaylink]) })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           etc: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             "X11/xorg.conf.d/40-displaylink.conf": nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               text: "Section \"OutputClass\"\n  Identifier  \"DisplayLink\"\n  MatchDriver \"evdi\"\n  Driver      \"modesetting\"\n  Option      \"TearFree\" \"true\"\n  Option      \"AccelMethod\" \"none\"\nEndSection\n",
             })),
           })),
         })),
         powerManagement: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           powerDownCommands: "#flush any bytes in pipe\nwhile read -r -n 1 -t 1 < /tmp/PmMessagesPort_out; do : ; done;\n\n#suspend DisplayLinkManager\necho \"S\" > /tmp/PmMessagesPort_in\n\n#wait until suspend of DisplayLinkManager finish\nif [ -f /tmp/PmMessagesPort_out ]; then\n  #wait until suspend of DisplayLinkManager finish\n  read -r -n 1 -t 10 < /tmp/PmMessagesPort_out\nfi\n",
           resumeCommands: "#resume DisplayLinkManager\necho \"R\" > /tmp/PmMessagesPort_in\n",
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             dlm: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "DisplayLink Manager Service",
               after: nix.thunk(() => ["display-manager.service"]),
               conflicts: nix.thunk(() => ["getty@tty7.service"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 ExecStart: nix.thunk(() => nix.str`${displaylink}/bin/DisplayLinkManager`),
                 Restart: "always",
                 RestartSec: 5n,

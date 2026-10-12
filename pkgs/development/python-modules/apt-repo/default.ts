@@ -17,26 +17,26 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "apt-repo",
       version: "0.5-unstable-2023-09-27",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "brennerm",
           repo: "python-apt-repo",
           rev: "0287c59317f9ec8e8edbf7c228665a7010f758e7",
           hash: "sha256-9PA6AIeMXpaDc9g+rYpzwhf4ts3Xb31rvAUgDebTG4A=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       "build-system": nix.thunk(() => [setuptools]),
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["apt_repo"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python library to query APT repositories",
         homepage: "https://github.com/brennerm/python-apt-repo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

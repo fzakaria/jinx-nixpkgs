@@ -26,18 +26,18 @@ export default nix.lambda((args) => (() => {
   const nautilus = nix.arg($, "nautilus");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "nautilus-python",
       version: "4.2.0",
       outputs: nix.thunk(() => ["out", "dev", "doc", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/nautilus-python/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/nautilus-python-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-pFubQHptETKK+02KnqAUdYwQDXfoRcyygIgtL35K37w=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pythonPaths: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), ", ", (pkg) => nix.str`'${pkg}/${nix.sel(python3, "sitePackages")}'`, nix.thunk(() => [nix.thunk(() => nix.sel(python3, "pkgs", "pygobject3"))]))),
           })))),
       ]),
@@ -52,11 +52,11 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [python3, nix.thunk(() => nix.sel(python3, "pkgs", "pygobject3")), nautilus]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$3, packageName: "nautilus-python" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: "nautilus-python" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Python bindings for the Nautilus Extension API",
         homepage: "https://gitlab.gnome.org/GNOME/nautilus-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

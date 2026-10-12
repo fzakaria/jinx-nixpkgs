@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const version = nix.argOr($, "version", () => 4n);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({ __proto__: pos$1, system: system }))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system }))));
   return nix.update({
-    __proto__: pos$3,
-    simple: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./simple.nix")), nix.thunk(() => ({ __proto__: pos$2, version: version, system: system, pkgs: pkgs })))),
+    [nix.POS]: pos$3,
+    simple: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./simple.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, version: version, system: system, pkgs: pkgs })))),
   }, nix.app(nix.sel(pkgs, "lib", "optionalAttrs"), nix.thunk(() => nix.eq(version, 4n)), nix.thunk(() => ({
-      __proto__: pos$5,
-      kerberos: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./kerberos.nix")), nix.thunk(() => ({ __proto__: pos$4, version: version, system: system, pkgs: pkgs })))),
+      [nix.POS]: pos$5,
+      kerberos: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./kerberos.nix")), nix.thunk(() => ({ [nix.POS]: pos$4, version: version, system: system, pkgs: pkgs })))),
     }))));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

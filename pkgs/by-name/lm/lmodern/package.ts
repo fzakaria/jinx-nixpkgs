@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
       const pname = "lmodern";
       const version = "2.005";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://debian/pool/main/l/lmodern/lmodern_${version}.orig.tar.gz`),
           hash: "sha256-xlUuZt6rjW0pX4t6PKWAHkkv3PisGCj7ZwatZPAUNxk=",
         }))));
       const installPhase = "runHook preInstall\n\nmkdir -p $out/texmf-dist/\nmkdir -p $out/share/fonts/\n\ncp -r * $out/texmf-dist/\ncp -r fonts/{opentype,type1} $out/share/fonts/\n\nrunHook postInstall\n";
-      const meta = nix.thunk(() => ({ __proto__: pos$2, description: "Latin Modern font" }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      const meta = nix.thunk(() => ({ [nix.POS]: pos$2, description: "Latin Modern font" }));
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jimporter",
           repo: "mike",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-shtab-unit-tests.patch",
             url: "https://github.com/jimporter/mike/commit/22ccb5f6d6e53285845d38a9559afab7248b5c9b.patch",
             hash: "sha256-hzTNkdq283+ybw0Fn5vIEMtgH7F1gt84ZzwL3Ru+5MY=",
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = nix.thunk(() => nix.add("export PATH=$out/bin:$PATH\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace test/unit/test_git_utils.py \\\n  --replace-fail \"/home/nonexist\" \"$(mktemp -d)\"\n")));
       const pythonImportsCheck = nix.thunk(() => ["mike"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Manage multiple versions of your MkDocs-powered documentation via Git",
         homepage: "https://github.com/jimporter/mike",
         changelog: nix.thunk(() => nix.str`https://github.com/jimporter/mike/blob/v${version}/CHANGES.md`),
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "mike",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.0";
       const outputs = nix.thunk(() => ["out", "dev"]);
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rockdaboot",
           repo: "libhsts",
           tag: nix.thunk(() => nix.str`libhsts-${version}`),
@@ -38,7 +38,7 @@ patchShebangs src/hsts-make-dafsa
 `);
       const nativeBuildInputs = nix.thunk(() => [autoconf_archive, autoreconfHook, pkg_config, python3]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to easily check a domain against the Chromium HSTS Preload list",
         mainProgram: "hsts",
         homepage: "https://gitlab.com/rockdaboot/libhsts",
@@ -55,7 +55,7 @@ patchShebangs src/hsts-make-dafsa
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         outputs,

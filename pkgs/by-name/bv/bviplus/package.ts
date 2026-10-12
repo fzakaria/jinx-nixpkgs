@@ -17,17 +17,17 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "bviplus",
       version: "1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/bviplus/bviplus/${nix.sel(finalAttrs, "version")}/bviplus-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-LyukklCYy5U3foabc2hB7ZHbJdrDXlyuXkvlGH1zAiM=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "ncurses-6.3.patch",
             url: "https://sourceforge.net/p/bviplus/bugs/7/attachment/bviplus-ncurses-6.2.patch",
             hash: "sha256-3ZC7pPew40quekb5JecPQg2gRFi0DXeMjxQPT5sTerw=",
@@ -36,9 +36,9 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [ncurses]),
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
-      env: nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-Wno-implicit-int -fgnu89-inline" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wno-implicit-int -fgnu89-inline" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Ncurses based hex editor with a vim-like interface",
         homepage: "https://bviplus.sourceforge.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

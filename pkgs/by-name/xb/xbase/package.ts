@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "xbase",
       version: "3.1.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/xdb/xbase64-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "17287kz1nmmm64y7zp9nhhl7slzlba09h6cc83w4mvsqwd9w882r",
         })))),
@@ -28,24 +28,24 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./xbase-fixes.patch"),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/dev-db/xbase/files/xbase-3.1.2-gcc47.patch?id=0b9005ad4b5b743707922877e5157ba6ecdf224f",
             sha256: "1kpcrkkcqdwl609yd0qxlvp743icz3vni13993sz6fkgn5lah8yl",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/dev-db/xbase/files/xbase-3.1.2-gcc6.patch?id=0b9005ad4b5b743707922877e5157ba6ecdf224f",
             sha256: "1994pqiip5njkcmm5czb1bg6zdldkx1mpandgmvzqrja0iacf953",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/dev-db/xbase/files/xbase-3.1.2-gcc7.patch?id=0b9005ad4b5b743707922877e5157ba6ecdf224f",
             sha256: "1304gn9dbdv8xf61crkg0fc8cal0h4qkyhlbqa8y618w134cxh1q",
           })))),
       ]),
       postPatch: "sed -i '1i#include <cstdarg>' xbase64/xbstring.cpp\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://sourceforge.net/projects/xdb/",
         description: "C++ class library formerly known as XDB",
         maintainers: nix.thunk(() => (() => {

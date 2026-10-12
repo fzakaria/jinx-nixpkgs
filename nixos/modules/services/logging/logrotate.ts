@@ -58,9 +58,9 @@ export default nix.lambda((args) => (() => {
 `);
   const settings = nix.thunk(() => nix.app(nix.sel(lib, "sortProperties"), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (settings_1) => nix.sel(settings_1, "enable"), nix.thunk(() => nix.app(nix.sel(lib, "foldAttrs"), nix.thunk(() => nix.sel(lib, "recursiveUpdate")), nix.thunk(() => ({})), nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               header: nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 enable: true,
                 missingok: true,
                 notifempty: true,
@@ -70,12 +70,12 @@ export default nix.lambda((args) => (() => {
             })),
             nix.thunk(() => nix.sel(cfg, "settings")),
             nix.thunk(() => ({
-              __proto__: pos$4,
-              header: nix.thunk(() => ({ __proto__: pos$3, global: true, priority: 100n })),
+              [nix.POS]: pos$4,
+              header: nix.thunk(() => ({ [nix.POS]: pos$3, global: true, priority: 100n })),
             })),
           ])))))))));
   const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: "logrotate.conf",
       text: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.builtins.map(mkConf, settings)))),
       checkPhase: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "checkConfig")), nix.thunk(() => nix.str`# logrotate --debug also checks that users specified in config
@@ -114,7 +114,7 @@ fi
     }))));
   const mailOption = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "foldr"), (n) => (a) => (nix.asBool(a) || nix.asBool(!nix.eq(nix.selOr(n, () => false, "mail"), false))), false, nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(cfg, "settings")))))), nix.thunk(() => nix.str`--mail=${nix.sel(pkgs, "mailutils")}/bin/mail`)));
   return {
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "logrotate", "config"]), "Modify services.logrotate.settings.header instead")),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "logrotate", "extraConfig"]), "Modify services.logrotate.settings.header instead")),
@@ -122,19 +122,19 @@ fi
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "logrotate", "configFile"]), "Use services.logrotate.settings instead to specify extra configuration")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       services: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         logrotate: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "the logrotate systemd service"), {
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             default: nix.thunk(() => nix.app(nix.sel(lib, "foldr"), (n) => (a) => (nix.asBool(a) || nix.asBool(nix.sel(n, "enable"))), false, nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(cfg, "settings")))))),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "cfg.settings != {}")),
           })),
           allowNetworking: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "network access for logrotate")),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               default: nix.thunk(() => ({})),
               description: "logrotate freeform settings: each attribute here will define its own section,\nordered by {option}`services.logrotate.settings.<name>.priority`,\nwhich can either define files to rotate with their settings\nor settings common to all further files settings.\nAll attribute names not explicitly defined as sub-options here are passed through\nas logrotate config directives,\nrefer to <https://linux.die.net/man/8/logrotate> for details.\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  # global options\n  header = {\n    dateext = true;\n  };\n  # example custom files\n  \"/var/log/mylog.log\" = {\n    frequency = \"daily\";\n    rotate = 3;\n  };\n  \"multiple paths\" = {\n     files = [\n      \"/var/log/first*.log\"\n      \"/var/log/second.log\"\n    ];\n  };\n  # specify custom order of sections\n  \"/var/log/myservice/*.log\" = {\n    # ensure lower priority\n    priority = 110;\n    postrotate = ''\n      systemctl reload myservice\n    '';\n  };\n};\n")),
@@ -142,7 +142,7 @@ fi
                     const $_1 = nix.formals(args_1, formals$2);
                     const name = nix.arg($_1, "name");
                     return {
-                      __proto__: pos$13,
+                      [nix.POS]: pos$13,
                       freeformType: nix.thunk(() => (() => {
                         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                         return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -152,16 +152,16 @@ fi
                               ]))))));
                       })()),
                       options: nix.thunk(() => ({
-                        __proto__: pos$12,
-                        enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "setting individual kill switch"), { __proto__: pos$7, default: true })),
+                        [nix.POS]: pos$12,
+                        enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "setting individual kill switch"), { [nix.POS]: pos$7, default: true })),
                         global: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$8,
+                            [nix.POS]: pos$8,
                             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                             default: false,
                             description: "Whether this setting is a global option or not: set to have these\nsettings apply to all files settings with a higher priority.\n",
                           })))),
                         files: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$9,
+                            [nix.POS]: pos$9,
                             type: nix.thunk(() => (() => {
                               const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                               return nix.app(nix.lookup(w_1, "either"), nix.thunk(() => nix.lookup(w_1, "str")), nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")))));
@@ -171,13 +171,13 @@ fi
                             description: "Single or list of files for which rules are defined.\nThe files are quoted with double-quotes in logrotate configuration,\nso globs and spaces are supported.\nNote this setting is ignored if globals is true.\n",
                           })))),
                         frequency: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$10,
+                            [nix.POS]: pos$10,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                             default: null,
                             description: "How often to rotate the logs. Defaults to previously set global setting,\nwhich itself defaults to weekly.\n",
                           })))),
                         priority: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$11,
+                            [nix.POS]: pos$11,
                             type: nix.thunk(() => nix.sel(lib, "types", "int")),
                             default: 1000n,
                             description: "Order of this logrotate block in relation to the others. The semantics are\nthe same as with `lib.mkOrder`. Smaller values are inserted first.\n",
@@ -187,13 +187,13 @@ fi
                   })(), formals$2))))),
             })))),
           checkConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether the config should be checked at build time.\n\nSome options are not checkable at build time because of the build sandbox:\nfor example, the test does not know about existing files and system users are\nnot known.\nThese limitations mean we must adjust the file for tests (missingok is forced\nand users are replaced by dummy users), so tests are complemented by a\nlogrotate-checkconf service that is enabled by default.\nThis extra check can be disabled by disabling it at the systemd level with the\n{option}`systemd.services.logrotate-checkconf.enable` option.\n\nConversely there are still things that might make this check fail incorrectly\n(e.g. a file path where we don't have access to intermediate directories):\nin this case you can disable the failing check with this option.\n",
             })))),
           extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "Additional command line arguments to pass on logrotate invocation",
@@ -202,13 +202,13 @@ fi
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         environment: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           etc: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             "logrotate.conf": nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               source: configFile,
               mode: "0644",
               user: "root",
@@ -217,16 +217,16 @@ fi
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           services: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             logrotate: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               description: "Logrotate Service",
               documentation: nix.thunk(() => ["man:logrotate(8)", "man:logrotate(5)"]),
               startAt: "hourly",
               serviceConfig: nix.thunk(() => nix.update({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 Type: "oneshot",
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "logrotate")))} ${nix.app(nix.sel(utils, "escapeSystemdExecArgs"), nix.thunk(() => nix.sel(cfg, "extraArgs")))} ${mailOption} /etc/logrotate.conf`),
                 Nice: 19n,
@@ -263,17 +263,17 @@ fi
                 SystemCallFilter: nix.thunk(() => ["@system-service", "~@privileged @resources", "@chown @setuid"]),
                 UMask: "0027",
               }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "allowNetworking"))), nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   PrivateNetwork: true,
                   RestrictAddressFamilies: nix.thunk(() => ["AF_UNIX"]),
                 }))))),
             })),
             "logrotate-checkconf": nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               description: "Logrotate configuration check",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 Type: "oneshot",
                 RemainAfterExit: true,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "logrotate")}/sbin/logrotate ${nix.app(nix.sel(utils, "escapeSystemdExecArgs"), nix.thunk(() => nix.sel(cfg, "extraArgs")))} --debug /etc/logrotate.conf`),

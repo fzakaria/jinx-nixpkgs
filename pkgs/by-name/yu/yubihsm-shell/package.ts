@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const yubihsm_connector = nix.arg($, "yubihsm-connector");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "yubihsm-shell",
       version: "2.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Yubico",
           repo: "yubihsm-shell",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook, yubihsm_connector]),
       installCheckPhase: "runHook preInstallCheck\n\n# yubihsm-shell should be able to connect to yubihsm-connector over http if postFixup worked\n# note that checkPhase is more extensive and seems to require a YubiHSM plugged in,\n# so we expect a failure here, but it should at least try to connect\nyubihsm-connector -d </dev/null 1>&2 2>connector.log &\nyubihsm_pid=$!\nidx=0\nwhile ! grep takeoff connector.log >/dev/null && [ $idx -lt 10 ]; do\n  idx=$((idx+1))\n  echo \"Waiting for yubihsm-connector startup (try: $idx)\" >&2\n  sleep 1\ndone\n$out/bin/yubihsm-shell -Pv1 </dev/null || true\nkill -INT \"$yubihsm_pid\" && { wait \"$yubihsm_pid\" || true; }\ncat connector.log >&2\ngrep -E 'GET.+/connector/status' connector.log >/dev/null\n\nrunHook postInstallCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mainProgram: "yubihsm-shell",
         description: "Thin wrapper around libyubihsm providing both an interactive and command-line interface to a YubiHSM",
         homepage: "https://github.com/Yubico/yubihsm-shell",

@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.26.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "poljar",
           repo: "matrix-nio",
           tag: version,
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         unpaddedbase64,
       ], nix.app(nix.sel(lib, "optionals"), withVodozemac, nix.thunk(() => nix.sel(optional_dependencies, "e2e")))));
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         e2e: nix.thunk(() => [atomicwrites, cachetools, vodozemac, peewee]),
       }));
       const pythonRelaxDeps = nix.thunk(() => ["aiofiles", "aiohttp-socks"]);
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
         hpack,
         hyperframe,
         hypothesis,
-        nix.thunk(() => nix.app(nix.sel(pytest_aiohttp, "override"), nix.thunk(() => ({ __proto__: pos$3, "pytest-asyncio": pytest_asyncio_0 })))),
+        nix.thunk(() => nix.app(nix.sel(pytest_aiohttp, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, "pytest-asyncio": pytest_asyncio_0 })))),
         pytest_benchmark,
         pytestCheckHook,
       ]);
@@ -130,9 +130,9 @@ export default nix.lambda((args) => (() => {
           "test_sync_token_restoring",
         ]))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           dendrite: nix.thunk(() => nix.attr(nixosTests, "dendrite")),
           "matrix-appservice-irc": nix.thunk(() => nix.attr(nixosTests, "matrix-appservice-irc")),
           "matrix-conduit": nix.thunk(() => nix.attr(nixosTests, "matrix-conduit")),
@@ -144,7 +144,7 @@ export default nix.lambda((args) => (() => {
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://github.com/poljar/matrix-nio",
         changelog: nix.thunk(() => nix.str`https://github.com/poljar/matrix-nio/blob/${version}/CHANGELOG.md`),
         description: "Python Matrix client library, designed according to sans I/O principles",
@@ -158,7 +158,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         pyproject,

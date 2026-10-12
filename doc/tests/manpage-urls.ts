@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const script = nix.argOr($_1, "script", () => nix.path(here, "./manpage-urls.py"));
       const urlsFile = nix.argOr($_1, "urlsFile", () => nix.path(here, "../manpage-urls.json"));
       return nix.app(runCommand, name, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           nativeBuildInputs: nix.thunk(() => [
             cacert,
             nix.thunk(() => nix.app(nix.sel(python3, "pythonOnBuildForHost", "withPackages"), (p) => [

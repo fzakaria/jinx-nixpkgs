@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const plotly = nix.arg($, "plotly");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kmapper",
       version: "2.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "scikit-tda",
           repo: "kepler-mapper",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [anywidget, igraph, ipywidgets, matplotlib, networkx, plotly, pytestCheckHook]),
       disabledTests: nix.thunk(() => ["test_tuple_projection", "test_tuple_projection_fit"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python implementation of Mapper algorithm for Topological Data Analysis",
         homepage: "https://kepler-mapper.scikit-tda.org/",
         downloadPage: "https://github.com/scikit-tda/kepler-mapper",

@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const enable16Bit = nix.argOr($, "enable16Bit", () => true);
   const enableX11 = nix.argOr($, "enableX11", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "np2kai",
       version: "0.86rev22-unstable-2026-02-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AZO234",
           repo: "NP2kai",
           rev: "44c8a8c61640f2d5476af5224dbd88a36079f45d",
@@ -64,24 +64,24 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "strings", "cmakeBool"), "USE_HAXM", false)),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NP2KAI_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
         NP2KAI_HASH: nix.thunk(() => nix.builtins.substring(0n, 7n, nix.thunk(() => nix.sel(finalAttrs, "src", "rev")))),
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             tagConverter: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   name: "update-np2kai",
                   text: "sed -e 's/^rev\\./0.86rev/g'\n",
                 })))))),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "PC-9801 series emulator",
         homepage: "https://github.com/AZO234/NP2kai",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

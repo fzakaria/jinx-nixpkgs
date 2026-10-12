@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const ifaddr = nix.arg($, "ifaddr");
   const pyserial = nix.arg($, "pyserial");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "toptica-lasersdk",
       version: "3.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "toptica_lasersdk",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-VzgQCqfZP9JoFmotG0jPJpHMxLY+unNZqzxQGhtlYC4=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [ifaddr, pyserial]),
       pythonImportsCheck: nix.thunk(() => ["toptica.lasersdk.dlcpro.v2_2_0"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "TOPTICA Python Laser SDK",
         homepage: "https://toptica.github.io/python-lasersdk/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

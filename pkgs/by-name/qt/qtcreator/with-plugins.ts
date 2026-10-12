@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
     const qtcreator_runner = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScriptBin"), "qtcreator", nix.thunk(() => nix.str`exec ${nix.app(nix.sel(lib, "getExe"), qtcreator)} ${plugins_arg} "$@"
 `)));
     return nix.app(nix.sel(pkgs, "symlinkJoin"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         version: nix.thunk(() => nix.attr(qtcreator, "version")),
         meta: nix.thunk(() => nix.attr(qtcreator, "meta")),
         name: "qtcreator-with-plugins",

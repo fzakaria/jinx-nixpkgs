@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const pname = "liferea";
       const version = "1.16.14";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/lwindolf/${pname}/releases/download/v${version}/${pname}-${version}.tar.bz2`),
           hash: "sha256-/zux42TNR453/XCep9/BJgObEXwT5Lq0dAVbucET1Og=",
         }))));
@@ -80,15 +80,15 @@ buildPythonPath ${nix.sel(python3Packages, "requests")}
 patchPythonScript $out/lib/liferea/plugins/download-manager.py
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`https://github.com/lwindolf/${pname}`),
             "rev-prefix": "v",
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "GTK-based news feed aggregator",
         homepage: "http://lzone.de/liferea/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -103,7 +103,7 @@ patchPythonScript $out/lib/liferea/plugins/download-manager.py
         longDescription: "Liferea (Linux Feed Reader) is an RSS/RDF feed reader.\nIt's intended to be a clone of the Windows-only FeedReader.\nIt can be used to maintain a list of subscribed feeds,\nbrowse through their items, and show their contents.\n",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.4.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "python-poetry",
           repo: "poetry",
           tag: version,
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/python-poetry/poetry/commit/aedda8577cd6e7c2d2b983130933a640b1b6545a.patch",
             hash: "sha256-n1etA9em5+kvCN4yiLwBensUb7n6asW+xrIEhA9fNaE=",
             excludes: nix.thunk(() => ["poetry.lock"]),
@@ -111,7 +111,7 @@ export default nix.lambda((args) => (() => {
       const pythonNamespaces = nix.thunk(() => ["poetry"]);
       const makeWrapperArgs = nix.thunk(() => ["--unset PYTHONPATH"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/python-poetry/poetry/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
         homepage: "https://python-poetry.org/",
         description: "Python dependency management and packaging made easy",
@@ -126,7 +126,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "poetry",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

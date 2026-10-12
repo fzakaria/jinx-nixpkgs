@@ -16,20 +16,20 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildRedist, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       redistName: "cuda",
       pname: "cuda_compat",
       outputs: nix.thunk(() => ["out"]),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64")), nix.thunk(() => [openssl]))),
       autoPatchelfIgnoreMissingDeps: nix.thunk(() => nix.concat(["libnvdla_runtime.so", "libnvrm_gpu.so", "libnvrm_mem.so"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64")), nix.thunk(() => ["libcrypto.so.1.1"])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Provides minor version forward compatibility for the CUDA runtime",
         homepage: "https://docs.nvidia.com/deploy/cuda-compatibility",
         problems: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(config, "enableCudaDriverCompat"))), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "cuda-compat-disabled": nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               kind: "broken",
               message: "cuda_compat must be explicitly enabled using config.enableCudaDriverCompat.",
             })),

@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "4.22.5";
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "unciv",
       exec: "unciv",
       comment: "An open-source Android/Desktop remake of Civ V",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       categories: nix.thunk(() => ["Game"]),
     }))));
   const desktopIcon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`https://github.com/yairm210/Unciv/blob/${version}/extraImages/Icons/Unciv%20icon%20v6.png?raw=true`),
       hash: "sha256-Zuz+HGfxjGviGBKTiHdIFXF8UMRLEIfM8f+LIB/xonk=",
     }))));
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const pname = "unciv";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://github.com/yairm210/Unciv/releases/download/${version_1}/Unciv.jar`),
           hash: "sha256-fIdv48YxqcKlBNhflhwUkhBkBs9q7pbc8PQ3bwqRXYg=",
         }))));
@@ -62,11 +62,11 @@ runHook postInstall
 `);
       const desktopItems = nix.thunk(() => [desktopItem]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Open-source Android/Desktop remake of Civ V",
         mainProgram: "unciv",
         homepage: "https://github.com/yairm210/Unciv",
@@ -82,7 +82,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version: version_1,
         src,

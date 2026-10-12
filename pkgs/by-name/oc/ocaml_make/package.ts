@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const version = "6.37.0";
   const sha256 = "99ff58080ed154cc4bd70f915fe4760dffb026a1c0447caa0b3bdb982b24b0a8";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ocaml-make",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://bitbucket.org/mmottl/ocaml-makefile/downloads/ocaml-makefile-${version}.tar.gz`),
           sha256: sha256,
         })))),
       installPhase: "mkdir -p \"$out/include/\"\ncp OCamlMakefile \"$out/include/\"\n",
       setupHook: nix.path(here, "./setup-hook.sh"),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.ocaml.info/home/ocaml_sources.html",
         description: "Generic OCaml Makefile for GNU Make",
         license: nix.thunk(() => (() => {

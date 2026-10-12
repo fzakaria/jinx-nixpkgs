@@ -32,28 +32,28 @@ export default nix.lambda((args) => (() => {
   const setuptools_rust = nix.arg($, "setuptools-rust");
   const setuptools_scm = nix.arg($, "setuptools-scm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "slixmpp",
       version: "1.17.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "poezio",
           repo: "slixmpp",
           tag: nix.thunk(() => nix.str`slix-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-1jCKaUwWuIxTQGA0WkQMpB3xWW8XEAfAlyrqoTFIhVY=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-gnupg-path.patch"), nix.thunk(() => ({ __proto__: pos$2, gnupg: gnupg })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-gnupg-path.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, gnupg: gnupg })))),
       ]),
       postPatch: nix.thunk(() => nix.str`ln -s ${nix.path(here, "./Cargo.lock")} Cargo.lock
 `),
       "build-system": nix.thunk(() => [setuptools, setuptools_rust, setuptools_scm]),
       nativeBuildInputs: nix.thunk(() => [cargo, rustc, nix.thunk(() => nix.sel(rustPlatform, "cargoSetupHook"))]),
-      cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "importCargoLock"), nix.thunk(() => ({ __proto__: pos$3, lockFile: nix.path(here, "./Cargo.lock") })))),
+      cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "importCargoLock"), nix.thunk(() => ({ [nix.POS]: pos$3, lockFile: nix.path(here, "./Cargo.lock") })))),
       dependencies: nix.thunk(() => [aiodns, pyasn1, pyasn1_modules]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "xep-0363": nix.thunk(() => [aiohttp]),
         "xep-0444-compliance": nix.thunk(() => [emoji]),
         "xep-0454": nix.thunk(() => [cryptography]),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["itests/", "tests/live_test.py"]),
       pythonImportsCheck: nix.thunk(() => ["slixmpp"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Python library for XMPP",
         homepage: "https://slixmpp.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/poezio/slixmpp/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const tinyxml_2 = nix.arg($, "tinyxml-2");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nxpmicro-mfgtools",
       version: "1.5.243",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nxp-imx",
           repo: "mfgtools",
           rev: nix.thunk(() => nix.str`uuu_${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: nix.thunk(() => nix.str`echo ${nix.sel(finalAttrs, "version")} > .tarball-version`),
       postInstall: "# rules printed by the following invocation are static,\n# they come from hardcoded configs in libuuu/config.cpp:48\n$out/bin/uuu -udev > udev-rules 2>stderr.txt\nrules_file=\"$(cat stderr.txt|grep '1: put above udev run into'|sed 's|^.*/||')\"\ninstall -D udev-rules \"$out/lib/udev/rules.d/$rules_file\"\ninstallShellCompletion --cmd uuu \\\n  --bash ../snap/local/bash-completion/universal-update-utility\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Freescale/NXP I.MX chip image deploy tools",
         longDescription: "UUU (Universal Update Utility) is a command line tool, evolved out of\nMFGTools (aka MFGTools v3).\n\nOne of the main purposes is to upload images to I.MX SoC's using at least\ntheir boot ROM.\n\nWith time, the need for an update utility portable to Linux and Windows\nincreased. UUU has the same usage on both Windows and Linux. It means the same\nscript works on both OS.\n",
         homepage: "https://github.com/NXPmicro/mfgtools",

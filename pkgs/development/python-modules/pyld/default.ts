@@ -22,21 +22,21 @@ export default nix.lambda((args) => (() => {
   const lxml = nix.arg($, "lxml");
   const requests = nix.arg($, "requests");
   const json_ld_api = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "w3c",
       repo: "json-ld-api",
       rev: "b0f78df0399a3ceaee8b7a49c38eb17caa601524",
       hash: "sha256-g0FZM9LpZGmliG5DEkKv2YDEBRiKArVXy8hJgTRIzrI=",
     }))));
   const json_ld_framing = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "w3c",
       repo: "json-ld-framing",
       rev: "118f1a11507fb4bdbd5e517b85bc93ca741d2aeb",
       hash: "sha256-9JiyRjkBzzawxEVAKGExRHVce7Zo+yKaHauHgNX5Pxc=",
     }))));
   const normalization = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       owner: "json-ld",
       repo: "normalization",
       rev: "fbcfce5730bf2726c131a84d06ffb686a190a969",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "digitalbazaar",
           repo: "pyld",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -68,14 +68,14 @@ ${nix.sel(python, "interpreter")} tests/runtests.py ${normalization}/tests
 `);
       const pythonImportsCheck = nix.thunk(() => ["pyld"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Python implementation of the JSON-LD API",
         homepage: "https://github.com/digitalbazaar/pyld",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

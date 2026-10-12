@@ -19,14 +19,14 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const nativeBuildInputs = nix.thunk(() => [setuptools]);
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-syl107PRwDClB6wpgETCj6PKMNUnq9+uKB7dUydmF7M=",
         }))));
       const pythonImportsCheck = nix.thunk(() => ["chainstream"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Chain I/O streams together into a single stream",
         homepage: "https://github.com/rrthomas/chainstream",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

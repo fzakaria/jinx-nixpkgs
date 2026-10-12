@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const hex = nix.arg($, "hex");
   const uri = nix.arg($, "uri");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "json-data-encoding",
       version: "1.0.1",
       minimalOCamlVersion: "4.10",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nomadic-labs",
           repo: "data-encoding",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       propagatedBuildInputs: nix.thunk(() => [hex, uri]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gitlab.com/nomadic-labs/json-data-encoding",
         description: "Type-safe encoding to and decoding from JSON",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

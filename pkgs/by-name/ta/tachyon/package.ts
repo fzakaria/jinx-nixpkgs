@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tachyon";
       const version = "0.99.5";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://jedi.ks.uiuc.edu/~johns/tachyon/files/${version}/tachyon-${version}.tar.gz`),
           sha256: "sha256-CSA8ECMRFJ9d9cw2dAn5bHJXQmZtGcJNtbqZTVqBpvU=",
         }))));
@@ -43,7 +43,7 @@ cp Changes Copyright README "$out/share/doc/tachyon"
 cp -r scenes "$out/share/tachyon/scenes"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Parallel / Multiprocessor Ray Tracing System",
         mainProgram: "tachyon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -55,7 +55,7 @@ cp -r scenes "$out/share/tachyon/scenes"
         homepage: "http://jedi.ks.uiuc.edu/~johns/tachyon/",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

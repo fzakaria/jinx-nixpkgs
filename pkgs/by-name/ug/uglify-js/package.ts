@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "uglify-js";
       const version = "3.19.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mishoo",
           repo: "UglifyJS",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -36,17 +36,17 @@ export default nix.lambda((args) => (() => {
 `);
       const dontNpmBuild = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: uglify_js })))),
+          [nix.POS]: pos$5,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: uglify_js })))),
           simple: nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               assertion: "uglify-js minifies a basic js file",
               expected: nix.thunk(() => nix.app(writeText, "expected", "console.log(1);\n")),
               actual: nix.thunk(() => nix.app(runCommand, "actual", nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   nativeBuildInputs: nix.thunk(() => [uglify_js]),
                   base: nix.thunk(() => nix.app(writeText, "base", "console . log  ( ( 1 ) ) ;\n")),
                 })), "uglifyjs $base > $out\n")),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://github.com/mishoo/UglifyJS",
         changelog: nix.thunk(() => nix.add("https://github.com/mishoo/UglifyJS/releases/tag/v", version)),
         description: "JavaScript parser / mangler / compressor / beautifier toolkit",
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version,
         src,

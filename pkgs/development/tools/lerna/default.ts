@@ -15,16 +15,16 @@ export default nix.lambda((args) => (() => {
   const mapAttrs$ = nix.thunk(() => nix.attr(lib, "mapAttrs'"));
   const nameValuePair = nix.thunk(() => nix.attr(lib, "nameValuePair"));
   const variants = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "6": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       version: "6.6.2",
       hash: "sha256-B+o6SwVTrotHNYJW6CUXU/rJLK2VeGHvZYQZqbhYWjg=",
       npmDepsHash: "sha256-yR3MUcmAVj0/+lLQk5+hmyGFnyqhzw1xjVsu7ciYccs=",
       packageLockFile: nix.path(here, "./package-lock.v6.json"),
     })),
     "8": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "8.1.9",
       hash: "sha256-Rs6utL5dsL2h+rpOwjbtwEyU5pRdaAWHexfOm18o6BA=",
       npmDepsHash: "sha256-o3mLG0mBDIdkjusCKTSoradYlD8r4xdMyHH2HtOG9KQ=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   const callLerna = (variant) => nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: nix.thunk(() => nix.attr(variant, "version")),
       hash: nix.thunk(() => nix.attr(variant, "hash")),
       npmDepsHash: nix.thunk(() => nix.attr(variant, "npmDepsHash")),

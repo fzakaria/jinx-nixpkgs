@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rosettatype",
           repo: "hyperglot",
           tag: version,
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["hyperglot"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Database and tools for detecting language support in fonts",
         homepage: "https://hyperglot.rosettatype.com",
         changelog: nix.thunk(() => nix.str`https://github.com/rosettatype/hyperglot/blob/${version}/CHANGELOG.md`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "hyperglot",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

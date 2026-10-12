@@ -23,17 +23,17 @@ export default nix.lambda((args) => (() => {
   const util_linux = nix.arg($, "util-linux");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "otpw",
       version: "1.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.cl.cam.ac.uk/~mgk25/download/otpw-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-mKyjimHHcTZ3uW8kQmynBTSAwP0HfZGx6ZvJ+SzLgyo=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: "otpw",
             version: "1.5",
             debianRevision: "6",
@@ -51,7 +51,7 @@ substituteInPlace otpw-gen.c \\
 `),
       buildInputs: nix.thunk(() => [libxcrypt, pam]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=implicit-function-declaration", "-Wno-error=int-conversion"]))),
       })),
       enableParallelBuilding: true,
@@ -61,7 +61,7 @@ substituteInPlace otpw-gen.c \\
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/${nix.sel(finalAttrs, "meta", "mainProgram")}`),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "One-time password login package",
         mainProgram: "otpw-gen",
         homepage: "http://www.cl.cam.ac.uk/~mgk25/otpw.html",

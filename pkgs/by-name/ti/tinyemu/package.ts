@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tinyemu",
       version: "2019-12-21",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://bellard.org/tinyemu/tinyemu-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-voNR8hIYGbMXL87c5csYJvoSyH2ht+2Y8mnT6AKgVVU=",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["CC:=$(CC)", "STRIP:=$(STRIP)", "bindir=$(out)/bin"]),
       preInstall: "mkdir -p \"$out/bin\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://bellard.org/tinyemu/",
         description: "System emulator for the RISC-V and x86 architectures",
         longDescription: "TinyEMU is a system emulator for the RISC-V and x86 architectures. Its\npurpose is to be small and simple while being complete.\n\nMain features:\n\n- RISC-V system emulator supporting the RV128IMAFDQC base ISA (user level\n  ISA version 2.2, privileged architecture version 1.10) including:\n  - 32/64/128 bit integer registers\n  - 32/64/128 bit floating point instructions (using the SoftFP Library)\n  - Compressed instructions\n  - Dynamic XLEN change\n- x86 system emulator based on KVM\n- VirtIO console, network, block device, input and 9P filesystem\n- Graphical display with SDL\n- JSON configuration file\n- Remote HTTP block device and filesystem\n- Small code, easy to modify, few external dependencies\n- JavaScript version running Linux and Windows 2000.\n",

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const yara = nix.arg($, "yara");
   const useSwift = nix.argOr($, "useSwift", () => false);
   return nix.app(buildGhidraScripts, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ghidraninja-ghidra-scripts",
       version: "0-unstable-2020-10-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ghidraninja",
           repo: "ghidra_scripts",
           rev: "99f2a8644a29479618f51e2d4e28f10ba5e9ac48",
@@ -34,7 +34,7 @@ substituteInPlace YaraSearch.py --replace-fail '"yara "' '"${nix.app(nix.sel(lib
 `, (nix.asBool(useSwift) ? nix.str`substituteInPlace swift_demangler.py --replace-fail '"swift"' '"${nix.app(nix.sel(lib, "getExe'"), swift, "swift")}"'
 ` : "rm swift_demangler.py\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Scripts for the Ghidra software reverse engineering suite",
         homepage: "https://github.com/ghidraninja/ghidra_scripts",
         license: nix.thunk(() => (() => {

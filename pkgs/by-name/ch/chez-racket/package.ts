@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const system = nix.thunk(() => nix.attr(from, "system"));
   const chezSystem = nix.thunk(() => nix.str`t${chezArch}${chezOs}`);
   const forBoot = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     pname: "chez-scheme-racket-boot",
     configurePhase: "runHook preConfigure\n./configure --pb ZLIB=$ZLIB LZ4=$LZ4\nrunHook postConfigure\n",
     makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`${chezSystem}.bootquick`)]),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
   }));
   const boot = nix.thunk(() => nix.app(nix.sel(buildPackages, "callPackage"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./shared.nix")), forBoot)), nix.thunk(() => ({}))));
   const forFinal = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     pname: "chez-scheme-racket",
     configurePhase: nix.thunk(() => nix.str`runHook preConfigure
 cp -r ${boot}/* -t ./boot

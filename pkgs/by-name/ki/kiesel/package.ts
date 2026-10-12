@@ -24,18 +24,18 @@ export default nix.lambda((args) => (() => {
   const zig_0_16 = nix.arg($, "zig_0_16");
   const zig = zig_0_16;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "kiesel",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kiesel-js",
           repo: "kiesel",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-X5KpobHnqU8LR+odxeoPyVQbWLO8Yq1Tys7gNQu8/tI=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/pkg/zement`),
           hash: "sha256-YjbrKfkmhBxRxqg8mllK7eEsZwkFYMWL+z7u1PtjEYw=",
         })))),
@@ -51,18 +51,18 @@ export default nix.lambda((args) => (() => {
       zigBuildFlags: nix.thunk(() => ["--system", nix.thunk(() => nix.str`${nix.sel(finalAttrs, "deps")}`)]),
       __structuredAttrs: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           run: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test.nix"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               kiesel: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "JavaScript engine written in Zig",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://kiesel.dev",

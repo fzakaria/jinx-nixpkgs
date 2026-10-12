@@ -18,31 +18,31 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   const py = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       packageOverrides: (self) => (super$) => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         paramiko: nix.thunk(() => nix.app(nix.sel(super$, "paramiko", "overridePythonAttrs"), (oldAttrs) => (() => {
             const version = "3.4.0";
             const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 owner: "paramiko",
                 repo: "paramiko",
                 tag: version,
                 hash: "sha256-V0s9IoRmqXvzYQzzBsWmovYWwXnNC0x1phyiyjbejGA=",
               }))));
             const doCheck = false;
-            const meta = nix.thunk(() => nix.update(nix.sel(oldAttrs, "meta"), { __proto__: pos$2, knownVulnerabilities: nix.thunk(() => ["CVE-2026-44405"]) }));
-            return { __proto__: pos$3, version, src, doCheck, meta };
+            const meta = nix.thunk(() => nix.update(nix.sel(oldAttrs, "meta"), { [nix.POS]: pos$2, knownVulnerabilities: nix.thunk(() => ["CVE-2026-44405"]) }));
+            return { [nix.POS]: pos$3, version, src, doCheck, meta };
           })())),
       }),
     }))));
   return nix.app(nix.sel(py, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "tunnelgraf",
       version: "1.0.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           owner: "denniswalker",
           repo: "tunnelgraf",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["tunnelgraf"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Tool to manage SSH tunnel hops to many endpoints",
         homepage: "https://github.com/denniswalker/tunnelgraf",
         changelog: nix.thunk(() => nix.str`https://github.com/denniswalker/tunnelgraf/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

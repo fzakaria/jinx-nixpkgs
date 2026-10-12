@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.5.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "duosecurity",
           repo: "duo_client_python",
           tag: version,
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         "test_set_telephony_credits",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library for interacting with the Duo Auth, Admin, and Accounts APIs",
         homepage: "https://github.com/duosecurity/duo_client_python",
         changelog: nix.thunk(() => nix.str`https://github.com/duosecurity/duo_client_python/releases/tag/${nix.sel(src, "tag")}`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

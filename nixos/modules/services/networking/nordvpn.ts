@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
   const defaultGroup = "nordvpn";
   const nordvpn = nix.thunk(() => (() => {
     const cli = nix.thunk(() => nix.app(nix.sel(cfg, "package", "cli", "overrideAttrs"), (old) => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         preBuild: nix.thunk(() => (() => {
           const extraPreBuild = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "group"), defaultGroup)), nix.thunk(() => nix.str`substituteInPlace internal/permissions.go \\
   --replace-fail \\
@@ -61,7 +61,7 @@ substituteInPlace internal/constants.go \\
     return nix.app(nix.sel(pkgs, "symlinkJoin"), nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(cfg, "package"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname: nix.thunk(() => nix.attr(from, "pname")),
         version: nix.thunk(() => nix.attr(from, "version")),
         meta: nix.thunk(() => nix.attr(from, "meta")),
@@ -70,23 +70,23 @@ substituteInPlace internal/constants.go \\
       })()));
   })());
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         nordvpn: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Enable NordVPN")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "nordvpn", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: defaultUser,
               description: "The User that owns the `nordvpnd` systemd process.\nIf overriding the default, a user with the same name must exist.\n",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: defaultGroup,
               description: "The Group that owns the `nordvpnd` systemd process.\nIf overriding the default, a group with the same name must exist.\n",
@@ -95,12 +95,12 @@ substituteInPlace internal/constants.go \\
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         users: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), defaultUser)), nix.thunk(() => nix.attrsDyn({}, [
               [defaultUser, nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 description: "User that runs `nordvpnd`.",
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 isSystemUser: true,
@@ -109,13 +109,13 @@ substituteInPlace internal/constants.go \\
           groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), defaultGroup)), nix.thunk(() => nix.attrsDyn({}, [[defaultGroup, nix.thunk(() => ({}))]])))),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$11,
-          resolved: nix.thunk(() => ({ __proto__: pos$10, enable: true })),
+          [nix.POS]: pos$11,
+          resolved: nix.thunk(() => ({ [nix.POS]: pos$10, enable: true })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           polkit: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             enable: true,
             extraConfig: nix.thunk(() => nix.str`polkit.addRule(function(action, subject) {
   if (action.id == "org.freedesktop.resolve1.set-dns-servers"
@@ -126,13 +126,13 @@ substituteInPlace internal/constants.go \\
 `),
           })),
         })),
-        environment: nix.thunk(() => ({ __proto__: pos$14, systemPackages: nix.thunk(() => [nordvpn]) })),
+        environment: nix.thunk(() => ({ [nix.POS]: pos$14, systemPackages: nix.thunk(() => [nordvpn]) })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           services: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             nordvpnd: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               after: nix.thunk(() => ["network-online.target"]),
               description: "NordVPN daemon.",
               path: nix.thunk(() => (() => {
@@ -147,7 +147,7 @@ substituteInPlace internal/constants.go \\
                 ], [nordvpn]);
               })()),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 AmbientCapabilities: "CAP_NET_ADMIN",
                 CapabilityBoundingSet: "CAP_NET_ADMIN",
                 ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nordvpn, "nordvpnd")),
@@ -168,14 +168,14 @@ substituteInPlace internal/constants.go \\
             })),
           })),
           sockets: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             nordvpnd: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               description: "NordVPN Daemon Socket",
               listenStreams: nix.thunk(() => ["/run/nordvpn/nordvpnd.sock"]),
               partOf: nix.thunk(() => ["nordvpnd.service"]),
               socketConfig: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 DirectoryMode: "0750",
                 NoDelay: true,
                 SocketGroup: nix.thunk(() => nix.sel(cfg, "group")),
@@ -186,15 +186,15 @@ substituteInPlace internal/constants.go \\
             })),
           })),
           user: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             services: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               norduserd: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 after: nix.thunk(() => ["network-online.target"]),
                 description: "NordUserD Service",
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nordvpn, "norduserd")),
                   NonBlocking: true,
                   Restart: "on-failure",
@@ -208,7 +208,7 @@ substituteInPlace internal/constants.go \\
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       doc: nix.path(here, "./nordvpn.md"),
       maintainers: nix.thunk(() => nix.sel(pkgs, "nordvpn", "meta", "maintainers")),
     })),

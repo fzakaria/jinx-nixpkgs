@@ -55,25 +55,25 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "hadoop"));
-  const hadoopConf = nix.thunk(() => nix.str`${nix.app(nix.builtins.import(nix.path(here, "./conf.nix")), nix.thunk(() => ({ __proto__: pos$1, cfg: cfg, pkgs: pkgs, lib: lib })))}/`);
+  const hadoopConf = nix.thunk(() => nix.str`${nix.app(nix.builtins.import(nix.path(here, "./conf.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, cfg: cfg, pkgs: pkgs, lib: lib })))}/`);
   const mkIfNotNull = (x) => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(x, null)), x);
   const hbaseRoleOption = (name) => (extraOpts) => nix.update({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), nix.thunk(() => nix.str`HBase ${name}`))),
     openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
         default: false,
         description: nix.thunk(() => nix.str`Open firewall ports for HBase ${name}.`),
       })))),
     restartIfChanged: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
         default: false,
         description: nix.thunk(() => nix.str`Restart ${name} con config change.`),
       })))),
     extraFlags: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         type: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
           return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
         description: nix.thunk(() => nix.str`Extra flags for the ${name} service.`),
       })))),
     environment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         type: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
           return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -94,29 +94,29 @@ export default nix.lambda((args) => (() => {
       })))),
   }, extraOpts);
   const hbaseRoleConfig = (name) => (ports) => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "hbase", nix.key(nix.str`${name}`), "enable")), nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         hadoop: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           gatewayRole: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             enable: true,
             enableHbaseCli: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
           })),
           hbaseSiteInternal: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             "hbase.rootdir": nix.thunk(() => nix.sel(cfg, "hbase", "rootdir")),
           })),
         })),
       })),
       systemd: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         services: nix.thunk(() => nix.attrsDyn({}, [
           [nix.str`hbase-${nix.app(nix.sel(lib, "toLower"), name)}`, nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(cfg, "hbase", nix.key(nix.str`${name}`)));
             return {
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             description: nix.thunk(() => nix.str`HBase ${name}`),
             wantedBy: nix.thunk(() => ["multi-user.target"]),
             path: nix.thunk(() => (() => {
@@ -140,7 +140,7 @@ export default nix.lambda((args) => (() => {
                 nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "toLower"), name)} start`),
               ], nix.concat(nix.sel(cfg, "hbase", nix.key(nix.str`${name}`), "extraFlags"), nix.builtins.map((x) => nix.str`--${nix.app(nix.sel(lib, "toLower"), x)} ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "hbase", nix.key(nix.force(name)), nix.key(nix.force(x)))))}`, nix.thunk(() => nix.app(nix.sel(lib, "filter"), (x) => nix.app(nix.sel(lib, "hasAttr"), x, nix.thunk(() => nix.sel(cfg, "hbase", nix.key(nix.force(name))))), nix.thunk(() => ["port", "infoPort"]))))))))),
             serviceConfig: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               User: "hbase",
               SyslogIdentifier: nix.thunk(() => nix.str`hbase-${nix.app(nix.sel(lib, "toLower"), name)}`),
               Restart: "always",
@@ -150,37 +150,37 @@ export default nix.lambda((args) => (() => {
         ])),
       })),
       networking: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         firewall: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "hbase", nix.key(nix.str`${name}`), "openFirewall")), ports)),
         })),
         hosts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(cfg, "hbase", "regionServer")), null);
             return (nix.asBool(nix.lookup(w, "enable")) && nix.asBool(nix.lookup(w, "overrideHosts")));
           })()), nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             "127.0.0.2": nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
             "::1": nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
           })))),
       })),
     })));
   return {
-    __proto__: pos$45,
+    [nix.POS]: pos$45,
     options: nix.thunk(() => ({
-      __proto__: pos$35,
+      [nix.POS]: pos$35,
       services: nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         hadoop: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           gatewayRole: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             enableHbaseCli: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "HBase CLI tools")),
           })),
           hbaseSiteDefault: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               default: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 "hbase.regionserver.ipc.address": "0.0.0.0",
                 "hbase.master.ipc.address": "0.0.0.0",
                 "hbase.master.info.bindAddress": "0.0.0.0",
@@ -191,7 +191,7 @@ export default nix.lambda((args) => (() => {
               description: "Default options for hbase-site.xml\n",
             })))),
           hbaseSite: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -201,7 +201,7 @@ export default nix.lambda((args) => (() => {
               description: "Additional options and overrides for hbase-site.xml\n<https://github.com/apache/hbase/blob/rel/2.4.11/hbase-common/src/main/resources/hbase-default.xml>\n",
             })))),
           hbaseSiteInternal: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -211,17 +211,17 @@ export default nix.lambda((args) => (() => {
               description: "Internal option to add configs to hbase-site.xml based on module options\n",
             })))),
           hbase: nix.thunk(() => nix.update({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "hbase", nix.thunk(() => ({})))),
             rootdir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 description: "This option will set \"hbase.rootdir\" in hbase-site.xml and determine\nthe directory shared by region servers and into which HBase persists.\nThe URL should be 'fully-qualified' to include the filesystem scheme.\nIf a core-site.xml is provided, the FS scheme defaults to the value\nof \"fs.defaultFS\".\n\nFilesystems other than HDFS (like S3, QFS, Swift) are also supported.\n",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 example: "hdfs://nameservice1/hbase",
                 default: "/hbase",
               })))),
             zookeeperQuorum: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 description: "This option will set \"hbase.zookeeper.quorum\" in hbase-site.xml.\nComma-separated list of servers in the ZooKeeper ensemble.\n",
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -232,30 +232,30 @@ export default nix.lambda((args) => (() => {
               })))),
           }, (() => {
             const ports = (port) => (infoPort) => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   type: nix.thunk(() => nix.sel(lib, "types", "port")),
                   default: port,
                   description: "RPC port",
                 })))),
               infoPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   type: nix.thunk(() => nix.sel(lib, "types", "port")),
                   default: infoPort,
                   description: "web UI port",
                 })))),
             });
             return nix.app(nix.sel(lib, "mapAttrs"), hbaseRoleOption, nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 master: nix.thunk(() => ({
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   initHDFS: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "initialization of the hbase directory on HDFS")),
                 })),
                 regionServer: nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   overrideHosts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                      __proto__: pos$30,
+                      [nix.POS]: pos$30,
                       type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                       default: true,
                       description: "Remove /etc/hosts entries for \"127.0.0.2\" and \"::1\" defined in nixos/modules/config/networking.nix\nRegionservers must be able to resolve their hostnames to their IP addresses, through PTR records\nor /etc/hosts entries.\n",
@@ -270,30 +270,30 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "gatewayRole", "enable")), nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             environment: nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               systemPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "gatewayRole", "enableHbaseCli")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "hbase", "package"))]))),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               hadoop: nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 hbaseSiteInternal: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(cfg, "hbase")), null);
                   return {
-                    __proto__: pos$37,
+                    [nix.POS]: pos$37,
                     "hbase.zookeeper.quorum": nix.thunk(() => nix.app(mkIfNotNull, nix.thunk(() => nix.lookup(w, "zookeeperQuorum")))),
                   };
                 })()),
               })),
             })),
             users: nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               users: nix.thunk(() => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 hbase: nix.thunk(() => ({
-                  __proto__: pos$40,
+                  [nix.POS]: pos$40,
                   description: "Hadoop HBase user",
                   group: "hadoop",
                   isSystemUser: true,
@@ -302,7 +302,7 @@ export default nix.lambda((args) => (() => {
             })),
           })))),
       ], nix.app(nix.sel(lib, "mapAttrsToList"), hbaseRoleConfig, nix.thunk(() => ({
-          __proto__: pos$44,
+          [nix.POS]: pos$44,
           master: nix.thunk(() => [16000n, 16010n]),
           regionServer: nix.thunk(() => [16020n, 16030n]),
           thrift: nix.thunk(() => (() => {

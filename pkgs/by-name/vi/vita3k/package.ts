@@ -20,14 +20,14 @@ export default nix.lambda((args) => (() => {
       const pname = "vita3k";
       const version = "4065";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/Vita3K/Vita3K-builds/releases/download/${version}/Vita3K-x86_64.AppImage`),
           sha256: "sha256-jgypzFZgQeBvtuEuw51ex6r7tOqTYaIJAE3JzDRMcWI=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [makeWrapper]);
       const extraPkgs = (pkgs) => [nix.thunk(() => nix.sel(pkgs, "sdl3"))];
       const extraInstallCommands = nix.thunk(() => (() => {
-        const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+        const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
         return nix.str`install -Dm444 ${appimageContents}/vita3k.desktop -t $out/share/applications
 substituteInPlace $out/share/applications/vita3k.desktop \\
   --replace-fail "Exec=Vita3K" "Exec=vita3k"
@@ -39,11 +39,11 @@ wrapProgram $out/bin/vita3k \\
 `;
       })());
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Experimental PlayStation Vita emulator",
         homepage: "https://vita3k.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -55,7 +55,7 @@ wrapProgram $out/bin/vita3k \\
         mainProgram: "vita3k",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

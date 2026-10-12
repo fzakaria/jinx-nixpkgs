@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const six = nix.arg($, "six");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "pytest-server-fixtures",
       version: nix.thunk(() => nix.attr(pytest_fixture_config, "version")),
       src: nix.thunk(() => nix.attr(pytest_fixture_config, "src")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [future, psutil, pytest_shutil, pytest_fixture_config, requests, retry, six]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Extensible server fixures for py.test",
         homepage: "https://github.com/manahl/pytest-plugins",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

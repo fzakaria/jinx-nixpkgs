@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "omniorb",
       version: "4.3.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/omniorb/omniORB/omniORB-${nix.sel(finalAttrs, "version")}/omniORB-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-eXINQV0jzY2pkoek702gqhvTTT5MexUwcVYArcXtPcM=",
         })))),
@@ -35,7 +35,7 @@ rm $out/${nix.sel(python3, "sitePackages")}/omniidl_be/__pycache__/__init__.*.py
 ${nix.app(nix.sel(lib, "getExe"), python3)} -c "import omniidl_be.cxx"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Robust high performance CORBA ORB for C++ and Python",
         longDescription: "omniORB is a robust high performance CORBA ORB for C++ and Python.\nIt is freely available under the terms of the GNU Lesser General Public License\n(for the libraries),and GNU General Public License (for the tools).\nomniORB is largely CORBA 2.6 compliant.\n",
         homepage: "http://omniorb.sourceforge.net/",

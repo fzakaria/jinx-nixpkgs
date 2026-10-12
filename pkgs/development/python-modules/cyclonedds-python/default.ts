@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "11.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eclipse-cyclonedds",
           repo: "cyclonedds-python",
           tag: version,
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [cyclonedds]);
       const dependencies = nix.thunk(() => [rich_click]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CYCLONEDDS_HOME: nix.thunk(() => nix.str`${nix.sel(cyclonedds, "out")}`),
         NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers",
       }));
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const disabled = nix.thunk(() => !nix.asBool(nix.app(pythonOlder, "3.14")));
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python binding for Eclipse Cyclone DDS",
         homepage: "https://github.com/eclipse-cyclonedds/cyclonedds-python",
         changelog: nix.thunk(() => nix.str`https://github.com/eclipse-cyclonedds/cyclonedds-python/releases/tag/${version}`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

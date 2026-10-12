@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Sonic0",
           repo: "cron-converter",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +36,7 @@ runHook postCheck
 `);
       const pythonImportsCheck = nix.thunk(() => ["cron_converter"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cron string parser and iteration for the datetime object with a cron like format",
         homepage: "https://github.com/Sonic0/cron-converter",
         changelog: nix.thunk(() => nix.str`https://github.com/Sonic0/cron-converter/releases/tag/v${version}`),
@@ -47,7 +47,7 @@ runHook postCheck
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

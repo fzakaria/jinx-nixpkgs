@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const mercurial = nix.arg($, "mercurial");
   const w = nix.withScope(python3Packages, null);
   return nix.app(nix.lookup(w, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mbed-cli",
       version: "1.10.5",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-X+hNVM8fsy0VFTqFr1pPKWRimacBenTcY4y+PBJpvlI=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [git, mercurial, nix.thunk(() => nix.lookup(w, "pytest"))]),
       checkPhase: "export GIT_COMMITTER_NAME=nixbld\nexport EMAIL=nixbld@localhost\nexport GIT_COMMITTER_DATE=$SOURCE_DATE_EPOCH\npytest test\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/ARMmbed/mbed-cli",
         description: "Arm Mbed Command Line Interface",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

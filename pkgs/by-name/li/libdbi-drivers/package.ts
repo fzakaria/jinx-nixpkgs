@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const withLibpg = nix.argOr($, "withLibpg", () => true);
   const libpq = nix.arg($, "libpq");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libdbi-drivers",
       version: "0.9.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/libdbi-drivers/libdbi-drivers-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Q9LqzVc6T6/ylvqSXdl/vyrtvxrjXGJjR4IQxhAEyFQ=",
         })))),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`--with-pgsql-libdir=${libpq}/lib/`),
         ])))))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => [
               "-Wno-error=incompatible-function-pointer-types",
               "-Wno-error=int-conversion",
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => ["DESTDIR=${out}"]),
       postInstall: "mv $out/$out/* $out\nDIR=$out/$out\nwhile rmdir $DIR 2>/dev/null; do\n  DIR=\"$(dirname \"$DIR\")\"\ndone\n\n# Remove the unneeded var/lib directories\nrm -rf $out/var\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://libdbi-drivers.sourceforge.net/",
         description: "Database drivers for libdbi",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

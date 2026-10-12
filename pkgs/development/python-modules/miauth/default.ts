@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-2/4nFInpdY8fb/b+sXhgT6ZPtEgBV+KHMyLnxIp6y/U=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["miauth"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Authenticate and interact with Xiaomi devices over BLE",
         homepage: "https://github.com/dnandha/miauth",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "miauth",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

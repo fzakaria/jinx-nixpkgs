@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "junos-czerwonk-exporter";
       const version = "0.14.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "czerwonk",
           repo: "junos_exporter",
           rev: version,
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const vendorHash = "sha256-zD5QkpyeqrmX0zGgdQg9yQQrX/+0Xz+Q04IzpO+Qc5Q=";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Exporter for metrics from devices running JunOS",
         mainProgram: "junos_exporter",
         homepage: "https://github.com/czerwonk/junos_exporter",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "johannwagner"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, vendorHash, meta };
+      return { [nix.POS]: pos$3, pname, version, src, vendorHash, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

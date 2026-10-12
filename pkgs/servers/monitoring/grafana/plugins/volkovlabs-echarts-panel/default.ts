@@ -11,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const grafanaPlugin = nix.arg($, "grafanaPlugin");
   const lib = nix.arg($, "lib");
   return nix.app(grafanaPlugin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "volkovlabs-echarts-panel",
       version: "7.2.5",
       zipHash: "sha256-5J9SDu+S85HRHHepT1UDtUBFHp51XamsXLNVOo5ds7U=",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Visualization panel for Grafana that allows you to incorporate the popular Apache ECharts library into your Grafana dashboard",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => (() => {

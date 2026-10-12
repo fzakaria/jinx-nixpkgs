@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pnpmConfigHook = nix.arg($, "pnpmConfigHook");
   const nodejs = nix.arg($, "nodejs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "meshtastic-web",
       version: "2.6.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "meshtastic",
           repo: "web",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       pnpmWorkspaces: nix.thunk(() => ["*"]),
       pnpmRoot: "packages/web",
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pnpm: pnpm_10,
           fetcherVersion: 4n,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\npushd packages/web\npnpm install\npnpm run build\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out\ncp -ar dist/. $out/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Meshtastic Web Client/JS Monorepo",
         homepage: "https://github.com/meshtastic/web",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

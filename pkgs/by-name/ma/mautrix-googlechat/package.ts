@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mautrix",
           repo: "googlechat",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "mautrix-googlechat-entry-point.patch",
             url: "https://github.com/mautrix/googlechat/pull/81/commits/112fa3d27bc6f89a02321cb80d219de149e00df8.patch",
             sha256: "sha256-DsITDNLsIgBIqN6sD5JHaFW0LToxVUTzWc7mE2L09IQ=",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const optional_dependencies = nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(python3, "pkgs")), null);
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           e2be: nix.thunk(() => [
             nix.thunk(() => nix.lookup(w, "python-olm")),
             nix.thunk(() => nix.lookup(w, "pycryptodome")),
@@ -64,12 +64,12 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w_1, "commonmark")),
           nix.thunk(() => nix.lookup(w_1, "python-magic")),
           nix.thunk(() => nix.lookup(w_1, "protobuf")),
-          nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "mautrix"), "override"), nix.thunk(() => ({ __proto__: pos$4, withOlm: enableE2be })))),
+          nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "mautrix"), "override"), nix.thunk(() => ({ [nix.POS]: pos$4, withOlm: enableE2be })))),
         ], nix.concat(nix.app(nix.sel(lib, "optionals"), enableE2be, nix.thunk(() => nix.sel(optional_dependencies, "e2be"))), nix.concat(nix.app(nix.sel(lib, "optionals"), enableMetrics, nix.thunk(() => nix.sel(optional_dependencies, "metrics"))), nix.app(nix.sel(lib, "optionals"), enableSqlite, nix.thunk(() => nix.sel(optional_dependencies, "sqlite"))))));
       })());
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/mautrix/googlechat",
         description: "Matrix-Google Chat puppeting bridge",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "mautrix-googlechat",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         format,

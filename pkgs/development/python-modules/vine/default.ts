@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vine",
       version: "5.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-i2LpgdNcQQSSEc9ioKEkLYwe6b0Vuxls44rv1nmeYeA=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["t/unit/test_synchronization.py"]),
       pythonImportsCheck: nix.thunk(() => ["vine"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python promises",
         homepage: "https://github.com/celery/vine",
         changelog: nix.thunk(() => nix.str`https://github.com/celery/vine/releases/tag/v${nix.sel(finalAttrs, "version")}`),

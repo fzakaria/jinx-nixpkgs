@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.argOr($, "version", () => "7.6.0");
   const sourceRoot = ".";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/bazelbuild/bazel/releases/download/${version}/bazel-${version}-dist.zip`),
       hash: "sha256-eQKNB38G8ziDuorzoj5Rne/DZQL22meVLrdK0z7B2FI=",
     }))));
@@ -91,19 +91,19 @@ export default nix.lambda((args) => (() => {
   const bazelBootstrap = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const name = "bazelBootstrap";
       const src_1 = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/bazelbuild/bazel/releases/download/${version}/bazel_nojdk-${version}-linux-x86_64`),
           hash: "sha256-94KFvsS7fInXFTQZPzMq6DxnHQrRktljwACyAz8adSw=",
         }))) : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://github.com/bazelbuild/bazel/releases/download/${version}/bazel_nojdk-${version}-linux-arm64`),
           hash: "sha256-wfuZLSHa77wr0A4ZLF5DqH7qyOljYNXM2a5imoS+nGQ",
         }))) : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-darwin")) ? nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           url: nix.thunk(() => nix.str`https://github.com/bazelbuild/bazel/releases/download/${version}/bazel-${version}-darwin-x86_64`),
           hash: "sha256-qAb9s6R5+EbqVfWHUT7sk1sOrbDEPv4EhgXH7nC46Zw=",
         }))) : nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           url: nix.thunk(() => nix.str`https://github.com/bazelbuild/bazel/releases/download/${version}/bazel-${version}-darwin-arm64`),
           hash: "sha256-4bRp4OvkRIvhpZ2r/eFJdwrByECHy3rncDEM1tClFYo=",
         })))))));
@@ -118,14 +118,14 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nativeBuildInputs)}
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
           return [nix.thunk(() => nix.lookup(w, "binaryNativeCode"))];
         })()),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         name,
         src: src_1,
         nativeBuildInputs,
@@ -140,7 +140,7 @@ export default nix.lambda((args) => (() => {
       };
     })())));
   const bazelFhs = nix.thunk(() => nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "bazel",
       version: version,
       targetPkgs: (_) => [bazelBootstrap],
@@ -149,7 +149,7 @@ export default nix.lambda((args) => (() => {
   const bazelDeps = nix.thunk(() => (() => {
     const bazelForDeps = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.force(bazelBootstrap) : nix.force(bazelFhs)));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         name: "bazelDeps",
         src: src,
         version: version,
@@ -200,7 +200,7 @@ runHook postBuild
   })());
   const defaultShellPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), defaultShellUtils));
   const bashWithDefaultShellUtilsSh = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       name: "bash",
       runtimeInputs: defaultShellUtils,
       text: nix.thunk(() => nix.str`if [[ "$PATH" == "/no-such-path" ]]; then
@@ -210,7 +210,7 @@ exec ${bash}/bin/bash "$@"
 `),
     }))));
   const bashWithDefaultShellUtils = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       name: "bash",
       src: bashWithDefaultShellUtilsSh,
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper]),
@@ -227,7 +227,7 @@ exec ${bash}/bin/bash "$@"
     return (nix.asBool((nix.asBool(isDarwin) && nix.asBool(isAarch64))) ? "arm64" : nix.sel(nix.lookup(w, "parsed"), "cpu", "name"));
   })());
   const bazelRC = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       name: "bazel-rc",
       text: nix.thunk(() => nix.str`startup --server_javabase=${runJdk}
 
@@ -251,10 +251,10 @@ try-import /etc/bazel.bazelrc
         nix.path(here, "./darwin_sleep.patch"),
         nix.path(here, "./xcode_locator.patch"),
         nix.path(here, "./trim-last-argument-to-gcc-if-empty.patch"),
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./strict_action_env.patch"), nix.thunk(() => ({ __proto__: pos$13, strictActionEnvPatch: defaultShellPath })))),
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./bazel_rc.patch"), nix.thunk(() => ({ __proto__: pos$14, bazelSystemBazelRCPath: bazelRC })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./strict_action_env.patch"), nix.thunk(() => ({ [nix.POS]: pos$13, strictActionEnvPatch: defaultShellPath })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./bazel_rc.patch"), nix.thunk(() => ({ [nix.POS]: pos$14, bazelSystemBazelRCPath: bazelRC })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             url: "https://github.com/bazelbuild/bazel/commit/1d206cac050b6c7d9ce65403e6a9909a49bfe4bc.patch",
             hash: "sha256-Tg5o1Va7dd5hvXbWhZiog+VtuiqngqbbYOkCafVudDs=",
           })))),
@@ -380,7 +380,7 @@ patchShebangs . >/dev/null
         return nix.add(nix.add("function sedVerbose() {\n  local path=$1; shift;\n  sed -i\".bak-nix\" \"$path\" \"$@\"\n  diff -U0 \"$path.bak-nix\" \"$path\" | sed \"s/^/  /\" || true\n  rm -f \"$path.bak-nix\"\n}\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), darwinPatches)), genericPatches);
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         homepage: "https://github.com/bazelbuild/bazel/",
         description: "Build tool that builds code quickly and reliably",
         sourceProvenance: nix.thunk(() => (() => {
@@ -539,17 +539,17 @@ echo "${bazelRC}" >> $out/nix-support/depends
       const dontStrip = true;
       const dontPatchELF = true;
       const env = nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-fno-define-target-os-macros")),
       }));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         bazelDeps: bazelDeps,
         bazelFhs: bazelFhs,
         bazelBootstrap: bazelBootstrap,
       }));
       return {
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         pname,
         version: version_1,
         src: src_1,

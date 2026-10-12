@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const ponyc = nix.arg($, "ponyc");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "corral",
       version: "0.9.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ponylang",
           repo: "corral",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/ponylang/corral/commit/10b85e36e5c7ec4503ecb80ff51aa2342e459805.patch",
             hash: "sha256-wDvoW1t/F3ieNlwS+HtxVzhlFX4TDTbAnxJnJnsCvtc=",
             includes: nix.thunk(() => ["corral/semver/version/compare_versions.pony"]),
           })))),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         arch: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) ? "x86-64" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) ? "generic" : nix.app(nix.sel(lib, "warn"), nix.thunk(() => nix.str`architecture '${nix.sel(stdenv, "hostPlatform", "system")}' compiles with native optimizations,
 this may result in crashes on incompatible CPUs!
 `), "native")))),
@@ -50,13 +50,13 @@ this may result in crashes on incompatible CPUs!
         "install",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ponyc, "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Corral is a dependency management tool for ponylang (ponyc)",
         homepage: "https://www.ponylang.io",
         changelog: nix.thunk(() => nix.str`https://github.com/ponylang/corral/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

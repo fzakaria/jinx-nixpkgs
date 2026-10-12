@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildLakePackage = nix.arg($, "buildLakePackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildLakePackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lean4-batteries",
       version: "4.34.0-unstable-2026-09-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "leanprover-community",
           repo: "batteries",
           rev: "f2effa3d803fda822b1f97b806c47cf2adfbcbc2",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       leanPackageName: "batteries",
       postPatch: "substituteInPlace lakefile.toml \\\n  --replace-fail '[[lean_lib]]\nname = \"Batteries\"' '[[lean_lib]]\nname = \"Batteries\"\ndefaultFacets = [\"static\"]'\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "The batteries-included extended library for Lean 4",
         homepage: "https://github.com/leanprover-community/batteries",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

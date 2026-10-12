@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.83.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-nO5vy/LrV8S0lFF4e/qHvo78HKAqCzJ91LVNRFAuNis=",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [protobuf, typing_extensions]);
       const preBuild = nix.thunk(() => nix.add("export GRPC_PYTHON_BUILD_EXT_COMPILER_JOBS=\"$NIX_BUILD_CORES\"\nif [ -z \"$enableParallelBuilding\" ]; then\n  GRPC_PYTHON_BUILD_EXT_COMPILER_JOBS=1\nfi\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "unset AR\n")));
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         GRPC_BUILD_WITH_BORING_SSL_ASM: "",
         GRPC_PYTHON_BUILD_SYSTEM_OPENSSL: 1n,
         GRPC_PYTHON_BUILD_SYSTEM_ZLIB: 1n,
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       const enableParallelBuilding = true;
       const pythonImportsCheck = nix.thunk(() => ["grpc"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "HTTP/2-based RPC framework",
         homepage: "https://grpc.io/grpc/python/",
         changelog: nix.thunk(() => nix.str`https://github.com/grpc/grpc/releases/tag/v${version}`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

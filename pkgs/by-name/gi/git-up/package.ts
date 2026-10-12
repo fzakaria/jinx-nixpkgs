@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const gitMinimal = nix.arg($, "gitMinimal");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "git-up",
       version: "2.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "git_up",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-SncbnK6LxsleKRa/sSCm/8dsgPw/XJGvYfkcIeWYDy4=",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`rm -r $out/${nix.sel(python3Packages, "python", "sitePackages")}/PyGitUp/tests
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/msiemens/PyGitUp",
         description: "Git pull replacement that rebases all local branches when pulling",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const systemdMinimal = nix.arg($, "systemdMinimal");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "coturn",
       version: "4.17.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "coturn",
           repo: "coturn",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,19 +37,19 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([
         openssl,
-        nix.thunk(() => nix.app(nix.sel(libevent, "override"), nix.thunk(() => ({ __proto__: pos$2, openssl: openssl })))),
+        nix.thunk(() => nix.app(nix.sel(libevent, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, openssl: openssl })))),
         libmicrohttpd,
         nix.thunk(() => nix.sel(sqlite, "dev")),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), systemdMinimal)), nix.thunk(() => [systemdMinimal])))),
       patches: nix.thunk(() => [nix.path(here, "./pure-configure.patch")]),
       configureFlags: nix.thunk(() => ["--examplesdir=.."]),
-      env: nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-fcommon" })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        tests: nix.thunk(() => ({ __proto__: pos$4, coturn: nix.thunk(() => nix.sel(nixosTests, "coturn")) })),
+        [nix.POS]: pos$5,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$4, coturn: nix.thunk(() => nix.sel(nixosTests, "coturn")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "TURN server",
         homepage: "https://coturn.net/",
         changelog: nix.thunk(() => nix.str`https://github.com/coturn/coturn/blob/${nix.sel(finalAttrs, "version")}/ChangeLog`),

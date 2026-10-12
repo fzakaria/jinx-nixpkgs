@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pam = nix.arg($, "pam");
   const keyutils = nix.arg($, "keyutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pam_fde_boot_pw",
       version: "0-unstable-2025-02-14",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~kennylevinsen",
           repo: "pam_fde_boot_pw",
           rev: "49bf498fd8d13f73e4a24221818a8a5d2af20088",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonOption"), "pam-mod-dir", nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/security`))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PAM module for leveraging disk encryption password in the PAM session",
         longDescription: "pam_fde_boot_pw transfers a password from the kernel keyring (for example,\nthe passphrase used to unlock an encrypted disk) into the PAM session.\nThis enables user-space keyrings, such as gnome-keyring, to be\nautomatically unlocked.\n",
         homepage: "https://git.sr.ht/~kennylevinsen/pam_fde_boot_pw",

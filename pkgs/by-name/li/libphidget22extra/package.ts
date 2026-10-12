@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libphidget22 = nix.arg($, "libphidget22");
   const version = "1.25.20260512";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libphidget22extra",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.phidgets.com/downloads/phidget22/libraries/linux/libphidget22extra/libphidget22extra-${version}.tar.gz`),
           hash: "sha256-yN4g32Zx73A35yGAA5xnfEu72Nh8yH3KFmFKP5T3Pao=",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libphidget22, libusb1]),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Phidget Inc sensor boards and electronics extras library",
         homepage: "https://www.phidgets.com/docs/OS_-_Linux",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

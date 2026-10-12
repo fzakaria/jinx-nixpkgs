@@ -18,25 +18,25 @@ export default nix.lambda((args) => (() => {
   const result = nix.arg($, "result");
   const version = nix.argOr($, "version", () => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ppxlib, "version")), "0.36")) ? "20251010" : "20250212"));
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "visitors",
       version: version,
       minimalOCamlVersion: "4.08",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "fpottier",
           repo: "visitors",
           tag: version,
           domain: "gitlab.inria.fr",
           hash: nix.thunk(() => nix.sel({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             "20250212": "sha256-AFD4+vriwVGt6lzDyIDuIMadakcgB4j235yty5qqFgQ=",
             "20251010": "sha256-3CHXECMHf/UWtLvy7fiOaxx6EizRRtm9HpqRxcRjH3I=",
           }, nix.key(nix.str`${version}`))),
         })))),
       propagatedBuildInputs: nix.thunk(() => [ppxlib, ppx_deriving, result]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://gitlab.inria.fr/fpottier/visitors",
         changelog: nix.thunk(() => nix.str`https://gitlab.inria.fr/fpottier/visitors/-/raw/${version}/CHANGES.md`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

@@ -38,34 +38,34 @@ export default nix.lambda((args) => (() => {
   const scour = nix.arg($, "scour");
   const nixosTests = nix.arg($, "nixosTests");
   const defaultMinifyOpts = nix.thunk(() => ({
-    __proto__: pos$4,
-    script: nix.thunk(() => ({ __proto__: pos$1, enable: false, target: "es2020" })),
+    [nix.POS]: pos$4,
+    script: nix.thunk(() => ({ [nix.POS]: pos$1, enable: false, target: "es2020" })),
     style: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       enable: false,
       browserslist: "defaults, Firefox ESR, Firefox 91, last 20 Firefox major versions, last 20 Chrome major versions, last 3 Safari major versions, last 1 KaiOS version, and supports css-variables",
     })),
-    svg: nix.thunk(() => ({ __proto__: pos$3, enable: false })),
+    svg: nix.thunk(() => ({ [nix.POS]: pos$3, enable: false })),
   }));
   const minify = nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), defaultMinifyOpts, nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "isBool"), minifyStaticFiles)) && nix.asBool(minifyStaticFiles))) ? {
-      __proto__: pos$8,
-      script: nix.thunk(() => ({ __proto__: pos$5, enable: true })),
-      style: nix.thunk(() => ({ __proto__: pos$6, enable: true })),
-      svg: nix.thunk(() => ({ __proto__: pos$7, enable: true })),
+      [nix.POS]: pos$8,
+      script: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
+      style: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
+      svg: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
     } : (nix.asBool(nix.app(nix.sel(lib, "isAttrs"), minifyStaticFiles)) ? nix.app(nix.sel(lib, "filterAttrsRecursive"), (_) => (v) => !nix.eq(v, null), minifyStaticFiles) : {})))));
   return nix.app(nix.sel(php, "buildComposerProject2"), (finalAttrs) => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       pname: "movim",
       version: "0.35.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           owner: "movim",
           repo: "movim",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-dZCfBDFKlzai3g/XV74l9ualI+WpKXTETH/Gaek5OO8=",
         })))),
       php: nix.thunk(() => nix.app(nix.sel(php, "buildEnv"), nix.thunk(() => nix.update({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           extensions: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const all = nix.arg($_1, "all");
@@ -87,10 +87,10 @@ export default nix.lambda((args) => (() => {
                 nix.thunk(() => nix.sel(all, "pdo_mysql")),
               ])))));
           })(), formals$2),
-        }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(phpCfg, null)), nix.thunk(() => ({ __proto__: pos$11, extraConfig: phpCfg }))))))),
+        }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(phpCfg, null)), nix.thunk(() => ({ [nix.POS]: pos$11, extraConfig: phpCfg }))))))),
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(minify, "script", "enable")), esbuild), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(minify, "style", "enable")), lightningcss), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(minify, "svg", "enable")), scour)))),
       composerVendor: nix.thunk(() => nix.app(nix.sel(php, "mkComposerVendor"), nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -157,11 +157,11 @@ chmod +x \\
   $out/share/zsh/site-functions/_movim
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$14,
-        tests: nix.thunk(() => ({ __proto__: pos$13, movim: nix.thunk(() => nix.attr(nixosTests, "movim")) })),
+        [nix.POS]: pos$14,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$13, movim: nix.thunk(() => nix.attr(nixosTests, "movim")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         description: "Federated blogging & chat platform that acts as a web front end for the XMPP protocol",
         homepage: "https://movim.eu",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

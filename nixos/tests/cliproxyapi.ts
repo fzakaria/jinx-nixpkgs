@@ -22,39 +22,39 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     name: "cliproxyapi",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "anish"))]),
     })),
     containers: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           services: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             cliproxyapi: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$5,
-                server: nix.thunk(() => ({ __proto__: pos$2, host: "127.0.0.1", port: 8317n })),
+                [nix.POS]: pos$5,
+                server: nix.thunk(() => ({ [nix.POS]: pos$2, host: "127.0.0.1", port: 8317n })),
                 access: nix.thunk(() => ({
-                  __proto__: pos$4,
-                  "api-keys": nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$3, _secret: "/etc/cliproxyapi-api-key" }))]),
+                  [nix.POS]: pos$4,
+                  "api-keys": nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$3, _secret: "/etc/cliproxyapi-api-key" }))]),
                 })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             etc: nix.thunk(() => ({
-              __proto__: pos$9,
-              "cliproxyapi-api-key": nix.thunk(() => ({ __proto__: pos$8, text: "test-key" })),
+              [nix.POS]: pos$9,
+              "cliproxyapi-api-key": nix.thunk(() => ({ [nix.POS]: pos$8, text: "test-key" })),
             })),
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "curl"))]),
           })),

@@ -21,22 +21,22 @@ export default nix.lambda((args) => (() => {
   const perlPackages = nix.arg($, "perlPackages");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "icoutils",
       version: "0.32.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://savannah/icoutils/icoutils-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "1q66cksms4l62y0wizb8vfavhmf7kyfgcfkynil3n99s0hny1aqp",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://git.savannah.nongnu.org/cgit/icoutils.git/patch/?id=aa3572119bfe34484025f37dbbc4d5070f735908",
             hash: "sha256-4YCI+SYT2bCBNegkpN5jcfi6gOeec65TmCABr98HHB4=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://git.savannah.nongnu.org/cgit/icoutils.git/patch/?id=298da402990ebe1279fb82b63ae2dc66ad78fd36",
             hash: "sha256-XQXhc1GkKhm4RJZPvkV8DYULziuBo0Dpt6hscM2Qcus=",
           })))),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs extresso/extresso\npatchShebangs extresso/extresso.in\npatchShebangs extresso/genresscript\npatchShebangs extresso/genresscript.in\n",
       preFixup: "wrapProgram $out/bin/extresso --prefix PERL5LIB : $PERL5LIB\nwrapProgram $out/bin/genresscript --prefix PERL5LIB : $PERL5LIB\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.nongnu.org/icoutils/",
         description: "Set of programs to deal with Microsoft Windows(R) icon and cursor files",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

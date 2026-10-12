@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "duo-unix",
       version: "2.2.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dl.duosecurity.com/duo_unix-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-t7MBY4P0Nz4m3FZv7LlOe4uX632bVGR9zKNyeQAYwD4=",
         })))),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         "--enable-lib64=no",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Duo Security Unix login integration",
         homepage: "https://duosecurity.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

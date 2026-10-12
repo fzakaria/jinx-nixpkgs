@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.0.12";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-XvcfhV0ZGjMm/PvA1dqDXyaxP7y6YMMsIQkcNJ/9tXE=",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         "test_stream_reading",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Git Object Database",
         homepage: "https://github.com/gitpython-developers/gitdb",
         changelog: nix.thunk(() => nix.str`https://github.com/gitpython-developers/gitdb/releases/tag/${version}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

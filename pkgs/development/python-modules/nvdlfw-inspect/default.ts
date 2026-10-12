@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const torch = nix.arg($, "torch");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nvdlfw-inspect",
       version: "0.2.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NVIDIA",
           repo: "nvidia-dlfw-inspect",
           rev: "3a7314ac44f8479a3368a69ac4c7938e40e6104c",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["nvdlfw_inspect"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Facilitates debugging convergence issues and testing new algorithms/recipes for training LLMs using Nvidia libraries",
         homepage: "https://github.com/NVIDIA/nvidia-dlfw-inspect",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

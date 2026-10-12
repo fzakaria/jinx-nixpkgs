@@ -30,62 +30,62 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const port = "1234";
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     name: "evcc",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "hexa"))];
       })()),
     })),
     containers: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       machine: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         services: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           evcc: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             enable: true,
             environmentFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "evcc-secrets", nix.thunk(() => nix.str`PORT=${nix.builtins.toString(port)}
 `))),
             settings: nix.thunk(() => ({
-              __proto__: pos$15,
-              network: nix.thunk(() => ({ __proto__: pos$2, schema: "http", host: "localhost", port: "$PORT" })),
+              [nix.POS]: pos$15,
+              network: nix.thunk(() => ({ [nix.POS]: pos$2, schema: "http", host: "localhost", port: "$PORT" })),
               log: "info",
               site: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 title: "NixOS Test",
-                meters: nix.thunk(() => ({ __proto__: pos$3, grid: "grid", pv: "pv" })),
+                meters: nix.thunk(() => ({ [nix.POS]: pos$3, grid: "grid", pv: "pv" })),
               })),
               meters: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   type: "custom",
                   name: "grid",
-                  power: nix.thunk(() => ({ __proto__: pos$5, source: "script", cmd: "/bin/sh -c 'echo -4500'" })),
+                  power: nix.thunk(() => ({ [nix.POS]: pos$5, source: "script", cmd: "/bin/sh -c 'echo -4500'" })),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   type: "custom",
                   name: "pv",
-                  power: nix.thunk(() => ({ __proto__: pos$7, source: "script", cmd: "/bin/sh -c 'echo 7500'" })),
+                  power: nix.thunk(() => ({ [nix.POS]: pos$7, source: "script", cmd: "/bin/sh -c 'echo 7500'" })),
                 })),
               ]),
               chargers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   name: "dummy-charger",
                   type: "custom",
-                  status: nix.thunk(() => ({ __proto__: pos$9, source: "script", cmd: "/bin/sh -c 'echo A'" })),
-                  enabled: nix.thunk(() => ({ __proto__: pos$10, source: "script", cmd: "/bin/sh -c 'echo false'" })),
-                  enable: nix.thunk(() => ({ __proto__: pos$11, source: "script", cmd: "/bin/sh -c 'echo true'" })),
-                  maxcurrent: nix.thunk(() => ({ __proto__: pos$12, source: "script", cmd: "/bin/sh -c 'echo 7200'" })),
+                  status: nix.thunk(() => ({ [nix.POS]: pos$9, source: "script", cmd: "/bin/sh -c 'echo A'" })),
+                  enabled: nix.thunk(() => ({ [nix.POS]: pos$10, source: "script", cmd: "/bin/sh -c 'echo false'" })),
+                  enable: nix.thunk(() => ({ [nix.POS]: pos$11, source: "script", cmd: "/bin/sh -c 'echo true'" })),
+                  maxcurrent: nix.thunk(() => ({ [nix.POS]: pos$12, source: "script", cmd: "/bin/sh -c 'echo 7200'" })),
                 })),
               ]),
               loadpoints: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$14, title: "Dummy", charger: "dummy-charger" })),
+                nix.thunk(() => ({ [nix.POS]: pos$14, title: "Dummy", charger: "dummy-charger" })),
               ]),
             })),
           })),

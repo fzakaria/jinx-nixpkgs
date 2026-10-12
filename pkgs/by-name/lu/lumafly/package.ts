@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lumafly";
       const version = "3.3.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TheMulhima",
           repo: "lumafly",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const dotnet_runtime = nix.thunk(() => nix.sel(dotnetCorePackages, "sdk_9_0"));
       const selfContainedBuild = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const runtimeDeps = nix.thunk(() => [zlib, icu, openssl]);
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const postFixup = "# Icon for the desktop file\nicotool -x $src/Lumafly/Assets/Lumafly.ico\ninstall -D Lumafly_1_32x32x32.png $out/share/icons/hicolor/32x32/apps/lumafly.png\n";
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             desktopName: "Lumafly",
             name: "lumafly",
             exec: "Lumafly",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Cross platform mod manager for Hollow Knight written in Avalonia",
         homepage: "https://themulhima.github.io/Lumafly/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const csdp = nix.arg($, "csdp");
   const autoconf = nix.arg($, "autoconf");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "osdp",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://github.com/Embedded-SW-VnV/osdp/releases/download/v1.1.1/osdp-1.1.1.tgz",
           hash: "sha256-X7CS2g+MyQPDjhUCvFS/DoqcCXTEw8SCsSGED64TGKQ=",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoconf, findlib, csdp]),
       propagatedBuildInputs: nix.thunk(() => [zarith, ocplib_simplex, csdp]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OCaml Interface to SDP solvers",
         homepage: "https://github.com/Embedded-SW-VnV/osdp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

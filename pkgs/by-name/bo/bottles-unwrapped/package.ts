@@ -45,11 +45,11 @@ export default nix.lambda((args) => (() => {
   const removeWarningPopup = nix.argOr($, "removeWarningPopup", () => false);
   const withObsVkCapture = nix.argOr($, "withObsVkCapture", () => false);
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "bottles-unwrapped",
       version: "67.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bottlesdevs",
           repo: "bottles",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -115,11 +115,11 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Easy-to-use wineprefix manager",
         homepage: "https://usebottles.com/",
         downloadPage: "https://github.com/bottlesdevs/Bottles/releases",

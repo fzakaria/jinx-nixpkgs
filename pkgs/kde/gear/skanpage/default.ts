@@ -15,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const tesseract5 = nix.arg($, "tesseract5");
   const leptonica = nix.arg($, "leptonica");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "skanpage",
       extraBuildInputs: nix.thunk(() => [
         qtwebengine,
-        nix.thunk(() => nix.app(nix.sel(tesseract5, "override"), nix.thunk(() => ({ __proto__: pos$1, enableLanguages: tesseractLanguages })))),
+        nix.thunk(() => nix.app(nix.sel(tesseract5, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableLanguages: tesseractLanguages })))),
         leptonica,
       ]),
-      meta: nix.thunk(() => ({ __proto__: pos$2, mainProgram: "skanpage" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$2, mainProgram: "skanpage" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

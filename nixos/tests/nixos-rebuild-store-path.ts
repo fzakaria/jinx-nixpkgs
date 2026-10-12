@@ -18,25 +18,25 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const hostPkgs = nix.arg($, "hostPkgs");
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     name: "nixos-rebuild-store-path",
-    node: nix.thunk(() => ({ __proto__: pos$1, pkgsReadOnly: false })),
+    node: nix.thunk(() => ({ [nix.POS]: pos$1, pkgsReadOnly: false })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib = nix.arg($_1, "lib");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           imports: nix.thunk(() => [
             nix.path(here, "../modules/profiles/installation-device.nix"),
             nix.path(here, "../modules/profiles/base.nix"),
           ]),
           nix: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             settings: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               substituters: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
               "hashed-mirrors": null,
               "connect-timeout": 1n,
@@ -44,12 +44,12 @@ export default nix.lambda((args) => (() => {
             enable: true,
           })),
           system: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             includeBuildDependencies: true,
             extraDependencies: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "grub2"))]),
-            switch: nix.thunk(() => ({ __proto__: pos$4, enable: true })),
+            switch: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
           })),
-          virtualisation: nix.thunk(() => ({ __proto__: pos$6, cores: 2n, memorySize: 4096n })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$6, cores: 2n, memorySize: 4096n })),
         };
       })(), formals$2),
     })),

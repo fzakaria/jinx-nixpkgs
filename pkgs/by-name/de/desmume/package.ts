@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const tinyxml = nix.arg($, "tinyxml");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "desmume",
       version: "0.9.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TASEmulators",
           repo: "desmume",
           rev: nix.thunk(() => nix.str`release_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -47,12 +47,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/TASEmulators/desmume/commit/24eb5ed95c6cbdaba8b3c63a99e95e899e8a5061.patch",
             hash: "sha256-J3ZRU1tPTl+4/jg0DBo6ro6DTUZkpQCey+QGF2EugCQ=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/TASEmulators/desmume/commit/738298a9e887bf7220fed026cb872a544fd60431.patch?full_index=1",
             hash: "sha256-JNq++g6olaKsNa1XIs9Zz1YQxAsN3vAuFkykdlrfzaQ=",
           })))),
@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "cd desmume/src/frontend/posix\n",
       mesonFlags: nix.thunk(() => ["-Db_pie=true", "-Dopenal=true", "-Dwifi=true"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.github.com/TASEmulators/desmume/",
         description: "Open-source Nintendo DS emulator",
         longDescription: "DeSmuME is a freeware emulator for the NDS roms & Nintendo DS Lite games\ncreated by YopYop156 and now maintained by the TASvideos team. It supports\nmany homebrew nds rom demoes as well as a handful of Wireless Multiboot\ndemo nds roms. DeSmuME is also able to emulate nearly all of the\ncommercial nds rom titles which other DS Emulators aren't.\n",

@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.3";
       const pname = "diffpdf";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://www.qtrac.eu/${pname}-${version}.tar.gz`),
           sha256: "0cr468fi0d512jjj23r5flfzx957vibc9c25gwwhi0d773h2w566",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://raw.githubusercontent.com/gentoo/gentoo/9b971631588ff46e7c2d501bc35cd0d9ce2d98e2/app-text/diffpdf/files/diffpdf-2.1.3-qt5.patch",
             sha256: "0sax8gcqcmzf74hmdr3rarqs4nsxmml9qmh6pqyjmgl3lypxhafg",
           })))),
@@ -65,7 +65,7 @@ Terminal=false
 EOF
 `));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://www.qtrac.eu/diffpdf.html",
         description: "Tool for diffing pdf files visually or textually",
         mainProgram: "diffpdf",
@@ -77,7 +77,7 @@ EOF
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         version,
         pname,
         src,

@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
   const libusb1 = nix.arg($, "libusb1");
   const pkg_config = nix.arg($, "pkg-config");
   const httplib_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "yhirose",
       repo: "cpp-httplib",
       rev: "v0.13.3",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const pname = "advanced-scene-switcher";
       const version = "1.36.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "WarmUpTill",
           repo: "SceneSwitcher",
           rev: version,
@@ -73,15 +73,15 @@ chmod -R +w $sourceRoot/deps/libremidi
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "LIBREMIDI_NO_PIPEWIRE", true)),
       ]);
       const env = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: "-Wno-error=stringop-overflow -Wno-error=deprecated-declarations",
       }));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Automated scene switcher for OBS Studio",
         homepage: "https://github.com/WarmUpTill/SceneSwitcher",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -92,7 +92,7 @@ chmod -R +w $sourceRoot/deps/libremidi
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

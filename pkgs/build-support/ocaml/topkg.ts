@@ -27,19 +27,19 @@ export default nix.lambda((args) => (() => {
     const nativeBuildInputs = nix.argOr($_1, "nativeBuildInputs", () => []);
     const buildInputs = nix.argOr($_1, "buildInputs", () => []);
     return (nix.asBool((nix.asBool(nix.has(args_2, "minimalOCamlVersion")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(ocaml, "version")), nix.thunk(() => nix.sel(args_2, "minimalOCamlVersion")))))) ? nix.builtins.throw(nix.thunk(() => nix.str`${pname}-${version} is not available for OCaml ${nix.sel(ocaml, "version")}`)) : nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         dontAddStaticConfigureFlags: true,
         configurePlatforms: [],
         strictDeps: true,
         buildPhase: nix.thunk(() => nix.attr(topkg, "buildPhase")),
         installPhase: nix.thunk(() => nix.attr(topkg, "installPhase")),
       }, nix.update(nix.builtins.removeAttrs(args_2, nix.thunk(() => ["minimalOCamlVersion"])), {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-${pname}-${version}`),
         nativeBuildInputs: nix.thunk(() => nix.concat([ocaml, findlib, ocamlbuild, topkg], nativeBuildInputs)),
         buildInputs: nix.thunk(() => nix.concat([topkg], buildInputs)),
         meta: nix.thunk(() => nix.update(nix.selOr(args_2, () => ({}), "meta"), {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           platforms: nix.thunk(() => nix.selOr(args_2, () => nix.sel(ocaml, "meta", "platforms"), "meta", "platforms")),
         })),
       })))));

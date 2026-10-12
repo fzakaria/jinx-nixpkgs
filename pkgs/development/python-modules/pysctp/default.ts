@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const lksctp_tools = nix.arg($, "lksctp-tools");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pysctp",
       version: "0.7.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "P1sec",
           repo: "pysctp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["sctp"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SCTP stack for Python",
         homepage: "https://github.com/P1sec/pysctp",
         changelog: nix.thunk(() => nix.str`https://github.com/pycrate-org/pycrate/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

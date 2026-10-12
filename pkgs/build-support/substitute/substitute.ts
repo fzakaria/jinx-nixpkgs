@@ -21,14 +21,14 @@ export default nix.lambda((args) => (() => {
     const optionalDeprecationWarning = nix.thunk(() => nix.app(nix.sel(lib, "warnIf"), nix.thunk(() => (nix.asBool(nix.has(args_1, "replacements")) && nix.asBool(nix.app(nix.sel(lib, "oldestSupportedReleaseIsAtLeast"), 2405n)))), nix.thunk(() => nix.str`pkgs.substitute: For "${name}", \`replacements\` is used, which is deprecated since it doesn't support arguments with spaces. Use \`substitutions\` instead:
   substitutions = [ ${deprecationReplacement} ];`)));
     return nix.app(optionalDeprecationWarning, nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")), nix.thunk(() => nix.update({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: name,
         builder: nix.path(here, "./substitute.sh"),
         src: nix.thunk(() => nix.attr(args_1, "src")),
         preferLocalBuild: true,
         allowSubstitutes: false,
       }, nix.update(args_1, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_1, "substitutions")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           substitutions: nix.thunk(() => (() => {
             nix.assert_((nix.asBool(nix.app(nix.sel(lib, "isList"), nix.thunk(() => nix.sel(args_1, "substitutions")))) || nix.asBool(nix.builtins.throw(nix.thunk(() => nix.str`pkgs.substitute: For "${name}", \`substitutions\` is passed, which is expected to be a list, but it's a ${nix.builtins.typeOf(nix.thunk(() => nix.sel(args_1, "substitutions")))} instead.`)))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/substitute/substitute.nix:57:7");
             return nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.sel(args_1, "substitutions")));

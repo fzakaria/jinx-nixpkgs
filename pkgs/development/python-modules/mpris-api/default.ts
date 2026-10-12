@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const tunit = nix.arg($, "tunit");
   const unidecode = nix.arg($, "unidecode");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mpris-api",
       version: "1.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromBitbucket, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "massultidev",
           repo: "mpris-api",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["mpris_api"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module provides an implementation of MPRIS DBus interface",
         homepage: "https://bitbucket.org/massultidev/mpris-api/src/master/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

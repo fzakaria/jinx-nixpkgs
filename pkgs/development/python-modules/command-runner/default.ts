@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.7.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "netinvent",
           repo: "command_runner",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["command_runner"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/netinvent/command_runner",
         description: "Platform agnostic command execution, timed background jobs with live\nstdout/stderr output capture, and UAC/sudo elevation\n",
         changelog: nix.thunk(() => nix.str`https://github.com/netinvent/command_runner/releases/tag/${nix.sel(src, "tag")}`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

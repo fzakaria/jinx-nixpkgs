@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const oelint_adv = nix.arg($, "oelint-adv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "bitbake-language-server",
       version: "0.0.16",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Freed-Wu",
           repo: "bitbake-language-server",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
         return nix.concat([nix.thunk(() => nix.lookup(w_1, "pygls"))], [oelint_adv]);
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Language server for bitbake",
         mainProgram: "bitbake-language-server",
         homepage: "https://github.com/Freed-Wu/bitbake-language-server",

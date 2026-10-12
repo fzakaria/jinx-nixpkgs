@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const buildNavidromeRustPlugin = nix.arg($, "buildNavidromeRustPlugin");
   return nix.app(buildNavidromeRustPlugin, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lyrics-plugin",
       bundleName: "nd-lyrics",
       version: "8.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "J0R6IT0",
           repo: "navidrome-lyrics-plugin",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-TWI0u0oXj4/OdsXut2HXitGt0UmBcUUfOfhR1pkgW54=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/J0R6IT0/navidrome-lyrics-plugin/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Fetches lyrics from various sources",
         homepage: "https://github.com/J0R6IT0/navidrome-lyrics-plugin",

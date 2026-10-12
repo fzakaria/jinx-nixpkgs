@@ -17,28 +17,28 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     name: "emacs-daemon",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "emacs", "members")),
     })),
     enableOCR: true,
     nodes: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
           services: nix.thunk(() => ({
-            __proto__: pos$3,
-            emacs: nix.thunk(() => ({ __proto__: pos$2, enable: true, defaultEditor: true })),
+            [nix.POS]: pos$3,
+            emacs: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, defaultEditor: true })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             variables: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               XDG_RUNTIME_DIR: "/run/user/0",
               TEST_SYSTEM_VARIABLE: "system variable",
             })),

@@ -38,14 +38,14 @@ export default nix.lambda((args) => (() => {
       const pname = "intune-portal";
       const version = "1.2609.5-resolute";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://packages.microsoft.com/ubuntu/26.04/prod/pool/main/i/intune-portal/intune-portal_${version}_amd64.deb`),
           hash: "sha256-dFAX1MR8t17NQxR+sOpl1lYIxwnaTimnA8ZoHBrzq3Y=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [dpkg]);
       const buildPhase = nix.thunk(() => (() => {
         const libPath = nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           intune: nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [
               nix.thunk(() => nix.sel(stdenv, "cc", "cc")),
               libuuid,
@@ -80,12 +80,12 @@ runHook postBuild
       const installPhase = "runHook preInstall\n\nmkdir -p $out/bin\ncp -a opt/microsoft/intune/bin/* $out/bin/\ncp -a usr/share $out\ncp -a lib $out\nmkdir -p $out/lib/security\ncp -a ./usr/lib/x86_64-linux-gnu/security/pam_intune.so $out/lib/security/\ncp -a usr/lib/tmpfiles.d $out/lib\n\nsubstituteInPlace $out/share/applications/intune-portal.desktop \\\n  --replace /opt/microsoft/intune/bin/intune-portal $out/bin/intune-portal\n\nsubstituteInPlace $out/lib/systemd/user/intune-agent.service \\\n  --replace \\\n    ExecStart=/opt/microsoft/intune/bin/intune-agent \\\n    ExecStart=$out/bin/intune-agent\n\nsubstituteInPlace $out/lib/systemd/system/intune-daemon.service \\\n  --replace \\\n    ExecStart=/opt/microsoft/intune/bin/intune-daemon \\\n    ExecStart=$out/bin/intune-daemon\n\nrunHook postInstall\n";
       const dontPatchELF = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.path(here, "./update.sh"),
-        tests: nix.thunk(() => ({ __proto__: pos$3, intune: nix.thunk(() => nix.attr(nixosTests, "intune")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, intune: nix.thunk(() => nix.attr(nixosTests, "intune")) })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Microsoft Intune Portal allows you to securely access corporate apps, data, and resources",
         homepage: "https://www.microsoft.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -97,7 +97,7 @@ runHook postBuild
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

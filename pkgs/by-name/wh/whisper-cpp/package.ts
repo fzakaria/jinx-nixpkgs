@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
   const isLinux = nix.thunk(() => nix.attr(from, "isLinux"));
   const isAarch64 = nix.thunk(() => nix.attr(from, "isAarch64"));
   const llama_cpp$ = nix.thunk(() => nix.app(nix.sel(llama_cpp, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       cudaSupport: cudaSupport,
       cudaPackages: cudaPackages,
       rocmSupport: rocmSupport,
@@ -55,11 +55,11 @@ export default nix.lambda((args) => (() => {
       metalSupport: metalSupport,
     }))));
   return nix.app(nix.sel(effectiveStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "whisper-cpp",
       version: "1.9.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "ggml-org",
           repo: "whisper.cpp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -90,11 +90,11 @@ wrapProgram "$out/bin/whisper-cpp-download-ggml-model" \\
       doInstallCheck: nix.thunk(() => !nix.asBool((nix.asBool((nix.asBool(isLinux) && nix.asBool(isAarch64))) && nix.asBool(cudaSupport)))),
       installCheckPhase: "runHook preInstallCheck\n\"$out/bin/whisper-cli\" --help >/dev/null\n\"$out/bin/parakeet-cli\" --help >/dev/null\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Port of OpenAI's Whisper model in C/C++",
         longDescription: "To download the models as described in the project's readme, you may\nuse the `whisper-cpp-download-ggml-model` binary from this package.\n",
         homepage: "https://github.com/ggerganov/whisper.cpp",

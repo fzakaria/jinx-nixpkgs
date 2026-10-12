@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
       const pyproject = false;
       const disabled = isPyPy;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.riverbankcomputing.com/static/Downloads/sip/${version}/sip-${version}.tar.gz`),
           sha256: "04a23cgsnx150xq86w1z44b6vr2zyazysy9mqax0fy346zlr77dk",
         }))));
       const patches = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.11")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: "sip-4-python3-11.patch",
               url: "https://aur.archlinux.org/cgit/aur.git/plain/python3-11.patch?h=sip4&id=67b5907227e68845cdfafcf050fedb89ed653585",
               sha256: "sha256-cmuz2y5+T8EM/h03G2oboSnnOwrUjVKt2TUQaC9YAdE=",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         "sipconfig",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Creates C++ bindings for Python modules",
         mainProgram: "sip",
         homepage: "https://riverbankcomputing.com/",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

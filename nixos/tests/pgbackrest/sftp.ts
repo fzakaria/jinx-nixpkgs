@@ -38,29 +38,29 @@ export default nix.lambda((args) => (() => {
   const snakeOilPublicKey = nix.thunk(() => nix.attr(from, "snakeOilPublicKey"));
   const backupPath = "/home/backup";
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     name: "pgbackrest-sftp",
     nodes: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       primary: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             postgresql: nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               enable: true,
               initialScript: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "init.sql", "CREATE TABLE t(c text);\nINSERT INTO t VALUES ('hello world');\n")),
             })),
             pgbackrest: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               enable: true,
               repos: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 backup: nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   type: "sftp",
                   path: "/home/backup",
                   "sftp-host-key-check-type": "none",
@@ -70,14 +70,14 @@ export default nix.lambda((args) => (() => {
                   bundle: true,
                 })),
               })),
-              settings: nix.thunk(() => ({ __proto__: pos$4, "start-fast": true })),
+              settings: nix.thunk(() => ({ [nix.POS]: pos$4, "start-fast": true })),
               stanzas: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 default: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   jobs: nix.thunk(() => ({
-                    __proto__: pos$6,
-                    future: nix.thunk(() => ({ __proto__: pos$5, schedule: "3000-01-01", type: "diff" })),
+                    [nix.POS]: pos$6,
+                    future: nix.thunk(() => ({ [nix.POS]: pos$5, schedule: "3000-01-01", type: "diff" })),
                   })),
                 })),
               })),
@@ -89,28 +89,28 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const nodes = nix.arg($_1, "nodes");
         return {
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
-            openssh: nix.thunk(() => ({ __proto__: pos$12, enable: true })),
+            [nix.POS]: pos$13,
+            openssh: nix.thunk(() => ({ [nix.POS]: pos$12, enable: true })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             users: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               backup: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 name: "backup",
                 group: "backup",
                 isNormalUser: true,
                 createHome: true,
                 openssh: nix.thunk(() => ({
-                  __proto__: pos$15,
-                  authorizedKeys: nix.thunk(() => ({ __proto__: pos$14, keys: nix.thunk(() => [snakeOilPublicKey]) })),
+                  [nix.POS]: pos$15,
+                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: pos$14, keys: nix.thunk(() => [snakeOilPublicKey]) })),
                 })),
               })),
             })),
-            groups: nix.thunk(() => ({ __proto__: pos$18, backup: nix.thunk(() => ({})) })),
+            groups: nix.thunk(() => ({ [nix.POS]: pos$18, backup: nix.thunk(() => ({})) })),
           })),
         };
       })(), formals$3),

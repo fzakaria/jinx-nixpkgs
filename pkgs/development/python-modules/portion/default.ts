@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const pytest_benchmark = nix.arg($, "pytest-benchmark");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "portion",
       version: "2.6.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AlexandreDecan",
           repo: "portion",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["portion"]),
       nativeCheckInputs: nix.thunk(() => [pytest_benchmark, pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library providing data structure and operations for intervals",
         homepage: "https://github.com/AlexandreDecan/portion",
         changelog: nix.thunk(() => nix.str`https://github.com/AlexandreDecan/portion/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

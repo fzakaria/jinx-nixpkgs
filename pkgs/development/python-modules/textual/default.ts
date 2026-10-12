@@ -37,13 +37,13 @@ export default nix.lambda((args) => (() => {
   const syrupy = nix.arg($, "syrupy");
   const time_machine = nix.arg($, "time-machine");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "textual",
       version: "8.2.8",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Textualize",
           repo: "textual",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: nix.thunk(() => ["rich"]),
       dependencies: nix.thunk(() => nix.concat([markdown_it_py, mdit_py_plugins, platformdirs, rich, typing_extensions], nix.concat(nix.sel(markdown_it_py, "optional-dependencies", "plugins"), nix.sel(markdown_it_py, "optional-dependencies", "linkify")))),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         syntax: nix.thunk(() => [
           tree_sitter,
           tree_sitter_c_sharp,
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["textual"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "TUI framework for Python inspired by modern web development",
         homepage: "https://github.com/Textualize/textual",
         changelog: nix.thunk(() => nix.str`https://github.com/Textualize/textual/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.5.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-blCDdX4rvfm7eFBWdTa5apNRX2sXUD10ko/2KNsuDpQ=",
@@ -40,7 +40,7 @@ ${django}/bin/django-admin.py test
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["configurations"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Helper for organizing Django settings",
         mainProgram: "django-cadmin",
         homepage: "https://django-configurations.readthedocs.io/",
@@ -48,7 +48,7 @@ ${django}/bin/django-admin.py test
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

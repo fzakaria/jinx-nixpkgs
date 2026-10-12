@@ -39,13 +39,13 @@ export default nix.lambda((args) => (() => {
   const redisTestHook = nix.arg($, "redisTestHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "docling-jobkit",
       version: "3.2.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "docling-project",
           repo: "docling-jobkit",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: nix.thunk(() => ["pandas"]),
       dependencies: nix.thunk(() => nix.concat([boto3, docling_slim, httpx, pandas, pydantic_settings], nix.sel(docling_slim, "optional-dependencies", "standard"))),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         vlm: nix.thunk(() => nix.sel(docling_slim, "optional-dependencies", "models-vlm-inline")),
         rq: nix.thunk(() => [rq, msgpack]),
         ray: nix.thunk(() => nix.concat([msgpack, psutil, ray], nix.concat(nix.sel(ray, "optional-dependencies", "serve"), nix.concat(nix.sel(redis, "optional-dependencies", "hiredis"), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.app(pythonAtLeast, "3.11")) && nix.asBool(nix.app(pythonOlder, "3.14")))), []))))),
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_options_validator"])))),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Running a distributed job processing documents with Docling",
         homepage: "https://github.com/docling-project/docling-jobkit",
         changelog: nix.thunk(() => nix.str`https://github.com/docling-project/docling-jobkit/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

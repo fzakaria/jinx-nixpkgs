@@ -12,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const makeInstalledTest = nix.arg($, "makeInstalledTest");
   return nix.app(makeInstalledTest, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       tested: nix.thunk(() => nix.sel(pkgs, "gdk-pixbuf")),
       testConfig: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         virtualisation: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           memorySize: nix.thunk(() => (nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isi686")) ? 2047n : 4096n)),
         })),
       })),

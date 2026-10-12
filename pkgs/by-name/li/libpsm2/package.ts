@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libpsm2",
       version: "12.0.1",
       preConfigure: "export UDEVDIR=$out/etc/udev\nsubstituteInPlace ./Makefile --replace \"udevrulesdir}\" \"prefix}/etc/udev\";\n",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installFlags: nix.thunk(() => ["DESTDIR=$(out)", "UDEVDIR=/etc/udev", "LIBPSM2_COMPAT_CONF_DIR=/etc"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cornelisnetworks",
           repo: "opa-psm2",
           rev: nix.thunk(() => nix.str`PSM2_${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postInstall: "mv $out/usr/* $out\nrmdir $out/usr\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/cornelisnetworks/opa-psm2",
         description: "PSM2 library supports a number of fabric media and stacks",
         license: nix.thunk(() => (() => {

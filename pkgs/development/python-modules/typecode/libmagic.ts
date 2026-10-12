@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const file = nix.arg($, "file");
   const zlib = nix.arg($, "zlib");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "typecode-libmagic",
       version: "21.5.31",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aboutcode-org",
           repo: "scancode-plugins",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ popd
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["typecode_libmagic"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ScanCode Toolkit plugin to provide pre-built binary libraries and utilities and their locations",
         homepage: "https://github.com/aboutcode-org/scancode-plugins/tree/main/builtins/typecode_libmagic-linux",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

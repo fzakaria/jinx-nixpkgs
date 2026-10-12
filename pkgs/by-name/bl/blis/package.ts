@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const withOpenMP = nix.argOr($, "withOpenMP", () => true);
   const blasIntSize = nix.thunk(() => (nix.asBool(blas64) ? "64" : "32"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "blis",
       version: "2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "flame",
           repo: "blis",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs configure build/flatten-headers.py\n",
       postInstall: "ln -s $out/lib/libblis.so.4 $out/lib/libblas.so.3\nln -s $out/lib/libblis.so.4 $out/lib/libcblas.so.3\nln -s $out/lib/libblas.so.3 $out/lib/libblas.so\nln -s $out/lib/libcblas.so.3 $out/lib/libcblas.so\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "BLAS-compatible linear algebra library",
         homepage: "https://github.com/flame/blis",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

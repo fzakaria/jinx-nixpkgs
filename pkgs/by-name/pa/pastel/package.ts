@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pastel",
       version: "0.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sharkdp",
           repo: "pastel",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,10 +27,10 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-FPaMBxrSrmHbq5b4Q9QxElD+jAhn22gvKP55QWwZ/mo=",
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
-      env: nix.thunk(() => ({ __proto__: pos$2, SHELL_COMPLETIONS_DIR: "completions" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, SHELL_COMPLETIONS_DIR: "completions" })),
       postInstall: "installShellCompletion \\\n  --bash $SHELL_COMPLETIONS_DIR/pastel.bash \\\n  --zsh $SHELL_COMPLETIONS_DIR/_pastel \\\n  --fish $SHELL_COMPLETIONS_DIR/pastel.fish\ninstallManPage $SHELL_COMPLETIONS_DIR/*.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Command-line tool to generate, analyze, convert and manipulate colors",
         homepage: "https://github.com/sharkdp/pastel",
         changelog: nix.thunk(() => nix.str`https://github.com/sharkdp/pastel/releases/tag/v${nix.sel(finalAttrs, "version")}`),

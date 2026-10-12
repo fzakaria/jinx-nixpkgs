@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const duckdb = nix.arg($, "duckdb");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "logica",
       version: "1.3.1415926535897",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-d5G/juvEOoBupWTneeKt85sPfZIyYYiFIywjwKCroaM=",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_one_of_arguments_any", "test_three_predicates"]),
       pythonImportsCheck: nix.thunk(() => ["logica"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Declarative logic programming language for data manipulation",
         homepage: "https://logica.dev/",
         downloadPage: "https://github.com/evgskv/logica",

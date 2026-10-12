@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const go = nix.arg($, "go");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cobra-cli",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "spf13",
           repo: "cobra-cli",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
 `),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd cobra-cli \\\n  --bash <($out/bin/cobra-cli completion bash) \\\n  --fish <($out/bin/cobra-cli completion fish) \\\n  --zsh <($out/bin/cobra-cli completion zsh) \\\n\n# Ironically, cobra-cli still uses old, slightly buggy completion code\n# This will correct the #compdef tag and add separate compdef line\n# allowing direct sourcing to also activate the completion\nsubstituteInPlace \"$out/share/zsh/site-functions/_cobra-cli\" \\\n  --replace-fail '#compdef _cobra-cli cobra-cli' \"#compdef cobra-cli\ncompdef _cobra-cli cobra-cli\"\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cobra CLI tool to generate applications and commands",
         mainProgram: "cobra-cli",
         homepage: "https://github.com/spf13/cobra-cli/",

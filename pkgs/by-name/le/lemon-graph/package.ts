@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lemon-graph",
       version: "1.3.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://lemon.cs.elte.hu/pub/sources/lemon-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1j6kp9axhgna47cfnmk1m7vnqn01hwh7pf1fp76aid60yhjwgdvi",
         })))),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./fix_path_allocator.patch"),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://lemon.cs.elte.hu/trac/lemon",
         description: "Efficient library for combinatorial optimization tasks on graphs and networks",
         license: nix.thunk(() => nix.sel(lib, "licenses", "boost")),

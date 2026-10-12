@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "singingwolfboy",
           repo: "flask-dance",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [flit_core]);
       const dependencies = nix.thunk(() => [flask, oauthlib, requests, requests_oauthlib, urlobject, werkzeug]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         signals: nix.thunk(() => [blinker]),
         sqla: nix.thunk(() => [sqlalchemy]),
       }));
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["flask_dance"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Doing the OAuth dance with style using Flask, requests, and oauthlib",
         homepage: "https://github.com/singingwolfboy/flask-dance",
         changelog: nix.thunk(() => nix.str`https://github.com/singingwolfboy/flask-dance/releases/tag/${nix.sel(src, "tag")}`),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

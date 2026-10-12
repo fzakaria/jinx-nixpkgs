@@ -36,19 +36,19 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.1";
       const format = "wheel";
       const src = nix.thunk(() => nix.selOr({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://files.pythonhosted.org/packages/py2.py3/k/kaleido/kaleido-${version}-py2.py3-none-manylinux1_x86_64.whl`),
             hash: "sha256-qiHPG/HHj4+lCp99ReEAPDh709b+CnZ8+780S5W9w6g=",
           })))),
         "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`https://files.pythonhosted.org/packages/py2.py3/k/kaleido/kaleido-${version}-py2.py3-none-manylinux2014_aarch64.whl`),
             hash: "sha256-hFgZhEyAgslGnZwX5CYh+/hcKyN++KhuyKhSf5i2USo=",
           })))),
         "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: nix.thunk(() => nix.str`https://files.pythonhosted.org/packages/py2.py3/k/kaleido/kaleido-${version}-py2.py3-none-macosx_11_0_arm64.whl`),
             hash: "sha256-u5pdH3EDV9XUMu4kDvZlim0STD5hCTWBe0tC2px4fAU=",
           })))),
@@ -78,14 +78,14 @@ rm -rf $out/${nix.sel(python, "sitePackages")}/kaleido/executable/bin/swiftshade
 ln -s ${libGL}/lib $out/${nix.sel(python, "sitePackages")}/kaleido/executable/bin/swiftshader
 `))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             kaleido: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Fast static image export for web-based visualization libraries with zero dependencies",
         homepage: "https://github.com/plotly/Kaleido",
         changelog: "https://github.com/plotly/Kaleido/releases",
@@ -101,7 +101,7 @@ ln -s ${libGL}/lib $out/${nix.sel(python, "sitePackages")}/kaleido/executable/bi
         })()),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version,
         format,

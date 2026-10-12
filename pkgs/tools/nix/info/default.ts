@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const doCheck = nix.argOr($, "doCheck", () => false);
   const shellcheck = nix.arg($, "shellcheck");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "nix-info",
       src: nix.path(here, "./info.sh"),
       path: nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat([coreutils, findutils, gnugrep], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(darwin, "DarwinTools"))])))))),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -p $out/bin\ncp ./nix-info $out/bin/nix-info\n",
       preferLocalBuild: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),

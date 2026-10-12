@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "argtable",
       version: "3.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "argtable",
           repo: "argtable3",
           tag: nix.thunk(() => nix.add("v", nix.sel(finalAttrs, "version"))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "patchShebangs tools/build\n\nsubstituteInPlace pkgconfig.pc.in \\\n  --replace-fail \"\\${prefix}/@CMAKE_INSTALL_INCLUDEDIR@\" \"@CMAKE_INSTALL_FULL_INCLUDEDIR@\" \\\n  --replace-fail \"\\${prefix}/@CMAKE_INSTALL_LIBDIR@\" \"@CMAKE_INSTALL_FULL_LIBDIR@\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/argtable/argtable3",
         description: "Single-file, ANSI C command-line parsing library",
         longDescription: "Argtable is an open source ANSI C library that parses GNU-style\ncommand-line options. It simplifies command-line parsing by defining a\ndeclarative-style API that you can use to specify what your command-line\nsyntax looks like. Argtable will automatically generate consistent error\nhandling logic and textual descriptions of the command line syntax, which\nare essential but tedious to implement for a robust CLI program.\n",

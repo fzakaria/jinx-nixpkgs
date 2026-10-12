@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const wezterm = nix.arg($, "wezterm");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "wezterm-headless",
       version: nix.thunk(() => nix.attr(wezterm, "version")),
       src: nix.thunk(() => nix.attr(wezterm, "src")),

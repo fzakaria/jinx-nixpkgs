@@ -10,13 +10,13 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildRedist = nix.arg($, "buildRedist");
   return nix.app(buildRedist, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       redistName: "cuda",
       pname: "cuda_nvvp",
       outputs: nix.thunk(() => ["out"]),
       allowFHSReferences: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Cross-platform performance profiling tool for optimizing CUDA C/C++ applications",
         longDescription: "The NVIDIA Visual Profiler is a cross-platform performance profiling tool that delivers developers vital\nfeedback for optimizing CUDA C/C++ applications.\n",
         homepage: "https://developer.nvidia.com/nvidia-visual-profiler",

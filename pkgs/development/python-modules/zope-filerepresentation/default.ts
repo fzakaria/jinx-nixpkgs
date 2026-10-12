@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zopefoundation",
           repo: "zope.filerepresentation",
           tag: version,
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const unittestFlagsArray = nix.thunk(() => ["src/zope/filerepresentation"]);
       const pythonNamespaces = nix.thunk(() => ["zope"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/zopefoundation/zope.filerepresentation",
         description: "File-system Representation Interfaces",
         changelog: nix.thunk(() => nix.str`https://github.com/zopefoundation/zope.filerepresentation/blob/${version}/CHANGES.rst`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

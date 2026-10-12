@@ -5,7 +5,7 @@ const here = nix.here(import.meta.url);
 const pos$1 = nix.positions(here + "/main.nix", [["imports", 2, 3], ["enable", 7, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$1,
+  [nix.POS]: pos$1,
   imports: nix.thunk(() => [nix.path(here, "./foo.nix"), nix.path(here, "./bar.nix")]),
   enable: true,
 }));

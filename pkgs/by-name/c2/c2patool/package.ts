@@ -18,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "c2patool",
       version: "0.27.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "contentauth",
           repo: "c2pa-rs",
           tag: nix.thunk(() => nix.str`c2patool-v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-mLF67Kq+lZMaDuBkWW0mD/uKnv0HIrMMrcGEyvUpX1w=",
         })))),
       cargoHash: "sha256-LrzoSShsichdc6RevA087aRo8+OhdCrKz4CPp1jRy5o=",
-      env: nix.thunk(() => ({ __proto__: pos$2, OPENSSL_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: 1n })),
       nativeBuildInputs: nix.thunk(() => [git, pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
       doCheck: false,
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Command line tool for working with C2PA manifests and media assets",
         homepage: "https://github.com/contentauth/c2pa-rs/tree/main/cli",
         license: nix.thunk(() => (() => {

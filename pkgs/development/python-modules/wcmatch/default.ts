@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "10.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-8R+UIIyMhIShb09IY4qF13HZUT9Ks/N1lZeIAcuUZa8=",
@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["TestTilde"]);
       const pythonImportsCheck = nix.thunk(() => ["wcmatch"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Wildcard File Name matching library",
         homepage: "https://github.com/facelessuser/wcmatch",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pname = "love";
       const version = "0.10.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "love2d",
           repo: "love",
           rev: version,
@@ -61,9 +61,9 @@ export default nix.lambda((args) => (() => {
       ]);
       const preConfigure = "$shell ./platform/unix/automagic";
       const configureFlags = nix.thunk(() => ["--with-lua=luajit"]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-DluaL_reg=luaL_Reg" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-DluaL_reg=luaL_Reg" }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://love2d.org",
         description: "Lua-based 2D game engine/scripting language",
         mainProgram: "love",
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "raskin"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

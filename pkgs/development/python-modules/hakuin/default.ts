@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const pyprojectVersionPatchHook = nix.arg($, "pyprojectVersionPatchHook");
   const sqlglot = nix.arg($, "sqlglot");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hakuin",
       version: "0.2.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pruzko",
           repo: "hakuin",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["hakuin"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Blind SQL Injection optimization and automation framework",
         homepage: "https://github.com/pruzko/hakuin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

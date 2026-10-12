@@ -71,12 +71,12 @@ export default nix.lambda((args) => (() => {
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   const signKeyPaths = nix.thunk(() => nix.concat(nix.sel(cacheCfg, "signKeyPaths"), (nix.asBool(!nix.eq(nix.sel(cacheCfg, "signKeyPath"), null)) ? [nix.thunk(() => nix.sel(cacheCfg, "signKeyPath"))] : [])));
   const credentials = nix.thunk(() => nix.app(nix.sel(lib, "imap0"), (i) => (signKeyPath) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       id: nix.thunk(() => nix.str`sign-key-${nix.builtins.toString(i)}`),
       path: signKeyPath,
     }), signKeyPaths));
   return {
-    __proto__: pos$55,
+    [nix.POS]: pos$55,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "harmonia", "enable"]), nix.thunk(() => ["services", "harmonia", "cache", "enable"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "harmonia", "signKeyPath"]), nix.thunk(() => ["services", "harmonia", "cache", "signKeyPath"]))),
@@ -84,45 +84,45 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "harmonia", "settings"]), nix.thunk(() => ["services", "harmonia", "cache", "settings"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       services: nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         harmonia: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "harmonia", nix.thunk(() => ({})))),
           cache: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Harmonia: Nix binary cache written in Rust")),
             signKeyPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
                 description: "DEPRECATED: Use `services.harmonia.cache.signKeyPaths` instead. Path to the signing key to use for signing the cache",
               })))),
             signKeyPaths: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: [],
                 description: "Paths to the signing keys to use for signing the cache",
               })))),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.attr(format, "type")),
                 default: nix.thunk(() => ({})),
                 description: "Settings to merge with the default configuration.\nFor the list of the default configuration, see <https://github.com/nix-community/harmonia/tree/master#configuration>.\n",
               })))),
           })),
           gc: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "harmonia-gc, a faster nix-collect-garbage")),
             automatic: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Run garbage collection automatically on a schedule.",
               })))),
             dates: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "singleLineStr")), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))));
@@ -133,88 +133,88 @@ export default nix.lambda((args) => (() => {
                 description: "When to run garbage collection. Calendar event in the format\nspecified by {manpage}`systemd.time(7)`.\n",
               })))),
             randomizedDelaySec: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(lib, "types", "singleLineStr")),
                 default: "0",
                 example: "45min",
                 description: "Randomized delay before each run.",
               })))),
             persistent: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Run on next boot if a scheduled run was missed.",
               })))),
             deleteOlderThan: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "singleLineStr")))),
                 default: null,
                 example: "30d",
                 description: "Delete profile generations older than this.",
               })))),
             ensureFree: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "singleLineStr")))),
                 default: null,
                 example: "50G",
                 description: "Free space until this much is available, then stop. Accepts an\nabsolute size like \"50G\" or a percentage of the store's filesystem\nlike \"20%\".\n",
               })))),
             keepRecent: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "singleLineStr")))),
                 default: null,
                 example: "1d",
                 description: "Keep store paths registered within this time window. Avoids deleting\nbuild dependencies fetched during a recent build.\n",
               })))),
             noVacuum: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Skip the SQLite VACUUM after garbage collection. Enable on busy\nbuilders, where concurrent nix-daemon readers prevent cleanup of\nthe database-sized WAL that VACUUM produces.\n",
               })))),
             chunkSize: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "ints", "positive")))),
                 default: null,
                 description: "Number of dead paths invalidated per database transaction. Lower\nvalues keep the WAL (and its disk use) smaller during deletion at\nthe cost of more checkpoints; null uses the built-in default.\n",
               })))),
             gcRootsDirs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: [],
                 example: nix.thunk(() => ["/mnt/extra-roots"]),
                 description: "Extra directories to scan for GC roots, treated like the standard\ngcroots directory. Nix only scans its own state directories; this\nkeeps roots that live elsewhere from being collected.\n",
               })))),
             extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: [],
                 description: "Extra arguments to pass to harmonia-gc.",
               })))),
           })),
           daemon: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Harmonia daemon: Nix daemon protocol implementation")),
             socketPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "/run/harmonia-daemon/socket",
                 description: "Path where the daemon socket will be created",
               })))),
             storeDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "/nix/store",
                 description: "Path to the Nix store directory",
               })))),
             dbPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "/nix/var/nix/db/db.sqlite",
                 description: "Path to the Nix database",
               })))),
             logLevel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "info",
                 description: "Log level for the daemon",
@@ -225,18 +225,18 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cacheCfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             warnings: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cacheCfg, "signKeyPath"), null)) ? [
               "`services.harmonia.cache.signKeyPath` is deprecated, use `services.harmonia.cache.signKeyPaths` instead",
             ] : [])),
             services: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               harmonia: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 cache: nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   settings: nix.thunk(() => nix.builtins.mapAttrs((_) => (v) => nix.app(nix.sel(lib, "mkDefault"), v), nix.thunk(() => ({
-                      __proto__: pos$26,
+                      [nix.POS]: pos$26,
                       bind: "[::]:5000",
                       workers: 4n,
                       max_connection_rate: 256n,
@@ -246,15 +246,15 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               sockets: nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 harmonia: nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   description: "harmonia binary cache socket",
                   wantedBy: nix.thunk(() => ["sockets.target"]),
                   socketConfig: nix.thunk(() => ({
-                    __proto__: pos$30,
+                    [nix.POS]: pos$30,
                     ListenStream: nix.thunk(() => (() => {
                       const b = nix.thunk(() => nix.sel(cacheCfg, "settings", "bind"));
                       return (nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), "unix:", b)) ? nix.app(nix.sel(lib, "removePrefix"), "//", nix.thunk(() => nix.app(nix.sel(lib, "removePrefix"), "unix:", b))) : nix.force(b));
@@ -263,20 +263,20 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               services: nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 harmonia: nix.thunk(() => ({
-                  __proto__: pos$35,
+                  [nix.POS]: pos$35,
                   description: "harmonia binary cache service",
                   requires: nix.thunk(() => ["harmonia.socket"]),
                   after: nix.thunk(() => ["harmonia.socket"]),
                   environment: nix.thunk(() => ({
-                    __proto__: pos$33,
+                    [nix.POS]: pos$33,
                     CONFIG_FILE: nix.thunk(() => nix.app(nix.sel(format, "generate"), "harmonia.toml", nix.thunk(() => nix.sel(cacheCfg, "settings")))),
                     SIGN_KEY_PATHS: nix.thunk(() => nix.app(nix.sel(lib, "strings", "concatMapStringsSep"), " ", (credential) => nix.str`%d/${nix.sel(credential, "id")}`, credentials)),
                     HOME: "/run/harmonia",
                   })),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$34,
+                    [nix.POS]: pos$34,
                     ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))),
                     User: "harmonia",
                     Group: "harmonia",
@@ -320,25 +320,25 @@ export default nix.lambda((args) => (() => {
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(gcCfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 assertion: nix.thunk(() => (!nix.asBool(nix.sel(gcCfg, "automatic")) || nix.asBool(nix.sel(config, "nix", "enable")))),
                 message: "services.harmonia.gc.automatic requires nix.enable",
               })),
             ]),
             warnings: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(gcCfg, "automatic")) && nix.asBool(nix.sel(config, "nix", "gc", "automatic")))), "Both services.harmonia.gc.automatic and nix.gc.automatic are enabled.\nDisable nix.gc.automatic to avoid running two garbage collectors.\n")),
             systemd: nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               services: nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 "harmonia-gc": nix.thunk(() => ({
-                  __proto__: pos$41,
+                  [nix.POS]: pos$41,
                   description: "Harmonia Nix Garbage Collector",
                   path: nix.thunk(() => [nix.thunk(() => nix.sel(config, "nix", "package"))]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$40,
+                    [nix.POS]: pos$40,
                     Type: "oneshot",
                     ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.concat([
                         nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "harmonia-gc")),
@@ -352,11 +352,11 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               timers: nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 "harmonia-gc": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(gcCfg, "automatic")), nix.thunk(() => ({
-                    __proto__: pos$44,
+                    [nix.POS]: pos$44,
                     timerConfig: nix.thunk(() => ({
-                      __proto__: pos$43,
+                      [nix.POS]: pos$43,
                       RandomizedDelaySec: nix.thunk(() => nix.sel(gcCfg, "randomizedDelaySec")),
                       Persistent: nix.thunk(() => nix.sel(gcCfg, "persistent")),
                     })),
@@ -365,14 +365,14 @@ export default nix.lambda((args) => (() => {
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(daemonCfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$54,
+            [nix.POS]: pos$54,
             systemd: nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               services: nix.thunk(() => ({
-                __proto__: pos$52,
+                [nix.POS]: pos$52,
                 "harmonia-daemon": nix.thunk(() => (() => {
                   const daemonConfig = nix.thunk(() => ({
-                    __proto__: pos$48,
+                    [nix.POS]: pos$48,
                     socket_path: nix.thunk(() => nix.sel(daemonCfg, "socketPath")),
                     store_dir: nix.thunk(() => nix.sel(daemonCfg, "storeDir")),
                     db_path: nix.thunk(() => nix.sel(daemonCfg, "dbPath")),
@@ -380,18 +380,18 @@ export default nix.lambda((args) => (() => {
                   }));
                   const daemonConfigFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "harmonia-daemon.toml", daemonConfig));
                   return {
-                    __proto__: pos$51,
+                    [nix.POS]: pos$51,
                     description: "Harmonia Nix daemon protocol server",
                     after: nix.thunk(() => ["network.target"]),
                     wantedBy: nix.thunk(() => ["multi-user.target"]),
                     environment: nix.thunk(() => ({
-                      __proto__: pos$49,
+                      [nix.POS]: pos$49,
                       RUST_LOG: nix.thunk(() => nix.sel(daemonCfg, "logLevel")),
                       RUST_BACKTRACE: "1",
                       HARMONIA_DAEMON_CONFIG: daemonConfigFile,
                     })),
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$50,
+                      [nix.POS]: pos$50,
                       Type: "simple",
                       ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "harmonia-daemon")),
                       Restart: "on-failure",

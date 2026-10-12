@@ -19,14 +19,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.15.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-EEXRepj2iGRsp1jf8lTm6cA3RWSOBRoIGwOVw7d8gkw=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/lesscpy/lesscpy/commit/bd8949579713c9d4ff9e15799a26fcecdf73530e.patch",
             hash: "sha256-U1VDqZqHYaUmND5qCkARyU/eDv2QRhGcCDzuN4+XTbo=",
           })))),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       })());
       const pythonImportsCheck = nix.thunk(() => ["lesscpy"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python LESS Compiler",
         mainProgram: "lesscpy",
         homepage: "https://github.com/lesscpy/lesscpy",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

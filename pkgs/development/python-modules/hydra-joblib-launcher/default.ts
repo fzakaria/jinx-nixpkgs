@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const joblib = nix.arg($, "joblib");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "hydra-joblib-launcher",
       pyproject: true,
       version: nix.thunk(() => nix.attr(hydra_core, "version")),
@@ -35,7 +35,7 @@ substituteInPlace setup.py  \\
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(hydra_core, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         changelog: nix.thunk(() => nix.attr(from, "changelog")),
         license: nix.thunk(() => nix.attr(from, "license")),
         description: "Hydra launcher supporting parallel execution based on Joblib.Parallel",

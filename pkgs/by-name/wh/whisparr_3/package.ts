@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const yarnBuildHook = nix.arg($, "yarnBuildHook");
   const yarnConfigHook = nix.arg($, "yarnConfigHook");
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "whisparr",
       version: "3.6.2-release.1727",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Whisparr",
           repo: "Whisparr-Eros",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -85,9 +85,9 @@ cp ${nix.sel(finalAttrs, "passthru", "package_info")} $dotnetInstallPath/../pack
         "NzbDrone.Mono.Test.EnvironmentInfo.ReleaseFileVersionAdapterFixture.should_get_version_info",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         frontend: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-frontend`),
@@ -95,7 +95,7 @@ cp ${nix.sel(finalAttrs, "passthru", "package_info")} $dotnetInstallPath/../pack
             strictDeps: true,
             nativeBuildInputs: nix.thunk(() => [nodejs_24, yarnBuildHook, yarnConfigHook]),
             yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
                 hash: "sha256-nL36qET7Zhej9Ar+69XeK8wRC13fTMN7r34z/7L3KJM=",
               })))),
@@ -103,20 +103,20 @@ cp ${nix.sel(finalAttrs, "passthru", "package_info")} $dotnetInstallPath/../pack
             installPhase: "runHook preInstall\nmv _output/UI $out\nrunHook postInstall\n",
           })))),
         package_info: nix.thunk(() => nix.app(writeText, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-package_info`), nix.thunk(() => nix.app(nix.sel(lib, "generators", "toKeyValue"), nix.thunk(() => ({})), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               PackageAuthor: "[NixOS](https://nixos.org)",
               PackageVersion: nix.thunk(() => nix.sel(finalAttrs, "version")),
               UpdateMethod: "External",
               UpdateMethodMessage: "Whisparr is managed by Nix. Update it through your system configuration.",
             })))))),
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           whisparr_3: nix.thunk(() => nix.attr(nixosTests, "whisparr_3")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "cli", "toCommandLineGNU"), nix.thunk(() => ({})), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 subpackage: "frontend",
                 "use-github-releases": true,
                 "version-regex": "v(\\d+\\.\\d+\\.\\d+-release\\.\\d+)$",
@@ -124,7 +124,7 @@ cp ${nix.sel(finalAttrs, "passthru", "package_info")} $dotnetInstallPath/../pack
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         changelog: nix.thunk(() => nix.str`https://github.com/Whisparr/Whisparr-Eros/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Adult video collection manager for Usenet and BitTorrent users",
         homepage: "https://github.com/Whisparr/Whisparr-Eros",

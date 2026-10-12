@@ -18,22 +18,22 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const installShellFiles = nix.arg($, "installShellFiles");
   const man_pages = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://salsa.debian.org/debian/daemontools/-/archive/debian/1%250.76-8/daemontools-debian-1%250.76-8.tar.gz?path=debian/daemontools-man",
       sha256: "sha256-om5r1ddUx1uObp9LR+SwCLLtm+rRuLoq28OLbhWhdzU=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "daemontools",
       version: "0.76",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://cr.yp.to/daemontools/daemontools-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "07scvw88faxkscxi91031pjkpccql6wspk4yrlnsbrrb5c0kamd5",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://salsa.debian.org/debian/daemontools/-/raw/1844f0e704ab66844da14354a16ea068eba0403f/debian/patches/0005-fix-ftbfs.patch",
             hash: "sha256-Q7t0kwajjTW2Ms5m44E4spBwHi5Xi6Y39FQVsawr8LA=",
           })))),
@@ -71,7 +71,7 @@ sed -i "s_^PATH=.*_PATH=$out/bin:\\$PATH_" "$out/bin/svscanboot"
 `),
       outputDoc: "man",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),
         homepage: "https://cr.yp.to/daemontools.html",
         description: "Collection of tools for managing UNIX services",

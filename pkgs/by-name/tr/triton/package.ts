@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "triton";
       const version = "7.18.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TritonDataCenter",
           repo: "node-triton",
           rev: version,
@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [installShellFiles]);
       const postInstall = "installShellCompletion --cmd triton --bash <($out/bin/triton completion)\n# Strip timestamp from generated bash completion\nsed -i '/Bash completion generated.*/d' $out/share/bash-completion/completions/triton.bash\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: triton })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: triton })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "TritonDataCenter Client CLI and Node.js SDK",
         homepage: "https://github.com/TritonDataCenter/node-triton",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "triton",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

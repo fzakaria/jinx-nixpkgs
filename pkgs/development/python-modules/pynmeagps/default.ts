@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pytest_cov_stub = nix.arg($, "pytest-cov-stub");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pynmeagps",
       version: "1.1.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "semuconsulting",
           repo: "pynmeagps",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, pytest_cov_stub]),
       pythonImportsCheck: nix.thunk(() => ["pynmeagps"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "NMEA protocol parser and generator",
         homepage: "https://github.com/semuconsulting/pynmeagps",
         changelog: nix.thunk(() => nix.str`https://github.com/semuconsulting/pynmeagps/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

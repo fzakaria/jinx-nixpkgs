@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const binlore = nix.arg($, "binlore");
   const procps = nix.arg($, "procps");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "procps",
       version: "4.0.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/procps-ng/procps-ng-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-nSAh9HpFAcZnhiyZQqktGVNpSyHRG80XAug+tZTj1n0=",
         })))),
@@ -41,14 +41,14 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => nix.concat(["--disable-modern-top", "--enable-watch8bit"], nix.concat(nix.app(nix.sel(lib, "optionals"), withSystemd, nix.thunk(() => ["--with-systemd"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux"))), nix.thunk(() => ["--disable-pidwait"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => ["--disable-w"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), nix.thunk(() => ["ac_cv_func_malloc_0_nonnull=yes", "ac_cv_func_realloc_0_nonnull=yes"]))))))),
       installPhase: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), watchOnly, "runHook preInstall\n\ninstall -m 0755 -D src/watch $out/bin/watch\ninstall -m 0644 -D man/watch.1 $out/share/man/man1/watch.1\n\nrunHook postInstall\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         binlore: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           out: nix.thunk(() => nix.app(nix.sel(binlore, "synthesize"), procps, "execer cannot bin/{ps,top,free}\n")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://gitlab.com/procps-ng/procps",
         description: "Utilities that give information about processes using the /proc filesystem",
         priority: 11n,

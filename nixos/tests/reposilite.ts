@@ -18,26 +18,26 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     name: "reposilite",
     nodes: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           services: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             mysql: nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               enable: true,
               package: nix.thunk(() => nix.sel(pkgs, "mariadb")),
               ensureDatabases: nix.thunk(() => ["reposilite"]),
               initialScript: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "reposilite-test-db-init", "CREATE USER 'reposilite'@'localhost' IDENTIFIED BY 'ReposiliteDBPass';\nGRANT ALL PRIVILEGES ON reposilite.* TO 'reposilite'@'localhost';\nFLUSH PRIVILEGES;\n")),
             })),
             reposilite: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               enable: true,
               plugins: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "reposilitePlugins")), null);
@@ -47,8 +47,8 @@ export default nix.lambda((args) => (() => {
                 ];
               })()),
               extraArgs: nix.thunk(() => ["--token", "test:SuperSecretTestToken"]),
-              database: nix.thunk(() => ({ __proto__: pos$2, type: "mariadb", passwordFile: "/run/reposiliteDbPass" })),
-              settings: nix.thunk(() => ({ __proto__: pos$3, port: 8080n })),
+              database: nix.thunk(() => ({ [nix.POS]: pos$2, type: "mariadb", passwordFile: "/run/reposiliteDbPass" })),
+              settings: nix.thunk(() => ({ [nix.POS]: pos$3, port: 8080n })),
             })),
           })),
         };
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
     })),
     testScript: "machine.start()\n\nmachine.execute(\"echo \\\"ReposiliteDBPass\\\" > /run/reposiliteDbPass && chmod 600 /run/reposiliteDbPass && chown reposilite:reposilite /run/reposiliteDbPass\")\nmachine.wait_for_unit(\"reposilite.service\")\nmachine.wait_for_open_port(8080)\n\nmachine.fail(\"curl -Sf localhost:8080/api/auth/me\")\nmachine.succeed(\"curl -Sfu test:SuperSecretTestToken localhost:8080/api/auth/me\")\n",
     meta: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "uku3lig"))]),
     })),
   };

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const tokyocabinet = nix.arg($, "tokyocabinet");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tokyotyrant",
       version: "1.1.41",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://fallabs.com/tokyotyrant/tokyotyrant-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "13xqcinhydqmh7231qlir6pymacjwcf98drybkhd9597kzxp1bs2",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [tokyocabinet]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Network interface of the Tokyo Cabinet DBM",
         longDescription: "Tokyo Tyrant is a package of network interface to the DBM called\nTokyo Cabinet.  Though the DBM has high performance, you might\nbother in case that multiple processes share the same database, or\nremote processes access the database.  Thus, Tokyo Tyrant is\nprovided for concurrent and remote connections to Tokyo Cabinet.  It\nis composed of the server process managing a database and its access\nlibrary for client applications.\n\nTokyo Tyrant is written in the C language, and provided as API of C,\nPerl, and Ruby.  Tokyo Tyrant is available on platforms which have\nAPI conforming to C99 and POSIX.  Tokyo Tyrant is a free software\nlicensed under the GNU Lesser General Public License.\n",
         homepage: "https://fallabs.com/tokyotyrant/",

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const librime = nix.arg($, "librime");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rime-data",
       version: "0.38.20231116",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rime",
           repo: "plum",
           rev: "6f502ff6fa87789847fa18200415318e705bffa4",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       preBuild: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./fetchSchema.nix")), fetchFromGitHub)),
       postPatch: "# Disable git operations.\nsed -i /fetch_or_update_package$/d scripts/install-packages.sh\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Schema data of Rime Input Method Engine",
         longDescription: "Rime-data provides schema data for Rime Input Method Engine.\n",
         homepage: "https://rime.im",

@@ -27,34 +27,34 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "matterjs-server"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         "matterjs-server": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "matterjs-server, a Matter Controller WebSocket server based on Matter.js")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "matterjs-server", nix.thunk(() => ({})))),
           listenAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "127.0.0.1",
               description: "IP address the WebSocket API binds to.",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 5580n,
               description: "TCP port the WebSocket API listens on.",
             })))),
           openFirewall: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), null), {
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             description: "Whether to open the WebSocket API port in the firewall.",
           })),
           bluetoothSupport: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "BLE (Bluetooth Low Energy) commissioning support. Select an adapter with\n`--bluetooth-adapter=<id>` in\n{option}`services.matterjs-server.extraArgs`\n")),
           extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["--primary-interface=enp11s0", "--log-level=debug"]),
@@ -64,20 +64,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         networking: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]),
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             "matterjs-server": nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "Matter Controller WebSocket server based on Matter.js",
               documentation: nix.thunk(() => ["https://github.com/matter-js/matterjs-server"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
               serviceConfig: nix.thunk(() => (() => {
                 const bluetoothCaps = nix.thunk(() => ["CAP_NET_RAW", "CAP_NET_ADMIN"]);
                 return {
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.concat([
                       nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))),
                       "--storage-path=%S/matterjs-server",
@@ -127,7 +127,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

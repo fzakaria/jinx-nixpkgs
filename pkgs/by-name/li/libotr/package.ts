@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libgcrypt = nix.arg($, "libgcrypt");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libotr",
       version: "4.1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://otr.cypherpunks.ca/libotr-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1x8rliydhbibmzwdbyr7pd7n87m2jmxnqkpvaalnf4154hj1hfwb",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, nix.thunk(() => nix.sel(pkgsHostTarget, "libgcrypt", "dev"))]),
       propagatedBuildInputs: nix.thunk(() => [libgcrypt]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.cypherpunks.ca/otr/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
         description: "Library for Off-The-Record Messaging",

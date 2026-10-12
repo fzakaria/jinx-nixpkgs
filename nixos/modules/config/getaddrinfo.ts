@@ -34,33 +34,33 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.str`reload ${nix.app(nix.sel(lib, "boolToYesNo"), nix.thunk(() => nix.sel(cfg, "reload")))}`),
     ], nix.concat(nix.app(formatTableEntries, "label", nix.thunk(() => nix.sel(cfg, "label"))), nix.concat(nix.app(formatTableEntries, "precedence", nix.thunk(() => nix.sel(cfg, "precedence"))), nix.app(formatTableEntries, "scopev4", nix.thunk(() => nix.sel(cfg, "scopev4")))))))));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       networking: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         getaddrinfo: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: nix.thunk(() => nix.eq(nix.sel(pkgs, "stdenv", "hostPlatform", "libc"), "glibc")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.stdenv.hostPlatform.libc == \"glibc\"\n")),
               description: "Enables custom address sorting configuration for {manpage}`getaddrinfo(3)` according to RFC 3484.\n\nThis option generates a {file}`/etc/gai.conf` file to override the default address sorting tables,\nas described in {manpage}`gai.conf(5)`.\n\nThis setting is only applicable when using the GNU C Library (glibc).\nIt has no effect with other libc implementations.\n",
             })))),
           reload: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Determines whether a process should detect changes to the configuration file since it was last read.\n\nIf enabled, the file is re-read automatically. This may cause issues in multithreaded applications\nand is generally discouraged.\n",
             })))),
           label: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "int")))))),
               default: null,
               description: "Adds entries to the label table, as described in section 2.1 of RFC 3484.\n\nIf any label entries are provided, the glibc’s default label table is ignored.\n",
               example: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 "::/0": 1n,
                 "2002::/16": 2n,
                 "::/96": 3n,
@@ -71,12 +71,12 @@ export default nix.lambda((args) => (() => {
               })),
             })))),
           precedence: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "int")))))),
               default: null,
               description: "Similar to {option}`networking.getaddrinfo.label`, but this option\ndefines entries for the precedence table instead.\n\nSee sections 2.1 and 10.3 of RFC 3484 for details.\n\nProviding any value will disable the glibc's default precedence table.\n",
               example: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 "::1/128": 50n,
                 "::/0": 40n,
                 "2002::/16": 30n,
@@ -85,12 +85,12 @@ export default nix.lambda((args) => (() => {
               })),
             })))),
           scopev4: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "int")))))),
               default: null,
               description: "Adds custom rules to the IPv4 scope table.\n\nBy default, the scope IDs described in section 3.2 of RFC 6724 are used.\n\nModifying these values is rarely necessary.\n",
               example: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 "::ffff:169.254.0.0/112": 2n,
                 "::ffff:127.0.0.0/104": 2n,
                 "::ffff:0.0.0.0/96": 14n,
@@ -100,17 +100,17 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         environment: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           etc: nix.thunk(() => ({
-            __proto__: pos$13,
-            "gai.conf": nix.thunk(() => ({ __proto__: pos$12, text: gaiConfText })),
+            [nix.POS]: pos$13,
+            "gai.conf": nix.thunk(() => ({ [nix.POS]: pos$12, text: gaiConfText })),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "moraxyc"))];

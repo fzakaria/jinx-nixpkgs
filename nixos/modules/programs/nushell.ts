@@ -21,24 +21,24 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "nushell"));
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       programs: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         nushell: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "nushell")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "nushell", nix.thunk(() => ({})))),
           plugins: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ pkgs.nushellPlugins.formats ]")),
               description: "List of nushell plugins to install to `lib/nushell/plugins/`.\n\nPlugins are registered via nushell's vendor autoload on the first\ninteractive launch of each user. After registration, plugins persist\nin the user's `plugin.msgpackz` and can be managed at runtime with\n`plugin rm` and `plugin add`.\n\nSee https://www.nushell.sh/book/plugins.html.\n",
             })))),
           autoloads: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: [],
               description: "Vendor autoload scripts to install. The default location is\n`share/nushell/vendor/autoload/<name>.nu`.\n\nBy default, when `programs.nushell.plugins` is non-empty, a\nscript that registers the listed plugins via `plugin add` is\ngenerated here.\n\nSet this to override the generated script(s).\n",
@@ -47,16 +47,16 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         programs: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           nushell: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             autoloads: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "plugins"), [])), nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "share/nushell/vendor/autoload/50-nixos-plugins.nu", nix.thunk(() => nix.app(nix.sel(lib, "concatLines"), nix.thunk(() => nix.builtins.map((p) => nix.str`plugin add ${nix.app(nix.sel(lib, "getExe"), p)}`, nix.thunk(() => nix.sel(cfg, "plugins")))))))))))),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           systemPackages: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(cfg, "package"))], nix.concat(nix.sel(cfg, "plugins"), nix.sel(cfg, "autoloads")))),
           pathsToLink: nix.thunk(() => ["/share/nushell"]),
         })),

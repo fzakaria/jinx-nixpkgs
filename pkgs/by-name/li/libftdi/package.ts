@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const libusb_compat_0_1 = nix.arg($, "libusb-compat-0_1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libftdi",
       version: "0.20",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.intra2net.com/en/developer/libftdi/download/libftdi-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "13l39f6k6gff30hsgh0wa2z422g9pyl91rh8a8zz6f34k2sxaxii",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       patchPhase: "substituteInPlace ./src/ftdi.c \\\n  --replace \"ifdef USB_CLASS_PTP\" \"if 0\"\n",
       preFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "for f in \"$out\"/bin/*; do\n  if isELF \"$f\"; then\n    patchelf --shrink-rpath --allowed-rpath-prefixes \"$NIX_STORE\" \"$f\"\n  fi\ndone\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to talk to FTDI chips using libusb",
         homepage: "https://www.intra2net.com/en/developer/libftdi/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

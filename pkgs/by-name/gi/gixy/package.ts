@@ -21,21 +21,21 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const nginx = nix.arg($, "nginx");
   const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       self: python,
       packageOverrides: (self) => (super$) => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pyparsing: nix.thunk(() => nix.app(nix.sel(super$, "pyparsing", "overridePythonAttrs"), nix.thunk(() => (() => {
             const version = "2.4.7";
             const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 owner: "pyparsing",
                 repo: "pyparsing",
                 rev: nix.thunk(() => nix.str`pyparsing_${version}`),
                 sha256: "14pfy80q2flgzjcx8jkracvnxxnr59kjzp3kdm5nh232gk1v6g6h",
               }))));
             const nativeBuildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(super$, "setuptools"))]);
-            return { __proto__: pos$2, version, src, nativeBuildInputs };
+            return { [nix.POS]: pos$2, version, src, nativeBuildInputs };
           })()))),
       }),
     }))));
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.21";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "yandex",
           repo: "gixy",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: "migrate-tests-to-pytest.patch",
             url: "https://github.com/yandex/gixy/compare/6f68624a7540ee51316651bda656894dc14c9a3e...b1c6899b3733b619c244368f0121a01be028e8c2.diff?full_index=1",
             hash: "sha256-qIKKTC65ewZqiKiNLcaglKEdFh0SBZMJgIvY41/7WUc=",
@@ -74,10 +74,10 @@ export default nix.lambda((args) => (() => {
       const pythonRemoveDeps = nix.thunk(() => ["argparse"]);
       const passthru = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(nginx, "passthru"));
-        return { __proto__: pos$7, tests: nix.thunk(() => nix.attr(from, "tests")) };
+        return { [nix.POS]: pos$7, tests: nix.thunk(() => nix.attr(from, "tests")) };
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Nginx configuration static analyzer",
         mainProgram: "gixy",
         longDescription: "Gixy is a tool to analyze Nginx configuration.\nThe main goal of Gixy is to prevent security misconfiguration and automate flaw detection.\n",
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname,
         version,
         pyproject,

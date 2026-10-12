@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const landmarks = nix.arg($, "landmarks");
   const ppxlib = nix.arg($, "ppxlib");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "landmarks-ppx",
       minimalOCamlVersion: "5.3",
       src: nix.thunk(() => nix.attr(landmarks, "src")),
@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [landmarks]),
       doCheck: true,
       meta: nix.thunk(() => nix.update(nix.sel(landmarks, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Preprocessor instrumenting code using the landmarks library",
         longDescription: "Automatically or semi-automatically instrument your code using\nlandmarks library.\n",
       })),

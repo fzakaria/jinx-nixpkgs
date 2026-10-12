@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(lib, "strings"));
   const makeBinPath = nix.thunk(() => nix.attr(from, "makeBinPath"));
   return nix.app(nix.sel(gcc16Stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "hyprsysteminfo",
       version: "0.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hyprwm",
           repo: "hyprsysteminfo",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/hyprwm/hyprsysteminfo/commit/fe81610278676d26ff47f62770ac238220285d3a.patch",
             hash: "sha256-rfKyV0gkfXEhTcPHlAB+yxZ+92umBV22YOK9aLMMBhM=",
           })))),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.str`qtWrapperArgs+=(--prefix PATH : "${nix.app(makeBinPath, nix.thunk(() => [pciutils]))}")
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tiny qt6/qml application to display information about the running system",
         homepage: "https://github.com/hyprwm/hyprsysteminfo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -12,21 +12,21 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const fetchzip = nix.arg($, "fetchzip");
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     aoi: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: "https://pilotfiber.dl.sourceforge.net/project/crystaldiskinfo/9.3.2/CrystalDiskInfo9_3_2Aoi.zip?viasf=1#cdi.zip",
         hash: "sha256-yldOX/aQYK1Fsd+BpD0SdcyfnHxtwB5rmZHU1nY7Ov8=",
         stripRoot: false,
       })))),
     kureikei: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: "https://pilotfiber.dl.sourceforge.net/project/crystaldiskinfo/9.3.2/CrystalDiskInfo9_3_2KureiKei.zip?viasf=1#cdi.zip",
         hash: "sha256-mzV3wHKczsh5NOsUxA3kGYSBZyVNJZUWkZdjiJA8+Po=",
         stripRoot: false,
       })))),
     shizuku: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         url: "https://pilotfiber.dl.sourceforge.net/project/crystaldiskinfo/9.3.2/CrystalDiskInfo9_3_2Shizuku.zip?viasf=1#cdi.zip",
         hash: "sha256-4dVeOHXWUVjfSssJKpcSBQ7OTMaYmgF15M4ROD3SBDA=",
         stripRoot: false,

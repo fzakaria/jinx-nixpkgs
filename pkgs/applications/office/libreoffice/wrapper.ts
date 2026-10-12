@@ -103,7 +103,7 @@ fi
         nix.thunk(() => nix.str`${nix.sel(unwrapped, "jdk", "home")}`),
       ])), nix.concat(["--inherit-argv0"], extraMakeWrapperArgs)))))))));
   return nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(unwrapped, "name")}-wrapped`), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       __structuredAttrs: true,
       strictDeps: true,
       meta: nix.thunk(() => nix.attr(unwrapped, "meta")),
@@ -112,7 +112,7 @@ fi
       paths: nix.thunk(() => [unwrapped]),
       nativeBuildInputs: nix.thunk(() => [makeWrapper, lndir]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         unwrapped: unwrapped,
         libreoffice: nix.thunk(() => nix.app(nix.sel(lib, "warn"), "libreoffice: Use the unwrapped attributed, using libreoffice.libreoffice is deprecated.", unwrapped)),
         kdeIntegration: nix.thunk(() => nix.attr(unwrapped, "kdeIntegration")),

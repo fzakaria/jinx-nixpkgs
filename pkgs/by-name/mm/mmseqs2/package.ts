@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
   const bzip2 = nix.arg($, "bzip2");
   const zstd = nix.arg($, "zstd");
   const runCommand = nix.arg($, "runCommand");
-  const zstd_1 = nix.thunk(() => nix.app(nix.sel(args_1, "zstd", "override"), nix.thunk(() => ({ __proto__: pos$1, enableStatic: true }))));
+  const zstd_1 = nix.thunk(() => nix.app(nix.sel(args_1, "zstd", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableStatic: true }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "mmseqs2",
       version: "18-8cc5c",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "soedinglab",
           repo: "mmseqs2",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -61,9 +61,9 @@ export default nix.lambda((args) => (() => {
         ])))))),
       postInstall: "installShellCompletion --bash --cmd mmseqs $out/util/bash-completion.sh\nrm -r $out/util/\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           example: nix.thunk(() => nix.app(runCommand, "mmseqs2-test", nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))} createdb ${nix.sel(finalAttrs, "src")}/examples/DB.fasta targetDB > $out
 ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))} createindex targetDB tmp >> $out
 ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))} easy-search ${nix.sel(finalAttrs, "src")}/examples/QUERY.fasta targetDB alnRes.m8 tmp >> $out
@@ -71,7 +71,7 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(finalAttrs, "finalPack
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Ultra fast and sensitive sequence search and clustering suite",
         mainProgram: "mmseqs",
         homepage: "https://mmseqs.com/",

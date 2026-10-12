@@ -27,28 +27,28 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const pinegrowVersion = nix.argOr($, "pinegrowVersion", () => "7");
   const versions = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     "6": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "6.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.pinegrow.com/PinegrowLinux64.${nix.sel(versions, "6", "version")}.zip`),
           hash: "sha256-gqRmu0VR8Aj57UwYYLKICd4FnYZMhM6pTTSGIY5MLMk=",
         })))),
     })),
     "7": nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "7.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://github.com/Pinegrow/PinegrowReleases/releases/download/pg${nix.builtins.substring(0n, 4n, nix.thunk(() => nix.sel(versions, "7", "version")))}/PinegrowLinux64.${nix.sel(versions, "7", "version")}.zip`),
           hash: "sha256-tYQfPfzKRwClNwgSoJfMwG3LHhi3O/iFuuwIVHS8OXk=",
         })))),
     })),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "pinegrow",
       version: nix.thunk(() => nix.sel(versions, nix.key(nix.force(pinegrowVersion)), "version")),
       src: nix.thunk(() => nix.sel(versions, nix.key(nix.force(pinegrowVersion)), "src")),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/applications $out/bin $out/opt/bin\n# we can't unzip it in $out/lib, because nw.js will start with\n# an empty screen. Therefore it will be unzipped in a non-typical\n# folder and symlinked.\nunzip -q $src -d $out/opt/pinegrow\nsubstituteInPlace $out/opt/pinegrow/Pinegrow.desktop \\\n  --replace 'Exec=sh -c \"$(dirname %k)/PinegrowLibrary\"' 'Exec=sh -c \"$out/bin/pinegrow\"'\nmv $out/opt/pinegrow/Pinegrow.desktop $out/share/applications/pinegrow.desktop\nln -s $out/opt/pinegrow/PinegrowLibrary $out/bin/pinegrow\n\nrunHook postInstall\n",
       preFixup: "wrapProgram $out/bin/pinegrow \\\n  ${makeWrapperArgs[@]} \\\n  ${gappsWrapperArgs[@]}\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://pinegrow.com",
         description: "UI Web Editor",
         platforms: nix.thunk(() => ["x86_64-linux"]),

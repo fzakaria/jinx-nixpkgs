@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const uradvd = nix.arg($, "uradvd");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "uradvd",
       version: "r26-1e64364d",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "freifunk-gluon",
           repo: "uradvd",
           rev: "1e64364d323acb8c71285a6fb85d384334e7007d",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tiny IPv6 Router Advertisement Daemon",
         homepage: "https://github.com/freifunk-gluon/uradvd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

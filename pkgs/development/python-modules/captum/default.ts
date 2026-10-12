@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const build_system = nix.thunk(() => [setuptools]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pytorch",
           repo: "captum",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -46,14 +46,14 @@ export default nix.lambda((args) => (() => {
         "test_tracin_identity_regression_9_check_idx_none_ArnoldiInfluenceFunction",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Model interpretability and understanding for PyTorch",
         homepage: "https://github.com/pytorch/captum",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

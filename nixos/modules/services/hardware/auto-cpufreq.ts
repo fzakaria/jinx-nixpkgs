@@ -30,44 +30,44 @@ export default nix.lambda((args) => (() => {
   const cfgFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), cfgFilename, nix.thunk(() => nix.sel(cfg, "settings"))));
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         "auto-cpufreq": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "auto-cpufreq daemon")),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               description: nix.thunk(() => nix.str`Configuration for \`auto-cpufreq\`.
 
 The available options can be found in [the example configuration file](https://github.com/AdnanHodzic/auto-cpufreq/blob/v${nix.sel(pkgs, "auto-cpufreq", "version")}/auto-cpufreq.conf-example).
 `),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$3,
-                charger: nix.thunk(() => ({ __proto__: pos$1, governor: "performance", turbo: "auto" })),
-                battery: nix.thunk(() => ({ __proto__: pos$2, governor: "powersave", turbo: "never" })),
+                [nix.POS]: pos$3,
+                charger: nix.thunk(() => ({ [nix.POS]: pos$1, governor: "performance", turbo: "auto" })),
+                battery: nix.thunk(() => ({ [nix.POS]: pos$2, governor: "powersave", turbo: "never" })),
               })),
-              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({ __proto__: pos$4, freeformType: nix.thunk(() => nix.sel(format, "type")) })))),
+              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({ [nix.POS]: pos$4, freeformType: nix.thunk(() => nix.sel(format, "type")) })))),
             })))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         environment: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "auto-cpufreq"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "auto-cpufreq"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             "auto-cpufreq": nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               path: nix.thunk(() => (() => {
                 const w = nix.withScope(pkgs, null);
@@ -78,7 +78,7 @@ The available options can be found in [the example configuration file](https://g
                 ];
               })()),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 WorkingDirectory: "",
                 ExecStart: nix.thunk(() => [
                   "",
@@ -90,7 +90,7 @@ The available options can be found in [the example configuration file](https://g
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       buildDocsInSandbox: false,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

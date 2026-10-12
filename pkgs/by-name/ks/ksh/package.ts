@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ksh",
       version: "2020.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "att",
           repo: "ast",
           hash: "sha256-sphfY/hZ028722clJDBiQn8fOrDOnJbTegPgCy34vTE=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/att/ast/commit/11983a71f5e29df578b7e2184400728b4e3f451d.patch",
             hash: "sha256-e45HZPnFyQ6YVyFzcA74w+Jhk9BO7bDkfReLTRgqJdk=",
           })))),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libiconv]),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "KornShell Command And Programming Language",
         longDescription: "The KornShell language was designed and developed by David G. Korn at\nAT&T Bell Laboratories. It is an interactive command language that\nprovides access to the UNIX system and to many other systems, on the\nmany different computers and workstations on which it is implemented.\n",
         homepage: "https://github.com/att/ast",
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "ksh",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       })),
-      passthru: nix.thunk(() => ({ __proto__: pos$4, shellPath: "/bin/ksh" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, shellPath: "/bin/ksh" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

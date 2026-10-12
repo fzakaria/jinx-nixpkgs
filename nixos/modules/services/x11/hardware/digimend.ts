@@ -26,36 +26,36 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "xserver", "digimend"));
   const pkg = nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "digimend"));
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         xserver: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           digimend: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "the digimend drivers for Huion/XP-Pen/etc. tablets")),
           })),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         services: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           xserver: nix.thunk(() => ({
-            __proto__: pos$6,
-            wacom: nix.thunk(() => ({ __proto__: pos$5, enable: true })),
+            [nix.POS]: pos$6,
+            wacom: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
           })),
         })),
-        boot: nix.thunk(() => ({ __proto__: pos$8, extraModulePackages: nix.thunk(() => [pkg]) })),
+        boot: nix.thunk(() => ({ [nix.POS]: pos$8, extraModulePackages: nix.thunk(() => [pkg]) })),
         environment: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           etc: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             "X11/xorg.conf.d/50-digimend.conf": nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               source: nix.thunk(() => nix.str`${pkg}/usr/share/X11/xorg.conf.d/50-digimend.conf`),
             })),
           })),

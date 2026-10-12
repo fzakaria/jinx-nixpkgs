@@ -113,18 +113,18 @@ export default nix.lambda((args) => (() => {
   const cleanedConfig = nix.thunk(() => nix.app(nix.sel(lib, "converge"), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrsRecursive"), (_) => (v) => (nix.asBool(!nix.eq(v, null)) && nix.asBool(!nix.eq(v, {}))))), nix.thunk(() => nix.sel(cfg, "settings"))));
   const isUnixGui = nix.thunk(() => nix.app(nix.sel(lib, "strings", "hasPrefix"), "unix://", nix.thunk(() => nix.sel(cfg, "guiAddress"))));
   const curlAddressArgs = (path) => (nix.asBool(isUnixGui) ? nix.str`--unix-socket ${nix.app(nix.sel(lib, "strings", "removePrefix"), "unix://", nix.thunk(() => nix.sel(cfg, "guiAddress")))} http://syncthing.local${path}` : nix.str`${nix.sel(cfg, "guiAddress")}${path}`);
-  const devices = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (_) => (device) => nix.update(device, { __proto__: pos$1, deviceID: nix.thunk(() => nix.sel(device, "id")) }), nix.thunk(() => nix.sel(cfg, "settings", "devices"))));
+  const devices = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (_) => (device) => nix.update(device, { [nix.POS]: pos$1, deviceID: nix.thunk(() => nix.sel(device, "id")) }), nix.thunk(() => nix.sel(cfg, "settings", "devices"))));
   const anyAutoAccept = nix.thunk(() => nix.builtins.any((dev) => nix.sel(dev, "autoAcceptFolders"), devices));
   const folders = nix.thunk(() => nix.app(nix.sel(lib, "pipe"), nix.thunk(() => nix.sel(cfg, "settings", "folders")), nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (folder) => nix.sel(folder, "enable"))),
       nix.thunk(() => nix.builtins.attrValues),
       nix.thunk(() => nix.app(nix.builtins.map, (folder) => nix.update(folder, {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           devices: nix.thunk(() => nix.builtins.map((device) => (nix.asBool(nix.builtins.isString(device)) ? {
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               deviceId: nix.thunk(() => nix.sel(cfg, "settings", "devices", nix.key(nix.force(device)), "id")),
             } : nix.update({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               deviceId: nix.thunk(() => nix.sel(cfg, "settings", "devices", nix.key(nix.sel(device, "name")), "id")),
             }, device)), nix.thunk(() => nix.sel(folder, "devices")))),
         }))),
@@ -205,9 +205,9 @@ do
   fi
 done
 `, nix.app(nix.sel(lib, "pipe"), nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         devs: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           new_conf_IDs: nix.thunk(() => nix.builtins.map((v) => nix.sel(v, "id"), devices)),
           GET_IdAttrName: "deviceID",
           override: nix.thunk(() => nix.sel(cfg, "overrideDevices")),
@@ -215,7 +215,7 @@ done
           baseAddress: nix.thunk(() => nix.app(curlAddressArgs, "/rest/config/devices")),
         })),
         dirs: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           new_conf_IDs: nix.thunk(() => nix.builtins.map((v) => nix.sel(v, "id"), folders)),
           GET_IdAttrName: "id",
           override: nix.thunk(() => nix.sel(cfg, "overrideFolders")),
@@ -227,19 +227,19 @@ done
         nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (conf_type) => (s) => nix.add(nix.app(nix.sel(lib, "pipe"), nix.thunk(() => nix.sel(s, "conf")), nix.thunk(() => [
               nix.thunk(() => nix.app(nix.builtins.map, (new_cfg) => (() => {
                   const jsonPreSecretsFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-                      __proto__: pos$8,
+                      [nix.POS]: pos$8,
                       name: nix.thunk(() => nix.str`${conf_type}-${nix.sel(new_cfg, "id")}-conf-pre-secrets.json`),
                       text: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.builtins.removeAttrs(new_cfg, nix.thunk(() => ["ignorePatterns"]))))),
                     }))));
                   const injectSecretsJqCmd = nix.thunk(() => nix.sel({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     devs: nix.thunk(() => nix.str`${jq} .`),
                     dirs: nix.thunk(() => (() => {
                       const folder = new_cfg;
                       const devicesWithSecrets = nix.thunk(() => nix.app(nix.sel(lib, "pipe"), nix.thunk(() => nix.sel(folder, "devices")), nix.thunk(() => [
                           nix.thunk(() => nix.app(nix.sel(lib, "filter"), (device) => (nix.asBool(nix.builtins.isAttrs(device)) && nix.asBool(nix.has(device, "encryptionPasswordFile"))))),
                           nix.thunk(() => nix.app(nix.builtins.map, (device) => ({
-                              __proto__: pos$9,
+                              [nix.POS]: pos$9,
                               deviceId: nix.thunk(() => nix.sel(device, "deviceId")),
                               variableName: nix.thunk(() => nix.str`secret_${nix.builtins.hashString("sha256", nix.thunk(() => nix.sel(device, "encryptionPasswordFile")))}`),
                               secretPath: nix.thunk(() => nix.sel(device, "encryptionPasswordFile")),
@@ -260,7 +260,7 @@ done
                   }, nix.key(nix.force(conf_type))));
                   return nix.add(nix.str`${injectSecretsJqCmd} ${jsonPreSecretsFile} | curl --json @- -X POST ${nix.sel(s, "baseAddress")}
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.eq(conf_type, "dirs")) && nix.asBool(!nix.eq(nix.sel(new_cfg, "ignorePatterns"), null)))), nix.thunk(() => nix.str`curl -d ${nix.app(nix.sel(lib, "pipe"), nix.thunk(() => nix.sel(new_cfg, "ignorePatterns")), nix.thunk(() => [
-                        (patterns) => ({ __proto__: pos$11, ignore: patterns }),
+                        (patterns) => ({ [nix.POS]: pos$11, ignore: patterns }),
                         nix.thunk(() => nix.builtins.toJSON),
                         nix.thunk(() => nix.sel(lib, "escapeShellArg")),
                       ]))} -X POST ${nix.sel(s, "ignoreAddress")}?folder=${nix.app(nix.sel(lib, "strings", "escapeURL"), nix.thunk(() => nix.sel(new_cfg, "id")))}
@@ -302,95 +302,95 @@ if curl ${nix.app(curlAddressArgs, "/rest/config/restart-required")} |
 fi
 `))));
   return {
-    __proto__: pos$91,
+    [nix.POS]: pos$91,
     options: nix.thunk(() => ({
-      __proto__: pos$72,
+      [nix.POS]: pos$72,
       services: nix.thunk(() => ({
-        __proto__: pos$71,
+        [nix.POS]: pos$71,
         syncthing: nix.thunk(() => ({
-          __proto__: pos$70,
+          [nix.POS]: pos$70,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Syncthing, a self-hosted open-source alternative to Dropbox and Bittorrent Sync")),
           cert: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "Path to the `cert.pem` file, which will be copied into Syncthing's\n[configDir](#opt-services.syncthing.configDir).\n",
             })))),
           key: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "Path to the `key.pem` file, which will be copied into Syncthing's\n[configDir](#opt-services.syncthing.configDir).\n",
             })))),
           guiPasswordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "Path to file containing the plaintext password for Syncthing's GUI.\n",
             })))),
           overrideDevices: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to delete the devices which are not configured via the\n[devices](#opt-services.syncthing.settings.devices) option.\nIf set to `false`, devices added via the web\ninterface will persist and will have to be deleted manually.\n",
             })))),
           overrideFolders: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: nix.thunk(() => !nix.asBool(anyAutoAccept)),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalMD"), "`true` unless any device has the\n[autoAcceptFolders](#opt-services.syncthing.settings.devices._name_.autoAcceptFolders)\noption set to `true`.\n")),
               description: "Whether to delete the folders which are not configured via the\n[folders](#opt-services.syncthing.settings.folders) option.\nIf set to `false`, folders added via the web\ninterface will persist and will have to be deleted manually.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$55,
+                  [nix.POS]: pos$55,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$54,
+                    [nix.POS]: pos$54,
                     options: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$25,
+                        [nix.POS]: pos$25,
                         default: nix.thunk(() => ({})),
                         description: "The options element contains all other global configuration options\n",
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.lambda((args_1) => (() => {
                             const $_1 = nix.formals(args_1, formals$2);
                             return {
-                              __proto__: pos$24,
+                              [nix.POS]: pos$24,
                               freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                               options: nix.thunk(() => ({
-                                __proto__: pos$23,
+                                [nix.POS]: pos$23,
                                 localAnnounceEnabled: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                    __proto__: pos$17,
+                                    [nix.POS]: pos$17,
                                     type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "bool")))),
                                     default: null,
                                     description: "Whether to send announcements to the local LAN, also use such announcements to find other devices.\n",
                                   })))),
                                 localAnnouncePort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                    __proto__: pos$18,
+                                    [nix.POS]: pos$18,
                                     type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "port")))),
                                     default: null,
                                     description: "The port on which to listen and send IPv4 broadcast announcements to.\n",
                                   })))),
                                 relaysEnabled: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                    __proto__: pos$19,
+                                    [nix.POS]: pos$19,
                                     type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "bool")))),
                                     default: null,
                                     description: "When true, relays will be connected to and potentially used for device to device connections.\n",
                                   })))),
                                 urAccepted: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                    __proto__: pos$20,
+                                    [nix.POS]: pos$20,
                                     type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "int")))),
                                     default: null,
                                     description: "Whether the user has accepted to submit anonymous usage data.\nThe default, 0, mean the user has not made a choice, and Syncthing will ask at some point in the future.\n\"-1\" means no, a number above zero means that that version of usage reporting has been accepted.\n",
                                   })))),
                                 limitBandwidthInLan: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                    __proto__: pos$21,
+                                    [nix.POS]: pos$21,
                                     type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "bool")))),
                                     default: null,
                                     description: "Whether to apply bandwidth limits to devices in the same broadcast domain as the local device.\n",
                                   })))),
                                 maxFolderConcurrency: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                    __proto__: pos$22,
+                                    [nix.POS]: pos$22,
                                     type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "int")))),
                                     default: null,
                                     description: "This option controls how many folders may concurrently be in I/O-intensive operations such as syncing or scanning.\nThe mechanism is described in detail in a [separate chapter](https://docs.syncthing.net/advanced/option-max-concurrency.html).\n",
@@ -400,13 +400,13 @@ fi
                           })(), formals$2))),
                       })))),
                     devices: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$33,
+                        [nix.POS]: pos$33,
                         default: nix.thunk(() => ({})),
                         description: "Peers/devices which Syncthing should communicate with.\n\nNote that you can still add devices manually, but those changes\nwill be reverted on restart if [overrideDevices](#opt-services.syncthing.overrideDevices)\nis enabled.\n",
                         example: nix.thunk(() => ({
-                          __proto__: pos$27,
+                          [nix.POS]: pos$27,
                           bigbox: nix.thunk(() => ({
-                            __proto__: pos$26,
+                            [nix.POS]: pos$26,
                             id: "7CFNTQM-IMTJBHJ-3UWRDIU-ZGQJFR6-VCXZ3NB-XUH3KZO-N52ITXR-LAIYUAU",
                             addresses: nix.thunk(() => ["tcp://192.168.0.10:51820"]),
                           })),
@@ -415,23 +415,23 @@ fi
                               const $_1 = nix.formals(args_1, formals$3);
                               const name = nix.arg($_1, "name");
                               return {
-                                __proto__: pos$32,
+                                [nix.POS]: pos$32,
                                 freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                                 options: nix.thunk(() => ({
-                                  __proto__: pos$31,
+                                  [nix.POS]: pos$31,
                                   name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$28,
+                                      [nix.POS]: pos$28,
                                       type: nix.thunk(() => nix.sel(lib, "types", "str")),
                                       default: name,
                                       description: "The name of the device.\n",
                                     })))),
                                   id: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$29,
+                                      [nix.POS]: pos$29,
                                       type: nix.thunk(() => nix.sel(lib, "types", "str")),
                                       description: "The device ID. See <https://docs.syncthing.net/dev/device-ids.html>.\n",
                                     })))),
                                   autoAcceptFolders: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$30,
+                                      [nix.POS]: pos$30,
                                       type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                                       default: false,
                                       description: "Automatically create or share folders that this device advertises at the default path.\nSee <https://docs.syncthing.net/users/config.html?highlight=autoaccept#config-file-format>.\n",
@@ -441,7 +441,7 @@ fi
                             })(), formals$3))))),
                       })))),
                     folders: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$53,
+                        [nix.POS]: pos$53,
                         default: nix.thunk(() => ({})),
                         description: "Folders which should be shared by Syncthing.\n\nNote that you can still add folders manually, but those changes\nwill be reverted on restart if [overrideFolders](#opt-services.syncthing.overrideFolders)\nis enabled.\n",
                         example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  \"/home/user/sync\" = {\n    id = \"syncme\";\n    devices = [ \"bigbox\" ];\n  };\n}\n")),
@@ -449,20 +449,20 @@ fi
                               const $_1 = nix.formals(args_1, formals$4);
                               const name = nix.arg($_1, "name");
                               return {
-                                __proto__: pos$52,
+                                [nix.POS]: pos$52,
                                 freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                                 options: nix.thunk(() => ({
-                                  __proto__: pos$51,
+                                  [nix.POS]: pos$51,
                                   enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$34,
+                                      [nix.POS]: pos$34,
                                       type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                                       default: true,
                                       description: "Whether to share this folder.\nThis option is useful when you want to define all folders\nin one place, but not every machine should share all folders.\n",
                                     })))),
                                   path: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$36,
+                                      [nix.POS]: pos$36,
                                       type: nix.thunk(() => nix.update(nix.sel(lib, "types", "str"), {
-                                        __proto__: pos$35,
+                                        [nix.POS]: pos$35,
                                         check: (x) => (nix.asBool(nix.app(nix.sel(lib, "types", "str", "check"), x)) && nix.asBool((nix.asBool(nix.eq(nix.app(nix.sel(lib, "substring"), 0n, 1n, x), "/")) || nix.asBool(nix.eq(nix.app(nix.sel(lib, "substring"), 0n, 2n, x), "~/"))))),
                                         description: nix.thunk(() => nix.add(nix.sel(lib, "types", "str", "description"), " starting with / or ~/")),
                                       })),
@@ -470,42 +470,42 @@ fi
                                       description: "The path to the folder which should be shared.\nOnly absolute paths (starting with `/`) and paths relative to\nthe [user](#opt-services.syncthing.user)'s home directory\n(starting with `~/`) are allowed.\n",
                                     })))),
                                   id: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$37,
+                                      [nix.POS]: pos$37,
                                       type: nix.thunk(() => nix.sel(lib, "types", "str")),
                                       default: name,
                                       description: "The ID of the folder. Must be the same on all devices.\n",
                                     })))),
                                   label: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$38,
+                                      [nix.POS]: pos$38,
                                       type: nix.thunk(() => nix.sel(lib, "types", "str")),
                                       default: name,
                                       description: "The label of the folder.\n",
                                     })))),
                                   type: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$39,
+                                      [nix.POS]: pos$39,
                                       type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["sendreceive", "sendonly", "receiveonly", "receiveencrypted"]))),
                                       default: "sendreceive",
                                       description: "Controls how the folder is handled by Syncthing.\nSee <https://docs.syncthing.net/users/config.html#config-option-folder.type>.\n",
                                     })))),
                                   devices: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$44,
+                                      [nix.POS]: pos$44,
                                       type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "oneOf"), nix.thunk(() => [
                                             nix.thunk(() => nix.sel(lib, "types", "str")),
                                             nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.lambda((args_2) => (() => {
                                                 const $_2 = nix.formals(args_2, formals$5);
                                                 return {
-                                                  __proto__: pos$43,
+                                                  [nix.POS]: pos$43,
                                                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                                                   options: nix.thunk(() => ({
-                                                    __proto__: pos$42,
+                                                    [nix.POS]: pos$42,
                                                     name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                                        __proto__: pos$40,
+                                                        [nix.POS]: pos$40,
                                                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                                                         default: null,
                                                         description: "The name of a device defined in the\n[devices](#opt-services.syncthing.settings.devices)\noption.\n",
                                                       })))),
                                                     encryptionPasswordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                                        __proto__: pos$41,
+                                                        [nix.POS]: pos$41,
                                                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "externalPath")))),
                                                         default: null,
                                                         description: "Path to encryption password. If set, the file will be read during\nservice activation, without being embedded in derivation.\n",
@@ -518,17 +518,17 @@ fi
                                       description: "The devices this folder should be shared with. Each device must\nbe defined in the [devices](#opt-services.syncthing.settings.devices) option.\n\nA list of either strings or attribute sets, where values\nare device names or device configurations.\n",
                                     })))),
                                   versioning: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$48,
+                                      [nix.POS]: pos$48,
                                       default: null,
                                       description: "How to keep changed/deleted files with Syncthing.\nThere are 4 different types of versioning with different parameters.\nSee <https://docs.syncthing.net/users/versioning.html>.\n",
                                       example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[\n  {\n    versioning = {\n      type = \"simple\";\n      params.keep = \"10\";\n    };\n  }\n  {\n    versioning = {\n      type = \"trashcan\";\n      params.cleanoutDays = \"1000\";\n    };\n  }\n  {\n    versioning = {\n      type = \"staggered\";\n      fsPath = \"/syncthing/backup\";\n      params = {\n        cleanInterval = \"3600\";\n        maxAge = \"31536000\";\n      };\n    };\n  }\n  {\n    versioning = {\n      type = \"external\";\n      params.versionsPath = pkgs.writers.writeBash \"backup\" ''\n        folderpath=\"$1\"\n        filepath=\"$2\"\n        rm -rf \"$folderpath/$filepath\"\n      '';\n    };\n  }\n]\n")),
                                       type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                                            __proto__: pos$47,
+                                            [nix.POS]: pos$47,
                                             freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                                             options: nix.thunk(() => ({
-                                              __proto__: pos$46,
+                                              [nix.POS]: pos$46,
                                               type: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                                  __proto__: pos$45,
+                                                  [nix.POS]: pos$45,
                                                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["external", "simple", "staggered", "trashcan"]))),
                                                   description: "The type of versioning.\nSee <https://docs.syncthing.net/users/versioning.html>.\n",
                                                 })))),
@@ -536,13 +536,13 @@ fi
                                           })))))),
                                     })))),
                                   copyOwnershipFromParent: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$49,
+                                      [nix.POS]: pos$49,
                                       type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                                       default: false,
                                       description: "On Unix systems, tries to copy file/folder ownership from the parent directory (the directory it’s located in).\nRequires running Syncthing as a privileged user, or granting it additional capabilities (e.g. CAP_CHOWN on Linux).\n",
                                     })))),
                                   ignorePatterns: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$50,
+                                      [nix.POS]: pos$50,
                                       type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))))),
                                       default: null,
                                       description: "Syncthing can be configured to ignore certain files in a folder using ignore patterns.\nEnter them as a list of strings, one string per line.\nSee the Syncthing documentation for syntax: <https://docs.syncthing.net/users/ignoring.html>\nPatterns set using the WebUI will be overridden if you define this option.\nIf you want to override the ignore patterns to be empty, use `ignorePatterns = []`.\nDeleting the `ignorePatterns` option will not remove the patterns from Syncthing automatically\nbecause patterns are only handled by the module if this option is defined. Either use\n`ignorePatterns = []` before deleting the option or remove the patterns afterwards using the WebUI.\n",
@@ -561,26 +561,26 @@ fi
               default: nix.thunk(() => ({})),
               description: "Extra configuration options for Syncthing.\nSee <https://docs.syncthing.net/users/config.html>.\nNote that this attribute set does not exactly match the documented\nxml format. Instead, this is the format of the json rest api. There\nare slight differences. For example, this xml:\n```xml\n<options>\n  <listenAddress>default</listenAddress>\n  <minHomeDiskFree unit=\"%\">1</minHomeDiskFree>\n</options>\n```\ncorresponds to the json:\n```json\n{\n  options: {\n    listenAddresses = [\n      \"default\"\n    ];\n    minHomeDiskFree = {\n      unit = \"%\";\n      value = 1;\n    };\n  };\n}\n```\n",
               example: nix.thunk(() => ({
-                __proto__: pos$58,
-                options: nix.thunk(() => ({ __proto__: pos$56, localAnnounceEnabled: false })),
-                gui: nix.thunk(() => ({ __proto__: pos$57, theme: "black" })),
+                [nix.POS]: pos$58,
+                options: nix.thunk(() => ({ [nix.POS]: pos$56, localAnnounceEnabled: false })),
+                gui: nix.thunk(() => ({ [nix.POS]: pos$57, theme: "black" })),
               })),
             })))),
           guiAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$60,
+              [nix.POS]: pos$60,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "127.0.0.1:8384",
               apply: (x) => (nix.asBool(nix.app(nix.sel(lib, "strings", "hasPrefix"), "/", x)) ? nix.str`unix://${x}` : nix.force(x)),
               description: "The address to serve the web interface at.\n",
             })))),
           systemService: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$61,
+              [nix.POS]: pos$61,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to auto-launch Syncthing as a system service.\n",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$62,
+              [nix.POS]: pos$62,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: defaultUser,
               example: "yourUser",
@@ -590,7 +590,7 @@ directory is [dataDir](#opt-services.syncthing.dataDir).
 `),
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$63,
+              [nix.POS]: pos$63,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: defaultGroup,
               example: "yourGroup",
@@ -599,14 +599,14 @@ By default, a group named \`${defaultGroup}\` will be created.
 `),
             })))),
           all_proxy: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$64,
+              [nix.POS]: pos$64,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               example: "socks5://address.com:1234",
               description: "Overwrites the all_proxy environment variable for the Syncthing process to\nthe given value. This is normally used to let Syncthing connect\nthrough a SOCKS5 proxy server.\nSee <https://docs.syncthing.net/users/proxying.html>.\n",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$65,
+              [nix.POS]: pos$65,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/syncthing",
               example: "/home/yourUser",
@@ -615,7 +615,7 @@ By default, a group named \`${defaultGroup}\` will be created.
           configDir: nix.thunk(() => (() => {
             const cond = nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(config, "system", "stateVersion")), "19.03"));
             return nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$66,
+                [nix.POS]: pos$66,
                 type: nix.thunk(() => nix.sel(lib, "types", "path")),
                 description: "The path where the settings and keys will exist.\n",
                 default: nix.thunk(() => nix.add(nix.sel(cfg, "dataDir"), nix.app(nix.sel(lib, "optionalString"), cond, "/.config/syncthing"))),
@@ -629,21 +629,21 @@ By default, a group named \`${defaultGroup}\` will be created.
               })));
           })()),
           databaseDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$67,
+              [nix.POS]: pos$67,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "The directory containing the database and logs.\n",
               default: nix.thunk(() => nix.sel(cfg, "configDir")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`config.${nix.sel(opt, "configDir")}`))),
             })))),
           extraFlags: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$68,
+              [nix.POS]: pos$68,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["--reset-deltas"]),
               description: "Extra flags passed to the syncthing command in the service definition.\n",
             })))),
           openDefaultPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$69,
+              [nix.POS]: pos$69,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               example: true,
@@ -669,49 +669,49 @@ By default, a group named \`${defaultGroup}\` will be created.
         "extraOptions",
       ])))),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$89,
+        [nix.POS]: pos$89,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$73,
+            [nix.POS]: pos$73,
             assertion: nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(cfg, "overrideFolders")) && nix.asBool(anyAutoAccept)))),
             message: "services.syncthing.overrideFolders will delete auto-accepted folders\nfrom the configuration, creating path conflicts.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$74,
+            [nix.POS]: pos$74,
             assertion: nix.thunk(() => (!nix.asBool(nix.app(nix.sel(lib, "hasAttrByPath"), nix.thunk(() => ["gui", "password"]), nix.thunk(() => nix.sel(cfg, "settings")))) || nix.asBool(nix.eq(nix.sel(cfg, "guiPasswordFile"), null)))),
             message: "Please use only one of services.syncthing.settings.gui.password or services.syncthing.guiPasswordFile.\n",
           })),
         ]),
         networking: nix.thunk(() => ({
-          __proto__: pos$76,
+          [nix.POS]: pos$76,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openDefaultPorts")), nix.thunk(() => ({
-              __proto__: pos$75,
+              [nix.POS]: pos$75,
               allowedTCPPorts: nix.thunk(() => [22000n]),
               allowedUDPPorts: nix.thunk(() => [21027n, 22000n]),
             })))),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$77,
+          [nix.POS]: pos$77,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$85,
+          [nix.POS]: pos$85,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$84,
+            [nix.POS]: pos$84,
             syncthing: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "systemService")), nix.thunk(() => ({
-                __proto__: pos$81,
+                [nix.POS]: pos$81,
                 description: "Syncthing service",
                 after: nix.thunk(() => ["network.target"]),
                 environment: nix.thunk(() => nix.update({
-                  __proto__: pos$78,
+                  [nix.POS]: pos$78,
                   STNORESTART: "yes",
                   STNOUPGRADE: "yes",
                   all_proxy: nix.thunk(() => nix.attr(cfg, "all_proxy")),
                 }, nix.sel(config, "networking", "proxy", "envVars"))),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$80,
+                  [nix.POS]: pos$80,
                   Restart: "on-failure",
                   SuccessExitStatus: "3 4",
                   RestartForceExitStatus: "3 4",
@@ -725,7 +725,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
 `))}`))),
                   ExecStart: nix.thunk(() => (() => {
                     const args_1 = nix.thunk(() => nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "cli", "toCommandLineGNU"), nix.thunk(() => ({})), nix.thunk(() => ({
-                          __proto__: pos$79,
+                          [nix.POS]: pos$79,
                           "no-browser": true,
                           "gui-address": nix.thunk(() => nix.sel(cfg, "guiAddress")),
                           config: nix.thunk(() => nix.sel(cfg, "configDir")),
@@ -759,13 +759,13 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
                 })),
               })))),
             "syncthing-init": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(cleanedConfig, {})), nix.thunk(() => ({
-                __proto__: pos$83,
+                [nix.POS]: pos$83,
                 description: "Syncthing configuration updater",
                 requires: nix.thunk(() => ["syncthing.service"]),
                 after: nix.thunk(() => ["syncthing.service"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$82,
+                  [nix.POS]: pos$82,
                   User: nix.thunk(() => nix.sel(cfg, "user")),
                   RemainAfterExit: true,
                   RuntimeDirectory: "syncthing-init",
@@ -776,10 +776,10 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$88,
+          [nix.POS]: pos$88,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "systemService")) && nix.asBool(nix.eq(nix.sel(cfg, "user"), defaultUser)))), nix.thunk(() => nix.attrsDyn({}, [
               [defaultUser, nix.thunk(() => ({
-                __proto__: pos$86,
+                [nix.POS]: pos$86,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 home: nix.thunk(() => nix.sel(cfg, "dataDir")),
                 createHome: true,
@@ -789,14 +789,14 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
             ])))),
           groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "systemService")) && nix.asBool(nix.eq(nix.sel(cfg, "group"), defaultGroup)))), nix.thunk(() => nix.attrsDyn({}, [
               [nix.force(defaultGroup), nix.thunk(() => ({
-                __proto__: pos$87,
+                [nix.POS]: pos$87,
                 gid: nix.thunk(() => nix.sel(config, "ids", "gids", "syncthing")),
               }))],
             ])))),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$90,
+      [nix.POS]: pos$90,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ytdl-sub",
       version: "2026.08.26.post1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jmbannon",
           repo: "ytdl-sub",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         writableTmpDirAsHomeHook,
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         YTDL_SUB_FFMPEG_PATH: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), ffmpeg_7, "ffmpeg")}`),
         YTDL_SUB_FFPROBE_PATH: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), ffmpeg_7, "ffprobe")}`),
       })),
@@ -71,9 +71,9 @@ export default nix.lambda((args) => (() => {
         "test_directory_exists",
       ]),
       disabledTestPaths: nix.thunk(() => ["tests/e2e"]),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/jmbannon/ytdl-sub",
         description: "Lightweight tool to automate downloading and metadata generation with yt-dlp",
         longDescription: "ytdl-sub is a command-line tool that downloads media via yt-dlp and prepares it for your favorite media player, including Kodi, Jellyfin, Plex, Emby, and modern music players. No additional plugins or external scrapers are needed.\n",

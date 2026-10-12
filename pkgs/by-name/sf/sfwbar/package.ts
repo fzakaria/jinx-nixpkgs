@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const wayland_scanner = nix.arg($, "wayland-scanner");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sfwbar",
       version: "1.0_beta17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LBCrion",
           repo: "sfwbar",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config, makeWrapper, wayland_scanner, wrapGAppsHook3]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/LBCrion/sfwbar",
         description: "Flexible taskbar application for wayland compositors, designed with a stacking layout in mind",
         changelog: nix.thunk(() => nix.str`https://github.com/LBCrion/sfwbar/releases/tag/v${nix.sel(finalAttrs, "version")}`),

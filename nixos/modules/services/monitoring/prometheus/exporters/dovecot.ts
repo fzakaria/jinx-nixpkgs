@@ -23,25 +23,25 @@ export default nix.lambda((args) => (() => {
   const escapeShellArg = nix.thunk(() => nix.attr(lib, "escapeShellArg"));
   const concatStringsSep = nix.thunk(() => nix.attr(lib, "concatStringsSep"));
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     port: 9166n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       telemetryPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "/metrics",
           description: "Path under which to expose metrics.\n",
         })))),
       socketPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.sel(types, "path")),
           default: "/var/run/dovecot/stats",
           example: "/var/run/dovecot2/old-stats",
           description: "Path under which the stats socket is placed.\nThe user/group under which the exporter runs,\nshould be able to access the socket in order\nto scrape the metrics successfully.\n\nPlease keep in mind that the stats module has changed in\n[Dovecot 2.3+](https://wiki2.dovecot.org/Upgrading/2.3) which\nis not [compatible with this exporter](https://github.com/kumina/dovecot_exporter/issues/8).\n\nThe following extra config has to be passed to Dovecot to ensure that recent versions\nwork with this exporter:\n```\n{\n  services.prometheus.exporters.dovecot.enable = true;\n  services.prometheus.exporters.dovecot.socketPath = \"/var/run/dovecot2/old-stats\";\n  services.dovecot2.mailPlugins.globally.enable = [ \"old_stats\" ];\n  services.dovecot2.extraConfig = ''\n    service old-stats {\n      unix_listener old-stats {\n        user = dovecot-exporter\n        group = dovecot-exporter\n        mode = 0660\n      }\n      fifo_listener old-stats-mail {\n        mode = 0660\n        user = dovecot\n        group = dovecot\n      }\n      fifo_listener old-stats-user {\n        mode = 0660\n        user = dovecot\n        group = dovecot\n      }\n    }\n    plugin {\n      old_stats_refresh = 30 secs\n      old_stats_track_cmds = yes\n    }\n  '';\n}\n```\n",
         })))),
       scopes: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
           default: nix.thunk(() => ["user"]),
           example: nix.thunk(() => ["user", "global"]),
@@ -49,9 +49,9 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         DynamicUser: false,
         ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "dovecot_exporter")))} \\
   --web.listen-address ${nix.sel(cfg, "listenAddress")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))} \\

@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const tcl = nix.arg($, "tcl");
   const letos = nix.arg($, "letos");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "letos-plugins",
       version: nix.thunk(() => nix.attr(letos, "version")),
       src: nix.thunk(() => nix.attr(letos, "src")),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "WITH_DYNAMIC_PYTHON", true)),
       ]),
       meta: nix.thunk(() => nix.update(nix.builtins.removeAttrs(nix.thunk(() => nix.sel(letos, "meta")), nix.thunk(() => ["mainProgram"])), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Official plugins for Letos (formerly SQLiteStudio)",
         badPlatforms: nix.thunk(() => [
           nix.thunk(() => nix.sel(lib, "systems", "inspect", "platformPatterns", "isStatic")),

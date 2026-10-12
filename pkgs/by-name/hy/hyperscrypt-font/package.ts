@@ -16,20 +16,20 @@ export default nix.lambda((args) => (() => {
       const pname = "hyperscrypt";
       const version = "1.1";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://gitlab.com/StudioTriple/Hyper-Scrypt/-/archive/${version}/Hyper-Scrypt-${version}.zip`),
           hash: "sha256-ONlAB9C/GYK6KmOaiHCYErkS6OlQ3TUnoumNDHGZnes=",
         }))));
       const installPhase = "runHook preInstall\n\ninstall -Dm644 fonts/HyperScrypt_Web/*.ttf -t $out/share/fonts/truetype/\ninstall -Dm644 fonts/HyperScrypt_Web/*.otf fonts/*.otf -t $out/share/fonts/opentype/\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://velvetyne.fr/fonts/hyper-scrypt/",
         description: "Modern stencil typeface inspired by stained glass technique",
         longDescription: "The Hyper Scrypt typeface was designed for the Hyper Chapelle\nexhibition. It was commissioned by AAAAA Atelier to Studio\nTriple's designer Jérémy Landes.  Hyper Scrypt is a modern\nstencil typeface inspired by the stained glass technique used in\nthe Metz cathedral. It borrows the stained glass method, drawing\nholes for the light with black lead. This creates a reverse\ntypeface, where the shapes of the letters are drawn by their\ncounters. Hyper Scrypt is at the intersection between 3 metals :\nthe sacred lead of stained glass, the lead of print characters\nand the heavy metal. Despite its organic look inherited for the\nmolted metal, Hyper Scrypt is based upon a rigorous grid,\nallowing some neat alignments between shapes in multi lines\nlayouts.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

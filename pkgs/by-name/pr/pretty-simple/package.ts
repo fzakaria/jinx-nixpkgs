@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const haskellPackages = nix.arg($, "haskellPackages");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(haskell, "lib", "compose", "justStaticExecutables"), nix.thunk(() => nix.app(nix.sel(haskell, "lib", "compose", "overrideCabal"), (oldAttrs) => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => nix.concat(nix.selOr(oldAttrs, () => [], "maintainers"), [nix.thunk(() => nix.sel(lib, "maintainers", "cdepillabout"))])),
         configureFlags: nix.thunk(() => nix.concat(nix.selOr(oldAttrs, () => [], "configureFlags"), ["-fbuildexe"])),
         buildDepends: nix.thunk(() => nix.concat(nix.selOr(oldAttrs, () => [], "buildDepends"), [nix.thunk(() => nix.sel(haskellPackages, "optparse-applicative"))])),

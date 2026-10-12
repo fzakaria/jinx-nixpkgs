@@ -23,18 +23,18 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "thobbs",
           repo: "pure-sasl",
           tag: version,
           hash: "sha256-AHoZ3QZLr0JLE8+a2zkB06v2wRknxhgm/tcEPXaJX/U=",
         }))));
       const build_system = nix.thunk(() => [setuptools]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, gssapi: nix.thunk(() => [pykerberos]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, gssapi: nix.thunk(() => [pykerberos]) }));
       const pythonImportsCheck = nix.thunk(() => ["puresasl", "puresasl.client", "puresasl.mechanisms"]);
       const nativeCheckInputs = nix.thunk(() => nix.concat([mock, pytestCheckHook, six], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Reasonably high-level SASL client written in pure Python",
         homepage: "http://github.com/thobbs/pure-sasl",
         changelog: nix.thunk(() => nix.str`https://github.com/thobbs/pure-sasl/blob/${nix.sel(src, "tag")}/CHANGES.rst`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

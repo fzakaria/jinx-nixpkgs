@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const checkTweaks = nix.thunk(() => nix.app(nix.sel(lib, "checkListOfEnum"), nix.thunk(() => nix.str`${pname}: tweaks`), nix.thunk(() => ["solid", "float", "round", "blur", "noborder", "square"]), tweaks));
   const checkAll = nix.thunk(() => nix.app(checkThemes, checkColors, checkSizes, checkTweaks));
   return nix.app(checkAll, nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: "2025-04-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vinceliuice",
           repo: "fluent-gtk-theme",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -65,11 +65,11 @@ jdupes --quiet --link-soft --recurse $out/share
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fluent design gtk theme",
         changelog: nix.thunk(() => nix.str`https://github.com/vinceliuice/Fluent-gtk-theme/releases/tag/${nix.sel(finalAttrs, "version")}`),
         homepage: "https://github.com/vinceliuice/Fluent-gtk-theme",

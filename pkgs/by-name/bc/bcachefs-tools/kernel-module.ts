@@ -15,7 +15,7 @@ export default (bcachefs_tools) => nix.lambda((args) => (() => {
   const kernel = nix.arg($, "kernel");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bcachefs",
       version: nix.thunk(() => nix.str`${nix.sel(kernel, "version")}-${nix.sel(bcachefs_tools, "version")}`),
       __structuredAttrs: true,
@@ -37,12 +37,12 @@ runHook postInstall
 `),
       passthru: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(bcachefs_tools, "passthru"));
-        return { __proto__: pos$1, tests: nix.thunk(() => nix.attr(from, "tests")) };
+        return { [nix.POS]: pos$1, tests: nix.thunk(() => nix.attr(from, "tests")) };
       })()),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(bcachefs_tools, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "out-of-tree bcachefs kernel module",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         downloadPage: nix.thunk(() => nix.attr(from, "downloadPage")),

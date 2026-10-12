@@ -17,21 +17,21 @@ export default nix.lambda((args) => (() => {
       const domain = "luxer";
       const version = "0.3.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tjhorner",
           repo: "home-assistant-luxer-one",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-bzAdroFE25L0gy1FURYF5p8BaTjzHKtmpKWweDAQH0s=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/tjhorner/home-assistant-luxer-one/releases/tag/${nix.sel(src, "tag")}`),
         description: "Home Assistant integration for Luxer One",
         homepage: "https://github.com/tjhorner/home-assistant-luxer-one",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "haylin"))]),
       }));
-      return { __proto__: pos$3, owner, domain, version, src, meta };
+      return { [nix.POS]: pos$3, owner, domain, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

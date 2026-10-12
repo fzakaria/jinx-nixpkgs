@@ -22,23 +22,23 @@ export default nix.lambda((args) => (() => {
   const bash = nix.arg($, "bash");
   const replaceVars = nix.arg($, "replaceVars");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "haredo",
       version: "1.0.6",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~autumnull",
           repo: "haredo",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-wjowPlSIotP8RSV0whiVWne+irtDdoPD+iSC2F9GVfs=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./001-use-nix-store-sh.patch"), nix.thunk(() => ({ __proto__: pos$2, bash: bash })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./001-use-nix-store-sh.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, bash: bash })))),
       ]),
       nativeBuildInputs: nix.thunk(() => [hareHook, makeWrapper, scdoc]),
       enableParallelChecking: true,
-      env: nix.thunk(() => ({ __proto__: pos$3, PREFIX: nix.thunk(() => nix.builtins.placeholder("out")) })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, PREFIX: nix.thunk(() => nix.builtins.placeholder("out")) })),
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       dontConfigure: true,
       buildPhase: "runHook preBuild\n\nhare build -o bin/haredo ./src\nscdoc <doc/haredo.1.scd >doc/haredo.1\n\nrunHook postBuild\n",
@@ -46,13 +46,13 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\nmkdir -p $out/share/man/man1\ncp ./bin/haredo $out/bin\ncp ./doc/haredo.1 $out/share/man/man1\n\nrunHook postInstall\n",
       setupHook: nix.path(here, "./setup-hook.sh"),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(hareHook, "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Simple and unix-idiomatic build automator",
         homepage: "https://sr.ht/~autumnull/haredo/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "wtfpl")),

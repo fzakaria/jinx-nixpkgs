@@ -22,10 +22,10 @@ export default nix.lambda((args) => (() => {
   const makeScopeWithSplicing$ = nix.arg($, "makeScopeWithSplicing'");
   const splicePath = nix.arg($, "splicePath");
   return nix.app(makeScopeWithSplicing$, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       otherSplices: nix.thunk(() => nix.app(generateSplicesForMkScope, splicePath)),
       keep: (self) => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         beamPackages: nix.thunk(() => nix.attr(self, "beamPackages")),
       }),
       f: (self) => (() => {
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
           const from = nix.thunk(() => nix.app(callPackage, nix.path(here, "../tools/build-managers/rebar3"), nix.thunk(() => ({}))));
           const from_1 = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackages"), nix.path(here, "./hooks"), nix.thunk(() => ({}))));
           return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           erlang: erlang,
           beamPackages: self,
           rebar3: nix.thunk(() => nix.attr(from, "rebar3")),
@@ -54,10 +54,10 @@ export default nix.lambda((args) => (() => {
           erlfmt: nix.thunk(() => nix.app(callPackage, nix.path(here, "./erlfmt"), nix.thunk(() => ({})))),
           "elvis-erlang": nix.thunk(() => nix.app(callPackage, nix.path(here, "./elvis-erlang"), nix.thunk(() => ({})))),
           elixir: nix.thunk(() => nix.sel(self, "elixir_1_18")),
-          elixir_1_20: nix.thunk(() => nix.app(callPackage, nix.path(here, "../interpreters/elixir/1.20.nix"), nix.thunk(() => ({ __proto__: pos$2, debugInfo: true })))),
-          elixir_1_19: nix.thunk(() => nix.app(callPackage, nix.path(here, "../interpreters/elixir/1.19.nix"), nix.thunk(() => ({ __proto__: pos$3, debugInfo: true })))),
-          elixir_1_18: nix.thunk(() => nix.app(callPackage, nix.path(here, "../interpreters/elixir/1.18.nix"), nix.thunk(() => ({ __proto__: pos$4, debugInfo: true })))),
-          elixir_1_17: nix.thunk(() => nix.app(callPackage, nix.path(here, "../interpreters/elixir/1.17.nix"), nix.thunk(() => ({ __proto__: pos$5, debugInfo: true })))),
+          elixir_1_20: nix.thunk(() => nix.app(callPackage, nix.path(here, "../interpreters/elixir/1.20.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, debugInfo: true })))),
+          elixir_1_19: nix.thunk(() => nix.app(callPackage, nix.path(here, "../interpreters/elixir/1.19.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, debugInfo: true })))),
+          elixir_1_18: nix.thunk(() => nix.app(callPackage, nix.path(here, "../interpreters/elixir/1.18.nix"), nix.thunk(() => ({ [nix.POS]: pos$4, debugInfo: true })))),
+          elixir_1_17: nix.thunk(() => nix.app(callPackage, nix.path(here, "../interpreters/elixir/1.17.nix"), nix.thunk(() => ({ [nix.POS]: pos$5, debugInfo: true })))),
           ex_doc: nix.thunk(() => nix.app(callPackage, nix.path(here, "./ex_doc"), nix.thunk(() => ({})))),
           "elixir-ls": nix.thunk(() => nix.app(callPackage, nix.path(here, "./elixir-ls"), nix.thunk(() => ({})))),
           expert: nix.thunk(() => nix.app(callPackage, nix.path(here, "./expert"), nix.thunk(() => ({})))),
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
           rebarDevendorPatchHook: nix.thunk(() => nix.attr(from_1, "rebarDevendorPatchHook")),
         };
         })(), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             extend: nix.thunk(() => nix.builtins.throw("'beamPackages.extend' has been replaced by 'beamPackages.overrideScope'\n\nSee examples at https://nixos.org/manual/nixpkgs/unstable/#sec-beam\n")),
             webdriver: nix.thunk(() => nix.builtins.throw("'beamPackages.webdriver' has been removed.")),
           }))));

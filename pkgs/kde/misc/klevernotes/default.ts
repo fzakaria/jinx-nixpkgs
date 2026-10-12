@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
       const pname = "klevernotes";
       const version = "1.3.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://kde/stable/klevernotes/${version}/klevernotes-${version}.tar.xz`),
           hash: "sha256-34w59TT+vY6pJGW3HgPfNAS8hJzPRPMgC4oPKeUfytQ=",
         }))));
       const extraBuildInputs = nix.thunk(() => [qtsvg, qtwebengine, kconfigwidgets, kitemmodels]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
           return [
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
           ];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, extraBuildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, extraBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

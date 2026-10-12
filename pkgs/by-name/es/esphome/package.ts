@@ -28,17 +28,17 @@ export default nix.lambda((args) => (() => {
   const addBinToPathHook = nix.arg($, "addBinToPathHook");
   const nixosTests = nix.arg($, "nixosTests");
   const python = nix.thunk(() => nix.app(nix.sel(python3Packages, "python", "override"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       self: python,
-      packageOverrides: (self) => (super$) => ({ __proto__: pos$1, "paho-mqtt": nix.thunk(() => nix.sel(self, "paho-mqtt_1")) }),
+      packageOverrides: (self) => (super$) => ({ [nix.POS]: pos$1, "paho-mqtt": nix.thunk(() => nix.sel(self, "paho-mqtt_1")) }),
     }))));
   return nix.app(nix.sel(python, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "esphome",
       version: "2026.8.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "esphome",
           repo: "esphome",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: true,
       pythonRemoveDeps: nix.thunk(() => ["esptool", "platformio"]),
       postPatch: "substituteInPlace pyproject.toml \\\n  --replace-fail \"setuptools==84.0.0\" \"setuptools\" \\\n  --replace-fail \"wheel>=0.43,<0.48\" \"wheel\"\n",
-      env: nix.thunk(() => ({ __proto__: pos$4, ESPHOME_USE_SUBPROCESS: "" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$4, ESPHOME_USE_SUBPROCESS: "" })),
       dependencies: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(python, "pkgs")), null);
         return [
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w_1, "paho-mqtt")),
           nix.thunk(() => nix.lookup(w_1, "pillow")),
           nix.thunk(() => nix.lookup(w_1, "platformdirs")),
-          nix.thunk(() => nix.app(nix.lookup(w_1, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(platformio_core, "override"), nix.thunk(() => ({ __proto__: pos$5, python3: python })))))),
+          nix.thunk(() => nix.app(nix.lookup(w_1, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(platformio_core, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, python3: python })))))),
           nix.thunk(() => nix.lookup(w_1, "puremagic")),
           nix.thunk(() => nix.lookup(w_1, "py7zr")),
           nix.thunk(() => nix.lookup(w_1, "pyparsing")),
@@ -143,11 +143,11 @@ export default nix.lambda((args) => (() => {
         "test_patch_file_downloader_recovers_against_real_server",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
-        tests: nix.thunk(() => ({ __proto__: pos$6, esphome: nix.thunk(() => nix.attr(nixosTests, "esphome")) })),
+        [nix.POS]: pos$7,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$6, esphome: nix.thunk(() => nix.attr(nixosTests, "esphome")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         changelog: nix.thunk(() => nix.str`https://github.com/esphome/esphome/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Make creating custom firmwares for ESP32/ESP8266 super easy",
         homepage: "https://esphome.io/",

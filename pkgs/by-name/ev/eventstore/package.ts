@@ -26,14 +26,14 @@ export default nix.lambda((args) => (() => {
       const pname = "EventStore";
       const version = "24.10.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kurrent-io",
           repo: "KurrentDB",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-8/sagvMyJ1/onGMuJ28QLWI5M8dBDWyGOcZKUv3PJsQ=",
           leaveDotGit: true,
         }))));
-      const env = nix.thunk(() => ({ __proto__: pos$2, MINVERVERSIONOVERRIDE: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, MINVERVERSIONOVERRIDE: version }));
       const dotnet_sdk = nix.thunk(() => nix.sel(dotnetCorePackages, "sdk_8_0"));
       const dotnet_runtime = nix.thunk(() => nix.sel(dotnetCorePackages, "aspnetcore_8_0"));
       const nativeBuildInputs = nix.thunk(() => [git, glibcLocales, bintools]);
@@ -50,11 +50,11 @@ export default nix.lambda((args) => (() => {
       const doInstallCheck = true;
       const installCheckPhase = "$out/bin/EventStore.ClusterNode --insecure \\\n  --db \"$HOME/data\" \\\n  --index \"$HOME/index\" \\\n  --log \"$HOME/log\" \\\n  -runprojections all --startstandardprojections \\\n  --EnableAtomPubOverHttp &\n\nPID=$!\n\nsleep 30s;\nkill \"$PID\";\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/kurrent-io/KurrentDB",
         description: "Event sourcing database with processing logic in JavaScript",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: mainProgram,
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

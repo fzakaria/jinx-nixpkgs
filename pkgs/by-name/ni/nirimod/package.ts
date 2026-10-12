@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "nirimod",
       version: "0-unstable-2026-09-19",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "srinivasr",
           repo: "nirimod",
           rev: "e8517343f801e109817f43d34734bb50a91e9639",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "install -Dm644 data/nirimod.svg $out/share/icons/hicolor/scalable/apps/nirimod.svg\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "io.github.nirimod",
             exec: "nirimod",
             icon: "nirimod",
@@ -57,11 +57,11 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Visual configuration interface for the niri Wayland compositor",
         homepage: "https://github.com/srinivasr/nirimod",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

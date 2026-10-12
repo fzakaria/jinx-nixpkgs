@@ -44,10 +44,10 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const nixosTests = nix.arg($, "nixosTests");
   const common = (finalAttrs) => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     version: "8.4.11",
     src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: nix.thunk(() => nix.str`https://dev.mysql.com/get/Downloads/MySQL-${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/mysql-${nix.sel(finalAttrs, "version")}.tar.gz`),
         hash: "sha256-6zBRFk1iXdNGqCA/duDV1dmuxR2+nVF4jjnsaz8TlMI=",
       })))),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
     postPatch: "substituteInPlace cmake/libutils.cmake --replace /usr/bin/libtool libtool\nsubstituteInPlace cmake/os/Darwin.cmake --replace /usr/bin/libtool libtool\n",
     nativeBuildInputs: nix.thunk(() => nix.concat([bison, cmake, pkg_config], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [rpcsvc_proto])))),
     buildInputs: nix.thunk(() => nix.concat([
-      nix.thunk(() => nix.app(nix.sel(curl, "override"), nix.thunk(() => ({ __proto__: pos$2, openssl: openssl })))),
+      nix.thunk(() => nix.app(nix.sel(curl, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, openssl: openssl })))),
       icu,
       libedit,
       libevent,
@@ -97,15 +97,15 @@ so=${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}
 ln -s libmysqlclient$so $out/lib/libmysqlclient_r$so
 `),
     passthru: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       mysqlVersion: nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))),
       tests: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         mysql: nix.thunk(() => nix.sel(nixosTests, "mysql", nix.key(nix.str`mysql${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}${nix.app(nix.sel(lib, "versions", "minor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}`))),
       })),
     })),
     meta: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       homepage: "https://www.mysql.com/",
       description: "World's most popular open source database",
       license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
@@ -116,25 +116,25 @@ ln -s libmysqlclient$so $out/lib/libmysqlclient_r$so
   const client = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const common$ = nix.thunk(() => nix.app(common, finalAttrs));
       return nix.update(common$, {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname: "mysql-client",
         cmakeFlags: nix.thunk(() => nix.concat(nix.sel(common$, "cmakeFlags"), ["-DWITHOUT_SERVER=ON", "-DINSTALL_MYSQLSHAREDIR=share/mysql-client"])),
-        meta: nix.thunk(() => nix.update(nix.sel(common$, "meta"), { __proto__: pos$7, mainProgram: "mysql" })),
+        meta: nix.thunk(() => nix.update(nix.sel(common$, "meta"), { [nix.POS]: pos$7, mainProgram: "mysql" })),
       });
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const common$ = nix.thunk(() => nix.app(common, finalAttrs));
       return nix.update(common$, {
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         pname: "mysql",
-        meta: nix.thunk(() => nix.update(nix.sel(common$, "meta"), { __proto__: pos$9, mainProgram: "mysqld" })),
+        meta: nix.thunk(() => nix.update(nix.sel(common$, "meta"), { [nix.POS]: pos$9, mainProgram: "mysqld" })),
         passthru: nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.sel(common$, "passthru")), nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             client: client,
             "connector-c": client,
             server: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             tests: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               "mysql-secure-root-by-default": nix.thunk(() => nix.sel(nixosTests, "mysql-secure-root", "secure-by-default", nix.key(nix.str`mysql${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}${nix.app(nix.sel(lib, "versions", "minor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}`))),
               "mysql-root-can-be-kept-insecure": nix.thunk(() => nix.sel(nixosTests, "mysql-secure-root", "can-be-insecure", nix.key(nix.str`mysql${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}${nix.app(nix.sel(lib, "versions", "minor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}`))),
             })),

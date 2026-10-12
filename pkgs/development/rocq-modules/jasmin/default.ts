@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const ITree = nix.arg($, "ITree");
   const version = nix.argOr($, "version", () => null);
   return nix.app(nix.sel(nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       pname: "jasmin",
       owner: "jasmin-lang",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (case$_1) => (out) => ({ __proto__: pos$1, case: case$_1, out: out });
+        const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$1, case: case$_1, out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => nix.app(case$, nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.20", "9.1")), "2026.03.3")),
@@ -46,57 +46,57 @@ export default nix.lambda((args) => (() => {
       })()),
       releaseRev: (v) => nix.str`v${v}`,
       release: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         "2026.03.3": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           hash: "sha256-C41usqCbj/sKhWCIOdF4oVPRoqnWfIC58gyrDRnxPEw=",
           rev: "aad63329716bfc0489c2dd0cb5aaf0497ec2d324",
         })),
         "2026.03.1": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           hash: "sha256-CE+WbcG0lgKvaV/OSMlTp3fG+v82X41z/w7ynsM/LLg=",
         })),
         "2026.03.0": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           hash: "sha256-MzdVbZhXlb9JFLsf+23yJNFiGJDBJZGbX6Ox3/U1EzA=",
         })),
         "2025.06.1": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           hash: "sha256-wEL1tN0HUa1Eb7FiQOBA6sAkuonrAMdkqq8gu9/CED0=",
         })),
         "2025.06.0": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           hash: "sha256-XfTg7ofamzMWqmRIU1/MO+S/ieNjvNEhlgIqFrchdAQ=",
         })),
         "2025.02.2": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           hash: "sha256-ks0eWqKv7bqgHgMowqTFjKzuT9kMYl2Ozj2s1DaSdEo=",
         })),
         "2025.02.1": nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           hash: "sha256-8P2GdplB12Q0e0XdL77w3nQL1/6Xl/gQNhGTB0WX/8I=",
         })),
         "2025.02.0": nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           hash: "sha256-Jlf0+VPuYWXdWyKHKHSp7h/HuCCp4VkcrgDAmh7pi5s=",
         })),
         "2024.07.4": nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           hash: "sha256-eA9xX8jhmt8HJAetBj1lrIOYn5edOjO8iHr8uvm9+lE=",
         })),
         "2024.07.3": nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           hash: "sha256-n/X8d7ILuZ07l24Ij8TxbQzAG7E8kldWFcUI65W4r+c=",
         })),
         "2024.07.2": nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           hash: "sha256-aF8SYY5jRxQ6iEr7t6mRN3BEmIDhJ53PGhuZiJGB+i8=",
         })),
       })),
       propagatedBuildInputs: nix.thunk(() => nix.concat([mathcomp_word], nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(mathcomp, "version"), "dev")) && nix.asBool(nix.app(nix.sel(lib, "versions", "isLe"), "2.5", nix.thunk(() => nix.sel(mathcomp, "version")))))), mathcomp_algebra_tactics))),
       makeFlags: nix.thunk(() => ["-C", "proofs"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         description: "Jasmin language & verified compiler",
         homepage: "https://github.com/jasmin-lang/jasmin/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -109,7 +109,7 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
     }))), "overrideAttrs"), (o) => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       propagatedBuildInputs: nix.thunk(() => nix.concat(nix.sel(o, "propagatedBuildInputs"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(o, "version"), "dev")) || nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(o, "version")), "2025.06")))), ITree))),
     }));
 })(), formals$1);

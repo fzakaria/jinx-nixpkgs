@@ -18,23 +18,23 @@ export default nix.lambda((args) => (() => {
   const enableStatic = nix.argOr($, "enableStatic", () => true);
   const enableShared = nix.argOr($, "enableShared", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libexecinfo",
       version: "1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://distcache.freebsd.org/local-distfiles/itetcu/libexecinfo-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "07wvlpc1jk1sj4k5w53ml6wagh0zm9kv2l1jngv8xb7xww9ik8n9",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "10-execinfo.patch",
             url: "https://git.alpinelinux.org/aports/plain/main/libexecinfo/10-execinfo.patch?id=730cdcef6901750f4029d4c3b8639ce02ee3ead1",
             sha256: "0lnphrad4vspyljnvmm62dyxj98vgp3wabj4w3vfzfph7j8piw7g",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "20-define-gnu-source.patch",
             url: "https://git.alpinelinux.org/aports/plain/main/libexecinfo/20-define-gnu-source.patch?id=730cdcef6901750f4029d4c3b8639ce02ee3ead1",
             sha256: "1mp8mc639b0h2s69m5z6s2h3q3n1zl298j9j0plzj7f979j76302",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       patchFlags: nix.thunk(() => ["-p0"]),
       installPhase: nix.thunk(() => nix.add(nix.add("install -Dm644 execinfo.h stacktraverse.h -t $out/include\n", nix.app(nix.sel(lib, "optionalString"), enableShared, "install -Dm755 libexecinfo.so.1 -t $out/lib\nln -s $out/lib/libexecinfo.so{.1,}\n")), nix.app(nix.sel(lib, "optionalString"), enableStatic, "install -Dm755 libexecinfo.a -t $out/lib\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Quick-n-dirty BSD licensed clone of the GNU libc backtrace facility",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
         homepage: "https://www.freshports.org/devel/libexecinfo",

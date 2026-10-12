@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PREDICT-EPFL",
           repo: "piqp",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./use-nix-packages.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             cpu_features_src: nix.thunk(() => nix.sel(cpu_features, "src")),
           })))),
       ]);
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["piqp"]);
       const nativeCheckInputs = nix.thunk(() => [numpy, pytestCheckHook, scipy]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Proximal Interior Point Quadratic Programming solver",
         homepage: "https://github.com/PREDICT-EPFL/piqp",
         changelog: nix.thunk(() => nix.str`https://github.com/PREDICT-EPFL/piqp/releases/tag/v${version}`),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

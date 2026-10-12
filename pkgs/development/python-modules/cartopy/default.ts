@@ -31,13 +31,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cartopy",
       version: "0.25.0.post2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SciTools",
           repo: "cartopy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [geos, proj]),
       dependencies: nix.thunk(() => [matplotlib, numpy, pyproj, pyshp, shapely]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         ows: nix.thunk(() => [owslib, pillow]),
         plotting: nix.thunk(() => [gdal, pillow, scipy]),
       })),
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
         "test_stock_img",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Process geospatial data to create maps and perform analyses",
         homepage: "https://scitools.org.uk/cartopy/docs/latest/",
         changelog: nix.thunk(() => nix.str`https://github.com/SciTools/cartopy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

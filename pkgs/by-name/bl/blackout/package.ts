@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "blackout",
       version: "2014-07-29",
       outputs: nix.thunk(() => ["out", "webfont"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "theleagueof",
           repo: "blackout",
           rev: "4864cfc1749590e9f78549c6e57116fe98480c0f",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bad-ass, unholy-mother-shut-your-mouth stencil sans-serif",
         longDescription: "Eats holes for breakfast lunch and dinner. Inspired by filling in\nsans-serif newspaper headlines. Continually updated with coffee and\nmusic. Makes your work louder than the next person’s.\n\nComes in three styles: Midnight (solid), 2AM (reversed), & Sunrise\n(stroked).\n",
         homepage: "https://www.theleagueofmoveabletype.com/blackout",

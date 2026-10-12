@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(melpaBuild, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "eaf-airshare",
       version: "0-unstable-2023-07-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "emacs-eaf",
           repo: "eaf-airshare",
           rev: "71b4507ad5724babcf34da941a53c5a94bf7666a",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       files: "(\"*.el\"\n \"*.py\")\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
         eafPythonDeps: (ps) => (() => {
           const w = nix.withScope(ps, null);
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })(),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Share text by qr-code in Emacs",
         homepage: "https://github.com/emacs-eaf/eaf-airshare",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

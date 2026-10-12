@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "walls",
       version: "0.13.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "willfish",
           repo: "walls",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,11 +51,11 @@ substitute assets/applications/walls.desktop.in $out/share/applications/walls.de
   --replace-fail '@xdg-terminal-exec@' "${nix.app(nix.sel(lib, "getExe"), xdg_terminal_exec)}"
 `))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Wallpaper manager with Wallhaven sources, CLI/TUI, and tray",
         homepage: "https://github.com/willfish/walls",
         changelog: nix.thunk(() => nix.str`https://github.com/willfish/walls/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const plugins = nix.arg($, "plugins");
   const puredataFlags = nix.thunk(() => nix.builtins.map((x) => nix.str`-path ${x}/`, plugins));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.str`puredata-with-plugins-${nix.sel(puredata, "version")}`),
       paths: nix.thunk(() => nix.concat([puredata], plugins)),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),

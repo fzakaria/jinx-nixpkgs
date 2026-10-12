@@ -29,22 +29,22 @@ export default nix.lambda((args) => (() => {
   const zip = nix.arg($, "zip");
   const zlib = nix.arg($, "zlib");
   const freedink_data = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "freedink-data",
       version: "1.08.20190120",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/freedink/freedink-data-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-cV9EdzsFtzqeybYrDhUvPygb4aFRL7qqOGF22pTP+50=",
         })))),
       prePatch: "substituteInPlace Makefile --replace-fail /usr/local $out",
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "freedink",
       version: "109.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`mirror://gnu/freedink/freedink-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Xgs1rI9G17uH5lbv1fnHwqwabFGakI/FtYHlJleYEAI=",
         })))),
@@ -67,7 +67,7 @@ ln -s ${freedink_data}/share/dink "$out/share/"
 `),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Free, portable and enhanced version of the Dink Smallwood game engine",
         longDescription: "GNU FreeDink is a new and portable version of the Dink Smallwood\ngame engine, which runs the original game as well as its D-Mods,\nwith close compatibility, under multiple platforms.\n",
         homepage: "https://gnu.org/software/freedink/",

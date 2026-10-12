@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const postgresql = nix.arg($, "postgresql");
   const postgresqlBuildExtension = nix.arg($, "postgresqlBuildExtension");
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "wal2json",
       version: "2.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eulerto",
           repo: "wal2json",
           tag: nix.thunk(() => nix.str`wal2json_${nix.app(nix.sel(lib, "replaceString"), ".", "_", nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -30,15 +30,15 @@ export default nix.lambda((args) => (() => {
         })))),
       makeFlags: nix.thunk(() => ["USE_PGXS=1"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex=^wal2json_(\\d+)_(\\d+)$"]),
           })))),
         tests: nix.thunk(() => nix.app(nix.sel(nixosTests, "postgresql", "wal2json", "passthru", "override"), postgresql)),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "PostgreSQL JSON output plugin for changeset extraction",
         homepage: "https://github.com/eulerto/wal2json",
         changelog: nix.thunk(() => nix.str`https://github.com/eulerto/wal2json/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

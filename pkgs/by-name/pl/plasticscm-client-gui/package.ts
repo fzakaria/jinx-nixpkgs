@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const plasticscm_client_gui_unwrapped = nix.arg($, "plasticscm-client-gui-unwrapped");
   const plasticscm_theme = nix.arg($, "plasticscm-theme");
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "plasticscm-client-gui",
       version: nix.thunk(() => nix.attr(plasticscm_client_gui_unwrapped, "version")),
       meta: nix.thunk(() => nix.attr(plasticscm_client_gui_unwrapped, "meta")),

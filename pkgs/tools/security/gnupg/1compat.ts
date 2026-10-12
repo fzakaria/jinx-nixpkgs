@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "gnupg1compat",
       version: nix.thunk(() => nix.attr(gnupg, "version")),
       outputs: nix.thunk(() => nix.attr(gnupg, "outputs")),
@@ -35,7 +35,7 @@ for f in \${!outputBin}/bin/*2; do
 done
 `)))),
       meta: nix.thunk(() => nix.update(nix.sel(gnupg, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: nix.thunk(() => nix.add(nix.sel(gnupg, "meta", "description"), " with symbolic links for gpg and gpgv")),
         priority: nix.thunk(() => nix.neg(1n)),
       })),

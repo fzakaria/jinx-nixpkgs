@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const bc_zxing_cpp = nix.arg($, "bc-zxing-cpp");
   const mkLinphoneDerivation = nix.arg($, "mkLinphoneDerivation");
   return nix.app(mkLinphoneDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "liblinphone",
       cmakeFlags: nix.thunk(() => ["-DENABLE_UNIT_TESTS=NO", "-DENABLE_STRICT=NO", "-DJsonCPP_TARGET=jsoncpp"]),
       buildInputs: nix.thunk(() => [
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
 ln -s ${belcard}/share/belr/grammars/* $out/share/belr/grammars/
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Library for SIP calls and instant messaging",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

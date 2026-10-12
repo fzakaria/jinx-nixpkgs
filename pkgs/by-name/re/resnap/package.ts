@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const imagemagick_light = nix.arg($, "imagemagick_light");
   const lz4 = nix.arg($, "lz4");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "resnap",
       version: "2.5.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cloudsftp",
           repo: "resnap",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ wrapProgram $out/bin/reSnap \\
   --suffix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(finalAttrs, "runtimeInputs")))}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Take screenshots of your reMarkable tablet over SSH",
         homepage: "https://github.com/cloudsftp/reSnap",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

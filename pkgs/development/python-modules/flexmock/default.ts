@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.13.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-aCnXoNf3Rtswh9qP2mL5JOUt9+zkBRwvWa1YbPWteXc=",
@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, teamcity_messages, testtools]);
       const pythonImportsCheck = nix.thunk(() => ["flexmock"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Testing library that makes it easy to create mocks,stubs and fakes",
         homepage: "https://flexmock.readthedocs.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsdOriginal")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

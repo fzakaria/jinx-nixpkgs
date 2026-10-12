@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xosview2",
       version: "2.3.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/xosview/xosview2-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-aQugI9rL0N1qLxUrUvwP7Gk2z3v+PC/+BNVlINqvT8g=",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libx11, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://xosview.sourceforge.net/index.html",
         description: "Lightweight graphical operating system monitor",
         longDescription: "xosview is a lightweight program that gathers information from your\noperating system and displays it in graphical form. It attempts to show\nyou in a quick glance an overview of how your system resources are being\nutilized.\n\nIt can be configured to be nothing more than a small strip showing a\ncouple of parameters on a desktop task bar. Or it can display dozens of\nmeters and rolling graphical charts over your entire screen.\n\nSince xosview renders all graphics with core X11 drawing methods, you can\nrun it on one machine and display it on another. This works even if your\nother host is an operating system not running an X server inside a\nvirtual machine running on a physically different host. If you can\nconnect to it on a network, then you can popup an xosview instance and\nmonitor what is going on.\n",

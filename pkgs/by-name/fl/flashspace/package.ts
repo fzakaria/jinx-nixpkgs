@@ -16,22 +16,22 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "3.3.39";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "flashspace",
       version: version,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/wojciech-kulik/FlashSpace/releases/download/v${version}/FlashSpace.app.zip`),
           hash: "sha256-/mgdeRxaxq+oIjbbaxCSExHxyYqqWl80+6jPzPIhT4M=",
         })))),
       installPhase: "runHook preInstall\nmkdir -p $out/Applications/FlashSpace.app $out/bin\nmv Contents $out/Applications/FlashSpace.app\nln -s ../Applications/Flashspace.app/Contents/Resources/flashspace $out/bin/flashspace\nrunHook postInstall\n",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/wojciech-kulik/FlashSpace",
         changelog: nix.thunk(() => nix.str`https://github.com/wojciech-kulik/FlashSpace/releases/tag/v${version}`),

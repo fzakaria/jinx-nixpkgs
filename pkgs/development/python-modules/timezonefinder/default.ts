@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const pytz = nix.arg($, "pytz");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "timezonefinder",
       version: "8.2.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jannikmi",
           repo: "timezonefinder",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cffi]),
       dependencies: nix.thunk(() => [cffi, flatbuffers, h3, numpy]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         numba: nix.thunk(() => [numba]),
         pytz: nix.thunk(() => [pytz]),
       })),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         "tests/utils_test.py",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Module for finding the timezone of any point on earth (coordinates) offline",
         homepage: "https://github.com/MrMinimal64/timezonefinder",
         changelog: nix.thunk(() => nix.str`https://github.com/jannikmi/timezonefinder/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.rst`),

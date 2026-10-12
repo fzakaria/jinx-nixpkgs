@@ -34,14 +34,14 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: "tpm2_pytss",
           hash: "sha256-wZPPGQi0gvk8SqRkEykg/jo31LnYAuJnl0/y3+N9RDM=",
         }))));
       const patches = nix.thunk(() => nix.concat([], nix.app(nix.sel(lib, "optionals"), isCross, nix.thunk(() => [
           nix.thunk(() => nix.app(replaceVars, nix.path(here, "./cross.patch"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               crossPrefix: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "config")),
             })))),
         ]))));
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
 `);
       const pythonImportsCheck = nix.thunk(() => ["tpm2_pytss"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/tpm2-software/tpm2-pytss",
         changelog: nix.thunk(() => nix.str`https://github.com/tpm2-software/tpm2-pytss/blob/${version}/CHANGELOG.md`),
         description: "TPM2 TSS Python bindings for Enhanced System API (ESYS)",
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const pytest_homeassistant_custom_component = nix.arg($, "pytest-homeassistant-custom-component");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildHomeAssistantComponent, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       owner: "Sese-Schneider",
       domain: "cover_time_based",
       version: "4.13.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: nix.thunk(() => nix.attr(finalAttrs, "owner")),
           repo: "ha-cover-time-based",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_homeassistant_custom_component, pytestCheckHook]),
       disabledTestPaths: nix.thunk(() => ["tests/test_bump_dev_script.py", "tests/test_release_script.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/Sese-Schneider/ha-cover-time-based/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Integration which allows cover control based on time",
         homepage: "https://github.com/Sese-Schneider/ha-cover-time-based",

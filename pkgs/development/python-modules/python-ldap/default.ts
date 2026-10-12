@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const jaraco_functools = nix.arg($, "jaraco-functools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "python-ldap",
       version: "3.4.8",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "python-ldap",
           repo: "python-ldap",
           tag: nix.thunk(() => nix.str`python-ldap-${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ export SCHEMA="${openldap}/etc/schema"
       disabledTests: nix.thunk(() => ["test_tls_ext_noca"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python modules for implementing LDAP clients",
         downloadPage: "https://github.com/python-ldap/python-ldap",
         homepage: "https://www.python-ldap.org/",

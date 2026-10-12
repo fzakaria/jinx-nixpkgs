@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const meson = nix.arg($, "meson");
   const ninja = nix.arg($, "ninja");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "faac",
       version: "1.50",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "knik0",
           repo: "faac",
           tag: nix.thunk(() => nix.str`faac-${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       mesonFlags: nix.thunk(() => ["-Db_lto=false"]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/knik0/faac/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Open source MPEG-4 and MPEG-2 AAC encoder",
         homepage: "https://github.com/knik0/faac",

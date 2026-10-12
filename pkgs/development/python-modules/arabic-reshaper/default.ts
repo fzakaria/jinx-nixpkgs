@@ -18,23 +18,23 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_cov_stub = nix.arg($, "pytest-cov-stub");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "arabic-reshaper",
       version: "3.0.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mpcabd",
           repo: "python-arabic-reshaper",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-6i/YcYod341bg9tThZRwvaFRbtU/LxCeirq0yzmMuBI=",
         })))),
       "build-system": nix.thunk(() => [hatchling]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, "with-fonttools": nix.thunk(() => [fonttools]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, "with-fonttools": nix.thunk(() => [fonttools]) })),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, pytest_cov_stub]),
       pythonImportsCheck: nix.thunk(() => ["arabic_reshaper"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Reconstruct Arabic sentences to be used in applications that don't support Arabic",
         homepage: "https://github.com/mpcabd/python-arabic-reshaper",
         changelog: nix.thunk(() => nix.str`https://github.com/mpcabd/python-arabic-reshaper/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

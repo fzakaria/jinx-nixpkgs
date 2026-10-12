@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const mkfontdir = nix.arg($, "mkfontdir");
   const mkfontscale = nix.arg($, "mkfontscale");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dosemu-fonts",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/dosemu/dosemu-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "0l1zwmw42mpakjrzmbygshcg2qzq9mv8lx42738rz3j9hrqzg4pw",
         })))),
@@ -42,7 +42,7 @@ ${mkfontscale}/bin/mkfontscale
       outputHashMode: "recursive",
       outputHash: "1miqv0ral5vazx721wildjlzvji5r7pbgm39c0cpj5ywafaikxr8",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Various fonts from the DOSEmu project",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
       })),

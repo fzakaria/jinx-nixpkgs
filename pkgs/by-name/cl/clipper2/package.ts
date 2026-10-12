@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "clipper2",
       version: "2.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AngusJohnson",
           repo: "Clipper2",
           tag: nix.thunk(() => nix.str`Clipper2_${nix.sel(finalAttrs, "version")}`),
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       cmakeFlags: nix.thunk(() => ["-DCLIPPER2_EXAMPLES=OFF", "-DCLIPPER2_TESTS=OFF", "-DBUILD_SHARED_LIBS=ON"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Polygon Clipping and Offsetting - C++ Only",
         longDescription: "The Clipper2 library performs intersection, union, difference and XOR boolean operations on both simple and\ncomplex polygons. It also performs polygon offsetting.\n",
         homepage: "https://github.com/AngusJohnson/Clipper2",

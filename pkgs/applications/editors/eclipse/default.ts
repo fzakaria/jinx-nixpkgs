@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
   const gtk = gtk3;
   const arch = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) ? "x86_64" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) ? "aarch64" : nix.builtins.throw(nix.thunk(() => nix.str`don't know what platform suffix for ${nix.sel(stdenv, "hostPlatform", "system")} will be`)))));
   const buildEclipseUnversioned = nix.thunk(() => nix.app(callPackage, nix.path(here, "./build-eclipse.nix"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       stdenv: stdenv,
       makeDesktopItem: makeDesktopItem,
       freetype: freetype,
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       jdk: jdk25,
     }))));
   const buildEclipse = (eclipseData) => nix.app(buildEclipseUnversioned, nix.thunk(() => nix.update(eclipseData, {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: nix.thunk(() => nix.str`${platform_major}.${platform_minor}`),
     })));
   const generateEclipse = (id) => nix.lambda((args_1) => (() => {
@@ -73,14 +73,14 @@ export default nix.lambda((args) => (() => {
     const dropUrl = nix.arg($_1, "dropUrl");
     return nix.builtins.listToAttrs(nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           name: nix.thunk(() => nix.str`eclipse-${nix.app(nix.sel(lib, "strings", "toLower"), id)}`),
           value: nix.thunk(() => nix.app(buildEclipse, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               pname: nix.thunk(() => nix.str`eclipse-${nix.app(nix.sel(lib, "strings", "toLower"), id)}`),
               description: description,
               src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   url: nix.thunk(() => (nix.asBool(dropUrl) ? nix.str`https://www.eclipse.org/downloads/download.php?r=1&nf=1&file=/eclipse/downloads/drops${platform_major}/R-${platform_major}.${platform_minor}-${timestamp}/eclipse-${id}-${platform_major}.${platform_minor}-linux-gtk-${arch}.tar.gz` : nix.str`https://www.eclipse.org/downloads/download.php?r=1&nf=1&file=/technology/epp/downloads/release/${year}-${month}/R/eclipse-${id}-${year}-${month}-R-linux-gtk-${arch}.tar.gz`)),
                   hash: nix.thunk(() => nix.sel(hashes, nix.key(nix.force(arch)))),
                 })))),
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
   })(), formals$2);
   const generatedEclipses = nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "concatMapAttrs"), generateEclipse, nix.thunk(() => nix.sel(eclipses, "eclipses"))));
   return nix.update(generatedEclipses, {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     buildEclipse: buildEclipse,
     eclipseWithPlugins: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$3);
@@ -98,7 +98,7 @@ export default nix.lambda((args) => (() => {
       const plugins = nix.argOr($_1, "plugins", () => []);
       const jvmArgs = nix.argOr($_1, "jvmArgs", () => []);
       const pluginEnv = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           name: "eclipse-plugins",
           paths: nix.thunk(() => nix.app(nix.sel(lib, "filter"), (x) => nix.has(x, "isEclipsePlugin"), nix.thunk(() => nix.app(nix.sel(lib, "closePropagation"), plugins)))),
         }))));
@@ -106,7 +106,7 @@ export default nix.lambda((args) => (() => {
       const dropinProp = nix.thunk(() => nix.str`-D${dropinPropName}=${pluginEnv}/eclipse/dropins`);
       const jvmArgsText = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.concat(jvmArgs, [dropinProp]))));
       const name = nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "meta", "appendToName"), "with-plugins", eclipse), "name"));
-      return nix.app(runCommand, name, nix.thunk(() => ({ __proto__: pos$7, nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`mkdir -p $out/bin $out/etc
+      return nix.app(runCommand, name, nix.thunk(() => ({ [nix.POS]: pos$7, nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`mkdir -p $out/bin $out/etc
 
 # Prepare an eclipse.ini with the plugin directory.
 cat ${eclipse}/eclipse/eclipse.ini - > $out/etc/eclipse.ini <<EOF

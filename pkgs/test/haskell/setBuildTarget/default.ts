@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
     const base = nix.arg($_1, "base");
     const lib = nix.arg($_1, "lib");
     return nix.app(mkDerivation, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         pname: "haskell-setBuildTarget",
         version: "0.1.0.0",
         src: nix.path(here, "./src"),
@@ -43,10 +43,10 @@ fi
 `;
   })();
   return nix.app(nix.sel(pkgs, "runCommand"), "test haskell.lib.compose.setBuildTarget", nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(drv, "meta"));
-        return { __proto__: pos$2, platforms: nix.thunk(() => nix.attr(from, "platforms")) };
+        return { [nix.POS]: pos$2, platforms: nix.thunk(() => nix.attr(from, "platforms")) };
       })()),
     })), nix.thunk(() => nix.str`${nix.app(test, "foo", "bar")}
 ${nix.app(test, "bar", "foo")}

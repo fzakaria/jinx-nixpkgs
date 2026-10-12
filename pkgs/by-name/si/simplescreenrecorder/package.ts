@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "simplescreenrecorder",
       version: "0.4.4-unstable-2026-08-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MaartenBaert",
           repo: "ssr",
           rev: "e73e07664121ac30836872bca76194c6570e04c8",
@@ -76,11 +76,11 @@ substituteInPlace src/AV/Input/GLInjectInput.cpp \\
         nix.thunk(() => nix.sel(libsForQt5, "qtx11extras")),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Screen recorder for Linux",
         homepage: "https://www.maartenbaert.be/simplescreenrecorder",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

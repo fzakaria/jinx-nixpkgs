@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const version = "26.05.08";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "josh",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "josh-project",
           repo: "josh",
           rev: nix.thunk(() => nix.str`r${version}`),
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libgit2, openssl]),
       cargoBuildFlags: nix.thunk(() => ["--workspace"]),
       cargoTestFlags: nix.thunk(() => ["--workspace", "--exclude", "josh-proxy"]),
-      env: nix.thunk(() => ({ __proto__: pos$2, JOSH_VERSION: nix.thunk(() => nix.str`r${version}`) })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, JOSH_VERSION: nix.thunk(() => nix.str`r${version}`) })),
       postInstall: nix.thunk(() => nix.str`wrapProgram "$out/bin/josh-proxy" --prefix PATH : "${git}/bin"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Just One Single History",
         homepage: "https://josh-project.github.io/josh/",
         downloadPage: "https://github.com/josh-project/josh",

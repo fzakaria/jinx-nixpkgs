@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const watchgod = nix.arg($, "watchgod");
   const wsproto = nix.arg($, "wsproto");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "uvicorn-tests",
       version: nix.thunk(() => nix.attr(uvicorn, "version")),
       pyproject: false,

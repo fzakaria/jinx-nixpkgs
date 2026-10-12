@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "qoauth";
       const version = "2.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ayoy",
           repo: "qoauth",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [qtbase, qca_qt5]);
       const nativeBuildInputs = nix.thunk(() => [qmake]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${qca_qt5}/include/Qca-qt5/QtCrypto`),
         NIX_LDFLAGS: "-lqca-qt5",
       }));
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(qtbase, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Qt library for OAuth authentication",
         homepage: "https://github.com/ayoy/qoauth",
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

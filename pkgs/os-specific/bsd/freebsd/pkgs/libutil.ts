@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const csu = nix.arg($, "csu");
   const withPwdMkdb = nix.argOr($, "withPwdMkdb", () => null);
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "lib/libutil",
       extraPaths: nix.thunk(() => ["lib/libc/gen", "lib/libc/Versions.def"]),
       outputs: nix.thunk(() => ["out", "man", "debug"]),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
 `)),
       preBuild: nix.thunk(() => nix.str`export NIX_CFLAGS_COMPILE="$NIX_CFLAGS_COMPILE -B${csu}/lib"
 `),
-      env: nix.thunk(() => ({ __proto__: pos$1, MK_TESTS: "no" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$1, MK_TESTS: "no" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=libutil.ts.map

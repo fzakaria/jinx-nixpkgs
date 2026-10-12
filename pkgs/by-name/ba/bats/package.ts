@@ -45,11 +45,11 @@ export default nix.lambda((args) => (() => {
   const locate_dominating_file = nix.arg($, "locate-dominating-file");
   const packcc = nix.arg($, "packcc");
   return nix.app(nix.sel(resholve, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       pname: "bats",
       version: "1.14.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bats-core",
           repo: "bats-core",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,9 +58,9 @@ export default nix.lambda((args) => (() => {
       patchPhase: "patchShebangs .\n",
       installPhase: "./install.sh $out\n",
       solutions: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         bats: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           scripts: nix.thunk(() => ["bin/bats", "libexec/bats-core/*", "lib/bats-core/*"]),
           interpreter: nix.thunk(() => nix.str`${bash}/bin/bash`),
           inputs: nix.thunk(() => [
@@ -77,11 +77,11 @@ export default nix.lambda((args) => (() => {
             procps,
           ]),
           fake: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             external: nix.thunk(() => nix.concat(["greadlink", "shlock"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["pkill"])))),
           })),
           fix: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             $BATS_ROOT: nix.thunk(() => [nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}`)]),
             $BATS_LIBDIR: nix.thunk(() => ["lib"]),
             $BATS_LIBEXEC: nix.thunk(() => [
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
             ]),
           })),
           keep: nix.thunk(() => nix.attrsDyn({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             source: nix.thunk(() => [
               nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/bats-core/validator.bash`),
               nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/bats-core/preprocessing.bash`),
@@ -127,10 +127,10 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         libraries: nix.thunk(() => nix.app(callPackages, nix.path(here, "./libraries.nix"), nix.thunk(() => ({})))),
         withLibraries: (selector) => nix.app(symlinkJoin, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             name: nix.thunk(() => nix.str`bats-with-libraries-${nix.sel(bats, "version")}`),
             paths: nix.thunk(() => nix.concat([bats], nix.app(selector, nix.thunk(() => nix.sel(bats, "libraries"))))),
             nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -138,7 +138,7 @@ export default nix.lambda((args) => (() => {
             meta: nix.thunk(() => nix.builtins.removeAttrs(nix.thunk(() => nix.sel(finalAttrs, "meta")), nix.thunk(() => ["position"]))),
           }))),
         tests: nix.thunk(() => nix.update({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           libraries: nix.thunk(() => (() => {
             const testScript = nix.thunk(() => nix.app(writeText, "bats-libraries-test-script", "setup() {\n  bats_load_library bats-support\n  bats_load_library bats-assert\n  bats_load_library bats-file\n  bats_load_library bats-detik/detik.bash\n\n  bats_require_minimum_version 1.5.0\n\n  TEST_TEMP_DIR=\"$(temp_make --prefix 'nixpkgs-bats-test')\"\n}\n\nteardown() {\n  temp_del \"$TEST_TEMP_DIR\"\n}\n\n@test echo_hi {\n  run -0 echo hi\n  assert_output \"hi\"\n}\n\n@test cp_failure {\n  run ! cp\n  assert_line --index 0 \"cp: missing file operand\"\n  assert_line --index 1 \"Try 'cp --help' for more information.\"\n}\n\n@test file_exists {\n  echo \"hi\" > \"$TEST_TEMP_DIR/hello.txt\"\n  assert_file_exist \"$TEST_TEMP_DIR/hello.txt\"\n  run cat \"$TEST_TEMP_DIR/hello.txt\"\n  assert_output \"hi\"\n}\n"));
             const batsWithLibraries = nix.thunk(() => nix.app(nix.sel(bats, "withLibraries"), (p) => [
@@ -152,7 +152,7 @@ touch "$out"
 `));
           })()),
           upstream: nix.thunk(() => nix.app(nix.sel(bats, "unresholved", "overrideAttrs"), (old) => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               name: nix.thunk(() => nix.str`${nix.sel(bats, "name")}-tests`),
               dontInstall: true,
               dontRewriteSymlinks: true,
@@ -170,10 +170,10 @@ touch $out
           "bash-preexec": bash_preexec,
           "locate-dominating-file": locate_dominating_file,
           resholve: nix.thunk(() => nix.sel(resholve, "tests", "cli")),
-        }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ({ __proto__: pos$10, kikit: kikit, packcc: packcc }))))),
+        }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ({ [nix.POS]: pos$10, kikit: kikit, packcc: packcc }))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         homepage: "https://github.com/bats-core/bats-core",
         description: "Bash Automated Testing System",
         longDescription: "Bats can be extended with libraries. The available libraries are:\n\n- `bats-assert`\n- `bats-file`\n- `bats-detik`\n- `bats-support`\n\nAn example of building this package with a few libraries:\n```nix\nbats.withLibraries (p: [\n  p.bats-assert\n  p.bats-support\n])\n```\n",

@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const boost = nix.arg($, "boost");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "workrave",
       version: "1.10.54",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "workrave",
           owner: "rcaelers",
           rev: nix.thunk(() => nix.add("v", nix.app(nix.sel(lib, "concatStringsSep"), "_", nix.thunk(() => nix.app(nix.sel(lib, "splitVersion"), nix.thunk(() => nix.sel(finalAttrs, "version"))))))),
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "./autogen.sh",
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Program to help prevent Repetitive Strain Injury",
         mainProgram: "workrave",
         longDescription: "Workrave is a program that assists in the recovery and prevention of\nRepetitive Strain Injury (RSI). The program frequently alerts you to\ntake micro-pauses, rest breaks and restricts you to your daily limit.\n",

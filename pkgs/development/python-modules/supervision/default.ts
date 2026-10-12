@@ -24,13 +24,13 @@ export default nix.lambda((args) => (() => {
   const scipy = nix.arg($, "scipy");
   const tqdm = nix.arg($, "tqdm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "supervision",
       version: "0.29.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "roboflow",
           repo: "supervision",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["supervision"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Set of easy-to-use utils that will come in handy in any Computer Vision project",
         homepage: "https://github.com/roboflow/supervision",
         changelog: nix.thunk(() => nix.str`https://github.com/roboflow/supervision/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

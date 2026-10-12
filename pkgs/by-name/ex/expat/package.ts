@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const tagFor = (version) => nix.str`R_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}`;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "expat",
       version: "2.8.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => (() => {
             const w = nix.withScope(finalAttrs, null);
             return nix.str`https://github.com/libexpat/libexpat/releases/download/${nix.app(tagFor, nix.thunk(() => nix.lookup(w, "version")))}/${nix.lookup(w, "pname")}-${nix.lookup(w, "version")}.tar.xz`;
@@ -48,11 +48,11 @@ export default nix.lambda((args) => (() => {
   --replace "$"'{_IMPORT_PREFIX}' $out
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(python3, "pkgs"));
           return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           python3: python3,
           xmltodict: nix.thunk(() => nix.attr(from, "xmltodict")),
           hexpat: nix.thunk(() => nix.attr(haskellPackages, "hexpat")),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
           luaexpat: nix.thunk(() => nix.attr(lua55Packages, "luaexpat")),
           ocaml_expat: nix.thunk(() => nix.attr(ocamlPackages, "ocaml_expat")),
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         };
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/libexpat/libexpat/blob/${nix.app(tagFor, nix.thunk(() => nix.sel(finalAttrs, "version")))}/expat/Changes`),
         homepage: "https://libexpat.github.io/",
         description: "Stream-oriented XML parser library written in C",

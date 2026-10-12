@@ -24,15 +24,15 @@ export default nix.lambda((args) => (() => {
   const maintainers = nix.thunk(() => nix.attr(lib, "maintainers"));
   const platforms = nix.thunk(() => nix.attr(lib, "platforms"));
   const twbt_releases = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "0.44.12": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       twbtRelease: "6.54",
       hash: "sha256-cKomZmTLHab9K8k0pZsB2uMf3D5/SVhy2GRusLdp7oE=",
       prerelease: false,
     })),
     "0.47.05": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       twbtRelease: "6.xx",
       dfhackRelease: "0.47.05-r8",
       hash: "sha256-qiNs6iMAUNGiq0kpXqEs4u4Wcrjf6/qA/dzBe947Trc=",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const pname = "twbt";
       const version = nix.thunk(() => nix.sel(release, "twbtRelease"));
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           url: nix.thunk(() => (nix.asBool(nix.eq(version, "6.xx")) ? nix.str`https://github.com/thurin/df-twbt/releases/download/${nix.sel(release, "dfhackRelease")}/twbt-${version}-linux64-${nix.sel(release, "dfhackRelease")}.zip` : nix.str`https://github.com/mifki/df-twbt/releases/download/v${version}/twbt-${version}-linux.zip`)),
           hash: nix.thunk(() => nix.attr(release, "hash")),
         }))));
@@ -52,9 +52,9 @@ export default nix.lambda((args) => (() => {
       const outputs = nix.thunk(() => ["lib", "art", "out"]);
       const nativeBuildInputs = nix.thunk(() => [unzip]);
       const installPhase = "mkdir -p $lib/hack/{plugins,lua} $art/data/art\ncp -a */twbt.plug.so $lib/hack/plugins/\ncp -a *.lua $lib/hack/lua/\ncp -a *.png $art/data/art/\n";
-      const passthru = nix.thunk(() => ({ __proto__: pos$5, dfVersion: dfVersion }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$5, dfVersion: dfVersion }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Plugin for Dwarf Fortress / DFHack that improves various aspects of the game interface",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(maintainers, null);
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         homepage: "https://github.com/mifki/df-twbt",
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

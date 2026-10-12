@@ -31,68 +31,68 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const pin = "1234";
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     name: "phosh",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "zhaofengli"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       phone: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           users: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             users: nix.thunk(() => ({
-              __proto__: pos$3,
-              nixos: nix.thunk(() => ({ __proto__: pos$2, isNormalUser: true, password: pin })),
+              [nix.POS]: pos$3,
+              nixos: nix.thunk(() => ({ [nix.POS]: pos$2, isNormalUser: true, password: pin })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             desktopManager: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               phosh: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 enable: true,
                 user: "nixos",
                 group: "users",
                 phocConfig: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   outputs: nix.thunk(() => ({
-                    __proto__: pos$6,
-                    "Virtual-1": nix.thunk(() => ({ __proto__: pos$5, scale: 2n })),
+                    [nix.POS]: pos$6,
+                    "Virtual-1": nix.thunk(() => ({ [nix.POS]: pos$5, scale: 2n })),
                   })),
                 })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "phosh-mobile-settings"))]),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             services: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               phosh: nix.thunk(() => ({
-                __proto__: pos$13,
-                environment: nix.thunk(() => ({ __proto__: pos$12, WLR_RENDERER: "pixman" })),
+                [nix.POS]: pos$13,
+                environment: nix.thunk(() => ({ [nix.POS]: pos$12, WLR_RENDERER: "pixman" })),
               })),
             })),
           })),
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$18,
-            resolution: nix.thunk(() => ({ __proto__: pos$16, x: 720n, y: 1440n })),
+            [nix.POS]: pos$18,
+            resolution: nix.thunk(() => ({ [nix.POS]: pos$16, x: 720n, y: 1440n })),
             qemu: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               options: nix.thunk(() => ["-vga none -device virtio-gpu-pci,xres=720,yres=1440"]),
             })),
           })),

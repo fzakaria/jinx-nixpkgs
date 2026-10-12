@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ethercat",
       version: "1.6.13",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "etherlab.org",
           repo: "ethercat",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       configureFlags: nix.thunk(() => ["--enable-userlib=yes", "--enable-kernel=no"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         kernelModule: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./kernel-module.nix")), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "IgH EtherCAT Master for Linux",
         homepage: "https://etherlab.org/ethercat",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/etherlab.org/ethercat/-/blob/${nix.sel(finalAttrs, "version")}/NEWS`),

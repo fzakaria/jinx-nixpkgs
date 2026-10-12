@@ -12,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "quarto",
         publisher: "quarto",
         version: "1.138.0",
         hash: "sha256-xwqs28ihgYnk7lPLjGQGwnG7ig2HLT9ZyCg1jiHpmR8=",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: "https://marketplace.visualstudio.com/items/quarto.quarto/changelog",
         description: "Visual Studio Code extension for the Quarto scientific and technical publishing system",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=quarto.quarto",

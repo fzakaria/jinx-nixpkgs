@@ -39,23 +39,23 @@ export default nix.lambda((args) => (() => {
   const rustyV8Version = "130.0.7";
   const rustyV8Target = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "rust", "rustcTarget"));
   const rustyV8Hashes = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "aarch64-apple-darwin": "sha256-9tvQD08OdW6GoNnx/3vgS27D9Aj9YdQdNJ9SgNvwAOo=",
     "aarch64-unknown-linux-gnu": "sha256-vu/ns1q+53FZ98tVCWZmsHYwwRBH1fOnTdBlhjcpkVo=",
     "x86_64-unknown-linux-gnu": "sha256-pkdsuU6bAkcIHEZUJOt5PXdzK424CEgTLXjLtQ80t10=",
   }));
   const librustyV8 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`https://github.com/denoland/rusty_v8/releases/download/v${rustyV8Version}/librusty_v8_release_${rustyV8Target}.a.gz`),
       hash: nix.thunk(() => nix.selOr(rustyV8Hashes, () => nix.builtins.throw(nix.thunk(() => nix.str`no prebuilt librusty_v8 hash for target ${rustyV8Target}`)), nix.key(nix.force(rustyV8Target)))),
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       __structuredAttrs: true,
       pname: "kopuz",
       version: "0.14.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "Kopuz-org",
           repo: "kopuz",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-lu1PaWf02D0dK+IV+fIzIKNr8ORfkSHFnRhnPdXaueI=",
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         RUSTY_V8_ARCHIVE: librustyV8,
         SSL_CERT_FILE: nix.thunk(() => nix.str`${cacert}/etc/ssl/certs/ca-bundle.crt`),
       })),
@@ -105,7 +105,7 @@ runHook postInstall
 )
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Fast, modern music player with Jellyfin and local library support",
         homepage: "https://github.com/Kopuz-org/kopuz",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

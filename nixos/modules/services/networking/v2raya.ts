@@ -27,17 +27,17 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "v2raya"));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         v2raya: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "options"), "mkEnableOption"), "the v2rayA service")),
           package: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "options"), "mkPackageOption"), pkgs, "v2raya", nix.thunk(() => ({})))),
           cliPackage: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "options"), "mkPackageOption"), pkgs, "v2ray", nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               example: "pkgs.xray",
               extraDescription: "This is the package used for overriding the value of the `v2ray` attribute in the package set by `services.v2raya.package`.",
             })))),
@@ -45,34 +45,34 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(config, "services", "v2raya", "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         environment: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           systemPackages: nix.thunk(() => [
-            nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({ __proto__: pos$5, v2ray: nix.thunk(() => nix.sel(cfg, "cliPackage")) })))),
+            nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({ [nix.POS]: pos$5, v2ray: nix.thunk(() => nix.sel(cfg, "cliPackage")) })))),
           ]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             v2raya: nix.thunk(() => (() => {
               const nftablesEnabled = nix.thunk(() => nix.sel(config, "networking", "nftables", "enable"));
               const iptablesServices = nix.thunk(() => nix.concat(["iptables.service"], nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.sel(config, "networking", "enableIPv6")), "ip6tables.service")));
               const tableServices = nix.thunk(() => (nix.asBool(nftablesEnabled) ? ["nftables.service"] : nix.force(iptablesServices)));
               return {
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 unitConfig: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   Description: "v2rayA service",
                   Documentation: "https://github.com/v2rayA/v2rayA/wiki",
                   After: nix.thunk(() => nix.concat(["network.target", "nss-lookup.target"], tableServices)),
                   Wants: nix.thunk(() => ["network.target"]),
                 })),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   User: "root",
-                  ExecStart: nix.thunk(() => nix.str`${nix.app(nix.lookup(w, "getExe"), nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({ __proto__: pos$8, v2ray: nix.thunk(() => nix.sel(cfg, "cliPackage")) })))))} --log-disable-timestamp`),
+                  ExecStart: nix.thunk(() => nix.str`${nix.app(nix.lookup(w, "getExe"), nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({ [nix.POS]: pos$8, v2ray: nix.thunk(() => nix.sel(cfg, "cliPackage")) })))))} --log-disable-timestamp`),
                   Environment: nix.thunk(() => ["V2RAYA_LOG_FILE=/var/log/v2raya/v2raya.log"]),
                   LimitNPROC: 500n,
                   LimitNOFILE: 1000000n,
@@ -94,7 +94,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_1, "elliot"))];

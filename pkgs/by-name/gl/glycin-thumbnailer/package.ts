@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const wrapGAppsNoGuiHook = nix.arg($, "wrapGAppsNoGuiHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "glycin-thumbnailer",
       version: nix.thunk(() => nix.attr(libglycin, "version")),
       src: nix.thunk(() => nix.attr(libglycin, "src")),
@@ -70,13 +70,13 @@ for loader in ${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => n
 done
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "all-loaders": nix.thunk(() => nix.app(nix.sel(glycin_thumbnailer, "override"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               "glycin-loaders": nix.thunk(() => nix.app(nix.sel(glycin_loaders, "override"), nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   enabledLoaders: nix.thunk(() => ["heif", "image-rs", "jxl", "raw", "svg"]),
                 })))),
             })))),
@@ -84,7 +84,7 @@ done
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Glycin thumbnailers for several formats",
         homepage: "https://gitlab.gnome.org/GNOME/glycin",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/glycin/-/tags/${nix.sel(finalAttrs, "version")}`),

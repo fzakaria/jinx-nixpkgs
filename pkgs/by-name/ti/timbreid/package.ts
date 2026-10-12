@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const puredata = nix.arg($, "puredata");
   const fftwSinglePrec = nix.arg($, "fftwSinglePrec");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "0.7.0",
       pname: "timbreid",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://williambrent.conflations.com/pd/timbreID-${nix.sel(finalAttrs, "version")}-src.zip`),
           sha256: "14k2xk5zrzrw1zprdbwx45hrlc7ck8vq4drpd3l455i5r8yk4y6b",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\nmkdir -p $out/\ncp -r *.pd $out/\ncp -r *.pd_linux $out/\ncp -r audio/ $out/\ncp -r data/ $out/\ncp -r doc/ $out/\nrunHook postInstall\n",
       postFixup: "mv $out/share/doc/ $out/\nrm -rf $out/share/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of audio feature analysis externals for puredata",
         homepage: "https://github.com/wbrent/timbreIDLib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

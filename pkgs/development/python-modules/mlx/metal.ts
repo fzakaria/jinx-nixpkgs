@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const macosVariant = nix.argOr($, "macosVariant", () => "14");
   const wheelSources = nix.thunk(() => nix.builtins.import(nix.path(here, "./wheel-sources.nix")));
   const srcs = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (source) => nix.app(fetchPypi, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         pname: "mlx_metal",
         version: nix.thunk(() => nix.attr(wheelSources, "version")),
         format: "wheel",
@@ -34,13 +34,13 @@ export default nix.lambda((args) => (() => {
       const __structuredAttrs = true;
       const src = nix.thunk(() => nix.selOr(srcs, () => nix.builtins.throw(nix.thunk(() => nix.str`mlx-metal: unsupported macOS wheel variant ${macosVariant}`)), nix.key(nix.force(macosVariant))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         macosVariant: macosVariant,
         srcs: srcs,
         updateScript: nix.thunk(() => nix.app(callPackage, nix.path(here, "./update-wheels.nix"), nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Prebuilt Metal runtime for MLX",
         homepage: "https://github.com/ml-explore/mlx",
         changelog: nix.thunk(() => nix.str`https://github.com/ml-explore/mlx/releases/tag/v${version}`),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["aarch64-darwin"]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

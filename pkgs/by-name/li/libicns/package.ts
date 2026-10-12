@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const openjpeg = nix.arg($, "openjpeg");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libicns",
       version: "0.8.1-unstable-2022-04-10",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: "libicns",
           url: "https://git.code.sf.net/p/icns/code",
           rev: "921f972c461c505e5ac981aaddbdfdde97e8bb2b",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => [libpng, openjpeg, zlib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for manipulation of the Mac OS icns resource format",
         homepage: "https://icns.sourceforge.io",
         license: nix.thunk(() => (() => {

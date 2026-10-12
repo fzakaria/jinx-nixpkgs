@@ -14,9 +14,9 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const moreutils = nix.arg($, "moreutils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "jupyter",
         publisher: "ms-toolsai",
         version: "2025.9.1",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [jq, moreutils]),
       postPatch: "# Patch 'packages.json' so that the expected '__metadata' field exists.\n# This works around observed extension load failure on vscode's attempt\n# to rewrite 'packages.json' with this new information.\nprint_jq_query() {\n    cat <<\"EOF\"\n.__metadata = {\n  \"id\": \"6c2f1801-1e7f-45b2-9b5c-7782f1e076e8\",\n  \"publisherId\": \"ac8eb7c9-3e59-4b39-8040-f0484d8170ce\",\n  \"publisherDisplayName\": \"Microsoft\",\n  \"installedTimestamp\": 0\n}\nEOF\n}\njq \"$(print_jq_query)\" ./package.json | sponge ./package.json\n# Add a link from temp to /tmp so that the extension gets a writable\n# directory to write to.\nln -s /tmp temp\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Jupyter extension for vscode",
         homepage: "https://github.com/microsoft/vscode-jupyter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

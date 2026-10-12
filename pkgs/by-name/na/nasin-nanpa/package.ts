@@ -18,18 +18,18 @@ export default nix.lambda((args) => (() => {
       const pname = "nasin-nanpa";
       const version = "4.0.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ETBCOR/nasin-nanpa/releases/download/n${version}/nasin-nanpa-${version}.otf`),
           hash: "sha256-eWPcFUo0yE2r4cL3kyFBcdHp0RBKUF3kgYqV5B55w0M=",
         }))));
       const dontUnpack = true;
       const installPhase = "mkdir -p $out/share/fonts/opentype\ncp $src $out/share/fonts/opentype/nasin-nanpa.otf\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/ETBCOR/nasin-nanpa",
         description: "UCSUR OpenType monospaced font for the Toki Pona writing system, Sitelen Pona (\"main\" version; uses UCSUR and ligatures from latin characters)",
         longDescription: "ni li nasin pi sitelen pona.\nsitelen ale pi nasin ni li sama mute weka.\nsitelen pi nasin ni li lon nasin UCSUR kin.\n",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

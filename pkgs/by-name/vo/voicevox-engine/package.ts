@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const voicevox_core = nix.arg($, "voicevox-core");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "voicevox-engine",
       version: "0.25.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "VOICEVOX",
           repo: "voicevox_engine",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -87,9 +87,9 @@ popd
       })()),
       disabledTests: nix.thunk(() => ["test_OpenAPIの形が変わっていないことを確認"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         resources: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: nix.thunk(() => nix.str`voicevox-resource-${nix.sel(finalAttrs, "version")}`),
             owner: "VOICEVOX",
             repo: "voicevox_resource",
@@ -99,7 +99,7 @@ popd
         pyopenjtalk: nix.thunk(() => nix.app(nix.sel(python3Packages, "callPackage"), nix.path(here, "./pyopenjtalk.nix"), nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/VOICEVOX/voicevox_engine/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Engine for the VOICEVOX speech synthesis software",
         homepage: "https://github.com/VOICEVOX/voicevox_engine",

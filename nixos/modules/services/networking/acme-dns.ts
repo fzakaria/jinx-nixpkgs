@@ -47,59 +47,59 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const domain = "acme-dns.example.com";
   return {
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     options: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       services: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         "acme-dns": nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           enable: nix.thunk(() => nix.app(mkEnableOption, "acme-dns")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "acme-dns", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               description: "Free-form settings written directly to the `acme-dns.cfg` file.\nRefer to <https://github.com/joohoi/acme-dns/blob/master/README.md#configuration> for supported values.\n",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   freeformType: nix.thunk(() => nix.sel(format, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     general: nix.thunk(() => ({
-                      __proto__: pos$7,
+                      [nix.POS]: pos$7,
                       listen: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$1,
+                          [nix.POS]: pos$1,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           description: "IP+port combination to bind and serve the DNS server on.",
                           default: "[::]:53",
                           example: "127.0.0.1:53",
                         })))),
                       protocol: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$2,
+                          [nix.POS]: pos$2,
                           type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["both", "both4", "both6", "udp", "udp4", "udp6", "tcp", "tcp4", "tcp6"]))),
                           description: "Protocols to serve DNS responses on.",
                           default: "both",
                         })))),
                       domain: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$3,
+                          [nix.POS]: pos$3,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           description: "Domain name to serve the requests off of.",
                           example: domain,
                         })))),
                       nsname: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           description: "Zone name server.",
                           example: domain,
                         })))),
                       nsadmin: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$5,
+                          [nix.POS]: pos$5,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           description: "Zone admin email address for `SOA`.",
                           example: "admin.example.com",
                         })))),
                       records: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                           description: "Predefined DNS records served in addition to the `_acme-challenge` TXT records.",
                           example: nix.thunk(() => nix.app(literalExpression, nix.thunk(() => nix.str`[
@@ -114,15 +114,15 @@ export default nix.lambda((args) => (() => {
                         })))),
                     })),
                     database: nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       engine: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["sqlite", "postgres"]))),
                           description: "Database engine to use.",
                           default: "sqlite",
                         })))),
                       connection: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           description: "Database connection string.",
                           example: "postgres://user:password@localhost/acmedns",
@@ -130,39 +130,39 @@ export default nix.lambda((args) => (() => {
                         })))),
                     })),
                     api: nix.thunk(() => ({
-                      __proto__: pos$15,
+                      [nix.POS]: pos$15,
                       ip: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$11,
+                          [nix.POS]: pos$11,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           description: "IP to bind the HTTP API on.",
                           default: "[::]",
                           example: "127.0.0.1",
                         })))),
                       port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$12,
+                          [nix.POS]: pos$12,
                           type: nix.thunk(() => nix.sel(types, "port")),
                           description: "Listen port for the HTTP API.",
                           default: 8080n,
                           apply: nix.builtins.toString,
                         })))),
                       disable_registration: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$13,
+                          [nix.POS]: pos$13,
                           type: nix.thunk(() => nix.sel(types, "bool")),
                           description: "Whether to disable the HTTP registration endpoint.",
                           default: false,
                           example: true,
                         })))),
                       tls: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["letsencrypt", "letsencryptstaging", "cert", "none"]))),
                           description: "TLS backend to use.",
                           default: "none",
                         })))),
                     })),
                     logconfig: nix.thunk(() => ({
-                      __proto__: pos$17,
+                      [nix.POS]: pos$17,
                       loglevel: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$16,
+                          [nix.POS]: pos$16,
                           type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["error", "warning", "info", "debug"]))),
                           description: "Level to log on.",
                           default: "info",
@@ -175,17 +175,17 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         systemd: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             "acme-dns": nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 ExecStart: nix.thunk(() => [
                   "",
                   nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} -c ${nix.app(nix.sel(format, "generate"), "acme-dns.toml", nix.thunk(() => nix.sel(cfg, "settings")))}`),

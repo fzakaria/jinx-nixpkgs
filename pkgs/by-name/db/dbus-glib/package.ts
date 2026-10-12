@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const dbus = nix.arg($, "dbus");
   const glib = nix.arg($, "glib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dbus-glib",
       version: "0.114",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dbus.freedesktop.org/releases/dbus-glib/dbus-glib-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-wJxcCFsqDjkbjufXg6HWP+RE6WcXzBgU1htej8KCenw=",
         })))),
@@ -36,9 +36,9 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [dbus, glib]),
       configureFlags: nix.thunk(() => nix.concat([nix.thunk(() => nix.str`--exec-prefix=${nix.builtins.placeholder("dev")}`)], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => nix.str`--with-dbus-binding-tool=${nix.sel(buildPackages, "dbus-glib", "dev")}/bin/dbus-binding-tool`)))),
       doCheck: false,
-      passthru: nix.thunk(() => ({ __proto__: pos$2, dbus: dbus, glib: glib })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, dbus: dbus, glib: glib })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://dbus.freedesktop.org",
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);

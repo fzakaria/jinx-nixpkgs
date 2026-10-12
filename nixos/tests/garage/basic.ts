@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const package$ = nix.arg($, "package");
   const testScriptSetup = nix.arg($, "testScriptSetup");
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     name: nix.thunk(() => nix.str`garage-${nix.sel(package$, "version")}-basic`),
     nodes: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       single_node: nix.thunk(() => nix.app(mkNode, nix.thunk(() => ({
-          __proto__: pos$3,
-          extraSettings: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(package$, "version")), "2")) ? { __proto__: pos$1, replication_factor: 1n, consistency_mode: "consistent" } : { __proto__: pos$2, replication_mode: "none" })),
+          [nix.POS]: pos$3,
+          extraSettings: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(package$, "version")), "2")) ? { [nix.POS]: pos$1, replication_factor: 1n, consistency_mode: "consistent" } : { [nix.POS]: pos$2, replication_mode: "none" })),
         })))),
     })),
     testScript: nix.thunk(() => nix.str`${testScriptSetup}

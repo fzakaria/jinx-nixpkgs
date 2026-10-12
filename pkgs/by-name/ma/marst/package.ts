@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "marst";
       const version = "2.8";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/${pname}/${pname}-${version}.tar.gz`),
           hash: "sha256-139HA7C0S1C+V5CPnVVu5sO+3ZfWOMQpSdauyE+AcLo=",
         }))));
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
 install -m644 doc/marst.pdf -Dt $out/share/doc/${pname}/
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.gnu.org/software/marst/",
         description: "Algol-60-to-C translator",
         longDescription: "MARST is an Algol-to-C translator. It automatically translates programs\nwritten on the algorithmic language Algol 60 to the C programming\nlanguage.\n\nThe MARST package includes three main components:\n\n- the translator, MARST, that translates Algol 60 programs to the C\n  programming language.\n\n- the library, ALGLIB, that contains precompiled standard Algol 60\n  procedures and other necessary library routines. This library is to be\n  used at linking stage. (In the distribution the name libalgol.a is used\n  for this library.)\n\n- the converter, MACVT, that allows to convert existing Algol 60 programs\n  from some other representations to MARST representation.\n",
@@ -36,7 +36,7 @@ install -m644 doc/marst.pdf -Dt $out/share/doc/${pname}/
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

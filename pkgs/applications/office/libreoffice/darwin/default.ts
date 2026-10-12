@@ -20,16 +20,16 @@ export default nix.lambda((args) => (() => {
   const scriptName = "soffice";
   const version = "26.2.4";
   const dist = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     url: nix.thunk(() => nix.str`https://download.documentfoundation.org/libreoffice/stable/${version}/mac/aarch64/LibreOffice_${version}_MacOS_aarch64.dmg`),
     sha256: "64e0ad05564554eeee639d49b08b20908a38d4722ec95f1620d05c99bcbe9fb1",
   }));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: version,
       pname: "libreoffice",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.attr(dist, "url")),
           sha256: nix.thunk(() => nix.attr(dist, "sha256")),
         })))),
@@ -46,7 +46,7 @@ chmod +x $out/bin/${scriptName}
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => (() => {
           const defaultNixFile = nix.thunk(() => nix.builtins.toString(nix.path(here, "./default.nix")));
           const updateNix = nix.thunk(() => nix.builtins.toString(nix.path(here, "./update.nix")));
@@ -59,7 +59,7 @@ update-source-version libreoffice-bin $newVersion $newSha256 --file=${defaultNix
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Comprehensive, professional-quality productivity suite, a variant of openoffice.org",
         homepage: "https://libreoffice.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

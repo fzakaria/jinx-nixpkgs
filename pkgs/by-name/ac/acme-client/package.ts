@@ -17,20 +17,20 @@ export default nix.lambda((args) => (() => {
   const libressl = nix.arg($, "libressl");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(gccStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "acme-client",
       version: "1.3.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://files.wolfsden.cz/releases/acme-client/acme-client-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Mq+6epLcgEnlQ0JAPYCxGQu7EM0VS0Y32PYuvEuliAE=",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libbsd, libressl]),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Secure ACME/Let's Encrypt client",
         homepage: "https://git.wolfsden.cz/acme-client-portable",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

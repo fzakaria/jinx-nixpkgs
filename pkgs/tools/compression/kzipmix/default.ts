@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "kzipmix";
       const version = "20200115";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.jonof.id.au/files/kenutils/kzipmix-${version}-linux.tar.gz`),
           hash: "sha256-ePgye0D6/ED53zx6xffLnYhkjed7SPU4BLOZQr9E3yA=",
         }))));
@@ -27,7 +27,7 @@ patchelf --set-interpreter ${nix.sel(stdenv, "cc", "libc")}/lib/ld-linux.so.2 $o
 patchelf --set-interpreter ${nix.sel(stdenv, "cc", "libc")}/lib/ld-linux.so.2 $out/bin/zipmix
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool that aggressively optimizes the sizes of Zip archives",
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
@@ -36,7 +36,7 @@ patchelf --set-interpreter ${nix.sel(stdenv, "cc", "libc")}/lib/ld-linux.so.2 $o
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         homepage: "http://advsys.net/ken/utils.htm",
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.3.post17";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "adafruit",
           repo: "Adafruit_nRF52_nrfutil",
           tag: version,
@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-tests.patch",
             url: "https://github.com/adafruit/Adafruit_nRF52_nrfutil/commit/e5fbcc8ee5958041db38c04139ba686bf7d1b845.patch",
             hash: "sha256-0tbJldGtYcDdUzA3wZRv0lenXVn6dqV016U9nMpQ6/w=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "fix-test-test_get_vk_pem.patch",
             url: "https://github.com/adafruit/Adafruit_nRF52_nrfutil/commit/f42cee3c2d7c8d0911f27ba24d6a140083cb85cf.patch",
             hash: "sha256-7WoRqPKc8O5EYK7Fj1WrMJREwhueiVpkEizIfVnEPBU=",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "mkdir test-reports\n";
       const pythonImportsCheck = nix.thunk(() => ["nordicsemi"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/adafruit/Adafruit_nRF52_nrfutil",
         description: "Modified version of Nordic's nrfutil 0.5.x for use with the Adafruit Feather nRF52",
         mainProgram: "adafruit-nrfutil",
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

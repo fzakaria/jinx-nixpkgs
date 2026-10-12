@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const version = "1.18.1";
   const build = "1dffdcab";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://cdn.volanta.app/software/volanta-app/${version}-${build}/volanta-${version}.AppImage`),
       hash: "sha256-sNrTus5AstRy9eHJhiXADotGpcjpARczpKX3DuYqSco=",
     }))));
-  const appImageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+  const appImageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       src: src,
@@ -42,7 +42,7 @@ wrapProgram $out/bin/volanta \\
   --add-flags "\\\${NIXOS_OZONE_WL:+\\\${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --wayland-text-input-version=3}}"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         src: src,
         build: build,
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-volanta", nix.thunk(() => nix.str`LATEST_YML=$(curl --fail --silent https://api.volanta.app/api/v1/ClientUpdate/latest-linux.yml)
@@ -53,7 +53,7 @@ ${nix.app(nix.sel(lib, "getExe"), nix_update)} volanta --version $VERSION
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Easy-to-use smart flight tracker that integrates all your flight data across all major flightsims",
         homepage: "https://volanta.app/",
         maintainers: nix.thunk(() => (() => {

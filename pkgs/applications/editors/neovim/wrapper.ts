@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       nix.assert_((!nix.asBool(!nix.eq(packpathDirs, null)) || nix.asBool(nix.builtins.throw("packpathdirs is not used anymore: pass a list of neovim plugin derivations in 'plugins' instead."))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/applications/editors/neovim/wrapper.nix:174:5");
       return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
           const rubyEnv = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               name: "neovim-ruby-env",
               gemdir: nix.path(here, "./ruby_provider"),
               postBuild: nix.thunk(() => nix.str`ln -sf ${ruby}/bin/* $out/bin
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
           const vimPackageInfo = nix.thunk(() => nix.app(nix.sel(neovimUtils, "makeVimPackageInfo"), nix.thunk(() => nix.sel(finalAttrs, "plugins"))));
           const neovimRcContent$ = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.selOr(vimPackageInfo, () => "", "userPluginConfigs", "viml"), "")), nix.thunk(() => nix.sel(vimPackageInfo, "userPluginConfigs", "viml"))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(neovimRcContent, null)), neovimRcContent)))));
           const packpathDirs_1 = nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             myNeovimPackages: nix.thunk(() => nix.sel(vimPackageInfo, "vimPackage")),
           }));
           const finalPackdir = nix.thunk(() => nix.app(nix.sel(neovimUtils, "packDir"), packpathDirs_1));
@@ -100,7 +100,7 @@ package.cpath = "${generatedLuaCPath}".. ";" .. package.cpath
               nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(finalAttrs, "runtimeDeps")))),
             ]))))));
           const providerLuaRc = nix.thunk(() => (() => {
-            const hostPython3 = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`nvim-host-${nix.sel(python3Env, "name")}`), nix.thunk(() => ({ __proto__: pos$3, nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`makeWrapper ${nix.sel(python3Env, "interpreter")} $out/bin/nvim-python3 --unset PYTHONPATH --unset PYTHONSAFEPATH
+            const hostPython3 = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`nvim-host-${nix.sel(python3Env, "name")}`), nix.thunk(() => ({ [nix.POS]: pos$3, nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`makeWrapper ${nix.sel(python3Env, "interpreter")} $out/bin/nvim-python3 --unset PYTHONPATH --unset PYTHONSAFEPATH
 `)));
             const genProviderCommand = (prog) => (withProg) => (exec) => (nix.asBool(withProg) ? nix.str`vim.g.${prog}_host_prog='${exec}'` : nix.str`vim.g.loaded_${prog}_provider=0`);
             return nix.app(nix.sel(lib, "concatStringsSep"), ";", nix.thunk(() => [
@@ -129,7 +129,7 @@ package.cpath = "${generatedLuaCPath}".. ";" .. package.cpath
           const pname = "neovim";
           const version = nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), neovim_unwrapped));
           return {
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: nix.thunk(() => nix.str`${pname}-${version}${extraName}`),
             pname: pname,
             version: version,
@@ -210,7 +210,7 @@ runHook postBuild
             vimPackage: nix.thunk(() => nix.sel(vimPackageInfo, "vimPackage")),
             checkPhase: "runHook preCheck\n\n$out/bin/nvim -i NONE -e +quitall!\nrunHook postCheck\n",
             passthru: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               providerLuaRc: providerLuaRc,
               packpathDirs: packpathDirs_1,
               unwrapped: neovim_unwrapped,
@@ -220,7 +220,7 @@ runHook postBuild
             meta: nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(neovim_unwrapped, "meta"));
               return {
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               description: nix.thunk(() => nix.attr(from, "description")),
               longDescription: nix.thunk(() => nix.attr(from, "longDescription")),
               homepage: nix.thunk(() => nix.attr(from, "homepage")),

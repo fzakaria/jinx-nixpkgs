@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "polytopes_db",
       version: "20170220",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sageupstream/polytopes_db/polytopes_db-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "1q0cd811ilhax4dsj9y5p7z8prlalqr7k9mzq178c03frbgqny6b",
         })))),
       installPhase: "mkdir -p \"$out/share/reflexive_polytopes\"\ncp -R * \"$out/share/reflexive_polytopes/\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Reflexive polytopes database",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

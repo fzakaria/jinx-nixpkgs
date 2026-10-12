@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const tiledb = nix.arg($, "tiledb");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "spdlog",
       version: "1.17.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gabime",
           repo: "spdlog",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/gabime/spdlog/commit/0f7562a0f9273cfc71fddc6ae52ebff7a490fa04.patch",
             name: "tests-timezone-Provide-DST-rules-when-setting-TZ-on-POSIX-systems",
             hash: "sha256-jsw3AgTXeRdU2ncuzAkYp6SPrBKntz2I3NLOjAPkW78=",
@@ -57,12 +57,12 @@ export default nix.lambda((args) => (() => {
       postInstall: "mkdir -p $out/share/doc/spdlog\ncp -rv ../example $out/share/doc/spdlog\n\nsubstituteInPlace $dev/include/spdlog/tweakme.h \\\n  --replace-fail \\\n    '// #define SPDLOG_FMT_EXTERNAL' \\\n    '#define SPDLOG_FMT_EXTERNAL'\n",
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, bear: bear, tiledb: tiledb })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, bear: bear, tiledb: tiledb })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Very fast, header only, C++ logging library",
         homepage: "https://github.com/gabime/spdlog",
         changelog: nix.thunk(() => nix.str`https://github.com/gabime/spdlog/releases/tag/v${nix.sel(finalAttrs, "version")}`),

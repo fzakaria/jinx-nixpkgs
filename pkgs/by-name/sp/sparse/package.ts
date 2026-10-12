@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const GCC_BASE = nix.thunk(() => nix.str`${nix.sel(stdenv, "cc", "cc")}/lib/gcc/${nix.sel(stdenv, "hostPlatform", "uname", "processor")}-unknown-linux-gnu/${nix.sel(stdenv, "cc", "cc", "version")}`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "sparse",
       version: "0.6.5-rc1-unstable-2025-12-18",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.kernel.org/pub/scm/devel/sparse/sparse.git",
           rev: "37156835e3d725b6d750f000be33ba3814bb2310",
           hash: "sha256-662n1ENn8ZsiBtSBx6Vr1MrRAwzvob0Y1ifnBVtfB5k=",
@@ -42,14 +42,14 @@ sed -i 's|qx(\\$ccom -print-file-name=)|"${GCC_BASE}"|' cgcc
       buildFlags: nix.thunk(() => [nix.thunk(() => nix.str`GCC_BASE:=${GCC_BASE}`)]),
       hardeningDisable: nix.thunk(() => ["fortify3"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "simple-execution": nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Semantic parser for C",
         homepage: "https://git.kernel.org/pub/scm/devel/sparse/sparse.git/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sql_exporter";
       const version = "0.9";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "justwatchcom",
           repo: "sql_exporter",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -41,18 +41,18 @@ export default nix.lambda((args) => (() => {
         ];
       })());
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: prometheus_sql_exporter,
               command: "sql_exporter -version",
             })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Flexible SQL exporter for Prometheus",
         mainProgram: "sql_exporter",
         homepage: "https://github.com/justwatchcom/sql_exporter",
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "justinas"))];
         })()),
       }));
-      return { __proto__: pos$6, pname, version, src, vendorHash, ldflags, passthru, meta };
+      return { [nix.POS]: pos$6, pname, version, src, vendorHash, ldflags, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

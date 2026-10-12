@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const gnugrep = nix.arg($, "gnugrep");
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ipamjfont",
       version: "006.01",
       src: nix.thunk(() => (() => {
         const suffix = nix.thunk(() => nix.app(nix.sel(lib, "strings", "replaceString"), ".", "", nix.thunk(() => nix.sel(finalAttrs, "version"))));
         return nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://dforest.watch.impress.co.jp/library/i/ipamjfont/10750/ipamjm${suffix}.zip`),
             hash: "sha256-Rft8hmxm3D4hOaLaSYDfD14oarDIHUQkMZX+/ZDD4m0=",
             stripRoot: false,
@@ -34,9 +34,9 @@ export default nix.lambda((args) => (() => {
       })()),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-updater`),
               runtimeInputs: nix.thunk(() => [curl, gnugrep, common_updater_scripts]),
               text: nix.thunk(() => nix.str`suffix="$(
@@ -49,7 +49,7 @@ update-source-version '${nix.sel(finalAttrs, "pname")}' "$version" --ignore-same
             })))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Japanese Mincho font implementing IVS compliant with Hanyo-Denshi collection",
         downloadPage: "https://forest.watch.impress.co.jp/library/software/ipamjfont/",
         homepage: "https://moji.or.jp/mojikiban/font/",

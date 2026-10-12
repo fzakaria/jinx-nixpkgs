@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "p910nd",
       version: "0.97",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kenyapcomau",
           repo: "p910nd",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       installPhase: "runHook preInstall\n\ninstall -Dm555 -t $out/bin p910nd\ninstall -Dm444 -t $out/share/doc/p910nd *.md\ninstallManPage p910nd.?\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Small printer daemon passing jobs directly to the printer",
         longDescription: "p910nd is a small printer daemon intended for diskless platforms that\ndoes not spool to disk but passes the job directly to the printer.\nNormally a lpr daemon on a spooling host connects to it with a TCP\nconnection on port 910n (where n=0, 1, or 2 for lp0, 1 and 2\nrespectively). p910nd is particularly useful for diskless platforms.\nCommon Unix Printing System (CUPS) supports this protocol, it's called\nthe AppSocket protocol and has the scheme socket://. LPRng also supports\nthis protocol and the syntax is lp=remotehost%9100 in /etc/printcap.\n",
         homepage: "https://github.com/kenyapcomau/p910nd",

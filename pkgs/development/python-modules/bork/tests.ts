@@ -14,9 +14,9 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const pytest = nix.arg($, "pytest");
   return {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     "pytest-network": nix.thunk(() => nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "bork-pytest-network",
         nativeBuildInputs: nix.thunk(() => [bork, cacert, git, pytest]),
         script: nix.thunk(() => nix.str`# Copy the source tree over, and make it writeable

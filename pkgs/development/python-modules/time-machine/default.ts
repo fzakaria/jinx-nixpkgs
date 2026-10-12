@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const freezegun = nix.arg($, "freezegun");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "time-machine",
       version: "3.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "adamchainz",
           repo: "time-machine",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [python_dateutil]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, cli: nix.thunk(() => [tokenize_rt]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, cli: nix.thunk(() => [tokenize_rt]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([freezegun, pytestCheckHook], nix.sel(finalAttrs, "passthru", "optional-dependencies", "cli"))),
       disabledTests: nix.thunk(() => [
         "test_destination_string_naive",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["time_machine"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Travel through time in your tests",
         homepage: "https://github.com/adamchainz/time-machine",
         changelog: nix.thunk(() => nix.str`https://github.com/adamchainz/time-machine/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.rst`),

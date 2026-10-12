@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const trustme = nix.arg($, "trustme");
   const yarl = nix.arg($, "yarl");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "python-socks",
       version: "2.8.1",
       pyproject: true,
       __darwinAllowLocalNetworking: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "romis2012",
           repo: "python-socks",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [trio, curio, async_timeout]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         trio: nix.thunk(() => [trio]),
         curio: nix.thunk(() => [curio]),
         anyio: nix.thunk(() => [anyio]),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["python_socks"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/romis2012/python-socks/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Core proxy client (SOCKS4, SOCKS5, HTTP) functionality for Python",
         homepage: "https://github.com/romis2012/python-socks",

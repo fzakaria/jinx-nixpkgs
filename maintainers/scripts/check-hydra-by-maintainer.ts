@@ -13,8 +13,8 @@ export default nix.lambda((args) => (() => {
   const short = nix.argOr($, "short", () => false);
   const extra = nix.argOr($, "extra", () => "");
   const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./../../default.nix")), nix.thunk(() => ({
-      __proto__: pos$2,
-      config: nix.thunk(() => ({ __proto__: pos$1, allowAliases: false })),
+      [nix.POS]: pos$2,
+      config: nix.thunk(() => ({ [nix.POS]: pos$1, allowAliases: false })),
     }))));
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
   const maintainer_ = nix.thunk(() => nix.sel(pkgs, "lib", "maintainers", nix.key(nix.force(maintainer))));
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       })(), set)));
   const packages = nix.thunk(() => nix.app(nix.builtins.trace(nix.thunk(() => nix.str`evaluating list of packages for maintainer: ${maintainer}`), packagesWith), (name) => (pkg) => (nix.asBool((nix.asBool(nix.builtins.hasAttr("meta", pkg)) && nix.asBool(nix.builtins.hasAttr("maintainers", nix.thunk(() => nix.sel(pkg, "meta")))))) ? (nix.asBool(nix.builtins.isList(nix.thunk(() => nix.sel(pkg, "meta", "maintainers")))) ? nix.builtins.elem(maintainer_, nix.thunk(() => nix.sel(pkg, "meta", "maintainers"))) : nix.eq(maintainer_, nix.sel(pkg, "meta", "maintainers"))) : false), (name) => nix.force(name), "", pkgs));
   return nix.app(nix.sel(pkgs, "stdenvNoCC", "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "check-hydra-by-maintainer",
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "hydra-check"))]),
       buildCommand: "echo \"\"\necho \"----------------------------------------------------------------\"\necho \"\"\necho \"nix-shell maintainers/scripts/check-hydra-by-maintainer.nix --argstr maintainer yourname\"\necho \"\"\necho \"nix-shell maintainers/scripts/check-hydra-by-maintainer.nix --argstr maintainer yourname --arg short true\"\necho \"\"\necho \"nix-shell maintainers/scripts/check-hydra-by-maintainer.nix --argstr maintainer yourname --argstr extra \\\"--json\\\"\"\necho \"\"\necho \"----------------------------------------------------------------\"\nexit 1\n",

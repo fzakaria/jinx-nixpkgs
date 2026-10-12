@@ -109,9 +109,9 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "power", "ups"));
   const defaultPort = 3493n;
-  const envVars = nix.thunk(() => ({ __proto__: pos$1, NUT_CONFPATH: "/etc/nut", NUT_STATEPATH: "/var/lib/nut" }));
+  const envVars = nix.thunk(() => ({ [nix.POS]: pos$1, NUT_CONFPATH: "/etc/nut", NUT_STATEPATH: "/var/lib/nut" }));
   const nutFormat = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     type: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
       const singleAtom = nix.thunk(() => nix.update(nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -119,7 +119,7 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w, "int")),
             nix.thunk(() => nix.lookup(w, "float")),
             nix.thunk(() => nix.lookup(w, "str")),
-          ])))), { __proto__: pos$2, description: "atom (null, bool, int, float or string)" }));
+          ])))), { [nix.POS]: pos$2, description: "atom (null, bool, int, float or string)" }));
       return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
             singleAtom,
             nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.app(nix.lookup(w, "nonEmptyListOf"), singleAtom)))),
@@ -132,8 +132,8 @@ export default nix.lambda((args) => (() => {
           return (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "hasInfix"), " ", str)) && nix.asBool(!nix.asBool((nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), "\"", str)) && nix.asBool(nix.app(nix.sel(lib, "hasSuffix"), "\"", str))))))) ? nix.str`"${str}"` : nix.force(str));
         })()));
       return nix.app(nix.sel(pkgs, "writeText"), name, nix.thunk(() => nix.app(nix.sel(lib, "generators", "toKeyValue"), nix.thunk(() => ({
-            __proto__: pos$4,
-            mkKeyValue: nix.thunk(() => nix.app(nix.sel(lib, "generators", "mkKeyValueDefault"), nix.thunk(() => ({ __proto__: pos$3, mkValueString: mkValueString })), " ")),
+            [nix.POS]: pos$4,
+            mkKeyValue: nix.thunk(() => nix.app(nix.sel(lib, "generators", "mkKeyValueDefault"), nix.thunk(() => ({ [nix.POS]: pos$3, mkValueString: mkValueString })), " ")),
             listsAsDuplicateKeys: true,
           })), normalizedValue)));
     })(),
@@ -164,52 +164,52 @@ chmod u-w "${target}"
     const name = nix.arg($_1, "name");
     const config_1 = nix.arg($_1, "config");
     return {
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       options: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         driver: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             description: "Specify the program to run to talk to this UPS.  apcsmart,\nbestups, and sec are some examples.\n",
           })))),
         port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             description: "The serial port to which your UPS is connected.  /dev/ttyS0 is\nusually the first port on Linux boxes, for example.\n",
           })))),
         shutdownOrder: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             default: 0n,
             type: nix.thunk(() => nix.sel(lib, "types", "int")),
             description: "When you have multiple UPSes on your system, you usually need to\nturn them off in a certain order.  upsdrvctl shuts down all the\n0s, then the 1s, 2s, and so on.  To exclude a UPS from the\nshutdown sequence, set this to -1.\n",
           })))),
         maxStartDelay: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             default: null,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "uniq"), nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "int")))))),
             description: "This can be set as a global variable above your first UPS\ndefinition and it can also be set in a UPS section.  This value\ncontrols how long upsdrvctl will wait for the driver to finish\nstarting.  This keeps your system from getting stuck due to a\nbroken driver or UPS.\n",
           })))),
         description: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             default: "",
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             description: "Description of the UPS.\n",
           })))),
         directives: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             default: [],
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             description: "List of configuration directives for this UPS.\n",
           })))),
         summary: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             default: "",
             type: nix.thunk(() => nix.sel(lib, "types", "lines")),
             description: "Lines which would be added inside ups.conf for handling this UPS.\n",
           })))),
       })),
       config: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         directives: nix.thunk(() => nix.app(nix.sel(lib, "mkOrder"), 10n, nix.thunk(() => nix.concat([
             nix.thunk(() => nix.str`driver = ${nix.sel(config_1, "driver")}`),
             nix.thunk(() => nix.str`port = ${nix.sel(config_1, "port")}`),
@@ -221,16 +221,16 @@ chmod u-w "${target}"
     };
   })(), formals$2);
   const listenOptions = nix.thunk(() => ({
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           type: nix.thunk(() => nix.sel(lib, "types", "str")),
           description: "Address of the interface for `upsd` to listen on.\nSee `man upsd.conf` for details.\n",
         })))),
       port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           type: nix.thunk(() => nix.sel(lib, "types", "port")),
           default: defaultPort,
           description: "TCP port for `upsd` to listen on.\nSee `man upsd.conf` for details.\n",
@@ -238,37 +238,37 @@ chmod u-w "${target}"
     })),
   }));
   const upsdOptions = nix.thunk(() => ({
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     options: nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalMD"), "`true` if `mode` is one of `standalone`, `netserver`")),
           description: "Whether to enable `upsd`.",
         })))),
       listen: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           type: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
             return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), listenOptions)));
           })()),
           default: [],
           example: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$21, address: "192.168.50.1" })),
-            nix.thunk(() => ({ __proto__: pos$22, address: "::1", port: 5923n })),
+            nix.thunk(() => ({ [nix.POS]: pos$21, address: "192.168.50.1" })),
+            nix.thunk(() => ({ [nix.POS]: pos$22, address: "::1", port: 5923n })),
           ]),
           description: "Address of the interface for `upsd` to listen on.\nSee `man upsd` for details`.\n",
         })))),
       extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           type: nix.thunk(() => nix.sel(lib, "types", "lines")),
           default: "",
           description: "Additional lines to add to `upsd.conf`.\n",
         })))),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), nix.thunk(() => nix.sel(cfg, "mode")), nix.thunk(() => ["standalone", "netserver"]))))),
     })),
   }));
@@ -277,69 +277,69 @@ chmod u-w "${target}"
     const name = nix.arg($_1, "name");
     const config_1 = nix.arg($_1, "config");
     return {
-      __proto__: pos$35,
+      [nix.POS]: pos$35,
       options: nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         system: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             default: name,
             description: "Identifier of the UPS to monitor, in this form: `<upsname>[@<hostname>[:<port>]]`\nSee `upsmon.conf` for details.\n",
           })))),
         powerValue: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             type: nix.thunk(() => nix.sel(lib, "types", "int")),
             default: 1n,
             description: "Number of power supplies that the UPS feeds on this system.\nSee `upsmon.conf` for details.\n",
           })))),
         user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             description: "Username from `upsd.users` for accessing this UPS.\nSee `upsmon.conf` for details.\n",
           })))),
         passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalMD"), "power.ups.users.${user}.passwordFile")),
             description: "The full path to a file containing the password from\n`upsd.users` for accessing this UPS. The password file\nis read on service start.\nSee `upsmon.conf` for details.\n",
           })))),
         type: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             default: "master",
             description: "The relationship with `upsd`.\nSee `upsmon.conf` for details.\n",
           })))),
       })),
       config: nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(cfg, "users", nix.key(nix.sel(config_1, "user")), "passwordFile")))),
       })),
     };
   })(), formals$3);
   const upsmonOptions = nix.thunk(() => ({
-    __proto__: pos$44,
+    [nix.POS]: pos$44,
     options: nix.thunk(() => ({
-      __proto__: pos$41,
+      [nix.POS]: pos$41,
       enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalMD"), "`true` if `mode` is one of `standalone`, `netserver`, `netclient`")),
           description: "Whether to enable `upsmon`.",
         })))),
       user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           type: nix.thunk(() => nix.sel(lib, "types", "str")),
           default: "nutmon",
           description: "User to run `upsmon` as. `upsmon.conf` will have its owner set to this\nuser. If not specified, a default user will be created.\n",
         })))),
       group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           type: nix.thunk(() => nix.sel(lib, "types", "str")),
           default: "nutmon",
           description: "Group for the default `nutmon` user. If the default user is created\nand this is not specified, a default group will be created.\n",
         })))),
       monitor: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           type: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
             return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), monitorOptions)));
@@ -348,7 +348,7 @@ chmod u-w "${target}"
           description: "Set of UPS to monitor. See `man upsmon.conf` for details.\n",
         })))),
       settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           type: nix.thunk(() => nix.sel(nutFormat, "type")),
           default: nix.thunk(() => ({})),
           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalMD"), "{\n  MINSUPPLIES = 1;\n  MONITOR = <generated from config.power.ups.upsmon.monitor>\n  NOTIFYCMD = \"${cfg.package}/bin/upssched\";\n  POWERDOWNFLAG = \"/run/killpower\";\n  SHUTDOWNCMD = \"${config.systemd.package}/bin/shutdown now\";\n}\n")),
@@ -357,10 +357,10 @@ chmod u-w "${target}"
         })))),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$43,
+      [nix.POS]: pos$43,
       enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), nix.thunk(() => nix.sel(cfg, "mode")), nix.thunk(() => ["standalone", "netserver", "netclient"]))))),
       settings: nix.thunk(() => ({
-        __proto__: pos$42,
+        [nix.POS]: pos$42,
         MINSUPPLIES: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 1n)),
         MONITOR: nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "mapAttrsToList")), nix.thunk(() => nix.sel(cfg, "upsmon", "monitor")), (name) => (monitor) => (() => {
             const w = nix.withScope(monitor, null);
@@ -379,16 +379,16 @@ chmod u-w "${target}"
     })),
   }));
   const userOptions = nix.thunk(() => ({
-    __proto__: pos$50,
+    [nix.POS]: pos$50,
     options: nix.thunk(() => ({
-      __proto__: pos$49,
+      [nix.POS]: pos$49,
       passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$45,
+          [nix.POS]: pos$45,
           type: nix.thunk(() => nix.sel(lib, "types", "str")),
           description: "The full path to a file that contains the user's (clear text)\npassword. The password file is read on service start.\n",
         })))),
       actions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           type: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
             return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -397,7 +397,7 @@ chmod u-w "${target}"
           description: "Allow the user to do certain things with upsd.\nSee `man upsd.users` for details.\n",
         })))),
       instcmds: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$47,
+          [nix.POS]: pos$47,
           type: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
             return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -406,7 +406,7 @@ chmod u-w "${target}"
           description: "Let the user initiate specific instant commands. Use \"ALL\" to grant all commands automatically. For the full list of what your UPS supports, use \"upscmd -l\".\nSee `man upsd.users` for details.\n",
         })))),
       upsmon: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$48,
+          [nix.POS]: pos$48,
           type: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "enum"), nix.thunk(() => ["primary", "secondary"]))));
@@ -417,53 +417,53 @@ chmod u-w "${target}"
     })),
   }));
   return {
-    __proto__: pos$96,
+    [nix.POS]: pos$96,
     options: nix.thunk(() => ({
-      __proto__: pos$61,
+      [nix.POS]: pos$61,
       power: nix.thunk(() => ({
-        __proto__: pos$60,
+        [nix.POS]: pos$60,
         ups: nix.thunk(() => ({
-          __proto__: pos$59,
+          [nix.POS]: pos$59,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "support for Power Devices, such as Uninterruptible Power\nSupplies, Power Distribution Units and Solar Controllers\n")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "nut", nix.thunk(() => ({})))),
           mode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               default: "standalone",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["none", "standalone", "netserver", "netclient"]))),
               description: "The MODE determines which part of the NUT is to be started, and\nwhich configuration files must be modified.\n\nThe values of MODE can be:\n\n- none: NUT is not configured, or use the Integrated Power\n  Management, or use some external system to startup NUT\n  components. So nothing is to be started.\n\n- standalone: This mode address a local only configuration, with 1\n  UPS protecting the local system. This implies to start the 3 NUT\n  layers (driver, upsd and upsmon) and the matching configuration\n  files. This mode can also address UPS redundancy.\n\n- netserver: same as for the standalone configuration, but also\n  need some more ACLs and possibly a specific LISTEN directive in\n  upsd.conf.  Since this MODE is opened to the network, a special\n  care should be applied to security concerns.\n\n- netclient: this mode only requires upsmon.\n",
             })))),
           schedulerRules: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$52,
+              [nix.POS]: pos$52,
               example: "/etc/nixos/upssched.conf",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "File which contains the rules to handle UPS events.\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Open ports in the firewall for `upsd`.\n",
             })))),
           maxStartDelay: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$54,
+              [nix.POS]: pos$54,
               default: 45n,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               description: "This can be set as a global variable above your first UPS\ndefinition and it can also be set in a UPS section.  This value\ncontrols how long upsdrvctl will wait for the driver to finish\nstarting.  This keeps your system from getting stuck due to a\nbroken driver or UPS.\n",
             })))),
           upsmon: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$55,
+              [nix.POS]: pos$55,
               default: nix.thunk(() => ({})),
               description: "Options for the `upsmon.conf` configuration file.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), upsmonOptions)),
             })))),
           upsd: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               default: nix.thunk(() => ({})),
               description: "Options for the `upsd.conf` configuration file.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), upsdOptions)),
             })))),
           ups: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$57,
+              [nix.POS]: pos$57,
               default: nix.thunk(() => ({})),
               description: "This is where you configure all the UPSes that this system will be\nmonitoring directly.  These are usually attached to serial ports,\nbut USB devices are also supported.\n",
               type: nix.thunk(() => (() => {
@@ -472,7 +472,7 @@ chmod u-w "${target}"
               })()),
             })))),
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$58,
+              [nix.POS]: pos$58,
               default: nix.thunk(() => ({})),
               description: "Users that can access upsd. See `man upsd.users`.\n",
               type: nix.thunk(() => (() => {
@@ -484,13 +484,13 @@ chmod u-w "${target}"
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$95,
+        [nix.POS]: pos$95,
         assertions: nix.thunk(() => [
           nix.thunk(() => (() => {
             const totalPowerValue = nix.thunk(() => nix.app(nix.sel(lib, "foldl'"), nix.thunk(() => nix.sel(lib, "add")), 0n, nix.thunk(() => nix.builtins.map((monitor) => nix.sel(monitor, "powerValue"), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(cfg, "upsmon", "monitor"))))))));
             const minSupplies = nix.thunk(() => nix.sel(cfg, "upsmon", "settings", "MINSUPPLIES"));
             return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "upsmon", "enable")), nix.thunk(() => ({
-                __proto__: pos$62,
+                [nix.POS]: pos$62,
                 assertion: nix.thunk(() => nix.ge(totalPowerValue, minSupplies)),
                 message: nix.thunk(() => nix.str`\`power.ups.upsmon\`: Total configured power value (${nix.builtins.toString(totalPowerValue)}) must be at least MINSUPPLIES (${nix.builtins.toString(minSupplies)}).
 `),
@@ -498,64 +498,64 @@ chmod u-w "${target}"
           })()),
         ]),
         environment: nix.thunk(() => ({
-          __proto__: pos$70,
+          [nix.POS]: pos$70,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           variables: envVars,
           etc: nix.thunk(() => ({
-            __proto__: pos$69,
+            [nix.POS]: pos$69,
             "nut/nut.conf": nix.thunk(() => ({
-              __proto__: pos$63,
+              [nix.POS]: pos$63,
               source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "nut.conf", nix.thunk(() => nix.str`MODE = ${nix.sel(cfg, "mode")}
 `))),
             })),
             "nut/ups.conf": nix.thunk(() => ({
-              __proto__: pos$64,
+              [nix.POS]: pos$64,
               source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "ups.conf", nix.thunk(() => nix.str`maxstartdelay = ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "maxStartDelay")))}
 
 ${nix.app(nix.sel(lib, "concatStringsSep"), "\n\n", nix.thunk(() => nix.app(nix.sel(lib, "forEach"), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(cfg, "ups")))), (ups) => nix.sel(ups, "summary"))))}
 `))),
             })),
             "nut/upsd.conf": nix.thunk(() => ({
-              __proto__: pos$65,
+              [nix.POS]: pos$65,
               source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "upsd.conf", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "forEach"), nix.thunk(() => nix.sel(cfg, "upsd", "listen")), (listen) => nix.str`LISTEN ${nix.sel(listen, "address")} ${nix.builtins.toString(nix.thunk(() => nix.sel(listen, "port")))}`)))}
 ${nix.sel(cfg, "upsd", "extraConfig")}
 `))),
             })),
-            "nut/upssched.conf": nix.thunk(() => ({ __proto__: pos$66, source: nix.thunk(() => nix.sel(cfg, "schedulerRules")) })),
-            "nut/upsd.users": nix.thunk(() => ({ __proto__: pos$67, source: "/run/nut/upsd.users" })),
-            "nut/upsmon.conf": nix.thunk(() => ({ __proto__: pos$68, source: "/run/nut/upsmon.conf" })),
+            "nut/upssched.conf": nix.thunk(() => ({ [nix.POS]: pos$66, source: nix.thunk(() => nix.sel(cfg, "schedulerRules")) })),
+            "nut/upsd.users": nix.thunk(() => ({ [nix.POS]: pos$67, source: "/run/nut/upsd.users" })),
+            "nut/upsmon.conf": nix.thunk(() => ({ [nix.POS]: pos$68, source: "/run/nut/upsmon.conf" })),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$72,
+          [nix.POS]: pos$72,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$71,
+              [nix.POS]: pos$71,
               allowedTCPPorts: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "upsd", "listen"), [])) ? [defaultPort] : nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.app(nix.sel(lib, "forEach"), nix.thunk(() => nix.sel(cfg, "upsd", "listen")), (listen) => nix.sel(listen, "port")))))),
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$86,
+          [nix.POS]: pos$86,
           slices: nix.thunk(() => ({
-            __proto__: pos$74,
+            [nix.POS]: pos$74,
             "system-ups": nix.thunk(() => ({
-              __proto__: pos$73,
+              [nix.POS]: pos$73,
               description: "Network UPS Tools (NUT) Slice",
               documentation: nix.thunk(() => ["https://networkupstools.org/"]),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$84,
+            [nix.POS]: pos$84,
             upsmon: nix.thunk(() => (() => {
               const secrets = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (monitor) => nix.str`upsmon_password_${name}`, nix.thunk(() => nix.sel(cfg, "upsmon", "monitor"))));
               const createUpsmonConf = nix.thunk(() => nix.app(installSecrets, upsmonConf, "/run/nut/upsmon.conf", nix.thunk(() => nix.sel(cfg, "upsmon", "user")), secrets));
               return {
-                __proto__: pos$76,
+                [nix.POS]: pos$76,
                 enable: nix.thunk(() => nix.sel(cfg, "upsmon", "enable")),
                 description: "Uninterruptible Power Supplies (Monitor)",
                 after: nix.thunk(() => ["network.target"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$75,
+                  [nix.POS]: pos$75,
                   Type: "forking",
                   ExecStartPre: nix.thunk(() => nix.str`${createUpsmonConf}`),
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/sbin/upsmon -u ${nix.sel(cfg, "upsmon", "user")}`),
@@ -570,13 +570,13 @@ ${nix.sel(cfg, "upsd", "extraConfig")}
               const secrets = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (user) => nix.str`upsdusers_password_${name}`, nix.thunk(() => nix.sel(cfg, "users"))));
               const createUpsdUsers = nix.thunk(() => nix.app(installSecrets, upsdUsers, "/run/nut/upsd.users", "root", secrets));
               return {
-                __proto__: pos$78,
+                [nix.POS]: pos$78,
                 enable: nix.thunk(() => nix.sel(cfg, "upsd", "enable")),
                 description: "Uninterruptible Power Supplies (Daemon)",
                 after: nix.thunk(() => ["network.target", "upsmon.service"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$77,
+                  [nix.POS]: pos$77,
                   Type: "forking",
                   ExecStartPre: nix.thunk(() => nix.str`${createUpsdUsers}`),
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/sbin/upsd -u root`),
@@ -591,13 +591,13 @@ ${nix.sel(cfg, "upsd", "extraConfig")}
               };
             })()),
             upsdrv: nix.thunk(() => ({
-              __proto__: pos$80,
+              [nix.POS]: pos$80,
               enable: nix.thunk(() => nix.sel(cfg, "upsd", "enable")),
               description: "Uninterruptible Power Supplies (Register all UPS)",
               after: nix.thunk(() => ["upsd.service"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$79,
+                [nix.POS]: pos$79,
                 Type: "oneshot",
                 RemainAfterExit: true,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/upsdrvctl -u root start`),
@@ -609,56 +609,56 @@ ${nix.sel(cfg, "upsd", "extraConfig")}
               ]),
             })),
             "ups-killpower": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "upsmon", "settings", "POWERDOWNFLAG"), null)), nix.thunk(() => ({
-                __proto__: pos$83,
+                [nix.POS]: pos$83,
                 enable: nix.thunk(() => nix.sel(cfg, "upsd", "enable")),
                 description: "UPS Kill Power",
                 wantedBy: nix.thunk(() => ["shutdown.target"]),
                 after: nix.thunk(() => ["shutdown.target"]),
                 before: nix.thunk(() => ["final.target"]),
                 unitConfig: nix.thunk(() => ({
-                  __proto__: pos$81,
+                  [nix.POS]: pos$81,
                   ConditionPathExists: nix.thunk(() => nix.sel(cfg, "upsmon", "settings", "POWERDOWNFLAG")),
                   DefaultDependencies: "no",
                 })),
                 environment: envVars,
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$82,
+                  [nix.POS]: pos$82,
                   Type: "oneshot",
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/upsdrvctl -u root shutdown`),
                 })),
               })))),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$85,
+            [nix.POS]: pos$85,
             rules: nix.thunk(() => ["d /var/state/ups -", "d /var/lib/nut 700"]),
           })),
         })),
         power: nix.thunk(() => ({
-          __proto__: pos$88,
+          [nix.POS]: pos$88,
           ups: nix.thunk(() => ({
-            __proto__: pos$87,
+            [nix.POS]: pos$87,
             schedulerRules: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/etc/upssched.conf.sample`))),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$90,
+          [nix.POS]: pos$90,
           udev: nix.thunk(() => ({
-            __proto__: pos$89,
+            [nix.POS]: pos$89,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$94,
+          [nix.POS]: pos$94,
           users: nix.thunk(() => ({
-            __proto__: pos$92,
+            [nix.POS]: pos$92,
             nutmon: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "upsmon", "user"), "nutmon")), nix.thunk(() => ({
-                __proto__: pos$91,
+                [nix.POS]: pos$91,
                 isSystemUser: true,
                 group: nix.thunk(() => nix.sel(cfg, "upsmon", "group")),
               })))),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$93,
+            [nix.POS]: pos$93,
             nutmon: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "upsmon", "user"), "nutmon")) && nix.asBool(nix.eq(nix.sel(cfg, "upsmon", "group"), "nutmon")))), nix.thunk(() => ({})))),
           })),
         })),

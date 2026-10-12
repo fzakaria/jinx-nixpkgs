@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "egypt";
       const version = "1.10";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           sha256: "0r0wj6v8z9fzlh9pb5617kyjdf92ppmlbzajaarrq729bbb6ln5m",
           url: nix.thunk(() => nix.str`https://www.gson.org/egypt/download/egypt-${version}.tar.gz`),
         }))));
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const enableParallelBuilding = true;
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for making call graphs of C programmes",
         mainProgram: "egypt",
         longDescription: "Egypt is a simple tool for creating call graphs of C programs. It neither\nanalyzes source code nor lays out graphs. Instead, it leaves the source\ncode analysis to GCC and the graph layout to Graphviz, both of which are\nbetter at their respective jobs than egypt itself could ever hope to be.\nEgypt is simply a very small Perl script that glues these existing tools\ntogether.\n",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

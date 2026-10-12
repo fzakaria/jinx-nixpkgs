@@ -18,40 +18,40 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const colors = nix.thunk(() => [
     nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "Black",
       hash: "sha256-pb2U9j1m8uJaILxUxKqp8q9FGuwzZsQvhPP3bfGZL5I=",
     })),
     nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "Blue",
       hash: "sha256-PmJeGShQLIC7ceRwQvSbphqz19fKptksZeHKi9QSL5Y=",
     })),
     nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "Red",
       hash: "sha256-/X81jLoWaw4UMoDRf1f6oaKKRWexQc4PAACy3doV4Kc=",
     })),
     nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "White",
       hash: "sha256-eT/Zy6O6TBD6G8q/dg+9rNYDHutLLxEY1lvLDP90b+g=",
     })),
   ]);
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "google-cursor",
       version: "2.0.0",
       sourceRoot: ".",
       srcs: nix.thunk(() => nix.builtins.map((color) => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: nix.thunk(() => nix.str`https://github.com/ful1e5/Google_Cursor/releases/download/v${nix.sel(finalAttrs, "version")}/GoogleDot-${nix.sel(color, "name")}.tar.gz`),
             name: nix.thunk(() => nix.str`GoogleDot-${nix.sel(color, "name")}`),
             hash: nix.thunk(() => nix.sel(color, "hash")),
           }))), colors)),
       postInstall: "mkdir -p $out/share/icons\ncp -r GoogleDot-* $out/share/icons\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Opensource cursor theme inspired by Google",
         homepage: "https://github.com/ful1e5/Google_Cursor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

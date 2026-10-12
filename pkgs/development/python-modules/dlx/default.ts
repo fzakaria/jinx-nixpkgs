@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dlx",
       version: "1.0.4",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sraaphorst",
           repo: "dlx_python",
           rev: "02d1ed534df60513095633da07e67a6593b9e9b4",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
 ${nix.sel(python, "interpreter")} ./examples/sudoku.py 3 "070285010008903500000000000500010008010000090900040003000000000002408600090632080"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Implementation of Donald Knuth's Dancing Links algorithm",
         homepage: "https://github.com/sraaphorst/dlx_python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -22,18 +22,18 @@ export default nix.lambda((args) => (() => {
   nix.assert_(!nix.eq(zlib, null), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/li/libpng/package.nix:11:1");
   const patchVersion = "1.6.58";
   const patch_src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`mirror://sourceforge/libpng-apng/libpng-${patchVersion}-apng.patch.gz`),
       hash: "sha256-7ufeoi7VAoaAF5cchsY8TtHmCF3guuv9zD0zIvAPPrA=",
     }))));
   const whenPatched = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), apngSupport));
   const stdenv$ = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.sel(darwin, "bootstrapStdenv") : nix.force(stdenv)));
   return nix.app(nix.sel(stdenv$, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: nix.thunk(() => nix.add("libpng", nix.app(whenPatched, "-apng"))),
       version: "1.6.58",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`mirror://sourceforge/libpng/libpng-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-KOtAP1Hw90BSSRMs7P6C6lwO+X8bMsWmWCiBSuDTR3U=",
         })))),
@@ -43,15 +43,15 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [zlib]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         zlib: zlib,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: nix.thunk(() => nix.add("Official reference implementation for the PNG file format", nix.app(whenPatched, " with animation patch"))),
         homepage: "http://www.libpng.org/pub/png/libpng.html",
         changelog: nix.thunk(() => nix.str`https://github.com/pnggroup/libpng/blob/v${nix.sel(finalAttrs, "version")}/CHANGES`),

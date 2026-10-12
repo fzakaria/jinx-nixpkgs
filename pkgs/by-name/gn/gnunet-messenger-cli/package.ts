@@ -22,17 +22,17 @@ export default nix.lambda((args) => (() => {
   const libgnunetchat = nix.arg($, "libgnunetchat");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gnunet-messenger-cli",
       version: "0.3.1",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git-www.taler.net/messenger-cli.git",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-8Iby3IZXEZJ1dqVV62xDzXx/qq7JKhVtn6ZLb697ZSw=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         INSTALL_DIR: nix.thunk(() => nix.add(nix.builtins.placeholder("out"), "/")),
       })),
       strictDeps: true,
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "mkdir -p $out/bin",
       preFixup: "mv $out/bin/messenger-cli $out/bin/gnunet-messenger-cli",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Decentralized, privacy-preserving networking framework for secure peer-to-peer communication",
         homepage: "https://git-www.taler.net/messenger-cli.git",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

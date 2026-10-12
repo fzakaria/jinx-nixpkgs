@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "slothy-optimizer",
           repo: "slothy",
           tag: version,
@@ -41,7 +41,7 @@ from slothy.core.slothy import Slothy'
       const pythonImportsCheck = nix.thunk(() => ["slothy"]);
       const installCheckPhase = "runHook preInstallCheck\npython3 test.py --silent --tests aarch64_simple0_a55\nrunHook postInstallCheck\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Assembly superoptimization via constraint solving",
         homepage: "https://slothy-optimizer.github.io/slothy",
         changelog: nix.thunk(() => nix.str`https://github.com/slothy-optimizer/slothy/releases/tag/${version}`),
@@ -53,7 +53,7 @@ from slothy.core.slothy import Slothy'
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

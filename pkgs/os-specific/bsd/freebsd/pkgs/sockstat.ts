@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const libcasper = nix.arg($, "libcasper");
   const libcapsicum = nix.arg($, "libcapsicum");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "usr.bin/sockstat",
       outputs: nix.thunk(() => ["out", "debug"]),
       buildInputs: nix.thunk(() => [libjail, libxo, libcasper, libcapsicum]),
       MK_TESTS: "no",
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "sockstat" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "sockstat" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=sockstat.ts.map

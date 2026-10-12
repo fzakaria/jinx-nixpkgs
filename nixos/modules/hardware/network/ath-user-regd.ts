@@ -20,17 +20,17 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const kernelVersion = nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "kernel", "version"));
   const linuxKernelMinVersion = "5.8";
-  const kernelPatch = nix.thunk(() => nix.update(nix.sel(pkgs, "kernelPatches", "ath_regd_optional"), { __proto__: pos$1, extraConfig: "ATH_USER_REGD y\n" }));
+  const kernelPatch = nix.thunk(() => nix.update(nix.sel(pkgs, "kernelPatches", "ath_regd_optional"), { [nix.POS]: pos$1, extraConfig: "ATH_USER_REGD y\n" }));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       networking: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         wireless: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           athUserRegulatoryDomain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: nix.thunk(() => nix.str`If enabled, sets the ATH_USER_REGD kernel config switch to true to
@@ -42,13 +42,13 @@ drivers. Requires at least Linux ${linuxKernelMinVersion}.
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "networking", "wireless", "athUserRegulatoryDomain")), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         assertions: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             assertion: nix.thunk(() => nix.app(nix.sel(lib, "lessThan"), 0n, nix.thunk(() => nix.builtins.compareVersions(kernelVersion, linuxKernelMinVersion)))),
             message: nix.thunk(() => nix.str`ATH_USER_REGD patch for kernels older than ${linuxKernelMinVersion} not ported yet!`),
           })))),
-        boot: nix.thunk(() => ({ __proto__: pos$7, kernelPatches: nix.thunk(() => [kernelPatch]) })),
+        boot: nix.thunk(() => ({ [nix.POS]: pos$7, kernelPatches: nix.thunk(() => [kernelPatch]) })),
       })))),
   };
 })(), formals$1);

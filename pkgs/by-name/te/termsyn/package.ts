@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const mkfontscale = nix.arg($, "mkfontscale");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "termsyn",
       version: "1.8.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/termsyn/termsyn-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "15vsmc3nmzl0pkgdpr2993da7p38fiw2rvcg01pwldzmpqrmkpn6",
         })))),
       nativeBuildInputs: nix.thunk(() => [mkfontscale]),
       installPhase: "install -m 644 -D *.pcf -t \"$out/share/fonts\"\ninstall -m 644 -D *.psfu -t \"$out/share/kbd/consolefonts\"\nmkfontdir \"$out/share/fonts\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Monospaced font based on terminus and tamsyn",
         homepage: "https://sourceforge.net/projects/termsyn/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

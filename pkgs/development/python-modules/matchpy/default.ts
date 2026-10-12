@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.5";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "HPAC",
           repo: "matchpy",
           rev: version,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-versioneer-py312.patch",
             url: "https://github.com/HPAC/matchpy/commit/965d7c39689b9f2473a78ed06b83f2be701e234d.patch",
             hash: "sha256-xXADCSIhq1ARny2twzrhR1J8LkMFWFl6tmGxrM8RvkU=",
@@ -44,14 +44,14 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, hypothesis]);
       const pythonImportsCheck = nix.thunk(() => ["matchpy"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library for pattern matching on symbolic expressions",
         homepage: "https://github.com/HPAC/matchpy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

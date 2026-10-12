@@ -57,109 +57,109 @@ export default nix.lambda((args) => (() => {
   const dataDir = "/var/lib/consul";
   const cfg = nix.thunk(() => nix.sel(config, "services", "consul"));
   const configOptions = nix.thunk(() => nix.update({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     data_dir: dataDir,
-    ui_config: nix.thunk(() => ({ __proto__: pos$1, enabled: nix.thunk(() => nix.sel(cfg, "webUi")) })),
+    ui_config: nix.thunk(() => ({ [nix.POS]: pos$1, enabled: nix.thunk(() => nix.sel(cfg, "webUi")) })),
   }, nix.sel(cfg, "extraConfig")));
   const configFiles = nix.thunk(() => nix.concat(["/etc/consul.json", "/etc/consul-addrs.json"], nix.sel(cfg, "extraConfigFiles")));
   const devices = nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (i) => !nix.eq(i, null), nix.thunk(() => nix.sel(cfg, "interface"))))));
   const systemdDevices = nix.thunk(() => nix.app(nix.sel(lib, "forEach"), devices, (i) => nix.str`sys-subsystem-net-devices-${nix.app(nix.sel(utils, "escapeSystemdPath"), i)}.device`));
   return {
-    __proto__: pos$44,
+    [nix.POS]: pos$44,
     options: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       services: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         consul: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enables the consul daemon.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "consul", nix.thunk(() => ({})))),
           webUi: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enables the web interface on the consul http port.\n",
             })))),
           leaveOnStop: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "If enabled, causes a leave action to be sent when closing consul.\nThis allows a clean termination of the node, but permanently removes\nit from the cluster. You probably don't want this option unless you\nare running a node which going offline in a permanent / semi-permanent\nfashion.\n",
             })))),
           interface: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             advertise: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 description: "The name of the interface to pull the advertise_addr from.\n",
               })))),
             bind: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 description: "The name of the interface to pull the bind_addr from.\n",
               })))),
           })),
           forceAddrFamily: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["any", "ipv4", "ipv6"]))),
               default: "any",
               description: "Whether to bind ipv4/ipv6 or both kind of addresses.\n",
             })))),
           forceIpv4: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "bool")))),
               default: null,
               description: "Deprecated: Use consul.forceAddrFamily instead.\nWhether we should force the interfaces to only pull ipv4 addresses.\n",
             })))),
           dropPrivileges: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether the consul agent should be run as a non-root consul user.\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "anything")))),
               description: "Extra configuration options which are serialized to json and added\nto the config.json file.\n",
             })))),
           extraConfigFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               default: [],
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "Additional configuration files to pass to consul\nNOTE: These will not trigger the service to be restarted when altered.\n",
             })))),
           alerts: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "consul-alerts")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "consul-alerts", nix.thunk(() => ({})))),
             listenAddr: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 description: "Api listening address.",
                 default: "localhost:9000",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
               })))),
             consulAddr: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 description: "Consul api listening address",
                 default: "localhost:8500",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
               })))),
             watchChecks: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 description: "Whether to enable check watcher.",
                 default: true,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               })))),
             watchEvents: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 description: "Whether to enable event watcher.",
                 default: true,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
@@ -170,27 +170,27 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             users: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               users: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 consul: nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   description: "Consul agent daemon user",
                   isSystemUser: true,
                   group: "consul",
                   shell: "/run/current-system/sw/bin/bash",
                 })),
               })),
-              groups: nix.thunk(() => ({ __proto__: pos$24, consul: nix.thunk(() => ({})) })),
+              groups: nix.thunk(() => ({ [nix.POS]: pos$24, consul: nix.thunk(() => ({})) })),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               etc: nix.thunk(() => ({
-                __proto__: pos$28,
-                "consul.json": nix.thunk(() => ({ __proto__: pos$26, text: nix.thunk(() => nix.builtins.toJSON(configOptions)) })),
-                "consul.d/dummy.json": nix.thunk(() => ({ __proto__: pos$27, text: "{ }" })),
+                [nix.POS]: pos$28,
+                "consul.json": nix.thunk(() => ({ [nix.POS]: pos$26, text: nix.thunk(() => nix.builtins.toJSON(configOptions)) })),
+                "consul.d/dummy.json": nix.thunk(() => ({ [nix.POS]: pos$27, text: "{ }" })),
               })),
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
             })),
@@ -198,11 +198,11 @@ export default nix.lambda((args) => (() => {
                 nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "forceIpv4"), null)), "The option consul.forceIpv4 is deprecated, please use\nconsul.forceAddrFamily instead.\n")),
               ]))),
             systemd: nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               services: nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 consul: nix.thunk(() => ({
-                  __proto__: pos$32,
+                  [nix.POS]: pos$32,
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   after: nix.thunk(() => nix.concat(["network.target"], systemdDevices)),
                   bindsTo: systemdDevices,
@@ -210,7 +210,7 @@ export default nix.lambda((args) => (() => {
                     nix.thunk(() => nix.sel(config, "environment", "etc", "consul.json", "source")),
                   ], nix.app(nix.sel(lib, "mapAttrsToList"), (_) => (d) => nix.sel(d, "source"), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (n) => (_) => nix.app(nix.sel(lib, "hasPrefix"), "consul.d/", n), nix.thunk(() => nix.sel(config, "environment", "etc"))))))),
                   serviceConfig: nix.thunk(() => nix.update({
-                    __proto__: pos$30,
+                    [nix.POS]: pos$30,
                     ExecStart: nix.thunk(() => nix.add(nix.str`@${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} consul agent -config-dir /etc/consul.d`, nix.app(nix.sel(lib, "concatMapStrings"), (n) => nix.str` -config-file ${n}`, configFiles))),
                     ExecReload: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/kill -HUP $MAINPID`),
                     PermissionsStartOnly: true,
@@ -220,7 +220,7 @@ export default nix.lambda((args) => (() => {
                     StateDirectory: nix.thunk(() => [nix.thunk(() => nix.builtins.baseNameOf(dataDir))]),
                     StateDirectoryMode: "0700",
                   }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "leaveOnStop")), nix.thunk(() => ({
-                      __proto__: pos$31,
+                      [nix.POS]: pos$31,
                       ExecStop: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} leave`),
                     }))))),
                   path: nix.thunk(() => (() => {
@@ -263,25 +263,25 @@ delim=","
             })),
           })),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "forceIpv4"), null)) && nix.asBool(nix.sel(cfg, "forceIpv4")))), nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               services: nix.thunk(() => ({
-                __proto__: pos$37,
-                consul: nix.thunk(() => ({ __proto__: pos$36, forceAddrFamily: "ipv4" })),
+                [nix.POS]: pos$37,
+                consul: nix.thunk(() => ({ [nix.POS]: pos$36, forceAddrFamily: "ipv4" })),
               })),
             })))),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "alerts", "enable")), nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               systemd: nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 services: nix.thunk(() => ({
-                  __proto__: pos$41,
+                  [nix.POS]: pos$41,
                   "consul-alerts": nix.thunk(() => ({
-                    __proto__: pos$40,
+                    [nix.POS]: pos$40,
                     wantedBy: nix.thunk(() => ["multi-user.target"]),
                     after: nix.thunk(() => ["consul.service"]),
                     path: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$39,
+                      [nix.POS]: pos$39,
                       ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "alerts", "package")))} start \\
   --alert-addr=${nix.sel(cfg, "alerts", "listenAddr")} \\
   --consul-addr=${nix.sel(cfg, "alerts", "consulAddr")} \\

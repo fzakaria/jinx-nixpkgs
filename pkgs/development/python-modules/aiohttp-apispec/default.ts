@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.0b2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "maximdanilchenko",
           repo: "aiohttp-apispec",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,14 +37,14 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest_aiohttp, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["aiohttp_apispec"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Build and document REST APIs with aiohttp and apispec",
         homepage: "https://github.com/maximdanilchenko/aiohttp-apispec/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

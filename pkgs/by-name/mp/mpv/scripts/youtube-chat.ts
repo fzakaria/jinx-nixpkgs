@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const yt_dlp = nix.arg($, "yt-dlp");
   return nix.app(buildLua, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "youtube-chat",
       version: "0-unstable-2024-06-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BanchouBoo",
           repo: "mpv-youtube-chat",
           rev: "4b8d6d5d3ace40d467bc0ed75f3af2a1aefce161",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       scriptPath: "youtube-chat",
       installPhase: "runHook preInstall\ninstall -D -t $out/share/mpv/scripts/youtube-chat main.lua\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         extraWrapperArgs: nix.thunk(() => [
           "--prefix",
           "PATH",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         ]),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "MPV script to overlay youtube chat on top of a video using yt-dlp",
         homepage: "https://github.com/BanchouBoo/mpv-youtube-chat",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

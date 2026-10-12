@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "flask_sqlalchemy",
           version: version,
           hash: "sha256-5LaLuIGALdoafYeLL8hMBtHuV/tAuHTT3Jfav6NrgxI=",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const pytestFlags = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.12")), nix.thunk(() => ["-Wignore::DeprecationWarning"])));
       const pythonImportsCheck = nix.thunk(() => ["flask_sqlalchemy"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SQLAlchemy extension for Flask",
         homepage: "http://flask-sqlalchemy.pocoo.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/pallets-eco/flask-sqlalchemy/blob/${version}/CHANGES.rst`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

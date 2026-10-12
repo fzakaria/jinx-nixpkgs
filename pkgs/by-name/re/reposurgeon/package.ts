@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const ruby = nix.arg($, "ruby");
   const which = nix.arg($, "which");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "reposurgeon",
       version: "5.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://www.catb.org/~esr/reposurgeon/reposurgeon-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-XEPpZyBlTfLGtFQSCHND8OrIPB6ml8HDdg0DSvnmWh8=",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       postBuild: "patchShebangs .\nmake all HTMLFILES=\n",
       postInstall: "make install prefix=$out HTMLFILES=\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for editing version-control repository history",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         homepage: "http://www.catb.org/esr/reposurgeon/",

@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "x11vnc",
       version: "0.9.17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LibVNC",
           repo: "x11vnc",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -69,7 +69,7 @@ sed -i -e '/#!\\/bin\\/sh/a"PATH=${xdpyinfo}\\/bin:${xauth}\\/bin:$PATH\\\\n"' -
 sed -i '/if HAVE_X11/,/endif/d' misc/Makefile.am
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "VNC server connected to a real X11 screen",
         homepage: "https://github.com/LibVNC/x11vnc/",
         changelog: nix.thunk(() => nix.str`https://github.com/LibVNC/x11vnc/releases/tag/${nix.sel(finalAttrs, "version")}`),

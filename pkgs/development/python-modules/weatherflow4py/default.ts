@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const websockets = nix.arg($, "websockets");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "weatherflow4py",
       version: "1.5.10",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jeeftor",
           repo: "weatherflow4py",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["weatherflow4py"]),
       disabledTests: nix.thunk(() => ["test_convert_json_to_weather_data4"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module to interact with the WeatherFlow REST API",
         homepage: "https://github.com/jeeftor/weatherflow4py",
         changelog: nix.thunk(() => nix.str`https://github.com/jeeftor/weatherflow4py/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

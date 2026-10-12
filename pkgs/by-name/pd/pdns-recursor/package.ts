@@ -30,16 +30,16 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const enableProtoBuf = nix.argOr($, "enableProtoBuf", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "pdns-recursor",
       version: "5.4.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://downloads.powerdns.com/releases/pdns-recursor-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-DUyf6+b5TaCu1+Bex7ZUkE+9YindU79ge2P6cHuSNoo=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -65,15 +65,15 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => ["sysconfdir=$(out)/etc/pdns-recursor"]),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "pdns-recursor": nix.thunk(() => nix.attr(nixosTests, "pdns-recursor")),
           ncdns: nix.thunk(() => nix.attr(nixosTests, "ncdns")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://doc.powerdns.com/recursor/changelog/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}.html#change-${nix.sel(finalAttrs, "version")}`),
         description: "Recursive DNS server",
         homepage: "https://www.powerdns.com/",

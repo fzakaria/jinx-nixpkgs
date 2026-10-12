@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pname = "customtkinter";
   const version = "5.2.2";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TomSchimansky",
           repo: "CustomTkinter",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./0001-Add-Missing-Cfg-Packages.patch")]),
       pythonImportsCheck: nix.thunk(() => ["customtkinter"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Modern and customizable python UI-library based on Tkinter",
         homepage: "https://github.com/TomSchimansky/CustomTkinter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

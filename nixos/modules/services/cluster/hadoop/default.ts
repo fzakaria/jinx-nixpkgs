@@ -45,36 +45,36 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "hadoop"));
   const opt = nix.thunk(() => nix.sel(options, "services", "hadoop"));
   return {
-    __proto__: pos$32,
+    [nix.POS]: pos$32,
     imports: nix.thunk(() => [
       nix.path(here, "./yarn.nix"),
       nix.path(here, "./hdfs.nix"),
       nix.path(here, "./hbase.nix"),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       services: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         hadoop: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           coreSite: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "anything")))),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  \"fs.defaultFS\" = \"hdfs://localhost\";\n}\n")),
               description: "Hadoop core-site.xml definition\n<https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-common/core-default.xml>\n",
             })))),
           coreSiteInternal: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "anything")))),
               internal: true,
               description: "Internal option to add configs to core-site.xml based on module options\n",
             })))),
           hdfsSiteDefault: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 "dfs.namenode.rpc-bind-host": "0.0.0.0",
                 "dfs.namenode.http-address": "0.0.0.0:9870",
                 "dfs.namenode.servicerpc-bind-host": "0.0.0.0",
@@ -84,23 +84,23 @@ export default nix.lambda((args) => (() => {
               description: "Default options for hdfs-site.xml\n",
             })))),
           hdfsSite: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "anything")))),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  \"dfs.nameservices\" = \"namenode1\";\n}\n")),
               description: "Additional options and overrides for hdfs-site.xml\n<https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/hdfs-default.xml>\n",
             })))),
           hdfsSiteInternal: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "anything")))),
               internal: true,
               description: "Internal option to add configs to hdfs-site.xml based on module options\n",
             })))),
           mapredSiteDefault: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               default: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 "mapreduce.framework.name": "yarn",
                 "yarn.app.mapreduce.am.env": nix.thunk(() => nix.str`HADOOP_MAPRED_HOME=${nix.sel(cfg, "package")}`),
                 "mapreduce.map.env": nix.thunk(() => nix.str`HADOOP_MAPRED_HOME=${nix.sel(cfg, "package")}`),
@@ -117,16 +117,16 @@ export default nix.lambda((args) => (() => {
               description: "Default options for mapred-site.xml\n",
             })))),
           mapredSite: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "anything")))),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  \"mapreduce.map.java.opts\" = \"-Xmx900m -XX:+UseParallelGC\";\n}\n")),
               description: "Additional options and overrides for mapred-site.xml\n<https://hadoop.apache.org/docs/current/hadoop-mapreduce-client/hadoop-mapreduce-client-core/mapred-default.xml>\n",
             })))),
           yarnSiteDefault: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               default: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 "yarn.nodemanager.admin-env": "PATH=$PATH",
                 "yarn.nodemanager.aux-services": "mapreduce_shuffle",
                 "yarn.nodemanager.aux-services.mapreduce_shuffle.class": "org.apache.hadoop.mapred.ShuffleHandler",
@@ -143,28 +143,28 @@ export default nix.lambda((args) => (() => {
               description: "Default options for yarn-site.xml\n",
             })))),
           yarnSite: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "anything")))),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  \"yarn.resourcemanager.hostname\" = \"${config.networking.hostName}\";\n}\n")),
               description: "Additional options and overrides for yarn-site.xml\n<https://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-common/yarn-default.xml>\n",
             })))),
           yarnSiteInternal: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "anything")))),
               internal: true,
               description: "Internal option to add configs to yarn-site.xml based on module options\n",
             })))),
           httpfsSite: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "anything")))),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  \"hadoop.http.max.threads\" = 500;\n}\n")),
               description: "Hadoop httpfs-site.xml definition\n<https://hadoop.apache.org/docs/current/hadoop-hdfs-httpfs/httpfs-default.html>\n",
             })))),
           log4jProperties: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               default: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/etc/hadoop/log4j.properties`),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`"\${config.${nix.sel(opt, "package")}}/etc/hadoop/log4j.properties"
 `))),
@@ -173,9 +173,9 @@ export default nix.lambda((args) => (() => {
               description: "log4j.properties file added to HADOOP_CONF_DIR",
             })))),
           containerExecutorCfg: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               default: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 "yarn.nodemanager.linux-container-executor.group": "hadoop",
                 "min.user.id": 1000n,
                 "feature.terminal.enabled": 1n,
@@ -186,14 +186,14 @@ export default nix.lambda((args) => (() => {
               description: "Yarn container-executor.cfg definition\n<https://hadoop.apache.org/docs/r2.7.2/hadoop-yarn/hadoop-yarn-site/SecureContainer.html>\n",
             })))),
           extraConfDirs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               default: [],
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[\n  ./extraHDFSConfs\n  ./extraYARNConfs\n]\n")),
               description: "Directories containing additional config files to be added to HADOOP_CONF_DIR",
             })))),
           gatewayRole: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "gateway role for deploying hadoop configs")),
           })),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "hadoop", nix.thunk(() => ({})))),
@@ -201,31 +201,31 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "gatewayRole", "enable")), nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         users: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           groups: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             hadoop: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "hadoop")),
             })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             "hadoop-conf": nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               source: nix.thunk(() => (() => {
-                const hadoopConf = nix.thunk(() => nix.str`${nix.app(nix.builtins.import(nix.path(here, "./conf.nix")), nix.thunk(() => ({ __proto__: pos$26, cfg: cfg, pkgs: pkgs, lib: lib })))}/`);
+                const hadoopConf = nix.thunk(() => nix.str`${nix.app(nix.builtins.import(nix.path(here, "./conf.nix")), nix.thunk(() => ({ [nix.POS]: pos$26, cfg: cfg, pkgs: pkgs, lib: lib })))}/`);
                 return nix.str`${hadoopConf}`;
               })()),
             })),
           })),
-          variables: nix.thunk(() => ({ __proto__: pos$29, HADOOP_CONF_DIR: "/etc/hadoop-conf/" })),
+          variables: nix.thunk(() => ({ [nix.POS]: pos$29, HADOOP_CONF_DIR: "/etc/hadoop-conf/" })),
         })),
       })))),
   };

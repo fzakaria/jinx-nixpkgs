@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const rich = nix.arg($, "rich");
   const transformers = nix.arg($, "transformers");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "trl",
       version: "0.24.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "huggingface",
           repo: "trl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["trl"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Train transformer language models with reinforcement learning",
         homepage: "https://github.com/huggingface/trl",
         changelog: nix.thunk(() => nix.str`https://github.com/huggingface/trl/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

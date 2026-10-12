@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const darwin = nix.arg($, "darwin");
   const rcodesign = nix.arg($, "rcodesign");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       version: "1.4.2",
       pname: "bun",
       src: nix.thunk(() => nix.selOr(finalAttrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)), "passthru", "sources", nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system")))),
-      sourceRoot: nix.thunk(() => nix.selOr({ __proto__: pos$1, "aarch64-darwin": "bun-darwin-aarch64" }, () => null, nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system")))),
+      sourceRoot: nix.thunk(() => nix.selOr({ [nix.POS]: pos$1, "aarch64-darwin": "bun-darwin-aarch64" }, () => null, nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system")))),
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => nix.concat([unzip, installShellFiles, makeWrapper], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isLinux")), nix.thunk(() => [autoPatchelfHook])))),
       buildInputs: nix.thunk(() => [openssl]),
@@ -47,21 +47,21 @@ export default nix.lambda((args) => (() => {
 '${nix.app(nix.sel(lib, "getExe"), rcodesign)}' sign --code-signature-flags linker-signed $out/bin/bun
 `)), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform")))), "installShellCompletion --cmd bun \\\n  --bash <(SHELL=\"bash\" $out/bin/bun completions) \\\n  --zsh <(SHELL=\"zsh\" $out/bin/bun completions) \\\n  --fish <(SHELL=\"fish\" $out/bin/bun completions)\n"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         sources: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: nix.thunk(() => nix.str`https://github.com/oven-sh/bun/releases/download/bun-v${nix.sel(finalAttrs, "version")}/bun-darwin-aarch64.zip`),
               hash: "sha256-kJh6OhbX21VtiGrD1VHnttPt8KHPQ6yu1iLoZ2vh0S8=",
             })))),
           "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               url: nix.thunk(() => nix.str`https://github.com/oven-sh/bun/releases/download/bun-v${nix.sel(finalAttrs, "version")}/bun-linux-aarch64.zip`),
               hash: "sha256-VDKLvC2cjgyfiSxUTWbFeoO4QTnjSQnl7oF1jxrI/ac=",
             })))),
           "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               url: nix.thunk(() => nix.str`https://github.com/oven-sh/bun/releases/download/bun-v${nix.sel(finalAttrs, "version")}/bun-linux-x64-baseline.zip`),
               hash: "sha256-xngEDxT+BEDrg503y9DOTAUaMtpygGrJfeamqra/co8=",
             })))),
@@ -79,7 +79,7 @@ done
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://bun.sh",
         changelog: nix.thunk(() => nix.str`https://bun.sh/blog/bun-v${nix.sel(finalAttrs, "version")}`),
         description: "Incredibly fast JavaScript runtime, bundler, transpiler and package manager – all in one",

@@ -16,20 +16,20 @@ export default nix.lambda((args) => (() => {
   const coq = nix.arg($, "coq");
   const mkCoqPackages = nix.arg($, "mkCoqPackages");
   const runCommand = nix.arg($, "runCommand");
-  const coqWithAllPackages = nix.thunk(() => nix.update(coq, { __proto__: pos$1, dontFilter: true }));
+  const coqWithAllPackages = nix.thunk(() => nix.update(coq, { [nix.POS]: pos$1, dontFilter: true }));
   const coqPackages = nix.thunk(() => nix.app(mkCoqPackages, coqWithAllPackages));
   const overriddenQuickChick = nix.thunk(() => nix.app(nix.sel(coqPackages, "lib", "overrideCoqDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       defaultVersion: "9999",
       release: nix.thunk(() => ({
-        __proto__: pos$3,
-        "9999": nix.thunk(() => ({ __proto__: pos$2, sha256: nix.thunk(() => nix.sel(lib, "fakeSha256")) })),
+        [nix.POS]: pos$3,
+        "9999": nix.thunk(() => ({ [nix.POS]: pos$2, sha256: nix.thunk(() => nix.sel(lib, "fakeSha256")) })),
       })),
     })), nix.thunk(() => nix.sel(coqPackages, "QuickChick"))));
   return nix.app(runCommand, "coq-overrideCoqDerivation-test-0.1", nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "cdepillabout"))];

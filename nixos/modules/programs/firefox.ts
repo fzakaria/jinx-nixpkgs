@@ -41,9 +41,9 @@ export default nix.lambda((args) => (() => {
   const policyFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   const organisationInfo = "When this option is in use, Firefox will inform you that \"your browser\nis managed by your organisation\". That message appears because NixOS\ninstalls what you have declared here such that it cannot be overridden\nthrough the user interface. It does not mean that someone else has been\ngiven control of your browser, unless of course they also control your\nNixOS configuration.\n";
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     imports: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (pkg) => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["programs", "firefox", "nativeMessagingHosts", name]), nix.thunk(() => nix.str`Use \`programs.firefox.nativeMessagingHosts.packages = [ pkgs.${pkg} ]\` instead`)), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         browserpass: "browserpass",
         bukubrow: "bukubrow",
         euwebid: "web-eid-app",
@@ -56,14 +56,14 @@ export default nix.lambda((args) => (() => {
         ugetIntegrator: "uget-integrator",
       })))),
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       programs: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         firefox: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the Firefox web browser")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
               default: nix.thunk(() => nix.sel(pkgs, "firefox")),
               description: "Firefox package to use.",
@@ -71,20 +71,20 @@ export default nix.lambda((args) => (() => {
               relatedPackages: nix.thunk(() => ["firefox", "firefox-bin", "firefox-esr"]),
             })))),
           finalPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
               visible: false,
               readOnly: true,
               description: "Resulting customized Firefox package.",
             })))),
           wrapperConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "attrs")),
               default: nix.thunk(() => ({})),
               description: "Arguments to pass to Firefox wrapper",
             })))),
           policies: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(policyFormat, "type")),
               default: nix.thunk(() => ({})),
               description: nix.thunk(() => nix.str`Group policies to install.
@@ -99,7 +99,7 @@ ${organisationInfo}
 `),
             })))),
           preferences: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -121,13 +121,13 @@ ${organisationInfo}
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  \"browser.tabs.tabmanager.enabled\" = false;\n}\n")),
             })))),
           preferencesStatus: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["default", "locked", "user", "clear"]))),
               default: "locked",
               description: "The status of `firefox.preferences`.\n\n`status` can assume the following values:\n- `\"default\"`: Preferences appear as default.\n- `\"locked\"`: Preferences appear as default and can't be changed.\n- `\"user\"`: Preferences appear as changed.\n- `\"clear\"`: Value has no effect. Resets to factory defaults on each startup.\n",
             })))),
           languagePacks: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => [
                     "ach",
                     "af",
@@ -237,13 +237,13 @@ ${organisationInfo}
               description: "The language packs to install.\n",
             })))),
           autoConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "AutoConfig files can be used to set and lock preferences that are not covered\nby the policies.json for Mac and Linux. This method can be used to automatically\nchange user preferences or prevent the end user from modifying specific\npreferences by locking them. More info can be found in <https://support.mozilla.org/en-US/kb/customizing-firefox-using-autoconfig>.\n",
             })))),
           autoConfigFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "path")));
@@ -252,9 +252,9 @@ ${organisationInfo}
               description: "AutoConfig files can be used to set and lock preferences that are not covered\nby the policies.json for Mac and Linux. This method can be used to automatically\nchange user preferences or prevent the end user from modifying specific\npreferences by locking them. More info can be found in <https://support.mozilla.org/en-US/kb/customizing-firefox-using-autoconfig>.\n\nFiles are concatenated and autoConfig is appended.\n",
             })))),
           nativeMessagingHosts: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             packages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
                 default: [],
                 description: "Additional packages containing native messaging hosts that should be made available to Firefox extensions.\n",
@@ -264,38 +264,38 @@ ${organisationInfo}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         environment: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "finalPackage"))]),
           etc: nix.thunk(() => (() => {
-            const policiesJSON = nix.thunk(() => nix.app(nix.sel(policyFormat, "generate"), "firefox-policies.json", nix.thunk(() => ({ __proto__: pos$16, policies: nix.thunk(() => nix.attr(cfg, "policies")) }))));
+            const policiesJSON = nix.thunk(() => nix.app(nix.sel(policyFormat, "generate"), "firefox-policies.json", nix.thunk(() => ({ [nix.POS]: pos$16, policies: nix.thunk(() => nix.attr(cfg, "policies")) }))));
             return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "policies"), {})), nix.thunk(() => ({
-                __proto__: pos$18,
-                "firefox/policies/policies.json": nix.thunk(() => ({ __proto__: pos$17, source: nix.thunk(() => nix.str`${policiesJSON}`) })),
+                [nix.POS]: pos$18,
+                "firefox/policies/policies.json": nix.thunk(() => ({ [nix.POS]: pos$17, source: nix.thunk(() => nix.str`${policiesJSON}`) })),
               })));
           })()),
         })),
         programs: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           firefox: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             policies: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               DisableAppUpdate: true,
               Preferences: nix.thunk(() => nix.builtins.mapAttrs((_) => (value) => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   Value: value,
                   Status: nix.thunk(() => nix.sel(cfg, "preferencesStatus")),
                 }), nix.thunk(() => nix.sel(cfg, "preferences")))),
               ExtensionSettings: nix.thunk(() => nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((lang) => nix.app(nix.sel(lib, "attrsets", "nameValuePair"), nix.thunk(() => nix.str`langpack-${lang}@firefox.mozilla.org`), nix.thunk(() => ({
-                      __proto__: pos$21,
+                      [nix.POS]: pos$21,
                       installation_mode: "normal_installed",
                       install_url: nix.thunk(() => nix.str`https://releases.mozilla.org/pub/firefox/releases/${nix.sel(cfg, "package", "version")}/linux-x86_64/xpi/${lang}.xpi`),
                     }))), nix.thunk(() => nix.sel(cfg, "languagePacks")))))),
             })),
             finalPackage: nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), (old) => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 extraPrefsFiles: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "extraPrefsFiles"), nix.concat(nix.sel(cfg, "autoConfigFiles"), [
                   nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "firefox-autoconfig.js", nix.thunk(() => nix.sel(cfg, "autoConfig")))),
                 ]))),
@@ -306,7 +306,7 @@ ${organisationInfo}
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "linsui"))];

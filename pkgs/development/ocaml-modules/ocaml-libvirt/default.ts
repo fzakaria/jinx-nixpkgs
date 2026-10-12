@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ocaml-libvirt";
       const version = "0.6.1.5";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libvirt",
           repo: "libvirt-ocaml",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OCaml bindings for libvirt",
         homepage: "https://libvirt.org/ocaml/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

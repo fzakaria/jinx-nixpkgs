@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const includeDemo = nix.argOr($, "includeDemo", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "grandorgue",
       version: "3.17.2-1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GrandOrgue",
           repo: "grandorgue",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         ])), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(includeDemo)), "-DINSTALL_DEMO=OFF"))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/{Applications,bin,lib}\nmv $out/GrandOrgue.app $out/Applications/\nfor lib in $out/Applications/GrandOrgue.app/Contents/Frameworks/lib*; do\n  ln -s $lib $out/lib/\ndone\nmakeWrapper $out/{Applications/GrandOrgue.app/Contents/MacOS,bin}/GrandOrgue\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Virtual Pipe Organ Software",
         homepage: "https://github.com/GrandOrgue/grandorgue",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

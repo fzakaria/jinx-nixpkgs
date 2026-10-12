@@ -17,16 +17,16 @@ export default nix.lambda((args) => (() => {
     const modules = nix.argOr($_1, "modules", () => []);
     const specialArgs = nix.argOr($_1, "specialArgs", () => ({}));
     return nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         prefix: prefix,
         modules: modules,
         class: "nixos",
         specialArgs: nix.thunk(() => nix.update({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           modulesPath: nix.thunk(() => nix.builtins.toString(nix.path(here, "../modules"))),
         }, specialArgs)),
       })));
   })(), formals$2);
-  return { __proto__: pos$3, evalModules: evalModules };
+  return { [nix.POS]: pos$3, evalModules: evalModules };
 })(), formals$1);
 //# sourceMappingURL=eval-config-minimal.ts.map

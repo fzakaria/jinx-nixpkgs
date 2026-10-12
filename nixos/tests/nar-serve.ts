@@ -23,31 +23,31 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     name: "nar-serve",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "rizary"))]),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           services: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             nginx: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                __proto__: pos$3,
-                default: nix.thunk(() => ({ __proto__: pos$2, root: "/var/www" })),
+                [nix.POS]: pos$3,
+                default: nix.thunk(() => ({ [nix.POS]: pos$2, root: "/var/www" })),
               })),
             })),
             "nar-serve": nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               enable: true,
               cacheURL: "http://localhost/",
               domain: "example.com",
@@ -56,17 +56,17 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs_1, "hello")),
               nix.thunk(() => nix.sel(pkgs_1, "curl")),
             ]),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$9,
-            firewall: nix.thunk(() => ({ __proto__: pos$8, allowedTCPPorts: nix.thunk(() => [8383n]) })),
+            [nix.POS]: pos$9,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$8, allowedTCPPorts: nix.thunk(() => [8383n]) })),
           })),
-          nix: nix.thunk(() => ({ __proto__: pos$10, enable: true })),
+          nix: nix.thunk(() => ({ [nix.POS]: pos$10, enable: true })),
         };
       })(), formals$2),
     })),

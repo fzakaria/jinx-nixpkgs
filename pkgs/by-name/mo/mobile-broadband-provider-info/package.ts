@@ -23,17 +23,17 @@ export default nix.lambda((args) => (() => {
       const pname = "mobile-broadband-provider-info";
       const version = "20240407";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/${pname}/${version}/${pname}-${version}.tar.xz`),
           hash: "sha256-ib/v8hX0v/jpw/8uwlJQ/bCA0R6b+lnG/HGYKsAcgUo=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [libxslt, libxml2, meson, ninja]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: pname })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: pname })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Mobile broadband service provider database",
         homepage: "https://gitlab.gnome.org/GNOME/mobile-broadband-provider-info",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/mobile-broadband-provider-info/-/blob/${version}/NEWS?ref_type=tags`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$5, pname, version, src, nativeBuildInputs, passthru, meta };
+      return { [nix.POS]: pos$5, pname, version, src, nativeBuildInputs, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

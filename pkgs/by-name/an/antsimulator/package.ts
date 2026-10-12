@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const sfml_2 = nix.arg($, "sfml_2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "antsimulator",
       version: "3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "johnBuffer",
           repo: "AntSimulator",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace src/main.cpp \\\n  --replace-fail \"res/\" \"$out/opt/antsimulator/\"\n\nsubstituteInPlace include/simulation/config.hpp \\\n  --replace-fail \"res/\" \"$out/opt/antsimulator/\"\n\nsubstituteInPlace include/render/colony_renderer.hpp \\\n  --replace-fail \"res/\" \"$out/opt/antsimulator/\"\n",
       installPhase: "runHook preInstall\n\ninstall -Dm644 -t $out/opt/antsimulator res/*\ninstall -Dm755 ./AntSimulator $out/bin/antsimulator\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/johnBuffer/AntSimulator",
         description: "Simple Ants simulator",
         mainProgram: "antsimulator",

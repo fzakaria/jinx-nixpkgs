@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const withCurses = nix.argOr($, "withCurses", () => false);
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "12.9",
       pname: "textadept",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "orbitalquark",
           repo: "textadept",
           tag: nix.thunk(() => nix.str`textadept_${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), withQt, nix.thunk(() => ["-DQT=ON"])), nix.app(nix.sel(lib, "optionals"), withCurses, nix.thunk(() => ["-DCURSES=ON", "-DQT=OFF"])))),
       preConfigure: nix.thunk(() => nix.add("mkdir -p $PWD/build/_deps\n\n", nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (params) => nix.str`ln -s ${nix.app(fetchurl, params)} $PWD/build/_deps/${name}`, nix.thunk(() => nix.builtins.import(nix.path(here, "./deps.nix")))))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extensible text editor based on Scintilla with Lua scripting",
         homepage: "http://foicica.com/textadept",
         downloadPage: "https://github.com/orbitalquark/textadept",

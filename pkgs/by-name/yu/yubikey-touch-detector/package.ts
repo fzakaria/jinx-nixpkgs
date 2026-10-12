@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const scdoc = nix.arg($, "scdoc");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "yubikey-touch-detector",
       version: "1.15.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "max-baz",
           repo: "yubikey-touch-detector",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libnotify, gpgme]),
       postInstall: "install -Dm444 -t $out/share/doc/yubikey-touch-detector *.{md,example}\n\ninstall -Dm444 -t $out/share/licenses/yubikey-touch-detector LICENSE\n\ninstall -Dm444 -t $out/share/icons/hicolor/128x128/apps yubikey-touch-detector.png\n\ninstall -Dm444 -t $out/lib/systemd/user *.{service,socket}\n\nsubstituteInPlace $out/lib/systemd/user/*.service \\\n  --replace /usr/bin/yubikey-touch-detector \"$out/bin/yubikey-touch-detector\"\n\nscdoc < yubikey-touch-detector.1.scd > yubikey-touch-detector.1\ninstallManPage yubikey-touch-detector.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to detect when your YubiKey is waiting for a touch",
         homepage: "https://github.com/max-baz/yubikey-touch-detector",
         maintainers: nix.thunk(() => (() => {

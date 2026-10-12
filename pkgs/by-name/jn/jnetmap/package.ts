@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jnetmap",
       version: "0.5.5",
       versionSuffix: "-703",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/jnetmap/jNetMap%20${nix.sel(finalAttrs, "version")}/jNetMap-${nix.sel(finalAttrs, "version")}${nix.sel(finalAttrs, "versionSuffix")}.jar`),
           sha256: "sha256-e4Ssm2Sq/v1YZ7ZudAqgQ7Cz2ffwWbSmLFoKhaZvTPg=",
         })))),
@@ -39,7 +39,7 @@ makeWrapper "${jre}/bin/java" "$out/bin/jnetmap" \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Graphical network monitoring and documentation tool",
         mainProgram: "jnetmap",
         homepage: "http://www.rakudave.ch/jnetmap/",

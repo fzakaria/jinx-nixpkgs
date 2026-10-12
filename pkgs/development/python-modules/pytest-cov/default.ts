@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "pytest_cov",
           version: version,
           hash: "sha256-MGdPK19jUaoJcCqcjDZPagHCeq4ME2augBYWDR78VrI=",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "# allow to find the module helper during the test run\nexport PYTHONPATH=$PYTHONPATH:$PWD/tests\npy.test tests\n";
       const pythonImportsCheck = nix.thunk(() => ["pytest_cov"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Plugin for coverage reporting with support for both centralised and distributed testing, including subprocesses and multiprocessing",
         homepage: "https://github.com/pytest-dev/pytest-cov",
         changelog: nix.thunk(() => nix.str`https://github.com/pytest-dev/pytest-cov/blob/v${version}/CHANGELOG.rst`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

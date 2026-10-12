@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const byacc = nix.arg($, "byacc");
   const libjail = nix.arg($, "libjail");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "usr.sbin/jail",
       extraNativeBuildInputs: nix.thunk(() => [flex, byacc]),
       buildInputs: nix.thunk(() => [libjail]),
       MK_TESTS: "no",
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "jail" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "jail" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=jail.ts.map

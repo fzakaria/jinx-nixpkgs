@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.11";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NaturalHistoryMuseum",
           repo: "pylibdmtx",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -36,13 +36,13 @@ rm pylibdmtx/tests/test_dmtx_library.py
       const propagatedBuildInputs = nix.thunk(() => [pillow, numpy]);
       const pythonImportsCheck = nix.thunk(() => ["pylibdmtx"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Read and write Data Matrix barcodes from Python 2 and 3 using the libdmtx library",
         homepage: "https://github.com/NaturalHistoryMuseum/pylibdmtx/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

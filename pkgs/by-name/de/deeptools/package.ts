@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const addBinToPathHook = nix.arg($, "addBinToPathHook");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "deeptools",
       version: "3.5.6",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "deeptools",
           repo: "deepTools",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       ]),
       disabledTests: nix.thunk(() => ["test_plotCoverage_default"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://deeptools.readthedocs.io/en/develop",
         description: "Tools for exploring deep DNA sequencing data",
         longDescription: "deepTools contains useful modules to process the mapped reads data for multiple\nquality checks, creating normalized coverage files in standard bedGraph and bigWig\nfile formats, that allow comparison between different files (for example, treatment and control).\nFinally, using such normalized and standardized files, deepTools can create many\npublication-ready visualizations to identify enrichments and for functional\nannotations of the genome.\n",

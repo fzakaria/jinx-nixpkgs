@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gaphor",
       version: "3.3.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gaphor",
           repo: "gaphor",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -98,11 +98,11 @@ substituteInPlace $out/share/dbus-1/services/org.gaphor.Gaphor.service \\
       dontWrapGApps: true,
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "UML and SysML modeling tool",
         longDescription: "Gaphor is a UML, SysML, RAAML, and C4 modeling application. It\nis designed to be easy to use, while still being powerful.\nGaphor implements a fully-compliant UML 2 data model, so it is\nmuch more than a picture drawing tool. You can use Gaphor to\nquickly visualize different aspects of a system as well as\ncreate complete, highly complex models.\n\nGaphor provides four modeling languages: UML, SysML, RAAML and C4 and\nmakes them accessible to beginners.\n",
         homepage: "https://gaphor.org/",

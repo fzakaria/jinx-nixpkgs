@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LaunchPlatform",
           repo: "beanhub-cli",
           tag: version,
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         uvicorn,
       ], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         login: nix.thunk(() => [attrs, httpx, python_dateutil, tomli, tomli_w]),
         connect: nix.thunk(() => [attrs, cryptography, httpx, pynacl, python_dateutil, tomli, tomli_w]),
       }));
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["beanhub_cli"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Command line tools for BeanHub or Beancount users",
         homepage: "https://github.com/LaunchPlatform/beanhub-cli/",
         changelog: nix.thunk(() => nix.str`https://github.com/LaunchPlatform/beanhub-cli/releases/tag/${nix.sel(src, "tag")}`),
@@ -95,7 +95,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "bh",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

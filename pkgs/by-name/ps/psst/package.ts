@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const stdenv = nix.arg($, "stdenv");
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       categories: nix.thunk(() => ["Audio", "AudioVideo"]),
       comment: "Spotify client with native GUI written in Rust, without Electron",
       desktopName: "Psst",
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
       startupWMClass: "psst-gui",
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "psst",
       version: "0-unstable-2026-08-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "jpochyla",
           repo: "psst",
           rev: "3c3621aa79f820c737dd899e7e359b1359292466",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-sJX5iMPXsKE9UmD+WOAYqWTTouSzmiDbZppPtMoGue8=",
       buildAndTestSubdir: "psst-gui",
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         LIBCLANG_PATH: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), libclang)}/lib`),
       })),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
@@ -63,14 +63,14 @@ export default nix.lambda((args) => (() => {
 install -Dm644 ${desktopItem}/share/applications/* -t $out/share/applications
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             extraArgs: nix.thunk(() => ["--version=branch", "--version-regex=(0-unstable-.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Spotify client with native GUI written in Rust, without Electron",
         homepage: "https://github.com/jpochyla/psst",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

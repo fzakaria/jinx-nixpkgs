@@ -37,59 +37,59 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "physlock"));
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         physlock: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable the {command}`physlock` screen locking mechanism.\n\nEnable this and then run {command}`systemctl start physlock`\nto securely lock the screen.\n\nThis will switch to a new virtual terminal, turn off console\nswitching and disable SysRq mechanism (when\n{option}`services.physlock.disableSysRq` is set)\nuntil the root or user password is given.\n",
             })))),
           allowAnyUser: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to allow any user to lock the screen. This will install a\nsetuid wrapper to allow any user to start physlock as root, which\nis a minor security risk. Call the physlock binary to use this instead\nof using the systemd service.\n",
             })))),
           disableSysRq: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to disable SysRq when locked with physlock.\n",
             })))),
           lockMessage: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "",
               description: "Message to show on physlock login terminal.\n",
             })))),
           muteKernelMessages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Disable kernel messages on console while physlock is running.\n",
             })))),
           lockOn: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             suspend: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Whether to lock screen with physlock just before suspend.\n",
               })))),
             hibernate: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Whether to lock screen with physlock just before hibernate.\n",
               })))),
             extraTargets: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: [],
                 example: nix.thunk(() => ["display-manager.service"]),
@@ -101,24 +101,24 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             environment: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "physlock"))]),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               services: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 physlock: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   enable: true,
                   documentation: nix.thunk(() => ["man:physlock(1)"]),
                   description: "Physlock",
                   wantedBy: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "lockOn", "suspend")), "suspend.target"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "lockOn", "hibernate")), "hibernate.target"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "lockOn", "hibernate")) || nix.asBool(nix.sel(cfg, "lockOn", "suspend")))), "suspend-then-hibernate.target"), nix.sel(cfg, "lockOn", "extraTargets"))))),
                   before: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "lockOn", "suspend")), "systemd-suspend.service"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "lockOn", "hibernate")), "systemd-hibernate.service"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "lockOn", "hibernate")) || nix.asBool(nix.sel(cfg, "lockOn", "suspend")))), "systemd-suspend-then-hibernate.service"), nix.sel(cfg, "lockOn", "extraTargets"))))),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     Type: "forking",
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "physlock")}/bin/physlock -d${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "muteKernelMessages")), "m")}${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "disableSysRq")), "s")}${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "lockMessage"), "")), nix.thunk(() => nix.str` -p "${nix.sel(cfg, "lockMessage")}"`))}`),
                   })),
@@ -126,21 +126,21 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             security: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               pam: nix.thunk(() => ({
-                __proto__: pos$19,
-                services: nix.thunk(() => ({ __proto__: pos$18, physlock: nix.thunk(() => ({})) })),
+                [nix.POS]: pos$19,
+                services: nix.thunk(() => ({ [nix.POS]: pos$18, physlock: nix.thunk(() => ({})) })),
               })),
             })),
           })),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "allowAnyUser")), nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               security: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 wrappers: nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   physlock: nix.thunk(() => ({
-                    __proto__: pos$22,
+                    [nix.POS]: pos$22,
                     setuid: true,
                     owner: "root",
                     group: "root",

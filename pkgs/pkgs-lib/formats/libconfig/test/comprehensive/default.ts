@@ -20,20 +20,20 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const writeText = nix.arg($, "writeText");
   const libconfig = nix.thunk(() => nix.app(nix.sel(formats, "libconfig"), nix.thunk(() => ({}))));
-  const include_expr = nix.thunk(() => ({ __proto__: pos$1, val: 1n }));
+  const include_expr = nix.thunk(() => ({ [nix.POS]: pos$1, val: 1n }));
   const include_file = nix.thunk(() => nix.app(writeText, "libconfig-test-include", "val=1;\n"));
   const expression = nix.thunk(() => ({
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     simple_top_level_attr: "1.0",
     nested: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       attrset: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         has: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           a: nix.thunk(() => ({
-            __proto__: pos$3,
-            integer: nix.thunk(() => ({ __proto__: pos$2, value: 100n })),
+            [nix.POS]: pos$3,
+            integer: nix.thunk(() => ({ [nix.POS]: pos$2, value: 100n })),
           })),
         })),
       })),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
     ]),
     nasty_string: "\"@\n\\\t^*bf\n0\";'''$",
     weirderTypes: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       _includes: nix.thunk(() => [include_file]),
       pi: 3.141592654,
       bigint: 9223372036854775807n,
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
   }));
   const libconfig_test_cfg = nix.thunk(() => nix.app(nix.sel(libconfig, "generate"), "libconfig-test.cfg", expression));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       name: "pkgs.formats.libconfig-test-comprehensive",
       dontUnpack: true,
       dontBuild: true,

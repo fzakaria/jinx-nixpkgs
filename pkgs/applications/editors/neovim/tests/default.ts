@@ -91,12 +91,12 @@ export default nix.lambda((args) => (() => {
     const w = nix.withScope(vimPlugins, null);
     return [
       nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         plugin: nix.thunk(() => nix.lookup(w, "vim-obsession")),
         config: "map <Leader>$ <Cmd>Obsession<CR>\n",
       })),
       nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         plugin: nix.thunk(() => nix.lookup(w, "vim-obsession")),
         type: "lua",
         config: "-- this is a comment\nvim.g.nixpkgs_test_value = 42\n",
@@ -107,39 +107,39 @@ export default nix.lambda((args) => (() => {
     const w_1 = nix.withScope(vimPlugins, null);
     return [
       nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         plugin: nix.thunk(() => nix.lookup(w_1, "vim-obsession")),
         config: "map <Leader>$ <Cmd>Obsession<CR>",
       })),
       nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         plugin: nix.thunk(() => nix.lookup(w_1, "trouble-nvim")),
         config: "\" placeholder config",
       })),
     ];
   })());
   const nvim_with_luasnip = nix.thunk(() => nix.app(wrapNeovim2, "-with-luasnip", nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       plugins: nix.thunk(() => [
-        nix.thunk(() => ({ __proto__: pos$5, plugin: nix.thunk(() => nix.sel(vimPlugins, "luasnip")) })),
+        nix.thunk(() => ({ [nix.POS]: pos$5, plugin: nix.thunk(() => nix.sel(vimPlugins, "luasnip")) })),
       ]),
     }))));
   const nvim_run_failing_check = nix.thunk(() => nix.app(nix.sel(nix.app(wrapNeovimUnstable, neovim_unwrapped, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       luaRcContent: "this is an invalid lua statement to break the build",
-    }))), "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$8, doCheck: true }))));
-  const wrapNeovim2 = (suffix) => (config) => nix.app(wrapNeovimUnstable, neovim_unwrapped, nix.thunk(() => nix.update(config, { __proto__: pos$9, extraName: suffix })));
+    }))), "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$8, doCheck: true }))));
+  const wrapNeovim2 = (suffix) => (config) => nix.app(wrapNeovimUnstable, neovim_unwrapped, nix.thunk(() => nix.update(config, { [nix.POS]: pos$9, extraName: suffix })));
   const nmt = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       owner: "rycee",
       repo: "nmt",
       rev: "d2cc8c1042b1c2511f68f40e2790a8c0e29eeb42",
       sha256: "1ykcvyx82nhdq167kbnpgwkgjib8ii7c92y3427v986n2s5lsskc",
     }))));
   const runTest = (neovim_drv) => (buildCommand) => nix.app(runCommandLocal, nix.thunk(() => nix.str`test-${nix.sel(neovim_drv, "name")}`), nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         platforms: nix.thunk(() => nix.sel(neovim_drv, "meta", "platforms")),
       })),
     })), nix.thunk(() => nix.add(nix.str`export PATH="${neovim_drv}/bin:$PATH"
@@ -154,7 +154,7 @@ ${nix.sel(pkgs, "perl")}/bin/perl -pe "s|\\Q$NIX_STORE\\E/[a-z0-9]{32}-|$NIX_STO
 ${nix.sel(pkgs, "perl")}/bin/perl -pe "s|\\Q$NIX_STORE\\E/[a-z0-9]{32}-|$NIX_STORE/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee-|g" < "$luarc" > "$luarcGeneric"
 `, buildCommand)));
   const nvim_with_rocks_nvim = nix.thunk(() => nix.app(wrapNeovimUnstable, neovim_unwrapped, nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       extraName: "with-rocks-nvim",
       wrapperArgs: "--set NVIM_APPNAME test-rocks-nvim",
       plugins: nix.thunk(() => [nix.thunk(() => nix.sel(vimPlugins, "rocks-nvim"))]),
@@ -162,15 +162,15 @@ ${nix.sel(pkgs, "perl")}/bin/perl -pe "s|\\Q$NIX_STORE\\E/[a-z0-9]{32}-|$NIX_STO
   return nix.app(nix.sel(pkgs, "lib", "recurseIntoAttrs"), nix.thunk(() => (() => {
       const nmt_1 = nmt;
       const failed_check = nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), nvim_run_failing_check));
-      const vim_empty_config = nix.thunk(() => nix.app(nix.sel(vimUtils, "vimrcFile"), nix.thunk(() => ({ __proto__: pos$14, beforePlugins: "", customRC: "" }))));
-      const nvim_with_plugins = nix.thunk(() => nix.app(wrapNeovim2, "-with-plugins", nix.thunk(() => ({ __proto__: pos$15, plugins: plugins, neovimRcContent: "\" just a comment\n" }))));
+      const vim_empty_config = nix.thunk(() => nix.app(nix.sel(vimUtils, "vimrcFile"), nix.thunk(() => ({ [nix.POS]: pos$14, beforePlugins: "", customRC: "" }))));
+      const nvim_with_plugins = nix.thunk(() => nix.app(wrapNeovim2, "-with-plugins", nix.thunk(() => ({ [nix.POS]: pos$15, plugins: plugins, neovimRcContent: "\" just a comment\n" }))));
       const nvim_singlelines = nix.thunk(() => nix.app(wrapNeovim2, "-single-lines", nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           plugins: packagesWithSingleLineConfigs,
           neovimRcContent: "\" just a comment\n",
         }))));
       const passthruInitRc = nix.thunk(() => nix.app(runTest, nvim_singlelines, nix.thunk(() => nix.str`INITRC=${nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             name: "initrc",
             text: nix.thunk(() => nix.sel(nvim_singlelines, "passthru", "initRc")),
           })))}
@@ -186,35 +186,35 @@ assertFileContent \\
   "${nix.path(here, "./init-single-lines.vim")}"
 `)));
       const nvim_via_override = nix.thunk(() => nix.app(nix.sel(neovim, "override"), nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           extraName: "-via-override",
           configure: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             packages: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               foo: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 start: nix.thunk(() => [nix.thunk(() => nix.sel(vimPlugins, "ale"))]),
               })),
             })),
             customRC: ":help ale\n",
           })),
         }))));
-      const nvim_with_aliases = nix.thunk(() => nix.app(nix.sel(neovim, "override"), nix.thunk(() => ({ __proto__: pos$22, extraName: "-with-aliases", vimAlias: true, viAlias: true }))));
+      const nvim_with_aliases = nix.thunk(() => nix.app(nix.sel(neovim, "override"), nix.thunk(() => ({ [nix.POS]: pos$22, extraName: "-with-aliases", vimAlias: true, viAlias: true }))));
       const nvim_with_plug = nix.thunk(() => nix.app(nix.sel(neovim, "override"), nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           extraName: "-with-plug",
           configure: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             packages: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               plugins: nix.thunk(() => (() => {
                 const w_2 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "vimPlugins")), null);
                 return {
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   start: nix.thunk(() => [
                     nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "base16-vim"), "overrideAttrs"), (old) => ({
-                        __proto__: pos$23,
+                        [nix.POS]: pos$23,
                         pname: nix.thunk(() => nix.add(nix.sel(old, "pname"), "-unique-for-tests-please-dont-use")),
                       }))),
                   ]),
@@ -227,13 +227,13 @@ assertFileContent \\
       const run_nvim_with_plug = nix.thunk(() => nix.app(runTest, nvim_with_plug, nix.thunk(() => nix.str`${nvim_with_plug}/bin/nvim -V3log.txt -i NONE -c 'color base16-tomorrow-night'  +quit! -e
 `)));
       const nvim_with_autoconfigure = nix.thunk(() => nix.app(nix.sel(pkgs, "neovim", "override"), nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           configure: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             packages: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               myPlugins: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 start: nix.thunk(() => [
                   nix.thunk(() => nix.sel(vimPlugins, "unicode-vim")),
                   nix.thunk(() => nix.sel(vimPlugins, "fzf-hoogle-vim")),
@@ -244,13 +244,13 @@ assertFileContent \\
           autoconfigure: true,
         }))));
       const nvim_with_runtimeDeps = nix.thunk(() => nix.app(nix.sel(pkgs, "neovim", "override"), nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           configure: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             packages: nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               myPlugins: nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 start: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "vimPlugins", "hex-nvim"))]),
               })),
             })),
@@ -258,28 +258,28 @@ assertFileContent \\
           autowrapRuntimeDeps: true,
         }))));
       const nvim_with_ftplugin = nix.thunk(() => (() => {
-        const texFtplugin = nix.thunk(() => nix.update(nix.app(nix.sel(pkgs, "runCommandLocal"), "tex-ftplugin", nix.thunk(() => ({})), "mkdir -p $out/ftplugin\necho 'call system(\"echo \". exists(\"b:did_ftplugin\") . \" > plugin_was_loaded_too_late\")' >> $out/ftplugin/tex.vim\necho ':q!' >> $out/ftplugin/tex.vim\n"), { __proto__: pos$36, pname: "test-ftplugin" }));
+        const texFtplugin = nix.thunk(() => nix.update(nix.app(nix.sel(pkgs, "runCommandLocal"), "tex-ftplugin", nix.thunk(() => ({})), "mkdir -p $out/ftplugin\necho 'call system(\"echo \". exists(\"b:did_ftplugin\") . \" > plugin_was_loaded_too_late\")' >> $out/ftplugin/tex.vim\necho ':q!' >> $out/ftplugin/tex.vim\n"), { [nix.POS]: pos$36, pname: "test-ftplugin" }));
         return nix.app(nix.sel(neovim, "override"), nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             extraName: "-with-ftplugin",
             configure: nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               packages: nix.thunk(() => ({
-                __proto__: pos$38,
-                plugins: nix.thunk(() => ({ __proto__: pos$37, start: nix.thunk(() => [texFtplugin]) })),
+                [nix.POS]: pos$38,
+                plugins: nix.thunk(() => ({ [nix.POS]: pos$37, start: nix.thunk(() => [texFtplugin]) })),
               })),
             })),
           })));
       })());
       const nvim_with_no_pname_plugin = nix.thunk(() => nix.app(nix.sel(neovim, "override"), nix.thunk(() => ({
-          __proto__: pos$44,
+          [nix.POS]: pos$44,
           extraName: "-with-no-pname-plugin",
           configure: nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             packages: nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               plugins: nix.thunk(() => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 start: nix.thunk(() => [nix.thunk(() => nix.sel(vimPlugins, "corePlugins"))]),
               })),
             })),
@@ -296,7 +296,7 @@ echo $result
 `)));
       const run_nvim_with_no_pname_plugin = nix.thunk(() => nix.app(runTest, nvim_with_no_pname_plugin, nix.thunk(() => nix.str`${nvim_with_no_pname_plugin}/bin/nvim -i NONE -e --headless +quit
 `)));
-      const nvim_with_only_init_lua = nix.thunk(() => nix.app(wrapNeovim2, "-only-lua-init-file", nix.thunk(() => ({ __proto__: pos$45, luaRcContent: "-- some text" }))));
+      const nvim_with_only_init_lua = nix.thunk(() => nix.app(wrapNeovim2, "-only-lua-init-file", nix.thunk(() => ({ [nix.POS]: pos$45, luaRcContent: "-- some text" }))));
       const no_init_vim_file = nix.thunk(() => nix.app(runTest, nvim_with_only_init_lua, nix.thunk(() => nix.str`${nvim_with_only_init_lua}/bin/nvim -i NONE -e --headless -c 'if len(getscriptinfo({"name":"init.vim"})) == 0 | quit | else | cquit | fi'
 # This does now work because the lua file is sourced via loadfile() which
 # does not add the file name to :scriptnames and getscriptinfo().
@@ -305,24 +305,24 @@ echo $result
 assertFileRegex ${nvim_with_only_init_lua}/bin/nvim 'VIMINIT=.*init.lua'
 `)));
       const checkForTags = nix.thunk(() => nix.app(nix.sel(vimPlugins, "packer-nvim", "overrideAttrs"), (oldAttrs) => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           doInstallCheck: true,
           installCheckPhase: "[ -f $out/doc/tags ]\n",
         })));
       const checkForTagsLuaPackages = nix.thunk(() => nix.app(nix.sel(vimPlugins, "gitsigns-nvim", "overrideAttrs"), (oldAttrs) => ({
-          __proto__: pos$47,
+          [nix.POS]: pos$47,
           doInstallCheck: true,
           installCheckPhase: "[ -f $out/doc/tags ]\n",
         })));
       const nvim_with_gitsigns_plugin = nix.thunk(() => nix.app(nix.sel(neovim, "override"), nix.thunk(() => ({
-          __proto__: pos$51,
+          [nix.POS]: pos$51,
           extraName: "-with-gitsigns-plugin",
           configure: nix.thunk(() => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             packages: nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               plugins: nix.thunk(() => ({
-                __proto__: pos$48,
+                [nix.POS]: pos$48,
                 start: nix.thunk(() => [nix.thunk(() => nix.sel(vimPlugins, "gitsigns-nvim"))]),
               })),
             })),
@@ -332,7 +332,7 @@ assertFileRegex ${nvim_with_only_init_lua}/bin/nvim 'VIMINIT=.*init.lua'
 `)));
       const nvimShouldntWrap = nix.thunk(() => nix.app(wrapNeovim2, "-should-not-wrap", nix.thunk(() => ({}))));
       const nvimDontWrap = nix.thunk(() => nix.app(wrapNeovim2, "-forced-nowrap", nix.thunk(() => ({
-          __proto__: pos$52,
+          [nix.POS]: pos$52,
           wrapRc: false,
           neovimRcContent: "\" this shouldn't trigger the creation of an init.vim\n",
         }))));
@@ -349,14 +349,14 @@ assertFileIsExecutable "$folder/vim"
       const nvim_autowrap = nix.thunk(() => nix.app(runTest, nvim_via_override, nix.thunk(() => nix.str`! grep ${nvimShouldntWrap}/bin/nvim
 `)));
       const test_nvim_with_remote_plugin = nix.thunk(() => nix.app(nix.sel(neovim, "override"), nix.thunk(() => ({
-          __proto__: pos$56,
+          [nix.POS]: pos$56,
           extraName: "-remote",
           configure: nix.thunk(() => ({
-            __proto__: pos$55,
+            [nix.POS]: pos$55,
             packages: nix.thunk(() => ({
-              __proto__: pos$54,
+              [nix.POS]: pos$54,
               foo: nix.thunk(() => ({
-                __proto__: pos$53,
+                [nix.POS]: pos$53,
                 start: nix.thunk(() => (() => {
                   const w_2 = nix.withScope(vimPlugins, null);
                   return [nix.thunk(() => nix.lookup(w_2, "deoplete-nvim"))];
@@ -366,26 +366,26 @@ assertFileIsExecutable "$folder/vim"
           })),
         }))));
       const nvimWithLuaPackages = nix.thunk(() => nix.app(wrapNeovim2, "-with-lua-packages", nix.thunk(() => ({
-          __proto__: pos$57,
+          [nix.POS]: pos$57,
           extraLuaPackages: (ps) => [nix.thunk(() => nix.sel(ps, "mpack"))],
           luaRcContent: "require(\"mpack\")\n",
         }))));
       const nvim_with_lua_packages = nix.thunk(() => nix.app(runTest, nvimWithLuaPackages, nix.thunk(() => nix.str`${nvimWithLuaPackages}/bin/nvim -V3log.txt -i NONE --noplugin +quitall! -e
 `)));
       const nvim_with_opt_plugin = nix.thunk(() => nix.app(nix.sel(neovim, "override"), nix.thunk(() => ({
-          __proto__: pos$62,
+          [nix.POS]: pos$62,
           extraName: "-with-opt-plugin",
           configure: nix.thunk(() => ({
-            __proto__: pos$61,
+            [nix.POS]: pos$61,
             packages: nix.thunk(() => ({
-              __proto__: pos$60,
+              [nix.POS]: pos$60,
               "opt-plugins": nix.thunk(() => (() => {
                 const w_2 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "vimPlugins")), null);
                 return {
-                  __proto__: pos$59,
+                  [nix.POS]: pos$59,
                   opt: nix.thunk(() => [
                     nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "dashboard-nvim"), "overrideAttrs"), (old) => ({
-                        __proto__: pos$58,
+                        [nix.POS]: pos$58,
                         pname: nix.thunk(() => nix.add(nix.sel(old, "pname"), "-unique-for-tests-please-dont-use-opt")),
                       }))),
                   ]),
@@ -416,7 +416,7 @@ assertFileIsExecutable "$folder/vim"
         const luaexpat = nix.thunk(() => nix.attr(from, "luaexpat"));
         const luassert = nix.thunk(() => nix.attr(from, "luassert"));
         return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-            __proto__: pos$63,
+            [nix.POS]: pos$63,
             pname: "neovim-require-check-lua-module-test",
             version: "0",
             src: nix.thunk(() => nix.app(runCommandLocal, "neovim-require-check-lua-module-src", nix.thunk(() => ({})), "mkdir -p \"$out/lua/require-check-luamods\"\nmkdir -p \"$out/plugin\"\ncat > \"$out/plugin/require-check-luamods.vim\" <<'EOF'\nlet g:require_check_luamods_plugin_loaded = 1\nEOF\ncat > \"$out/lua/require-check-luamods/init.lua\" <<'EOF'\nif vim.g.require_check_luamods_plugin_loaded ~= 1 then\n  error(\"plugin script was not sourced\")\nend\n-- lxp: direct C dependency from luaexpat (package.cpath)\nrequire(\"lxp\")\n-- say: transitive dependency of luassert (package.path closure)\nrequire(\"say\")\nreturn {}\nEOF\n")),
@@ -427,41 +427,41 @@ assertFileIsExecutable "$folder/vim"
         const from = nix.thunk(() => nix.sel(neovim_unwrapped, "lua", "pkgs"));
         const luassert = nix.thunk(() => nix.attr(from, "luassert"));
         return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-            __proto__: pos$65,
+            [nix.POS]: pos$65,
             pname: "neovim-require-check-passthru-lua-module-test",
             version: "0",
             src: nix.thunk(() => nix.app(runCommandLocal, "neovim-require-check-passthru-lua-module-src", nix.thunk(() => ({})), "mkdir -p \"$out/lua/require-check-passthru-luamods\"\ncat > \"$out/lua/require-check-passthru-luamods/init.lua\" <<'EOF'\nrequire(\"say\")\nreturn {}\nEOF\n")),
-            passthru: nix.thunk(() => ({ __proto__: pos$64, requiredLuaModules: nix.thunk(() => [luassert]) })),
+            passthru: nix.thunk(() => ({ [nix.POS]: pos$64, requiredLuaModules: nix.thunk(() => [luassert]) })),
           })));
       })());
       const nvim_require_check_neovim_plugin = nix.thunk(() => (() => {
         const luaPkg = nix.thunk(() => nix.app(nix.sel(neovim_unwrapped, "lua", "pkgs", "buildLuarocksPackage"), nix.thunk(() => ({
-            __proto__: pos$66,
+            [nix.POS]: pos$66,
             pname: "neovim-require-check-fails",
             version: "0.0.1-1",
             src: nix.thunk(() => nix.app(runCommandLocal, "neovim-require-check-fails-src", nix.thunk(() => ({})), "mkdir -p \"$out\"\ncat > \"$out/neovim-require-check-fails-0.0.1-1.rockspec\" <<'EOF'\npackage = \"neovim-require-check-fails\"\nversion = \"0.0.1-1\"\nsource = {\n  url = \".\"\n}\nbuild = {\n  type = \"none\"\n}\nEOF\n")),
           }))));
         return nix.app(nix.sel(testers, "testBuildFailure"), nix.thunk(() => nix.app(nix.sel(neovimUtils, "buildNeovimPlugin"), nix.thunk(() => ({
-              __proto__: pos$67,
+              [nix.POS]: pos$67,
               luaAttr: luaPkg,
               doCheck: true,
               postInstall: "mkdir -p \"$out/lua\"\ncat > \"$out/lua/require_check_fails.lua\" <<'EOF'\nerror(\"neovimRequireCheckHook required installed module\")\nEOF\n",
             })))));
       })());
       const nvim_require_check_ignores_test_modules = nix.thunk(() => nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-          __proto__: pos$68,
+          [nix.POS]: pos$68,
           pname: "neovim-require-check-ignores-test-modules",
           version: "0",
           src: nix.thunk(() => nix.app(runCommandLocal, "neovim-require-check-ignores-test-modules-src", nix.thunk(() => ({})), "mkdir -p \\\n  \"$out/lua/require-check-ignores\"/{debug,script,scripts,test,tests,spec,_meta} \\\n  \"$out/lua/require-check-ignores\"\ncat > \"$out/lua/require-check-ignores/init.lua\" <<'EOF'\nreturn {}\nEOF\nfor dir in debug script scripts test tests spec _meta; do\n  cat > \"$out/lua/require-check-ignores/$dir/failing.lua\" <<EOF\nerror(\"excluded $dir directory was required\")\nEOF\ndone\ncat > \"$out/lua/require-check-ignores/failing_meta.lua\" <<'EOF'\nerror(\"excluded _meta module was required\")\nEOF\ncat > \"$out/lua/require-check-ignores/failing_spec.lua\" <<'EOF'\nerror(\"excluded _spec module was required\")\nEOF\ncat > \"$out/lua/require-check-ignores/failing.spec.lua\" <<'EOF'\nerror(\"excluded .spec module was required\")\nEOF\ncat > \"$out/lua/require-check-ignores/failing.test.lua\" <<'EOF'\nerror(\"excluded .test module was required\")\nEOF\ncat > \"$out/lua/require-check-ignores/meta.lua\" <<'EOF'\nerror(\"excluded meta module was required\")\nEOF\n")),
         }))));
       const nvim_require_check_rtp_no_duplicate = nix.thunk(() => nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-          __proto__: pos$69,
+          [nix.POS]: pos$69,
           pname: "neovim-require-check-rtp-no-duplicate-test",
           version: "0",
           src: nix.thunk(() => nix.app(runCommandLocal, "neovim-require-check-rtp-no-duplicate-src", nix.thunk(() => ({})), "mkdir -p \"$out/lua/require-check-rtp-dedup\"\ncat > \"$out/lua/require-check-rtp-dedup/init.lua\" <<'EOF'\nlocal target = \"lua/require-check-rtp-dedup/init.lua\"\nlocal matches = vim.api.nvim_get_runtime_file(target, true)\nif #matches ~= 1 then\n  error(\n    (\"expected plugin on runtimepath exactly once, found %d:\\n%s\"):format(\n      #matches,\n      table.concat(matches, \"\\n\")\n    )\n  )\nend\nreturn {}\nEOF\n")),
         }))));
       return {
-        __proto__: pos$70,
+        [nix.POS]: pos$70,
         nmt: nmt_1,
         failed_check,
         vim_empty_config,

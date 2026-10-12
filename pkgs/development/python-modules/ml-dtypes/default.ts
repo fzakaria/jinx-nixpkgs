@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const absl_py = nix.arg($, "absl-py");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ml-dtypes",
       version: "0.6.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jax-ml",
           repo: "ml_dtypes",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "rm ml_dtypes/__init__.py\n",
       pythonImportsCheck: nix.thunk(() => ["ml_dtypes"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Stand-alone implementation of several NumPy dtype extensions used in machine learning libraries",
         homepage: "https://github.com/jax-ml/ml_dtypes",
         changelog: nix.thunk(() => nix.str`https://github.com/jax-ml/ml_dtypes/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

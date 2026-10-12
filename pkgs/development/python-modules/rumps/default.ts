@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const pyobjc_framework_Cocoa = nix.arg($, "pyobjc-framework-Cocoa");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rumps",
       version: "unstable-2025-02-02",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jaredks",
           repo: "rumps",
           rev: "8730e7cff5768dfabecff478c0d5e3688862c1c6",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [pyobjc_framework_Cocoa]),
       pythonImportsCheck: nix.thunk(() => ["rumps"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Ridiculously Uncomplicated macOS Python Statusbar apps",
         homepage: "https://github.com/jaredks/rumps",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

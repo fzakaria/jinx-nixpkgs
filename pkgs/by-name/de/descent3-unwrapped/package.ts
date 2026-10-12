@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "descent3-unwrapped";
       const version = "1.5.0-beta-unstable-2026-09-16";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DescentDevelopers",
           repo: "Descent3",
           rev: "a3e82bc292dab95afd2bf3dc0988c065e041b3ef",
@@ -43,9 +43,9 @@ export default nix.lambda((args) => (() => {
       const cmakeFlags = nix.thunk(() => ["-DFORCE_PORTABLE_INSTALL=OFF"]);
       const postInstall = "cd \"$out\"\nmv lib/* share/\nrmdir lib\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           licenseInfoIsUpToDate: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-license-info-is-up-to-date`), nix.thunk(() => ({})), nix.thunk(() => nix.str`function on_success {
   echo Test succeeded. > "$out"
 }
@@ -69,13 +69,13 @@ EOF
 `))),
         })),
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             shallowClone: false,
             tagConverter: nix.thunk(() => nix.app(writeShellScript, nix.thunk(() => nix.str`${pname}-tag-converter.sh`), "read -r input_tag\nif [ \"$input_tag\" = 0 ]\nthen\n  printf '%s' 1.5.0-beta\nelse\n  printf '%s' \"$input_tag\"\nfi\n")),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Game engine for a 6DOF first-person shooter",
         homepage: "https://github.com/DescentDevelopers/Descent3",
         license: nix.thunk(() => (() => {
@@ -94,7 +94,7 @@ EOF
         ], nix.sel(lib, "platforms", "darwin"))),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const conf = nix.argOr($, "conf", () => nix.selOr(config, () => ({}), "hydrogen-web", "conf"));
   return (nix.asBool(nix.eq(conf, {})) ? nix.force(hydrogen_web_unwrapped) : nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: nix.thunk(() => nix.str`${nix.sel(hydrogen_web_unwrapped, "pname")}-wrapped`),
       version: nix.thunk(() => nix.attr(hydrogen_web_unwrapped, "version")),
       meta: nix.thunk(() => nix.attr(hydrogen_web_unwrapped, "meta")),

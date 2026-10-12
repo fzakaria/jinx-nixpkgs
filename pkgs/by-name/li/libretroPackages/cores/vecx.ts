@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libGLU = nix.arg($, "libGLU");
   const mkLibretroCore = nix.arg($, "mkLibretroCore");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       core: "vecx",
       version: "0-unstable-2026-04-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libretro",
           repo: "libretro-vecx",
           rev: "8f671cc9d737f2890c3ce19e177e2984dcae121f",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       extraBuildInputs: nix.thunk(() => [libGL, libGLU]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "VBA-M libretro port with modifications for speed",
         homepage: "https://github.com/libretro/libretro-vecx",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

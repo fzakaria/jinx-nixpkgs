@@ -38,34 +38,34 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({}))));
   const afpConfFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "afp.conf", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         netatalk: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the Netatalk AFP fileserver")),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 548n,
               description: "TCP port to be used for AFP.",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.attr(settingsFormat, "type")),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$5,
-                Global: nix.thunk(() => ({ __proto__: pos$2, "uam list": "uams_guest.so" })),
-                Homes: nix.thunk(() => ({ __proto__: pos$3, path: "afp-data", "basedir regex": "/home" })),
-                "example-volume": nix.thunk(() => ({ __proto__: pos$4, path: "/srv/volume", "read only": true })),
+                [nix.POS]: pos$5,
+                Global: nix.thunk(() => ({ [nix.POS]: pos$2, "uam list": "uams_guest.so" })),
+                Homes: nix.thunk(() => ({ [nix.POS]: pos$3, path: "afp-data", "basedir regex": "/home" })),
+                "example-volume": nix.thunk(() => ({ [nix.POS]: pos$4, path: "/srv/volume", "read only": true })),
               })),
               description: "Configuration for Netatalk. See\n{manpage}`afp.conf(5)`.\n",
             })))),
           extmap: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "File name extension mappings.\nSee {manpage}`extmap.conf(5)`. for more information.\n",
@@ -75,15 +75,15 @@ export default nix.lambda((args) => (() => {
     })),
     imports: nix.thunk(() => nix.builtins.map((option) => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "netatalk", option]), "This option was removed in favor of `services.netatalk.settings`."), nix.thunk(() => ["extraConfig", "homes", "volumes"]))),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         services: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           netatalk: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             settings: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               Global: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 "afp port": nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))),
                 "extmap file": nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "writeText"), "extmap.conf", nix.thunk(() => nix.sel(cfg, "extmap")))}`),
               })),
@@ -91,21 +91,21 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           services: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             netatalk: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               description: "Netatalk AFP fileserver for Macintosh clients",
               unitConfig: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 Documentation: "man:afp.conf(5) man:netatalk(8) man:afpd(8) man:cnid_metad(8) man:cnid_dbd(8)",
               })),
               after: nix.thunk(() => ["network.target", "avahi-daemon.service"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "netatalk"))]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 Type: "forking",
                 GuessMainPID: "no",
                 PIDFile: "/run/lock/netatalk",
@@ -120,12 +120,12 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           pam: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             services: nix.thunk(() => ({
-              __proto__: pos$21,
-              netatalk: nix.thunk(() => ({ __proto__: pos$20, unixAuth: true })),
+              [nix.POS]: pos$21,
+              netatalk: nix.thunk(() => ({ [nix.POS]: pos$20, unixAuth: true })),
             })),
           })),
         })),

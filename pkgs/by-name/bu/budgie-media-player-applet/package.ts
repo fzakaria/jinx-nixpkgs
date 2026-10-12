@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const libxfce4windowing = nix.arg($, "libxfce4windowing");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "budgie-media-player-applet",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zalesyc",
           repo: "budgie-media-player-applet",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,11 +48,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace meson.build --replace-fail \"/usr\" \"$out\"\n",
       postFixup: "buildPythonPath \"$out ${pythonPath[*]}\"\npatchPythonScript \"$out/lib/budgie-desktop/plugins/budgie-media-player-applet/applet.py\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Media Control Applet for the Budgie Panel",
         homepage: "https://github.com/zalesyc/budgie-media-player-applet",
         changelog: nix.thunk(() => nix.str`https://github.com/zalesyc/budgie-media-player-applet/releases/tag/v${nix.sel(finalAttrs, "version")}`),

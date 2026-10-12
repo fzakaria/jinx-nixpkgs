@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "pgcopydb",
       version: "0.17-unstable-2026-05-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dimitri",
           repo: "pgcopydb",
           rev: "984269274ccdaf0d297ed82db635e6746be55b75",
@@ -48,17 +48,17 @@ export default nix.lambda((args) => (() => {
       sphinxBuilders: nix.thunk(() => ["man"]),
       installPhase: "runHook preInstall\n\ninstall -D -t $out/bin/ src/bin/pgcopydb/pgcopydb\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Copy a Postgres database to a target Postgres server (pg_dump | pg_restore on steroids",
         homepage: "https://github.com/dimitri/pgcopydb",
         changelog: nix.thunk(() => nix.str`https://github.com/dimitri/pgcopydb/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

@@ -20,25 +20,25 @@ export default nix.lambda((args) => (() => {
   const nixosModule = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     return {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       options: nix.thunk(() => ({
-        __proto__: pos$2,
-        foo: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ __proto__: pos$1, default: "bar" })))),
+        [nix.POS]: pos$2,
+        foo: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$1, default: "bar" })))),
       })),
     };
   })(), formals$2);
   const darwinModule = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$3);
     return {
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       options: nix.thunk(() => ({
-        __proto__: pos$5,
-        bar: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ __proto__: pos$4, default: "foo" })))),
+        [nix.POS]: pos$5,
+        bar: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$4, default: "foo" })))),
       })),
     };
   })(), formals$3);
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(_class, "nixos")), nixosModule)),
       nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(_class, "darwin")), darwinModule)),

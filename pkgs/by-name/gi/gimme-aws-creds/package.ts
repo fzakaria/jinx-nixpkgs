@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const gimme_aws_creds = nix.arg($, "gimme-aws-creds");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "gimme-aws-creds",
       version: "2.8.2",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Nike-Inc",
           repo: "gimme-aws-creds",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,12 +58,12 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["gimme_aws_creds"]),
       postInstall: "rm $out/bin/gimme-aws-creds.cmd\nchmod +x $out/bin/gimme-aws-creds\ninstallShellCompletion --bash --name gimme-aws-creds $out/bin/gimme-aws-creds-autocomplete.sh\nrm $out/bin/gimme-aws-creds-autocomplete.sh\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: gimme_aws_creds,
               command: "touch tmp.conf && OKTA_CONFIG=\"tmp.conf\" gimme-aws-creds --version",
               version: nix.thunk(() => nix.str`gimme-aws-creds ${nix.sel(finalAttrs, "version")}`),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/Nike-Inc/gimme-aws-creds",
         changelog: "https://github.com/Nike-Inc/gimme-aws-creds/releases",
         description: "CLI that utilizes Okta IdP via SAML to acquire temporary AWS credentials",

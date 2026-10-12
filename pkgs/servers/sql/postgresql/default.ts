@@ -8,7 +8,7 @@ const pos$3 = nix.positions(here + "/default.nix", [["postgresqlVersions", 37, 3
 
 export default (self) => (() => {
   const versions = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     postgresql_14: nix.path(here, "./14.nix"),
     postgresql_15: nix.path(here, "./15.nix"),
     postgresql_16: nix.path(here, "./16.nix"),
@@ -18,13 +18,13 @@ export default (self) => (() => {
   }));
   const mkAttributes = (jitSupport) => nix.app(nix.sel(self, "lib", "mapAttrs'"), (version) => (path) => (() => {
       const attrName = nix.thunk(() => (nix.asBool(jitSupport) ? nix.str`${version}_jit` : nix.force(version)));
-      const postgresql = nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./generic.nix"), nix.thunk(() => nix.update(nix.builtins.import(path), { __proto__: pos$2, self: self }))));
+      const postgresql = nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./generic.nix"), nix.thunk(() => nix.update(nix.builtins.import(path), { [nix.POS]: pos$2, self: self }))));
       const attrValue = nix.thunk(() => (nix.asBool(jitSupport) ? nix.sel(postgresql, "withJIT") : nix.force(postgresql)));
       return nix.app(nix.sel(self, "lib", "nameValuePair"), attrName, attrValue);
     })(), versions);
   const libpq = nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./libpq.nix"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     postgresqlVersions: nix.thunk(() => nix.app(mkAttributes, false)),
     postgresqlJitVersions: nix.thunk(() => nix.app(mkAttributes, true)),
     libpq: libpq,

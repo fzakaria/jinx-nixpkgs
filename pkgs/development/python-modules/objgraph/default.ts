@@ -26,23 +26,23 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = isPyPy;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-ALny9A90IuPH9FphxNr9r4HwP/BknW6uyGbwEDDlGtg=",
         }))));
       const patches = nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-graphviz-path.patch"), nix.thunk(() => ({ __proto__: pos$2, graphviz: graphvizPkgs })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-graphviz-path.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, graphviz: graphvizPkgs })))),
       ]);
       const build_system = nix.thunk(() => [setuptools]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$3, ipython: nix.thunk(() => [graphviz]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$3, ipython: nix.thunk(() => [graphviz]) }));
       const pythonImportsCheck = nix.thunk(() => ["objgraph"]);
       const checkPhase = nix.thunk(() => nix.str`runHook preCheck
 ${nix.sel(python, "interpreter")} tests.py
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Draws Python object reference graphs with graphviz",
         homepage: "https://mg.pov.lt/objgraph/",
         changelog: nix.thunk(() => nix.str`https://github.com/mgedmin/objgraph/blob/${version}/CHANGES.rst`),
@@ -53,7 +53,7 @@ runHook postCheck
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

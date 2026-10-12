@@ -21,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const rsync = nix.arg($, "rsync");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.3.1",
       pname: "grsync",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/grsync/grsync-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-M8wOJdqmLlunCRyuo8g6jcdNxddyHEUB00nyEMSzxtM=",
         })))),
       nativeBuildInputs: nix.thunk(() => [intltool, pkg_config, wrapGAppsHook3]),
       buildInputs: nix.thunk(() => [dee, gtk3, libdbusmenu_gtk3, libunity, rsync]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Synchronize folders, files and make backups",
         homepage: "http://www.opbyte.it/grsync/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const itstool = nix.arg($, "itstool");
   const libxml2 = nix.arg($, "libxml2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "etherape",
       version: "0.9.22",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/etherape/etherape-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-6UxVArQKeyKMCsptMa/eyQELx/0QG6ZIpiacEBXnIGs=",
         })))),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [libtool, gtk3, libpcap, popt]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://etherape.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         platforms: nix.thunk(() => (() => {

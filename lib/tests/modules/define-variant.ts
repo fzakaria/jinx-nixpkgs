@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const attrNames = nix.thunk(() => nix.attr(lib, "attrNames"));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       attrs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "int")))),
         })))),
       result: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({})))),
@@ -40,20 +40,20 @@ export default nix.lambda((args) => (() => {
       resultFooFoo: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({})))),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$14,
-      attrs: nix.thunk(() => ({ __proto__: pos$3, a: 1n })),
+      [nix.POS]: pos$14,
+      attrs: nix.thunk(() => ({ [nix.POS]: pos$3, a: 1n })),
       variants: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         foo: nix.thunk(() => ({
-          __proto__: pos$10,
-          attrs: nix.thunk(() => ({ __proto__: pos$4, b: 1n })),
+          [nix.POS]: pos$10,
+          attrs: nix.thunk(() => ({ [nix.POS]: pos$4, b: 1n })),
           variants: nix.thunk(() => ({
-            __proto__: pos$9,
-            bar: nix.thunk(() => ({ __proto__: pos$6, attrs: nix.thunk(() => ({ __proto__: pos$5, z: 1n })) })),
-            foo: nix.thunk(() => ({ __proto__: pos$8, attrs: nix.thunk(() => ({ __proto__: pos$7, c: 3n })) })),
+            [nix.POS]: pos$9,
+            bar: nix.thunk(() => ({ [nix.POS]: pos$6, attrs: nix.thunk(() => ({ [nix.POS]: pos$5, z: 1n })) })),
+            foo: nix.thunk(() => ({ [nix.POS]: pos$8, attrs: nix.thunk(() => ({ [nix.POS]: pos$7, c: 3n })) })),
           })),
         })),
-        bar: nix.thunk(() => ({ __proto__: pos$12, attrs: nix.thunk(() => ({ __proto__: pos$11, y: 1n })) })),
+        bar: nix.thunk(() => ({ [nix.POS]: pos$12, attrs: nix.thunk(() => ({ [nix.POS]: pos$11, y: 1n })) })),
       })),
       resultFoo: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), " ", nix.builtins.toString, nix.thunk(() => nix.app(attrNames, nix.thunk(() => nix.sel(config, "variants", "foo", "attrs")))))),
       resultFooBar: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), " ", nix.builtins.toString, nix.thunk(() => nix.app(attrNames, nix.thunk(() => nix.sel(config, "variants", "foo", "variants", "bar", "attrs")))))),

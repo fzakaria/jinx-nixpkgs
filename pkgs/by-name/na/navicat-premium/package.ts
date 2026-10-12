@@ -38,22 +38,22 @@ export default nix.lambda((args) => (() => {
   const p11_kit = nix.arg($, "p11-kit");
   const pango = nix.arg($, "pango");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "navicat-premium",
       version: "17.3.7",
       src: nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.selOr({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 url: "https://web.archive.org/web/20260203040321/https://dn.navicat.com/download/navicat17-premium-en-x86_64.AppImage",
                 hash: "sha256-bIIqDwhajE7+S/Mx7lUn3FC1ZvRbk5mwxYwsmELBlRc=",
               })))),
             "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 url: "https://web.archive.org/web/20260203040711/https://dn.navicat.com/download/navicat17-premium-en-aarch64.AppImage",
                 hash: "sha256-2WOSwezm/utHaKUktrsWAfoXzCVMz+lfa1wyx0NtXMs=",
               })))),
@@ -119,7 +119,7 @@ wrapQtApp $out/bin/navicat \\
   --chdir $out
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://www.navicat.com/products/navicat-premium",
         changelog: "https://www.navicat.com/products/navicat-premium-release-note",
         description: "Database development tool that allows you to simultaneously connect to many databases",

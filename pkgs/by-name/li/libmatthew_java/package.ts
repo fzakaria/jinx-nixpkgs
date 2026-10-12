@@ -16,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const jdk8 = nix.arg($, "jdk8");
   const jdk = jdk8;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libmatthew-java",
       version: "0.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://src.fedoraproject.org/repo/pkgs/libmatthew-java/libmatthew-java-${nix.sel(finalAttrs, "version")}.tar.gz/8455b8751083ce25c99c2840609271f5/libmatthew-java-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1yldkhsdzm0a41a0i881bin2jklhp85y3ah245jd6fz3npcx7l85",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, JAVA_HOME: jdk, PREFIX: "${out}" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, JAVA_HOME: jdk, PREFIX: "${out}" })),
       buildInputs: nix.thunk(() => [jdk]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),

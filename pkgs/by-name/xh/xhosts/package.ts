@@ -14,22 +14,22 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nss-xhosts",
       version: "0-unstable-2023-12-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dvob",
           repo: "nss-xhosts",
           rev: "78658cc24abb2546936f2b298a27d4abdf629186",
           hash: "sha256-saK9CxN4Ek1QBlPOydzEFei1217gPe5MZrUaUHh80hI=",
         })))),
-      cargoLock: nix.thunk(() => ({ __proto__: pos$2, lockFile: nix.path(here, "./Cargo.lock") })),
+      cargoLock: nix.thunk(() => ({ [nix.POS]: pos$2, lockFile: nix.path(here, "./Cargo.lock") })),
       postPatch: nix.thunk(() => nix.str`ln -s ${nix.path(here, "./Cargo.lock")} Cargo.lock
 `),
       postFixup: "mv $out/lib/*.so $out/lib/libnss_xhosts.so.2",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "NSS Module which supports wildcards",
         homepage: "https://github.com/dvob/nss-xhosts",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

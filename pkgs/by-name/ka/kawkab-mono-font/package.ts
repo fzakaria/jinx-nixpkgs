@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const pname = "kawkab-mono";
   const version = "0.501";
   const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/aiaf/kawkab-mono/releases/download/v${version}/kawkab-mono-${version}.zip`),
       hash: "sha256-cDpQGTu3XzLrDtInAZtnCw6BymX7fupbbr7L4bd7kN8=",
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       src: src,
       installPhase: "runHook preInstall\n\ninstall -Dm644 *.ttf -t $out/share/fonts/truetype\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Monospaced Arabic typeface designed for code and text-editing",
         homepage: "https://makkuk.com/kawkab-mono/",
         downloadPage: "https://github.com/aiaf/kawkab-mono",

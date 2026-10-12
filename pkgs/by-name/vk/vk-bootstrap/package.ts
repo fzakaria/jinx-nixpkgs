@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const glfw = nix.arg($, "glfw");
   const catch2_3 = nix.arg($, "catch2_3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vk-bootstrap",
       version: "1.4.350",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "charles-lunarg",
           repo: "vk-bootstrap",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       cmakeFlags: nix.thunk(() => ["-DVK_BOOTSTRAP_INSTALL=1"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Vulkan Bootstrapping Library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/charles-lunarg/vk-bootstrap",

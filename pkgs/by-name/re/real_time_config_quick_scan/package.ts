@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const perlPackages = nix.arg($, "perlPackages");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "realTimeConfigQuickScan",
       version: "0-unstable-2020-07-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "raboof",
           repo: "realTimeConfigQuickScan",
           rev: "4697ba093d43d512b74a73b89531cb8c5adaa274",
@@ -38,7 +38,7 @@ wrapProgram $out/bin/QuickScan \\
       })()}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Linux configuration checker for systems to be used for real-time audio",
         homepage: "https://github.com/raboof/realtimeconfigquickscan",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

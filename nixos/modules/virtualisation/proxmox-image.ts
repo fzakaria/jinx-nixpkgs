@@ -64,103 +64,103 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const w = nix.withScope(lib, null);
   return {
-    __proto__: pos$53,
+    [nix.POS]: pos$53,
     imports: nix.thunk(() => [
       nix.path(here, "./disk-size-option.nix"),
       nix.path(here, "../image/file-options.nix"),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModuleWith"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           sinceRelease: 2411n,
           from: nix.thunk(() => ["proxmox", "qemuConf", "diskSize"]),
           to: nix.thunk(() => ["virtualisation", "diskSize"]),
         })))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       proxmox: nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         qemuConf: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           boot: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "",
               example: "order=scsi0;net0",
               description: "Default boot device. PVE will try all devices in its default order if this value is empty.\n",
             })))),
           scsihw: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "virtio-scsi-single",
               example: "lsi",
               description: "SCSI controller type. Must be one of the supported values given in\n<https://pve.proxmox.com/wiki/Qemu/KVM_Virtual_Machines>\n",
             })))),
           virtio0: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "local-lvm:vm-9999-disk-0",
               example: "ceph:vm-123-disk-0",
               description: "Configuration for the default virtio disk. It can be used as a cue for PVE to autodetect the target storage.\nThis parameter is required by PVE even if it isn't used.\n",
             })))),
           ostype: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "l26",
               description: "Guest OS type\n",
             })))),
           cores: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "ints", "positive")),
               default: 1n,
               description: "Guest core count\n",
             })))),
           memory: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "ints", "positive")),
               default: 1024n,
               description: "Guest memory in MiB (1024×1024 bytes)\n",
             })))),
           bios: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["seabios", "ovmf"]))),
               default: "seabios",
               description: "Select BIOS implementation (seabios = Legacy BIOS, ovmf = UEFI).\n",
             })))),
           name: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: nix.thunk(() => nix.str`nixos-${nix.sel(config, "system", "nixos", "label")}`),
               description: "VM name\n",
             })))),
           additionalSpace: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "512M",
               example: "2048M",
               description: "additional disk space to be added to the image if diskSize \"auto\"\nis used.\n",
             })))),
           bootSize: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "256M",
               example: "512M",
               description: "Size of the boot partition. Is only used if partitionTableType is\neither \"efi\" or \"hybrid\".\n",
             })))),
           net0: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "commas")),
               default: "virtio=00:00:00:00:00:00,bridge=vmbr0,firewall=1",
               description: "Configuration for the default interface. When restoring from VMA, check the\n\"unique\" box to ensure device mac is randomized.\n",
             })))),
           serial0: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "socket",
               example: "/dev/ttyS0",
               description: "Create a serial device inside the VM (n is 0 to 3), and pass through a host serial device (i.e. /dev/ttyS0),\nor create a unix socket on the host side (use qm terminal to open a terminal connection).\n",
             })))),
           agent: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               apply: (x) => (nix.asBool(x) ? "1" : "0"),
               default: true,
@@ -168,7 +168,7 @@ export default nix.lambda((args) => (() => {
             })))),
         })),
         qemuExtraConf: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             type: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
               return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "oneOf"), nix.thunk(() => [
@@ -181,7 +181,7 @@ export default nix.lambda((args) => (() => {
             description: "Additional options appended to qemu-server.conf\n",
           })))),
         partitionTableType: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["efi", "hybrid", "legacy", "legacy+gpt"]))),
             description: "Partition table type to use. See make-disk-image.nix partitionTableType for details.\nDefaults to 'legacy' for 'proxmox.qemuConf.bios=\"seabios\"' (default), other bios values defaults to 'efi'.\nUse 'hybrid' to build grub-based hybrid bios+efi images.\n",
             default: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(config, "proxmox", "qemuConf", "bios"), "seabios")) ? "legacy" : "efi")),
@@ -189,29 +189,29 @@ export default nix.lambda((args) => (() => {
             example: "hybrid",
           })))),
         filenameSuffix: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             default: nix.thunk(() => nix.sel(config, "proxmox", "qemuConf", "name")),
             example: "999-nixos_template",
             description: "Filename of the image will be vzdump-qemu-${filenameSuffix}.vma.zstd.\nThis will also determine the default name of the VM on restoring the VMA.\nStart this value with a number if you want the VMA to be detected as a backup of\nany specific VMID.\n",
           })))),
         cloudInit: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "Whether the VM should accept cloud init configurations from PVE.\n",
             })))),
           defaultStorage: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               default: "local-lvm",
               example: "tank",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "Default storage name for cloud init drive.\n",
             })))),
           device: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               default: "ide2",
               example: "scsi0",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
@@ -236,7 +236,7 @@ ${nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.app(nix.sel(lib, "m
       const hasNoFsPartition = nix.thunk(() => (nix.asBool(nix.eq(partitionTableType, "hybrid")) || nix.asBool(nix.eq(partitionTableType, "legacy+gpt"))));
       const postVM = nix.thunk(() => (() => {
         const vma = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(pkgs, "qemu_kvm", "override"), nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             alsaSupport: false,
             pulseSupport: false,
             sdlSupport: false,
@@ -254,13 +254,13 @@ ${nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.app(nix.sel(lib, "m
           }))), "overrideAttrs"), (super$) => (() => {
             const version = "9.0.0";
             const src = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchurl"), nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 url: nix.thunk(() => nix.str`https://download.qemu.org/qemu-${version}.tar.xz`),
                 hash: "sha256-MnCKxmww2MiSYz6paMdxwcdtWX1w3erSGg0izPOG2mk=",
               }))));
             const patches = nix.thunk(() => [
               nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "fetchFromGitHub"), nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   owner: "proxmox",
                   repo: "pve-qemu",
                   rev: "14afbdd55f04d250bd679ca1ad55d3f47cd9d4c8",
@@ -269,7 +269,7 @@ ${nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.app(nix.sel(lib, "m
             ]);
             const buildInputs = nix.thunk(() => nix.concat(nix.sel(super$, "buildInputs"), [nix.thunk(() => nix.sel(pkgs, "libuuid"))]));
             const nativeBuildInputs = nix.thunk(() => nix.concat(nix.sel(super$, "nativeBuildInputs"), [nix.thunk(() => nix.sel(pkgs, "perl"))]));
-            return { __proto__: pos$28, version, src, patches, buildInputs, nativeBuildInputs };
+            return { [nix.POS]: pos$28, version, src, patches, buildInputs, nativeBuildInputs };
           })()));
         return nix.str`${vma}/bin/vma create "${nix.sel(config, "image", "baseName")}.vma" \\
   -c ${nix.app(cfgFile, "qemu-server.conf", nix.thunk(() => nix.update(nix.sel(cfg, "qemuConf"), nix.sel(cfg, "qemuExtraConf"))))}/qemu-server.conf drive-virtio0=$diskImage
@@ -285,7 +285,7 @@ echo "file vma $out/${nix.sel(config, "image", "fileName")}" > $out/nix-support/
         const from = nix.thunk(() => nix.sel(cfg, "qemuConf"));
         const from_1 = nix.thunk(() => nix.sel(config, "virtualisation"));
         return {
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         name: nix.thunk(() => nix.sel(config, "image", "baseName")),
         baseName: nix.thunk(() => nix.sel(config, "image", "baseName")),
         partitionTableType: nix.thunk(() => nix.attr(cfg, "partitionTableType")),
@@ -299,51 +299,51 @@ echo "file vma $out/${nix.sel(config, "image", "fileName")}" > $out/nix-support/
       };
       })());
       return {
-        __proto__: pos$52,
+        [nix.POS]: pos$52,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(config, "boot", "loader", "systemd-boot", "enable")) || nix.asBool(nix.eq(nix.sel(config, "proxmox", "qemuConf", "bios"), "ovmf")))),
             message: "systemd-boot requires 'ovmf' bios",
           })),
           nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             assertion: nix.thunk(() => (!nix.asBool(nix.eq(partitionTableType, "efi")) || nix.asBool(nix.eq(nix.sel(config, "proxmox", "qemuConf", "bios"), "ovmf")))),
             message: "'efi' disk partitioning requires 'ovmf' bios",
           })),
           nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             assertion: nix.thunk(() => (!nix.asBool(nix.eq(partitionTableType, "legacy")) || nix.asBool(nix.eq(nix.sel(config, "proxmox", "qemuConf", "bios"), "seabios")))),
             message: "'legacy' disk partitioning requires 'seabios' bios",
           })),
           nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             assertion: nix.thunk(() => (!nix.asBool(nix.eq(partitionTableType, "legacy+gpt")) || nix.asBool(nix.eq(nix.sel(config, "proxmox", "qemuConf", "bios"), "seabios")))),
             message: "'legacy+gpt' disk partitioning requires 'seabios' bios",
           })),
         ]),
         image: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           baseName: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`vzdump-qemu-${nix.sel(cfg, "filenameSuffix")}`))),
           extension: "vma.zst",
         })),
         system: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           build: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             cloudImage: nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "../../lib/make-disk-image.nix"), pveBaseConfigs)),
-            VMA: nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "../../lib/make-disk-image.nix"), nix.thunk(() => nix.update(pveBaseConfigs, { __proto__: pos$35, postVM: postVM })))),
+            VMA: nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "../../lib/make-disk-image.nix"), nix.thunk(() => nix.update(pveBaseConfigs, { [nix.POS]: pos$35, postVM: postVM })))),
             image: nix.thunk(() => nix.sel(config, "system", "build", "VMA")),
           })),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           growPartition: true,
           kernelParams: nix.thunk(() => ["console=ttyS0"]),
           loader: nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             grub: nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               device: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => (nix.asBool((nix.asBool(hasNoFsPartition) || nix.asBool(supportBios))) ? "/dev/vda" : "nodev")))),
               efiSupport: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), supportEfi)),
               efiInstallAsRemovable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), supportEfi)),
@@ -351,40 +351,40 @@ echo "file vma $out/${nix.sel(config, "image", "fileName")}" > $out/nix-support/
             timeout: 0n,
           })),
           initrd: nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             availableKernelModules: nix.thunk(() => ["uas", "virtio_blk", "virtio_pci"]),
           })),
         })),
         fileSystems: nix.thunk(() => ({
-          __proto__: pos$44,
+          [nix.POS]: pos$44,
           "/": nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             device: "/dev/disk/by-label/nixos",
             autoResize: true,
             fsType: "ext4",
           })),
-          "/boot": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), hasBootPartition, nix.thunk(() => ({ __proto__: pos$43, device: "/dev/disk/by-label/ESP", fsType: "vfat" })))),
+          "/boot": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), hasBootPartition, nix.thunk(() => ({ [nix.POS]: pos$43, device: "/dev/disk/by-label/ESP", fsType: "vfat" })))),
         })),
         networking: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "cloudInit", "enable")), nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             hostName: nix.thunk(() => nix.app(nix.lookup(w, "mkForce"), "")),
             useDHCP: false,
           })))),
         services: nix.thunk(() => ({
-          __proto__: pos$50,
+          [nix.POS]: pos$50,
           "cloud-init": nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "cloudInit", "enable")), nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               enable: true,
-              network: nix.thunk(() => ({ __proto__: pos$46, enable: true })),
+              network: nix.thunk(() => ({ [nix.POS]: pos$46, enable: true })),
             })))),
           sshd: nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
           })),
-          qemuGuest: nix.thunk(() => ({ __proto__: pos$49, enable: true })),
+          qemuGuest: nix.thunk(() => ({ [nix.POS]: pos$49, enable: true })),
         })),
         proxmox: nix.thunk(() => ({
-          __proto__: pos$51,
+          [nix.POS]: pos$51,
           qemuExtraConf: nix.thunk(() => nix.attrsDyn({}, [
             [nix.sel(cfg, "cloudInit", "device"), nix.thunk(() => nix.str`${nix.sel(cfg, "cloudInit", "defaultStorage")}:vm-9999-cloudinit,media=cdrom`)],
           ])),

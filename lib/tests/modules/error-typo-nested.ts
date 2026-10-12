@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       set: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             default: false,
             example: true,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
     })),
-    config: nix.thunk(() => ({ __proto__: pos$5, set: nix.thunk(() => ({ __proto__: pos$4, ena: true })) })),
+    config: nix.thunk(() => ({ [nix.POS]: pos$5, set: nix.thunk(() => ({ [nix.POS]: pos$4, ena: true })) })),
   };
 })(), formals$1);
 //# sourceMappingURL=error-typo-nested.ts.map

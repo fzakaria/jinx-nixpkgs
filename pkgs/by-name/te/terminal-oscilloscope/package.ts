@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const ffmpeg = nix.arg($, "ffmpeg");
   const wireplumber = nix.arg($, "wireplumber");
   return nix.app(buildNimPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "terminal-oscilloscope",
       version: "0.1.0-unstable-2026-04-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rolandnsharp",
           repo: "terminal-oscilloscope",
           rev: "f2a94befaa4b9de1c01a410f132e08032b447844",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [wireplumber]))}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Terminal oscilloscope with CRT phosphor physics",
         homepage: "https://github.com/rolandnsharp/terminal-oscilloscope",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

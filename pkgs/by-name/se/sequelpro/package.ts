@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const undmg = nix.arg($, "undmg");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sequel-pro",
       version: "1.1.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://github.com/sequelpro/sequelpro/releases/download/release-1.1.2/sequel-pro-1.1.2.dmg",
           sha256: "1il7yc3f0yzxkra27bslnmka5ycxzx0q4m3xz2j9r7iyq5izsd3v",
         })))),
       buildInputs: nix.thunk(() => [undmg]),
       installPhase: "mkdir -p \"$out/Applications/Sequel Pro.app\"\ncp -R . \"$out/Applications/Sequel Pro.app\"\nchmod +x \"$out/Applications/Sequel Pro.app/Contents/MacOS/Sequel Pro\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MySQL database management for macOS",
         homepage: "https://github.com/sequelpro/sequelpro",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

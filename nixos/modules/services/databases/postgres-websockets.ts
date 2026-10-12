@@ -44,23 +44,23 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ")),
     ])));
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "wolfgangwalther"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         "postgres-websockets": nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "postgres-websockets")),
           pgpassFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "externalPath")));
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
               description: "The password to authenticate to PostgreSQL with.\nNot needed for peer or trust based authentication.\n\nThe file must be a valid `.pgpass` file as described in:\n<https://www.postgresql.org/docs/current/libpq-pgpass.html>\n\nIn most cases, the following will be enough:\n```\n*:*:*:*:<password>\n```\n",
             })))),
           jwtSecretFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "externalPath")));
@@ -79,36 +79,36 @@ export default nix.lambda((args) => (() => {
               description: "Secret used to sign JWT tokens used to open communications channels.\n",
             })))),
           environment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   freeformType: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                     return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "str")));
                   })()),
                   options: nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     PGWS_DB_URI: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                            __proto__: pos$7,
+                            [nix.POS]: pos$7,
                             freeformType: nix.thunk(() => (() => {
                               const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                               return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.lookup(w_1, "str")));
                             })()),
                             options: nix.thunk(() => ({
-                              __proto__: pos$6,
-                              password: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ __proto__: pos$4, default: null, readOnly: true, internal: true })))),
-                              passfile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ __proto__: pos$5, default: null, readOnly: true, internal: true })))),
+                              [nix.POS]: pos$6,
+                              password: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$4, default: null, readOnly: true, internal: true })))),
+                              passfile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$5, default: null, readOnly: true, internal: true })))),
                             })),
                           })))),
                         default: nix.thunk(() => ({})),
                         description: "libpq connection parameters as documented in:\n\n<https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-PARAMKEYWORDS>\n\n::: {.note}\nThe `environment.PGWS_DB_URI.password` and `environment.PGWS_DB_URI.passfile` options are blocked.\nUse [`pgpassFile`](#opt-services.postgres-websockets.pgpassFile) instead.\n:::\n",
                         example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  host = \"localhost\";\n  dbname = \"postgres\";\n}\n")),
                       })))),
-                    PGWS_JWT_SECRET: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ __proto__: pos$9, default: null, readOnly: true, internal: true })))),
+                    PGWS_JWT_SECRET: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$9, default: null, readOnly: true, internal: true })))),
                     PGWS_HOST: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         type: nix.thunk(() => (() => {
                           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                           return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -126,15 +126,15 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         services: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           "postgres-websockets": nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             environment: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               PGWS_DB_URI: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 application_name: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "postgres-websockets")), null);
                   return nix.str`${nix.lookup(w, "pname")} ${nix.lookup(w, "version")}`;
@@ -144,22 +144,22 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           services: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             "postgres-websockets": nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               description: "postgres-websockets",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target", "postgresql.target"]),
               environment: nix.thunk(() => nix.update(nix.sel(cfg, "environment"), nix.update({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 PGWS_DB_URI: PGWS_DB_URI,
                 PGWS_JWT_SECRET: "@%d/jwt_secret",
-              }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "pgpassFile"), null)), nix.thunk(() => ({ __proto__: pos$22, PGPASSFILE: "%C/postgres-websockets/pgpass" })))))),
+              }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "pgpassFile"), null)), nix.thunk(() => ({ [nix.POS]: pos$22, PGPASSFILE: "%C/postgres-websockets/pgpass" })))))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 CacheDirectory: "postgres-websockets",
                 CacheDirectoryMode: "0700",
                 LoadCredential: nix.thunk(() => nix.concat([nix.thunk(() => nix.str`jwt_secret:${nix.sel(cfg, "jwtSecretFile")}`)], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "pgpassFile"), null)), nix.thunk(() => nix.str`pgpass:${nix.sel(cfg, "pgpassFile")}`)))),

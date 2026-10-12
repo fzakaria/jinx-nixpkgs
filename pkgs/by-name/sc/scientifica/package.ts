@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
       const pname = "scientifica";
       const version = "2.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/oppiliappan/scientifica/releases/download/v${version}/scientifica.tar`),
           hash: "sha256-8IV4aaDoRsbxddy4U90fEZ6henUhjmO38HNtWo4ein8=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [installFonts]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tall and condensed bitmap font for geeks",
         homepage: "https://github.com/oppiliappan/scientifica",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "moni"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, nativeBuildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

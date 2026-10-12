@@ -29,19 +29,19 @@ export default nix.lambda((args) => (() => {
   const socat = nix.arg($, "socat");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "serialx",
       version: "1.10.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "puddly",
           repo: "serialx",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-ASKucV1qvoETw1DslDkDiCQBrU//U/diFU044pWyAX0=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cargo, nix.thunk(() => nix.sel(rustPlatform, "cargoSetupHook")), rustc]),
       dependencies: nix.thunk(() => [typing_extensions]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         esphome: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => [aioesphomeapi]))),
       })),
       pythonImportsCheck: nix.thunk(() => ["serialx"]),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         "test_sync_readonly_partial_timeout",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/puddly/serialx/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Serial library with native async support for Windows and POSIX",
         homepage: "https://github.com/puddly/serialx",

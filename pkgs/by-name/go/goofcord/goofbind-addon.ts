@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const xorgproto = nix.arg($, "xorgproto");
   const libxi = nix.arg($, "libxi");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "goofbind",
       version: "0.1.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Milkshiift",
           repo: "goofbind",
           rev: "703237071f61d1ceede8076b0015488773a7c4ae",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Native module for Vencord",
         homepage: "https://github.com/tuxinal/venbind",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

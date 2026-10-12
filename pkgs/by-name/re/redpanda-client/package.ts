@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const version = "26.2.2";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "redpanda-data",
       repo: "redpanda",
       rev: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [installShellFiles]);
       const postInstall = "for shell in bash fish zsh; do\n  $out/bin/rpk generate shell-completion $shell > rpk.$shell\n  installShellCompletion rpk.$shell\ndone\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Redpanda client",
         homepage: "https://redpanda.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsl11")),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "rpk",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         doCheck: doCheck_1,
         src: src_1,

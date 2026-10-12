@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "encode-sans",
       version: "1.002",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://github.com/impallari/Encode-Sans/archive/11162b46892d20f55bd42a00b48cbf06b5871f75.zip",
           hash: "sha256-TPAUc5msAUgJZHibjgYaS2TOuzKFy0rje9ZQTXE6s+w=",
         })))),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`install -Dm644 README.md FONTLOG.txt -t $out/share/doc/${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Versatile sans serif font family",
         longDescription: "The Encode Sans family is a versatile workhorse. Featuring a huge range of\nweights and widths, it's ready for all kind of typographic challenges. It\nalso includes Tabular and Old Style figures, as well as full set of Small\nCaps and other Open Type features.\n\nDesigned by Pablo Impallari and Andres Torresi.\n",
         homepage: "https://github.com/impallari/Encode-Sans",

@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const resholve = nix.arg($, "resholve");
   const xrandr = nix.arg($, "xrandr");
   return nix.app(nix.sel(resholve, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "mons",
       version: "0.8.2-unstable-2020-03-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Ventto",
           repo: "mons",
           rev: "375bbba3aa700c8b3b33645a7fb70605c8b0ff0c",
@@ -37,19 +37,19 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: "substituteInPlace mons.sh \\\n  --replace \"lib='%LIBDIR%/liblist.sh'\" \"\" \\\n  --replace '[ ! -r \"$lib\" ] && { \"$lib: library not found.\"; exit 1; }' \"\"\n",
       solutions: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         mons: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           scripts: nix.thunk(() => ["bin/mons", "lib/libshlist/liblist.sh"]),
           interpreter: nix.thunk(() => nix.str`${bash}/bin/sh`),
           inputs: nix.thunk(() => [bash, coreutils, gawk, gnugrep, gnused, xrandr]),
           fix: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             $lib: nix.thunk(() => ["lib/libshlist/liblist.sh"]),
             $XRANDR: nix.thunk(() => ["xrandr"]),
           })),
           keep: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             $aFlag: true,
             $dFlag: true,
             $eFlag: true,
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [help2man]),
       makeFlags: nix.thunk(() => ["DESTDIR=$(out)", "PREFIX="]),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "POSIX Shell script to quickly manage 2-monitors display",
         homepage: "https://github.com/Ventto/mons.git",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

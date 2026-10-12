@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "distrobox",
       version: "1.8.2.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "89luca89",
           repo: "distrobox",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,18 +48,18 @@ mkdir -p $out/share/distrobox
 echo 'container_additional_volumes="/nix:/nix"' > $out/share/distrobox/distrobox.conf
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Wrapper around podman or docker to create and start containers",
         longDescription: "Use any linux distribution inside your terminal. Enable both backward and\nforward compatibility with software and freedom to use whatever distribution\nyou’re more comfortable with\n",
         homepage: "https://distrobox.it/",

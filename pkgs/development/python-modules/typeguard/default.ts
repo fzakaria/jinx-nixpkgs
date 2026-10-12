@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.5.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-WhbcrCNQIDkpnJfIlBZRvDPX6ozEsvfWu7G1KPbupCM=",
@@ -42,12 +42,12 @@ export default nix.lambda((args) => (() => {
         sphinx_rtd_theme,
       ]);
       const dependencies = nix.thunk(() => [typing_extensions]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, LC_ALL: "en_US.utf-8" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, LC_ALL: "en_US.utf-8" }));
       const nativeCheckInputs = nix.thunk(() => [mypy, pytestCheckHook]);
       const preCheck = "export PYTHONDONTWRITEBYTECODE=1";
       const pythonImportsCheck = nix.thunk(() => ["typeguard"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "This library provides run-time type checking for functions defined with argument type annotations",
         homepage: "https://github.com/agronholm/typeguard",
         changelog: nix.thunk(() => nix.str`https://github.com/agronholm/typeguard/releases/tag/${version}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

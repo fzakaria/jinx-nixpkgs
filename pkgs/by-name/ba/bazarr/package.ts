@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const python313Packages = nix.arg($, "python313Packages");
   const unar = nix.arg($, "unar");
   return nix.app(nix.sel(python313Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "bazarr",
       version: "1.6.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "morpheus65535",
           repo: "bazarr",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -60,7 +60,7 @@ cp -r ${nix.sel(finalAttrs, "passthru", "frontend")} $out/lib/bazarr/frontend/bu
 printf '%s' "${nix.sel(finalAttrs, "version")}" > $out/lib/bazarr/VERSION
 
 printf '%s' "${nix.app(nix.sel(lib, "generators", "toKeyValue"), nix.thunk(() => ({})), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           updatemethod: "External",
           updatemethodmessage: "Bazarr is managed by Nix. Update it through your system configuration.",
           packageversion: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -76,9 +76,9 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(python313P
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         frontend: nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-frontend`),
@@ -91,16 +91,16 @@ runHook postInstall
             dontFixup: true,
           })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "smoke-test": nix.thunk(() => nix.sel(nixosTests, "bazarr")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$6,
-            extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "cli", "toCommandLineGNU"), nix.thunk(() => ({})), nix.thunk(() => ({ __proto__: pos$5, subpackage: "frontend" })))),
+            [nix.POS]: pos$6,
+            extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "cli", "toCommandLineGNU"), nix.thunk(() => ({})), nix.thunk(() => ({ [nix.POS]: pos$5, subpackage: "frontend" })))),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Subtitle manager for Sonarr and Radarr",
         homepage: "https://www.bazarr.media/",
         changelog: nix.thunk(() => nix.str`https://github.com/morpheus65535/bazarr/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

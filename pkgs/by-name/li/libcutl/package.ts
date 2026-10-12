@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const xercesc = nix.arg($, "xercesc");
   return nix.app(nix.sel(gccStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libcutl",
       version: "1.11.0",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.codesynthesis.com/libcutl/libcutl.git",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-LY2ZyxduI6xftVjVqjNkhYPFTL5bvHC289Qcei1Kiw4=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => nix.sel(gccStdenv, "hostPlatform", "isDarwin")),
         description: "C++ utility library from Code Synthesis",
         longDescription: "libcutl is a C++ utility library.\nIt contains a collection of generic and independent components such as\nmeta-programming tests, smart pointers, containers, compiler building blocks, etc.\n",

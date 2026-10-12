@@ -17,25 +17,25 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     services: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       xserver: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         enable: true,
         desktopManager: nix.thunk(() => ({
-          __proto__: pos$2,
-          plasma6: nix.thunk(() => ({ __proto__: pos$1, enable: true })),
+          [nix.POS]: pos$2,
+          plasma6: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
         })),
       })),
       displayManager: nix.thunk(() => ({
-        __proto__: pos$5,
-        "plasma-login-manager": nix.thunk(() => ({ __proto__: pos$4, enable: true })),
+        [nix.POS]: pos$5,
+        "plasma-login-manager": nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
       })),
-      libinput: nix.thunk(() => ({ __proto__: pos$6, enable: true })),
+      libinput: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
     })),
     environment: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       systemPackages: nix.thunk(() => [
         nix.thunk(() => nix.sel(pkgs, "mesa-demos")),
         nix.thunk(() => nix.sel(pkgs, "firefox")),

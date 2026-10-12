@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "museum",
       version: "1.3.64",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ente",
           repo: "ente",
           sparseCheckout: nix.thunk(() => ["server"]),
@@ -38,15 +38,15 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postInstall: "mkdir -p $out/share/museum\ncp -R configurations \\\n  migrations \\\n  mail-templates \\\n  web-templates \\\n  $out/share/museum\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$2, ente: nix.thunk(() => nix.sel(nixosTests, "ente")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, ente: nix.thunk(() => nix.sel(nixosTests, "ente")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version-regex", "photos-v(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "API server for ente.io",
         homepage: "https://github.com/ente/ente/tree/main/server",
         changelog: nix.thunk(() => nix.str`https://github.com/ente/ente/releases/tag/photos-v${nix.sel(finalAttrs, "version")}`),

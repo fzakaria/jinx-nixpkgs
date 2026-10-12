@@ -29,35 +29,35 @@ export default nix.lambda((args) => (() => {
   const system = nix.arg($, "system");
   const pkgs = nix.arg($, "pkgs");
   const tests = nix.thunk(() => ({
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     xorg: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       node: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           imports: nix.thunk(() => [
             nix.path(here, "./common/user-account.nix"),
             nix.path(here, "./common/x11.nix"),
           ]),
           services: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             xserver: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               enable: true,
               displayManager: nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 sessionCommands: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "drawterm")}/bin/drawterm -g 1024x768 &
 `),
               })),
             })),
           })),
           "test-support": nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             displayManager: nix.thunk(() => ({
-              __proto__: pos$5,
-              auto: nix.thunk(() => ({ __proto__: pos$4, user: "alice" })),
+              [nix.POS]: pos$5,
+              auto: nix.thunk(() => ({ [nix.POS]: pos$4, user: "alice" })),
             })),
           })),
         };
@@ -65,17 +65,17 @@ export default nix.lambda((args) => (() => {
       systems: nix.thunk(() => ["x86_64-linux", "aarch64-linux"]),
     })),
     wayland: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       node: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           imports: nix.thunk(() => [nix.path(here, "./common/wayland-cage.nix")]),
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             cage: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               program: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "drawterm-wayland")}/bin/drawterm`),
             })),
           })),
@@ -88,13 +88,13 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$4);
       const pkgs_1 = nix.arg($_1, "pkgs");
       return {
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         name: name,
         nodes: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${name}`, machine]])),
         meta: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(pkgs_1, "lib", "maintainers")), null);
           return {
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "moody"))]),
           };
         })()),
@@ -135,6 +135,6 @@ machine.screenshot("out.png")
     const $_1 = nix.formals(args_1, formals$5);
     return {};
   })(), formals$5));
-  return nix.builtins.mapAttrs((k) => (v) => nix.app(mkTestOn, nix.thunk(() => nix.sel(v, "systems")), k, nix.thunk(() => nix.sel(v, "node")), nix.thunk(() => ({ __proto__: pos$16, system: system }))), tests);
+  return nix.builtins.mapAttrs((k) => (v) => nix.app(mkTestOn, nix.thunk(() => nix.sel(v, "systems")), k, nix.thunk(() => nix.sel(v, "node")), nix.thunk(() => ({ [nix.POS]: pos$16, system: system }))), tests);
 })(), formals$1);
 //# sourceMappingURL=drawterm.ts.map

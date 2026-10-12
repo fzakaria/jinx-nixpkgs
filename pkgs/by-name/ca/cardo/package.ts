@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cardo",
       version: "1.04",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://scholarsfonts.net/cardo104.zip",
           stripRoot: false,
           hash: "sha256-NU6/H5f0JBlVo3L3uUcl7IvNxPMXD8UQY9k5o2YA5Vo=",
         })))),
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/fonts/truetype\nmv *.ttf $out/share/fonts/truetype\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Large Unicode font specifically designed for the needs of classicists, Biblical scholars, medievalists, and linguists",
         longDescription: "Cardo is a large Unicode font specifically designed for the needs of\nclassicists, Biblical scholars, medievalists, and linguists. It also\nworks well for general typesetting in situations where a high-quality Old\nStyle font is appropriate. Its large character set supports many modern\nlanguages as well as those needed by scholars. Cardo also contains\nfeatures that are required for high-quality typography such as ligatures,\ntext figures (also known as old style numerals), true small capitals and\na variety of punctuation and space characters.\n",
         homepage: "http://scholarsfonts.net/cardofnt.html",

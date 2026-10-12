@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tanka",
       version: "0.38.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "grafana",
           repo: "tanka",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-Upp3aEaAgPwHleP+kZ3Jf34agDIiHIc3x/IVtujDhFg=",
       doCheck: false,
-      env: nix.thunk(() => ({ __proto__: pos$2, GOWORK: "off" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, GOWORK: "off" })),
       subPackages: nix.thunk(() => ["cmd/tk"]),
       ldflags: nix.thunk(() => [
         "-s",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: "echo \"complete -C $out/bin/tk tk\" > tk.bash\n\ncat >tk.fish <<EOF\n\nfunction __complete_tk\n    set -lx COMP_LINE (commandline -cp)\n    test -z (commandline -ct)\n    and set COMP_LINE \"\\$COMP_LINE \"\n    $out/bin/tk\nend\ncomplete -f -c tk -a \"(__complete_tk)\"\n\nEOF\n\ncat >tk.zsh <<EOF\n#compdef tk\nautoload -U +X bashcompinit && bashcompinit\ncomplete -o nospace -C $out/bin/tk tk\nEOF\n\ninstallShellCompletion \\\n  --cmd tk \\\n  --bash tk.bash \\\n  --fish tk.fish \\\n  --zsh tk.zsh\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Flexible, reusable and concise configuration for Kubernetes",
         homepage: "https://tanka.dev",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

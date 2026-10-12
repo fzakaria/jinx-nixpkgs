@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const pytest_django = nix.arg($, "pytest-django");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "social-auth-app-django",
       version: "6.0.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "python-social-auth",
           repo: "social-app-django",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_django, pytestCheckHook]),
       preCheck: "export DJANGO_SETTINGS_MODULE=tests.settings\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module for social authentication/registration mechanism",
         homepage: "https://github.com/python-social-auth/social-app-django",
         changelog: nix.thunk(() => nix.str`https://github.com/python-social-auth/social-app-django/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

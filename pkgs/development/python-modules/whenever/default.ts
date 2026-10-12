@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.10.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ariebovenberg",
           repo: "whenever",
           tag: version,
           hash: "sha256-axysocowBamYcNZ9IS58SefSltWC8mdO1Ovf65vMxTk=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: src,
           hash: "sha256-ZJhHIY9oFGGfK0XdZtzH7uSqbg3y3aDEh5q4ba5W0tI=",
         }))));
@@ -61,11 +61,11 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["whenever"]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Strict, predictable, and typed datetimes",
         homepage: "https://github.com/ariebovenberg/whenever",
         changelog: nix.thunk(() => nix.str`https://github.com/ariebovenberg/whenever/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

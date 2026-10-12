@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "acpid",
       version: "2.0.34",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/acpid2/acpid-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-LQlcjPy8hHyux0bWLNyNC/8ewbxy73xnTHIeBNpqszM=",
         })))),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://sourceforge.net/projects/acpid2/",
         description: "Daemon for delivering ACPI events to userspace programs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

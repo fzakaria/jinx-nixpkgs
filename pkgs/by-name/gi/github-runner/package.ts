@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const nodejs_24 = nix.arg($, "nodejs_24");
   nix.assert_(nix.builtins.all((x) => nix.builtins.elem(x, nix.thunk(() => ["node24"])), nodeRuntimes), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/gi/github-runner/package.nix:26:1");
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "github-runner",
       version: "2.337.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "actions",
           repo: "runner",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -76,7 +76,7 @@ export PATH=$TMPDIR/bin:$PATH
         nix.path(here, "./patches/dont-install-service.patch"),
         nix.path(here, "./patches/env-sh-use-runner-root.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "ln-fhs.patch",
             url: "https://github.com/actions/runner/commit/5ff0ce1.patch",
             hash: "sha256-2Vg3cKZK3cE/OcPDZkdN2Ro2WgvduYTTwvNGxwCfXas=",
@@ -85,10 +85,10 @@ export PATH=$TMPDIR/bin:$PATH
       ]),
       postPatch: "# Ignore changes to src/Runner.Sdk/BuildConstants.cs\nsubstituteInPlace src/dir.proj \\\n  --replace-fail 'git update-index --assume-unchanged ./Runner.Sdk/BuildConstants.cs' \\\n                 'true'\n",
       env: nix.thunk(() => nix.update({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         DOTNET_SYSTEM_GLOBALIZATION_INVARIANT: nix.thunk(() => nix.builtins.isNull(glibcLocales)),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.builtins.isNull(glibcLocales))), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           LOCALE_ARCHIVE: nix.thunk(() => nix.str`${glibcLocales}/lib/locale/locale-archive`),
         }))))),
       postConfigure: nix.thunk(() => nix.str`# Avoid deriving assembly metadata from the nondeterministic temporary Git commit.
@@ -230,15 +230,15 @@ fi
 runHook postInstallCheck
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "smoke-test": nix.thunk(() => nix.sel(nixosTests, "github-runner")),
         })),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         changelog: nix.thunk(() => nix.str`https://github.com/actions/runner/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Self-hosted runner for GitHub Actions",
         homepage: "https://github.com/actions/runner",

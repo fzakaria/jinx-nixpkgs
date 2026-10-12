@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "swarm",
       version: "0-unstable-2019-03-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nimble-code",
           repo: "swarm",
           rev: "4b36ed83c8fbb074f2dc5777fe1c0ab4d73cc7d9",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "install -Dm755 Src/swarm $out/bin/swarm\ninstall -Dm644 Doc/swarm.1 $out/share/man/man1/swarm.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Verification script generator for Spin",
         mainProgram: "swarm",
         homepage: "http://spinroot.com/",

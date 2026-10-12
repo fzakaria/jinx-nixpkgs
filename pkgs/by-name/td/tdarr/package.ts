@@ -14,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const tdarr_server = nix.arg($, "tdarr-server");
   const tdarr_node = nix.arg($, "tdarr-node");
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: nix.thunk(() => nix.str`tdarr-${nix.sel(tdarr_server, "version")}`),
       pname: "tdarr",
       version: nix.thunk(() => nix.attr(tdarr_server, "version")),
       paths: nix.thunk(() => [tdarr_server, tdarr_node]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         server: tdarr_server,
         node: tdarr_node,
         tests: nix.thunk(() => nix.update(nix.selOr(tdarr_server, () => ({}), "tests"), nix.selOr(tdarr_node, () => ({}), "tests"))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Distributed transcode automation using FFmpeg/HandBrake (includes both server and node)",
         homepage: "https://tdarr.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

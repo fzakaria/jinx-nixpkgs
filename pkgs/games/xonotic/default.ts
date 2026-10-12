@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
   const version = "0.8.6";
   const variant = nix.thunk(() => (nix.asBool((nix.asBool(withSDL) && nix.asBool(withGLX))) ? "" : (nix.asBool(withSDL) ? "-sdl" : (nix.asBool(withGLX) ? "-glx" : (nix.asBool(withDedicated) ? "-dedicated" : "-what-even-am-i")))));
   const meta = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     description: "Free fast-paced first-person shooter",
     longDescription: "Xonotic is a free, fast-paced first-person shooter that works on\nWindows, macOS and Linux. The project is geared towards providing\naddictive arena shooter gameplay which is all spawned and driven\nby the community itself. Xonotic is a direct successor of the\nNexuiz project with years of development between them, and it\naims to become the best possible open-source FPS of its kind.\n",
     homepage: "https://www.xonotic.org/",
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
     platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
   }));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "xonotic",
       exec: "xonotic",
       comment: nix.thunk(() => nix.sel(meta, "description")),
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
       const pname_1 = nix.thunk(() => nix.str`xonotic${variant}-unwrapped`);
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://dl.xonotic.org/xonotic-${version_1}-source.zip`),
           hash: "sha256-i5KseBz/SuicEhoj6s197AWiqr7azMI6GdGglYtAEqg=",
         }))));
@@ -114,11 +114,11 @@ export default nix.lambda((args) => (() => {
     $out/bin/xonotic-sdl
 `))));
       const meta_1 = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         mainProgram: nix.thunk(() => nix.str`xonotic-${(nix.asBool(withSDL) ? "sdl" : (nix.asBool(withGLX) ? "glx" : "dedicated"))}`),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: pname_1,
         version: version_1,
         src,
@@ -139,24 +139,24 @@ export default nix.lambda((args) => (() => {
     })())));
   return (() => {
     const xonotic_data_1 = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         name: "xonotic-data",
         url: nix.thunk(() => nix.str`https://dl.xonotic.org/xonotic-${version}.zip`),
         hash: "sha256-Lhjpyk7idmfQAVn4YUb7diGyyKZQBfwNXxk2zMOqiZQ=",
         postFetch: "cd $out\nrm -rf $(ls | grep -v \"^data$\" | grep -v \"^key_0.d0pk$\")\n",
-        meta: nix.thunk(() => ({ __proto__: pos$6, hydraPlatforms: [] })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$6, hydraPlatforms: [] })),
         version: version,
         pname: pname,
       }))));
     const xonotic = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`xonotic${variant}-${version}`), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         "xonotic-unwrapped": xonotic_unwrapped,
         version: version,
         pname: nix.thunk(() => nix.str`${pname}${variant}`),
         nativeBuildInputs: nix.thunk(() => [makeWrapper, copyDesktopItems]),
         desktopItems: nix.thunk(() => [desktopItem]),
         meta: nix.thunk(() => nix.update(meta, {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           hydraPlatforms: [],
           mainProgram: nix.thunk(() => (nix.asBool((nix.asBool(withSDL) || nix.asBool(withGLX))) ? "xonotic" : "xonotic-dedicated")),
         })),
@@ -172,7 +172,7 @@ copyDesktopItems
   wrapProgram $binary --add-flags "-basedir ${xonotic_data_1}" --prefix LD_LIBRARY_PATH : "${xonotic_unwrapped}/lib"
 done
 `))));
-    return { __proto__: pos$10, "xonotic-data": xonotic_data_1, xonotic };
+    return { [nix.POS]: pos$10, "xonotic-data": xonotic_data_1, xonotic };
   })();
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

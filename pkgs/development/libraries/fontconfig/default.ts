@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "fontconfig",
       version: "2.18.3",
       outputs: nix.thunk(() => ["bin", "dev", "lib", "out"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://gitlab.freedesktop.org/api/v4/projects/890/packages/generic/fontconfig/${nix.sel(finalAttrs, "version")}/fontconfig-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-T3tVSjjN94wDP2ZsiHHzdJ4UoJT2Wgf2MMke0LQ9NeM=",
         })))),
@@ -72,21 +72,21 @@ rm -r $bin/share/man/man3
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("bin")}/bin/fc-list`),
       installCheckPhase: "runHook preInstallCheck\n\n[ -d \"$bin/share/man/man1\" ]\n[ -d \"$bin/share/man/man5\" ]\necho \"man pages exist\"\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://gitlab.freedesktop.org/fontconfig/fontconfig.git",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Library for font customization and configuration",
         homepage: "http://fontconfig.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

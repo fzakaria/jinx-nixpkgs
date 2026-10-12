@@ -14,22 +14,22 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "s-tar",
       version: "1.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/s-tar/star-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "0xpp8gf0ghwdgncdwx17fpadxislwrj48gcm42851hz6p8p6c60v",
         })))),
       preConfigure: "rm configure",
       preBuild: "sed 's_/bin/__g' -i RULES/*",
       makeFlags: nix.thunk(() => ["GMAKE_NOWARN=true"]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=c89" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=c89" })),
       installFlags: nix.thunk(() => ["DESTDIR=$(out)", "INS_BASE=/"]),
       postInstall: "find $out/bin -type l -delete\nrm -r $out/etc $out/include $out/sbin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Very fast tar like tape archiver with improved functionality",
         longDescription: "Star archives and extracts multiple files to and from a single file called a tarfile.\nA tarfile is usually a magnetic tape, but it can be any file.\nIn all cases, appearance of a directory name refers to the files and (recursively) sub-directories of that directory.\nStar's actions are controlled by the mandatory command flags from the list below.\nThe way star acts may be modified by additional options.\nNote that unpacking tar archives may be a security risk because star may overwrite existing files.\n",
         homepage: "https://cdrtools.sourceforge.net/private/star.html",

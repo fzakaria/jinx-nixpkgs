@@ -18,27 +18,27 @@ export default nix.lambda((args) => (() => {
   const version = "23.1.14";
   const pname = "cockroachdb";
   const srcs = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "aarch64-linux": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: nix.thunk(() => nix.str`https://binaries.cockroachdb.com/cockroach-v${version}.linux-arm64.tgz`),
         hash: "sha256-cwczzmSKKQs/DN6WZ/FF6nJC82Pu47akeDqWdBMgdz0=",
       })))),
     "x86_64-linux": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: nix.thunk(() => nix.str`https://binaries.cockroachdb.com/cockroach-v${version}.linux-amd64.tgz`),
         hash: "sha256-goCBE+zv9KArdoMsI48rlISurUM0bL/l1OEYWQKqzv0=",
       })))),
   }));
   const src = nix.thunk(() => nix.selOr(srcs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       runScript: nix.thunk(() => nix.str`${src}/cockroach`),
       extraInstallCommands: "cp -P $out/bin/cockroachdb $out/bin/cockroach\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.cockroachlabs.com",
         description: "Scalable, survivable, strongly-consistent SQL database",
         license: nix.thunk(() => (() => {

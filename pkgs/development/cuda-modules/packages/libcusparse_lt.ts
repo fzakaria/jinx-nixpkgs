@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const cudaMajorMinorVersion = nix.arg($, "cudaMajorMinorVersion");
   const lib = nix.arg($, "lib");
   return nix.app(buildRedist, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       redistName: "cusparselt",
       pname: "libcusparse_lt",
       outputs: nix.thunk(() => ["out", "dev", "include", "lib", "static"]),
@@ -26,19 +26,19 @@ export default nix.lambda((args) => (() => {
         const cusparseltAtLeast = nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(finalAttrs, "version"))));
         return [
           nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             message: nix.thunk(() => nix.add(nix.str`cuSPARSELt releases since 0.7.0 (found ${nix.sel(finalAttrs, "version")})`, nix.str` support CUDA 12.8 and newer (found ${cudaMajorMinorVersion})`)),
             assertion: nix.thunk(() => (!nix.asBool(nix.app(cusparseltAtLeast, "0.7")) || nix.asBool(nix.app(cudaAtLeast, "12.8")))),
           })),
           nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             message: nix.thunk(() => nix.add(nix.str`cuSPARSELt releases since 0.8.0 (found ${nix.sel(finalAttrs, "version")})`, nix.str` support CUDA 12.9 and newer (found ${cudaMajorMinorVersion})`)),
             assertion: nix.thunk(() => (!nix.asBool(nix.app(cusparseltAtLeast, "0.8")) || nix.asBool(nix.app(cudaAtLeast, "12.9")))),
           })),
         ];
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "High-performance CUDA library dedicated to general matrix-matrix operations in which at least one operand is a structured sparse matrix with 50% sparsity ratio",
         longDescription: "NVIDIA cuSPARSELt is a high-performance CUDA library dedicated to general matrix-matrix operations in which at\nleast one operand is a structured sparse matrix with 50% sparsity ratio.\n",
         homepage: "https://developer.nvidia.com/cusparselt-downloads",

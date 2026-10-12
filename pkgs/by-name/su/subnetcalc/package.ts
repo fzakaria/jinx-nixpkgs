@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libidn2 = nix.arg($, "libidn2");
   const libmaxminddb = nix.arg($, "libmaxminddb");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "subnetcalc",
       version: "2.7.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dreibh",
           repo: "subnetcalc",
           tag: nix.thunk(() => nix.str`subnetcalc-${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, ninja, gettext]),
       buildInputs: nix.thunk(() => [libidn2, libmaxminddb]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "IPv4/IPv6 subnet address calculator",
         homepage: "https://www.nntb.no/~dreibh/subnetcalc/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

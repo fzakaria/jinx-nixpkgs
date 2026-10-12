@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libxinerama = nix.arg($, "libxinerama");
   const rpathLibs = nix.thunk(() => [libxinerama, libx11]);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "leftwm",
       version: "0.5.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "leftwm",
           repo: "leftwm",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ install -D -m 0555 leftwm/doc/leftwm.1 $out/share/man/man1/leftwm.1
 `),
       dontPatchELF: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tiling window manager for the adventurer",
         homepage: "https://github.com/leftwm/leftwm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

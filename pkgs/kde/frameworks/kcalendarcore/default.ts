@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const qttools = nix.arg($, "qttools");
   const libical = nix.arg($, "libical");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kcalendarcore",
       hasPythonBindings: true,
       extraNativeBuildInputs: nix.thunk(() => [qttools]),

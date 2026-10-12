@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const electron = electron_43;
   const stdenv = stdenvNoCC;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "stoat-desktop",
       version: "1.5.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stoatchat",
           repo: "for-desktop",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         zip,
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [desktopToDarwinBundle])))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
           pnpm: pnpm_11,
           hash: "sha256-uiKTkXU0THzW46FiAfftqMWfrnFPCfgS/30ZuWmpHMI=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: "1", CI: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: "1", CI: "1" })),
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
 
 export npm_config_nodedir=${nix.sel(electron, "headers")}
@@ -115,7 +115,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), electron)} "$out/bin/stoat-desktop
         ]))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "Stoat",
             exec: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "meta", "mainProgram")} %u`),
             icon: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "meta", "mainProgram")}`),
@@ -126,11 +126,11 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), electron)} "$out/bin/stoat-desktop
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Open source user-first chat platform",
         homepage: "https://stoat.chat/",
         changelog: nix.thunk(() => nix.str`https://github.com/stoatchat/for-desktop/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -28,61 +28,61 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     name: "stc-template-dropin",
     nodes: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           systemd: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             services: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               "test-template@": nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 description: "A base template for testing",
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/sleep infinity`),
                 })),
               })),
               "test-template@managed": nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 overrideStrategy: "asDropin",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
-                serviceConfig: nix.thunk(() => ({ __proto__: pos$3, Environment: "TEST_VAR=1" })),
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$3, Environment: "TEST_VAR=1" })),
               })),
               "test-template@changed": nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 overrideStrategy: "asDropin",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
-                serviceConfig: nix.thunk(() => ({ __proto__: pos$5, Environment: "TEST_VAR=1" })),
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$5, Environment: "TEST_VAR=1" })),
               })),
             })),
           })),
           specialisation: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             "new-generation": nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               configuration: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 systemd: nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   services: nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     "test-template@managed": nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       enable: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), false)),
                       wantedBy: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), [])),
                     })),
                     "test-template@changed": nix.thunk(() => ({
-                      __proto__: pos$11,
+                      [nix.POS]: pos$11,
                       serviceConfig: nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         Environment: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), "TEST_VAR=2")),
                       })),
                     })),

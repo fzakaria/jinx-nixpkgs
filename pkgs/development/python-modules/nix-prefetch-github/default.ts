@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const outputs = nix.thunk(() => ["out", "man"]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "seppeljordan",
           repo: "nix-prefetch-github",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -38,9 +38,9 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [unittestCheckHook, git, which, parameterized]);
       const sphinxBuilders = nix.thunk(() => ["man"]);
       const sphinxRoot = "docs";
-      const env = nix.thunk(() => ({ __proto__: pos$2, DISABLED_TESTS: "network requires_nix_build" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, DISABLED_TESTS: "network requires_nix_build" }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Prefetch sources from github",
         homepage: "https://github.com/seppeljordan/nix-prefetch-github",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

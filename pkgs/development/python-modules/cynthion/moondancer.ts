@@ -17,16 +17,16 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const llvmPackages = nix.arg($, "llvmPackages");
   const cross = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../..")), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       localSystem: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system")),
       crossSystem: nix.thunk(() => nix.update(nix.sel(lib, "systems", "examples", "riscv32-embedded"), {
-        __proto__: pos$2,
-        rust: nix.thunk(() => ({ __proto__: pos$1, rustcTarget: "riscv32imac-unknown-none-elf" })),
+        [nix.POS]: pos$2,
+        rust: nix.thunk(() => ({ [nix.POS]: pos$1, rustcTarget: "riscv32imac-unknown-none-elf" })),
       })),
     }))));
   const rustPlatform = nix.thunk(() => nix.attr(cross, "rustPlatform"));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "moondancer",
       version: version,
       src: src,
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       RUSTFLAGS: "-C linker=lld -C link-arg=-Tmemory.x -C link-arg=-Tlink.x -C link-dead-code",
       postInstall: "llvm-objcopy -O binary \\\n  $out/bin/moondancer \\\n  $out/bin/moondancer.bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Moondancer SoC firmware for the Great Scott Gadgets Cynthion",
         homepage: "https://github.com/greatscottgadgets/cynthion",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

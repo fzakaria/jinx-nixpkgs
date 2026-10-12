@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "netcdf";
       const version = "1.0.21";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gnu-octave",
           repo: "octave-netcdf",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const preAutoreconf = "pushd src\n# Upstream's bootstrap script uses wget to fetch config.guess & config.sub\n# and has them committed to the repository. We must remove them so autoreconf\n# actually fires for our environment.\nrm config.*\n";
       const postAutoreconf = "popd\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gnu-octave.github.io/packages/netcdf/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         maintainers: nix.thunk(() => (() => {
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         description: "NetCDF interface for Octave",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

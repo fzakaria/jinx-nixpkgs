@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "surface-control";
       const version = "0.5.0-1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linux-surface",
           repo: "surface-control",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [udev]);
       const postInstall = "installShellCompletion \\\n  $releaseDir/build/surface-*/out/surface.{bash,fish} \\\n  --zsh $releaseDir/build/surface-*/out/_surface\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Control various aspects of Microsoft Surface devices on Linux from the Command-Line",
         homepage: "https://github.com/linux-surface/surface-control",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "surface",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

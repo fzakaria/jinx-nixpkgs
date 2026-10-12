@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const threadweaver = nix.arg($, "threadweaver");
   const kwindowsystem = nix.arg($, "kwindowsystem");
   const self = nix.thunk(() => nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "krunner",
       nativeBuildInputs: nix.thunk(() => [cmake, extra_cmake_modules]),
       buildInputs: nix.thunk(() => [

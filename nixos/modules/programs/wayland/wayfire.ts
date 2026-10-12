@@ -30,24 +30,24 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "wayfire"));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "wineee"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       programs: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         wayfire: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Wayfire, a wayland compositor based on wlroots")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "wayfire", nix.thunk(() => ({})))),
           plugins: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "wayfirePlugins")), null);
@@ -61,39 +61,39 @@ export default nix.lambda((args) => (() => {
               description: "Additional plugins to use with the wayfire window manager.\n",
             })))),
           xwayland: nix.thunk(() => ({
-            __proto__: pos$4,
-            enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "XWayland"), { __proto__: pos$3, default: true })),
+            [nix.POS]: pos$4,
+            enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "XWayland"), { [nix.POS]: pos$3, default: true })),
           })),
         })),
       })),
     })),
     config: nix.thunk(() => (() => {
       const finalPackage = nix.thunk(() => nix.app(nix.sel(pkgs, "wayfire-with-plugins", "override"), nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           wayfire: nix.thunk(() => nix.sel(cfg, "package")),
           plugins: nix.thunk(() => nix.sel(cfg, "plugins")),
         }))));
       return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$17,
-              environment: nix.thunk(() => ({ __proto__: pos$9, systemPackages: nix.thunk(() => [finalPackage]) })),
+              [nix.POS]: pos$17,
+              environment: nix.thunk(() => ({ [nix.POS]: pos$9, systemPackages: nix.thunk(() => [finalPackage]) })),
               services: nix.thunk(() => ({
-                __proto__: pos$11,
-                displayManager: nix.thunk(() => ({ __proto__: pos$10, sessionPackages: nix.thunk(() => [finalPackage]) })),
+                [nix.POS]: pos$11,
+                displayManager: nix.thunk(() => ({ [nix.POS]: pos$10, sessionPackages: nix.thunk(() => [finalPackage]) })),
               })),
               xdg: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 portal: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                   wlr: nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                   })),
                   config: nix.thunk(() => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     wayfire: nix.thunk(() => ({
-                      __proto__: pos$13,
+                      [nix.POS]: pos$13,
                       default: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ["wlr", "gtk"]))),
                     })),
                   })),
@@ -101,7 +101,7 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./wayland-session.nix")), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 lib: lib,
                 pkgs: pkgs,
                 enableXWayland: nix.thunk(() => nix.sel(cfg, "xwayland", "enable")),

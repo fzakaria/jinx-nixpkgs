@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const libnotify = nix.arg($, "libnotify");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bleachbit",
       version: "6.0.2",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/bleachbit/bleachbit-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-H7fwg5QdaBduHg5r9z07TIC81Xrf07Uf9gYXbcGQdy4=",
         })))),
@@ -48,7 +48,7 @@ find -type f -exec sed -i -e 's@${nix.builtins.placeholder("out")}/bin/python3@$
       makeWrapperArgs: nix.thunk(() => ["${gappsWrapperArgs[@]}"]),
       strictDeps: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://bleachbit.sourceforge.net",
         description: "Program to clean your computer",
         longDescription: "BleachBit helps you easily clean your computer to free space and maintain privacy.",

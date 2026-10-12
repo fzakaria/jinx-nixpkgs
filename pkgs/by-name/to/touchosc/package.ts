@@ -53,16 +53,16 @@ export default nix.lambda((args) => (() => {
       const pname = "touchosc";
       const version = "1.4.9.248";
       const suffix = nix.thunk(() => nix.selOr({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         "aarch64-linux": "linux-arm64",
         "armv7l-linux": "linux-armhf",
         "x86_64-linux": "linux-x64",
       }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://hexler.net/pub/${pname}/${pname}-${version}-${suffix}.deb`),
           hash: nix.thunk(() => nix.selOr({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "aarch64-linux": "sha256-IKk688XFTx1rHEF03uHZ3cN60GwwIlf/FK4mJ0c/PqM=",
             "armv7l-linux": "sha256-li1BLZ6/6OJzsCIN2T3V4vEVXfa9GH6PiFkm6lUl4Ec=",
             "x86_64-linux": "sha256-NM9v+wyLNnwNw4qY6jDPB9ig/GZfzzrDshMSmi/yvCM=",
@@ -90,9 +90,9 @@ wrapProgram $out/bin/TouchOSC \\
 
 runHook postInstall
 `);
-      const passthru = nix.thunk(() => ({ __proto__: pos$4, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://hexler.net/touchosc",
         description: "Next generation modular control surface",
         sourceProvenance: nix.thunk(() => (() => {
@@ -105,7 +105,7 @@ runHook postInstall
         mainProgram: "TouchOSC",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         suffix,

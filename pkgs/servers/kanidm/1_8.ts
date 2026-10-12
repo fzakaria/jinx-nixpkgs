@@ -5,7 +5,7 @@ const here = nix.here(import.meta.url);
 const pos$1 = nix.positions(here + "/1_8.nix", [["version", 2, 3], ["hash", 3, 3], ["cargoHash", 4, 3], ["unsupported", 5, 3]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     version: "1.8.6",
     hash: "sha256-+NZs8HHHmWGmlNNymIlbV7E28RiaGLmvtZkCWZJQvMk=",
     cargoHash: "sha256-NKCQRIxvWAT5saMO85noYZtm7h0OPFhWFqudvkQPYTE=",

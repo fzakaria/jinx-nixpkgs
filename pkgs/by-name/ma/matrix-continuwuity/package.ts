@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const liburing = nix.arg($, "liburing");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "matrix-continuwuity",
       version: "26.9.1",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "forgejo.ellis.link",
           owner: "continuwuation",
           repo: "continuwuity",
@@ -44,29 +44,29 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]),
       buildInputs: nix.thunk(() => [bzip2, zstd, rust_jemalloc_sys_unprefixed, liburing]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         ZSTD_SYS_USE_PKG_CONFIG: true,
         ROCKSDB_INCLUDE_DIR: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "rocksdb")}/include`),
         ROCKSDB_LIB_DIR: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "rocksdb")}/lib`),
       })),
       rocksdb: nix.thunk(() => nix.app(callPackage, nix.path(here, "./rocksdb.nix"), nix.thunk(() => ({})))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => nix.update({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               package: matrix_continuwuity,
             })))),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             "matrix-continuwuity": nix.thunk(() => nix.attr(nixosTests, "matrix-continuwuity")),
           }))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Matrix homeserver written in Rust, forked from conduwuit",
         homepage: "https://continuwuity.org/",
         changelog: nix.thunk(() => nix.str`https://forgejo.ellis.link/continuwuation/continuwuity/releases/tag/v${nix.sel(finalAttrs, "version")}`),

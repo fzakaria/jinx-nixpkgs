@@ -18,15 +18,15 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(lib, "makeScope"), newScope, (self) => (() => {
       const callPackage = nix.thunk(() => nix.sel(self, "callPackage"));
       return nix.update({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pidgin: nix.thunk(() => nix.app(callPackage, nix.path(here, "../."), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             withOpenssl: nix.thunk(() => nix.selOr(config, () => true, "pidgin", "openssl")),
             withGnutls: nix.thunk(() => nix.selOr(config, () => false, "pidgin", "gnutls")),
             plugins: [],
           })))),
         pidginPackages: self,
-        "pidgin-latex": nix.thunk(() => nix.app(callPackage, nix.path(here, "./pidgin-latex"), nix.thunk(() => ({ __proto__: pos$2, texLive: texliveBasic })))),
+        "pidgin-latex": nix.thunk(() => nix.app(callPackage, nix.path(here, "./pidgin-latex"), nix.thunk(() => ({ [nix.POS]: pos$2, texLive: texliveBasic })))),
         "pidgin-carbons": nix.thunk(() => nix.app(callPackage, nix.path(here, "./carbons"), nix.thunk(() => ({})))),
         "pidgin-xmpp-receipts": nix.thunk(() => nix.app(callPackage, nix.path(here, "./pidgin-xmpp-receipts"), nix.thunk(() => ({})))),
         "pidgin-otr": nix.thunk(() => nix.app(callPackage, nix.path(here, "./otr"), nix.thunk(() => ({})))),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         "purple-plugin-pack": nix.thunk(() => nix.app(callPackage, nix.path(here, "./purple-plugin-pack"), nix.thunk(() => ({})))),
         "purple-slack": nix.thunk(() => nix.app(callPackage, nix.path(here, "./purple-slack"), nix.thunk(() => ({})))),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "tdlib-purple": nix.thunk(() => nix.builtins.throw("'pidginPackages.tdlib-purple' has been removed due to being broken for more than a year; see RFC 180")),
           "pidgin-indicator": nix.thunk(() => nix.builtins.throw("'pidginPackages.pidgin-indicator' has been removed as it depended on libappindicator-gtk2, which was removed for depending on the deprecated GTK 2 engine.")),
           "purple-matrix": nix.thunk(() => nix.builtins.throw("'pidginPackages.purple-matrix' has been unmaintained since April 2022, so it was removed.")),

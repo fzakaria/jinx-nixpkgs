@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const pname = "librenms";
       const version = "26.9.1.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "librenms",
           repo: "librenms",
           tag: version,
@@ -121,12 +121,12 @@ ln -s ${dataDir}/storage $out/storage
 ln -s ${dataDir}/cache $out/bootstrap/cache
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         phpPackage: phpPackage,
-        tests: nix.thunk(() => ({ __proto__: pos$2, librenms: nix.thunk(() => nix.sel(nixosTests, "librenms")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, librenms: nix.thunk(() => nix.sel(nixosTests, "librenms")) })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Auto-discovering PHP/MySQL/SNMP based network monitoring",
         homepage: "https://www.librenms.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -140,7 +140,7 @@ ln -s ${dataDir}/cache $out/bootstrap/cache
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

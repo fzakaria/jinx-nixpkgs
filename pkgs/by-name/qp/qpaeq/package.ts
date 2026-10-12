@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const qt5 = nix.arg($, "qt5");
   const python3 = nix.arg($, "python3");
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "qpaeq",
       exec: "@out@/bin/qpaeq",
       icon: "audio-volume-high",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       startupNotify: false,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "qpaeq",
       version: nix.thunk(() => nix.attr(pulseaudio, "version")),
       src: nix.thunk(() => nix.attr(pulseaudio, "src")),
@@ -49,7 +49,7 @@ runHook postInstall
 `),
       preFixup: "sed \"s|,sip|,PyQt5.sip|g\" -i $out/bin/qpaeq\nwrapQtApp $out/bin/qpaeq\nsed \"s|@out@|$out|g\" -i $out/share/applications/qpaeq.desktop\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Equalizer interface for pulseaudio's equalizer sinks",
         mainProgram: "qpaeq",
         homepage: "http://www.pulseaudio.org/",

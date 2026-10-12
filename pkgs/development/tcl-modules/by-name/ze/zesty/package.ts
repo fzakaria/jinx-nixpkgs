@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const tcllib = nix.arg($, "tcllib");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(mkTclDerivation, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "zesty",
       version: "0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nico-robert",
           repo: "zesty",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ninstall -Dm644 -t $out/lib/zesty/ *.tcl\ncp -r src $out/lib/zesty/src\ninstall -Dm644 -t $out/doc/zesty/examples/ examples/*.tcl\n\nrunHook postInstall\n",
       tclRequiresCheck: nix.thunk(() => ["zesty"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tcl library for rich terminal output",
         homepage: "https://github.com/nico-robert/zesty",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

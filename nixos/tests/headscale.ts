@@ -34,14 +34,14 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   const tls_cert = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "selfSignedCerts", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openssl"))]),
     })), "openssl req \\\n  -x509 -newkey rsa:4096 -sha256 -days 365 \\\n  -nodes -out cert.pem -keyout key.pem \\\n  -subj '/CN=headscale' -addext \"subjectAltName=DNS:headscale\"\n\nmkdir -p $out\ncp key.pem cert.pem $out\n"));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     name: "headscale",
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -54,39 +54,39 @@ export default nix.lambda((args) => (() => {
       const headscalePort = 8080n;
       const stunPort = 3478n;
       const peer = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         services: nix.thunk(() => ({
-          __proto__: pos$4,
-          tailscale: nix.thunk(() => ({ __proto__: pos$3, enable: true })),
+          [nix.POS]: pos$4,
+          tailscale: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           pki: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             certificateFiles: nix.thunk(() => [nix.thunk(() => nix.str`${tls_cert}/cert.pem`)]),
           })),
         })),
       }));
       return {
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         peer1: peer,
         peer2: peer,
         headscale: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             headscale: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               enable: true,
               port: headscalePort,
               settings: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 server_url: "https://headscale",
                 ip_prefixes: nix.thunk(() => ["100.64.0.0/10"]),
                 derp: nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   server: nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     enabled: true,
                     region_id: 999n,
                     stun_listen_addr: nix.thunk(() => nix.str`0.0.0.0:${nix.builtins.toString(stunPort)}`),
@@ -94,29 +94,29 @@ export default nix.lambda((args) => (() => {
                   urls: [],
                 })),
                 dns: nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   base_domain: "tailnet",
                   extra_records: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$10, name: "foo.bar", type: "A", value: "100.64.0.2" })),
+                    nix.thunk(() => ({ [nix.POS]: pos$10, name: "foo.bar", type: "A", value: "100.64.0.2" })),
                   ]),
                   override_local_dns: false,
                 })),
               })),
             })),
             nginx: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 headscale: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   addSSL: true,
                   sslCertificate: nix.thunk(() => nix.str`${tls_cert}/cert.pem`),
                   sslCertificateKey: nix.thunk(() => nix.str`${tls_cert}/key.pem`),
                   locations: nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     "/": nix.thunk(() => ({
-                      __proto__: pos$14,
+                      [nix.POS]: pos$14,
                       proxyPass: nix.thunk(() => nix.str`http://127.0.0.1:${nix.builtins.toString(headscalePort)}`),
                       proxyWebsockets: true,
                     })),
@@ -126,15 +126,15 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             firewall: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               allowedTCPPorts: nix.thunk(() => [80n, 443n]),
               allowedUDPPorts: nix.thunk(() => [stunPort]),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "headscale"))]),
           })),
         })),

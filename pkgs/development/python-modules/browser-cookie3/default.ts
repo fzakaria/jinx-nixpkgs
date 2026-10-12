@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.20.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "borisbabic",
           repo: "browser_cookie3",
           tag: version,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["browser_cookie3"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Loads cookies from your browser into a cookiejar object",
         homepage: "https://github.com/borisbabic/browser_cookie3",
         changelog: "https://github.com/borisbabic/browser_cookie3/blob/master/CHANGELOG.md",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

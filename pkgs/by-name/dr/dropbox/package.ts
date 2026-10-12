@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const version = "246.4.3513";
   const installer = nix.thunk(() => nix.str`https://clientupdates.dropboxstatic.com/dbx-releng/client/dropbox-lnx.x86_64-${version}.tar.gz`);
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "dropbox",
       exec: "dropbox",
       comment: "Sync your files across computers and to the web",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       icon: "dropbox",
     }))));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: version,
       pname: "dropbox",
       dieWithParent: false,
@@ -100,7 +100,7 @@ fi
 exec "$HOME/.dropbox-dist/dropboxd" "$@"
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Online stored folders (daemon version)",
         homepage: "https://www.dropbox.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

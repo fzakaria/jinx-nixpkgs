@@ -42,37 +42,37 @@ export default nix.lambda((args) => (() => {
   const tbbRel = "43484";
   const shlibExt = nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "extensions", "sharedLibrary"));
   const oneapi_mkl = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://yum.repos.intel.com/oneapi/intel-oneapi-mkl-${mklVersion}-${mklVersion}-${rel}.x86_64.rpm`),
       hash: "sha256-PGLPNnR+11AmmaNxldeze/l2Kw/4+mfjB+RqsPhP6oM=",
     }))));
   const oneapi_mkl_common = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`https://yum.repos.intel.com/oneapi/intel-oneapi-mkl-common-${mklVersion}-${mklVersion}-${rel}.noarch.rpm`),
       hash: "sha256-wztTE2R/IdG6ujGf7KFocpRmXzlZSnEKopTBOlPPlBw=",
     }))));
   const oneapi_mkl_common_devel = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: nix.thunk(() => nix.str`https://yum.repos.intel.com/oneapi/intel-oneapi-mkl-common-devel-${mklVersion}-${mklVersion}-${rel}.noarch.rpm`),
       hash: "sha256-MWa8mpyFM4zgDLup+EzFRM+N2Oxf0o6FBBRM8mAanbI=",
     }))));
   const oneapi_mkl_devel = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       url: nix.thunk(() => nix.str`https://yum.repos.intel.com/oneapi/intel-oneapi-mkl-devel-${mklVersion}-${mklVersion}-${rel}.x86_64.rpm`),
       hash: "sha256-Arq5kXktI92031XqfV0pkzQCHaFsTRKX05iOA/fPNOs=",
     }))));
   const oneapi_openmp = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       url: nix.thunk(() => nix.str`https://yum.repos.intel.com/oneapi/intel-oneapi-openmp-${mklVersion}-${mklVersion}-${openmpRel}.x86_64.rpm`),
       hash: "sha256-cyBD3P4AEvyreP4pP3BE+yyDB+ptblOQ9GYI8ysGsIM=",
     }))));
   const oneapi_tbb = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       url: nix.thunk(() => nix.str`https://yum.repos.intel.com/oneapi/intel-oneapi-tbb-${tbbVersion}-${tbbVersion}-${tbbRel}.x86_64.rpm`),
       hash: "sha256-pzJpQdiYVpcKDShePak2I0uEh7u08vJgX7OBF5p5yAM=",
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => nix.update({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       pname: "mkl",
       version: version,
       dontUnpack: nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isLinux")),
@@ -131,17 +131,17 @@ ln -s $out/lib/libmkl_rt${shlibExt} $out/lib/liblapacke${shlibExt}".3"
       dontStrip: true,
       dontPatchELF: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         tests: nix.thunk(() => ({
-          __proto__: pos$11,
-          "pkg-config-dynamic-iomp": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test"), nix.thunk(() => ({ __proto__: pos$7, enableStatic: false, execution: "iomp" })))),
-          "pkg-config-static-iomp": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test"), nix.thunk(() => ({ __proto__: pos$8, enableStatic: true, execution: "iomp" })))),
-          "pkg-config-dynamic-seq": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test"), nix.thunk(() => ({ __proto__: pos$9, enableStatic: false, execution: "seq" })))),
-          "pkg-config-static-seq": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test"), nix.thunk(() => ({ __proto__: pos$10, enableStatic: true, execution: "seq" })))),
+          [nix.POS]: pos$11,
+          "pkg-config-dynamic-iomp": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test"), nix.thunk(() => ({ [nix.POS]: pos$7, enableStatic: false, execution: "iomp" })))),
+          "pkg-config-static-iomp": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test"), nix.thunk(() => ({ [nix.POS]: pos$8, enableStatic: true, execution: "iomp" })))),
+          "pkg-config-dynamic-seq": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test"), nix.thunk(() => ({ [nix.POS]: pos$9, enableStatic: false, execution: "seq" })))),
+          "pkg-config-static-seq": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test"), nix.thunk(() => ({ [nix.POS]: pos$10, enableStatic: true, execution: "seq" })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         description: "Intel OneAPI Math Kernel Library",
         longDescription: "Intel OneAPI Math Kernel Library (Intel oneMKL) optimizes code with minimal\neffort for future generations of Intel processors. It is compatible with your\nchoice of compilers, languages, operating systems, and linking and\nthreading models.\n",
         homepage: "https://software.intel.com/en-us/mkl",
@@ -153,9 +153,9 @@ ln -s $out/lib/libmkl_rt${shlibExt} $out/lib/liblapacke${shlibExt}".3"
         platforms: nix.thunk(() => ["x86_64-linux"]),
       })),
     }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             url: nix.thunk(() => nix.str`https://registrationcenter-download.intel.com/akdlm/IRC_NAS/087a9190-9d96-4b8c-bd2f-79159572ed89/m_onemkl_p_${mklVersion}.${rel}_offline.dmg`),
             hash: "sha256-bUaaJPSaLr60fw0DzDCjPvY/UucHlLbCSLyQxyiAi04=",
           })))),

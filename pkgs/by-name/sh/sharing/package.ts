@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sharing";
       const version = "1.2.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "parvardegr",
           repo: "sharing",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -26,9 +26,9 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-2DwFkkoODDuLOxF63F1ywoXzjcMn/+H2ycRWlJlNcCI=";
       const dontNpmBuild = true;
       const npmPackFlags = nix.thunk(() => ["--ignore-scripts"]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, NODE_OPTIONS: "--openssl-legacy-provider" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NODE_OPTIONS: "--openssl-legacy-provider" }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Command-line tool to share directories and files to mobile devices",
         homepage: "https://github.com/parvardegr/sharing",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

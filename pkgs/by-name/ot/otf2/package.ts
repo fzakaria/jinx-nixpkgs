@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "otf2",
       version: "3.2",
       outputs: nix.thunk(() => ["out", "lib", "doc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://perftools.pages.jsc.fz-juelich.de/cicd/otf2/tags/otf2-${nix.sel(finalAttrs, "version")}/otf2-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-grOoilUMuMPOyP1F7Kgs3Lr5RSCZd0gkcbS15DDWSo0=",
         })))),
@@ -46,7 +46,7 @@ substituteInPlace build-config/common/platforms/platform-frontend-user-provided 
       doInstallCheck: true,
       versionCheckProgram: nix.thunk(() => [nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/otf2-config`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.vi-hps.org/projects/score-p",
         changelog: nix.thunk(() => nix.str`https://perftools.pages.jsc.fz-juelich.de/cicd/otf2/tags/otf2-${nix.sel(finalAttrs, "version")}/ChangeLog.txt`),
         description: "Open Trace Format 2 library",

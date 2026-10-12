@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "outguess",
       version: "0.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "resurrecting-open-source-projects",
           repo: "outguess",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--with-generic-jconfig"]),
       postPatch: "substituteInPlace src/jpeg-6b-steg/jmorecfg.h \\\n  --replace-fail '#define JMETHOD(type,methodname,arglist)  type (*methodname) ()' \\\n                 '#define JMETHOD(type,methodname,arglist)  type (*methodname) arglist'\nsubstituteInPlace src/jpeg-6b-steg/jpeglib.h \\\n  --replace-fail '#ifdef HAVE_PROTOTYPES' '#if 1  /* Force ANSI prototypes */'\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Universal steganographic tool that allows the insertion of hidden information into the redundant bits of data sources",
         homepage: "https://github.com/resurrecting-open-source-projects/outguess",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsdOriginal")),

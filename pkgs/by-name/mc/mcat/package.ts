@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const useChromium = nix.argOr($, "useChromium", () => false);
   const useFfmpeg = nix.argOr($, "useFfmpeg", () => false);
   return nix.app(runCommand, "mcat", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "mcat",
       version: nix.thunk(() => nix.attr(mcat_unwrapped, "version")),
       meta: nix.thunk(() => nix.attr(mcat_unwrapped, "meta")),

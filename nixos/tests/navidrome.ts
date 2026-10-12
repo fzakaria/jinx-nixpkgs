@@ -14,19 +14,19 @@ const pos$6 = nix.positions(here + "/navidrome.nix", [["name", 3, 3], ["nodes", 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     name: "navidrome",
     nodes: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           services: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             navidrome: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               enable: true,
               plugins: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "pkgsCross", "wasi32", "navidromePlugins")), null);
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
                   nix.thunk(() => nix.lookup(w, "lyrics-plugin")),
                 ];
               })()),
-              settings: nix.thunk(() => ({ __proto__: pos$1, EnableExternalServices: "false" })),
+              settings: nix.thunk(() => ({ [nix.POS]: pos$1, EnableExternalServices: "false" })),
             })),
           })),
         };

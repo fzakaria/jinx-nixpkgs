@@ -19,17 +19,17 @@ export default nix.lambda((args) => (() => {
   const modulesPath = nix.arg($, "modulesPath");
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submoduleWith"), nix.thunk(() => ({
-              __proto__: pos$3,
-              specialArgs: nix.thunk(() => ({ __proto__: pos$1, modulesPath: modulesPath })),
+              [nix.POS]: pos$3,
+              specialArgs: nix.thunk(() => ({ [nix.POS]: pos$1, modulesPath: modulesPath })),
               modules: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                 })),
               ]),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOptionDefault"), nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "treefmt.toml", nix.thunk(() => nix.sel(config, "settings")))))),
     })),
   };

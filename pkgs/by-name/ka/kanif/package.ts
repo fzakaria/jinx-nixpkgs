@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const taktuk = nix.arg($, "taktuk");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.2.2",
       pname: "kanif",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.inria.fr",
           owner: "taktuk",
           repo: "kanif",
@@ -39,7 +39,7 @@ substituteInPlace ./kanif.pod --replace-fail '=item 4' '=item B<4>'
 `),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cluster management and administration swiss army knife",
         longDescription: "Kanif is a tool for high performance computing clusters management and\nadministration. It combines the main functionalities of well-known cluster\nmanagement tools such as c3, pdsh and dsh, and mimics their syntax. It\nprovides three tools to run the same command on several nodes (\"parallel\nssh\", using the 'kash' command), to broadcast the copy of files or\ndirectories to several nodes ('kaput' command), and to gather several\nremote files or directories locally ('kaget' command). It relies on TakTuk\nfor efficiency and scalability.",
         homepage: "https://gitlab.inria.fr/taktuk/kanif",

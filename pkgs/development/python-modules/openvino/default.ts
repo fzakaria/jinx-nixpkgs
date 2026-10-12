@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const numpy = nix.arg($, "numpy");
   const packaging = nix.arg($, "packaging");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "openvino",
       version: nix.thunk(() => nix.attr(openvino_native, "version")),
       pyproject: false,
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out\ncp -Rv * $out/\n\nrunHook postInstall\n",
       pythonImportsCheck: nix.thunk(() => ["openvino"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "OpenVINO(TM) Runtime",
         homepage: "https://github.com/openvinotoolkit/openvino",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

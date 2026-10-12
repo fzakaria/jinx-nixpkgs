@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.9.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PlotPyStack",
           repo: "PlotPy",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -59,20 +59,20 @@ cd $out
       const disabledTests = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_resize_dialog", "test_tool"])));
       const pythonImportsCheck = nix.thunk(() => ["plotpy", "plotpy.tests"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          withPyQt6: nix.thunk(() => nix.app(nix.sel(plotpy, "override"), nix.thunk(() => ({ __proto__: pos$2, pyqt6: pyqt6, qt6: qt6 })))),
-          withPyQt5: nix.thunk(() => nix.app(nix.sel(plotpy, "override"), nix.thunk(() => ({ __proto__: pos$3, pyqt6: pyqt5, qt6: qt5 })))),
+          [nix.POS]: pos$4,
+          withPyQt6: nix.thunk(() => nix.app(nix.sel(plotpy, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, pyqt6: pyqt6, qt6: qt6 })))),
+          withPyQt5: nix.thunk(() => nix.app(nix.sel(plotpy, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, pyqt6: pyqt5, qt6: qt5 })))),
         })),
         knownFailingTests: nix.thunk(() => ({
-          __proto__: pos$7,
-          withPySide2: nix.thunk(() => nix.app(nix.sel(plotpy, "override"), nix.thunk(() => ({ __proto__: pos$5, pyqt6: pyside2, qt6: qt5 })))),
-          withPySide6: nix.thunk(() => nix.app(nix.sel(plotpy, "override"), nix.thunk(() => ({ __proto__: pos$6, pyqt6: pyside6, qt6: qt6 })))),
+          [nix.POS]: pos$7,
+          withPySide2: nix.thunk(() => nix.app(nix.sel(plotpy, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, pyqt6: pyside2, qt6: qt5 })))),
+          withPySide6: nix.thunk(() => nix.app(nix.sel(plotpy, "override"), nix.thunk(() => ({ [nix.POS]: pos$6, pyqt6: pyside6, qt6: qt6 })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Curve and image plotting tools for Python/Qt applications",
         homepage: "https://github.com/PlotPyStack/PlotPy",
         changelog: nix.thunk(() => nix.str`https://github.com/PlotPyStack/PlotPy/blob/master/doc/release_notes/release_${nix.app(nix.sel(lib, "versions", "major"), version)}.${nix.app(nix.sel(lib, "pipe"), version, nix.thunk(() => [
@@ -86,7 +86,7 @@ cd $out
         })()),
       }));
       return {
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         pname,
         version,
         pyproject,

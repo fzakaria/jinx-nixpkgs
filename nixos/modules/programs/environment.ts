@@ -18,21 +18,21 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "environment"));
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     config: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       environment: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         variables: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           NIXPKGS_CONFIG: "/etc/nix/nixpkgs-config.nix",
           PAGER: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "less")),
           EDITOR: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "nano")),
         })),
         profiles: nix.thunk(() => nix.app(nix.sel(lib, "mkAfter"), nix.thunk(() => ["/nix/var/nix/profiles/default", "/run/current-system/sw"]))),
-        sessionVariables: nix.thunk(() => ({ __proto__: pos$2, XDG_CONFIG_DIRS: nix.thunk(() => ["/etc/xdg"]) })),
+        sessionVariables: nix.thunk(() => ({ [nix.POS]: pos$2, XDG_CONFIG_DIRS: nix.thunk(() => ["/etc/xdg"]) })),
         profileRelativeSessionVariables: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           PATH: nix.thunk(() => ["/bin"]),
           INFOPATH: nix.thunk(() => ["/info", "/share/info"]),
           QTWEBKIT_PLUGIN_PATH: nix.thunk(() => ["/lib/mozilla/plugins/"]),
@@ -47,8 +47,8 @@ export NIX_PROFILES="${nix.builtins.concatStringsSep(" ", nix.thunk(() => nix.ap
 `),
       })),
       programs: nix.thunk(() => ({
-        __proto__: pos$6,
-        less: nix.thunk(() => ({ __proto__: pos$5, enable: true })),
+        [nix.POS]: pos$6,
+        less: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
       })),
     })),
   };

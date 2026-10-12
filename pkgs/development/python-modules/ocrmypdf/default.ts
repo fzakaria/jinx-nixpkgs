@@ -40,12 +40,12 @@ export default nix.lambda((args) => (() => {
   const unpaper = nix.arg($, "unpaper");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ocrmypdf",
       version: "17.11.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ocrmypdf",
           repo: "OCRmyPDF",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./use-pillow-heif.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./paths.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             gs: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), ghostscript_headless)),
             jbig2: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), jbig2enc)),
             pngquant: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), pngquant)),
@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["ocrmypdf"]),
       postInstall: "installShellCompletion --cmd ocrmypdf \\\n  --bash misc/completion/ocrmypdf.bash \\\n  --fish misc/completion/ocrmypdf.fish\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/ocrmypdf/OCRmyPDF",
         description: "Adds an OCR text layer to scanned PDF files, allowing them to be searched",
         license: nix.thunk(() => (() => {

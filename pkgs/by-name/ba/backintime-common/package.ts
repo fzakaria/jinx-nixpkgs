@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
     })()));
   const apps = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [openssh, python$, cron, rsync, sshfs_fuse, gocryptfs])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "backintime-common",
       version: "1.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bit-team",
           repo: "backintime",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -84,7 +84,7 @@ substituteInPlace "bitlicense.py" \\
   --prefix PATH : ${apps}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/bit-team/backintime",
         description: "Simple backup tool for Linux",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

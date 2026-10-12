@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const qtwebengine = nix.arg($, "qtwebengine");
   const qtwebsockets = nix.arg($, "qtwebsockets");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wallpaper-engine-kde-plugin",
       version: "0.5.4-unstable-2025-06-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "catsout",
           repo: "wallpaper-engine-kde-plugin",
           rev: "9e60b364e268814a1a778549c579ad45a9b9c7bb",
@@ -59,7 +59,7 @@ substituteInPlace ./contents/ui/Pyext.qml \\
 cd -
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "KDE wallpaper plugin integrating Wallpaper Engine",
         homepage: "https://github.com/catsout/wallpaper-engine-kde-plugin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

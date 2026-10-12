@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "picom",
       version: "13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "yshui",
           repo: "picom",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -96,11 +96,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fork of XCompMgr, a sample compositing manager for X servers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         longDescription: "A fork of XCompMgr, which is a sample compositing manager for X\nservers supporting the XFIXES, DAMAGE, RENDER, and COMPOSITE\nextensions. It enables basic eye-candy effects. This fork adds\nadditional features, such as additional effects, and a fork at a\nwell-defined and proper place.\n\nThe package can be installed in debug mode as:\n\n  picom.override { withDebug = true; }\n\nFor gdb to find the source files, you need to run gdb in the bin directory\nof picom package in the nix store.\n",

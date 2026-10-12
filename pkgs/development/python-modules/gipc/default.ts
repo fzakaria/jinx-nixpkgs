@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.8.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jgehrcke",
           repo: "gipc",
           tag: version,
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         "test_write_closewrite_read",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => nix.app(pythonAtLeast, "3.14")),
         description: "Gevent-cooperative child processes and IPC",
         longDescription: "Usage of Python's multiprocessing package in a gevent-powered\napplication may raise problems and most likely breaks the application\nin various subtle ways. gipc (pronunciation \"gipsy\") is developed with\nthe motivation to solve many of these issues transparently. With gipc,\nmultiprocessing. Process-based child processes can safely be created\nanywhere within your gevent-powered application.\n",
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

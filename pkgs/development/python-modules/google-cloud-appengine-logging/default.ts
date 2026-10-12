@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.10.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "google_cloud_appengine_logging",
           version: version,
           hash: "sha256-tVY+dgEKNuat8cxIliDCnuT7O5hrAG0jfpoGHrDwq7c=",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [mock, pytestCheckHook, pytest_asyncio]);
       const pythonImportsCheck = nix.thunk(() => ["google.cloud.appengine_logging", "google.cloud.appengine_logging_v1"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Appengine logging client library",
         homepage: "https://github.com/googleapis/python-appengine-logging",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/python-appengine-logging/blob/v${version}/CHANGELOG.md`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

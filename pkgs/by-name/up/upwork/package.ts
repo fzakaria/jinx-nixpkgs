@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       const pname = "upwork";
       const version = "5.8.0.35";
       const src = nix.thunk(() => nix.app(requireFile, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`${pname}_${version}_amd64.deb`),
           url: "https://www.upwork.com/ab/downloads/os/linux/",
           sha256: "sha256-Suv23TL6l5HhkOSRT56LpFRZJxuSLYVc1uT6he8j7O0=",
@@ -122,7 +122,7 @@ makeWrapper $out/opt/Upwork/upwork \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Online freelancing platform desktop application for time tracking",
         homepage: "https://www.upwork.com/ab/downloads/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -137,7 +137,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

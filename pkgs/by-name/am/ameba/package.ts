@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ameba";
       const version = "1.7.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "crystal-ameba",
           repo: "ameba",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const format = "make";
       const installFlags = nix.thunk(() => [nix.thunk(() => nix.str`INSTALL_BIN=${coreutils}/bin/install`)]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Static code analysis tool for Crystal",
         mainProgram: "ameba",
         homepage: "https://crystal-ameba.org",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
-      return { __proto__: pos$3, pname, version, src, format, installFlags, meta };
+      return { [nix.POS]: pos$3, pname, version, src, format, installFlags, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

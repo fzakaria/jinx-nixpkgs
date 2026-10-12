@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const iucode_tool = nix.arg($, "iucode-tool");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "microcode-intel",
       version: "20260925",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "intel",
           repo: "Intel-Linux-Processor-Microcode-Data-Files",
           tag: nix.thunk(() => nix.str`microcode-${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ echo kernel/x86/microcode/GenuineIntel.bin | bsdtar --uid 0 --gid 0 -cnf - -T - 
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.intel.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/intel/Intel-Linux-Processor-Microcode-Data-Files/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),
         description: "Microcode for Intel processors",

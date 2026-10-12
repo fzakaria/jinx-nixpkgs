@@ -22,18 +22,18 @@ export default nix.lambda((args) => (() => {
   const textlint = nix.arg($, "textlint");
   const textlint_rule_preset_ja_technical_writing = nix.arg($, "textlint-rule-preset-ja-technical-writing");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "textlint-rule-preset-ja-technical-writing",
       version: "10.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "textlint-ja",
           repo: "textlint-rule-preset-ja-technical-writing",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-8KoP/JagMf2kFxz8hr9e0hJH7yPukRURb48v0nPkC/8=",
         })))),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: "sha256-jm+8XK1E60D1AgYBnlKL0fkAWnn68z2PhCK7T/XbUgk=",
         })))),
@@ -42,15 +42,15 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nyarn --offline --production install\nmkdir -p $out/lib/node_modules/textlint-rule-preset-ja-technical-writing\ncp -r . $out/lib/node_modules/textlint-rule-preset-ja-technical-writing\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => nix.app(nix.sel(textlint, "testPackages"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             rule: textlint_rule_preset_ja_technical_writing,
             testFile: nix.path(here, "./test.md"),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "技術文書向けのtextlintルールプリセット",
         homepage: "https://github.com/textlint-ja/textlint-rule-preset-ja-technical-writing",
         changelog: nix.thunk(() => nix.str`https://github.com/textlint-ja/textlint-rule-preset-ja-technical-writing/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

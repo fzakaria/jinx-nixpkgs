@@ -37,10 +37,10 @@ export default nix.lambda((args) => (() => {
     return nix.force(nix.lookup(w, "buildPythonPackage"));
   })());
   const overrideAzureMgmtPackage = (package$) => (version_1) => (extension) => (hash) => nix.app(nix.sel(package$, "overridePythonAttrs"), (oldAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: version_1,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(oldAttrs, "pname")),
           version: version_1,
           hash: hash,
@@ -48,13 +48,13 @@ export default nix.lambda((args) => (() => {
         })))),
     }));
   const py = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       self: py,
       packageOverrides: (self) => (super$) => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         buildAzureCliPackage: buildAzureCliPackage,
         "azure-cli-core": nix.thunk(() => nix.app(buildAzureCliPackage, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             pname: "azure-cli-core",
             format: "setuptools",
             version: version,
@@ -110,12 +110,12 @@ PYTHONPATH=$PWD:${src}/src/azure-cli-testsdk:$PYTHONPATH HOME=$TMPDIR pytest \\
 `),
             pythonImportsCheck: nix.thunk(() => ["azure.cli.telemetry", "azure.cli.core"]),
             meta: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               downloadPage: nix.thunk(() => nix.str`https://github.com/Azure/azure-cli/tree/azure-cli-${version}/src/azure-cli-core/`),
             })),
           })))),
         "azure-cli-telemetry": nix.thunk(() => nix.app(buildAzureCliPackage, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             pname: "azure-cli-telemetry",
             version: "1.1.0",
             format: "setuptools",
@@ -134,47 +134,47 @@ PYTHONPATH=$PWD:${src}/src/azure-cli-testsdk:$PYTHONPATH HOME=$TMPDIR pytest \\
             })()),
             checkPhase: "cd azure\nHOME=$TMPDIR pytest -k 'not test_create_telemetry_note_file_from_scratch'\n",
             meta: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               downloadPage: nix.thunk(() => nix.str`https://github.com/Azure/azure-cli/blob/azure-cli-${version}/src/azure-cli-telemetry/`),
             })),
           })))),
         "azure-batch": nix.thunk(() => nix.app(nix.sel(super$, "azure-batch", "overridePythonAttrs"), (attrs) => (() => {
             const version_1 = "15.0.0b1";
             const src_1 = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 pname: "azure_batch",
                 version: version_1,
                 hash: "sha256-373dFY/63lIZPj5NhsmW6nI2/9JpWkNzT65eBal04u0=",
               }))));
-            return { __proto__: pos$8, version: version_1, src: src_1 };
+            return { [nix.POS]: pos$8, version: version_1, src: src_1 };
           })())),
         "azure-mgmt-billing": nix.thunk(() => nix.app(nix.sel(nix.app(overrideAzureMgmtPackage, nix.thunk(() => nix.sel(super$, "azure-mgmt-billing")), "6.0.0", "zip", "sha256-1PXFpBiKRW/h6zK2xF9VyiBpx0vkHrdpIYQLOfL1wH8="), "overridePythonAttrs"), (attrs) => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             propagatedBuildInputs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "propagatedBuildInputs"), [
               nix.thunk(() => nix.sel(self, "msrest")),
               nix.thunk(() => nix.sel(self, "msrestazure")),
             ])),
           }))),
         "azure-mgmt-cdn": nix.thunk(() => nix.app(nix.sel(nix.app(overrideAzureMgmtPackage, nix.thunk(() => nix.sel(super$, "azure-mgmt-cdn")), "12.0.0", "zip", "sha256-t8PuIYkjS0r1Gs4pJJJ8X9cz8950imQtbVBABnyMnd0="), "overridePythonAttrs"), (attrs) => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             propagatedBuildInputs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "propagatedBuildInputs"), [nix.thunk(() => nix.sel(self, "msrest"))])),
           }))),
         "azure-mgmt-containerinstance": nix.thunk(() => nix.app(nix.sel(super$, "azure-mgmt-containerinstance", "overridePythonAttrs"), (attrs) => (() => {
             const version_1 = "10.2.0b1";
             const src_1 = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 pname: "azure_mgmt_containerinstance",
                 version: version_1,
                 hash: "sha256-v0u3e9ZoEnDdCnM6o6fD7N+suo5hbTqMO5jM6cSMx8A=",
               }))));
-            return { __proto__: pos$12, version: version_1, src: src_1 };
+            return { [nix.POS]: pos$12, version: version_1, src: src_1 };
           })())),
         "azure-mgmt-eventgrid": nix.thunk(() => nix.app(overrideAzureMgmtPackage, nix.thunk(() => nix.sel(super$, "azure-mgmt-eventgrid")), "10.2.0b2", "zip", "sha256-QcHY1wCwQyVOEdUi06/wEa4dqJH5Ccd33gJ1Sju0qZA=")),
         "azure-mgmt-hdinsight": nix.thunk(() => nix.app(overrideAzureMgmtPackage, nix.thunk(() => nix.sel(super$, "azure-mgmt-hdinsight")), "9.0.0b3", "tar.gz", "sha256-clSeCP8+7T1uI4Nec+zhzDK980C9+JGeeJFsNSwgD2Q=")),
         "azure-mgmt-media": nix.thunk(() => nix.app(overrideAzureMgmtPackage, nix.thunk(() => nix.sel(super$, "azure-mgmt-media")), "9.0.0", "zip", "sha256-TI7l8sSQ2QUgPqiE3Cu/F67Wna+KHbQS3fuIjOb95ZM=")),
         "azure-mgmt-rdbms": nix.thunk(() => nix.app(overrideAzureMgmtPackage, nix.thunk(() => nix.sel(super$, "azure-mgmt-rdbms")), "10.2.0b17", "tar.gz", "sha256-1nnRkyr4Im79B7DDqGz/FOrPAToFaGhE+a7r5bZMuOQ=")),
         "azure-mgmt-resource-all": nix.thunk(() => nix.app(nix.sel(py, "pkgs", "buildPythonPackage"), nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             pname: "azure-mgmt-resource-all",
             version: version,
             pyproject: false,
@@ -198,7 +198,7 @@ runHook postInstall
             doCheck: false,
           })))),
         "azure-mgmt-recoveryservicesbackup": nix.thunk(() => nix.app(nix.sel(super$, "azure-mgmt-recoveryservicesbackup", "overridePythonAttrs"), (attrs) => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             dependencies: nix.thunk(() => nix.concat(nix.sel(attrs, "dependencies"), [
               nix.thunk(() => nix.sel(self, "azure-mgmt-recoveryservicesbackup-passivestamp")),
             ])),
@@ -209,22 +209,22 @@ runHook postInstall
         "azure-mgmt-sql": nix.thunk(() => nix.app(nix.sel(super$, "azure-mgmt-sql", "overridePythonAttrs"), (attrs) => (() => {
             const version_1 = "4.0.0b22";
             const src_1 = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 pname: "azure_mgmt_sql",
                 version: version_1,
                 hash: "sha256-ku3YN9W9Cyx4zsKxAs4k9/oeDXApzi2uqAURqa72H0k=",
               }))));
-            return { __proto__: pos$16, version: version_1, src: src_1 };
+            return { [nix.POS]: pos$16, version: version_1, src: src_1 };
           })())),
         "azure-mgmt-compute": nix.thunk(() => nix.app(nix.sel(super$, "azure-mgmt-compute", "overridePythonAttrs"), (attrs) => (() => {
             const version_1 = "34.1.0";
             const src_1 = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 pname: "azure_mgmt_compute",
                 version: version_1,
                 hash: "sha256-zZ010cwbjLC9JBrVXJG3fRTgSuc8YyraEUATX5whf+E=",
               }))));
-            return { __proto__: pos$18, version: version_1, src: src_1 };
+            return { [nix.POS]: pos$18, version: version_1, src: src_1 };
           })())),
       }),
     }))));

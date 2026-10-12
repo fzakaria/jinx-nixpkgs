@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libsndfile = nix.arg($, "libsndfile");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jack_capture",
       version: "0.9.73.2023-01-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kmatheussen",
           repo: "jack_capture",
           rev: "a539d444d388c4cfed7279e385830e7767d59c41",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -p $out/bin\ncp jack_capture $out/bin/\n",
       hardeningDisable: nix.thunk(() => ["format"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Program for recording soundfiles with jack",
         mainProgram: "jack_capture",
         homepage: "https://github.com/kmatheussen/jack_capture/",

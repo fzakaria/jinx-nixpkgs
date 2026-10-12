@@ -23,25 +23,25 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const system = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system"));
   const urls = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://download.jetbrains.com/python/dataspell-2026.1.3.tar.gz",
       hash: "sha256-57ExydRnfCiYCQj61Xo/omKAIbKZFykjqDSOuEdkgGg=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: "https://download.jetbrains.com/python/dataspell-2026.1.3-aarch64.tar.gz",
       hash: "sha256-bcgJWYryfh9vEf2xjemGEU15+SfZRMQxEivLh+PPoww=",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: "https://download.jetbrains.com/python/dataspell-2026.1.3-aarch64.dmg",
       hash: "sha256-EFkZRmtvsdJB8QP4hn6mUrSTyNBIK7UUkn4N3m0jGtY=",
     })),
   }));
   return nix.app(nix.sel(jetbrains, "mkJetBrainsProduct"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       "jetbrains-libdbm": jetbrains_libdbm,
       fsnotifier: fsnotifier,
       pname: "dataspell",
@@ -58,7 +58,7 @@ ln -s ${R}/lib/R/lib/libR.so $out/lib/libR.so
 `))),
         ]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://www.jetbrains.com/dataspell/",
         description: "Data science IDE from JetBrains",
         longDescription: "DataSpell is an IDE from JetBrains built for Data Scientists.\nMainly it integrates Jupyter notebooks in the IntelliJ platform.\n",

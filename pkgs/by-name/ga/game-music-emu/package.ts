@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const removeReferencesTo = nix.arg($, "removeReferencesTo");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "0.6.5",
       pname: "game-music-emu",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libgme",
           repo: "game-music-emu",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`remove-references-to -t ${nix.sel(stdenv, "cc", "cc")} "$(readlink -f $out/lib/libgme.so)"
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/libgme/game-music-emu/",
         description: "Collection of video game music file emulators",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

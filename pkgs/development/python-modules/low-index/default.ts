@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "3-manifolds",
           repo: "low_index",
           tag: nix.thunk(() => nix.str`v${version}_as_released`),
@@ -35,14 +35,14 @@ ${nix.sel(python, "interpreter")} -m low_index.test
 runHook postCheck
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex", "v(.*)_as_released"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Enumerates low index subgroups of a finitely presented group",
         changelog: nix.thunk(() => nix.str`https://github.com/3-manifolds/low_index/releases/tag/${nix.sel(src, "tag")}`),
         homepage: "https://github.com/3-manifolds/low_index",
@@ -56,7 +56,7 @@ runHook postCheck
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

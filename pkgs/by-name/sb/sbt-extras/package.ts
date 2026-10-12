@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const rev = "aefe8ae5982ad5b4aee01fd11bc8c021b7888c1e";
       const version = "2026-05-04";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dwijnand",
           repo: "sbt-extras",
           rev: rev,
@@ -53,7 +53,7 @@ runHook postInstall
       const doInstallCheck = true;
       const installCheckPhase = "$out/bin/sbt -h >/dev/null\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeScript, "update.sh", nix.thunk(() => nix.str` #!${nix.sel(stdenv, "shell")}
  set -xo errexit
  PATH=${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [common_updater_scripts, curl, cacert, git, nix$, jq, coreutils, gnused]))}
@@ -69,7 +69,7 @@ if [ ! "null" = "$latestSha" ]; then
 `))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "More featureful runner for sbt, the simple/scala/standard build tool",
         homepage: "https://github.com/dwijnand/sbt-extras",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -81,7 +81,7 @@ if [ ! "null" = "$latestSha" ]; then
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         rev,
         version,

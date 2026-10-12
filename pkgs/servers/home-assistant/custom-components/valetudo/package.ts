@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
       const domain = "valetudo";
       const version = "2026.08.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Hypfer",
           repo: "hass-valetudo",
           tag: nix.thunk(() => nix.str`${version}`),
           hash: "sha256-gUPlE+JeX9+Vm2MFg/FzMzLWrAhi8FcoG+YpZSlhNLs=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Valetudo for Home Assistant",
         homepage: "https://github.com/Hypfer/hass-valetudo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "benediktbroich"))];
         })()),
       }));
-      return { __proto__: pos$3, owner, domain, version, src, meta };
+      return { [nix.POS]: pos$3, owner, domain, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

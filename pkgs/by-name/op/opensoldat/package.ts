@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const python3 = nix.arg($, "python3");
   const base = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "opensoldat-base",
       version: "0.4-unstable-2025-10-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: "base",
           owner: "opensoldat",
           repo: "base",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Opensoldat's base game content",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-40")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
@@ -54,11 +54,11 @@ export default nix.lambda((args) => (() => {
       })()),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "opensoldat",
       version: "1.8-unstable-2025-10-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           name: "opensoldat",
           owner: "opensoldat",
           repo: "opensoldat",
@@ -86,7 +86,7 @@ done
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Unique 2D (side-view) multiplayer action game",
         license: nix.thunk(() => [
           nix.thunk(() => nix.sel(lib, "licenses", "mit")),

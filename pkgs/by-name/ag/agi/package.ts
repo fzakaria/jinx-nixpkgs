@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const android_tools = nix.arg($, "android-tools");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "agi",
       version: "3.3.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/google/agi/releases/download/${nix.sel(finalAttrs, "version")}/agi-${nix.sel(finalAttrs, "version")}-linux.zip`),
           hash: "sha256-Yawl6InBYSWNw3clHyGAeC2PVfXEzWmbd6vcYrqAPO0=",
         })))),
@@ -59,7 +59,7 @@ runHook postInstall
   "\${gappsWrapperArgs[@]-}"
 `),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "toList"), nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "agi",
             desktopName: "Android GPU Inspector",
             exec: "agi",
@@ -67,7 +67,7 @@ runHook postInstall
             categories: nix.thunk(() => ["Development", "Debugger", "Graphics", "3DGraphics"]),
           })))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Android GPU Inspector",
         homepage: "https://gpuinspector.dev",
         changelog: nix.thunk(() => nix.str`https://github.com/google/agi/releases/tag/v${nix.sel(finalAttrs, "version")}`),

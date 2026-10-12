@@ -23,14 +23,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.16";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-t7ot9QAv0o0+54mklTK6rRH+ZI5PIRfPB5jnUgodpWs=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-karate-test-networkx-2.7.patch",
             url: "https://github.com/taynaud/python-louvain/pull/95/commits/c95d767e72f580cb15319fe08d72d87c9976640b.patch",
             hash: "sha256-9oJ9YvKl2sI8oGhfyauNS+HT4kXsDt0L8S2owluWdj0=",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["community"]);
       const nativeCheckInputs = nix.thunk(() => [pandas, scipy]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/taynaud/python-louvain",
         description: "Louvain Community Detection",
         mainProgram: "community",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

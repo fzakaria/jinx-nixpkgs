@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const granite = nix.thunk(() => nix.attr(pantheon, "granite"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ciano",
       version: "0.2.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "robertsanseries",
           repo: "ciano",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,7 +48,7 @@ ln -s $out/bin/com.github.robertsanseries.ciano $out/bin/ciano
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/robertsanseries/ciano",
         description: "Multimedia file converter focused on simplicity",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

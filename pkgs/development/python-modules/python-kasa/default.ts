@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.10.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "python-kasa",
           repo: "python-kasa",
           tag: version,
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         voluptuous,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         shell: nix.thunk(() => [ptpython, rich]),
         speedups: nix.thunk(() => [kasa_crypt, orjson]),
       }));
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/test_readme_examples.py", "tests/test_cli.py"]);
       const pythonImportsCheck = nix.thunk(() => ["kasa"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python API for TP-Link Kasa Smarthome products",
         homepage: "https://python-kasa.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/python-kasa/python-kasa/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "kasa",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

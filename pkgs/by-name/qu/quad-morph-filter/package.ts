@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const libxrandr = nix.arg($, "libxrandr");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "quad-morph-filter",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OTODESK4193",
           repo: "QuadMorphFilter",
           tag: nix.thunk(() => nix.str`V${nix.sel(finalAttrs, "version")}`),
@@ -59,16 +59,16 @@ export default nix.lambda((args) => (() => {
       ]),
       cmakeBuildType: "RelWithDebInfo",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lX11", "-lXext", "-lXcursor", "-lXinerama", "-lXrandr"]))),
       })),
       installPhase: "runHook preInstall\n\ninstall -Dm755 \"QuadMorphFilter_artefacts/$cmakeBuildType/Standalone/Quad-Morph Filter\" \\\n  \"$out/bin/quad-morph-filter\"\nmkdir -p \"$out/lib/vst3\"\ncp -r \"QuadMorphFilter_artefacts/$cmakeBuildType/VST3/Quad-Morph Filter.vst3\" \"$out/lib/vst3/\"\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$3, extraArgs: nix.thunk(() => ["--version-regex", "V(.*)"]) })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version-regex", "V(.*)"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Morphing multi-filter audio plugin with 28 filter models controlled from an XY pad",
         homepage: "https://github.com/OTODESK4193/QuadMorphFilter",
         changelog: nix.thunk(() => nix.str`https://github.com/OTODESK4193/QuadMorphFilter/releases/tag/V${nix.sel(finalAttrs, "version")}`),

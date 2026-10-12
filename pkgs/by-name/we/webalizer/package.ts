@@ -19,21 +19,21 @@ export default nix.lambda((args) => (() => {
   const geoip = nix.arg($, "geoip");
   const db = nix.arg($, "db");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "webalizer",
       version: "2.23.08",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://debian/pool/main/w/webalizer/webalizer_${nix.sel(finalAttrs, "version")}.orig.tar.gz`),
           sha256: "sha256-7a3bWqQcxKCBoVAOP6lmFdS0G8Eghrzt+ZOAGM557Y0=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fcommon" })),
       installFlags: nix.thunk(() => ["MANDIR=${out}/share/man/man1"]),
       preConfigure: "substituteInPlace ./configure \\\n  --replace \"--static\" \"\"\n",
       buildInputs: nix.thunk(() => [zlib, libpng, gd, geoip, db]),
       configureFlags: nix.thunk(() => ["--enable-dns", "--enable-geoip", "--enable-shared"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Web server log file analysis program",
         homepage: "https://webalizer.net/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

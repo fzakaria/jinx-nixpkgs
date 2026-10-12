@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
   const configDir = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "configDir"), null)) ? nix.sel(cfg, "configDir") : "/etc/openldap/slapd.d"));
   const ldapValueType = nix.thunk(() => (() => {
     const singleLdapValueType = nix.thunk(() => nix.app(nix.sel(lib, "mkOptionType"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "LDAP",
         description: "LDAP value - either a string, or an attrset containing\n`path` or `base64` for included\nvalues or base-64 encoded values respectively.\n",
         check: (x) => (nix.asBool(nix.app(nix.sel(lib, "isString"), x)) || nix.asBool((nix.asBool(nix.app(nix.sel(lib, "isAttrs"), x)) && nix.asBool((nix.asBool(nix.has(x, "path")) || nix.asBool(nix.has(x, "base64"))))))),
@@ -71,31 +71,31 @@ export default nix.lambda((args) => (() => {
   })());
   const ldapAttrsType = nix.thunk(() => (() => {
     const options = nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       attrs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), ldapValueType)),
           default: nix.thunk(() => ({})),
           description: "Attributes of the parent entry.",
         })))),
       children: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           type: nix.thunk(() => (() => {
-            const hiddenOptions = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => (attr) => nix.update(attr, { __proto__: pos$3, visible: false }), options));
-            return nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({ __proto__: pos$4, options: hiddenOptions })))));
+            const hiddenOptions = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => (attr) => nix.update(attr, { [nix.POS]: pos$3, visible: false }), options));
+            return nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({ [nix.POS]: pos$4, options: hiddenOptions })))));
           })()),
           default: nix.thunk(() => ({})),
           description: "Child entries of the current entry, with recursively the same structure.",
           example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n    \"cn=schema\" = {\n    # The attribute used in the DN must be defined\n    attrs = { cn = \"schema\"; };\n    children = {\n        # This entry's DN is expanded to \"cn=foo,cn=schema\"\n        \"cn=foo\" = { ... };\n    };\n    # These includes are inserted after \"cn=schema\", but before \"cn=foo,cn=schema\"\n    includes = [ ... ];\n    };\n}\n")),
         })))),
       includes: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
           default: [],
           description: "LDIF files to include after the parent's attributes but before its children.\n",
         })))),
     }));
-    return nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({ __proto__: pos$8, options: options })));
+    return nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({ [nix.POS]: pos$8, options: options })));
   })());
   const valueToLdif = (attr) => (values) => (() => {
     const listValues = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "isList"), values)) ? nix.force(values) : nix.app(nix.sel(lib, "singleton"), values)));
@@ -114,63 +114,63 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.se
 `, includes), nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value) => nix.app(attrsToLdif, nix.thunk(() => nix.str`${name},${dn}`), value), children)))));
   })(), formals$2);
   return {
-    __proto__: pos$42,
+    [nix.POS]: pos$42,
     options: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       services: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         openldap: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable the ldap server.",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "openldap", nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               extraDescription: "This can be used to, for example, set an OpenLDAP package\nwith custom overrides to enable modules or other\nfunctionality.\n",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "openldap",
               description: "User account under which slapd runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "openldap",
               description: "Group account under which slapd runs.",
             })))),
           urlList: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => ["ldap:///"]),
               description: "URL list slapd should listen on.",
               example: nix.thunk(() => ["ldaps:///"]),
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: ldapAttrsType,
               description: "Configuration for OpenLDAP, in OLC format",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  attrs.olcLogLevel = [ \"stats\" ];\n  children = {\n    \"cn=schema\".includes = [\n       \"${pkgs.openldap}/etc/schema/core.ldif\"\n       \"${pkgs.openldap}/etc/schema/cosine.ldif\"\n       \"${pkgs.openldap}/etc/schema/inetorgperson.ldif\"\n    ];\n    \"olcDatabase={-1}frontend\" = {\n      attrs = {\n        objectClass = \"olcDatabaseConfig\";\n        olcDatabase = \"{-1}frontend\";\n        olcAccess = [ \"{0}to * by dn.exact=uidNumber=0+gidNumber=0,cn=peercred,cn=external,cn=auth manage stop by * none stop\" ];\n      };\n    };\n    \"olcDatabase={0}config\" = {\n      attrs = {\n        objectClass = \"olcDatabaseConfig\";\n        olcDatabase = \"{0}config\";\n        olcAccess = [ \"{0}to * by * none break\" ];\n      };\n    };\n    \"olcDatabase={1}mdb\" = {\n      attrs = {\n        objectClass = [ \"olcDatabaseConfig\" \"olcMdbConfig\" ];\n        olcDatabase = \"{1}mdb\";\n        olcDbDirectory = \"/var/lib/openldap/ldap\";\n        olcDbIndex = [\n          \"objectClass eq\"\n          \"cn pres,eq\"\n          \"uid pres,eq\"\n          \"sn pres,eq,subany\"\n        ];\n        olcSuffix = \"dc=example,dc=com\";\n        olcAccess = [ \"{0}to * by * read break\" ];\n      };\n    };\n  };\n};\n")),
             })))),
           configDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "Use this config directory instead of generating one from the\n`settings` option. Overrides all NixOS settings.\n",
               example: "/var/lib/openldap/slapd.d",
             })))),
           mutableConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to allow writable on-line configuration. If\n`true`, the NixOS settings will only be used to\ninitialize the OpenLDAP configuration if it does not exist, and are\nsubsequently ignored.\n",
             })))),
           declarativeContents: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "lines")));
@@ -183,7 +183,7 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.se
       })),
     })),
     meta: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "kwohlfahrt"))];
@@ -217,17 +217,17 @@ rm -rf $2/*
 ${openldap}/bin/slapadd -F ${configDir} -b $1 -l $3
 `)));
       return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           assertions: nix.thunk(() => nix.concat([
             nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, "declarativeContents"), {})) || nix.asBool(nix.eq(nix.sel(cfg, "configDir"), null)))),
               message: nix.thunk(() => nix.str`Declarative DB contents (${nix.app(nix.sel(lib, "attrNames"), nix.thunk(() => nix.sel(cfg, "declarativeContents")))}) are not
 supported with user-managed configuration.
 `),
             })),
           ], nix.concat(nix.builtins.map((dn) => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               assertion: nix.thunk(() => nix.has(nix.app(nix.sel(lib, "getAttr"), dn, dbSettings), "olcDbDirectory")),
               message: nix.thunk(() => nix.str`Declarative DB ${dn} does not exist in \`services.openldap.settings\`, or does not have
 \`olcDbDirectory\` configured.
@@ -236,44 +236,44 @@ supported with user-managed configuration.
               const $_1 = nix.formals(args_1, formals$5);
               const olcDbDirectory = nix.argOr($_1, "olcDbDirectory", () => null);
               return {
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 assertion: nix.thunk(() => (!nix.asBool(!nix.eq(olcDbDirectory, null)) || nix.asBool((nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), "/var/lib/openldap/", olcDbDirectory)) && nix.asBool(!nix.eq(olcDbDirectory, "/var/lib/openldap/")))))),
                 message: nix.thunk(() => nix.str`Database ${dn} has \`olcDbDirectory\` (${olcDbDirectory}) that is not a subdirectory of
 \`/var/lib/openldap/\`.
 `),
               };
             })(), formals$5), dbSettings)))),
-          environment: nix.thunk(() => ({ __proto__: pos$25, systemPackages: nix.thunk(() => [openldap]) })),
+          environment: nix.thunk(() => ({ [nix.POS]: pos$25, systemPackages: nix.thunk(() => [openldap]) })),
           services: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             openldap: nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               settings: nix.thunk(() => ({
-                __proto__: pos$30,
-                attrs: nix.thunk(() => ({ __proto__: pos$26, objectClass: "olcGlobal", cn: "config" })),
+                [nix.POS]: pos$30,
+                attrs: nix.thunk(() => ({ [nix.POS]: pos$26, objectClass: "olcGlobal", cn: "config" })),
                 children: nix.thunk(() => ({
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   "cn=schema": nix.thunk(() => ({
-                    __proto__: pos$28,
-                    attrs: nix.thunk(() => ({ __proto__: pos$27, cn: "schema", objectClass: "olcSchemaConfig" })),
+                    [nix.POS]: pos$28,
+                    attrs: nix.thunk(() => ({ [nix.POS]: pos$27, cn: "schema", objectClass: "olcSchemaConfig" })),
                   })),
                 })),
               })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             services: nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               openldap: nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 description: "OpenLDAP Server Daemon",
                 documentation: nix.thunk(() => ["man:slapd", "man:slapd-config", "man:slapd-mdb"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 wants: nix.thunk(() => ["network-online.target"]),
                 after: nix.thunk(() => ["network-online.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   User: nix.thunk(() => nix.sel(cfg, "user")),
                   Group: nix.thunk(() => nix.sel(cfg, "group")),
                   ExecStartPre: nix.thunk(() => nix.concat([
@@ -310,16 +310,16 @@ supported with user-managed configuration.
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             users: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "openldap")), nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 openldap: nix.thunk(() => ({
-                  __proto__: pos$37,
+                  [nix.POS]: pos$37,
                   group: nix.thunk(() => nix.sel(cfg, "group")),
                   isSystemUser: true,
                 })),
               })))),
-            groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "openldap")), nix.thunk(() => ({ __proto__: pos$39, openldap: nix.thunk(() => ({})) })))),
+            groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "openldap")), nix.thunk(() => ({ [nix.POS]: pos$39, openldap: nix.thunk(() => ({})) })))),
           })),
         })));
     })()),

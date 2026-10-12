@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zpool-iostat-viz",
       version: "unstable-2021-11-13",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chadmiller",
           repo: "zpool-iostat-viz",
           rev: "cdd8f3d882ab7a9990fb2d26af3e5b2bcc4bb312",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       installPhase: "wrapPythonPrograms\ninstall -D zpool-iostat-viz $out/bin/zpool-iostat-viz\ninstallManPage zpool-iostat-viz.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "\"zpool iostats\" for humans; find the slow parts of your ZFS pool",
         homepage: "https://github.com/chadmiller/zpool-iostat-viz",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

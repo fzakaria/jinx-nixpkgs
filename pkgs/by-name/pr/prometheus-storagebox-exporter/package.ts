@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "prometheus-storagebox-exporter",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fleaz",
           repo: "prometheus-storagebox-exporter",
           hash: "sha256-eHS0/nrfl6pnB4GjbHAaQKUOHJYGy+a56N+/WNDht6Q=",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-NlTAmurQz7c+Gor0ExQoXUxAzcuCnk0ra3J4bojoFeU=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Prometheus exporter for Hetzner storage boxes",
         homepage: "https://github.com/fleaz/prometheus-storagebox-exporter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

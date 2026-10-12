@@ -45,29 +45,29 @@ export default nix.lambda((args) => (() => {
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "rustical.toml", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     options: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       services: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         rustical: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           enable: nix.thunk(() => nix.app(mkEnableOption, "RustiCali CalDAV/CardDAV server")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "rustical", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "Your {file}`/etc/rustical/config.toml` as a Nix attribute set.\n\nPossible options can be found in the [Config struct]. A default\nconfiguration can be viewed by running `rustical gen-config`.\n\n[Config struct]: https://lennart-k.github.io/rustical/_crate/rustical/config/struct.Config.html\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   freeformType: nix.thunk(() => nix.sel(format, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     data_store: nix.thunk(() => ({
-                      __proto__: pos$3,
+                      [nix.POS]: pos$3,
                       sqlite: nix.thunk(() => ({
-                        __proto__: pos$2,
+                        [nix.POS]: pos$2,
                         db_url: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$1,
+                            [nix.POS]: pos$1,
                             type: nix.thunk(() => nix.sel(types, "path")),
                             default: "/var/lib/rustical/db.sqlite3",
                             description: "Path where the sqlite database is stored.\n",
@@ -75,13 +75,13 @@ export default nix.lambda((args) => (() => {
                       })),
                     })),
                     frontend: nix.thunk(() => ({
-                      __proto__: pos$5,
-                      enabled: nix.thunk(() => nix.update(nix.app(mkEnableOption, "the HTTP frontend"), { __proto__: pos$4, default: true })),
+                      [nix.POS]: pos$5,
+                      enabled: nix.thunk(() => nix.update(nix.app(mkEnableOption, "the HTTP frontend"), { [nix.POS]: pos$4, default: true })),
                     })),
                     http: nix.thunk(() => ({
-                      __proto__: pos$7,
+                      [nix.POS]: pos$7,
                       bind: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           default: "unix:/run/rustical/sock",
                           example: "[::]:4000",
@@ -89,18 +89,18 @@ export default nix.lambda((args) => (() => {
                         })))),
                     })),
                     dav_push: nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       enabled: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           type: nix.thunk(() => nix.sel(types, "bool")),
                           default: true,
                           description: "Whether to enable [WebDav Push] support.\n\nThis allows the server to notify clients about changed data.\n\n[WebDav Push]: https://github.com/bitfireAT/webdav-push/\n",
                         })))),
                     })),
                     nextcloud_login: nix.thunk(() => ({
-                      __proto__: pos$11,
+                      [nix.POS]: pos$11,
                       enabled: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           type: nix.thunk(() => nix.sel(types, "bool")),
                           default: true,
                           description: "Whether to emulate the Nextcloud login flow.\n\nThis is supported in [DAVx5] and enables automatic app token generation.\n\n[DAVx5]: https://www.davx5.com/\n",
@@ -110,7 +110,7 @@ export default nix.lambda((args) => (() => {
                 })))),
             })))),
           environmentFiles: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "path")));
@@ -123,30 +123,30 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         warnings: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.has(nix.sel(cfg, "settings", "http"), "host")) || nix.asBool(nix.has(nix.sel(cfg, "settings", "http"), "port")))), nix.thunk(() => [
             "Rustical 0.13 deprecations\n\nThe following options are now deprecated and will be removed in a\nfuture release:\n- `services.rustical.settings.http.host`\n- `services.rustical.settings.http.port`\n\nMigrate to `services.rustical.settings.http.bind` instead.\n",
           ]))),
         environment: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           etc: nix.thunk(() => ({
-            __proto__: pos$20,
-            "rustical/config.toml": nix.thunk(() => ({ __proto__: pos$19, source: configFile })),
+            [nix.POS]: pos$20,
+            "rustical/config.toml": nix.thunk(() => ({ [nix.POS]: pos$19, source: configFile })),
           })),
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           services: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             rustical: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               description: "RustiCal CalDav/CardDav server",
               documentation: nix.thunk(() => ["https://lennart-k.github.io/rustical/"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               restartTriggers: nix.thunk(() => [configFile]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 DynamicUser: true,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} serve`),
                 EnvironmentFile: nix.thunk(() => nix.sel(cfg, "environmentFiles")),

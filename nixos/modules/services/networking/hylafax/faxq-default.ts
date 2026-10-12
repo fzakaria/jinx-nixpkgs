@@ -8,7 +8,7 @@ const pos$1 = nix.positions(here + "/faxq-default.nix", [["ModemGroup", 7, 3], [
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     ModemGroup: nix.thunk(() => ["\"any:0:.*\""]),
     ServerTracing: "0x78701",
     SessionTracing: "0x78701",

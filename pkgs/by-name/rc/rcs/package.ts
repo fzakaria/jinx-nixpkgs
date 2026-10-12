@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const ed = nix.arg($, "ed");
   const lzip = nix.arg($, "lzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rcs",
       version: "5.10.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/rcs/rcs-${nix.sel(finalAttrs, "version")}.tar.lz`),
           sha256: "sha256-Q93+EHJKi4XiRo9kA7YABzcYbwHmDgvWL95p2EIjTMU=",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.sel(buildPackages, "ed")),
         ]))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-std=c99",
         ac_cv_path_ED: nix.thunk(() => nix.str`${ed}/bin/ed`),
         DIFF: nix.thunk(() => nix.str`${diffutils}/bin/diff`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "format")),
       nativeBuildInputs: nix.thunk(() => [lzip]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.gnu.org/software/rcs/",
         description: "Revision control system",
         longDescription: "The GNU Revision Control System (RCS) manages multiple revisions of\nfiles. RCS automates the storing, retrieval, logging,\nidentification, and merging of revisions.  RCS is useful for text\nthat is revised frequently, including source code, programs,\ndocumentation, graphics, papers, and form letters.\n",

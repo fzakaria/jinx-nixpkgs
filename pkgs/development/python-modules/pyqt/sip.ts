@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "12.17.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "pyqt5_sip",
           version: version,
           hash: "sha256-aC2tzb0iOa+f3AwGKOJ3a4IOEovsiLSbjWkv5oL5C08=",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(mesa, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python bindings for Qt5",
         homepage: "https://github.com/Python-SIP/sip",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

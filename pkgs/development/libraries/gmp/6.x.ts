@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const withStatic = nix.argOr($, "withStatic", () => nix.sel(stdenv, "hostPlatform", "isStatic"));
   const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
   const self = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.str`gmp${nix.app(nix.sel(lib, "optionalString"), cxx, "-with-cxx")}`),
       version: "6.3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`mirror://gnu/gmp/gmp-${nix.sel(finalAttrs, "version")}.tar.bz2`),
             nix.thunk(() => nix.str`ftp://ftp.gmplib.org/pub/gmp-${nix.sel(finalAttrs, "version")}/gmp-${nix.sel(finalAttrs, "version")}.tar.bz2`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-rCghGnz7YJuuLiyNYFjWbI/pZDT3QM9v4uR7AA0cIMs=",
         })))),
       outputs: nix.thunk(() => ["out", "dev", "info"]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, static: nix.thunk(() => nix.sel(self, "out")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, static: nix.thunk(() => nix.sel(self, "out")) })),
       strictDeps: true,
       depsBuildBuild: nix.thunk(() => [nix.thunk(() => nix.sel(buildPackages, "stdenv", "cc"))]),
       nativeBuildInputs: nix.thunk(() => [m4]),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://gmplib.org/",
         description: "GNU multiple precision arithmetic library",
         license: nix.thunk(() => (() => {

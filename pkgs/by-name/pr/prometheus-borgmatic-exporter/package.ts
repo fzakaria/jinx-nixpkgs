@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finallAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "prometheus-borgmatic-exporter",
       version: "0.5.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "maxim-mityutko",
           repo: "borgmatic-exporter",
           tag: nix.thunk(() => nix.str`v${nix.sel(finallAttrs, "version")}`),
@@ -57,14 +57,14 @@ export default nix.lambda((args) => (() => {
       })()),
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           borgmatic: nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters", "borgmatic")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Prometheus exporter for Borgmatic",
         homepage: "https://github.com/maxim-mityutko/borgmatic-exporter",
         changelog: nix.thunk(() => nix.str`https://github.com/maxim-mityutko/borgmatic-exporter/releases/tag/${nix.sel(finallAttrs, "src", "tag")}`),

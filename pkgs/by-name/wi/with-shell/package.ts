@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "with",
       version: "0-unstable-2018-03-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mchav",
           repo: "With",
           rev: "28eb40bbc08d171daabf0210f420477ad75e16d6",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       installPhase: "runHook preInstall\ninstall -D with $out/bin/with\ninstallShellCompletion --bash --name with.bash with.bash-completion\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/mchav/With",
         description: "Command prefixing for continuous workflow using a single tool",
         longDescription: "with is a Bash script that starts an interactive shell with where every\ncommand is prefixed using <program>.\n\nFor example:\n\n$ with git\ngit> add .\ngit> commit -a -m \"Committed\"\ngit> push\n\nCan also be used for compound commands.\n\n$ with java Primes\njava Primes> 1\n2\njava Primes> 4\n7\n\nAnd to repeat commands:\n\n$ with gcc -o output input.c\ngcc -o -output input.c>\n<enter>\nCompiling...\ngcc -o -output input.c>\n\nTo execute a shell command proper prefix line with :.\n\ngit> :ls\n\nYou can also drop, add, and replace different commands.\n\ngit> +add\ngit add> <some file>\ngit add> !commit\ngit commit> <arguments and message>\ngit commit> -\ngit>\n\nTo exit use either :q or :exit.\n",

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libpq = nix.arg($, "libpq");
   const unixodbc = nix.arg($, "unixodbc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cppdb",
       version: "0.3.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/cppcms/cppdb-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "0blr1casmxickic84dxzfmn3lm7wrsl4aa2abvpq93rdfddfy3nn",
         })))),
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [sqlite, libmysqlclient, libpq, unixodbc]),
       cmakeFlags: nix.thunk(() => ["--no-warn-unused-cli"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${libmysqlclient}/include/mysql -L${libmysqlclient}/lib/mysql`),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://cppcms.com/sql/cppdb/",
         description: "C++ Connectivity library that supports MySQL, PostgreSQL, Sqlite3 databases and generic ODBC drivers",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

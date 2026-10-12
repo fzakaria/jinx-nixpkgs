@@ -35,25 +35,25 @@ export default nix.lambda((args) => (() => {
   const criterion = nix.arg($, "criterion");
   const callPackage = nix.arg($, "callPackage");
   const debugbreak = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "MrAnno",
       repo: "debugbreak",
       rev: "83bf7e933311b88613cbaadeced9c2e2c811054a",
       hash: "sha256-OPrPGBUZN73Nl5NMEf/nME843yTolt913yjut3rAos0=",
     }))));
   const klib = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "attractivechaos",
       repo: "klib",
       rev: "cdb7e9236dc47abf8da7ebd702cc6f7f21f0c502",
       hash: "sha256-+GaI5nXz4jYI0rO17xDhNtFpLlGL2WzeSVLMfB6Cl6E=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "criterion",
       version: "2.4.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "Snaipe",
           repo: "Criterion",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -88,13 +88,13 @@ done
       postPatch: "patchShebangs ci/isdir.py src/protocol/gen-pb.py\n",
       outputs: nix.thunk(() => ["out", "dev"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           version: nix.thunk(() => (() => {
             const tester = nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/001-version.nix"), nix.thunk(() => ({}))));
             return nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 package: criterion,
                 command: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), tester)} --version`),
                 version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -103,7 +103,7 @@ done
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Cross-platform C and C++ unit testing framework for the 21th century",
         homepage: "https://github.com/Snaipe/Criterion",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

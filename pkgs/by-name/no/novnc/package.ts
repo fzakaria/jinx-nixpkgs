@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "novnc",
       version: "1.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "novnc",
           repo: "noVNC",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(python3, "pkgs")), null);
         return nix.concat([
-          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./websockify.patch"), nix.thunk(() => ({ __proto__: pos$2, websockify: nix.thunk(() => nix.lookup(w, "websockify")) })))),
+          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./websockify.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, websockify: nix.thunk(() => nix.lookup(w, "websockify")) })))),
         ], [nix.path(here, "./fix-paths.patch")]);
       })()),
       postPatch: "substituteAllInPlace utils/novnc_proxy\n",
       installPhase: "runHook preInstall\n\ninstall -Dm755 utils/novnc_proxy \"$out/bin/novnc\"\ninstall -dm755 \"$out/share/webapps/novnc/\"\ncp -a app core po vendor vnc.html karma.conf.cjs package.json vnc_lite.html \"$out/share/webapps/novnc/\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "VNC client web application",
         homepage: "https://novnc.com",
         license: nix.thunk(() => (() => {

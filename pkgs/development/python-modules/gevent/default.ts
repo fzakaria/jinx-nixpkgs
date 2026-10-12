@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const version = "26.5.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-FlXrBMHiDXGyqko8dSgWLdWP9sxGoDevHwH1NMgP77o=",
@@ -45,18 +45,18 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => nix.concat([cython, setuptools], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(isPyPy)), nix.thunk(() => [cffi]))));
       const buildInputs = nix.thunk(() => [libev, libuv, c_ares]);
       const dependencies = nix.thunk(() => nix.concat([importlib_metadata, zope_event, zope_interface], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(isPyPy)), nix.thunk(() => [greenlet]))));
-      const env = nix.thunk(() => nix.update({ __proto__: pos$2, GEVENTSETUP_EMBED: "0" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({
-          __proto__: pos$3,
+      const env = nix.thunk(() => nix.update({ [nix.POS]: pos$2, GEVENTSETUP_EMBED: "0" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({
+          [nix.POS]: pos$3,
           NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
         })))));
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["gevent", "gevent.events"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
-        tests: nix.thunk(() => nix.update({ __proto__: pos$4, dulwich: dulwich, gunicorn: gunicorn, pika: pika }, nix.app(nix.sel(lib, "filterAttrs"), (k) => (v) => nix.app(nix.sel(lib, "hasInfix"), "gevent", k), nix.thunk(() => nix.sel(python, "pkgs"))))),
+        [nix.POS]: pos$5,
+        tests: nix.thunk(() => nix.update({ [nix.POS]: pos$4, dulwich: dulwich, gunicorn: gunicorn, pika: pika }, nix.app(nix.sel(lib, "filterAttrs"), (k) => (v) => nix.app(nix.sel(lib, "hasInfix"), "gevent", k), nix.thunk(() => nix.sel(python, "pkgs"))))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Coroutine-based networking library",
         homepage: "http://www.gevent.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         pyproject,

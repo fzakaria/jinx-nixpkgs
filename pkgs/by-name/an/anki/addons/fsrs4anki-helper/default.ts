@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(anki_utils, "buildAnkiAddon"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fsrs4anki-helper",
       version: "26.06.12-unstable-2026-06-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "open-spaced-repetition",
           repo: "fsrs4anki-helper",
           rev: "29208f220f21ff994c199712a6aaac47636773bf",
@@ -32,11 +32,11 @@ ln -s \\
   $out/share/anki/addons/fsrs4anki-helper/python_i18n
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Anki add-on that supports the FSRS algorithm",
         longDescription: nix.thunk(() => nix.str`FSRS Helper is an Anki add-on that supports the FSRS algorithm. It has eight main features:
 

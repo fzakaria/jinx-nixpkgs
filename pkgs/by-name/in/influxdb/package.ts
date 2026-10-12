@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const libflux_version = "0.196.1";
   const flux = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "libflux",
       version: libflux_version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "influxdata",
           repo: "flux",
           tag: nix.thunk(() => nix.str`v${libflux_version}`),
@@ -50,11 +50,11 @@ Libs: -L/out/lib -lflux -lpthread
       __structuredAttrs: true,
     })));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "influxdb",
       version: "1.12.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "influxdata",
           repo: "influxdb",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,7 +63,7 @@ Libs: -L/out/lib -lflux -lpthread
       vendorHash: "sha256-+6fOq/2YVz74Loy1pVLVRTr4OQm/fEBNtHy3+FQn51A=",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         PKG_CONFIG_PATH: nix.thunk(() => nix.str`${flux}/pkgconfig`),
       })),
       preBuild: nix.thunk(() => nix.str`flux_ver=$(grep github.com/influxdata/flux go.mod | awk '{print $2}')
@@ -80,14 +80,14 @@ fi
       ]),
       excludedPackages: "test",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           influxdb: nix.thunk(() => nix.attr(nixosTests, "influxdb")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Open-source distributed time series database",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://influxdata.com/",

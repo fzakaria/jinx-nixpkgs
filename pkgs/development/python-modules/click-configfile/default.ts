@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const six = nix.arg($, "six");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "click-configfile",
       version: "0.2.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "click-configfile",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-lb7sE77pUOmPQ8gdzavvT2RAkVWepmKY+drfWTUdkNE=",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         "test_matches_section__with_bad_arg",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Add support for commands that use configuration files to Click",
         homepage: "https://github.com/click-contrib/click-configfile",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

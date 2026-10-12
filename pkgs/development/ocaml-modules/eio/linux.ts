@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const logs = nix.arg($, "logs");
   const uring = nix.arg($, "uring");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "eio_linux",
       meta: nix.thunk(() => nix.attr(eio, "meta")),
       src: nix.thunk(() => nix.attr(eio, "src")),

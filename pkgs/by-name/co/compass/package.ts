@@ -14,16 +14,16 @@ export default nix.lambda((args) => (() => {
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   const ruby = nix.arg($, "ruby");
   return nix.app(bundlerEnv, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "compass",
       ruby: ruby,
       gemdir: nix.path(here, "./."),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "compass")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Stylesheet Authoring Environment that makes your website design simpler to implement and easier to maintain",
         homepage: "https://github.com/Compass/compass",
         license: nix.thunk(() => (() => {

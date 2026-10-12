@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.10.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zsoldosp",
           repo: "django-currentuser",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ ${nix.sel(python, "interpreter")} manage.py test testapp
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Conveniently store reference to request user on thread/db level",
         homepage: "https://github.com/zsoldosp/django-currentuser",
         changelog: "https://github.com/zsoldosp/django-currentuser/#release-notes",
@@ -49,7 +49,7 @@ runHook postCheck
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

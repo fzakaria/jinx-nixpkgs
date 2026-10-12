@@ -57,11 +57,11 @@ export default nix.lambda((args) => (() => {
   const extraDescription = nix.argOr($, "extraDescription", () => null);
   const chosenStdenv = nix.thunk(() => (nix.asBool(enableFuzzing) ? nix.force(clangStdenv) : nix.force(stdenv)));
   return nix.app(nix.sel(chosenStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "tpm2-pkcs11",
       version: "1.10.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tpm2-software",
           repo: "tpm2-pkcs11",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -140,7 +140,7 @@ patchShebangs test tools
       dontPatchELF: true,
       preCheck: nix.thunk(() => (() => {
         const openssl_modules = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "openssl-modules",
             pathsToLink: nix.thunk(() => ["/lib/ossl-modules"]),
             paths: nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.sel(lib, "getLib")), nix.thunk(() => [openssl, tpm2_openssl]))),
@@ -169,11 +169,11 @@ makeWrapper $bin/share/tpm2_pkcs11/tpm2_ptool.py $bin/bin/tpm2_ptool \\
       passthru: nix.thunk(() => (() => {
         const esapi = tpm2_pkcs11_esapi;
         const fapi = tpm2_pkcs11_fapi;
-        const abrmd = nix.thunk(() => nix.app(nix.sel(tpm2_pkcs11, "override"), nix.thunk(() => ({ __proto__: pos$3, abrmdSupport: true }))));
-        const esapi_abrmd = nix.thunk(() => nix.app(nix.sel(tpm2_pkcs11_esapi, "override"), nix.thunk(() => ({ __proto__: pos$4, abrmdSupport: true }))));
-        const fapi_abrmd = nix.thunk(() => nix.app(nix.sel(tpm2_pkcs11_fapi, "override"), nix.thunk(() => ({ __proto__: pos$5, abrmdSupport: true }))));
+        const abrmd = nix.thunk(() => nix.app(nix.sel(tpm2_pkcs11, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, abrmdSupport: true }))));
+        const esapi_abrmd = nix.thunk(() => nix.app(nix.sel(tpm2_pkcs11_esapi, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, abrmdSupport: true }))));
+        const fapi_abrmd = nix.thunk(() => nix.app(nix.sel(tpm2_pkcs11_fapi, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, abrmdSupport: true }))));
         const tests = nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           esapi: esapi,
           fapi: fapi,
           abrmd: abrmd,
@@ -182,7 +182,7 @@ makeWrapper $bin/share/tpm2_pkcs11/tpm2_ptool.py $bin/bin/tpm2_ptool \\
         }));
         const updateScript = nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({}))));
         return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           esapi,
           fapi,
           abrmd,
@@ -193,7 +193,7 @@ makeWrapper $bin/share/tpm2_pkcs11/tpm2_ptool.py $bin/bin/tpm2_ptool \\
         };
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: nix.thunk(() => nix.add("PKCS#11 interface for TPM2 hardware", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(extraDescription, null)), nix.thunk(() => nix.str` ${extraDescription}`)))),
         homepage: "https://github.com/tpm2-software/tpm2-pkcs11",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

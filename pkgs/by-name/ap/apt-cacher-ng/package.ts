@@ -25,18 +25,18 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const c_ares = nix.arg($, "c-ares");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "apt-cacher-ng",
       version: "3.7.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://debian/pool/main/a/apt-cacher-ng/apt-cacher-ng_${nix.sel(finalAttrs, "version")}.orig.tar.xz`),
           hash: "sha256-LkiH1ocDljNJkqzNMx4Sy6ht/vhXUy9hC7BjWo4ykA0=",
         })))),
       nativeBuildInputs: nix.thunk(() => [cmake, doxygen, pkg_config]),
       buildInputs: nix.thunk(() => [bzip2, fuse3, libevent, xz, openssl, systemdLibs, tcp_wrappers, zlib, c_ares]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Caching proxy specialized for Linux distribution files",
         mainProgram: "apt-cacher-ng",
         homepage: "https://www.unix-ag.uni-kl.de/~bloch/acng/",

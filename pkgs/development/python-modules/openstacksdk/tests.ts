@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const stestrCheckHook = nix.arg($, "stestrCheckHook");
   const testscenarios = nix.arg($, "testscenarios");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "openstacksdk-tests",
       version: nix.thunk(() => nix.attr(openstacksdk, "version")),
       src: nix.thunk(() => nix.attr(openstacksdk, "src")),

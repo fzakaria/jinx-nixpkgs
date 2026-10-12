@@ -22,14 +22,14 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const version = "0.1.1";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "clabby",
       repo: "difftastic.nvim",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-x5rm54LdloowVFPtNGs/N6dAqcVe3tHH7eJjPvxdqzk=",
     }))));
   const difftastic_nvim_lib = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "difftastic-nvim-lib",
       version: version,
       src: src,
@@ -37,12 +37,12 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`ln -s $out/lib/libdifftastic_nvim${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")} $out/lib/difftastic_nvim.so
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         RUSTFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-C link-arg=-undefined -C link-arg=dynamic_lookup")),
       })),
     }))));
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "difftastic-nvim",
       version: version,
       src: src,
@@ -53,12 +53,12 @@ export default nix.lambda((args) => (() => {
   "release_dir = '${difftastic_nvim_lib}/lib'"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$4, attrPath: "vimPlugins.difftastic-nvim.difftastic-nvim-lib" })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, attrPath: "vimPlugins.difftastic-nvim.difftastic-nvim-lib" })))),
         "difftastic-nvim-lib": difftastic_nvim_lib,
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Neovim plugin that displays difftastic's structural diffs in a side-by-side view with syntax highlighting",
         homepage: "https://github.com/clabby/difftastic.nvim/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

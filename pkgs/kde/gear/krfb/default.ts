@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const pipewire = nix.arg($, "pipewire");
   const libxdamage = nix.arg($, "libxdamage");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "krfb",
       extraCmakeFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`-DQtWaylandScanner_EXECUTABLE=${qtbase}/libexec/qtwaylandscanner`),

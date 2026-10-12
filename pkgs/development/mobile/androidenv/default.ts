@@ -17,20 +17,20 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.builtins.findFile(nix.builtins.nixPath, "nixpkgs")), nix.thunk(() => ({}))));
   const licenseAccepted = nix.argOr($, "licenseAccepted", () => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./license.nix"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => (() => {
-      const composeAndroidPackages = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./compose-android-packages.nix"), nix.thunk(() => ({ __proto__: pos$1, licenseAccepted: licenseAccepted, meta: meta }))));
-      const buildApp = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./build-app.nix"), nix.thunk(() => ({ __proto__: pos$2, composeAndroidPackages: composeAndroidPackages, meta: meta }))));
-      const emulateApp = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./emulate-app.nix"), nix.thunk(() => ({ __proto__: pos$3, composeAndroidPackages: composeAndroidPackages, meta: meta }))));
+      const composeAndroidPackages = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./compose-android-packages.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, licenseAccepted: licenseAccepted, meta: meta }))));
+      const buildApp = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./build-app.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, composeAndroidPackages: composeAndroidPackages, meta: meta }))));
+      const emulateApp = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./emulate-app.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, composeAndroidPackages: composeAndroidPackages, meta: meta }))));
       const androidPkgs = nix.thunk(() => nix.app(composeAndroidPackages, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           numLatestPlatformVersions: 5n,
           includeEmulator: "if-supported",
           includeSystemImages: "if-supported",
           includeNDK: "if-supported",
         }))));
-      const test_suite = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./test-suite.nix"), nix.thunk(() => ({ __proto__: pos$5, meta: meta }))));
+      const test_suite = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./test-suite.nix"), nix.thunk(() => ({ [nix.POS]: pos$5, meta: meta }))));
       const passthru = nix.thunk(() => nix.attr(test_suite, "passthru"));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://developer.android.com/tools",
         description: "Android SDK tools, packaged in Nixpkgs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "android"))]),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         composeAndroidPackages,
         buildApp,
         emulateApp,

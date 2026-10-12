@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "antlr";
       const version = "3.4";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.antlr3.org/download/antlr-${version}-complete.jar`),
           sha256: "1xqbam8vf04q5fasb0m2n1pn5dbp2yw763sj492ncq04c5mqcglx",
         }))));
@@ -33,7 +33,7 @@ ln -s "$out/bin/antlr"{,3}
 `);
       const jre_1 = jre;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Powerful parser generator",
         longDescription: "ANTLR (ANother Tool for Language Recognition) is a powerful parser\ngenerator for reading, processing, executing, or translating structured\ntext or binary files. It's widely used to build languages, tools, and\nframeworks. From a grammar, ANTLR generates a parser that can build and\nwalk parse trees.\n",
         homepage: "https://www.antlr.org/",
@@ -45,7 +45,7 @@ ln -s "$out/bin/antlr"{,3}
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

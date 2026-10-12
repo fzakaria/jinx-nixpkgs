@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const kernel = nix.arg($, "kernel");
   const kernelModuleMakeFlags = nix.arg($, "kernelModuleMakeFlags");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ipu7-drivers",
       version: "0-unstable-2026-08-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "intel",
           repo: "ipu7-drivers",
           rev: "495acc90feb09d8008c0a6228fb8bb4c6415ca62",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "substituteInPlace Makefile \\\n  --replace-fail \"INSTALL_MOD_DIR=\" \"INSTALL_MOD_PATH=$out INSTALL_MOD_DIR=\"\n",
       installTargets: nix.thunk(() => ["modules_install"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/intel/ipu7-drivers",
         description: "IPU7 kernel driver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

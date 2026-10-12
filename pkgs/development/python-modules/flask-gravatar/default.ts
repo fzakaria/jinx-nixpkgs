@@ -24,14 +24,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "Flask-Gravatar",
           version: version,
           sha256: "YGZfMcLGEokdto/4Aek+06CIHGyOw0arxk0qmSP1YuE=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/zzzsochi/Flask-Gravatar/commit/d74d70d9695c464b602c96c2383d391b38ed51ac.patch",
             hash: "sha256-tCKkA2io/jhvrh6RhTeEw4AKnIZc9hsqTf2qItUsdjo=",
           })))),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_cov_stub, pygments]);
       const pythonImportsCheck = nix.thunk(() => ["flask_gravatar"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/zzzsochi/Flask-Gravatar",
         description: "Small and simple integration of gravatar into flask",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

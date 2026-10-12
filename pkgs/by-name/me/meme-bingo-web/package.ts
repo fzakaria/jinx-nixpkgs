@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "meme-bingo-web",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "annaaurora",
           repo: "meme-bingo-web",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       postInstall: "mkdir -p $out/share/meme-bingo-web\ncp -r {templates,static} $out/share/meme-bingo-web/\n\nwrapProgram $out/bin/meme-bingo-web \\\n  --set MEME_BINGO_TEMPLATES $out/share/meme-bingo-web/templates \\\n  --set MEME_BINGO_STATIC $out/share/meme-bingo-web/static\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Play meme bingo using this neat web app",
         mainProgram: "meme-bingo-web",
         homepage: "https://codeberg.org/annaaurora/meme-bingo-web",

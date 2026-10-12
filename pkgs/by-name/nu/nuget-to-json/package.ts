@@ -21,19 +21,19 @@ export default nix.lambda((args) => (() => {
   const gawk = nix.arg($, "gawk");
   const cacert = nix.arg($, "cacert");
   return nix.app(replaceVarsWith, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "nuget-to-json",
       dir: "bin",
       src: nix.path(here, "./nuget-to-json.sh"),
       isExecutable: true,
       replacements: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         runtimeShell: runtimeShell,
         cacert: cacert,
         binPath: nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nix$, coreutils, jq, xmlstarlet, curl, gnugrep, gawk]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Convert a nuget packages directory to a lockfile for buildDotnetModule",
         mainProgram: "nuget-to-json",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

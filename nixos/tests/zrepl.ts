@@ -47,61 +47,61 @@ const pos$40 = nix.positions(here + "/zrepl.nix", [["source", 5, 5], ["target", 
 const pos$41 = nix.positions(here + "/zrepl.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 140, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$41,
+  [nix.POS]: pos$41,
   name: "zrepl",
   nodes: nix.thunk(() => ({
-    __proto__: pos$40,
+    [nix.POS]: pos$40,
     source: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
       const nodes = nix.arg($, "nodes");
       const pkgs = nix.arg($, "pkgs");
       return {
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         config: nix.thunk(() => ({
-          __proto__: pos$20,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$1, emptyDiskImages: nix.thunk(() => [2048n]) })),
-          boot: nix.thunk(() => ({ __proto__: pos$2, supportedFilesystems: nix.thunk(() => ["zfs"]) })),
+          [nix.POS]: pos$20,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, emptyDiskImages: nix.thunk(() => [2048n]) })),
+          boot: nix.thunk(() => ({ [nix.POS]: pos$2, supportedFilesystems: nix.thunk(() => ["zfs"]) })),
           environment: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs, "parted")),
               nix.thunk(() => nix.sel(pkgs, "zrepl")),
             ]),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$5,
-            firewall: nix.thunk(() => ({ __proto__: pos$4, allowedTCPPorts: nix.thunk(() => [8888n]) })),
+            [nix.POS]: pos$5,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$4, allowedTCPPorts: nix.thunk(() => [8888n]) })),
             hostId: "deadbeef",
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             zrepl: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 global: nix.thunk(() => ({
-                  __proto__: pos$7,
-                  monitoring: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$6, type: "prometheus", listen: ":9811" }))]),
+                  [nix.POS]: pos$7,
+                  monitoring: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$6, type: "prometheus", listen: ":9811" }))]),
                 })),
                 jobs: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     name: "snapshots",
                     type: "snap",
-                    filesystems: nix.thunk(() => ({ __proto__: pos$8, "tank/data": true })),
-                    snapshotting: nix.thunk(() => ({ __proto__: pos$9, type: "periodic", prefix: "zrepl_", interval: "10s" })),
+                    filesystems: nix.thunk(() => ({ [nix.POS]: pos$8, "tank/data": true })),
+                    snapshotting: nix.thunk(() => ({ [nix.POS]: pos$9, type: "periodic", prefix: "zrepl_", interval: "10s" })),
                     pruning: nix.thunk(() => ({
-                      __proto__: pos$11,
-                      keep: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$10, type: "last_n", count: 8n }))]),
+                      [nix.POS]: pos$11,
+                      keep: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$10, type: "last_n", count: 8n }))]),
                     })),
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$16,
+                    [nix.POS]: pos$16,
                     name: "backup-target",
                     type: "source",
                     serve: nix.thunk(() => ({
-                      __proto__: pos$13,
+                      [nix.POS]: pos$13,
                       type: "tcp",
                       listen: ":8888",
                       clients: nix.thunk(() => nix.attrsDyn({}, [
@@ -109,8 +109,8 @@ export default nix.thunk(() => ({
                         [nix.str`${nix.sel(nodes, "target", "networking", "primaryIPv6Address")}`, nix.thunk(() => nix.str`${nix.sel(nodes, "target", "networking", "hostName")}`)],
                       ])),
                     })),
-                    filesystems: nix.thunk(() => ({ __proto__: pos$14, "tank/data": true })),
-                    snapshotting: nix.thunk(() => ({ __proto__: pos$15, type: "manual" })),
+                    filesystems: nix.thunk(() => ({ [nix.POS]: pos$14, "tank/data": true })),
+                    snapshotting: nix.thunk(() => ({ [nix.POS]: pos$15, type: "manual" })),
                   })),
                 ]),
               })),
@@ -123,50 +123,50 @@ export default nix.thunk(() => ({
       const $ = nix.formals(args, formals$2);
       const pkgs = nix.arg($, "pkgs");
       return {
-        __proto__: pos$39,
+        [nix.POS]: pos$39,
         config: nix.thunk(() => ({
-          __proto__: pos$38,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$22, emptyDiskImages: nix.thunk(() => [2048n]) })),
-          boot: nix.thunk(() => ({ __proto__: pos$23, supportedFilesystems: nix.thunk(() => ["zfs"]) })),
+          [nix.POS]: pos$38,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$22, emptyDiskImages: nix.thunk(() => [2048n]) })),
+          boot: nix.thunk(() => ({ [nix.POS]: pos$23, supportedFilesystems: nix.thunk(() => ["zfs"]) })),
           environment: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs, "parted")),
               nix.thunk(() => nix.sel(pkgs, "zrepl")),
             ]),
           })),
-          networking: nix.thunk(() => ({ __proto__: pos$25, hostId: "deadd0d0" })),
+          networking: nix.thunk(() => ({ [nix.POS]: pos$25, hostId: "deadd0d0" })),
           services: nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             zrepl: nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 global: nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   monitoring: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$26, type: "prometheus", listen: ":9811" })),
+                    nix.thunk(() => ({ [nix.POS]: pos$26, type: "prometheus", listen: ":9811" })),
                   ]),
                 })),
                 jobs: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$34,
+                    [nix.POS]: pos$34,
                     name: "source-pull",
                     type: "pull",
-                    connect: nix.thunk(() => ({ __proto__: pos$28, type: "tcp", address: "source:8888" })),
+                    connect: nix.thunk(() => ({ [nix.POS]: pos$28, type: "tcp", address: "source:8888" })),
                     root_fs: "tank/zrepl/source",
                     interval: "15s",
                     recv: nix.thunk(() => ({
-                      __proto__: pos$30,
-                      placeholder: nix.thunk(() => ({ __proto__: pos$29, encryption: "off" })),
+                      [nix.POS]: pos$30,
+                      placeholder: nix.thunk(() => ({ [nix.POS]: pos$29, encryption: "off" })),
                     })),
                     pruning: nix.thunk(() => ({
-                      __proto__: pos$33,
-                      keep_sender: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$31, type: "regex", regex: ".*" }))]),
+                      [nix.POS]: pos$33,
+                      keep_sender: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$31, type: "regex", regex: ".*" }))]),
                       keep_receiver: nix.thunk(() => [
                         nix.thunk(() => ({
-                          __proto__: pos$32,
+                          [nix.POS]: pos$32,
                           type: "grid",
                           grid: "1x1h(keep=all) | 24x1h",
                           regex: "^zrepl_",

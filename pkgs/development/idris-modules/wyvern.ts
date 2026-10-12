@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const effects = nix.arg($, "effects");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wyvern",
       version: "2017-06-26",
       idrisDeps: nix.thunk(() => [contrib, effects]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ericqweinstein",
           repo: "wyvern",
           rev: "b9e3e5747c5b23608c6ed5e2ccf43b86caa04292",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postUnpack: "sed -i \"s/Wyvern.Core/Wyvern.Main/g\" source/src/Wyvern.idr\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Little web server written in Idris",
         homepage: "https://github.com/ericqweinstein/wyvern",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -16,21 +16,21 @@ export default nix.lambda((args) => (() => {
       const pname = "garamond-libre";
       const version = "1.4";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/dbenjaminmiller/garamond-libre/releases/download/${version}/garamond-libre_${version}.zip`),
           stripRoot: false,
           hash: "sha256-cD/JMICtb6MPIUcWs2VOTHnb/05ma0/KKtPyR4oJlIc=",
         }))));
       const installPhase = "runHook preInstall\n\ninstall -Dm644 *.otf -t $out/share/fonts/opentype\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/dbenjaminmiller/garamond-libre",
         description: "Garamond Libre font family",
         maintainers: [],
         license: nix.thunk(() => nix.sel(lib, "licenses", "x11")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

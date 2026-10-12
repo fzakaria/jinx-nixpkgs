@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "g203-led",
       version: "0-unstable-2021-05-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "smasty",
           repo: "g203-led",
           rev: "f9d10ba3aa8f9359f928bbab0a2ea00cefc69f4b",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs g203-led.py\n",
       installPhase: "runHook preInstall\ninstall -D g203-led.py $out/bin/g203-led\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Logitech G203 Prodigy / G203 LightSync Mouse LED control for Linux",
         longDescription: "Allows you to control the LED lighting of your G203 Prodigy\nor G203 LightSync Mouse programmatically.\nInspired by and based on g810-led.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

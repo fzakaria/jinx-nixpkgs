@@ -21,8 +21,8 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const numpy = nix.arg($, "numpy");
   const pygobject3 = nix.arg($, "pygobject3");
-  return nix.app(toPythonModule, nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(libsigrok, "override"), nix.thunk(() => ({ __proto__: pos$1, python3: python }))), "overrideAttrs"), (orig) => ({
-        __proto__: pos$3,
+  return nix.app(toPythonModule, nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(libsigrok, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, python3: python }))), "overrideAttrs"), (orig) => ({
+        [nix.POS]: pos$3,
         pname: nix.thunk(() => nix.str`${nix.sel(python, "libPrefix")}-sigrok`),
         patches: nix.thunk(() => nix.concat(nix.selOr(orig, () => [], "patches"), [nix.path(here, "./python-install.patch")])),
         postPatch: nix.thunk(() => nix.str`${nix.selOr(orig, () => "", "postPatch")}
@@ -41,7 +41,7 @@ export PYTHONPATH="$out/${nix.sel(python, "sitePackages")}:$PYTHONPATH"
 `),
         pythonImportsCheck: nix.thunk(() => ["sigrok", "sigrok.core"]),
         meta: nix.thunk(() => nix.update(nix.sel(orig, "meta"), {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           description: "Python bindings for libsigrok",
           maintainers: nix.thunk(() => nix.concat(nix.sel(orig, "meta", "maintainers"), [nix.thunk(() => nix.sel(lib, "maintainers", "sternenseemann"))])),
         })),

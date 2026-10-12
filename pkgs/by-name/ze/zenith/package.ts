@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const nvidiaSupport = nix.argOr($, "nvidiaSupport", () => false);
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zenith",
       version: "0.15.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bvaisvil",
           repo: "zenith",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildFeatures: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nvidiaSupport, "nvidia")),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nvidiaSupport, "wrapProgram $out/bin/zenith \\\n  --suffix LD_LIBRARY_PATH : \"/run/opengl-driver/lib\"\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: nix.thunk(() => nix.add("Sort of like top or htop but with zoom-able charts, network, and disk usage", nix.app(nix.sel(lib, "optionalString"), nvidiaSupport, ", and NVIDIA GPU usage"))),
         mainProgram: "zenith",
         homepage: "https://github.com/bvaisvil/zenith",

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const buildDubPackage = nix.arg($, "buildDubPackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildDubPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dpp",
       version: "0.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "atilaneves",
           repo: "dpp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       dubLock: nix.path(here, "./dub-lock.json"),
       installPhase: "runHook preInstall\ninstall -Dm755 bin/d++ -t $out/d++\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Directly include C headers in D source code",
         changelog: nix.thunk(() => nix.str`https://github.com/atilaneves/dpp/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         homepage: "https://github.com/atilaneves/dpp",

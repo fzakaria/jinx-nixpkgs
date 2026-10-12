@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "vst2-sdk",
       version: "2018-06-11",
       url: "https://web.archive.org/web/20181016150224if_/https://download.steinberg.net/sdk_downloads/vstsdk3610_11_06_2018_build_37.zip",
@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       stripRoot: false,
       postFetch: "mv $out/VST_SDK/VST2_SDK/* $out/\nrm -rf $out/VST_SDK\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "VST2 source development kit",
         longDescription: "VST2 is proprietary, and deprecated by Steinberg.\nAs such, it should only be used for legacy reasons.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

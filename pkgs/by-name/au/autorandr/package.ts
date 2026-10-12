@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const desktop_file_utils = nix.arg($, "desktop-file-utils");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "autorandr",
       version: "1.15",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "phillipberndt",
           repo: "autorandr",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -60,7 +60,7 @@ ${(nix.asBool(!nix.eq(systemd, null)) ? "make install TARGETS='systemd udev' PRE
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/phillipberndt/autorandr/",
         description: "Automatically select a display configuration based on connected devices",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

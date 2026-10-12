@@ -39,85 +39,85 @@ export default nix.lambda((args) => (() => {
   const imageId = "nixos-appliance";
   const imageVersion = "1-rc1";
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     name: "appliance-gpt-image",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nikstur"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const lib_1 = nix.arg($_1, "lib");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           imports: nix.thunk(() => [nix.path(here, "../modules/image/repart.nix")]),
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$5,
-            directBoot: nix.thunk(() => ({ __proto__: pos$2, enable: false })),
+            [nix.POS]: pos$5,
+            directBoot: nix.thunk(() => ({ [nix.POS]: pos$2, enable: false })),
             mountHostNixStore: false,
             useEFIBoot: true,
             fileSystems: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 "/": nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   device: nix.thunk(() => nix.str`/dev/disk/by-partlabel/${rootPartitionLabel}`),
                   fsType: "ext4",
                 })),
               })))),
           })),
           boot: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             loader: nix.thunk(() => ({
-              __proto__: pos$7,
-              grub: nix.thunk(() => ({ __proto__: pos$6, enable: false })),
+              [nix.POS]: pos$7,
+              grub: nix.thunk(() => ({ [nix.POS]: pos$6, enable: false })),
             })),
           })),
           system: nix.thunk(() => ({
-            __proto__: pos$10,
-            image: nix.thunk(() => ({ __proto__: pos$9, id: imageId, version: imageVersion })),
+            [nix.POS]: pos$10,
+            image: nix.thunk(() => ({ [nix.POS]: pos$9, id: imageId, version: imageVersion })),
           })),
           image: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             repart: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               enable: true,
               name: "appliance-gpt-image",
               sectorSize: 512n,
               partitions: nix.thunk(() => nix.update({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 esp: nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   contents: nix.thunk(() => (() => {
                     const efiArch = nix.thunk(() => nix.sel(config, "nixpkgs", "hostPlatform", "efiArch"));
                     return nix.attrsDyn({}, [
                       [nix.str`/EFI/BOOT/BOOT${nix.app(nix.sel(lib_1, "toUpper"), efiArch)}.EFI`, nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         source: nix.thunk(() => nix.str`${nix.sel(config, "systemd", "package")}/lib/systemd/boot/efi/systemd-boot${efiArch}.efi`),
                       }))],
                       [nix.str`/EFI/Linux/${nix.sel(config, "system", "boot", "loader", "ukiFile")}`, nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         source: nix.thunk(() => nix.str`${nix.sel(config, "system", "build", "uki")}/${nix.sel(config, "system", "boot", "loader", "ukiFile")}`),
                       }))],
                     ]);
                   })()),
                   repartConfig: nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     Type: "esp",
                     Format: "vfat",
                     SizeMinBytes: nix.thunk(() => (nix.asBool(nix.sel(config, "nixpkgs", "hostPlatform", "isx86_64")) ? "64M" : "96M")),
                   })),
                 })),
                 swap: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   repartConfig: nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     Type: "swap",
                     Format: "swap",
                     SizeMinBytes: "10M",
@@ -125,10 +125,10 @@ export default nix.lambda((args) => (() => {
                   })),
                 })),
                 root: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   storePaths: nix.thunk(() => [nix.thunk(() => nix.sel(config, "system", "build", "toplevel"))]),
                   repartConfig: nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     Type: "root",
                     Format: nix.thunk(() => nix.sel(config, "fileSystems", "/", "fsType")),
                     Label: rootPartitionLabel,
@@ -136,9 +136,9 @@ export default nix.lambda((args) => (() => {
                   })),
                 })),
               }, nix.app(nix.sel(lib_1, "genAttrs"), nix.thunk(() => ["squashfs", "erofs", "btrfs", "xfs", "swap", "empty"]), (fsType) => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   repartConfig: nix.thunk(() => ({
-                    __proto__: pos$20,
+                    [nix.POS]: pos$20,
                     Type: "linux-generic",
                     Format: fsType,
                     SizeMinBytes: "10M",

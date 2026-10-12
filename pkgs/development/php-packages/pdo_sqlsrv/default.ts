@@ -15,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const unixodbc = nix.arg($, "unixodbc");
   const php = nix.arg($, "php");
   return nix.app(buildPecl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "pdo_sqlsrv",
       version: "5.13.0",
       sha256: "sha256-76hZvMSNl/JSaNvevx2yXyVhDX+jaz7pEHPByZQR4kw=",
       internalDeps: nix.thunk(() => [nix.thunk(() => nix.sel(php, "extensions", "pdo"))]),
       buildInputs: nix.thunk(() => nix.concat([unixodbc], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Microsoft Drivers for PHP for SQL Server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/Microsoft/msphpsql",

@@ -20,8 +20,8 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const auditable_bootstrap = nix.arg($, "auditable-bootstrap");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
-      constructDrv: nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage", "override"), nix.thunk(() => ({ __proto__: pos$1, "cargo-auditable": auditable_bootstrap })))),
+      [nix.POS]: pos$6,
+      constructDrv: nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, "cargo-auditable": auditable_bootstrap })))),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pname = nix.argOr($_1, "pname", () => "cargo-auditable");
@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
         const cargoHash = nix.argOr($_1, "cargoHash", () => "");
         const passthru = nix.argOr($_1, "passthru", () => ({}));
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           auditable: auditable,
           pname: pname,
           __structuredAttrs: true,
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               owner: "rust-secure-code",
               repo: "cargo-auditable",
               tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,9 +49,9 @@ export default nix.lambda((args) => (() => {
             "--skip=test_bare_linker",
           ]),
           postInstall: "installManPage cargo-auditable/cargo-auditable.1\n",
-          passthru: nix.thunk(() => nix.update(passthru, { __proto__: pos$3, bootstrap: auditable_bootstrap })),
+          passthru: nix.thunk(() => nix.update(passthru, { [nix.POS]: pos$3, bootstrap: auditable_bootstrap })),
           meta: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             description: "Tool to make production Rust binaries auditable",
             mainProgram: "cargo-auditable",
             homepage: "https://github.com/rust-secure-code/cargo-auditable",

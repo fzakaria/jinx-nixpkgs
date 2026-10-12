@@ -33,18 +33,18 @@ export default nix.lambda((args) => (() => {
     const undmg = nix.arg($_1, "undmg");
     const source = nix.thunk(() => nix.sel(sources, nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system"))));
     const appName = nix.thunk(() => nix.sel({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       stable: "Android Studio.app",
       beta: "Android Studio Preview Beta.app",
       canary: "Android Studio Preview Canary.app",
       dev: "Android Studio Preview Dev.app",
     }, nix.key(nix.force(channel))));
     const androidStudio = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: nix.thunk(() => nix.str`${pname}-unwrapped`),
         version: version,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.attr(source, "url")),
             sha256: nix.thunk(() => nix.sel(source, "sha256Hash")),
           })))),
@@ -69,14 +69,14 @@ makeWrapper \\
 
 runHook postInstall
 `),
-        meta: nix.thunk(() => ({ __proto__: pos$3, mainProgram: "studio" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$3, mainProgram: "studio" })),
       }))));
     const mkAndroidStudioWrapper = nix.lambda((args_2) => (() => {
       const $_2 = nix.formals(args_2, formals$3);
       const androidStudio_1 = nix.arg($_2, "androidStudio");
       const androidSdk = nix.argOr($_2, "androidSdk", () => null);
       return nix.app(runCommand, nix.thunk(() => nix.str`${pname}-${version}`), nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           pname: pname,
           version: version,
           dontFixup: true,
@@ -119,9 +119,9 @@ exec "${androidStudio_1}/Applications/${appName}/Contents/MacOS/studio" "$@"
           preferLocalBuild: true,
           allowSubstitutes: false,
           passthru: nix.thunk(() => (() => {
-            const withSdk = (androidSdk_1) => nix.app(mkAndroidStudioWrapper, nix.thunk(() => ({ __proto__: pos$5, androidStudio: androidStudio_1, androidSdk: androidSdk_1 })));
+            const withSdk = (androidSdk_1) => nix.app(mkAndroidStudioWrapper, nix.thunk(() => ({ [nix.POS]: pos$5, androidStudio: androidStudio_1, androidSdk: androidSdk_1 })));
             return {
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               unwrapped: androidStudio_1,
               full: nix.thunk(() => nix.app(withSdk, nix.thunk(() => nix.sel(androidenv, "androidPkgs", "androidsdk")))),
               withSdk: withSdk,
@@ -144,7 +144,7 @@ ln -s "../Applications/${appName}/Contents/MacOS/studio" "$out/bin/${pname}"
 /usr/bin/codesign --force --sign - "$out/Applications/${appName}"
 `));
     })(), formals$3);
-    return nix.app(mkAndroidStudioWrapper, nix.thunk(() => ({ __proto__: pos$8, androidStudio: androidStudio })));
+    return nix.app(mkAndroidStudioWrapper, nix.thunk(() => ({ [nix.POS]: pos$8, androidStudio: androidStudio })));
   })(), formals$2);
 })(), formals$1);
 //# sourceMappingURL=darwin.ts.map

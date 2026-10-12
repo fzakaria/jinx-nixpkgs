@@ -27,46 +27,46 @@ export default nix.lambda((args) => (() => {
   const buildConfig = nix.thunk(() => nix.attr(treefmt, "buildConfig"));
   const withConfig = nix.thunk(() => nix.attr(treefmt, "withConfig"));
   const testEqualContents = (args_1) => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => nix.update(args_1, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.builtins.isString(nix.thunk(() => nix.sel(args_1, "expected")))), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         expected: nix.thunk(() => nix.builtins.toFile("expected", nix.thunk(() => nix.sel(args_1, "expected")))),
       }))))));
   const nixfmtExampleConfig = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "on-unmatched": "info",
     "tree-root-file": ".git/index",
     formatter: nix.thunk(() => ({
-      __proto__: pos$3,
-      nixfmt: nix.thunk(() => ({ __proto__: pos$2, command: "nixfmt", includes: nix.thunk(() => ["*.nix"]) })),
+      [nix.POS]: pos$3,
+      nixfmt: nix.thunk(() => ({ [nix.POS]: pos$2, command: "nixfmt", includes: nix.thunk(() => ["*.nix"]) })),
     })),
   }));
   const nixfmtExamplePackage = nix.thunk(() => nix.app(withConfig, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       settings: nixfmtExampleConfig,
       runtimeInputs: nix.thunk(() => [nixfmt]),
     }))));
   const wellFormattedTree = nix.thunk(() => nix.app(runCommandLocal, "well-formatted-project", nix.thunk(() => ({})), "mkdir \"$out\"\ncat > \"$out/file.nix\" <<EOF\n{\n  foo = \"bar\";\n  attrs = { };\n  list = [ ];\n}\nEOF\n"));
   const unformattedTree = nix.thunk(() => nix.app(runCommandLocal, "unformatted-project", nix.thunk(() => ({})), "mkdir \"$out\"\ncat > \"$out/file.nix\" <<EOF\n{\n  foo=\"bar\";\n  attrs={};\n  list=[];\n}\nEOF\n"));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     buildConfigEmpty: nix.thunk(() => nix.app(testEqualContents, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         assertion: "`buildConfig { }` builds an empty config file",
         actual: nix.thunk(() => nix.app(buildConfig, nix.thunk(() => ({})))),
         expected: "",
       })))),
     buildConfigExample: nix.thunk(() => nix.app(testEqualContents, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         assertion: "`buildConfig` builds the example config",
         actual: nix.thunk(() => nix.app(buildConfig, nixfmtExampleConfig)),
         expected: "on-unmatched = \"info\"\ntree-root-file = \".git/index\"\n\n[formatter.nixfmt]\ncommand = \"nixfmt\"\nincludes = [\"*.nix\"]\n",
       })))),
     buildConfigModules: nix.thunk(() => nix.app(testEqualContents, nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         assertion: "`buildConfig` evaluates modules to build a config",
         actual: nix.thunk(() => nix.app(buildConfig, nix.thunk(() => [
             nixfmtExampleConfig,
             nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               "tree-root-file": nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "overridden")),
             })),
           ]))),
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
       })))),
     nixfmtExampleCheckPasses: nix.thunk(() => nix.app(nix.sel(nixfmtExamplePackage, "check"), wellFormattedTree)),
     nixfmtExampleCheckFails: nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure'"), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         drv: nix.thunk(() => nix.app(nix.sel(nixfmtExamplePackage, "check"), unformattedTree)),
         expectedBuilderExitCode: 1n,
         expectedBuilderLogEntries: nix.thunk(() => [
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     runNixfmtExample: nix.thunk(() => nix.app(runCommand, "run-nixfmt-example", nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         nativeBuildInputs: nix.thunk(() => [nixfmtExamplePackage]),
         input: "{\n  foo=\"bar\";\n  attrs={};\n  list=[];\n}\n",
         expected: "{\n  foo = \"bar\";\n  attrs = { };\n  list = [ ];\n}\n",

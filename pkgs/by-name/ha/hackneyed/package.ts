@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "hackneyed";
       const version = "0.9.3";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Enthymeme",
           repo: "hackneyed-x11-cursors",
           rev: version,
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const buildFlags = nix.thunk(() => ["theme", "theme.left"]);
       const prePatch = "substituteInPlace GNUmakefile \\\n    --replace 'inkscape-version: $(INKSCAPE)' 'inkscape-version:'\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gitlab.com/Enthymeme/hackneyed-x11-cursors",
         description: "Scalable cursor theme that resembles Windows 3.x/NT 3.x cursors",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

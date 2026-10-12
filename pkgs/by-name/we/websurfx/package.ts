@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "websurfx",
       version: "1.29.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "neon-mmd",
           repo: "websurfx",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace src/handler.rs \\\n  --replace-fail \"/etc/xdg\" \"$out/etc/xdg\" \\\n  --replace-fail \"/opt/websurfx\" \"$out/opt/websurfx\"\n",
       postInstall: "mkdir -p $out/etc/xdg\nmkdir -p $out/opt/websurfx\n\ncp -r websurfx $out/etc/xdg\ncp -r public $out/opt/websurfx\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open source alternative to searx",
         longDescription: "An open source alternative to searx which provides a modern-looking,\nlightning-fast, privacy respecting, secure meta search engine.\n",
         homepage: "https://github.com/neon-mmd/websurfx",

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const bash = nix.arg($, "bash");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "steam-play-none",
       version: "0-unstable-2022-12-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Scrumplex",
           repo: "steam-play-none",
           rev: "42e38706eb37fdaaedbe9951d59ef44148fcacbf",
@@ -39,7 +39,7 @@ install -Dt $steamcompattool -m755 launch.sh
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Steam Play Compatibility Tool to run games as-is\n\n(This is intended for use in the `programs.steam.extraCompatPackages` option only.)\n",
         homepage: "https://github.com/Scrumplex/Steam-Play-None",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),

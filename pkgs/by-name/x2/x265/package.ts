@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const neonSupport = nix.argOr($, "neonSupport", () => false);
   const isCross = nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "x265",
       version: "4.2",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://bitbucket.org/multicoreware/x265_git/downloads/x265_${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-QLHqBFPgMJ8OupNODd9TP49ilZZmeeiJTo8cHI1eEhA=",
         })))),
@@ -104,7 +104,7 @@ cmakeFlagsArray+=(
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMinGW")), "ln -s $out/bin/*.dll $out/lib\n"))),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for encoding H.265/HEVC video streams",
         mainProgram: "x265",
         homepage: "https://www.x265.org",

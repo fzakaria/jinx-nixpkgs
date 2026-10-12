@@ -88,15 +88,15 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "boot", "plymouth"));
   const opt = nix.thunk(() => nix.sel(options, "boot", "plymouth"));
   const nixosBreezePlymouth = nix.thunk(() => nix.app(nix.sel(pkgs, "kdePackages", "breeze-plymouth", "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       logoFile: nix.thunk(() => nix.sel(cfg, "logo")),
       logoName: "nixos",
       osName: nix.thunk(() => nix.sel(config, "system", "nixos", "distroName")),
       osVersion: nix.thunk(() => nix.sel(config, "system", "nixos", "release")),
     }))));
-  const plymouthLogos = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "plymouth-logos", nix.thunk(() => ({ __proto__: pos$2, logo: nix.thunk(() => nix.attr(cfg, "logo")) })), "mkdir -p $out\n\n# For themes that are compiled with PLYMOUTH_LOGO_FILE\nmkdir -p $out/etc/plymouth\nln -s $logo $out/etc/plymouth/logo.png\n\n# Logo for bgrt theme\n# Note this is technically an abuse of watermark for the bgrt theme\n# See: https://gitlab.freedesktop.org/plymouth/plymouth/-/issues/95#note_813768\nmkdir -p $out/share/plymouth/themes/spinner\nln -s $logo $out/share/plymouth/themes/spinner/watermark.png\n\n# Logo for spinfinity theme\n# See: https://gitlab.freedesktop.org/plymouth/plymouth/-/issues/106\nmkdir -p $out/share/plymouth/themes/spinfinity\nln -s $logo $out/share/plymouth/themes/spinfinity/header-image.png\n\n# Logo for catppuccin (two-step) theme\nfor flavour in mocha macchiato latte frappe\ndo\n  mkdir -p $out/share/plymouth/themes/catppuccin-\"$flavour\"\n  ln -s $logo $out/share/plymouth/themes/catppuccin-\"$flavour\"/header-image.png\ndone\n"));
+  const plymouthLogos = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "plymouth-logos", nix.thunk(() => ({ [nix.POS]: pos$2, logo: nix.thunk(() => nix.attr(cfg, "logo")) })), "mkdir -p $out\n\n# For themes that are compiled with PLYMOUTH_LOGO_FILE\nmkdir -p $out/etc/plymouth\nln -s $logo $out/etc/plymouth/logo.png\n\n# Logo for bgrt theme\n# Note this is technically an abuse of watermark for the bgrt theme\n# See: https://gitlab.freedesktop.org/plymouth/plymouth/-/issues/95#note_813768\nmkdir -p $out/share/plymouth/themes/spinner\nln -s $logo $out/share/plymouth/themes/spinner/watermark.png\n\n# Logo for spinfinity theme\n# See: https://gitlab.freedesktop.org/plymouth/plymouth/-/issues/106\nmkdir -p $out/share/plymouth/themes/spinfinity\nln -s $logo $out/share/plymouth/themes/spinfinity/header-image.png\n\n# Logo for catppuccin (two-step) theme\nfor flavour in mocha macchiato latte frappe\ndo\n  mkdir -p $out/share/plymouth/themes/catppuccin-\"$flavour\"\n  ln -s $logo $out/share/plymouth/themes/catppuccin-\"$flavour\"/header-image.png\ndone\n"));
   const themesEnv = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "plymouth-themes",
       paths: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(cfg, "package")), plymouthLogos], nix.sel(cfg, "themePackages"))),
     }))));
@@ -114,9 +114,9 @@ if [[ ! -d ${themesEnv}/share/plymouth/themes/${nix.sel(cfg, "theme")} ]]; then
 fi
 `);
   const preStartQuitFixup = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     serviceConfig: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       ExecStartPre: nix.thunk(() => [
         "",
         nix.thunk(() => nix.str`${nix.app(getExe$, nix.thunk(() => nix.sel(cfg, "package")), "plymouth")} quit --wait`),
@@ -124,33 +124,33 @@ fi
     })),
   }));
   return {
-    __proto__: pos$64,
+    [nix.POS]: pos$64,
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       boot: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         plymouth: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Plymouth boot splash screen")),
           package: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               description: "The plymouth package to use.",
               type: nix.thunk(() => nix.sel(types, "package")),
               default: nix.thunk(() => nix.app(nix.sel(pkgs, "plymouth", "override"), nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   systemd: nix.thunk(() => nix.sel(config, "boot", "initrd", "systemd", "package")),
                 })))),
               defaultText: nix.thunk(() => nix.app(literalExpression, "pkgs.plymouth.override {\n  systemd = config.boot.initrd.systemd.package;\n}\n")),
             })))),
           font: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               default: nix.thunk(() => nix.str`${nix.sel(pkgs, "dejavu_fonts", "minimal")}/share/fonts/truetype/DejaVuSans.ttf`),
               defaultText: nix.thunk(() => nix.app(literalExpression, "\"${pkgs.dejavu_fonts.minimal}/share/fonts/truetype/DejaVuSans.ttf\"")),
               type: nix.thunk(() => nix.sel(types, "path")),
               description: "Font file made available for displaying text on the splash screen.\n",
             })))),
           themePackages: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               default: nix.thunk(() => nix.app(optional, nix.thunk(() => nix.eq(nix.sel(cfg, "theme"), "breeze")), nixosBreezePlymouth)),
               defaultText: nix.thunk(() => nix.app(literalMD, nix.thunk(() => nix.str`A NixOS branded variant of the breeze theme when
 \`config.${nix.sel(opt, "theme")} == "breeze"\`, otherwise
@@ -160,13 +160,13 @@ fi
               description: "Extra theme packages for plymouth.\n",
             })))),
           theme: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               default: "bgrt",
               type: nix.thunk(() => nix.sel(types, "str")),
               description: "Splash screen theme.\n",
             })))),
           logo: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(types, "path")),
               default: nix.thunk(() => nix.str`${nix.sel(pkgs, "nixos-icons")}/share/icons/hicolor/48x48/apps/nix-snowflake-white.png`),
               defaultText: nix.thunk(() => nix.app(literalExpression, "\"${pkgs.nixos-icons}/share/icons/hicolor/48x48/apps/nix-snowflake-white.png\"")),
@@ -174,14 +174,14 @@ fi
               description: "Logo which is displayed on the splash screen.\nCurrently supports PNG file format only.\n",
             })))),
           showDelay: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(types, "numbers", "nonnegative")),
               default: 0n,
               example: 0.5,
               description: "Time (in seconds) to delay the splash screen.\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(types, "lines")),
               default: "",
               description: "Literal string to append to `configFile`\nand the config file generated by the plymouth module.\n",
@@ -190,16 +190,16 @@ fi
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$63,
+        [nix.POS]: pos$63,
         boot: nix.thunk(() => ({
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           kernelParams: nix.thunk(() => ["splash"]),
           initrd: nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             systemd: nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               extraBin: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 plymouth: nix.thunk(() => nix.app(getExe$, nix.thunk(() => nix.sel(cfg, "package")), "plymouth")),
               })),
               storePaths: nix.thunk(() => [
@@ -209,23 +209,23 @@ fi
               ]),
               packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
               services: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 rescue: preStartQuitFixup,
                 emergency: preStartQuitFixup,
-                "plymouth-halt": nix.thunk(() => ({ __proto__: pos$18, wantedBy: nix.thunk(() => ["halt.target"]) })),
-                "plymouth-kexec": nix.thunk(() => ({ __proto__: pos$19, wantedBy: nix.thunk(() => ["kexec.target"]) })),
-                "plymouth-poweroff": nix.thunk(() => ({ __proto__: pos$20, wantedBy: nix.thunk(() => ["poweroff.target"]) })),
-                "plymouth-quit-wait": nix.thunk(() => ({ __proto__: pos$21, wantedBy: nix.thunk(() => ["multi-user.target"]) })),
-                "plymouth-quit": nix.thunk(() => ({ __proto__: pos$22, wantedBy: nix.thunk(() => ["multi-user.target"]) })),
-                "plymouth-read-write": nix.thunk(() => ({ __proto__: pos$23, wantedBy: nix.thunk(() => ["sysinit.target"]) })),
-                "plymouth-reboot": nix.thunk(() => ({ __proto__: pos$24, wantedBy: nix.thunk(() => ["reboot.target"]) })),
+                "plymouth-halt": nix.thunk(() => ({ [nix.POS]: pos$18, wantedBy: nix.thunk(() => ["halt.target"]) })),
+                "plymouth-kexec": nix.thunk(() => ({ [nix.POS]: pos$19, wantedBy: nix.thunk(() => ["kexec.target"]) })),
+                "plymouth-poweroff": nix.thunk(() => ({ [nix.POS]: pos$20, wantedBy: nix.thunk(() => ["poweroff.target"]) })),
+                "plymouth-quit-wait": nix.thunk(() => ({ [nix.POS]: pos$21, wantedBy: nix.thunk(() => ["multi-user.target"]) })),
+                "plymouth-quit": nix.thunk(() => ({ [nix.POS]: pos$22, wantedBy: nix.thunk(() => ["multi-user.target"]) })),
+                "plymouth-read-write": nix.thunk(() => ({ [nix.POS]: pos$23, wantedBy: nix.thunk(() => ["sysinit.target"]) })),
+                "plymouth-reboot": nix.thunk(() => ({ [nix.POS]: pos$24, wantedBy: nix.thunk(() => ["reboot.target"]) })),
                 "plymouth-start": nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   wantedBy: nix.thunk(() => ["initrd-switch-root.target", "sysinit.target"]),
                   preStart: "mkdir -p /run/plymouth\nln -sf /etc/plymouth/{plymouthd.defaults,themes,plugins} /run/plymouth/\n",
                 })),
                 "plymouth-switch-root-initramfs": nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   wantedBy: nix.thunk(() => [
                     "halt.target",
                     "kexec.target",
@@ -234,18 +234,18 @@ fi
                     "reboot.target",
                   ]),
                 })),
-                "plymouth-switch-root": nix.thunk(() => ({ __proto__: pos$27, wantedBy: nix.thunk(() => ["initrd-switch-root.target"]) })),
+                "plymouth-switch-root": nix.thunk(() => ({ [nix.POS]: pos$27, wantedBy: nix.thunk(() => ["initrd-switch-root.target"]) })),
               })),
               contents: nix.thunk(() => ({
-                __proto__: pos$36,
-                "/etc/plymouth/plymouthd.conf": nix.thunk(() => ({ __proto__: pos$29, source: configFile })),
-                "/etc/plymouth/logo.png": nix.thunk(() => ({ __proto__: pos$30, source: nix.thunk(() => nix.sel(cfg, "logo")) })),
+                [nix.POS]: pos$36,
+                "/etc/plymouth/plymouthd.conf": nix.thunk(() => ({ [nix.POS]: pos$29, source: configFile })),
+                "/etc/plymouth/logo.png": nix.thunk(() => ({ [nix.POS]: pos$30, source: nix.thunk(() => nix.sel(cfg, "logo")) })),
                 "/etc/plymouth/plymouthd.defaults": nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/plymouth/plymouthd.defaults`),
                 })),
                 "/etc/plymouth/plugins": nix.thunk(() => ({
-                  __proto__: pos$32,
+                  [nix.POS]: pos$32,
                   source: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "plymouth-initrd-plugins", nix.thunk(() => ({})), nix.thunk(() => nix.add(checkIfThemeExists, nix.str`moduleName="$(sed -n 's,ModuleName *= *,,p' ${themesEnv}/share/plymouth/themes/${nix.sel(cfg, "theme")}/${nix.sel(cfg, "theme")}.plymouth)"
 
 mkdir -p $out/renderers
@@ -257,7 +257,7 @@ rm $out/renderers/x11.so
 `)))),
                 })),
                 "/etc/plymouth/themes": nix.thunk(() => ({
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   source: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "plymouth-initrd-themes", nix.thunk(() => ({})), nix.thunk(() => nix.add(checkIfThemeExists, nix.str`mkdir -p $out/${nix.sel(cfg, "theme")}
 cp -r ${themesEnv}/share/plymouth/themes/${nix.sel(cfg, "theme")}/* $out/${nix.sel(cfg, "theme")}
 # Copy more themes if the theme depends on others
@@ -279,21 +279,21 @@ done
 `)))),
                 })),
                 "/etc/plymouth/fonts": nix.thunk(() => ({
-                  __proto__: pos$34,
+                  [nix.POS]: pos$34,
                   source: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "plymouth-initrd-fonts", nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir -p $out
 cp ${nix.app(escapeShellArg, nix.thunk(() => nix.sel(cfg, "font")))} $out
 `))),
                 })),
                 "/etc/fonts/fonts.conf": nix.thunk(() => ({
-                  __proto__: pos$35,
+                  [nix.POS]: pos$35,
                   text: "<?xml version=\"1.0\"?>\n<!DOCTYPE fontconfig SYSTEM \"urn:fontconfig:fonts.dtd\">\n<fontconfig>\n    <dir>/etc/plymouth/fonts</dir>\n</fontconfig>\n",
                 })),
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               udev: nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 packages: nix.thunk(() => [
                   nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "initrd-plymouth-udev-rules", nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir -p $out/etc/udev/rules.d
 cp ${nix.sel(config, "systemd", "package", "out")}/lib/udev/rules.d/{70-uaccess,71-seat}.rules $out/etc/udev/rules.d
@@ -384,30 +384,30 @@ fi
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$48,
+          [nix.POS]: pos$48,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$47,
-            "plymouth/plymouthd.conf": nix.thunk(() => ({ __proto__: pos$42, source: configFile })),
+            [nix.POS]: pos$47,
+            "plymouth/plymouthd.conf": nix.thunk(() => ({ [nix.POS]: pos$42, source: configFile })),
             "plymouth/plymouthd.defaults": nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/plymouth/plymouthd.defaults`),
             })),
-            "plymouth/logo.png": nix.thunk(() => ({ __proto__: pos$44, source: nix.thunk(() => nix.sel(cfg, "logo")) })),
+            "plymouth/logo.png": nix.thunk(() => ({ [nix.POS]: pos$44, source: nix.thunk(() => nix.sel(cfg, "logo")) })),
             "plymouth/themes": nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               source: nix.thunk(() => nix.str`${themesEnv}/share/plymouth/themes`),
             })),
             "plymouth/plugins": nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/lib/plymouth`),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$62,
+          [nix.POS]: pos$62,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$49,
+            [nix.POS]: pos$49,
             rules: nix.thunk(() => [
               "d /run/plymouth 0755 root root 0 -",
               "L+ /run/plymouth/plymouthd.defaults - - - - /etc/plymouth/plymouthd.defaults",
@@ -417,22 +417,22 @@ fi
           })),
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$59,
-            "plymouth-kexec": nix.thunk(() => ({ __proto__: pos$50, wantedBy: nix.thunk(() => ["kexec.target"]) })),
-            "plymouth-halt": nix.thunk(() => ({ __proto__: pos$51, wantedBy: nix.thunk(() => ["halt.target"]) })),
-            "plymouth-quit-wait": nix.thunk(() => ({ __proto__: pos$52, wantedBy: nix.thunk(() => ["multi-user.target"]) })),
-            "plymouth-quit": nix.thunk(() => ({ __proto__: pos$53, wantedBy: nix.thunk(() => ["multi-user.target"]) })),
-            "plymouth-poweroff": nix.thunk(() => ({ __proto__: pos$54, wantedBy: nix.thunk(() => ["poweroff.target"]) })),
-            "plymouth-reboot": nix.thunk(() => ({ __proto__: pos$55, wantedBy: nix.thunk(() => ["reboot.target"]) })),
-            "plymouth-read-write": nix.thunk(() => ({ __proto__: pos$56, wantedBy: nix.thunk(() => ["sysinit.target"]) })),
-            "systemd-ask-password-plymouth": nix.thunk(() => ({ __proto__: pos$57, wantedBy: nix.thunk(() => ["sysinit.target"]) })),
-            "plymouth-start": nix.thunk(() => ({ __proto__: pos$58, restartIfChanged: false })),
+            [nix.POS]: pos$59,
+            "plymouth-kexec": nix.thunk(() => ({ [nix.POS]: pos$50, wantedBy: nix.thunk(() => ["kexec.target"]) })),
+            "plymouth-halt": nix.thunk(() => ({ [nix.POS]: pos$51, wantedBy: nix.thunk(() => ["halt.target"]) })),
+            "plymouth-quit-wait": nix.thunk(() => ({ [nix.POS]: pos$52, wantedBy: nix.thunk(() => ["multi-user.target"]) })),
+            "plymouth-quit": nix.thunk(() => ({ [nix.POS]: pos$53, wantedBy: nix.thunk(() => ["multi-user.target"]) })),
+            "plymouth-poweroff": nix.thunk(() => ({ [nix.POS]: pos$54, wantedBy: nix.thunk(() => ["poweroff.target"]) })),
+            "plymouth-reboot": nix.thunk(() => ({ [nix.POS]: pos$55, wantedBy: nix.thunk(() => ["reboot.target"]) })),
+            "plymouth-read-write": nix.thunk(() => ({ [nix.POS]: pos$56, wantedBy: nix.thunk(() => ["sysinit.target"]) })),
+            "systemd-ask-password-plymouth": nix.thunk(() => ({ [nix.POS]: pos$57, wantedBy: nix.thunk(() => ["sysinit.target"]) })),
+            "plymouth-start": nix.thunk(() => ({ [nix.POS]: pos$58, restartIfChanged: false })),
             rescue: preStartQuitFixup,
             emergency: preStartQuitFixup,
           })),
           paths: nix.thunk(() => ({
-            __proto__: pos$61,
-            "systemd-ask-password-plymouth": nix.thunk(() => ({ __proto__: pos$60, wantedBy: nix.thunk(() => ["sysinit.target"]) })),
+            [nix.POS]: pos$61,
+            "systemd-ask-password-plymouth": nix.thunk(() => ({ [nix.POS]: pos$60, wantedBy: nix.thunk(() => ["sysinit.target"]) })),
           })),
         })),
       })))),

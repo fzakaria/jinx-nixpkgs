@@ -42,40 +42,40 @@ export default nix.lambda((args) => (() => {
     "streamOptimized",
   ]);
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     imports: nix.thunk(() => [
       nix.path(here, "../image/file-options.nix"),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModuleWith"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           sinceRelease: 2505n,
           from: nix.thunk(() => ["vmware", "vmFileName"]),
           to: nix.thunk(() => ["image", "fileName"]),
         })))),
       nix.thunk(() => nix.app(nix.sel(lib, "modules", "mkRenamedOptionModuleWith"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           sinceRelease: 2605n,
           from: nix.thunk(() => ["vmware", "baseImageSize"]),
           to: nix.thunk(() => ["virtualisation", "diskSize"]),
         })))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       vmware: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         vmDerivationName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             default: nix.thunk(() => nix.str`nixos-vmware-${nix.sel(config, "system", "nixos", "label")}-${nix.sel(pkgs, "stdenv", "hostPlatform", "system")}`),
             description: "The name of the derivation for the VMWare appliance.\n",
           })))),
         vmSubformat: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), subformats)),
             default: "monolithicSparse",
             description: "Specifies which VMDK subformat to use.",
           })))),
         vmCompat6: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             default: false,
             example: true,
@@ -84,15 +84,15 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       system: nix.thunk(() => ({
-        __proto__: pos$11,
-        nixos: nix.thunk(() => ({ __proto__: pos$8, tags: nix.thunk(() => ["vmware"]) })),
+        [nix.POS]: pos$11,
+        nixos: nix.thunk(() => ({ [nix.POS]: pos$8, tags: nix.thunk(() => ["vmware"]) })),
         build: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           image: nix.thunk(() => nix.sel(config, "system", "build", "vmwareImage")),
           vmwareImage: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/make-disk-image.nix")), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               name: nix.thunk(() => nix.sel(cfg, "vmDerivationName")),
               baseName: nix.thunk(() => nix.sel(config, "image", "baseName")),
               postVM: nix.thunk(() => nix.str`${nix.sel(pkgs, "vmTools", "qemu")}/bin/qemu-img convert -f raw -o compat6=${nix.app(boolToStr, nix.thunk(() => nix.sel(cfg, "vmCompat6")))},subformat=${nix.sel(cfg, "vmSubformat")} -O vmdk $diskImage $out/${nix.sel(config, "image", "fileName")}
@@ -107,24 +107,24 @@ rm $diskImage
             })))),
         })),
       })),
-      image: nix.thunk(() => ({ __proto__: pos$12, extension: "vmdk" })),
+      image: nix.thunk(() => ({ [nix.POS]: pos$12, extension: "vmdk" })),
       fileSystems: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         "/": nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           device: "/dev/disk/by-label/nixos",
           autoResize: true,
           fsType: "ext4",
         })),
-        "/boot": nix.thunk(() => ({ __proto__: pos$14, device: "/dev/disk/by-label/ESP", fsType: "vfat" })),
+        "/boot": nix.thunk(() => ({ [nix.POS]: pos$14, device: "/dev/disk/by-label/ESP", fsType: "vfat" })),
       })),
       boot: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         growPartition: true,
         loader: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           grub: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             device: "nodev",
             efiSupport: true,
             efiInstallAsRemovable: true,
@@ -132,10 +132,10 @@ rm $diskImage
         })),
       })),
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         vmware: nix.thunk(() => ({
-          __proto__: pos$20,
-          guest: nix.thunk(() => ({ __proto__: pos$19, enable: true })),
+          [nix.POS]: pos$20,
+          guest: nix.thunk(() => ({ [nix.POS]: pos$19, enable: true })),
         })),
       })),
     })),

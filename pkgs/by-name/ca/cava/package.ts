@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const withSDL2 = nix.argOr($, "withSDL2", () => false);
   const withPipewire = nix.argOr($, "withPipewire", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cava",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "karlstav",
           repo: "cava",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       preAutoreconf: nix.thunk(() => nix.str`echo ${nix.sel(finalAttrs, "version")} > version
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Console-based Audio Visualizer for Alsa",
         homepage: "https://github.com/karlstav/cava",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

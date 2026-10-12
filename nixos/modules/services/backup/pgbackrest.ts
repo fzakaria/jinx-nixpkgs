@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "pgbackrest"));
-  const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({ __proto__: pos$1, listsAsDuplicateKeys: true }))));
+  const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({ [nix.POS]: pos$1, listsAsDuplicateKeys: true }))));
   const settingsType = nix.thunk(() => (() => {
     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
     return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -106,35 +106,35 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (v) => (nix.asBool(nix.eq(v, true)) ? "y" : (nix.asBool(nix.eq(v, false)) ? "n" : nix.force(v))))),
     ]));
   const fullConfig = nix.thunk(() => nix.update({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     global: nix.thunk(() => nix.app(normalize, nix.thunk(() => nix.update(nix.sel(cfg, "settings"), nix.app(flattenWithIndex, nix.thunk(() => nix.sel(cfg, "repos")), "repo"))))),
   }, nix.update(nix.app(nix.sel(lib, "mapAttrs'"), (cmd) => (settings) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`global:${cmd}`), nix.thunk(() => nix.app(normalize, settings))), nix.thunk(() => nix.sel(cfg, "commands"))), nix.app(nix.sel(lib, "mapAttrs"), (_) => (cfg$) => nix.app(normalize, nix.thunk(() => nix.update(nix.sel(cfg$, "settings"), nix.app(flattenWithIndex, nix.thunk(() => nix.sel(cfg$, "instances")), "pg")))), nix.thunk(() => nix.sel(cfg, "stanzas"))))));
   const namedJobs = nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (stanza) => nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const jobs = nix.arg($_1, "jobs");
-          return nix.app(nix.sel(lib, "mapAttrsToList"), (job) => (attrs) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`pgbackrest-${stanza}-${job}`), nix.thunk(() => nix.update(attrs, { __proto__: pos$3, stanza: stanza, job: job }))), jobs);
+          return nix.app(nix.sel(lib, "mapAttrsToList"), (job) => (attrs) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`pgbackrest-${stanza}-${job}`), nix.thunk(() => nix.update(attrs, { [nix.POS]: pos$3, stanza: stanza, job: job }))), jobs);
         })(), formals$2), nix.thunk(() => nix.sel(cfg, "stanzas"))))))));
-  const disabledOption = nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ __proto__: pos$4, default: null, readOnly: true, internal: true }))));
+  const disabledOption = nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$4, default: null, readOnly: true, internal: true }))));
   const secretPathOption = nix.thunk(() => (() => {
     const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
     return nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "externalPath")))),
         default: null,
         internal: true,
       })));
   })());
   return {
-    __proto__: pos$69,
+    [nix.POS]: pos$69,
     options: nix.thunk(() => ({
-      __proto__: pos$35,
+      [nix.POS]: pos$35,
       services: nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         pgbackrest: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "pgBackRest")),
           repos: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => (() => {
                 const w_2 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w_2, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_2, "submodule"), nix.lambda((args_1) => (() => {
@@ -143,26 +143,26 @@ export default nix.lambda((args) => (() => {
                       const name = nix.arg($_1, "name");
                       const setHostForType = (type) => (nix.asBool(nix.eq(name, "localhost")) ? null : (nix.asBool(!nix.eq(nix.selOr(config_1, () => "posix", "type"), type)) ? null : nix.force(name)));
                       return {
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         freeformType: settingsType,
                         options: nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$6,
+                              [nix.POS]: pos$6,
                               type: nix.thunk(() => nix.app(nix.lookup(w_2, "nullOr"), nix.thunk(() => nix.lookup(w_2, "str")))),
                               default: nix.thunk(() => nix.app(setHostForType, "posix")),
                               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "name")),
                               description: "Repository host when operating remotely",
                             })))),
                           "sftp-host": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$7,
+                              [nix.POS]: pos$7,
                               type: nix.thunk(() => nix.app(nix.lookup(w_2, "nullOr"), nix.thunk(() => nix.lookup(w_2, "str")))),
                               default: nix.thunk(() => nix.app(setHostForType, "sftp")),
                               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "name")),
                               description: "SFTP repository host",
                             })))),
                           "sftp-private-key-file": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$8,
+                              [nix.POS]: pos$8,
                               type: nix.thunk(() => nix.app(nix.lookup(w_2, "nullOr"), nix.thunk(() => nix.lookup(w_2, "externalPath")))),
                               default: null,
                               description: "SFTP private key file.\n\nThe file must be accessible by both the pgbackrest and the postgres users.\n",
@@ -187,26 +187,26 @@ export default nix.lambda((args) => (() => {
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  localhost.path = \"/var/lib/backup\";\n  \"backup.example.com\".host-type = \"tls\";\n}\n")),
             })))),
           stanzas: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               type: nix.thunk(() => (() => {
                 const w_2 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w_2, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_2, "submodule"), nix.thunk(() => ({
-                      __proto__: pos$25,
+                      [nix.POS]: pos$25,
                       options: nix.thunk(() => ({
-                        __proto__: pos$24,
+                        [nix.POS]: pos$24,
                         jobs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$16,
+                            [nix.POS]: pos$16,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                                  __proto__: pos$15,
+                                  [nix.POS]: pos$15,
                                   options: nix.thunk(() => ({
-                                    __proto__: pos$14,
+                                    [nix.POS]: pos$14,
                                     schedule: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                        __proto__: pos$12,
+                                        [nix.POS]: pos$12,
                                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                                         description: "When or how often the backup should run.\nMust be in the format described in {manpage}`systemd.time(7)`.\n",
                                       })))),
                                     type: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                        __proto__: pos$13,
+                                        [nix.POS]: pos$13,
                                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                                         description: "Backup type as described in:\n<https://pgbackrest.org/command.html#command-backup/category-command/option-type>\n",
                                       })))),
@@ -217,19 +217,19 @@ export default nix.lambda((args) => (() => {
                             example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  weekly = { schedule = \"Sun, 6:30\"; type = \"full\"; };\n  daily = { schedule = \"Mon..Sat, 6:30\"; type = \"diff\"; };\n}\n")),
                           })))),
                         instances: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$20,
+                            [nix.POS]: pos$20,
                             type: nix.thunk(() => (() => {
                               const w_3 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), w_2);
                               return nix.app(nix.lookup(w_3, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_3, "submodule"), nix.lambda((args_1) => (() => {
                                     const $_1 = nix.formals(args_1, formals$4);
                                     const name = nix.arg($_1, "name");
                                     return {
-                                      __proto__: pos$19,
+                                      [nix.POS]: pos$19,
                                       freeformType: settingsType,
                                       options: nix.thunk(() => ({
-                                        __proto__: pos$18,
+                                        [nix.POS]: pos$18,
                                         host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                            __proto__: pos$17,
+                                            [nix.POS]: pos$17,
                                             type: nix.thunk(() => nix.app(nix.lookup(w_3, "nullOr"), nix.thunk(() => nix.lookup(w_3, "str")))),
                                             default: nix.thunk(() => (nix.asBool(nix.eq(name, "localhost")) ? null : nix.force(name))),
                                             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "if name == \"localhost\" then null else name")),
@@ -246,12 +246,12 @@ export default nix.lambda((args) => (() => {
                             example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  localhost.database = \"app\";\n  \"postgres.example.com\".port = \"5433\";\n}\n")),
                           })))),
                         settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$23,
+                            [nix.POS]: pos$23,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                                __proto__: pos$22,
+                                [nix.POS]: pos$22,
                                 freeformType: settingsType,
                                 options: nix.thunk(() => ({
-                                  __proto__: pos$21,
+                                  [nix.POS]: pos$21,
                                   "tls-server-cert-file": secretPathOption,
                                   "tls-server-key-file": secretPathOption,
                                 })),
@@ -267,12 +267,12 @@ export default nix.lambda((args) => (() => {
               description: "An attribute set of stanzas as described in:\n<https://pgbackrest.org/user-guide.html#quickstart/configure-stanza>\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   freeformType: settingsType,
                   options: nix.thunk(() => ({
-                    __proto__: pos$27,
+                    [nix.POS]: pos$27,
                     "tls-server-cert-file": secretPathOption,
                     "tls-server-key-file": secretPathOption,
                   })),
@@ -303,12 +303,12 @@ export default nix.lambda((args) => (() => {
               "verify",
               "version",
             ]), (command) => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$31,
+                    [nix.POS]: pos$31,
                     freeformType: settingsType,
                     options: nix.thunk(() => ({
-                      __proto__: pos$30,
+                      [nix.POS]: pos$30,
                       "tls-server-cert-file": secretPathOption,
                       "tls-server-key-file": secretPathOption,
                     })),
@@ -328,13 +328,13 @@ Repository options should be set via [\`repos\`](#opt-services.pgbackrest.repos)
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$51,
+            [nix.POS]: pos$51,
             services: nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               pgbackrest: nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$36,
+                  [nix.POS]: pos$36,
                   "log-level-console": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "info")),
                   "log-level-file": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "off")),
                   "cmd-ssh": nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "openssh")))),
@@ -342,22 +342,22 @@ Repository options should be set via [\`repos\`](#opt-services.pgbackrest.repos)
               })),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "pgbackrest"))]),
               etc: nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 "pgbackrest/pgbackrest.conf": nix.thunk(() => ({
-                  __proto__: pos$39,
+                  [nix.POS]: pos$39,
                   source: nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "pgbackrest.conf", fullConfig)),
                 })),
               })),
             })),
             users: nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               users: nix.thunk(() => ({
-                __proto__: pos$43,
+                [nix.POS]: pos$43,
                 pgbackrest: nix.thunk(() => ({
-                  __proto__: pos$42,
+                  [nix.POS]: pos$42,
                   name: "pgbackrest",
                   group: "pgbackrest",
                   description: "pgBackRest service user",
@@ -368,20 +368,20 @@ Repository options should be set via [\`repos\`](#opt-services.pgbackrest.repos)
                   homeMode: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "postgresql", "enable")), "710")),
                 })),
               })),
-              groups: nix.thunk(() => ({ __proto__: pos$44, pgbackrest: nix.thunk(() => ({})) })),
+              groups: nix.thunk(() => ({ [nix.POS]: pos$44, pgbackrest: nix.thunk(() => ({})) })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$50,
+              [nix.POS]: pos$50,
               services: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => nix.lambda((args_1) => (() => {
                   const $_1 = nix.formals(args_1, formals$5);
                   const stanza = nix.arg($_1, "stanza");
                   const job = nix.arg($_1, "job");
                   const type = nix.arg($_1, "type");
                   return {
-                    __proto__: pos$47,
+                    [nix.POS]: pos$47,
                     description: nix.thunk(() => nix.str`pgBackRest job ${job} for stanza ${stanza}`),
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$46,
+                      [nix.POS]: pos$46,
                       User: "pgbackrest",
                       Group: "pgbackrest",
                       Type: "oneshot",
@@ -396,13 +396,13 @@ Repository options should be set via [\`repos\`](#opt-services.pgbackrest.repos)
                   const job = nix.arg($_1, "job");
                   const schedule = nix.arg($_1, "schedule");
                   return {
-                    __proto__: pos$49,
+                    [nix.POS]: pos$49,
                     description: nix.thunk(() => nix.str`pgBackRest job ${job} for stanza ${stanza}`),
                     wantedBy: nix.thunk(() => ["timers.target"]),
                     after: nix.thunk(() => ["network-online.target"]),
                     wants: nix.thunk(() => ["network-online.target"]),
                     timerConfig: nix.thunk(() => ({
-                      __proto__: pos$48,
+                      [nix.POS]: pos$48,
                       OnCalendar: schedule,
                       Persistent: true,
                       Unit: nix.thunk(() => nix.str`${name}.service`),
@@ -412,23 +412,23 @@ Repository options should be set via [\`repos\`](#opt-services.pgbackrest.repos)
             })),
           })),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "postgresql", "enable")), nix.thunk(() => ({
-              __proto__: pos$68,
+              [nix.POS]: pos$68,
               services: nix.thunk(() => ({
-                __proto__: pos$62,
+                [nix.POS]: pos$62,
                 pgbackrest: nix.thunk(() => ({
-                  __proto__: pos$59,
+                  [nix.POS]: pos$59,
                   stanzas: nix.thunk(() => ({
-                    __proto__: pos$56,
+                    [nix.POS]: pos$56,
                     default: nix.thunk(() => ({
-                      __proto__: pos$55,
+                      [nix.POS]: pos$55,
                       settings: nix.thunk(() => ({
-                        __proto__: pos$52,
+                        [nix.POS]: pos$52,
                         cmd: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "pgbackrest")))),
                       })),
                       instances: nix.thunk(() => ({
-                        __proto__: pos$54,
+                        [nix.POS]: pos$54,
                         localhost: nix.thunk(() => ({
-                          __proto__: pos$53,
+                          [nix.POS]: pos$53,
                           path: nix.thunk(() => nix.sel(config, "services", "postgresql", "dataDir")),
                           user: "postgres",
                         })),
@@ -436,30 +436,30 @@ Repository options should be set via [\`repos\`](#opt-services.pgbackrest.repos)
                     })),
                   })),
                   commands: nix.thunk(() => ({
-                    __proto__: pos$58,
-                    restore: nix.thunk(() => ({ __proto__: pos$57, "lock-path": "/tmp/postgresql" })),
+                    [nix.POS]: pos$58,
+                    restore: nix.thunk(() => ({ [nix.POS]: pos$57, "lock-path": "/tmp/postgresql" })),
                   })),
                 })),
                 postgresql: nix.thunk(() => ({
-                  __proto__: pos$61,
+                  [nix.POS]: pos$61,
                   identMap: "postgres pgbackrest postgres\n",
                   initdbArgs: nix.thunk(() => ["--allow-group-access"]),
                   settings: nix.thunk(() => ({
-                    __proto__: pos$60,
+                    [nix.POS]: pos$60,
                     archive_command: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "pgbackrest")))} --stanza=default archive-push "%p"`),
                     archive_mode: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "on")),
                   })),
                 })),
               })),
               users: nix.thunk(() => ({
-                __proto__: pos$67,
+                [nix.POS]: pos$67,
                 users: nix.thunk(() => ({
-                  __proto__: pos$64,
-                  pgbackrest: nix.thunk(() => ({ __proto__: pos$63, extraGroups: nix.thunk(() => ["postgres"]) })),
+                  [nix.POS]: pos$64,
+                  pgbackrest: nix.thunk(() => ({ [nix.POS]: pos$63, extraGroups: nix.thunk(() => ["postgres"]) })),
                 })),
                 groups: nix.thunk(() => ({
-                  __proto__: pos$66,
-                  pgbackrest: nix.thunk(() => ({ __proto__: pos$65, members: nix.thunk(() => ["postgres"]) })),
+                  [nix.POS]: pos$66,
+                  pgbackrest: nix.thunk(() => ({ [nix.POS]: pos$65, members: nix.thunk(() => ["postgres"]) })),
                 })),
               })),
             })))),

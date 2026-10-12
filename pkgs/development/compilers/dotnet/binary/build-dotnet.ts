@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
     const xmlstarlet = nix.arg($_1, "xmlstarlet");
     const pname = nix.thunk(() => (nix.asBool(nix.eq(type, "aspnetcore")) ? "aspnetcore-runtime" : (nix.asBool(nix.eq(type, "runtime")) ? "dotnet-runtime" : "dotnet-sdk")));
     const descriptions = nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       aspnetcore: nix.thunk(() => nix.str`ASP.NET Core Runtime ${version}`),
       runtime: nix.thunk(() => nix.str`.NET Runtime ${version}`),
       sdk: nix.thunk(() => nix.str`.NET SDK ${version}`),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`<Import Project="${signAppHost}" />
 `))), "</Project>\n"))));
     return nix.app(mkWrapper, type, nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           pname: pname,
           version: version,
           nativeBuildInputs: nix.thunk(() => nix.concat([makeWrapper], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), autoPatchelfHook), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.eq(type, "sdk")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))), nix.thunk(() => [xmlstarlet, sigtool]))))),
@@ -107,14 +107,14 @@ patchelf \\
 `))),
           propagatedSandboxProfile: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "(allow file-read* (subpath \"/usr/share/icu\"))\n(allow file-read* (subpath \"/private/var/db/mds/system\"))\n(allow mach-lookup (global-name \"com.apple.SecurityServer\")\n                   (global-name \"com.apple.system.opendirectoryd.membership\"))\n")),
           passthru: nix.thunk(() => nix.update({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             icu: icu,
             hasILCompiler: hasILCompiler,
             hasCrossTargetBug: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "10")),
           }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(type, "sdk")), nix.thunk(() => (() => {
               const forceSDKEval = nix.thunk(() => nix.app(nix.builtins.seq, nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "drvPath"))));
               return {
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 packages: nix.thunk(() => nix.builtins.map(forceSDKEval, nix.thunk(() => nix.concat(commonPackages, nix.concat(nix.sel(hostPackages, nix.key(nix.force(hostRid))), nix.sel(targetPackages, nix.key(nix.force(targetRid)))))))),
                 targetPackages: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => nix.app(nix.builtins.map, forceSDKEval), targetPackages)),
                 runtime: runtime,
@@ -122,7 +122,7 @@ patchelf \\
               };
             })())))),
           meta: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             description: nix.thunk(() => nix.builtins.getAttr(type, descriptions)),
             homepage: "https://dotnet.github.io/",
             license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

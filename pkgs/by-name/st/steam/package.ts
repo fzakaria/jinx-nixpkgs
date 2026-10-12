@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
           "extraArgs",
           "extraEnv",
         ])), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         privateTmp: privateTmp_1,
         multiArch: true,
         includeClosures: true,
@@ -123,7 +123,7 @@ ${extraProfile_1}
       })));
   })(), formals$2);
   return nix.app(buildRuntimeEnv, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "steam",
       version: nix.thunk(() => nix.attr(steam_unwrapped, "version")),
       meta: nix.thunk(() => nix.attr(steam_unwrapped, "meta")),
@@ -140,7 +140,7 @@ ${extraProfile_1}
 `),
       passthru: nix.thunk(() => (() => {
         const makeSteamRun = (package$) => nix.app(buildRuntimeEnv, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             version: nix.thunk(() => nix.attr(steam_unwrapped, "version")),
             pname: "steam-run",
             extraPkgs: (pkgs) => nix.concat(package$, nix.app(extraPkgs, pkgs)),
@@ -152,7 +152,7 @@ ${extraProfile_1}
             privateTmp: privateTmp,
             runScript: nix.thunk(() => nix.app(writeShellScript, "steam-run", "if [ $# -eq 0 ]; then\n  echo \"Usage: steam-run command-to-run args...\" >&2\n  exit 1\nfi\n\nexec \"$@\"\n")),
             meta: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               description: "Run commands in the same FHS environment that is used for Steam",
               mainProgram: "steam-run",
               name: "steam-run",
@@ -160,7 +160,7 @@ ${extraProfile_1}
             })),
           })));
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           buildRuntimeEnv: buildRuntimeEnv,
           run: nix.thunk(() => nix.app(makeSteamRun, nix.thunk(() => [steam_unwrapped]))),
           "run-free": nix.thunk(() => nix.app(makeSteamRun, [])),

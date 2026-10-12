@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const c_ares = nix.arg($, "c-ares");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "simgear",
       version: "2024.1.7",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "flightgear",
           repo: "simgear",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       propagatedBuildInputs: nix.thunk(() => [c_ares]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simulation construction toolkit",
         homepage: "https://wiki.flightgear.org/SimGear",
         maintainers: nix.thunk(() => (() => {

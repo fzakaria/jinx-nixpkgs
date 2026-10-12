@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const pgocaml = nix.arg($, "pgocaml");
   const ppx_optcomp = nix.arg($, "ppx_optcomp");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "pgocaml_ppx",
       src: nix.thunk(() => nix.attr(pgocaml, "src")),
       version: nix.thunk(() => nix.attr(pgocaml, "version")),

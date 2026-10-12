@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const libelf = nix.arg($, "libelf");
   const libsystemtap = nix.arg($, "libsystemtap");
   const libz = nix.arg($, "libz");
-  return nix.app(nix.sel(buildGoModule, "override"), nix.thunk(() => ({ __proto__: pos$1, stdenv: clangStdenv })), (finalAttrs) => ({
-      __proto__: pos$7,
+  return nix.app(nix.sel(buildGoModule, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: clangStdenv })), (finalAttrs) => ({
+      [nix.POS]: pos$7,
       pname: "prometheus-ebpf-exporter",
       version: "2.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "cloudflare",
           repo: "ebpf_exporter",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-ZwKXIIoV4yEyjSpGjVDr91/CQmVuF9zc0IHkJYraE9o=",
       postPatch: "substituteInPlace examples/Makefile \\\n  --replace-fail \"-Wall -Werror\" \"\"\n",
       buildInputs: nix.thunk(() => [libbpf, libelf, libsystemtap, libz]),
-      env: nix.thunk(() => ({ __proto__: pos$3, CGO_LDFLAGS: "-l bpf" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, CGO_LDFLAGS: "-l bpf" })),
       hardeningDisable: nix.thunk(() => ["zerocallusedregs"]),
       ldflags: nix.thunk(() => [
         "-s",
@@ -55,15 +55,15 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { __proto__: pos$4, ebpf: nix.thunk(() => nix.attr(from, "ebpf")) };
+          return { [nix.POS]: pos$4, ebpf: nix.thunk(() => nix.attr(from, "ebpf")) };
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Prometheus exporter for custom eBPF metrics",
         mainProgram: "ebpf_exporter",
         homepage: "https://github.com/cloudflare/ebpf_exporter",

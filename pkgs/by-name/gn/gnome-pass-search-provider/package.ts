@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const gobject_introspection = nix.arg($, "gobject-introspection");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gnome-pass-search-provider",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jle64",
           repo: "gnome-pass-search-provider",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         gobject_introspection,
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         LIBDIR: nix.thunk(() => nix.add(nix.builtins.placeholder("out"), "/lib")),
         DATADIR: nix.thunk(() => nix.add(nix.builtins.placeholder("out"), "/share")),
       })),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nbash ./install.sh\n\nrunHook postInstall\n",
       postFixup: "makeWrapperArgs=( \"${gappsWrapperArgs[@]}\" )\nwrapPythonProgramsIn \"$out/lib\" \"$out $propagatedBuildInputs\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Pass password manager search provider for gnome-shell",
         homepage: "https://github.com/jle64/gnome-pass-search-provider",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

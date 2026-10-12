@@ -62,21 +62,21 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w, "pygobject3"))];
     })()));
   const python3BuildEnv = nix.thunk(() => nix.app(nix.sel(python3, "pythonOnBuildForHost", "buildEnv", "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       postBuild: nix.thunk(() => nix.str`makeWrapper ${nix.sel(glib, "dev")}/bin/gdbus-codegen $out/bin/gdbus-codegen --unset PYTHONPATH
 makeWrapper ${nix.sel(glib, "dev")}/bin/glib-genmarshal $out/bin/glib-genmarshal --unset PYTHONPATH
 makeWrapper ${nix.sel(glib, "dev")}/bin/glib-mkenums $out/bin/glib-mkenums --unset PYTHONPATH
 `),
     }))));
-  const dbus_launch = nix.thunk(() => nix.app(runCommand, "sandbox-dbus-launch", nix.thunk(() => ({ __proto__: pos$2, nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`makeWrapper ${dbus}/bin/dbus-launch $out/bin/dbus-launch \\
+  const dbus_launch = nix.thunk(() => nix.app(runCommand, "sandbox-dbus-launch", nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`makeWrapper ${dbus}/bin/dbus-launch $out/bin/dbus-launch \\
   --add-flags --config-file=${dbus}/share/dbus-1/session.conf
 `)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "ibus",
       version: "1.5.34",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "ibus",
           repo: "ibus",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -84,7 +84,7 @@ makeWrapper ${nix.sel(glib, "dev")}/bin/glib-mkenums $out/bin/glib-mkenums --uns
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             pythonInterpreter: nix.thunk(() => nix.sel(python3Runtime, "interpreter")),
             pythonSitePackages: nix.thunk(() => nix.sel(python3, "sitePackages")),
             prefix: null,
@@ -94,7 +94,7 @@ makeWrapper ${nix.sel(glib, "dev")}/bin/glib-mkenums $out/bin/glib-mkenums --uns
           })))),
         nix.path(here, "./build-without-dbus-launch.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "fix-gtk-crashes.patch",
             url: "https://github.com/ibus/ibus/commit/c534999a9dbea2666864250d74e058ecfb46e76f.patch",
             hash: "sha256-1h48hvdrDh2Qh4+SufL147CxlfiwvP/Jv509X0WnbrA=",
@@ -176,15 +176,15 @@ substituteInPlace bus/services/org.freedesktop.IBus.session.generic.service.in -
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(libOnly)), "# It has some hardcoded FHS paths and also we do not use it\n# since we set up the environment in NixOS tests anyway.\nmoveToOutput \"bin/ibus-desktop-testing-runner\" \"$installedTests\"\n")),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(libOnly)), "# set necessary environment also for tests\nfor f in $installedTests/libexec/installed-tests/ibus/*; do\n    wrapGApp $f\ndone\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(libOnly)), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             "installed-tests": nix.thunk(() => nix.sel(nixosTests, "installed-tests", "ibus")),
           })))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         changelog: nix.thunk(() => nix.str`https://github.com/ibus/ibus/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         homepage: "https://github.com/ibus/ibus",
         description: "Intelligent Input Bus, input method framework",

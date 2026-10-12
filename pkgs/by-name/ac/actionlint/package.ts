@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const ronn = nix.arg($, "ronn");
   const shellcheck = nix.arg($, "shellcheck");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "actionlint",
       version: "1.7.12",
       subPackages: nix.thunk(() => ["cmd/actionlint"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rhysd",
           repo: "actionlint",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ wrapProgram "$out/bin/actionlint" \\
         nix.thunk(() => nix.str`-X github.com/rhysd/actionlint.version=${nix.sel(finalAttrs, "version")}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://rhysd.github.io/actionlint/",
         description: "Static checker for GitHub Actions workflow files",
         changelog: nix.thunk(() => nix.str`https://github.com/rhysd/actionlint/raw/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

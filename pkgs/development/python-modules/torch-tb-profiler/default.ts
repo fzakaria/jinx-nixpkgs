@@ -20,14 +20,14 @@ export default nix.lambda((args) => (() => {
   const torchvision = nix.arg($, "torchvision");
   const version = "0.4.0";
   const repo = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "pytorch",
       repo: "kineto",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-nAtqGCv8q3Tati3NOGWWLb+gXdvO3qmECeC1WG2Mt3M=",
     }))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "torch_tb_profiler",
       version: version,
       pyproject: true,
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["torch_tb_profiler"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PyTorch Profiler TensorBoard Plugin",
         homepage: "https://github.com/pytorch/kineto",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

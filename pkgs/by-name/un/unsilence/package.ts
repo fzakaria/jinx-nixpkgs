@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.9";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lagmoellertim",
           repo: "unsilence",
           rev: version,
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["unsilence"]);
       const pythonRelaxDeps = nix.thunk(() => ["rich"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/lagmoellertim/unsilence",
         description: "Console Interface and Library to remove silent parts of a media file",
         mainProgram: "unsilence",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

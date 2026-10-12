@@ -41,27 +41,27 @@ export default nix.lambda((args) => (() => {
   const nonEmptyStr = nix.thunk(() => nix.attr(from_4, "nonEmptyStr"));
   const nullOr = nix.thunk(() => nix.attr(from_4, "nullOr"));
   const options = nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     services: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       tsmBackup: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         enable: nix.thunk(() => nix.app(mkEnableOption, "automatic backups with the\nIBM Storage Protect (Tivoli Storage Manager, TSM) client.\nThis also enables\n{option}`programs.tsmClient.enable`\n")),
         command: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nonEmptyStr,
             default: "backup",
             example: "incr",
             description: "The actual command passed to the\n`dsmc` executable to start the backup.\n",
           })))),
         servername: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nonEmptyStr,
             example: "mainTsmServer",
             description: "Create a systemd system service\n`tsm-backup.service` that starts\na backup based on the given servername's stanza.\nNote that this server's\n{option}`passwdDir` will default to\n{file}`/var/lib/tsm-backup/password`\n(but may be overridden);\nalso, the service will use\n{file}`/var/lib/tsm-backup` as\n`HOME` when calling\n`dsmc`.\n",
           })))),
         autoTime: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => nix.app(nullOr, nonEmptyStr)),
             default: null,
             example: "12:00",
@@ -74,49 +74,49 @@ export default nix.lambda((args) => (() => {
   const cfgPrg = nix.thunk(() => nix.sel(config, "programs", "tsmClient"));
   const assertions = nix.thunk(() => [
     nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       assertion: nix.thunk(() => nix.app(hasAttr, nix.thunk(() => nix.sel(cfg, "servername")), nix.thunk(() => nix.sel(cfgPrg, "servers")))),
       message: "TSM service servername not found in list of servers",
     })),
     nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       assertion: nix.thunk(() => nix.sel(cfgPrg, "servers", nix.key(nix.sel(cfg, "servername")), "genPasswd")),
       message: "TSM service requires automatic password generation",
     })),
   ]);
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: options,
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         assertions: assertions,
         programs: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           tsmClient: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             enable: true,
             servers: nix.thunk(() => nix.attrsDyn({}, [
               [nix.sel(cfg, "servername"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 passworddir: nix.thunk(() => nix.app(mkDefault, "/var/lib/tsm-backup/password")),
               }))],
             ])),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             "tsm-backup": nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "IBM Storage Protect (Tivoli Storage Manager) Backup",
               environment: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 DSM_LOG: "/var/log/tsm-backup/",
                 HOME: "/var/lib/tsm-backup",
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 SuccessExitStatus: "4 8",
                 ExecStart: nix.thunk(() => nix.str`${nix.app(getExe$, nix.thunk(() => nix.sel(cfgPrg, "wrappedPackage")), "dsmc")} ${nix.sel(cfg, "command")} -se='${nix.sel(cfg, "servername")}' -optfile=/dev/null`),
                 LogsDirectory: "tsm-backup",
@@ -143,7 +143,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "yarny"))]),
     })),
   };

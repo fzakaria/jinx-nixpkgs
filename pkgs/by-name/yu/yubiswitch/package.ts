@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const _7zz = nix.arg($, "_7zz");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "yubiswitch",
       version: "0.18",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/pallotron/yubiswitch/releases/download/v${nix.sel(finalAttrs, "version")}/yubiswitch_${nix.sel(finalAttrs, "version")}.dmg`),
           hash: "sha256-ee7l8jj1pJdj+SjMNWcLfHV//G0FG9bdBkNcxUh8Zuk=",
         })))),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [_7zz]),
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications\"\ncp -R yubiswitch.app \"$out/Applications\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "The macOS status bar application to enable/disable Yubikeys.",
         homepage: "https://github.com/pallotron/yubiswitch",
         changelog: nix.thunk(() => nix.str`https://github.com/pallotron/yubiswitch/releases/tag/v${nix.sel(finalAttrs, "version")}`),

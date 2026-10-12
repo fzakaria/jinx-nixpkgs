@@ -34,15 +34,15 @@ export default nix.lambda((args) => (() => {
       const outPath = nix.thunk(() => nix.add(xcode, nix.str`/Contents/Developer/Platforms/${platform}.platform/Developer/SDKs/${platform}${version}.sdk`));
       const platform = nix.thunk(() => nix.selOr(stdenv, () => "", "targetPlatform", "xcodePlatform"));
       const version = nix.thunk(() => nix.selOr(stdenv, () => "", "targetPlatform", "sdkVer"));
-      return { __proto__: pos$1, name, type, outPath, platform, version };
+      return { [nix.POS]: pos$1, name, type, outPath, platform, version };
     })());
     const binutils = nix.thunk(() => nix.app(wrapBintoolsWith, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         libc: nix.thunk(() => nix.sel(targetIosSdkPkgs, "libraries")),
         bintools: binutils_unwrapped,
       }))));
     const clang = nix.thunk(() => nix.update(nix.app(wrapCCWith, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         cc: clang_unwrapped,
         bintools: binutils,
         libc: nix.thunk(() => nix.sel(targetIosSdkPkgs, "libraries")),
@@ -53,12 +53,12 @@ echo "-target ${nix.sel(stdenv, "targetPlatform", "config")}" >> $out/nix-suppor
 echo "-isystem ${sdk}/usr/include${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), "10", nix.thunk(() => nix.sel(sdk, "version")))), nix.thunk(() => nix.str` -isystem ${sdk}/usr/include/c++/4.2.1/ -stdlib=libstdc++`))}" >> $out/nix-support/cc-cflags
 ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(sdk, "version")), "14")), nix.thunk(() => nix.str`echo -isystem ${xcode}/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 >> $out/nix-support/cc-cflags`))}
 `),
-      }))), { __proto__: pos$4, sdk: sdk }));
+      }))), { [nix.POS]: pos$4, sdk: sdk }));
     const libraries = nix.thunk(() => (() => {
       const sdk_1 = buildIosSdk;
       return nix.app(runCommand, "libSystem-prebuilt", nix.thunk(() => ({
-          __proto__: pos$6,
-          passthru: nix.thunk(() => ({ __proto__: pos$5, sdk: sdk_1 })),
+          [nix.POS]: pos$6,
+          passthru: nix.thunk(() => ({ [nix.POS]: pos$5, sdk: sdk_1 })),
         })), nix.thunk(() => nix.str`if ! [ -d ${sdk_1} ]; then
     echo "You must have version ${nix.sel(sdk_1, "version")} of the ${nix.sel(sdk_1, "platform")} sdk installed at ${sdk_1}" >&2
     exit 1
@@ -66,7 +66,7 @@ fi
 ln -s ${sdk_1}/usr $out
 `));
     })());
-    return { __proto__: pos$7, sdk, binutils, clang, libraries };
+    return { [nix.POS]: pos$7, sdk, binutils, clang, libraries };
   })();
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

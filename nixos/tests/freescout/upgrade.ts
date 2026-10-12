@@ -32,73 +32,73 @@ export default nix.lambda((args) => (() => {
   const oldFreescoutVersion = nix.thunk(() => nix.app(nix.sel(pkgs, "freescout", "overrideAttrs"), (oa) => (() => {
       const version = "1.8.220";
       const src = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchFromGitHub"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "freescout-help-desk",
           repo: "freescout",
           tag: version,
           hash: "sha256-bOkazBcd9EKzQdZZA6YMn4+UNYhpDFV9hDMHR5kXke0=",
         }))));
-      return { __proto__: pos$2, version, src };
+      return { [nix.POS]: pos$2, version, src };
     })()));
   const newFreescoutVersion = nix.thunk(() => nix.sel(pkgs, "freescout"));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     name: "freescout-upgrade",
     meta: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "e1mo"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           networking: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             extraHosts: nix.thunk(() => nix.str`127.0.0.1 ${freescoutDomain}
 `),
           })),
-          virtualisation: nix.thunk(() => ({ __proto__: pos$5, memorySize: 1024n })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$5, memorySize: 1024n })),
           environment: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "curl")), nix.thunk(() => nix.lookup(w, "jq"))];
             })()),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             freescout: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               package: oldFreescoutVersion,
               enable: true,
               domain: freescoutDomain,
               settings: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 APP_KEY: "base64:J8ZgK5LZkhVKpmZvjjA700sNL7+Y6aQTus8ZnUNNAaE=",
                 APP_FORCE_HTTPS: false,
                 APP_URL: nix.thunk(() => nix.str`http://${freescoutDomain}:8888`),
                 APP_DEBUG: true,
               })),
-              databaseSetup: nix.thunk(() => ({ __proto__: pos$8, enable: true, kind: "pgsql" })),
+              databaseSetup: nix.thunk(() => ({ [nix.POS]: pos$8, enable: true, kind: "pgsql" })),
             })),
           })),
           specialisation: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             upgrade: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               configuration: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 services: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   freescout: nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     package: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), newFreescoutVersion)),
                   })),
                 })),

@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const jetring = nix.arg($, "jetring");
   const gnupg = nix.arg($, "gnupg");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "debian-archive-keyring",
       version: "2025.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "salsa.debian.org",
           owner: "release-team",
           repo: "debian-archive-keyring",
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["DESTDIR=$(out)"]),
       postInstall: "mv $out/usr/share $out/share\nrm -d $out/usr\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GnuPG archive keys of the Debian archive",
         homepage: "https://salsa.debian.org/release-team/debian-archive-keyring",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),

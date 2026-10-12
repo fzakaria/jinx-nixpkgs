@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const idris_no_deps = nix.arg($, "idris-no-deps");
   const gmp = nix.arg($, "gmp");
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: nix.thunk(() => nix.attr(idris_no_deps, "pname")),
       version: nix.thunk(() => nix.attr(idris_no_deps, "version")),
       src: nix.thunk(() => nix.attr(idris_no_deps, "src")),

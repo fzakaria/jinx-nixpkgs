@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const subVersion = "1.3.4418";
       const version = nix.thunk(() => nix.str`${subVersion}-${nix.sel(kernel, "version")}`);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.magewell.com/files/drivers/ProCaptureForLinux_${subVersion}.tar.gz`),
           sha256: "sha256-ZUqJkARhaMo9aZOtUMEdiHEbEq10lJO6MkGjEDnfx1g=",
         }))));
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const makeFlags = nix.thunk(() => [
         nix.thunk(() => nix.str`KERNELDIR=${nix.sel(kernel, "dev")}/lib/modules/${nix.sel(kernel, "modDirVersion")}/build`),
       ]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=implicit-fallthrough" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=implicit-fallthrough" }));
       const postInstall = nix.thunk(() => nix.str`cd ../
 mkdir -p $out/bin
 cp bin/mwcap-control_${bits} $out/bin/mwcap-control
@@ -57,7 +57,7 @@ patchelf \\
   "$out"/bin/mwcap-info
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.magewell.com/",
         description: "Linux driver for the Magewell Pro Capture family",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
@@ -69,7 +69,7 @@ patchelf \\
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(kernel, "version")), "6.15")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         subVersion,
         version,

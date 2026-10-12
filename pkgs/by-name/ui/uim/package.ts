@@ -48,14 +48,14 @@ export default nix.lambda((args) => (() => {
   const withMisc = nix.argOr($, "withMisc", () => false);
   const libeb = nix.arg($, "libeb");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "1.9.6",
       pname: "uim",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/uim/uim/releases/download/${nix.sel(finalAttrs, "version")}/uim-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-Z/Dl+kKSpTPtxvmLhC32DFMaic+C0DNqThq3IgKrjIM=",
-          meta: nix.thunk(() => ({ __proto__: pos$1, homepage: "https://github.com/uim/uim/" })),
+          meta: nix.thunk(() => ({ [nix.POS]: pos$1, homepage: "https://github.com/uim/uim/" })),
         })))),
       nativeBuildInputs: nix.thunk(() => nix.concat([autoconf, automake116x, intltool, libtool, pkg_config, cmake, ruby, librsvg], nix.app(nix.sel(lib, "optionals"), withQt5, nix.thunk(() => [nix.thunk(() => nix.sel(qt5, "wrapQtAppsHook"))])))),
       buildInputs: nix.thunk(() => nix.concat([ncurses, m17n_lib, m17n_db, expat], nix.concat(nix.app(nix.sel(lib, "optional"), withAnthy, anthy), nix.concat(nix.app(nix.sel(lib, "optional"), withGtk2, gtk2), nix.concat(nix.app(nix.sel(lib, "optional"), withGtk3, gtk3), nix.concat(nix.app(nix.sel(lib, "optionals"), withQt5, nix.thunk(() => [
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "Multilingual input method framework",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

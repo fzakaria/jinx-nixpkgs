@@ -11,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const buildDotnetGlobalTool = nix.arg($, "buildDotnetGlobalTool");
   const lib = nix.arg($, "lib");
   return nix.app(buildDotnetGlobalTool, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "csharpier",
       version: "1.3.0",
       executables: "csharpier",
       nugetHash: "sha256-hwieEoQTcATyKZIZ7CQSWANPBv+pEShg6cDXU5EIexU=",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Opinionated code formatter for C#",
         homepage: "https://csharpier.com/",
         changelog: "https://github.com/belav/csharpier/blob/main/CHANGELOG.md",

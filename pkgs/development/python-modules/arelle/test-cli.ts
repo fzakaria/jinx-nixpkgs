@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const runCommand = nix.arg($, "runCommand");
   const arelle = nix.arg($, "arelle");
-  return nix.app(runCommand, nix.thunk(() => nix.str`arelle-test-cli${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(arelle, "hasGUI"))), "-headless")}`), nix.thunk(() => ({ __proto__: pos$1, nativeBuildInputs: nix.thunk(() => [arelle]) })), nix.thunk(() => nix.str`# Set up temporary home directory
+  return nix.app(runCommand, nix.thunk(() => nix.str`arelle-test-cli${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(arelle, "hasGUI"))), "-headless")}`), nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [arelle]) })), nix.thunk(() => nix.str`# Set up temporary home directory
 export HOME=$(mktemp -d)
 
 # Test basic CLI commands work with proper assertions

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const domain = "pi_hole_v6";
       const version = "1.21.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: owner,
           repo: "ha-pi-hole-v6",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/bastgau/ha-pi-hole-v6/releases/tag/${nix.sel(src, "tag")}`),
         description: "Pi-hole V6 Integration for Home Assistant",
         longDescription: "This custom integration restored compatibility between Home Assistant and Pi-hole, which was no longer supported by the native integration.\nToday, this integration offers additional and complementary features.\n",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
-      return { __proto__: pos$3, owner, domain, version, src, doCheck, meta };
+      return { [nix.POS]: pos$3, owner, domain, version, src, doCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -951,7 +951,7 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   const callPackage = nix.arg($, "callPackage");
   return (final) => (prev) => ({
-    __proto__: pos$750,
+    [nix.POS]: pos$750,
     "alt-getopt": nix.thunk(() => nix.app(callPackage, nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const buildLuarocksPackage = nix.arg($_1, "buildLuarocksPackage");
@@ -959,16 +959,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             pname: "alt-getopt",
             version: "0.8.0-2",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 url: "mirror://luarocks/alt-getopt-0.8.0-2.rockspec",
                 sha256: "1x1wb351n8c9aghgrlwkjg4crriwby18drzrz3280mw9cildg11v",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 owner: "cheusov",
                 repo: "lua-alt-getopt",
                 tag: "0.8.0",
@@ -976,7 +976,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               homepage: "https://github.com/cheusov/lua-alt-getopt",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -997,22 +997,22 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             pname: "ansicolors",
             version: "1.0.2-3",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 url: "mirror://luarocks/ansicolors-1.0.2-3.rockspec",
                 sha256: "19y962xdx5ldl3596ywdl7n825dffz9al6j6rx6pbgmhb7pi8s5v",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 url: "https://github.com/kikito/ansicolors.lua/archive/v1.0.2.tar.gz",
                 sha256: "0r4xi57njldmar9pn77l0vr5701rpmilrm51spv45lz0q9js8xps",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               homepage: "https://github.com/kikito/ansicolors.lua",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1032,22 +1032,22 @@ export default nix.lambda((args) => (() => {
         const luaAtLeast = nix.arg($_1, "luaAtLeast");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             pname: "argparse",
             version: "0.7.2-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 url: "mirror://luarocks/argparse-0.7.2-1.rockspec",
                 sha256: "1az7ikzll699sbz2qxq9wkm0ncmic33dhg85zqlznbnz28vy6jza",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 url: "https://github.com/luarocks/argparse/archive/0.7.2.zip",
                 sha256: "0ji3hh0s2g2i5sribiib2vpy30xzfkv61m4mzwawfpgraqg03r6y",
               })))),
             disabled: nix.thunk(() => (nix.asBool(nix.app(luaOlder, "5.1")) || nix.asBool(nix.app(luaAtLeast, "5.6")))),
             meta: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               homepage: "https://github.com/luarocks/argparse",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               description: "A feature-rich command-line argument parser",
@@ -1061,22 +1061,22 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             pname: "basexx",
             version: "0.4.1-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 url: "mirror://luarocks/basexx-0.4.1-1.rockspec",
                 sha256: "0kmydxm2wywl18cgj303apsx7hnfd68a9hx9yhq10fj7yfcxzv5f",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 url: "https://github.com/aiq/basexx/archive/v0.4.1.tar.gz",
                 sha256: "1rnz6xixxqwy0q6y2hi14rfid4w47h69gfi0rnlq24fz8q2b0qpz",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               homepage: "https://github.com/aiq/basexx",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               description: "A base2, base16, base32, base64 and base85 library for Lua",
@@ -1091,16 +1091,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             pname: "bcrypt",
             version: "2.3-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 url: "mirror://luarocks/bcrypt-2.3-1.rockspec",
                 sha256: "1zjy7sflyd50jvp603hmw0sg3rw5xyray0spzv5x5ky9hxivcdrf",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 owner: "mikejsavage",
                 repo: "lua-bcrypt",
                 tag: "v2.3-1",
@@ -1108,7 +1108,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               homepage: "http://github.com/mikejsavage/lua-bcrypt",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1125,22 +1125,22 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             pname: "binaryheap",
             version: "0.4-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 url: "mirror://luarocks/binaryheap-0.4-1.rockspec",
                 sha256: "1ah37lhskmrb26by5ygs7jblx7qnf6mphgw8kwhw0yacvmkcbql4",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 url: "https://github.com/Tieske/binaryheap.lua/archive/version_0v4.tar.gz",
                 sha256: "0f5l4nb5s7dycbkgh3rrl7pf0npcf9k6m2gr2bsn09fjyb3bdc8h",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               homepage: "https://github.com/Tieske/binaryheap.lua",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1163,22 +1163,22 @@ export default nix.lambda((args) => (() => {
         const luaAtLeast = nix.arg($_1, "luaAtLeast");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             pname: "bit32",
             version: "5.3.5.1-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 url: "mirror://luarocks/bit32-5.3.5.1-1.rockspec",
                 sha256: "11mg0hmmil92hkwamm91ghih6ys9pqsakx0z9jgnqxymnl887j51",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 url: "https://github.com/keplerproject/lua-compat-5.3/archive/v0.10.zip",
                 sha256: "1caxn228gx48g6kymp9w7kczgxcg0v0cd5ixsx8viybzkd60dcn4",
               })))),
             disabled: nix.thunk(() => (nix.asBool(nix.app(luaOlder, "5.1")) || nix.asBool(nix.app(luaAtLeast, "5.5")))),
             meta: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               homepage: "http://www.lua.org/manual/5.2/manual.html#6.7",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1205,16 +1205,16 @@ export default nix.lambda((args) => (() => {
         const penlight = nix.arg($_1, "penlight");
         const say = nix.arg($_1, "say");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             pname: "busted",
             version: "2.3.0-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 url: "mirror://luarocks/busted-2.3.0-1.rockspec",
                 sha256: "1df41k03r0fy8l62dqywqjlxwmjhifk2krqq675w1cra28z8hb14",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 owner: "lunarmodules",
                 repo: "busted",
                 tag: "v2.3.0",
@@ -1232,7 +1232,7 @@ export default nix.lambda((args) => (() => {
               say,
             ]),
             meta: nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               homepage: "https://lunarmodules.github.io/busted/",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1250,23 +1250,23 @@ export default nix.lambda((args) => (() => {
         const fetchFromGitHub = nix.arg($_1, "fetchFromGitHub");
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             pname: "busted-htest",
             version: "1.0.0-2",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 url: "mirror://luarocks/busted-htest-1.0.0-2.rockspec",
                 sha256: "10d2pbh2rfy4ygp40h8br4w5j1z5syq5pn6knd4bbnacmswnmcdl",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 owner: "hishamhm",
                 repo: "busted-htest",
                 tag: "1.0.0",
                 hash: "sha256-tGAQUSeDt+OV/TBAJo/JFdyeBRRZaIQEJG+SKcCaQhs=",
               })))),
             meta: nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               homepage: "https://github.com/hishamhm/busted-htest",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1285,22 +1285,22 @@ export default nix.lambda((args) => (() => {
         const fetchzip = nix.arg($_1, "fetchzip");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             pname: "canola.nvim",
             version: "0.1.0-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 url: "mirror://luarocks/canola.nvim-0.1.0-1.rockspec",
                 sha256: "1aig4ndcqj7mliawckzvcv6gaigk9l2nqdfn96qd51jrmgy0ghyp",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 url: "https://github.com/barrettruth/canola.nvim/archive/v0.1.0.zip",
                 sha256: "1ykdjz1ysbn1f9a2pmj595ishh2yzis5d1d0a51ny5j63fjic3p8",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               homepage: "https://github.com/barrettruth/canola.nvim",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1319,16 +1319,16 @@ export default nix.lambda((args) => (() => {
         const luaOlder = nix.arg($_1, "luaOlder");
         const penlight = nix.arg($_1, "penlight");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             pname: "cassowary",
             version: "2.3.2-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 url: "mirror://luarocks/cassowary-2.3.2-1.rockspec",
                 sha256: "0c6sflm8zpgbcdj47s3rd34h69h3nqcciaaqd1wdx5m0lwc3mii0",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 owner: "sile-typesetter",
                 repo: "cassowary.lua",
                 tag: "v2.3.2",
@@ -1337,7 +1337,7 @@ export default nix.lambda((args) => (() => {
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             propagatedBuildInputs: nix.thunk(() => [penlight]),
             meta: nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               homepage: "https://github.com/sile-typesetter/cassowary.lua",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1357,16 +1357,16 @@ export default nix.lambda((args) => (() => {
         const luaOlder = nix.arg($_1, "luaOlder");
         const penlight = nix.arg($_1, "penlight");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             pname: "cldr",
             version: "0.3.0-0",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 url: "mirror://luarocks/cldr-0.3.0-0.rockspec",
                 sha256: "1fnr8k713w21v7hc64s4w5lgcgnbphq3gm69pisc2s4wq2fkija1",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 owner: "alerque",
                 repo: "cldr-lua",
                 tag: "v0.3.0",
@@ -1375,7 +1375,7 @@ export default nix.lambda((args) => (() => {
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             propagatedBuildInputs: nix.thunk(() => [penlight]),
             meta: nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               homepage: "https://github.com/alerque/cldr-lua",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1397,22 +1397,22 @@ export default nix.lambda((args) => (() => {
         const fetchzip = nix.arg($_1, "fetchzip");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             pname: "commons.nvim",
             version: "27.0.0-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$49,
+                [nix.POS]: pos$49,
                 url: "mirror://luarocks/commons.nvim-27.0.0-1.rockspec",
                 sha256: "0gz1943nrlpi7pq4izip6fb0pkfk13h5322qhynx27m82nm129mq",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$50,
+                [nix.POS]: pos$50,
                 url: "https://github.com/linrongbin16/commons.nvim/archive/ac18006fe9e47cf6e53c79e333465d5a75455357.zip",
                 sha256: "10qlgly499lyhvmhj5lqv4jqzyrlx6h7h7gjbyrgzpjqyjr99m1l",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               homepage: "https://linrongbin16.github.io/commons.nvim/",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1431,22 +1431,22 @@ export default nix.lambda((args) => (() => {
         const luaAtLeast = nix.arg($_1, "luaAtLeast");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$56,
+            [nix.POS]: pos$56,
             pname: "compat53",
             version: "0.15.1-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$53,
+                [nix.POS]: pos$53,
                 url: "mirror://luarocks/compat53-0.15.1-1.rockspec",
                 sha256: "0x2vpfvsb6qqybx42aawa1mvnzlhlndy9z99g1707lixd4849fkl",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$54,
+                [nix.POS]: pos$54,
                 url: "https://github.com/lunarmodules/lua-compat-5.3/archive/v0.15.1.zip",
                 sha256: "03gfs74lj58qd9mrd9y0bz5f6mq9qd8my5bb2xg5lx6wvagdlvim",
               })))),
             disabled: nix.thunk(() => (nix.asBool(nix.app(luaOlder, "5.1")) || nix.asBool(nix.app(luaAtLeast, "5.6")))),
             meta: nix.thunk(() => ({
-              __proto__: pos$55,
+              [nix.POS]: pos$55,
               homepage: "https://github.com/lunarmodules/lua-compat-5.3",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1468,16 +1468,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$60,
+            [nix.POS]: pos$60,
             pname: "coop.nvim",
             version: "1.2.0-0",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$57,
+                [nix.POS]: pos$57,
                 url: "mirror://luarocks/coop.nvim-1.2.0-0.rockspec",
                 sha256: "1fkpdddk2c2wibk0khgmvr03in2hz8wd3gdmmfbfbpb6jybhcckg",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 owner: "gregorias",
                 repo: "coop.nvim",
                 rev: "26df3be54846ed44b5a9d7749f7780049931b8a8",
@@ -1485,7 +1485,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               homepage: "https://github.com/gregorias/coop.nvim",
               license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
               description: "A Neovim plugin for structured concurrency with coroutines.",
@@ -1499,16 +1499,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const lpeg = nix.arg($_1, "lpeg");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$64,
+            [nix.POS]: pos$64,
             pname: "cosmo",
             version: "16.06.04-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$61,
+                [nix.POS]: pos$61,
                 url: "mirror://luarocks/cosmo-16.06.04-1.rockspec",
                 sha256: "0ipv1hrlhvaz1myz6qxabq7b7kb3bz456cya3r292487a3g9h9pb",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$62,
+                [nix.POS]: pos$62,
                 owner: "mascarenhas",
                 repo: "cosmo",
                 tag: "v16.06.04",
@@ -1516,7 +1516,7 @@ export default nix.lambda((args) => (() => {
               })))),
             propagatedBuildInputs: nix.thunk(() => [lpeg]),
             meta: nix.thunk(() => ({
-              __proto__: pos$63,
+              [nix.POS]: pos$63,
               homepage: "http://cosmo.luaforge.net",
               license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "AND"), nix.thunk(() => [
                   nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -1533,23 +1533,23 @@ export default nix.lambda((args) => (() => {
         const fetchFromGitHub = nix.arg($_1, "fetchFromGitHub");
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$68,
+            [nix.POS]: pos$68,
             pname: "coxpcall",
             version: "1.17.0-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$65,
+                [nix.POS]: pos$65,
                 url: "mirror://luarocks/coxpcall-1.17.0-1.rockspec",
                 sha256: "0mf0nggg4ajahy5y1q5zh2zx9rmgzw06572bxx6k8b736b8j7gca",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$66,
+                [nix.POS]: pos$66,
                 owner: "keplerproject",
                 repo: "coxpcall",
                 tag: "v1_17_0",
                 hash: "sha256-EW8pGI9jiGutNVNmyiCP5sIVYZe2rJQc03OrKXIOeMw=",
               })))),
             meta: nix.thunk(() => ({
-              __proto__: pos$67,
+              [nix.POS]: pos$67,
               homepage: "http://keplerproject.github.io/coxpcall",
               license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "AND"), nix.thunk(() => [
                   nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -1566,22 +1566,22 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const lua = nix.arg($_1, "lua");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$72,
+            [nix.POS]: pos$72,
             pname: "cqueues",
             version: "20261006.52-0",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$69,
+                [nix.POS]: pos$69,
                 url: "mirror://luarocks/cqueues-20261006.52-0.rockspec",
                 sha256: "1c8hffqawivwrb95pl6mc3j471cavkr9yrqidyigw3a2s01zdrsq",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$70,
+                [nix.POS]: pos$70,
                 url: "https://github.com/wahern/cqueues/archive/rel-20261006.tar.gz",
                 sha256: "1i77z3939wk9qq7sqa781wgpzmpwrpdakc8zqykidfgh5yc4avaa",
               })))),
             disabled: nix.thunk(() => !nix.eq(nix.sel(lua, "luaversion"), "5.2")),
             meta: nix.thunk(() => ({
-              __proto__: pos$71,
+              [nix.POS]: pos$71,
               homepage: "http://25thandclement.com/~william/projects/cqueues.html",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1605,16 +1605,16 @@ export default nix.lambda((args) => (() => {
         const luasystem = nix.arg($_1, "luasystem");
         const tl = nix.arg($_1, "tl");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$76,
+            [nix.POS]: pos$76,
             pname: "cyan",
             version: "0.4.1-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$73,
+                [nix.POS]: pos$73,
                 url: "mirror://luarocks/cyan-0.4.1-1.rockspec",
                 sha256: "0m0br7fvczkaqx6zqj7ykmivw7fnizvi34cqp2mvzxn30hsa4hyw",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$74,
+                [nix.POS]: pos$74,
                 owner: "teal-language",
                 repo: "cyan",
                 tag: "v0.4.1",
@@ -1622,7 +1622,7 @@ export default nix.lambda((args) => (() => {
               })))),
             propagatedBuildInputs: nix.thunk(() => [argparse, luafilesystem, luasystem, tl]),
             meta: nix.thunk(() => ({
-              __proto__: pos$75,
+              [nix.POS]: pos$75,
               homepage: "https://github.com/teal-language/cyan",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               description: "A build system for the Teal language",
@@ -1637,16 +1637,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$80,
+            [nix.POS]: pos$80,
             pname: "datafile",
             version: "0.11-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$77,
+                [nix.POS]: pos$77,
                 url: "mirror://luarocks/datafile-0.11-1.rockspec",
                 sha256: "09i0yqakzc342f2qqa0yxkdyz55y9s5v036x3xjwpfjry8yywc6q",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$78,
+                [nix.POS]: pos$78,
                 owner: "hishamhm",
                 repo: "datafile",
                 tag: "v0.11",
@@ -1654,7 +1654,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$79,
+              [nix.POS]: pos$79,
               homepage: "http://github.com/hishamhm/datafile",
               license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "AND"), nix.thunk(() => [
                   nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -1674,16 +1674,16 @@ export default nix.lambda((args) => (() => {
         const luaOlder = nix.arg($_1, "luaOlder");
         const luafilesystem = nix.arg($_1, "luafilesystem");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$84,
+            [nix.POS]: pos$84,
             pname: "digestif",
             version: "0.6-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$81,
+                [nix.POS]: pos$81,
                 url: "mirror://luarocks/digestif-0.6-1.rockspec",
                 sha256: "0hp7r97b6ivywaxb02cbnm23gjz71mak5ag6m3hi7f3mjqxxxh8k",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$82,
+                [nix.POS]: pos$82,
                 owner: "astoff",
                 repo: "digestif",
                 tag: "v0.6",
@@ -1692,7 +1692,7 @@ export default nix.lambda((args) => (() => {
             disabled: nix.thunk(() => nix.app(luaOlder, "5.3")),
             propagatedBuildInputs: nix.thunk(() => [lpeg, luafilesystem]),
             meta: nix.thunk(() => ({
-              __proto__: pos$83,
+              [nix.POS]: pos$83,
               homepage: "https://github.com/astoff/digestif/",
               license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "AND"), nix.thunk(() => [
                   nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -1710,22 +1710,22 @@ export default nix.lambda((args) => (() => {
         const luaAtLeast = nix.arg($_1, "luaAtLeast");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$88,
+            [nix.POS]: pos$88,
             pname: "dkjson",
             version: "2.11-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$85,
+                [nix.POS]: pos$85,
                 url: "mirror://luarocks/dkjson-2.11-1.rockspec",
                 sha256: "0fkgsqfd0k7pq9j3d1hrhsiha7dc145fbf7hqw0r7lzmp03vjfai",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$86,
+                [nix.POS]: pos$86,
                 url: "https://dkolf.de/dkjson-lua/dkjson-2.11.tar.gz",
                 sha256: "16725vrd5apdxapj641cc0x218vp0ylfcf0z24wfffxwh7v9l5ks",
               })))),
             disabled: nix.thunk(() => (nix.asBool(nix.app(luaOlder, "5.1")) || nix.asBool(nix.app(luaAtLeast, "5.6")))),
             meta: nix.thunk(() => ({
-              __proto__: pos$87,
+              [nix.POS]: pos$87,
               homepage: "https://dkolf.de/dkjson-lua/",
               license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "AND"), nix.thunk(() => [
                   nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -1743,16 +1743,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$92,
+            [nix.POS]: pos$92,
             pname: "enet",
             version: "1.2-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$89,
+                [nix.POS]: pos$89,
                 url: "mirror://luarocks/enet-1.2-1.rockspec",
                 sha256: "0jf0qxf3lsrmc1dww7b7i6srqp2cy8caqv9f1rbva7f6rnppxzra",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$90,
+                [nix.POS]: pos$90,
                 owner: "leafo",
                 repo: "lua-enet",
                 tag: "v1.2",
@@ -1760,7 +1760,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$91,
+              [nix.POS]: pos$91,
               homepage: "http://leafo.net/lua-enet",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1779,16 +1779,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$96,
+            [nix.POS]: pos$96,
             pname: "etlua",
             version: "1.3.0-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$93,
+                [nix.POS]: pos$93,
                 url: "mirror://luarocks/etlua-1.3.0-1.rockspec",
                 sha256: "1g98ibp7n2p4js39din2balncjnxxdbaq6msw92z072s2cccx9cf",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$94,
+                [nix.POS]: pos$94,
                 owner: "leafo",
                 repo: "etlua",
                 tag: "v1.3.0",
@@ -1796,7 +1796,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$95,
+              [nix.POS]: pos$95,
               homepage: "https://github.com/leafo/etlua",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1816,16 +1816,16 @@ export default nix.lambda((args) => (() => {
         const lua_cjson = nix.arg($_1, "lua-cjson");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$100,
+            [nix.POS]: pos$100,
             pname: "fallo",
             version: "2.3.0-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$97,
+                [nix.POS]: pos$97,
                 url: "mirror://luarocks/fallo-2.3.0-1.rockspec",
                 sha256: "14mxxd6nfbx5bchp3i5c0nf93higak6l7506r8jnh30yafyr01cq",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$98,
+                [nix.POS]: pos$98,
                 owner: "NTBBloodbath",
                 repo: "fallo",
                 rev: "8bbbcd6b3db8c10ed68f51c2c6d79af99e5feed7",
@@ -1834,7 +1834,7 @@ export default nix.lambda((args) => (() => {
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             propagatedBuildInputs: nix.thunk(() => [lua_cjson]),
             meta: nix.thunk(() => ({
-              __proto__: pos$99,
+              [nix.POS]: pos$99,
               homepage: "https://github.com/NTBBloodbath/fallo",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1852,16 +1852,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$104,
+            [nix.POS]: pos$104,
             pname: "fennel",
             version: "1.6.1-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$101,
+                [nix.POS]: pos$101,
                 url: "mirror://luarocks/fennel-1.6.1-1.rockspec",
                 sha256: "1r6sn77f321k7i4ch4n02k0l1q0dlpdgifchpxzknwknir1bvmnk",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$102,
+                [nix.POS]: pos$102,
                 owner: "bakpakin",
                 repo: "Fennel",
                 tag: "1.6.1",
@@ -1869,7 +1869,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$103,
+              [nix.POS]: pos$103,
               homepage: "https://fennel-lang.org",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1888,22 +1888,22 @@ export default nix.lambda((args) => (() => {
         const fetchzip = nix.arg($_1, "fetchzip");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$108,
+            [nix.POS]: pos$108,
             pname: "fidget.nvim",
             version: "1.6.0-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$105,
+                [nix.POS]: pos$105,
                 url: "mirror://luarocks/fidget.nvim-1.6.0-1.rockspec",
                 sha256: "1jra7xv2ifsy5p3zwbiv70ynligjh8wx48ykmbi2cagd2vz9arwz",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$106,
+                [nix.POS]: pos$106,
                 url: "https://github.com/j-hui/fidget.nvim/archive/v1.6.0.zip",
                 sha256: "120q3dzq142xda1bzw8chf02k86dw21n8qjznlaxxpqlpk9sl6hr",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$107,
+              [nix.POS]: pos$107,
               homepage: "https://github.com/j-hui/fidget.nvim",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1921,21 +1921,21 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const fetchzip = nix.arg($_1, "fetchzip");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$112,
+            [nix.POS]: pos$112,
             pname: "fifo",
             version: "0.2-0",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$109,
+                [nix.POS]: pos$109,
                 url: "mirror://luarocks/fifo-0.2-0.rockspec",
                 sha256: "0vr9apmai2cyra2n573nr3dyk929gzcs4nm1096jdxcixmvh2ymq",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$110,
+                [nix.POS]: pos$110,
                 url: "https://github.com/daurnimator/fifo.lua/archive/0.2.zip",
                 sha256: "1800k7h5hxsvm05bjdr65djjml678lwb0661cll78z1ys2037nzn",
               })))),
             meta: nix.thunk(() => ({
-              __proto__: pos$111,
+              [nix.POS]: pos$111,
               homepage: "https://github.com/daurnimator/fifo.lua",
               license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "AND"), nix.thunk(() => [
                   nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -1955,16 +1955,16 @@ export default nix.lambda((args) => (() => {
         const luaepnf = nix.arg($_1, "luaepnf");
         const penlight = nix.arg($_1, "penlight");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$116,
+            [nix.POS]: pos$116,
             pname: "fluent",
             version: "0.2.0-0",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$113,
+                [nix.POS]: pos$113,
                 url: "mirror://luarocks/fluent-0.2.0-0.rockspec",
                 sha256: "1x3nk8xdf923rvdijr0jx8v6w3wxxfch7ri3kxca0pw80b5bc2fa",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$114,
+                [nix.POS]: pos$114,
                 owner: "alerque",
                 repo: "fluent-lua",
                 tag: "v0.2.0",
@@ -1973,7 +1973,7 @@ export default nix.lambda((args) => (() => {
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             propagatedBuildInputs: nix.thunk(() => [cldr, luaepnf, penlight]),
             meta: nix.thunk(() => ({
-              __proto__: pos$115,
+              [nix.POS]: pos$115,
               homepage: "https://github.com/alerque/fluent-lua",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -1992,22 +1992,22 @@ export default nix.lambda((args) => (() => {
         const fetchzip = nix.arg($_1, "fetchzip");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$120,
+            [nix.POS]: pos$120,
             pname: "funnyfiles.nvim",
             version: "1.0.1-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$117,
+                [nix.POS]: pos$117,
                 url: "mirror://luarocks/funnyfiles.nvim-1.0.1-1.rockspec",
                 sha256: "1r3cgx8wvc1c4syk167m94ws513g0cdmmxnymf3zyidlszdwamy5",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$118,
+                [nix.POS]: pos$118,
                 url: "https://github.com/aikooo7/funnyfiles.nvim/archive/v1.0.1.zip",
                 sha256: "00p026r05gldbf18mmv8da9ap09di8dhy0rrd586pr2s2s36nzpd",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$119,
+              [nix.POS]: pos$119,
               homepage: "https://github.com/aikooo7/funnyfiles.nvim",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2025,22 +2025,22 @@ export default nix.lambda((args) => (() => {
         const fetchzip = nix.arg($_1, "fetchzip");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$124,
+            [nix.POS]: pos$124,
             pname: "fzf-lua",
             version: "0.0.2711-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$121,
+                [nix.POS]: pos$121,
                 url: "mirror://luarocks/fzf-lua-0.0.2711-1.rockspec",
                 sha256: "0wvhwis8i5a0jx3y3icjzfgha22yvwvggas8mkdhv9q74gd2pip7",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$122,
+                [nix.POS]: pos$122,
                 url: "https://github.com/ibhagwan/fzf-lua/archive/ed0e0ead1789ee349cbf025900931fb402b1e05e.zip",
                 sha256: "13c4csfvkpicyjr69cbh46klz8bf6bjsk5ad4ljh2ic86m0y475n",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$123,
+              [nix.POS]: pos$123,
               homepage: "https://github.com/ibhagwan/fzf-lua",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2058,22 +2058,22 @@ export default nix.lambda((args) => (() => {
         const fetchzip = nix.arg($_1, "fetchzip");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$128,
+            [nix.POS]: pos$128,
             pname: "fzy",
             version: "1.0.3-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$125,
+                [nix.POS]: pos$125,
                 url: "mirror://luarocks/fzy-1.0.3-1.rockspec",
                 sha256: "07d07afjs73bl5krfbaqx4pw2wpfrkyw2iksamkfa8dlqn9ajn1a",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$126,
+                [nix.POS]: pos$126,
                 url: "https://github.com/swarn/fzy-lua/archive/v1.0.3.zip",
                 sha256: "0w3alddhn0jd19vmminbi1b79mzlagyl1lygmfpxhzzccdv4vapm",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$127,
+              [nix.POS]: pos$127,
               homepage: "https://github.com/swarn/fzy-lua",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2092,22 +2092,22 @@ export default nix.lambda((args) => (() => {
         const fetchzip = nix.arg($_1, "fetchzip");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$132,
+            [nix.POS]: pos$132,
             pname: "gitsigns.nvim",
             version: "2.1.0-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$129,
+                [nix.POS]: pos$129,
                 url: "mirror://luarocks/gitsigns.nvim-2.1.0-1.rockspec",
                 sha256: "13w10vblahrqn3cahcj6f9wz1kcna93825zy01dspl3s058920yj",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$130,
+                [nix.POS]: pos$130,
                 url: "https://github.com/lewis6991/gitsigns.nvim/archive/a462f416e2ce4744531c6256252dee99a7d34a83.zip",
                 sha256: "06d7pl9h1y8v7pmlyhlxs21z17pb7ikg4yipjag2i60panp6cd8i",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$131,
+              [nix.POS]: pos$131,
               homepage: "https://github.com/lewis6991/gitsigns.nvim",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               description: "Git integration for buffers",
@@ -2121,22 +2121,22 @@ export default nix.lambda((args) => (() => {
         const fetchzip = nix.arg($_1, "fetchzip");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$136,
+            [nix.POS]: pos$136,
             pname: "grug-far.nvim",
             version: "1.6.78-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$133,
+                [nix.POS]: pos$133,
                 url: "mirror://luarocks/grug-far.nvim-1.6.78-1.rockspec",
                 sha256: "0h7g3z0abbzs4rpqv5qk7skkvk7kvw5zpvag9jj5b0xyjcy0chmc",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$134,
+                [nix.POS]: pos$134,
                 url: "https://github.com/MagicDuck/grug-far.nvim/archive/11595bf747edc270bce2069d1020502ad4ae56cf.zip",
                 sha256: "05r65gxq53m67gmxsfynralwxqr7kaja51526fm677zirrja6ic2",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$135,
+              [nix.POS]: pos$135,
               homepage: "https://github.com/MagicDuck/grug-far.nvim",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2154,22 +2154,22 @@ export default nix.lambda((args) => (() => {
         const fetchzip = nix.arg($_1, "fetchzip");
         const lua = nix.arg($_1, "lua");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$140,
+            [nix.POS]: pos$140,
             pname: "haskell-tools.nvim",
             version: "11.0.0-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$137,
+                [nix.POS]: pos$137,
                 url: "mirror://luarocks/haskell-tools.nvim-11.0.0-1.rockspec",
                 sha256: "0c3p3mijh2gs2cr4fhkkrwvch8b0mj6prqlw84abljpadc0km9xv",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$138,
+                [nix.POS]: pos$138,
                 url: "https://github.com/mrcjkb/haskell-tools.nvim/archive/refs/tags/v11.0.0.zip",
                 sha256: "10kfgg4vxsc9qda3nf1bsy0znv4vmvfpih1csfs8rb8jr2cmlv6k",
               })))),
             disabled: nix.thunk(() => !nix.eq(nix.sel(lua, "luaversion"), "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$139,
+              [nix.POS]: pos$139,
               homepage: "https://github.com/mrcjkb/haskell-tools.nvim",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2197,16 +2197,16 @@ export default nix.lambda((args) => (() => {
         const luaOlder = nix.arg($_1, "luaOlder");
         const luaossl = nix.arg($_1, "luaossl");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$144,
+            [nix.POS]: pos$144,
             pname: "http",
             version: "0.4-0",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$141,
+                [nix.POS]: pos$141,
                 url: "mirror://luarocks/http-0.4-0.rockspec",
                 sha256: "0kbf7ybjyj6408sdrmh1jb0ig5klfc8mqcwz6gv6rd6ywn47qifq",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$142,
+                [nix.POS]: pos$142,
                 url: "https://github.com/daurnimator/lua-http/archive/v0.4.zip",
                 sha256: "0252mc3mns1ni98hhcgnb3pmb53lk6nzr0jgqin0ggcavyxycqb2",
               })))),
@@ -2223,7 +2223,7 @@ export default nix.lambda((args) => (() => {
               luaossl,
             ]),
             meta: nix.thunk(() => ({
-              __proto__: pos$143,
+              [nix.POS]: pos$143,
               homepage: "https://github.com/daurnimator/lua-http",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2240,22 +2240,22 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$148,
+            [nix.POS]: pos$148,
             pname: "inspect",
             version: "3.1.3-0",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$145,
+                [nix.POS]: pos$145,
                 url: "mirror://luarocks/inspect-3.1.3-0.rockspec",
                 sha256: "1iivb2jmz0pacmac2msyqwvjjx8q6py4h959m8fkigia6srg5ins",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$146,
+                [nix.POS]: pos$146,
                 url: "https://github.com/kikito/inspect.lua/archive/v3.1.3.tar.gz",
                 sha256: "1sqylz5hmj5sbv4gi9988j6av3cb5lwkd7wiyim1h5lr7xhnlf23",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$147,
+              [nix.POS]: pos$147,
               homepage: "https://github.com/kikito/inspect.lua",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               description: "Lua table visualizer, ideal for debugging",
@@ -2270,16 +2270,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$152,
+            [nix.POS]: pos$152,
             pname: "jsregexp",
             version: "0.0.7-2",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$149,
+                [nix.POS]: pos$149,
                 url: "mirror://luarocks/jsregexp-0.0.7-2.rockspec",
                 sha256: "048gaxgm45hvqz8x2sp3bjii2fgimwafccnwvf92crlj3r6cys6k",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$150,
+                [nix.POS]: pos$150,
                 owner: "kmarius",
                 repo: "jsregexp",
                 tag: "v0.0.7",
@@ -2287,7 +2287,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$151,
+              [nix.POS]: pos$151,
               homepage: "https://github.com/kmarius/jsregexp",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               description: "javascript (ECMA19) regular expressions for lua",
@@ -2303,23 +2303,23 @@ export default nix.lambda((args) => (() => {
         const luaOlder = nix.arg($_1, "luaOlder");
         const tree_sitter_kulala_http = nix.arg($_1, "tree-sitter-kulala_http");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$156,
+            [nix.POS]: pos$156,
             pname: "kulala.nvim",
             version: "6.29.0-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$153,
+                [nix.POS]: pos$153,
                 url: "mirror://luarocks/kulala.nvim-6.29.0-1.rockspec",
                 sha256: "1igvjqq2qdy4cn2kpwcgwhzapfb4qfbz4np67w77mblzf2h6lqcd",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$154,
+                [nix.POS]: pos$154,
                 url: "https://github.com/mistweaverco/kulala.nvim/archive/v6.29.0.zip",
                 sha256: "0sndb8h2250x5mw9r1m5lf7i89nxkraj8v0a5g0z3b0ls6c6bqwf",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             propagatedBuildInputs: nix.thunk(() => [tree_sitter_kulala_http]),
             meta: nix.thunk(() => ({
-              __proto__: pos$155,
+              [nix.POS]: pos$155,
               homepage: "https://kulala.app",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               description: "A fully-featured 🤏 HTTP/GraphQL/gRPC/Websocket-client 🐼 interface 🖥️ for Neovim ❤️, that supports the Jetbrains .http spec (with full scripting support).",
@@ -2334,16 +2334,16 @@ export default nix.lambda((args) => (() => {
         const luaAtLeast = nix.arg($_1, "luaAtLeast");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$160,
+            [nix.POS]: pos$160,
             pname: "ldbus",
             version: "scm-0",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$157,
+                [nix.POS]: pos$157,
                 url: "mirror://luarocks/ldbus-scm-0.rockspec",
                 sha256: "1c0h6fx7avzh89hl17v6simy1p4mjg8bimlsbjybks0zxznd8rbm",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$158,
+                [nix.POS]: pos$158,
                 owner: "daurnimator",
                 repo: "ldbus",
                 rev: "5cc933bfad2b73674bc005ebcce771555a614792",
@@ -2351,7 +2351,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => (nix.asBool(nix.app(luaOlder, "5.1")) || nix.asBool(nix.app(luaAtLeast, "5.5")))),
             meta: nix.thunk(() => ({
-              __proto__: pos$159,
+              [nix.POS]: pos$159,
               homepage: "https://github.com/daurnimator/ldbus",
               license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "AND"), nix.thunk(() => [
                   nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -2369,16 +2369,16 @@ export default nix.lambda((args) => (() => {
         const markdown = nix.arg($_1, "markdown");
         const penlight = nix.arg($_1, "penlight");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$164,
+            [nix.POS]: pos$164,
             pname: "ldoc",
             version: "1.5.0-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$161,
+                [nix.POS]: pos$161,
                 url: "mirror://luarocks/ldoc-1.5.0-1.rockspec",
                 sha256: "1c0yx9j3yqlzxpmspz7n7l1nvh2sww84zhkb1fsbg042sr8h9bxp",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$162,
+                [nix.POS]: pos$162,
                 owner: "lunarmodules",
                 repo: "ldoc",
                 tag: "v1.5.0",
@@ -2386,7 +2386,7 @@ export default nix.lambda((args) => (() => {
               })))),
             propagatedBuildInputs: nix.thunk(() => [markdown, penlight]),
             meta: nix.thunk(() => ({
-              __proto__: pos$163,
+              [nix.POS]: pos$163,
               homepage: "http://lunarmodules.github.io/ldoc",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2405,16 +2405,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$168,
+            [nix.POS]: pos$168,
             pname: "lgi",
             version: "0.9.2-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$165,
+                [nix.POS]: pos$165,
                 url: "mirror://luarocks/lgi-0.9.2-1.rockspec",
                 sha256: "1gqi07m4bs7xibsy4vx8qgyp3yb1wnh0gdq1cpwqzv35y6hn5ds3",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$166,
+                [nix.POS]: pos$166,
                 owner: "pavouk",
                 repo: "lgi",
                 tag: "0.9.2",
@@ -2422,7 +2422,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$167,
+              [nix.POS]: pos$167,
               homepage: "http://github.com/pavouk/lgi",
               license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "AND"), nix.thunk(() => [
                   nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -2439,17 +2439,17 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$171,
+            [nix.POS]: pos$171,
             pname: "linenoise",
             version: "0.9-1",
             src: nix.thunk(() => nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$169,
+                [nix.POS]: pos$169,
                 url: "https://github.com/hoelzro/lua-linenoise/archive/0.9.tar.gz",
                 sha256: "177h6gbq89arwiwxah9943i8hl5gvd9wivnd1nhmdl7d8x0dn76c",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$170,
+              [nix.POS]: pos$170,
               homepage: "https://github.com/hoelzro/lua-linenoise",
               license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "AND"), nix.thunk(() => [
                   nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -2465,22 +2465,22 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const lua = nix.arg($_1, "lua");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$175,
+            [nix.POS]: pos$175,
             pname: "ljsyscall",
             version: "0.12-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$172,
+                [nix.POS]: pos$172,
                 url: "mirror://luarocks/ljsyscall-0.12-1.rockspec",
                 sha256: "0zna5s852vn7q414z56kkyqwpighaghyq7h7in3myap4d9vcgm01",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$173,
+                [nix.POS]: pos$173,
                 url: "https://github.com/justincormack/ljsyscall/archive/v0.12.tar.gz",
                 sha256: "1w9g36nhxv92cypjia7igg1xpfrn3dbs3hfy6gnnz5mx14v50abf",
               })))),
             disabled: nix.thunk(() => !nix.eq(nix.sel(lua, "luaversion"), "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$174,
+              [nix.POS]: pos$174,
               homepage: "http://www.myriabit.com/ljsyscall/",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2503,16 +2503,16 @@ export default nix.lambda((args) => (() => {
         const luafilesystem = nix.arg($_1, "luafilesystem");
         const penlight = nix.arg($_1, "penlight");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$179,
+            [nix.POS]: pos$179,
             pname: "llscheck",
             version: "0.8.0-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$176,
+                [nix.POS]: pos$176,
                 url: "mirror://luarocks/llscheck-0.8.0-1.rockspec",
                 sha256: "15x22g2l5sih07yrcrapmcmmanrpq0ljdm34y928p8p6hg1034ab",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$177,
+                [nix.POS]: pos$177,
                 owner: "jeffzi",
                 repo: "llscheck",
                 tag: "v0.8.0",
@@ -2521,7 +2521,7 @@ export default nix.lambda((args) => (() => {
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             propagatedBuildInputs: nix.thunk(() => [ansicolors, argparse, lua_cjson, luafilesystem, penlight]),
             meta: nix.thunk(() => ({
-              __proto__: pos$178,
+              [nix.POS]: pos$178,
               homepage: "https://github.com/jeffzi/llscheck",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2538,21 +2538,21 @@ export default nix.lambda((args) => (() => {
         const buildLuarocksPackage = nix.arg($_1, "buildLuarocksPackage");
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$183,
+            [nix.POS]: pos$183,
             pname: "lmathx",
             version: "20150624-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$180,
+                [nix.POS]: pos$180,
                 url: "mirror://luarocks/lmathx-20150624-1.rockspec",
                 sha256: "181wzsj1mxjyia43y8zwaydxahnl7a70qzcgc8jhhgic7jyi9pgv",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$181,
+                [nix.POS]: pos$181,
                 url: "http://www.tecgraf.puc-rio.br/~lhf/ftp/lua/5.3/lmathx.tar.gz",
                 sha256: "1r0ax3lq4xx6469aqc6qlfl3jynlghzhl5j65mpdj0kyzv4nknzf",
               })))),
             meta: nix.thunk(() => ({
-              __proto__: pos$182,
+              [nix.POS]: pos$182,
               homepage: "http://www.tecgraf.puc-rio.br/~lhf/ftp/lua/#lmathx",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2571,22 +2571,22 @@ export default nix.lambda((args) => (() => {
         const luaAtLeast = nix.arg($_1, "luaAtLeast");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$187,
+            [nix.POS]: pos$187,
             pname: "lmpfrlib",
             version: "20170112-2",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$184,
+                [nix.POS]: pos$184,
                 url: "mirror://luarocks/lmpfrlib-20170112-2.rockspec",
                 sha256: "1x7qiwmk5b9fi87fn7yvivdsis8h9fk9r3ipqiry5ahx72vzdm7d",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$185,
+                [nix.POS]: pos$185,
                 url: "http://www.circuitwizard.de/lmpfrlib/lmpfrlib.c",
                 sha256: "1bkfwdacj1drzqsfxf352fjppqqwi5d4j084jr9vj9dvjb31rbc1",
               })))),
             disabled: nix.thunk(() => (nix.asBool(nix.app(luaOlder, "5.3")) || nix.asBool(nix.app(luaAtLeast, "5.5")))),
             meta: nix.thunk(() => ({
-              __proto__: pos$186,
+              [nix.POS]: pos$186,
               homepage: "http://www.circuitwizard.de/lmpfrlib/lmpfrlib.html",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2605,16 +2605,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$191,
+            [nix.POS]: pos$191,
             pname: "loadkit",
             version: "1.1.0-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$188,
+                [nix.POS]: pos$188,
                 url: "mirror://luarocks/loadkit-1.1.0-1.rockspec",
                 sha256: "08fx0xh90r2zvjlfjkyrnw2p95xk1a0qgvlnq4siwdb2mm6fq12l",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$189,
+                [nix.POS]: pos$189,
                 owner: "leafo",
                 repo: "loadkit",
                 tag: "v1.1.0",
@@ -2622,7 +2622,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$190,
+              [nix.POS]: pos$190,
               homepage: "https://github.com/leafo/loadkit",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2640,22 +2640,22 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$195,
+            [nix.POS]: pos$195,
             pname: "lpeg",
             version: "1.1.0-2",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$192,
+                [nix.POS]: pos$192,
                 url: "mirror://luarocks/lpeg-1.1.0-2.rockspec",
                 sha256: "0g8bnsx1qkl8s1fglbdai9mznzyzf9mv5lcxjab47069b3d8caa4",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$193,
+                [nix.POS]: pos$193,
                 url: "https://www.inf.puc-rio.br/~roberto/lpeg/lpeg-1.1.0.tar.gz",
                 sha256: "0aimsjpcpkh3kk65f0pg1z2bp6d83rn4dg6pgbx1yv14s9kms5ab",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$194,
+              [nix.POS]: pos$194,
               homepage: "https://www.inf.puc-rio.br/~roberto/lpeg.html",
               license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "AND"), nix.thunk(() => [
                   nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -2673,22 +2673,22 @@ export default nix.lambda((args) => (() => {
         const fetchzip = nix.arg($_1, "fetchzip");
         const lpeg = nix.arg($_1, "lpeg");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$199,
+            [nix.POS]: pos$199,
             pname: "lpeg_patterns",
             version: "0.5-0",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$196,
+                [nix.POS]: pos$196,
                 url: "mirror://luarocks/lpeg_patterns-0.5-0.rockspec",
                 sha256: "1vzl3ryryc624mchclzsfl3hsrprb9q214zbi1xsjcc4ckq5qfh7",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$197,
+                [nix.POS]: pos$197,
                 url: "https://github.com/daurnimator/lpeg_patterns/archive/v0.5.zip",
                 sha256: "1s3c179a64r45ffkawv9dnxw4mzwkzj00nr9z2gs5haajgpjivw6",
               })))),
             propagatedBuildInputs: nix.thunk(() => [lpeg]),
             meta: nix.thunk(() => ({
-              __proto__: pos$198,
+              [nix.POS]: pos$198,
               homepage: "https://github.com/daurnimator/lpeg_patterns/archive/v0.5.zip",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               description: "a collection of LPEG patterns",
@@ -2701,22 +2701,22 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$203,
+            [nix.POS]: pos$203,
             pname: "lpeglabel",
             version: "1.6.0-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$200,
+                [nix.POS]: pos$200,
                 url: "mirror://luarocks/lpeglabel-1.6.0-1.rockspec",
                 sha256: "13gc32pggng6f95xx5zw9n9ian518wlgb26mna9kh4q2xa1k42pm",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$201,
+                [nix.POS]: pos$201,
                 url: "https://github.com/sqmedeiros/lpeglabel/archive/v1.6.0-1.tar.gz",
                 sha256: "1i02lsxj20iygqm8fy6dih1gh21lqk5qj1mv14wlrkaywnv35wcv",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$202,
+              [nix.POS]: pos$202,
               homepage: "https://github.com/sqmedeiros/lpeglabel/",
               license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "AND"), nix.thunk(() => [
                   nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -2734,16 +2734,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$207,
+            [nix.POS]: pos$207,
             pname: "lrexlib-gnu",
             version: "2.9.4-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$204,
+                [nix.POS]: pos$204,
                 url: "mirror://luarocks/lrexlib-gnu-2.9.4-1.rockspec",
                 sha256: "0dwr8hdisfd9sapnqqwqwyl6817qh9q18y7zvmfsw8wsff59r10q",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$205,
+                [nix.POS]: pos$205,
                 owner: "rrthomas",
                 repo: "lrexlib",
                 tag: "rel-2-9-4",
@@ -2751,7 +2751,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$206,
+              [nix.POS]: pos$206,
               homepage: "https://github.com/rrthomas/lrexlib",
               license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "AND"), nix.thunk(() => [
                   nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -2769,16 +2769,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$211,
+            [nix.POS]: pos$211,
             pname: "lrexlib-oniguruma",
             version: "2.9.4-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$208,
+                [nix.POS]: pos$208,
                 url: "mirror://luarocks/lrexlib-oniguruma-2.9.4-1.rockspec",
                 sha256: "1f8ng10hw7pz9fgv3kh9a64gz6xrsmgh30ks5b2m8nzfvpf3m7q9",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$209,
+                [nix.POS]: pos$209,
                 owner: "rrthomas",
                 repo: "lrexlib",
                 tag: "rel-2-9-4",
@@ -2786,7 +2786,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$210,
+              [nix.POS]: pos$210,
               homepage: "https://github.com/rrthomas/lrexlib",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2808,16 +2808,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$215,
+            [nix.POS]: pos$215,
             pname: "lrexlib-pcre2",
             version: "2.9.4-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$212,
+                [nix.POS]: pos$212,
                 url: "mirror://luarocks/lrexlib-pcre2-2.9.4-1.rockspec",
                 sha256: "0svmjhq1jfsfaazzx8zrm6qbiy6blk0zvmlr5g00sj3hvn46a5c5",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$213,
+                [nix.POS]: pos$213,
                 owner: "rrthomas",
                 repo: "lrexlib",
                 tag: "rel-2-9-4",
@@ -2825,7 +2825,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$214,
+              [nix.POS]: pos$214,
               homepage: "https://github.com/rrthomas/lrexlib",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2847,16 +2847,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$219,
+            [nix.POS]: pos$219,
             pname: "lrexlib-posix",
             version: "2.9.4-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$216,
+                [nix.POS]: pos$216,
                 url: "mirror://luarocks/lrexlib-posix-2.9.4-1.rockspec",
                 sha256: "1qfp00hhmf1ra0b0zpmf6bz770fcg41rjpa5hkl99fy9yh5x1b04",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$217,
+                [nix.POS]: pos$217,
                 owner: "rrthomas",
                 repo: "lrexlib",
                 tag: "rel-2-9-4",
@@ -2864,7 +2864,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$218,
+              [nix.POS]: pos$218,
               homepage: "https://github.com/rrthomas/lrexlib",
               license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "AND"), nix.thunk(() => [
                   nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -2882,22 +2882,22 @@ export default nix.lambda((args) => (() => {
         const fetchzip = nix.arg($_1, "fetchzip");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$223,
+            [nix.POS]: pos$223,
             pname: "lsp-progress.nvim",
             version: "2.0.0-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$220,
+                [nix.POS]: pos$220,
                 url: "mirror://luarocks/lsp-progress.nvim-2.0.0-1.rockspec",
                 sha256: "0ik0nambf3q76icmlcap3py30g84g1lpyysdd0f250g3gsyb993z",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$221,
+                [nix.POS]: pos$221,
                 url: "https://github.com/linrongbin16/lsp-progress.nvim/archive/f6d5af10563b895ff846346f57cbd4451439f4c1.zip",
                 sha256: "0jrxlk1q6r687dnq958r7s5x4djl6qcm139s8za998m8sgda397a",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$222,
+              [nix.POS]: pos$222,
               homepage: "https://linrongbin16.github.io/lsp-progress.nvim/",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2916,22 +2916,22 @@ export default nix.lambda((args) => (() => {
         const luaAtLeast = nix.arg($_1, "luaAtLeast");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$227,
+            [nix.POS]: pos$227,
             pname: "lsqlite3",
             version: "0.9.7-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$224,
+                [nix.POS]: pos$224,
                 url: "mirror://luarocks/lsqlite3-0.9.7-1.rockspec",
                 sha256: "0jzsazr3gjay24vvdwswr9zfv7qn4fkh7s428y240qkndfdr7h2p",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$225,
+                [nix.POS]: pos$225,
                 url: "https://lua.sqlite.org/home/zip/lsqlite3_v097.zip?uuid=v0.9.7",
                 sha256: "08h1hn9i8adm154y5747w1bgxyj3agwk0sfvpdk3l3zd5aa35b9j",
               })))),
             disabled: nix.thunk(() => (nix.asBool(nix.app(luaOlder, "5.1")) || nix.asBool(nix.app(luaAtLeast, "5.6")))),
             meta: nix.thunk(() => ({
-              __proto__: pos$226,
+              [nix.POS]: pos$226,
               homepage: "https://lua.sqlite.org/",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               description: "A binding for Lua to the SQLite3 database library",
@@ -2945,23 +2945,23 @@ export default nix.lambda((args) => (() => {
         const fetchFromGitHub = nix.arg($_1, "fetchFromGitHub");
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$231,
+            [nix.POS]: pos$231,
             pname: "ltreesitter",
             version: "0.3.0-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$228,
+                [nix.POS]: pos$228,
                 url: "mirror://luarocks/ltreesitter-0.3.0-1.rockspec",
                 sha256: "1vb8jbdl36syqmd4sjqswsqy42rq59kchxk4sx0ns9va4c0kim4v",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$229,
+                [nix.POS]: pos$229,
                 owner: "euclidianAce",
                 repo: "ltreesitter",
                 tag: "v0.3.0",
                 hash: "sha256-tiNcc/1hnY8GWgpdlBfOTA7400916tqiAXeXJLfgtNE=",
               })))),
             meta: nix.thunk(() => ({
-              __proto__: pos$230,
+              [nix.POS]: pos$230,
               homepage: "https://github.com/euclidianAce/ltreesitter",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               description: "Treesitter bindings to Lua",
@@ -2975,23 +2975,23 @@ export default nix.lambda((args) => (() => {
         const fetchFromGitHub = nix.arg($_1, "fetchFromGitHub");
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$235,
+            [nix.POS]: pos$235,
             pname: "ltreesitter-ts",
             version: "0.0.1-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$232,
+                [nix.POS]: pos$232,
                 url: "mirror://luarocks/ltreesitter-ts-0.0.1-1.rockspec",
                 sha256: "064nn3h6wi8z5ply35ig78jjkpy527nc5qxisbkvv8s3s345h82r",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$233,
+                [nix.POS]: pos$233,
                 owner: "FourierTransformer",
                 repo: "ltreesitter-ts",
                 tag: "0.0.1",
                 hash: "sha256-HFBOYFadw+lwQYk39vrFtAn/HGjfXzCxjN1RLBp4yKA=",
               })))),
             meta: nix.thunk(() => ({
-              __proto__: pos$234,
+              [nix.POS]: pos$234,
               homepage: "https://github.com/FourierTransformer/ltreesitter-ts",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               description: "Treesitter parsing library bindings for Lua",
@@ -3006,16 +3006,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$239,
+            [nix.POS]: pos$239,
             pname: "lua-cjson",
             version: "2.1.0.10-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$236,
+                [nix.POS]: pos$236,
                 url: "mirror://luarocks/lua-cjson-2.1.0.10-1.rockspec",
                 sha256: "05sp7rq72x4kdkyid1ch0yyscwsi5wk85d2hj6xwssz3h8n8drdg",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$237,
+                [nix.POS]: pos$237,
                 owner: "openresty",
                 repo: "lua-cjson",
                 tag: "2.1.0.10",
@@ -3023,7 +3023,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$238,
+              [nix.POS]: pos$238,
               homepage: "http://www.kyne.com.au/~mark/software/lua-cjson.php",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               description: "A fast JSON encoding/parsing module",
@@ -3038,16 +3038,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$243,
+            [nix.POS]: pos$243,
             pname: "lua-cmsgpack",
             version: "0.4.0-0",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$240,
+                [nix.POS]: pos$240,
                 url: "mirror://luarocks/lua-cmsgpack-0.4.0-0.rockspec",
                 sha256: "10cvr6knx3qvjcw1q9v05f2qy607mai7lbq321nx682aa0n1fzin",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$241,
+                [nix.POS]: pos$241,
                 owner: "antirez",
                 repo: "lua-cmsgpack",
                 tag: "0.4.0",
@@ -3055,7 +3055,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$242,
+              [nix.POS]: pos$242,
               homepage: "http://github.com/antirez/lua-cmsgpack",
               license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
               description: "MessagePack C implementation and bindings for Lua 5.1/5.2/5.3",
@@ -3070,22 +3070,22 @@ export default nix.lambda((args) => (() => {
         const luaAtLeast = nix.arg($_1, "luaAtLeast");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$247,
+            [nix.POS]: pos$247,
             pname: "lua-curl",
             version: "0.3.13-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$244,
+                [nix.POS]: pos$244,
                 url: "mirror://luarocks/lua-curl-0.3.13-1.rockspec",
                 sha256: "0lz534sm35hxazf1w71hagiyfplhsvzr94i6qyv5chjfabrgbhjn",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$245,
+                [nix.POS]: pos$245,
                 url: "https://github.com/Lua-cURL/Lua-cURLv3/archive/v0.3.13.zip",
                 sha256: "0gn59bwrnb2mvl8i0ycr6m3jmlgx86xlr9mwnc85zfhj7zhi5anp",
               })))),
             disabled: nix.thunk(() => (nix.asBool(nix.app(luaOlder, "5.1")) || nix.asBool(nix.app(luaAtLeast, "5.5")))),
             meta: nix.thunk(() => ({
-              __proto__: pos$246,
+              [nix.POS]: pos$246,
               homepage: "https://github.com/Lua-cURL",
               license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "AND"), nix.thunk(() => [
                   nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -3103,16 +3103,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$251,
+            [nix.POS]: pos$251,
             pname: "lua-ffi-zlib",
             version: "0.6-0",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$248,
+                [nix.POS]: pos$248,
                 url: "mirror://luarocks/lua-ffi-zlib-0.6-0.rockspec",
                 sha256: "060sac715f1ris13fjv6gwqm0lk6by0a2zhldxd8hdrc0jss8p34",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$249,
+                [nix.POS]: pos$249,
                 owner: "hamishforbes",
                 repo: "lua-ffi-zlib",
                 tag: "v0.6",
@@ -3120,7 +3120,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$250,
+              [nix.POS]: pos$250,
               homepage: "https://github.com/hamishforbes/lua-ffi-zlib",
               description: "A Lua module using LuaJIT's FFI feature to access zlib.",
             })),
@@ -3132,22 +3132,22 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$255,
+            [nix.POS]: pos$255,
             pname: "lua-iconv",
             version: "7.0.0-4",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$252,
+                [nix.POS]: pos$252,
                 url: "mirror://luarocks/lua-iconv-7.0.0-4.rockspec",
                 sha256: "0j34zf98wdr6ks6snsrqi00vwm3ngsa5f74kadsn178iw7hd8c3q",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$253,
+                [nix.POS]: pos$253,
                 url: "https://github.com/lunarmodules/lua-iconv/archive/v7.0.0/lua-iconv-7.0.0.tar.gz",
                 sha256: "0arp0h342hpp4kfdxc69yxspziky4v7c13jbf12yrs8f1lnjzr0x",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$254,
+              [nix.POS]: pos$254,
               homepage: "https://github.com/lunarmodules/lua-iconv/",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3173,16 +3173,16 @@ export default nix.lambda((args) => (() => {
         const luaAtLeast = nix.arg($_1, "luaAtLeast");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$259,
+            [nix.POS]: pos$259,
             pname: "lua-lsp",
             version: "0.1.0-2",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$256,
+                [nix.POS]: pos$256,
                 url: "mirror://luarocks/lua-lsp-0.1.0-2.rockspec",
                 sha256: "19jsz00qlgbyims6cg8i40la7v8kr7zsxrrr3dg0kdg0i36xqs6c",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$257,
+                [nix.POS]: pos$257,
                 owner: "Alloyed",
                 repo: "lua-lsp",
                 tag: "v0.1.0",
@@ -3191,7 +3191,7 @@ export default nix.lambda((args) => (() => {
             disabled: nix.thunk(() => (nix.asBool(nix.app(luaOlder, "5.1")) || nix.asBool(nix.app(luaAtLeast, "5.4")))),
             propagatedBuildInputs: nix.thunk(() => [dkjson, inspect, lpeglabel]),
             meta: nix.thunk(() => ({
-              __proto__: pos$258,
+              [nix.POS]: pos$258,
               homepage: "https://github.com/Alloyed/lua-lsp",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               description: "A Language Server implementation for lua, the language",
@@ -3205,22 +3205,22 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$263,
+            [nix.POS]: pos$263,
             pname: "lua-messagepack",
             version: "0.5.4-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$260,
+                [nix.POS]: pos$260,
                 url: "mirror://luarocks/lua-messagepack-0.5.4-1.rockspec",
                 sha256: "1jygn6f8ab69z0nn1gib45wvjp075gzxp54vdmgxb3qfar0q70kr",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$261,
+                [nix.POS]: pos$261,
                 url: "https://framagit.org/fperrad/lua-MessagePack/raw/releases/lua-messagepack-0.5.4.tar.gz",
                 sha256: "0kk1n9kf6wip8k2xx4wjlv7647biji2p86v4jf0h6d6wkaypq0kz",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$262,
+              [nix.POS]: pos$262,
               homepage: "https://fperrad.frama.io/lua-MessagePack/",
               license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "AND"), nix.thunk(() => [
                   nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -3238,16 +3238,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$267,
+            [nix.POS]: pos$267,
             pname: "lua-protobuf",
             version: "0.5.3-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$264,
+                [nix.POS]: pos$264,
                 url: "mirror://luarocks/lua-protobuf-0.5.3-1.rockspec",
                 sha256: "0jz3yxdf9n1zfnkywqjghn6nlfvkkv9li003kkzh7z0wzidqaljh",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$265,
+                [nix.POS]: pos$265,
                 owner: "starwing",
                 repo: "lua-protobuf",
                 tag: "0.5.3",
@@ -3255,7 +3255,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$266,
+              [nix.POS]: pos$266,
               homepage: "https://github.com/starwing/lua-protobuf",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3274,16 +3274,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$271,
+            [nix.POS]: pos$271,
             pname: "lua-resty-http",
             version: "0.18.0-0",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$268,
+                [nix.POS]: pos$268,
                 url: "mirror://luarocks/lua-resty-http-0.18.0-0.rockspec",
                 sha256: "1zdhf22zbkb61k8vpkzmd33mn6nhl53splklv2aaj40066hlbhzs",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$269,
+                [nix.POS]: pos$269,
                 owner: "ledgetech",
                 repo: "lua-resty-http",
                 tag: "v0.18.0",
@@ -3291,7 +3291,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$270,
+              [nix.POS]: pos$270,
               homepage: "https://github.com/ledgetech/lua-resty-http",
               license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
               description: "Lua HTTP client cosocket driver for OpenResty / ngx_lua.",
@@ -3306,16 +3306,16 @@ export default nix.lambda((args) => (() => {
         const lua_resty_openssl = nix.arg($_1, "lua-resty-openssl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$275,
+            [nix.POS]: pos$275,
             pname: "lua-resty-jwt",
             version: "0.3.2-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$272,
+                [nix.POS]: pos$272,
                 url: "mirror://luarocks/lua-resty-jwt-0.3.2-1.rockspec",
                 sha256: "0r870630jzpdr41gyc1myn6zn1qpid4whx2abn0v8qaqyg0j825y",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$273,
+                [nix.POS]: pos$273,
                 owner: "cdbattags",
                 repo: "lua-resty-jwt",
                 rev: "3973e402d835631de292c6e4cca52e728f02c24a",
@@ -3324,7 +3324,7 @@ export default nix.lambda((args) => (() => {
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             propagatedBuildInputs: nix.thunk(() => [lua_resty_openssl]),
             meta: nix.thunk(() => ({
-              __proto__: pos$274,
+              [nix.POS]: pos$274,
               homepage: "https://github.com/cdbattags/lua-resty-jwt",
               license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
               description: "JWT for ngx_lua and LuaJIT.",
@@ -3343,16 +3343,16 @@ export default nix.lambda((args) => (() => {
         const lua_resty_session = nix.arg($_1, "lua-resty-session");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$279,
+            [nix.POS]: pos$279,
             pname: "lua-resty-openidc",
             version: "1.9.1-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$276,
+                [nix.POS]: pos$276,
                 url: "mirror://luarocks/lua-resty-openidc-1.9.1-1.rockspec",
                 sha256: "1irh9c1v10yx0zdxplbypy2zv2717mh5j2qxsdv5hvwvrp3h2rf4",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$277,
+                [nix.POS]: pos$277,
                 owner: "zmartzone",
                 repo: "lua-resty-openidc",
                 tag: "v1.9.1",
@@ -3361,7 +3361,7 @@ export default nix.lambda((args) => (() => {
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             propagatedBuildInputs: nix.thunk(() => [lua_resty_http, lua_resty_jwt, lua_resty_openssl, lua_resty_session]),
             meta: nix.thunk(() => ({
-              __proto__: pos$278,
+              [nix.POS]: pos$278,
               homepage: "https://github.com/zmartzone/lua-resty-openidc",
               license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
               description: "A library for NGINX implementing the OpenID Connect Relying Party (RP) and the OAuth 2.0 Resource Server (RS) functionality",
@@ -3375,23 +3375,23 @@ export default nix.lambda((args) => (() => {
         const fetchFromGitHub = nix.arg($_1, "fetchFromGitHub");
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$283,
+            [nix.POS]: pos$283,
             pname: "lua-resty-openssl",
             version: "1.9.0-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$280,
+                [nix.POS]: pos$280,
                 url: "mirror://luarocks/lua-resty-openssl-1.9.0-1.rockspec",
                 sha256: "0sjxc1h1ys148h6al6jrh40yj0si68a8hka1y7616i5ljm9kbwya",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$281,
+                [nix.POS]: pos$281,
                 owner: "fffonion",
                 repo: "lua-resty-openssl",
                 tag: "1.9.0",
                 hash: "sha256-zMJw0lHbiPaTRh4zMw6Hwo5EMEwznQtTWEUfCaNy+lk=",
               })))),
             meta: nix.thunk(() => ({
-              __proto__: pos$282,
+              [nix.POS]: pos$282,
               homepage: "https://github.com/fffonion/lua-resty-openssl",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
               description: "No summary",
@@ -3408,16 +3408,16 @@ export default nix.lambda((args) => (() => {
         const lua_resty_openssl = nix.arg($_1, "lua-resty-openssl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$287,
+            [nix.POS]: pos$287,
             pname: "lua-resty-session",
             version: "4.2.0-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$284,
+                [nix.POS]: pos$284,
                 url: "mirror://luarocks/lua-resty-session-4.2.0-1.rockspec",
                 sha256: "1xps6j9ddz4xqminhl56s3gvx2nbbnc9k3bzhjpkz4x6f39ciabf",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$285,
+                [nix.POS]: pos$285,
                 owner: "bungle",
                 repo: "lua-resty-session",
                 tag: "v4.2.0",
@@ -3426,7 +3426,7 @@ export default nix.lambda((args) => (() => {
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             propagatedBuildInputs: nix.thunk(() => [lua_ffi_zlib, lua_resty_openssl]),
             meta: nix.thunk(() => ({
-              __proto__: pos$286,
+              [nix.POS]: pos$286,
               homepage: "https://github.com/bungle/lua-resty-session",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
               description: "Session Library for OpenResty - Flexible and Secure",
@@ -3441,11 +3441,11 @@ export default nix.lambda((args) => (() => {
         const luaOlder = nix.arg($_1, "luaOlder");
         const luarocks_build_rust_mlua = nix.arg($_1, "luarocks-build-rust-mlua");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$290,
+            [nix.POS]: pos$290,
             pname: "lua-rtoml",
             version: "0.3-0",
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$288,
+                [nix.POS]: pos$288,
                 owner: "lblasc",
                 repo: "lua-rtoml",
                 rev: "aedc4030912e1c86a1490428dc547f35a1a99be6",
@@ -3455,7 +3455,7 @@ export default nix.lambda((args) => (() => {
             nativeBuildInputs: nix.thunk(() => [luarocks_build_rust_mlua]),
             propagatedBuildInputs: nix.thunk(() => [luarocks_build_rust_mlua]),
             meta: nix.thunk(() => ({
-              __proto__: pos$289,
+              [nix.POS]: pos$289,
               homepage: "https://github.com/lblasc/lua-rtoml",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3472,11 +3472,11 @@ export default nix.lambda((args) => (() => {
         const fetchFromGitHub = nix.arg($_1, "fetchFromGitHub");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$293,
+            [nix.POS]: pos$293,
             pname: "subprocess",
             version: "scm-1",
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$291,
+                [nix.POS]: pos$291,
                 owner: "0x0ade",
                 repo: "lua-subprocess",
                 rev: "bfa8e97da774141f301cfd1106dca53a30a4de54",
@@ -3484,7 +3484,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$292,
+              [nix.POS]: pos$292,
               homepage: "https://github.com/xlq/lua-subprocess",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3501,21 +3501,21 @@ export default nix.lambda((args) => (() => {
         const buildLuarocksPackage = nix.arg($_1, "buildLuarocksPackage");
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$297,
+            [nix.POS]: pos$297,
             pname: "lua-term",
             version: "0.8-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$294,
+                [nix.POS]: pos$294,
                 url: "mirror://luarocks/lua-term-0.8-1.rockspec",
                 sha256: "1728lj3x8shc5m1yczrl75szq15rnfpzk36n0m49181ly9wxn7s0",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$295,
+                [nix.POS]: pos$295,
                 url: "https://github.com/hoelzro/lua-term/archive/0.08.tar.gz",
                 sha256: "1vfdg5dzqdi3gn6wpc9a3djhsl6fn2ikqdwr8rrqrnd91qwlzycg",
               })))),
             meta: nix.thunk(() => ({
-              __proto__: pos$296,
+              [nix.POS]: pos$296,
               homepage: "https://github.com/hoelzro/lua-term",
               license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "AND"), nix.thunk(() => [
                   nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -3532,16 +3532,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$301,
+            [nix.POS]: pos$301,
             pname: "lua-toml",
             version: "2.0-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$298,
+                [nix.POS]: pos$298,
                 url: "mirror://luarocks/lua-toml-2.0-1.rockspec",
                 sha256: "0zd3hrj1ifq89rjby3yn9y96vk20ablljvqdap981navzlbb7zvq",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$299,
+                [nix.POS]: pos$299,
                 owner: "jonstoler",
                 repo: "lua-toml",
                 tag: "v2.0.1",
@@ -3549,7 +3549,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$300,
+              [nix.POS]: pos$300,
               homepage: "https://github.com/jonstoler/lua-toml",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               description: "toml decoder/encoder for Lua",
@@ -3564,22 +3564,22 @@ export default nix.lambda((args) => (() => {
         const fetchzip = nix.arg($_1, "fetchzip");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$305,
+            [nix.POS]: pos$305,
             pname: "lua-utils.nvim",
             version: "1.0.2-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$302,
+                [nix.POS]: pos$302,
                 url: "mirror://luarocks/lua-utils.nvim-1.0.2-1.rockspec",
                 sha256: "0s11j4vd26haz72rb0c5m5h953292rh8r62mvlxbss6i69v2dkr9",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$303,
+                [nix.POS]: pos$303,
                 url: "https://github.com/nvim-neorg/lua-utils.nvim/archive/v1.0.2.zip",
                 sha256: "0bnl2kvxs55l8cjhfpa834bm010n8r4gmsmivjcp548c076msagn",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$304,
+              [nix.POS]: pos$304,
               homepage: "https://github.com/nvim-neorg/lua-utils.nvim",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3598,16 +3598,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$309,
+            [nix.POS]: pos$309,
             pname: "lua-yajl",
             version: "2.1-0",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$306,
+                [nix.POS]: pos$306,
                 url: "mirror://luarocks/lua-yajl-2.1-0.rockspec",
                 sha256: "02jlgd4583p3q4w6hjgmdfkasxhamaj58byyrbmnch0qii61in9r",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$307,
+                [nix.POS]: pos$307,
                 owner: "brimworks",
                 repo: "lua-yajl",
                 tag: "v2.1",
@@ -3615,7 +3615,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$308,
+              [nix.POS]: pos$308,
               homepage: "http://github.com/brimworks/lua-yajl",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3636,16 +3636,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$313,
+            [nix.POS]: pos$313,
             pname: "lua-zlib",
             version: "1.4-0",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$310,
+                [nix.POS]: pos$310,
                 url: "mirror://luarocks/lua-zlib-1.4-0.rockspec",
                 sha256: "1cfxph2cski4nn7vnqcpywm89lcf8vwnvykdva53ck3b3dmsj204",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$311,
+                [nix.POS]: pos$311,
                 owner: "brimworks",
                 repo: "lua-zlib",
                 tag: "v1.4",
@@ -3653,7 +3653,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$312,
+              [nix.POS]: pos$312,
               homepage: "https://github.com/brimworks/lua-zlib",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3672,16 +3672,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$317,
+            [nix.POS]: pos$317,
             pname: "lua_cliargs",
             version: "3.0.2-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$314,
+                [nix.POS]: pos$314,
                 url: "mirror://luarocks/lua_cliargs-3.0.2-1.rockspec",
                 sha256: "1gp3n9ipaqdk59ilqx1ci5faxmx4dh9sgg3279jb8yfa7wg5b8pf",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$315,
+                [nix.POS]: pos$315,
                 owner: "lunarmodules",
                 repo: "lua_cliargs",
                 tag: "v3.0.2",
@@ -3689,7 +3689,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$316,
+              [nix.POS]: pos$316,
               homepage: "https://github.com/lunarmodules/lua_cliargs.git",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3708,11 +3708,11 @@ export default nix.lambda((args) => (() => {
         const luaAtLeast = nix.arg($_1, "luaAtLeast");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$320,
+            [nix.POS]: pos$320,
             pname: "luabitop",
             version: "1.0.2-3",
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$318,
+                [nix.POS]: pos$318,
                 owner: "teto",
                 repo: "luabitop",
                 rev: "96f0a3d73ae5183d0a81bc2f29326eaa06becbfd",
@@ -3720,7 +3720,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => (nix.asBool(nix.app(luaOlder, "5.1")) || nix.asBool(nix.app(luaAtLeast, "5.3")))),
             meta: nix.thunk(() => ({
-              __proto__: pos$319,
+              [nix.POS]: pos$319,
               homepage: "http://bitop.luajit.org/",
               license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "AND"), nix.thunk(() => [
                   nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -3740,16 +3740,16 @@ export default nix.lambda((args) => (() => {
         const luaOlder = nix.arg($_1, "luaOlder");
         const luafilesystem = nix.arg($_1, "luafilesystem");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$324,
+            [nix.POS]: pos$324,
             pname: "luacheck",
             version: "1.2.0-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$321,
+                [nix.POS]: pos$321,
                 url: "mirror://luarocks/luacheck-1.2.0-1.rockspec",
                 sha256: "0jnmrppq5hp8cwiw1daa33cdn8y2n5lsjk8vzn7ixb20ddz01m6c",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$322,
+                [nix.POS]: pos$322,
                 owner: "lunarmodules",
                 repo: "luacheck",
                 tag: "v1.2.0",
@@ -3758,7 +3758,7 @@ export default nix.lambda((args) => (() => {
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             propagatedBuildInputs: nix.thunk(() => [argparse, luafilesystem]),
             meta: nix.thunk(() => ({
-              __proto__: pos$323,
+              [nix.POS]: pos$323,
               homepage: "https://github.com/lunarmodules/luacheck",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3778,16 +3778,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$328,
+            [nix.POS]: pos$328,
             pname: "luacov",
             version: "0.17.0-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$325,
+                [nix.POS]: pos$325,
                 url: "mirror://luarocks/luacov-0.17.0-1.rockspec",
                 sha256: "042jp0nfy3hcnbywlfp4jkrm9xpxrkggs57q616p4win9ibxcqjy",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$326,
+                [nix.POS]: pos$326,
                 owner: "lunarmodules",
                 repo: "luacov",
                 tag: "v0.17.0",
@@ -3796,7 +3796,7 @@ export default nix.lambda((args) => (() => {
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             propagatedBuildInputs: nix.thunk(() => [datafile]),
             meta: nix.thunk(() => ({
-              __proto__: pos$327,
+              [nix.POS]: pos$327,
               homepage: "https://lunarmodules.github.ioluacov/",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3816,23 +3816,23 @@ export default nix.lambda((args) => (() => {
         const luaOlder = nix.arg($_1, "luaOlder");
         const luacov = nix.arg($_1, "luacov");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$332,
+            [nix.POS]: pos$332,
             pname: "luacov-reporter-lcov",
             version: "0.2-0",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$329,
+                [nix.POS]: pos$329,
                 url: "mirror://luarocks/luacov-reporter-lcov-0.2-0.rockspec",
                 sha256: "16w0vsv9q69zr0rw61x0p3cly755nzi83c83jk579qhxk16ja6c2",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$330,
+                [nix.POS]: pos$330,
                 url: "https://github.com/daurnimator/luacov-reporter-lcov/archive/v0.2.zip",
                 sha256: "0bw0wyq9zqpcjbqpnlkpxs5g1i015n2rsh0iic4vapmcy7sxlx7w",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             propagatedBuildInputs: nix.thunk(() => [luacov]),
             meta: nix.thunk(() => ({
-              __proto__: pos$331,
+              [nix.POS]: pos$331,
               homepage: "https://github.com/daurnimator/luacov-reporter-lcov",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -3851,16 +3851,16 @@ export default nix.lambda((args) => (() => {
         const luaAtLeast = nix.arg($_1, "luaAtLeast");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$336,
+            [nix.POS]: pos$336,
             pname: "luadbi",
             version: "0.7.5-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$333,
+                [nix.POS]: pos$333,
                 url: "mirror://luarocks/luadbi-0.7.5-1.rockspec",
                 sha256: "1xd4jkqd74zqcpql4kyqlv2n1q4k4bvj2l59nz0fmqbmmlmfk0fw",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$334,
+                [nix.POS]: pos$334,
                 owner: "mwild1",
                 repo: "luadbi",
                 tag: "v0.7.5",
@@ -3868,7 +3868,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => (nix.asBool(nix.app(luaOlder, "5.1")) || nix.asBool(nix.app(luaAtLeast, "5.5")))),
             meta: nix.thunk(() => ({
-              __proto__: pos$335,
+              [nix.POS]: pos$335,
               homepage: "https://github.com/mwild1/luadbi",
               license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "AND"), nix.thunk(() => [
                   nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -3888,16 +3888,16 @@ export default nix.lambda((args) => (() => {
         const luaOlder = nix.arg($_1, "luaOlder");
         const luadbi = nix.arg($_1, "luadbi");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$340,
+            [nix.POS]: pos$340,
             pname: "luadbi-mysql",
             version: "0.7.5-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$337,
+                [nix.POS]: pos$337,
                 url: "mirror://luarocks/luadbi-mysql-0.7.5-1.rockspec",
                 sha256: "1bb89d56aplz7m58g6cmscd2xgpxm38f2m72yabq5n0vg1bm2ypn",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$338,
+                [nix.POS]: pos$338,
                 owner: "mwild1",
                 repo: "luadbi",
                 tag: "v0.7.5",
@@ -3906,7 +3906,7 @@ export default nix.lambda((args) => (() => {
             disabled: nix.thunk(() => (nix.asBool(nix.app(luaOlder, "5.1")) || nix.asBool(nix.app(luaAtLeast, "5.5")))),
             propagatedBuildInputs: nix.thunk(() => [luadbi]),
             meta: nix.thunk(() => ({
-              __proto__: pos$339,
+              [nix.POS]: pos$339,
               homepage: "https://github.com/mwild1/luadbi",
               license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "AND"), nix.thunk(() => [
                   nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -3926,16 +3926,16 @@ export default nix.lambda((args) => (() => {
         const luaOlder = nix.arg($_1, "luaOlder");
         const luadbi = nix.arg($_1, "luadbi");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$344,
+            [nix.POS]: pos$344,
             pname: "luadbi-postgresql",
             version: "0.7.5-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$341,
+                [nix.POS]: pos$341,
                 url: "mirror://luarocks/luadbi-postgresql-0.7.5-1.rockspec",
                 sha256: "077nlwxh0dxrp0d0ysjcv3cwz77yn7phvzfn06wdd4vg591cnzg1",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$342,
+                [nix.POS]: pos$342,
                 owner: "mwild1",
                 repo: "luadbi",
                 tag: "v0.7.5",
@@ -3944,7 +3944,7 @@ export default nix.lambda((args) => (() => {
             disabled: nix.thunk(() => (nix.asBool(nix.app(luaOlder, "5.1")) || nix.asBool(nix.app(luaAtLeast, "5.5")))),
             propagatedBuildInputs: nix.thunk(() => [luadbi]),
             meta: nix.thunk(() => ({
-              __proto__: pos$343,
+              [nix.POS]: pos$343,
               homepage: "https://github.com/mwild1/luadbi",
               license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "AND"), nix.thunk(() => [
                   nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -3964,16 +3964,16 @@ export default nix.lambda((args) => (() => {
         const luaOlder = nix.arg($_1, "luaOlder");
         const luadbi = nix.arg($_1, "luadbi");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$348,
+            [nix.POS]: pos$348,
             pname: "luadbi-sqlite3",
             version: "0.7.5-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$345,
+                [nix.POS]: pos$345,
                 url: "mirror://luarocks/luadbi-sqlite3-0.7.5-1.rockspec",
                 sha256: "0gvc6p8cpkr500dc5kq6k38q3wc09z0aw3w3ialdvjv9jcq7dqlr",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$346,
+                [nix.POS]: pos$346,
                 owner: "mwild1",
                 repo: "luadbi",
                 tag: "v0.7.5",
@@ -3982,7 +3982,7 @@ export default nix.lambda((args) => (() => {
             disabled: nix.thunk(() => (nix.asBool(nix.app(luaOlder, "5.1")) || nix.asBool(nix.app(luaAtLeast, "5.5")))),
             propagatedBuildInputs: nix.thunk(() => [luadbi]),
             meta: nix.thunk(() => ({
-              __proto__: pos$347,
+              [nix.POS]: pos$347,
               homepage: "https://github.com/mwild1/luadbi",
               license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "AND"), nix.thunk(() => [
                   nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -4002,16 +4002,16 @@ export default nix.lambda((args) => (() => {
         const luaAtLeast = nix.arg($_1, "luaAtLeast");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$352,
+            [nix.POS]: pos$352,
             pname: "luaepnf",
             version: "0.3-2",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$349,
+                [nix.POS]: pos$349,
                 url: "mirror://luarocks/luaepnf-0.3-2.rockspec",
                 sha256: "0kqmnj11wmfpc9mz04zzq8ab4mnbkrhcgc525wrq6pgl3p5li8aa",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$350,
+                [nix.POS]: pos$350,
                 owner: "siffiejoe",
                 repo: "lua-luaepnf",
                 tag: "v0.3",
@@ -4020,7 +4020,7 @@ export default nix.lambda((args) => (() => {
             disabled: nix.thunk(() => (nix.asBool(nix.app(luaOlder, "5.1")) || nix.asBool(nix.app(luaAtLeast, "5.5")))),
             propagatedBuildInputs: nix.thunk(() => [lpeg]),
             meta: nix.thunk(() => ({
-              __proto__: pos$351,
+              [nix.POS]: pos$351,
               homepage: "http://siffiejoe.github.io/lua-luaepnf/",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               description: "Extended PEG Notation Format (easy grammars for LPeg)",
@@ -4034,22 +4034,22 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$356,
+            [nix.POS]: pos$356,
             pname: "luaevent",
             version: "0.4.6-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$353,
+                [nix.POS]: pos$353,
                 url: "mirror://luarocks/luaevent-0.4.6-1.rockspec",
                 sha256: "03zixadhx4a7nh67n0sm6sy97c8i9va1a78hibhrl7cfbqc2zc7f",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$354,
+                [nix.POS]: pos$354,
                 url: "https://github.com/harningt/luaevent/archive/v0.4.6.tar.gz",
                 sha256: "0pbh315d3p7hxgzmbhphkcldxv2dadbka96131b8j5914nxvl4nx",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$355,
+              [nix.POS]: pos$355,
               homepage: "https://github.com/harningt/luaevent",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               description: "libevent binding for Lua",
@@ -4064,16 +4064,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$360,
+            [nix.POS]: pos$360,
             pname: "luaexpat",
             version: "1.5.2-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$357,
+                [nix.POS]: pos$357,
                 url: "mirror://luarocks/luaexpat-1.5.2-1.rockspec",
                 sha256: "0wdbph2c92zmvvyp3q669rbjy1xjm7jy1i13lin8b636vswykw6p",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$358,
+                [nix.POS]: pos$358,
                 owner: "lunarmodules",
                 repo: "luaexpat",
                 tag: "1.5.2",
@@ -4081,7 +4081,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$359,
+              [nix.POS]: pos$359,
               homepage: "https://lunarmodules.github.io/luaexpat",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -4106,16 +4106,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$364,
+            [nix.POS]: pos$364,
             pname: "luaffi",
             version: "scm-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$361,
+                [nix.POS]: pos$361,
                 url: "mirror://luarocks/luaffi-scm-1.rockspec",
                 sha256: "1nia0g4n1yv1sbv5np572y8yfai56a8bnscir807s5kj5bs0xhxm",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$362,
+                [nix.POS]: pos$362,
                 owner: "facebook",
                 repo: "luaffifb",
                 rev: "a1cb731b08c91643b0665935eb5622b3d621211b",
@@ -4123,7 +4123,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$363,
+              [nix.POS]: pos$363,
               homepage: "https://github.com/facebook/luaffifb",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
               description: "FFI library for calling C functions from lua",
@@ -4138,16 +4138,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$368,
+            [nix.POS]: pos$368,
             pname: "luaffi-tkl",
             version: "1.0.5-2",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$365,
+                [nix.POS]: pos$365,
                 url: "mirror://luarocks/luaffi-tkl-1.0.5-2.rockspec",
                 sha256: "1b87mqkvw36bxmdj79mqpna8ydwif23cryr574q2c6f07jaqi6jc",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$366,
+                [nix.POS]: pos$366,
                 owner: "Tekenlight",
                 repo: "luaffifb",
                 tag: "v1.0.5-2",
@@ -4155,7 +4155,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$367,
+              [nix.POS]: pos$367,
               homepage: "https://github.com/Tekenlight/luaffifb",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
               description: "FFI library for calling C functions from lua",
@@ -4170,16 +4170,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$372,
+            [nix.POS]: pos$372,
             pname: "luafilesystem",
             version: "1.9.0-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$369,
+                [nix.POS]: pos$369,
                 url: "mirror://luarocks/luafilesystem-1.9.0-1.rockspec",
                 sha256: "1jg1w8c22hpv1jfcv6qyl3j354h1ar2qfarkiwx0c41sl90gpfrj",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$370,
+                [nix.POS]: pos$370,
                 owner: "lunarmodules",
                 repo: "luafilesystem",
                 tag: "v1_9_0",
@@ -4187,7 +4187,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$371,
+              [nix.POS]: pos$371,
               homepage: "https://github.com/lunarmodules/luafilesystem",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -4212,16 +4212,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$376,
+            [nix.POS]: pos$376,
             pname: "lualdap",
             version: "1.4.0-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$373,
+                [nix.POS]: pos$373,
                 url: "mirror://luarocks/lualdap-1.4.0-1.rockspec",
                 sha256: "0n924gxm6ccr9hjk4bi5z70vgh7g75dl7293pab41a2qcrlsj9nk",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$374,
+                [nix.POS]: pos$374,
                 owner: "lualdap",
                 repo: "lualdap",
                 tag: "v1.4.0",
@@ -4229,7 +4229,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$375,
+              [nix.POS]: pos$375,
               homepage: "https://lualdap.github.io/lualdap/",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -4248,16 +4248,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$380,
+            [nix.POS]: pos$380,
             pname: "lualine.nvim",
             version: "scm-5",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$377,
+                [nix.POS]: pos$377,
                 url: "mirror://luarocks/lualine.nvim-scm-5.rockspec",
                 sha256: "02sll9l2j03h5wv5mlm1wwqijhs9a8sgn5k4mi21f58si1s7ycda",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$378,
+                [nix.POS]: pos$378,
                 owner: "nvim-lualine",
                 repo: "lualine.nvim",
                 rev: "221ce6b2d999187044529f49da6554a92f740a96",
@@ -4265,7 +4265,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$379,
+              [nix.POS]: pos$379,
               homepage: "https://github.com/nvim-lualine/lualine.nvim",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               description: "A blazing fast and easy to configure neovim statusline plugin written in pure lua.",
@@ -4279,16 +4279,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luasocket = nix.arg($_1, "luasocket");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$384,
+            [nix.POS]: pos$384,
             pname: "lualogging",
             version: "1.8.2-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$381,
+                [nix.POS]: pos$381,
                 url: "mirror://luarocks/lualogging-1.8.2-1.rockspec",
                 sha256: "164c4xgwkv2ya8fbb22wm48ywc4gx939b574r6bgl8zqayffdqmx",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$382,
+                [nix.POS]: pos$382,
                 owner: "lunarmodules",
                 repo: "lualogging",
                 tag: "v1.8.2",
@@ -4296,7 +4296,7 @@ export default nix.lambda((args) => (() => {
               })))),
             propagatedBuildInputs: nix.thunk(() => [luasocket]),
             meta: nix.thunk(() => ({
-              __proto__: pos$383,
+              [nix.POS]: pos$383,
               homepage: "https://github.com/lunarmodules/lualogging",
               license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "AND"), nix.thunk(() => [
                   nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -4313,21 +4313,21 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const fetchzip = nix.arg($_1, "fetchzip");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$388,
+            [nix.POS]: pos$388,
             pname: "luaossl",
             version: "20260910-0",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$385,
+                [nix.POS]: pos$385,
                 url: "mirror://luarocks/luaossl-20260910-0.rockspec",
                 sha256: "0863wkp1j9r3nrv312x4j188kgyryqkbnn2dz351glc69lsni4jg",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$386,
+                [nix.POS]: pos$386,
                 url: "https://github.com/wahern/luaossl/archive/rel-20260910.zip",
                 sha256: "1q29kdfyxxmn55ld1sw7rhjl0cqkqm7sy1g9ii041jcdkbgbg36y",
               })))),
             meta: nix.thunk(() => ({
-              __proto__: pos$387,
+              [nix.POS]: pos$387,
               homepage: "http://25thandclement.com/~william/projects/luaossl.html",
               license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "AND"), nix.thunk(() => [
                   nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -4345,22 +4345,22 @@ export default nix.lambda((args) => (() => {
         const luaAtLeast = nix.arg($_1, "luaAtLeast");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$392,
+            [nix.POS]: pos$392,
             pname: "luaposix",
             version: "36.3-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$389,
+                [nix.POS]: pos$389,
                 url: "mirror://luarocks/luaposix-36.3-1.rockspec",
                 sha256: "0jwah6b1bxzck29zxbg479zm1sqmg7vafh7rrkfpibdbwnq01yzb",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$390,
+                [nix.POS]: pos$390,
                 url: "http://github.com/luaposix/luaposix/archive/v36.3.zip",
                 sha256: "0k05mpscsqx1yd5vy126brzc35xk55nck0g7m91vrbvvq3bcg824",
               })))),
             disabled: nix.thunk(() => (nix.asBool(nix.app(luaOlder, "5.1")) || nix.asBool(nix.app(luaAtLeast, "5.5")))),
             meta: nix.thunk(() => ({
-              __proto__: pos$391,
+              [nix.POS]: pos$391,
               homepage: "http://github.com/luaposix/luaposix/",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -4383,16 +4383,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$396,
+            [nix.POS]: pos$396,
             pname: "luaprompt",
             version: "0.10-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$393,
+                [nix.POS]: pos$393,
                 url: "mirror://luarocks/luaprompt-0.10-1.rockspec",
                 sha256: "1l824ya9srziwww0vsjbwqprg0yrrfwwfpc8ixn64rhphmhx15nx",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$394,
+                [nix.POS]: pos$394,
                 owner: "dpapavas",
                 repo: "luaprompt",
                 tag: "v0.10",
@@ -4401,7 +4401,7 @@ export default nix.lambda((args) => (() => {
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             propagatedBuildInputs: nix.thunk(() => [argparse]),
             meta: nix.thunk(() => ({
-              __proto__: pos$395,
+              [nix.POS]: pos$395,
               homepage: "https://github.com/dpapavas/luaprompt",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -4422,22 +4422,22 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$400,
+            [nix.POS]: pos$400,
             pname: "luarepl",
             version: "0.10-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$397,
+                [nix.POS]: pos$397,
                 url: "mirror://luarocks/luarepl-0.10-1.rockspec",
                 sha256: "12zdljfs4wg55mj7a38iwg7p5i1pmc934v9qlpi61sw4brp6x8d3",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$398,
+                [nix.POS]: pos$398,
                 url: "https://github.com/hoelzro/lua-repl/archive/0.10.tar.gz",
                 sha256: "0wv37h9w6y5pgr39m7yxbf8imkwvaila6rnwjcp0xsxl5c1rzfjm",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$399,
+              [nix.POS]: pos$399,
               homepage: "https://github.com/hoelzro/lua-repl",
               license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "AND"), nix.thunk(() => [
                   nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -4453,23 +4453,23 @@ export default nix.lambda((args) => (() => {
         const fetchFromGitHub = nix.arg($_1, "fetchFromGitHub");
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$404,
+            [nix.POS]: pos$404,
             pname: "luarocks",
             version: "3.13.0-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$401,
+                [nix.POS]: pos$401,
                 url: "mirror://luarocks/luarocks-3.13.0-1.rockspec",
                 sha256: "1kphpdvqjr47safz3w4q8xy3pwvrpgvkq4vzypfb5wg36p75jx5l",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$402,
+                [nix.POS]: pos$402,
                 owner: "luarocks",
                 repo: "luarocks",
                 tag: "v3.13.0",
                 hash: "sha256-ETVoDpeFSsW7ld2z31Vog3RKsMquoxd7c8m9y7Fb1wk=",
               })))),
             meta: nix.thunk(() => ({
-              __proto__: pos$403,
+              [nix.POS]: pos$403,
               homepage: "http://www.luarocks.org",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -4490,23 +4490,23 @@ export default nix.lambda((args) => (() => {
         const fetchFromGitHub = nix.arg($_1, "fetchFromGitHub");
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$408,
+            [nix.POS]: pos$408,
             pname: "luarocks-build-rust-mlua",
             version: "0.2.7-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$405,
+                [nix.POS]: pos$405,
                 url: "mirror://luarocks/luarocks-build-rust-mlua-0.2.7-1.rockspec",
                 sha256: "0wh1n7rg0fdllxi1vyvbqkrcl3jcqnjr3fwhwx9hc52xba850bna",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$406,
+                [nix.POS]: pos$406,
                 owner: "mlua-rs",
                 repo: "luarocks-build-rust-mlua",
                 tag: "0.2.7",
                 hash: "sha256-Zf/Ey5utsgzXqR8zlDse7KsyWA0RGx3hyvnJ36qhKG8=",
               })))),
             meta: nix.thunk(() => ({
-              __proto__: pos$407,
+              [nix.POS]: pos$407,
               homepage: "https://github.com/mlua-rs/luarocks-build-rust-mlua",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -4524,16 +4524,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$412,
+            [nix.POS]: pos$412,
             pname: "luarocks-build-tree-sitter-cli",
             version: "0.0.3-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$409,
+                [nix.POS]: pos$409,
                 url: "mirror://luarocks/luarocks-build-tree-sitter-cli-0.0.3-1.rockspec",
                 sha256: "0yy04svrll85zn334mhhnzzdqymsbiqymnr6iaj23h436v3gcq38",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$410,
+                [nix.POS]: pos$410,
                 owner: "FourierTransformer",
                 repo: "luarocks-build-tree-sitter-cli",
                 tag: "0.0.3",
@@ -4541,7 +4541,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$411,
+              [nix.POS]: pos$411,
               homepage: "https://github.com/FourierTransformer/luarocks-build-tree-sitter-cli",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               description: "A LuaRocks build backend to install the tree-sitter CLI",
@@ -4557,23 +4557,23 @@ export default nix.lambda((args) => (() => {
         const luaOlder = nix.arg($_1, "luaOlder");
         const luafilesystem = nix.arg($_1, "luafilesystem");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$416,
+            [nix.POS]: pos$416,
             pname: "luarocks-build-treesitter-parser",
             version: "6.1.1-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$413,
+                [nix.POS]: pos$413,
                 url: "mirror://luarocks/luarocks-build-treesitter-parser-6.1.1-1.rockspec",
                 sha256: "1hijvszf33l0yv1lwvp8187p0gwixr0cmf3ryvsvgcgas0fbb6nl",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$414,
+                [nix.POS]: pos$414,
                 url: "https://github.com/lumen-oss/luarocks-build-treesitter-parser/archive/v6.1.1.zip",
                 sha256: "1fg2fsxwc5qs2ll188s0rmz06gdxzfhwpg5wy6nwlwcg3y6x42ny",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             propagatedBuildInputs: nix.thunk(() => [luafilesystem]),
             meta: nix.thunk(() => ({
-              __proto__: pos$415,
+              [nix.POS]: pos$415,
               homepage: "https://github.com/lumen-oss/luarocks-build-treesitter-parser",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -4592,23 +4592,23 @@ export default nix.lambda((args) => (() => {
         const luaOlder = nix.arg($_1, "luaOlder");
         const luafilesystem = nix.arg($_1, "luafilesystem");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$420,
+            [nix.POS]: pos$420,
             pname: "luarocks-build-treesitter-parser-cpp",
             version: "2.0.6-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$417,
+                [nix.POS]: pos$417,
                 url: "mirror://luarocks/luarocks-build-treesitter-parser-cpp-2.0.6-1.rockspec",
                 sha256: "10js4km023lc3876jr1j6gyzyni8v3dizzmc352sxhz9gz9kinia",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$418,
+                [nix.POS]: pos$418,
                 url: "https://github.com/lumen-oss/luarocks-build-treesitter-parser-cpp/archive/v2.0.6.zip",
                 sha256: "1kr56cvxryxxkwvd69ywplw80hyaasyzmx842zzsncac3191vwpl",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             propagatedBuildInputs: nix.thunk(() => [luafilesystem]),
             meta: nix.thunk(() => ({
-              __proto__: pos$419,
+              [nix.POS]: pos$419,
               homepage: "https://github.com/lumen-oss/luarocks-build-treesitter-parser-cpp",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -4627,16 +4627,16 @@ export default nix.lambda((args) => (() => {
         const luaOlder = nix.arg($_1, "luaOlder");
         const luasocket = nix.arg($_1, "luasocket");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$424,
+            [nix.POS]: pos$424,
             pname: "luasec",
             version: "1.3.2-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$421,
+                [nix.POS]: pos$421,
                 url: "mirror://luarocks/luasec-1.3.2-1.rockspec",
                 sha256: "09nqs60cmbq1bi70cdh7v5xjnlsm2mrxv9pmbbvczijvz184jh33",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$422,
+                [nix.POS]: pos$422,
                 owner: "brunoos",
                 repo: "luasec",
                 tag: "v1.3.2",
@@ -4645,7 +4645,7 @@ export default nix.lambda((args) => (() => {
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             propagatedBuildInputs: nix.thunk(() => [luasocket]),
             meta: nix.thunk(() => ({
-              __proto__: pos$423,
+              [nix.POS]: pos$423,
               homepage: "https://github.com/brunoos/luasec/wiki",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -4668,23 +4668,23 @@ export default nix.lambda((args) => (() => {
         const jsregexp = nix.arg($_1, "jsregexp");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$428,
+            [nix.POS]: pos$428,
             pname: "luasnip",
             version: "2.5.0-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$425,
+                [nix.POS]: pos$425,
                 url: "mirror://luarocks/luasnip-2.5.0-1.rockspec",
                 sha256: "1qgd4536yglz0v21bpia3q2xbjcakxh4jhphhficm7nqb82xfsap",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$426,
+                [nix.POS]: pos$426,
                 url: "https://github.com/L3MON4D3/LuaSnip/archive/v2.5.0.zip",
                 sha256: "16cirbi0zjg874858yqd36p3kbrmlpfii3bvx6lm9bpli7b4w9kn",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             propagatedBuildInputs: nix.thunk(() => [jsregexp]),
             meta: nix.thunk(() => ({
-              __proto__: pos$427,
+              [nix.POS]: pos$427,
               homepage: "https://github.com/L3MON4D3/LuaSnip",
               license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
               description: "Snippet Engine for Neovim written in Lua.",
@@ -4698,16 +4698,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$432,
+            [nix.POS]: pos$432,
             pname: "luasocket",
             version: "3.1.0-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$429,
+                [nix.POS]: pos$429,
                 url: "mirror://luarocks/luasocket-3.1.0-1.rockspec",
                 sha256: "0wg9735cyz2gj7r9za8yi83w765g0f4pahnny7h0pdpx58pgfx4r",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$430,
+                [nix.POS]: pos$430,
                 owner: "lunarmodules",
                 repo: "luasocket",
                 tag: "v3.1.0",
@@ -4715,7 +4715,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$431,
+              [nix.POS]: pos$431,
               homepage: "https://github.com/lunarmodules/luasocket",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -4734,16 +4734,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$436,
+            [nix.POS]: pos$436,
             pname: "luasql-sqlite3",
             version: "2.8.0-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$433,
+                [nix.POS]: pos$433,
                 url: "mirror://luarocks/luasql-sqlite3-2.8.0-1.rockspec",
                 sha256: "1zqcs211idnji4fzyh5g6yn4ca13z690fx0i84gmbibvi5w9rqnl",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$434,
+                [nix.POS]: pos$434,
                 owner: "lunarmodules",
                 repo: "luasql",
                 tag: "2.8.0",
@@ -4751,7 +4751,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$435,
+              [nix.POS]: pos$435,
               homepage: "https://lunarmodules.github.io/luasql/",
               license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "AND"), nix.thunk(() => [
                   nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -4770,16 +4770,16 @@ export default nix.lambda((args) => (() => {
         const luaOlder = nix.arg($_1, "luaOlder");
         const say = nix.arg($_1, "say");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$440,
+            [nix.POS]: pos$440,
             pname: "luassert",
             version: "1.9.0-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$437,
+                [nix.POS]: pos$437,
                 url: "mirror://luarocks/luassert-1.9.0-1.rockspec",
                 sha256: "1bkzr03190p33lprgy51nl84aq082fyc3f7s3wkk7zlay4byycxd",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$438,
+                [nix.POS]: pos$438,
                 owner: "lunarmodules",
                 repo: "luassert",
                 tag: "v1.9.0",
@@ -4788,7 +4788,7 @@ export default nix.lambda((args) => (() => {
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             propagatedBuildInputs: nix.thunk(() => [say]),
             meta: nix.thunk(() => ({
-              __proto__: pos$439,
+              [nix.POS]: pos$439,
               homepage: "https://lunarmodules.github.io/busted/",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -4807,16 +4807,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$444,
+            [nix.POS]: pos$444,
             pname: "luasystem",
             version: "0.7.1-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$441,
+                [nix.POS]: pos$441,
                 url: "mirror://luarocks/luasystem-0.7.1-1.rockspec",
                 sha256: "10hnakzkyjqh6plks2wz2844l7rw619vfc5b3idqw9pndpw6fylz",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$442,
+                [nix.POS]: pos$442,
                 owner: "lunarmodules",
                 repo: "luasystem",
                 tag: "v0.7.1",
@@ -4824,7 +4824,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$443,
+              [nix.POS]: pos$443,
               homepage: "https://github.com/lunarmodules/luasystem",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -4843,16 +4843,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$448,
+            [nix.POS]: pos$448,
             pname: "luatext",
             version: "1.2.1-0",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$445,
+                [nix.POS]: pos$445,
                 url: "mirror://luarocks/luatext-1.2.1-0.rockspec",
                 sha256: "12ia4ibihd537mjmvdasnwgkinaygqwk03bsj3s0qrfhy6yz84ka",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$446,
+                [nix.POS]: pos$446,
                 owner: "f4z3r",
                 repo: "luatext",
                 tag: "v1.2.1",
@@ -4860,7 +4860,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$447,
+              [nix.POS]: pos$447,
               homepage: "https://github.com/f4z3r/luatext/tree/main",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               description: "A small library to print colored text",
@@ -4875,22 +4875,22 @@ export default nix.lambda((args) => (() => {
         const luaAtLeast = nix.arg($_1, "luaAtLeast");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$452,
+            [nix.POS]: pos$452,
             pname: "luaunbound",
             version: "1.1.0-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$449,
+                [nix.POS]: pos$449,
                 url: "mirror://luarocks/luaunbound-1.1.0-1.rockspec",
                 sha256: "0d0qybfl309yqnl8h35m6xynj4wnwmvm1cxl31jqrnahym30w5d8",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$450,
+                [nix.POS]: pos$450,
                 url: "https://code.zash.se/dl/luaunbound/luaunbound-1.1.0.tar.gz",
                 sha256: "0i02m7ivbjgj3271yvpac5pvm01nrynsff1pgp6d8qfc3r35jq93",
               })))),
             disabled: nix.thunk(() => (nix.asBool(nix.app(luaOlder, "5.1")) || nix.asBool(nix.app(luaAtLeast, "5.6")))),
             meta: nix.thunk(() => ({
-              __proto__: pos$451,
+              [nix.POS]: pos$451,
               homepage: "https://www.zash.se/luaunbound.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               description: "A binding to libunbound",
@@ -4905,22 +4905,22 @@ export default nix.lambda((args) => (() => {
         const luaAtLeast = nix.arg($_1, "luaAtLeast");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$456,
+            [nix.POS]: pos$456,
             pname: "luaunit",
             version: "3.5-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$453,
+                [nix.POS]: pos$453,
                 url: "mirror://luarocks/luaunit-3.5-1.rockspec",
                 sha256: "0rn0d9ng91rhrhvzq965przpxz5xx9vfyyakscfggf8xhg9g8s9p",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$454,
+                [nix.POS]: pos$454,
                 url: "https://github.com/bluebird75/luaunit/releases/download/LUAUNIT_V3_5/rock-luaunit-3.5.zip",
                 sha256: "0qxk89c14s8gmzm7ka5caxn2qr3y4bxs1jqcni1hwfzkjh5jmyzk",
               })))),
             disabled: nix.thunk(() => (nix.asBool(nix.app(luaOlder, "5.1")) || nix.asBool(nix.app(luaAtLeast, "5.6")))),
             meta: nix.thunk(() => ({
-              __proto__: pos$455,
+              [nix.POS]: pos$455,
               homepage: "http://github.com/bluebird75/luaunit",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -4938,22 +4938,22 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$460,
+            [nix.POS]: pos$460,
             pname: "luautf8",
             version: "0.2.1-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$457,
+                [nix.POS]: pos$457,
                 url: "mirror://luarocks/luautf8-0.2.1-1.rockspec",
                 sha256: "0g4xkcikxd2n9scrlbjbdk9a1bbli6s5yw9l4n4b0ss49wgnmc2y",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$458,
+                [nix.POS]: pos$458,
                 url: "https://github.com/starwing/luautf8/archive/refs/tags/0.2.1.tar.gz",
                 sha256: "15455lyvjh5f6fgx41458nk7gak6q76k3aqjfp1xibk0v5f0flpa",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$459,
+              [nix.POS]: pos$459,
               homepage: "http://github.com/starwing/luautf8",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -4973,16 +4973,16 @@ export default nix.lambda((args) => (() => {
         const luaAtLeast = nix.arg($_1, "luaAtLeast");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$464,
+            [nix.POS]: pos$464,
             pname: "luazip",
             version: "1.2.7-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$461,
+                [nix.POS]: pos$461,
                 url: "mirror://luarocks/luazip-1.2.7-1.rockspec",
                 sha256: "1wxy3p2ksaq4s8lg925mi9cvbh875gsapgkzm323dr8qaxxg7mba",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$462,
+                [nix.POS]: pos$462,
                 owner: "mpeterv",
                 repo: "luazip",
                 tag: "1.2.7",
@@ -4990,7 +4990,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => (nix.asBool(nix.app(luaOlder, "5.1")) || nix.asBool(nix.app(luaAtLeast, "5.4")))),
             meta: nix.thunk(() => ({
-              __proto__: pos$463,
+              [nix.POS]: pos$463,
               homepage: "https://github.com/mpeterv/luazip",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               description: "Library for reading files inside zip files",
@@ -5006,16 +5006,16 @@ export default nix.lambda((args) => (() => {
         const luaOlder = nix.arg($_1, "luaOlder");
         const luv = nix.arg($_1, "luv");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$468,
+            [nix.POS]: pos$468,
             pname: "lusc_luv",
             version: "4.0.1-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$465,
+                [nix.POS]: pos$465,
                 url: "mirror://luarocks/lusc_luv-4.0.1-1.rockspec",
                 sha256: "1bgk481ljfy8q7r3w9z1x5ix0dm6v444c7mf9nahlpyrz9skxakp",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$466,
+                [nix.POS]: pos$466,
                 owner: "svermeulen",
                 repo: "lusc_luv",
                 tag: "main",
@@ -5024,7 +5024,7 @@ export default nix.lambda((args) => (() => {
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             propagatedBuildInputs: nix.thunk(() => [luv]),
             meta: nix.thunk(() => ({
-              __proto__: pos$467,
+              [nix.POS]: pos$467,
               homepage: "https://github.com/svermeulen/lusc_luv",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               description: "Structured Async/Concurrency for Lua using Luv",
@@ -5040,16 +5040,16 @@ export default nix.lambda((args) => (() => {
         const luaAtLeast = nix.arg($_1, "luaAtLeast");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$472,
+            [nix.POS]: pos$472,
             pname: "lush.nvim",
             version: "scm-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$469,
+                [nix.POS]: pos$469,
                 url: "mirror://luarocks/lush.nvim-scm-1.rockspec",
                 sha256: "0ivir5p3mmv051pyya2hj1yrnflrv8bp38dx033i3kzfbpyg23ca",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$470,
+                [nix.POS]: pos$470,
                 owner: "rktjmp",
                 repo: "lush.nvim",
                 rev: "9c60ec2279d62487d942ce095e49006af28eed6e",
@@ -5057,7 +5057,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => (nix.asBool(nix.app(luaOlder, "5.1")) || nix.asBool(nix.app(luaAtLeast, "5.4")))),
             meta: nix.thunk(() => ({
-              __proto__: pos$471,
+              [nix.POS]: pos$471,
               homepage: "https://github.com/rktjmp/lush.nvim",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -5079,22 +5079,22 @@ export default nix.lambda((args) => (() => {
         const luaAtLeast = nix.arg($_1, "luaAtLeast");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$476,
+            [nix.POS]: pos$476,
             pname: "luuid",
             version: "20120509-2",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$473,
+                [nix.POS]: pos$473,
                 url: "mirror://luarocks/luuid-20120509-2.rockspec",
                 sha256: "1q2fv25wfbiqn49mqv26gs4pyllch311akcf7jjn27l5ik8ji5b6",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$474,
+                [nix.POS]: pos$474,
                 url: "http://www.tecgraf.puc-rio.br/~lhf/ftp/lua/5.2/luuid.tar.gz",
                 sha256: "1bfkj613d05yps3fivmz0j1bxf2zkg9g1yl0ifffgw0vy00hpnvm",
               })))),
             disabled: nix.thunk(() => (nix.asBool(nix.app(luaOlder, "5.2")) || nix.asBool(nix.app(luaAtLeast, "5.4")))),
             meta: nix.thunk(() => ({
-              __proto__: pos$475,
+              [nix.POS]: pos$475,
               homepage: "http://www.tecgraf.puc-rio.br/~lhf/ftp/lua/#luuid",
               license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),
               description: "A library for UUID generation",
@@ -5110,22 +5110,22 @@ export default nix.lambda((args) => (() => {
         const luaAtLeast = nix.arg($_1, "luaAtLeast");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$480,
+            [nix.POS]: pos$480,
             pname: "lyaml",
             version: "6.2.9-2",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$477,
+                [nix.POS]: pos$477,
                 url: "mirror://luarocks/lyaml-6.2.9-2.rockspec",
                 sha256: "0i2q30zc7h3iaydwkcslkda5rryh6y0c4m4zcfxr9lr54cvs6vsl",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$478,
+                [nix.POS]: pos$478,
                 url: "http://github.com/gvvaughan/lyaml/archive/v6.2.9.zip",
                 sha256: "1hijc4jp6g10cg6ib10xghv6x22r58lbkd6ch6piilpqafr3bzl7",
               })))),
             disabled: nix.thunk(() => (nix.asBool(nix.app(luaOlder, "5.1")) || nix.asBool(nix.app(luaAtLeast, "5.6")))),
             meta: nix.thunk(() => ({
-              __proto__: pos$479,
+              [nix.POS]: pos$479,
               homepage: "http://github.com/gvvaughan/lyaml",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -5147,22 +5147,22 @@ export default nix.lambda((args) => (() => {
         const fetchzip = nix.arg($_1, "fetchzip");
         const lua = nix.arg($_1, "lua");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$484,
+            [nix.POS]: pos$484,
             pname: "lz.n",
             version: "3.1.1-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$481,
+                [nix.POS]: pos$481,
                 url: "mirror://luarocks/lz.n-3.1.1-1.rockspec",
                 sha256: "0wl3g8rf7wi22cbz0knpwsw71nqqp8x09p187843m0mdfygdmrs4",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$482,
+                [nix.POS]: pos$482,
                 url: "https://github.com/lumen-oss/lz.n/archive/v3.1.1.zip",
                 sha256: "0wz6darkc668i8kivi1c5r9rgix5sddsbxppnk830cwvdvyc857g",
               })))),
             disabled: nix.thunk(() => !nix.eq(nix.sel(lua, "luaversion"), "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$483,
+              [nix.POS]: pos$483,
               homepage: "https://github.com/lumen-oss/lz.n",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -5181,22 +5181,22 @@ export default nix.lambda((args) => (() => {
         const fetchzip = nix.arg($_1, "fetchzip");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$488,
+            [nix.POS]: pos$488,
             pname: "lze",
             version: "0.13.0-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$485,
+                [nix.POS]: pos$485,
                 url: "mirror://luarocks/lze-0.13.0-1.rockspec",
                 sha256: "03l1855f97xm7hwjqrwwy85zyfjk9rgpmbm9v2lx7npbi118xmgp",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$486,
+                [nix.POS]: pos$486,
                 url: "https://github.com/BirdeeHub/lze/archive/v0.13.0.zip",
                 sha256: "012ay0kcbwz3wyh9nqhnb2rnadnz7bxkbi47zbzvfnshz6m7z3z6",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$487,
+              [nix.POS]: pos$487,
               homepage: "https://github.com/BirdeeHub/lze",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -5215,22 +5215,22 @@ export default nix.lambda((args) => (() => {
         const fetchzip = nix.arg($_1, "fetchzip");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$492,
+            [nix.POS]: pos$492,
             pname: "lzextras",
             version: "0.7.3-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$489,
+                [nix.POS]: pos$489,
                 url: "mirror://luarocks/lzextras-0.7.3-1.rockspec",
                 sha256: "03zz29rbbdrk518hflmmjb7sz7nczy11h3fs88v1cng08w4qfgd4",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$490,
+                [nix.POS]: pos$490,
                 url: "https://github.com/BirdeeHub/lzextras/archive/v0.7.3.zip",
                 sha256: "0rkspxm6gdxvr7agk8yyfdp8qhj4s3c9k3qaqyy2p9c31gzhsql5",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$491,
+              [nix.POS]: pos$491,
               homepage: "https://github.com/BirdeeHub/lzextras",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -5250,23 +5250,23 @@ export default nix.lambda((args) => (() => {
         const luaOlder = nix.arg($_1, "luaOlder");
         const lz_n = nix.arg($_1, "lz-n");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$496,
+            [nix.POS]: pos$496,
             pname: "lzn-auto-require",
             version: "1.0.0-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$493,
+                [nix.POS]: pos$493,
                 url: "mirror://luarocks/lzn-auto-require-1.0.0-1.rockspec",
                 sha256: "1glmbikz8vhwavrqpxibxj31k8x59pl7mr76b9k36nk217g7irln",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$494,
+                [nix.POS]: pos$494,
                 url: "https://github.com/horriblename/lzn-auto-require/archive/v1.0.0.zip",
                 sha256: "07sv61bcg6p1039vbh9fdzdsc3x4fadq5j6c5hv3qf4sdzigpdjh",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             propagatedBuildInputs: nix.thunk(() => [lz_n]),
             meta: nix.thunk(() => ({
-              __proto__: pos$495,
+              [nix.POS]: pos$495,
               homepage: "https://github.com/horriblename/lzn-auto-require",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -5284,16 +5284,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const lua = nix.arg($_1, "lua");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$500,
+            [nix.POS]: pos$500,
             pname: "magick",
             version: "1.6.0-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$497,
+                [nix.POS]: pos$497,
                 url: "mirror://luarocks/magick-1.6.0-1.rockspec",
                 sha256: "1pg150xsxnqvlhxpiy17s9hm4dkc84v46mlwi9rhriynqz8qks9w",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$498,
+                [nix.POS]: pos$498,
                 owner: "leafo",
                 repo: "magick",
                 tag: "v1.6.0",
@@ -5301,7 +5301,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => !nix.eq(nix.sel(lua, "luaversion"), "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$499,
+              [nix.POS]: pos$499,
               homepage: "https://github.com/leafo/magick.git",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -5320,16 +5320,16 @@ export default nix.lambda((args) => (() => {
         const luaAtLeast = nix.arg($_1, "luaAtLeast");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$504,
+            [nix.POS]: pos$504,
             pname: "markdown",
             version: "0.33-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$501,
+                [nix.POS]: pos$501,
                 url: "mirror://luarocks/markdown-0.33-1.rockspec",
                 sha256: "02sixijfi6av8h59kx3ngrhygjn2sx1c85c0qfy20gxiz72wi1pl",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$502,
+                [nix.POS]: pos$502,
                 owner: "mpeterv",
                 repo: "markdown",
                 tag: "0.33",
@@ -5337,7 +5337,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => (nix.asBool(nix.app(luaOlder, "5.1")) || nix.asBool(nix.app(luaAtLeast, "5.4")))),
             meta: nix.thunk(() => ({
-              __proto__: pos$503,
+              [nix.POS]: pos$503,
               homepage: "https://github.com/mpeterv/markdown",
               license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "AND"), nix.thunk(() => [
                   nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -5354,22 +5354,22 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$508,
+            [nix.POS]: pos$508,
             pname: "md5",
             version: "1.3-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$505,
+                [nix.POS]: pos$505,
                 url: "mirror://luarocks/md5-1.3-1.rockspec",
                 sha256: "08kx00ik1hly4p1a1bvvw3bvbddc64vdhpr21jy3asrj9nz86bnr",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$506,
+                [nix.POS]: pos$506,
                 url: "https://github.com/keplerproject/md5/archive/1.3.tar.gz",
                 sha256: "193dsjgnzrnykpmx68njkv72fxh2gb3llqgx2lgbgnf5i66shiq7",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.0")),
             meta: nix.thunk(() => ({
-              __proto__: pos$507,
+              [nix.POS]: pos$507,
               homepage: "http://keplerproject.github.io/md5/",
               license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "AND"), nix.thunk(() => [
                   nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -5386,22 +5386,22 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$512,
+            [nix.POS]: pos$512,
             pname: "mediator_lua",
             version: "1.1.2-0",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$509,
+                [nix.POS]: pos$509,
                 url: "mirror://luarocks/mediator_lua-1.1.2-0.rockspec",
                 sha256: "0frzvf7i256260a1s8xh92crwa2m42972qxfq29zl05aw3pyn7bm",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$510,
+                [nix.POS]: pos$510,
                 url: "https://github.com/Olivine-Labs/mediator_lua/archive/v1.1.2-0.tar.gz",
                 sha256: "16zzzhiy3y35v8advmlkzpryzxv5vji7727vwkly86q8sagqbxgs",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$511,
+              [nix.POS]: pos$511,
               homepage: "http://olivinelabs.com/mediator_lua/",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               description: "Event handling through channels",
@@ -5416,22 +5416,22 @@ export default nix.lambda((args) => (() => {
         const fetchzip = nix.arg($_1, "fetchzip");
         const mega_logging = nix.arg($_1, "mega-logging");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$516,
+            [nix.POS]: pos$516,
             pname: "mega.cmdparse",
             version: "1.2.1-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$513,
+                [nix.POS]: pos$513,
                 url: "mirror://luarocks/mega.cmdparse-1.2.1-1.rockspec",
                 sha256: "1766pqazkr3zfwaaj541m53y90n5zr0r7068hd67d9hgvd7za6sb",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$514,
+                [nix.POS]: pos$514,
                 url: "https://github.com/ColinKennedy/mega.cmdparse/archive/v1.2.1.zip",
                 sha256: "1bf3rf80m65jc51dlv3vcs2jhzk5ni2kr7v5rsmb31k7wk3002qb",
               })))),
             propagatedBuildInputs: nix.thunk(() => [mega_logging]),
             meta: nix.thunk(() => ({
-              __proto__: pos$515,
+              [nix.POS]: pos$515,
               homepage: "https://github.com/ColinKennedy/mega.cmdparse",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               description: "A Neovim command-mode parser. Similar to Python's argparse module",
@@ -5444,21 +5444,21 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const fetchzip = nix.arg($_1, "fetchzip");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$520,
+            [nix.POS]: pos$520,
             pname: "mega.logging",
             version: "1.1.6-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$517,
+                [nix.POS]: pos$517,
                 url: "mirror://luarocks/mega.logging-1.1.6-1.rockspec",
                 sha256: "1va6vl4iqnc3ip2ws1ff65xavw1m6wgdrsal1gvqnjn0gh20vxbg",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$518,
+                [nix.POS]: pos$518,
                 url: "https://github.com/ColinKennedy/mega.logging/archive/v1.1.6.zip",
                 sha256: "0sy7f42rbdanz9bi0kq6vzllykqcrp04bp7b5k3cqpml5ckywpl5",
               })))),
             meta: nix.thunk(() => ({
-              __proto__: pos$519,
+              [nix.POS]: pos$519,
               homepage: "https://github.com/ColinKennedy/mega.logging",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               description: "A Neovim plugin for logging to Neovim or to disk",
@@ -5471,22 +5471,22 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$524,
+            [nix.POS]: pos$524,
             pname: "middleclass",
             version: "4.1.1-0",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$521,
+                [nix.POS]: pos$521,
                 url: "mirror://luarocks/middleclass-4.1.1-0.rockspec",
                 sha256: "10xzs48lr1dy7cx99581r956gl16px0a9gbdlfar41n19r96mhb1",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$522,
+                [nix.POS]: pos$522,
                 url: "https://github.com/kikito/middleclass/archive/v4.1.1.tar.gz",
                 sha256: "11ahv0b9wgqfnabv57rb7ilsvn2vcvxb1czq6faqrsqylvr5l7nh",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$523,
+              [nix.POS]: pos$523,
               homepage: "https://github.com/kikito/middleclass",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               description: "A simple OOP library for Lua",
@@ -5501,16 +5501,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$528,
+            [nix.POS]: pos$528,
             pname: "mimetypes",
             version: "1.1.0-2",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$525,
+                [nix.POS]: pos$525,
                 url: "mirror://luarocks/mimetypes-1.1.0-2.rockspec",
                 sha256: "1asi5dlkqml9rjh2k2iq0fy2khdlc7mq4kxp4j42c8507w9dijww",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$526,
+                [nix.POS]: pos$526,
                 owner: "lunarmodules",
                 repo: "lua-mimetypes",
                 tag: "v1.1.0",
@@ -5518,7 +5518,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$527,
+              [nix.POS]: pos$527,
               homepage: "https://github.com/lunarmodules/lua-mimetypes",
               license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "AND"), nix.thunk(() => [
                   nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -5536,22 +5536,22 @@ export default nix.lambda((args) => (() => {
         const fetchzip = nix.arg($_1, "fetchzip");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$532,
+            [nix.POS]: pos$532,
             pname: "mini.test",
             version: "0.18.0-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$529,
+                [nix.POS]: pos$529,
                 url: "mirror://luarocks/mini.test-0.18.0-1.rockspec",
                 sha256: "0k0pdp5qalfhcmdaqi0mz3s0p7rwq88bjcs6b7s5z80rqrhji67k",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$530,
+                [nix.POS]: pos$530,
                 url: "https://github.com/nvim-mini/mini.test/archive/v0.18.0.zip",
                 sha256: "1q1qy3f0mxrqx96gq4q3h4w2qip40lqkyd9vs65zc76wj9wx37hw",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$531,
+              [nix.POS]: pos$531,
               homepage: "https://github.com/nvim-mini/mini.test",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               description: "Test neovim plugins. Part of the mini.nvim suite.",
@@ -5567,11 +5567,11 @@ export default nix.lambda((args) => (() => {
         const luaOlder = nix.arg($_1, "luaOlder");
         const luafilesystem = nix.arg($_1, "luafilesystem");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$535,
+            [nix.POS]: pos$535,
             pname: "moonscript",
             version: "dev-1",
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$533,
+                [nix.POS]: pos$533,
                 owner: "leafo",
                 repo: "moonscript",
                 rev: "26d68f20f4a7f0091ca7f62de9f09b939d8a0787",
@@ -5580,7 +5580,7 @@ export default nix.lambda((args) => (() => {
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             propagatedBuildInputs: nix.thunk(() => [argparse, lpeg, luafilesystem]),
             meta: nix.thunk(() => ({
-              __proto__: pos$534,
+              [nix.POS]: pos$534,
               homepage: "http://moonscript.org",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -5597,21 +5597,21 @@ export default nix.lambda((args) => (() => {
         const buildLuarocksPackage = nix.arg($_1, "buildLuarocksPackage");
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$539,
+            [nix.POS]: pos$539,
             pname: "mpack",
             version: "1.0.13-0",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$536,
+                [nix.POS]: pos$536,
                 url: "mirror://luarocks/mpack-1.0.13-0.rockspec",
                 sha256: "1lyjbmyj6yfv0bhyj50rpz2qm993zsbyw494j9kz4bcvxx0gqac5",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$537,
+                [nix.POS]: pos$537,
                 url: "https://github.com/libmpack/libmpack-lua/releases/download/1.0.13/libmpack-lua-1.0.13.tar.gz",
                 sha256: "1mwk54jnayw5wjclijyha24xq4sj0lyidb04zyndd9i0yr4anlnx",
               })))),
             meta: nix.thunk(() => ({
-              __proto__: pos$538,
+              [nix.POS]: pos$538,
               homepage: "https://github.com/libmpack/libmpack-lua",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               description: "Lua binding to libmpack",
@@ -5631,16 +5631,16 @@ export default nix.lambda((args) => (() => {
         const tree_sitter_norg = nix.arg($_1, "tree-sitter-norg");
         const tree_sitter_norg_meta = nix.arg($_1, "tree-sitter-norg-meta");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$543,
+            [nix.POS]: pos$543,
             pname: "neorg",
             version: "9.6.4-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$540,
+                [nix.POS]: pos$540,
                 url: "mirror://luarocks/neorg-9.6.4-1.rockspec",
                 sha256: "11k7qwr7430wk3j5kf7isn3d9i4y0drmq6d0dwdx62s4cy9c3pvm",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$541,
+                [nix.POS]: pos$541,
                 url: "https://github.com/nvim-neorg/neorg/archive/1f14d72aad7165eac307a2a2f6be0fb97a04b3c2.zip",
                 sha256: "0l7hc1w4j00csv8i6dgbdhx0jcf0017b7hhs8gcldvsyka50xkx5",
               })))),
@@ -5654,7 +5654,7 @@ export default nix.lambda((args) => (() => {
               tree_sitter_norg_meta,
             ]),
             meta: nix.thunk(() => ({
-              __proto__: pos$542,
+              [nix.POS]: pos$542,
               homepage: "https://github.com/nvim-neorg/neorg",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -5673,23 +5673,23 @@ export default nix.lambda((args) => (() => {
         const luaOlder = nix.arg($_1, "luaOlder");
         const neorg = nix.arg($_1, "neorg");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$547,
+            [nix.POS]: pos$547,
             pname: "neorg-interim-ls",
             version: "2.1.4-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$544,
+                [nix.POS]: pos$544,
                 url: "mirror://luarocks/neorg-interim-ls-2.1.4-1.rockspec",
                 sha256: "16c6b4in826fnv2wgxl1b7qsxvj62qq2xjnbik7z0hiij2vwc52x",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$545,
+                [nix.POS]: pos$545,
                 url: "https://github.com/benlubas/neorg-interim-ls/archive/v2.1.4.zip",
                 sha256: "0fpzfjpamb4amlnqf89zy9hdg95qh0mzdfrzh7qw13yvh4273z27",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             propagatedBuildInputs: nix.thunk(() => [neorg]),
             meta: nix.thunk(() => ({
-              __proto__: pos$546,
+              [nix.POS]: pos$546,
               homepage: "https://github.com/benlubas/neorg-interim-ls",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               description: "Temporarily providing a limited set of LSP features to neorg",
@@ -5704,23 +5704,23 @@ export default nix.lambda((args) => (() => {
         const luaOlder = nix.arg($_1, "luaOlder");
         const nvim_nio = nix.arg($_1, "nvim-nio");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$551,
+            [nix.POS]: pos$551,
             pname: "neotest",
             version: "5.20.0-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$548,
+                [nix.POS]: pos$548,
                 url: "mirror://luarocks/neotest-5.20.0-1.rockspec",
                 sha256: "1kk5vnmq0ri2gglmls4ry76pg9yq21qdw9zgwfdy5j4frk299krp",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$549,
+                [nix.POS]: pos$549,
                 url: "https://github.com/nvim-neotest/neotest/archive/1c529a1ef9c82e8131e872368415cecc2bb86ea2.zip",
                 sha256: "0702apmnhc0mmixmwadz68drwmwdm2rb4ydmmynvalmdqgycc3ik",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             propagatedBuildInputs: nix.thunk(() => [nvim_nio]),
             meta: nix.thunk(() => ({
-              __proto__: pos$550,
+              [nix.POS]: pos$550,
               homepage: "https://github.com/nvim-neotest/neotest",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -5740,23 +5740,23 @@ export default nix.lambda((args) => (() => {
         const neotest = nix.arg($_1, "neotest");
         const nvim_nio = nix.arg($_1, "nvim-nio");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$555,
+            [nix.POS]: pos$555,
             pname: "neotest-nix",
             version: "2.3.0-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$552,
+                [nix.POS]: pos$552,
                 url: "mirror://luarocks/neotest-nix-2.3.0-1.rockspec",
                 sha256: "0p5vc6nblxc5vqpxwr5a2fy8l14gdbqhvkkdx1zbkba01qph7rll",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$553,
+                [nix.POS]: pos$553,
                 url: "https://github.com/khaneliman/neotest-nix/archive/b61774dcb3e0d93af07c55de608775b8eb013fc7.zip",
                 sha256: "1ynq7ywqn9l8dyzf4nzjvywrirjg6nrkijrv1mhasa7cikar567v",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             propagatedBuildInputs: nix.thunk(() => [neotest, nvim_nio]),
             meta: nix.thunk(() => ({
-              __proto__: pos$554,
+              [nix.POS]: pos$554,
               homepage: "https://github.com/khaneliman/neotest-nix",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -5774,16 +5774,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$559,
+            [nix.POS]: pos$559,
             pname: "nginx-lua-prometheus",
             version: "0.20260912-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$556,
+                [nix.POS]: pos$556,
                 url: "mirror://luarocks/nginx-lua-prometheus-0.20260912-1.rockspec",
                 sha256: "1cbhmq6zz27sx9pmcig04m75qqiaqmsq61dzh28b2jpj7b6n5kqb",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$557,
+                [nix.POS]: pos$557,
                 owner: "knyar",
                 repo: "nginx-lua-prometheus",
                 tag: "0.20260912",
@@ -5791,7 +5791,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$558,
+              [nix.POS]: pos$558,
               homepage: "https://github.com/knyar/nginx-lua-prometheus",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -5809,22 +5809,22 @@ export default nix.lambda((args) => (() => {
         const fetchzip = nix.arg($_1, "fetchzip");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$563,
+            [nix.POS]: pos$563,
             pname: "nlua",
             version: "0.3.1-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$560,
+                [nix.POS]: pos$560,
                 url: "mirror://luarocks/nlua-0.3.1-1.rockspec",
                 sha256: "1238vnwk14pdcq533a8ndmmkc0b9ndc4kh0aja7ypmsjvk2y5v3s",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$561,
+                [nix.POS]: pos$561,
                 url: "https://github.com/mfussenegger/nlua/archive/v0.3.1.zip",
                 sha256: "1m19ap9ipcdj16rbllxiqlww8hz98l63cdb8mhll37756nr773hn",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$562,
+              [nix.POS]: pos$562,
               homepage: "https://github.com/mfussenegger/nlua",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -5842,23 +5842,23 @@ export default nix.lambda((args) => (() => {
         const fetchFromGitHub = nix.arg($_1, "fetchFromGitHub");
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$567,
+            [nix.POS]: pos$567,
             pname: "nui.nvim",
             version: "0.4.0-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$564,
+                [nix.POS]: pos$564,
                 url: "mirror://luarocks/nui.nvim-0.4.0-1.rockspec",
                 sha256: "0bs87acbr7ih5ln9c5a394fsmg32afw9g3w5l9ji5hmxfbvj6prf",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$565,
+                [nix.POS]: pos$565,
                 owner: "MunifTanjim",
                 repo: "nui.nvim",
                 tag: "0.4.0",
                 hash: "sha256-SJc9nfV6cnBKYwRWsv0iHy+RbET8frNV85reICf+pt8=",
               })))),
             meta: nix.thunk(() => ({
-              __proto__: pos$566,
+              [nix.POS]: pos$566,
               homepage: "https://github.com/MunifTanjim/nui.nvim",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -5877,11 +5877,11 @@ export default nix.lambda((args) => (() => {
         const luaAtLeast = nix.arg($_1, "luaAtLeast");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$570,
+            [nix.POS]: pos$570,
             pname: "nvim-cmp",
             version: "scm-1",
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$568,
+                [nix.POS]: pos$568,
                 owner: "hrsh7th",
                 repo: "nvim-cmp",
                 rev: "2ffe79f1f021def8dd1fcd81deb16f1bb0d989f3",
@@ -5889,7 +5889,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => (nix.asBool(nix.app(luaOlder, "5.1")) || nix.asBool(nix.app(luaAtLeast, "5.4")))),
             meta: nix.thunk(() => ({
-              __proto__: pos$569,
+              [nix.POS]: pos$569,
               homepage: "https://github.com/hrsh7th/nvim-cmp",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               description: "A completion plugin for neovim",
@@ -5904,22 +5904,22 @@ export default nix.lambda((args) => (() => {
         const fetchzip = nix.arg($_1, "fetchzip");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$574,
+            [nix.POS]: pos$574,
             pname: "nvim-nio",
             version: "1.10.1-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$571,
+                [nix.POS]: pos$571,
                 url: "mirror://luarocks/nvim-nio-1.10.1-1.rockspec",
                 sha256: "1bkxvhk5bml6q5g4ycv3ggrqd24kkhhswa6if5g2q6j1j44lxgj0",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$572,
+                [nix.POS]: pos$572,
                 url: "https://github.com/nvim-neotest/nvim-nio/archive/21f5324bfac14e22ba26553caf69ec76ae8a7662.zip",
                 sha256: "1bz5msxwk232zkkhfxcmr7a665la8pgkdx70q99ihl4x04jg6dkq",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$573,
+              [nix.POS]: pos$573,
               homepage: "https://github.com/nvim-neotest/nvim-nio",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -5937,22 +5937,22 @@ export default nix.lambda((args) => (() => {
         const fetchzip = nix.arg($_1, "fetchzip");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$578,
+            [nix.POS]: pos$578,
             pname: "nvim-web-devicons",
             version: "0.100-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$575,
+                [nix.POS]: pos$575,
                 url: "mirror://luarocks/nvim-web-devicons-0.100-1.rockspec",
                 sha256: "0i87kr2q1s97q4kw85k36xhryigbv4bgy3ig56qg6z5jgkxgldza",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$576,
+                [nix.POS]: pos$576,
                 url: "https://github.com/nvim-tree/nvim-web-devicons/archive/v0.100.zip",
                 sha256: "0d7gzk06f6z9wq496frbaavx90mcxvdhrswqd3pcayj2872i698d",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$577,
+              [nix.POS]: pos$577,
               homepage: "https://github.com/nvim-tree/nvim-web-devicons",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               description: "Nerd Font icons for neovim",
@@ -5967,22 +5967,22 @@ export default nix.lambda((args) => (() => {
         const fetchzip = nix.arg($_1, "fetchzip");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$582,
+            [nix.POS]: pos$582,
             pname: "oil.nvim",
             version: "2.16.0-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$579,
+                [nix.POS]: pos$579,
                 url: "mirror://luarocks/oil.nvim-2.16.0-1.rockspec",
                 sha256: "0gsdvzysvvb72z2bd5vcxpssgnb0q91y2z5nrzzafq7670xz49dp",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$580,
+                [nix.POS]: pos$580,
                 url: "https://github.com/stevearc/oil.nvim/archive/v2.16.0.zip",
                 sha256: "0pipdvaxrkdyfbp66sgrc3ppy260m95am9zhi3m8n7lm1ivp6fzb",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$581,
+              [nix.POS]: pos$581,
               homepage: "https://github.com/stevearc/oil.nvim",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               description: "Neovim file explorer: edit your filesystem like a buffer",
@@ -5997,23 +5997,23 @@ export default nix.lambda((args) => (() => {
         const luaOlder = nix.arg($_1, "luaOlder");
         const tree_sitter_orgmode = nix.arg($_1, "tree-sitter-orgmode");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$586,
+            [nix.POS]: pos$586,
             pname: "orgmode",
             version: "0.7.5-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$583,
+                [nix.POS]: pos$583,
                 url: "mirror://luarocks/orgmode-0.7.5-1.rockspec",
                 sha256: "03spnsdpl34qkh14gniac15k4rncai2239wnv90p7z9wvkr2y0s1",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$584,
+                [nix.POS]: pos$584,
                 url: "https://github.com/nvim-orgmode/orgmode/archive/0.7.5.zip",
                 sha256: "00x1spp077bgm180pr0pnwa6hk34isjizf2zxcmlaq06rk548i7i",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             propagatedBuildInputs: nix.thunk(() => [tree_sitter_orgmode]),
             meta: nix.thunk(() => ({
-              __proto__: pos$585,
+              [nix.POS]: pos$585,
               homepage: "https://nvim-orgmode.github.io",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               description: "Orgmode clone written in Lua for Neovim 0.11.0+.",
@@ -6029,23 +6029,23 @@ export default nix.lambda((args) => (() => {
         const nui_nvim = nix.arg($_1, "nui-nvim");
         const sqlite = nix.arg($_1, "sqlite");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$590,
+            [nix.POS]: pos$590,
             pname: "papis.nvim",
             version: "0.9.1-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$587,
+                [nix.POS]: pos$587,
                 url: "mirror://luarocks/papis.nvim-0.9.1-1.rockspec",
                 sha256: "1ykcnzz2rpcn3v5aw4lhwc2vcc9gzrskkzir136i1szgnvrhhzg0",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$588,
+                [nix.POS]: pos$588,
                 url: "https://github.com/jghauser/papis.nvim/archive/v0.9.1.zip",
                 sha256: "1hicipx893p8y8sapn0kyqjinn8nhrrkc0a1cwl16z0mmh0jgk81",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             propagatedBuildInputs: nix.thunk(() => [nui_nvim, sqlite]),
             meta: nix.thunk(() => ({
-              __proto__: pos$589,
+              [nix.POS]: pos$589,
               homepage: "https://github.com/jghauser/papis.nvim",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -6065,23 +6065,23 @@ export default nix.lambda((args) => (() => {
         const luaOlder = nix.arg($_1, "luaOlder");
         const nvim_nio = nix.arg($_1, "nvim-nio");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$594,
+            [nix.POS]: pos$594,
             pname: "pathlib.nvim",
             version: "2.2.3-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$591,
+                [nix.POS]: pos$591,
                 url: "mirror://luarocks/pathlib.nvim-2.2.3-1.rockspec",
                 sha256: "0qwsjcsl6760d8d5k1lxlykh78g6v7xcr9caq3yh75yn76mwrl4i",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$592,
+                [nix.POS]: pos$592,
                 url: "https://github.com/pysan3/pathlib.nvim/archive/v2.2.3.zip",
                 sha256: "1z3nwy83r3zbll9wc2wyvg60z0dqc5hm2xdfvqh3hwm5s9w8j432",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             propagatedBuildInputs: nix.thunk(() => [nvim_nio]),
             meta: nix.thunk(() => ({
-              __proto__: pos$593,
+              [nix.POS]: pos$593,
               homepage: "https://pysan3.github.io/pathlib.nvim/",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
               description: "OS Independent, ultimate solution to path handling in neovim.",
@@ -6096,16 +6096,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luafilesystem = nix.arg($_1, "luafilesystem");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$598,
+            [nix.POS]: pos$598,
             pname: "penlight",
             version: "1.15.0-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$595,
+                [nix.POS]: pos$595,
                 url: "mirror://luarocks/penlight-1.15.0-1.rockspec",
                 sha256: "0m4m20vpvzkr2h9xs8q2a3wkib0jxzbkwb8hy6abxyvkm6r7fnvf",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$596,
+                [nix.POS]: pos$596,
                 owner: "lunarmodules",
                 repo: "penlight",
                 tag: "1.15.0",
@@ -6113,7 +6113,7 @@ export default nix.lambda((args) => (() => {
               })))),
             propagatedBuildInputs: nix.thunk(() => [luafilesystem]),
             meta: nix.thunk(() => ({
-              __proto__: pos$597,
+              [nix.POS]: pos$597,
               homepage: "https://lunarmodules.github.io/penlight",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -6136,11 +6136,11 @@ export default nix.lambda((args) => (() => {
         const luaOlder = nix.arg($_1, "luaOlder");
         const luassert = nix.arg($_1, "luassert");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$601,
+            [nix.POS]: pos$601,
             pname: "plenary.nvim",
             version: "scm-1",
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$599,
+                [nix.POS]: pos$599,
                 owner: "nvim-lua",
                 repo: "plenary.nvim",
                 rev: "74b06c6c75e4eeb3108ec01852001636d85a932b",
@@ -6149,7 +6149,7 @@ export default nix.lambda((args) => (() => {
             disabled: nix.thunk(() => (nix.asBool(nix.app(luaOlder, "5.1")) || nix.asBool(nix.app(luaAtLeast, "5.4")))),
             propagatedBuildInputs: nix.thunk(() => [luassert]),
             meta: nix.thunk(() => ({
-              __proto__: pos$600,
+              [nix.POS]: pos$600,
               homepage: "http://github.com/nvim-lua/plenary.nvim",
               license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "AND"), nix.thunk(() => [
                   nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -6166,21 +6166,21 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const fetchzip = nix.arg($_1, "fetchzip");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$605,
+            [nix.POS]: pos$605,
             pname: "psl",
             version: "0.3-0",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$602,
+                [nix.POS]: pos$602,
                 url: "mirror://luarocks/psl-0.3-0.rockspec",
                 sha256: "1x7sc8n780k67v31bvqqxhh6ihy0k91zmp6xcxmkifr0gd008x9z",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$603,
+                [nix.POS]: pos$603,
                 url: "https://github.com/daurnimator/lua-psl/archive/v0.3.zip",
                 sha256: "1x9zskjn6fp9343w9314104128ik4lbk98pg6zfhl1v35107m1jx",
               })))),
             meta: nix.thunk(() => ({
-              __proto__: pos$604,
+              [nix.POS]: pos$604,
               homepage: "https://github.com/daurnimator/lua-psl",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               description: "Bindings to libpsl, a C library that handles the Public Suffix List (PSL)",
@@ -6196,16 +6196,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$609,
+            [nix.POS]: pos$609,
             pname: "rapidjson",
             version: "0.7.2-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$606,
+                [nix.POS]: pos$606,
                 url: "mirror://luarocks/rapidjson-0.7.2-1.rockspec",
                 sha256: "1g3gw1rr54jvylq7afzkqdpid3h7nlmk76hmfva8xzhcdvbcl88h",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$607,
+                [nix.POS]: pos$607,
                 owner: "xpol",
                 repo: "lua-rapidjson",
                 tag: "v0.7.2",
@@ -6214,7 +6214,7 @@ export default nix.lambda((args) => (() => {
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             nativeBuildInputs: nix.thunk(() => [cmake]),
             meta: nix.thunk(() => ({
-              __proto__: pos$608,
+              [nix.POS]: pos$608,
               homepage: "https://github.com/xpol/lua-rapidjson",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               description: "Json module based on the very fast RapidJSON.",
@@ -6234,23 +6234,23 @@ export default nix.lambda((args) => (() => {
         const tree_sitter_http = nix.arg($_1, "tree-sitter-http");
         const xml2lua = nix.arg($_1, "xml2lua");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$613,
+            [nix.POS]: pos$613,
             pname: "rest.nvim",
             version: "3.13.0-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$610,
+                [nix.POS]: pos$610,
                 url: "mirror://luarocks/rest.nvim-3.13.0-1.rockspec",
                 sha256: "1ig9589pb0y59jvlw97nxgcmij9kcjbc7l1aag99m40v823kncil",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$611,
+                [nix.POS]: pos$611,
                 url: "https://github.com/rest-nvim/rest.nvim/archive/v3.13.0.zip",
                 sha256: "18mmif73l13hbzhfvnvdky78jlv2j059cqyvxkb6bcqwcyqx7jaj",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             propagatedBuildInputs: nix.thunk(() => [fidget_nvim, mimetypes, nvim_nio, tree_sitter_http, xml2lua]),
             meta: nix.thunk(() => ({
-              __proto__: pos$612,
+              [nix.POS]: pos$612,
               homepage: "https://github.com/rest-nvim/rest.nvim",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -6270,23 +6270,23 @@ export default nix.lambda((args) => (() => {
         const lua = nix.arg($_1, "lua");
         const rocks_nvim = nix.arg($_1, "rocks-nvim");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$617,
+            [nix.POS]: pos$617,
             pname: "rocks-config.nvim",
             version: "3.2.0-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$614,
+                [nix.POS]: pos$614,
                 url: "mirror://luarocks/rocks-config.nvim-3.2.0-1.rockspec",
                 sha256: "07sznkw2qkbgibqg4sjpmrirvig17adhww7wmgb2h3kny7vaipxq",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$615,
+                [nix.POS]: pos$615,
                 url: "https://github.com/lumen-oss/rocks-config.nvim/archive/v3.2.0.zip",
                 sha256: "1w688m50g2q742yq9dp7w6g7rcp71pq6mybz2hw8g9af9q95js81",
               })))),
             disabled: nix.thunk(() => !nix.eq(nix.sel(lua, "luaversion"), "5.1")),
             propagatedBuildInputs: nix.thunk(() => [rocks_nvim]),
             meta: nix.thunk(() => ({
-              __proto__: pos$616,
+              [nix.POS]: pos$616,
               homepage: "https://github.com/lumen-oss/rocks-config.nvim",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -6308,23 +6308,23 @@ export default nix.lambda((args) => (() => {
         const rocks_nvim = nix.arg($_1, "rocks-nvim");
         const rtp_nvim = nix.arg($_1, "rtp-nvim");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$621,
+            [nix.POS]: pos$621,
             pname: "rocks-dev.nvim",
             version: "1.8.1-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$618,
+                [nix.POS]: pos$618,
                 url: "mirror://luarocks/rocks-dev.nvim-1.8.1-1.rockspec",
                 sha256: "1rbyjxla58vy6qsbdgyi5y9rr73nswcshhkl4qmlnq4hg5nz1kkj",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$619,
+                [nix.POS]: pos$619,
                 url: "https://github.com/nvim-neorocks/rocks-dev.nvim/archive/v1.8.1.zip",
                 sha256: "0zsy4pqh4rnw9awvw9wlq4v2hhksfh716qhh43bhsnr30d0bfi5x",
               })))),
             disabled: nix.thunk(() => !nix.eq(nix.sel(lua, "luaversion"), "5.1")),
             propagatedBuildInputs: nix.thunk(() => [nvim_nio, rocks_nvim, rtp_nvim]),
             meta: nix.thunk(() => ({
-              __proto__: pos$620,
+              [nix.POS]: pos$620,
               homepage: "https://github.com/nvim-neorocks/rocks-dev.nvim",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -6345,23 +6345,23 @@ export default nix.lambda((args) => (() => {
         const nvim_nio = nix.arg($_1, "nvim-nio");
         const rocks_nvim = nix.arg($_1, "rocks-nvim");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$625,
+            [nix.POS]: pos$625,
             pname: "rocks-git.nvim",
             version: "2.6.0-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$622,
+                [nix.POS]: pos$622,
                 url: "mirror://luarocks/rocks-git.nvim-2.6.0-1.rockspec",
                 sha256: "1wplrbm1zqhb2cys89qx29jsiny0qpm5badf56xs041vp0v7mdbh",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$623,
+                [nix.POS]: pos$623,
                 url: "https://github.com/lumen-oss/rocks-git.nvim/archive/v2.6.0.zip",
                 sha256: "00l4l0v3ks9zl0cv87nrnxi71lxm7d30kk5clpsp47jf5fdxxd43",
               })))),
             disabled: nix.thunk(() => !nix.eq(nix.sel(lua, "luaversion"), "5.1")),
             propagatedBuildInputs: nix.thunk(() => [nvim_nio, rocks_nvim]),
             meta: nix.thunk(() => ({
-              __proto__: pos$624,
+              [nix.POS]: pos$624,
               homepage: "https://github.com/lumen-oss/rocks-git.nvim",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -6381,23 +6381,23 @@ export default nix.lambda((args) => (() => {
         const lz_n = nix.arg($_1, "lz-n");
         const rocks_nvim = nix.arg($_1, "rocks-nvim");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$629,
+            [nix.POS]: pos$629,
             pname: "rocks-lazy.nvim",
             version: "1.2.1-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$626,
+                [nix.POS]: pos$626,
                 url: "mirror://luarocks/rocks-lazy.nvim-1.2.1-1.rockspec",
                 sha256: "11xd46bf2zmd8x5xdkp0j4x1n2g20wczzq29sb90wp1vk6srmpgh",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$627,
+                [nix.POS]: pos$627,
                 url: "https://github.com/nvim-neorocks/rocks-lazy.nvim/archive/v1.2.1.zip",
                 sha256: "0cccxaqfr943qw06491f799q5czb2rhjcy9swf9zmv9s26zl19bw",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             propagatedBuildInputs: nix.thunk(() => [lz_n, rocks_nvim]),
             meta: nix.thunk(() => ({
-              __proto__: pos$628,
+              [nix.POS]: pos$628,
               homepage: "https://github.com/nvim-neorocks/rocks-lazy.nvim",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -6421,23 +6421,23 @@ export default nix.lambda((args) => (() => {
         const rtp_nvim = nix.arg($_1, "rtp-nvim");
         const toml_edit = nix.arg($_1, "toml-edit");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$633,
+            [nix.POS]: pos$633,
             pname: "rocks.nvim",
             version: "2.49.0-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$630,
+                [nix.POS]: pos$630,
                 url: "mirror://luarocks/rocks.nvim-2.49.0-1.rockspec",
                 sha256: "1krbnmx90avna2bzxvdv5zs7iakgkcm9w0dniingbhifkrkmiazr",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$631,
+                [nix.POS]: pos$631,
                 url: "https://github.com/lumen-oss/rocks.nvim/archive/v2.49.0.zip",
                 sha256: "13sr1alra4dlh22p6b53y6695zdv4vih3gdkvjfd7q3057ni7l20",
               })))),
             disabled: nix.thunk(() => !nix.eq(nix.sel(lua, "luaversion"), "5.1")),
             propagatedBuildInputs: nix.thunk(() => [fidget_nvim, fzy, luarocks, nvim_nio, rtp_nvim, toml_edit]),
             meta: nix.thunk(() => ({
-              __proto__: pos$632,
+              [nix.POS]: pos$632,
               homepage: "https://github.com/lumen-oss/rocks.nvim",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -6456,22 +6456,22 @@ export default nix.lambda((args) => (() => {
         const fetchzip = nix.arg($_1, "fetchzip");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$637,
+            [nix.POS]: pos$637,
             pname: "rtp.nvim",
             version: "1.2.0-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$634,
+                [nix.POS]: pos$634,
                 url: "mirror://luarocks/rtp.nvim-1.2.0-1.rockspec",
                 sha256: "0is9ssi3pwvshm88lnp4hkig4f0ckgl2f3a1axwci89y8lla50iv",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$635,
+                [nix.POS]: pos$635,
                 url: "https://github.com/nvim-neorocks/rtp.nvim/archive/v1.2.0.zip",
                 sha256: "1b6hx50nr2s2mnhsx9zy54pjdq7f78mi394v2b2c9v687s45nqln",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$636,
+              [nix.POS]: pos$636,
               homepage: "https://github.com/nvim-neorocks/rtp.nvim",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -6489,22 +6489,22 @@ export default nix.lambda((args) => (() => {
         const fetchzip = nix.arg($_1, "fetchzip");
         const lua = nix.arg($_1, "lua");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$641,
+            [nix.POS]: pos$641,
             pname: "rustaceanvim",
             version: "9.2.1-2",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$638,
+                [nix.POS]: pos$638,
                 url: "mirror://luarocks/rustaceanvim-9.2.1-2.rockspec",
                 sha256: "10icfi38z1qx9ma7ixj3j3cbkfsfhnbw3zhwjab6p0cv0287yv7p",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$639,
+                [nix.POS]: pos$639,
                 url: "https://github.com/mrcjkb/rustaceanvim/archive/refs/tags/v9.2.1.zip",
                 sha256: "182z9nqjd5ycbq0fij2xdwbq2b5xr51wckcks50aiwim31cr52br",
               })))),
             disabled: nix.thunk(() => !nix.eq(nix.sel(lua, "luaversion"), "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$640,
+              [nix.POS]: pos$640,
               homepage: "https://github.com/mrcjkb/rustaceanvim/archive/refs/tags/v9.2.1.zip",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -6522,16 +6522,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$645,
+            [nix.POS]: pos$645,
             pname: "say",
             version: "1.4.1-3",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$642,
+                [nix.POS]: pos$642,
                 url: "mirror://luarocks/say-1.4.1-3.rockspec",
                 sha256: "0iibmq5m5092y168banckgs15ngj2yjx11n40fyk7jly4pbasljq",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$643,
+                [nix.POS]: pos$643,
                 owner: "lunarmodules",
                 repo: "say",
                 tag: "v1.4.1",
@@ -6539,7 +6539,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$644,
+              [nix.POS]: pos$644,
               homepage: "https://lunarmodules.github.io/say",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -6559,16 +6559,16 @@ export default nix.lambda((args) => (() => {
         const luaAtLeast = nix.arg($_1, "luaAtLeast");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$649,
+            [nix.POS]: pos$649,
             pname: "serpent",
             version: "0.30-2",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$646,
+                [nix.POS]: pos$646,
                 url: "mirror://luarocks/serpent-0.30-2.rockspec",
                 sha256: "0v83lr9ars1n0djbh7np8jjqdhhaw0pdy2nkcqzqrhv27rzv494n",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$647,
+                [nix.POS]: pos$647,
                 owner: "pkulchenko",
                 repo: "serpent",
                 tag: "0.30",
@@ -6576,7 +6576,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => (nix.asBool(nix.app(luaOlder, "5.1")) || nix.asBool(nix.app(luaAtLeast, "5.5")))),
             meta: nix.thunk(() => ({
-              __proto__: pos$648,
+              [nix.POS]: pos$648,
               homepage: "https://github.com/pkulchenko/serpent",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -6599,16 +6599,16 @@ export default nix.lambda((args) => (() => {
         const luatext = nix.arg($_1, "luatext");
         const lyaml = nix.arg($_1, "lyaml");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$653,
+            [nix.POS]: pos$653,
             pname: "sofa",
             version: "0.8.0-0",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$650,
+                [nix.POS]: pos$650,
                 url: "mirror://luarocks/sofa-0.8.0-0.rockspec",
                 sha256: "09mjnygy8xpcp892mfqmcirjjndndvynl7bs7j4vp4r4svh17b05",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$651,
+                [nix.POS]: pos$651,
                 owner: "f4z3r",
                 repo: "sofa",
                 tag: "v0.8.0",
@@ -6617,7 +6617,7 @@ export default nix.lambda((args) => (() => {
             disabled: nix.thunk(() => (nix.asBool(nix.app(luaOlder, "5.1")) || nix.asBool(nix.app(luaAtLeast, "5.5")))),
             propagatedBuildInputs: nix.thunk(() => [argparse, compat53, luatext, lyaml]),
             meta: nix.thunk(() => ({
-              __proto__: pos$652,
+              [nix.POS]: pos$652,
               homepage: "https://github.com/f4z3r/sofa",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -6636,16 +6636,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luv = nix.arg($_1, "luv");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$657,
+            [nix.POS]: pos$657,
             pname: "sqlite",
             version: "v1.2.2-0",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$654,
+                [nix.POS]: pos$654,
                 url: "mirror://luarocks/sqlite-v1.2.2-0.rockspec",
                 sha256: "0jxsl9lpxsbzc6s5bwmh27mglkqz1299lz68vfxayvailwl3xbxm",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$655,
+                [nix.POS]: pos$655,
                 owner: "tami5",
                 repo: "sqlite.lua",
                 tag: "v1.2.2",
@@ -6653,7 +6653,7 @@ export default nix.lambda((args) => (() => {
               })))),
             propagatedBuildInputs: nix.thunk(() => [luv]),
             meta: nix.thunk(() => ({
-              __proto__: pos$656,
+              [nix.POS]: pos$656,
               homepage: "https://github.com/tami5/sqlite.lua",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               description: "SQLite/LuaJIT binding and a highly opinionated wrapper for storing, retrieving, caching, and persisting [SQLite] databases",
@@ -6668,22 +6668,22 @@ export default nix.lambda((args) => (() => {
         const luaAtLeast = nix.arg($_1, "luaAtLeast");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$661,
+            [nix.POS]: pos$661,
             pname: "std._debug",
             version: "1.1.0-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$658,
+                [nix.POS]: pos$658,
                 url: "mirror://luarocks/std._debug-1.1.0-1.rockspec",
                 sha256: "14dv8qq00w0ri87yaaqjfgllc6q87067h7wjrniryg008vmcli4l",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$659,
+                [nix.POS]: pos$659,
                 url: "http://github.com/lua-stdlib/_debug/archive/v1.1.0.zip",
                 sha256: "1sy10l61m228l6c80wrh8hsjvlgahlcdmg09p1n0m940wamf9zp5",
               })))),
             disabled: nix.thunk(() => (nix.asBool(nix.app(luaOlder, "5.1")) || nix.asBool(nix.app(luaAtLeast, "5.6")))),
             meta: nix.thunk(() => ({
-              __proto__: pos$660,
+              [nix.POS]: pos$660,
               homepage: "http://lua-stdlib.github.io/_debug",
               license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "AND"), nix.thunk(() => [
                   nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -6704,16 +6704,16 @@ export default nix.lambda((args) => (() => {
         const luaOlder = nix.arg($_1, "luaOlder");
         const std__debug = nix.arg($_1, "std-_debug");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$665,
+            [nix.POS]: pos$665,
             pname: "std.normalize",
             version: "2.0.4-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$662,
+                [nix.POS]: pos$662,
                 url: "mirror://luarocks/std.normalize-2.0.4-1.rockspec",
                 sha256: "0w53z4430hd722jbdr1p93k8fllqlrbvmyvp7w034l7ziqv3zbdj",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$663,
+                [nix.POS]: pos$663,
                 url: "http://github.com/lua-stdlib/normalize/archive/v2.0.4.zip",
                 sha256: "0my9q65a4pgmjd88b8ljc53x0wp1aq19b19inahk304q6ay92whq",
               })))),
@@ -6721,7 +6721,7 @@ export default nix.lambda((args) => (() => {
             nativeBuildInputs: nix.thunk(() => [ldoc]),
             propagatedBuildInputs: nix.thunk(() => [std__debug]),
             meta: nix.thunk(() => ({
-              __proto__: pos$664,
+              [nix.POS]: pos$664,
               homepage: "https://lua-stdlib.github.io/normalize",
               license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "AND"), nix.thunk(() => [
                   nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -6740,22 +6740,22 @@ export default nix.lambda((args) => (() => {
         const luaAtLeast = nix.arg($_1, "luaAtLeast");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$669,
+            [nix.POS]: pos$669,
             pname: "stdlib",
             version: "41.2.2-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$666,
+                [nix.POS]: pos$666,
                 url: "mirror://luarocks/stdlib-41.2.2-1.rockspec",
                 sha256: "0rscb4cm8s8bb8fk8rknc269y7bjqpslspsaxgs91i8bvabja6f6",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$667,
+                [nix.POS]: pos$667,
                 url: "http://github.com/lua-stdlib/lua-stdlib/archive/release-v41.2.2.zip",
                 sha256: "0ry6k0wh4vyar1z68s0qmqzkdkfn9lcznsl8av7x78qz6l16wfw4",
               })))),
             disabled: nix.thunk(() => (nix.asBool(nix.app(luaOlder, "5.1")) || nix.asBool(nix.app(luaAtLeast, "5.5")))),
             meta: nix.thunk(() => ({
-              __proto__: pos$668,
+              [nix.POS]: pos$668,
               homepage: "http://lua-stdlib.github.io/lua-stdlib",
               license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "AND"), nix.thunk(() => [
                   nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -6779,16 +6779,16 @@ export default nix.lambda((args) => (() => {
         const luv = nix.arg($_1, "luv");
         const tl = nix.arg($_1, "tl");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$673,
+            [nix.POS]: pos$673,
             pname: "teal-language-server",
             version: "0.2.1-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$670,
+                [nix.POS]: pos$670,
                 url: "mirror://luarocks/teal-language-server-0.2.1-1.rockspec",
                 sha256: "0dfqalvzsmvspmxp54pp9z4icx6k7ah6xz99lrnkhx01f798kf8z",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$671,
+                [nix.POS]: pos$671,
                 owner: "teal-language",
                 repo: "teal-language-server",
                 tag: "0.2.1",
@@ -6796,7 +6796,7 @@ export default nix.lambda((args) => (() => {
               })))),
             propagatedBuildInputs: nix.thunk(() => [argparse, ltreesitter, lua_cjson, luafilesystem, lusc_luv, luv, tl]),
             meta: nix.thunk(() => ({
-              __proto__: pos$672,
+              [nix.POS]: pos$672,
               homepage: "https://github.com/teal-language/teal-language-server",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               description: "A language server for the Teal language",
@@ -6812,23 +6812,23 @@ export default nix.lambda((args) => (() => {
         const luaOlder = nix.arg($_1, "luaOlder");
         const telescope_nvim = nix.arg($_1, "telescope-nvim");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$677,
+            [nix.POS]: pos$677,
             pname: "telescope-manix",
             version: "1.0.3-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$674,
+                [nix.POS]: pos$674,
                 url: "mirror://luarocks/telescope-manix-1.0.3-1.rockspec",
                 sha256: "0avqlglmki244q3ffnlc358z3pn36ibcqysxrxw7h6qy1zcwm8sr",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$675,
+                [nix.POS]: pos$675,
                 url: "https://github.com/mrcjkb/telescope-manix/archive/1.0.3.zip",
                 sha256: "186rbdddpv8q0zcz18lnkarp0grdzxp80189n4zj2mqyzqnw0svj",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             propagatedBuildInputs: nix.thunk(() => [telescope_nvim]),
             meta: nix.thunk(() => ({
-              __proto__: pos$676,
+              [nix.POS]: pos$676,
               homepage: "https://github.com/mrcjkb/telescope-manix",
               license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
               description: "A telescope.nvim extension for Manix - A fast documentation searcher for Nix",
@@ -6844,16 +6844,16 @@ export default nix.lambda((args) => (() => {
         const lua = nix.arg($_1, "lua");
         const plenary_nvim = nix.arg($_1, "plenary-nvim");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$681,
+            [nix.POS]: pos$681,
             pname: "telescope.nvim",
             version: "scm-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$678,
+                [nix.POS]: pos$678,
                 url: "mirror://luarocks/telescope.nvim-scm-1.rockspec",
                 sha256: "11dy6rkgkhc7zdrrvn361rwyf702yvvkhd0wz52pr757z534fk8s",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$679,
+                [nix.POS]: pos$679,
                 owner: "nvim-telescope",
                 repo: "telescope.nvim",
                 rev: "40aedd8a68c78a656a10a8d62d80c54af59420fb",
@@ -6862,7 +6862,7 @@ export default nix.lambda((args) => (() => {
             disabled: nix.thunk(() => !nix.eq(nix.sel(lua, "luaversion"), "5.1")),
             propagatedBuildInputs: nix.thunk(() => [plenary_nvim]),
             meta: nix.thunk(() => ({
-              __proto__: pos$680,
+              [nix.POS]: pos$680,
               homepage: "https://github.com/nvim-telescope/telescope.nvim",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               description: "Find, Filter, Preview, Pick. All lua, all the time.",
@@ -6878,16 +6878,16 @@ export default nix.lambda((args) => (() => {
         const luaOlder = nix.arg($_1, "luaOlder");
         const luarocks_build_rust_mlua = nix.arg($_1, "luarocks-build-rust-mlua");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$685,
+            [nix.POS]: pos$685,
             pname: "tiktoken_core",
             version: "0.2.5-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$682,
+                [nix.POS]: pos$682,
                 url: "mirror://luarocks/tiktoken_core-0.2.5-1.rockspec",
                 sha256: "17bii1zxxkff0wwsgap4ni1k6ypbrbq5vfs7l34m0n78imx7c2l1",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$683,
+                [nix.POS]: pos$683,
                 owner: "gptlang",
                 repo: "lua-tiktoken",
                 tag: "v0.2.5",
@@ -6897,7 +6897,7 @@ export default nix.lambda((args) => (() => {
             nativeBuildInputs: nix.thunk(() => [luarocks_build_rust_mlua]),
             propagatedBuildInputs: nix.thunk(() => [luarocks_build_rust_mlua]),
             meta: nix.thunk(() => ({
-              __proto__: pos$684,
+              [nix.POS]: pos$684,
               homepage: "https://github.com/gptlang/lua-tiktoken",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -6917,16 +6917,16 @@ export default nix.lambda((args) => (() => {
         const fetchFromGitHub = nix.arg($_1, "fetchFromGitHub");
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$689,
+            [nix.POS]: pos$689,
             pname: "tl",
             version: "0.24.8-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$686,
+                [nix.POS]: pos$686,
                 url: "mirror://luarocks/tl-0.24.8-1.rockspec",
                 sha256: "1m60ydmp6mn6iczg2an20ivvgn5rrz6sn0mhpnld9img3khvj7sf",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$687,
+                [nix.POS]: pos$687,
                 owner: "teal-language",
                 repo: "tl",
                 tag: "v0.24.8",
@@ -6934,7 +6934,7 @@ export default nix.lambda((args) => (() => {
               })))),
             propagatedBuildInputs: nix.thunk(() => [argparse, compat53]),
             meta: nix.thunk(() => ({
-              __proto__: pos$688,
+              [nix.POS]: pos$688,
               homepage: "https://github.com/teal-language/tl",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -6953,23 +6953,23 @@ export default nix.lambda((args) => (() => {
         const luaOlder = nix.arg($_1, "luaOlder");
         const luarocks_build_rust_mlua = nix.arg($_1, "luarocks-build-rust-mlua");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$693,
+            [nix.POS]: pos$693,
             pname: "toml-edit",
             version: "0.7.0-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$690,
+                [nix.POS]: pos$690,
                 url: "mirror://luarocks/toml-edit-0.7.0-1.rockspec",
                 sha256: "174kjw3j6p1q5wxd34929wlm4hsv5s7ma44nccy3l0b52g453afg",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$691,
+                [nix.POS]: pos$691,
                 url: "https://github.com/lumen-oss/toml-edit.lua/archive/v0.7.0.zip",
                 sha256: "03wg6mwmj802a5iv4fklz0zwd9slpw9hjzwj5068gf2lihkkwjzh",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             nativeBuildInputs: nix.thunk(() => [luarocks_build_rust_mlua]),
             meta: nix.thunk(() => ({
-              __proto__: pos$692,
+              [nix.POS]: pos$692,
               homepage: "https://github.com/lumen-oss/toml-edit.lua",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -6988,22 +6988,22 @@ export default nix.lambda((args) => (() => {
         const fetchzip = nix.arg($_1, "fetchzip");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$697,
+            [nix.POS]: pos$697,
             pname: "tomlua",
             version: "1.2.3-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$694,
+                [nix.POS]: pos$694,
                 url: "mirror://luarocks/tomlua-1.2.3-1.rockspec",
                 sha256: "0aqagzxnz58nzwx7h3igycvcraxs1h7hyl47d7sbb01kcclp5jr6",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$695,
+                [nix.POS]: pos$695,
                 url: "https://github.com/BirdeeHub/tomlua/archive/v1.2.3.zip",
                 sha256: "04mg0m3qkr89la733rpzd8xrjq8ysrmjm7v8fid1r80cp1kbg9vf",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$696,
+              [nix.POS]: pos$696,
               homepage: "https://github.com/BirdeeHub/tomlua",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -7022,16 +7022,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luarocks_build_tree_sitter_cli = nix.arg($_1, "luarocks-build-tree-sitter-cli");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$701,
+            [nix.POS]: pos$701,
             pname: "tree-sitter-cli",
             version: "0.26.8-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$698,
+                [nix.POS]: pos$698,
                 url: "mirror://luarocks/tree-sitter-cli-0.26.8-1.rockspec",
                 sha256: "01gkqv1nlp8sjlljb7hkj2rq41dc9dfdbamzsg80n6855ynhj8nx",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$699,
+                [nix.POS]: pos$699,
                 owner: "FourierTransformer",
                 repo: "tree-sitter-cli",
                 rev: "20947767690a1e81141c8ae4618cee80280861de",
@@ -7039,7 +7039,7 @@ export default nix.lambda((args) => (() => {
               })))),
             nativeBuildInputs: nix.thunk(() => [luarocks_build_tree_sitter_cli]),
             meta: nix.thunk(() => ({
-              __proto__: pos$700,
+              [nix.POS]: pos$700,
               homepage: "https://github.com/FourierTransformer/tree-sitter-cli",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               description: "Install tree-sitter CLI binaries",
@@ -7055,23 +7055,23 @@ export default nix.lambda((args) => (() => {
         const luaOlder = nix.arg($_1, "luaOlder");
         const luarocks_build_treesitter_parser = nix.arg($_1, "luarocks-build-treesitter-parser");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$705,
+            [nix.POS]: pos$705,
             pname: "tree-sitter-http",
             version: "0.0.33-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$702,
+                [nix.POS]: pos$702,
                 url: "mirror://luarocks/tree-sitter-http-0.0.33-1.rockspec",
                 sha256: "1x6avlk3bdz406ywmxpq0sdi31fpfrbpqlbdz1ygh9gpknah5617",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$703,
+                [nix.POS]: pos$703,
                 url: "https://github.com/rest-nvim/tree-sitter-http/archive/d2e4e4c7d03f70e0465d436f2b5f67497cd544ca.zip",
                 sha256: "1wjycyvrahbpamdi6x74l8q1q8jrnk0y8nrwdwqdc7lm8hqjb5s2",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             nativeBuildInputs: nix.thunk(() => [luarocks_build_treesitter_parser]),
             meta: nix.thunk(() => ({
-              __proto__: pos$704,
+              [nix.POS]: pos$704,
               homepage: "https://github.com/rest-nvim/tree-sitter-http",
               license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
               description: "tree-sitter parser for http",
@@ -7085,22 +7085,22 @@ export default nix.lambda((args) => (() => {
         const fetchzip = nix.arg($_1, "fetchzip");
         const luarocks_build_treesitter_parser = nix.arg($_1, "luarocks-build-treesitter-parser");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$709,
+            [nix.POS]: pos$709,
             pname: "tree-sitter-kulala_http",
             version: "0.3.1-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$706,
+                [nix.POS]: pos$706,
                 url: "mirror://luarocks/tree-sitter-kulala_http-0.3.1-1.rockspec",
                 sha256: "0ghap9fsk6bdilsc9pzlnfbhxsik9aifpwp3vcrx76wlfwws6bk6",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$707,
+                [nix.POS]: pos$707,
                 url: "https://github.com/mistweaverco/tree-sitter-kulala-http/archive/v0.3.1.zip",
                 sha256: "1xc6bgdp9ppn8bik43rdxfn8701m33glmdbx2mg0dhll27pm86zq",
               })))),
             nativeBuildInputs: nix.thunk(() => [luarocks_build_treesitter_parser]),
             meta: nix.thunk(() => ({
-              __proto__: pos$708,
+              [nix.POS]: pos$708,
               homepage: "https://kulala.app",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               description: "Tree-sitter grammar for http (kulala-flavour).",
@@ -7114,22 +7114,22 @@ export default nix.lambda((args) => (() => {
         const fetchzip = nix.arg($_1, "fetchzip");
         const luarocks_build_treesitter_parser_cpp = nix.arg($_1, "luarocks-build-treesitter-parser-cpp");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$713,
+            [nix.POS]: pos$713,
             pname: "tree-sitter-norg",
             version: "0.2.6-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$710,
+                [nix.POS]: pos$710,
                 url: "mirror://luarocks/tree-sitter-norg-0.2.6-1.rockspec",
                 sha256: "1s0wj59v4zjgimws742ybzy7nhnnkz8nas4y5k96c2z5z54ynxmq",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$711,
+                [nix.POS]: pos$711,
                 url: "https://github.com/nvim-neorg/tree-sitter-norg/archive/v0.2.6.zip",
                 sha256: "077rds0rq10wjywpj4hmmq9dd6qp6sfwbdjyh587laldrfl7jy6g",
               })))),
             nativeBuildInputs: nix.thunk(() => [luarocks_build_treesitter_parser_cpp]),
             meta: nix.thunk(() => ({
-              __proto__: pos$712,
+              [nix.POS]: pos$712,
               homepage: "https://github.com/nvim-neorg/tree-sitter-norg",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -7147,22 +7147,22 @@ export default nix.lambda((args) => (() => {
         const fetchzip = nix.arg($_1, "fetchzip");
         const luarocks_build_treesitter_parser = nix.arg($_1, "luarocks-build-treesitter-parser");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$717,
+            [nix.POS]: pos$717,
             pname: "tree-sitter-norg-meta",
             version: "0.1.0-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$714,
+                [nix.POS]: pos$714,
                 url: "mirror://luarocks/tree-sitter-norg-meta-0.1.0-1.rockspec",
                 sha256: "0vngnyvdad6n36r37sc96asl7h5mph691a0638523mffbg8zdfvr",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$715,
+                [nix.POS]: pos$715,
                 url: "https://github.com/nvim-neorg/tree-sitter-norg-meta/archive/v0.1.0.zip",
                 sha256: "1vz74wc5yy5fykl9c3b16k6fsvskxp93acsy81p337jzg709v97j",
               })))),
             nativeBuildInputs: nix.thunk(() => [luarocks_build_treesitter_parser]),
             meta: nix.thunk(() => ({
-              __proto__: pos$716,
+              [nix.POS]: pos$716,
               homepage: "https://github.com/nvim-neorg/tree-sitter-norg-meta",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               description: "Treesitter parser for Norg's `@document.meta` blocks.",
@@ -7176,22 +7176,22 @@ export default nix.lambda((args) => (() => {
         const fetchzip = nix.arg($_1, "fetchzip");
         const luarocks_build_treesitter_parser = nix.arg($_1, "luarocks-build-treesitter-parser");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$721,
+            [nix.POS]: pos$721,
             pname: "tree-sitter-orgmode",
             version: "2.0.4-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$718,
+                [nix.POS]: pos$718,
                 url: "mirror://luarocks/tree-sitter-orgmode-2.0.4-1.rockspec",
                 sha256: "0f8h1f5r7n32qplkk6w48ngj700105wn9xm7jqlvm26d6qpiihg9",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$719,
+                [nix.POS]: pos$719,
                 url: "https://github.com/nvim-orgmode/tree-sitter-org/archive/2.0.4.zip",
                 sha256: "1c0j9h1nxgh0r8h9l9xd75hqqbsjy9x01gkg520fqnwcq45jd8pg",
               })))),
             nativeBuildInputs: nix.thunk(() => [luarocks_build_treesitter_parser]),
             meta: nix.thunk(() => ({
-              __proto__: pos$720,
+              [nix.POS]: pos$720,
               homepage: "https://github.com/nvim-orgmode/tree-sitter-org",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               description: "A fork of tree-sitter-org, for use with the orgmode Neovim plugin",
@@ -7206,23 +7206,23 @@ export default nix.lambda((args) => (() => {
         const luaOlder = nix.arg($_1, "luaOlder");
         const luarocks_build_treesitter_parser = nix.arg($_1, "luarocks-build-treesitter-parser");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$725,
+            [nix.POS]: pos$725,
             pname: "tree-sitter-teal",
             version: "0.0.37-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$722,
+                [nix.POS]: pos$722,
                 url: "mirror://luarocks/tree-sitter-teal-0.0.37-1.rockspec",
                 sha256: "16v1r92w8zisgizys99ir2wkvwmf4fcpddznxg3fyxbqr67hyy5c",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$723,
+                [nix.POS]: pos$723,
                 url: "https://github.com/euclidianAce/tree-sitter-teal/archive/ac6b42ffb23d5d52b582c02508dd3524ac0ba3df.zip",
                 sha256: "15dnrvw4xp7gv9b7x825svrnaxjr40bv8crdl5v7xj0np9lrkwzj",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             nativeBuildInputs: nix.thunk(() => [luarocks_build_treesitter_parser]),
             meta: nix.thunk(() => ({
-              __proto__: pos$724,
+              [nix.POS]: pos$724,
               homepage: "https://github.com/euclidianAce/tree-sitter-teal",
               license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
               description: "tree-sitter parser for teal",
@@ -7236,16 +7236,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$729,
+            [nix.POS]: pos$729,
             pname: "utf8",
             version: "1.3-0",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$726,
+                [nix.POS]: pos$726,
                 url: "mirror://luarocks/utf8-1.3-0.rockspec",
                 sha256: "1szsrwb15yyvrqwyqrr7g5ivihc0kl4pc7qq439q235f3x8jv2jp",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$727,
+                [nix.POS]: pos$727,
                 owner: "dannote",
                 repo: "luautf8",
                 rev: "f36cc914ae9015cd3045987abadd83bbcfae98f0",
@@ -7253,7 +7253,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$728,
+              [nix.POS]: pos$728,
               homepage: "http://github.com/starwing/luautf8",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               description: "A UTF-8 support module for Lua",
@@ -7268,22 +7268,22 @@ export default nix.lambda((args) => (() => {
         const fetchzip = nix.arg($_1, "fetchzip");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$733,
+            [nix.POS]: pos$733,
             pname: "vicious",
             version: "2.7.1-4",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$730,
+                [nix.POS]: pos$730,
                 url: "mirror://luarocks/vicious-2.7.1-4.rockspec",
                 sha256: "1yvc9mbalsyrqysxkc1lf92ki5gzizn79y2azyavmgjwljif6lfi",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$731,
+                [nix.POS]: pos$731,
                 url: "https://github.com/vicious-widgets/vicious/archive/refs/tags/v2.7.1.zip",
                 sha256: "0bfj3bc1gmbwwvpwkmqp658iwrwdifc78hzwwy1qpn7rbmarg2qv",
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$732,
+              [nix.POS]: pos$732,
               homepage: "https://vicious.rtfd.io",
               license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
               description: "Modular widget library for the \"awesome\" window manager",
@@ -7297,16 +7297,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$737,
+            [nix.POS]: pos$737,
             pname: "vstruct",
             version: "2.1.1-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$734,
+                [nix.POS]: pos$734,
                 url: "mirror://luarocks/vstruct-2.1.1-1.rockspec",
                 sha256: "111ff5207hspda9fpj9dqdd699rax0df3abdnfbmdbdy3j07dd04",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$735,
+                [nix.POS]: pos$735,
                 owner: "ToxicFrog",
                 repo: "vstruct",
                 tag: "v2.1.1",
@@ -7314,7 +7314,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$736,
+              [nix.POS]: pos$736,
               homepage: "https://github.com/ToxicFrog/vstruct",
               description: "Lua library to manipulate binary data",
             })),
@@ -7328,16 +7328,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luasystem = nix.arg($_1, "luasystem");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$741,
+            [nix.POS]: pos$741,
             pname: "vusted",
             version: "2.5.3-1",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$738,
+                [nix.POS]: pos$738,
                 url: "mirror://luarocks/vusted-2.5.3-1.rockspec",
                 sha256: "1n0fpr3kw0dp9qiik8k9nh3jbckl4zs7kv7mjfffs9kms85jrq3d",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$739,
+                [nix.POS]: pos$739,
                 owner: "notomo",
                 repo: "vusted",
                 tag: "v2.5.3",
@@ -7345,7 +7345,7 @@ export default nix.lambda((args) => (() => {
               })))),
             propagatedBuildInputs: nix.thunk(() => [busted, luasystem]),
             meta: nix.thunk(() => ({
-              __proto__: pos$740,
+              [nix.POS]: pos$740,
               homepage: "https://github.com/notomo/vusted",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               description: "`busted` wrapper for testing neovim plugin",
@@ -7359,16 +7359,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$745,
+            [nix.POS]: pos$745,
             pname: "warna",
             version: "0.3.5-2",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$742,
+                [nix.POS]: pos$742,
                 url: "mirror://luarocks/warna-0.3.5-2.rockspec",
                 sha256: "0vkkpldgaav9cnx63wal6851rlcq6n93fpv5xpvm9al308q45d0r",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$743,
+                [nix.POS]: pos$743,
                 owner: "komothecat",
                 repo: "warna",
                 tag: "v0.3.5-2",
@@ -7376,7 +7376,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$744,
+              [nix.POS]: pos$744,
               homepage: "https://github.com/komothecat/warna#readme",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -7395,16 +7395,16 @@ export default nix.lambda((args) => (() => {
         const fetchurl_1 = nix.arg($_1, "fetchurl");
         const luaOlder = nix.arg($_1, "luaOlder");
         return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-            __proto__: pos$749,
+            [nix.POS]: pos$749,
             pname: "xml2lua",
             version: "1.6-2",
             knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl_1, nix.thunk(() => ({
-                __proto__: pos$746,
+                [nix.POS]: pos$746,
                 url: "mirror://luarocks/xml2lua-1.6-2.rockspec",
                 sha256: "1fh57kv95a18q4869hmr4fbzbnlmq5z83mkkixvwzg3szf9kvfcn",
               }))), "outPath")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$747,
+                [nix.POS]: pos$747,
                 owner: "manoelcampos",
                 repo: "xml2lua",
                 tag: "v1.6-2",
@@ -7412,7 +7412,7 @@ export default nix.lambda((args) => (() => {
               })))),
             disabled: nix.thunk(() => nix.app(luaOlder, "5.1")),
             meta: nix.thunk(() => ({
-              __proto__: pos$748,
+              [nix.POS]: pos$748,
               homepage: "http://manoelcampos.github.io/xml2lua/",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

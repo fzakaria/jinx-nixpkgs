@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "huggle";
       const version = "3.4.14";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "huggle",
           repo: "huggle3-qt-lx",
           rev: version,
@@ -60,7 +60,7 @@ substituteInPlace src/CMakeLists.txt --replace '@libirc_includes@' '${nix.sel(li
       ]);
       const installTargets = nix.thunk(() => ["install"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Anti-vandalism tool for use on MediaWiki-based projects",
         mainProgram: "huggle",
         homepage: "https://github.com/huggle/huggle3-qt-lx",
@@ -69,7 +69,7 @@ substituteInPlace src/CMakeLists.txt --replace '@libirc_includes@' '${nix.sel(li
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "x86_64")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

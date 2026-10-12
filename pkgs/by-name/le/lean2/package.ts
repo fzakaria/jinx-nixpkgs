@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "lean2",
       version: "2018-10-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "leanprover",
           repo: "lean2",
           rev: "8072fdf9a0b31abb9d43ab894d7a858639e20ed7",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "lean2-fix-compilation-error.patch",
             url: "https://github.com/collares/lean2/commit/09b316ce75fd330b3b140d138bcdae2b0e909234.patch",
             sha256: "060mvqn9y8lsn4l20q9rhamkymzsgh0r1vzkjw78gnj8kjw67jl5",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/linja --prefix PATH : $out/bin:${ninja}/bin
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Automatic and interactive theorem prover (version with HoTT support)",
         homepage: "http://leanprover.github.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

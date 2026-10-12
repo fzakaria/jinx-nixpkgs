@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const yarn = nix.arg($, "yarn");
   const nodejs = nix.arg($, "nodejs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sticky-notes",
       version: "0.2.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vixalien",
           repo: "sticky",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         libsoup_3,
       ]),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/yarn.lock")),
           hash: "sha256-NDGuG2rXJH0bHsD7yQMY6HAZDkMq0j63SYVz8+X3fPQ=",
         })))),
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
 `),
       postFixup: "sed -i \"1 a imports.package._findEffectiveEntryPointName = () => 'com.vixalien.sticky';\" $out/bin/.com.vixalien.sticky-wrapped\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simple sticky notes app for GNOME",
         homepage: "https://github.com/vixalien/sticky",
         changelog: nix.thunk(() => nix.str`https://github.com/vixalien/sticky/releases/tag/v${nix.sel(finalAttrs, "version")}`),

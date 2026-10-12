@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const tensorboard = nix.arg($, "tensorboard");
   const tqdm = nix.arg($, "tqdm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "stable-baselines3",
       version: "2.9.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DLR-RM",
           repo: "stable-baselines3",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
           "test_callbacks",
         ])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PyTorch version of Stable Baselines, reliable implementations of reinforcement learning algorithms",
         homepage: "https://github.com/DLR-RM/stable-baselines3",
         changelog: nix.thunk(() => nix.str`https://github.com/DLR-RM/stable-baselines3/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const ojs = nix.arg($, "ojs");
   const gen_js_api = nix.arg($, "gen_js_api");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jsonoo",
       version: "0.3.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mlantas",
           repo: "jsonoo",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [ojs, gen_js_api]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "JSON library for Js_of_ocaml",
         homepage: "https://github.com/mlantas/jsonoo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

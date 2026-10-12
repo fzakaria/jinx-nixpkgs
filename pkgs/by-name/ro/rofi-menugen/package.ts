@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const rofi = nix.arg($, "rofi");
   const gnused = nix.arg($, "gnused");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rofi-menugen",
       version: "0-unstable-2015-12-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "octotep",
           repo: "menugen",
           rev: "168efd2608fdb88b1aff3e0244bda8402169f207",
@@ -31,7 +31,7 @@ sed -i -e "s|sed |${gnused}/bin/sed |" menugenbase
 `),
       installPhase: "mkdir -p $out/bin\ncp menugen $out/bin/rofi-menugen\ncp menugenbase $out/bin/rofi-menugenbase\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Generates menu based applications using rofi",
         homepage: "https://github.com/octotep/menugen",
         maintainers: [],

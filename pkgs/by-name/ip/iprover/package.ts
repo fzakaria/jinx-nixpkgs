@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const z3 = nix.arg($, "z3");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "iprover",
       version: "3.9.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "korovin",
           repo: "iprover",
           rev: "v3.9.2",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         ];
       })())),
       preConfigure: "patchShebangs .",
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       installPhase: nix.thunk(() => nix.str`runHook preInstall
 mkdir -p "$out/bin"
 cp iproveropt "$out/bin"
@@ -56,7 +56,7 @@ chmod a+x  "$out"/bin/iprover
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Automated first-order logic theorem prover",
         homepage: "http://www.cs.man.ac.uk/~korovink/iprover/",
         maintainers: nix.thunk(() => (() => {

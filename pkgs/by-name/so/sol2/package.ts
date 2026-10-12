@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const lua = nix.arg($, "lua");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sol2",
       version: "3.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ThePhD",
           repo: "sol2",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         "-DSOL2_BUILD_LUA=FALSE",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lua API wrapper with advanced features and top notch performance",
         longDescription: "sol2 is a C++ library binding to Lua.\nIt currently supports all Lua versions 5.1+ (LuaJIT 2.0+ and MoonJIT included).\nsol2 aims to be easy to use and easy to add to a project.\nThe library is header-only for easy integration with projects, and a single header can be used for drag-and-drop start up.\n",
         homepage: "https://github.com/ThePhD/sol2",

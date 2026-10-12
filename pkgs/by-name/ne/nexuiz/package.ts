@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const version = "2.5.2";
   const version_short = nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), version));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nexuiz",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/nexuiz/nexuiz-${version_short}.zip`),
           sha256: "0010jrxc68qqinkvdh1qn2b8z3sa5v1kcd8d1m4llp3pr6y7xqm5",
         })))),
@@ -48,7 +48,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "Nexuiz",
             exec: "nexuiz",
             icon: "nexuiz",
@@ -58,7 +58,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Free fast-paced first-person shooter",
         homepage: "http://www.alientrap.org/games/nexuiz",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
   return nix.app(symlinkJoin, (finalAttrs) => (() => {
       const version = nix.thunk(() => nix.attr(finalAttrs, "version"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jmylchreest",
           repo: "rosec",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-dlHOzUW/kH9SS/mPl+VvEetCzOY/L2qEpoYLJTCWR90=",
         }))));
       const rosecPam = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: "pam_rosec",
           version: version,
           src: src,
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
           installPhase: "runHook preInstall\ninstall -Dm755 pam_rosec.so \"$out/lib/security/pam_rosec.so\"\nrunHook postInstall\n",
         }))));
       const rosecCore = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: "rosec-unwrapped",
           version: version,
           src: src,
@@ -65,22 +65,22 @@ export XDG_DATA_HOME=$TMPDIR/xdg-data
           postInstall: "mkdir -p $out/libexec/rosec\nmkdir -p $out/lib/rosec/providers\nmkdir -p $out/share/dbus-1/system.d\nmkdir -p $out/share/systemd/user\n\nmv $out/bin/rosec-pam-unlock $out/libexec/rosec/\n\n# `rosec enable` writes the D-Bus, systemd user unit and xdg portal\n# registrations to $XDG_CONFIG_HOME and $XDG_DATA_HOME, which are\n# redirected into the output here.\nXDG_CONFIG_HOME=$out/lib XDG_DATA_HOME=$out/share $out/bin/rosec enable\n",
         }))));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname: "rosec",
         version: "0.0.34",
         paths: nix.thunk(() => nix.concat([rosecCore, rosecPam], provider)),
         __structuredAttrs: true,
         strictDeps: true,
         passthru: nix.thunk(() => ({
-          __proto__: pos$6,
-          tests: nix.thunk(() => ({ __proto__: pos$4, rosec: nix.thunk(() => nix.attr(nixosTests, "rosec")) })),
+          [nix.POS]: pos$6,
+          tests: nix.thunk(() => ({ [nix.POS]: pos$4, rosec: nix.thunk(() => nix.attr(nixosTests, "rosec")) })),
           rosecCore: rosecCore,
           src: src,
           version: version,
-          updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$5, extraArgs: nix.thunk(() => ["--subpackage", "rosecCore"]) })))),
+          updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$5, extraArgs: nix.thunk(() => ["--subpackage", "rosecCore"]) })))),
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           description: "Secrets daemon implementing the freedesktop.org Secret Service API with modular backend providers",
           homepage: "https://github.com/jmylchreest/rosec",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

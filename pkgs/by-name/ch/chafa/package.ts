@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const docbook_xsl = nix.arg($, "docbook_xsl");
   const glib = nix.arg($, "glib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.18.3",
       pname: "chafa",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hpjansson",
           repo: "chafa",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "installShellCompletion --cmd chafa \\\n  --fish tools/completions/fish-completion.fish \\\n  --zsh tools/completions/zsh-completion.zsh\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Terminal graphics for the 21st century",
         homepage: "https://hpjansson.org/chafa/",
         changelog: nix.thunk(() => nix.str`https://github.com/hpjansson/chafa/releases/tag/${nix.sel(finalAttrs, "version")}`),

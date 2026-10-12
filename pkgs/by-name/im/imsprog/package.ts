@@ -23,18 +23,18 @@ export default nix.lambda((args) => (() => {
   const wget = nix.arg($, "wget");
   const zenity = nix.arg($, "zenity");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       __structuredAttrs: true,
       pname: "imsprog",
       version: "1.9.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bigbigmdm",
           repo: "IMSProg",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-K7biDYnWl4wbQ2t69x5X7/Cz/bWUvWlDeDOeNKrjCTg=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, LC_ALL: "C.UTF-8" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, LC_ALL: "C.UTF-8" })),
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [
         cmake,
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
 `),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/bigbigmdm/IMSProg/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Free I2C, MicroWire and SPI EEPROM/Flash chip programmer tool for CH341A device",
         homepage: "https://github.com/bigbigmdm/IMSProg",

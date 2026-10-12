@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ant",
       version: "1.10.18",
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://apache/ant/binaries/apache-ant-${nix.sel(finalAttrs, "version")}-bin.tar.bz2`),
           hash: "sha256-vBK+cMtcGwdMHnPYKj89pV88ZbigxzQqbrbR0CQmUoA=",
         })))),
@@ -87,16 +87,16 @@ EOF
 chmod +x $out/bin/ant
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         home: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/share/ant`),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "rev-prefix": "rel/",
             url: "https://gitbox.apache.org/repos/asf/ant",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://ant.apache.org/",
         description: "Java-based build tool",
         mainProgram: "ant",

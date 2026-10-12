@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "b612",
       version: "1.008",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "polarsys",
           repo: "b612",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://projects.eclipse.org/projects/polarsys.b612",
         description: "Highly legible font family for use on aircraft cockpit screens",
         longDescription: "B612 is the result of a research project initiated by Airbus. The font\nwas designed by Nicolas Chauveau and Thomas Paillot (intactile DESIGN) with the\nsupport of Jean‑Luc Vinot (ENAC). Prior research by Jean‑Luc Vinot (DGAC/DSNA)\nand Sylvie Athènes (Université de Toulouse III). The challenge for the\n\"Aeronautical Font\" was to improve the display of information on the cockpit\nscreens, in particular in terms of legibility and comfort of reading, and to\noptimize the overall homogeneity of the cockpit.\n\nIntactile DESIGN was hired to work on the design of eight typographic\nvariants of the font. This one, baptized B612 in reference to the\nimaginary asteroid of the aviator Saint‑Exupéry, benefited from a complete\nhinting on all the characters.\n",

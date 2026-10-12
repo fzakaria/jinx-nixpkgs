@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const aiohttp = nix.arg($, "aiohttp");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pysabnzbd",
       version: "1.1.1",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jeradM",
           repo: "pysabnzbd",
           rev: "8e6cd1869c8cc99a4560ea1b178f0a1efd89e460",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["pysabnzbd"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python wrapper for SABnzbd API",
         homepage: "https://github.com/jeradM/pysabnzbd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

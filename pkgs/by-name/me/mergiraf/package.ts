@@ -19,28 +19,28 @@ export default nix.lambda((args) => (() => {
   const jujutsu = nix.arg($, "jujutsu");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mergiraf",
       version: "0.20.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mergiraf",
           repo: "mergiraf",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-MR0ZkCEQYyYD15htRuFUQelfp14dvlXijqdHtRjionU=",
         })))),
       cargoHash: "sha256-8QAb5HlZMl7WDMhI20/oY6LY/9U1hMAJaQk5hRaBXQc=",
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-fno-strict-aliasing" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fno-strict-aliasing" })),
       nativeCheckInputs: nix.thunk(() => [git, jujutsu]),
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       cargoBuildFlags: nix.thunk(() => ["--bin", "mergiraf"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Syntax-aware git merge driver for a growing collection of programming languages and file formats",
         homepage: "https://mergiraf.org/",
         downloadPage: "https://codeberg.org/mergiraf/mergiraf",

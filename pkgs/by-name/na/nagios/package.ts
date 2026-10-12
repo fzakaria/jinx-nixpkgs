@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "nagios",
       version: "4.5.14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NagiosEnterprises",
           repo: "nagioscore",
           tag: nix.thunk(() => nix.str`nagios-${nix.sel(finalAttrs, "version")}`),
@@ -51,23 +51,23 @@ export default nix.lambda((args) => (() => {
       installTargets: "install install-config",
       postInstall: "# don't make default files use hardcoded paths to commands\nsed -i 's@command_line *[^ ]*/\\([^/]*\\) @command_line \\1 @'  $out/etc/objects/commands.cfg\nsed -i 's@/usr/bin/@@g' $out/etc/objects/commands.cfg\nsed -i 's@/bin/@@g' $out/etc/objects/commands.cfg\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           nagios: nix.thunk(() => nix.attr(nixosTests, "nagios")),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "nagios --version",
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             extraArgs: nix.thunk(() => ["--version-regex", "nagios-(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Host, service and network monitoring program",
         homepage: "https://www.nagios.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/NagiosEnterprises/nagioscore/blob/nagios-${nix.sel(finalAttrs, "version")}/Changelog`),

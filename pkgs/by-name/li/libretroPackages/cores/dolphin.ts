@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const udev = nix.arg($, "udev");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       core: "dolphin",
       version: "0-unstable-2026-09-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libretro",
           repo: "dolphin",
           rev: "1a0f97270b703c71625c87dee178d778348e540b",
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Port of Dolphin to libretro",
         homepage: "https://github.com/libretro/dolphin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

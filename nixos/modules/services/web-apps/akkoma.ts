@@ -177,7 +177,7 @@ export default nix.lambda((args) => (() => {
   const db = nix.thunk(() => nix.sel(ex, ":pleroma", "Pleroma.Repo"));
   const web = nix.thunk(() => nix.sel(ex, ":pleroma", "Pleroma.Web.Endpoint"));
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "elixirConf"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       elixir: nix.thunk(() => nix.sel(cfg, "package", "elixirPackage")),
     }))));
   const from = nix.thunk(() => nix.sel(format, "lib"));
@@ -192,7 +192,7 @@ export default nix.lambda((args) => (() => {
   const absolutePath = nix.thunk(() => (() => {
     const w = nix.withScope(types, null);
     return nix.app(mkOptionType, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: "absolutePath",
         description: "absolute path",
         descriptionClass: "noun",
@@ -201,17 +201,17 @@ export default nix.lambda((args) => (() => {
       })));
   })());
   const secret = nix.thunk(() => nix.app(mkOptionType, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "secret",
       description: "secret value",
       descriptionClass: "noun",
       check: isSecret,
-      nestedTypes: nix.thunk(() => ({ __proto__: pos$3, _secret: absolutePath })),
+      nestedTypes: nix.thunk(() => ({ [nix.POS]: pos$3, _secret: absolutePath })),
     }))));
   const ipAddress = nix.thunk(() => (() => {
     const w_1 = nix.withScope(types, null);
     return nix.app(mkOptionType, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         name: "ipAddress",
         description: "IPv4 or IPv6 address",
         descriptionClass: "conjunction",
@@ -229,28 +229,28 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_2, "str")),
             nix.thunk(() => nix.app(nix.lookup(w_2, "attrsOf"), elixirValue$)),
             nix.thunk(() => nix.app(nix.lookup(w_2, "listOf"), elixirValue$)),
-          ])))), { __proto__: pos$6, description: "Elixir value" });
+          ])))), { [nix.POS]: pos$6, description: "Elixir value" });
     })());
     return nix.force(elixirValue$);
   })());
   const frontend = nix.thunk(() => ({
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       package: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           type: nix.thunk(() => nix.sel(types, "package")),
           description: "Akkoma frontend package.",
           example: nix.thunk(() => nix.app(literalExpression, "pkgs.akkoma-fe")),
         })))),
       name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           type: nix.thunk(() => nix.sel(types, "nonEmptyStr")),
           description: "Akkoma frontend name.",
           example: "akkoma-fe",
         })))),
       ref: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           type: nix.thunk(() => nix.sel(types, "nonEmptyStr")),
           description: "Akkoma frontend reference.",
           example: "stable",
@@ -277,7 +277,7 @@ export default nix.lambda((args) => (() => {
   })();
   const configFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "config.exs", nix.thunk(() => nix.app(replaceSec, nix.thunk(() => nix.app(nix.sel(attrsets, "updateManyAttrsByPath"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             path: nix.thunk(() => [":pleroma", "Pleroma.Web.Endpoint", "http", "ip"]),
             update: (addr) => (nix.asBool(nix.app(isAbsolutePath, addr)) ? nix.app(mkTuple, nix.thunk(() => [nix.thunk(() => nix.app(mkAtom, ":local")), addr])) : nix.app(mkRaw, nix.thunk(() => nix.app(erlAddr, addr)))),
           })),
@@ -287,10 +287,10 @@ export default nix.lambda((args) => (() => {
     const name = nix.arg($_1, "name");
     const text = nix.arg($_1, "text");
     const runtimeInputs = nix.argOr($_1, "runtimeInputs", () => []);
-    return nix.add(nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({ __proto__: pos$13, name: name, text: text, runtimeInputs: runtimeInputs }))), nix.str`/bin/${name}`);
+    return nix.add(nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({ [nix.POS]: pos$13, name: name, text: text, runtimeInputs: runtimeInputs }))), nix.str`/bin/${name}`);
   })(), formals$3);
   const genScript = nix.thunk(() => nix.app(writeShell, nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       name: "akkoma-gen-cookie",
       runtimeInputs: nix.thunk(() => (() => {
         const w_2 = nix.withScope(pkgs, null);
@@ -307,7 +307,7 @@ export default nix.lambda((args) => (() => {
 `),
     }))));
   const copyScript = nix.thunk(() => nix.app(writeShell, nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       name: "akkoma-copy-cookie",
       runtimeInputs: nix.thunk(() => (() => {
         const w_2 = nix.withScope(pkgs, null);
@@ -323,7 +323,7 @@ export default nix.lambda((args) => (() => {
   const secretPaths = nix.thunk(() => nix.app(catAttrs, "_secret", nix.thunk(() => nix.app(collect, isSecret, nix.thunk(() => nix.sel(cfg, "config"))))));
   const vapidKeygen = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "vapidKeygen.exs", "[public_path, private_path] = System.argv()\n{public_key, private_key} = :crypto.generate_key :ecdh, :prime256v1\nFile.write! public_path, Base.url_encode64(public_key, padding: false)\nFile.write! private_path, Base.url_encode64(private_key, padding: false)\n"));
   const initSecretsScript = nix.thunk(() => nix.app(writeShell, nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       name: "akkoma-init-secrets",
       runtimeInputs: nix.thunk(() => (() => {
         const w_2 = nix.withScope(pkgs, null);
@@ -365,7 +365,7 @@ ${nix.app(optionalString, nix.thunk(() => nix.app(isSecret, vapid_public)), nix.
       })()),
     }))));
   const configScript = nix.thunk(() => nix.app(writeShell, nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       name: "akkoma-config",
       runtimeInputs: nix.thunk(() => (() => {
         const w_2 = nix.withScope(pkgs, null);
@@ -409,7 +409,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 `)));
   const dbHost = nix.thunk(() => (nix.asBool(nix.has(db, "socket_dir")) ? nix.sel(db, "socket_dir") : (nix.asBool(nix.has(db, "socket")) ? nix.sel(db, "socket") : (nix.asBool(nix.has(db, "hostname")) ? nix.sel(db, "hostname") : null))));
   const initDbScript = nix.thunk(() => nix.app(writeShell, nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       name: "akkoma-initdb",
       runtimeInputs: nix.thunk(() => (() => {
         const w_2 = nix.withScope(pkgs, null);
@@ -460,7 +460,7 @@ psql -f "$setupSql"
     }))));
   const envWrapper = nix.thunk(() => (() => {
     const script = nix.thunk(() => nix.app(writeShell, nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         name: "akkoma-env",
         text: nix.thunk(() => nix.str`cd "${nix.sel(cfg, "package")}"
 
@@ -485,14 +485,14 @@ RELEASE_NAME="akkoma" \\
   exec "${nix.sel(cfg, "package")}/bin/$(basename "$0")" "$@"
 `),
       }))));
-    return nix.app(nix.sel(pkgs, "runCommand"), "akkoma-env", nix.thunk(() => ({ __proto__: pos$20, preferLocalBuild: true })), nix.thunk(() => nix.str`mkdir -p "$out/bin"
+    return nix.app(nix.sel(pkgs, "runCommand"), "akkoma-env", nix.thunk(() => ({ [nix.POS]: pos$20, preferLocalBuild: true })), nix.thunk(() => nix.str`mkdir -p "$out/bin"
 
 ln -r -s ${nix.app(escapeShellArg, script)} "$out/bin/pleroma"
 ln -r -s ${nix.app(escapeShellArg, script)} "$out/bin/pleroma_ctl"
 `));
   })());
   const userWrapper = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       name: "pleroma_ctl",
       text: nix.thunk(() => nix.str`if [ "\${1-}" == "update" ]; then
   echo "OTP releases are not supported on NixOS." >&2
@@ -504,7 +504,7 @@ exec sudo -u ${nix.app(escapeShellArg, nix.thunk(() => nix.sel(cfg, "user")))} \
 `),
     }))));
   const socketScript = nix.thunk(() => (nix.asBool(nix.app(isAbsolutePath, nix.thunk(() => nix.sel(web, "http", "ip")))) ? nix.app(writeShell, nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       name: "akkoma-socket",
       runtimeInputs: nix.thunk(() => (() => {
         const w_2 = nix.withScope(pkgs, null);
@@ -528,7 +528,7 @@ chmod 0666 ${nix.app(escapeShellArg, nix.thunk(() => nix.sel(web, "http", "ip"))
     }))) : null));
   const staticDir = nix.thunk(() => nix.sel(ex, ":pleroma", ":instance", "static_dir"));
   const uploadDir = nix.thunk(() => nix.sel(ex, ":pleroma", ":instance", "upload_dir"));
-  const staticFiles = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "akkoma-static", nix.thunk(() => ({ __proto__: pos$23, preferLocalBuild: true })), nix.thunk(() => nix.str`${nix.app(concatStringsSep, "\n", nix.thunk(() => nix.app(mapAttrsToList, (key) => (val) => nix.str`mkdir -p $out/frontends/${nix.app(escapeShellArg, nix.thunk(() => nix.sel(val, "name")))}/
+  const staticFiles = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "akkoma-static", nix.thunk(() => ({ [nix.POS]: pos$23, preferLocalBuild: true })), nix.thunk(() => nix.str`${nix.app(concatStringsSep, "\n", nix.thunk(() => nix.app(mapAttrsToList, (key) => (val) => nix.str`mkdir -p $out/frontends/${nix.app(escapeShellArg, nix.thunk(() => nix.sel(val, "name")))}/
 ln -s ${nix.app(escapeShellArg, nix.thunk(() => nix.sel(val, "package")))} $out/frontends/${nix.app(escapeShellArg, nix.thunk(() => nix.sel(val, "name")))}/${nix.app(escapeShellArg, nix.thunk(() => nix.sel(val, "ref")))}
 `, nix.thunk(() => nix.sel(cfg, "frontends")))))}
 
@@ -537,63 +537,63 @@ ln -s ${nix.app(escapeShellArg, val)} $out/${nix.app(escapeShellArg, key)}
 `, nix.thunk(() => nix.sel(cfg, "extraStatic")))))))}
 `)));
   return {
-    __proto__: pos$127,
+    [nix.POS]: pos$127,
     options: nix.thunk(() => ({
-      __proto__: pos$103,
+      [nix.POS]: pos$103,
       services: nix.thunk(() => ({
-        __proto__: pos$102,
+        [nix.POS]: pos$102,
         akkoma: nix.thunk(() => ({
-          __proto__: pos$101,
+          [nix.POS]: pos$101,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Akkoma")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "akkoma", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               type: nix.thunk(() => nix.sel(types, "nonEmptyStr")),
               default: "akkoma",
               description: "User account under which Akkoma runs.",
             })))),
           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               type: nix.thunk(() => nix.sel(types, "nonEmptyStr")),
               default: "akkoma",
               description: "Group account under which Akkoma runs.",
             })))),
           initDb: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: true,
                 description: "Whether to automatically initialise the database on startup. This will create a\ndatabase role and database if they do not already exist, and (re)set the role password\nand the ownership of the database.\n\nThis setting can be used safely even if the database already exists and contains data.\n\nThe database settings are configured through\n[{option}`config.services.akkoma.config.\":pleroma\".\"Pleroma.Repo\"`](#opt-services.akkoma.config.__pleroma_._Pleroma.Repo_).\n\nIf disabled, the database has to be set up manually:\n\n```SQL\nCREATE ROLE akkoma LOGIN;\n\nCREATE DATABASE akkoma\n  OWNER akkoma\n  TEMPLATE template0\n  ENCODING 'utf8'\n  LOCALE 'C';\n\n\\connect akkoma\nCREATE EXTENSION IF NOT EXISTS citext;\nCREATE EXTENSION IF NOT EXISTS pg_trgm;\nCREATE EXTENSION IF NOT EXISTS \"uuid-ossp\";\n```\n",
               })))),
             username: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 type: nix.thunk(() => nix.sel(types, "nonEmptyStr")),
                 default: nix.thunk(() => nix.sel(config, "services", "postgresql", "superUser")),
                 defaultText: nix.thunk(() => nix.app(literalExpression, "config.services.postgresql.superUser")),
                 description: "Name of the database user to initialise the database with.\n\nThis user is required to have the `CREATEROLE` and `CREATEDB` capabilities.\n",
               })))),
             password: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), secret)),
                 default: null,
                 description: "Password of the database user to initialise the database with.\n\nIf set to `null`, no password will be used.\n\nThe attribute `_secret` should point to a file containing the secret.\n",
               })))),
           })),
           initSecrets: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: true,
               description: "Whether to initialise non‐existent secrets with random values.\n\nIf enabled, appropriate secrets for the following options will be created automatically\nif the files referenced in the `_secrets` attribute do not exist during startup.\n\n- {option}`config.\":pleroma\".\"Pleroma.Web.Endpoint\".secret_key_base`\n- {option}`config.\":pleroma\".\"Pleroma.Web.Endpoint\".signing_salt`\n- {option}`config.\":pleroma\".\"Pleroma.Web.Endpoint\".live_view.signing_salt`\n- {option}`config.\":web_push_encryption\".\":vapid_details\".private_key`\n- {option}`config.\":web_push_encryption\".\":vapid_details\".public_key`\n- {option}`config.\":joken\".\":default_signer\"`\n",
             })))),
           installWrapper: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: true,
               description: "Whether to install a wrapper around `pleroma_ctl` to simplify administration of the\nAkkoma instance.\n",
             })))),
           extraPackages: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               type: nix.thunk(() => (() => {
                 const w_2 = nix.withScope(types, null);
                 return nix.app(nix.lookup(w_2, "listOf"), nix.thunk(() => nix.lookup(w_2, "package")));
@@ -611,22 +611,22 @@ ln -s ${nix.app(escapeShellArg, val)} $out/${nix.app(escapeShellArg, key)}
               description: "List of extra packages to include in the executable search path of the service unit.\nThese are needed by various configurable components such as:\n\n- ExifTool for the `Pleroma.Upload.Filter.Exiftool` upload filter,\n- ImageMagick for still image previews in the media proxy as well as for the\n  `Pleroma.Upload.Filters.Mogrify` upload filter, and\n- ffmpeg for video previews in the media proxy.\n",
             })))),
           frontends: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               description: "Akkoma frontends.",
               type: nix.thunk(() => (() => {
                 const w_2 = nix.withScope(types, null);
                 return nix.app(nix.lookup(w_2, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_2, "submodule"), frontend)));
               })()),
               default: nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 primary: nix.thunk(() => ({
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   package: nix.thunk(() => nix.sel(pkgs, "akkoma-fe")),
                   name: "akkoma-fe",
                   ref: "stable",
                 })),
                 admin: nix.thunk(() => ({
-                  __proto__: pos$34,
+                  [nix.POS]: pos$34,
                   package: nix.thunk(() => nix.sel(pkgs, "akkoma-admin-fe")),
                   name: "admin-fe",
                   ref: "stable",
@@ -635,7 +635,7 @@ ln -s ${nix.app(escapeShellArg, val)} $out/${nix.app(escapeShellArg, key)}
               defaultText: nix.thunk(() => nix.app(literalExpression, "{\n  primary = {\n    package = pkgs.akkoma-fe;\n    name = \"akkoma-fe\";\n    ref = \"stable\";\n  };\n  admin = {\n    package = pkgs.akkoma-admin-fe;\n    name = \"admin-fe\";\n    ref = \"stable\";\n  };\n}\n")),
             })))),
           extraStatic: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               type: nix.thunk(() => (() => {
                 const w_2 = nix.withScope(types, null);
                 return nix.app(nix.lookup(w_2, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_2, "attrsOf"), nix.thunk(() => nix.lookup(w_2, "pathInStore")))));
@@ -645,21 +645,21 @@ ln -s ${nix.app(escapeShellArg, val)} $out/${nix.app(escapeShellArg, key)}
               example: nix.thunk(() => nix.app(literalExpression, "{\n  \"emoji/blobs.gg\" = pkgs.blobs_gg;\n  \"static/terms-of-service.html\" = pkgs.writeText \"terms-of-service.html\" ''\n    …\n  '';\n  \"favicon.png\" = let\n    rev = \"697a8211b0f427a921e7935a35d14bb3e32d0a2c\";\n  in pkgs.stdenvNoCC.mkDerivation {\n    name = \"favicon.png\";\n\n    src = pkgs.fetchurl {\n      url = \"https://raw.githubusercontent.com/TilCreator/NixOwO/${rev}/NixOwO_plain.svg\";\n      hash = \"sha256-tWhHMfJ3Od58N9H5yOKPMfM56hYWSOnr/TGCBi8bo9E=\";\n    };\n\n    nativeBuildInputs = with pkgs; [ librsvg ];\n\n    dontUnpack = true;\n    installPhase = ''\n      rsvg-convert -o $out -w 96 -h 96 $src\n    '';\n  };\n}\n")),
             })))),
           dist: nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             address: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 type: ipAddress,
                 default: "127.0.0.1",
                 description: "Listen address for Erlang distribution protocol and Port Mapper Daemon (epmd).\n",
               })))),
             epmdPort: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 type: nix.thunk(() => nix.sel(types, "port")),
                 default: 4369n,
                 description: "TCP port to bind Erlang Port Mapper Daemon to.",
               })))),
             extraFlags: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 type: nix.thunk(() => (() => {
                   const w_2 = nix.withScope(types, null);
                   return nix.app(nix.lookup(w_2, "listOf"), nix.thunk(() => nix.lookup(w_2, "str")));
@@ -669,71 +669,71 @@ ln -s ${nix.app(escapeShellArg, val)} $out/${nix.app(escapeShellArg, key)}
                 example: nix.thunk(() => ["+sbwt", "none", "+sbwtdcpu", "none", "+sbwtdio", "none"]),
               })))),
             portMin: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 type: nix.thunk(() => nix.sel(types, "port")),
                 default: 49152n,
                 description: "Lower bound for Erlang distribution protocol TCP port.",
               })))),
             portMax: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 type: nix.thunk(() => nix.sel(types, "port")),
                 default: 65535n,
                 description: "Upper bound for Erlang distribution protocol TCP port.",
               })))),
             cookie: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), secret)),
                 default: null,
-                example: nix.thunk(() => ({ __proto__: pos$43, _secret: "/var/lib/secrets/akkoma/releaseCookie" })),
+                example: nix.thunk(() => ({ [nix.POS]: pos$43, _secret: "/var/lib/secrets/akkoma/releaseCookie" })),
                 description: "Erlang release cookie.\n\nIf set to `null`, a temporary random cookie will be generated.\n",
               })))),
           })),
           config: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$98,
+              [nix.POS]: pos$98,
               description: "Configuration for Akkoma. The attributes are serialised to Elixir DSL.\n\nRefer to <https://docs.akkoma.dev/stable/configuration/cheatsheet/> for\nconfiguration options.\n\nSettings containing secret data should be set to an attribute set containing the\nattribute `_secret` - a string pointing to a file containing the value the option\nshould be set to.\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$97,
+                  [nix.POS]: pos$97,
                   freeformType: nix.thunk(() => nix.sel(format, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$96,
+                    [nix.POS]: pos$96,
                     ":pleroma": nix.thunk(() => ({
-                      __proto__: pos$76,
+                      [nix.POS]: pos$76,
                       ":instance": nix.thunk(() => ({
-                        __proto__: pos$51,
+                        [nix.POS]: pos$51,
                         name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$46,
+                            [nix.POS]: pos$46,
                             type: nix.thunk(() => nix.sel(types, "nonEmptyStr")),
                             description: "Instance name.",
                           })))),
                         email: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$47,
+                            [nix.POS]: pos$47,
                             type: nix.thunk(() => nix.sel(types, "nonEmptyStr")),
                             description: "Instance administrator email.",
                           })))),
                         description: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$48,
+                            [nix.POS]: pos$48,
                             type: nix.thunk(() => nix.sel(types, "nonEmptyStr")),
                             description: "Instance description.",
                           })))),
                         static_dir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$49,
+                            [nix.POS]: pos$49,
                             type: nix.thunk(() => nix.sel(types, "path")),
                             default: nix.thunk(() => nix.builtins.toString(staticFiles)),
                             defaultText: nix.thunk(() => nix.app(literalMD, "Derivation gathering the following paths into a directory:\n\n- [{option}`services.akkoma.frontends`](#opt-services.akkoma.frontends)\n- [{option}`services.akkoma.extraStatic`](#opt-services.akkoma.extraStatic)\n")),
                             description: "Directory of static files.\n\nThis directory can be built using a derivation, or it can be managed as mutable\nstate by setting the option to an absolute path.\n",
                           })))),
                         upload_dir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$50,
+                            [nix.POS]: pos$50,
                             type: absolutePath,
                             default: "/var/lib/akkoma/uploads",
                             description: "Directory where Akkoma will put uploaded files.\n",
                           })))),
                       })),
                       "Pleroma.Repo": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$53,
+                          [nix.POS]: pos$53,
                           type: elixirValue,
                           default: nix.thunk(() => ({
-                            __proto__: pos$52,
+                            [nix.POS]: pos$52,
                             adapter: nix.thunk(() => nix.app(mkRaw, "Ecto.Adapters.Postgres")),
                             socket_dir: "/run/postgresql",
                             username: nix.thunk(() => nix.sel(cfg, "user")),
@@ -743,40 +743,40 @@ ln -s ${nix.app(escapeShellArg, val)} $out/${nix.app(escapeShellArg, key)}
                           description: "Database configuration.\n\nRefer to\n<https://hexdocs.pm/ecto_sql/Ecto.Adapters.Postgres.html#module-connection-options>\nfor options.\n",
                         })))),
                       "Pleroma.Web.Endpoint": nix.thunk(() => ({
-                        __proto__: pos$68,
+                        [nix.POS]: pos$68,
                         url: nix.thunk(() => ({
-                          __proto__: pos$57,
+                          [nix.POS]: pos$57,
                           host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$54,
+                              [nix.POS]: pos$54,
                               type: nix.thunk(() => nix.sel(types, "nonEmptyStr")),
                               default: nix.thunk(() => nix.sel(config, "networking", "fqdn")),
                               defaultText: nix.thunk(() => nix.app(literalExpression, "config.networking.fqdn")),
                               description: "Domain name of the instance.",
                             })))),
                           scheme: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$55,
+                              [nix.POS]: pos$55,
                               type: nix.thunk(() => nix.sel(types, "nonEmptyStr")),
                               default: "https",
                               description: "URL scheme.",
                             })))),
                           port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$56,
+                              [nix.POS]: pos$56,
                               type: nix.thunk(() => nix.sel(types, "port")),
                               default: 443n,
                               description: "External port number.",
                             })))),
                         })),
                         http: nix.thunk(() => ({
-                          __proto__: pos$60,
+                          [nix.POS]: pos$60,
                           ip: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$58,
+                              [nix.POS]: pos$58,
                               type: nix.thunk(() => nix.app(nix.sel(types, "either"), absolutePath, ipAddress)),
                               default: "/run/akkoma/socket",
                               example: "::1",
                               description: "Listener IP address or Unix socket path.\n\nThe value is automatically converted to Elixir’s internal address\nrepresentation during serialisation.\n",
                             })))),
                           port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$59,
+                              [nix.POS]: pos$59,
                               type: nix.thunk(() => nix.sel(types, "port")),
                               default: nix.thunk(() => (nix.asBool(nix.app(isAbsolutePath, nix.thunk(() => nix.sel(web, "http", "ip")))) ? 0n : 4000n)),
                               defaultText: nix.thunk(() => nix.app(literalExpression, "if isAbsolutePath config.services.akkoma.config.:pleroma\".\"Pleroma.Web.Endpoint\".http.ip\n  then 0\n  else 4000;\n")),
@@ -784,33 +784,33 @@ ln -s ${nix.app(escapeShellArg, val)} $out/${nix.app(escapeShellArg, key)}
                             })))),
                         })),
                         secret_key_base: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$62,
+                            [nix.POS]: pos$62,
                             type: secret,
-                            default: nix.thunk(() => ({ __proto__: pos$61, _secret: "/var/lib/secrets/akkoma/key-base" })),
+                            default: nix.thunk(() => ({ [nix.POS]: pos$61, _secret: "/var/lib/secrets/akkoma/key-base" })),
                             description: "Secret key used as a base to generate further secrets for encrypting and\nsigning data.\n\nThe attribute `_secret` should point to a file containing the secret.\n\nThis key can generated can be generated as follows:\n\n```ShellSession\n$ tr -dc 'A-Za-z-._~' </dev/urandom | head -c 64\n```\n",
                           })))),
                         live_view: nix.thunk(() => ({
-                          __proto__: pos$65,
+                          [nix.POS]: pos$65,
                           signing_salt: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$64,
+                              [nix.POS]: pos$64,
                               type: secret,
-                              default: nix.thunk(() => ({ __proto__: pos$63, _secret: "/var/lib/secrets/akkoma/liveview-salt" })),
+                              default: nix.thunk(() => ({ [nix.POS]: pos$63, _secret: "/var/lib/secrets/akkoma/liveview-salt" })),
                               description: "LiveView signing salt.\n\nThe attribute `_secret` should point to a file containing the secret.\n\nThis salt can be generated as follows:\n\n```ShellSession\n$ tr -dc 'A-Za-z0-9-._~' </dev/urandom | head -c 8\n```\n",
                             })))),
                         })),
                         signing_salt: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$67,
+                            [nix.POS]: pos$67,
                             type: secret,
-                            default: nix.thunk(() => ({ __proto__: pos$66, _secret: "/var/lib/secrets/akkoma/signing-salt" })),
+                            default: nix.thunk(() => ({ [nix.POS]: pos$66, _secret: "/var/lib/secrets/akkoma/signing-salt" })),
                             description: "Signing salt.\n\nThe attribute `_secret` should point to a file containing the secret.\n\nThis salt can be generated as follows:\n\n```ShellSession\n$ tr -dc 'A-Za-z0-9-._~' </dev/urandom | head -c 8\n```\n",
                           })))),
                       })),
                       "Pleroma.Upload": nix.thunk(() => (() => {
                         const httpConf = nix.thunk(() => nix.sel(cfg, "config", ":pleroma", "Pleroma.Web.Endpoint", "url"));
                         return {
-                          __proto__: pos$70,
+                          [nix.POS]: pos$70,
                           base_url: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$69,
+                              [nix.POS]: pos$69,
                               type: nix.thunk(() => nix.sel(types, "nonEmptyStr")),
                               default: nix.thunk(() => (nix.asBool(nix.app(versionOlder, nix.thunk(() => nix.sel(config, "system", "stateVersion")), "24.05")) ? nix.str`${nix.sel(httpConf, "scheme")}://${nix.sel(httpConf, "host")}:${nix.builtins.toString(nix.thunk(() => nix.sel(httpConf, "port")))}/media/` : null)),
                               defaultText: nix.thunk(() => nix.app(literalExpression, "if lib.versionOlder config.system.stateVersion \"24.05\"\nthen \"$\\{httpConf.scheme}://$\\{httpConf.host}:$\\{toString httpConf.port}/media/\"\nelse null;\n")),
@@ -819,10 +819,10 @@ ln -s ${nix.app(escapeShellArg, val)} $out/${nix.app(escapeShellArg, key)}
                         };
                       })()),
                       ":frontends": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$72,
+                          [nix.POS]: pos$72,
                           type: elixirValue,
                           default: nix.thunk(() => nix.app(mapAttrs, (key) => (val) => nix.app(mkMap, nix.thunk(() => ({
-                                __proto__: pos$71,
+                                [nix.POS]: pos$71,
                                 name: nix.thunk(() => nix.sel(val, "name")),
                                 ref: nix.thunk(() => nix.sel(val, "ref")),
                               }))), nix.thunk(() => nix.sel(cfg, "frontends")))),
@@ -832,16 +832,16 @@ ln -s ${nix.app(escapeShellArg, val)} $out/${nix.app(escapeShellArg, key)}
                       ":media_proxy": nix.thunk(() => (() => {
                         const httpConf = nix.thunk(() => nix.sel(cfg, "config", ":pleroma", "Pleroma.Web.Endpoint", "url"));
                         return {
-                          __proto__: pos$75,
+                          [nix.POS]: pos$75,
                           enabled: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$73,
+                              [nix.POS]: pos$73,
                               type: nix.thunk(() => nix.sel(types, "bool")),
                               default: false,
                               defaultText: nix.thunk(() => nix.app(literalExpression, "false")),
                               description: "Whether to enable proxying of remote media through the instance's proxy.\n",
                             })))),
                           base_url: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$74,
+                              [nix.POS]: pos$74,
                               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "nonEmptyStr")))),
                               default: nix.thunk(() => (nix.asBool(nix.app(versionOlder, nix.thunk(() => nix.sel(config, "system", "stateVersion")), "24.05")) ? nix.str`${nix.sel(httpConf, "scheme")}://${nix.sel(httpConf, "host")}:${nix.builtins.toString(nix.thunk(() => nix.sel(httpConf, "port")))}` : null)),
                               defaultText: nix.thunk(() => nix.app(literalExpression, "if lib.versionOlder config.system.stateVersion \"24.05\"\nthen \"$\\{httpConf.scheme}://$\\{httpConf.host}:$\\{toString httpConf.port}\"\nelse null;\n")),
@@ -851,36 +851,36 @@ ln -s ${nix.app(escapeShellArg, val)} $out/${nix.app(escapeShellArg, key)}
                       })()),
                     })),
                     ":web_push_encryption": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$85,
+                        [nix.POS]: pos$85,
                         default: nix.thunk(() => ({})),
                         description: "Web Push Notifications configuration.\n\nThe necessary key pair can be generated as follows:\n\n```ShellSession\n$ nix-shell -p nodejs --run 'npx web-push generate-vapid-keys'\n```\n",
                         type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                            __proto__: pos$84,
+                            [nix.POS]: pos$84,
                             freeformType: elixirValue,
                             options: nix.thunk(() => ({
-                              __proto__: pos$83,
+                              [nix.POS]: pos$83,
                               ":vapid_details": nix.thunk(() => ({
-                                __proto__: pos$82,
+                                [nix.POS]: pos$82,
                                 subject: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                    __proto__: pos$77,
+                                    [nix.POS]: pos$77,
                                     type: nix.thunk(() => nix.sel(types, "nonEmptyStr")),
                                     default: nix.thunk(() => nix.str`mailto:${nix.sel(ex, ":pleroma", ":instance", "email")}`),
                                     defaultText: nix.thunk(() => nix.app(literalExpression, "\"mailto:${config.services.akkoma.config.\":pleroma\".\":instance\".email}\"\n")),
                                     description: "mailto URI for administrative contact.",
                                   })))),
                                 public_key: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                    __proto__: pos$79,
+                                    [nix.POS]: pos$79,
                                     type: nix.thunk(() => (() => {
                                       const w_2 = nix.withScope(types, null);
                                       return nix.app(nix.lookup(w_2, "either"), nix.thunk(() => nix.lookup(w_2, "nonEmptyStr")), secret);
                                     })()),
-                                    default: nix.thunk(() => ({ __proto__: pos$78, _secret: "/var/lib/secrets/akkoma/vapid-public" })),
+                                    default: nix.thunk(() => ({ [nix.POS]: pos$78, _secret: "/var/lib/secrets/akkoma/vapid-public" })),
                                     description: "base64-encoded public ECDH key.",
                                   })))),
                                 private_key: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                    __proto__: pos$81,
+                                    [nix.POS]: pos$81,
                                     type: secret,
-                                    default: nix.thunk(() => ({ __proto__: pos$80, _secret: "/var/lib/secrets/akkoma/vapid-private" })),
+                                    default: nix.thunk(() => ({ [nix.POS]: pos$80, _secret: "/var/lib/secrets/akkoma/vapid-private" })),
                                     description: "base64-encoded private ECDH key.\n\nThe attribute `_secret` should point to a file containing the secret.\n",
                                   })))),
                               })),
@@ -888,18 +888,18 @@ ln -s ${nix.app(escapeShellArg, val)} $out/${nix.app(escapeShellArg, key)}
                           })))),
                       })))),
                     ":joken": nix.thunk(() => ({
-                      __proto__: pos$88,
+                      [nix.POS]: pos$88,
                       ":default_signer": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$87,
+                          [nix.POS]: pos$87,
                           type: secret,
-                          default: nix.thunk(() => ({ __proto__: pos$86, _secret: "/var/lib/secrets/akkoma/jwt-signer" })),
+                          default: nix.thunk(() => ({ [nix.POS]: pos$86, _secret: "/var/lib/secrets/akkoma/jwt-signer" })),
                           description: "JWT signing secret.\n\nThe attribute `_secret` should point to a file containing the secret.\n\nThis secret can be generated as follows:\n\n```ShellSession\n$ tr -dc 'A-Za-z0-9-._~' </dev/urandom | head -c 64\n```\n",
                         })))),
                     })),
                     ":logger": nix.thunk(() => ({
-                      __proto__: pos$93,
+                      [nix.POS]: pos$93,
                       ":backends": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$89,
+                          [nix.POS]: pos$89,
                           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), elixirValue)),
                           visible: false,
                           default: nix.thunk(() => [
@@ -910,15 +910,15 @@ ln -s ${nix.app(escapeShellArg, val)} $out/${nix.app(escapeShellArg, key)}
                           ]),
                         })))),
                       ":ex_syslogger": nix.thunk(() => ({
-                        __proto__: pos$92,
+                        [nix.POS]: pos$92,
                         ident: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$90,
+                            [nix.POS]: pos$90,
                             type: nix.thunk(() => nix.sel(types, "str")),
                             visible: false,
                             default: "akkoma",
                           })))),
                         level: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$91,
+                            [nix.POS]: pos$91,
                             type: nix.thunk(() => nix.sel(types, "nonEmptyStr")),
                             apply: mkAtom,
                             default: ":info",
@@ -928,9 +928,9 @@ ln -s ${nix.app(escapeShellArg, val)} $out/${nix.app(escapeShellArg, key)}
                       })),
                     })),
                     ":tzdata": nix.thunk(() => ({
-                      __proto__: pos$95,
+                      [nix.POS]: pos$95,
                       ":data_dir": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$94,
+                          [nix.POS]: pos$94,
                           type: elixirValue,
                           internal: true,
                           default: nix.thunk(() => nix.app(mkRaw, "Path.join(System.fetch_env!(\"CACHE_DIRECTORY\"), \"tzdata\")\n")),
@@ -940,10 +940,10 @@ ln -s ${nix.app(escapeShellArg, val)} $out/${nix.app(escapeShellArg, key)}
                 })))),
             })))),
           nginx: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$100,
+              [nix.POS]: pos$100,
               type: nix.thunk(() => (() => {
                 const w_2 = nix.withScope(types, null);
-                return nix.app(nix.lookup(w_2, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_2, "submodule"), nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "../web-servers/nginx/vhost-options.nix"), nix.thunk(() => ({ __proto__: pos$99, config: config, lib: lib })))))));
+                return nix.app(nix.lookup(w_2, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_2, "submodule"), nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "../web-servers/nginx/vhost-options.nix"), nix.thunk(() => ({ [nix.POS]: pos$99, config: config, lib: lib })))))));
               })()),
               default: null,
               description: "Extra configuration for the nginx virtual host of Akkoma.\n\nIf set to `null`, no virtual host will be added to the nginx configuration.\n",
@@ -952,10 +952,10 @@ ln -s ${nix.app(escapeShellArg, val)} $out/${nix.app(escapeShellArg, key)}
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$125,
+        [nix.POS]: pos$125,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$104,
+            [nix.POS]: pos$104,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "config", ":pleroma", ":media_proxy", "enabled")) || nix.asBool(!nix.eq(nix.sel(cfg, "config", ":pleroma", ":media_proxy", "base_url"), null)))),
             message: "`services.akkoma.config.\":pleroma\".\":media_proxy\".base_url` must be set to a URL with a different host component (domain name) than the web endpoint when the media proxy is enabled.\n",
           })),
@@ -967,10 +967,10 @@ ln -s ${nix.app(escapeShellArg, val)} $out/${nix.app(escapeShellArg, key)}
             "The pleroma_ctl wrapper enabled by the installWrapper option relies on\nsudo, which appears to have been disabled through security.sudo.enable.\n",
           ]))),
         users: nix.thunk(() => ({
-          __proto__: pos$106,
+          [nix.POS]: pos$106,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.str`${nix.sel(cfg, "user")}`, nix.thunk(() => ({
-              __proto__: pos$105,
+              [nix.POS]: pos$105,
               description: "Akkoma user",
               group: nix.thunk(() => nix.sel(cfg, "group")),
               isSystemUser: true,
@@ -979,16 +979,16 @@ ln -s ${nix.app(escapeShellArg, val)} $out/${nix.app(escapeShellArg, key)}
           groups: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${nix.sel(cfg, "group")}`, nix.thunk(() => ({}))]])),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$118,
+          [nix.POS]: pos$118,
           services: nix.thunk(() => ({
-            __proto__: pos$116,
+            [nix.POS]: pos$116,
             "akkoma-config": nix.thunk(() => ({
-              __proto__: pos$109,
+              [nix.POS]: pos$109,
               description: "Akkoma social network configuration",
               reloadTriggers: nix.thunk(() => nix.concat([configFile], secretPaths)),
-              unitConfig: nix.thunk(() => ({ __proto__: pos$107, PropagatesReloadTo: nix.thunk(() => ["akkoma.service"]) })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$107, PropagatesReloadTo: nix.thunk(() => ["akkoma.service"]) })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$108,
+                [nix.POS]: pos$108,
                 Type: "oneshot",
                 RemainAfterExit: true,
                 UMask: "0077",
@@ -1006,14 +1006,14 @@ ln -s ${nix.app(escapeShellArg, val)} $out/${nix.app(escapeShellArg, key)}
               })),
             })),
             "akkoma-initdb": nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "initDb", "enable")), nix.thunk(() => ({
-                __proto__: pos$111,
+                [nix.POS]: pos$111,
                 description: "Akkoma social network database setup",
                 requires: nix.thunk(() => ["akkoma-config.service"]),
                 requiredBy: nix.thunk(() => ["akkoma.service"]),
                 after: nix.thunk(() => ["akkoma-config.service", "postgresql.target"]),
                 before: nix.thunk(() => ["akkoma.service"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$110,
+                  [nix.POS]: pos$110,
                   Type: "oneshot",
                   User: nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(nix.has(db, "socket_dir")) || nix.asBool(nix.has(db, "socket")))), nix.thunk(() => nix.sel(cfg, "initDb", "username")))),
                   RemainAfterExit: true,
@@ -1032,7 +1032,7 @@ ln -s ${nix.app(escapeShellArg, val)} $out/${nix.app(escapeShellArg, key)}
                 ], nix.sel(cfg, "extraPackages"));
               })());
               return {
-                __proto__: pos$115,
+                [nix.POS]: pos$115,
                 description: "Akkoma social network",
                 documentation: nix.thunk(() => ["https://docs.akkoma.dev/stable/"]),
                 bindsTo: nix.thunk(() => ["akkoma-config.service"]),
@@ -1045,12 +1045,12 @@ ln -s ${nix.app(escapeShellArg, val)} $out/${nix.app(escapeShellArg, key)}
                   "postgresql.target",
                 ]),
                 confinement: nix.thunk(() => ({
-                  __proto__: pos$112,
+                  [nix.POS]: pos$112,
                   packages: nix.thunk(() => nix.app(mkIf, isConfined, runtimeInputs)),
                 })),
                 path: runtimeInputs,
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$114,
+                  [nix.POS]: pos$114,
                   Type: "exec",
                   User: nix.thunk(() => nix.sel(cfg, "user")),
                   Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -1063,7 +1063,7 @@ ln -s ${nix.app(escapeShellArg, val)} $out/${nix.app(escapeShellArg, key)}
                       nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.asBool(nix.app(isStorePath, staticDir))), nix.thunk(() => [nix.thunk(() => nix.str`${staticDir}:${staticDir}:norbind`)]))),
                       nix.thunk(() => nix.app(mkIf, isConfined, nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
                             nix.thunk(() => ["/etc/hosts", "/etc/resolv.conf"]),
-                            nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.app(isStorePath, staticDir)), nix.thunk(() => nix.builtins.map((dir) => nix.str`${dir}:${dir}:norbind`, nix.thunk(() => nix.app(splitString, "\n", nix.thunk(() => nix.app(readFile, nix.thunk(() => nix.add(nix.app(nix.sel(pkgs, "closureInfo"), nix.thunk(() => ({ __proto__: pos$113, rootPaths: staticDir }))), "/store-paths")))))))))),
+                            nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.app(isStorePath, staticDir)), nix.thunk(() => nix.builtins.map((dir) => nix.str`${dir}:${dir}:norbind`, nix.thunk(() => nix.app(splitString, "\n", nix.thunk(() => nix.app(readFile, nix.thunk(() => nix.add(nix.app(nix.sel(pkgs, "closureInfo"), nix.thunk(() => ({ [nix.POS]: pos$113, rootPaths: staticDir }))), "/store-paths")))))))))),
                             nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.has(db, "socket_dir")), nix.thunk(() => [
                                 nix.thunk(() => nix.str`${nix.sel(db, "socket_dir")}:${nix.sel(db, "socket_dir")}:norbind`),
                               ]))),
@@ -1121,7 +1121,7 @@ ln -s ${nix.app(escapeShellArg, val)} $out/${nix.app(escapeShellArg, key)}
             })()),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$117,
+            [nix.POS]: pos$117,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d ${uploadDir}  0700 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} - -`),
               nix.thunk(() => nix.str`Z ${uploadDir} ~0700 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} - -`),
@@ -1129,22 +1129,22 @@ ln -s ${nix.app(escapeShellArg, val)} $out/${nix.app(escapeShellArg, key)}
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$119,
+          [nix.POS]: pos$119,
           systemPackages: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "installWrapper")), nix.thunk(() => [userWrapper]))),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$124,
+          [nix.POS]: pos$124,
           nginx: nix.thunk(() => ({
-            __proto__: pos$123,
+            [nix.POS]: pos$123,
             virtualHosts: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "nginx"), null)), nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(web, "url", "host"), nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
                     nix.thunk(() => nix.sel(cfg, "nginx")),
                     nix.thunk(() => ({
-                      __proto__: pos$122,
+                      [nix.POS]: pos$122,
                       locations: nix.thunk(() => ({
-                        __proto__: pos$121,
+                        [nix.POS]: pos$121,
                         "/": nix.thunk(() => ({
-                          __proto__: pos$120,
+                          [nix.POS]: pos$120,
                           proxyPass: nix.thunk(() => (nix.asBool(nix.app(isAbsolutePath, nix.thunk(() => nix.sel(web, "http", "ip")))) ? nix.str`http://unix:${nix.sel(web, "http", "ip")}` : (nix.asBool(nix.app(hasInfix, ":", nix.thunk(() => nix.sel(web, "http", "ip")))) ? nix.str`http://[${nix.sel(web, "http", "ip")}]:${nix.builtins.toString(nix.thunk(() => nix.sel(web, "http", "port")))}` : nix.str`http://${nix.sel(web, "http", "ip")}:${nix.builtins.toString(nix.thunk(() => nix.sel(web, "http", "port")))}`))),
                           proxyWebsockets: true,
                           recommendedProxySettings: true,
@@ -1157,7 +1157,7 @@ ln -s ${nix.app(escapeShellArg, val)} $out/${nix.app(escapeShellArg, key)}
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$126,
+      [nix.POS]: pos$126,
       maintainers: nix.thunk(() => (() => {
         const w_2 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w_2, "yuka"))];

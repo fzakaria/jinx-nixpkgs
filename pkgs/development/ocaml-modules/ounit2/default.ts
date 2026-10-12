@@ -15,19 +15,19 @@ export default nix.lambda((args) => (() => {
   const seq = nix.arg($, "seq");
   const stdlib_shims = nix.arg($, "stdlib-shims");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       minimalOCamlVersion: "4.08",
       pname: "ounit2",
       version: "2.2.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/gildor478/ounit/releases/download/v${nix.sel(finalAttrs, "version")}/ounit-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-kPbmO9EkClHYubL3IgWb15zgC1J2vdYji49cYTwOc4g=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [seq, stdlib_shims]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/gildor478/ounit",
         description: "Unit test framework for OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

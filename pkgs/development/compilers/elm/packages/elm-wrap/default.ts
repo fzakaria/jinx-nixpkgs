@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "elm-wrap";
       const version = "1.0.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dsimunic",
           repo: "elm-wrap",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const buildFlags = nix.thunk(() => ["RELEASE_VERSION=1"]);
       const installFlags = nix.thunk(() => ["PREFIX=$(out)"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/dsimunic/elm-wrap/blob/${version}/CHANGELOG.md`),
         description: "This utility is a comprehensive package management solution for Elm programming language packages and code. It wraps Elm compiler and intercepts its package management commands like install to augment them with support for custom package registries and policies.",
         homepage: "https://elm-wrap.dev/",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "wrap",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

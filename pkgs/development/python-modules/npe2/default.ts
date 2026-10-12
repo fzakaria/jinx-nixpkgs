@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const napari = nix.arg($, "napari");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "npe2",
       version: "0.8.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "napari",
           repo: "npe2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -80,11 +80,11 @@ export default nix.lambda((args) => (() => {
         "test_conversion",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, napari: napari })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, napari: napari })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Plugin system for napari (the image visualizer)",
         homepage: "https://github.com/napari/npe2",
         changelog: nix.thunk(() => nix.str`https://github.com/napari/npe2/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

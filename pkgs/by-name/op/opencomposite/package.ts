@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const vulkan_loader = nix.arg($, "vulkan-loader");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "opencomposite",
       version: "1.0.1521",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "znixian",
           repo: "OpenOVR",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,13 +44,13 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\nmkdir -p $out/lib/opencomposite\ncp -r bin/ $out/lib/opencomposite\ntouch $out/lib/opencomposite/bin/version.txt\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(openxr_loader, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Reimplementation of OpenVR, translating calls to OpenXR",
         homepage: "https://gitlab.com/znixian/OpenOVR",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const rresult = nix.arg($, "rresult");
   const yojson = nix.arg($, "yojson");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "graphql",
       version: nix.thunk(() => nix.attr(graphql_parser, "version")),
       src: nix.thunk(() => nix.attr(graphql_parser, "src")),
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest]),
       doCheck: true,
       meta: nix.thunk(() => nix.update(nix.sel(graphql_parser, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Build GraphQL schemas and execute queries against them",
       })),
     })));

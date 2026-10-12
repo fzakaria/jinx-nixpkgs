@@ -36,35 +36,35 @@ export default nix.lambda((args) => (() => {
   const mkIf = nix.thunk(() => nix.attr(lib, "mkIf"));
   const getExe = nix.thunk(() => nix.attr(lib, "getExe"));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         "cook-cli": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "cook-cli")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "cook-cli", nix.thunk(() => ({})))),
           autoStart: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to start cook-cli server automatically.\n",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 9080n,
               description: "Which port cook-cli server will use.\n",
             })))),
           basePath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/var/lib/cook-cli",
               description: "Path to the directory cook-cli will look for recipes.\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to open the cook-cli server port in the firewall.\n",
@@ -73,24 +73,24 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         environment: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             rules: nix.thunk(() => [nix.thunk(() => nix.str`d ${nix.sel(cfg, "basePath")} 0770 cook-cli users`)]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             "cook-cli": nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "cook-cli server",
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))} server --host --port ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))} ${nix.sel(cfg, "basePath")}`),
                 WorkingDirectory: nix.thunk(() => nix.sel(cfg, "basePath")),
                 User: "cook-cli",
@@ -117,31 +117,31 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           users: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             "cook-cli": nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               home: nix.thunk(() => nix.str`${nix.sel(cfg, "basePath")}`),
               group: "cook-cli",
               isSystemUser: true,
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$17,
-            "cook-cli": nix.thunk(() => ({ __proto__: pos$16, members: nix.thunk(() => ["cook-cli"]) })),
+            [nix.POS]: pos$17,
+            "cook-cli": nix.thunk(() => ({ [nix.POS]: pos$16, members: nix.thunk(() => ["cook-cli"]) })),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]),
             })))),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       maintainers: nix.thunk(() => [
         nix.thunk(() => nix.sel(lib, "maintainers", "luNeder")),
         nix.thunk(() => nix.sel(lib, "maintainers", "emilioziniades")),

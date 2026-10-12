@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "padre";
       const version = "2.1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "glebarez",
           repo: "padre",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-BBDGnz8u2FEKwuTP9DKz6FoODaW4+VFcL36lumoYTb8=";
       const ldflags = nix.thunk(() => ["-s", "-w"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Advanced exploiting tool for Padding Oracle attacks against CBC mode encryption",
         homepage: "https://github.com/glebarez/padre",
         changelog: nix.thunk(() => nix.str`https://github.com/glebarez/padre/releases/tag/v${version}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
         mainProgram: "padre",
       }));
-      return { __proto__: pos$3, pname, version, src, vendorHash, ldflags, meta };
+      return { [nix.POS]: pos$3, pname, version, src, vendorHash, ldflags, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

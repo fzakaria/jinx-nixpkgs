@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libpng = nix.arg($, "libpng");
   const mkLibretroCore = nix.arg($, "mkLibretroCore");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       core: "parallel-n64",
       version: "0-unstable-2026-04-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libretro",
           repo: "parallel-n64",
           rev: "51aefbd38751563138b5fee3810ff653a78c4f24",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), "sed -i -e '1 i\\CPUFLAGS += -DARM_FIX -DNO_ASM -DARM_ASM -DDONT_WANT_ARM_OPTIMIZATIONS -DARM64' Makefile \\\n&& sed -i -e 's,CPUFLAGS  :=,,g' Makefile\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Parallel Mupen64plus rewrite for libretro",
         homepage: "https://github.com/libretro/parallel-n64",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const nix_update_script = nix.arg($, "nix-update-script");
   const fetchpatch2 = nix.arg($, "fetchpatch2");
-  const pnpm = nix.thunk(() => nix.app(nix.sel(pnpm_11, "override"), nix.thunk(() => ({ __proto__: pos$1, "nodejs-slim": nodejs_slim_22 }))));
+  const pnpm = nix.thunk(() => nix.app(nix.sel(pnpm_11, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, "nodejs-slim": nodejs_slim_22 }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "astro-language-server",
       version: "2.16.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "withastro",
           repo: "astro",
           tag: nix.thunk(() => nix.str`@astrojs/language-server@${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "fix-supply-chain-verification-fail.patch",
             url: "https://github.com/withastro/astro/commit/272ca6173b40cfa37299c27b513f495f386d4009.patch?full_index=1",
             includes: nix.thunk(() => ["pnpm-workspace.yaml"]),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pnpmWorkspaces: nix.thunk(() => ["@astrojs/language-server...", "@astrojs/ts-plugin"]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -61,17 +61,17 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpmConfigHook, pnpm]),
       buildInputs: nix.thunk(() => [nodejs]),
       buildPhase: "runHook preBuild\n\npnpm --filter \"@astrojs/language-server...\" --filter \"@astrojs/ts-plugin\" build\n\nrunHook postBuild\n",
-      env: nix.thunk(() => ({ __proto__: pos$5, CI: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$5, CI: true })),
       installPhase: "runHook preInstall\n\npnpm install --offline --prod --filter=\"@astrojs/language-server...\"\nmkdir -p $out/{bin,lib/node_modules/astro-language-server/packages/language-tools}\ncp -r ./node_modules $out/lib/node_modules/astro-language-server\ncp -r packages/language-tools/{language-server,yaml2ts,ts-plugin} $out/lib/node_modules/astro-language-server/packages/language-tools/\npushd $out/lib/node_modules/astro-language-server/node_modules\nrm -rf {./,.pnpm/node_modules/}astro-{scripts,benchmark} .pnpm/node_modules/@astrojs/ts-plugin\npopd\n# pnpm creates symlinks for optional platform-specific packages (e.g. @biomejs/cli-darwin-arm64)\n# that are not installed by the --prod --filter install, leaving dangling symlinks\nfind $out -xtype l -delete\nln -s $out/lib/node_modules/astro-language-server/packages/language-tools/language-server/bin/nodeServer.js $out/bin/astro-ls\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             extraArgs: nix.thunk(() => ["--use-github-releases", "--version-regex", "@astrojs/language-server@(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Astro language server",
         homepage: "https://github.com/withastro/astro/tree/main/packages/language-tools",
         changelog: nix.thunk(() => nix.str`https://github.com/withastro/astro/blob/%40astrojs/language-server%40${nix.sel(finalAttrs, "version")}/packages/language-tools/language-server/CHANGELOG.md`),

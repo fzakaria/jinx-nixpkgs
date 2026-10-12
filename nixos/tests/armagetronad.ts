@@ -40,105 +40,105 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const pkgs_1 = nix.arg($_1, "pkgs");
     return {
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       imports: nix.thunk(() => [
         nix.path(here, "./common/user-account.nix"),
         nix.path(here, "./common/x11.nix"),
       ]),
       hardware: nix.thunk(() => ({
-        __proto__: pos$2,
-        graphics: nix.thunk(() => ({ __proto__: pos$1, enable: true })),
+        [nix.POS]: pos$2,
+        graphics: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
       })),
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         memorySize: 384n,
         qemu: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           options: nix.thunk(() => ["-vga none -device virtio-gpu-pci"]),
         })),
       })),
       environment: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "armagetronad"))]),
         variables: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           XAUTHORITY: nix.thunk(() => nix.str`/home/${user}/.Xauthority`),
         })),
       })),
       "test-support": nix.thunk(() => ({
-        __proto__: pos$9,
-        displayManager: nix.thunk(() => ({ __proto__: pos$8, auto: nix.thunk(() => ({ __proto__: pos$7, user: user })) })),
+        [nix.POS]: pos$9,
+        displayManager: nix.thunk(() => ({ [nix.POS]: pos$8, auto: nix.thunk(() => ({ [nix.POS]: pos$7, user: user })) })),
       })),
     };
   })(), formals$2);
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     name: "armagetronad",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "numinit"))]),
       };
     })()),
     enableOCR: true,
     nodes: nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       server: nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         services: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           armagetronad: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             servers: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               "high-rubber": nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 enable: true,
                 name: "Smoke Test High Rubber Server",
                 port: 4534n,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   SERVER_OPTIONS: "High Rubber server made to run smoke tests.",
                   CYCLE_RUBBER: 40n,
                   SIZE_FACTOR: 0.5,
                 })),
                 roundSettings: nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   SAY: nix.thunk(() => ["NixOS Smoke Test Server", "https://nixos.org"]),
                 })),
               })),
               sty: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 enable: true,
                 name: "Smoke Test sty+ct+ap Server",
                 package: nix.thunk(() => nix.sel(pkgs, "armagetronad", "0.2.9-sty+ct+ap", "dedicated")),
                 port: 4535n,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   SERVER_OPTIONS: "sty+ct+ap server made to run smoke tests.",
                   CYCLE_RUBBER: 20n,
                   SIZE_FACTOR: 0.5,
                 })),
                 roundSettings: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   SAY: nix.thunk(() => ["NixOS Smoke Test sty+ct+ap Server", "https://nixos.org"]),
                 })),
               })),
               trunk: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 enable: true,
                 name: "Smoke Test trunk Server",
                 package: nix.thunk(() => nix.sel(pkgs, "armagetronad", "0.4", "dedicated")),
                 port: 4536n,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   SERVER_OPTIONS: "0.4 server made to run smoke tests.",
                   CYCLE_RUBBER: 20n,
                   SIZE_FACTOR: 0.5,
                 })),
                 roundSettings: nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   SAY: nix.thunk(() => ["NixOS Smoke Test 0.4 Server", "https://nixos.org"]),
                 })),
               })),

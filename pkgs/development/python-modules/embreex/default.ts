@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "trimesh",
           repo: "embreex",
           tag: version,
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(embree, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Maintained PyEmbree fork, bindings for Intel's Embree ray engine",
         homepage: "https://github.com/trimesh/embreex",
         changelog: nix.thunk(() => nix.str`https://github.com/trimesh/embreex/releases/tag/${nix.sel(src, "tag")}`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

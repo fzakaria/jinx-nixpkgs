@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libvorbis = nix.arg($, "libvorbis");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ultimate-stunts",
       version: "0.7.7.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/ultimatestunts/ultimatestunts-srcdata-${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.tar.gz`),
           sha256: "sha256-/MBuSi/yxcG9k3ZwrNsHkUDzzg798AV462VZog67JtM=",
         })))),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [SDL, libGLU, libGL, SDL_image, freealut, openal, libvorbis]),
       postPatch: "sed -e '1i#include <unistd.h>' -i $(find . -name '*.c' -o -name '*.cpp')\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.ultimatestunts.nl/",
         description: "Remake of the popular racing DOS-game Stunts",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

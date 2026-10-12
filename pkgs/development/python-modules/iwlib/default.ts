@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.7.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "a805f6597a70ee3001aba8f039fb7b2dcb75dc15c4e7852f5594fd6379196da1",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const checkInputs = nix.thunk(() => [pytest]);
       const checkPhase = "python iwlib/_iwlib_build.py; pytest -v";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/nhoad/python-iwlib",
         description: "Python interface for the Wireless Tools utility collection",
         changelog: "https://github.com/nhoad/python-iwlib#change-history",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

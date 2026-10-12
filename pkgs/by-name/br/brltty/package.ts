@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "brltty",
       version: "6.9.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://brltty.app/archive/brltty-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-gi3iyHtECf3wLWFU0bRoVsNTnT6onGWu80MPJ3Nnf3Y=",
         })))),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([bluez, nix.thunk(() => nix.sel(ncurses, "dev")), tcl], nix.concat(nix.app(nix.sel(lib, "optional"), alsaSupport, alsa_lib), nix.app(nix.sel(lib, "optional"), systemdSupport, systemdMinimal)))),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Access software for a blind person using a braille display",
         longDescription: "BRLTTY is a background process (daemon) which provides access to the Linux/Unix\nconsole (when in text mode) for a blind person using a refreshable braille display.\nIt drives the braille display, and provides complete screen review functionality.\nSome speech capability has also been incorporated.\n",
         homepage: "https://brltty.app",
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installFlags: nix.thunk(() => ["install-systemd", "install-udev", "install-polkit"]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           CC_FOR_BUILD: nix.thunk(() => nix.str`${nix.sel(buildPackages, "stdenv", "cc")}/bin/${nix.sel(buildPackages, "stdenv", "cc", "targetPrefix")}cc`),
         })))),
       preConfigure: nix.thunk(() => nix.add("substituteInPlace configure --replace-fail \"/sbin/ldconfig -n\" \"true\"\n\n# Some script needs a working tclsh shebang\npatchShebangs .\n\n# Skip impure operations\nsubstituteInPlace Programs/Makefile.in    \\\n  --replace-fail install-apisoc-directory \"\"   \\\n  --replace-fail install-api-key \"\"\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), "# ./configure call itself second time for build platform, if it fail -- it fails silently, make it visible\n# (this is not mandatory changing, but make further maintaining easier)\nsubstituteInPlace mk4build \\\n  --replace-fail \"--quiet\" \"\"\n# Respect targetPrefix when invoking ar\nsubstituteInPlace Programs/Makefile.in \\\n  --replace-fail \"ar \" \"$AR \"\n"))),

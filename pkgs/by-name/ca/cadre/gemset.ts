@@ -13,14 +13,14 @@ const pos$8 = nix.positions(here + "/gemset.nix", [["groups", 38, 5], ["platform
 const pos$9 = nix.positions(here + "/gemset.nix", [["cadre", 2, 3], ["thor", 17, 3], ["tilt", 27, 3], ["valise", 37, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$9,
+  [nix.POS]: pos$9,
   cadre: nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     dependencies: nix.thunk(() => ["thor", "tilt", "valise"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "07q60s1bm2xar46g00ls5fjkn6dm2kfxhsz9ayblc31x5kr8d83a",
       type: "gem",
@@ -28,11 +28,11 @@ export default nix.thunk(() => ({
     version: "1.0.4",
   })),
   thor: nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1yhrnp9x8qcy5vc7g438amd5j9sw83ih7c30dr6g6slgw9zj3g29",
       type: "gem",
@@ -40,11 +40,11 @@ export default nix.thunk(() => ({
     version: "0.20.3",
   })),
   tilt: nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0szpapi229v3scrvw1pgy0vpjm7z3qlf58m1198kxn70cs278g96",
       type: "gem",
@@ -52,11 +52,11 @@ export default nix.thunk(() => ({
     version: "2.6.0",
   })),
   valise: nix.thunk(() => ({
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1arsbmk2gifrhv244qrld7s3202xrnxy6vlc5gqklg70dpsinbn5",
       type: "gem",

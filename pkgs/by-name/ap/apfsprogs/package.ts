@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const tools = nix.thunk(() => ["apfsck", "apfs-label", "apfs-snap", "mkapfs"]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "apfsprogs",
       version: "0.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linux-apfs",
           repo: "apfsprogs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\nmake -C apfs-snap $makeFlags\nmake -C apfsck $makeFlags\nmake -C mkapfs $makeFlags\nmake -C apfs-label $makeFlags\nrunHook postBuild\n",
       installPhase: "runHook preInstall\nmake -C apfs-snap install DESTDIR=\"$out\" $installFlags\nmake -C apfsck install DESTDIR=\"$out\" $installFlags\nmake -C mkapfs install DESTDIR=\"$out\" $installFlags\nmake -C apfs-label install DESTDIR=\"$out\" $installFlags\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => (() => {
           const mkVersionTest = (tool) => nix.attrsDyn({}, [
             [nix.str`version-${tool}`, nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
                 command: nix.thunk(() => nix.str`${tool} -v`),
                 version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,13 +51,13 @@ export default nix.lambda((args) => (() => {
           ]);
           const versionTestList = nix.thunk(() => nix.builtins.map(mkVersionTest, tools));
           const versionTests = nix.thunk(() => nix.app(nix.sel(lib, "mergeAttrsList"), versionTestList));
-          return nix.update({ __proto__: pos$3, apfs: nix.thunk(() => nix.sel(nixosTests, "apfs")) }, versionTests);
+          return nix.update({ [nix.POS]: pos$3, apfs: nix.thunk(() => nix.sel(nixosTests, "apfs")) }, versionTests);
         })()),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Experimental APFS tools for linux",
         homepage: "https://github.com/linux-apfs/apfsprogs",
         changelog: nix.thunk(() => nix.str`https://github.com/linux-apfs/apfsprogs/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "9.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "simplistix",
           repo: "sybil",
           tag: version,
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["sybil"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Automated testing for the examples in your documentation",
         homepage: "https://github.com/cjw296/sybil",
         changelog: nix.thunk(() => nix.str`https://github.com/simplistix/sybil/blob/${nix.sel(src, "tag")}/CHANGELOG.rst`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

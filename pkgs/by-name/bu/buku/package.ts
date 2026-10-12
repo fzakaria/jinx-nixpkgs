@@ -34,12 +34,12 @@ export default nix.lambda((args) => (() => {
   })());
   const w_1 = nix.withScope(nix.thunk(() => nix.sel(python3, "pkgs")), null);
   return nix.app(nix.lookup(w_1, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "5.1.1",
       pname: "buku",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jarun",
           repo: "buku",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
       preCheck: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(withServer)), "rm tests/test_{server,views}.py\n")),
       postInstall: nix.thunk(() => nix.add("make install PREFIX=$out\n\nmkdir -p $out/share/zsh/site-functions $out/share/bash-completion/completions $out/share/fish/vendor_completions.d\ncp auto-completion/zsh/* $out/share/zsh/site-functions\ncp auto-completion/bash/* $out/share/bash-completion/completions\ncp auto-completion/fish/* $out/share/fish/vendor_completions.d\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(withServer)), "rm $out/bin/bukuserver\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Private cmdline bookmark manager",
         mainProgram: "buku",
         homepage: "https://github.com/jarun/Buku",

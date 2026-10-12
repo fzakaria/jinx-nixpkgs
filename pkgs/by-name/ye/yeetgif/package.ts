@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "yeetgif";
       const version = "1.23.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sgreben",
           repo: "yeetgif",
           rev: version,
@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-LhkOMCuYO4GHezk21SlI2dP1UPmBp4bv2SdNbUQMKsI=";
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/sgreben/yeetgif/commit/5d2067b9832898c2b1ac51bf6a5f107619038270.patch",
             hash: "sha256-3eyqbpPyuQHjAN5mjQyZo0xY6L683T5Ytyx02II/iU4=",
           })))),
       ]);
       const ldflags = nix.thunk(() => ["-s", "-w"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GIF effects CLI",
         homepage: "https://github.com/sgreben/yeetgif",
         license: nix.thunk(() => (() => {
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "gif",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

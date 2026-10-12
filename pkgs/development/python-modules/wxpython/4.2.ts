@@ -50,19 +50,19 @@ export default nix.lambda((args) => (() => {
   const pytest_forked = nix.arg($, "pytest-forked");
   const xvfb_run = nix.arg($, "xvfb-run");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "wxpython",
       version: "4.2.5",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-ROg20bzNmcOHkLsDS27PcNkGD2c0MgVg98Sw0AYUR5M=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./4.2-ctypes.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             libgdk: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), gtk3)}/lib/libgdk-3${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
             libpangocairo: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), pango)}/lib/libpangocairo-1.0${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
             libcairo: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), cairo)}/lib/libcairo${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
@@ -130,7 +130,7 @@ runHook postCheck
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/wxWidgets/Phoenix/blob/wxPython-${nix.sel(finalAttrs, "version")}/CHANGES.rst`),
         description: "Cross platform GUI toolkit for Python, Phoenix version",
         homepage: "http://wxpython.org/",

@@ -14,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const base64 = nix.arg($, "base64");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "dns-tsig",
       version: nix.thunk(() => nix.attr(dns, "version")),
       src: nix.thunk(() => nix.attr(dns, "src")),
       propagatedBuildInputs: nix.thunk(() => [digestif, dns, base64]),
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest]),
-      meta: nix.thunk(() => nix.update(nix.sel(dns, "meta"), { __proto__: pos$1, description: "TSIG support for DNS" })),
+      meta: nix.thunk(() => nix.update(nix.sel(dns, "meta"), { [nix.POS]: pos$1, description: "TSIG support for DNS" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=tsig.ts.map

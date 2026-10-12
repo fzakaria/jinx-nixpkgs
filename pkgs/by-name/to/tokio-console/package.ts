@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const protobuf = nix.arg($, "protobuf");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tokio-console",
       version: "0.1.14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tokio-rs",
           repo: "console",
           rev: nix.thunk(() => nix.str`tokio-console-v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-aF9bylDYeTZOldAK9rl+19xTv0y9AdxCjRfaVRNfR3E=",
       buildAndTestSubdir: "tokio-console",
       nativeBuildInputs: nix.thunk(() => [installShellFiles, protobuf]),
-      env: nix.thunk(() => ({ __proto__: pos$2, RUSTFLAGS: "--cfg tokio_unstable" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTFLAGS: "--cfg tokio_unstable" })),
       checkFlags: nix.thunk(() => [
         "--skip=bootstrap",
         "--skip=config::tests::args_example_changed",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd tokio-console \\\n  --bash <($out/bin/tokio-console --log-dir $(mktemp -d) gen-completion bash) \\\n  --fish <($out/bin/tokio-console --log-dir $(mktemp -d) gen-completion fish) \\\n  --zsh <($out/bin/tokio-console --log-dir $(mktemp -d) gen-completion zsh)\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Debugger for asynchronous Rust code",
         homepage: "https://github.com/tokio-rs/console",
         mainProgram: "tokio-console",

@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   const platforms = nix.thunk(() => nix.attr(lib, "platforms"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "arx-libertatis",
       version: "1.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "arx",
           repo: "ArxLibertatis",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
   $out/share/games/arx/misc/dejavusansmono.ttf
 `, nix.app(optionalString, withCrashReporter, "wrapQtApp \"$out/libexec/arxcrashreporter\"\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "First-person role-playing game / dungeon crawler",
         longDescription: "A cross-platform, open source port of Arx Fatalis, a 2002\nfirst-person role-playing game / dungeon crawler\ndeveloped by Arkane Studios.\n",
         homepage: "https://arx-libertatis.org/",

@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const dune_configurator = nix.arg($, "dune-configurator");
   const libpq = nix.arg($, "libpq");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "postgresql",
       version: "5.2.0",
       minimalOCamlVersion: "4.12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mmottl/postgresql-ocaml/releases/download/${nix.sel(finalAttrs, "version")}/postgresql-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-uU/K7hvQljGnUzClPRdod32tpVAGd/sGqh3NqIygJ4A=",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [dune_configurator]),
       propagatedBuildInputs: nix.thunk(() => [libpq]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bindings to the PostgreSQL library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
         changelog: nix.thunk(() => nix.str`https://raw.githubusercontent.com/mmottl/postgresql-ocaml/refs/tags/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

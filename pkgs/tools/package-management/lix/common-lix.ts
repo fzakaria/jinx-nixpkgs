@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
     const nixosTests = nix.arg($_1, "nixosTests");
     const rustPlatform = nix.arg($_1, "rustPlatform");
     const lix_doc = nix.argOr($_1, "lix-doc", () => nix.app(callPackage, nix.path(here, "./doc"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         src: src,
         version: nix.thunk(() => nix.str`${version}${suffix}`),
         cargoDeps: docCargoDeps,
@@ -115,7 +115,7 @@ export default nix.lambda((args) => (() => {
     const parseToYAML = nix.thunk(() => nix.app(nix.sel(lib_1, "versionAtLeast"), version, "2.93"));
     const usesCapnp = nix.thunk(() => nix.app(nix.sel(lib_1, "versionAtLeast"), version, "2.94"));
     const mesonCrossFile = (deps) => nix.app(runCommand, "lix-cross-file.conf", nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         input: "[project options]\nbuiltin-dep-closure = @deps@\n",
         __structuredAttrs: true,
       })), nix.thunk(() => nix.str`printf "%s" "$input" > $out
@@ -123,11 +123,11 @@ substituteInPlace $out --replace-fail @deps@ "$(cat ${deps})"
 `));
     nix.assert_(nix.app(nix.sel(lib_1, "assertMsg"), nix.thunk(() => (!nix.asBool((nix.asBool(enableStrictLLVMChecks) && nix.asBool(isLLVMOnly))) || nix.asBool(nix.sel(stdenv, "cc", "isClang")))), "Lix upstream strongly discourage the usage of GCC to compile Lix as there's known miscompilations in important places. If you are a compiler developer, please get in touch with us."), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/tools/package-management/lix/common-lix.nix:135:1");
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         pname: "lix",
         version: nix.thunk(() => nix.str`${version}${suffix}`),
         env: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           VERSION_SUFFIX: suffix,
           MESON_PACKAGE_CACHE_DIR: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(finalAttrs, "cargoDeps"), null)) ? nix.str`${nix.sel(finalAttrs, "cargoDeps")}/source-registry-0` : "lix: no `MESON_PACKAGE_CACHE_DIR`, set `cargoDeps`")),
           NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib_1, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isElf")), "-z,noexecstack")),
@@ -142,9 +142,9 @@ substituteInPlace $out --replace-fail @deps@ "$(cat ${deps})"
           ]))),
         __structuredAttrs: true,
         builtinDeps: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")) ? nix.builtins.toFile("lix-static-dep-closure", "[]") : nix.app(runCommand, "lix-builtin-dep-closure", nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             closure: nix.thunk(() => nix.app(closureInfo, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 rootPaths: nix.thunk(() => nix.app(nix.sel(lib_1, "flatten"), nix.thunk(() => nix.builtins.map((drv) => [
                       nix.thunk(() => nix.selOr(drv, () => [], "out")),
                       nix.thunk(() => nix.selOr(drv, () => [], "lib")),
@@ -276,25 +276,25 @@ find "$out" -type f -exec remove-references-to -t ${nix.sel(stdenv, "cc", "cc", 
         enableParallelBuilding: true,
         __darwinAllowLocalNetworking: true,
         passthru: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           "aws-sdk-cpp": aws_sdk_cpp,
           boehmgc: boehmgc,
           updateScript: updateScript,
           tests: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             misc: nix.thunk(() => nix.app(nix.sel(nixosTests, "nix-misc", "default", "passthru", "override"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 nixPackage: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               })))),
             installer: nix.thunk(() => nix.app(nix.sel(nixosTests, "installer", "simple", "override"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 selectNixPackage: (_) => nix.sel(finalAttrs, "finalPackage"),
               })))),
           })),
         })),
         pos: nix.thunk(() => nix.builtins.unsafeGetAttrPos("version", args_1)),
         meta: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           description: "Powerful package manager that makes package management reliable and reproducible",
           longDescription: "Lix (a fork of Nix) is a powerful package manager for Linux and other Unix systems that\nmakes package management reliable and reproducible. It provides atomic\nupgrades and rollbacks, side-by-side installation of multiple versions of\na package, multi-user package management and easy setup of build\nenvironments.\n",
           homepage: "https://lix.systems",

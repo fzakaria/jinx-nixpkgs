@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const buildGoModule = nix.arg($, "buildGoModule");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "amazon-ecs-agent",
       version: "1.107.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           owner: "aws",
           repo: "amazon-ecs-agent",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       excludedPackages: nix.thunk(() => ["./version/gen"]),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Agent that runs on AWS EC2 container instances and starts containers on behalf of Amazon ECS",
         homepage: "https://github.com/aws/amazon-ecs-agent",
         changelog: nix.thunk(() => nix.str`https://github.com/aws/amazon-ecs-agent/raw/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

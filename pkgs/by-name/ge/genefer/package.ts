@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const boinc = nix.arg($, "boinc");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "genefer",
       version: "25.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "galloty",
           repo: "genefer22",
           rev: "37ea9f8f531ee625d10408e1d2a4ec4dcf270438",
@@ -59,7 +59,7 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Generalized Fermat Prime search program",
         longDescription: "genefer is an OpenMP® application on CPU and an OpenCL™ application on GPU.\nIt performs a fast probable primality test for numbers of the form b^2n + 1 with the Fermat test.\n",
         homepage: "https://github.com/galloty/genefer22",

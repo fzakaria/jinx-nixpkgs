@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const buildPythonPackage = nix.arg($, "buildPythonPackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "polygon3",
       version: "3.0.9",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jraedler",
           repo: "Polygon3",
           rev: "7b2091f77741fa1d94251979bc4a4f2676b4d2d1",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Polygon is a python package that handles polygonal shapes in 2D",
         homepage: "https://github.com/jraedler/Polygon3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

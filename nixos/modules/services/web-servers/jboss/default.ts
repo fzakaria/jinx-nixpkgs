@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "jboss"));
   const jbossService = nix.thunk(() => nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "jboss-server",
       builder: nix.path(here, "./builder.sh"),
       jboss: nix.thunk(() => nix.attr(pkgs, "jboss")),
@@ -44,57 +44,57 @@ export default nix.lambda((args) => (() => {
       useJK: nix.thunk(() => nix.attr(cfg, "useJK")),
     }))));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         jboss: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether to enable JBoss. WARNING : this package is outdated and is known to have vulnerabilities.",
             })))),
           tempDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: "/tmp",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "Location where JBoss stores its temp files",
             })))),
           logDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: "/var/log/jboss",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "Location of the logfile directory of JBoss",
             })))),
           serverDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               description: "Location of the server instance files",
               default: "/var/jboss/server",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             })))),
           deployDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               description: "Location of the deployment files",
               default: "/nix/var/nix/profiles/default/server/default/deploy/",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             })))),
           libUrl: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: "file:///nix/var/nix/profiles/default/server/default/lib",
               description: "Location where the shared library JARs are stored",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             })))),
           user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               default: "nobody",
               description: "User account under which jboss runs.",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             })))),
           useJK: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether to use to connector to the Apache HTTP server",
@@ -103,16 +103,16 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(config, "services", "jboss", "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             jboss: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "JBoss server",
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 ExecStart: nix.thunk(() => nix.str`${jbossService}/bin/control start`),
               })),
               wantedBy: nix.thunk(() => ["multi-user.target"]),

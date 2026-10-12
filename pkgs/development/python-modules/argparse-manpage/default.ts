@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "praiskup",
           repo: "argparse-manpage",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,9 +33,9 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_old_example", "test_old_example_file_name"]);
       const disabledTestPaths = nix.thunk(() => ["tests/test_examples.py"]);
       const pythonImportsCheck = nix.thunk(() => ["argparse_manpage"]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, setuptools: nix.thunk(() => [setuptools]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, setuptools: nix.thunk(() => [setuptools]) }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Automatically build man-pages for your Python project",
         homepage: "https://github.com/praiskup/argparse-manpage",
         changelog: nix.thunk(() => nix.str`https://github.com/praiskup/argparse-manpage/blob/${nix.sel(src, "tag")}/NEWS`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "argparse-manpage",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

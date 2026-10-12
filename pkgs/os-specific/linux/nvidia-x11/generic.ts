@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
       const from = nix.arg($_2, "from");
       const to = nix.arg($_2, "to");
       return (patch) => nix.app(runCommandLocal, nix.thunk(() => nix.builtins.baseNameOf(patch)), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           patch: patch,
           nativeBuildInputs: nix.thunk(() => [patchutils]),
         })), nix.thunk(() => nix.str`lsdiff \\
@@ -124,25 +124,25 @@ export default nix.lambda((args) => (() => {
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
         const from = nix.thunk(() => nix.sel(stdenv, "hostPlatform"));
         return {
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         pname: nix.thunk(() => nix.str`nvidia-${(nix.asBool(useFabricmanager) ? "dc" : "x11")}`),
         builder: nix.path(here, "./builder.sh"),
         src: nix.thunk(() => (nix.asBool((nix.asBool(!nix.asBool(acceptLicense)) && nix.asBool(nix.eq(openSha256, null)))) ? nix.force(throwLicense) : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             urls: nix.thunk(() => (nix.asBool(nix.has(args_1, "url")) ? [nix.thunk(() => nix.sel(args_1, "url"))] : [
               nix.thunk(() => nix.str`https://us.download.nvidia.com/XFree86/Linux-x86_64/${version}/NVIDIA-Linux-x86_64-${version}${pkgSuffix}.run`),
               nix.thunk(() => nix.str`https://download.nvidia.com/XFree86/Linux-x86_64/${version}/NVIDIA-Linux-x86_64-${version}${pkgSuffix}.run`),
             ])),
             sha256: sha256_64bit,
           }))) : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             urls: nix.thunk(() => (nix.asBool(nix.has(args_1, "url")) ? [nix.thunk(() => nix.sel(args_1, "url"))] : [
               nix.thunk(() => nix.str`https://us.download.nvidia.com/XFree86/Linux-x86/${version}/NVIDIA-Linux-x86-${version}${pkgSuffix}.run`),
               nix.thunk(() => nix.str`https://download.nvidia.com/XFree86/Linux-x86/${version}/NVIDIA-Linux-x86-${version}${pkgSuffix}.run`),
             ])),
             sha256: sha256_32bit,
           }))) : (nix.asBool((nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-linux")) && nix.asBool(!nix.eq(sha256_aarch64, null)))) ? nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             urls: nix.thunk(() => (nix.asBool(nix.has(args_1, "url")) ? [nix.thunk(() => nix.sel(args_1, "url"))] : [
               nix.thunk(() => nix.str`https://us.download.nvidia.com/XFree86/aarch64/${version}/NVIDIA-Linux-aarch64-${version}${pkgSuffix}.run`),
               nix.thunk(() => nix.str`https://download.nvidia.com/XFree86/Linux-aarch64/${version}/NVIDIA-Linux-aarch64-${version}${pkgSuffix}.run`),
@@ -177,7 +177,7 @@ export default nix.lambda((args) => (() => {
             const args$ = nix.thunk(() => nix.builtins.removeAttrs(args_4, nix.thunk(() => ["owner", "repo", "rev"])));
             const baseUrl = nix.thunk(() => nix.str`https://github.com/${owner}/${repo}`);
             return nix.app(fetchzip, nix.thunk(() => nix.update(args$, {
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 urls: nix.thunk(() => [
                   nix.thunk(() => nix.str`${baseUrl}/archive/${rev}.tar.gz`),
                   nix.thunk(() => nix.str`https://download.nvidia.com/XFree86/${repo}/${repo}-${rev}.tar.bz2`),
@@ -186,39 +186,39 @@ export default nix.lambda((args) => (() => {
               })));
           })(), formals$4);
           return nix.update({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             mod: nix.thunk(() => (nix.asBool(!nix.asBool(libsOnly)) ? nix.app(callPackage, nix.path(here, "./kernel-modules.nix"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 open: false,
                 nvidia_x11: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
                 patches: [],
                 broken: broken,
               }))) : {})),
             open: nix.thunk(() => nix.app(nix.sel(lib, "mapNullable"), (hash) => nix.app(callPackage, nix.path(here, "./kernel-modules.nix"), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   open: true,
                   hash: hash,
                   nvidia_x11: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
-                  patches: nix.thunk(() => nix.concat(nix.builtins.map(nix.thunk(() => nix.app(rewritePatch, nix.thunk(() => ({ __proto__: pos$7, from: "kernel", to: "kernel-open" })))), patches), patchesOpen)),
+                  patches: nix.thunk(() => nix.concat(nix.builtins.map(nix.thunk(() => nix.app(rewritePatch, nix.thunk(() => ({ [nix.POS]: pos$7, from: "kernel", to: "kernel-open" })))), patches), patchesOpen)),
                   broken: brokenOpen,
                 }))), openSha256)),
             settings: nix.thunk(() => (nix.asBool(useSettings) ? nix.app((nix.asBool(settings32Bit) ? nix.sel(pkgsi686Linux, "callPackage") : nix.force(callPackage)), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./settings.nix")), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")), settingsSha256)), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 withGtk2: preferGtk2,
                 withGtk3: nix.thunk(() => !nix.asBool(preferGtk2)),
                 fetchFromGitHub: fetchFromGithubOrNvidia,
               }))) : {})),
-            persistenced: nix.thunk(() => (nix.asBool(usePersistenced) ? nix.app(nix.sel(lib, "mapNullable"), (hash) => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./persistenced.nix")), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")), hash)), nix.thunk(() => ({ __proto__: pos$10, fetchFromGitHub: fetchFromGithubOrNvidia }))), persistencedSha256) : {})),
+            persistenced: nix.thunk(() => (nix.asBool(usePersistenced) ? nix.app(nix.sel(lib, "mapNullable"), (hash) => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./persistenced.nix")), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")), hash)), nix.thunk(() => ({ [nix.POS]: pos$10, fetchFromGitHub: fetchFromGithubOrNvidia }))), persistencedSha256) : {})),
             fabricmanager: nix.thunk(() => (nix.asBool(useFabricmanager) ? nix.app(nix.sel(lib, "mapNullable"), (hash) => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./fabricmanager.nix")), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")), hash)), nix.thunk(() => ({}))), fabricmanagerSha256) : {})),
             settingsVersion: nix.thunk(() => (nix.asBool(!nix.eq(settingsVersion, null)) ? nix.force(settingsVersion) : nix.sel(finalAttrs, "version"))),
             persistencedVersion: nix.thunk(() => (nix.asBool(!nix.eq(persistencedVersion, null)) ? nix.force(persistencedVersion) : nix.sel(finalAttrs, "version"))),
             fabricmanagerVersion: nix.thunk(() => (nix.asBool(!nix.eq(fabricmanagerVersion, null)) ? nix.force(fabricmanagerVersion) : nix.sel(finalAttrs, "version"))),
             compressFirmware: false,
             ibtSupport: nix.thunk(() => (nix.asBool(ibtSupport) || nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "530")))),
-          }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(i686bundled)), nix.thunk(() => ({ __proto__: pos$12, lib32: lib32 }))));
+          }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(i686bundled)), nix.thunk(() => ({ [nix.POS]: pos$12, lib32: lib32 }))));
         })()),
         meta: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           homepage: "https://www.nvidia.com/object/unix.html",
           description: nix.thunk(() => nix.str`${(nix.asBool(useFabricmanager) ? "Data Center" : "X.org")} driver and kernel module for NVIDIA cards`),
           license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),

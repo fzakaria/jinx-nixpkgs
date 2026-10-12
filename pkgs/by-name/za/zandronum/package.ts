@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.thunk(() => nix.app(callPackage, nix.path(here, "./sqlite.nix"), nix.thunk(() => ({}))));
   const clientLibPath = nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [fluidsynth])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: nix.thunk(() => nix.str`zandronum${suffix}`),
       version: "3.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "foss.heptapod.net",
           owner: "zandronum",
           repo: "zandronum-stable",
@@ -66,7 +66,7 @@ sed -i -e 's| restrict| _restrict|g' dumb/include/dumb.h \\
       hardeningDisable: nix.thunk(() => ["format"]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "zandronum",
             desktopName: "Zandronum",
             exec: "zandronum",
@@ -101,9 +101,9 @@ runHook postInstall
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(serverOnly)), nix.thunk(() => nix.str`patchelf --set-rpath $(patchelf --print-rpath $out/lib/zandronum/zandronum):$out/lib/zandronum:${clientLibPath} \\
   $out/lib/zandronum/zandronum
 `))),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, fmod: fmod, sqlite: sqlite })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, fmod: fmod, sqlite: sqlite })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://zandronum.com/",
         description: "Multiplayer oriented port, based off Skulltag, for Doom and Doom II by id Software",
         mainProgram: "zandronum-server",

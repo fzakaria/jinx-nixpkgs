@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => nix.app(pythonAtLeast, "3.13"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rigetti",
           repo: "pyquil",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["pyquil"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library for creating Quantum Instruction Language (Quil) programs",
         homepage: "https://github.com/rigetti/pyquil",
         changelog: nix.thunk(() => nix.str`https://github.com/rigetti/pyquil/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

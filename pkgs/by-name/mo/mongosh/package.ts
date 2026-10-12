@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mongosh",
       version: "2.13.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mongodb-js",
           repo: "mongosh",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,9 +30,9 @@ export default nix.lambda((args) => (() => {
       npmBuildScript: "compile",
       dontNpmInstall: true,
       installPhase: "runHook preInstall\n\nnpmWorkspace=packages/mongosh npmInstallHook\ncp -r packages configs $out/lib/node_modules/mongosh/\nrm $out/lib/node_modules/mongosh/node_modules/@mongosh/docker-build-scripts # dangling symlink\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.mongodb.com/try/download/shell",
         changelog: nix.thunk(() => nix.str`https://github.com/mongodb-js/mongosh/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "MongoDB Shell",

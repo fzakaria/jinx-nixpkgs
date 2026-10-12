@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchCrate = nix.arg($, "fetchCrate");
   const git = nix.arg($, "git");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fac-build",
       version: "0.5.4",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           crateName: "fac",
           hash: "sha256-+JJVuKUdnjJoQJ4a2EE0O6jZdVoFxPwbPgfD2LfiDPI=",
@@ -34,7 +34,7 @@ substituteInPlace tests/lib.rs \\
     'std::process::Command::new("${git}/bin/git")'
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))),
         description: "A build system that uses ptrace to handle dependencies automatically\n",
         longDescription: "Fac is a general-purpose build system inspired by make that utilizes\nptrace to ensure that all dependences are enumerated and that all\nsource files are added to a (git) repo. An important feature of fac\nis that it automatically handles dependencies, rather than either\ncomplaining about them or giving an incorrect build. Currently, fac\nonly runs on linux systems, but on those systems it is incredibly\neasy to use!\n",

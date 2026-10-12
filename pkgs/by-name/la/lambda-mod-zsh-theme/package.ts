@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lambda-mod-zsh-theme-unstable",
       version: "2020-10-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "halfo",
           repo: "lambda-mod-zsh-theme",
           rev: "78347ea9709935f265e558b6345919d12323fbff",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       installPhase: "install -Dm0644 lambda-mod.zsh-theme $out/share/zsh/themes/lambda-mod.zsh-theme\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ZSH theme optimized for people who use Git & Unicode-compatible fonts and terminals",
         homepage: "https://github.com/halfo/lambda-mod-zsh-theme/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

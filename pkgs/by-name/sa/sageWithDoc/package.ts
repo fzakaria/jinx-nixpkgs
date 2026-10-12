@@ -8,6 +8,6 @@ const pos$1 = nix.positions(here + "/package.nix", [["withDoc", 6, 3]]);
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const sage = nix.arg($, "sage");
-  return nix.app(nix.sel(sage, "override"), nix.thunk(() => ({ __proto__: pos$1, withDoc: true })));
+  return nix.app(nix.sel(sage, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withDoc: true })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

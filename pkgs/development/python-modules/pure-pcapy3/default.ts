@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-uZ5F8W1K1BDrXrvH1dOeNT1+2n6G8K1S5NxcRaez6pI=",
@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace test/__init__.py \\\n  --replace-fail \"assertEquals\" \"assertEqual\"\n";
       const pythonImportsCheck = nix.thunk(() => ["pure_pcapy"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Reimplementation of pcapy",
         homepage: "https://github.com/rcloran/pure-pcapy-3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

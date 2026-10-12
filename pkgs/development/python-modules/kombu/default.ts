@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.6.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "celery",
           repo: "kombu",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [amqp, packaging, tzdata, vine]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         msgpack: nix.thunk(() => [msgpack]),
         yaml: nix.thunk(() => [pyyaml]),
         redis: nix.thunk(() => [redis]),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
         "test_connparams_health_check_interval_supported",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Messaging library for Python",
         homepage: "https://github.com/celery/kombu",
         changelog: nix.thunk(() => nix.str`https://github.com/celery/kombu/blob/v${version}/Changelog.rst`),
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

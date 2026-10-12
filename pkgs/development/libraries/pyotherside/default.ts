@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pyotherside";
       const version = "1.6.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "thp",
           repo: "pyotherside",
           rev: version,
@@ -61,7 +61,7 @@ runHook postCheck
       const doInstallCheck = nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))));
       const installCheckPhase = "runHook preInstallCheck\n\npushd qtquicktests\n./run\npopd\n\nrunHook postInstallCheck\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: nix.thunk(() => nix.str`Asynchronous Python 3 Bindings for Qt ${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(qtbase, "version")))}`),
         homepage: "https://thp.io/2011/pyotherside/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
@@ -69,7 +69,7 @@ runHook postCheck
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "unix"), nix.sel(lib, "platforms", "windows"))),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

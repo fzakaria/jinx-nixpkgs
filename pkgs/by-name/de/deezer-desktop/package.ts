@@ -20,14 +20,14 @@ export default nix.lambda((args) => (() => {
   const writeScript = nix.arg($, "writeScript");
   const version = "7.1.330";
   const srcs = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: nix.thunk(() => nix.str`https://github.com/aunetx/deezer-linux/releases/download/v${version}/deezer-desktop-${version}-x64.tar.xz`),
         hash: "sha256-DZ5BjNJYS0Ke7Cgc0xCjojbUWpMfOR5lKOMyN4gOhIA=",
       })))),
     "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: nix.thunk(() => nix.str`https://github.com/aunetx/deezer-linux/releases/download/v${version}/deezer-desktop-${version}-arm64.tar.xz`),
         hash: "sha256-oKDwECjatV/dT/cnGN6Sk6RTIVDiKI8R0AAYmRvVlmo=",
       })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
   const src = nix.thunk(() => nix.selOr(srcs, () => nix.builtins.throw(nix.thunk(() => nix.str`${nix.sel(stdenv, "hostPlatform", "system")} not supported`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const archDir = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) ? "x64" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) ? "arm64" : nix.builtins.throw("Unsupported architecture"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "deezer-desktop",
       version: version,
       src: src,
@@ -60,7 +60,7 @@ makeWrapper "${nix.app(nix.sel(lib, "getExe"), electron)}" "$out/bin/deezer-desk
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         srcs: srcs,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-deezer-desktop", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p curl jq common-updater-scripts
@@ -78,7 +78,7 @@ done
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Unofficial Linux port of the music streaming application",
         homepage: "https://github.com/aunetx/deezer-linux",
         downloadPage: "https://github.com/aunetx/deezer-linux/releases",

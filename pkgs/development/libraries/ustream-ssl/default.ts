@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libubox_nossl = nix.arg($, "libubox-nossl");
   const ssl_implementation = nix.arg($, "ssl_implementation");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ustream-ssl",
       version: "0-unstable-2025-10-03",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.openwrt.org/project/ustream-ssl.git",
           rev: "5a81c108d20e24724ed847cc4be033f2a74e6635",
           hash: "sha256-IC5740+1YT3TDayath3Md3hdjuml1S1A/OWYd0GxbDc=",
@@ -38,9 +38,9 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       buildInputs: nix.thunk(() => [ssl_implementation]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, ssl_implementation: ssl_implementation })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, ssl_implementation: ssl_implementation })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "ustream SSL wrapper",
         homepage: "https://git.openwrt.org/?p=project/ustream-ssl.git;a=summary",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

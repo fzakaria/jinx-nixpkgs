@@ -15,21 +15,21 @@ export default nix.lambda((args) => (() => {
   const pname = "swayest-workstyle";
   const version = "1.4.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "Lyr-7D1h",
       repo: "swayest_workstyle",
       rev: version,
       hash: "sha256-V1vEGz2jZHPdeKL99ILeoWVsuxIMkDHHdzgY8kEe9yM=",
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       src: src,
       cargoHash: "sha256-cQWmtZFvpgFt49cKXEKUJoZ4d8w4AcwA9ud/W/rmOP8=",
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Map sway workspace names to icons defined depending on the windows inside of the workspace",
         homepage: "https://github.com/Lyr-7D1h/swayest_workstyle",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.18.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wyfo",
           repo: "apischema",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace pyproject.toml \\\n  --replace-fail \"setuptools==75.1.0\" \"setuptools\" \\\n  --replace-fail \"wheel~=0.44.0\" \"wheel\"\n";
       const build_system = nix.thunk(() => [setuptools]);
       const nativeBuildInputs = nix.thunk(() => [pyprojectVersionPatchHook]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, graphql: nix.thunk(() => [graphql_core]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, graphql: nix.thunk(() => [graphql_core]) }));
       const doCheck = nix.thunk(() => nix.app(pythonOlder, "3.14"));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytest_asyncio, pytest8_3CheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["apischema"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "JSON (de)serialization, GraphQL and JSON schema generation using typing",
         homepage: "https://github.com/wyfo/apischema",
         changelog: nix.thunk(() => nix.str`https://github.com/wyfo/apischema/releases/tag/v${version}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

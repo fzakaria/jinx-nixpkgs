@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const toml = nix.arg($, "toml");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pydeps",
       version: "3.0.9",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "thebjorn",
           repo: "pydeps",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ substituteInPlace pydeps/dot.py \\
       disabledTests: nix.thunk(() => ["test_find_package_names"]),
       pythonImportsCheck: nix.thunk(() => ["pydeps"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python module dependency visualization",
         homepage: "https://github.com/thebjorn/pydeps",
         changelog: nix.thunk(() => nix.str`https://github.com/thebjorn/pydeps/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

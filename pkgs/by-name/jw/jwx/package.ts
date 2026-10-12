@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "jwx",
       version: "4.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lestrrat-go",
           repo: "jwx",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,9 +26,9 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-r/CDxn57GfajCI2m1XAj17KowJIohutBZBdxt3YZ7H8=",
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/cmd/jwx`),
-      env: nix.thunk(() => ({ __proto__: pos$2, GOEXPERIMENT: "jsonv2" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, GOEXPERIMENT: "jsonv2" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Implementation of various JWx (Javascript Object Signing and Encryption/JOSE) technologies",
         mainProgram: "jwx",
         homepage: "https://github.com/lestrrat-go/jwx",

@@ -27,24 +27,24 @@ export default nix.lambda((args) => (() => {
   const SDL2 = nix.arg($, "SDL2");
   const ninja = nix.arg($, "ninja");
   const versions = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     seriousproton: "2024.12.08",
     emptyepsilon: "2024.12.08",
     "basis-universal": "1.15_final",
   }));
   const basis_universal = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "BinomialLLC",
       repo: "basis_universal",
       tag: nix.thunk(() => nix.sel(versions, "basis-universal")),
       hash: "sha256-pKvfVvdbPIdzdSOklicThS7xwt4i3/21bE6wg9f8kHY=",
     }))));
   const serious_proton = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "serious-proton",
       version: nix.thunk(() => nix.sel(versions, "seriousproton")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "daid",
           repo: "SeriousProton",
           tag: nix.thunk(() => nix.str`EE-${nix.sel(versions, "seriousproton")}`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_CXX_FLAGS", "-DGLM_ENABLE_EXPERIMENTAL")),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "C++ game engine coded on top of SFML used for EmptyEpsilon",
         homepage: "https://github.com/daid/SeriousProton",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -69,11 +69,11 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "empty-epsilon",
       version: nix.thunk(() => nix.sel(versions, "emptyepsilon")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           owner: "daid",
           repo: "EmptyEpsilon",
           tag: nix.thunk(() => nix.str`EE-${nix.sel(versions, "emptyepsilon")}`),
@@ -95,7 +95,7 @@ export default nix.lambda((args) => (() => {
         "-G Ninja",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Open source bridge simulator based on Artemis",
         mainProgram: "EmptyEpsilon",
         homepage: "https://daid.github.io/EmptyEpsilon/",

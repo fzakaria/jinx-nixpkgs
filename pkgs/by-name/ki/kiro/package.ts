@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const _7zz = nix.arg($, "_7zz");
   const sources = nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./sources.json")), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(nix.app(buildVscode, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       useVSCodeRipgrep: useVSCodeRipgrep,
       commandLineArgs: extraCommandLineArgs,
       version: "0.12.333",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       libraryName: "kiro",
       iconName: "kiro",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.sel(sources, "url")),
           hash: nix.thunk(() => nix.sel(sources, "hash")),
         })))),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       tests: nix.thunk(() => ({})),
       updateScript: nix.path(here, "./update.sh"),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "IDE for Agentic AI workflows based on VS Code",
         homepage: "https://kiro.dev",
         license: nix.thunk(() => nix.sel(lib, "licenses", "amazonsl")),
@@ -63,8 +63,8 @@ export default nix.lambda((args) => (() => {
         mainProgram: "kiro",
       })),
     }))), "overrideAttrs"), (oldAttrs) => ({
-      __proto__: pos$5,
-      passthru: nix.thunk(() => nix.update(nix.selOr(oldAttrs, () => ({}), "passthru"), { __proto__: pos$4, sources: sources })),
+      [nix.POS]: pos$5,
+      passthru: nix.thunk(() => nix.update(nix.selOr(oldAttrs, () => ({}), "passthru"), { [nix.POS]: pos$4, sources: sources })),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

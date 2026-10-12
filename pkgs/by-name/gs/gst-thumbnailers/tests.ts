@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const shared_mime_info = nix.arg($, "shared-mime-info");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "gst-thumbnailers-test",
       version: nix.thunk(() => nix.attr(gst_thumbnailers, "version")),
       src: nix.thunk(() => nix.attr(gst_thumbnailers, "src")),

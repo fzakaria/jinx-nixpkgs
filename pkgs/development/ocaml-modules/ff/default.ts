@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const zarith = nix.arg($, "zarith");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "ff",
       version: nix.thunk(() => nix.attr(ff_sig, "version")),
       src: nix.thunk(() => nix.attr(ff_sig, "src")),
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest, ff_pbt]),
       doCheck: true,
       meta: nix.thunk(() => nix.update(nix.sel(ff_sig, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "OCaml implementation of Finite Field operations",
       })),
     })));

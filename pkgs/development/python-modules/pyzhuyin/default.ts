@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const unittestCheckHook = nix.arg($, "unittestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pyzhuyin",
       version: "0.0.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rku1999",
           repo: "python-zhuyin",
           rev: "82c31bb89871e7567853406471c5849a9c2034f1",
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["pyzhuyin"]),
       nativeCheckInputs: nix.thunk(() => [unittestCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Phonetic and Pinyin conversion tool",
         homepage: "https://pypi.org/project/pyzhuyin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

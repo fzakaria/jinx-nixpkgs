@@ -51,21 +51,21 @@ export default nix.lambda((args) => (() => {
     return nix.app(nix.sel(pkgs, "writeText"), "aesmd.conf", nix.thunk(() => nix.app(concatStringsSep, "\n", nix.thunk(() => nix.concat(nix.app(optional, nix.thunk(() => !nix.eq(nix.lookup(w, "defaultQuotingType"), null)), nix.thunk(() => nix.str`default quoting type = ${nix.lookup(w, "defaultQuotingType")}`)), nix.concat(nix.app(optional, nix.thunk(() => !nix.eq(nix.lookup(w, "qplLogLevel"), null)), nix.thunk(() => nix.str`qpl log level = ${nix.lookup(w, "qplLogLevel")}`)), nix.concat(nix.app(optional, nix.thunk(() => !nix.eq(nix.lookup(w, "proxy"), null)), nix.thunk(() => nix.str`aesm proxy = ${nix.lookup(w, "proxy")}`)), nix.concat(nix.app(optional, nix.thunk(() => !nix.eq(nix.lookup(w, "proxyType"), null)), nix.thunk(() => nix.str`proxy type = ${nix.lookup(w, "proxyType")}`)), [""]))))))));
   })());
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["services", "aesmd", "debug"]), "Enable debug mode by overriding the aesmd package directly:\n\n    services.aesmd.package = pkgs.sgx-psw.override { debug = true; };\n")),
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["services", "aesmd", "settings", "whitelistUrl"]), "sgx-psw-v2.28 no longer supports Intel enclave signer cert whitelist management.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         aesmd: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Intel's Architectural Enclave Service Manager (AESM) for Intel SGX")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "sgx-psw", nix.thunk(() => ({})))),
           environment: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(types, null);
                 return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -73,13 +73,13 @@ export default nix.lambda((args) => (() => {
               default: nix.thunk(() => ({})),
               description: "Additional environment variables to pass to the AESM service.",
               example: nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 AZDCAP_COLLATERAL_VERSION: "v2",
                 AZDCAP_DEBUG_LOG_LEVEL: "INFO",
               })),
             })))),
           quoteProviderLibrary: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(types, null);
                 return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "path")));
@@ -89,9 +89,9 @@ export default nix.lambda((args) => (() => {
               description: "Custom quote provider library to use.",
             })))),
           settings: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             proxy: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(types, null);
                   return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -101,7 +101,7 @@ export default nix.lambda((args) => (() => {
                 description: "HTTP network proxy.",
               })))),
             proxyType: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(types, null);
                   return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "enum"), nix.thunk(() => ["default", "direct", "manual"]))));
@@ -112,7 +112,7 @@ export default nix.lambda((args) => (() => {
                 description: "Type of proxy to use. The `default` uses the system's default proxy.\nIf `direct` is given, uses no proxy.\nA value of `manual` uses the proxy from\n{option}`services.aesmd.settings.proxy`.\n",
               })))),
             defaultQuotingType: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(types, null);
                   return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "enum"), nix.thunk(() => ["ecdsa_256"]))));
@@ -122,7 +122,7 @@ export default nix.lambda((args) => (() => {
                 description: "Attestation quote type.",
               })))),
             qplLogLevel: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(types, null);
                   return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "enum"), nix.thunk(() => ["info", "error"]))));
@@ -136,47 +136,47 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             assertion: nix.thunk(() => !nix.asBool(nix.has(nix.sel(config, "boot", "specialFileSystems", "/dev", "options"), "noexec"))),
             message: "SGX requires exec permission for /dev",
           })),
         ]),
         hardware: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           cpu: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             intel: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               sgx: nix.thunk(() => ({
-                __proto__: pos$14,
-                provision: nix.thunk(() => ({ __proto__: pos$13, enable: true })),
+                [nix.POS]: pos$14,
+                provision: nix.thunk(() => ({ [nix.POS]: pos$13, enable: true })),
               })),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           services: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             aesmd: nix.thunk(() => (() => {
               const storeAesmFolder = nix.thunk(() => nix.str`${sgx_psw}/aesm`);
               return {
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 description: "Intel Architectural Enclave Service Manager",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 after: nix.thunk(() => ["auditd.service", "network.target"]),
                 environment: nix.thunk(() => nix.update({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   NAME: "aesm_service",
                   AESM_PATH: storeAesmFolder,
                   LD_LIBRARY_PATH: nix.thunk(() => nix.app(makeLibraryPath, nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "quoteProviderLibrary"))]))),
                 }, nix.sel(cfg, "environment"))),
-                unitConfig: nix.thunk(() => ({ __proto__: pos$19, AssertPathExists: nix.thunk(() => ["/dev/sgx_enclave"]) })),
+                unitConfig: nix.thunk(() => ({ [nix.POS]: pos$19, AssertPathExists: nix.thunk(() => ["/dev/sgx_enclave"]) })),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   ExecStartPre: nix.thunk(() => nix.str`+${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils")), "mkdir")} -p -m 755 /var/opt/aesmd/data`),
                   ExecStart: nix.thunk(() => nix.str`${sgx_psw}/bin/aesm_service --no-daemon`),
                   ExecReload: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/kill -SIGHUP "$MAINPID"`),

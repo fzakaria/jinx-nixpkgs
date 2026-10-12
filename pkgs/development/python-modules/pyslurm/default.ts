@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "25.11.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "pyslurm",
           owner: "PySlurm",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,20 +30,20 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [setuptools]);
       const buildInputs = nix.thunk(() => [cython, slurm]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         SLURM_LIB_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), slurm)}/lib`),
         SLURM_INCLUDE_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), slurm)}/include`),
       }));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/PySlurm/pyslurm",
         description: "Python bindings to Slurm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

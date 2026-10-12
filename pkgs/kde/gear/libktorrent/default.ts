@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const gmp = nix.arg($, "gmp");
   const libgcrypt = nix.arg($, "libgcrypt");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "libktorrent",
       extraNativeBuildInputs: nix.thunk(() => [doxygen]),
       extraBuildInputs: nix.thunk(() => [qt5compat]),

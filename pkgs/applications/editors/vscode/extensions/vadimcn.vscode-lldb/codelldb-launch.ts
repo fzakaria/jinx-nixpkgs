@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.arg($, "version");
   const cargoHash = nix.arg($, "cargoHash");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: nix.thunk(() => nix.str`${pname}-codelldb-launch`),
       version: version,
       src: src,

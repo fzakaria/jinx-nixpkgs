@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const sourceFile = nix.argOr($_1, "sourceFile", () => null);
       const installable = nix.argOr($_1, "installable", () => false);
       return nix.update(nix.app(symlinkJoin, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name: nix.thunk(() => nix.str`${name}-nuget-deps`),
           paths: nix.thunk(() => (() => {
             const loadDeps = nix.thunk(() => (nix.asBool(!nix.eq(nugetDeps, null)) ? nix.force(nugetDeps) : (nix.asBool(nix.app(nix.sel(lib, "hasSuffix"), ".nix", sourceFile)) ? (() => {
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
               return nix.builtins.map(fetchNuGet, nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), sourceFile)));
             })(), formals$3))));
             return nix.app(loadDeps, nix.thunk(() => ({
-                __proto__: pos$2,
-                fetchNuGet: (args_2) => nix.app(fetchNupkg, nix.thunk(() => nix.update(args_2, { __proto__: pos$1, installable: installable }))),
+                [nix.POS]: pos$2,
+                fetchNuGet: (args_2) => nix.app(fetchNupkg, nix.thunk(() => nix.update(args_2, { [nix.POS]: pos$1, installable: installable }))),
               })));
           })()),
-        }))), { __proto__: pos$4, sourceFile: sourceFile });
+        }))), { [nix.POS]: pos$4, sourceFile: sourceFile });
     })(), formals$2));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

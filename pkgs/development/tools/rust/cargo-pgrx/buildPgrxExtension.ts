@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const writeShellScriptBin = nix.arg($, "writeShellScriptBin");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       constructDrv: nix.thunk(() => nix.sel(rustPlatform, "buildRustPackage")),
       excludeDrvArgNames: nix.thunk(() => ["postgresql", "useFakeRustfmt", "usePgTestCheckFeature"]),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -63,7 +63,7 @@ pg_ctl stop
 `);
         const cargoPgrxFlags$ = nix.thunk(() => nix.app(nix.sel(lib, "escapeShellArgs"), cargoPgrxFlags));
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           __structuredAttrs: true,
           buildInputs: nix.thunk(() => nix.selOr(args_2, () => [], "buildInputs")),
           nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(args_2, () => [], "nativeBuildInputs"), nix.concat([
@@ -108,7 +108,7 @@ ${maybeLeaveBuildAndTestSubdir}
 runHook postInstall
 `),
           env: nix.thunk(() => nix.update(nix.selOr(args_2, () => ({}), "env"), {
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             PGRX_PG_SYS_SKIP_BINDING_REWRITE: "1",
             CARGO_BUILD_INCREMENTAL: "false",
             RUST_BACKTRACE: "full",
@@ -116,7 +116,7 @@ runHook postInstall
           checkNoDefaultFeatures: true,
           checkFeatures: nix.thunk(() => nix.concat(nix.selOr(args_2, () => [], "checkFeatures"), nix.concat(nix.app(nix.sel(lib, "optionals"), usePgTestCheckFeature, nix.thunk(() => ["pg_test"])), [nix.thunk(() => nix.str`pg${pgrxPostgresMajor}`)]))),
           meta: nix.thunk(() => nix.update(nix.selOr(args_2, () => ({}), "meta"), {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             broken: nix.thunk(() => (nix.asBool(nix.selOr(args_2, () => false, "meta", "broken")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))),
           })),
         };

@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const ghostscript = nix.arg($, "ghostscript");
   const libnotify = nix.arg($, "libnotify");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "densify",
       version: "0.3.2",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hkdb",
           repo: "Densify",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ninstall -Dm755 -t $out/bin densify\ninstall -Dm644 -t $out/share/applications densify.desktop\ninstall -Dm644 -t $out/share/densify desktop-icon.png icon.png\n\nrunHook postInstall\n",
       postFixup: "substituteInPlace $out/share/applications/densify.desktop \\\n  --replace-fail \"/opt/Densify/densify\" \"densify\" \\\n  --replace-fail \"Path=/opt/Densify/\" \"Path=$out/bin/\" \\\n  --replace-fail \"/opt/Densify/desktop-icon.png\" \"$out/share/densify/desktop-icon.png\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Compress PDF files with Ghostscript",
         homepage: "https://github.com/hkdb/Densify",
         changelog: nix.thunk(() => nix.str`https://github.com/hkdb/Densify/blob/${nix.sel(finalAttrs, "src", "rev")}/README.md`),

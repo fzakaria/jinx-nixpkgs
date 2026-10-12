@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const retry2 = nix.arg($, "retry2");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zeversolar",
       version: "0.4.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kvanzuijlen",
           repo: "zeversolar",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_mock, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["zeversolar"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module to interact with the local CGI provided by ZeverSolar",
         homepage: "https://github.com/kvanzuijlen/zeversolar",
         changelog: nix.thunk(() => nix.str`https://github.com/kvanzuijlen/zeversolar/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

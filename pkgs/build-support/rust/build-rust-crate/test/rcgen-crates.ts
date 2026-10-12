@@ -426,7 +426,7 @@ const pos$391 = nix.positions(here + "/rcgen-crates.nix", [["rootCrate", 40, 3],
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const nixpkgs = nix.argOr($, "nixpkgs", () => nix.builtins.findFile(nix.builtins.nixPath, "nixpkgs"));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nixpkgs), nix.thunk(() => ({ __proto__: pos$1, config: nix.thunk(() => ({})) }))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nixpkgs), nix.thunk(() => ({ [nix.POS]: pos$1, config: nix.thunk(() => ({})) }))));
   const lib = nix.argOr($, "lib", () => nix.sel(pkgs, "lib"));
   const stdenv = nix.argOr($, "stdenv", () => nix.sel(pkgs, "stdenv"));
   const buildRustCrateForPkgs = nix.argOr($, "buildRustCrateForPkgs", () => (nix.asBool(!nix.eq(buildRustCrate, null)) ? nix.app(nix.sel(lib, "warn"), "crate2nix: Passing `buildRustCrate` as argument to Cargo.nix is deprecated. If you don't customize `buildRustCrate`, replace `callPackage ./Cargo.nix {}` by `import ./Cargo.nix { inherit pkgs; }`, and if you need to customize `buildRustCrate`, use `buildRustCrateForPkgs` instead.", (_) => nix.force(buildRustCrate)) : (pkgs_1) => nix.sel(pkgs_1, "buildRustCrate")));
@@ -440,21 +440,21 @@ export default nix.lambda((args) => (() => {
   return (() => {
     const rootCrate = nix.thunk(() => (() => {
       const packageId = "rcgen";
-      const build = nix.thunk(() => nix.app(nix.sel(internal, "buildRustCrateWithFeatures"), nix.thunk(() => ({ __proto__: pos$2, packageId: packageId }))));
-      const debug = nix.thunk(() => nix.app(nix.sel(internal, "debugCrate"), nix.thunk(() => ({ __proto__: pos$3, packageId: packageId }))));
-      return { __proto__: pos$4, packageId, build, debug };
+      const build = nix.thunk(() => nix.app(nix.sel(internal, "buildRustCrateWithFeatures"), nix.thunk(() => ({ [nix.POS]: pos$2, packageId: packageId }))));
+      const debug = nix.thunk(() => nix.app(nix.sel(internal, "debugCrate"), nix.thunk(() => ({ [nix.POS]: pos$3, packageId: packageId }))));
+      return { [nix.POS]: pos$4, packageId, build, debug };
     })());
     const workspaceMembers = nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       rcgen: nix.thunk(() => (() => {
         const packageId = "rcgen";
-        const build = nix.thunk(() => nix.app(nix.sel(internal, "buildRustCrateWithFeatures"), nix.thunk(() => ({ __proto__: pos$5, packageId: "rcgen" }))));
-        const debug = nix.thunk(() => nix.app(nix.sel(internal, "debugCrate"), nix.thunk(() => ({ __proto__: pos$6, packageId: packageId }))));
-        return { __proto__: pos$7, packageId, build, debug };
+        const build = nix.thunk(() => nix.app(nix.sel(internal, "buildRustCrateWithFeatures"), nix.thunk(() => ({ [nix.POS]: pos$5, packageId: "rcgen" }))));
+        const debug = nix.thunk(() => nix.app(nix.sel(internal, "debugCrate"), nix.thunk(() => ({ [nix.POS]: pos$6, packageId: packageId }))));
+        return { [nix.POS]: pos$7, packageId, build, debug };
       })()),
     }));
     const allWorkspaceMembers = nix.thunk(() => nix.app(nix.sel(pkgs, "symlinkJoin"), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         name: "all-workspace-members",
         paths: nix.thunk(() => (() => {
           const members = nix.thunk(() => nix.builtins.attrValues(workspaceMembers));
@@ -463,30 +463,30 @@ export default nix.lambda((args) => (() => {
       }))));
     const internal = nix.thunk(() => (() => {
       const crates = nix.thunk(() => ({
-        __proto__: pos$356,
+        [nix.POS]: pos$356,
         "asn1-rs": nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           crateName: "asn1-rs",
           version: "0.3.1",
           edition: "2018",
           sha256: "0czsk1nd4dx2k83f7jzkn8klx05wbmblkx1jh51i4c170akhbzrh",
           authors: nix.thunk(() => ["Pierre Chifflier <chifflier@wzdftpd.net>"]),
           dependencies: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$10, name: "asn1-rs-derive", packageId: "asn1-rs-derive" })),
-            nix.thunk(() => ({ __proto__: pos$11, name: "asn1-rs-impl", packageId: "asn1-rs-impl" })),
-            nix.thunk(() => ({ __proto__: pos$12, name: "displaydoc", packageId: "displaydoc" })),
+            nix.thunk(() => ({ [nix.POS]: pos$10, name: "asn1-rs-derive", packageId: "asn1-rs-derive" })),
+            nix.thunk(() => ({ [nix.POS]: pos$11, name: "asn1-rs-impl", packageId: "asn1-rs-impl" })),
+            nix.thunk(() => ({ [nix.POS]: pos$12, name: "displaydoc", packageId: "displaydoc" })),
             nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               name: "nom",
               packageId: "nom",
               usesDefaultFeatures: false,
               features: nix.thunk(() => ["std"]),
             })),
-            nix.thunk(() => ({ __proto__: pos$14, name: "num-traits", packageId: "num-traits" })),
-            nix.thunk(() => ({ __proto__: pos$15, name: "rusticata-macros", packageId: "rusticata-macros" })),
-            nix.thunk(() => ({ __proto__: pos$16, name: "thiserror", packageId: "thiserror" })),
+            nix.thunk(() => ({ [nix.POS]: pos$14, name: "num-traits", packageId: "num-traits" })),
+            nix.thunk(() => ({ [nix.POS]: pos$15, name: "rusticata-macros", packageId: "rusticata-macros" })),
+            nix.thunk(() => ({ [nix.POS]: pos$16, name: "thiserror", packageId: "thiserror" })),
             nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               name: "time",
               packageId: "time",
               optional: true,
@@ -494,7 +494,7 @@ export default nix.lambda((args) => (() => {
             })),
           ]),
           features: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             bigint: nix.thunk(() => ["num-bigint"]),
             bits: nix.thunk(() => ["bitvec"]),
             bitvec: nix.thunk(() => ["dep:bitvec"]),
@@ -508,7 +508,7 @@ export default nix.lambda((args) => (() => {
           resolvedDefaultFeatures: nix.thunk(() => ["datetime", "default", "std", "time"]),
         })),
         "asn1-rs-derive": nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           crateName: "asn1-rs-derive",
           version: "0.1.0",
           edition: "2018",
@@ -516,14 +516,14 @@ export default nix.lambda((args) => (() => {
           procMacro: true,
           authors: nix.thunk(() => ["Pierre Chifflier <chifflier@wzdftpd.net>"]),
           dependencies: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$20, name: "proc-macro2", packageId: "proc-macro2" })),
-            nix.thunk(() => ({ __proto__: pos$21, name: "quote", packageId: "quote" })),
-            nix.thunk(() => ({ __proto__: pos$22, name: "syn", packageId: "syn" })),
-            nix.thunk(() => ({ __proto__: pos$23, name: "synstructure", packageId: "synstructure" })),
+            nix.thunk(() => ({ [nix.POS]: pos$20, name: "proc-macro2", packageId: "proc-macro2" })),
+            nix.thunk(() => ({ [nix.POS]: pos$21, name: "quote", packageId: "quote" })),
+            nix.thunk(() => ({ [nix.POS]: pos$22, name: "syn", packageId: "syn" })),
+            nix.thunk(() => ({ [nix.POS]: pos$23, name: "synstructure", packageId: "synstructure" })),
           ]),
         })),
         "asn1-rs-impl": nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           crateName: "asn1-rs-impl",
           version: "0.1.0",
           edition: "2018",
@@ -531,13 +531,13 @@ export default nix.lambda((args) => (() => {
           procMacro: true,
           authors: nix.thunk(() => ["Pierre Chifflier <chifflier@wzdftpd.net>"]),
           dependencies: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$25, name: "proc-macro2", packageId: "proc-macro2" })),
-            nix.thunk(() => ({ __proto__: pos$26, name: "quote", packageId: "quote" })),
-            nix.thunk(() => ({ __proto__: pos$27, name: "syn", packageId: "syn" })),
+            nix.thunk(() => ({ [nix.POS]: pos$25, name: "proc-macro2", packageId: "proc-macro2" })),
+            nix.thunk(() => ({ [nix.POS]: pos$26, name: "quote", packageId: "quote" })),
+            nix.thunk(() => ({ [nix.POS]: pos$27, name: "syn", packageId: "syn" })),
           ]),
         })),
         "autocfg 0.1.7": nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           crateName: "autocfg",
           version: "0.1.7",
           edition: "2015",
@@ -545,7 +545,7 @@ export default nix.lambda((args) => (() => {
           authors: nix.thunk(() => ["Josh Stone <cuviper@gmail.com>"]),
         })),
         "autocfg 1.0.1": nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           crateName: "autocfg",
           version: "1.0.1",
           edition: "2015",
@@ -553,33 +553,33 @@ export default nix.lambda((args) => (() => {
           authors: nix.thunk(() => ["Josh Stone <cuviper@gmail.com>"]),
         })),
         base64: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           crateName: "base64",
           version: "0.13.0",
           edition: "2018",
           sha256: "1z82g23mbzjgijkpcrilc7nljpxpvpf7zxf6iyiapkgka2ngwkch",
           authors: nix.thunk(() => ["Alice Maz <alice@alicemaz.com>", "Marshall Pierce <marshall@mpierce.org>"]),
-          features: nix.thunk(() => ({ __proto__: pos$31, default: nix.thunk(() => ["std"]) })),
+          features: nix.thunk(() => ({ [nix.POS]: pos$31, default: nix.thunk(() => ["std"]) })),
           resolvedDefaultFeatures: nix.thunk(() => ["default", "std"]),
         })),
         base64ct: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           crateName: "base64ct",
           version: "1.1.1",
           edition: "2018",
           sha256: "0p4was874qc90q2chm2i14m9mn8zmxjis8vaxihd6a2x4aqxkd76",
           authors: nix.thunk(() => ["RustCrypto Developers"]),
-          features: nix.thunk(() => ({ __proto__: pos$33, std: nix.thunk(() => ["alloc"]) })),
+          features: nix.thunk(() => ({ [nix.POS]: pos$33, std: nix.thunk(() => ["alloc"]) })),
         })),
         bitflags: nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           crateName: "bitflags",
           version: "1.3.2",
           edition: "2018",
           sha256: "12ki6w8gn1ldq7yz9y680llwk5gmrhrzszaa17g1sbrw2r2qvwxy",
           authors: nix.thunk(() => ["The Rust Project Developers"]),
           features: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             compiler_builtins: nix.thunk(() => ["dep:compiler_builtins"]),
             core: nix.thunk(() => ["dep:core"]),
             "rustc-dep-of-std": nix.thunk(() => ["core", "compiler_builtins"]),
@@ -587,18 +587,18 @@ export default nix.lambda((args) => (() => {
           resolvedDefaultFeatures: nix.thunk(() => ["default"]),
         })),
         botan: nix.thunk(() => ({
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           crateName: "botan",
           version: "0.8.1",
           edition: "2018",
           sha256: "08bmiyn7c3b0dgx20w6hr28d9jcq7cj78cchr84pc686sb2s41ik",
           authors: nix.thunk(() => ["Jack Lloyd <jack@randombit.net>"]),
           dependencies: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$37, name: "botan-sys", packageId: "botan-sys" })),
-            nix.thunk(() => ({ __proto__: pos$38, name: "cty", packageId: "cty" })),
+            nix.thunk(() => ({ [nix.POS]: pos$37, name: "botan-sys", packageId: "botan-sys" })),
+            nix.thunk(() => ({ [nix.POS]: pos$38, name: "cty", packageId: "cty" })),
           ]),
           features: nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             cstr_core: nix.thunk(() => ["dep:cstr_core"]),
             "no-std": nix.thunk(() => ["cstr_core/alloc"]),
             vendored: nix.thunk(() => ["botan-sys/vendored"]),
@@ -606,7 +606,7 @@ export default nix.lambda((args) => (() => {
           resolvedDefaultFeatures: nix.thunk(() => ["default", "vendored"]),
         })),
         "botan-src": nix.thunk(() => ({
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           crateName: "botan-src",
           version: "0.21703.0",
           edition: "2018",
@@ -614,25 +614,25 @@ export default nix.lambda((args) => (() => {
           authors: nix.thunk(() => ["Rodolphe Breard <rodolphe@what.tf>", "Jack Lloyd <jack@randombit.net>"]),
         })),
         "botan-sys": nix.thunk(() => ({
-          __proto__: pos$45,
+          [nix.POS]: pos$45,
           crateName: "botan-sys",
           version: "0.8.1",
           edition: "2015",
           sha256: "1m11zblxfanrhl97j7z3ap7n17rr8j0rg91sr7f9j6y2bsniaz1x",
           authors: nix.thunk(() => ["Jack Lloyd <jack@randombit.net>"]),
-          dependencies: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$42, name: "cty", packageId: "cty" }))]),
+          dependencies: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$42, name: "cty", packageId: "cty" }))]),
           buildDependencies: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$43, name: "botan-src", packageId: "botan-src", optional: true })),
+            nix.thunk(() => ({ [nix.POS]: pos$43, name: "botan-src", packageId: "botan-src", optional: true })),
           ]),
           features: nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             "botan-src": nix.thunk(() => ["dep:botan-src"]),
             vendored: nix.thunk(() => ["botan-src"]),
           })),
           resolvedDefaultFeatures: nix.thunk(() => ["botan-src", "default", "vendored"]),
         })),
         bumpalo: nix.thunk(() => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           crateName: "bumpalo",
           version: "3.9.1",
           edition: "2018",
@@ -642,16 +642,16 @@ export default nix.lambda((args) => (() => {
           resolvedDefaultFeatures: nix.thunk(() => ["default"]),
         })),
         byteorder: nix.thunk(() => ({
-          __proto__: pos$48,
+          [nix.POS]: pos$48,
           crateName: "byteorder",
           version: "1.4.3",
           edition: "2018",
           sha256: "0456lv9xi1a5bcm32arknf33ikv76p3fr9yzki4lb2897p2qkh8l",
           authors: nix.thunk(() => ["Andrew Gallant <jamslam@gmail.com>"]),
-          features: nix.thunk(() => ({ __proto__: pos$47, default: nix.thunk(() => ["std"]) })),
+          features: nix.thunk(() => ({ [nix.POS]: pos$47, default: nix.thunk(() => ["std"]) })),
         })),
         cc: nix.thunk(() => ({
-          __proto__: pos$50,
+          [nix.POS]: pos$50,
           crateName: "cc",
           version: "1.0.72",
           edition: "2018",
@@ -659,27 +659,27 @@ export default nix.lambda((args) => (() => {
           sha256: "1vl50h2qh0nh0iddzj6gd1pnxnxpvwmbfxc30578c1pajmxi7a92",
           authors: nix.thunk(() => ["Alex Crichton <alex@alexcrichton.com>"]),
           features: nix.thunk(() => ({
-            __proto__: pos$49,
+            [nix.POS]: pos$49,
             jobserver: nix.thunk(() => ["dep:jobserver"]),
             parallel: nix.thunk(() => ["jobserver"]),
           })),
         })),
         "cfg-if": nix.thunk(() => ({
-          __proto__: pos$52,
+          [nix.POS]: pos$52,
           crateName: "cfg-if",
           version: "1.0.0",
           edition: "2018",
           sha256: "1za0vb97n4brpzpv8lsbnzmq5r8f2b0cpqqr0sy8h5bn751xxwds",
           authors: nix.thunk(() => ["Alex Crichton <alex@alexcrichton.com>"]),
           features: nix.thunk(() => ({
-            __proto__: pos$51,
+            [nix.POS]: pos$51,
             compiler_builtins: nix.thunk(() => ["dep:compiler_builtins"]),
             core: nix.thunk(() => ["dep:core"]),
             "rustc-dep-of-std": nix.thunk(() => ["core", "compiler_builtins"]),
           })),
         })),
         "const-oid": nix.thunk(() => ({
-          __proto__: pos$53,
+          [nix.POS]: pos$53,
           crateName: "const-oid",
           version: "0.6.2",
           edition: "2018",
@@ -688,7 +688,7 @@ export default nix.lambda((args) => (() => {
           features: nix.thunk(() => ({})),
         })),
         "crypto-bigint": nix.thunk(() => ({
-          __proto__: pos$58,
+          [nix.POS]: pos$58,
           crateName: "crypto-bigint",
           version: "0.2.11",
           edition: "2018",
@@ -696,21 +696,21 @@ export default nix.lambda((args) => (() => {
           authors: nix.thunk(() => ["RustCrypto Developers"]),
           dependencies: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$54,
+              [nix.POS]: pos$54,
               name: "generic-array",
               packageId: "generic-array",
               optional: true,
             })),
-            nix.thunk(() => ({ __proto__: pos$55, name: "rand_core", packageId: "rand_core", optional: true })),
+            nix.thunk(() => ({ [nix.POS]: pos$55, name: "rand_core", packageId: "rand_core", optional: true })),
             nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               name: "subtle",
               packageId: "subtle",
               usesDefaultFeatures: false,
             })),
           ]),
           features: nix.thunk(() => ({
-            __proto__: pos$57,
+            [nix.POS]: pos$57,
             default: nix.thunk(() => ["rand"]),
             "generic-array": nix.thunk(() => ["dep:generic-array"]),
             rand: nix.thunk(() => ["rand_core"]),
@@ -721,7 +721,7 @@ export default nix.lambda((args) => (() => {
           resolvedDefaultFeatures: nix.thunk(() => ["default", "generic-array", "rand", "rand_core"]),
         })),
         cty: nix.thunk(() => ({
-          __proto__: pos$59,
+          [nix.POS]: pos$59,
           crateName: "cty",
           version: "0.2.2",
           edition: "2015",
@@ -729,30 +729,30 @@ export default nix.lambda((args) => (() => {
           authors: nix.thunk(() => ["Jorge Aparicio <jorge@japaric.io>"]),
         })),
         "data-encoding": nix.thunk(() => ({
-          __proto__: pos$61,
+          [nix.POS]: pos$61,
           crateName: "data-encoding",
           version: "2.3.2",
           edition: "2018",
           sha256: "0mvd8bjq5mq50fcf931cff57vwmbsvs1kpxynkzrshli98y3kqiy",
           authors: nix.thunk(() => ["Julien Cretin <git@ia0.eu>"]),
           features: nix.thunk(() => ({
-            __proto__: pos$60,
+            [nix.POS]: pos$60,
             default: nix.thunk(() => ["std"]),
             std: nix.thunk(() => ["alloc"]),
           })),
           resolvedDefaultFeatures: nix.thunk(() => ["alloc", "default", "std"]),
         })),
         der: nix.thunk(() => ({
-          __proto__: pos$65,
+          [nix.POS]: pos$65,
           crateName: "der",
           version: "0.4.5",
           edition: "2018",
           sha256: "1x4k0jln8va1657cghl40l6p7hyvr1ixz71v9cd6imwmgp51rdvr",
           authors: nix.thunk(() => ["RustCrypto Developers"]),
           dependencies: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$62, name: "const-oid", packageId: "const-oid", optional: true })),
+            nix.thunk(() => ({ [nix.POS]: pos$62, name: "const-oid", packageId: "const-oid", optional: true })),
             nix.thunk(() => ({
-              __proto__: pos$63,
+              [nix.POS]: pos$63,
               name: "crypto-bigint",
               packageId: "crypto-bigint",
               optional: true,
@@ -760,7 +760,7 @@ export default nix.lambda((args) => (() => {
             })),
           ]),
           features: nix.thunk(() => ({
-            __proto__: pos$64,
+            [nix.POS]: pos$64,
             bigint: nix.thunk(() => ["crypto-bigint"]),
             "const-oid": nix.thunk(() => ["dep:const-oid"]),
             "crypto-bigint": nix.thunk(() => ["dep:crypto-bigint"]),
@@ -772,32 +772,32 @@ export default nix.lambda((args) => (() => {
           resolvedDefaultFeatures: nix.thunk(() => ["alloc", "bigint", "const-oid", "crypto-bigint", "oid", "std"]),
         })),
         "der-parser": nix.thunk(() => ({
-          __proto__: pos$73,
+          [nix.POS]: pos$73,
           crateName: "der-parser",
           version: "7.0.0",
           edition: "2018",
           sha256: "10kfa2gzl3x20mwgrd43cyi79xgkqxyzcyrh0xylv4apa33qlfgy",
           authors: nix.thunk(() => ["Pierre Chifflier <chifflier@wzdftpd.net>"]),
           dependencies: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$66, name: "asn1-rs", packageId: "asn1-rs" })),
+            nix.thunk(() => ({ [nix.POS]: pos$66, name: "asn1-rs", packageId: "asn1-rs" })),
             nix.thunk(() => ({
-              __proto__: pos$67,
+              [nix.POS]: pos$67,
               name: "displaydoc",
               packageId: "displaydoc",
               usesDefaultFeatures: false,
             })),
-            nix.thunk(() => ({ __proto__: pos$68, name: "nom", packageId: "nom" })),
+            nix.thunk(() => ({ [nix.POS]: pos$68, name: "nom", packageId: "nom" })),
             nix.thunk(() => ({
-              __proto__: pos$69,
+              [nix.POS]: pos$69,
               name: "num-bigint",
               packageId: "num-bigint",
               optional: true,
             })),
-            nix.thunk(() => ({ __proto__: pos$70, name: "num-traits", packageId: "num-traits" })),
-            nix.thunk(() => ({ __proto__: pos$71, name: "rusticata-macros", packageId: "rusticata-macros" })),
+            nix.thunk(() => ({ [nix.POS]: pos$70, name: "num-traits", packageId: "num-traits" })),
+            nix.thunk(() => ({ [nix.POS]: pos$71, name: "rusticata-macros", packageId: "rusticata-macros" })),
           ]),
           features: nix.thunk(() => ({
-            __proto__: pos$72,
+            [nix.POS]: pos$72,
             bigint: nix.thunk(() => ["num-bigint"]),
             "cookie-factory": nix.thunk(() => ["dep:cookie-factory"]),
             default: nix.thunk(() => ["std"]),
@@ -807,17 +807,17 @@ export default nix.lambda((args) => (() => {
           resolvedDefaultFeatures: nix.thunk(() => ["bigint", "default", "num-bigint", "std"]),
         })),
         digest: nix.thunk(() => ({
-          __proto__: pos$76,
+          [nix.POS]: pos$76,
           crateName: "digest",
           version: "0.9.0",
           edition: "2018",
           sha256: "0rmhvk33rgvd6ll71z8sng91a52rw14p0drjn1da0mqa138n1pfk",
           authors: nix.thunk(() => ["RustCrypto Developers"]),
           dependencies: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$74, name: "generic-array", packageId: "generic-array" })),
+            nix.thunk(() => ({ [nix.POS]: pos$74, name: "generic-array", packageId: "generic-array" })),
           ]),
           features: nix.thunk(() => ({
-            __proto__: pos$75,
+            [nix.POS]: pos$75,
             blobby: nix.thunk(() => ["dep:blobby"]),
             dev: nix.thunk(() => ["blobby"]),
             std: nix.thunk(() => ["alloc"]),
@@ -825,7 +825,7 @@ export default nix.lambda((args) => (() => {
           resolvedDefaultFeatures: nix.thunk(() => ["alloc", "std"]),
         })),
         displaydoc: nix.thunk(() => ({
-          __proto__: pos$81,
+          [nix.POS]: pos$81,
           crateName: "displaydoc",
           version: "0.2.3",
           edition: "2018",
@@ -833,15 +833,15 @@ export default nix.lambda((args) => (() => {
           procMacro: true,
           authors: nix.thunk(() => ["Jane Lusby <jlusby@yaah.dev>"]),
           dependencies: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$77, name: "proc-macro2", packageId: "proc-macro2" })),
-            nix.thunk(() => ({ __proto__: pos$78, name: "quote", packageId: "quote" })),
-            nix.thunk(() => ({ __proto__: pos$79, name: "syn", packageId: "syn" })),
+            nix.thunk(() => ({ [nix.POS]: pos$77, name: "proc-macro2", packageId: "proc-macro2" })),
+            nix.thunk(() => ({ [nix.POS]: pos$78, name: "quote", packageId: "quote" })),
+            nix.thunk(() => ({ [nix.POS]: pos$79, name: "syn", packageId: "syn" })),
           ]),
-          features: nix.thunk(() => ({ __proto__: pos$80, default: nix.thunk(() => ["std"]) })),
+          features: nix.thunk(() => ({ [nix.POS]: pos$80, default: nix.thunk(() => ["std"]) })),
           resolvedDefaultFeatures: nix.thunk(() => ["default", "std"]),
         })),
         "foreign-types": nix.thunk(() => ({
-          __proto__: pos$83,
+          [nix.POS]: pos$83,
           crateName: "foreign-types",
           version: "0.3.2",
           edition: "2015",
@@ -849,14 +849,14 @@ export default nix.lambda((args) => (() => {
           authors: nix.thunk(() => ["Steven Fackler <sfackler@gmail.com>"]),
           dependencies: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$82,
+              [nix.POS]: pos$82,
               name: "foreign-types-shared",
               packageId: "foreign-types-shared",
             })),
           ]),
         })),
         "foreign-types-shared": nix.thunk(() => ({
-          __proto__: pos$84,
+          [nix.POS]: pos$84,
           crateName: "foreign-types-shared",
           version: "0.1.1",
           edition: "2015",
@@ -864,7 +864,7 @@ export default nix.lambda((args) => (() => {
           authors: nix.thunk(() => ["Steven Fackler <sfackler@gmail.com>"]),
         })),
         "generic-array": nix.thunk(() => ({
-          __proto__: pos$88,
+          [nix.POS]: pos$88,
           crateName: "generic-array",
           version: "0.14.5",
           edition: "2015",
@@ -875,24 +875,24 @@ export default nix.lambda((args) => (() => {
             "Aaron Trent <novacrazy@gmail.com>",
           ]),
           dependencies: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$85, name: "typenum", packageId: "typenum" })),
+            nix.thunk(() => ({ [nix.POS]: pos$85, name: "typenum", packageId: "typenum" })),
           ]),
           buildDependencies: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$86, name: "version_check", packageId: "version_check" })),
+            nix.thunk(() => ({ [nix.POS]: pos$86, name: "version_check", packageId: "version_check" })),
           ]),
-          features: nix.thunk(() => ({ __proto__: pos$87, serde: nix.thunk(() => ["dep:serde"]) })),
+          features: nix.thunk(() => ({ [nix.POS]: pos$87, serde: nix.thunk(() => ["dep:serde"]) })),
         })),
         getrandom: nix.thunk(() => ({
-          __proto__: pos$93,
+          [nix.POS]: pos$93,
           crateName: "getrandom",
           version: "0.2.4",
           edition: "2018",
           sha256: "0k0bdr1dyf4n9fvnkx4fmwxhv4hgnyf55gj86v4m69fln743g3a1",
           authors: nix.thunk(() => ["The Rand Project Developers"]),
           dependencies: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$89, name: "cfg-if", packageId: "cfg-if" })),
+            nix.thunk(() => ({ [nix.POS]: pos$89, name: "cfg-if", packageId: "cfg-if" })),
             nix.thunk(() => ({
-              __proto__: pos$90,
+              [nix.POS]: pos$90,
               name: "libc",
               packageId: "libc",
               usesDefaultFeatures: false,
@@ -904,7 +904,7 @@ export default nix.lambda((args) => (() => {
               })(), formals$2),
             })),
             nix.thunk(() => ({
-              __proto__: pos$91,
+              [nix.POS]: pos$91,
               name: "wasi",
               packageId: "wasi",
               target: nix.lambda((args_1) => (() => {
@@ -916,7 +916,7 @@ export default nix.lambda((args) => (() => {
             })),
           ]),
           features: nix.thunk(() => ({
-            __proto__: pos$92,
+            [nix.POS]: pos$92,
             compiler_builtins: nix.thunk(() => ["dep:compiler_builtins"]),
             core: nix.thunk(() => ["dep:core"]),
             js: nix.thunk(() => ["wasm-bindgen", "js-sys"]),
@@ -932,7 +932,7 @@ export default nix.lambda((args) => (() => {
           resolvedDefaultFeatures: nix.thunk(() => ["std"]),
         })),
         itoa: nix.thunk(() => ({
-          __proto__: pos$94,
+          [nix.POS]: pos$94,
           crateName: "itoa",
           version: "1.0.1",
           edition: "2018",
@@ -940,42 +940,42 @@ export default nix.lambda((args) => (() => {
           authors: nix.thunk(() => ["David Tolnay <dtolnay@gmail.com>"]),
         })),
         "js-sys": nix.thunk(() => ({
-          __proto__: pos$96,
+          [nix.POS]: pos$96,
           crateName: "js-sys",
           version: "0.3.56",
           edition: "2018",
           sha256: "010g8jkj5avy3xd77i3cprjzzpfa6z9z2ay0fkllqmpx617c53x3",
           authors: nix.thunk(() => ["The wasm-bindgen Developers"]),
           dependencies: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$95, name: "wasm-bindgen", packageId: "wasm-bindgen" })),
+            nix.thunk(() => ({ [nix.POS]: pos$95, name: "wasm-bindgen", packageId: "wasm-bindgen" })),
           ]),
         })),
         lazy_static: nix.thunk(() => ({
-          __proto__: pos$99,
+          [nix.POS]: pos$99,
           crateName: "lazy_static",
           version: "1.4.0",
           edition: "2015",
           sha256: "0in6ikhw8mgl33wjv6q6xfrb5b9jr16q8ygjy803fay4zcisvaz2",
           authors: nix.thunk(() => ["Marvin Löbel <loebel.marvin@gmail.com>"]),
           dependencies: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$97, name: "spin", packageId: "spin", optional: true })),
+            nix.thunk(() => ({ [nix.POS]: pos$97, name: "spin", packageId: "spin", optional: true })),
           ]),
           features: nix.thunk(() => ({
-            __proto__: pos$98,
+            [nix.POS]: pos$98,
             spin: nix.thunk(() => ["dep:spin"]),
             spin_no_std: nix.thunk(() => ["spin"]),
           })),
           resolvedDefaultFeatures: nix.thunk(() => ["spin", "spin_no_std"]),
         })),
         libc: nix.thunk(() => ({
-          __proto__: pos$101,
+          [nix.POS]: pos$101,
           crateName: "libc",
           version: "0.2.116",
           edition: "2015",
           sha256: "0x6sk17kv2fdsqxlm23bz9x1y79w90k7ylkflk44rgidhy4bspan",
           authors: nix.thunk(() => ["The Rust Project Developers"]),
           features: nix.thunk(() => ({
-            __proto__: pos$100,
+            [nix.POS]: pos$100,
             default: nix.thunk(() => ["std"]),
             "rustc-dep-of-std": nix.thunk(() => ["align", "rustc-std-workspace-core"]),
             "rustc-std-workspace-core": nix.thunk(() => ["dep:rustc-std-workspace-core"]),
@@ -984,31 +984,31 @@ export default nix.lambda((args) => (() => {
           resolvedDefaultFeatures: nix.thunk(() => ["default", "std"]),
         })),
         libm: nix.thunk(() => ({
-          __proto__: pos$103,
+          [nix.POS]: pos$103,
           crateName: "libm",
           version: "0.2.1",
           edition: "2018",
           sha256: "0akh56sh51adhagmk9l84dyrlz60gv8ri05xhr13i1b18czkpmy7",
           authors: nix.thunk(() => ["Jorge Aparicio <jorge@japaric.io>"]),
           features: nix.thunk(() => ({
-            __proto__: pos$102,
+            [nix.POS]: pos$102,
             "musl-reference-tests": nix.thunk(() => ["rand"]),
             rand: nix.thunk(() => ["dep:rand"]),
           })),
           resolvedDefaultFeatures: nix.thunk(() => ["default"]),
         })),
         log: nix.thunk(() => ({
-          __proto__: pos$106,
+          [nix.POS]: pos$106,
           crateName: "log",
           version: "0.4.14",
           edition: "2015",
           sha256: "04175hv0v62shd82qydq58a48k3bjijmk54v38zgqlbxqkkbpfai",
           authors: nix.thunk(() => ["The Rust Project Developers"]),
           dependencies: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$104, name: "cfg-if", packageId: "cfg-if" })),
+            nix.thunk(() => ({ [nix.POS]: pos$104, name: "cfg-if", packageId: "cfg-if" })),
           ]),
           features: nix.thunk(() => ({
-            __proto__: pos$105,
+            [nix.POS]: pos$105,
             kv_unstable: nix.thunk(() => ["value-bag"]),
             kv_unstable_serde: nix.thunk(() => ["kv_unstable_std", "value-bag/serde", "serde"]),
             kv_unstable_std: nix.thunk(() => ["std", "kv_unstable", "value-bag/error"]),
@@ -1019,14 +1019,14 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         memchr: nix.thunk(() => ({
-          __proto__: pos$108,
+          [nix.POS]: pos$108,
           crateName: "memchr",
           version: "2.4.1",
           edition: "2018",
           sha256: "0smq8xzd40njqpfzv5mghigj91fzlfrfg842iz8x0wqvw2dw731h",
           authors: nix.thunk(() => ["Andrew Gallant <jamslam@gmail.com>", "bluss"]),
           features: nix.thunk(() => ({
-            __proto__: pos$107,
+            [nix.POS]: pos$107,
             compiler_builtins: nix.thunk(() => ["dep:compiler_builtins"]),
             core: nix.thunk(() => ["dep:core"]),
             default: nix.thunk(() => ["std"]),
@@ -1037,17 +1037,17 @@ export default nix.lambda((args) => (() => {
           resolvedDefaultFeatures: nix.thunk(() => ["std"]),
         })),
         "minimal-lexical": nix.thunk(() => ({
-          __proto__: pos$110,
+          [nix.POS]: pos$110,
           crateName: "minimal-lexical",
           version: "0.2.1",
           edition: "2018",
           sha256: "16ppc5g84aijpri4jzv14rvcnslvlpphbszc7zzp6vfkddf4qdb8",
           authors: nix.thunk(() => ["Alex Huszagh <ahuszagh@gmail.com>"]),
-          features: nix.thunk(() => ({ __proto__: pos$109, default: nix.thunk(() => ["std"]) })),
+          features: nix.thunk(() => ({ [nix.POS]: pos$109, default: nix.thunk(() => ["std"]) })),
           resolvedDefaultFeatures: nix.thunk(() => ["std"]),
         })),
         nom: nix.thunk(() => ({
-          __proto__: pos$115,
+          [nix.POS]: pos$115,
           crateName: "nom",
           version: "7.1.0",
           edition: "2018",
@@ -1055,30 +1055,30 @@ export default nix.lambda((args) => (() => {
           authors: nix.thunk(() => ["contact@geoffroycouprie.com"]),
           dependencies: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$111,
+              [nix.POS]: pos$111,
               name: "memchr",
               packageId: "memchr",
               usesDefaultFeatures: false,
             })),
             nix.thunk(() => ({
-              __proto__: pos$112,
+              [nix.POS]: pos$112,
               name: "minimal-lexical",
               packageId: "minimal-lexical",
               usesDefaultFeatures: false,
             })),
           ]),
           buildDependencies: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$113, name: "version_check", packageId: "version_check" })),
+            nix.thunk(() => ({ [nix.POS]: pos$113, name: "version_check", packageId: "version_check" })),
           ]),
           features: nix.thunk(() => ({
-            __proto__: pos$114,
+            [nix.POS]: pos$114,
             default: nix.thunk(() => ["std"]),
             std: nix.thunk(() => ["alloc", "memchr/std", "minimal-lexical/std"]),
           })),
           resolvedDefaultFeatures: nix.thunk(() => ["alloc", "default", "std"]),
         })),
         "num-bigint": nix.thunk(() => ({
-          __proto__: pos$120,
+          [nix.POS]: pos$120,
           crateName: "num-bigint",
           version: "0.4.3",
           edition: "2018",
@@ -1086,14 +1086,14 @@ export default nix.lambda((args) => (() => {
           authors: nix.thunk(() => ["The Rust Project Developers"]),
           dependencies: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$116,
+              [nix.POS]: pos$116,
               name: "num-integer",
               packageId: "num-integer",
               usesDefaultFeatures: false,
               features: nix.thunk(() => ["i128"]),
             })),
             nix.thunk(() => ({
-              __proto__: pos$117,
+              [nix.POS]: pos$117,
               name: "num-traits",
               packageId: "num-traits",
               usesDefaultFeatures: false,
@@ -1101,10 +1101,10 @@ export default nix.lambda((args) => (() => {
             })),
           ]),
           buildDependencies: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$118, name: "autocfg", packageId: "autocfg 1.0.1" })),
+            nix.thunk(() => ({ [nix.POS]: pos$118, name: "autocfg", packageId: "autocfg 1.0.1" })),
           ]),
           features: nix.thunk(() => ({
-            __proto__: pos$119,
+            [nix.POS]: pos$119,
             arbitrary: nix.thunk(() => ["dep:arbitrary"]),
             default: nix.thunk(() => ["std"]),
             quickcheck: nix.thunk(() => ["dep:quickcheck"]),
@@ -1115,7 +1115,7 @@ export default nix.lambda((args) => (() => {
           resolvedDefaultFeatures: nix.thunk(() => ["default", "std"]),
         })),
         "num-bigint-dig": nix.thunk(() => ({
-          __proto__: pos$133,
+          [nix.POS]: pos$133,
           crateName: "num-bigint-dig",
           version: "0.7.0",
           edition: "2015",
@@ -1123,52 +1123,52 @@ export default nix.lambda((args) => (() => {
           authors: nix.thunk(() => ["dignifiedquire <dignifiedquire@gmail.com>", "The Rust Project Developers"]),
           dependencies: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$121,
+              [nix.POS]: pos$121,
               name: "byteorder",
               packageId: "byteorder",
               usesDefaultFeatures: false,
             })),
             nix.thunk(() => ({
-              __proto__: pos$122,
+              [nix.POS]: pos$122,
               name: "lazy_static",
               packageId: "lazy_static",
               usesDefaultFeatures: false,
               features: nix.thunk(() => ["spin_no_std"]),
             })),
-            nix.thunk(() => ({ __proto__: pos$123, name: "libm", packageId: "libm" })),
+            nix.thunk(() => ({ [nix.POS]: pos$123, name: "libm", packageId: "libm" })),
             nix.thunk(() => ({
-              __proto__: pos$124,
+              [nix.POS]: pos$124,
               name: "num-integer",
               packageId: "num-integer",
               usesDefaultFeatures: false,
             })),
             nix.thunk(() => ({
-              __proto__: pos$125,
+              [nix.POS]: pos$125,
               name: "num-iter",
               packageId: "num-iter",
               usesDefaultFeatures: false,
             })),
             nix.thunk(() => ({
-              __proto__: pos$126,
+              [nix.POS]: pos$126,
               name: "num-traits",
               packageId: "num-traits",
               usesDefaultFeatures: false,
             })),
             nix.thunk(() => ({
-              __proto__: pos$127,
+              [nix.POS]: pos$127,
               name: "rand",
               packageId: "rand",
               optional: true,
               usesDefaultFeatures: false,
             })),
             nix.thunk(() => ({
-              __proto__: pos$128,
+              [nix.POS]: pos$128,
               name: "smallvec",
               packageId: "smallvec",
               usesDefaultFeatures: false,
             })),
             nix.thunk(() => ({
-              __proto__: pos$129,
+              [nix.POS]: pos$129,
               name: "zeroize",
               packageId: "zeroize",
               optional: true,
@@ -1177,18 +1177,18 @@ export default nix.lambda((args) => (() => {
             })),
           ]),
           buildDependencies: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$130, name: "autocfg", packageId: "autocfg 0.1.7" })),
+            nix.thunk(() => ({ [nix.POS]: pos$130, name: "autocfg", packageId: "autocfg 0.1.7" })),
           ]),
           devDependencies: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$131,
+              [nix.POS]: pos$131,
               name: "rand",
               packageId: "rand",
               features: nix.thunk(() => ["small_rng"]),
             })),
           ]),
           features: nix.thunk(() => ({
-            __proto__: pos$132,
+            [nix.POS]: pos$132,
             default: nix.thunk(() => ["std", "i128", "u64_digit"]),
             i128: nix.thunk(() => ["num-integer/i128", "num-traits/i128"]),
             prime: nix.thunk(() => ["rand/std_rng"]),
@@ -1206,7 +1206,7 @@ export default nix.lambda((args) => (() => {
           resolvedDefaultFeatures: nix.thunk(() => ["i128", "prime", "rand", "u64_digit", "zeroize"]),
         })),
         "num-integer": nix.thunk(() => ({
-          __proto__: pos$137,
+          [nix.POS]: pos$137,
           crateName: "num-integer",
           version: "0.1.44",
           edition: "2015",
@@ -1214,17 +1214,17 @@ export default nix.lambda((args) => (() => {
           authors: nix.thunk(() => ["The Rust Project Developers"]),
           dependencies: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$134,
+              [nix.POS]: pos$134,
               name: "num-traits",
               packageId: "num-traits",
               usesDefaultFeatures: false,
             })),
           ]),
           buildDependencies: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$135, name: "autocfg", packageId: "autocfg 1.0.1" })),
+            nix.thunk(() => ({ [nix.POS]: pos$135, name: "autocfg", packageId: "autocfg 1.0.1" })),
           ]),
           features: nix.thunk(() => ({
-            __proto__: pos$136,
+            [nix.POS]: pos$136,
             default: nix.thunk(() => ["std"]),
             i128: nix.thunk(() => ["num-traits/i128"]),
             std: nix.thunk(() => ["num-traits/std"]),
@@ -1232,7 +1232,7 @@ export default nix.lambda((args) => (() => {
           resolvedDefaultFeatures: nix.thunk(() => ["i128", "std"]),
         })),
         "num-iter": nix.thunk(() => ({
-          __proto__: pos$142,
+          [nix.POS]: pos$142,
           crateName: "num-iter",
           version: "0.1.42",
           edition: "2015",
@@ -1240,50 +1240,50 @@ export default nix.lambda((args) => (() => {
           authors: nix.thunk(() => ["The Rust Project Developers"]),
           dependencies: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$138,
+              [nix.POS]: pos$138,
               name: "num-integer",
               packageId: "num-integer",
               usesDefaultFeatures: false,
             })),
             nix.thunk(() => ({
-              __proto__: pos$139,
+              [nix.POS]: pos$139,
               name: "num-traits",
               packageId: "num-traits",
               usesDefaultFeatures: false,
             })),
           ]),
           buildDependencies: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$140, name: "autocfg", packageId: "autocfg 1.0.1" })),
+            nix.thunk(() => ({ [nix.POS]: pos$140, name: "autocfg", packageId: "autocfg 1.0.1" })),
           ]),
           features: nix.thunk(() => ({
-            __proto__: pos$141,
+            [nix.POS]: pos$141,
             default: nix.thunk(() => ["std"]),
             i128: nix.thunk(() => ["num-integer/i128", "num-traits/i128"]),
             std: nix.thunk(() => ["num-integer/std", "num-traits/std"]),
           })),
         })),
         "num-traits": nix.thunk(() => ({
-          __proto__: pos$146,
+          [nix.POS]: pos$146,
           crateName: "num-traits",
           version: "0.2.14",
           edition: "2015",
           sha256: "144j176s2p76azy2ngk2vkdzgwdc0bc8c93jhki8c9fsbknb2r4s",
           authors: nix.thunk(() => ["The Rust Project Developers"]),
           dependencies: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$143, name: "libm", packageId: "libm", optional: true })),
+            nix.thunk(() => ({ [nix.POS]: pos$143, name: "libm", packageId: "libm", optional: true })),
           ]),
           buildDependencies: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$144, name: "autocfg", packageId: "autocfg 1.0.1" })),
+            nix.thunk(() => ({ [nix.POS]: pos$144, name: "autocfg", packageId: "autocfg 1.0.1" })),
           ]),
           features: nix.thunk(() => ({
-            __proto__: pos$145,
+            [nix.POS]: pos$145,
             default: nix.thunk(() => ["std"]),
             libm: nix.thunk(() => ["dep:libm"]),
           })),
           resolvedDefaultFeatures: nix.thunk(() => ["default", "i128", "libm", "std"]),
         })),
         num_threads: nix.thunk(() => ({
-          __proto__: pos$148,
+          [nix.POS]: pos$148,
           crateName: "num_threads",
           version: "0.1.3",
           edition: "2015",
@@ -1291,7 +1291,7 @@ export default nix.lambda((args) => (() => {
           authors: nix.thunk(() => ["Jacob Pratt <open-source@jhpratt.dev>"]),
           dependencies: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$147,
+              [nix.POS]: pos$147,
               name: "libc",
               packageId: "libc",
               target: nix.lambda((args_1) => (() => {
@@ -1304,17 +1304,17 @@ export default nix.lambda((args) => (() => {
           ]),
         })),
         "oid-registry": nix.thunk(() => ({
-          __proto__: pos$151,
+          [nix.POS]: pos$151,
           crateName: "oid-registry",
           version: "0.4.0",
           edition: "2018",
           sha256: "0akbah3j8231ayrp2l1y5d9zmvbvqcsj0sa6s6dz6h85z8bhgqiq",
           authors: nix.thunk(() => ["Pierre Chifflier <chifflier@wzdftpd.net>"]),
           dependencies: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$149, name: "asn1-rs", packageId: "asn1-rs" })),
+            nix.thunk(() => ({ [nix.POS]: pos$149, name: "asn1-rs", packageId: "asn1-rs" })),
           ]),
           features: nix.thunk(() => ({
-            __proto__: pos$150,
+            [nix.POS]: pos$150,
             crypto: nix.thunk(() => ["kdf", "pkcs1", "pkcs7", "pkcs9", "pkcs12", "nist_algs", "x962"]),
             default: nix.thunk(() => ["registry"]),
           })),
@@ -1333,14 +1333,14 @@ export default nix.lambda((args) => (() => {
           ]),
         })),
         once_cell: nix.thunk(() => ({
-          __proto__: pos$153,
+          [nix.POS]: pos$153,
           crateName: "once_cell",
           version: "1.9.0",
           edition: "2018",
           sha256: "1mfqhrsgi368x92bwnq3vi3p5nv0n1qlrn69gfflhvkfkxfm2cns",
           authors: nix.thunk(() => ["Aleksey Kladov <aleksey.kladov@gmail.com>"]),
           features: nix.thunk(() => ({
-            __proto__: pos$152,
+            [nix.POS]: pos$152,
             alloc: nix.thunk(() => ["race"]),
             "atomic-polyfill": nix.thunk(() => ["dep:atomic-polyfill"]),
             default: nix.thunk(() => ["std"]),
@@ -1350,29 +1350,29 @@ export default nix.lambda((args) => (() => {
           resolvedDefaultFeatures: nix.thunk(() => ["alloc", "default", "race", "std"]),
         })),
         openssl: nix.thunk(() => ({
-          __proto__: pos$161,
+          [nix.POS]: pos$161,
           crateName: "openssl",
           version: "0.10.38",
           edition: "2018",
           sha256: "15baqlphisr1f7ddq11jnrrzz4shdh35kwal24adyc2c4cif4yhc",
           authors: nix.thunk(() => ["Steven Fackler <sfackler@gmail.com>"]),
           dependencies: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$154, name: "bitflags", packageId: "bitflags" })),
-            nix.thunk(() => ({ __proto__: pos$155, name: "cfg-if", packageId: "cfg-if" })),
-            nix.thunk(() => ({ __proto__: pos$156, name: "foreign-types", packageId: "foreign-types" })),
-            nix.thunk(() => ({ __proto__: pos$157, name: "libc", packageId: "libc" })),
-            nix.thunk(() => ({ __proto__: pos$158, name: "once_cell", packageId: "once_cell" })),
+            nix.thunk(() => ({ [nix.POS]: pos$154, name: "bitflags", packageId: "bitflags" })),
+            nix.thunk(() => ({ [nix.POS]: pos$155, name: "cfg-if", packageId: "cfg-if" })),
+            nix.thunk(() => ({ [nix.POS]: pos$156, name: "foreign-types", packageId: "foreign-types" })),
+            nix.thunk(() => ({ [nix.POS]: pos$157, name: "libc", packageId: "libc" })),
+            nix.thunk(() => ({ [nix.POS]: pos$158, name: "once_cell", packageId: "once_cell" })),
             nix.thunk(() => ({
-              __proto__: pos$159,
+              [nix.POS]: pos$159,
               name: "openssl-sys",
               packageId: "openssl-sys",
               rename: "ffi",
             })),
           ]),
-          features: nix.thunk(() => ({ __proto__: pos$160, vendored: nix.thunk(() => ["ffi/vendored"]) })),
+          features: nix.thunk(() => ({ [nix.POS]: pos$160, vendored: nix.thunk(() => ["ffi/vendored"]) })),
         })),
         "openssl-sys": nix.thunk(() => ({
-          __proto__: pos$168,
+          [nix.POS]: pos$168,
           crateName: "openssl-sys",
           version: "0.9.72",
           edition: "2015",
@@ -1382,13 +1382,13 @@ export default nix.lambda((args) => (() => {
             "Alex Crichton <alex@alexcrichton.com>",
             "Steven Fackler <sfackler@gmail.com>",
           ]),
-          dependencies: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$162, name: "libc", packageId: "libc" }))]),
+          dependencies: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$162, name: "libc", packageId: "libc" }))]),
           buildDependencies: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$163, name: "autocfg", packageId: "autocfg 1.0.1" })),
-            nix.thunk(() => ({ __proto__: pos$164, name: "cc", packageId: "cc" })),
-            nix.thunk(() => ({ __proto__: pos$165, name: "pkg-config", packageId: "pkg-config" })),
+            nix.thunk(() => ({ [nix.POS]: pos$163, name: "autocfg", packageId: "autocfg 1.0.1" })),
+            nix.thunk(() => ({ [nix.POS]: pos$164, name: "cc", packageId: "cc" })),
+            nix.thunk(() => ({ [nix.POS]: pos$165, name: "pkg-config", packageId: "pkg-config" })),
             nix.thunk(() => ({
-              __proto__: pos$166,
+              [nix.POS]: pos$166,
               name: "vcpkg",
               packageId: "vcpkg",
               target: nix.lambda((args_1) => (() => {
@@ -1400,37 +1400,37 @@ export default nix.lambda((args) => (() => {
             })),
           ]),
           features: nix.thunk(() => ({
-            __proto__: pos$167,
+            [nix.POS]: pos$167,
             "openssl-src": nix.thunk(() => ["dep:openssl-src"]),
             vendored: nix.thunk(() => ["openssl-src"]),
           })),
         })),
         pem: nix.thunk(() => ({
-          __proto__: pos$170,
+          [nix.POS]: pos$170,
           crateName: "pem",
           version: "1.0.2",
           edition: "2018",
           sha256: "0iqrvfnm71x9pvff39d5ajwn3gc9glxlv4d4h22max7342db18z9",
           authors: nix.thunk(() => ["Jonathan Creekmore <jonathan@thecreekmores.org>"]),
           dependencies: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$169, name: "base64", packageId: "base64" })),
+            nix.thunk(() => ({ [nix.POS]: pos$169, name: "base64", packageId: "base64" })),
           ]),
         })),
         "pem-rfc7468": nix.thunk(() => ({
-          __proto__: pos$173,
+          [nix.POS]: pos$173,
           crateName: "pem-rfc7468",
           version: "0.2.4",
           edition: "2018",
           sha256: "1m1c9jypydzabg4yscplmvff7pdcc8gg4cqg081hnlf03hxkmsc4",
           authors: nix.thunk(() => ["RustCrypto Developers"]),
           dependencies: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$171, name: "base64ct", packageId: "base64ct" })),
+            nix.thunk(() => ({ [nix.POS]: pos$171, name: "base64ct", packageId: "base64ct" })),
           ]),
-          features: nix.thunk(() => ({ __proto__: pos$172, std: nix.thunk(() => ["alloc"]) })),
+          features: nix.thunk(() => ({ [nix.POS]: pos$172, std: nix.thunk(() => ["alloc"]) })),
           resolvedDefaultFeatures: nix.thunk(() => ["alloc"]),
         })),
         pkcs1: nix.thunk(() => ({
-          __proto__: pos$178,
+          [nix.POS]: pos$178,
           crateName: "pkcs1",
           version: "0.2.4",
           edition: "2018",
@@ -1438,19 +1438,19 @@ export default nix.lambda((args) => (() => {
           authors: nix.thunk(() => ["RustCrypto Developers"]),
           dependencies: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$174,
+              [nix.POS]: pos$174,
               name: "der",
               packageId: "der",
               features: nix.thunk(() => ["bigint", "oid"]),
             })),
             nix.thunk(() => ({
-              __proto__: pos$175,
+              [nix.POS]: pos$175,
               name: "pem-rfc7468",
               packageId: "pem-rfc7468",
               optional: true,
             })),
             nix.thunk(() => ({
-              __proto__: pos$176,
+              [nix.POS]: pos$176,
               name: "zeroize",
               packageId: "zeroize",
               optional: true,
@@ -1459,7 +1459,7 @@ export default nix.lambda((args) => (() => {
             })),
           ]),
           features: nix.thunk(() => ({
-            __proto__: pos$177,
+            [nix.POS]: pos$177,
             alloc: nix.thunk(() => ["der/alloc", "zeroize"]),
             pem: nix.thunk(() => ["alloc", "pem-rfc7468/alloc"]),
             "pem-rfc7468": nix.thunk(() => ["dep:pem-rfc7468"]),
@@ -1468,7 +1468,7 @@ export default nix.lambda((args) => (() => {
           resolvedDefaultFeatures: nix.thunk(() => ["alloc", "pem", "pem-rfc7468", "std", "zeroize"]),
         })),
         pkcs8: nix.thunk(() => ({
-          __proto__: pos$185,
+          [nix.POS]: pos$185,
           crateName: "pkcs8",
           version: "0.7.6",
           edition: "2018",
@@ -1476,27 +1476,27 @@ export default nix.lambda((args) => (() => {
           authors: nix.thunk(() => ["RustCrypto Developers"]),
           dependencies: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$179,
+              [nix.POS]: pos$179,
               name: "der",
               packageId: "der",
               features: nix.thunk(() => ["oid"]),
             })),
             nix.thunk(() => ({
-              __proto__: pos$180,
+              [nix.POS]: pos$180,
               name: "pem-rfc7468",
               packageId: "pem-rfc7468",
               optional: true,
             })),
             nix.thunk(() => ({
-              __proto__: pos$181,
+              [nix.POS]: pos$181,
               name: "pkcs1",
               packageId: "pkcs1",
               optional: true,
               features: nix.thunk(() => ["alloc"]),
             })),
-            nix.thunk(() => ({ __proto__: pos$182, name: "spki", packageId: "spki" })),
+            nix.thunk(() => ({ [nix.POS]: pos$182, name: "spki", packageId: "spki" })),
             nix.thunk(() => ({
-              __proto__: pos$183,
+              [nix.POS]: pos$183,
               name: "zeroize",
               packageId: "zeroize",
               optional: true,
@@ -1505,7 +1505,7 @@ export default nix.lambda((args) => (() => {
             })),
           ]),
           features: nix.thunk(() => ({
-            __proto__: pos$184,
+            [nix.POS]: pos$184,
             "3des": nix.thunk(() => ["encryption", "pkcs5/3des"]),
             alloc: nix.thunk(() => ["der/alloc", "zeroize"]),
             "des-insecure": nix.thunk(() => ["encryption", "pkcs5/des-insecure"]),
@@ -1522,7 +1522,7 @@ export default nix.lambda((args) => (() => {
           resolvedDefaultFeatures: nix.thunk(() => ["alloc", "pem", "pem-rfc7468", "pkcs1", "std", "zeroize"]),
         })),
         "pkg-config": nix.thunk(() => ({
-          __proto__: pos$186,
+          [nix.POS]: pos$186,
           crateName: "pkg-config",
           version: "0.3.24",
           edition: "2015",
@@ -1530,30 +1530,30 @@ export default nix.lambda((args) => (() => {
           authors: nix.thunk(() => ["Alex Crichton <alex@alexcrichton.com>"]),
         })),
         "ppv-lite86": nix.thunk(() => ({
-          __proto__: pos$188,
+          [nix.POS]: pos$188,
           crateName: "ppv-lite86",
           version: "0.2.16",
           edition: "2018",
           sha256: "0wkqwnvnfcgqlrahphl45vdlgi2f1bs7nqcsalsllp1y4dp9x7zb",
           authors: nix.thunk(() => ["The CryptoCorrosion Contributors"]),
-          features: nix.thunk(() => ({ __proto__: pos$187, default: nix.thunk(() => ["std"]) })),
+          features: nix.thunk(() => ({ [nix.POS]: pos$187, default: nix.thunk(() => ["std"]) })),
           resolvedDefaultFeatures: nix.thunk(() => ["simd", "std"]),
         })),
         "proc-macro2": nix.thunk(() => ({
-          __proto__: pos$191,
+          [nix.POS]: pos$191,
           crateName: "proc-macro2",
           version: "1.0.36",
           edition: "2018",
           sha256: "0adh6gvs31x6pfwmygypmzrv1jc7kjq568vsqcfaxk7vhdc2sd67",
           authors: nix.thunk(() => ["David Tolnay <dtolnay@gmail.com>", "Alex Crichton <alex@alexcrichton.com>"]),
           dependencies: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$189, name: "unicode-xid", packageId: "unicode-xid" })),
+            nix.thunk(() => ({ [nix.POS]: pos$189, name: "unicode-xid", packageId: "unicode-xid" })),
           ]),
-          features: nix.thunk(() => ({ __proto__: pos$190, default: nix.thunk(() => ["proc-macro"]) })),
+          features: nix.thunk(() => ({ [nix.POS]: pos$190, default: nix.thunk(() => ["proc-macro"]) })),
           resolvedDefaultFeatures: nix.thunk(() => ["default", "proc-macro"]),
         })),
         quote: nix.thunk(() => ({
-          __proto__: pos$194,
+          [nix.POS]: pos$194,
           crateName: "quote",
           version: "1.0.15",
           edition: "2018",
@@ -1561,21 +1561,21 @@ export default nix.lambda((args) => (() => {
           authors: nix.thunk(() => ["David Tolnay <dtolnay@gmail.com>"]),
           dependencies: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$192,
+              [nix.POS]: pos$192,
               name: "proc-macro2",
               packageId: "proc-macro2",
               usesDefaultFeatures: false,
             })),
           ]),
           features: nix.thunk(() => ({
-            __proto__: pos$193,
+            [nix.POS]: pos$193,
             default: nix.thunk(() => ["proc-macro"]),
             "proc-macro": nix.thunk(() => ["proc-macro2/proc-macro"]),
           })),
           resolvedDefaultFeatures: nix.thunk(() => ["default", "proc-macro"]),
         })),
         rand: nix.thunk(() => ({
-          __proto__: pos$201,
+          [nix.POS]: pos$201,
           crateName: "rand",
           version: "0.8.4",
           edition: "2018",
@@ -1583,7 +1583,7 @@ export default nix.lambda((args) => (() => {
           authors: nix.thunk(() => ["The Rand Project Developers", "The Rust Project Developers"]),
           dependencies: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$195,
+              [nix.POS]: pos$195,
               name: "libc",
               packageId: "libc",
               optional: true,
@@ -1596,7 +1596,7 @@ export default nix.lambda((args) => (() => {
               })(), formals$6),
             })),
             nix.thunk(() => ({
-              __proto__: pos$196,
+              [nix.POS]: pos$196,
               name: "rand_chacha",
               packageId: "rand_chacha",
               optional: true,
@@ -1608,9 +1608,9 @@ export default nix.lambda((args) => (() => {
                 return !nix.asBool(nix.eq(nix.sel(target, "os"), "emscripten"));
               })(), formals$7),
             })),
-            nix.thunk(() => ({ __proto__: pos$197, name: "rand_core", packageId: "rand_core" })),
+            nix.thunk(() => ({ [nix.POS]: pos$197, name: "rand_core", packageId: "rand_core" })),
             nix.thunk(() => ({
-              __proto__: pos$198,
+              [nix.POS]: pos$198,
               name: "rand_hc",
               packageId: "rand_hc",
               optional: true,
@@ -1623,10 +1623,10 @@ export default nix.lambda((args) => (() => {
             })),
           ]),
           devDependencies: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$199, name: "rand_hc", packageId: "rand_hc" })),
+            nix.thunk(() => ({ [nix.POS]: pos$199, name: "rand_hc", packageId: "rand_hc" })),
           ]),
           features: nix.thunk(() => ({
-            __proto__: pos$200,
+            [nix.POS]: pos$200,
             alloc: nix.thunk(() => ["rand_core/alloc"]),
             default: nix.thunk(() => ["std", "std_rng"]),
             getrandom: nix.thunk(() => ["rand_core/getrandom"]),
@@ -1653,7 +1653,7 @@ export default nix.lambda((args) => (() => {
           ]),
         })),
         rand_chacha: nix.thunk(() => ({
-          __proto__: pos$205,
+          [nix.POS]: pos$205,
           crateName: "rand_chacha",
           version: "0.3.1",
           edition: "2018",
@@ -1665,16 +1665,16 @@ export default nix.lambda((args) => (() => {
           ]),
           dependencies: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$202,
+              [nix.POS]: pos$202,
               name: "ppv-lite86",
               packageId: "ppv-lite86",
               usesDefaultFeatures: false,
               features: nix.thunk(() => ["simd"]),
             })),
-            nix.thunk(() => ({ __proto__: pos$203, name: "rand_core", packageId: "rand_core" })),
+            nix.thunk(() => ({ [nix.POS]: pos$203, name: "rand_core", packageId: "rand_core" })),
           ]),
           features: nix.thunk(() => ({
-            __proto__: pos$204,
+            [nix.POS]: pos$204,
             default: nix.thunk(() => ["std"]),
             serde: nix.thunk(() => ["dep:serde"]),
             serde1: nix.thunk(() => ["serde"]),
@@ -1683,7 +1683,7 @@ export default nix.lambda((args) => (() => {
           resolvedDefaultFeatures: nix.thunk(() => ["std"]),
         })),
         rand_core: nix.thunk(() => ({
-          __proto__: pos$208,
+          [nix.POS]: pos$208,
           crateName: "rand_core",
           version: "0.6.3",
           edition: "2018",
@@ -1691,14 +1691,14 @@ export default nix.lambda((args) => (() => {
           authors: nix.thunk(() => ["The Rand Project Developers", "The Rust Project Developers"]),
           dependencies: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$206,
+              [nix.POS]: pos$206,
               name: "getrandom",
               packageId: "getrandom",
               optional: true,
             })),
           ]),
           features: nix.thunk(() => ({
-            __proto__: pos$207,
+            [nix.POS]: pos$207,
             getrandom: nix.thunk(() => ["dep:getrandom"]),
             serde: nix.thunk(() => ["dep:serde"]),
             serde1: nix.thunk(() => ["serde"]),
@@ -1707,75 +1707,75 @@ export default nix.lambda((args) => (() => {
           resolvedDefaultFeatures: nix.thunk(() => ["alloc", "getrandom", "std"]),
         })),
         rand_hc: nix.thunk(() => ({
-          __proto__: pos$210,
+          [nix.POS]: pos$210,
           crateName: "rand_hc",
           version: "0.3.1",
           edition: "2018",
           sha256: "1rwpykyvhkxs4jvqdja3mzp9dqaqamzn113cxaigs9z2dmcry7nm",
           authors: nix.thunk(() => ["The Rand Project Developers"]),
           dependencies: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$209, name: "rand_core", packageId: "rand_core" })),
+            nix.thunk(() => ({ [nix.POS]: pos$209, name: "rand_core", packageId: "rand_core" })),
           ]),
         })),
         rcgen: nix.thunk(() => ({
-          __proto__: pos$225,
+          [nix.POS]: pos$225,
           crateName: "rcgen",
           version: "0.9.2",
           edition: "2018",
           crateBin: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$211, name: "rcgen", path: "src/main.rs" })),
+            nix.thunk(() => ({ [nix.POS]: pos$211, name: "rcgen", path: "src/main.rs" })),
           ]),
           sha256: "0ppwfl9g504x2qwk7m7mag8c3l70w9mcfha93013nlzqdlw2vynp",
           authors: nix.thunk(() => ["est31 <MTest31@outlook.com>"]),
           dependencies: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$212, name: "pem", packageId: "pem", optional: true })),
-            nix.thunk(() => ({ __proto__: pos$213, name: "ring", packageId: "ring" })),
+            nix.thunk(() => ({ [nix.POS]: pos$212, name: "pem", packageId: "pem", optional: true })),
+            nix.thunk(() => ({ [nix.POS]: pos$213, name: "ring", packageId: "ring" })),
             nix.thunk(() => ({
-              __proto__: pos$214,
+              [nix.POS]: pos$214,
               name: "time",
               packageId: "time",
               usesDefaultFeatures: false,
             })),
             nix.thunk(() => ({
-              __proto__: pos$215,
+              [nix.POS]: pos$215,
               name: "x509-parser",
               packageId: "x509-parser",
               optional: true,
               features: nix.thunk(() => ["verify"]),
             })),
             nix.thunk(() => ({
-              __proto__: pos$216,
+              [nix.POS]: pos$216,
               name: "yasna",
               packageId: "yasna",
               features: nix.thunk(() => ["time", "std"]),
             })),
-            nix.thunk(() => ({ __proto__: pos$217, name: "zeroize", packageId: "zeroize", optional: true })),
+            nix.thunk(() => ({ [nix.POS]: pos$217, name: "zeroize", packageId: "zeroize", optional: true })),
           ]),
           devDependencies: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$218,
+              [nix.POS]: pos$218,
               name: "botan",
               packageId: "botan",
               features: nix.thunk(() => ["vendored"]),
             })),
-            nix.thunk(() => ({ __proto__: pos$219, name: "openssl", packageId: "openssl" })),
-            nix.thunk(() => ({ __proto__: pos$220, name: "rand", packageId: "rand" })),
-            nix.thunk(() => ({ __proto__: pos$221, name: "rsa", packageId: "rsa" })),
+            nix.thunk(() => ({ [nix.POS]: pos$219, name: "openssl", packageId: "openssl" })),
+            nix.thunk(() => ({ [nix.POS]: pos$220, name: "rand", packageId: "rand" })),
+            nix.thunk(() => ({ [nix.POS]: pos$221, name: "rsa", packageId: "rsa" })),
             nix.thunk(() => ({
-              __proto__: pos$222,
+              [nix.POS]: pos$222,
               name: "webpki",
               packageId: "webpki",
               features: nix.thunk(() => ["std"]),
             })),
             nix.thunk(() => ({
-              __proto__: pos$223,
+              [nix.POS]: pos$223,
               name: "x509-parser",
               packageId: "x509-parser",
               features: nix.thunk(() => ["verify"]),
             })),
           ]),
           features: nix.thunk(() => ({
-            __proto__: pos$224,
+            [nix.POS]: pos$224,
             default: nix.thunk(() => ["pem"]),
             pem: nix.thunk(() => ["dep:pem"]),
             "x509-parser": nix.thunk(() => ["dep:x509-parser"]),
@@ -1784,7 +1784,7 @@ export default nix.lambda((args) => (() => {
           resolvedDefaultFeatures: nix.thunk(() => ["default", "pem", "x509-parser", "zeroize"]),
         })),
         ring: nix.thunk(() => ({
-          __proto__: pos$236,
+          [nix.POS]: pos$236,
           crateName: "ring",
           version: "0.16.20",
           edition: "2018",
@@ -1792,7 +1792,7 @@ export default nix.lambda((args) => (() => {
           authors: nix.thunk(() => ["Brian Smith <brian@briansmith.org>"]),
           dependencies: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$226,
+              [nix.POS]: pos$226,
               name: "libc",
               packageId: "libc",
               usesDefaultFeatures: false,
@@ -1804,7 +1804,7 @@ export default nix.lambda((args) => (() => {
               })(), formals$9),
             })),
             nix.thunk(() => ({
-              __proto__: pos$227,
+              [nix.POS]: pos$227,
               name: "once_cell",
               packageId: "once_cell",
               optional: true,
@@ -1818,7 +1818,7 @@ export default nix.lambda((args) => (() => {
               features: nix.thunk(() => ["std"]),
             })),
             nix.thunk(() => ({
-              __proto__: pos$228,
+              [nix.POS]: pos$228,
               name: "once_cell",
               packageId: "once_cell",
               usesDefaultFeatures: false,
@@ -1831,7 +1831,7 @@ export default nix.lambda((args) => (() => {
               features: nix.thunk(() => ["std"]),
             })),
             nix.thunk(() => ({
-              __proto__: pos$229,
+              [nix.POS]: pos$229,
               name: "spin",
               packageId: "spin",
               usesDefaultFeatures: false,
@@ -1842,9 +1842,9 @@ export default nix.lambda((args) => (() => {
                 return (nix.asBool((nix.asBool(nix.eq(nix.sel(target, "arch"), "x86")) || nix.asBool(nix.eq(nix.sel(target, "arch"), "x86_64")))) || nix.asBool((nix.asBool((nix.asBool(nix.eq(nix.sel(target, "arch"), "aarch64")) || nix.asBool(nix.eq(nix.sel(target, "arch"), "arm")))) && nix.asBool((nix.asBool((nix.asBool(nix.eq(nix.sel(target, "os"), "android")) || nix.asBool(nix.eq(nix.sel(target, "os"), "fuchsia")))) || nix.asBool(nix.eq(nix.sel(target, "os"), "linux")))))));
               })(), formals$12),
             })),
-            nix.thunk(() => ({ __proto__: pos$230, name: "untrusted", packageId: "untrusted" })),
+            nix.thunk(() => ({ [nix.POS]: pos$230, name: "untrusted", packageId: "untrusted" })),
             nix.thunk(() => ({
-              __proto__: pos$231,
+              [nix.POS]: pos$231,
               name: "web-sys",
               packageId: "web-sys",
               usesDefaultFeatures: false,
@@ -1857,7 +1857,7 @@ export default nix.lambda((args) => (() => {
               features: nix.thunk(() => ["Crypto", "Window"]),
             })),
             nix.thunk(() => ({
-              __proto__: pos$232,
+              [nix.POS]: pos$232,
               name: "winapi",
               packageId: "winapi",
               usesDefaultFeatures: false,
@@ -1871,11 +1871,11 @@ export default nix.lambda((args) => (() => {
             })),
           ]),
           buildDependencies: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$233, name: "cc", packageId: "cc", usesDefaultFeatures: false })),
+            nix.thunk(() => ({ [nix.POS]: pos$233, name: "cc", packageId: "cc", usesDefaultFeatures: false })),
           ]),
           devDependencies: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$234,
+              [nix.POS]: pos$234,
               name: "libc",
               packageId: "libc",
               usesDefaultFeatures: false,
@@ -1888,7 +1888,7 @@ export default nix.lambda((args) => (() => {
             })),
           ]),
           features: nix.thunk(() => ({
-            __proto__: pos$235,
+            [nix.POS]: pos$235,
             default: nix.thunk(() => ["alloc", "dev_urandom_fallback"]),
             dev_urandom_fallback: nix.thunk(() => ["once_cell"]),
             once_cell: nix.thunk(() => ["dep:once_cell"]),
@@ -1897,7 +1897,7 @@ export default nix.lambda((args) => (() => {
           resolvedDefaultFeatures: nix.thunk(() => ["alloc", "default", "dev_urandom_fallback", "once_cell"]),
         })),
         rsa: nix.thunk(() => ({
-          __proto__: pos$250,
+          [nix.POS]: pos$250,
           crateName: "rsa",
           version: "0.5.0",
           edition: "2018",
@@ -1905,25 +1905,25 @@ export default nix.lambda((args) => (() => {
           authors: nix.thunk(() => ["RustCrypto Developers", "dignifiedquire <dignifiedquire@gmail.com>"]),
           dependencies: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$237,
+              [nix.POS]: pos$237,
               name: "byteorder",
               packageId: "byteorder",
               usesDefaultFeatures: false,
             })),
             nix.thunk(() => ({
-              __proto__: pos$238,
+              [nix.POS]: pos$238,
               name: "digest",
               packageId: "digest",
               usesDefaultFeatures: false,
             })),
             nix.thunk(() => ({
-              __proto__: pos$239,
+              [nix.POS]: pos$239,
               name: "lazy_static",
               packageId: "lazy_static",
               features: nix.thunk(() => ["spin_no_std"]),
             })),
             nix.thunk(() => ({
-              __proto__: pos$240,
+              [nix.POS]: pos$240,
               name: "num-bigint-dig",
               packageId: "num-bigint-dig",
               rename: "num-bigint",
@@ -1931,58 +1931,58 @@ export default nix.lambda((args) => (() => {
               features: nix.thunk(() => ["i128", "u64_digit", "prime", "zeroize"]),
             })),
             nix.thunk(() => ({
-              __proto__: pos$241,
+              [nix.POS]: pos$241,
               name: "num-integer",
               packageId: "num-integer",
               usesDefaultFeatures: false,
             })),
             nix.thunk(() => ({
-              __proto__: pos$242,
+              [nix.POS]: pos$242,
               name: "num-iter",
               packageId: "num-iter",
               usesDefaultFeatures: false,
             })),
             nix.thunk(() => ({
-              __proto__: pos$243,
+              [nix.POS]: pos$243,
               name: "num-traits",
               packageId: "num-traits",
               usesDefaultFeatures: false,
               features: nix.thunk(() => ["libm"]),
             })),
             nix.thunk(() => ({
-              __proto__: pos$244,
+              [nix.POS]: pos$244,
               name: "pkcs1",
               packageId: "pkcs1",
               usesDefaultFeatures: false,
             })),
             nix.thunk(() => ({
-              __proto__: pos$245,
+              [nix.POS]: pos$245,
               name: "pkcs8",
               packageId: "pkcs8",
               usesDefaultFeatures: false,
             })),
             nix.thunk(() => ({
-              __proto__: pos$246,
+              [nix.POS]: pos$246,
               name: "rand",
               packageId: "rand",
               usesDefaultFeatures: false,
               features: nix.thunk(() => ["std_rng"]),
             })),
             nix.thunk(() => ({
-              __proto__: pos$247,
+              [nix.POS]: pos$247,
               name: "subtle",
               packageId: "subtle",
               usesDefaultFeatures: false,
             })),
             nix.thunk(() => ({
-              __proto__: pos$248,
+              [nix.POS]: pos$248,
               name: "zeroize",
               packageId: "zeroize",
               features: nix.thunk(() => ["alloc", "zeroize_derive"]),
             })),
           ]),
           features: nix.thunk(() => ({
-            __proto__: pos$249,
+            [nix.POS]: pos$249,
             alloc: nix.thunk(() => ["digest/alloc", "pkcs1/alloc", "pkcs8/alloc", "pkcs8/pkcs1"]),
             default: nix.thunk(() => ["std", "pem"]),
             nightly: nix.thunk(() => ["subtle/nightly", "num-bigint/nightly"]),
@@ -1995,7 +1995,7 @@ export default nix.lambda((args) => (() => {
           resolvedDefaultFeatures: nix.thunk(() => ["alloc", "default", "pem", "std"]),
         })),
         "rusticata-macros": nix.thunk(() => ({
-          __proto__: pos$252,
+          [nix.POS]: pos$252,
           crateName: "rusticata-macros",
           version: "4.0.0",
           edition: "2018",
@@ -2003,7 +2003,7 @@ export default nix.lambda((args) => (() => {
           authors: nix.thunk(() => ["Pierre Chifflier <chifflier@wzdftpd.net>"]),
           dependencies: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$251,
+              [nix.POS]: pos$251,
               name: "nom",
               packageId: "nom",
               usesDefaultFeatures: false,
@@ -2012,21 +2012,21 @@ export default nix.lambda((args) => (() => {
           ]),
         })),
         smallvec: nix.thunk(() => ({
-          __proto__: pos$254,
+          [nix.POS]: pos$254,
           crateName: "smallvec",
           version: "1.8.0",
           edition: "2018",
           sha256: "10zf4fn63p2d6sx8qap3jvyarcfw563308x3431hd4c34r35gpgj",
           authors: nix.thunk(() => ["The Servo Project Developers"]),
           features: nix.thunk(() => ({
-            __proto__: pos$253,
+            [nix.POS]: pos$253,
             arbitrary: nix.thunk(() => ["dep:arbitrary"]),
             const_new: nix.thunk(() => ["const_generics"]),
             serde: nix.thunk(() => ["dep:serde"]),
           })),
         })),
         spin: nix.thunk(() => ({
-          __proto__: pos$255,
+          [nix.POS]: pos$255,
           crateName: "spin",
           version: "0.5.2",
           edition: "2015",
@@ -2037,7 +2037,7 @@ export default nix.lambda((args) => (() => {
           ]),
         })),
         spki: nix.thunk(() => ({
-          __proto__: pos$258,
+          [nix.POS]: pos$258,
           crateName: "spki",
           version: "0.4.1",
           edition: "2018",
@@ -2045,16 +2045,16 @@ export default nix.lambda((args) => (() => {
           authors: nix.thunk(() => ["RustCrypto Developers"]),
           dependencies: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$256,
+              [nix.POS]: pos$256,
               name: "der",
               packageId: "der",
               features: nix.thunk(() => ["oid"]),
             })),
           ]),
-          features: nix.thunk(() => ({ __proto__: pos$257, std: nix.thunk(() => ["der/std"]) })),
+          features: nix.thunk(() => ({ [nix.POS]: pos$257, std: nix.thunk(() => ["der/std"]) })),
         })),
         subtle: nix.thunk(() => ({
-          __proto__: pos$260,
+          [nix.POS]: pos$260,
           crateName: "subtle",
           version: "2.4.1",
           edition: "2015",
@@ -2063,10 +2063,10 @@ export default nix.lambda((args) => (() => {
             "Isis Lovecruft <isis@patternsinthevoid.net>",
             "Henry de Valence <hdevalence@hdevalence.ca>",
           ]),
-          features: nix.thunk(() => ({ __proto__: pos$259, default: nix.thunk(() => ["std", "i128"]) })),
+          features: nix.thunk(() => ({ [nix.POS]: pos$259, default: nix.thunk(() => ["std", "i128"]) })),
         })),
         syn: nix.thunk(() => ({
-          __proto__: pos$265,
+          [nix.POS]: pos$265,
           crateName: "syn",
           version: "1.0.86",
           edition: "2018",
@@ -2074,22 +2074,22 @@ export default nix.lambda((args) => (() => {
           authors: nix.thunk(() => ["David Tolnay <dtolnay@gmail.com>"]),
           dependencies: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$261,
+              [nix.POS]: pos$261,
               name: "proc-macro2",
               packageId: "proc-macro2",
               usesDefaultFeatures: false,
             })),
             nix.thunk(() => ({
-              __proto__: pos$262,
+              [nix.POS]: pos$262,
               name: "quote",
               packageId: "quote",
               optional: true,
               usesDefaultFeatures: false,
             })),
-            nix.thunk(() => ({ __proto__: pos$263, name: "unicode-xid", packageId: "unicode-xid" })),
+            nix.thunk(() => ({ [nix.POS]: pos$263, name: "unicode-xid", packageId: "unicode-xid" })),
           ]),
           features: nix.thunk(() => ({
-            __proto__: pos$264,
+            [nix.POS]: pos$264,
             default: nix.thunk(() => ["derive", "parsing", "printing", "clone-impls", "proc-macro"]),
             printing: nix.thunk(() => ["quote"]),
             "proc-macro": nix.thunk(() => ["proc-macro2/proc-macro", "quote/proc-macro"]),
@@ -2110,7 +2110,7 @@ export default nix.lambda((args) => (() => {
           ]),
         })),
         synstructure: nix.thunk(() => ({
-          __proto__: pos$271,
+          [nix.POS]: pos$271,
           crateName: "synstructure",
           version: "0.12.6",
           edition: "2018",
@@ -2118,46 +2118,46 @@ export default nix.lambda((args) => (() => {
           authors: nix.thunk(() => ["Nika Layzell <nika@thelayzells.com>"]),
           dependencies: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$266,
+              [nix.POS]: pos$266,
               name: "proc-macro2",
               packageId: "proc-macro2",
               usesDefaultFeatures: false,
             })),
             nix.thunk(() => ({
-              __proto__: pos$267,
+              [nix.POS]: pos$267,
               name: "quote",
               packageId: "quote",
               usesDefaultFeatures: false,
             })),
             nix.thunk(() => ({
-              __proto__: pos$268,
+              [nix.POS]: pos$268,
               name: "syn",
               packageId: "syn",
               usesDefaultFeatures: false,
               features: nix.thunk(() => ["derive", "parsing", "printing", "clone-impls", "visit", "extra-traits"]),
             })),
-            nix.thunk(() => ({ __proto__: pos$269, name: "unicode-xid", packageId: "unicode-xid" })),
+            nix.thunk(() => ({ [nix.POS]: pos$269, name: "unicode-xid", packageId: "unicode-xid" })),
           ]),
           features: nix.thunk(() => ({
-            __proto__: pos$270,
+            [nix.POS]: pos$270,
             default: nix.thunk(() => ["proc-macro"]),
             "proc-macro": nix.thunk(() => ["proc-macro2/proc-macro", "syn/proc-macro", "quote/proc-macro"]),
           })),
           resolvedDefaultFeatures: nix.thunk(() => ["default", "proc-macro"]),
         })),
         thiserror: nix.thunk(() => ({
-          __proto__: pos$273,
+          [nix.POS]: pos$273,
           crateName: "thiserror",
           version: "1.0.30",
           edition: "2018",
           sha256: "05y4wm29ck8flwq5k1q6nhwh00a3b30cz3xr0qvnbwad5vjsnjw5",
           authors: nix.thunk(() => ["David Tolnay <dtolnay@gmail.com>"]),
           dependencies: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$272, name: "thiserror-impl", packageId: "thiserror-impl" })),
+            nix.thunk(() => ({ [nix.POS]: pos$272, name: "thiserror-impl", packageId: "thiserror-impl" })),
           ]),
         })),
         "thiserror-impl": nix.thunk(() => ({
-          __proto__: pos$277,
+          [nix.POS]: pos$277,
           crateName: "thiserror-impl",
           version: "1.0.30",
           edition: "2018",
@@ -2165,22 +2165,22 @@ export default nix.lambda((args) => (() => {
           procMacro: true,
           authors: nix.thunk(() => ["David Tolnay <dtolnay@gmail.com>"]),
           dependencies: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$274, name: "proc-macro2", packageId: "proc-macro2" })),
-            nix.thunk(() => ({ __proto__: pos$275, name: "quote", packageId: "quote" })),
-            nix.thunk(() => ({ __proto__: pos$276, name: "syn", packageId: "syn" })),
+            nix.thunk(() => ({ [nix.POS]: pos$274, name: "proc-macro2", packageId: "proc-macro2" })),
+            nix.thunk(() => ({ [nix.POS]: pos$275, name: "quote", packageId: "quote" })),
+            nix.thunk(() => ({ [nix.POS]: pos$276, name: "syn", packageId: "syn" })),
           ]),
         })),
         time: nix.thunk(() => ({
-          __proto__: pos$283,
+          [nix.POS]: pos$283,
           crateName: "time",
           version: "0.3.7",
           edition: "2018",
           sha256: "0gbmwlkj15dfhbqvxlzji1ffc1lidblpgg1q3b3378hgyfcbqk00",
           authors: nix.thunk(() => ["Jacob Pratt <open-source@jhpratt.dev>", "Time contributors"]),
           dependencies: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$278, name: "itoa", packageId: "itoa", optional: true })),
+            nix.thunk(() => ({ [nix.POS]: pos$278, name: "itoa", packageId: "itoa", optional: true })),
             nix.thunk(() => ({
-              __proto__: pos$279,
+              [nix.POS]: pos$279,
               name: "libc",
               packageId: "libc",
               target: nix.lambda((args_1) => (() => {
@@ -2191,7 +2191,7 @@ export default nix.lambda((args) => (() => {
               })(), formals$16),
             })),
             nix.thunk(() => ({
-              __proto__: pos$280,
+              [nix.POS]: pos$280,
               name: "num_threads",
               packageId: "num_threads",
               target: nix.lambda((args_1) => (() => {
@@ -2202,14 +2202,14 @@ export default nix.lambda((args) => (() => {
               })(), formals$17),
             })),
             nix.thunk(() => ({
-              __proto__: pos$281,
+              [nix.POS]: pos$281,
               name: "time-macros",
               packageId: "time-macros",
               optional: true,
             })),
           ]),
           features: nix.thunk(() => ({
-            __proto__: pos$282,
+            [nix.POS]: pos$282,
             default: nix.thunk(() => ["std"]),
             formatting: nix.thunk(() => ["itoa", "std"]),
             itoa: nix.thunk(() => ["dep:itoa"]),
@@ -2237,7 +2237,7 @@ export default nix.lambda((args) => (() => {
           ]),
         })),
         "time-macros": nix.thunk(() => ({
-          __proto__: pos$284,
+          [nix.POS]: pos$284,
           crateName: "time-macros",
           version: "0.2.3",
           edition: "2018",
@@ -2247,7 +2247,7 @@ export default nix.lambda((args) => (() => {
           features: nix.thunk(() => ({})),
         })),
         typenum: nix.thunk(() => ({
-          __proto__: pos$286,
+          [nix.POS]: pos$286,
           crateName: "typenum",
           version: "1.15.0",
           edition: "2018",
@@ -2255,13 +2255,13 @@ export default nix.lambda((args) => (() => {
           build: "build/main.rs",
           authors: nix.thunk(() => ["Paho Lurie-Gregg <paho@paholg.com>", "Andre Bogus <bogusandre@gmail.com>"]),
           features: nix.thunk(() => ({
-            __proto__: pos$285,
+            [nix.POS]: pos$285,
             "scale-info": nix.thunk(() => ["dep:scale-info"]),
             scale_info: nix.thunk(() => ["scale-info/derive"]),
           })),
         })),
         "unicode-xid": nix.thunk(() => ({
-          __proto__: pos$287,
+          [nix.POS]: pos$287,
           crateName: "unicode-xid",
           version: "0.2.2",
           edition: "2015",
@@ -2275,7 +2275,7 @@ export default nix.lambda((args) => (() => {
           resolvedDefaultFeatures: nix.thunk(() => ["default"]),
         })),
         untrusted: nix.thunk(() => ({
-          __proto__: pos$288,
+          [nix.POS]: pos$288,
           crateName: "untrusted",
           version: "0.7.1",
           edition: "2018",
@@ -2284,7 +2284,7 @@ export default nix.lambda((args) => (() => {
           authors: nix.thunk(() => ["Brian Smith <brian@briansmith.org>"]),
         })),
         vcpkg: nix.thunk(() => ({
-          __proto__: pos$289,
+          [nix.POS]: pos$289,
           crateName: "vcpkg",
           version: "0.2.15",
           edition: "2015",
@@ -2292,7 +2292,7 @@ export default nix.lambda((args) => (() => {
           authors: nix.thunk(() => ["Jim McGrath <jimmc2@gmail.com>"]),
         })),
         version_check: nix.thunk(() => ({
-          __proto__: pos$290,
+          [nix.POS]: pos$290,
           crateName: "version_check",
           version: "0.9.4",
           edition: "2015",
@@ -2300,14 +2300,14 @@ export default nix.lambda((args) => (() => {
           authors: nix.thunk(() => ["Sergio Benitez <sb@sergio.bz>"]),
         })),
         wasi: nix.thunk(() => ({
-          __proto__: pos$292,
+          [nix.POS]: pos$292,
           crateName: "wasi",
           version: "0.10.2+wasi-snapshot-preview1",
           edition: "2018",
           sha256: "1ii7nff4y1mpcrxzzvbpgxm7a1nn3szjf1n21jnx37c2g6dbsvzx",
           authors: nix.thunk(() => ["The Cranelift Project Developers"]),
           features: nix.thunk(() => ({
-            __proto__: pos$291,
+            [nix.POS]: pos$291,
             compiler_builtins: nix.thunk(() => ["dep:compiler_builtins"]),
             core: nix.thunk(() => ["dep:core"]),
             default: nix.thunk(() => ["std"]),
@@ -2317,22 +2317,22 @@ export default nix.lambda((args) => (() => {
           resolvedDefaultFeatures: nix.thunk(() => ["default", "std"]),
         })),
         "wasm-bindgen": nix.thunk(() => ({
-          __proto__: pos$296,
+          [nix.POS]: pos$296,
           crateName: "wasm-bindgen",
           version: "0.2.79",
           edition: "2018",
           sha256: "01kc4lj2vlf0ra2w63izrgdlv8p6f8p15086hhyqln6q4dsazw95",
           authors: nix.thunk(() => ["The wasm-bindgen Developers"]),
           dependencies: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$293, name: "cfg-if", packageId: "cfg-if" })),
+            nix.thunk(() => ({ [nix.POS]: pos$293, name: "cfg-if", packageId: "cfg-if" })),
             nix.thunk(() => ({
-              __proto__: pos$294,
+              [nix.POS]: pos$294,
               name: "wasm-bindgen-macro",
               packageId: "wasm-bindgen-macro",
             })),
           ]),
           features: nix.thunk(() => ({
-            __proto__: pos$295,
+            [nix.POS]: pos$295,
             default: nix.thunk(() => ["spans", "std"]),
             "enable-interning": nix.thunk(() => ["std"]),
             serde: nix.thunk(() => ["dep:serde"]),
@@ -2345,35 +2345,35 @@ export default nix.lambda((args) => (() => {
           resolvedDefaultFeatures: nix.thunk(() => ["default", "spans", "std"]),
         })),
         "wasm-bindgen-backend": nix.thunk(() => ({
-          __proto__: pos$305,
+          [nix.POS]: pos$305,
           crateName: "wasm-bindgen-backend",
           version: "0.2.79",
           edition: "2018",
           sha256: "1jpdrl5jj01961jxhmvj7v25ws928fyfj8ms7izifnhg0ggw08cb",
           authors: nix.thunk(() => ["The wasm-bindgen Developers"]),
           dependencies: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$297, name: "bumpalo", packageId: "bumpalo" })),
-            nix.thunk(() => ({ __proto__: pos$298, name: "lazy_static", packageId: "lazy_static" })),
-            nix.thunk(() => ({ __proto__: pos$299, name: "log", packageId: "log" })),
-            nix.thunk(() => ({ __proto__: pos$300, name: "proc-macro2", packageId: "proc-macro2" })),
-            nix.thunk(() => ({ __proto__: pos$301, name: "quote", packageId: "quote" })),
+            nix.thunk(() => ({ [nix.POS]: pos$297, name: "bumpalo", packageId: "bumpalo" })),
+            nix.thunk(() => ({ [nix.POS]: pos$298, name: "lazy_static", packageId: "lazy_static" })),
+            nix.thunk(() => ({ [nix.POS]: pos$299, name: "log", packageId: "log" })),
+            nix.thunk(() => ({ [nix.POS]: pos$300, name: "proc-macro2", packageId: "proc-macro2" })),
+            nix.thunk(() => ({ [nix.POS]: pos$301, name: "quote", packageId: "quote" })),
             nix.thunk(() => ({
-              __proto__: pos$302,
+              [nix.POS]: pos$302,
               name: "syn",
               packageId: "syn",
               features: nix.thunk(() => ["full"]),
             })),
             nix.thunk(() => ({
-              __proto__: pos$303,
+              [nix.POS]: pos$303,
               name: "wasm-bindgen-shared",
               packageId: "wasm-bindgen-shared",
             })),
           ]),
-          features: nix.thunk(() => ({ __proto__: pos$304, "extra-traits": nix.thunk(() => ["syn/extra-traits"]) })),
+          features: nix.thunk(() => ({ [nix.POS]: pos$304, "extra-traits": nix.thunk(() => ["syn/extra-traits"]) })),
           resolvedDefaultFeatures: nix.thunk(() => ["spans"]),
         })),
         "wasm-bindgen-macro": nix.thunk(() => ({
-          __proto__: pos$309,
+          [nix.POS]: pos$309,
           crateName: "wasm-bindgen-macro",
           version: "0.2.79",
           edition: "2018",
@@ -2381,56 +2381,56 @@ export default nix.lambda((args) => (() => {
           procMacro: true,
           authors: nix.thunk(() => ["The wasm-bindgen Developers"]),
           dependencies: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$306, name: "quote", packageId: "quote" })),
+            nix.thunk(() => ({ [nix.POS]: pos$306, name: "quote", packageId: "quote" })),
             nix.thunk(() => ({
-              __proto__: pos$307,
+              [nix.POS]: pos$307,
               name: "wasm-bindgen-macro-support",
               packageId: "wasm-bindgen-macro-support",
             })),
           ]),
           features: nix.thunk(() => ({
-            __proto__: pos$308,
+            [nix.POS]: pos$308,
             spans: nix.thunk(() => ["wasm-bindgen-macro-support/spans"]),
             "strict-macro": nix.thunk(() => ["wasm-bindgen-macro-support/strict-macro"]),
           })),
           resolvedDefaultFeatures: nix.thunk(() => ["spans"]),
         })),
         "wasm-bindgen-macro-support": nix.thunk(() => ({
-          __proto__: pos$316,
+          [nix.POS]: pos$316,
           crateName: "wasm-bindgen-macro-support",
           version: "0.2.79",
           edition: "2018",
           sha256: "1g1fjqvrkrf3j20z8nxsf60cypxg9dfvpbachl2b53908q6s7a5z",
           authors: nix.thunk(() => ["The wasm-bindgen Developers"]),
           dependencies: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$310, name: "proc-macro2", packageId: "proc-macro2" })),
-            nix.thunk(() => ({ __proto__: pos$311, name: "quote", packageId: "quote" })),
+            nix.thunk(() => ({ [nix.POS]: pos$310, name: "proc-macro2", packageId: "proc-macro2" })),
+            nix.thunk(() => ({ [nix.POS]: pos$311, name: "quote", packageId: "quote" })),
             nix.thunk(() => ({
-              __proto__: pos$312,
+              [nix.POS]: pos$312,
               name: "syn",
               packageId: "syn",
               features: nix.thunk(() => ["visit", "full"]),
             })),
             nix.thunk(() => ({
-              __proto__: pos$313,
+              [nix.POS]: pos$313,
               name: "wasm-bindgen-backend",
               packageId: "wasm-bindgen-backend",
             })),
             nix.thunk(() => ({
-              __proto__: pos$314,
+              [nix.POS]: pos$314,
               name: "wasm-bindgen-shared",
               packageId: "wasm-bindgen-shared",
             })),
           ]),
           features: nix.thunk(() => ({
-            __proto__: pos$315,
+            [nix.POS]: pos$315,
             "extra-traits": nix.thunk(() => ["syn/extra-traits"]),
             spans: nix.thunk(() => ["wasm-bindgen-backend/spans"]),
           })),
           resolvedDefaultFeatures: nix.thunk(() => ["spans"]),
         })),
         "wasm-bindgen-shared": nix.thunk(() => ({
-          __proto__: pos$317,
+          [nix.POS]: pos$317,
           crateName: "wasm-bindgen-shared",
           version: "0.2.79",
           edition: "2018",
@@ -2438,18 +2438,18 @@ export default nix.lambda((args) => (() => {
           authors: nix.thunk(() => ["The wasm-bindgen Developers"]),
         })),
         "web-sys": nix.thunk(() => ({
-          __proto__: pos$321,
+          [nix.POS]: pos$321,
           crateName: "web-sys",
           version: "0.3.56",
           edition: "2018",
           sha256: "1sxqmwq773ss5m6vz7z95fdm6bqlix0s2awsy0j5gllxy8cv6q60",
           authors: nix.thunk(() => ["The wasm-bindgen Developers"]),
           dependencies: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$318, name: "js-sys", packageId: "js-sys" })),
-            nix.thunk(() => ({ __proto__: pos$319, name: "wasm-bindgen", packageId: "wasm-bindgen" })),
+            nix.thunk(() => ({ [nix.POS]: pos$318, name: "js-sys", packageId: "js-sys" })),
+            nix.thunk(() => ({ [nix.POS]: pos$319, name: "wasm-bindgen", packageId: "wasm-bindgen" })),
           ]),
           features: nix.thunk(() => ({
-            __proto__: pos$320,
+            [nix.POS]: pos$320,
             AbortSignal: nix.thunk(() => ["EventTarget"]),
             AnalyserNode: nix.thunk(() => ["AudioNode", "EventTarget"]),
             Animation: nix.thunk(() => ["EventTarget"]),
@@ -2980,7 +2980,7 @@ export default nix.lambda((args) => (() => {
           resolvedDefaultFeatures: nix.thunk(() => ["Crypto", "EventTarget", "Window"]),
         })),
         webpki: nix.thunk(() => ({
-          __proto__: pos$325,
+          [nix.POS]: pos$325,
           crateName: "webpki",
           version: "0.22.0",
           edition: "2018",
@@ -2988,22 +2988,22 @@ export default nix.lambda((args) => (() => {
           authors: nix.thunk(() => ["Brian Smith <brian@briansmith.org>"]),
           dependencies: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$322,
+              [nix.POS]: pos$322,
               name: "ring",
               packageId: "ring",
               usesDefaultFeatures: false,
             })),
-            nix.thunk(() => ({ __proto__: pos$323, name: "untrusted", packageId: "untrusted" })),
+            nix.thunk(() => ({ [nix.POS]: pos$323, name: "untrusted", packageId: "untrusted" })),
           ]),
           features: nix.thunk(() => ({
-            __proto__: pos$324,
+            [nix.POS]: pos$324,
             alloc: nix.thunk(() => ["ring/alloc"]),
             std: nix.thunk(() => ["alloc"]),
           })),
           resolvedDefaultFeatures: nix.thunk(() => ["alloc", "std"]),
         })),
         winapi: nix.thunk(() => ({
-          __proto__: pos$329,
+          [nix.POS]: pos$329,
           crateName: "winapi",
           version: "0.3.9",
           edition: "2015",
@@ -3011,7 +3011,7 @@ export default nix.lambda((args) => (() => {
           authors: nix.thunk(() => ["Peter Atashian <retep998@gmail.com>"]),
           dependencies: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$326,
+              [nix.POS]: pos$326,
               name: "winapi-i686-pc-windows-gnu",
               packageId: "winapi-i686-pc-windows-gnu",
               target: nix.lambda((args_1) => (() => {
@@ -3022,7 +3022,7 @@ export default nix.lambda((args) => (() => {
               })(), formals$18),
             })),
             nix.thunk(() => ({
-              __proto__: pos$327,
+              [nix.POS]: pos$327,
               name: "winapi-x86_64-pc-windows-gnu",
               packageId: "winapi-x86_64-pc-windows-gnu",
               target: nix.lambda((args_1) => (() => {
@@ -3033,11 +3033,11 @@ export default nix.lambda((args) => (() => {
               })(), formals$19),
             })),
           ]),
-          features: nix.thunk(() => ({ __proto__: pos$328, debug: nix.thunk(() => ["impl-debug"]) })),
+          features: nix.thunk(() => ({ [nix.POS]: pos$328, debug: nix.thunk(() => ["impl-debug"]) })),
           resolvedDefaultFeatures: nix.thunk(() => ["ntsecapi", "wtypesbase"]),
         })),
         "winapi-i686-pc-windows-gnu": nix.thunk(() => ({
-          __proto__: pos$330,
+          [nix.POS]: pos$330,
           crateName: "winapi-i686-pc-windows-gnu",
           version: "0.4.0",
           edition: "2015",
@@ -3045,7 +3045,7 @@ export default nix.lambda((args) => (() => {
           authors: nix.thunk(() => ["Peter Atashian <retep998@gmail.com>"]),
         })),
         "winapi-x86_64-pc-windows-gnu": nix.thunk(() => ({
-          __proto__: pos$331,
+          [nix.POS]: pos$331,
           crateName: "winapi-x86_64-pc-windows-gnu",
           version: "0.4.0",
           edition: "2015",
@@ -3053,7 +3053,7 @@ export default nix.lambda((args) => (() => {
           authors: nix.thunk(() => ["Peter Atashian <retep998@gmail.com>"]),
         })),
         "x509-parser": nix.thunk(() => ({
-          __proto__: pos$344,
+          [nix.POS]: pos$344,
           crateName: "x509-parser",
           version: "0.13.0",
           edition: "2018",
@@ -3061,46 +3061,46 @@ export default nix.lambda((args) => (() => {
           authors: nix.thunk(() => ["Pierre Chifflier <chifflier@wzdftpd.net>"]),
           dependencies: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$332,
+              [nix.POS]: pos$332,
               name: "asn1-rs",
               packageId: "asn1-rs",
               features: nix.thunk(() => ["datetime"]),
             })),
-            nix.thunk(() => ({ __proto__: pos$333, name: "base64", packageId: "base64" })),
-            nix.thunk(() => ({ __proto__: pos$334, name: "data-encoding", packageId: "data-encoding" })),
+            nix.thunk(() => ({ [nix.POS]: pos$333, name: "base64", packageId: "base64" })),
+            nix.thunk(() => ({ [nix.POS]: pos$334, name: "data-encoding", packageId: "data-encoding" })),
             nix.thunk(() => ({
-              __proto__: pos$335,
+              [nix.POS]: pos$335,
               name: "der-parser",
               packageId: "der-parser",
               features: nix.thunk(() => ["bigint"]),
             })),
-            nix.thunk(() => ({ __proto__: pos$336, name: "lazy_static", packageId: "lazy_static" })),
-            nix.thunk(() => ({ __proto__: pos$337, name: "nom", packageId: "nom" })),
+            nix.thunk(() => ({ [nix.POS]: pos$336, name: "lazy_static", packageId: "lazy_static" })),
+            nix.thunk(() => ({ [nix.POS]: pos$337, name: "nom", packageId: "nom" })),
             nix.thunk(() => ({
-              __proto__: pos$338,
+              [nix.POS]: pos$338,
               name: "oid-registry",
               packageId: "oid-registry",
               features: nix.thunk(() => ["crypto", "x509"]),
             })),
-            nix.thunk(() => ({ __proto__: pos$339, name: "ring", packageId: "ring", optional: true })),
-            nix.thunk(() => ({ __proto__: pos$340, name: "rusticata-macros", packageId: "rusticata-macros" })),
-            nix.thunk(() => ({ __proto__: pos$341, name: "thiserror", packageId: "thiserror" })),
+            nix.thunk(() => ({ [nix.POS]: pos$339, name: "ring", packageId: "ring", optional: true })),
+            nix.thunk(() => ({ [nix.POS]: pos$340, name: "rusticata-macros", packageId: "rusticata-macros" })),
+            nix.thunk(() => ({ [nix.POS]: pos$341, name: "thiserror", packageId: "thiserror" })),
             nix.thunk(() => ({
-              __proto__: pos$342,
+              [nix.POS]: pos$342,
               name: "time",
               packageId: "time",
               features: nix.thunk(() => ["formatting"]),
             })),
           ]),
           features: nix.thunk(() => ({
-            __proto__: pos$343,
+            [nix.POS]: pos$343,
             ring: nix.thunk(() => ["dep:ring"]),
             verify: nix.thunk(() => ["ring"]),
           })),
           resolvedDefaultFeatures: nix.thunk(() => ["default", "ring", "verify"]),
         })),
         yasna: nix.thunk(() => ({
-          __proto__: pos$347,
+          [nix.POS]: pos$347,
           crateName: "yasna",
           version: "0.5.0",
           edition: "2018",
@@ -3108,7 +3108,7 @@ export default nix.lambda((args) => (() => {
           authors: nix.thunk(() => ["Masaki Hara <ackie.h.gmai@gmail.com>"]),
           dependencies: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$345,
+              [nix.POS]: pos$345,
               name: "time",
               packageId: "time",
               optional: true,
@@ -3117,7 +3117,7 @@ export default nix.lambda((args) => (() => {
             })),
           ]),
           features: nix.thunk(() => ({
-            __proto__: pos$346,
+            [nix.POS]: pos$346,
             "bit-vec": nix.thunk(() => ["dep:bit-vec"]),
             "num-bigint": nix.thunk(() => ["dep:num-bigint"]),
             time: nix.thunk(() => ["dep:time"]),
@@ -3125,7 +3125,7 @@ export default nix.lambda((args) => (() => {
           resolvedDefaultFeatures: nix.thunk(() => ["default", "std", "time"]),
         })),
         zeroize: nix.thunk(() => ({
-          __proto__: pos$350,
+          [nix.POS]: pos$350,
           crateName: "zeroize",
           version: "1.4.3",
           edition: "2018",
@@ -3133,21 +3133,21 @@ export default nix.lambda((args) => (() => {
           authors: nix.thunk(() => ["The RustCrypto Project Developers"]),
           dependencies: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$348,
+              [nix.POS]: pos$348,
               name: "zeroize_derive",
               packageId: "zeroize_derive",
               optional: true,
             })),
           ]),
           features: nix.thunk(() => ({
-            __proto__: pos$349,
+            [nix.POS]: pos$349,
             default: nix.thunk(() => ["alloc"]),
             zeroize_derive: nix.thunk(() => ["dep:zeroize_derive"]),
           })),
           resolvedDefaultFeatures: nix.thunk(() => ["alloc", "default", "zeroize_derive"]),
         })),
         zeroize_derive: nix.thunk(() => ({
-          __proto__: pos$355,
+          [nix.POS]: pos$355,
           crateName: "zeroize_derive",
           version: "1.3.1",
           edition: "2018",
@@ -3155,15 +3155,15 @@ export default nix.lambda((args) => (() => {
           procMacro: true,
           authors: nix.thunk(() => ["The RustCrypto Project Developers"]),
           dependencies: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$351, name: "proc-macro2", packageId: "proc-macro2" })),
-            nix.thunk(() => ({ __proto__: pos$352, name: "quote", packageId: "quote" })),
-            nix.thunk(() => ({ __proto__: pos$353, name: "syn", packageId: "syn" })),
-            nix.thunk(() => ({ __proto__: pos$354, name: "synstructure", packageId: "synstructure" })),
+            nix.thunk(() => ({ [nix.POS]: pos$351, name: "proc-macro2", packageId: "proc-macro2" })),
+            nix.thunk(() => ({ [nix.POS]: pos$352, name: "quote", packageId: "quote" })),
+            nix.thunk(() => ({ [nix.POS]: pos$353, name: "syn", packageId: "syn" })),
+            nix.thunk(() => ({ [nix.POS]: pos$354, name: "synstructure", packageId: "synstructure" })),
           ]),
         })),
       }));
       const defaultTarget = nix.thunk(() => ({
-        __proto__: pos$357,
+        [nix.POS]: pos$357,
         unix: true,
         windows: false,
         fuchsia: true,
@@ -3194,9 +3194,9 @@ export default nix.lambda((args) => (() => {
         nix.assert_(nix.eq(nix.builtins.typeOf(testPreRun), "string"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/rust/build-rust-crate/test/rcgen-crates.nix:4406:7");
         nix.assert_(nix.eq(nix.builtins.typeOf(testPostRun), "string"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/rust/build-rust-crate/test/rcgen-crates.nix:4407:7");
         const test = nix.thunk(() => (() => {
-          const drv = nix.thunk(() => nix.app(nix.sel(testCrate, "override"), (_) => ({ __proto__: pos$358, buildTests: true })));
+          const drv = nix.thunk(() => nix.app(nix.sel(testCrate, "override"), (_) => ({ [nix.POS]: pos$358, buildTests: true })));
           const testCommand = nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "filter"), (s) => !nix.eq(s, ""), nix.thunk(() => [testPreRun, "$f $testCrateFlags 2>&1 | tee -a $out", testPostRun])))));
-          return nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`run-tests-${nix.sel(testCrate, "name")}`), nix.thunk(() => ({ __proto__: pos$359, testCrateFlags: testCrateFlags, buildInputs: testInputs })), nix.thunk(() => nix.str`set -ex
+          return nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`run-tests-${nix.sel(testCrate, "name")}`), nix.thunk(() => ({ [nix.POS]: pos$359, testCrateFlags: testCrateFlags, buildInputs: testInputs })), nix.thunk(() => nix.str`set -ex
 
 export RUST_BACKTRACE=1
 
@@ -3228,10 +3228,10 @@ done
 `));
         })());
         return nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`${nix.sel(crate, "name")}-linked`), nix.thunk(() => ({
-            __proto__: pos$361,
+            [nix.POS]: pos$361,
             outputs: nix.thunk(() => nix.attr(crate, "outputs")),
             crateName: nix.thunk(() => nix.attr(crate, "crateName")),
-            passthru: nix.thunk(() => nix.update(nix.selOr(crate, () => ({}), "passthru"), { __proto__: pos$360, test: test })),
+            passthru: nix.thunk(() => nix.update(nix.selOr(crate, () => ({}), "passthru"), { [nix.POS]: pos$360, test: test })),
           })), nix.thunk(() => nix.str`echo tested by ${test}
 ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (output) => nix.str`ln -s ${nix.sel(crate, nix.key(nix.force(output)))} ${"$"}${output}`, nix.thunk(() => nix.sel(crate, "outputs")))}
 `));
@@ -3256,16 +3256,16 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (output) => nix.str`ln -s $
             const testInputs_1 = nix.arg($_2, "testInputs");
             const testPreRun_1 = nix.arg($_2, "testPreRun");
             const testPostRun_1 = nix.arg($_2, "testPostRun");
-            const buildRustCrateForPkgsFuncOverriden = nix.thunk(() => (nix.asBool(!nix.eq(buildRustCrateForPkgsFunc, null)) ? nix.force(buildRustCrateForPkgsFunc) : (nix.asBool(nix.eq(crateOverrides_1, nix.sel(pkgs, "defaultCrateOverrides"))) ? nix.force(buildRustCrateForPkgs) : (pkgs_1) => nix.app(nix.sel(nix.app(buildRustCrateForPkgs, pkgs_1), "override"), nix.thunk(() => ({ __proto__: pos$362, defaultCrateOverrides: crateOverrides_1 }))))));
+            const buildRustCrateForPkgsFuncOverriden = nix.thunk(() => (nix.asBool(!nix.eq(buildRustCrateForPkgsFunc, null)) ? nix.force(buildRustCrateForPkgsFunc) : (nix.asBool(nix.eq(crateOverrides_1, nix.sel(pkgs, "defaultCrateOverrides"))) ? nix.force(buildRustCrateForPkgs) : (pkgs_1) => nix.app(nix.sel(nix.app(buildRustCrateForPkgs, pkgs_1), "override"), nix.thunk(() => ({ [nix.POS]: pos$362, defaultCrateOverrides: crateOverrides_1 }))))));
             const builtRustCrates = nix.thunk(() => nix.app(builtRustCratesWithFeatures, nix.thunk(() => ({
-                __proto__: pos$363,
+                [nix.POS]: pos$363,
                 packageId: packageId,
                 features: features_1,
                 buildRustCrateForPkgsFunc: buildRustCrateForPkgsFuncOverriden,
                 runTests: false,
               }))));
             const builtTestRustCrates = nix.thunk(() => nix.app(builtRustCratesWithFeatures, nix.thunk(() => ({
-                __proto__: pos$364,
+                [nix.POS]: pos$364,
                 packageId: packageId,
                 features: features_1,
                 buildRustCrateForPkgsFunc: buildRustCrateForPkgsFuncOverriden,
@@ -3274,7 +3274,7 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (output) => nix.str`ln -s $
             const drv = nix.thunk(() => nix.sel(builtRustCrates, "crates", nix.key(nix.force(packageId))));
             const testDrv = nix.thunk(() => nix.sel(builtTestRustCrates, "crates", nix.key(nix.force(packageId))));
             const derivation = nix.thunk(() => (nix.asBool(runTests_1) ? nix.app(crateWithTest, nix.thunk(() => ({
-                __proto__: pos$365,
+                [nix.POS]: pos$365,
                 crate: drv,
                 testCrate: testDrv,
                 testCrateFlags: testCrateFlags_1,
@@ -3284,7 +3284,7 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (output) => nix.str`ln -s $
               }))) : nix.force(drv)));
             return nix.force(derivation);
           })(), formals$22), nix.thunk(() => ({
-            __proto__: pos$366,
+            [nix.POS]: pos$366,
             features: features,
             crateOverrides: crateOverrides,
             runTests: runTests,
@@ -3310,14 +3310,14 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (output) => nix.str`ln -s $
         nix.assert_(nix.builtins.isBool(runTests), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/rust/build-rust-crate/test/rcgen-crates.nix:4576:7");
         const rootPackageId = packageId;
         const mergedFeatures = nix.thunk(() => nix.app(mergePackageFeatures, nix.thunk(() => nix.update(args_2, {
-            __proto__: pos$368,
+            [nix.POS]: pos$368,
             rootPackageId: rootPackageId,
-            target: nix.thunk(() => nix.update(target, { __proto__: pos$367, test: runTests })),
+            target: nix.thunk(() => nix.update(target, { [nix.POS]: pos$367, test: runTests })),
           }))));
         const builtByPackageIdByPkgs = nix.thunk(() => nix.app(mkBuiltByPackageIdByPkgs, pkgs));
         const mkBuiltByPackageIdByPkgs = (pkgs_1) => (() => {
           const self = nix.thunk(() => ({
-            __proto__: pos$369,
+            [nix.POS]: pos$369,
             crates: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (packageId_1) => (value) => nix.app(buildByPackageIdForPkgsImpl, self, pkgs_1, packageId_1), crateConfigs)),
             build: nix.thunk(() => nix.app(mkBuiltByPackageIdByPkgs, nix.thunk(() => nix.sel(pkgs_1, "buildPackages")))),
           }));
@@ -3329,21 +3329,21 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (output) => nix.str`ln -s $
           const crateConfig_1 = nix.thunk(() => nix.builtins.removeAttrs(crateConfig$, nix.thunk(() => ["resolvedDefaultFeatures", "devDependencies"])));
           const devDependencies = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(runTests) && nix.asBool(nix.eq(packageId_1, rootPackageId)))), nix.thunk(() => nix.selOr(crateConfig$, () => [], "devDependencies"))));
           const dependencies = nix.thunk(() => nix.app(dependencyDerivations, nix.thunk(() => ({
-              __proto__: pos$370,
+              [nix.POS]: pos$370,
               features: features_1,
               target: target,
               buildByPackageId: (depPackageId) => (nix.asBool(nix.selOr(crateConfigs, () => false, nix.key(nix.force(depPackageId)), "procMacro")) ? nix.sel(self, "build", "crates", nix.key(nix.force(depPackageId))) : nix.sel(self, "crates", nix.key(nix.force(depPackageId)))),
               dependencies: nix.thunk(() => nix.concat(nix.selOr(crateConfig_1, () => [], "dependencies"), devDependencies)),
             }))));
           const buildDependencies = nix.thunk(() => nix.app(dependencyDerivations, nix.thunk(() => ({
-              __proto__: pos$371,
+              [nix.POS]: pos$371,
               features: features_1,
               target: target,
               buildByPackageId: (depPackageId) => nix.sel(self, "build", "crates", nix.key(nix.force(depPackageId))),
               dependencies: nix.thunk(() => nix.selOr(crateConfig_1, () => [], "buildDependencies")),
             }))));
           const filterEnabledDependenciesForThis = (dependencies_1) => nix.app(filterEnabledDependencies, nix.thunk(() => ({
-              __proto__: pos$372,
+              [nix.POS]: pos$372,
               dependencies: dependencies_1,
               features: features_1,
               target: target,
@@ -3354,7 +3354,7 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (output) => nix.str`ln -s $
             const versionAndRename = (dep) => (() => {
               const package$ = nix.thunk(() => nix.sel(crateConfigs, nix.key(nix.str`${nix.sel(dep, "packageId")}`)));
               return {
-                __proto__: pos$373,
+                [nix.POS]: pos$373,
                 rename: nix.thunk(() => nix.attr(dep, "rename")),
                 version: nix.thunk(() => nix.sel(package$, "version")),
               };
@@ -3362,7 +3362,7 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (output) => nix.str`ln -s $
             return nix.app(nix.sel(lib, "mapAttrs"), (name) => (choices) => nix.builtins.map(versionAndRename, choices), grouped);
           })());
           return nix.app(buildRustCrateForPkgsFunc, pkgs_1, nix.thunk(() => nix.update(crateConfig_1, {
-              __proto__: pos$375,
+              [nix.POS]: pos$375,
               src: nix.thunk(() => nix.selOr(crateConfig_1, () => nix.app(nix.sel(pkgs_1, "fetchurl"), nix.thunk(() => (() => {
                     const name = nix.thunk(() => nix.str`${nix.sel(crateConfig_1, "crateName")}-${nix.sel(crateConfig_1, "version")}.tar.gz`);
                     const url = nix.thunk(() => nix.str`https://static.crates.io/crates/${nix.sel(crateConfig_1, "crateName")}/${nix.sel(crateConfig_1, "crateName")}-${nix.sel(crateConfig_1, "version")}.crate`);
@@ -3370,7 +3370,7 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (output) => nix.str`ln -s $
                       nix.assert_((nix.asBool(nix.has(crateConfig_1, "sha256")) || nix.asBool(nix.builtins.throw(nix.thunk(() => nix.str`Missing sha256 for ${name}`)))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/rust/build-rust-crate/test/rcgen-crates.nix:4672:21");
                       return nix.sel(crateConfig_1, "sha256");
                     })());
-                    return { __proto__: pos$374, name, url, sha256 };
+                    return { [nix.POS]: pos$374, name, url, sha256 };
                   })())), "src")),
               extraRustcOpts: nix.thunk(() => nix.app(nix.sel(lib, "lists", "optional"), nix.thunk(() => !nix.eq(targetFeatures, [])), nix.thunk(() => nix.str`-C target-feature=${nix.app(nix.sel(lib, "concatMapStringsSep"), ",", (x) => nix.str`+${x}`, targetFeatures)}`))),
               features: features_1,
@@ -3392,7 +3392,7 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (output) => nix.str`ln -s $
         nix.assert_(nix.builtins.isList(dependencies), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/rust/build-rust-crate/test/rcgen-crates.nix:4699:7");
         nix.assert_(nix.builtins.isAttrs(target), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/rust/build-rust-crate/test/rcgen-crates.nix:4700:7");
         const enabledDependencies = nix.thunk(() => nix.app(filterEnabledDependencies, nix.thunk(() => ({
-            __proto__: pos$376,
+            [nix.POS]: pos$376,
             dependencies: dependencies,
             features: features,
             target: target,
@@ -3408,15 +3408,15 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (output) => nix.str`ln -s $
         nix.assert_(nix.builtins.isString(packageId), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/rust/build-rust-crate/test/rcgen-crates.nix:4730:7");
         const debug = nix.thunk(() => (() => {
           const buildTree = nix.thunk(() => nix.app(buildRustCrateWithFeatures, nix.thunk(() => ({
-              __proto__: pos$377,
+              [nix.POS]: pos$377,
               buildRustCrateForPkgsFunc: (_) => nix.sel(lib, "id"),
               packageId: packageId,
             }))));
           const sanitizedBuildTree = nix.thunk(() => nix.app(sanitizeForJson, buildTree));
           const dependencyTree = nix.thunk(() => nix.app(sanitizeForJson, nix.thunk(() => nix.app(buildRustCrateWithFeatures, nix.thunk(() => ({
-                __proto__: pos$379,
+                [nix.POS]: pos$379,
                 buildRustCrateForPkgsFunc: (_) => (crate) => ({
-                  __proto__: pos$378,
+                  [nix.POS]: pos$378,
                   "01_crateName": nix.thunk(() => nix.selOr(crate, () => false, "crateName")),
                   "02_features": nix.thunk(() => nix.selOr(crate, () => [], "features")),
                   "03_dependencies": nix.thunk(() => nix.selOr(crate, () => [], "dependencies")),
@@ -3424,14 +3424,14 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (output) => nix.str`ln -s $
                 packageId: packageId,
               }))))));
           const mergedPackageFeatures = nix.thunk(() => nix.app(mergePackageFeatures, nix.thunk(() => ({
-              __proto__: pos$380,
+              [nix.POS]: pos$380,
               features: rootFeatures,
               packageId: packageId,
               target: target,
             }))));
-          const diffedDefaultPackageFeatures = nix.thunk(() => nix.app(diffDefaultPackageFeatures, nix.thunk(() => ({ __proto__: pos$381, packageId: packageId, target: target }))));
+          const diffedDefaultPackageFeatures = nix.thunk(() => nix.app(diffDefaultPackageFeatures, nix.thunk(() => ({ [nix.POS]: pos$381, packageId: packageId, target: target }))));
           return {
-            __proto__: pos$382,
+            [nix.POS]: pos$382,
             buildTree,
             sanitizedBuildTree,
             dependencyTree,
@@ -3439,7 +3439,7 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (output) => nix.str`ln -s $
             diffedDefaultPackageFeatures,
           };
         })());
-        return { __proto__: pos$383, internal: debug };
+        return { [nix.POS]: pos$383, internal: debug };
       })(), formals$25);
       const diffDefaultPackageFeatures = nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$26);
@@ -3449,7 +3449,7 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (output) => nix.str`ln -s $
         nix.assert_(nix.builtins.isAttrs(crateConfigs), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/rust/build-rust-crate/test/rcgen-crates.nix:4772:7");
         const prefixValues = (prefix) => nix.app(nix.sel(lib, "mapAttrs"), (n) => (v) => nix.attrsDyn({}, [[nix.str`${prefix}`, v]]));
         const mergedFeatures = nix.thunk(() => nix.app(prefixValues, "crate2nix", nix.thunk(() => nix.app(mergePackageFeatures, nix.thunk(() => ({
-              __proto__: pos$384,
+              [nix.POS]: pos$384,
               crateConfigs: crateConfigs,
               packageId: packageId,
               target: target,
@@ -3461,7 +3461,7 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (output) => nix.str`ln -s $
         const onlyInCrate2Nix = nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (n) => (v) => (nix.asBool(nix.has(v, "crate2nix")) && nix.asBool(!nix.asBool(nix.has(v, "cargo")))), combined))));
         const differentFeatures = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (n) => (v) => (nix.asBool((nix.asBool(nix.has(v, "crate2nix")) && nix.asBool(nix.has(v, "cargo")))) && nix.asBool(!nix.eq(nix.selOr(v, () => [], "crate2nix", "features"), nix.selOr(v, () => [], "cargo", "resolved_default_features")))), combined));
         return nix.builtins.toJSON(nix.thunk(() => ({
-            __proto__: pos$385,
+            [nix.POS]: pos$385,
             onlyInCargo: onlyInCargo,
             onlyInCrate2Nix: onlyInCrate2Nix,
             differentFeatures: differentFeatures,
@@ -3492,13 +3492,13 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (output) => nix.str`ln -s $
         const depWithResolvedFeatures = (dependency) => (() => {
           const packageId_1 = nix.thunk(() => nix.sel(dependency, "packageId"));
           const features_1 = nix.thunk(() => nix.app(dependencyFeatures, enabledFeatures, dependency));
-          return { __proto__: pos$386, packageId: packageId_1, features: features_1 };
+          return { [nix.POS]: pos$386, packageId: packageId_1, features: features_1 };
         })();
         const resolveDependencies = (cache) => (path) => (dependencies) => (() => {
           nix.assert_(nix.builtins.isAttrs(cache), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/rust/build-rust-crate/test/rcgen-crates.nix:4843:11");
           nix.assert_(nix.builtins.isList(dependencies), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/rust/build-rust-crate/test/rcgen-crates.nix:4844:11");
           const enabledDependencies = nix.thunk(() => nix.app(filterEnabledDependencies, nix.thunk(() => ({
-              __proto__: pos$387,
+              [nix.POS]: pos$387,
               dependencies: dependencies,
               target: target,
               features: enabledFeatures,
@@ -3512,7 +3512,7 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (output) => nix.str`ln -s $
               const cacheFeatures = nix.thunk(() => nix.selOr(cache_1, () => [], nix.key(nix.force(packageId_1))));
               const combinedFeatures = nix.thunk(() => nix.app(sortedUnique, nix.thunk(() => nix.concat(cacheFeatures, features_1))));
               return (nix.asBool((nix.asBool(nix.has(cache_1, nix.key(nix.force(packageId_1)))) && nix.asBool(nix.eq(nix.sel(cache_1, nix.key(nix.force(packageId_1))), combinedFeatures)))) ? nix.force(cache_1) : nix.app(mergePackageFeatures, nix.thunk(() => ({
-                  __proto__: pos$388,
+                  [nix.POS]: pos$388,
                   features: combinedFeatures,
                   featuresByPackageId: cache_1,
                   crateConfigs: crateConfigs,
@@ -3542,7 +3542,7 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (output) => nix.str`ln -s $
         nix.assert_(nix.builtins.isAttrs(target), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/rust/build-rust-crate/test/rcgen-crates.nix:4903:7");
         return nix.app(nix.sel(lib, "filter"), (dep) => (() => {
             const targetFunc = nix.thunk(() => nix.selOr(dep, () => (features_1) => true, "target"));
-            return (nix.asBool(nix.app(targetFunc, nix.thunk(() => ({ __proto__: pos$389, features: features, target: target })))) && nix.asBool((nix.asBool(!nix.asBool(nix.selOr(dep, () => false, "optional"))) || nix.asBool(nix.builtins.any(nix.thunk(() => nix.app(doesFeatureEnableDependency, dep)), features)))));
+            return (nix.asBool(nix.app(targetFunc, nix.thunk(() => ({ [nix.POS]: pos$389, features: features, target: target })))) && nix.asBool((nix.asBool(!nix.asBool(nix.selOr(dep, () => false, "optional"))) || nix.asBool(nix.builtins.any(nix.thunk(() => nix.app(doesFeatureEnableDependency, dep)), features)))));
           })(), dependencies);
       })(), formals$29);
       const doesFeatureEnableDependency = (dependency) => (feature) => (() => {
@@ -3595,7 +3595,7 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (output) => nix.str`ln -s $
       })();
       const deprecationWarning = (message) => (value) => (nix.asBool(strictDeprecation) ? nix.builtins.throw(nix.thunk(() => nix.str`strictDeprecation enabled, aborting: ${message}`)) : nix.builtins.trace(message, value));
       return {
-        __proto__: pos$390,
+        [nix.POS]: pos$390,
         crates,
         defaultTarget,
         sourceFilter,
@@ -3617,7 +3617,7 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (output) => nix.str`ln -s $
       };
     })());
     return {
-      __proto__: pos$391,
+      [nix.POS]: pos$391,
       rootCrate,
       workspaceMembers,
       allWorkspaceMembers,

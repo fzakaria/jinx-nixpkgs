@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const python = nix.arg($, "python");
   const setuptools = nix.arg($, "setuptools");
   const table = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://www.six-group.com/dam/download/financial-information/data-center/iso-currrency/lists/list-one.xml",
       hash: "sha256-r1mRvI/qcOYOGKVzXHJGFdYxc+YlzpcdnWJExaF0Mp0=",
     }))));
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.16";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "dahlia",
           repo: "iso4217",
           tag: version,
@@ -50,7 +50,7 @@ cp -r ${table} $out/${nix.sel(python, "sitePackages")}/iso4217/table.xml
       const enabledTestPaths = nix.thunk(() => ["iso4217/test.py"]);
       const pythonImportsCheck = nix.thunk(() => ["iso4217"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "ISO 4217 currency data package for Python",
         homepage: "https://github.com/dahlia/iso4217",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),
@@ -60,7 +60,7 @@ cp -r ${table} $out/${nix.sel(python, "sitePackages")}/iso4217/table.xml
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

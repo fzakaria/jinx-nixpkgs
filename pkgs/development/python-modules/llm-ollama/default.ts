@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.16.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "taketwo",
           repo: "llm-ollama",
           tag: version,
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_asyncio, pytest_mock, writableTmpDirAsHomeHook]);
       const pythonImportsCheck = nix.thunk(() => ["llm_ollama"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         tests: nix.thunk(() => nix.app(nix.sel(llm, "mkPluginTest"), llm_ollama)),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "LLM plugin providing access to Ollama models using HTTP API",
         homepage: "https://github.com/taketwo/llm-ollama",
         changelog: nix.thunk(() => nix.str`https://github.com/taketwo/llm-ollama/releases/tag/${version}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

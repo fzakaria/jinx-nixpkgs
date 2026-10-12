@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const minc_tools = nix.arg($, "minc_tools");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "conglomerate",
       version: "1.6.80-unstable-2023-01-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BIC-MNI",
           repo: "conglomerate",
           rev: "6fb26084f2871a85044e2e4afc868982702b40ed",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/BIC-MNI/conglomerate",
         description: "More command-line utilities for working with MINC files",
         maintainers: nix.thunk(() => (() => {

@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.30.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tfranzel",
           repo: "drf-spectacular",
           tag: version,
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [django, djangorestframework, inflection, jsonschema, pyyaml, uritemplate]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, sidecar: nix.thunk(() => [drf_spectacular_sidecar]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, sidecar: nix.thunk(() => [drf_spectacular_sidecar]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([
         dj_rest_auth,
         django_allauth,
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["drf_spectacular"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Sane and flexible OpenAPI 3 schema generation for Django REST framework",
         homepage: "https://github.com/tfranzel/drf-spectacular",
         changelog: nix.thunk(() => nix.str`https://github.com/tfranzel/drf-spectacular/releases/tag/${version}`),
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

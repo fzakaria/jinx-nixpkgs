@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const camlp_streams = nix.arg($, "camlp-streams");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ocamlify",
       version: "0.1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/gildor478/ocamlify/releases/download/v${nix.sel(finalAttrs, "version")}/ocamlify-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-u0pGiwLR/5N0eRv+eSkdR71snyiSDPwh8JwuxbcXIGA=",
         })))),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       dontStrip: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/gildor478/ocamlify",
         description: "Include files in OCaml code",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

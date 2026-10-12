@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const makeInstalledTest = nix.arg($, "makeInstalledTest");
   return nix.app(makeInstalledTest, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       tested: nix.thunk(() => nix.sel(pkgs, "gnomeExtensions", "gsconnect")),
       withX11: true,
     })));

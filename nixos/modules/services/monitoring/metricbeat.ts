@@ -49,29 +49,29 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "metricbeat"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     options: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       services: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         metricbeat: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           enable: nix.thunk(() => nix.app(mkEnableOption, "metricbeat")),
-          package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "metricbeat", nix.thunk(() => ({ __proto__: pos$1, example: "metricbeat7" })))),
+          package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "metricbeat", nix.thunk(() => ({ [nix.POS]: pos$1, example: "metricbeat7" })))),
           modules: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "Metricbeat modules are responsible for reading metrics from the various sources.\n\nThis is like `services.metricbeat.settings.metricbeat.modules`,\nbut structured as an attribute set. This has the benefit that multiple\nNixOS modules can contribute settings to a single metricbeat module.\n\nA module can be specified multiple times by choosing a different `<name>`\nfor each, but setting [](#opt-services.metricbeat.modules._name_.module) to the same value.\n\nSee <https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-modules.html>.\n",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.lambda((args_1) => (() => {
                     const $_1 = nix.formals(args_1, formals$2);
                     const name = nix.arg($_1, "name");
                     return {
-                      __proto__: pos$4,
+                      [nix.POS]: pos$4,
                       freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                       options: nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         module: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$2,
+                            [nix.POS]: pos$2,
                             type: nix.thunk(() => nix.sel(types, "str")),
                             default: name,
                             description: "The name of the module.\n\nLook for the value after `module:` on the individual\nmodule pages linked from <https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-modules.html>.\n",
@@ -80,9 +80,9 @@ export default nix.lambda((args) => (() => {
                     };
                   })(), formals$2))))),
               example: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 system: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   metricsets: nix.thunk(() => [
                     "cpu",
                     "load",
@@ -97,36 +97,36 @@ export default nix.lambda((args) => (() => {
                   period: "10s",
                   processes: nix.thunk(() => [".*"]),
                   cpu: nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     metrics: nix.thunk(() => ["percentages", "normalized_percentages"]),
                   })),
-                  core: nix.thunk(() => ({ __proto__: pos$6, metrics: nix.thunk(() => ["percentages"]) })),
+                  core: nix.thunk(() => ({ [nix.POS]: pos$6, metrics: nix.thunk(() => ["percentages"]) })),
                 })),
               })),
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: "",
                         description: "Name of the beat. Defaults to the hostname.\nSee <https://www.elastic.co/guide/en/beats/metricbeat/current/configuration-general-options.html#_name>.\n",
                       })))),
                     tags: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                         default: [],
                         description: "Tags to place on the shipped metrics.\nSee <https://www.elastic.co/guide/en/beats/metricbeat/current/configuration-general-options.html#_tags_2>.\n",
                       })))),
                     metricbeat: nix.thunk(() => ({
-                      __proto__: pos$13,
+                      [nix.POS]: pos$13,
                       modules: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$12,
+                          [nix.POS]: pos$12,
                           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(settingsFormat, "type")))),
                           default: [],
                           internal: true,
@@ -142,37 +142,37 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "settings", "metricbeat", "modules"), [])),
             message: "services.metricbeat: You must configure one or more modules.",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           metricbeat: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             settings: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               metricbeat: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 modules: nix.thunk(() => nix.app(attrValues, nix.thunk(() => nix.sel(cfg, "modules")))),
               })),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           services: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             metricbeat: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               description: "metricbeat metrics shipper",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/metricbeat \\
   -c ${nix.app(nix.sel(settingsFormat, "generate"), "metricbeat.yml", nix.thunk(() => nix.sel(cfg, "settings")))} \\
   --path.data $STATE_DIRECTORY \\

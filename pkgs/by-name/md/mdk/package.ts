@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const glib = nix.arg($, "glib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gnu-mdk",
       version: "1.3.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/mdk/v${nix.sel(finalAttrs, "version")}/mdk-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-67ljk4xojBUP9qrtwp8w0JAgoeMdVbMMIQHwh3NRbRk=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib]),
       postInstall: "mkdir -p $out/share/emacs/site-lisp/\ncp -v ./misc/*.el $out/share/emacs/site-lisp\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GNU MIX Development Kit (MDK)",
         homepage: "https://www.gnu.org/software/mdk/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

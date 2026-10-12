@@ -43,13 +43,13 @@ export default nix.lambda((args) => (() => {
 `);
   const needDrm = nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool((nix.asBool(amd) || nix.asBool(msm))) || nix.asBool(panfrost))) || nix.asBool(panthor))) || nix.asBool(intel)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nvtop",
       version: "3.3.2",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Syllo",
           repo: "nvtop",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([cmake], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")), nix.thunk(() => [gtest])), nix.app(nix.sel(lib, "optional"), nvidia, addDriverRunpath)))),
       buildInputs: nix.thunk(() => nix.concat([ncurses], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), udev), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nvidia) && nix.asBool(cudaSupport))), nix.thunk(() => nix.sel(cudaPackages, "cuda_nvml_dev"))), nix.app(nix.sel(lib, "optional"), needDrm, libdrm))))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), needDrm, nix.thunk(() => nix.str`-isystem ${nix.app(nix.sel(lib, "getDev"), libdrm)}/include/libdrm`))),
       })),
       postFixup: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), needDrm, drm_postFixup), nix.app(nix.sel(lib, "optionalString"), nvidia, "addDriverRunpath $out/bin/nvtop"))),
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "htop-like task monitor for AMD, Adreno, Intel and NVIDIA GPUs",
         longDescription: "Nvtop stands for Neat Videocard TOP, a (h)top like task monitor for AMD, Adreno, Intel and NVIDIA GPUs.\nIt can handle multiple GPUs and print information about them in a htop familiar way.\n",
         homepage: "https://github.com/Syllo/nvtop",

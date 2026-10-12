@@ -43,58 +43,58 @@ ${nix.builtins.concatStringsSep("\n", nix.thunk(() => nix.app(nix.sel(lib, "mapA
 `));
   const lessKey = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "lessconfig", configText));
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       programs: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         less: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "less, a file pager")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "less", nix.thunk(() => ({})))),
           configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${pkgs.my-configs}/lesskey\"")),
               description: "Path to lesskey configuration file.\n\n{option}`configFile` takes precedence over {option}`commands`,\n{option}`clearDefaultCommands`, {option}`lineEditingKeys`, and\n{option}`envVariables`.\n",
             })))),
           commands: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$2, h: "noaction 5\\e(", l: "noaction 5\\e)" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$2, h: "noaction 5\\e(", l: "noaction 5\\e)" })),
               description: "Defines new command keys.",
             })))),
           clearDefaultCommands: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Clear all default commands.\nYou should remember to set the quit key.\nOtherwise you will not be able to leave less without killing it.\n",
             })))),
           lineEditingKeys: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$5, e: "abort" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$5, e: "abort" })),
               description: "Defines new line-editing keys.",
             })))),
           envVariables: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
-              default: nix.thunk(() => ({ __proto__: pos$7, LESS: "-R" })),
-              example: nix.thunk(() => ({ __proto__: pos$8, LESS: "--quit-if-one-screen" })),
+              default: nix.thunk(() => ({ [nix.POS]: pos$7, LESS: "-R" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$8, LESS: "--quit-if-one-screen" })),
               description: "Defines environment variables.",
             })))),
           lessopen: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"|${pkgs.lesspipe}/bin/lesspipe.sh %s\"")),
               description: "Before less opens a file, it first gives your input preprocessor a chance to modify the way the contents of the file are displayed.\n",
             })))),
           lessclose: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "When less closes a file opened in such a way, it will call another program, called the input postprocessor,\nwhich may perform any desired clean-up action (such as deleting the replacement file created by LESSOPEN).\n",
@@ -103,19 +103,19 @@ ${nix.builtins.concatStringsSep("\n", nix.thunk(() => nix.app(nix.sel(lib, "mapA
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         environment: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           variables: nix.thunk(() => nix.update({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             LESSKEYIN_SYSTEM: nix.thunk(() => nix.builtins.toString(lessKey)),
-          }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "lessopen"), null)), nix.thunk(() => ({ __proto__: pos$16, LESSOPEN: nix.thunk(() => nix.sel(cfg, "lessopen")) }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "lessclose"), null)), nix.thunk(() => ({ __proto__: pos$17, LESSCLOSE: nix.thunk(() => nix.sel(cfg, "lessclose")) })))))),
+          }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "lessopen"), null)), nix.thunk(() => ({ [nix.POS]: pos$16, LESSOPEN: nix.thunk(() => nix.sel(cfg, "lessopen")) }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "lessclose"), null)), nix.thunk(() => ({ [nix.POS]: pos$17, LESSCLOSE: nix.thunk(() => nix.sel(cfg, "lessclose")) })))))),
         })),
         warnings: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "clearDefaultCommands")) && nix.asBool(nix.builtins.all((x) => !nix.eq(x, "quit"), nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(cfg, "commands")))))))), "config.programs.less.clearDefaultCommands clears all default commands of less but there is no alternative binding for exiting.\nConsider adding a binding for 'quit'.\n")),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "johnazoidberg"))];

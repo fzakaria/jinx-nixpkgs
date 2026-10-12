@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "hivex";
       const version = "1.3.24";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://libguestfs.org/download/hivex/hivex-${version}.tar.gz`),
           hash: "sha256-pS+kXOzJp4rbLShgXWgmHk8f1FFKd4pUcwE9LMyKGTw=",
         }))));
@@ -60,7 +60,7 @@ wrapProgram $out/bin/hivexml \\
     --prefix "PATH" : "$out/bin"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Windows registry hive extraction library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Only")),
         homepage: "https://github.com/libguestfs/hivex",
@@ -68,7 +68,7 @@ wrapProgram $out/bin/hivexml \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

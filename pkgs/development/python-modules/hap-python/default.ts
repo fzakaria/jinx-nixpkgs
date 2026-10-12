@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const zeroconf = nix.arg($, "zeroconf");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "hap-python",
       version: "5.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ikalchev",
           repo: "HAP-python",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,12 +39,12 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [chacha20poly1305_reuseable, cryptography, h11, orjson, zeroconf]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, QRCode: nix.thunk(() => [base36, pyqrcode]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, QRCode: nix.thunk(() => [base36, pyqrcode]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytest_asyncio, pytest_timeout, pytestCheckHook], nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))))),
       pythonImportsCheck: nix.thunk(() => ["pyhap"]),
       disabledTests: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["test_start_from_sync"]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "HomeKit Accessory Protocol implementation",
         homepage: "https://github.com/ikalchev/HAP-python",
         changelog: nix.thunk(() => nix.str`https://github.com/ikalchev/HAP-python/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const patchelf = nix.arg($, "patchelf");
   const SDL = nix.arg($, "SDL");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cheesecutter",
       version: "2.9-beta-3-unstable-2021-02-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "theyamo",
           repo: "CheeseCutter",
           rev: "84450d3614b8fb2cabda87033baab7bedd5a5c98",
@@ -45,7 +45,7 @@ patchelf --set-rpath "$rpath:${rpathSDL}" $out/bin/ccutter
 `);
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tracker program for composing music for the SID chip",
         homepage: "https://github.com/theyamo/CheeseCutter/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

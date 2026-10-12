@@ -33,41 +33,41 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "shibboleth-sp"));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         "shibboleth-sp": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable the shibboleth service",
             })))),
           configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${pkgs.shibboleth-sp}/etc/shibboleth/shibboleth2.xml\"")),
               description: "Path to shibboleth config file",
             })))),
           fastcgi: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to include the shibauthorizer and shibresponder FastCGI processes",
               })))),
             shibAuthorizerPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 9100n,
                 description: "Port for shibauthorizer FastCGI process to bind to",
               })))),
             shibResponderPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 9101n,
                 description: "Port for shibauthorizer FastCGI process to bind to",
@@ -77,55 +77,55 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         systemd: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           services: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             "shibboleth-sp": nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "Provides SSO and federation for web applications",
               after: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "fastcgi", "enable")), nix.thunk(() => ["shibresponder.service", "shibauthorizer.service"]))),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "shibboleth-sp")}/bin/shibd -F -d ${nix.sel(pkgs, "shibboleth-sp")} -c ${nix.sel(cfg, "configFile")}`),
               })),
             })),
             shibresponder: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "fastcgi", "enable")), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 description: "Provides SSO through Shibboleth via FastCGI",
                 after: nix.thunk(() => ["network.target"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 path: nix.thunk(() => [nix.thunk(() => nix.str`${nix.sel(pkgs, "spawn_fcgi")}`)]),
                 environment: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   SHIBSP_CONFIG: nix.thunk(() => nix.str`${nix.sel(cfg, "configFile")}`),
                 })),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "spawn_fcgi")}/bin/spawn-fcgi -n -p ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "fastcgi", "shibResponderPort")))} ${nix.sel(pkgs, "shibboleth-sp")}/lib/shibboleth/shibresponder`),
                 })),
               })))),
             shibauthorizer: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "fastcgi", "enable")), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 description: "Provides SSO through Shibboleth via FastCGI",
                 after: nix.thunk(() => ["network.target"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 path: nix.thunk(() => [nix.thunk(() => nix.str`${nix.sel(pkgs, "spawn_fcgi")}`)]),
                 environment: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   SHIBSP_CONFIG: nix.thunk(() => nix.str`${nix.sel(cfg, "configFile")}`),
                 })),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "spawn_fcgi")}/bin/spawn-fcgi -n -p ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "fastcgi", "shibAuthorizerPort")))} ${nix.sel(pkgs, "shibboleth-sp")}/lib/shibboleth/shibauthorizer`),
                 })),
               })))),
           })),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$21, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$21, maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=shibboleth-sp.ts.map

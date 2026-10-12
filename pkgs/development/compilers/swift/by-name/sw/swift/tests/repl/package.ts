@@ -12,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const swift = nix.arg($, "swift");
   return nix.app(runCommand, "swift-test-repl", nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       nativeBuildInputs: nix.thunk(() => [swift]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         badPlatforms: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "systems", "inspect", "patterns", "isDarwin"))]),
       })),
     })), "swift repl <<EOF | grep \"Saying: Hello, Nixpkgs!\"\n  func say(message: String) { print(\"Saying: \\(message)\") }\n  say(message: \"Hello, Nixpkgs!\")\nEOF\ntouch \"$out\"\n");

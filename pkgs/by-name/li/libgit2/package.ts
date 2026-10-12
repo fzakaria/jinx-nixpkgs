@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
   const withExperimentalSha256 = nix.argOr($, "withExperimentalSha256", () => false);
   const krb5 = nix.arg($, "krb5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "libgit2",
       version: "1.9.7",
       outputs: nix.thunk(() => ["lib", "dev", "out"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libgit2",
           repo: "libgit2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,19 +61,19 @@ export default nix.lambda((args) => (() => {
       checkPhase: "testArgs=(-v -xonline)\n\n# slow\ntestArgs+=(-xclone::nonetwork::bad_urls)\n\n# failed to set permissions on ...: Operation not permitted\ntestArgs+=(-xrepo::init::extended_1)\ntestArgs+=(-xrepo::template::extended_with_template_and_shared_mode)\n\n(\n  set -x\n  ./libgit2_tests ${testArgs[@]}\n)\n",
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withExperimentalSha256, "# Downstream Rust bindings (git2-rs / git2-sys) expect experimental headers\n# to be located at 'git2/experimental.h', but upstream libgit2 installs them\n# into 'git2-experimental/' when EXPERIMENTAL_SHA256 is enabled.\nln -s git2-experimental $dev/include/git2\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (v) => nix.app(nix.sel(v, "override"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               libgit2: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             }))), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             "libgit2-glib": libgit2_glib,
             pygit2: nix.thunk(() => nix.attr(python3Packages, "pygit2")),
             romkatv_libgit2: nix.thunk(() => nix.attr(gitstatus, "romkatv_libgit2")),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/libgit2/libgit2/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Linkable library implementation of Git that you can use in your application",
         mainProgram: "git2",

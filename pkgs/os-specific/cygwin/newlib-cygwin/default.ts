@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const w32api_headers = nix.arg($, "w32api-headers");
   const headersOnly = nix.argOr($, "headersOnly", () => false);
   return nix.app(nix.sel((nix.asBool(headersOnly) ? nix.force(stdenvNoCC) : nix.force(stdenvNoLibc)), "mkDerivation"), (finalAttrs) => nix.update({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: nix.thunk(() => nix.str`newlib-cygwin${nix.app(nix.sel(lib, "optionalString"), headersOnly, "-headers")}`),
       version: "3.6.4",
       src: nix.thunk(() => nix.app(nix.sel(buildPackages, "fetchgit"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://cygwin.com/git/newlib-cygwin.git",
           rev: nix.thunk(() => nix.str`cygwin-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-+WYKwqcDAc7286GzbgKKAxNJCOf3AeNnF8XEVPoor+g=",
@@ -40,12 +40,12 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => nix.concat(["out"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(headersOnly)), nix.thunk(() => ["bin", "dev", "man"])))),
       patches: nix.thunk(() => nix.concat([nix.path(here, "./fix-winsize.patch")], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(headersOnly)), nix.thunk(() => [nix.path(here, "./store-tls-pointer-in-win32-tls.patch")])), nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(!nix.asBool(headersOnly)) && nix.asBool(!nix.eq(nix.sel(stdenvNoLibc, "hostPlatform"), nix.sel(stdenvNoLibc, "buildPlatform"))))), nix.path(here, "./fix-cross.patch"))))),
       passthru: nix.thunk(() => nix.update({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         w32api: nix.thunk(() => (nix.asBool(headersOnly) ? nix.force(w32api_headers) : nix.force(w32api))),
         headersOnly: headersOnly,
-      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(headersOnly)), nix.thunk(() => ({ __proto__: pos$3, threadModel: "posix" }))))),
+      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(headersOnly)), nix.thunk(() => ({ [nix.POS]: pos$3, threadModel: "posix" }))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://cygwin.com/",
         description: "A DLL which provides substantial POSIX API functionality on Windows.",
         license: nix.thunk(() => (() => {
@@ -59,18 +59,18 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "corngood"))]),
       })),
     }, (nix.asBool(headersOnly) ? {
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       dontConfigure: true,
       dontBuild: true,
       installPhase: "mkdir -p $out/include/\ncp -r newlib/libc/include/* $out/include/\ncp -r winsup/cygwin/include/* $out/include/\n",
     } : {
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       postPatch: "patchShebangs --build winsup/cygwin/scripts\n",
       autoreconfFlags: nix.thunk(() => nix.concat(["winsup"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(stdenvNoLibc, "hostPlatform"), nix.sel(stdenvNoLibc, "buildPlatform"))), "."))),
       env: nix.thunk(() => (() => {
         const libflag = nix.thunk(() => nix.str`-Wl,-L${nix.app(nix.sel(lib, "getLib"), w32api)}${nix.selOr(w32api, () => "/lib/w32api", "libdir")}`);
         return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           CFLAGS_FOR_TARGET: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [libflag]))),
           CXXFLAGS_FOR_TARGET: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=register", libflag]))),
         };

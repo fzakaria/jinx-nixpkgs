@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const melpaBuild = nix.arg($, "melpaBuild");
   return nix.app(melpaBuild, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "yes-no",
       version: "0-unstable-2017-10-01",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://raw.githubusercontent.com/emacsmirror/emacswiki.org/143bcaeb679a8fa8a548e92a5a9d5c2baff50d9c/yes-no.el",
           hash: "sha256-ceCOBFfixmGVB3kaSvOv1YZThC2pleYnS8gXhLrjhA8=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.emacswiki.org/emacs/yes-no.el",
         description: "Specify use of `y-or-n-p' or `yes-or-no-p' on a case-by-case basis",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

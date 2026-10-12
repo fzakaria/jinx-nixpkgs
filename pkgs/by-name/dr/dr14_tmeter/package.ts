@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const faad2 = nix.arg($, "faad2");
   const lame = nix.arg($, "lame");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dr14_tmeter",
       version: "1.0.16-unstable-2025-09-27",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hboetes",
           repo: "dr14_t.meter",
           rev: "f9d62f60c30d9404d4c4b644931e76049332310c",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Compute the DR14 of a given audio file according to the procedure described by the Pleasurize Music Foundation",
         mainProgram: "dr14_tmeter",
         homepage: "https://github.com/hboetes/dr14_t.meter",

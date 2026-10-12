@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const libusb_compat_0_1 = nix.arg($, "libusb-compat-0_1");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bootloadhid",
       version: "0-unstable-2012-12-08",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://www.obdev.at/downloads/vusb/bootloadHID.2012-12-08.tar.gz",
           hash: "sha256-FU5+OGKaOi7sLfZm7foe4vLppXAY8X2fD48GTMINh1Q=",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       setSourceRoot: "sourceRoot=$(echo */commandline)",
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ninstall bootloadHID $out/bin\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "USB boot loader for AVR microcontrollers with at least 2 kB of boot load section, e.g. ATMega8",
         homepage: "https://www.obdev.at/products/vusb/bootloadhid.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

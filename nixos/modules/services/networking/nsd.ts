@@ -119,7 +119,7 @@ export default nix.lambda((args) => (() => {
   const stateDir = "/var/lib/nsd";
   const pidFile = nix.thunk(() => nix.add(stateDir, "/var/nsd.pid"));
   const nsdPkg = nix.thunk(() => nix.app(nix.sel(pkgs, "nsd", "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       bind8Stats: nix.thunk(() => nix.sel(cfg, "bind8Stats")),
       ipv6: nix.thunk(() => nix.sel(cfg, "ipv6")),
       ratelimit: nix.thunk(() => nix.sel(cfg, "ratelimit", "enable")),
@@ -131,7 +131,7 @@ export default nix.lambda((args) => (() => {
 sed "s@^\\s*include:\\s*\\"${stateDir}/private/${keyName}\\"\\$@secret: $fakeKey@" -i $out/nsd.conf
 `, keys)));
   const nsdEnv = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "nsd-env",
       paths: nix.thunk(() => nix.concat([configFile], nix.app(nix.lookup(w, "mapAttrsToList"), (name) => (zone) => nix.app(writeZoneData, name, nix.thunk(() => nix.sel(zone, "data"))), zoneConfigs))),
       postBuild: nix.thunk(() => nix.str`echo "checking zone files"
@@ -162,7 +162,7 @@ mv $out/nsd.conf{.orig,}
 `),
     }))));
   const writeZoneData = (name) => (text) => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: nix.thunk(() => nix.str`nsd-zone-${nix.app(mkZoneFileName, name)}`),
       text: text,
       destination: nix.thunk(() => nix.str`/zones/${nix.app(mkZoneFileName, name)}`),
@@ -262,22 +262,22 @@ ${nix.app(forEach, "  notify: ", nix.thunk(() => nix.sel(zone, "notify")))}
   notify-retry:                        ${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(zone, "notifyRetry")))}
 ${nix.app(forEach, "  provide-xfr: ", nix.thunk(() => nix.sel(zone, "provideXFR")))}
 `;
-  const zoneConfigs = nix.thunk(() => nix.app(zoneConfigs$, nix.thunk(() => ({})), "", nix.thunk(() => ({ __proto__: pos$4, children: nix.thunk(() => nix.sel(cfg, "zones")) }))));
+  const zoneConfigs = nix.thunk(() => nix.app(zoneConfigs$, nix.thunk(() => ({})), "", nix.thunk(() => ({ [nix.POS]: pos$4, children: nix.thunk(() => nix.sel(cfg, "zones")) }))));
   const zoneConfigs$ = (parent) => (name) => (zone) => (nix.asBool((nix.asBool((nix.asBool(!nix.asBool(nix.has(zone, "children"))) || nix.asBool(nix.eq(nix.sel(zone, "children"), null)))) || nix.asBool(nix.eq(nix.sel(zone, "children"), {})))) ? nix.app(nix.lookup(w, "listToAttrs"), nix.thunk(() => [
       nix.thunk(() => nix.app(nix.lookup(w, "nameValuePair"), name, nix.thunk(() => nix.update(parent, zone)))),
-    ])) : nix.app(nix.lookup(w, "zipAttrsWith"), (name_1) => nix.force(nix.lookup(w, "head")), nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (name_1) => (child) => nix.app(zoneConfigs$, nix.thunk(() => nix.update(parent, nix.update(zone, { __proto__: pos$5, children: nix.thunk(() => ({})) }))), name_1, child), nix.thunk(() => nix.sel(zone, "children"))))));
+    ])) : nix.app(nix.lookup(w, "zipAttrsWith"), (name_1) => nix.force(nix.lookup(w, "head")), nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (name_1) => (child) => nix.app(zoneConfigs$, nix.thunk(() => nix.update(parent, nix.update(zone, { [nix.POS]: pos$5, children: nix.thunk(() => ({})) }))), name_1, child), nix.thunk(() => nix.sel(zone, "children"))))));
   const zoneOptions = nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-      __proto__: pos$31,
+      [nix.POS]: pos$31,
       options: nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         allowAXFRFallback: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
             default: true,
             description: "If NSD as secondary server should be allowed to AXFR if the primary\nserver does not allow IXFR.\n",
           })))),
         allowNotify: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
             default: [],
             example: nix.thunk(() => [
@@ -288,43 +288,43 @@ ${nix.app(forEach, "  provide-xfr: ", nix.thunk(() => nix.sel(zone, "provideXFR"
             description: "Listed primary servers are allowed to notify this secondary server.\n\nFormat: `<ip> <key-name | NOKEY | BLOCKED>`\n\n`<ip>` either a plain IPv4/IPv6 address or range.\nValid patters for ranges:\n* `10.0.0.0/24`: via subnet size\n* `10.0.0.0&255.255.255.0`: via subnet mask\n* `10.0.0.1-10.0.0.254`: via range\n\nA optional port number could be added with a '@':\n* `2001:1234::1@1234`\n\n`<key-name | NOKEY | BLOCKED>`\n* `<key-name>` will use the specified TSIG key\n* `NOKEY` no TSIG signature is required\n* `BLOCKED`notifies from non-listed or blocked IPs will be ignored\n",
           })))),
         children: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "anything")))),
             default: nix.thunk(() => ({})),
             description: "Children zones inherit all options of their parents. Attributes\ndefined in a child will overwrite the ones of its parent. Only\nleaf zones will be actually served. This way it's possible to\ndefine maybe zones which share most attributes without\nduplicating everything. This mechanism replaces nsd's patterns\nin a save and functional way.\n",
           })))),
         data: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
             default: "",
             description: "The actual zone data. This is the content of your zone file.\nUse imports or pkgs.lib.readFile if you don't want this data in your config file.\n",
           })))),
         dnssec: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "DNSSEC")),
         dnssecPolicy: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           algorithm: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "RSASHA256",
               description: "Which algorithm to use for DNSSEC",
             })))),
           keyttl: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "1h",
               description: "TTL for dnssec records",
             })))),
           coverage: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "1y",
               description: "The length of time to ensure that keys will be correct; no action will be taken to create new keys to be activated after this time.\n",
             })))),
           zsk: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: keyPolicy,
               default: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 keySize: 2048n,
                 prePublish: "1w",
                 postPublish: "1w",
@@ -333,10 +333,10 @@ ${nix.app(forEach, "  provide-xfr: ", nix.thunk(() => nix.sel(zone, "provideXFR"
               description: "Key policy for zone signing keys",
             })))),
           ksk: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: keyPolicy,
               default: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 keySize: 4096n,
                 prePublish: "1mo",
                 postPublish: "1mo",
@@ -346,70 +346,70 @@ ${nix.app(forEach, "  provide-xfr: ", nix.thunk(() => nix.sel(zone, "provideXFR"
             })))),
         })),
         maxRefreshSecs: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")))),
             default: null,
             description: "Limit refresh time for secondary zones. This is the timer which\nchecks to see if the zone has to be refetched when it expires.\nNormally the value from the SOA record is used, but this  option\nrestricts that value.\n",
           })))),
         minRefreshSecs: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")))),
             default: null,
             description: "Limit refresh time for secondary zones.\n",
           })))),
         maxRetrySecs: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")))),
             default: null,
             description: "Limit retry time for secondary zones. This is the timeout after\na failed fetch attempt for the zone. Normally the value from\nthe SOA record is used, but this option restricts that value.\n",
           })))),
         minRetrySecs: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")))),
             default: null,
             description: "Limit retry time for secondary zones.\n",
           })))),
         multiMasterCheck: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
             default: false,
             description: "If enabled, checks all masters for the last zone version.\nIt uses the higher version from all configured masters.\nUseful if you have multiple masters that have different version numbers served.\n",
           })))),
         notify: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
             default: [],
             example: nix.thunk(() => ["10.0.0.1@3721 my_key", "::5 NOKEY"]),
             description: "This primary server will notify all given secondary servers about\nzone changes.\n\nFormat: `<ip> <key-name | NOKEY>`\n\n`<ip>` a plain IPv4/IPv6 address with on optional port number (ip@port)\n\n`<key-name | NOKEY>`\n- `<key-name>` sign notifies with the specified key\n- `NOKEY` don't sign notifies\n",
           })))),
         notifyRetry: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
             default: 5n,
             description: "Specifies the number of retries for failed notifies. Set this along with notify.\n",
           })))),
         outgoingInterface: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
             default: null,
             example: "2000::1@1234",
             description: "This address will be used for zone-transfer requests if configured\nas a secondary server or notifications in case of a primary server.\nSupply either a plain IPv4 or IPv6 address with an optional port\nnumber (ip@port).\n",
           })))),
         provideXFR: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
             default: [],
             example: nix.thunk(() => ["192.0.2.0/24 NOKEY", "192.0.2.0/24 my_tsig_key_name"]),
             description: "Allow these IPs and TSIG to transfer zones, addr TSIG|NOKEY|BLOCKED\naddress range 192.0.2.0/24, 1.2.3.4&255.255.0.0, 3.0.2.20-3.0.2.40\n",
           })))),
         requestXFR: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
             default: [],
             description: "Format: `[AXFR|UDP] <ip-address> <key-name | NOKEY>`\n",
           })))),
         rrlWhitelist: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             type: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
               return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "enum"), nix.thunk(() => [
@@ -429,7 +429,7 @@ ${nix.app(forEach, "  provide-xfr: ", nix.thunk(() => nix.sel(zone, "provideXFR"
             description: "Whitelists the given rrl-types.\n",
           })))),
         zoneStats: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
             default: null,
             example: "%s",
@@ -438,26 +438,26 @@ ${nix.app(forEach, "  provide-xfr: ", nix.thunk(() => nix.sel(zone, "provideXFR"
       })),
     }))));
   const keyPolicy = nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-      __proto__: pos$37,
+      [nix.POS]: pos$37,
       options: nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         keySize: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
             description: "Key size in bits",
           })))),
         prePublish: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             description: "How long in advance to publish new keys",
           })))),
         postPublish: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             description: "How long after deactivation to keep a key in the zone",
           })))),
         rollPeriod: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             description: "How frequently to change keys",
           })))),
@@ -465,7 +465,7 @@ ${nix.app(forEach, "  provide-xfr: ", nix.thunk(() => nix.sel(zone, "provideXFR"
     }))));
   const dnssecZones = nix.thunk(() => nix.app(nix.lookup(w, "filterAttrs"), (n) => (v) => (nix.asBool(nix.has(v, "dnssec")) ? nix.sel(v, "dnssec") : false), zoneConfigs));
   const dnssec = nix.thunk(() => !nix.eq(dnssecZones, {}));
-  const dnssecTools = nix.thunk(() => nix.app(nix.sel(pkgs, "bind", "override"), nix.thunk(() => ({ __proto__: pos$38, enablePython: true }))));
+  const dnssecTools = nix.thunk(() => nix.app(nix.sel(pkgs, "bind", "override"), nix.thunk(() => ({ [nix.POS]: pos$38, enablePython: true }))));
   const signZones = nix.thunk(() => nix.app(nix.lookup(w, "optionalString"), dnssec, nix.thunk(() => nix.str`install -m 0600 -o "${username}" -g "${username}" -d "${stateDir}/dnssec"
 
 ${nix.app(nix.lookup(w, "concatStrings"), nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), signZone, dnssecZones)))}
@@ -489,187 +489,187 @@ ${nsdPkg}/sbin/nsd-checkzone ${name} ${stateDir}/zones/${name}.signed && mv -v $
 };
 `));
   return {
-    __proto__: pos$104,
+    [nix.POS]: pos$104,
     options: nix.thunk(() => ({
-      __proto__: pos$87,
+      [nix.POS]: pos$87,
       services: nix.thunk(() => ({
-        __proto__: pos$86,
+        [nix.POS]: pos$86,
         nsd: nix.thunk(() => ({
-          __proto__: pos$85,
+          [nix.POS]: pos$85,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "NSD authoritative DNS server")),
           bind8Stats: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "BIND8 like statistics")),
           dnssecInterval: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "1h",
               description: "How often to check whether dnssec key rollover is required\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               description: "Extra nsd config.\n",
             })))),
           hideVersion: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "Whether NSD should answer VERSION.BIND and VERSION.SERVER CHAOS class queries.\n",
             })))),
           identity: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "unidentified server",
               description: "Identify the server (CH TXT ID.SERVER entry).\n",
             })))),
           interfaces: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: nix.thunk(() => ["127.0.0.0", "::1"]),
               description: "What addresses the server should listen to.\n",
             })))),
           ipFreebind: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether to bind to nonlocal addresses and interfaces that are down.\nSimilar to ip-transparent.\n",
             })))),
           ipTransparent: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Allow binding to non local addresses.\n",
             })))),
           ipv4: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "Whether to listen on IPv4 connections.\n",
             })))),
           ipv4EDNSSize: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
               default: 4096n,
               description: "Preferred EDNS buffer size for IPv4.\n",
             })))),
           ipv6: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "Whether to listen on IPv6 connections.\n",
             })))),
           ipv6EDNSSize: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
               default: 4096n,
               description: "Preferred EDNS buffer size for IPv6.\n",
             })))),
           logTimeAscii: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$50,
+              [nix.POS]: pos$50,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "Log time in ascii, if false then in unix epoch seconds.\n",
             })))),
           nsid: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: null,
               description: "NSID identity (hex string, or \"ascii_somestring\").\n",
             })))),
           port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$52,
+              [nix.POS]: pos$52,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               default: 53n,
               description: "Port the service should bind do.\n",
             })))),
           reuseport: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isLinux")),
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "pkgs.stdenv.hostPlatform.isLinux")),
               description: "Whether to enable SO_REUSEPORT on all used sockets. This lets multiple\nprocesses bind to the same port. This speeds up operation especially\nif the server count is greater than one and makes fast restarts less\nprone to fail\n",
             })))),
           rootServer: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$54,
+              [nix.POS]: pos$54,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether this server will be a root server (a DNS root server, you\nusually don't want that).\n",
             })))),
           roundRobin: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "round robin rotation of records")),
           serverCount: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$55,
+              [nix.POS]: pos$55,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
               default: 1n,
               description: "Number of NSD servers to fork. Put the number of CPUs to use here.\n",
             })))),
           statistics: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")))),
               default: null,
               description: "Statistics are produced every number of seconds. Prints to log.\nIf null no statistics are logged.\n",
             })))),
           tcpCount: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$57,
+              [nix.POS]: pos$57,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
               default: 100n,
               description: "Maximum number of concurrent TCP connections per server.\n",
             })))),
           tcpQueryCount: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$58,
+              [nix.POS]: pos$58,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
               default: 0n,
               description: "Maximum number of queries served on a single TCP connection.\n0 means no maximum.\n",
             })))),
           tcpTimeout: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
               default: 120n,
               description: "TCP timeout in seconds.\n",
             })))),
           verbosity: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$60,
+              [nix.POS]: pos$60,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
               default: 0n,
               description: "Verbosity level.\n",
             })))),
           version: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$61,
+              [nix.POS]: pos$61,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: null,
               description: "The version string replied for CH TXT version.server and version.bind\nqueries. Will use the compiled package version on null.\nSee hideVersion for enabling/disabling this responses.\n",
             })))),
           xfrdReloadTimeout: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$62,
+              [nix.POS]: pos$62,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
               default: 1n,
               description: "Number of seconds between reloads triggered by xfrd.\n",
             })))),
           zonefilesCheck: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$63,
+              [nix.POS]: pos$63,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "Whether to check mtime of all zone files on start and sighup.\n",
             })))),
           zonefilesWrite: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$64,
+              [nix.POS]: pos$64,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
               default: 0n,
               description: "Write changed secondary zones to their zonefile every N seconds.\nIf the zone (pattern) configuration has \"\" zonefile, it is not written.\nZones that have received zone transfer updates are written to their zonefile.\n0 disables writing to zone files.\n",
             })))),
           keys: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$69,
+              [nix.POS]: pos$69,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                    __proto__: pos$68,
+                    [nix.POS]: pos$68,
                     options: nix.thunk(() => ({
-                      __proto__: pos$67,
+                      [nix.POS]: pos$67,
                       algorithm: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$65,
+                          [nix.POS]: pos$65,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                           default: "hmac-sha256",
                           description: "Authentication algorithm for this key.\n",
                         })))),
                       keyFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$66,
+                          [nix.POS]: pos$66,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
                           description: nix.thunk(() => nix.str`Path to the file which contains the actual base64 encoded
 key. The key will be copied into "${stateDir}/private" before
@@ -684,87 +684,87 @@ user.
               description: "Define your TSIG keys here.\n",
             })))),
           ratelimit: nix.thunk(() => ({
-            __proto__: pos$76,
+            [nix.POS]: pos$76,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "ratelimit capabilities")),
             ipv4PrefixLength: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$70,
+                [nix.POS]: pos$70,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")))),
                 default: null,
                 description: "IPv4 prefix length. Addresses are grouped by netblock.\n",
               })))),
             ipv6PrefixLength: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$71,
+                [nix.POS]: pos$71,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")))),
                 default: null,
                 description: "IPv6 prefix length. Addresses are grouped by netblock.\n",
               })))),
             ratelimit: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$72,
+                [nix.POS]: pos$72,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                 default: 200n,
                 description: "Max qps allowed from any query source.\n0 means unlimited. With an verbosity of 2 blocked and\nunblocked subnets will be logged.\n",
               })))),
             slip: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$73,
+                [nix.POS]: pos$73,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")))),
                 default: null,
                 description: "Number of packets that get discarded before replying a SLIP response.\n0 disables SLIP responses. 1 will make every response a SLIP response.\n",
               })))),
             size: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$74,
+                [nix.POS]: pos$74,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                 default: 1000000n,
                 description: "Size of the hashtable. More buckets use more memory but lower\nthe chance of hash hash collisions.\n",
               })))),
             whitelistRatelimit: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$75,
+                [nix.POS]: pos$75,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                 default: 2000n,
                 description: "Max qps allowed from whitelisted sources.\n0 means unlimited. Set the rrl-whitelist option for specific\nqueries to apply this limit instead of the default to them.\n",
               })))),
           })),
           remoteControl: nix.thunk(() => ({
-            __proto__: pos$83,
+            [nix.POS]: pos$83,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "remote control via nsd-control")),
             controlCertFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$77,
+                [nix.POS]: pos$77,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
                 default: "/etc/nsd/nsd_control.pem",
                 description: "Path to the client certificate signed with the server certificate.\nThis file is used by nsd-control and generated by nsd-control-setup.\n",
               })))),
             controlKeyFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$78,
+                [nix.POS]: pos$78,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
                 default: "/etc/nsd/nsd_control.key",
                 description: "Path to the client private key, which is used by nsd-control\nbut not by the server. This file is generated by nsd-control-setup.\n",
               })))),
             interfaces: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$79,
+                [nix.POS]: pos$79,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 default: nix.thunk(() => ["127.0.0.1", "::1"]),
                 description: "Which interfaces NSD should bind to for remote control.\n",
               })))),
             port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$80,
+                [nix.POS]: pos$80,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
                 default: 8952n,
                 description: "Port number for remote control operations (uses TLS over TCP).\n",
               })))),
             serverCertFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$81,
+                [nix.POS]: pos$81,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
                 default: "/etc/nsd/nsd_server.pem",
                 description: "Path to the server self signed certificate, which is used by the server\nbut and by nsd-control. This file is generated by nsd-control-setup.\n",
               })))),
             serverKeyFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$82,
+                [nix.POS]: pos$82,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
                 default: "/etc/nsd/nsd_server.key",
                 description: "Path to the server private key, which is used by the server\nbut not by nsd-control. This file is generated by nsd-control-setup.\n",
               })))),
           })),
           zones: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$84,
+              [nix.POS]: pos$84,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), zoneOptions)),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{ \"serverGroup1\" = {\n    provideXFR = [ \"10.1.2.3 NOKEY\" ];\n    children = {\n      \"example.com.\" = {\n        data = ''\n          $ORIGIN example.com.\n          $TTL    86400\n          @ IN SOA a.ns.example.com. admin.example.com. (\n          ...\n        '';\n      };\n      \"example.org.\" = {\n        data = ''\n          $ORIGIN example.org.\n          $TTL    86400\n          @ IN SOA a.ns.example.com. admin.example.com. (\n          ...\n        '';\n      };\n    };\n  };\n\n  \"example.net.\" = {\n    provideXFR = [ \"10.3.2.1 NOKEY\" ];\n    data = ''\n      ...\n    '';\n  };\n}\n")),
@@ -774,31 +774,31 @@ user.
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$103,
+        [nix.POS]: pos$103,
         assertions: nix.thunk(() => nix.app(nix.lookup(w, "singleton"), nix.thunk(() => ({
-            __proto__: pos$88,
+            [nix.POS]: pos$88,
             assertion: nix.thunk(() => (!nix.asBool(nix.has(zoneConfigs, ".")) || nix.asBool(nix.sel(cfg, "rootServer")))),
             message: nix.thunk(() => nix.add("You have a root zone configured. If this is really what you ", "want, please enable 'services.nsd.rootServer'.")),
           })))),
         environment: nix.thunk(() => ({
-          __proto__: pos$91,
+          [nix.POS]: pos$91,
           systemPackages: nix.thunk(() => [nsdPkg]),
           etc: nix.thunk(() => ({
-            __proto__: pos$90,
-            "nsd/nsd.conf": nix.thunk(() => ({ __proto__: pos$89, source: nix.thunk(() => nix.str`${configFile}/nsd.conf`) })),
+            [nix.POS]: pos$90,
+            "nsd/nsd.conf": nix.thunk(() => ({ [nix.POS]: pos$89, source: nix.thunk(() => nix.str`${configFile}/nsd.conf`) })),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$94,
+          [nix.POS]: pos$94,
           groups: nix.thunk(() => nix.attrsDyn({}, [
             [username, nix.thunk(() => ({
-              __proto__: pos$92,
+              [nix.POS]: pos$92,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "nsd")),
             }))],
           ])),
           users: nix.thunk(() => nix.attrsDyn({}, [
             [username, nix.thunk(() => ({
-              __proto__: pos$93,
+              [nix.POS]: pos$93,
               description: "NSD service user",
               home: stateDir,
               createHome: true,
@@ -808,11 +808,11 @@ user.
           ])),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$102,
+          [nix.POS]: pos$102,
           services: nix.thunk(() => ({
-            __proto__: pos$98,
+            [nix.POS]: pos$98,
             nsd: nix.thunk(() => ({
-              __proto__: pos$96,
+              [nix.POS]: pos$96,
               description: "NSD authoritative only domain name service",
               after: nix.thunk(() => ["network-online.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -820,7 +820,7 @@ user.
               startLimitBurst: 4n,
               startLimitIntervalSec: nix.thunk(() => nix.mul(5n, 60n)),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$95,
+                [nix.POS]: pos$95,
                 ExecStart: nix.thunk(() => nix.str`${nsdPkg}/sbin/nsd -d -c ${nsdEnv}/nsd.conf`),
                 StandardError: "null",
                 PIDFile: pidFile,
@@ -847,7 +847,7 @@ ${copyKeys}
 `),
             })),
             "nsd-dnssec": nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), dnssec, nix.thunk(() => ({
-                __proto__: pos$97,
+                [nix.POS]: pos$97,
                 description: "DNSSEC key rollover",
                 wantedBy: nix.thunk(() => ["nsd.service"]),
                 before: nix.thunk(() => ["nsd.service"]),
@@ -856,13 +856,13 @@ ${copyKeys}
               })))),
           })),
           timers: nix.thunk(() => ({
-            __proto__: pos$101,
+            [nix.POS]: pos$101,
             "nsd-dnssec": nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), dnssec, nix.thunk(() => ({
-                __proto__: pos$100,
+                [nix.POS]: pos$100,
                 description: "Automatic DNSSEC key rollover",
                 wantedBy: nix.thunk(() => ["nsd.service"]),
                 timerConfig: nix.thunk(() => ({
-                  __proto__: pos$99,
+                  [nix.POS]: pos$99,
                   OnActiveSec: nix.thunk(() => nix.sel(cfg, "dnssecInterval")),
                   OnUnitActiveSec: nix.thunk(() => nix.sel(cfg, "dnssecInterval")),
                 })),

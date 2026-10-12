@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const base = nix.arg($, "base");
   const lib = nix.arg($, "lib");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "local",
       version: "0.1.0.0",
       src: nix.path(here, "./local"),

@@ -20,26 +20,26 @@ export default nix.lambda((args) => (() => {
   const postgresqlBuildExtension = nix.arg($, "postgresqlBuildExtension");
   const postgresqlTestExtension = nix.arg($, "postgresqlTestExtension");
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "pg_squeeze",
       version: "1.9.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cybertec-postgresql",
           repo: "pg_squeeze",
           tag: nix.thunk(() => nix.str`REL${nix.app(nix.sel(lib, "replaceString"), ".", "_", nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
           hash: "sha256-AOhdl/EJNsQrl9ES/9flsVGy92KgpKV8no3etj0YzIk=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex=^REL(\\d+)_(\\d+)_(\\d+)$"]),
           })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           extension: nix.thunk(() => nix.app(postgresqlTestExtension, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               finalPackage: nix.thunk(() => nix.attr(finalAttrs, "finalPackage")),
               postgresqlExtraSettings: "wal_level = logical\nshared_preload_libraries = 'pg_squeeze'\noutput_plugin_libraries = 'pg_squeeze'\n",
               sql: "CREATE EXTENSION pg_squeeze;\n\nSELECT squeeze.start_worker();\n\nCREATE TABLE a(i int PRIMARY KEY, j int);\nINSERT INTO a(i, j) SELECT x, x FROM generate_series(1, 20) AS g(x);\nINSERT INTO squeeze.tables (tabschema, tabname, schedule)\nVALUES ('public', 'a', ('{30}', '{22}', NULL, NULL, '{3, 5}'));\nSELECT squeeze.squeeze_table('public', 'a', NULL, NULL, NULL);\n",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "PostgreSQL extension for automatic bloat cleanup",
         homepage: "https://github.com/cybertec-postgresql/pg_squeeze",
         changelog: nix.thunk(() => nix.str`https://github.com/cybertec-postgresql/pg_squeeze/blob/${nix.sel(finalAttrs, "src", "rev")}/NEWS`),

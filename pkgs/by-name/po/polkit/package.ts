@@ -43,13 +43,13 @@ export default nix.lambda((args) => (() => {
   const system = "/run/current-system/sw";
   const setuid = "/run/wrappers/bin";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "polkit",
       version: "127",
       disallowedReferences: nix.thunk(() => nix.app(nix.sel(lib, "optional"), useConsoleKit, systemdLibs)),
       outputs: nix.thunk(() => ["bin", "dev", "out"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "polkit-org",
           repo: "polkit",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -81,12 +81,12 @@ export default nix.lambda((args) => (() => {
             const w = nix.withScope(pp, null);
             return [
               nix.thunk(() => nix.lookup(w, "dbus-python")),
-              nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "python-dbusmock"), "override"), nix.thunk(() => ({ __proto__: pos$2, doCheck: false })))),
+              nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "python-dbusmock"), "override"), nix.thunk(() => ({ [nix.POS]: pos$2, doCheck: false })))),
             ];
           })())),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         DESTDIR: "dest",
         PKG_CONFIG_SYSTEMD_SYSUSERS_DIR: "/usr/lib/sysusers.d",
         PKG_CONFIG_SYSTEMD_TMPFILES_DIR: "/usr/lib/tmpfiles.d",
@@ -133,7 +133,7 @@ rmdir --parents --ignore-fail-on-non-empty \\
 ! test -e "$DESTDIR"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/polkit-org/polkit",
         description: "Toolkit for defining and handling the policy that allows unprivileged processes to speak to privileged processes",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),

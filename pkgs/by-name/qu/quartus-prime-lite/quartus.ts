@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
   ]);
   const disabledComponents = nix.argOr($, "disabledComponents", () => ["quartus_help", "quartus_update", "questa_fe"]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "quartus-prime-lite-unwrapped",
       version: "25.1std.0.1129",
       nativeBuildInputs: nix.thunk(() => [unstick, unzip]),
@@ -81,9 +81,9 @@ substituteInPlace $out/quartus/adm/qenv.sh \\
   --replace-fail 'grep sse /proc/cpuinfo > /dev/null 2>&1' ':'
 `)),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         deviceIds: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           "Arria II": "arria_lite",
           "Cyclone V": "cyclonev",
           "Cyclone IV": "cyclone",
@@ -92,7 +92,7 @@ substituteInPlace $out/quartus/adm/qenv.sh \\
           "MAX 10 FPGA": "max10",
         })),
         components: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           arria_lite: "sha256-Epxvu1z7Z4vQWASIYEJAy5P7Meee114ZNVIAZnmTEH8=",
           cyclone: "sha256-lKOYy61BHxY4OyonxADg6d7IGwckGX8zu0x6dpGB5Lo=",
           cyclone10lp: "sha256-lurSlhCuE6i2ULKNFvlWNtk6rqdvVwREC607HbMSH2I=",
@@ -109,7 +109,7 @@ substituteInPlace $out/quartus/adm/qenv.sh \\
         baseURL: "https://download.altera.com/akdlm/software/acdsinst",
         URLdir: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}std/${nix.app(nix.sel(lib, "elemAt"), nix.thunk(() => nix.app(nix.sel(lib, "splitVersion"), nix.thunk(() => nix.sel(finalAttrs, "version")))), 4n)}/ib_installers`),
         download: (name) => (hash) => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: name,
             hash: hash,
             url: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage", "baseURL")}/${nix.sel(finalAttrs, "finalPackage", "URLdir")}/${name}`),
@@ -117,7 +117,7 @@ substituteInPlace $out/quartus/adm/qenv.sh \\
           }))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://www.altera.com/downloads/fpga-development-tools/quartus-prime-lite-current",
         description: "FPGA design and simulation software",
         mainProgram: "quartus",

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const dataDir = nix.argOr($, "dataDir", () => "/var/lib/monica");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "monica",
       version: "4.1.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/monicahq/monica/releases/download/v${nix.sel(finalAttrs, "version")}/monica-v${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-7ZdOSI/gldSWub5FIyYQw3gpLe+PRAnq03u6DXdZ2YE=",
         })))),
@@ -33,11 +33,11 @@ ln -s ${dataDir}/.env $out/.env
 ln -s ${dataDir}/storage $out/storage
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, monica: nix.thunk(() => nix.sel(nixosTests, "monica")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, monica: nix.thunk(() => nix.sel(nixosTests, "monica")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Personal CRM",
         homepage: "https://www.monicahq.com/",
         longDescription: "Remember everything about your friends, family and business\nrelationships.\n",

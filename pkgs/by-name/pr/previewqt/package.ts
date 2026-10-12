@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const vips = nix.arg($, "vips");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "previewqt",
       version: "6.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lspies",
           repo: "previewqt",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications\nmv $out/bin/previewqt.app $out/Applications\nmakeWrapper $out/{Applications/previewqt.app/Contents/MacOS,bin}/previewqt\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://previewqt.org/",
         description: "Qt-based file previewer",
         longDescription: "PhotoQt is an image viewer that provides a simple and uncluttered\ninterface. Yet, hidden beneath the surface awaits a large array of\nfeatures. Here are some of its main features (not an exhaustive\nlist). Suggestions for new features are always welcome.\n\n- Support of ImageMagick/GraphicsMagick, Libraw, FreeImage, DevIL,\n  libvips, Poppler, libarchive, and video files.\n- Touchscreen support\n- Support for Motion Photos and Apple Live Photos\n- Support for (partial) photo spheres and 360 degree panoramas using\n  equirectangular projection\n- Explore images on an interactive map according to their embedded GPS\n  location\n- Chromecast support\n- Basic image manipulations\n- Convert images between formats\n- Keyboard and mouse shortcuts\n- Upload images directly to imgur.com\n- Set image as wallpaper directly from inside PhotoQt\n- Slideshow feature\n- Display Exif information (including tagging of faces)\n- Detect and display bar codes and QR codes in images\n- Thumbnail Cache\n- System Tray Usage\n- Command Line Options\n- Several translations available (help wanted)\n- and much more...\n",

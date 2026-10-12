@@ -63,34 +63,34 @@ export default nix.lambda((args) => (() => {
     const config_1 = nix.arg($_1, "config");
     const name = nix.arg($_1, "name");
     return {
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       options: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => nix.sel(lib, "types", "nonEmptyStr")),
             default: name,
             defaultText: "‹name›",
             description: "A unique string that identifies this profile.",
           })))),
         priority: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.sel(lib, "types", "int")),
             default: 1000n,
             example: 0n,
             description: "The priority for the profile when constructing the command-line\nparameters. Lower priority values will cause the profile to be\nordered before others, meaning it will be matched before others.\nHigher priority values will cause the profile to be ordered after\nothers, meaning it will be matched after others.\n",
           })))),
         ips: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           include: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "uniq"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "nonEmptyStr")))))))),
               default: null,
               example: nix.thunk(() => ["213.59.192.0/18"]),
               description: "An explicit list of IP addresses to include in the DPI bypass.\nEach member is an IPv4 or IPv6 address, or a subnet in CIDR\nnotation.\n\nIf set to null (the default), no include list is set, meaning all\nIP addresses are included in the DPI bypass. If set to an empty\nlist, the include list will be empty, and no IP address will be\nincluded in the DPI bypass.\n",
             })))),
           exclude: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "uniq"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "nonEmptyStr")))))))),
               default: null,
               example: nix.thunk(() => [
@@ -114,26 +114,26 @@ export default nix.lambda((args) => (() => {
             })))),
         })),
         hosts: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           include: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "uniq"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "nonEmptyStr")))))))),
               default: null,
               example: nix.thunk(() => ["youtube.com", "chess.com"]),
               description: "An explicit list of hostnames to include in the DPI bypass. Each\nmember is a hostname, optionally prefixed with ^ to be a strict\nmatch (by default all subdomains are matched).\n\nIf set to null (the default), no include list is set, meaning all\nhostnames are included in the DPI bypass. If set to an empty\nlist, the include list will be empty, and no hostname will be\nincluded in the DPI bypass.\n",
             })))),
           exclude: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "uniq"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "nonEmptyStr")))))))),
               default: null,
               example: nix.thunk(() => ["ru", "yandex.net", "yastatic.net"]),
               description: "An explicit list of hostnames to exclude from the DPI bypass.\nEach member is a hostname, optionally prefixed with ^ to be a\nstrict match (by default all subdomains are matched).\n\nIf set to null (the default) or an empty list, no exclude list is\nset, meaning no hostnames are excluded from the DPI bypass.\n",
             })))),
           autodetect: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "automatic tracking of which hosts the DPI bypass is necessary for\n")),
             file: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(lib, "types", "path")),
                 default: nix.thunk(() => nix.str`/var/lib/zapret2/${nix.sel(config_1, "name")}-hosts.txt`),
                 defaultText: "/var/lib/zapret2/‹name›-hosts.txt",
@@ -142,7 +142,7 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         parameters: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             default: [],
             example: nix.thunk(() => [
@@ -155,7 +155,7 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       config: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         parameters: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(config_1, "ips", "include"), null)), nix.thunk(() => nix.app(nix.sel(lib, "mkBefore"), nix.thunk(() => [
                   nix.thunk(() => nix.str`--ipset=${nix.app(nix.sel(pkgs, "writeText"), "zapret2-ips-include.txt", nix.thunk(() => nix.app(nix.sel(lib, "concatLines"), nix.thunk(() => nix.sel(config_1, "ips", "include")))))}`),
@@ -194,23 +194,23 @@ export default nix.lambda((args) => (() => {
     ], nix.concat(fileOptions, nix.concat(profileOptions, nix.sel(cfg, "extraOptions"))));
   })());
   return {
-    __proto__: pos$46,
+    [nix.POS]: pos$46,
     options: nix.thunk(() => ({
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       services: nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         zapret2: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "zapret2, an extensible DPI bypass program")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "zapret2", nix.thunk(() => ({})))),
           profiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), profileSubmodule)))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 https: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   parameters: nix.thunk(() => [
                     "--filter-tcp=443",
                     "--payload=tls_client_hello",
@@ -222,65 +222,65 @@ export default nix.lambda((args) => (() => {
               description: "Defines DPI bypass profiles for Zapret2.\n\nNote that each profile should have a unique {option}`--filter-*`\noption. By default, a profile matches all traffic, and when a profile\nmatches some traffic, no other profile is evaluated. Since profiles are\nmatched in order they are passed on the command line, the ordering of\nprofiles is important, and if a \"fallback\"/catch-all profile is\ndefined, it should be defined with a high priority to make sure it is\nlast in the list of profiles.\n\nEach profile will be prepended with the {option}`--name` option to set\nthe name, and then joined together with {option}`--new` between\nprofiles to form the final command-line parameters that will be passed\nto Zapret2. Therefore, neither {option}`--name` nor {option}`--new`\nshould be used in the values.\n",
             })))),
           extraOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["--debug"]),
               description: "Extra command line parameters to pass to Zapret2.\n\nProfiles and desync strategies should not be set here, instead the\n{option}`services.zapret2.profiles` option should be used instead,\nwhich allows profiles to be defined and merged correctly across\nmultiple NixOS modules.\n\nThe {option}`--lua-init` parameters should not be included here, the\nfiles to load should instead be set via the\n{option}`services.zapret2.files` option.\n\nLikewise, the {option}`--qnum` and {option}`--fwmark` parameters should\nalso not be included, instead the queue number and firewall desync mark\ncan be set using the {option}`services.zapret2.firewall.queue` and\n{option}`services.zapret2.firewall.desyncFwmark` options respectively.\n",
             })))),
           files: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "either"), nix.thunk(() => nix.sel(lib, "types", "nonEmptyStr")), nix.thunk(() => nix.sel(lib, "types", "path")))))),
               default: nix.thunk(() => ["zapret-lib", "zapret-antidpi"]),
               example: nix.thunk(() => ["zapret-lib", "zapret-obfs", "/path/to/custom.lua"]),
               description: "List of Lua files that will be loaded and executed once on startup.\nEach entry in the list can be either an absolute path (including the\n.lua extension) or the name of a standard library file bundled with\nzapret2 (without the .lua extension). In case of the latter, they\nwill be automatically resolved to the files in the configured zapret2\npackage.\n",
             })))),
           firewall: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             configureAutomatically: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 example: false,
                 description: "Whether to automatically configure the firewall rules to apply the\nDPI bypass to all outgoing non-local connections (using nftables).\n\nIf disabled, the only options that will be used are\n{option}`firewall.queue` and {option}`firewall.desyncFwmark`, for the\n{option}`--qnum` and {option}`--fwmark` parameters respectively.\n",
               })))),
             maxPackets: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "ints", "between"), 2n, 65535n)))),
                 default: 16n,
                 example: 20n,
                 description: "The number of packets in each connection to route via Zapret2. For\nexample, a value of 16 will only subject the first 16 packets in each\nconnection to anti-DPI measures. It's recommended to keep this value\nlow in order to avoid routing unnecessary traffic through userspace\nif possible. However, if necessary, all traffic can be routed by\nsetting this option to null.\n",
               })))),
             interfaces: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "nonEmptyListOf"), nix.thunk(() => nix.sel(lib, "types", "nonEmptyStr")))))),
                 default: null,
                 example: nix.thunk(() => ["eth0"]),
                 description: "A filter for which interfaces to apply the DPI bypass to. Setting\nthis option to null (the default) means the DPI bypass applies to\nall interfaces.\n",
               })))),
             tcpPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "port")))))),
                 default: null,
                 example: nix.thunk(() => [80n, 443n]),
                 description: "A list of destination TCP ports that are routed to Zapret2 at the\nfirewall level. Setting this option to null (the default) means all\nTCP connections are routed to Zapret2. Setting this option to an\nempty list disables routing to Zapret2 for any TCP connection.\n",
               })))),
             udpPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "port")))))),
                 default: null,
                 example: nix.thunk(() => [443n]),
                 description: "A list of destination UDP ports that are routed to Zapret2 at the\nfirewall level. Setting this option to null (the default) means all\nUDP connections are routed to Zapret2. Setting this option to an\nempty list disables routing to Zapret2 for any UDP connection.\n",
               })))),
             queue: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "ints", "between"), 0n, 65535n)),
                 default: 200n,
                 example: 400n,
                 description: "The nfqueue queue number to use. This number must be unique between\nall other programs using nfqueue.\n",
               })))),
             desyncFwmark: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "strMatching"), "0x(1|2|4|8)(0){0,7}")),
                 default: "0x40000000",
                 example: "0x10000000",
@@ -291,26 +291,26 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$44,
+        [nix.POS]: pos$44,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "firewall", "configureAutomatically")) || nix.asBool(nix.sel(config, "networking", "nftables", "enable")))),
             message: "When Zapret2 is set to configure the firewall automatically (services.zapret2.firewall.configureAutomatically), nftables must be enabled (networking.nftables.enable must be true).",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             "nfqws2@default": nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               overrideStrategy: "asDropin",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$32,
+                    [nix.POS]: pos$32,
                     ExecStart: nix.thunk(() => [
                       "",
                       nix.thunk(() => nix.app(nix.sel(utils, "escapeSystemdExecArgs"), arguments$)),
@@ -323,20 +323,20 @@ export default nix.lambda((args) => (() => {
                     SystemCallFilter: "@system-service",
                     SystemCallArchitectures: "native",
                   })),
-                  nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.builtins.any((p) => nix.sel(p, "hosts", "autodetect", "enable"), nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(cfg, "profiles")))))), nix.thunk(() => ({ __proto__: pos$33, StateDirectory: "zapret2" })))),
+                  nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.builtins.any((p) => nix.sel(p, "hosts", "autodetect", "enable"), nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(cfg, "profiles")))))), nix.thunk(() => ({ [nix.POS]: pos$33, StateDirectory: "zapret2" })))),
                 ]))),
             })),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           nftables: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "firewall", "configureAutomatically")), nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
               tables: nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 zapret2: nix.thunk(() => ({
-                  __proto__: pos$37,
+                  [nix.POS]: pos$37,
                   family: "inet",
                   content: nix.thunk(() => nix.str`define DESYNC_MARK = ${nix.sel(cfg, "firewall", "desyncFwmark")}
 define QNUM = ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "firewall", "queue")))}
@@ -453,18 +453,18 @@ chain predefrag {
             })))),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$43,
+          [nix.POS]: pos$43,
           kernel: nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             sysctl: nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               "net.netfilter.nf_conntrack_tcp_be_liberal": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
             })),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$45,
+      [nix.POS]: pos$45,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "andre4ik3"))];

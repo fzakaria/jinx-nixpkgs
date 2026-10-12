@@ -17,20 +17,20 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const pname = "patch";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://pypi/p/${pname}/${pname}-${version}.zip`),
           sha256: "1nj55hvyvzax4lxq7vkyfbw91pianzr3hp7ka7j12pgjxccac50g",
           stripRoot: false,
         }))));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to parse and apply unified diffs",
         homepage: "https://github.com/techtonik/python-patch/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "igsha"))]),
       }));
-      return { __proto__: pos$3, version, format, pname, src, doCheck, meta };
+      return { [nix.POS]: pos$3, version, format, pname, src, doCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pdudaemon",
       version: "1.1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pdudaemon",
           repo: "pdudaemon",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -60,14 +60,14 @@ export default nix.lambda((args) => (() => {
       })()),
       __structuredAttrs: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pdudaemon: nix.thunk(() => nix.attr(nixosTests, "pdudaemon")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/pdudaemon/pdudaemon/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Python Daemon for controlling/sequentially executing commands to PDUs (Power Distribution Units)",
         homepage: "https://github.com/pdudaemon/pdudaemon",

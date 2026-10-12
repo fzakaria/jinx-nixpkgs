@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const libxau = nix.arg($, "libxau");
   const libxkbfile = nix.arg($, "libxkbfile");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "libuiohook",
       version: "1.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kwhat",
           repo: "libuiohook",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,10 +58,10 @@ export default nix.lambda((args) => (() => {
         ]))),
       outputs: nix.thunk(() => ["out", "test"]),
       cmakeFlags: nix.thunk(() => ["-DENABLE_TEST:BOOL=ON"]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })))),
       postInstall: "mkdir -p $test/share\ncp ./uiohook_tests $test/share\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "C library to provide global keyboard and mouse hooks from userland",
         homepage: "https://github.com/kwhat/libuiohook",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -72,9 +72,9 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           libuiohook: nix.thunk(() => nix.sel(nixosTests, "libuiohook")),
         })),
       })),

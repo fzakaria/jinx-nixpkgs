@@ -42,13 +42,13 @@ export default nix.lambda((args) => (() => {
   const sympy = nix.arg($, "sympy");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "matscipy",
       version: "1.2.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libAtoms",
           repo: "matscipy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,12 +56,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/libAtoms/matscipy/commit/6a91a4646e30796abe51ef3efa4b479d4471aae0.patch",
             hash: "sha256-PH9I+7+nN6fSkugVbxPCs3LqjhP/fQ5NZjiNQ7F70YU=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/libAtoms/matscipy/commit/f6478347bbceeab8ec177042b6ed1243e742d55f.patch",
             hash: "sha256-DKk+1TlP+OngcmycsCIE+7s2h/7wa7Gxv9APbuIAoZg=",
           })))),
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [meson_python, ninja, numpy]),
       dependencies: nix.thunk(() => [ase, numpy, packaging, scipy]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         cli: nix.thunk(() => [argcomplete]),
         dislocation: nix.thunk(() => [atomman, nglview, ovito]),
         docs: nix.thunk(() => [
@@ -107,7 +107,7 @@ export default nix.lambda((args) => (() => {
           "test_read_write_lammps_data",
         ]))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Materials science with Python at the atomic-scale",
         homepage: "https://github.com/libAtoms/matscipy",
         changelog: nix.thunk(() => nix.str`https://github.com/libAtoms/matscipy/blob/${nix.sel(finalAttrs, "src", "tag")}/ChangeLog.md`),

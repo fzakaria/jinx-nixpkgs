@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.5.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-XM1zG1JjbdEEV6i42FjLDQJv+qsePnUbr3kb+APjfXs=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [six, pytz, tzlocal]);
       const nativeCheckInputs = nix.thunk(() => [taskwarrior2, nix.thunk(() => nix.app(writeShellScriptBin, "wsl", "true"))]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/robgolding/tasklib",
         description: "Library for interacting with taskwarrior databases",
         changelog: nix.thunk(() => nix.str`https://github.com/GothenburgBitFactory/tasklib/releases/tag/${version}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

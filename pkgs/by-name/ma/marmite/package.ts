@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "marmite";
       const version = "0.3.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rochacbruno",
           repo: "marmite",
           tag: version,
@@ -30,9 +30,9 @@ export default nix.lambda((args) => (() => {
       const cargoHash = "sha256-yWl8AWond03tT1CsyCrX72AX5ysow6jPgEtFonpLSyc=";
       const nativeBuildInputs = nix.thunk(() => [pkg_config]);
       const buildInputs = nix.thunk(() => [oniguruma]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, RUSTONIG_SYSTEM_LIBONIG: true }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, RUSTONIG_SYSTEM_LIBONIG: true }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Static Site Generator for Blogs",
         homepage: "https://github.com/rochacbruno/marmite",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "marmite",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.5.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "RaRe-Technologies",
           repo: "smart_open",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const dependencies = nix.thunk(() => [wrapt]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         s3: nix.thunk(() => [boto3]),
         gcs: nix.thunk(() => [google_cloud_storage]),
         azure: nix.thunk(() => [azure_storage_blob, azure_common, azure_core]),
@@ -76,14 +76,14 @@ export default nix.lambda((args) => (() => {
         "test_seek_from_start",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/piskvorky/smart_open/releases/tag/${nix.sel(src, "tag")}`),
         description: "Library for efficient streaming of very large file",
         homepage: "https://github.com/piskvorky/smart_open",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

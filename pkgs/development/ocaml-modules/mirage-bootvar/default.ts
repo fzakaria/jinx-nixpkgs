@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const ounit2 = nix.arg($, "ounit2");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mirage-bootvar",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/mirage-bootvar/releases/download/v${nix.sel(finalAttrs, "version")}/mirage-bootvar-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-EuXvtt2nap3B7jY7nYMenOqamLTQruyFJ8K2tRZ4Bq0=",
         })))),
       doCheck: true,
       checkInputs: nix.thunk(() => [ounit2]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Boot time arguments for MirageOS",
         homepage: "https://github.com/mirage/mirage-bootvar",
         changelog: nix.thunk(() => nix.str`https://raw.githubusercontent.com/mirage/mirage-bootvar/v${nix.sel(finalAttrs, "version")}/CHANGES.md`),

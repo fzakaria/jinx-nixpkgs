@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkLibretroCore = nix.arg($, "mkLibretroCore");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       core: "mame2010",
       version: "0-unstable-2026-09-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libretro",
           repo: "mame2010-libretro",
           rev: "dff8aadd1c3f38215af3955746d6e19abe0ddcea",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       makefile: "Makefile",
       makeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), nix.thunk(() => ["PTR64=1", "ARM_ENABLED=1", "X86_SH2DRC=0", "FORCE_DRC_C_BACKEND=1"]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Port of MAME ~2010 to libretro, compatible with MAME 0.139 sets",
         homepage: "https://github.com/libretro/mame2010-libretro",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),

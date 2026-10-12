@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libarchive-c",
       version: "5.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Changaco",
           repo: "python-libarchive-c",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/Changaco/python-libarchive-c/commit/e0e2a47b2403632642ee932dd56acd11e4a79efe.diff",
             hash: "sha256-C9eD4cGQOIdBYy4ytom49lA/Jaarj7LbSIgjxCk/H84=",
           })))),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$3, LC_ALL: "en_US.UTF-8" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, LC_ALL: "en_US.UTF-8" })),
       postPatch: nix.thunk(() => nix.str`substituteInPlace libarchive/ffi.py --replace-fail \\
   "find_library('archive')" "'${nix.sel(libarchive, "lib")}/lib/libarchive${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}'"
 `),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["libarchive"]),
       nativeCheckInputs: nix.thunk(() => [glibcLocales, mock, pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/Changaco/python-libarchive-c",
         description: "Python interface to libarchive",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),

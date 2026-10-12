@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pyramid = nix.arg($, "pyramid");
   const setuptools_80 = nix.arg($, "setuptools_80");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pyramid-jinja2",
       version: "2.10.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "pyramid_jinja2",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-jFCMs1wTX5UUnKI2EQ+ciHU0NXV0DRbFy3OlDvHCFnc=",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["pyramid_jinja2"]),
       disabledTests: nix.thunk(() => ["test_it_relative_to_package", "test_options"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Jinja2 template bindings for the Pyramid web framework",
         homepage: "https://github.com/Pylons/pyramid_jinja2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd0")),

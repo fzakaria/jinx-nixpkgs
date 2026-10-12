@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libsForQt5 = nix.arg($, "libsForQt5");
   const qemu = nix.arg($, "qemu");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "qtemu",
       version: "2.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "qtemu",
           repo: "gui",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,7 +45,7 @@ wrapProgram $out/bin/qtemu --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath")
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Qt-based front-end for QEMU emulator",
         homepage: "https://qtemu.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

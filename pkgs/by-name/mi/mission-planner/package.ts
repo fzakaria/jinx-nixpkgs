@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const pname = "mission-planner";
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: pname,
       exec: pname,
       icon: pname,
@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
       const pname_1 = pname;
       const version = "1.3.83";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://firmware.ardupilot.org/Tools/MissionPlanner/MissionPlanner-${version}.zip`),
           sha256: "sha256-/zaU96kDjK91ZUUEndeu9049DY/jWG6HqogQRXBN1vk=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [makeWrapper, mono, unzip]);
       const unpackPhase = "runHook preUnpack\n\nmkdir -p source\ncd source\nunzip -q $src\n\nrunHook postUnpack\n";
       const env = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         AOT_FILES: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["MissionPlanner.exe", "MissionPlanner.*.dll"]))),
       }));
       const buildPhase = "runHook preBuild\nfor file in $AOT_FILES\ndo\n  mono --aot $file\ndone\nrunHook postBuild\n";
@@ -54,7 +54,7 @@ makeWrapper ${mono}/bin/mono $out/bin/mission-planner \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "ArduPilot ground station",
         mainProgram: "mission-planner",
         longDescription: "Full-featured ground station application for the ArduPilot open source\nautopilot project.  Lets you both flash, configure and control ArduPilot\nPlane, Copter and Rover targets.\n",
@@ -71,7 +71,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: pname_1,
         version,
         src,

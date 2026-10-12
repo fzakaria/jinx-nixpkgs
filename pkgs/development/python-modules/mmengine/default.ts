@@ -36,12 +36,12 @@ export default nix.lambda((args) => (() => {
   const transformers = nix.arg($, "transformers");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mmengine",
       version: "0.10.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "open-mmlab",
           repo: "mmengine",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "torch-2.6.0-compat.patch",
             url: "https://github.com/open-mmlab/mmengine/pull/1650/commits/c21b8431b2c625560a3866c65328cff0380ba1f8.patch",
             hash: "sha256-SLr030IdYD9wM/jPJuZd+Dr1jjFx/5/YkJj/IwhnNQg=",
@@ -134,7 +134,7 @@ export default nix.lambda((args) => (() => {
           "test_to_dtype_3",
         ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_setup_multi_processes", "test_with_runner"]))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library for training deep learning models based on PyTorch",
         homepage: "https://github.com/open-mmlab/mmengine",
         changelog: nix.thunk(() => nix.str`https://github.com/open-mmlab/mmengine/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

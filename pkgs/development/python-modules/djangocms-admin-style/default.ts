@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.3.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "django-cms",
           repo: "djangocms-admin-style",
           tag: version,
@@ -46,15 +46,15 @@ export default nix.lambda((args) => (() => {
       ]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          runTests: nix.thunk(() => nix.app(nix.sel(djangocms_admin_style, "overridePythonAttrs"), (_) => ({ __proto__: pos$2, doCheck: true }))),
+          [nix.POS]: pos$3,
+          runTests: nix.thunk(() => nix.app(nix.sel(djangocms_admin_style, "overridePythonAttrs"), (_) => ({ [nix.POS]: pos$2, doCheck: true }))),
         })),
       }));
       const pythonImportsCheck = nix.thunk(() => ["djangocms_admin_style"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Django Theme tailored to the needs of django CMS",
         homepage: "https://django-cms.org",
         changelog: nix.thunk(() => nix.str`https://github.com/django-cms/djangocms-admin-style/releases/tag/${version}`),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "onny"))]),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

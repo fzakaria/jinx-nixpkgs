@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const runtimeInputs = nix.thunk(() => [opam, findlib, gitMinimal, mercurial, bzip2, gnutar, coreutils]);
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dune-release",
       version: "2.2.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ocamllabs/dune-release/releases/download/${nix.sel(finalAttrs, "version")}/dune-release-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-A0es0mk6aEMdKvweVfffkaezfgIi1DWAr3dLmNwGOTo=",
         })))),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), runtimeInputs)}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Release dune packages in opam",
         mainProgram: "dune-release",
         homepage: "https://github.com/ocamllabs/dune-release",
